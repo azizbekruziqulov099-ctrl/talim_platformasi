@@ -337,6 +337,41 @@ def joriy_foydalanuvchi(token: str):
 # TEST YECHISH (saytdan, botsiz)
 # ═══════════════════════════════════════════════════════════
 
+@app.get("/api/mavzular")
+def mavzular_royxati(sinf: str = None):
+    """Test yechish uchun mavjud fan/mavzularni qaytaradi — faqat
+    generated_tests'da HAQIQATAN savoli bor mavzularni ko'rsatadi,
+    aks holda foydalanuvchi bo'sh mavzuga kirib qolishi mumkin."""
+    conn = _db()
+    cur = conn.cursor()
+    shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)"
+    params = ()
+    if sinf:
+        shart += " AND d.grade = %s"
+        params = (sinf,)
+    cur.execute(f"""
+        SELECT d.subject_code, d.subject_name, d.topic_code,
+               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
+               (SELECT COUNT(*) FROM generated_tests g WHERE g.topic_code = d.topic_code) AS savol_soni
+        FROM dts_tree d
+        WHERE {shart} AND d.is_deleted = FALSE
+        ORDER BY d.subject_code, d.topic_code
+    """, params)
+    qatorlar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    fanlar = {}
+    for q in qatorlar:
+        kod = q["subject_code"] or "BOSHQA"
+        if kod not in fanlar:
+            fanlar[kod] = {"nom": q["subject_name"] or kod, "qisqa": kod, "mavzular": []}
+        fanlar[kod]["mavzular"].append({
+            "topic_code": q["topic_code"], "nomi": q["nomi"], "savol_soni": q["savol_soni"],
+        })
+    return {"fanlar": list(fanlar.values())}
+
+
 @app.get("/api/test/{topic_code}")
 def test_savollari(topic_code: str, soni: int = 10):
     """Berilgan mavzu bo'yicha tasodifiy savollarni qaytaradi."""
