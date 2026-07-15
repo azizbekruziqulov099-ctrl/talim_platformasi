@@ -210,6 +210,53 @@ class UlashSorov(BaseModel):
     kod: str
 
 
+class RoyxatSorov(BaseModel):
+    email: str
+    ism: str
+    rol: str          # 'oquvchi' | 'ota-ona' | 'oqituvchi'
+    sinf: str = None  # faqat rol='oquvchi' bo'lsa
+
+RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
+
+
+@app.post("/auth/royxat")
+def yangi_royxat(sorov: RoyxatSorov):
+    """Botsiz, to'g'ridan saytdan YANGI foydalanuvchi yaratadi.
+    Telegram ID bilan TO'QNASHMASLIGI uchun MANFIY user_id beriladi
+    (haqiqiy Telegram ID doim musbat bo'ladi)."""
+    if sorov.rol not in RUXSAT_ETILGAN_ROLLAR:
+        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.rol}")
+    if not sorov.ism.strip():
+        raise HTTPException(status_code=400, detail="Ism kiritilmagan")
+
+    conn = _db()
+    cur = conn.cursor()
+
+    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (sorov.email,))
+    if cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Bu email allaqachon ulangan — kirish orqali davom eting")
+
+    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+    r = cur.fetchone()
+    yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+
+    cur.execute(
+        "INSERT INTO users(user_id, full_name, role, class) VALUES(%s,%s,%s,%s)",
+        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None),
+    )
+    cur.execute(
+        "INSERT INTO google_hisob(google_email, user_id) VALUES(%s,%s)",
+        (sorov.email, yangi_id),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    token = _jwt_yarat(yangi_id)
+    return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
+
+
 @app.post("/auth/ulash")
 def hisob_ulash(sorov: UlashSorov):
     """Google hisobini bot user_id'siga BIR MARTALIK, 15 daqiqa amal
@@ -260,3 +307,88 @@ def joriy_foydalanuvchi(token: str):
     if not r:
         raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
     return r
+
+
+# ═══════════════════════════════════════════════════════════
+# TEST YECHISH (saytdan, botsiz)
+# ═══════════════════════════════════════════════════════════
+
+@app.get("/api/test/{topic_code}")
+def test_savollari(topic_code: str, soni: int = 10):
+    """Berilgan mavzu bo'yicha tasodifiy savollarni qaytaradi."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT id, question, option_a, option_b, option_c, option_d,
+               correct_answer, explanation, question_type, is_latex
+        FROM generated_tests
+        WHERE topic_code = %s
+        ORDER BY RANDOM()
+        LIMIT %s
+    """, (topic_code, soni))
+    savollar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    if not savollar:
+        raise HTTPException(status_code=404, detail="Bu mavzuda savol topilmadi")
+
+    # correct_answer'ni FRONTENDGA yubormaymiz — javob tekshirish
+    # backendda bo'ladi, aks holda hiyla qilish mumkin bo'lardi
+    for s in savollar:
+        s.pop("correct_answer", None)
+
+    return {"topic_code": topic_code, "savollar": savollar}
+
+
+class JavobItem(BaseModel):
+    savol_id: int
+    tanlangan: str
+
+
+class TestNatijaSorov(BaseModel):
+    token: str
+    topic_code: str
+    javoblar: list[JavobItem]
+
+
+@app.post("/api/test/natija")
+def test_natijasini_saqla(sorov: TestNatijaSorov):
+    """Test yakunlanganda — har javobni backendda tekshiradi, foizni
+    hisoblaydi, learned_topics'ga yozadi (bot ishlatgan JADVALNING O'ZIGA —
+    shuning uchun dashboard darhol yangilanadi)."""
+    user_id = _jwt_tekshir(sorov.token)
+
+    conn = _db()
+    cur = conn.cursor()
+
+    savol_idlar = [j.savol_id for j in sorov.javoblar]
+    cur.execute(
+        "SELECT id, correct_answer FROM generated_tests WHERE id = ANY(%s)",
+        (savol_idlar,),
+    )
+    togri_javoblar = {r["id"]: r["correct_answer"] for r in cur.fetchall()}
+
+    togri_soni = 0
+    for j in sorov.javoblar:
+        haqiqiy = togri_javoblar.get(j.savol_id)
+        if haqiqiy and j.tanlangan.strip().lower() == haqiqiy.strip().lower():
+            togri_soni += 1
+
+    jami = len(sorov.javoblar)
+    foiz = round((togri_soni / jami) * 100) if jami else 0
+
+    cur.execute("""
+        INSERT INTO learned_topics(user_id, topic_code, score, repeat_count, learned_at, next_repeat)
+        VALUES(%s,%s,%s,1,NOW(),CURRENT_DATE + INTERVAL '7 days')
+        ON CONFLICT (user_id, topic_code) DO UPDATE SET
+            score = EXCLUDED.score,
+            repeat_count = learned_topics.repeat_count + 1,
+            learned_at = NOW(),
+            next_repeat = CURRENT_DATE + INTERVAL '7 days'
+    """, (user_id, sorov.topic_code, foiz))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return {"togri": togri_soni, "jami": jami, "foiz": foiz}
