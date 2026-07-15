@@ -13,6 +13,7 @@ from jose import jwt, JWTError
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
+from pydantic import BaseModel
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
@@ -204,12 +205,23 @@ async def google_callback(code: str = None, error: str = None):
         return RedirectResponse(f"{FRONTEND_URL}/ulash?email={email}&ism={ism}")
 
 
+class UlashSorov(BaseModel):
+    email: str
+    kod: str
+
+
 @app.post("/auth/ulash")
-def hisob_ulash(email: str, kod: str):
-    """Google hisobini bot user_id'siga BIR MARTALIK kod orqali bog'laydi."""
+def hisob_ulash(sorov: UlashSorov):
+    """Google hisobini bot user_id'siga BIR MARTALIK, 15 daqiqa amal
+    qiladigan kod orqali bog'laydi."""
+    email, kod = sorov.email, sorov.kod
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, ishlatildi FROM veb_ulash_kod WHERE kod=%s", (kod,))
+    cur.execute("""
+        SELECT user_id, ishlatildi,
+               (yaratildi > NOW() - INTERVAL '15 minutes') AS hali_yangi
+        FROM veb_ulash_kod WHERE kod=%s
+    """, (kod,))
     r = cur.fetchone()
     if not r:
         cur.close(); conn.close()
@@ -217,6 +229,9 @@ def hisob_ulash(email: str, kod: str):
     if r["ishlatildi"]:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
+    if not r["hali_yangi"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod muddati tugagan (15 daqiqa) — botdan yangisini oling")
 
     cur.execute("""
         INSERT INTO google_hisob (google_email, user_id) VALUES (%s,%s)
