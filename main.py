@@ -219,6 +219,30 @@ class RoyxatSorov(BaseModel):
 RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
 
 
+@app.get("/auth/ism_tekshir")
+def ism_tekshir(ism: str):
+    """Botda shu ismga o'xshash foydalanuvchi bor-yo'qligini tekshiradi —
+    saytdan yangi ro'yxatdan o'tishda, odam bilmasdan ikkinchi
+    (dublikat) hisob ochib qo'ymasligi uchun ogohlantirish beriladi.
+    Faqat BOTDAN kelgan (musbat user_id) foydalanuvchilar orasidan
+    qidiradi — saytdan ro'yxatdan o'tganlar (manfiy ID) hisobga olinmaydi."""
+    birinchi_soz = ism.strip().split()[0] if ism.strip() else ""
+    if len(birinchi_soz) < 3:
+        return {"oxshash": []}
+
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT full_name, role FROM users
+        WHERE full_name ILIKE %s AND user_id > 0
+        LIMIT 3
+    """, (f"%{birinchi_soz}%",))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"oxshash": natija}
+
+
 @app.post("/auth/royxat")
 def yangi_royxat(sorov: RoyxatSorov):
     """Botsiz, to'g'ridan saytdan YANGI foydalanuvchi yaratadi.
