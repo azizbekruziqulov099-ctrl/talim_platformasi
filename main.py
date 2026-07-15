@@ -12,10 +12,11 @@ from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, Response
 from pydantic import BaseModel
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
 JWT_MAXFIY_KALIT = os.getenv("JWT_MAXFIY_KALIT", "")
@@ -324,7 +325,7 @@ def joriy_foydalanuvchi(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, full_name, role FROM users WHERE user_id=%s", (user_id,))
+    cur.execute("SELECT user_id, full_name, role, class FROM users WHERE user_id=%s", (user_id,))
     r = cur.fetchone()
     cur.close()
     conn.close()
@@ -342,6 +343,11 @@ def mavzular_royxati(sinf: str = None):
     """Test yechish uchun mavjud fan/mavzularni qaytaradi — faqat
     generated_tests'da HAQIQATAN savoli bor mavzularni ko'rsatadi,
     aks holda foydalanuvchi bo'sh mavzuga kirib qolishi mumkin."""
+    # users.class "5-sinf" formatida saqlanishi mumkin, dts_tree.grade
+    # esa faqat "5" — ikkalasiga ham mos kelishi uchun tozalaymiz
+    if sinf:
+        sinf = sinf.replace("-sinf", "").strip()
+
     conn = _db()
     cur = conn.cursor()
     shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)"
@@ -379,7 +385,8 @@ def test_savollari(topic_code: str, soni: int = 10):
     cur = conn.cursor()
     cur.execute("""
         SELECT id, question, option_a, option_b, option_c, option_d,
-               correct_answer, explanation, question_type, is_latex
+               question_type, is_latex, time_limit,
+               COALESCE(image_file_id, image_url) AS rasm_id
         FROM generated_tests
         WHERE topic_code = %s
         ORDER BY RANDOM()
@@ -392,12 +399,53 @@ def test_savollari(topic_code: str, soni: int = 10):
     if not savollar:
         raise HTTPException(status_code=404, detail="Bu mavzuda savol topilmadi")
 
-    # correct_answer'ni FRONTENDGA yubormaymiz — javob tekshirish
-    # backendda bo'ladi, aks holda hiyla qilish mumkin bo'lardi
-    for s in savollar:
-        s.pop("correct_answer", None)
-
+    # correct_answer va explanation FRONTENDGA yubormaymiz — bular javob
+    # berilgandan KEYIN, /api/test/javob_tekshir orqali ochiladi
     return {"topic_code": topic_code, "savollar": savollar}
+
+
+class BittaJavob(BaseModel):
+    savol_id: int
+    tanlangan: str
+
+
+@app.post("/api/test/javob_tekshir")
+def javob_tekshir(j: BittaJavob):
+    """Bitta savolga berilgan javobni DARHOL tekshiradi — to'g'ri javob
+    va tushuntirishni shu yerda ochadi (foydalanuvchi javob bergandan
+    keyin, savol ko'rsatilganda EMAS — aks holda oldindan ko'rinib qolardi)."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT correct_answer, explanation FROM generated_tests WHERE id=%s", (j.savol_id,))
+    r = cur.fetchone()
+    cur.close()
+    conn.close()
+    if not r:
+        raise HTTPException(status_code=404, detail="Savol topilmadi")
+
+    togri = (j.tanlangan or "").strip().lower() == (r["correct_answer"] or "").strip().lower()
+    return {"togrimi": togri, "togri_javob": r["correct_answer"], "tushuntirish": r["explanation"]}
+
+
+@app.get("/api/rasm/{file_id}")
+async def rasm_proxy(file_id: str):
+    """Telegram'da saqlangan rasmni saytda ko'rsatish uchun oraliq xizmat —
+    Telegram file_id'lar to'g'ridan-to'g'ri URL emas, faqat bot tokeni
+    orqali ochiladi."""
+    if not BOT_TOKEN:
+        raise HTTPException(status_code=500, detail="Bot tokeni sozlanmagan")
+    if file_id.startswith("http"):
+        # Ba'zi eski yozuvlarda image_url to'g'ridan URL bo'lishi mumkin
+        return RedirectResponse(file_id)
+    async with httpx.AsyncClient() as client:
+        meta = await client.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getFile",
+                                 params={"file_id": file_id})
+        meta_data = meta.json()
+        if not meta_data.get("ok"):
+            raise HTTPException(status_code=404, detail="Rasm topilmadi")
+        file_path = meta_data["result"]["file_path"]
+        img = await client.get(f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_path}")
+        return Response(content=img.content, media_type="image/jpeg")
 
 
 class JavobItem(BaseModel):
