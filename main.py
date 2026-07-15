@@ -416,3 +416,29 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
     conn.close()
 
     return {"togri": togri_soni, "jami": jami, "foiz": foiz}
+
+
+# ═══════════════════════════════════════════════════════════
+# SAYTDAN BOTGA ULASH — teskari yo'nalish
+# (Saytda ro'yxatdan o'tgan, botni ham ishlatmoqchi bo'lganlar uchun)
+# ═══════════════════════════════════════════════════════════
+
+@app.post("/auth/sayt_kod_yarat")
+def sayt_kod_yarat(token: str):
+    """Saytda kirgan foydalanuvchi uchun BOTGA ulash kodi yaratadi.
+    Bot bu kodni ko'rib, shu web_user_id'dagi ma'lumotni haqiqiy
+    Telegram user_id'ga ko'chiradi."""
+    user_id = _jwt_tekshir(token)
+
+    kod = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""CREATE TABLE IF NOT EXISTS sayt_ulash_kod(
+        kod TEXT PRIMARY KEY, web_user_id BIGINT REFERENCES users(user_id),
+        yaratildi TIMESTAMP DEFAULT NOW(), ishlatildi BOOLEAN DEFAULT FALSE)""")
+    cur.execute("INSERT INTO sayt_ulash_kod(kod, web_user_id) VALUES(%s,%s)", (kod, user_id))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return {"kod": kod}
