@@ -803,3 +803,44 @@ def rol_ozgartir(sorov: RolOzgartirish):
     cur.close()
     conn.close()
     return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol}
+
+
+# ═══════════════════════════════════════════════════════════
+# O'QITUVCHI — yangi to'garak yaratish
+# ═══════════════════════════════════════════════════════════
+
+class TogarakYaratish(BaseModel):
+    token: str
+    nomi: str
+    fan: str
+    parol: str = None
+    max_talaba: int = None
+    oylik_summa: int = None
+
+
+@app.post("/api/oqituvchi/togarak_yarat")
+def togarak_yarat(sorov: TogarakYaratish):
+    """O'qituvchi yangi to'garak yaratadi — bot ishlatadigan AYNAN SHU
+    jadvalga (togaraklar) yoziladi, shuning uchun bot va sayt bir xil
+    ma'lumotni ko'radi."""
+    teacher_id = _jwt_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="To'garak nomi kiritilmagan")
+    if not sorov.fan.strip():
+        raise HTTPException(status_code=400, detail="Fan kiritilmagan")
+    if sorov.max_talaba is not None and sorov.max_talaba < 1:
+        raise HTTPException(status_code=400, detail="Maksimal talaba soni kamida 1 bo'lishi kerak")
+
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        INSERT INTO togaraklar(nomi, fan, teacher_id, parol, max_talaba, oylik_summa, aktiv)
+        VALUES(%s,%s,%s,%s,%s,%s,TRUE) RETURNING id
+    """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id,
+          sorov.parol.strip() if sorov.parol else None,
+          sorov.max_talaba, sorov.oylik_summa))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "togarak_id": yangi_id}
