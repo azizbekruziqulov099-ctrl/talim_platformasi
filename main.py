@@ -27,7 +27,7 @@ REDIRECT_URI = f"{BAZA_URL}/auth/google/callback"
 
 app = FastAPI(title="SamTM Ta'lim API")
 app.add_middleware(
-    CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST"], allow_headers=["*"],
+    CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["*"],
 )
 
 
@@ -219,7 +219,7 @@ class RoyxatSorov(BaseModel):
     sinf: str = None  # faqat rol='oquvchi' bo'lsa
     region: str = None
     district: str = None
-    tugilgan_yil: int = None
+    tugilgan_sana: str = None
     maktab_raqami: str = None
 
 RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
@@ -261,7 +261,7 @@ def yangi_royxat(sorov: RoyxatSorov):
 
     conn = _db()
     cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_yil INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
 
     cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (sorov.email,))
@@ -274,10 +274,10 @@ def yangi_royxat(sorov: RoyxatSorov):
     yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
 
     cur.execute(
-        """INSERT INTO users(user_id, full_name, role, class, region, district, tugilgan_yil, maktab_raqami)
+        """INSERT INTO users(user_id, full_name, role, class, region, district, tugilgan_sana, maktab_raqami)
            VALUES(%s,%s,%s,%s,%s,%s,%s,%s)""",
         (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None,
-         sorov.region, sorov.district, sorov.tugilgan_yil, sorov.maktab_raqami),
+         sorov.region, sorov.district, sorov.tugilgan_sana, sorov.maktab_raqami),
     )
     cur.execute(
         "INSERT INTO google_hisob(google_email, user_id) VALUES(%s,%s)",
@@ -335,10 +335,10 @@ def joriy_foydalanuvchi(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_yil INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
     cur.execute(
-        "SELECT user_id, full_name, role, class, region, district, tugilgan_yil, maktab_raqami FROM users WHERE user_id=%s",
+        "SELECT user_id, full_name, role, class, region, district, tugilgan_sana, maktab_raqami FROM users WHERE user_id=%s",
         (user_id,),
     )
     r = cur.fetchone()
@@ -706,7 +706,7 @@ class ProfilYangilash(BaseModel):
     full_name: str = None
     region: str = None
     district: str = None
-    tugilgan_yil: int = None
+    tugilgan_sana: str = None
     maktab_raqami: str = None
 
 
@@ -719,7 +719,7 @@ def profil_yangila(sorov: ProfilYangilash):
 
     conn = _db()
     cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_yil INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
 
     maydonlar = []
@@ -733,9 +733,9 @@ def profil_yangila(sorov: ProfilYangilash):
     if sorov.district is not None:
         maydonlar.append("district=%s")
         qiymatlar.append(sorov.district.strip())
-    if sorov.tugilgan_yil is not None:
-        maydonlar.append("tugilgan_yil=%s")
-        qiymatlar.append(sorov.tugilgan_yil)
+    if sorov.tugilgan_sana is not None:
+        maydonlar.append("tugilgan_sana=%s")
+        qiymatlar.append(sorov.tugilgan_sana)
     if sorov.maktab_raqami is not None:
         maydonlar.append("maktab_raqami=%s")
         qiymatlar.append(sorov.maktab_raqami.strip())
