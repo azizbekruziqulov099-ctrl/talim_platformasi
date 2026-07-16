@@ -361,17 +361,24 @@ def joriy_foydalanuvchi(token: str):
 def mavzular_royxati(sinf: str = None):
     """Test yechish uchun mavjud fan/mavzularni qaytaradi — Fan → Sinf →
     Mavzu tartibida. Faqat generated_tests'da HAQIQATAN savoli bor
-    mavzularni ko'rsatadi."""
+    mavzularni ko'rsatadi.
+
+    MUHIM: grade ustuni ba'zan "3-4", "5-6" kabi ORALIQ ko'rinishida
+    bo'ladi — bular ODDIY maktab sinfi EMAS, balki TO'GARAKNING O'Z
+    maxsus guruhlari (masalan, matematik to'garak 3-4-sinf birgalikda
+    o'qiydi). Shu sabab, bu yerda — ODDIY maktab testida — FAQAT sof
+    raqamli sinflar (1, 2, ... 11) ko'rsatiladi, oraliqlar chiqarib
+    tashlanadi. To'garak guruhlari alohida funksiyada ishlatiladi."""
     if sinf:
         sinf = sinf.replace("-sinf", "").strip()
 
     conn = _db()
     cur = conn.cursor()
-    shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)"
+    shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND d.grade ~ '^[0-9]+$'"
     params = ()
     if sinf:
-        shart += " AND (d.grade = %s OR d.grade LIKE %s OR d.grade LIKE %s)"
-        params = (sinf, f"{sinf}-%", f"%-{sinf}")
+        shart += " AND d.grade = %s"
+        params = (sinf,)
     cur.execute(f"""
         SELECT d.subject_code, d.subject_name, d.grade, d.topic_code,
                COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
@@ -390,18 +397,17 @@ def mavzular_royxati(sinf: str = None):
         if fkod not in fanlar:
             fanlar[fkod] = {"nom": q["subject_name"] or fkod, "qisqa": fkod, "sinflar": {}}
 
-        skod = q["grade"] or "?"
+        skod = q["grade"]
         if skod not in fanlar[fkod]["sinflar"]:
             fanlar[fkod]["sinflar"][skod] = {"sinf": skod, "mavzular": []}
-
         fanlar[fkod]["sinflar"][skod]["mavzular"].append({
             "topic_code": q["topic_code"], "nomi": q["nomi"], "savol_soni": q["savol_soni"],
         })
 
-    # sinflar lug'atini saralangan ro'yxatga aylantiramiz
+    # sinflarni SONLI tartibda saralaymiz (1,2,...,11 — "11" harflar bo'yicha "2"dan oldin kelib qolmasin)
     natija = []
     for f in fanlar.values():
-        f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: s["sinf"])
+        f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: int(s["sinf"]))
         natija.append(f)
     return {"fanlar": natija}
 
