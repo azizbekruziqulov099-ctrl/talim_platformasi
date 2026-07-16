@@ -345,11 +345,9 @@ def joriy_foydalanuvchi(token: str):
 
 @app.get("/api/mavzular")
 def mavzular_royxati(sinf: str = None):
-    """Test yechish uchun mavjud fan/mavzularni qaytaradi — faqat
-    generated_tests'da HAQIQATAN savoli bor mavzularni ko'rsatadi,
-    aks holda foydalanuvchi bo'sh mavzuga kirib qolishi mumkin."""
-    # users.class "5-sinf" formatida saqlanishi mumkin, dts_tree.grade
-    # esa faqat "5" — ikkalasiga ham mos kelishi uchun tozalaymiz
+    """Test yechish uchun mavjud fan/mavzularni qaytaradi — Fan → Sinf →
+    Mavzu tartibida. Faqat generated_tests'da HAQIQATAN savoli bor
+    mavzularni ko'rsatadi."""
     if sinf:
         sinf = sinf.replace("-sinf", "").strip()
 
@@ -358,18 +356,15 @@ def mavzular_royxati(sinf: str = None):
     shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)"
     params = ()
     if sinf:
-        # grade ustuni ba'zan "5" (yakka), ba'zan "5-6" (oraliq) ko'rinishida
-        # bo'ladi — uchalasini ham qamrab olamiz: aniq mos, oraliq boshida,
-        # yoki oraliq oxirida
         shart += " AND (d.grade = %s OR d.grade LIKE %s OR d.grade LIKE %s)"
         params = (sinf, f"{sinf}-%", f"%-{sinf}")
     cur.execute(f"""
-        SELECT d.subject_code, d.subject_name, d.topic_code,
+        SELECT d.subject_code, d.subject_name, d.grade, d.topic_code,
                COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
                (SELECT COUNT(*) FROM generated_tests g WHERE g.topic_code = d.topic_code) AS savol_soni
         FROM dts_tree d
         WHERE {shart} AND d.is_deleted = FALSE
-        ORDER BY d.subject_code, d.topic_code
+        ORDER BY d.subject_code, d.grade, d.topic_code
     """, params)
     qatorlar = cur.fetchall()
     cur.close()
@@ -377,13 +372,24 @@ def mavzular_royxati(sinf: str = None):
 
     fanlar = {}
     for q in qatorlar:
-        kod = q["subject_code"] or "BOSHQA"
-        if kod not in fanlar:
-            fanlar[kod] = {"nom": q["subject_name"] or kod, "qisqa": kod, "mavzular": []}
-        fanlar[kod]["mavzular"].append({
+        fkod = q["subject_code"] or "BOSHQA"
+        if fkod not in fanlar:
+            fanlar[fkod] = {"nom": q["subject_name"] or fkod, "qisqa": fkod, "sinflar": {}}
+
+        skod = q["grade"] or "?"
+        if skod not in fanlar[fkod]["sinflar"]:
+            fanlar[fkod]["sinflar"][skod] = {"sinf": skod, "mavzular": []}
+
+        fanlar[fkod]["sinflar"][skod]["mavzular"].append({
             "topic_code": q["topic_code"], "nomi": q["nomi"], "savol_soni": q["savol_soni"],
         })
-    return {"fanlar": list(fanlar.values())}
+
+    # sinflar lug'atini saralangan ro'yxatga aylantiramiz
+    natija = []
+    for f in fanlar.values():
+        f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: s["sinf"])
+        natija.append(f)
+    return {"fanlar": natija}
 
 
 @app.get("/api/test/{topic_code}")
