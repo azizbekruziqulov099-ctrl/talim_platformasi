@@ -321,16 +321,21 @@ def hisob_ulash(sorov: UlashSorov):
 @app.get("/auth/men")
 def joriy_foydalanuvchi(token: str):
     """Token orqali 'bu kim' ekanini tasdiqlaydi — frontend sahifa yuklanganda
-    ishlatadi."""
+    ishlatadi. Admin bo'lsa, is_admin=true qaytadi — frontend shunga qarab
+    sinf-cheklovini olib tashlaydi (admin barcha sinflarni ko'rishi kerak)."""
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     cur.execute("SELECT user_id, full_name, role, class FROM users WHERE user_id=%s", (user_id,))
     r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    r["is_admin"] = cur.fetchone() is not None
     cur.close()
     conn.close()
-    if not r:
-        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
     return r
 
 
