@@ -844,3 +844,68 @@ def togarak_yarat(sorov: TogarakYaratish):
     cur.close()
     conn.close()
     return {"holat": "yaratildi", "togarak_id": yangi_id}
+
+
+# ═══════════════════════════════════════════════════════════
+# TO'GARAKKA QO'SHILISH (parol orqali — barcha rollar uchun)
+# ═══════════════════════════════════════════════════════════
+
+class TogarakqaQoshilish(BaseModel):
+    token: str
+    parol: str
+
+
+@app.post("/api/togarakka_qoshil")
+def togarakka_qoshil(sorov: TogarakqaQoshilish):
+    """Foydalanuvchi (o'quvchi, ota-ona va h.k.) parol orqali to'garakka
+    qo'shiladi — bot orqali qo'shilgan bilan BIR XIL jadvalga yoziladi."""
+    user_id = _jwt_tekshir(sorov.token)
+    if not sorov.parol.strip():
+        raise HTTPException(status_code=400, detail="Parol kiritilmagan")
+
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT id, nomi, max_talaba FROM togaraklar WHERE parol=%s AND aktiv=TRUE", (sorov.parol.strip(),))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Bunday parolli to'garak topilmadi")
+
+    cur.execute(
+        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
+        (t["id"], user_id),
+    )
+    if cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Siz allaqachon shu to'garak a'zosisiz")
+
+    if t["max_talaba"]:
+        cur.execute("SELECT COUNT(*) AS soni FROM togarak_azolar WHERE togarak_id=%s AND aktiv=TRUE", (t["id"],))
+        joriy = cur.fetchone()["soni"]
+        if joriy >= t["max_talaba"]:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="To'garak to'lgan")
+
+    cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (t["id"], user_id))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "togarak_nomi": t["nomi"]}
+
+
+@app.get("/api/mening_togaraklarim")
+def mening_togaraklarim(token: str):
+    """Foydalanuvchi a'zo bo'lgan barcha to'garaklarni qaytaradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT tg.id, tg.nomi, tg.fan
+        FROM togarak_azolar ta
+        JOIN togaraklar tg ON tg.id = ta.togarak_id
+        WHERE ta.user_id=%s AND ta.aktiv=TRUE
+    """, (user_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"togaraklar": natija}
