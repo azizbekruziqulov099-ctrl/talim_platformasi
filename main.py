@@ -3,6 +3,7 @@
 Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
 """
 import os
+import re
 import secrets
 import string
 import httpx
@@ -413,6 +414,12 @@ def test_savollari(topic_code: str, soni: int = 10):
     if not savollar:
         raise HTTPException(status_code=404, detail="Bu mavzuda savol topilmadi")
 
+    # Ko'rsatishdan oldin [ru]...[/ru] kabi teglarni va "10.0" formatini tozalaymiz
+    for s in savollar:
+        s["question"] = _matnni_tozala(s["question"])
+        for maydon in ("option_a", "option_b", "option_c", "option_d"):
+            s[maydon] = _matnni_tozala(s[maydon])
+
     # correct_answer va explanation FRONTENDGA yubormaymiz — bular javob
     # berilgandan KEYIN, /api/test/javob_tekshir orqali ochiladi
     return {"topic_code": topic_code, "savollar": savollar}
@@ -423,6 +430,34 @@ class BittaJavob(BaseModel):
     tanlangan: str
 
 
+def _matnni_tozala(matn):
+    """[ru]...[/ru] kabi teglarni olib tashlaydi, va "10.0" kabi butun
+    sonlarni "10" ga soddalashtiradi — ham ko'rsatish, ham solishtirish
+    uchun ishlatiladi."""
+    if not matn:
+        return matn
+    tozalangan = re.sub(r"\[/?[a-zA-Z]+\]", "", matn).strip()
+    if re.fullmatch(r"-?\d+\.0+", tozalangan):
+        tozalangan = tozalangan.split(".")[0]
+    return tozalangan
+
+
+def _togri_harfni_top(option_a, option_b, option_c, option_d, correct_answer):
+    """correct_answer ustuni ba'zan harf (A/B/C/D), ba'zan variantning
+    TO'LIQ MATNI (masalan "20.0" yoki "[ru]родной язык[/ru]") ko'rinishida
+    saqlangan — ikkalasini ham qamrab olib, HAQIQIY to'g'ri harfni
+    aniqlaydi. Teglar va sonlar formatidagi farqlar e'tiborga olinmaydi."""
+    ca = _matnni_tozala((correct_answer or "").strip())
+    if ca.upper() in ("A", "B", "C", "D"):
+        return ca.upper()
+    variantlar = {"A": option_a, "B": option_b, "C": option_c, "D": option_d}
+    ca_kichik = ca.lower()
+    for harf, matn in variantlar.items():
+        if (_matnni_tozala(matn) or "").lower() == ca_kichik:
+            return harf
+    return None
+
+
 @app.post("/api/test/javob_tekshir")
 def javob_tekshir(j: BittaJavob):
     """Bitta savolga berilgan javobni DARHOL tekshiradi — to'g'ri javob
@@ -430,15 +465,17 @@ def javob_tekshir(j: BittaJavob):
     keyin, savol ko'rsatilganda EMAS — aks holda oldindan ko'rinib qolardi)."""
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT correct_answer, explanation FROM generated_tests WHERE id=%s", (j.savol_id,))
+    cur.execute("""SELECT option_a, option_b, option_c, option_d, correct_answer, explanation
+                   FROM generated_tests WHERE id=%s""", (j.savol_id,))
     r = cur.fetchone()
     cur.close()
     conn.close()
     if not r:
         raise HTTPException(status_code=404, detail="Savol topilmadi")
 
-    togri = (j.tanlangan or "").strip().lower() == (r["correct_answer"] or "").strip().lower()
-    return {"togrimi": togri, "togri_javob": r["correct_answer"], "tushuntirish": r["explanation"]}
+    togri_harf = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
+    togri = (j.tanlangan or "").strip().upper() == togri_harf
+    return {"togrimi": togri, "togri_javob": togri_harf, "tushuntirish": r["explanation"]}
 
 
 @app.get("/api/rasm/{file_id}")
@@ -485,15 +522,19 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
 
     savol_idlar = [j.savol_id for j in sorov.javoblar]
     cur.execute(
-        "SELECT id, correct_answer FROM generated_tests WHERE id = ANY(%s)",
+        """SELECT id, option_a, option_b, option_c, option_d, correct_answer
+           FROM generated_tests WHERE id = ANY(%s)""",
         (savol_idlar,),
     )
-    togri_javoblar = {r["id"]: r["correct_answer"] for r in cur.fetchall()}
+    togri_harflar = {
+        r["id"]: _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
+        for r in cur.fetchall()
+    }
 
     togri_soni = 0
     for j in sorov.javoblar:
-        haqiqiy = togri_javoblar.get(j.savol_id)
-        if haqiqiy and j.tanlangan.strip().lower() == haqiqiy.strip().lower():
+        togri_harf = togri_harflar.get(j.savol_id)
+        if togri_harf and (j.tanlangan or "").strip().upper() == togri_harf:
             togri_soni += 1
 
     jami = len(sorov.javoblar)
