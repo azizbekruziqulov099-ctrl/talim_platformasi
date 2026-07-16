@@ -353,8 +353,11 @@ def mavzular_royxati(sinf: str = None):
     shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)"
     params = ()
     if sinf:
-        shart += " AND d.grade = %s"
-        params = (sinf,)
+        # grade ustuni ba'zan "5" (yakka), ba'zan "5-6" (oraliq) ko'rinishida
+        # bo'ladi — uchalasini ham qamrab olamiz: aniq mos, oraliq boshida,
+        # yoki oraliq oxirida
+        shart += " AND (d.grade = %s OR d.grade LIKE %s OR d.grade LIKE %s)"
+        params = (sinf, f"{sinf}-%", f"%-{sinf}")
     cur.execute(f"""
         SELECT d.subject_code, d.subject_name, d.topic_code,
                COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
