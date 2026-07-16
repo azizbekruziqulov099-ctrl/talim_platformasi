@@ -580,3 +580,196 @@ def sayt_kod_yarat(token: str):
     conn.close()
 
     return {"kod": kod}
+
+
+# ═══════════════════════════════════════════════════════════
+# O'QITUVCHI — baholash
+# ═══════════════════════════════════════════════════════════
+
+@app.get("/api/oqituvchi/togaraklar")
+def oqituvchi_togaraklari(token: str):
+    """O'qituvchining o'ziga tegishli barcha to'garaklarini qaytaradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT id, nomi, fan, max_talaba,
+               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE) AS azo_soni
+        FROM togaraklar
+        WHERE teacher_id=%s AND aktiv=TRUE
+        ORDER BY nomi
+    """, (user_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"togaraklar": natija}
+
+
+@app.get("/api/oqituvchi/togarak/{togarak_id}/azolar")
+def togarak_azolari(togarak_id: int, token: str):
+    """Berilgan to'garakdagi o'quvchilarni, ularning OXIRGI bahosi bilan
+    qaytaradi. Faqat shu to'garakning o'z o'qituvchisi ko'ra oladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+
+    cur.execute("SELECT teacher_id FROM togaraklar WHERE id=%s", (togarak_id,))
+    r = cur.fetchone()
+    if not r or r["teacher_id"] != user_id:
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=403, detail="Bu to'garak sizga tegishli emas")
+
+    cur.execute("""
+        SELECT u.user_id, u.full_name,
+               (SELECT baho FROM togarak_baholar tb
+                WHERE tb.togarak_id=%s AND tb.user_id=u.user_id
+                ORDER BY tb.created_at DESC LIMIT 1) AS oxirgi_baho
+        FROM togarak_azolar ta
+        JOIN users u ON u.user_id = ta.user_id
+        WHERE ta.togarak_id=%s AND ta.aktiv=TRUE
+        ORDER BY u.full_name
+    """, (togarak_id, togarak_id))
+    azolar = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"azolar": azolar}
+
+
+class BahoSorov(BaseModel):
+    token: str
+    togarak_id: int
+    user_id: int
+    baho: int
+    izoh: str = None
+
+
+@app.post("/api/oqituvchi/baho_qoy")
+def baho_qoy(sorov: BahoSorov):
+    """Bitta o'quvchiga baho qo'yadi. Faqat to'garakning o'z o'qituvchisi,
+    va faqat o'sha to'garak a'zosiga baho qo'ya oladi."""
+    teacher_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+
+    cur.execute("SELECT teacher_id FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
+    r = cur.fetchone()
+    if not r or r["teacher_id"] != teacher_id:
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=403, detail="Bu to'garak sizga tegishli emas")
+
+    cur.execute(
+        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
+        (sorov.togarak_id, sorov.user_id),
+    )
+    if not cur.fetchone():
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=400, detail="Bu o'quvchi shu to'garak a'zosi emas")
+
+    if not (0 <= sorov.baho <= 100):
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=400, detail="Baho 0-100 oralig'ida bo'lishi kerak")
+
+    cur.execute(
+        """INSERT INTO togarak_baholar(togarak_id, user_id, baho, izoh, teacher_id)
+           VALUES(%s,%s,%s,%s,%s)""",
+        (sorov.togarak_id, sorov.user_id, sorov.baho, sorov.izoh, teacher_id),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+# ═══════════════════════════════════════════════════════════
+# PROFIL — tahrirlash va rol almashtirish
+# ═══════════════════════════════════════════════════════════
+
+class ProfilYangilash(BaseModel):
+    token: str
+    full_name: str = None
+    region: str = None
+    district: str = None
+
+
+@app.put("/api/profil")
+def profil_yangila(sorov: ProfilYangilash):
+    """Foydalanuvchi o'z profilini (ism, viloyat, tuman) yangilaydi."""
+    user_id = _jwt_tekshir(sorov.token)
+    if sorov.full_name is not None and not sorov.full_name.strip():
+        raise HTTPException(status_code=400, detail="Ism bo'sh bo'lishi mumkin emas")
+
+    conn = _db()
+    cur = conn.cursor()
+    maydonlar = []
+    qiymatlar = []
+    if sorov.full_name is not None:
+        maydonlar.append("full_name=%s")
+        qiymatlar.append(sorov.full_name.strip())
+    if sorov.region is not None:
+        maydonlar.append("region=%s")
+        qiymatlar.append(sorov.region.strip())
+    if sorov.district is not None:
+        maydonlar.append("district=%s")
+        qiymatlar.append(sorov.district.strip())
+
+    if not maydonlar:
+        cur.close()
+        conn.close()
+        return {"holat": "ozgarish_yoq"}
+
+    qiymatlar.append(user_id)
+    cur.execute(f"UPDATE users SET {', '.join(maydonlar)} WHERE user_id=%s", qiymatlar)
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+class RolOzgartirish(BaseModel):
+    token: str
+    yangi_rol: str
+    tasdiqlayman: bool = False
+
+
+RUXSAT_ETILGAN_ROLLAR2 = {"oquvchi", "ota-ona", "oqituvchi"}
+
+
+@app.put("/api/rol_ozgartir")
+def rol_ozgartir(sorov: RolOzgartirish):
+    """Foydalanuvchi rolini o'zgartiradi. tasdiqlayman=False bo'lsa,
+    hozirgi va yangi rolni qaytarib, TASDIQ so'raydi — chunki rol
+    o'zgarishi katta ta'sir qiladi (masalan o'qituvchi guruhlariga
+    kirish huquqi, yoki bilim ko'rsatkichlari)."""
+    user_id = _jwt_tekshir(sorov.token)
+    if sorov.yangi_rol not in RUXSAT_ETILGAN_ROLLAR2:
+        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.yangi_rol}")
+
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT role FROM users WHERE user_id=%s", (user_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+
+    hozirgi_rol = r["role"]
+    if hozirgi_rol == sorov.yangi_rol:
+        cur.close()
+        conn.close()
+        return {"holat": "ozgarish_yoq"}
+
+    if not sorov.tasdiqlayman:
+        cur.close()
+        conn.close()
+        return {"holat": "tasdiq_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol}
+
+    cur.execute("UPDATE users SET role=%s WHERE user_id=%s", (sorov.yangi_rol, user_id))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol}
