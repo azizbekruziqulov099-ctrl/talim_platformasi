@@ -217,6 +217,10 @@ class RoyxatSorov(BaseModel):
     ism: str
     rol: str          # 'oquvchi' | 'ota-ona' | 'oqituvchi'
     sinf: str = None  # faqat rol='oquvchi' bo'lsa
+    region: str = None
+    district: str = None
+    tugilgan_yil: int = None
+    maktab_raqami: str = None
 
 RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
 
@@ -257,6 +261,8 @@ def yangi_royxat(sorov: RoyxatSorov):
 
     conn = _db()
     cur = conn.cursor()
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_yil INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
 
     cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (sorov.email,))
     if cur.fetchone():
@@ -268,8 +274,10 @@ def yangi_royxat(sorov: RoyxatSorov):
     yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
 
     cur.execute(
-        "INSERT INTO users(user_id, full_name, role, class) VALUES(%s,%s,%s,%s)",
-        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None),
+        """INSERT INTO users(user_id, full_name, role, class, region, district, tugilgan_yil, maktab_raqami)
+           VALUES(%s,%s,%s,%s,%s,%s,%s,%s)""",
+        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None,
+         sorov.region, sorov.district, sorov.tugilgan_yil, sorov.maktab_raqami),
     )
     cur.execute(
         "INSERT INTO google_hisob(google_email, user_id) VALUES(%s,%s)",
@@ -327,7 +335,12 @@ def joriy_foydalanuvchi(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT user_id, full_name, role, class FROM users WHERE user_id=%s", (user_id,))
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_yil INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
+    cur.execute(
+        "SELECT user_id, full_name, role, class, region, district, tugilgan_yil, maktab_raqami FROM users WHERE user_id=%s",
+        (user_id,),
+    )
     r = cur.fetchone()
     if not r:
         cur.close(); conn.close()
@@ -693,17 +706,22 @@ class ProfilYangilash(BaseModel):
     full_name: str = None
     region: str = None
     district: str = None
+    tugilgan_yil: int = None
+    maktab_raqami: str = None
 
 
 @app.put("/api/profil")
 def profil_yangila(sorov: ProfilYangilash):
-    """Foydalanuvchi o'z profilini (ism, viloyat, tuman) yangilaydi."""
+    """Foydalanuvchi o'z profilini yangilaydi."""
     user_id = _jwt_tekshir(sorov.token)
     if sorov.full_name is not None and not sorov.full_name.strip():
         raise HTTPException(status_code=400, detail="Ism bo'sh bo'lishi mumkin emas")
 
     conn = _db()
     cur = conn.cursor()
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_yil INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
+
     maydonlar = []
     qiymatlar = []
     if sorov.full_name is not None:
@@ -715,6 +733,12 @@ def profil_yangila(sorov: ProfilYangilash):
     if sorov.district is not None:
         maydonlar.append("district=%s")
         qiymatlar.append(sorov.district.strip())
+    if sorov.tugilgan_yil is not None:
+        maydonlar.append("tugilgan_yil=%s")
+        qiymatlar.append(sorov.tugilgan_yil)
+    if sorov.maktab_raqami is not None:
+        maydonlar.append("maktab_raqami=%s")
+        qiymatlar.append(sorov.maktab_raqami.strip())
 
     if not maydonlar:
         cur.close()
