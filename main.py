@@ -1074,3 +1074,177 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     cur.close()
     conn.close()
     return {"saved": saved, "duplicates": duplicates, "errors": errors}
+
+
+# ═══════════════════════════════════════════════════════════
+# ADMIN — Topik shablon (dts_tree uchun) yuklab olish va import qilish
+# Botdagi shablon_yaratish.py (_create_shablon / handle_shablon_document)
+# mantig'iga mos
+# ═══════════════════════════════════════════════════════════
+
+class TopikShablonSorov(BaseModel):
+    sinf: str
+    fan: str
+    mavzular: str  # ko'p qatorli matn: "1 / Colours\n1 / Numbers\n2 / Animals"
+
+
+def _mavzularni_parse(text: str):
+    """Botdagi bilan bir xil parser: 'chorak / mavzu' yoki 'chorak mavzu' formatini o'qiydi."""
+    natija = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if "/" in line:
+            parts = line.split("/", 1)
+            chorak_raqam = "".join(ch for ch in parts[0].strip() if ch.isdigit())
+            mavzu = parts[1].strip()
+        else:
+            parts = line.split(None, 1)
+            chorak_raqam = parts[0].strip() if parts else "1"
+            mavzu = parts[1].strip() if len(parts) > 1 else line
+        if mavzu and chorak_raqam:
+            natija.append((chorak_raqam, mavzu))
+    return natija
+
+
+@app.post("/api/admin/topik_shablon")
+def topik_shablon(sorov: TopikShablonSorov, token: str):
+    """Sinf + fan + mavzular ro'yxati bo'yicha DTS (topik kod) shablonini
+    Excel qilib yaratadi — botdagi 'Topik shablon' bilan bir xil."""
+    _admin_tekshir(token)
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
+    import io
+    from fastapi.responses import StreamingResponse
+
+    mavzular = _mavzularni_parse(sorov.mavzular)
+    if not mavzular:
+        raise HTTPException(status_code=400, detail="Mavzular topilmadi — 'chorak / mavzu' formatida yozing")
+
+    sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "DTS_SHABLON"
+
+    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu", "Kichik mavzu"]
+    header_colors = ["4472C4", "4472C4", "4472C4", "70AD47", "70AD47", "ED7D31", "ED7D31"]
+    for col, (h, color) in enumerate(zip(headers, header_colors), 1):
+        cell = ws.cell(1, col, value=h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor=color)
+        cell.alignment = Alignment(horizontal="center")
+
+    chorak_colors = {"1": "DEEAF1", "2": "E2EFDA", "3": "FFF2CC", "4": "FCE4D6"}
+    row_num = 2
+    for chorak, mavzu in mavzular:
+        color = chorak_colors.get(str(chorak), "F2F2F2")
+        for _ in range(2):  # botdagi kabi mavzu boshiga 2 qator
+            ws.cell(row_num, 1, value=sinf)
+            ws.cell(row_num, 2, value=fan)
+            ws.cell(row_num, 3, value=chorak)
+            ws.cell(row_num, 6, value=mavzu)
+            for col in range(1, 8):
+                ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
+                ws.cell(row_num, col).alignment = Alignment(horizontal="left")
+            row_num += 1
+
+    for col, width in zip(range(1, 8), [8, 18, 8, 25, 25, 30, 30]):
+        ws.column_dimensions[ws.cell(1, col).column_letter].width = width
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, value="📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
+    izohlar = [
+        (3, "Sinf", "O'zgartirmang — avtomatik to'ldirilgan"),
+        (4, "Fan", "O'zgartirmang — avtomatik to'ldirilgan"),
+        (5, "Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
+        (6, "Bob", "To'ldiring: masalan 'Chapter 1. Getting acquainted'"),
+        (7, "Bo'lim", "To'ldiring: masalan 'Unit 1. Greetings'"),
+        (8, "Mavzu", "O'zgartirmang — mavzu nomi avtomatik"),
+        (9, "Kichik mavzu", "To'ldiring: mavzuning kichik qismi"),
+    ]
+    for r, ustun, izoh in izohlar:
+        ws2.cell(r, 1, value=ustun).font = Font(bold=True)
+        ws2.cell(r, 2, value=izoh)
+    ws2.column_dimensions['A'].width = 15
+    ws2.column_dimensions['B'].width = 50
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    fname = f"shablon_{sinf}sinf_{fan.replace(' ', '_')[:20]}.xlsx"
+    return StreamingResponse(
+        buf,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename={fname}"},
+    )
+
+
+@app.post("/api/admin/topik_import")
+async def topik_import(token: str, fayl: UploadFile = File(...)):
+    """To'ldirilgan Topik shablonini dts_tree jadvaliga import qiladi —
+    botdagi handle_shablon_document bilan bir xil (avtomatik topic_code)."""
+    _admin_tekshir(token)
+    import openpyxl
+    import io
+
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content))
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb.active
+
+    conn = _db()
+    cur = conn.cursor()
+    added, skipped = 0, 0
+
+    for r in range(2, ws.max_row + 1):
+        sinf = ws.cell(r, 1).value
+        fan = ws.cell(r, 2).value
+        chorak = ws.cell(r, 3).value
+        bob = ws.cell(r, 4).value
+        bolim = ws.cell(r, 5).value
+        mavzu = ws.cell(r, 6).value
+        kichik = ws.cell(r, 7).value
+
+        if not sinf or not mavzu:
+            continue
+
+        cur.execute("""
+            SELECT topic_code FROM dts_tree
+            WHERE grade=%s AND subject_name=%s
+            ORDER BY topic_code DESC LIMIT 1
+        """, (str(sinf), str(fan) if fan else ""))
+        row = cur.fetchone()
+        if row:
+            last = row["topic_code"]
+            parts = last.rsplit('-', 1)
+            new_num = str(int(parts[1]) + 1).zfill(3)
+            topic_code = f"{parts[0]}-{new_num}"
+        else:
+            topic_code = f"{sinf}-01-{chorak or 1}-01-01-01-001"
+
+        try:
+            cur.execute("""
+                INSERT INTO dts_tree
+                (topic_code, grade, subject_name, quarter,
+                 bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+                ON CONFLICT (topic_code) DO NOTHING
+            """, (
+                topic_code, str(sinf), str(fan) if fan else "",
+                str(chorak) if chorak else "1", str(bob) if bob else "",
+                str(bolim) if bolim else "", str(mavzu) if mavzu else "",
+                str(kichik) if kichik else "",
+            ))
+            conn.commit()
+            added += 1
+        except Exception:
+            conn.rollback()
+            skipped += 1
+
+    cur.close()
+    conn.close()
+    return {"added": added, "skipped": skipped}
