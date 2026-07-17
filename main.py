@@ -442,11 +442,14 @@ def test_savollari(topic_code: str, soni: int = 10, qiyinlik: str = None):
     if not savollar:
         raise HTTPException(status_code=404, detail="Bu mavzuda savol topilmadi")
 
-    # Ko'rsatishdan oldin [ru]...[/ru] kabi teglarni va "10.0" formatini tozalaymiz
+    # DIQQAT: bu yerda [ru]/[en] teglarini ATAYLAB OLIB TASHLAMAYMIZ —
+    # frontend ularni ko'rsatishda yashiradi, lekin ovoz o'qishda AYNAN shu
+    # teglar orqali qaysi so'z qaysi tilda o'qilishini aniqlaydi. Faqat
+    # "10.0" -> "10" kabi raqam artefaktini tozalaymiz.
     for s in savollar:
-        s["question"] = _matnni_tozala(s["question"])
+        s["question"] = _raqam_artefaktini_tozala(s["question"])
         for maydon in ("option_a", "option_b", "option_c", "option_d"):
-            s[maydon] = _matnni_tozala(s[maydon])
+            s[maydon] = _raqam_artefaktini_tozala(s[maydon])
 
     # correct_answer va explanation FRONTENDGA yubormaymiz — bular javob
     # berilgandan KEYIN, /api/test/javob_tekshir orqali ochiladi
@@ -456,6 +459,16 @@ def test_savollari(topic_code: str, soni: int = 10, qiyinlik: str = None):
 class BittaJavob(BaseModel):
     savol_id: int
     tanlangan: str
+
+
+def _raqam_artefaktini_tozala(matn):
+    """"10.0" kabi butun sonlarni "10" ga soddalashtiradi — teglarga tegmaydi."""
+    if not matn:
+        return matn
+    tozalangan = matn.strip()
+    if re.fullmatch(r"-?\d+\.0+", tozalangan):
+        tozalangan = tozalangan.split(".")[0]
+    return tozalangan
 
 
 def _matnni_tozala(matn):
