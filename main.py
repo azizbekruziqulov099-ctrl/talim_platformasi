@@ -339,7 +339,8 @@ def joriy_foydalanuvchi(token: str):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
     cur.execute(
-        "SELECT user_id, full_name, role, class, region, district, tugilgan_sana, maktab_raqami FROM users WHERE user_id=%s",
+        "SELECT user_id, full_name, role, class, class_letter, school_type, "
+        "region, district, tugilgan_sana, maktab_raqami FROM users WHERE user_id=%s",
         (user_id,),
     )
     r = cur.fetchone()
@@ -621,10 +622,43 @@ _MATH_MAP = [
 ]
 
 
+_APOSTROF_VARIANTLARI = "\u2018\u2019\u02BB\u02BC\u0060\u00B4\u2032"
+
+
+def _apostrofni_tuzat(matn: str) -> str:
+    """o'/g' dan keyingi turli tirnoq-apostrof belgilarini ('  '  ʻ  ʼ  `  ´)
+    bitta standart apostrofga keltiradi — aks holda ovoz ularni "o'"/"g'"
+    deb emas, oddiy "o"/"g" deb yoki umuman boshqacha o'qib yuboradi."""
+    return re.sub(rf"([oOgG])[{_APOSTROF_VARIANTLARI}']", r"\1'", matn)
+
+
+def _c_va_w_tuzat(matn: str) -> str:
+    """"c" harfini (agar "ch" qismi bo'lmasa) inglizcha qoidaga ko'ra
+    s/k tovushiga, "w" ni esa "v" ga almashtiradi — o'zbekcha ovoz "c"ni
+    "ch" deb, "w"ni esa noto'g'ri o'qib yuborishining oldini oladi."""
+    natija = []
+    n = len(matn)
+    i = 0
+    while i < n:
+        ch = matn[i]
+        if ch.lower() == "c" and (i + 1 >= n or matn[i + 1].lower() != "h"):
+            keyingi = matn[i + 1] if i + 1 < n else ""
+            alm = "s" if keyingi.lower() in ("e", "i", "y") else "k"
+            natija.append(alm.upper() if ch.isupper() else alm)
+        elif ch.lower() == "w":
+            natija.append("V" if ch.isupper() else "v")
+        else:
+            natija.append(ch)
+        i += 1
+    return "".join(natija)
+
+
 def _ovoz_uchun_tayyorla(matn: str) -> str:
     """Xom matn -> ovoz aniq o'qiydigan matn — botdagi ovoz.py:tayyorla
     bilan bir xil (matematik belgilar so'zga, sonlar so'zga, teglar tozalanadi)."""
     m = _matnni_tozala(matn) or ""
+    m = _apostrofni_tuzat(m)
+    m = _c_va_w_tuzat(m)
     m = re.sub(r"<[^>]+>", " ", m)
     m = re.sub(r"[_`#]+", "", m)  # * ni bu yerda OLIB TASHLAMAYMIZ — pastda MATH_MAP "ko'paytiruv"ga o'giradi
     m = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", " ", m)
@@ -951,6 +985,17 @@ class ProfilYangilash(BaseModel):
     district: str = None
     tugilgan_sana: str = None
     maktab_raqami: str = None
+    maktab_turi: str = None   # oddiy | xususiy | ixtisoslashgan | prezident
+    sinf: str = None          # 1..11
+    sinf_harfi: str = None    # A, B, V ...
+
+
+MAKTAB_TURLARI = {
+    "oddiy": "🏫 Oddiy davlat maktabi",
+    "xususiy": "🏢 Xususiy",
+    "ixtisoslashgan": "⭐ Ixtisoslashgan (IDUM)",
+    "prezident": "🏆 Prezident maktabi",
+}
 
 
 @app.put("/api/profil")
@@ -959,6 +1004,10 @@ def profil_yangila(sorov: ProfilYangilash):
     user_id = _jwt_tekshir(sorov.token)
     if sorov.full_name is not None and not sorov.full_name.strip():
         raise HTTPException(status_code=400, detail="Ism bo'sh bo'lishi mumkin emas")
+    if sorov.maktab_turi is not None and sorov.maktab_turi not in MAKTAB_TURLARI:
+        raise HTTPException(status_code=400, detail="Noto'g'ri maktab turi")
+    if sorov.sinf is not None and sorov.sinf not in [str(i) for i in range(1, 12)]:
+        raise HTTPException(status_code=400, detail="Sinf 1 dan 11 gacha bo'lishi kerak")
 
     conn = _db()
     cur = conn.cursor()
@@ -982,6 +1031,15 @@ def profil_yangila(sorov: ProfilYangilash):
     if sorov.maktab_raqami is not None:
         maydonlar.append("maktab_raqami=%s")
         qiymatlar.append(sorov.maktab_raqami.strip())
+    if sorov.maktab_turi is not None:
+        maydonlar.append("school_type=%s")
+        qiymatlar.append(MAKTAB_TURLARI[sorov.maktab_turi])
+    if sorov.sinf is not None:
+        maydonlar.append("class=%s")
+        qiymatlar.append(sorov.sinf)
+    if sorov.sinf_harfi is not None:
+        maydonlar.append("class_letter=%s")
+        qiymatlar.append(sorov.sinf_harfi.strip().upper())
 
     if not maydonlar:
         cur.close()
