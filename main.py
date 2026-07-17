@@ -4,6 +4,7 @@ Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
 """
 import os
 import re
+import io
 import secrets
 import string
 import httpx
@@ -413,19 +414,27 @@ def mavzular_royxati(sinf: str = None):
 
 
 @app.get("/api/test/{topic_code}")
-def test_savollari(topic_code: str, soni: int = 10):
-    """Berilgan mavzu bo'yicha tasodifiy savollarni qaytaradi."""
+def test_savollari(topic_code: str, soni: int = 10, qiyinlik: str = None):
+    """Berilgan mavzu bo'yicha tasodifiy savollarni qaytaradi.
+    qiyinlik berilsa (oson/o'rta/qiyin/murakkab), faqat o'sha darajadagi
+    savollar tanlanadi — bo'lmasa (aralash) barcha darajalardan aralash."""
     conn = _db()
     cur = conn.cursor()
-    cur.execute("""
+    shart = "topic_code = %s"
+    params = [topic_code]
+    if qiyinlik:
+        shart += " AND difficulty = %s"
+        params.append(qiyinlik)
+    params.append(soni)
+    cur.execute(f"""
         SELECT id, question, option_a, option_b, option_c, option_d,
-               question_type, is_latex, time_limit,
-               COALESCE(image_file_id, image_url) AS rasm_id
+               question_type, is_latex, time_limit, difficulty,
+               COALESCE(NULLIF(image_file_id, ''), image_url) AS rasm_id
         FROM generated_tests
-        WHERE topic_code = %s
+        WHERE {shart}
         ORDER BY RANDOM()
         LIMIT %s
-    """, (topic_code, soni))
+    """, params)
     savollar = cur.fetchall()
     cur.close()
     conn.close()
@@ -477,14 +486,34 @@ def _togri_harfni_top(option_a, option_b, option_c, option_d, correct_answer):
     return None
 
 
+def _yozma_javob_togrimi(given: str, correct: str) -> bool:
+    """Yozuvli (write_answer) javoblarni tekshiradi — botdagi
+    check_text_answer/is_match bilan bir xil qoidalar."""
+    given = _matnni_tozala(given or "").strip().lower()
+    correct = _matnni_tozala(correct or "").strip().lower()
+    if given == correct:
+        return True
+    try:
+        return float(given) == float(correct)
+    except (ValueError, TypeError):
+        pass
+    if len(correct) <= 5:
+        return given == correct
+    if len(correct) > 10 and correct in given:
+        return True
+    return False
+
+
 @app.post("/api/test/javob_tekshir")
 def javob_tekshir(j: BittaJavob):
     """Bitta savolga berilgan javobni DARHOL tekshiradi — to'g'ri javob
     va tushuntirishni shu yerda ochadi (foydalanuvchi javob bergandan
-    keyin, savol ko'rsatilganda EMAS — aks holda oldindan ko'rinib qolardi)."""
+    keyin, savol ko'rsatilganda EMAS — aks holda oldindan ko'rinib qolardi).
+    Yozuvli (write_answer) savollarda harf emas, yozilgan matn solishtiriladi."""
     conn = _db()
     cur = conn.cursor()
-    cur.execute("""SELECT option_a, option_b, option_c, option_d, correct_answer, explanation
+    cur.execute("""SELECT option_a, option_b, option_c, option_d, correct_answer,
+                          explanation, question_type
                    FROM generated_tests WHERE id=%s""", (j.savol_id,))
     r = cur.fetchone()
     cur.close()
@@ -492,9 +521,14 @@ def javob_tekshir(j: BittaJavob):
     if not r:
         raise HTTPException(status_code=404, detail="Savol topilmadi")
 
-    togri_harf = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
-    togri = (j.tanlangan or "").strip().upper() == togri_harf
-    return {"togrimi": togri, "togri_javob": togri_harf, "tushuntirish": r["explanation"]}
+    if r["question_type"] == "write_answer":
+        togri = _yozma_javob_togrimi(j.tanlangan, r["correct_answer"])
+        togri_javob = _matnni_tozala(r["correct_answer"])
+    else:
+        togri_javob = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
+        togri = (j.tanlangan or "").strip().upper() == togri_javob
+
+    return {"togrimi": togri, "togri_javob": togri_javob, "tushuntirish": r["explanation"]}
 
 
 @app.get("/api/rasm/{file_id}")
@@ -516,6 +550,36 @@ async def rasm_proxy(file_id: str):
         file_path = meta_data["result"]["file_path"]
         img = await client.get(f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_path}")
         return Response(content=img.content, media_type="image/jpeg")
+
+
+EDGE_OVOZ = {
+    "qiz": "uz-UZ-MadinaNeural",
+    "ogil": "uz-UZ-SardorNeural",
+}
+
+
+@app.get("/api/ovoz")
+async def ovoz_oqish(matn: str, jins: str = "qiz"):
+    """Berilgan matnni ovozga aylantirib beradi (mp3) — botdagi
+    edge_ovoz bilan bir xil ovoz(lar)dan foydalanadi (edge-tts, bepul)."""
+    if not matn or not matn.strip():
+        raise HTTPException(status_code=400, detail="Matn berilmagan")
+    try:
+        import edge_tts
+    except ImportError:
+        raise HTTPException(status_code=500, detail="edge-tts o'rnatilmagan")
+
+    voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
+    matn = matn[:1500]  # haddan tashqari uzun matnni cheklaymiz
+    buf = io.BytesIO()
+    com = edge_tts.Communicate(matn, voice)
+    async for chunk in com.stream():
+        if chunk["type"] == "audio":
+            buf.write(chunk["data"])
+    buf.seek(0)
+    if buf.getbuffer().nbytes == 0:
+        raise HTTPException(status_code=500, detail="Ovoz yaratilmadi")
+    return Response(content=buf.getvalue(), media_type="audio/mpeg")
 
 
 class JavobItem(BaseModel):
@@ -929,70 +993,103 @@ def _admin_tekshir(token: str):
     return user_id
 
 
-@app.get("/api/admin/shablon_yukla")
-def shablon_yukla(topic_codes: str, token: str):
-    """Tanlangan mavzular bo'yicha bo'sh Excel shablon yaratadi —
-    botning _generate_template funksiyasi bilan bir xil ustun va
-    qiyinlik-rang tuzilishida (10 oson, 10 o'rta, 10 qiyin, 10 murakkab)."""
+class TestShablonGuruh(BaseModel):
+    diff: str    # oson | o'rta | qiyin | murakkab
+    turi: str    # single_choice | write_answer
+    soni: int    # 0, 5, 10, 15, 20 ...
+
+
+class TestShablonSorov(BaseModel):
+    topic_codes: list[str]
+    guruhlar: list[TestShablonGuruh]
+
+
+@app.post("/api/admin/shablon_yukla")
+def shablon_yukla(sorov: TestShablonSorov, token: str):
+    """Tanlangan mavzular + har bir qiyinlik darajasi uchun tanlangan
+    son/tur (tugmali yoki yozuvli) bo'yicha bo'sh Excel shablon yaratadi —
+    botning shablon_yaratish.py:_create_test_shablon_multi bilan bir xil."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
     import io
     from fastapi.responses import StreamingResponse
 
-    kodlar = [k.strip() for k in topic_codes.split(",") if k.strip()]
+    kodlar = [k.strip() for k in sorov.topic_codes if k.strip()]
     if not kodlar:
-        raise HTTPException(status_code=400, detail="Mavzu kodi berilmagan")
+        raise HTTPException(status_code=400, detail="Kamida bitta mavzu tanlang")
+    guruhlar = [g for g in sorov.guruhlar if g.soni > 0]
+    if not guruhlar:
+        raise HTTPException(status_code=400, detail="Kamida bitta qiyinlik darajasidan son tanlang")
 
     conn = _db()
     cur = conn.cursor()
-
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "TESTLAR"
-    headers = [
-        "topic_code", "difficulty", "situation", "question",
-        "option_a", "option_b", "option_c", "option_d",
-        "correct_answer", "explanation", "question_type",
-        "is_latex", "image_url", "audio_text", "language",
-        "life_level", "age_group", "time_limit",
-    ]
-    for col, h in enumerate(headers, 1):
-        cell = ws.cell(row=1, column=col, value=h)
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor="2E86AB")
-        cell.alignment = Alignment(horizontal="center")
-
-    diff_colors = {"oson": "C8F7C5", "o'rta": "FFF3CD", "qiyin": "FFD7C4", "murakkab": "F5C6CB"}
-    age_map = {"1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
-               "6": "11-12", "7": "12-13", "8": "13-14", "9": "14-15", "10": "15-16", "11": "16-17"}
-
-    def get_diff(n):
-        if n <= 10: return "oson"
-        elif n <= 20: return "o'rta"
-        elif n <= 30: return "qiyin"
-        return "murakkab"
-
-    row_num = 2
-    for kod in kodlar:
-        cur.execute("SELECT grade FROM dts_tree WHERE topic_code=%s LIMIT 1", (kod,))
-        r = cur.fetchone()
-        grade = str(r["grade"]) if r and r["grade"] else "1"
-        age_group = age_map.get(grade, "10-11")
-        for i in range(1, 41):
-            diff = get_diff(i)
-            ws.append([kod, diff, "oddiy", "", "", "", "", "", "", "", "single_choice",
-                       False, f"{kod}-{i}", "", "uz", 1, age_group, 60])
-            color = diff_colors.get(diff, "FFFFFF")
-            for col in range(1, 19):
-                ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-            row_num += 1
-
+    cur.execute("""
+        SELECT DISTINCT topic_code, kichik_name FROM dts_tree
+        WHERE topic_code = ANY(%s) AND is_deleted=FALSE
+    """, (kodlar,))
+    tc_map = {r["topic_code"]: r["kichik_name"] for r in cur.fetchall()}
     cur.close()
     conn.close()
 
-    for col, w in zip("ABCDEFGHIJ", [28, 12, 10, 50, 20, 20, 20, 20, 20, 30]):
-        ws.column_dimensions[col].width = w
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "TEST_SHABLON"
+    headers = [
+        "topic_code", "mavzu_nomi", "difficulty", "question_type",
+        "question", "option_a", "option_b", "option_c", "option_d",
+        "correct_answer", "explanation", "image_url", "language", "time_limit",
+    ]
+    diff_colors = {"oson": "E2EFDA", "o'rta": "FFF2CC", "qiyin": "FCE4D6", "murakkab": "F2CEEF"}
+
+    for col, h in enumerate(headers, 1):
+        cell = ws.cell(1, col, h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="4472C4")
+        cell.alignment = Alignment(horizontal="center")
+
+    row_num = 2
+    for kod in kodlar:
+        kichik = tc_map.get(kod, kod)
+        for g in guruhlar:
+            color = diff_colors.get(g.diff, "F2F2F2")
+            for i in range(1, g.soni + 1):
+                ws.cell(row_num, 1, kod)
+                ws.cell(row_num, 2, kichik)
+                ws.cell(row_num, 3, g.diff)
+                ws.cell(row_num, 4, g.turi)
+                ws.cell(row_num, 12, f"{kod}-{i}")  # image_url — collage kodi
+                ws.cell(row_num, 13, "uz")
+                ws.cell(row_num, 14, 60 if g.turi == "write_answer" else 0)
+                for col in range(1, len(headers) + 1):
+                    ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
+                    ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
+                row_num += 1
+
+    widths = [30, 25, 10, 15, 50, 20, 20, 20, 20, 15, 40, 20, 8, 10]
+    for col, w in enumerate(widths, 1):
+        ws.column_dimensions[ws.cell(1, col).column_letter].width = w
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, "📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=13)
+    notes = [
+        (3, "topic_code", "O'zgartirmang"),
+        (4, "difficulty", "O'zgartirmang: oson/o'rta/qiyin/murakkab"),
+        (5, "question_type", "O'zgartirmang: single_choice yoki write_answer"),
+        (6, "question", "Savol matnini yozing"),
+        (7, "option_a", "A variant (write_answer bo'lsa bo'sh qoldiring)"),
+        (8, "option_b", "B variant"),
+        (9, "option_c", "C variant"),
+        (10, "option_d", "D variant"),
+        (11, "correct_answer", "To'g'ri javob: A/B/C/D (write_answer bo'lsa — matn)"),
+        (12, "explanation", "Izoh (ixtiyoriy)"),
+        (13, "image_url", "Rasm kodi — collage orqali yuklanadi, o'zgartirmang"),
+    ]
+    for r, col_name, note in notes:
+        ws2.cell(r, 1, col_name).font = Font(bold=True)
+        ws2.cell(r, 2, note)
+    ws2.column_dimensions['A'].width = 16
+    ws2.column_dimensions['B'].width = 50
 
     buf = io.BytesIO()
     wb.save(buf)
@@ -1000,7 +1097,7 @@ def shablon_yukla(topic_codes: str, token: str):
     return StreamingResponse(
         buf,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": "attachment; filename=shablon.xlsx"},
+        headers={"Content-Disposition": "attachment; filename=test_shablon.xlsx"},
     )
 
 
