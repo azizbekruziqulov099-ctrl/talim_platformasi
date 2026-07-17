@@ -1538,11 +1538,20 @@ class TestShablonSorov(BaseModel):
     guruhlar: list[TestShablonGuruh]
 
 
+_YOSH_GURUHI = {"1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
+                "6": "11-12", "7": "12-13", "8": "13-14", "9": "14-15", "10": "15-16", "11": "16-17"}
+
+
 @app.post("/api/admin/shablon_yukla")
 def shablon_yukla(sorov: TestShablonSorov, token: str):
     """Tanlangan mavzular + har bir qiyinlik darajasi uchun tanlangan
     son/tur (tugmali yoki yozuvli) bo'yicha bo'sh Excel shablon yaratadi —
-    botning shablon_yaratish.py:_create_test_shablon_multi bilan bir xil."""
+    UCH varaqli, haqiqiy namunaga (TESTLAR/MALUMOT/RASM_MALUMOTI) mos:
+    - TESTLAR: to'ldiriladigan savollar
+    - MALUMOT: tanlangan mavzular haqida ma'lumot (nazorat uchun)
+    - RASM_MALUMOTI: har savolga tegishli rasm o'rni — description
+      yozilsa, botdagi AI rasm generatori shu tavsif bo'yicha rasm
+      yaratadi (yoki admin qo'lda kollaj orqali yuklaydi)."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
@@ -1559,71 +1568,94 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     conn = _db()
     cur = conn.cursor()
     cur.execute("""
-        SELECT DISTINCT topic_code, kichik_name FROM dts_tree
-        WHERE topic_code = ANY(%s) AND is_deleted=FALSE
+        SELECT topic_code, grade, subject_name, quarter, bob_name, bolim_name,
+               mavzu_name, kichik_name
+        FROM dts_tree WHERE topic_code = ANY(%s) AND is_deleted=FALSE
     """, (kodlar,))
-    tc_map = {r["topic_code"]: r["kichik_name"] for r in cur.fetchall()}
+    tc_map = {r["topic_code"]: r for r in cur.fetchall()}
     cur.close()
     conn.close()
 
     wb = openpyxl.Workbook()
+
+    # ═══ 1) TESTLAR — to'ldiriladigan savollar ═══
     ws = wb.active
-    ws.title = "TEST_SHABLON"
-    headers = [
-        "topic_code", "mavzu_nomi", "difficulty", "question_type",
-        "question", "option_a", "option_b", "option_c", "option_d",
-        "correct_answer", "explanation", "image_url", "language", "time_limit",
+    ws.title = "TESTLAR"
+    testlar_ustunlari = [
+        "topic_code", "difficulty", "situation", "question",
+        "option_a", "option_b", "option_c", "option_d",
+        "correct_answer", "explanation", "question_type", "is_latex",
+        "image_url", "audio_text", "language", "life_level", "age_group", "time_limit",
     ]
     diff_colors = {"oson": "E2EFDA", "o'rta": "FFF2CC", "qiyin": "FCE4D6", "murakkab": "F2CEEF"}
 
-    for col, h in enumerate(headers, 1):
+    for col, h in enumerate(testlar_ustunlari, 1):
         cell = ws.cell(1, col, h)
         cell.font = Font(bold=True, color="FFFFFF")
         cell.fill = PatternFill("solid", fgColor="4472C4")
         cell.alignment = Alignment(horizontal="center")
 
+    rasm_qatorlari = []  # (image_id, topic_code) — RASM_MALUMOTI uchun
     row_num = 2
     for kod in kodlar:
-        kichik = tc_map.get(kod, kod)
+        info = tc_map.get(kod)
+        grade = str(info["grade"]) if info else ""
+        age_group = _YOSH_GURUHI.get(grade, "")
         for g in guruhlar:
             color = diff_colors.get(g.diff, "F2F2F2")
             for i in range(1, g.soni + 1):
+                image_id = f"{kod}-{i}"
                 ws.cell(row_num, 1, kod)
-                ws.cell(row_num, 2, kichik)
-                ws.cell(row_num, 3, g.diff)
-                ws.cell(row_num, 4, g.turi)
-                ws.cell(row_num, 12, f"{kod}-{i}")  # image_url — collage kodi
-                ws.cell(row_num, 13, "uz")
-                ws.cell(row_num, 14, 60 if g.turi == "write_answer" else 0)
-                for col in range(1, len(headers) + 1):
+                ws.cell(row_num, 2, g.diff)
+                ws.cell(row_num, 3, "oddiy")
+                ws.cell(row_num, 11, g.turi)
+                ws.cell(row_num, 12, False)
+                ws.cell(row_num, 13, image_id)
+                ws.cell(row_num, 15, "uz")
+                ws.cell(row_num, 16, 1)
+                ws.cell(row_num, 17, age_group)
+                ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
+                for col in range(1, len(testlar_ustunlari) + 1):
                     ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
                     ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
+                rasm_qatorlari.append((image_id, kod))
                 row_num += 1
 
-    widths = [30, 25, 10, 15, 50, 20, 20, 20, 20, 15, 40, 20, 8, 10]
+    widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10]
     for col, w in enumerate(widths, 1):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = w
 
-    ws2 = wb.create_sheet("IZOH")
-    ws2.cell(1, 1, "📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=13)
-    notes = [
-        (3, "topic_code", "O'zgartirmang"),
-        (4, "difficulty", "O'zgartirmang: oson/o'rta/qiyin/murakkab"),
-        (5, "question_type", "O'zgartirmang: single_choice yoki write_answer"),
-        (6, "question", "Savol matnini yozing"),
-        (7, "option_a", "A variant (write_answer bo'lsa bo'sh qoldiring)"),
-        (8, "option_b", "B variant"),
-        (9, "option_c", "C variant"),
-        (10, "option_d", "D variant"),
-        (11, "correct_answer", "To'g'ri javob: A/B/C/D (write_answer bo'lsa — matn)"),
-        (12, "explanation", "Izoh (ixtiyoriy)"),
-        (13, "image_url", "Rasm kodi — collage orqali yuklanadi, o'zgartirmang"),
-    ]
-    for r, col_name, note in notes:
-        ws2.cell(r, 1, col_name).font = Font(bold=True)
-        ws2.cell(r, 2, note)
-    ws2.column_dimensions['A'].width = 16
-    ws2.column_dimensions['B'].width = 50
+    # ═══ 2) MALUMOT — tanlangan mavzular haqida (faqat nazorat uchun, o'zgartirmang) ═══
+    ws2 = wb.create_sheet("MALUMOT")
+    malumot_ustunlari = ["#", "Topic code", "Sinf", "Fan", "Chorak", "Bob", "Bolim", "Mavzu", "Kichik mavzu", "Test soni"]
+    for col, h in enumerate(malumot_ustunlari, 1):
+        cell = ws2.cell(1, col, h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="70AD47")
+    for idx, kod in enumerate(kodlar, 1):
+        info = tc_map.get(kod)
+        jami_soni = sum(g.soni for g in guruhlar)
+        ws2.append([
+            idx, kod,
+            str(info["grade"]) if info else "", info["subject_name"] if info else "",
+            info["quarter"] if info else "", info["bob_name"] if info else "",
+            info["bolim_name"] if info else "", info["mavzu_name"] if info else "",
+            info["kichik_name"] if info else "", jami_soni,
+        ])
+    for col, w in zip(range(1, 11), [5, 22, 6, 16, 8, 30, 30, 22, 30, 10]):
+        ws2.column_dimensions[ws2.cell(1, col).column_letter].width = w
+
+    # ═══ 3) RASM_MALUMOTI — har savol-rasm juftligi uchun tavsif ═══
+    ws3 = wb.create_sheet("RASM_MALUMOTI")
+    for col, h in enumerate(["image_id", "topic_code", "image_description"], 1):
+        cell = ws3.cell(1, col, h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="ED7D31")
+    for image_id, kod in rasm_qatorlari:
+        ws3.append([image_id, kod, ""])
+    for col, w in zip(range(1, 4), [26, 22, 55]):
+        ws3.column_dimensions[ws3.cell(1, col).column_letter].width = w
+    ws3.cell(1, 4, "☝️ Har qatorga rasmda NIMA bo'lishi kerakligini yozing — botdagi AI rasm generatori shu tavsif bo'yicha rasm yaratadi. Rasm kerak bo'lmagan savollar uchun qatorni o'chiring.").font = Font(italic=True, color="8A8578")
 
     buf = io.BytesIO()
     wb.save(buf)
@@ -1742,7 +1774,7 @@ def _mavzularni_parse(text: str):
 @app.post("/api/admin/topik_shablon")
 def topik_shablon(sorov: TopikShablonSorov, token: str):
     """Sinf + fan + mavzular ro'yxati bo'yicha DTS (topik kod) shablonini
-    Excel qilib yaratadi — botdagi 'Topik shablon' bilan bir xil."""
+    Excel qilib yaratadi — MALUMOT varag'i ko'rinishida (haqiqiy namunaga mos)."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
@@ -1757,49 +1789,54 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
 
     wb = openpyxl.Workbook()
     ws = wb.active
-    ws.title = "DTS_SHABLON"
+    ws.title = "MALUMOT"
 
-    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu", "Kichik mavzu"]
-    header_colors = ["4472C4", "4472C4", "4472C4", "70AD47", "70AD47", "ED7D31", "ED7D31"]
-    for col, (h, color) in enumerate(zip(headers, header_colors), 1):
+    headers = ["#", "Topic code", "Sinf", "Fan", "Chorak", "Bob", "Bolim", "Mavzu", "Kichik mavzu", "Test soni"]
+    for col, h in enumerate(headers, 1):
         cell = ws.cell(1, col, value=h)
         cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor=color)
+        cell.fill = PatternFill("solid", fgColor="70AD47")
         cell.alignment = Alignment(horizontal="center")
 
     chorak_colors = {"1": "DEEAF1", "2": "E2EFDA", "3": "FFF2CC", "4": "FCE4D6"}
     row_num = 2
+    idx = 1
     for chorak, mavzu in mavzular:
         color = chorak_colors.get(str(chorak), "F2F2F2")
-        for _ in range(2):  # botdagi kabi mavzu boshiga 2 qator
-            ws.cell(row_num, 1, value=sinf)
-            ws.cell(row_num, 2, value=fan)
-            ws.cell(row_num, 3, value=chorak)
-            ws.cell(row_num, 6, value=mavzu)
-            for col in range(1, 8):
+        for _ in range(2):  # botdagi kabi mavzu boshiga 2 qator (Bob/Bolim/Kichik mavzu uchun 2 xil variant)
+            ws.cell(row_num, 1, value=idx)
+            # "Topic code" ATAYLAB BO'SH qoldiriladi — import qilinganda avtomatik yaratiladi
+            ws.cell(row_num, 3, value=sinf)
+            ws.cell(row_num, 4, value=fan)
+            ws.cell(row_num, 5, value=chorak)
+            ws.cell(row_num, 8, value=mavzu)
+            ws.cell(row_num, 10, value=0)
+            for col in range(1, 11):
                 ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-                ws.cell(row_num, col).alignment = Alignment(horizontal="left")
+                ws.cell(row_num, col).alignment = Alignment(horizontal="left", wrap_text=True)
             row_num += 1
+            idx += 1
 
-    for col, width in zip(range(1, 8), [8, 18, 8, 25, 25, 30, 30]):
+    for col, width in zip(range(1, 11), [5, 22, 6, 16, 8, 30, 30, 22, 30, 10]):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = width
 
     ws2 = wb.create_sheet("IZOH")
     ws2.cell(1, 1, value="📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
     izohlar = [
-        (3, "Sinf", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (4, "Fan", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (5, "Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (6, "Bob", "To'ldiring: masalan 'Chapter 1. Getting acquainted'"),
-        (7, "Bo'lim", "To'ldiring: masalan 'Unit 1. Greetings'"),
+        (3, "#", "O'zgartirmang"),
+        (4, "Topic code", "BO'SH QOLDIRING — import qilinganda avtomatik yaratiladi"),
+        (5, "Sinf / Fan / Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
+        (6, "Bob", "To'ldiring: masalan '1-bob. Sonlar'"),
+        (7, "Bolim", "To'ldiring: masalan \"1-bo'lim. Narsalarning to'plamlari\""),
         (8, "Mavzu", "O'zgartirmang — mavzu nomi avtomatik"),
         (9, "Kichik mavzu", "To'ldiring: mavzuning kichik qismi"),
+        (10, "Test soni", "O'zgartirmang — 0, keyin avtomatik yangilanadi"),
     ]
     for r, ustun, izoh in izohlar:
         ws2.cell(r, 1, value=ustun).font = Font(bold=True)
         ws2.cell(r, 2, value=izoh)
-    ws2.column_dimensions['A'].width = 15
-    ws2.column_dimensions['B'].width = 50
+    ws2.column_dimensions['A'].width = 18
+    ws2.column_dimensions['B'].width = 55
 
     buf = io.BytesIO()
     wb.save(buf)
@@ -1814,8 +1851,9 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
 
 @app.post("/api/admin/topik_import")
 async def topik_import(token: str, fayl: UploadFile = File(...)):
-    """To'ldirilgan Topik shablonini dts_tree jadvaliga import qiladi —
-    botdagi handle_shablon_document bilan bir xil (avtomatik topic_code)."""
+    """To'ldirilgan Topik (MALUMOT) shablonini dts_tree jadvaliga import
+    qiladi. "Topic code" ustuni bo'sh bo'lsa avtomatik yaratiladi, to'ldirilgan
+    bo'lsa — AYNAN o'sha kod bilan saqlanadi (mavjud mavzuni yangilash uchun)."""
     _admin_tekshir(token)
     import openpyxl
     import io
@@ -1825,37 +1863,43 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
         wb = openpyxl.load_workbook(io.BytesIO(content))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
-    ws = wb.active
+    ws = wb["MALUMOT"] if "MALUMOT" in wb.sheetnames else wb.active
+
+    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
+    # Eski (DTS_SHABLON) va yangi (MALUMOT) formatlarini ikkalasini ham qo'llab-quvvatlaymiz
+    eski_format = "Sinf" in headers and headers[0] == "Sinf"
 
     conn = _db()
     cur = conn.cursor()
     added, skipped = 0, 0
 
     for r in range(2, ws.max_row + 1):
-        sinf = ws.cell(r, 1).value
-        fan = ws.cell(r, 2).value
-        chorak = ws.cell(r, 3).value
-        bob = ws.cell(r, 4).value
-        bolim = ws.cell(r, 5).value
-        mavzu = ws.cell(r, 6).value
-        kichik = ws.cell(r, 7).value
+        if eski_format:
+            berilgan_kod = None
+            sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(1, 8))
+        else:
+            berilgan_kod = ws.cell(r, 2).value
+            sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(3, 10))
 
         if not sinf or not mavzu:
             continue
 
-        cur.execute("""
-            SELECT topic_code FROM dts_tree
-            WHERE grade=%s AND subject_name=%s
-            ORDER BY topic_code DESC LIMIT 1
-        """, (str(sinf), str(fan) if fan else ""))
-        row = cur.fetchone()
-        if row:
-            last = row["topic_code"]
-            parts = last.rsplit('-', 1)
-            new_num = str(int(parts[1]) + 1).zfill(3)
-            topic_code = f"{parts[0]}-{new_num}"
+        if berilgan_kod and str(berilgan_kod).strip():
+            topic_code = str(berilgan_kod).strip()
         else:
-            topic_code = f"{sinf}-01-{chorak or 1}-01-01-01-001"
+            cur.execute("""
+                SELECT topic_code FROM dts_tree
+                WHERE grade=%s AND subject_name=%s
+                ORDER BY topic_code DESC LIMIT 1
+            """, (str(sinf), str(fan) if fan else ""))
+            row = cur.fetchone()
+            if row:
+                last = row["topic_code"]
+                parts = last.rsplit('-', 1)
+                new_num = str(int(parts[1]) + 1).zfill(3)
+                topic_code = f"{parts[0]}-{new_num}"
+            else:
+                topic_code = f"{sinf}-01-{chorak or 1}-01-01-01-001"
 
         try:
             cur.execute("""
@@ -1863,7 +1907,9 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
                 (topic_code, grade, subject_name, quarter,
                  bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
                 VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
-                ON CONFLICT (topic_code) DO NOTHING
+                ON CONFLICT (topic_code) DO UPDATE SET
+                    bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
+                    kichik_name = EXCLUDED.kichik_name
             """, (
                 topic_code, str(sinf), str(fan) if fan else "",
                 str(chorak) if chorak else "1", str(bob) if bob else "",
