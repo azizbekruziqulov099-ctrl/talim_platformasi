@@ -360,7 +360,7 @@ def joriy_foydalanuvchi(token: str):
 # ═══════════════════════════════════════════════════════════
 
 @app.get("/api/mavzular")
-def mavzular_royxati(sinf: str = None):
+def mavzular_royxati(sinf: str = None, turi: str = "oddiy"):
     """Test yechish uchun mavjud fan/mavzularni qaytaradi — Fan → Sinf →
     Mavzu tartibida. Faqat generated_tests'da HAQIQATAN savoli bor
     mavzularni ko'rsatadi.
@@ -368,15 +368,17 @@ def mavzular_royxati(sinf: str = None):
     MUHIM: grade ustuni ba'zan "3-4", "5-6" kabi ORALIQ ko'rinishida
     bo'ladi — bular ODDIY maktab sinfi EMAS, balki TO'GARAKNING O'Z
     maxsus guruhlari (masalan, matematik to'garak 3-4-sinf birgalikda
-    o'qiydi). Shu sabab, bu yerda — ODDIY maktab testida — FAQAT sof
-    raqamli sinflar (1, 2, ... 11) ko'rsatiladi, oraliqlar chiqarib
-    tashlanadi. To'garak guruhlari alohida funksiyada ishlatiladi."""
+    o'qiydi). turi="oddiy" (standart) — faqat sof raqamli sinflar
+    (1,2,...11). turi="togarak" — faqat ORALIQ (to'garak) guruhlari."""
     if sinf:
         sinf = sinf.replace("-sinf", "").strip()
 
+    togarak_mi = turi == "togarak"
+    grade_shart = "d.grade !~ '^[0-9]+$'" if togarak_mi else "d.grade ~ '^[0-9]+$'"
+
     conn = _db()
     cur = conn.cursor()
-    shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND d.grade ~ '^[0-9]+$'"
+    shart = f"d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND {grade_shart}"
     params = ()
     if sinf:
         shart += " AND d.grade = %s"
@@ -406,10 +408,14 @@ def mavzular_royxati(sinf: str = None):
             "topic_code": q["topic_code"], "nomi": q["nomi"], "savol_soni": q["savol_soni"],
         })
 
-    # sinflarni SONLI tartibda saralaymiz (1,2,...,11 — "11" harflar bo'yicha "2"dan oldin kelib qolmasin)
     natija = []
     for f in fanlar.values():
-        f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: int(s["sinf"]))
+        if togarak_mi:
+            # "3-4", "5-6" kabi — matn bo'yicha saralaymiz (raqamga aylantirib bo'lmaydi)
+            f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: s["sinf"])
+        else:
+            # sinflarni SONLI tartibda saralaymiz (1,2,...,11 — "11" harflar bo'yicha "2"dan oldin kelib qolmasin)
+            f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: int(s["sinf"]))
         natija.append(f)
     return {"fanlar": natija}
 
@@ -1402,6 +1408,7 @@ class TogarakYaratish(BaseModel):
     token: str
     nomi: str
     fan: str
+    sinf: str = None   # "1".."11" (oddiy) yoki "3-4" kabi (to'garak guruhi)
     parol: str = None
     max_talaba: int = None
     oylik_summa: int = None
@@ -1422,10 +1429,12 @@ def togarak_yarat(sorov: TogarakYaratish):
 
     conn = _db()
     cur = conn.cursor()
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
     cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, parol, max_talaba, oylik_summa, aktiv)
-        VALUES(%s,%s,%s,%s,%s,%s,TRUE) RETURNING id
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE) RETURNING id
     """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id,
+          sorov.sinf.strip() if sorov.sinf else None,
           sorov.parol.strip() if sorov.parol else None,
           sorov.max_talaba, sorov.oylik_summa))
     yangi_id = cur.fetchone()["id"]
