@@ -528,7 +528,7 @@ def javob_tekshir(j: BittaJavob):
         togri_javob = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
         togri = (j.tanlangan or "").strip().upper() == togri_javob
 
-    return {"togrimi": togri, "togri_javob": togri_javob, "tushuntirish": r["explanation"]}
+    return {"togrimi": togri, "togri_javob": togri_javob, "tushuntirish": _matnni_tozala(r["explanation"])}
 
 
 @app.get("/api/rasm/{file_id}")
@@ -556,12 +556,143 @@ EDGE_OVOZ = {
     "qiz": "uz-UZ-MadinaNeural",
     "ogil": "uz-UZ-SardorNeural",
 }
+_TIL_OVOZLARI = {
+    "en": {"qiz": "en-US-JennyNeural", "ogil": "en-US-GuyNeural"},
+    "ru": {"qiz": "ru-RU-SvetlanaNeural", "ogil": "ru-RU-DmitryNeural"},
+}
+
+# ── Ovoz uchun matnni tayyorlash — botdagi ovoz.py bilan bir xil qoidalar ──
+_BIRLIK = ["", "bir", "ikki", "uch", "to'rt", "besh", "olti", "yetti", "sakkiz", "to'qqiz"]
+_ONLIK = ["", "o'n", "yigirma", "o'ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to'qson"]
+_TARTIB = {
+    "bir": "birinchi", "ikki": "ikkinchi", "uch": "uchinchi", "to'rt": "to'rtinchi",
+    "besh": "beshinchi", "olti": "oltinchi", "yetti": "yettinchi", "sakkiz": "sakkizinchi",
+    "to'qqiz": "to'qqizinchi", "o'n": "o'ninchi", "yigirma": "yigirmanchi", "o'ttiz": "o'ttizinchi",
+    "qirq": "qirqinchi", "ellik": "ellikinchi", "oltmish": "oltmishinchi", "yetmish": "yetmishinchi",
+    "sakson": "saksoninchi", "to'qson": "to'qsoninchi", "yuz": "yuzinchi", "ming": "minginchi",
+}
+
+
+def _son_soz(n: int) -> str:
+    if n == 0:
+        return "nol"
+    if n < 0:
+        return "minus " + _son_soz(-n)
+    q = []
+    if n >= 1000:
+        m = n // 1000
+        q.append("ming" if m == 1 else _son_soz(m) + " ming")
+        n %= 1000
+    if n >= 100:
+        y = n // 100
+        q.append("yuz" if y == 1 else _BIRLIK[y] + " yuz")
+        n %= 100
+    if n >= 10:
+        q.append(_ONLIK[n // 10])
+        n %= 10
+    if n > 0:
+        q.append(_BIRLIK[n])
+    return " ".join(x for x in q if x)
+
+
+_MATH_MAP = [
+    (r"\s*\+\s*", " qo'shuv "),
+    (r"(?<=\d)\s*-\s*(?=\d)", " ayirish "),
+    (r"\s*×\s*|\s*\*\s*", " ko'paytiruv "),
+    (r"\s*÷\s*", " bo'linadi "),
+    (r"\s*=\s*", " teng "),
+    (r"\s*>\s*", " katta "),
+    (r"\s*<\s*", " kichik "),
+    (r"\s*%\s*", " foiz "),
+    (r"\s*≈\s*", " taxminan "),
+]
+
+
+def _ovoz_uchun_tayyorla(matn: str) -> str:
+    """Xom matn -> ovoz aniq o'qiydigan matn — botdagi ovoz.py:tayyorla
+    bilan bir xil (matematik belgilar so'zga, sonlar so'zga, teglar tozalanadi)."""
+    m = _matnni_tozala(matn) or ""
+    m = re.sub(r"<[^>]+>", " ", m)
+    m = re.sub(r"[_`#]+", "", m)  # * ni bu yerda OLIB TASHLAMAYMIZ — pastda MATH_MAP "ko'paytiruv"ga o'giradi
+    m = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", " ", m)
+    m = re.sub(r"https?://\S+", " havola ", m)
+
+    # Kasrlar: 1/2 -> ikkidan bir (matematikadan oldin)
+    def _kasr(x):
+        a, b = int(x.group(1)), int(x.group(2))
+        return f" {_son_soz(b)}dan {_son_soz(a)} "
+    m = re.sub(r"\b(\d{1,3})\s*/\s*(\d{1,3})\b", _kasr, m)
+
+    for naqsh, alm in _MATH_MAP:
+        m = re.sub(naqsh, alm, m)
+
+    # 5-sinf -> beshinchi sinf
+    def _t(x):
+        n = int(x.group(1))
+        soz = _son_soz(n).split()
+        soz[-1] = _TARTIB.get(soz[-1], soz[-1] + "inchi")
+        return f"{' '.join(soz)} {x.group(2)}"
+    m = re.sub(r"\b(\d{1,4})-(sinf|mashq|dars|savol|misol|bob|bet|mavzu|qism)\b", _t, m, flags=re.I)
+
+    # 3,5 -> uch butun besh
+    def _b(x):
+        return f"{_son_soz(int(x.group(1)))} butun {_son_soz(int(x.group(2)))}"
+    m = re.sub(r"\b(\d+)[,.](\d+)\b", _b, m)
+
+    # Qolgan sonlar so'zga
+    def _o(x):
+        n = int(x.group(0))
+        return _son_soz(n) if n < 1000000 else x.group(0)
+    m = re.sub(r"\b\d{1,6}\b", _o, m)
+
+    # Tinish belgilarini pauzaga aylantirish
+    m = m.replace(":", ",").replace(";", ",")
+    m = re.sub(r"\s*[\(\[\{]\s*", ", ", m)
+    m = re.sub(r"\s*[\)\]\}]\s*", ", ", m)
+    m = re.sub(r'["«»„“”]', " ", m)
+    m = re.sub(r"\s*[–—/|]\s*", ", ", m)
+    m = re.sub(r"\s*[•▪●○*]\s*", ", ", m)
+    m = re.sub(r"[…]+", ".", m)
+    m = re.sub(r"\.{2,}", ".", m)
+    m = re.sub(r"(?<=\w)-(?=\w)", " ", m)
+    m = re.sub(r"(,\s*){2,}", ", ", m)
+    m = re.sub(r"\s+([.,!?])", r"\1", m)
+    m = re.sub(r",\s*([.!?])", r"\1", m)
+    m = re.sub(r"([.!?])\s*[.,]+", r"\1", m)
+    m = re.sub(r"([.!?])\s*([.!?])", r"\1", m)
+    m = re.sub(r"\s{2,}", " ", m).strip()
+    return m.strip(" ,.")
+
+
+_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru)\](.*?)\[/\1\]", re.S | re.I)
+
+
+def _ovoz_qismlarga_bol(matn: str):
+    """Matnni [en]...[/en] / [ru]...[/ru] teglariga qarab bo'laklarga
+    ajratadi — har bo'lak (til, matn). til=None bo'lsa standart
+    o'zbekcha ovoz va matematik-son qoidalari bilan o'qiladi."""
+    qismlar = []
+    oxiri = 0
+    for m in _TIL_TEG_NAQSHI.finditer(matn):
+        oldingi = matn[oxiri:m.start()]
+        if oldingi.strip():
+            qismlar.append((None, oldingi))
+        til, ichi = m.group(1).lower(), m.group(2)
+        if ichi.strip():
+            qismlar.append((til, ichi))
+        oxiri = m.end()
+    qolgan = matn[oxiri:]
+    if qolgan.strip():
+        qismlar.append((None, qolgan))
+    return qismlar or [(None, matn)]
 
 
 @app.get("/api/ovoz")
 async def ovoz_oqish(matn: str, jins: str = "qiz"):
-    """Berilgan matnni ovozga aylantirib beradi (mp3) — botdagi
-    edge_ovoz bilan bir xil ovoz(lar)dan foydalanadi (edge-tts, bepul)."""
+    """Berilgan matnni ovozga aylantirib beradi (mp3). [en]/[ru] teglari
+    ichidagi qismlar o'sha tilning ovozida, qolgani o'zbekcha (matematik
+    belgilar/sonlar so'zga o'girilib) o'qiladi — botdagi ovoz_ikki_tilli
+    bilan bir xil mantiq, faqat ikkita til uchun kengaytirilgan."""
     if not matn or not matn.strip():
         raise HTTPException(status_code=400, detail="Matn berilmagan")
     try:
@@ -569,16 +700,27 @@ async def ovoz_oqish(matn: str, jins: str = "qiz"):
     except ImportError:
         raise HTTPException(status_code=500, detail="edge-tts o'rnatilmagan")
 
-    voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
-    matn = matn[:1500]  # haddan tashqari uzun matnni cheklaymiz
+    matn = matn[:1500]
     buf = io.BytesIO()
-    com = edge_tts.Communicate(matn, voice)
-    async for chunk in com.stream():
-        if chunk["type"] == "audio":
-            buf.write(chunk["data"])
-    buf.seek(0)
-    if buf.getbuffer().nbytes == 0:
+    ovoz_bormi = False
+    for til, bolak in _ovoz_qismlarga_bol(matn):
+        if til in _TIL_OVOZLARI:
+            voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
+            tayyor = re.sub(r"<[^>]+>", " ", bolak).strip()
+        else:
+            voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
+            tayyor = _ovoz_uchun_tayyorla(bolak)
+        if not tayyor.strip():
+            continue
+        com = edge_tts.Communicate(tayyor, voice)
+        async for chunk in com.stream():
+            if chunk["type"] == "audio":
+                buf.write(chunk["data"])
+                ovoz_bormi = True
+
+    if not ovoz_bormi:
         raise HTTPException(status_code=500, detail="Ovoz yaratilmadi")
+    buf.seek(0)
     return Response(content=buf.getvalue(), media_type="audio/mpeg")
 
 
@@ -597,7 +739,9 @@ class TestNatijaSorov(BaseModel):
 def test_natijasini_saqla(sorov: TestNatijaSorov):
     """Test yakunlanganda — har javobni backendda tekshiradi, foizni
     hisoblaydi, learned_topics'ga yozadi (bot ishlatgan JADVALNING O'ZIGA —
-    shuning uchun dashboard darhol yangilanadi)."""
+    shuning uchun dashboard darhol yangilanadi). Yozuvli (write_answer)
+    savollar ham to'g'ri tekshiriladi, va xato qilingan savollar ro'yxati
+    (sharh bilan) qaytariladi."""
     user_id = _jwt_tekshir(sorov.token)
 
     conn = _db()
@@ -605,20 +749,36 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
 
     savol_idlar = [j.savol_id for j in sorov.javoblar]
     cur.execute(
-        """SELECT id, option_a, option_b, option_c, option_d, correct_answer
+        """SELECT id, question, option_a, option_b, option_c, option_d,
+                  correct_answer, question_type, explanation
            FROM generated_tests WHERE id = ANY(%s)""",
         (savol_idlar,),
     )
-    togri_harflar = {
-        r["id"]: _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
-        for r in cur.fetchall()
-    }
+    savollar_map = {r["id"]: r for r in cur.fetchall()}
 
     togri_soni = 0
+    xatolar = []
     for j in sorov.javoblar:
-        togri_harf = togri_harflar.get(j.savol_id)
-        if togri_harf and (j.tanlangan or "").strip().upper() == togri_harf:
+        r = savollar_map.get(j.savol_id)
+        if not r:
+            continue
+        if r["question_type"] == "write_answer":
+            togri = _yozma_javob_togrimi(j.tanlangan, r["correct_answer"])
+            togri_javob = _matnni_tozala(r["correct_answer"])
+        else:
+            togri_harf = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
+            togri = (j.tanlangan or "").strip().upper() == togri_harf
+            togri_javob = togri_harf
+        if togri:
             togri_soni += 1
+        else:
+            xatolar.append({
+                "savol_id": j.savol_id,
+                "savol": _matnni_tozala(r["question"]),
+                "sizning_javob": j.tanlangan or "(javob berilmadi)",
+                "togri_javob": togri_javob,
+                "tushuntirish": _matnni_tozala(r["explanation"]),
+            })
 
     jami = len(sorov.javoblar)
     foiz = round((togri_soni / jami) * 100) if jami else 0
@@ -636,7 +796,7 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
     cur.close()
     conn.close()
 
-    return {"togri": togri_soni, "jami": jami, "foiz": foiz}
+    return {"togri": togri_soni, "jami": jami, "foiz": foiz, "xatolar": xatolar}
 
 
 # ═══════════════════════════════════════════════════════════
