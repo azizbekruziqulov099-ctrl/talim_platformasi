@@ -1,1724 +1,2073 @@
-"""main.py — SamTM Ta'lim veb-sayt backend'i (v3).
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { HUDUDLAR, VILOYATLAR } from "./hududlar.js";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, ResponsiveContainer } from "recharts";
+import {
+  ChevronRight, ChevronDown, TrendingUp, BarChart3, Bell, User,
+  Loader2, WifiOff, KeyRound, UserPlus, PencilLine, Users, FileSpreadsheet, Heart,
+} from "lucide-react";
 
-Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
-"""
-import os
-import re
-import io
-import secrets
-import string
-import httpx
-import psycopg2
-import psycopg2.extras
-from datetime import datetime, timedelta, timezone
-from jose import jwt, JWTError
-from fastapi import FastAPI, HTTPException, Query, UploadFile, File
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse, Response
-from pydantic import BaseModel
+const API_BASE = "https://talimplatformasi-production.up.railway.app";
 
-DATABASE_URL = os.getenv("DATABASE_URL", "")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
-GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
-JWT_MAXFIY_KALIT = os.getenv("JWT_MAXFIY_KALIT", "")
-BAZA_URL = os.getenv("BAZA_URL", "https://talimplatformasi-production.up.railway.app")
-FRONTEND_URL = os.getenv("FRONTEND_URL", "https://talimplatformasi-production.up.railway.app")
-REDIRECT_URI = f"{BAZA_URL}/auth/google/callback"
-
-app = FastAPI(title="SamTM Ta'lim API")
-app.add_middleware(
-    CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["*"],
-)
-
-
-def _db():
-    return psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor)
-
-
-# Fan kodiga qarab dashboard rangi — yangi fan qo'shilsa shu ro'yxatga qo'shiladi
-FAN_RANG = {
-    "MAT": "#C89B3C", "TIL": "#2D8B8B", "ADB": "#8B5FBF",
-    "TAB": "#B0553A", "RUS": "#4A7C9E", "ENG": "#7C9E4A",
+function tegsizKorsat(matn) {
+  // Ko'rsatishda [ru]so'z[/ru] kabi teglarni yashiradi (faqat ichidagi matnni qoldiradi) —
+  // ovozga esa XOM matn (teg bilan) beriladi, shunda mos tilda o'qiladi.
+  if (!matn) return matn;
+  return matn.replace(/\[\/?[a-zA-Z]+\]/g, "");
 }
 
+function darajaRang(foiz) {
+  if (foiz >= 85) return "#C89B3C";
+  if (foiz >= 65) return "#2D8B8B";
+  if (foiz >= 45) return "#B0553A";
+  return "#8A8578";
+}
+function darajaNom(foiz) {
+  if (foiz >= 85) return "Mukammal";
+  if (foiz >= 65) return "Yaxshi";
+  if (foiz >= 45) return "O'rtacha";
+  return "E'tibor kerak";
+}
 
-@app.get("/")
-def salomat():
-    return {"holat": "ishlayapti"}
+function Logotip() {
+  return (
+    <div className="w-14 h-14 rounded-2xl mx-auto mb-4 grid grid-cols-2 grid-rows-2 gap-0.5 p-1.5" style={{ backgroundColor: "#1B4B7A" }}>
+      <div className="rounded-sm" style={{ backgroundColor: "#C89B3C" }} />
+      <div className="rounded-sm" style={{ backgroundColor: "#2D8B8B" }} />
+      <div className="rounded-sm" style={{ backgroundColor: "#2D8B8B" }} />
+      <div className="rounded-sm" style={{ backgroundColor: "#C89B3C" }} />
+    </div>
+  );
+}
 
+function Qobiq({ children }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center px-6" style={{ backgroundColor: "#F7F5F0" }}>
+      <div className="w-full max-w-sm">{children}</div>
+    </div>
+  );
+}
 
-@app.get("/api/bola/{bola_id}/bilim")
-def bola_bilimi(bola_id: int, sinf: str = None):
-    """Bolaning fan-mavzu bo'yicha bilim darajasi.
-    sinf berilmasa — bolaning eng so'nggi natijalari mavjud barcha
-    sinflardan olinadi (oddiy holatda muammo emas, chunki bitta
-    o'quvchi odatda bitta sinfda)."""
-    try:
-        conn = _db()
-        cur = conn.cursor()
+// ═══════════════════════════════════════════════════════════
+// 1) KIRISH — Google tugmasi
+// ═══════════════════════════════════════════════════════════
+function LoginEkrani() {
+  return (
+    <Qobiq>
+      <div className="text-center mb-8">
+        <Logotip />
+        <h1 className="text-xl font-bold" style={{ color: "#2B2B2B" }}>SamTM Ta'lim</h1>
+        <p className="text-sm mt-1" style={{ color: "#8A8578" }}>Farzandingiz bilimini kuzating</p>
+      </div>
+      <button
+        onClick={() => { window.location.href = `${API_BASE}/auth/google/login`; }}
+        className="w-full py-3.5 rounded-xl font-semibold text-white flex items-center justify-center gap-2"
+        style={{ backgroundColor: "#1B4B7A" }}
+      >
+        Google orqali kirish
+      </button>
+      <p className="text-xs text-center mt-4" style={{ color: "#B0AA98" }}>
+        Birinchi marta kirsangiz, keyingi ekranda tanlov beriladi
+      </p>
+    </Qobiq>
+  );
+}
 
-        cur.execute("SELECT full_name FROM users WHERE user_id=%s", (bola_id,))
-        bola = cur.fetchone()
-        if not bola:
-            raise HTTPException(status_code=404, detail="Bola topilmadi")
+// ═══════════════════════════════════════════════════════════
+// 2) ULASH — Google email topildi, lekin bot hisobiga ULANMAGAN
+// ═══════════════════════════════════════════════════════════
+function UlashEkrani({ email, ism, onUlandi }) {
+  const [rejim, setRejim] = useState(null); // null | 'kod' | 'royxat'
+  const [kod, setKod] = useState("");
+  const [ismInput, setIsmInput] = useState(ism || "");
+  const [rol, setRol] = useState("oquvchi");
+  const [sinf, setSinf] = useState("5");
+  const [viloyat, setViloyat] = useState("");
+  const [tuman, setTuman] = useState("");
+  const [tugilganSana, setTugilganYil] = useState("");
+  const [maktabRaqami, setMaktabRaqami] = useState("");
+  const [xato, setXato] = useState("");
+  const [yuklanmoqda, setYuklanmoqda] = useState(false);
+  const [oxshashlar, setOxshashlar] = useState([]);
 
-        sinf_shart = "AND d.grade = %s" if sinf else ""
-        params = (bola_id, sinf) if sinf else (bola_id,)
+  useEffect(() => {
+    if (rejim !== "royxat" || ismInput.trim().length < 3) { setOxshashlar([]); return; }
+    const kechiktirish = setTimeout(async () => {
+      try {
+        const res = await fetch(`${API_BASE}/auth/ism_tekshir?ism=${encodeURIComponent(ismInput.trim())}`);
+        const data = await res.json();
+        setOxshashlar(data.oxshash || []);
+      } catch { /* jimgina o'tkazamiz - bu faqat ogohlantirish, ro'yxatdan o'tishni to'xtatmasin */ }
+    }, 500);
+    return () => clearTimeout(kechiktirish);
+  }, [ismInput, rejim]);
 
-        cur.execute(f"""
-            SELECT d.subject_code, d.subject_name, d.topic_code,
-                   COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS mavzu_nomi,
-                   lt.score
-            FROM dts_tree d
-            LEFT JOIN learned_topics lt
-                ON lt.topic_code = d.topic_code AND lt.user_id = %s
-            WHERE 1=1 {sinf_shart}
-            ORDER BY d.subject_code, d.topic_code
-        """, params)
-        qatorlar = cur.fetchall()
-        cur.close()
-        conn.close()
+  const kodBilan = async () => {
+    if (!kod.trim()) return;
+    setXato(""); setYuklanmoqda(true);
+    try {
+      const res = await fetch(`${API_BASE}/auth/ulash`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, kod: kod.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      onUlandi(data.token);
+    } catch (e) {
+      setXato(e.message === "Failed to fetch" ? "Serverga ulanib bo'lmadi" : e.message);
+    } finally { setYuklanmoqda(false); }
+  };
 
-        fanlar = {}
-        for q in qatorlar:
-            kod = q["subject_code"] or "BOSHQA"
-            if kod not in fanlar:
-                fanlar[kod] = {
-                    "nom": q["subject_name"] or kod, "qisqa": kod,
-                    "rang": FAN_RANG.get(kod, "#8A8578"), "mavzular": [],
-                }
-            if q["score"] is not None:   # faqat o'rganilgan mavzular ko'rsatiladi
-                fanlar[kod]["mavzular"].append({
-                    "nom": q["mavzu_nomi"], "foiz": q["score"],
-                })
+  const royxatBilan = async () => {
+    if (!ismInput.trim()) return;
+    setXato(""); setYuklanmoqda(true);
+    try {
+      const res = await fetch(`${API_BASE}/auth/royxat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email, ism: ismInput.trim(), rol,
+          sinf: rol === "oquvchi" ? sinf : undefined,
+          region: viloyat || undefined,
+          district: tuman || undefined,
+          tugilgan_sana: tugilganSana || undefined,
+          maktab_raqami: rol === "oquvchi" && maktabRaqami ? maktabRaqami : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      onUlandi(data.token);
+    } catch (e) {
+      setXato(e.message === "Failed to fetch" ? "Serverga ulanib bo'lmadi" : e.message);
+    } finally { setYuklanmoqda(false); }
+  };
 
-        # Hali birorta ham mavzu o'rganilmagan fanlarni chiqarmaymiz
-        natija_royxat = [f for f in fanlar.values() if f["mavzular"]]
-        for f in natija_royxat:
-            f["foiz"] = round(sum(m["foiz"] for m in f["mavzular"]) / len(f["mavzular"]))
+  if (rejim === null) {
+    return (
+      <Qobiq>
+        <div className="text-center mb-8">
+          <Logotip />
+          <h1 className="text-lg font-bold" style={{ color: "#2B2B2B" }}>Xush kelibsiz!</h1>
+          <p className="text-sm mt-1" style={{ color: "#8A8578" }}>{email}</p>
+        </div>
+        <button onClick={() => setRejim("kod")}
+          className="w-full py-4 rounded-xl border flex items-center gap-3 mb-3 text-left"
+          style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }}>
+          <KeyRound size={20} style={{ color: "#1B4B7A" }} />
+          <div>
+            <p className="font-medium text-sm" style={{ color: "#2B2B2B" }}>Bot orqali ulash kodim bor</p>
+            <p className="text-xs" style={{ color: "#8A8578" }}>Botda "🔗 Saytga ulanish kodi" bosgan bo'lsangiz</p>
+          </div>
+        </button>
+        <button onClick={() => setRejim("royxat")}
+          className="w-full py-4 rounded-xl border flex items-center gap-3 text-left"
+          style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }}>
+          <UserPlus size={20} style={{ color: "#2D8B8B" }} />
+          <div>
+            <p className="font-medium text-sm" style={{ color: "#2B2B2B" }}>Yangi ro'yxatdan o'taman</p>
+            <p className="text-xs" style={{ color: "#8A8578" }}>Botdan foydalanmagan bo'lsangiz</p>
+          </div>
+        </button>
+      </Qobiq>
+    );
+  }
 
-        umumiy = round(sum(f["foiz"] for f in natija_royxat) / len(natija_royxat)) if natija_royxat else 0
+  if (rejim === "kod") {
+    return (
+      <Qobiq>
+        <button onClick={() => setRejim(null)} className="text-sm mb-4" style={{ color: "#8A8578" }}>← Ortga</button>
+        <h1 className="text-lg font-bold mb-1" style={{ color: "#2B2B2B" }}>Ulash kodini kiriting</h1>
+        <p className="text-sm mb-5" style={{ color: "#8A8578" }}>Botdagi "👤 Kabinet → 🔗 Saytga ulanish kodi"</p>
+        <input type="text" value={kod} onChange={(e) => setKod(e.target.value.toUpperCase())}
+          onKeyDown={(e) => e.key === "Enter" && kodBilan()}
+          placeholder="masalan: UU62JX"
+          className="w-full px-4 py-3 rounded-xl border text-base mb-3 tracking-widest text-center font-semibold"
+          style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }} />
+        {xato && <div className="flex items-center gap-2 text-sm mb-3" style={{ color: "#B0553A" }}><WifiOff size={15} /> {xato}</div>}
+        <button onClick={kodBilan} disabled={yuklanmoqda}
+          className="w-full py-3.5 rounded-xl font-semibold text-white flex items-center justify-center gap-2"
+          style={{ backgroundColor: "#1B4B7A", opacity: yuklanmoqda ? 0.7 : 1 }}>
+          {yuklanmoqda ? <Loader2 size={18} className="animate-spin" /> : "Ulash"}
+        </button>
+      </Qobiq>
+    );
+  }
 
-        return {"bola": {"ism": bola["full_name"]}, "umumiy_foiz": umumiy, "fanlar": natija_royxat}
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+  return (
+    <Qobiq>
+      <button onClick={() => setRejim(null)} className="text-sm mb-4" style={{ color: "#8A8578" }}>← Ortga</button>
+      <h1 className="text-lg font-bold mb-5" style={{ color: "#2B2B2B" }}>Ro'yxatdan o'tish</h1>
 
+      <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Ismingiz</label>
+      <input type="text" value={ismInput} onChange={(e) => setIsmInput(e.target.value)}
+        className="w-full px-4 py-3 rounded-xl border text-base mb-2"
+        style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }} />
 
-@app.get("/api/ota/{ota_id}/farzandlar")
-def ota_farzandlari(ota_id: int):
-    """Ota-onaning barcha ulangan farzandlari ro'yxati."""
-    try:
-        conn = _db()
-        cur = conn.cursor()
-        cur.execute("""
-            SELECT u.user_id, u.full_name FROM parent_child pc
-            JOIN users u ON u.user_id = pc.child_id
-            WHERE pc.parent_id = %s
-        """, (ota_id,))
-        r = cur.fetchall()
-        cur.close(); conn.close()
-        return {"farzandlar": r}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+      {oxshashlar.length > 0 && (
+        <div className="rounded-xl p-3.5 mb-4" style={{ backgroundColor: "#FFF8E8", border: "1px solid #EEDFB0" }}>
+          <p className="text-xs font-medium mb-1" style={{ color: "#6B5B2E" }}>
+            Botda shunga o'xshash ism topildi:
+          </p>
+          {oxshashlar.map((o, i) => (
+            <p key={i} className="text-xs" style={{ color: "#8A7642" }}>• {o.full_name} ({o.role})</p>
+          ))}
+          <p className="text-xs mt-1.5" style={{ color: "#6B5B2E" }}>
+            Bu sizmi? Bo'lsa, ortga qaytib "Bot kodim bor" ni tanlang — aks holda ikkita akkaunt paydo bo'ladi.
+          </p>
+        </div>
+      )}
 
+      <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Kimsiz?</label>
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        {[["oquvchi", "O'quvchi"], ["ota-ona", "Ota-ona"], ["oqituvchi", "O'qituvchi"]].map(([v, l]) => (
+          <button key={v} onClick={() => setRol(v)}
+            className="py-2.5 rounded-lg border text-xs font-medium"
+            style={{
+              borderColor: rol === v ? "#1B4B7A" : "#E5E1D8",
+              backgroundColor: rol === v ? "#1B4B7A" : "#FFFFFF",
+              color: rol === v ? "#FFFFFF" : "#5A5648",
+            }}>
+            {l}
+          </button>
+        ))}
+      </div>
 
-# ═══════════════════════════════════════════════════════════
-# GOOGLE ORQALI KIRISH (OAuth)
-# ═══════════════════════════════════════════════════════════
+      {rol === "oquvchi" && (
+        <>
+          <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Sinf</label>
+          <select value={sinf} onChange={(e) => setSinf(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border text-base mb-4"
+            style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }}>
+            {Array.from({ length: 11 }, (_, i) => i + 1).map((n) => (
+              <option key={n} value={n}>{n}-sinf</option>
+            ))}
+          </select>
 
-def _jwt_yarat(user_id: int) -> str:
-    """30 kun amal qiladigan sessiya tokeni yaratadi."""
-    payload = {
-        "user_id": user_id,
-        "exp": datetime.now(timezone.utc) + timedelta(days=30),
+          <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Maktab raqami</label>
+          <input type="text" value={maktabRaqami} onChange={(e) => setMaktabRaqami(e.target.value)}
+            placeholder="masalan: 21"
+            className="w-full px-4 py-3 rounded-xl border text-base mb-4"
+            style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }} />
+        </>
+      )}
+
+      <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Viloyat</label>
+      <select value={viloyat} onChange={(e) => { setViloyat(e.target.value); setTuman(""); }}
+        className="w-full px-4 py-3 rounded-xl border text-base mb-4"
+        style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }}>
+        <option value="">Tanlanmagan</option>
+        {VILOYATLAR.map((v) => <option key={v} value={v}>{v}</option>)}
+      </select>
+
+      {viloyat && (
+        <>
+          <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Tuman</label>
+          <select value={tuman} onChange={(e) => setTuman(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl border text-base mb-4"
+            style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }}>
+            <option value="">Tanlanmagan</option>
+            {(HUDUDLAR[viloyat] || []).map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+        </>
+      )}
+
+      <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Tug'ilgan sana</label>
+      <input type="date" value={tugilganSana} onChange={(e) => setTugilganYil(e.target.value)}
+        min="1950-01-01" max={new Date().toISOString().split("T")[0]}
+        className="w-full px-4 py-3 rounded-xl border text-base mb-4"
+        style={{ borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" }} />
+
+      {xato && <div className="flex items-center gap-2 text-sm mb-3" style={{ color: "#B0553A" }}><WifiOff size={15} /> {xato}</div>}
+
+      <button onClick={royxatBilan} disabled={yuklanmoqda}
+        className="w-full py-3.5 rounded-xl font-semibold text-white flex items-center justify-center gap-2"
+        style={{ backgroundColor: "#1B4B7A", opacity: yuklanmoqda ? 0.7 : 1 }}>
+        {yuklanmoqda ? <Loader2 size={18} className="animate-spin" /> : "Ro'yxatdan o'tish"}
+      </button>
+    </Qobiq>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 3) KABINET — token bilan kirilgach
+// ═══════════════════════════════════════════════════════════
+function MavzuKoshin({ mavzu }) {
+  return (
+    <div className="relative aspect-square rounded-lg overflow-hidden" style={{ backgroundColor: darajaRang(mavzu.foiz) }} title={`${mavzu.nom}: ${mavzu.foiz}%`}>
+      <span className="absolute inset-0 flex items-center justify-center text-white font-semibold text-sm drop-shadow">{mavzu.foiz}%</span>
+    </div>
+  );
+}
+
+function FanBolimi({ fan, ochiq, onToggle }) {
+  return (
+    <div className="rounded-2xl overflow-hidden border transition-all duration-300" style={{ borderColor: ochiq ? fan.rang : "#E5E1D8", backgroundColor: "#FFFFFF" }}>
+      <button onClick={onToggle} className="w-full flex items-center gap-4 p-5 text-left focus:outline-none">
+        <div className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xs shrink-0" style={{ backgroundColor: fan.rang }}>{fan.qisqa}</div>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-baseline justify-between gap-2">
+            <h3 className="font-semibold text-lg" style={{ color: "#2B2B2B" }}>{fan.nom}</h3>
+            <span className="text-2xl font-bold shrink-0" style={{ color: fan.rang }}>{fan.foiz}%</span>
+          </div>
+          <div className="mt-2 h-2 rounded-full overflow-hidden" style={{ backgroundColor: "#EFEBE1" }}>
+            <div className="h-full rounded-full transition-all duration-700" style={{ width: `${fan.foiz}%`, backgroundColor: fan.rang }} />
+          </div>
+        </div>
+        {ochiq ? <ChevronDown size={20} className="shrink-0" style={{ color: "#8A8578" }} /> : <ChevronRight size={20} className="shrink-0" style={{ color: "#8A8578" }} />}
+      </button>
+      {ochiq && (
+        <div className="px-5 pb-5 grid grid-cols-3 sm:grid-cols-4 gap-2.5">
+          {fan.mavzular.map((m) => <MavzuKoshin key={m.nom} mavzu={m} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function BilimTab({ data }) {
+  const [ochiqFan, setOchiqFan] = useState(data.fanlar[0]?.nom || null);
+  const radarData = data.fanlar.map((f) => ({ fan: f.qisqa, foiz: f.foiz }));
+
+  return (
+    <div>
+      <div className="relative overflow-hidden px-5 pt-6 pb-8" style={{ backgroundColor: "#1B4B7A" }}>
+        <div className="relative">
+          <h1 className="mt-1 text-2xl font-bold text-white">{data.bola?.ism || "Sizning bilimingiz"}</h1>
+          <div className="mt-6 flex items-end gap-4">
+            <div>
+              <div className="flex items-baseline gap-1">
+                <span className="text-5xl font-bold text-white">{data.umumiy_foiz}</span>
+                <span className="text-xl font-bold" style={{ color: "#C89B3C" }}>%</span>
+              </div>
+              <p className="text-xs mt-1 flex items-center gap-1" style={{ color: "#B8CBDA" }}><TrendingUp size={12} /> {darajaNom(data.umumiy_foiz)}</p>
+            </div>
+            {data.fanlar.length > 0 && (
+              <div className="flex-1 h-24">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={radarData} outerRadius="75%">
+                    <PolarGrid stroke="rgba(255,255,255,0.15)" />
+                    <PolarAngleAxis dataKey="fan" tick={{ fill: "#B8CBDA", fontSize: 10 }} />
+                    <PolarRadiusAxis domain={[0, 100]} tick={false} axisLine={false} />
+                    <Radar dataKey="foiz" stroke="#C89B3C" fill="#C89B3C" fillOpacity={0.35} strokeWidth={2} />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      <div className="px-5 -mt-3 pb-4 space-y-3">
+        {data.fanlar.length === 0 ? (
+          <div className="rounded-2xl p-6 text-center bg-white border mt-4" style={{ borderColor: "#E5E1D8" }}>
+            <p className="text-sm" style={{ color: "#8A8578" }}>Hali birorta ham mavzu o'rganilmagan.</p>
+          </div>
+        ) : (
+          data.fanlar.map((fan) => (
+            <FanBolimi key={fan.nom} fan={fan} ochiq={ochiqFan === fan.nom} onToggle={() => setOchiqFan(ochiqFan === fan.nom ? null : fan.nom)} />
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 4) TEST YECHISH
+// ═══════════════════════════════════════════════════════════
+function TestTab({ token, sinf: sinfXom }) {
+  // DB'da sinf ba'zan "5", ba'zan "5-sinf" shaklida saqlangan (bot tomonidan
+  // turli joyda turlicha yozilgan) — shu yerda BIR MARTA tozalab, hammasi
+  // shu tozalangan qiymatdan foydalanadi, aks holda solishtirish mos kelmaydi.
+  const sinf = sinfXom ? String(sinfXom).replace(/-sinf$/i, "").trim() : null;
+
+  const [holat, setHolat] = useState("mavzular"); // mavzular | songi | savollar | natija
+  const [fanlar, setFanlar] = useState([]);
+  const [tanlanganSinf, setTanlanganSinf] = useState(null); // admin uchun: tanlangan sinf raqami
+  const [ochiqFan, setOchiqFan] = useState(null);
+  const [savollar, setSavollar] = useState([]);
+  const [tanlanganMavzu, setTanlanganMavzu] = useState(null);
+  const [joriySavol, setJoriySavol] = useState(0);
+  const [javoblar, setJavoblar] = useState({});
+  const [natija, setNatija] = useState(null);
+  const [yuklanmoqda, setYuklanmoqda] = useState(true);
+  const [xato, setXato] = useState("");
+
+  useEffect(() => {
+    const url = sinf ? `${API_BASE}/api/mavzular?sinf=${encodeURIComponent(sinf)}` : `${API_BASE}/api/mavzular`;
+    fetch(url)
+      .then((r) => r.json())
+      .then((d) => { setFanlar(d.fanlar || []); setYuklanmoqda(false); })
+      .catch(() => { setXato("Mavzularni yuklab bo'lmadi"); setYuklanmoqda(false); });
+  }, [sinf]);
+
+  // Fan→Sinf→Mavzu ma'lumotini Sinf→Fan→Mavzu ko'rinishiga aylantiramiz —
+  // har sinfga faqat O'SHA sinfning fan/mavzulari ko'rinishi uchun.
+  const sinflarRoyxati = useMemo(() => {
+    const bySinf = {};
+    fanlar.forEach((fan) => {
+      fan.sinflar.forEach((s) => {
+        if (!bySinf[s.sinf]) bySinf[s.sinf] = { sinf: s.sinf, fanlar: [] };
+        bySinf[s.sinf].fanlar.push({ qisqa: fan.qisqa, nom: fan.nom, mavzular: s.mavzular });
+      });
+    });
+    return Object.values(bySinf).sort((a, b) => parseInt(a.sinf, 10) - parseInt(b.sinf, 10));
+  }, [fanlar]);
+
+  // O'quvchi uchun sinf tashqaridan berilgan (o'z sinfi) — sinf tanlash bosqichi kerak emas.
+  const joriySinfMalumoti = sinf
+    ? sinflarRoyxati.find((s) => String(s.sinf) === String(sinf)) || sinflarRoyxati[0]
+    : sinflarRoyxati.find((s) => String(s.sinf) === String(tanlanganSinf));
+
+  // Mavzu bosilganda — darhol savol OLMAYMIZ, avval "nechta savol" so'raymiz
+  const mavzuBoslandi = (fan, mavzu) => {
+    setTanlanganMavzu({ ...mavzu, fanNomi: fan.nom });
+    setHolat("songi");
+  };
+
+  const [aralashRejim, setAralashRejim] = useState(false);
+  const [tanlanganKodlar, setTanlanganKodlar] = useState([]); // [{topic_code, nomi, savol_soni}]
+
+  const aralashToggle = (m) => {
+    setTanlanganKodlar((prev) =>
+      prev.some((k) => k.topic_code === m.topic_code)
+        ? prev.filter((k) => k.topic_code !== m.topic_code)
+        : [...prev, m]
+    );
+  };
+
+  const aralashTestBoshlandi = () => {
+    if (tanlanganKodlar.length === 0) return;
+    setTanlanganMavzu({
+      aralash: true,
+      kodlar: tanlanganKodlar.map((k) => k.topic_code),
+      nomi: `Aralash test (${tanlanganKodlar.length} mavzu)`,
+      fanNomi: joriySinfMalumoti ? `${joriySinfMalumoti.sinf}-sinf` : "",
+      savol_soni: tanlanganKodlar.reduce((s, k) => s + (k.savol_soni || 0), 0),
+    });
+    setHolat("songi");
+  };
+
+  const [qiyinlik, setQiyinlik] = useState(""); // "" = aralash | oson | o'rta | qiyin | murakkab
+
+  const savollarniYukla = async (soni) => {
+    setYuklanmoqda(true); setXato("");
+    try {
+      let res;
+      if (tanlanganMavzu.aralash) {
+        res = await fetch(`${API_BASE}/api/test_aralash`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ topic_codes: tanlanganMavzu.kodlar, soni, qiyinlik: qiyinlik || undefined }),
+        });
+      } else {
+        const qs = new URLSearchParams({ soni });
+        if (qiyinlik) qs.set("qiyinlik", qiyinlik);
+        res = await fetch(`${API_BASE}/api/test/${tanlanganMavzu.topic_code}?${qs.toString()}`);
+      }
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setSavollar(data.savollar);
+      setJavoblar({}); setJoriySavol(0); setHolat("savollar");
+    } catch (e) {
+      setXato(e.message);
+    } finally { setYuklanmoqda(false); }
+  };
+
+  const [yozibJavob, setYozibJavob] = useState("");
+  const [ovozOynayapti, setOvozOynayapti] = useState(false);
+  const ovozRef = useRef(null);
+
+  const ovozniOqi = (matn) => {
+    if (ovozRef.current) { ovozRef.current.pause(); ovozRef.current = null; }
+    setOvozOynayapti(true);
+    const audio = new Audio(`${API_BASE}/api/ovoz?matn=${encodeURIComponent(matn)}`);
+    ovozRef.current = audio;
+    audio.onended = () => setOvozOynayapti(false);
+    audio.onerror = () => setOvozOynayapti(false);
+    audio.play().catch(() => setOvozOynayapti(false));
+  };
+
+  const [joriyNatija, setJoriyNatija] = useState(null); // {togrimi, togri_javob, tushuntirish} | null
+  const [qolganVaqt, setQolganVaqt] = useState(null);
+  const [avtoQoldi, setAvtoQoldi] = useState(null);
+  const timerRef = useRef(null);
+  const avtoRef = useRef(null);
+
+  useEffect(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    if (holat !== "savollar" || joriyNatija || !savollar[joriySavol]) return;
+
+    const s = savollar[joriySavol];
+    if (!s.time_limit) { setQolganVaqt(null); return; }
+    setQolganVaqt(s.time_limit);
+    timerRef.current = setInterval(() => {
+      setQolganVaqt((v) => {
+        if (v <= 1) {
+          clearInterval(timerRef.current);
+          javobBer(s.id, "");
+          return 0;
+        }
+        return v - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timerRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [joriySavol, holat]);
+
+  const javobBer = async (savolId, harf) => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    setJavoblar((prev) => ({ ...prev, [savolId]: harf }));
+    try {
+      const res = await fetch(`${API_BASE}/api/test/javob_tekshir`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ savol_id: savolId, tanlangan: harf }),
+      });
+      const data = await res.json();
+      setJoriyNatija(data);
+    } catch {
+      setJoriyNatija({ togrimi: false, togri_javob: "?", tushuntirish: "" });
     }
-    return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
-
-
-def _jwt_tekshir(token: str) -> int:
-    """Tokenni tekshiradi, user_id qaytaradi. Noto'g'ri bo'lsa xato beradi."""
-    try:
-        payload = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
-        return payload["user_id"]
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Sessiya eskirgan, qaytadan kiring")
-
-
-@app.get("/auth/google/login")
-def google_login():
-    """Foydalanuvchini Google'ning kirish sahifasiga yo'naltiradi."""
-    url = (
-        "https://accounts.google.com/o/oauth2/v2/auth"
-        f"?client_id={GOOGLE_CLIENT_ID}"
-        f"&redirect_uri={REDIRECT_URI}"
-        "&response_type=code"
-        "&scope=openid%20email%20profile"
-        "&access_type=online"
-    )
-    return RedirectResponse(url)
-
-
-@app.get("/auth/google/callback")
-async def google_callback(code: str = None, error: str = None):
-    """Google qaytargandan keyin ishlaydi — email oladi, bog'langan-bog'lanmaganini
-    tekshiradi, mos ekranga yo'naltiradi."""
-    if error or not code:
-        return RedirectResponse(f"{FRONTEND_URL}/?xato=kirish_bekor")
-
-    async with httpx.AsyncClient() as client:
-        token_resp = await client.post(
-            "https://oauth2.googleapis.com/token",
-            data={
-                "client_id": GOOGLE_CLIENT_ID,
-                "client_secret": GOOGLE_CLIENT_SECRET,
-                "code": code,
-                "grant_type": "authorization_code",
-                "redirect_uri": REDIRECT_URI,
-            },
-        )
-        token_data = token_resp.json()
-        if "access_token" not in token_data:
-            return RedirectResponse(f"{FRONTEND_URL}/?xato=google_token")
-
-        userinfo_resp = await client.get(
-            "https://www.googleapis.com/oauth2/v2/userinfo",
-            headers={"Authorization": f"Bearer {token_data['access_token']}"},
-        )
-        userinfo = userinfo_resp.json()
-
-    email = userinfo.get("email")
-    ism = userinfo.get("name", "")
-    if not email:
-        return RedirectResponse(f"{FRONTEND_URL}/?xato=email_topilmadi")
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
-    r = cur.fetchone()
-    cur.close()
-    conn.close()
-
-    if r:
-        token = _jwt_yarat(r["user_id"])
-        return RedirectResponse(f"{FRONTEND_URL}/kabinet?token={token}")
-    else:
-        return RedirectResponse(f"{FRONTEND_URL}/ulash?email={email}&ism={ism}")
-
-
-class UlashSorov(BaseModel):
-    email: str
-    kod: str
-
-
-class RoyxatSorov(BaseModel):
-    email: str
-    ism: str
-    rol: str          # 'oquvchi' | 'ota-ona' | 'oqituvchi'
-    sinf: str = None  # faqat rol='oquvchi' bo'lsa
-    region: str = None
-    district: str = None
-    tugilgan_sana: str = None
-    maktab_raqami: str = None
-
-RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
-
-
-@app.get("/auth/ism_tekshir")
-def ism_tekshir(ism: str):
-    """Botda shu ismga o'xshash foydalanuvchi bor-yo'qligini tekshiradi —
-    saytdan yangi ro'yxatdan o'tishda, odam bilmasdan ikkinchi
-    (dublikat) hisob ochib qo'ymasligi uchun ogohlantirish beriladi.
-    Faqat BOTDAN kelgan (musbat user_id) foydalanuvchilar orasidan
-    qidiradi — saytdan ro'yxatdan o'tganlar (manfiy ID) hisobga olinmaydi."""
-    birinchi_soz = ism.strip().split()[0] if ism.strip() else ""
-    if len(birinchi_soz) < 3:
-        return {"oxshash": []}
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT full_name, role FROM users
-        WHERE full_name ILIKE %s AND user_id > 0
-        LIMIT 3
-    """, (f"%{birinchi_soz}%",))
-    natija = cur.fetchall()
-    cur.close()
-    conn.close()
-    return {"oxshash": natija}
-
-
-@app.post("/auth/royxat")
-def yangi_royxat(sorov: RoyxatSorov):
-    """Botsiz, to'g'ridan saytdan YANGI foydalanuvchi yaratadi.
-    Telegram ID bilan TO'QNASHMASLIGI uchun MANFIY user_id beriladi
-    (haqiqiy Telegram ID doim musbat bo'ladi)."""
-    if sorov.rol not in RUXSAT_ETILGAN_ROLLAR:
-        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.rol}")
-    if not sorov.ism.strip():
-        raise HTTPException(status_code=400, detail="Ism kiritilmagan")
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
-
-    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (sorov.email,))
-    if cur.fetchone():
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Bu email allaqachon ulangan — kirish orqali davom eting")
-
-    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
-    r = cur.fetchone()
-    yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
-
-    cur.execute(
-        """INSERT INTO users(user_id, full_name, role, class, region, district, tugilgan_sana, maktab_raqami)
-           VALUES(%s,%s,%s,%s,%s,%s,%s,%s)""",
-        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None,
-         sorov.region, sorov.district, sorov.tugilgan_sana, sorov.maktab_raqami),
-    )
-    cur.execute(
-        "INSERT INTO google_hisob(google_email, user_id) VALUES(%s,%s)",
-        (sorov.email, yangi_id),
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    token = _jwt_yarat(yangi_id)
-    return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
-
-
-@app.post("/auth/ulash")
-def hisob_ulash(sorov: UlashSorov):
-    """Google hisobini bot user_id'siga BIR MARTALIK, 15 daqiqa amal
-    qiladigan kod orqali bog'laydi."""
-    email, kod = sorov.email, sorov.kod
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT user_id, ishlatildi,
-               (yaratildi > NOW() - INTERVAL '15 minutes') AS hali_yangi
-        FROM veb_ulash_kod WHERE kod=%s
-    """, (kod,))
-    r = cur.fetchone()
-    if not r:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
-    if r["ishlatildi"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
-    if not r["hali_yangi"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod muddati tugagan (15 daqiqa) — botdan yangisini oling")
-
-    cur.execute("""
-        INSERT INTO google_hisob (google_email, user_id) VALUES (%s,%s)
-        ON CONFLICT (google_email) DO UPDATE SET user_id=EXCLUDED.user_id
-    """, (email, r["user_id"]))
-    cur.execute("UPDATE veb_ulash_kod SET ishlatildi=TRUE WHERE kod=%s", (kod,))
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    token = _jwt_yarat(r["user_id"])
-    return {"token": token, "holat": "ulandi"}
-
-
-@app.get("/auth/men")
-def joriy_foydalanuvchi(token: str):
-    """Token orqali 'bu kim' ekanini tasdiqlaydi — frontend sahifa yuklanganda
-    ishlatadi. Admin bo'lsa, is_admin=true qaytadi — frontend shunga qarab
-    sinf-cheklovini olib tashlaydi (admin barcha sinflarni ko'rishi kerak)."""
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
-    cur.execute(
-        "SELECT user_id, full_name, role, class, class_letter, school_type, "
-        "region, district, tugilgan_sana, maktab_raqami FROM users WHERE user_id=%s",
-        (user_id,),
-    )
-    r = cur.fetchone()
-    if not r:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
-
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    r["is_admin"] = cur.fetchone() is not None
-    cur.close()
-    conn.close()
-    return r
-
-
-# ═══════════════════════════════════════════════════════════
-# TEST YECHISH (saytdan, botsiz)
-# ═══════════════════════════════════════════════════════════
-
-@app.get("/api/mavzular")
-def mavzular_royxati(sinf: str = None):
-    """Test yechish uchun mavjud fan/mavzularni qaytaradi — Fan → Sinf →
-    Mavzu tartibida. Faqat generated_tests'da HAQIQATAN savoli bor
-    mavzularni ko'rsatadi.
-
-    MUHIM: grade ustuni ba'zan "3-4", "5-6" kabi ORALIQ ko'rinishida
-    bo'ladi — bular ODDIY maktab sinfi EMAS, balki TO'GARAKNING O'Z
-    maxsus guruhlari (masalan, matematik to'garak 3-4-sinf birgalikda
-    o'qiydi). Shu sabab, bu yerda — ODDIY maktab testida — FAQAT sof
-    raqamli sinflar (1, 2, ... 11) ko'rsatiladi, oraliqlar chiqarib
-    tashlanadi. To'garak guruhlari alohida funksiyada ishlatiladi."""
-    if sinf:
-        sinf = sinf.replace("-sinf", "").strip()
-
-    conn = _db()
-    cur = conn.cursor()
-    shart = "d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND d.grade ~ '^[0-9]+$'"
-    params = ()
-    if sinf:
-        shart += " AND d.grade = %s"
-        params = (sinf,)
-    cur.execute(f"""
-        SELECT d.subject_code, d.subject_name, d.grade, d.topic_code,
-               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
-               (SELECT COUNT(*) FROM generated_tests g WHERE g.topic_code = d.topic_code) AS savol_soni
-        FROM dts_tree d
-        WHERE {shart} AND d.is_deleted = FALSE
-        ORDER BY d.subject_code, d.grade, d.topic_code
-    """, params)
-    qatorlar = cur.fetchall()
-    cur.close()
-    conn.close()
-
-    fanlar = {}
-    for q in qatorlar:
-        fkod = q["subject_code"] or "BOSHQA"
-        if fkod not in fanlar:
-            fanlar[fkod] = {"nom": q["subject_name"] or fkod, "qisqa": fkod, "sinflar": {}}
-
-        skod = q["grade"]
-        if skod not in fanlar[fkod]["sinflar"]:
-            fanlar[fkod]["sinflar"][skod] = {"sinf": skod, "mavzular": []}
-        fanlar[fkod]["sinflar"][skod]["mavzular"].append({
-            "topic_code": q["topic_code"], "nomi": q["nomi"], "savol_soni": q["savol_soni"],
-        })
-
-    # sinflarni SONLI tartibda saralaymiz (1,2,...,11 — "11" harflar bo'yicha "2"dan oldin kelib qolmasin)
-    natija = []
-    for f in fanlar.values():
-        f["sinflar"] = sorted(f["sinflar"].values(), key=lambda s: int(s["sinf"]))
-        natija.append(f)
-    return {"fanlar": natija}
-
-
-@app.get("/api/test/{topic_code}")
-def test_savollari(topic_code: str, soni: int = 10, qiyinlik: str = None):
-    """Berilgan mavzu bo'yicha tasodifiy savollarni qaytaradi.
-    qiyinlik berilsa (oson/o'rta/qiyin/murakkab), faqat o'sha darajadagi
-    savollar tanlanadi — bo'lmasa (aralash) barcha darajalardan aralash."""
-    conn = _db()
-    cur = conn.cursor()
-    shart = "topic_code = %s"
-    params = [topic_code]
-    if qiyinlik:
-        shart += " AND difficulty = %s"
-        params.append(qiyinlik)
-    params.append(soni)
-    cur.execute(f"""
-        SELECT id, question, option_a, option_b, option_c, option_d,
-               question_type, is_latex, time_limit, difficulty,
-               COALESCE(NULLIF(image_file_id, ''), image_url) AS rasm_id
-        FROM generated_tests
-        WHERE {shart}
-        ORDER BY RANDOM()
-        LIMIT %s
-    """, params)
-    savollar = cur.fetchall()
-    cur.close()
-    conn.close()
-
-    if not savollar:
-        raise HTTPException(status_code=404, detail="Bu mavzuda savol topilmadi")
-
-    # DIQQAT: bu yerda [ru]/[en] teglarini ATAYLAB OLIB TASHLAMAYMIZ —
-    # frontend ularni ko'rsatishda yashiradi, lekin ovoz o'qishda AYNAN shu
-    # teglar orqali qaysi so'z qaysi tilda o'qilishini aniqlaydi. Faqat
-    # "10.0" -> "10" kabi raqam artefaktini tozalaymiz.
-    for s in savollar:
-        s["question"] = _raqam_artefaktini_tozala(s["question"])
-        for maydon in ("option_a", "option_b", "option_c", "option_d"):
-            s[maydon] = _raqam_artefaktini_tozala(s[maydon])
-
-    # correct_answer va explanation FRONTENDGA yubormaymiz — bular javob
-    # berilgandan KEYIN, /api/test/javob_tekshir orqali ochiladi
-    return {"topic_code": topic_code, "savollar": savollar}
-
-
-class BittaJavob(BaseModel):
-    savol_id: int
-    tanlangan: str
-
-
-def _raqam_artefaktini_tozala(matn):
-    """"10.0" kabi butun sonlarni "10" ga soddalashtiradi — teglarga tegmaydi."""
-    if not matn:
-        return matn
-    tozalangan = matn.strip()
-    if re.fullmatch(r"-?\d+\.0+", tozalangan):
-        tozalangan = tozalangan.split(".")[0]
-    return tozalangan
-
-
-def _matnni_tozala(matn):
-    """[ru]...[/ru] kabi teglarni olib tashlaydi, va "10.0" kabi butun
-    sonlarni "10" ga soddalashtiradi — ham ko'rsatish, ham solishtirish
-    uchun ishlatiladi."""
-    if not matn:
-        return matn
-    tozalangan = re.sub(r"\[/?[a-zA-Z]+\]", "", matn).strip()
-    if re.fullmatch(r"-?\d+\.0+", tozalangan):
-        tozalangan = tozalangan.split(".")[0]
-    return tozalangan
-
-
-def _togri_harfni_top(option_a, option_b, option_c, option_d, correct_answer):
-    """correct_answer ustuni ba'zan harf (A/B/C/D), ba'zan variantning
-    TO'LIQ MATNI (masalan "20.0" yoki "[ru]родной язык[/ru]") ko'rinishida
-    saqlangan — ikkalasini ham qamrab olib, HAQIQIY to'g'ri harfni
-    aniqlaydi. Teglar va sonlar formatidagi farqlar e'tiborga olinmaydi."""
-    ca = _matnni_tozala((correct_answer or "").strip())
-    if ca.upper() in ("A", "B", "C", "D"):
-        return ca.upper()
-    variantlar = {"A": option_a, "B": option_b, "C": option_c, "D": option_d}
-    ca_kichik = ca.lower()
-    for harf, matn in variantlar.items():
-        if (_matnni_tozala(matn) or "").lower() == ca_kichik:
-            return harf
-    return None
-
-
-def _yozma_javob_togrimi(given: str, correct: str) -> bool:
-    """Yozuvli (write_answer) javoblarni tekshiradi — botdagi
-    check_text_answer/is_match bilan bir xil qoidalar."""
-    given = _matnni_tozala(given or "").strip().lower()
-    correct = _matnni_tozala(correct or "").strip().lower()
-    if given == correct:
-        return True
-    try:
-        return float(given) == float(correct)
-    except (ValueError, TypeError):
-        pass
-    if len(correct) <= 5:
-        return given == correct
-    if len(correct) > 10 and correct in given:
-        return True
-    return False
-
-
-@app.post("/api/test/javob_tekshir")
-def javob_tekshir(j: BittaJavob):
-    """Bitta savolga berilgan javobni DARHOL tekshiradi — to'g'ri javob
-    va tushuntirishni shu yerda ochadi (foydalanuvchi javob bergandan
-    keyin, savol ko'rsatilganda EMAS — aks holda oldindan ko'rinib qolardi).
-    Yozuvli (write_answer) savollarda harf emas, yozilgan matn solishtiriladi."""
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""SELECT option_a, option_b, option_c, option_d, correct_answer,
-                          explanation, question_type
-                   FROM generated_tests WHERE id=%s""", (j.savol_id,))
-    r = cur.fetchone()
-    cur.close()
-    conn.close()
-    if not r:
-        raise HTTPException(status_code=404, detail="Savol topilmadi")
-
-    if r["question_type"] == "write_answer":
-        togri = _yozma_javob_togrimi(j.tanlangan, r["correct_answer"])
-        togri_javob = _matnni_tozala(r["correct_answer"])
-    else:
-        togri_javob = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
-        togri = (j.tanlangan or "").strip().upper() == togri_javob
-
-    return {"togrimi": togri, "togri_javob": togri_javob, "tushuntirish": _matnni_tozala(r["explanation"])}
-
-
-@app.get("/api/rasm/{file_id}")
-async def rasm_proxy(file_id: str):
-    """Telegram'da saqlangan rasmni saytda ko'rsatish uchun oraliq xizmat —
-    Telegram file_id'lar to'g'ridan-to'g'ri URL emas, faqat bot tokeni
-    orqali ochiladi."""
-    if not BOT_TOKEN:
-        raise HTTPException(status_code=500, detail="Bot tokeni sozlanmagan")
-    if file_id.startswith("http"):
-        # Ba'zi eski yozuvlarda image_url to'g'ridan URL bo'lishi mumkin
-        return RedirectResponse(file_id)
-    async with httpx.AsyncClient() as client:
-        meta = await client.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getFile",
-                                 params={"file_id": file_id})
-        meta_data = meta.json()
-        if not meta_data.get("ok"):
-            raise HTTPException(status_code=404, detail="Rasm topilmadi")
-        file_path = meta_data["result"]["file_path"]
-        img = await client.get(f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_path}")
-        return Response(content=img.content, media_type="image/jpeg")
-
-
-EDGE_OVOZ = {
-    "qiz": "uz-UZ-MadinaNeural",
-    "ogil": "uz-UZ-SardorNeural",
-}
-_TIL_OVOZLARI = {
-    "en": {"qiz": "en-US-JennyNeural", "ogil": "en-US-GuyNeural"},
-    "ru": {"qiz": "ru-RU-SvetlanaNeural", "ogil": "ru-RU-DmitryNeural"},
+  };
+
+  const keyingiSavolga = () => {
+    if (avtoRef.current) clearInterval(avtoRef.current);
+    setJoriyNatija(null);
+    setYozibJavob("");
+    if (joriySavol < savollar.length - 1) setJoriySavol(joriySavol + 1);
+    else yakunla();
+  };
+
+  // Javob ko'rsatilgach (to'g'ri/noto'g'ri chiqqach), 4 soniyadan keyin
+  // AVTOMATIK keyingi savolga o'tadi — foydalanuvchi tugma bosishi shart emas
+  useEffect(() => {
+    if (!joriyNatija) { setAvtoQoldi(null); return; }
+    setAvtoQoldi(4);
+    avtoRef.current = setInterval(() => {
+      setAvtoQoldi((v) => {
+        if (v <= 1) {
+          clearInterval(avtoRef.current);
+          keyingiSavolga();
+          return 0;
+        }
+        return v - 1;
+      });
+    }, 1000);
+    return () => clearInterval(avtoRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [joriyNatija]);
+
+  const yakunla = async () => {
+    setYuklanmoqda(true);
+    const ro_yxat = Object.entries(javoblar).map(([id, tanlangan]) => ({
+      savol_id: parseInt(id, 10), tanlangan,
+    }));
+    try {
+      const res = await fetch(`${API_BASE}/api/test/natija`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+          tanlanganMavzu.aralash
+            ? { token, topic_codes: tanlanganMavzu.kodlar, javoblar: ro_yxat }
+            : { token, topic_code: tanlanganMavzu.topic_code, javoblar: ro_yxat }
+        ),
+      });
+      const data = await res.json();
+      setNatija(data);
+      setHolat("natija");
+    } catch (e) {
+      setXato("Natijani yuborib bo'lmadi");
+    } finally { setYuklanmoqda(false); }
+  };
+
+  const qaytaBoshlash = () => {
+    setHolat("mavzular"); setTanlanganMavzu(null); setSavollar([]); setNatija(null); setJoriyNatija(null);
+  };
+
+  if (yuklanmoqda) {
+    return <div className="px-5 pt-16 text-center"><Loader2 size={24} className="animate-spin mx-auto" style={{ color: "#1B4B7A" }} /></div>;
+  }
+
+  if (holat === "natija") {
+    const rangi = natija.foiz >= 85 ? "#C89B3C" : natija.foiz >= 65 ? "#2D8B8B" : natija.foiz >= 45 ? "#B0553A" : "#8A8578";
+    return (
+      <div className="px-5 pt-10 pb-6">
+        <div className="text-center">
+          <div className="w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center" style={{ backgroundColor: `${rangi}1A` }}>
+            <span className="text-2xl font-bold" style={{ color: rangi }}>{natija.foiz}%</span>
+          </div>
+          <h1 className="text-xl font-bold mb-1" style={{ color: "#2B2B2B" }}>{tanlanganMavzu.nomi}</h1>
+          <p className="text-sm mb-6" style={{ color: "#8A8578" }}>{natija.togri} / {natija.jami} to'g'ri</p>
+        </div>
+
+        {natija.xatolar && natija.xatolar.length > 0 && (
+          <div className="mb-6">
+            <p className="text-sm font-semibold mb-3" style={{ color: "#2B2B2B" }}>
+              ❌ Xato javoblar ({natija.xatolar.length} ta)
+            </p>
+            <div className="space-y-3">
+              {natija.xatolar.map((x) => (
+                <div key={x.savol_id} className="rounded-xl p-4 border" style={{ borderColor: "#F3D3D3", backgroundColor: "#FCEBEB" }}>
+                  <p className="text-sm font-medium mb-2" style={{ color: "#2B2B2B" }}>{x.savol}</p>
+                  <p className="text-xs mb-1" style={{ color: "#A32D2D" }}>Sizning javobingiz: <b>{x.sizning_javob}</b></p>
+                  <p className="text-xs" style={{ color: "#3B6D11" }}>To'g'ri javob: <b>{x.togri_javob}</b></p>
+                  {x.tushuntirish && <p className="text-xs mt-1.5" style={{ color: "#5A5648" }}>{x.tushuntirish}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <button onClick={qaytaBoshlash} className="w-full py-3.5 rounded-xl font-semibold text-white text-center" style={{ backgroundColor: "#1B4B7A" }}>
+          Boshqa mavzu
+        </button>
+      </div>
+    );
+  }
+
+  if (holat === "songi") {
+    const jami = tanlanganMavzu.savol_soni || 0;
+    const variantlar = [5, 10, 15].filter((n) => n < jami);
+    return (
+      <div className="px-5 pt-6 pb-4">
+        <button onClick={() => setHolat("mavzular")} className="text-sm mb-4" style={{ color: "#8A8578" }}>← Ortga</button>
+        <h1 className="text-lg font-bold mb-1" style={{ color: "#2B2B2B" }}>{tanlanganMavzu.nomi}</h1>
+        <p className="text-xs mb-5" style={{ color: "#8A8578" }}>{tanlanganMavzu.fanNomi}</p>
+
+        <div className="rounded-2xl p-5 bg-white border mb-4" style={{ borderColor: "#E5E1D8" }}>
+          <p className="text-sm font-semibold mb-3" style={{ color: "#2B2B2B" }}>🎯 Qiyinlik darajasi</p>
+          <div className="flex gap-2 flex-wrap">
+            {[
+              ["", "🎲 Aralash"], ["oson", "🟢 Oson"], ["o'rta", "🟡 O'rta"],
+              ["qiyin", "🔴 Qiyin"], ["murakkab", "⚫ Murakkab"],
+            ].map(([qiym, nom]) => (
+              <button key={qiym} onClick={() => setQiyinlik(qiym)}
+                className="px-3.5 py-2 rounded-full text-xs font-semibold transition-colors"
+                style={qiyinlik === qiym
+                  ? { backgroundColor: "#1B4B7A", color: "#fff" }
+                  : { backgroundColor: "#F7F5F0", color: "#5A5648" }}>
+                {nom}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl p-5 bg-white border" style={{ borderColor: "#E5E1D8" }}>
+          <p className="text-sm font-semibold mb-3" style={{ color: "#2B2B2B" }}>🔢 Nechta savol yechasiz?</p>
+          <div className="grid grid-cols-3 gap-2 mb-2.5">
+            {variantlar.map((n) => (
+              <button key={n} onClick={() => savollarniYukla(n)}
+                className="py-3.5 rounded-xl border font-semibold text-center text-sm"
+                style={{ borderColor: "#E5E1D8", backgroundColor: "#F7F5F0", color: "#2B2B2B" }}>
+                {n} ta
+              </button>
+            ))}
+          </div>
+          <button onClick={() => savollarniYukla(jami)}
+            className="w-full py-3.5 rounded-xl font-semibold text-white text-center text-sm"
+            style={{ backgroundColor: "#1B4B7A" }}>
+            🚀 Hammasi ({jami} ta)
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (holat === "savollar") {
+    const s = savollar[joriySavol];
+    const oxirgi = joriySavol === savollar.length - 1;
+    const yozuvli = s.question_type === "write_answer";
+    const variantlar = [["A", s.option_a], ["B", s.option_b], ["C", s.option_c], ["D", s.option_d]];
+    const javobBerilgan = !!joriyNatija;
+
+    const variantRangi = (harf) => {
+      if (!javobBerilgan) {
+        return javoblar[s.id] === harf
+          ? { borderColor: "#1B4B7A", backgroundColor: "#EAF1F7" }
+          : { borderColor: "#E5E1D8", backgroundColor: "#FFFFFF" };
+      }
+      if (harf === joriyNatija.togri_javob) return { borderColor: "#639922", backgroundColor: "#EAF3DE" };
+      if (harf === javoblar[s.id]) return { borderColor: "#E24B4A", backgroundColor: "#FCEBEB" };
+      return { borderColor: "#E5E1D8", backgroundColor: "#FFFFFF", opacity: 0.6 };
+    };
+
+    return (
+      <div className="px-5 pt-6 pb-4">
+        <div className="flex items-center justify-between mb-4">
+          <p className="text-xs font-medium" style={{ color: "#8A8578" }}>{joriySavol + 1} / {savollar.length}</p>
+          <div className="flex items-center gap-3">
+            {qolganVaqt !== null && !javobBerilgan && (
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full"
+                style={{ backgroundColor: qolganVaqt <= 5 ? "#FCEBEB" : "#F1EFE8", color: qolganVaqt <= 5 ? "#A32D2D" : "#5A5648" }}>
+                ⏱ {qolganVaqt}s
+              </span>
+            )}
+            <p className="text-xs" style={{ color: "#8A8578" }}>{tanlanganMavzu.nomi}</p>
+          </div>
+        </div>
+        <div className="h-1.5 rounded-full overflow-hidden mb-6" style={{ backgroundColor: "#EFEBE1" }}>
+          <div className="h-full rounded-full transition-all" style={{ width: `${((joriySavol + 1) / savollar.length) * 100}%`, backgroundColor: "#1B4B7A" }} />
+        </div>
+
+        {s.rasm_id && (
+          <img src={`${API_BASE}/api/rasm/${s.rasm_id}`} alt=""
+            className="w-full rounded-xl mb-4 object-cover"
+            style={{ maxHeight: "220px", backgroundColor: "#EFEBE1" }}
+            onError={(e) => { e.target.style.display = "none"; }} />
+        )}
+
+        <h2 className="text-lg font-semibold mb-5 flex items-start gap-2" style={{ color: "#2B2B2B" }}>
+          <span className="flex-1">{tegsizKorsat(s.question)}</span>
+          <button
+            onClick={() => ovozniOqi(yozuvli
+              ? s.question
+              : `${s.question}. A) ${s.option_a}. B) ${s.option_b}. C) ${s.option_c}. D) ${s.option_d}`)}
+            disabled={ovozOynayapti}
+            className="shrink-0 w-9 h-9 rounded-full flex items-center justify-center"
+            style={{ backgroundColor: "#EAF1F7", color: "#1B4B7A", opacity: ovozOynayapti ? 0.6 : 1 }}
+            title="Ovoz chiqarib o'qish">
+            {ovozOynayapti ? <Loader2 size={16} className="animate-spin" /> : "🔊"}
+          </button>
+        </h2>
+
+        {yozuvli ? (
+          <div className="mb-4">
+            <input type="text" value={javobBerilgan ? (javoblar[s.id] || "") : yozibJavob}
+              onChange={(e) => setYozibJavob(e.target.value)}
+              disabled={javobBerilgan}
+              onKeyDown={(e) => { if (e.key === "Enter" && !javobBerilgan && yozibJavob.trim()) javobBer(s.id, yozibJavob.trim()); }}
+              placeholder="Javobingizni yozing..."
+              className="w-full px-4 py-3.5 rounded-xl border text-sm mb-3"
+              style={javobBerilgan
+                ? { borderColor: joriyNatija.togrimi ? "#639922" : "#E24B4A", backgroundColor: joriyNatija.togrimi ? "#EAF3DE" : "#FCEBEB" }
+                : { borderColor: "#E5E1D8" }} />
+            {!javobBerilgan && (
+              <button onClick={() => yozibJavob.trim() && javobBer(s.id, yozibJavob.trim())}
+                disabled={!yozibJavob.trim()}
+                className="w-full py-3 rounded-xl font-semibold text-white text-sm"
+                style={{ backgroundColor: "#1B4B7A", opacity: yozibJavob.trim() ? 1 : 0.5 }}>
+                Javobni yuborish
+              </button>
+            )}
+          </div>
+        ) : (
+          <div className="space-y-2.5 mb-4">
+            {variantlar.map(([harf, matn]) => (
+              <button key={harf} onClick={() => !javobBerilgan && javobBer(s.id, harf)} disabled={javobBerilgan}
+                className="w-full text-left px-4 py-3.5 rounded-xl border flex items-center gap-3"
+                style={variantRangi(harf)}>
+                <span className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-semibold shrink-0"
+                  style={{
+                    backgroundColor: javobBerilgan
+                      ? (harf === joriyNatija.togri_javob ? "#639922" : harf === javoblar[s.id] ? "#E24B4A" : "#F1EFE8")
+                      : (javoblar[s.id] === harf ? "#1B4B7A" : "#F1EFE8"),
+                    color: (javobBerilgan && (harf === joriyNatija.togri_javob || harf === javoblar[s.id])) || (!javobBerilgan && javoblar[s.id] === harf)
+                      ? "#FFFFFF" : "#5A5648",
+                  }}>
+                  {harf}
+                </span>
+                <span className="text-sm" style={{ color: "#2B2B2B" }}>{tegsizKorsat(matn)}</span>
+              </button>
+            ))}
+          </div>
+        )}
+
+        {javobBerilgan && (
+          <div className="rounded-xl p-4 mb-4" style={{ backgroundColor: joriyNatija.togrimi ? "#EAF3DE" : "#FCEBEB" }}>
+            <p className="text-sm font-semibold mb-1" style={{ color: joriyNatija.togrimi ? "#3B6D11" : "#A32D2D" }}>
+              {joriyNatija.togrimi ? "✓ To'g'ri!" : `✗ Noto'g'ri — to'g'ri javob: ${joriyNatija.togri_javob}`}
+            </p>
+            {joriyNatija.tushuntirish && (
+              <p className="text-sm" style={{ color: joriyNatija.togrimi ? "#3B6D11" : "#A32D2D" }}>{joriyNatija.tushuntirish}</p>
+            )}
+          </div>
+        )}
+
+        {javobBerilgan ? (
+          <button onClick={keyingiSavolga} className="w-full py-3.5 rounded-xl font-semibold text-white" style={{ backgroundColor: "#1B4B7A" }}>
+            {(oxirgi ? "Yakunlash" : "Keyingi savol")}{avtoQoldi ? ` (${avtoQoldi})` : ""}
+          </button>
+        ) : (
+          <p className="text-center text-xs" style={{ color: "#B0AA98" }}>Javobni tanlang</p>
+        )}
+      </div>
+    );
+  }
+
+  // holat === "mavzular"
+  // Sinf ko'rsatilmasa (admin) va hali sinf tanlanmagan bo'lsa — avval sinflar ro'yxati.
+  if (!sinf && !tanlanganSinf) {
+    return (
+      <div className="px-5 pt-6 pb-4">
+        <h1 className="text-2xl font-bold mb-5" style={{ color: "#2B2B2B" }}>Test yechish</h1>
+        {xato && <p className="text-sm mb-4" style={{ color: "#B0553A" }}>{xato}</p>}
+        {sinflarRoyxati.length === 0 ? (
+          <div className="rounded-2xl p-6 text-center bg-white border" style={{ borderColor: "#E5E1D8" }}>
+            <p className="text-sm" style={{ color: "#8A8578" }}>Hozircha test mavjud emas.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-3">
+            {sinflarRoyxati.map((s) => {
+              const jamiMavzu = s.fanlar.reduce((sum, f) => sum + f.mavzular.length, 0);
+              return (
+                <button key={s.sinf} onClick={() => setTanlanganSinf(s.sinf)}
+                  className="rounded-2xl p-5 text-center bg-white border"
+                  style={{ borderColor: "#E5E1D8" }}>
+                  <p className="text-xl font-bold mb-1" style={{ color: "#1B4B7A" }}>{s.sinf}-sinf</p>
+                  <p className="text-xs" style={{ color: "#8A8578" }}>{s.fanlar.length} fan · {jamiMavzu} mavzu</p>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Sinf tanlangan (yoki o'quvchining o'z sinfi) — endi shu sinfning fanlari va mavzulari
+  const sinfMalumoti = joriySinfMalumoti;
+  return (
+    <div className="px-5 pt-6" style={{ paddingBottom: aralashRejim && tanlanganKodlar.length > 0 ? "84px" : "16px" }}>
+      {!sinf && (
+        <button onClick={() => { setTanlanganSinf(null); setOchiqFan(null); }} className="text-sm mb-4" style={{ color: "#8A8578" }}>
+          ← Sinflar
+        </button>
+      )}
+      <div className="flex items-center justify-between mb-5">
+        <h1 className="text-2xl font-bold" style={{ color: "#2B2B2B" }}>
+          {sinfMalumoti ? `${sinfMalumoti.sinf}-sinf testlari` : "Test yechish"}
+        </h1>
+        <button onClick={() => { setAralashRejim(!aralashRejim); setTanlanganKodlar([]); }}
+          className="text-xs font-semibold px-3 py-1.5 rounded-full"
+          style={aralashRejim
+            ? { backgroundColor: "#1B4B7A", color: "#fff" }
+            : { backgroundColor: "#F7F5F0", color: "#5A5648" }}>
+          {aralashRejim ? "✕ Aralash rejimi" : "🔀 Bir nechta mavzu"}
+        </button>
+      </div>
+      {xato && <p className="text-sm mb-4" style={{ color: "#B0553A" }}>{xato}</p>}
+      {!sinfMalumoti || sinfMalumoti.fanlar.length === 0 ? (
+        <div className="rounded-2xl p-6 text-center bg-white border" style={{ borderColor: "#E5E1D8" }}>
+          <p className="text-sm" style={{ color: "#8A8578" }}>Bu sinfda hozircha test mavjud emas.</p>
+        </div>
+      ) : (
+        <div className="space-y-3">
+          {sinfMalumoti.fanlar.map((fan) => {
+            const ochiq = ochiqFan === fan.qisqa;
+            return (
+              <div key={fan.qisqa} className="rounded-2xl overflow-hidden border bg-white" style={{ borderColor: "#E5E1D8" }}>
+                <button onClick={() => setOchiqFan(ochiq ? null : fan.qisqa)} className="w-full flex items-center justify-between p-4">
+                  <span className="font-semibold text-sm" style={{ color: "#2B2B2B" }}>{fan.nom}</span>
+                  {ochiq ? <ChevronDown size={18} style={{ color: "#8A8578" }} /> : <ChevronRight size={18} style={{ color: "#8A8578" }} />}
+                </button>
+                {ochiq && (
+                  <MavzuRoyxati fan={fan} aralashRejim={aralashRejim} tanlanganKodlar={tanlanganKodlar}
+                    onToggle={aralashToggle} onTanla={mavzuBoslandi} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {aralashRejim && tanlanganKodlar.length > 0 && (
+        <div className="fixed bottom-16 inset-x-0 z-20 px-5 pb-3">
+          <div className="max-w-md mx-auto">
+            <button onClick={aralashTestBoshlandi}
+              className="w-full py-3.5 rounded-xl font-semibold text-white text-sm shadow-lg"
+              style={{ backgroundColor: "#1B4B7A" }}>
+              🚀 Aralash test boshlash ({tanlanganKodlar.length} mavzu tanlandi)
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
-# ── Ovoz uchun matnni tayyorlash — botdagi ovoz.py bilan bir xil qoidalar ──
-_BIRLIK = ["", "bir", "ikki", "uch", "to'rt", "besh", "olti", "yetti", "sakkiz", "to'qqiz"]
-_ONLIK = ["", "o'n", "yigirma", "o'ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to'qson"]
-_TARTIB = {
-    "bir": "birinchi", "ikki": "ikkinchi", "uch": "uchinchi", "to'rt": "to'rtinchi",
-    "besh": "beshinchi", "olti": "oltinchi", "yetti": "yettinchi", "sakkiz": "sakkizinchi",
-    "to'qqiz": "to'qqizinchi", "o'n": "o'ninchi", "yigirma": "yigirmanchi", "o'ttiz": "o'ttizinchi",
-    "qirq": "qirqinchi", "ellik": "ellikinchi", "oltmish": "oltmishinchi", "yetmish": "yetmishinchi",
-    "sakson": "saksoninchi", "to'qson": "to'qsoninchi", "yuz": "yuzinchi", "ming": "minginchi",
+function MavzuRoyxati({ fan, aralashRejim, tanlanganKodlar, onToggle, onTanla }) {
+  const [korsatilgan, setKorsatilgan] = useState(10);
+  const korinadigan = fan.mavzular.slice(0, korsatilgan);
+  return (
+    <div className="px-4 pb-4 space-y-2">
+      {korinadigan.map((m) => {
+        const tanlanganmi = tanlanganKodlar.some((k) => k.topic_code === m.topic_code);
+        return (
+          <button key={m.topic_code}
+            onClick={() => aralashRejim ? onToggle(m) : onTanla(fan, m)}
+            className="w-full flex items-center justify-between px-3.5 py-3 rounded-xl"
+            style={{ backgroundColor: aralashRejim && tanlanganmi ? "#EAF1F7" : "#F7F5F0" }}>
+            <span className="flex items-center gap-2.5">
+              {aralashRejim && (
+                <span className="w-5 h-5 rounded flex items-center justify-center shrink-0"
+                  style={{ backgroundColor: tanlanganmi ? "#1B4B7A" : "#FFFFFF", border: `1.5px solid ${tanlanganmi ? "#1B4B7A" : "#C4BFAF"}` }}>
+                  {tanlanganmi && <span className="text-white text-xs">✓</span>}
+                </span>
+              )}
+              <span className="text-sm text-left" style={{ color: "#2B2B2B" }}>{m.nomi}</span>
+            </span>
+            <span className="text-xs shrink-0" style={{ color: "#8A8578" }}>{m.savol_soni} ta</span>
+          </button>
+        );
+      })}
+      {korsatilgan < fan.mavzular.length && (
+        <button onClick={() => setKorsatilgan(korsatilgan + 10)}
+          className="w-full py-2.5 rounded-xl text-xs font-medium text-center"
+          style={{ backgroundColor: "#FFFFFF", border: "1px dashed #C4BFAF", color: "#5A5648" }}>
+          Yana ko'rsat ({fan.mavzular.length - korsatilgan} ta qoldi)
+        </button>
+      )}
+    </div>
+  );
 }
 
+// ═══════════════════════════════════════════════════════════
+// 5) O'QITUVCHI — guruhlarim, baholash
+// ═══════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// 7) ADMIN — Test shablon yuklab olish / import qilish
+// ═══════════════════════════════════════════════════════════
+function AdminTab({ token }) {
+  const [bolim, setBolim] = useState("test"); // "test" | "topik"
 
-def _son_soz(n: int) -> str:
-    if n == 0:
-        return "nol"
-    if n < 0:
-        return "minus " + _son_soz(-n)
-    q = []
-    if n >= 1000:
-        m = n // 1000
-        q.append("ming" if m == 1 else _son_soz(m) + " ming")
-        n %= 1000
-    if n >= 100:
-        y = n // 100
-        q.append("yuz" if y == 1 else _BIRLIK[y] + " yuz")
-        n %= 100
-    if n >= 10:
-        q.append(_ONLIK[n // 10])
-        n %= 10
-    if n > 0:
-        q.append(_BIRLIK[n])
-    return " ".join(x for x in q if x)
+  return (
+    <div className="px-5 pt-6 pb-4">
+      <h1 className="text-2xl font-bold mb-4" style={{ color: "#2B2B2B" }}>Shablonlar</h1>
 
+      <div className="flex gap-2 mb-5">
+        <button onClick={() => setBolim("test")}
+          className="flex-1 py-2.5 rounded-xl font-semibold text-sm"
+          style={bolim === "test"
+            ? { backgroundColor: "#1B4B7A", color: "#fff" }
+            : { backgroundColor: "#fff", color: "#5A5648", border: "1px solid #E5E1D8" }}>
+          🧪 Test shablon
+        </button>
+        <button onClick={() => setBolim("topik")}
+          className="flex-1 py-2.5 rounded-xl font-semibold text-sm"
+          style={bolim === "topik"
+            ? { backgroundColor: "#1B4B7A", color: "#fff" }
+            : { backgroundColor: "#fff", color: "#5A5648", border: "1px solid #E5E1D8" }}>
+          📋 Topik shablon
+        </button>
+      </div>
 
-_MATH_MAP = [
-    (r"\s*\+\s*", " qo'shuv "),
-    (r"(?<=\d)\s*-\s*(?=\d)", " ayirish "),
-    (r"\s*×\s*|\s*\*\s*", " ko'paytiruv "),
-    (r"\s*÷\s*", " bo'linadi "),
-    (r"\s*=\s*", " teng "),
-    (r"\s*>\s*", " katta "),
-    (r"\s*<\s*", " kichik "),
-    (r"\s*%\s*", " foiz "),
-    (r"\s*≈\s*", " taxminan "),
-]
-
-
-_APOSTROF_VARIANTLARI = "\u2018\u2019\u02BB\u02BC\u0060\u00B4\u2032"
-
-
-def _apostrofni_tuzat(matn: str) -> str:
-    """o'/g' dan keyingi turli tirnoq-apostrof belgilarini ('  '  ʻ  ʼ  `  ´)
-    bitta standart apostrofga keltiradi — aks holda ovoz ularni "o'"/"g'"
-    deb emas, oddiy "o"/"g" deb yoki umuman boshqacha o'qib yuboradi."""
-    return re.sub(rf"([oOgG])[{_APOSTROF_VARIANTLARI}']", r"\1'", matn)
-
-
-def _c_va_w_tuzat(matn: str) -> str:
-    """"c" harfini (agar "ch" qismi bo'lmasa) inglizcha qoidaga ko'ra
-    s/k tovushiga, "w" ni esa "v" ga almashtiradi — o'zbekcha ovoz "c"ni
-    "ch" deb, "w"ni esa noto'g'ri o'qib yuborishining oldini oladi."""
-    natija = []
-    n = len(matn)
-    i = 0
-    while i < n:
-        ch = matn[i]
-        if ch.lower() == "c" and (i + 1 >= n or matn[i + 1].lower() != "h"):
-            keyingi = matn[i + 1] if i + 1 < n else ""
-            alm = "s" if keyingi.lower() in ("e", "i", "y") else "k"
-            natija.append(alm.upper() if ch.isupper() else alm)
-        elif ch.lower() == "w":
-            natija.append("V" if ch.isupper() else "v")
-        else:
-            natija.append(ch)
-        i += 1
-    return "".join(natija)
-
-
-def _ovoz_uchun_tayyorla(matn: str) -> str:
-    """Xom matn -> ovoz aniq o'qiydigan matn — botdagi ovoz.py:tayyorla
-    bilan bir xil (matematik belgilar so'zga, sonlar so'zga, teglar tozalanadi)."""
-    m = _matnni_tozala(matn) or ""
-    m = _apostrofni_tuzat(m)
-    m = _c_va_w_tuzat(m)
-    m = re.sub(r"<[^>]+>", " ", m)
-    m = re.sub(r"[_`#]+", "", m)  # * ni bu yerda OLIB TASHLAMAYMIZ — pastda MATH_MAP "ko'paytiruv"ga o'giradi
-    m = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", " ", m)
-    m = re.sub(r"https?://\S+", " havola ", m)
-
-    # Kasrlar: 1/2 -> ikkidan bir (matematikadan oldin)
-    def _kasr(x):
-        a, b = int(x.group(1)), int(x.group(2))
-        return f" {_son_soz(b)}dan {_son_soz(a)} "
-    m = re.sub(r"\b(\d{1,3})\s*/\s*(\d{1,3})\b", _kasr, m)
-
-    for naqsh, alm in _MATH_MAP:
-        m = re.sub(naqsh, alm, m)
-
-    # 5-sinf -> beshinchi sinf
-    def _t(x):
-        n = int(x.group(1))
-        soz = _son_soz(n).split()
-        soz[-1] = _TARTIB.get(soz[-1], soz[-1] + "inchi")
-        return f"{' '.join(soz)} {x.group(2)}"
-    m = re.sub(r"\b(\d{1,4})-(sinf|mashq|dars|savol|misol|bob|bet|mavzu|qism)\b", _t, m, flags=re.I)
-
-    # 3,5 -> uch butun besh
-    def _b(x):
-        return f"{_son_soz(int(x.group(1)))} butun {_son_soz(int(x.group(2)))}"
-    m = re.sub(r"\b(\d+)[,.](\d+)\b", _b, m)
-
-    # Qolgan sonlar so'zga
-    def _o(x):
-        n = int(x.group(0))
-        return _son_soz(n) if n < 1000000 else x.group(0)
-    m = re.sub(r"\b\d{1,6}\b", _o, m)
-
-    # Tinish belgilarini pauzaga aylantirish
-    m = m.replace(":", ",").replace(";", ",")
-    m = re.sub(r"\s*[\(\[\{]\s*", ", ", m)
-    m = re.sub(r"\s*[\)\]\}]\s*", ", ", m)
-    m = re.sub(r'["«»„“”]', " ", m)
-    m = re.sub(r"\s*[–—/|]\s*", ", ", m)
-    m = re.sub(r"\s*[•▪●○*]\s*", ", ", m)
-    m = re.sub(r"[…]+", ".", m)
-    m = re.sub(r"\.{2,}", ".", m)
-    m = re.sub(r"(?<=\w)-(?=\w)", " ", m)
-    m = re.sub(r"(,\s*){2,}", ", ", m)
-    m = re.sub(r"\s+([.,!?])", r"\1", m)
-    m = re.sub(r",\s*([.!?])", r"\1", m)
-    m = re.sub(r"([.!?])\s*[.,]+", r"\1", m)
-    m = re.sub(r"([.!?])\s*([.!?])", r"\1", m)
-    m = re.sub(r"\s{2,}", " ", m).strip()
-    return m.strip(" ,.")
-
-
-_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru)\](.*?)\[/\1\]", re.S | re.I)
-
-
-def _ovoz_qismlarga_bol(matn: str):
-    """Matnni [en]...[/en] / [ru]...[/ru] teglariga qarab bo'laklarga
-    ajratadi — har bo'lak (til, matn). til=None bo'lsa standart
-    o'zbekcha ovoz va matematik-son qoidalari bilan o'qiladi."""
-    qismlar = []
-    oxiri = 0
-    for m in _TIL_TEG_NAQSHI.finditer(matn):
-        oldingi = matn[oxiri:m.start()]
-        if oldingi.strip():
-            qismlar.append((None, oldingi))
-        til, ichi = m.group(1).lower(), m.group(2)
-        if ichi.strip():
-            qismlar.append((til, ichi))
-        oxiri = m.end()
-    qolgan = matn[oxiri:]
-    if qolgan.strip():
-        qismlar.append((None, qolgan))
-    return qismlar or [(None, matn)]
-
-
-@app.get("/api/ovoz")
-async def ovoz_oqish(matn: str, jins: str = "qiz"):
-    """Berilgan matnni ovozga aylantirib beradi (mp3). [en]/[ru] teglari
-    ichidagi qismlar o'sha tilning ovozida, qolgani o'zbekcha (matematik
-    belgilar/sonlar so'zga o'girilib) o'qiladi — botdagi ovoz_ikki_tilli
-    bilan bir xil mantiq, faqat ikkita til uchun kengaytirilgan."""
-    if not matn or not matn.strip():
-        raise HTTPException(status_code=400, detail="Matn berilmagan")
-    try:
-        import edge_tts
-    except ImportError:
-        raise HTTPException(status_code=500, detail="edge-tts o'rnatilmagan")
-
-    matn = matn[:1500]
-    buf = io.BytesIO()
-    ovoz_bormi = False
-    for til, bolak in _ovoz_qismlarga_bol(matn):
-        if til in _TIL_OVOZLARI:
-            voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
-            tayyor = re.sub(r"<[^>]+>", " ", bolak).strip()
-        else:
-            voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
-            tayyor = _ovoz_uchun_tayyorla(bolak)
-        if not tayyor.strip():
-            continue
-        com = edge_tts.Communicate(tayyor, voice)
-        async for chunk in com.stream():
-            if chunk["type"] == "audio":
-                buf.write(chunk["data"])
-                ovoz_bormi = True
-
-    if not ovoz_bormi:
-        raise HTTPException(status_code=500, detail="Ovoz yaratilmadi")
-    buf.seek(0)
-    return Response(content=buf.getvalue(), media_type="audio/mpeg")
-
-
-class JavobItem(BaseModel):
-    savol_id: int
-    tanlangan: str
-
-
-class TestNatijaSorov(BaseModel):
-    token: str
-    topic_code: str
-    javoblar: list[JavobItem]
-
-
-@app.post("/api/test/natija")
-def test_natijasini_saqla(sorov: TestNatijaSorov):
-    """Test yakunlanganda — har javobni backendda tekshiradi, foizni
-    hisoblaydi, learned_topics'ga yozadi (bot ishlatgan JADVALNING O'ZIGA —
-    shuning uchun dashboard darhol yangilanadi). Yozuvli (write_answer)
-    savollar ham to'g'ri tekshiriladi, va xato qilingan savollar ro'yxati
-    (sharh bilan) qaytariladi."""
-    user_id = _jwt_tekshir(sorov.token)
-
-    conn = _db()
-    cur = conn.cursor()
-
-    savol_idlar = [j.savol_id for j in sorov.javoblar]
-    cur.execute(
-        """SELECT id, question, option_a, option_b, option_c, option_d,
-                  correct_answer, question_type, explanation
-           FROM generated_tests WHERE id = ANY(%s)""",
-        (savol_idlar,),
-    )
-    savollar_map = {r["id"]: r for r in cur.fetchall()}
-
-    togri_soni = 0
-    xatolar = []
-    for j in sorov.javoblar:
-        r = savollar_map.get(j.savol_id)
-        if not r:
-            continue
-        if r["question_type"] == "write_answer":
-            togri = _yozma_javob_togrimi(j.tanlangan, r["correct_answer"])
-            togri_javob = _matnni_tozala(r["correct_answer"])
-        else:
-            togri_harf = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
-            togri = (j.tanlangan or "").strip().upper() == togri_harf
-            togri_javob = togri_harf
-        if togri:
-            togri_soni += 1
-        else:
-            xatolar.append({
-                "savol_id": j.savol_id,
-                "savol": _matnni_tozala(r["question"]),
-                "sizning_javob": j.tanlangan or "(javob berilmadi)",
-                "togri_javob": togri_javob,
-                "tushuntirish": _matnni_tozala(r["explanation"]),
-            })
-
-    jami = len(sorov.javoblar)
-    foiz = round((togri_soni / jami) * 100) if jami else 0
-
-    cur.execute("""
-        INSERT INTO learned_topics(user_id, topic_code, score, repeat_count, learned_at, next_repeat)
-        VALUES(%s,%s,%s,1,NOW(),CURRENT_DATE + INTERVAL '7 days')
-        ON CONFLICT (user_id, topic_code) DO UPDATE SET
-            score = EXCLUDED.score,
-            repeat_count = learned_topics.repeat_count + 1,
-            learned_at = NOW(),
-            next_repeat = CURRENT_DATE + INTERVAL '7 days'
-    """, (user_id, sorov.topic_code, foiz))
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    return {"togri": togri_soni, "jami": jami, "foiz": foiz, "xatolar": xatolar}
-
-
-# ═══════════════════════════════════════════════════════════
-# SAYTDAN BOTGA ULASH — teskari yo'nalish
-# (Saytda ro'yxatdan o'tgan, botni ham ishlatmoqchi bo'lganlar uchun)
-# ═══════════════════════════════════════════════════════════
-
-@app.post("/auth/sayt_kod_yarat")
-def sayt_kod_yarat(token: str):
-    """Saytda kirgan foydalanuvchi uchun BOTGA ulash kodi yaratadi.
-    Bot bu kodni ko'rib, shu web_user_id'dagi ma'lumotni haqiqiy
-    Telegram user_id'ga ko'chiradi."""
-    user_id = _jwt_tekshir(token)
-
-    kod = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS sayt_ulash_kod(
-        kod TEXT PRIMARY KEY, web_user_id BIGINT REFERENCES users(user_id),
-        yaratildi TIMESTAMP DEFAULT NOW(), ishlatildi BOOLEAN DEFAULT FALSE)""")
-    cur.execute("INSERT INTO sayt_ulash_kod(kod, web_user_id) VALUES(%s,%s)", (kod, user_id))
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    return {"kod": kod}
-
-
-# ═══════════════════════════════════════════════════════════
-# O'QITUVCHI — baholash
-# ═══════════════════════════════════════════════════════════
-
-@app.get("/api/oqituvchi/togaraklar")
-def oqituvchi_togaraklari(token: str):
-    """O'qituvchining o'ziga tegishli barcha to'garaklarini qaytaradi."""
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT id, nomi, fan, max_talaba,
-               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE) AS azo_soni
-        FROM togaraklar
-        WHERE teacher_id=%s AND aktiv=TRUE
-        ORDER BY nomi
-    """, (user_id,))
-    natija = cur.fetchall()
-    cur.close()
-    conn.close()
-    return {"togaraklar": natija}
-
-
-@app.get("/api/oqituvchi/togarak/{togarak_id}/azolar")
-def togarak_azolari(togarak_id: int, token: str):
-    """Berilgan to'garakdagi o'quvchilarni, ularning OXIRGI bahosi bilan
-    qaytaradi. Faqat shu to'garakning o'z o'qituvchisi ko'ra oladi."""
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-
-    cur.execute("SELECT teacher_id FROM togaraklar WHERE id=%s", (togarak_id,))
-    r = cur.fetchone()
-    if not r or r["teacher_id"] != user_id:
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=403, detail="Bu to'garak sizga tegishli emas")
-
-    cur.execute("""
-        SELECT u.user_id, u.full_name,
-               (SELECT baho FROM togarak_baholar tb
-                WHERE tb.togarak_id=%s AND tb.user_id=u.user_id
-                ORDER BY tb.created_at DESC LIMIT 1) AS oxirgi_baho
-        FROM togarak_azolar ta
-        JOIN users u ON u.user_id = ta.user_id
-        WHERE ta.togarak_id=%s AND ta.aktiv=TRUE
-        ORDER BY u.full_name
-    """, (togarak_id, togarak_id))
-    azolar = cur.fetchall()
-    cur.close()
-    conn.close()
-    return {"azolar": azolar}
-
-
-class BahoSorov(BaseModel):
-    token: str
-    togarak_id: int
-    user_id: int
-    baho: int
-    izoh: str = None
-
-
-@app.post("/api/oqituvchi/baho_qoy")
-def baho_qoy(sorov: BahoSorov):
-    """Bitta o'quvchiga baho qo'yadi. Faqat to'garakning o'z o'qituvchisi,
-    va faqat o'sha to'garak a'zosiga baho qo'ya oladi."""
-    teacher_id = _jwt_tekshir(sorov.token)
-    conn = _db()
-    cur = conn.cursor()
-
-    cur.execute("SELECT teacher_id FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
-    r = cur.fetchone()
-    if not r or r["teacher_id"] != teacher_id:
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=403, detail="Bu to'garak sizga tegishli emas")
-
-    cur.execute(
-        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
-        (sorov.togarak_id, sorov.user_id),
-    )
-    if not cur.fetchone():
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=400, detail="Bu o'quvchi shu to'garak a'zosi emas")
-
-    if not (0 <= sorov.baho <= 100):
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=400, detail="Baho 0-100 oralig'ida bo'lishi kerak")
-
-    cur.execute(
-        """INSERT INTO togarak_baholar(togarak_id, user_id, baho, izoh, teacher_id)
-           VALUES(%s,%s,%s,%s,%s)""",
-        (sorov.togarak_id, sorov.user_id, sorov.baho, sorov.izoh, teacher_id),
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "saqlandi"}
-
-
-# ═══════════════════════════════════════════════════════════
-# PROFIL — tahrirlash va rol almashtirish
-# ═══════════════════════════════════════════════════════════
-
-class ProfilYangilash(BaseModel):
-    token: str
-    full_name: str = None
-    region: str = None
-    district: str = None
-    tugilgan_sana: str = None
-    maktab_raqami: str = None
-    maktab_turi: str = None   # oddiy | xususiy | ixtisoslashgan | prezident
-    sinf: str = None          # 1..11
-    sinf_harfi: str = None    # A, B, V ...
-
-
-MAKTAB_TURLARI = {
-    "oddiy": "🏫 Oddiy davlat maktabi",
-    "xususiy": "🏢 Xususiy",
-    "ixtisoslashgan": "⭐ Ixtisoslashgan (IDUM)",
-    "prezident": "🏆 Prezident maktabi",
+      {bolim === "test" && <TestShablonBolimi token={token} />}
+      {bolim === "topik" && <TopikShablonBolimi token={token} />}
+    </div>
+  );
 }
 
-
-@app.put("/api/profil")
-def profil_yangila(sorov: ProfilYangilash):
-    """Foydalanuvchi o'z profilini yangilaydi."""
-    user_id = _jwt_tekshir(sorov.token)
-    if sorov.full_name is not None and not sorov.full_name.strip():
-        raise HTTPException(status_code=400, detail="Ism bo'sh bo'lishi mumkin emas")
-    if sorov.maktab_turi is not None and sorov.maktab_turi not in MAKTAB_TURLARI:
-        raise HTTPException(status_code=400, detail="Noto'g'ri maktab turi")
-    if sorov.sinf is not None and sorov.sinf not in [str(i) for i in range(1, 12)]:
-        raise HTTPException(status_code=400, detail="Sinf 1 dan 11 gacha bo'lishi kerak")
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
-
-    maydonlar = []
-    qiymatlar = []
-    if sorov.full_name is not None:
-        maydonlar.append("full_name=%s")
-        qiymatlar.append(sorov.full_name.strip())
-    if sorov.region is not None:
-        maydonlar.append("region=%s")
-        qiymatlar.append(sorov.region.strip())
-    if sorov.district is not None:
-        maydonlar.append("district=%s")
-        qiymatlar.append(sorov.district.strip())
-    if sorov.tugilgan_sana is not None:
-        maydonlar.append("tugilgan_sana=%s")
-        qiymatlar.append(sorov.tugilgan_sana)
-    if sorov.maktab_raqami is not None:
-        maydonlar.append("maktab_raqami=%s")
-        qiymatlar.append(sorov.maktab_raqami.strip())
-    if sorov.maktab_turi is not None:
-        maydonlar.append("school_type=%s")
-        qiymatlar.append(MAKTAB_TURLARI[sorov.maktab_turi])
-    if sorov.sinf is not None:
-        maydonlar.append("class=%s")
-        qiymatlar.append(sorov.sinf)
-    if sorov.sinf_harfi is not None:
-        maydonlar.append("class_letter=%s")
-        qiymatlar.append(sorov.sinf_harfi.strip().upper())
-
-    if not maydonlar:
-        cur.close()
-        conn.close()
-        return {"holat": "ozgarish_yoq"}
-
-    qiymatlar.append(user_id)
-    cur.execute(f"UPDATE users SET {', '.join(maydonlar)} WHERE user_id=%s", qiymatlar)
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "saqlandi"}
-
-
-class RolOzgartirish(BaseModel):
-    token: str
-    yangi_rol: str
-    tasdiqlayman: bool = False
-
-
-RUXSAT_ETILGAN_ROLLAR2 = {"oquvchi", "ota-ona", "oqituvchi"}
-ROL_BEPUL_LIMIT = 2          # necha marta ERKIN (kod so'ramasdan) rol almashtirish mumkin
-ROL_KOD_AMAL_MUDDATI = 10    # daqiqa
-ROL_OYLIK_LIMIT_KUN = 30     # kod bilan almashtirilgach, keyingisi uchun necha kun kutish kerak
-
-
-def _rol_ustunlarini_tayyorla(cur):
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS rol_ozgarish_soni INTEGER DEFAULT 0")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oxirgi_rol_ozgarish TIMESTAMP")
-    cur.execute("""CREATE TABLE IF NOT EXISTS rol_tasdiq_kod(
-        user_id BIGINT PRIMARY KEY REFERENCES users(user_id),
-        kod TEXT NOT NULL, yangi_rol TEXT NOT NULL, yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
-
-
-def _email_yubor(qabul_qiluvchi: str, mavzu: str, matn: str) -> bool:
-    """SMTP orqali email yuboradi. SMTP_HOST/SMTP_USER/SMTP_PASSWORD Railway'da
-    o'rnatilgan bo'lishi kerak (masalan Gmail App Password) — aks holda False
-    qaytaradi va konsolga log yozadi."""
-    host = os.getenv("SMTP_HOST", "smtp.gmail.com")
-    port = int(os.getenv("SMTP_PORT", "587"))
-    user = os.getenv("SMTP_USER")
-    parol = os.getenv("SMTP_PASSWORD")
-    if not user or not parol:
-        print(f"[EMAIL YUBORILMADI — SMTP sozlanmagan] {qabul_qiluvchi}: {matn}")
-        return False
-    try:
-        import smtplib
-        from email.mime.text import MIMEText
-        msg = MIMEText(matn, "plain", "utf-8")
-        msg["Subject"] = mavzu
-        msg["From"] = user
-        msg["To"] = qabul_qiluvchi
-        with smtplib.SMTP(host, port, timeout=10) as s:
-            s.starttls()
-            s.login(user, parol)
-            s.sendmail(user, [qabul_qiluvchi], msg.as_string())
-        return True
-    except Exception as e:
-        print(f"[EMAIL XATO] {e}")
-        return False
-
-
-@app.put("/api/rol_ozgartir")
-def rol_ozgartir(sorov: RolOzgartirish):
-    """Foydalanuvchi rolini o'zgartiradi.
-    - Admin uchun — CHEKLOVSIZ (sinab ko'rish uchun).
-    - Oddiy foydalanuvchi uchun — hayotda 2 marta ERKIN (faqat tasdiq bilan),
-      3-martadan boshlab Gmail'ga yuborilgan kod bilan, va kod bilan
-      almashtirilgach keyingisi uchun 30 kun kutish kerak."""
-    user_id = _jwt_tekshir(sorov.token)
-    if sorov.yangi_rol not in RUXSAT_ETILGAN_ROLLAR2:
-        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.yangi_rol}")
-
-    conn = _db()
-    cur = conn.cursor()
-    _rol_ustunlarini_tayyorla(cur)
-
-    cur.execute("SELECT role, rol_ozgarish_soni, oxirgi_rol_ozgarish FROM users WHERE user_id=%s", (user_id,))
-    r = cur.fetchone()
-    if not r:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
-
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    admin_mi = cur.fetchone() is not None
-
-    hozirgi_rol = r["role"]
-    if hozirgi_rol == sorov.yangi_rol:
-        cur.close(); conn.close()
-        return {"holat": "ozgarish_yoq"}
-
-    soni = r["rol_ozgarish_soni"] or 0
-
-    # ADMIN — cheklovsiz, sinab ko'rish uchun
-    if admin_mi:
-        if not sorov.tasdiqlayman:
-            cur.close(); conn.close()
-            return {"holat": "tasdiq_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol, "admin_test": True}
-        cur.execute("UPDATE users SET role=%s WHERE user_id=%s", (sorov.yangi_rol, user_id))
-        conn.commit(); cur.close(); conn.close()
-        return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol}
-
-    # ODDIY FOYDALANUVCHI — hali bepul limitdan foydalanmagan
-    if soni < ROL_BEPUL_LIMIT:
-        if not sorov.tasdiqlayman:
-            cur.close(); conn.close()
-            return {
-                "holat": "tasdiq_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol,
-                "qolgan_bepul": ROL_BEPUL_LIMIT - soni,
-            }
-        cur.execute(
-            "UPDATE users SET role=%s, rol_ozgarish_soni=rol_ozgarish_soni+1, oxirgi_rol_ozgarish=NOW() WHERE user_id=%s",
-            (sorov.yangi_rol, user_id),
-        )
-        conn.commit(); cur.close(); conn.close()
-        return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol, "qolgan_bepul": ROL_BEPUL_LIMIT - soni - 1}
-
-    # BEPUL LIMIT TUGAGAN — 30 kunlik muddat tekshiriladi
-    if r["oxirgi_rol_ozgarish"]:
-        keyingi = r["oxirgi_rol_ozgarish"] + timedelta(days=ROL_OYLIK_LIMIT_KUN)
-        if datetime.now() < keyingi:
-            cur.close(); conn.close()
-            raise HTTPException(
-                status_code=429,
-                detail=f"Rol almashtirish limiti tugagan. Keyingi imkoniyat: {keyingi.strftime('%d.%m.%Y')}",
-            )
-
-    cur.close(); conn.close()
-    return {"holat": "kod_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol}
-
-
-class RolKodSorash(BaseModel):
-    token: str
-    yangi_rol: str
-
-
-@app.post("/api/rol_kod_yubor")
-def rol_kod_yubor(sorov: RolKodSorash):
-    """Bepul limit tugagan foydalanuvchi uchun — Gmail'ga tasdiqlash kodi yuboradi."""
-    user_id = _jwt_tekshir(sorov.token)
-    if sorov.yangi_rol not in RUXSAT_ETILGAN_ROLLAR2:
-        raise HTTPException(status_code=400, detail="Noto'g'ri rol")
-
-    conn = _db()
-    cur = conn.cursor()
-    _rol_ustunlarini_tayyorla(cur)
-    cur.execute("SELECT google_email FROM google_hisob WHERE user_id=%s LIMIT 1", (user_id,))
-    r = cur.fetchone()
-    if not r or not r["google_email"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Gmail hisobingiz ulanmagan — avval botdagi kabinet orqali ulang")
-
-    email = r["google_email"]
-    kod = "".join(secrets.choice(string.digits) for _ in range(6))
-    cur.execute("""
-        INSERT INTO rol_tasdiq_kod(user_id, kod, yangi_rol, yaratilgan_at)
-        VALUES(%s,%s,%s,NOW())
-        ON CONFLICT (user_id) DO UPDATE SET kod=EXCLUDED.kod, yangi_rol=EXCLUDED.yangi_rol, yaratilgan_at=NOW()
-    """, (user_id, kod, sorov.yangi_rol))
-    conn.commit()
-    cur.close(); conn.close()
-
-    yuborildi = _email_yubor(
-        email, "SamTM Ta'lim — rol o'zgartirish kodi",
-        f"Rolni \"{sorov.yangi_rol}\"ga o'zgartirish uchun tasdiqlash kodi: {kod}\n"
-        f"Kod {ROL_KOD_AMAL_MUDDATI} daqiqa amal qiladi. Agar bu so'rovni siz yubormagan bo'lsangiz, e'tiborsiz qoldiring.",
-    )
-    yashirilgan = re.sub(r"(?<=.{2}).(?=[^@]*@)", "*", email)
-    return {"holat": "yuborildi" if yuborildi else "smtp_sozlanmagan", "email": yashirilgan}
-
-
-class RolKodTasdiqlash(BaseModel):
-    token: str
-    kod: str
-
-
-@app.post("/api/rol_kod_tasdiqla")
-def rol_kod_tasdiqla(sorov: RolKodTasdiqlash):
-    """Yuborilgan kodni tekshiradi va to'g'ri bo'lsa rolni o'zgartiradi."""
-    user_id = _jwt_tekshir(sorov.token)
-    conn = _db()
-    cur = conn.cursor()
-    _rol_ustunlarini_tayyorla(cur)
-    cur.execute("SELECT kod, yangi_rol, yaratilgan_at FROM rol_tasdiq_kod WHERE user_id=%s", (user_id,))
-    r = cur.fetchone()
-    if not r:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Avval kod so'rang")
-    if datetime.now() - r["yaratilgan_at"] > timedelta(minutes=ROL_KOD_AMAL_MUDDATI):
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod muddati tugagan — qaytadan so'rang")
-    if sorov.kod.strip() != r["kod"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
-
-    cur.execute(
-        "UPDATE users SET role=%s, rol_ozgarish_soni=rol_ozgarish_soni+1, oxirgi_rol_ozgarish=NOW() WHERE user_id=%s",
-        (r["yangi_rol"], user_id),
-    )
-    cur.execute("DELETE FROM rol_tasdiq_kod WHERE user_id=%s", (user_id,))
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "saqlandi", "yangi_rol": r["yangi_rol"]}
-
-
-# ═══════════════════════════════════════════════════════════
-# O'QITUVCHI — yangi to'garak yaratish
-# ═══════════════════════════════════════════════════════════
-
-class TogarakYaratish(BaseModel):
-    token: str
-    nomi: str
-    fan: str
-    parol: str = None
-    max_talaba: int = None
-    oylik_summa: int = None
-
-
-@app.post("/api/oqituvchi/togarak_yarat")
-def togarak_yarat(sorov: TogarakYaratish):
-    """O'qituvchi yangi to'garak yaratadi — bot ishlatadigan AYNAN SHU
-    jadvalga (togaraklar) yoziladi, shuning uchun bot va sayt bir xil
-    ma'lumotni ko'radi."""
-    teacher_id = _jwt_tekshir(sorov.token)
-    if not sorov.nomi.strip():
-        raise HTTPException(status_code=400, detail="To'garak nomi kiritilmagan")
-    if not sorov.fan.strip():
-        raise HTTPException(status_code=400, detail="Fan kiritilmagan")
-    if sorov.max_talaba is not None and sorov.max_talaba < 1:
-        raise HTTPException(status_code=400, detail="Maksimal talaba soni kamida 1 bo'lishi kerak")
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, parol, max_talaba, oylik_summa, aktiv)
-        VALUES(%s,%s,%s,%s,%s,%s,TRUE) RETURNING id
-    """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id,
-          sorov.parol.strip() if sorov.parol else None,
-          sorov.max_talaba, sorov.oylik_summa))
-    yangi_id = cur.fetchone()["id"]
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "yaratildi", "togarak_id": yangi_id}
-
-
-# ═══════════════════════════════════════════════════════════
-# TO'GARAKKA QO'SHILISH (parol orqali — barcha rollar uchun)
-# ═══════════════════════════════════════════════════════════
-
-class TogarakqaQoshilish(BaseModel):
-    token: str
-    parol: str
-
-
-@app.post("/api/togarakka_qoshil")
-def togarakka_qoshil(sorov: TogarakqaQoshilish):
-    """Foydalanuvchi (o'quvchi, ota-ona va h.k.) parol orqali to'garakka
-    qo'shiladi — bot orqali qo'shilgan bilan BIR XIL jadvalga yoziladi."""
-    user_id = _jwt_tekshir(sorov.token)
-    if not sorov.parol.strip():
-        raise HTTPException(status_code=400, detail="Parol kiritilmagan")
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("SELECT id, nomi, max_talaba FROM togaraklar WHERE parol=%s AND aktiv=TRUE", (sorov.parol.strip(),))
-    t = cur.fetchone()
-    if not t:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Bunday parolli to'garak topilmadi")
-
-    cur.execute(
-        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
-        (t["id"], user_id),
-    )
-    if cur.fetchone():
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Siz allaqachon shu to'garak a'zosisiz")
-
-    if t["max_talaba"]:
-        cur.execute("SELECT COUNT(*) AS soni FROM togarak_azolar WHERE togarak_id=%s AND aktiv=TRUE", (t["id"],))
-        joriy = cur.fetchone()["soni"]
-        if joriy >= t["max_talaba"]:
-            cur.close(); conn.close()
-            raise HTTPException(status_code=400, detail="To'garak to'lgan")
-
-    cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (t["id"], user_id))
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "qoshildi", "togarak_nomi": t["nomi"]}
-
-
-@app.get("/api/mening_togaraklarim")
-def mening_togaraklarim(token: str):
-    """Foydalanuvchi a'zo bo'lgan barcha to'garaklarni qaytaradi."""
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT tg.id, tg.nomi, tg.fan
-        FROM togarak_azolar ta
-        JOIN togaraklar tg ON tg.id = ta.togarak_id
-        WHERE ta.user_id=%s AND ta.aktiv=TRUE
-    """, (user_id,))
-    natija = cur.fetchall()
-    cur.close()
-    conn.close()
-    return {"togaraklar": natija}
-
-
-# ═══════════════════════════════════════════════════════════
-# ADMIN — Test shablon (Excel) yuklab olish va import qilish
-# Botdagi _generate_template / import_tests_excel mantig'iga mos
-# ═══════════════════════════════════════════════════════════
-
-def _admin_tekshir(token: str):
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    natija = cur.fetchone()
-    cur.close()
-    conn.close()
-    if not natija:
-        raise HTTPException(status_code=403, detail="Faqat admin uchun")
-    return user_id
-
-
-class TestShablonGuruh(BaseModel):
-    diff: str    # oson | o'rta | qiyin | murakkab
-    turi: str    # single_choice | write_answer
-    soni: int    # 0, 5, 10, 15, 20 ...
-
-
-class TestShablonSorov(BaseModel):
-    topic_codes: list[str]
-    guruhlar: list[TestShablonGuruh]
-
-
-@app.post("/api/admin/shablon_yukla")
-def shablon_yukla(sorov: TestShablonSorov, token: str):
-    """Tanlangan mavzular + har bir qiyinlik darajasi uchun tanlangan
-    son/tur (tugmali yoki yozuvli) bo'yicha bo'sh Excel shablon yaratadi —
-    botning shablon_yaratish.py:_create_test_shablon_multi bilan bir xil."""
-    _admin_tekshir(token)
-    import openpyxl
-    from openpyxl.styles import Font, PatternFill, Alignment
-    import io
-    from fastapi.responses import StreamingResponse
-
-    kodlar = [k.strip() for k in sorov.topic_codes if k.strip()]
-    if not kodlar:
-        raise HTTPException(status_code=400, detail="Kamida bitta mavzu tanlang")
-    guruhlar = [g for g in sorov.guruhlar if g.soni > 0]
-    if not guruhlar:
-        raise HTTPException(status_code=400, detail="Kamida bitta qiyinlik darajasidan son tanlang")
-
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT DISTINCT topic_code, kichik_name FROM dts_tree
-        WHERE topic_code = ANY(%s) AND is_deleted=FALSE
-    """, (kodlar,))
-    tc_map = {r["topic_code"]: r["kichik_name"] for r in cur.fetchall()}
-    cur.close()
-    conn.close()
-
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "TEST_SHABLON"
-    headers = [
-        "topic_code", "mavzu_nomi", "difficulty", "question_type",
-        "question", "option_a", "option_b", "option_c", "option_d",
-        "correct_answer", "explanation", "image_url", "language", "time_limit",
-    ]
-    diff_colors = {"oson": "E2EFDA", "o'rta": "FFF2CC", "qiyin": "FCE4D6", "murakkab": "F2CEEF"}
-
-    for col, h in enumerate(headers, 1):
-        cell = ws.cell(1, col, h)
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor="4472C4")
-        cell.alignment = Alignment(horizontal="center")
-
-    row_num = 2
-    for kod in kodlar:
-        kichik = tc_map.get(kod, kod)
-        for g in guruhlar:
-            color = diff_colors.get(g.diff, "F2F2F2")
-            for i in range(1, g.soni + 1):
-                ws.cell(row_num, 1, kod)
-                ws.cell(row_num, 2, kichik)
-                ws.cell(row_num, 3, g.diff)
-                ws.cell(row_num, 4, g.turi)
-                ws.cell(row_num, 12, f"{kod}-{i}")  # image_url — collage kodi
-                ws.cell(row_num, 13, "uz")
-                ws.cell(row_num, 14, 60 if g.turi == "write_answer" else 0)
-                for col in range(1, len(headers) + 1):
-                    ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-                    ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
-                row_num += 1
-
-    widths = [30, 25, 10, 15, 50, 20, 20, 20, 20, 15, 40, 20, 8, 10]
-    for col, w in enumerate(widths, 1):
-        ws.column_dimensions[ws.cell(1, col).column_letter].width = w
-
-    ws2 = wb.create_sheet("IZOH")
-    ws2.cell(1, 1, "📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=13)
-    notes = [
-        (3, "topic_code", "O'zgartirmang"),
-        (4, "difficulty", "O'zgartirmang: oson/o'rta/qiyin/murakkab"),
-        (5, "question_type", "O'zgartirmang: single_choice yoki write_answer"),
-        (6, "question", "Savol matnini yozing"),
-        (7, "option_a", "A variant (write_answer bo'lsa bo'sh qoldiring)"),
-        (8, "option_b", "B variant"),
-        (9, "option_c", "C variant"),
-        (10, "option_d", "D variant"),
-        (11, "correct_answer", "To'g'ri javob: A/B/C/D (write_answer bo'lsa — matn)"),
-        (12, "explanation", "Izoh (ixtiyoriy)"),
-        (13, "image_url", "Rasm kodi — collage orqali yuklanadi, o'zgartirmang"),
-    ]
-    for r, col_name, note in notes:
-        ws2.cell(r, 1, col_name).font = Font(bold=True)
-        ws2.cell(r, 2, note)
-    ws2.column_dimensions['A'].width = 16
-    ws2.column_dimensions['B'].width = 50
-
-    buf = io.BytesIO()
-    wb.save(buf)
-    buf.seek(0)
-    return StreamingResponse(
-        buf,
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": "attachment; filename=test_shablon.xlsx"},
-    )
-
-
-@app.post("/api/admin/shablon_import")
-async def shablon_import(token: str, fayl: UploadFile = File(...)):
-    """To'ldirilgan Excel shablonni import qiladi — botning
-    import_tests_excel funksiyasidagi duplikat-tekshiruvi bilan bir xil."""
-    _admin_tekshir(token)
-    import openpyxl
-    import io
-
-    content = await fayl.read()
-    try:
-        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
-
-    ws = wb["TESTLAR"] if "TESTLAR" in wb.sheetnames else wb.active
-    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
-    if "topic_code" not in headers:
-        raise HTTPException(status_code=400, detail="Excel ustunlari mos emas — 'topic_code' topilmadi")
-
-    conn = _db()
-    cur = conn.cursor()
-    saved = 0
-    duplicates = 0
-    errors = 0
-
-    for row in ws.iter_rows(min_row=2):
-        d = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers) and headers[i]}
-        tc = d.get("topic_code")
-        q = d.get("question")
-        if not tc or not q or str(tc).strip() == "" or str(q).strip() == "":
-            continue
-        try:
-            tc_s = str(tc).strip()
-            q_s = str(q).strip()
-            opt_a = str(d.get("option_a") or "").strip()
-            correct = str(d.get("correct_answer") or "").strip()
-
-            cur.execute("""
-                SELECT 1 FROM generated_tests
-                WHERE topic_code=%s AND question=%s AND option_a=%s AND correct_answer=%s
-                LIMIT 1
-            """, (tc_s, q_s, opt_a, correct))
-            if cur.fetchone():
-                duplicates += 1
-                continue
-
-            cur.execute("""
-                INSERT INTO generated_tests
-                (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
-                 correct_answer, explanation, question_type, is_latex, image_url, audio_text,
-                 language, life_level, age_group, time_limit)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-            """, (
-                tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
-                d.get("option_a"), d.get("option_b"), d.get("option_c"), d.get("option_d"),
-                d.get("correct_answer"), d.get("explanation"),
-                d.get("question_type") or "single_choice",
-                bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
-                d.get("image_url"), d.get("audio_text"), d.get("language") or "uz",
-                d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
-            ))
-            conn.commit()
-            saved += 1
-        except Exception as e:
-            conn.rollback()
-            errors += 1
-
-    cur.close()
-    conn.close()
-    return {"saved": saved, "duplicates": duplicates, "errors": errors}
-
-
-# ═══════════════════════════════════════════════════════════
-# ADMIN — Topik shablon (dts_tree uchun) yuklab olish va import qilish
-# Botdagi shablon_yaratish.py (_create_shablon / handle_shablon_document)
-# mantig'iga mos
-# ═══════════════════════════════════════════════════════════
-
-class TopikShablonSorov(BaseModel):
-    sinf: str
-    fan: str
-    mavzular: str  # ko'p qatorli matn: "1 / Colours\n1 / Numbers\n2 / Animals"
-
-
-def _mavzularni_parse(text: str):
-    """Botdagi bilan bir xil parser: 'chorak / mavzu' yoki 'chorak mavzu' formatini o'qiydi."""
-    natija = []
-    for line in text.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        if "/" in line:
-            parts = line.split("/", 1)
-            chorak_raqam = "".join(ch for ch in parts[0].strip() if ch.isdigit())
-            mavzu = parts[1].strip()
-        else:
-            parts = line.split(None, 1)
-            chorak_raqam = parts[0].strip() if parts else "1"
-            mavzu = parts[1].strip() if len(parts) > 1 else line
-        if mavzu and chorak_raqam:
-            natija.append((chorak_raqam, mavzu))
-    return natija
-
-
-@app.post("/api/admin/topik_shablon")
-def topik_shablon(sorov: TopikShablonSorov, token: str):
-    """Sinf + fan + mavzular ro'yxati bo'yicha DTS (topik kod) shablonini
-    Excel qilib yaratadi — botdagi 'Topik shablon' bilan bir xil."""
-    _admin_tekshir(token)
-    import openpyxl
-    from openpyxl.styles import Font, PatternFill, Alignment
-    import io
-    from fastapi.responses import StreamingResponse
-
-    mavzular = _mavzularni_parse(sorov.mavzular)
-    if not mavzular:
-        raise HTTPException(status_code=400, detail="Mavzular topilmadi — 'chorak / mavzu' formatida yozing")
-
-    sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
-
-    wb = openpyxl.Workbook()
-    ws = wb.active
-    ws.title = "DTS_SHABLON"
-
-    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu", "Kichik mavzu"]
-    header_colors = ["4472C4", "4472C4", "4472C4", "70AD47", "70AD47", "ED7D31", "ED7D31"]
-    for col, (h, color) in enumerate(zip(headers, header_colors), 1):
-        cell = ws.cell(1, col, value=h)
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor=color)
-        cell.alignment = Alignment(horizontal="center")
-
-    chorak_colors = {"1": "DEEAF1", "2": "E2EFDA", "3": "FFF2CC", "4": "FCE4D6"}
-    row_num = 2
-    for chorak, mavzu in mavzular:
-        color = chorak_colors.get(str(chorak), "F2F2F2")
-        for _ in range(2):  # botdagi kabi mavzu boshiga 2 qator
-            ws.cell(row_num, 1, value=sinf)
-            ws.cell(row_num, 2, value=fan)
-            ws.cell(row_num, 3, value=chorak)
-            ws.cell(row_num, 6, value=mavzu)
-            for col in range(1, 8):
-                ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-                ws.cell(row_num, col).alignment = Alignment(horizontal="left")
-            row_num += 1
-
-    for col, width in zip(range(1, 8), [8, 18, 8, 25, 25, 30, 30]):
-        ws.column_dimensions[ws.cell(1, col).column_letter].width = width
-
-    ws2 = wb.create_sheet("IZOH")
-    ws2.cell(1, 1, value="📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
-    izohlar = [
-        (3, "Sinf", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (4, "Fan", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (5, "Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (6, "Bob", "To'ldiring: masalan 'Chapter 1. Getting acquainted'"),
-        (7, "Bo'lim", "To'ldiring: masalan 'Unit 1. Greetings'"),
-        (8, "Mavzu", "O'zgartirmang — mavzu nomi avtomatik"),
-        (9, "Kichik mavzu", "To'ldiring: mavzuning kichik qismi"),
-    ]
-    for r, ustun, izoh in izohlar:
-        ws2.cell(r, 1, value=ustun).font = Font(bold=True)
-        ws2.cell(r, 2, value=izoh)
-    ws2.column_dimensions['A'].width = 15
-    ws2.column_dimensions['B'].width = 50
-
-    buf = io.BytesIO()
-    wb.save(buf)
-    buf.seek(0)
-    fname = f"shablon_{sinf}sinf_{fan.replace(' ', '_')[:20]}.xlsx"
-    return StreamingResponse(
-        buf,
-        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": f"attachment; filename={fname}"},
-    )
-
-
-@app.post("/api/admin/topik_import")
-async def topik_import(token: str, fayl: UploadFile = File(...)):
-    """To'ldirilgan Topik shablonini dts_tree jadvaliga import qiladi —
-    botdagi handle_shablon_document bilan bir xil (avtomatik topic_code)."""
-    _admin_tekshir(token)
-    import openpyxl
-    import io
-
-    content = await fayl.read()
-    try:
-        wb = openpyxl.load_workbook(io.BytesIO(content))
-    except Exception as e:
-        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
-    ws = wb.active
-
-    conn = _db()
-    cur = conn.cursor()
-    added, skipped = 0, 0
-
-    for r in range(2, ws.max_row + 1):
-        sinf = ws.cell(r, 1).value
-        fan = ws.cell(r, 2).value
-        chorak = ws.cell(r, 3).value
-        bob = ws.cell(r, 4).value
-        bolim = ws.cell(r, 5).value
-        mavzu = ws.cell(r, 6).value
-        kichik = ws.cell(r, 7).value
-
-        if not sinf or not mavzu:
-            continue
-
-        cur.execute("""
-            SELECT topic_code FROM dts_tree
-            WHERE grade=%s AND subject_name=%s
-            ORDER BY topic_code DESC LIMIT 1
-        """, (str(sinf), str(fan) if fan else ""))
-        row = cur.fetchone()
-        if row:
-            last = row["topic_code"]
-            parts = last.rsplit('-', 1)
-            new_num = str(int(parts[1]) + 1).zfill(3)
-            topic_code = f"{parts[0]}-{new_num}"
-        else:
-            topic_code = f"{sinf}-01-{chorak or 1}-01-01-01-001"
-
-        try:
-            cur.execute("""
-                INSERT INTO dts_tree
-                (topic_code, grade, subject_name, quarter,
-                 bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
-                ON CONFLICT (topic_code) DO NOTHING
-            """, (
-                topic_code, str(sinf), str(fan) if fan else "",
-                str(chorak) if chorak else "1", str(bob) if bob else "",
-                str(bolim) if bolim else "", str(mavzu) if mavzu else "",
-                str(kichik) if kichik else "",
-            ))
-            conn.commit()
-            added += 1
-        except Exception:
-            conn.rollback()
-            skipped += 1
-
-    cur.close()
-    conn.close()
-    return {"added": added, "skipped": skipped}
+const QIYINLIK_DARAJALARI = [
+  ["oson", "🟢 Oson"], ["o'rta", "🟡 O'rta"], ["qiyin", "🔴 Qiyin"], ["murakkab", "⚫ Murakkab"],
+];
+
+function TestShablonBolimi({ token }) {
+  const [fanlar, setFanlar] = useState([]);
+  const [ochiqFan, setOchiqFan] = useState(null);
+  const [tanlanganKodlar, setTanlanganKodlar] = useState([]); // [topic_code, ...]
+  const [guruhlar, setGuruhlar] = useState(
+    QIYINLIK_DARAJALARI.map(([diff]) => ({ diff, turi: "single_choice", soni: 0 }))
+  );
+  const [yuklanmoqda, setYuklanmoqda] = useState(false);
+  const [importlanmoqda, setImportlanmoqda] = useState(false);
+  const [xato, setXato] = useState("");
+  const [natija, setNatija] = useState(null);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/mavzular`)
+      .then((r) => r.json())
+      .then((d) => setFanlar(d.fanlar || []))
+      .catch(() => setXato("Mavzularni yuklab bo'lmadi"));
+  }, []);
+
+  const kodniAlmashtir = (kod) => {
+    setTanlanganKodlar((prev) => prev.includes(kod) ? prev.filter((k) => k !== kod) : [...prev, kod]);
+  };
+
+  const guruhniYangila = (diff, maydon, qiymat) => {
+    setGuruhlar((prev) => prev.map((g) => g.diff === diff ? { ...g, [maydon]: qiymat } : g));
+  };
+
+  const jamiSon = guruhlar.reduce((sum, g) => sum + g.soni, 0);
+
+  const shablonYukla = async () => {
+    if (tanlanganKodlar.length === 0) { setXato("Kamida bitta mavzu tanlang"); return; }
+    if (jamiSon === 0) { setXato("Kamida bitta qiyinlik darajasidan son tanlang"); return; }
+    setYuklanmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/shablon_yukla?token=${encodeURIComponent(token)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ topic_codes: tanlanganKodlar, guruhlar }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.detail || "Xato");
+      }
+      const blob = await res.blob();
+      const dlUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = dlUrl; a.download = "test_shablon.xlsx";
+      document.body.appendChild(a); a.click(); a.remove();
+      window.URL.revokeObjectURL(dlUrl);
+    } catch (e) {
+      setXato(e.message);
+    } finally { setYuklanmoqda(false); }
+  };
+
+  const faylTanlandi = async (e) => {
+    const fayl = e.target.files[0];
+    if (!fayl) return;
+    setImportlanmoqda(true); setXato(""); setNatija(null);
+    try {
+      const formData = new FormData();
+      formData.append("fayl", fayl);
+      const res = await fetch(`${API_BASE}/api/admin/shablon_import?token=${encodeURIComponent(token)}`, {
+        method: "POST", body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setNatija(data);
+    } catch (e) {
+      setXato(e.message);
+    } finally {
+      setImportlanmoqda(false);
+      e.target.value = "";
+    }
+  };
+
+  return (
+    <>
+      <div className="rounded-2xl p-5 bg-white border mb-4" style={{ borderColor: "#E5E1D8" }}>
+        <label className="text-xs font-medium mb-2 block" style={{ color: "#5A5648" }}>
+          1) Mavzu(lar)ni tanlang ({tanlanganKodlar.length} ta tanlandi)
+        </label>
+        <div className="space-y-1.5 max-h-56 overflow-y-auto mb-1">
+          {fanlar.map((fan) => {
+            const ochiq = ochiqFan === fan.qisqa;
+            return (
+              <div key={fan.qisqa} className="rounded-xl overflow-hidden" style={{ backgroundColor: "#F7F5F0" }}>
+                <button onClick={() => setOchiqFan(ochiq ? null : fan.qisqa)}
+                  className="w-full flex items-center justify-between px-3 py-2.5">
+                  <span className="text-sm font-medium" style={{ color: "#2B2B2B" }}>{fan.nom}</span>
+                  {ochiq ? <ChevronDown size={16} style={{ color: "#8A8578" }} /> : <ChevronRight size={16} style={{ color: "#8A8578" }} />}
+                </button>
+                {ochiq && (
+                  <div className="px-3 pb-2.5 space-y-1">
+                    {fan.sinflar.map((s) => (
+                      <div key={s.sinf}>
+                        <p className="text-xs font-medium py-1" style={{ color: "#8A8578" }}>{s.sinf}-sinf</p>
+                        {s.mavzular.map((m) => (
+                          <label key={m.topic_code} className="w-full flex items-center gap-2 px-2 py-2 rounded-lg bg-white mb-1 cursor-pointer">
+                            <input type="checkbox" checked={tanlanganKodlar.includes(m.topic_code)}
+                              onChange={() => kodniAlmashtir(m.topic_code)} />
+                            <span className="text-sm flex-1" style={{ color: "#2B2B2B" }}>{m.nomi}</span>
+                          </label>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="rounded-2xl p-5 bg-white border mb-4" style={{ borderColor: "#E5E1D8" }}>
+        <label className="text-xs font-medium mb-3 block" style={{ color: "#5A5648" }}>
+          2) Har bir qiyinlik darajasi uchun son va turini tanlang
+        </label>
+        <div className="space-y-4">
+          {guruhlar.map((g) => {
+            const nom = QIYINLIK_DARAJALARI.find(([d]) => d === g.diff)[1];
+            return (
+              <div key={g.diff}>
+                <p className="text-sm font-medium mb-1.5" style={{ color: "#2B2B2B" }}>{nom}</p>
+                <div className="flex gap-1.5 mb-1.5 flex-wrap">
+                  {[0, 5, 10, 15, 20].map((n) => (
+                    <button key={n} onClick={() => guruhniYangila(g.diff, "soni", n)}
+                      className="px-3 py-1.5 rounded-lg text-xs font-medium"
+                      style={g.soni === n
+                        ? { backgroundColor: "#1B4B7A", color: "#fff" }
+                        : { backgroundColor: "#F7F5F0", color: "#5A5648" }}>
+                      {n}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex gap-1.5">
+                  <button onClick={() => guruhniYangila(g.diff, "turi", "single_choice")}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium"
+                    style={g.turi === "single_choice"
+                      ? { backgroundColor: "#2D8B8B", color: "#fff" }
+                      : { backgroundColor: "#F7F5F0", color: "#5A5648" }}>
+                    🔘 Tugmali
+                  </button>
+                  <button onClick={() => guruhniYangila(g.diff, "turi", "write_answer")}
+                    className="px-3 py-1.5 rounded-lg text-xs font-medium"
+                    style={g.turi === "write_answer"
+                      ? { backgroundColor: "#2D8B8B", color: "#fff" }
+                      : { backgroundColor: "#F7F5F0", color: "#5A5648" }}>
+                    ✍️ Yozuvli
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <button onClick={shablonYukla} disabled={yuklanmoqda}
+          className="w-full py-3 rounded-xl font-semibold text-white text-sm flex items-center justify-center gap-2 mt-5"
+          style={{ backgroundColor: "#1B4B7A", opacity: yuklanmoqda ? 0.7 : 1 }}>
+          {yuklanmoqda ? <Loader2 size={16} className="animate-spin" /> : `📥 Shablon yuklab olish (jami: ${jamiSon} ta × ${tanlanganKodlar.length} mavzu)`}
+        </button>
+      </div>
+
+      <div className="rounded-2xl p-5 bg-white border" style={{ borderColor: "#E5E1D8" }}>
+        <label className="text-xs font-medium mb-2 block" style={{ color: "#5A5648" }}>
+          To'ldirilgan shablonni yuklash
+        </label>
+        <label className="w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer border-2 border-dashed"
+          style={{ borderColor: "#C4BFAF", color: "#5A5648" }}>
+          {importlanmoqda ? <Loader2 size={16} className="animate-spin" /> : "📤 Fayl tanlash"}
+          <input type="file" accept=".xlsx" onChange={faylTanlandi} disabled={importlanmoqda} className="hidden" />
+        </label>
+
+        {xato && <p className="text-sm mt-3" style={{ color: "#B0553A" }}>{xato}</p>}
+        {natija && (
+          <div className="mt-3 text-sm" style={{ color: "#2B2B2B" }}>
+            <p>✅ Saqlandi: <b>{natija.saved}</b></p>
+            <p>⚠️ Duplikat: <b>{natija.duplicates}</b></p>
+            <p>❌ Xato: <b>{natija.errors}</b></p>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+function TopikShablonBolimi({ token }) {
+  const [sinf, setSinf] = useState("");
+  const [fan, setFan] = useState("");
+  const [mavzular, setMavzular] = useState("");
+  const [yuklanmoqda, setYuklanmoqda] = useState(false);
+  const [importlanmoqda, setImportlanmoqda] = useState(false);
+  const [xato, setXato] = useState("");
+  const [natija, setNatija] = useState(null);
+
+  const shablonYukla = async () => {
+    if (!sinf.trim() || !fan.trim() || !mavzular.trim()) {
+      setXato("Sinf, fan va mavzularni to'ldiring"); return;
+    }
+    setYuklanmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/admin/topik_shablon?token=${encodeURIComponent(token)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sinf: sinf.trim(), fan: fan.trim(), mavzular }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => ({}));
+        throw new Error(d.detail || "Xato");
+      }
+      const blob = await res.blob();
+      const dlUrl = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = dlUrl; a.download = `shablon_${sinf}sinf_${fan}.xlsx`;
+      document.body.appendChild(a); a.click(); a.remove();
+      window.URL.revokeObjectURL(dlUrl);
+    } catch (e) {
+      setXato(e.message);
+    } finally { setYuklanmoqda(false); }
+  };
+
+  const faylTanlandi = async (e) => {
+    const fayl = e.target.files[0];
+    if (!fayl) return;
+    setImportlanmoqda(true); setXato(""); setNatija(null);
+    try {
+      const formData = new FormData();
+      formData.append("fayl", fayl);
+      const res = await fetch(`${API_BASE}/api/admin/topik_import?token=${encodeURIComponent(token)}`, {
+        method: "POST", body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setNatija(data);
+    } catch (e) {
+      setXato(e.message);
+    } finally {
+      setImportlanmoqda(false);
+      e.target.value = "";
+    }
+  };
+
+  return (
+    <>
+      <div className="rounded-2xl p-5 bg-white border mb-4" style={{ borderColor: "#E5E1D8" }}>
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Sinf</label>
+        <input type="text" value={sinf} onChange={(e) => setSinf(e.target.value)}
+          placeholder="masalan: 1"
+          className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+          style={{ borderColor: "#E5E1D8" }} />
+
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Fan</label>
+        <input type="text" value={fan} onChange={(e) => setFan(e.target.value)}
+          placeholder="masalan: Ingliz tili"
+          className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+          style={{ borderColor: "#E5E1D8" }} />
+
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>
+          Mavzular (har biri yangi qatorda: chorak / mavzu)
+        </label>
+        <textarea value={mavzular} onChange={(e) => setMavzular(e.target.value)}
+          placeholder={"1 / Colours\n1 / Numbers\n2 / Animals"}
+          rows={5}
+          className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-4"
+          style={{ borderColor: "#E5E1D8" }} />
+
+        <button onClick={shablonYukla} disabled={yuklanmoqda}
+          className="w-full py-3 rounded-xl font-semibold text-white text-sm flex items-center justify-center gap-2"
+          style={{ backgroundColor: "#1B4B7A", opacity: yuklanmoqda ? 0.7 : 1 }}>
+          {yuklanmoqda ? <Loader2 size={16} className="animate-spin" /> : "📥 Shablon yuklab olish"}
+        </button>
+      </div>
+
+      <div className="rounded-2xl p-5 bg-white border" style={{ borderColor: "#E5E1D8" }}>
+        <label className="text-xs font-medium mb-2 block" style={{ color: "#5A5648" }}>
+          To'ldirilgan shablonni yuklash
+        </label>
+        <label className="w-full py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 cursor-pointer border-2 border-dashed"
+          style={{ borderColor: "#C4BFAF", color: "#5A5648" }}>
+          {importlanmoqda ? <Loader2 size={16} className="animate-spin" /> : "📤 Fayl tanlash"}
+          <input type="file" accept=".xlsx" onChange={faylTanlandi} disabled={importlanmoqda} className="hidden" />
+        </label>
+
+        {xato && <p className="text-sm mt-3" style={{ color: "#B0553A" }}>{xato}</p>}
+        {natija && (
+          <div className="mt-3 text-sm" style={{ color: "#2B2B2B" }}>
+            <p>➕ Qo'shildi: <b>{natija.added}</b></p>
+            <p>⏭ O'tkazildi: <b>{natija.skipped}</b></p>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}
+
+function OqituvchiTab({ token }) {
+  const [holat, setHolat] = useState("togaraklar"); // togaraklar | azolar | yaratish
+  const [togaraklar, setTogaraklar] = useState([]);
+  const [tanlangan, setTanlangan] = useState(null);
+  const [azolar, setAzolar] = useState([]);
+  const [bahoQoyilayotgan, setBahoQoyilayotgan] = useState(null); // user_id | null
+  const [bahoQiymati, setBahoQiymati] = useState("");
+  const [izohQiymati, setIzohQiymati] = useState("");
+  const [yuklanmoqda, setYuklanmoqda] = useState(true);
+  const [xato, setXato] = useState("");
+
+  const [yangiNomi, setYangiNomi] = useState("");
+  const [yangiFan, setYangiFan] = useState("");
+  const [yangiParol, setYangiParol] = useState("");
+  const [yangiMaxTalaba, setYangiMaxTalaba] = useState("");
+  const [yangiOylikSumma, setYangiOylikSumma] = useState("");
+  const [yaratilmoqda, setYaratilmoqda] = useState(false);
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/oqituvchi/togaraklar?token=${encodeURIComponent(token)}`)
+      .then((r) => r.json())
+      .then((d) => { setTogaraklar(d.togaraklar || []); setYuklanmoqda(false); })
+      .catch(() => { setXato("Yuklab bo'lmadi"); setYuklanmoqda(false); });
+  }, [token]);
+
+  const togarakOch = async (t) => {
+    setYuklanmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/oqituvchi/togarak/${t.id}/azolar?token=${encodeURIComponent(token)}`);
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setAzolar(data.azolar || []);
+      setTanlangan(t);
+      setHolat("azolar");
+    } catch (e) {
+      setXato(e.message);
+    } finally { setYuklanmoqda(false); }
+  };
+
+  const bahoBoshla = (azo) => {
+    setBahoQoyilayotgan(azo.user_id);
+    setBahoQiymati(azo.oxirgi_baho != null ? String(azo.oxirgi_baho) : "");
+    setIzohQiymati("");
+  };
+
+  const bahoSaqla = async (userId) => {
+    const baho = parseInt(bahoQiymati, 10);
+    if (isNaN(baho) || baho < 0 || baho > 100) {
+      setXato("Baho 0-100 oralig'ida bo'lishi kerak");
+      return;
+    }
+    setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/oqituvchi/baho_qoy`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, togarak_id: tanlangan.id, user_id: userId, baho, izoh: izohQiymati || null }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setAzolar((prev) => prev.map((a) => (a.user_id === userId ? { ...a, oxirgi_baho: baho } : a)));
+      setBahoQoyilayotgan(null);
+    } catch (e) {
+      setXato(e.message);
+    }
+  };
+
+  const yaratishSaqla = async () => {
+    if (!yangiNomi.trim() || !yangiFan.trim()) {
+      setXato("To'garak nomi va fan kiritilishi shart");
+      return;
+    }
+    setYaratilmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/oqituvchi/togarak_yarat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token, nomi: yangiNomi.trim(), fan: yangiFan.trim(),
+          parol: yangiParol || undefined,
+          max_talaba: yangiMaxTalaba ? parseInt(yangiMaxTalaba, 10) : undefined,
+          oylik_summa: yangiOylikSumma ? parseInt(yangiOylikSumma, 10) : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setTogaraklar((prev) => [...prev, { id: data.togarak_id, nomi: yangiNomi.trim(), fan: yangiFan.trim(), max_talaba: yangiMaxTalaba || null, azo_soni: 0 }]);
+      setYangiNomi(""); setYangiFan(""); setYangiParol(""); setYangiMaxTalaba(""); setYangiOylikSumma("");
+      setHolat("togaraklar");
+    } catch (e) {
+      setXato(e.message);
+    } finally { setYaratilmoqda(false); }
+  };
+
+  if (yuklanmoqda) {
+    return <div className="px-5 pt-16 text-center"><Loader2 size={24} className="animate-spin mx-auto" style={{ color: "#1B4B7A" }} /></div>;
+  }
+
+  if (holat === "yaratish") {
+    return (
+      <div className="px-5 pt-6 pb-4">
+        <button onClick={() => setHolat("togaraklar")} className="text-sm mb-4" style={{ color: "#8A8578" }}>← Ortga</button>
+        <h1 className="text-xl font-bold mb-1" style={{ color: "#2B2B2B" }}>Yangi to'garak</h1>
+        <p className="text-sm mb-6" style={{ color: "#8A8578" }}>Bot va saytda bir xil ko'rinadi</p>
+
+        <div className="rounded-2xl p-5 bg-white border" style={{ borderColor: "#E5E1D8" }}>
+          <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>To'garak nomi</label>
+          <input type="text" value={yangiNomi} onChange={(e) => setYangiNomi(e.target.value)}
+            placeholder="masalan: Matematik to'garak"
+            className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+            style={{ borderColor: "#E5E1D8" }} />
+
+          <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Fan</label>
+          <input type="text" value={yangiFan} onChange={(e) => setYangiFan(e.target.value)}
+            placeholder="masalan: Matematika"
+            className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+            style={{ borderColor: "#E5E1D8" }} />
+
+          <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Qo'shilish paroli (ixtiyoriy)</label>
+          <input type="text" value={yangiParol} onChange={(e) => setYangiParol(e.target.value)}
+            placeholder="o'quvchilar shu bilan qo'shiladi"
+            className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+            style={{ borderColor: "#E5E1D8" }} />
+
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            <div>
+              <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Maks. talaba</label>
+              <input type="number" min="1" value={yangiMaxTalaba} onChange={(e) => setYangiMaxTalaba(e.target.value)}
+                placeholder="25"
+                className="w-full px-3.5 py-2.5 rounded-xl border text-sm"
+                style={{ borderColor: "#E5E1D8" }} />
+            </div>
+            <div>
+              <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Oylik (so'm)</label>
+              <input type="number" min="0" value={yangiOylikSumma} onChange={(e) => setYangiOylikSumma(e.target.value)}
+                placeholder="50000"
+                className="w-full px-3.5 py-2.5 rounded-xl border text-sm"
+                style={{ borderColor: "#E5E1D8" }} />
+            </div>
+          </div>
+
+          {xato && <p className="text-sm mb-3" style={{ color: "#B0553A" }}>{xato}</p>}
+
+          <button onClick={yaratishSaqla} disabled={yaratilmoqda}
+            className="w-full py-3 rounded-xl font-semibold text-white text-sm flex items-center justify-center gap-2"
+            style={{ backgroundColor: "#1B4B7A", opacity: yaratilmoqda ? 0.7 : 1 }}>
+            {yaratilmoqda ? <Loader2 size={16} className="animate-spin" /> : "To'garak yaratish"}
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (holat === "azolar") {
+    return (
+      <div className="px-5 pt-6 pb-4">
+        <button onClick={() => { setHolat("togaraklar"); setTanlangan(null); setBahoQoyilayotgan(null); }}
+          className="text-sm mb-4" style={{ color: "#8A8578" }}>← Ortga</button>
+        <h1 className="text-xl font-bold mb-5" style={{ color: "#2B2B2B" }}>{tanlangan.nomi}</h1>
+        {xato && <p className="text-sm mb-3" style={{ color: "#B0553A" }}>{xato}</p>}
+        {azolar.length === 0 ? (
+          <div className="rounded-2xl p-6 text-center bg-white border" style={{ borderColor: "#E5E1D8" }}>
+            <p className="text-sm" style={{ color: "#8A8578" }}>Bu to'garakda hali a'zo yo'q.</p>
+          </div>
+        ) : (
+          <div className="space-y-2.5">
+            {azolar.map((a) => (
+              <div key={a.user_id} className="rounded-2xl bg-white border overflow-hidden" style={{ borderColor: "#E5E1D8" }}>
+                <button onClick={() => (bahoQoyilayotgan === a.user_id ? setBahoQoyilayotgan(null) : bahoBoshla(a))}
+                  className="w-full flex items-center justify-between px-4 py-3.5">
+                  <span className="text-sm font-medium" style={{ color: "#2B2B2B" }}>{a.full_name}</span>
+                  <span className="text-sm font-semibold" style={{ color: a.oxirgi_baho != null ? "#2D8B8B" : "#B0AA98" }}>
+                    {a.oxirgi_baho != null ? `${a.oxirgi_baho}` : "Baholanmagan"}
+                  </span>
+                </button>
+                {bahoQoyilayotgan === a.user_id && (
+                  <div className="px-4 pb-4 pt-1 space-y-2.5">
+                    <input type="number" min="0" max="100" value={bahoQiymati}
+                      onChange={(e) => setBahoQiymati(e.target.value)}
+                      placeholder="Baho (0-100)"
+                      className="w-full px-3.5 py-2.5 rounded-xl border text-sm"
+                      style={{ borderColor: "#E5E1D8" }} />
+                    <input type="text" value={izohQiymati} onChange={(e) => setIzohQiymati(e.target.value)}
+                      placeholder="Izoh (ixtiyoriy)"
+                      className="w-full px-3.5 py-2.5 rounded-xl border text-sm"
+                      style={{ borderColor: "#E5E1D8" }} />
+                    <button onClick={() => bahoSaqla(a.user_id)}
+                      className="w-full py-2.5 rounded-xl font-semibold text-white text-sm"
+                      style={{ backgroundColor: "#1B4B7A" }}>
+                      Saqlash
+                    </button>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // holat === "togaraklar"
+  return (
+    <div className="px-5 pt-6 pb-4">
+      <div className="flex items-center justify-between mb-5">
+        <h1 className="text-2xl font-bold" style={{ color: "#2B2B2B" }}>Guruhlarim</h1>
+        <button onClick={() => { setXato(""); setHolat("yaratish"); }}
+          className="flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold text-white"
+          style={{ backgroundColor: "#C89B3C" }}>
+          + Yangi
+        </button>
+      </div>
+      {xato && <p className="text-sm mb-3" style={{ color: "#B0553A" }}>{xato}</p>}
+      {togaraklar.length === 0 ? (
+        <button onClick={() => { setXato(""); setHolat("yaratish"); }}
+          className="w-full rounded-2xl p-8 text-center border-2 border-dashed"
+          style={{ borderColor: "#C4BFAF" }}>
+          <p className="text-sm font-medium mb-1" style={{ color: "#5A5648" }}>Hali to'garagingiz yo'q</p>
+          <p className="text-xs" style={{ color: "#8A8578" }}>Bosib, birinchisini yarating</p>
+        </button>
+      ) : (
+        <div className="space-y-2.5">
+          {togaraklar.map((t) => (
+            <button key={t.id} onClick={() => togarakOch(t)}
+              className="w-full flex items-center justify-between px-4 py-4 rounded-2xl bg-white border text-left"
+              style={{ borderColor: "#E5E1D8" }}>
+              <div>
+                <p className="text-sm font-semibold" style={{ color: "#2B2B2B" }}>{t.nomi}</p>
+                <p className="text-xs mt-0.5" style={{ color: "#8A8578" }}>{t.fan}</p>
+              </div>
+              <span className="text-xs px-2.5 py-1 rounded-full" style={{ backgroundColor: "#EAF1F7", color: "#1B4B7A" }}>
+                {t.azo_soni} o'quvchi
+              </span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 5.5) OTA-ONA — farzand(lar)ning bilim darajasi
+// ═══════════════════════════════════════════════════════════
+function OtaOnaTab({ foydalanuvchi }) {
+  const [farzandlar, setFarzandlar] = useState([]);
+  const [tanlanganBola, setTanlanganBola] = useState(null);
+  const [bilimData, setBilimData] = useState(null);
+  const [yuklanmoqda, setYuklanmoqda] = useState(true);
+  const [xato, setXato] = useState("");
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/ota/${foydalanuvchi.user_id}/farzandlar`)
+      .then((r) => r.json())
+      .then((d) => {
+        const royxat = d.farzandlar || [];
+        setFarzandlar(royxat);
+        if (royxat.length > 0) setTanlanganBola(royxat[0].user_id);
+        else setYuklanmoqda(false);
+      })
+      .catch(() => { setXato("Farzandlar ro'yxatini yuklab bo'lmadi"); setYuklanmoqda(false); });
+  }, [foydalanuvchi.user_id]);
+
+  useEffect(() => {
+    if (!tanlanganBola) return;
+    setYuklanmoqda(true);
+    fetch(`${API_BASE}/api/bola/${tanlanganBola}/bilim`)
+      .then((r) => r.json())
+      .then((d) => { setBilimData(d); setYuklanmoqda(false); })
+      .catch(() => { setXato("Bilim ma'lumotini yuklab bo'lmadi"); setYuklanmoqda(false); });
+  }, [tanlanganBola]);
+
+  if (farzandlar.length === 0 && !yuklanmoqda) {
+    return (
+      <div className="px-5 pt-6 pb-4">
+        <h1 className="text-2xl font-bold mb-5" style={{ color: "#2B2B2B" }}>Farzandim</h1>
+        <div className="rounded-2xl p-6 text-center bg-white border" style={{ borderColor: "#E5E1D8" }}>
+          <p className="text-sm" style={{ color: "#8A8578" }}>
+            Hozircha ulangan farzand yo'q. Farzandingizni botdagi kabinet orqali ulang.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      {farzandlar.length > 1 && (
+        <div className="px-5 pt-6 pb-2">
+          <h1 className="text-2xl font-bold mb-4" style={{ color: "#2B2B2B" }}>Farzandim</h1>
+          <div className="flex gap-2 flex-wrap">
+            {farzandlar.map((f) => (
+              <button key={f.user_id} onClick={() => setTanlanganBola(f.user_id)}
+                className="px-4 py-2 rounded-full text-sm font-medium"
+                style={tanlanganBola === f.user_id
+                  ? { backgroundColor: "#1B4B7A", color: "#fff" }
+                  : { backgroundColor: "#F7F5F0", color: "#5A5648" }}>
+                {f.full_name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+      {yuklanmoqda ? (
+        <div className="px-5 pt-10 text-center">
+          <Loader2 size={28} className="animate-spin mx-auto mb-3" style={{ color: "#1B4B7A" }} />
+        </div>
+      ) : xato ? (
+        <p className="px-5 text-sm" style={{ color: "#B0553A" }}>{xato}</p>
+      ) : (
+        <BilimTab data={bilimData} />
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// 6) PROFIL — tahrirlash va rol almashtirish
+// ═══════════════════════════════════════════════════════════
+function ProfilTab({ token, foydalanuvchi, onYangilandi }) {
+  const [ism, setIsm] = useState(foydalanuvchi?.full_name || "");
+  const [viloyat, setViloyat] = useState(foydalanuvchi?.region || "");
+  const [tuman, setTuman] = useState(foydalanuvchi?.district || "");
+  const [tugilganSana, setTugilganYil] = useState(foydalanuvchi?.tugilgan_sana || "");
+  const [maktabRaqami, setMaktabRaqami] = useState(foydalanuvchi?.maktab_raqami || "");
+  const [maktabTuri, setMaktabTuri] = useState(foydalanuvchi?.maktab_turi_kaliti || "oddiy");
+  const [sinf, setSinf] = useState(foydalanuvchi?.class ? String(foydalanuvchi.class).replace(/-sinf$/i, "") : "");
+  const [sinfHarfi, setSinfHarfi] = useState(foydalanuvchi?.class_letter || "");
+  const [saqlanmoqda, setSaqlanmoqda] = useState(false);
+  const [xato, setXato] = useState("");
+  const [muvaffaqiyat, setMuvaffaqiyat] = useState(false);
+  const [rolTanlov, setRolTanlov] = useState(null);
+  const [rolOzgartirilmoqda, setRolOzgartirilmoqda] = useState(false);
+  const [rolSurishNatija, setRolSurishNatija] = useState(null); // {holat, qolgan_bepul, admin_test} | "yuklanmoqda" | null
+  const [kodBosqichida, setKodBosqichida] = useState(false);
+  const [kodEmail, setKodEmail] = useState("");
+  const [kodQiymati, setKodQiymati] = useState("");
+  const [kodYuklanmoqda, setKodYuklanmoqda] = useState(false);
+
+  const [togaraklarim, setTogaraklarim] = useState([]);
+  const [togaraklarYuklanmoqda, setTogaraklarYuklanmoqda] = useState(true);
+  const [qoshilishParol, setQoshilishParol] = useState("");
+  const [qoshilinmoqda, setQoshilinmoqda] = useState(false);
+  const [qoshilishXato, setQoshilishXato] = useState("");
+  const [qoshilishMuvaffaqiyat, setQoshilishMuvaffaqiyat] = useState("");
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/mening_togaraklarim?token=${encodeURIComponent(token)}`)
+      .then((r) => r.json())
+      .then((d) => { setTogaraklarim(d.togaraklar || []); setTogaraklarYuklanmoqda(false); })
+      .catch(() => setTogaraklarYuklanmoqda(false));
+  }, [token]);
+
+  const togarakkaQoshil = async () => {
+    if (!qoshilishParol.trim()) return;
+    setQoshilinmoqda(true); setQoshilishXato(""); setQoshilishMuvaffaqiyat("");
+    try {
+      const res = await fetch(`${API_BASE}/api/togarakka_qoshil`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, parol: qoshilishParol.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setTogaraklarim((prev) => [...prev, { id: Date.now(), nomi: data.togarak_nomi, fan: "" }]);
+      setQoshilishMuvaffaqiyat(`"${data.togarak_nomi}" ga qo'shildingiz!`);
+      setQoshilishParol("");
+      setTimeout(() => setQoshilishMuvaffaqiyat(""), 3000);
+    } catch (e) {
+      setQoshilishXato(e.message);
+    } finally { setQoshilinmoqda(false); }
+  };
+
+  const profilSaqla = async () => {
+    setSaqlanmoqda(true); setXato(""); setMuvaffaqiyat(false);
+    try {
+      const res = await fetch(`${API_BASE}/api/profil`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          token, full_name: ism, region: viloyat, district: tuman,
+          tugilgan_sana: tugilganSana || undefined,
+          maktab_raqami: maktabRaqami || undefined,
+          maktab_turi: foydalanuvchi?.role === "oquvchi" ? maktabTuri : undefined,
+          sinf: foydalanuvchi?.role === "oquvchi" && sinf ? sinf : undefined,
+          sinf_harfi: foydalanuvchi?.role === "oquvchi" && sinfHarfi ? sinfHarfi : undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      onYangilandi({
+        ...foydalanuvchi, full_name: ism, region: viloyat, district: tuman,
+        tugilgan_sana: tugilganSana, maktab_raqami: maktabRaqami,
+        maktab_turi_kaliti: maktabTuri, class: sinf, class_letter: sinfHarfi,
+      });
+      setMuvaffaqiyat(true);
+      setTimeout(() => setMuvaffaqiyat(false), 2500);
+    } catch (e) {
+      setXato(e.message);
+    } finally { setSaqlanmoqda(false); }
+  };
+
+  const rolModalniYop = () => {
+    setRolTanlov(null); setRolSurishNatija(null); setKodBosqichida(false);
+    setKodQiymati(""); setKodEmail(""); setXato("");
+  };
+
+  // Rol tugmasi bosilganda — darhol o'zgartirmaymiz, avval holatni so'raymiz
+  // (nechta bepul imkoniyat qolgani, yoki kod kerakligini bilish uchun).
+  const rolTanlandi = async (v) => {
+    if (v === foydalanuvchi?.role) return;
+    setRolTanlov(v);
+    setRolSurishNatija("yuklanmoqda");
+    setKodBosqichida(false); setKodQiymati(""); setKodEmail(""); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/rol_ozgartir`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, yangi_rol: v, tasdiqlayman: false }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      setRolSurishNatija(data);
+      if (data.holat === "kod_kerak") setKodBosqichida(true);
+    } catch (e) {
+      setXato(e.message); setRolTanlov(null); setRolSurishNatija(null);
+    }
+  };
+
+  const rolTasdiqla = async () => {
+    setRolOzgartirilmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/rol_ozgartir`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, yangi_rol: rolTanlov, tasdiqlayman: true }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      if (data.holat === "kod_kerak") {
+        setKodBosqichida(true);
+        await kodSora();
+      } else {
+        onYangilandi({ ...foydalanuvchi, role: rolTanlov });
+        rolModalniYop();
+      }
+    } catch (e) {
+      setXato(e.message);
+    } finally { setRolOzgartirilmoqda(false); }
+  };
+
+  const kodSora = async () => {
+    setKodYuklanmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/rol_kod_yubor`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, yangi_rol: rolTanlov }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      if (data.holat === "smtp_sozlanmagan") setXato("Email yuborish hozircha sozlanmagan — administratorga murojaat qiling");
+      else setKodEmail(data.email);
+    } catch (e) {
+      setXato(e.message);
+    } finally { setKodYuklanmoqda(false); }
+  };
+
+  const kodTasdiqla = async () => {
+    if (!kodQiymati.trim()) return;
+    setRolOzgartirilmoqda(true); setXato("");
+    try {
+      const res = await fetch(`${API_BASE}/api/rol_kod_tasdiqla`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token, kod: kodQiymati.trim() }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.detail || "Xato");
+      onYangilandi({ ...foydalanuvchi, role: data.yangi_rol });
+      rolModalniYop();
+    } catch (e) {
+      setXato(e.message);
+    } finally { setRolOzgartirilmoqda(false); }
+  };
+
+  const rolNomlari = { oquvchi: "O'quvchi", "ota-ona": "Ota-ona", oqituvchi: "O'qituvchi" };
+
+  return (
+    <div className="px-5 pt-6 pb-4">
+      <h1 className="text-2xl font-bold mb-5" style={{ color: "#2B2B2B" }}>Profil</h1>
+
+      <div className="rounded-2xl p-5 bg-white border mb-4" style={{ borderColor: "#E5E1D8" }}>
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Ism</label>
+        <input type="text" value={ism} onChange={(e) => setIsm(e.target.value)}
+          className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+          style={{ borderColor: "#E5E1D8" }} />
+
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Viloyat</label>
+        <select value={viloyat} onChange={(e) => { setViloyat(e.target.value); setTuman(""); }}
+          className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+          style={{ borderColor: "#E5E1D8" }}>
+          <option value="">Tanlanmagan</option>
+          {VILOYATLAR.map((v) => <option key={v} value={v}>{v}</option>)}
+        </select>
+
+        {viloyat && (
+          <>
+            <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Tuman</label>
+            <select value={tuman} onChange={(e) => setTuman(e.target.value)}
+              className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+              style={{ borderColor: "#E5E1D8" }}>
+              <option value="">Tanlanmagan</option>
+              {(HUDUDLAR[viloyat] || []).map((t) => <option key={t} value={t}>{t}</option>)}
+            </select>
+          </>
+        )}
+
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Tug'ilgan sana</label>
+        <input type="date" value={tugilganSana} onChange={(e) => setTugilganYil(e.target.value)}
+          min="1950-01-01" max={new Date().toISOString().split("T")[0]}
+          className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-3"
+          style={{ borderColor: "#E5E1D8" }} />
+
+        {foydalanuvchi?.role === "oquvchi" && (
+          <>
+            <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Maktab raqami</label>
+            <input type="text" value={maktabRaqami} onChange={(e) => setMaktabRaqami(e.target.value)}
+              placeholder="masalan: 21"
+              className="w-full px-3.5 py-2.5 rounded-xl border text-sm mb-4"
+              style={{ borderColor: "#E5E1D8" }} />
+
+            <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Maktab turi</label>
+            <div className="grid grid-cols-2 gap-2 mb-4">
+              {[
+                ["oddiy", "🏫 Oddiy davlat"], ["xususiy", "🏢 Xususiy"],
+                ["ixtisoslashgan", "⭐ Ixtisoslashgan (IDUM)"], ["prezident", "🏆 Prezident maktabi"],
+              ].map(([kalit, nom]) => (
+                <button key={kalit} type="button" onClick={() => setMaktabTuri(kalit)}
+                  className="py-2.5 rounded-lg border text-xs font-medium text-center"
+                  style={{
+                    borderColor: maktabTuri === kalit ? "#1B4B7A" : "#E5E1D8",
+                    backgroundColor: maktabTuri === kalit ? "#1B4B7A" : "#FFFFFF",
+                    color: maktabTuri === kalit ? "#FFFFFF" : "#5A5648",
+                  }}>
+                  {nom}
+                </button>
+              ))}
+            </div>
+
+            <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Sinf</label>
+            <div className="grid grid-cols-6 gap-1.5 mb-3">
+              {Array.from({ length: 11 }, (_, i) => String(i + 1)).map((n) => (
+                <button key={n} type="button" onClick={() => setSinf(n)}
+                  className="py-2.5 rounded-lg border text-sm font-semibold text-center"
+                  style={{
+                    borderColor: sinf === n ? "#1B4B7A" : "#E5E1D8",
+                    backgroundColor: sinf === n ? "#1B4B7A" : "#FFFFFF",
+                    color: sinf === n ? "#FFFFFF" : "#5A5648",
+                  }}>
+                  {n}
+                </button>
+              ))}
+            </div>
+
+            <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Sinf harfi (ixtiyoriy)</label>
+            <input type="text" value={sinfHarfi} onChange={(e) => setSinfHarfi(e.target.value.slice(0, 1).toUpperCase())}
+              placeholder="masalan: A"
+              className="w-24 px-3.5 py-2.5 rounded-xl border text-sm mb-4 text-center"
+              style={{ borderColor: "#E5E1D8" }} />
+          </>
+        )}
+
+        {xato && <p className="text-sm mb-3" style={{ color: "#B0553A" }}>{xato}</p>}
+        {muvaffaqiyat && <p className="text-sm mb-3" style={{ color: "#3B6D11" }}>✓ Saqlandi</p>}
+
+        <button onClick={profilSaqla} disabled={saqlanmoqda}
+          className="w-full py-3 rounded-xl font-semibold text-white text-sm"
+          style={{ backgroundColor: "#1B4B7A", opacity: saqlanmoqda ? 0.7 : 1 }}>
+          {saqlanmoqda ? "Saqlanmoqda..." : "Saqlash"}
+        </button>
+      </div>
+
+      <div className="rounded-2xl p-5 bg-white border mb-4" style={{ borderColor: "#E5E1D8" }}>
+        <p className="text-xs font-medium mb-3" style={{ color: "#5A5648" }}>Mening to'garaklarim</p>
+
+        {togaraklarYuklanmoqda ? (
+          <Loader2 size={18} className="animate-spin" style={{ color: "#1B4B7A" }} />
+        ) : togaraklarim.length === 0 ? (
+          <p className="text-sm mb-4" style={{ color: "#8A8578" }}>Hali hech qaysi to'garakka qo'shilmagansiz.</p>
+        ) : (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {togaraklarim.map((t) => (
+              <span key={t.id} className="text-xs px-3 py-1.5 rounded-full font-medium"
+                style={{ backgroundColor: "#EAF1F7", color: "#1B4B7A" }}>
+                {t.nomi}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <label className="text-xs font-medium mb-1.5 block" style={{ color: "#5A5648" }}>Parol bilan qo'shilish</label>
+        <div className="flex gap-2">
+          <input type="text" value={qoshilishParol} onChange={(e) => setQoshilishParol(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && togarakkaQoshil()}
+            placeholder="to'garak paroli"
+            className="flex-1 px-3.5 py-2.5 rounded-xl border text-sm"
+            style={{ borderColor: "#E5E1D8" }} />
+          <button onClick={togarakkaQoshil} disabled={qoshilinmoqda}
+            className="px-4 py-2.5 rounded-xl font-semibold text-white text-sm shrink-0"
+            style={{ backgroundColor: "#C89B3C", opacity: qoshilinmoqda ? 0.7 : 1 }}>
+            {qoshilinmoqda ? "..." : "Qo'shilish"}
+          </button>
+        </div>
+        {qoshilishXato && <p className="text-sm mt-2" style={{ color: "#B0553A" }}>{qoshilishXato}</p>}
+        {qoshilishMuvaffaqiyat && <p className="text-sm mt-2" style={{ color: "#3B6D11" }}>✓ {qoshilishMuvaffaqiyat}</p>}
+      </div>
+
+      <div className="rounded-2xl p-5 bg-white border" style={{ borderColor: "#E5E1D8" }}>
+        <p className="text-xs font-medium mb-2" style={{ color: "#5A5648" }}>Rolingiz</p>
+        <div className="grid grid-cols-3 gap-2">
+          {Object.entries(rolNomlari).map(([v, l]) => (
+            <button key={v} onClick={() => rolTanlandi(v)}
+              className="py-2.5 rounded-lg border text-xs font-medium"
+              style={{
+                borderColor: foydalanuvchi?.role === v ? "#1B4B7A" : "#E5E1D8",
+                backgroundColor: foydalanuvchi?.role === v ? "#1B4B7A" : "#FFFFFF",
+                color: foydalanuvchi?.role === v ? "#FFFFFF" : "#5A5648",
+              }}>
+              {l}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {rolTanlov && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-6" style={{ backgroundColor: "rgba(0,0,0,0.4)" }}>
+          <div className="w-full max-w-sm rounded-2xl p-5" style={{ backgroundColor: "#FFFFFF" }}>
+            {rolSurishNatija === "yuklanmoqda" ? (
+              <div className="py-4 text-center"><Loader2 size={24} className="animate-spin mx-auto" style={{ color: "#1B4B7A" }} /></div>
+            ) : kodBosqichida ? (
+              <>
+                <p className="font-semibold mb-2" style={{ color: "#2B2B2B" }}>📧 Tasdiqlash kodi kerak</p>
+                <p className="text-sm mb-4" style={{ color: "#5A5648" }}>
+                  Bepul rol almashtirish imkoniyatingiz tugagan. "{rolNomlari[rolTanlov]}"ga o'zgartirish uchun
+                  Gmail hisobingizga ({kodEmail || "..."}) yuborilgan 6 xonali kodni kiriting.
+                </p>
+                {kodYuklanmoqda ? (
+                  <div className="py-2 text-center"><Loader2 size={20} className="animate-spin mx-auto" style={{ color: "#1B4B7A" }} /></div>
+                ) : (
+                  <>
+                    <input type="text" value={kodQiymati} onChange={(e) => setKodQiymati(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                      placeholder="123456" maxLength={6}
+                      className="w-full px-3.5 py-2.5 rounded-xl border text-center text-lg tracking-widest mb-3"
+                      style={{ borderColor: "#E5E1D8" }} />
+                    <button onClick={kodSora} className="text-xs mb-4" style={{ color: "#1B4B7A" }}>Kodni qayta yuborish</button>
+                  </>
+                )}
+                {xato && <p className="text-sm mb-3" style={{ color: "#B0553A" }}>{xato}</p>}
+                <div className="flex gap-2.5">
+                  <button onClick={rolModalniYop}
+                    className="flex-1 py-2.5 rounded-xl border text-sm font-medium" style={{ borderColor: "#E5E1D8", color: "#5A5648" }}>
+                    Bekor qilish
+                  </button>
+                  <button onClick={kodTasdiqla} disabled={rolOzgartirilmoqda || !kodQiymati.trim()}
+                    className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white"
+                    style={{ backgroundColor: "#1B4B7A", opacity: (rolOzgartirilmoqda || !kodQiymati.trim()) ? 0.6 : 1 }}>
+                    {rolOzgartirilmoqda ? "..." : "Tasdiqlash"}
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="font-semibold mb-2" style={{ color: "#2B2B2B" }}>⚠️ Rolni o'zgartirasizmi?</p>
+                <p className="text-sm mb-3" style={{ color: "#5A5648" }}>
+                  Rolingiz "{rolNomlari[rolTanlov]}"ga o'zgaradi. Bu ko'rinadigan ma'lumot va imkoniyatlaringizga
+                  butunlay ta'sir qiladi — masalan o'quvchi test/bilim ma'lumotlari, o'qituvchi guruhlari.
+                </p>
+                {rolSurishNatija?.admin_test ? (
+                  <p className="text-xs mb-5 font-medium" style={{ color: "#2D8B8B" }}>
+                    ✓ Admin sifatida cheklovsiz sinab ko'rishingiz mumkin.
+                  </p>
+                ) : (
+                  <p className="text-xs mb-5 font-semibold p-3 rounded-xl" style={{ color: "#8A5A1C", backgroundColor: "#FDF3E3" }}>
+                    DIQQAT: rolni FAQAT 2 marta bepul o'zgartirish mumkin. Sizda {rolSurishNatija?.qolgan_bepul ?? "?"} ta
+                    bepul imkoniyat qoldi. Shundan keyin har safar Gmail orqali tasdiqlash kodi va 30 kunlik kutish talab qilinadi.
+                  </p>
+                )}
+                {xato && <p className="text-sm mb-3" style={{ color: "#B0553A" }}>{xato}</p>}
+                <div className="flex gap-2.5">
+                  <button onClick={rolModalniYop}
+                    className="flex-1 py-2.5 rounded-xl border text-sm font-medium" style={{ borderColor: "#E5E1D8", color: "#5A5648" }}>
+                    Bekor qilish
+                  </button>
+                  <button onClick={rolTasdiqla} disabled={rolOzgartirilmoqda}
+                    className="flex-1 py-2.5 rounded-xl text-sm font-semibold text-white" style={{ backgroundColor: "#1B4B7A" }}>
+                    {rolOzgartirilmoqda ? "..." : "Tasdiqlash"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function PastkiMenyu({ faol, onTanlash, rol, isAdmin }) {
+  const bandlar = [
+    ...(rol === "oqituvchi"
+      ? [{ kalit: "oqituvchi", nom: "Guruhlarim", ikon: Users }]
+      : rol === "ota-ona"
+      ? [{ kalit: "farzand", nom: "Farzandim", ikon: Heart }]
+      : [
+          { kalit: "bilim", nom: "Bilim", ikon: BarChart3 },
+          { kalit: "test", nom: "Test", ikon: PencilLine },
+        ]),
+    ...(isAdmin ? [{ kalit: "admin", nom: "Shablon", ikon: FileSpreadsheet }] : []),
+    { kalit: "xabar", nom: "Xabarlar", ikon: Bell },
+    { kalit: "profil", nom: "Profil", ikon: User },
+  ];
+  return (
+    <nav className="fixed bottom-0 inset-x-0 z-30 border-t" style={{ backgroundColor: "rgba(255,255,255,0.97)", borderColor: "#E5E1D8" }}>
+      <div className="max-w-md mx-auto grid" style={{ gridTemplateColumns: `repeat(${bandlar.length}, minmax(0, 1fr))` }}>
+        {bandlar.map(({ kalit, nom, ikon: Ikon }) => {
+          const aktiv = faol === kalit;
+          return (
+            <button key={kalit} onClick={() => onTanlash(kalit)} className="flex flex-col items-center gap-1 py-3 transition-colors">
+              <Ikon size={22} strokeWidth={aktiv ? 2.5 : 2} style={{ color: aktiv ? "#1B4B7A" : "#8A8578" }} />
+              <span className="text-xs" style={{ color: aktiv ? "#1B4B7A" : "#8A8578", fontWeight: aktiv ? 600 : 400 }}>{nom}</span>
+            </button>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
+function Kabinet({ token }) {
+  const [holat, setHolat] = useState("yuklanmoqda");
+  const [foydalanuvchi, setFoydalanuvchi] = useState(null);
+  const [bilimData, setBilimData] = useState(null);
+  const [tab, setTab] = useState(null); // rol aniqlangach o'rnatiladi
+  const [xatoMatn, setXatoMatn] = useState("");
+
+  useEffect(() => {
+    async function yukla() {
+      try {
+        const resU = await fetch(`${API_BASE}/auth/men?token=${encodeURIComponent(token)}`);
+        if (!resU.ok) throw new Error("Sessiya eskirgan");
+        const u = await resU.json();
+        setFoydalanuvchi(u);
+
+        // Faqat O'QUVCHI (yoki rol hali tanlanmagan) uchun o'zining bilim
+        // ma'lumotini yuklaymiz — o'qituvchi/ota-ona uchun bu ma'lumot mos emas.
+        if (!u.role || u.role === "oquvchi") {
+          const resB = await fetch(`${API_BASE}/api/bola/${u.user_id}/bilim`);
+          const b = await resB.json();
+          setBilimData(b);
+        }
+
+        // Har rol o'ziga mos boshlang'ich sahifadan boshlaydi
+        if (u.role === "oqituvchi") setTab("oqituvchi");
+        else if (u.role === "ota-ona") setTab("farzand");
+        else setTab("bilim");
+
+        setHolat("tayyor");
+      } catch (e) {
+        setXatoMatn(e.message);
+        setHolat("xato");
+      }
+    }
+    yukla();
+  }, [token]);
+
+  if (holat === "yuklanmoqda") {
+    return <Qobiq><div className="text-center"><Loader2 size={28} className="animate-spin mx-auto mb-3" style={{ color: "#1B4B7A" }} /><p className="text-sm" style={{ color: "#8A8578" }}>Yuklanmoqda...</p></div></Qobiq>;
+  }
+  if (holat === "xato") {
+    return <Qobiq><div className="text-center"><WifiOff size={28} className="mx-auto mb-3" style={{ color: "#B0553A" }} /><p className="text-sm" style={{ color: "#B0553A" }}>{xatoMatn}</p></div></Qobiq>;
+  }
+
+  return (
+    <div className="min-h-screen pb-20" style={{ backgroundColor: "#F7F5F0", fontFamily: "'Inter', system-ui, sans-serif" }}>
+      {tab === "bilim" && <BilimTab data={bilimData} />}
+      {tab === "test" && <TestTab token={token} sinf={foydalanuvchi?.is_admin ? null : foydalanuvchi?.class} />}
+      {tab === "oqituvchi" && foydalanuvchi?.role === "oqituvchi" && <OqituvchiTab token={token} />}
+      {tab === "farzand" && foydalanuvchi?.role === "ota-ona" && <OtaOnaTab foydalanuvchi={foydalanuvchi} />}
+      {tab === "admin" && foydalanuvchi?.is_admin && <AdminTab token={token} />}
+      {tab === "xabar" && (
+        <div className="px-5 pt-6"><h1 className="text-2xl font-bold mb-5" style={{ color: "#2B2B2B" }}>Bildirishnomalar</h1>
+          <div className="rounded-2xl p-6 text-center bg-white border" style={{ borderColor: "#E5E1D8" }}><p className="text-sm" style={{ color: "#8A8578" }}>Tez orada.</p></div></div>
+      )}
+      {tab === "profil" && <ProfilTab token={token} foydalanuvchi={foydalanuvchi} onYangilandi={setFoydalanuvchi} />}
+      <PastkiMenyu faol={tab} onTanlash={setTab} rol={foydalanuvchi?.role} isAdmin={foydalanuvchi?.is_admin} />
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════
+// ASOSIY — URL manziliga qarab qaysi ekranni ko'rsatishni hal qiladi
+// ═══════════════════════════════════════════════════════════
+export default function App() {
+  const [token, setToken] = useState(null);
+  const [yol] = useState(() => {
+    const p = window.location.pathname;
+    const q = new URLSearchParams(window.location.search);
+    return { p, token: q.get("token"), email: q.get("email"), ism: q.get("ism") };
+  });
+
+  if (token) return <Kabinet token={token} />;
+  if (yol.p === "/kabinet" && yol.token) return <Kabinet token={yol.token} />;
+  if (yol.p === "/ulash" && yol.email) return <UlashEkrani email={yol.email} ism={yol.ism} onUlandi={setToken} />;
+  return <LoginEkrani />;
+}
