@@ -434,6 +434,60 @@ def _qoshimcha_test_shartlari(rasimli: bool, vaqtli: bool, yozuvli: bool):
     return ("".join(f" AND {s}" for s in shartlar), params)
 
 
+@app.get("/api/test/{topic_code}/soni")
+def test_savollari_soni(topic_code: str, qiyinlik: str = None, rasimli: bool = None, vaqtli: bool = None, yozuvli: bool = None):
+    """Tanlangan sozlamalar (qiyinlik/rasm/vaqt/javob turi) bo'yicha nechta
+    savol MAVJUDLIGINI qaytaradi — test boshlanishidan OLDIN frontend shu
+    yordamida haqiqiy sonni ko'rsatadi."""
+    conn = _db()
+    cur = conn.cursor()
+    shart = "topic_code = %s"
+    params = [topic_code]
+    if qiyinlik:
+        shart += " AND difficulty = %s"
+        params.append(qiyinlik)
+    qoshimcha, qoshimcha_params = _qoshimcha_test_shartlari(rasimli, vaqtli, yozuvli)
+    shart += qoshimcha
+    params += qoshimcha_params
+    cur.execute(f"SELECT COUNT(*) AS soni FROM generated_tests WHERE {shart}", params)
+    soni = cur.fetchone()["soni"]
+    cur.close()
+    conn.close()
+    return {"soni": soni}
+
+
+class AralashSoniSorovi(BaseModel):
+    topic_codes: list[str]
+    qiyinlik: str = None
+    rasimli: bool = None
+    vaqtli: bool = None
+    yozuvli: bool = None
+
+
+@app.post("/api/test_aralash/soni")
+def aralash_savollari_soni(sorov: AralashSoniSorovi):
+    """Aralash (bir nechta mavzu) tanlanganda — sozlamalarga mos nechta
+    savol mavjudligini qaytaradi."""
+    kodlar = [k.strip() for k in sorov.topic_codes if k.strip()]
+    if not kodlar:
+        return {"soni": 0}
+    conn = _db()
+    cur = conn.cursor()
+    shart = "topic_code = ANY(%s)"
+    params = [kodlar]
+    if sorov.qiyinlik:
+        shart += " AND difficulty = %s"
+        params.append(sorov.qiyinlik)
+    qoshimcha, qoshimcha_params = _qoshimcha_test_shartlari(sorov.rasimli, sorov.vaqtli, sorov.yozuvli)
+    shart += qoshimcha
+    params += qoshimcha_params
+    cur.execute(f"SELECT COUNT(*) AS soni FROM generated_tests WHERE {shart}", params)
+    soni = cur.fetchone()["soni"]
+    cur.close()
+    conn.close()
+    return {"soni": soni}
+
+
 @app.get("/api/test/{topic_code}")
 def test_savollari(
     topic_code: str, soni: int = 10, qiyinlik: str = None,
