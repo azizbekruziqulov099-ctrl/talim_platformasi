@@ -1061,43 +1061,189 @@ class RolOzgartirish(BaseModel):
 
 
 RUXSAT_ETILGAN_ROLLAR2 = {"oquvchi", "ota-ona", "oqituvchi"}
+ROL_BEPUL_LIMIT = 2          # necha marta ERKIN (kod so'ramasdan) rol almashtirish mumkin
+ROL_KOD_AMAL_MUDDATI = 10    # daqiqa
+ROL_OYLIK_LIMIT_KUN = 30     # kod bilan almashtirilgach, keyingisi uchun necha kun kutish kerak
+
+
+def _rol_ustunlarini_tayyorla(cur):
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS rol_ozgarish_soni INTEGER DEFAULT 0")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oxirgi_rol_ozgarish TIMESTAMP")
+    cur.execute("""CREATE TABLE IF NOT EXISTS rol_tasdiq_kod(
+        user_id BIGINT PRIMARY KEY REFERENCES users(user_id),
+        kod TEXT NOT NULL, yangi_rol TEXT NOT NULL, yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+def _email_yubor(qabul_qiluvchi: str, mavzu: str, matn: str) -> bool:
+    """SMTP orqali email yuboradi. SMTP_HOST/SMTP_USER/SMTP_PASSWORD Railway'da
+    o'rnatilgan bo'lishi kerak (masalan Gmail App Password) — aks holda False
+    qaytaradi va konsolga log yozadi."""
+    host = os.getenv("SMTP_HOST", "smtp.gmail.com")
+    port = int(os.getenv("SMTP_PORT", "587"))
+    user = os.getenv("SMTP_USER")
+    parol = os.getenv("SMTP_PASSWORD")
+    if not user or not parol:
+        print(f"[EMAIL YUBORILMADI — SMTP sozlanmagan] {qabul_qiluvchi}: {matn}")
+        return False
+    try:
+        import smtplib
+        from email.mime.text import MIMEText
+        msg = MIMEText(matn, "plain", "utf-8")
+        msg["Subject"] = mavzu
+        msg["From"] = user
+        msg["To"] = qabul_qiluvchi
+        with smtplib.SMTP(host, port, timeout=10) as s:
+            s.starttls()
+            s.login(user, parol)
+            s.sendmail(user, [qabul_qiluvchi], msg.as_string())
+        return True
+    except Exception as e:
+        print(f"[EMAIL XATO] {e}")
+        return False
 
 
 @app.put("/api/rol_ozgartir")
 def rol_ozgartir(sorov: RolOzgartirish):
-    """Foydalanuvchi rolini o'zgartiradi. tasdiqlayman=False bo'lsa,
-    hozirgi va yangi rolni qaytarib, TASDIQ so'raydi — chunki rol
-    o'zgarishi katta ta'sir qiladi (masalan o'qituvchi guruhlariga
-    kirish huquqi, yoki bilim ko'rsatkichlari)."""
+    """Foydalanuvchi rolini o'zgartiradi.
+    - Admin uchun — CHEKLOVSIZ (sinab ko'rish uchun).
+    - Oddiy foydalanuvchi uchun — hayotda 2 marta ERKIN (faqat tasdiq bilan),
+      3-martadan boshlab Gmail'ga yuborilgan kod bilan, va kod bilan
+      almashtirilgach keyingisi uchun 30 kun kutish kerak."""
     user_id = _jwt_tekshir(sorov.token)
     if sorov.yangi_rol not in RUXSAT_ETILGAN_ROLLAR2:
         raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.yangi_rol}")
 
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT role FROM users WHERE user_id=%s", (user_id,))
+    _rol_ustunlarini_tayyorla(cur)
+
+    cur.execute("SELECT role, rol_ozgarish_soni, oxirgi_rol_ozgarish FROM users WHERE user_id=%s", (user_id,))
     r = cur.fetchone()
     if not r:
-        cur.close()
-        conn.close()
+        cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
 
     hozirgi_rol = r["role"]
     if hozirgi_rol == sorov.yangi_rol:
-        cur.close()
-        conn.close()
+        cur.close(); conn.close()
         return {"holat": "ozgarish_yoq"}
 
-    if not sorov.tasdiqlayman:
-        cur.close()
-        conn.close()
-        return {"holat": "tasdiq_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol}
+    soni = r["rol_ozgarish_soni"] or 0
 
-    cur.execute("UPDATE users SET role=%s WHERE user_id=%s", (sorov.yangi_rol, user_id))
+    # ADMIN — cheklovsiz, sinab ko'rish uchun
+    if admin_mi:
+        if not sorov.tasdiqlayman:
+            cur.close(); conn.close()
+            return {"holat": "tasdiq_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol, "admin_test": True}
+        cur.execute("UPDATE users SET role=%s WHERE user_id=%s", (sorov.yangi_rol, user_id))
+        conn.commit(); cur.close(); conn.close()
+        return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol}
+
+    # ODDIY FOYDALANUVCHI — hali bepul limitdan foydalanmagan
+    if soni < ROL_BEPUL_LIMIT:
+        if not sorov.tasdiqlayman:
+            cur.close(); conn.close()
+            return {
+                "holat": "tasdiq_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol,
+                "qolgan_bepul": ROL_BEPUL_LIMIT - soni,
+            }
+        cur.execute(
+            "UPDATE users SET role=%s, rol_ozgarish_soni=rol_ozgarish_soni+1, oxirgi_rol_ozgarish=NOW() WHERE user_id=%s",
+            (sorov.yangi_rol, user_id),
+        )
+        conn.commit(); cur.close(); conn.close()
+        return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol, "qolgan_bepul": ROL_BEPUL_LIMIT - soni - 1}
+
+    # BEPUL LIMIT TUGAGAN — 30 kunlik muddat tekshiriladi
+    if r["oxirgi_rol_ozgarish"]:
+        keyingi = r["oxirgi_rol_ozgarish"] + timedelta(days=ROL_OYLIK_LIMIT_KUN)
+        if datetime.now() < keyingi:
+            cur.close(); conn.close()
+            raise HTTPException(
+                status_code=429,
+                detail=f"Rol almashtirish limiti tugagan. Keyingi imkoniyat: {keyingi.strftime('%d.%m.%Y')}",
+            )
+
+    cur.close(); conn.close()
+    return {"holat": "kod_kerak", "hozirgi_rol": hozirgi_rol, "yangi_rol": sorov.yangi_rol}
+
+
+class RolKodSorash(BaseModel):
+    token: str
+    yangi_rol: str
+
+
+@app.post("/api/rol_kod_yubor")
+def rol_kod_yubor(sorov: RolKodSorash):
+    """Bepul limit tugagan foydalanuvchi uchun — Gmail'ga tasdiqlash kodi yuboradi."""
+    user_id = _jwt_tekshir(sorov.token)
+    if sorov.yangi_rol not in RUXSAT_ETILGAN_ROLLAR2:
+        raise HTTPException(status_code=400, detail="Noto'g'ri rol")
+
+    conn = _db()
+    cur = conn.cursor()
+    _rol_ustunlarini_tayyorla(cur)
+    cur.execute("SELECT google_email FROM google_hisob WHERE user_id=%s LIMIT 1", (user_id,))
+    r = cur.fetchone()
+    if not r or not r["google_email"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Gmail hisobingiz ulanmagan — avval botdagi kabinet orqali ulang")
+
+    email = r["google_email"]
+    kod = "".join(secrets.choice(string.digits) for _ in range(6))
+    cur.execute("""
+        INSERT INTO rol_tasdiq_kod(user_id, kod, yangi_rol, yaratilgan_at)
+        VALUES(%s,%s,%s,NOW())
+        ON CONFLICT (user_id) DO UPDATE SET kod=EXCLUDED.kod, yangi_rol=EXCLUDED.yangi_rol, yaratilgan_at=NOW()
+    """, (user_id, kod, sorov.yangi_rol))
     conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "saqlandi", "yangi_rol": sorov.yangi_rol}
+    cur.close(); conn.close()
+
+    yuborildi = _email_yubor(
+        email, "SamTM Ta'lim — rol o'zgartirish kodi",
+        f"Rolni \"{sorov.yangi_rol}\"ga o'zgartirish uchun tasdiqlash kodi: {kod}\n"
+        f"Kod {ROL_KOD_AMAL_MUDDATI} daqiqa amal qiladi. Agar bu so'rovni siz yubormagan bo'lsangiz, e'tiborsiz qoldiring.",
+    )
+    yashirilgan = re.sub(r"(?<=.{2}).(?=[^@]*@)", "*", email)
+    return {"holat": "yuborildi" if yuborildi else "smtp_sozlanmagan", "email": yashirilgan}
+
+
+class RolKodTasdiqlash(BaseModel):
+    token: str
+    kod: str
+
+
+@app.post("/api/rol_kod_tasdiqla")
+def rol_kod_tasdiqla(sorov: RolKodTasdiqlash):
+    """Yuborilgan kodni tekshiradi va to'g'ri bo'lsa rolni o'zgartiradi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _rol_ustunlarini_tayyorla(cur)
+    cur.execute("SELECT kod, yangi_rol, yaratilgan_at FROM rol_tasdiq_kod WHERE user_id=%s", (user_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Avval kod so'rang")
+    if datetime.now() - r["yaratilgan_at"] > timedelta(minutes=ROL_KOD_AMAL_MUDDATI):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod muddati tugagan — qaytadan so'rang")
+    if sorov.kod.strip() != r["kod"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
+
+    cur.execute(
+        "UPDATE users SET role=%s, rol_ozgarish_soni=rol_ozgarish_soni+1, oxirgi_rol_ozgarish=NOW() WHERE user_id=%s",
+        (r["yangi_rol"], user_id),
+    )
+    cur.execute("DELETE FROM rol_tasdiq_kod WHERE user_id=%s", (user_id,))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "saqlandi", "yangi_rol": r["yangi_rol"]}
 
 
 # ═══════════════════════════════════════════════════════════
