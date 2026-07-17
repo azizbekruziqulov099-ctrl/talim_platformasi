@@ -11,7 +11,7 @@ import psycopg2
 import psycopg2.extras
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, Response
 from pydantic import BaseModel
@@ -909,3 +909,168 @@ def mening_togaraklarim(token: str):
     cur.close()
     conn.close()
     return {"togaraklar": natija}
+
+
+# ═══════════════════════════════════════════════════════════
+# ADMIN — Test shablon (Excel) yuklab olish va import qilish
+# Botdagi _generate_template / import_tests_excel mantig'iga mos
+# ═══════════════════════════════════════════════════════════
+
+def _admin_tekshir(token: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    natija = cur.fetchone()
+    cur.close()
+    conn.close()
+    if not natija:
+        raise HTTPException(status_code=403, detail="Faqat admin uchun")
+    return user_id
+
+
+@app.get("/api/admin/shablon_yukla")
+def shablon_yukla(topic_codes: str, token: str):
+    """Tanlangan mavzular bo'yicha bo'sh Excel shablon yaratadi —
+    botning _generate_template funksiyasi bilan bir xil ustun va
+    qiyinlik-rang tuzilishida (10 oson, 10 o'rta, 10 qiyin, 10 murakkab)."""
+    _admin_tekshir(token)
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
+    import io
+    from fastapi.responses import StreamingResponse
+
+    kodlar = [k.strip() for k in topic_codes.split(",") if k.strip()]
+    if not kodlar:
+        raise HTTPException(status_code=400, detail="Mavzu kodi berilmagan")
+
+    conn = _db()
+    cur = conn.cursor()
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "TESTLAR"
+    headers = [
+        "topic_code", "difficulty", "situation", "question",
+        "option_a", "option_b", "option_c", "option_d",
+        "correct_answer", "explanation", "question_type",
+        "is_latex", "image_url", "audio_text", "language",
+        "life_level", "age_group", "time_limit",
+    ]
+    for col, h in enumerate(headers, 1):
+        cell = ws.cell(row=1, column=col, value=h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="2E86AB")
+        cell.alignment = Alignment(horizontal="center")
+
+    diff_colors = {"oson": "C8F7C5", "o'rta": "FFF3CD", "qiyin": "FFD7C4", "murakkab": "F5C6CB"}
+    age_map = {"1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
+               "6": "11-12", "7": "12-13", "8": "13-14", "9": "14-15", "10": "15-16", "11": "16-17"}
+
+    def get_diff(n):
+        if n <= 10: return "oson"
+        elif n <= 20: return "o'rta"
+        elif n <= 30: return "qiyin"
+        return "murakkab"
+
+    row_num = 2
+    for kod in kodlar:
+        cur.execute("SELECT grade FROM dts_tree WHERE topic_code=%s LIMIT 1", (kod,))
+        r = cur.fetchone()
+        grade = str(r["grade"]) if r and r["grade"] else "1"
+        age_group = age_map.get(grade, "10-11")
+        for i in range(1, 41):
+            diff = get_diff(i)
+            ws.append([kod, diff, "oddiy", "", "", "", "", "", "", "", "single_choice",
+                       False, f"{kod}-{i}", "", "uz", 1, age_group, 60])
+            color = diff_colors.get(diff, "FFFFFF")
+            for col in range(1, 19):
+                ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
+            row_num += 1
+
+    cur.close()
+    conn.close()
+
+    for col, w in zip("ABCDEFGHIJ", [28, 12, 10, 50, 20, 20, 20, 20, 20, 30]):
+        ws.column_dimensions[col].width = w
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=shablon.xlsx"},
+    )
+
+
+@app.post("/api/admin/shablon_import")
+async def shablon_import(token: str, fayl: UploadFile = File(...)):
+    """To'ldirilgan Excel shablonni import qiladi — botning
+    import_tests_excel funksiyasidagi duplikat-tekshiruvi bilan bir xil."""
+    _admin_tekshir(token)
+    import openpyxl
+    import io
+
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+
+    ws = wb["TESTLAR"] if "TESTLAR" in wb.sheetnames else wb.active
+    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
+    if "topic_code" not in headers:
+        raise HTTPException(status_code=400, detail="Excel ustunlari mos emas — 'topic_code' topilmadi")
+
+    conn = _db()
+    cur = conn.cursor()
+    saved = 0
+    duplicates = 0
+    errors = 0
+
+    for row in ws.iter_rows(min_row=2):
+        d = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers) and headers[i]}
+        tc = d.get("topic_code")
+        q = d.get("question")
+        if not tc or not q or str(tc).strip() == "" or str(q).strip() == "":
+            continue
+        try:
+            tc_s = str(tc).strip()
+            q_s = str(q).strip()
+            opt_a = str(d.get("option_a") or "").strip()
+            correct = str(d.get("correct_answer") or "").strip()
+
+            cur.execute("""
+                SELECT 1 FROM generated_tests
+                WHERE topic_code=%s AND question=%s AND option_a=%s AND correct_answer=%s
+                LIMIT 1
+            """, (tc_s, q_s, opt_a, correct))
+            if cur.fetchone():
+                duplicates += 1
+                continue
+
+            cur.execute("""
+                INSERT INTO generated_tests
+                (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
+                 correct_answer, explanation, question_type, is_latex, image_url, audio_text,
+                 language, life_level, age_group, time_limit)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """, (
+                tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
+                d.get("option_a"), d.get("option_b"), d.get("option_c"), d.get("option_d"),
+                d.get("correct_answer"), d.get("explanation"),
+                d.get("question_type") or "single_choice",
+                bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
+                d.get("image_url"), d.get("audio_text"), d.get("language") or "uz",
+                d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
+            ))
+            conn.commit()
+            saved += 1
+        except Exception as e:
+            conn.rollback()
+            errors += 1
+
+    cur.close()
+    conn.close()
+    return {"saved": saved, "duplicates": duplicates, "errors": errors}
