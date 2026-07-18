@@ -532,9 +532,20 @@ def aralash_savollari_soni(sorov: AralashSoniSorovi):
     params += qoshimcha_params
     cur.execute(f"SELECT COUNT(*) AS soni FROM generated_tests WHERE {shart}", params)
     soni = cur.fetchone()["soni"]
+
+    debug = None
+    if soni == 0:
+        # DIQQAT — VAQTINCHALIK DIAGNOSTIKA: 0 chiqqanda har bir kod
+        # bo'yicha ALOHIDA sonini tekshiramiz — muammo qaysi kodda
+        # ekanini aniqlash uchun.
+        debug = {}
+        for kod in kodlar:
+            cur.execute("SELECT COUNT(*) AS n FROM generated_tests WHERE topic_code = %s", (kod,))
+            debug[kod] = cur.fetchone()["n"]
+
     cur.close()
     conn.close()
-    return {"soni": soni}
+    return {"soni": soni, "debug": debug}
 
 
 @app.get("/api/test/{topic_code}")
