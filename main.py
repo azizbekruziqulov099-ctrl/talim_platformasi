@@ -365,10 +365,13 @@ def joriy_foydalanuvchi(token: str):
 # ═══════════════════════════════════════════════════════════
 
 @app.get("/api/mavzular")
-def mavzular_royxati(sinf: str = None, turi: str = "oddiy"):
-    """Test yechish uchun mavjud fan/mavzularni qaytaradi — Fan → Sinf →
-    Mavzu tartibida. Faqat generated_tests'da HAQIQATAN savoli bor
-    mavzularni ko'rsatadi.
+def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool = True):
+    """Fan/mavzularni qaytaradi — Fan → Sinf → Mavzu tartibida.
+    faqat_testli=True (standart, test yechish uchun) — faqat
+    generated_tests'da HAQIQATAN savoli bor mavzularni ko'rsatadi.
+    faqat_testli=False (admin kontent-yaratish oqimlari uchun) — testi
+    hali yo'q mavzularni ham ko'rsatadi, chunki ularga ENDI shablon orqali
+    test qo'shish kerak bo'ladi.
 
     MUHIM: grade ustuni ba'zan "3-4", "5-6" kabi ORALIQ ko'rinishida
     bo'ladi — bular ODDIY maktab sinfi EMAS, balki TO'GARAKNING O'Z
@@ -383,7 +386,9 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy"):
 
     conn = _db()
     cur = conn.cursor()
-    shart = f"d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND {grade_shart}"
+    shart = f"{grade_shart}"
+    if faqat_testli:
+        shart = f"d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND {shart}"
     params = ()
     if sinf:
         shart += " AND d.grade = %s"
@@ -1820,6 +1825,76 @@ class TestShablonSorov(BaseModel):
 
 _YOSH_GURUHI = {"1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
                 "6": "11-12", "7": "12-13", "8": "13-14", "9": "14-15", "10": "15-16", "11": "16-17"}
+
+
+# ═══════════════════════════════════════════════════════════
+# ADMIN — Topik mavzular (kontent auditi): qaysi mavzuda test
+# bor, qaysisida yo'q — Sinf → Fan → Mavzu albomi
+# ═══════════════════════════════════════════════════════════
+
+@app.get("/api/admin/topik_sinflar")
+def topik_sinflar(token: str):
+    """dts_tree'da mavzusi yaratilgan barcha sinflar ro'yxati (oddiy va
+    to'garak sinflari alohida-alohida qaytariladi)."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT grade FROM dts_tree WHERE is_deleted=FALSE")
+    hammasi = [r["grade"] for r in cur.fetchall() if r["grade"]]
+    cur.close()
+    conn.close()
+    oddiy = sorted([g for g in hammasi if g.isdigit()], key=int)
+    togarak = sorted([g for g in hammasi if not g.isdigit()])
+    return {"oddiy": oddiy, "togarak": togarak}
+
+
+@app.get("/api/admin/topik_fanlar")
+def topik_fanlar(sinf: str, token: str):
+    """Berilgan sinfda mavzusi yaratilgan fanlar ro'yxati (test bor-yo'qligidan
+    qat'i nazar — bu TEST bilan cheklanmagan, TO'LIQ kontent auditi)."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT DISTINCT subject_name, COUNT(*) OVER (PARTITION BY subject_name) AS mavzu_soni
+        FROM dts_tree WHERE grade=%s AND is_deleted=FALSE
+    """, (sinf,))
+    fanlar = [{"nom": r["subject_name"], "mavzu_soni": r["mavzu_soni"]} for r in cur.fetchall()]
+    cur.close()
+    conn.close()
+    return {"fanlar": fanlar}
+
+
+@app.get("/api/admin/topik_royxat")
+def topik_royxat(sinf: str, fan: str, token: str):
+    """Berilgan sinf+fan uchun MAVZU darajasidagi (kichik mavzular
+    birlashtirilgan) to'liq ro'yxat — har biriga chorak/bob/bo'lim,
+    nechta kichik mavzu borligi, va ENG MUHIMI — shu mavzuga TEST
+    borligi yoki YO'QLIGI (test_bormi) qo'shib qaytariladi."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
+               MIN(d.topic_code) AS topic_code,
+               MIN(d.quarter) AS chorak, MIN(d.bob_name) AS bob, MIN(d.bolim_name) AS bolim,
+               COUNT(*) AS kichik_soni,
+               COUNT(DISTINCT gt.topic_code) AS test_bor_soni
+        FROM dts_tree d
+        LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
+        WHERE d.grade=%s AND d.subject_name=%s AND d.is_deleted=FALSE
+        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
+        ORDER BY MIN(d.topic_code)
+    """, (sinf, fan))
+    qatorlar = cur.fetchall()
+    cur.close()
+    conn.close()
+    mavzular = [{
+        "nomi": r["nomi"], "topic_code": r["topic_code"], "chorak": r["chorak"],
+        "bob": r["bob"], "bolim": r["bolim"], "kichik_soni": r["kichik_soni"],
+        "test_bormi": r["test_bor_soni"] > 0,
+    } for r in qatorlar]
+    return {"sinf": sinf, "fan": fan, "mavzular": mavzular}
 
 
 @app.post("/api/admin/shablon_yukla")
