@@ -1129,6 +1129,104 @@ def baho_qoy(sorov: BahoSorov):
 
 
 # ═══════════════════════════════════════════════════════════
+# OTA-ONA ↔ FARZAND — botdagi ota_ona.py bilan AYNAN BIR XIL jadval
+# (farzand_kod, parent_child) — shu sabab botda yaratilgan kodni
+# saytda kiritish ham, aksincha ham ishlaydi.
+# ═══════════════════════════════════════════════════════════
+
+FARZAND_KOD_MUDDATI = 15  # daqiqa
+
+
+def _ota_ona_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS farzand_kod(
+        kod TEXT PRIMARY KEY, child_id BIGINT NOT NULL, muddat TIMESTAMP NOT NULL
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS parent_child(
+        id SERIAL PRIMARY KEY, parent_id BIGINT NOT NULL, child_id BIGINT NOT NULL
+    )""")
+
+
+@app.post("/api/farzand/kod_yarat")
+def farzand_kod_yarat(token: str):
+    """O'quvchi (farzand) ota-onasini ulash uchun 6 xonali kod oladi —
+    botdagi bilan bir xil jadvalga yoziladi, 15 daqiqa amal qiladi."""
+    child_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _ota_ona_jadvallari(cur)
+    cur.execute("DELETE FROM farzand_kod WHERE child_id=%s OR muddat < NOW()", (child_id,))
+    kod = None
+    for _ in range(10):
+        taklif = "".join(secrets.choice(string.digits) for _ in range(6))
+        cur.execute("SELECT 1 FROM farzand_kod WHERE kod=%s", (taklif,))
+        if not cur.fetchone():
+            kod = taklif
+            break
+    if not kod:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=500, detail="Kod yaratib bo'lmadi, qayta urinib ko'ring")
+    cur.execute(
+        "INSERT INTO farzand_kod(kod, child_id, muddat) VALUES(%s,%s,%s)",
+        (kod, child_id, datetime.now() + timedelta(minutes=FARZAND_KOD_MUDDATI)),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"kod": kod, "amal_qilish_daqiqasi": FARZAND_KOD_MUDDATI}
+
+
+@app.post("/api/ota/farzand_boglash")
+def ota_farzand_boglash(token: str, kod: str):
+    """Ota-ona farzanddan olgan 6 xonali kodni kiritib, hisobni bog'laydi."""
+    parent_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _ota_ona_jadvallari(cur)
+    cur.execute("DELETE FROM farzand_kod WHERE muddat < NOW()")
+    cur.execute("SELECT child_id FROM farzand_kod WHERE kod=%s", (kod.strip(),))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod noto'g'ri yoki muddati o'tgan")
+    child_id = r["child_id"]
+    if child_id == parent_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="O'zingizni ulay olmaysiz")
+
+    cur.execute(
+        "INSERT INTO parent_child(parent_id, child_id) VALUES(%s,%s) ON CONFLICT DO NOTHING RETURNING id",
+        (parent_id, child_id),
+    )
+    yangi_boglanish = cur.fetchone() is not None
+    cur.execute("DELETE FROM farzand_kod WHERE kod=%s", (kod.strip(),))
+    cur.execute("SELECT full_name FROM users WHERE user_id=%s", (child_id,))
+    ism_row = cur.fetchone()
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {
+        "holat": "ulandi" if yangi_boglanish else "allaqachon_ulangan",
+        "farzand_ismi": ism_row["full_name"] if ism_row else "",
+    }
+
+
+@app.delete("/api/ota/farzand_uzish")
+def ota_farzand_uzish(token: str, farzand_id: int):
+    """Ota-ona farzand bilan bog'lanishni uzadi."""
+    parent_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM parent_child WHERE parent_id=%s AND child_id=%s", (parent_id, farzand_id))
+    ochirildi = cur.rowcount > 0
+    conn.commit()
+    cur.close()
+    conn.close()
+    if not ochirildi:
+        raise HTTPException(status_code=404, detail="Bunday bog'lanish topilmadi")
+    return {"holat": "uzildi"}
+
+
+# ═══════════════════════════════════════════════════════════
 # PROFIL — tahrirlash va rol almashtirish
 # ═══════════════════════════════════════════════════════════
 
