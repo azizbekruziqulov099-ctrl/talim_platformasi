@@ -1590,19 +1590,32 @@ def talim_yoli_oddiy(bola_id: int, fan: str):
         raise HTTPException(status_code=400, detail="O'quvchining sinfi aniqlanmagan")
     sinf = str(u["class"]).replace("-sinf", "").strip()
 
+    # MUHIM: bitta "mavzu" ostida bir nechta "kichik mavzu" bo'lishi mumkin
+    # (har biri o'z topic_code'iga ega) — lekin o'quvchiga YO'L sifatida
+    # kichik mavzular emas, faqat MAVZU darajasi ko'rsatilishi kerak.
+    # Shu sabab MAVZU nomi bo'yicha guruhlaymiz: bir nechta kichik mavzu —
+    # bitta yo'l bandi, ballari o'rtacha olinadi.
     cur.execute("""
-        SELECT d.topic_code,
-               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
-               lt.score, lt.learned_at
+        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
+               MIN(d.topic_code) AS topic_code,
+               COUNT(*) AS jami_kichik,
+               COUNT(lt.score) AS otilgan_kichik,
+               AVG(lt.score) AS ortacha_ball
         FROM dts_tree d
         LEFT JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = %s
         WHERE d.grade = %s AND d.subject_name = %s AND d.is_deleted = FALSE
           AND d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)
-        ORDER BY d.topic_code
+        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
+        ORDER BY MIN(d.topic_code)
     """, (bola_id, sinf, fan))
-    mavzular = cur.fetchall()
+    xom_qatorlar = cur.fetchall()
     cur.close()
     conn.close()
+
+    mavzular = [{
+        "topic_code": r["topic_code"], "nomi": r["nomi"],
+        "score": round(r["ortacha_ball"]) if r["otilgan_kichik"] > 0 else None,
+    } for r in xom_qatorlar]
 
     otilgan = sum(1 for m in mavzular if m["score"] is not None)
     jami = len(mavzular)
@@ -1630,18 +1643,26 @@ def talim_yoli_togarak(bola_id: int, togarak_id: int):
         raise HTTPException(status_code=404, detail="To'garak topilmadi")
 
     cur.execute("""
-        SELECT d.topic_code,
-               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
-               lt.score, lt.learned_at
+        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
+               MIN(d.topic_code) AS topic_code,
+               COUNT(*) AS jami_kichik,
+               COUNT(lt.score) AS otilgan_kichik,
+               AVG(lt.score) AS ortacha_ball
         FROM togarak_mavzulari tm
         JOIN dts_tree d ON d.topic_code = tm.topic_code
         LEFT JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = %s
         WHERE tm.togarak_id = %s
-        ORDER BY d.topic_code
+        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
+        ORDER BY MIN(d.topic_code)
     """, (bola_id, togarak_id))
-    mavzular = cur.fetchall()
+    xom_qatorlar = cur.fetchall()
     cur.close()
     conn.close()
+
+    mavzular = [{
+        "topic_code": r["topic_code"], "nomi": r["nomi"],
+        "score": round(r["ortacha_ball"]) if r["otilgan_kichik"] > 0 else None,
+    } for r in xom_qatorlar]
 
     otilgan = sum(1 for m in mavzular if m["score"] is not None)
     jami = len(mavzular)
