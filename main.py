@@ -45,7 +45,7 @@ FAN_RANG = {
 
 @app.get("/")
 def salomat():
-    return {"holat": "ishlayapti"}
+    return {"holat": "ishlayapti", "versiya": "TEST-2607-B-BACKEND"}
 
 
 @app.get("/api/bola/{bola_id}/bilim")
