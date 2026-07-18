@@ -357,9 +357,11 @@ def joriy_foydalanuvchi(token: str):
     cur = conn.cursor()
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jins TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqituvchi_fani TEXT")
     cur.execute(
         "SELECT user_id, full_name, role, class, class_letter, school_type, "
-        "region, district, tugilgan_sana, maktab_raqami FROM users WHERE user_id=%s",
+        "region, district, tugilgan_sana, maktab_raqami, jins, oqituvchi_fani FROM users WHERE user_id=%s",
         (user_id,),
     )
     r = cur.fetchone()
@@ -1303,6 +1305,8 @@ class ProfilYangilash(BaseModel):
     maktab_turi: Optional[str] = None   # oddiy | xususiy | ixtisoslashgan | prezident
     sinf: Optional[str] = None          # 1..11
     sinf_harfi: Optional[str] = None    # A, B, V ...
+    jins: Optional[str] = None          # ogil | qiz — dizayn uchun (o'quvchi va o'qituvchi)
+    oqituvchi_fani: Optional[str] = None  # o'qituvchining o'zi o'qitadigan fan — dizayn uchun
 
 
 MAKTAB_TURLARI = {
@@ -1323,11 +1327,15 @@ def profil_yangila(sorov: ProfilYangilash):
         raise HTTPException(status_code=400, detail="Noto'g'ri maktab turi")
     if sorov.sinf is not None and sorov.sinf not in [str(i) for i in range(1, 12)]:
         raise HTTPException(status_code=400, detail="Sinf 1 dan 11 gacha bo'lishi kerak")
+    if sorov.jins is not None and sorov.jins not in ("ogil", "qiz"):
+        raise HTTPException(status_code=400, detail="Noto'g'ri jins qiymati")
 
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jins TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqituvchi_fani TEXT")
 
     maydonlar = []
     qiymatlar = []
@@ -1355,6 +1363,12 @@ def profil_yangila(sorov: ProfilYangilash):
     if sorov.sinf_harfi is not None:
         maydonlar.append("class_letter=%s")
         qiymatlar.append(sorov.sinf_harfi.strip().upper())
+    if sorov.jins is not None:
+        maydonlar.append("jins=%s")
+        qiymatlar.append(sorov.jins)
+    if sorov.oqituvchi_fani is not None:
+        maydonlar.append("oqituvchi_fani=%s")
+        qiymatlar.append(sorov.oqituvchi_fani.strip())
 
     if not maydonlar:
         cur.close()
