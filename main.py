@@ -10,6 +10,7 @@ import string
 import httpx
 import psycopg2
 import psycopg2.extras
+from typing import Optional
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
 from fastapi import FastAPI, HTTPException, Query, UploadFile, File
@@ -235,11 +236,11 @@ class RoyxatSorov(BaseModel):
     email: str
     ism: str
     rol: str          # 'oquvchi' | 'ota-ona' | 'oqituvchi'
-    sinf: str = None  # faqat rol='oquvchi' bo'lsa
-    region: str = None
-    district: str = None
-    tugilgan_sana: str = None
-    maktab_raqami: str = None
+    sinf: Optional[str] = None  # faqat rol='oquvchi' bo'lsa
+    region: Optional[str] = None
+    district: Optional[str] = None
+    tugilgan_sana: Optional[str] = None
+    maktab_raqami: Optional[str] = None
 
 RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
 
@@ -505,10 +506,10 @@ def test_savollari_soni(topic_code: str, qiyinlik: str = None, rasimli: bool = N
 
 class AralashSoniSorovi(BaseModel):
     topic_codes: list = []
-    qiyinlik: str = None
-    rasimli: bool = None
-    vaqtli: bool = None
-    yozuvli: bool = None
+    qiyinlik: Optional[str] = None
+    rasimli: Optional[bool] = None
+    vaqtli: Optional[bool] = None
+    yozuvli: Optional[bool] = None
 
 
 @app.post("/api/test_aralash/soni")
@@ -602,10 +603,10 @@ def test_savollari(
 class AralashTestSorovi(BaseModel):
     topic_codes: list = []
     soni: int = 10
-    qiyinlik: str = None
-    rasimli: bool = None
-    vaqtli: bool = None
-    yozuvli: bool = None
+    qiyinlik: Optional[str] = None
+    rasimli: Optional[bool] = None
+    vaqtli: Optional[bool] = None
+    yozuvli: Optional[bool] = None
 
 
 @app.post("/api/test_aralash")
@@ -991,8 +992,8 @@ class JavobItem(BaseModel):
 
 class TestNatijaSorov(BaseModel):
     token: str
-    topic_code: str = None       # bitta mavzu bo'lsa
-    topic_codes: list[str] = None  # aralash (bir nechta mavzu) bo'lsa
+    topic_code: Optional[str] = None       # bitta mavzu bo'lsa
+    topic_codes: Optional[list] = None  # aralash (bir nechta mavzu) bo'lsa
     javoblar: list[JavobItem]
 
 
@@ -1158,7 +1159,7 @@ class BahoSorov(BaseModel):
     togarak_id: int
     user_id: int
     baho: int
-    izoh: str = None
+    izoh: Optional[str] = None
 
 
 @app.post("/api/oqituvchi/baho_qoy")
@@ -1305,14 +1306,14 @@ def ota_farzand_uzish(token: str, farzand_id: int):
 
 class ProfilYangilash(BaseModel):
     token: str
-    full_name: str = None
-    region: str = None
-    district: str = None
-    tugilgan_sana: str = None
-    maktab_raqami: str = None
-    maktab_turi: str = None   # oddiy | xususiy | ixtisoslashgan | prezident
-    sinf: str = None          # 1..11
-    sinf_harfi: str = None    # A, B, V ...
+    full_name: Optional[str] = None
+    region: Optional[str] = None
+    district: Optional[str] = None
+    tugilgan_sana: Optional[str] = None
+    maktab_raqami: Optional[str] = None
+    maktab_turi: Optional[str] = None   # oddiy | xususiy | ixtisoslashgan | prezident
+    sinf: Optional[str] = None          # 1..11
+    sinf_harfi: Optional[str] = None    # A, B, V ...
 
 
 MAKTAB_TURLARI = {
@@ -1579,10 +1580,10 @@ class TogarakYaratish(BaseModel):
     token: str
     nomi: str
     fan: str
-    sinf: str = None   # "1".."11" (oddiy) yoki "3-4" kabi (to'garak guruhi)
-    parol: str = None
-    max_talaba: int = None
-    oylik_summa: int = None
+    sinf: Optional[str] = None   # "1".."11" (oddiy) yoki "3-4" kabi (to'garak guruhi)
+    parol: Optional[str] = None
+    max_talaba: Optional[int] = None
+    oylik_summa: Optional[int] = None
 
 
 @app.post("/api/oqituvchi/togarak_yarat")
