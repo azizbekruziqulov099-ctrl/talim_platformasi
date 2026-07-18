@@ -1418,7 +1418,9 @@ class TogarakYaratish(BaseModel):
 def togarak_yarat(sorov: TogarakYaratish):
     """O'qituvchi yangi to'garak yaratadi — bot ishlatadigan AYNAN SHU
     jadvalga (togaraklar) yoziladi, shuning uchun bot va sayt bir xil
-    ma'lumotni ko'radi."""
+    ma'lumotni ko'radi. Fan+sinf tanlanganda — o'sha fan/sinfga tegishli
+    BARCHA mavzular avtomatik ravishda to'garakning "ta'lim yo'li"ga
+    bog'lanadi (togarak_mavzulari)."""
     teacher_id = _jwt_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="To'garak nomi kiritilmagan")
@@ -1430,18 +1432,143 @@ def togarak_yarat(sorov: TogarakYaratish):
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
+        togarak_id INTEGER REFERENCES togaraklar(id),
+        topic_code TEXT,
+        PRIMARY KEY (togarak_id, topic_code)
+    )""")
+    sinf_qiymati = sorov.sinf.strip() if sorov.sinf else None
     cur.execute("""
         INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv)
         VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE) RETURNING id
-    """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id,
-          sorov.sinf.strip() if sorov.sinf else None,
+    """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati,
           sorov.parol.strip() if sorov.parol else None,
           sorov.max_talaba, sorov.oylik_summa))
     yangi_id = cur.fetchone()["id"]
+
+    bogliq_mavzu_soni = 0
+    if sinf_qiymati:
+        cur.execute("""
+            SELECT topic_code FROM dts_tree
+            WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE
+              AND topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)
+        """, (sinf_qiymati, sorov.fan.strip()))
+        mavzu_kodlari = [r["topic_code"] for r in cur.fetchall()]
+        for kod in mavzu_kodlari:
+            cur.execute(
+                "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+                (yangi_id, kod),
+            )
+        bogliq_mavzu_soni = len(mavzu_kodlari)
+
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "yaratildi", "togarak_id": yangi_id}
+    return {"holat": "yaratildi", "togarak_id": yangi_id, "boglangan_mavzu_soni": bogliq_mavzu_soni}
+
+
+# ═══════════════════════════════════════════════════════════
+# TA'LIM YO'LI — o'quvchining fan bo'yicha ketma-ket mavzular ustidan
+# qanday bosib o'tayotgani (ota-ona/o'quvchi/o'qituvchi ko'radi)
+# ═══════════════════════════════════════════════════════════
+
+@app.get("/api/bola/{bola_id}/yol")
+def talim_yoli_oddiy(bola_id: int, fan: str):
+    """Oddiy (majburiy) o'quv dasturi bo'yicha — o'quvchining O'Z SINFI
+    (avtomatik aniqlanadi) va berilgan fan uchun BARCHA mavzularni
+    ketma-ket, har biriga o'quvchining natijasi (score, agar hali
+    yechmagan bo'lsa — yo'q) bilan qaytaradi."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT class FROM users WHERE user_id=%s", (bola_id,))
+    u = cur.fetchone()
+    if not u or not u["class"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="O'quvchining sinfi aniqlanmagan")
+    sinf = str(u["class"]).replace("-sinf", "").strip()
+
+    cur.execute("""
+        SELECT d.topic_code,
+               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
+               lt.score, lt.learned_at
+        FROM dts_tree d
+        LEFT JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = %s
+        WHERE d.grade = %s AND d.subject_name = %s AND d.is_deleted = FALSE
+          AND d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)
+        ORDER BY d.topic_code
+    """, (bola_id, sinf, fan))
+    mavzular = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    otilgan = sum(1 for m in mavzular if m["score"] is not None)
+    jami = len(mavzular)
+    ortacha = round(sum(m["score"] for m in mavzular if m["score"] is not None) / otilgan) if otilgan else 0
+    return {
+        "sinf": sinf, "jami_mavzu": jami, "otilgan_mavzu": otilgan,
+        "yol_foizi": round((otilgan / jami) * 100) if jami else 0,
+        "samaradorlik_foizi": ortacha,
+        "mavzular": mavzular,
+    }
+
+
+@app.get("/api/bola/{bola_id}/togarak_yoli/{togarak_id}")
+def talim_yoli_togarak(bola_id: int, togarak_id: int):
+    """To'garakning O'ZIGA XOS ta'lim yo'li — faqat shu to'garakka
+    biriktirilgan mavzular (togarak_mavzulari) bo'yicha. Bu — o'quvchi
+    to'garakka QO'SHILGANDAGINA ko'rinadigan qo'shimcha statistika,
+    oddiy sinf statistikasiga ARALASHMAYDI."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT nomi, fan, sinf FROM togaraklar WHERE id=%s", (togarak_id,))
+    tg = cur.fetchone()
+    if not tg:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="To'garak topilmadi")
+
+    cur.execute("""
+        SELECT d.topic_code,
+               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
+               lt.score, lt.learned_at
+        FROM togarak_mavzulari tm
+        JOIN dts_tree d ON d.topic_code = tm.topic_code
+        LEFT JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = %s
+        WHERE tm.togarak_id = %s
+        ORDER BY d.topic_code
+    """, (bola_id, togarak_id))
+    mavzular = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    otilgan = sum(1 for m in mavzular if m["score"] is not None)
+    jami = len(mavzular)
+    ortacha = round(sum(m["score"] for m in mavzular if m["score"] is not None) / otilgan) if otilgan else 0
+    return {
+        "togarak_nomi": tg["nomi"], "fan": tg["fan"], "sinf": tg["sinf"],
+        "jami_mavzu": jami, "otilgan_mavzu": otilgan,
+        "yol_foizi": round((otilgan / jami) * 100) if jami else 0,
+        "samaradorlik_foizi": ortacha,
+        "mavzular": mavzular,
+    }
+
+
+@app.get("/api/bola/{bola_id}/togaraklarim")
+def bolaning_togaraklari(bola_id: int):
+    """O'quvchi a'zo bo'lgan barcha faol to'garaklar ro'yxati — 'ta'lim
+    yo'li' ekranida to'garak yo'lini alohida ko'rsatish uchun."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT t.id, t.nomi, t.fan, t.sinf
+        FROM togarak_azolar ta
+        JOIN togaraklar t ON t.id = ta.togarak_id
+        WHERE ta.user_id = %s AND ta.aktiv = TRUE AND t.aktiv = TRUE
+        ORDER BY t.nomi
+    """, (bola_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"togaraklar": natija}
 
 
 # ═══════════════════════════════════════════════════════════
