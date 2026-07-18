@@ -418,11 +418,12 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
     cur.execute(f"""
         SELECT d.subject_code, d.subject_name, d.grade,
                COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
-               array_agg(d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
-               array_agg(d.topic_code ORDER BY d.topic_code)
+               array_agg(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
+               array_agg(DISTINCT d.topic_code ORDER BY d.topic_code)
                    FILTER (WHERE d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)) AS testli_kodlar,
-               (SELECT COUNT(*) FROM generated_tests g WHERE g.topic_code = ANY(array_agg(d.topic_code))) AS savol_soni
+               COUNT(gt.id) AS savol_soni
         FROM dts_tree d
+        LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
         WHERE {shart} AND d.is_deleted = FALSE
         GROUP BY d.subject_code, d.subject_name, d.grade, COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
         ORDER BY d.subject_code, d.grade, MIN(d.topic_code)
