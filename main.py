@@ -1575,6 +1575,28 @@ def togarak_yarat(sorov: TogarakYaratish):
 # qanday bosib o'tayotgani (ota-ona/o'quvchi/o'qituvchi ko'radi)
 # ═══════════════════════════════════════════════════════════
 
+def _chorak_taqsimoti(mavzular: list) -> list:
+    """Mavzular ro'yxatini (har birida "chorak" maydoni bor) 1/2/3/4-chorak
+    bo'yicha guruhlab, har chorakning necha foizi bosib o'tilganini
+    hisoblaydi — chorak ma'lumoti yo'q mavzular hisobga olinmaydi."""
+    guruhlar = {}
+    for m in mavzular:
+        ch = (m.get("chorak") or "").strip()
+        if not ch:
+            continue
+        guruhlar.setdefault(ch, {"jami": 0, "otilgan": 0})
+        guruhlar[ch]["jami"] += 1
+        if m["score"] is not None:
+            guruhlar[ch]["otilgan"] += 1
+    natija = []
+    for ch in sorted(guruhlar.keys(), key=lambda x: (len(x), x)):
+        g = guruhlar[ch]
+        natija.append({
+            "chorak": ch, "jami_mavzu": g["jami"], "otilgan_mavzu": g["otilgan"],
+            "foiz": round((g["otilgan"] / g["jami"]) * 100) if g["jami"] else 0,
+        })
+    return natija
+
 @app.get("/api/bola/{bola_id}/yol")
 def talim_yoli_oddiy(bola_id: int, fan: str):
     """Oddiy (majburiy) o'quv dasturi bo'yicha — o'quvchining O'Z SINFI
@@ -1594,10 +1616,12 @@ def talim_yoli_oddiy(bola_id: int, fan: str):
     # (har biri o'z topic_code'iga ega) — lekin o'quvchiga YO'L sifatida
     # kichik mavzular emas, faqat MAVZU darajasi ko'rsatilishi kerak.
     # Shu sabab MAVZU nomi bo'yicha guruhlaymiz: bir nechta kichik mavzu —
-    # bitta yo'l bandi, ballari o'rtacha olinadi.
+    # bitta yo'l bandi, ballari o'rtacha olinadi. Chorak (quarter) ham shu
+    # yerda olinadi — pastda chorak bo'yicha taqsimot hisoblanadi.
     cur.execute("""
         SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
                MIN(d.topic_code) AS topic_code,
+               MIN(d.quarter) AS chorak,
                COUNT(*) AS jami_kichik,
                COUNT(lt.score) AS otilgan_kichik,
                AVG(lt.score) AS ortacha_ball
@@ -1613,9 +1637,11 @@ def talim_yoli_oddiy(bola_id: int, fan: str):
     conn.close()
 
     mavzular = [{
-        "topic_code": r["topic_code"], "nomi": r["nomi"],
+        "topic_code": r["topic_code"], "nomi": r["nomi"], "chorak": r["chorak"],
         "score": round(r["ortacha_ball"]) if r["otilgan_kichik"] > 0 else None,
+        "otilgan_kichik": r["otilgan_kichik"], "jami_kichik": r["jami_kichik"],
     } for r in xom_qatorlar]
+    choraklar = _chorak_taqsimoti(mavzular)
 
     otilgan = sum(1 for m in mavzular if m["score"] is not None)
     jami = len(mavzular)
@@ -1624,7 +1650,7 @@ def talim_yoli_oddiy(bola_id: int, fan: str):
         "sinf": sinf, "jami_mavzu": jami, "otilgan_mavzu": otilgan,
         "yol_foizi": round((otilgan / jami) * 100) if jami else 0,
         "samaradorlik_foizi": ortacha,
-        "mavzular": mavzular,
+        "mavzular": mavzular, "choraklar": choraklar,
     }
 
 
@@ -1645,6 +1671,7 @@ def talim_yoli_togarak(bola_id: int, togarak_id: int):
     cur.execute("""
         SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
                MIN(d.topic_code) AS topic_code,
+               MIN(d.quarter) AS chorak,
                COUNT(*) AS jami_kichik,
                COUNT(lt.score) AS otilgan_kichik,
                AVG(lt.score) AS ortacha_ball
@@ -1660,9 +1687,11 @@ def talim_yoli_togarak(bola_id: int, togarak_id: int):
     conn.close()
 
     mavzular = [{
-        "topic_code": r["topic_code"], "nomi": r["nomi"],
+        "topic_code": r["topic_code"], "nomi": r["nomi"], "chorak": r["chorak"],
         "score": round(r["ortacha_ball"]) if r["otilgan_kichik"] > 0 else None,
+        "otilgan_kichik": r["otilgan_kichik"], "jami_kichik": r["jami_kichik"],
     } for r in xom_qatorlar]
+    choraklar = _chorak_taqsimoti(mavzular)
 
     otilgan = sum(1 for m in mavzular if m["score"] is not None)
     jami = len(mavzular)
@@ -1672,7 +1701,7 @@ def talim_yoli_togarak(bola_id: int, togarak_id: int):
         "jami_mavzu": jami, "otilgan_mavzu": otilgan,
         "yol_foizi": round((otilgan / jami) * 100) if jami else 0,
         "samaradorlik_foizi": ortacha,
-        "mavzular": mavzular,
+        "mavzular": mavzular, "choraklar": choraklar,
     }
 
 
