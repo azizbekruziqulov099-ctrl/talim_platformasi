@@ -727,17 +727,36 @@ def javob_tekshir(j: BittaJavob):
 
 @app.get("/api/rasm/{file_id}")
 async def rasm_proxy(file_id: str):
-    """Telegram'da saqlangan rasmni saytda ko'rsatish uchun oraliq xizmat —
-    Telegram file_id'lar to'g'ridan-to'g'ri URL emas, faqat bot tokeni
-    orqali ochiladi."""
+    """Telegram'da saqlangan rasmni saytda ko'rsatish uchun oraliq xizmat.
+
+    MUHIM: generated_tests.image_url ko'pincha haqiqiy Telegram file_id
+    EMAS — "1-02-1-01-01-01-001-1" kabi KOLLAJ KODI bo'ladi. Botning o'zi
+    ham bu kodni to'g'ridan-to'g'ri ishlatmaydi — avval "images" jadvalidan
+    (name→file_id) haqiqiy Telegram file_id'ni qidiradi (Talim.py'dagi
+    bilan AYNAN bir xil mantiq). Shu sabab bu yerda ham AVVAL images
+    jadvalidan qidiramiz, faqat topilmasa file_id'ning O'ZINI ishlatamiz."""
     if not BOT_TOKEN:
         raise HTTPException(status_code=500, detail="Bot tokeni sozlanmagan")
     if file_id.startswith("http"):
         # Ba'zi eski yozuvlarda image_url to'g'ridan URL bo'lishi mumkin
         return RedirectResponse(file_id)
+
+    haqiqiy_file_id = file_id
+    try:
+        conn = _db()
+        cur = conn.cursor()
+        cur.execute("SELECT file_id FROM images WHERE name=%s LIMIT 1", (file_id,))
+        r = cur.fetchone()
+        cur.close()
+        conn.close()
+        if r and r["file_id"]:
+            haqiqiy_file_id = r["file_id"]
+    except Exception:
+        pass  # images jadvali bo'lmasa ham, file_id'ning o'zi bilan urinib ko'ramiz
+
     async with httpx.AsyncClient() as client:
         meta = await client.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getFile",
-                                 params={"file_id": file_id})
+                                 params={"file_id": haqiqiy_file_id})
         meta_data = meta.json()
         if not meta_data.get("ok"):
             raise HTTPException(status_code=404, detail="Rasm topilmadi")
