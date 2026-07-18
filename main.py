@@ -504,7 +504,7 @@ def test_savollari_soni(topic_code: str, qiyinlik: str = None, rasimli: bool = N
 
 
 class AralashSoniSorovi(BaseModel):
-    topic_codes: list[str]
+    topic_codes: list = []
     qiyinlik: str = None
     rasimli: bool = None
     vaqtli: bool = None
@@ -514,8 +514,10 @@ class AralashSoniSorovi(BaseModel):
 @app.post("/api/test_aralash/soni")
 def aralash_savollari_soni(sorov: AralashSoniSorovi):
     """Aralash (bir nechta mavzu) tanlanganda — sozlamalarga mos nechta
-    savol mavjudligini qaytaradi."""
-    kodlar = [k.strip() for k in sorov.topic_codes if k.strip()]
+    savol mavjudligini qaytaradi. topic_codes ichida bo'sh/noto'g'ri
+    qiymat bo'lsa ham (masalan null) 422 bermasdan, shunchaki e'tiborsiz
+    qoldiradi — frontendga har doim aniq javob (soni: N) qaytadi."""
+    kodlar = [str(k).strip() for k in sorov.topic_codes if k and str(k).strip()]
     if not kodlar:
         return {"soni": 0}
     conn = _db()
@@ -587,7 +589,7 @@ def test_savollari(
 
 
 class AralashTestSorovi(BaseModel):
-    topic_codes: list[str]
+    topic_codes: list = []
     soni: int = 10
     qiyinlik: str = None
     rasimli: bool = None
@@ -599,7 +601,7 @@ class AralashTestSorovi(BaseModel):
 def aralash_test_savollari(sorov: AralashTestSorovi):
     """Bir nechta TANLANGAN mavzudan aralashtirib savollar oladi —
     o'quvchi bir nechta mavzuni bir vaqtda takrorlashi uchun."""
-    kodlar = [k.strip() for k in sorov.topic_codes if k.strip()]
+    kodlar = [str(k).strip() for k in sorov.topic_codes if k and str(k).strip()]
     if not kodlar:
         raise HTTPException(status_code=400, detail="Kamida bitta mavzu tanlang")
 
