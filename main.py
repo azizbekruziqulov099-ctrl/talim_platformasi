@@ -99,8 +99,13 @@ def bola_bilimi(bola_id: int, sinf: str = None):
             f["foiz"] = round(sum(m["foiz"] for m in f["mavzular"]) / len(f["mavzular"]))
 
         umumiy = round(sum(f["foiz"] for f in natija_royxat) / len(natija_royxat)) if natija_royxat else 0
+        jami_mavzu_soni = len({q["topic_code"] for q in qatorlar})
+        otilgan_mavzu_soni = len({q["topic_code"] for q in qatorlar if q["score"] is not None})
 
-        return {"bola": {"ism": bola["full_name"]}, "umumiy_foiz": umumiy, "fanlar": natija_royxat}
+        return {
+            "bola": {"ism": bola["full_name"]}, "umumiy_foiz": umumiy, "fanlar": natija_royxat,
+            "jami_mavzu": jami_mavzu_soni, "otilgan_mavzu": otilgan_mavzu_soni,
+        }
     except HTTPException:
         raise
     except Exception as e:
@@ -2124,7 +2129,24 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
                 new_num = str(int(parts[1]) + 1).zfill(3)
                 topic_code = f"{parts[0]}-{new_num}"
             else:
-                topic_code = f"{sinf}-01-{chorak or 1}-01-01-01-001"
+                # MUHIM: bu fan uchun BIRINCHI marta mavzu qo'shilyapti — "01"ni
+                # QATTIQ KODLAMAYMIZ, chunki boshqa fan allaqachon "01"ni band
+                # qilgan bo'lishi mumkin (aks holda ikkala fan bitta topic_code'ga
+                # to'qnashib, natijalar noto'g'ri fanga yozilib qoladi).
+                # Shu grade uchun band qilingan barcha fan-segmentlarini
+                # tekshirib, BO'SH birinchi raqamni tanlaymiz.
+                cur.execute(
+                    "SELECT DISTINCT SPLIT_PART(topic_code, '-', 2) AS seg FROM dts_tree WHERE grade=%s",
+                    (str(sinf),),
+                )
+                band_segmentlar = {r2["seg"] for r2 in cur.fetchall()}
+                fan_segmenti = "01"
+                for n in range(1, 100):
+                    nomzod = str(n).zfill(2)
+                    if nomzod not in band_segmentlar:
+                        fan_segmenti = nomzod
+                        break
+                topic_code = f"{sinf}-{fan_segmenti}-{chorak or 1}-01-01-01-001"
 
         try:
             cur.execute("""
