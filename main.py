@@ -986,6 +986,12 @@ class TestNatijaSorov(BaseModel):
     topic_code: Optional[str] = None       # bitta mavzu bo'lsa
     topic_codes: Optional[list] = None  # aralash (bir nechta mavzu) bo'lsa
     javoblar: list[JavobItem]
+    # UMUMIY natija foizini TANLANGAN (masalan 10 ta) savol soniga nisbatan
+    # hisoblash uchun — javob berilmagan savollar ham hisobga olinishi kerak
+    # (aks holda 10 tadan 5 tasiga javob berib, hammasi to'g'ri bo'lsa, "100%"
+    # ko'rsatib qo'yardi, holbuki haqiqatda 50%). Berilmasa — eski xulq-atvorga
+    # (faqat javob berilganlar soniga nisbatan) qaytiladi.
+    jami_savol_soni: Optional[int] = None
 
 
 @app.post("/api/test/natija")
@@ -1040,11 +1046,19 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
                 "tushuntirish": _matnni_tozala(r["explanation"]),
             })
 
-    jami = len(sorov.javoblar)
+    # UMUMIY foiz — agar frontend "jami_savol_soni" yuborsa (tanlangan
+    # savollar soni), o'shanga nisbatan hisoblanadi — javob berilmagan
+    # savollar ham "noto'g'ri" sifatida hisobga kiradi. FAQAT shu
+    # ko'rsatkichga (natija ekranidagi statistika) tegishli — pastdagi
+    # mavzu bo'yicha learned_topics hisobiga ASLO ta'sir qilmaydi.
+    jami = sorov.jami_savol_soni if sorov.jami_savol_soni else len(sorov.javoblar)
     foiz = round((togri_soni / jami) * 100) if jami else 0
 
     # Har bir mavzu (aralash bo'lsa — bir nechtasi) o'ziga tegishli
     # savollar asosida alohida learned_topics'ga yoziladi.
+    # MUHIM: bu FAQAT haqiqatan JAVOB BERILGAN savollar asosida hisoblanadi
+    # (yuqoridagi tuzatish bunga tegmaydi) — o'quvchi o'zi urinib ko'rgan
+    # mavzular bo'yicha bilim darajasi shu tarzda avvalgidek qoladi.
     for tk, hisob in natija_har_mavzu.items():
         if not tk:
             continue
