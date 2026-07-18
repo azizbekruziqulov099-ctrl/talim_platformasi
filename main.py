@@ -380,16 +380,27 @@ def joriy_foydalanuvchi(token: str):
 @app.get("/api/mavzular")
 def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool = True):
     """Fan/mavzularni qaytaradi — Fan → Sinf → Mavzu tartibida.
-    faqat_testli=True (standart, test yechish uchun) — faqat
-    generated_tests'da HAQIQATAN savoli bor mavzularni ko'rsatadi.
-    faqat_testli=False (admin kontent-yaratish oqimlari uchun) — testi
-    hali yo'q mavzularni ham ko'rsatadi, chunki ularga ENDI shablon orqali
-    test qo'shish kerak bo'ladi.
 
-    MUHIM: grade ustuni ba'zan "3-4", "5-6" kabi ORALIQ ko'rinishida
-    bo'ladi — bular ODDIY maktab sinfi EMAS, balki TO'GARAKNING O'Z
-    maxsus guruhlari (masalan, matematik to'garak 3-4-sinf birgalikda
-    o'qiydi). turi="oddiy" (standart) — faqat sof raqamli sinflar
+    MUHIM: bitta "mavzu" ostida bir nechta "kichik mavzu" bo'lishi mumkin
+    (har biri o'z topic_code'iga ega) — lekin o'quvchiga BITTA mavzu
+    IKKI MARTA (har kichik mavzu uchun alohida) ko'rinishi noto'g'ri va
+    chalkashtiruvchi edi. Shu sabab bu yerda MAVZU darajasida guruhlaymiz:
+    har mavzu — bitta yozuv, ichida esa BARCHA kichik mavzularning
+    topic_code'lari "topic_codes" ro'yxatida jamlanadi. Test yechilganda
+    shu ro'yxatdagi barcha kodlardan ARALASH (random) savol olinadi
+    (/api/test_aralash orqali) — shunday qilib bitta "mavzu" tanlansa,
+    uning barcha kichik mavzularidan birgalikda savol chiqadi.
+
+    faqat_testli=True (standart, test yechish uchun) — faqat
+    generated_tests'da HAQIQATAN savoli bor kichik mavzularni hisobga
+    oladi (agar bir mavzuning faqat qismi testli bo'lsa, faqat o'sha
+    testli qismidan savol olinadi). faqat_testli=False (admin
+    kontent-yaratish oqimlari uchun) — testi hali yo'q mavzularni ham
+    ko'rsatadi va BARCHA kichik mavzu kodlarini beradi.
+
+    grade ustuni ba'zan "3-4", "5-6" kabi ORALIQ ko'rinishida bo'ladi —
+    bular ODDIY maktab sinfi EMAS, balki TO'GARAKNING O'Z maxsus
+    guruhlari. turi="oddiy" (standart) — faqat sof raqamli sinflar
     (1,2,...11). turi="togarak" — faqat ORALIQ (to'garak) guruhlari."""
     if sinf:
         sinf = sinf.replace("-sinf", "").strip()
@@ -399,20 +410,22 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
 
     conn = _db()
     cur = conn.cursor()
-    shart = f"{grade_shart}"
-    if faqat_testli:
-        shart = f"d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests) AND {shart}"
-    params = ()
+    shart = grade_shart
+    params = []
     if sinf:
         shart += " AND d.grade = %s"
-        params = (sinf,)
+        params.append(sinf)
     cur.execute(f"""
-        SELECT d.subject_code, d.subject_name, d.grade, d.topic_code,
-               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name, d.topic_code) AS nomi,
-               (SELECT COUNT(*) FROM generated_tests g WHERE g.topic_code = d.topic_code) AS savol_soni
+        SELECT d.subject_code, d.subject_name, d.grade,
+               COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
+               array_agg(d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
+               array_agg(d.topic_code ORDER BY d.topic_code)
+                   FILTER (WHERE d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)) AS testli_kodlar,
+               (SELECT COUNT(*) FROM generated_tests g WHERE g.topic_code = ANY(array_agg(d.topic_code))) AS savol_soni
         FROM dts_tree d
         WHERE {shart} AND d.is_deleted = FALSE
-        ORDER BY d.subject_code, d.grade, d.topic_code
+        GROUP BY d.subject_code, d.subject_name, d.grade, COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
+        ORDER BY d.subject_code, d.grade, MIN(d.topic_code)
     """, params)
     qatorlar = cur.fetchall()
     cur.close()
@@ -420,6 +433,10 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
 
     fanlar = {}
     for q in qatorlar:
+        kodlar = q["testli_kodlar"] if faqat_testli else q["barcha_kodlar"]
+        if faqat_testli and not kodlar:
+            continue  # bu mavzuning hech bir kichik qismida test yo'q — test yechish ro'yxatida ko'rsatmaymiz
+
         fkod = q["subject_code"] or "BOSHQA"
         if fkod not in fanlar:
             fanlar[fkod] = {"nom": q["subject_name"] or fkod, "qisqa": fkod, "sinflar": {}}
@@ -428,7 +445,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
         if skod not in fanlar[fkod]["sinflar"]:
             fanlar[fkod]["sinflar"][skod] = {"sinf": skod, "mavzular": []}
         fanlar[fkod]["sinflar"][skod]["mavzular"].append({
-            "topic_code": q["topic_code"], "nomi": q["nomi"], "savol_soni": q["savol_soni"],
+            "topic_codes": kodlar, "nomi": q["nomi"], "savol_soni": q["savol_soni"],
         })
 
     natija = []
