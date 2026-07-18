@@ -50,18 +50,31 @@ def salomat():
 
 @app.get("/api/bola/{bola_id}/bilim")
 def bola_bilimi(bola_id: int, sinf: str = None):
-    """Bolaning fan-mavzu bo'yicha bilim darajasi.
-    sinf berilmasa — bolaning eng so'nggi natijalari mavjud barcha
-    sinflardan olinadi (oddiy holatda muammo emas, chunki bitta
-    o'quvchi odatda bitta sinfda)."""
+    """Bolaning fan-mavzu bo'yicha bilim darajasi — FAQAT bolaning O'ZI
+    sinfiga tegishli mavzular bo'yicha. sinf berilmasa, avtomatik bola
+    profilidagi class ustunidan olinadi. MUHIM: agar bola profilida
+    sinf umuman ko'rsatilmagan bo'lsa — BARCHA sinflarni ARALASH
+    ko'rsatish O'RNIGA bo'sh natija qaytariladi (aks holda 1-sinf
+    bolasiga Algebra kabi butunlay boshqa sinflarning fanlari chiqib
+    ketardi, chunki sinfsiz cheklov qo'yib bo'lmaydi)."""
     try:
         conn = _db()
         cur = conn.cursor()
 
-        cur.execute("SELECT full_name FROM users WHERE user_id=%s", (bola_id,))
+        cur.execute("SELECT full_name, class FROM users WHERE user_id=%s", (bola_id,))
         bola = cur.fetchone()
         if not bola:
             raise HTTPException(status_code=404, detail="Bola topilmadi")
+
+        if not sinf:
+            if not bola["class"]:
+                cur.close()
+                conn.close()
+                return {
+                    "bola": {"ism": bola["full_name"]}, "umumiy_foiz": 0, "fanlar": [],
+                    "jami_mavzu": 0, "otilgan_mavzu": 0, "sinf_sozlanmagan": True,
+                }
+            sinf = str(bola["class"]).replace("-sinf", "").strip()
 
         sinf_shart = "AND d.grade = %s" if sinf else ""
         params = (bola_id, sinf) if sinf else (bola_id,)
