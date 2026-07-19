@@ -1722,6 +1722,102 @@ def togarak_yarat(sorov: TogarakYaratish):
 
 
 # ═══════════════════════════════════════════════════════════
+# TO'GARAK GURUH SOZLAMALARI — parolni ko'rish/almashtirish, va
+# XAVFSIZ o'chirish (parol so'ralib, faqat shundan keyin o'chadi).
+# ═══════════════════════════════════════════════════════════
+
+def _togarak_egasi_mi(cur, user_id, togarak_id):
+    cur.execute("SELECT teacher_id, markaz_id FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        return False
+    if t["teacher_id"] == user_id:
+        return True
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    return bool(t["markaz_id"] and _markaz_boshqaruvchi_mi(cur, user_id, t["markaz_id"]))
+
+
+@app.get("/api/oqituvchi/togarak_parolini_kor")
+def togarak_parolini_kor(token: str, togarak_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_egasi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    cur.execute("SELECT parol FROM togaraklar WHERE id=%s", (togarak_id,))
+    r = cur.fetchone()
+    cur.close()
+    conn.close()
+    return {"parol": r["parol"] if r else None}
+
+
+class TogarakParolAlmashtirish(BaseModel):
+    token: str
+    togarak_id: int
+    yangi_parol: str
+
+
+@app.put("/api/oqituvchi/togarak_parol_almashtir")
+def togarak_parol_almashtir(sorov: TogarakParolAlmashtirish):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_egasi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'zgartira oladi")
+    if not sorov.yangi_parol.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Yangi parolni kiriting")
+    cur.execute("UPDATE togaraklar SET parol=%s WHERE id=%s", (sorov.yangi_parol.strip(), sorov.togarak_id))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.delete("/api/oqituvchi/togarak_ochir")
+def togarak_ochir(token: str, togarak_id: int, parol: str):
+    """Butun guruhni O'CHIRADI — QAYTARIB BO'LMAYDI. Xavfsizlik
+    uchun guruhning JORIY parolini talab qiladi (frontend oldindan
+    ogohlantiradi). O'ZI yaratgan (milliy bazadan emas) mavzu/testlar
+    ham butunlay o'chadi — milliy bazadagi umumiy mavzularga
+    tegilmaydi (faqat BOG'LANISH o'chadi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_egasi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("SELECT parol FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    if (t["parol"] or "") != parol.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Parol noto'g'ri")
+
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT topic_code FROM togarak_mavzu_kontenti WHERE togarak_id=%s", (togarak_id,))
+    ozi_kodlari = [r["topic_code"] for r in cur.fetchall()]
+    if ozi_kodlari:
+        cur.execute("DELETE FROM generated_tests WHERE topic_code = ANY(%s)", (ozi_kodlari,))
+        cur.execute("UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code = ANY(%s)", (ozi_kodlari,))
+        cur.execute("DELETE FROM togarak_mavzu_kontenti WHERE togarak_id=%s", (togarak_id,))
+    cur.execute("DELETE FROM togarak_mavzulari WHERE togarak_id=%s", (togarak_id,))
+    cur.execute("DELETE FROM togarak_azolar WHERE togarak_id=%s", (togarak_id,))
+    cur.execute("DELETE FROM tolovlar WHERE togarak_id=%s", (togarak_id,))
+    cur.execute("DELETE FROM togaraklar WHERE id=%s", (togarak_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+# ═══════════════════════════════════════════════════════════
 # TO'GARAK O'ZI MAVZU/TEST YARATISH — o'qituvchi milliy bazadagi
 # tayyor mavzularga qo'shimcha, O'Z guruh uchun ORIGINAL mavzu+test+
 # video-dars yaratadi. MAVJUD infratuzilmani QAYTA ISHLATADI: har bir
