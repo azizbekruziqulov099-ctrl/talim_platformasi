@@ -2336,6 +2336,385 @@ def togarak_savol_ochir(token: str, savol_id: int):
 
 
 # ═══════════════════════════════════════════════════════════
+# TO'GARAK MAVZULARI — o'qituvchi MILLIY bazadan (yoki o'zi
+# yaratgan) mavzularni o'z to'garagiga TANLAB biriktiradi, va har
+# biriga MAZMUNLI kontent (matn/LaTeX/rasm/PDF/Word/video) yuklaydi.
+# O'quvchi (to'garak a'zosi) buni ALOHIDA "Mavzular" bo'limida
+# o'qiydi/ko'radi. Word matni o'qish uchun serverda AJRATIB olinadi
+# (frontend Web Speech API bilan ovozli o'qiydi — alohida to'lovli
+# TTS xizmat kerak emas).
+#
+# MUHIM CHEKLOV (halol aytilishi kerak): YouTube "obuna bo'lmasa
+# ko'rolmaydi" talabi — bu YouTube'ning O'ZINING API orqali, HAR BIR
+# talaba O'Z Google hisobi bilan maxsus ruxsat berishini talab
+# qiladi (oddiy havola qo'yish bilan ILOJI YO'Q). Buning uchun
+# alohida Google Cloud loyihasi + YouTube Data API kaliti kerak —
+# buni ALBATTA gaplashib, keyingi bosqichda alohida quramiz. Hozircha
+# video ko'rilish SONI (o'z platformamizda) to'liq ishlaydi.
+# ═══════════════════════════════════════════════════════════
+
+def _togarak_biriktirma_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzu_biriktirma(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        topic_code TEXT NOT NULL,
+        kontent_turi TEXT NOT NULL,
+        sarlavha TEXT,
+        matn TEXT,
+        fayl_malumot BYTEA,
+        fayl_nomi TEXT,
+        fayl_turi TEXT,
+        video_havola TEXT,
+        korilish_soni INTEGER DEFAULT 0,
+        yuklagan_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+@app.get("/api/oqituvchi/togarak_milliy_mavzular_qidir")
+def togarak_milliy_mavzular_qidir(token: str, togarak_id: int, qidiruv: str = None):
+    """O'qituvchi o'z to'garagiga qo'shimcha mavzu qidirib topishi
+    uchun — MILLIY bazadan (dts_tree). Standart holatda to'garakning
+    O'Z sinfi/faniga mos mavzularni ko'rsatadi; qidiruv matni
+    berilsa, BOSHQA sinf/fanlarni ham (nomi bo'yicha) topib beradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qidira oladi")
+    cur.execute("SELECT sinf, fan FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if qidiruv and qidiruv.strip():
+        cur.execute("""
+            SELECT topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            FROM dts_tree WHERE is_deleted=FALSE AND
+                 (mavzu_name ILIKE %s OR bolim_name ILIKE %s OR bob_name ILIKE %s OR kichik_name ILIKE %s)
+            ORDER BY subject_name, grade LIMIT 50
+        """, tuple([f"%{qidiruv.strip()}%"] * 4))
+    else:
+        cur.execute("""
+            SELECT topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            FROM dts_tree WHERE is_deleted=FALSE AND grade=%s AND subject_name=%s
+            ORDER BY topic_code LIMIT 200
+        """, (t["sinf"] or "", t["fan"] or "" if t else ""))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"mavzular": natija}
+
+
+class TogarakMilliyMavzuBiriktir(BaseModel):
+    token: str
+    togarak_id: int
+    topic_code: str
+
+
+@app.post("/api/oqituvchi/togarak_milliy_mavzu_biriktir")
+def togarak_milliy_mavzu_biriktir(sorov: TogarakMilliyMavzuBiriktir):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin biriktira oladi")
+    cur.execute("SELECT 1 FROM dts_tree WHERE topic_code=%s AND is_deleted=FALSE", (sorov.topic_code,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Mavzu topilmadi")
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
+        togarak_id INTEGER REFERENCES togaraklar(id),
+        topic_code TEXT,
+        PRIMARY KEY (togarak_id, topic_code)
+    )""")
+    cur.execute(
+        "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+        (sorov.togarak_id, sorov.topic_code),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "biriktirildi"}
+
+
+@app.get("/api/oqituvchi/togarak_barcha_mavzular")
+def togarak_barcha_mavzular(token: str, togarak_id: int):
+    """To'garakka biriktirilgan BARCHA mavzular (milliy + o'zi
+    yaratgan) — har biriga nechta kontent (matn/rasm/video...)
+    biriktirilganini ham qo'shib."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("""
+        SELECT d.topic_code, d.grade, d.subject_name, d.bob_name, d.bolim_name, d.mavzu_name, d.kichik_name,
+               (SELECT COUNT(*) FROM togarak_mavzu_biriktirma b WHERE b.togarak_id=tm.togarak_id AND b.topic_code=d.topic_code) AS kontent_soni
+        FROM togarak_mavzulari tm JOIN dts_tree d ON d.topic_code = tm.topic_code
+        WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
+        ORDER BY d.bob_name, d.mavzu_name
+    """, (togarak_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"mavzular": natija}
+
+
+@app.delete("/api/oqituvchi/togarak_mavzu_biriktirmasini_ochir")
+def togarak_mavzu_biriktirmasini_ochir(token: str, togarak_id: int, topic_code: str):
+    """Mavzuni to'garak ta'lim yo'lidan chiqarib tashlaydi (milliy
+    mavzuning o'zi o'chmaydi, faqat BOG'LANISH va shu yerdagi
+    kontentlar o'chadi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("DELETE FROM togarak_mavzu_biriktirma WHERE togarak_id=%s AND topic_code=%s", (togarak_id, topic_code))
+    cur.execute("DELETE FROM togarak_mavzulari WHERE togarak_id=%s AND topic_code=%s", (togarak_id, topic_code))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+class TogarakMatnKontentQosh(BaseModel):
+    token: str
+    togarak_id: int
+    topic_code: str
+    kontent_turi: str  # 'matn' | 'latex' | 'video'
+    sarlavha: Optional[str] = None
+    matn: Optional[str] = None
+    video_havola: Optional[str] = None
+
+
+@app.post("/api/oqituvchi/togarak_matn_kontent_qosh")
+def togarak_matn_kontent_qosh(sorov: TogarakMatnKontentQosh):
+    """Matn, LaTeX formula, yoki video-havola qo'shadi (fayl EMAS)."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
+    if sorov.kontent_turi not in ("matn", "latex", "video"):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Noto'g'ri kontent turi")
+    if sorov.kontent_turi == "video" and not (sorov.video_havola or "").strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Video havolasini kiriting")
+    if sorov.kontent_turi != "video" and not (sorov.matn or "").strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Matnni kiriting")
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("""
+        INSERT INTO togarak_mavzu_biriktirma(togarak_id, topic_code, kontent_turi, sarlavha, matn, video_havola, yuklagan_user_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.togarak_id, sorov.topic_code, sorov.kontent_turi, sorov.sarlavha,
+          sorov.matn.strip() if sorov.matn else None, sorov.video_havola.strip() if sorov.video_havola else None, user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "id": yangi_id}
+
+
+@app.post("/api/oqituvchi/togarak_fayl_kontent_qosh")
+async def togarak_fayl_kontent_qosh(token: str, togarak_id: int, topic_code: str, sarlavha: str = None, fayl: UploadFile = File(...)):
+    """Rasm, PDF, yoki Word (.docx) fayl yuklaydi. Word bo'lsa —
+    matni serverda AJRATIB olinadi (python-docx bilan), shu matn
+    keyin frontendda ovozli o'qish uchun ishlatiladi. Rasm/PDF uchun
+    matn ajratilmaydi (talabga ko'ra — faqat ko'rsatiladi, o'qilmaydi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin yuklay oladi")
+
+    content = await fayl.read()
+    if len(content) > 10 * 1024 * 1024:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Fayl 10MB dan katta bo'lmasin")
+
+    nomi_lower = (fayl.filename or "").lower()
+    if nomi_lower.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
+        kontent_turi = "rasm"
+        ajratilgan_matn = None
+    elif nomi_lower.endswith(".pdf"):
+        kontent_turi = "pdf"
+        ajratilgan_matn = None
+    elif nomi_lower.endswith(".docx"):
+        kontent_turi = "word"
+        try:
+            import docx
+            import io as _io
+            hujjat = docx.Document(_io.BytesIO(content))
+            ajratilgan_matn = "\n".join(p.text for p in hujjat.paragraphs if p.text.strip())
+        except Exception:
+            ajratilgan_matn = None
+    else:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Faqat rasm, PDF yoki .docx (Word) fayl qabul qilinadi")
+
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("""
+        INSERT INTO togarak_mavzu_biriktirma(togarak_id, topic_code, kontent_turi, sarlavha, matn, fayl_malumot, fayl_nomi, fayl_turi, yuklagan_user_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (togarak_id, topic_code, kontent_turi, sarlavha, ajratilgan_matn,
+          psycopg2.Binary(content), fayl.filename, fayl.content_type, user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "id": yangi_id, "kontent_turi": kontent_turi}
+
+
+def _togarak_kontent_royxati_uchun(cur, togarak_id, topic_code):
+    cur.execute("""
+        SELECT id, kontent_turi, sarlavha, matn, fayl_nomi, fayl_turi, video_havola, korilish_soni, yaratilgan_at
+        FROM togarak_mavzu_biriktirma WHERE togarak_id=%s AND topic_code=%s ORDER BY yaratilgan_at
+    """, (togarak_id, topic_code))
+    return cur.fetchall()
+
+
+@app.get("/api/oqituvchi/togarak_mavzu_kontentlari")
+def togarak_mavzu_kontentlari(token: str, togarak_id: int, topic_code: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _togarak_biriktirma_jadvali(cur)
+    natija = _togarak_kontent_royxati_uchun(cur, togarak_id, topic_code)
+    cur.close()
+    conn.close()
+    return {"kontentlar": natija}
+
+
+@app.delete("/api/oqituvchi/togarak_kontent_ochir")
+def togarak_kontent_ochir(token: str, biriktirma_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_biriktirma WHERE id=%s", (biriktirma_id,))
+    b = cur.fetchone()
+    if not b:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Kontent topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, b["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM togarak_mavzu_biriktirma WHERE id=%s", (biriktirma_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+def _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+    """O'qituvchi/rahbariyat, YOKI shu to'garakning TASDIQLANGAN
+    a'zosi (o'quvchi) bo'lsa — True."""
+    if _togarak_ozi_mi(cur, user_id, togarak_id):
+        return True
+    cur.execute("SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE", (togarak_id, user_id))
+    return cur.fetchone() is not None
+
+
+@app.get("/api/oqituvchi/togarak_kontent_fayl")
+def togarak_kontent_fayl(token: str, biriktirma_id: int):
+    """Fayl (rasm/PDF/Word)ni striming qilib beradi — o'qituvchi VA
+    to'garak a'zosi (o'quvchi) ham ko'ra oladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("SELECT togarak_id, fayl_malumot, fayl_nomi, fayl_turi FROM togarak_mavzu_biriktirma WHERE id=%s", (biriktirma_id,))
+    b = cur.fetchone()
+    if not b or not b["fayl_malumot"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Fayl topilmadi")
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, b["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Ruxsat yo'q")
+    from fastapi.responses import StreamingResponse
+    import io as _io
+    fayl_bytes = bytes(b["fayl_malumot"])
+    cur.close()
+    conn.close()
+    return StreamingResponse(
+        _io.BytesIO(fayl_bytes), media_type=b["fayl_turi"] or "application/octet-stream",
+        headers={"Content-Disposition": f'inline; filename="{b["fayl_nomi"] or "fayl"}"'},
+    )
+
+
+@app.get("/api/togarak_azo/mavzularim")
+def togarak_azo_mavzularim(token: str, togarak_id: int):
+    """O'QUVCHI (to'garak a'zosi) uchun — shu to'garakka biriktirilgan
+    mavzular ro'yxati, kontent soni bilan."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("""
+        SELECT d.topic_code, d.bob_name, d.mavzu_name AS nomi,
+               (SELECT COUNT(*) FROM togarak_mavzu_biriktirma b WHERE b.togarak_id=tm.togarak_id AND b.topic_code=d.topic_code) AS kontent_soni
+        FROM togarak_mavzulari tm JOIN dts_tree d ON d.topic_code = tm.topic_code
+        WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
+        ORDER BY d.bob_name, d.mavzu_name
+    """, (togarak_id,))
+    natija = [r for r in cur.fetchall() if r["kontent_soni"] > 0]
+    cur.close()
+    conn.close()
+    return {"mavzular": natija}
+
+
+@app.get("/api/togarak_azo/mavzu_kontentlari")
+def togarak_azo_mavzu_kontentlari(token: str, togarak_id: int, topic_code: str):
+    """O'QUVCHI uchun — bitta mavzuning kontentlari. Video ko'rilsa,
+    ko'rilish soni +1 qo'shiladi (frontend ekranga chiqarganda
+    chaqiradi — takroriy chaqirmasin)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    _togarak_biriktirma_jadvali(cur)
+    natija = _togarak_kontent_royxati_uchun(cur, togarak_id, topic_code)
+    cur.close()
+    conn.close()
+    return {"kontentlar": natija}
+
+
+@app.post("/api/togarak_azo/video_korildi")
+def togarak_azo_video_korildi(token: str, biriktirma_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_biriktirma_jadvali(cur)
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_biriktirma WHERE id=%s", (biriktirma_id,))
+    b = cur.fetchone()
+    if not b or not _togarak_kontent_ruxsat_bormi(cur, user_id, b["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Ruxsat yo'q")
+    cur.execute("UPDATE togarak_mavzu_biriktirma SET korilish_soni = korilish_soni + 1 WHERE id=%s", (biriktirma_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "hisoblandi"}
+
+
+# ═══════════════════════════════════════════════════════════
 # TA'LIM YO'LI — o'quvchining fan bo'yicha ketma-ket mavzular ustidan
 # qanday bosib o'tayotgani (ota-ona/o'quvchi/o'qituvchi ko'radi)
 # ═══════════════════════════════════════════════════════════
