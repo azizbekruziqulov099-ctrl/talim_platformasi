@@ -1958,6 +1958,7 @@ def topik_royxat(sinf: str, fan: str, token: str):
     cur.execute("""
         SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
                MIN(d.topic_code) AS topic_code,
+               array_agg(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                MIN(d.quarter) AS chorak, MIN(d.bob_name) AS bob, MIN(d.bolim_name) AS bolim,
                COUNT(*) AS kichik_soni,
                COUNT(DISTINCT gt.topic_code) AS test_bor_soni
@@ -1971,11 +1972,73 @@ def topik_royxat(sinf: str, fan: str, token: str):
     cur.close()
     conn.close()
     mavzular = [{
-        "nomi": r["nomi"], "topic_code": r["topic_code"], "chorak": r["chorak"],
+        "nomi": r["nomi"], "topic_code": r["topic_code"], "topic_codes": r["barcha_kodlar"], "chorak": r["chorak"],
         "bob": r["bob"], "bolim": r["bolim"], "kichik_soni": r["kichik_soni"],
         "test_bormi": r["test_bor_soni"] > 0,
     } for r in qatorlar]
     return {"sinf": sinf, "fan": fan, "mavzular": mavzular}
+
+
+@app.delete("/api/admin/mavzu_testlarini_ochir")
+def mavzu_testlarini_ochir(token: str, topic_codes: str):
+    """Berilgan mavzuga tegishli BARCHA kichik mavzularning testlarini
+    o'chiradi. topic_codes — vergul bilan ajratilgan kodlar ro'yxati
+    (bitta mavzuning barcha kichik mavzu kodlari)."""
+    _admin_tekshir(token)
+    kodlar = [k.strip() for k in topic_codes.split(",") if k.strip()]
+    if not kodlar:
+        raise HTTPException(status_code=400, detail="Mavzu kodi berilmagan")
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM generated_tests WHERE topic_code = ANY(%s)", (kodlar,))
+    ochirilgan = cur.rowcount
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi", "ochirilgan_soni": ochirilgan}
+
+
+@app.delete("/api/admin/fan_testlarini_ochir")
+def fan_testlarini_ochir(token: str, sinf: str, fan: str):
+    """Berilgan sinf+fanga tegishli BARCHA mavzularning BARCHA testlarini
+    o'chiradi — butun fan bo'yicha umumiy tozalash uchun."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        DELETE FROM generated_tests WHERE topic_code IN (
+            SELECT topic_code FROM dts_tree WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE
+        )
+    """, (sinf, fan))
+    ochirilgan = cur.rowcount
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi", "ochirilgan_soni": ochirilgan}
+
+
+@app.get("/api/admin/mavzu_rasmlari")
+def mavzu_rasmlari(token: str, topic_codes: str):
+    """Berilgan mavzu(lar)ning testlaridagi BARCHA rasm havolalarini
+    (takrorlarsiz) qaytaradi — admin ularni ko'rib, to'g'ri yuklanganini
+    tekshirishi uchun. LaTeX ifodalar ham shu ro'yxatga tushishi mumkin —
+    frontend ularni /api/rasm orqali so'raganda tabiiy ravishda
+    "topilmadi" chiqadi (bu — kutilgan holat, xato emas)."""
+    _admin_tekshir(token)
+    kodlar = [k.strip() for k in topic_codes.split(",") if k.strip()]
+    if not kodlar:
+        return {"rasmlar": []}
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT DISTINCT COALESCE(NULLIF(image_file_id, ''), image_url) AS rasm_id
+        FROM generated_tests
+        WHERE topic_code = ANY(%s) AND COALESCE(NULLIF(image_file_id, ''), image_url, '') != ''
+    """, (kodlar,))
+    rasmlar = [r["rasm_id"] for r in cur.fetchall()]
+    cur.close()
+    conn.close()
+    return {"rasmlar": rasmlar}
 
 
 @app.post("/api/admin/shablon_yukla")
