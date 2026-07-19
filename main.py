@@ -1753,7 +1753,7 @@ def togarak_yarat(sorov: TogarakYaratish):
         if tanlangan and sinf_qiymati:
             cur.execute("""
                 SELECT topic_code FROM dts_tree
-                WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE AND topic_code = ANY(%s)
+                WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE AND topic_code = ANY(%s)
             """, (sinf_qiymati, sorov.fan.strip(), tanlangan))
             mavzu_kodlari = [r["topic_code"] for r in cur.fetchall()]
             for kod in mavzu_kodlari:
@@ -1765,7 +1765,7 @@ def togarak_yarat(sorov: TogarakYaratish):
     elif sinf_qiymati:
         cur.execute("""
             SELECT topic_code FROM dts_tree
-            WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE
+            WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE
               AND topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)
         """, (sinf_qiymati, sorov.fan.strip()))
         mavzu_kodlari = [r["topic_code"] for r in cur.fetchall()]
@@ -2442,7 +2442,7 @@ def togarak_milliy_mavzular_qidir(token: str, togarak_id: int, qidiruv: str = No
     else:
         cur.execute("""
             SELECT topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
-            FROM dts_tree WHERE is_deleted=FALSE AND grade=%s AND subject_name=%s
+            FROM dts_tree WHERE is_deleted=FALSE AND grade=%s AND UPPER(subject_name)=UPPER(%s)
             ORDER BY topic_code LIMIT 200
         """, (t["sinf"] or "", t["fan"] or "" if t else ""))
     natija = cur.fetchall()
@@ -2482,6 +2482,56 @@ def togarak_milliy_mavzu_biriktir(sorov: TogarakMilliyMavzuBiriktir):
     cur.close()
     conn.close()
     return {"holat": "biriktirildi"}
+
+
+class TogarakYangiMavzuYarat(BaseModel):
+    token: str
+    togarak_id: int
+    nomi: str
+    bob: Optional[str] = None
+
+
+@app.post("/api/oqituvchi/togarak_yangi_mavzu_yarat")
+def togarak_yangi_mavzu_yarat(sorov: TogarakYangiMavzuYarat):
+    """O'qituvchi FAQAT mavzu nomini yozib, Excel/shablon SHART bo'lmasdan,
+    to'garagiga yangi (o'zi yaratgan) mavzu qo'shadi — kod avtomatik
+    generatsiya qilinadi (milliy bazada mos mavzu topilmagan hollar
+    uchun, masalan yangi maxsus guruhlar)."""
+    user_id = _jwt_tekshir(sorov.token)
+    nomi = sorov.nomi.strip()
+    if not nomi:
+        raise HTTPException(status_code=400, detail="Mavzu nomini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
+    cur.execute("SELECT sinf, fan FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="To'garak topilmadi")
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
+        togarak_id INTEGER REFERENCES togaraklar(id),
+        topic_code TEXT,
+        PRIMARY KEY (togarak_id, topic_code)
+    )""")
+    topic_code = _keyingi_togarak_topic_code(cur)
+    bob = (sorov.bob or "").strip()
+    cur.execute("""
+        INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+        VALUES(%s,%s,%s,'1',%s,'',%s,'',FALSE)
+    """, (topic_code, t["sinf"] or "", t["fan"] or "", bob, nomi))
+    cur.execute("INSERT INTO togarak_mavzu_kontenti(topic_code, togarak_id) VALUES(%s,%s)", (topic_code, sorov.togarak_id))
+    cur.execute(
+        "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+        (sorov.togarak_id, topic_code),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"topic_code": topic_code, "nomi": nomi}
 
 
 @app.get("/api/oqituvchi/togarak_barcha_mavzular")
@@ -2967,7 +3017,7 @@ def talim_yoli_oddiy(bola_id: int, fan: str):
                AVG(lt.score) AS ortacha_ball
         FROM dts_tree d
         LEFT JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = %s
-        WHERE d.grade = %s AND d.subject_name = %s AND d.is_deleted = FALSE
+        WHERE d.grade = %s AND UPPER(d.subject_name) = UPPER(%s) AND d.is_deleted = FALSE
           AND d.topic_code IN (SELECT DISTINCT topic_code FROM generated_tests)
         GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
         ORDER BY MIN(d.topic_code)
@@ -7222,7 +7272,7 @@ def topik_royxat(sinf: str, fan: str, token: str):
                COUNT(DISTINCT gt.topic_code) AS test_bor_soni
         FROM dts_tree d
         LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
-        WHERE d.grade=%s AND d.subject_name=%s AND d.is_deleted=FALSE
+        WHERE d.grade=%s AND UPPER(d.subject_name)=UPPER(%s) AND d.is_deleted=FALSE
         GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
         ORDER BY MIN(d.topic_code)
     """, (sinf, fan))
@@ -7265,7 +7315,7 @@ def fan_testlarini_ochir(token: str, sinf: str, fan: str):
     cur = conn.cursor()
     cur.execute("""
         DELETE FROM generated_tests WHERE topic_code IN (
-            SELECT topic_code FROM dts_tree WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE
+            SELECT topic_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE
         )
     """, (sinf, fan))
     ochirilgan = cur.rowcount
@@ -7646,7 +7696,7 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
         else:
             cur.execute("""
                 SELECT topic_code FROM dts_tree
-                WHERE grade=%s AND subject_name=%s
+                WHERE grade=%s AND UPPER(subject_name)=UPPER(%s)
                 ORDER BY topic_code DESC LIMIT 1
             """, (str(sinf), str(fan) if fan else ""))
             row = cur.fetchone()
