@@ -1768,6 +1768,71 @@ def bugungi_tavsiya(bola_id: int, limit: int = 8):
     return {"tavsiyalar": ehtiyoj_borlari[:limit], "sinf_sozlanmagan": False}
 
 
+@app.get("/api/bola/{bola_id}/haftalik_xulosa")
+def haftalik_xulosa(bola_id: int):
+    """O'quvchi uchun oxirgi 7 kunlik xulosa — QAYSI mavzular ishlangan,
+    o'rtacha ball, nechta YANGI mavzu o'rgangan, qaysilari qiyinlik
+    qilgan, va nechta kun KETMA-KET mashq qilingan (streak). To'liq
+    mavjud learned_topics ma'lumotidan hisoblanadi — AI shart emas."""
+    conn = _db()
+    cur = conn.cursor()
+
+    cur.execute("""
+        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi, d.subject_name AS fan,
+               MAX(lt.score) AS ball, MAX(lt.repeat_count) AS takror_soni
+        FROM learned_topics lt
+        JOIN dts_tree d ON d.topic_code = lt.topic_code
+        WHERE lt.user_id = %s AND lt.learned_at >= NOW() - INTERVAL '7 days'
+        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name), d.subject_name
+    """, (bola_id,))
+    hafta_qatorlari = cur.fetchall()
+
+    # Streak (ketma-ket kunlar) — BUTUN tarixdan, faqat shu haftadan emas,
+    # chunki "necha kundan beri uzluksiz mashq qilyapsiz" savoli haftadan
+    # oshib ketishi mumkin.
+    cur.execute("""
+        SELECT DISTINCT learned_at::date AS kun FROM learned_topics
+        WHERE user_id=%s ORDER BY kun DESC
+    """, (bola_id,))
+    kunlar = [r["kun"] for r in cur.fetchall()]
+    cur.close()
+    conn.close()
+
+    ketma_ket = 0
+    if kunlar:
+        bugun = datetime.now().date()
+        # Bugun hali mashq qilinmagan bo'lsa ham, kechadan boshlab hisoblaymiz —
+        # aks holda kun tugamasdan streak "0" ko'rinib, foydalanuvchini
+        # asossiz xafa qilmasin.
+        joriy_kun = bugun if bugun in kunlar else bugun - timedelta(days=1)
+        while joriy_kun in kunlar:
+            ketma_ket += 1
+            joriy_kun -= timedelta(days=1)
+
+    jami_mavzu = len(hafta_qatorlari)
+    ortacha_ball = round(sum(r["ball"] for r in hafta_qatorlari) / jami_mavzu) if jami_mavzu else 0
+    yangi_mavzular = [r["nomi"] for r in hafta_qatorlari if (r["takror_soni"] or 1) == 1]
+    zaif_mavzular = sorted(
+        [{"nomi": r["nomi"], "ball": r["ball"]} for r in hafta_qatorlari if r["ball"] is not None and r["ball"] < 60],
+        key=lambda x: x["ball"],
+    )[:5]
+
+    # Fanlar bo'yicha o'rtacha — eng yaxshi natijali fanni topish uchun
+    fanlar_hisobi = {}
+    for r in hafta_qatorlari:
+        fanlar_hisobi.setdefault(r["fan"], []).append(r["ball"] or 0)
+    eng_yaxshi_fan = None
+    if fanlar_hisobi:
+        eng_yaxshi_fan = max(fanlar_hisobi, key=lambda f: sum(fanlar_hisobi[f]) / len(fanlar_hisobi[f]))
+
+    return {
+        "jami_mavzu": jami_mavzu, "ortacha_ball": ortacha_ball,
+        "yangi_mavzular_soni": len(yangi_mavzular), "yangi_mavzular": yangi_mavzular[:5],
+        "zaif_mavzular": zaif_mavzular, "eng_yaxshi_fan": eng_yaxshi_fan,
+        "ketma_ket_kun": ketma_ket,
+    }
+
+
 @app.get("/api/bola/{bola_id}/yol")
 def talim_yoli_oddiy(bola_id: int, fan: str):
     """Oddiy (majburiy) o'quv dasturi bo'yicha — o'quvchining O'Z SINFI
@@ -1976,6 +2041,123 @@ def _admin_tekshir(token: str):
     if not natija:
         raise HTTPException(status_code=403, detail="Faqat admin uchun")
     return user_id
+
+
+# ═══════════════════════════════════════════════════════════
+# MAKTAB TIZIMI — 1-BOSQICH: maktab yaratish
+# (2-bosqich: xodimlarni Excel orqali kiritish, 3-bosqich: sinflar,
+#  4-bosqich: o'quvchi qo'shilishi, 5-bosqich: sinf tahlili — keyinroq)
+# ═══════════════════════════════════════════════════════════
+
+def _maktab_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS maktablar(
+        id SERIAL PRIMARY KEY,
+        nomi TEXT NOT NULL,
+        viloyat TEXT, tuman TEXT,
+        smena_soni INTEGER NOT NULL DEFAULT 1,
+        direktor_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+class MaktabYaratish(BaseModel):
+    token: str
+    nomi: str
+    viloyat: Optional[str] = None
+    tuman: Optional[str] = None
+    smena_soni: int = 1
+    direktor_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/maktab_yarat")
+def maktab_yarat(sorov: MaktabYaratish):
+    """1-bosqich: yangi maktabni tizimga qo'shadi. Direktor keyinroq ham
+    (xodimlar Excel orqali import qilinganda) belgilanishi mumkin —
+    shu sabab bu yerda ixtiyoriy."""
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Maktab nomi kiritilmagan")
+    if sorov.smena_soni not in (1, 2):
+        raise HTTPException(status_code=400, detail="Smena soni 1 yoki 2 bo'lishi kerak")
+
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur)
+    if sorov.direktor_user_id is not None:
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s", (sorov.direktor_user_id,))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
+    cur.execute("""
+        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id)
+        VALUES(%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.smena_soni, sorov.direktor_user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "maktab_id": yangi_id}
+
+
+@app.get("/api/admin/maktablar")
+def maktablar_royxati(token: str):
+    """Barcha maktablar ro'yxati — direktor ismi bilan birga."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur)
+    cur.execute("""
+        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.smena_soni, m.direktor_user_id,
+               u.full_name AS direktor_ismi
+        FROM maktablar m
+        LEFT JOIN users u ON u.user_id = m.direktor_user_id
+        ORDER BY m.nomi
+    """)
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"maktablar": natija}
+
+
+@app.put("/api/admin/maktab_direktor")
+def maktab_direktor_belgila(token: str, maktab_id: int, direktor_user_id: int):
+    """Mavjud maktabga direktorni keyinroq belgilash/almashtirish uchun."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur)
+    cur.execute("SELECT 1 FROM users WHERE user_id=%s", (direktor_user_id,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Foydalanuvchi topilmadi")
+    cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (direktor_user_id, maktab_id))
+    ozgardi = cur.rowcount > 0
+    conn.commit()
+    cur.close()
+    conn.close()
+    if not ozgardi:
+        raise HTTPException(status_code=404, detail="Maktab topilmadi")
+    return {"holat": "saqlandi"}
+
+
+@app.get("/api/admin/foydalanuvchi_qidir")
+def admin_foydalanuvchi_qidir(token: str, ism: str):
+    """Admin uchun — ism bo'yicha foydalanuvchi qidiradi (masalan
+    direktor sifatida tayinlash uchun kerakli odamni topish)."""
+    _admin_tekshir(token)
+    if len(ism.strip()) < 2:
+        return {"natijalar": []}
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT user_id, full_name, role FROM users
+        WHERE full_name ILIKE %s
+        ORDER BY full_name LIMIT 10
+    """, (f"%{ism.strip()}%",))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"natijalar": natija}
 
 
 class TestShablonGuruh(BaseModel):
