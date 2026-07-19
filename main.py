@@ -3467,6 +3467,27 @@ class BolaQoshish(BaseModel):
     ota_ona_user_id: Optional[int] = None  # mavjud ota-ona hisobiga bog'lash uchun (ixtiyoriy)
 
 
+@app.get("/api/opa/ota_ona_qidir")
+def opa_ota_ona_qidir(token: str, ism: str):
+    """Opa (yoki har qanday tizimga kirgan xodim) uchun — bola
+    qo'shayotganda uning ota-onasini ISM bo'yicha qidirib topish va
+    bog'lash uchun. Faqat role='ota-ona' hisoblar orasidan qidiradi."""
+    _jwt_tekshir(token)
+    if len(ism.strip()) < 2:
+        return {"natijalar": []}
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT user_id, full_name FROM users
+        WHERE role='ota-ona' AND full_name ILIKE %s
+        ORDER BY full_name LIMIT 10
+    """, (f"%{ism.strip()}%",))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"natijalar": natija}
+
+
 @app.post("/api/opa/bola_qoshish")
 def opa_bola_qoshish(sorov: BolaQoshish):
     """Opa bolani ISMI bilan TO'G'RIDAN-TO'G'RI guruhga qo'shadi —
@@ -3617,8 +3638,251 @@ def opa_tolov_belgila(sorov: BogchaTolovBelgilash):
     return {"holat": "saqlandi"}
 
 
-class TestShablonGuruh(BaseModel):
-    diff: str    # oson | o'rta | qiyin | murakkab
+# ═══════════════════════════════════════════════════════════
+# OLIY TA'LIM TIZIMI — 4 QAVATLI TUZILMA:
+#   Universitet → Fakultet → Kafedra → Guruh (talabalar)
+#
+# Maktabdan farqi: chuqurroq ierarxiya. Har qavat o'zining rahbarini
+# (rektor/dekan/kafedra mudiri/guruh kuratori) belgilashi mumkin.
+# Talaba guruhga sinf kabi PAROL bilan qo'shiladi (avtomatik profil
+# mosligisiz — chunki talaba profilida fakultet/kafedra maydonlari
+# hozircha yo'q, sodda parol-orqali-qo'shilish yetarli).
+# ═══════════════════════════════════════════════════════════
+
+UNIVERSITET_LAVOZIMLARI = {
+    "rektor": "Rektor",
+    "prorektor": "Prorektor",
+    "dekan": "Dekan",
+    "kafedra_mudiri": "Kafedra mudiri",
+    "professor_oqituvchi": "Professor-o'qituvchi",
+}
+_UNIVERSITET_LAVOZIM_MATNDAN = {v.lower(): k for k, v in UNIVERSITET_LAVOZIMLARI.items()}
+
+
+def _universitet_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS universitetlar(
+        id SERIAL PRIMARY KEY, nomi TEXT NOT NULL, viloyat TEXT, tuman TEXT,
+        rektor_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS fakultetlar(
+        id SERIAL PRIMARY KEY, universitet_id INTEGER NOT NULL REFERENCES universitetlar(id),
+        nomi TEXT NOT NULL, dekan_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS kafedralar(
+        id SERIAL PRIMARY KEY, fakultet_id INTEGER NOT NULL REFERENCES fakultetlar(id),
+        nomi TEXT NOT NULL, mudir_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS universitet_guruhlari(
+        id SERIAL PRIMARY KEY, kafedra_id INTEGER NOT NULL REFERENCES kafedralar(id),
+        nomi TEXT NOT NULL, kurs INTEGER, yonalish TEXT,
+        rahbar_user_id BIGINT REFERENCES users(user_id), qoshilish_paroli TEXT,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS universitet_guruh_azolari(
+        id SERIAL PRIMARY KEY, guruh_id INTEGER NOT NULL REFERENCES universitet_guruhlari(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id), qoshilgan_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(guruh_id, user_id)
+    )""")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+
+
+def _universitet_boshqaruvchi_mi(cur, user_id, universitet_id):
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND universitet_id=%s", (user_id, universitet_id))
+    r = cur.fetchone()
+    return bool(r and r["lavozim"] in ("rektor", "prorektor"))
+
+
+class UniversitetYaratish(BaseModel):
+    token: str
+    nomi: str
+    viloyat: Optional[str] = None
+    tuman: Optional[str] = None
+    rektor_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/universitet_yarat")
+def universitet_yarat(sorov: UniversitetYaratish):
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Universitet nomi kiritilmagan")
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    if sorov.rektor_user_id is not None:
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s", (sorov.rektor_user_id,))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Ko'rsatilgan rektor foydalanuvchisi topilmadi")
+    cur.execute("""
+        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.rektor_user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "universitet_id": yangi_id}
+
+
+@app.get("/api/admin/universitetlar")
+def universitetlar_royxati(token: str):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
+               (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni
+        FROM universitetlar u LEFT JOIN users us ON us.user_id = u.rektor_user_id
+        ORDER BY u.nomi
+    """)
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"universitetlar": natija}
+
+
+class FakultetYaratish(BaseModel):
+    token: str
+    universitet_id: int
+    nomi: str
+    dekan_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/fakultet_yarat")
+def fakultet_yarat(sorov: FakultetYaratish):
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Fakultet nomi kiritilmagan")
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        INSERT INTO fakultetlar(universitet_id, nomi, dekan_user_id)
+        VALUES(%s,%s,%s) RETURNING id
+    """, (sorov.universitet_id, sorov.nomi.strip(), sorov.dekan_user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "fakultet_id": yangi_id}
+
+
+@app.get("/api/admin/fakultetlar")
+def fakultetlar_royxati(token: str, universitet_id: int):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        SELECT f.id, f.nomi, f.dekan_user_id, u.full_name AS dekan_ismi,
+               (SELECT COUNT(*) FROM kafedralar WHERE fakultet_id=f.id) AS kafedra_soni
+        FROM fakultetlar f LEFT JOIN users u ON u.user_id = f.dekan_user_id
+        WHERE f.universitet_id=%s ORDER BY f.nomi
+    """, (universitet_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"fakultetlar": natija}
+
+
+class KafedraYaratish(BaseModel):
+    token: str
+    fakultet_id: int
+    nomi: str
+    mudir_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/kafedra_yarat")
+def kafedra_yarat(sorov: KafedraYaratish):
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Kafedra nomi kiritilmagan")
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        INSERT INTO kafedralar(fakultet_id, nomi, mudir_user_id)
+        VALUES(%s,%s,%s) RETURNING id
+    """, (sorov.fakultet_id, sorov.nomi.strip(), sorov.mudir_user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "kafedra_id": yangi_id}
+
+
+@app.get("/api/admin/kafedralar")
+def kafedralar_royxati(token: str, fakultet_id: int):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        SELECT k.id, k.nomi, k.mudir_user_id, u.full_name AS mudir_ismi,
+               (SELECT COUNT(*) FROM universitet_guruhlari WHERE kafedra_id=k.id) AS guruh_soni
+        FROM kafedralar k LEFT JOIN users u ON u.user_id = k.mudir_user_id
+        WHERE k.fakultet_id=%s ORDER BY k.nomi
+    """, (fakultet_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"kafedralar": natija}
+
+
+class UniversitetGuruhYaratish(BaseModel):
+    token: str
+    kafedra_id: int
+    nomi: str
+    kurs: Optional[int] = None
+    yonalish: Optional[str] = None
+    rahbar_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/universitet_guruh_yarat")
+def universitet_guruh_yarat(sorov: UniversitetGuruhYaratish):
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Guruh nomi kiritilmagan")
+    if sorov.kurs is not None and sorov.kurs not in range(1, 7):
+        raise HTTPException(status_code=400, detail="Kurs 1 dan 6 gacha bo'lishi kerak")
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    paroli = "".join(secrets.choice(string.digits) for _ in range(4))
+    cur.execute("""
+        INSERT INTO universitet_guruhlari(kafedra_id, nomi, kurs, yonalish, rahbar_user_id, qoshilish_paroli)
+        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.kafedra_id, sorov.nomi.strip(), sorov.kurs, sorov.yonalish, sorov.rahbar_user_id, paroli))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "guruh_id": yangi_id, "qoshilish_paroli": paroli}
+
+
+@app.get("/api/admin/universitet_guruhlari")
+def universitet_guruhlari_royxati(token: str, kafedra_id: int):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        SELECT g.id, g.nomi, g.kurs, g.yonalish, g.qoshilish_paroli, g.rahbar_user_id, u.full_name AS rahbar_ismi,
+               (SELECT COUNT(*) FROM universitet_guruh_azolari WHERE guruh_id=g.id) AS talaba_soni
+        FROM universitet_guruhlari g LEFT JOIN users u ON u.user_id = g.rahbar_user_id
+        WHERE g.kafedra_id=%s ORDER BY g.kurs NULLS LAST, g.nomi
+    """, (kafedra_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"guruhlar": natija}
+
+
+
     turi: str    # single_choice | write_answer
     soni: int    # 0, 5, 10, 15, 20 ...
 
