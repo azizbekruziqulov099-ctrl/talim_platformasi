@@ -2131,13 +2131,17 @@ class MaktabYaratish(BaseModel):
     tuman: Optional[str] = None
     smena_soni: int = 1
     direktor_user_id: Optional[int] = None
+    pulli: bool = False
+    oylik_tolov: Optional[int] = None
 
 
 @app.post("/api/admin/maktab_yarat")
 def maktab_yarat(sorov: MaktabYaratish):
     """1-bosqich: yangi maktabni tizimga qo'shadi. Direktor keyinroq ham
     (xodimlar Excel orqali import qilinganda) belgilanishi mumkin —
-    shu sabab bu yerda ixtiyoriy."""
+    shu sabab bu yerda ixtiyoriy. To'lov sozlamasi ham shu yerda
+    darhol belgilanadi (keyinroq "To'lov sozlamalari"dan o'zgartirsa
+    ham bo'ladi)."""
     _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Maktab nomi kiritilmagan")
@@ -2153,9 +2157,10 @@ def maktab_yarat(sorov: MaktabYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id)
-        VALUES(%s,%s,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.smena_soni, sorov.direktor_user_id))
+        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov)
+        VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.smena_soni, sorov.direktor_user_id,
+          sorov.pulli, sorov.oylik_tolov if sorov.pulli else None))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -4878,6 +4883,41 @@ def bogchalar_royxati(token: str):
     return {"bogchalar": natija}
 
 
+class BogchaTolovSozlash(BaseModel):
+    token: str
+    bogcha_id: int
+    turi: Optional[str] = None
+    oylik_tolov: Optional[int] = None
+
+
+@app.put("/api/admin/bogcha_tolov_sozlash")
+def bogcha_tolov_sozlash(sorov: BogchaTolovSozlash):
+    """Bog'cha yaratilgandan KEYIN ham to'lov turi/summasini
+    o'zgartirish uchun — maktabdagi 'To'lov sozlamalari' bilan bir
+    xil naqsh. 'Davlat' bog'cha ham, agar kerak bo'lsa, keyinroq
+    to'lov belgilashi mumkin."""
+    _admin_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT id FROM bogchalar WHERE id=%s", (sorov.bogcha_id,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Bog'cha topilmadi")
+    if sorov.turi is not None and sorov.turi not in BOGCHA_TURLARI:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Noto'g'ri bog'cha turi")
+    maydonlar, qiymatlar = [], []
+    if sorov.turi is not None:
+        maydonlar.append("turi=%s"); qiymatlar.append(sorov.turi)
+    maydonlar.append("oylik_tolov=%s"); qiymatlar.append(sorov.oylik_tolov)
+    qiymatlar.append(sorov.bogcha_id)
+    cur.execute(f"UPDATE bogchalar SET {', '.join(maydonlar)} WHERE id=%s", qiymatlar)
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
 @app.get("/api/admin/bogcha_xodim_shablon")
 def bogcha_xodim_shablon(token: str):
     _admin_tekshir(token)
@@ -5750,6 +5790,8 @@ def sinov_muhit_yarat(token: str):
         """, (f"Sinov Markazi {belgi}", "Samarqand", "Samarqand shahri", markaz_direktor))
         markaz_id = cur.fetchone()["id"]
         cur.execute("UPDATE users SET markaz_id=%s WHERE user_id=%s", (markaz_id, markaz_direktor))
+        markaz_administrator = rahbar_qosh(f"Sinov MAdministrator {belgi}", "administrator", "Markaz administratori")
+        cur.execute("UPDATE users SET markaz_id=%s WHERE user_id=%s", (markaz_id, markaz_administrator))
 
         JAMI_MTALABA, MARKAZ_GURUH_SONI = 150, 5
         har_mguruhga = JAMI_MTALABA // MARKAZ_GURUH_SONI
