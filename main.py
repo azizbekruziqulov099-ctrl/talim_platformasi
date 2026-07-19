@@ -1722,6 +1722,241 @@ def togarak_yarat(sorov: TogarakYaratish):
 
 
 # ═══════════════════════════════════════════════════════════
+# TO'GARAK O'ZI MAVZU/TEST YARATISH — o'qituvchi milliy bazadagi
+# tayyor mavzularga qo'shimcha, O'Z guruh uchun ORIGINAL mavzu+test+
+# video-dars yaratadi. MAVJUD infratuzilmani QAYTA ISHLATADI: har bir
+# yangi mavzu, sinov (SIN) topic_code bilan dts_tree'ga qo'shiladi —
+# shu bilan test yechish/Bilim/spaced-repetition kabi BUTUN mavjud
+# mexanizm avtomatik ishlab ketadi, hech narsa qaytadan yozilmaydi.
+# Faqat REJA/MUHIM MA'LUMOT/VIDEO — bular dts_tree'da yo'q maydonlar
+# — alohida kichik jadvalda saqlanadi.
+# ═══════════════════════════════════════════════════════════
+
+def _togarak_mavzu_kontenti_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzu_kontenti(
+        topic_code TEXT PRIMARY KEY,
+        togarak_id INTEGER REFERENCES togaraklar(id),
+        reja TEXT,
+        muhim_malumot TEXT,
+        video_havola TEXT,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+def _togarak_ozi_mi(cur, user_id, togarak_id):
+    """True — agar user shu to'garakning o'qituvchisi, markaz
+    rahbariyati yoki admin bo'lsa."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT teacher_id, markaz_id FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        return False
+    if t["teacher_id"] == user_id:
+        return True
+    return bool(t["markaz_id"] and _markaz_boshqaruvchi_mi(cur, user_id, t["markaz_id"]))
+
+
+class TogarakMavzuYaratish(BaseModel):
+    token: str
+    togarak_id: int
+    nomi: str
+    reja: Optional[str] = None
+    muhim_malumot: Optional[str] = None
+    video_havola: Optional[str] = None
+
+
+@app.post("/api/oqituvchi/togarak_mavzu_yarat")
+def togarak_mavzu_yarat(sorov: TogarakMavzuYaratish):
+    """O'qituvchi o'z to'garagi uchun ORIGINAL mavzu yaratadi — reja,
+    muhim ma'lumot (matn) va video-dars (YouTube) havolasi bilan.
+    Mavzu AVTOMATIK shu to'garakning ta'lim yo'liga qo'shiladi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin yarata oladi")
+    if not sorov.nomi.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Mavzu nomini kiriting")
+
+    cur.execute("SELECT sinf, fan FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
+    t = cur.fetchone()
+
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
+        togarak_id INTEGER REFERENCES togaraklar(id),
+        topic_code TEXT,
+        PRIMARY KEY (togarak_id, topic_code)
+    )""")
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT COUNT(*) AS soni FROM togarak_mavzu_kontenti WHERE togarak_id=%s", (sorov.togarak_id,))
+    tartib = (cur.fetchone()["soni"] or 0) + 1
+    topic_code = f"SIN{sorov.togarak_id}-{tartib:03d}"
+
+    cur.execute("""
+        INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+        VALUES(%s,%s,%s,'1','','',%s,'',FALSE)
+    """, (topic_code, t["sinf"] or "", t["fan"] or "", sorov.nomi.strip()))
+
+    cur.execute("""
+        INSERT INTO togarak_mavzu_kontenti(topic_code, togarak_id, reja, muhim_malumot, video_havola)
+        VALUES(%s,%s,%s,%s,%s)
+    """, (topic_code, sorov.togarak_id, sorov.reja, sorov.muhim_malumot, sorov.video_havola))
+
+    cur.execute(
+        "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+        (sorov.togarak_id, topic_code),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "topic_code": topic_code}
+
+
+@app.get("/api/oqituvchi/togarak_mavzulari_ozi")
+def togarak_mavzulari_ozi_royxati(token: str, togarak_id: int):
+    """O'qituvchi tomonidan yaratilgan (milliy bazadan emas) barcha
+    ORIGINAL mavzular — har biriga nechta savol borligi bilan."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("""
+        SELECT k.topic_code, d.mavzu_name AS nomi, k.reja, k.muhim_malumot, k.video_havola,
+               (SELECT COUNT(*) FROM generated_tests WHERE topic_code=k.topic_code) AS savol_soni
+        FROM togarak_mavzu_kontenti k
+        LEFT JOIN dts_tree d ON d.topic_code = k.topic_code
+        WHERE k.togarak_id=%s ORDER BY k.yaratilgan_at
+    """, (togarak_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"mavzular": natija}
+
+
+@app.delete("/api/oqituvchi/togarak_mavzu_ochir")
+def togarak_mavzu_ochir(token: str, topic_code: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_kontenti WHERE topic_code=%s", (topic_code,))
+    k = cur.fetchone()
+    if not k:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Mavzu topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, k["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM generated_tests WHERE topic_code=%s", (topic_code,))
+    cur.execute("DELETE FROM togarak_mavzulari WHERE topic_code=%s", (topic_code,))
+    cur.execute("DELETE FROM togarak_mavzu_kontenti WHERE topic_code=%s", (topic_code,))
+    cur.execute("UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code=%s", (topic_code,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+class TogarakSavolYaratish(BaseModel):
+    token: str
+    topic_code: str
+    savol: str
+    turi: str = "single_choice"  # single_choice | write_answer
+    variant_a: Optional[str] = None
+    variant_b: Optional[str] = None
+    variant_c: Optional[str] = None
+    variant_d: Optional[str] = None
+    togri_javob: str
+    tushuntirish: Optional[str] = None
+
+
+@app.post("/api/oqituvchi/togarak_savol_yarat")
+def togarak_savol_yarat(sorov: TogarakSavolYaratish):
+    """Bitta ORIGINAL mavzuga bitta test savoli qo'shadi — mavjud
+    generated_tests jadvaliga, shu sabab o'quvchi test yechish
+    ekranida BOSHQA milliy savollar bilan BIR XIL tarzda ko'rinadi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_kontenti WHERE topic_code=%s", (sorov.topic_code,))
+    k = cur.fetchone()
+    if not k:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Mavzu topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, k["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
+    if not sorov.savol.strip() or not sorov.togri_javob.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Savol va to'g'ri javobni kiriting")
+    cur.execute("""
+        INSERT INTO generated_tests(topic_code, question, option_a, option_b, option_c, option_d,
+            correct_answer, explanation, question_type, difficulty, time_limit, language, is_latex)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,'orta',60,'uz',FALSE) RETURNING id
+    """, (sorov.topic_code, sorov.savol.strip(), sorov.variant_a, sorov.variant_b, sorov.variant_c, sorov.variant_d,
+          sorov.togri_javob.strip(), sorov.tushuntirish, sorov.turi))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "id": yangi_id}
+
+
+@app.get("/api/oqituvchi/togarak_mavzu_savollari")
+def togarak_mavzu_savollari(token: str, topic_code: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_kontenti WHERE topic_code=%s", (topic_code,))
+    k = cur.fetchone()
+    if not k:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Mavzu topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, k["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT id, question, option_a, option_b, option_c, option_d, correct_answer, explanation, question_type
+        FROM generated_tests WHERE topic_code=%s ORDER BY id
+    """, (topic_code,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"savollar": natija}
+
+
+@app.delete("/api/oqituvchi/togarak_savol_ochir")
+def togarak_savol_ochir(token: str, savol_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT topic_code FROM generated_tests WHERE id=%s", (savol_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Savol topilmadi")
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_kontenti WHERE topic_code=%s", (s["topic_code"],))
+    k = cur.fetchone()
+    if not k or not _togarak_ozi_mi(cur, user_id, k["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM generated_tests WHERE id=%s", (savol_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+# ═══════════════════════════════════════════════════════════
 # TA'LIM YO'LI — o'quvchining fan bo'yicha ketma-ket mavzular ustidan
 # qanday bosib o'tayotgani (ota-ona/o'quvchi/o'qituvchi ko'radi)
 # ═══════════════════════════════════════════════════════════
