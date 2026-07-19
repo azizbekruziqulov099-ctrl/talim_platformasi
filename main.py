@@ -379,11 +379,14 @@ def joriy_foydalanuvchi(token: str):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jins TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqituvchi_fani TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute(
         "SELECT user_id, full_name, role, class, class_letter, school_type, "
         "region, district, tugilgan_sana, maktab_raqami, jins, oqituvchi_fani, "
-        "maktab_id, lavozim FROM users WHERE user_id=%s",
+        "maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
         (user_id,),
     )
     r = cur.fetchone()
@@ -1641,6 +1644,7 @@ class TogarakYaratish(BaseModel):
     parol: Optional[str] = None
     max_talaba: Optional[int] = None
     oylik_summa: Optional[int] = None
+    universitet_guruh_id: Optional[int] = None  # professor shu fanini ANIQ universitet guruhi uchun o'qitsa
 
 
 @app.post("/api/oqituvchi/togarak_yarat")
@@ -1662,6 +1666,7 @@ def togarak_yarat(sorov: TogarakYaratish):
     cur = conn.cursor()
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
         topic_code TEXT,
@@ -1677,13 +1682,22 @@ def togarak_yarat(sorov: TogarakYaratish):
     ur = cur.fetchone()
     teacher_markaz_id = ur["markaz_id"] if ur else None
 
+    # Professor bu fanni ANIQ bitta universitet guruhi uchun o'qitayotgan
+    # bo'lsa — shu guruhga bog'laydi, guruh kuratori/dekani keyin BUTUN
+    # guruhning shu fandagi bilim darajasini ko'ra oladi.
+    universitet_guruh_id = None
+    if sorov.universitet_guruh_id is not None:
+        cur.execute("SELECT id FROM universitet_guruhlari WHERE id=%s", (sorov.universitet_guruh_id,))
+        if cur.fetchone():
+            universitet_guruh_id = sorov.universitet_guruh_id
+
     sinf_qiymati = sorov.sinf.strip() if sorov.sinf else None
     cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE,%s) RETURNING id
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati,
           sorov.parol.strip() if sorov.parol else None,
-          sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id))
+          sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id))
     yangi_id = cur.fetchone()["id"]
 
     bogliq_mavzu_soni = 0
@@ -3488,6 +3502,29 @@ def opa_ota_ona_qidir(token: str, ism: str):
     return {"natijalar": natija}
 
 
+@app.get("/api/oqituvchi/universitet_guruh_qidir")
+def oqituvchi_universitet_guruh_qidir(token: str, nomi: str):
+    """Professor to'garak (kurs) yaratayotganda — bu kursni qaysi
+    universitet guruhi uchun o'qitayotganini nomi bo'yicha qidirib
+    topishi uchun."""
+    _jwt_tekshir(token)
+    if len(nomi.strip()) < 1:
+        return {"natijalar": []}
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        SELECT g.id, g.nomi, g.kurs, g.yonalish, k.nomi AS kafedra_nomi
+        FROM universitet_guruhlari g LEFT JOIN kafedralar k ON k.id = g.kafedra_id
+        WHERE g.nomi ILIKE %s ORDER BY g.nomi LIMIT 10
+    """, (f"%{nomi.strip()}%",))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"natijalar": natija}
+
+
+
 @app.post("/api/opa/bola_qoshish")
 def opa_bola_qoshish(sorov: BolaQoshish):
     """Opa bolani ISMI bilan TO'G'RIDAN-TO'G'RI guruhga qo'shadi —
@@ -3882,7 +3919,126 @@ def universitet_guruhlari_royxati(token: str, kafedra_id: int):
     return {"guruhlar": natija}
 
 
+@app.post("/api/talaba/guruhga_qoshil")
+def talaba_guruhga_qoshil(token: str, parol: str):
+    """Talaba universitet guruhiga FAQAT 4 xonali parol bilan
+    qo'shiladi — guruh ID'sini bilishi shart emas (to'garakka
+    qo'shilish bilan bir xil uslub)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("SELECT id, nomi FROM universitet_guruhlari WHERE qoshilish_paroli=%s", (parol.strip(),))
+    g = cur.fetchone()
+    if not g:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Parol noto'g'ri")
+    cur.execute(
+        "INSERT INTO universitet_guruh_azolari(guruh_id, user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+        (g["id"], user_id),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "guruh_nomi": g["nomi"]}
 
+
+@app.get("/api/universitet/mening_guruhlarim")
+def universitet_mening_guruhlarim(token: str):
+    """Kurator RAHBAR bo'lgan universitet guruhlari ro'yxati."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("""
+        SELECT g.id, g.nomi, g.kurs, g.yonalish,
+               (SELECT COUNT(*) FROM universitet_guruh_azolari WHERE guruh_id=g.id) AS talaba_soni
+        FROM universitet_guruhlari g WHERE g.rahbar_user_id=%s ORDER BY g.nomi
+    """, (user_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"guruhlar": natija}
+
+
+@app.get("/api/universitet/guruh_bilimi")
+def universitet_guruh_bilimi(token: str, guruh_id: int):
+    """Guruh kuratori/dekan/rektor uchun — ENG MUHIM ko'rsatkich:
+    guruhga bog'langan HAR BIR fan (professor kursi) bo'yicha, HAR BIR
+    talabaning silabusdagi mavzularni qanchalik bilishi — mavjud
+    "Bilim" mexanizmi (learned_topics) orqali, GPA emas, aniq va
+    tushunarli % ko'rinishida."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _universitet_jadvali(cur)
+    cur.execute("SELECT rahbar_user_id, nomi FROM universitet_guruhlari WHERE id=%s", (guruh_id,))
+    g = cur.fetchone()
+    if not g:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and g["rahbar_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh kuratori yoki admin ko'ra oladi")
+
+    # Guruhga bog'langan barcha fanlar (professor kurslari)
+    cur.execute("""
+        SELECT t.id AS togarak_id, t.nomi AS kurs_nomi, t.fan, u.full_name AS professor_ismi
+        FROM togaraklar t LEFT JOIN users u ON u.user_id = t.teacher_id
+        WHERE t.universitet_guruh_id=%s AND t.aktiv=TRUE
+        ORDER BY t.fan
+    """, (guruh_id,))
+    kurslar = cur.fetchall()
+
+    # Guruhdagi barcha talabalar
+    cur.execute("""
+        SELECT u.user_id, u.full_name FROM universitet_guruh_azolari ga
+        JOIN users u ON u.user_id = ga.user_id WHERE ga.guruh_id=%s ORDER BY u.full_name
+    """, (guruh_id,))
+    talabalar = cur.fetchall()
+
+    natija_kurslar = []
+    for k in kurslar:
+        cur.execute("""
+            SELECT ta.user_id,
+                   COUNT(DISTINCT tm.topic_code) AS jami_mavzu,
+                   COUNT(DISTINCT lt.topic_code) AS ishlangan_mavzu,
+                   AVG(lt.score) AS ortacha_ball
+            FROM togarak_azolar ta
+            JOIN togarak_mavzulari tm ON tm.togarak_id = ta.togarak_id
+            LEFT JOIN learned_topics lt ON lt.topic_code = tm.topic_code AND lt.user_id = ta.user_id
+            WHERE ta.togarak_id=%s AND ta.aktiv=TRUE
+            GROUP BY ta.user_id
+        """, (k["togarak_id"],))
+        talaba_natijalari = {r["user_id"]: r for r in cur.fetchall()}
+
+        talabalar_royxati = []
+        for t in talabalar:
+            r = talaba_natijalari.get(t["user_id"])
+            if r and r["jami_mavzu"]:
+                foiz = round((r["ishlangan_mavzu"] or 0) / r["jami_mavzu"] * 100)
+                ball = round(r["ortacha_ball"]) if r["ortacha_ball"] is not None else None
+            else:
+                foiz, ball = 0, None
+            talabalar_royxati.append({
+                "user_id": t["user_id"], "full_name": t["full_name"],
+                "otilgan_foiz": foiz, "ortacha_ball": ball,
+            })
+        natija_kurslar.append({
+            "togarak_id": k["togarak_id"], "kurs_nomi": k["kurs_nomi"], "fan": k["fan"],
+            "professor_ismi": k["professor_ismi"], "talabalar": talabalar_royxati,
+        })
+
+    cur.close()
+    conn.close()
+    return {"guruh_nomi": g["nomi"], "talaba_soni": len(talabalar), "kurslar": natija_kurslar}
+
+
+
+class TestShablonGuruh(BaseModel):
+    diff: str    # oson | o'rta | qiyin | murakkab
     turi: str    # single_choice | write_answer
     soni: int    # 0, 5, 10, 15, 20 ...
 
