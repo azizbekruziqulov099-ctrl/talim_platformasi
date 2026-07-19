@@ -3131,6 +3131,80 @@ def markaz_tolov_belgila(sorov: MarkazTolovBelgilash):
     return {"holat": "saqlandi"}
 
 
+# ═══════════════════════════════════════════════════════════
+# ALLAQACHON HISOBI BOR o'qituvchi — Excel import'da yaratilgan
+# SHAXSIY kirish_kodi orqali, YANGI hisob ochmasdan, o'ZINING mavjud
+# hisobiga maktab/markaz+lavozimni OLIB OLADI. Bu kirish_kodi bilan
+# BOG'LIQ PLACEHOLDER hisobning maktab_id/markaz_id/lavozim'i qanday
+# BO'LSA — ANIQ O'SHANI oladi (o'zi tanlab olmaydi, shu sabab
+# xavfsiz — faqat Excel'da unga MO'LJALLANGAN lavozim beriladi).
+# ═══════════════════════════════════════════════════════════
+
+@app.post("/api/oqituvchi/kirish_kodi_orqali_qoshil")
+def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
+    """token — chaqiruvchining O'Z (allaqachon mavjud) hisobi.
+    kirish_kodi — Excel import paytida SHU KISHI uchun mo'ljallab
+    yaratilgan kod (xodim_kod jadvali). Kod to'g'ri bo'lsa —
+    chaqiruvchining O'Z hisobiga o'sha maktab_id/markaz_id/lavozim
+    yoziladi, kod esa "ishlatildi" deb belgilanadi (qayta ishlatib
+    bo'lmaydi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _xodim_kod_jadvali(cur)
+    cur.execute("""
+        SELECT xk.user_id AS placeholder_id, xk.ishlatildi,
+               (xk.yaratildi > NOW() - INTERVAL '30 days') AS hali_yangi
+        FROM xodim_kod xk WHERE xk.kod=%s
+    """, (kirish_kodi.strip(),))
+    kod = cur.fetchone()
+    if not kod:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
+    if kod["ishlatildi"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
+    if not kod["hali_yangi"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod muddati tugagan (30 kun) — admindan yangisini so'rang")
+
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
+    cur.execute(
+        "SELECT maktab_id, markaz_id, lavozim FROM users WHERE user_id=%s",
+        (kod["placeholder_id"],),
+    )
+    p = cur.fetchone()
+    if not p or (not p["maktab_id"] and not p["markaz_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Bu kodga tegishli maktab/markaz topilmadi")
+
+    cur.execute(
+        "UPDATE users SET maktab_id=%s, markaz_id=%s, lavozim=%s WHERE user_id=%s",
+        (p["maktab_id"], p["markaz_id"], p["lavozim"], user_id),
+    )
+    if p["maktab_id"] and p["lavozim"] == "direktor":
+        cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (user_id, p["maktab_id"]))
+    if p["markaz_id"] and p["lavozim"] == "markaz_direktor":
+        cur.execute("UPDATE oquv_markazlari SET direktor_user_id=%s WHERE id=%s", (user_id, p["markaz_id"]))
+    cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s", (kirish_kodi.strip(),))
+    conn.commit()
+
+    natija = {"holat": "qoshildi", "lavozim": p["lavozim"]}
+    if p["maktab_id"]:
+        cur.execute("SELECT nomi FROM maktablar WHERE id=%s", (p["maktab_id"],))
+        m = cur.fetchone()
+        natija["joy_nomi"] = m["nomi"] if m else None
+    elif p["markaz_id"]:
+        cur.execute("SELECT nomi FROM oquv_markazlari WHERE id=%s", (p["markaz_id"],))
+        m = cur.fetchone()
+        natija["joy_nomi"] = m["nomi"] if m else None
+    cur.close()
+    conn.close()
+    return natija
+
+
 class TestShablonGuruh(BaseModel):
     diff: str    # oson | o'rta | qiyin | murakkab
     turi: str    # single_choice | write_answer
