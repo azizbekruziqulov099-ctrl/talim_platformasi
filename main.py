@@ -5,6 +5,7 @@ Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
 import os
 import re
 import io
+import math
 import secrets
 import string
 import httpx
@@ -1683,6 +1684,90 @@ def _chorak_taqsimoti(mavzular: list) -> list:
         })
     return natija
 
+
+# ═══════════════════════════════════════════════════════════
+# ESDAN CHIQISH XAVFI + BUGUNGI TAVSIYA — sof matematik formula,
+# HECH QANDAY AI ishlatilmaydi. Faqat mavjud learned_topics
+# ma'lumotidan (ball, oxirgi o'rganilgan sana, necha marta
+# takrorlangan) hisoblanadi — shu sabab BEPUL va har doim ANIQ
+# (bir xil kirish — doim bir xil natija).
+#
+# Mantiq: xotira "barqarorligi" har muvaffaqiyatli takrorda oshadi
+# (spaced-repetition tamoyili), past ball bilan o'rganilgan mavzu esa
+# tezroq "unutiladi" deb hisoblanadi.
+# ═══════════════════════════════════════════════════════════
+
+_ESDAN_CHIQISH_ASOSIY_INTERVAL = 10   # kun — birinchi marta o'rgangandan keyin "e'tibor zonasi"
+_ESDAN_CHIQISH_OSISH_KOEF = 2.3       # har takrorda xotira necha barobar "mustahkamlanadi"
+
+
+def _esdan_chiqish_foizi(ortacha_ball: float, kunlar_otgan: int, takror_soni: float) -> int:
+    """0-100 oralig'ida "unutish ehtimoli" — AI emas, sof formula."""
+    if kunlar_otgan <= 0:
+        return 0
+    barqarorlik = (
+        _ESDAN_CHIQISH_ASOSIY_INTERVAL
+        * (_ESDAN_CHIQISH_OSISH_KOEF ** max(0, (takror_soni or 1) - 1))
+        * max(0.5, (ortacha_ball or 0) / 100)
+    )
+    foiz = 100 * (1 - math.exp(-kunlar_otgan / barqarorlik))
+    return round(foiz)
+
+
+def _xavf_darajasi(foiz: int) -> str:
+    if foiz >= 60:
+        return "yuqori"
+    if foiz >= 30:
+        return "orta"
+    return "past"
+
+
+@app.get("/api/bola/{bola_id}/bugungi_tavsiya")
+def bugungi_tavsiya(bola_id: int, limit: int = 8):
+    """O'quvchining O'Z SINFI bo'yicha, avval o'rgangan mavzularini
+    "unutish xavfi"ga qarab SARALAB, bugun eng birinchi takrorlash
+    kerak bo'lganlarini qaytaradi. To'liq AI'siz, sof hisob-kitob."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT class FROM users WHERE user_id=%s", (bola_id,))
+    u = cur.fetchone()
+    if not u or not u["class"]:
+        cur.close(); conn.close()
+        return {"tavsiyalar": [], "sinf_sozlanmagan": True}
+    sinf = str(u["class"]).replace("-sinf", "").strip()
+
+    cur.execute("""
+        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi, d.subject_name AS fan,
+               MAX(lt.learned_at) AS oxirgi_sana,
+               AVG(lt.score) AS ortacha_ball,
+               AVG(lt.repeat_count) AS ortacha_takror
+        FROM dts_tree d
+        JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = %s
+        WHERE d.grade = %s AND d.is_deleted = FALSE
+        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name), d.subject_name
+    """, (bola_id, sinf))
+    qatorlar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    bugun = datetime.now()
+    tavsiyalar = []
+    for r in qatorlar:
+        kunlar_otgan = (bugun - r["oxirgi_sana"]).days if r["oxirgi_sana"] else 0
+        foiz = _esdan_chiqish_foizi(r["ortacha_ball"], kunlar_otgan, r["ortacha_takror"])
+        tavsiyalar.append({
+            "nomi": r["nomi"], "fan": r["fan"], "kunlar_otgan": kunlar_otgan,
+            "oxirgi_ball": round(r["ortacha_ball"]) if r["ortacha_ball"] is not None else None,
+            "esdan_chiqish_foizi": foiz, "daraja": _xavf_darajasi(foiz),
+        })
+
+    tavsiyalar.sort(key=lambda t: t["esdan_chiqish_foizi"], reverse=True)
+    # Faqat haqiqatan e'tiborga loyiq (past emas) darajadagilarni ko'rsatamiz —
+    # "past" xavfli mavzularni bugun takrorlashga majburlash shart emas.
+    ehtiyoj_borlari = [t for t in tavsiyalar if t["daraja"] != "past"]
+    return {"tavsiyalar": ehtiyoj_borlari[:limit], "sinf_sozlanmagan": False}
+
+
 @app.get("/api/bola/{bola_id}/yol")
 def talim_yoli_oddiy(bola_id: int, fan: str):
     """Oddiy (majburiy) o'quv dasturi bo'yicha — o'quvchining O'Z SINFI
@@ -1986,6 +2071,90 @@ def topik_umumiy_korinish(token: str):
     natija = list(sinflar.values())
     natija.sort(key=lambda s: (0, int(s["sinf"])) if s["sinf"].isdigit() else (1, s["sinf"]))
     return {"sinflar": natija}
+
+
+# ═══════════════════════════════════════════════════════════
+# MAVZU TUSHUNTIRISHLARI — offlayn (Colab'da, tekin) tayyorlangan
+# AI tushuntirishlarini saqlash va o'quvchiga ko'rsatish. Jonli AI
+# SERVERI YO'Q — bu yerda faqat OLDINDAN yozilgan tushuntirish
+# bazadan o'qiladi, shu sabab hech qanday qo'shimcha xarajat yo'q.
+# ═══════════════════════════════════════════════════════════
+
+def _tushuntirish_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS mavzu_tushuntirishlari(
+        sinf TEXT NOT NULL, fan TEXT NOT NULL, mavzu_nomi TEXT NOT NULL,
+        tushuntirish TEXT NOT NULL, yaratilgan_at TIMESTAMP DEFAULT NOW(),
+        PRIMARY KEY (sinf, fan, mavzu_nomi)
+    )""")
+
+
+@app.get("/api/mavzu_tushuntirish")
+def mavzu_tushuntirish_ol(sinf: str, fan: str, mavzu: str):
+    """O'quvchi (yoki har kim) uchun — berilgan mavzuning oldindan
+    tayyorlangan AI tushuntirishini qaytaradi. Agar hali yozilmagan
+    bo'lsa — topilmadi=true bilan bo'sh qaytadi (xato emas)."""
+    conn = _db()
+    cur = conn.cursor()
+    _tushuntirish_jadvali(cur)
+    cur.execute(
+        "SELECT tushuntirish FROM mavzu_tushuntirishlari WHERE sinf=%s AND fan=%s AND mavzu_nomi=%s",
+        (sinf, fan, mavzu),
+    )
+    r = cur.fetchone()
+    cur.close()
+    conn.close()
+    if not r:
+        return {"topildi": False, "tushuntirish": None}
+    return {"topildi": True, "tushuntirish": r["tushuntirish"]}
+
+
+@app.post("/api/admin/tushuntirish_import")
+async def tushuntirish_import(token: str, fayl: UploadFile = File(...)):
+    """Offlayn (Colab'da) tayyorlangan Excel faylni import qiladi —
+    ustunlar: Sinf, Fan, Mavzu, Tushuntirish. Mavjud (sinf+fan+mavzu)
+    yozuv bo'lsa — YANGILANADI (qayta generatsiya qilib yuklash mumkin)."""
+    _admin_tekshir(token)
+    import openpyxl
+    import io
+
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb.active
+
+    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
+    kerakli = {"Sinf", "Fan", "Mavzu", "Tushuntirish"}
+    if not kerakli.issubset(set(headers)):
+        raise HTTPException(status_code=400, detail=f"Ustunlar mos emas — kerak: {', '.join(kerakli)}")
+    idx = {h: i for i, h in enumerate(headers)}
+
+    conn = _db()
+    cur = conn.cursor()
+    _tushuntirish_jadvali(cur)
+    saqlandi, xato_soni = 0, 0
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or len(row) <= max(idx.values()):
+            continue
+        sinf, fan, mavzu, tushuntirish = row[idx["Sinf"]], row[idx["Fan"]], row[idx["Mavzu"]], row[idx["Tushuntirish"]]
+        if not (sinf and fan and mavzu and tushuntirish):
+            continue
+        try:
+            cur.execute("""
+                INSERT INTO mavzu_tushuntirishlari(sinf, fan, mavzu_nomi, tushuntirish, yaratilgan_at)
+                VALUES(%s,%s,%s,%s,NOW())
+                ON CONFLICT (sinf, fan, mavzu_nomi) DO UPDATE SET
+                    tushuntirish = EXCLUDED.tushuntirish, yaratilgan_at = NOW()
+            """, (str(sinf).strip(), str(fan).strip(), str(mavzu).strip(), str(tushuntirish).strip()))
+            conn.commit()
+            saqlandi += 1
+        except Exception:
+            conn.rollback()
+            xato_soni += 1
+    cur.close()
+    conn.close()
+    return {"saqlandi": saqlandi, "xato": xato_soni}
 
 
 @app.get("/api/admin/topik_royxat")
