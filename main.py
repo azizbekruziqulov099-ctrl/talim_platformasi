@@ -1661,18 +1661,29 @@ def togarak_yarat(sorov: TogarakYaratish):
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
         topic_code TEXT,
         PRIMARY KEY (togarak_id, topic_code)
     )""")
+    # Agar o'qituvchi biror o'quv markaziga tegishli bo'lsa (xodim
+    # importi orqali "Fan o'qituvchisi" sifatida qo'shilgan bo'lsa) —
+    # yaratayotgan guruhi AVTOMATIK shu markazga bog'lanadi, markaz
+    # direktori/administratori uni darhol "Markaz" boshqaruv panelida
+    # ko'radi — qo'lda bog'lash shart emas.
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("SELECT markaz_id FROM users WHERE user_id=%s", (teacher_id,))
+    ur = cur.fetchone()
+    teacher_markaz_id = ur["markaz_id"] if ur else None
+
     sinf_qiymati = sorov.sinf.strip() if sorov.sinf else None
     cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE) RETURNING id
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati,
           sorov.parol.strip() if sorov.parol else None,
-          sorov.max_talaba, sorov.oylik_summa))
+          sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id))
     yangi_id = cur.fetchone()["id"]
 
     bogliq_mavzu_soni = 0
@@ -2463,7 +2474,7 @@ def _tolov_jadvallari(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS tolovlar(
         id SERIAL PRIMARY KEY,
         user_id BIGINT NOT NULL REFERENCES users(user_id),
-        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        maktab_id INTEGER REFERENCES maktablar(id),
         oy TEXT NOT NULL,
         summa_kerak INTEGER NOT NULL,
         tolangan_summa INTEGER NOT NULL DEFAULT 0,
@@ -2471,6 +2482,13 @@ def _tolov_jadvallari(cur):
         qayd_etildi_at TIMESTAMP DEFAULT NOW(),
         UNIQUE(user_id, maktab_id, oy)
     )""")
+    # MUHIM: markaz/to'garak to'lovlari uchun ham ishlatiladi — maktab_id
+    # bo'sh (NULL) qoldirilib, togarak_id to'ldiriladi. NULL != NULL
+    # bo'lgani uchun standart SQL semantikasida bu ikkala UNIQUE cheklov
+    # bir-biriga XALAQIT bermaydi (mustaqil ishlaydi).
+    cur.execute("ALTER TABLE tolovlar ADD COLUMN IF NOT EXISTS togarak_id INTEGER REFERENCES togaraklar(id)")
+    cur.execute("ALTER TABLE tolovlar ALTER COLUMN maktab_id DROP NOT NULL")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS tolovlar_togarak_unique ON tolovlar(user_id, togarak_id, oy)")
     cur.execute("""CREATE TABLE IF NOT EXISTS bildirishnomalar(
         id SERIAL PRIMARY KEY,
         user_id BIGINT NOT NULL REFERENCES users(user_id),
@@ -2811,6 +2829,306 @@ def sinf_azosini_chiqar(token: str, azolik_id: int):
     cur.close()
     conn.close()
     return {"holat": "chiqarildi"}
+
+
+# ═══════════════════════════════════════════════════════════
+# O'QUV MARKAZI TIZIMI — maktabdan farqli, MAVJUD to'garak (guruh)
+# infratuzilmasi USTIGA quriladi (togaraklar, togarak_azolar) —
+# takrorlanish emas, ANIQ QAYTA ISHLATISH: markazning har bir
+# "guruhi" — oddiy to'garak, faqat endi markaz_id bilan bog'langan.
+#
+# Rollar: markaz_direktor, administrator (ikkalasi ham markazning
+# BARCHA guruhlarini ko'radi/boshqaradi), fan_oqituvchisi (faqat
+# o'z guruhlarini).
+# ═══════════════════════════════════════════════════════════
+
+MARKAZ_LAVOZIMLARI = {
+    "markaz_direktor": "Markaz direktori",
+    "administrator": "Administrator",
+    "fan_oqituvchisi": "Fan o'qituvchisi",
+}
+_MARKAZ_LAVOZIM_MATNDAN = {v.lower(): k for k, v in MARKAZ_LAVOZIMLARI.items()}
+
+
+def _markaz_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS oquv_markazlari(
+        id SERIAL PRIMARY KEY,
+        nomi TEXT NOT NULL,
+        viloyat TEXT, tuman TEXT,
+        direktor_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+
+
+def _markaz_boshqaruvchi_mi(cur, user_id, markaz_id):
+    """True — agar user shu markazning direktori/administratori
+    (yoki umumiy admin) bo'lsa."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND markaz_id=%s", (user_id, markaz_id))
+    r = cur.fetchone()
+    return bool(r and r["lavozim"] in ("markaz_direktor", "administrator"))
+
+
+class MarkazYaratish(BaseModel):
+    token: str
+    nomi: str
+    viloyat: Optional[str] = None
+    tuman: Optional[str] = None
+    direktor_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/markaz_yarat")
+def markaz_yarat(sorov: MarkazYaratish):
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Markaz nomi kiritilmagan")
+    conn = _db()
+    cur = conn.cursor()
+    _markaz_jadvali(cur)
+    if sorov.direktor_user_id is not None:
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s", (sorov.direktor_user_id,))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
+    cur.execute("""
+        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.direktor_user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "markaz_id": yangi_id}
+
+
+@app.get("/api/admin/markazlar")
+def markazlar_royxati(token: str):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _markaz_jadvali(cur)
+    cur.execute("""
+        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.direktor_user_id, u.full_name AS direktor_ismi
+        FROM oquv_markazlari m
+        LEFT JOIN users u ON u.user_id = m.direktor_user_id
+        ORDER BY m.nomi
+    """)
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"markazlar": natija}
+
+
+@app.get("/api/admin/markaz_xodim_shablon")
+def markaz_xodim_shablon(token: str):
+    _admin_tekshir(token)
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill
+    import io
+    from fastapi.responses import StreamingResponse
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "XODIMLAR"
+    for col, h in enumerate(["F.I.Sh", "Lavozim"], 1):
+        c = ws.cell(1, col, h)
+        c.font = Font(bold=True, color="FFFFFF")
+        c.fill = PatternFill("solid", fgColor="1B4B7A")
+    for r in [("Rasulov Jasur Anvarovich", "Markaz direktori"),
+              ("Toshmatova Malika Sobirovna", "Administrator"),
+              ("Ergashev Ulug'bek Ilhomovich", "Fan o'qituvchisi")]:
+        ws.append(r)
+    ws.column_dimensions["A"].width = 30
+    ws.column_dimensions["B"].width = 25
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, "Lavozim ustuniga faqat shu variantlardan birini yozing:").font = Font(bold=True)
+    for i, nom in enumerate(MARKAZ_LAVOZIMLARI.values(), 2):
+        ws2.cell(i, 1, f"• {nom}")
+    ws2.column_dimensions["A"].width = 60
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=markaz_xodimlar_shablon.xlsx"},
+    )
+
+
+@app.post("/api/admin/markaz_xodim_import")
+async def markaz_xodim_import(token: str, markaz_id: int, fayl: UploadFile = File(...)):
+    """Xuddi maktab xodim importi kabi — har biriga hisob va 30 kunlik
+    kirish kodi yaratadi. "Fan o'qituvchisi" bo'lganlar keyinchalik
+    to'garak (guruh) yaratganda, u AVTOMATIK shu markazga bog'lanadi."""
+    _admin_tekshir(token)
+    import openpyxl
+    import io
+
+    conn = _db()
+    cur = conn.cursor()
+    _markaz_jadvali(cur)
+    cur.execute("SELECT id FROM oquv_markazlari WHERE id=%s", (markaz_id,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Markaz topilmadi")
+
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb["XODIMLAR"] if "XODIMLAR" in wb.sheetnames else wb.active
+
+    _xodim_kod_jadvali(cur)
+    natijalar = []
+    xato_soni = 0
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or not row[0] or not str(row[0]).strip():
+            continue
+        fish = str(row[0]).strip()
+        lavozim_matni = str(row[1]).strip() if len(row) > 1 and row[1] else "Fan o'qituvchisi"
+        lavozim_kaliti = _MARKAZ_LAVOZIM_MATNDAN.get(lavozim_matni.lower(), "fan_oqituvchisi")
+
+        try:
+            cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+            r = cur.fetchone()
+            yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+
+            cur.execute("""
+                INSERT INTO users(user_id, full_name, role, markaz_id, lavozim)
+                VALUES(%s,%s,'oqituvchi',%s,%s)
+            """, (yangi_id, fish, markaz_id, lavozim_kaliti))
+
+            if lavozim_kaliti == "markaz_direktor":
+                cur.execute("UPDATE oquv_markazlari SET direktor_user_id=%s WHERE id=%s", (yangi_id, markaz_id))
+
+            kirish_kodi = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+            cur.execute("INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)", (kirish_kodi, yangi_id))
+
+            conn.commit()
+            natijalar.append({
+                "fish": fish, "lavozim": MARKAZ_LAVOZIMLARI.get(lavozim_kaliti, lavozim_matni),
+                "kirish_kodi": kirish_kodi,
+            })
+        except Exception:
+            conn.rollback()
+            xato_soni += 1
+
+    cur.close()
+    conn.close()
+    return {"natijalar": natijalar, "xato_soni": xato_soni}
+
+
+@app.get("/api/markaz/dashboard")
+def markaz_dashboard(token: str, markaz_id: int):
+    """Markaz direktori/administratori uchun — MARKAZGA BOG'LANGAN
+    BARCHA guruhlarni (to'garaklarni) bitta ekranda ko'rsatadi —
+    a'zo soni, oylik summa, o'qituvchi. Aniq boshqarish uchun."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _markaz_jadvali(cur)
+    if not _markaz_boshqaruvchi_mi(cur, user_id, markaz_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat markaz direktori/administratori ko'ra oladi")
+
+    cur.execute("""
+        SELECT t.id, t.nomi, t.fan, t.sinf, t.oylik_summa, t.parol, u.full_name AS oqituvchi_ismi,
+               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=t.id AND aktiv=TRUE) AS azo_soni
+        FROM togaraklar t
+        LEFT JOIN users u ON u.user_id = t.teacher_id
+        WHERE t.markaz_id=%s AND t.aktiv=TRUE
+        ORDER BY t.nomi
+    """, (markaz_id,))
+    guruhlar = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"guruhlar": guruhlar}
+
+
+@app.get("/api/markaz/guruh_tolovlari")
+def markaz_guruh_tolovlari(token: str, togarak_id: int, oy: str):
+    """Bitta guruh (to'garak) uchun — shu oy to'lov holati, faqat
+    TASDIQLANGAN (togarak_azolar, aktiv) a'zolar bo'yicha."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute("SELECT teacher_id, markaz_id, oylik_summa FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    ruxsat = t["teacher_id"] == user_id or (t["markaz_id"] and _markaz_boshqaruvchi_mi(cur, user_id, t["markaz_id"]))
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh o'qituvchisi yoki markaz rahbariyati ko'ra oladi")
+
+    kerakli_summa = t["oylik_summa"] or 0
+    cur.execute("""
+        SELECT u.user_id, u.full_name FROM togarak_azolar ta
+        JOIN users u ON u.user_id = ta.user_id
+        WHERE ta.togarak_id=%s AND ta.aktiv=TRUE
+        ORDER BY u.full_name
+    """, (togarak_id,))
+    azolar = cur.fetchall()
+    cur.execute("SELECT user_id, tolangan_summa, tolov_sanasi FROM tolovlar WHERE togarak_id=%s AND oy=%s", (togarak_id, oy))
+    tolovlar_map = {r["user_id"]: r for r in cur.fetchall()}
+    cur.close()
+    conn.close()
+
+    natija = []
+    for a in azolar:
+        tt = tolovlar_map.get(a["user_id"])
+        tolangan = tt["tolangan_summa"] if tt else 0
+        natija.append({
+            "user_id": a["user_id"], "full_name": a["full_name"],
+            "kerakli_summa": kerakli_summa, "tolangan_summa": tolangan,
+            "qarzdor": tolangan < kerakli_summa,
+        })
+    return {"oquvchilar": natija, "kerakli_summa": kerakli_summa}
+
+
+class MarkazTolovBelgilash(BaseModel):
+    token: str
+    user_id: int
+    togarak_id: int
+    oy: str
+    tolangan_summa: int
+
+
+@app.post("/api/markaz/tolov_belgila")
+def markaz_tolov_belgila(sorov: MarkazTolovBelgilash):
+    user_id_qiluvchi = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute("""
+        INSERT INTO tolovlar(user_id, togarak_id, oy, summa_kerak, tolangan_summa, tolov_sanasi)
+        VALUES(%s,%s,%s,%s,%s, CURRENT_DATE)
+        ON CONFLICT (user_id, togarak_id, oy) DO UPDATE SET
+            tolangan_summa = EXCLUDED.tolangan_summa, tolov_sanasi = CURRENT_DATE
+    """, (sorov.user_id, sorov.togarak_id, sorov.oy, sorov.tolangan_summa, sorov.tolangan_summa))
+    conn.commit()
+
+    cur.execute("SELECT full_name FROM users WHERE user_id=%s", (sorov.user_id,))
+    oquvchi = cur.fetchone()
+    cur.execute("SELECT parent_id FROM parent_child WHERE child_id=%s", (sorov.user_id,))
+    for oo in cur.fetchall():
+        cur.execute(
+            "INSERT INTO bildirishnomalar(user_id, matn, turi) VALUES(%s,%s,'tolov')",
+            (oo["parent_id"], f"{oquvchi['full_name']} uchun {sorov.oy} oyi to'lovi qabul qilindi: {sorov.tolangan_summa:,} so'm".replace(",", " ")),
+        )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
 
 
 class TestShablonGuruh(BaseModel):
