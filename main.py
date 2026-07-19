@@ -4123,108 +4123,121 @@ def sinov_muhit_yarat(token: str):
     _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    _maktab_jadvali(cur); _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur)
-    _markaz_jadvali(cur); _bogcha_jadvali(cur); _universitet_jadvali(cur)
-    _tolov_jadvallari(cur)
+    try:
+        _maktab_jadvali(cur); _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur)
+        _markaz_jadvali(cur); _bogcha_jadvali(cur); _universitet_jadvali(cur)
+        _tolov_jadvallari(cur)
+        cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
+        cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+        cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
+        cur.execute("""CREATE TABLE IF NOT EXISTS togarak_azolar(
+            id SERIAL PRIMARY KEY, togarak_id INTEGER REFERENCES togaraklar(id),
+            user_id BIGINT REFERENCES users(user_id), aktiv BOOLEAN DEFAULT TRUE, qoshilgan_at TIMESTAMP DEFAULT NOW()
+        )""")
+        cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+        cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+        cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+        cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+        cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
 
-    belgi = datetime.now().strftime("%H%M%S")
-    natija = {"hisoblar": []}
+        belgi = datetime.now().strftime("%H%M%S")
+        natija = {"hisoblar": []}
 
-    def qosh(ism, role, lavozim_matni, **maydonlar):
-        uid = _sinov_user_yarat(cur, ism, role, **maydonlar)
-        natija["hisoblar"].append({"user_id": uid, "full_name": ism, "izoh": lavozim_matni})
-        return uid
+        def qosh(ism, role, lavozim_matni, **maydonlar):
+            uid = _sinov_user_yarat(cur, ism, role, **maydonlar)
+            natija["hisoblar"].append({"user_id": uid, "full_name": ism, "izoh": lavozim_matni})
+            return uid
 
-    # ---- 1) MAKTAB ----
-    maktab_direktor = qosh(f"Sinov Direktor {belgi}", "oqituvchi", "Maktab direktori", lavozim="direktor")
-    cur.execute("""
-        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov)
-        VALUES(%s,%s,%s,1,%s,TRUE,500000) RETURNING id
-    """, (f"Sinov Maktabi {belgi}", "Samarqand", "Samarqand shahri", maktab_direktor))
-    maktab_id = cur.fetchone()["id"]
-    cur.execute("UPDATE users SET maktab_id=%s WHERE user_id=%s", (maktab_id, maktab_direktor))
-    sinf_rahbar = qosh(f"Sinov SinfRahbar {belgi}", "oqituvchi", "5-A sinf rahbari", maktab_id=maktab_id, lavozim="fan_oqituvchisi")
-    sinf_paroli = "".join(secrets.choice(string.digits) for _ in range(4))
-    cur.execute("""
-        INSERT INTO maktab_sinflari(maktab_id, sinf, harf, rahbar_user_id, qoshilish_paroli)
-        VALUES(%s,'5','A',%s,%s) RETURNING id
-    """, (maktab_id, sinf_rahbar, sinf_paroli))
-    sinf_id = cur.fetchone()["id"]
-    for i in range(1, 4):
-        oq = qosh(f"Sinov Oquvchi{i} {belgi}", "oquvchi", "5-A sinf o'quvchisi", maktab_id=maktab_id, **{"class": "5", "class_letter": "A"})
-        cur.execute("INSERT INTO maktab_sinf_azolari(sinf_id, user_id) VALUES(%s,%s)", (sinf_id, oq))
+        # ---- 1) MAKTAB ----
+        maktab_direktor = qosh(f"Sinov Direktor {belgi}", "oqituvchi", "Maktab direktori", lavozim="direktor")
+        cur.execute("""
+            INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov)
+            VALUES(%s,%s,%s,1,%s,TRUE,500000) RETURNING id
+        """, (f"Sinov Maktabi {belgi}", "Samarqand", "Samarqand shahri", maktab_direktor))
+        maktab_id = cur.fetchone()["id"]
+        cur.execute("UPDATE users SET maktab_id=%s WHERE user_id=%s", (maktab_id, maktab_direktor))
+        sinf_rahbar = qosh(f"Sinov SinfRahbar {belgi}", "oqituvchi", "5-A sinf rahbari", maktab_id=maktab_id, lavozim="fan_oqituvchisi")
+        sinf_paroli = "".join(secrets.choice(string.digits) for _ in range(4))
+        cur.execute("""
+            INSERT INTO maktab_sinflari(maktab_id, sinf, harf, rahbar_user_id, qoshilish_paroli)
+            VALUES(%s,'5','A',%s,%s) RETURNING id
+        """, (maktab_id, sinf_rahbar, sinf_paroli))
+        sinf_id = cur.fetchone()["id"]
+        for i in range(1, 4):
+            oq = qosh(f"Sinov Oquvchi{i} {belgi}", "oquvchi", "5-A sinf o'quvchisi", maktab_id=maktab_id, **{"class": "5", "class_letter": "A"})
+            cur.execute("INSERT INTO maktab_sinf_azolari(sinf_id, user_id) VALUES(%s,%s)", (sinf_id, oq))
 
-    # ---- 2) BOG'CHA ----
-    bogcha_direktor = qosh(f"Sinov BDirektor {belgi}", "oqituvchi", "Bog'cha direktori", lavozim="bogcha_direktor")
-    cur.execute("""
-        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id, oylik_tolov)
-        VALUES(%s,'xususiy',%s,%s,%s,800000) RETURNING id
-    """, (f"Sinov Bog'chasi {belgi}", "Samarqand", "Samarqand shahri", bogcha_direktor))
-    bogcha_id = cur.fetchone()["id"]
-    cur.execute("UPDATE users SET bogcha_id=%s WHERE user_id=%s", (bogcha_id, bogcha_direktor))
-    opa = qosh(f"Sinov Opa {belgi}", "oqituvchi", "Quyoshcha guruhi tarbiyachisi", bogcha_id=bogcha_id, lavozim="bogcha_opa")
-    cur.execute("""
-        INSERT INTO bogcha_guruhlari(bogcha_id, nomi, opa_user_id, qoshilish_paroli)
-        VALUES(%s,'Quyoshcha guruhi',%s,'0000') RETURNING id
-    """, (bogcha_id, opa))
-    bog_guruh_id = cur.fetchone()["id"]
-    for i in range(1, 4):
-        bola = qosh(f"Sinov Bola{i} {belgi}", "oquvchi", "Quyoshcha guruhi bolasi")
-        cur.execute("INSERT INTO bogcha_guruh_bolalari(guruh_id, bola_user_id) VALUES(%s,%s)", (bog_guruh_id, bola))
+        # ---- 2) BOG'CHA ----
+        bogcha_direktor = qosh(f"Sinov BDirektor {belgi}", "oqituvchi", "Bog'cha direktori", lavozim="bogcha_direktor")
+        cur.execute("""
+            INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id, oylik_tolov)
+            VALUES(%s,'xususiy',%s,%s,%s,800000) RETURNING id
+        """, (f"Sinov Bog'chasi {belgi}", "Samarqand", "Samarqand shahri", bogcha_direktor))
+        bogcha_id = cur.fetchone()["id"]
+        cur.execute("UPDATE users SET bogcha_id=%s WHERE user_id=%s", (bogcha_id, bogcha_direktor))
+        opa = qosh(f"Sinov Opa {belgi}", "oqituvchi", "Quyoshcha guruhi tarbiyachisi", bogcha_id=bogcha_id, lavozim="bogcha_opa")
+        cur.execute("""
+            INSERT INTO bogcha_guruhlari(bogcha_id, nomi, opa_user_id, qoshilish_paroli)
+            VALUES(%s,'Quyoshcha guruhi',%s,'0000') RETURNING id
+        """, (bogcha_id, opa))
+        bog_guruh_id = cur.fetchone()["id"]
+        for i in range(1, 4):
+            bola = qosh(f"Sinov Bola{i} {belgi}", "oquvchi", "Quyoshcha guruhi bolasi")
+            cur.execute("INSERT INTO bogcha_guruh_bolalari(guruh_id, bola_user_id) VALUES(%s,%s)", (bog_guruh_id, bola))
 
-    # ---- 3) MARKAZ ----
-    markaz_direktor = qosh(f"Sinov MDirektor {belgi}", "oqituvchi", "Markaz direktori", lavozim="markaz_direktor")
-    cur.execute("""
-        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id)
-        VALUES(%s,%s,%s,%s) RETURNING id
-    """, (f"Sinov Markazi {belgi}", "Samarqand", "Samarqand shahri", markaz_direktor))
-    markaz_id = cur.fetchone()["id"]
-    cur.execute("UPDATE users SET markaz_id=%s WHERE user_id=%s", (markaz_id, markaz_direktor))
-    markaz_oqituvchi = qosh(f"Sinov MOqituvchi {belgi}", "oqituvchi", "Markaz fan o'qituvchisi", markaz_id=markaz_id, lavozim="fan_oqituvchisi")
-    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
-    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
-    cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id)
-        VALUES(%s,'Matematika',%s,'5','1111',25,300000,TRUE,%s) RETURNING id
-    """, (f"Sinov Guruh {belgi}", markaz_oqituvchi, markaz_id))
-    markaz_togarak_id = cur.fetchone()["id"]
-    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_azolar(
-        id SERIAL PRIMARY KEY, togarak_id INTEGER REFERENCES togaraklar(id),
-        user_id BIGINT REFERENCES users(user_id), aktiv BOOLEAN DEFAULT TRUE, qoshilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
-    for i in range(1, 4):
-        tal = qosh(f"Sinov MTalaba{i} {belgi}", "oquvchi", "Markaz guruhi a'zosi")
-        cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (markaz_togarak_id, tal))
+        # ---- 3) MARKAZ ----
+        markaz_direktor = qosh(f"Sinov MDirektor {belgi}", "oqituvchi", "Markaz direktori", lavozim="markaz_direktor")
+        cur.execute("""
+            INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id)
+            VALUES(%s,%s,%s,%s) RETURNING id
+        """, (f"Sinov Markazi {belgi}", "Samarqand", "Samarqand shahri", markaz_direktor))
+        markaz_id = cur.fetchone()["id"]
+        cur.execute("UPDATE users SET markaz_id=%s WHERE user_id=%s", (markaz_id, markaz_direktor))
+        markaz_oqituvchi = qosh(f"Sinov MOqituvchi {belgi}", "oqituvchi", "Markaz fan o'qituvchisi", markaz_id=markaz_id, lavozim="fan_oqituvchisi")
+        cur.execute("""
+            INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id)
+            VALUES(%s,'Matematika',%s,'5','1111',25,300000,TRUE,%s) RETURNING id
+        """, (f"Sinov Guruh {belgi}", markaz_oqituvchi, markaz_id))
+        markaz_togarak_id = cur.fetchone()["id"]
+        for i in range(1, 4):
+            tal = qosh(f"Sinov MTalaba{i} {belgi}", "oquvchi", "Markaz guruhi a'zosi")
+            cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (markaz_togarak_id, tal))
 
-    # ---- 4) UNIVERSITET ----
-    rektor = qosh(f"Sinov Rektor {belgi}", "oqituvchi", "Rektor", lavozim="rektor")
-    cur.execute("""
-        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id)
-        VALUES(%s,%s,%s,%s) RETURNING id
-    """, (f"Sinov Universiteti {belgi}", "Samarqand", "Samarqand shahri", rektor))
-    universitet_id = cur.fetchone()["id"]
-    cur.execute("UPDATE users SET universitet_id=%s WHERE user_id=%s", (universitet_id, rektor))
-    cur.execute("INSERT INTO fakultetlar(universitet_id, nomi) VALUES(%s,'Matematika fakulteti') RETURNING id", (universitet_id,))
-    fakultet_id = cur.fetchone()["id"]
-    cur.execute("INSERT INTO kafedralar(fakultet_id, nomi) VALUES(%s,'Algebra kafedrasi') RETURNING id", (fakultet_id,))
-    kafedra_id = cur.fetchone()["id"]
-    professor = qosh(f"Sinov Professor {belgi}", "oqituvchi", "Kurator-professor", universitet_id=universitet_id, lavozim="professor_oqituvchi")
-    cur.execute("""
-        INSERT INTO universitet_guruhlari(kafedra_id, nomi, kurs, yonalish, rahbar_user_id, qoshilish_paroli)
-        VALUES(%s,'201-guruh',2,'Matematika',%s,'2222') RETURNING id
-    """, (kafedra_id, professor))
-    uni_guruh_id = cur.fetchone()["id"]
-    cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, aktiv, universitet_guruh_id)
-        VALUES(%s,'Matematik tahlil',%s,'201-guruh','3333',TRUE,%s) RETURNING id
-    """, (f"Sinov Kurs {belgi}", professor, uni_guruh_id))
-    uni_togarak_id = cur.fetchone()["id"]
-    for i in range(1, 4):
-        tal = qosh(f"Sinov Talaba{i} {belgi}", "oquvchi", "201-guruh talabasi")
-        cur.execute("INSERT INTO universitet_guruh_azolari(guruh_id, user_id) VALUES(%s,%s)", (uni_guruh_id, tal))
-        cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (uni_togarak_id, tal))
+        # ---- 4) UNIVERSITET ----
+        rektor = qosh(f"Sinov Rektor {belgi}", "oqituvchi", "Rektor", lavozim="rektor")
+        cur.execute("""
+            INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id)
+            VALUES(%s,%s,%s,%s) RETURNING id
+        """, (f"Sinov Universiteti {belgi}", "Samarqand", "Samarqand shahri", rektor))
+        universitet_id = cur.fetchone()["id"]
+        cur.execute("UPDATE users SET universitet_id=%s WHERE user_id=%s", (universitet_id, rektor))
+        cur.execute("INSERT INTO fakultetlar(universitet_id, nomi) VALUES(%s,'Matematika fakulteti') RETURNING id", (universitet_id,))
+        fakultet_id = cur.fetchone()["id"]
+        cur.execute("INSERT INTO kafedralar(fakultet_id, nomi) VALUES(%s,'Algebra kafedrasi') RETURNING id", (fakultet_id,))
+        kafedra_id = cur.fetchone()["id"]
+        professor = qosh(f"Sinov Professor {belgi}", "oqituvchi", "Kurator-professor", universitet_id=universitet_id, lavozim="professor_oqituvchi")
+        cur.execute("""
+            INSERT INTO universitet_guruhlari(kafedra_id, nomi, kurs, yonalish, rahbar_user_id, qoshilish_paroli)
+            VALUES(%s,'201-guruh',2,'Matematika',%s,'2222') RETURNING id
+        """, (kafedra_id, professor))
+        uni_guruh_id = cur.fetchone()["id"]
+        cur.execute("""
+            INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, aktiv, universitet_guruh_id)
+            VALUES(%s,'Matematik tahlil',%s,'201-guruh','3333',TRUE,%s) RETURNING id
+        """, (f"Sinov Kurs {belgi}", professor, uni_guruh_id))
+        uni_togarak_id = cur.fetchone()["id"]
+        for i in range(1, 4):
+            tal = qosh(f"Sinov Talaba{i} {belgi}", "oquvchi", "201-guruh talabasi")
+            cur.execute("INSERT INTO universitet_guruh_azolari(guruh_id, user_id) VALUES(%s,%s)", (uni_guruh_id, tal))
+            cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (uni_togarak_id, tal))
 
-    conn.commit()
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=500, detail=f"Sinov muhitini yaratishda xato: {e}")
+
     cur.close()
     conn.close()
     natija["izoh"] = (
