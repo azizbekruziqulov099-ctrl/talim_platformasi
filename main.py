@@ -3170,24 +3170,27 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
 
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute(
-        "SELECT maktab_id, markaz_id, lavozim FROM users WHERE user_id=%s",
+        "SELECT maktab_id, markaz_id, bogcha_id, lavozim FROM users WHERE user_id=%s",
         (kod["placeholder_id"],),
     )
     p = cur.fetchone()
-    if not p or (not p["maktab_id"] and not p["markaz_id"]):
+    if not p or (not p["maktab_id"] and not p["markaz_id"] and not p["bogcha_id"]):
         cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Bu kodga tegishli maktab/markaz topilmadi")
+        raise HTTPException(status_code=400, detail="Bu kodga tegishli muassasa topilmadi")
 
     cur.execute(
-        "UPDATE users SET maktab_id=%s, markaz_id=%s, lavozim=%s WHERE user_id=%s",
-        (p["maktab_id"], p["markaz_id"], p["lavozim"], user_id),
+        "UPDATE users SET maktab_id=%s, markaz_id=%s, bogcha_id=%s, lavozim=%s WHERE user_id=%s",
+        (p["maktab_id"], p["markaz_id"], p["bogcha_id"], p["lavozim"], user_id),
     )
     if p["maktab_id"] and p["lavozim"] == "direktor":
         cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (user_id, p["maktab_id"]))
     if p["markaz_id"] and p["lavozim"] == "markaz_direktor":
         cur.execute("UPDATE oquv_markazlari SET direktor_user_id=%s WHERE id=%s", (user_id, p["markaz_id"]))
+    if p["bogcha_id"] and p["lavozim"] == "bogcha_direktor":
+        cur.execute("UPDATE bogchalar SET direktor_user_id=%s WHERE id=%s", (user_id, p["bogcha_id"]))
     cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s", (kirish_kodi.strip(),))
     conn.commit()
 
@@ -3200,9 +3203,418 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
         cur.execute("SELECT nomi FROM oquv_markazlari WHERE id=%s", (p["markaz_id"],))
         m = cur.fetchone()
         natija["joy_nomi"] = m["nomi"] if m else None
+    elif p["bogcha_id"]:
+        cur.execute("SELECT nomi FROM bogchalar WHERE id=%s", (p["bogcha_id"],))
+        m = cur.fetchone()
+        natija["joy_nomi"] = m["nomi"] if m else None
     cur.close()
     conn.close()
     return natija
+
+
+# ═══════════════════════════════════════════════════════════
+# BOG'CHA TIZIMI — maktab/markazga o'xshash, lekin FARQI: bolalar
+# (bog'cha yoshidagilar) hisobga EGA BO'LMAYDI — shu sabab GURUHGA
+# QO'SHILISH parol bilan EMAS, OPA tomonidan TO'G'RIDAN-TO'G'RI ism
+# kiritib qo'shiladi. Bola uchun baribir "placeholder" hisob
+# yaratamiz (manfiy user_id, hech qachon login qilmaydi) — shu orqali
+# to'lov va ota-onaga bildirishnoma tizimlarini QAYTA ISHLATAMIZ,
+# noldan qurmaymiz.
+# ═══════════════════════════════════════════════════════════
+
+BOGCHA_LAVOZIMLARI = {
+    "bogcha_direktor": "Bog'cha direktori",
+    "bogcha_zam": "Bog'cha zam direktori",
+    "bogcha_opa": "Bog'cha opasi (tarbiyachi)",
+}
+_BOGCHA_LAVOZIM_MATNDAN = {v.lower(): k for k, v in BOGCHA_LAVOZIMLARI.items()}
+BOGCHA_TURLARI = {"xususiy": "Xususiy", "davlat": "Davlat"}
+
+
+def _bogcha_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS bogchalar(
+        id SERIAL PRIMARY KEY,
+        nomi TEXT NOT NULL,
+        turi TEXT NOT NULL DEFAULT 'xususiy',
+        viloyat TEXT, tuman TEXT,
+        direktor_user_id BIGINT REFERENCES users(user_id),
+        oylik_tolov INTEGER,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_guruhlari(
+        id SERIAL PRIMARY KEY,
+        bogcha_id INTEGER NOT NULL REFERENCES bogchalar(id),
+        nomi TEXT NOT NULL,
+        opa_user_id BIGINT REFERENCES users(user_id),
+        qoshilish_paroli TEXT,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_guruh_bolalari(
+        id SERIAL PRIMARY KEY,
+        guruh_id INTEGER NOT NULL REFERENCES bogcha_guruhlari(id),
+        bola_user_id BIGINT NOT NULL REFERENCES users(user_id),
+        qoshilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+
+
+def _bogcha_boshqaruvchi_mi(cur, user_id, bogcha_id):
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND bogcha_id=%s", (user_id, bogcha_id))
+    r = cur.fetchone()
+    return bool(r and r["lavozim"] in ("bogcha_direktor", "bogcha_zam"))
+
+
+class BogchaYaratish(BaseModel):
+    token: str
+    nomi: str
+    turi: str = "xususiy"
+    viloyat: Optional[str] = None
+    tuman: Optional[str] = None
+    direktor_user_id: Optional[int] = None
+    oylik_tolov: Optional[int] = None
+
+
+@app.post("/api/admin/bogcha_yarat")
+def bogcha_yarat(sorov: BogchaYaratish):
+    _admin_tekshir(sorov.token)
+    if not sorov.nomi.strip():
+        raise HTTPException(status_code=400, detail="Bog'cha nomi kiritilmagan")
+    if sorov.turi not in BOGCHA_TURLARI:
+        raise HTTPException(status_code=400, detail="Noto'g'ri bog'cha turi")
+    conn = _db()
+    cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    if sorov.direktor_user_id is not None:
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s", (sorov.direktor_user_id,))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
+    cur.execute("""
+        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id, oylik_tolov)
+        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.turi, sorov.viloyat, sorov.tuman, sorov.direktor_user_id, sorov.oylik_tolov))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "bogcha_id": yangi_id}
+
+
+@app.get("/api/admin/bogchalar")
+def bogchalar_royxati(token: str):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    cur.execute("""
+        SELECT b.id, b.nomi, b.turi, b.viloyat, b.tuman, b.direktor_user_id, b.oylik_tolov,
+               u.full_name AS direktor_ismi
+        FROM bogchalar b
+        LEFT JOIN users u ON u.user_id = b.direktor_user_id
+        ORDER BY b.nomi
+    """)
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"bogchalar": natija}
+
+
+@app.get("/api/admin/bogcha_xodim_shablon")
+def bogcha_xodim_shablon(token: str):
+    _admin_tekshir(token)
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill
+    import io
+    from fastapi.responses import StreamingResponse
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "XODIMLAR"
+    for col, h in enumerate(["F.I.Sh", "Lavozim", "Guruh rahbarligi (ixtiyoriy)"], 1):
+        c = ws.cell(1, col, h)
+        c.font = Font(bold=True, color="FFFFFF")
+        c.fill = PatternFill("solid", fgColor="1B4B7A")
+    for r in [("Xolmatova Gulnora Rahimovna", "Bog'cha direktori", ""),
+              ("Sodiqova Dilfuza Nematovna", "Bog'cha zam direktori", ""),
+              ("Yusupova Shahnoza Karimovna", "Bog'cha opasi (tarbiyachi)", "Quyoshcha guruhi"),
+              ("Rahimova Zulfiya To'raevna", "Bog'cha opasi (tarbiyachi)", "Kichkintoylar guruhi")]:
+        ws.append(r)
+    ws.column_dimensions["A"].width = 32
+    ws.column_dimensions["B"].width = 30
+    ws.column_dimensions["C"].width = 28
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, "Lavozim ustuniga faqat shu variantlardan birini yozing:").font = Font(bold=True)
+    for i, nom in enumerate(BOGCHA_LAVOZIMLARI.values(), 2):
+        ws2.cell(i, 1, f"• {nom}")
+    ws2.cell(len(BOGCHA_LAVOZIMLARI) + 3, 1,
+             "Guruh rahbarligi — faqat 'Bog'cha opasi' bo'lgan xodim uchun to'ldiring (masalan: Quyoshcha guruhi). Har xil nom — har xil guruh.")
+    ws2.column_dimensions["A"].width = 70
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=bogcha_xodimlar_shablon.xlsx"},
+    )
+
+
+@app.post("/api/admin/bogcha_xodim_import")
+async def bogcha_xodim_import(token: str, bogcha_id: int, fayl: UploadFile = File(...)):
+    """Xuddi maktab/markaz xodim importi kabi. "Guruh rahbarligi"
+    to'ldirilgan bo'lsa (faqat bog'cha opalari uchun mazmunli) — o'sha
+    nomdagi guruh yaratiladi/yangilanadi, 4 xonali (odatda ota-onaga
+    emas, guruh ICHKI hisoboti uchun) parol biriktiriladi."""
+    _admin_tekshir(token)
+    import openpyxl
+    import io
+
+    conn = _db()
+    cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    cur.execute("SELECT id FROM bogchalar WHERE id=%s", (bogcha_id,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Bog'cha topilmadi")
+
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb["XODIMLAR"] if "XODIMLAR" in wb.sheetnames else wb.active
+
+    _xodim_kod_jadvali(cur)
+    natijalar = []
+    xato_soni = 0
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or not row[0] or not str(row[0]).strip():
+            continue
+        fish = str(row[0]).strip()
+        lavozim_matni = str(row[1]).strip() if len(row) > 1 and row[1] else "Bog'cha opasi (tarbiyachi)"
+        guruh_nomi = str(row[2]).strip() if len(row) > 2 and row[2] else ""
+        lavozim_kaliti = _BOGCHA_LAVOZIM_MATNDAN.get(lavozim_matni.lower(), "bogcha_opa")
+
+        try:
+            cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+            r = cur.fetchone()
+            yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+
+            cur.execute("""
+                INSERT INTO users(user_id, full_name, role, bogcha_id, lavozim)
+                VALUES(%s,%s,'oqituvchi',%s,%s)
+            """, (yangi_id, fish, bogcha_id, lavozim_kaliti))
+
+            if lavozim_kaliti == "bogcha_direktor":
+                cur.execute("UPDATE bogchalar SET direktor_user_id=%s WHERE id=%s", (yangi_id, bogcha_id))
+
+            kirish_kodi = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+            cur.execute("INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)", (kirish_kodi, yangi_id))
+
+            guruh_paroli = None
+            if guruh_nomi and lavozim_kaliti == "bogcha_opa":
+                guruh_paroli = "".join(secrets.choice(string.digits) for _ in range(4))
+                cur.execute("""
+                    INSERT INTO bogcha_guruhlari(bogcha_id, nomi, opa_user_id, qoshilish_paroli)
+                    VALUES(%s,%s,%s,%s) RETURNING id
+                """, (bogcha_id, guruh_nomi, yangi_id, guruh_paroli))
+
+            conn.commit()
+            natijalar.append({
+                "fish": fish, "lavozim": BOGCHA_LAVOZIMLARI.get(lavozim_kaliti, lavozim_matni),
+                "kirish_kodi": kirish_kodi, "guruh_nomi": guruh_nomi or None,
+            })
+        except Exception:
+            conn.rollback()
+            xato_soni += 1
+
+    cur.close()
+    conn.close()
+    return {"natijalar": natijalar, "xato_soni": xato_soni}
+
+
+@app.get("/api/opa/mening_guruhlarim")
+def opa_mening_guruhlarim(token: str):
+    """Bog'cha opasi RAHBAR bo'lgan guruhlari — har birida nechta
+    bola borligi bilan."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    cur.execute("""
+        SELECT g.id, g.nomi, g.qoshilish_paroli, b.id AS bogcha_id, b.nomi AS bogcha_nomi, b.oylik_tolov,
+               (SELECT COUNT(*) FROM bogcha_guruh_bolalari WHERE guruh_id=g.id) AS bola_soni
+        FROM bogcha_guruhlari g
+        JOIN bogchalar b ON b.id = g.bogcha_id
+        WHERE g.opa_user_id=%s
+        ORDER BY g.nomi
+    """, (user_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"guruhlar": natija}
+
+
+class BolaQoshish(BaseModel):
+    token: str
+    guruh_id: int
+    bola_ismi: str
+    ota_ona_user_id: Optional[int] = None  # mavjud ota-ona hisobiga bog'lash uchun (ixtiyoriy)
+
+
+@app.post("/api/opa/bola_qoshish")
+def opa_bola_qoshish(sorov: BolaQoshish):
+    """Opa bolani ISMI bilan TO'G'RIDAN-TO'G'RI guruhga qo'shadi —
+    bola hisobga ega bo'lmagani uchun, ichki "placeholder" hisob
+    yaratiladi (bu hisob hech qachon login qilmaydi, faqat to'lov/
+    bildirishnoma tizimlarini qayta ishlatish uchun kerak)."""
+    user_id = _jwt_tekshir(sorov.token)
+    if not sorov.bola_ismi.strip():
+        raise HTTPException(status_code=400, detail="Bola ismini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    cur.execute("SELECT opa_user_id FROM bogcha_guruhlari WHERE id=%s", (sorov.guruh_id,))
+    g = cur.fetchone()
+    if not g:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and g["opa_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh opasi yoki admin qo'sha oladi")
+
+    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+    r = cur.fetchone()
+    yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+    cur.execute("INSERT INTO users(user_id, full_name, role) VALUES(%s,%s,'oquvchi')", (yangi_id, sorov.bola_ismi.strip()))
+    cur.execute("INSERT INTO bogcha_guruh_bolalari(guruh_id, bola_user_id) VALUES(%s,%s)", (sorov.guruh_id, yangi_id))
+    if sorov.ota_ona_user_id is not None:
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s", (sorov.ota_ona_user_id,))
+        if cur.fetchone():
+            cur.execute(
+                "INSERT INTO parent_child(parent_id, child_id) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+                (sorov.ota_ona_user_id, yangi_id),
+            )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "bola_id": yangi_id}
+
+
+@app.get("/api/opa/guruh_bolalari")
+def opa_guruh_bolalari(token: str, guruh_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    cur.execute("SELECT opa_user_id, bogcha_id FROM bogcha_guruhlari WHERE id=%s", (guruh_id,))
+    g = cur.fetchone()
+    if not g:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and g["opa_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh opasi yoki admin ko'ra oladi")
+
+    cur.execute("SELECT oylik_tolov FROM bogchalar WHERE id=%s", (g["bogcha_id"],))
+    b = cur.fetchone()
+    kerakli_summa = (b["oylik_tolov"] if b else None) or 0
+
+    cur.execute("""
+        SELECT gb.id AS roster_id, u.user_id, u.full_name
+        FROM bogcha_guruh_bolalari gb JOIN users u ON u.user_id = gb.bola_user_id
+        WHERE gb.guruh_id=%s ORDER BY u.full_name
+    """, (guruh_id,))
+    bolalar = cur.fetchall()
+
+    joriy_oy = datetime.now().strftime("%Y-%m")
+    cur.execute("ALTER TABLE tolovlar ADD COLUMN IF NOT EXISTS bogcha_guruh_id INTEGER REFERENCES bogcha_guruhlari(id)")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS tolovlar_bogcha_unique ON tolovlar(user_id, bogcha_guruh_id, oy)")
+    cur.execute("SELECT user_id, tolangan_summa FROM tolovlar WHERE bogcha_guruh_id=%s AND oy=%s", (guruh_id, joriy_oy))
+    tolovlar_map = {r["user_id"]: r["tolangan_summa"] for r in cur.fetchall()}
+    cur.close()
+    conn.close()
+
+    natija = []
+    for bl in bolalar:
+        tolangan = tolovlar_map.get(bl["user_id"], 0)
+        natija.append({
+            "roster_id": bl["roster_id"], "user_id": bl["user_id"], "full_name": bl["full_name"],
+            "kerakli_summa": kerakli_summa, "tolangan_summa": tolangan, "qarzdor": tolangan < kerakli_summa,
+        })
+    return {"bolalar": natija, "kerakli_summa": kerakli_summa, "oy": joriy_oy}
+
+
+@app.delete("/api/opa/bolani_chiqar")
+def opa_bolani_chiqar(token: str, roster_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT g.opa_user_id FROM bogcha_guruh_bolalari gb
+        JOIN bogcha_guruhlari g ON g.id = gb.guruh_id WHERE gb.id=%s
+    """, (roster_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and r["opa_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh opasi yoki admin chiqara oladi")
+    cur.execute("DELETE FROM bogcha_guruh_bolalari WHERE id=%s", (roster_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "chiqarildi"}
+
+
+class BogchaTolovBelgilash(BaseModel):
+    token: str
+    bola_user_id: int
+    guruh_id: int
+    oy: str
+    tolangan_summa: int
+
+
+@app.post("/api/opa/tolov_belgila")
+def opa_tolov_belgila(sorov: BogchaTolovBelgilash):
+    _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute("ALTER TABLE tolovlar ADD COLUMN IF NOT EXISTS bogcha_guruh_id INTEGER REFERENCES bogcha_guruhlari(id)")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS tolovlar_bogcha_unique ON tolovlar(user_id, bogcha_guruh_id, oy)")
+    cur.execute("""
+        INSERT INTO tolovlar(user_id, bogcha_guruh_id, oy, summa_kerak, tolangan_summa, tolov_sanasi)
+        VALUES(%s,%s,%s,%s,%s, CURRENT_DATE)
+        ON CONFLICT (user_id, bogcha_guruh_id, oy) DO UPDATE SET
+            tolangan_summa = EXCLUDED.tolangan_summa, tolov_sanasi = CURRENT_DATE
+    """, (sorov.bola_user_id, sorov.guruh_id, sorov.oy, sorov.tolangan_summa, sorov.tolangan_summa))
+    conn.commit()
+
+    cur.execute("SELECT full_name FROM users WHERE user_id=%s", (sorov.bola_user_id,))
+    bola = cur.fetchone()
+    cur.execute("SELECT parent_id FROM parent_child WHERE child_id=%s", (sorov.bola_user_id,))
+    for oo in cur.fetchall():
+        cur.execute(
+            "INSERT INTO bildirishnomalar(user_id, matn, turi) VALUES(%s,%s,'tolov')",
+            (oo["parent_id"], f"{bola['full_name']} uchun {sorov.oy} oyi bog'cha to'lovi qabul qilindi: {sorov.tolangan_summa:,} so'm".replace(",", " ")),
+        )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
 
 
 class TestShablonGuruh(BaseModel):
