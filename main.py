@@ -2354,6 +2354,274 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     return {"natijalar": natijalar, "xato_soni": xato_soni}
 
 
+# ═══════════════════════════════════════════════════════════
+# MAKTAB TIZIMI — 3-BOSQICH: sinflarni ko'rish/boshqarish
+# (Excel import paytida "sinf rahbarligi" orqali avtomatik yaratilgan
+#  sinflarni ko'rish, qo'lda yangi sinf qo'shish, parolni qayta tashlash)
+# ═══════════════════════════════════════════════════════════
+
+@app.get("/api/admin/maktab_sinflari")
+def maktab_sinflari_royxati(token: str, maktab_id: int):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur)
+    cur.execute("""
+        SELECT s.id, s.sinf, s.harf, s.qoshilish_paroli, u.full_name AS rahbar_ismi
+        FROM maktab_sinflari s
+        LEFT JOIN users u ON u.user_id = s.rahbar_user_id
+        WHERE s.maktab_id=%s
+        ORDER BY s.sinf::int, s.harf
+    """, (maktab_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"sinflar": natija}
+
+
+class SinfYaratish(BaseModel):
+    token: str
+    maktab_id: int
+    sinf: str
+    harf: str
+    rahbar_user_id: Optional[int] = None
+
+
+@app.post("/api/admin/maktab_sinf_yarat")
+def maktab_sinf_yarat(sorov: SinfYaratish):
+    """Qo'lda, Excel'siz ham bitta sinf qo'shish imkoni — masalan
+    keyinroq yangi sinf ochilganda qayta Excel import shart emas."""
+    _admin_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur)
+    paroli = "".join(secrets.choice(string.digits) for _ in range(4))
+    cur.execute("""
+        INSERT INTO maktab_sinflari(maktab_id, sinf, harf, rahbar_user_id, qoshilish_paroli)
+        VALUES(%s,%s,%s,%s,%s)
+        ON CONFLICT (maktab_id, sinf, harf) DO UPDATE SET
+            rahbar_user_id = COALESCE(EXCLUDED.rahbar_user_id, maktab_sinflari.rahbar_user_id)
+        RETURNING id, qoshilish_paroli
+    """, (sorov.maktab_id, sorov.sinf.strip(), sorov.harf.strip().upper(), sorov.rahbar_user_id, paroli))
+    natija = cur.fetchone()
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yaratildi", "sinf_id": natija["id"], "qoshilish_paroli": natija["qoshilish_paroli"]}
+
+
+@app.put("/api/admin/sinf_parolini_tashla")
+def sinf_parolini_tashla(token: str, sinf_id: int):
+    """Sinf rahbari yoki admin — qo'shilish parolini qayta yaratadi
+    (masalan parol tarqalib ketgan bo'lsa)."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    yangi_parol = "".join(secrets.choice(string.digits) for _ in range(4))
+    cur.execute("UPDATE maktab_sinflari SET qoshilish_paroli=%s WHERE id=%s", (yangi_parol, sinf_id))
+    ozgardi = cur.rowcount > 0
+    conn.commit()
+    cur.close()
+    conn.close()
+    if not ozgardi:
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    return {"holat": "yangilandi", "qoshilish_paroli": yangi_parol}
+
+
+# ═══════════════════════════════════════════════════════════
+# PULLI MAKTAB — TO'LOV TIZIMI
+# Bu — HISOB-KITOB/YOZUV tizimi (naqd yoki tashqi o'tkazma orqali
+# to'langan to'lovni QAYD ETISH), TO'LOV SHLYUZI (Payme/Click orqali
+# ONLAYN to'lov qabul qilish) EMAS — bu ALOHIDA, ancha katta ish, agar
+# kerak bo'lsa keyinroq alohida gaplashamiz.
+#
+# Bildirishnoma — botga emas, saytdagi "Xabarlar" bo'limiga (hozircha
+# "Tez orada" bo'sh turgan joy) yoziladi — ota-ona kirganda ko'radi.
+# ═══════════════════════════════════════════════════════════
+
+def _tolov_jadvallari(cur):
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS pulli BOOLEAN DEFAULT FALSE")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS oylik_tolov INTEGER")
+    cur.execute("""CREATE TABLE IF NOT EXISTS tolovlar(
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        oy TEXT NOT NULL,
+        summa_kerak INTEGER NOT NULL,
+        tolangan_summa INTEGER NOT NULL DEFAULT 0,
+        tolov_sanasi DATE,
+        qayd_etildi_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(user_id, maktab_id, oy)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS bildirishnomalar(
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        matn TEXT NOT NULL,
+        turi TEXT DEFAULT 'umumiy',
+        oqildimi BOOLEAN DEFAULT FALSE,
+        yaratildi TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+class MaktabTolovSozlash(BaseModel):
+    token: str
+    maktab_id: int
+    pulli: bool
+    oylik_tolov: Optional[int] = None
+
+
+@app.put("/api/admin/maktab_tolov_sozlash")
+def maktab_tolov_sozlash(sorov: MaktabTolovSozlash):
+    _admin_tekshir(sorov.token)
+    if sorov.pulli and not sorov.oylik_tolov:
+        raise HTTPException(status_code=400, detail="Pulli maktab uchun oylik to'lov summasini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute(
+        "UPDATE maktablar SET pulli=%s, oylik_tolov=%s WHERE id=%s",
+        (sorov.pulli, sorov.oylik_tolov if sorov.pulli else None, sorov.maktab_id),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.get("/api/oqituvchi/mening_sinflarim")
+def mening_rasmiy_sinflarim(token: str):
+    """O'qituvchi RAHBAR bo'lgan rasmiy maktab sinflari — to'garakdan
+    farqli, bu yerga o'quvchi parol bilan emas, profilidagi
+    maktab+sinf+harf orqali AVTOMATIK tegishli hisoblanadi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur)
+    _tolov_jadvallari(cur)
+    cur.execute("""
+        SELECT s.id, s.sinf, s.harf, s.qoshilish_paroli, m.nomi AS maktab_nomi, m.pulli, m.oylik_tolov,
+               (SELECT COUNT(*) FROM users u WHERE u.maktab_id=s.maktab_id AND u.class=s.sinf AND u.class_letter=s.harf AND u.role='oquvchi') AS oquvchi_soni
+        FROM maktab_sinflari s
+        JOIN maktablar m ON m.id = s.maktab_id
+        WHERE s.rahbar_user_id=%s
+        ORDER BY s.sinf::int, s.harf
+    """, (user_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"sinflar": natija}
+
+
+
+def sinf_tolovlari(token: str, sinf_id: int, oy: str):
+    """Sinf rahbari (yoki admin) uchun — shu oy uchun sinfdagi har bir
+    o'quvchining to'lov holatini ko'rsatadi. `oy` format: "2026-07"."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute("SELECT maktab_id, sinf, harf, rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and s["rahbar_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari yoki admin ko'ra oladi")
+
+    cur.execute("SELECT oylik_tolov FROM maktablar WHERE id=%s", (s["maktab_id"],))
+    maktab = cur.fetchone()
+    kerakli_summa = (maktab["oylik_tolov"] if maktab else None) or 0
+
+    cur.execute("""
+        SELECT user_id, full_name FROM users
+        WHERE maktab_id=%s AND class=%s AND class_letter=%s AND role='oquvchi'
+        ORDER BY full_name
+    """, (s["maktab_id"], s["sinf"], s["harf"]))
+    oquvchilar = cur.fetchall()
+
+    cur.execute("SELECT user_id, tolangan_summa, tolov_sanasi FROM tolovlar WHERE maktab_id=%s AND oy=%s", (s["maktab_id"], oy))
+    tolovlar_map = {r["user_id"]: r for r in cur.fetchall()}
+    cur.close()
+    conn.close()
+
+    natija = []
+    for o in oquvchilar:
+        t = tolovlar_map.get(o["user_id"])
+        tolangan = t["tolangan_summa"] if t else 0
+        natija.append({
+            "user_id": o["user_id"], "full_name": o["full_name"],
+            "kerakli_summa": kerakli_summa, "tolangan_summa": tolangan,
+            "qarzdor": tolangan < kerakli_summa,
+            "tolov_sanasi": t["tolov_sanasi"].isoformat() if t and t["tolov_sanasi"] else None,
+        })
+    return {"oquvchilar": natija, "kerakli_summa": kerakli_summa}
+
+
+class TolovBelgilash(BaseModel):
+    token: str
+    user_id: int
+    maktab_id: int
+    oy: str
+    tolangan_summa: int
+
+
+@app.post("/api/oqituvchi/tolov_belgila")
+def tolov_belgila(sorov: TolovBelgilash):
+    """Sinf rahbari — o'quvchi naqd/o'tkazma orqali to'laganda, shu
+    yerda QAYD ETADI. To'landi deb belgilangach, ota-onaga saytdagi
+    Xabarlar bo'limiga bildirishnoma yoziladi."""
+    murojaatchi_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute("""
+        INSERT INTO tolovlar(user_id, maktab_id, oy, summa_kerak, tolangan_summa, tolov_sanasi)
+        VALUES(%s,%s,%s,%s,%s, CURRENT_DATE)
+        ON CONFLICT (user_id, maktab_id, oy) DO UPDATE SET
+            tolangan_summa = EXCLUDED.tolangan_summa, tolov_sanasi = CURRENT_DATE
+        RETURNING summa_kerak
+    """, (sorov.user_id, sorov.maktab_id, sorov.oy, sorov.tolangan_summa, sorov.tolangan_summa))
+    conn.commit()
+
+    # Ota-onaga bildirishnoma — parent_child jadvali orqali (mavjud,
+    # ota-ona↔farzand bog'lash uchun ishlatiladigan) shu o'quvchining
+    # ota-onasini topamiz.
+    cur.execute("SELECT full_name FROM users WHERE user_id=%s", (sorov.user_id,))
+    oquvchi = cur.fetchone()
+    cur.execute("SELECT parent_id FROM parent_child WHERE child_id=%s", (sorov.user_id,))
+    ota_onalar = cur.fetchall()
+    for oo in ota_onalar:
+        cur.execute(
+            "INSERT INTO bildirishnomalar(user_id, matn, turi) VALUES(%s,%s,'tolov')",
+            (oo["parent_id"], f"{oquvchi['full_name']} uchun {sorov.oy} oyi to'lovi qabul qilindi: {sorov.tolangan_summa:,} so'm".replace(",", " ")),
+        )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.get("/api/bildirishnomalar")
+def bildirishnomalarim(token: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _tolov_jadvallari(cur)
+    cur.execute("""
+        SELECT id, matn, turi, oqildimi, yaratildi FROM bildirishnomalar
+        WHERE user_id=%s ORDER BY yaratildi DESC LIMIT 50
+    """, (user_id,))
+    natija = cur.fetchall()
+    cur.execute("UPDATE bildirishnomalar SET oqildimi=TRUE WHERE user_id=%s AND oqildimi=FALSE", (user_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"bildirishnomalar": natija}
+
+
 class TestShablonGuruh(BaseModel):
     diff: str    # oson | o'rta | qiyin | murakkab
     turi: str    # single_choice | write_answer
