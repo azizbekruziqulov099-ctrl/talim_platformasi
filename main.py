@@ -409,6 +409,49 @@ def joriy_foydalanuvchi(token: str):
     return r
 
 
+@app.get("/api/auth/muassasalarim")
+def muassasalarim(token: str):
+    """Chaqiruvchi qanday muassasa(lar)ga tegishli ekanini — HAR
+    BIRINI ALOHIDA — ro'yxat qilib qaytaradi. Eski (yagona ustun) va
+    yangi (ko'p muassasali) manbalarni birlashtirib, takrorlarni olib
+    tashlaydi. Frontend shu ro'yxat asosida "Maktabim"/"Markazim"/
+    "Bog'cham"/"Institutim" kabi ALOHIDA bo'limlar(tab)ni chizadi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
+    cur.execute(
+        "SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
+        (user_id,),
+    )
+    u = cur.fetchone()
+
+    topilganlar = {}  # (turi, muassasa_id) -> lavozim
+    if u:
+        for turi, mid in [("maktab", u["maktab_id"]), ("markaz", u["markaz_id"]), ("bogcha", u["bogcha_id"]), ("universitet", u["universitet_id"])]:
+            if mid and u["lavozim"]:
+                topilganlar[(turi, mid)] = u["lavozim"]
+
+    _muassasa_jadvali(cur)
+    cur.execute("SELECT muassasa_turi, muassasa_id, lavozim FROM foydalanuvchi_muassasalari WHERE user_id=%s", (user_id,))
+    for r in cur.fetchall():
+        topilganlar[(r["muassasa_turi"], r["muassasa_id"])] = r["lavozim"]
+
+    jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}
+    natija = []
+    for (turi, muassasa_id), lavozim in topilganlar.items():
+        cur.execute(f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s", (muassasa_id,))
+        m = cur.fetchone()
+        natija.append({"turi": turi, "muassasa_id": muassasa_id, "muassasa_nomi": m["nomi"] if m else None, "lavozim": lavozim})
+    cur.close()
+    conn.close()
+    return {"muassasalar": natija}
+
+
 # ═══════════════════════════════════════════════════════════
 # TEST YECHISH (saytdan, botsiz)
 # ═══════════════════════════════════════════════════════════
@@ -3442,15 +3485,48 @@ def sinf_azosini_chiqar(token: str, azolik_id: int):
     return {"holat": "chiqarildi"}
 
 
+def _muassasa_jadvali(cur):
+    """"Bir kishi — ko'p muassasa" jadvali. Eski (yagona ustun:
+    users.maktab_id/markaz_id/bogcha_id/universitet_id + lavozim)
+    tizim BUZILMAYDI — bu FAQAT unga QO'SHIMCHA, ikkinchi/uchinchi
+    muassasani yozish uchun."""
+    cur.execute("""CREATE TABLE IF NOT EXISTS foydalanuvchi_muassasalari(
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        muassasa_turi TEXT NOT NULL,
+        muassasa_id INTEGER NOT NULL,
+        lavozim TEXT NOT NULL,
+        qoshilgan_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(user_id, muassasa_turi, muassasa_id)
+    )""")
+
+
+def _muassasadagi_lavozim(cur, user_id, turi, muassasa_id):
+    """Foydalanuvchining shu ANIQ muassasadagi lavozimini topadi —
+    ESKI (yagona ustun) va YANGI (ko'p muassasali jadval) ikkalasidan
+    ham qidiradi, orqaga moslik uchun. Topilmasa — None."""
+    ustun = {"maktab": "maktab_id", "markaz": "markaz_id", "bogcha": "bogcha_id", "universitet": "universitet_id"}[turi]
+    cur.execute(f"SELECT lavozim FROM users WHERE user_id=%s AND {ustun}=%s", (user_id, muassasa_id))
+    r = cur.fetchone()
+    if r and r["lavozim"]:
+        return r["lavozim"]
+    _muassasa_jadvali(cur)
+    cur.execute(
+        "SELECT lavozim FROM foydalanuvchi_muassasalari WHERE user_id=%s AND muassasa_turi=%s AND muassasa_id=%s",
+        (user_id, turi, muassasa_id),
+    )
+    r2 = cur.fetchone()
+    return r2["lavozim"] if r2 else None
+
+
 def _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
     """True — agar user shu maktabning direktori/o'rinbosari (yoki
     umumiy admin) bo'lsa."""
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     if cur.fetchone():
         return True
-    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND maktab_id=%s", (user_id, maktab_id))
-    r = cur.fetchone()
-    return bool(r and r["lavozim"] in ("direktor", "zam_direktor_uquv", "zam_direktor_tarbiya"))
+    lavozim = _muassasadagi_lavozim(cur, user_id, "maktab", maktab_id)
+    return lavozim in ("direktor", "zam_direktor_uquv", "zam_direktor_tarbiya")
 
 
 @app.get("/api/maktab/dashboard")
@@ -4987,9 +5063,8 @@ def _markaz_boshqaruvchi_mi(cur, user_id, markaz_id):
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     if cur.fetchone():
         return True
-    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND markaz_id=%s", (user_id, markaz_id))
-    r = cur.fetchone()
-    return bool(r and r["lavozim"] in ("markaz_direktor", "administrator"))
+    lavozim = _muassasadagi_lavozim(cur, user_id, "markaz", markaz_id)
+    return lavozim in ("markaz_direktor", "administrator")
 
 
 class MarkazYaratish(BaseModel):
@@ -5277,8 +5352,11 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
     """token — chaqiruvchining O'Z (allaqachon mavjud) hisobi.
     kirish_kodi — Excel import paytida SHU KISHI uchun mo'ljallab
     yaratilgan kod (xodim_kod jadvali). Kod to'g'ri bo'lsa —
-    chaqiruvchining O'Z hisobiga o'sha maktab_id/markaz_id/lavozim
-    yoziladi, kod esa "ishlatildi" deb belgilanadi (qayta ishlatib
+    chaqiruvchining hisobiga shu muassasa+lavozim QO'SHILADI (agar
+    bu uning BIRINCHI muassasasi bo'lsa — eski, yagona ustunlarga
+    ham yoziladi, orqaga moslik uchun; ikkinchi/uchinchi muassasa
+    bo'lsa — faqat YANGI, ko'p-muassasali jadvalga qo'shiladi, birinchisi
+    O'CHIRILMAYDI). Kod "ishlatildi" deb belgilanadi (qayta ishlatib
     bo'lmaydi)."""
     user_id = _jwt_tekshir(token)
     conn = _db()
@@ -5303,45 +5381,54 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute(
-        "SELECT maktab_id, markaz_id, bogcha_id, lavozim FROM users WHERE user_id=%s",
+        "SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
         (kod["placeholder_id"],),
     )
     p = cur.fetchone()
-    if not p or (not p["maktab_id"] and not p["markaz_id"] and not p["bogcha_id"]):
+    turlar = [("maktab", p["maktab_id"]), ("markaz", p["markaz_id"]), ("bogcha", p["bogcha_id"]), ("universitet", p["universitet_id"])]
+    turlar = [(t, mid) for t, mid in turlar if mid]
+    if not p or not turlar:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Bu kodga tegishli muassasa topilmadi")
+    turi, muassasa_id = turlar[0]  # amalda har doim aynan bittasi to'ldirilgan bo'ladi
 
-    cur.execute(
-        "UPDATE users SET maktab_id=%s, markaz_id=%s, bogcha_id=%s, lavozim=%s WHERE user_id=%s",
-        (p["maktab_id"], p["markaz_id"], p["bogcha_id"], p["lavozim"], user_id),
-    )
+    # Chaqiruvchining hozirgi (eski, yagona ustun) muassasalari bo'shmi?
+    cur.execute("SELECT maktab_id, markaz_id, bogcha_id, universitet_id FROM users WHERE user_id=%s", (user_id,))
+    joriy = cur.fetchone()
+    birinchi_muassasa_mi = joriy and not any([joriy["maktab_id"], joriy["markaz_id"], joriy["bogcha_id"], joriy["universitet_id"]])
+
+    if birinchi_muassasa_mi:
+        cur.execute(
+            "UPDATE users SET maktab_id=%s, markaz_id=%s, bogcha_id=%s, universitet_id=%s, lavozim=%s WHERE user_id=%s",
+            (p["maktab_id"], p["markaz_id"], p["bogcha_id"], p["universitet_id"], p["lavozim"], user_id),
+        )
+
+    _muassasa_jadvali(cur)
+    cur.execute("""
+        INSERT INTO foydalanuvchi_muassasalari(user_id, muassasa_turi, muassasa_id, lavozim)
+        VALUES(%s,%s,%s,%s) ON CONFLICT (user_id, muassasa_turi, muassasa_id) DO UPDATE SET lavozim=EXCLUDED.lavozim
+    """, (user_id, turi, muassasa_id, p["lavozim"]))
+
     if p["maktab_id"] and p["lavozim"] == "direktor":
         cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (user_id, p["maktab_id"]))
     if p["markaz_id"] and p["lavozim"] == "markaz_direktor":
         cur.execute("UPDATE oquv_markazlari SET direktor_user_id=%s WHERE id=%s", (user_id, p["markaz_id"]))
     if p["bogcha_id"] and p["lavozim"] == "bogcha_direktor":
         cur.execute("UPDATE bogchalar SET direktor_user_id=%s WHERE id=%s", (user_id, p["bogcha_id"]))
+    if p["universitet_id"] and p["lavozim"] == "rektor":
+        cur.execute("UPDATE universitetlar SET rektor_user_id=%s WHERE id=%s", (user_id, p["universitet_id"]))
     cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s", (kirish_kodi.strip(),))
     conn.commit()
 
-    natija = {"holat": "qoshildi", "lavozim": p["lavozim"]}
-    if p["maktab_id"]:
-        cur.execute("SELECT nomi FROM maktablar WHERE id=%s", (p["maktab_id"],))
-        m = cur.fetchone()
-        natija["joy_nomi"] = m["nomi"] if m else None
-    elif p["markaz_id"]:
-        cur.execute("SELECT nomi FROM oquv_markazlari WHERE id=%s", (p["markaz_id"],))
-        m = cur.fetchone()
-        natija["joy_nomi"] = m["nomi"] if m else None
-    elif p["bogcha_id"]:
-        cur.execute("SELECT nomi FROM bogchalar WHERE id=%s", (p["bogcha_id"],))
-        m = cur.fetchone()
-        natija["joy_nomi"] = m["nomi"] if m else None
+    jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}[turi]
+    cur.execute(f"SELECT nomi FROM {jadval_nomi} WHERE id=%s", (muassasa_id,))
+    m = cur.fetchone()
     cur.close()
     conn.close()
-    return natija
+    return {"holat": "qoshildi", "lavozim": p["lavozim"], "joy_nomi": m["nomi"] if m else None, "muassasa_turi": turi}
 
 
 # ═══════════════════════════════════════════════════════════
@@ -5394,9 +5481,8 @@ def _bogcha_boshqaruvchi_mi(cur, user_id, bogcha_id):
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     if cur.fetchone():
         return True
-    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND bogcha_id=%s", (user_id, bogcha_id))
-    r = cur.fetchone()
-    return bool(r and r["lavozim"] in ("bogcha_direktor", "bogcha_zam"))
+    lavozim = _muassasadagi_lavozim(cur, user_id, "bogcha", bogcha_id)
+    return lavozim in ("bogcha_direktor", "bogcha_zam")
 
 
 class BogchaYaratish(BaseModel):
@@ -5893,9 +5979,8 @@ def _universitet_boshqaruvchi_mi(cur, user_id, universitet_id):
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     if cur.fetchone():
         return True
-    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND universitet_id=%s", (user_id, universitet_id))
-    r = cur.fetchone()
-    return bool(r and r["lavozim"] in ("rektor", "prorektor"))
+    lavozim = _muassasadagi_lavozim(cur, user_id, "universitet", universitet_id)
+    return lavozim in ("rektor", "prorektor")
 
 
 class UniversitetYaratish(BaseModel):
@@ -6438,6 +6523,40 @@ def sinov_muhit_yarat(token: str):
         sonlar["universitet_talaba"] = len(uni_talaba_q)
         if uni_talaba_q:
             hisoblar.append({"user_id": uni_talaba_q[0][0], "full_name": uni_talaba_q[0][1], "izoh": "Namuna talaba"})
+
+        # ═══════════════ KO'P MUASSASALI O'QITUVCHILAR (2/3/4 joy) ═══════════════
+        # "Bir kishi — ko'p muassasa" UI'ni sinash uchun — har biri turli
+        # muassasada turli lavozimda.
+        _muassasa_jadvali(cur)
+
+        def kop_muassasa_qosh(ism, royxat):
+            """royxat: [(turi, muassasa_id, lavozim), ...]"""
+            uid = yid()
+            cur.execute("INSERT INTO users(user_id, full_name, role) VALUES(%s,%s,'oqituvchi')", (uid, ism))
+            for turi, mid, lavozim in royxat:
+                cur.execute(
+                    "INSERT INTO foydalanuvchi_muassasalari(user_id, muassasa_turi, muassasa_id, lavozim) VALUES(%s,%s,%s,%s)",
+                    (uid, turi, mid, lavozim),
+                )
+            ustun = {"maktab": "maktab_id", "markaz": "markaz_id", "bogcha": "bogcha_id", "universitet": "universitet_id"}[royxat[0][0]]
+            cur.execute(f"UPDATE users SET {ustun}=%s, lavozim=%s WHERE user_id=%s", (royxat[0][1], royxat[0][2], uid))
+            hisoblar.append({"user_id": uid, "full_name": ism, "izoh": f"{len(royxat)} ta joyda ishlaydi"})
+
+        kop_muassasa_qosh(f"Sinov 2joy {belgi}", [
+            ("maktab", maktab_id, "fan_oqituvchisi"),
+            ("markaz", markaz_id, "fan_oqituvchisi"),
+        ])
+        kop_muassasa_qosh(f"Sinov 3joy {belgi}", [
+            ("maktab", maktab_id, "zam_direktor_uquv"),
+            ("markaz", markaz_id, "administrator"),
+            ("bogcha", bogcha_id, "bogcha_zam"),
+        ])
+        kop_muassasa_qosh(f"Sinov 4joy {belgi}", [
+            ("maktab", maktab_id, "fan_oqituvchisi"),
+            ("markaz", markaz_id, "fan_oqituvchisi"),
+            ("bogcha", bogcha_id, "bogcha_opa"),
+            ("universitet", universitet_id, "professor_oqituvchi"),
+        ])
 
         conn.commit()
     except Exception as e:
