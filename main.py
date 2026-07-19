@@ -1946,6 +1946,48 @@ def topik_fanlar(sinf: str, token: str):
     return {"fanlar": fanlar}
 
 
+@app.get("/api/admin/topik_umumiy_korinish")
+def topik_umumiy_korinish(token: str):
+    """BARCHA sinf va fanlar bo'yicha bir zumda umumiy ko'rinish — har
+    sinfga alohida kirmasdan, qaysi fanda nechta mavzu va shundan
+    nechtasida test borligini BITTA so'rov bilan qaytaradi (admin
+    "Umumiy ko'rinish" tugmasi uchun)."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        WITH mavzu_guruhlari AS (
+            SELECT d.grade, d.subject_name,
+                   COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS mavzu_nomi,
+                   COUNT(DISTINCT gt.topic_code) > 0 AS test_bormi
+            FROM dts_tree d
+            LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
+            WHERE d.is_deleted = FALSE
+            GROUP BY d.grade, d.subject_name, COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
+        )
+        SELECT grade, subject_name,
+               COUNT(*) AS jami_mavzu,
+               COUNT(*) FILTER (WHERE test_bormi) AS testli_mavzu
+        FROM mavzu_guruhlari
+        GROUP BY grade, subject_name
+        ORDER BY grade, subject_name
+    """)
+    qatorlar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    sinflar = {}
+    for r in qatorlar:
+        g = r["grade"]
+        sinflar.setdefault(g, {"sinf": g, "fanlar": []})
+        sinflar[g]["fanlar"].append({
+            "nom": r["subject_name"], "jami_mavzu": r["jami_mavzu"], "testli_mavzu": r["testli_mavzu"],
+        })
+    natija = list(sinflar.values())
+    natija.sort(key=lambda s: (0, int(s["sinf"])) if s["sinf"].isdigit() else (1, s["sinf"]))
+    return {"sinflar": natija}
+
+
 @app.get("/api/admin/topik_royxat")
 def topik_royxat(sinf: str, fan: str, token: str):
     """Berilgan sinf+fan uchun MAVZU darajasidagi (kichik mavzular
