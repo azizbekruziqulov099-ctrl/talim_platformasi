@@ -2899,24 +2899,75 @@ def maktab_dashboard(token: str, maktab_id: int):
 
     joriy_oy = datetime.now().strftime("%Y-%m")
     oylik_tolov = maktab["oylik_tolov"] or 0
+    _davomat_jadvali(cur)
     cur.execute("""
         SELECT s.id, s.sinf, s.harf, u.full_name AS rahbar_ismi,
                COUNT(DISTINCT a.user_id) AS oquvchi_soni,
-               COUNT(DISTINCT t.user_id) FILTER (WHERE t.tolangan_summa >= %s) AS tolagan_soni
+               COUNT(DISTINCT t.user_id) FILTER (WHERE t.tolangan_summa >= %s) AS tolagan_soni,
+               COUNT(DISTINCT d.user_id) FILTER (WHERE d.holat = 'keldi') AS bugun_kelgan_soni,
+               COUNT(DISTINCT d.user_id) AS bugun_belgilangan_soni,
+               (SELECT COUNT(DISTINCT d7.sana) FROM davomat d7
+                WHERE d7.sinf_id=s.id AND d7.sana >= CURRENT_DATE - INTERVAL '7 days') AS davomat_kun_7
         FROM maktab_sinflari s
         LEFT JOIN users u ON u.user_id = s.rahbar_user_id
         LEFT JOIN maktab_sinf_azolari a ON a.sinf_id = s.id
         LEFT JOIN tolovlar t ON t.user_id = a.user_id AND t.maktab_id = s.maktab_id AND t.oy = %s
+        LEFT JOIN davomat d ON d.sinf_id = s.id AND d.user_id = a.user_id AND d.sana = CURRENT_DATE
         WHERE s.maktab_id=%s
         GROUP BY s.id, s.sinf, s.harf, u.full_name
         ORDER BY s.sinf::int, s.harf
     """, (oylik_tolov, joriy_oy, maktab_id))
     sinflar = cur.fetchall()
+
+    # Har bir sinfning O'RTACHA bilim ko'rsatkichi (learned_topics.score
+    # o'rtachasi) — sinflarni SOLISHTIRISH/REYTING uchun yetarli, aniq
+    # % (butun dastur bo'yicha) emas, lekin "qaysi sinf yaxshi/yomon"
+    # savoliga tez va ishonchli javob beradi.
+    cur.execute("""
+        SELECT a.sinf_id, ROUND(AVG(lt.score)) AS ortacha_bilim, COUNT(DISTINCT a.user_id) FILTER (WHERE lt.user_id IS NOT NULL) AS faol_oquvchi
+        FROM maktab_sinf_azolari a
+        JOIN maktab_sinflari s2 ON s2.id = a.sinf_id
+        LEFT JOIN learned_topics lt ON lt.user_id = a.user_id
+        WHERE s2.maktab_id=%s
+        GROUP BY a.sinf_id
+    """, (maktab_id,))
+    bilim_map = {r["sinf_id"]: r for r in cur.fetchall()}
+    for s in sinflar:
+        b = bilim_map.get(s["id"])
+        s["ortacha_bilim"] = b["ortacha_bilim"] if b and b["ortacha_bilim"] is not None else None
+
+    # "Muammoli o'quvchilar" — so'nggi 7 kunda 2+ marta kelmagan.
+    # Oddiy, TEZ hisoblanadigan signal — direktor uchun ANIQ ism-familiya
+    # bilan ro'yxat, "keyin qarasam bo'ladi" emas, hoziroq ko'rinadigan.
+    cur.execute("""
+        SELECT u.user_id, u.full_name, s.sinf, s.harf,
+               COUNT(*) FILTER (WHERE d.holat='kelmadi') AS songi_hafta_kelmagan
+        FROM maktab_sinf_azolari a
+        JOIN users u ON u.user_id = a.user_id
+        JOIN maktab_sinflari s ON s.id = a.sinf_id
+        LEFT JOIN davomat d ON d.user_id = a.user_id AND d.sana >= CURRENT_DATE - INTERVAL '7 days'
+        WHERE s.maktab_id=%s
+        GROUP BY u.user_id, u.full_name, s.sinf, s.harf
+        HAVING COUNT(*) FILTER (WHERE d.holat='kelmadi') >= 2
+        ORDER BY songi_hafta_kelmagan DESC
+        LIMIT 20
+    """, (maktab_id,))
+    muammoli_oquvchilar = cur.fetchall()
+
     cur.close()
     conn.close()
 
     jami_oquvchi = sum(s["oquvchi_soni"] for s in sinflar)
     jami_tolagan = sum(s["tolagan_soni"] for s in sinflar)
+    jami_bugun_kelgan = sum(s["bugun_kelgan_soni"] for s in sinflar)
+    jami_bugun_belgilangan = sum(s["bugun_belgilangan_soni"] for s in sinflar)
+    sinflar_belgilamagan = sum(1 for s in sinflar if s["oquvchi_soni"] > 0 and s["bugun_belgilangan_soni"] == 0)
+
+    baholangan_sinflar = [s for s in sinflar if s["ortacha_bilim"] is not None]
+    saralangan = sorted(baholangan_sinflar, key=lambda s: s["ortacha_bilim"], reverse=True)
+    eng_yaxshi_sinf = saralangan[0] if saralangan else None
+    etibor_kerak_sinf = saralangan[-1] if len(saralangan) > 1 else None
+
     return {
         "maktab_nomi": maktab["nomi"], "pulli": maktab["pulli"], "oylik_tolov": maktab["oylik_tolov"],
         "sinflar": sinflar,
@@ -2924,11 +2975,1058 @@ def maktab_dashboard(token: str, maktab_id: int):
             {"jami_oquvchi": jami_oquvchi, "tolagan": jami_tolagan, "qarzdor": jami_oquvchi - jami_tolagan}
             if maktab["pulli"] else None
         ),
+        "bugungi_davomat": {
+            "jami_oquvchi": jami_oquvchi, "kelgan": jami_bugun_kelgan,
+            "belgilangan": jami_bugun_belgilangan, "sinflar_belgilamagan": sinflar_belgilamagan,
+        },
+        "reyting": {
+            "eng_yaxshi_sinf": (
+                {"sinf": eng_yaxshi_sinf["sinf"], "harf": eng_yaxshi_sinf["harf"], "ortacha_bilim": eng_yaxshi_sinf["ortacha_bilim"]}
+                if eng_yaxshi_sinf else None
+            ),
+            "etibor_kerak_sinf": (
+                {"sinf": etibor_kerak_sinf["sinf"], "harf": etibor_kerak_sinf["harf"], "ortacha_bilim": etibor_kerak_sinf["ortacha_bilim"]}
+                if etibor_kerak_sinf else None
+            ),
+        },
+        "muammoli_oquvchilar": muammoli_oquvchilar,
     }
 
 
 # ═══════════════════════════════════════════════════════════
-# O'QUV MARKAZI TIZIMI — maktabdan farqli, MAVJUD to'garak (guruh)
+# DAVOMAT (kunlik yo'qlama) — "School OS" ko'rinishining birinchi
+# poydevor bloki. Ko'p boshqa modul (direktor dashboard, avtomatik
+# ogohlantirish, o'qituvchi/sinf nazorati) MANA SHUNGA tayanadi, shu
+# sabab ANIQ shu jadvaldan boshlaymiz — keyingi modullar shu ustiga
+# quriladi, qaytadan yozilmaydi.
+# ═══════════════════════════════════════════════════════════
+
+def _davomat_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS davomat(
+        id SERIAL PRIMARY KEY,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        sana DATE NOT NULL,
+        holat TEXT NOT NULL,
+        izoh TEXT,
+        belgilagan_user_id BIGINT REFERENCES users(user_id),
+        belgilangan_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(sinf_id, user_id, sana)
+    )""")
+
+
+class DavomatYozuvi(BaseModel):
+    user_id: int
+    holat: str  # keldi | kelmadi | kechikdi | sababli
+    izoh: Optional[str] = None
+
+
+class DavomatBelgilash(BaseModel):
+    token: str
+    sinf_id: int
+    sana: str  # "2026-07-19"
+    yozuvlar: list[DavomatYozuvi]
+
+
+DAVOMAT_HOLATLARI = {"keldi", "kelmadi", "kechikdi", "sababli"}
+
+
+@app.post("/api/oqituvchi/davomat_belgila")
+def davomat_belgila(sorov: DavomatBelgilash):
+    """Sinf rahbari (yoki maktab rahbariyati) — BUTUN sinf uchun,
+    BIR KUNLIK davomatni bitta so'rovda belgilaydi. Qayta yuborilsa —
+    o'sha kunning yozuvlari YANGILANADI (eski holat ustidan yoziladi).
+    "kelmadi" deb belgilangan har bir o'quvchining ota-onasiga
+    avtomatik bildirishnoma yuboriladi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _davomat_jadvali(cur)
+    cur.execute("SELECT maktab_id, rahbar_user_id, sinf, harf FROM maktab_sinflari WHERE id=%s", (sorov.sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    ruxsat = s["rahbar_user_id"] == user_id or _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin belgilay oladi")
+
+    kelmagan_oquvchilar = []
+    for y in sorov.yozuvlar:
+        if y.holat not in DAVOMAT_HOLATLARI:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail=f"Noto'g'ri holat: {y.holat}")
+        cur.execute("""
+            INSERT INTO davomat(sinf_id, user_id, sana, holat, izoh, belgilagan_user_id)
+            VALUES(%s,%s,%s,%s,%s,%s)
+            ON CONFLICT (sinf_id, user_id, sana) DO UPDATE SET
+                holat = EXCLUDED.holat, izoh = EXCLUDED.izoh,
+                belgilagan_user_id = EXCLUDED.belgilagan_user_id, belgilangan_at = NOW()
+        """, (sorov.sinf_id, y.user_id, sorov.sana, y.holat, y.izoh, user_id))
+        if y.holat == "kelmadi":
+            kelmagan_oquvchilar.append(y.user_id)
+    conn.commit()
+
+    if kelmagan_oquvchilar:
+        cur.execute("SELECT user_id, full_name FROM users WHERE user_id = ANY(%s)", (kelmagan_oquvchilar,))
+        ismlar = {r["user_id"]: r["full_name"] for r in cur.fetchall()}
+        for bola_id in kelmagan_oquvchilar:
+            cur.execute("SELECT parent_id FROM parent_child WHERE child_id=%s", (bola_id,))
+            for oo in cur.fetchall():
+                cur.execute(
+                    "INSERT INTO bildirishnomalar(user_id, matn, turi) VALUES(%s,%s,'davomat')",
+                    (oo["parent_id"], f"{ismlar.get(bola_id, 'Farzandingiz')} bugun ({sorov.sana}) {s['sinf']}-{s['harf']} sinfga kelmadi."),
+                )
+        conn.commit()
+
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi", "kelmagan_soni": len(kelmagan_oquvchilar)}
+
+
+@app.get("/api/oqituvchi/davomat_royxati")
+def davomat_royxati(token: str, sinf_id: int, sana: str):
+    """Bir kunlik davomatni ko'rish/tahrirlash uchun — sinf a'zolari
+    RO'YXATI, har biriga o'sha kungi (agar bor bo'lsa) holat bilan
+    birga."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _davomat_jadvali(cur); _sinf_azolari_jadvali(cur)
+    cur.execute("SELECT maktab_id, rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    ruxsat = s["rahbar_user_id"] == user_id or _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin ko'ra oladi")
+
+    cur.execute("""
+        SELECT u.user_id, u.full_name, d.holat, d.izoh
+        FROM maktab_sinf_azolari a
+        JOIN users u ON u.user_id = a.user_id
+        LEFT JOIN davomat d ON d.sinf_id = a.sinf_id AND d.user_id = a.user_id AND d.sana = %s
+        WHERE a.sinf_id=%s ORDER BY u.full_name
+    """, (sana, sinf_id))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"oquvchilar": natija}
+
+
+@app.get("/api/bola/{bola_id}/davomat_xulosa")
+def bola_davomat_xulosa(bola_id: int, token: str):
+    """O'quvchi/ota-ona uchun — oxirgi 30 kunlik davomat xulosasi:
+    necha kun keldi/kelmadi/kechikdi, va KETMA-KET necha kun
+    kelmagani (ogohlantirish uchun muhim ko'rsatkich)."""
+    _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _davomat_jadvali(cur)
+    cur.execute("""
+        SELECT sana, holat FROM davomat
+        WHERE user_id=%s AND sana >= CURRENT_DATE - INTERVAL '30 days'
+        ORDER BY sana DESC
+    """, (bola_id,))
+    yozuvlar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    keldi = sum(1 for y in yozuvlar if y["holat"] == "keldi")
+    kelmadi = sum(1 for y in yozuvlar if y["holat"] == "kelmadi")
+    kechikdi = sum(1 for y in yozuvlar if y["holat"] == "kechikdi")
+    sababli = sum(1 for y in yozuvlar if y["holat"] == "sababli")
+    ketma_ket_yoq = 0
+    for y in yozuvlar:  # eng yangisidan boshlab — birinchi "keldi"gacha sanaydi
+        if y["holat"] == "kelmadi":
+            ketma_ket_yoq += 1
+        else:
+            break
+    return {
+        "jami_kun": len(yozuvlar), "keldi": keldi, "kelmadi": kelmadi,
+        "kechikdi": kechikdi, "sababli": sababli, "ketma_ket_kelmagan": ketma_ket_yoq,
+    }
+
+
+@app.get("/api/oqituvchi/oquvchi_profili")
+def oquvchi_profili(token: str, user_id: int):
+    """Bitta o'quvchi haqida — BILIM + DAVOMAT + TO'LOV — bitta
+    ekranda. Mavjud bola_bilimi va bola_davomat_xulosa funksiyalarini
+    to'g'ridan-to'g'ri QAYTA ISHLATADI (qaytadan yozilmagan). Faqat
+    shu o'quvchining sinf rahbari, maktab rahbariyati yoki admin
+    ko'ra oladi."""
+    caller_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _sinf_azolari_jadvali(cur); _tolov_jadvallari(cur)
+    cur.execute("""
+        SELECT u.full_name, u.class, u.class_letter, u.maktab_id,
+               s.rahbar_user_id, mk.nomi AS maktab_nomi, mk.pulli, mk.oylik_tolov
+        FROM users u
+        LEFT JOIN maktab_sinf_azolari a ON a.user_id = u.user_id
+        LEFT JOIN maktab_sinflari s ON s.id = a.sinf_id
+        LEFT JOIN maktablar mk ON mk.id = s.maktab_id
+        WHERE u.user_id=%s
+        ORDER BY a.qoshilgan_at DESC LIMIT 1
+    """, (user_id,))
+    o = cur.fetchone()
+    if not o:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
+
+    ruxsat = (o["rahbar_user_id"] == caller_id) or (o["maktab_id"] and _maktab_boshqaruvchi_mi(cur, caller_id, o["maktab_id"]))
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu o'quvchining sinf rahbari yoki maktab rahbariyati ko'ra oladi")
+
+    tolov_tarixi = []
+    if o["pulli"] and o["maktab_id"]:
+        cur.execute("""
+            SELECT oy, tolangan_summa, tolov_sanasi FROM tolovlar
+            WHERE user_id=%s AND maktab_id=%s ORDER BY oy DESC LIMIT 3
+        """, (user_id, o["maktab_id"]))
+        tolov_tarixi = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    bilim = bola_bilimi(bola_id=user_id, sinf=None)
+    davomat = bola_davomat_xulosa(bola_id=user_id, token=token)
+
+    return {
+        "full_name": o["full_name"], "sinf": o["class"], "harf": o["class_letter"],
+        "maktab_nomi": o["maktab_nomi"], "pulli": o["pulli"], "oylik_tolov": o["oylik_tolov"],
+        "bilim": bilim, "davomat": davomat, "tolov_tarixi": tolov_tarixi,
+    }
+
+
+# ═══════════════════════════════════════════════════════════
+# KUTUBXONA — "School OS"ning mustaqil moduli. Boshqalarga bog'liq
+# emas (davomat/bilim ustiga qurilmagan), shu sabab XATOSIZ, sodda
+# boshlash uchun qulay. Fizik kitoblar (nusxa soni + band/bo'sh) va
+# elektron kitoblar (havola) ikkalasini ham qo'llab-quvvatlaydi.
+# ═══════════════════════════════════════════════════════════
+
+def _kutubxona_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS kutubxona_kitoblar(
+        id SERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        nomi TEXT NOT NULL, muallif TEXT, janr TEXT,
+        nusxa_soni INTEGER NOT NULL DEFAULT 1,
+        elektron_havola TEXT,
+        qoshilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS kutubxona_ijara(
+        id SERIAL PRIMARY KEY,
+        kitob_id INTEGER NOT NULL REFERENCES kutubxona_kitoblar(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        olingan_sana DATE NOT NULL DEFAULT CURRENT_DATE,
+        qaytarish_muddati DATE,
+        qaytarilgan_sana DATE
+    )""")
+
+
+class KitobQoshish(BaseModel):
+    token: str
+    maktab_id: int
+    nomi: str
+    muallif: Optional[str] = None
+    janr: Optional[str] = None
+    nusxa_soni: int = 1
+    elektron_havola: Optional[str] = None
+
+
+@app.post("/api/maktab/kitob_qosh")
+def kitob_qosh(sorov: KitobQoshish):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _kutubxona_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, sorov.maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin kitob qo'sha oladi")
+    if not sorov.nomi.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kitob nomini kiriting")
+    cur.execute("""
+        INSERT INTO kutubxona_kitoblar(maktab_id, nomi, muallif, janr, nusxa_soni, elektron_havola)
+        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.maktab_id, sorov.nomi.strip(), sorov.muallif, sorov.janr, max(1, sorov.nusxa_soni), sorov.elektron_havola))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "kitob_id": yangi_id}
+
+
+@app.get("/api/maktab/kutubxona")
+def kutubxona_royxati(token: str, maktab_id: int):
+    """Maktab rahbariyati uchun — barcha kitoblar, har birining
+    nechta nusxasi BAND (hozir kimdadir) ekani bilan birga."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _kutubxona_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT k.id, k.nomi, k.muallif, k.janr, k.nusxa_soni, k.elektron_havola,
+               COUNT(i.id) FILTER (WHERE i.qaytarilgan_sana IS NULL) AS band_soni
+        FROM kutubxona_kitoblar k
+        LEFT JOIN kutubxona_ijara i ON i.kitob_id = k.id
+        WHERE k.maktab_id=%s
+        GROUP BY k.id
+        ORDER BY k.nomi
+    """, (maktab_id,))
+    kitoblar = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"kitoblar": kitoblar}
+
+
+class KitobBerish(BaseModel):
+    token: str
+    kitob_id: int
+    user_id: int
+    qaytarish_muddati: Optional[str] = None  # "2026-08-01"
+
+
+@app.post("/api/maktab/kitob_berish")
+def kitob_berish(sorov: KitobBerish):
+    """Kitobni bir o'quvchi/xodimga BERADI. Nusxalarning barchasi
+    band bo'lsa, xato qaytaradi (bo'sh nusxa yo'qligi uchun)."""
+    user_id_qiluvchi = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _kutubxona_jadvali(cur)
+    cur.execute("SELECT maktab_id, nusxa_soni FROM kutubxona_kitoblar WHERE id=%s", (sorov.kitob_id,))
+    k = cur.fetchone()
+    if not k:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Kitob topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id_qiluvchi, k["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin kitob bera oladi")
+    cur.execute("SELECT COUNT(*) AS soni FROM kutubxona_ijara WHERE kitob_id=%s AND qaytarilgan_sana IS NULL", (sorov.kitob_id,))
+    band = cur.fetchone()["soni"]
+    if band >= k["nusxa_soni"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Bo'sh nusxa yo'q — barcha nusxalar band")
+    cur.execute("""
+        INSERT INTO kutubxona_ijara(kitob_id, user_id, qaytarish_muddati)
+        VALUES(%s,%s,%s)
+    """, (sorov.kitob_id, sorov.user_id, sorov.qaytarish_muddati))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "berildi"}
+
+
+@app.post("/api/maktab/kitob_qaytarish")
+def kitob_qaytarish(token: str, ijara_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _kutubxona_jadvali(cur)
+    cur.execute("""
+        SELECT k.maktab_id FROM kutubxona_ijara i JOIN kutubxona_kitoblar k ON k.id = i.kitob_id
+        WHERE i.id=%s
+    """, (ijara_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Ijara topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, r["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin belgilay oladi")
+    cur.execute("UPDATE kutubxona_ijara SET qaytarilgan_sana=CURRENT_DATE WHERE id=%s", (ijara_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qaytarildi"}
+
+
+@app.get("/api/maktab/kitob_tarixi")
+def kitob_tarixi(token: str, kitob_id: int):
+    """Bitta kitobning KIMLARDA bo'lgani/hozir kimda ekanligi tarixi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _kutubxona_jadvali(cur)
+    cur.execute("SELECT maktab_id FROM kutubxona_kitoblar WHERE id=%s", (kitob_id,))
+    k = cur.fetchone()
+    if not k:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Kitob topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, k["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT i.id AS ijara_id, u.full_name, i.olingan_sana, i.qaytarish_muddati, i.qaytarilgan_sana
+        FROM kutubxona_ijara i JOIN users u ON u.user_id = i.user_id
+        WHERE i.kitob_id=%s ORDER BY i.olingan_sana DESC
+    """, (kitob_id,))
+    tarix = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"tarix": tarix}
+
+
+@app.get("/api/maktab/odam_qidir")
+def maktab_odam_qidir(token: str, maktab_id: int, ism: str):
+    """Maktab rahbariyati uchun — o'sha maktabga tegishli (xodim
+    yoki tasdiqlangan o'quvchi) odamni ism bo'yicha qidiradi.
+    Masalan kitob berish uchun kimga berilayotganini topish."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin qidira oladi")
+    if len(ism.strip()) < 2:
+        cur.close(); conn.close()
+        return {"natijalar": []}
+    cur.execute("""
+        SELECT DISTINCT u.user_id, u.full_name FROM users u
+        WHERE u.full_name ILIKE %s AND (
+            u.maktab_id = %s
+            OR EXISTS (
+                SELECT 1 FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id = a.sinf_id
+                WHERE a.user_id = u.user_id AND s.maktab_id = %s
+            )
+        )
+        ORDER BY u.full_name LIMIT 10
+    """, (f"%{ism.strip()}%", maktab_id, maktab_id))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"natijalar": natija}
+
+
+# ═══════════════════════════════════════════════════════════
+# MOLIYA — maktab byudjeti. O'quvchi to'lovlari (tolovlar jadvali,
+# ALLAQACHON mavjud) BILAN BIRGA ko'rsatiladi — "kirim" alohida ikki
+# xil manbadan (o'quvchi kontrakti + boshqa: homiylik/grant) yig'iladi,
+# "chiqim" esa moliya_amallar orqali qo'lda kiritiladi.
+# ═══════════════════════════════════════════════════════════
+
+def _moliya_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS moliya_amallar(
+        id SERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        turi TEXT NOT NULL,
+        kategoriya TEXT,
+        summa INTEGER NOT NULL,
+        izoh TEXT,
+        sana DATE NOT NULL DEFAULT CURRENT_DATE,
+        kiritgan_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+MOLIYA_TURLARI = {"kirim", "chiqim"}
+MOLIYA_KATEGORIYALARI = {
+    "kirim": ["Homiylik", "Grant", "Boshqa kirim"],
+    "chiqim": ["Ish haqi", "Jihoz/inventar", "Ta'mirlash", "Kommunal", "O'quv materiallari", "Boshqa chiqim"],
+}
+
+
+class MoliyaYozuvi(BaseModel):
+    token: str
+    maktab_id: int
+    turi: str
+    kategoriya: str
+    summa: int
+    izoh: Optional[str] = None
+    sana: Optional[str] = None
+
+
+@app.post("/api/maktab/moliya_yozuv_qosh")
+def moliya_yozuv_qosh(sorov: MoliyaYozuvi):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _moliya_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, sorov.maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin moliyaviy yozuv kirita oladi")
+    if sorov.turi not in MOLIYA_TURLARI:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Noto'g'ri tur")
+    if sorov.summa <= 0:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Summa musbat bo'lishi kerak")
+    cur.execute("""
+        INSERT INTO moliya_amallar(maktab_id, turi, kategoriya, summa, izoh, sana, kiritgan_user_id)
+        VALUES(%s,%s,%s,%s,%s,COALESCE(%s, CURRENT_DATE),%s) RETURNING id
+    """, (sorov.maktab_id, sorov.turi, sorov.kategoriya, sorov.summa, sorov.izoh, sorov.sana, user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "id": yangi_id}
+
+
+@app.get("/api/maktab/moliya")
+def moliya_royxati(token: str, maktab_id: int, oy: str):
+    """Direktor uchun — BUTUN oylik byudjet: o'quvchilar kontrakt
+    to'lovi (mavjud tolovlar jadvalidan AVTOMATIK), + qo'lda kiritilgan
+    boshqa kirim/chiqim yozuvlari, + umumiy balans."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _moliya_jadvali(cur); _tolov_jadvallari(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+
+    cur.execute("""
+        SELECT COALESCE(SUM(t.tolangan_summa), 0) AS jami
+        FROM tolovlar t WHERE t.maktab_id=%s AND t.oy=%s
+    """, (maktab_id, oy))
+    oquvchi_kirim = cur.fetchone()["jami"]
+
+    cur.execute("""
+        SELECT id, turi, kategoriya, summa, izoh, sana FROM moliya_amallar
+        WHERE maktab_id=%s AND TO_CHAR(sana, 'YYYY-MM')=%s
+        ORDER BY sana DESC, id DESC
+    """, (maktab_id, oy))
+    yozuvlar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    boshqa_kirim = sum(y["summa"] for y in yozuvlar if y["turi"] == "kirim")
+    chiqim = sum(y["summa"] for y in yozuvlar if y["turi"] == "chiqim")
+    jami_kirim = oquvchi_kirim + boshqa_kirim
+    return {
+        "oy": oy, "oquvchi_kirim": oquvchi_kirim, "boshqa_kirim": boshqa_kirim,
+        "jami_kirim": jami_kirim, "chiqim": chiqim, "balans": jami_kirim - chiqim,
+        "yozuvlar": yozuvlar,
+    }
+
+
+@app.delete("/api/maktab/moliya_yozuv_ochir")
+def moliya_yozuv_ochir(token: str, yozuv_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _moliya_jadvali(cur)
+    cur.execute("SELECT maktab_id FROM moliya_amallar WHERE id=%s", (yozuv_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Yozuv topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, r["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM moliya_amallar WHERE id=%s", (yozuv_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+# ═══════════════════════════════════════════════════════════
+# HUJJATLAR — buyruqlar, hisobotlar, sertifikatlar. Fayl BAZANING
+# O'ZIDA (BYTEA) saqlanadi — Railway'ning diskka yozilgan fayllarni
+# HAR QAYTA ISHGA TUSHISHDA o'chirib yuborishi sababli, diskka
+# yozish ISHONCHSIZ. Kichik-o'rta hajmdagi hujjatlar (buyruq, sertifikat)
+# uchun bu yetarli — 10 MB chegarasi bilan.
+# ═══════════════════════════════════════════════════════════
+
+HUJJAT_HAJM_CHEGARASI = 10 * 1024 * 1024  # 10 MB
+HUJJAT_TURLARI = {"buyruq", "hisobot", "sertifikat", "xodim_hujjati", "oquvchi_hujjati", "boshqa"}
+
+
+def _hujjatlar_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS hujjatlar(
+        id SERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        nomi TEXT NOT NULL, turi TEXT NOT NULL,
+        fayl_nomi TEXT, fayl_turi TEXT, fayl_hajmi INTEGER,
+        fayl_malumot BYTEA,
+        izoh TEXT,
+        yuklagan_user_id BIGINT REFERENCES users(user_id),
+        yuklangan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+@app.post("/api/maktab/hujjat_yukla")
+async def hujjat_yukla(token: str, maktab_id: int, nomi: str, turi: str, izoh: str = "", fayl: UploadFile = File(...)):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _hujjatlar_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin hujjat yuklay oladi")
+    if turi not in HUJJAT_TURLARI:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Noto'g'ri hujjat turi")
+    if not nomi.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Hujjat nomini kiriting")
+
+    tarkib = await fayl.read()
+    if len(tarkib) > HUJJAT_HAJM_CHEGARASI:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Fayl hajmi 10 MB dan katta bo'lmasligi kerak")
+
+    cur.execute("""
+        INSERT INTO hujjatlar(maktab_id, nomi, turi, fayl_nomi, fayl_turi, fayl_hajmi, fayl_malumot, izoh, yuklagan_user_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (maktab_id, nomi.strip(), turi, fayl.filename, fayl.content_type, len(tarkib),
+          psycopg2.Binary(tarkib), izoh or None, user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yuklandi", "hujjat_id": yangi_id}
+
+
+@app.get("/api/maktab/hujjatlar")
+def hujjatlar_royxati(token: str, maktab_id: int):
+    """Fayl MA'LUMOTI o'zi QAYTARILMAYDI (tez yuklanishi uchun) —
+    faqat metama'lumot. Fayl o'zi /hujjat_yukleb_olish orqali."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _hujjatlar_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT h.id, h.nomi, h.turi, h.fayl_nomi, h.fayl_hajmi, h.izoh, h.yuklangan_at, u.full_name AS yuklagan_ismi
+        FROM hujjatlar h LEFT JOIN users u ON u.user_id = h.yuklagan_user_id
+        WHERE h.maktab_id=%s ORDER BY h.yuklangan_at DESC
+    """, (maktab_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"hujjatlar": natija}
+
+
+@app.get("/api/maktab/hujjat_yukleb_olish")
+def hujjat_yukleb_olish(token: str, hujjat_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _hujjatlar_jadvali(cur)
+    cur.execute("SELECT maktab_id, fayl_nomi, fayl_turi, fayl_malumot FROM hujjatlar WHERE id=%s", (hujjat_id,))
+    h = cur.fetchone()
+    if not h:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Hujjat topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, h["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin yuklab ola oladi")
+    cur.close()
+    conn.close()
+    return Response(
+        content=bytes(h["fayl_malumot"]),
+        media_type=h["fayl_turi"] or "application/octet-stream",
+        headers={"Content-Disposition": f'attachment; filename="{h["fayl_nomi"] or "hujjat"}"'},
+    )
+
+
+@app.delete("/api/maktab/hujjat_ochir")
+def hujjat_ochir(token: str, hujjat_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _hujjatlar_jadvali(cur)
+    cur.execute("SELECT maktab_id FROM hujjatlar WHERE id=%s", (hujjat_id,))
+    h = cur.fetchone()
+    if not h:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Hujjat topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, h["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM hujjatlar WHERE id=%s", (hujjat_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+# ═══════════════════════════════════════════════════════════
+# REJALASHTIRISH — dars jadvali (haftalik, sinf bo'yicha) va
+# tadbirlar/majlislar/ta'til (umumiy taqvim). SODDALASHTIRILGAN:
+# xona BANDLIGI to'qnashuvini avtomatik tekshirmaydi (bu alohida,
+# ancha katta funksiya) — xona shunchaki KO'RSATISH uchun matn.
+# ═══════════════════════════════════════════════════════════
+
+HAFTA_KUNLARI = {1: "Dushanba", 2: "Seshanba", 3: "Chorshanba", 4: "Payshanba", 5: "Juma", 6: "Shanba"}
+TADBIR_TURLARI = {"tadbir", "majlis", "tatil"}
+
+
+def _rejalashtirish_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS dars_jadvali(
+        id SERIAL PRIMARY KEY,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id),
+        kun INTEGER NOT NULL,
+        dars_raqami INTEGER NOT NULL,
+        fan TEXT NOT NULL,
+        xona TEXT,
+        UNIQUE(sinf_id, kun, dars_raqami)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS tadbirlar(
+        id SERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        turi TEXT NOT NULL,
+        sarlavha TEXT NOT NULL,
+        tavsif TEXT,
+        boshlanish_sana DATE NOT NULL,
+        tugash_sana DATE,
+        vaqt TEXT,
+        yaratgan_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+class DarsJadvaliSlot(BaseModel):
+    token: str
+    sinf_id: int
+    kun: int
+    dars_raqami: int
+    fan: str
+    xona: Optional[str] = None
+
+
+@app.put("/api/maktab/dars_jadvali_belgila")
+def dars_jadvali_belgila(sorov: DarsJadvaliSlot):
+    """Direktor/o'rinbosar — sinfning haftalik jadvaliga BIR soatlik
+    darsni belgilaydi (yoki mavjudini yangilaydi)."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _rejalashtirish_jadvallari(cur)
+    cur.execute("SELECT maktab_id FROM maktab_sinflari WHERE id=%s", (sorov.sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin jadval belgilay oladi")
+    if sorov.kun not in HAFTA_KUNLARI:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kun 1 (Dushanba) dan 6 (Shanba) gacha bo'lishi kerak")
+    if not sorov.fan.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Fan nomini kiriting")
+    cur.execute("""
+        INSERT INTO dars_jadvali(sinf_id, kun, dars_raqami, fan, xona)
+        VALUES(%s,%s,%s,%s,%s)
+        ON CONFLICT (sinf_id, kun, dars_raqami) DO UPDATE SET fan=EXCLUDED.fan, xona=EXCLUDED.xona
+    """, (sorov.sinf_id, sorov.kun, sorov.dars_raqami, sorov.fan.strip(), sorov.xona))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.delete("/api/maktab/dars_jadvali_ochir")
+def dars_jadvali_ochir(token: str, sinf_id: int, kun: int, dars_raqami: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _rejalashtirish_jadvallari(cur)
+    cur.execute("SELECT maktab_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM dars_jadvali WHERE sinf_id=%s AND kun=%s AND dars_raqami=%s", (sinf_id, kun, dars_raqami))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+@app.get("/api/maktab/dars_jadvali")
+def dars_jadvali_royxati(token: str, sinf_id: int):
+    """Sinf rahbari yoki maktab rahbariyati — bitta sinfning to'liq
+    haftalik jadvali."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _rejalashtirish_jadvallari(cur)
+    cur.execute("SELECT maktab_id, rahbar_user_id, sinf, harf FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    ruxsat = s["rahbar_user_id"] == user_id or _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("SELECT kun, dars_raqami, fan, xona FROM dars_jadvali WHERE sinf_id=%s ORDER BY kun, dars_raqami", (sinf_id,))
+    slotlar = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"sinf": s["sinf"], "harf": s["harf"], "slotlar": slotlar}
+
+
+class TadbirYaratish(BaseModel):
+    token: str
+    maktab_id: int
+    turi: str
+    sarlavha: str
+    tavsif: Optional[str] = None
+    boshlanish_sana: str
+    tugash_sana: Optional[str] = None
+    vaqt: Optional[str] = None
+
+
+@app.post("/api/maktab/tadbir_qosh")
+def tadbir_qosh(sorov: TadbirYaratish):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _rejalashtirish_jadvallari(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, sorov.maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin tadbir qo'sha oladi")
+    if sorov.turi not in TADBIR_TURLARI:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Noto'g'ri tur")
+    if not sorov.sarlavha.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sarlavhani kiriting")
+    cur.execute("""
+        INSERT INTO tadbirlar(maktab_id, turi, sarlavha, tavsif, boshlanish_sana, tugash_sana, vaqt, yaratgan_user_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.maktab_id, sorov.turi, sorov.sarlavha.strip(), sorov.tavsif, sorov.boshlanish_sana, sorov.tugash_sana, sorov.vaqt, user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "id": yangi_id}
+
+
+@app.get("/api/maktab/tadbirlar")
+def tadbirlar_royxati(token: str, maktab_id: int, faqat_kelayotgan: bool = True):
+    """Maktab jamoasi uchun — barcha tadbir/majlis/ta'til ro'yxati.
+    RUXSAT KENGROQ: shu maktabga tegishli istalgan xodim/o'quvchi
+    ko'ra oladi (faqat rahbariyat emas) — chunki taqvim hammaga
+    kerak."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _rejalashtirish_jadvallari(cur)
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi:
+        cur.execute("""
+            SELECT 1 FROM users u WHERE u.user_id=%s AND (
+                u.maktab_id=%s OR EXISTS (
+                    SELECT 1 FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id
+                    WHERE a.user_id=u.user_id AND s.maktab_id=%s
+                )
+            )
+        """, (user_id, maktab_id, maktab_id))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=403, detail="Faqat shu maktabga tegishli hisoblar ko'ra oladi")
+    sql = "SELECT id, turi, sarlavha, tavsif, boshlanish_sana, tugash_sana, vaqt FROM tadbirlar WHERE maktab_id=%s"
+    params = [maktab_id]
+    if faqat_kelayotgan:
+        sql += " AND COALESCE(tugash_sana, boshlanish_sana) >= CURRENT_DATE"
+    sql += " ORDER BY boshlanish_sana"
+    cur.execute(sql, params)
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"tadbirlar": natija}
+
+
+@app.delete("/api/maktab/tadbir_ochir")
+def tadbir_ochir(token: str, tadbir_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _rejalashtirish_jadvallari(cur)
+    cur.execute("SELECT maktab_id FROM tadbirlar WHERE id=%s", (tadbir_id,))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Tadbir topilmadi")
+    if not _maktab_boshqaruvchi_mi(cur, user_id, t["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM tadbirlar WHERE id=%s", (tadbir_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+# ═══════════════════════════════════════════════════════════
+# AI YORDAMCHI — rolga qarab TEZKOR javob. XAVFSIZLIK PRINSIPI:
+# LLM'ga faqat OLDIN, rolga qarab RUXSAT ETILGAN ma'lumot beriladi
+# (kontekst) — LLM hech qachon o'zi bazaga so'rov yubormaydi, shu
+# sabab "ruxsatsiz ma'lumotni oshkor qilish" xavfi yo'q: eng yomon
+# holatda LLM noto'g'ri xulosa chiqaradi, lekin RUXSAT ETILMAGAN
+# ma'lumotni hech qachon ko'rmaydi.
+# ═══════════════════════════════════════════════════════════
+
+GROQ_API_KALIT = os.getenv("GROQ_API_KEY", "")
+
+
+def _ai_kontekst_yigish(cur, user_id):
+    """Chaqiruvchining ROLIGA qarab — FAQAT unga tegishli ma'lumotni
+    matn ko'rinishida yig'adi. Direktor/o'rinbosar → butun maktab.
+    Sinf rahbari → o'z sinfi. Ota-ona → o'z farzandlari."""
+    cur.execute("SELECT full_name, lavozim, maktab_id FROM users WHERE user_id=%s", (user_id,))
+    kishi = cur.fetchone()
+    if not kishi:
+        return "Foydalanuvchi topilmadi.", "boshqa"
+
+    # 1) Maktab rahbariyati — BUTUN maktab
+    if kishi["maktab_id"] and _maktab_boshqaruvchi_mi(cur, user_id, kishi["maktab_id"]):
+        cur.execute("SELECT nomi, pulli, oylik_tolov FROM maktablar WHERE id=%s", (kishi["maktab_id"],))
+        mk = cur.fetchone()
+        joriy_oy = datetime.now().strftime("%Y-%m")
+        cur.execute("""
+            SELECT s.sinf, s.harf, u.full_name AS rahbar_ismi,
+                   COUNT(DISTINCT a.user_id) AS oquvchi_soni,
+                   ROUND(AVG(lt.score)) AS bilim,
+                   COUNT(DISTINCT d.user_id) FILTER (WHERE d.holat='keldi') AS bugun_kelgan,
+                   COUNT(DISTINCT t.user_id) FILTER (WHERE t.tolangan_summa >= %s) AS tolagan
+            FROM maktab_sinflari s
+            LEFT JOIN users u ON u.user_id = s.rahbar_user_id
+            LEFT JOIN maktab_sinf_azolari a ON a.sinf_id = s.id
+            LEFT JOIN learned_topics lt ON lt.user_id = a.user_id
+            LEFT JOIN davomat d ON d.sinf_id = s.id AND d.user_id = a.user_id AND d.sana = CURRENT_DATE
+            LEFT JOIN tolovlar t ON t.user_id = a.user_id AND t.maktab_id = s.maktab_id AND t.oy = %s
+            WHERE s.maktab_id=%s
+            GROUP BY s.id, s.sinf, s.harf, u.full_name
+            ORDER BY s.sinf::int, s.harf
+        """, (mk["oylik_tolov"] or 0, joriy_oy, kishi["maktab_id"]))
+        sinflar = cur.fetchall()
+        satrlar = [f"Maktab: {mk['nomi']} ({'pulli' if mk['pulli'] else 'bepul'})"]
+        for s in sinflar:
+            satr = f"- {s['sinf']}-{s['harf']}: rahbar {s['rahbar_ismi'] or 'yo\u02bbq'}, {s['oquvchi_soni']} o'quvchi"
+            if s["bilim"] is not None:
+                satr += f", bilim {s['bilim']}%"
+            satr += f", bugun {s['bugun_kelgan']}/{s['oquvchi_soni']} keldi"
+            if mk["pulli"]:
+                satr += f", to'lov {s['tolagan']}/{s['oquvchi_soni']}"
+            satrlar.append(satr)
+        cur.execute("""
+            SELECT u.full_name, s.sinf, s.harf, COUNT(*) FILTER (WHERE d.holat='kelmadi') AS son
+            FROM maktab_sinf_azolari a JOIN users u ON u.user_id=a.user_id
+            JOIN maktab_sinflari s ON s.id=a.sinf_id
+            LEFT JOIN davomat d ON d.user_id=a.user_id AND d.sana >= CURRENT_DATE - INTERVAL '7 days'
+            WHERE s.maktab_id=%s GROUP BY u.user_id, u.full_name, s.sinf, s.harf
+            HAVING COUNT(*) FILTER (WHERE d.holat='kelmadi') >= 2
+        """, (kishi["maktab_id"],))
+        muammoli = cur.fetchall()
+        if muammoli:
+            satrlar.append("Muammoli o'quvchilar (oxirgi 7 kunda 2+ marta kelmagan):")
+            for m in muammoli:
+                satrlar.append(f"- {m['full_name']} ({m['sinf']}-{m['harf']}): {m['son']} kun kelmagan")
+        return "\n".join(satrlar), "rahbariyat"
+
+    # 2) Sinf rahbari — O'Z sinfi
+    cur.execute("SELECT id, sinf, harf FROM maktab_sinflari WHERE rahbar_user_id=%s", (user_id,))
+    sinf = cur.fetchone()
+    if sinf:
+        cur.execute("""
+            SELECT u.user_id, u.full_name, ROUND(AVG(lt.score)) AS bilim
+            FROM maktab_sinf_azolari a JOIN users u ON u.user_id=a.user_id
+            LEFT JOIN learned_topics lt ON lt.user_id=a.user_id
+            WHERE a.sinf_id=%s GROUP BY u.user_id, u.full_name ORDER BY u.full_name
+        """, (sinf["id"],))
+        oquvchilar = cur.fetchall()
+        satrlar = [f"Sinf: {sinf['sinf']}-{sinf['harf']}"]
+        for o in oquvchilar:
+            cur.execute("""
+                SELECT COUNT(*) FILTER (WHERE holat='keldi') AS keldi, COUNT(*) FILTER (WHERE holat='kelmadi') AS kelmadi
+                FROM davomat WHERE user_id=%s AND sana >= CURRENT_DATE - INTERVAL '30 days'
+            """, (o["user_id"],))
+            dv = cur.fetchone()
+            satr = f"- {o['full_name']}: bilim {o['bilim'] if o['bilim'] is not None else 'ma\u02bblumot yo\u02bbq'}%, oxirgi 30 kunda {dv['keldi']} keldi, {dv['kelmadi']} kelmadi"
+            satrlar.append(satr)
+        return "\n".join(satrlar), "sinf_rahbari"
+
+    # 3) Ota-ona — O'Z farzandlari
+    cur.execute("SELECT child_id FROM parent_child WHERE parent_id=%s", (user_id,))
+    farzandlar = cur.fetchall()
+    if farzandlar:
+        satrlar = []
+        for f in farzandlar:
+            bilim = bola_bilimi(bola_id=f["child_id"], sinf=None)
+            cur.execute("""
+                SELECT COUNT(*) FILTER (WHERE holat='keldi') AS keldi, COUNT(*) FILTER (WHERE holat='kelmadi') AS kelmadi
+                FROM davomat WHERE user_id=%s AND sana >= CURRENT_DATE - INTERVAL '30 days'
+            """, (f["child_id"],))
+            dv = cur.fetchone()
+            satrlar.append(f"Farzand: {bilim['bola']['ism']}, umumiy bilim {bilim['umumiy_foiz']}%, oxirgi 30 kunda {dv['keldi']} keldi, {dv['kelmadi']} kelmadi")
+            for fan in bilim["fanlar"]:
+                satrlar.append(f"  {fan['nom']}: {fan['foiz']}%")
+        return "\n".join(satrlar), "ota_ona"
+
+    return f"{kishi['full_name']} uchun ma'lumot topilmadi.", "boshqa"
+
+
+class AiSorash(BaseModel):
+    token: str
+    savol: str
+
+
+@app.post("/api/ai/sorash")
+def ai_sorash(sorov: AiSorash):
+    if not GROQ_API_KALIT:
+        raise HTTPException(status_code=503, detail="AI yordamchi hali sozlanmagan — GROQ_API_KEY kerak")
+    user_id = _jwt_tekshir(sorov.token)
+    if not sorov.savol.strip():
+        raise HTTPException(status_code=400, detail="Savolni kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    _davomat_jadvali(cur)
+    kontekst, rol = _ai_kontekst_yigish(cur, user_id)
+    cur.close()
+    conn.close()
+
+    tizim_promt = (
+        "Sen — SamTM Ta'lim platformasidagi maktab uchun AI yordamchisan. "
+        "Faqat quyida berilgan MA'LUMOTLAR asosida, o'zbek tilida, QISQA va ANIQ javob ber. "
+        "Agar so'ralgan narsa berilgan ma'lumotda yo'q bo'lsa, aniq shunday deb ayt — hech narsani o'ylab topma. "
+        "Ma'lumotda YO'Q narsani hech qachon taxmin qilib javob berma.\n\nMA'LUMOTLAR:\n" + kontekst
+    )
+    try:
+        with httpx.Client(timeout=20) as client:
+            javob = client.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={"Authorization": f"Bearer {GROQ_API_KALIT}", "Content-Type": "application/json"},
+                json={
+                    "model": "llama-3.3-70b-versatile",
+                    "messages": [
+                        {"role": "system", "content": tizim_promt},
+                        {"role": "user", "content": sorov.savol.strip()},
+                    ],
+                    "temperature": 0.3,
+                    "max_tokens": 500,
+                },
+            )
+        javob.raise_for_status()
+        matn = javob.json()["choices"][0]["message"]["content"]
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"AI javob berolmadi: {e}")
+
+    return {"javob": matn, "rol": rol}
+
+
+
 # infratuzilmasi USTIGA quriladi (togaraklar, togarak_azolar) —
 # takrorlanish emas, ANIQ QAYTA ISHLATISH: markazning har bir
 # "guruhi" — oddiy to'garak, faqat endi markaz_id bilan bog'langan.
