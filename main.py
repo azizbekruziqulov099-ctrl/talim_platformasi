@@ -1728,8 +1728,20 @@ def togarak_yarat(sorov: TogarakYaratish):
 # yangi mavzu, sinov (SIN) topic_code bilan dts_tree'ga qo'shiladi —
 # shu bilan test yechish/Bilim/spaced-repetition kabi BUTUN mavjud
 # mexanizm avtomatik ishlab ketadi, hech narsa qaytadan yozilmaydi.
-# Faqat REJA/MUHIM MA'LUMOT/VIDEO — bular dts_tree'da yo'q maydonlar
-# — alohida kichik jadvalda saqlanadi.
+#
+# TOPIC_CODE XAVFSIZLIGI: PostgreSQL SEQUENCE orqali — bu bazaning
+# o'zi kafolatlaydigan, ATOM (bo'linmas) hisoblagich. Necha million
+# mavzu yaratilmasin, ikkita so'rov bir vaqtda kelsa ham, ikkita
+# turli mavzu BIR XIL kodni HECH QACHON ololmaydi — bu PostgreSQL'ning
+# o'zi ta'minlaydigan kafolat, poyga holati (race condition) mumkin
+# emas. Kod formati oddiy: SIN0000001, SIN0000002, ... — to'garak
+# raqamiga BOG'LIQ EMAS, shu sabab har doim oddiy va bir xil uzunlikda.
+#
+# Ikki bosqichli ish jarayoni — ADMIN'ning "Topik shablon"/"Test
+# shablon" naqshiga mos, lekin SODDA (chorak/bo'lim/kichik mavzu
+# YO'Q — faqat Bob va Mavzu):
+#   1) Mavzu shablon: Bob|Mavzu Excel → to'ldirib yuklash
+#   2) Test shablon: tanlangan mavzu(lar) uchun savol Excel → to'ldirib yuklash
 # ═══════════════════════════════════════════════════════════
 
 def _togarak_mavzu_kontenti_jadvali(cur):
@@ -1741,6 +1753,16 @@ def _togarak_mavzu_kontenti_jadvali(cur):
         video_havola TEXT,
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("CREATE SEQUENCE IF NOT EXISTS togarak_mavzu_kod_seq")
+
+
+def _keyingi_togarak_topic_code(cur):
+    """PostgreSQL SEQUENCE'dan KEYINGI, hech qachon takrorlanmaydigan
+    raqamni oladi — bazaning o'zi kafolatlaydi, poyga holati mumkin
+    emas, necha million bo'lsa ham oddiy va tez."""
+    cur.execute("SELECT nextval('togarak_mavzu_kod_seq') AS keyingi")
+    keyingi = cur.fetchone()["keyingi"]
+    return f"SIN{keyingi:07d}"
 
 
 def _togarak_ozi_mi(cur, user_id, togarak_id):
@@ -1758,61 +1780,122 @@ def _togarak_ozi_mi(cur, user_id, togarak_id):
     return bool(t["markaz_id"] and _markaz_boshqaruvchi_mi(cur, user_id, t["markaz_id"]))
 
 
-class TogarakMavzuYaratish(BaseModel):
-    token: str
-    togarak_id: int
-    nomi: str
-    reja: Optional[str] = None
-    muhim_malumot: Optional[str] = None
-    video_havola: Optional[str] = None
-
-
-@app.post("/api/oqituvchi/togarak_mavzu_yarat")
-def togarak_mavzu_yarat(sorov: TogarakMavzuYaratish):
-    """O'qituvchi o'z to'garagi uchun ORIGINAL mavzu yaratadi — reja,
-    muhim ma'lumot (matn) va video-dars (YouTube) havolasi bilan.
-    Mavzu AVTOMATIK shu to'garakning ta'lim yo'liga qo'shiladi."""
-    user_id = _jwt_tekshir(sorov.token)
+@app.get("/api/oqituvchi/togarak_mavzu_shablon")
+def togarak_mavzu_shablon(token: str, togarak_id: int):
+    """1-bosqich — Bob|Mavzu Excel shablonini yaratadi. Admin'ning
+    Topik shablonidan farqli: CHORAK, BO'LIM, KICHIK MAVZU yo'q —
+    faqat ikkita ustun, chunki to'garak dasturi milliy dasturdan
+    mustaqil, soddaroq tuzilishda."""
+    user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
         cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin yarata oladi")
-    if not sorov.nomi.strip():
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Mavzu nomini kiriting")
-
-    cur.execute("SELECT sinf, fan FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    cur.execute("SELECT nomi, fan FROM togaraklar WHERE id=%s", (togarak_id,))
     t = cur.fetchone()
+    cur.close()
+    conn.close()
+    if not t:
+        raise HTTPException(status_code=404, detail="To'garak topilmadi")
 
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
+    import io
+    from fastapi.responses import StreamingResponse
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "MAVZULAR"
+    for col, h in enumerate(["#", "Bob", "Mavzu"], 1):
+        cell = ws.cell(1, col, h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="70AD47")
+        cell.alignment = Alignment(horizontal="center")
+    namunalar = [(1, "1-bob. Kirish", "Tanishuv darsi"), (2, "1-bob. Kirish", "Asosiy tushunchalar"), (3, "2-bob. Amaliyot", "Birinchi mashqlar")]
+    for idx, bob, mavzu in namunalar:
+        ws.cell(idx + 1, 1, idx)
+        ws.cell(idx + 1, 2, bob)
+        ws.cell(idx + 1, 3, mavzu)
+    for col, width in zip(range(1, 4), [5, 30, 35]):
+        ws.column_dimensions[ws.cell(1, col).column_letter].width = width
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, "📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
+    ws2.cell(3, 1, f"To'garak: {t['nomi']} ({t['fan']})").font = Font(bold=True)
+    ws2.cell(5, 1, "Bob — mavzular guruhini nomlang, masalan '1-bob. Kirish'").font = Font(bold=True)
+    ws2.cell(6, 1, "Mavzu — har bir dars/mavzu nomi, alohida qatorda")
+    ws2.cell(7, 1, "Namuna qatorlarni o'chirib, o'zingiznikini yozing yoki davom ettiring")
+    ws2.column_dimensions['A'].width = 70
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename=togarak_mavzu_shablon_{togarak_id}.xlsx"},
+    )
+
+
+@app.post("/api/oqituvchi/togarak_mavzu_import")
+async def togarak_mavzu_import(token: str, togarak_id: int, fayl: UploadFile = File(...)):
+    """1-bosqich (yuklash) — to'ldirilgan Bob|Mavzu shablonni o'qib,
+    har bir qator uchun (Mavzu bo'sh bo'lmasa) YANGI, hech qachon
+    takrorlanmaydigan topic_code yaratadi va to'garak ta'lim yo'liga
+    qo'shadi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin yuklay oladi")
+    cur.execute("SELECT sinf, fan FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="To'garak topilmadi")
+
+    import openpyxl
+    import io
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb["MAVZULAR"] if "MAVZULAR" in wb.sheetnames else wb.active
+
+    _togarak_mavzu_kontenti_jadvali(cur)
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
         topic_code TEXT,
         PRIMARY KEY (togarak_id, topic_code)
     )""")
-    _togarak_mavzu_kontenti_jadvali(cur)
-    cur.execute("SELECT COUNT(*) AS soni FROM togarak_mavzu_kontenti WHERE togarak_id=%s", (sorov.togarak_id,))
-    tartib = (cur.fetchone()["soni"] or 0) + 1
-    topic_code = f"SIN{sorov.togarak_id}-{tartib:03d}"
 
-    cur.execute("""
-        INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-        VALUES(%s,%s,%s,'1','','',%s,'',FALSE)
-    """, (topic_code, t["sinf"] or "", t["fan"] or "", sorov.nomi.strip()))
-
-    cur.execute("""
-        INSERT INTO togarak_mavzu_kontenti(topic_code, togarak_id, reja, muhim_malumot, video_havola)
-        VALUES(%s,%s,%s,%s,%s)
-    """, (topic_code, sorov.togarak_id, sorov.reja, sorov.muhim_malumot, sorov.video_havola))
-
-    cur.execute(
-        "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
-        (sorov.togarak_id, topic_code),
-    )
+    qoshildi = 0
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or len(row) < 3:
+            continue
+        bob, mavzu = row[1], row[2]
+        if not mavzu or not str(mavzu).strip():
+            continue
+        topic_code = _keyingi_togarak_topic_code(cur)
+        cur.execute("""
+            INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+            VALUES(%s,%s,%s,'1',%s,'',%s,'',FALSE)
+        """, (topic_code, t["sinf"] or "", t["fan"] or "", str(bob).strip() if bob else "", str(mavzu).strip()))
+        cur.execute("""
+            INSERT INTO togarak_mavzu_kontenti(topic_code, togarak_id) VALUES(%s,%s)
+        """, (topic_code, togarak_id))
+        cur.execute(
+            "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+            (togarak_id, topic_code),
+        )
+        qoshildi += 1
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "yaratildi", "topic_code": topic_code}
+    return {"qoshildi": qoshildi}
 
 
 @app.get("/api/oqituvchi/togarak_mavzulari_ozi")
@@ -1827,7 +1910,7 @@ def togarak_mavzulari_ozi_royxati(token: str, togarak_id: int):
         raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
     _togarak_mavzu_kontenti_jadvali(cur)
     cur.execute("""
-        SELECT k.topic_code, d.mavzu_name AS nomi, k.reja, k.muhim_malumot, k.video_havola,
+        SELECT k.topic_code, d.bob_name, d.mavzu_name AS nomi, k.reja, k.muhim_malumot, k.video_havola,
                (SELECT COUNT(*) FROM generated_tests WHERE topic_code=k.topic_code) AS savol_soni
         FROM togarak_mavzu_kontenti k
         LEFT JOIN dts_tree d ON d.topic_code = k.topic_code
@@ -1837,6 +1920,39 @@ def togarak_mavzulari_ozi_royxati(token: str, togarak_id: int):
     cur.close()
     conn.close()
     return {"mavzular": natija}
+
+
+class TogarakMavzuTahrirlash(BaseModel):
+    token: str
+    topic_code: str
+    reja: Optional[str] = None
+    muhim_malumot: Optional[str] = None
+    video_havola: Optional[str] = None
+
+
+@app.put("/api/oqituvchi/togarak_mavzu_tahrirlash")
+def togarak_mavzu_tahrirlash(sorov: TogarakMavzuTahrirlash):
+    """Excel orqali yaratilgan mavzuga KEYINROQ reja/muhim ma'lumot/
+    video havola qo'shish yoki yangilash uchun."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT togarak_id FROM togarak_mavzu_kontenti WHERE topic_code=%s", (sorov.topic_code,))
+    k = cur.fetchone()
+    if not k:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Mavzu topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, k["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin tahrirlay oladi")
+    cur.execute("""
+        UPDATE togarak_mavzu_kontenti SET reja=%s, muhim_malumot=%s, video_havola=%s WHERE topic_code=%s
+    """, (sorov.reja, sorov.muhim_malumot, sorov.video_havola, sorov.topic_code))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
 
 
 @app.delete("/api/oqituvchi/togarak_mavzu_ochir")
@@ -1863,50 +1979,174 @@ def togarak_mavzu_ochir(token: str, topic_code: str):
     return {"holat": "ochirildi"}
 
 
-class TogarakSavolYaratish(BaseModel):
-    token: str
+class TogarakTestShablonGuruh(BaseModel):
     topic_code: str
-    savol: str
-    turi: str = "single_choice"  # single_choice | write_answer
-    variant_a: Optional[str] = None
-    variant_b: Optional[str] = None
-    variant_c: Optional[str] = None
-    variant_d: Optional[str] = None
-    togri_javob: str
-    tushuntirish: Optional[str] = None
+    soni: int
 
 
-@app.post("/api/oqituvchi/togarak_savol_yarat")
-def togarak_savol_yarat(sorov: TogarakSavolYaratish):
-    """Bitta ORIGINAL mavzuga bitta test savoli qo'shadi — mavjud
-    generated_tests jadvaliga, shu sabab o'quvchi test yechish
-    ekranida BOSHQA milliy savollar bilan BIR XIL tarzda ko'rinadi."""
+class TogarakTestShablonSorov(BaseModel):
+    token: str
+    togarak_id: int
+    guruhlar: list[TogarakTestShablonGuruh]
+
+
+@app.post("/api/oqituvchi/togarak_test_shablon")
+def togarak_test_shablon(sorov: TogarakTestShablonSorov):
+    """2-bosqich — tanlangan mavzu(lar) uchun, har biriga necha savol
+    kerakligi bo'yicha, bo'sh savollar Excel shablonini yaratadi —
+    admin'ning TESTLAR varag'i bilan BIR XIL ustunlar, shu sabab
+    to'ldirilgach import qilinganda test yechish tizimi bilan to'liq
+    mos ishlaydi."""
     user_id = _jwt_tekshir(sorov.token)
     conn = _db()
     cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    guruhlar = [g for g in sorov.guruhlar if g.soni > 0]
+    if not guruhlar:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kamida bitta mavzudan son tanlang")
+
     _togarak_mavzu_kontenti_jadvali(cur)
-    cur.execute("SELECT togarak_id FROM togarak_mavzu_kontenti WHERE topic_code=%s", (sorov.topic_code,))
-    k = cur.fetchone()
-    if not k:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Mavzu topilmadi")
-    if not _togarak_ozi_mi(cur, user_id, k["togarak_id"]):
-        cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
-    if not sorov.savol.strip() or not sorov.togri_javob.strip():
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Savol va to'g'ri javobni kiriting")
-    cur.execute("""
-        INSERT INTO generated_tests(topic_code, question, option_a, option_b, option_c, option_d,
-            correct_answer, explanation, question_type, difficulty, time_limit, language, is_latex)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,'orta',60,'uz',FALSE) RETURNING id
-    """, (sorov.topic_code, sorov.savol.strip(), sorov.variant_a, sorov.variant_b, sorov.variant_c, sorov.variant_d,
-          sorov.togri_javob.strip(), sorov.tushuntirish, sorov.turi))
-    yangi_id = cur.fetchone()["id"]
-    conn.commit()
+    kodlar = [g.topic_code for g in guruhlar]
+    cur.execute("SELECT topic_code FROM togarak_mavzu_kontenti WHERE togarak_id=%s AND topic_code = ANY(%s)", (sorov.togarak_id, kodlar))
+    ruxsat_etilgan = {r["topic_code"] for r in cur.fetchall()}
+    cur.execute("SELECT topic_code, mavzu_name FROM dts_tree WHERE topic_code = ANY(%s)", (kodlar,))
+    nomlar = {r["topic_code"]: r["mavzu_name"] for r in cur.fetchall()}
     cur.close()
     conn.close()
-    return {"holat": "qoshildi", "id": yangi_id}
+
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
+    import io
+    from fastapi.responses import StreamingResponse
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "TESTLAR"
+    ustunlar = [
+        "topic_code", "difficulty", "situation", "question",
+        "option_a", "option_b", "option_c", "option_d",
+        "correct_answer", "explanation", "question_type", "is_latex",
+        "image_url", "audio_text", "language", "life_level", "age_group", "time_limit",
+    ]
+    for col, h in enumerate(ustunlar, 1):
+        cell = ws.cell(1, col, h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="4472C4")
+        cell.alignment = Alignment(horizontal="center")
+
+    row_num = 2
+    for g in guruhlar:
+        if g.topic_code not in ruxsat_etilgan:
+            continue  # boshqa to'garak yoki milliy mavzu kodi — o'tkazib yuboriladi
+        for _ in range(g.soni):
+            ws.cell(row_num, 1, g.topic_code)
+            ws.cell(row_num, 2, "o'rta")
+            ws.cell(row_num, 3, "oddiy")
+            ws.cell(row_num, 11, "single_choice")
+            ws.cell(row_num, 12, False)
+            ws.cell(row_num, 15, "uz")
+            ws.cell(row_num, 16, 1)
+            ws.cell(row_num, 18, 60)
+            row_num += 1
+
+    for col, width in zip(range(1, len(ustunlar) + 1), [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10]):
+        ws.column_dimensions[ws.cell(1, col).column_letter].width = width
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, "📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
+    for r, satr in enumerate([
+        "question — savol matni (majburiy)",
+        "option_a/b/c/d — variantlar (variantli savol uchun)",
+        "correct_answer — to'g'ri javob (majburiy)",
+        "question_type — 'single_choice' yoki 'write_answer'",
+        "topic_code va difficulty — o'zgartirmang",
+    ], 3):
+        ws2.cell(r, 1, satr)
+    mavzu_nomlari = [f"{k}: {nomlar.get(k, '')}" for k in ruxsat_etilgan]
+    ws2.cell(9, 1, "Ushbu shablondagi mavzular:").font = Font(bold=True)
+    for r, s in enumerate(mavzu_nomlari, 10):
+        ws2.cell(r, 1, s)
+    ws2.column_dimensions['A'].width = 70
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename=togarak_test_shablon_{sorov.togarak_id}.xlsx"},
+    )
+
+
+@app.post("/api/oqituvchi/togarak_test_import")
+async def togarak_test_import(token: str, togarak_id: int, fayl: UploadFile = File(...)):
+    """2-bosqich (yuklash) — to'ldirilgan TESTLAR shablonni o'qib,
+    generated_tests'ga qo'shadi. XAVFSIZLIK: har bir qatordagi
+    topic_code ANIQ shu to'garakka tegishli ekani tekshiriladi —
+    boshqa to'garak yoki milliy mavzu kodiga yozish MUMKIN EMAS."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin yuklay oladi")
+
+    _togarak_mavzu_kontenti_jadvali(cur)
+    cur.execute("SELECT topic_code FROM togarak_mavzu_kontenti WHERE togarak_id=%s", (togarak_id,))
+    ozi_kodlari = {r["topic_code"] for r in cur.fetchall()}
+
+    import openpyxl
+    import io
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb["TESTLAR"] if "TESTLAR" in wb.sheetnames else wb.active
+    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
+    if "topic_code" not in headers:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Excel ustunlari mos emas — 'topic_code' topilmadi")
+
+    saved, boshqaga_tegishli, errors = 0, 0, 0
+    for row in ws.iter_rows(min_row=2):
+        d = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers) and headers[i]}
+        tc = d.get("topic_code")
+        q = d.get("question")
+        if not tc or not q or str(tc).strip() == "" or str(q).strip() == "":
+            continue
+        tc_s = str(tc).strip()
+        if tc_s not in ozi_kodlari:
+            boshqaga_tegishli += 1
+            continue
+        try:
+            cur.execute("""
+                INSERT INTO generated_tests
+                (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
+                 correct_answer, explanation, question_type, is_latex, image_url, audio_text,
+                 language, life_level, age_group, time_limit)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            """, (
+                tc_s, d.get("difficulty") or "o'rta", d.get("situation") or "oddiy", str(q).strip(),
+                d.get("option_a"), d.get("option_b"), d.get("option_c"), d.get("option_d"),
+                d.get("correct_answer"), d.get("explanation"),
+                d.get("question_type") or "single_choice",
+                bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
+                d.get("image_url"), d.get("audio_text"), d.get("language") or "uz",
+                d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
+            ))
+            conn.commit()
+            saved += 1
+        except Exception:
+            conn.rollback()
+            errors += 1
+
+    cur.close()
+    conn.close()
+    return {"saved": saved, "boshqaga_tegishli": boshqaga_tegishli, "errors": errors}
 
 
 @app.get("/api/oqituvchi/togarak_mavzu_savollari")
