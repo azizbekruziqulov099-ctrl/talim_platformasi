@@ -2408,7 +2408,7 @@ def togarak_yaratish_mavzulari(token: str, sinf: str, fan: str, turi: str = "odd
                COUNT(gt.id) AS savol_soni
         FROM dts_tree d
         LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
-        WHERE {grade_shart} AND d.grade=%s AND d.subject_name=%s AND d.is_deleted=FALSE
+        WHERE {grade_shart} AND d.grade=%s AND UPPER(d.subject_name)=UPPER(%s) AND d.is_deleted=FALSE
         GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
         ORDER BY MIN(d.topic_code)
     """, (sinf, fan))
