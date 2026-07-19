@@ -1688,6 +1688,7 @@ class TogarakYaratish(BaseModel):
     max_talaba: Optional[int] = None
     oylik_summa: Optional[int] = None
     universitet_guruh_id: Optional[int] = None  # professor shu fanini ANIQ universitet guruhi uchun o'qitsa
+    tanlangan_topic_codes: Optional[list[str]] = None  # o'qituvchi ANIQ tanlagan mavzular (berilmasa — mos kelgan BARCHASI avtomatik)
 
 
 @app.post("/api/oqituvchi/togarak_yarat")
@@ -1744,7 +1745,24 @@ def togarak_yarat(sorov: TogarakYaratish):
     yangi_id = cur.fetchone()["id"]
 
     bogliq_mavzu_soni = 0
-    if sinf_qiymati:
+    if sorov.tanlangan_topic_codes is not None:
+        # O'qituvchi ANIQ mavzularni tanlagan — faqat SHU sinf/fanga
+        # HAQIQATAN tegishli kodlarni qabul qilamiz (xavfsizlik: boshqa
+        # sinf/fan kodini "surib qo'yish" mumkin emas).
+        tanlangan = [k.strip() for k in sorov.tanlangan_topic_codes if k.strip()]
+        if tanlangan and sinf_qiymati:
+            cur.execute("""
+                SELECT topic_code FROM dts_tree
+                WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE AND topic_code = ANY(%s)
+            """, (sinf_qiymati, sorov.fan.strip(), tanlangan))
+            mavzu_kodlari = [r["topic_code"] for r in cur.fetchall()]
+            for kod in mavzu_kodlari:
+                cur.execute(
+                    "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+                    (yangi_id, kod),
+                )
+            bogliq_mavzu_soni = len(mavzu_kodlari)
+    elif sinf_qiymati:
         cur.execute("""
             SELECT topic_code FROM dts_tree
             WHERE grade=%s AND subject_name=%s AND is_deleted=FALSE
