@@ -2631,6 +2631,30 @@ def tolov_belgila(sorov: TolovBelgilash):
     conn = _db()
     cur = conn.cursor()
     _tolov_jadvallari(cur)
+    _sinf_azolari_jadvali(cur)
+
+    # XAVFSIZLIK: faqat admin, shu maktab rahbariyati (direktor/
+    # o'rinbosarlar), yoki aynan shu o'quvchi a'zo bo'lgan sinfning
+    # rahbari to'lov belgilashi mumkin — boshqa hech kim emas.
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (murojaatchi_id,))
+    ruxsat = cur.fetchone() is not None
+    if not ruxsat:
+        cur.execute(
+            "SELECT 1 FROM users WHERE user_id=%s AND maktab_id=%s AND lavozim IN ('direktor','zam_direktor_uquv','zam_direktor_tarbiya')",
+            (murojaatchi_id, sorov.maktab_id),
+        )
+        ruxsat = cur.fetchone() is not None
+    if not ruxsat:
+        cur.execute("""
+            SELECT 1 FROM maktab_sinf_azolari a
+            JOIN maktab_sinflari s ON s.id = a.sinf_id
+            WHERE a.user_id=%s AND s.maktab_id=%s AND s.rahbar_user_id=%s
+        """, (sorov.user_id, sorov.maktab_id, murojaatchi_id))
+        ruxsat = cur.fetchone() is not None
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu o'quvchining sinf rahbari, maktab rahbariyati yoki admin to'lov belgilay oladi")
+
     cur.execute("""
         INSERT INTO tolovlar(user_id, maktab_id, oy, summa_kerak, tolangan_summa, tolov_sanasi)
         VALUES(%s,%s,%s,%s,%s, CURRENT_DATE)
@@ -3123,6 +3147,19 @@ def markaz_tolov_belgila(sorov: MarkazTolovBelgilash):
     conn = _db()
     cur = conn.cursor()
     _tolov_jadvallari(cur)
+
+    # XAVFSIZLIK: faqat shu guruh (to'garak) o'qituvchisi, markaz
+    # rahbariyati, yoki admin to'lov belgilay oladi.
+    cur.execute("SELECT teacher_id, markaz_id FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
+    t = cur.fetchone()
+    if not t:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    ruxsat = t["teacher_id"] == user_id_qiluvchi or (t["markaz_id"] and _markaz_boshqaruvchi_mi(cur, user_id_qiluvchi, t["markaz_id"]))
+    if not ruxsat:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh o'qituvchisi yoki markaz rahbariyati to'lov belgilay oladi")
+
     cur.execute("""
         INSERT INTO tolovlar(user_id, togarak_id, oy, summa_kerak, tolangan_summa, tolov_sanasi)
         VALUES(%s,%s,%s,%s,%s, CURRENT_DATE)
@@ -3647,12 +3684,25 @@ class BogchaTolovBelgilash(BaseModel):
 
 @app.post("/api/opa/tolov_belgila")
 def opa_tolov_belgila(sorov: BogchaTolovBelgilash):
-    _jwt_tekshir(sorov.token)
+    user_id = _jwt_tekshir(sorov.token)
     conn = _db()
     cur = conn.cursor()
     _tolov_jadvallari(cur)
     cur.execute("ALTER TABLE tolovlar ADD COLUMN IF NOT EXISTS bogcha_guruh_id INTEGER REFERENCES bogcha_guruhlari(id)")
     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS tolovlar_bogcha_unique ON tolovlar(user_id, bogcha_guruh_id, oy)")
+
+    # XAVFSIZLIK: faqat shu guruh opasi yoki admin to'lov belgilay oladi.
+    cur.execute("SELECT opa_user_id FROM bogcha_guruhlari WHERE id=%s", (sorov.guruh_id,))
+    g = cur.fetchone()
+    if not g:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and g["opa_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu guruh opasi yoki admin to'lov belgilay oladi")
+
     cur.execute("""
         INSERT INTO tolovlar(user_id, bogcha_guruh_id, oy, summa_kerak, tolangan_summa, tolov_sanasi)
         VALUES(%s,%s,%s,%s,%s, CURRENT_DATE)
@@ -4034,6 +4084,171 @@ def universitet_guruh_bilimi(token: str, guruh_id: int):
     cur.close()
     conn.close()
     return {"guruh_nomi": g["nomi"], "talaba_soni": len(talabalar), "kurslar": natija_kurslar}
+
+
+# ═══════════════════════════════════════════════════════════
+# SINOV MUHITI — bir bosishda 4 tizimning HAMMASINI (maktab, bog'cha,
+# markaz, universitet) soxta odamlar bilan to'liq yaratadi, VA admin
+# ularning HAR BIRI sifatida (Google login'siz) darhol kira oladi —
+# faqat SINOV/TEST maqsadida, faqat admin ishlatishi mumkin.
+#
+# XAVFSIZLIK: "sifatida kirish" tokeni ODDIY tokendan farqli —
+# atigi 2 SOAT amal qiladi (30 kun emas), shu orqali xavf chegaralanadi.
+# ═══════════════════════════════════════════════════════════
+
+def _sinov_jwt_yarat(user_id: int) -> str:
+    """Admin uchun — 'sifatida kirish' tokeni, faqat 2 soat amal qiladi
+    (oddiy 30 kunlik sessiya tokenidan qasddan qisqaroq — xavfsizlik uchun)."""
+    payload = {"user_id": user_id, "exp": datetime.now(timezone.utc) + timedelta(hours=2)}
+    return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
+
+
+def _sinov_user_yarat(cur, ism, role, **maydonlar):
+    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+    r = cur.fetchone()
+    yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+    ustunlar = ["user_id", "full_name", "role"] + list(maydonlar.keys())
+    qiymatlar = [yangi_id, ism, role] + list(maydonlar.values())
+    joy_belgilari = ",".join(["%s"] * len(qiymatlar))
+    cur.execute(f"INSERT INTO users({','.join(ustunlar)}) VALUES({joy_belgilari})", qiymatlar)
+    return yangi_id
+
+
+@app.post("/api/admin/sinov_muhit_yarat")
+def sinov_muhit_yarat(token: str):
+    """BITTA bosishda — maktab, bog'cha, markaz, universitet — HAMMASINI
+    soxta odamlar (direktor, o'qituvchi/opa/professor, o'quvchilar) bilan
+    to'liq yaratadi va bog'laydi. Har chaqirilganda YANGI, vaqt tamg'asi
+    bilan nomlangan to'plam yaratiladi (eskilarga tegmaydi)."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur); _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur)
+    _markaz_jadvali(cur); _bogcha_jadvali(cur); _universitet_jadvali(cur)
+    _tolov_jadvallari(cur)
+
+    belgi = datetime.now().strftime("%H%M%S")
+    natija = {"hisoblar": []}
+
+    def qosh(ism, role, lavozim_matni, **maydonlar):
+        uid = _sinov_user_yarat(cur, ism, role, **maydonlar)
+        natija["hisoblar"].append({"user_id": uid, "full_name": ism, "izoh": lavozim_matni})
+        return uid
+
+    # ---- 1) MAKTAB ----
+    maktab_direktor = qosh(f"Sinov Direktor {belgi}", "oqituvchi", "Maktab direktori", lavozim="direktor")
+    cur.execute("""
+        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov)
+        VALUES(%s,%s,%s,1,%s,TRUE,500000) RETURNING id
+    """, (f"Sinov Maktabi {belgi}", "Samarqand", "Samarqand shahri", maktab_direktor))
+    maktab_id = cur.fetchone()["id"]
+    cur.execute("UPDATE users SET maktab_id=%s WHERE user_id=%s", (maktab_id, maktab_direktor))
+    sinf_rahbar = qosh(f"Sinov SinfRahbar {belgi}", "oqituvchi", "5-A sinf rahbari", maktab_id=maktab_id, lavozim="fan_oqituvchisi")
+    sinf_paroli = "".join(secrets.choice(string.digits) for _ in range(4))
+    cur.execute("""
+        INSERT INTO maktab_sinflari(maktab_id, sinf, harf, rahbar_user_id, qoshilish_paroli)
+        VALUES(%s,'5','A',%s,%s) RETURNING id
+    """, (maktab_id, sinf_rahbar, sinf_paroli))
+    sinf_id = cur.fetchone()["id"]
+    for i in range(1, 4):
+        oq = qosh(f"Sinov Oquvchi{i} {belgi}", "oquvchi", "5-A sinf o'quvchisi", maktab_id=maktab_id, **{"class": "5", "class_letter": "A"})
+        cur.execute("INSERT INTO maktab_sinf_azolari(sinf_id, user_id) VALUES(%s,%s)", (sinf_id, oq))
+
+    # ---- 2) BOG'CHA ----
+    bogcha_direktor = qosh(f"Sinov BDirektor {belgi}", "oqituvchi", "Bog'cha direktori", lavozim="bogcha_direktor")
+    cur.execute("""
+        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id, oylik_tolov)
+        VALUES(%s,'xususiy',%s,%s,%s,800000) RETURNING id
+    """, (f"Sinov Bog'chasi {belgi}", "Samarqand", "Samarqand shahri", bogcha_direktor))
+    bogcha_id = cur.fetchone()["id"]
+    cur.execute("UPDATE users SET bogcha_id=%s WHERE user_id=%s", (bogcha_id, bogcha_direktor))
+    opa = qosh(f"Sinov Opa {belgi}", "oqituvchi", "Quyoshcha guruhi tarbiyachisi", bogcha_id=bogcha_id, lavozim="bogcha_opa")
+    cur.execute("""
+        INSERT INTO bogcha_guruhlari(bogcha_id, nomi, opa_user_id, qoshilish_paroli)
+        VALUES(%s,'Quyoshcha guruhi',%s,'0000') RETURNING id
+    """, (bogcha_id, opa))
+    bog_guruh_id = cur.fetchone()["id"]
+    for i in range(1, 4):
+        bola = qosh(f"Sinov Bola{i} {belgi}", "oquvchi", "Quyoshcha guruhi bolasi")
+        cur.execute("INSERT INTO bogcha_guruh_bolalari(guruh_id, bola_user_id) VALUES(%s,%s)", (bog_guruh_id, bola))
+
+    # ---- 3) MARKAZ ----
+    markaz_direktor = qosh(f"Sinov MDirektor {belgi}", "oqituvchi", "Markaz direktori", lavozim="markaz_direktor")
+    cur.execute("""
+        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (f"Sinov Markazi {belgi}", "Samarqand", "Samarqand shahri", markaz_direktor))
+    markaz_id = cur.fetchone()["id"]
+    cur.execute("UPDATE users SET markaz_id=%s WHERE user_id=%s", (markaz_id, markaz_direktor))
+    markaz_oqituvchi = qosh(f"Sinov MOqituvchi {belgi}", "oqituvchi", "Markaz fan o'qituvchisi", markaz_id=markaz_id, lavozim="fan_oqituvchisi")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
+    cur.execute("""
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id)
+        VALUES(%s,'Matematika',%s,'5','1111',25,300000,TRUE,%s) RETURNING id
+    """, (f"Sinov Guruh {belgi}", markaz_oqituvchi, markaz_id))
+    markaz_togarak_id = cur.fetchone()["id"]
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_azolar(
+        id SERIAL PRIMARY KEY, togarak_id INTEGER REFERENCES togaraklar(id),
+        user_id BIGINT REFERENCES users(user_id), aktiv BOOLEAN DEFAULT TRUE, qoshilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    for i in range(1, 4):
+        tal = qosh(f"Sinov MTalaba{i} {belgi}", "oquvchi", "Markaz guruhi a'zosi")
+        cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (markaz_togarak_id, tal))
+
+    # ---- 4) UNIVERSITET ----
+    rektor = qosh(f"Sinov Rektor {belgi}", "oqituvchi", "Rektor", lavozim="rektor")
+    cur.execute("""
+        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (f"Sinov Universiteti {belgi}", "Samarqand", "Samarqand shahri", rektor))
+    universitet_id = cur.fetchone()["id"]
+    cur.execute("UPDATE users SET universitet_id=%s WHERE user_id=%s", (universitet_id, rektor))
+    cur.execute("INSERT INTO fakultetlar(universitet_id, nomi) VALUES(%s,'Matematika fakulteti') RETURNING id", (universitet_id,))
+    fakultet_id = cur.fetchone()["id"]
+    cur.execute("INSERT INTO kafedralar(fakultet_id, nomi) VALUES(%s,'Algebra kafedrasi') RETURNING id", (fakultet_id,))
+    kafedra_id = cur.fetchone()["id"]
+    professor = qosh(f"Sinov Professor {belgi}", "oqituvchi", "Kurator-professor", universitet_id=universitet_id, lavozim="professor_oqituvchi")
+    cur.execute("""
+        INSERT INTO universitet_guruhlari(kafedra_id, nomi, kurs, yonalish, rahbar_user_id, qoshilish_paroli)
+        VALUES(%s,'201-guruh',2,'Matematika',%s,'2222') RETURNING id
+    """, (kafedra_id, professor))
+    uni_guruh_id = cur.fetchone()["id"]
+    cur.execute("""
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, aktiv, universitet_guruh_id)
+        VALUES(%s,'Matematik tahlil',%s,'201-guruh','3333',TRUE,%s) RETURNING id
+    """, (f"Sinov Kurs {belgi}", professor, uni_guruh_id))
+    uni_togarak_id = cur.fetchone()["id"]
+    for i in range(1, 4):
+        tal = qosh(f"Sinov Talaba{i} {belgi}", "oquvchi", "201-guruh talabasi")
+        cur.execute("INSERT INTO universitet_guruh_azolari(guruh_id, user_id) VALUES(%s,%s)", (uni_guruh_id, tal))
+        cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (uni_togarak_id, tal))
+
+    conn.commit()
+    cur.close()
+    conn.close()
+    natija["izoh"] = (
+        "Barcha parollar: sinf=" + sinf_paroli + ", bog'cha guruh=0000, markaz guruh=1111, "
+        "universitet guruh=2222, universitet kurs=3333"
+    )
+    return natija
+
+
+@app.post("/api/admin/sifatida_kirish")
+def admin_sifatida_kirish(token: str, user_id: int):
+    """Admin — istalgan (odatda sinov) hisob sifatida DARHOL kirish
+    uchun token oladi, Google login shart emas. Faqat 2 soat amal
+    qiladi. Faqat admin chaqira oladi."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT 1 FROM users WHERE user_id=%s", (user_id,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+    cur.close()
+    conn.close()
+    return {"token": _sinov_jwt_yarat(user_id)}
 
 
 
