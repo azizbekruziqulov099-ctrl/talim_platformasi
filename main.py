@@ -2578,11 +2578,10 @@ def sinf_tolovlari(token: str, sinf_id: int, oy: str):
     if not s:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Sinf topilmadi")
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    admin_mi = cur.fetchone() is not None
-    if not admin_mi and s["rahbar_user_id"] != user_id:
+    ruxsat = s["rahbar_user_id"] == user_id or _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+    if not ruxsat:
         cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari yoki admin ko'ra oladi")
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin ko'ra oladi")
 
     cur.execute("SELECT oylik_tolov FROM maktablar WHERE id=%s", (s["maktab_id"],))
     maktab = cur.fetchone()
@@ -2820,16 +2819,15 @@ def sinf_azolari_royxati(token: str, sinf_id: int):
     conn = _db()
     cur = conn.cursor()
     _sinf_azolari_jadvali(cur)
-    cur.execute("SELECT rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    cur.execute("SELECT maktab_id, rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
     s = cur.fetchone()
     if not s:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Sinf topilmadi")
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    admin_mi = cur.fetchone() is not None
-    if not admin_mi and s["rahbar_user_id"] != user_id:
+    ruxsat = s["rahbar_user_id"] == user_id or _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+    if not ruxsat:
         cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari yoki admin ko'ra oladi")
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin ko'ra oladi")
     cur.execute("""
         SELECT a.id AS azolik_id, u.user_id, u.full_name, a.qoshilgan_at
         FROM maktab_sinf_azolari a JOIN users u ON u.user_id = a.user_id
@@ -2850,23 +2848,83 @@ def sinf_azosini_chiqar(token: str, azolik_id: int):
     cur = conn.cursor()
     _sinf_azolari_jadvali(cur)
     cur.execute("""
-        SELECT s.rahbar_user_id FROM maktab_sinf_azolari a
+        SELECT s.maktab_id, s.rahbar_user_id FROM maktab_sinf_azolari a
         JOIN maktab_sinflari s ON s.id = a.sinf_id WHERE a.id=%s
     """, (azolik_id,))
     r = cur.fetchone()
     if not r:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="A'zolik topilmadi")
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    admin_mi = cur.fetchone() is not None
-    if not admin_mi and r["rahbar_user_id"] != user_id:
+    ruxsat = r["rahbar_user_id"] == user_id or _maktab_boshqaruvchi_mi(cur, user_id, r["maktab_id"])
+    if not ruxsat:
         cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari yoki admin chiqara oladi")
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin chiqara oladi")
     cur.execute("DELETE FROM maktab_sinf_azolari WHERE id=%s", (azolik_id,))
     conn.commit()
     cur.close()
     conn.close()
     return {"holat": "chiqarildi"}
+
+
+def _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+    """True — agar user shu maktabning direktori/o'rinbosari (yoki
+    umumiy admin) bo'lsa."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND maktab_id=%s", (user_id, maktab_id))
+    r = cur.fetchone()
+    return bool(r and r["lavozim"] in ("direktor", "zam_direktor_uquv", "zam_direktor_tarbiya"))
+
+
+@app.get("/api/maktab/dashboard")
+def maktab_dashboard(token: str, maktab_id: int):
+    """Direktor/o'rinbosarlar uchun — BUTUN maktab bitta ekranda:
+    barcha sinflar, har birining o'quvchi soni va rahbari, va (agar
+    maktab pulli bo'lsa) har bir sinf hamda umumiy maktab bo'yicha
+    shu oy to'lov holati (nechtasi to'lagan, nechtasi qarzdor)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur); _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur); _tolov_jadvallari(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati (direktor/o'rinbosar) yoki admin ko'ra oladi")
+
+    cur.execute("SELECT nomi, pulli, oylik_tolov FROM maktablar WHERE id=%s", (maktab_id,))
+    maktab = cur.fetchone()
+    if not maktab:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Maktab topilmadi")
+
+    joriy_oy = datetime.now().strftime("%Y-%m")
+    oylik_tolov = maktab["oylik_tolov"] or 0
+    cur.execute("""
+        SELECT s.id, s.sinf, s.harf, u.full_name AS rahbar_ismi,
+               COUNT(DISTINCT a.user_id) AS oquvchi_soni,
+               COUNT(DISTINCT t.user_id) FILTER (WHERE t.tolangan_summa >= %s) AS tolagan_soni
+        FROM maktab_sinflari s
+        LEFT JOIN users u ON u.user_id = s.rahbar_user_id
+        LEFT JOIN maktab_sinf_azolari a ON a.sinf_id = s.id
+        LEFT JOIN tolovlar t ON t.user_id = a.user_id AND t.maktab_id = s.maktab_id AND t.oy = %s
+        WHERE s.maktab_id=%s
+        GROUP BY s.id, s.sinf, s.harf, u.full_name
+        ORDER BY s.sinf::int, s.harf
+    """, (oylik_tolov, joriy_oy, maktab_id))
+    sinflar = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    jami_oquvchi = sum(s["oquvchi_soni"] for s in sinflar)
+    jami_tolagan = sum(s["tolagan_soni"] for s in sinflar)
+    return {
+        "maktab_nomi": maktab["nomi"], "pulli": maktab["pulli"], "oylik_tolov": maktab["oylik_tolov"],
+        "sinflar": sinflar,
+        "tolov_xulosasi": (
+            {"jami_oquvchi": jami_oquvchi, "tolagan": jami_tolagan, "qarzdor": jami_oquvchi - jami_tolagan}
+            if maktab["pulli"] else None
+        ),
+    }
 
 
 # ═══════════════════════════════════════════════════════════
