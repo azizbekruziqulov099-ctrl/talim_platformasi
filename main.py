@@ -2389,6 +2389,35 @@ def _togarak_biriktirma_jadvali(cur):
     )""")
 
 
+@app.get("/api/oqituvchi/togarak_yaratish_mavzulari")
+def togarak_yaratish_mavzulari(token: str, sinf: str, fan: str, turi: str = "oddiy"):
+    """To'garak YARATISH shaklidagi mavzu tanlash ro'yxati uchun —
+    ANIQ shu sinf+fan (nomi bo'yicha, subject_code'dan MUSTAQIL —
+    /api/mavzular'dagi subject_code-asosli guruhlash ba'zan bir xil
+    fan nomi turli kod ostida bo'linib qolishiga olib kelishi mumkin,
+    bu yerda shu muammo yo'q, admin "Umumiy ko'rinish"dagi bilan
+    AYNAN bir xil hisoblash mantig'i)."""
+    _jwt_tekshir(token)
+    togarak_mi = turi == "togarak"
+    grade_shart = "d.grade !~ '^[0-9]+$'" if togarak_mi else "d.grade ~ '^[0-9]+$'"
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute(f"""
+        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
+               array_agg(DISTINCT d.topic_code ORDER BY d.topic_code) AS topic_codes,
+               COUNT(gt.id) AS savol_soni
+        FROM dts_tree d
+        LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
+        WHERE {grade_shart} AND d.grade=%s AND d.subject_name=%s AND d.is_deleted=FALSE
+        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
+        ORDER BY MIN(d.topic_code)
+    """, (sinf, fan))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"mavzular": natija}
+
+
 @app.get("/api/oqituvchi/togarak_milliy_mavzular_qidir")
 def togarak_milliy_mavzular_qidir(token: str, togarak_id: int, qidiruv: str = None):
     """O'qituvchi o'z to'garagiga qo'shimcha mavzu qidirib topishi
