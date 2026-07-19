@@ -391,6 +391,14 @@ def joriy_foydalanuvchi(token: str):
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
 
+    if r["maktab_id"]:
+        _maktab_jadvali(cur)
+        cur.execute("SELECT nomi FROM maktablar WHERE id=%s", (r["maktab_id"],))
+        m = cur.fetchone()
+        r["maktab_nomi"] = m["nomi"] if m else None
+    else:
+        r["maktab_nomi"] = None
+
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     r["is_admin"] = cur.fetchone() is not None
     cur.close()
@@ -1343,6 +1351,7 @@ class ProfilYangilash(BaseModel):
     sinf_harfi: Optional[str] = None    # A, B, V ...
     jins: Optional[str] = None          # ogil | qiz — dizayn uchun (o'quvchi va o'qituvchi)
     oqituvchi_fani: Optional[str] = None  # o'qituvchining o'zi o'qitadigan fan — dizayn uchun
+    maktab_id: Optional[int] = None     # ro'yxatdagi (tizimga qo'shilgan) maktabga ANIQ bog'lanish
 
 
 MAKTAB_TURLARI = {
@@ -1405,6 +1414,15 @@ def profil_yangila(sorov: ProfilYangilash):
     if sorov.oqituvchi_fani is not None:
         maydonlar.append("oqituvchi_fani=%s")
         qiymatlar.append(sorov.oqituvchi_fani.strip())
+    if sorov.maktab_id is not None:
+        _maktab_jadvali(cur)
+        cur.execute("SELECT 1 FROM maktablar WHERE id=%s", (sorov.maktab_id,))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Ko'rsatilgan maktab topilmadi")
+        cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+        maydonlar.append("maktab_id=%s")
+        qiymatlar.append(sorov.maktab_id)
 
     if not maydonlar:
         cur.close()
@@ -2491,16 +2509,17 @@ def maktab_tolov_sozlash(sorov: MaktabTolovSozlash):
 @app.get("/api/oqituvchi/mening_sinflarim")
 def mening_rasmiy_sinflarim(token: str):
     """O'qituvchi RAHBAR bo'lgan rasmiy maktab sinflari — to'garakdan
-    farqli, bu yerga o'quvchi parol bilan emas, profilidagi
-    maktab+sinf+harf orqali AVTOMATIK tegishli hisoblanadi."""
+    farqli, bu yerga o'quvchi PAROL bilan TASDIQLAB qo'shiladi (4-bosqich),
+    shu sabab o'quvchi soni ham faqat TASDIQLANGAN a'zolarni hisoblaydi."""
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _maktab_sinflari_jadvali(cur)
     _tolov_jadvallari(cur)
+    _sinf_azolari_jadvali(cur)
     cur.execute("""
-        SELECT s.id, s.sinf, s.harf, s.qoshilish_paroli, m.nomi AS maktab_nomi, m.pulli, m.oylik_tolov,
-               (SELECT COUNT(*) FROM users u WHERE u.maktab_id=s.maktab_id AND u.class=s.sinf AND u.class_letter=s.harf AND u.role='oquvchi') AS oquvchi_soni
+        SELECT s.id, s.sinf, s.harf, s.qoshilish_paroli, m.id AS maktab_id, m.nomi AS maktab_nomi, m.pulli, m.oylik_tolov,
+               (SELECT COUNT(*) FROM maktab_sinf_azolari a WHERE a.sinf_id=s.id) AS oquvchi_soni
         FROM maktab_sinflari s
         JOIN maktablar m ON m.id = s.maktab_id
         WHERE s.rahbar_user_id=%s
@@ -2514,12 +2533,14 @@ def mening_rasmiy_sinflarim(token: str):
 
 
 def sinf_tolovlari(token: str, sinf_id: int, oy: str):
-    """Sinf rahbari (yoki admin) uchun — shu oy uchun sinfdagi har bir
-    o'quvchining to'lov holatini ko'rsatadi. `oy` format: "2026-07"."""
+    """Sinf rahbari (yoki admin) uchun — shu oy uchun sinfga TASDIQLAB
+    qo'shilgan (4-bosqich) har bir o'quvchining to'lov holatini
+    ko'rsatadi. `oy` format: "2026-07"."""
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _tolov_jadvallari(cur)
+    _sinf_azolari_jadvali(cur)
     cur.execute("SELECT maktab_id, sinf, harf, rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
     s = cur.fetchone()
     if not s:
@@ -2536,10 +2557,11 @@ def sinf_tolovlari(token: str, sinf_id: int, oy: str):
     kerakli_summa = (maktab["oylik_tolov"] if maktab else None) or 0
 
     cur.execute("""
-        SELECT user_id, full_name FROM users
-        WHERE maktab_id=%s AND class=%s AND class_letter=%s AND role='oquvchi'
-        ORDER BY full_name
-    """, (s["maktab_id"], s["sinf"], s["harf"]))
+        SELECT u.user_id, u.full_name FROM maktab_sinf_azolari a
+        JOIN users u ON u.user_id = a.user_id
+        WHERE a.sinf_id=%s
+        ORDER BY u.full_name
+    """, (sinf_id,))
     oquvchilar = cur.fetchall()
 
     cur.execute("SELECT user_id, tolangan_summa, tolov_sanasi FROM tolovlar WHERE maktab_id=%s AND oy=%s", (s["maktab_id"], oy))
@@ -2620,6 +2642,175 @@ def bildirishnomalarim(token: str):
     cur.close()
     conn.close()
     return {"bildirishnomalar": natija}
+
+
+# ═══════════════════════════════════════════════════════════
+# MAKTAB TIZIMI — 4-BOSQICH: o'quvchi qo'shilishi
+#
+# MUHIM: o'quvchining ESKI "maktab_raqami" (erkin matn) MOSLASH uchun
+# ISHONCHSIZ — shu sabab bu bosqich YANGI "maktab_id" (ro'yxatdagi
+# maktabga aniq bog'lanish) ustiga quriladi. Eski matn maydoni ham
+# qoladi (ro'yxatda yo'q maktablar uchun), lekin AVTOMATIK SINF
+# TOPISH faqat maktab_id orqali ishlaydi — bu ANIQ, matn solishtirish
+# EMAS.
+#
+# Qo'shilish — profil mosligi + 4 xonali parol (ikkalasi ham kerak),
+# rahbar esa xato qo'shilgan a'zoni istalgan vaqt CHIQARIB yuborishi
+# mumkin.
+# ═══════════════════════════════════════════════════════════
+
+def _sinf_azolari_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS maktab_sinf_azolari(
+        id SERIAL PRIMARY KEY,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        qoshilgan_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(sinf_id, user_id)
+    )""")
+
+
+@app.get("/api/maktab_qidir")
+def maktab_qidir(nomi: str):
+    """HAMMA uchun ochiq (admin shart emas) — o'quvchi profilida
+    ro'yxatdagi maktabini nomi bo'yicha qidirib tanlashi uchun."""
+    if len(nomi.strip()) < 2:
+        return {"natijalar": []}
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur)
+    cur.execute("""
+        SELECT id, nomi, viloyat, tuman FROM maktablar
+        WHERE nomi ILIKE %s ORDER BY nomi LIMIT 10
+    """, (f"%{nomi.strip()}%",))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"natijalar": natija}
+
+
+@app.get("/api/oquvchi/mos_sinf")
+def oquvchi_mos_sinf(token: str):
+    """O'quvchining PROFILIDAGI (maktab_id + class + class_letter)
+    ma'lumoti biror rasmiy sinfga MOS kelsa — va u hali A'ZO
+    bo'lmagan bo'lsa — o'sha sinf haqida ma'lumot qaytaradi (parol
+    BERMAYDI, faqat "shunday sinf bor" deb bildiradi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur)
+    _sinf_azolari_jadvali(cur)
+    cur.execute("SELECT maktab_id, class, class_letter FROM users WHERE user_id=%s", (user_id,))
+    u = cur.fetchone()
+    if not u or not u["maktab_id"] or not u["class"] or not u["class_letter"]:
+        cur.close(); conn.close()
+        return {"topildi": False}
+
+    cur.execute("""
+        SELECT s.id, s.sinf, s.harf, m.nomi AS maktab_nomi, ur.full_name AS rahbar_ismi
+        FROM maktab_sinflari s
+        JOIN maktablar m ON m.id = s.maktab_id
+        LEFT JOIN users ur ON ur.user_id = s.rahbar_user_id
+        WHERE s.maktab_id=%s AND s.sinf=%s AND s.harf=%s
+    """, (u["maktab_id"], u["class"], u["class_letter"]))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close()
+        return {"topildi": False}
+
+    cur.execute("SELECT 1 FROM maktab_sinf_azolari WHERE sinf_id=%s AND user_id=%s", (sinf["id"], user_id))
+    azo_mi = cur.fetchone() is not None
+    cur.close()
+    conn.close()
+    if azo_mi:
+        return {"topildi": False}  # allaqachon qo'shilgan — qayta so'ramaymiz
+    return {
+        "topildi": True, "sinf_id": sinf["id"], "sinf_nomi": f"{sinf['sinf']}-{sinf['harf']}",
+        "maktab_nomi": sinf["maktab_nomi"], "rahbar_ismi": sinf["rahbar_ismi"],
+    }
+
+
+@app.post("/api/oquvchi/sinfga_qoshil")
+def oquvchi_sinfga_qoshil(token: str, sinf_id: int, parol: str):
+    """O'quvchi 4 xonali parolni kiritib, rasmiy sinfga QO'SHILADI
+    (tasdiqlaydi). Profil mosligi YETARLI EMAS — parol ham to'g'ri
+    bo'lishi kerak, shu orqali tasodifiy/xato qo'shilish oldi olinadi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _sinf_azolari_jadvali(cur)
+    cur.execute("SELECT qoshilish_paroli FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    if s["qoshilish_paroli"] != parol.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Parol noto'g'ri")
+    cur.execute(
+        "INSERT INTO maktab_sinf_azolari(sinf_id, user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+        (sinf_id, user_id),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi"}
+
+
+@app.get("/api/oqituvchi/sinf_azolari")
+def sinf_azolari_royxati(token: str, sinf_id: int):
+    """Rahbar (yoki admin) — sinfga TASDIQLAB qo'shilgan o'quvchilar
+    ro'yxati. Xato qo'shilganlarni shu yerdan chiqarish mumkin."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _sinf_azolari_jadvali(cur)
+    cur.execute("SELECT rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    s = cur.fetchone()
+    if not s:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and s["rahbar_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT a.id AS azolik_id, u.user_id, u.full_name, a.qoshilgan_at
+        FROM maktab_sinf_azolari a JOIN users u ON u.user_id = a.user_id
+        WHERE a.sinf_id=%s ORDER BY u.full_name
+    """, (sinf_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"azolar": natija}
+
+
+@app.delete("/api/oqituvchi/sinf_azosini_chiqar")
+def sinf_azosini_chiqar(token: str, azolik_id: int):
+    """Rahbar — xato qo'shilgan (masalan boshqa sinf o'quvchisi
+    tasodifan mos kelib qolgan) a'zoni sinfdan chiqaradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _sinf_azolari_jadvali(cur)
+    cur.execute("""
+        SELECT s.rahbar_user_id FROM maktab_sinf_azolari a
+        JOIN maktab_sinflari s ON s.id = a.sinf_id WHERE a.id=%s
+    """, (azolik_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="A'zolik topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and r["rahbar_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari yoki admin chiqara oladi")
+    cur.execute("DELETE FROM maktab_sinf_azolari WHERE id=%s", (azolik_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "chiqarildi"}
 
 
 class TestShablonGuruh(BaseModel):
