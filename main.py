@@ -2954,6 +2954,15 @@ def maktab_dashboard(token: str, maktab_id: int):
     """, (maktab_id,))
     muammoli_oquvchilar = cur.fetchall()
 
+    _xodim_davomati_jadvali(cur)
+    cur.execute("""
+        SELECT COUNT(*) AS jami,
+               COUNT(*) FILTER (WHERE x.holat='keldi') AS keldi
+        FROM users u LEFT JOIN xodim_davomati x ON x.user_id=u.user_id AND x.maktab_id=%s AND x.sana=CURRENT_DATE
+        WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
+    """, (maktab_id, maktab_id))
+    xodim_bugun = cur.fetchone()
+
     cur.close()
     conn.close()
 
@@ -2979,6 +2988,7 @@ def maktab_dashboard(token: str, maktab_id: int):
             "jami_oquvchi": jami_oquvchi, "kelgan": jami_bugun_kelgan,
             "belgilangan": jami_bugun_belgilangan, "sinflar_belgilamagan": sinflar_belgilamagan,
         },
+        "xodim_bugungi_davomat": {"jami": xodim_bugun["jami"], "keldi": xodim_bugun["keldi"]},
         "reyting": {
             "eng_yaxshi_sinf": (
                 {"sinf": eng_yaxshi_sinf["sinf"], "harf": eng_yaxshi_sinf["harf"], "ortacha_bilim": eng_yaxshi_sinf["ortacha_bilim"]}
@@ -3197,7 +3207,7 @@ def oquvchi_profili(token: str, user_id: int):
 
     return {
         "full_name": o["full_name"], "sinf": o["class"], "harf": o["class_letter"],
-        "maktab_nomi": o["maktab_nomi"], "pulli": o["pulli"], "oylik_tolov": o["oylik_tolov"],
+        "maktab_nomi": o["maktab_nomi"], "maktab_id": o["maktab_id"], "pulli": o["pulli"], "oylik_tolov": o["oylik_tolov"],
         "bilim": bilim, "davomat": davomat, "tolov_tarixi": tolov_tarixi,
     }
 
@@ -4026,7 +4036,346 @@ def ai_sorash(sorov: AiSorash):
     return {"javob": matn, "rol": rol}
 
 
+# ═══════════════════════════════════════════════════════════
+# XODIM DAVOMATI — o'quvchi davomatidan ALOHIDA (xodim sinfga
+# bog'lanmagan, butun maktabga tegishli). Bir xil "davomat" jadval
+# NAQSHINI takrorlaydi, lekin sinf_id o'rniga maktab_id ishlatadi.
+# ═══════════════════════════════════════════════════════════
 
+def _xodim_davomati_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS xodim_davomati(
+        id SERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        sana DATE NOT NULL,
+        holat TEXT NOT NULL,
+        izoh TEXT,
+        belgilagan_user_id BIGINT REFERENCES users(user_id),
+        belgilangan_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(maktab_id, user_id, sana)
+    )""")
+
+
+class XodimDavomatYozuvi(BaseModel):
+    user_id: int
+    holat: str
+
+
+class XodimDavomatBelgilash(BaseModel):
+    token: str
+    maktab_id: int
+    sana: str
+    yozuvlar: list[XodimDavomatYozuvi]
+
+
+@app.post("/api/maktab/xodim_davomat_belgila")
+def xodim_davomat_belgila(sorov: XodimDavomatBelgilash):
+    user_id_qiluvchi = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _xodim_davomati_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id_qiluvchi, sorov.maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin belgilay oladi")
+    for y in sorov.yozuvlar:
+        if y.holat not in DAVOMAT_HOLATLARI:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail=f"Noto'g'ri holat: {y.holat}")
+        cur.execute("""
+            INSERT INTO xodim_davomati(maktab_id, user_id, sana, holat, belgilagan_user_id)
+            VALUES(%s,%s,%s,%s,%s)
+            ON CONFLICT (maktab_id, user_id, sana) DO UPDATE SET
+                holat=EXCLUDED.holat, belgilagan_user_id=EXCLUDED.belgilagan_user_id, belgilangan_at=NOW()
+        """, (sorov.maktab_id, y.user_id, sorov.sana, y.holat, user_id_qiluvchi))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.get("/api/maktab/xodim_davomat_royxati")
+def xodim_davomat_royxati(token: str, maktab_id: int, sana: str):
+    """Direktor uchun — shu kungi barcha xodimlar (direktor,
+    o'rinbosarlar, sinf rahbarlari) ro'yxati, holati bilan birga."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _xodim_davomati_jadvali(cur)
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT u.user_id, u.full_name, u.lavozim, x.holat
+        FROM users u
+        LEFT JOIN xodim_davomati x ON x.user_id = u.user_id AND x.maktab_id=%s AND x.sana=%s
+        WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
+        ORDER BY u.full_name
+    """, (maktab_id, sana, maktab_id))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"xodimlar": natija}
+
+
+@app.get("/api/maktab/fanlar_tahlili")
+def fanlar_tahlili(token: str, maktab_id: int):
+    """Direktor uchun — BUTUN maktab kesimida, har bir fan bo'yicha
+    nechta o'quvchi yaxshi (70%+), o'rtacha (40-69%), past (<40%)
+    natija ko'rsatayotgani."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        WITH oquvchi_fan_ball AS (
+            SELECT a.user_id, d.subject_name, AVG(lt.score) AS ball
+            FROM maktab_sinf_azolari a
+            JOIN maktab_sinflari s ON s.id = a.sinf_id
+            JOIN users u ON u.user_id = a.user_id
+            JOIN dts_tree d ON d.grade = u.class
+            JOIN learned_topics lt ON lt.topic_code = d.topic_code AND lt.user_id = a.user_id
+            WHERE s.maktab_id = %s
+            GROUP BY a.user_id, d.subject_name
+        )
+        SELECT subject_name,
+               COUNT(*) FILTER (WHERE ball >= 70) AS yaxshi,
+               COUNT(*) FILTER (WHERE ball >= 40 AND ball < 70) AS ortacha,
+               COUNT(*) FILTER (WHERE ball < 40) AS past,
+               ROUND(AVG(ball)) AS umumiy_ortacha
+        FROM oquvchi_fan_ball
+        GROUP BY subject_name
+        ORDER BY subject_name
+    """, (maktab_id,))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"fanlar": natija}
+
+
+# ═══════════════════════════════════════════════════════════
+# SOG'LIQ — FAQAT favqulodda ma'lumot (allergiya, qon guruhi,
+# favqulodda aloqa). TO'LIQ tibbiy karta EMAS — bu qasddan tor
+# doirada, chunki batafsil tibbiy tarix juda nozik.
+#
+# KIM TO'LDIRADI: ota-ona (o'z farzandi uchun) — bu ularning bergan
+# ma'lumoti, maktab "tashxis qo'ymaydi". KIM KO'RADI: maktab
+# rahbariyati + shu bolaning sinf rahbari — favqulodda holatda
+# tezkor kerak bo'lgani uchun keng (lekin cheklangan) ko'rinadi.
+# ═══════════════════════════════════════════════════════════
+
+def _sogliq_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS favqulodda_malumot(
+        bola_user_id BIGINT PRIMARY KEY REFERENCES users(user_id),
+        allergiyalar TEXT,
+        qon_guruhi TEXT,
+        aloqa_ismi TEXT,
+        aloqa_telefoni TEXT,
+        boshqa_eslatma TEXT,
+        yangilagan_user_id BIGINT REFERENCES users(user_id),
+        yangilangan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+def _sogliq_royxatga_ruxsat_bormi(cur, user_id, bola_user_id):
+    """True — agar user shu bolaning ota-onasi, sinf rahbari, maktab
+    rahbariyati yoki admin bo'lsa."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s", (user_id, bola_user_id))
+    if cur.fetchone():
+        return True
+    cur.execute("""
+        SELECT s.maktab_id, s.rahbar_user_id FROM maktab_sinf_azolari a
+        JOIN maktab_sinflari s ON s.id=a.sinf_id WHERE a.user_id=%s
+    """, (bola_user_id,))
+    s = cur.fetchone()
+    if not s:
+        return False
+    if s["rahbar_user_id"] == user_id:
+        return True
+    return _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+
+
+class FavqulodaMalumot(BaseModel):
+    token: str
+    bola_user_id: int
+    allergiyalar: Optional[str] = None
+    qon_guruhi: Optional[str] = None
+    aloqa_ismi: Optional[str] = None
+    aloqa_telefoni: Optional[str] = None
+    boshqa_eslatma: Optional[str] = None
+
+
+@app.put("/api/bola/favqulodda_malumot")
+def favqulodda_malumot_saqla(sorov: FavqulodaMalumot):
+    """Faqat ota-ona (o'z farzandi uchun) yoki maktab rahbariyati
+    to'ldira/yangilay oladi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _sogliq_jadvali(cur)
+    cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s", (user_id, sorov.bola_user_id))
+    ota_ona_mi = cur.fetchone() is not None
+    if not ota_ona_mi:
+        cur.execute("""
+            SELECT s.maktab_id FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id
+            WHERE a.user_id=%s
+        """, (sorov.bola_user_id,))
+        s = cur.fetchone()
+        ruxsat = s and _maktab_boshqaruvchi_mi(cur, user_id, s["maktab_id"])
+        if not ruxsat:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=403, detail="Faqat ota-ona yoki maktab rahbariyati to'ldira oladi")
+    cur.execute("""
+        INSERT INTO favqulodda_malumot(bola_user_id, allergiyalar, qon_guruhi, aloqa_ismi, aloqa_telefoni, boshqa_eslatma, yangilagan_user_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s)
+        ON CONFLICT (bola_user_id) DO UPDATE SET
+            allergiyalar=EXCLUDED.allergiyalar, qon_guruhi=EXCLUDED.qon_guruhi,
+            aloqa_ismi=EXCLUDED.aloqa_ismi, aloqa_telefoni=EXCLUDED.aloqa_telefoni,
+            boshqa_eslatma=EXCLUDED.boshqa_eslatma, yangilagan_user_id=EXCLUDED.yangilagan_user_id,
+            yangilangan_at=NOW()
+    """, (sorov.bola_user_id, sorov.allergiyalar, sorov.qon_guruhi, sorov.aloqa_ismi, sorov.aloqa_telefoni, sorov.boshqa_eslatma, user_id))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.get("/api/bola/{bola_id}/favqulodda_malumot")
+def favqulodda_malumot_korish(bola_id: int, token: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _sogliq_jadvali(cur)
+    if not _sogliq_royxatga_ruxsat_bormi(cur, user_id, bola_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat ota-ona, sinf rahbari yoki maktab rahbariyati ko'ra oladi")
+    cur.execute("""
+        SELECT allergiyalar, qon_guruhi, aloqa_ismi, aloqa_telefoni, boshqa_eslatma, yangilangan_at
+        FROM favqulodda_malumot WHERE bola_user_id=%s
+    """, (bola_id,))
+    r = cur.fetchone()
+    cur.close()
+    conn.close()
+    return r or {"allergiyalar": None, "qon_guruhi": None, "aloqa_ismi": None, "aloqa_telefoni": None, "boshqa_eslatma": None, "yangilangan_at": None}
+
+
+# ═══════════════════════════════════════════════════════════
+# PSIXOLOG — kuzatuv yozuvlari. XAVFSIZLIK: (1) faqat psixolog/
+# direktor/o'rinbosar/shu bolaning sinf rahbari ko'radi — boshqa
+# hech kim, hatto boshqa o'qituvchi ham emas; (2) BU MA'LUMOT AI
+# Yordamchi konteksiga HECH QACHON qo'shilmaydi (_ai_kontekst_yigish
+# funksiyasida ishlatilmaydi) — uchinchi tomon (Groq) API'ga bunday
+# nozik yozuv hech qachon yuborilmaydi; (3) faqat YOZGAN kishi yoki
+# admin o'chira oladi.
+# ═══════════════════════════════════════════════════════════
+
+def _psixolog_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS psixolog_kuzatuvlari(
+        id SERIAL PRIMARY KEY,
+        bola_user_id BIGINT NOT NULL REFERENCES users(user_id),
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        matn TEXT NOT NULL,
+        yozgan_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+def _psixolog_royxatga_ruxsat_bormi(cur, user_id, bola_user_id, maktab_id):
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT lavozim FROM users WHERE user_id=%s AND maktab_id=%s", (user_id, maktab_id))
+    r = cur.fetchone()
+    if r and r["lavozim"] == "psixolog":
+        return True
+    if _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+        return True
+    cur.execute("""
+        SELECT 1 FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id
+        WHERE a.user_id=%s AND s.maktab_id=%s AND s.rahbar_user_id=%s
+    """, (bola_user_id, maktab_id, user_id))
+    return cur.fetchone() is not None
+
+
+class PsixologYozuv(BaseModel):
+    token: str
+    bola_user_id: int
+    maktab_id: int
+    matn: str
+
+
+@app.post("/api/maktab/psixolog_yozuv_qosh")
+def psixolog_yozuv_qosh(sorov: PsixologYozuv):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _psixolog_jadvali(cur)
+    if not _psixolog_royxatga_ruxsat_bormi(cur, user_id, sorov.bola_user_id, sorov.maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat psixolog, sinf rahbari yoki maktab rahbariyati yoza oladi")
+    if not sorov.matn.strip():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Matnni kiriting")
+    cur.execute("""
+        INSERT INTO psixolog_kuzatuvlari(bola_user_id, maktab_id, matn, yozgan_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (sorov.bola_user_id, sorov.maktab_id, sorov.matn.strip(), user_id))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi", "id": yangi_id}
+
+
+@app.get("/api/maktab/psixolog_yozuvlari")
+def psixolog_yozuvlari_royxati(token: str, bola_user_id: int, maktab_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _psixolog_jadvali(cur)
+    if not _psixolog_royxatga_ruxsat_bormi(cur, user_id, bola_user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat psixolog, sinf rahbari yoki maktab rahbariyati ko'ra oladi")
+    cur.execute("""
+        SELECT k.id, k.matn, k.yaratilgan_at, u.full_name AS yozgan_ismi
+        FROM psixolog_kuzatuvlari k LEFT JOIN users u ON u.user_id = k.yozgan_user_id
+        WHERE k.bola_user_id=%s AND k.maktab_id=%s ORDER BY k.yaratilgan_at DESC
+    """, (bola_user_id, maktab_id))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"yozuvlar": natija}
+
+
+@app.delete("/api/maktab/psixolog_yozuv_ochir")
+def psixolog_yozuv_ochir(token: str, yozuv_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _psixolog_jadvali(cur)
+    cur.execute("SELECT yozgan_user_id, maktab_id FROM psixolog_kuzatuvlari WHERE id=%s", (yozuv_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Yozuv topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and r["yozgan_user_id"] != user_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat yozgan kishi yoki admin o'chira oladi")
+    cur.execute("DELETE FROM psixolog_kuzatuvlari WHERE id=%s", (yozuv_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+# ═══════════════════════════════════════════════════════════
+# O'QUV MARKAZI TIZIMI — maktabdan farqli, MAVJUD to'garak (guruh)
 # infratuzilmasi USTIGA quriladi (togaraklar, togarak_azolar) —
 # takrorlanish emas, ANIQ QAYTA ISHLATISH: markazning har bir
 # "guruhi" — oddiy to'garak, faqat endi markaz_id bilan bog'langan.
