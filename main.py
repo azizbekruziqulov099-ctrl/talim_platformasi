@@ -314,8 +314,11 @@ def yangi_royxat(sorov: RoyxatSorov):
 
 @app.post("/auth/ulash")
 def hisob_ulash(sorov: UlashSorov):
-    """Google hisobini bot user_id'siga BIR MARTALIK, 15 daqiqa amal
-    qiladigan kod orqali bog'laydi."""
+    """Google hisobini bot user_id'siga kod orqali bog'laydi. Ikki xil
+    kod manbasini tekshiradi: botdagi veb_ulash_kod (15 daqiqa amal
+    qiladi) VA maktab xodimlari uchun xodim_kod (30 kun amal qiladi,
+    admin Excel orqali xodim import qilganda yaratiladi) — shu sabab
+    bitta "kod kiritish" ekrani ikkalasi uchun ham ishlaydi."""
     email, kod = sorov.email, sorov.kod
     conn = _db()
     cur = conn.cursor()
@@ -325,6 +328,21 @@ def hisob_ulash(sorov: UlashSorov):
         FROM veb_ulash_kod WHERE kod=%s
     """, (kod,))
     r = cur.fetchone()
+    muddat_matni = "15 daqiqa"
+    jadval_nomi = "veb_ulash_kod"
+
+    if not r:
+        cur.execute("SELECT 1 FROM information_schema.tables WHERE table_name='xodim_kod'")
+        if cur.fetchone():
+            cur.execute("""
+                SELECT user_id, ishlatildi,
+                       (yaratildi > NOW() - INTERVAL '30 days') AS hali_yangi
+                FROM xodim_kod WHERE kod=%s
+            """, (kod,))
+            r = cur.fetchone()
+            muddat_matni = "30 kun"
+            jadval_nomi = "xodim_kod"
+
     if not r:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Kod noto'g'ri")
@@ -333,13 +351,13 @@ def hisob_ulash(sorov: UlashSorov):
         raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
     if not r["hali_yangi"]:
         cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod muddati tugagan (15 daqiqa) — botdan yangisini oling")
+        raise HTTPException(status_code=400, detail=f"Kod muddati tugagan ({muddat_matni}) — qaytadan so'rang")
 
     cur.execute("""
         INSERT INTO google_hisob (google_email, user_id) VALUES (%s,%s)
         ON CONFLICT (google_email) DO UPDATE SET user_id=EXCLUDED.user_id
     """, (email, r["user_id"]))
-    cur.execute("UPDATE veb_ulash_kod SET ishlatildi=TRUE WHERE kod=%s", (kod,))
+    cur.execute(f"UPDATE {jadval_nomi} SET ishlatildi=TRUE WHERE kod=%s", (kod,))
     conn.commit()
     cur.close()
     conn.close()
@@ -360,9 +378,12 @@ def joriy_foydalanuvchi(token: str):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jins TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqituvchi_fani TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute(
         "SELECT user_id, full_name, role, class, class_letter, school_type, "
-        "region, district, tugilgan_sana, maktab_raqami, jins, oqituvchi_fani FROM users WHERE user_id=%s",
+        "region, district, tugilgan_sana, maktab_raqami, jins, oqituvchi_fani, "
+        "maktab_id, lavozim FROM users WHERE user_id=%s",
         (user_id,),
     )
     r = cur.fetchone()
@@ -2158,6 +2179,179 @@ def admin_foydalanuvchi_qidir(token: str, ism: str):
     cur.close()
     conn.close()
     return {"natijalar": natija}
+
+
+# ═══════════════════════════════════════════════════════════
+# MAKTAB TIZIMI — 2-BOSQICH: xodimlarni Excel orqali kiritish
+# Har bir xodim uchun avtomatik KIRISH KODI (mavjud veb_ulash_kod
+# mexanizmiga o'xshash, lekin uzoqroq — 30 kun — amal qiladigan)
+# yaratiladi. Agar "Sinf rahbarligi" to'ldirilgan bo'lsa — o'sha
+# sinf (maktab_sinflari) ham shu bilan birga yaratiladi/yangilanadi,
+# 4 xonali qo'shilish paroli bilan.
+# ═══════════════════════════════════════════════════════════
+
+LAVOZIMLAR = {
+    "direktor": "Direktor",
+    "zam_direktor_uquv": "O'quv ishlari bo'yicha direktor o'rinbosari",
+    "zam_direktor_tarbiya": "Ma'naviy-ma'rifiy ishlar bo'yicha direktor o'rinbosari",
+    "psixolog": "Psixolog",
+    "kotib": "Kotib",
+    "fan_oqituvchisi": "Fan o'qituvchisi",
+}
+_LAVOZIM_MATNDAN = {v.lower(): k for k, v in LAVOZIMLAR.items()}
+
+
+def _xodim_kod_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS xodim_kod(
+        kod TEXT PRIMARY KEY, user_id BIGINT NOT NULL REFERENCES users(user_id),
+        yaratildi TIMESTAMP DEFAULT NOW(), ishlatildi BOOLEAN DEFAULT FALSE
+    )""")
+
+
+def _maktab_sinflari_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS maktab_sinflari(
+        id SERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
+        sinf TEXT NOT NULL, harf TEXT NOT NULL,
+        rahbar_user_id BIGINT REFERENCES users(user_id),
+        qoshilish_paroli TEXT,
+        yaratilgan_at TIMESTAMP DEFAULT NOW(),
+        UNIQUE(maktab_id, sinf, harf)
+    )""")
+
+
+@app.get("/api/admin/xodim_shablon")
+def xodim_shablon(token: str):
+    """Xodimlarni import qilish uchun Excel shablonini beradi —
+    F.I.Sh, Lavozim, Sinf rahbarligi ustunlari bilan."""
+    _admin_tekshir(token)
+    import openpyxl
+    from openpyxl.styles import Font, PatternFill, Alignment
+    import io
+    from fastapi.responses import StreamingResponse
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "XODIMLAR"
+    ustunlar = ["F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)"]
+    for col, h in enumerate(ustunlar, 1):
+        c = ws.cell(1, col, h)
+        c.font = Font(bold=True, color="FFFFFF")
+        c.fill = PatternFill("solid", fgColor="1B4B7A")
+
+    namunalar = [
+        ("Aliyev Vali Aliyevich", "Direktor", ""),
+        ("Karimova Nilufar Rustamovna", "O'quv ishlari bo'yicha direktor o'rinbosari", ""),
+        ("Yusupov Sardor Bahtiyorovich", "Fan o'qituvchisi", "5-A"),
+        ("Nazarova Feruza Odilovna", "Fan o'qituvchisi", ""),
+    ]
+    for r in namunalar:
+        ws.append(r)
+    for col, w in zip("ABC", [30, 45, 25]):
+        ws.column_dimensions[col].width = w
+
+    ws2 = wb.create_sheet("IZOH")
+    ws2.cell(1, 1, "Lavozim ustuniga faqat shu variantlardan birini yozing:").font = Font(bold=True)
+    for i, nom in enumerate(LAVOZIMLAR.values(), 2):
+        ws2.cell(i, 1, f"• {nom}")
+    ws2.cell(len(LAVOZIMLAR) + 3, 1,
+             "Sinf rahbarligi — faqat shu odam biror sinfga rahbar bo'lsa to'ldiring (masalan: 5-A). Bo'sh qoldirsa ham bo'ladi.")
+    ws2.column_dimensions["A"].width = 70
+
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": "attachment; filename=xodimlar_shablon.xlsx"},
+    )
+
+
+@app.post("/api/admin/xodim_import")
+async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...)):
+    """To'ldirilgan xodimlar shablonini import qiladi — har biriga
+    hisob va 30 kun amal qiladigan KIRISH KODI yaratadi. "Sinf
+    rahbarligi" to'ldirilgan bo'lsa, o'sha sinfni ham (yangi 4 xonali
+    qo'shilish paroli bilan) yaratadi/yangilaydi."""
+    _admin_tekshir(token)
+    import openpyxl
+    import io
+
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_jadvali(cur)
+    cur.execute("SELECT id FROM maktablar WHERE id=%s", (maktab_id,))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Maktab topilmadi")
+
+    content = await fayl.read()
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
+    except Exception as e:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb["XODIMLAR"] if "XODIMLAR" in wb.sheetnames else wb.active
+
+    _xodim_kod_jadvali(cur)
+    _maktab_sinflari_jadvali(cur)
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
+
+    natijalar = []
+    xato_soni = 0
+    for row in ws.iter_rows(min_row=2, values_only=True):
+        if not row or not row[0] or not str(row[0]).strip():
+            continue
+        fish = str(row[0]).strip()
+        lavozim_matni = str(row[1]).strip() if len(row) > 1 and row[1] else "Fan o'qituvchisi"
+        sinf_rahbarligi = str(row[2]).strip() if len(row) > 2 and row[2] else ""
+        lavozim_kaliti = _LAVOZIM_MATNDAN.get(lavozim_matni.lower(), "fan_oqituvchisi")
+
+        try:
+            cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+            r = cur.fetchone()
+            yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+
+            cur.execute("""
+                INSERT INTO users(user_id, full_name, role, maktab_id, lavozim)
+                VALUES(%s,%s,'oqituvchi',%s,%s)
+            """, (yangi_id, fish, maktab_id, lavozim_kaliti))
+
+            if lavozim_kaliti == "direktor":
+                cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (yangi_id, maktab_id))
+
+            kirish_kodi = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+            cur.execute(
+                "INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)",
+                (kirish_kodi, yangi_id),
+            )
+
+            sinf_paroli = None
+            if sinf_rahbarligi and "-" in sinf_rahbarligi:
+                sinf_qismi, harf_qismi = sinf_rahbarligi.split("-", 1)
+                sinf_paroli = "".join(secrets.choice(string.digits) for _ in range(4))
+                cur.execute("""
+                    INSERT INTO maktab_sinflari(maktab_id, sinf, harf, rahbar_user_id, qoshilish_paroli)
+                    VALUES(%s,%s,%s,%s,%s)
+                    ON CONFLICT (maktab_id, sinf, harf) DO UPDATE SET
+                        rahbar_user_id = EXCLUDED.rahbar_user_id,
+                        qoshilish_paroli = EXCLUDED.qoshilish_paroli
+                """, (maktab_id, sinf_qismi.strip(), harf_qismi.strip().upper(), yangi_id, sinf_paroli))
+
+            conn.commit()
+            natijalar.append({
+                "fish": fish, "lavozim": LAVOZIMLAR.get(lavozim_kaliti, lavozim_matni),
+                "kirish_kodi": kirish_kodi, "sinf_rahbarligi": sinf_rahbarligi or None,
+                "sinf_paroli": sinf_paroli,
+            })
+        except Exception:
+            conn.rollback()
+            xato_soni += 1
+
+    cur.close()
+    conn.close()
+    return {"natijalar": natijalar, "xato_soni": xato_soni}
 
 
 class TestShablonGuruh(BaseModel):
