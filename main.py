@@ -38,64 +38,23 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "reja-tizimi-2026-07-20-v3-pool"}
-
-
-# MUHIM: avval HAR BIR so'rov (_db() chaqirilganda) YANGI, xom
-# psycopg2 ulanishi ochardi. Uzoq, og'ir sinov sessiyasida (ko'p
-# marta ketma-ket so'rov, ba'zilari xato bilan tugashi mumkin) bu
-# ULANISHLAR TO'PLANIB, bazaning "max_connections" chegarasiga
-# yetishi va YANGI ulanishlarning "Failed to fetch" bilan
-# muvaffaqiyatsiz bo'lishiga olib kelishi mumkin edi. Endi — HAVUZ
-# (pool): cheklangan sondagi ulanish OLDINDAN ochiladi va QAYTA
-# ISHLATILADI. Pastdagi _PooledConn — .close() chaqirilganda
-# ulanishni HAQIQATDA yopmaydi, shunchaki havuzga QAYTARADI — shu
-# sabab BUTUN qolgan kod (barcha "cur.close(); conn.close()"
-# qatorlari, ularning soni yuzlab) O'ZGARISHSIZ, to'g'ri ishlayveradi.
-from psycopg2 import pool as _pg_pool
-
-_ULANISH_HAVUZI = None
-
-
-def _havuzni_ol():
-    global _ULANISH_HAVUZI
-    if _ULANISH_HAVUZI is None:
-        _ULANISH_HAVUZI = _pg_pool.ThreadedConnectionPool(2, 20, DATABASE_URL)
-    return _ULANISH_HAVUZI
-
-
-class _PooledConn:
-    """psycopg2 ulanishini o'raydi — .close() chaqirilganda havuzga
-    QAYTARADI (haqiqatda yopmaydi). Boshqa barcha metodlar (cursor,
-    commit, rollback) to'g'ridan-to'g'ri asl ulanishga o'tkaziladi."""
-    def __init__(self, xom_ulanish):
-        self._xom = xom_ulanish
-
-    def cursor(self, *args, **kwargs):
-        kwargs.setdefault("cursor_factory", psycopg2.extras.RealDictCursor)
-        return self._xom.cursor(*args, **kwargs)
-
-    def commit(self):
-        self._xom.commit()
-
-    def rollback(self):
-        self._xom.rollback()
-
-    def close(self):
-        yaroqli = True
-        try:
-            if self._xom.closed != 0:
-                yaroqli = False
-            else:
-                self._xom.rollback()  # tugallanmagan tranzaksiya bo'lsa, havuzga "toza" holda qaytaramiz
-        except Exception:
-            yaroqli = False
-        _havuzni_ol().putconn(self._xom, close=not yaroqli)
+    return {"versiya": "reja-tizimi-2026-07-20-v4-havuzsiz"}
 
 
 def _db():
-    xom = _havuzni_ol().getconn()
-    return _PooledConn(xom)
+    # MUHIM: avval bu yerda "ulanishlar havuzi" (connection pool)
+    # bor edi, lekin u ORTIQCHA XAVFLI bo'lib chiqdi — agar biror
+    # so'rov kutilmagan xato bilan to'xtasa (conn.close() qatoriga
+    # yetib bormasa), havuzning CHEKLANGAN (20 ta) joylaridan biri
+    # "band" holda ABADIY qolib ketardi, va asta-sekin butun havuz
+    # tugab, YANGI so'rovlar "Failed to fetch" bilan muvaffaqiyatsiz
+    # bo'lardi — bu aynan bizning ko'rgan muammomizga o'xshaydi. Shu
+    # sabab ODDIY, CHEKLANMAGAN ulanishga qaytarildi — har so'rov
+    # o'zining ulanishini ochadi va yopadi, hech qanday umumiy
+    # "sig'im" cheklovi yo'q. connect_timeout — baza vaqtincha sekin/
+    # band bo'lsa, so'rov CHEKSIZ kutib qolmasin (10 soniyadan keyin
+    # aniq xato beradi, jimgina osilib qolmaydi).
+    return psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor, connect_timeout=10)
 
 
 # Fan kodiga qarab dashboard rangi — yangi fan qo'shilsa shu ro'yxatga qo'shiladi
