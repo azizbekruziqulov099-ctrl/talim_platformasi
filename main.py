@@ -2521,6 +2521,31 @@ def mening_fanlarim(token: str):
     return {"fanlar": natija}
 
 
+@app.get("/api/oqituvchi/mening_sinflarim")
+def mening_sinflarim(token: str):
+    """O'qituvchi avval o'zi yozgan MAXSUS (raqamli bo'lmagan) sinf/
+    guruh nomlari — masalan 'Abituriyent', '9-11-sinflar aralash' —
+    qayta yozganda xato/adashish bo'lmasligi uchun ro'yxatdan
+    tanlab qo'yish imkoni beriladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    cur.execute("""
+        SELECT DISTINCT sinf FROM (
+            SELECT sinf FROM topik_mavzu_rejalari WHERE yaratgan_user_id=%s
+            UNION
+            SELECT sinf FROM togaraklar WHERE teacher_id=%s AND sinf IS NOT NULL
+        ) t
+        WHERE sinf IS NOT NULL AND sinf != '' AND sinf !~ '^[0-9]+$'
+        ORDER BY sinf
+    """, (user_id, user_id))
+    natija = [r["sinf"] for r in cur.fetchall()]
+    cur.close()
+    conn.close()
+    return {"sinflar": natija}
+
+
 @app.get("/api/oqituvchi/rejalarim")
 def rejalarim(token: str, sinf: str = None, fan: str = None):
     """O'qituvchining O'ZI yaratgan rejalari ro'yxati — to'garak
