@@ -2981,7 +2981,7 @@ def togarak_barcha_mavzular(token: str, togarak_id: int):
                SUM(kontent_soni) AS kontent_soni, MIN(tartib_raqami) AS tartib_raqami
         FROM mk
         GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
-        ORDER BY (tartib_raqami IS NULL), tartib_raqami, bob_name, mavzu_name
+        ORDER BY (MIN(tartib_raqami) IS NULL), MIN(tartib_raqami), bob_name, mavzu_name
     """, (togarak_id, togarak_id))
     natija = cur.fetchall()
     cur.close()
@@ -3210,7 +3210,7 @@ def togarak_azo_mavzularim(token: str, togarak_id: int):
                MIN(tartib_raqami) AS tartib_raqami
         FROM mk
         GROUP BY bob_name, mavzu_name
-        ORDER BY (MIN(tartib_raqami) IS NULL), tartib_raqami, bob_name, mavzu_name
+        ORDER BY (MIN(tartib_raqami) IS NULL), MIN(tartib_raqami), bob_name, mavzu_name
     """, (togarak_id, togarak_id))
     natija = [r for r in cur.fetchall() if r["kontent_soni"] > 0]
     cur.close()
