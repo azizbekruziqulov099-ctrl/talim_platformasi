@@ -2497,6 +2497,30 @@ def reja_yarat(sorov: RejaYarat):
     return {"reja_id": reja_id}
 
 
+@app.get("/api/oqituvchi/mening_fanlarim")
+def mening_fanlarim(token: str):
+    """O'qituvchi avval o'zi (reja yoki to'garak yaratishda) yozgan
+    FAN nomlari — qayta yozganda xato/adashish bo'lmasligi uchun,
+    ro'yxatdan tanlab qo'yish imkoni beriladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    cur.execute("""
+        SELECT DISTINCT fan FROM (
+            SELECT fan FROM topik_mavzu_rejalari WHERE yaratgan_user_id=%s
+            UNION
+            SELECT fan FROM togaraklar WHERE teacher_id=%s AND fan IS NOT NULL
+        ) t
+        WHERE fan IS NOT NULL AND fan != ''
+        ORDER BY fan
+    """, (user_id, user_id))
+    natija = [r["fan"] for r in cur.fetchall()]
+    cur.close()
+    conn.close()
+    return {"fanlar": natija}
+
+
 @app.get("/api/oqituvchi/rejalarim")
 def rejalarim(token: str, sinf: str = None, fan: str = None):
     """O'qituvchining O'ZI yaratgan rejalari ro'yxati — to'garak
