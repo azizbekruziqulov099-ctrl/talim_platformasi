@@ -1772,7 +1772,7 @@ def togarak_yarat(sorov: TogarakYaratish):
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
-    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
+    _togaraklar_reja_id_ustuni(cur)
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
         topic_code TEXT,
@@ -2021,6 +2021,21 @@ def _reja_jadvallari(cur):
         tartib_raqami INTEGER NOT NULL,
         UNIQUE(reja_id, tartib_raqami)
     )""")
+
+
+_SXEMA_TEKSHIRILGAN = set()
+
+
+def _togaraklar_reja_id_ustuni(cur):
+    """togaraklar.reja_id ustuni bor-yo'qligini FAQAT shu jarayon
+    (worker) uchun BIR MARTA tekshiradi — har so'rovda emas. Bu —
+    juda tez-tez chaqiriladigan endpointlarda (mavzular ro'yxati)
+    ACCESS EXCLUSIVE qulf(lock)ning ko'p so'rov bir vaqtda kelganda
+    to'qnashib, so'rovlarni kutdirib qo'yishining oldini oladi."""
+    if "togaraklar.reja_id" in _SXEMA_TEKSHIRILGAN:
+        return
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
+    _SXEMA_TEKSHIRILGAN.add("togaraklar.reja_id")
 
 
 def _reja_ozi_mi(cur, user_id, reja_id):
@@ -2990,7 +3005,7 @@ def togarak_barcha_mavzular(token: str, togarak_id: int):
         raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
     _togarak_biriktirma_jadvali(cur)
     _reja_jadvallari(cur)
-    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
+    _togaraklar_reja_id_ustuni(cur)
     cur.execute("""
         WITH mk AS (
             SELECT tm.topic_code, d.grade, d.subject_name, d.bob_name, d.bolim_name, d.mavzu_name, d.kichik_name,
@@ -3219,7 +3234,7 @@ def togarak_azo_mavzularim(token: str, togarak_id: int):
         raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
     _togarak_biriktirma_jadvali(cur)
     _reja_jadvallari(cur)
-    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
+    _togaraklar_reja_id_ustuni(cur)
     cur.execute("""
         WITH mk AS (
             SELECT tm.topic_code, d.bob_name, d.mavzu_name,
