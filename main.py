@@ -2827,7 +2827,7 @@ def togarak_milliy_mavzular_qidir(token: str, togarak_id: int, qidiruv: str = No
             FROM dts_tree WHERE is_deleted=FALSE AND grade=%s AND UPPER(subject_name)=UPPER(%s)
             GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
             ORDER BY topic_code LIMIT 200
-        """, (t["sinf"] or "", t["fan"] or "" if t else ""))
+        """, (t["sinf"] if t else "", t["fan"] if t else ""))
     natija = cur.fetchall()
     cur.close()
     conn.close()
