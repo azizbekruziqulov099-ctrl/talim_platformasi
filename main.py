@@ -34,6 +34,13 @@ app.add_middleware(
 )
 
 
+@app.get("/api/versiya")
+def versiya():
+    """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
+    emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
+    return {"versiya": "reja-tizimi-2026-07-20-v2"}
+
+
 def _db():
     return psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor)
 
