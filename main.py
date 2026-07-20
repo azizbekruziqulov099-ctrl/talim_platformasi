@@ -1689,6 +1689,7 @@ class TogarakYaratish(BaseModel):
     oylik_summa: Optional[int] = None
     universitet_guruh_id: Optional[int] = None  # professor shu fanini ANIQ universitet guruhi uchun o'qitsa
     tanlangan_topic_codes: Optional[list[str]] = None  # o'qituvchi ANIQ tanlagan mavzular (berilmasa — mos kelgan BARCHASI avtomatik)
+    reja_id: Optional[int] = None  # tanlangan "topik mavzu rejasi" — berilsa, shu rejaning tartibli mavzulari ko'chiriladi (tanlangan_topic_codes'dan USTUN)
 
 
 @app.post("/api/oqituvchi/togarak_yarat")
@@ -1711,11 +1712,13 @@ def togarak_yarat(sorov: TogarakYaratish):
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
         topic_code TEXT,
         PRIMARY KEY (togarak_id, topic_code)
     )""")
+    _reja_jadvallari(cur)
     # Agar o'qituvchi biror o'quv markaziga tegishli bo'lsa (xodim
     # importi orqali "Fan o'qituvchisi" sifatida qo'shilgan bo'lsa) —
     # yaratayotgan guruhi AVTOMATIK shu markazga bog'lanadi, markaz
@@ -1736,16 +1739,33 @@ def togarak_yarat(sorov: TogarakYaratish):
             universitet_guruh_id = sorov.universitet_guruh_id
 
     sinf_qiymati = sorov.sinf.strip() if sorov.sinf else None
+    reja_id_qiymati = None
+    if sorov.reja_id is not None:
+        if not _reja_ozi_mi(cur, teacher_id, sorov.reja_id):
+            cur.close(); conn.close()
+            raise HTTPException(status_code=403, detail="Bu reja sizga tegishli emas")
+        reja_id_qiymati = sorov.reja_id
     cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s) RETURNING id
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id, reja_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati,
           sorov.parol.strip() if sorov.parol else None,
-          sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id))
+          sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id, reja_id_qiymati))
     yangi_id = cur.fetchone()["id"]
 
     bogliq_mavzu_soni = 0
-    if sorov.tanlangan_topic_codes is not None:
+    if reja_id_qiymati is not None:
+        # Reja tanlangan — uning TARTIBLI mavzularini shu to'garakka
+        # ko'chiramiz (tanlangan_topic_codes/avtomatik logikadan USTUN).
+        cur.execute("SELECT topic_code FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s ORDER BY tartib_raqami", (reja_id_qiymati,))
+        mavzu_kodlari = [r["topic_code"] for r in cur.fetchall()]
+        for kod in mavzu_kodlari:
+            cur.execute(
+                "INSERT INTO togarak_mavzulari(togarak_id, topic_code) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+                (yangi_id, kod),
+            )
+        bogliq_mavzu_soni = len(mavzu_kodlari)
+    elif sorov.tanlangan_topic_codes is not None:
         # O'qituvchi ANIQ mavzularni tanlagan — faqat SHU sinf/fanga
         # HAQIQATAN tegishli kodlarni qabul qilamiz (xavfsizlik: boshqa
         # sinf/fan kodini "surib qo'yish" mumkin emas).
@@ -1920,6 +1940,36 @@ def _keyingi_togarak_topic_code(cur):
     cur.execute("SELECT nextval('togarak_mavzu_kod_seq') AS keyingi")
     keyingi = cur.fetchone()["keyingi"]
     return f"SIN{keyingi:07d}"
+
+
+def _reja_jadvallari(cur):
+    """O'qituvchi bir marta yaratib, bir nechta to'garak guruhida
+    QAYTA ISHLATA oladigan 'topik mavzu rejasi' (tartibli mavzular
+    ketma-ketligi) uchun jadvallar."""
+    cur.execute("""CREATE TABLE IF NOT EXISTS topik_mavzu_rejalari(
+        id SERIAL PRIMARY KEY,
+        nomi TEXT NOT NULL,
+        sinf TEXT NOT NULL,
+        fan TEXT NOT NULL,
+        yaratgan_user_id BIGINT REFERENCES users(user_id),
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS topik_mavzu_reja_qatorlari(
+        id SERIAL PRIMARY KEY,
+        reja_id INTEGER REFERENCES topik_mavzu_rejalari(id) ON DELETE CASCADE,
+        topic_code TEXT NOT NULL,
+        tartib_raqami INTEGER NOT NULL,
+        UNIQUE(reja_id, tartib_raqami)
+    )""")
+
+
+def _reja_ozi_mi(cur, user_id, reja_id):
+    """True — agar user shu rejani yaratgan o'qituvchi yoki admin bo'lsa."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT 1 FROM topik_mavzu_rejalari WHERE id=%s AND yaratgan_user_id=%s", (reja_id, user_id))
+    return cur.fetchone() is not None
 
 
 def _togarak_ozi_mi(cur, user_id, togarak_id):
@@ -2389,6 +2439,288 @@ def _togarak_biriktirma_jadvali(cur):
     )""")
 
 
+# ═══════════════════════════════════════════════════════════
+# TOPIK MAVZU REJASI — o'qituvchi BIR MARTA yaratadigan, tartibli
+# mavzular ketma-ketligi ("dastur"), keyin BIR NECHTA turli
+# to'garak guruhida QAYTA ISHLATILADIGAN shablon.
+# ═══════════════════════════════════════════════════════════
+
+class RejaYarat(BaseModel):
+    token: str
+    nomi: str
+    sinf: str
+    fan: str
+
+
+class RejaMavzuQosh(BaseModel):
+    token: str
+    reja_id: int
+    topic_code: str
+
+
+class RejaYangiMavzuYarat(BaseModel):
+    token: str
+    reja_id: int
+    nomi: str
+    bob: Optional[str] = None
+
+
+class RejaQatorSurish(BaseModel):
+    token: str
+    reja_id: int
+    qator_id: int
+    yonalish: str  # "yuqori" | "pastga"
+
+
+@app.post("/api/oqituvchi/reja_yarat")
+def reja_yarat(sorov: RejaYarat):
+    """O'qituvchi yangi (hali bo'sh) topik mavzu rejasini yaratadi —
+    keyin unga mavzular qo'shiladi, va bu reja bir nechta to'garak
+    guruhida qayta ishlatilishi mumkin."""
+    user_id = _jwt_tekshir(sorov.token)
+    nomi = sorov.nomi.strip()
+    if not nomi:
+        raise HTTPException(status_code=400, detail="Reja nomini kiriting")
+    if not sorov.sinf.strip() or not sorov.fan.strip():
+        raise HTTPException(status_code=400, detail="Sinf va fan kiritilishi shart")
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    cur.execute(
+        "INSERT INTO topik_mavzu_rejalari(nomi, sinf, fan, yaratgan_user_id) VALUES(%s,%s,%s,%s) RETURNING id",
+        (nomi, sorov.sinf.strip(), sorov.fan.strip(), user_id),
+    )
+    reja_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"reja_id": reja_id}
+
+
+@app.get("/api/oqituvchi/rejalarim")
+def rejalarim(token: str, sinf: str = None, fan: str = None):
+    """O'qituvchining O'ZI yaratgan rejalari ro'yxati — to'garak
+    yaratish ekranida shu sinf/fanga mos rejalarni tanlash uchun."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    shart = "WHERE r.yaratgan_user_id=%s"
+    params = [user_id]
+    if sinf:
+        shart += " AND r.sinf=%s"
+        params.append(sinf)
+    if fan:
+        shart += " AND UPPER(r.fan)=UPPER(%s)"
+        params.append(fan)
+    cur.execute(f"""
+        SELECT r.id, r.nomi, r.sinf, r.fan,
+               (SELECT COUNT(*) FROM topik_mavzu_reja_qatorlari q WHERE q.reja_id=r.id) AS mavzu_soni
+        FROM topik_mavzu_rejalari r
+        {shart}
+        ORDER BY r.yaratilgan_at DESC
+    """, tuple(params))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"rejalar": natija}
+
+
+@app.get("/api/oqituvchi/reja_korish")
+def reja_korish(token: str, reja_id: int):
+    """Bitta rejaning to'liq, TARTIBLI mavzular ro'yxati."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin ko'ra oladi")
+    cur.execute("SELECT id, nomi, sinf, fan FROM topik_mavzu_rejalari WHERE id=%s", (reja_id,))
+    reja = cur.fetchone()
+    if not reja:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Reja topilmadi")
+    cur.execute("""
+        SELECT q.id AS qator_id, q.topic_code, q.tartib_raqami,
+               d.mavzu_name, d.kichik_name, d.bob_name, d.bolim_name
+        FROM topik_mavzu_reja_qatorlari q
+        JOIN dts_tree d ON d.topic_code = q.topic_code
+        WHERE q.reja_id=%s
+        ORDER BY q.tartib_raqami
+    """, (reja_id,))
+    qatorlar = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"reja": reja, "qatorlar": qatorlar}
+
+
+@app.get("/api/oqituvchi/reja_mavzu_qidir")
+def reja_mavzu_qidir(token: str, reja_id: int, qidiruv: str = None):
+    """Rejaga qo'shish uchun milliy bazadan mavzu qidirish — reja
+    o'zining sinf/faniga mos (yoki qidiruv matni bo'lsa, boshqa
+    sinf/fanlar ham) mavzularni topib beradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin qidira oladi")
+    cur.execute("SELECT sinf, fan FROM topik_mavzu_rejalari WHERE id=%s", (reja_id,))
+    r = cur.fetchone()
+    if qidiruv and qidiruv.strip():
+        cur.execute("""
+            SELECT MIN(topic_code) AS topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            FROM dts_tree WHERE is_deleted=FALSE AND
+                 (mavzu_name ILIKE %s OR bolim_name ILIKE %s OR bob_name ILIKE %s OR kichik_name ILIKE %s)
+            GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            ORDER BY subject_name, grade LIMIT 50
+        """, tuple([f"%{qidiruv.strip()}%"] * 4))
+    else:
+        cur.execute("""
+            SELECT MIN(topic_code) AS topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            FROM dts_tree WHERE is_deleted=FALSE AND grade=%s AND UPPER(subject_name)=UPPER(%s)
+            GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            ORDER BY topic_code LIMIT 200
+        """, (r["sinf"] if r else "", r["fan"] if r else ""))
+    natija = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"mavzular": natija}
+
+
+@app.post("/api/oqituvchi/reja_mavzu_qosh")
+def reja_mavzu_qosh(sorov: RejaMavzuQosh):
+    """Milliy bazadagi mavjud mavzuni rejaning OXIRIGA qo'shadi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, sorov.reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin qo'sha oladi")
+    cur.execute("SELECT COALESCE(MAX(tartib_raqami),0)+1 AS keyingi FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s", (sorov.reja_id,))
+    keyingi = cur.fetchone()["keyingi"]
+    cur.execute(
+        "INSERT INTO topik_mavzu_reja_qatorlari(reja_id, topic_code, tartib_raqami) VALUES(%s,%s,%s)",
+        (sorov.reja_id, sorov.topic_code, keyingi),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "qoshildi"}
+
+
+@app.post("/api/oqituvchi/reja_yangi_mavzu_yarat")
+def reja_yangi_mavzu_yarat(sorov: RejaYangiMavzuYarat):
+    """O'qituvchi FAQAT nom yozib, milliy bazada yo'q mavzuni o'zi
+    yaratadi va rejaning OXIRIGA qo'shadi — kod avtomatik generatsiya
+    qilinadi."""
+    user_id = _jwt_tekshir(sorov.token)
+    nomi = sorov.nomi.strip()
+    if not nomi:
+        raise HTTPException(status_code=400, detail="Mavzu nomini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, sorov.reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin qo'sha oladi")
+    cur.execute("SELECT sinf, fan FROM topik_mavzu_rejalari WHERE id=%s", (sorov.reja_id,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Reja topilmadi")
+    _togarak_mavzu_kontenti_jadvali(cur)
+    topic_code = _keyingi_togarak_topic_code(cur)
+    bob = (sorov.bob or "").strip()
+    cur.execute("""
+        INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+        VALUES(%s,%s,%s,'1',%s,'',%s,'',FALSE)
+    """, (topic_code, r["sinf"], r["fan"], bob, nomi))
+    cur.execute("SELECT COALESCE(MAX(tartib_raqami),0)+1 AS keyingi FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s", (sorov.reja_id,))
+    keyingi = cur.fetchone()["keyingi"]
+    cur.execute(
+        "INSERT INTO topik_mavzu_reja_qatorlari(reja_id, topic_code, tartib_raqami) VALUES(%s,%s,%s)",
+        (sorov.reja_id, topic_code, keyingi),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"topic_code": topic_code, "nomi": nomi}
+
+
+@app.delete("/api/oqituvchi/reja_mavzu_ochir")
+def reja_mavzu_ochir(token: str, reja_id: int, qator_id: int):
+    """Rejadan bitta mavzuni olib tashlaydi, qolganlarini
+    bo'shliqsiz qayta tartiblaydi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin o'chira oladi")
+    cur.execute("DELETE FROM topik_mavzu_reja_qatorlari WHERE id=%s AND reja_id=%s", (qator_id, reja_id))
+    cur.execute("SELECT id FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s ORDER BY tartib_raqami", (reja_id,))
+    qolganlar = cur.fetchall()
+    for i, q in enumerate(qolganlar, start=1):
+        cur.execute("UPDATE topik_mavzu_reja_qatorlari SET tartib_raqami=%s WHERE id=%s", (i, q["id"]))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
+@app.put("/api/oqituvchi/reja_qator_surish")
+def reja_qator_surish(sorov: RejaQatorSurish):
+    """Bir mavzuni ketma-ketlikda BIR PILLAPOYA yuqoriga/pastga
+    suradi (qo'shni bilan o'rin almashtiradi)."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, sorov.reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin tartiblay oladi")
+    cur.execute("SELECT id, tartib_raqami FROM topik_mavzu_reja_qatorlari WHERE id=%s AND reja_id=%s", (sorov.qator_id, sorov.reja_id))
+    joriy = cur.fetchone()
+    if not joriy:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Qator topilmadi")
+    yangi_tartib = joriy["tartib_raqami"] + (1 if sorov.yonalish == "pastga" else -1)
+    cur.execute("SELECT id FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s AND tartib_raqami=%s", (sorov.reja_id, yangi_tartib))
+    qoshni = cur.fetchone()
+    if qoshni:
+        cur.execute("UPDATE topik_mavzu_reja_qatorlari SET tartib_raqami=%s WHERE id=%s", (joriy["tartib_raqami"], qoshni["id"]))
+        cur.execute("UPDATE topik_mavzu_reja_qatorlari SET tartib_raqami=%s WHERE id=%s", (yangi_tartib, joriy["id"]))
+        conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "surildi"}
+
+
+@app.delete("/api/oqituvchi/reja_ochir")
+def reja_ochir(token: str, reja_id: int):
+    """Butun rejani o'chiradi (undan foydalangan to'garaklarning
+    o'zidagi mavzular tegilmaydi — ular allaqachon o'z nusxasiga
+    ega, faqat KELAJAKDA shu rejadan qayta foydalanish imkoni
+    yo'qoladi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _reja_jadvallari(cur)
+    if not _reja_ozi_mi(cur, user_id, reja_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin o'chira oladi")
+    cur.execute("DELETE FROM topik_mavzu_rejalari WHERE id=%s", (reja_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi"}
+
+
 @app.get("/api/oqituvchi/togarak_yaratish_mavzulari")
 def togarak_yaratish_mavzulari(token: str, sinf: str, fan: str, turi: str = "oddiy"):
     """To'garak YARATISH shaklidagi mavzu tanlash ro'yxati uchun —
@@ -2404,7 +2736,7 @@ def togarak_yaratish_mavzulari(token: str, sinf: str, fan: str, turi: str = "odd
     cur = conn.cursor()
     cur.execute(f"""
         SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
-               array_agg(DISTINCT d.topic_code ORDER BY d.topic_code) AS topic_codes,
+               ARRAY[MIN(d.topic_code)] AS topic_codes,
                COUNT(gt.id) AS savol_soni
         FROM dts_tree d
         LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
@@ -2434,15 +2766,17 @@ def togarak_milliy_mavzular_qidir(token: str, togarak_id: int, qidiruv: str = No
     t = cur.fetchone()
     if qidiruv and qidiruv.strip():
         cur.execute("""
-            SELECT topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            SELECT MIN(topic_code) AS topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
             FROM dts_tree WHERE is_deleted=FALSE AND
                  (mavzu_name ILIKE %s OR bolim_name ILIKE %s OR bob_name ILIKE %s OR kichik_name ILIKE %s)
+            GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
             ORDER BY subject_name, grade LIMIT 50
         """, tuple([f"%{qidiruv.strip()}%"] * 4))
     else:
         cur.execute("""
-            SELECT topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+            SELECT MIN(topic_code) AS topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
             FROM dts_tree WHERE is_deleted=FALSE AND grade=%s AND UPPER(subject_name)=UPPER(%s)
+            GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
             ORDER BY topic_code LIMIT 200
         """, (t["sinf"] or "", t["fan"] or "" if t else ""))
     natija = cur.fetchall()
@@ -2546,13 +2880,25 @@ def togarak_barcha_mavzular(token: str, togarak_id: int):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
     _togarak_biriktirma_jadvali(cur)
+    _reja_jadvallari(cur)
     cur.execute("""
-        SELECT d.topic_code, d.grade, d.subject_name, d.bob_name, d.bolim_name, d.mavzu_name, d.kichik_name,
-               (SELECT COUNT(*) FROM togarak_mavzu_biriktirma b WHERE b.togarak_id=tm.togarak_id AND b.topic_code=d.topic_code) AS kontent_soni
-        FROM togarak_mavzulari tm JOIN dts_tree d ON d.topic_code = tm.topic_code
-        WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
-        ORDER BY d.bob_name, d.mavzu_name
-    """, (togarak_id,))
+        WITH mk AS (
+            SELECT tm.topic_code, d.grade, d.subject_name, d.bob_name, d.bolim_name, d.mavzu_name, d.kichik_name,
+                   (SELECT COUNT(*) FROM togarak_mavzu_biriktirma b WHERE b.togarak_id=tm.togarak_id AND b.topic_code=d.topic_code) AS kontent_soni,
+                   q.tartib_raqami
+            FROM togarak_mavzulari tm
+            JOIN dts_tree d ON d.topic_code = tm.topic_code
+            LEFT JOIN topik_mavzu_reja_qatorlari q
+                   ON q.topic_code = tm.topic_code
+                  AND q.reja_id = (SELECT reja_id FROM togaraklar WHERE id=%s)
+            WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
+        )
+        SELECT MIN(topic_code) AS topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name,
+               SUM(kontent_soni) AS kontent_soni, MIN(tartib_raqami) AS tartib_raqami
+        FROM mk
+        GROUP BY grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name
+        ORDER BY (tartib_raqami IS NULL), tartib_raqami, bob_name, mavzu_name
+    """, (togarak_id, togarak_id))
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -2762,13 +3108,25 @@ def togarak_azo_mavzularim(token: str, togarak_id: int):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
     _togarak_biriktirma_jadvali(cur)
+    _reja_jadvallari(cur)
     cur.execute("""
-        SELECT d.topic_code, d.bob_name, d.mavzu_name AS nomi,
-               (SELECT COUNT(*) FROM togarak_mavzu_biriktirma b WHERE b.togarak_id=tm.togarak_id AND b.topic_code=d.topic_code) AS kontent_soni
-        FROM togarak_mavzulari tm JOIN dts_tree d ON d.topic_code = tm.topic_code
-        WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
-        ORDER BY d.bob_name, d.mavzu_name
-    """, (togarak_id,))
+        WITH mk AS (
+            SELECT tm.topic_code, d.bob_name, d.mavzu_name,
+                   (SELECT COUNT(*) FROM togarak_mavzu_biriktirma b WHERE b.togarak_id=tm.togarak_id AND b.topic_code=d.topic_code) AS kontent_soni,
+                   q.tartib_raqami
+            FROM togarak_mavzulari tm
+            JOIN dts_tree d ON d.topic_code = tm.topic_code
+            LEFT JOIN topik_mavzu_reja_qatorlari q
+                   ON q.topic_code = tm.topic_code
+                  AND q.reja_id = (SELECT reja_id FROM togaraklar WHERE id=%s)
+            WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
+        )
+        SELECT MIN(topic_code) AS topic_code, bob_name, mavzu_name AS nomi, SUM(kontent_soni) AS kontent_soni,
+               MIN(tartib_raqami) AS tartib_raqami
+        FROM mk
+        GROUP BY bob_name, mavzu_name
+        ORDER BY (MIN(tartib_raqami) IS NULL), tartib_raqami, bob_name, mavzu_name
+    """, (togarak_id, togarak_id))
     natija = [r for r in cur.fetchall() if r["kontent_soni"] > 0]
     cur.close()
     conn.close()
