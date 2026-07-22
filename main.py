@@ -38,7 +38,7 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "reja-tizimi-2026-07-20-v4-havuzsiz"}
+    return {"versiya": "reja-tizimi-2026-07-22-v5-keshsiz"}
 
 
 def _db():
@@ -2051,31 +2051,21 @@ def _reja_jadvallari(cur):
     )""")
 
 
-_SXEMA_TEKSHIRILGAN = set()
-
-
 def _togaraklar_reja_id_ustuni(cur):
-    """togaraklar.reja_id ustuni bor-yo'qligini FAQAT shu jarayon
-    (worker) uchun BIR MARTA tekshiradi — har so'rovda emas. Bu —
-    juda tez-tez chaqiriladigan endpointlarda (mavzular ro'yxati)
-    ACCESS EXCLUSIVE qulf(lock)ning ko'p so'rov bir vaqtda kelganda
-    to'qnashib, so'rovlarni kutdirib qo'yishining oldini oladi."""
-    if "togaraklar.reja_id" in _SXEMA_TEKSHIRILGAN:
-        return
+    """togaraklar.reja_id ustuni yo'q bo'lsa, yaratadi. HAR SO'ROVDA
+    ishga tushadi (keshlanmaydi) — chunki ko'p endpoint (masalan
+    /auth/men) transaksiyani commit qilmaydi, shu sabab "faqat bir
+    marta bajarish" keshi ustunni HAQIQATDA yaratilmagan holda
+    "yaratildi" deb noto'g'ri belgilab qo'yishi mumkin edi."""
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
-    _SXEMA_TEKSHIRILGAN.add("togaraklar.reja_id")
 
 
 def _users_profil_rasm_ustunlari(cur):
-    """users.profil_rasm/profil_rasm_turi ustunlari bor-yo'qligini
-    FAQAT shu jarayon uchun BIR MARTA tekshiradi — bu ham juda
-    tez-tez chaqiriladi (/auth/men, rasm ko'rish), shu sabab qulf
-    to'qnashuvining oldini olish uchun keshlanadi."""
-    if "users.profil_rasm" in _SXEMA_TEKSHIRILGAN:
-        return
+    """users.profil_rasm/profil_rasm_turi ustunlari yo'q bo'lsa,
+    yaratadi. HAR SO'ROVDA ishga tushadi — sababi yuqoridagi
+    _togaraklar_reja_id_ustuni bilan bir xil."""
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS profil_rasm BYTEA")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS profil_rasm_turi TEXT")
-    _SXEMA_TEKSHIRILGAN.add("users.profil_rasm")
 
 
 def _reja_ozi_mi(cur, user_id, reja_id):
