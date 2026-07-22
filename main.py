@@ -1232,8 +1232,9 @@ def oqituvchi_togaraklari(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
     cur.execute("""
-        SELECT id, nomi, fan, max_talaba,
+        SELECT id, nomi, fan, max_talaba, COALESCE(turi, 'oddiy') AS turi,
                (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE) AS azo_soni
         FROM togaraklar
         WHERE teacher_id=%s AND aktiv=TRUE
@@ -1772,6 +1773,7 @@ class TogarakYaratish(BaseModel):
     nomi: str
     fan: str
     sinf: Optional[str] = None   # "1".."11" (oddiy) yoki "3-4" kabi (to'garak guruhi)
+    turi: str = "oddiy"          # "oddiy" (o'qituvchi jonli o'tadi) | "avto" (o'quvchi mustaqil, kitob+kalendar orqali)
     parol: Optional[str] = None
     max_talaba: Optional[int] = None
     oylik_summa: Optional[int] = None
@@ -1800,6 +1802,7 @@ def togarak_yarat(sorov: TogarakYaratish):
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS sinf TEXT")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
     _togaraklar_reja_id_ustuni(cur)
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
@@ -1827,6 +1830,7 @@ def togarak_yarat(sorov: TogarakYaratish):
             universitet_guruh_id = sorov.universitet_guruh_id
 
     sinf_qiymati = sorov.sinf.strip() if sorov.sinf else None
+    turi_qiymati = sorov.turi if sorov.turi in ("oddiy", "avto") else "oddiy"
     reja_id_qiymati = None
     if sorov.reja_id is not None:
         if not _reja_ozi_mi(cur, teacher_id, sorov.reja_id):
@@ -1834,9 +1838,9 @@ def togarak_yarat(sorov: TogarakYaratish):
             raise HTTPException(status_code=403, detail="Bu reja sizga tegishli emas")
         reja_id_qiymati = sorov.reja_id
     cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id, reja_id)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati,
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, turi, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id, reja_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati, turi_qiymati,
           sorov.parol.strip() if sorov.parol else None,
           sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id, reja_id_qiymati))
     yangi_id = cur.fetchone()["id"]
@@ -4353,8 +4357,9 @@ def mening_togaraklarim(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
     cur.execute("""
-        SELECT tg.id, tg.nomi, tg.fan
+        SELECT tg.id, tg.nomi, tg.fan, COALESCE(tg.turi, 'oddiy') AS turi
         FROM togarak_azolar ta
         JOIN togaraklar tg ON tg.id = ta.togarak_id
         WHERE ta.user_id=%s AND ta.aktiv=TRUE
