@@ -2545,6 +2545,260 @@ def _togarak_biriktirma_jadvali(cur):
 
 
 # ═══════════════════════════════════════════════════════════
+# MAVZU KITOBI — "sayt-bot yurituvchi to'garak" uchun poydevor.
+# O'qituvchi HAR BIR mavzu uchun: (1) bir yoki bir nechta VIDEO
+# (yuklangan yoki YouTube), (2) shu videolarga ANIQ SONIYASI bilan
+# BOG'LANGAN misollar ketma-ketligini ("kitob varag'i" — masala +
+# yechim tushuntirishi, LaTeX qo'llab-quvvatlanadi) tuzadi.
+# O'quvchi (keyingi bosqichda) videoni ko'radi, mos misolni yechadi,
+# tushunmasa "Tushunmadim" bosib, aynan shu joydagi tushuntirish/video
+# soniyasiga yo'naltiriladi.
+# ═══════════════════════════════════════════════════════════
+
+def _mavzu_kitobi_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS mavzu_darslik_videolari(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        topic_code TEXT NOT NULL,
+        tartib_raqami INTEGER NOT NULL,
+        sarlavha TEXT,
+        video_havola TEXT NOT NULL,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS mavzu_kitob_misollari(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        topic_code TEXT NOT NULL,
+        video_id INTEGER REFERENCES mavzu_darslik_videolari(id) ON DELETE SET NULL,
+        tartib_raqami INTEGER NOT NULL,
+        masala_matni TEXT NOT NULL,
+        yechim_matni TEXT,
+        video_soniya INTEGER,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+@app.get("/api/oqituvchi/mavzu_kitobi")
+def mavzu_kitobi_korish(token: str, togarak_id: int, topic_code: str):
+    """Bitta mavzuning to'liq 'kitobi' — videolar ro'yxati, har
+    biriga bog'langan misollar (tartib bilan)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute(
+        "SELECT id, tartib_raqami, sarlavha, video_havola FROM mavzu_darslik_videolari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        (togarak_id, topic_code),
+    )
+    videolar = cur.fetchall()
+    cur.execute(
+        "SELECT id, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        (togarak_id, topic_code),
+    )
+    misollar = cur.fetchall()
+    cur.close(); conn.close()
+    return {"videolar": videolar, "misollar": misollar}
+
+
+class MavzuVideoQoshish(BaseModel):
+    token: str
+    togarak_id: int
+    topic_code: str
+    sarlavha: Optional[str] = None
+    video_havola: str
+
+
+@app.post("/api/oqituvchi/mavzu_video_qosh")
+def mavzu_video_qosh(sorov: MavzuVideoQoshish):
+    user_id = _jwt_tekshir(sorov.token)
+    if not (sorov.video_havola or "").strip():
+        raise HTTPException(status_code=400, detail="Video havolasini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute(
+        "SELECT COALESCE(MAX(tartib_raqami),0)+1 AS keyingi FROM mavzu_darslik_videolari WHERE togarak_id=%s AND topic_code=%s",
+        (sorov.togarak_id, sorov.topic_code),
+    )
+    keyingi = cur.fetchone()["keyingi"]
+    cur.execute(
+        "INSERT INTO mavzu_darslik_videolari(togarak_id, topic_code, tartib_raqami, sarlavha, video_havola) VALUES(%s,%s,%s,%s,%s) RETURNING id",
+        (sorov.togarak_id, sorov.topic_code, keyingi, sorov.sarlavha, sorov.video_havola.strip()),
+    )
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "qoshildi", "video_id": yangi_id}
+
+
+@app.delete("/api/oqituvchi/mavzu_video_ochir")
+def mavzu_video_ochir(token: str, video_id: int):
+    """Videoni o'chiradi — unga bog'langan misollar O'CHIRILMAYDI,
+    faqat video_id bo'shatiladi (ON DELETE SET NULL), chunki
+    misoldagi matn/yechim o'zi qimmatli, faqat video bog'lanishi
+    yo'qoladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute("SELECT togarak_id FROM mavzu_darslik_videolari WHERE id=%s", (video_id,))
+    v = cur.fetchone()
+    if not v:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Video topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, v["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM mavzu_darslik_videolari WHERE id=%s", (video_id,))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "ochirildi"}
+
+
+class MavzuMisolQoshish(BaseModel):
+    token: str
+    togarak_id: int
+    topic_code: str
+    video_id: Optional[int] = None
+    masala_matni: str
+    yechim_matni: Optional[str] = None
+    video_soniya: Optional[int] = None
+
+
+@app.post("/api/oqituvchi/mavzu_misol_qosh")
+def mavzu_misol_qosh(sorov: MavzuMisolQoshish):
+    """Kitobga yangi misol qo'shadi — mavzu ichidagi UMUMIY tartibning
+    OXIRIGA (video 1 → uning misollari → video 2 → uning misollari...
+    ketma-ketligi shu tartib raqami orqali saqlanadi)."""
+    user_id = _jwt_tekshir(sorov.token)
+    if not (sorov.masala_matni or "").strip():
+        raise HTTPException(status_code=400, detail="Masala matnini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
+    _mavzu_kitobi_jadvallari(cur)
+    if sorov.video_id is not None:
+        cur.execute("SELECT 1 FROM mavzu_darslik_videolari WHERE id=%s AND togarak_id=%s", (sorov.video_id, sorov.togarak_id))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Ko'rsatilgan video shu to'garakka tegishli emas")
+    cur.execute(
+        "SELECT COALESCE(MAX(tartib_raqami),0)+1 AS keyingi FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s",
+        (sorov.togarak_id, sorov.topic_code),
+    )
+    keyingi = cur.fetchone()["keyingi"]
+    cur.execute("""
+        INSERT INTO mavzu_kitob_misollari(togarak_id, topic_code, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya)
+        VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.togarak_id, sorov.topic_code, sorov.video_id, keyingi, sorov.masala_matni.strip(),
+          sorov.yechim_matni.strip() if sorov.yechim_matni else None, sorov.video_soniya))
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "qoshildi", "misol_id": yangi_id}
+
+
+class MavzuMisolTahrirlash(BaseModel):
+    token: str
+    misol_id: int
+    video_id: Optional[int] = None
+    masala_matni: str
+    yechim_matni: Optional[str] = None
+    video_soniya: Optional[int] = None
+
+
+@app.put("/api/oqituvchi/mavzu_misol_tahrirlash")
+def mavzu_misol_tahrirlash(sorov: MavzuMisolTahrirlash):
+    user_id = _jwt_tekshir(sorov.token)
+    if not (sorov.masala_matni or "").strip():
+        raise HTTPException(status_code=400, detail="Masala matnini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute("SELECT togarak_id FROM mavzu_kitob_misollari WHERE id=%s", (sorov.misol_id,))
+    m = cur.fetchone()
+    if not m:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Misol topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, m["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin tahrirlay oladi")
+    cur.execute("""
+        UPDATE mavzu_kitob_misollari SET video_id=%s, masala_matni=%s, yechim_matni=%s, video_soniya=%s WHERE id=%s
+    """, (sorov.video_id, sorov.masala_matni.strip(), sorov.yechim_matni.strip() if sorov.yechim_matni else None,
+          sorov.video_soniya, sorov.misol_id))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.delete("/api/oqituvchi/mavzu_misol_ochir")
+def mavzu_misol_ochir(token: str, misol_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute("SELECT togarak_id, topic_code FROM mavzu_kitob_misollari WHERE id=%s", (misol_id,))
+    m = cur.fetchone()
+    if not m:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Misol topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, m["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM mavzu_kitob_misollari WHERE id=%s", (misol_id,))
+    cur.execute("SELECT id FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami", (m["togarak_id"], m["topic_code"]))
+    qolganlar = cur.fetchall()
+    for i, q in enumerate(qolganlar, start=1):
+        cur.execute("UPDATE mavzu_kitob_misollari SET tartib_raqami=%s WHERE id=%s", (i, q["id"]))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "ochirildi"}
+
+
+class MavzuMisolSurish(BaseModel):
+    token: str
+    misol_id: int
+    yonalish: str  # "yuqori" | "pastga"
+
+
+@app.put("/api/oqituvchi/mavzu_misol_surish")
+def mavzu_misol_surish(sorov: MavzuMisolSurish):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute("SELECT togarak_id, topic_code, tartib_raqami FROM mavzu_kitob_misollari WHERE id=%s", (sorov.misol_id,))
+    joriy = cur.fetchone()
+    if not joriy:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Misol topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, joriy["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin tartiblay oladi")
+    yangi_tartib = joriy["tartib_raqami"] + (1 if sorov.yonalish == "pastga" else -1)
+    cur.execute(
+        "SELECT id FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s AND tartib_raqami=%s",
+        (joriy["togarak_id"], joriy["topic_code"], yangi_tartib),
+    )
+    qoshni = cur.fetchone()
+    if qoshni:
+        cur.execute("UPDATE mavzu_kitob_misollari SET tartib_raqami=%s WHERE id=%s", (joriy["tartib_raqami"], qoshni["id"]))
+        cur.execute("UPDATE mavzu_kitob_misollari SET tartib_raqami=%s WHERE id=%s", (yangi_tartib, sorov.misol_id))
+        conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "surildi"}
+
+
+# ═══════════════════════════════════════════════════════════
 # TO'GARAK KALENDAR REJA — o'qituvchi to'garakning HAFTALIK dars
 # kunlarini (masalan Dush/Chor/Juma) belgilaydi, so'ng shu kunlarga
 # ANIQ SANALAR bo'yicha mavzu tayinlaydi. Reja (topik mavzu rejasi)
@@ -2764,6 +3018,177 @@ def togarak_dars_avtomatik_toldir(token: str, togarak_id: int, boshlanish: str, 
     conn.commit()
     cur.close(); conn.close()
     return {"holat": "toldirildi", "toldirilgan_soni": toldirilgan_soni}
+
+
+# ═══════════════════════════════════════════════════════════
+# O'QUVCHI SHAXSIY KALENDAR REJASI — "mustaqil o'rganish". Yuqoridagi
+# (o'qituvchi belgilaydigan) haftalik jadvaldan FARQLI: bu yerda HAR
+# BIR O'QUVCHI o'zi xohlagan kunlarda, o'zi xohlagan vaqtda (masalan
+# to'garakka 27-sanada qo'shilib) boshlashi mumkin. O'quvchi o'z
+# kunlarini tanlagach, to'garakka bog'langan REJA (agar bo'lsa) ANIQ
+# SHU O'QUVCHIGA, BUGUNDAN boshlab, tanlagan kunlariga individual
+# taqsimlanadi — boshqa o'quvchilarning jadvaliga taʼsir qilmaydi,
+# har biri o'z sur'atida ilgarilaydi. Video-dars + mustaqil test —
+# ikkalasi ham MAVJUD infratuzilma (togarak_mavzu_biriktirma,
+# generated_tests + /api/test/natija avtomatik baholash) orqali
+# ishlaydi, qaytadan qurilmaydi.
+# ═══════════════════════════════════════════════════════════
+
+def _oquvchi_kalendar_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS oquvchi_dars_kunlari(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        hafta_kuni INTEGER NOT NULL,
+        UNIQUE(togarak_id, user_id, hafta_kuni)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS oquvchi_dars_rejasi(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        sana DATE NOT NULL,
+        topic_code TEXT NOT NULL,
+        UNIQUE(togarak_id, user_id, sana)
+    )""")
+
+
+@app.get("/api/togarak_azo/mening_dars_kunlarim")
+def mening_dars_kunlarim(token: str, togarak_id: int):
+    """O'quvchi shu to'garakda O'Z shaxsiy jadvalini (mustaqil
+    o'rganish kunlarini) allaqachon belgilab bo'lganmi — bo'lmasa,
+    frontend unga kunlarni tanlashni so'raydi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    _oquvchi_kalendar_jadvallari(cur)
+    cur.execute(
+        "SELECT hafta_kuni FROM oquvchi_dars_kunlari WHERE togarak_id=%s AND user_id=%s ORDER BY hafta_kuni",
+        (togarak_id, user_id),
+    )
+    kunlar = [r["hafta_kuni"] for r in cur.fetchall()]
+    cur.execute("SELECT reja_id FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    cur.close(); conn.close()
+    return {"kunlar": kunlar, "reja_bormi": bool(t and t["reja_id"])}
+
+
+class OquvchiDarsKunlariBelgilash(BaseModel):
+    token: str
+    togarak_id: int
+    kunlar: list[int]  # [2,4,6] kabi, 1=Dushanba...7=Yakshanba
+
+
+@app.put("/api/togarak_azo/dars_kunlarimni_belgila")
+def oquvchi_dars_kunlarimni_belgila(sorov: OquvchiDarsKunlariBelgilash):
+    """O'quvchi O'Z mustaqil o'rganish kunlarini tanlaydi — shu zahoti,
+    to'garakka reja bog'langan bo'lsa, rejaning mavzulari ANIQ SHU
+    O'QUVCHIGA, BUGUNDAN boshlab, tanlagan kunlariga avtomatik
+    taqsimlanadi (individual — boshqa o'quvchilarga taʼsir qilmaydi)."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    kunlar = sorted(set(k for k in sorov.kunlar if 1 <= k <= 7))
+    if not kunlar:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kamida bitta kun tanlang")
+
+    _oquvchi_kalendar_jadvallari(cur)
+    cur.execute("DELETE FROM oquvchi_dars_kunlari WHERE togarak_id=%s AND user_id=%s", (sorov.togarak_id, user_id))
+    for k in kunlar:
+        cur.execute(
+            "INSERT INTO oquvchi_dars_kunlari(togarak_id, user_id, hafta_kuni) VALUES(%s,%s,%s)",
+            (sorov.togarak_id, user_id, k),
+        )
+
+    toldirilgan_soni = 0
+    cur.execute("SELECT reja_id FROM togaraklar WHERE id=%s", (sorov.togarak_id,))
+    t = cur.fetchone()
+    if t and t["reja_id"]:
+        cur.execute("""
+            SELECT topic_code FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s
+            AND topic_code NOT IN (
+                SELECT topic_code FROM oquvchi_dars_rejasi WHERE togarak_id=%s AND user_id=%s
+            )
+            ORDER BY tartib_raqami
+        """, (t["reja_id"], sorov.togarak_id, user_id))
+        mavzular = [r["topic_code"] for r in cur.fetchall()]
+        if mavzular:
+            joriy = datetime.now().date()
+            # Xavfsizlik chegarasi — cheksiz aylanib qolmasin (masalan
+            # o'quvchi bitta kun tanlab, mavzular ko'p bo'lsa ham).
+            oxirgi_sana = joriy + timedelta(days=3 * 365)
+            idx = 0
+            while joriy <= oxirgi_sana and idx < len(mavzular):
+                if joriy.isoweekday() in kunlar:
+                    cur.execute(
+                        "INSERT INTO oquvchi_dars_rejasi(togarak_id, user_id, sana, topic_code) VALUES(%s,%s,%s,%s) ON CONFLICT DO NOTHING",
+                        (sorov.togarak_id, user_id, joriy, mavzular[idx]),
+                    )
+                    idx += 1
+                    toldirilgan_soni += 1
+                joriy += timedelta(days=1)
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "saqlandi", "kunlar": kunlar, "toldirilgan_soni": toldirilgan_soni}
+
+
+@app.get("/api/togarak_azo/mening_kalendarim")
+def mening_kalendarim(token: str, togarak_id: int, boshlanish: str, tugash: str):
+    """O'quvchining shu to'garakdagi SHAXSIY (faqat o'ziga tegishli)
+    kalendar rejasi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    _oquvchi_kalendar_jadvallari(cur)
+    cur.execute("SELECT hafta_kuni FROM oquvchi_dars_kunlari WHERE togarak_id=%s AND user_id=%s", (togarak_id, user_id))
+    dars_kunlari = {r["hafta_kuni"] for r in cur.fetchall()}
+
+    try:
+        bosh_sana = datetime.strptime(boshlanish, "%Y-%m-%d").date()
+        tugash_sana = datetime.strptime(tugash, "%Y-%m-%d").date()
+    except ValueError:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sana formati noto'g'ri")
+    if (tugash_sana - bosh_sana).days > 60:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sana oralig'i 60 kundan oshmasligi kerak")
+
+    dars_sanalari = []
+    joriy = bosh_sana
+    while joriy <= tugash_sana:
+        if joriy.isoweekday() in dars_kunlari:
+            dars_sanalari.append(joriy)
+        joriy += timedelta(days=1)
+
+    cur.execute("""
+        SELECT r.sana, r.topic_code, d.mavzu_name, d.bob_name, d.bolim_name, d.kichik_name
+        FROM oquvchi_dars_rejasi r
+        LEFT JOIN dts_tree d ON d.topic_code = r.topic_code
+        WHERE r.togarak_id=%s AND r.user_id=%s AND r.sana BETWEEN %s AND %s
+    """, (togarak_id, user_id, bosh_sana, tugash_sana))
+    tayinlangan = {r["sana"]: r for r in cur.fetchall()}
+    cur.close(); conn.close()
+
+    natija = []
+    for sana in dars_sanalari:
+        t = tayinlangan.get(sana)
+        bor = t and t["topic_code"]
+        natija.append({
+            "sana": sana.isoformat(),
+            "hafta_kuni": sana.isoweekday(),
+            "topic_code": t["topic_code"] if t else None,
+            "mavzu_nomi": (t["mavzu_name"] or t["kichik_name"] or t["bolim_name"] or t["bob_name"]) if bor else None,
+        })
+    return {"dars_kunlari": sorted(dars_kunlari), "sanalar": natija}
 
 
 # ═══════════════════════════════════════════════════════════
