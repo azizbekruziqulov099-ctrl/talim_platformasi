@@ -164,6 +164,25 @@ def ota_farzandlari(ota_id: int):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@app.get("/api/oquvchi/ota_onalarim")
+def oquvchi_ota_onalarim(token: str):
+    """O'quvchining O'ZIGA ulangan barcha ota-onalari ro'yxati —
+    ota_farzandlari'ning aksi (o'quvchi profilida 'kimlar allaqachon
+    ulangan' ko'rsatish uchun)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT u.user_id, u.full_name FROM parent_child pc
+        JOIN users u ON u.user_id = pc.parent_id
+        WHERE pc.child_id = %s
+    """, (user_id,))
+    r = cur.fetchall()
+    cur.close(); conn.close()
+    return {"ota_onalar": r}
+
+
+
 # ═══════════════════════════════════════════════════════════
 # GOOGLE ORQALI KIRISH (OAuth)
 # ═══════════════════════════════════════════════════════════
