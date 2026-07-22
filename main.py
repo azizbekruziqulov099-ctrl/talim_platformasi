@@ -5,6 +5,7 @@ Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
 import os
 import re
 import io
+import json
 import math
 import secrets
 import string
@@ -2825,6 +2826,213 @@ def oquvchi_mavzu_kitobi(token: str, togarak_id: int, topic_code: str):
     misollar = cur.fetchall()
     cur.close(); conn.close()
     return {"videolar": videolar, "misollar": misollar}
+
+
+# ═══════════════════════════════════════════════════════════
+# MUSTAQIL ISHLAR — mavzu "kitobi"dan (video+misollar) keyin,
+# o'quvchi MUSTAQIL yechishi kerak bo'lgan amaliy topshiriqlar.
+# O'qituvchi savol + TO'G'RI JAVOB MEZONINI yozadi; o'quvchi ERKIN
+# MATNDA javob yozadi, va AI (LLM) shu mezon asosida TEKSHIRIB,
+# to'g'ri-noto'g'riligini va SABABINI aniqlaydi — oddiy test (variant
+# tanlash) EMAS, chunki yozma yechim/tushuntirish talab qilinadi.
+# ═══════════════════════════════════════════════════════════
+
+def _mustaqil_ish_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS mavzu_mustaqil_ishlar(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        topic_code TEXT NOT NULL,
+        tartib_raqami INTEGER NOT NULL,
+        savol_matni TEXT NOT NULL,
+        togri_javob_mezoni TEXT NOT NULL,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS mustaqil_ish_javoblari(
+        id SERIAL PRIMARY KEY,
+        ish_id INTEGER NOT NULL REFERENCES mavzu_mustaqil_ishlar(id),
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        javob_matni TEXT NOT NULL,
+        togrimi BOOLEAN,
+        ai_izohi TEXT,
+        yuborilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+@app.get("/api/oqituvchi/mustaqil_ishlar")
+def mustaqil_ishlar_royxati(token: str, togarak_id: int, topic_code: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _mustaqil_ish_jadvallari(cur)
+    cur.execute(
+        "SELECT id, tartib_raqami, savol_matni, togri_javob_mezoni FROM mavzu_mustaqil_ishlar WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        (togarak_id, topic_code),
+    )
+    natija = cur.fetchall()
+    cur.close(); conn.close()
+    return {"ishlar": natija}
+
+
+class MustaqilIshQoshish(BaseModel):
+    token: str
+    togarak_id: int
+    topic_code: str
+    savol_matni: str
+    togri_javob_mezoni: str
+
+
+@app.post("/api/oqituvchi/mustaqil_ish_qosh")
+def mustaqil_ish_qosh(sorov: MustaqilIshQoshish):
+    user_id = _jwt_tekshir(sorov.token)
+    if not (sorov.savol_matni or "").strip() or not (sorov.togri_javob_mezoni or "").strip():
+        raise HTTPException(status_code=400, detail="Savol va to'g'ri javob mezonini kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin qo'sha oladi")
+    _mustaqil_ish_jadvallari(cur)
+    cur.execute(
+        "SELECT COALESCE(MAX(tartib_raqami),0)+1 AS keyingi FROM mavzu_mustaqil_ishlar WHERE togarak_id=%s AND topic_code=%s",
+        (sorov.togarak_id, sorov.topic_code),
+    )
+    keyingi = cur.fetchone()["keyingi"]
+    cur.execute(
+        "INSERT INTO mavzu_mustaqil_ishlar(togarak_id, topic_code, tartib_raqami, savol_matni, togri_javob_mezoni) VALUES(%s,%s,%s,%s,%s) RETURNING id",
+        (sorov.togarak_id, sorov.topic_code, keyingi, sorov.savol_matni.strip(), sorov.togri_javob_mezoni.strip()),
+    )
+    yangi_id = cur.fetchone()["id"]
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "qoshildi", "ish_id": yangi_id}
+
+
+@app.delete("/api/oqituvchi/mustaqil_ish_ochir")
+def mustaqil_ish_ochir(token: str, ish_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _mustaqil_ish_jadvallari(cur)
+    cur.execute("SELECT togarak_id FROM mavzu_mustaqil_ishlar WHERE id=%s", (ish_id,))
+    m = cur.fetchone()
+    if not m:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Topilmadi")
+    if not _togarak_ozi_mi(cur, user_id, m["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin o'chira oladi")
+    cur.execute("DELETE FROM mustaqil_ish_javoblari WHERE ish_id=%s", (ish_id,))
+    cur.execute("DELETE FROM mavzu_mustaqil_ishlar WHERE id=%s", (ish_id,))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "ochirildi"}
+
+
+@app.get("/api/togarak_azo/mustaqil_ishlar")
+def oquvchi_mustaqil_ishlar(token: str, togarak_id: int, topic_code: str):
+    """O'quvchi uchun — savollar + O'ZI avval yuborgan (agar bo'lsa)
+    oxirgi javobi/natijasi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    _mustaqil_ish_jadvallari(cur)
+    cur.execute(
+        "SELECT id, tartib_raqami, savol_matni FROM mavzu_mustaqil_ishlar WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        (togarak_id, topic_code),
+    )
+    ishlar = cur.fetchall()
+    natija = []
+    for ish in ishlar:
+        cur.execute(
+            "SELECT javob_matni, togrimi, ai_izohi FROM mustaqil_ish_javoblari WHERE ish_id=%s AND user_id=%s ORDER BY yuborilgan_at DESC LIMIT 1",
+            (ish["id"], user_id),
+        )
+        oxirgi = cur.fetchone()
+        natija.append({**ish, "oxirgi_javob": oxirgi})
+    cur.close(); conn.close()
+    return {"ishlar": natija}
+
+
+class MustaqilIshTopshirish(BaseModel):
+    token: str
+    ish_id: int
+    javob_matni: str
+
+
+@app.post("/api/togarak_azo/mustaqil_ish_topshir")
+def oquvchi_mustaqil_ish_topshir(sorov: MustaqilIshTopshirish):
+    """O'quvchi javobni yuboradi — AI (agar GROQ_API_KEY sozlangan
+    bo'lsa) darhol tekshirib, to'g'ri-noto'g'riligini va sababini
+    aniqlaydi. AI sozlanmagan bo'lsa ham javob saqlanadi (baholashsiz)."""
+    user_id = _jwt_tekshir(sorov.token)
+    if not (sorov.javob_matni or "").strip():
+        raise HTTPException(status_code=400, detail="Javobingizni kiriting")
+    conn = _db()
+    cur = conn.cursor()
+    _mustaqil_ish_jadvallari(cur)
+    cur.execute("SELECT togarak_id, savol_matni, togri_javob_mezoni FROM mavzu_mustaqil_ishlar WHERE id=%s", (sorov.ish_id,))
+    ish = cur.fetchone()
+    if not ish:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Topshiriq topilmadi")
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, ish["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+
+    togrimi, izoh = None, None
+    if GROQ_API_KALIT:
+        tizim_promt = (
+            "Sen — matematik/fan o'qituvchisisan. O'quvchining yozma javobini "
+            "TO'G'RI JAVOB MEZONI bilan solishtirib bahola. "
+            "FAQAT quyidagi JSON formatida javob ber, boshqa hech narsa yozma: "
+            '{"togri": true yoki false, "izoh": "o\'zbek tilida, o\'quvchiga qaratilgan, '
+            "qisqa (2-3 gap) tushuntirish — agar noto'g'ri bo'lsa ANIQ qayerda xato "
+            "qilganini tushuntir, agar to'g'ri bo'lsa qisqa tasdiq yoz\"}"
+        )
+        foydalanuvchi_promt = (
+            f"SAVOL: {ish['savol_matni']}\n\n"
+            f"TO'G'RI JAVOB MEZONI: {ish['togri_javob_mezoni']}\n\n"
+            f"O'QUVCHI JAVOBI: {sorov.javob_matni.strip()}"
+        )
+        try:
+            with httpx.Client(timeout=20) as client:
+                javob = client.post(
+                    "https://api.groq.com/openai/v1/chat/completions",
+                    headers={"Authorization": f"Bearer {GROQ_API_KALIT}", "Content-Type": "application/json"},
+                    json={
+                        "model": "llama-3.3-70b-versatile",
+                        "messages": [
+                            {"role": "system", "content": tizim_promt},
+                            {"role": "user", "content": foydalanuvchi_promt},
+                        ],
+                        "temperature": 0.2,
+                        "max_tokens": 300,
+                        "response_format": {"type": "json_object"},
+                    },
+                )
+            javob.raise_for_status()
+            matn = javob.json()["choices"][0]["message"]["content"]
+            natija_json = json.loads(matn)
+            togrimi = bool(natija_json.get("togri"))
+            izoh = natija_json.get("izoh")
+        except Exception:
+            togrimi, izoh = None, "Javobingiz saqlandi, lekin avtomatik tekshirish hozircha ishlamadi — keyinroq qayta urinib ko'ring."
+    else:
+        izoh = "Javobingiz saqlandi. Avtomatik tekshirish hali sozlanmagan."
+
+    cur.execute(
+        "INSERT INTO mustaqil_ish_javoblari(ish_id, user_id, javob_matni, togrimi, ai_izohi) VALUES(%s,%s,%s,%s,%s)",
+        (sorov.ish_id, user_id, sorov.javob_matni.strip(), togrimi, izoh),
+    )
+    conn.commit()
+    cur.close(); conn.close()
+    return {"togrimi": togrimi, "izoh": izoh}
 
 
 # ═══════════════════════════════════════════════════════════
