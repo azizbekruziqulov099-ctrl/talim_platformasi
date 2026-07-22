@@ -172,8 +172,9 @@ def oquvchi_ota_onalarim(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
+    _users_profil_rasm_ustunlari(cur)
     cur.execute("""
-        SELECT u.user_id, u.full_name FROM parent_child pc
+        SELECT u.user_id, u.full_name, (u.profil_rasm IS NOT NULL) AS rasm_bormi FROM parent_child pc
         JOIN users u ON u.user_id = pc.parent_id
         WHERE pc.child_id = %s
     """, (user_id,))
@@ -421,10 +422,12 @@ def joriy_foydalanuvchi(token: str):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
+    _users_profil_rasm_ustunlari(cur)
     cur.execute(
         "SELECT user_id, full_name, role, class, class_letter, school_type, "
         "region, district, tugilgan_sana, maktab_raqami, jins, oqituvchi_fani, "
-        "maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
+        "maktab_id, markaz_id, bogcha_id, universitet_id, lavozim, "
+        "(profil_rasm IS NOT NULL) AS rasm_bormi FROM users WHERE user_id=%s",
         (user_id,),
     )
     r = cur.fetchone()
@@ -1446,6 +1449,53 @@ MAKTAB_TURLARI = {
 }
 
 
+
+
+
+@app.post("/api/profil_rasm_yukla")
+async def profil_rasm_yukla(token: str, fayl: UploadFile = File(...)):
+    """Foydalanuvchi o'z profil rasmini yuklaydi (o'quvchi, ota-ona,
+    o'qituvchi — barchasi uchun bir xil). Bazaning o'zida (BYTEA)
+    saqlanadi — Railway diskka yozilgan faylni qayta ishga tushganda
+    o'chirib yuborishi sababli, diskka yozish ishonchsiz."""
+    user_id = _jwt_tekshir(token)
+    tarkib = await fayl.read()
+    if len(tarkib) > 5 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="Rasm 5 MB dan katta bo'lmasligi kerak")
+    nomi_lower = (fayl.filename or "").lower()
+    if not nomi_lower.endswith((".png", ".jpg", ".jpeg", ".webp")):
+        raise HTTPException(status_code=400, detail="Faqat rasm fayli (png/jpg/webp) qabul qilinadi")
+    conn = _db()
+    cur = conn.cursor()
+    _users_profil_rasm_ustunlari(cur)
+    cur.execute(
+        "UPDATE users SET profil_rasm=%s, profil_rasm_turi=%s WHERE user_id=%s",
+        (psycopg2.Binary(tarkib), fayl.content_type, user_id),
+    )
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "yuklandi"}
+
+
+@app.get("/api/profil_rasm/{user_id}")
+def profil_rasm_korish(user_id: int):
+    """Berilgan foydalanuvchining profil rasmini striming qiladi.
+    Ochiq (token shart emas) — chunki bu rasm boshqalar (o'qituvchi,
+    sinf rahbari, ota-ona) tomonidan ham ko'rinishi kerak, xuddi
+    ismi kabi oddiy profil ma'lumoti."""
+    conn = _db()
+    cur = conn.cursor()
+    _users_profil_rasm_ustunlari(cur)
+    cur.execute("SELECT profil_rasm, profil_rasm_turi FROM users WHERE user_id=%s", (user_id,))
+    r = cur.fetchone()
+    cur.close()
+    conn.close()
+    if not r or not r["profil_rasm"]:
+        raise HTTPException(status_code=404, detail="Rasm topilmadi")
+    return Response(content=bytes(r["profil_rasm"]), media_type=r["profil_rasm_turi"] or "image/jpeg")
+
+
 @app.put("/api/profil")
 def profil_yangila(sorov: ProfilYangilash):
     """Foydalanuvchi o'z profilini yangilaydi."""
@@ -2014,6 +2064,18 @@ def _togaraklar_reja_id_ustuni(cur):
         return
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS reja_id INTEGER")
     _SXEMA_TEKSHIRILGAN.add("togaraklar.reja_id")
+
+
+def _users_profil_rasm_ustunlari(cur):
+    """users.profil_rasm/profil_rasm_turi ustunlari bor-yo'qligini
+    FAQAT shu jarayon uchun BIR MARTA tekshiradi — bu ham juda
+    tez-tez chaqiriladi (/auth/men, rasm ko'rish), shu sabab qulf
+    to'qnashuvining oldini olish uchun keshlanadi."""
+    if "users.profil_rasm" in _SXEMA_TEKSHIRILGAN:
+        return
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS profil_rasm BYTEA")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS profil_rasm_turi TEXT")
+    _SXEMA_TEKSHIRILGAN.add("users.profil_rasm")
 
 
 def _reja_ozi_mi(cur, user_id, reja_id):
