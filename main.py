@@ -2555,6 +2555,228 @@ def _togarak_biriktirma_jadvali(cur):
 
 
 # ═══════════════════════════════════════════════════════════
+# TO'GARAK KALENDAR REJA — o'qituvchi to'garakning HAFTALIK dars
+# kunlarini (masalan Dush/Chor/Juma) belgilaydi, so'ng shu kunlarga
+# ANIQ SANALAR bo'yicha mavzu tayinlaydi. Reja (topik mavzu rejasi)
+# bog'langan bo'lsa — avtomatik to'ldirish orqali, rejaning tartib
+# bo'yicha, hali tayinlanmagan mavzularini ketma-ket joylashtirish
+# ham mumkin.
+# ═══════════════════════════════════════════════════════════
+
+def _dars_kalendar_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_dars_kunlari(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        hafta_kuni INTEGER NOT NULL,
+        UNIQUE(togarak_id, hafta_kuni)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS togarak_dars_rejasi(
+        id SERIAL PRIMARY KEY,
+        togarak_id INTEGER NOT NULL REFERENCES togaraklar(id),
+        sana DATE NOT NULL,
+        topic_code TEXT,
+        UNIQUE(togarak_id, sana)
+    )""")
+
+
+@app.get("/api/oqituvchi/togarak_dars_kunlari")
+def togarak_dars_kunlari_royxati(token: str, togarak_id: int):
+    """To'garakning HAFTALIK dars kunlari (masalan [1,3,5] =
+    Dushanba/Chorshanba/Juma, 1=Dushanba...7=Yakshanba)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _dars_kalendar_jadvallari(cur)
+    cur.execute("SELECT hafta_kuni FROM togarak_dars_kunlari WHERE togarak_id=%s ORDER BY hafta_kuni", (togarak_id,))
+    kunlar = [r["hafta_kuni"] for r in cur.fetchall()]
+    cur.close(); conn.close()
+    return {"kunlar": kunlar}
+
+
+class DarsKunlariBelgilash(BaseModel):
+    token: str
+    togarak_id: int
+    kunlar: list[int]  # [1,3,5] kabi, 1=Dushanba...7=Yakshanba
+
+
+@app.put("/api/oqituvchi/togarak_dars_kunlari_belgila")
+def togarak_dars_kunlari_belgila(sorov: DarsKunlariBelgilash):
+    """O'qituvchi to'garakning HAFTALIK qaysi kunlari dars bo'lishini
+    belgilaydi — bu Kalendar reja ekranida avtomatik takrorlanadigan
+    'dars kuni' katakchalarini hosil qiladi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin belgilay oladi")
+    kunlar = sorted(set(k for k in sorov.kunlar if 1 <= k <= 7))
+    _dars_kalendar_jadvallari(cur)
+    cur.execute("DELETE FROM togarak_dars_kunlari WHERE togarak_id=%s", (sorov.togarak_id,))
+    for k in kunlar:
+        cur.execute("INSERT INTO togarak_dars_kunlari(togarak_id, hafta_kuni) VALUES(%s,%s)", (sorov.togarak_id, k))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "saqlandi", "kunlar": kunlar}
+
+
+@app.get("/api/oqituvchi/togarak_kalendar")
+def togarak_kalendar(token: str, togarak_id: int, boshlanish: str, tugash: str):
+    """Berilgan sana oralig'ida — to'garakning HAR BIR dars kuni uchun
+    (haftalik takrorlanuvchi naqsh asosida hisoblanadi) tayinlangan
+    mavzuni (yoki hali tayinlanmagan bo'lsa — bo'sh) qaytaradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _dars_kalendar_jadvallari(cur)
+    cur.execute("SELECT hafta_kuni FROM togarak_dars_kunlari WHERE togarak_id=%s", (togarak_id,))
+    dars_kunlari = {r["hafta_kuni"] for r in cur.fetchall()}
+
+    try:
+        bosh_sana = datetime.strptime(boshlanish, "%Y-%m-%d").date()
+        tugash_sana = datetime.strptime(tugash, "%Y-%m-%d").date()
+    except ValueError:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sana formati noto'g'ri (YYYY-MM-DD kerak)")
+    if (tugash_sana - bosh_sana).days > 60:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sana oralig'i 60 kundan oshmasligi kerak")
+
+    dars_sanalari = []
+    joriy = bosh_sana
+    while joriy <= tugash_sana:
+        if joriy.isoweekday() in dars_kunlari:
+            dars_sanalari.append(joriy)
+        joriy += timedelta(days=1)
+
+    cur.execute("""
+        SELECT r.sana, r.topic_code, d.mavzu_name, d.bob_name, d.bolim_name, d.kichik_name
+        FROM togarak_dars_rejasi r
+        LEFT JOIN dts_tree d ON d.topic_code = r.topic_code
+        WHERE r.togarak_id=%s AND r.sana BETWEEN %s AND %s
+    """, (togarak_id, bosh_sana, tugash_sana))
+    tayinlangan = {r["sana"]: r for r in cur.fetchall()}
+    cur.close(); conn.close()
+
+    natija = []
+    for sana in dars_sanalari:
+        t = tayinlangan.get(sana)
+        bor_mavzu = t and t["topic_code"]
+        natija.append({
+            "sana": sana.isoformat(),
+            "hafta_kuni": sana.isoweekday(),
+            "topic_code": t["topic_code"] if t else None,
+            "mavzu_nomi": (t["mavzu_name"] or t["kichik_name"] or t["bolim_name"] or t["bob_name"]) if bor_mavzu else None,
+        })
+    return {"dars_kunlari": sorted(dars_kunlari), "sanalar": natija}
+
+
+class DarsMavzuBiriktirish(BaseModel):
+    token: str
+    togarak_id: int
+    sana: str  # "2026-07-27"
+    topic_code: Optional[str] = None  # None — shu sanadagi tayinlovni tozalaydi
+
+
+@app.put("/api/oqituvchi/togarak_dars_mavzu_biriktir")
+def togarak_dars_mavzu_biriktir(sorov: DarsMavzuBiriktirish):
+    """Aniq bir sanaga mavzu tayinlaydi (yoki topic_code berilmasa,
+    shu sanadagi mavjud tayinlovni o'chiradi)."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, sorov.togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin belgilay oladi")
+    try:
+        sana = datetime.strptime(sorov.sana, "%Y-%m-%d").date()
+    except ValueError:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sana formati noto'g'ri")
+    _dars_kalendar_jadvallari(cur)
+    if sorov.topic_code:
+        cur.execute("""
+            INSERT INTO togarak_dars_rejasi(togarak_id, sana, topic_code) VALUES(%s,%s,%s)
+            ON CONFLICT (togarak_id, sana) DO UPDATE SET topic_code=EXCLUDED.topic_code
+        """, (sorov.togarak_id, sana, sorov.topic_code))
+    else:
+        cur.execute("DELETE FROM togarak_dars_rejasi WHERE togarak_id=%s AND sana=%s", (sorov.togarak_id, sana))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "saqlandi"}
+
+
+@app.post("/api/oqituvchi/togarak_dars_avtomatik_toldir")
+def togarak_dars_avtomatik_toldir(token: str, togarak_id: int, boshlanish: str, tugash: str):
+    """To'garakka REJA (topik mavzu rejasi) bog'langan bo'lsa —
+    belgilangan dars kunlariga, ANIQ SHU REJANING tartib bo'yicha,
+    hali tayinlanmagan mavzularini ketma-ket avtomatik joylashtiradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_ozi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin to'ldira oladi")
+    cur.execute("SELECT reja_id FROM togaraklar WHERE id=%s", (togarak_id,))
+    t = cur.fetchone()
+    if not t or not t["reja_id"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Bu to'garakka reja bog'lanmagan — avval 'Rejalarim'dan reja tanlang")
+    reja_id = t["reja_id"]
+
+    _dars_kalendar_jadvallari(cur)
+    cur.execute("SELECT hafta_kuni FROM togarak_dars_kunlari WHERE togarak_id=%s", (togarak_id,))
+    dars_kunlari = {r["hafta_kuni"] for r in cur.fetchall()}
+    if not dars_kunlari:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Avval dars kunlarini belgilang")
+
+    try:
+        bosh_sana = datetime.strptime(boshlanish, "%Y-%m-%d").date()
+        tugash_sana = datetime.strptime(tugash, "%Y-%m-%d").date()
+    except ValueError:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Sana formati noto'g'ri")
+
+    cur.execute("""
+        SELECT topic_code FROM topik_mavzu_reja_qatorlari WHERE reja_id=%s
+        AND topic_code NOT IN (
+            SELECT topic_code FROM togarak_dars_rejasi WHERE togarak_id=%s AND topic_code IS NOT NULL
+        )
+        ORDER BY tartib_raqami
+    """, (reja_id, togarak_id))
+    boyvorilmagan = [r["topic_code"] for r in cur.fetchall()]
+
+    cur.execute(
+        "SELECT sana FROM togarak_dars_rejasi WHERE togarak_id=%s AND sana BETWEEN %s AND %s",
+        (togarak_id, bosh_sana, tugash_sana),
+    )
+    band_sanalar = {r["sana"] for r in cur.fetchall()}
+
+    joriy = bosh_sana
+    toldirilgan_soni = 0
+    idx = 0
+    while joriy <= tugash_sana and idx < len(boyvorilmagan):
+        if joriy.isoweekday() in dars_kunlari and joriy not in band_sanalar:
+            cur.execute(
+                "INSERT INTO togarak_dars_rejasi(togarak_id, sana, topic_code) VALUES(%s,%s,%s) ON CONFLICT (togarak_id, sana) DO NOTHING",
+                (togarak_id, joriy, boyvorilmagan[idx]),
+            )
+            idx += 1
+            toldirilgan_soni += 1
+        joriy += timedelta(days=1)
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "toldirildi", "toldirilgan_soni": toldirilgan_soni}
+
+
+# ═══════════════════════════════════════════════════════════
 # TOPIK MAVZU REJASI — o'qituvchi BIR MARTA yaratadigan, tartibli
 # mavzular ketma-ketligi ("dastur"), keyin BIR NECHTA turli
 # to'garak guruhida QAYTA ISHLATILADIGAN shablon.
