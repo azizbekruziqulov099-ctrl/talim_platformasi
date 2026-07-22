@@ -2798,6 +2798,31 @@ def mavzu_misol_surish(sorov: MavzuMisolSurish):
     return {"holat": "surildi"}
 
 
+@app.get("/api/togarak_azo/mavzu_kitobi")
+def oquvchi_mavzu_kitobi(token: str, togarak_id: int, topic_code: str):
+    """O'QUVCHI uchun — bitta mavzuning 'kitobi' (videolar + ularga
+    bog'langan misollar), mustaqil o'rganish uchun."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+    _mavzu_kitobi_jadvallari(cur)
+    cur.execute(
+        "SELECT id, tartib_raqami, sarlavha, video_havola FROM mavzu_darslik_videolari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        (togarak_id, topic_code),
+    )
+    videolar = cur.fetchall()
+    cur.execute(
+        "SELECT id, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        (togarak_id, topic_code),
+    )
+    misollar = cur.fetchall()
+    cur.close(); conn.close()
+    return {"videolar": videolar, "misollar": misollar}
+
+
 # ═══════════════════════════════════════════════════════════
 # TO'GARAK KALENDAR REJA — o'qituvchi to'garakning HAFTALIK dars
 # kunlarini (masalan Dush/Chor/Juma) belgilaydi, so'ng shu kunlarga
