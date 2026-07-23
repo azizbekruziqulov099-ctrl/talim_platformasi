@@ -9447,6 +9447,44 @@ def _mavzularni_parse(text: str):
     return natija
 
 
+@app.post("/api/admin/topik_toliq_yarat")
+def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
+    """Excel yuklab-to'ldirib-qaytarib o'tirmasdan — sinf+fan+mavzular
+    ro'yxatini yozgan zahoti, TO'G'RIDAN-TO'G'RI dts_tree'ga qo'shadi.
+    Bob/Bo'lim/Kichik mavzu bo'sh qoldiriladi (keyin xohlasa "Topik
+    ro'yxati"dan alohida to'ldirish/tahrirlash mumkin) — kod baribir
+    botning O'ZI ishlatadigan mantiq bilan, hech qachon bo'sh
+    qolmaydigan qilib hisoblanadi."""
+    _admin_tekshir(token)
+    mavzular = _mavzularni_parse(sorov.mavzular)
+    if not mavzular:
+        raise HTTPException(status_code=400, detail="Mavzular topilmadi — 'chorak / mavzu' formatida yozing")
+
+    sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
+    conn = _db()
+    cur = conn.cursor()
+    yaratildi, mavjud, xato_soni = 0, 0, 0
+    xato_namunalari = []
+
+    for chorak, mavzu in mavzular:
+        try:
+            topic_code, holat = _dts_qator_kiritish(cur, sinf, fan, chorak, "", "", mavzu, "")
+            conn.commit()
+            if holat == "yaratildi":
+                yaratildi += 1
+            else:
+                mavjud += 1
+        except Exception as e:
+            conn.rollback()
+            xato_soni += 1
+            if len(xato_namunalari) < 10:
+                xato_namunalari.append(f"{mavzu}: {e}")
+
+    cur.close()
+    conn.close()
+    return {"yaratildi": yaratildi, "mavjud": mavjud, "xato": xato_soni, "xato_namunalari": xato_namunalari}
+
+
 @app.post("/api/admin/topik_shablon")
 def topik_shablon(sorov: TopikShablonSorov, token: str):
     """Sinf + fan + mavzular ro'yxati bo'yicha DTS (topik kod) shablonini
