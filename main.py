@@ -9231,6 +9231,27 @@ def fan_testlarini_ochir(token: str, sinf: str, fan: str):
     return {"holat": "ochirildi", "ochirilgan_soni": ochirilgan}
 
 
+@app.delete("/api/admin/fan_mavzularini_butunlay_ochir")
+def fan_mavzularini_butunlay_ochir(token: str, sinf: str, fan: str):
+    """Berilgan sinf+fanga tegishli BARCHA mavzularning O'ZINI (dts_tree
+    yozuvlarini) o'chiradi — testlari va kontent bog'lanishlari bilan
+    birga. fan_testlarini_ochir'dan farqli — bu yerda mavzular
+    STRUKTURASI ham butunlay o'chadi, faqat testlari emas."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT topic_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE", (sinf, fan))
+    kodlar = [r["topic_code"] for r in cur.fetchall()]
+    if kodlar:
+        cur.execute("DELETE FROM generated_tests WHERE topic_code = ANY(%s)", (kodlar,))
+        cur.execute("DELETE FROM togarak_mavzu_kontenti WHERE topic_code = ANY(%s)", (kodlar,))
+        cur.execute("UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code = ANY(%s)", (kodlar,))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi", "ochirilgan_soni": len(kodlar)}
+
+
 @app.get("/api/admin/mavzu_rasmlari")
 def mavzu_rasmlari(token: str, topic_codes: str):
     """Berilgan mavzu(lar)ning testlaridagi BARCHA rasm havolalarini
