@@ -9630,6 +9630,19 @@ def _dts_kichik_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_
     return str((last or 0) + 1).zfill(3), kichik_name_n
 
 
+def _dts_kod_ustunlarini_tayyorla(cur):
+    """dts_tree jadvalida subject_code/bob_code/bolim_code/mavzu_code/
+    kichik_code ustunlari yo'q bo'lsa, yaratadi — botning o'zi ular
+    bilan ishlaydi, lekin bu (veb-ilova) tomon ULARNI HECH QACHON
+    YOZMAGAN, shuning uchun ba'zi joylashtirilgan nusxalarda ular
+    umuman mavjud bo'lmasligi mumkin edi."""
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS subject_code TEXT")
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS bob_code TEXT")
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS bolim_code TEXT")
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS mavzu_code TEXT")
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS kichik_code TEXT")
+
+
 def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
     """Botning insert_row funksiyasi bilan AYNAN bir xil — har bosqich
     (fan/bob/bolim/mavzu/kichik) uchun ALOHIDA, ICHMA-ICH kod
@@ -9639,6 +9652,7 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
     bo'ladi. Bot ORQALI yaratilgan mavzular bilan AYNAN bir xil
     tuzilishda, hech qachon to'qnashmaydigan/bo'sh qolmaydigan
     kod beradi."""
+    _dts_kod_ustunlarini_tayyorla(cur)
     grade = _dts_sinf_normalize(sinf)
     if not grade:
         raise ValueError("Noto'g'ri sinf")
@@ -9698,6 +9712,7 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
     conn = _db()
     cur = conn.cursor()
     added, updated, skipped = 0, 0, 0
+    xato_namunalari = []  # ["3-qator (Mavzu nomi): xato matni", ...] — ko'pi bilan 10 ta
 
     for r in range(2, ws.max_row + 1):
         if eski_format:
@@ -9731,9 +9746,11 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
                 ))
                 conn.commit()
                 updated += 1
-            except Exception:
+            except Exception as e:
                 conn.rollback()
                 skipped += 1
+                if len(xato_namunalari) < 10:
+                    xato_namunalari.append(f"{r}-qator ({mavzu}): {e}")
         else:
             # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
             # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
@@ -9741,10 +9758,12 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
                 _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
                 conn.commit()
                 added += 1
-            except Exception:
+            except Exception as e:
                 conn.rollback()
                 skipped += 1
+                if len(xato_namunalari) < 10:
+                    xato_namunalari.append(f"{r}-qator ({mavzu}): {e}")
 
     cur.close()
     conn.close()
-    return {"added": added, "updated": updated, "skipped": skipped}
+    return {"added": added, "updated": updated, "skipped": skipped, "xato_namunalari": xato_namunalari}
