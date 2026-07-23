@@ -8942,6 +8942,9 @@ class TestShablonGuruh(BaseModel):
 class TestShablonSorov(BaseModel):
     topic_codes: list[str]
     guruhlar: list[TestShablonGuruh]
+    maqsad: str = "oddiy"  # "oddiy" | "minimal_bilim" — sinfni bitirish/keyingi sinfga
+    # o'tish uchun talab qilinadigan ENG KAM bilim darajasini tekshiruvchi testlar
+    # "oddiy"dan alohida belgilanadi, keyinchalik alohida ishlatish uchun
 
 
 _YOSH_GURUHI = {"1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
@@ -9250,7 +9253,7 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
         "topic_code", "difficulty", "situation", "question",
         "option_a", "option_b", "option_c", "option_d",
         "correct_answer", "explanation", "question_type", "is_latex",
-        "image_url", "audio_text", "language", "life_level", "age_group", "time_limit",
+        "image_url", "audio_text", "language", "life_level", "age_group", "time_limit", "maqsad",
     ]
     diff_colors = {"oson": "E2EFDA", "o'rta": "FFF2CC", "qiyin": "FCE4D6", "murakkab": "F2CEEF"}
 
@@ -9280,13 +9283,14 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
                 ws.cell(row_num, 16, 1)
                 ws.cell(row_num, 17, age_group)
                 ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
+                ws.cell(row_num, 19, sorov.maqsad)
                 for col in range(1, len(testlar_ustunlari) + 1):
                     ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
                     ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
                 rasm_qatorlari.append((image_id, kod))
                 row_num += 1
 
-    widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10]
+    widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10, 14]
     for col, w in enumerate(widths, 1):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = w
 
@@ -9353,6 +9357,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
 
     conn = _db()
     cur = conn.cursor()
+    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
     saved = 0
     duplicates = 0
     errors = 0
@@ -9382,8 +9387,8 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 INSERT INTO generated_tests
                 (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
                  correct_answer, explanation, question_type, is_latex, image_url, audio_text,
-                 language, life_level, age_group, time_limit)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                 language, life_level, age_group, time_limit, maqsad)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             """, (
                 tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
                 d.get("option_a"), d.get("option_b"), d.get("option_c"), d.get("option_d"),
@@ -9392,6 +9397,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
                 d.get("image_url"), d.get("audio_text"), d.get("language") or "uz",
                 d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
+                str(d.get("maqsad") or "oddiy").strip(),
             ))
             conn.commit()
             saved += 1
@@ -9514,10 +9520,160 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     )
 
 
+def _dts_matn_normalize(text):
+    """Botning normalize_text funksiyasi bilan AYNAN bir xil — kichik
+    harflarga o'tkazadi, tinish belgilarini birxillashtiradi, ortiqcha
+    bo'shliqlarni yig'adi. topic_code qismlarini hosil qilishda
+    ISHLATILGAN nom bilan solishtirish uchun ishlatiladi, shu bilan
+    botning avval yaratgan kodlari bilan TO'QNASHMAYDI/TAKRORLANMAYDI."""
+    if text is None:
+        return ""
+    text = str(text).lower()
+    text = text.replace("ʻ", "'").replace("`", "'").replace("ʼ", "'")
+    text = text.replace("–", "-").replace("—", "-")
+    text = text.replace("_", " ")
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def _dts_sinf_normalize(grade):
+    grade = _dts_matn_normalize(grade)
+    return grade.replace("-sinf", "").replace("sinf", "").replace(" ", "")
+
+
+def _dts_chorak_normalize(quarter):
+    quarter = _dts_matn_normalize(quarter)
+    return quarter.replace("chorak", "").replace("-", "").replace(" ", "")
+
+
+def _dts_fan_kodi_ol(cur, grade, subject_name):
+    subject_name_n = _dts_matn_normalize(subject_name).upper()
+    cur.execute("SELECT subject_code FROM dts_tree WHERE grade=%s AND subject_name=%s LIMIT 1", (grade, subject_name_n))
+    row = cur.fetchone()
+    if row and row["subject_code"]:
+        return row["subject_code"], subject_name_n
+    cur.execute("SELECT MAX(CAST(subject_code AS INTEGER)) AS m FROM dts_tree WHERE grade=%s", (grade,))
+    last = cur.fetchone()["m"]
+    return str((last or 0) + 1).zfill(2), subject_name_n
+
+
+def _dts_bob_kodi_ol(cur, grade, subject_code, quarter_code, bob_name):
+    bob_name_n = _dts_matn_normalize(bob_name)
+    cur.execute(
+        "SELECT bob_code FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_name=%s LIMIT 1",
+        (grade, subject_code, quarter_code, bob_name_n),
+    )
+    row = cur.fetchone()
+    if row and row["bob_code"]:
+        return row["bob_code"], bob_name_n
+    cur.execute(
+        "SELECT MAX(CAST(bob_code AS INTEGER)) AS m FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s",
+        (grade, subject_code, quarter_code),
+    )
+    last = cur.fetchone()["m"]
+    return str((last or 0) + 1).zfill(2), bob_name_n
+
+
+def _dts_bolim_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_name):
+    bolim_name_n = _dts_matn_normalize(bolim_name)
+    cur.execute(
+        "SELECT bolim_code FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_code=%s AND bolim_name=%s LIMIT 1",
+        (grade, subject_code, quarter_code, bob_code, bolim_name_n),
+    )
+    row = cur.fetchone()
+    if row and row["bolim_code"]:
+        return row["bolim_code"], bolim_name_n
+    cur.execute(
+        "SELECT MAX(CAST(bolim_code AS INTEGER)) AS m FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_code=%s",
+        (grade, subject_code, quarter_code, bob_code),
+    )
+    last = cur.fetchone()["m"]
+    return str((last or 0) + 1).zfill(2), bolim_name_n
+
+
+def _dts_mavzu_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_code, mavzu_name):
+    mavzu_name_n = _dts_matn_normalize(mavzu_name)
+    cur.execute(
+        "SELECT mavzu_code FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_code=%s AND bolim_code=%s AND mavzu_name=%s LIMIT 1",
+        (grade, subject_code, quarter_code, bob_code, bolim_code, mavzu_name_n),
+    )
+    row = cur.fetchone()
+    if row and row["mavzu_code"]:
+        return row["mavzu_code"], mavzu_name_n
+    cur.execute(
+        "SELECT MAX(CAST(mavzu_code AS INTEGER)) AS m FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_code=%s AND bolim_code=%s",
+        (grade, subject_code, quarter_code, bob_code, bolim_code),
+    )
+    last = cur.fetchone()["m"]
+    return str((last or 0) + 1).zfill(2), mavzu_name_n
+
+
+def _dts_kichik_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_code, mavzu_code, kichik_name):
+    kichik_name_n = _dts_matn_normalize(kichik_name)
+    cur.execute(
+        "SELECT kichik_code FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_code=%s AND bolim_code=%s AND mavzu_code=%s AND kichik_name=%s LIMIT 1",
+        (grade, subject_code, quarter_code, bob_code, bolim_code, mavzu_code, kichik_name_n),
+    )
+    row = cur.fetchone()
+    if row and row["kichik_code"]:
+        return row["kichik_code"], kichik_name_n
+    cur.execute(
+        "SELECT MAX(CAST(kichik_code AS INTEGER)) AS m FROM dts_tree WHERE grade=%s AND subject_code=%s AND quarter=%s AND bob_code=%s AND bolim_code=%s AND mavzu_code=%s",
+        (grade, subject_code, quarter_code, bob_code, bolim_code, mavzu_code),
+    )
+    last = cur.fetchone()["m"]
+    return str((last or 0) + 1).zfill(3), kichik_name_n
+
+
+def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
+    """Botning insert_row funksiyasi bilan AYNAN bir xil — har bosqich
+    (fan/bob/bolim/mavzu/kichik) uchun ALOHIDA, ICHMA-ICH kod
+    hisoblanadi (avval xuddi shu nom mavjud bo'lsa — o'sha kod qayta
+    ishlatiladi, bo'lmasa — shu darajadagi eng kattasidan keyingisi
+    olinadi), so'ng ular birlashtirilib to'liq topic_code hosil
+    bo'ladi. Bot ORQALI yaratilgan mavzular bilan AYNAN bir xil
+    tuzilishda, hech qachon to'qnashmaydigan/bo'sh qolmaydigan
+    kod beradi."""
+    grade = _dts_sinf_normalize(sinf)
+    if not grade:
+        raise ValueError("Noto'g'ri sinf")
+    quarter_code = _dts_chorak_normalize(chorak)
+    if not quarter_code:
+        raise ValueError("Noto'g'ri chorak")
+
+    subject_code, subject_name_n = _dts_fan_kodi_ol(cur, grade, fan)
+    bob_code, bob_name_n = _dts_bob_kodi_ol(cur, grade, subject_code, quarter_code, bob)
+    bolim_code, bolim_name_n = _dts_bolim_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim)
+    mavzu_code, mavzu_name_n = _dts_mavzu_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_code, mavzu)
+    kichik_code, kichik_name_n = _dts_kichik_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_code, mavzu_code, kichik)
+
+    topic_code = f"{grade}-{subject_code}-{quarter_code}-{bob_code}-{bolim_code}-{mavzu_code}-{kichik_code}"
+
+    cur.execute("SELECT 1 FROM dts_tree WHERE topic_code=%s LIMIT 1", (topic_code,))
+    if cur.fetchone():
+        return topic_code, "mavjud"
+
+    cur.execute("""
+        INSERT INTO dts_tree
+        (topic_code, grade, subject_code, subject_name, quarter,
+         bob_code, bob_name, bolim_code, bolim_name,
+         mavzu_code, mavzu_name, kichik_code, kichik_name, is_deleted)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+    """, (
+        topic_code, grade, subject_code, subject_name_n, quarter_code,
+        bob_code, bob_name_n, bolim_code, bolim_name_n,
+        mavzu_code, mavzu_name_n, kichik_code, kichik_name_n,
+    ))
+    return topic_code, "yaratildi"
+
+
+
 @app.post("/api/admin/topik_import")
 async def topik_import(token: str, fayl: UploadFile = File(...)):
     """To'ldirilgan Topik (MALUMOT) shablonini dts_tree jadvaliga import
-    qiladi. "Topic code" ustuni bo'sh bo'lsa avtomatik yaratiladi, to'ldirilgan
+    qiladi. "Topic code" ustuni bo'sh bo'lsa — botning O'ZI ishlatadigan
+    ICHMA-ICH (fan→bob→bo'lim→mavzu→kichik mavzu) kod hisoblash mantig'i
+    orqali AVTOMATIK yaratiladi (hech qachon bo'sh qolmaydi); to'ldirilgan
     bo'lsa — AYNAN o'sha kod bilan saqlanadi (mavjud mavzuni yangilash uchun)."""
     _admin_tekshir(token)
     import openpyxl
@@ -9536,7 +9692,7 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
 
     conn = _db()
     cur = conn.cursor()
-    added, skipped = 0, 0
+    added, updated, skipped = 0, 0, 0
 
     for r in range(2, ws.max_row + 1):
         if eski_format:
@@ -9550,60 +9706,40 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
             continue
 
         if berilgan_kod and str(berilgan_kod).strip():
+            # ANIQ kod berilgan — mavjud mavzuni YANGILASH (nomlarini
+            # yangilaydi, kodini o'zgartirmaydi)
             topic_code = str(berilgan_kod).strip()
+            try:
+                cur.execute("""
+                    INSERT INTO dts_tree
+                    (topic_code, grade, subject_name, quarter,
+                     bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+                    ON CONFLICT (topic_code) DO UPDATE SET
+                        bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
+                        kichik_name = EXCLUDED.kichik_name
+                """, (
+                    topic_code, str(sinf), str(fan) if fan else "",
+                    str(chorak) if chorak else "1", str(bob) if bob else "",
+                    str(bolim) if bolim else "", str(mavzu) if mavzu else "",
+                    str(kichik) if kichik else "",
+                ))
+                conn.commit()
+                updated += 1
+            except Exception:
+                conn.rollback()
+                skipped += 1
         else:
-            cur.execute("""
-                SELECT topic_code FROM dts_tree
-                WHERE grade=%s AND UPPER(subject_name)=UPPER(%s)
-                ORDER BY topic_code DESC LIMIT 1
-            """, (str(sinf), str(fan) if fan else ""))
-            row = cur.fetchone()
-            if row:
-                last = row["topic_code"]
-                parts = last.rsplit('-', 1)
-                new_num = str(int(parts[1]) + 1).zfill(3)
-                topic_code = f"{parts[0]}-{new_num}"
-            else:
-                # MUHIM: bu fan uchun BIRINCHI marta mavzu qo'shilyapti — "01"ni
-                # QATTIQ KODLAMAYMIZ, chunki boshqa fan allaqachon "01"ni band
-                # qilgan bo'lishi mumkin (aks holda ikkala fan bitta topic_code'ga
-                # to'qnashib, natijalar noto'g'ri fanga yozilib qoladi).
-                # Shu grade uchun band qilingan barcha fan-segmentlarini
-                # tekshirib, BO'SH birinchi raqamni tanlaymiz.
-                cur.execute(
-                    "SELECT DISTINCT SPLIT_PART(topic_code, '-', 2) AS seg FROM dts_tree WHERE grade=%s",
-                    (str(sinf),),
-                )
-                band_segmentlar = {r2["seg"] for r2 in cur.fetchall()}
-                fan_segmenti = "01"
-                for n in range(1, 100):
-                    nomzod = str(n).zfill(2)
-                    if nomzod not in band_segmentlar:
-                        fan_segmenti = nomzod
-                        break
-                topic_code = f"{sinf}-{fan_segmenti}-{chorak or 1}-01-01-01-001"
-
-        try:
-            cur.execute("""
-                INSERT INTO dts_tree
-                (topic_code, grade, subject_name, quarter,
-                 bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
-                ON CONFLICT (topic_code) DO UPDATE SET
-                    bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
-                    kichik_name = EXCLUDED.kichik_name
-            """, (
-                topic_code, str(sinf), str(fan) if fan else "",
-                str(chorak) if chorak else "1", str(bob) if bob else "",
-                str(bolim) if bolim else "", str(mavzu) if mavzu else "",
-                str(kichik) if kichik else "",
-            ))
-            conn.commit()
-            added += 1
-        except Exception:
-            conn.rollback()
-            skipped += 1
+            # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
+            # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
+            try:
+                _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
+                conn.commit()
+                added += 1
+            except Exception:
+                conn.rollback()
+                skipped += 1
 
     cur.close()
     conn.close()
-    return {"added": added, "skipped": skipped}
+    return {"added": added, "updated": updated, "skipped": skipped}
