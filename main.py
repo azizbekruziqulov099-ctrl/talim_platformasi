@@ -9167,6 +9167,51 @@ def mavzu_testlarini_ochir(token: str, topic_codes: str):
     return {"holat": "ochirildi", "ochirilgan_soni": ochirilgan}
 
 
+@app.delete("/api/admin/mavzu_ochir")
+def admin_mavzu_ochir(token: str, topic_codes: str):
+    """Mavzu(lar)ning O'ZINI (dts_tree yozuvini) o'chiradi — testlari
+    va rasm/kontent bog'lanishlari bilan birga. mavzu_testlarini_ochir'dan
+    farqli — bu yerda mavzu STRUKTURASI ham (nomi, kodi) butunlay
+    o'chadi, faqat testlari emas. Yumshoq o'chirish (is_deleted=TRUE) —
+    kerak bo'lsa keyin qayta tiklash mumkin."""
+    _admin_tekshir(token)
+    kodlar = [k.strip() for k in topic_codes.split(",") if k.strip()]
+    if not kodlar:
+        raise HTTPException(status_code=400, detail="Mavzu kodi berilmagan")
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM generated_tests WHERE topic_code = ANY(%s)", (kodlar,))
+    cur.execute("DELETE FROM togarak_mavzu_kontenti WHERE topic_code = ANY(%s)", (kodlar,))
+    cur.execute("UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code = ANY(%s)", (kodlar,))
+    ochirilgan = cur.rowcount
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "ochirildi", "ochirilgan_soni": ochirilgan}
+
+
+@app.delete("/api/admin/bosh_kodli_mavzularni_tozalash")
+def bosh_kodli_mavzularni_tozalash(token: str):
+    """Topic_code'i BO'SH ('' yoki NULL) qolib ketgan — eski, buzuq
+    import'lardan qolgan — mavzularni BIR ZUMDA tozalaydi (yumshoq
+    o'chirish). Bunday yozuvlar topic_code orqali ANIQLAB bo'lmasligi
+    sababli (ko'pchiligi bir xil bo'sh qiymatga ega), alohida-alohida
+    emas, shu maxsus endpoint orqali BIR YO'LA tozalanadi."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("""
+        UPDATE dts_tree SET is_deleted=TRUE
+        WHERE is_deleted=FALSE AND (topic_code IS NULL OR TRIM(topic_code) = '')
+    """)
+    tozalangan = cur.rowcount
+    conn.commit()
+    cur.close()
+    conn.close()
+    return {"holat": "tozalandi", "tozalangan_soni": tozalangan}
+
+
+
 @app.delete("/api/admin/fan_testlarini_ochir")
 def fan_testlarini_ochir(token: str, sinf: str, fan: str):
     """Berilgan sinf+fanga tegishli BARCHA mavzularning BARCHA testlarini
