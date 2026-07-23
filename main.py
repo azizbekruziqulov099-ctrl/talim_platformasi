@@ -9529,7 +9529,7 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
     sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
     conn = _db()
     cur = conn.cursor()
-    yaratildi, mavjud, xato_soni = 0, 0, 0
+    yaratildi, tiklandi, mavjud, xato_soni = 0, 0, 0, 0
     xato_namunalari = []
 
     for chorak, mavzu in mavzular:
@@ -9538,6 +9538,8 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
             conn.commit()
             if holat == "yaratildi":
                 yaratildi += 1
+            elif holat == "tiklandi":
+                tiklandi += 1
             else:
                 mavjud += 1
         except Exception as e:
@@ -9548,7 +9550,7 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
 
     cur.close()
     conn.close()
-    return {"yaratildi": yaratildi, "mavjud": mavjud, "xato": xato_soni, "xato_namunalari": xato_namunalari}
+    return {"yaratildi": yaratildi, "tiklandi": tiklandi, "mavjud": mavjud, "xato": xato_soni, "xato_namunalari": xato_namunalari}
 
 
 @app.post("/api/admin/topik_shablon")
@@ -9772,8 +9774,20 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
 
     topic_code = f"{grade}-{subject_code}-{quarter_code}-{bob_code}-{bolim_code}-{mavzu_code}-{kichik_code}"
 
-    cur.execute("SELECT 1 FROM dts_tree WHERE topic_code=%s LIMIT 1", (topic_code,))
-    if cur.fetchone():
+    cur.execute("SELECT is_deleted FROM dts_tree WHERE topic_code=%s LIMIT 1", (topic_code,))
+    mavjud_qator = cur.fetchone()
+    if mavjud_qator:
+        if mavjud_qator["is_deleted"]:
+            # Avval o'chirilgan (yumshoq o'chirilgan) mavzu qayta
+            # import qilinyapti — "mavjud" deb JIMGINA o'tkazib
+            # yubormasdan, QAYTA TIKLAYMIZ (aks holda o'quvchiga
+            # ko'rinmay qolaveradi).
+            cur.execute("""
+                UPDATE dts_tree SET is_deleted=FALSE,
+                    bob_name=%s, bolim_name=%s, mavzu_name=%s, kichik_name=%s
+                WHERE topic_code=%s
+            """, (bob_name_n, bolim_name_n, mavzu_name_n, kichik_name_n, topic_code))
+            return topic_code, "tiklandi"
         return topic_code, "mavjud"
 
     cur.execute("""
