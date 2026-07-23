@@ -39,7 +39,7 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "reja-tizimi-2026-07-22-v5-keshsiz"}
+    return {"versiya": "topik-kod-tuzatildi-2026-07-23-v6"}
 
 
 def _db():
@@ -9586,7 +9586,8 @@ def _dts_sinf_normalize(grade):
 
 def _dts_chorak_normalize(quarter):
     quarter = _dts_matn_normalize(quarter)
-    return quarter.replace("chorak", "").replace("-", "").replace(" ", "")
+    quarter = quarter.replace("chorak", "").replace("-", "").replace(" ", "")
+    return quarter.zfill(2) if quarter.isdigit() else quarter
 
 
 def _dts_fan_kodi_ol(cur, grade, subject_name):
