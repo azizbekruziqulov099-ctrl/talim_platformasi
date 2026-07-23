@@ -9553,8 +9553,11 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
 
 @app.post("/api/admin/topik_shablon")
 def topik_shablon(sorov: TopikShablonSorov, token: str):
-    """Sinf + fan + mavzular ro'yxati bo'yicha DTS (topik kod) shablonini
-    Excel qilib yaratadi — MALUMOT varag'i ko'rinishida (haqiqiy namunaga mos)."""
+    """Sinf + fan + mavzular ro'yxati bo'yicha — MAVZULARNI BAZAGA
+    QO'SHADI (xuddi "to'g'ridan-to'g'ri yaratish" kabi, botning o'zi
+    ishlatgan kod hisoblash mantig'i bilan), so'ng natijani Excel
+    (MALUMOT varag'i) qilib qaytaradi — "Topic code" ustuni endi
+    TO'LDIRILGAN holda chiqadi (avval ataylab bo'sh qoldirilgan edi)."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
@@ -9566,6 +9569,19 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
         raise HTTPException(status_code=400, detail="Mavzular topilmadi — 'chorak / mavzu' formatida yozing")
 
     sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
+    conn = _db()
+    cur = conn.cursor()
+    kodlar = {}  # (chorak, mavzu) -> topic_code
+    for chorak, mavzu in mavzular:
+        try:
+            topic_code, _holat = _dts_qator_kiritish(cur, sinf, fan, chorak, "", "", mavzu, "")
+            conn.commit()
+            kodlar[(chorak, mavzu)] = topic_code
+        except Exception:
+            conn.rollback()
+            kodlar[(chorak, mavzu)] = ""
+    cur.close()
+    conn.close()
 
     wb = openpyxl.Workbook()
     ws = wb.active
@@ -9585,7 +9601,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
         color = chorak_colors.get(str(chorak), "F2F2F2")
         for _ in range(2):  # botdagi kabi mavzu boshiga 2 qator (Bob/Bolim/Kichik mavzu uchun 2 xil variant)
             ws.cell(row_num, 1, value=idx)
-            # "Topic code" ATAYLAB BO'SH qoldiriladi — import qilinganda avtomatik yaratiladi
+            ws.cell(row_num, 2, value=kodlar.get((chorak, mavzu), ""))
             ws.cell(row_num, 3, value=sinf)
             ws.cell(row_num, 4, value=fan)
             ws.cell(row_num, 5, value=chorak)
@@ -9604,7 +9620,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     ws2.cell(1, 1, value="📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
     izohlar = [
         (3, "#", "O'zgartirmang"),
-        (4, "Topic code", "BO'SH QOLDIRING — import qilinganda avtomatik yaratiladi"),
+        (4, "Topic code", "ALLAQACHON to'ldirilgan (avtomatik yaratildi) — o'zgartirmang"),
         (5, "Sinf / Fan / Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
         (6, "Bob", "To'ldiring: masalan '1-bob. Sonlar'"),
         (7, "Bolim", "To'ldiring: masalan \"1-bo'lim. Narsalarning to'plamlari\""),
