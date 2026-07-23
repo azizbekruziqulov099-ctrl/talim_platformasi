@@ -9361,12 +9361,17 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     saved = 0
     duplicates = 0
     errors = 0
+    kod_yoq = 0  # topic_code bo'sh bo'lgani uchun o'tkazib yuborilgan qatorlar
+    # (masalan mavzu o'zi topic_code'siz — "bo'sh" holatda — yaratilgan bo'lsa)
 
     for row in ws.iter_rows(min_row=2):
         d = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers) and headers[i]}
         tc = d.get("topic_code")
         q = d.get("question")
-        if not tc or not q or str(tc).strip() == "" or str(q).strip() == "":
+        if not q or str(q).strip() == "":
+            continue
+        if not tc or str(tc).strip() == "":
+            kod_yoq += 1
             continue
         try:
             tc_s = str(tc).strip()
@@ -9407,7 +9412,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
 
     cur.close()
     conn.close()
-    return {"saved": saved, "duplicates": duplicates, "errors": errors}
+    return {"saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq}
 
 
 # ═══════════════════════════════════════════════════════════
