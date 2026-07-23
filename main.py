@@ -9553,11 +9553,12 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
 
 @app.post("/api/admin/topik_shablon")
 def topik_shablon(sorov: TopikShablonSorov, token: str):
-    """Sinf + fan + mavzular ro'yxati bo'yicha — MAVZULARNI BAZAGA
-    QO'SHADI (xuddi "to'g'ridan-to'g'ri yaratish" kabi, botning o'zi
-    ishlatgan kod hisoblash mantig'i bilan), so'ng natijani Excel
-    (MALUMOT varag'i) qilib qaytaradi — "Topic code" ustuni endi
-    TO'LDIRILGAN holda chiqadi (avval ataylab bo'sh qoldirilgan edi)."""
+    """Sinf + fan + mavzular ro'yxati bo'yicha — 7 ustunli DTS_SHABLON
+    uslubidagi (Sinf, Fan, Chorak, Bob, Bo'lim, Mavzu, Kichik mavzu)
+    BO'SH Excel shablon yaratadi — Bob/Bo'lim/Kichik mavzu QO'LDA
+    to'ldirilishi kerak (haqiqiy darslik tuzilishiga mos). Bazaga
+    HECH NARSA yozmaydi — to'ldirilgach, "Import" orqali yuklanganda
+    topic_code o'sha yerda avtomatik hisoblanadi."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
@@ -9569,25 +9570,12 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
         raise HTTPException(status_code=400, detail="Mavzular topilmadi — 'chorak / mavzu' formatida yozing")
 
     sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
-    conn = _db()
-    cur = conn.cursor()
-    kodlar = {}  # (chorak, mavzu) -> topic_code
-    for chorak, mavzu in mavzular:
-        try:
-            topic_code, _holat = _dts_qator_kiritish(cur, sinf, fan, chorak, "", "", mavzu, "")
-            conn.commit()
-            kodlar[(chorak, mavzu)] = topic_code
-        except Exception:
-            conn.rollback()
-            kodlar[(chorak, mavzu)] = ""
-    cur.close()
-    conn.close()
 
     wb = openpyxl.Workbook()
     ws = wb.active
-    ws.title = "MALUMOT"
+    ws.title = "DTS_SHABLON"
 
-    headers = ["#", "Topic code", "Sinf", "Fan", "Chorak", "Bob", "Bolim", "Mavzu", "Kichik mavzu", "Test soni"]
+    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu", "Kichik mavzu"]
     for col, h in enumerate(headers, 1):
         cell = ws.cell(1, col, value=h)
         cell.font = Font(bold=True, color="FFFFFF")
@@ -9596,37 +9584,32 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
 
     chorak_colors = {"1": "DEEAF1", "2": "E2EFDA", "3": "FFF2CC", "4": "FCE4D6"}
     row_num = 2
-    idx = 1
     for chorak, mavzu in mavzular:
         color = chorak_colors.get(str(chorak), "F2F2F2")
-        for _ in range(2):  # botdagi kabi mavzu boshiga 2 qator (Bob/Bolim/Kichik mavzu uchun 2 xil variant)
-            ws.cell(row_num, 1, value=idx)
-            ws.cell(row_num, 2, value=kodlar.get((chorak, mavzu), ""))
-            ws.cell(row_num, 3, value=sinf)
-            ws.cell(row_num, 4, value=fan)
-            ws.cell(row_num, 5, value=chorak)
-            ws.cell(row_num, 8, value=mavzu)
-            ws.cell(row_num, 10, value=0)
-            for col in range(1, 11):
+        for _ in range(2):  # bir mavzuga 2 qator — Bob/Bo'lim/Kichik mavzuni 2 xil variant/kichik mavzu bilan to'ldirish uchun
+            ws.cell(row_num, 1, value=sinf)
+            ws.cell(row_num, 2, value=fan)
+            ws.cell(row_num, 3, value=chorak)
+            # Bob / Bo'lim / Kichik mavzu ATAYLAB BO'SH — haqiqiy darslik
+            # tuzilishiga qarab qo'lda to'ldiriladi
+            ws.cell(row_num, 6, value=mavzu)
+            for col in range(1, 8):
                 ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
                 ws.cell(row_num, col).alignment = Alignment(horizontal="left", wrap_text=True)
             row_num += 1
-            idx += 1
 
-    for col, width in zip(range(1, 11), [5, 22, 6, 16, 8, 30, 30, 22, 30, 10]):
+    for col, width in zip(range(1, 8), [6, 16, 8, 32, 32, 26, 32]):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = width
 
     ws2 = wb.create_sheet("IZOH")
     ws2.cell(1, 1, value="📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
     izohlar = [
-        (3, "#", "O'zgartirmang"),
-        (4, "Topic code", "ALLAQACHON to'ldirilgan (avtomatik yaratildi) — o'zgartirmang"),
-        (5, "Sinf / Fan / Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
-        (6, "Bob", "To'ldiring: masalan '1-bob. Sonlar'"),
-        (7, "Bolim", "To'ldiring: masalan \"1-bo'lim. Narsalarning to'plamlari\""),
-        (8, "Mavzu", "O'zgartirmang — mavzu nomi avtomatik"),
-        (9, "Kichik mavzu", "To'ldiring: mavzuning kichik qismi"),
-        (10, "Test soni", "O'zgartirmang — 0, keyin avtomatik yangilanadi"),
+        (3, "Sinf / Fan / Chorak", "O'zgartirmang — avtomatik to'ldirilgan"),
+        (4, "Bob", "To'ldiring: masalan '1-bob. Sonlar'"),
+        (5, "Bo'lim", "To'ldiring: masalan \"1-bo'lim. Narsalarning to'plamlari\""),
+        (6, "Mavzu", "O'zgartirmang — mavzu nomi avtomatik"),
+        (7, "Kichik mavzu", "To'ldiring: mavzuning kichik qismi (har qatorga boshqa-boshqa)"),
+        (9, "Keyingi qadam", "To'ldirib bo'lgach, 'Topik shablon → Import' orqali qayta yuklang — topic_code o'sha yerda avtomatik hisoblanadi."),
     ]
     for r, ustun, izoh in izohlar:
         ws2.cell(r, 1, value=ustun).font = Font(bold=True)
