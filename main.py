@@ -1234,9 +1234,10 @@ def oqituvchi_togaraklari(token: str):
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
+    _togarak_azolar_tasdiq_ustuni(cur)
     cur.execute("""
         SELECT id, nomi, fan, max_talaba, COALESCE(turi, 'oddiy') AS turi,
-               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE) AS azo_soni
+               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE AND tasdiqlangan=TRUE) AS azo_soni
         FROM togaraklar
         WHERE teacher_id=%s AND aktiv=TRUE
         ORDER BY nomi
@@ -1249,8 +1250,9 @@ def oqituvchi_togaraklari(token: str):
 
 @app.get("/api/oqituvchi/togarak/{togarak_id}/azolar")
 def togarak_azolari(togarak_id: int, token: str):
-    """Berilgan to'garakdagi o'quvchilarni, ularning OXIRGI bahosi bilan
-    qaytaradi. Faqat shu to'garakning o'z o'qituvchisi ko'ra oladi."""
+    """Berilgan to'garakdagi (TASDIQLANGAN) o'quvchilarni, ularning
+    OXIRGI bahosi bilan qaytaradi. Faqat shu to'garakning o'z
+    o'qituvchisi ko'ra oladi."""
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
@@ -1262,6 +1264,7 @@ def togarak_azolari(togarak_id: int, token: str):
         conn.close()
         raise HTTPException(status_code=403, detail="Bu to'garak sizga tegishli emas")
 
+    _togarak_azolar_tasdiq_ustuni(cur)
     cur.execute("""
         SELECT u.user_id, u.full_name,
                (SELECT baho FROM togarak_baholar tb
@@ -1269,13 +1272,79 @@ def togarak_azolari(togarak_id: int, token: str):
                 ORDER BY tb.created_at DESC LIMIT 1) AS oxirgi_baho
         FROM togarak_azolar ta
         JOIN users u ON u.user_id = ta.user_id
-        WHERE ta.togarak_id=%s AND ta.aktiv=TRUE
+        WHERE ta.togarak_id=%s AND ta.aktiv=TRUE AND ta.tasdiqlangan=TRUE
         ORDER BY u.full_name
     """, (togarak_id, togarak_id))
     azolar = cur.fetchall()
     cur.close()
     conn.close()
     return {"azolar": azolar}
+
+
+@app.get("/api/oqituvchi/togarak/{togarak_id}/kutilayotgan_azolar")
+def togarak_kutilayotgan_azolar(togarak_id: int, token: str):
+    """O'qituvchi/markaz rahbariyati uchun — parol orqali qo'shilish
+    SO'ROVI yuborgan, hali TASDIQLANMAGAN foydalanuvchilar ro'yxati."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    if not _togarak_egasi_mi(cur, user_id, togarak_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin ko'ra oladi")
+    _togarak_azolar_tasdiq_ustuni(cur)
+    cur.execute("""
+        SELECT ta.id AS azolik_id, u.user_id, u.full_name
+        FROM togarak_azolar ta JOIN users u ON u.user_id = ta.user_id
+        WHERE ta.togarak_id=%s AND ta.aktiv=TRUE AND ta.tasdiqlangan=FALSE
+        ORDER BY ta.id
+    """, (togarak_id,))
+    natija = cur.fetchall()
+    cur.close(); conn.close()
+    return {"azolar": natija}
+
+
+@app.put("/api/oqituvchi/azo_tasdiqla")
+def togarak_azo_tasdiqla(token: str, azolik_id: int):
+    """Kutilayotgan qo'shilish so'rovini TASDIQLAYDI — shu zahoti
+    o'quvchi to'garak kontentiga kira oladigan bo'ladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_azolar_tasdiq_ustuni(cur)
+    cur.execute("SELECT togarak_id FROM togarak_azolar WHERE id=%s", (azolik_id,))
+    a = cur.fetchone()
+    if not a:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="So'rov topilmadi")
+    if not _togarak_egasi_mi(cur, user_id, a["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin tasdiqlay oladi")
+    cur.execute("UPDATE togarak_azolar SET tasdiqlangan=TRUE WHERE id=%s", (azolik_id,))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "tasdiqlandi"}
+
+
+@app.delete("/api/oqituvchi/azo_rad_etish")
+def togarak_azo_rad_etish(token: str, azolik_id: int):
+    """Kutilayotgan qo'shilish so'rovini RAD ETADI (yozuvni butunlay
+    o'chiradi — xohlasa qayta parol kiritib so'rov yubora oladi)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _togarak_azolar_tasdiq_ustuni(cur)
+    cur.execute("SELECT togarak_id, tasdiqlangan FROM togarak_azolar WHERE id=%s", (azolik_id,))
+    a = cur.fetchone()
+    if not a:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="So'rov topilmadi")
+    if not _togarak_egasi_mi(cur, user_id, a["togarak_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin rad eta oladi")
+    cur.execute("DELETE FROM togarak_azolar WHERE id=%s", (azolik_id,))
+    conn.commit()
+    cur.close(); conn.close()
+    return {"holat": "rad_etildi"}
 
 
 class BahoSorov(BaseModel):
@@ -1783,6 +1852,34 @@ class TogarakYaratish(BaseModel):
     reja_id: Optional[int] = None  # tanlangan "topik mavzu rejasi" — berilsa, shu rejaning tartibli mavzulari ko'chiriladi (tanlangan_topic_codes'dan USTUN)
 
 
+def _togarak_parol_yarat(cur, tavsiya=None, ozini_ozi_hisobga_olmaslik_id=None):
+    """Barcha FAOL to'garaklar orasida TAKRORLANMAYDIGAN parol
+    beradi. O'qituvchi o'zi parol kiritgan bo'lsa (tavsiya) — u
+    BOSHQA biror faol to'garakda band emasligi tekshiriladi (aks
+    holda ikkita to'garak bir xil parolga ega bo'lib, o'quvchi
+    tasodifan noto'g'ri to'garakka qo'shilib qolishi mumkin edi).
+    Berilmasa — 6 xonali, tasodifiy VA takrorlanmaydigan parol
+    avtomatik yaratiladi (tasodifiy taxmin bilan boshqa to'garakka
+    kirib qolish ehtimoli ham shu bilan kamayadi)."""
+    if tavsiya:
+        tavsiya = tavsiya.strip()
+        shart = "parol=%s AND aktiv=TRUE"
+        params = [tavsiya]
+        if ozini_ozi_hisobga_olmaslik_id is not None:
+            shart += " AND id != %s"
+            params.append(ozini_ozi_hisobga_olmaslik_id)
+        cur.execute(f"SELECT 1 FROM togaraklar WHERE {shart}", params)
+        if cur.fetchone():
+            raise HTTPException(status_code=400, detail="Bu parol allaqachon boshqa to'garakda ishlatilmoqda — boshqa parol tanlang")
+        return tavsiya
+    for _ in range(20):
+        taklif = "".join(secrets.choice(string.digits) for _ in range(6))
+        cur.execute("SELECT 1 FROM togaraklar WHERE parol=%s AND aktiv=TRUE", (taklif,))
+        if not cur.fetchone():
+            return taklif
+    raise HTTPException(status_code=500, detail="Parol yaratib bo'lmadi, qayta urinib ko'ring")
+
+
 @app.post("/api/oqituvchi/togarak_yarat")
 def togarak_yarat(sorov: TogarakYaratish):
     """O'qituvchi yangi to'garak yaratadi — bot ishlatadigan AYNAN SHU
@@ -1838,11 +1935,16 @@ def togarak_yarat(sorov: TogarakYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=403, detail="Bu reja sizga tegishli emas")
         reja_id_qiymati = sorov.reja_id
+    try:
+        parol_qiymati = _togarak_parol_yarat(cur, sorov.parol)
+    except HTTPException:
+        cur.close(); conn.close()
+        raise
     cur.execute("""
         INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, turi, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id, reja_id)
         VALUES(%s,%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati, turi_qiymati,
-          sorov.parol.strip() if sorov.parol else None,
+          parol_qiymati,
           sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id, reja_id_qiymati))
     yangi_id = cur.fetchone()["id"]
 
@@ -1945,7 +2047,12 @@ def togarak_parol_almashtir(sorov: TogarakParolAlmashtirish):
     if not sorov.yangi_parol.strip():
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Yangi parolni kiriting")
-    cur.execute("UPDATE togaraklar SET parol=%s WHERE id=%s", (sorov.yangi_parol.strip(), sorov.togarak_id))
+    try:
+        yangi_parol = _togarak_parol_yarat(cur, sorov.yangi_parol, ozini_ozi_hisobga_olmaslik_id=sorov.togarak_id)
+    except HTTPException:
+        cur.close(); conn.close()
+        raise
+    cur.execute("UPDATE togaraklar SET parol=%s WHERE id=%s", (yangi_parol, sorov.togarak_id))
     conn.commit()
     cur.close()
     conn.close()
@@ -2579,8 +2686,10 @@ def _mavzu_kitobi_jadvallari(cur):
         masala_matni TEXT NOT NULL,
         yechim_matni TEXT,
         video_soniya INTEGER,
+        video_tugash_soniya INTEGER,
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE mavzu_kitob_misollari ADD COLUMN IF NOT EXISTS video_tugash_soniya INTEGER")
 
 
 @app.get("/api/oqituvchi/mavzu_kitobi")
@@ -2600,7 +2709,7 @@ def mavzu_kitobi_korish(token: str, togarak_id: int, topic_code: str):
     )
     videolar = cur.fetchall()
     cur.execute(
-        "SELECT id, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        "SELECT id, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya, video_tugash_soniya FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
         (togarak_id, topic_code),
     )
     misollar = cur.fetchall()
@@ -2674,6 +2783,7 @@ class MavzuMisolQoshish(BaseModel):
     masala_matni: str
     yechim_matni: Optional[str] = None
     video_soniya: Optional[int] = None
+    video_tugash_soniya: Optional[int] = None
 
 
 @app.post("/api/oqituvchi/mavzu_misol_qosh")
@@ -2701,10 +2811,10 @@ def mavzu_misol_qosh(sorov: MavzuMisolQoshish):
     )
     keyingi = cur.fetchone()["keyingi"]
     cur.execute("""
-        INSERT INTO mavzu_kitob_misollari(togarak_id, topic_code, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya)
-        VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id
+        INSERT INTO mavzu_kitob_misollari(togarak_id, topic_code, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya, video_tugash_soniya)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
     """, (sorov.togarak_id, sorov.topic_code, sorov.video_id, keyingi, sorov.masala_matni.strip(),
-          sorov.yechim_matni.strip() if sorov.yechim_matni else None, sorov.video_soniya))
+          sorov.yechim_matni.strip() if sorov.yechim_matni else None, sorov.video_soniya, sorov.video_tugash_soniya))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close(); conn.close()
@@ -2718,6 +2828,7 @@ class MavzuMisolTahrirlash(BaseModel):
     masala_matni: str
     yechim_matni: Optional[str] = None
     video_soniya: Optional[int] = None
+    video_tugash_soniya: Optional[int] = None
 
 
 @app.put("/api/oqituvchi/mavzu_misol_tahrirlash")
@@ -2737,9 +2848,9 @@ def mavzu_misol_tahrirlash(sorov: MavzuMisolTahrirlash):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin tahrirlay oladi")
     cur.execute("""
-        UPDATE mavzu_kitob_misollari SET video_id=%s, masala_matni=%s, yechim_matni=%s, video_soniya=%s WHERE id=%s
+        UPDATE mavzu_kitob_misollari SET video_id=%s, masala_matni=%s, yechim_matni=%s, video_soniya=%s, video_tugash_soniya=%s WHERE id=%s
     """, (sorov.video_id, sorov.masala_matni.strip(), sorov.yechim_matni.strip() if sorov.yechim_matni else None,
-          sorov.video_soniya, sorov.misol_id))
+          sorov.video_soniya, sorov.video_tugash_soniya, sorov.misol_id))
     conn.commit()
     cur.close(); conn.close()
     return {"holat": "saqlandi"}
@@ -2820,7 +2931,7 @@ def oquvchi_mavzu_kitobi(token: str, togarak_id: int, topic_code: str):
     )
     videolar = cur.fetchall()
     cur.execute(
-        "SELECT id, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
+        "SELECT id, video_id, tartib_raqami, masala_matni, yechim_matni, video_soniya, video_tugash_soniya FROM mavzu_kitob_misollari WHERE togarak_id=%s AND topic_code=%s ORDER BY tartib_raqami",
         (togarak_id, topic_code),
     )
     misollar = cur.fetchall()
@@ -4105,7 +4216,8 @@ def _togarak_kontent_ruxsat_bormi(cur, user_id, togarak_id):
     a'zosi (o'quvchi) bo'lsa — True."""
     if _togarak_ozi_mi(cur, user_id, togarak_id):
         return True
-    cur.execute("SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE", (togarak_id, user_id))
+    _togarak_azolar_tasdiq_ustuni(cur)
+    cur.execute("SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE AND tasdiqlangan=TRUE", (togarak_id, user_id))
     return cur.fetchone() is not None
 
 
@@ -4521,16 +4633,30 @@ class TogarakqaQoshilish(BaseModel):
     parol: str
 
 
+def _togarak_azolar_tasdiq_ustuni(cur):
+    """togarak_azolar.tasdiqlangan ustuni — YANGI so'rovlar UNGA
+    FALSE bilan yoziladi (o'qituvchi tasdiqlashini kutadi), ESKI
+    yozuvlar (bu ustun qo'shilishidan OLDIN qo'shilganlar) TRUE bilan
+    qoladi — ular ALLAQACHON amalda a'zo bo'lgani uchun, orqaga
+    qaytib ularni yana tasdiqlatish shart emas."""
+    cur.execute("ALTER TABLE togarak_azolar ADD COLUMN IF NOT EXISTS tasdiqlangan BOOLEAN DEFAULT TRUE")
+
+
 @app.post("/api/togarakka_qoshil")
 def togarakka_qoshil(sorov: TogarakqaQoshilish):
     """Foydalanuvchi (o'quvchi, ota-ona va h.k.) parol orqali to'garakka
-    qo'shiladi — bot orqali qo'shilgan bilan BIR XIL jadvalga yoziladi."""
+    QO'SHILISH SO'ROVI yuboradi — bot orqali qo'shilgan bilan BIR XIL
+    jadvalga yoziladi, lekin ENDI DARHOL a'zo bo'lib qolmaydi: yozuv
+    "tasdiqlanmagan" holatda saqlanadi, o'qituvchi tasdiqlagach FAOL
+    a'zolikka aylanadi. Shu orqali parolni bilib olgan/taxmin qilgan
+    har qanday kishi darhol kontentga kira olmaydi."""
     user_id = _jwt_tekshir(sorov.token)
     if not sorov.parol.strip():
         raise HTTPException(status_code=400, detail="Parol kiritilmagan")
 
     conn = _db()
     cur = conn.cursor()
+    _togarak_azolar_tasdiq_ustuni(cur)
     cur.execute("SELECT id, nomi, max_talaba FROM togaraklar WHERE parol=%s AND aktiv=TRUE", (sorov.parol.strip(),))
     t = cur.fetchone()
     if not t:
@@ -4538,12 +4664,15 @@ def togarakka_qoshil(sorov: TogarakqaQoshilish):
         raise HTTPException(status_code=404, detail="Bunday parolli to'garak topilmadi")
 
     cur.execute(
-        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
+        "SELECT tasdiqlangan FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
         (t["id"], user_id),
     )
-    if cur.fetchone():
+    mavjud = cur.fetchone()
+    if mavjud:
         cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Siz allaqachon shu to'garak a'zosisiz")
+        if mavjud["tasdiqlangan"]:
+            raise HTTPException(status_code=400, detail="Siz allaqachon shu to'garak a'zosisiz")
+        raise HTTPException(status_code=400, detail="So'rovingiz yuborilgan — o'qituvchi tasdiqlashini kuting")
 
     if t["max_talaba"]:
         cur.execute("SELECT COUNT(*) AS soni FROM togarak_azolar WHERE togarak_id=%s AND aktiv=TRUE", (t["id"],))
@@ -4552,22 +4681,24 @@ def togarakka_qoshil(sorov: TogarakqaQoshilish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="To'garak to'lgan")
 
-    cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv) VALUES(%s,%s,TRUE)", (t["id"], user_id))
+    cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv, tasdiqlangan) VALUES(%s,%s,TRUE,FALSE)", (t["id"], user_id))
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "qoshildi", "togarak_nomi": t["nomi"]}
+    return {"holat": "kutilmoqda", "togarak_nomi": t["nomi"]}
 
 
 @app.get("/api/mening_togaraklarim")
 def mening_togaraklarim(token: str):
-    """Foydalanuvchi a'zo bo'lgan barcha to'garaklarni qaytaradi."""
+    """Foydalanuvchi a'zo bo'lgan (yoki so'rov yuborgan) barcha
+    to'garaklarni qaytaradi — tasdiqlangan holati bilan birga."""
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
+    _togarak_azolar_tasdiq_ustuni(cur)
     cur.execute("""
-        SELECT tg.id, tg.nomi, tg.fan, COALESCE(tg.turi, 'oddiy') AS turi
+        SELECT tg.id, tg.nomi, tg.fan, COALESCE(tg.turi, 'oddiy') AS turi, ta.tasdiqlangan
         FROM togarak_azolar ta
         JOIN togaraklar tg ON tg.id = ta.togarak_id
         WHERE ta.user_id=%s AND ta.aktiv=TRUE
@@ -7106,10 +7237,11 @@ def markaz_dashboard(token: str, markaz_id: int):
     if not _markaz_boshqaruvchi_mi(cur, user_id, markaz_id):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat markaz direktori/administratori ko'ra oladi")
+    _togarak_azolar_tasdiq_ustuni(cur)
 
     cur.execute("""
         SELECT t.id, t.nomi, t.fan, t.sinf, t.oylik_summa, t.parol, u.full_name AS oqituvchi_ismi,
-               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=t.id AND aktiv=TRUE) AS azo_soni
+               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=t.id AND aktiv=TRUE AND tasdiqlangan=TRUE) AS azo_soni
         FROM togaraklar t
         LEFT JOIN users u ON u.user_id = t.teacher_id
         WHERE t.markaz_id=%s AND t.aktiv=TRUE
