@@ -3187,6 +3187,25 @@ def _chat_jadvallari(cur):
     )""")
 
 
+_CHAT_TOZALASH_OXIRGI_VAQT = {"qachon": None}
+_CHAT_SAQLASH_YILI = 3  # "2 yilgacha, xotira imkon bersa 5-6 yilgacha" — o'rtacha, xavfsiz qiymat
+
+
+def _chat_eski_xabarlarni_tozalash(cur):
+    """3 yildan ESKI xabarlarni (fayllari bilan birga) o'chiradi —
+    xotira cheksiz o'smasligi uchun. Har so'rovda emas — kuniga
+    (protsess ichida) FAQAT bir marta ishga tushadi, chunki bu
+    butun jadval bo'yicha DELETE, arzon amal emas."""
+    hozir = datetime.now()
+    oxirgi = _CHAT_TOZALASH_OXIRGI_VAQT["qachon"]
+    if oxirgi and (hozir - oxirgi).total_seconds() < 86400:
+        return
+    cur.execute(
+        f"DELETE FROM chat_xabarlari WHERE yaratilgan_at < NOW() - INTERVAL '{_CHAT_SAQLASH_YILI} years'"
+    )
+    _CHAT_TOZALASH_OXIRGI_VAQT["qachon"] = hozir
+
+
 def _chat_guruh_topish_yoki_yarat(cur, turi, manba_turi, manba_id, nomi, egasi_user_id=None):
     """Berilgan (turi, manba_turi, manba_id) uchun guruh MAVJUD bo'lsa
     ID sini qaytaradi; bo'lmasa YANGI yaratadi."""
@@ -3283,6 +3302,7 @@ def chat_guruhlarim(token: str):
     conn = _db()
     cur = conn.cursor()
     _foydalanuvchi_guruhlarini_sinxronlash(cur, user_id)
+    _chat_eski_xabarlarni_tozalash(cur)
     conn.commit()
 
     cur.execute("""
