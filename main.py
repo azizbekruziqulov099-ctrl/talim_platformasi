@@ -5195,6 +5195,14 @@ LAVOZIMLAR = {
 }
 _LAVOZIM_MATNDAN = {v.lower(): k for k, v in LAVOZIMLAR.items()}
 
+TOIFALAR = [
+    "O'ta maxsus mutaxassis (oliy ma'lumotli)",
+    "2-toifali",
+    "1-toifali",
+    "Oliy toifali",
+]
+_TOIFA_MATNDAN = {t.lower(): t for t in TOIFALAR}
+
 
 def _xodim_kod_jadvali(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS xodim_kod(
@@ -5218,7 +5226,8 @@ def _maktab_sinflari_jadvali(cur):
 @app.get("/api/admin/xodim_shablon")
 def xodim_shablon(token: str):
     """Xodimlarni import qilish uchun Excel shablonini beradi —
-    F.I.Sh, Lavozim, Sinf rahbarligi ustunlari bilan."""
+    F.I.Sh, Lavozim, Sinf rahbarligi, O'qitadigan fanlari, Ish staji,
+    Toifasi ustunlari bilan."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
@@ -5228,29 +5237,37 @@ def xodim_shablon(token: str):
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "XODIMLAR"
-    ustunlar = ["F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)"]
+    ustunlar = ["F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)", "O'qitadigan fanlari", "Ish staji (yil)", "Toifasi"]
     for col, h in enumerate(ustunlar, 1):
         c = ws.cell(1, col, h)
         c.font = Font(bold=True, color="FFFFFF")
         c.fill = PatternFill("solid", fgColor="1B4B7A")
 
     namunalar = [
-        ("Aliyev Vali Aliyevich", "Direktor", ""),
-        ("Karimova Nilufar Rustamovna", "O'quv ishlari bo'yicha direktor o'rinbosari", ""),
-        ("Yusupov Sardor Bahtiyorovich", "Fan o'qituvchisi", "5-A"),
-        ("Nazarova Feruza Odilovna", "Fan o'qituvchisi", ""),
+        ("Aliyev Vali Aliyevich", "Direktor", "", "", "", ""),
+        ("Karimova Nilufar Rustamovna", "O'quv ishlari bo'yicha direktor o'rinbosari", "", "", "", ""),
+        ("Yusupov Sardor Bahtiyorovich", "Fan o'qituvchisi", "5-A", "Matematika\nFizika", "8", "1-toifali"),
+        ("Nazarova Feruza Odilovna", "Fan o'qituvchisi", "", "Ona tili va adabiyot", "15", "Oliy toifali"),
     ]
     for r in namunalar:
         ws.append(r)
-    for col, w in zip("ABC", [30, 45, 25]):
+    for row_idx in range(2, len(namunalar) + 2):
+        ws.cell(row_idx, 4).alignment = Alignment(wrap_text=True, vertical="top")
+    for col, w in zip("ABCDEF", [30, 45, 25, 28, 14, 22]):
         ws.column_dimensions[col].width = w
 
     ws2 = wb.create_sheet("IZOH")
     ws2.cell(1, 1, "Lavozim ustuniga faqat shu variantlardan birini yozing:").font = Font(bold=True)
     for i, nom in enumerate(LAVOZIMLAR.values(), 2):
         ws2.cell(i, 1, f"• {nom}")
-    ws2.cell(len(LAVOZIMLAR) + 3, 1,
+    keyingi = len(LAVOZIMLAR) + 3
+    ws2.cell(keyingi, 1,
              "Sinf rahbarligi — faqat shu odam biror sinfga rahbar bo'lsa to'ldiring (masalan: 5-A). Bo'sh qoldirsa ham bo'ladi.")
+    ws2.cell(keyingi + 2, 1, "O'qitadigan fanlari — bir nechta bo'lsa, BITTA KATAKKA, har birini YANGI QATORGA (Alt+Enter) yozing.").font = Font(bold=True)
+    ws2.cell(keyingi + 4, 1, "Ish staji — o'qituvchilik lavozimida necha yildan beri ishlayotgani (butun son, masalan: 8).").font = Font(bold=True)
+    ws2.cell(keyingi + 6, 1, "Toifasi — faqat shu variantlardan birini yozing:").font = Font(bold=True)
+    for i, nom in enumerate(TOIFALAR, 1):
+        ws2.cell(keyingi + 6 + i, 1, f"• {nom}")
     ws2.column_dimensions["A"].width = 70
 
     buf = io.BytesIO()
@@ -5292,6 +5309,9 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     _maktab_sinflari_jadvali(cur)
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS fanlari TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS ish_staji INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS toifasi TEXT")
 
     natijalar = []
     xato_soni = 0
@@ -5301,6 +5321,13 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         fish = str(row[0]).strip()
         lavozim_matni = str(row[1]).strip() if len(row) > 1 and row[1] else "Fan o'qituvchisi"
         sinf_rahbarligi = str(row[2]).strip() if len(row) > 2 and row[2] else ""
+        fanlari = str(row[3]).strip() if len(row) > 3 and row[3] else ""
+        try:
+            ish_staji = int(row[4]) if len(row) > 4 and row[4] not in (None, "") else None
+        except (ValueError, TypeError):
+            ish_staji = None
+        toifa_matni = str(row[5]).strip() if len(row) > 5 and row[5] else ""
+        toifasi = _TOIFA_MATNDAN.get(toifa_matni.lower(), toifa_matni or None)
         lavozim_kaliti = _LAVOZIM_MATNDAN.get(lavozim_matni.lower(), "fan_oqituvchisi")
 
         try:
@@ -5309,9 +5336,9 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
 
             cur.execute("""
-                INSERT INTO users(user_id, full_name, role, maktab_id, lavozim)
-                VALUES(%s,%s,'oqituvchi',%s,%s)
-            """, (yangi_id, fish, maktab_id, lavozim_kaliti))
+                INSERT INTO users(user_id, full_name, role, maktab_id, lavozim, fanlari, ish_staji, toifasi)
+                VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s)
+            """, (yangi_id, fish, maktab_id, lavozim_kaliti, fanlari or None, ish_staji, toifasi))
 
             if lavozim_kaliti == "direktor":
                 cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (yangi_id, maktab_id))
@@ -5339,6 +5366,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 "fish": fish, "lavozim": LAVOZIMLAR.get(lavozim_kaliti, lavozim_matni),
                 "kirish_kodi": kirish_kodi, "sinf_rahbarligi": sinf_rahbarligi or None,
                 "sinf_paroli": sinf_paroli,
+                "fanlari": fanlari or None, "ish_staji": ish_staji, "toifasi": toifasi,
             })
         except Exception:
             conn.rollback()
@@ -9555,12 +9583,12 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
 
 @app.post("/api/admin/topik_shablon")
 def topik_shablon(sorov: TopikShablonSorov, token: str):
-    """Sinf + fan + mavzular ro'yxati bo'yicha — 7 ustunli DTS_SHABLON
-    uslubidagi (Sinf, Fan, Chorak, Bob, Bo'lim, Mavzu, Kichik mavzu)
-    BO'SH Excel shablon yaratadi — Bob/Bo'lim/Kichik mavzu QO'LDA
-    to'ldirilishi kerak (haqiqiy darslik tuzilishiga mos). Bazaga
-    HECH NARSA yozmaydi — to'ldirilgach, "Import" orqali yuklanganda
-    topic_code o'sha yerda avtomatik hisoblanadi."""
+    """Sinf + fan + mavzular ro'yxati bo'yicha — 6 ustunli DTS_SHABLON
+    uslubidagi (Sinf, Fan, Chorak, Bob, Bo'lim, Mavzu) BO'SH Excel
+    shablon yaratadi — Bob/Bo'lim QO'LDA to'ldirilishi kerak (haqiqiy
+    darslik tuzilishiga mos). Bazaga HECH NARSA yozmaydi — to'ldirilgach,
+    "Import" orqali yuklanganda topic_code o'sha yerda avtomatik
+    hisoblanadi (kichik mavzu ustuni yo'q — bu shablonda ishlatilmaydi)."""
     _admin_tekshir(token)
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment
@@ -9577,7 +9605,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     ws = wb.active
     ws.title = "DTS_SHABLON"
 
-    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu", "Kichik mavzu"]
+    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu"]
     for col, h in enumerate(headers, 1):
         cell = ws.cell(1, col, value=h)
         cell.font = Font(bold=True, color="FFFFFF")
@@ -9588,19 +9616,19 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     row_num = 2
     for chorak, mavzu in mavzular:
         color = chorak_colors.get(str(chorak), "F2F2F2")
-        for _ in range(2):  # bir mavzuga 2 qator — Bob/Bo'lim/Kichik mavzuni 2 xil variant/kichik mavzu bilan to'ldirish uchun
+        for _ in range(2):  # bir mavzuga 2 qator — Bob/Bo'limni 2 xil variant bilan to'ldirish uchun
             ws.cell(row_num, 1, value=sinf)
             ws.cell(row_num, 2, value=fan)
             ws.cell(row_num, 3, value=chorak)
-            # Bob / Bo'lim / Kichik mavzu ATAYLAB BO'SH — haqiqiy darslik
-            # tuzilishiga qarab qo'lda to'ldiriladi
+            # Bob / Bo'lim ATAYLAB BO'SH — haqiqiy darslik tuzilishiga
+            # qarab qo'lda to'ldiriladi
             ws.cell(row_num, 6, value=mavzu)
-            for col in range(1, 8):
+            for col in range(1, 7):
                 ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
                 ws.cell(row_num, col).alignment = Alignment(horizontal="left", wrap_text=True)
             row_num += 1
 
-    for col, width in zip(range(1, 8), [6, 16, 8, 32, 32, 26, 32]):
+    for col, width in zip(range(1, 7), [6, 16, 8, 32, 32, 32]):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = width
 
     ws2 = wb.create_sheet("IZOH")
@@ -9610,8 +9638,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
         (4, "Bob", "To'ldiring: masalan '1-bob. Sonlar'"),
         (5, "Bo'lim", "To'ldiring: masalan \"1-bo'lim. Narsalarning to'plamlari\""),
         (6, "Mavzu", "O'zgartirmang — mavzu nomi avtomatik"),
-        (7, "Kichik mavzu", "To'ldiring: mavzuning kichik qismi (har qatorga boshqa-boshqa)"),
-        (9, "Keyingi qadam", "To'ldirib bo'lgach, 'Topik shablon → Import' orqali qayta yuklang — topic_code o'sha yerda avtomatik hisoblanadi."),
+        (8, "Keyingi qadam", "To'ldirib bo'lgach, 'Topik shablon → Import' orqali qayta yuklang — topic_code o'sha yerda avtomatik hisoblanadi."),
     ]
     for r, ustun, izoh in izohlar:
         ws2.cell(r, 1, value=ustun).font = Font(bold=True)
