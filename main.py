@@ -5374,7 +5374,45 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
 
     cur.close()
     conn.close()
-    return {"natijalar": natijalar, "xato_soni": xato_soni}
+
+    # Natijalar (F.I.Sh + kirish kodi + sinf paroli) EKRANGA CHIQARILMAYDI —
+    # buning o'rniga to'g'ridan-to'g'ri Word hujjat qilib beriladi, shunda
+    # parollar sahifada hech qachon ko'rinmaydi/skrinshotga tushmaydi.
+    import docx
+    from docx.shared import Pt, RGBColor
+    from docx.enum.text import WD_ALIGN_PARAGRAPH
+    from fastapi.responses import StreamingResponse
+    import io as _io
+
+    hujjat = docx.Document()
+    sarlavha = hujjat.add_heading("Xodimlar kirish kodlari", level=1)
+    sarlavha.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    izoh = hujjat.add_paragraph(f"Jami: {len(natijalar)} ta xodim. Har bir kodni tegishli xodimga alohida yetkazing.")
+    izoh.runs[0].italic = True
+
+    for i, n in enumerate(natijalar):
+        if i > 0:
+            hujjat.add_paragraph("─" * 50).alignment = WD_ALIGN_PARAGRAPH.CENTER
+        p = hujjat.add_paragraph()
+        p.add_run(f"{n['fish']}").bold = True
+        hujjat.add_paragraph(f"Lavozim: {n['lavozim']}")
+        kod_p = hujjat.add_paragraph()
+        kod_run = kod_p.add_run(f"Kirish kodi: {n['kirish_kodi']}")
+        kod_run.bold = True
+        kod_run.font.size = Pt(14)
+        kod_run.font.color.rgb = RGBColor(0x1B, 0x4B, 0x7A)
+        if n.get("sinf_rahbarligi") and n.get("sinf_paroli"):
+            sinf_p = hujjat.add_paragraph()
+            sinf_run = sinf_p.add_run(f"Sinf rahbarligi ({n['sinf_rahbarligi']}) qo'shilish paroli: {n['sinf_paroli']}")
+            sinf_run.bold = True
+
+    buf = _io.BytesIO()
+    hujjat.save(buf)
+    buf.seek(0)
+    return StreamingResponse(
+        buf, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        headers={"Content-Disposition": "attachment; filename=xodimlar_kirish_kodlari.docx"},
+    )
 
 
 # ═══════════════════════════════════════════════════════════
