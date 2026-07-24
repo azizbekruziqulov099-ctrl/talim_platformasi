@@ -976,10 +976,62 @@ def _c_va_w_tuzat(matn: str) -> str:
     return "".join(natija)
 
 
+_LATEX_KASR_NAQSHI = re.compile(r"\\(?:tfrac|dfrac|cfrac|frac)\s*\{(-?\d+)\}\s*\{(-?\d+)\}")
+_LATEX_OZGARUVCHI_NAQSHI = re.compile(r"(?<![a-zA-Zʻʼ'])([xyzn])(?![a-zA-Zʻʼ'])")
+_LATEX_OZGARUVCHILAR = {"x": "iks", "y": "igrik", "z": "zet", "n": "en"}
+
+
+def _lat_va_latex_ochish(matn: str) -> str:
+    """[lat]...[/lat] va $...$ teglarini ochib, ICHIDAGI LaTeX
+    buyruqlarini (\\tfrac, \\sqrt, \\times va h.k.) tabiiy o'zbekcha
+    nutqqa aylantiradi. Bu — punktuatsiya bosqichidan (figurali qavslar
+    vergulga aylanadigan) OLDIN ishlashi SHART, aks holda LaTeX
+    tuzilishi buzilib, keyin aniqlab bo'lmay qoladi."""
+    m = re.sub(r"\[lat\](.*?)\[/lat\]", r"\1", matn, flags=re.S)
+    m = re.sub(r"\$([^$]+)\$", r"\1", m)
+
+    # Aralash son: raqamdan keyin (bo'shliqli/bo'shliqsiz) kasr buyrug'i
+    # kelsa — "butun" so'zi qo'shiladi (masalan 6\tfrac{1}{2} -> "olti butun ikkidan bir")
+    m = re.sub(r"(\d)\s*(?=\\(?:tfrac|dfrac|cfrac|frac))", r"\1 butun ", m)
+
+    def _kasr_latex(x):
+        a, b = int(x.group(1)), int(x.group(2))
+        return f" {_son_soz(b)}dan {_son_soz(a)} "
+    m = _LATEX_KASR_NAQSHI.sub(_kasr_latex, m)
+
+    m = re.sub(r"\\sqrt\s*\{([^{}]+)\}", r" \1 ning kvadrat ildizi ", m)
+    m = re.sub(r"\\times", " marta ", m)
+    m = re.sub(r"\\cdot", " marta ", m)
+    m = re.sub(r"\\div", " bo'lib ", m)
+    m = re.sub(r"\\pm", " plyus-minus ", m)
+    m = re.sub(r"\\leq", " kichik yoki teng ", m)
+    m = re.sub(r"\\geq", " katta yoki teng ", m)
+    m = re.sub(r"\\neq", " teng emas ", m)
+    m = re.sub(r"\\infty", " cheksizlik ", m)
+    m = re.sub(r"\\approx", " taxminan teng ", m)
+
+    # O'lchov birliklari — to'liq so'zga
+    for naqsh, alm in [
+        (r"\bkm/soat\b", " kilometr soatiga "),
+        (r"\bkg\b", " kilogramm "), (r"\bgr\b", " gramm "),
+        (r"\bmm\b", " millimetr "), (r"\bsm\b", " santimetr "), (r"\bkm\b", " kilometr "),
+        (r"\bml\b", " millilitr "), (r"\bl\b", " litr "),
+        (r"\bsm2\b|\bsm²\b", " kvadrat santimetr "), (r"\bm2\b|\bm²\b", " kvadrat metr "),
+        (r"\bsm3\b|\bsm³\b", " kub santimetr "), (r"\bm3\b|\bm³\b", " kub metr "),
+        (r"\bm\b", " metr "),
+    ]:
+        m = re.sub(naqsh, alm, m, flags=re.I)
+
+    # Matematik o'zgaruvchilar — songa yopishgan bo'lsa ham (masalan "2x")
+    m = _LATEX_OZGARUVCHI_NAQSHI.sub(lambda x: f" {_LATEX_OZGARUVCHILAR[x.group(1)]} ", m)
+    return m
+
+
 def _ovoz_uchun_tayyorla(matn: str) -> str:
     """Xom matn -> ovoz aniq o'qiydigan matn — botdagi ovoz.py:tayyorla
     bilan bir xil (matematik belgilar so'zga, sonlar so'zga, teglar tozalanadi)."""
-    m = _matnni_tozala(matn) or ""
+    m = _lat_va_latex_ochish(matn) or ""
+    m = _matnni_tozala(m) or ""
     m = _apostrofni_tuzat(m)
     m = _c_va_w_tuzat(m)
     m = re.sub(r"<[^>]+>", " ", m)
