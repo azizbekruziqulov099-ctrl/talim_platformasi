@@ -9797,8 +9797,30 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     _admin_tekshir(token)
     import openpyxl
     import io
+    import zipfile
 
     content = await fayl.read()
+
+    # MUHIM TEKSHIRUV: katta fayllar internet orqali yuklanganda, ba'zan
+    # TO'LIQ YETIB BORMASLIGI mumkin (uzilish, sekin aloqa va h.k.) —
+    # bunday holda .xlsx (ZIP) faylning ICHKI TUZILISHI buziladi: matn
+    # (qatorlar) o'qilishi mumkin, lekin rasm(lar) — odatda faylning
+    # OXIRIDA joylashgani uchun — YO'QOLADI. Buni SHU YERDA aniqlab,
+    # "0 rasm" degan sirli natija o'rniga ANIQ xabar beramiz.
+    try:
+        with zipfile.ZipFile(io.BytesIO(content)) as zf:
+            buzuq_fayl = zf.testzip()
+        if buzuq_fayl:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Fayl to'liq yuklanmagan (buzilgan qism: {buzuq_fayl}) — internet aloqasi uzilgan bo'lishi mumkin. Qaytadan yuklab ko'ring.",
+            )
+    except zipfile.BadZipFile:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Fayl to'liq yuklanmagan (hajmi: {len(content)} bayt, ZIP tuzilishi buzilgan) — qaytadan yuklab ko'ring.",
+        )
+
     try:
         wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True)
     except Exception as e:
@@ -9939,6 +9961,8 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
         "rasm_biriktirildi": rasm_biriktirildi,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
         "rasm_diagnostika": {
+            "qabul_qilingan_fayl_hajmi_bayt": len(content),
+            "openpyxl_versiyasi": openpyxl.__version__,
             "excel_ichida_topilgan_rasm_soni": len(xom_rasmlar),
             "qatorga_bogliy_qilingan_rasm_soni": len(qator_rasmlari),
             "xatolar": rasm_diagnostika_xatolari,
