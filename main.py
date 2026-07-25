@@ -9829,6 +9829,13 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
+    # BIR MARTALIK TUZATISH: avval option_a NULL (bo'sh, ko'pincha
+    # "yozuvli"/write_answer turdagi savollarda) bo'lib saqlangan
+    # yozuvlar — ular hech qachon "duplikat" deb topilmagan (SQL'da
+    # NULL='' hech qachon TRUE bo'lmagani uchun), shu sabab har
+    # import'da qayta-qayta qo'shilib kelgan. Bo'sh matnga
+    # tenglashtirib, bundan buyon to'g'ri solishtiriladigan qilamiz.
+    cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL")
 
     # MUHIM TEKSHIRUV: fayldagi topic_code'lar dts_tree'da (Mavzular) haqiqatda
     # mavjudmi — aks holda testlar "yetim" bo'lib qoladi: saqlanadi, lekin
@@ -9905,7 +9912,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 RETURNING id
             """, (
                 tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
-                d.get("option_a"), d.get("option_b"), d.get("option_c"), d.get("option_d"),
+                opt_a, d.get("option_b"), d.get("option_c"), d.get("option_d"),
                 d.get("correct_answer"), d.get("explanation"),
                 d.get("question_type") or "single_choice",
                 bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
