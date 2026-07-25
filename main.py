@@ -9989,17 +9989,16 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     row_num = 2
     for chorak, mavzu in mavzular:
         color = chorak_colors.get(str(chorak), "F2F2F2")
-        for _ in range(2):  # bir mavzuga 2 qator — Bob/Bo'limni 2 xil variant bilan to'ldirish uchun
-            ws.cell(row_num, 1, value=sinf)
-            ws.cell(row_num, 2, value=fan)
-            ws.cell(row_num, 3, value=chorak)
-            # Bob / Bo'lim ATAYLAB BO'SH — haqiqiy darslik tuzilishiga
-            # qarab qo'lda to'ldiriladi
-            ws.cell(row_num, 6, value=mavzu)
-            for col in range(1, 7):
-                ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-                ws.cell(row_num, col).alignment = Alignment(horizontal="left", wrap_text=True)
-            row_num += 1
+        ws.cell(row_num, 1, value=sinf)
+        ws.cell(row_num, 2, value=fan)
+        ws.cell(row_num, 3, value=chorak)
+        # Bob / Bo'lim ATAYLAB BO'SH — haqiqiy darslik tuzilishiga
+        # qarab qo'lda to'ldiriladi
+        ws.cell(row_num, 6, value=mavzu)
+        for col in range(1, 7):
+            ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
+            ws.cell(row_num, col).alignment = Alignment(horizontal="left", wrap_text=True)
+        row_num += 1
 
     for col, width in zip(range(1, 7), [6, 16, 8, 32, 32, 32]):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = width
