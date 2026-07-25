@@ -39,7 +39,7 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "yetim-kod-tekshiruvi-2026-07-26-v7"}
+    return {"versiya": "openpyxl-pin-va-optiona-fix-v9"}
 
 
 @app.get("/api/admin/rasm_diagnostika")
