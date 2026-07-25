@@ -619,9 +619,9 @@ def _qoshimcha_test_shartlari(rasimli: bool, vaqtli: bool, yozuvli: bool):
     shartlar = []
     params = []
     if rasimli is True:
-        shartlar.append("COALESCE(NULLIF(image_file_id, ''), image_url, '') != ''")
+        shartlar.append("(rasm_malumot IS NOT NULL OR COALESCE(NULLIF(image_file_id, ''), image_url, '') != '')")
     elif rasimli is False:
-        shartlar.append("COALESCE(NULLIF(image_file_id, ''), image_url, '') = ''")
+        shartlar.append("(rasm_malumot IS NULL AND COALESCE(NULLIF(image_file_id, ''), image_url, '') = '')")
     if vaqtli is True:
         shartlar.append("COALESCE(time_limit, 0) > 0")
     elif vaqtli is False:
@@ -713,7 +713,10 @@ def test_savollari(
     cur.execute(f"""
         SELECT id, question, option_a, option_b, option_c, option_d,
                question_type, is_latex, time_limit, difficulty,
-               COALESCE(NULLIF(image_file_id, ''), image_url) AS rasm_id
+               CASE
+                   WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
+                   ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
+               END AS rasm_id
         FROM generated_tests
         WHERE {shart}
         ORDER BY RANDOM()
@@ -771,7 +774,10 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
     cur.execute(f"""
         SELECT id, topic_code, question, option_a, option_b, option_c, option_d,
                question_type, is_latex, time_limit, difficulty,
-               COALESCE(NULLIF(image_file_id, ''), image_url) AS rasm_id
+               CASE
+                   WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
+                   ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
+               END AS rasm_id
         FROM generated_tests
         WHERE {shart}
         ORDER BY RANDOM()
@@ -9650,7 +9656,10 @@ def mavzu_rasmlari(token: str, topic_codes: str):
     conn = _db()
     cur = conn.cursor()
     cur.execute("""
-        SELECT DISTINCT COALESCE(NULLIF(image_file_id, ''), image_url) AS rasm_id
+        SELECT DISTINCT CASE
+                   WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
+                   ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
+               END AS rasm_id
         FROM generated_tests
         WHERE topic_code = ANY(%s) AND COALESCE(NULLIF(image_file_id, ''), image_url, '') != ''
     """, (kodlar,))
@@ -9912,7 +9921,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 # biriktiramiz (jimgina o'tkazib yubormasdan).
                 if rasm_bayt and not mavjud["rasm_malumot"]:
                     cur.execute(
-                        "UPDATE generated_tests SET rasm_malumot=%s, rasm_turi=%s, image_url=%s WHERE id=%s",
+                        "UPDATE generated_tests SET rasm_malumot=%s, rasm_turi=%s, image_url=%s, image_file_id=NULL WHERE id=%s",
                         (psycopg2.Binary(rasm_bayt), rasm_turi, f"/api/test_rasmi/{mavjud['id']}", mavjud["id"]),
                     )
                     conn.commit()
