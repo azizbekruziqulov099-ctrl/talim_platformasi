@@ -9793,6 +9793,22 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
+
+    # MUHIM TEKSHIRUV: fayldagi topic_code'lar dts_tree'da (Mavzular) haqiqatda
+    # mavjudmi — aks holda testlar "yetim" bo'lib qoladi: saqlanadi, lekin
+    # hech qanday mavzuga bog'lanmagani uchun o'quvchiga HECH QACHON ko'rinmaydi.
+    fayldagi_kodlar = set()
+    tc_ustun_raqami = headers.index("topic_code") + 1
+    for row in ws.iter_rows(min_row=2):
+        tc = row[tc_ustun_raqami - 1].value
+        if tc and str(tc).strip():
+            fayldagi_kodlar.add(str(tc).strip())
+    yetim_kodlar = []
+    if fayldagi_kodlar:
+        cur.execute("SELECT topic_code FROM dts_tree WHERE topic_code = ANY(%s) AND is_deleted=FALSE", (list(fayldagi_kodlar),))
+        mavjud_kodlar = {r["topic_code"] for r in cur.fetchall()}
+        yetim_kodlar = sorted(fayldagi_kodlar - mavjud_kodlar)
+
     saved = 0
     duplicates = 0
     errors = 0
@@ -9875,7 +9891,11 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
 
     cur.close()
     conn.close()
-    return {"saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq, "rasm_biriktirildi": rasm_biriktirildi}
+    return {
+        "saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq,
+        "rasm_biriktirildi": rasm_biriktirildi,
+        "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
+    }
 
 
 @app.get("/api/test_rasmi/{savol_id}")
