@@ -42,6 +42,37 @@ def versiya():
     return {"versiya": "yetim-kod-tekshiruvi-2026-07-26-v7"}
 
 
+@app.get("/api/admin/rasm_diagnostika")
+def rasm_diagnostika(token: str):
+    """Bazaning HAQIQIY holatini to'g'ridan-to'g'ri ko'rsatadi — import
+    ekrani/frontend bilan bog'liq bo'lmagan, to'g'ridan-to'g'ri
+    tekshiruv. So'nggi qo'shilgan 15 ta yozuvni AYNAN qanday
+    saqlanganini (rasm bor-yo'qligi, image_url qiymati) ko'rsatadi."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) AS jami FROM generated_tests")
+    jami = cur.fetchone()["jami"]
+    cur.execute("SELECT COUNT(*) AS soni FROM generated_tests WHERE rasm_malumot IS NOT NULL")
+    rasm_malumotli = cur.fetchone()["soni"]
+    cur.execute("SELECT COUNT(*) AS soni FROM generated_tests WHERE image_url IS NOT NULL AND image_url != ''")
+    image_urlli = cur.fetchone()["soni"]
+    cur.execute("""
+        SELECT id, topic_code, LEFT(question, 50) AS savol_qisqa,
+               (rasm_malumot IS NOT NULL) AS rasm_bormi, image_url
+        FROM generated_tests ORDER BY id DESC LIMIT 15
+    """)
+    songgi_yozuvlar = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {
+        "jami_testlar": jami,
+        "rasm_malumotli_soni": rasm_malumotli,
+        "image_urlli_soni": image_urlli,
+        "songgi_15_yozuv": songgi_yozuvlar,
+    }
+
+
 def _db():
     # MUHIM: avval bu yerda "ulanishlar havuzi" (connection pool)
     # bor edi, lekin u ORTIQCHA XAVFLI bo'lib chiqdi — agar biror
