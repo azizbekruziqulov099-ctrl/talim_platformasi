@@ -9523,7 +9523,11 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
 @app.post("/api/admin/shablon_import")
 async def shablon_import(token: str, fayl: UploadFile = File(...)):
     """To'ldirilgan Excel shablonni import qiladi — botning
-    import_tests_excel funksiyasidagi duplikat-tekshiruvi bilan bir xil."""
+    import_tests_excel funksiyasidagi duplikat-tekshiruvi bilan bir xil.
+    "image_url" ustuniga havola o'rniga rasmning O'ZI (Excel katakka
+    joylashtirilgan/qo'yilgan rasm) bo'lsa ham ishlaydi — o'sha qatorga
+    biriktirilgan rasm avtomatik topilib, bazaga saqlanadi va shu
+    savolning image_url'i o'sha rasmga ishora qiladigan qilib qo'yiladi."""
     _admin_tekshir(token)
     import openpyxl
     import io
@@ -9539,12 +9543,25 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     if "topic_code" not in headers:
         raise HTTPException(status_code=400, detail="Excel ustunlari mos emas — 'topic_code' topilmadi")
 
+    # Excel katagiga joylashtirilgan rasmlarni QATOR raqami bo'yicha
+    # xaritalaymiz — shu qatordagi savolga biriktirish uchun.
+    qator_rasmlari = {}  # {excel_qator_raqami (1-based): (bayt, format)}
+    for rasm in getattr(ws, "_images", []):
+        try:
+            qator_0based = rasm.anchor._from.row
+            qator_rasmlari[qator_0based + 1] = (rasm._data(), rasm.format or "png")
+        except Exception:
+            continue
+
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
+    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
+    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
     saved = 0
     duplicates = 0
     errors = 0
+    rasm_biriktirildi = 0
     kod_yoq = 0  # topic_code bo'sh bo'lgani uchun o'tkazib yuborilgan qatorlar
     # (masalan mavzu o'zi topic_code'siz — "bo'sh" holatda — yaratilgan bo'lsa)
 
@@ -9572,22 +9589,37 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 duplicates += 1
                 continue
 
+            qator_raqami = row[0].row  # shu qatorning Excel'dagi haqiqiy raqami
+            rasm_bayt, rasm_format = qator_rasmlari.get(qator_raqami, (None, None))
+            rasm_turi = f"image/{rasm_format}" if rasm_bayt else None
+            # image_url ustuniga rasm joylashtirilgan bo'lsa (yuqorida
+            # topilgan), o'sha ustundagi havolani E'TIBORGA OLMAYMIZ —
+            # rasmning o'zi ustuvor.
+            image_url_qiymati = None if rasm_bayt else d.get("image_url")
+
             cur.execute("""
                 INSERT INTO generated_tests
                 (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
                  correct_answer, explanation, question_type, is_latex, image_url, audio_text,
-                 language, life_level, age_group, time_limit, maqsad)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                 language, life_level, age_group, time_limit, maqsad, rasm_malumot, rasm_turi)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                RETURNING id
             """, (
                 tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
                 d.get("option_a"), d.get("option_b"), d.get("option_c"), d.get("option_d"),
                 d.get("correct_answer"), d.get("explanation"),
                 d.get("question_type") or "single_choice",
                 bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
-                d.get("image_url"), d.get("audio_text"), d.get("language") or "uz",
+                image_url_qiymati, d.get("audio_text"), d.get("language") or "uz",
                 d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
                 str(d.get("maqsad") or "oddiy").strip(),
+                psycopg2.Binary(rasm_bayt) if rasm_bayt else None, rasm_turi,
             ))
+            if rasm_bayt:
+                yangi_id = cur.fetchone()["id"]
+                cur.execute("UPDATE generated_tests SET image_url=%s WHERE id=%s",
+                            (f"/api/test_rasmi/{yangi_id}", yangi_id))
+                rasm_biriktirildi += 1
             conn.commit()
             saved += 1
         except Exception as e:
@@ -9596,7 +9628,23 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
 
     cur.close()
     conn.close()
-    return {"saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq}
+    return {"saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq, "rasm_biriktirildi": rasm_biriktirildi}
+
+
+@app.get("/api/test_rasmi/{savol_id}")
+def test_rasmi_korish(savol_id: int):
+    """Berilgan test savolining (Excel'dan import qilingan) rasmini
+    striming qiladi. Ochiq (token shart emas) — profil rasmga o'xshab,
+    oddiy statik kontent."""
+    conn = _db()
+    cur = conn.cursor()
+    cur.execute("SELECT rasm_malumot, rasm_turi FROM generated_tests WHERE id=%s", (savol_id,))
+    r = cur.fetchone()
+    cur.close()
+    conn.close()
+    if not r or not r["rasm_malumot"]:
+        raise HTTPException(status_code=404, detail="Rasm topilmadi")
+    return Response(content=bytes(r["rasm_malumot"]), media_type=r["rasm_turi"] or "image/png")
 
 
 # ═══════════════════════════════════════════════════════════
