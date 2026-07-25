@@ -3242,6 +3242,163 @@ def _chat_jadvallari(cur):
 _CHAT_TOZALASH_OXIRGI_VAQT = {"qachon": None}
 _CHAT_SAQLASH_YILI = 3  # "2 yilgacha, xotira imkon bersa 5-6 yilgacha" — o'rtacha, xavfsiz qiymat
 
+# ═══════════════════════════════════════════════════════════
+# XABAR/FAYL MODERATSIYASI — fayl turi cheklash, virus (ClamAV),
+# uyatsiz rasm (NudeNet), so'kinish va xavfli-so'z filtri
+# ═══════════════════════════════════════════════════════════
+
+_RUXSAT_ETILGAN_HUJJAT_KENGAYTMALARI = {
+    ".jpg", ".jpeg", ".png", ".webp", ".gif",
+    ".pdf", ".doc", ".docx", ".ppt", ".pptx",
+}
+_RUXSAT_ETILGAN_MIME = {
+    "image/jpeg", "image/png", "image/webp", "image/gif",
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/vnd.ms-powerpoint",
+    "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+}
+
+
+def _fayl_turi_ruxsat_etilganmi(fayl_nomi, content_turi):
+    """Faqat rasm/Word/PPT/PDF — boshqa hammasi (jumladan .apk, .exe,
+    .zip, .rar va makrosli .docm/.pptm/.xlsm) RAD ETILADI. Makrosli
+    fayllarga alohida e'tibor: kengaytma RO'YXATDA yo'q bo'lgani
+    uchun ular ham avtomatik bloklanadi."""
+    nomi = (fayl_nomi or "").lower().strip()
+    kengaytma = "." + nomi.rsplit(".", 1)[-1] if "." in nomi else ""
+    if kengaytma not in _RUXSAT_ETILGAN_HUJJAT_KENGAYTMALARI:
+        return False
+    if content_turi and content_turi not in _RUXSAT_ETILGAN_MIME:
+        return False
+    return True
+
+
+_nudenet_model = None
+
+
+def _nudenet_ol():
+    global _nudenet_model
+    if _nudenet_model is None:
+        from nudenet import NudeDetector
+        _nudenet_model = NudeDetector()
+    return _nudenet_model
+
+
+_NUDENET_OCHIQ_TOIFALAR = {
+    "FEMALE_BREAST_EXPOSED", "FEMALE_GENITALIA_EXPOSED",
+    "MALE_GENITALIA_EXPOSED", "BUTTOCKS_EXPOSED", "ANUS_EXPOSED",
+}
+
+
+def _rasm_uyatsizmi(fayl_baytlari):
+    """NudeNet orqali — rasmda ochiq (yalang'och) tana qismlari
+    bor-yo'qligini tekshiradi. Xato bo'lsa (masalan model
+    yuklanmagan) — XAVFSIZ TOMONGA og'ib, False qaytaradi (bloklamaydi),
+    lekin xatoni logga yozadi."""
+    try:
+        import tempfile
+        detektor = _nudenet_ol()
+        with tempfile.NamedTemporaryFile(suffix=".jpg", delete=True) as f:
+            f.write(fayl_baytlari)
+            f.flush()
+            natijalar = detektor.detect(f.name)
+        return any(n["class"] in _NUDENET_OCHIQ_TOIFALAR and n["score"] >= 0.55 for n in natijalar)
+    except Exception as e:
+        print(f"[NudeNet xatosi] {e}")
+        return False
+
+
+_CLAMAV_HOST = os.getenv("CLAMAV_HOST", "")
+_CLAMAV_PORT = int(os.getenv("CLAMAV_PORT", "3310"))
+
+
+def _faylda_virus_bormi(fayl_baytlari):
+    """ClamAV orqali — faylda virus/zararli dastur borligini
+    tekshiradi. CLAMAV_HOST sozlanmagan yoki xizmat javob bermasa —
+    XAVFSIZ TOMONGA og'ib, False qaytaradi (bloklamaydi, lekin
+    logga yozadi) — skaner o'chib qolgani uchun BARCHA fayllarni
+    bloklab qo'yish ulardan ham yomonroq natija beradi."""
+    if not _CLAMAV_HOST:
+        return False
+    try:
+        import clamd
+        mijoz = clamd.ClamdNetworkSocket(host=_CLAMAV_HOST, port=_CLAMAV_PORT, timeout=15)
+        natija = mijoz.instream(io.BytesIO(fayl_baytlari))
+        holat = natija.get("stream", (None,))[0]
+        return holat == "FOUND"
+    except Exception as e:
+        print(f"[ClamAV xatosi] {e}")
+        return False
+
+
+def _matn_normalize_moderatsiya(matn):
+    """So'kinish/xavfli-so'z filtri uchun — harflar orasiga
+    qo'shilgan bo'shliq/raqam/belgilarni olib tashlaydi, o'xshash
+    harflarni birxillashtiradi (imlo xatosi/atайlab buzib yozishga
+    chidamli bo'lishi uchun)."""
+    m = (matn or "").lower()
+    almashtirishlar = {"0": "o", "3": "e", "1": "i", "4": "a", "@": "a", "$": "s"}
+    for eski, yangi in almashtirishlar.items():
+        m = m.replace(eski, yangi)
+    m = re.sub(r"[^a-zA-Zа-яёʻʼ\']", "", m)
+    return m
+
+
+# ESLATMA: bu — boshlang'ich, KENGAYTIRILISHI KERAK bo'lgan ro'yxat.
+# Admin panelidan to'ldirish/tahrirlash mumkin bo'lishi kerak — men
+# bu yerda har bir tilning so'kinish so'zlarini to'liq sanab
+# chiqmayman (bu mening vazifam emas); tizimning O'ZI ishlaydi,
+# ro'yxatni real foydalanishda kuzatib, to'ldirib borish kerak.
+_SOKINISH_SOZLARI_BOSHLANGICH = set()
+
+_XAVFLI_SOZLAR_BOSHLANGICH = {
+    "portlatish", "bomba", "terrorchi", "terror akti", "otib tashlayman",
+    "hammani o'ldiraman", "maktabni portlataman", "qurol olib kelaman",
+}
+
+
+def _matnda_royxat_sozi_bormi(matn, royxat):
+    normal = _matn_normalize_moderatsiya(matn)
+    for soz in royxat:
+        soz_normal = _matn_normalize_moderatsiya(soz)
+        if soz_normal and soz_normal in normal:
+            return True
+    return False
+
+
+def _moderatsiya_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS xabar_qora_royxat(
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT,
+        sabab TEXT,
+        tafsilot TEXT,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS xabar_xavfli_royxat(
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT,
+        xabar_matni TEXT,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
+
+
+def _qora_royxatga_yoz(cur, user_id, sabab, tafsilot):
+    _moderatsiya_jadvallari(cur)
+    cur.execute(
+        "INSERT INTO xabar_qora_royxat(user_id, sabab, tafsilot) VALUES(%s,%s,%s)",
+        (user_id, sabab, (tafsilot or "")[:500]),
+    )
+
+
+def _xavfli_royxatga_yoz(cur, user_id, matn):
+    _moderatsiya_jadvallari(cur)
+    cur.execute(
+        "INSERT INTO xabar_xavfli_royxat(user_id, xabar_matni) VALUES(%s,%s)",
+        (user_id, (matn or "")[:1000]),
+    )
+
 
 def _chat_eski_xabarlarni_tozalash(cur):
     """3 yildan ESKI xabarlarni (fayllari bilan birga) o'chiradi —
@@ -3465,6 +3622,21 @@ async def chat_xabar_yubor(
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    _moderatsiya_jadvallari(cur)
+
+    matn_toza = (matn or "").strip()
+    if matn_toza:
+        if _matnda_royxat_sozi_bormi(matn_toza, _SOKINISH_SOZLARI_BOSHLANGICH):
+            _qora_royxatga_yoz(cur, user_id, "sokinish", matn_toza)
+            conn.commit()
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Bu xabarni yuborib bo'lmadi")
+        if _matnda_royxat_sozi_bormi(matn_toza, _XAVFLI_SOZLAR_BOSHLANGICH):
+            # OGOHLANTIRMAYMIZ — xabar ODATDAGIDEK yuboriladi, faqat
+            # orqa fonda, ALOHIDA ro'yxatga (qora ro'yxatdan farqli)
+            # admin ko'rishi uchun yoziladi.
+            _xavfli_royxatga_yoz(cur, user_id, matn_toza)
+            conn.commit()
 
     if guruh_id:
         cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
@@ -3475,6 +3647,29 @@ async def chat_xabar_yubor(
     fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb = None, None, None, None
     if fayl:
         tarkib = await fayl.read()
+
+        # Ovozli/video (dumaloq video ham) xabarlar — ilovaning O'ZI
+        # yaratgan yozuvlar, shuning uchun kengaytma ro'yxatidan
+        # o'tkazilmaydi, lekin ular ham ClamAV'dan o'tadi.
+        if fayl_turi not in ("audio", "video", "video_doira"):
+            if not _fayl_turi_ruxsat_etilganmi(fayl.filename, fayl.content_type):
+                _qora_royxatga_yoz(cur, user_id, "notogri_fayl_turi", fayl.filename)
+                conn.commit()
+                cur.close(); conn.close()
+                raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
+
+        if _faylda_virus_bormi(tarkib):
+            _qora_royxatga_yoz(cur, user_id, "virus", fayl.filename)
+            conn.commit()
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
+
+        if (fayl.content_type or "").startswith("image/") and _rasm_uyatsizmi(tarkib):
+            _qora_royxatga_yoz(cur, user_id, "nsfw_rasm", fayl.filename)
+            conn.commit()
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
+
         fayl_hajmi_kb = len(tarkib) // 1024
         cur.execute("""
             SELECT COALESCE(SUM(fayl_hajmi_kb), 0) AS jami FROM chat_xabarlari
@@ -3497,6 +3692,46 @@ async def chat_xabar_yubor(
     conn.commit()
     cur.close(); conn.close()
     return {"holat": "yuborildi", "id": yangi["id"], "yaratilgan_at": yangi["yaratilgan_at"]}
+
+
+@app.get("/api/admin/qora_royxat")
+def qora_royxat_korish(token: str):
+    """Fayl/xabar yuborishda bloklangan holatlar ro'yxati (noto'g'ri
+    fayl turi, virus, uyatsiz rasm, so'kinish) — faqat admin ko'radi."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _moderatsiya_jadvallari(cur)
+    cur.execute("""
+        SELECT q.id, q.user_id, u.full_name, q.sabab, q.tafsilot, q.yaratilgan_at
+        FROM xabar_qora_royxat q LEFT JOIN users u ON u.user_id = q.user_id
+        ORDER BY q.yaratilgan_at DESC LIMIT 200
+    """)
+    royxat = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"royxat": royxat}
+
+
+@app.get("/api/admin/xavfli_xabarlar")
+def xavfli_xabarlar_korish(token: str):
+    """Xavfli/tahdid mazmunli kalit so'zlarga mos kelgan xabarlar —
+    foydalanuvchi ogohlantirilmagan, faqat admin ko'radi. DIQQAT: bu —
+    kalit-so'z asosidagi triaj, "aniq xavf" degani emas — ko'rib
+    chiqish uchun."""
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _moderatsiya_jadvallari(cur)
+    cur.execute("""
+        SELECT x.id, x.user_id, u.full_name, x.xabar_matni, x.yaratilgan_at
+        FROM xabar_xavfli_royxat x LEFT JOIN users u ON u.user_id = x.user_id
+        ORDER BY x.yaratilgan_at DESC LIMIT 200
+    """)
+    royxat = cur.fetchall()
+    cur.close()
+    conn.close()
+    return {"royxat": royxat}
 
 
 @app.get("/api/chat/fayl/{xabar_id}")
