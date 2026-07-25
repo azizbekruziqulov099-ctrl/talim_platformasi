@@ -3,7 +3,7 @@ uvicorn
 psycopg2-binary
 httpx
 python-jose[cryptography]
-openpyxl
+openpyxl==3.1.5
 python-multipart
 edge-tts
 python-docx
