@@ -9815,18 +9815,30 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
             opt_a = str(d.get("option_a") or "").strip()
             correct = str(d.get("correct_answer") or "").strip()
 
-            cur.execute("""
-                SELECT 1 FROM generated_tests
-                WHERE topic_code=%s AND question=%s AND option_a=%s AND correct_answer=%s
-                LIMIT 1
-            """, (tc_s, q_s, opt_a, correct))
-            if cur.fetchone():
-                duplicates += 1
-                continue
-
             qator_raqami = row[0].row  # shu qatorning Excel'dagi haqiqiy raqami
             rasm_bayt, rasm_format = qator_rasmlari.get(qator_raqami, (None, None))
             rasm_turi = f"image/{rasm_format}" if rasm_bayt else None
+
+            cur.execute("""
+                SELECT id, rasm_malumot FROM generated_tests
+                WHERE topic_code=%s AND question=%s AND option_a=%s AND correct_answer=%s
+                LIMIT 1
+            """, (tc_s, q_s, opt_a, correct))
+            mavjud = cur.fetchone()
+            if mavjud:
+                # Savol allaqachon bor — lekin agar shu safar rasm topilgan
+                # bo'lsa-yu, eski yozuvda rasm bo'lmasa, RASMNI shu yerga
+                # biriktiramiz (jimgina o'tkazib yubormasdan).
+                if rasm_bayt and not mavjud["rasm_malumot"]:
+                    cur.execute(
+                        "UPDATE generated_tests SET rasm_malumot=%s, rasm_turi=%s, image_url=%s WHERE id=%s",
+                        (psycopg2.Binary(rasm_bayt), rasm_turi, f"/api/test_rasmi/{mavjud['id']}", mavjud["id"]),
+                    )
+                    conn.commit()
+                    rasm_biriktirildi += 1
+                duplicates += 1
+                continue
+
             # image_url ustuniga rasm joylashtirilgan bo'lsa (yuqorida
             # topilgan), o'sha ustundagi havolani E'TIBORGA OLMAYMIZ —
             # rasmning o'zi ustuvor.
