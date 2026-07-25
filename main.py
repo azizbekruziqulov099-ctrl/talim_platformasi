@@ -9812,11 +9812,16 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     # Excel katagiga joylashtirilgan rasmlarni QATOR raqami bo'yicha
     # xaritalaymiz — shu qatordagi savolga biriktirish uchun.
     qator_rasmlari = {}  # {excel_qator_raqami (1-based): (bayt, format)}
-    for rasm in getattr(ws, "_images", []):
+    xom_rasmlar = getattr(ws, "_images", [])
+    rasm_diagnostika_xatolari = []  # nima uchun rasm o'qib bo'lmadi — ko'ra olishimiz uchun
+    for rasm in xom_rasmlar:
         try:
             qator_0based = rasm.anchor._from.row
-            qator_rasmlari[qator_0based + 1] = (rasm._data(), rasm.format or "png")
-        except Exception:
+            bayt = rasm._data()
+            qator_rasmlari[qator_0based + 1] = (bayt, rasm.format or "png")
+        except Exception as e:
+            if len(rasm_diagnostika_xatolari) < 5:
+                rasm_diagnostika_xatolari.append(f"{type(e).__name__}: {e}")
             continue
 
     conn = _db()
@@ -9926,6 +9931,11 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
         "saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq,
         "rasm_biriktirildi": rasm_biriktirildi,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
+        "rasm_diagnostika": {
+            "excel_ichida_topilgan_rasm_soni": len(xom_rasmlar),
+            "qatorga_bogliy_qilingan_rasm_soni": len(qator_rasmlari),
+            "xatolar": rasm_diagnostika_xatolari,
+        },
     }
 
 
