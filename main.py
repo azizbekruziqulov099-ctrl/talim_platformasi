@@ -436,6 +436,245 @@ def yangi_royxat(sorov: RoyxatSorov):
     return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
 
 
+# ═══════════════════════════════════════════════════════════
+# TELEFON RAQAMI ORQALI KIRISH — SMS o'rniga, AVVAL Telegram bot
+# orqali (BEPUL) yuboradi; faqat telefon Telegram bilan bog'lanmagan
+# yoki yuborish muvaffaqiyatsiz bo'lsa, Eskiz.uz orqali SMS'ga
+# o'tadi (bu — pullik, ESKIZ_EMAIL/ESKIZ_PASSWORD sozlangan bo'lishi
+# kerak).
+# ═══════════════════════════════════════════════════════════
+
+def _telefon_jadvallari(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS telefon_hisob(
+        telefon TEXT PRIMARY KEY,
+        user_id BIGINT REFERENCES users(user_id)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS telefon_tasdiq_kod(
+        telefon TEXT PRIMARY KEY,
+        kod TEXT NOT NULL,
+        yaratildi TIMESTAMP DEFAULT NOW(),
+        ishlatildi BOOLEAN DEFAULT FALSE
+    )""")
+
+
+def _telefonni_normallashtir(telefon: str) -> str:
+    """+998901234567 formatiga keltiradi — foydalanuvchi qanday
+    yozishidan qat'i nazar (bo'shliq, tire, +998 bilan yoki
+    boshlanmagan) bir xil, izchil formatga tushiradi."""
+    raqamlar = re.sub(r"\D", "", telefon or "")
+    if raqamlar.startswith("998") and len(raqamlar) == 12:
+        return f"+{raqamlar}"
+    if len(raqamlar) == 9:
+        return f"+998{raqamlar}"
+    raise HTTPException(status_code=400, detail="Telefon raqami noto'g'ri — +998 bilan, 9 xonali (masalan +998901234567)")
+
+
+_ESKIZ_TOKEN_KESH = {"token": None, "olindi": None}
+
+
+def _eskiz_token_ol():
+    """Eskiz.uz token'ini oladi — 25 soatgacha keshda saqlaydi (token
+    30 kun amal qiladi, lekin xavfsiz tomondan qisqaroq keshlaymiz)."""
+    email = os.getenv("ESKIZ_EMAIL", "")
+    parol = os.getenv("ESKIZ_PASSWORD", "")
+    if not email or not parol:
+        return None
+    if _ESKIZ_TOKEN_KESH["token"] and _ESKIZ_TOKEN_KESH["olindi"] and \
+       (datetime.now() - _ESKIZ_TOKEN_KESH["olindi"]).total_seconds() < 25 * 3600:
+        return _ESKIZ_TOKEN_KESH["token"]
+    try:
+        with httpx.Client(timeout=10) as client:
+            r = client.post("https://notify.eskiz.uz/api/auth/login", data={"email": email, "password": parol})
+        r.raise_for_status()
+        token = r.json()["data"]["token"]
+        _ESKIZ_TOKEN_KESH["token"] = token
+        _ESKIZ_TOKEN_KESH["olindi"] = datetime.now()
+        return token
+    except Exception as e:
+        print(f"[Eskiz login xatosi] {e}")
+        return None
+
+
+def _sms_yubor(telefon: str, matn: str) -> bool:
+    token = _eskiz_token_ol()
+    if not token:
+        return False
+    try:
+        with httpx.Client(timeout=10) as client:
+            r = client.post(
+                "https://notify.eskiz.uz/api/message/sms/send",
+                headers={"Authorization": f"Bearer {token}"},
+                data={"mobile_phone": telefon.lstrip("+"), "message": matn, "from": "4546"},
+            )
+        return r.status_code == 200
+    except Exception as e:
+        print(f"[Eskiz SMS xatosi] {e}")
+        return False
+
+
+def _telegram_orqali_yubor(user_id: int, matn: str) -> bool:
+    """Telegram bot API orqali BEPUL xabar yuboradi — FAQAT foydalanuvchi
+    avvalroq botga /start bosgan bo'lsa ishlaydi (Telegram'ning o'zi
+    qo'ygan cheklov — bot birinchi bo'lib yoza olmaydi)."""
+    if not BOT_TOKEN:
+        return False
+    try:
+        with httpx.Client(timeout=10) as client:
+            r = client.post(
+                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                json={"chat_id": user_id, "text": matn},
+            )
+        return r.status_code == 200 and r.json().get("ok")
+    except Exception as e:
+        print(f"[Telegram yuborish xatosi] {e}")
+        return False
+
+
+class TelefonKodSorash(BaseModel):
+    telefon: str
+
+
+@app.post("/api/auth/telefon_kod_sorash")
+def telefon_kod_sorash(sorov: TelefonKodSorash):
+    """Tasdiqlash kodini yuboradi — AVVAL Telegram bot orqali (bepul,
+    agar telefon allaqachon botga ulangan bo'lsa), bo'lmasa Eskiz.uz
+    orqali SMS (pullik, sozlangan bo'lsa)."""
+    telefon = _telefonni_normallashtir(sorov.telefon)
+    kod = "".join(secrets.choice(string.digits) for _ in range(6))
+
+    conn = _db()
+    cur = conn.cursor()
+    _telefon_jadvallari(cur)
+    cur.execute(
+        """INSERT INTO telefon_tasdiq_kod(telefon, kod, yaratildi, ishlatildi) VALUES(%s,%s,NOW(),FALSE)
+           ON CONFLICT (telefon) DO UPDATE SET kod=EXCLUDED.kod, yaratildi=NOW(), ishlatildi=FALSE""",
+        (telefon, kod),
+    )
+    cur.execute("SELECT user_id FROM telefon_hisob WHERE telefon=%s", (telefon,))
+    r = cur.fetchone()
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    matn = f"SamTM Ta'lim — tasdiqlash kodingiz: {kod}. Kod 10 daqiqa amal qiladi."
+    usul = None
+    if r and r["user_id"] and _telegram_orqali_yubor(r["user_id"], matn):
+        usul = "telegram"
+    elif _sms_yubor(telefon, matn):
+        usul = "sms"
+
+    if not usul:
+        raise HTTPException(
+            status_code=503,
+            detail="Kod yuborib bo'lmadi — Telegram botga ulanmagansiz va SMS xizmati hali sozlanmagan. Google orqali kiring yoki administratorga murojaat qiling.",
+        )
+    return {"holat": "yuborildi", "usul": usul}
+
+
+class TelefonKodTasdiqlash(BaseModel):
+    telefon: str
+    kod: str
+
+
+@app.post("/api/auth/telefon_kod_tasdiqla")
+def telefon_kod_tasdiqla(sorov: TelefonKodTasdiqlash):
+    """Kodni tekshiradi. Telefon avvaldan ulangan bo'lsa — token beradi
+    (kirish). Ulanmagan (yangi) bo'lsa — "royxat_kerak" qaytaradi,
+    frontend keyin /api/auth/telefon_royxat orqali ism/rol so'raydi."""
+    telefon = _telefonni_normallashtir(sorov.telefon)
+    conn = _db()
+    cur = conn.cursor()
+    _telefon_jadvallari(cur)
+    cur.execute("""
+        SELECT kod, ishlatildi, (yaratildi > NOW() - INTERVAL '10 minutes') AS hali_yangi
+        FROM telefon_tasdiq_kod WHERE telefon=%s
+    """, (telefon,))
+    r = cur.fetchone()
+    if not r:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Avval kod so'rang")
+    if r["ishlatildi"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
+    if not r["hali_yangi"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod muddati tugagan — qaytadan so'rang")
+    if sorov.kod.strip() != r["kod"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
+
+    cur.execute("SELECT user_id FROM telefon_hisob WHERE telefon=%s", (telefon,))
+    hisob = cur.fetchone()
+    if hisob and hisob["user_id"]:
+        cur.execute("UPDATE telefon_tasdiq_kod SET ishlatildi=TRUE WHERE telefon=%s", (telefon,))
+        conn.commit()
+        cur.close(); conn.close()
+        token = _jwt_yarat(hisob["user_id"])
+        return {"holat": "kirdi", "token": token}
+
+    # Kod to'g'ri, lekin bu telefon hali hech qanday hisobga ulanmagan —
+    # "ishlatildi"ni ATAYLAB belgilamaymiz, chunki /telefon_royxat
+    # yakunida belgilaymiz (aks holda ro'yxatdan o'tish yarim qolsa,
+    # kod ishlatib bo'lingan deb hisoblanib qolardi).
+    cur.close(); conn.close()
+    return {"holat": "royxat_kerak"}
+
+
+class TelefonRoyxatSorov(BaseModel):
+    telefon: str
+    kod: str
+    ism: str
+    rol: str
+    sinf: Optional[str] = None
+    region: Optional[str] = None
+    district: Optional[str] = None
+
+
+@app.post("/api/auth/telefon_royxat")
+def telefon_royxat(sorov: TelefonRoyxatSorov):
+    """Telefon orqali YANGI hisob yaratadi — kodni QAYTA tekshiradi
+    (xavfsizlik: kim bo'lsa ham to'g'ridan-to'g'ri shu endpoint'ga
+    kod'siz murojaat qilib hisob ochib qo'ymasin)."""
+    if sorov.rol not in RUXSAT_ETILGAN_ROLLAR:
+        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.rol}")
+    if not sorov.ism.strip():
+        raise HTTPException(status_code=400, detail="Ism kiritilmagan")
+    telefon = _telefonni_normallashtir(sorov.telefon)
+
+    conn = _db()
+    cur = conn.cursor()
+    _telefon_jadvallari(cur)
+    cur.execute("""
+        SELECT kod, ishlatildi, (yaratildi > NOW() - INTERVAL '10 minutes') AS hali_yangi
+        FROM telefon_tasdiq_kod WHERE telefon=%s
+    """, (telefon,))
+    r = cur.fetchone()
+    if not r or r["ishlatildi"] or not r["hali_yangi"] or sorov.kod.strip() != r["kod"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kod tasdiqlanmagan yoki muddati tugagan — qaytadan boshlang")
+
+    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+    er = cur.fetchone()
+    yangi_id = (er["eng_kichik"] - 1) if er and er["eng_kichik"] is not None else -1
+    cur.execute(
+        """INSERT INTO users(user_id, full_name, role, class, region, district)
+           VALUES(%s,%s,%s,%s,%s,%s)""",
+        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None,
+         sorov.region, sorov.district),
+    )
+    cur.execute("""
+        INSERT INTO telefon_hisob(telefon, user_id) VALUES(%s,%s)
+        ON CONFLICT (telefon) DO UPDATE SET user_id=EXCLUDED.user_id
+    """, (telefon, yangi_id))
+    cur.execute("UPDATE telefon_tasdiq_kod SET ishlatildi=TRUE WHERE telefon=%s", (telefon,))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    token = _jwt_yarat(yangi_id)
+    return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
+
+
 @app.post("/auth/ulash")
 def hisob_ulash(sorov: UlashSorov):
     """Google hisobini bot user_id'siga kod orqali bog'laydi. Ikki xil
@@ -987,6 +1226,13 @@ _TIL_OVOZLARI = {
     "en": {"qiz": "en-US-JennyNeural", "ogil": "en-US-GuyNeural"},
     "ru": {"qiz": "ru-RU-SvetlanaNeural", "ogil": "ru-RU-DmitryNeural"},
     "de": {"qiz": "de-DE-KatjaNeural", "ogil": "de-DE-ConradNeural"},
+    "fr": {"qiz": "fr-FR-DeniseNeural", "ogil": "fr-FR-HenriNeural"},
+    "es": {"qiz": "es-ES-ElviraNeural", "ogil": "es-ES-AlvaroNeural"},
+    "ar": {"qiz": "ar-EG-SalmaNeural", "ogil": "ar-EG-ShakirNeural"},
+    "tr": {"qiz": "tr-TR-EmelNeural", "ogil": "tr-TR-AhmetNeural"},
+    "zh": {"qiz": "zh-CN-XiaoxiaoNeural", "ogil": "zh-CN-YunxiNeural"},
+    "ja": {"qiz": "ja-JP-NanamiNeural", "ogil": "ja-JP-KeitaNeural"},
+    "ko": {"qiz": "ko-KR-SunHiNeural", "ogil": "ko-KR-InJoonNeural"},
 }
 
 # ── Ovoz uchun matnni tayyorlash — botdagi ovoz.py bilan bir xil qoidalar ──
@@ -1126,6 +1372,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     m = _apostrofni_tuzat(m)
     m = _c_va_w_tuzat(m)
     m = re.sub(r"<[^>]+>", " ", m)
+    m = re.sub(r"_{2,}", " bo'sh joy ", m)  # "___" (bo'sh joy) — "pastki chiziq" deb o'qilmasin
     m = re.sub(r"[_`#]+", "", m)  # * ni bu yerda OLIB TASHLAMAYMIZ — pastda MATH_MAP "ko'paytiruv"ga o'giradi
     m = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", " ", m)
     m = re.sub(r"https?://\S+", " havola ", m)
@@ -1145,7 +1392,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
         soz = _son_soz(n).split()
         soz[-1] = _TARTIB.get(soz[-1], soz[-1] + "inchi")
         return f"{' '.join(soz)} {x.group(2)}"
-    m = re.sub(r"\b(\d{1,4})-(sinf|mashq|dars|savol|misol|bob|bet|mavzu|qism)\b", _t, m, flags=re.I)
+    m = re.sub(r"\b(\d{1,4})-(sinf|mashq|dars|savol|misol|bob|bet|mavzu|qism|topshiriq)\b", _t, m, flags=re.I)
 
     # 3,5 -> uch butun besh
     def _b(x):
@@ -1177,7 +1424,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     return m.strip(" ,.")
 
 
-_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru|de)\](.*?)\[/\1\]", re.S | re.I)
+_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru|de|fr|es|ar|tr|zh|ja|ko)\](.*?)\[/\1\]", re.S | re.I)
 
 
 def _ovoz_qismlarga_bol(matn: str):
@@ -10895,7 +11142,13 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
     qiladi. "Topic code" ustuni bo'sh bo'lsa — botning O'ZI ishlatadigan
     ICHMA-ICH (fan→bob→bo'lim→mavzu→kichik mavzu) kod hisoblash mantig'i
     orqali AVTOMATIK yaratiladi (hech qachon bo'sh qolmaydi); to'ldirilgan
-    bo'lsa — AYNAN o'sha kod bilan saqlanadi (mavjud mavzuni yangilash uchun)."""
+    bo'lsa — AYNAN o'sha kod bilan saqlanadi (mavjud mavzuni yangilash uchun).
+
+    MUHIM: fayldagi BARCHA varaqlar tekshiriladi — nafaqat "MALUMOT"
+    yoki birinchi (active) varaq. Shu orqali bitta faylga bir nechta
+    varaq (masalan har biri boshqa fan uchun) qo'shib, hammasini
+    BIR YO'LA import qilish mumkin. Mos formatga ega bo'lmagan
+    varaqlar (masalan "IZOH") avtomatik o'tkazib yuboriladi."""
     _admin_tekshir(token)
     import openpyxl
     import io
@@ -10905,67 +11158,82 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
         wb = openpyxl.load_workbook(io.BytesIO(content))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
-    ws = wb["MALUMOT"] if "MALUMOT" in wb.sheetnames else wb.active
-
-    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
-    # Eski (DTS_SHABLON) va yangi (MALUMOT) formatlarini ikkalasini ham qo'llab-quvvatlaymiz
-    eski_format = "Sinf" in headers and headers[0] == "Sinf"
 
     conn = _db()
     cur = conn.cursor()
     added, updated, skipped = 0, 0, 0
-    xato_namunalari = []  # ["3-qator (Mavzu nomi): xato matni", ...] — ko'pi bilan 10 ta
+    xato_namunalari = []  # ["Fizika varag'i, 3-qator (Mavzu nomi): xato matni", ...] — ko'pi bilan 10 ta
+    tekshirilgan_varoqlar = []  # qaysi varaqlardan mavzu topilgani (diagnostika uchun)
 
-    for r in range(2, ws.max_row + 1):
-        if eski_format:
-            berilgan_kod = None
-            sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(1, 8))
-        else:
-            berilgan_kod = ws.cell(r, 2).value
-            sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(3, 10))
-
-        if not sinf or not mavzu:
+    for varoq_nomi in wb.sheetnames:
+        ws = wb[varoq_nomi]
+        if ws.max_row < 2:
             continue
+        headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
+        eski_format = "Sinf" in headers and headers[0] == "Sinf"
+        yangi_format = "Fan" in headers and "Mavzu" in headers
+        if not eski_format and not yangi_format:
+            continue  # bu varaq mos formatga ega emas (masalan "IZOH") — o'tkazib yuboramiz
 
-        if berilgan_kod and str(berilgan_kod).strip():
-            # ANIQ kod berilgan — mavjud mavzuni YANGILASH (nomlarini
-            # yangilaydi, kodini o'zgartirmaydi)
-            topic_code = str(berilgan_kod).strip()
-            try:
-                cur.execute("""
-                    INSERT INTO dts_tree
-                    (topic_code, grade, subject_name, quarter,
-                     bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
-                    ON CONFLICT (topic_code) DO UPDATE SET
-                        bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
-                        kichik_name = EXCLUDED.kichik_name
-                """, (
-                    topic_code, str(sinf), str(fan) if fan else "",
-                    str(chorak) if chorak else "1", str(bob) if bob else "",
-                    str(bolim) if bolim else "", str(mavzu) if mavzu else "",
-                    str(kichik) if kichik else "",
-                ))
-                conn.commit()
-                updated += 1
-            except Exception as e:
-                conn.rollback()
-                skipped += 1
-                if len(xato_namunalari) < 10:
-                    xato_namunalari.append(f"{r}-qator ({mavzu}): {e}")
-        else:
-            # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
-            # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
-            try:
-                _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
-                conn.commit()
-                added += 1
-            except Exception as e:
-                conn.rollback()
-                skipped += 1
-                if len(xato_namunalari) < 10:
-                    xato_namunalari.append(f"{r}-qator ({mavzu}): {e}")
+        varoq_qoshildi = 0
+        for r in range(2, ws.max_row + 1):
+            if eski_format:
+                berilgan_kod = None
+                sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(1, 8))
+            else:
+                berilgan_kod = ws.cell(r, 2).value
+                sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(3, 10))
+
+            if not sinf or not mavzu:
+                continue
+
+            if berilgan_kod and str(berilgan_kod).strip():
+                # ANIQ kod berilgan — mavjud mavzuni YANGILASH (nomlarini
+                # yangilaydi, kodini o'zgartirmaydi)
+                topic_code = str(berilgan_kod).strip()
+                try:
+                    cur.execute("""
+                        INSERT INTO dts_tree
+                        (topic_code, grade, subject_name, quarter,
+                         bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+                        ON CONFLICT (topic_code) DO UPDATE SET
+                            bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
+                            kichik_name = EXCLUDED.kichik_name
+                    """, (
+                        topic_code, str(sinf), str(fan) if fan else "",
+                        str(chorak) if chorak else "1", str(bob) if bob else "",
+                        str(bolim) if bolim else "", str(mavzu) if mavzu else "",
+                        str(kichik) if kichik else "",
+                    ))
+                    conn.commit()
+                    updated += 1
+                    varoq_qoshildi += 1
+                except Exception as e:
+                    conn.rollback()
+                    skipped += 1
+                    if len(xato_namunalari) < 10:
+                        xato_namunalari.append(f"{varoq_nomi}, {r}-qator ({mavzu}): {e}")
+            else:
+                # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
+                # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
+                try:
+                    _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
+                    conn.commit()
+                    added += 1
+                    varoq_qoshildi += 1
+                except Exception as e:
+                    conn.rollback()
+                    skipped += 1
+                    if len(xato_namunalari) < 10:
+                        xato_namunalari.append(f"{varoq_nomi}, {r}-qator ({mavzu}): {e}")
+
+        if varoq_qoshildi > 0:
+            tekshirilgan_varoqlar.append({"nomi": varoq_nomi, "mavzu_soni": varoq_qoshildi})
 
     cur.close()
     conn.close()
-    return {"added": added, "updated": updated, "skipped": skipped, "xato_namunalari": xato_namunalari}
+    return {
+        "added": added, "updated": updated, "skipped": skipped, "xato_namunalari": xato_namunalari,
+        "varoqlar": tekshirilgan_varoqlar,
+    }
