@@ -986,6 +986,7 @@ EDGE_OVOZ = {
 _TIL_OVOZLARI = {
     "en": {"qiz": "en-US-JennyNeural", "ogil": "en-US-GuyNeural"},
     "ru": {"qiz": "ru-RU-SvetlanaNeural", "ogil": "ru-RU-DmitryNeural"},
+    "de": {"qiz": "de-DE-KatjaNeural", "ogil": "de-DE-ConradNeural"},
 }
 
 # ── Ovoz uchun matnni tayyorlash — botdagi ovoz.py bilan bir xil qoidalar ──
@@ -1176,7 +1177,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     return m.strip(" ,.")
 
 
-_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru)\](.*?)\[/\1\]", re.S | re.I)
+_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru|de)\](.*?)\[/\1\]", re.S | re.I)
 
 
 def _ovoz_qismlarga_bol(matn: str):
