@@ -10486,10 +10486,12 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     conn.close()
 
     wb = openpyxl.Workbook()
+    wb.remove(wb.active)  # standart bo'sh varaqni olib tashlaymiz, o'zimiz pastda yaratamiz
 
-    # ═══ 1) TESTLAR — to'ldiriladigan savollar ═══
-    ws = wb.active
-    ws.title = "TESTLAR"
+    # ═══ 1) TESTLAR — to'ldiriladigan savollar. Agar tanlangan mavzular
+    # BIR NECHTA FANGA tegishli bo'lsa — HAR FAN uchun ALOHIDA varaq
+    # yaratiladi (masalan "TESTLAR_Matematika", "TESTLAR_Fizika"),
+    # shunda bitta faylda bir nechta fanni bir yo'la to'ldirish mumkin.
     testlar_ustunlari = [
         "topic_code", "difficulty", "situation", "question",
         "option_a", "option_b", "option_c", "option_d",
@@ -10498,42 +10500,63 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     ]
     diff_colors = {"oson": "E2EFDA", "o'rta": "FFF2CC", "qiyin": "FCE4D6", "murakkab": "F2CEEF"}
 
-    for col, h in enumerate(testlar_ustunlari, 1):
-        cell = ws.cell(1, col, h)
-        cell.font = Font(bold=True, color="FFFFFF")
-        cell.fill = PatternFill("solid", fgColor="4472C4")
-        cell.alignment = Alignment(horizontal="center")
-
-    rasm_qatorlari = []  # (image_id, topic_code) — RASM_MALUMOTI uchun
-    row_num = 2
+    fan_guruhlari = {}  # {fan_nomi: [topic_code, ...]} — kiritilgan tartibda
     for kod in kodlar:
-        info = tc_map.get(kod)
-        grade = str(info["grade"]) if info else ""
-        age_group = _YOSH_GURUHI.get(grade, "")
-        for g in guruhlar:
-            color = diff_colors.get(g.diff, "F2F2F2")
-            for i in range(1, g.soni + 1):
-                image_id = f"{kod}-{i}"
-                ws.cell(row_num, 1, kod)
-                ws.cell(row_num, 2, g.diff)
-                ws.cell(row_num, 3, "oddiy")
-                ws.cell(row_num, 11, g.turi)
-                ws.cell(row_num, 12, False)
-                ws.cell(row_num, 13, image_id)
-                ws.cell(row_num, 15, "uz")
-                ws.cell(row_num, 16, 1)
-                ws.cell(row_num, 17, age_group)
-                ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
-                ws.cell(row_num, 19, sorov.maqsad)
-                for col in range(1, len(testlar_ustunlari) + 1):
-                    ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-                    ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
-                rasm_qatorlari.append((image_id, kod))
-                row_num += 1
+        fan_nomi = (tc_map.get(kod) or {}).get("subject_name") or "Umumiy"
+        fan_guruhlari.setdefault(fan_nomi, []).append(kod)
+    kop_fanli = len(fan_guruhlari) > 1
 
-    widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10, 14]
-    for col, w in enumerate(widths, 1):
-        ws.column_dimensions[ws.cell(1, col).column_letter].width = w
+    rasm_qatorlari = []  # (image_id, topic_code) — RASM_MALUMOTI uchun, BARCHA fanlar bo'ylab umumiy
+    ishlatilgan_varoq_nomlari = set()
+    for fan_nomi, fan_kodlari in fan_guruhlari.items():
+        if kop_fanli:
+            xom_nom = f"TESTLAR_{re.sub(r'[^0-9A-Za-zА-Яа-яЎўҚқҒғҲҳ ]', '', fan_nomi)}".strip()
+            varoq_nomi = xom_nom[:31] or "TESTLAR"
+            # Excel'da bir xil nomli varaq bo'lishi mumkin emas — takrorlansa, raqam qo'shamiz
+            asl_varoq_nomi, sanoq = varoq_nomi, 1
+            while varoq_nomi in ishlatilgan_varoq_nomlari:
+                sanoq += 1
+                varoq_nomi = f"{asl_varoq_nomi[:28]}_{sanoq}"
+        else:
+            varoq_nomi = "TESTLAR"
+        ishlatilgan_varoq_nomlari.add(varoq_nomi)
+        ws = wb.create_sheet(varoq_nomi)
+
+        for col, h in enumerate(testlar_ustunlari, 1):
+            cell = ws.cell(1, col, h)
+            cell.font = Font(bold=True, color="FFFFFF")
+            cell.fill = PatternFill("solid", fgColor="4472C4")
+            cell.alignment = Alignment(horizontal="center")
+
+        row_num = 2
+        for kod in fan_kodlari:
+            info = tc_map.get(kod)
+            grade = str(info["grade"]) if info else ""
+            age_group = _YOSH_GURUHI.get(grade, "")
+            for g in guruhlar:
+                color = diff_colors.get(g.diff, "F2F2F2")
+                for i in range(1, g.soni + 1):
+                    image_id = f"{kod}-{i}"
+                    ws.cell(row_num, 1, kod)
+                    ws.cell(row_num, 2, g.diff)
+                    ws.cell(row_num, 3, "oddiy")
+                    ws.cell(row_num, 11, g.turi)
+                    ws.cell(row_num, 12, False)
+                    ws.cell(row_num, 13, image_id)
+                    ws.cell(row_num, 15, "uz")
+                    ws.cell(row_num, 16, 1)
+                    ws.cell(row_num, 17, age_group)
+                    ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
+                    ws.cell(row_num, 19, sorov.maqsad)
+                    for col in range(1, len(testlar_ustunlari) + 1):
+                        ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
+                        ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
+                    rasm_qatorlari.append((image_id, kod))
+                    row_num += 1
+
+        widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10, 14]
+        for col, w in enumerate(widths, 1):
+            ws.column_dimensions[ws.cell(1, col).column_letter].width = w
 
     # ═══ 2) MALUMOT — tanlangan mavzular haqida (faqat nazorat uchun, o'zgartirmang) ═══
     ws2 = wb.create_sheet("MALUMOT")
