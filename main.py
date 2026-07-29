@@ -39,7 +39,7 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "openpyxl-pin-va-optiona-fix-v9"}
+    return {"versiya": "rasm-import-tuzatildi-2026-07-26-v8"}
 
 
 @app.get("/api/admin/rasm_diagnostika")
@@ -71,59 +71,6 @@ def rasm_diagnostika(token: str):
         "image_urlli_soni": image_urlli,
         "songgi_15_yozuv": songgi_yozuvlar,
     }
-
-
-@app.get("/api/admin/mavzu_kod_moslik")
-def mavzu_kod_moslik(token: str, sinf: str, fan: str):
-    """"Mavzular" ekranida "Test yo'q" ko'rinsa-yu, aslida test import
-    qilingan bo'lsa — buning sababini TO'G'RIDAN-TO'G'RI ko'rsatadi:
-    dts_tree'dagi (Mavzular) HAR BIR kichik-darajadagi topic_code'ni,
-    generated_tests'dagi (Testlar) HAR BIR topic_code bilan yonma-yon
-    solishtiradi — ikkalasida ham bor, faqat dts_tree'da bor, yoki
-    faqat generated_tests'da bor (ya'ni "yetim" test) — HAMMASI
-    ochiq-oydin ko'rinadi."""
-    _admin_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""
-        SELECT topic_code, bob_name, bolim_name, mavzu_name, kichik_name
-        FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE
-        ORDER BY topic_code
-    """, (sinf, fan))
-    dts_qatorlar = cur.fetchall()
-    dts_kodlari = {r["topic_code"] for r in dts_qatorlar}
-
-    # generated_tests'da shu sinf+fan PREFIKSI bilan boshlanadigan
-    # (masalan "5-03-") barcha topic_code'lar — dts_tree'da bormi-yo'qmi,
-    # ikkalasi ham.
-    cur.execute("SELECT subject_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) LIMIT 1", (sinf, fan))
-    r = cur.fetchone()
-    prefiks = f"{sinf}-{r['subject_code']}-" if r else None
-
-    testli_kodlar = {}
-    if prefiks:
-        cur.execute("""
-            SELECT topic_code, COUNT(*) AS soni FROM generated_tests
-            WHERE topic_code LIKE %s GROUP BY topic_code
-        """, (f"{prefiks}%",))
-        testli_kodlar = {r["topic_code"]: r["soni"] for r in cur.fetchall()}
-
-    natija = []
-    for r in dts_qatorlar:
-        natija.append({
-            "topic_code": r["topic_code"],
-            "mavzu_nomi": r["mavzu_name"] or r["kichik_name"] or r["bolim_name"] or r["bob_name"],
-            "dts_tree_da_bormi": True,
-            "test_soni": testli_kodlar.get(r["topic_code"], 0),
-        })
-    yetim_testlar = [
-        {"topic_code": kod, "test_soni": soni, "dts_tree_da_bormi": False}
-        for kod, soni in testli_kodlar.items() if kod not in dts_kodlari
-    ]
-
-    cur.close()
-    conn.close()
-    return {"prefiks": prefiks, "mavzular": natija, "yetim_testlar": yetim_testlar}
 
 
 def _db():
@@ -436,245 +383,6 @@ def yangi_royxat(sorov: RoyxatSorov):
     return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
 
 
-# ═══════════════════════════════════════════════════════════
-# TELEFON RAQAMI ORQALI KIRISH — SMS o'rniga, AVVAL Telegram bot
-# orqali (BEPUL) yuboradi; faqat telefon Telegram bilan bog'lanmagan
-# yoki yuborish muvaffaqiyatsiz bo'lsa, Eskiz.uz orqali SMS'ga
-# o'tadi (bu — pullik, ESKIZ_EMAIL/ESKIZ_PASSWORD sozlangan bo'lishi
-# kerak).
-# ═══════════════════════════════════════════════════════════
-
-def _telefon_jadvallari(cur):
-    cur.execute("""CREATE TABLE IF NOT EXISTS telefon_hisob(
-        telefon TEXT PRIMARY KEY,
-        user_id BIGINT REFERENCES users(user_id)
-    )""")
-    cur.execute("""CREATE TABLE IF NOT EXISTS telefon_tasdiq_kod(
-        telefon TEXT PRIMARY KEY,
-        kod TEXT NOT NULL,
-        yaratildi TIMESTAMP DEFAULT NOW(),
-        ishlatildi BOOLEAN DEFAULT FALSE
-    )""")
-
-
-def _telefonni_normallashtir(telefon: str) -> str:
-    """+998901234567 formatiga keltiradi — foydalanuvchi qanday
-    yozishidan qat'i nazar (bo'shliq, tire, +998 bilan yoki
-    boshlanmagan) bir xil, izchil formatga tushiradi."""
-    raqamlar = re.sub(r"\D", "", telefon or "")
-    if raqamlar.startswith("998") and len(raqamlar) == 12:
-        return f"+{raqamlar}"
-    if len(raqamlar) == 9:
-        return f"+998{raqamlar}"
-    raise HTTPException(status_code=400, detail="Telefon raqami noto'g'ri — +998 bilan, 9 xonali (masalan +998901234567)")
-
-
-_ESKIZ_TOKEN_KESH = {"token": None, "olindi": None}
-
-
-def _eskiz_token_ol():
-    """Eskiz.uz token'ini oladi — 25 soatgacha keshda saqlaydi (token
-    30 kun amal qiladi, lekin xavfsiz tomondan qisqaroq keshlaymiz)."""
-    email = os.getenv("ESKIZ_EMAIL", "")
-    parol = os.getenv("ESKIZ_PASSWORD", "")
-    if not email or not parol:
-        return None
-    if _ESKIZ_TOKEN_KESH["token"] and _ESKIZ_TOKEN_KESH["olindi"] and \
-       (datetime.now() - _ESKIZ_TOKEN_KESH["olindi"]).total_seconds() < 25 * 3600:
-        return _ESKIZ_TOKEN_KESH["token"]
-    try:
-        with httpx.Client(timeout=10) as client:
-            r = client.post("https://notify.eskiz.uz/api/auth/login", data={"email": email, "password": parol})
-        r.raise_for_status()
-        token = r.json()["data"]["token"]
-        _ESKIZ_TOKEN_KESH["token"] = token
-        _ESKIZ_TOKEN_KESH["olindi"] = datetime.now()
-        return token
-    except Exception as e:
-        print(f"[Eskiz login xatosi] {e}")
-        return None
-
-
-def _sms_yubor(telefon: str, matn: str) -> bool:
-    token = _eskiz_token_ol()
-    if not token:
-        return False
-    try:
-        with httpx.Client(timeout=10) as client:
-            r = client.post(
-                "https://notify.eskiz.uz/api/message/sms/send",
-                headers={"Authorization": f"Bearer {token}"},
-                data={"mobile_phone": telefon.lstrip("+"), "message": matn, "from": "4546"},
-            )
-        return r.status_code == 200
-    except Exception as e:
-        print(f"[Eskiz SMS xatosi] {e}")
-        return False
-
-
-def _telegram_orqali_yubor(user_id: int, matn: str) -> bool:
-    """Telegram bot API orqali BEPUL xabar yuboradi — FAQAT foydalanuvchi
-    avvalroq botga /start bosgan bo'lsa ishlaydi (Telegram'ning o'zi
-    qo'ygan cheklov — bot birinchi bo'lib yoza olmaydi)."""
-    if not BOT_TOKEN:
-        return False
-    try:
-        with httpx.Client(timeout=10) as client:
-            r = client.post(
-                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                json={"chat_id": user_id, "text": matn},
-            )
-        return r.status_code == 200 and r.json().get("ok")
-    except Exception as e:
-        print(f"[Telegram yuborish xatosi] {e}")
-        return False
-
-
-class TelefonKodSorash(BaseModel):
-    telefon: str
-
-
-@app.post("/api/auth/telefon_kod_sorash")
-def telefon_kod_sorash(sorov: TelefonKodSorash):
-    """Tasdiqlash kodini yuboradi — AVVAL Telegram bot orqali (bepul,
-    agar telefon allaqachon botga ulangan bo'lsa), bo'lmasa Eskiz.uz
-    orqali SMS (pullik, sozlangan bo'lsa)."""
-    telefon = _telefonni_normallashtir(sorov.telefon)
-    kod = "".join(secrets.choice(string.digits) for _ in range(6))
-
-    conn = _db()
-    cur = conn.cursor()
-    _telefon_jadvallari(cur)
-    cur.execute(
-        """INSERT INTO telefon_tasdiq_kod(telefon, kod, yaratildi, ishlatildi) VALUES(%s,%s,NOW(),FALSE)
-           ON CONFLICT (telefon) DO UPDATE SET kod=EXCLUDED.kod, yaratildi=NOW(), ishlatildi=FALSE""",
-        (telefon, kod),
-    )
-    cur.execute("SELECT user_id FROM telefon_hisob WHERE telefon=%s", (telefon,))
-    r = cur.fetchone()
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    matn = f"SamTM Ta'lim — tasdiqlash kodingiz: {kod}. Kod 10 daqiqa amal qiladi."
-    usul = None
-    if r and r["user_id"] and _telegram_orqali_yubor(r["user_id"], matn):
-        usul = "telegram"
-    elif _sms_yubor(telefon, matn):
-        usul = "sms"
-
-    if not usul:
-        raise HTTPException(
-            status_code=503,
-            detail="Kod yuborib bo'lmadi — Telegram botga ulanmagansiz va SMS xizmati hali sozlanmagan. Google orqali kiring yoki administratorga murojaat qiling.",
-        )
-    return {"holat": "yuborildi", "usul": usul}
-
-
-class TelefonKodTasdiqlash(BaseModel):
-    telefon: str
-    kod: str
-
-
-@app.post("/api/auth/telefon_kod_tasdiqla")
-def telefon_kod_tasdiqla(sorov: TelefonKodTasdiqlash):
-    """Kodni tekshiradi. Telefon avvaldan ulangan bo'lsa — token beradi
-    (kirish). Ulanmagan (yangi) bo'lsa — "royxat_kerak" qaytaradi,
-    frontend keyin /api/auth/telefon_royxat orqali ism/rol so'raydi."""
-    telefon = _telefonni_normallashtir(sorov.telefon)
-    conn = _db()
-    cur = conn.cursor()
-    _telefon_jadvallari(cur)
-    cur.execute("""
-        SELECT kod, ishlatildi, (yaratildi > NOW() - INTERVAL '10 minutes') AS hali_yangi
-        FROM telefon_tasdiq_kod WHERE telefon=%s
-    """, (telefon,))
-    r = cur.fetchone()
-    if not r:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Avval kod so'rang")
-    if r["ishlatildi"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
-    if not r["hali_yangi"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod muddati tugagan — qaytadan so'rang")
-    if sorov.kod.strip() != r["kod"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
-
-    cur.execute("SELECT user_id FROM telefon_hisob WHERE telefon=%s", (telefon,))
-    hisob = cur.fetchone()
-    if hisob and hisob["user_id"]:
-        cur.execute("UPDATE telefon_tasdiq_kod SET ishlatildi=TRUE WHERE telefon=%s", (telefon,))
-        conn.commit()
-        cur.close(); conn.close()
-        token = _jwt_yarat(hisob["user_id"])
-        return {"holat": "kirdi", "token": token}
-
-    # Kod to'g'ri, lekin bu telefon hali hech qanday hisobga ulanmagan —
-    # "ishlatildi"ni ATAYLAB belgilamaymiz, chunki /telefon_royxat
-    # yakunida belgilaymiz (aks holda ro'yxatdan o'tish yarim qolsa,
-    # kod ishlatib bo'lingan deb hisoblanib qolardi).
-    cur.close(); conn.close()
-    return {"holat": "royxat_kerak"}
-
-
-class TelefonRoyxatSorov(BaseModel):
-    telefon: str
-    kod: str
-    ism: str
-    rol: str
-    sinf: Optional[str] = None
-    region: Optional[str] = None
-    district: Optional[str] = None
-
-
-@app.post("/api/auth/telefon_royxat")
-def telefon_royxat(sorov: TelefonRoyxatSorov):
-    """Telefon orqali YANGI hisob yaratadi — kodni QAYTA tekshiradi
-    (xavfsizlik: kim bo'lsa ham to'g'ridan-to'g'ri shu endpoint'ga
-    kod'siz murojaat qilib hisob ochib qo'ymasin)."""
-    if sorov.rol not in RUXSAT_ETILGAN_ROLLAR:
-        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.rol}")
-    if not sorov.ism.strip():
-        raise HTTPException(status_code=400, detail="Ism kiritilmagan")
-    telefon = _telefonni_normallashtir(sorov.telefon)
-
-    conn = _db()
-    cur = conn.cursor()
-    _telefon_jadvallari(cur)
-    cur.execute("""
-        SELECT kod, ishlatildi, (yaratildi > NOW() - INTERVAL '10 minutes') AS hali_yangi
-        FROM telefon_tasdiq_kod WHERE telefon=%s
-    """, (telefon,))
-    r = cur.fetchone()
-    if not r or r["ishlatildi"] or not r["hali_yangi"] or sorov.kod.strip() != r["kod"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod tasdiqlanmagan yoki muddati tugagan — qaytadan boshlang")
-
-    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
-    er = cur.fetchone()
-    yangi_id = (er["eng_kichik"] - 1) if er and er["eng_kichik"] is not None else -1
-    cur.execute(
-        """INSERT INTO users(user_id, full_name, role, class, region, district)
-           VALUES(%s,%s,%s,%s,%s,%s)""",
-        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None,
-         sorov.region, sorov.district),
-    )
-    cur.execute("""
-        INSERT INTO telefon_hisob(telefon, user_id) VALUES(%s,%s)
-        ON CONFLICT (telefon) DO UPDATE SET user_id=EXCLUDED.user_id
-    """, (telefon, yangi_id))
-    cur.execute("UPDATE telefon_tasdiq_kod SET ishlatildi=TRUE WHERE telefon=%s", (telefon,))
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    token = _jwt_yarat(yangi_id)
-    return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
-
-
 @app.post("/auth/ulash")
 def hisob_ulash(sorov: UlashSorov):
     """Google hisobini bot user_id'siga kod orqali bog'laydi. Ikki xil
@@ -911,9 +619,21 @@ def _qoshimcha_test_shartlari(rasimli: bool, vaqtli: bool, yozuvli: bool):
     shartlar = []
     params = []
     if rasimli is True:
-        shartlar.append("(rasm_malumot IS NOT NULL OR COALESCE(NULLIF(image_file_id, ''), image_url, '') != '')")
+        shartlar.append("""
+            (
+                rasm_malumot IS NOT NULL
+                OR NULLIF(image_file_id, '') IS NOT NULL
+                OR NULLIF(image_url, '') IS NOT NULL
+            )
+        """)
     elif rasimli is False:
-        shartlar.append("(rasm_malumot IS NULL AND COALESCE(NULLIF(image_file_id, ''), image_url, '') = '')")
+        shartlar.append("""
+            (
+                rasm_malumot IS NULL
+                AND NULLIF(image_file_id, '') IS NULL
+                AND NULLIF(image_url, '') IS NULL
+            )
+        """)
     if vaqtli is True:
         shartlar.append("COALESCE(time_limit, 0) > 0")
     elif vaqtli is False:
@@ -1006,8 +726,9 @@ def test_savollari(
         SELECT id, question, option_a, option_b, option_c, option_d,
                question_type, is_latex, time_limit, difficulty,
                CASE
-                   WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
-                   ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
+                   WHEN rasm_malumot IS NOT NULL
+                       THEN '/api/test_rasmi/' || id::text
+                   ELSE COALESCE(NULLIF(image_file_id, ''), NULLIF(image_url, ''))
                END AS rasm_id
         FROM generated_tests
         WHERE {shart}
@@ -1067,8 +788,9 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
         SELECT id, topic_code, question, option_a, option_b, option_c, option_d,
                question_type, is_latex, time_limit, difficulty,
                CASE
-                   WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
-                   ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
+                   WHEN rasm_malumot IS NOT NULL
+                       THEN '/api/test_rasmi/' || id::text
+                   ELSE COALESCE(NULLIF(image_file_id, ''), NULLIF(image_url, ''))
                END AS rasm_id
         FROM generated_tests
         WHERE {shart}
@@ -1225,14 +947,6 @@ EDGE_OVOZ = {
 _TIL_OVOZLARI = {
     "en": {"qiz": "en-US-JennyNeural", "ogil": "en-US-GuyNeural"},
     "ru": {"qiz": "ru-RU-SvetlanaNeural", "ogil": "ru-RU-DmitryNeural"},
-    "de": {"qiz": "de-DE-KatjaNeural", "ogil": "de-DE-ConradNeural"},
-    "fr": {"qiz": "fr-FR-DeniseNeural", "ogil": "fr-FR-HenriNeural"},
-    "es": {"qiz": "es-ES-ElviraNeural", "ogil": "es-ES-AlvaroNeural"},
-    "ar": {"qiz": "ar-EG-SalmaNeural", "ogil": "ar-EG-ShakirNeural"},
-    "tr": {"qiz": "tr-TR-EmelNeural", "ogil": "tr-TR-AhmetNeural"},
-    "zh": {"qiz": "zh-CN-XiaoxiaoNeural", "ogil": "zh-CN-YunxiNeural"},
-    "ja": {"qiz": "ja-JP-NanamiNeural", "ogil": "ja-JP-KeitaNeural"},
-    "ko": {"qiz": "ko-KR-SunHiNeural", "ogil": "ko-KR-InJoonNeural"},
 }
 
 # ── Ovoz uchun matnni tayyorlash — botdagi ovoz.py bilan bir xil qoidalar ──
@@ -1372,7 +1086,6 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     m = _apostrofni_tuzat(m)
     m = _c_va_w_tuzat(m)
     m = re.sub(r"<[^>]+>", " ", m)
-    m = re.sub(r"_{2,}", " bo'sh joy ", m)  # "___" (bo'sh joy) — "pastki chiziq" deb o'qilmasin
     m = re.sub(r"[_`#]+", "", m)  # * ni bu yerda OLIB TASHLAMAYMIZ — pastda MATH_MAP "ko'paytiruv"ga o'giradi
     m = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", " ", m)
     m = re.sub(r"https?://\S+", " havola ", m)
@@ -1392,7 +1105,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
         soz = _son_soz(n).split()
         soz[-1] = _TARTIB.get(soz[-1], soz[-1] + "inchi")
         return f"{' '.join(soz)} {x.group(2)}"
-    m = re.sub(r"\b(\d{1,4})-(sinf|mashq|dars|savol|misol|bob|bet|mavzu|qism|topshiriq)\b", _t, m, flags=re.I)
+    m = re.sub(r"\b(\d{1,4})-(sinf|mashq|dars|savol|misol|bob|bet|mavzu|qism)\b", _t, m, flags=re.I)
 
     # 3,5 -> uch butun besh
     def _b(x):
@@ -1424,7 +1137,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     return m.strip(" ,.")
 
 
-_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru|de|fr|es|ar|tr|zh|ja|ko)\](.*?)\[/\1\]", re.S | re.I)
+_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru)\](.*?)\[/\1\]", re.S | re.I)
 
 
 def _ovoz_qismlarga_bol(matn: str):
@@ -1518,26 +1231,14 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
     savol_idlar = [j.savol_id for j in sorov.javoblar]
     cur.execute(
         """SELECT id, topic_code, question, option_a, option_b, option_c, option_d,
-                  correct_answer, question_type, explanation, difficulty
+                  correct_answer, question_type, explanation
            FROM generated_tests WHERE id = ANY(%s)""",
         (savol_idlar,),
     )
     savollar_map = {r["id"]: r for r in cur.fetchall()}
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS savol_javob_tarixi(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        savol_id INTEGER NOT NULL,
-        topic_code TEXT,
-        difficulty TEXT,
-        question_type TEXT,
-        togri_mi BOOLEAN NOT NULL,
-        yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
-
     togri_soni = 0
     xatolar = []
-    javob_tarixi_qatorlari = []  # (user_id, savol_id, topic_code, difficulty, question_type, togri_mi)
     natija_har_mavzu = {}  # topic_code -> {"togri": n, "jami": n}
     for j in sorov.javoblar:
         r = savollar_map.get(j.savol_id)
@@ -1550,8 +1251,6 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
             togri_harf = _togri_harfni_top(r["option_a"], r["option_b"], r["option_c"], r["option_d"], r["correct_answer"])
             togri = (j.tanlangan or "").strip().upper() == togri_harf
             togri_javob = togri_harf
-
-        javob_tarixi_qatorlari.append((user_id, j.savol_id, r["topic_code"], r["difficulty"], r["question_type"], togri))
 
         tk = r["topic_code"]
         natija_har_mavzu.setdefault(tk, {"togri": 0, "jami": 0})
@@ -1594,12 +1293,6 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
                 learned_at = NOW(),
                 next_repeat = CURRENT_DATE + INTERVAL '7 days'
         """, (user_id, tk, mavzu_foizi))
-    if javob_tarixi_qatorlari:
-        psycopg2.extras.execute_values(
-            cur,
-            "INSERT INTO savol_javob_tarixi(user_id, savol_id, topic_code, difficulty, question_type, togri_mi) VALUES %s",
-            javob_tarixi_qatorlari,
-        )
     conn.commit()
     cur.close()
     conn.close()
@@ -3595,25 +3288,6 @@ def _chat_jadvallari(cur):
         fayl_hajmi_kb INTEGER,
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
-    cur.execute("ALTER TABLE chat_xabarlari ADD COLUMN IF NOT EXISTS tahrirlangan BOOLEAN DEFAULT FALSE")
-    cur.execute("ALTER TABLE chat_xabarlari ADD COLUMN IF NOT EXISTS ochirilgan BOOLEAN DEFAULT FALSE")
-    cur.execute("ALTER TABLE chat_xabarlari ADD COLUMN IF NOT EXISTS javob_xabar_id INTEGER REFERENCES chat_xabarlari(id)")
-    cur.execute("""CREATE TABLE IF NOT EXISTS chat_oxirgi_korish(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        guruh_id INTEGER REFERENCES chat_guruhlari(id),
-        boshqa_user_id BIGINT REFERENCES users(user_id),
-        oxirgi_xabar_id INTEGER NOT NULL,
-        yangilangan_at TIMESTAMP DEFAULT NOW()
-    )""")
-    cur.execute("""
-        CREATE UNIQUE INDEX IF NOT EXISTS chat_oxirgi_korish_guruh_unique
-        ON chat_oxirgi_korish(user_id, guruh_id) WHERE guruh_id IS NOT NULL
-    """)
-    cur.execute("""
-        CREATE UNIQUE INDEX IF NOT EXISTS chat_oxirgi_korish_shaxsiy_unique
-        ON chat_oxirgi_korish(user_id, boshqa_user_id) WHERE boshqa_user_id IS NOT NULL
-    """)
 
 
 _CHAT_TOZALASH_OXIRGI_VAQT = {"qachon": None}
@@ -3893,34 +3567,28 @@ def chat_guruhlarim(token: str):
 
     cur.execute("""
         SELECT g.id, g.nomi, g.turi,
-               (SELECT matn FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_matn,
-               (SELECT fayl_turi FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_fayl_turi,
-               (SELECT yaratilgan_at FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_vaqt,
-               (SELECT COUNT(*) FROM chat_xabarlari cx WHERE cx.guruh_id=g.id AND cx.ochirilgan=FALSE AND cx.yuboruvchi_user_id != %s
-                    AND cx.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND guruh_id=g.id), 0)) AS okilmagan_soni
+               (SELECT matn FROM chat_xabarlari WHERE guruh_id=g.id ORDER BY id DESC LIMIT 1) AS oxirgi_matn,
+               (SELECT fayl_turi FROM chat_xabarlari WHERE guruh_id=g.id ORDER BY id DESC LIMIT 1) AS oxirgi_fayl_turi,
+               (SELECT yaratilgan_at FROM chat_xabarlari WHERE guruh_id=g.id ORDER BY id DESC LIMIT 1) AS oxirgi_vaqt
         FROM chat_azolari ca JOIN chat_guruhlari g ON g.id = ca.guruh_id
         WHERE ca.user_id=%s
         ORDER BY oxirgi_vaqt DESC NULLS LAST, g.nomi
-    """, (user_id, user_id, user_id))
+    """, (user_id,))
     guruhlar = cur.fetchall()
 
     cur.execute("""
-        SELECT sub.boshqa_user_id, u.full_name, sub.matn, sub.fayl_turi, sub.yaratilgan_at,
-               (SELECT COUNT(*) FROM chat_xabarlari cx2
-                WHERE cx2.qabul_qiluvchi_user_id=%s AND cx2.yuboruvchi_user_id=sub.boshqa_user_id AND cx2.ochirilgan=FALSE
-                  AND cx2.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND boshqa_user_id=sub.boshqa_user_id), 0)
-               ) AS okilmagan_soni
+        SELECT sub.boshqa_user_id, u.full_name, sub.matn, sub.fayl_turi, sub.yaratilgan_at
         FROM (
             SELECT DISTINCT ON (boshqa_user_id)
                 CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS boshqa_user_id,
                 matn, fayl_turi, yaratilgan_at
             FROM chat_xabarlari
-            WHERE qabul_qiluvchi_user_id IS NOT NULL AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s) AND ochirilgan=FALSE
+            WHERE qabul_qiluvchi_user_id IS NOT NULL AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s)
             ORDER BY boshqa_user_id, id DESC
         ) sub
         JOIN users u ON u.user_id = sub.boshqa_user_id
         ORDER BY sub.yaratilgan_at DESC
-    """, (user_id, user_id, user_id, user_id, user_id))
+    """, (user_id, user_id, user_id))
     shaxsiylar = cur.fetchall()
 
     cur.close(); conn.close()
@@ -3943,37 +3611,6 @@ def chat_foydalanuvchi_qidir(token: str, ism: str):
     natija = cur.fetchall()
     cur.close(); conn.close()
     return {"natijalar": natija}
-
-
-@app.post("/api/chat/korildi_belgila")
-def chat_korildi_belgila(token: str, oxirgi_xabar_id: int, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
-    """Foydalanuvchi shu suhbatni ochganda (yoki oxirigacha aylantirganda)
-    chaqiriladi — "oxirgi ko'rilgan xabar"ni belgilaydi. Shu orqali:
-    (1) suhbatlar ro'yxatida o'qilmagan son hisoblanadi, (2) shaxsiy
-    suhbatlarda "o'qildi" belgisi ko'rsatiladi. Faqat OLDINGA suradi —
-    orqaga hech qachon qaytmaydi (masalan ikkita oyna ochiq bo'lsa,
-    eski so'rov yangisini bosib qolmasin)."""
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not boshqa_user_id:
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
-    conn = _db()
-    cur = conn.cursor()
-    _chat_jadvallari(cur)
-    if guruh_id:
-        cur.execute("""
-            INSERT INTO chat_oxirgi_korish(user_id, guruh_id, oxirgi_xabar_id) VALUES(%s,%s,%s)
-            ON CONFLICT (user_id, guruh_id) WHERE guruh_id IS NOT NULL
-            DO UPDATE SET oxirgi_xabar_id=GREATEST(chat_oxirgi_korish.oxirgi_xabar_id, EXCLUDED.oxirgi_xabar_id), yangilangan_at=NOW()
-        """, (user_id, guruh_id, oxirgi_xabar_id))
-    else:
-        cur.execute("""
-            INSERT INTO chat_oxirgi_korish(user_id, boshqa_user_id, oxirgi_xabar_id) VALUES(%s,%s,%s)
-            ON CONFLICT (user_id, boshqa_user_id) WHERE boshqa_user_id IS NOT NULL
-            DO UPDATE SET oxirgi_xabar_id=GREATEST(chat_oxirgi_korish.oxirgi_xabar_id, EXCLUDED.oxirgi_xabar_id), yangilangan_at=NOW()
-        """, (user_id, boshqa_user_id, oxirgi_xabar_id))
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "belgilandi"}
 
 
 @app.get("/api/chat/xabarlar")
@@ -4005,44 +3642,14 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
 
     cur.execute(f"""
         SELECT cx.id, cx.yuboruvchi_user_id, u.full_name AS yuboruvchi_ismi, cx.matn, cx.fayl_turi,
-               cx.fayl_nomi, cx.fayl_hajmi_kb, cx.yaratilgan_at, cx.tahrirlangan, cx.ochirilgan,
-               cx.javob_xabar_id, ju.full_name AS javob_yuboruvchi_ismi,
-               LEFT(jx.matn, 100) AS javob_matn_qisqa, jx.fayl_turi AS javob_fayl_turi
-        FROM chat_xabarlari cx
-        JOIN users u ON u.user_id = cx.yuboruvchi_user_id
-        LEFT JOIN chat_xabarlari jx ON jx.id = cx.javob_xabar_id
-        LEFT JOIN users ju ON ju.user_id = jx.yuboruvchi_user_id
+               cx.fayl_nomi, cx.fayl_hajmi_kb, cx.yaratilgan_at
+        FROM chat_xabarlari cx JOIN users u ON u.user_id = cx.yuboruvchi_user_id
         WHERE {shart}
         ORDER BY cx.id DESC LIMIT 50
     """, params)
     xabarlar = cur.fetchall()
-
-    _reaksiya_jadvali(cur)
-    if xabarlar:
-        xabar_idlari = [x["id"] for x in xabarlar]
-        cur.execute("SELECT xabar_id, user_id, emoji FROM chat_reaksiyalar WHERE xabar_id = ANY(%s)", (xabar_idlari,))
-        reaksiyalar_xom = cur.fetchall()
-        reaksiyalar_map = {}
-        for r in reaksiyalar_xom:
-            guruhlar = reaksiyalar_map.setdefault(r["xabar_id"], {})
-            yozuv = guruhlar.setdefault(r["emoji"], {"emoji": r["emoji"], "soni": 0, "meniki": False})
-            yozuv["soni"] += 1
-            if r["user_id"] == user_id:
-                yozuv["meniki"] = True
-        for x in xabarlar:
-            x["reaksiyalar"] = list(reaksiyalar_map.get(x["id"], {}).values())
-
-    boshqa_tomon_korgan_id = None
-    if boshqa_user_id:
-        cur.execute(
-            "SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND boshqa_user_id=%s",
-            (boshqa_user_id, user_id),
-        )
-        r = cur.fetchone()
-        boshqa_tomon_korgan_id = r["oxirgi_xabar_id"] if r else None
-
     cur.close(); conn.close()
-    return {"xabarlar": list(reversed(xabarlar)), "boshqa_tomon_korgan_id": boshqa_tomon_korgan_id}
+    return {"xabarlar": list(reversed(xabarlar))}
 
 
 @app.post("/api/chat/xabar_yubor")
@@ -4052,7 +3659,6 @@ async def chat_xabar_yubor(
     qabul_qiluvchi_user_id: Optional[int] = Form(None),
     matn: Optional[str] = Form(None),
     fayl_turi: Optional[str] = Form(None),  # "audio" | "video" | "video_doira" | "hujjat"
-    javob_xabar_id: Optional[int] = Form(None),  # javob berilayotgan xabar (ixtiyoriy)
     fayl: Optional[UploadFile] = File(None),
 ):
     """Guruhga YOKI shaxsga xabar yuboradi — matn, va/yoki fayl
@@ -4128,262 +3734,15 @@ async def chat_xabar_yubor(
         fayl_nomi = fayl.filename
         fayl_content_turi = fayl.content_type
 
-    javob_id_tekshirilgan = None
-    if javob_xabar_id:
-        cur.execute("SELECT guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, ochirilgan FROM chat_xabarlari WHERE id=%s", (javob_xabar_id,))
-        j = cur.fetchone()
-        if j and not j.get("ochirilgan"):
-            shu_suhbatdami = (guruh_id and j["guruh_id"] == guruh_id) or (
-                qabul_qiluvchi_user_id and {j["yuboruvchi_user_id"], j["qabul_qiluvchi_user_id"]} == {user_id, qabul_qiluvchi_user_id}
-            )
-            if shu_suhbatdami:
-                javob_id_tekshirilgan = javob_xabar_id
-
     cur.execute("""
-        INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb, javob_xabar_id)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id, yaratilgan_at
+        INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id, yaratilgan_at
     """, (guruh_id, qabul_qiluvchi_user_id, user_id, (matn or "").strip() or None, fayl_turi,
-          fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb, javob_id_tekshirilgan))
+          fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb))
     yangi = cur.fetchone()
     conn.commit()
     cur.close(); conn.close()
     return {"holat": "yuborildi", "id": yangi["id"], "yaratilgan_at": yangi["yaratilgan_at"]}
-
-
-class XabarTahrirlash(BaseModel):
-    token: str
-    xabar_id: int
-    yangi_matn: str
-
-
-@app.put("/api/chat/xabar_tahrirla")
-def chat_xabar_tahrirla(sorov: XabarTahrirlash):
-    """Faqat matnli (fayl EMAS) o'z xabarini tahrirlaydi — faqat
-    yuboruvchining o'zi. Tahrirlangandan keyin "(tahrirlangan)"
-    belgisi bilan ko'rsatiladi (Telegram uslubida)."""
-    user_id = _jwt_tekshir(sorov.token)
-    yangi_matn = sorov.yangi_matn.strip()
-    if not yangi_matn:
-        raise HTTPException(status_code=400, detail="Xabar matni bo'sh bo'lishi mumkin emas")
-
-    conn = _db()
-    cur = conn.cursor()
-    _chat_jadvallari(cur)
-    _moderatsiya_jadvallari(cur)
-    if _matnda_royxat_sozi_bormi(yangi_matn, _SOKINISH_SOZLARI_BOSHLANGICH):
-        _qora_royxatga_yoz(cur, user_id, "sokinish", yangi_matn)
-        conn.commit()
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Bu xabarni saqlab bo'lmadi")
-    if _matnda_royxat_sozi_bormi(yangi_matn, _XAVFLI_SOZLAR_BOSHLANGICH):
-        _xavfli_royxatga_yoz(cur, user_id, yangi_matn)
-        conn.commit()
-
-    cur.execute("SELECT yuboruvchi_user_id, ochirilgan FROM chat_xabarlari WHERE id=%s", (sorov.xabar_id,))
-    x = cur.fetchone()
-    if not x:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Xabar topilmadi")
-    if x["ochirilgan"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="O'chirilgan xabarni tahrirlab bo'lmaydi")
-    if x["yuboruvchi_user_id"] != user_id:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat o'z xabaringizni tahrirlay olasiz")
-
-    cur.execute(
-        "UPDATE chat_xabarlari SET matn=%s, tahrirlangan=TRUE WHERE id=%s",
-        (yangi_matn, sorov.xabar_id),
-    )
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "tahrirlandi"}
-
-
-@app.delete("/api/chat/xabar_ochir")
-def chat_xabar_ochir(token: str, xabar_id: int):
-    """O'z xabarini (matn yoki fayl — ikkalasi ham) o'chiradi.
-    Yumshoq o'chirish — o'rniga "Xabar o'chirildi" ko'rsatiladi,
-    fayl ma'lumoti butunlay tozalanadi (xotira bo'shatish uchun)."""
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    _chat_jadvallari(cur)
-    cur.execute("SELECT yuboruvchi_user_id FROM chat_xabarlari WHERE id=%s", (xabar_id,))
-    x = cur.fetchone()
-    if not x:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Xabar topilmadi")
-    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    admin_mi = cur.fetchone() is not None
-    if x["yuboruvchi_user_id"] != user_id and not admin_mi:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Faqat o'z xabaringizni o'chira olasiz")
-
-    cur.execute("""
-        UPDATE chat_xabarlari SET ochirilgan=TRUE, matn=NULL, fayl_malumot=NULL,
-            fayl_nomi=NULL, fayl_content_turi=NULL, fayl_hajmi_kb=NULL
-        WHERE id=%s
-    """, (xabar_id,))
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "ochirildi"}
-
-
-@app.post("/api/chat/xabar_forward")
-def chat_xabar_forward(token: str, xabar_id: int, guruh_id: Optional[int] = None, qabul_qiluvchi_user_id: Optional[int] = None):
-    """Mavjud xabarni BOSHQA suhbatga (guruh yoki shaxsga) nusxa
-    ko'chiradi — matni va fayli (agar bor bo'lsa) bilan birga.
-    Yuboruvchi — FORWARD qilayotgan kishining o'zi bo'ladi (asl
-    yuboruvchi emas), Telegram'da ham shunday)."""
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not qabul_qiluvchi_user_id:
-        raise HTTPException(status_code=400, detail="Qayerga yuborishni tanlang")
-    conn = _db()
-    cur = conn.cursor()
-    _chat_jadvallari(cur)
-    cur.execute("""
-        SELECT matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb, ochirilgan
-        FROM chat_xabarlari WHERE id=%s
-    """, (xabar_id,))
-    asl = cur.fetchone()
-    if not asl or asl["ochirilgan"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Xabar topilmadi")
-    if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
-    cur.execute("""
-        INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
-    """, (guruh_id, qabul_qiluvchi_user_id, user_id, asl["matn"], asl["fayl_turi"],
-          asl["fayl_malumot"], asl["fayl_nomi"], asl["fayl_content_turi"], asl["fayl_hajmi_kb"]))
-    yangi_id = cur.fetchone()["id"]
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "yuborildi", "id": yangi_id}
-
-
-def _reaksiya_jadvali(cur):
-    cur.execute("""CREATE TABLE IF NOT EXISTS chat_reaksiyalar(
-        id SERIAL PRIMARY KEY,
-        xabar_id INTEGER NOT NULL REFERENCES chat_xabarlari(id),
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        emoji TEXT NOT NULL,
-        UNIQUE(xabar_id, user_id)
-    )""")
-
-
-@app.put("/api/chat/reaksiya_qoy")
-def chat_reaksiya_qoy(token: str, xabar_id: int, emoji: str):
-    """Xabarga reaksiya (emoji) qo'yadi — bir kishi bitta xabarga
-    faqat BITTA reaksiya qo'ya oladi (qayta bossa, eskisi almashadi)."""
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    _reaksiya_jadvali(cur)
-    cur.execute("""
-        INSERT INTO chat_reaksiyalar(xabar_id, user_id, emoji) VALUES(%s,%s,%s)
-        ON CONFLICT (xabar_id, user_id) DO UPDATE SET emoji=EXCLUDED.emoji
-    """, (xabar_id, user_id, emoji))
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "qoyildi"}
-
-
-@app.delete("/api/chat/reaksiya_olib_tashla")
-def chat_reaksiya_olib_tashla(token: str, xabar_id: int):
-    user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    _reaksiya_jadvali(cur)
-    cur.execute("DELETE FROM chat_reaksiyalar WHERE xabar_id=%s AND user_id=%s", (xabar_id, user_id))
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "olib_tashlandi"}
-
-
-@app.get("/api/chat/qidir")
-def chat_qidir(token: str, matn: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
-    """Bitta suhbat ichida matn bo'yicha qidiradi — eng so'nggi 30 ta
-    moslikni qaytaradi."""
-    user_id = _jwt_tekshir(token)
-    if len((matn or "").strip()) < 2:
-        return {"natijalar": []}
-    conn = _db()
-    cur = conn.cursor()
-    _chat_jadvallari(cur)
-    if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
-        shart = "cx.guruh_id=%s"
-        params = [guruh_id]
-    elif boshqa_user_id:
-        shart = "cx.qabul_qiluvchi_user_id IS NOT NULL AND ((cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s) OR (cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s))"
-        params = [user_id, boshqa_user_id, boshqa_user_id, user_id]
-    else:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
-    cur.execute(f"""
-        SELECT cx.id, cx.yuboruvchi_user_id, u.full_name AS yuboruvchi_ismi, cx.matn, cx.yaratilgan_at
-        FROM chat_xabarlari cx JOIN users u ON u.user_id = cx.yuboruvchi_user_id
-        WHERE {shart} AND cx.ochirilgan=FALSE AND cx.matn ILIKE %s
-        ORDER BY cx.id DESC LIMIT 30
-    """, params + [f"%{matn.strip()}%"])
-    natija = cur.fetchall()
-    cur.close(); conn.close()
-    return {"natijalar": natija}
-
-
-# "Yozmoqda..." ko'rsatkichi — DATABASE'DA EMAS, xotirada (RAM) saqlanadi,
-# chunki bu juda tez-tez (har necha soniyada) yangilanadigan, vaqtinchalik
-# (bir necha soniyadan keyin eskiradigan) ma'lumot — bazaga yozish
-# ORTIQCHA yuk bo'lardi.
-_YOZMOQDA_HOLATI = {}  # {"guruh:5" yoki "shaxsiy:12-34": {user_id: oxirgi_vaqt}}
-_YOZMOQDA_TTL_SONIYA = 4
-
-
-def _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id):
-    if guruh_id:
-        return f"guruh:{guruh_id}"
-    ikkalasi = sorted([user_id, boshqa_user_id])
-    return f"shaxsiy:{ikkalasi[0]}-{ikkalasi[1]}"
-
-
-@app.post("/api/chat/yozmoqda")
-def chat_yozmoqda_belgila(token: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not boshqa_user_id:
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
-    kalit = _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id)
-    _YOZMOQDA_HOLATI.setdefault(kalit, {})[user_id] = datetime.now()
-    return {"holat": "belgilandi"}
-
-
-@app.get("/api/chat/kim_yozmoqda")
-def chat_kim_yozmoqda(token: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not boshqa_user_id:
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
-    kalit = _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id)
-    hozir = datetime.now()
-    faol = _YOZMOQDA_HOLATI.get(kalit, {})
-    yozayotganlar = [
-        uid for uid, vaqt in faol.items()
-        if uid != user_id and (hozir - vaqt).total_seconds() < _YOZMOQDA_TTL_SONIYA
-    ]
-    if not yozayotganlar:
-        return {"ismlar": []}
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("SELECT full_name FROM users WHERE user_id = ANY(%s)", (yozayotganlar,))
-    ismlar = [r["full_name"] for r in cur.fetchall()]
-    cur.close(); conn.close()
-    return {"ismlar": ismlar}
 
 
 @app.get("/api/admin/qora_royxat")
@@ -5736,107 +5095,6 @@ def bugungi_tavsiya(bola_id: int, limit: int = 8):
     # "past" xavfli mavzularni bugun takrorlashga majburlash shart emas.
     ehtiyoj_borlari = [t for t in tavsiyalar if t["daraja"] != "past"]
     return {"tavsiyalar": ehtiyoj_borlari[:limit], "sinf_sozlanmagan": False}
-
-
-@app.get("/api/bola/{bola_id}/qiyinlik_tahlili")
-def bola_qiyinlik_tahlili(bola_id: int):
-    """O'quvchining javob tarixidan (savol_javob_tarixi) — qiyinlik
-    darajasi (oson/o'rta/qiyin/murakkab) va javob turi (tugmali/yozma)
-    bo'yicha qanchalik yaxshi ishlayotganini hisoblaydi. Kamida bir
-    marta test yechilgan bo'lsa ishlaydi — hali hech narsa yo'q bo'lsa,
-    bo'sh ro'yxatlar qaytadi."""
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS savol_javob_tarixi(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        savol_id INTEGER NOT NULL,
-        topic_code TEXT,
-        difficulty TEXT,
-        question_type TEXT,
-        togri_mi BOOLEAN NOT NULL,
-        yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
-    cur.execute("""
-        SELECT COALESCE(difficulty, 'nomalum') AS daraja, COUNT(*) AS jami,
-               COUNT(*) FILTER (WHERE togri_mi) AS togri
-        FROM savol_javob_tarixi WHERE user_id=%s GROUP BY difficulty
-    """, (bola_id,))
-    daraja_xom = cur.fetchall()
-    cur.execute("""
-        SELECT COALESCE(question_type, 'nomalum') AS turi, COUNT(*) AS jami,
-               COUNT(*) FILTER (WHERE togri_mi) AS togri
-        FROM savol_javob_tarixi WHERE user_id=%s GROUP BY question_type
-    """, (bola_id,))
-    turi_xom = cur.fetchall()
-    cur.close()
-    conn.close()
-
-    DARAJA_TARTIBI = {"oson": 1, "o'rta": 2, "qiyin": 3, "murakkab": 4, "nomalum": 5}
-    daraja_natija = sorted([
-        {"daraja": r["daraja"], "jami": r["jami"], "togri": r["togri"], "foiz": round((r["togri"] / r["jami"]) * 100) if r["jami"] else 0}
-        for r in daraja_xom
-    ], key=lambda x: DARAJA_TARTIBI.get(x["daraja"], 9))
-    turi_natija = [
-        {"turi": r["turi"], "jami": r["jami"], "togri": r["togri"], "foiz": round((r["togri"] / r["jami"]) * 100) if r["jami"] else 0}
-        for r in turi_xom
-    ]
-    return {"darajalar": daraja_natija, "javob_turlari": turi_natija}
-
-
-class ReaksiyaNatijaSorov(BaseModel):
-    token: str
-    millisekund: int
-
-
-@app.post("/api/bola/reaksiya_natija_saqla")
-def reaksiya_natija_saqla(sorov: ReaksiyaNatijaSorov):
-    """Reaksiya tezligi o'yinining natijasini saqlaydi. DIQQAT: bu —
-    oddiy, qiziqarli o'lchov, HECH QANDAY "IQ" yoki ilmiy diagnostika
-    EMAS — shunchaki "necha millisekundda bosdi" degan sport-o'yin
-    natijasi."""
-    user_id = _jwt_tekshir(sorov.token)
-    if not (100 <= sorov.millisekund <= 5000):
-        raise HTTPException(status_code=400, detail="Natija shubhali (juda tez yoki juda sekin)")
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS reaksiya_natijalari(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        millisekund INTEGER NOT NULL,
-        yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
-    cur.execute("INSERT INTO reaksiya_natijalari(user_id, millisekund) VALUES(%s,%s)", (user_id, sorov.millisekund))
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "saqlandi"}
-
-
-@app.get("/api/bola/{bola_id}/reaksiya_tarixi")
-def reaksiya_tarixi(bola_id: int):
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS reaksiya_natijalari(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        millisekund INTEGER NOT NULL,
-        yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
-    cur.execute("""
-        SELECT MIN(millisekund) AS eng_yaxshi, ROUND(AVG(millisekund)) AS ortacha, COUNT(*) AS jami_urinish
-        FROM reaksiya_natijalari WHERE user_id=%s
-    """, (bola_id,))
-    xulosa = cur.fetchone()
-    cur.execute("""
-        SELECT millisekund, yaratilgan_at FROM reaksiya_natijalari
-        WHERE user_id=%s ORDER BY yaratilgan_at DESC LIMIT 10
-    """, (bola_id,))
-    songgi = cur.fetchall()
-    cur.close(); conn.close()
-    return {
-        "eng_yaxshi": xulosa["eng_yaxshi"], "ortacha": xulosa["ortacha"],
-        "jami_urinish": xulosa["jami_urinish"], "songgi_urinishlar": songgi,
-    }
 
 
 @app.get("/api/bola/{bola_id}/haftalik_xulosa")
@@ -10313,32 +9571,6 @@ def mavzu_testlarini_ochir(token: str, topic_codes: str):
     return {"holat": "ochirildi", "ochirilgan_soni": ochirilgan}
 
 
-@app.put("/api/admin/mavzu_bob_bolim_tahrirla")
-def mavzu_bob_bolim_tahrirla(token: str, topic_codes: str, yangi_bob: str, yangi_bolim: str):
-    """"Chala" (Bob/Bo'lim bo'sh) mavzuga XAVFSIZ ravishda Bob/Bo'lim
-    matnini yozadi — topic_code'NING O'ZIGA HECH TEGILMAYDI, shu
-    sabab hech qanday yangi/dublikat mavzu yaratilmaydi va mavjud
-    testlar "yetim" bo'lib qolmaydi. topic_codes — bitta mavzu
-    guruhidagi BARCHA kichik-mavzu kodlari (vergul bilan)."""
-    _admin_tekshir(token)
-    kodlar = [k.strip() for k in topic_codes.split(",") if k.strip()]
-    if not kodlar:
-        raise HTTPException(status_code=400, detail="Mavzu kodi berilmagan")
-    if not yangi_bob.strip() and not yangi_bolim.strip():
-        raise HTTPException(status_code=400, detail="Bob yoki Bo'lim matnidan kamida bittasini kiriting")
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute(
-        "UPDATE dts_tree SET bob_name=%s, bolim_name=%s WHERE topic_code = ANY(%s)",
-        (yangi_bob.strip(), yangi_bolim.strip(), kodlar),
-    )
-    yangilangan = cur.rowcount
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "saqlandi", "yangilangan_soni": yangilangan}
-
-
 @app.delete("/api/admin/mavzu_ochir")
 def admin_mavzu_ochir(token: str, topic_codes: str):
     """Mavzu(lar)ning O'ZINI (dts_tree yozuvini) o'chiradi — testlari
@@ -10438,12 +9670,19 @@ def mavzu_rasmlari(token: str, topic_codes: str):
     conn = _db()
     cur = conn.cursor()
     cur.execute("""
-        SELECT DISTINCT CASE
-                   WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
-                   ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
+        SELECT DISTINCT
+               CASE
+                   WHEN rasm_malumot IS NOT NULL
+                       THEN '/api/test_rasmi/' || id::text
+                   ELSE COALESCE(NULLIF(image_file_id, ''), NULLIF(image_url, ''))
                END AS rasm_id
         FROM generated_tests
-        WHERE topic_code = ANY(%s) AND COALESCE(NULLIF(image_file_id, ''), image_url, '') != ''
+        WHERE topic_code = ANY(%s)
+          AND (
+              rasm_malumot IS NOT NULL
+              OR NULLIF(image_file_id, '') IS NOT NULL
+              OR NULLIF(image_url, '') IS NOT NULL
+          )
     """, (kodlar,))
     rasmlar = [r["rasm_id"] for r in cur.fetchall()]
     cur.close()
@@ -10486,12 +9725,10 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     conn.close()
 
     wb = openpyxl.Workbook()
-    wb.remove(wb.active)  # standart bo'sh varaqni olib tashlaymiz, o'zimiz pastda yaratamiz
 
-    # ═══ 1) TESTLAR — to'ldiriladigan savollar. Agar tanlangan mavzular
-    # BIR NECHTA FANGA tegishli bo'lsa — HAR FAN uchun ALOHIDA varaq
-    # yaratiladi (masalan "TESTLAR_Matematika", "TESTLAR_Fizika"),
-    # shunda bitta faylda bir nechta fanni bir yo'la to'ldirish mumkin.
+    # ═══ 1) TESTLAR — to'ldiriladigan savollar ═══
+    ws = wb.active
+    ws.title = "TESTLAR"
     testlar_ustunlari = [
         "topic_code", "difficulty", "situation", "question",
         "option_a", "option_b", "option_c", "option_d",
@@ -10500,63 +9737,42 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     ]
     diff_colors = {"oson": "E2EFDA", "o'rta": "FFF2CC", "qiyin": "FCE4D6", "murakkab": "F2CEEF"}
 
-    fan_guruhlari = {}  # {fan_nomi: [topic_code, ...]} — kiritilgan tartibda
+    for col, h in enumerate(testlar_ustunlari, 1):
+        cell = ws.cell(1, col, h)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="4472C4")
+        cell.alignment = Alignment(horizontal="center")
+
+    rasm_qatorlari = []  # (image_id, topic_code) — RASM_MALUMOTI uchun
+    row_num = 2
     for kod in kodlar:
-        fan_nomi = (tc_map.get(kod) or {}).get("subject_name") or "Umumiy"
-        fan_guruhlari.setdefault(fan_nomi, []).append(kod)
-    kop_fanli = len(fan_guruhlari) > 1
+        info = tc_map.get(kod)
+        grade = str(info["grade"]) if info else ""
+        age_group = _YOSH_GURUHI.get(grade, "")
+        for g in guruhlar:
+            color = diff_colors.get(g.diff, "F2F2F2")
+            for i in range(1, g.soni + 1):
+                image_id = f"{kod}-{i}"
+                ws.cell(row_num, 1, kod)
+                ws.cell(row_num, 2, g.diff)
+                ws.cell(row_num, 3, "oddiy")
+                ws.cell(row_num, 11, g.turi)
+                ws.cell(row_num, 12, False)
+                ws.cell(row_num, 13, image_id)
+                ws.cell(row_num, 15, "uz")
+                ws.cell(row_num, 16, 1)
+                ws.cell(row_num, 17, age_group)
+                ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
+                ws.cell(row_num, 19, sorov.maqsad)
+                for col in range(1, len(testlar_ustunlari) + 1):
+                    ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
+                    ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
+                rasm_qatorlari.append((image_id, kod))
+                row_num += 1
 
-    rasm_qatorlari = []  # (image_id, topic_code) — RASM_MALUMOTI uchun, BARCHA fanlar bo'ylab umumiy
-    ishlatilgan_varoq_nomlari = set()
-    for fan_nomi, fan_kodlari in fan_guruhlari.items():
-        if kop_fanli:
-            xom_nom = f"TESTLAR_{re.sub(r'[^0-9A-Za-zА-Яа-яЎўҚқҒғҲҳ ]', '', fan_nomi)}".strip()
-            varoq_nomi = xom_nom[:31] or "TESTLAR"
-            # Excel'da bir xil nomli varaq bo'lishi mumkin emas — takrorlansa, raqam qo'shamiz
-            asl_varoq_nomi, sanoq = varoq_nomi, 1
-            while varoq_nomi in ishlatilgan_varoq_nomlari:
-                sanoq += 1
-                varoq_nomi = f"{asl_varoq_nomi[:28]}_{sanoq}"
-        else:
-            varoq_nomi = "TESTLAR"
-        ishlatilgan_varoq_nomlari.add(varoq_nomi)
-        ws = wb.create_sheet(varoq_nomi)
-
-        for col, h in enumerate(testlar_ustunlari, 1):
-            cell = ws.cell(1, col, h)
-            cell.font = Font(bold=True, color="FFFFFF")
-            cell.fill = PatternFill("solid", fgColor="4472C4")
-            cell.alignment = Alignment(horizontal="center")
-
-        row_num = 2
-        for kod in fan_kodlari:
-            info = tc_map.get(kod)
-            grade = str(info["grade"]) if info else ""
-            age_group = _YOSH_GURUHI.get(grade, "")
-            for g in guruhlar:
-                color = diff_colors.get(g.diff, "F2F2F2")
-                for i in range(1, g.soni + 1):
-                    image_id = f"{kod}-{i}"
-                    ws.cell(row_num, 1, kod)
-                    ws.cell(row_num, 2, g.diff)
-                    ws.cell(row_num, 3, "oddiy")
-                    ws.cell(row_num, 11, g.turi)
-                    ws.cell(row_num, 12, False)
-                    ws.cell(row_num, 13, image_id)
-                    ws.cell(row_num, 15, "uz")
-                    ws.cell(row_num, 16, 1)
-                    ws.cell(row_num, 17, age_group)
-                    ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
-                    ws.cell(row_num, 19, sorov.maqsad)
-                    for col in range(1, len(testlar_ustunlari) + 1):
-                        ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
-                        ws.cell(row_num, col).alignment = Alignment(wrap_text=True)
-                    rasm_qatorlari.append((image_id, kod))
-                    row_num += 1
-
-        widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10, 14]
-        for col, w in enumerate(widths, 1):
-            ws.column_dimensions[ws.cell(1, col).column_letter].width = w
+    widths = [22, 10, 10, 45, 18, 18, 18, 18, 15, 35, 15, 8, 22, 20, 8, 8, 8, 10, 14]
+    for col, w in enumerate(widths, 1):
+        ws.column_dimensions[ws.cell(1, col).column_letter].width = w
 
     # ═══ 2) MALUMOT — tanlangan mavzular haqida (faqat nazorat uchun, o'zgartirmang) ═══
     ws2 = wb.create_sheet("MALUMOT")
@@ -10590,43 +9806,6 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
         ws3.column_dimensions[ws3.cell(1, col).column_letter].width = w
     ws3.cell(1, 4, "☝️ Har qatorga rasmda NIMA bo'lishi kerakligini yozing — botdagi AI rasm generatori shu tavsif bo'yicha rasm yaratadi. Rasm kerak bo'lmagan savollar uchun qatorni o'chiring.").font = Font(italic=True, color="8A8578")
 
-    # ═══ 4) IZOH — umumiy qo'llanma, va (agar mos bo'lsa) mantiqiy
-    # fikrlash/IQ turidagi kontent uchun maxsus e'tibor talab qiladigan
-    # nuqtalar ═══
-    fanlar_royxati = {(tc_map.get(k) or {}).get("subject_name", "") or "" for k in kodlar}
-    mantiqiy_fikrlash_mi = any(
-        kalit_soz in fan.lower() for fan in fanlar_royxati for kalit_soz in ("mantiq", "logika", "iq", "aql-zakovat", "fikrlash")
-    )
-    ws4 = wb.create_sheet("IZOH")
-    ws4.cell(1, 1, "📋 TO'LDIRISH QO'LLANMASI").font = Font(bold=True, size=14)
-    umumiy = [
-        (3, "question", "Savol matni (majburiy)"),
-        (4, "option_a/b/c/d", "Variantlar (faqat tugmali savol uchun)"),
-        (5, "correct_answer", "To'g'ri javob (majburiy)"),
-        (6, "explanation", "Nega shu javob to'g'ri — tushuntirish"),
-        (7, "difficulty/topic_code", "O'zgartirmang — avtomatik to'ldirilgan"),
-    ]
-    for r, ustun, izoh in umumiy:
-        ws4.cell(r, 1, ustun).font = Font(bold=True)
-        ws4.cell(r, 2, izoh)
-    if mantiqiy_fikrlash_mi:
-        keyingi = 9
-        ws4.cell(keyingi, 1, "⚠️ MANTIQIY FIKRLASH/IQ TURIDAGI SAVOLLAR UCHUN MAXSUS E'TIBOR:").font = Font(bold=True, color="A32D2D")
-        eslatmalar = [
-            "Fan bilimiga (formula, sana, atama) emas — TOZA mantiqqa tayanadigan bo'lsin.",
-            "Yagona, bahs-munozarasiz TO'G'RI javob bo'lishi shart — noaniq/bir nechta to'g'ri javob mumkin bo'lgan savol yaroqsiz.",
-            "Har bir 'difficulty' darajasi HAQIQATAN farqlansin (oson — 1-2 qadamli, murakkab — bir nechta qadamli mantiq).",
-            "Yosh guruhiga mos til va tushunchalar (age_group ustuniga qarang) — kattalar uchun mo'ljallangan mavhum tushunchalardan qoching.",
-            "Madaniy/hududiy bilimga bog'liq bo'lmasin (masalan faqat bitta mamlakatda tanish idioma yoki o'yin nomi).",
-            "Bu — QIZIQARLI mashq, RASMIY \"IQ balli\" emas — natija hech qachon tibbiy/psixologik xulosa sifatida ko'rsatilmaydi.",
-        ]
-        for i, matn in enumerate(eslatmalar):
-            ws4.cell(keyingi + 1 + i, 1, f"• {matn}")
-        ws4.column_dimensions["A"].width = 90
-    else:
-        ws4.column_dimensions["A"].width = 22
-        ws4.column_dimensions["B"].width = 55
-
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
@@ -10658,9 +9837,14 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     # (qatorlar) o'qilishi mumkin, lekin rasm(lar) — odatda faylning
     # OXIRIDA joylashgani uchun — YO'QOLADI. Buni SHU YERDA aniqlab,
     # "0 rasm" degan sirli natija o'rniga ANIQ xabar beramiz.
+    media_soni = 0
     try:
         with zipfile.ZipFile(io.BytesIO(content)) as zf:
             buzuq_fayl = zf.testzip()
+            media_soni = sum(
+                1 for nom in zf.namelist()
+                if nom.startswith("xl/media/") and not nom.endswith("/")
+            )
         if buzuq_fayl:
             raise HTTPException(
                 status_code=400,
@@ -10670,6 +9854,17 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
         raise HTTPException(
             status_code=400,
             detail=f"Fayl to'liq yuklanmagan (hajmi: {len(content)} bayt, ZIP tuzilishi buzilgan) — qaytadan yuklab ko'ring.",
+        )
+
+    # openpyxl Excel ichidagi JPG/PNG rasmlarni o'qishi uchun Pillow
+    # alohida kutubxona sifatida o'rnatilgan bo'lishi SHART. Aks holda
+    # Excel ichida rasm bo'lsa ham ws._images bo'sh qolishi mumkin.
+    try:
+        from PIL import Image as _PillowImage  # noqa: F401
+    except ImportError:
+        raise HTTPException(
+            status_code=500,
+            detail="Serverda Pillow kutubxonasi o'rnatilmagan. requirements.txt ga 'Pillow' qo'shib qayta deploy qiling.",
         )
 
     try:
@@ -10686,6 +9881,14 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     # xaritalaymiz — shu qatordagi savolga biriktirish uchun.
     qator_rasmlari = {}  # {excel_qator_raqami (1-based): (bayt, format)}
     xom_rasmlar = getattr(ws, "_images", [])
+    if media_soni > 0 and len(xom_rasmlar) == 0:
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                f"Excel ichida {media_soni} ta rasm fayli bor, ammo openpyxl ularni o'qimadi. "
+                "Pillow o'rnatilganini va server yangi deploy bo'lganini tekshiring."
+            ),
+        )
     rasm_diagnostika_xatolari = []  # nima uchun rasm o'qib bo'lmadi — ko'ra olishimiz uchun
     for rasm in xom_rasmlar:
         try:
@@ -10700,6 +9903,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
+    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS image_file_id TEXT")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
     # BIR MARTALIK TUZATISH: avval option_a NULL (bo'sh, ko'pincha
@@ -10728,6 +9932,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     saved = 0
     duplicates = 0
     errors = 0
+    import_xatolari = []
     rasm_biriktirildi = 0
     kod_yoq = 0  # topic_code bo'sh bo'lgani uchun o'tkazib yuborilgan qatorlar
     # (masalan mavzu o'zi topic_code'siz — "bo'sh" holatda — yaratilgan bo'lsa)
@@ -10763,7 +9968,10 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 # biriktiramiz (jimgina o'tkazib yubormasdan).
                 if rasm_bayt and not mavjud["rasm_malumot"]:
                     cur.execute(
-                        "UPDATE generated_tests SET rasm_malumot=%s, rasm_turi=%s, image_url=%s, image_file_id=NULL WHERE id=%s",
+                        """UPDATE generated_tests
+                           SET rasm_malumot=%s, rasm_turi=%s, image_url=%s,
+                               image_file_id=NULL
+                           WHERE id=%s""",
                         (psycopg2.Binary(rasm_bayt), rasm_turi, f"/api/test_rasmi/{mavjud['id']}", mavjud["id"]),
                     )
                     conn.commit()
@@ -10804,16 +10012,22 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
         except Exception as e:
             conn.rollback()
             errors += 1
+            if len(import_xatolari) < 20:
+                import_xatolari.append(
+                    f"{row[0].row}-qator: {type(e).__name__}: {e}"
+                )
 
     cur.close()
     conn.close()
     return {
-        "saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq,
+        "saved": saved, "duplicates": duplicates, "errors": errors,
+        "errors_detail": import_xatolari, "kod_yoq": kod_yoq,
         "rasm_biriktirildi": rasm_biriktirildi,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
         "rasm_diagnostika": {
             "qabul_qilingan_fayl_hajmi_bayt": len(content),
             "openpyxl_versiyasi": openpyxl.__version__,
+            "xlsx_media_fayllari_soni": media_soni,
             "excel_ichida_topilgan_rasm_soni": len(xom_rasmlar),
             "qatorga_bogliy_qilingan_rasm_soni": len(qator_rasmlari),
             "xatolar": rasm_diagnostika_xatolari,
@@ -11165,13 +10379,7 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
     qiladi. "Topic code" ustuni bo'sh bo'lsa — botning O'ZI ishlatadigan
     ICHMA-ICH (fan→bob→bo'lim→mavzu→kichik mavzu) kod hisoblash mantig'i
     orqali AVTOMATIK yaratiladi (hech qachon bo'sh qolmaydi); to'ldirilgan
-    bo'lsa — AYNAN o'sha kod bilan saqlanadi (mavjud mavzuni yangilash uchun).
-
-    MUHIM: fayldagi BARCHA varaqlar tekshiriladi — nafaqat "MALUMOT"
-    yoki birinchi (active) varaq. Shu orqali bitta faylga bir nechta
-    varaq (masalan har biri boshqa fan uchun) qo'shib, hammasini
-    BIR YO'LA import qilish mumkin. Mos formatga ega bo'lmagan
-    varaqlar (masalan "IZOH") avtomatik o'tkazib yuboriladi."""
+    bo'lsa — AYNAN o'sha kod bilan saqlanadi (mavjud mavzuni yangilash uchun)."""
     _admin_tekshir(token)
     import openpyxl
     import io
@@ -11181,82 +10389,67 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
         wb = openpyxl.load_workbook(io.BytesIO(content))
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
+    ws = wb["MALUMOT"] if "MALUMOT" in wb.sheetnames else wb.active
+
+    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
+    # Eski (DTS_SHABLON) va yangi (MALUMOT) formatlarini ikkalasini ham qo'llab-quvvatlaymiz
+    eski_format = "Sinf" in headers and headers[0] == "Sinf"
 
     conn = _db()
     cur = conn.cursor()
     added, updated, skipped = 0, 0, 0
-    xato_namunalari = []  # ["Fizika varag'i, 3-qator (Mavzu nomi): xato matni", ...] — ko'pi bilan 10 ta
-    tekshirilgan_varoqlar = []  # qaysi varaqlardan mavzu topilgani (diagnostika uchun)
+    xato_namunalari = []  # ["3-qator (Mavzu nomi): xato matni", ...] — ko'pi bilan 10 ta
 
-    for varoq_nomi in wb.sheetnames:
-        ws = wb[varoq_nomi]
-        if ws.max_row < 2:
+    for r in range(2, ws.max_row + 1):
+        if eski_format:
+            berilgan_kod = None
+            sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(1, 8))
+        else:
+            berilgan_kod = ws.cell(r, 2).value
+            sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(3, 10))
+
+        if not sinf or not mavzu:
             continue
-        headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
-        eski_format = "Sinf" in headers and headers[0] == "Sinf"
-        yangi_format = "Fan" in headers and "Mavzu" in headers
-        if not eski_format and not yangi_format:
-            continue  # bu varaq mos formatga ega emas (masalan "IZOH") — o'tkazib yuboramiz
 
-        varoq_qoshildi = 0
-        for r in range(2, ws.max_row + 1):
-            if eski_format:
-                berilgan_kod = None
-                sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(1, 8))
-            else:
-                berilgan_kod = ws.cell(r, 2).value
-                sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(3, 10))
-
-            if not sinf or not mavzu:
-                continue
-
-            if berilgan_kod and str(berilgan_kod).strip():
-                # ANIQ kod berilgan — mavjud mavzuni YANGILASH (nomlarini
-                # yangilaydi, kodini o'zgartirmaydi)
-                topic_code = str(berilgan_kod).strip()
-                try:
-                    cur.execute("""
-                        INSERT INTO dts_tree
-                        (topic_code, grade, subject_name, quarter,
-                         bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
-                        ON CONFLICT (topic_code) DO UPDATE SET
-                            bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
-                            kichik_name = EXCLUDED.kichik_name
-                    """, (
-                        topic_code, str(sinf), str(fan) if fan else "",
-                        str(chorak) if chorak else "1", str(bob) if bob else "",
-                        str(bolim) if bolim else "", str(mavzu) if mavzu else "",
-                        str(kichik) if kichik else "",
-                    ))
-                    conn.commit()
-                    updated += 1
-                    varoq_qoshildi += 1
-                except Exception as e:
-                    conn.rollback()
-                    skipped += 1
-                    if len(xato_namunalari) < 10:
-                        xato_namunalari.append(f"{varoq_nomi}, {r}-qator ({mavzu}): {e}")
-            else:
-                # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
-                # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
-                try:
-                    _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
-                    conn.commit()
-                    added += 1
-                    varoq_qoshildi += 1
-                except Exception as e:
-                    conn.rollback()
-                    skipped += 1
-                    if len(xato_namunalari) < 10:
-                        xato_namunalari.append(f"{varoq_nomi}, {r}-qator ({mavzu}): {e}")
-
-        if varoq_qoshildi > 0:
-            tekshirilgan_varoqlar.append({"nomi": varoq_nomi, "mavzu_soni": varoq_qoshildi})
+        if berilgan_kod and str(berilgan_kod).strip():
+            # ANIQ kod berilgan — mavjud mavzuni YANGILASH (nomlarini
+            # yangilaydi, kodini o'zgartirmaydi)
+            topic_code = str(berilgan_kod).strip()
+            try:
+                cur.execute("""
+                    INSERT INTO dts_tree
+                    (topic_code, grade, subject_name, quarter,
+                     bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+                    ON CONFLICT (topic_code) DO UPDATE SET
+                        bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
+                        kichik_name = EXCLUDED.kichik_name
+                """, (
+                    topic_code, str(sinf), str(fan) if fan else "",
+                    str(chorak) if chorak else "1", str(bob) if bob else "",
+                    str(bolim) if bolim else "", str(mavzu) if mavzu else "",
+                    str(kichik) if kichik else "",
+                ))
+                conn.commit()
+                updated += 1
+            except Exception as e:
+                conn.rollback()
+                skipped += 1
+                if len(xato_namunalari) < 10:
+                    xato_namunalari.append(f"{r}-qator ({mavzu}): {e}")
+        else:
+            # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
+            # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
+            try:
+                _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
+                conn.commit()
+                added += 1
+            except Exception as e:
+                conn.rollback()
+                skipped += 1
+                if len(xato_namunalari) < 10:
+                    xato_namunalari.append(f"{r}-qator ({mavzu}): {e}")
 
     cur.close()
     conn.close()
-    return {
-        "added": added, "updated": updated, "skipped": skipped, "xato_namunalari": xato_namunalari,
-        "varoqlar": tekshirilgan_varoqlar,
-    }
+    return {"added": added, "updated": updated, "skipped": skipped, "xato_namunalari": xato_namunalari}
