@@ -16,7 +16,7 @@ import psycopg2.extras
 from typing import Optional
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
-from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form
+from fastapi import FastAPI, Header, HTTPException, Query, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, Response
 from pydantic import BaseModel
@@ -30,6 +30,12 @@ BAZA_URL = os.getenv("BAZA_URL", "https://talimplatformasi-production.up.railway
 FRONTEND_URL = os.getenv("FRONTEND_URL", "https://talimplatformasi-production.up.railway.app")
 REDIRECT_URI = f"{BAZA_URL}/auth/google/callback"
 
+if len(JWT_MAXFIY_KALIT.encode("utf-8")) < 32:
+    raise RuntimeError(
+        "JWT_MAXFIY_KALIT o'rnatilmagan yoki juda qisqa. "
+        "Kamida 32 baytli tasodifiy sir kiriting."
+    )
+
 app = FastAPI(title="SamTM Ta'lim API")
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["*"],
@@ -40,7 +46,7 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "openpyxl-pin-va-optiona-fix-v9"}
+    return {"versiya": "kindergarten-secure-avatar-v12"}
 
 
 @app.get("/api/admin/rasm_diagnostika")
@@ -290,6 +296,19 @@ def _jwt_tekshir(token: str) -> int:
         return payload["user_id"]
     except JWTError:
         raise HTTPException(status_code=401, detail="Sessiya eskirgan, qaytadan kiring")
+
+
+def _jwt_header_yoki_query(
+    token: Optional[str],
+    authorization: Optional[str],
+) -> str:
+    if authorization:
+        scheme, _, value = authorization.partition(" ")
+        if scheme.lower() == "bearer" and value.strip():
+            return value.strip()
+    if token:
+        return token
+    raise HTTPException(status_code=401, detail="Kirish tokeni yuborilmadi")
 
 
 @app.get("/auth/google/login")
@@ -680,48 +699,75 @@ def telefon_royxat(sorov: TelefonRoyxatSorov):
 def hisob_ulash(sorov: UlashSorov):
     """Google hisobini bot user_id'siga kod orqali bog'laydi. Ikki xil
     kod manbasini tekshiradi: botdagi veb_ulash_kod (15 daqiqa amal
-    qiladi) VA maktab xodimlari uchun xodim_kod (30 kun amal qiladi,
+    qiladi) VA xodimlar uchun xodim_kod (7 kun amal qiladi,
     admin Excel orqali xodim import qilganda yaratiladi) — shu sabab
     bitta "kod kiritish" ekrani ikkalasi uchun ham ishlaydi."""
-    email, kod = sorov.email, sorov.kod
+    email, kod = sorov.email, sorov.kod.strip()
     conn = _db()
     cur = conn.cursor()
+    _xodim_kod_jadvali(cur)
+    subject_hash = _xodim_kod_subject("email", email.strip().lower())
+    if _xodim_kod_bloklanganmi(cur, subject_hash):
+        cur.close()
+        conn.close()
+        raise HTTPException(
+            status_code=429,
+            detail="Ko'p noto'g'ri urinish. 30 daqiqadan keyin qayta urinib ko'ring.",
+        )
     cur.execute("""
-        SELECT user_id, ishlatildi,
+        SELECT kod AS stored_code,user_id, ishlatildi,
                (yaratildi > NOW() - INTERVAL '15 minutes') AS hali_yangi
         FROM veb_ulash_kod WHERE kod=%s
+        FOR UPDATE
     """, (kod,))
     r = cur.fetchone()
     muddat_matni = "15 daqiqa"
     jadval_nomi = "veb_ulash_kod"
 
     if not r:
-        cur.execute("SELECT 1 FROM information_schema.tables WHERE table_name='xodim_kod'")
-        if cur.fetchone():
-            cur.execute("""
-                SELECT user_id, ishlatildi,
-                       (yaratildi > NOW() - INTERVAL '30 days') AS hali_yangi
-                FROM xodim_kod WHERE kod=%s
-            """, (kod,))
-            r = cur.fetchone()
-            muddat_matni = "30 kun"
-            jadval_nomi = "xodim_kod"
+        plain_code, hashed_code = _xodim_kod_variantlari(kod)
+        cur.execute("""
+            SELECT kod AS stored_code,user_id,ishlatildi,
+                   (yaratildi > NOW() - INTERVAL '7 days') AS hali_yangi
+            FROM xodim_kod
+            WHERE kod IN (%s,%s)
+              AND (kod LIKE 'sha256:%%' OR LENGTH(kod)>=12)
+            ORDER BY CASE WHEN kod=%s THEN 0 ELSE 1 END
+            LIMIT 1
+            FOR UPDATE
+        """, (hashed_code, plain_code, hashed_code))
+        r = cur.fetchone()
+        muddat_matni = "7 kun"
+        jadval_nomi = "xodim_kod"
 
     if not r:
-        cur.close(); conn.close()
+        _xodim_kod_xato_urinish(cur, subject_hash)
+        conn.commit()
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=400, detail="Kod noto'g'ri")
     if r["ishlatildi"]:
-        cur.close(); conn.close()
+        _xodim_kod_xato_urinish(cur, subject_hash)
+        conn.commit()
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
     if not r["hali_yangi"]:
-        cur.close(); conn.close()
+        _xodim_kod_xato_urinish(cur, subject_hash)
+        conn.commit()
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=400, detail=f"Kod muddati tugagan ({muddat_matni}) — qaytadan so'rang")
 
     cur.execute("""
         INSERT INTO google_hisob (google_email, user_id) VALUES (%s,%s)
         ON CONFLICT (google_email) DO UPDATE SET user_id=EXCLUDED.user_id
     """, (email, r["user_id"]))
-    cur.execute(f"UPDATE {jadval_nomi} SET ishlatildi=TRUE WHERE kod=%s", (kod,))
+    cur.execute(
+        f"UPDATE {jadval_nomi} SET ishlatildi=TRUE WHERE kod=%s",
+        (r["stored_code"],),
+    )
+    _xodim_kod_urinishni_tozalash(cur, subject_hash)
     conn.commit()
     cur.close()
     conn.close()
@@ -6508,7 +6554,7 @@ def admin_foydalanuvchi_qidir(token: str, ism: str):
 # ═══════════════════════════════════════════════════════════
 # MAKTAB TIZIMI — 2-BOSQICH: xodimlarni Excel orqali kiritish
 # Har bir xodim uchun avtomatik KIRISH KODI (mavjud veb_ulash_kod
-# mexanizmiga o'xshash, lekin uzoqroq — 30 kun — amal qiladigan)
+# mexanizmiga o'xshash, lekin 7 kun amal qiladigan)
 # yaratiladi. Agar "Sinf rahbarligi" to'ldirilgan bo'lsa — o'sha
 # sinf (maktab_sinflari) ham shu bilan birga yaratiladi/yangilanadi,
 # 4 xonali qo'shilish paroli bilan.
@@ -6538,6 +6584,94 @@ def _xodim_kod_jadvali(cur):
         kod TEXT PRIMARY KEY, user_id BIGINT NOT NULL REFERENCES users(user_id),
         yaratildi TIMESTAMP DEFAULT NOW(), ishlatildi BOOLEAN DEFAULT FALSE
     )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS xodim_kod_urinishlari(
+        subject_hash TEXT PRIMARY KEY,
+        attempts INTEGER NOT NULL DEFAULT 0,
+        window_started TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        locked_until TIMESTAMPTZ,
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+
+
+def _xodim_kod_yarat():
+    plain_code = "".join(
+        secrets.choice(string.ascii_uppercase + string.digits)
+        for _ in range(12)
+    )
+    stored_code = "sha256:" + hashlib.sha256(
+        plain_code.encode("utf-8")
+    ).hexdigest()
+    return plain_code, stored_code
+
+
+def _xodim_kod_variantlari(code):
+    normalized = str(code or "").strip().upper()
+    hashed = "sha256:" + hashlib.sha256(
+        normalized.encode("utf-8")
+    ).hexdigest()
+    return normalized, hashed
+
+
+def _xodim_kod_subject(prefix, value):
+    digest = hashlib.sha256(
+        f"{prefix}:{value}".encode("utf-8")
+    ).hexdigest()
+    return f"{prefix}:{digest}"
+
+
+def _xodim_kod_bloklanganmi(cur, subject_hash):
+    _xodim_kod_jadvali(cur)
+    cur.execute("""
+        SELECT locked_until
+        FROM xodim_kod_urinishlari
+        WHERE subject_hash=%s
+    """, (subject_hash,))
+    state = cur.fetchone()
+    return bool(
+        state
+        and state["locked_until"]
+        and state["locked_until"] > datetime.now(timezone.utc)
+    )
+
+
+def _xodim_kod_xato_urinish(cur, subject_hash):
+    cur.execute("""
+        INSERT INTO xodim_kod_urinishlari AS current_attempt(
+            subject_hash,attempts,window_started,locked_until,updated_at
+        )
+        VALUES(%s,1,NOW(),NULL,NOW())
+        ON CONFLICT(subject_hash) DO UPDATE SET
+            attempts=CASE
+                WHEN current_attempt.window_started < NOW()-INTERVAL '15 minutes'
+                THEN 1
+                ELSE current_attempt.attempts+1
+            END,
+            window_started=CASE
+                WHEN current_attempt.window_started < NOW()-INTERVAL '15 minutes'
+                THEN NOW()
+                ELSE current_attempt.window_started
+            END,
+            locked_until=CASE
+                WHEN (
+                    CASE
+                        WHEN current_attempt.window_started
+                             < NOW()-INTERVAL '15 minutes'
+                        THEN 1
+                        ELSE current_attempt.attempts+1
+                    END
+                ) >= 10
+                THEN NOW()+INTERVAL '30 minutes'
+                ELSE current_attempt.locked_until
+            END,
+            updated_at=NOW()
+    """, (subject_hash,))
+
+
+def _xodim_kod_urinishni_tozalash(cur, subject_hash):
+    cur.execute(
+        "DELETE FROM xodim_kod_urinishlari WHERE subject_hash=%s",
+        (subject_hash,),
+    )
 
 
 def _maktab_sinflari_jadvali(cur):
@@ -6611,7 +6745,7 @@ def xodim_shablon(token: str):
 @app.post("/api/admin/xodim_import")
 async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...)):
     """To'ldirilgan xodimlar shablonini import qiladi — har biriga
-    hisob va 30 kun amal qiladigan KIRISH KODI yaratadi. "Sinf
+    hisob va 7 kun amal qiladigan 12 belgili KIRISH KODI yaratadi. "Sinf
     rahbarligi" to'ldirilgan bo'lsa, o'sha sinfni ham (yangi 4 xonali
     qo'shilish paroli bilan) yaratadi/yangilaydi."""
     _admin_tekshir(token)
@@ -6672,10 +6806,10 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             if lavozim_kaliti == "direktor":
                 cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (yangi_id, maktab_id))
 
-            kirish_kodi = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
+            kirish_kodi, saqlanadigan_kod = _xodim_kod_yarat()
             cur.execute(
                 "INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)",
-                (kirish_kodi, yangi_id),
+                (saqlanadigan_kod, yangi_id),
             )
 
             sinf_paroli = None
@@ -8892,7 +9026,7 @@ def markaz_xodim_shablon(token: str):
 
 @app.post("/api/admin/markaz_xodim_import")
 async def markaz_xodim_import(token: str, markaz_id: int, fayl: UploadFile = File(...)):
-    """Xuddi maktab xodim importi kabi — har biriga hisob va 30 kunlik
+    """Xuddi maktab xodim importi kabi — har biriga hisob va 7 kunlik
     kirish kodi yaratadi. "Fan o'qituvchisi" bo'lganlar keyinchalik
     to'garak (guruh) yaratganda, u AVTOMATIK shu markazga bog'lanadi."""
     _admin_tekshir(token)
@@ -8938,8 +9072,11 @@ async def markaz_xodim_import(token: str, markaz_id: int, fayl: UploadFile = Fil
             if lavozim_kaliti == "markaz_direktor":
                 cur.execute("UPDATE oquv_markazlari SET direktor_user_id=%s WHERE id=%s", (yangi_id, markaz_id))
 
-            kirish_kodi = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
-            cur.execute("INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)", (kirish_kodi, yangi_id))
+            kirish_kodi, saqlanadigan_kod = _xodim_kod_yarat()
+            cur.execute(
+                "INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)",
+                (saqlanadigan_kod, yangi_id),
+            )
 
             conn.commit()
             natijalar.append({
@@ -9084,8 +9221,17 @@ def markaz_tolov_belgila(sorov: MarkazTolovBelgilash):
 # xavfsiz — faqat Excel'da unga MO'LJALLANGAN lavozim beriladi).
 # ═══════════════════════════════════════════════════════════
 
+class XodimKodniQabulQilish(BaseModel):
+    kirish_kodi: str
+
+
 @app.post("/api/oqituvchi/kirish_kodi_orqali_qoshil")
-def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
+def kirish_kodi_orqali_qoshil(
+    sorov: Optional[XodimKodniQabulQilish] = None,
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    kirish_kodi: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
     """token — chaqiruvchining O'Z (allaqachon mavjud) hisobi.
     kirish_kodi — Excel import paytida SHU KISHI uchun mo'ljallab
     yaratilgan kod (xodim_kod jadvali). Kod to'g'ri bo'lsa —
@@ -9095,25 +9241,57 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
     bo'lsa — faqat YANGI, ko'p-muassasali jadvalga qo'shiladi, birinchisi
     O'CHIRILMAYDI). Kod "ishlatildi" deb belgilanadi (qayta ishlatib
     bo'lmaydi)."""
-    user_id = _jwt_tekshir(token)
+    user_id = _jwt_tekshir(_jwt_header_yoki_query(token, authorization))
+    kod_matni = (
+        sorov.kirish_kodi if sorov is not None else (kirish_kodi or "")
+    ).strip()
+    if not kod_matni:
+        raise HTTPException(status_code=400, detail="Kirish kodini kiriting")
     conn = _db()
     cur = conn.cursor()
     _xodim_kod_jadvali(cur)
+    subject_hash = _xodim_kod_subject("user", user_id)
+    if _xodim_kod_bloklanganmi(cur, subject_hash):
+        cur.close()
+        conn.close()
+        raise HTTPException(
+            status_code=429,
+            detail="Ko'p noto'g'ri urinish. 30 daqiqadan keyin qayta urinib ko'ring.",
+        )
+    plain_code, hashed_code = _xodim_kod_variantlari(kod_matni)
     cur.execute("""
-        SELECT xk.user_id AS placeholder_id, xk.ishlatildi,
-               (xk.yaratildi > NOW() - INTERVAL '30 days') AS hali_yangi
-        FROM xodim_kod xk WHERE xk.kod=%s
-    """, (kirish_kodi.strip(),))
+        SELECT xk.kod AS stored_code,xk.user_id AS placeholder_id,
+               xk.ishlatildi,
+               (xk.yaratildi > NOW() - INTERVAL '7 days') AS hali_yangi
+        FROM xodim_kod xk
+        WHERE xk.kod IN (%s,%s)
+          AND (xk.kod LIKE 'sha256:%%' OR LENGTH(xk.kod)>=12)
+        ORDER BY CASE WHEN xk.kod=%s THEN 0 ELSE 1 END
+        LIMIT 1
+        FOR UPDATE
+    """, (hashed_code, plain_code, hashed_code))
     kod = cur.fetchone()
     if not kod:
-        cur.close(); conn.close()
+        _xodim_kod_xato_urinish(cur, subject_hash)
+        conn.commit()
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=400, detail="Kod noto'g'ri")
     if kod["ishlatildi"]:
-        cur.close(); conn.close()
+        _xodim_kod_xato_urinish(cur, subject_hash)
+        conn.commit()
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
     if not kod["hali_yangi"]:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Kod muddati tugagan (30 kun) — admindan yangisini so'rang")
+        _xodim_kod_xato_urinish(cur, subject_hash)
+        conn.commit()
+        cur.close()
+        conn.close()
+        raise HTTPException(
+            status_code=400,
+            detail="Kod muddati tugagan (7 kun) — admindan yangisini so'rang",
+        )
 
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
@@ -9131,6 +9309,13 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Bu kodga tegishli muassasa topilmadi")
     turi, muassasa_id = turlar[0]  # amalda har doim aynan bittasi to'ldirilgan bo'ladi
+    if turi == "bogcha" and not _bogcha_legacy_faol_holat(cur, muassasa_id):
+        cur.close()
+        conn.close()
+        raise HTTPException(
+            status_code=403,
+            detail="Bu bog'cha faol emas; xodim kodini qabul qilib bo'lmaydi.",
+        )
 
     # Chaqiruvchining hozirgi (eski, yagona ustun) muassasalari bo'shmi?
     cur.execute("SELECT maktab_id, markaz_id, bogcha_id, universitet_id FROM users WHERE user_id=%s", (user_id,))
@@ -9149,6 +9334,15 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
         VALUES(%s,%s,%s,%s) ON CONFLICT (user_id, muassasa_turi, muassasa_id) DO UPDATE SET lavozim=EXCLUDED.lavozim
     """, (user_id, turi, muassasa_id, p["lavozim"]))
 
+    if turi == "bogcha":
+        _bogcha_v2_xodimni_koddan_otkaz(
+            cur,
+            muassasa_id,
+            kod["placeholder_id"],
+            user_id,
+            p["lavozim"],
+        )
+
     if p["maktab_id"] and p["lavozim"] == "direktor":
         cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (user_id, p["maktab_id"]))
     if p["markaz_id"] and p["lavozim"] == "markaz_direktor":
@@ -9157,7 +9351,11 @@ def kirish_kodi_orqali_qoshil(token: str, kirish_kodi: str):
         cur.execute("UPDATE bogchalar SET direktor_user_id=%s WHERE id=%s", (user_id, p["bogcha_id"]))
     if p["universitet_id"] and p["lavozim"] == "rektor":
         cur.execute("UPDATE universitetlar SET rektor_user_id=%s WHERE id=%s", (user_id, p["universitet_id"]))
-    cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s", (kirish_kodi.strip(),))
+    cur.execute(
+        "UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s",
+        (kod["stored_code"],),
+    )
+    _xodim_kod_urinishni_tozalash(cur, subject_hash)
     conn.commit()
 
     jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}[turi]
@@ -9214,6 +9412,410 @@ def _bogcha_jadvali(cur):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
 
 
+def _bogcha_v2_mavjud(cur):
+    """Legacy ekranlar v2 migratsiyasiz ham ishlashda davom etadi."""
+    cur.execute("""
+        SELECT
+          to_regclass('public.learning_contexts') IS NOT NULL
+          AND to_regclass('public.course_groups') IS NOT NULL
+          AND to_regclass('public.context_memberships') IS NOT NULL
+          AND to_regclass('public.kindergarten_profiles') IS NOT NULL
+          AND to_regclass('public.kindergarten_group_profiles') IS NOT NULL
+          AND to_regclass('public.kindergarten_role_assignments') IS NOT NULL
+          AND to_regclass('public.kindergarten_children') IS NOT NULL
+          AND to_regclass('public.kindergarten_guardians') IS NOT NULL
+          AS tayyor
+    """)
+    row = cur.fetchone()
+    if not row or not row["tayyor"]:
+        return False
+    cur.execute("""
+        SELECT EXISTS(
+            SELECT 1 FROM app_schema_migrations
+            WHERE version='004_kindergarten_hardening'
+        ) AS tayyor
+    """)
+    migration = cur.fetchone()
+    return bool(migration and migration["tayyor"])
+
+
+def _bogcha_legacy_faol_holat(cur, bogcha_id):
+    if not _bogcha_v2_mavjud(cur):
+        return True
+    cur.execute("""
+        SELECT
+            context.active,
+            profile.onboarding_status,
+            profile.verification_status
+        FROM learning_contexts context
+        JOIN kindergarten_profiles profile
+          ON profile.context_id=context.id
+        WHERE context.context_type='kindergarten'
+          AND context.external_type='bogcha'
+          AND context.external_id=%s
+    """, (bogcha_id,))
+    state = cur.fetchone()
+    return bool(
+        state
+        and state["active"]
+        and state["onboarding_status"] == "active"
+        and state["verification_status"] != "rejected"
+    )
+
+
+def _bogcha_legacy_faol_talab(cur, bogcha_id):
+    if not _bogcha_legacy_faol_holat(cur, bogcha_id):
+        raise HTTPException(
+            status_code=403,
+            detail="Bu bog'cha faol emas yoki tasdiqlanmagan.",
+        )
+
+
+def _bogcha_v2_kontekstni_taminla(cur, bogcha_id):
+    if not _bogcha_v2_mavjud(cur):
+        return None
+    cur.execute("""
+        SELECT id,nomi,turi,viloyat,tuman,direktor_user_id,oylik_tolov
+        FROM bogchalar WHERE id=%s
+    """, (bogcha_id,))
+    bogcha = cur.fetchone()
+    if not bogcha:
+        return None
+    cur.execute("""
+        INSERT INTO learning_contexts(
+            context_type,name,owner_user_id,region,district,
+            external_type,external_id,active,metadata
+        )
+        VALUES(
+            'kindergarten',%s,%s,%s,%s,'bogcha',%s,TRUE,
+            '{"source":"legacy_sync"}'::jsonb
+        )
+        ON CONFLICT(external_type,external_id)
+        WHERE external_type IS NOT NULL
+        DO UPDATE SET
+            name=EXCLUDED.name,
+            owner_user_id=COALESCE(
+                learning_contexts.owner_user_id,
+                EXCLUDED.owner_user_id
+            ),
+            region=EXCLUDED.region,
+            district=EXCLUDED.district,
+            updated_at=NOW()
+        RETURNING id
+    """, (
+        bogcha["nomi"],
+        bogcha["direktor_user_id"],
+        bogcha["viloyat"],
+        bogcha["tuman"],
+        bogcha_id,
+    ))
+    context_id = cur.fetchone()["id"]
+    cur.execute("""
+        INSERT INTO kindergarten_profiles(
+            context_id,legacy_bogcha_id,ownership_type,onboarding_status,
+            verification_status,payment_enabled,monthly_fee
+        )
+        VALUES(
+            %s,%s,%s,'active','verified',%s,%s
+        )
+        ON CONFLICT(context_id) DO UPDATE SET
+            legacy_bogcha_id=COALESCE(
+                kindergarten_profiles.legacy_bogcha_id,
+                EXCLUDED.legacy_bogcha_id
+            ),
+            updated_at=NOW()
+    """, (
+        context_id,
+        bogcha_id,
+        "public" if bogcha["turi"] == "davlat" else "private",
+        bool((bogcha["oylik_tolov"] or 0) > 0),
+        bogcha["oylik_tolov"],
+    ))
+    return context_id
+
+
+def _bogcha_v2_guruhni_taminla(cur, legacy_guruh_id):
+    if not _bogcha_v2_mavjud(cur):
+        return None
+    cur.execute("""
+        SELECT id,bogcha_id,nomi,opa_user_id
+        FROM bogcha_guruhlari WHERE id=%s
+    """, (legacy_guruh_id,))
+    guruh = cur.fetchone()
+    if not guruh:
+        return None
+    context_id = _bogcha_v2_kontekstni_taminla(cur, guruh["bogcha_id"])
+    if context_id is None:
+        return None
+    cur.execute("""
+        INSERT INTO course_groups(
+            context_id,group_type,delivery_mode,name,teacher_user_id,
+            external_type,external_id,active,metadata
+        )
+        VALUES(
+            %s,'kindergarten_group','offline',%s,%s,
+            'bogcha_guruh',%s,TRUE,'{"source":"legacy_sync"}'::jsonb
+        )
+        ON CONFLICT(external_type,external_id)
+        WHERE external_type IS NOT NULL
+        DO UPDATE SET
+            context_id=EXCLUDED.context_id,
+            name=EXCLUDED.name,
+            teacher_user_id=EXCLUDED.teacher_user_id,
+            active=TRUE,
+            updated_at=NOW()
+        RETURNING id,context_id
+    """, (
+        context_id,
+        guruh["nomi"],
+        guruh["opa_user_id"],
+        legacy_guruh_id,
+    ))
+    group = cur.fetchone()
+    cur.execute("""
+        INSERT INTO kindergarten_group_profiles(
+            group_id,context_id,legacy_group_id
+        )
+        VALUES(%s,%s,%s)
+        ON CONFLICT(group_id) DO UPDATE SET
+            context_id=EXCLUDED.context_id,
+            legacy_group_id=EXCLUDED.legacy_group_id,
+            updated_at=NOW()
+    """, (group["id"], group["context_id"], legacy_guruh_id))
+    return group
+
+
+def _bogcha_v2_rolni_taminla(
+    cur,
+    bogcha_id,
+    user_id,
+    legacy_lavozim,
+    legacy_guruh_id=None,
+    approved_by=None,
+):
+    if not _bogcha_v2_mavjud(cur):
+        return
+    role_key = {
+        "bogcha_direktor": "director",
+        "bogcha_zam": "deputy_director",
+        "bogcha_opa": "educator",
+    }.get(legacy_lavozim, "educator")
+    context_id = _bogcha_v2_kontekstni_taminla(cur, bogcha_id)
+    if context_id is None:
+        return
+    group_id = None
+    if legacy_guruh_id is not None and role_key == "educator":
+        group = _bogcha_v2_guruhni_taminla(cur, legacy_guruh_id)
+        group_id = group["id"] if group else None
+    approver = approved_by or user_id
+    cur.execute("""
+        INSERT INTO kindergarten_role_assignments(
+            context_id,group_id,user_id,role_key,status,
+            approved_by_user_id,permissions
+        )
+        VALUES(
+            %s,%s,%s,%s,'active',%s,
+            '{"source":"legacy_runtime_sync"}'::jsonb
+        )
+        ON CONFLICT(
+            context_id,(COALESCE(group_id,0)),user_id,role_key
+        ) DO UPDATE SET
+            status='active',
+            approved_by_user_id=EXCLUDED.approved_by_user_id,
+            permissions=kindergarten_role_assignments.permissions
+                        || EXCLUDED.permissions,
+            starts_at=NOW(),ends_at=NULL,updated_at=NOW()
+    """, (context_id, group_id, user_id, role_key, approver))
+    cur.execute("""
+        INSERT INTO context_memberships(
+            context_id,group_id,user_id,member_role,status,source,
+            approved_by_user_id,metadata
+        )
+        VALUES(
+            %s,%s,%s,%s,'active','legacy_sync',%s,
+            jsonb_build_object('kindergarten_role',%s)
+        )
+        ON CONFLICT(
+            context_id,(COALESCE(group_id,0)),user_id,member_role
+        ) DO UPDATE SET
+            status='active',
+            source=EXCLUDED.source,
+            approved_by_user_id=EXCLUDED.approved_by_user_id,
+            ended_at=NULL,updated_at=NOW(),
+            metadata=EXCLUDED.metadata
+    """, (
+        context_id,
+        group_id,
+        user_id,
+        "manager" if role_key in {
+            "owner", "founder", "director", "deputy_director", "administrator"
+        } else "teacher",
+        approver,
+        role_key,
+    ))
+    if group_id is not None:
+        cur.execute(
+            "UPDATE course_groups SET teacher_user_id=%s,updated_at=NOW() WHERE id=%s",
+            (user_id, group_id),
+        )
+
+
+def _bogcha_v2_xodimni_koddan_otkaz(
+    cur,
+    bogcha_id,
+    placeholder_id,
+    user_id,
+    legacy_lavozim,
+):
+    if not _bogcha_v2_mavjud(cur):
+        return
+    cur.execute(
+        "SELECT id FROM bogcha_guruhlari WHERE bogcha_id=%s AND opa_user_id=%s",
+        (bogcha_id, placeholder_id),
+    )
+    legacy_groups = [row["id"] for row in cur.fetchall()]
+    if legacy_lavozim == "bogcha_opa" and legacy_groups:
+        for legacy_group_id in legacy_groups:
+            _bogcha_v2_rolni_taminla(
+                cur,
+                bogcha_id,
+                user_id,
+                legacy_lavozim,
+                legacy_group_id,
+                user_id,
+            )
+    else:
+        _bogcha_v2_rolni_taminla(
+            cur,
+            bogcha_id,
+            user_id,
+            legacy_lavozim,
+            None,
+            user_id,
+        )
+    context_id = _bogcha_v2_kontekstni_taminla(cur, bogcha_id)
+    cur.execute("""
+        UPDATE kindergarten_role_assignments
+        SET status='ended',ends_at=NOW(),updated_at=NOW()
+        WHERE context_id=%s AND user_id=%s AND status='active'
+    """, (context_id, placeholder_id))
+    cur.execute("""
+        UPDATE context_memberships
+        SET status='withdrawn',ended_at=NOW(),updated_at=NOW()
+        WHERE context_id=%s AND user_id=%s AND status='active'
+    """, (context_id, placeholder_id))
+    cur.execute("""
+        UPDATE bogcha_guruhlari
+        SET opa_user_id=%s
+        WHERE bogcha_id=%s AND opa_user_id=%s
+    """, (user_id, bogcha_id, placeholder_id))
+    cur.execute("""
+        UPDATE course_groups
+        SET teacher_user_id=%s,updated_at=NOW()
+        WHERE context_id=%s AND teacher_user_id=%s
+    """, (user_id, context_id, placeholder_id))
+
+
+def _bogcha_v2_bolani_taminla(
+    cur,
+    legacy_guruh_id,
+    bola_user_id,
+    full_name,
+    created_by,
+    ota_ona_user_id=None,
+):
+    group = _bogcha_v2_guruhni_taminla(cur, legacy_guruh_id)
+    if not group:
+        return
+    external_reference = f"legacy_user:{bola_user_id}"
+    cur.execute("""
+        INSERT INTO kindergarten_children(
+            context_id,group_id,full_name,enrollment_status,
+            external_reference,created_by_user_id
+        )
+        VALUES(%s,%s,%s,'active',%s,%s)
+        ON CONFLICT(context_id,external_reference)
+        WHERE external_reference IS NOT NULL
+        DO UPDATE SET
+            group_id=EXCLUDED.group_id,
+            full_name=EXCLUDED.full_name,
+            enrollment_status='active',
+            updated_at=NOW()
+        RETURNING id
+    """, (
+        group["context_id"],
+        group["id"],
+        full_name,
+        external_reference,
+        created_by,
+    ))
+    child_id = cur.fetchone()["id"]
+    cur.execute("""
+        INSERT INTO context_memberships(
+            context_id,group_id,user_id,member_role,status,source,
+            approved_by_user_id,metadata
+        )
+        VALUES(
+            %s,%s,%s,'student','active','legacy_sync',%s,
+            jsonb_build_object('kindergarten_child_id',%s)
+        )
+        ON CONFLICT(
+            context_id,(COALESCE(group_id,0)),user_id,member_role
+        ) DO UPDATE SET
+            status='active',ended_at=NULL,updated_at=NOW(),
+            metadata=EXCLUDED.metadata
+    """, (
+        group["context_id"],
+        group["id"],
+        bola_user_id,
+        created_by,
+        child_id,
+    ))
+    if ota_ona_user_id is not None:
+        cur.execute(
+            "SELECT full_name FROM users WHERE user_id=%s",
+            (ota_ona_user_id,),
+        )
+        guardian = cur.fetchone()
+        if guardian:
+            cur.execute("""
+                INSERT INTO kindergarten_guardians(
+                    child_id,user_id,full_name,relationship,is_primary
+                )
+                SELECT %s,%s,%s,'ota-ona',TRUE
+                WHERE NOT EXISTS(
+                    SELECT 1 FROM kindergarten_guardians
+                    WHERE child_id=%s AND user_id=%s
+                )
+            """, (
+                child_id,
+                ota_ona_user_id,
+                guardian["full_name"],
+                child_id,
+                ota_ona_user_id,
+            ))
+
+
+def _bogcha_v2_bolani_chiqar(cur, legacy_guruh_id, bola_user_id):
+    if not _bogcha_v2_mavjud(cur):
+        return
+    group = _bogcha_v2_guruhni_taminla(cur, legacy_guruh_id)
+    if not group:
+        return
+    cur.execute("""
+        UPDATE kindergarten_children
+        SET enrollment_status='left',updated_at=NOW()
+        WHERE context_id=%s
+          AND external_reference=%s
+    """, (group["context_id"], f"legacy_user:{bola_user_id}"))
+    cur.execute("""
+        UPDATE context_memberships
+        SET status='withdrawn',ended_at=NOW(),updated_at=NOW()
+        WHERE context_id=%s AND group_id=%s AND user_id=%s
+          AND member_role='student' AND status='active'
+    """, (group["context_id"], group["id"], bola_user_id))
+
+
 def _bogcha_boshqaruvchi_mi(cur, user_id, bogcha_id):
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     if cur.fetchone():
@@ -9229,12 +9831,11 @@ class BogchaYaratish(BaseModel):
     viloyat: Optional[str] = None
     tuman: Optional[str] = None
     direktor_user_id: Optional[int] = None
-    oylik_tolov: Optional[int] = None
 
 
 @app.post("/api/admin/bogcha_yarat")
 def bogcha_yarat(sorov: BogchaYaratish):
-    _admin_tekshir(sorov.token)
+    admin_user_id = _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Bog'cha nomi kiritilmagan")
     if sorov.turi not in BOGCHA_TURLARI:
@@ -9248,10 +9849,25 @@ def bogcha_yarat(sorov: BogchaYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id, oylik_tolov)
-        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.turi, sorov.viloyat, sorov.tuman, sorov.direktor_user_id, sorov.oylik_tolov))
+        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id)
+        VALUES(%s,%s,%s,%s,%s) RETURNING id
+    """, (
+        sorov.nomi.strip(),
+        sorov.turi,
+        sorov.viloyat,
+        sorov.tuman,
+        sorov.direktor_user_id,
+    ))
     yangi_id = cur.fetchone()["id"]
+    _bogcha_v2_kontekstni_taminla(cur, yangi_id)
+    if sorov.direktor_user_id is not None:
+        _bogcha_v2_rolni_taminla(
+            cur,
+            yangi_id,
+            sorov.direktor_user_id,
+            "bogcha_direktor",
+            approved_by=admin_user_id,
+        )
     conn.commit()
     cur.close()
     conn.close()
@@ -9259,13 +9875,16 @@ def bogcha_yarat(sorov: BogchaYaratish):
 
 
 @app.get("/api/admin/bogchalar")
-def bogchalar_royxati(token: str):
-    _admin_tekshir(token)
+def bogchalar_royxati(
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
+    _admin_tekshir(_jwt_header_yoki_query(token, authorization))
     conn = _db()
     cur = conn.cursor()
     _bogcha_jadvali(cur)
     cur.execute("""
-        SELECT b.id, b.nomi, b.turi, b.viloyat, b.tuman, b.direktor_user_id, b.oylik_tolov,
+        SELECT b.id, b.nomi, b.turi, b.viloyat, b.tuman, b.direktor_user_id,
                u.full_name AS direktor_ismi
         FROM bogchalar b
         LEFT JOIN users u ON u.user_id = b.direktor_user_id
@@ -9286,35 +9905,23 @@ class BogchaTolovSozlash(BaseModel):
 
 @app.put("/api/admin/bogcha_tolov_sozlash")
 def bogcha_tolov_sozlash(sorov: BogchaTolovSozlash):
-    """Bog'cha yaratilgandan KEYIN ham to'lov turi/summasini
-    o'zgartirish uchun — maktabdagi 'To'lov sozlamalari' bilan bir
-    xil naqsh. 'Davlat' bog'cha ham, agar kerak bo'lsa, keyinroq
-    to'lov belgilashi mumkin."""
+    """Eski to'lov sozlamasini xavfsiz tarzda yopadigan moslik yo'li."""
     _admin_tekshir(sorov.token)
-    conn = _db()
-    cur = conn.cursor()
-    cur.execute("SELECT id FROM bogchalar WHERE id=%s", (sorov.bogcha_id,))
-    if not cur.fetchone():
-        cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Bog'cha topilmadi")
-    if sorov.turi is not None and sorov.turi not in BOGCHA_TURLARI:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Noto'g'ri bog'cha turi")
-    maydonlar, qiymatlar = [], []
-    if sorov.turi is not None:
-        maydonlar.append("turi=%s"); qiymatlar.append(sorov.turi)
-    maydonlar.append("oylik_tolov=%s"); qiymatlar.append(sorov.oylik_tolov)
-    qiymatlar.append(sorov.bogcha_id)
-    cur.execute(f"UPDATE bogchalar SET {', '.join(maydonlar)} WHERE id=%s", qiymatlar)
-    conn.commit()
-    cur.close()
-    conn.close()
-    return {"holat": "saqlandi"}
+    raise HTTPException(
+        status_code=410,
+        detail=(
+            "Eski bog'cha to'lov sozlamasi yopilgan. "
+            "Bog'cha ish maydonidagi To'lovlar bo'limidan foydalaning."
+        ),
+    )
 
 
 @app.get("/api/admin/bogcha_xodim_shablon")
-def bogcha_xodim_shablon(token: str):
-    _admin_tekshir(token)
+def bogcha_xodim_shablon(
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
+    _admin_tekshir(_jwt_header_yoki_query(token, authorization))
     import openpyxl
     from openpyxl.styles import Font, PatternFill
     import io
@@ -9354,12 +9961,19 @@ def bogcha_xodim_shablon(token: str):
 
 
 @app.post("/api/admin/bogcha_xodim_import")
-async def bogcha_xodim_import(token: str, bogcha_id: int, fayl: UploadFile = File(...)):
+async def bogcha_xodim_import(
+    bogcha_id: int,
+    fayl: UploadFile = File(...),
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
     """Xuddi maktab/markaz xodim importi kabi. "Guruh rahbarligi"
     to'ldirilgan bo'lsa (faqat bog'cha opalari uchun mazmunli) — o'sha
     nomdagi guruh yaratiladi/yangilanadi, 4 xonali (odatda ota-onaga
     emas, guruh ICHKI hisoboti uchun) parol biriktiriladi."""
-    _admin_tekshir(token)
+    admin_user_id = _admin_tekshir(
+        _jwt_header_yoki_query(token, authorization)
+    )
     import openpyxl
     import io
 
@@ -9403,16 +10017,30 @@ async def bogcha_xodim_import(token: str, bogcha_id: int, fayl: UploadFile = Fil
             if lavozim_kaliti == "bogcha_direktor":
                 cur.execute("UPDATE bogchalar SET direktor_user_id=%s WHERE id=%s", (yangi_id, bogcha_id))
 
-            kirish_kodi = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(6))
-            cur.execute("INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)", (kirish_kodi, yangi_id))
+            kirish_kodi, saqlanadigan_kod = _xodim_kod_yarat()
+            cur.execute(
+                "INSERT INTO xodim_kod(kod, user_id) VALUES(%s,%s)",
+                (saqlanadigan_kod, yangi_id),
+            )
 
             guruh_paroli = None
+            legacy_guruh_id = None
             if guruh_nomi and lavozim_kaliti == "bogcha_opa":
                 guruh_paroli = "".join(secrets.choice(string.digits) for _ in range(4))
                 cur.execute("""
                     INSERT INTO bogcha_guruhlari(bogcha_id, nomi, opa_user_id, qoshilish_paroli)
                     VALUES(%s,%s,%s,%s) RETURNING id
                 """, (bogcha_id, guruh_nomi, yangi_id, guruh_paroli))
+                legacy_guruh_id = cur.fetchone()["id"]
+
+            _bogcha_v2_rolni_taminla(
+                cur,
+                bogcha_id,
+                yangi_id,
+                lavozim_kaliti,
+                legacy_guruh_id,
+                admin_user_id,
+            )
 
             conn.commit()
             natijalar.append({
@@ -9429,22 +10057,29 @@ async def bogcha_xodim_import(token: str, bogcha_id: int, fayl: UploadFile = Fil
 
 
 @app.get("/api/opa/mening_guruhlarim")
-def opa_mening_guruhlarim(token: str):
+def opa_mening_guruhlarim(
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
     """Bog'cha opasi RAHBAR bo'lgan guruhlari — har birida nechta
     bola borligi bilan."""
-    user_id = _jwt_tekshir(token)
+    user_id = _jwt_tekshir(_jwt_header_yoki_query(token, authorization))
     conn = _db()
     cur = conn.cursor()
     _bogcha_jadvali(cur)
     cur.execute("""
-        SELECT g.id, g.nomi, g.qoshilish_paroli, b.id AS bogcha_id, b.nomi AS bogcha_nomi, b.oylik_tolov,
+        SELECT g.id, g.nomi, g.qoshilish_paroli, b.id AS bogcha_id, b.nomi AS bogcha_nomi,
                (SELECT COUNT(*) FROM bogcha_guruh_bolalari WHERE guruh_id=g.id) AS bola_soni
         FROM bogcha_guruhlari g
         JOIN bogchalar b ON b.id = g.bogcha_id
         WHERE g.opa_user_id=%s
         ORDER BY g.nomi
     """, (user_id,))
-    natija = cur.fetchall()
+    natija = [
+        group
+        for group in cur.fetchall()
+        if _bogcha_legacy_faol_holat(cur, group["bogcha_id"])
+    ]
     cur.close()
     conn.close()
     return {"guruhlar": natija}
@@ -9458,20 +10093,55 @@ class BolaQoshish(BaseModel):
 
 
 @app.get("/api/opa/ota_ona_qidir")
-def opa_ota_ona_qidir(token: str, ism: str):
+def opa_ota_ona_qidir(
+    ism: str,
+    guruh_id: int,
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
     """Opa (yoki har qanday tizimga kirgan xodim) uchun — bola
     qo'shayotganda uning ota-onasini ISM bo'yicha qidirib topish va
     bog'lash uchun. Faqat role='ota-ona' hisoblar orasidan qidiradi."""
-    _jwt_tekshir(token)
+    user_id = _jwt_tekshir(_jwt_header_yoki_query(token, authorization))
     if len(ism.strip()) < 2:
         return {"natijalar": []}
     conn = _db()
     cur = conn.cursor()
+    _bogcha_jadvali(cur)
+    cur.execute(
+        "SELECT opa_user_id,bogcha_id FROM bogcha_guruhlari WHERE id=%s",
+        (guruh_id,),
+    )
+    group = cur.fetchone()
+    if not group:
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    _bogcha_legacy_faol_talab(cur, group["bogcha_id"])
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    is_admin = cur.fetchone() is not None
+    if not is_admin and group["opa_user_id"] != user_id:
+        cur.close()
+        conn.close()
+        raise HTTPException(
+            status_code=403,
+            detail="Faqat shu guruh tarbiyachisi yoki admin qidira oladi",
+        )
     cur.execute("""
-        SELECT user_id, full_name FROM users
-        WHERE role='ota-ona' AND full_name ILIKE %s
-        ORDER BY full_name LIMIT 10
-    """, (f"%{ism.strip()}%",))
+        SELECT DISTINCT parent_user.user_id,parent_user.full_name
+        FROM users parent_user
+        JOIN parent_child relation
+          ON relation.parent_id=parent_user.user_id
+        JOIN bogcha_guruh_bolalari roster
+          ON roster.bola_user_id=relation.child_id
+        JOIN bogcha_guruhlari child_group
+          ON child_group.id=roster.guruh_id
+        WHERE parent_user.role='ota-ona'
+          AND child_group.bogcha_id=%s
+          AND parent_user.full_name ILIKE %s
+        ORDER BY parent_user.full_name
+        LIMIT 10
+    """, (group["bogcha_id"], f"%{ism.strip()}%"))
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -9513,11 +10183,15 @@ def opa_bola_qoshish(sorov: BolaQoshish):
     conn = _db()
     cur = conn.cursor()
     _bogcha_jadvali(cur)
-    cur.execute("SELECT opa_user_id FROM bogcha_guruhlari WHERE id=%s", (sorov.guruh_id,))
+    cur.execute(
+        "SELECT opa_user_id,bogcha_id FROM bogcha_guruhlari WHERE id=%s",
+        (sorov.guruh_id,),
+    )
     g = cur.fetchone()
     if not g:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    _bogcha_legacy_faol_talab(cur, g["bogcha_id"])
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     admin_mi = cur.fetchone() is not None
     if not admin_mi and g["opa_user_id"] != user_id:
@@ -9533,12 +10207,47 @@ def opa_bola_qoshish(sorov: BolaQoshish):
         cur, "bogcha_guruh", sorov.guruh_id, yangi_id
     )
     if sorov.ota_ona_user_id is not None:
-        cur.execute("SELECT 1 FROM users WHERE user_id=%s", (sorov.ota_ona_user_id,))
-        if cur.fetchone():
-            cur.execute(
-                "INSERT INTO parent_child(parent_id, child_id) VALUES(%s,%s) ON CONFLICT DO NOTHING",
-                (sorov.ota_ona_user_id, yangi_id),
+        cur.execute("""
+            SELECT 1
+            FROM users parent_user
+            WHERE parent_user.user_id=%s
+              AND parent_user.role='ota-ona'
+              AND EXISTS(
+                  SELECT 1
+                  FROM parent_child existing_relation
+                  JOIN bogcha_guruh_bolalari existing_roster
+                    ON existing_roster.bola_user_id=
+                       existing_relation.child_id
+                  JOIN bogcha_guruhlari existing_group
+                    ON existing_group.id=existing_roster.guruh_id
+                  WHERE existing_relation.parent_id=parent_user.user_id
+                    AND existing_group.bogcha_id=%s
+              )
+        """, (sorov.ota_ona_user_id, g["bogcha_id"]))
+        if not cur.fetchone():
+            conn.rollback()
+            cur.close()
+            conn.close()
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Ota-ona shu bog'chaga avval tasdiqlangan "
+                    "hisob bo'lishi kerak."
+                ),
             )
+        cur.execute(
+            """INSERT INTO parent_child(parent_id, child_id)
+               VALUES(%s,%s) ON CONFLICT DO NOTHING""",
+            (sorov.ota_ona_user_id, yangi_id),
+        )
+    _bogcha_v2_bolani_taminla(
+        cur,
+        sorov.guruh_id,
+        yangi_id,
+        sorov.bola_ismi.strip(),
+        user_id,
+        sorov.ota_ona_user_id,
+    )
     conn.commit()
     cur.close()
     conn.close()
@@ -9546,8 +10255,12 @@ def opa_bola_qoshish(sorov: BolaQoshish):
 
 
 @app.get("/api/opa/guruh_bolalari")
-def opa_guruh_bolalari(token: str, guruh_id: int):
-    user_id = _jwt_tekshir(token)
+def opa_guruh_bolalari(
+    guruh_id: int,
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
+    user_id = _jwt_tekshir(_jwt_header_yoki_query(token, authorization))
     conn = _db()
     cur = conn.cursor()
     _bogcha_jadvali(cur)
@@ -9556,15 +10269,12 @@ def opa_guruh_bolalari(token: str, guruh_id: int):
     if not g:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Guruh topilmadi")
+    _bogcha_legacy_faol_talab(cur, g["bogcha_id"])
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     admin_mi = cur.fetchone() is not None
     if not admin_mi and g["opa_user_id"] != user_id:
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu guruh opasi yoki admin ko'ra oladi")
-
-    cur.execute("SELECT oylik_tolov FROM bogchalar WHERE id=%s", (g["bogcha_id"],))
-    b = cur.fetchone()
-    kerakli_summa = (b["oylik_tolov"] if b else None) or 0
 
     cur.execute("""
         SELECT gb.id AS roster_id, u.user_id, u.full_name
@@ -9573,31 +10283,23 @@ def opa_guruh_bolalari(token: str, guruh_id: int):
     """, (guruh_id,))
     bolalar = cur.fetchall()
 
-    joriy_oy = datetime.now().strftime("%Y-%m")
-    cur.execute("ALTER TABLE tolovlar ADD COLUMN IF NOT EXISTS bogcha_guruh_id INTEGER REFERENCES bogcha_guruhlari(id)")
-    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS tolovlar_bogcha_unique ON tolovlar(user_id, bogcha_guruh_id, oy)")
-    cur.execute("SELECT user_id, tolangan_summa FROM tolovlar WHERE bogcha_guruh_id=%s AND oy=%s", (guruh_id, joriy_oy))
-    tolovlar_map = {r["user_id"]: r["tolangan_summa"] for r in cur.fetchall()}
     cur.close()
     conn.close()
 
-    natija = []
-    for bl in bolalar:
-        tolangan = tolovlar_map.get(bl["user_id"], 0)
-        natija.append({
-            "roster_id": bl["roster_id"], "user_id": bl["user_id"], "full_name": bl["full_name"],
-            "kerakli_summa": kerakli_summa, "tolangan_summa": tolangan, "qarzdor": tolangan < kerakli_summa,
-        })
-    return {"bolalar": natija, "kerakli_summa": kerakli_summa, "oy": joriy_oy}
+    return {"bolalar": bolalar}
 
 
 @app.delete("/api/opa/bolani_chiqar")
-def opa_bolani_chiqar(token: str, roster_id: int):
-    user_id = _jwt_tekshir(token)
+def opa_bolani_chiqar(
+    roster_id: int,
+    token: Optional[str] = Query(default=None, include_in_schema=False),
+    authorization: Optional[str] = Header(default=None),
+):
+    user_id = _jwt_tekshir(_jwt_header_yoki_query(token, authorization))
     conn = _db()
     cur = conn.cursor()
     cur.execute("""
-        SELECT g.opa_user_id,gb.guruh_id,gb.bola_user_id
+        SELECT g.opa_user_id,g.bogcha_id,gb.guruh_id,gb.bola_user_id
         FROM bogcha_guruh_bolalari gb
         JOIN bogcha_guruhlari g ON g.id = gb.guruh_id WHERE gb.id=%s
     """, (roster_id,))
@@ -9605,11 +10307,17 @@ def opa_bolani_chiqar(token: str, roster_id: int):
     if not r:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Topilmadi")
+    _bogcha_legacy_faol_talab(cur, r["bogcha_id"])
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     admin_mi = cur.fetchone() is not None
     if not admin_mi and r["opa_user_id"] != user_id:
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu guruh opasi yoki admin chiqara oladi")
+    _bogcha_v2_bolani_chiqar(
+        cur,
+        r["guruh_id"],
+        r["bola_user_id"],
+    )
     cur.execute("DELETE FROM bogcha_guruh_bolalari WHERE id=%s", (roster_id,))
     _analitika_legacy_guruh_azolikni_yop(
         cur, "bogcha_guruh", r["guruh_id"], r["bola_user_id"]
@@ -9633,6 +10341,16 @@ def opa_tolov_belgila(sorov: BogchaTolovBelgilash):
     user_id = _jwt_tekshir(sorov.token)
     conn = _db()
     cur = conn.cursor()
+    if _bogcha_v2_mavjud(cur):
+        cur.close()
+        conn.close()
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Bog'cha to'lovlari yangi ish maydonidagi "
+                "To'lovlar bo'limida boshqariladi."
+            ),
+        )
     _tolov_jadvallari(cur)
     cur.execute("ALTER TABLE tolovlar ADD COLUMN IF NOT EXISTS bogcha_guruh_id INTEGER REFERENCES bogcha_guruhlari(id)")
     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS tolovlar_bogcha_unique ON tolovlar(user_id, bogcha_guruh_id, oy)")
@@ -16206,3 +16924,20 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
     finally:
         cur.close()
         conn.close()
+
+
+# ═══════════════════════════════════════════════════════════
+# MODULLI BOG'CHA V2
+# Eski bog'cha endpointlari orqaga moslik uchun yuqorida saqlanadi.
+# Yangi onboarding, ko'p rol, kalendar, davomat va boshqariladigan
+# avatar alohida routerda — main.py yana kattalashib ketmasligi uchun.
+# ═══════════════════════════════════════════════════════════
+from modules.kindergarten import create_kindergarten_router
+from platform_core.database import close_pool as _modular_db_poolni_yop
+
+app.include_router(create_kindergarten_router(_jwt_tekshir))
+
+
+@app.on_event("shutdown")
+def _modular_resurslarni_yopish():
+    _modular_db_poolni_yop()
