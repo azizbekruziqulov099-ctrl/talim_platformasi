@@ -38,7 +38,10 @@ if len(JWT_MAXFIY_KALIT.encode("utf-8")) < 32:
 
 app = FastAPI(title="SamTM Ta'lim API")
 app.add_middleware(
-    CORSMiddleware, allow_origins=["*"], allow_methods=["GET", "POST", "PUT", "DELETE"], allow_headers=["*"],
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allow_headers=["*"],
 )
 
 
@@ -46,7 +49,7 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "kindergarten-secure-avatar-v12"}
+    return {"versiya": "school-secure-scheduler-avatar-v13"}
 
 
 @app.get("/api/admin/rasm_diagnostika")
@@ -16927,15 +16930,17 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 
 
 # ═══════════════════════════════════════════════════════════
-# MODULLI BOG'CHA V2
+# MODULLI BOG'CHA V2 VA MAKTAB V2
 # Eski bog'cha endpointlari orqaga moslik uchun yuqorida saqlanadi.
-# Yangi onboarding, ko'p rol, kalendar, davomat va boshqariladigan
-# avatar alohida routerda — main.py yana kattalashib ketmasligi uchun.
+# Yangi bog'cha va maktab onboarding, rollar, kalendar, davomat,
+# jadval hamda boshqariladigan avatar alohida routerlarda saqlanadi.
 # ═══════════════════════════════════════════════════════════
 from modules.kindergarten import create_kindergarten_router
+from modules.school import create_school_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
 
 app.include_router(create_kindergarten_router(_jwt_tekshir))
+app.include_router(create_school_router(_jwt_tekshir))
 
 
 @app.on_event("shutdown")
