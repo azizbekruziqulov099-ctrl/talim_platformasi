@@ -59,7 +59,7 @@ def _get_pool() -> tuple[ThreadedConnectionPool, threading.BoundedSemaphore]:
                 dsn=database_url,
                 cursor_factory=psycopg2.extras.RealDictCursor,
                 connect_timeout=_int_env("DB_CONNECT_TIMEOUT", 10, 2, 60),
-                application_name="samtm-kindergarten-api",
+                application_name="samtm-modular-api",
                 options=(
                     f"-c statement_timeout={statement_timeout} "
                     f"-c lock_timeout={lock_timeout} "
