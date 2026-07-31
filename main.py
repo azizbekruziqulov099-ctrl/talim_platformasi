@@ -49,7 +49,10 @@ app.add_middleware(
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
-    return {"versiya": "school-secure-scheduler-avatar-v13"}
+    return {
+        "versiya": "learning-center-v2-secure-v14",
+        "modules": ["kindergarten-v2", "school-v2", "learning-center-v2"],
+    }
 
 
 @app.get("/api/admin/rasm_diagnostika")
@@ -11791,7 +11794,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                 rasm_biriktirildi += 1
             conn.commit()
             saved += 1
-        except Exception as e:
+        except Exception:
             conn.rollback()
             errors += 1
 
@@ -16930,17 +16933,19 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 
 
 # ═══════════════════════════════════════════════════════════
-# MODULLI BOG'CHA V2 VA MAKTAB V2
+# MODULLI BOG'CHA V2, MAKTAB V2 VA O'QUV MARKAZI V2
 # Eski bog'cha endpointlari orqaga moslik uchun yuqorida saqlanadi.
-# Yangi bog'cha va maktab onboarding, rollar, kalendar, davomat,
-# jadval hamda boshqariladigan avatar alohida routerlarda saqlanadi.
+# Yangi bog'cha, maktab va o'quv markazi onboarding, rollar, kalendar,
+# davomat, jadval hamda boshqariladigan avatar alohida routerlarda saqlanadi.
 # ═══════════════════════════════════════════════════════════
 from modules.kindergarten import create_kindergarten_router
+from modules.learning_center import create_learning_center_router
 from modules.school import create_school_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
 
 app.include_router(create_kindergarten_router(_jwt_tekshir))
 app.include_router(create_school_router(_jwt_tekshir))
+app.include_router(create_learning_center_router(_jwt_tekshir))
 
 
 @app.on_event("shutdown")
