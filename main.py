@@ -7,18 +7,20 @@ import re
 import io
 import json
 import math
+import base64
 import hashlib
 import secrets
 import string
+from urllib.parse import urlencode
 import httpx
 import psycopg2
 import psycopg2.extras
 from typing import Optional
 from datetime import datetime, timedelta, timezone
 from jose import jwt, JWTError
-from fastapi import FastAPI, Header, HTTPException, Query, UploadFile, File, Form
+from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse, Response
+from fastapi.responses import JSONResponse, RedirectResponse, Response
 from pydantic import BaseModel
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
@@ -37,9 +39,15 @@ if len(JWT_MAXFIY_KALIT.encode("utf-8")) < 32:
     )
 
 app = FastAPI(title="SamTM Ta'lim API")
+FRONTEND_ORIGINS = [
+    origin.strip().rstrip("/")
+    for origin in os.getenv("FRONTEND_URLS", FRONTEND_URL).split(",")
+    if origin.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=FRONTEND_ORIGINS,
+    allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["*"],
 )
@@ -50,8 +58,15 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "learning-center-v2-secure-v14",
-        "modules": ["kindergarten-v2", "school-v2", "learning-center-v2"],
+        "versiya": "institute-v1-secure-v15",
+        "modules": [
+            "kindergarten-v2", "school-v2", "learning-center-v2",
+            "institute-v1",
+        ],
+        "module_versions": {
+            "learning_center": "learning-center-v2-secure-v14",
+            "institute": "institute-v1-secure-v15",
+        },
     }
 
 
@@ -317,76 +332,274 @@ def _jwt_header_yoki_query(
     raise HTTPException(status_code=401, detail="Kirish tokeni yuborilmadi")
 
 
+OAUTH_STATE_COOKIE = "__Host-google-oauth-state"
+OAUTH_STATE_SECONDS = 10 * 60
+# Railway frontend va backend hostlari Public Suffix List sabab cross-site:
+# callback'da qo'yilgan SameSite=Lax ticket cookie frontend fetch'ida yuborilmaydi,
+# SameSite=None esa third-party cookie sifatida bloklanishi mumkin. Shu sabab
+# ticket URL fragmentida (server/referrer'ga bormaydi) berilib, frontend uni
+# darhol o'chiradi va POST body'da almashtiradi. Stateless ticket nusxasi
+# o'g'irlangan holatda barcha workerlar bo'ylab mutlaq bir martalikni DB/Redis'siz
+# kafolatlab bo'lmaydi; replay oynasi ko'pi bilan 60 soniya.
+OAUTH_TICKET_SECONDS = 60
+# Tasdiqlangan Google emailini ulash/ro'yxat formasiga bog'laydi; odamga formani
+# to'ldirish uchun yetarli, lekin umumiy sessiyadan ancha qisqa muddat.
+OAUTH_REGISTRATION_GRANT_SECONDS = 15 * 60
+
+
+def _oauth_imzolangan_token(purpose: str, seconds: int, **claims) -> str:
+    now = datetime.now(timezone.utc)
+    payload = {
+        "purpose": purpose,
+        "iat": now,
+        "exp": now + timedelta(seconds=seconds),
+        "jti": secrets.token_urlsafe(18),
+        **claims,
+    }
+    return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
+
+
+def _oauth_token_och(token: Optional[str], purpose: str) -> Optional[dict]:
+    if not token:
+        return None
+    try:
+        payload = jwt.decode(
+            token,
+            JWT_MAXFIY_KALIT,
+            algorithms=["HS256"],
+            options={"require_exp": True},
+        )
+    except JWTError:
+        return None
+    if payload.get("purpose") != purpose or not payload.get("jti"):
+        return None
+    return payload
+
+
+def _google_registration_tekshir(grant: Optional[str], email: str) -> dict:
+    payload = _oauth_token_och(grant, "google_registration_grant")
+    grant_email = str(payload.get("email") if payload else "").strip().lower()
+    requested_email = str(email or "").strip().lower()
+    emails_match = bool(grant_email and requested_email) and secrets.compare_digest(
+        grant_email.encode("utf-8"),
+        requested_email.encode("utf-8"),
+    )
+    if not payload or payload.get("outcome") != "registration" or not emails_match:
+        raise HTTPException(
+            status_code=401,
+            detail="Google email tasdig'i yo'q, noto'g'ri yoki eskirgan — qaytadan kiring",
+        )
+    return payload
+
+
+def _oauth_cookie_qoy(response: Response, key: str, value: str, max_age: int) -> None:
+    response.set_cookie(
+        key=key,
+        value=value,
+        max_age=max_age,
+        path="/",
+        secure=True,
+        httponly=True,
+        samesite="lax",
+    )
+
+
+def _oauth_cookie_ochir(response: Response, key: str) -> None:
+    response.delete_cookie(
+        key=key,
+        path="/",
+        secure=True,
+        httponly=True,
+        samesite="lax",
+    )
+
+
+def _oauth_frontend_redirect(xato: Optional[str] = None, ticket: Optional[str] = None) -> RedirectResponse:
+    # Fragment HTTP so'roviga, server logiga yoki Referer sarlavhasiga bormaydi.
+    # Unda faqat 60 soniyalik signed ticket bor; JWT/email/ism alohida chiqmaydi.
+    fragment = urlencode({"oauth_xato": xato}) if xato else urlencode({"oauth_ticket": ticket})
+    response = RedirectResponse(f"{FRONTEND_URL.rstrip('/')}/#{fragment}")
+    response.headers["Cache-Control"] = "no-store"
+    response.headers["Referrer-Policy"] = "no-referrer"
+    _oauth_cookie_ochir(response, OAUTH_STATE_COOKIE)
+    return response
+
+
 @app.get("/auth/google/login")
 def google_login():
-    """Foydalanuvchini Google'ning kirish sahifasiga yo'naltiradi."""
-    url = (
-        "https://accounts.google.com/o/oauth2/v2/auth"
-        f"?client_id={GOOGLE_CLIENT_ID}"
-        f"&redirect_uri={REDIRECT_URI}"
-        "&response_type=code"
-        "&scope=openid%20email%20profile"
-        "&access_type=online"
+    """Google'ga state va PKCE S256 bilan xavfsiz yo'naltiradi."""
+    if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
+        raise HTTPException(status_code=503, detail="Google kirish hali sozlanmagan")
+
+    state = secrets.token_urlsafe(32)
+    verifier = secrets.token_urlsafe(64)
+    challenge = base64.urlsafe_b64encode(
+        hashlib.sha256(verifier.encode("ascii")).digest()
+    ).rstrip(b"=").decode("ascii")
+    state_cookie = _oauth_imzolangan_token(
+        "google_oauth_state",
+        OAUTH_STATE_SECONDS,
+        state=state,
+        verifier=verifier,
     )
-    return RedirectResponse(url)
+    url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlencode({
+        "client_id": GOOGLE_CLIENT_ID,
+        "redirect_uri": REDIRECT_URI,
+        "response_type": "code",
+        "scope": "openid email profile",
+        "access_type": "online",
+        "state": state,
+        "code_challenge": challenge,
+        "code_challenge_method": "S256",
+    })
+    response = RedirectResponse(url)
+    response.headers["Cache-Control"] = "no-store"
+    _oauth_cookie_qoy(response, OAUTH_STATE_COOKIE, state_cookie, OAUTH_STATE_SECONDS)
+    return response
 
 
 @app.get("/auth/google/callback")
-async def google_callback(code: str = None, error: str = None):
+async def google_callback(
+    request: Request,
+    code: Optional[str] = None,
+    state: Optional[str] = None,
+    error: Optional[str] = None,
+):
     """Google qaytargandan keyin ishlaydi — email oladi, bog'langan-bog'lanmaganini
     tekshiradi, mos ekranga yo'naltiradi."""
+    state_payload = _oauth_token_och(
+        request.cookies.get(OAUTH_STATE_COOKIE),
+        "google_oauth_state",
+    )
+    expected_state = state_payload.get("state") if state_payload else None
+    verifier = state_payload.get("verifier") if state_payload else None
+    if (
+        not state
+        or not expected_state
+        or not verifier
+        or not secrets.compare_digest(state, expected_state)
+    ):
+        return _oauth_frontend_redirect(xato="state")
     if error or not code:
-        return RedirectResponse(f"{FRONTEND_URL}/?xato=kirish_bekor")
+        return _oauth_frontend_redirect(xato="kirish_bekor")
 
-    async with httpx.AsyncClient() as client:
-        token_resp = await client.post(
-            "https://oauth2.googleapis.com/token",
-            data={
-                "client_id": GOOGLE_CLIENT_ID,
-                "client_secret": GOOGLE_CLIENT_SECRET,
-                "code": code,
-                "grant_type": "authorization_code",
-                "redirect_uri": REDIRECT_URI,
-            },
-        )
-        token_data = token_resp.json()
-        if "access_token" not in token_data:
-            return RedirectResponse(f"{FRONTEND_URL}/?xato=google_token")
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            token_resp = await client.post(
+                "https://oauth2.googleapis.com/token",
+                data={
+                    "client_id": GOOGLE_CLIENT_ID,
+                    "client_secret": GOOGLE_CLIENT_SECRET,
+                    "code": code,
+                    "code_verifier": verifier,
+                    "grant_type": "authorization_code",
+                    "redirect_uri": REDIRECT_URI,
+                },
+            )
+            token_resp.raise_for_status()
+            token_data = token_resp.json()
+            access_token = token_data.get("access_token")
+            if not access_token:
+                return _oauth_frontend_redirect(xato="google_token")
 
-        userinfo_resp = await client.get(
-            "https://www.googleapis.com/oauth2/v2/userinfo",
-            headers={"Authorization": f"Bearer {token_data['access_token']}"},
-        )
-        userinfo = userinfo_resp.json()
+            userinfo_resp = await client.get(
+                "https://openidconnect.googleapis.com/v1/userinfo",
+                headers={"Authorization": f"Bearer {access_token}"},
+            )
+            userinfo_resp.raise_for_status()
+            userinfo = userinfo_resp.json()
+    except (httpx.HTTPError, ValueError):
+        return _oauth_frontend_redirect(xato="google_token")
 
-    email = userinfo.get("email")
-    ism = userinfo.get("name", "")
+    email = str(userinfo.get("email") or "").strip().lower()
+    ism = str(userinfo.get("name") or "").strip()[:200]
     if not email:
-        return RedirectResponse(f"{FRONTEND_URL}/?xato=email_topilmadi")
+        return _oauth_frontend_redirect(xato="email_topilmadi")
+    if userinfo.get("email_verified") is not True:
+        return _oauth_frontend_redirect(xato="email_tasdiqlanmagan")
 
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
-    r = cur.fetchone()
-    cur.close()
-    conn.close()
+    try:
+        cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
+        r = cur.fetchone()
+    finally:
+        cur.close()
+        conn.close()
 
     if r:
-        token = _jwt_yarat(r["user_id"])
-        return RedirectResponse(f"{FRONTEND_URL}/kabinet?token={token}")
+        ticket = _oauth_imzolangan_token(
+            "google_login_ticket",
+            OAUTH_TICKET_SECONDS,
+            outcome="login",
+            user_id=r["user_id"],
+        )
     else:
-        return RedirectResponse(f"{FRONTEND_URL}/ulash?email={email}&ism={ism}")
+        ticket = _oauth_imzolangan_token(
+            "google_login_ticket",
+            OAUTH_TICKET_SECONDS,
+            outcome="registration",
+            email=email,
+            name=ism,
+        )
+    return _oauth_frontend_redirect(ticket=ticket)
+
+
+class GoogleTicketExchange(BaseModel):
+    ticket: str
+
+
+@app.post("/auth/google/exchange")
+def google_ticket_exchange(sorov: GoogleTicketExchange, request: Request):
+    """60 soniyalik Google ticket'ini frontend natijasiga almashtiradi."""
+    origin = (request.headers.get("origin") or "").rstrip("/")
+    if origin not in FRONTEND_ORIGINS:
+        response = JSONResponse(status_code=403, content={"detail": "Noto'g'ri so'rov manbasi"})
+        response.headers["Cache-Control"] = "no-store"
+        return response
+
+    payload = _oauth_token_och(
+        sorov.ticket,
+        "google_login_ticket",
+    )
+    if not payload:
+        response = JSONResponse(status_code=401, content={"detail": "Kirish chiptasi eskirgan"})
+    elif payload.get("outcome") == "login" and isinstance(payload.get("user_id"), int):
+        response = JSONResponse({
+            "holat": "kirdi",
+            "token": _jwt_yarat(payload["user_id"]),
+        })
+    elif payload.get("outcome") == "registration" and payload.get("email"):
+        registration_grant = _oauth_imzolangan_token(
+            "google_registration_grant",
+            OAUTH_REGISTRATION_GRANT_SECONDS,
+            outcome="registration",
+            email=payload["email"],
+        )
+        response = JSONResponse({
+            "holat": "ulash",
+            "email": payload["email"],
+            "ism": payload.get("name", ""),
+            "oauth_grant": registration_grant,
+        })
+    else:
+        response = JSONResponse(status_code=401, content={"detail": "Kirish chiptasi noto'g'ri"})
+
+    response.headers["Cache-Control"] = "no-store"
+    return response
 
 
 class UlashSorov(BaseModel):
     email: str
     kod: str
+    oauth_grant: Optional[str] = None
 
 
 class RoyxatSorov(BaseModel):
     email: str
     ism: str
     rol: str          # 'oquvchi' | 'ota-ona' | 'oqituvchi'
+    oauth_grant: Optional[str] = None
     sinf: Optional[str] = None  # faqat rol='oquvchi' bo'lsa
     region: Optional[str] = None
     district: Optional[str] = None
@@ -425,6 +638,8 @@ def yangi_royxat(sorov: RoyxatSorov):
     """Botsiz, to'g'ridan saytdan YANGI foydalanuvchi yaratadi.
     Telegram ID bilan TO'QNASHMASLIGI uchun MANFIY user_id beriladi
     (haqiqiy Telegram ID doim musbat bo'ladi)."""
+    registration = _google_registration_tekshir(sorov.oauth_grant, sorov.email)
+    email = registration["email"]
     if sorov.rol not in RUXSAT_ETILGAN_ROLLAR:
         raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.rol}")
     if not sorov.ism.strip():
@@ -435,7 +650,7 @@ def yangi_royxat(sorov: RoyxatSorov):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
 
-    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (sorov.email,))
+    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
     if cur.fetchone():
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Bu email allaqachon ulangan — kirish orqali davom eting")
@@ -452,7 +667,7 @@ def yangi_royxat(sorov: RoyxatSorov):
     )
     cur.execute(
         "INSERT INTO google_hisob(google_email, user_id) VALUES(%s,%s)",
-        (sorov.email, yangi_id),
+        (email, yangi_id),
     )
     conn.commit()
     cur.close()
@@ -708,7 +923,8 @@ def hisob_ulash(sorov: UlashSorov):
     qiladi) VA xodimlar uchun xodim_kod (7 kun amal qiladi,
     admin Excel orqali xodim import qilganda yaratiladi) — shu sabab
     bitta "kod kiritish" ekrani ikkalasi uchun ham ishlaydi."""
-    email, kod = sorov.email, sorov.kod.strip()
+    registration = _google_registration_tekshir(sorov.oauth_grant, sorov.email)
+    email, kod = registration["email"], sorov.kod.strip()
     conn = _db()
     cur = conn.cursor()
     _xodim_kod_jadvali(cur)
@@ -16939,6 +17155,7 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 # davomat, jadval hamda boshqariladigan avatar alohida routerlarda saqlanadi.
 # ═══════════════════════════════════════════════════════════
 from modules.kindergarten import create_kindergarten_router
+from modules.institute import create_institute_router
 from modules.learning_center import create_learning_center_router
 from modules.school import create_school_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
@@ -16946,6 +17163,7 @@ from platform_core.database import close_pool as _modular_db_poolni_yop
 app.include_router(create_kindergarten_router(_jwt_tekshir))
 app.include_router(create_school_router(_jwt_tekshir))
 app.include_router(create_learning_center_router(_jwt_tekshir))
+app.include_router(create_institute_router(_jwt_tekshir))
 
 
 @app.on_event("shutdown")
