@@ -427,6 +427,13 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
         cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
         return cur.fetchone() is not None
 
+    def require_creation_admin(cur: Any, user_id: int) -> None:
+        if not system_admin(cur, user_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Yangi maktabni faqat Administrator markazi ochadi",
+            )
+
     def audit(
         cur: Any, context_id: int | None, actor: int, action: str,
         target_type: str | None = None, target_id: int | None = None,
@@ -1078,6 +1085,7 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
             raise HTTPException(status_code=422, detail="Davlat maktabida mulkdor roli bo'lmaydi.")
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             cur.execute(
                 """INSERT INTO school_setup_drafts(
                      creator_user_id,relationship,ownership_type,setup_mode
@@ -1168,6 +1176,7 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
         )
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             cur.execute(
                 """SELECT * FROM school_setup_drafts
                    WHERE id=%s AND creator_user_id=%s FOR UPDATE""",
