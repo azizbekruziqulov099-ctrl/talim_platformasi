@@ -349,6 +349,13 @@ def create_kindergarten_router(jwt_check: Callable[[str], int]) -> APIRouter:
         cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
         return cur.fetchone() is not None
 
+    def require_creation_admin(cur: Any, user_id: int) -> None:
+        if not is_system_admin(cur, user_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Yangi bog'chani faqat Administrator markazi ochadi",
+            )
+
     def active_roles(cur: Any, context_id: int, user_id: int) -> set[str]:
         cur.execute(
             """SELECT c.active,p.onboarding_status,p.verification_status
@@ -878,6 +885,7 @@ def create_kindergarten_router(jwt_check: Callable[[str], int]) -> APIRouter:
         }
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             cur.execute(
                 """INSERT INTO kindergarten_setup_drafts(
                        creator_user_id,relationship,ownership_type,setup_mode,
@@ -938,6 +946,7 @@ def create_kindergarten_router(jwt_check: Callable[[str], int]) -> APIRouter:
             raise HTTPException(status_code=413, detail="Qoralama ma'lumoti juda katta")
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             draft = fetch_draft(cur, draft_id, user_id, lock=True)
             if draft["version"] != request.expected_version:
                 raise HTTPException(
@@ -999,6 +1008,7 @@ def create_kindergarten_router(jwt_check: Callable[[str], int]) -> APIRouter:
             )
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             draft = fetch_draft(cur, draft_id, user_id, lock=True)
             if draft["version"] != request.expected_version:
                 raise HTTPException(
