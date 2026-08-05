@@ -611,6 +611,22 @@ def create_learning_center_router(jwt_check: Callable[[str], int]) -> APIRouter:
         cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
         return cur.fetchone() is not None
 
+    def require_creation_access(cur: Any, user_id: int, operator_model: str) -> None:
+        if system_admin(cur, user_id):
+            return
+        if operator_model == "independent_tutor":
+            cur.execute("SELECT role FROM users WHERE user_id=%s", (user_id,))
+            user = cur.fetchone()
+            if user and user["role"] == "oqituvchi":
+                return
+        raise HTTPException(
+            status_code=403,
+            detail=(
+                "O'quv markazini faqat Administrator markazi ochadi. "
+                "Oddiy o'qituvchi faqat mustaqil repetitor ish maydonini ochishi mumkin."
+            ),
+        )
+
     def require_human(confirmation: bool, message: str) -> None:
         if confirmation is not True:
             raise HTTPException(status_code=409, detail=message)
@@ -1400,6 +1416,7 @@ def create_learning_center_router(jwt_check: Callable[[str], int]) -> APIRouter:
             )
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_access(cur, user_id, request.operator_model)
             cur.execute(
                 """INSERT INTO center_setup_drafts(
                      creator_user_id,relationship,ownership_type,operator_model,
@@ -1756,6 +1773,7 @@ def create_learning_center_router(jwt_check: Callable[[str], int]) -> APIRouter:
             draft = cur.fetchone()
             if not draft or int(draft["version"]) != request.expected_version:
                 raise HTTPException(status_code=409, detail="Qoralama versiyasi o'zgargan")
+            require_creation_access(cur, user_id, str(draft["operator_model"]))
             preview = draft_preview_payload(dict(draft))
             if not preview["ready"]:
                 raise HTTPException(status_code=422, detail=preview)
