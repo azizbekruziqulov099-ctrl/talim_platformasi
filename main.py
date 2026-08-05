@@ -58,7 +58,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "institute-v1-secure-v15",
+        "versiya": "teacher-analytics-repetitor-v16",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -66,6 +66,7 @@ def versiya():
         "module_versions": {
             "learning_center": "learning-center-v2-secure-v14",
             "institute": "institute-v1-secure-v15",
+            "teacher_tools": "teacher-analytics-repetitor-v16",
         },
     }
 
@@ -2010,6 +2011,68 @@ def sayt_kod_yarat(token: str):
 # O'QITUVCHI — baholash
 # ═══════════════════════════════════════════════════════════
 
+TOGARAK_MAX_TALABA = 25
+ODDIY_OQITUVCHI_BEPUL_TOGARAK_LIMIT = 1
+IKKINCHI_TOGARAK_NARXI_UZS = 50_000
+
+
+def _togarak_sigimi(max_talaba):
+    """Eski NULL yoki noto'g'ri qiymatlarni ham qat'iy 25 o'ringa keltiradi."""
+    try:
+        qiymat = int(max_talaba)
+    except (TypeError, ValueError):
+        return TOGARAK_MAX_TALABA
+    if qiymat < 1:
+        return TOGARAK_MAX_TALABA
+    return min(qiymat, TOGARAK_MAX_TALABA)
+
+
+def _togarak_yaratish_kvotasi(
+    cur, user_id, foydalanuvchini_qulflash=False, shaxsiy_guruh=True
+):
+    """Oddiy o'qituvchining bepul guruh kvotasini bitta joyda tekshiradi.
+
+    ``FOR UPDATE`` bilan chaqirilganda bir foydalanuvchidan kelgan parallel
+    yaratish so'rovlari ketma-ket bajariladi; shu sabab bir vaqtning o'zida
+    ikkita "birinchi bepul" to'garak ochilib ketmaydi.
+    """
+    qulf = " FOR UPDATE" if foydalanuvchini_qulflash else ""
+    cur.execute(f"SELECT role FROM users WHERE user_id=%s{qulf}", (user_id,))
+    foydalanuvchi = cur.fetchone()
+    if not foydalanuvchi:
+        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
+    if not admin_mi and foydalanuvchi["role"] != "oqituvchi":
+        raise HTTPException(status_code=403, detail="To'garakni faqat o'qituvchi yoki administrator yarata oladi")
+
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS guruh_turi TEXT DEFAULT 'togarak'")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
+    cur.execute(
+        """SELECT COUNT(*) AS soni FROM togaraklar
+           WHERE teacher_id=%s AND aktiv=TRUE
+             AND COALESCE(guruh_turi,'togarak') IN ('togarak','repetitor')
+             AND markaz_id IS NULL AND universitet_guruh_id IS NULL""",
+        (user_id,),
+    )
+    faol_soni = int(cur.fetchone()["soni"] or 0)
+    bepul_qolgan = None if admin_mi else max(
+        0, ODDIY_OQITUVCHI_BEPUL_TOGARAK_LIMIT - faol_soni
+    )
+    return {
+        "admin": admin_mi,
+        "faol_soni": faol_soni,
+        "bepul_limit": None if admin_mi else ODDIY_OQITUVCHI_BEPUL_TOGARAK_LIMIT,
+        "bepul_qolgan": bepul_qolgan,
+        "bepul_yarata_oladi": bool(admin_mi or not shaxsiy_guruh or bepul_qolgan > 0),
+        "shaxsiy_guruh": shaxsiy_guruh,
+        "keyingi_narx_uzs": None if admin_mi else IKKINCHI_TOGARAK_NARXI_UZS,
+        "tolov_hali_ochilmagan": not admin_mi,
+        "guruh_max_talaba": TOGARAK_MAX_TALABA,
+    }
+
 @app.get("/api/oqituvchi/togaraklar")
 def oqituvchi_togaraklari(token: str):
     """O'qituvchining o'ziga tegishli barcha to'garaklarini qaytaradi."""
@@ -2017,18 +2080,24 @@ def oqituvchi_togaraklari(token: str):
     conn = _db()
     cur = conn.cursor()
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS guruh_turi TEXT DEFAULT 'togarak'")
     _togarak_azolar_tasdiq_ustuni(cur)
     cur.execute("""
-        SELECT id, nomi, fan, max_talaba, COALESCE(turi, 'oddiy') AS turi,
-               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE AND tasdiqlangan=TRUE) AS azo_soni
+        SELECT id, nomi, fan,
+               LEAST(COALESCE(max_talaba, %s), %s) AS max_talaba,
+               COALESCE(turi, 'oddiy') AS turi,
+               COALESCE(guruh_turi, 'togarak') AS guruh_turi,
+               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE AND tasdiqlangan=TRUE) AS azo_soni,
+               (SELECT COUNT(*) FROM togarak_azolar WHERE togarak_id=togaraklar.id AND aktiv=TRUE AND tasdiqlangan=FALSE) AS kutilayotgan_soni
         FROM togaraklar
         WHERE teacher_id=%s AND aktiv=TRUE
         ORDER BY nomi
-    """, (user_id,))
+    """, (TOGARAK_MAX_TALABA, TOGARAK_MAX_TALABA, user_id))
     natija = cur.fetchall()
+    kvota = _togarak_yaratish_kvotasi(cur, user_id)
     cur.close()
     conn.close()
-    return {"togaraklar": natija}
+    return {"togaraklar": natija, "kvota": kvota}
 
 
 @app.get("/api/oqituvchi/togarak/{togarak_id}/azolar")
@@ -2095,7 +2164,7 @@ def togarak_azo_tasdiqla(token: str, azolik_id: int):
     cur = conn.cursor()
     _togarak_azolar_tasdiq_ustuni(cur)
     cur.execute(
-        "SELECT togarak_id,user_id FROM togarak_azolar WHERE id=%s",
+        "SELECT togarak_id,user_id,tasdiqlangan FROM togarak_azolar WHERE id=%s AND aktiv=TRUE FOR UPDATE",
         (azolik_id,),
     )
     a = cur.fetchone()
@@ -2105,6 +2174,28 @@ def togarak_azo_tasdiqla(token: str, azolik_id: int):
     if not _togarak_egasi_mi(cur, user_id, a["togarak_id"]):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin tasdiqlay oladi")
+    cur.execute(
+        "SELECT max_talaba FROM togaraklar WHERE id=%s AND aktiv=TRUE FOR UPDATE",
+        (a["togarak_id"],),
+    )
+    togarak = cur.fetchone()
+    if not togarak:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="To'garak topilmadi")
+    sigim = _togarak_sigimi(togarak["max_talaba"])
+    if not a["tasdiqlangan"]:
+        cur.execute(
+            """SELECT COUNT(*) AS soni FROM togarak_azolar
+               WHERE togarak_id=%s AND aktiv=TRUE AND tasdiqlangan=TRUE AND id<>%s""",
+            (a["togarak_id"], azolik_id),
+        )
+        tasdiqlangan_soni = int(cur.fetchone()["soni"] or 0)
+        if tasdiqlangan_soni >= sigim:
+            cur.close(); conn.close()
+            raise HTTPException(
+                status_code=409,
+                detail=f"Guruhdagi {sigim} ta o'rin to'lgan; yangi o'quvchini tasdiqlab bo'lmaydi",
+            )
     cur.execute("UPDATE togarak_azolar SET tasdiqlangan=TRUE WHERE id=%s", (azolik_id,))
     if _analitika_jadvallar_bormi(cur):
         _analitika_togarak_oquvchi_azolikni_taminla(
@@ -2112,7 +2203,7 @@ def togarak_azo_tasdiqla(token: str, azolik_id: int):
         )
     conn.commit()
     cur.close(); conn.close()
-    return {"holat": "tasdiqlandi"}
+    return {"holat": "tasdiqlandi", "max_talaba": sigim}
 
 
 @app.delete("/api/oqituvchi/azo_rad_etish")
@@ -2167,7 +2258,7 @@ def baho_qoy(sorov: BahoSorov):
         raise HTTPException(status_code=403, detail="Bu to'garak sizga tegishli emas")
 
     cur.execute(
-        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE",
+        "SELECT 1 FROM togarak_azolar WHERE togarak_id=%s AND user_id=%s AND aktiv=TRUE AND tasdiqlangan=TRUE",
         (sorov.togarak_id, sorov.user_id),
     )
     if not cur.fetchone():
@@ -2668,7 +2759,8 @@ class TogarakYaratish(BaseModel):
     nomi: str
     fan: str
     sinf: Optional[str] = None   # "1".."11" (oddiy) yoki "3-4" kabi (to'garak guruhi)
-    turi: str = "oddiy"          # "oddiy" (o'qituvchi jonli o'tadi) | "avto" (o'quvchi mustaqil, kitob+kalendar orqali)
+    turi: str = "oddiy"          # dars usuli: "oddiy" | "avto"
+    guruh_turi: str = "togarak"  # maqsad: "togarak" | "repetitor"
     parol: Optional[str] = None
     max_talaba: Optional[int] = None
     oylik_summa: Optional[int] = None
@@ -2717,8 +2809,14 @@ def togarak_yarat(sorov: TogarakYaratish):
         raise HTTPException(status_code=400, detail="To'garak nomi kiritilmagan")
     if not sorov.fan.strip():
         raise HTTPException(status_code=400, detail="Fan kiritilmagan")
-    if sorov.max_talaba is not None and sorov.max_talaba < 1:
-        raise HTTPException(status_code=400, detail="Maksimal talaba soni kamida 1 bo'lishi kerak")
+    turi_qiymati = (sorov.turi or "").strip().lower()
+    if turi_qiymati not in ("oddiy", "avto"):
+        raise HTTPException(status_code=400, detail="Dars usuli oddiy yoki avto bo'lishi kerak")
+    guruh_turi_qiymati = (sorov.guruh_turi or "").strip().lower()
+    if guruh_turi_qiymati not in ("togarak", "repetitor"):
+        raise HTTPException(status_code=400, detail="Guruh turi togarak yoki repetitor bo'lishi kerak")
+    if sorov.max_talaba is not None and not (1 <= sorov.max_talaba <= TOGARAK_MAX_TALABA):
+        raise HTTPException(status_code=400, detail=f"Guruh sig'imi 1–{TOGARAK_MAX_TALABA} oralig'ida bo'lishi kerak")
 
     conn = _db()
     cur = conn.cursor()
@@ -2726,6 +2824,7 @@ def togarak_yarat(sorov: TogarakYaratish):
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS turi TEXT DEFAULT 'oddiy'")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS guruh_turi TEXT DEFAULT 'togarak'")
     _togaraklar_reja_id_ustuni(cur)
     cur.execute("""CREATE TABLE IF NOT EXISTS togarak_mavzulari(
         togarak_id INTEGER REFERENCES togaraklar(id),
@@ -2748,12 +2847,46 @@ def togarak_yarat(sorov: TogarakYaratish):
     # guruhning shu fandagi bilim darajasini ko'ra oladi.
     universitet_guruh_id = None
     if sorov.universitet_guruh_id is not None:
-        cur.execute("SELECT id FROM universitet_guruhlari WHERE id=%s", (sorov.universitet_guruh_id,))
-        if cur.fetchone():
-            universitet_guruh_id = sorov.universitet_guruh_id
+        cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (teacher_id,))
+        admin_mi = cur.fetchone() is not None
+        if admin_mi:
+            cur.execute("SELECT id FROM universitet_guruhlari WHERE id=%s", (sorov.universitet_guruh_id,))
+        else:
+            cur.execute(
+                """SELECT g.id
+                   FROM universitet_guruhlari g
+                   JOIN kafedralar k ON k.id=g.kafedra_id
+                   JOIN fakultetlar f ON f.id=k.fakultet_id
+                   JOIN users u ON u.user_id=%s
+                   WHERE g.id=%s
+                     AND (g.rahbar_user_id=%s OR f.universitet_id=u.universitet_id)""",
+                (teacher_id, sorov.universitet_guruh_id, teacher_id),
+            )
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=403, detail="Bu universitet guruhiga kurs ochish vakolati sizga berilmagan")
+        universitet_guruh_id = sorov.universitet_guruh_id
+
+    shaxsiy_guruh = teacher_markaz_id is None and universitet_guruh_id is None
+    kvota = _togarak_yaratish_kvotasi(
+        cur,
+        teacher_id,
+        foydalanuvchini_qulflash=True,
+        shaxsiy_guruh=shaxsiy_guruh,
+    )
+    if not kvota["bepul_yarata_oladi"]:
+        cur.close(); conn.close()
+        raise HTTPException(
+            status_code=402,
+            detail={
+                "code": "SECOND_CLUB_PAYMENT_REQUIRED",
+                "message": "Birinchi shaxsiy to'garak yoki repetitor guruhi bepul. Ikkinchisini ochish narxi 50 000 so'm; to'lov oynasi keyingi bosqichda ulanadi.",
+                "price_uzs": IKKINCHI_TOGARAK_NARXI_UZS,
+            },
+        )
 
     sinf_qiymati = sorov.sinf.strip() if sorov.sinf else None
-    turi_qiymati = sorov.turi if sorov.turi in ("oddiy", "avto") else "oddiy"
+    max_talaba_qiymati = sorov.max_talaba or TOGARAK_MAX_TALABA
     reja_id_qiymati = None
     if sorov.reja_id is not None:
         if not _reja_ozi_mi(cur, teacher_id, sorov.reja_id):
@@ -2766,11 +2899,11 @@ def togarak_yarat(sorov: TogarakYaratish):
         cur.close(); conn.close()
         raise
     cur.execute("""
-        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, turi, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id, reja_id)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s) RETURNING id
+        INSERT INTO togaraklar(nomi, fan, teacher_id, sinf, turi, guruh_turi, parol, max_talaba, oylik_summa, aktiv, markaz_id, universitet_guruh_id, reja_id)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,TRUE,%s,%s,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.fan.strip(), teacher_id, sinf_qiymati, turi_qiymati,
-          parol_qiymati,
-          sorov.max_talaba, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id, reja_id_qiymati))
+          guruh_turi_qiymati, parol_qiymati,
+          max_talaba_qiymati, sorov.oylik_summa, teacher_markaz_id, universitet_guruh_id, reja_id_qiymati))
     yangi_id = cur.fetchone()["id"]
 
     bogliq_mavzu_soni = 0
@@ -2821,7 +2954,23 @@ def togarak_yarat(sorov: TogarakYaratish):
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "yaratildi", "togarak_id": yangi_id, "boglangan_mavzu_soni": bogliq_mavzu_soni}
+    yangilangan_kvota = kvota
+    if shaxsiy_guruh:
+        yangilangan_kvota = {
+            **kvota,
+            "faol_soni": kvota["faol_soni"] + 1,
+            "bepul_qolgan": None if kvota["admin"] else 0,
+            "bepul_yarata_oladi": bool(kvota["admin"]),
+        }
+    return {
+        "holat": "yaratildi",
+        "togarak_id": yangi_id,
+        "turi": turi_qiymati,
+        "guruh_turi": guruh_turi_qiymati,
+        "max_talaba": max_talaba_qiymati,
+        "boglangan_mavzu_soni": bogliq_mavzu_soni,
+        "kvota": yangilangan_kvota,
+    }
 
 
 # ═══════════════════════════════════════════════════════════
@@ -2981,9 +3130,11 @@ def _reja_jadvallari(cur):
         nomi TEXT NOT NULL,
         sinf TEXT NOT NULL,
         fan TEXT NOT NULL,
+        guruh_turi TEXT NOT NULL DEFAULT 'sinf',
         yaratgan_user_id BIGINT REFERENCES users(user_id),
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE topik_mavzu_rejalari ADD COLUMN IF NOT EXISTS guruh_turi TEXT NOT NULL DEFAULT 'sinf'")
     cur.execute("""CREATE TABLE IF NOT EXISTS topik_mavzu_reja_qatorlari(
         id SERIAL PRIMARY KEY,
         reja_id INTEGER REFERENCES topik_mavzu_rejalari(id) ON DELETE CASCADE,
@@ -5322,6 +5473,7 @@ class RejaYarat(BaseModel):
     nomi: str
     sinf: str
     fan: str
+    guruh_turi: str = "sinf"
 
 
 class RejaMavzuQosh(BaseModel):
@@ -5355,18 +5507,21 @@ def reja_yarat(sorov: RejaYarat):
         raise HTTPException(status_code=400, detail="Reja nomini kiriting")
     if not sorov.sinf.strip() or not sorov.fan.strip():
         raise HTTPException(status_code=400, detail="Sinf va fan kiritilishi shart")
+    guruh_turi = (sorov.guruh_turi or "sinf").strip().lower()
+    if guruh_turi not in ("sinf", "guruh", "grupa", "repetitor"):
+        raise HTTPException(status_code=400, detail="Reja turi sinf, guruh, grupa yoki repetitor bo'lishi kerak")
     conn = _db()
     cur = conn.cursor()
     _reja_jadvallari(cur)
     cur.execute(
-        "INSERT INTO topik_mavzu_rejalari(nomi, sinf, fan, yaratgan_user_id) VALUES(%s,%s,%s,%s) RETURNING id",
-        (nomi, sorov.sinf.strip(), sorov.fan.strip(), user_id),
+        "INSERT INTO topik_mavzu_rejalari(nomi, sinf, fan, guruh_turi, yaratgan_user_id) VALUES(%s,%s,%s,%s,%s) RETURNING id",
+        (nomi, sorov.sinf.strip(), sorov.fan.strip(), guruh_turi, user_id),
     )
     reja_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
     conn.close()
-    return {"reja_id": reja_id}
+    return {"reja_id": reja_id, "guruh_turi": guruh_turi}
 
 
 @app.get("/api/oqituvchi/mening_fanlarim")
@@ -5435,7 +5590,7 @@ def rejalarim(token: str, sinf: str = None, fan: str = None):
         shart += " AND UPPER(r.fan)=UPPER(%s)"
         params.append(fan)
     cur.execute(f"""
-        SELECT r.id, r.nomi, r.sinf, r.fan,
+        SELECT r.id, r.nomi, r.sinf, r.fan, r.guruh_turi,
                (SELECT COUNT(*) FROM topik_mavzu_reja_qatorlari q WHERE q.reja_id=r.id) AS mavzu_soni
         FROM topik_mavzu_rejalari r
         {shart}
@@ -5457,7 +5612,7 @@ def reja_korish(token: str, reja_id: int):
     if not _reja_ozi_mi(cur, user_id, reja_id):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu rejani yaratgan o'qituvchi yoki admin ko'ra oladi")
-    cur.execute("SELECT id, nomi, sinf, fan FROM topik_mavzu_rejalari WHERE id=%s", (reja_id,))
+    cur.execute("SELECT id, nomi, sinf, fan, guruh_turi FROM topik_mavzu_rejalari WHERE id=%s", (reja_id,))
     reja = cur.fetchone()
     if not reja:
         cur.close(); conn.close()
@@ -6581,7 +6736,10 @@ def togarakka_qoshil(sorov: TogarakqaQoshilish):
     conn = _db()
     cur = conn.cursor()
     _togarak_azolar_tasdiq_ustuni(cur)
-    cur.execute("SELECT id, nomi, max_talaba FROM togaraklar WHERE parol=%s AND aktiv=TRUE", (sorov.parol.strip(),))
+    cur.execute(
+        "SELECT id, nomi, max_talaba FROM togaraklar WHERE parol=%s AND aktiv=TRUE FOR UPDATE",
+        (sorov.parol.strip(),),
+    )
     t = cur.fetchone()
     if not t:
         cur.close(); conn.close()
@@ -6598,18 +6756,27 @@ def togarakka_qoshil(sorov: TogarakqaQoshilish):
             raise HTTPException(status_code=400, detail="Siz allaqachon shu to'garak a'zosisiz")
         raise HTTPException(status_code=400, detail="So'rovingiz yuborilgan — o'qituvchi tasdiqlashini kuting")
 
-    if t["max_talaba"]:
-        cur.execute("SELECT COUNT(*) AS soni FROM togarak_azolar WHERE togarak_id=%s AND aktiv=TRUE", (t["id"],))
-        joriy = cur.fetchone()["soni"]
-        if joriy >= t["max_talaba"]:
-            cur.close(); conn.close()
-            raise HTTPException(status_code=400, detail="To'garak to'lgan")
+    sigim = _togarak_sigimi(t["max_talaba"])
+    cur.execute(
+        """SELECT COUNT(*) AS soni FROM togarak_azolar
+           WHERE togarak_id=%s AND aktiv=TRUE AND tasdiqlangan=TRUE""",
+        (t["id"],),
+    )
+    joriy = int(cur.fetchone()["soni"] or 0)
+    if joriy >= sigim:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=409, detail=f"Guruhdagi {sigim} ta o'rin to'lgan")
 
     cur.execute("INSERT INTO togarak_azolar(togarak_id, user_id, aktiv, tasdiqlangan) VALUES(%s,%s,TRUE,FALSE)", (t["id"], user_id))
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "kutilmoqda", "togarak_nomi": t["nomi"]}
+    return {
+        "holat": "kutilmoqda",
+        "togarak_nomi": t["nomi"],
+        "max_talaba": sigim,
+        "qolgan_orin": max(0, sigim - joriy - 1),
+    }
 
 
 @app.get("/api/mening_togaraklarim")
@@ -10375,17 +10542,24 @@ def oqituvchi_universitet_guruh_qidir(token: str, nomi: str):
     """Professor to'garak (kurs) yaratayotganda — bu kursni qaysi
     universitet guruhi uchun o'qitayotganini nomi bo'yicha qidirib
     topishi uchun."""
-    _jwt_tekshir(token)
+    user_id = _jwt_tekshir(token)
     if len(nomi.strip()) < 1:
         return {"natijalar": []}
     conn = _db()
     cur = conn.cursor()
     _universitet_jadvali(cur)
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    admin_mi = cur.fetchone() is not None
     cur.execute("""
         SELECT g.id, g.nomi, g.kurs, g.yonalish, k.nomi AS kafedra_nomi
-        FROM universitet_guruhlari g LEFT JOIN kafedralar k ON k.id = g.kafedra_id
-        WHERE g.nomi ILIKE %s ORDER BY g.nomi LIMIT 10
-    """, (f"%{nomi.strip()}%",))
+        FROM universitet_guruhlari g
+        LEFT JOIN kafedralar k ON k.id = g.kafedra_id
+        LEFT JOIN fakultetlar f ON f.id = k.fakultet_id
+        LEFT JOIN users u ON u.user_id=%s
+        WHERE g.nomi ILIKE %s
+          AND (%s OR g.rahbar_user_id=%s OR f.universitet_id=u.universitet_id)
+        ORDER BY g.nomi LIMIT 10
+    """, (user_id, f"%{nomi.strip()}%", admin_mi, user_id))
     natija = cur.fetchall()
     cur.close()
     conn.close()
