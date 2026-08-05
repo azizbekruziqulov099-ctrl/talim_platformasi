@@ -561,6 +561,13 @@ def create_institute_router(jwt_check: Callable[[str], int]) -> APIRouter:
         cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
         return cur.fetchone() is not None
 
+    def require_creation_admin(cur: Any, user_id: int) -> None:
+        if not system_admin(cur, user_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Yangi institutni faqat Administrator markazi ochadi",
+            )
+
     def require_human(value: bool, message: str) -> None:
         if value is not True:
             raise HTTPException(status_code=409, detail=message)
@@ -1040,6 +1047,7 @@ def create_institute_router(jwt_check: Callable[[str], int]) -> APIRouter:
     ) -> dict[str, Any]:
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             cur.execute(
                 """INSERT INTO institute_setup_drafts(
                      creator_user_id,relationship,ownership_type,institution_type,
@@ -1067,6 +1075,7 @@ def create_institute_router(jwt_check: Callable[[str], int]) -> APIRouter:
         require_json_size(request.payload, 100_000, "Qoralama")
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             cur.execute(
                 """UPDATE institute_setup_drafts
                    SET current_step=%s,payload=payload||%s::jsonb,version=version+1
@@ -1114,6 +1123,7 @@ def create_institute_router(jwt_check: Callable[[str], int]) -> APIRouter:
         require_human(request.confirmation, "Institut ochilishini inson tasdiqlashi kerak")
         with database() as (_, cur):
             ensure_schema(cur)
+            require_creation_admin(cur, user_id)
             cur.execute(
                 """SELECT * FROM institute_setup_drafts
                    WHERE id=%s AND creator_user_id=%s FOR UPDATE""",
