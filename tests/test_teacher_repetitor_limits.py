@@ -37,7 +37,7 @@ class TeacherRepetitorLimitsContracts(unittest.TestCase):
         self.assertIn("Bu universitet guruhiga kurs ochish vakolati", self.main)
         self.assertIn("f.universitet_id=u.universitet_id", self.main)
 
-    def test_institution_creation_is_admin_only_except_tutor_mode(self):
+    def test_legacy_module_creation_stays_admin_only_and_v17_is_centralized(self):
         modules = {
             name: (ROOT / "backend" / "modules" / name).read_text(encoding="utf-8")
             for name in (
@@ -52,6 +52,11 @@ class TeacherRepetitorLimitsContracts(unittest.TestCase):
         self.assertGreaterEqual(modules["institute.py"].count("require_creation_admin(cur, user_id)"), 2)
         self.assertIn('operator_model == "independent_tutor"', modules["learning_center.py"])
         self.assertIn('user["role"] == "oqituvchi"', modules["learning_center.py"])
+        organization_v17 = (
+            ROOT / "backend" / "modules" / "organization_trials.py"
+        ).read_text(encoding="utf-8")
+        self.assertIn('request.ownership_type != "private"', organization_v17)
+        self.assertIn('@router.post("/sinov-boshlash")', organization_v17)
 
 
 if __name__ == "__main__":
