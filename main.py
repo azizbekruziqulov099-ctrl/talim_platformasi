@@ -85,7 +85,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "gamified-tests-v18.2",
+        "versiya": "game-arena-v18.4",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -95,7 +95,8 @@ def versiya():
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
-            "test_games": "five-modes-boss-points-voice-timer-immersive-v18.2",
+            "test_games": "in-scene-four-choice-three-lives-v18.4",
+            "test_import": "multi-sheet-images-atomic-v18.3",
         },
     }
 
@@ -12275,6 +12276,10 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     import openpyxl
     import io
     import zipfile
+    from modules.test_template_import import (
+        discover_test_worksheets,
+        embedded_images_by_row,
+    )
 
     content = await fayl.read()
 
@@ -12303,146 +12308,236 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
 
-    ws = wb["TESTLAR"] if "TESTLAR" in wb.sheetnames else wb.active
-    headers = [str(c.value).strip() if c.value else "" for c in ws[1]]
-    if "topic_code" not in headers:
-        raise HTTPException(status_code=400, detail="Excel ustunlari mos emas — 'topic_code' topilmadi")
+    test_varaqlar, buzuq_test_varaqlar = discover_test_worksheets(wb)
+    # Barcha TESTLAR* varaqlari bazaga ulanishdan OLDIN tekshiriladi.
+    # Bittasi buzilgan bo'lsa, qisman import bo'lmaydi: foydalanuvchi qaysi
+    # varaq va qaysi ustunni tuzatishi kerakligini aniq ko'radi.
+    if buzuq_test_varaqlar:
+        tafsilot = "; ".join(
+            f"{d['varaq']}: {', '.join(d['yetishmagan_ustunlar'])}"
+            for d in buzuq_test_varaqlar
+        )
+        wb.close()
+        raise HTTPException(
+            status_code=400,
+            detail=f"TESTLAR varag'i ustunlari mos emas — yetishmaydi: {tafsilot}",
+        )
+    if not test_varaqlar:
+        wb.close()
+        raise HTTPException(
+            status_code=400,
+            detail="Faylda 'topic_code', 'question' va 'correct_answer' ustunli test varag'i topilmadi",
+        )
 
-    # Excel katagiga joylashtirilgan rasmlarni QATOR raqami bo'yicha
-    # xaritalaymiz — shu qatordagi savolga biriktirish uchun.
-    qator_rasmlari = {}  # {excel_qator_raqami (1-based): (bayt, format)}
-    xom_rasmlar = getattr(ws, "_images", [])
-    rasm_diagnostika_xatolari = []  # nima uchun rasm o'qib bo'lmadi — ko'ra olishimiz uchun
-    for rasm in xom_rasmlar:
-        try:
-            qator_0based = rasm.anchor._from.row
-            bayt = rasm._data()
-            qator_rasmlari[qator_0based + 1] = (bayt, rasm.format or "png")
-        except Exception as e:
-            if len(rasm_diagnostika_xatolari) < 5:
-                rasm_diagnostika_xatolari.append(f"{type(e).__name__}: {e}")
-            continue
+    # Rasmlar faqat qator raqami bilan emas, VARAQ + qator juftligi bilan
+    # xaritalanadi. Aks holda turli varaqlardagi 2-qator rasmlari bir-birini
+    # bosib ketishi mumkin edi.
+    varaq_rasmlari = {}
+    varaq_diagnostika = []
+    rasm_diagnostika_xatolari = []
+    rasm_diagnostika_ogohlantirishlari = []
+    jami_xom_rasm = 0
+    jami_qatorga_boglangan_rasm = 0
+    for test_varaq in test_varaqlar:
+        rasmlar = embedded_images_by_row(test_varaq.worksheet)
+        varaq_rasmlari[test_varaq.name] = rasmlar.by_row
+        jami_xom_rasm += rasmlar.source_count
+        jami_qatorga_boglangan_rasm += len(rasmlar.by_row)
+        rasm_diagnostika_xatolari.extend(
+            f"{test_varaq.name}: {xato}" for xato in rasmlar.errors
+        )
+        rasm_diagnostika_ogohlantirishlari.extend(
+            f"{test_varaq.name}: {ogohlantirish}"
+            for ogohlantirish in rasmlar.warnings
+        )
+        varaq_diagnostika.append({
+            "varaq": test_varaq.name,
+            "holat": "import_qilindi",
+            "jami_qator": max(0, int(test_varaq.worksheet.max_row or 0) - 1),
+            "savolli_qator": 0,
+            "saved": 0,
+            "duplicates": 0,
+            "errors": 0,
+            "kod_yoq": 0,
+            "excel_rasm_soni": rasmlar.source_count,
+            "qatorga_boglangan_rasm_soni": len(rasmlar.by_row),
+            "rasm_biriktirildi": 0,
+            "yetishmagan_ustunlar": [],
+        })
+
+    # Topic kodlari ham birinchi/active varaqdan emas, barcha test
+    # varaqlaridan yig'iladi.
+    fayldagi_kodlar = set()
+    for test_varaq in test_varaqlar:
+        tc_index = test_varaq.headers.index("topic_code")
+        for row in test_varaq.worksheet.iter_rows(min_row=2):
+            if tc_index >= len(row):
+                continue
+            tc = row[tc_index].value
+            if tc and str(tc).strip():
+                fayldagi_kodlar.add(str(tc).strip())
 
     conn = _db()
     cur = conn.cursor()
-    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
-    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
-    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
-    # BIR MARTALIK TUZATISH: avval option_a NULL (bo'sh, ko'pincha
-    # "yozuvli"/write_answer turdagi savollarda) bo'lib saqlangan
-    # yozuvlar — ular hech qachon "duplikat" deb topilmagan (SQL'da
-    # NULL='' hech qachon TRUE bo'lmagani uchun), shu sabab har
-    # import'da qayta-qayta qo'shilib kelgan. Bo'sh matnga
-    # tenglashtirib, bundan buyon to'g'ri solishtiriladigan qilamiz.
-    cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL")
-
-    # MUHIM TEKSHIRUV: fayldagi topic_code'lar dts_tree'da (Mavzular) haqiqatda
-    # mavjudmi — aks holda testlar "yetim" bo'lib qoladi: saqlanadi, lekin
-    # hech qanday mavzuga bog'lanmagani uchun o'quvchiga HECH QACHON ko'rinmaydi.
-    fayldagi_kodlar = set()
-    tc_ustun_raqami = headers.index("topic_code") + 1
-    for row in ws.iter_rows(min_row=2):
-        tc = row[tc_ustun_raqami - 1].value
-        if tc and str(tc).strip():
-            fayldagi_kodlar.add(str(tc).strip())
-    yetim_kodlar = []
-    if fayldagi_kodlar:
-        cur.execute("SELECT topic_code FROM dts_tree WHERE topic_code = ANY(%s) AND is_deleted=FALSE", (list(fayldagi_kodlar),))
-        mavjud_kodlar = {r["topic_code"] for r in cur.fetchall()}
-        yetim_kodlar = sorted(fayldagi_kodlar - mavjud_kodlar)
-
     saved = 0
     duplicates = 0
     errors = 0
     rasm_biriktirildi = 0
-    kod_yoq = 0  # topic_code bo'sh bo'lgani uchun o'tkazib yuborilgan qatorlar
-    # (masalan mavzu o'zi topic_code'siz — "bo'sh" holatda — yaratilgan bo'lsa)
+    kod_yoq = 0
+    korilgan_savollar_soni = 0
+    yetim_kodlar = []
+    diagnostika_by_name = {d["varaq"]: d for d in varaq_diagnostika}
+    try:
+        cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
+        cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
+        cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
+        # Eski NULL variantlarni duplikat fingerprint bilan barqaror
+        # solishtirish uchun bo'sh matnga tenglashtiramiz.
+        cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL")
 
-    for row in ws.iter_rows(min_row=2):
-        d = {headers[i]: cell.value for i, cell in enumerate(row) if i < len(headers) and headers[i]}
-        tc = d.get("topic_code")
-        q = d.get("question")
-        if not q or str(q).strip() == "":
-            continue
-        if not tc or str(tc).strip() == "":
-            kod_yoq += 1
-            continue
-        try:
-            tc_s = str(tc).strip()
-            q_s = str(q).strip()
-            opt_a = str(d.get("option_a") or "").strip()
-            correct = str(d.get("correct_answer") or "").strip()
+        if fayldagi_kodlar:
+            cur.execute(
+                "SELECT topic_code FROM dts_tree WHERE topic_code = ANY(%s) AND is_deleted=FALSE",
+                (list(fayldagi_kodlar),),
+            )
+            mavjud_kodlar = {r["topic_code"] for r in cur.fetchall()}
+            yetim_kodlar = sorted(fayldagi_kodlar - mavjud_kodlar)
 
-            qator_raqami = row[0].row  # shu qatorning Excel'dagi haqiqiy raqami
-            rasm_bayt, rasm_format = qator_rasmlari.get(qator_raqami, (None, None))
-            rasm_turi = f"image/{rasm_format}" if rasm_bayt else None
+        for test_varaq in test_varaqlar:
+            ws = test_varaq.worksheet
+            headers = test_varaq.headers
+            varaq_natija = diagnostika_by_name[test_varaq.name]
+            qator_rasmlari = varaq_rasmlari[test_varaq.name]
 
-            cur.execute("""
-                SELECT id, rasm_malumot FROM generated_tests
-                WHERE topic_code=%s AND question=%s AND option_a=%s AND correct_answer=%s
-                LIMIT 1
-            """, (tc_s, q_s, opt_a, correct))
-            mavjud = cur.fetchone()
-            if mavjud:
-                # Savol allaqachon bor — lekin agar shu safar rasm topilgan
-                # bo'lsa-yu, eski yozuvda rasm bo'lmasa, RASMNI shu yerga
-                # biriktiramiz (jimgina o'tkazib yubormasdan).
-                if rasm_bayt and not mavjud["rasm_malumot"]:
-                    cur.execute(
-                        "UPDATE generated_tests SET rasm_malumot=%s, rasm_turi=%s, image_url=%s, image_file_id=NULL WHERE id=%s",
-                        (psycopg2.Binary(rasm_bayt), rasm_turi, f"/api/test_rasmi/{mavjud['id']}", mavjud["id"]),
-                    )
-                    conn.commit()
-                    rasm_biriktirildi += 1
-                duplicates += 1
-                continue
+            for row in ws.iter_rows(min_row=2):
+                d = {
+                    headers[i]: cell.value
+                    for i, cell in enumerate(row)
+                    if i < len(headers) and headers[i]
+                }
+                tc = d.get("topic_code")
+                q = d.get("question")
+                if not q or str(q).strip() == "":
+                    continue
 
-            # image_url ustuniga rasm joylashtirilgan bo'lsa (yuqorida
-            # topilgan), o'sha ustundagi havolani E'TIBORGA OLMAYMIZ —
-            # rasmning o'zi ustuvor.
-            image_url_qiymati = None if rasm_bayt else d.get("image_url")
+                korilgan_savollar_soni += 1
+                varaq_natija["savolli_qator"] += 1
+                if not tc or str(tc).strip() == "":
+                    kod_yoq += 1
+                    varaq_natija["kod_yoq"] += 1
+                    continue
 
-            cur.execute("""
-                INSERT INTO generated_tests
-                (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
-                 correct_answer, explanation, question_type, is_latex, image_url, audio_text,
-                 language, life_level, age_group, time_limit, maqsad, rasm_malumot, rasm_turi)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                RETURNING id
-            """, (
-                tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
-                opt_a, d.get("option_b"), d.get("option_c"), d.get("option_d"),
-                d.get("correct_answer"), d.get("explanation"),
-                d.get("question_type") or "single_choice",
-                bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
-                image_url_qiymati, d.get("audio_text"), d.get("language") or "uz",
-                d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
-                str(d.get("maqsad") or "oddiy").strip(),
-                psycopg2.Binary(rasm_bayt) if rasm_bayt else None, rasm_turi,
-            ))
-            if rasm_bayt:
-                yangi_id = cur.fetchone()["id"]
-                cur.execute("UPDATE generated_tests SET image_url=%s WHERE id=%s",
-                            (f"/api/test_rasmi/{yangi_id}", yangi_id))
-                rasm_biriktirildi += 1
-            conn.commit()
-            saved += 1
-        except Exception:
-            conn.rollback()
-            errors += 1
+                tc_s = str(tc).strip()
+                q_s = str(q).strip()
+                opt_a = str(d.get("option_a") or "").strip()
+                opt_b = str(d.get("option_b") or "").strip()
+                opt_c = str(d.get("option_c") or "").strip()
+                opt_d = str(d.get("option_d") or "").strip()
+                correct = str(d.get("correct_answer") or "").strip()
+                correct_key = correct.lower()
+                question_type = str(d.get("question_type") or "single_choice").strip().lower()
+                qator_raqami = row[0].row
+                rasm_bayt, rasm_format = qator_rasmlari.get(qator_raqami, (None, None))
+                rasm_turi = f"image/{rasm_format}" if rasm_bayt else None
 
-    cur.close()
-    conn.close()
+                # Har qator savepoint ichida bajariladi, ammo DB/infra xatosi
+                # "yutib yuborilmaydi": butun workbook rollback qilinadi.
+                # Commit faqat barcha varaqlar tugagach bir marta bo'ladi.
+                cur.execute("SAVEPOINT shablon_import_qatori")
+                try:
+                    cur.execute("""
+                        SELECT id, rasm_malumot FROM generated_tests
+                        WHERE topic_code=%s AND question=%s
+                          AND TRIM(COALESCE(option_a,''))=%s
+                          AND TRIM(COALESCE(option_b,''))=%s
+                          AND TRIM(COALESCE(option_c,''))=%s
+                          AND TRIM(COALESCE(option_d,''))=%s
+                          AND LOWER(TRIM(COALESCE(correct_answer,'')))=%s
+                          AND LOWER(TRIM(COALESCE(question_type,'single_choice')))=%s
+                        LIMIT 1
+                    """, (
+                        tc_s, q_s, opt_a, opt_b, opt_c, opt_d,
+                        correct_key, question_type,
+                    ))
+                    mavjud = cur.fetchone()
+                    if mavjud:
+                        if rasm_bayt and not mavjud["rasm_malumot"]:
+                            cur.execute(
+                                "UPDATE generated_tests SET rasm_malumot=%s, rasm_turi=%s, image_url=%s, image_file_id=NULL WHERE id=%s",
+                                (
+                                    psycopg2.Binary(rasm_bayt), rasm_turi,
+                                    f"/api/test_rasmi/{mavjud['id']}", mavjud["id"],
+                                ),
+                            )
+                            rasm_biriktirildi += 1
+                            varaq_natija["rasm_biriktirildi"] += 1
+                        duplicates += 1
+                        varaq_natija["duplicates"] += 1
+                    else:
+                        image_url_qiymati = None if rasm_bayt else d.get("image_url")
+                        cur.execute("""
+                            INSERT INTO generated_tests
+                            (topic_code, difficulty, situation, question, option_a, option_b, option_c, option_d,
+                             correct_answer, explanation, question_type, is_latex, image_url, audio_text,
+                             language, life_level, age_group, time_limit, maqsad, rasm_malumot, rasm_turi)
+                            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                            RETURNING id
+                        """, (
+                            tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
+                            opt_a, opt_b, opt_c, opt_d, correct, d.get("explanation"),
+                            question_type,
+                            bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
+                            image_url_qiymati, d.get("audio_text"), d.get("language") or "uz",
+                            d.get("life_level") or 1, d.get("age_group"), d.get("time_limit") or 60,
+                            str(d.get("maqsad") or "oddiy").strip(),
+                            psycopg2.Binary(rasm_bayt) if rasm_bayt else None, rasm_turi,
+                        ))
+                        yangi_id = cur.fetchone()["id"]
+                        if rasm_bayt:
+                            cur.execute(
+                                "UPDATE generated_tests SET image_url=%s WHERE id=%s",
+                                (f"/api/test_rasmi/{yangi_id}", yangi_id),
+                            )
+                            rasm_biriktirildi += 1
+                            varaq_natija["rasm_biriktirildi"] += 1
+                        saved += 1
+                        varaq_natija["saved"] += 1
+                    cur.execute("RELEASE SAVEPOINT shablon_import_qatori")
+                except Exception:
+                    # Transactionni toza holatga qaytarib, xatoni yuqoriga
+                    # uzatamiz. Tashqi except barcha varaqlarni rollback qiladi.
+                    try:
+                        cur.execute("ROLLBACK TO SAVEPOINT shablon_import_qatori")
+                        cur.execute("RELEASE SAVEPOINT shablon_import_qatori")
+                    except Exception:
+                        pass
+                    raise
+
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+        wb.close()
+
     return {
         "saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq,
         "rasm_biriktirildi": rasm_biriktirildi,
+        "import_qilingan_varaq_soni": len(test_varaqlar),
+        "import_qilingan_varaqlar": [test_varaq.name for test_varaq in test_varaqlar],
+        "korilgan_savollar_soni": korilgan_savollar_soni,
+        "fayldagi_topic_code_soni": len(fayldagi_kodlar),
+        "varaq_diagnostika": varaq_diagnostika,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
         "rasm_diagnostika": {
             "qabul_qilingan_fayl_hajmi_bayt": len(content),
             "openpyxl_versiyasi": openpyxl.__version__,
-            "excel_ichida_topilgan_rasm_soni": len(xom_rasmlar),
-            "qatorga_bogliy_qilingan_rasm_soni": len(qator_rasmlari),
+            "excel_ichida_topilgan_rasm_soni": jami_xom_rasm,
+            "qatorga_bogliy_qilingan_rasm_soni": jami_qatorga_boglangan_rasm,
             "xatolar": rasm_diagnostika_xatolari,
+            "ogohlantirishlar": rasm_diagnostika_ogohlantirishlari,
         },
     }
 
