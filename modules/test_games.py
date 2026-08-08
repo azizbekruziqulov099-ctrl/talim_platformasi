@@ -23,6 +23,8 @@ from pydantic import BaseModel, Field
 GAME_MODES = {"bridge", "millionaire", "space", "detective", "city"}
 GAME_QUESTION_COUNTS = {5, 10, 15, 20, 25}
 MAX_TOPIC_CODES = 50
+MAX_GAME_LIVES = 3
+GAME_LEVEL_SIZE = 5
 TASHKENT_TODAY_SQL = "(NOW() AT TIME ZONE 'Asia/Tashkent')::date"
 MIN_GAME_TIME_SECONDS = 20
 MAX_GAME_TIME_SECONDS = 180
@@ -57,7 +59,8 @@ def is_applicant_value(value: object) -> bool:
 
 
 def boss_attempt_limit(grade_band: str) -> int:
-    return 3 if normalize_grade_band(grade_band) in {"grade_1_4", "grade_5_9"} else 2
+    """V18.4 da har bir savol, jumladan bosqich finali ham bir urinishli."""
+    return 1
 
 
 def normalize_grade_band(grade_band: object) -> str:
@@ -70,8 +73,102 @@ def normalize_grade_band(grade_band: object) -> str:
 
 
 def initial_lives_for_band(grade_band: str) -> int:
-    """1–9-sinflarga uchta, katta sinf va abituriyentga ikkita jon."""
-    return 3 if normalize_grade_band(grade_band) in {"grade_1_4", "grade_5_9"} else 2
+    """Barcha yosh bosqichlarida uchta arqon/jon bilan boshlanadi."""
+    return MAX_GAME_LIVES
+
+
+def numeric_answer_choices(value: object) -> Optional[dict]:
+    """Sof sonli yozma javobni to'rtta halol variantga aylantiradi.
+
+    Birlik, formula yoki erkin matn qatnashsa ``None`` qaytaradi: bunday
+    savol uchun server soxta noto'g'ri javob uydirmaydi. Distraktorlar sonning
+    yozilish aniqligiga mos bir qadam bilan deterministik tuziladi.
+    """
+    original = str(value or "").strip()
+    if not original or len(original) > 64:
+        return None
+    if not re.fullmatch(r"[+-]?(?:\d+(?:[.,]\d+)?|[.,]\d+)", original):
+        return None
+    canonical = original.replace(",", ".")
+    try:
+        number = Decimal(canonical)
+    except InvalidOperation:
+        return None
+    if not number.is_finite():
+        return None
+    decimals = len(re.split(r"[.,]", original, maxsplit=1)[1]) if re.search(r"[.,]", original) else 0
+    step = Decimal(1).scaleb(-decimals)
+    separator = "," if "," in original else "."
+
+    def render(candidate: Decimal) -> str:
+        rendered = format(candidate.quantize(step), "f")
+        if decimals == 0:
+            rendered = rendered.split(".", 1)[0]
+        elif separator == ",":
+            rendered = rendered.replace(".", ",")
+        return rendered
+
+    try:
+        distractors = [render(number + step), render(number - step), render(number + (step * 2))]
+    except InvalidOperation:
+        return None
+    normalized_original = canonical.lstrip("+")
+    if any(item.replace(",", ".").lstrip("+") == normalized_original for item in distractors):
+        return None
+    if len({item.replace(",", ".") for item in distractors}) != 3:
+        return None
+    return {
+        "option_a": original,
+        "option_b": distractors[0],
+        "option_c": distractors[1],
+        "option_d": distractors[2],
+        "correct_answer": "A",
+    }
+
+
+def answer_life_transition(
+    *,
+    correct: bool,
+    position: int,
+    total_questions: int,
+    lives_remaining: int,
+    max_lives: int = MAX_GAME_LIVES,
+) -> dict:
+    """Bitta yakunlangan savol uchun authoritative jon/bosqich o'tishi.
+
+    Xato aynan bitta jonni oladi. O'yinchi tirik qolib har beshinchi savolni
+    yakunlasa, bir jon qaytadi (uchdan oshmaydi). Jon nolga tushgan paytda
+    bosqich bonusi berilmaydi va sessiya darhol tugaydi.
+    """
+    safe_max = max(1, int(max_lives))
+    before = min(safe_max, max(0, int(lives_remaining)))
+    lost = 0 if correct else min(1, before)
+    after_penalty = before - lost
+    safe_position = max(1, int(position))
+    safe_total = max(1, int(total_questions))
+    level_completed = safe_position % GAME_LEVEL_SIZE == 0
+    gained = 0
+    if after_penalty > 0 and level_completed:
+        gained = min(1, safe_max - after_penalty)
+    remaining = after_penalty + gained
+    if remaining == 0:
+        outcome = "game_over_lives"
+    elif safe_position >= safe_total:
+        outcome = "finished"
+    else:
+        outcome = "advance"
+    return {
+        "outcome": outcome,
+        "next_position": safe_position + 1,
+        "level_completed": level_completed,
+        "round_completed": level_completed,
+        "lives_before": before,
+        "lives_lost": lost,
+        "lives_gained": gained,
+        "life_gained": gained,
+        "lives_remaining": remaining,
+        "max_lives": safe_max,
+    }
 
 
 def bounded_question_time_limit(source_time: object, difficulty: object, is_boss: bool = False) -> int:
@@ -106,40 +203,21 @@ def timeout_transition(
     attempts_used: int,
     max_attempts: int,
     lives_remaining: int,
+    position: int = 1,
+    total_questions: int = 5,
 ) -> dict:
-    """DB yozuvidan oldingi sof timeout qoidasi; client vaqti bu yerga kirmaydi."""
-    next_attempt = max(0, int(attempts_used)) + 1
-    if is_boss:
-        if next_attempt < max(1, int(max_attempts)):
-            return {
-                "outcome": "boss_retry",
-                "attempts_used": next_attempt,
-                "attempts_left": int(max_attempts) - next_attempt,
-                "lives_remaining": max(0, int(lives_remaining)),
-            }
-        return {
-            "outcome": "game_over_boss",
-            "attempts_used": next_attempt,
-            "attempts_left": 0,
-            "lives_remaining": max(0, int(lives_remaining)),
-        }
-    lives_after = max(0, int(lives_remaining) - 1)
-    return {
-        "outcome": "game_over_lives" if lives_after == 0 else "advance",
-        "attempts_used": 1,
-        "attempts_left": 0,
-        "lives_remaining": lives_after,
-    }
-
-
-def is_terminal_boss_failure(
-    *, is_boss: bool, correct: bool, attempts_used: int, max_attempts: int
-) -> bool:
-    return bool(
-        is_boss
-        and not correct
-        and int(attempts_used) >= max(1, int(max_attempts))
+    """Timeout ham oddiy xato kabi: -1 jon va darhol keyingi savol."""
+    transition = answer_life_transition(
+        correct=False,
+        position=position,
+        total_questions=total_questions,
+        lives_remaining=lives_remaining,
     )
+    return {
+        **transition,
+        "attempts_used": max(0, int(attempts_used)) + 1,
+        "attempts_left": 0,
+    }
 
 
 def score_game_rows(rows: list[dict], completed: bool, lifelines_used: int = 0) -> dict:
@@ -476,6 +554,16 @@ def create_test_games_router(
         session = cur.fetchone()
         if not session:
             raise HTTPException(status_code=404, detail="O'yin sessiyasi topilmadi")
+        # Eski V18.3 faol sessiyasi 2 jonli bo'lishi mumkin. Tarixiy natijani
+        # o'zgartirmaymiz, lekin faol sessiyada bosqich bonusi 3 gacha chiqishi
+        # uchun uning yuqori chegarasini yangi qoidaga moslaymiz.
+        if session["status"] == "active" and int(session.get("initial_lives") or 0) < MAX_GAME_LIVES:
+            cur.execute(
+                """UPDATE game_sessions SET initial_lives=%s,updated_at=NOW()
+                   WHERE session_id=%s RETURNING *""",
+                (MAX_GAME_LIVES, session_id),
+            )
+            session = cur.fetchone()
         return session
 
     def get_current_row(cur, session: dict, for_update: bool = False):
@@ -572,17 +660,6 @@ def create_test_games_router(
         row.update(activated)
         return question_timer_payload(cur, row)
 
-    def reset_question_timer(cur, row: dict) -> None:
-        """Bossning yangi urinishini UI ko'rsatmaguncha waiting holatida qoldiradi."""
-        cur.execute(
-            """UPDATE game_session_questions
-               SET timer_started_at=NULL,deadline_at=NULL
-               WHERE session_id=%s AND position=%s""",
-            (row["session_id"], row["position"]),
-        )
-        row["timer_started_at"] = None
-        row["deadline_at"] = None
-
     def require_active_timer(cur, row: dict) -> dict:
         timer = question_timer_payload(cur, row)
         if timer["timer_status"] == "waiting":
@@ -638,12 +715,17 @@ def create_test_games_router(
             ),
         )
 
+    def is_choice_row(row: dict) -> bool:
+        # boss_converted — V18.0–V18.3 da saqlangan eski sessiya. Uni ham
+        # yozma maydon o'rniga asl to'rtta varianti bilan davom ettiramiz.
+        return row.get("display_type") in {"choice", "boss_converted"}
+
     def display_correct_letter(row: dict) -> Optional[str]:
         data = snapshot(row)
         original = correct_letter_resolver(
             data.get("option_a"), data.get("option_b"), data.get("option_c"), data.get("option_d"), data.get("correct_answer")
         )
-        option_map = row.get("option_map") or {}
+        option_map = row.get("option_map") or {key: key for key in ("A", "B", "C", "D")}
         for display, source in option_map.items():
             if source == original:
                 return display
@@ -666,8 +748,8 @@ def create_test_games_router(
         data = snapshot(row)
         hidden = set(row.get("hidden_options") or [])
         options = []
-        if row["display_type"] == "choice":
-            option_map = row.get("option_map") or {}
+        if is_choice_row(row):
+            option_map = row.get("option_map") or {key: key for key in ("A", "B", "C", "D")}
             for display in ("A", "B", "C", "D"):
                 source = option_map.get(display)
                 if not source:
@@ -678,7 +760,9 @@ def create_test_games_router(
                     "hidden": display in hidden,
                 })
         position = int(row["position"])
-        max_attempts = int(row["max_attempts"] or 1)
+        # Yangi qoidada barcha savollar bir urinishli. DB maydoni eski faol
+        # sessiyalarni o'qish uchun qoladi, API esa qayta urinish va'da qilmaydi.
+        max_attempts = 1
         attempts_used = int(row["attempts_used"] or 0)
         timer = question_timer_payload(cur, row)
         return {
@@ -688,7 +772,7 @@ def create_test_games_router(
             "round": (position - 1) // 5 + 1,
             "round_step": (position - 1) % 5 + 1,
             "is_boss": bool(row["is_boss"]),
-            "question_type": "write_answer" if row["is_boss"] else "single_choice",
+            "question_type": "single_choice" if is_choice_row(row) else "write_answer",
             "question": data.get("question") or "",
             "options": options,
             "is_latex": bool(data.get("is_latex")),
@@ -724,6 +808,7 @@ def create_test_games_router(
             "correct_count": int(session["correct_count"] or 0),
             "initial_lives": initial_lives,
             "lives_remaining": lives_remaining,
+            "max_lives": MAX_GAME_LIVES,
             "lifelines": {
                 "fifty_fifty": "fifty_fifty" not in used,
                 "remove_one": "remove_one" not in used,
@@ -746,7 +831,9 @@ def create_test_games_router(
         for row in rows:
             data = snapshot(row)
             row["difficulty"] = data.get("difficulty")
-            row["question_type"] = "write_answer" if row["is_boss"] else "single_choice"
+            row["question_type"] = (
+                "write_answer" if data.get("question_type") == "write_answer" else "single_choice"
+            )
         grouped = defaultdict(lambda: {"correct": 0, "total": 0})
         for row in rows:
             grouped[row["topic_code"]]["total"] += 1
@@ -889,6 +976,7 @@ def create_test_games_router(
             "initial_lives": int(
                 session.get("initial_lives") or initial_lives_for_band(session["grade_band"])
             ),
+            "max_lives": MAX_GAME_LIVES,
             "lives_remaining": int(
                 session.get("lives_remaining")
                 if session.get("lives_remaining") is not None
@@ -1009,25 +1097,25 @@ def create_test_games_router(
                    FROM generated_tests WHERE topic_code=ANY(%s)""",
                 (topic_codes,),
             )
-            choice_count = 0
-            write_count = 0
+            source_choice_count = 0
+            numeric_write_choice_count = 0
+            excluded_write_count = 0
             for candidate in cur.fetchall():
                 if not text_cleaner(candidate["question"] or "").strip():
                     continue
                 if candidate["question_type"] == "write_answer":
-                    if text_cleaner(candidate["correct_answer"] or "").strip():
-                        write_count += 1
+                    if numeric_answer_choices(text_cleaner(candidate["correct_answer"] or "")):
+                        numeric_write_choice_count += 1
+                    else:
+                        excluded_write_count += 1
                     continue
                 option_values = [candidate[f"option_{letter}"] for letter in ("a", "b", "c", "d")]
                 normalized = [text_cleaner(value or "").strip().casefold() for value in option_values]
                 correct_letter = correct_letter_resolver(*option_values, candidate["correct_answer"])
                 if all(normalized) and len(set(normalized)) == 4 and correct_letter in {"A", "B", "C", "D"}:
-                    choice_count += 1
-            available_rounds = 0
-            for possible in range(1, 6):
-                natural_writes = min(possible, write_count)
-                if choice_count >= possible * 4 + (possible - natural_writes):
-                    available_rounds = possible
+                    source_choice_count += 1
+            choice_count = source_choice_count + numeric_write_choice_count
+            available_rounds = min(5, choice_count // GAME_LEVEL_SIZE)
             availability_band = next(iter(bands))
             cur.execute('SELECT class FROM users WHERE user_id=%s', (user_id,))
             user_row = cur.fetchone()
@@ -1038,7 +1126,11 @@ def create_test_games_router(
                 "available_count": available_rounds * 5,
                 "options": [count for count in (5, 10, 15, 20, 25) if count <= available_rounds * 5],
                 "choice_count": choice_count,
-                "write_count": write_count,
+                "source_choice_count": source_choice_count,
+                "numeric_write_choice_count": numeric_write_choice_count,
+                "excluded_write_count": excluded_write_count,
+                # Eski frontend kontrakti: endi o'yinda yozma forma yo'q.
+                "write_count": 0,
                 "grade_band": availability_band,
             }
         except Exception:
@@ -1104,14 +1196,23 @@ def create_test_games_router(
             )
             candidates = list(cur.fetchall())
             choices = []
-            writes = []
+            excluded_write_count = 0
             for candidate in candidates:
                 question_text = text_cleaner(candidate["question"] or "").strip()
                 if not question_text:
                     continue
                 if candidate["question_type"] == "write_answer":
-                    if text_cleaner(candidate["correct_answer"] or "").strip():
-                        writes.append(candidate)
+                    numeric_options = numeric_answer_choices(
+                        text_cleaner(candidate["correct_answer"] or "")
+                    )
+                    if numeric_options:
+                        converted = dict(candidate)
+                        converted.update(numeric_options)
+                        converted["question_type"] = "single_choice"
+                        converted["converted_numeric_write"] = True
+                        choices.append(converted)
+                    else:
+                        excluded_write_count += 1
                     continue
                 option_values = [candidate[f"option_{letter}"] for letter in ("a", "b", "c", "d")]
                 normalized_options = [text_cleaner(value or "").strip().casefold() for value in option_values]
@@ -1120,26 +1221,20 @@ def create_test_games_router(
                     choices.append(candidate)
 
             random.shuffle(choices)
-            random.shuffle(writes)
             rounds = request.question_count // 5
-            natural_boss_count = min(rounds, len(writes))
-            choice_needed = rounds * 4 + (rounds - natural_boss_count)
-            if len(choices) < choice_needed:
-                available_rounds = 0
-                for possible in range(1, 6):
-                    available_writes = min(possible, len(writes))
-                    if len(choices) >= possible * 4 + (possible - available_writes):
-                        available_rounds = possible
+            if len(choices) < request.question_count:
+                available_rounds = min(5, len(choices) // GAME_LEVEL_SIZE)
                 available_count = min(25, available_rounds * 5)
                 raise HTTPException(
                     status_code=400,
                     detail=(
-                        "O'yin uchun yetarli sifatli savol yo'q: har raundga 4 ta tugmali va 1 ta Boss kerak. "
-                        f"Hozir ko'pi bilan {available_count} ta o'ynash mumkin."
+                        "O'yin uchun yetarli 4 variantli savol yo'q: har bir bosqichga 5 ta "
+                        "variantli savol kerak. Matnli yozma javoblardan soxta variant tuzilmaydi. "
+                        f"Hozir ko'pi bilan {available_count} ta o'ynash mumkin "
+                        f"({excluded_write_count} ta yozma savol chiqarib tashlandi)."
                     ),
                 )
-            choices = choices[:choice_needed]
-            writes = writes[:natural_boss_count]
+            choices = choices[:request.question_count]
 
             # Har foydalanuvchida bitta faol o'yin: yangi o'yin aniq
             # boshlanganida eski tashlab ketilgan sessiyalar ochiq qolmaydi.
@@ -1167,10 +1262,9 @@ def create_test_games_router(
 
             records = []
             choice_index = 0
-            write_index = 0
             position = 1
             for round_index in range(rounds):
-                for _ in range(4):
+                for round_step in range(GAME_LEVEL_SIZE):
                     question = choices[choice_index]
                     choice_index += 1
                     source_keys = ["A", "B", "C", "D"]
@@ -1178,9 +1272,10 @@ def create_test_games_router(
                     option_map = dict(zip(("A", "B", "C", "D"), source_keys))
                     records.append((
                         session_id, position, secrets.token_urlsafe(18), question["id"],
-                        question["topic_code"], "choice", False, 1,
+                        question["topic_code"], "choice", round_step == GAME_LEVEL_SIZE - 1, 1,
                         bounded_question_time_limit(
-                            question.get("time_limit"), question.get("difficulty"), False
+                            question.get("time_limit"), question.get("difficulty"),
+                            round_step == GAME_LEVEL_SIZE - 1,
                         ),
                         json.dumps(option_map),
                         json.dumps(
@@ -1198,36 +1293,6 @@ def create_test_games_router(
                         [],
                     ))
                     position += 1
-                if write_index < len(writes):
-                    boss = writes[write_index]
-                    write_index += 1
-                    display_type = "boss_write"
-                else:
-                    boss = choices[choice_index]
-                    choice_index += 1
-                    display_type = "boss_converted"
-                records.append((
-                    session_id, position, secrets.token_urlsafe(18), boss["id"],
-                    boss["topic_code"], display_type, True, boss_attempt_limit(grade_band),
-                    bounded_question_time_limit(
-                        boss.get("time_limit"), boss.get("difficulty"), True
-                    ),
-                    json.dumps({}),
-                    json.dumps(
-                        {
-                            key: boss.get(key)
-                            for key in (
-                                "question", "option_a", "option_b", "option_c", "option_d",
-                                "correct_answer", "explanation", "question_type", "is_latex",
-                                "time_limit", "difficulty", "rasm_id",
-                            )
-                        },
-                        ensure_ascii=False,
-                        default=str,
-                    ),
-                    [],
-                ))
-                position += 1
 
             psycopg2.extras.execute_values(
                 cur,
@@ -1346,7 +1411,7 @@ def create_test_games_router(
             require_active_timer(cur, row)
 
             attempts_used = int(row["attempts_used"] or 0) + 1
-            if row["display_type"] == "choice":
+            if is_choice_row(row):
                 selected = answer.upper()
                 if selected not in {"A", "B", "C", "D"} or selected in set(row.get("hidden_options") or []):
                     raise HTTPException(status_code=400, detail="Ko'rinib turgan javoblardan birini tanlang")
@@ -1354,129 +1419,80 @@ def create_test_games_router(
             else:
                 correct = written_answer_checker(answer, correct_text(row))
 
-            retry = bool(row["is_boss"] and not correct and attempts_used < int(row["max_attempts"]))
-            if retry:
-                cur.execute(
-                    """UPDATE game_session_questions SET attempts_used=%s,answer_text=%s
-                       WHERE session_id=%s AND position=%s""",
-                    (attempts_used, answer, session["session_id"], row["position"]),
-                )
-                row["attempts_used"] = attempts_used
-                reset_question_timer(cur, row)
-                response = {
-                    "status": "retry",
-                    "correct": False,
-                    "attempts_used": attempts_used,
-                    "attempts_left": int(row["max_attempts"]) - attempts_used,
-                    "hint": "Javobning asosiy so'zi yoki hisob qadamini yana bir marta tekshiring.",
-                    "question": question_payload(cur, session, row),
-                    "initial_lives": int(session["initial_lives"]),
-                    "lives_remaining": int(session["lives_remaining"]),
-                }
-                save_action(
-                    cur,
-                    session_id=session["session_id"],
-                    user_id=user_id,
-                    action_id=request.action_id,
-                    action_type="answer",
-                    request_hash=request_hash,
-                    response=response,
-                )
-                conn.commit()
-                return response
-
-            if is_terminal_boss_failure(
-                is_boss=bool(row["is_boss"]),
-                correct=bool(correct),
-                attempts_used=attempts_used,
-                max_attempts=int(row["max_attempts"]),
-            ):
-                explanation = text_cleaner(snapshot(row).get("explanation") or "")
-                revealed_answer = correct_text(row)
-                cur.execute(
-                    """UPDATE game_session_questions
-                       SET attempts_used=%s,answer_text=%s,correct=FALSE,answered_at=NOW()
-                       WHERE session_id=%s AND position=%s""",
-                    (attempts_used, answer, session["session_id"], row["position"]),
-                )
-                cur.execute(
-                    "SELECT * FROM game_sessions WHERE session_id=%s FOR UPDATE",
-                    (session["session_id"],),
-                )
-                updated = cur.fetchone()
-                result = finish_locked(
-                    cur,
-                    updated,
-                    completed=False,
-                    terminal_status="game_over",
-                    terminal_reason="boss_attempts_exhausted",
-                )
-                response = {
-                    "status": "game_over",
-                    "correct": False,
-                    "correct_answer": revealed_answer,
-                    "explanation": explanation,
-                    "lives_remaining": int(updated["lives_remaining"]),
-                    "result": result,
-                }
-                save_action(
-                    cur,
-                    session_id=session["session_id"],
-                    user_id=user_id,
-                    action_id=request.action_id,
-                    action_type="answer",
-                    request_hash=request_hash,
-                    response=response,
-                )
-                conn.commit()
-                return response
-
             cur.execute(
                 """UPDATE game_session_questions SET attempts_used=%s,answer_text=%s,
                           correct=%s,answered_at=NOW()
                    WHERE session_id=%s AND position=%s""",
                 (attempts_used, answer, correct, session["session_id"], row["position"]),
             )
-            next_position = int(session["current_position"]) + 1
+            transition = answer_life_transition(
+                correct=bool(correct),
+                position=int(row["position"]),
+                total_questions=int(session["total_questions"]),
+                lives_remaining=int(session["lives_remaining"]),
+            )
+            next_position = transition["next_position"]
             cur.execute(
                 """UPDATE game_sessions SET current_position=%s,
-                          correct_count=correct_count+%s,updated_at=NOW()
-                   WHERE session_id=%s""",
-                (next_position, 1 if correct else 0, session["session_id"]),
+                          correct_count=correct_count+%s,lives_remaining=%s,updated_at=NOW()
+                   WHERE session_id=%s RETURNING *""",
+                (
+                    next_position,
+                    1 if correct else 0,
+                    transition["lives_remaining"],
+                    session["session_id"],
+                ),
             )
             explanation = text_cleaner(snapshot(row).get("explanation") or "")
-            revealed_answer = display_correct_letter(row) if row["display_type"] == "choice" else correct_text(row)
-
-            cur.execute("SELECT * FROM game_sessions WHERE session_id=%s FOR UPDATE", (session["session_id"],))
+            revealed_answer = display_correct_letter(row) if is_choice_row(row) else correct_text(row)
             updated = cur.fetchone()
-            if next_position > int(updated["total_questions"]):
+            transition_payload = {
+                "initial_lives": int(updated["initial_lives"]),
+                "max_lives": MAX_GAME_LIVES,
+                "lives_before": transition["lives_before"],
+                "lives_lost": transition["lives_lost"],
+                "lives_gained": transition["lives_gained"],
+                "life_gained": transition["lives_gained"],
+                "lives_remaining": transition["lives_remaining"],
+                "level_completed": transition["level_completed"],
+                "round_completed": transition["level_completed"],
+            }
+            if transition["outcome"] == "game_over_lives":
+                result = finish_locked(
+                    cur,
+                    updated,
+                    completed=False,
+                    terminal_status="game_over",
+                    terminal_reason="lives_exhausted",
+                )
+                response = {
+                    "status": "game_over",
+                    "correct": bool(correct),
+                    "correct_answer": revealed_answer,
+                    "explanation": explanation,
+                    **transition_payload,
+                    "result": result,
+                }
+            elif transition["outcome"] == "finished":
                 result = finish_locked(cur, updated, completed=True)
                 response = {
                     "status": "finished",
                     "correct": bool(correct),
                     "correct_answer": revealed_answer,
                     "explanation": explanation,
+                    **transition_payload,
                     "result": result,
                 }
-                save_action(
-                    cur,
-                    session_id=session["session_id"],
-                    user_id=user_id,
-                    action_id=request.action_id,
-                    action_type="answer",
-                    request_hash=request_hash,
-                    response=response,
-                )
-                conn.commit()
-                return response
-            payload = session_summary(cur, updated)
-            response = {
-                **payload,
-                "status": "next",
-                "correct": bool(correct),
-                "correct_answer": revealed_answer,
-                "explanation": explanation,
-            }
+            else:
+                payload = session_summary(cur, updated)
+                response = {
+                    **payload,
+                    "status": "next",
+                    "correct": bool(correct),
+                    "correct_answer": revealed_answer,
+                    "explanation": explanation,
+                    **transition_payload,
+                }
             save_action(
                 cur,
                 session_id=session["session_id"],
@@ -1548,57 +1564,52 @@ def create_test_games_router(
                 attempts_used=int(row["attempts_used"] or 0),
                 max_attempts=int(row["max_attempts"]),
                 lives_remaining=int(session["lives_remaining"]),
+                position=int(row["position"]),
+                total_questions=int(session["total_questions"]),
             )
             attempts_used = transition["attempts_used"]
             explanation = text_cleaner(snapshot(row).get("explanation") or "")
             revealed_answer = (
                 display_correct_letter(row)
-                if row["display_type"] == "choice"
+                if is_choice_row(row)
                 else correct_text(row)
             )
-
-            if transition["outcome"] == "boss_retry":
-                cur.execute(
-                    """UPDATE game_session_questions
-                       SET attempts_used=%s,answer_text='[timeout]',timed_out=TRUE,
-                           timer_started_at=NULL,deadline_at=NULL
-                       WHERE session_id=%s AND position=%s""",
-                    (attempts_used, session["session_id"], row["position"]),
-                )
-                row["attempts_used"] = attempts_used
-                row["timed_out"] = True
-                row["timer_started_at"] = None
-                row["deadline_at"] = None
-                response = {
-                    "status": "retry",
-                    "timed_out": True,
-                    "correct": False,
-                    "attempts_used": attempts_used,
-                    "attempts_left": transition["attempts_left"],
-                    "hint": "Boss vaqti tugadi. Yangi urinishni tayyor bo'lganda boshlang.",
-                    "question": question_payload(cur, session, row),
-                    "initial_lives": int(session["initial_lives"]),
-                    "lives_remaining": int(session["lives_remaining"]),
-                }
-            elif transition["outcome"] == "game_over_boss":
-                cur.execute(
-                    """UPDATE game_session_questions
-                       SET attempts_used=%s,answer_text='[timeout]',timed_out=TRUE,
-                           correct=FALSE,answered_at=NOW()
-                       WHERE session_id=%s AND position=%s""",
-                    (attempts_used, session["session_id"], row["position"]),
-                )
-                cur.execute(
-                    "SELECT * FROM game_sessions WHERE session_id=%s FOR UPDATE",
-                    (session["session_id"],),
-                )
-                updated = cur.fetchone()
+            cur.execute(
+                """UPDATE game_session_questions
+                   SET attempts_used=%s,answer_text='[timeout]',timed_out=TRUE,
+                       correct=FALSE,answered_at=NOW()
+                   WHERE session_id=%s AND position=%s""",
+                (attempts_used, session["session_id"], row["position"]),
+            )
+            cur.execute(
+                """UPDATE game_sessions
+                   SET current_position=%s,lives_remaining=%s,updated_at=NOW()
+                   WHERE session_id=%s RETURNING *""",
+                (
+                    transition["next_position"],
+                    transition["lives_remaining"],
+                    session["session_id"],
+                ),
+            )
+            updated = cur.fetchone()
+            transition_payload = {
+                "initial_lives": int(updated["initial_lives"]),
+                "max_lives": MAX_GAME_LIVES,
+                "lives_before": transition["lives_before"],
+                "lives_lost": transition["lives_lost"],
+                "lives_gained": transition["lives_gained"],
+                "life_gained": transition["lives_gained"],
+                "lives_remaining": transition["lives_remaining"],
+                "level_completed": transition["level_completed"],
+                "round_completed": transition["level_completed"],
+            }
+            if transition["outcome"] == "game_over_lives":
                 result = finish_locked(
                     cur,
                     updated,
                     completed=False,
                     terminal_status="game_over",
-                    terminal_reason="boss_attempts_exhausted",
+                    terminal_reason="lives_exhausted",
                 )
                 response = {
                     "status": "game_over",
@@ -1606,75 +1617,31 @@ def create_test_games_router(
                     "correct": False,
                     "correct_answer": revealed_answer,
                     "explanation": explanation,
-                    "lives_remaining": int(updated["lives_remaining"]),
+                    **transition_payload,
+                    "result": result,
+                }
+            elif transition["outcome"] == "finished":
+                result = finish_locked(cur, updated, completed=True)
+                response = {
+                    "status": "finished",
+                    "timed_out": True,
+                    "correct": False,
+                    "correct_answer": revealed_answer,
+                    "explanation": explanation,
+                    **transition_payload,
                     "result": result,
                 }
             else:
-                cur.execute(
-                    """UPDATE game_session_questions
-                       SET attempts_used=1,answer_text='[timeout]',timed_out=TRUE,
-                           correct=FALSE,answered_at=NOW()
-                       WHERE session_id=%s AND position=%s""",
-                    (session["session_id"], row["position"]),
-                )
-                cur.execute(
-                    """UPDATE game_sessions
-                       SET lives_remaining=%s,updated_at=NOW()
-                       WHERE session_id=%s RETURNING *""",
-                    (transition["lives_remaining"], session["session_id"]),
-                )
-                updated = cur.fetchone()
-                lives_remaining = int(updated["lives_remaining"])
-                if lives_remaining == 0:
-                    result = finish_locked(
-                        cur,
-                        updated,
-                        completed=False,
-                        terminal_status="game_over",
-                        terminal_reason="lives_exhausted",
-                    )
-                    response = {
-                        "status": "game_over",
-                        "timed_out": True,
-                        "correct": False,
-                        "correct_answer": revealed_answer,
-                        "explanation": explanation,
-                        "lives_lost": 1,
-                        "lives_remaining": 0,
-                        "result": result,
-                    }
-                else:
-                    next_position = int(updated["current_position"]) + 1
-                    cur.execute(
-                        """UPDATE game_sessions SET current_position=%s,updated_at=NOW()
-                           WHERE session_id=%s RETURNING *""",
-                        (next_position, session["session_id"]),
-                    )
-                    updated = cur.fetchone()
-                    if next_position > int(updated["total_questions"]):
-                        result = finish_locked(cur, updated, completed=True)
-                        response = {
-                            "status": "finished",
-                            "timed_out": True,
-                            "correct": False,
-                            "correct_answer": revealed_answer,
-                            "explanation": explanation,
-                            "lives_lost": 1,
-                            "lives_remaining": lives_remaining,
-                            "result": result,
-                        }
-                    else:
-                        payload = session_summary(cur, updated)
-                        response = {
-                            **payload,
-                            "status": "next",
-                            "timed_out": True,
-                            "correct": False,
-                            "correct_answer": revealed_answer,
-                            "explanation": explanation,
-                            "lives_lost": 1,
-                            "lives_remaining": lives_remaining,
-                        }
+                payload = session_summary(cur, updated)
+                response = {
+                    **payload,
+                    "status": "next",
+                    "timed_out": True,
+                    "correct": False,
+                    "correct_answer": revealed_answer,
+                    "explanation": explanation,
+                    **transition_payload,
+                }
 
             save_action(
                 cur,
