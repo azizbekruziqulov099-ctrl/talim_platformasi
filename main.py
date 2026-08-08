@@ -85,7 +85,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "organization-private-trial-v17",
+        "versiya": "gamified-tests-v18.1",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -95,6 +95,7 @@ def versiya():
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
+            "test_games": "five-modes-boss-points-voice-timer-v18.1",
         },
     }
 
@@ -1343,16 +1344,73 @@ def aralash_savollari_soni(sorov: AralashSoniSorovi):
     return {"soni": soni}
 
 
+def _standard_urinish_jadvali_bormi(cur) -> bool:
+    cur.execute("SELECT to_regclass('public.standard_test_attempts') AS table_name")
+    row = cur.fetchone()
+    return bool(row and row["table_name"])
+
+
+def _standard_fan_ochko_kaliti(cur, topic_codes: list[str]) -> Optional[str]:
+    """Client kombinatsiyasi emas, DTS'dagi bitta haqiqiy sinf+fan kaliti."""
+    kodlar = sorted({str(code or "").strip() for code in topic_codes if str(code or "").strip()})
+    if not kodlar:
+        return None
+    cur.execute(
+        """SELECT topic_code,grade,subject_code FROM dts_tree
+           WHERE topic_code=ANY(%s) AND is_deleted=FALSE""",
+        (kodlar,),
+    )
+    rows = cur.fetchall()
+    by_code = {row["topic_code"]: row for row in rows}
+    if any(code not in by_code for code in kodlar):
+        return None
+    identities = set()
+    for row in rows:
+        parts = str(row["topic_code"] or "").split("-")
+        subject_code = row["subject_code"] or (parts[1] if len(parts) > 1 else "")
+        identities.add(f"{row['grade']}|{subject_code}")
+    if len(identities) != 1:
+        return None
+    identity = next(iter(identities))
+    return hashlib.sha256(f"canonical-subject|{identity}".encode("utf-8")).hexdigest()
+
+
+def _standard_urinish_yarat(cur, user_id: Optional[int], topic_codes: list[str], savollar: list[dict]) -> Optional[str]:
+    if user_id is None or not savollar or not _standard_urinish_jadvali_bormi(cur):
+        return None
+    attempt_id = secrets.token_urlsafe(24)
+    haqiqiy_kodlar = sorted({str(row.get("topic_code") or "").strip() for row in savollar if row.get("topic_code")})
+    if not haqiqiy_kodlar:
+        haqiqiy_kodlar = sorted({str(code or "").strip() for code in topic_codes if str(code or "").strip()})
+    content_key = _standard_fan_ochko_kaliti(cur, haqiqiy_kodlar) or "unrewarded"
+    cur.execute(
+        """INSERT INTO standard_test_attempts(
+             attempt_id,user_id,topic_codes,question_ids,expected_count,content_key
+           ) VALUES(%s,%s,%s,%s,%s,%s)""",
+        (
+            attempt_id,
+            user_id,
+            haqiqiy_kodlar,
+            [int(row["id"]) for row in savollar],
+            len(savollar),
+            content_key,
+        ),
+    )
+    return attempt_id
+
+
 @app.get("/api/test/{topic_code}")
 def test_savollari(
     topic_code: str, soni: int = 10, qiyinlik: str = None,
     rasimli: bool = None, vaqtli: bool = None, yozuvli: bool = None,
+    token: Optional[str] = None,
 ):
     """Berilgan mavzu bo'yicha tasodifiy savollarni qaytaradi.
     qiyinlik berilsa (oson/o'rta/qiyin/murakkab), faqat o'sha darajadagi
     savollar tanlanadi — bo'lmasa (aralash) barcha darajalardan aralash.
     rasimli/vaqtli/yozuvli — True/False bo'lsa mos savollargina tanlanadi,
     berilmasa (None) hammasidan aralash."""
+    user_id = _jwt_tekshir(token) if token else None
     conn = _db()
     cur = conn.cursor()
     shart = "topic_code = %s"
@@ -1365,7 +1423,7 @@ def test_savollari(
     params += qoshimcha_params
     params.append(soni)
     cur.execute(f"""
-        SELECT id, question, option_a, option_b, option_c, option_d,
+        SELECT id, topic_code, question, option_a, option_b, option_c, option_d,
                question_type, is_latex, time_limit, difficulty,
                CASE
                    WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
@@ -1377,10 +1435,10 @@ def test_savollari(
         LIMIT %s
     """, params)
     savollar = cur.fetchall()
-    cur.close()
-    conn.close()
 
     if not savollar:
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=404, detail="Bu mavzuda (tanlangan sozlamalar bo'yicha) savol topilmadi")
 
     # DIQQAT: bu yerda [ru]/[en] teglarini ATAYLAB OLIB TASHLAMAYMIZ —
@@ -1392,14 +1450,20 @@ def test_savollari(
         for maydon in ("option_a", "option_b", "option_c", "option_d"):
             s[maydon] = _raqam_artefaktini_tozala(s[maydon])
 
+    attempt_id = _standard_urinish_yarat(cur, user_id, [topic_code], savollar)
+    conn.commit()
+    cur.close()
+    conn.close()
+
     # correct_answer va explanation FRONTENDGA yubormaymiz — bular javob
     # berilgandan KEYIN, /api/test/javob_tekshir orqali ochiladi
-    return {"topic_code": topic_code, "savollar": savollar}
+    return {"topic_code": topic_code, "savollar": savollar, "attempt_id": attempt_id}
 
 
 class AralashTestSorovi(BaseModel):
     topic_codes: list = []
     soni: int = 10
+    token: Optional[str] = None
     qiyinlik: Optional[str] = None
     rasimli: Optional[bool] = None
     vaqtli: Optional[bool] = None
@@ -1414,6 +1478,7 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
     if not kodlar:
         raise HTTPException(status_code=400, detail="Kamida bitta mavzu tanlang")
 
+    user_id = _jwt_tekshir(sorov.token) if sorov.token else None
     conn = _db()
     cur = conn.cursor()
     shart = "topic_code = ANY(%s)"
@@ -1438,10 +1503,10 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
         LIMIT %s
     """, params)
     savollar = cur.fetchall()
-    cur.close()
-    conn.close()
 
     if not savollar:
+        cur.close()
+        conn.close()
         raise HTTPException(status_code=404, detail="Tanlangan mavzu/sozlamalarda savol topilmadi")
 
     for s in savollar:
@@ -1449,12 +1514,19 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
         for maydon in ("option_a", "option_b", "option_c", "option_d"):
             s[maydon] = _raqam_artefaktini_tozala(s[maydon])
 
-    return {"topic_codes": kodlar, "savollar": savollar}
+    attempt_id = _standard_urinish_yarat(cur, user_id, kodlar, savollar)
+    conn.commit()
+    cur.close()
+    conn.close()
+
+    return {"topic_codes": kodlar, "savollar": savollar, "attempt_id": attempt_id}
 
 
 class BittaJavob(BaseModel):
     savol_id: int
     tanlangan: str
+    token: str
+    attempt_id: str
 
 
 def _raqam_artefaktini_tozala(matn):
@@ -1519,8 +1591,23 @@ def javob_tekshir(j: BittaJavob):
     va tushuntirishni shu yerda ochadi (foydalanuvchi javob bergandan
     keyin, savol ko'rsatilganda EMAS — aks holda oldindan ko'rinib qolardi).
     Yozuvli (write_answer) savollarda harf emas, yozilgan matn solishtiriladi."""
+    user_id = _jwt_tekshir(j.token)
     conn = _db()
     cur = conn.cursor()
+    if not _standard_urinish_jadvali_bormi(cur):
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=503, detail="Avval 015 migratsiyasini bajaring")
+    cur.execute(
+        """SELECT 1 FROM standard_test_attempts
+           WHERE attempt_id=%s AND user_id=%s AND status='active'
+             AND expires_at>NOW() AND %s=ANY(question_ids)""",
+        (j.attempt_id, user_id, j.savol_id),
+    )
+    if not cur.fetchone():
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=409, detail="Bu savol faol test urinishingizga tegishli emas")
     cur.execute("""SELECT option_a, option_b, option_c, option_d, correct_answer,
                           explanation, question_type
                    FROM generated_tests WHERE id=%s""", (j.savol_id,))
@@ -1908,6 +1995,40 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
 
     conn = _db()
     cur = conn.cursor()
+    standard_urinish = None
+    standard_content_key = None
+    if sorov.attempt_id and _standard_urinish_jadvali_bormi(cur):
+        cur.execute(
+            """SELECT * FROM standard_test_attempts
+               WHERE attempt_id=%s AND user_id=%s FOR UPDATE""",
+            (sorov.attempt_id, user_id),
+        )
+        standard_urinish = cur.fetchone()
+        if not standard_urinish:
+            conn.rollback()
+            cur.close()
+            conn.close()
+            raise HTTPException(status_code=409, detail="Test urinishi topilmadi yoki boshqa foydalanuvchiga tegishli")
+        if standard_urinish["status"] == "completed" and standard_urinish.get("result"):
+            result = standard_urinish["result"]
+            conn.commit()
+            cur.close()
+            conn.close()
+            return result
+        if standard_urinish["status"] != "active" or standard_urinish["expires_at"] <= datetime.now(timezone.utc):
+            conn.rollback()
+            cur.close()
+            conn.close()
+            raise HTTPException(status_code=409, detail="Test urinishining muddati tugagan")
+        expected_ids = {int(value) for value in (standard_urinish["question_ids"] or [])}
+        if any(savol_id not in expected_ids for savol_id in savol_idlar):
+            conn.rollback()
+            cur.close()
+            conn.close()
+            raise HTTPException(status_code=409, detail="Yuborilgan savol server bergan testga tegishli emas")
+        sorov.jami_savol_soni = int(standard_urinish["expected_count"])
+        if standard_urinish["content_key"] != "unrewarded":
+            standard_content_key = standard_urinish["content_key"]
     # SQL migratsiyasidagi learned_topics ko'prigi bot yozuvlarini ushlaydi.
     # Sayt esa pastda learning_events'ga bevosita yozgani uchun ayni
     # tranzaksiyada ko'prikka "takror yozma" belgisi beriladi.
@@ -2066,11 +2187,41 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
             "INSERT INTO savol_javob_tarixi(user_id, savol_id, topic_code, difficulty, question_type, togri_mi) VALUES %s",
             javob_tarixi_qatorlari,
         )
+    # V18: oddiy test ham o'yinlar bilan bir xil hisob ochkosiga ulanadi.
+    # 015 migratsiyasi hali o'rnatilmagan bo'lsa helper xavfsiz no-op qiladi;
+    # natijaning akademik foizi esa avvalgidek learned_topics'da qoladi.
+    ochko_natija = award_standard_test_points(
+        cur,
+        user_id=user_id,
+        topic_codes=[tk for tk, _ in faol_topiclar],
+        question_count=jami,
+        answered_count=len(savol_idlar),
+        percent=foiz,
+        attempt_id=sorov.attempt_id,
+        server_content_key=standard_content_key,
+    )
+    response = {
+        "togri": togri_soni,
+        "jami": jami,
+        "foiz": foiz,
+        "xatolar": xatolar,
+        "ochko": ochko_natija,
+    }
+    if standard_urinish:
+        cur.execute(
+            """UPDATE standard_test_attempts
+               SET status='completed',completed_at=NOW(),result=%s::jsonb
+               WHERE attempt_id=%s""",
+            (
+                json.dumps(response, ensure_ascii=False, default=str),
+                standard_urinish["attempt_id"],
+            ),
+        )
     conn.commit()
     cur.close()
     conn.close()
 
-    return {"togri": togri_soni, "jami": jami, "foiz": foiz, "xatolar": xatolar}
+    return response
 
 
 # ═══════════════════════════════════════════════════════════
@@ -17425,6 +17576,7 @@ from modules.institute import create_institute_router
 from modules.learning_center import create_learning_center_router
 from modules.organization_trials import create_organization_trial_router
 from modules.school import create_school_router
+from modules.test_games import award_standard_test_points, create_test_games_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
 
 app.include_router(create_kindergarten_router(_jwt_tekshir))
@@ -17432,6 +17584,15 @@ app.include_router(create_school_router(_jwt_tekshir))
 app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
 app.include_router(create_organization_trial_router(_jwt_tekshir))
+app.include_router(
+    create_test_games_router(
+        _jwt_tekshir,
+        _db,
+        _yozma_javob_togrimi,
+        _togri_harfni_top,
+        _matnni_tozala,
+    )
+)
 
 
 @app.on_event("shutdown")
