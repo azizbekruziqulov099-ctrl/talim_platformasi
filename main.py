@@ -53,12 +53,39 @@ app.add_middleware(
 )
 
 
+@app.exception_handler(psycopg2.Error)
+async def postgres_xavfsiz_xato_javobi(request: Request, exc: psycopg2.Error):
+    """Expired V17 workspaces are readable but every mutation is DB-guarded.
+
+    PostgreSQL SQLSTATE 25006 is translated to a stable frontend contract;
+    other database details are deliberately not exposed to the client.
+    """
+    if getattr(exc, "pgcode", None) == "25006":
+        return JSONResponse(
+            status_code=423,
+            content={
+                "detail": {
+                    "code": "ORGANIZATION_READ_ONLY",
+                    "message": (
+                        "30 kunlik sinov tugagan. Ma'lumotlar saqlangan, "
+                        "yozishni davom ettirish uchun muassasani faollashtiring."
+                    ),
+                    "activation_price_uzs": 200_000,
+                }
+            },
+        )
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Baza amali xavfsiz yakunlanmadi"},
+    )
+
+
 @app.get("/api/versiya")
 def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "teacher-analytics-repetitor-v16",
+        "versiya": "organization-private-trial-v17",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -67,6 +94,7 @@ def versiya():
             "learning_center": "learning-center-v2-secure-v14",
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
+            "organization_trials": "private-trial-wallet-v17",
         },
     }
 
@@ -1082,6 +1110,70 @@ def muassasalarim(token: str):
         cur.execute(f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s", (muassasa_id,))
         m = cur.fetchone()
         natija.append({"turi": turi, "muassasa_id": muassasa_id, "muassasa_nomi": m["nomi"] if m else None, "lavozim": lavozim})
+
+    # V17 self-service muassasalari modulli context/profile/role yozuvlariga
+    # ulangan. Ularni eski pastki menyu DTO'siga ham qo'shamiz, shunda sahifa
+    # yangilangandan keyin yaratilgan ish joyi yo'qolib qolmaydi. Bog'cha uchun
+    # legacy a'zolik bo'lsa, V17 holatli yozuv o'sha eski yozuvni almashtiradi.
+    cur.execute("SELECT to_regclass('public.organization_trials') AS table_name")
+    if cur.fetchone()["table_name"]:
+        cur.execute(
+            """SELECT o.id organization_v17_id,o.context_id,
+                      o.organization_type,o.display_name,o.lifecycle_status,
+                      o.trial_ends_at,o.activated_at,
+                      GREATEST(
+                        0,CEIL(EXTRACT(EPOCH FROM (o.trial_ends_at-NOW()))/86400.0)
+                      )::INTEGER days_remaining,
+                      c.external_id
+                 FROM organization_trials o
+                 JOIN learning_contexts c ON c.id=o.context_id
+                WHERE o.creator_user_id=%s ORDER BY o.id""",
+            (user_id,),
+        )
+        type_map = {
+            "kindergarten": "bogcha",
+            "school": "maktab",
+            "learning_center": "markaz",
+            "institute": "universitet",
+        }
+        for org in cur.fetchall():
+            turi = type_map[org["organization_type"]]
+            if turi == "bogcha" and org["external_id"] is not None:
+                natija = [
+                    item for item in natija
+                    if not (
+                        item["turi"] == "bogcha"
+                        and int(item["muassasa_id"]) == int(org["external_id"])
+                    )
+                ]
+            effective_read_only = (
+                org["lifecycle_status"] == "read_only"
+                or (
+                    org["lifecycle_status"] == "trial"
+                    and int(org["days_remaining"] or 0) <= 0
+                )
+            )
+            natija.append(
+                {
+                    "turi": turi,
+                    "muassasa_id": (
+                        int(org["external_id"])
+                        if turi == "bogcha" and org["external_id"] is not None
+                        else int(org["context_id"])
+                    ),
+                    "context_id": int(org["context_id"]),
+                    "organization_v17_id": int(org["organization_v17_id"]),
+                    "muassasa_nomi": org["display_name"],
+                    "lavozim": "owner",
+                    "lifecycle_status": (
+                        "read_only" if effective_read_only
+                        else org["lifecycle_status"]
+                    ),
+                    "access_mode": "read_only" if effective_read_only else "write",
+                    "trial_ends_at": org["trial_ends_at"],
+                    "days_remaining": int(org["days_remaining"] or 0),
+                }
+            )
     cur.close()
     conn.close()
     return {"muassasalar": natija}
@@ -17331,6 +17423,7 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 from modules.kindergarten import create_kindergarten_router
 from modules.institute import create_institute_router
 from modules.learning_center import create_learning_center_router
+from modules.organization_trials import create_organization_trial_router
 from modules.school import create_school_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
 
@@ -17338,6 +17431,7 @@ app.include_router(create_kindergarten_router(_jwt_tekshir))
 app.include_router(create_school_router(_jwt_tekshir))
 app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
+app.include_router(create_organization_trial_router(_jwt_tekshir))
 
 
 @app.on_event("shutdown")
