@@ -85,7 +85,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "gamified-tests-v18.1",
+        "versiya": "gamified-tests-v18.2",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -95,7 +95,7 @@ def versiya():
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
-            "test_games": "five-modes-boss-points-voice-timer-v18.1",
+            "test_games": "five-modes-boss-points-voice-timer-immersive-v18.2",
         },
     }
 
