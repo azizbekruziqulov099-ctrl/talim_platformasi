@@ -197,7 +197,7 @@ class TestTemplateImportEndpointContract(unittest.TestCase):
 
 class TestRailwaySqliteCopyBlock(unittest.TestCase):
     def test_copy_block_adds_missing_columns_and_is_idempotent(self):
-        guide_path = Path(__file__).resolve().parents[2] / "V18_8_COPY_QILISH.md"
+        guide_path = Path(__file__).resolve().parents[2] / "V18_9_COPY_QILISH.md"
         guide = guide_path.read_text(encoding="utf-8")
         start = guide.index("def ensure_questions_import_schema")
         end = guide.index("\n```", start)
