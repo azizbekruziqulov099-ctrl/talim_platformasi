@@ -1,7 +1,9 @@
 import ast
+import re
 import unittest
 import sys
 import types
+import unicodedata
 from pathlib import Path
 
 # Bu fayldagi sof qoidalar va manba kontraktlari DB drayverini ishlatmaydi.
@@ -97,6 +99,134 @@ if (FULLSTACK_ROOT / "backend" / "modules" / "test_games.py").exists():
 else:
     PROJECT_ROOT = BACKEND_ONLY_ROOT
     BACKEND_ROOT = BACKEND_ONLY_ROOT
+
+
+def _main_sof_helperlari(*nomlar):
+    """main.py'ni ishga tushirmasdan undagi sof helperlarni testga yuklaydi."""
+    manba = (BACKEND_ROOT / "main.py").read_text(encoding="utf-8")
+    daraxt = ast.parse(manba)
+    kerak = [
+        tugun
+        for tugun in daraxt.body
+        if isinstance(tugun, (ast.FunctionDef, ast.AsyncFunctionDef)) and tugun.name in nomlar
+    ]
+    topilmagan = set(nomlar) - {tugun.name for tugun in kerak}
+    if topilmagan:
+        raise AssertionError(f"main.py helperlari topilmadi: {sorted(topilmagan)}")
+    muhit = {"re": re, "unicodedata": unicodedata}
+    exec(compile(ast.Module(body=kerak, type_ignores=[]), str(BACKEND_ROOT / "main.py"), "exec"), muhit)
+    return tuple(muhit[nom] for nom in nomlar)
+
+
+class WrittenAnswerHintRules(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        helpers = _main_sof_helperlari(
+            "_ruscha_sanoq_suzi",
+            "_yozma_savolga_format_korsatmasi",
+            "_matnni_tozala",
+            "_yozma_javobni_normallash",
+            "_yozma_javob_togrimi",
+        )
+        (
+            cls.ruscha_sanoq,
+            cls.format_hint,
+            cls.matnni_tozala,
+            cls.normalize,
+            cls.answer_matches,
+        ) = tuple(staticmethod(helper) for helper in helpers)
+
+    def test_one_word_and_old_partial_hint_are_completed_without_answer_leak(self):
+        question = (
+            "Quyidagi aniq ta’rifga mos javobni yozing: "
+            "‘Xavfli modda va asboblar bilan ishlaganda amal qilinadigan xavfsiz munosabat’. "
+            "(Bosh harfi: E)"
+        )
+        result = self.format_hint(question, "ehtiyot", "write_answer")
+        self.assertIn("Javob E harfi bilan boshlanadi", result)
+        self.assertIn("7 harf", result)
+        self.assertIn("bitta so‘z", result)
+        self.assertNotIn("Bosh harfi", result)
+        self.assertNotIn("ehtiyot", result.casefold())
+        self.assertEqual(result.count("Javob E harfi bilan boshlanadi"), 1)
+
+    def test_multiword_answer_gets_word_and_total_letter_counts(self):
+        result = self.format_hint("Davlat tilini yozing.", "ona tili", "write_answer")
+        self.assertIn("Javob O harfi bilan boshlanadi", result)
+        self.assertIn("2 so‘z", result)
+        self.assertIn("jami 7 harf", result)
+        self.assertNotIn("ona tili", result.casefold())
+
+    def test_english_and_russian_hints_are_language_local_and_tags_remain(self):
+        english = self.format_hint(
+            "[en]Who explains lessons at school?[/en]", "[en]teacher[/en]", "write_answer"
+        )
+        self.assertIn("[en]Who explains lessons at school?[/en]", english)
+        self.assertIn(
+            "[en](Answer starts with T and has 7 letters; write one word.)[/en]",
+            english,
+        )
+
+        russian = self.format_hint(
+            "[ru]Как называется время действия сейчас?[/ru]",
+            "[ru]настоящее[/ru]",
+            "write_answer",
+        )
+        self.assertIn("[ru]Как называется время действия сейчас?[/ru]", russian)
+        self.assertIn("Ответ начинается с буквы Н и содержит 9 букв", russian)
+        self.assertIn("напишите ровно одно слово", russian)
+        self.assertTrue(russian.endswith("[/ru]"))
+
+    def test_imported_english_exactly_one_word_hint_is_idempotent(self):
+        question = (
+            "[en]Who explains lessons at school? "
+            "(Answer starts with T and has 7 letters; write exactly one word.)[/en]"
+        )
+        self.assertEqual(
+            self.format_hint(question, "[en]teacher[/en]", "write_answer"),
+            question,
+        )
+
+    def test_already_complete_hint_is_idempotent(self):
+        question = (
+            "Ta’rifga mos javobni yozing. "
+            "(Javob E harfi bilan boshlanadi, 7 harf, bitta so‘z; qo‘shimchasiz yozing.)"
+        )
+        self.assertEqual(self.format_hint(question, "ehtiyot", "write_answer"), question)
+
+    def test_answer_side_numeric_latex_formula_and_choice_questions_are_unchanged(self):
+        cases = (
+            ("Natijani yozing.", "12"),
+            ("Natijani yozing.", "[lat]6[/lat]"),
+            ("Formulani yozing.", "x=4"),
+        )
+        for question, answer in cases:
+            with self.subTest(answer=answer):
+                self.assertEqual(self.format_hint(question, answer, "write_answer"), question)
+        self.assertEqual(
+            self.format_hint("Variantni tanlang.", "ehtiyot", "single_choice"),
+            "Variantni tanlang.",
+        )
+
+    def test_question_formula_does_not_hide_a_lexical_answer_hint(self):
+        result = self.format_hint(
+            "Bitta burchagi [lat]90^\\circ[/lat] bo'lgan uchburchak qanday burchakli?",
+            "to'g'ri",
+            "write_answer",
+        )
+        self.assertIn("Javob T harfi bilan boshlanadi", result)
+        self.assertIn("5 harf", result)
+
+    def test_uzbek_special_initial_is_kept_as_one_letter(self):
+        result = self.format_hint("Asar nomini yozing.", "O‘g‘ri", "write_answer")
+        self.assertIn("Javob O‘ harfi bilan boshlanadi", result)
+        self.assertIn("4 harf", result)
+
+    def test_written_answer_normalization_handles_apostrophes_case_and_spaces(self):
+        self.assertTrue(self.answer_matches("mas'uliyat", "mas’uliyat"))
+        self.assertTrue(self.answer_matches("  EHtiyot  ", "ehtiyot"))
+        self.assertTrue(self.answer_matches("ona\t  tili", "ona tili"))
+        self.assertEqual(self.normalize(" O‘QITUVCHI "), "o’qituvchi")
 
 
 class GamifiedTestRules(unittest.TestCase):
@@ -366,6 +496,23 @@ class GamifiedTestContracts(unittest.TestCase):
         self.assertIn("improvement_xp", self.module)
         self.assertIn("_standard_urinish_yarat", self.main)
         self.assertIn("server_content_key=standard_content_key", self.main)
+
+    def test_classic_question_routes_use_answer_only_for_hint_then_remove_it(self):
+        functions = {
+            node.name: node
+            for node in ast.walk(ast.parse(self.main))
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        }
+        for function_name in ("test_savollari", "aralash_test_savollari"):
+            with self.subTest(function_name=function_name):
+                source = ast.get_source_segment(self.main, functions[function_name])
+                self.assertIn("question_type, correct_answer, is_latex", source)
+                self.assertIn("_yozma_savolga_format_korsatmasi", source)
+                self.assertIn('s.pop("correct_answer", None)', source)
+                self.assertLess(
+                    source.index("_yozma_savolga_format_korsatmasi"),
+                    source.index('s.pop("correct_answer", None)'),
+                )
 
     def test_question_deletion_does_not_break_snapshot_sessions(self):
         question_line = next(
