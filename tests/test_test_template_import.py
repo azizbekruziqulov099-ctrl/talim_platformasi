@@ -1,4 +1,5 @@
 import unittest
+import sqlite3
 from pathlib import Path
 
 import openpyxl
@@ -8,12 +9,16 @@ try:  # fullstack repository: backend/tests va backend/modules
         discover_test_worksheets,
         embedded_images_by_row,
         is_named_test_sheet,
+        normalize_difficulty,
+        row_values_by_header,
     )
 except ModuleNotFoundError:  # backend-only repository: tests va modules
     from modules.test_template_import import (
         discover_test_worksheets,
         embedded_images_by_row,
         is_named_test_sheet,
+        normalize_difficulty,
+        row_values_by_header,
     )
 
 
@@ -112,6 +117,34 @@ class TestTemplateImportHelpers(unittest.TestCase):
         self.assertEqual(result.by_row, {7: (b"image-bytes", "png")})
         self.assertEqual(len(result.warnings), 1)
 
+    def test_blank_cells_do_not_shift_school_fields_into_answer_columns(self):
+        workbook = openpyxl.Workbook()
+        worksheet = workbook.active
+        worksheet.append([
+            "index", "topic_code", "difficulty", "situation", "question",
+            "option_a", "option_b", "option_c", "option_d", "correct_answer",
+        ])
+        worksheet.append([
+            None, "6-MAT-001", "SCHOOL", "🏫 Oddiy", "2 + 2 nechchi?",
+            "2", "4", "5", "6", "4",
+        ])
+
+        headers = [str(cell.value or "").strip().lower() for cell in worksheet[1]]
+        mapped = row_values_by_header(headers, next(worksheet.iter_rows(min_row=2, max_row=2)))
+
+        self.assertIsNone(mapped["index"])
+        self.assertEqual(mapped["difficulty"], "SCHOOL")
+        self.assertEqual(mapped["situation"], "🏫 Oddiy")
+        self.assertEqual(mapped["option_a"], "2")
+        self.assertEqual(mapped["option_b"], "4")
+
+    def test_difficulty_apostrophe_variants_are_normalized(self):
+        self.assertEqual(normalize_difficulty("o‘rta"), "o'rta")
+        self.assertEqual(normalize_difficulty("o’rta"), "o'rta")
+        self.assertEqual(normalize_difficulty("o'rta"), "o'rta")
+        self.assertEqual(normalize_difficulty("OSON"), "oson")
+        self.assertIsNone(normalize_difficulty(None))
+
 
 class TestTemplateImportEndpointContract(unittest.TestCase):
     @classmethod
@@ -142,6 +175,15 @@ class TestTemplateImportEndpointContract(unittest.TestCase):
         ):
             self.assertIn(f"COALESCE({column}", self.endpoint)
 
+    def test_question_type_schema_guard_runs_before_duplicate_query(self):
+        schema_guard = self.endpoint.index(
+            "ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS \"\n"
+            "            \"question_type"
+        )
+        duplicate_query = self.endpoint.index("COALESCE(question_type")
+        self.assertLess(schema_guard, duplicate_query)
+        self.assertIn("SET question_type='single_choice'", self.endpoint)
+
     def test_response_contains_multi_sheet_diagnostics(self):
         for key in (
             '"import_qilingan_varaq_soni"',
@@ -151,6 +193,36 @@ class TestTemplateImportEndpointContract(unittest.TestCase):
             '"varaq_diagnostika"',
         ):
             self.assertIn(key, self.endpoint)
+
+
+class TestRailwaySqliteCopyBlock(unittest.TestCase):
+    def test_copy_block_adds_missing_columns_and_is_idempotent(self):
+        guide_path = Path(__file__).resolve().parents[2] / "V18_8_COPY_QILISH.md"
+        guide = guide_path.read_text(encoding="utf-8")
+        start = guide.index("def ensure_questions_import_schema")
+        end = guide.index("\n```", start)
+        namespace = {}
+        exec(guide[start:end], namespace)
+
+        db = sqlite3.connect(":memory:")
+        db.execute('CREATE TABLE "questions" (id INTEGER PRIMARY KEY, question TEXT)')
+        db.execute('INSERT INTO "questions" (question) VALUES (?)', ("Eski savol",))
+
+        ensure_schema = namespace["ensure_questions_import_schema"]
+        ensure_schema(db)
+        ensure_schema(db)
+
+        columns = {
+            row[1] for row in db.execute('PRAGMA table_info("questions")').fetchall()
+        }
+        self.assertIn("question_type", columns)
+        self.assertIn("maqsad", columns)
+        self.assertIn("rasm_malumot", columns)
+        value = db.execute(
+            'SELECT "question_type" FROM "questions" WHERE id=1'
+        ).fetchone()[0]
+        self.assertEqual(value, "single_choice")
+        db.close()
 
 
 if __name__ == "__main__":
