@@ -11,6 +11,7 @@ import base64
 import hashlib
 import secrets
 import string
+import unicodedata
 from urllib.parse import urlencode
 import httpx
 import psycopg2
@@ -85,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "game-arena-v18.4",
+        "versiya": "game-arena-v18.6",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -95,8 +96,9 @@ def versiya():
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
-            "test_games": "in-scene-four-choice-three-lives-v18.4",
-            "test_import": "multi-sheet-images-atomic-v18.3",
+            "test_games": "nine-pose-profile-sprites-v18.6",
+            "test_import": "multi-sheet-schema-safe-v18.7",
+            "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
 
@@ -1289,6 +1291,178 @@ def _qoshimcha_test_shartlari(rasimli: bool, vaqtli: bool, yozuvli: bool):
     return ("".join(f" AND {s}" for s in shartlar), params)
 
 
+def _ruscha_sanoq_suzi(son: int, bir: str, ikki_tort: str, boshqa: str) -> str:
+    """Rus tilidagi 1/2-4/5+ sanoq shaklini tanlaydi."""
+    oxirgi_ikki = son % 100
+    if 11 <= oxirgi_ikki <= 14:
+        return boshqa
+    oxirgi = son % 10
+    if oxirgi == 1:
+        return bir
+    if 2 <= oxirgi <= 4:
+        return ikki_tort
+    return boshqa
+
+
+def _yozma_savolga_format_korsatmasi(question, correct_answer, question_type):
+    """Oddiy yozma savolga javobni oshkor qilmaydigan format ko'rsatmasi.
+
+    Faqat harflardan tuzilgan bir yoki bir necha so'zli javoblar boyitiladi.
+    Sonlar, formulalar va ``[lat]`` ifodalari o'z holicha qoladi. Savoldagi
+    ``[ru]``/``[en]``/``[uz]`` teglari o'chirilmaydi: yangi ko'rsatma ham
+    ayni tilda va, kerak bo'lsa, ayni teg ichida qaytariladi.
+    """
+    if question_type != "write_answer" or not question or not correct_answer:
+        return question
+
+    savol = str(question)
+    javob = str(correct_answer)
+    # Savolning o'zida formula bo'lishi mumkin, ammo javobi baribir so'z
+    # bo'ladi (masalan, 90° burchak uchun "to'g'ri"). Faqat JAVOB [lat]
+    # bo'lsa son/formulaga tegmaymiz.
+    if "[lat]" in javob.casefold():
+        return question
+
+    # Til teglarini faqat tahlil nusxasidan olib tashlaymiz; asl matn saqlanadi.
+    sof_javob = re.sub(r"\[/?(?:ru|en|uz)\]", "", javob, flags=re.IGNORECASE).strip()
+    if not sof_javob:
+        return question
+    ruxsat_etilgan_tinish = "'‘’ʻʼ-"
+    if any(not (belgi.isalpha() or belgi.isspace() or belgi in ruxsat_etilgan_tinish) for belgi in sof_javob):
+        return question
+
+    sozlar = [soz for soz in re.split(r"\s+", sof_javob) if soz]
+    harflar = [belgi for belgi in sof_javob if belgi.isalpha()]
+    # Bir harfli qiymat ko'pincha algebraik belgi bo'ladi va ko'rsatma javobni
+    # to'liq oshkor qilib qo'yadi; shu sabab uni formula sifatida qoldiramiz.
+    if not sozlar or len(harflar) < 2 or any(not any(b.isalpha() for b in soz) for soz in sozlar):
+        return question
+
+    bosh_harf = harflar[0].upper()
+    # O'zbek alifbosidagi O' va G' bitta bosh harf sifatida ko'rsatiladi.
+    # Apostrofning turli Unicode ko'rinishlari bitta kanonik `‘`ga keladi.
+    maxsus_bosh = re.match(r"([OoGg])[‘’ʻʼ']", sof_javob)
+    if maxsus_bosh:
+        bosh_harf = f"{maxsus_bosh.group(1).upper()}‘"
+    harf_soni = len(harflar)
+    soz_soni = len(sozlar)
+    kichik = f"{savol}\n{javob}".casefold()
+    if "[ru]" in kichik:
+        til = "ru"
+    elif "[en]" in kichik:
+        til = "en"
+    else:
+        til = "uz"
+
+    # Eski qisqa ko'rsatmani to'liq ko'rsatmaga almashtiramiz. Bunda aynan
+    # foydalanuvchi uchratgan ``(Bosh harfi: E)`` ham takrorlanib qolmaydi.
+    qisman_qoliplar = {
+        "uz": r"\s*\(\s*bosh\s+harfi\s*:\s*[^)]+\)\s*",
+        "en": r"\s*\(\s*first\s+letter\s*:\s*[^)]+\)\s*",
+        "ru": r"\s*\(\s*(?:первая|начальная)\s+буква\s*:\s*[^)]+\)\s*",
+    }
+    savol = re.sub(qisman_qoliplar[til], " ", savol, flags=re.IGNORECASE).strip()
+    sof_savol = re.sub(r"\[/?(?:ru|en|uz)\]", "", savol, flags=re.IGNORECASE)
+    tekshiruv = sof_savol.casefold()
+
+    if til == "en":
+        bosh_bormi = bool(re.search(r"\banswer\s+(?:starts|begins)\s+with\b|\bfirst\s+letter\s*:", tekshiruv))
+        uzunlik_bormi = bool(re.search(rf"(?<!\d){harf_soni}\s+letters?\b", tekshiruv))
+        soz_bormi = bool(re.search(rf"(?<!\d){soz_soni}\s+words?\b", tekshiruv)) or (
+            soz_soni == 1 and "one word" in tekshiruv
+        )
+        korsatma_bormi = (
+            bool(re.search(r"\bwrite\s+(?:exactly\s+)?one\s+word\b", tekshiruv))
+            if soz_soni == 1
+            else "write the exact phrase" in tekshiruv
+        )
+        if bosh_bormi and uzunlik_bormi and soz_bormi and korsatma_bormi:
+            return savol
+        if not bosh_bormi and not uzunlik_bormi:
+            if soz_soni == 1:
+                tavsif = f"Answer starts with {bosh_harf} and has {harf_soni} letters"
+            else:
+                tavsif = f"Answer starts with {bosh_harf} and has {soz_soni} words, {harf_soni} letters total"
+        else:
+            qismlar = []
+            if not bosh_bormi:
+                qismlar.append(f"Answer starts with {bosh_harf}")
+            if not uzunlik_bormi:
+                qismlar.append(f"{harf_soni} letters" if soz_soni == 1 else f"{harf_soni} letters total")
+            if soz_soni > 1 and not soz_bormi:
+                qismlar.append(f"{soz_soni} words")
+            tavsif = "; ".join(qismlar)
+        korsatma = "" if korsatma_bormi else ("write one word" if soz_soni == 1 else "write the exact phrase")
+        hint_matni = f"{tavsif}; {korsatma}" if tavsif and korsatma else (tavsif or korsatma)
+        hint = f"[en]({hint_matni}.)[/en]"
+    elif til == "ru":
+        bosh_bormi = bool(re.search(r"\bответ\s+начинается\s+с\s+буквы\b|\b(?:первая|начальная)\s+буква\s*:", tekshiruv))
+        harf_sozi = _ruscha_sanoq_suzi(harf_soni, "буква", "буквы", "букв")
+        soz_sozi = _ruscha_sanoq_suzi(soz_soni, "слово", "слова", "слов")
+        uzunlik_bormi = bool(re.search(rf"(?<!\d){harf_soni}\s+(?:буква|буквы|букв)\b", tekshiruv))
+        soz_bormi = bool(re.search(rf"(?<!\d){soz_soni}\s+(?:слово|слова|слов)\b", tekshiruv)) or (
+            soz_soni == 1 and "одно слово" in tekshiruv
+        )
+        korsatma_bormi = (
+            "напишите ровно одно слово" in tekshiruv
+            if soz_soni == 1
+            else "напишите точную фразу" in tekshiruv
+        )
+        if bosh_bormi and uzunlik_bormi and soz_bormi and korsatma_bormi:
+            return savol
+        if not bosh_bormi and not uzunlik_bormi:
+            if soz_soni == 1:
+                tavsif = f"Ответ начинается с буквы {bosh_harf} и содержит {harf_soni} {harf_sozi}"
+            else:
+                tavsif = (
+                    f"Ответ начинается с буквы {bosh_harf} и содержит {soz_soni} {soz_sozi}, "
+                    f"всего {harf_soni} {harf_sozi}"
+                )
+        else:
+            qismlar = []
+            if not bosh_bormi:
+                qismlar.append(f"Ответ начинается с буквы {bosh_harf}")
+            if not uzunlik_bormi:
+                qismlar.append(f"{harf_soni} {harf_sozi}")
+            if soz_soni > 1 and not soz_bormi:
+                qismlar.append(f"{soz_soni} {soz_sozi}")
+            tavsif = "; ".join(qismlar)
+        korsatma = "" if korsatma_bormi else (
+            "напишите ровно одно слово"
+            if soz_soni == 1
+            else "напишите точную фразу"
+        )
+        hint_matni = f"{tavsif}; {korsatma}" if tavsif and korsatma else (tavsif or korsatma)
+        hint = f"[ru]({hint_matni}.)[/ru]"
+    else:
+        bosh_bormi = bool(re.search(r"\bjavob\s+\S+\s+harfi\s+bilan\s+boshlanadi\b|\bbosh\s+harfi\s*:", tekshiruv))
+        uzunlik_bormi = bool(re.search(rf"(?<!\d){harf_soni}\s+harf\b", tekshiruv))
+        soz_bormi = bool(re.search(rf"(?<!\d){soz_soni}\s+so['‘’ʻʼ]?z\b", tekshiruv)) or (
+            soz_soni == 1 and bool(re.search(r"\bbitta\s+(?:aniq\s+)?so['‘’ʻʼ]?z\b", tekshiruv))
+        )
+        qoshimchasiz_bormi = bool(re.search(r"qo['‘’ʻʼ]?shimchasiz\s+yozing", tekshiruv))
+        if bosh_bormi and uzunlik_bormi and soz_bormi and qoshimchasiz_bormi:
+            return savol
+        qismlar = []
+        if not bosh_bormi:
+            qismlar.append(f"Javob {bosh_harf} harfi bilan boshlanadi")
+        if soz_soni > 1 and not soz_bormi:
+            qismlar.append(f"{soz_soni} so‘z")
+        if not uzunlik_bormi:
+            uzunlik = f"jami {harf_soni} harf" if soz_soni > 1 else f"{harf_soni} harf"
+            qismlar.append(uzunlik)
+        if soz_soni == 1 and not soz_bormi:
+            qismlar.append("bitta so‘z")
+        tavsif = ", ".join(qismlar)
+        korsatma = "" if qoshimchasiz_bormi else "qo‘shimchasiz yozing"
+        hint_matni = f"{tavsif}; {korsatma}" if tavsif and korsatma else (tavsif or korsatma)
+        hint = f"({hint_matni}.)"
+        if "[uz]" in kichik:
+            hint = f"[uz]{hint}[/uz]"
+
+    return f"{savol.rstrip()} {hint}".strip()
+
+
 @app.get("/api/test/{topic_code}/soni")
 def test_savollari_soni(topic_code: str, qiyinlik: str = None, rasimli: bool = None, vaqtli: bool = None, yozuvli: bool = None):
     """Tanlangan sozlamalar (qiyinlik/rasm/vaqt/javob turi) bo'yicha nechta
@@ -1425,7 +1599,7 @@ def test_savollari(
     params.append(soni)
     cur.execute(f"""
         SELECT id, topic_code, question, option_a, option_b, option_c, option_d,
-               question_type, is_latex, time_limit, difficulty,
+               question_type, correct_answer, is_latex, time_limit, difficulty,
                CASE
                    WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
                    ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
@@ -1448,8 +1622,13 @@ def test_savollari(
     # "10.0" -> "10" kabi raqam artefaktini tozalaymiz.
     for s in savollar:
         s["question"] = _raqam_artefaktini_tozala(s["question"])
+        s["question"] = _yozma_savolga_format_korsatmasi(
+            s["question"], s.get("correct_answer"), s.get("question_type")
+        )
         for maydon in ("option_a", "option_b", "option_c", "option_d"):
             s[maydon] = _raqam_artefaktini_tozala(s[maydon])
+        # Format ko'rsatmasi tuzildi; javobning o'zi klientga chiqmaydi.
+        s.pop("correct_answer", None)
 
     attempt_id = _standard_urinish_yarat(cur, user_id, [topic_code], savollar)
     conn.commit()
@@ -1493,7 +1672,7 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
     params.append(sorov.soni)
     cur.execute(f"""
         SELECT id, topic_code, question, option_a, option_b, option_c, option_d,
-               question_type, is_latex, time_limit, difficulty,
+               question_type, correct_answer, is_latex, time_limit, difficulty,
                CASE
                    WHEN rasm_malumot IS NOT NULL THEN '/api/test_rasmi/' || id::text
                    ELSE COALESCE(NULLIF(image_url, ''), NULLIF(image_file_id, ''))
@@ -1512,8 +1691,12 @@ def aralash_test_savollari(sorov: AralashTestSorovi):
 
     for s in savollar:
         s["question"] = _raqam_artefaktini_tozala(s["question"])
+        s["question"] = _yozma_savolga_format_korsatmasi(
+            s["question"], s.get("correct_answer"), s.get("question_type")
+        )
         for maydon in ("option_a", "option_b", "option_c", "option_d"):
             s[maydon] = _raqam_artefaktini_tozala(s[maydon])
+        s.pop("correct_answer", None)
 
     attempt_id = _standard_urinish_yarat(cur, user_id, kodlar, savollar)
     conn.commit()
@@ -1568,11 +1751,20 @@ def _togri_harfni_top(option_a, option_b, option_c, option_d, correct_answer):
     return None
 
 
+def _yozma_javobni_normallash(matn: str) -> str:
+    """Yozma javobni xavfsiz va tilga zarar yetkazmaydigan ko'rinishga keltiradi."""
+    tozalangan = _matnni_tozala(matn or "") or ""
+    tozalangan = unicodedata.normalize("NFC", tozalangan)
+    tozalangan = re.sub(r"[‘’ʻʼ']", "’", tozalangan)
+    tozalangan = re.sub(r"\s+", " ", tozalangan).strip()
+    return tozalangan.casefold()
+
+
 def _yozma_javob_togrimi(given: str, correct: str) -> bool:
     """Yozuvli (write_answer) javoblarni tekshiradi — botdagi
     check_text_answer/is_match bilan bir xil qoidalar."""
-    given = _matnni_tozala(given or "").strip().lower()
-    correct = _matnni_tozala(correct or "").strip().lower()
+    given = _yozma_javobni_normallash(given)
+    correct = _yozma_javobni_normallash(correct)
     if given == correct:
         return True
     try:
@@ -12279,6 +12471,8 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     from modules.test_template_import import (
         discover_test_worksheets,
         embedded_images_by_row,
+        normalize_difficulty,
+        row_values_by_header,
     )
 
     content = await fayl.read()
@@ -12388,6 +12582,20 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     yetim_kodlar = []
     diagnostika_by_name = {d["varaq"]: d for d in varaq_diagnostika}
     try:
+        # V18.7: eski generated_tests sxemalarida question_type ustuni
+        # bo'lmasligi mumkin. Importning birinchi SELECT/INSERTida 500
+        # bo'lishidan oldin ustunni idempotent yaratib, eski yozuvlarni
+        # standart qiymat bilan to'ldiramiz. 017 migratsiya ham ayni ishni
+        # deploy vaqtida bajaradi; bu guard eski bazalar uchun ikkinchi himoya.
+        cur.execute(
+            "ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS "
+            "question_type TEXT DEFAULT 'single_choice'"
+        )
+        cur.execute("""
+            UPDATE generated_tests
+            SET question_type='single_choice'
+            WHERE question_type IS NULL OR BTRIM(question_type)=''
+        """)
         cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS maqsad TEXT DEFAULT 'oddiy'")
         cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_malumot BYTEA")
         cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS rasm_turi TEXT")
@@ -12410,11 +12618,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
             qator_rasmlari = varaq_rasmlari[test_varaq.name]
 
             for row in ws.iter_rows(min_row=2):
-                d = {
-                    headers[i]: cell.value
-                    for i, cell in enumerate(row)
-                    if i < len(headers) and headers[i]
-                }
+                d = row_values_by_header(headers, row)
                 tc = d.get("topic_code")
                 q = d.get("question")
                 if not q or str(q).strip() == "":
@@ -12483,7 +12687,7 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                             VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                             RETURNING id
                         """, (
-                            tc_s, d.get("difficulty"), d.get("situation") or "oddiy", q_s,
+                            tc_s, normalize_difficulty(d.get("difficulty")), d.get("situation") or "oddiy", q_s,
                             opt_a, opt_b, opt_c, opt_d, correct, d.get("explanation"),
                             question_type,
                             bool(d.get("is_latex")) if d.get("is_latex") not in (None, "") else False,
@@ -12514,9 +12718,21 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
                     raise
 
         conn.commit()
-    except Exception:
+    except HTTPException:
         conn.rollback()
         raise
+    except psycopg2.Error:
+        conn.rollback()
+        raise
+    except Exception as exc:
+        conn.rollback()
+        raise HTTPException(
+            status_code=500,
+            detail=(
+                "Import serverda xavfsiz yakunlanmadi "
+                f"({type(exc).__name__}). Railway backend logini tekshiring."
+            ),
+        ) from exc
     finally:
         cur.close()
         conn.close()
