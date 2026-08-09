@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "game-arena-v18.6",
+        "versiya": "game-arena-v18.9",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -96,7 +96,7 @@ def versiya():
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
-            "test_games": "nine-pose-profile-sprites-v18.6",
+            "test_games": "real-answer-bridge-audio-contrast-v18.9",
             "test_import": "multi-sheet-schema-safe-v18.7",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
