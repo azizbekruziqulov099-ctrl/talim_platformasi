@@ -59,7 +59,7 @@ def is_applicant_value(value: object) -> bool:
 
 
 def boss_attempt_limit(grade_band: str) -> int:
-    """V18.4 da har bir savol, jumladan bosqich finali ham bir urinishli."""
+    """Har bir savol, jumladan bosqich finali ham bir urinishli."""
     return 1
 
 
