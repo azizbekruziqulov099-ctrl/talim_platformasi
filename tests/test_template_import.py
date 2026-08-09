@@ -35,6 +35,34 @@ def worksheet_headers(worksheet: Any) -> list[str]:
     return [normalize_header(cell.value) for cell in worksheet[1]]
 
 
+def row_values_by_header(headers: list[str], row: Any) -> dict[str, Any]:
+    """Excel qatorini pozitsiyasini siqmasdan sarlavhalarga bog'laydi.
+
+    Bo'sh kataklar ham o'z indeksida qoladi. Aks holda ``filter`` yoki faqat
+    to'ldirilgan kataklardan ro'yxat tuzish keyingi qiymatlarni chapga surib,
+    masalan ``difficulty`` qiymatini javob variantiga aylantirib yuboradi.
+    """
+    return {
+        headers[index]: cell.value
+        for index, cell in enumerate(row)
+        if index < len(headers) and headers[index]
+    }
+
+
+def normalize_difficulty(value: Any) -> str | None:
+    """Turli apostroflarda yozilgan o'rta darajani bitta qiymatga keltiradi."""
+    if value is None or not str(value).strip():
+        return None
+    normalized = str(value).strip().lower().replace("‘", "'").replace("’", "'").replace("`", "'")
+    aliases = {
+        "oson": "oson",
+        "o'rta": "o'rta",
+        "orta": "o'rta",
+        "qiyin": "qiyin",
+    }
+    return aliases.get(normalized, normalized)
+
+
 def is_named_test_sheet(name: Any) -> bool:
     normalized = str(name or "").strip().upper()
     return normalized.startswith("TESTLAR")
