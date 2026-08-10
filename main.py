@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "game-arena-v18.9",
+        "versiya": "subject-safe-import-voice-v18.10",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -97,7 +97,8 @@ def versiya():
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
-            "test_import": "multi-sheet-schema-safe-v18.7",
+            "test_import": "grade-subject-atomic-safe-v18.10",
+            "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -1043,6 +1044,8 @@ def joriy_foydalanuvchi(token: str):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jins TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqituvchi_fani TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS asosiy_til TEXT DEFAULT 'uz'")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS ovoz_jinsi TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
@@ -1052,6 +1055,7 @@ def joriy_foydalanuvchi(token: str):
     cur.execute(
         "SELECT user_id, full_name, role, class, class_letter, school_type, "
         "region, district, tugilgan_sana, maktab_raqami, jins, oqituvchi_fani, "
+        "COALESCE(NULLIF(asosiy_til,''), 'uz') AS asosiy_til, ovoz_jinsi, "
         "maktab_id, markaz_id, bogcha_id, universitet_id, lavozim, "
         "(profil_rasm IS NOT NULL) AS rasm_bormi FROM users WHERE user_id=%s",
         (user_id,),
@@ -1912,10 +1916,13 @@ def _son_soz(n: int) -> str:
 
 
 _MATH_MAP = [
-    (r"\s*\+\s*", " qo'shuv "),
-    (r"(?<=\d)\s*-\s*(?=\d)", " ayirish "),
-    (r"\s*×\s*|\s*\*\s*", " ko'paytiruv "),
-    (r"\s*÷\s*", " bo'linadi "),
+    (r"\s*≤\s*", " kichik yoki teng "),
+    (r"\s*≥\s*", " katta yoki teng "),
+    (r"\s*≠\s*", " teng emas "),
+    (r"\s*\+\s*", " plyus "),
+    (r"\s*-\s*", " minus "),
+    (r"\s*[×·]\s*|\s*\*\s*", " ko'paytirilgan "),
+    (r"\s*÷\s*", " bo'lingan "),
     (r"\s*=\s*", " teng "),
     (r"\s*>\s*", " katta "),
     (r"\s*<\s*", " kichik "),
@@ -1968,6 +1975,7 @@ def _lat_va_latex_ochish(matn: str) -> str:
     tuzilishi buzilib, keyin aniqlab bo'lmay qoladi."""
     m = re.sub(r"\[lat\](.*?)\[/lat\]", r"\1", matn, flags=re.S)
     m = re.sub(r"\$([^$]+)\$", r"\1", m)
+    m = re.sub(r"\\(?:left|right)", "", m)
 
     # Aralash son: raqamdan keyin (bo'shliqli/bo'shliqsiz) kasr buyrug'i
     # kelsa — "butun" so'zi qo'shiladi (masalan 6\tfrac{1}{2} -> "olti butun ikkidan bir")
@@ -1988,6 +1996,18 @@ def _lat_va_latex_ochish(matn: str) -> str:
     m = re.sub(r"\\neq", " teng emas ", m)
     m = re.sub(r"\\infty", " cheksizlik ", m)
     m = re.sub(r"\\approx", " taxminan teng ", m)
+    m = re.sub(r"\\pi\b", " pi ", m)
+
+    # Darajalar: x^2 -> "x kvadrat", x^3 -> "x kub",
+    # x^{5} -> "x ning beshinchi darajasi".
+    def _daraja(x):
+        asos, daraja = x.group(1), int(x.group(2))
+        if daraja == 2:
+            return f" {asos} kvadrat "
+        if daraja == 3:
+            return f" {asos} kub "
+        return f" {asos} ning {_son_soz(daraja)}inchi darajasi "
+    m = re.sub(r"([0-9A-Za-z]+)\s*\^\s*\{?(\d+)\}?", _daraja, m)
 
     # O'lchov birliklari — to'liq so'zga
     for naqsh, alm in [
@@ -2066,31 +2086,104 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     return m.strip(" ,.")
 
 
-_TIL_TEG_NAQSHI = re.compile(r"\[(en|ru|de|fr|es|ar|tr|zh|ja|ko)\](.*?)\[/\1\]", re.S | re.I)
+_TIL_TEG_NAQSHI = re.compile(r"\[(uz|en|ru|de|fr|es|ar|tr|zh|ja|ko)\](.*?)\[/\1\]", re.S | re.I)
 
 
-def _ovoz_qismlarga_bol(matn: str):
+def _ovoz_tilini_tuzat(til: str) -> str:
+    til = str(til or "").strip().lower().replace("_", "-").split("-", 1)[0]
+    return til if til == "uz" or til in _TIL_OVOZLARI else "uz"
+
+
+def _ovoz_jinsini_tuzat(jins: str) -> str:
+    jins = str(jins or "").strip().lower()
+    return "ogil" if jins in {"ogil", "o'g'il", "erkak", "male", "boy"} else "qiz"
+
+
+_XORIJIY_MATEMATIKA = {
+    "en": {
+        "fraction": "{a} over {b}", "sqrt": "square root of {x}",
+        "square": "{x} squared", "cube": "{x} cubed", "power": "{x} to the power of {n}",
+        "+": " plus ", "-": " minus ", "×": " times ", "·": " times ", "*": " times ",
+        "÷": " divided by ", "=": " equals ", "≤": " less than or equal to ",
+        "≥": " greater than or equal to ", "≠": " not equal to ", "<": " less than ", ">": " greater than ",
+    },
+    "ru": {
+        "fraction": "{a} делённое на {b}", "sqrt": "квадратный корень из {x}",
+        "square": "{x} в квадрате", "cube": "{x} в кубе", "power": "{x} в степени {n}",
+        "+": " плюс ", "-": " минус ", "×": " умножить на ", "·": " умножить на ", "*": " умножить на ",
+        "÷": " разделить на ", "=": " равно ", "≤": " меньше или равно ",
+        "≥": " больше или равно ", "≠": " не равно ", "<": " меньше ", ">": " больше ",
+    },
+}
+
+
+def _xorijiy_ovoz_uchun_tayyorla(matn: str, til: str) -> str:
+    """Ingliz/rus bo'laklaridagi [lat] formulalarni o'sha tilda o'qitadi."""
+    til = _ovoz_tilini_tuzat(til)
+    lugat = _XORIJIY_MATEMATIKA.get(til)
+    if not lugat:
+        return re.sub(r"<[^>]+>", " ", str(matn or "")).strip()
+    m = re.sub(r"\[lat\](.*?)\[/lat\]", r"\1", str(matn or ""), flags=re.S | re.I)
+    m = re.sub(r"\$([^$]+)\$", r"\1", m)
+    m = re.sub(r"\\(?:left|right)", "", m)
+    m = re.sub(
+        r"\\(?:tfrac|dfrac|cfrac|frac)\s*\{([^{}]+)\}\s*\{([^{}]+)\}",
+        lambda x: " " + lugat["fraction"].format(a=x.group(1), b=x.group(2)) + " ",
+        m,
+    )
+    m = re.sub(
+        r"\\sqrt\s*\{([^{}]+)\}",
+        lambda x: " " + lugat["sqrt"].format(x=x.group(1)) + " ",
+        m,
+    )
+
+    def _xorijiy_daraja(x):
+        asos, daraja = x.group(1), x.group(2)
+        kalit = "square" if daraja == "2" else "cube" if daraja == "3" else "power"
+        return " " + lugat[kalit].format(x=asos, n=daraja) + " "
+    m = re.sub(r"([0-9A-Za-zА-Яа-я]+)\s*\^\s*\{?([0-9]+)\}?", _xorijiy_daraja, m)
+    for buyruq, belgi in [
+        (r"\\times", "×"), (r"\\cdot", "·"), (r"\\div", "÷"),
+        (r"\\leq", "≤"), (r"\\geq", "≥"), (r"\\neq", "≠"),
+    ]:
+        m = re.sub(buyruq, belgi, m)
+    m = re.sub(r"\\pi\b", " pi ", m)
+    for belgi in ("≤", "≥", "≠", "+", "-", "×", "·", "*", "÷", "=", "<", ">"):
+        m = re.sub(rf"\s*{re.escape(belgi)}\s*", lugat[belgi], m)
+    m = re.sub(r"\\[A-Za-z]+", " ", m)
+    m = re.sub(r"[{}]", " ", m)
+    m = re.sub(r"<[^>]+>", " ", m)
+    return re.sub(r"\s+", " ", m).strip()
+
+
+def _ovoz_uchun_tayyorla_til(matn: str, til: str) -> str:
+    til = _ovoz_tilini_tuzat(til)
+    return _ovoz_uchun_tayyorla(matn) if til == "uz" else _xorijiy_ovoz_uchun_tayyorla(matn, til)
+
+
+def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
     """Matnni [en]...[/en] / [ru]...[/ru] teglariga qarab bo'laklarga
-    ajratadi — har bo'lak (til, matn). til=None bo'lsa standart
-    o'zbekcha ovoz va matematik-son qoidalari bilan o'qiladi."""
+    ajratadi — har bo'lak (til, matn). Tegdan tashqaridagi matn
+    sozlamadagi asosiy tilda, noma'lum asosiy til esa o'zbekcha o'qiladi."""
+    asosiy_til = _ovoz_tilini_tuzat(asosiy_til)
     qismlar = []
     oxiri = 0
     for m in _TIL_TEG_NAQSHI.finditer(matn):
         oldingi = matn[oxiri:m.start()]
         if oldingi.strip():
-            qismlar.append((None, oldingi))
+            qismlar.append((asosiy_til, oldingi))
         til, ichi = m.group(1).lower(), m.group(2)
         if ichi.strip():
-            qismlar.append((til, ichi))
+            qismlar.append((_ovoz_tilini_tuzat(til), ichi))
         oxiri = m.end()
     qolgan = matn[oxiri:]
     if qolgan.strip():
-        qismlar.append((None, qolgan))
-    return qismlar or [(None, matn)]
+        qismlar.append((asosiy_til, qolgan))
+    return qismlar or [(asosiy_til, matn)]
 
 
 @app.get("/api/ovoz")
-async def ovoz_oqish(matn: str, jins: str = "qiz"):
+async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
     """Berilgan matnni ovozga aylantirib beradi (mp3). [en]/[ru] teglari
     ichidagi qismlar o'sha tilning ovozida, qolgani o'zbekcha (matematik
     belgilar/sonlar so'zga o'girilib) o'qiladi — botdagi ovoz_ikki_tilli
@@ -2103,15 +2196,16 @@ async def ovoz_oqish(matn: str, jins: str = "qiz"):
         raise HTTPException(status_code=500, detail="edge-tts o'rnatilmagan")
 
     matn = matn[:1500]
+    jins = _ovoz_jinsini_tuzat(jins)
+    asosiy_til = _ovoz_tilini_tuzat(asosiy_til)
     buf = io.BytesIO()
     ovoz_bormi = False
-    for til, bolak in _ovoz_qismlarga_bol(matn):
+    for til, bolak in _ovoz_qismlarga_bol(matn, asosiy_til):
         if til in _TIL_OVOZLARI:
             voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
-            tayyor = re.sub(r"<[^>]+>", " ", bolak).strip()
         else:
             voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
-            tayyor = _ovoz_uchun_tayyorla(bolak)
+        tayyor = _ovoz_uchun_tayyorla_til(bolak, til)
         if not tayyor.strip():
             continue
         com = edge_tts.Communicate(tayyor, voice)
@@ -2861,6 +2955,8 @@ class ProfilYangilash(BaseModel):
     sinf_harfi: Optional[str] = None    # A, B, V ...
     jins: Optional[str] = None          # ogil | qiz — dizayn uchun (o'quvchi va o'qituvchi)
     oqituvchi_fani: Optional[str] = None  # o'qituvchining o'zi o'qitadigan fan — dizayn uchun
+    asosiy_til: Optional[str] = None    # uz | en | ru — tegsiz matn shu tilda o'qiladi
+    ovoz_jinsi: Optional[str] = None    # ogil | qiz — ovoz erkak/ayol tanlovi
     maktab_id: Optional[int] = None     # ro'yxatdagi (tizimga qo'shilgan) maktabga ANIQ bog'lanish
 
 
@@ -2931,6 +3027,10 @@ def profil_yangila(sorov: ProfilYangilash):
         raise HTTPException(status_code=400, detail="Sinf 1 dan 11 gacha bo'lishi kerak")
     if sorov.jins is not None and sorov.jins not in ("ogil", "qiz"):
         raise HTTPException(status_code=400, detail="Noto'g'ri jins qiymati")
+    if sorov.asosiy_til is not None and sorov.asosiy_til not in ("uz", "en", "ru"):
+        raise HTTPException(status_code=400, detail="Noto'g'ri asosiy til")
+    if sorov.ovoz_jinsi is not None and sorov.ovoz_jinsi not in ("ogil", "qiz"):
+        raise HTTPException(status_code=400, detail="Noto'g'ri ovoz turi")
 
     conn = _db()
     cur = conn.cursor()
@@ -2938,6 +3038,8 @@ def profil_yangila(sorov: ProfilYangilash):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jins TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqituvchi_fani TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS asosiy_til TEXT DEFAULT 'uz'")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS ovoz_jinsi TEXT")
 
     maydonlar = []
     qiymatlar = []
@@ -2971,6 +3073,12 @@ def profil_yangila(sorov: ProfilYangilash):
     if sorov.oqituvchi_fani is not None:
         maydonlar.append("oqituvchi_fani=%s")
         qiymatlar.append(sorov.oqituvchi_fani.strip())
+    if sorov.asosiy_til is not None:
+        maydonlar.append("asosiy_til=%s")
+        qiymatlar.append(sorov.asosiy_til)
+    if sorov.ovoz_jinsi is not None:
+        maydonlar.append("ovoz_jinsi=%s")
+        qiymatlar.append(sorov.ovoz_jinsi)
     if sorov.maktab_id is not None:
         _maktab_jadvali(cur)
         cur.execute("SELECT 1 FROM maktablar WHERE id=%s", (sorov.maktab_id,))
@@ -12457,7 +12565,12 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
 
 
 @app.post("/api/admin/shablon_import")
-async def shablon_import(token: str, fayl: UploadFile = File(...)):
+async def shablon_import(
+    token: str,
+    fayl: UploadFile = File(...),
+    kutilgan_sinf: str = None,
+    kutilgan_fan: str = None,
+):
     """To'ldirilgan Excel shablonni import qiladi — botning
     import_tests_excel funksiyasidagi duplikat-tekshiruvi bilan bir xil.
     "image_url" ustuniga havola o'rniga rasmning O'ZI (Excel katakka
@@ -12469,11 +12582,25 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     import io
     import zipfile
     from modules.test_template_import import (
+        canonical_subject_name,
         discover_test_worksheets,
         embedded_images_by_row,
         normalize_difficulty,
         row_values_by_header,
+        subject_matches,
+        worksheet_subject_hint,
     )
+
+    kutilgan_sinf = (kutilgan_sinf or "").strip() or None
+    kutilgan_fan = (kutilgan_fan or "").strip() or None
+    barcha_fanlar = kutilgan_fan == "__all__"
+    if not kutilgan_sinf or not kutilgan_fan:
+        raise HTTPException(
+            status_code=400,
+            detail="Import xavfsizligi uchun sinf va fan ikkalasi ham tanlanishi kerak",
+        )
+    if barcha_fanlar:
+        kutilgan_fan = None
 
     content = await fayl.read()
 
@@ -12562,14 +12689,19 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     # Topic kodlari ham birinchi/active varaqdan emas, barcha test
     # varaqlaridan yig'iladi.
     fayldagi_kodlar = set()
+    varaq_kodlari = {}
     for test_varaq in test_varaqlar:
+        shu_varaq_kodlari = set()
         tc_index = test_varaq.headers.index("topic_code")
         for row in test_varaq.worksheet.iter_rows(min_row=2):
             if tc_index >= len(row):
                 continue
             tc = row[tc_index].value
             if tc and str(tc).strip():
-                fayldagi_kodlar.add(str(tc).strip())
+                tc_s = str(tc).strip()
+                fayldagi_kodlar.add(tc_s)
+                shu_varaq_kodlari.add(tc_s)
+        varaq_kodlari[test_varaq.name] = shu_varaq_kodlari
 
     conn = _db()
     cur = conn.cursor()
@@ -12582,6 +12714,78 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     yetim_kodlar = []
     diagnostika_by_name = {d["varaq"]: d for d in varaq_diagnostika}
     try:
+        # V18.10: importdan OLDIN barcha topic_code'larning haqiqiy
+        # sinf+fani tekshiriladi. Bir fan tanlab, boshqa fan savollarini
+        # o'sha nom ostiga yozib yuborish endi mumkin emas. Bitta xato ham
+        # topilsa butun workbook rad etiladi va bazaga hech narsa yozilmaydi.
+        mavzu_meta = {}
+        if fayldagi_kodlar:
+            cur.execute(
+                """
+                SELECT topic_code, grade, subject_name
+                FROM dts_tree
+                WHERE topic_code = ANY(%s) AND is_deleted=FALSE
+                """,
+                (list(fayldagi_kodlar),),
+            )
+            mavzu_meta = {str(r["topic_code"]): r for r in cur.fetchall()}
+
+        yetim_kodlar = sorted(fayldagi_kodlar - set(mavzu_meta))
+        if yetim_kodlar:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"Import to'xtatildi: {len(yetim_kodlar)} ta topic_code Mavzular bazasida topilmadi. "
+                    f"Namuna: {', '.join(yetim_kodlar[:8])}. Yangi shablon yuklab, shu kodlarni ishlating."
+                ),
+            )
+
+        begona_qatorlar = []
+        if kutilgan_sinf:
+            for kod, meta in mavzu_meta.items():
+                sinf_mos = str(meta["grade"] or "").strip().casefold() == kutilgan_sinf.casefold()
+                fan_mos = not kutilgan_fan or subject_matches(kutilgan_fan, meta["subject_name"])
+                if not sinf_mos or not fan_mos:
+                    begona_qatorlar.append(
+                        f"{kod} → {meta['grade']}-sinf / {meta['subject_name']}"
+                    )
+        if begona_qatorlar:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"Import to'xtatildi: faylda tanlangan {kutilgan_sinf}-sinf / {kutilgan_fan or 'barcha fanlar'}ga "
+                    f"tegishli bo'lmagan {len(begona_qatorlar)} ta mavzu kodi bor. "
+                    f"Namuna: {'; '.join(begona_qatorlar[:6])}. Hech bir savol saqlanmadi."
+                ),
+            )
+
+        varaq_fan_xatolari = []
+        for test_varaq in test_varaqlar:
+            kodlar = varaq_kodlari.get(test_varaq.name, set())
+            fanlar = sorted({
+                str(mavzu_meta[k]["subject_name"] or "").strip()
+                for k in kodlar if k in mavzu_meta
+            })
+            hint = worksheet_subject_hint(test_varaq.name)
+            if hint:
+                mos_emas = [fan for fan in fanlar if not subject_matches(hint, fan)]
+                if mos_emas:
+                    varaq_fan_xatolari.append(
+                        f"{test_varaq.name} varag'i → {', '.join(mos_emas)}"
+                    )
+            elif len({canonical_subject_name(fan) for fan in fanlar if fan}) > 1:
+                varaq_fan_xatolari.append(
+                    f"{test_varaq.name} varag'ida bir nechta fan aralashgan: {', '.join(fanlar)}"
+                )
+        if varaq_fan_xatolari:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Import to'xtatildi: Excel varaq nomi bilan mavzu kodlarining fani mos emas. "
+                    f"{' ; '.join(varaq_fan_xatolari[:6])}. Hech bir savol saqlanmadi."
+                ),
+            )
+
         # V18.7: eski generated_tests sxemalarida question_type ustuni
         # bo'lmasligi mumkin. Importning birinchi SELECT/INSERTida 500
         # bo'lishidan oldin ustunni idempotent yaratib, eski yozuvlarni
@@ -12602,14 +12806,6 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
         # Eski NULL variantlarni duplikat fingerprint bilan barqaror
         # solishtirish uchun bo'sh matnga tenglashtiramiz.
         cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL")
-
-        if fayldagi_kodlar:
-            cur.execute(
-                "SELECT topic_code FROM dts_tree WHERE topic_code = ANY(%s) AND is_deleted=FALSE",
-                (list(fayldagi_kodlar),),
-            )
-            mavjud_kodlar = {r["topic_code"] for r in cur.fetchall()}
-            yetim_kodlar = sorted(fayldagi_kodlar - mavjud_kodlar)
 
         for test_varaq in test_varaqlar:
             ws = test_varaq.worksheet
@@ -12741,6 +12937,8 @@ async def shablon_import(token: str, fayl: UploadFile = File(...)):
     return {
         "saved": saved, "duplicates": duplicates, "errors": errors, "kod_yoq": kod_yoq,
         "rasm_biriktirildi": rasm_biriktirildi,
+        "import_sinfi": kutilgan_sinf,
+        "import_fani": kutilgan_fan or "barcha_fanlar",
         "import_qilingan_varaq_soni": len(test_varaqlar),
         "import_qilingan_varaqlar": [test_varaq.name for test_varaq in test_varaqlar],
         "korilgan_savollar_soni": korilgan_savollar_soni,
