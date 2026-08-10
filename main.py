@@ -12588,10 +12588,12 @@ async def shablon_import(
         canonical_subject_name,
         discover_test_worksheets,
         embedded_images_by_row,
+        exact_topic_matches_workbook_metadata,
         normalize_difficulty,
         resolve_topic_code_for_scope,
         row_values_by_header,
         subject_matches,
+        topic_code_subject_code,
         workbook_topic_metadata,
         worksheet_subject_hint,
     )
@@ -12746,8 +12748,10 @@ async def shablon_import(
     tuzatilgan_kodlar_namuna = []
     boshqa_fandan_tuzatildi = 0
     ortiqcha_begona_nusxalar_tozalandi = 0
+    dts_fan_yozuvlari_tuzatildi = 0
     varaq_kod_almashtirish = {}
     varaq_kutilgan_fan = {}
+    dts_fan_tuzatishlari = {}
     diagnostika_by_name = {d["varaq"]: d for d in varaq_diagnostika}
     try:
         # V18.11: topic_code bazadagi boshqa fanga to'qnashgan bo'lsa ham
@@ -12756,7 +12760,7 @@ async def shablon_import(
         # noaniq kod hech qachon boshqa fanga yozilmaydi.
         cur.execute(
             """
-            SELECT topic_code, grade, subject_name, quarter,
+            SELECT topic_code, grade, subject_name, quarter, subject_code,
                    bob_name, bolim_name, mavzu_name, kichik_name
             FROM dts_tree
             WHERE grade=%s AND is_deleted=FALSE
@@ -12825,6 +12829,39 @@ async def shablon_import(
                     )
                     continue
                 almashtirish[raw_code] = resolved
+                # Exact topic_code va uning mavzu nomi MALUMOT bilan mos,
+                # lekin dts_tree'dagi fan yorlig'i/kodi siljigan bo'lsa,
+                # testni boshqa topic_code'ga ko'chirish emas, aynan shu
+                # DTS qatorining fanini tiklash kerak. Rasmlardagi
+                # "INGLIZ TILI → kasrlar", "BIOLOGIYA → jobs at school"
+                # xatosining asl sababi shu eski buzilgan metadata edi.
+                if resolved == raw_code:
+                    info = shablon_mavzu_meta.get(raw_code) or {}
+                    exact_qator = next(
+                        (
+                            row for row in sinf_mavzulari
+                            if str(row["topic_code"] or "").strip() == raw_code
+                        ),
+                        None,
+                    )
+                    fan_kodi = topic_code_subject_code(raw_code)
+                    if (
+                        exact_qator
+                        and fan_kodi
+                        and exact_topic_matches_workbook_metadata(
+                            exact_qator, info, kutilgan_sinf, kutilgan_varaq_fani,
+                        )
+                        and (
+                            str(exact_qator["subject_code"] or "").strip() != fan_kodi
+                            or not subject_matches(
+                                kutilgan_varaq_fani, exact_qator["subject_name"],
+                            )
+                        )
+                    ):
+                        dts_fan_tuzatishlari[raw_code] = (
+                            fan_kodi,
+                            str(info.get("subject_name") or kutilgan_varaq_fani).strip(),
+                        )
                 if resolved != raw_code:
                     tuzatilgan_kodlar_soni += 1
                     if len(tuzatilgan_kodlar_namuna) < 10:
@@ -12845,6 +12882,27 @@ async def shablon_import(
                     f"{' ; '.join(xaritalash_xatolari[:8])}. Hech bir savol saqlanmadi."
                 ),
             )
+
+        # Barcha varaqlar va kodlar xatosiz tekshirilgandan keyingina DTS
+        # fan yorliqlarini yangilaymiz. Keyingi bosqichda biror DB xatosi
+        # chiqsa, testlar bilan birga shu o'zgarishlar ham rollback bo'ladi.
+        for topic_code, (subject_code, subject_name) in dts_fan_tuzatishlari.items():
+            cur.execute(
+                """
+                UPDATE dts_tree
+                SET subject_code=%s, subject_name=%s
+                WHERE topic_code=%s AND grade=%s AND is_deleted=FALSE
+                  AND (
+                    COALESCE(subject_code, '')<>%s
+                    OR UPPER(COALESCE(subject_name, ''))<>UPPER(%s)
+                  )
+                """,
+                (
+                    subject_code, subject_name, topic_code, kutilgan_sinf,
+                    subject_code, subject_name,
+                ),
+            )
+            dts_fan_yozuvlari_tuzatildi += cur.rowcount
 
         # V18.7: eski generated_tests sxemalarida question_type ustuni
         # bo'lmasligi mumkin. Importning birinchi SELECT/INSERTida 500
@@ -13047,6 +13105,7 @@ async def shablon_import(
         "tuzatilgan_topic_code_namuna": tuzatilgan_kodlar_namuna,
         "boshqa_fandan_togri_fanga_kochirilgan_test_soni": boshqa_fandan_tuzatildi,
         "ortiqcha_begona_nusxalar_tozalandi": ortiqcha_begona_nusxalar_tozalandi,
+        "dts_fan_yozuvlari_tuzatildi": dts_fan_yozuvlari_tuzatildi,
         "varaq_diagnostika": varaq_diagnostika,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
         "rasm_diagnostika": {
