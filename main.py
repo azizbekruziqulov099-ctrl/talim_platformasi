@@ -2086,7 +2086,7 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     return m.strip(" ,.")
 
 
-_TIL_TEG_NAQSHI = re.compile(r"\[(uz|en|ru|de|fr|es|ar|tr|zh|ja|ko)\](.*?)\[/\1\]", re.S | re.I)
+_TIL_TEG_NAQSHI = re.compile(r"\[(uz|en|ru)\](.*?)\[/\1\]", re.S | re.I)
 
 
 def _ovoz_tilini_tuzat(til: str) -> str:
@@ -2163,9 +2163,10 @@ def _ovoz_uchun_tayyorla_til(matn: str, til: str) -> str:
 
 def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
     """Matnni [en]...[/en] / [ru]...[/ru] teglariga qarab bo'laklarga
-    ajratadi — har bo'lak (til, matn). Tegdan tashqaridagi matn
-    sozlamadagi asosiy tilda, noma'lum asosiy til esa o'zbekcha o'qiladi."""
-    asosiy_til = _ovoz_tilini_tuzat(asosiy_til)
+    ajratadi — har bo'lak (til, matn). Tegdan tashqaridagi matn HAR DOIM
+    o'zbekcha o'qiladi; faqat aniq til tegi ichidagi qism tilini almashtiradi.
+    ``asosiy_til`` eski frontendlar bilan API mosligi uchun saqlangan."""
+    asosiy_til = "uz"
     qismlar = []
     oxiri = 0
     for m in _TIL_TEG_NAQSHI.finditer(matn):
@@ -2197,7 +2198,9 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
 
     matn = matn[:1500]
     jins = _ovoz_jinsini_tuzat(jins)
-    asosiy_til = _ovoz_tilini_tuzat(asosiy_til)
+    # Tegsiz matnning qat'iy asosiy tili — o'zbekcha. URL'dan tasodifan
+    # asosiy_til=en kelishi butun testni inglizcha o'qitmasligi kerak.
+    asosiy_til = "uz"
     buf = io.BytesIO()
     ovoz_bormi = False
     for til, bolak in _ovoz_qismlarga_bol(matn, asosiy_til):
@@ -12586,8 +12589,10 @@ async def shablon_import(
         discover_test_worksheets,
         embedded_images_by_row,
         normalize_difficulty,
+        resolve_topic_code_for_scope,
         row_values_by_header,
         subject_matches,
+        workbook_topic_metadata,
         worksheet_subject_hint,
     )
 
@@ -12630,6 +12635,31 @@ async def shablon_import(
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
 
     test_varaqlar, buzuq_test_varaqlar = discover_test_worksheets(wb)
+    shablon_mavzu_meta = workbook_topic_metadata(wb)
+
+    # Aniq fan tanlansa, ko'p fanli Excel ichidan FAQAT shu fan nomi
+    # yozilgan TESTLAR_<fan> varag'i olinadi. "Matematika" tanlab turib
+    # Ingliz/Rus/Tabiiy fan varaqlarini ham aylanish — fanlar aralashib
+    # ketishining asosiy eski sababi edi. Barcha fanlar rejimida esa nomli
+    # TESTLAR_<fan> varaqlari bor bo'lsa, yordamchi/qayta nomlangan generic
+    # varaqlar importga qo'shilmaydi.
+    nomli_varaqlar = [v for v in test_varaqlar if worksheet_subject_hint(v.name)]
+    if kutilgan_fan:
+        mos_nomli = [
+            v for v in nomli_varaqlar
+            if subject_matches(kutilgan_fan, worksheet_subject_hint(v.name))
+        ]
+        test_varaqlar = mos_nomli or (
+            [v for v in test_varaqlar if not worksheet_subject_hint(v.name)]
+            if not nomli_varaqlar else []
+        )
+        buzuq_test_varaqlar = [
+            d for d in buzuq_test_varaqlar
+            if not worksheet_subject_hint(d["varaq"])
+            or subject_matches(kutilgan_fan, worksheet_subject_hint(d["varaq"]))
+        ]
+    elif nomli_varaqlar:
+        test_varaqlar = nomli_varaqlar
     # Barcha TESTLAR* varaqlari bazaga ulanishdan OLDIN tekshiriladi.
     # Bittasi buzilgan bo'lsa, qisman import bo'lmaydi: foydalanuvchi qaysi
     # varaq va qaysi ustunni tuzatishi kerakligini aniq ko'radi.
@@ -12712,77 +12742,107 @@ async def shablon_import(
     kod_yoq = 0
     korilgan_savollar_soni = 0
     yetim_kodlar = []
+    tuzatilgan_kodlar_soni = 0
+    tuzatilgan_kodlar_namuna = []
+    boshqa_fandan_tuzatildi = 0
+    ortiqcha_begona_nusxalar_tozalandi = 0
+    varaq_kod_almashtirish = {}
+    varaq_kutilgan_fan = {}
     diagnostika_by_name = {d["varaq"]: d for d in varaq_diagnostika}
     try:
-        # V18.10: importdan OLDIN barcha topic_code'larning haqiqiy
-        # sinf+fani tekshiriladi. Bir fan tanlab, boshqa fan savollarini
-        # o'sha nom ostiga yozib yuborish endi mumkin emas. Bitta xato ham
-        # topilsa butun workbook rad etiladi va bazaga hech narsa yozilmaydi.
-        mavzu_meta = {}
-        if fayldagi_kodlar:
-            cur.execute(
-                """
-                SELECT topic_code, grade, subject_name
-                FROM dts_tree
-                WHERE topic_code = ANY(%s) AND is_deleted=FALSE
-                """,
-                (list(fayldagi_kodlar),),
-            )
-            mavzu_meta = {str(r["topic_code"]): r for r in cur.fetchall()}
+        # V18.11: topic_code bazadagi boshqa fanga to'qnashgan bo'lsa ham
+        # TESTLAR_<fan> nomi va MALUMOT varag'idagi mavzu nomlaridan to'g'ri
+        # kod topiladi. Faqat bitta aniq moslik bo'lsa avtomatik tuzatiladi;
+        # noaniq kod hech qachon boshqa fanga yozilmaydi.
+        cur.execute(
+            """
+            SELECT topic_code, grade, subject_name, quarter,
+                   bob_name, bolim_name, mavzu_name, kichik_name
+            FROM dts_tree
+            WHERE grade=%s AND is_deleted=FALSE
+            """,
+            (kutilgan_sinf,),
+        )
+        sinf_mavzulari = list(cur.fetchall())
 
-        yetim_kodlar = sorted(fayldagi_kodlar - set(mavzu_meta))
-        if yetim_kodlar:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    f"Import to'xtatildi: {len(yetim_kodlar)} ta topic_code Mavzular bazasida topilmadi. "
-                    f"Namuna: {', '.join(yetim_kodlar[:8])}. Yangi shablon yuklab, shu kodlarni ishlating."
-                ),
-            )
-
-        begona_qatorlar = []
-        if kutilgan_sinf:
-            for kod, meta in mavzu_meta.items():
-                sinf_mos = str(meta["grade"] or "").strip().casefold() == kutilgan_sinf.casefold()
-                fan_mos = not kutilgan_fan or subject_matches(kutilgan_fan, meta["subject_name"])
-                if not sinf_mos or not fan_mos:
-                    begona_qatorlar.append(
-                        f"{kod} → {meta['grade']}-sinf / {meta['subject_name']}"
-                    )
-        if begona_qatorlar:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    f"Import to'xtatildi: faylda tanlangan {kutilgan_sinf}-sinf / {kutilgan_fan or 'barcha fanlar'}ga "
-                    f"tegishli bo'lmagan {len(begona_qatorlar)} ta mavzu kodi bor. "
-                    f"Namuna: {'; '.join(begona_qatorlar[:6])}. Hech bir savol saqlanmadi."
-                ),
-            )
-
-        varaq_fan_xatolari = []
+        xaritalash_xatolari = []
         for test_varaq in test_varaqlar:
-            kodlar = varaq_kodlari.get(test_varaq.name, set())
-            fanlar = sorted({
-                str(mavzu_meta[k]["subject_name"] or "").strip()
-                for k in kodlar if k in mavzu_meta
-            })
+            kodlar = sorted(varaq_kodlari.get(test_varaq.name, set()))
             hint = worksheet_subject_hint(test_varaq.name)
-            if hint:
-                mos_emas = [fan for fan in fanlar if not subject_matches(hint, fan)]
-                if mos_emas:
-                    varaq_fan_xatolari.append(
-                        f"{test_varaq.name} varag'i → {', '.join(mos_emas)}"
+            metadata_fanlar = sorted({
+                str((shablon_mavzu_meta.get(kod) or {}).get("subject_name") or "").strip()
+                for kod in kodlar
+                if str((shablon_mavzu_meta.get(kod) or {}).get("subject_name") or "").strip()
+            })
+            noyob_metadata_fanlar = {
+                canonical_subject_name(fan) for fan in metadata_fanlar if fan
+            }
+
+            if kutilgan_fan:
+                kutilgan_varaq_fani = kutilgan_fan
+                if hint and not subject_matches(kutilgan_fan, hint):
+                    xaritalash_xatolari.append(
+                        f"{test_varaq.name}: tanlangan fan {kutilgan_fan}, varaq esa {hint}"
                     )
-            elif len({canonical_subject_name(fan) for fan in fanlar if fan}) > 1:
-                varaq_fan_xatolari.append(
-                    f"{test_varaq.name} varag'ida bir nechta fan aralashgan: {', '.join(fanlar)}"
+                    continue
+            elif hint:
+                kutilgan_varaq_fani = hint
+            elif len(noyob_metadata_fanlar) == 1 and metadata_fanlar:
+                kutilgan_varaq_fani = metadata_fanlar[0]
+            else:
+                xaritalash_xatolari.append(
+                    f"{test_varaq.name}: fan nomi aniqlanmadi; varaqni TESTLAR_<fan> deb nomlang"
                 )
-        if varaq_fan_xatolari:
+                continue
+
+            # Varaq nomi va MALUMOT fan ustuni o'zaro zid bo'lsa, bittasini
+            # taxminan tanlash o'rniga importni to'xtatamiz.
+            zid_fanlar = [
+                fan for fan in metadata_fanlar
+                if not subject_matches(kutilgan_varaq_fani, fan)
+            ]
+            if zid_fanlar:
+                xaritalash_xatolari.append(
+                    f"{test_varaq.name}: MALUMOT varag'ida boshqa fan bor — {', '.join(zid_fanlar)}"
+                )
+                continue
+
+            varaq_kutilgan_fan[test_varaq.name] = kutilgan_varaq_fani
+            almashtirish = {}
+            for raw_code in kodlar:
+                resolved = resolve_topic_code_for_scope(
+                    raw_code,
+                    kutilgan_sinf,
+                    kutilgan_varaq_fani,
+                    sinf_mavzulari,
+                    shablon_mavzu_meta,
+                )
+                if not resolved:
+                    info = shablon_mavzu_meta.get(raw_code) or {}
+                    mavzu_nomi = info.get("kichik_name") or info.get("mavzu_name") or info.get("bolim_name") or "mavzu nomi yo'q"
+                    xaritalash_xatolari.append(
+                        f"{test_varaq.name}: {raw_code} ({mavzu_nomi}) uchun {kutilgan_varaq_fani} ichida bitta aniq mavzu topilmadi"
+                    )
+                    continue
+                almashtirish[raw_code] = resolved
+                if resolved != raw_code:
+                    tuzatilgan_kodlar_soni += 1
+                    if len(tuzatilgan_kodlar_namuna) < 10:
+                        tuzatilgan_kodlar_namuna.append(
+                            f"{test_varaq.name}: {raw_code} → {resolved}"
+                        )
+            varaq_kod_almashtirish[test_varaq.name] = almashtirish
+
+        if xaritalash_xatolari:
+            yetim_kodlar = sorted({
+                x.split(":", 2)[1].strip().split(" ", 1)[0]
+                for x in xaritalash_xatolari if ":" in x
+            })
             raise HTTPException(
                 status_code=400,
                 detail=(
-                    "Import to'xtatildi: Excel varaq nomi bilan mavzu kodlarining fani mos emas. "
-                    f"{' ; '.join(varaq_fan_xatolari[:6])}. Hech bir savol saqlanmadi."
+                    "Import to'xtatildi: fan yoki mavzu kodi aniq moslashtirilmadi. "
+                    f"{' ; '.join(xaritalash_xatolari[:8])}. Hech bir savol saqlanmadi."
                 ),
             )
 
@@ -12827,7 +12887,8 @@ async def shablon_import(
                     varaq_natija["kod_yoq"] += 1
                     continue
 
-                tc_s = str(tc).strip()
+                raw_tc_s = str(tc).strip()
+                tc_s = varaq_kod_almashtirish[test_varaq.name][raw_tc_s]
                 q_s = str(q).strip()
                 opt_a = str(d.get("option_a") or "").strip()
                 opt_b = str(d.get("option_b") or "").strip()
@@ -12846,20 +12907,59 @@ async def shablon_import(
                 cur.execute("SAVEPOINT shablon_import_qatori")
                 try:
                     cur.execute("""
-                        SELECT id, rasm_malumot FROM generated_tests
-                        WHERE topic_code=%s AND question=%s
+                        SELECT gt.id, gt.topic_code, gt.rasm_malumot,
+                               d.grade, d.subject_name
+                        FROM generated_tests gt
+                        LEFT JOIN dts_tree d ON d.topic_code=gt.topic_code AND d.is_deleted=FALSE
+                        WHERE gt.question=%s
                           AND TRIM(COALESCE(option_a,''))=%s
                           AND TRIM(COALESCE(option_b,''))=%s
                           AND TRIM(COALESCE(option_c,''))=%s
                           AND TRIM(COALESCE(option_d,''))=%s
                           AND LOWER(TRIM(COALESCE(correct_answer,'')))=%s
                           AND LOWER(TRIM(COALESCE(question_type,'single_choice')))=%s
-                        LIMIT 1
+                        ORDER BY CASE WHEN gt.topic_code=%s THEN 0 ELSE 1 END, gt.id
                     """, (
-                        tc_s, q_s, opt_a, opt_b, opt_c, opt_d,
-                        correct_key, question_type,
+                        q_s, opt_a, opt_b, opt_c, opt_d,
+                        correct_key, question_type, tc_s,
                     ))
-                    mavjud = cur.fetchone()
+                    ayni_savollar = list(cur.fetchall())
+                    mavjud = next((r for r in ayni_savollar if str(r["topic_code"] or "").strip() == tc_s), None)
+                    kutilgan_varaq_fani = varaq_kutilgan_fan[test_varaq.name]
+                    begona_nusxalar = [
+                        r for r in ayni_savollar
+                        if str(r["topic_code"] or "").strip() != tc_s
+                        and (
+                            str(r["grade"] or "").strip().casefold() != kutilgan_sinf.casefold()
+                            or not subject_matches(kutilgan_varaq_fani, r["subject_name"])
+                        )
+                    ]
+
+                    # Shu savol eski importda boshqa fanga tushgan bo'lsa,
+                    # qayta import uni ko'paytirib qo'ymaydi: mavjud yozuvning
+                    # topic_code'ini to'g'ri fanga KO'CHIRADI. To'g'ri nusxa
+                    # allaqachon mavjud bo'lsa, aynan bir xil begona nusxalar
+                    # olib tashlanadi.
+                    if mavjud and begona_nusxalar:
+                        cur.execute(
+                            "DELETE FROM generated_tests WHERE id=ANY(%s)",
+                            ([r["id"] for r in begona_nusxalar],),
+                        )
+                        ortiqcha_begona_nusxalar_tozalandi += cur.rowcount
+                    elif not mavjud and begona_nusxalar:
+                        mavjud = begona_nusxalar[0]
+                        cur.execute(
+                            "UPDATE generated_tests SET topic_code=%s WHERE id=%s",
+                            (tc_s, mavjud["id"]),
+                        )
+                        boshqa_fandan_tuzatildi += 1
+                        qolgan_begona_idlar = [r["id"] for r in begona_nusxalar[1:]]
+                        if qolgan_begona_idlar:
+                            cur.execute(
+                                "DELETE FROM generated_tests WHERE id=ANY(%s)",
+                                (qolgan_begona_idlar,),
+                            )
+                            ortiqcha_begona_nusxalar_tozalandi += cur.rowcount
                     if mavjud:
                         if rasm_bayt and not mavjud["rasm_malumot"]:
                             cur.execute(
@@ -12943,6 +13043,10 @@ async def shablon_import(
         "import_qilingan_varaqlar": [test_varaq.name for test_varaq in test_varaqlar],
         "korilgan_savollar_soni": korilgan_savollar_soni,
         "fayldagi_topic_code_soni": len(fayldagi_kodlar),
+        "tuzatilgan_topic_code_soni": tuzatilgan_kodlar_soni,
+        "tuzatilgan_topic_code_namuna": tuzatilgan_kodlar_namuna,
+        "boshqa_fandan_togri_fanga_kochirilgan_test_soni": boshqa_fandan_tuzatildi,
+        "ortiqcha_begona_nusxalar_tozalandi": ortiqcha_begona_nusxalar_tozalandi,
         "varaq_diagnostika": varaq_diagnostika,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
         "rasm_diagnostika": {
