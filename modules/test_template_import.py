@@ -154,6 +154,54 @@ def _quarter_match_text(value: Any) -> str:
     return str(int(text)) if text.isdigit() else _topic_match_text(text)
 
 
+def topic_code_subject_code(value: Any) -> str | None:
+    """To'liq topic_code ichidan fan kodini oladi (``6-02-...`` → ``02``)."""
+    parts = str(value or "").strip().split("-")
+    return parts[1].strip() if len(parts) >= 3 and parts[1].strip() else None
+
+
+def exact_topic_matches_workbook_metadata(
+    database_topic: Any,
+    metadata: dict[str, str] | None,
+    expected_grade: Any,
+    expected_subject: Any,
+) -> bool:
+    """Exact kodli DTS qatori MALUMOTdagi shu mavzuning o'zi ekanini tekshiradi.
+
+    Eski bazada ``subject_name`` va ``subject_code`` siljib qolgan bo'lishi
+    mumkin. Shuning uchun bu tekshiruv fan yorlig'iga qaramaydi: exact
+    ``topic_code``, sinf hamda mavzu ierarxiyasining eng aniq mavjud nomi
+    mos bo'lsa, workbook metadata fan yorlig'ini tiklash uchun ishonchli
+    manba hisoblanadi.
+    """
+    if not metadata:
+        return False
+
+    def value(row: Any, key: str) -> Any:
+        try:
+            return row[key]
+        except (KeyError, TypeError):
+            return getattr(row, key, None)
+
+    grade = str(expected_grade or "").strip()
+    if str(value(database_topic, "grade") or "").strip().casefold() != grade.casefold():
+        return False
+    metadata_grade = str(metadata.get("grade") or "").strip()
+    if metadata_grade and metadata_grade.casefold() != grade.casefold():
+        return False
+    if not subject_matches(expected_subject, metadata.get("subject_name")):
+        return False
+
+    # Eng aniq to'ldirilgan darajadan boshlaymiz. Kichik/mavzu mavjud
+    # bo'lsa, umumiy bob nomining yolg'iz mosligi yetarli hisoblanmaydi.
+    for key in ("kichik_name", "mavzu_name", "bolim_name", "bob_name"):
+        source = _topic_match_text(metadata.get(key))
+        target = _topic_match_text(value(database_topic, key))
+        if source:
+            return bool(target and source == target)
+    return False
+
+
 def resolve_topic_code_for_scope(
     raw_code: Any,
     expected_grade: Any,
@@ -191,6 +239,18 @@ def resolve_topic_code_for_scope(
     info = workbook_metadata.get(code)
     if not info:
         return None
+
+    # Exact kod va mavzu nomi mos bo'lsa, DBdagi fan yorlig'i siljigan deb
+    # qaraymiz. Import endpoint shu qatorning subject_name/subject_code'ini
+    # MALUMOT asosida atomar tiklaydi; testni boshqa kodga ko'chirmaymiz.
+    for row in database_topics:
+        if (
+            str(value(row, "topic_code") or "").strip() == code
+            and exact_topic_matches_workbook_metadata(
+                row, info, grade, subject,
+            )
+        ):
+            return code
 
     field_weights = (
         ("kichik_name", "kichik_name", 16),
