@@ -95,6 +95,146 @@ def row_values_by_header(headers: list[str], row: Any) -> dict[str, Any]:
     }
 
 
+def _metadata_header(value: Any) -> str:
+    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    return re.sub(r"[^0-9a-zа-яёўқғҳ]+", "", text)
+
+
+def workbook_topic_metadata(workbook: Any) -> dict[str, dict[str, str]]:
+    """``MALUMOT`` varag'idagi kod → sinf/fan/mavzu xaritasini oladi.
+
+    Test varag'idagi ``topic_code`` eski bazadagi boshqa fanga to'qnashib
+    qolsa, aynan shu nazorat varag'idagi fan va mavzu nomlari kodni xavfsiz
+    qayta topish uchun ishlatiladi.  Bu yerda savol matnidan fan taxmin
+    qilinmaydi: faqat shablonning o'zidagi aniq metadata qabul qilinadi.
+    """
+    aliases = {
+        "topiccode": "topic_code",
+        "sinf": "grade",
+        "grade": "grade",
+        "fan": "subject_name",
+        "subject": "subject_name",
+        "chorak": "quarter",
+        "quarter": "quarter",
+        "bob": "bob_name",
+        "bolim": "bolim_name",
+        "mavzu": "mavzu_name",
+        "kichikmavzu": "kichik_name",
+    }
+    for worksheet in workbook.worksheets:
+        if _metadata_header(worksheet.title) not in {"malumot", "metadata"}:
+            continue
+        headers = [aliases.get(_metadata_header(cell.value)) for cell in worksheet[1]]
+        if "topic_code" not in headers:
+            return {}
+        result: dict[str, dict[str, str]] = {}
+        for row in worksheet.iter_rows(min_row=2):
+            values = {
+                key: str(row[index].value or "").strip()
+                for index, key in enumerate(headers)
+                if key and index < len(row)
+            }
+            code = values.get("topic_code", "")
+            if code:
+                result[code] = values
+        return result
+    return {}
+
+
+def _topic_match_text(value: Any) -> str:
+    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    text = text.replace("ё", "е")
+    text = re.sub(r"[ʻʼ‘’`´']+", "'", text)
+    text = re.sub(r"[^0-9a-zа-яёўқғҳ']+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _quarter_match_text(value: Any) -> str:
+    text = str(value or "").strip()
+    return str(int(text)) if text.isdigit() else _topic_match_text(text)
+
+
+def resolve_topic_code_for_scope(
+    raw_code: Any,
+    expected_grade: Any,
+    expected_subject: Any,
+    database_topics: list[Any],
+    workbook_metadata: dict[str, dict[str, str]],
+) -> str | None:
+    """Kod tanlangan sinf/fanga mos bo'lmasa, mavzu nomidan to'g'rilaydi.
+
+    Qayta xaritalash faqat ``MALUMOT`` varag'idagi bob/bo'lim/mavzu
+    ma'lumotlari tanlangan sinf va fan ichida BITTA aniq topic_code'ga olib
+    borsa amalga oshadi.  Noaniq holatda ``None`` qaytadi va import to'liq
+    to'xtatiladi — noto'g'ri fanga taxminan yozish taqiqlanadi.
+    """
+    code = str(raw_code or "").strip()
+    grade = str(expected_grade or "").strip()
+    subject = str(expected_subject or "").strip()
+
+    def value(row: Any, key: str) -> Any:
+        try:
+            return row[key]
+        except (KeyError, TypeError):
+            return getattr(row, key, None)
+
+    def in_scope(row: Any) -> bool:
+        return (
+            str(value(row, "grade") or "").strip().casefold() == grade.casefold()
+            and subject_matches(subject, value(row, "subject_name"))
+        )
+
+    for row in database_topics:
+        if str(value(row, "topic_code") or "").strip() == code and in_scope(row):
+            return code
+
+    info = workbook_metadata.get(code)
+    if not info:
+        return None
+
+    field_weights = (
+        ("kichik_name", "kichik_name", 16),
+        ("mavzu_name", "mavzu_name", 8),
+        ("bolim_name", "bolim_name", 4),
+        ("bob_name", "bob_name", 2),
+    )
+    # Kamida mavzu/kichik mavzu (ular bo'sh bo'lsa bo'lim/bob) aniq mos
+    # kelishi shart. Faqat "6-sinf / Matematika"ga qarab birinchi kodni
+    # tanlash yana fan ichida mavzularni aralashtirib yuborgan bo'lardi.
+    tayanch_fields = [key for key in ("kichik_name", "mavzu_name") if _topic_match_text(info.get(key))]
+    if not tayanch_fields:
+        tayanch_fields = [key for key in ("bolim_name", "bob_name") if _topic_match_text(info.get(key))]
+    if not tayanch_fields:
+        return None
+
+    scored: list[tuple[int, str]] = []
+    for row in database_topics:
+        if not in_scope(row):
+            continue
+        if not any(
+            _topic_match_text(info.get(key))
+            and _topic_match_text(info.get(key)) == _topic_match_text(value(row, key))
+            for key in tayanch_fields
+        ):
+            continue
+        score = 0
+        for source_key, database_key, weight in field_weights:
+            source_value = _topic_match_text(info.get(source_key))
+            if source_value and source_value == _topic_match_text(value(row, database_key)):
+                score += weight
+        source_quarter = _quarter_match_text(info.get("quarter"))
+        if source_quarter and source_quarter == _quarter_match_text(value(row, "quarter")):
+            score += 1
+        if score:
+            scored.append((score, str(value(row, "topic_code") or "").strip()))
+
+    if not scored:
+        return None
+    best_score = max(score for score, _ in scored)
+    best_codes = sorted({candidate for score, candidate in scored if score == best_score and candidate})
+    return best_codes[0] if len(best_codes) == 1 else None
+
+
 def normalize_difficulty(value: Any) -> str | None:
     """Turli apostroflarda yozilgan o'rta darajani bitta qiymatga keltiradi."""
     if value is None or not str(value).strip():
