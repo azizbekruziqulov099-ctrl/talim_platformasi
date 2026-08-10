@@ -5,10 +5,56 @@ qoidalarini FastAPI/PostgreSQL'siz alohida sinash mumkin.
 """
 
 from dataclasses import dataclass
+import re
+import unicodedata
 from typing import Any
 
 
 REQUIRED_TEST_HEADERS = ("topic_code", "question", "correct_answer")
+
+
+def canonical_subject_name(value: Any) -> str:
+    """Fan nomini varaq/DB solishtiruvi uchun barqaror ko'rinishga keltiradi.
+
+    Excel varaq nomida apostrof, nuqta yoki tire olib tashlangan bo'lishi
+    mumkin (masalan ``O'zbek tili`` -> ``Ozbek tili``). Bu yordamchi faqat
+    solishtirish uchun ishlaydi; bazadagi asl fan nomini o'zgartirmaydi.
+    """
+    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    text = text.replace("ё", "е")
+    text = re.sub(r"[ʻʼ‘’`´'\u2010-\u2015_-]+", "", text)
+    text = re.sub(r"[^0-9a-zа-яёўқғҳ]+", "", text)
+    aliases = {
+        "math": "matematika",
+        "mathematics": "matematika",
+        "english": "ingliztili",
+        "russian": "rustili",
+        "uzbek": "onatili",
+    }
+    return aliases.get(text, text)
+
+
+def worksheet_subject_hint(name: Any) -> str | None:
+    """``TESTLAR_<fan>`` varag'idan kutilgan fan nomini oladi."""
+    raw = str(name or "").strip()
+    match = re.match(r"^TESTLAR[ _-]+(.+)$", raw, flags=re.I)
+    if not match:
+        return None
+    hint = match.group(1).strip()
+    return hint or None
+
+
+def subject_matches(expected: Any, actual: Any) -> bool:
+    """Excel varaq nomi qisqargan bo'lsa ham fanlarni xavfsiz solishtiradi."""
+    left = canonical_subject_name(expected)
+    right = canonical_subject_name(actual)
+    if not left or not right:
+        return False
+    if left == right:
+        return True
+    # Excel varaq nomi 31 belgida kesiladi. Kamida 8 belgilik aniq prefiks
+    # bo'lmasa, tasodifiy o'xshash fanlar teng deb olinmaydi.
+    return min(len(left), len(right)) >= 8 and (left.startswith(right) or right.startswith(left))
 
 
 @dataclass
