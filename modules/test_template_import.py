@@ -16,6 +16,19 @@ import zipfile
 REQUIRED_TEST_HEADERS = ("topic_code", "question", "correct_answer")
 
 
+def grade_subject_key(grade: Any, subject_code: Any) -> tuple[str, str]:
+    """Fan guruhining sinflar orasida to'qnashmaydigan kalitini qaytaradi.
+
+    ``subject_code`` global fan identifikatori emas: masalan 6-sinfda
+    ``02`` MATEMATIKA, 7-sinfda esa ``02`` GEOMETRIYA bo'lishi mumkin.
+    Shuning uchun barcha sinflar birdan so'ralganda faqat ``02`` bilan
+    guruhlash bir sinf fanining nomini boshqasiga qo'yib yuboradi.
+    """
+    grade_text = str(grade or "").strip()
+    subject_text = str(subject_code or "").strip() or "BOSHQA"
+    return grade_text, subject_text
+
+
 def canonical_subject_name(value: Any) -> str:
     """Fan nomini varaq/DB solishtiruvi uchun barqaror ko'rinishga keltiradi.
 
