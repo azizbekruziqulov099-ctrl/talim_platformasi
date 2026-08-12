@@ -13,6 +13,7 @@ try:  # fullstack repository: backend/tests va backend/modules
         discover_test_worksheets,
         embedded_images_by_row,
         embedded_images_by_sheet_from_xlsx,
+        grade_subject_key,
         is_named_test_sheet,
         normalize_difficulty,
         row_values_by_header,
@@ -26,6 +27,7 @@ except ModuleNotFoundError:  # backend-only repository: tests va modules
         discover_test_worksheets,
         embedded_images_by_row,
         embedded_images_by_sheet_from_xlsx,
+        grade_subject_key,
         is_named_test_sheet,
         normalize_difficulty,
         row_values_by_header,
@@ -58,6 +60,13 @@ class _SecondImage(_Image):
 
 
 class TestTemplateImportHelpers(unittest.TestCase):
+    def test_subject_code_is_scoped_by_grade_not_global(self):
+        self.assertNotEqual(
+            grade_subject_key("6", "02"),
+            grade_subject_key("7", "02"),
+        )
+        self.assertEqual(grade_subject_key("6", "02"), ("6", "02"))
+
     def test_discovers_all_twenty_two_test_sheets_not_only_the_first(self):
         workbook = openpyxl.Workbook()
         workbook.remove(workbook.active)
@@ -369,6 +378,25 @@ class TestTemplateImportEndpointContract(unittest.TestCase):
         self.assertIn('str(info["subject_code"]).strip()', self.endpoint)
         self.assertIn('str(info["subject_name"]).strip()', self.endpoint)
         self.assertIn('"malumotdan_tekshirilgan_dts_kodlari"', self.endpoint)
+
+    def test_all_subject_mode_uses_malumot_prefix_not_sheet_or_dropdown_order(self):
+        self.assertIn("metadata_fan_kodlari", self.endpoint)
+        self.assertIn("len(noyob_metadata_fanlar) == 1", self.endpoint)
+        self.assertIn("len(metadata_fan_kodlari) == 1", self.endpoint)
+        self.assertIn('"aniqlangan_fan_kodi"', self.endpoint)
+
+
+class TestTopicCatalogEndpointContract(unittest.TestCase):
+    def test_subject_buckets_are_keyed_by_grade_and_subject_code(self):
+        main_path = Path(__file__).resolve().parents[1] / "main.py"
+        main_source = main_path.read_text(encoding="utf-8")
+        start = main_source.index("def mavzular_royxati")
+        end = main_source.index("\ndef _qoshimcha_test_shartlari", start)
+        endpoint = main_source[start:end]
+
+        self.assertIn("grade_subject_key(q[\"grade\"], fkod)", endpoint)
+        self.assertIn("fanlar[fan_kaliti]", endpoint)
+        self.assertNotIn("fanlar[fkod]", endpoint)
 
 
 class TestRailwaySqliteCopyBlock(unittest.TestCase):
