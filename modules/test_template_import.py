@@ -5,9 +5,12 @@ qoidalarini FastAPI/PostgreSQL'siz alohida sinash mumkin.
 """
 
 from dataclasses import dataclass
+import posixpath
 import re
 import unicodedata
 from typing import Any
+from xml.etree import ElementTree
+import zipfile
 
 
 REQUIRED_TEST_HEADERS = ("topic_code", "question", "correct_answer")
@@ -70,6 +73,141 @@ class EmbeddedImages:
     source_count: int
     errors: list[str]
     warnings: list[str]
+
+
+_RELATIONSHIP_NS = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+_PACKAGE_RELATIONSHIP_NS = "http://schemas.openxmlformats.org/package/2006/relationships"
+_SPREADSHEET_NS = "http://schemas.openxmlformats.org/spreadsheetml/2006/main"
+_DRAWING_NS = "http://schemas.openxmlformats.org/drawingml/2006/spreadsheetDrawing"
+_DRAWING_MAIN_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
+
+
+def _xlsx_relationships_path(part_name: str) -> str:
+    directory, filename = posixpath.split(part_name)
+    return posixpath.join(directory, "_rels", f"{filename}.rels")
+
+
+def _xlsx_target_path(source_part: str, target: str) -> str:
+    """OOXML relationship targetini ZIP ichidagi barqaror yo'lga aylantiradi."""
+    target = str(target or "").replace("\\", "/")
+    if target.startswith("/"):
+        return posixpath.normpath(target.lstrip("/"))
+    return posixpath.normpath(posixpath.join(posixpath.dirname(source_part), target))
+
+
+def _xlsx_relationship_map(archive: zipfile.ZipFile, source_part: str) -> dict[str, str]:
+    rels_path = _xlsx_relationships_path(source_part)
+    try:
+        root = ElementTree.fromstring(archive.read(rels_path))
+    except KeyError:
+        return {}
+    result: dict[str, str] = {}
+    for relationship in root.findall(f"{{{_PACKAGE_RELATIONSHIP_NS}}}Relationship"):
+        if str(relationship.attrib.get("TargetMode") or "").casefold() == "external":
+            continue
+        relationship_id = relationship.attrib.get("Id")
+        target = relationship.attrib.get("Target")
+        if relationship_id and target:
+            result[relationship_id] = _xlsx_target_path(source_part, target)
+    return result
+
+
+def embedded_images_by_sheet_from_xlsx(
+    xlsx_source: Any,
+    worksheet_names: set[str] | None = None,
+    error_limit: int = 5,
+) -> dict[str, EmbeddedImages]:
+    """Katta XLSX rasmlarini workbook'ni RAM'ga yoymasdan varaqqa/qatorga bog'laydi.
+
+    ``openpyxl`` normal rejimda katta, rasmli faylni to'liq obyektlar daraxtiga
+    aylantiradi. Railway xotirasi uchun endpoint workbook'ni ``read_only``
+    o'qiydi; bu yordamchi esa faqat OOXML drawing relationshiplarini ko'rib,
+    kerakli media fayllarini ZIP'dan bevosita oladi.
+    """
+    selected_names = {str(name) for name in worksheet_names} if worksheet_names else None
+    result: dict[str, EmbeddedImages] = {}
+
+    with zipfile.ZipFile(xlsx_source) as archive:
+        workbook_part = "xl/workbook.xml"
+        workbook_root = ElementTree.fromstring(archive.read(workbook_part))
+        workbook_relationships = _xlsx_relationship_map(archive, workbook_part)
+
+        for sheet in workbook_root.findall(f".//{{{_SPREADSHEET_NS}}}sheet"):
+            sheet_name = str(sheet.attrib.get("name") or "")
+            if selected_names is not None and sheet_name not in selected_names:
+                continue
+
+            by_row: dict[int, tuple[bytes, str]] = {}
+            errors: list[str] = []
+            warnings: list[str] = []
+            source_count = 0
+            relationship_id = sheet.attrib.get(f"{{{_RELATIONSHIP_NS}}}id")
+            sheet_part = workbook_relationships.get(str(relationship_id or ""))
+            if not sheet_part:
+                result[sheet_name] = EmbeddedImages(by_row, 0, errors, warnings)
+                continue
+
+            try:
+                sheet_root = ElementTree.fromstring(archive.read(sheet_part))
+                sheet_relationships = _xlsx_relationship_map(archive, sheet_part)
+                drawing_ids = [
+                    element.attrib.get(f"{{{_RELATIONSHIP_NS}}}id")
+                    for element in sheet_root.findall(f".//{{{_SPREADSHEET_NS}}}drawing")
+                ]
+                for drawing_id in drawing_ids:
+                    drawing_part = sheet_relationships.get(str(drawing_id or ""))
+                    if not drawing_part:
+                        continue
+                    drawing_root = ElementTree.fromstring(archive.read(drawing_part))
+                    drawing_relationships = _xlsx_relationship_map(archive, drawing_part)
+                    anchors = list(drawing_root.findall(f"{{{_DRAWING_NS}}}oneCellAnchor"))
+                    anchors += list(drawing_root.findall(f"{{{_DRAWING_NS}}}twoCellAnchor"))
+                    source_count += len(drawing_root.findall(f".//{{{_DRAWING_NS}}}pic"))
+
+                    for anchor in anchors:
+                        try:
+                            row_element = anchor.find(
+                                f"{{{_DRAWING_NS}}}from/{{{_DRAWING_NS}}}row"
+                            )
+                            blip = anchor.find(f".//{{{_DRAWING_MAIN_NS}}}blip")
+                            if row_element is None or blip is None:
+                                continue
+                            image_relationship_id = blip.attrib.get(
+                                f"{{{_RELATIONSHIP_NS}}}embed"
+                            )
+                            media_part = drawing_relationships.get(
+                                str(image_relationship_id or "")
+                            )
+                            if not media_part:
+                                continue
+                            excel_row = int(row_element.text or "0") + 1
+                            if excel_row in by_row:
+                                warnings.append(
+                                    f"{excel_row}-qatorda bir nechta rasm bor; birinchi rasm olindi"
+                                )
+                                continue
+                            image_format = posixpath.splitext(media_part)[1].lower().lstrip(".") or "png"
+                            if image_format == "jpg":
+                                image_format = "jpeg"
+                            by_row[excel_row] = (archive.read(media_part), image_format)
+                        except Exception as exc:
+                            if len(errors) < error_limit:
+                                errors.append(f"{type(exc).__name__}: {exc}")
+            except Exception as exc:
+                if len(errors) < error_limit:
+                    errors.append(f"{type(exc).__name__}: {exc}")
+
+            result[sheet_name] = EmbeddedImages(
+                by_row=by_row,
+                source_count=source_count,
+                errors=errors,
+                warnings=warnings,
+            )
+
+    if selected_names:
+        for sheet_name in selected_names:
+            result.setdefault(sheet_name, EmbeddedImages({}, 0, [], []))
+    return result
 
 
 def normalize_header(value: Any) -> str:
