@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "authoritative-subject-import-v18.13",
+        "versiya": "grade-scoped-subject-catalog-v18.16",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -97,7 +97,7 @@ def versiya():
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
-            "test_import": "excel-malumot-authoritative-v18.13",
+            "test_import": "excel-auto-subject-grade-scoped-v18.16",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -1246,6 +1246,14 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
     cur.close()
     conn.close()
 
+    # ``subject_code`` butun tizim bo'yicha global emas. Masalan 6-02
+    # MATEMATIKA, 7-02 esa GEOMETRIYA bo'lishi mumkin. Admin sinfni avval
+    # tanlaydigan ekranda API barcha sinflarni birdan qaytaradi; eski kod
+    # faqat ``02`` bilan guruhlagani uchun 7-sinf geometriya mavzulari
+    # boshqa sinfdagi fan nomi (masalan INGLIZ TILI) ostida ko'rinardi.
+    # Fan identifikatori doim ``sinf + fan kodi`` bo'lishi shart.
+    from modules.test_template_import import grade_subject_key
+
     fanlar = {}
     for q in qatorlar:
         kodlar = q["testli_kodlar"] if faqat_testli else q["barcha_kodlar"]
@@ -1253,13 +1261,14 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             continue  # bu mavzuning hech bir kichik qismida test yo'q — test yechish ro'yxatida ko'rsatmaymiz
 
         fkod = q["subject_code"] or "BOSHQA"
-        if fkod not in fanlar:
-            fanlar[fkod] = {"nom": q["subject_name"] or fkod, "qisqa": fkod, "sinflar": {}}
+        fan_kaliti = grade_subject_key(q["grade"], fkod)
+        if fan_kaliti not in fanlar:
+            fanlar[fan_kaliti] = {"nom": q["subject_name"] or fkod, "qisqa": fkod, "sinflar": {}}
 
         skod = q["grade"]
-        if skod not in fanlar[fkod]["sinflar"]:
-            fanlar[fkod]["sinflar"][skod] = {"sinf": skod, "mavzular": []}
-        fanlar[fkod]["sinflar"][skod]["mavzular"].append({
+        if skod not in fanlar[fan_kaliti]["sinflar"]:
+            fanlar[fan_kaliti]["sinflar"][skod] = {"sinf": skod, "mavzular": []}
+        fanlar[fan_kaliti]["sinflar"][skod]["mavzular"].append({
             "topic_codes": kodlar, "nomi": q["nomi"], "savol_soni": q["savol_soni"],
         })
 
@@ -12758,6 +12767,8 @@ async def shablon_import(
         varaq_diagnostika.append({
             "varaq": test_varaq.name,
             "holat": "import_qilindi",
+            "aniqlangan_fan": None,
+            "aniqlangan_fan_kodi": None,
             "jami_qator": max(0, int(test_varaq.worksheet.max_row or 0) - 1),
             "savolli_qator": 0,
             "saved": 0,
@@ -12858,6 +12869,11 @@ async def shablon_import(
             noyob_metadata_fanlar = {
                 canonical_subject_name(fan) for fan in metadata_fanlar if fan
             }
+            metadata_fan_kodlari = sorted({
+                str((authoritative_scope.get(kod) or {}).get("subject_code") or "").strip()
+                for kod in kodlar
+                if str((authoritative_scope.get(kod) or {}).get("subject_code") or "").strip()
+            })
 
             if kutilgan_fan:
                 kutilgan_varaq_fani = kutilgan_fan
@@ -12866,13 +12882,26 @@ async def shablon_import(
                         f"{test_varaq.name}: tanlangan fan {kutilgan_fan}, varaq esa {hint}"
                     )
                     continue
-            elif hint:
-                kutilgan_varaq_fani = hint
-            elif len(noyob_metadata_fanlar) == 1 and metadata_fanlar:
+            elif len(noyob_metadata_fanlar) == 1 and len(metadata_fan_kodlari) == 1 and metadata_fanlar:
+                # "Barcha fanlar" rejimida fan varaq tartibidan ham,
+                # dropdown tartibidan ham olinmaydi. MALUMOTdagi aniq
+                # topic_code prefiksi (6-02, 7-02, ...) + fan nomi yagona
+                # manba. TESTLAR_<fan> nomi faqat qarama-qarshilikni
+                # aniqlaydigan nazorat bo'lib qoladi.
                 kutilgan_varaq_fani = metadata_fanlar[0]
+                if hint and not subject_matches(kutilgan_varaq_fani, hint):
+                    xaritalash_xatolari.append(
+                        f"{test_varaq.name}: varaq nomi {hint}, MALUMOTdagi fan esa {kutilgan_varaq_fani}"
+                    )
+                    continue
+            elif hint and not shablon_mavzu_meta:
+                # Eski bir fanli, MALUMOTsiz shablonlar uchun orqaga
+                # moslik. Ko'p fanli avtomatik rejimda MALUMOT bo'lsa,
+                # noaniq fan hech qachon varaq nomidan taxmin qilinmaydi.
+                kutilgan_varaq_fani = hint
             else:
                 xaritalash_xatolari.append(
-                    f"{test_varaq.name}: fan nomi aniqlanmadi; varaqni TESTLAR_<fan> deb nomlang"
+                    f"{test_varaq.name}: MALUMOTda bitta aniq fan nomi va fan kodi aniqlanmadi"
                 )
                 continue
 
@@ -12889,6 +12918,10 @@ async def shablon_import(
                 continue
 
             varaq_kutilgan_fan[test_varaq.name] = kutilgan_varaq_fani
+            diagnostika_by_name[test_varaq.name]["aniqlangan_fan"] = kutilgan_varaq_fani
+            diagnostika_by_name[test_varaq.name]["aniqlangan_fan_kodi"] = (
+                metadata_fan_kodlari[0] if len(metadata_fan_kodlari) == 1 else None
+            )
             almashtirish = {}
             for raw_code in kodlar:
                 if shablon_mavzu_meta and raw_code not in authoritative_scope:
