@@ -12802,6 +12802,7 @@ async def shablon_import(
     boshqa_fandan_tuzatildi = 0
     ortiqcha_begona_nusxalar_tozalandi = 0
     dts_fan_yozuvlari_tuzatildi = 0
+    almashtirishda_ochirilgan_eski_test_soni = 0
     authoritative_dts_kodlari = 0
     varaq_kod_almashtirish = {}
     varaq_kutilgan_fan = {}
@@ -13019,6 +13020,43 @@ async def shablon_import(
         # solishtirish uchun bo'sh matnga tenglashtiramiz.
         cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL")
 
+        # V18.15: import endi qo'shib borish emas, ATOMAR ALMASHTIRISH.
+        # Oldingi xato importdagi savollar bazada qolsa, to'g'ri Excel qayta
+        # yuklangandan keyin ham ular boshqa fan ostida ko'rinaverardi.
+        # Barcha fanlar rejimida shu sinfning testlari, bitta fan rejimida
+        # esa faqat Excel'dagi aniq topic_code'lar tozalanadi. Keyingi biror
+        # qadam xato bersa, DELETE ham INSERTlar bilan birga rollback bo'ladi.
+        import_scope_topic_codes = sorted({
+            resolved_code
+            for replacements in varaq_kod_almashtirish.values()
+            for resolved_code in replacements.values()
+            if resolved_code
+        })
+        if not import_scope_topic_codes:
+            raise HTTPException(
+                status_code=400,
+                detail="Import uchun birorta tekshirilgan topic_code topilmadi",
+            )
+        if barcha_fanlar:
+            cur.execute(
+                """
+                DELETE FROM generated_tests AS gt
+                WHERE split_part(COALESCE(gt.topic_code, ''), '-', 1)=%s
+                   OR gt.topic_code IN (
+                        SELECT d.topic_code
+                        FROM dts_tree AS d
+                        WHERE d.grade=%s
+                    )
+                """,
+                (kutilgan_sinf, kutilgan_sinf),
+            )
+        else:
+            cur.execute(
+                "DELETE FROM generated_tests WHERE topic_code=ANY(%s)",
+                (import_scope_topic_codes,),
+            )
+        almashtirishda_ochirilgan_eski_test_soni = cur.rowcount
+
         def import_fingerprint(row):
             return (
                 str(row.get("question") or "").strip(),
@@ -13030,10 +13068,9 @@ async def shablon_import(
                 str(row.get("question_type") or "single_choice").strip().lower(),
             )
 
-        def import_batch(qatorlar, varaq_natija, kutilgan_varaq_fani):
+        def import_batch(qatorlar, varaq_natija):
             """Bir varaqdagi 500 tagacha savolni doimiy SQL round-trip'siz import qiladi."""
             nonlocal saved, duplicates, rasm_biriktirildi
-            nonlocal boshqa_fandan_tuzatildi, ortiqcha_begona_nusxalar_tozalandi
 
             if not qatorlar:
                 return
@@ -13047,15 +13084,13 @@ async def shablon_import(
                        TRIM(COALESCE(gt.option_d,'')) AS option_d,
                        LOWER(TRIM(COALESCE(gt.correct_answer,''))) AS correct_answer,
                        LOWER(TRIM(COALESCE(gt.question_type,'single_choice'))) AS question_type,
-                       (gt.rasm_malumot IS NOT NULL) AS rasm_bor,
-                       d.grade, d.subject_name
+                       (gt.rasm_malumot IS NOT NULL) AS rasm_bor
                 FROM generated_tests gt
-                LEFT JOIN dts_tree d
-                  ON d.topic_code=gt.topic_code AND d.is_deleted=FALSE
                 WHERE gt.question=ANY(%s)
+                  AND gt.topic_code=ANY(%s)
                 ORDER BY gt.id
                 """,
-                (savollar,),
+                (savollar, import_scope_topic_codes),
             )
             mavjud_by_fingerprint = {}
             for database_row in cur.fetchall():
@@ -13064,8 +13099,6 @@ async def shablon_import(
                     import_fingerprint(database_row), []
                 ).append(database_row)
 
-            ochiriladigan_idlar = set()
-            kochiriladigan_qatorlar = []
             rasm_qoshiladigan_qatorlar = []
             yangi_qatorlar = []
 
@@ -13076,39 +13109,10 @@ async def shablon_import(
                 mavjud = next(
                     (
                         row for row in ayni_savollar
-                        if row.get("id") not in ochiriladigan_idlar
-                        and str(row.get("topic_code") or "").strip() == tc_s
+                        if str(row.get("topic_code") or "").strip() == tc_s
                     ),
                     None,
                 )
-                begona_nusxalar = [
-                    row for row in ayni_savollar
-                    if row.get("id") not in ochiriladigan_idlar
-                    and str(row.get("topic_code") or "").strip() != tc_s
-                    and (
-                        str(row.get("grade") or "").strip().casefold()
-                        != kutilgan_sinf.casefold()
-                        or not subject_matches(
-                            kutilgan_varaq_fani, row.get("subject_name")
-                        )
-                    )
-                ]
-
-                if mavjud and begona_nusxalar:
-                    for begona in begona_nusxalar:
-                        if begona.get("id") is not None:
-                            ochiriladigan_idlar.add(begona["id"])
-                elif not mavjud and begona_nusxalar:
-                    mavjud = begona_nusxalar[0]
-                    if mavjud.get("id") is not None:
-                        kochiriladigan_qatorlar.append((mavjud["id"], tc_s))
-                        boshqa_fandan_tuzatildi += 1
-                    mavjud["topic_code"] = tc_s
-                    mavjud["grade"] = kutilgan_sinf
-                    mavjud["subject_name"] = kutilgan_varaq_fani
-                    for begona in begona_nusxalar[1:]:
-                        if begona.get("id") is not None:
-                            ochiriladigan_idlar.add(begona["id"])
 
                 if mavjud:
                     if qator["rasm_bayt"] and not mavjud.get("rasm_bor"):
@@ -13134,34 +13138,11 @@ async def shablon_import(
                 ayni_savollar.append({
                     "id": None,
                     "topic_code": tc_s,
-                    "grade": kutilgan_sinf,
-                    "subject_name": kutilgan_varaq_fani,
                     "rasm_bor": bool(qator["rasm_bayt"]),
                     "rejalangan_qator": qator,
                 })
                 saved += 1
                 varaq_natija["saved"] += 1
-
-            if ochiriladigan_idlar:
-                cur.execute(
-                    "DELETE FROM generated_tests WHERE id=ANY(%s)",
-                    (sorted(ochiriladigan_idlar),),
-                )
-                ortiqcha_begona_nusxalar_tozalandi += cur.rowcount
-
-            if kochiriladigan_qatorlar:
-                psycopg2.extras.execute_values(
-                    cur,
-                    """
-                    UPDATE generated_tests AS gt
-                    SET topic_code=v.topic_code
-                    FROM (VALUES %s) AS v(id, topic_code)
-                    WHERE gt.id=v.id
-                    """,
-                    kochiriladigan_qatorlar,
-                    template="(%s,%s)",
-                    page_size=len(kochiriladigan_qatorlar),
-                )
 
             if rasm_qoshiladigan_qatorlar:
                 psycopg2.extras.execute_values(
@@ -13236,7 +13217,6 @@ async def shablon_import(
             headers = test_varaq.headers
             varaq_natija = diagnostika_by_name[test_varaq.name]
             qator_rasmlari = varaq_rasmlari.pop(test_varaq.name, {})
-            kutilgan_varaq_fani = varaq_kutilgan_fan[test_varaq.name]
             import_qatorlari = []
 
             for row in ws.iter_rows(min_row=2):
@@ -13261,7 +13241,6 @@ async def shablon_import(
                 opt_c = str(d.get("option_c") or "").strip()
                 opt_d = str(d.get("option_d") or "").strip()
                 correct = str(d.get("correct_answer") or "").strip()
-                correct_key = correct.lower()
                 question_type = str(d.get("question_type") or "single_choice").strip().lower()
                 qator_raqami = row[0].row
                 rasm_bayt, rasm_format = qator_rasmlari.get(qator_raqami, (None, None))
@@ -13290,12 +13269,10 @@ async def shablon_import(
                     "rasm_turi": rasm_turi,
                 })
                 if len(import_qatorlari) >= 500:
-                    import_batch(
-                        import_qatorlari, varaq_natija, kutilgan_varaq_fani
-                    )
+                    import_batch(import_qatorlari, varaq_natija)
                     import_qatorlari.clear()
 
-            import_batch(import_qatorlari, varaq_natija, kutilgan_varaq_fani)
+            import_batch(import_qatorlari, varaq_natija)
             qator_rasmlari.clear()
 
         conn.commit()
@@ -13333,6 +13310,7 @@ async def shablon_import(
         "tuzatilgan_topic_code_namuna": tuzatilgan_kodlar_namuna,
         "boshqa_fandan_togri_fanga_kochirilgan_test_soni": boshqa_fandan_tuzatildi,
         "ortiqcha_begona_nusxalar_tozalandi": ortiqcha_begona_nusxalar_tozalandi,
+        "almashtirishda_ochirilgan_eski_test_soni": almashtirishda_ochirilgan_eski_test_soni,
         "dts_fan_yozuvlari_tuzatildi": dts_fan_yozuvlari_tuzatildi,
         "malumotdan_tekshirilgan_dts_kodlari": authoritative_dts_kodlari,
         "varaq_diagnostika": varaq_diagnostika,
