@@ -141,6 +141,66 @@ def workbook_topic_metadata(workbook: Any) -> dict[str, dict[str, str]]:
     return {}
 
 
+def authoritative_topic_scope(
+    workbook_metadata: dict[str, dict[str, str]],
+    expected_grade: Any,
+    expected_subject: Any = None,
+) -> tuple[dict[str, dict[str, str]], list[str]]:
+    """MALUMOT xaritasini sinf/fan uchun qat'iy va bir qiymatli tekshiradi.
+
+    ``topic_code``ning ikkinchi bo'lagi fan kodidir. Bir sinfda bitta fan
+    kodi ikki xil fan nomiga tegishli bo'lsa, Excel ishonchli manba emas va
+    import to'xtashi kerak. To'g'ri xarita qaytarilganda esa endpoint shu
+    xaritani ``dts_tree`` fan yozuvlari uchun yagona manba sifatida ishlatadi.
+    """
+    grade = str(expected_grade or "").strip()
+    subject = str(expected_subject or "").strip() or None
+    selected: dict[str, dict[str, str]] = {}
+    errors: list[str] = []
+    prefix_subjects: dict[tuple[str, str], tuple[str, str]] = {}
+
+    for raw_code, raw_info in sorted(workbook_metadata.items()):
+        code = str(raw_code or "").strip()
+        info = {key: str(value or "").strip() for key, value in (raw_info or {}).items()}
+        parts = code.split("-")
+        if len(parts) < 3 or not parts[0] or not parts[1]:
+            errors.append(f"{code or '<bo‘sh kod>'}: topic_code formati noto'g'ri")
+            continue
+
+        code_grade, subject_code = parts[0].strip(), parts[1].strip()
+        metadata_grade = info.get("grade") or code_grade
+        metadata_subject = info.get("subject_name", "")
+        if code_grade.casefold() != grade.casefold() or metadata_grade.casefold() != grade.casefold():
+            continue
+        if not metadata_subject:
+            errors.append(f"{code}: MALUMOTda Fan bo'sh")
+            continue
+        if subject and not subject_matches(subject, metadata_subject):
+            continue
+
+        prefix_key = (code_grade.casefold(), subject_code.casefold())
+        canonical = canonical_subject_name(metadata_subject)
+        previous = prefix_subjects.get(prefix_key)
+        if previous and previous[0] != canonical:
+            errors.append(
+                f"{code_grade}-{subject_code}: bitta fan kodi ikki fanga berilgan "
+                f"({previous[1]} va {metadata_subject})"
+            )
+            continue
+        prefix_subjects[prefix_key] = (canonical, metadata_subject)
+        selected[code] = {
+            **info,
+            "topic_code": code,
+            "grade": grade,
+            "subject_code": subject_code,
+            "subject_name": metadata_subject,
+        }
+
+    if workbook_metadata and subject and not selected:
+        errors.append(f"{grade}-sinf / {subject}: MALUMOTda birorta mos mavzu topilmadi")
+    return selected, errors
+
+
 def _topic_match_text(value: Any) -> str:
     text = unicodedata.normalize("NFKC", str(value or "")).casefold()
     text = text.replace("ё", "е")
