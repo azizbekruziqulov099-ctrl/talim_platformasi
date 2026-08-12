@@ -283,6 +283,33 @@ class TestTemplateImportEndpointContract(unittest.TestCase):
         self.assertNotIn("content = await fayl.read()", self.endpoint)
         self.assertNotIn("zf.testzip()", self.endpoint)
 
+    def test_import_atomically_replaces_only_selected_grade_or_topic_scope(self):
+        full_grade_delete = self.endpoint.index(
+            "DELETE FROM generated_tests AS gt"
+        )
+        single_subject_delete = self.endpoint.index(
+            "DELETE FROM generated_tests WHERE topic_code=ANY(%s)"
+        )
+        first_insert = self.endpoint.index("INSERT INTO generated_tests")
+        self.assertLess(full_grade_delete, first_insert)
+        self.assertLess(single_subject_delete, first_insert)
+        self.assertIn(
+            "split_part(COALESCE(gt.topic_code, ''), '-', 1)=%s",
+            self.endpoint,
+        )
+        self.assertIn("if barcha_fanlar", self.endpoint)
+        self.assertIn("import_scope_topic_codes", self.endpoint)
+        self.assertIn(
+            '"almashtirishda_ochirilgan_eski_test_soni"', self.endpoint
+        )
+
+    def test_duplicate_lookup_cannot_move_or_delete_another_subject_or_grade(self):
+        self.assertIn("AND gt.topic_code=ANY(%s)", self.endpoint)
+        self.assertNotIn(
+            "FROM (VALUES %s) AS v(id, topic_code)", self.endpoint
+        )
+        self.assertNotIn("begona_nusxalar =", self.endpoint)
+
     def test_malformed_named_sheet_is_rejected_before_database_write(self):
         validation = self.endpoint.index("if buzuq_test_varaqlar")
         database_open = self.endpoint.index("conn = _db()")
