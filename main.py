@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "subject-safe-import-voice-v18.10",
+        "versiya": "authoritative-subject-import-v18.13",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -97,7 +97,7 @@ def versiya():
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
-            "test_import": "grade-subject-atomic-safe-v18.10",
+            "test_import": "excel-malumot-authoritative-v18.13",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -12585,6 +12585,7 @@ async def shablon_import(
     import io
     import zipfile
     from modules.test_template_import import (
+        authoritative_topic_scope,
         canonical_subject_name,
         discover_test_worksheets,
         embedded_images_by_row,
@@ -12638,6 +12639,22 @@ async def shablon_import(
 
     test_varaqlar, buzuq_test_varaqlar = discover_test_worksheets(wb)
     shablon_mavzu_meta = workbook_topic_metadata(wb)
+    authoritative_scope = {}
+    if shablon_mavzu_meta:
+        authoritative_scope, authoritative_xatolar = authoritative_topic_scope(
+            shablon_mavzu_meta,
+            kutilgan_sinf,
+            kutilgan_fan,
+        )
+        if authoritative_xatolar:
+            wb.close()
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "MALUMOT varag'idagi sinf/fan/topic_code xaritasi zid: "
+                    + " ; ".join(authoritative_xatolar[:8])
+                ),
+            )
 
     # Aniq fan tanlansa, ko'p fanli Excel ichidan FAQAT shu fan nomi
     # yozilgan TESTLAR_<fan> varag'i olinadi. "Matematika" tanlab turib
@@ -12749,6 +12766,7 @@ async def shablon_import(
     boshqa_fandan_tuzatildi = 0
     ortiqcha_begona_nusxalar_tozalandi = 0
     dts_fan_yozuvlari_tuzatildi = 0
+    authoritative_dts_kodlari = 0
     varaq_kod_almashtirish = {}
     varaq_kutilgan_fan = {}
     dts_fan_tuzatishlari = {}
@@ -12768,6 +12786,28 @@ async def shablon_import(
             (kutilgan_sinf,),
         )
         sinf_mavzulari = list(cur.fetchall())
+
+        # V18.13: MALUMOT varag'i mavjud bo'lsa, uning tekshirilgan
+        # ``sinf + fan + topic_code`` xaritasi fan yorlig'i uchun YAGONA
+        # manbadir. Eski kod faqat mavzu nomi aynan bir xil ustunda turganda
+        # DTS fanini tuzatardi; mavzu ``mavzu_name`` o'rniga ``kichik_name``
+        # ustunida bo'lsa, ekran yana bir fan orqaga siljib qolardi. Endi
+        # aynan topic_code mavjud bo'lsa, uning fan kodi va fan nomi
+        # MALUMOTdan shartsiz tiklanadi. Xarita yuqorida bir fan kodi = bir
+        # fan ekanligi bo'yicha to'liq tekshirilgan.
+        sinf_mavzulari_by_code = {
+            str(row["topic_code"] or "").strip(): row
+            for row in sinf_mavzulari
+            if str(row["topic_code"] or "").strip()
+        }
+        for topic_code, info in authoritative_scope.items():
+            if topic_code not in sinf_mavzulari_by_code:
+                continue
+            dts_fan_tuzatishlari[topic_code] = (
+                str(info["subject_code"]).strip(),
+                str(info["subject_name"]).strip(),
+            )
+        authoritative_dts_kodlari = len(dts_fan_tuzatishlari)
 
         xaritalash_xatolari = []
         for test_varaq in test_varaqlar:
@@ -12814,13 +12854,25 @@ async def shablon_import(
             varaq_kutilgan_fan[test_varaq.name] = kutilgan_varaq_fani
             almashtirish = {}
             for raw_code in kodlar:
-                resolved = resolve_topic_code_for_scope(
-                    raw_code,
-                    kutilgan_sinf,
-                    kutilgan_varaq_fani,
-                    sinf_mavzulari,
-                    shablon_mavzu_meta,
-                )
+                if shablon_mavzu_meta and raw_code not in authoritative_scope:
+                    xaritalash_xatolari.append(
+                        f"{test_varaq.name}: {raw_code} MALUMOTdagi tanlangan sinf/fanga tegishli emas"
+                    )
+                    continue
+                # MALUMOT xaritasi oldindan tekshirilgan va exact kod shu
+                # sinf DTSida mavjud bo'lsa, eski (siljigan) subject_name
+                # sabab bu kodni yana mavzu nomidan taxmin qilmaymiz.
+                # Exact ``sinf + topic_code`` eng kuchli kalitdir.
+                if raw_code in authoritative_scope and raw_code in sinf_mavzulari_by_code:
+                    resolved = raw_code
+                else:
+                    resolved = resolve_topic_code_for_scope(
+                        raw_code,
+                        kutilgan_sinf,
+                        kutilgan_varaq_fani,
+                        sinf_mavzulari,
+                        shablon_mavzu_meta,
+                    )
                 if not resolved:
                     info = shablon_mavzu_meta.get(raw_code) or {}
                     mavzu_nomi = info.get("kichik_name") or info.get("mavzu_name") or info.get("bolim_name") or "mavzu nomi yo'q"
@@ -13106,6 +13158,7 @@ async def shablon_import(
         "boshqa_fandan_togri_fanga_kochirilgan_test_soni": boshqa_fandan_tuzatildi,
         "ortiqcha_begona_nusxalar_tozalandi": ortiqcha_begona_nusxalar_tozalandi,
         "dts_fan_yozuvlari_tuzatildi": dts_fan_yozuvlari_tuzatildi,
+        "malumotdan_tekshirilgan_dts_kodlari": authoritative_dts_kodlari,
         "varaq_diagnostika": varaq_diagnostika,
         "yetim_kodlar_soni": len(yetim_kodlar), "yetim_kodlar_namuna": yetim_kodlar[:10],
         "rasm_diagnostika": {
