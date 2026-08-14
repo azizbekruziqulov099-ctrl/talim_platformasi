@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-learning-path-v18.18.1",
+        "versiya": "smart-learning-path-v18.19",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -98,7 +98,7 @@ def versiya():
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
-            "learning_path": "calendar-teaching-evidence-v18.18.1",
+            "learning_path": "subject-pages-olympiad-grade-rollover-v18.19",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -2252,6 +2252,7 @@ class TestNatijaSorov(BaseModel):
     attempt_id: Optional[str] = None
     duration_seconds: Optional[int] = None
     hints_used: int = 0
+    track: str = "standard"  # standard | olympiad
     # UMUMIY natija foizini TANLANGAN (masalan 10 ta) savol soniga nisbatan
     # hisoblash uchun — javob berilmagan savollar ham hisobga olinishi kerak
     # (aks holda 10 tadan 5 tasiga javob berib, hammasi to'g'ri bo'lsa, "100%"
@@ -2284,6 +2285,9 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
         raise HTTPException(status_code=400, detail="Test vaqti noto'g'ri")
     if not 0 <= sorov.hints_used <= 1000:
         raise HTTPException(status_code=400, detail="Ishora soni noto'g'ri")
+    sorov.track = (sorov.track or "standard").strip().lower()
+    if sorov.track not in {"standard", "olympiad"}:
+        raise HTTPException(status_code=400, detail="Test yo'li standard yoki olympiad bo'lishi kerak")
     if sorov.attempt_id is not None:
         sorov.attempt_id = sorov.attempt_id.strip()
         if (
@@ -16917,6 +16921,7 @@ def _analitika_test_voqeasini_saqla(
             "legacy_topic_code": sorov.topic_code,
             "mixed_topic_codes": sorov.topic_codes or [],
             "attempt_id": sorov.attempt_id,
+            "track": sorov.track,
         },
     )
     _analitika_topshiriq_holatini_yangila(
@@ -17565,8 +17570,75 @@ def _talim_yoli_sinfni_tozala(qiymat):
 
 def _talim_yoli_akademik_yil(bugun=None):
     bugun = bugun or date.today()
-    boshlanish_yili = bugun.year if bugun.month >= 8 else bugun.year - 1
+    boshlanish_yili = bugun.year if bugun.month >= 9 else bugun.year - 1
     return f"{boshlanish_yili}-{boshlanish_yili + 1}"
+
+
+def _talim_yoli_auto_sinf(cur, student_id, profil_sinf, bugun=None):
+    """Profil sinfini o'quv yili bilan bog'lab, 1-sentabrda bir bosqich oshiradi."""
+    bugun = bugun or date.today()
+    profil = _talim_yoli_sinfni_tozala(profil_sinf)
+    if not profil or not profil.isdigit():
+        return {
+            "profile_grade": profil,
+            "effective_grade": profil,
+            "base_academic_year": None,
+        }
+    cur.execute(
+        """SELECT base_grade,base_academic_start_year
+           FROM learning_grade_progressions WHERE user_id=%s""",
+        (student_id,),
+    )
+    row = cur.fetchone()
+    active_start = int(_talim_yoli_akademik_yil(bugun).split("-")[0])
+    if not row:
+        return {
+            "profile_grade": profil,
+            "effective_grade": profil,
+            "base_academic_year": f"{active_start}-{active_start + 1}",
+        }
+    yil_farqi = max(0, active_start - int(row["base_academic_start_year"]))
+    effective = min(11, int(row["base_grade"]) + yil_farqi)
+    return {
+        "profile_grade": profil,
+        "effective_grade": str(effective),
+        "base_academic_year": (
+            f'{int(row["base_academic_start_year"])}-'
+            f'{int(row["base_academic_start_year"]) + 1}'
+        ),
+    }
+
+
+def _talim_yoli_sinf_hayoti(current_grade, bugun=None):
+    bugun = bugun or date.today()
+    grade = _talim_yoli_sinfni_tozala(current_grade)
+    numeric = int(grade) if grade and grade.isdigit() else None
+    active_start = int(_talim_yoli_akademik_yil(bugun).split("-")[0])
+    terms = _talim_yoli_standart_choraklar(f"{active_start}-{active_start + 1}")
+    term_end = terms[-1]["end"]
+    rollover_year = active_start + 1
+    rollover = date(rollover_year, 9, 1)
+    completed = term_end < bugun < rollover
+    next_grade = str(numeric + 1) if numeric and numeric < 11 else None
+    if completed:
+        message = (
+            f"{grade}-sinf yakunlangan. "
+            + (f"{rollover.isoformat()} dan {next_grade}-sinf avtomatik ochiladi."
+               if next_grade else "11-sinf ta'lim yo'li yakunlangan.")
+        )
+        status = "completed"
+    else:
+        start = date(active_start, 9, 1)
+        message = f"{grade}-sinf {start.isoformat()} dan boshlandi."
+        status = "active"
+    return {
+        "status": status,
+        "message": message,
+        "grade": grade,
+        "next_grade": next_grade,
+        "rollover_date": rollover.isoformat() if next_grade else None,
+        "academic_year_end": term_end.isoformat(),
+    }
 
 
 def _talim_yoli_yilni_tekshir(qiymat):
@@ -17667,15 +17739,17 @@ def _talim_yoli_migratsiya_talab(cur):
     cur.execute(
         """SELECT
              to_regclass('public.learning_path_calendars') IS NOT NULL AS calendars_bor,
-             to_regclass('public.learning_path_teaching_records') IS NOT NULL AS records_bor"""
+             to_regclass('public.learning_path_teaching_records') IS NOT NULL AS records_bor,
+             to_regclass('public.learning_grade_progressions') IS NOT NULL AS progression_bor"""
     )
     r = cur.fetchone()
-    if not r or not r["calendars_bor"] or not r["records_bor"]:
+    if not r or not r["calendars_bor"] or not r["records_bor"] or not r["progression_bor"]:
         raise HTTPException(
             status_code=503,
             detail=(
                 "Ta'lim yo'li kalendari hali o'rnatilmagan. "
-                "database/020_learning_path_calendar.sql migratsiyasini ishga tushiring."
+                "database/020_learning_path_calendar.sql va "
+                "database/021_learning_path_grade_olympiad.sql migratsiyalarini ishga tushiring."
             ),
         )
 
@@ -17837,7 +17911,7 @@ def _talim_yoli_xulosasi(
     academic_year=None, bugun=None,
 ):
     bugun = bugun or date.today()
-    academic_year = _talim_yoli_yilni_tekshir(academic_year)
+    active_academic_year = _talim_yoli_akademik_yil(bugun)
     cur.execute(
         "SELECT user_id,full_name,class,class_letter,tugilgan_sana FROM users WHERE user_id=%s",
         (student_id,),
@@ -17845,8 +17919,19 @@ def _talim_yoli_xulosasi(
     student = cur.fetchone()
     if not student:
         raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
-    current_grade = _talim_yoli_sinfni_tozala(student["class"])
+    grade_progress = _talim_yoli_auto_sinf(cur, student_id, student["class"], bugun)
+    current_grade = grade_progress["effective_grade"]
     selected_grade = _talim_yoli_sinfni_tozala(grade) or current_grade
+    if academic_year is None:
+        active_start = int(active_academic_year.split("-")[0])
+        if (
+            current_grade and current_grade.isdigit()
+            and selected_grade and selected_grade.isdigit()
+        ):
+            active_start -= max(0, int(current_grade) - int(selected_grade))
+        academic_year = f"{active_start}-{active_start + 1}"
+    else:
+        academic_year = _talim_yoli_yilni_tekshir(academic_year)
 
     contexts = _talim_yoli_kontekstlar(cur, student_id)
     selected_context = next(
@@ -17884,10 +17969,16 @@ def _talim_yoli_xulosasi(
         # o'quvchi oldingi sinfning barcha fanlarini ayni tuzilishda ko'radi.
         selected_group = None
 
+    if selected_context["type"] != "university" and selected_group:
+        group_grade = _talim_yoli_sinfni_tozala(selected_group.get("grade"))
+        if group_grade and selected_grade and group_grade != selected_grade:
+            selected_group = None
+
     if selected_context["type"] == "university":
         # Universitet bo'limi faqat faol talaba a'zoligida chiqadi; mavzu esa
         # fakultet/guruh rejasidan olinadi. Bo'sh reja maktab fanlarini aralashtirmaydi.
         selected_grade = (selected_group or {}).get("grade") or selected_grade or "OTM"
+        academic_year = active_academic_year
     elif not selected_grade:
         raise HTTPException(status_code=400, detail="Profilda sinf tanlanmagan")
     elif (
@@ -18087,7 +18178,10 @@ def _talim_yoli_xulosasi(
         taught = [t for t in subset if t["teaching_status"] == "taught"]
         current = next(
             (t for t in subset if t["teaching_state"]["key"] == "current"),
-            next((t for t in subset if t["teaching_state"]["key"] in ("expected", "upcoming")), None),
+            next(
+                (t for t in subset if t["teaching_state"]["key"] == "upcoming"),
+                next((t for t in reversed(subset) if t["teaching_state"]["key"] == "expected"), None),
+            ),
         )
         subjects.append({
             "name": subject_name,
@@ -18108,35 +18202,45 @@ def _talim_yoli_xulosasi(
     total = len(finalized)
     numeric_current = int(current_grade) if current_grade and current_grade.isdigit() else None
     grade_options = [str(x) for x in range(1, numeric_current + 1)] if numeric_current else [selected_grade]
-    olympiad_readiness = []
-    for subject_item in subjects:
-        subset = [t for t in finalized if t["subject"] == subject_item["name"]]
-        verified = [t for t in subset if t["knowledge_score"] is not None]
-        strong = [t for t in verified if t["knowledge_score"] >= 80]
-        avg_score = (
-            round(sum(t["knowledge_score"] for t in verified) / len(verified))
-            if verified else None
-        )
-        if not verified:
-            key, label = "unknown", "Avval diagnostika kerak"
-        elif len(verified) < min(3, len(subset)):
-            key, label = "insufficient", "Dalil hali kam"
-        elif avg_score >= 85 and len(strong) / len(verified) >= 0.7:
-            key, label = "ready", "Olimpiada mashqlariga tayyor"
-        elif avg_score >= 65:
-            key, label = "preparing", "Tayyorgarlik davom etmoqda"
-        else:
-            key, label = "foundation", "Asosiy mavzularni mustahkamlash kerak"
-        olympiad_readiness.append({
-            "subject": subject_item["name"], "status": key, "label": label,
-            "verified_topic_count": len(verified), "strong_topic_count": len(strong),
-            "average_score": avg_score,
-        })
+    current_week_topics = [
+        t for t in finalized if t["teaching_state"]["key"] == "current"
+    ]
+    future_topics = [
+        t for t in finalized
+        if t.get("planned_start") and t["planned_start"] > bugun.isoformat()
+    ]
+    focus_topics = current_week_topics
+    focus_status = "current" if current_week_topics else "none"
+    if not focus_topics and future_topics:
+        next_start = min(t["planned_start"] for t in future_topics)
+        focus_topics = [t for t in future_topics if t["planned_start"] == next_start]
+        focus_status = "next"
+    lifecycle = _talim_yoli_sinf_hayoti(current_grade, bugun)
+    if lifecycle["status"] == "completed" and str(selected_grade) == str(current_grade):
+        focus_topics = []
+        focus_status = "year_completed"
+    focus_week = {
+        "status": focus_status,
+        "label": (
+            "Shu haftada o'tiladigan mavzular" if focus_status == "current"
+            else "Keyingi rejalashtirilgan hafta" if focus_status == "next"
+            else "O'quv yili yakunlangan" if focus_status == "year_completed"
+            else "Haftalik reja topilmadi"
+        ),
+        "start": focus_topics[0]["planned_start"] if focus_topics else None,
+        "end": focus_topics[0]["planned_end"] if focus_topics else None,
+        "topics": [
+            {k: t[k] for k in ("topic_code", "topic_name", "subject", "term_no", "week_no")}
+            for t in focus_topics
+        ],
+    }
     return {
+        "path_type": "standard",
         "student": {
             "user_id": student["user_id"], "full_name": student["full_name"],
             "current_grade": current_grade, "class_letter": student["class_letter"],
             "age": _ai_yosh_hisobla(student["tugilgan_sana"], current_grade),
+            "profile_grade": grade_progress["profile_grade"],
         },
         "academic_year": academic_year,
         "selected_grade": selected_grade,
@@ -18145,6 +18249,8 @@ def _talim_yoli_xulosasi(
         "selected_context": selected_context,
         "selected_group": selected_group,
         "calendar_source": calendar_source,
+        "grade_progression": {**grade_progress, **lifecycle},
+        "focus_week": focus_week,
         "terms": [{**t, "start": t["start"].isoformat(), "end": t["end"].isoformat()} for t in terms],
         "summary": {
             "topic_count": total,
@@ -18159,7 +18265,6 @@ def _talim_yoli_xulosasi(
         },
         "subjects": subjects,
         "topics": finalized,
-        "olympiad_readiness": olympiad_readiness,
         "rules": {
             "calendar_is_not_learning": True,
             "teaching_requires_confirmation": True,
@@ -18167,6 +18272,170 @@ def _talim_yoli_xulosasi(
             "unknown_without_test_or_grade": True,
         },
     }
+
+
+OLIMPIADA_TAYYORGARLIK_QISMLARI = (
+    ("independent_tests", "Mustaqil fan va mavzu testlari", 20,
+     "O'quvchi o'zi ishlagan oddiy mavzu testlari"),
+    ("club_learning", "AI yoki mavjud to'garak", 20,
+     "AI dars va oddiy to'garakdagi o'rganish dalili"),
+    ("olympiad_tests", "Olimpiada testlari", 30,
+     "Olimpiada deb belgilangan test natijalari"),
+    ("olympiad_club", "Olimpiada AI/to'garagi", 30,
+     "Olimpiada AI rejimi yoki olimpiada to'garagidagi qatnashuv"),
+)
+
+
+def _talim_yoli_olimpiada_komponenti(events, topic_count, weight, allow_activity):
+    verified_types = {"test_attempt", "teacher_grade", "written_work"}
+    scores = [
+        float(e["score_percent"]) for e in events
+        if e["event_type"] in verified_types and e["score_percent"] is not None
+    ]
+    distinct_topics = {e["topic_code"] for e in events if e.get("topic_code")}
+    if scores:
+        score = round(sum(scores) / len(scores), 1)
+        method = "verified_score"
+        evidence_count = len(scores)
+    elif allow_activity and distinct_topics and topic_count:
+        score = round(min(100, len(distinct_topics) * 100 / topic_count), 1)
+        method = "completed_topics"
+        evidence_count = len(distinct_topics)
+    else:
+        score = None
+        method = None
+        evidence_count = 0
+    return {
+        "score": score,
+        "earned_points": round(score * weight / 100, 1) if score is not None else 0,
+        "has_evidence": score is not None,
+        "evidence_count": evidence_count,
+        "evidence_method": method,
+    }
+
+
+def _talim_yoli_olimpiada_bahosi(cur, student_id, subjects, topics):
+    codes = [t["topic_code"] for t in topics]
+    topic_subject = {t["topic_code"]: t["subject"] for t in topics}
+    events = []
+    if codes:
+        cur.execute(
+            """SELECT e.topic_code,e.event_type,e.score_percent,e.source_type,
+                      e.evidence_source,e.payload,c.context_type,c.name AS context_name,
+                      g.name AS group_name,a.metadata AS assignment_metadata
+               FROM learning_events e
+               JOIN learning_contexts c ON c.id=e.context_id
+               LEFT JOIN course_groups g ON g.id=e.group_id
+               LEFT JOIN assignments a ON a.id=e.assignment_id
+               WHERE e.user_id=%s AND e.topic_code=ANY(%s)
+                 AND e.status IN ('completed','passed','failed','graded')""",
+            (student_id, codes),
+        )
+        events = list(cur.fetchall())
+
+    buckets = {
+        subject["name"]: {key: [] for key, _, _, _ in OLIMPIADA_TAYYORGARLIK_QISMLARI}
+        for subject in subjects
+    }
+    for event in events:
+        subject_name = topic_subject.get(event["topic_code"])
+        if subject_name not in buckets:
+            continue
+        payload = event.get("payload") or {}
+        assignment_metadata = event.get("assignment_metadata") or {}
+        marker = " ".join(str(x or "") for x in (
+            payload.get("track"), payload.get("assessment_kind"), payload.get("rejim"),
+            payload.get("mode"), assignment_metadata.get("track"),
+            assignment_metadata.get("assessment_kind"), event.get("context_name"),
+            event.get("group_name"),
+        )).lower()
+        olympiad = "olimp" in marker
+        context_type = event.get("context_type") or ""
+        club = context_type in {"club_ai", "club_online", "club_offline"}
+        ai_learning = (
+            event["event_type"] == "ai_lesson_interaction"
+            or event.get("evidence_source") == "ai_tutor"
+        )
+        if event["event_type"] == "test_attempt" and olympiad:
+            buckets[subject_name]["olympiad_tests"].append(event)
+        elif olympiad and (club or ai_learning):
+            buckets[subject_name]["olympiad_club"].append(event)
+        elif club or ai_learning:
+            buckets[subject_name]["club_learning"].append(event)
+        elif event["event_type"] == "test_attempt":
+            buckets[subject_name]["independent_tests"].append(event)
+
+    readiness = []
+    for subject in subjects:
+        name = subject["name"]
+        topic_count = int(subject.get("topic_count") or 0)
+        components = []
+        for key, label, weight, description in OLIMPIADA_TAYYORGARLIK_QISMLARI:
+            result = _talim_yoli_olimpiada_komponenti(
+                buckets[name][key], topic_count, weight,
+                allow_activity=key in {"club_learning", "olympiad_club"},
+            )
+            components.append({
+                "key": key, "label": label, "weight": weight,
+                "description": description, **result,
+            })
+        confirmed = round(sum(c["earned_points"] for c in components), 1)
+        coverage = sum(c["weight"] for c in components if c["has_evidence"])
+        if coverage == 0:
+            status, label = "unknown", "Hali baholanmagan"
+        elif coverage < 100:
+            status, label = "insufficient", "4 dalil yo'li hali to'liq emas"
+        elif confirmed >= 80:
+            status, label = "ready", "Olimpiada yo'liga tayyor"
+        elif confirmed >= 60:
+            status, label = "preparing", "Tayyorgarlik yaxshi ketmoqda"
+        else:
+            status, label = "foundation", "Asosiy tayyorgarlikni kuchaytirish kerak"
+        readiness.append({
+            "subject": name,
+            "status": status,
+            "label": label,
+            "confirmed_readiness_percent": confirmed if coverage else None,
+            "evidence_coverage_percent": coverage,
+            "components": components,
+        })
+    known = [r for r in readiness if r["confirmed_readiness_percent"] is not None]
+    return readiness, {
+        "subject_count": len(readiness),
+        "evaluated_subject_count": len(known),
+        "confirmed_readiness_percent": (
+            round(sum(r["confirmed_readiness_percent"] for r in known) / len(known), 1)
+            if known else None
+        ),
+        "evidence_coverage_percent": (
+            round(sum(r["evidence_coverage_percent"] for r in readiness) / len(readiness), 1)
+            if readiness else 0
+        ),
+    }
+
+
+def _talim_yoli_olimpiada_xulosasi(cur, student_id, grade=None, academic_year=None):
+    base = _talim_yoli_xulosasi(
+        cur, student_id, context_id=None, group_id=None,
+        grade=grade, academic_year=academic_year,
+    )
+    readiness, summary = _talim_yoli_olimpiada_bahosi(
+        cur, student_id, base["subjects"], base["topics"]
+    )
+    by_subject = {item["subject"]: item for item in readiness}
+    base["path_type"] = "olympiad"
+    base["selected_context"] = {
+        "id": "olympiad", "name": "Olimpiada", "type": "olympiad", "groups": [],
+    }
+    base["selected_group"] = None
+    base["calendar_source"] = {
+        "type": "olympiad", "label": "Olimpiada tayyorgarlik yo'li", "is_estimate": False,
+    }
+    base["olympiad_readiness"] = readiness
+    base["olympiad_summary"] = summary
+    for subject in base["subjects"]:
+        subject["olympiad"] = by_subject.get(subject["name"])
+    return base
 
 
 @app.get("/api/talim-yoli/meniki")
@@ -18182,6 +18451,21 @@ def talim_yoli_meniki(
         return _talim_yoli_xulosasi(
             cur, user_id, context_id, group_id, grade, academic_year
         )
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/talim-yoli/olimpiada")
+def talim_yoli_olimpiada(
+    token: str, grade: Optional[str] = None, academic_year: Optional[str] = None,
+):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        return _talim_yoli_olimpiada_xulosasi(cur, user_id, grade, academic_year)
     finally:
         cur.close()
         conn.close()
@@ -18203,6 +18487,24 @@ def talim_yoli_ota_farzand(
         return _talim_yoli_xulosasi(
             cur, child_id, context_id, group_id, grade, academic_year
         )
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/talim-yoli/ota/olimpiada")
+def talim_yoli_ota_olimpiada(
+    token: str, child_id: int, grade: Optional[str] = None,
+    academic_year: Optional[str] = None,
+):
+    parent_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        if not _analitika_ota_onami(cur, parent_id, child_id) and not _analitika_admin_mi(cur, parent_id):
+            raise HTTPException(status_code=403, detail="Bu farzand sizga ulanmagan")
+        return _talim_yoli_olimpiada_xulosasi(cur, child_id, grade, academic_year)
     finally:
         cur.close()
         conn.close()
