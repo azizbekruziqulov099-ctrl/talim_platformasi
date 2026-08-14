@@ -16984,6 +16984,72 @@ def _analitika_son(qiymat, xona=1):
         return 0
 
 
+def _analitika_xotira_hisobi(
+    mastery_score,
+    last_assessed_at,
+    attempts=1,
+    review_interval_days=1,
+    latest_score=None,
+    previous_score=None,
+    now=None,
+):
+    """Mavzuning esdan chiqish xavfini tushunarli, deterministik hisoblaydi.
+
+    Hisob AI taxmini emas: oxirgi baholashdan o'tgan vaqt, joriy
+    o'zlashtirish, takrorlar soni va rejalashtirilgan takrorlash oralig'i
+    asosida eksponensial xotira pasayishi qo'llanadi. Natija 0..100 foiz.
+    """
+    now = now or datetime.now(timezone.utc)
+    mastery = max(0.0, min(100.0, float(mastery_score or 0)))
+    urinishlar = max(1, int(attempts or 1))
+    interval = max(1, int(review_interval_days or 1))
+
+    if last_assessed_at is None:
+        kunlar = 0.0
+    else:
+        assessed = last_assessed_at
+        if assessed.tzinfo is None:
+            assessed = assessed.replace(tzinfo=timezone.utc)
+        kunlar = max(0.0, (now - assessed).total_seconds() / 86400.0)
+
+    # Yuqori ball va takrorlar xotira barqarorligini oshiradi, ammo cheksiz
+    # uzaytirmaydi. review_interval_days bazadagi amaldagi spiral reja bilan
+    # bir xil manbadan olinadi.
+    sifat_kof = 0.70 + (mastery / 100.0) * 0.70
+    takror_kof = 1.0 + min(max(urinishlar - 1, 0), 6) * 0.16
+    barqarorlik_kun = max(1.0, interval * sifat_kof * takror_kof)
+    unutish_foizi = int(round(100.0 * (1.0 - math.exp(-kunlar / barqarorlik_kun))))
+    unutish_foizi = max(0, min(100, unutish_foizi))
+
+    tiklangan = (
+        previous_score is not None
+        and latest_score is not None
+        and float(previous_score) < 60
+        and float(latest_score) >= 70
+    )
+    if tiklangan:
+        holat = "recovered"
+        holat_nomi = "Qayta testda tiklandi"
+    elif unutish_foizi >= 65:
+        holat = "forgotten"
+        holat_nomi = "Unutilgan bo'lishi mumkin"
+    elif unutish_foizi >= 35:
+        holat = "at_risk"
+        holat_nomi = "Esdan chiqish xavfi bor"
+    else:
+        holat = "stable"
+        holat_nomi = "Xotirada barqaror"
+
+    return {
+        "forgetting_probability": unutish_foizi,
+        "memory_status": holat,
+        "memory_status_label": holat_nomi,
+        "days_since_assessment": int(kunlar),
+        "memory_stability_days": round(barqarorlik_kun, 1),
+        "recovered_after_review": tiklangan,
+    }
+
+
 def _analitika_oquvchi_xulosasi(
     cur, student_id, context_id=None, kunlar=30, group_id=None
 ):
@@ -17057,10 +17123,19 @@ def _analitika_oquvchi_xulosasi(
             "last_activity_at": r["last_activity_at"],
         })
 
-    context_shart = ""
+    # Tahlil faqat hozir ham faol bo'lgan talaba a'zoliklari doirasida
+    # quriladi. Bu, ayniqsa, OTM ma'lumotining oddiy maktab o'quvchisiga
+    # yoki OTMdan chiqqan foydalanuvchiga sizib chiqishini to'xtatadi.
+    context_shart = """AND EXISTS (
+        SELECT 1 FROM context_memberships active_membership
+        WHERE active_membership.user_id=e.user_id
+          AND active_membership.context_id=e.context_id
+          AND active_membership.member_role='student'
+          AND active_membership.status='active'
+    )"""
     context_params = []
     if context_id is not None:
-        context_shart = "AND e.context_id=%s"
+        context_shart += " AND e.context_id=%s"
         context_params.append(context_id)
     if group_id is not None:
         context_shart += " AND e.group_id=%s"
@@ -17109,15 +17184,22 @@ def _analitika_oquvchi_xulosasi(
     else:
         cur.execute(
             f"""SELECT
-                  COUNT(DISTINCT s.topic_code) FILTER (
+                  COUNT(*) FILTER (
                     WHERE s.mastery_score >= 80
                   ) AS mastered_topics,
-                  COUNT(DISTINCT s.topic_code) FILTER (
+                  COUNT(*) FILTER (
                     WHERE s.mastery_score < 60
                        OR (s.next_review_at IS NOT NULL AND s.next_review_at <= NOW())
                   ) AS needs_review
                 FROM student_skill_state s
-                WHERE s.user_id=%s {skill_context_shart}""",
+                WHERE s.user_id=%s {skill_context_shart}
+                  AND EXISTS (
+                    SELECT 1 FROM context_memberships active_membership
+                    WHERE active_membership.user_id=s.user_id
+                      AND active_membership.context_id=s.context_id
+                      AND active_membership.member_role='student'
+                      AND active_membership.status='active'
+                  )""",
             skill_params,
         )
     skill_counts = cur.fetchone()
@@ -17189,7 +17271,15 @@ def _analitika_oquvchi_xulosasi(
                       COALESCE(NULLIF(MAX(e.subject),''),'Boshqa') AS subject,
                       ROUND(AVG(e.score_percent)::numeric,1) AS mastery_score,
                       COUNT(*) AS attempts,NULL::timestamptz AS next_review_at,
-                      c.name AS context_name,
+                      MAX(e.occurred_at) AS last_assessed_at,
+                      CASE
+                        WHEN AVG(e.score_percent) < 50 THEN 1
+                        WHEN AVG(e.score_percent) < 65 THEN 3
+                        WHEN AVG(e.score_percent) < 80 THEN 7
+                        WHEN AVG(e.score_percent) < 90 THEN 14
+                        ELSE 30
+                      END AS review_interval_days,
+                      c.name AS context_name,c.context_type,
                       COALESCE(
                         (SELECT COALESCE(
                            d.mavzu_name,d.kichik_name,d.bolim_name,d.bob_name
@@ -17205,16 +17295,15 @@ def _analitika_oquvchi_xulosasi(
                  AND e.topic_code IS NOT NULL
                  AND e.score_percent IS NOT NULL
                  AND e.affects_mastery=TRUE
-               GROUP BY e.context_id,e.topic_code,c.name
-               HAVING AVG(e.score_percent) < 70
-               ORDER BY AVG(e.score_percent),COUNT(*) DESC
-               LIMIT 8""",
+               GROUP BY e.context_id,e.topic_code,c.name,c.context_type""",
             (student_id, group_id),
         )
     else:
         cur.execute(
             f"""SELECT s.context_id,s.topic_code,s.subject,s.mastery_score,
-                       s.attempts,s.next_review_at,c.name AS context_name,
+                       s.attempts,s.next_review_at,s.last_assessed_at,
+                       s.review_interval_days,c.name AS context_name,
+                       c.context_type,
                        COALESCE(
                          (SELECT COALESCE(d.mavzu_name,d.kichik_name,d.bolim_name,d.bob_name)
                           FROM dts_tree d
@@ -17222,26 +17311,100 @@ def _analitika_oquvchi_xulosasi(
                          s.topic_code
                        ) AS topic_name
                 FROM student_skill_state s
-                JOIN learning_contexts c ON c.id=s.context_id
+                JOIN learning_contexts c ON c.id=s.context_id AND c.active=TRUE
                 WHERE s.user_id=%s {skill_context_shart}
-                  AND (
-                    s.mastery_score < 70
-                    OR (s.next_review_at IS NOT NULL AND s.next_review_at <= NOW())
-                  )
-                ORDER BY s.mastery_score ASC,s.next_review_at NULLS LAST
-                LIMIT 8""",
+                  AND EXISTS (
+                    SELECT 1 FROM context_memberships active_membership
+                    WHERE active_membership.user_id=s.user_id
+                      AND active_membership.context_id=s.context_id
+                      AND active_membership.member_role='student'
+                      AND active_membership.status='active'
+                  )""",
             skill_params,
         )
-    weak_topics = [{
-        "context_id": r["context_id"],
-        "context_name": r["context_name"],
-        "topic_code": r["topic_code"],
-        "topic_name": r["topic_name"],
-        "subject": r["subject"],
-        "mastery_score": _analitika_son(r["mastery_score"]),
-        "attempts": int(r["attempts"] or 0),
-        "next_review_at": r["next_review_at"],
-    } for r in cur.fetchall()]
+    skill_rows = list(cur.fetchall())
+
+    # Har mavzuning oxirgi ikki haqiqiy bahosini bir martada olamiz. Oldingi
+    # past natijadan keyingi muvaffaqiyatli qayta test "tiklandi" holatini
+    # beradi; oddiy kontent ko'rish yoki bahosiz AI suhbati bunga kirmaydi.
+    cur.execute(
+        f"""SELECT context_id,topic_code,score_percent,occurred_at,rn
+            FROM (
+              SELECT e.context_id,e.topic_code,e.score_percent,e.occurred_at,
+                     ROW_NUMBER() OVER (
+                       PARTITION BY e.context_id,e.topic_code
+                       ORDER BY e.occurred_at DESC,e.id DESC
+                     ) AS rn
+              FROM learning_events e
+              WHERE e.user_id=%s
+                AND e.topic_code IS NOT NULL
+                AND samtm_is_verified_score(e.event_type,e.score_percent)
+                {context_shart}
+            ) history
+            WHERE rn <= 2""",
+        [student_id, *context_params],
+    )
+    score_history = {}
+    for event in cur.fetchall():
+        key = (event["context_id"], event["topic_code"])
+        score_history.setdefault(key, {})[int(event["rn"])] = event
+
+    now = datetime.now(timezone.utc)
+    all_topic_memory = []
+    for r in skill_rows:
+        history = score_history.get((r["context_id"], r["topic_code"]), {})
+        latest = history.get(1)
+        previous = history.get(2)
+        memory = _analitika_xotira_hisobi(
+            r["mastery_score"],
+            r["last_assessed_at"] or (latest["occurred_at"] if latest else None),
+            r["attempts"],
+            r["review_interval_days"],
+            latest["score_percent"] if latest else None,
+            previous["score_percent"] if previous else None,
+            now=now,
+        )
+        next_review_at = r["next_review_at"]
+        if next_review_at is not None and next_review_at.tzinfo is None:
+            next_review_at = next_review_at.replace(tzinfo=timezone.utc)
+        review_due = bool(next_review_at is not None and next_review_at <= now)
+        all_topic_memory.append({
+            "context_id": r["context_id"],
+            "context_name": r["context_name"],
+            "context_type": r["context_type"],
+            "topic_code": r["topic_code"],
+            "topic_name": r["topic_name"],
+            "subject": r["subject"],
+            "mastery_score": _analitika_son(r["mastery_score"]),
+            "attempts": int(r["attempts"] or 0),
+            "next_review_at": r["next_review_at"],
+            "review_due": review_due,
+            "latest_score": (
+                None if latest is None else _analitika_son(latest["score_percent"])
+            ),
+            "previous_score": (
+                None if previous is None else _analitika_son(previous["score_percent"])
+            ),
+            **memory,
+        })
+
+    review_topics = [
+        topic for topic in all_topic_memory
+        if topic["mastery_score"] < 70
+        or topic["forgetting_probability"] >= 35
+        or topic["review_due"]
+    ]
+    review_topics.sort(key=lambda topic: (
+        -topic["forgetting_probability"], topic["mastery_score"],
+        topic["topic_name"] or "",
+    ))
+    weak_topics = review_topics[:8]
+    recovered_topics = [
+        topic for topic in all_topic_memory if topic["recovered_after_review"]
+    ]
+    recovered_topics.sort(key=lambda topic: (
+        -(topic["latest_score"] or 0), topic["topic_name"] or "",
+    ))
 
     cur.execute(
         f"""SELECT e.id,e.event_type,e.source_type,e.evidence_source,e.channel,
@@ -17279,12 +17442,25 @@ def _analitika_oquvchi_xulosasi(
 
     next_actions = []
     for w in weak_topics[:3]:
+        if w["memory_status"] == "forgotten":
+            reason = (
+                f"Unutish xavfi {w['forgetting_probability']}%; "
+                f"oxirgi tekshiruvdan {w['days_since_assessment']} kun o'tgan"
+            )
+        elif w["memory_status"] == "at_risk":
+            reason = (
+                f"Esdan chiqish xavfi {w['forgetting_probability']}%; "
+                "qisqa qayta test tavsiya qilinadi"
+            )
+        else:
+            reason = f"Joriy o'zlashtirish {round(w['mastery_score'])}%"
         next_actions.append({
             "type": "review",
             "title": f"{w['subject'] or 'Mavzu'}: {w['topic_name']}",
-            "reason": f"Joriy o'zlashtirish {round(w['mastery_score'])}%",
+            "reason": reason,
             "topic_code": w["topic_code"],
             "context_id": w["context_id"],
+            "forgetting_probability": w["forgetting_probability"],
         })
     if not recent_events:
         next_actions.append({
@@ -17305,10 +17481,20 @@ def _analitika_oquvchi_xulosasi(
         "active_days": int(summary_row["active_days"] or 0),
         "time_minutes": round(int(summary_row["duration_seconds"] or 0) / 60),
         "mastered_topics": int(skill_counts["mastered_topics"] or 0),
-        "needs_review": int(skill_counts["needs_review"] or 0),
+        "needs_review": len(review_topics),
+        "at_risk_topics": sum(
+            1 for topic in all_topic_memory
+            if topic["memory_status"] in ("at_risk", "forgotten")
+        ),
+        "forgotten_topics": sum(
+            1 for topic in all_topic_memory
+            if topic["memory_status"] == "forgotten"
+        ),
+        "recovered_topics": len(recovered_topics),
         "streak_days": _analitika_streak(activity_dates),
         "last_activity_at": summary_row["last_activity_at"],
     }
+    has_university_access = any(c["type"] == "university" for c in contexts)
     return {
         "student": {
             "user_id": student["user_id"],
@@ -17318,11 +17504,19 @@ def _analitika_oquvchi_xulosasi(
         },
         "period_days": kunlar,
         "selected_context_id": context_id,
+        "capabilities": {
+            "has_university_student_access": has_university_access,
+            "available_context_types": sorted({c["type"] for c in contexts}),
+            "university_context_ids": [
+                c["id"] for c in contexts if c["type"] == "university"
+            ],
+        },
         "summary": summary,
         "contexts": contexts,
         "subjects": subjects,
         "trend": trend,
         "weak_topics": weak_topics,
+        "recovered_topics": recovered_topics[:5],
         "recent_events": recent_events,
         "next_actions": next_actions,
     }
