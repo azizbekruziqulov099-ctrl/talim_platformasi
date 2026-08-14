@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-learning-path-v18.20",
+        "versiya": "smart-learning-path-v18.21",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -98,7 +98,7 @@ def versiya():
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
-            "learning_path": "school-calendar-content-actions-v18.20",
+            "learning_path": "balanced-golden-subject-path-v18.21",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -17794,31 +17794,83 @@ def _talim_yoli_oqish_haftalari(choraklar, holidays=None):
     return natija
 
 
-def _talim_yoli_mavzularni_haftalarga_joyla(mavzular, choraklar, holidays=None):
-    """Mavzularni ta'tilsiz, Dushanba–Shanba o'qish haftalariga yoyadi."""
+def _talim_yoli_mavzularni_haftalarga_joyla(
+    mavzular, choraklar, holidays=None, balance_across_year=False,
+):
+    """Har bir fan mavzusini boshqa fanlardan mustaqil ravishda haftalarga yoyadi.
+
+    Platformaning taxminiy rejasida fan mavzulari butun o'quv yiliga tekis
+    taqsimlanadi. Muassasa chorak bergan bo'lsa, mavzular har bir fan va chorak
+    ichida alohida tekislanadi. O'qituvchi kiritgan aniq sana keyin ustun keladi.
+    """
     natija = [dict(m) for m in mavzular]
     barcha_haftalar = _talim_yoli_oqish_haftalari(choraklar, holidays)
-    for term_no in (1, 2, 3, 4):
-        indekslar = [i for i, m in enumerate(natija) if int(m.get("term_no") or 1) == term_no]
-        if not indekslar:
-            continue
-        haftalar = [h for h in barcha_haftalar if h["term_no"] == term_no]
-        if not haftalar:
-            continue
-        for joy, index in enumerate(indekslar):
-            hafta_index = min(
-                len(haftalar) - 1,
-                int(joy * len(haftalar) / max(1, len(indekslar))),
-            )
-            hafta = haftalar[hafta_index]
-            natija[index].update({
-                "week_no": hafta["week_no"],
-                "academic_week_no": hafta["academic_week_no"],
-                "planned_start": hafta["start"],
-                "planned_end": hafta["end"],
-                "schedule_source": "platform_estimate",
-                "schedule_is_estimate": True,
-            })
+
+    fanlar = {}
+    for index, mavzu in enumerate(natija):
+        fanlar.setdefault(str(mavzu.get("subject") or "Boshqa"), []).append(index)
+
+    def hafta_indeksi(joy, mavzu_soni, hafta_soni):
+        if mavzu_soni <= 1 or hafta_soni <= 1:
+            return 0
+        # Birinchi mavzu birinchi, oxirgisi oxirgi haftaga tushadi; oraliq
+        # mavzular butun yo'l bo'ylab imkon qadar teng masofada joylashadi.
+        return min(
+            hafta_soni - 1,
+            (joy * (hafta_soni - 1) + (mavzu_soni - 1) // 2) // (mavzu_soni - 1),
+        )
+
+    for fan_indekslari in fanlar.values():
+        for fan_tartibi, index in enumerate(fan_indekslari, 1):
+            natija[index]["subject_sequence_no"] = fan_tartibi
+
+        if balance_across_year:
+            # Avval oylar o'rtasida (farq ko'pi bilan bitta mavzu), keyin shu
+            # oyning o'qish haftalari o'rtasida tenglaymiz. Shu sabab sentabrda
+            # 0, boshqa oyda 6–8 mavzu bo'lib qoladigan to'planish yo'qoladi.
+            oylar = {}
+            for hafta in barcha_haftalar:
+                oylar.setdefault(hafta["start"].strftime("%Y-%m"), []).append(hafta)
+            oy_guruhlari = [
+                {"indekslar": [], "haftalar": haftalar}
+                for haftalar in oylar.values()
+            ]
+            mavzu_soni = len(fan_indekslari)
+            oy_soni = len(oy_guruhlari)
+            if not oy_soni:
+                continue
+            for joy, index in enumerate(fan_indekslari):
+                if mavzu_soni >= oy_soni:
+                    oy_index = min(oy_soni - 1, joy * oy_soni // mavzu_soni)
+                else:
+                    oy_index = hafta_indeksi(joy, mavzu_soni, oy_soni)
+                oy_guruhlari[oy_index]["indekslar"].append(index)
+            guruhlar = [(g["indekslar"], g["haftalar"]) for g in oy_guruhlari]
+        else:
+            guruhlar = [
+                (
+                    [i for i in fan_indekslari if int(natija[i].get("term_no") or 1) == term_no],
+                    [h for h in barcha_haftalar if h["term_no"] == term_no],
+                )
+                for term_no in (1, 2, 3, 4)
+            ]
+        for indekslar, haftalar in guruhlar:
+            if not indekslar or not haftalar:
+                continue
+            for joy, index in enumerate(indekslar):
+                hafta = haftalar[hafta_indeksi(joy, len(indekslar), len(haftalar))]
+                natija[index].update({
+                    "term_no": hafta["term_no"],
+                    "week_no": hafta["week_no"],
+                    "academic_week_no": hafta["academic_week_no"],
+                    "planned_start": hafta["start"],
+                    "planned_end": hafta["end"],
+                    "schedule_source": (
+                        "platform_balanced_estimate"
+                        if balance_across_year else "calendar_term_estimate"
+                    ),
+                    "schedule_is_estimate": True,
+                })
     return natija
 
 
@@ -18101,7 +18153,10 @@ def _talim_yoli_xulosasi(
         cur, selected_context["id"], selected_grade, academic_year
     )
     calendar_weeks = _talim_yoli_oqish_haftalari(terms, holidays)
-    topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms, holidays)
+    topics = _talim_yoli_mavzularni_haftalarga_joyla(
+        topics, terms, holidays,
+        balance_across_year=bool(calendar_source.get("is_estimate")),
+    )
     codes = [t["topic_code"] for t in topics]
 
     record_map = {}
@@ -18329,6 +18384,18 @@ def _talim_yoli_xulosasi(
             "has_lesson_content": lesson_counts.get(code, 0) > 0,
         })
 
+    calendar_month_keys = []
+    if terms:
+        month_cursor = date(terms[0]["start"].year, terms[0]["start"].month, 1)
+        calendar_end = terms[-1]["end"]
+        while month_cursor <= calendar_end:
+            calendar_month_keys.append(month_cursor.strftime("%Y-%m"))
+            month_cursor = (
+                date(month_cursor.year + 1, 1, 1)
+                if month_cursor.month == 12
+                else date(month_cursor.year, month_cursor.month + 1, 1)
+            )
+
     subjects = []
     for subject_name in sorted({t["subject"] for t in finalized}):
         subset = [t for t in finalized if t["subject"] == subject_name]
@@ -18346,6 +18413,17 @@ def _talim_yoli_xulosasi(
                 next((t for t in reversed(subset) if t["teaching_state"]["key"] == "expected"), None),
             ),
         )
+        monthly_distribution = [
+            {
+                "month": month_key,
+                "topic_count": sum(
+                    1 for t in subset
+                    if t.get("planned_start") and t["planned_start"][:7] == month_key
+                ),
+            }
+            for month_key in calendar_month_keys
+        ]
+        monthly_counts = [m["topic_count"] for m in monthly_distribution]
         subjects.append({
             "name": subject_name,
             "topic_count": len(subset),
@@ -18361,6 +18439,9 @@ def _talim_yoli_xulosasi(
             "test_available_count": sum(1 for t in subset if t["can_take_test"]),
             "lesson_available_count": sum(1 for t in subset if t["has_lesson_content"]),
             "next_topic_date": upcoming[0]["planned_start"] if upcoming else None,
+            "monthly_distribution": monthly_distribution,
+            "min_monthly_topic_count": min(monthly_counts) if monthly_counts else 0,
+            "max_monthly_topic_count": max(monthly_counts) if monthly_counts else 0,
         })
 
     verified_all = [t for t in finalized if t["knowledge_score"] is not None]
@@ -18450,6 +18531,10 @@ def _talim_yoli_xulosasi(
             "end": terms[-1]["end"].isoformat() if terms else None,
             "study_days_per_week": TALIM_YOLI_OQISH_KUNLARI,
             "teaching_week_count": len(calendar_weeks),
+            "balance_rule": (
+                "subject_even_across_year"
+                if calendar_source.get("is_estimate") else "subject_even_inside_term"
+            ),
             "months": calendar_months,
             "weeks": [
                 {
@@ -18792,7 +18877,10 @@ def talim_yoli_oqituvchi_reja(
             cur, group["context_id"], grade, academic_year
         )
         calendar_weeks = _talim_yoli_oqish_haftalari(terms, holidays)
-        topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms, holidays)
+        topics = _talim_yoli_mavzularni_haftalarga_joyla(
+            topics, terms, holidays,
+            balance_across_year=bool(calendar_source.get("is_estimate")),
+        )
         if topics:
             cur.execute(
                 """SELECT * FROM learning_path_teaching_records
