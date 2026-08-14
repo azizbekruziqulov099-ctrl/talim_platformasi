@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-learning-path-v18.19",
+        "versiya": "smart-learning-path-v18.20",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -98,7 +98,7 @@ def versiya():
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
-            "learning_path": "subject-pages-olympiad-grade-rollover-v18.19",
+            "learning_path": "school-calendar-content-actions-v18.20",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -15436,6 +15436,7 @@ class AiUstozSorovi(BaseModel):
     token: str
     fan: str
     topic_code: str
+    grade: Optional[str] = None
     rejim: str = "orgatish"
     savol: str
     suhbat_id: Optional[int] = None
@@ -15445,7 +15446,7 @@ class AiUstozSorovi(BaseModel):
 
 
 @app.get("/api/ai/ustoz/fan_mavzular")
-def ai_ustoz_fan_mavzular(token: str):
+def ai_ustoz_fan_mavzular(token: str, grade: Optional[str] = None):
     """O'quvchining faqat O'Z sinfiga tegishli fan va mavzulari."""
     user_id = _jwt_tekshir(token)
     conn = _db()
@@ -15455,6 +15456,19 @@ def ai_ustoz_fan_mavzular(token: str):
         cur.close()
         conn.close()
         return {"sinf_sozlanmagan": True, "fanlar": []}
+    current_grade = profil["sinf"]
+    cur.execute("SELECT to_regclass('public.learning_grade_progressions') AS progression")
+    if cur.fetchone()["progression"]:
+        current_grade = _talim_yoli_auto_sinf(cur, user_id, profil["sinf"])["effective_grade"]
+    selected_grade = _talim_yoli_sinfni_tozala(grade) or current_grade
+    if (
+        selected_grade and selected_grade.isdigit()
+        and current_grade and current_grade.isdigit()
+        and int(selected_grade) > int(current_grade)
+    ):
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=400, detail="Kelajak sinfi mavzusini ochib bo'lmaydi")
     cur.execute(
         """SELECT subject_name AS fan,
                   MIN(topic_code) AS topic_code,
@@ -15463,7 +15477,7 @@ def ai_ustoz_fan_mavzular(token: str):
            WHERE grade=%s AND is_deleted=FALSE
            GROUP BY subject_name, COALESCE(mavzu_name, kichik_name, bolim_name, bob_name)
            ORDER BY subject_name, MIN(topic_code)""",
-        (profil["sinf"],),
+        (selected_grade,),
     )
     qatorlar = cur.fetchall()
     fanlar = {}
@@ -15475,7 +15489,7 @@ def ai_ustoz_fan_mavzular(token: str):
     conn.close()
     return {
         "sinf_sozlanmagan": False,
-        "sinf": profil["sinf"],
+        "sinf": selected_grade,
         "yosh": profil["yosh"],
         "fanlar": [{"fan": fan, "mavzular": mavzular} for fan, mavzular in fanlar.items()],
         "rejimlar": [{"kalit": k, "nom": v} for k, v in AI_REJIM_NOMLARI.items()],
@@ -15547,15 +15561,29 @@ def ai_ustoz_sorash(sorov: AiUstozSorovi):
             conn.close()
             raise HTTPException(status_code=403, detail="Bu to'garak kontentiga ruxsatingiz yo'q")
 
+    current_grade = profil["sinf"]
+    cur.execute("SELECT to_regclass('public.learning_grade_progressions') AS progression")
+    if cur.fetchone()["progression"]:
+        current_grade = _talim_yoli_auto_sinf(cur, user_id, profil["sinf"])["effective_grade"]
+    selected_grade = _talim_yoli_sinfni_tozala(sorov.grade) or current_grade
+    if (
+        selected_grade and selected_grade.isdigit()
+        and current_grade and current_grade.isdigit()
+        and int(selected_grade) > int(current_grade)
+    ):
+        cur.close()
+        conn.close()
+        raise HTTPException(status_code=400, detail="Kelajak sinfi mavzusini ochib bo'lmaydi")
+
     baza = _ai_baza_konteksti(
         cur,
-        profil["sinf"],
+        selected_grade,
         sorov.fan,
         topic_code=sorov.topic_code,
         togarak_id=sorov.togarak_id,
     )
     qoidalar = _ai_qoidalarni_ol(
-        cur, "oquvchi", profil["yosh"], profil["sinf"], baza["topik"]["subject_name"], rejim
+        cur, "oquvchi", profil["yosh"], selected_grade, baza["topik"]["subject_name"], rejim
     )
 
     if sorov.suhbat_id:
@@ -17550,7 +17578,8 @@ def _analitika_oquvchi_xulosasi(
     }
 
 
-TALIM_YOLI_STANDART_CHORAK_HAFTALARI = {1: 8, 2: 7, 3: 10, 4: 9}
+TALIM_YOLI_STANDART_CHORAK_HAFTALARI = {1: 9, 2: 7, 3: 10, 4: 9}
+TALIM_YOLI_OQISH_KUNLARI = 6  # dushanba–shanba; yakshanba reja kuni emas
 TALIM_YOLI_BILIM_HOLATLARI = (
     (50, "beginner", "Boshlang'ich"),
     (65, "developing", "Rivojlanmoqda"),
@@ -17656,7 +17685,7 @@ def _talim_yoli_standart_choraklar(academic_year):
     boshlanish_yili = int(academic_year.split("-")[0])
     return [
         {"term": 1, "start": date(boshlanish_yili, 9, 2), "end": date(boshlanish_yili, 10, 31)},
-        {"term": 2, "start": date(boshlanish_yili, 11, 3), "end": date(boshlanish_yili, 12, 27)},
+        {"term": 2, "start": date(boshlanish_yili, 11, 10), "end": date(boshlanish_yili, 12, 27)},
         {"term": 3, "start": date(boshlanish_yili + 1, 1, 12), "end": date(boshlanish_yili + 1, 3, 20)},
         {"term": 4, "start": date(boshlanish_yili + 1, 3, 30), "end": date(boshlanish_yili + 1, 5, 25)},
     ]
@@ -17706,30 +17735,89 @@ def _talim_yoli_reja_holati(planned_start, planned_end, teaching_status="planned
     return {"key": "upcoming", "label": "Oldinda", "calendar_passed": False}
 
 
-def _talim_yoli_mavzularni_haftalarga_joyla(mavzular, choraklar):
-    """Mavzu tartibini saqlab, har chorak ichida o'qitish haftalariga yoyadi."""
+def _talim_yoli_tatil_oraliqlari(holidays=None):
+    """Kalendar JSONidagi sana yoki start/end oralig'ini DATEga aylantiradi."""
+    natija = []
+    for item in holidays or []:
+        if isinstance(item, dict):
+            start = _talim_yoli_sana(item.get("start") or item.get("date"))
+            end = _talim_yoli_sana(item.get("end") or item.get("date")) or start
+            name = item.get("name") or item.get("label") or "Ta'til"
+        else:
+            start = _talim_yoli_sana(item)
+            end = start
+            name = "Ta'til"
+        if start and end and end >= start:
+            natija.append({"start": start, "end": end, "name": name})
+    return natija
+
+
+def _talim_yoli_oqish_haftalari(choraklar, holidays=None):
+    """Chorak ichidagi haqiqiy Dushanba–Shanba o'qish haftalarini quradi."""
+    tatillar = _talim_yoli_tatil_oraliqlari(holidays)
+
+    def oqish_kunimi(kun):
+        if kun.weekday() >= TALIM_YOLI_OQISH_KUNLARI:
+            return False
+        return not any(t["start"] <= kun <= t["end"] for t in tatillar)
+
+    natija = []
+    akademik_hafta = 0
+    for term in sorted(choraklar, key=lambda x: int(x.get("term") or 1)):
+        term_no = int(term.get("term") or 1)
+        term_start = _talim_yoli_sana(term.get("start"))
+        term_end = _talim_yoli_sana(term.get("end"))
+        if not term_start or not term_end or term_end < term_start:
+            continue
+        monday = term_start - timedelta(days=term_start.weekday())
+        term_week = 0
+        while monday <= term_end:
+            kunlar = [
+                monday + timedelta(days=offset)
+                for offset in range(TALIM_YOLI_OQISH_KUNLARI)
+                if term_start <= monday + timedelta(days=offset) <= term_end
+                and oqish_kunimi(monday + timedelta(days=offset))
+            ]
+            if kunlar:
+                term_week += 1
+                akademik_hafta += 1
+                natija.append({
+                    "term_no": term_no,
+                    "week_no": term_week,
+                    "academic_week_no": akademik_hafta,
+                    "start": min(kunlar),
+                    "end": max(kunlar),
+                    "study_day_count": len(kunlar),
+                    "month": min(kunlar).strftime("%Y-%m"),
+                })
+            monday += timedelta(days=7)
+    return natija
+
+
+def _talim_yoli_mavzularni_haftalarga_joyla(mavzular, choraklar, holidays=None):
+    """Mavzularni ta'tilsiz, Dushanba–Shanba o'qish haftalariga yoyadi."""
     natija = [dict(m) for m in mavzular]
-    term_map = {int(t["term"]): t for t in choraklar}
+    barcha_haftalar = _talim_yoli_oqish_haftalari(choraklar, holidays)
     for term_no in (1, 2, 3, 4):
         indekslar = [i for i, m in enumerate(natija) if int(m.get("term_no") or 1) == term_no]
         if not indekslar:
             continue
-        term = term_map.get(term_no)
-        if not term:
+        haftalar = [h for h in barcha_haftalar if h["term_no"] == term_no]
+        if not haftalar:
             continue
-        term_start = _talim_yoli_sana(term.get("start"))
-        term_end = _talim_yoli_sana(term.get("end"))
-        if not term_start or not term_end:
-            continue
-        hafta_soni = max(1, TALIM_YOLI_STANDART_CHORAK_HAFTALARI.get(term_no, 8))
         for joy, index in enumerate(indekslar):
-            hafta = min(hafta_soni, int(joy * hafta_soni / max(1, len(indekslar))) + 1)
-            boshlanish = term_start + timedelta(days=(hafta - 1) * 7)
-            tugash = min(boshlanish + timedelta(days=6), term_end)
+            hafta_index = min(
+                len(haftalar) - 1,
+                int(joy * len(haftalar) / max(1, len(indekslar))),
+            )
+            hafta = haftalar[hafta_index]
             natija[index].update({
-                "week_no": hafta,
-                "planned_start": boshlanish,
-                "planned_end": tugash,
+                "week_no": hafta["week_no"],
+                "academic_week_no": hafta["academic_week_no"],
+                "planned_start": hafta["start"],
+                "planned_end": hafta["end"],
+                "schedule_source": "platform_estimate",
+                "schedule_is_estimate": True,
             })
     return natija
 
@@ -17815,10 +17903,12 @@ def _talim_yoli_calendar_ol(cur, context_id, grade, academic_year):
     )
     row = cur.fetchone()
     if not row:
-        return _talim_yoli_standart_choraklar(academic_year), {
+        return _talim_yoli_standart_choraklar(academic_year), [], {
             "type": "platform_estimate",
             "label": "SamTM taxminiy kalendari",
             "is_estimate": True,
+            "precision": "approximate",
+            "study_days_per_week": TALIM_YOLI_OQISH_KUNLARI,
         }
     terms = []
     for item in row["terms"] or []:
@@ -17829,10 +17919,13 @@ def _talim_yoli_calendar_ol(cur, context_id, grade, academic_year):
             terms.append({"term": term_no, "start": start, "end": end})
     if len(terms) != 4:
         terms = _talim_yoli_standart_choraklar(academic_year)
-    return terms, {
+    holidays = _talim_yoli_tatil_oraliqlari(row["holidays"] or [])
+    return terms, holidays, {
         "type": row["calendar_level"],
         "label": row["name"],
         "is_estimate": False,
+        "precision": "institution_plan",
+        "study_days_per_week": TALIM_YOLI_OQISH_KUNLARI,
     }
 
 
@@ -18004,10 +18097,11 @@ def _talim_yoli_xulosasi(
             "sequence_no": index,
         })
 
-    terms, calendar_source = _talim_yoli_calendar_ol(
+    terms, holidays, calendar_source = _talim_yoli_calendar_ol(
         cur, selected_context["id"], selected_grade, academic_year
     )
-    topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms)
+    calendar_weeks = _talim_yoli_oqish_haftalari(terms, holidays)
+    topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms, holidays)
     codes = [t["topic_code"] for t in topics]
 
     record_map = {}
@@ -18056,6 +18150,56 @@ def _talim_yoli_xulosasi(
             (codes,),
         )
         test_counts = {r["topic_code"]: int(r["soni"] or 0) for r in cur.fetchall()}
+
+    # Test va o'rgatuvchi kontent mavjudligini oldindan aytamiz. Frontend
+    # bo'sh tugma ko'rsatmaydi: bor bo'lsa aynan o'sha mavzuga olib boradi.
+    lesson_counts = {}
+    if codes:
+        cur.execute(
+            """SELECT
+                 to_regclass('public.ai_brain_published_units') AS ai_units,
+                 to_regclass('public.mavzu_tushuntirishlari') AS explanations,
+                 to_regclass('public.togarak_mavzu_kontenti') AS club_content"""
+        )
+        available = cur.fetchone()
+        if available and available["ai_units"]:
+            cur.execute(
+                """SELECT topic_code,COUNT(*) AS soni
+                   FROM ai_brain_published_units
+                   WHERE topic_code=ANY(%s)
+                     AND unit_kind IN ('knowledge','explanation','example','task','club')
+                   GROUP BY topic_code""",
+                (codes,),
+            )
+            lesson_counts.update({r["topic_code"]: int(r["soni"] or 0) for r in cur.fetchall()})
+        if available and available["explanations"] and selected_grade:
+            cur.execute(
+                """SELECT UPPER(fan) AS fan_key,UPPER(mavzu_nomi) AS topic_key,
+                          COUNT(*) AS soni
+                   FROM mavzu_tushuntirishlari WHERE sinf=%s
+                   GROUP BY UPPER(fan),UPPER(mavzu_nomi)""",
+                (str(selected_grade),),
+            )
+            explanation_map = {
+                (r["fan_key"], r["topic_key"]): int(r["soni"] or 0)
+                for r in cur.fetchall()
+            }
+            for topic in topics:
+                lesson_counts[topic["topic_code"]] = lesson_counts.get(topic["topic_code"], 0) + explanation_map.get(
+                    (str(topic["subject"]).upper(), str(topic["topic_name"]).upper()), 0
+                )
+        if (
+            available and available["club_content"]
+            and selected_context.get("external_type") == "togarak"
+        ):
+            cur.execute(
+                """SELECT topic_code,COUNT(*) AS soni FROM togarak_mavzu_kontenti
+                   WHERE togarak_id=%s AND topic_code=ANY(%s)
+                   GROUP BY topic_code""",
+                (selected_context.get("external_id"), codes),
+            )
+            for r in cur.fetchall():
+                lesson_counts[r["topic_code"]] = lesson_counts.get(r["topic_code"], 0) + int(r["soni"] or 0)
 
     event_history = {}
     if codes:
@@ -18113,9 +18257,22 @@ def _talim_yoli_xulosasi(
             topic["week_no"] = int(record["week_no"] or topic.get("week_no") or 1)
             topic["planned_start"] = record["planned_start"] or topic.get("planned_start")
             topic["planned_end"] = record["planned_end"] or topic.get("planned_end")
+            topic["schedule_source"] = record["source_type"] or "teacher"
+            topic["schedule_is_estimate"] = False
         elif code in club_plan_map:
             topic["planned_start"] = club_plan_map[code]
             topic["planned_end"] = club_plan_map[code]
+            topic["schedule_source"] = "club_plan"
+            topic["schedule_is_estimate"] = False
+
+        planned_date = _talim_yoli_sana(topic.get("planned_start"))
+        exact_week = next(
+            (w for w in calendar_weeks if planned_date and w["start"] <= planned_date <= w["end"]),
+            None,
+        )
+        if exact_week:
+            topic["week_no"] = exact_week["week_no"]
+            topic["academic_week_no"] = exact_week["academic_week_no"]
 
         teaching_status = record["teaching_status"] if record else "planned"
         if code in taught_by_event:
@@ -18168,6 +18325,8 @@ def _talim_yoli_xulosasi(
             "memory": memory,
             "test_count": test_counts.get(code, 0),
             "can_take_test": test_counts.get(code, 0) > 0,
+            "lesson_content_count": lesson_counts.get(code, 0),
+            "has_lesson_content": lesson_counts.get(code, 0) > 0,
         })
 
     subjects = []
@@ -18176,6 +18335,10 @@ def _talim_yoli_xulosasi(
         verified = [t for t in subset if t["knowledge_score"] is not None]
         reached = [t for t in subset if t["teaching_state"]["calendar_passed"]]
         taught = [t for t in subset if t["teaching_status"] == "taught"]
+        confirmation_missing = [
+            t for t in reached if t["teaching_status"] not in {"taught", "skipped"}
+        ]
+        upcoming = [t for t in subset if t["teaching_state"]["key"] == "upcoming"]
         current = next(
             (t for t in subset if t["teaching_state"]["key"] == "current"),
             next(
@@ -18194,12 +18357,19 @@ def _talim_yoli_xulosasi(
             "verified_topic_count": len(verified),
             "unknown_topic_count": len(subset) - len(verified),
             "current_topic_code": current["topic_code"] if current else None,
+            "confirmation_missing_count": len(confirmation_missing),
+            "test_available_count": sum(1 for t in subset if t["can_take_test"]),
+            "lesson_available_count": sum(1 for t in subset if t["has_lesson_content"]),
+            "next_topic_date": upcoming[0]["planned_start"] if upcoming else None,
         })
 
     verified_all = [t for t in finalized if t["knowledge_score"] is not None]
     reached_all = [t for t in finalized if t["teaching_state"]["calendar_passed"]]
     taught_all = [t for t in finalized if t["teaching_status"] == "taught"]
     total = len(finalized)
+    confirmation_missing_all = [
+        t for t in reached_all if t["teaching_status"] not in {"taught", "skipped"}
+    ]
     numeric_current = int(current_grade) if current_grade and current_grade.isdigit() else None
     grade_options = [str(x) for x in range(1, numeric_current + 1)] if numeric_current else [selected_grade]
     current_week_topics = [
@@ -18234,6 +18404,32 @@ def _talim_yoli_xulosasi(
             for t in focus_topics
         ],
     }
+    calendar_months = []
+    if terms:
+        cursor = date(terms[0]["start"].year, terms[0]["start"].month, 1)
+        calendar_end = terms[-1]["end"]
+        while cursor <= calendar_end:
+            next_month = (
+                date(cursor.year + 1, 1, 1)
+                if cursor.month == 12 else date(cursor.year, cursor.month + 1, 1)
+            )
+            month_end = next_month - timedelta(days=1)
+            key = cursor.strftime("%Y-%m")
+            month_weeks = [
+                w for w in calendar_weeks
+                if w["start"] <= month_end and w["end"] >= cursor
+            ]
+            calendar_months.append({
+                "key": key,
+                "start": cursor.isoformat(),
+                "end": min(month_end, calendar_end).isoformat(),
+                "week_count": len(month_weeks),
+                "topic_count": sum(
+                    1 for t in finalized
+                    if t.get("planned_start") and t["planned_start"][:7] == key
+                ),
+            })
+            cursor = next_month
     return {
         "path_type": "standard",
         "student": {
@@ -18249,6 +18445,25 @@ def _talim_yoli_xulosasi(
         "selected_context": selected_context,
         "selected_group": selected_group,
         "calendar_source": calendar_source,
+        "calendar": {
+            "start": terms[0]["start"].isoformat() if terms else None,
+            "end": terms[-1]["end"].isoformat() if terms else None,
+            "study_days_per_week": TALIM_YOLI_OQISH_KUNLARI,
+            "teaching_week_count": len(calendar_weeks),
+            "months": calendar_months,
+            "weeks": [
+                {
+                    **w,
+                    "start": w["start"].isoformat(),
+                    "end": w["end"].isoformat(),
+                }
+                for w in calendar_weeks
+            ],
+            "holidays": [
+                {**h, "start": h["start"].isoformat(), "end": h["end"].isoformat()}
+                for h in _talim_yoli_tatil_oraliqlari(holidays)
+            ],
+        },
         "grade_progression": {**grade_progress, **lifecycle},
         "focus_week": focus_week,
         "terms": [{**t, "start": t["start"].isoformat(), "end": t["end"].isoformat()} for t in terms],
@@ -18262,6 +18477,9 @@ def _talim_yoli_xulosasi(
             ),
             "verified_topic_count": len(verified_all),
             "unknown_topic_count": total - len(verified_all),
+            "confirmation_missing_count": len(confirmation_missing_all),
+            "test_available_count": sum(1 for t in finalized if t["can_take_test"]),
+            "lesson_available_count": sum(1 for t in finalized if t["has_lesson_content"]),
         },
         "subjects": subjects,
         "topics": finalized,
@@ -18570,10 +18788,11 @@ def talim_yoli_oqituvchi_reja(
                 "term_no": _talim_yoli_chorak_raqami(row["quarter"]),
                 "sequence_no": index,
             })
-        terms, calendar_source = _talim_yoli_calendar_ol(
+        terms, holidays, calendar_source = _talim_yoli_calendar_ol(
             cur, group["context_id"], grade, academic_year
         )
-        topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms)
+        calendar_weeks = _talim_yoli_oqish_haftalari(terms, holidays)
+        topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms, holidays)
         if topics:
             cur.execute(
                 """SELECT * FROM learning_path_teaching_records
@@ -18617,6 +18836,12 @@ def talim_yoli_oqituvchi_reja(
             },
             "academic_year": academic_year,
             "calendar_source": calendar_source,
+            "calendar": {
+                "start": terms[0]["start"].isoformat() if terms else None,
+                "end": terms[-1]["end"].isoformat() if terms else None,
+                "teaching_week_count": len(calendar_weeks),
+                "study_days_per_week": TALIM_YOLI_OQISH_KUNLARI,
+            },
             "topics": result,
         }
     finally:
