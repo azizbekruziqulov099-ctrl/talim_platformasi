@@ -17,7 +17,7 @@ import httpx
 import psycopg2
 import psycopg2.extras
 from typing import Optional
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from jose import jwt, JWTError
 from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "grade-scoped-subject-catalog-v18.16",
+        "versiya": "smart-learning-path-v18.18",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -98,6 +98,7 @@ def versiya():
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
+            "learning_path": "calendar-teaching-evidence-v18.18",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -2781,6 +2782,7 @@ class BahoSorov(BaseModel):
     togarak_id: int
     user_id: int
     baho: int
+    topic_code: Optional[str] = None
     izoh: Optional[str] = None
 
 
@@ -2813,6 +2815,21 @@ def baho_qoy(sorov: BahoSorov):
         conn.close()
         raise HTTPException(status_code=400, detail="Baho 0-100 oralig'ida bo'lishi kerak")
 
+    topic_code = (sorov.topic_code or "").strip() or None
+    if topic_code:
+        cur.execute(
+            """SELECT 1 FROM togarak_mavzulari
+               WHERE togarak_id=%s AND topic_code=%s LIMIT 1""",
+            (sorov.togarak_id, topic_code),
+        )
+        if not cur.fetchone():
+            cur.close()
+            conn.close()
+            raise HTTPException(
+                status_code=400,
+                detail="Tanlangan mavzu bu to'garak dasturiga kirmaydi",
+            )
+
     cur.execute(
         """INSERT INTO togarak_baholar(togarak_id, user_id, baho, izoh, teacher_id)
            VALUES(%s,%s,%s,%s,%s)""",
@@ -2841,11 +2858,17 @@ def baho_qoy(sorov: BahoSorov):
             evidence_source="teacher",
             context_id=context_id,
             group_id=group_id,
+            topic_code=topic_code,
             subject=manba["subject"] if manba else None,
             score_percent=sorov.baho,
             status="passed" if sorov.baho >= 60 else "failed",
-            affects_mastery=True,
-            payload={"togarak_id": sorov.togarak_id, "izoh": sorov.izoh},
+            affects_mastery=bool(topic_code),
+            payload={
+                "togarak_id": sorov.togarak_id,
+                "topic_code": topic_code,
+                "izoh": sorov.izoh,
+                "scope": "topic" if topic_code else "club_general",
+            },
         )
     conn.commit()
     cur.close()
@@ -17520,6 +17543,918 @@ def _analitika_oquvchi_xulosasi(
         "recent_events": recent_events,
         "next_actions": next_actions,
     }
+
+
+TALIM_YOLI_STANDART_CHORAK_HAFTALARI = {1: 8, 2: 7, 3: 10, 4: 9}
+TALIM_YOLI_BILIM_HOLATLARI = (
+    (50, "beginner", "Boshlang'ich"),
+    (65, "developing", "Rivojlanmoqda"),
+    (80, "good", "Yaxshi"),
+    (101, "strong", "Kuchli"),
+)
+
+
+def _talim_yoli_sinfni_tozala(qiymat):
+    """Profil va guruhdagi turli sinf yozuvlarini yagona qiymatga keltiradi."""
+    if qiymat is None:
+        return None
+    matn = str(qiymat).strip()
+    mos = re.search(r"(?<!\d)(1[01]|[1-9])(?!\d)", matn)
+    return mos.group(1) if mos else (matn or None)
+
+
+def _talim_yoli_akademik_yil(bugun=None):
+    bugun = bugun or date.today()
+    boshlanish_yili = bugun.year if bugun.month >= 8 else bugun.year - 1
+    return f"{boshlanish_yili}-{boshlanish_yili + 1}"
+
+
+def _talim_yoli_yilni_tekshir(qiymat):
+    yil = (qiymat or _talim_yoli_akademik_yil()).strip()
+    if not re.fullmatch(r"\d{4}-\d{4}", yil):
+        raise HTTPException(status_code=400, detail="O'quv yili YYYY-YYYY shaklida bo'lishi kerak")
+    birinchi, ikkinchi = (int(x) for x in yil.split("-"))
+    if ikkinchi != birinchi + 1:
+        raise HTTPException(status_code=400, detail="O'quv yili ketma-ket ikki yildan iborat bo'lishi kerak")
+    return yil
+
+
+def _talim_yoli_standart_choraklar(academic_year):
+    """Rasmiy kalendar bo'lmaganda ishlatiladigan, ochiq belgilangan taxminiy reja."""
+    boshlanish_yili = int(academic_year.split("-")[0])
+    return [
+        {"term": 1, "start": date(boshlanish_yili, 9, 2), "end": date(boshlanish_yili, 10, 31)},
+        {"term": 2, "start": date(boshlanish_yili, 11, 3), "end": date(boshlanish_yili, 12, 27)},
+        {"term": 3, "start": date(boshlanish_yili + 1, 1, 12), "end": date(boshlanish_yili + 1, 3, 20)},
+        {"term": 4, "start": date(boshlanish_yili + 1, 3, 30), "end": date(boshlanish_yili + 1, 5, 25)},
+    ]
+
+
+def _talim_yoli_sana(qiymat):
+    if qiymat is None or isinstance(qiymat, date) and not isinstance(qiymat, datetime):
+        return qiymat
+    if isinstance(qiymat, datetime):
+        return qiymat.date()
+    try:
+        return datetime.strptime(str(qiymat)[:10], "%Y-%m-%d").date()
+    except (TypeError, ValueError):
+        return None
+
+
+def _talim_yoli_chorak_raqami(qiymat):
+    mos = re.search(r"[1-4]", str(qiymat or ""))
+    return int(mos.group(0)) if mos else 1
+
+
+def _talim_yoli_bilim_holati(score):
+    if score is None:
+        return {"key": "unknown", "label": "Bilim darajasi noma'lum"}
+    qiymat = max(0.0, min(100.0, float(score)))
+    for chegara, kalit, nom in TALIM_YOLI_BILIM_HOLATLARI:
+        if qiymat < chegara:
+            return {"key": kalit, "label": nom}
+    return {"key": "strong", "label": "Kuchli"}
+
+
+def _talim_yoli_reja_holati(planned_start, planned_end, teaching_status="planned", bugun=None):
+    """Kalendar o'tishi va o'qituvchi tasdig'ini ataylab birlashtirmaydi."""
+    bugun = bugun or date.today()
+    boshlanish = _talim_yoli_sana(planned_start)
+    tugash = _talim_yoli_sana(planned_end) or boshlanish
+    if teaching_status == "taught":
+        return {"key": "taught", "label": "O'qituvchi: o'tildi", "calendar_passed": bool(tugash and tugash < bugun)}
+    if teaching_status == "delayed":
+        return {"key": "delayed", "label": "Kechiktirilgan", "calendar_passed": bool(tugash and tugash < bugun)}
+    if teaching_status == "skipped":
+        return {"key": "skipped", "label": "Rejadan chiqarilgan", "calendar_passed": bool(tugash and tugash < bugun)}
+    if boshlanish and tugash and boshlanish <= bugun <= tugash:
+        return {"key": "current", "label": "Shu hafta rejalashtirilgan", "calendar_passed": False}
+    if tugash and tugash < bugun:
+        return {"key": "expected", "label": "Reja bo'yicha o'tilgan bo'lishi kerak", "calendar_passed": True}
+    return {"key": "upcoming", "label": "Oldinda", "calendar_passed": False}
+
+
+def _talim_yoli_mavzularni_haftalarga_joyla(mavzular, choraklar):
+    """Mavzu tartibini saqlab, har chorak ichida o'qitish haftalariga yoyadi."""
+    natija = [dict(m) for m in mavzular]
+    term_map = {int(t["term"]): t for t in choraklar}
+    for term_no in (1, 2, 3, 4):
+        indekslar = [i for i, m in enumerate(natija) if int(m.get("term_no") or 1) == term_no]
+        if not indekslar:
+            continue
+        term = term_map.get(term_no)
+        if not term:
+            continue
+        term_start = _talim_yoli_sana(term.get("start"))
+        term_end = _talim_yoli_sana(term.get("end"))
+        if not term_start or not term_end:
+            continue
+        hafta_soni = max(1, TALIM_YOLI_STANDART_CHORAK_HAFTALARI.get(term_no, 8))
+        for joy, index in enumerate(indekslar):
+            hafta = min(hafta_soni, int(joy * hafta_soni / max(1, len(indekslar))) + 1)
+            boshlanish = term_start + timedelta(days=(hafta - 1) * 7)
+            tugash = min(boshlanish + timedelta(days=6), term_end)
+            natija[index].update({
+                "week_no": hafta,
+                "planned_start": boshlanish,
+                "planned_end": tugash,
+            })
+    return natija
+
+
+def _talim_yoli_migratsiya_talab(cur):
+    _analitika_migratsiya_talab(cur)
+    cur.execute(
+        """SELECT
+             to_regclass('public.learning_path_calendars') IS NOT NULL AS calendars_bor,
+             to_regclass('public.learning_path_teaching_records') IS NOT NULL AS records_bor"""
+    )
+    r = cur.fetchone()
+    if not r or not r["calendars_bor"] or not r["records_bor"]:
+        raise HTTPException(
+            status_code=503,
+            detail=(
+                "Ta'lim yo'li kalendari hali o'rnatilmagan. "
+                "database/020_learning_path_calendar.sql migratsiyasini ishga tushiring."
+            ),
+        )
+
+
+def _talim_yoli_kontekstlar(cur, student_id):
+    cur.execute(
+        """SELECT DISTINCT c.id,c.name,c.context_type,c.external_type,c.external_id,
+                          c.created_at
+           FROM context_memberships m
+           JOIN learning_contexts c ON c.id=m.context_id AND c.active=TRUE
+           WHERE m.user_id=%s AND m.member_role='student' AND m.status='active'
+           ORDER BY c.created_at,c.name""",
+        (student_id,),
+    )
+    context_rows = list(cur.fetchall())
+    cur.execute(
+        """SELECT id,name,context_type,external_type,external_id,created_at
+           FROM learning_contexts
+           WHERE active=TRUE AND context_type='platform'
+           ORDER BY id LIMIT 1"""
+    )
+    platform = cur.fetchone()
+    if platform and all(int(c["id"]) != int(platform["id"]) for c in context_rows):
+        context_rows.insert(0, platform)
+
+    contexts = []
+    for c in context_rows:
+        cur.execute(
+            """SELECT DISTINCT g.id,g.name,g.grade,g.subject,g.group_type,g.delivery_mode
+               FROM context_memberships m
+               JOIN course_groups g ON g.id=m.group_id AND g.active=TRUE
+               WHERE m.user_id=%s AND m.context_id=%s
+                 AND m.member_role='student' AND m.status='active'
+               ORDER BY g.name""",
+            (student_id, c["id"]),
+        )
+        groups = [dict(g) for g in cur.fetchall()]
+        contexts.append({
+            "id": c["id"],
+            "name": c["name"],
+            "type": c["context_type"],
+            "external_type": c["external_type"],
+            "external_id": c["external_id"],
+            "groups": groups,
+        })
+    return contexts
+
+
+def _talim_yoli_calendar_ol(cur, context_id, grade, academic_year):
+    cur.execute(
+        """SELECT name,calendar_level,terms,holidays,context_id,grade
+           FROM learning_path_calendars
+           WHERE active=TRUE AND academic_year=%s
+             AND (context_id=%s OR context_id IS NULL)
+             AND (grade=%s OR grade IS NULL)
+           ORDER BY (context_id=%s) DESC,(grade=%s) DESC,
+                    CASE calendar_level
+                      WHEN 'school' THEN 5 WHEN 'university' THEN 5
+                      WHEN 'center' THEN 5 WHEN 'club' THEN 5
+                      WHEN 'admin' THEN 4 ELSE 1 END DESC,
+                    updated_at DESC LIMIT 1""",
+        (academic_year, context_id, grade, context_id, grade),
+    )
+    row = cur.fetchone()
+    if not row:
+        return _talim_yoli_standart_choraklar(academic_year), {
+            "type": "platform_estimate",
+            "label": "SamTM taxminiy kalendari",
+            "is_estimate": True,
+        }
+    terms = []
+    for item in row["terms"] or []:
+        start = _talim_yoli_sana(item.get("start"))
+        end = _talim_yoli_sana(item.get("end"))
+        term_no = _talim_yoli_chorak_raqami(item.get("term"))
+        if start and end and end >= start:
+            terms.append({"term": term_no, "start": start, "end": end})
+    if len(terms) != 4:
+        terms = _talim_yoli_standart_choraklar(academic_year)
+    return terms, {
+        "type": row["calendar_level"],
+        "label": row["name"],
+        "is_estimate": False,
+    }
+
+
+def _talim_yoli_topic_rows(cur, context, group, grade):
+    context_type = context["type"]
+    subject = (group or {}).get("subject") if group else None
+    grade = _talim_yoli_sinfni_tozala((group or {}).get("grade") if group else grade)
+    external_type = context.get("external_type")
+    external_id = context.get("external_id")
+
+    if external_type == "togarak" and external_id is not None:
+        cur.execute(
+            """SELECT DISTINCT d.topic_code,
+                      COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),
+                               NULLIF(d.bolim_name,''),NULLIF(d.bob_name,''),d.topic_code) AS topic_name,
+                      COALESCE(NULLIF(d.subject_name,''),t.fan,'To''garak') AS subject,
+                      d.quarter
+               FROM togaraklar t
+               JOIN togarak_mavzulari tm ON tm.togarak_id=t.id
+               JOIN dts_tree d ON d.topic_code=tm.topic_code AND d.is_deleted=FALSE
+               WHERE t.id=%s ORDER BY d.quarter,d.topic_code""",
+            (external_id,),
+        )
+        rows = list(cur.fetchall())
+        if rows:
+            return rows
+
+    if context_type == "university":
+        group_id = group.get("id") if group else None
+        cur.execute(
+            """WITH codes AS (
+                 SELECT topic_code,subject FROM learning_path_teaching_records
+                 WHERE context_id=%s AND (%s IS NULL OR group_id=%s)
+                 UNION
+                 SELECT topic_code,subject FROM assignments
+                 WHERE context_id=%s AND (%s IS NULL OR group_id=%s)
+                   AND topic_code IS NOT NULL AND active=TRUE
+                 UNION
+                 SELECT topic_code,subject FROM learning_events
+                 WHERE context_id=%s AND (%s IS NULL OR group_id=%s)
+                   AND topic_code IS NOT NULL
+               )
+               SELECT DISTINCT c.topic_code,
+                      COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),
+                               NULLIF(d.bolim_name,''),NULLIF(d.bob_name,''),c.topic_code) AS topic_name,
+                      COALESCE(NULLIF(c.subject,''),NULLIF(d.subject_name,''),'Institut') AS subject,
+                      COALESCE(d.quarter,'1') AS quarter
+               FROM codes c LEFT JOIN dts_tree d ON d.topic_code=c.topic_code
+               ORDER BY subject,c.topic_code""",
+            (context["id"], group_id, group_id, context["id"], group_id, group_id,
+             context["id"], group_id, group_id),
+        )
+        return list(cur.fetchall())
+
+    if not grade:
+        return []
+    params = [grade]
+    shart = "d.grade=%s AND d.is_deleted=FALSE"
+    if subject:
+        shart += " AND UPPER(d.subject_name)=UPPER(%s)"
+        params.append(subject)
+    cur.execute(
+        f"""SELECT DISTINCT d.topic_code,
+                   COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),
+                            NULLIF(d.bolim_name,''),NULLIF(d.bob_name,''),d.topic_code) AS topic_name,
+                   COALESCE(NULLIF(d.subject_name,''),'Boshqa') AS subject,d.quarter
+            FROM dts_tree d WHERE {shart}
+            ORDER BY d.subject_name,d.quarter,d.topic_code""",
+        params,
+    )
+    return list(cur.fetchall())
+
+
+def _talim_yoli_xulosasi(
+    cur, student_id, context_id=None, group_id=None, grade=None,
+    academic_year=None, bugun=None,
+):
+    bugun = bugun or date.today()
+    academic_year = _talim_yoli_yilni_tekshir(academic_year)
+    cur.execute(
+        "SELECT user_id,full_name,class,class_letter,tugilgan_sana FROM users WHERE user_id=%s",
+        (student_id,),
+    )
+    student = cur.fetchone()
+    if not student:
+        raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
+    current_grade = _talim_yoli_sinfni_tozala(student["class"])
+    selected_grade = _talim_yoli_sinfni_tozala(grade) or current_grade
+
+    contexts = _talim_yoli_kontekstlar(cur, student_id)
+    selected_context = next(
+        (c for c in contexts if context_id is not None and int(c["id"]) == int(context_id)),
+        None,
+    )
+    if context_id is not None and selected_context is None:
+        raise HTTPException(status_code=403, detail="Bu ta'lim muhiti o'quvchiga tegishli emas")
+    if selected_context is None:
+        selected_context = (
+            next((c for c in contexts if current_grade and c["type"] == "platform"), None)
+            or next((c for c in contexts if c["type"] == "university"), None)
+            or next((c for c in contexts if c["type"] == "platform"), None)
+        )
+    if selected_context is None:
+        raise HTTPException(status_code=404, detail="Ta'lim muhiti topilmadi")
+
+    selected_group = None
+    if group_id is not None:
+        selected_group = next(
+            (g for g in selected_context["groups"] if int(g["id"]) == int(group_id)),
+            None,
+        )
+        if selected_group is None:
+            raise HTTPException(status_code=403, detail="Bu guruh o'quvchiga tegishli emas")
+    elif selected_context["groups"]:
+        selected_group = selected_context["groups"][0]
+
+    if (
+        selected_context["type"] != "university"
+        and current_grade and selected_grade
+        and str(selected_grade) != str(current_grade)
+    ):
+        # Eski sinf yo'li hozirgi guruh/fan bilan toraytirilmaydi. Shu tariqa
+        # o'quvchi oldingi sinfning barcha fanlarini ayni tuzilishda ko'radi.
+        selected_group = None
+
+    if selected_context["type"] == "university":
+        # Universitet bo'limi faqat faol talaba a'zoligida chiqadi; mavzu esa
+        # fakultet/guruh rejasidan olinadi. Bo'sh reja maktab fanlarini aralashtirmaydi.
+        selected_grade = (selected_group or {}).get("grade") or selected_grade or "OTM"
+    elif not selected_grade:
+        raise HTTPException(status_code=400, detail="Profilda sinf tanlanmagan")
+    elif (
+        current_grade and current_grade.isdigit()
+        and selected_grade and selected_grade.isdigit()
+        and int(selected_grade) > int(current_grade)
+    ):
+        raise HTTPException(status_code=400, detail="Faqat hozirgi yoki oldingi sinflarni ko'rish mumkin")
+
+    rows = _talim_yoli_topic_rows(cur, selected_context, selected_group, selected_grade)
+    topics = []
+    seen = set()
+    for index, row in enumerate(rows, 1):
+        code = row["topic_code"]
+        if not code or code in seen:
+            continue
+        seen.add(code)
+        topics.append({
+            "topic_code": code,
+            "topic_name": row["topic_name"] or code,
+            "subject": row["subject"] or "Boshqa",
+            "term_no": _talim_yoli_chorak_raqami(row["quarter"]),
+            "sequence_no": index,
+        })
+
+    terms, calendar_source = _talim_yoli_calendar_ol(
+        cur, selected_context["id"], selected_grade, academic_year
+    )
+    topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms)
+    codes = [t["topic_code"] for t in topics]
+
+    record_map = {}
+    if codes:
+        cur.execute(
+            """SELECT * FROM learning_path_teaching_records
+               WHERE context_id=%s AND academic_year=%s AND topic_code=ANY(%s)
+                 AND (group_id=%s OR group_id IS NULL)
+               ORDER BY (group_id IS NOT NULL) DESC,updated_at DESC""",
+            (selected_context["id"], academic_year, codes,
+             selected_group["id"] if selected_group else None),
+        )
+        for r in cur.fetchall():
+            record_map.setdefault(r["topic_code"], r)
+
+    # Eski to'garak kalendari bekor qilinmaydi: undagi aniq sanalar yangi
+    # ta'lim yo'lida o'qituvchi rejasidan keyingi eng aniq manba bo'lib xizmat qiladi.
+    club_plan_map = {}
+    if codes and selected_context.get("external_type") == "togarak":
+        togarak_id = selected_context.get("external_id")
+        cur.execute("SELECT to_regclass('public.oquvchi_dars_rejasi') AS individual")
+        if cur.fetchone()["individual"]:
+            cur.execute(
+                """SELECT topic_code,MIN(sana) AS sana FROM oquvchi_dars_rejasi
+                   WHERE togarak_id=%s AND user_id=%s AND topic_code=ANY(%s)
+                   GROUP BY topic_code""",
+                (togarak_id, student_id, codes),
+            )
+            club_plan_map.update({r["topic_code"]: r["sana"] for r in cur.fetchall()})
+        cur.execute("SELECT to_regclass('public.togarak_dars_rejasi') AS umumiy")
+        if cur.fetchone()["umumiy"]:
+            cur.execute(
+                """SELECT topic_code,MIN(sana) AS sana FROM togarak_dars_rejasi
+                   WHERE togarak_id=%s AND topic_code=ANY(%s)
+                   GROUP BY topic_code""",
+                (togarak_id, codes),
+            )
+            for r in cur.fetchall():
+                club_plan_map.setdefault(r["topic_code"], r["sana"])
+
+    test_counts = {}
+    if codes:
+        cur.execute(
+            """SELECT topic_code,COUNT(*) AS soni FROM generated_tests
+               WHERE topic_code=ANY(%s) GROUP BY topic_code""",
+            (codes,),
+        )
+        test_counts = {r["topic_code"]: int(r["soni"] or 0) for r in cur.fetchall()}
+
+    event_history = {}
+    if codes:
+        group_shart = "AND e.group_id=%s" if selected_group else ""
+        params = [student_id, selected_context["id"], codes]
+        if selected_group:
+            params.append(selected_group["id"])
+        cur.execute(
+            f"""SELECT topic_code,score_percent,event_type,evidence_source,occurred_at,rn,attempts
+                FROM (
+                  SELECT e.topic_code,e.score_percent,e.event_type,e.evidence_source,e.occurred_at,
+                         ROW_NUMBER() OVER (PARTITION BY e.topic_code ORDER BY e.occurred_at DESC,e.id DESC) AS rn,
+                         COUNT(*) OVER (PARTITION BY e.topic_code) AS attempts
+                  FROM learning_events e
+                  WHERE e.user_id=%s AND e.context_id=%s AND e.topic_code=ANY(%s)
+                    AND samtm_is_verified_score(e.event_type,e.score_percent)
+                    {group_shart}
+                ) history WHERE rn<=2""",
+            params,
+        )
+        for r in cur.fetchall():
+            event_history.setdefault(r["topic_code"], {})[int(r["rn"])] = r
+
+    legacy = {}
+    if codes and selected_context["type"] == "platform":
+        cur.execute(
+            """SELECT topic_code,score,learned_at,repeat_count
+               FROM learned_topics WHERE user_id=%s AND topic_code=ANY(%s)""",
+            (student_id, codes),
+        )
+        legacy = {r["topic_code"]: r for r in cur.fetchall()}
+
+    taught_by_event = set()
+    if codes:
+        params = [student_id, selected_context["id"], codes]
+        group_shart = ""
+        if selected_group:
+            group_shart = "AND group_id=%s"
+            params.append(selected_group["id"])
+        cur.execute(
+            f"""SELECT DISTINCT topic_code FROM learning_events
+                WHERE user_id=%s AND context_id=%s AND topic_code=ANY(%s)
+                  AND event_type='lesson_completed'
+                  AND evidence_source IN ('teacher','admin','system') {group_shart}""",
+            params,
+        )
+        taught_by_event = {r["topic_code"] for r in cur.fetchall()}
+
+    finalized = []
+    for topic in topics:
+        code = topic["topic_code"]
+        record = record_map.get(code)
+        if record:
+            topic["term_no"] = int(record["term_no"] or topic["term_no"])
+            topic["week_no"] = int(record["week_no"] or topic.get("week_no") or 1)
+            topic["planned_start"] = record["planned_start"] or topic.get("planned_start")
+            topic["planned_end"] = record["planned_end"] or topic.get("planned_end")
+        elif code in club_plan_map:
+            topic["planned_start"] = club_plan_map[code]
+            topic["planned_end"] = club_plan_map[code]
+
+        teaching_status = record["teaching_status"] if record else "planned"
+        if code in taught_by_event:
+            teaching_status = "taught"
+        teaching = _talim_yoli_reja_holati(
+            topic.get("planned_start"), topic.get("planned_end"), teaching_status, bugun
+        )
+
+        history = event_history.get(code, {})
+        latest = history.get(1)
+        previous = history.get(2)
+        old = legacy.get(code)
+        score = None
+        assessed_at = None
+        evidence_type = None
+        attempts = 0
+        if latest:
+            score = float(latest["score_percent"])
+            assessed_at = latest["occurred_at"]
+            evidence_type = latest["event_type"]
+            attempts = int(latest["attempts"] or 1)
+        elif old and old["score"] is not None:
+            score = float(old["score"])
+            assessed_at = old["learned_at"]
+            evidence_type = "legacy_topic_result"
+            attempts = int(old["repeat_count"] or 1)
+
+        knowledge = _talim_yoli_bilim_holati(score)
+        memory = None
+        if score is not None and assessed_at is not None:
+            memory = _analitika_xotira_hisobi(
+                score, assessed_at, attempts=max(1, attempts),
+                review_interval_days=(1 if score < 50 else 3 if score < 65 else 7 if score < 80 else 14),
+                latest_score=score,
+                previous_score=(float(previous["score_percent"]) if previous else None),
+                now=datetime.combine(bugun, datetime.min.time(), tzinfo=timezone.utc),
+            )
+        finalized.append({
+            **topic,
+            "planned_start": topic.get("planned_start").isoformat() if topic.get("planned_start") else None,
+            "planned_end": topic.get("planned_end").isoformat() if topic.get("planned_end") else None,
+            "teaching_status": teaching_status,
+            "teaching_state": teaching,
+            "taught_at": record["taught_at"] if record else None,
+            "knowledge_status": knowledge["key"],
+            "knowledge_label": knowledge["label"],
+            "knowledge_score": None if score is None else round(score, 1),
+            "evidence_type": evidence_type,
+            "assessed_at": assessed_at,
+            "memory": memory,
+            "test_count": test_counts.get(code, 0),
+            "can_take_test": test_counts.get(code, 0) > 0,
+        })
+
+    subjects = []
+    for subject_name in sorted({t["subject"] for t in finalized}):
+        subset = [t for t in finalized if t["subject"] == subject_name]
+        verified = [t for t in subset if t["knowledge_score"] is not None]
+        reached = [t for t in subset if t["teaching_state"]["calendar_passed"]]
+        taught = [t for t in subset if t["teaching_status"] == "taught"]
+        current = next(
+            (t for t in subset if t["teaching_state"]["key"] == "current"),
+            next((t for t in subset if t["teaching_state"]["key"] in ("expected", "upcoming")), None),
+        )
+        subjects.append({
+            "name": subject_name,
+            "topic_count": len(subset),
+            "planned_reached_percent": round(len(reached) * 100 / len(subset)) if subset else 0,
+            "taught_percent": round(len(taught) * 100 / len(subset)) if subset else 0,
+            "verified_knowledge_percent": (
+                round(sum(t["knowledge_score"] for t in verified) / len(verified)) if verified else None
+            ),
+            "verified_topic_count": len(verified),
+            "unknown_topic_count": len(subset) - len(verified),
+            "current_topic_code": current["topic_code"] if current else None,
+        })
+
+    verified_all = [t for t in finalized if t["knowledge_score"] is not None]
+    reached_all = [t for t in finalized if t["teaching_state"]["calendar_passed"]]
+    taught_all = [t for t in finalized if t["teaching_status"] == "taught"]
+    total = len(finalized)
+    numeric_current = int(current_grade) if current_grade and current_grade.isdigit() else None
+    grade_options = [str(x) for x in range(1, numeric_current + 1)] if numeric_current else [selected_grade]
+    olympiad_readiness = []
+    for subject_item in subjects:
+        subset = [t for t in finalized if t["subject"] == subject_item["name"]]
+        verified = [t for t in subset if t["knowledge_score"] is not None]
+        strong = [t for t in verified if t["knowledge_score"] >= 80]
+        avg_score = (
+            round(sum(t["knowledge_score"] for t in verified) / len(verified))
+            if verified else None
+        )
+        if not verified:
+            key, label = "unknown", "Avval diagnostika kerak"
+        elif len(verified) < min(3, len(subset)):
+            key, label = "insufficient", "Dalil hali kam"
+        elif avg_score >= 85 and len(strong) / len(verified) >= 0.7:
+            key, label = "ready", "Olimpiada mashqlariga tayyor"
+        elif avg_score >= 65:
+            key, label = "preparing", "Tayyorgarlik davom etmoqda"
+        else:
+            key, label = "foundation", "Asosiy mavzularni mustahkamlash kerak"
+        olympiad_readiness.append({
+            "subject": subject_item["name"], "status": key, "label": label,
+            "verified_topic_count": len(verified), "strong_topic_count": len(strong),
+            "average_score": avg_score,
+        })
+    return {
+        "student": {
+            "user_id": student["user_id"], "full_name": student["full_name"],
+            "current_grade": current_grade, "class_letter": student["class_letter"],
+            "age": _ai_yosh_hisobla(student["tugilgan_sana"], current_grade),
+        },
+        "academic_year": academic_year,
+        "selected_grade": selected_grade,
+        "grade_options": grade_options,
+        "contexts": contexts,
+        "selected_context": selected_context,
+        "selected_group": selected_group,
+        "calendar_source": calendar_source,
+        "terms": [{**t, "start": t["start"].isoformat(), "end": t["end"].isoformat()} for t in terms],
+        "summary": {
+            "topic_count": total,
+            "planned_reached_percent": round(len(reached_all) * 100 / total) if total else 0,
+            "taught_percent": round(len(taught_all) * 100 / total) if total else 0,
+            "verified_knowledge_percent": (
+                round(sum(t["knowledge_score"] for t in verified_all) / len(verified_all))
+                if verified_all else None
+            ),
+            "verified_topic_count": len(verified_all),
+            "unknown_topic_count": total - len(verified_all),
+        },
+        "subjects": subjects,
+        "topics": finalized,
+        "olympiad_readiness": olympiad_readiness,
+        "rules": {
+            "calendar_is_not_learning": True,
+            "teaching_requires_confirmation": True,
+            "knowledge_requires_evidence": True,
+            "unknown_without_test_or_grade": True,
+        },
+    }
+
+
+@app.get("/api/talim-yoli/meniki")
+def talim_yoli_meniki(
+    token: str, context_id: Optional[int] = None, group_id: Optional[int] = None,
+    grade: Optional[str] = None, academic_year: Optional[str] = None,
+):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        return _talim_yoli_xulosasi(
+            cur, user_id, context_id, group_id, grade, academic_year
+        )
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/talim-yoli/ota/farzand")
+def talim_yoli_ota_farzand(
+    token: str, child_id: int, context_id: Optional[int] = None,
+    group_id: Optional[int] = None, grade: Optional[str] = None,
+    academic_year: Optional[str] = None,
+):
+    parent_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        if not _analitika_ota_onami(cur, parent_id, child_id) and not _analitika_admin_mi(cur, parent_id):
+            raise HTTPException(status_code=403, detail="Bu farzand sizga ulanmagan")
+        return _talim_yoli_xulosasi(
+            cur, child_id, context_id, group_id, grade, academic_year
+        )
+    finally:
+        cur.close()
+        conn.close()
+
+
+class TalimYoliRejaQatori(BaseModel):
+    topic_code: str
+    subject: Optional[str] = None
+    planned_start: Optional[date] = None
+    planned_end: Optional[date] = None
+    term_no: Optional[int] = None
+    week_no: Optional[int] = None
+    teaching_status: str = "planned"
+    note: Optional[str] = None
+
+
+class TalimYoliRejaSorovi(BaseModel):
+    token: str
+    group_id: int
+    academic_year: Optional[str] = None
+    entries: list[TalimYoliRejaQatori]
+
+
+@app.get("/api/talim-yoli/oqituvchi/reja")
+def talim_yoli_oqituvchi_reja(
+    token: str, group_id: int, academic_year: Optional[str] = None,
+):
+    teacher_id = _jwt_tekshir(token)
+    academic_year = _talim_yoli_yilni_tekshir(academic_year)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        if not _analitika_guruh_ruxsat(cur, teacher_id, group_id):
+            raise HTTPException(status_code=403, detail="Bu guruh rejasini ko'rishga ruxsat yo'q")
+        cur.execute(
+            """SELECT g.id,g.context_id,g.name,g.grade,g.subject,g.group_type,
+                      c.name AS context_name,c.context_type,c.external_type,c.external_id
+               FROM course_groups g JOIN learning_contexts c ON c.id=g.context_id
+               WHERE g.id=%s AND g.active=TRUE""",
+            (group_id,),
+        )
+        group = cur.fetchone()
+        if not group:
+            raise HTTPException(status_code=404, detail="Guruh topilmadi")
+        group_dict = dict(group)
+        context = {
+            "id": group["context_id"], "name": group["context_name"],
+            "type": group["context_type"], "external_type": group["external_type"],
+            "external_id": group["external_id"],
+        }
+        grade = _talim_yoli_sinfni_tozala(group["grade"])
+        rows = _talim_yoli_topic_rows(cur, context, group_dict, grade)
+        topics = []
+        seen = set()
+        for index, row in enumerate(rows, 1):
+            if not row["topic_code"] or row["topic_code"] in seen:
+                continue
+            seen.add(row["topic_code"])
+            topics.append({
+                "topic_code": row["topic_code"], "topic_name": row["topic_name"],
+                "subject": row["subject"] or group["subject"] or "Boshqa",
+                "term_no": _talim_yoli_chorak_raqami(row["quarter"]),
+                "sequence_no": index,
+            })
+        terms, calendar_source = _talim_yoli_calendar_ol(
+            cur, group["context_id"], grade, academic_year
+        )
+        topics = _talim_yoli_mavzularni_haftalarga_joyla(topics, terms)
+        if topics:
+            cur.execute(
+                """SELECT * FROM learning_path_teaching_records
+                   WHERE context_id=%s AND group_id=%s AND academic_year=%s
+                     AND topic_code=ANY(%s)""",
+                (group["context_id"], group_id, academic_year,
+                 [t["topic_code"] for t in topics]),
+            )
+            records = {r["topic_code"]: r for r in cur.fetchall()}
+        else:
+            records = {}
+        result = []
+        for topic in topics:
+            record = records.get(topic["topic_code"])
+            if record:
+                topic.update({
+                    "planned_start": record["planned_start"] or topic.get("planned_start"),
+                    "planned_end": record["planned_end"] or topic.get("planned_end"),
+                    "term_no": int(record["term_no"] or topic["term_no"]),
+                    "week_no": int(record["week_no"] or topic.get("week_no") or 1),
+                    "teaching_status": record["teaching_status"],
+                    "note": record["note"],
+                })
+            else:
+                topic["teaching_status"] = "planned"
+                topic["note"] = None
+            result.append({
+                **topic,
+                "planned_start": topic.get("planned_start").isoformat() if topic.get("planned_start") else None,
+                "planned_end": topic.get("planned_end").isoformat() if topic.get("planned_end") else None,
+                "teaching_state": _talim_yoli_reja_holati(
+                    topic.get("planned_start"), topic.get("planned_end"),
+                    topic["teaching_status"], date.today(),
+                ),
+            })
+        return {
+            "group": {
+                "id": group["id"], "name": group["name"], "grade": grade,
+                "subject": group["subject"], "context_id": group["context_id"],
+                "context_name": group["context_name"], "context_type": group["context_type"],
+            },
+            "academic_year": academic_year,
+            "calendar_source": calendar_source,
+            "topics": result,
+        }
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.post("/api/talim-yoli/oqituvchi/reja")
+def talim_yoli_oqituvchi_reja_saqla(sorov: TalimYoliRejaSorovi):
+    teacher_id = _jwt_tekshir(sorov.token)
+    academic_year = _talim_yoli_yilni_tekshir(sorov.academic_year)
+    if not sorov.entries or len(sorov.entries) > 500:
+        raise HTTPException(status_code=400, detail="1–500 ta mavzu yuborilishi kerak")
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        if not _analitika_guruh_ruxsat(cur, teacher_id, sorov.group_id):
+            raise HTTPException(status_code=403, detail="Bu guruh rejasini o'zgartirishga ruxsat yo'q")
+        cur.execute(
+            """SELECT g.id,g.context_id,g.grade,g.subject,c.context_type
+               FROM course_groups g JOIN learning_contexts c ON c.id=g.context_id
+               WHERE g.id=%s AND g.active=TRUE""",
+            (sorov.group_id,),
+        )
+        group = cur.fetchone()
+        if not group:
+            raise HTTPException(status_code=404, detail="Guruh topilmadi")
+        ruxsat_holatlar = {"planned", "taught", "delayed", "skipped"}
+        for index, entry in enumerate(sorov.entries, 1):
+            code = entry.topic_code.strip()
+            if not code:
+                raise HTTPException(status_code=400, detail="Mavzu kodi bo'sh bo'lmaydi")
+            if entry.teaching_status not in ruxsat_holatlar:
+                raise HTTPException(status_code=400, detail="O'qitish holati noto'g'ri")
+            if entry.term_no is not None and entry.term_no not in (1, 2, 3, 4):
+                raise HTTPException(status_code=400, detail="Chorak 1–4 oralig'ida bo'lishi kerak")
+            if entry.planned_start and entry.planned_end and entry.planned_end < entry.planned_start:
+                raise HTTPException(status_code=400, detail="Reja tugash sanasi boshlanishdan oldin")
+            cur.execute(
+                """INSERT INTO learning_path_teaching_records(
+                     context_id,group_id,academic_year,grade,subject,topic_code,
+                     sequence_no,term_no,week_no,planned_start,planned_end,
+                     teaching_status,taught_at,teacher_user_id,source_type,note
+                   ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+                            CASE WHEN %s='taught' THEN NOW() ELSE NULL END,
+                            %s,%s,%s)
+                   ON CONFLICT(context_id,(COALESCE(group_id,0)),academic_year,topic_code)
+                   DO UPDATE SET
+                     grade=EXCLUDED.grade,subject=EXCLUDED.subject,
+                     sequence_no=EXCLUDED.sequence_no,term_no=EXCLUDED.term_no,
+                     week_no=EXCLUDED.week_no,planned_start=EXCLUDED.planned_start,
+                     planned_end=EXCLUDED.planned_end,
+                     teaching_status=EXCLUDED.teaching_status,
+                     taught_at=CASE
+                       WHEN EXCLUDED.teaching_status='taught'
+                       THEN COALESCE(learning_path_teaching_records.taught_at,NOW())
+                       ELSE NULL END,
+                     teacher_user_id=EXCLUDED.teacher_user_id,
+                     source_type=EXCLUDED.source_type,note=EXCLUDED.note,
+                     updated_at=NOW()""",
+                (
+                    group["context_id"], group["id"], academic_year,
+                    _talim_yoli_sinfni_tozala(group["grade"]),
+                    (entry.subject or group["subject"] or "Boshqa").strip(), code,
+                    index, entry.term_no, entry.week_no,
+                    entry.planned_start, entry.planned_end, entry.teaching_status,
+                    entry.teaching_status, teacher_id,
+                    "university" if group["context_type"] == "university"
+                    else "club" if group["context_type"].startswith("club_")
+                    else "center" if group["context_type"] == "learning_center"
+                    else "teacher",
+                    (entry.note or "").strip() or None,
+                ),
+            )
+        conn.commit()
+        return {"holat": "saqlandi", "entry_count": len(sorov.entries)}
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
+class TalimYoliCalendarSorovi(BaseModel):
+    token: str
+    academic_year: str
+    name: str
+    context_id: Optional[int] = None
+    grade: Optional[str] = None
+    calendar_level: str = "admin"
+    terms: list[dict]
+    holidays: list[dict] = []
+
+
+@app.post("/api/talim-yoli/admin/kalendar")
+def talim_yoli_admin_kalendar_saqla(sorov: TalimYoliCalendarSorovi):
+    admin_id = _admin_tekshir(sorov.token)
+    academic_year = _talim_yoli_yilni_tekshir(sorov.academic_year)
+    if sorov.calendar_level not in {"platform", "admin", "school", "center", "club", "university"}:
+        raise HTTPException(status_code=400, detail="Kalendar darajasi noto'g'ri")
+    normalized = []
+    for item in sorov.terms:
+        term_no = _talim_yoli_chorak_raqami(item.get("term"))
+        start = _talim_yoli_sana(item.get("start"))
+        end = _talim_yoli_sana(item.get("end"))
+        if not start or not end or end < start:
+            raise HTTPException(status_code=400, detail="Chorak sanalari noto'g'ri")
+        normalized.append({"term": term_no, "start": start.isoformat(), "end": end.isoformat()})
+    if sorted(x["term"] for x in normalized) != [1, 2, 3, 4]:
+        raise HTTPException(status_code=400, detail="To'rtta chorak sanasi kerak")
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _talim_yoli_migratsiya_talab(cur)
+        cur.execute(
+            """INSERT INTO learning_path_calendars(
+                 context_id,academic_year,grade,calendar_level,name,terms,holidays,created_by_user_id
+               ) VALUES(%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s)
+               ON CONFLICT((COALESCE(context_id,0)),academic_year,(COALESCE(grade,'')),calendar_level)
+                 WHERE active=TRUE
+               DO UPDATE SET name=EXCLUDED.name,terms=EXCLUDED.terms,
+                             holidays=EXCLUDED.holidays,created_by_user_id=EXCLUDED.created_by_user_id,
+                             updated_at=NOW()""",
+            (
+                sorov.context_id, academic_year,
+                _talim_yoli_sinfni_tozala(sorov.grade), sorov.calendar_level,
+                sorov.name.strip() or "O'quv kalendari",
+                json.dumps(normalized), json.dumps(sorov.holidays), admin_id,
+            ),
+        )
+        conn.commit()
+        return {"holat": "saqlandi", "academic_year": academic_year}
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
 
 
 @app.get("/api/analitika/meniki")
