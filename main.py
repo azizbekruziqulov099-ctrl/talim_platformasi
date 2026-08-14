@@ -86,7 +86,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-learning-path-v18.18",
+        "versiya": "smart-learning-path-v18.18.1",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -98,7 +98,7 @@ def versiya():
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "real-answer-bridge-audio-contrast-v18.9",
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
-            "learning_path": "calendar-teaching-evidence-v18.18",
+            "learning_path": "calendar-teaching-evidence-v18.18.1",
             "voice": "tag-scoped-profile-language-math-v18.10",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -17826,7 +17826,7 @@ def _talim_yoli_topic_rows(cur, context, group, grade):
                             NULLIF(d.bolim_name,''),NULLIF(d.bob_name,''),d.topic_code) AS topic_name,
                    COALESCE(NULLIF(d.subject_name,''),'Boshqa') AS subject,d.quarter
             FROM dts_tree d WHERE {shart}
-            ORDER BY d.subject_name,d.quarter,d.topic_code""",
+            ORDER BY 3,4,1""",
         params,
     )
     return list(cur.fetchall())
