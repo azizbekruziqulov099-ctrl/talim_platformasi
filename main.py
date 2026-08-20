@@ -3,6 +3,7 @@
 Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
 """
 import os
+import asyncio
 import re
 import io
 import json
@@ -11,17 +12,20 @@ import base64
 import hashlib
 import secrets
 import string
+import threading
 import unicodedata
 from collections import OrderedDict
 from urllib.parse import urlencode
 import httpx
 import psycopg2
 import psycopg2.extras
+import psycopg2.pool
 from typing import Optional
 from datetime import date, datetime, timedelta, timezone
 from jose import jwt, JWTError
 from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse, Response, StreamingResponse
 from pydantic import BaseModel
 
@@ -53,6 +57,7 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE"],
     allow_headers=["*"],
 )
+app.add_middleware(GZipMiddleware, minimum_size=1024, compresslevel=5)
 
 
 @app.exception_handler(psycopg2.Error)
@@ -87,7 +92,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "bulk-student-groups-multi-class-v18.34",
+        "versiya": "multi-group-sets-no-freeze-v18.36",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -102,9 +107,11 @@ def versiya():
             "learning_path": "balanced-golden-subject-path-v18.21",
             "voice": "stream-cache-visible-state-v18.22",
             "institution_security": "admin-password-365-day-archive-v18.24",
-            "admin_school_creation": "default-shift-room-groups-v18.33",
+            "admin_school_creation": "bulk-class-multi-group-v18.36",
             "employee_import": "multi-class-smart-template-v18.34",
             "student_groups": "bulk-manual-groups-v18.34",
+            "performance": "safe-db-pool-compression-request-guards-v18.35",
+            "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -194,20 +201,131 @@ def mavzu_kod_moslik(token: str, sinf: str, fan: str):
     return {"prefiks": prefiks, "mavzular": natija, "yetim_testlar": yetim_testlar}
 
 
+_DB_POOL = None
+_DB_POOL_LOCK = threading.Lock()
+_DB_POOL_MAX = max(2, int(os.getenv("DB_POOL_MAX", "10")))
+_DB_POOL_WAIT_SECONDS = max(1.0, float(os.getenv("DB_POOL_WAIT_SECONDS", "8")))
+_DB_POOL_SLOTS = threading.BoundedSemaphore(_DB_POOL_MAX)
+_DB_STATEMENT_TIMEOUT_MS = max(5_000, int(os.getenv("DB_STATEMENT_TIMEOUT_MS", "60000")))
+
+
+def _db_pool_ol():
+    """Har worker uchun bitta xavfsiz, thread-safe PostgreSQL havuzi."""
+    global _DB_POOL
+    if _DB_POOL is not None:
+        return _DB_POOL
+    with _DB_POOL_LOCK:
+        if _DB_POOL is None:
+            _DB_POOL = psycopg2.pool.ThreadedConnectionPool(
+                1,
+                _DB_POOL_MAX,
+                DATABASE_URL,
+                cursor_factory=psycopg2.extras.RealDictCursor,
+                connect_timeout=5,
+                application_name="samtm-api-v18.35",
+                options=(
+                    f"-c statement_timeout={_DB_STATEMENT_TIMEOUT_MS} "
+                    "-c idle_in_transaction_session_timeout=30000 "
+                    "-c lock_timeout=10000"
+                ),
+            )
+    return _DB_POOL
+
+
+class _DbUlanish:
+    """Psycopg2 ulanishiga o'xshaydi, ammo close() uni havuzga qaytaradi.
+
+    Eski endpointlarning hammasi ``conn.close()`` ishlatadi. Shu adapter
+    ularning kodini o'zgartirmasdan havuzni xavfsiz qiladi. Endpoint xato
+    bilan ``close()`` qatoriga yetmasa ham CPython lokal obyektni bo'shatishi
+    bilan ``__del__`` ulanishni qaytaradi; qaytarishdan oldin ochiq tranzaksiya
+    rollback qilinadi. Shuning uchun avvalgi "20 ta ulanish abadiy band"
+    muammosi qaytmaydi.
+    """
+
+    def __init__(self, raw_conn, pool):
+        self._raw_conn = raw_conn
+        self._pool = pool
+        self._yopildi = False
+
+    def __getattr__(self, nom):
+        return getattr(self._raw_conn, nom)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        if exc_type is not None:
+            try:
+                self._raw_conn.rollback()
+            except Exception:
+                pass
+        self.close()
+        return False
+
+    def close(self):
+        if self._yopildi:
+            return
+        self._yopildi = True
+        raw_conn = self._raw_conn
+        yaroqsiz = bool(getattr(raw_conn, "closed", True))
+        if not yaroqsiz:
+            try:
+                # SELECT ham tranzaksiya ochadi. Havuzdagi keyingi so'rovga
+                # eski tranzaksiya/lock o'tmasligi uchun doim tozalaymiz.
+                raw_conn.rollback()
+            except Exception:
+                yaroqsiz = True
+        try:
+            self._pool.putconn(raw_conn, close=yaroqsiz)
+        except Exception:
+            try:
+                raw_conn.close()
+            except Exception:
+                pass
+        finally:
+            _DB_POOL_SLOTS.release()
+
+    def __del__(self):
+        try:
+            self.close()
+        except Exception:
+            pass
+
+
 def _db():
-    # MUHIM: avval bu yerda "ulanishlar havuzi" (connection pool)
-    # bor edi, lekin u ORTIQCHA XAVFLI bo'lib chiqdi — agar biror
-    # so'rov kutilmagan xato bilan to'xtasa (conn.close() qatoriga
-    # yetib bormasa), havuzning CHEKLANGAN (20 ta) joylaridan biri
-    # "band" holda ABADIY qolib ketardi, va asta-sekin butun havuz
-    # tugab, YANGI so'rovlar "Failed to fetch" bilan muvaffaqiyatsiz
-    # bo'lardi — bu aynan bizning ko'rgan muammomizga o'xshaydi. Shu
-    # sabab ODDIY, CHEKLANMAGAN ulanishga qaytarildi — har so'rov
-    # o'zining ulanishini ochadi va yopadi, hech qanday umumiy
-    # "sig'im" cheklovi yo'q. connect_timeout — baza vaqtincha sekin/
-    # band bo'lsa, so'rov CHEKSIZ kutib qolmasin (10 soniyadan keyin
-    # aniq xato beradi, jimgina osilib qolmaydi).
-    return psycopg2.connect(DATABASE_URL, cursor_factory=psycopg2.extras.RealDictCursor, connect_timeout=10)
+    """Cheklangan kutishli ulanish: baza band bo'lsa sayt osilib qolmaydi."""
+    try:
+        asyncio.get_running_loop()
+        async_event_loop_ichida = True
+    except RuntimeError:
+        async_event_loop_ichida = False
+    # async endpoint ichida threading.Semaphore kutishi butun event-loopni
+    # ushlab qoladi. Shu holatda darhol band javobi beramiz; FastAPI'ning
+    # worker threadidagi oddiy endpoint esa qisqa navbatda kutishi mumkin.
+    kutish = 0 if async_event_loop_ichida else _DB_POOL_WAIT_SECONDS
+    if not _DB_POOL_SLOTS.acquire(timeout=kutish):
+        raise HTTPException(
+            status_code=503,
+            detail="Baza hozir band. Bir necha soniyadan keyin qayta urinib ko'ring.",
+        )
+    try:
+        raw_conn = _db_pool_ol().getconn()
+        if raw_conn.closed:
+            _db_pool_ol().putconn(raw_conn, close=True)
+            raw_conn = _db_pool_ol().getconn()
+        return _DbUlanish(raw_conn, _db_pool_ol())
+    except Exception:
+        _DB_POOL_SLOTS.release()
+        raise
+
+
+@app.on_event("shutdown")
+def _db_poolni_yopish():
+    global _DB_POOL
+    if _DB_POOL is not None:
+        _DB_POOL.closeall()
+        _DB_POOL = None
 
 
 # Fan kodiga qarab dashboard rangi — yangi fan qo'shilsa shu ro'yxatga qo'shiladi
@@ -1541,10 +1659,43 @@ def aralash_savollari_soni(sorov: AralashSoniSorovi):
     return {"soni": soni}
 
 
+_STANDARD_URINISH_JADVALI_BOR = None
+
+
 def _standard_urinish_jadvali_bormi(cur) -> bool:
+    """Migratsiya holatini har test so'rovida qayta-qayta tekshirmaydi."""
+    global _STANDARD_URINISH_JADVALI_BOR
+    if _STANDARD_URINISH_JADVALI_BOR is not None:
+        return _STANDARD_URINISH_JADVALI_BOR
     cur.execute("SELECT to_regclass('public.standard_test_attempts') AS table_name")
     row = cur.fetchone()
-    return bool(row and row["table_name"])
+    _STANDARD_URINISH_JADVALI_BOR = bool(row and row["table_name"])
+    return _STANDARD_URINISH_JADVALI_BOR
+
+
+_SAVOL_JAVOB_TARIXI_TAYYOR = False
+
+
+def _savol_javob_tarixi_tayyorla(cur):
+    """Issiq test yo'lida takroriy CREATE TABLE locklarini yo'qotadi."""
+    global _SAVOL_JAVOB_TARIXI_TAYYOR
+    if _SAVOL_JAVOB_TARIXI_TAYYOR:
+        return
+    cur.execute("SELECT to_regclass('public.savol_javob_tarixi') IS NOT NULL AS tayyor")
+    tekshiruv = cur.fetchone()
+    if tekshiruv and tekshiruv["tayyor"]:
+        _SAVOL_JAVOB_TARIXI_TAYYOR = True
+        return
+    cur.execute("""CREATE TABLE IF NOT EXISTS savol_javob_tarixi(
+        id SERIAL PRIMARY KEY,
+        user_id BIGINT NOT NULL REFERENCES users(user_id),
+        savol_id INTEGER NOT NULL,
+        topic_code TEXT,
+        difficulty TEXT,
+        question_type TEXT,
+        togri_mi BOOLEAN NOT NULL,
+        yaratilgan_at TIMESTAMP DEFAULT NOW()
+    )""")
 
 
 def _standard_fan_ochko_kaliti(cur, topic_codes: list[str]) -> Optional[str]:
@@ -2428,16 +2579,7 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
         conn.close()
         raise HTTPException(status_code=400, detail="Testdagi ayrim savollar topilmadi")
 
-    cur.execute("""CREATE TABLE IF NOT EXISTS savol_javob_tarixi(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        savol_id INTEGER NOT NULL,
-        topic_code TEXT,
-        difficulty TEXT,
-        question_type TEXT,
-        togri_mi BOOLEAN NOT NULL,
-        yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
+    _savol_javob_tarixi_tayyorla(cur)
 
     togri_soni = 0
     xatolar = []
@@ -4840,7 +4982,30 @@ def oquvchi_mustaqil_ish_topshir(sorov: MustaqilIshTopshirish):
 # matnli xabarlar cheklanmaydi.
 # ═══════════════════════════════════════════════════════════
 
+_CHAT_JADVALLARI_TAYYOR = False
+
+
 def _chat_jadvallari(cur):
+    """Chat sxemasi tayyor bo'lsa har so'rovda DDL/ALTER lock olmaydi."""
+    global _CHAT_JADVALLARI_TAYYOR
+    if _CHAT_JADVALLARI_TAYYOR:
+        return
+    cur.execute(
+        """SELECT
+             to_regclass('public.chat_guruhlari') IS NOT NULL
+             AND to_regclass('public.chat_azolari') IS NOT NULL
+             AND to_regclass('public.chat_xabarlari') IS NOT NULL
+             AND to_regclass('public.chat_oxirgi_korish') IS NOT NULL
+             AND EXISTS (
+                 SELECT 1 FROM information_schema.columns
+                 WHERE table_schema='public' AND table_name='chat_xabarlari'
+                   AND column_name='javob_xabar_id'
+             ) AS tayyor"""
+    )
+    tekshiruv = cur.fetchone()
+    if tekshiruv and tekshiruv["tayyor"]:
+        _CHAT_JADVALLARI_TAYYOR = True
+        return
     cur.execute("""CREATE TABLE IF NOT EXISTS chat_guruhlari(
         id SERIAL PRIMARY KEY,
         nomi TEXT NOT NULL,
@@ -5541,7 +5706,18 @@ def chat_xabar_forward(token: str, xabar_id: int, guruh_id: Optional[int] = None
     return {"holat": "yuborildi", "id": yangi_id}
 
 
+_REAKSIYA_JADVALI_TAYYOR = False
+
+
 def _reaksiya_jadvali(cur):
+    global _REAKSIYA_JADVALI_TAYYOR
+    if _REAKSIYA_JADVALI_TAYYOR:
+        return
+    cur.execute("SELECT to_regclass('public.chat_reaksiyalar') IS NOT NULL AS tayyor")
+    tekshiruv = cur.fetchone()
+    if tekshiruv and tekshiruv["tayyor"]:
+        _REAKSIYA_JADVALI_TAYYOR = True
+        return
     cur.execute("""CREATE TABLE IF NOT EXISTS chat_reaksiyalar(
         id SERIAL PRIMARY KEY,
         xabar_id INTEGER NOT NULL REFERENCES chat_xabarlari(id),
@@ -7077,16 +7253,7 @@ def bola_qiyinlik_tahlili(bola_id: int):
     bo'sh ro'yxatlar qaytadi."""
     conn = _db()
     cur = conn.cursor()
-    cur.execute("""CREATE TABLE IF NOT EXISTS savol_javob_tarixi(
-        id SERIAL PRIMARY KEY,
-        user_id BIGINT NOT NULL REFERENCES users(user_id),
-        savol_id INTEGER NOT NULL,
-        topic_code TEXT,
-        difficulty TEXT,
-        question_type TEXT,
-        togri_mi BOOLEAN NOT NULL,
-        yaratilgan_at TIMESTAMP DEFAULT NOW()
-    )""")
+    _savol_javob_tarixi_tayyorla(cur)
     cur.execute("""
         SELECT COALESCE(difficulty, 'nomalum') AS daraja, COUNT(*) AS jami,
                COUNT(*) FILTER (WHERE togri_mi) AS togri
@@ -7967,8 +8134,15 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         cur = conn.cursor()
         _maktab_sinflari_jadvali(cur)
         _maktab_fanlari_jadvali(cur)
+        _sinf_kop_guruh_jadvallari(cur)
         cur.execute(
-            "SELECT sinf,harf,guruhlash_usuli FROM maktab_sinflari WHERE maktab_id=%s "
+            """SELECT s.sinf,s.harf,s.guruhlash_usuli,
+                      COALESCE(ARRAY(
+                          SELECT t.turi FROM maktab_sinf_guruh_tizimlari t
+                          WHERE t.sinf_id=s.id AND t.faol=TRUE ORDER BY t.id
+                      ),ARRAY[]::TEXT[]) AS guruh_turlari
+               FROM maktab_sinflari s WHERE s.maktab_id=%s
+            """
             "ORDER BY sinf::int, harf",
             (maktab_id,),
         )
@@ -7979,11 +8153,15 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         ]
         for row in sinf_qatorlari:
             sinf_nomi = _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
-            sinf_guruh_usullari[sinf_nomi] = {
+            turlar = list(row.get("guruh_turlari") or [])
+            if not turlar and (row.get("guruhlash_usuli") or "none") != "none":
+                turlar = [row.get("guruhlash_usuli")]
+            nomlar = [{
                 "gender": "O‘g‘il / qiz",
                 "alphabet": "Alifbo: 1-guruh / 2-guruh",
-                "manual": "Qo‘lda: O‘g‘il/qiz + 1/2-guruh",
-            }.get((row.get("guruhlash_usuli") or "none").lower(), "Bo‘linmaydi")
+                "manual": "Mustaqil guruhlar",
+            }.get(str(tur).lower(), str(tur)) for tur in turlar]
+            sinf_guruh_usullari[sinf_nomi] = " + ".join(nomlar) if nomlar else "Bo‘linmaydi"
         cur.execute(
             "SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi",
             (maktab_id,),
@@ -8188,6 +8366,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS toifasi TEXT")
     _xodim_sinf_birikmalari_jadvali(cur)
     _maktab_fanlari_jadvali(cur)
+    _sinf_kop_guruh_jadvallari(cur)
 
     sarlavhalar = {
         _xodim_excel_sarlavha_kaliti(cell.value): cell.column - 1
@@ -8224,11 +8403,15 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             detail="Excel sarlavhasi mos emas: F.I.Sh va Lavozim ustunlari majburiy",
         )
 
-    cur.execute(
-        "SELECT id,sinf,harf,qoshilish_paroli,guruhlash_usuli FROM maktab_sinflari "
-        "WHERE maktab_id=%s ORDER BY sinf::int,harf",
-        (maktab_id,),
-    )
+    cur.execute("""
+        SELECT s.id,s.sinf,s.harf,s.qoshilish_paroli,s.guruhlash_usuli,
+               COALESCE(ARRAY(
+                   SELECT t.turi FROM maktab_sinf_guruh_tizimlari t
+                   WHERE t.sinf_id=s.id AND t.faol=TRUE ORDER BY t.id
+               ),ARRAY[]::TEXT[]) AS guruh_turlari
+        FROM maktab_sinflari s
+        WHERE s.maktab_id=%s ORDER BY s.sinf::int,s.harf
+    """, (maktab_id,))
     mavjud_sinflar = {
         _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}"): row
         for row in cur.fetchall()
@@ -8272,10 +8455,13 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         kalit = _xodim_excel_sarlavha_kaliti(value)
         if kalit in guruh_nomlari:
             guruh_kaliti, guruh_nomi = guruh_nomlari[kalit]
-            usul = (mavjud_sinflar[sinf_nomi].get("guruhlash_usuli") or "none").strip().lower()
-            if guruh_kaliti in ("boys", "girls") and usul not in ("gender", "manual"):
+            turlar = set(mavjud_sinflar[sinf_nomi].get("guruh_turlari") or [])
+            legacy = (mavjud_sinflar[sinf_nomi].get("guruhlash_usuli") or "none").strip().lower()
+            if not turlar and legacy != "none":
+                turlar.add(legacy)
+            if guruh_kaliti in ("boys", "girls") and "gender" not in turlar and "manual" not in turlar:
                 raise ValueError(f"{sinf_nomi} avval O'g'il/qiz usulida guruhlansin")
-            if guruh_kaliti in ("group_1", "group_2") and usul not in ("alphabet", "manual"):
+            if guruh_kaliti in ("group_1", "group_2") and "alphabet" not in turlar and "manual" not in turlar:
                 raise ValueError(f"{sinf_nomi} avval Alifbo bo'yicha 1/2-guruhga ajratilsin")
             return guruh_kaliti, guruh_nomi
         raise ValueError("guruhni Butun sinf, O'g'il bolalar, Qiz bolalar, 1-guruh yoki 2-guruhdan tanlang")
@@ -9256,6 +9442,334 @@ def _maktab_sinf_boshqaruvchi_mi(cur, user_id, maktab_id):
     if cur.fetchone():
         return True
     return _muassasadagi_lavozim(cur, user_id, "maktab", maktab_id) == "zam_direktor_uquv"
+
+
+def _sinf_kop_guruh_jadvallari(cur):
+    """V18.36: eski bitta guruhlash ustuniga tegmasdan ko'p tizimni saqlaydi."""
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS maktab_sinf_guruh_tizimlari(
+            id BIGSERIAL PRIMARY KEY,
+            sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+            turi TEXT NOT NULL CHECK(turi IN ('gender','alphabet','manual')),
+            nomi TEXT NOT NULL,
+            fanlar TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+            faol BOOLEAN NOT NULL DEFAULT TRUE,
+            yaratilgan_by BIGINT REFERENCES users(user_id) ON DELETE SET NULL,
+            yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            UNIQUE(sinf_id,turi)
+        )
+    """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS maktab_sinf_guruh_azolari(
+            tizim_id BIGINT NOT NULL REFERENCES maktab_sinf_guruh_tizimlari(id) ON DELETE CASCADE,
+            user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+            guruh_kaliti TEXT NOT NULL,
+            guruh_nomi TEXT NOT NULL,
+            yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            PRIMARY KEY(tizim_id,user_id)
+        )
+    """)
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS ix_maktab_sinf_guruh_tizimlari_sinf "
+        "ON maktab_sinf_guruh_tizimlari(sinf_id) WHERE faol=TRUE"
+    )
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS ix_maktab_sinf_guruh_azolari_user "
+        "ON maktab_sinf_guruh_azolari(user_id,tizim_id)"
+    )
+
+
+_SINF_GURUH_TIZIM_NOMLARI = {
+    "gender": "O'g'il / Qiz",
+    "alphabet": "Alifbo bo'yicha 1 / 2-guruh",
+    "manual": "Mustaqil guruhlar",
+}
+
+
+def _sinf_guruh_tizimini_taqsimla(cur, tizim_id):
+    """Faqat berilgan tizimni yangilaydi; shu sinfdagi boshqa tizimlar saqlanadi."""
+    cur.execute(
+        "SELECT id,sinf_id,turi FROM maktab_sinf_guruh_tizimlari WHERE id=%s AND faol=TRUE",
+        (tizim_id,),
+    )
+    tizim = cur.fetchone()
+    if not tizim:
+        raise HTTPException(status_code=404, detail="Guruhlash tizimi topilmadi")
+    cur.execute("""
+        SELECT a.user_id,u.full_name,LOWER(COALESCE(u.jins,'')) AS jins
+        FROM maktab_sinf_azolari a
+        JOIN users u ON u.user_id=a.user_id
+        WHERE a.sinf_id=%s
+        ORDER BY LOWER(u.full_name),u.user_id
+    """, (tizim["sinf_id"],))
+    azolar = cur.fetchall()
+    mavjud_ids = [int(azo["user_id"]) for azo in azolar]
+    if mavjud_ids:
+        cur.execute(
+            "DELETE FROM maktab_sinf_guruh_azolari WHERE tizim_id=%s AND NOT(user_id=ANY(%s))",
+            (tizim_id, mavjud_ids),
+        )
+    else:
+        cur.execute("DELETE FROM maktab_sinf_guruh_azolari WHERE tizim_id=%s", (tizim_id,))
+    if tizim["turi"] == "manual":
+        cur.execute("""
+            SELECT guruh_kaliti,guruh_nomi,COUNT(*) AS soni
+            FROM maktab_sinf_guruh_azolari WHERE tizim_id=%s
+            GROUP BY guruh_kaliti,guruh_nomi ORDER BY guruh_nomi
+        """, (tizim_id,))
+        return cur.fetchall()
+
+    bolimlar = {"1": [], "2": []}
+    if tizim["turi"] == "alphabet":
+        chegara = (len(azolar) + 1) // 2
+        bolimlar["1"] = azolar[:chegara]
+        bolimlar["2"] = azolar[chegara:]
+        kalitlar = {"1": ("group_1", "1-guruh"), "2": ("group_2", "2-guruh")}
+    else:
+        nomalum = []
+        for azo in azolar:
+            jins = (azo["jins"] or "").replace("'", "").replace("’", "")
+            if jins in ("ogil", "erkak", "male", "boy"):
+                bolimlar["1"].append(azo)
+            elif jins in ("qiz", "ayol", "female", "girl"):
+                bolimlar["2"].append(azo)
+            else:
+                nomalum.append(azo)
+        for azo in nomalum:
+            bolimlar["1" if len(bolimlar["1"]) <= len(bolimlar["2"]) else "2"].append(azo)
+        kalitlar = {"1": ("boys", "O'g'il bolalar"), "2": ("girls", "Qiz bolalar")}
+    saqlanadigan_azolar = []
+    for raqam, qatorlar in bolimlar.items():
+        guruh_kaliti, guruh_nomi = kalitlar[raqam]
+        for azo in qatorlar:
+            saqlanadigan_azolar.append((tizim_id, azo["user_id"], guruh_kaliti, guruh_nomi))
+    if saqlanadigan_azolar:
+        psycopg2.extras.execute_values(
+            cur,
+            """INSERT INTO maktab_sinf_guruh_azolari(
+                   tizim_id,user_id,guruh_kaliti,guruh_nomi
+               ) VALUES %s
+               ON CONFLICT(tizim_id,user_id) DO UPDATE SET
+                   guruh_kaliti=EXCLUDED.guruh_kaliti,
+                   guruh_nomi=EXCLUDED.guruh_nomi,
+                   yangilangan_at=NOW()""",
+            saqlanadigan_azolar,
+            page_size=500,
+        )
+    return [
+        {"guruh_kaliti": kalitlar[raqam][0], "guruh_nomi": kalitlar[raqam][1], "soni": len(bolimlar[raqam])}
+        for raqam in ("1", "2")
+    ]
+
+
+def _sinf_kop_guruh_natijasi(cur, sinf_id):
+    cur.execute("""
+        SELECT id,sinf_id,turi,nomi,fanlar,faol
+        FROM maktab_sinf_guruh_tizimlari
+        WHERE sinf_id=%s AND faol=TRUE
+        ORDER BY CASE turi WHEN 'gender' THEN 1 WHEN 'alphabet' THEN 2 ELSE 3 END,id
+    """, (sinf_id,))
+    tizimlar = cur.fetchall()
+    tizim_map = {}
+    for tizim in tizimlar:
+        tizim["fanlar"] = list(tizim.get("fanlar") or [])
+        tizim["azolar"] = []
+        tizim["guruhlar"] = []
+        tizim_map[int(tizim["id"])] = tizim
+    if tizim_map:
+        cur.execute("""
+            SELECT tizim_id,user_id,guruh_kaliti,guruh_nomi
+            FROM maktab_sinf_guruh_azolari
+            WHERE tizim_id=ANY(%s)
+            ORDER BY tizim_id,guruh_nomi,user_id
+        """, (list(tizim_map),))
+        guruh_sonlari = {}
+        for azo in cur.fetchall():
+            tizim = tizim_map[int(azo["tizim_id"])]
+            tizim["azolar"].append({
+                "user_id": int(azo["user_id"]),
+                "guruh_kaliti": azo["guruh_kaliti"],
+                "guruh_nomi": azo["guruh_nomi"],
+            })
+            kalit = (int(azo["tizim_id"]), azo["guruh_kaliti"], azo["guruh_nomi"])
+            guruh_sonlari[kalit] = guruh_sonlari.get(kalit, 0) + 1
+        for (tizim_id, guruh_kaliti, guruh_nomi), soni in guruh_sonlari.items():
+            tizim_map[tizim_id]["guruhlar"].append({
+                "guruh_kaliti": guruh_kaliti,
+                "guruh_nomi": guruh_nomi,
+                "soni": soni,
+            })
+    return tizimlar
+
+
+class SinfGuruhTizimiSozlash(BaseModel):
+    token: str
+    sinf_id: int
+    turi: str
+    faol: bool = True
+    fanlar: Optional[list[str]] = None
+
+
+class SinfMustaqilGuruhSaqlash(BaseModel):
+    token: str
+    sinf_id: int
+    tizim_id: int
+    user_ids: list[int]
+    guruh_nomi: Optional[str] = None
+    tozalash: bool = False
+
+
+@app.get("/api/maktab/sinf_guruh_tizimlari")
+def maktab_sinf_guruh_tizimlari(token: str, sinf_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur); _sinf_kop_guruh_jadvallari(cur)
+    cur.execute("SELECT maktab_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    if not _maktab_xodimi_mi(cur, actor_id, sinf["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Bu sinf guruhlarini ko'rish vakolati yo'q")
+    cur.execute(
+        "SELECT id FROM maktab_sinf_guruh_tizimlari WHERE sinf_id=%s AND faol=TRUE AND turi IN ('gender','alphabet')",
+        (sinf_id,),
+    )
+    for row in cur.fetchall():
+        _sinf_guruh_tizimini_taqsimla(cur, row["id"])
+    cur.execute("""
+        SELECT u.user_id,u.full_name,u.jins
+        FROM maktab_sinf_azolari a JOIN users u ON u.user_id=a.user_id
+        WHERE a.sinf_id=%s ORDER BY LOWER(u.full_name),u.user_id
+    """, (sinf_id,))
+    azolar = cur.fetchall()
+    tizimlar = _sinf_kop_guruh_natijasi(cur, sinf_id)
+    boshqaradi = _maktab_sinf_boshqaruvchi_mi(cur, actor_id, sinf["maktab_id"])
+    conn.commit(); cur.close(); conn.close()
+    return {"tizimlar": tizimlar, "azolar": azolar, "boshqara_oladi": boshqaradi}
+
+
+@app.put("/api/maktab/sinf_guruh_tizimi")
+def maktab_sinf_guruh_tizimini_sozla(sorov: SinfGuruhTizimiSozlash):
+    actor_id = _jwt_tekshir(sorov.token)
+    turi = (sorov.turi or "").strip().lower()
+    if turi not in _SINF_GURUH_TIZIM_NOMLARI:
+        raise HTTPException(status_code=400, detail="Guruhlash turi noto'g'ri")
+    conn = _db(); cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur); _sinf_kop_guruh_jadvallari(cur); _maktab_fanlari_jadvali(cur)
+    cur.execute("SELECT maktab_id FROM maktab_sinflari WHERE id=%s", (sorov.sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    if not _maktab_sinf_boshqaruvchi_mi(cur, actor_id, sinf["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat admin yoki o'quv ishlari zavuchi guruhlay oladi")
+    if not sorov.faol:
+        cur.execute(
+            "UPDATE maktab_sinf_guruh_tizimlari SET faol=FALSE,yangilangan_at=NOW() WHERE sinf_id=%s AND turi=%s",
+            (sorov.sinf_id, turi),
+        )
+    else:
+        cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s", (sinf["maktab_id"],))
+        fan_map = {str(row["fan_nomi"]).casefold(): row["fan_nomi"] for row in cur.fetchall()}
+        fanlar = []
+        for fan_xom in sorov.fanlar or []:
+            fan = re.sub(r"\s+", " ", str(fan_xom or "")).strip()
+            if not fan:
+                continue
+            mos = fan_map.get(fan.casefold())
+            if not mos:
+                cur.close(); conn.close()
+                raise HTTPException(status_code=400, detail=f"'{fan}' maktab fanlari ro'yxatida yo'q")
+            if mos not in fanlar:
+                fanlar.append(mos)
+        cur.execute("""
+            INSERT INTO maktab_sinf_guruh_tizimlari(
+                sinf_id,turi,nomi,fanlar,faol,yaratilgan_by,yangilangan_at
+            ) VALUES(%s,%s,%s,%s,TRUE,%s,NOW())
+            ON CONFLICT(sinf_id,turi) DO UPDATE SET
+                nomi=EXCLUDED.nomi,
+                fanlar=CASE
+                    WHEN maktab_sinf_guruh_tizimlari.faol=FALSE
+                         AND CARDINALITY(EXCLUDED.fanlar)=0
+                    THEN maktab_sinf_guruh_tizimlari.fanlar
+                    ELSE EXCLUDED.fanlar
+                END,
+                faol=TRUE,yangilangan_at=NOW()
+            RETURNING id
+        """, (sorov.sinf_id, turi, _SINF_GURUH_TIZIM_NOMLARI[turi], fanlar, actor_id))
+        tizim_id = cur.fetchone()["id"]
+        _sinf_guruh_tizimini_taqsimla(cur, tizim_id)
+    cur.execute(
+        "SELECT turi FROM maktab_sinf_guruh_tizimlari WHERE sinf_id=%s AND faol=TRUE ORDER BY id",
+        (sorov.sinf_id,),
+    )
+    faol_turlar = [row["turi"] for row in cur.fetchall()]
+    legacy_usul = faol_turlar[0] if len(faol_turlar) == 1 else ("manual" if faol_turlar else "none")
+    cur.execute("UPDATE maktab_sinflari SET guruhlash_usuli=%s WHERE id=%s", (legacy_usul, sorov.sinf_id))
+    tizimlar = _sinf_kop_guruh_natijasi(cur, sorov.sinf_id)
+    conn.commit(); cur.close(); conn.close()
+    return {"holat": "saqlandi", "tizimlar": tizimlar}
+
+
+@app.put("/api/maktab/sinf_mustaqil_guruh")
+def maktab_sinf_mustaqil_guruhini_saqla(sorov: SinfMustaqilGuruhSaqlash):
+    actor_id = _jwt_tekshir(sorov.token)
+    user_ids = list(dict.fromkeys(int(user_id) for user_id in sorov.user_ids))
+    if not user_ids:
+        raise HTTPException(status_code=400, detail="Kamida bitta o'quvchini belgilang")
+    if len(user_ids) > 500:
+        raise HTTPException(status_code=400, detail="Bir amalda ko'pi bilan 500 o'quvchi belgilanadi")
+    guruh_nomi = re.sub(r"\s+", " ", str(sorov.guruh_nomi or "")).strip()
+    if not sorov.tozalash and not 2 <= len(guruh_nomi) <= 50:
+        raise HTTPException(status_code=400, detail="Mustaqil guruh nomi 2–50 belgi bo'lsin")
+    conn = _db(); cur = conn.cursor()
+    _sinf_azolari_jadvali(cur); _sinf_kop_guruh_jadvallari(cur)
+    cur.execute("""
+        SELECT t.id,t.sinf_id,s.maktab_id
+        FROM maktab_sinf_guruh_tizimlari t
+        JOIN maktab_sinflari s ON s.id=t.sinf_id
+        WHERE t.id=%s AND t.sinf_id=%s AND t.turi='manual' AND t.faol=TRUE
+    """, (sorov.tizim_id, sorov.sinf_id))
+    tizim = cur.fetchone()
+    if not tizim:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Mustaqil guruhlash tizimi topilmadi")
+    if not _maktab_sinf_boshqaruvchi_mi(cur, actor_id, tizim["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat admin yoki o'quv ishlari zavuchi guruhlay oladi")
+    cur.execute(
+        "SELECT user_id FROM maktab_sinf_azolari WHERE sinf_id=%s AND user_id=ANY(%s)",
+        (sorov.sinf_id, user_ids),
+    )
+    if len(cur.fetchall()) != len(user_ids):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Tanlangan o'quvchilardan biri bu sinfga tegishli emas")
+    if sorov.tozalash:
+        cur.execute(
+            "DELETE FROM maktab_sinf_guruh_azolari WHERE tizim_id=%s AND user_id=ANY(%s)",
+            (sorov.tizim_id, user_ids),
+        )
+    else:
+        guruh_kaliti = "manual:" + hashlib.sha1(guruh_nomi.casefold().encode("utf-8")).hexdigest()[:12]
+        psycopg2.extras.execute_values(
+            cur,
+            """INSERT INTO maktab_sinf_guruh_azolari(
+                   tizim_id,user_id,guruh_kaliti,guruh_nomi
+               ) VALUES %s
+               ON CONFLICT(tizim_id,user_id) DO UPDATE SET
+                   guruh_kaliti=EXCLUDED.guruh_kaliti,
+                   guruh_nomi=EXCLUDED.guruh_nomi,
+                   yangilangan_at=NOW()""",
+            [(sorov.tizim_id, user_id, guruh_kaliti, guruh_nomi) for user_id in user_ids],
+            page_size=500,
+        )
+    tizimlar = _sinf_kop_guruh_natijasi(cur, sorov.sinf_id)
+    conn.commit(); cur.close(); conn.close()
+    return {"holat": "saqlandi", "yangilangan": len(user_ids), "tizimlar": tizimlar}
 
 
 @app.get("/api/maktab/sinflar_katalogi")
@@ -17400,7 +17914,13 @@ ANALITIKA_KONTEKST_MANBASI = {
 }
 
 
+_ANALITIKA_JADVALLARI_BOR = None
+
+
 def _analitika_jadvallar_bormi(cur):
+    global _ANALITIKA_JADVALLARI_BOR
+    if _ANALITIKA_JADVALLARI_BOR is not None:
+        return _ANALITIKA_JADVALLARI_BOR
     cur.execute(
         """SELECT
              to_regclass('public.learning_contexts') IS NOT NULL AS contexts_bor,
@@ -17423,12 +17943,14 @@ def _analitika_jadvallar_bormi(cur):
         and r["migration_table_bor"]
     )
     if not jadvallar_toliq:
+        _ANALITIKA_JADVALLARI_BOR = False
         return False
     cur.execute(
         """SELECT 1 FROM app_schema_migrations
            WHERE version='001_learning_analytics' LIMIT 1"""
     )
-    return bool(cur.fetchone())
+    _ANALITIKA_JADVALLARI_BOR = bool(cur.fetchone())
+    return _ANALITIKA_JADVALLARI_BOR
 
 
 def _analitika_migratsiya_talab(cur):
