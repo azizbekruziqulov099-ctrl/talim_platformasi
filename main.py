@@ -87,7 +87,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "school-institution-imports-v18.23",
+        "versiya": "admin-institution-archive-v18.24",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -101,8 +101,7 @@ def versiya():
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
             "learning_path": "balanced-golden-subject-path-v18.21",
             "voice": "stream-cache-visible-state-v18.22",
-            "school_institution": "admin-grant-preview-import-v18.23",
-            "organization_delete": "creator-aware-soft-delete-v18.23",
+            "institution_security": "admin-password-365-day-archive-v18.24",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -1119,9 +1118,12 @@ def muassasalarim(token: str):
     jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}
     natija = []
     for (turi, muassasa_id), lavozim in topilganlar.items():
+        if institution_is_archived(cur, turi, muassasa_id):
+            continue
         cur.execute(f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s", (muassasa_id,))
         m = cur.fetchone()
-        natija.append({"turi": turi, "muassasa_id": muassasa_id, "muassasa_nomi": m["nomi"] if m else None, "lavozim": lavozim})
+        if m:
+            natija.append({"turi": turi, "muassasa_id": muassasa_id, "muassasa_nomi": m["nomi"], "lavozim": lavozim})
 
     # V17 self-service muassasalari modulli context/profile/role yozuvlariga
     # ulangan. Ularni eski pastki menyu DTO'siga ham qo'shamiz, shunda sahifa
@@ -7486,15 +7488,7 @@ def _maktab_jadvali(cur):
         direktor_user_id BIGINT REFERENCES users(user_id),
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS creation_source TEXT NOT NULL DEFAULT 'legacy'")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS payment_exempt BOOLEAN NOT NULL DEFAULT FALSE")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS lifecycle_status TEXT NOT NULL DEFAULT 'active'")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS delete_reason TEXT")
-    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
+    ensure_institution_archive_columns(cur, "maktablar")
 
 
 class MaktabYaratish(BaseModel):
@@ -7515,7 +7509,7 @@ def maktab_yarat(sorov: MaktabYaratish):
     shu sabab bu yerda ixtiyoriy. To'lov sozlamasi ham shu yerda
     darhol belgilanadi (keyinroq "To'lov sozlamalari"dan o'zgartirsa
     ham bo'ladi)."""
-    creator_user_id = _admin_tekshir(sorov.token)
+    _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Maktab nomi kiritilmagan")
     if sorov.smena_soni not in (1, 2):
@@ -7530,11 +7524,10 @@ def maktab_yarat(sorov: MaktabYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov,
-                             creator_user_id,creation_source,payment_exempt,lifecycle_status)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,'admin_grant',TRUE,'active') RETURNING id
+        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov)
+        VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.smena_soni, sorov.direktor_user_id,
-          sorov.pulli, sorov.oylik_tolov if sorov.pulli else None, creator_user_id))
+          sorov.pulli, sorov.oylik_tolov if sorov.pulli else None))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -7554,7 +7547,7 @@ def maktablar_royxati(token: str):
                u.full_name AS direktor_ismi
         FROM maktablar m
         LEFT JOIN users u ON u.user_id = m.direktor_user_id
-        WHERE m.deleted_at IS NULL
+        WHERE m.archived_at IS NULL
         ORDER BY m.nomi
     """)
     natija = cur.fetchall()
@@ -8428,6 +8421,8 @@ def _muassasadagi_lavozim(cur, user_id, turi, muassasa_id):
     """Foydalanuvchining shu ANIQ muassasadagi lavozimini topadi —
     ESKI (yagona ustun) va YANGI (ko'p muassasali jadval) ikkalasidan
     ham qidiradi, orqaga moslik uchun. Topilmasa — None."""
+    if institution_is_archived(cur, turi, muassasa_id):
+        return None
     ustun = {"maktab": "maktab_id", "markaz": "markaz_id", "bogcha": "bogcha_id", "universitet": "universitet_id"}[turi]
     cur.execute(f"SELECT lavozim FROM users WHERE user_id=%s AND {ustun}=%s", (user_id, muassasa_id))
     r = cur.fetchone()
@@ -9976,14 +9971,9 @@ def _markaz_jadvali(cur):
         direktor_user_id BIGINT REFERENCES users(user_id),
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
-    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
-    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
-    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS delete_reason TEXT")
-    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    ensure_institution_archive_columns(cur, "oquv_markazlari")
 
 
 def _markaz_boshqaruvchi_mi(cur, user_id, markaz_id):
@@ -10006,7 +9996,7 @@ class MarkazYaratish(BaseModel):
 
 @app.post("/api/admin/markaz_yarat")
 def markaz_yarat(sorov: MarkazYaratish):
-    creator_user_id = _admin_tekshir(sorov.token)
+    _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Markaz nomi kiritilmagan")
     conn = _db()
@@ -10018,9 +10008,9 @@ def markaz_yarat(sorov: MarkazYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id,creator_user_id)
-        VALUES(%s,%s,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.direktor_user_id,creator_user_id))
+        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.direktor_user_id))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -10030,18 +10020,17 @@ def markaz_yarat(sorov: MarkazYaratish):
 
 @app.get("/api/admin/markazlar")
 def markazlar_royxati(token: str):
-    admin_user_id = _admin_tekshir(token)
+    _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _markaz_jadvali(cur)
     cur.execute("""
-        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.direktor_user_id, u.full_name AS direktor_ismi,
-               m.creator_user_id,(m.creator_user_id=%s) AS own_creation
+        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.direktor_user_id, u.full_name AS direktor_ismi
         FROM oquv_markazlari m
         LEFT JOIN users u ON u.user_id = m.direktor_user_id
-        WHERE m.deleted_at IS NULL
+        WHERE m.archived_at IS NULL
         ORDER BY m.nomi
-    """, (admin_user_id,))
+    """)
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -10456,12 +10445,6 @@ def _bogcha_jadvali(cur):
         oylik_tolov INTEGER,
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
-    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
-    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
-    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS delete_reason TEXT")
-    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
     cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_guruhlari(
         id SERIAL PRIMARY KEY,
         bogcha_id INTEGER NOT NULL REFERENCES bogchalar(id),
@@ -10477,6 +10460,7 @@ def _bogcha_jadvali(cur):
         qoshilgan_at TIMESTAMP DEFAULT NOW()
     )""")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+    ensure_institution_archive_columns(cur, "bogchalar")
 
 
 def _bogcha_v2_mavjud(cur):
@@ -10916,15 +10900,14 @@ def bogcha_yarat(sorov: BogchaYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id,creator_user_id)
-        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
+        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id)
+        VALUES(%s,%s,%s,%s,%s) RETURNING id
     """, (
         sorov.nomi.strip(),
         sorov.turi,
         sorov.viloyat,
         sorov.tuman,
         sorov.direktor_user_id,
-        admin_user_id,
     ))
     yangi_id = cur.fetchone()["id"]
     _bogcha_v2_kontekstni_taminla(cur, yangi_id)
@@ -10947,19 +10930,18 @@ def bogchalar_royxati(
     token: Optional[str] = Query(default=None, include_in_schema=False),
     authorization: Optional[str] = Header(default=None),
 ):
-    admin_user_id = _admin_tekshir(_jwt_header_yoki_query(token, authorization))
+    _admin_tekshir(_jwt_header_yoki_query(token, authorization))
     conn = _db()
     cur = conn.cursor()
     _bogcha_jadvali(cur)
     cur.execute("""
         SELECT b.id, b.nomi, b.turi, b.viloyat, b.tuman, b.direktor_user_id,
-               u.full_name AS direktor_ismi,b.creator_user_id,
-               (b.creator_user_id=%s) AS own_creation
+               u.full_name AS direktor_ismi
         FROM bogchalar b
         LEFT JOIN users u ON u.user_id = b.direktor_user_id
-        WHERE b.deleted_at IS NULL
+        WHERE b.archived_at IS NULL
         ORDER BY b.nomi
-    """, (admin_user_id,))
+    """)
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -11492,12 +11474,6 @@ def _universitet_jadvali(cur):
         id SERIAL PRIMARY KEY, nomi TEXT NOT NULL, viloyat TEXT, tuman TEXT,
         rektor_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
-    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
-    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
-    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
-    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS delete_reason TEXT")
-    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
     cur.execute("""CREATE TABLE IF NOT EXISTS fakultetlar(
         id SERIAL PRIMARY KEY, universitet_id INTEGER NOT NULL REFERENCES universitetlar(id),
         nomi TEXT NOT NULL, dekan_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
@@ -11518,6 +11494,7 @@ def _universitet_jadvali(cur):
         UNIQUE(guruh_id, user_id)
     )""")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+    ensure_institution_archive_columns(cur, "universitetlar")
 
 
 def _universitet_boshqaruvchi_mi(cur, user_id, universitet_id):
@@ -11538,7 +11515,7 @@ class UniversitetYaratish(BaseModel):
 
 @app.post("/api/admin/universitet_yarat")
 def universitet_yarat(sorov: UniversitetYaratish):
-    creator_user_id = _admin_tekshir(sorov.token)
+    _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Universitet nomi kiritilmagan")
     conn = _db()
@@ -11550,9 +11527,9 @@ def universitet_yarat(sorov: UniversitetYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan rektor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id,creator_user_id)
-        VALUES(%s,%s,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.rektor_user_id,creator_user_id))
+        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id)
+        VALUES(%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.rektor_user_id))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -11562,18 +11539,17 @@ def universitet_yarat(sorov: UniversitetYaratish):
 
 @app.get("/api/admin/universitetlar")
 def universitetlar_royxati(token: str):
-    admin_user_id = _admin_tekshir(token)
+    _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _universitet_jadvali(cur)
     cur.execute("""
         SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
-               (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni,
-               u.creator_user_id,(u.creator_user_id=%s) AS own_creation
+               (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni
         FROM universitetlar u LEFT JOIN users us ON us.user_id = u.rektor_user_id
-        WHERE u.deleted_at IS NULL
+        WHERE u.archived_at IS NULL
         ORDER BY u.nomi
-    """, (admin_user_id,))
+    """)
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -20335,21 +20311,23 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 # ═══════════════════════════════════════════════════════════
 from modules.kindergarten import create_kindergarten_router
 from modules.institute import create_institute_router
+from modules.admin_institution_security_v18_24 import (
+    create_institution_archive_router,
+    ensure_institution_archive_columns,
+    institution_is_archived,
+)
 from modules.learning_center import create_learning_center_router
 from modules.organization_trials import create_organization_trial_router
-from modules.organization_delete_v23 import create_organization_delete_v23_router
 from modules.school import create_school_router
-from modules.school_institution_v23 import create_school_institution_v23_router
 from modules.test_games import award_standard_test_points, create_test_games_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
 
 app.include_router(create_kindergarten_router(_jwt_tekshir))
 app.include_router(create_school_router(_jwt_tekshir))
-app.include_router(create_school_institution_v23_router(_jwt_tekshir, _db))
 app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
 app.include_router(create_organization_trial_router(_jwt_tekshir))
-app.include_router(create_organization_delete_v23_router(_jwt_tekshir, _db))
+app.include_router(create_institution_archive_router(_admin_tekshir, _db))
 app.include_router(
     create_test_games_router(
         _jwt_tekshir,
