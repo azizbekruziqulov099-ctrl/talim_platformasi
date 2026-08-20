@@ -8255,25 +8255,26 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
                 katak = ws.cell(row_index, col, "☐")
                 katak.alignment = Alignment(horizontal="center", vertical="center")
 
-        # V18.43 — H/I/J/K... dagi ☑ lar D ustunida darhol ko'rinsin.
-        # Masalan I=1-A ☑, J=1-B ☑, K=1-C ☑ bo'lsa D = "1-A; 1-B; 1-C".
-        # HAMMASI ☑ bo'lsa barcha mavjud sinflar D ga yoziladi.
+        # V18.44 — D ustuni eski/yangi Excel versiyalarida ham ishlasin.
+        # TEXTJOIN ayrim Excel versiyalarida #ИМЯ? (#NAME?) beradi.
+        # Shu sabab faqat IF va & ishlatamiz — bular deyarli barcha Excel versiyalarida bor.
         hammasi_harfi = get_column_letter(sinf_belgi_boshlanish_ustuni)
-        birinchi_sinf_harfi = get_column_letter(sinf_belgi_birinchi_sinf_ustuni)
-        oxirgi_sinf_harfi = get_column_letter(sinf_belgi_oxirgi_ustuni)
+        barcha_sinflar_matni = "; ".join(mavjud_sinflar)
+        barcha_sinflar_excel = barcha_sinflar_matni.replace('"', '""')
 
         for row_index in range(2, 5001):
-            tanlangan_iflar = []
+            qismlar = []
             for col in range(sinf_belgi_birinchi_sinf_ustuni, sinf_belgi_oxirgi_ustuni + 1):
                 harf = get_column_letter(col)
-                tanlangan_iflar.append(
-                    f'IF({harf}{row_index}="☑",{harf}$1,"")'
+                qismlar.append(
+                    f'IF({harf}{row_index}="☑",{harf}$1&"; ","")'
                 )
 
+            tanlangan_formula = "&".join(qismlar) if qismlar else '""'
             ws.cell(row_index, 4).value = (
                 f'=IF({hammasi_harfi}{row_index}="☑",'
-                f'TEXTJOIN("; ",TRUE,{birinchi_sinf_harfi}$1:{oxirgi_sinf_harfi}$1),'
-                f'TEXTJOIN("; ",TRUE,{",".join(tanlangan_iflar)}))'
+                f'"{barcha_sinflar_excel}",'
+                f'{tanlangan_formula})'
             )
 
         # Excel fayl ochilganda formulalarni majburiy qayta hisoblasin.
