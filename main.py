@@ -8446,6 +8446,8 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
 
     _xodim_kod_jadvali(cur)
     _maktab_sinflari_jadvali(cur)
+    _xodim_sinf_birikmalari_jadvali(cur)
+    _v1850_xodim_dublikatlarini_tozala(cur, maktab_id)
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS fanlari TEXT")
@@ -8807,20 +8809,55 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     natijalar = []
     for qator in tayyor_qatorlar:
         try:
-            cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
-            r = cur.fetchone()
-            yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
-
+            # V18.50 — bir xil maktab + bir xil F.I.Sh + bir xil lavozim bo'lsa
+            # yangi xodim yaratmaymiz. Mavjud yozuvni yangilaymiz.
             cur.execute("""
-                INSERT INTO users(
-                    user_id,full_name,role,maktab_id,lavozim,fanlari,
-                    oqitadigan_sinflari,ish_staji,toifasi,haftalik_dars_soati
-                ) VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s,%s,%s)
-            """, (
-                yangi_id, qator["fish"], maktab_id, qator["lavozim_kaliti"],
-                qator["fanlari"] or None, "; ".join(qator["dars_sinflari"]) or None,
-                qator["ish_staji"], qator["toifasi"], qator["haftalik_dars_soati"],
-            ))
+                SELECT user_id
+                FROM users
+                WHERE maktab_id=%s
+                  AND lavozim=%s
+                  AND LOWER(REGEXP_REPLACE(TRIM(full_name), '\\s+', ' ', 'g'))
+                      = LOWER(REGEXP_REPLACE(TRIM(%s), '\\s+', ' ', 'g'))
+                ORDER BY user_id ASC
+                LIMIT 1
+            """, (maktab_id, qator["lavozim_kaliti"], qator["fish"]))
+            mavjud_xodim = cur.fetchone()
+            yangilandi = mavjud_xodim is not None
+
+            if yangilandi:
+                yangi_id = mavjud_xodim["user_id"]
+                cur.execute("""
+                    UPDATE users
+                    SET full_name=%s, role='oqituvchi', maktab_id=%s, lavozim=%s,
+                        fanlari=%s, oqitadigan_sinflari=%s, ish_staji=%s,
+                        toifasi=%s, haftalik_dars_soati=%s
+                    WHERE user_id=%s
+                """, (
+                    qator["fish"], maktab_id, qator["lavozim_kaliti"],
+                    qator["fanlari"] or None, "; ".join(qator["dars_sinflari"]) or None,
+                    qator["ish_staji"], qator["toifasi"], qator["haftalik_dars_soati"],
+                    yangi_id,
+                ))
+                # Excel hozirgi holatning manbasi: eski sinf/fan birikmalarini yangidan tuzamiz.
+                cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=%s", (maktab_id, yangi_id))
+                cur.execute("DELETE FROM maktab_xodim_sinflari WHERE maktab_id=%s AND user_id=%s", (maktab_id, yangi_id))
+                cur.execute("UPDATE maktab_sinflari SET rahbar_user_id=NULL WHERE maktab_id=%s AND rahbar_user_id=%s", (maktab_id, yangi_id))
+                # Har qayta importda bitta yangi, amaldagi kirish kodi beriladi.
+                cur.execute("DELETE FROM xodim_kod WHERE user_id=%s", (yangi_id,))
+            else:
+                cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+                r = cur.fetchone()
+                yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
+                cur.execute("""
+                    INSERT INTO users(
+                        user_id,full_name,role,maktab_id,lavozim,fanlari,
+                        oqitadigan_sinflari,ish_staji,toifasi,haftalik_dars_soati
+                    ) VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s,%s,%s)
+                """, (
+                    yangi_id, qator["fish"], maktab_id, qator["lavozim_kaliti"],
+                    qator["fanlari"] or None, "; ".join(qator["dars_sinflari"]) or None,
+                    qator["ish_staji"], qator["toifasi"], qator["haftalik_dars_soati"],
+                ))
 
             if qator["lavozim_kaliti"] == "direktor":
                 cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (yangi_id, maktab_id))
@@ -8875,6 +8912,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 "dars_birikmalari": qator["dars_birikmalari"],
                 "ish_staji": qator["ish_staji"], "toifasi": qator["toifasi"],
                 "haftalik_dars_soati": qator["haftalik_dars_soati"],
+                "import_holati": "yangilandi" if yangilandi else "yangi",
             })
         except Exception as error:
             conn.rollback()
@@ -22338,6 +22376,8 @@ def v1845_yuklama_xulosasi(token: str, maktab_id: int):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     _v1845_smart_school_tables(cur)
+    _v1850_xodim_dublikatlarini_tozala(cur, maktab_id)
+    conn.commit()
     if not _maktab_boshqaruvchi_mi(cur, actor_id, maktab_id):
         cur.close(); conn.close(); raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
     cur.execute("""
@@ -22424,6 +22464,8 @@ def _v1847_preview_common(cur, maktab_id: int):
     _davomat_jadvali(cur)
     _v1845_smart_school_tables(cur)
     _xodim_sinf_birikmalari_jadvali(cur)
+    _v1850_xodim_dublikatlarini_tozala(cur, maktab_id)
+    cur.connection.commit()
 
     cur.execute("""
         SELECT id, nomi, maktab_raqami, viloyat, tuman, smena_soni
@@ -22784,4 +22826,159 @@ def v1847_maktab_rol_korish(
         cur.close(); conn.close()
 
 # ========================= V18.47 END =========================
+
+
+# ═══════════════════════════════════════════════════════════
+# V18.50 — XODIM DUBLIKATLARINI AVTOMATIK TUZATISH
+# Faqat Excel importidan yaratilgan manfiy user_id xodimlarga tegadi.
+# Haqiqiy Google/Telegram foydalanuvchi hisoblari avtomatik birlashtirilmaydi.
+# Eng yangi import yozuvi (eng kichik/manfiy user_id) saqlanadi.
+# Eski dublikatlar xavfsiz arxivlanadi, bog'lanishlar yangi yozuvga ko'chiriladi.
+# ═══════════════════════════════════════════════════════════
+
+def _v1850_xodim_dublikatlarini_tozala(cur, maktab_id: int):
+    _xodim_kod_jadvali(cur)
+    _maktab_sinflari_jadvali(cur)
+    _xodim_sinf_birikmalari_jadvali(cur)
+    _rejalashtirish_jadvallari(cur)
+    _xodim_davomati_jadvali(cur)
+    _v1845_smart_school_tables(cur)
+
+    cur.execute("""
+        SELECT
+            LOWER(REGEXP_REPLACE(TRIM(full_name), '\\s+', ' ', 'g')) AS ism_kalit,
+            COALESCE(lavozim,'') AS lavozim_kalit,
+            ARRAY_AGG(user_id ORDER BY user_id ASC) AS ids
+        FROM users
+        WHERE maktab_id=%s
+          AND user_id < 0
+          AND lavozim IS NOT NULL
+          AND TRIM(COALESCE(full_name,'')) <> ''
+        GROUP BY 1,2
+        HAVING COUNT(*) > 1
+    """, (maktab_id,))
+    guruhlar = cur.fetchall()
+
+    tozalangan = 0
+    for g in guruhlar:
+        ids = list(g.get("ids") or [])
+        if len(ids) < 2:
+            continue
+
+        # Import har safar yanada kichik manfiy ID beradi, shu sabab MIN = eng yangi.
+        asosiy = ids[0]
+        dublikatlar = ids[1:]
+
+        for eski in dublikatlar:
+            # Eng to'liq ma'lumotlarni asosiy yozuvga saqlab qolamiz.
+            cur.execute("""
+                UPDATE users AS yangi
+                SET fanlari = COALESCE(NULLIF(yangi.fanlari,''), eski.fanlari),
+                    oqitadigan_sinflari = COALESCE(NULLIF(yangi.oqitadigan_sinflari,''), eski.oqitadigan_sinflari),
+                    ish_staji = COALESCE(yangi.ish_staji, eski.ish_staji),
+                    toifasi = COALESCE(NULLIF(yangi.toifasi,''), eski.toifasi),
+                    haftalik_dars_soati = COALESCE(yangi.haftalik_dars_soati, eski.haftalik_dars_soati)
+                FROM users AS eski
+                WHERE yangi.user_id=%s AND eski.user_id=%s
+            """, (asosiy, eski))
+
+            # Sinf rahbarligi.
+            cur.execute(
+                "UPDATE maktab_sinflari SET rahbar_user_id=%s WHERE maktab_id=%s AND rahbar_user_id=%s",
+                (asosiy, maktab_id, eski),
+            )
+
+            # Xodim-sinf bog'lanishlarini conflict-siz ko'chiramiz.
+            cur.execute("""
+                INSERT INTO maktab_xodim_sinflari(maktab_id,user_id,sinf_id,fanlari)
+                SELECT maktab_id,%s,sinf_id,fanlari
+                FROM maktab_xodim_sinflari
+                WHERE maktab_id=%s AND user_id=%s
+                ON CONFLICT(user_id,sinf_id) DO UPDATE
+                SET fanlari=COALESCE(EXCLUDED.fanlari,maktab_xodim_sinflari.fanlari)
+            """, (asosiy, maktab_id, eski))
+            cur.execute(
+                "DELETE FROM maktab_xodim_sinflari WHERE maktab_id=%s AND user_id=%s",
+                (maktab_id, eski),
+            )
+
+            # Aniq sinf-fan-guruh birikmalarini ko'chiramiz.
+            cur.execute("""
+                INSERT INTO maktab_dars_birikmalari(maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti)
+                SELECT maktab_id,%s,sinf_id,fan_nomi,guruh_kaliti
+                FROM maktab_dars_birikmalari
+                WHERE maktab_id=%s AND user_id=%s
+                ON CONFLICT(user_id,sinf_id,fan_nomi,guruh_kaliti) DO NOTHING
+            """, (asosiy, maktab_id, eski))
+            cur.execute(
+                "DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=%s",
+                (maktab_id, eski),
+            )
+
+            # Jadvaldagi darslar.
+            cur.execute(
+                "UPDATE dars_jadvali SET oqituvchi_user_id=%s WHERE oqituvchi_user_id=%s",
+                (asosiy, eski),
+            )
+
+            # Monitoring yozuvlari (o'qituvchi sifatida).
+            cur.execute(
+                "UPDATE dars_monitoring_baholari SET oqituvchi_user_id=%s WHERE maktab_id=%s AND oqituvchi_user_id=%s",
+                (asosiy, maktab_id, eski),
+            )
+
+            # Xodim davomatida bir kunlik conflict bo'lishi mumkin — avval merge.
+            cur.execute("""
+                INSERT INTO xodim_davomati(maktab_id,user_id,sana,holat,izoh,belgilagan_user_id,belgilangan_at)
+                SELECT maktab_id,%s,sana,holat,izoh,belgilagan_user_id,belgilangan_at
+                FROM xodim_davomati
+                WHERE maktab_id=%s AND user_id=%s
+                ON CONFLICT(maktab_id,user_id,sana) DO NOTHING
+            """, (asosiy, maktab_id, eski))
+            cur.execute(
+                "DELETE FROM xodim_davomati WHERE maktab_id=%s AND user_id=%s",
+                (maktab_id, eski),
+            )
+
+            # Direktor ko'rsatkichi eski duplicatega qaragan bo'lsa.
+            cur.execute(
+                "UPDATE maktablar SET direktor_user_id=%s WHERE id=%s AND direktor_user_id=%s",
+                (asosiy, maktab_id, eski),
+            )
+
+            # Eski duplicate kirish kodini bekor qilamiz.
+            cur.execute("DELETE FROM xodim_kod WHERE user_id=%s", (eski,))
+
+            # FK sabab foydalanuvchini qattiq DELETE qilmaymiz.
+            # Maktabdan chiqarib, lavozimini bo'shatamiz — dashboard/importda qayta chiqmaydi.
+            cur.execute("""
+                UPDATE users
+                SET maktab_id=NULL,
+                    lavozim=NULL,
+                    fanlari=NULL,
+                    oqitadigan_sinflari=NULL,
+                    haftalik_dars_soati=NULL,
+                    full_name=full_name || ' [dublikat arxiv]'
+                WHERE user_id=%s AND user_id<0
+            """, (eski,))
+            tozalangan += 1
+
+    return {"tozalangan": tozalangan, "guruhlar": len(guruhlar)}
+
+
+@app.post("/api/admin/maktab_xodim_dublikatlarini_tozala")
+def v1850_maktab_xodim_dublikatlarini_tozala(token: str, maktab_id: int):
+    _admin_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        natija = _v1850_xodim_dublikatlarini_tozala(cur, maktab_id)
+        conn.commit()
+        return {"holat": "tozalandi", **natija}
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close(); conn.close()
+
+# ========================= V18.50 END =========================
 
