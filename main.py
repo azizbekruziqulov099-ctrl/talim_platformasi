@@ -92,7 +92,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "multi-group-sets-no-freeze-v18.36",
+        "versiya": "split-test-chunks-no-freeze-v18.37",
+        "previous_version": "multi-group-sets-no-freeze-v18.36",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -111,6 +112,7 @@ def versiya():
             "employee_import": "multi-class-smart-template-v18.34",
             "student_groups": "bulk-manual-groups-v18.34",
             "performance": "safe-db-pool-compression-request-guards-v18.35",
+            "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
