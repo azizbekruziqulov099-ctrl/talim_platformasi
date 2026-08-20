@@ -22395,3 +22395,393 @@ def v1845_holatlarni_yangila(token: str, maktab_id: int):
     conn.commit(); cur.close(); conn.close(); return {"holat":"yangilandi","yozuvlar":son}
 
 # ========================= V18.45 END =========================
+
+
+# ═══════════════════════════════════════════════════════════
+# V18.47 — ADMIN UCHUN "ROL SIFATIDA KO'RISH" (READ-ONLY PREVIEW)
+# Admin maktabni turli rollar ko'zidan ko'radi, lekin bu endpointlar
+# hech qanday ma'lumotni o'zgartirmaydi va boshqa foydalanuvchi tokenini bermaydi.
+# ═══════════════════════════════════════════════════════════
+
+_V1847_PREVIEW_ROLLAR = {
+    "maktab_admin": "Maktab admini",
+    "direktor": "Maktab direktori",
+    "zavuch": "O'quv ishlari bo'yicha direktor o'rinbosari",
+    "manaviyatchi": "Ma'naviy-ma'rifiy ishlar bo'yicha direktor o'rinbosari",
+    "fan_oqituvchisi": "Fan o'qituvchisi",
+    "sinf_rahbari": "Sinf rahbari",
+    "oquvchi": "O'quvchi",
+    "ota_ona": "Ota-ona",
+    "psixolog": "Psixolog",
+    "hamshira": "Hamshira",
+}
+
+
+def _v1847_preview_common(cur, maktab_id: int):
+    _maktab_jadvali(cur)
+    _maktab_sinflari_jadvali(cur)
+    _sinf_azolari_jadvali(cur)
+    _davomat_jadvali(cur)
+    _v1845_smart_school_tables(cur)
+    _xodim_sinf_birikmalari_jadvali(cur)
+
+    cur.execute("""
+        SELECT id, nomi, maktab_raqami, viloyat, tuman, smena_soni
+        FROM maktablar WHERE id=%s AND archived_at IS NULL
+    """, (maktab_id,))
+    maktab = cur.fetchone()
+    if not maktab:
+        raise HTTPException(status_code=404, detail="Maktab topilmadi")
+
+    cur.execute("""
+        SELECT s.id,s.sinf,s.harf,s.rahbar_user_id,
+               COALESCE(u.full_name,'') AS rahbar_ismi,
+               COUNT(a.user_id) AS oquvchi_soni
+        FROM maktab_sinflari s
+        LEFT JOIN users u ON u.user_id=s.rahbar_user_id
+        LEFT JOIN maktab_sinf_azolari a ON a.sinf_id=s.id
+        WHERE s.maktab_id=%s
+        GROUP BY s.id,s.sinf,s.harf,s.rahbar_user_id,u.full_name
+        ORDER BY s.sinf::int,s.harf
+    """, (maktab_id,))
+    sinflar = cur.fetchall()
+
+    cur.execute("""
+        SELECT user_id,full_name,lavozim,fanlari,haftalik_dars_soati
+        FROM users
+        WHERE maktab_id=%s AND lavozim IS NOT NULL
+        ORDER BY
+          CASE lavozim
+            WHEN 'direktor' THEN 1
+            WHEN 'zam_direktor_uquv' THEN 2
+            WHEN 'zam_direktor_tarbiya' THEN 3
+            WHEN 'psixolog' THEN 4
+            WHEN 'hamshira' THEN 5
+            WHEN 'fan_oqituvchisi' THEN 6
+            ELSE 20
+          END,
+          full_name
+    """, (maktab_id,))
+    xodimlar = cur.fetchall()
+
+    cur.execute("""
+        SELECT COUNT(DISTINCT a.user_id) AS son
+        FROM maktab_sinf_azolari a
+        JOIN maktab_sinflari s ON s.id=a.sinf_id
+        WHERE s.maktab_id=%s
+    """, (maktab_id,))
+    oquvchi_soni = int((cur.fetchone() or {}).get("son") or 0)
+
+    cur.execute("""
+        SELECT COUNT(*) AS son FROM aqlli_holatlar
+        WHERE maktab_id=%s AND holat='ochiq'
+    """, (maktab_id,))
+    ochiq_holatlar = int((cur.fetchone() or {}).get("son") or 0)
+
+    cur.execute("""
+        SELECT COUNT(*) AS son
+        FROM davomat d
+        JOIN maktab_sinflari s ON s.id=d.sinf_id
+        WHERE s.maktab_id=%s AND d.sana=CURRENT_DATE AND d.holat='kelmadi'
+    """, (maktab_id,))
+    bugun_kelmagan = int((cur.fetchone() or {}).get("son") or 0)
+
+    return maktab, sinflar, xodimlar, {
+        "oquvchi_soni": oquvchi_soni,
+        "sinf_soni": len(sinflar),
+        "xodim_soni": len(xodimlar),
+        "ochiq_holatlar": ochiq_holatlar,
+        "bugun_kelmagan": bugun_kelmagan,
+    }
+
+
+@app.get("/api/admin/maktab_korish_katalogi")
+def v1847_maktab_korish_katalogi(token: str, maktab_id: int):
+    _admin_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        maktab, sinflar, xodimlar, xulosa = _v1847_preview_common(cur, maktab_id)
+
+        cur.execute("""
+            SELECT a.sinf_id,u.user_id,u.full_name
+            FROM maktab_sinf_azolari a
+            JOIN users u ON u.user_id=a.user_id
+            JOIN maktab_sinflari s ON s.id=a.sinf_id
+            WHERE s.maktab_id=%s
+            ORDER BY a.sinf_id,u.full_name
+        """, (maktab_id,))
+        oquvchilar = cur.fetchall()
+
+        return {
+            "read_only": True,
+            "maktab": maktab,
+            "xulosa": xulosa,
+            "rollar": [{"kalit": k, "nom": v} for k, v in _V1847_PREVIEW_ROLLAR.items()],
+            "sinflar": sinflar,
+            "xodimlar": xodimlar,
+            "oquvchilar": oquvchilar,
+        }
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/admin/maktab_rol_korish")
+def v1847_maktab_rol_korish(
+    token: str,
+    maktab_id: int,
+    rol: str,
+    user_id: Optional[int] = None,
+    sinf_id: Optional[int] = None,
+    oquvchi_id: Optional[int] = None,
+):
+    _admin_tekshir(token)
+    rol = str(rol or "").strip().lower()
+    if rol not in _V1847_PREVIEW_ROLLAR:
+        raise HTTPException(status_code=400, detail="Noma'lum ko'rish roli")
+
+    conn = _db(); cur = conn.cursor()
+    try:
+        maktab, sinflar, xodimlar, xulosa = _v1847_preview_common(cur, maktab_id)
+
+        response = {
+            "read_only": True,
+            "rol": rol,
+            "rol_nomi": _V1847_PREVIEW_ROLLAR[rol],
+            "maktab": maktab,
+            "xulosa": xulosa,
+            "tanlangan": {},
+            "kartalar": [],
+            "bolimlar": [],
+            "ogohlantirish": "ADMIN KO'RISH REJIMI — bu oynada hech qanday ma'lumot o'zgartirilmaydi.",
+        }
+
+        def card(label, value, tone="blue"):
+            response["kartalar"].append({"label": label, "value": value, "tone": tone})
+
+        def section(title, subtitle="", items=None, empty_text=None, kind="list"):
+            response["bolimlar"].append({
+                "title": title, "subtitle": subtitle, "items": items or [],
+                "empty_text": empty_text, "kind": kind,
+            })
+
+        # Maktab admini / direktor
+        if rol in {"maktab_admin", "direktor"}:
+            card("O'quvchilar", xulosa["oquvchi_soni"], "blue")
+            card("Sinflar", xulosa["sinf_soni"], "teal")
+            card("Xodimlar", xulosa["xodim_soni"], "green")
+            card("Bugun kelmagan", xulosa["bugun_kelmagan"], "amber" if xulosa["bugun_kelmagan"] else "green")
+            card("Ochiq aqlli holat", xulosa["ochiq_holatlar"], "red" if xulosa["ochiq_holatlar"] else "green")
+            section(
+                "Maktab boshqaruv markazi",
+                "Rahbariyat bir qarashda ko'radigan asosiy holatlar.",
+                [
+                    {"title": "Dars jadvali va yuklama", "detail": "O'qituvchi yuklamasi, bo'sh darslar va konfliktlar."},
+                    {"title": "Davomat signallari", "detail": f"Bugun {xulosa['bugun_kelmagan']} ta kelmagan yozuvi bor."},
+                    {"title": "Aqlli holatlar", "detail": f"{xulosa['ochiq_holatlar']} ta ochiq kuzatuv holati."},
+                    {"title": "Sinf va xodimlar", "detail": f"{xulosa['sinf_soni']} sinf · {xulosa['xodim_soni']} xodim."},
+                ],
+            )
+
+        # Zavuch
+        elif rol == "zavuch":
+            cur.execute("""
+                SELECT u.user_id,u.full_name,u.fanlari,u.haftalik_dars_soati,
+                       COUNT(j.id) AS jadvaldagi_soat
+                FROM users u
+                LEFT JOIN dars_jadvali j ON j.oqituvchi_user_id=u.user_id
+                WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
+                GROUP BY u.user_id,u.full_name,u.fanlari,u.haftalik_dars_soati
+                ORDER BY ABS(COALESCE(u.haftalik_dars_soati,0)-COUNT(j.id)) DESC,u.full_name
+                LIMIT 12
+            """, (maktab_id,))
+            yuklama = cur.fetchall()
+            card("Sinflar", xulosa["sinf_soni"], "teal")
+            card("O'qituvchilar", sum(1 for x in xodimlar if x.get("fanlari")), "blue")
+            card("Bugun kelmagan", xulosa["bugun_kelmagan"], "amber")
+            section("O'qituvchi yuklamasi", "Jadval va belgilangan haftalik soatni solishtirish.", [
+                {"title": x["full_name"], "detail": f"{x.get('fanlari') or 'Fan ko‘rsatilmagan'} · reja {x.get('haftalik_dars_soati') if x.get('haftalik_dars_soati') is not None else '—'} · jadval {int(x.get('jadvaldagi_soat') or 0)}"}
+                for x in yuklama
+            ], "Yuklama ma'lumoti yo'q")
+
+        # Ma'naviyatchi
+        elif rol == "manaviyatchi":
+            cur.execute("""
+                SELECT h.daraja,h.sarlavha,h.tavsif,u.full_name
+                FROM aqlli_holatlar h JOIN users u ON u.user_id=h.oquvchi_user_id
+                WHERE h.maktab_id=%s AND h.holat='ochiq'
+                ORDER BY h.daraja DESC,h.yangilangan_at DESC LIMIT 12
+            """, (maktab_id,))
+            holatlar = cur.fetchall()
+            card("Bugun kelmagan", xulosa["bugun_kelmagan"], "amber")
+            card("Ochiq holatlar", xulosa["ochiq_holatlar"], "red" if xulosa["ochiq_holatlar"] else "green")
+            card("Sinflar", xulosa["sinf_soni"], "teal")
+            section("E'tibor talab qiladigan o'quvchilar", "Davomat va tarbiyaviy kuzatuvlar.", [
+                {"title": x["full_name"], "detail": f"Daraja {x['daraja']} · {x['sarlavha']}"}
+                for x in holatlar
+            ], "Hozircha ochiq holat yo'q")
+
+        # Psixolog
+        elif rol == "psixolog":
+            cur.execute("""
+                SELECT h.daraja,h.sarlavha,h.tavsif,u.full_name
+                FROM aqlli_holatlar h JOIN users u ON u.user_id=h.oquvchi_user_id
+                WHERE h.maktab_id=%s AND h.holat='ochiq'
+                  AND (h.masul_rol ILIKE '%%psixolog%%' OR h.daraja>=2)
+                ORDER BY h.daraja DESC,h.yangilangan_at DESC LIMIT 12
+            """, (maktab_id,))
+            holatlar = cur.fetchall()
+            card("Ko'rib chiqiladigan holat", len(holatlar), "amber" if holatlar else "green")
+            card("Jami o'quvchi", xulosa["oquvchi_soni"], "blue")
+            section("Psixolog ish navbati", "Faqat psixologga tegishli yoki yordam talab qiladigan holatlar.", [
+                {"title": x["full_name"], "detail": f"Daraja {x['daraja']} · {x['sarlavha']}"}
+                for x in holatlar
+            ], "Psixolog uchun ochiq signal yo'q")
+
+        # Hamshira — sog'liq yozuvlari alohida modul sifatida keyin ulanadi.
+        elif rol == "hamshira":
+            card("Jami o'quvchi", xulosa["oquvchi_soni"], "blue")
+            card("Sinflar", xulosa["sinf_soni"], "teal")
+            section(
+                "Hamshira ish maydoni",
+                "Sog'liq ma'lumotlari maxfiy bo'lgani uchun admin preview faqat interfeys tuzilishini ko'rsatadi.",
+                [
+                    {"title": "Bugungi murojaatlar", "detail": "Sog'liq moduli ulanganidan keyin shu yerda chiqadi."},
+                    {"title": "Dori/allergiya ogohlantirishlari", "detail": "Faqat vakolatli hamshiraga ko'rinadigan yopiq blok bo'ladi."},
+                    {"title": "Tibbiy ko'rik rejalari", "detail": "Sinf kesimida rejalashtiriladi."},
+                ],
+            )
+
+        # Fan o'qituvchisi
+        elif rol == "fan_oqituvchisi":
+            if user_id is None:
+                raise HTTPException(status_code=400, detail="Fan o'qituvchisini tanlang")
+            cur.execute("""
+                SELECT user_id,full_name,fanlari,haftalik_dars_soati
+                FROM users WHERE user_id=%s AND maktab_id=%s
+            """, (user_id, maktab_id))
+            teacher = cur.fetchone()
+            if not teacher:
+                raise HTTPException(status_code=404, detail="Tanlangan o'qituvchi topilmadi")
+            response["tanlangan"] = teacher
+            cur.execute("""
+                SELECT DISTINCT s.id AS sinf_id,s.sinf,s.harf,b.fan_nomi
+                FROM maktab_dars_birikmalari b
+                JOIN maktab_sinflari s ON s.id=b.sinf_id
+                WHERE b.user_id=%s AND b.maktab_id=%s
+                ORDER BY s.sinf::int,s.harf,b.fan_nomi
+            """, (user_id, maktab_id))
+            birikmalar = cur.fetchall()
+            cur.execute("""
+                SELECT j.dars_raqami,j.fan,j.xona,j.boshlanish_vaqti,s.sinf,s.harf
+                FROM dars_jadvali j JOIN maktab_sinflari s ON s.id=j.sinf_id
+                WHERE j.oqituvchi_user_id=%s AND j.kun=EXTRACT(ISODOW FROM CURRENT_DATE)::int
+                ORDER BY j.dars_raqami
+            """, (user_id,))
+            bugun = cur.fetchall()
+            card("Bugungi dars", len(bugun), "teal")
+            card("Biriktirilgan sinf/fan", len(birikmalar), "blue")
+            card("Haftalik yuklama", teacher.get("haftalik_dars_soati") if teacher.get("haftalik_dars_soati") is not None else "—", "green")
+            section("Bugungi darslarim", teacher["full_name"], [
+                {"title": f"{x['dars_raqami']}-dars · {x['fan']}", "detail": f"{x['sinf']}-{x['harf']}" + (f" · {x['boshlanish_vaqti']}" if x.get("boshlanish_vaqti") else "")}
+                for x in bugun
+            ], "Bugun dars topilmadi")
+            section("Mening sinf/fanlarim", "Monitoring va to'garak uchun asosiy ish maydoni.", [
+                {"title": f"{x['sinf']}-{x['harf']}", "detail": x["fan_nomi"]} for x in birikmalar
+            ], "Sinf/fan birikmasi topilmadi")
+
+        # Sinf rahbari
+        elif rol == "sinf_rahbari":
+            if sinf_id is None:
+                raise HTTPException(status_code=400, detail="Sinfni tanlang")
+            cur.execute("""
+                SELECT s.id,s.sinf,s.harf,s.rahbar_user_id,u.full_name AS rahbar_ismi
+                FROM maktab_sinflari s LEFT JOIN users u ON u.user_id=s.rahbar_user_id
+                WHERE s.id=%s AND s.maktab_id=%s
+            """, (sinf_id, maktab_id))
+            sinf = cur.fetchone()
+            if not sinf:
+                raise HTTPException(status_code=404, detail="Sinf topilmadi")
+            response["tanlangan"] = sinf
+            cur.execute("""
+                SELECT u.user_id,u.full_name,
+                       COUNT(*) FILTER (WHERE d.holat='kelmadi' AND d.sana>=CURRENT_DATE-INTERVAL '30 days') AS kelmadi30,
+                       COUNT(*) FILTER (WHERE d.holat='kechikdi' AND d.sana>=CURRENT_DATE-INTERVAL '30 days') AS kechikdi30
+                FROM maktab_sinf_azolari a JOIN users u ON u.user_id=a.user_id
+                LEFT JOIN davomat d ON d.user_id=u.user_id AND d.sinf_id=a.sinf_id
+                WHERE a.sinf_id=%s
+                GROUP BY u.user_id,u.full_name ORDER BY u.full_name
+            """, (sinf_id,))
+            bolalar = cur.fetchall()
+            card("O'quvchilar", len(bolalar), "blue")
+            card("Rahbar", sinf.get("rahbar_ismi") or "Biriktirilmagan", "teal")
+            section(f"{sinf['sinf']}-{sinf['harf']} sinfim", "Sinf rahbari faqat o'z sinfiga kerakli ishlarni ko'radi.", [
+                {"title": x["full_name"], "detail": f"30 kun: {int(x.get('kelmadi30') or 0)} kelmadi · {int(x.get('kechikdi30') or 0)} kechikdi"}
+                for x in bolalar
+            ], "Sinfda o'quvchi yo'q")
+
+        # O'quvchi / ota-ona
+        elif rol in {"oquvchi", "ota_ona"}:
+            if sinf_id is None:
+                raise HTTPException(status_code=400, detail="Avval sinfni tanlang")
+            if oquvchi_id is None:
+                cur.execute("""
+                    SELECT u.user_id FROM maktab_sinf_azolari a
+                    JOIN users u ON u.user_id=a.user_id
+                    WHERE a.sinf_id=%s ORDER BY u.full_name LIMIT 1
+                """, (sinf_id,))
+                first = cur.fetchone()
+                oquvchi_id = first["user_id"] if first else None
+            if oquvchi_id is None:
+                raise HTTPException(status_code=404, detail="Bu sinfda o'quvchi topilmadi")
+            cur.execute("""
+                SELECT u.user_id,u.full_name,s.id AS sinf_id,s.sinf,s.harf
+                FROM users u JOIN maktab_sinf_azolari a ON a.user_id=u.user_id
+                JOIN maktab_sinflari s ON s.id=a.sinf_id
+                WHERE u.user_id=%s AND s.id=%s AND s.maktab_id=%s
+            """, (oquvchi_id, sinf_id, maktab_id))
+            bola = cur.fetchone()
+            if not bola:
+                raise HTTPException(status_code=404, detail="O'quvchi tanlangan sinfda topilmadi")
+            response["tanlangan"] = bola
+            cur.execute("""
+                SELECT fan,ROUND(AVG(foiz)) AS foiz,COUNT(*) AS urinish
+                FROM dars_monitoring_baholari
+                WHERE oquvchi_user_id=%s
+                GROUP BY fan ORDER BY AVG(foiz) ASC NULLS LAST LIMIT 10
+            """, (oquvchi_id,))
+            fanlar = cur.fetchall()
+            cur.execute("""
+                SELECT COUNT(*) FILTER (WHERE holat='keldi') AS keldi,
+                       COUNT(*) FILTER (WHERE holat='kelmadi') AS kelmadi,
+                       COUNT(*) FILTER (WHERE holat='kechikdi') AS kechikdi
+                FROM davomat
+                WHERE user_id=%s AND sana>=CURRENT_DATE-INTERVAL '30 days'
+            """, (oquvchi_id,))
+            davomat = cur.fetchone() or {}
+            card("30 kunda kelgan", int(davomat.get("keldi") or 0), "green")
+            card("Kelmagan", int(davomat.get("kelmadi") or 0), "amber")
+            card("Kechikkan", int(davomat.get("kechikdi") or 0), "amber")
+            if fanlar:
+                ortacha = round(sum(float(x.get("foiz") or 0) for x in fanlar) / len(fanlar))
+                card("Monitoring o'rtacha", f"{ortacha}%", "blue")
+            title = "Mening bilim xaritam" if rol == "oquvchi" else "Farzandimning bilim xaritasi"
+            section(title, f"{bola['full_name']} · {bola['sinf']}-{bola['harf']}", [
+                {"title": x["fan"], "detail": f"{int(round(float(x.get('foiz') or 0)))}% · {int(x.get('urinish') or 0)} ta monitoring"}
+                for x in fanlar
+            ], "Hali monitoring natijasi yo'q")
+            section(
+                "Tavsiya etiladigan yo'l",
+                "Tizim mavjud monitoringdan kelib chiqib qaysi fan/mavzuga e'tibor kerakligini ko'rsatadi.",
+                [
+                    {"title": "Bo'shliqni yopish", "detail": "Past natijali fan va mavzularga qisqa tushuntirish + mashqlar."},
+                    {"title": "Bilimni ushlab turish", "detail": "Yaxshi o'zlashtirilgan mavzularga qisqa takrorlash."},
+                    {"title": "To'garak va qo'shimcha dars", "detail": "Mos kurslar mavjud bo'lsa shu yerda tavsiya qilinadi."},
+                ],
+            )
+
+        return response
+    finally:
+        cur.close(); conn.close()
+
+# ========================= V18.47 END =========================
+
