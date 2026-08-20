@@ -8111,10 +8111,9 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
 def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     """Maktabning mavjud sinf va fanlariga bog'langan aqlli Excel beradi.
 
-    V18.38: ko'p sinf va ko'p fan qo'lda `;` bilan yozilmaydi. XODIMLAR
-    qatoriga mos SINF_TANLOV va FAN_TANLOV varaqlarida ☐ / ☑ orqali
-    istalgancha variant belgilanadi. Eski D/E ustunlari orqaga moslik uchun
-    saqlangan. Aniq sinf-fan-guruh birikmasi DARS_BIRIKMALARI orqali beriladi.
+    Oddiy ustunlar XODIMLAR varag'ida tanlanadi. Bir xodimning bir nechta
+    sinf-fan birikmasi DARS_BIRIKMALARI varag'ida alohida qatorlar bilan
+    kiritiladi. MALUMOT varag'i barcha ruxsat etilgan tanlovlarni ko'rsatadi.
     """
     _admin_tekshir(token)
     import openpyxl
@@ -8122,7 +8121,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     from openpyxl.comments import Comment
     from openpyxl.worksheet.datavalidation import DataValidation
     from openpyxl.workbook.defined_name import DefinedName
-    from openpyxl.utils import quote_sheetname, get_column_letter
+    from openpyxl.utils import quote_sheetname
     import io
     from fastapi.responses import StreamingResponse
 
@@ -8139,7 +8138,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         _maktab_fanlari_jadvali(cur)
         _sinf_kop_guruh_jadvallari(cur)
         cur.execute(
-            """SELECT s.id,s.sinf,s.harf,s.guruhlash_usuli,
+            """SELECT s.sinf,s.harf,s.guruhlash_usuli,
                       COALESCE(ARRAY(
                           SELECT t.turi FROM maktab_sinf_guruh_tizimlari t
                           WHERE t.sinf_id=s.id AND t.faol=TRUE ORDER BY t.id
@@ -8171,7 +8170,8 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         )
         mavjud_fanlar = [row["fan_nomi"] for row in cur.fetchall()]
         if not mavjud_fanlar:
-            cur.close(); conn.close()
+            cur.close()
+            conn.close()
             raise HTTPException(
                 status_code=400,
                 detail="Avval maktab fanlarini tanlab saqlang, keyin xodim shablonini oling",
@@ -8192,52 +8192,55 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
 
     ws.freeze_panes = "A2"
     ws.auto_filter.ref = "A1:G5000"
-    ws.row_dimensions[1].height = 34
+    ws.row_dimensions[1].height = 32
     ws.cell(1, 4).comment = Comment(
-        "YANGI OSON USUL: bu ustunni bo'sh qoldirishingiz mumkin. "
-        "SINF_TANLOV varag'ida shu xodim qatorida kerakli sinflarga ☑ qo'ying. "
-        "Eski fayllar uchun 1-A; 2-B ko'rinishi ham qabul qilinadi.",
-        "SamTM V18.38",
+        "Bitta sinfni ro'yxatdan tanlash yoki bir nechta sinfni 1-A; 2-B; 5-C "
+        "ko'rinishida yozish mumkin. Aniq fan va guruh uchun DARS_BIRIKMALARI "
+        "varag'ida har bir birikmani alohida qator qilib tanlang.",
+        "SamTM",
     )
     ws.cell(1, 5).comment = Comment(
-        "YANGI OSON USUL: bu ustunni bo'sh qoldirishingiz mumkin. "
-        "FAN_TANLOV varag'ida shu xodim qatorida kerakli fanlarga ☑ qo'ying. "
-        "Eski fayllar uchun Matematika; Fizika ko'rinishi ham qabul qilinadi.",
-        "SamTM V18.38",
+        "Bitta fanni ro'yxatdan tanlash yoki bir nechta fanni nuqtali vergul "
+        "bilan yozish mumkin. Aniq sinf–fan–guruh uchun DARS_BIRIKMALARI "
+        "varag'idan foydalaning.",
+        "SamTM",
     )
     for col, w in zip("ABCDEFG", [32, 48, 27, 31, 32, 15, 25]):
         ws.column_dimensions[col].width = w
 
-    # Ko'p tanlov uchun makrosiz, xatosiz ptichka varaqlari.
-    # Qatorlar XODIMLAR bilan 1:1 mos: 2-qator -> 2-qator, 3 -> 3 va hokazo.
+    # V18.40: o'qituvchiga sinflarni shablonning o'zida ko'p tanlash
     sinf_tanlov = wb.create_sheet("SINF_TANLOV")
-    fan_tanlov = wb.create_sheet("FAN_TANLOV")
-    sinf_tanlov.cell(1, 1, "F.I.Sh (XODIMLAR qatori bilan avtomatik mos)")
-    fan_tanlov.cell(1, 1, "F.I.Sh (XODIMLAR qatori bilan avtomatik mos)")
-    for sahifa in (sinf_tanlov, fan_tanlov):
-        sahifa.cell(1, 1).font = Font(bold=True, color="FFFFFF")
-        sahifa.cell(1, 1).fill = PatternFill("solid", fgColor="1B4B7A")
-        sahifa.cell(1, 1).alignment = Alignment(wrap_text=True, vertical="center")
-        sahifa.column_dimensions["A"].width = 34
-        sahifa.freeze_panes = "B2"
-        sahifa.row_dimensions[1].height = 42
-        for r in range(2, 1002):
-            sahifa.cell(r, 1, f"=IF(XODIMLAR!A{r}=\"\",\"\",XODIMLAR!A{r})")
-
-    sinf_tanlovlari = mavjud_sinflar or ["Avval maktab sinflarini yarating"]
-    fan_tanlovlari = mavjud_fanlar or ["Fanlar bazada topilmadi"]
-    for idx, nom in enumerate(sinf_tanlovlari, 2):
-        c = sinf_tanlov.cell(1, idx, nom)
+    sinf_headers = ["Xodim F.I.Sh", "HAMMASI"] + (mavjud_sinflar or ["Sinf topilmadi"])
+    for col, h in enumerate(sinf_headers, 1):
+        c = sinf_tanlov.cell(1, col, h)
         c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="24715E")
-        c.alignment = Alignment(text_rotation=45, wrap_text=True, horizontal="center", vertical="bottom")
-        sinf_tanlov.column_dimensions[get_column_letter(idx)].width = 10
-    for idx, nom in enumerate(fan_tanlovlari, 2):
-        c = fan_tanlov.cell(1, idx, nom)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="24715E")
-        c.alignment = Alignment(text_rotation=45, wrap_text=True, horizontal="center", vertical="bottom")
-        fan_tanlov.column_dimensions[get_column_letter(idx)].width = 12
+        c.fill = PatternFill("solid", fgColor="1B4B7A")
+        c.alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
+    sinf_tanlov.freeze_panes = "C2"
+    sinf_tanlov.column_dimensions["A"].width = 34
+    sinf_tanlov.column_dimensions["B"].width = 12
+    for ci in range(3, len(sinf_headers) + 1):
+        sinf_tanlov.column_dimensions[openpyxl.utils.get_column_letter(ci)].width = 12
+    # F.I.Sh XODIMLAR varag'idan avtomatik ko'rinadi; qo'lda qayta yozilmaydi.
+    for r in range(2, 5001):
+        sinf_tanlov.cell(r, 1, f"=IF(XODIMLAR!A{r}=\"\",\"\",XODIMLAR!A{r})")
+        sinf_tanlov.cell(r, 2, "☐")
+        for ci in range(3, len(sinf_headers) + 1):
+            sinf_tanlov.cell(r, ci, "☐")
+    belgi = DataValidation(type="list", formula1='"☐,☑"', allow_blank=False)
+    belgi.error = "☐ yoki ☑ ni tanlang"
+    belgi.errorTitle = "Belgilash"
+    belgi.promptTitle = "Sinf tanlash"
+    belgi.prompt = "☑ = tanlangan. Xohlagancha sinfni belgilang; HAMMASI = barcha sinflar."
+    belgi.showInputMessage = True
+    sinf_tanlov.add_data_validation(belgi)
+    if len(sinf_headers) >= 2:
+        oxirgi = openpyxl.utils.get_column_letter(len(sinf_headers))
+        belgi.add(f"B2:{oxirgi}5000")
+    sinf_tanlov.cell(1, 1).comment = Comment(
+        "XODIMLAR varag'idagi F.I.Sh bu yerga avtomatik keladi.", "SamTM")
+    sinf_tanlov.cell(1, 2).comment = Comment(
+        "HAMMASI ni ☑ qilsangiz shu o'qituvchiga barcha mavjud sinflar biriktiriladi.", "SamTM")
 
     birikmalar = wb.create_sheet("DARS_BIRIKMALARI")
     for col, sarlavha in enumerate(("Xodim F.I.Sh", "Sinf", "Fan", "Guruh (ixtiyoriy)"), 1):
@@ -8251,9 +8254,8 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     for col, width in zip("ABCD", (34, 18, 34, 24)):
         birikmalar.column_dimensions[col].width = width
     birikmalar.cell(1, 1).comment = Comment(
-        "Faqat aniq Sinf–Fan–Guruh birikmasi kerak bo'lganda foydalaning. "
-        "Oddiy ko'p sinf/fan tanlash uchun SINF_TANLOV va FAN_TANLOV yetadi.",
-        "SamTM V18.38",
+        "Avval XODIMLAR varag'ida xodimni yozing, keyin bu yerda o'sha F.I.Sh.ni tanlang.",
+        "SamTM",
     )
     birikmalar.cell(1, 4).comment = Comment(
         "Texnologiya va Jismoniy tarbiya uchun O'g'il/Qiz; Ingliz tili, "
@@ -8263,21 +8265,20 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     )
 
     malumot = wb.create_sheet("MALUMOT")
-    malumot_sarlavhalari = (
-        "Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari",
-        "Dars guruhi", "Sinf guruhlash sozlamasi", "Ptichka tanlovi",
-    )
+    malumot_sarlavhalari = ("Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari", "Dars guruhi", "Sinf guruhlash sozlamasi")
     for col, sarlavha in enumerate(malumot_sarlavhalari, 1):
         c = malumot.cell(1, col, sarlavha)
         c.font = Font(bold=True, color="FFFFFF")
         c.fill = PatternFill("solid", fgColor="1B4B7A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
     malumot.freeze_panes = "A2"
-    malumot.auto_filter.ref = "A1:G5000"
+    malumot.auto_filter.ref = "A1:F5000"
     malumot.row_dimensions[1].height = 30
-    for col, width in zip("ABCDEFG", (22, 52, 42, 36, 28, 32, 18)):
+    for col, width in zip("ABCDEF", (22, 52, 42, 36, 28, 32)):
         malumot.column_dimensions[col].width = width
 
+    sinf_tanlovlari = mavjud_sinflar or ["Avval maktab sinflarini yarating"]
+    fan_tanlovlari = mavjud_fanlar or ["Fanlar bazada topilmadi"]
     for row_index, sinf_nomi in enumerate(sinf_tanlovlari, 2):
         malumot.cell(row_index, 1, sinf_nomi)
         malumot.cell(row_index, 6, sinf_guruh_usullari.get(sinf_nomi, ""))
@@ -8290,8 +8291,6 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     guruh_tanlovlari = ["Butun sinf", "O‘g‘il bolalar", "Qiz bolalar", "1-guruh", "2-guruh"]
     for row_index, guruh in enumerate(guruh_tanlovlari, 2):
         malumot.cell(row_index, 5, guruh)
-    malumot.cell(2, 7, "☐")
-    malumot.cell(3, 7, "☑")
 
     def nomlangan_oraliq(nom, varaq, ustun, uzunlik):
         oxirgi_qator = max(2, uzunlik + 1)
@@ -8304,7 +8303,6 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     nomlangan_oraliq("Fanlar", "MALUMOT", "D", len(fan_tanlovlari))
     nomlangan_oraliq("DarsGuruhlari", "MALUMOT", "E", len(guruh_tanlovlari))
     nomlangan_oraliq("XodimIsmlari", "XODIMLAR", "A", 4999)
-    nomlangan_oraliq("PtichkaTanlovi", "MALUMOT", "G", 2)
 
     def tanlov_qosh(varaq, formula, kataklar, xato, xatoni_blokla=True, prompt=None):
         tanlov = DataValidation(type="list", formula1=formula, allow_blank=True)
@@ -8322,12 +8320,12 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     tanlov_qosh(
         ws, "=MavjudSinflar", "D2:D5000",
         "Faqat maktabdagi mavjud sinflarni yozing", False,
-        "Tavsiya: SINF_TANLOV varag'ida kerakli sinflarga ☑ qo'ying. Eski usul ham ishlaydi.",
+        "Bitta sinfni tanlang yoki ko'p sinfni 1-A; 2-B; 5-C ko'rinishida yozing.",
     )
     tanlov_qosh(
         ws, "=Fanlar", "E2:E5000",
         "Faqat maktab fanlarini yozing", False,
-        "Tavsiya: FAN_TANLOV varag'ida kerakli fanlarga ☑ qo'ying. Eski usul ham ishlaydi.",
+        "Bitta fanni tanlang yoki ko'p fanni nuqtali vergul bilan yozing.",
     )
     tanlov_qosh(ws, "=Toifalar", "G2:G5000", "Toifani MALUMOT varag'idagi ro'yxatdan tanlang")
     tanlov_qosh(birikmalar, "=XodimIsmlari", "A2:A5000", "Xodimni XODIMLAR varag'idagi F.I.Sh.dan tanlang")
@@ -8335,43 +8333,17 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     tanlov_qosh(birikmalar, "=Fanlar", "C2:C5000", "Fanni MALUMOT varag'idagi ro'yxatdan tanlang")
     tanlov_qosh(birikmalar, "=DarsGuruhlari", "D2:D5000", "Butun sinf, o'g'il/qiz yoki 1/2-guruhdan birini tanlang")
 
-    # 1000 xodimgacha: har katakda faqat ☐ yoki ☑. Qo'lda sinf/fan yozish yo'q.
-    if sinf_tanlovlari:
-        oxirgi = get_column_letter(1 + len(sinf_tanlovlari))
-        tanlov_qosh(
-            sinf_tanlov, "=PtichkaTanlovi", f"B2:{oxirgi}1001",
-            "Faqat ☐ yoki ☑ ni tanlang", True,
-            "☑ = shu sinfni tanlash, ☐ = tanlamaslik. Istalgancha sinfga ☑ qo'yish mumkin.",
-        )
-        for r in range(2, 1002):
-            for c in range(2, 2 + len(sinf_tanlovlari)):
-                sinf_tanlov.cell(r, c, "☐")
-                sinf_tanlov.cell(r, c).alignment = Alignment(horizontal="center")
-    if fan_tanlovlari:
-        oxirgi = get_column_letter(1 + len(fan_tanlovlari))
-        tanlov_qosh(
-            fan_tanlov, "=PtichkaTanlovi", f"B2:{oxirgi}1001",
-            "Faqat ☐ yoki ☑ ni tanlang", True,
-            "☑ = shu fanni tanlash, ☐ = tanlamaslik. Istalgancha fanga ☑ qo'yish mumkin.",
-        )
-        for r in range(2, 1002):
-            for c in range(2, 2 + len(fan_tanlovlari)):
-                fan_tanlov.cell(r, c, "☐")
-                fan_tanlov.cell(r, c).alignment = Alignment(horizontal="center")
-
     ws2 = wb.create_sheet("IZOH")
     izohlar = [
-        "AQILLI XODIM SHABLONI V18.38 — ENG OSON TO'LDIRISH",
-        "1. XODIMLAR varag'ida faqat F.I.Sh, Lavozim va kerakli asosiy ma'lumotlarni kiriting.",
-        "2. Bir nechta sinf uchun: SINF_TANLOV varag'iga o'ting. Xodim bilan bir qatorda kerakli sinflarning ☐ katagini ☑ ga almashtiring. 2 ta ham, 20 ta ham mumkin.",
-        "3. Bir nechta fan uchun: FAN_TANLOV varag'ida xuddi shu tarzda kerakli fanlarga ☑ qo'ying.",
-        "4. Xato belgilasangiz, ☑ ni yana ☐ ga qaytaring — o'chirish yoki ; bilan qayta yozish shart emas.",
-        "5. XODIMLAR D/E ustunlari eski fayllar bilan moslik uchun qoldirilgan; yangi usulda ularni bo'sh qoldirish mumkin.",
-        "6. Aniq Sinf–Fan–Guruh birikmasi kerak bo'lsa DARS_BIRIKMALARI varag'idan foydalaning.",
-        "7. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Import yangi sinf yaratmaydi.",
-        "8. MALUMOT varag'ida aynan shu maktabdagi sinflar, fanlar, lavozimlar va toifalar ko'rsatiladi.",
-        "9. Ish staji ixtiyoriy; 0 dan 80 gacha butun son yoziladi.",
-        "10. Majburiy ustunlar: F.I.Sh va Lavozim. Qolganlari vazifaga qarab ixtiyoriy.",
+        "AQILLI XODIM SHABLONI — TO'LDIRISH TARTIBI",
+        "1. XODIMLAR varag'ida F.I.Sh.ni yozing; lavozim va toifani ro'yxatdan tanlang.",
+        "2. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Bu import yangi sinf yaratmaydi.",
+        "3. Dars sinflari ko'p bo'lsa D ustuniga 1-A; 2-B; 5-C, fanlar ko'p bo'lsa E ustuniga Matematika; Fizika deb yozish mumkin.",
+        "4. Eng aniq usul: DARS_BIRIKMALARI varag'ida bir xodimni 2, 3, 5 yoki istalgancha qatorda takrorlab, har bir Sinf–Fan–Guruh birikmasini alohida tanlang.",
+        "5. Texnologiya/Jismoniy tarbiya uchun O'g'il bolalar yoki Qiz bolalar; til/Informatika uchun 1-guruh yoki 2-guruhni tanlash mumkin.",
+        "6. MALUMOT varag'ida aynan shu maktabdagi sinflar, ruxsat etilgan fanlar, lavozimlar va toifalar ko'rsatiladi.",
+        "7. Ish staji ixtiyoriy; 0 dan 80 gacha butun son yoziladi.",
+        "8. Majburiy ustunlar: F.I.Sh va Lavozim. Qolganlari vazifaga qarab ixtiyoriy.",
     ]
     for row_index, izoh in enumerate(izohlar, 1):
         c = ws2.cell(row_index, 1, izoh)
@@ -8379,9 +8351,9 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         if row_index == 1:
             c.font = Font(bold=True, color="FFFFFF", size=13)
             c.fill = PatternFill("solid", fgColor="1B4B7A")
-        elif row_index in (2, 3, 4, 5):
+        elif row_index in (2, 4, 5):
             c.font = Font(bold=True)
-    ws2.column_dimensions["A"].width = 135
+    ws2.column_dimensions["A"].width = 125
     for row_index in range(2, len(izohlar) + 1):
         ws2.row_dimensions[row_index].height = 34
 
@@ -8390,7 +8362,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     buf.seek(0)
     return StreamingResponse(
         buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": "attachment; filename=xodimlar_shablon_v18_38.xlsx"},
+        headers={"Content-Disposition": "attachment; filename=xodimlar_shablon.xlsx"},
     )
 
 
@@ -8533,60 +8505,6 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     def qator_qiymati(row, index):
         return row[index] if index is not None and index < len(row) else None
 
-    # V18.38: SINF_TANLOV/FAN_TANLOV varag'idagi ptichkalarni qator bo'yicha o'qiymiz.
-    # XODIMLAR 2-qatori tanlov varaqlarining ham 2-qatoriga mos keladi.
-    sinf_tanlov_ws = wb["SINF_TANLOV"] if "SINF_TANLOV" in wb.sheetnames else None
-    fan_tanlov_ws = wb["FAN_TANLOV"] if "FAN_TANLOV" in wb.sheetnames else None
-
-    def ptichka_tanlangan(value):
-        if value is True or value == 1:
-            return True
-        matn = str(value or "").strip().lower()
-        return matn in {"☑", "✓", "✔", "✅", "x", "ha", "yes", "true", "1", "tanla", "tanlangan"}
-
-    def tanlov_sarlavhalari(sahifa):
-        if sahifa is None:
-            return []
-        natija = []
-        for cell in sahifa[1][1:]:  # A ustuni F.I.Sh ko'rinishi, tanlovlar B dan boshlanadi
-            nom = re.sub(r"\s+", " ", str(cell.value or "")).strip()
-            if nom:
-                natija.append((cell.column, nom))
-        return natija
-
-    sinf_ptichka_ustunlari = tanlov_sarlavhalari(sinf_tanlov_ws)
-    fan_ptichka_ustunlari = tanlov_sarlavhalari(fan_tanlov_ws)
-
-    def qator_sinf_ptichkalari(excel_qatori):
-        if sinf_tanlov_ws is None:
-            return [], []
-        tanlangan, eskirgan = [], []
-        for col, sarlavha in sinf_ptichka_ustunlari:
-            if ptichka_tanlangan(sinf_tanlov_ws.cell(excel_qatori, col).value):
-                try:
-                    sinf_nomi = _xodim_sinf_nomini_normalla(sarlavha)
-                except ValueError:
-                    eskirgan.append(sarlavha)
-                    continue
-                if sinf_nomi in mavjud_sinflar:
-                    tanlangan.append(sinf_nomi)
-                else:
-                    eskirgan.append(sarlavha)
-        return list(dict.fromkeys(tanlangan)), list(dict.fromkeys(eskirgan))
-
-    def qator_fan_ptichkalari(excel_qatori):
-        if fan_tanlov_ws is None:
-            return [], []
-        tanlangan, eskirgan = [], []
-        for col, sarlavha in fan_ptichka_ustunlari:
-            if ptichka_tanlangan(fan_tanlov_ws.cell(excel_qatori, col).value):
-                kalit = _xodim_excel_sarlavha_kaliti(sarlavha)
-                if kalit in ruxsat_etilgan_fanlar:
-                    tanlangan.append(ruxsat_etilgan_fanlar[kalit])
-                else:
-                    eskirgan.append(sarlavha)
-        return list(dict.fromkeys(tanlangan)), list(dict.fromkeys(eskirgan))
-
     tayyor_qatorlar = []
     tekshiruv_xatolari = []
     for excel_qatori, row in enumerate(ws.iter_rows(min_row=2, values_only=True), 2):
@@ -8634,24 +8552,6 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             continue
 
         fanlar_royxati = _xodim_fan_royxatini_ajrat(fanlar_xom)
-
-        # Yangi ptichka tanlovlarini eski D/E usuli bilan birlashtiramiz.
-        # Shuning uchun V18.37 va undan oldingi fayllar ham ishlashda davom etadi.
-        ptichka_sinflar, eskirgan_sinflar = qator_sinf_ptichkalari(excel_qatori)
-        ptichka_fanlar, eskirgan_fanlar = qator_fan_ptichkalari(excel_qatori)
-        if eskirgan_sinflar:
-            tekshiruv_xatolari.append(
-                f"{excel_qatori}-qator ({fish}): SINF_TANLOV dagi sinf hozir maktabda yo'q — {', '.join(eskirgan_sinflar)}. Yangi shablonni yuklab oling yoki ☐ qiling"
-            )
-            continue
-        if eskirgan_fanlar:
-            tekshiruv_xatolari.append(
-                f"{excel_qatori}-qator ({fish}): FAN_TANLOV dagi fan hozir maktab fanlari ro'yxatida yo'q — {', '.join(eskirgan_fanlar)}. Yangi shablonni yuklab oling yoki ☐ qiling"
-            )
-            continue
-        dars_sinflari = list(dict.fromkeys(dars_sinflari + ptichka_sinflar))
-        fanlar_royxati = list(dict.fromkeys(fanlar_royxati + ptichka_fanlar))
-
         togridan_birikmalar = []
         if dars_sinflari and fanlar_royxati:
             try:
@@ -8697,6 +8597,56 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             )
         else:
             xodimlar_kalit_boyicha[kalit] = qator
+
+    # V18.40: SINF_TANLOV varag'idagi ko'p tanlovlarni o'qish
+    if "SINF_TANLOV" in wb.sheetnames:
+        st_ws = wb["SINF_TANLOV"]
+        st_headers = [str(c.value or "").strip() for c in st_ws[1]]
+        def _belgilangan(v):
+            return str(v or "").strip().lower() in {"☑", "✓", "✔", "1", "x", "ha", "yes", "true", "+"}
+        for excel_qatori, row in enumerate(st_ws.iter_rows(min_row=2, values_only=True), 2):
+            # Formula data_only rejimida bo'sh bo'lishi mumkin, shu sabab ayni qator XODIMLAR F.I.Sh ham olinadi.
+            xodim_xom = row[0] if row and row[0] not in (None, "") else ws.cell(excel_qatori, fish_ustuni + 1).value
+            if not xodim_xom or not str(xodim_xom).strip():
+                continue
+            xodim_kaliti = _xodim_ism_kaliti(xodim_xom)
+            if xodim_kaliti in takror_xodimlar or xodim_kaliti not in xodimlar_kalit_boyicha:
+                continue
+            qator = xodimlar_kalit_boyicha[xodim_kaliti]
+            tanlangan = []
+            hammasi = len(row) > 1 and _belgilangan(row[1])
+            if hammasi:
+                tanlangan = list(mavjud_sinflar.keys())
+            else:
+                for ci in range(2, min(len(row), len(st_headers))):
+                    if not _belgilangan(row[ci]):
+                        continue
+                    sinf_xom = st_headers[ci]
+                    if not sinf_xom or sinf_xom == "Sinf topilmadi":
+                        continue
+                    try:
+                        sinf_nomi = _xodim_sinf_nomini_normalla(sinf_xom)
+                    except ValueError as error:
+                        tekshiruv_xatolari.append(f"SINF_TANLOV {excel_qatori}-qator ({xodim_xom}): {error}")
+                        continue
+                    if sinf_nomi not in mavjud_sinflar:
+                        tekshiruv_xatolari.append(f"SINF_TANLOV {excel_qatori}-qator ({xodim_xom}): maktabda mavjud bo'lmagan sinf — {sinf_nomi}")
+                        continue
+                    tanlangan.append(sinf_nomi)
+            qator["dars_sinflari"] = list(dict.fromkeys(qator["dars_sinflari"] + tanlangan))
+            # XODIMLAR varag'ida fan(lar) tanlangan bo'lsa, belgilangan sinflarga butun-sinf birikmasi yaratiladi.
+            if qator["fanlar_royxati"]:
+                for sinf_nomi in tanlangan:
+                    for fan in qator["fanlar_royxati"]:
+                        try:
+                            fan_nomi = fan_moslashtir(sinf_nomi, fan)
+                        except ValueError as error:
+                            tekshiruv_xatolari.append(f"SINF_TANLOV {excel_qatori}-qator ({xodim_xom}): {error}")
+                            continue
+                        qator["dars_birikmalari"].append({
+                            "sinf": sinf_nomi, "fan": fan_nomi,
+                            "guruh_kaliti": "whole", "guruh_nomi": "Butun sinf",
+                        })
 
     if "DARS_BIRIKMALARI" in wb.sheetnames:
         birikma_ws = wb["DARS_BIRIKMALARI"]
