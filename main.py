@@ -8182,7 +8182,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     ustunlar = [
         "F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)",
         "Dars beradigan sinflari (ixtiyoriy)", "O'qitadigan fanlari (ixtiyoriy)",
-        "Ish staji (yil)", "Toifasi",
+        "Ish staji (yil)", "Toifasi", "Haftalik dars yuklamasi (soat)",
     ]
     for col, h in enumerate(ustunlar, 1):
         c = ws.cell(1, col, h)
@@ -8191,7 +8191,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         c.alignment = Alignment(wrap_text=True, vertical="center")
 
     ws.freeze_panes = "A2"
-    ws.auto_filter.ref = "A1:G5000"
+    ws.auto_filter.ref = "A1:H5000"
     ws.row_dimensions[1].height = 32
     ws.cell(1, 4).comment = Comment(
         "Dars beradigan sinflarni qo'lda yozmang. Shu qatorning o'ng tomonidagi "
@@ -8205,14 +8205,26 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         "varag'idan foydalaning.",
         "SamTM",
     )
-    for col, w in zip("ABCDEFG", [32, 48, 27, 31, 32, 15, 25]):
+    ws.cell(1, 8).comment = Comment(
+        "O'qituvchining jami haftalik dars yuklamasini yozing. Masalan, 22 ta sinfga "
+        "Tarbiya fanidan haftasiga 1 soatdan kirsa — 22 yoziladi. Aqlli jadval shu "
+        "chegaradan ortiq dars bermaydi.",
+        "SamTM",
+    )
+    yuklama_tanlov = DataValidation(type="whole", operator="between", formula1="0", formula2="60", allow_blank=True)
+    yuklama_tanlov.error = "Haftalik yuklama 0 dan 60 soatgacha butun son bo'lishi kerak"
+    yuklama_tanlov.errorTitle = "Haftalik yuklama"
+    yuklama_tanlov.showErrorMessage = True
+    ws.add_data_validation(yuklama_tanlov)
+    yuklama_tanlov.add("H2:H5000")
+    for col, w in zip("ABCDEFGH", [32, 48, 27, 31, 32, 15, 25, 24]):
         ws.column_dimensions[col].width = w
 
-    # V18.43 — o'qituvchiga dars beradigan sinflarni xuddi checkbox kabi
-    # alohida kataklarda belgilash. Oddiy .xlsx ichida bir dropdownning o'zida
-    # multi-select bo'lmaydi, shuning uchun har bir sinf mustaqil ☑/☐ katakdir.
-    sinf_belgi_boshlanish_ustuni = 8  # H = HAMMASI
-    sinf_belgi_birinchi_sinf_ustuni = 9  # I dan sinflar boshlanadi
+    # V18.45 — H ustun haftalik yuklama, I dan esa checkbox tanlovlari.
+    # Oddiy .xlsx ichida bir dropdownning o'zida multi-select bo'lmaydi,
+    # shuning uchun har bir sinf mustaqil ☑/☐ katakdir.
+    sinf_belgi_boshlanish_ustuni = 9  # I = HAMMASI
+    sinf_belgi_birinchi_sinf_ustuni = 10  # J dan sinflar boshlanadi
     sinf_belgi_oxirgi_ustuni = sinf_belgi_birinchi_sinf_ustuni + max(0, len(mavjud_sinflar) - 1)
 
     c = ws.cell(1, sinf_belgi_boshlanish_ustuni, "HAMMASI")
@@ -8381,7 +8393,8 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         "5. Texnologiya/Jismoniy tarbiya uchun O'g'il bolalar yoki Qiz bolalar; til/Informatika uchun 1-guruh yoki 2-guruhni tanlash mumkin.",
         "6. MALUMOT varag'ida aynan shu maktabdagi sinflar, ruxsat etilgan fanlar, lavozimlar va toifalar ko'rsatiladi.",
         "7. Ish staji ixtiyoriy; 0 dan 80 gacha butun son yoziladi.",
-        "8. Majburiy ustunlar: F.I.Sh va Lavozim. Qolganlari vazifaga qarab ixtiyoriy.",
+        "8. Haftalik dars yuklamasi — o'qituvchining jami haftalik dars soati. Aqlli jadval shu limitni hisobga oladi.",
+        "9. Majburiy ustunlar: F.I.Sh va Lavozim. Qolganlari vazifaga qarab ixtiyoriy.",
     ]
     for row_index, izoh in enumerate(izohlar, 1):
         c = ws2.cell(row_index, 1, izoh)
@@ -8438,6 +8451,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS fanlari TEXT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS ish_staji INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS toifasi TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_dars_soati INTEGER")
     _xodim_sinf_birikmalari_jadvali(cur)
     _maktab_fanlari_jadvali(cur)
     _sinf_kop_guruh_jadvallari(cur)
@@ -8477,7 +8491,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     sinf_belgi_ustunlari = {}
     for cell in ws[1]:
         sarlavha = str(cell.value or "").strip()
-        if cell.column >= 8 and sarlavha.upper() == "HAMMASI":
+        if cell.column >= 9 and sarlavha.upper() == "HAMMASI":
             hammasi_belgi_ustuni = cell.column - 1
 
     def _v1842_belgilangan(qiymat):
@@ -8506,7 +8520,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
 
     # Endi sarlavhadagi sinf nomlarini bazadagi mavjud sinflarga moslaymiz.
     for cell in ws[1]:
-        if cell.column < 8:
+        if cell.column < 9:
             continue
         sarlavha = str(cell.value or "").strip()
         if not sarlavha or sarlavha.upper() == "HAMMASI":
@@ -8590,6 +8604,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         fanlar_xom = qator_qiymati(row, fanlar_ustuni)
         staj_xom = qator_qiymati(row, staj_ustuni)
         toifa_xom = qator_qiymati(row, toifa_ustuni)
+        haftalik_yuklama_xom = qator_qiymati(row, haftalik_yuklama_ustuni)
 
         try:
             sinf_rahbarligi = _xodim_sinf_nomini_normalla(rahbar_xom) if rahbar_xom else ""
@@ -8630,6 +8645,16 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             )
             continue
 
+        try:
+            haftalik_dars_soati = int(haftalik_yuklama_xom) if haftalik_yuklama_xom not in (None, "") else None
+            if haftalik_dars_soati is not None and not 0 <= haftalik_dars_soati <= 60:
+                raise ValueError
+        except (ValueError, TypeError):
+            tekshiruv_xatolari.append(
+                f"{excel_qatori}-qator ({fish}): haftalik dars yuklamasi 0 dan 60 gacha butun son bo'lishi kerak"
+            )
+            continue
+
         fanlar_royxati = _xodim_fan_royxatini_ajrat(fanlar_xom)
         togridan_birikmalar = []
         if dars_sinflari and fanlar_royxati:
@@ -8663,6 +8688,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             "fanlari": "\n".join(fanlar_royxati),
             "ish_staji": ish_staji,
             "toifasi": _TOIFA_MATNDAN.get(toifa_matni.lower(), toifa_matni or None),
+            "haftalik_dars_soati": haftalik_dars_soati,
         })
 
     xodimlar_kalit_boyicha = {}
@@ -8788,12 +8814,12 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             cur.execute("""
                 INSERT INTO users(
                     user_id,full_name,role,maktab_id,lavozim,fanlari,
-                    oqitadigan_sinflari,ish_staji,toifasi
-                ) VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s,%s)
+                    oqitadigan_sinflari,ish_staji,toifasi,haftalik_dars_soati
+                ) VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s,%s,%s)
             """, (
                 yangi_id, qator["fish"], maktab_id, qator["lavozim_kaliti"],
                 qator["fanlari"] or None, "; ".join(qator["dars_sinflari"]) or None,
-                qator["ish_staji"], qator["toifasi"],
+                qator["ish_staji"], qator["toifasi"], qator["haftalik_dars_soati"],
             ))
 
             if qator["lavozim_kaliti"] == "direktor":
@@ -8848,6 +8874,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 "fanlari": qator["fanlari"] or None,
                 "dars_birikmalari": qator["dars_birikmalari"],
                 "ish_staji": qator["ish_staji"], "toifasi": qator["toifasi"],
+                "haftalik_dars_soati": qator["haftalik_dars_soati"],
             })
         except Exception as error:
             conn.rollback()
@@ -10288,6 +10315,7 @@ class DavomatBelgilash(BaseModel):
     sinf_id: int
     sana: str  # "2026-07-19"
     yozuvlar: list[DavomatYozuvi]
+    faqat_istisnolar: bool = False  # True bo'lsa ro'yxatda yo'q o'quvchilar avtomatik "keldi"
 
 
 DAVOMAT_HOLATLARI = {"keldi", "kelmadi", "kechikdi", "sababli"}
@@ -10315,6 +10343,20 @@ def davomat_belgila(sorov: DavomatBelgilash):
         raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin belgilay oladi")
 
     kelmagan_oquvchilar = []
+    if sorov.faqat_istisnolar:
+        _sinf_azolari_jadvali(cur)
+        cur.execute("SELECT user_id FROM maktab_sinf_azolari WHERE sinf_id=%s", (sorov.sinf_id,))
+        istisno_ids = {int(y.user_id) for y in sorov.yozuvlar}
+        for azo in cur.fetchall():
+            if int(azo["user_id"]) in istisno_ids:
+                continue
+            cur.execute("""
+                INSERT INTO davomat(sinf_id, user_id, sana, holat, izoh, belgilagan_user_id)
+                VALUES(%s,%s,%s,'keldi',NULL,%s)
+                ON CONFLICT (sinf_id, user_id, sana) DO UPDATE SET
+                    holat='keldi', izoh=NULL, belgilagan_user_id=EXCLUDED.belgilagan_user_id, belgilangan_at=NOW()
+            """, (sorov.sinf_id, azo["user_id"], sorov.sana, user_id))
+
     for y in sorov.yozuvlar:
         if y.holat not in DAVOMAT_HOLATLARI:
             cur.close(); conn.close()
@@ -10934,8 +10976,16 @@ def _rejalashtirish_jadvallari(cur):
         dars_raqami INTEGER NOT NULL,
         fan TEXT NOT NULL,
         xona TEXT,
+        oqituvchi_user_id BIGINT REFERENCES users(user_id),
+        guruh_kaliti TEXT DEFAULT 'whole',
+        boshlanish_vaqti TEXT,
+        tugash_vaqti TEXT,
         UNIQUE(sinf_id, kun, dars_raqami)
     )""")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS oqituvchi_user_id BIGINT REFERENCES users(user_id)")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS guruh_kaliti TEXT DEFAULT 'whole'")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS boshlanish_vaqti TEXT")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS tugash_vaqti TEXT")
     cur.execute("""CREATE TABLE IF NOT EXISTS tadbirlar(
         id SERIAL PRIMARY KEY,
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
@@ -10957,6 +11007,10 @@ class DarsJadvaliSlot(BaseModel):
     dars_raqami: int
     fan: str
     xona: Optional[str] = None
+    oqituvchi_user_id: Optional[int] = None
+    guruh_kaliti: Optional[str] = "whole"
+    boshlanish_vaqti: Optional[str] = None
+    tugash_vaqti: Optional[str] = None
 
 
 @app.put("/api/maktab/dars_jadvali_belgila")
@@ -10981,11 +11035,32 @@ def dars_jadvali_belgila(sorov: DarsJadvaliSlot):
     if not sorov.fan.strip():
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Fan nomini kiriting")
+    oqituvchi_user_id = sorov.oqituvchi_user_id
+    if oqituvchi_user_id is None:
+        _xodim_sinf_birikmalari_jadvali(cur)
+        cur.execute("""
+            SELECT DISTINCT user_id FROM maktab_dars_birikmalari
+            WHERE sinf_id=%s AND LOWER(TRIM(fan_nomi))=LOWER(TRIM(%s))
+        """, (sorov.sinf_id, sorov.fan.strip()))
+        nomzodlar = [r["user_id"] for r in cur.fetchall()]
+        if len(nomzodlar) == 1:
+            oqituvchi_user_id = nomzodlar[0]
+
     cur.execute("""
-        INSERT INTO dars_jadvali(sinf_id, kun, dars_raqami, fan, xona)
-        VALUES(%s,%s,%s,%s,%s)
-        ON CONFLICT (sinf_id, kun, dars_raqami) DO UPDATE SET fan=EXCLUDED.fan, xona=EXCLUDED.xona
-    """, (sorov.sinf_id, sorov.kun, sorov.dars_raqami, sorov.fan.strip(), sorov.xona))
+        INSERT INTO dars_jadvali(
+            sinf_id, kun, dars_raqami, fan, xona, oqituvchi_user_id,
+            guruh_kaliti, boshlanish_vaqti, tugash_vaqti
+        ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ON CONFLICT (sinf_id, kun, dars_raqami) DO UPDATE SET
+            fan=EXCLUDED.fan, xona=EXCLUDED.xona,
+            oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+            guruh_kaliti=EXCLUDED.guruh_kaliti,
+            boshlanish_vaqti=EXCLUDED.boshlanish_vaqti,
+            tugash_vaqti=EXCLUDED.tugash_vaqti
+    """, (
+        sorov.sinf_id, sorov.kun, sorov.dars_raqami, sorov.fan.strip(), sorov.xona,
+        oqituvchi_user_id, sorov.guruh_kaliti or "whole", sorov.boshlanish_vaqti, sorov.tugash_vaqti,
+    ))
     conn.commit()
     cur.close()
     conn.close()
@@ -11030,7 +11105,14 @@ def dars_jadvali_royxati(token: str, sinf_id: int):
     if not ruxsat:
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin ko'ra oladi")
-    cur.execute("SELECT kun, dars_raqami, fan, xona FROM dars_jadvali WHERE sinf_id=%s ORDER BY kun, dars_raqami", (sinf_id,))
+    cur.execute("""
+        SELECT j.kun, j.dars_raqami, j.fan, j.xona, j.oqituvchi_user_id,
+               j.guruh_kaliti, j.boshlanish_vaqti, j.tugash_vaqti,
+               u.full_name AS oqituvchi_ismi
+        FROM dars_jadvali j
+        LEFT JOIN users u ON u.user_id=j.oqituvchi_user_id
+        WHERE j.sinf_id=%s ORDER BY j.kun, j.dars_raqami
+    """, (sinf_id,))
     slotlar = cur.fetchall()
     cur.close()
     conn.close()
@@ -22037,3 +22119,279 @@ app.include_router(
 @app.on_event("shutdown")
 def _modular_resurslarni_yopish():
     _modular_db_poolni_yop()
+
+
+# ═══════════════════════════════════════════════════════════
+# V18.45 — AQILLI MAKTAB BOSH SAHIFASI / O'QITUVCHI BUGUNI / YUKLAMA
+# Kundalikning o'rnini bosmaydi: bu yerda ichki monitoring, yordamchi
+# signal va rejalashtirish ishlaydi.
+# ═══════════════════════════════════════════════════════════
+
+def _v1845_smart_school_tables(cur):
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_dars_soati INTEGER")
+    _rejalashtirish_jadvallari(cur)
+    cur.execute("""CREATE TABLE IF NOT EXISTS dars_monitoring_baholari(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        oquvchi_user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+        oqituvchi_user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+        sana DATE NOT NULL DEFAULT CURRENT_DATE,
+        fan TEXT NOT NULL,
+        mavzu TEXT,
+        foiz INTEGER NOT NULL,
+        izoh TEXT,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        CHECK (foiz BETWEEN 0 AND 100)
+    )""")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_monitoring_bola_fan_sana ON dars_monitoring_baholari(oquvchi_user_id, fan, sana DESC)")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_holatlar(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        oquvchi_user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+        turi TEXT NOT NULL,
+        daraja INTEGER NOT NULL DEFAULT 1,
+        sarlavha TEXT NOT NULL,
+        tavsif TEXT,
+        masul_rol TEXT,
+        holat TEXT NOT NULL DEFAULT 'ochiq',
+        manba TEXT,
+        manba_sana DATE,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_aqlli_holat_maktab_holat ON aqlli_holatlar(maktab_id, holat, daraja DESC)")
+
+
+def _v1845_joriy_chorak(sana):
+    from datetime import date
+    if isinstance(sana, str):
+        sana = date.fromisoformat(sana)
+    y, m = sana.year, sana.month
+    if m in (9, 10):
+        return date(y, 9, 1), date(y, 10, 31), 1
+    if m in (11, 12):
+        return date(y, 11, 1), date(y, 12, 31), 2
+    if m in (1, 2, 3):
+        return date(y, 1, 1), date(y, 3, 31), 3
+    if m in (4, 5):
+        return date(y, 4, 1), date(y, 5, 31), 4
+    return date(y, 6, 1), date(y, 8, 31), 0
+
+
+def _v1845_davomat_holat_yangila(cur, maktab_id, bola_id, sana):
+    """Jarima qo'llamaydi va tashqi tashkilotga avtomatik shaxsiy ma'lumot yubormaydi.
+    Faqat maktab ichida kuzatuv darajasini oshiradi; tashqi hamkor kerak bo'lsa
+    vakolatli xodim holatni alohida ko'rib chiqadi."""
+    _v1845_smart_school_tables(cur)
+    bosh, oxir, chorak = _v1845_joriy_chorak(sana)
+    cur.execute("""
+        SELECT COUNT(*) AS son FROM davomat
+        WHERE user_id=%s AND holat='kelmadi' AND sana BETWEEN %s AND %s
+    """, (bola_id, bosh, oxir))
+    son = int((cur.fetchone() or {}).get("son") or 0)
+    if son <= 0:
+        return None
+    if son == 1:
+        daraja, masul, sarlavha = 1, "sinf_rahbari", "Birinchi sababsiz davomat signali"
+    elif son == 2:
+        daraja, masul, sarlavha = 2, "psixolog_va_manaviyat", "Takroriy davomat — maktab ichki kuzatuvi"
+    elif son == 3:
+        daraja, masul, sarlavha = 3, "direktor", "Davomat bo'yicha rahbariyat ko'rigi kerak"
+    else:
+        daraja, masul, sarlavha = 4, "vakolatli_hamkor_korigi", "Surunkali davomat — vakolatli ko'rib chiqish tavsiyasi"
+    cur.execute("""
+        SELECT id FROM aqlli_holatlar
+        WHERE maktab_id=%s AND oquvchi_user_id=%s AND turi='davomat'
+          AND holat='ochiq' AND manba_sana BETWEEN %s AND %s
+        ORDER BY id DESC LIMIT 1
+    """, (maktab_id, bola_id, bosh, oxir))
+    bor = cur.fetchone()
+    tavsif = f"{chorak or '-'}-chorak davrida {son} marta sababsiz kelmagan. Avtomatik jarima qo'llanmaydi; mas'ul vaziyatni ko'rib chiqadi."
+    if bor:
+        cur.execute("""
+            UPDATE aqlli_holatlar SET daraja=%s,sarlavha=%s,tavsif=%s,masul_rol=%s,
+                manba_sana=%s,yangilangan_at=NOW() WHERE id=%s
+        """, (daraja, sarlavha, tavsif, masul, sana, bor["id"]))
+        return bor["id"]
+    cur.execute("""
+        INSERT INTO aqlli_holatlar(maktab_id,oquvchi_user_id,turi,daraja,sarlavha,tavsif,masul_rol,manba,manba_sana)
+        VALUES(%s,%s,'davomat',%s,%s,%s,%s,'davomat',%s) RETURNING id
+    """, (maktab_id, bola_id, daraja, sarlavha, tavsif, masul, sana))
+    return cur.fetchone()["id"]
+
+
+class V1845MonitoringYozuvi(BaseModel):
+    oquvchi_user_id: int
+    foiz: int
+    izoh: Optional[str] = None
+
+
+class V1845MonitoringSorov(BaseModel):
+    token: str
+    sinf_id: int
+    fan: str
+    mavzu: Optional[str] = None
+    sana: Optional[str] = None
+    yozuvlar: list[V1845MonitoringYozuvi]
+
+
+@app.post("/api/oqituvchi/kunlik_monitoring")
+def v1845_kunlik_monitoring(sorov: V1845MonitoringSorov):
+    teacher_id = _jwt_tekshir(sorov.token)
+    conn = _db(); cur = conn.cursor()
+    _v1845_smart_school_tables(cur); _xodim_sinf_birikmalari_jadvali(cur)
+    cur.execute("SELECT maktab_id FROM maktab_sinflari WHERE id=%s", (sorov.sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close(); raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    ruxsat = _maktab_boshqaruvchi_mi(cur, teacher_id, sinf["maktab_id"])
+    if not ruxsat:
+        cur.execute("""
+            SELECT 1 FROM maktab_dars_birikmalari
+            WHERE user_id=%s AND sinf_id=%s AND LOWER(TRIM(fan_nomi))=LOWER(TRIM(%s)) LIMIT 1
+        """, (teacher_id, sorov.sinf_id, sorov.fan))
+        ruxsat = cur.fetchone() is not None
+    if not ruxsat:
+        cur.close(); conn.close(); raise HTTPException(status_code=403, detail="Bu sinf/fan monitoringini kiritishga ruxsat yo'q")
+    sana = sorov.sana or datetime.now().date().isoformat()
+    saqlandi = 0
+    for y in sorov.yozuvlar:
+        if not 0 <= int(y.foiz) <= 100:
+            cur.close(); conn.close(); raise HTTPException(status_code=400, detail="Monitoring foizi 0..100 bo'lishi kerak")
+        cur.execute("""
+            INSERT INTO dars_monitoring_baholari(maktab_id,sinf_id,oquvchi_user_id,oqituvchi_user_id,sana,fan,mavzu,foiz,izoh)
+            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (sinf["maktab_id"], sorov.sinf_id, y.oquvchi_user_id, teacher_id, sana, sorov.fan.strip(), sorov.mavzu, int(y.foiz), y.izoh))
+        saqlandi += 1
+    conn.commit(); cur.close(); conn.close()
+    return {"holat": "saqlandi", "soni": saqlandi}
+
+
+@app.get("/api/oqituvchi/bugun")
+def v1845_oqituvchi_bugun(token: str):
+    teacher_id = _jwt_tekshir(token)
+    from zoneinfo import ZoneInfo
+    hozir = datetime.now(ZoneInfo("Asia/Tashkent"))
+    kun = hozir.isoweekday()
+    conn = _db(); cur = conn.cursor()
+    _v1845_smart_school_tables(cur); _xodim_sinf_birikmalari_jadvali(cur)
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_dars_soati INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS kundalik_baho_eslatmasi BOOLEAN NOT NULL DEFAULT FALSE")
+    cur.execute("SELECT full_name,maktab_id,haftalik_dars_soati,kundalik_baho_eslatmasi FROM users WHERE user_id=%s", (teacher_id,))
+    teacher = cur.fetchone()
+    if not teacher:
+        cur.close(); conn.close(); raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
+    cur.execute("""
+        SELECT DISTINCT j.id,j.dars_raqami,j.fan,j.xona,j.boshlanish_vaqti,j.tugash_vaqti,
+               s.id AS sinf_id,s.sinf,s.harf,j.guruh_kaliti
+        FROM dars_jadvali j
+        JOIN maktab_sinflari s ON s.id=j.sinf_id
+        LEFT JOIN maktab_dars_birikmalari b
+          ON b.sinf_id=j.sinf_id AND LOWER(TRIM(b.fan_nomi))=LOWER(TRIM(j.fan)) AND b.user_id=%s
+        WHERE j.kun=%s AND (j.oqituvchi_user_id=%s OR (j.oqituvchi_user_id IS NULL AND b.user_id=%s))
+        ORDER BY j.dars_raqami,s.sinf::int,s.harf
+    """, (teacher_id, kun, teacher_id, teacher_id))
+    darslar = cur.fetchall()
+    cur.execute("""
+        SELECT COUNT(DISTINCT j.id) AS hafta_darsi FROM dars_jadvali j
+        LEFT JOIN maktab_dars_birikmalari b
+          ON b.sinf_id=j.sinf_id AND LOWER(TRIM(b.fan_nomi))=LOWER(TRIM(j.fan)) AND b.user_id=%s
+        WHERE j.oqituvchi_user_id=%s OR (j.oqituvchi_user_id IS NULL AND b.user_id=%s)
+    """, (teacher_id, teacher_id, teacher_id))
+    hafta_darsi = int((cur.fetchone() or {}).get("hafta_darsi") or 0)
+    kundalik_eslatma_yoqilgan = bool(teacher.get("kundalik_baho_eslatmasi"))
+    cur.close(); conn.close()
+    kundalik_eslatma = bool(kundalik_eslatma_yoqilgan and darslar and hozir.hour >= 15)
+    return {
+        "sana": hozir.date().isoformat(), "kun": kun, "oqituvchi": teacher["full_name"],
+        "darslar": darslar, "haftalik_reja_soati": teacher["haftalik_dars_soati"],
+        "jadvaldagi_haftalik_soat": hafta_darsi,
+        "kundalik_baho_eslatmasi_yoqilgan": kundalik_eslatma_yoqilgan,
+        "kundalik_baho_eslatma": kundalik_eslatma,
+        "kundalik_baho_eslatma_matni": "Bugungi darslaringiz bo'yicha Kundalikda baholarni kiritishni unutmadingizmi?" if kundalik_eslatma else None,
+    }
+
+
+class V1846KundalikEslatmaSozlama(BaseModel):
+    yoqilgan: bool
+
+
+@app.put("/api/oqituvchi/kundalik-baho-eslatmasi")
+def v1846_kundalik_baho_eslatmasi(sorov: V1846KundalikEslatmaSozlama, token: str):
+    teacher_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS kundalik_baho_eslatmasi BOOLEAN NOT NULL DEFAULT FALSE")
+    cur.execute(
+        "UPDATE users SET kundalik_baho_eslatmasi=%s WHERE user_id=%s RETURNING user_id",
+        (bool(sorov.yoqilgan), teacher_id),
+    )
+    if not cur.fetchone():
+        conn.rollback(); cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
+    conn.commit(); cur.close(); conn.close()
+    return {"holat": "saqlandi", "yoqilgan": bool(sorov.yoqilgan)}
+
+
+@app.get("/api/maktab/yuklama_xulosasi")
+def v1845_yuklama_xulosasi(token: str, maktab_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    _v1845_smart_school_tables(cur)
+    if not _maktab_boshqaruvchi_mi(cur, actor_id, maktab_id):
+        cur.close(); conn.close(); raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT u.user_id,u.full_name,u.fanlari,u.haftalik_dars_soati,
+               COUNT(j.id) AS jadvaldagi_soat
+        FROM users u
+        LEFT JOIN dars_jadvali j ON j.oqituvchi_user_id=u.user_id
+        WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
+        GROUP BY u.user_id,u.full_name,u.fanlari,u.haftalik_dars_soati
+        ORDER BY u.full_name
+    """, (maktab_id,))
+    xodimlar = cur.fetchall()
+    for x in xodimlar:
+        reja = x.get("haftalik_dars_soati")
+        amaldagi = int(x.get("jadvaldagi_soat") or 0)
+        x["farq"] = None if reja is None else int(reja) - amaldagi
+        x["holat"] = "kiritilmagan" if reja is None else ("ortiqcha" if amaldagi > int(reja) else "toliq" if amaldagi == int(reja) else "yetishmaydi")
+    cur.close(); conn.close()
+    return {"xodimlar": xodimlar}
+
+
+@app.get("/api/maktab/aqlli_holatlar")
+def v1845_aqlli_holatlar(token: str, maktab_id: int, holat: str = "ochiq"):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor(); _v1845_smart_school_tables(cur)
+    if not _maktab_boshqaruvchi_mi(cur, actor_id, maktab_id):
+        cur.close(); conn.close(); raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin ko'ra oladi")
+    cur.execute("""
+        SELECT h.*,u.full_name FROM aqlli_holatlar h
+        JOIN users u ON u.user_id=h.oquvchi_user_id
+        WHERE h.maktab_id=%s AND h.holat=%s
+        ORDER BY h.daraja DESC,h.yangilangan_at DESC LIMIT 100
+    """, (maktab_id, holat))
+    natija=cur.fetchall(); cur.close(); conn.close(); return {"holatlar": natija}
+
+
+# V18.45: eski davomat endpointidan keyin holat yaratilishi uchun route-level wrapper emas,
+# balki mavjud endpoint ishlagach davomat ma'lumotidan signalni keyingi so'rovda dashboard/holatlar
+# orqali hisoblash mumkin. Quyidagi endpoint kerak bo'lsa qo'lda qayta hisoblaydi.
+@app.post("/api/maktab/aqlli_holatlarni_yangila")
+def v1845_holatlarni_yangila(token: str, maktab_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor(); _davomat_jadvali(cur); _v1845_smart_school_tables(cur)
+    if not _maktab_boshqaruvchi_mi(cur, actor_id, maktab_id):
+        cur.close(); conn.close(); raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati yoki admin yangilay oladi")
+    cur.execute("""
+        SELECT DISTINCT d.user_id,d.sana FROM davomat d
+        JOIN maktab_sinflari s ON s.id=d.sinf_id
+        WHERE s.maktab_id=%s AND d.holat='kelmadi' AND d.sana >= CURRENT_DATE - INTERVAL '120 days'
+        ORDER BY d.sana
+    """, (maktab_id,))
+    son=0
+    for r in cur.fetchall():
+        _v1845_davomat_holat_yangila(cur,maktab_id,r["user_id"],r["sana"]); son += 1
+    conn.commit(); cur.close(); conn.close(); return {"holat":"yangilandi","yozuvlar":son}
+
+# ========================= V18.45 END =========================
