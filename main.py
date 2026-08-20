@@ -8194,9 +8194,9 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     ws.auto_filter.ref = "A1:G5000"
     ws.row_dimensions[1].height = 32
     ws.cell(1, 4).comment = Comment(
-        "Dars beradigan sinflarni qo'lda yozish shart emas. Shu qatorning o'ng tomonidagi "
+        "Dars beradigan sinflarni qo'lda yozmang. Shu qatorning o'ng tomonidagi "
         "HAMMASI va sinf ustunlaridan keraklilarini ☑ qilib belgilang. 1 ta, bir nechta yoki "
-        "barcha sinfni tanlash mumkin. Eski shablonlar uchun D ustunidagi yozuv ham importda saqlanadi.",
+        "barcha sinfni tanlash mumkin. Tanlaganingiz zahoti D katak avtomatik to'ladi. Eski shablonlar uchun D ustunidagi yozuv ham importda saqlanadi.",
         "SamTM",
     )
     ws.cell(1, 5).comment = Comment(
@@ -8208,7 +8208,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     for col, w in zip("ABCDEFG", [32, 48, 27, 31, 32, 15, 25]):
         ws.column_dimensions[col].width = w
 
-    # V18.42 — o'qituvchiga dars beradigan sinflarni xuddi checkbox kabi
+    # V18.43 — o'qituvchiga dars beradigan sinflarni xuddi checkbox kabi
     # alohida kataklarda belgilash. Oddiy .xlsx ichida bir dropdownning o'zida
     # multi-select bo'lmaydi, shuning uchun har bir sinf mustaqil ☑/☐ katakdir.
     sinf_belgi_boshlanish_ustuni = 8  # H = HAMMASI
@@ -8250,10 +8250,39 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         )
         belgi_tanlov.add(belgi_oraliq)
         # Tayyor ko'rinishi uchun kataklarda ☐ turadi; keraklisini ☑ ga o'zgartiriladi.
-        for row_index in range(2, 1002):
+        for row_index in range(2, 5001):
             for col in range(sinf_belgi_boshlanish_ustuni, sinf_belgi_oxirgi_ustuni + 1):
                 katak = ws.cell(row_index, col, "☐")
                 katak.alignment = Alignment(horizontal="center", vertical="center")
+
+        # V18.43 — H/I/J/K... dagi ☑ lar D ustunida darhol ko'rinsin.
+        # Masalan I=1-A ☑, J=1-B ☑, K=1-C ☑ bo'lsa D = "1-A; 1-B; 1-C".
+        # HAMMASI ☑ bo'lsa barcha mavjud sinflar D ga yoziladi.
+        hammasi_harfi = get_column_letter(sinf_belgi_boshlanish_ustuni)
+        birinchi_sinf_harfi = get_column_letter(sinf_belgi_birinchi_sinf_ustuni)
+        oxirgi_sinf_harfi = get_column_letter(sinf_belgi_oxirgi_ustuni)
+
+        for row_index in range(2, 5001):
+            tanlangan_iflar = []
+            for col in range(sinf_belgi_birinchi_sinf_ustuni, sinf_belgi_oxirgi_ustuni + 1):
+                harf = get_column_letter(col)
+                tanlangan_iflar.append(
+                    f'IF({harf}{row_index}="☑",{harf}$1,"")'
+                )
+
+            ws.cell(row_index, 4).value = (
+                f'=IF({hammasi_harfi}{row_index}="☑",'
+                f'TEXTJOIN("; ",TRUE,{birinchi_sinf_harfi}$1:{oxirgi_sinf_harfi}$1),'
+                f'TEXTJOIN("; ",TRUE,{",".join(tanlangan_iflar)}))'
+            )
+
+        # Excel fayl ochilganda formulalarni majburiy qayta hisoblasin.
+        try:
+            wb.calculation.fullCalcOnLoad = True
+            wb.calculation.forceFullCalc = True
+            wb.calculation.calcMode = "auto"
+        except Exception:
+            pass
 
     birikmalar = wb.create_sheet("DARS_BIRIKMALARI")
     for col, sarlavha in enumerate(("Xodim F.I.Sh", "Sinf", "Fan", "Guruh (ixtiyoriy)"), 1):
@@ -8441,7 +8470,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     staj_ustuni = ustun_top("Ish staji (yil)", "Ish staji")
     toifa_ustuni = ustun_top("Toifasi", "Toifa")
 
-    # V18.42 — XODIMLAR varag'ining H ustunidan boshlangan ☑/☐ sinf tanlovlarini topamiz.
+    # V18.43 — XODIMLAR varag'ining H ustunidan boshlangan ☑/☐ sinf tanlovlarini topamiz.
     # Sarlavha sinf nomining o'zi (masalan 1-A, 2-B), H esa HAMMASI.
     hammasi_belgi_ustuni = None
     sinf_belgi_ustunlari = {}
