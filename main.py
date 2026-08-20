@@ -87,7 +87,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "admin-institution-archive-v18.24",
+        "versiya": "admin-school-wizard-v18.25",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -102,6 +102,7 @@ def versiya():
             "learning_path": "balanced-golden-subject-path-v18.21",
             "voice": "stream-cache-visible-state-v18.22",
             "institution_security": "admin-password-365-day-archive-v18.24",
+            "admin_school_creation": "exact-classes-no-payment-wizard-v18.25",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -7489,6 +7490,7 @@ def _maktab_jadvali(cur):
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
     ensure_institution_archive_columns(cur, "maktablar")
+    ensure_school_wizard_columns(cur)
 
 
 class MaktabYaratish(BaseModel):
@@ -7543,7 +7545,7 @@ def maktablar_royxati(token: str):
     cur = conn.cursor()
     _maktab_jadvali(cur)
     cur.execute("""
-        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.smena_soni, m.direktor_user_id,
+        SELECT m.id, m.nomi, m.maktab_raqami, m.viloyat, m.tuman, m.smena_soni, m.direktor_user_id,
                u.full_name AS direktor_ismi
         FROM maktablar m
         LEFT JOIN users u ON u.user_id = m.direktor_user_id
@@ -7730,6 +7732,7 @@ def _maktab_sinflari_jadvali(cur):
         yaratilgan_at TIMESTAMP DEFAULT NOW(),
         UNIQUE(maktab_id, sinf, harf)
     )""")
+    ensure_school_wizard_columns(cur)
 
 
 @app.get("/api/admin/xodim_shablon")
@@ -7937,9 +7940,12 @@ def maktab_sinflari_royxati(token: str, maktab_id: int):
     cur = conn.cursor()
     _maktab_sinflari_jadvali(cur)
     cur.execute("""
-        SELECT s.id, s.sinf, s.harf, s.qoshilish_paroli, u.full_name AS rahbar_ismi
+        SELECT s.id, s.sinf, s.harf, s.smena, s.bino, s.xona,
+               s.qoshilish_paroli, u.full_name AS rahbar_ismi,
+               p.full_name AS psixolog_ismi
         FROM maktab_sinflari s
         LEFT JOIN users u ON u.user_id = s.rahbar_user_id
+        LEFT JOIN users p ON p.user_id = s.psixolog_user_id
         WHERE s.maktab_id=%s
         ORDER BY s.sinf::int, s.harf
     """, (maktab_id,))
@@ -20316,6 +20322,10 @@ from modules.admin_institution_security_v18_24 import (
     ensure_institution_archive_columns,
     institution_is_archived,
 )
+from modules.admin_school_wizard_v18_25 import (
+    create_admin_school_wizard_router,
+    ensure_school_wizard_columns,
+)
 from modules.learning_center import create_learning_center_router
 from modules.organization_trials import create_organization_trial_router
 from modules.school import create_school_router
@@ -20328,6 +20338,7 @@ app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
 app.include_router(create_organization_trial_router(_jwt_tekshir))
 app.include_router(create_institution_archive_router(_admin_tekshir, _db))
+app.include_router(create_admin_school_wizard_router(_admin_tekshir, _db))
 app.include_router(
     create_test_games_router(
         _jwt_tekshir,
