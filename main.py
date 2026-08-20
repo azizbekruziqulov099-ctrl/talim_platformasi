@@ -22982,3 +22982,503 @@ def v1850_maktab_xodim_dublikatlarini_tozala(token: str, maktab_id: int):
 
 # ========================= V18.50 END =========================
 
+# ═══════════════════════════════════════════════════════════
+# V18.51 — AQILLI DARS JADVALI / O'QUV KALENDARI / MAVZU REJASI
+# ═══════════════════════════════════════════════════════════
+
+def _v1851_tables(cur):
+    _rejalashtirish_jadvallari(cur)
+    _maktab_sinflari_jadvali(cur)
+    _xodim_sinf_birikmalari_jadvali(cur)
+    cur.execute("""CREATE TABLE IF NOT EXISTS maktab_oquv_yillari(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        nomi TEXT NOT NULL,
+        boshlanish DATE NOT NULL,
+        tugash DATE NOT NULL,
+        hafta_kunlari INTEGER NOT NULL DEFAULT 6 CHECK(hafta_kunlari IN (5,6)),
+        faol BOOLEAN NOT NULL DEFAULT TRUE,
+        UNIQUE(maktab_id,nomi)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS maktab_choraklari(
+        id BIGSERIAL PRIMARY KEY,
+        oquv_yili_id BIGINT NOT NULL REFERENCES maktab_oquv_yillari(id) ON DELETE CASCADE,
+        chorak INTEGER NOT NULL CHECK(chorak BETWEEN 1 AND 4),
+        boshlanish DATE NOT NULL,
+        tugash DATE NOT NULL,
+        holat TEXT NOT NULL DEFAULT 'taxminiy' CHECK(holat IN ('taxminiy','tasdiqlangan')),
+        UNIQUE(oquv_yili_id,chorak)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS maktab_kalendar_kunlari(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sana DATE NOT NULL,
+        turi TEXT NOT NULL CHECK(turi IN ('oqish','dam','bayram','tatil','qoshimcha_dam','qoshimcha_oqish')),
+        nomi TEXT,
+        holat TEXT NOT NULL DEFAULT 'taxminiy' CHECK(holat IN ('taxminiy','tasdiqlangan')),
+        izoh TEXT,
+        yaratuvchi_user_id BIGINT,
+        UNIQUE(maktab_id,sana)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS oqituvchi_vaqt_sozlamalari(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+        hafta_kuni INTEGER NOT NULL CHECK(hafta_kuni BETWEEN 1 AND 7),
+        dars_raqami INTEGER,
+        turi TEXT NOT NULL CHECK(turi IN ('band','afzal_bosh','metod_kuni')),
+        qattiq BOOLEAN NOT NULL DEFAULT TRUE,
+        izoh TEXT
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS sinf_fan_haftalik_soatlari(
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        fan_nomi TEXT NOT NULL,
+        haftalik_soat INTEGER NOT NULL CHECK(haftalik_soat BETWEEN 0 AND 20),
+        kunlik_max INTEGER NOT NULL DEFAULT 1 CHECK(kunlik_max BETWEEN 1 AND 4),
+        ketma_ket_mumkin BOOLEAN NOT NULL DEFAULT FALSE,
+        PRIMARY KEY(maktab_id,sinf_id,fan_nomi)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS fan_mavzu_rejalari(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        fan_nomi TEXT NOT NULL,
+        chorak INTEGER NOT NULL CHECK(chorak BETWEEN 1 AND 4),
+        tartib INTEGER NOT NULL,
+        mavzu TEXT NOT NULL,
+        soat INTEGER NOT NULL DEFAULT 1 CHECK(soat BETWEEN 1 AND 10),
+        turi TEXT NOT NULL DEFAULT 'mavzu' CHECK(turi IN ('mavzu','nazorat','xato_tahlil','mustahkamlash','masala')),
+        UNIQUE(maktab_id,sinf_id,fan_nomi,chorak,tartib)
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS dars_mavzu_taqvimi(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        fan_nomi TEXT NOT NULL,
+        sana DATE NOT NULL,
+        kun INTEGER NOT NULL,
+        dars_raqami INTEGER NOT NULL,
+        chorak INTEGER NOT NULL,
+        mavzu TEXT NOT NULL,
+        turi TEXT NOT NULL DEFAULT 'mavzu',
+        manba TEXT NOT NULL DEFAULT 'avto' CHECK(manba IN ('avto','oqituvchi')),
+        tasdiqlangan BOOLEAN NOT NULL DEFAULT FALSE,
+        oqituvchi_user_id BIGINT,
+        UNIQUE(maktab_id,sinf_id,fan_nomi,sana,dars_raqami)
+    )""")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_v1851_calendar ON maktab_kalendar_kunlari(maktab_id,sana)")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_v1851_teacher_time ON oqituvchi_vaqt_sozlamalari(maktab_id,user_id,hafta_kuni)")
+
+
+def _v1851_manager(cur, uid: int, maktab_id: int) -> bool:
+    return _adminmi(cur, uid) or _maktab_boshqaruvchi_mi(cur, uid, maktab_id)
+
+
+def _v1851_teacher_allowed(cur, uid: int, maktab_id: int, teacher_id: int) -> bool:
+    return uid == teacher_id or _v1851_manager(cur, uid, maktab_id)
+
+
+def _v1851_school_day(cur, maktab_id: int, sana: date, hafta_kunlari: int) -> bool:
+    cur.execute("SELECT turi FROM maktab_kalendar_kunlari WHERE maktab_id=%s AND sana=%s", (maktab_id, sana))
+    r = cur.fetchone()
+    if r:
+        return r["turi"] in ("oqish", "qoshimcha_oqish")
+    return sana.isoweekday() <= hafta_kunlari
+
+
+class V1851CalendarSave(BaseModel):
+    maktab_id: int
+    nomi: str
+    boshlanish: date
+    tugash: date
+    hafta_kunlari: int = 6
+    choraklar: list[dict]
+
+
+@app.post("/api/maktab/aqlli_jadval/kalendar")
+def v1851_calendar_save(sorov: V1851CalendarSave, token: str):
+    uid = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _maktab_jadvali(cur); _v1851_tables(cur)
+        if not _v1851_manager(cur, uid, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Kalendarni boshqarish huquqi yo'q")
+        if sorov.hafta_kunlari not in (5, 6) or sorov.tugash <= sorov.boshlanish:
+            raise HTTPException(status_code=400, detail="O'quv yili sanalarini tekshiring")
+        cur.execute("""
+            INSERT INTO maktab_oquv_yillari(maktab_id,nomi,boshlanish,tugash,hafta_kunlari,faol)
+            VALUES(%s,%s,%s,%s,%s,TRUE)
+            ON CONFLICT(maktab_id,nomi) DO UPDATE SET boshlanish=EXCLUDED.boshlanish,
+              tugash=EXCLUDED.tugash,hafta_kunlari=EXCLUDED.hafta_kunlari,faol=TRUE
+            RETURNING id
+        """, (sorov.maktab_id, sorov.nomi.strip(), sorov.boshlanish, sorov.tugash, sorov.hafta_kunlari))
+        yil_id = cur.fetchone()["id"]
+        seen = set()
+        for q in sorov.choraklar:
+            n = int(q.get("chorak") or 0)
+            if n not in (1,2,3,4) or n in seen:
+                raise HTTPException(status_code=400, detail="Chorak raqamlari 1-4 va takrorsiz bo'lishi kerak")
+            seen.add(n)
+            b = date.fromisoformat(str(q.get("boshlanish")))
+            t = date.fromisoformat(str(q.get("tugash")))
+            holat = str(q.get("holat") or "taxminiy")
+            if t < b or holat not in ("taxminiy", "tasdiqlangan"):
+                raise HTTPException(status_code=400, detail=f"{n}-chorak sanalarini tekshiring")
+            cur.execute("""
+                INSERT INTO maktab_choraklari(oquv_yili_id,chorak,boshlanish,tugash,holat)
+                VALUES(%s,%s,%s,%s,%s)
+                ON CONFLICT(oquv_yili_id,chorak) DO UPDATE SET boshlanish=EXCLUDED.boshlanish,
+                  tugash=EXCLUDED.tugash,holat=EXCLUDED.holat
+            """, (yil_id,n,b,t,holat))
+        if seen != {1,2,3,4}:
+            raise HTTPException(status_code=400, detail="Barcha 4 chorakni kiriting")
+        conn.commit()
+        return {"holat":"saqlandi","oquv_yili_id":yil_id}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V1851DaySave(BaseModel):
+    maktab_id: int
+    sana: date
+    turi: str
+    nomi: Optional[str] = None
+    holat: str = "tasdiqlangan"
+    izoh: Optional[str] = None
+
+
+@app.put("/api/maktab/aqlli_jadval/kun")
+def v1851_day_save(sorov: V1851DaySave, token: str):
+    uid = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1851_tables(cur)
+        if not _v1851_manager(cur, uid, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Kalendarni o'zgartirish huquqi yo'q")
+        if sorov.turi not in {"oqish","dam","bayram","tatil","qoshimcha_dam","qoshimcha_oqish"}:
+            raise HTTPException(status_code=400, detail="Kun turi noto'g'ri")
+        if sorov.holat not in {"taxminiy","tasdiqlangan"}:
+            raise HTTPException(status_code=400, detail="Holat noto'g'ri")
+        cur.execute("""
+            INSERT INTO maktab_kalendar_kunlari(maktab_id,sana,turi,nomi,holat,izoh,yaratuvchi_user_id)
+            VALUES(%s,%s,%s,%s,%s,%s,%s)
+            ON CONFLICT(maktab_id,sana) DO UPDATE SET turi=EXCLUDED.turi,nomi=EXCLUDED.nomi,
+              holat=EXCLUDED.holat,izoh=EXCLUDED.izoh,yaratuvchi_user_id=EXCLUDED.yaratuvchi_user_id
+        """, (sorov.maktab_id,sorov.sana,sorov.turi,sorov.nomi,sorov.holat,sorov.izoh,uid))
+        if sorov.turi in {"dam","bayram","tatil","qoshimcha_dam"}:
+            cur.execute("DELETE FROM dars_mavzu_taqvimi WHERE maktab_id=%s AND sana=%s AND manba='avto'", (sorov.maktab_id,sorov.sana))
+        conn.commit()
+        return {"holat":"saqlandi","qayta_taqsimlash_kerak":sorov.turi in {"dam","bayram","tatil","qoshimcha_dam"}}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/maktab/aqlli_jadval/sozlamalar")
+def v1851_settings(token: str, maktab_id: int):
+    uid = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1851_tables(cur)
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s AND (maktab_id=%s OR %s)", (uid,maktab_id,_adminmi(cur,uid)))
+        cur.execute("SELECT * FROM maktab_oquv_yillari WHERE maktab_id=%s AND faol=TRUE ORDER BY id DESC LIMIT 1", (maktab_id,))
+        yil = cur.fetchone(); choraklar=[]
+        if yil:
+            cur.execute("SELECT * FROM maktab_choraklari WHERE oquv_yili_id=%s ORDER BY chorak", (yil["id"],)); choraklar=cur.fetchall()
+        cur.execute("SELECT * FROM maktab_kalendar_kunlari WHERE maktab_id=%s ORDER BY sana", (maktab_id,)); kunlar=cur.fetchall()
+        cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE maktab_id=%s ORDER BY sinf::int,harf", (maktab_id,)); sinflar=cur.fetchall()
+        cur.execute("SELECT user_id,full_name,fanlari,haftalik_dars_soati FROM users WHERE maktab_id=%s AND lavozim IS NOT NULL ORDER BY full_name", (maktab_id,)); teachers=cur.fetchall()
+        cur.execute("SELECT * FROM oqituvchi_vaqt_sozlamalari WHERE maktab_id=%s ORDER BY user_id,hafta_kuni,dars_raqami NULLS FIRST", (maktab_id,)); vaqtlar=cur.fetchall()
+        cur.execute("SELECT * FROM sinf_fan_haftalik_soatlari WHERE maktab_id=%s ORDER BY sinf_id,fan_nomi", (maktab_id,)); soatlar=cur.fetchall()
+        return {"oquv_yili":yil,"choraklar":choraklar,"maxsus_kunlar":kunlar,"sinflar":sinflar,"oqituvchilar":teachers,"vaqtlar":vaqtlar,"fan_soatlari":soatlar}
+    finally:
+        cur.close(); conn.close()
+
+
+class V1851TeacherTime(BaseModel):
+    maktab_id: int
+    user_id: int
+    hafta_kuni: int
+    dars_raqami: Optional[int] = None
+    turi: str
+    qattiq: bool = True
+    izoh: Optional[str] = None
+
+
+@app.post("/api/maktab/aqlli_jadval/oqituvchi_vaqti")
+def v1851_teacher_time_save(sorov: V1851TeacherTime, token: str):
+    uid = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1851_tables(cur)
+        if not _v1851_teacher_allowed(cur, uid, sorov.maktab_id, sorov.user_id):
+            raise HTTPException(status_code=403, detail="Bu vaqtni o'zgartirish huquqi yo'q")
+        if sorov.hafta_kuni not in range(1,8) or sorov.turi not in {"band","afzal_bosh","metod_kuni"}:
+            raise HTTPException(status_code=400, detail="Vaqt sozlamasi noto'g'ri")
+        dr = None if sorov.turi == "metod_kuni" else sorov.dars_raqami
+        cur.execute("DELETE FROM oqituvchi_vaqt_sozlamalari WHERE maktab_id=%s AND user_id=%s AND hafta_kuni=%s AND dars_raqami IS NOT DISTINCT FROM %s AND turi=%s", (sorov.maktab_id,sorov.user_id,sorov.hafta_kuni,dr,sorov.turi))
+        cur.execute("INSERT INTO oqituvchi_vaqt_sozlamalari(maktab_id,user_id,hafta_kuni,dars_raqami,turi,qattiq,izoh) VALUES(%s,%s,%s,%s,%s,%s,%s)", (sorov.maktab_id,sorov.user_id,sorov.hafta_kuni,dr,sorov.turi,sorov.qattiq,sorov.izoh))
+        conn.commit(); return {"holat":"saqlandi"}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.delete("/api/maktab/aqlli_jadval/oqituvchi_vaqti")
+def v1851_teacher_time_delete(token: str, maktab_id: int, sozlama_id: int):
+    uid = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1851_tables(cur)
+        cur.execute("SELECT user_id FROM oqituvchi_vaqt_sozlamalari WHERE id=%s AND maktab_id=%s", (sozlama_id,maktab_id)); r=cur.fetchone()
+        if not r: raise HTTPException(status_code=404, detail="Sozlama topilmadi")
+        if not _v1851_teacher_allowed(cur, uid, maktab_id, r["user_id"]): raise HTTPException(status_code=403, detail="Ruxsat yo'q")
+        cur.execute("DELETE FROM oqituvchi_vaqt_sozlamalari WHERE id=%s", (sozlama_id,)); conn.commit(); return {"holat":"o'chirildi"}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V1851FanHours(BaseModel):
+    maktab_id: int
+    sinf_id: int
+    fan_nomi: str
+    haftalik_soat: int
+    kunlik_max: int = 1
+    ketma_ket_mumkin: bool = False
+
+
+@app.put("/api/maktab/aqlli_jadval/fan_soati")
+def v1851_fan_hours_save(sorov: V1851FanHours, token: str):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur)
+        if not _v1851_manager(cur,uid,sorov.maktab_id): raise HTTPException(status_code=403,detail="Ruxsat yo'q")
+        cur.execute("""INSERT INTO sinf_fan_haftalik_soatlari(maktab_id,sinf_id,fan_nomi,haftalik_soat,kunlik_max,ketma_ket_mumkin)
+          VALUES(%s,%s,%s,%s,%s,%s) ON CONFLICT(maktab_id,sinf_id,fan_nomi) DO UPDATE SET haftalik_soat=EXCLUDED.haftalik_soat,kunlik_max=EXCLUDED.kunlik_max,ketma_ket_mumkin=EXCLUDED.ketma_ket_mumkin""",
+          (sorov.maktab_id,sorov.sinf_id,sorov.fan_nomi.strip(),sorov.haftalik_soat,sorov.kunlik_max,sorov.ketma_ket_mumkin))
+        conn.commit(); return {"holat":"saqlandi"}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+def _v1851_teacher_blocked(cur, mid, teacher, day, lesson):
+    cur.execute("""SELECT turi,qattiq FROM oqituvchi_vaqt_sozlamalari
+      WHERE maktab_id=%s AND user_id=%s AND hafta_kuni=%s AND (dars_raqami=%s OR dars_raqami IS NULL)""", (mid,teacher,day,lesson))
+    rows=cur.fetchall()
+    hard=any(r["qattiq"] and r["turi"] in ("band","metod_kuni") for r in rows)
+    soft=sum(1 for r in rows if (not r["qattiq"]) or r["turi"]=="afzal_bosh")
+    return hard,soft
+
+
+@app.post("/api/maktab/aqlli_jadval/yarat")
+def v1851_generate(token: str, maktab_id: int, darslar_kuniga: int = 7):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur)
+        if not _v1851_manager(cur,uid,maktab_id): raise HTTPException(status_code=403,detail="Faqat rahbariyat jadval yarata oladi")
+        cur.execute("SELECT * FROM maktab_oquv_yillari WHERE maktab_id=%s AND faol=TRUE ORDER BY id DESC LIMIT 1",(maktab_id,)); year=cur.fetchone()
+        weekdays=int(year["hafta_kunlari"] if year else 6)
+        cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE maktab_id=%s ORDER BY sinf::int,harf",(maktab_id,)); classes=cur.fetchall()
+        cur.execute("""SELECT b.sinf_id,b.fan_nomi,b.user_id,b.guruh_kaliti FROM maktab_dars_birikmalari b WHERE b.maktab_id=%s ORDER BY b.sinf_id,b.fan_nomi""",(maktab_id,)); bindings=cur.fetchall()
+        bind={(x["sinf_id"],str(x["fan_nomi"]).strip().lower()):x for x in bindings}
+        cur.execute("SELECT * FROM sinf_fan_haftalik_soatlari WHERE maktab_id=%s ORDER BY sinf_id,haftalik_soat DESC,fan_nomi",(maktab_id,)); loads=cur.fetchall()
+        if not loads: raise HTTPException(status_code=400,detail="Avval sinf-fan haftalik soatlarini kiriting")
+        cur.execute("DELETE FROM dars_jadvali WHERE sinf_id IN (SELECT id FROM maktab_sinflari WHERE maktab_id=%s)",(maktab_id,))
+        class_busy=set(); teacher_busy=set(); teacher_count={}; placed=[]; unplaced=[]; daily_count={}
+        jobs=[]
+        for l in loads:
+            key=(l["sinf_id"],str(l["fan_nomi"]).strip().lower()); b=bind.get(key)
+            teacher=b["user_id"] if b else None
+            for seq in range(int(l["haftalik_soat"] or 0)):
+                jobs.append({"sinf_id":l["sinf_id"],"fan":l["fan_nomi"],"teacher":teacher,"guruh":(b or {}).get("guruh_kaliti","whole") if b else "whole","kunlik_max":int(l["kunlik_max"] or 1),"seq":seq})
+        # constrained teachers/classes first
+        jobs.sort(key=lambda j:(j["teacher"] is None, -j["kunlik_max"], j["sinf_id"], j["fan"]))
+        for job in jobs:
+            best=None
+            for day in range(1,weekdays+1):
+                dc=daily_count.get((job["sinf_id"],job["fan"],day),0)
+                if dc>=job["kunlik_max"]: continue
+                for lesson in range(1,darslar_kuniga+1):
+                    if (job["sinf_id"],day,lesson) in class_busy: continue
+                    score=0
+                    if job["teacher"] is not None:
+                        if (job["teacher"],day,lesson) in teacher_busy: continue
+                        hard,soft=_v1851_teacher_blocked(cur,maktab_id,job["teacher"],day,lesson)
+                        if hard: continue
+                        score += soft*10 + teacher_count.get((job["teacher"],day),0)*2
+                    score += daily_count.get((job["sinf_id"],job["fan"],day),0)*8 + lesson*0.15
+                    if best is None or score<best[0]: best=(score,day,lesson)
+            if best is None:
+                unplaced.append({"sinf_id":job["sinf_id"],"fan":job["fan"],"sabab":"Bo'sh konflikt-siz vaqt topilmadi"}); continue
+            _,day,lesson=best
+            cur.execute("""INSERT INTO dars_jadvali(sinf_id,kun,dars_raqami,fan,oqituvchi_user_id,guruh_kaliti)
+              VALUES(%s,%s,%s,%s,%s,%s)""",(job["sinf_id"],day,lesson,job["fan"],job["teacher"],job["guruh"]))
+            class_busy.add((job["sinf_id"],day,lesson)); daily_count[(job["sinf_id"],job["fan"],day)]=daily_count.get((job["sinf_id"],job["fan"],day),0)+1
+            if job["teacher"] is not None:
+                teacher_busy.add((job["teacher"],day,lesson)); teacher_count[(job["teacher"],day)]=teacher_count.get((job["teacher"],day),0)+1
+            placed.append(job)
+        total=len(jobs); quality=round(100*len(placed)/total) if total else 0
+        conn.commit(); return {"holat":"yaratildi","jami_soat":total,"joylashtirildi":len(placed),"joylashtirilmadi":len(unplaced),"sifat":quality,"muammolar":unplaced[:50]}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V1851Topics(BaseModel):
+    maktab_id: int
+    sinf_id: int
+    fan_nomi: str
+    chorak: int
+    mavzular: list[dict]
+
+
+@app.put("/api/maktab/aqlli_jadval/mavzu_reja")
+def v1851_topics_save(sorov: V1851Topics, token: str):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur)
+        if not _v1851_manager(cur,uid,sorov.maktab_id): raise HTTPException(status_code=403,detail="Ruxsat yo'q")
+        cur.execute("DELETE FROM fan_mavzu_rejalari WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s",(sorov.maktab_id,sorov.sinf_id,sorov.fan_nomi,sorov.chorak))
+        for i,m in enumerate(sorov.mavzular,1):
+            cur.execute("INSERT INTO fan_mavzu_rejalari(maktab_id,sinf_id,fan_nomi,chorak,tartib,mavzu,soat,turi) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)",
+                (sorov.maktab_id,sorov.sinf_id,sorov.fan_nomi,sorov.chorak,i,str(m.get("mavzu") or "").strip(),int(m.get("soat") or 1),str(m.get("turi") or "mavzu")))
+        conn.commit(); return {"holat":"saqlandi","mavzu_soni":len(sorov.mavzular)}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+def _v1851_expand_topics(rows, slot_count):
+    expanded=[]
+    for r in rows:
+        for _ in range(max(1,int(r["soat"] or 1))): expanded.append({"mavzu":r["mavzu"],"turi":r["turi"]})
+    extras=[]
+    n=1
+    while len(expanded)<slot_count:
+        # pedagogik zaxira: nazorat -> tahlil -> mustahkamlash/masala aylanishi
+        mod=(len(expanded)-len(rows))%4
+        if mod==0: extras.append({"mavzu":f"Nazorat ishi {n}","turi":"nazorat"})
+        elif mod==1: extras.append({"mavzu":f"Nazorat ishi {n} xatolarini tahlil qilish","turi":"xato_tahlil"}); n+=1
+        elif mod==2: extras.append({"mavzu":"Mavzularni mustahkamlash","turi":"mustahkamlash"})
+        else: extras.append({"mavzu":"Masalalar yechish va amaliy mashqlar","turi":"masala"})
+        expanded.append(extras[-1])
+    return expanded[:slot_count],extras
+
+
+@app.post("/api/maktab/aqlli_jadval/mavzularni_taqsimlash")
+def v1851_topics_distribute(token: str, maktab_id: int, sinf_id: int, fan: str, chorak: int):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur)
+        cur.execute("SELECT id FROM maktab_oquv_yillari WHERE maktab_id=%s AND faol=TRUE ORDER BY id DESC LIMIT 1",(maktab_id,)); y=cur.fetchone()
+        if not y: raise HTTPException(status_code=400,detail="Avval o'quv yilini kiriting")
+        cur.execute("SELECT boshlanish,tugash FROM maktab_choraklari WHERE oquv_yili_id=%s AND chorak=%s",(y["id"],chorak)); q=cur.fetchone()
+        if not q: raise HTTPException(status_code=400,detail="Chorak sanasi yo'q")
+        cur.execute("SELECT hafta_kunlari FROM maktab_oquv_yillari WHERE id=%s",(y["id"],)); weekdays=int(cur.fetchone()["hafta_kunlari"])
+        cur.execute("SELECT kun,dars_raqami,oqituvchi_user_id FROM dars_jadvali WHERE sinf_id=%s AND LOWER(fan)=LOWER(%s) ORDER BY kun,dars_raqami",(sinf_id,fan)); weekly=cur.fetchall()
+        if not weekly: raise HTTPException(status_code=400,detail="Bu sinf/fan uchun dars jadvali topilmadi")
+        slots=[]; d=q["boshlanish"]
+        while d<=q["tugash"]:
+            if _v1851_school_day(cur,maktab_id,d,weekdays):
+                for w in weekly:
+                    if d.isoweekday()==w["kun"]: slots.append((d,w))
+            d += timedelta(days=1)
+        cur.execute("SELECT * FROM fan_mavzu_rejalari WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s ORDER BY tartib",(maktab_id,sinf_id,fan,chorak)); topics=cur.fetchall()
+        expanded,extras=_v1851_expand_topics(topics,len(slots))
+        cur.execute("DELETE FROM dars_mavzu_taqvimi WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s AND manba='avto'",(maktab_id,sinf_id,fan,chorak))
+        for (sana,w),topic in zip(slots,expanded):
+            cur.execute("""INSERT INTO dars_mavzu_taqvimi(maktab_id,sinf_id,fan_nomi,sana,kun,dars_raqami,chorak,mavzu,turi,manba,tasdiqlangan,oqituvchi_user_id)
+              VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,'avto',FALSE,%s) ON CONFLICT(maktab_id,sinf_id,fan_nomi,sana,dars_raqami) DO NOTHING""",
+              (maktab_id,sinf_id,fan,sana,w["kun"],w["dars_raqami"],chorak,topic["mavzu"],topic["turi"],w["oqituvchi_user_id"]))
+        conn.commit(); return {"holat":"taqsimlandi","dars_soni":len(slots),"reja_soati":sum(int(x["soat"] or 1) for x in topics),"avto_qoshildi":extras}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V1851TopicMove(BaseModel):
+    maktab_id: int
+    taqvim_id: int
+    mavzu: Optional[str] = None
+    sana: Optional[date] = None
+
+
+@app.patch("/api/maktab/aqlli_jadval/mavzu")
+def v1851_topic_move(sorov: V1851TopicMove, token: str):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur)
+        cur.execute("SELECT * FROM dars_mavzu_taqvimi WHERE id=%s AND maktab_id=%s",(sorov.taqvim_id,sorov.maktab_id)); row=cur.fetchone()
+        if not row: raise HTTPException(status_code=404,detail="Mavzu yozuvi topilmadi")
+        allowed=_v1851_manager(cur,uid,sorov.maktab_id) or row.get("oqituvchi_user_id")==uid
+        if not allowed: raise HTTPException(status_code=403,detail="Faqat shu fan o'qituvchisi yoki rahbariyat o'zgartira oladi")
+        new_topic=(sorov.mavzu.strip() if sorov.mavzu else row["mavzu"]); new_date=sorov.sana or row["sana"]
+        cur.execute("UPDATE dars_mavzu_taqvimi SET mavzu=%s,sana=%s,manba='oqituvchi',tasdiqlangan=TRUE WHERE id=%s",(new_topic,new_date,sorov.taqvim_id))
+        conn.commit(); return {"holat":"yangilandi"}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/maktab/aqlli_jadval/mavzu_taqvimi")
+def v1851_topic_calendar(token: str, maktab_id: int, sinf_id: Optional[int]=None, fan: Optional[str]=None, chorak: Optional[int]=None):
+    _jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur); wh=["maktab_id=%s"]; args=[maktab_id]
+        if sinf_id is not None: wh.append("sinf_id=%s"); args.append(sinf_id)
+        if fan: wh.append("LOWER(fan_nomi)=LOWER(%s)"); args.append(fan)
+        if chorak is not None: wh.append("chorak=%s"); args.append(chorak)
+        cur.execute("SELECT * FROM dars_mavzu_taqvimi WHERE "+" AND ".join(wh)+" ORDER BY sana,dars_raqami",tuple(args))
+        return {"taqvim":cur.fetchall()}
+    finally:
+        cur.close(); conn.close()
+
+# ========================= V18.51 END =========================
+
+class V1851MyTime(BaseModel):
+    hafta_kuni: int
+    dars_raqami: Optional[int] = None
+    turi: str
+    qattiq: bool = True
+    izoh: Optional[str] = None
+
+
+@app.get("/api/maktab/aqlli_jadval/mening_vaqtim")
+def v1851_my_time_get(token: str):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur)
+        cur.execute("SELECT maktab_id,full_name FROM users WHERE user_id=%s",(uid,)); u=cur.fetchone()
+        if not u or not u.get("maktab_id"): return {"maktab_id":None,"sozlamalar":[]}
+        cur.execute("SELECT * FROM oqituvchi_vaqt_sozlamalari WHERE maktab_id=%s AND user_id=%s ORDER BY hafta_kuni,dars_raqami NULLS FIRST",(u["maktab_id"],uid))
+        return {"maktab_id":u["maktab_id"],"oqituvchi":u["full_name"],"sozlamalar":cur.fetchall()}
+    finally: cur.close(); conn.close()
+
+
+@app.post("/api/maktab/aqlli_jadval/mening_vaqtim")
+def v1851_my_time_save(sorov: V1851MyTime, token: str):
+    uid=_jwt_tekshir(token); conn=_db(); cur=conn.cursor()
+    try:
+        _v1851_tables(cur); cur.execute("SELECT maktab_id FROM users WHERE user_id=%s",(uid,)); u=cur.fetchone()
+        if not u or not u.get("maktab_id"): raise HTTPException(status_code=400,detail="Maktab biriktirilmagan")
+        if sorov.hafta_kuni not in range(1,8) or sorov.turi not in {"band","afzal_bosh","metod_kuni"}: raise HTTPException(status_code=400,detail="Sozlama xato")
+        dr=None if sorov.turi=="metod_kuni" else sorov.dars_raqami
+        cur.execute("DELETE FROM oqituvchi_vaqt_sozlamalari WHERE maktab_id=%s AND user_id=%s AND hafta_kuni=%s AND dars_raqami IS NOT DISTINCT FROM %s AND turi=%s",(u["maktab_id"],uid,sorov.hafta_kuni,dr,sorov.turi))
+        cur.execute("INSERT INTO oqituvchi_vaqt_sozlamalari(maktab_id,user_id,hafta_kuni,dars_raqami,turi,qattiq,izoh) VALUES(%s,%s,%s,%s,%s,%s,%s)",(u["maktab_id"],uid,sorov.hafta_kuni,dr,sorov.turi,sorov.qattiq,sorov.izoh))
+        conn.commit(); return {"holat":"saqlandi"}
+    except Exception: conn.rollback(); raise
+    finally: cur.close(); conn.close()
+
