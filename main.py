@@ -12,6 +12,7 @@ import hashlib
 import secrets
 import string
 import unicodedata
+from collections import OrderedDict
 from urllib.parse import urlencode
 import httpx
 import psycopg2
@@ -21,7 +22,7 @@ from datetime import date, datetime, timedelta, timezone
 from jose import jwt, JWTError
 from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, RedirectResponse, Response
+from fastapi.responses import JSONResponse, RedirectResponse, Response, StreamingResponse
 from pydantic import BaseModel
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
@@ -86,7 +87,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-learning-path-v18.21",
+        "versiya": "school-institution-imports-v18.23",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -96,10 +97,12 @@ def versiya():
             "institute": "institute-v1-secure-v15",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
-            "test_games": "real-answer-bridge-audio-contrast-v18.9",
+            "test_games": "fast-feedback-v18.22",
             "test_import": "excel-auto-subject-grade-scoped-v18.16",
             "learning_path": "balanced-golden-subject-path-v18.21",
-            "voice": "tag-scoped-profile-language-math-v18.10",
+            "voice": "stream-cache-visible-state-v18.22",
+            "school_institution": "admin-grant-preview-import-v18.23",
+            "organization_delete": "creator-aware-soft-delete-v18.23",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -1891,6 +1894,35 @@ _TIL_OVOZLARI = {
     "ko": {"qiz": "ko-KR-SunHiNeural", "ogil": "ko-KR-InJoonNeural"},
 }
 
+# Railway jarayoni ichidagi kichik LRU kesh. Bir xil savol qayta o'qilganda
+# edge-tts'ni yangidan kutmaymiz; hajm cheklovi servis xotirasini himoya qiladi.
+_OVOZ_KESH = OrderedDict()
+_OVOZ_KESH_JAMI_BAYT = 0
+_OVOZ_KESH_MAX_ELEMENT = 96
+_OVOZ_KESH_MAX_BAYT = 48 * 1024 * 1024
+
+
+def _ovoz_keshdan_ol(kalit: str):
+    audio = _OVOZ_KESH.pop(kalit, None)
+    if audio is not None:
+        _OVOZ_KESH[kalit] = audio
+    return audio
+
+
+def _ovoz_keshga_qoy(kalit: str, audio: bytes):
+    global _OVOZ_KESH_JAMI_BAYT
+    eski = _OVOZ_KESH.pop(kalit, None)
+    if eski is not None:
+        _OVOZ_KESH_JAMI_BAYT -= len(eski)
+    _OVOZ_KESH[kalit] = audio
+    _OVOZ_KESH_JAMI_BAYT += len(audio)
+    while (
+        len(_OVOZ_KESH) > _OVOZ_KESH_MAX_ELEMENT
+        or _OVOZ_KESH_JAMI_BAYT > _OVOZ_KESH_MAX_BAYT
+    ):
+        _, ochirilgan = _OVOZ_KESH.popitem(last=False)
+        _OVOZ_KESH_JAMI_BAYT -= len(ochirilgan)
+
 # ── Ovoz uchun matnni tayyorlash — botdagi ovoz.py bilan bir xil qoidalar ──
 _BIRLIK = ["", "bir", "ikki", "uch", "to'rt", "besh", "olti", "yetti", "sakkiz", "to'qqiz"]
 _ONLIK = ["", "o'n", "yigirma", "o'ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to'qson"]
@@ -2195,10 +2227,12 @@ def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
 
 @app.get("/api/ovoz")
 async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
-    """Berilgan matnni ovozga aylantirib beradi (mp3). [en]/[ru] teglari
-    ichidagi qismlar o'sha tilning ovozida, qolgani o'zbekcha (matematik
-    belgilar/sonlar so'zga o'girilib) o'qiladi — botdagi ovoz_ikki_tilli
-    bilan bir xil mantiq, faqat ikkita til uchun kengaytirilgan."""
+    """Berilgan matnni MP3 oqimi sifatida qaytaradi.
+
+    Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi;
+    to'liq MP3 tugashini kutmaydi. Tayyor bo'lgan to'liq audio keyingi
+    bosishlar uchun xotira va brauzer keshida saqlanadi.
+    """
     if not matn or not matn.strip():
         raise HTTPException(status_code=400, detail="Matn berilmagan")
     try:
@@ -2211,26 +2245,62 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
     # Tegsiz matnning qat'iy asosiy tili — o'zbekcha. URL'dan tasodifan
     # asosiy_til=en kelishi butun testni inglizcha o'qitmasligi kerak.
     asosiy_til = "uz"
-    buf = io.BytesIO()
-    ovoz_bormi = False
-    for til, bolak in _ovoz_qismlarga_bol(matn, asosiy_til):
-        if til in _TIL_OVOZLARI:
-            voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
-        else:
-            voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
-        tayyor = _ovoz_uchun_tayyorla_til(bolak, til)
-        if not tayyor.strip():
-            continue
-        com = edge_tts.Communicate(tayyor, voice)
-        async for chunk in com.stream():
-            if chunk["type"] == "audio":
-                buf.write(chunk["data"])
-                ovoz_bormi = True
+    kesh_kaliti = hashlib.sha256(
+        f"v18.22\0{jins}\0{matn}".encode("utf-8")
+    ).hexdigest()
+    kesh_sarlavhalari = {
+        "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
+        "ETag": f'"{kesh_kaliti}"',
+        "X-Content-Type-Options": "nosniff",
+    }
+    keshdagi_audio = _ovoz_keshdan_ol(kesh_kaliti)
+    if keshdagi_audio is not None:
+        return Response(
+            content=keshdagi_audio,
+            media_type="audio/mpeg",
+            headers={**kesh_sarlavhalari, "X-SamTM-Voice": "cache-hit"},
+        )
 
-    if not ovoz_bormi:
+    async def audio_bolaklari():
+        for til, bolak in _ovoz_qismlarga_bol(matn, asosiy_til):
+            if til in _TIL_OVOZLARI:
+                voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
+            else:
+                voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
+            tayyor = _ovoz_uchun_tayyorla_til(bolak, til)
+            if not tayyor.strip():
+                continue
+            com = edge_tts.Communicate(tayyor, voice)
+            async for chunk in com.stream():
+                if chunk["type"] == "audio" and chunk.get("data"):
+                    yield bytes(chunk["data"])
+
+    # HTTP sarlavhalari yuborilishidan avval birinchi audio bo'lagi borligini
+    # tekshiramiz. Shunda bo'sh 200 javob o'rniga tushunarli xato qaytadi.
+    audio_iterator = audio_bolaklari().__aiter__()
+    try:
+        birinchi_bolak = await audio_iterator.__anext__()
+    except StopAsyncIteration:
         raise HTTPException(status_code=500, detail="Ovoz yaratilmadi")
-    buf.seek(0)
-    return Response(content=buf.getvalue(), media_type="audio/mpeg")
+    except Exception as exc:
+        raise HTTPException(
+            status_code=503,
+            detail="Ovoz xizmati vaqtincha javob bermadi",
+        ) from exc
+
+    async def oqim_va_kesh():
+        yigildi = bytearray(birinchi_bolak)
+        yield birinchi_bolak
+        async for audio_bolagi in audio_iterator:
+            yigildi.extend(audio_bolagi)
+            yield audio_bolagi
+        _ovoz_keshga_qoy(kesh_kaliti, bytes(yigildi))
+
+    return StreamingResponse(
+        oqim_va_kesh(),
+        media_type="audio/mpeg",
+        headers={**kesh_sarlavhalari, "X-SamTM-Voice": "stream-miss"},
+    )
 
 
 class JavobItem(BaseModel):
@@ -7416,6 +7486,15 @@ def _maktab_jadvali(cur):
         direktor_user_id BIGINT REFERENCES users(user_id),
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS creation_source TEXT NOT NULL DEFAULT 'legacy'")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS payment_exempt BOOLEAN NOT NULL DEFAULT FALSE")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS lifecycle_status TEXT NOT NULL DEFAULT 'active'")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS delete_reason TEXT")
+    cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
 
 
 class MaktabYaratish(BaseModel):
@@ -7436,7 +7515,7 @@ def maktab_yarat(sorov: MaktabYaratish):
     shu sabab bu yerda ixtiyoriy. To'lov sozlamasi ham shu yerda
     darhol belgilanadi (keyinroq "To'lov sozlamalari"dan o'zgartirsa
     ham bo'ladi)."""
-    _admin_tekshir(sorov.token)
+    creator_user_id = _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Maktab nomi kiritilmagan")
     if sorov.smena_soni not in (1, 2):
@@ -7451,10 +7530,11 @@ def maktab_yarat(sorov: MaktabYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov)
-        VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id
+        INSERT INTO maktablar(nomi, viloyat, tuman, smena_soni, direktor_user_id, pulli, oylik_tolov,
+                             creator_user_id,creation_source,payment_exempt,lifecycle_status)
+        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,'admin_grant',TRUE,'active') RETURNING id
     """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.smena_soni, sorov.direktor_user_id,
-          sorov.pulli, sorov.oylik_tolov if sorov.pulli else None))
+          sorov.pulli, sorov.oylik_tolov if sorov.pulli else None, creator_user_id))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -7474,6 +7554,7 @@ def maktablar_royxati(token: str):
                u.full_name AS direktor_ismi
         FROM maktablar m
         LEFT JOIN users u ON u.user_id = m.direktor_user_id
+        WHERE m.deleted_at IS NULL
         ORDER BY m.nomi
     """)
     natija = cur.fetchall()
@@ -9895,6 +9976,12 @@ def _markaz_jadvali(cur):
         direktor_user_id BIGINT REFERENCES users(user_id),
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
+    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS delete_reason TEXT")
+    cur.execute("ALTER TABLE oquv_markazlari ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
 
@@ -9919,7 +10006,7 @@ class MarkazYaratish(BaseModel):
 
 @app.post("/api/admin/markaz_yarat")
 def markaz_yarat(sorov: MarkazYaratish):
-    _admin_tekshir(sorov.token)
+    creator_user_id = _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Markaz nomi kiritilmagan")
     conn = _db()
@@ -9931,9 +10018,9 @@ def markaz_yarat(sorov: MarkazYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id)
-        VALUES(%s,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.direktor_user_id))
+        INSERT INTO oquv_markazlari(nomi, viloyat, tuman, direktor_user_id,creator_user_id)
+        VALUES(%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.direktor_user_id,creator_user_id))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -9943,16 +10030,18 @@ def markaz_yarat(sorov: MarkazYaratish):
 
 @app.get("/api/admin/markazlar")
 def markazlar_royxati(token: str):
-    _admin_tekshir(token)
+    admin_user_id = _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _markaz_jadvali(cur)
     cur.execute("""
-        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.direktor_user_id, u.full_name AS direktor_ismi
+        SELECT m.id, m.nomi, m.viloyat, m.tuman, m.direktor_user_id, u.full_name AS direktor_ismi,
+               m.creator_user_id,(m.creator_user_id=%s) AS own_creation
         FROM oquv_markazlari m
         LEFT JOIN users u ON u.user_id = m.direktor_user_id
+        WHERE m.deleted_at IS NULL
         ORDER BY m.nomi
-    """)
+    """, (admin_user_id,))
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -10367,6 +10456,12 @@ def _bogcha_jadvali(cur):
         oylik_tolov INTEGER,
         yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
+    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS delete_reason TEXT")
+    cur.execute("ALTER TABLE bogchalar ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
     cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_guruhlari(
         id SERIAL PRIMARY KEY,
         bogcha_id INTEGER NOT NULL REFERENCES bogchalar(id),
@@ -10821,14 +10916,15 @@ def bogcha_yarat(sorov: BogchaYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan direktor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id)
-        VALUES(%s,%s,%s,%s,%s) RETURNING id
+        INSERT INTO bogchalar(nomi, turi, viloyat, tuman, direktor_user_id,creator_user_id)
+        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
     """, (
         sorov.nomi.strip(),
         sorov.turi,
         sorov.viloyat,
         sorov.tuman,
         sorov.direktor_user_id,
+        admin_user_id,
     ))
     yangi_id = cur.fetchone()["id"]
     _bogcha_v2_kontekstni_taminla(cur, yangi_id)
@@ -10851,17 +10947,19 @@ def bogchalar_royxati(
     token: Optional[str] = Query(default=None, include_in_schema=False),
     authorization: Optional[str] = Header(default=None),
 ):
-    _admin_tekshir(_jwt_header_yoki_query(token, authorization))
+    admin_user_id = _admin_tekshir(_jwt_header_yoki_query(token, authorization))
     conn = _db()
     cur = conn.cursor()
     _bogcha_jadvali(cur)
     cur.execute("""
         SELECT b.id, b.nomi, b.turi, b.viloyat, b.tuman, b.direktor_user_id,
-               u.full_name AS direktor_ismi
+               u.full_name AS direktor_ismi,b.creator_user_id,
+               (b.creator_user_id=%s) AS own_creation
         FROM bogchalar b
         LEFT JOIN users u ON u.user_id = b.direktor_user_id
+        WHERE b.deleted_at IS NULL
         ORDER BY b.nomi
-    """)
+    """, (admin_user_id,))
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -11394,6 +11492,12 @@ def _universitet_jadvali(cur):
         id SERIAL PRIMARY KEY, nomi TEXT NOT NULL, viloyat TEXT, tuman TEXT,
         rektor_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS creator_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS deletion_pin_hash TEXT")
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS deleted_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS deleted_by_user_id BIGINT REFERENCES users(user_id) ON DELETE SET NULL")
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS delete_reason TEXT")
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()")
     cur.execute("""CREATE TABLE IF NOT EXISTS fakultetlar(
         id SERIAL PRIMARY KEY, universitet_id INTEGER NOT NULL REFERENCES universitetlar(id),
         nomi TEXT NOT NULL, dekan_user_id BIGINT REFERENCES users(user_id), yaratilgan_at TIMESTAMP DEFAULT NOW()
@@ -11434,7 +11538,7 @@ class UniversitetYaratish(BaseModel):
 
 @app.post("/api/admin/universitet_yarat")
 def universitet_yarat(sorov: UniversitetYaratish):
-    _admin_tekshir(sorov.token)
+    creator_user_id = _admin_tekshir(sorov.token)
     if not sorov.nomi.strip():
         raise HTTPException(status_code=400, detail="Universitet nomi kiritilmagan")
     conn = _db()
@@ -11446,9 +11550,9 @@ def universitet_yarat(sorov: UniversitetYaratish):
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Ko'rsatilgan rektor foydalanuvchisi topilmadi")
     cur.execute("""
-        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id)
-        VALUES(%s,%s,%s,%s) RETURNING id
-    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.rektor_user_id))
+        INSERT INTO universitetlar(nomi, viloyat, tuman, rektor_user_id,creator_user_id)
+        VALUES(%s,%s,%s,%s,%s) RETURNING id
+    """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.rektor_user_id,creator_user_id))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -11458,16 +11562,18 @@ def universitet_yarat(sorov: UniversitetYaratish):
 
 @app.get("/api/admin/universitetlar")
 def universitetlar_royxati(token: str):
-    _admin_tekshir(token)
+    admin_user_id = _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _universitet_jadvali(cur)
     cur.execute("""
         SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
-               (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni
+               (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni,
+               u.creator_user_id,(u.creator_user_id=%s) AS own_creation
         FROM universitetlar u LEFT JOIN users us ON us.user_id = u.rektor_user_id
+        WHERE u.deleted_at IS NULL
         ORDER BY u.nomi
-    """)
+    """, (admin_user_id,))
     natija = cur.fetchall()
     cur.close()
     conn.close()
@@ -20231,15 +20337,19 @@ from modules.kindergarten import create_kindergarten_router
 from modules.institute import create_institute_router
 from modules.learning_center import create_learning_center_router
 from modules.organization_trials import create_organization_trial_router
+from modules.organization_delete_v23 import create_organization_delete_v23_router
 from modules.school import create_school_router
+from modules.school_institution_v23 import create_school_institution_v23_router
 from modules.test_games import award_standard_test_points, create_test_games_router
 from platform_core.database import close_pool as _modular_db_poolni_yop
 
 app.include_router(create_kindergarten_router(_jwt_tekshir))
 app.include_router(create_school_router(_jwt_tekshir))
+app.include_router(create_school_institution_v23_router(_jwt_tekshir, _db))
 app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
 app.include_router(create_organization_trial_router(_jwt_tekshir))
+app.include_router(create_organization_delete_v23_router(_jwt_tekshir, _db))
 app.include_router(
     create_test_games_router(
         _jwt_tekshir,
