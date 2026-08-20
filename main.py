@@ -87,7 +87,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "school-subject-selection-v18.32",
+        "versiya": "school-groups-smart-subjects-v18.33",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -102,8 +102,8 @@ def versiya():
             "learning_path": "balanced-golden-subject-path-v18.21",
             "voice": "stream-cache-visible-state-v18.22",
             "institution_security": "admin-password-365-day-archive-v18.24",
-            "admin_school_creation": "buildings-rooms-per-grade-bulk-v18.28",
-            "employee_import": "school-selected-smart-subjects-v18.32",
+            "admin_school_creation": "default-shift-room-groups-v18.33",
+            "employee_import": "school-groups-smart-subjects-v18.33",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -7799,6 +7799,22 @@ def _xodim_sinf_birikmalari_jadvali(cur):
         "CREATE INDEX IF NOT EXISTS ix_maktab_xodim_sinflari_maktab_sinf "
         "ON maktab_xodim_sinflari(maktab_id, sinf_id)"
     )
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS maktab_dars_birikmalari(
+            id BIGSERIAL PRIMARY KEY,
+            maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+            user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+            sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+            fan_nomi TEXT NOT NULL,
+            guruh_kaliti TEXT NOT NULL DEFAULT 'whole',
+            yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            UNIQUE(user_id,sinf_id,fan_nomi,guruh_kaliti)
+        )
+    """)
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS ix_maktab_dars_birikmalari_jadval "
+        "ON maktab_dars_birikmalari(maktab_id,sinf_id,guruh_kaliti)"
+    )
 
 
 def _maktab_fanlari_jadvali(cur):
@@ -7814,28 +7830,11 @@ def _maktab_fanlari_jadvali(cur):
 
 
 def _maktab_fan_katalogi(cur, maktab_id):
-    """Maktabdagi mavjud sinflarga DTS bo'yicha mos fanlarni qaytaradi."""
+    """DTS fanlarini faqat tavsiya sifatida qaytaradi; sinfga biriktirmaydi."""
     cur.execute(
-        "SELECT sinf, harf FROM maktab_sinflari WHERE maktab_id=%s "
-        "ORDER BY sinf::int, harf",
-        (maktab_id,),
-    )
-    sinf_qatorlari = cur.fetchall()
-    sinflar_daraja_boyicha = {}
-    for row in sinf_qatorlari:
-        daraja = str(row["sinf"])
-        sinflar_daraja_boyicha.setdefault(daraja, []).append(
-            _xodim_sinf_nomini_normalla(f"{daraja}-{row['harf']}")
-        )
-    darajalar = sorted(sinflar_daraja_boyicha, key=lambda qiymat: int(qiymat))
-    if not darajalar:
-        return []
-
-    cur.execute(
-        "SELECT DISTINCT grade::text AS grade, subject_name FROM dts_tree "
-        "WHERE grade::text = ANY(%s) AND COALESCE(is_deleted,FALSE)=FALSE "
-        "ORDER BY grade::text, subject_name",
-        (darajalar,),
+        "SELECT DISTINCT subject_name FROM dts_tree "
+        "WHERE COALESCE(is_deleted,FALSE)=FALSE AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
+        "ORDER BY subject_name"
     )
     fanlar = {}
     for row in cur.fetchall():
@@ -7843,10 +7842,7 @@ def _maktab_fan_katalogi(cur, maktab_id):
         if not fan_nomi:
             continue
         kalit = _xodim_excel_sarlavha_kaliti(fan_nomi)
-        fan = fanlar.setdefault(kalit, {"nomi": fan_nomi, "sinflar": []})
-        for sinf_nomi in sinflar_daraja_boyicha.get(str(row["grade"]), []):
-            if sinf_nomi not in fan["sinflar"]:
-                fan["sinflar"].append(sinf_nomi)
+        fanlar.setdefault(kalit, {"nomi": fan_nomi, "manba": "DTS"})
     return sorted(fanlar.values(), key=lambda fan: fan["nomi"].casefold())
 
 
@@ -7880,8 +7876,11 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
     tanlangan = []
     for row in cur.fetchall():
         kalit = _xodim_excel_sarlavha_kaliti(row["fan_nomi"])
-        if kalit in katalog_kalitlari:
-            tanlangan.append(katalog_kalitlari[kalit])
+        fan_nomi = katalog_kalitlari.get(kalit, row["fan_nomi"])
+        tanlangan.append(fan_nomi)
+        if kalit not in katalog_kalitlari:
+            katalog.append({"nomi": fan_nomi, "manba": "Maktab qo‘shgan"})
+            katalog_kalitlari[kalit] = fan_nomi
     cur.close()
     conn.close()
     return {
@@ -7893,7 +7892,7 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
 
 @app.put("/api/admin/maktab_fan_sozlamalari")
 def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
-    """Faqat DTS katalogida va maktab sinflarida mavjud fanlarni saqlaydi."""
+    """Tanlangan DTS fanlari va maktab qo'shgan yangi fanlarni saqlaydi."""
     _admin_tekshir(sorov.token)
     conn = _db()
     cur = conn.cursor()
@@ -7910,25 +7909,23 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
         _xodim_excel_sarlavha_kaliti(fan["nomi"]): fan["nomi"] for fan in katalog
     }
     tanlangan_kalitlar = []
+    tanlangan_nomlar = {}
     for fan_xom in sorov.fanlar:
-        kalit = _xodim_excel_sarlavha_kaliti(fan_xom)
+        fan_toza = re.sub(r"\s+", " ", str(fan_xom or "")).strip()
+        if len(fan_toza) > 100:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Fan nomi 100 belgidan oshmasligi kerak")
+        kalit = _xodim_excel_sarlavha_kaliti(fan_toza)
         if kalit and kalit not in tanlangan_kalitlar:
             tanlangan_kalitlar.append(kalit)
+            tanlangan_nomlar[kalit] = katalog_kalitlari.get(kalit, fan_toza)
     if not tanlangan_kalitlar:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Kamida bitta maktab fanini tanlang")
-    topilmagan = [kalit for kalit in tanlangan_kalitlar if kalit not in katalog_kalitlari]
-    if topilmagan:
-        cur.close(); conn.close()
-        raise HTTPException(
-            status_code=400,
-            detail="Tanlangan fanlardan ayrimi maktab sinflari katalogida topilmadi",
-        )
-
     cur.execute("DELETE FROM maktab_fanlari WHERE maktab_id=%s", (sorov.maktab_id,))
     saqlangan = []
     for kalit in tanlangan_kalitlar:
-        fan_nomi = katalog_kalitlari[kalit]
+        fan_nomi = tanlangan_nomlar[kalit]
         cur.execute(
             "INSERT INTO maktab_fanlari(maktab_id,fan_nomi) VALUES(%s,%s)",
             (sorov.maktab_id, fan_nomi),
@@ -7963,14 +7960,14 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     ws.title = "XODIMLAR"
     mavjud_sinflar = []
     mavjud_fanlar = []
-    sinf_fanlari = {}
+    sinf_guruh_usullari = {}
     if maktab_id is not None:
         conn = _db()
         cur = conn.cursor()
         _maktab_sinflari_jadvali(cur)
         _maktab_fanlari_jadvali(cur)
         cur.execute(
-            "SELECT sinf, harf FROM maktab_sinflari WHERE maktab_id=%s "
+            "SELECT sinf,harf,guruhlash_usuli FROM maktab_sinflari WHERE maktab_id=%s "
             "ORDER BY sinf::int, harf",
             (maktab_id,),
         )
@@ -7979,36 +7976,23 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
             _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
             for row in sinf_qatorlari
         ]
-        katalog = _maktab_fan_katalogi(cur, maktab_id)
+        for row in sinf_qatorlari:
+            sinf_nomi = _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
+            sinf_guruh_usullari[sinf_nomi] = {
+                "gender": "O‘g‘il / qiz",
+                "alphabet": "Alifbo: 1-guruh / 2-guruh",
+            }.get((row.get("guruhlash_usuli") or "none").lower(), "Bo‘linmaydi")
         cur.execute(
             "SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi",
             (maktab_id,),
         )
-        tanlangan_kalitlar = {
-            _xodim_excel_sarlavha_kaliti(row["fan_nomi"]) for row in cur.fetchall()
-        }
-        if not tanlangan_kalitlar:
-            cur.close()
-            conn.close()
-            raise HTTPException(
-                status_code=400,
-                detail="Avval maktab fanlarini tanlab saqlang, keyin xodim shablonini oling",
-            )
-        for fan in katalog:
-            if _xodim_excel_sarlavha_kaliti(fan["nomi"]) not in tanlangan_kalitlar:
-                continue
-            mavjud_fanlar.append(fan["nomi"])
-            for sinf_nomi in fan["sinflar"]:
-                daraja = sinf_nomi.split("-", 1)[0]
-                sinf_fanlari.setdefault(daraja, [])
-                if fan["nomi"] not in sinf_fanlari[daraja]:
-                    sinf_fanlari[daraja].append(fan["nomi"])
+        mavjud_fanlar = [row["fan_nomi"] for row in cur.fetchall()]
         if not mavjud_fanlar:
             cur.close()
             conn.close()
             raise HTTPException(
                 status_code=400,
-                detail="Saqlangan fanlar hozirgi sinflarga mos emas; fanlarni qayta tanlang",
+                detail="Avval maktab fanlarini tanlab saqlang, keyin xodim shablonini oling",
             )
         cur.close()
         conn.close()
@@ -8041,49 +8025,54 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         ws.column_dimensions[col].width = w
 
     birikmalar = wb.create_sheet("DARS_BIRIKMALARI")
-    for col, sarlavha in enumerate(("Xodim F.I.Sh", "Sinf", "Fan"), 1):
+    for col, sarlavha in enumerate(("Xodim F.I.Sh", "Sinf", "Fan", "Guruh (ixtiyoriy)"), 1):
         c = birikmalar.cell(1, col, sarlavha)
         c.font = Font(bold=True, color="FFFFFF")
         c.fill = PatternFill("solid", fgColor="1B4B7A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
     birikmalar.freeze_panes = "A2"
-    birikmalar.auto_filter.ref = "A1:C5000"
+    birikmalar.auto_filter.ref = "A1:D5000"
     birikmalar.row_dimensions[1].height = 30
-    for col, width in zip("ABC", (34, 18, 34)):
+    for col, width in zip("ABCD", (34, 18, 34, 24)):
         birikmalar.column_dimensions[col].width = width
     birikmalar.cell(1, 1).comment = Comment(
         "Avval XODIMLAR varag'ida xodimni yozing, keyin bu yerda o'sha F.I.Sh.ni tanlang.",
         "SamTM",
     )
+    birikmalar.cell(1, 4).comment = Comment(
+        "Texnologiya va Jismoniy tarbiya uchun O'g'il/Qiz; Ingliz tili, "
+        "Rus tili va Informatika uchun 1-guruh/2-guruh tanlanadi. "
+        "Sinf bo'linmasa, Butun sinfni tanlang.",
+        "SamTM",
+    )
 
     malumot = wb.create_sheet("MALUMOT")
-    malumot_sarlavhalari = ("Mavjud sinflar", "Lavozimlar", "Toifalar", "Fanlar", "Fan qaysi sinflarda")
+    malumot_sarlavhalari = ("Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari", "Dars guruhi", "Sinf guruhlash sozlamasi")
     for col, sarlavha in enumerate(malumot_sarlavhalari, 1):
         c = malumot.cell(1, col, sarlavha)
         c.font = Font(bold=True, color="FFFFFF")
         c.fill = PatternFill("solid", fgColor="1B4B7A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
     malumot.freeze_panes = "A2"
-    malumot.auto_filter.ref = "A1:E5000"
+    malumot.auto_filter.ref = "A1:F5000"
     malumot.row_dimensions[1].height = 30
-    for col, width in zip("ABCDE", (22, 52, 42, 36, 28)):
+    for col, width in zip("ABCDEF", (22, 52, 42, 36, 28, 32)):
         malumot.column_dimensions[col].width = width
 
     sinf_tanlovlari = mavjud_sinflar or ["Avval maktab sinflarini yarating"]
     fan_tanlovlari = mavjud_fanlar or ["Fanlar bazada topilmadi"]
     for row_index, sinf_nomi in enumerate(sinf_tanlovlari, 2):
         malumot.cell(row_index, 1, sinf_nomi)
+        malumot.cell(row_index, 6, sinf_guruh_usullari.get(sinf_nomi, ""))
     for row_index, lavozim in enumerate(LAVOZIMLAR.values(), 2):
         malumot.cell(row_index, 2, lavozim)
     for row_index, toifa in enumerate(TOIFALAR, 2):
         malumot.cell(row_index, 3, toifa)
     for row_index, fan in enumerate(fan_tanlovlari, 2):
         malumot.cell(row_index, 4, fan)
-        mos_sinflar = [
-            sinf_nomi for sinf_nomi in mavjud_sinflar
-            if fan in sinf_fanlari.get(sinf_nomi.split("-", 1)[0], [])
-        ]
-        malumot.cell(row_index, 5, "; ".join(mos_sinflar))
+    guruh_tanlovlari = ["Butun sinf", "O‘g‘il bolalar", "Qiz bolalar", "1-guruh", "2-guruh"]
+    for row_index, guruh in enumerate(guruh_tanlovlari, 2):
+        malumot.cell(row_index, 5, guruh)
 
     def nomlangan_oraliq(nom, varaq, ustun, uzunlik):
         oxirgi_qator = max(2, uzunlik + 1)
@@ -8094,6 +8083,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     nomlangan_oraliq("Lavozimlar", "MALUMOT", "B", len(LAVOZIMLAR))
     nomlangan_oraliq("Toifalar", "MALUMOT", "C", len(TOIFALAR))
     nomlangan_oraliq("Fanlar", "MALUMOT", "D", len(fan_tanlovlari))
+    nomlangan_oraliq("DarsGuruhlari", "MALUMOT", "E", len(guruh_tanlovlari))
     nomlangan_oraliq("XodimIsmlari", "XODIMLAR", "A", 4999)
 
     def tanlov_qosh(varaq, formula, kataklar, xato):
@@ -8115,6 +8105,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     tanlov_qosh(birikmalar, "=XodimIsmlari", "A2:A5000", "Xodimni XODIMLAR varag'idagi F.I.Sh.dan tanlang")
     tanlov_qosh(birikmalar, "=MavjudSinflar", "B2:B5000", "Faqat maktabdagi mavjud sinfni tanlang")
     tanlov_qosh(birikmalar, "=Fanlar", "C2:C5000", "Fanni MALUMOT varag'idagi ro'yxatdan tanlang")
+    tanlov_qosh(birikmalar, "=DarsGuruhlari", "D2:D5000", "Butun sinf, o'g'il/qiz yoki 1/2-guruhdan birini tanlang")
 
     ws2 = wb.create_sheet("IZOH")
     izohlar = [
@@ -8122,8 +8113,8 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         "1. XODIMLAR varag'ida F.I.Sh.ni yozing; lavozim, sinf, fan va toifani katakni bosib ro'yxatdan tanlang.",
         "2. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Bu import yangi sinf yaratmaydi.",
         "3. Xodim faqat bitta sinfda bitta fan o'tsa, XODIMLAR varag'idagi D va E ustunlarini tanlash yetarli.",
-        "4. Xodim bir nechta sinf yoki fan o'tsa, DARS_BIRIKMALARI varag'ida har bir Xodim–Sinf–Fan birikmasini alohida qatorga tanlang.",
-        "5. Masalan: Yusupov Sardor | 5-A | Matematika va keyingi qatorda Yusupov Sardor | 6-A | Fizika.",
+        "4. Xodim bir nechta sinf yoki fan o'tsa, DARS_BIRIKMALARI varag'ida har bir Xodim–Sinf–Fan–Guruh birikmasini alohida qatorga tanlang.",
+        "5. Texnologiya/Jismoniy tarbiya uchun O'g'il bolalar yoki Qiz bolalar; til/Informatika uchun 1-guruh yoki 2-guruhni tanlash mumkin.",
         "6. MALUMOT varag'ida aynan shu maktabdagi sinflar, ruxsat etilgan fanlar, lavozimlar va toifalar ko'rsatiladi.",
         "7. Ish staji ixtiyoriy; 0 dan 80 gacha butun son yoziladi.",
         "8. Majburiy ustunlar: F.I.Sh va Lavozim. Qolganlari vazifaga qarab ixtiyoriy.",
@@ -8222,7 +8213,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         )
 
     cur.execute(
-        "SELECT id,sinf,harf,qoshilish_paroli FROM maktab_sinflari "
+        "SELECT id,sinf,harf,qoshilish_paroli,guruhlash_usuli FROM maktab_sinflari "
         "WHERE maktab_id=%s ORDER BY sinf::int,harf",
         (maktab_id,),
     )
@@ -8230,49 +8221,52 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}"): row
         for row in cur.fetchall()
     }
-    fanlar_daraja_boyicha = {}
-    katalog = _maktab_fan_katalogi(cur, maktab_id)
     cur.execute(
         "SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi",
         (maktab_id,),
     )
-    tanlangan_kalitlar = {
-        _xodim_excel_sarlavha_kaliti(row["fan_nomi"]) for row in cur.fetchall()
+    ruxsat_etilgan_fanlar = {
+        _xodim_excel_sarlavha_kaliti(row["fan_nomi"]): row["fan_nomi"]
+        for row in cur.fetchall()
     }
-    if not tanlangan_kalitlar:
+    if not ruxsat_etilgan_fanlar:
         conn.rollback(); cur.close(); conn.close()
         raise HTTPException(
             status_code=400,
             detail="Avval maktab fanlarini tanlab saqlang, keyin xodimlarni import qiling",
         )
-    for fan in katalog:
-        fan_kaliti = _xodim_excel_sarlavha_kaliti(fan["nomi"])
-        if fan_kaliti not in tanlangan_kalitlar:
-            continue
-        for sinf_nomi in fan["sinflar"]:
-            daraja = sinf_nomi.split("-", 1)[0]
-            fanlar_daraja_boyicha.setdefault(daraja, {})[fan_kaliti] = fan["nomi"]
-    if not fanlar_daraja_boyicha:
-        conn.rollback(); cur.close(); conn.close()
-        raise HTTPException(
-            status_code=400,
-            detail="Saqlangan fanlar hozirgi sinflarga mos emas; fanlarni qayta tanlang",
-        )
-
     def fan_moslashtir(sinf_nomi, fan_xom):
         fan = re.sub(r"\s+", " ", str(fan_xom or "")).strip()
         if not fan or fan == "Fanlar bazada topilmadi":
             raise ValueError("fan tanlanmagan")
-        daraja = sinf_nomi.split("-", 1)[0]
-        ruxsat_etilgan = fanlar_daraja_boyicha.get(daraja, {})
-        if not ruxsat_etilgan:
-            raise ValueError(f"{sinf_nomi} uchun maktab fani tanlanmagan")
         kalit = _xodim_excel_sarlavha_kaliti(fan)
-        if kalit in ruxsat_etilgan:
-            return ruxsat_etilgan[kalit]
-        yaqin = get_close_matches(kalit, list(ruxsat_etilgan), n=1, cutoff=0.72)
-        maslahat = f"; balki '{ruxsat_etilgan[yaqin[0]]}'" if yaqin else ""
-        raise ValueError(f"{sinf_nomi} uchun '{fan}' fani topilmadi{maslahat}")
+        if kalit in ruxsat_etilgan_fanlar:
+            return ruxsat_etilgan_fanlar[kalit]
+        yaqin = get_close_matches(kalit, list(ruxsat_etilgan_fanlar), n=1, cutoff=0.72)
+        maslahat = f"; balki '{ruxsat_etilgan_fanlar[yaqin[0]]}'" if yaqin else ""
+        raise ValueError(f"'{fan}' maktab fanlari ro'yxatida topilmadi{maslahat}")
+
+    guruh_nomlari = {
+        "butunsinf": ("whole", "Butun sinf"),
+        "ogilbolalar": ("boys", "O‘g‘il bolalar"),
+        "qizbolalar": ("girls", "Qiz bolalar"),
+        "1guruh": ("group_1", "1-guruh"),
+        "2guruh": ("group_2", "2-guruh"),
+    }
+
+    def guruh_moslashtir(sinf_nomi, value):
+        if value in (None, ""):
+            return guruh_nomlari["butunsinf"]
+        kalit = _xodim_excel_sarlavha_kaliti(value)
+        if kalit in guruh_nomlari:
+            guruh_kaliti, guruh_nomi = guruh_nomlari[kalit]
+            usul = (mavjud_sinflar[sinf_nomi].get("guruhlash_usuli") or "none").strip().lower()
+            if guruh_kaliti in ("boys", "girls") and usul != "gender":
+                raise ValueError(f"{sinf_nomi} avval O'g'il/qiz usulida guruhlansin")
+            if guruh_kaliti in ("group_1", "group_2") and usul != "alphabet":
+                raise ValueError(f"{sinf_nomi} avval Alifbo bo'yicha 1/2-guruhga ajratilsin")
+            return guruh_kaliti, guruh_nomi
+        raise ValueError("guruhni Butun sinf, O'g'il bolalar, Qiz bolalar, 1-guruh yoki 2-guruhdan tanlang")
 
     def qator_qiymati(row, index):
         return row[index] if index is not None and index < len(row) else None
@@ -8332,6 +8326,8 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                         togridan_birikmalar.append({
                             "sinf": sinf_nomi,
                             "fan": fan_moslashtir(sinf_nomi, fan),
+                            "guruh_kaliti": "whole",
+                            "guruh_nomi": "Butun sinf",
                         })
             except ValueError as error:
                 tekshiruv_xatolari.append(f"{excel_qatori}-qator ({fish}): {error}")
@@ -8386,6 +8382,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         birikma_xodim_ustuni = birikma_ustuni("Xodim F.I.Sh", "F.I.Sh", "Xodim")
         birikma_sinf_ustuni = birikma_ustuni("Sinf")
         birikma_fan_ustuni = birikma_ustuni("Fan")
+        birikma_guruh_ustuni = birikma_ustuni("Guruh (ixtiyoriy)", "Guruh")
         if None in (birikma_xodim_ustuni, birikma_sinf_ustuni, birikma_fan_ustuni):
             tekshiruv_xatolari.append(
                 "DARS_BIRIKMALARI sarlavhasi mos emas: Xodim F.I.Sh, Sinf va Fan ustunlari kerak"
@@ -8397,6 +8394,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 xodim_xom = qator_qiymati(row, birikma_xodim_ustuni)
                 sinf_xom = qator_qiymati(row, birikma_sinf_ustuni)
                 fan_xom = qator_qiymati(row, birikma_fan_ustuni)
+                guruh_xom = qator_qiymati(row, birikma_guruh_ustuni)
                 if not any(qiymat not in (None, "") for qiymat in (xodim_xom, sinf_xom, fan_xom)):
                     continue
                 if not all(qiymat not in (None, "") for qiymat in (xodim_xom, sinf_xom, fan_xom)):
@@ -8415,6 +8413,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     if sinf_nomi not in mavjud_sinflar:
                         raise ValueError(f"maktabda mavjud bo'lmagan sinf — {sinf_nomi}")
                     fan = fan_moslashtir(sinf_nomi, fan_xom)
+                    guruh_kaliti, guruh_nomi = guruh_moslashtir(sinf_nomi, guruh_xom)
                 except ValueError as error:
                     tekshiruv_xatolari.append(
                         f"DARS_BIRIKMALARI {excel_qatori}-qator ({xodim_xom}): {error}"
@@ -8423,13 +8422,19 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 xodimlar_kalit_boyicha[xodim_kaliti]["dars_birikmalari"].append({
                     "sinf": sinf_nomi,
                     "fan": fan,
+                    "guruh_kaliti": guruh_kaliti,
+                    "guruh_nomi": guruh_nomi,
                 })
 
     for qator in tayyor_qatorlar:
         noyob_birikmalar = []
         korilgan_birikmalar = set()
         for birikma in qator["dars_birikmalari"]:
-            kalit = (birikma["sinf"], _xodim_excel_sarlavha_kaliti(birikma["fan"]))
+            kalit = (
+                birikma["sinf"],
+                _xodim_excel_sarlavha_kaliti(birikma["fan"]),
+                birikma.get("guruh_kaliti", "whole"),
+            )
             if kalit not in korilgan_birikmalar:
                 noyob_birikmalar.append(birikma)
                 korilgan_birikmalar.add(kalit)
@@ -8509,6 +8514,16 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     maktab_id, yangi_id, mavjud_sinflar[sinf_nomi]["id"],
                     "\n".join(shu_sinf_fanlari) or None,
                 ))
+            for birikma in qator["dars_birikmalari"]:
+                cur.execute("""
+                    INSERT INTO maktab_dars_birikmalari(
+                        maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti
+                    ) VALUES(%s,%s,%s,%s,%s)
+                    ON CONFLICT(user_id,sinf_id,fan_nomi,guruh_kaliti) DO NOTHING
+                """, (
+                    maktab_id, yangi_id, mavjud_sinflar[birikma["sinf"]]["id"],
+                    birikma["fan"], birikma.get("guruh_kaliti", "whole"),
+                ))
 
             natijalar.append({
                 "fish": qator["fish"],
@@ -8518,6 +8533,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 "sinf_paroli": sinf_paroli,
                 "dars_sinflari": qator["dars_sinflari"],
                 "fanlari": qator["fanlari"] or None,
+                "dars_birikmalari": qator["dars_birikmalari"],
                 "ish_staji": qator["ish_staji"], "toifasi": qator["toifasi"],
             })
         except Exception as error:
@@ -8587,7 +8603,7 @@ def maktab_sinflari_royxati(token: str, maktab_id: int):
     cur = conn.cursor()
     _maktab_sinflari_jadvali(cur)
     cur.execute("""
-        SELECT s.id, s.sinf, s.harf, s.smena, s.bino, s.xona,
+        SELECT s.id, s.sinf, s.harf, s.smena, s.bino, s.xona,s.guruhlash_usuli,
                s.qoshilish_paroli, u.full_name AS rahbar_ismi,
                p.full_name AS psixolog_ismi
         FROM maktab_sinflari s
@@ -8608,24 +8624,42 @@ class SinfYaratish(BaseModel):
     sinf: str
     harf: str
     rahbar_user_id: Optional[int] = None
+    smena: int = 1
+    guruhlash_usuli: str = "none"
 
 
 @app.post("/api/admin/maktab_sinf_yarat")
 def maktab_sinf_yarat(sorov: SinfYaratish):
     """Qo'lda, Excel'siz ham bitta sinf qo'shish imkoni — masalan
     keyinroq yangi sinf ochilganda qayta Excel import shart emas."""
-    _admin_tekshir(sorov.token)
+    user_id = _jwt_tekshir(sorov.token)
     conn = _db()
     cur = conn.cursor()
     _maktab_sinflari_jadvali(cur)
+    if not _maktab_sinf_boshqaruvchi_mi(cur, user_id, sorov.maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat admin yoki o'quv ishlari zavuchi yangi sinf yarata oladi")
+    try:
+        sinf, harf = _xodim_sinf_nomini_normalla(f"{sorov.sinf}-{sorov.harf}").split("-", 1)
+    except ValueError as error:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    if sorov.smena not in (1, 2):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Smena faqat 1 yoki 2 bo'ladi")
+    guruhlash = (sorov.guruhlash_usuli or "none").strip().lower()
+    if guruhlash not in ("none", "gender", "alphabet"):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Guruhlash usuli noto'g'ri")
     paroli = "".join(secrets.choice(string.digits) for _ in range(4))
     cur.execute("""
-        INSERT INTO maktab_sinflari(maktab_id, sinf, harf, rahbar_user_id, qoshilish_paroli)
-        VALUES(%s,%s,%s,%s,%s)
+        INSERT INTO maktab_sinflari(maktab_id,sinf,harf,smena,rahbar_user_id,qoshilish_paroli,guruhlash_usuli)
+        VALUES(%s,%s,%s,%s,%s,%s,%s)
         ON CONFLICT (maktab_id, sinf, harf) DO UPDATE SET
-            rahbar_user_id = COALESCE(EXCLUDED.rahbar_user_id, maktab_sinflari.rahbar_user_id)
+            rahbar_user_id = COALESCE(EXCLUDED.rahbar_user_id, maktab_sinflari.rahbar_user_id),
+            smena=EXCLUDED.smena,guruhlash_usuli=EXCLUDED.guruhlash_usuli
         RETURNING id, qoshilish_paroli
-    """, (sorov.maktab_id, sorov.sinf.strip(), sorov.harf.strip().upper(), sorov.rahbar_user_id, paroli))
+    """, (sorov.maktab_id,sinf,harf,sorov.smena,sorov.rahbar_user_id,paroli,guruhlash))
     natija = cur.fetchone()
     conn.commit()
     cur.close()
@@ -8720,24 +8754,48 @@ def maktab_tolov_sozlash(sorov: MaktabTolovSozlash):
 
 @app.get("/api/oqituvchi/mening_sinflarim")
 def mening_rasmiy_sinflarim(token: str):
-    """O'qituvchi RAHBAR bo'lgan rasmiy maktab sinflari — to'garakdan
-    farqli, bu yerga o'quvchi PAROL bilan TASDIQLAB qo'shiladi (4-bosqich),
-    shu sabab o'quvchi soni ham faqat TASDIQLANGAN a'zolarni hisoblaydi."""
+    """Maktab xodimiga barcha sinfni, vakolatlisiga esa batafsil boshqaruvni beradi."""
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
     _maktab_sinflari_jadvali(cur)
     _tolov_jadvallari(cur)
     _sinf_azolari_jadvali(cur)
+    _muassasa_jadvali(cur)
+    _xodim_sinf_birikmalari_jadvali(cur)
     cur.execute("""
-        SELECT s.id, s.sinf, s.harf, s.qoshilish_paroli, m.id AS maktab_id, m.nomi AS maktab_nomi, m.pulli, m.oylik_tolov,
-               (SELECT COUNT(*) FROM maktab_sinf_azolari a WHERE a.sinf_id=s.id) AS oquvchi_soni
+        SELECT DISTINCT maktab_id FROM (
+            SELECT maktab_id FROM users WHERE user_id=%s AND maktab_id IS NOT NULL
+            UNION ALL
+            SELECT muassasa_id AS maktab_id FROM foydalanuvchi_muassasalari
+            WHERE user_id=%s AND muassasa_turi='maktab'
+        ) ish_joylari
+    """, (user_id,user_id))
+    maktab_ids = [row["maktab_id"] for row in cur.fetchall()]
+    if not maktab_ids:
+        cur.close(); conn.close()
+        return {"sinflar": []}
+    cur.execute("""
+        SELECT s.id,s.sinf,s.harf,s.smena,s.bino,s.xona,s.guruhlash_usuli,
+               s.qoshilish_paroli,s.rahbar_user_id,r.full_name AS rahbar_ismi,
+               m.id AS maktab_id,m.nomi AS maktab_nomi,m.pulli,m.oylik_tolov,
+               (SELECT COUNT(*) FROM maktab_sinf_azolari a WHERE a.sinf_id=s.id) AS oquvchi_soni,
+               EXISTS(SELECT 1 FROM maktab_xodim_sinflari xs WHERE xs.sinf_id=s.id AND xs.user_id=%s) AS dars_beradi
         FROM maktab_sinflari s
         JOIN maktablar m ON m.id = s.maktab_id
-        WHERE s.rahbar_user_id=%s
-        ORDER BY s.sinf::int, s.harf
-    """, (user_id,))
+        LEFT JOIN users r ON r.user_id=s.rahbar_user_id
+        WHERE s.maktab_id=ANY(%s)
+        ORDER BY m.nomi,s.sinf::int,s.harf
+    """, (user_id,maktab_ids))
     natija = cur.fetchall()
+    for sinf in natija:
+        rahbar_mi = int(sinf["rahbar_user_id"] or 0) == user_id
+        batafsil = rahbar_mi or _maktab_boshqaruvchi_mi(cur,user_id,sinf["maktab_id"])
+        sinf["rahbar_mi"] = rahbar_mi
+        sinf["batafsil_ochadi"] = batafsil
+        sinf["sinf_boshqara_oladi"] = _maktab_sinf_boshqaruvchi_mi(cur,user_id,sinf["maktab_id"])
+        if not batafsil:
+            sinf["qoshilish_paroli"] = None
     cur.close()
     conn.close()
     return {"sinflar": natija}
@@ -8903,6 +8961,56 @@ def _sinf_azolari_jadvali(cur):
         qoshilgan_at TIMESTAMP DEFAULT NOW(),
         UNIQUE(sinf_id, user_id)
     )""")
+    cur.execute(
+        "ALTER TABLE IF EXISTS maktab_sinf_azolari ADD COLUMN IF NOT EXISTS "
+        "guruh_raqami SMALLINT"
+    )
+
+
+def _sinf_guruhlarini_qayta_taqsimla(cur, sinf_id):
+    """Sinf sozlamasiga ko'ra o'quvchilarni barqaror 1/2-guruhga ajratadi."""
+    ensure_school_wizard_columns(cur)
+    _sinf_azolari_jadvali(cur)
+    cur.execute("SELECT guruhlash_usuli FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    usul = (sinf["guruhlash_usuli"] or "none").strip().lower()
+    if usul == "none":
+        cur.execute("UPDATE maktab_sinf_azolari SET guruh_raqami=NULL WHERE sinf_id=%s", (sinf_id,))
+        return {"1": 0, "2": 0}
+    cur.execute("""
+        SELECT a.id,u.full_name,LOWER(COALESCE(u.jins,'')) AS jins
+        FROM maktab_sinf_azolari a
+        JOIN users u ON u.user_id=a.user_id
+        WHERE a.sinf_id=%s
+        ORDER BY LOWER(u.full_name),u.user_id
+    """, (sinf_id,))
+    azolar = cur.fetchall()
+    guruhlar = {1: [], 2: []}
+    if usul == "alphabet":
+        chegara = (len(azolar) + 1) // 2
+        guruhlar[1] = azolar[:chegara]
+        guruhlar[2] = azolar[chegara:]
+    else:
+        nomalum = []
+        for azo in azolar:
+            jins = (azo["jins"] or "").replace("'", "").replace("’", "")
+            if jins in ("ogil", "erkak", "male", "boy"):
+                guruhlar[1].append(azo)
+            elif jins in ("qiz", "ayol", "female", "girl"):
+                guruhlar[2].append(azo)
+            else:
+                nomalum.append(azo)
+        for azo in nomalum:
+            guruhlar[1 if len(guruhlar[1]) <= len(guruhlar[2]) else 2].append(azo)
+    for guruh_raqami, qatorlar in guruhlar.items():
+        if qatorlar:
+            cur.execute(
+                "UPDATE maktab_sinf_azolari SET guruh_raqami=%s WHERE id=ANY(%s)",
+                (guruh_raqami, [row["id"] for row in qatorlar]),
+            )
+    return {"1": len(guruhlar[1]), "2": len(guruhlar[2])}
 
 
 @app.get("/api/maktab_qidir")
@@ -8986,6 +9094,7 @@ def oquvchi_sinfga_qoshil(token: str, sinf_id: int, parol: str):
         "INSERT INTO maktab_sinf_azolari(sinf_id, user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING",
         (sinf_id, user_id),
     )
+    _sinf_guruhlarini_qayta_taqsimla(cur, sinf_id)
     _analitika_legacy_guruh_azolikni_taminla(
         cur, "maktab_sinf", sinf_id, user_id
     )
@@ -9013,7 +9122,8 @@ def sinf_azolari_royxati(token: str, sinf_id: int):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu sinf rahbari, maktab rahbariyati yoki admin ko'ra oladi")
     cur.execute("""
-        SELECT a.id AS azolik_id, u.user_id, u.full_name, a.qoshilgan_at
+        SELECT a.id AS azolik_id, u.user_id, u.full_name, u.jins,
+               a.guruh_raqami, a.qoshilgan_at
         FROM maktab_sinf_azolari a JOIN users u ON u.user_id = a.user_id
         WHERE a.sinf_id=%s ORDER BY u.full_name
     """, (sinf_id,))
@@ -9098,6 +9208,179 @@ def _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
         return True
     lavozim = _muassasadagi_lavozim(cur, user_id, "maktab", maktab_id)
     return lavozim in ("direktor", "zam_direktor_uquv", "zam_direktor_tarbiya")
+
+
+def _maktab_xodimi_mi(cur, user_id, maktab_id):
+    """Admin yoki shu maktabdagi istalgan xodim sinflar ro'yxatini ko'ra oladi."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    return _muassasadagi_lavozim(cur, user_id, "maktab", maktab_id) is not None
+
+
+def _maktab_sinf_boshqaruvchi_mi(cur, user_id, maktab_id):
+    """Yangi sinf va guruhlarni faqat admin yoki o'quv ishlari zavuchi boshqaradi."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    return _muassasadagi_lavozim(cur, user_id, "maktab", maktab_id) == "zam_direktor_uquv"
+
+
+@app.get("/api/maktab/sinflar_katalogi")
+def maktab_sinflar_katalogi(token: str, maktab_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur)
+    if not _maktab_xodimi_mi(cur, user_id, maktab_id):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat shu maktab xodimi yoki admin ko'ra oladi")
+    boshqaradi = _maktab_sinf_boshqaruvchi_mi(cur, user_id, maktab_id)
+    cur.execute("""
+        SELECT s.id,s.sinf,s.harf,s.smena,s.bino,s.xona,s.guruhlash_usuli,
+               r.full_name AS rahbar_ismi,p.full_name AS psixolog_ismi,
+               COUNT(a.id) AS oquvchi_soni,
+               COUNT(a.id) FILTER(WHERE a.guruh_raqami=1) AS birinchi_guruh,
+               COUNT(a.id) FILTER(WHERE a.guruh_raqami=2) AS ikkinchi_guruh
+        FROM maktab_sinflari s
+        LEFT JOIN users r ON r.user_id=s.rahbar_user_id
+        LEFT JOIN users p ON p.user_id=s.psixolog_user_id
+        LEFT JOIN maktab_sinf_azolari a ON a.sinf_id=s.id
+        WHERE s.maktab_id=%s
+        GROUP BY s.id,r.full_name,p.full_name
+        ORDER BY s.sinf::int,s.harf
+    """, (maktab_id,))
+    sinflar = cur.fetchall()
+    cur.close(); conn.close()
+    return {"sinflar": sinflar, "sinf_boshqara_oladi": boshqaradi}
+
+
+class MaktabSinfSozlash(BaseModel):
+    token: str
+    sinf_id: int
+    smena: Optional[int] = None
+    bino_id: Optional[int] = None
+    xona_id: Optional[int] = None
+    guruhlash_usuli: Optional[str] = None
+
+
+@app.put("/api/maktab/sinf_sozlash")
+def maktab_sinf_sozlash(sorov: MaktabSinfSozlash):
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db(); cur = conn.cursor()
+    _maktab_sinflari_jadvali(cur); _sinf_azolari_jadvali(cur)
+    cur.execute("SELECT maktab_id,smena,bino_id,xona_id,guruhlash_usuli FROM maktab_sinflari WHERE id=%s", (sorov.sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    if not _maktab_sinf_boshqaruvchi_mi(cur, user_id, sinf["maktab_id"]):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat admin yoki o'quv ishlari zavuchi o'zgartira oladi")
+    smena = int(sorov.smena if sorov.smena is not None else sinf["smena"] or 1)
+    if smena not in (1, 2):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Smena faqat 1 yoki 2 bo'ladi")
+    guruhlash = (sorov.guruhlash_usuli if sorov.guruhlash_usuli is not None else sinf["guruhlash_usuli"] or "none").strip().lower()
+    if guruhlash not in ("none", "gender", "alphabet"):
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Guruhlash usuli noto'g'ri")
+    bino_id = sorov.bino_id if sorov.bino_id is not None else sinf["bino_id"]
+    xona_id = sorov.xona_id if sorov.xona_id is not None else sinf["xona_id"]
+    bino_nomi = xona_raqami = None
+    if xona_id is not None:
+        cur.execute("""
+            SELECT x.id,x.xona_raqami,b.id AS bino_id,b.nomi
+            FROM maktab_xonalari x JOIN maktab_binolari b ON b.id=x.bino_id
+            WHERE x.id=%s AND b.maktab_id=%s
+        """, (xona_id, sinf["maktab_id"]))
+        xona = cur.fetchone()
+        if not xona or (bino_id is not None and int(xona["bino_id"]) != int(bino_id)):
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Tanlangan xona shu maktab binosiga tegishli emas")
+        bino_id, bino_nomi, xona_raqami = xona["bino_id"], xona["nomi"], xona["xona_raqami"]
+        cur.execute("""
+            SELECT sinf,harf FROM maktab_sinflari
+            WHERE id<>%s AND maktab_id=%s AND smena=%s AND xona_id=%s
+        """, (sorov.sinf_id, sinf["maktab_id"], smena, xona_id))
+        band = cur.fetchone()
+        if band:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=409, detail=f"Bu xona {smena}-smenada {band['sinf']}-{band['harf']} sinfga band")
+    cur.execute("""
+        UPDATE maktab_sinflari SET smena=%s,bino_id=%s,xona_id=%s,bino=%s,xona=%s,guruhlash_usuli=%s
+        WHERE id=%s
+    """, (smena,bino_id,xona_id,bino_nomi,xona_raqami,guruhlash,sorov.sinf_id))
+    guruh_sonlari = _sinf_guruhlarini_qayta_taqsimla(cur, sorov.sinf_id)
+    conn.commit(); cur.close(); conn.close()
+    return {"holat": "saqlandi", "guruhlar": guruh_sonlari}
+
+
+class OquvchiOtaOnaBoglash(BaseModel):
+    token: str
+    sinf_id: int
+    oquvchi_user_id: int
+    ota_ona_user_id: int
+
+
+@app.get("/api/maktab/ota_ona_qidir")
+def maktab_ota_ona_qidir(token: str, sinf_id: int, ism: str):
+    actor_id = _jwt_tekshir(token)
+    if len(ism.strip()) < 2:
+        return {"natijalar": []}
+    conn = _db(); cur = conn.cursor()
+    cur.execute("SELECT maktab_id,rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (actor_id,))
+    adminmi = cur.fetchone() is not None
+    if not adminmi and int(sinf["rahbar_user_id"] or 0) != actor_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat sinf rahbari yoki admin ota-onani qidira oladi")
+    cur.execute("""
+        SELECT user_id,full_name FROM users
+        WHERE role='ota-ona' AND full_name ILIKE %s
+        ORDER BY full_name LIMIT 20
+    """, (f"%{ism.strip()}%",))
+    natija = cur.fetchall()
+    cur.close(); conn.close()
+    return {"natijalar": natija}
+
+
+@app.post("/api/maktab/oquvchiga_ota_ona_bogla")
+def maktab_oquvchiga_ota_ona_bogla(sorov: OquvchiOtaOnaBoglash):
+    actor_id = _jwt_tekshir(sorov.token)
+    conn = _db(); cur = conn.cursor()
+    _sinf_azolari_jadvali(cur); _ota_ona_jadvallari(cur)
+    cur.execute("SELECT maktab_id,rahbar_user_id FROM maktab_sinflari WHERE id=%s", (sorov.sinf_id,))
+    sinf = cur.fetchone()
+    if not sinf:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=404, detail="Sinf topilmadi")
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (actor_id,))
+    adminmi = cur.fetchone() is not None
+    if not adminmi and int(sinf["rahbar_user_id"] or 0) != actor_id:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Faqat sinf rahbari yoki admin ota-onani bog'lay oladi")
+    cur.execute("SELECT 1 FROM maktab_sinf_azolari WHERE sinf_id=%s AND user_id=%s", (sorov.sinf_id,sorov.oquvchi_user_id))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="O'quvchi bu sinf ro'yxatida yo'q")
+    cur.execute("SELECT role FROM users WHERE user_id=%s", (sorov.ota_ona_user_id,))
+    ota_ona = cur.fetchone()
+    if not ota_ona or ota_ona["role"] != "ota-ona":
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Tanlangan hisob ota-ona rolida emas")
+    cur.execute("""
+        INSERT INTO parent_child(parent_id,child_id)
+        SELECT %s,%s WHERE NOT EXISTS(
+            SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s
+        )
+    """, (sorov.ota_ona_user_id,sorov.oquvchi_user_id,sorov.ota_ona_user_id,sorov.oquvchi_user_id))
+    conn.commit(); cur.close(); conn.close()
+    return {"holat": "boglandi"}
 
 
 @app.get("/api/maktab/dashboard")
