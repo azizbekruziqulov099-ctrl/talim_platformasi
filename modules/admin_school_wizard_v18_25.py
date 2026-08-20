@@ -1,4 +1,4 @@
-"""SamTM V18.33: maktab, xona, sinf, smena va guruhlarni atomar yaratish API si."""
+"""SamTM V18.36: maktab, xona, sinf, smena va ko'p guruhlarni atomar yaratish API si."""
 
 from __future__ import annotations
 
@@ -39,6 +39,7 @@ class AdminSchoolClassInput(BaseModel):
     building: Optional[str] = Field(default=None, max_length=80)
     room: Optional[str] = Field(default=None, max_length=40)
     group_method: str = "none"
+    group_methods: list[str] = Field(default_factory=list, max_length=3)
 
 
 class AdminSchoolRoomInput(BaseModel):
@@ -86,6 +87,20 @@ def ensure_school_wizard_columns(cur) -> None:
     cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinf_azolari ADD COLUMN IF NOT EXISTS "
         "guruh_raqami SMALLINT"
+    )
+    cur.execute(
+        """CREATE TABLE IF NOT EXISTS maktab_sinf_guruh_tizimlari(
+            id BIGSERIAL PRIMARY KEY,
+            sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+            turi TEXT NOT NULL CHECK(turi IN ('gender','alphabet','manual')),
+            nomi TEXT NOT NULL,
+            fanlar TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+            faol BOOLEAN NOT NULL DEFAULT TRUE,
+            yaratilgan_by BIGINT REFERENCES users(user_id) ON DELETE SET NULL,
+            yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            UNIQUE(sinf_id,turi)
+        )"""
     )
     cur.execute(
         """
@@ -217,12 +232,27 @@ def create_admin_school_wizard_router(
             if shift not in (1, 2):
                 raise HTTPException(status_code=400, detail=f"{grade}-{letter} uchun smena 1 yoki 2 bo'lishi kerak")
 
-            group_method = str(item.group_method or "none").strip().lower()
-            if group_method not in ("none", "gender", "alphabet"):
+            raw_group_methods = list(item.group_methods or [])
+            if not raw_group_methods and str(item.group_method or "none").strip().lower() != "none":
+                raw_group_methods = [item.group_method]
+            group_methods = []
+            for method in raw_group_methods:
+                normalized_method = str(method or "").strip().lower()
+                if normalized_method == "none":
+                    continue
+                if normalized_method not in ("gender", "alphabet", "manual"):
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{grade}-{letter} uchun guruhlash usuli noto'g'ri",
+                    )
+                if normalized_method not in group_methods:
+                    group_methods.append(normalized_method)
+            if len(group_methods) > 3:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"{grade}-{letter} uchun guruhlash usuli noto'g'ri",
+                    detail=f"{grade}-{letter} uchun ko'pi bilan 3 guruhlash tizimi tanlanadi",
                 )
+            group_method = group_methods[0] if len(group_methods) == 1 else ("manual" if group_methods else "none")
 
             building_key = normalize_optional_text(item.building_key, 80)
             room_number = normalize_optional_text(item.room_number, 40)
@@ -259,6 +289,7 @@ def create_admin_school_wizard_router(
                     "building": building_name,
                     "room": room_number or normalize_optional_text(item.room, 40),
                     "group_method": group_method,
+                    "group_methods": group_methods,
                 }
             )
 
@@ -362,14 +393,29 @@ def create_admin_school_wizard_router(
                         item["group_method"],
                     ),
                 )
+                created_class_id = int(cur.fetchone()["id"])
+                group_names = {
+                    "gender": "O'g'il / Qiz",
+                    "alphabet": "Alifbo bo'yicha 1 / 2-guruh",
+                    "manual": "Mustaqil guruhlar",
+                }
+                for group_type in item["group_methods"]:
+                    cur.execute(
+                        """INSERT INTO maktab_sinf_guruh_tizimlari(
+                               sinf_id,turi,nomi,fanlar,faol,yaratilgan_by
+                           ) VALUES(%s,%s,%s,ARRAY[]::TEXT[],TRUE,%s)
+                           ON CONFLICT(sinf_id,turi) DO NOTHING""",
+                        (created_class_id, group_type, group_names[group_type], admin_user_id),
+                    )
                 created_classes.append(
                     {
-                        "id": int(cur.fetchone()["id"]),
+                        "id": created_class_id,
                         "name": f"{item['grade']}-{item['letter']}",
                         "shift": item["shift"],
                         "building": item["building"],
                         "room": item["room"],
                         "group_method": item["group_method"],
+                        "group_methods": item["group_methods"],
                     }
                 )
 
