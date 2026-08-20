@@ -194,6 +194,7 @@ def create_admin_school_wizard_router(
 
         normalized_classes = []
         seen: set[tuple[str, str]] = set()
+        occupied_room_shifts: set[tuple[int, str, str]] = set()
         for index, item in enumerate(payload.classes, start=1):
             try:
                 grade, letter = normalize_class_name(item.name)
@@ -222,6 +223,14 @@ def create_admin_school_wizard_router(
                         status_code=400,
                         detail=f"{grade}-{letter}: {building_name}dagi {room_number}-xona topilmadi",
                     )
+                if room_number:
+                    room_shift_key = (shift, building_key, room_number.casefold())
+                    if room_shift_key in occupied_room_shifts:
+                        raise HTTPException(
+                            status_code=400,
+                            detail=f"{room_number}-xona {shift}-smenada boshqa sinfga allaqachon biriktirilgan",
+                        )
+                    occupied_room_shifts.add(room_shift_key)
             normalized_classes.append(
                 {
                     "grade": grade,
