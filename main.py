@@ -92,8 +92,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.53",
-        "previous_version": "duplicate-safe-school-os-v18.50",
+        "versiya": "smart-school-timetable-v18.55",
+        "previous_version": "smart-school-timetable-v18.54",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -114,8 +114,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "calendar-shifts-draft-approval-topics-v18.53",
-            "school_workspace": "fullscreen-portal-no-sidebar-overlap-v18.52",
+            "school_timetable": "primary-no-saturday-hard-rule-v18.55",
+            "school_workspace": "primary-no-saturday-visible-rule-v18.55",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -7983,6 +7983,9 @@ def _xodim_sinf_birikmalari_jadvali(cur):
             UNIQUE(user_id,sinf_id,fan_nomi,guruh_kaliti)
         )
     """)
+    cur.execute("ALTER TABLE maktab_dars_birikmalari ADD COLUMN IF NOT EXISTS haftalik_soat INTEGER")
+    cur.execute("ALTER TABLE maktab_dars_birikmalari ADD COLUMN IF NOT EXISTS kunlik_max INTEGER")
+    cur.execute("ALTER TABLE maktab_dars_birikmalari ADD COLUMN IF NOT EXISTS manba TEXT")
     cur.execute(
         "CREATE INDEX IF NOT EXISTS ix_maktab_dars_birikmalari_jadval "
         "ON maktab_dars_birikmalari(maktab_id,sinf_id,guruh_kaliti)"
@@ -8123,7 +8126,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     from openpyxl.comments import Comment
     from openpyxl.worksheet.datavalidation import DataValidation
     from openpyxl.workbook.defined_name import DefinedName
-    from openpyxl.utils import quote_sheetname
+    from openpyxl.utils import quote_sheetname, get_column_letter
     import io
     from fastapi.responses import StreamingResponse
 
@@ -8222,11 +8225,12 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     for col, w in zip("ABCDEFGH", [32, 48, 27, 31, 32, 15, 25, 24]):
         ws.column_dimensions[col].width = w
 
-    # V18.45 — H ustun haftalik yuklama, I dan esa checkbox tanlovlari.
-    # Oddiy .xlsx ichida bir dropdownning o'zida multi-select bo'lmaydi,
-    # shuning uchun har bir sinf mustaqil ☑/☐ katakdir.
+    # V18.54 — I=HAMMASI, J=tanlangan HAR BIR sinfga umumiy haftalik soat,
+    # K dan sinflarning mustaqil ☑/☐ kataklari boshlanadi. Turli sinf/fan soatlari
+    # uchun DARS_BIRIKMALARI varag'idagi aniq "Haftalik soat" ustuni ishlatiladi.
     sinf_belgi_boshlanish_ustuni = 9  # I = HAMMASI
-    sinf_belgi_birinchi_sinf_ustuni = 10  # J dan sinflar boshlanadi
+    sinf_umumiy_soat_ustuni = 10  # J = har bir tanlangan sinfga soat
+    sinf_belgi_birinchi_sinf_ustuni = 11  # K dan sinflar boshlanadi
     sinf_belgi_oxirgi_ustuni = sinf_belgi_birinchi_sinf_ustuni + max(0, len(mavjud_sinflar) - 1)
 
     c = ws.cell(1, sinf_belgi_boshlanish_ustuni, "HAMMASI")
@@ -8235,6 +8239,23 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
     c.comment = Comment("Bu xodim barcha sinflarga dars bersa shu katakni ☑ qiling.", "SamTM")
     ws.column_dimensions[c.column_letter].width = 12
+
+    c = ws.cell(1, sinf_umumiy_soat_ustuni, "Har bir tanlangan sinfga haftalik soat")
+    c.font = Font(bold=True, color="FFFFFF")
+    c.fill = PatternFill("solid", fgColor="B7791F")
+    c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    c.comment = Comment(
+        "Masalan Tarbiya yoki Musiqa barcha tanlangan sinflarda haftasiga 1 soat bo'lsa — 1 yozing. "
+        "Sinf yoki fan bo'yicha soatlar turlicha bo'lsa DARS_BIRIKMALARI varag'ida aniq kiriting.",
+        "SamTM",
+    )
+    ws.column_dimensions[c.column_letter].width = 20
+    bir_sinf_soat_tanlov = DataValidation(type="whole", operator="between", formula1="0", formula2="20", allow_blank=True)
+    bir_sinf_soat_tanlov.error = "Bir sinfga haftalik soat 0 dan 20 gacha butun son bo'lishi kerak"
+    bir_sinf_soat_tanlov.errorTitle = "Sinf haftalik soati"
+    bir_sinf_soat_tanlov.showErrorMessage = True
+    ws.add_data_validation(bir_sinf_soat_tanlov)
+    bir_sinf_soat_tanlov.add(f"{get_column_letter(sinf_umumiy_soat_ustuni)}2:{get_column_letter(sinf_umumiy_soat_ustuni)}5000")
 
     for offset, sinf_nomi in enumerate(mavjud_sinflar):
         col = sinf_belgi_birinchi_sinf_ustuni + offset
@@ -8257,15 +8278,19 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         belgi_tanlov.showErrorMessage = True
         belgi_tanlov.showInputMessage = True
         ws.add_data_validation(belgi_tanlov)
-        from openpyxl.utils import get_column_letter
-        belgi_oraliq = (
+        belgi_tanlov.add(
             f"{get_column_letter(sinf_belgi_boshlanish_ustuni)}2:"
+            f"{get_column_letter(sinf_belgi_boshlanish_ustuni)}5000"
+        )
+        belgi_tanlov.add(
+            f"{get_column_letter(sinf_belgi_birinchi_sinf_ustuni)}2:"
             f"{get_column_letter(sinf_belgi_oxirgi_ustuni)}5000"
         )
-        belgi_tanlov.add(belgi_oraliq)
-        # Tayyor ko'rinishi uchun kataklarda ☐ turadi; keraklisini ☑ ga o'zgartiriladi.
+        # Tayyor ko'rinishi uchun HAMMASI va sinf kataklarida ☐ turadi.
         for row_index in range(2, 5001):
-            for col in range(sinf_belgi_boshlanish_ustuni, sinf_belgi_oxirgi_ustuni + 1):
+            katak = ws.cell(row_index, sinf_belgi_boshlanish_ustuni, "☐")
+            katak.alignment = Alignment(horizontal="center", vertical="center")
+            for col in range(sinf_belgi_birinchi_sinf_ustuni, sinf_belgi_oxirgi_ustuni + 1):
                 katak = ws.cell(row_index, col, "☐")
                 katak.alignment = Alignment(horizontal="center", vertical="center")
 
@@ -8300,15 +8325,18 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
             pass
 
     birikmalar = wb.create_sheet("DARS_BIRIKMALARI")
-    for col, sarlavha in enumerate(("Xodim F.I.Sh", "Sinf", "Fan", "Guruh (ixtiyoriy)"), 1):
+    for col, sarlavha in enumerate((
+        "Xodim F.I.Sh", "Sinf", "Fan", "Guruh (ixtiyoriy)",
+        "Haftalik soat", "Bir kunda max",
+    ), 1):
         c = birikmalar.cell(1, col, sarlavha)
         c.font = Font(bold=True, color="FFFFFF")
         c.fill = PatternFill("solid", fgColor="1B4B7A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
     birikmalar.freeze_panes = "A2"
-    birikmalar.auto_filter.ref = "A1:D5000"
+    birikmalar.auto_filter.ref = "A1:F5000"
     birikmalar.row_dimensions[1].height = 30
-    for col, width in zip("ABCD", (34, 18, 34, 24)):
+    for col, width in zip("ABCDEF", (34, 18, 34, 24, 18, 16)):
         birikmalar.column_dimensions[col].width = width
     birikmalar.cell(1, 1).comment = Comment(
         "Avval XODIMLAR varag'ida xodimni yozing, keyin bu yerda o'sha F.I.Sh.ni tanlang.",
@@ -8320,6 +8348,25 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         "Sinf bo'linmasa, Butun sinfni tanlang.",
         "SamTM",
     )
+    birikmalar.cell(1, 5).comment = Comment(
+        "Aynan shu sinf–fan–guruhga haftasiga necha dars berilishini yozing. "
+        "Parallel 1/2-guruhlar uchun ikkala guruhga ham bir xil haftalik soat yozilishi mumkin.",
+        "SamTM",
+    )
+    birikmalar.cell(1, 6).comment = Comment(
+        "Shu fan bir kunda eng ko'pi bilan necha marta tushishi mumkin. Odatda 1, blok dars uchun 2.",
+        "SamTM",
+    )
+    birikma_soat_tanlov = DataValidation(type="whole", operator="between", formula1="0", formula2="20", allow_blank=True)
+    birikma_soat_tanlov.error = "Haftalik soat 0 dan 20 gacha butun son bo'lishi kerak"
+    birikma_soat_tanlov.showErrorMessage = True
+    birikmalar.add_data_validation(birikma_soat_tanlov)
+    birikma_soat_tanlov.add("E2:E5000")
+    birikma_kunlik_tanlov = DataValidation(type="whole", operator="between", formula1="1", formula2="4", allow_blank=True)
+    birikma_kunlik_tanlov.error = "Bir kunda max 1 dan 4 gacha bo'lishi kerak"
+    birikma_kunlik_tanlov.showErrorMessage = True
+    birikmalar.add_data_validation(birikma_kunlik_tanlov)
+    birikma_kunlik_tanlov.add("F2:F5000")
 
     malumot = wb.create_sheet("MALUMOT")
     malumot_sarlavhalari = ("Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari", "Dars guruhi", "Sinf guruhlash sozlamasi")
@@ -8390,8 +8437,8 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         "AQILLI XODIM SHABLONI — TO'LDIRISH TARTIBI",
         "1. XODIMLAR varag'ida F.I.Sh.ni yozing; lavozim va toifani ro'yxatdan tanlang.",
         "2. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Bu import yangi sinf yaratmaydi.",
-        "3. Dars beradigan sinflar uchun XODIMLAR varag'ining o'ng tomonidagi yashil HAMMASI / 1-A / 1-B / 2-A ... kataklardan keraklilarini ☑ qiling. 1 ta, bir nechta yoki barcha sinfni tanlash mumkin; D ustuniga qo'lda yozish shart emas.",
-        "4. Aniq Sinf–Fan–Guruh birikmasi kerak bo'lsa DARS_BIRIKMALARI varag'ida har bir birikmani alohida qator qilib tanlash mumkin.",
+        "3. Dars beradigan sinflarni ☑ qiling. Hamma tanlangan sinfda soat bir xil bo'lsa yonidagi 'Har bir tanlangan sinfga haftalik soat' ustuniga bir marta yozing.",
+        "4. Sinf/fan/guruh yoki haftalik soat turlicha bo'lsa DARS_BIRIKMALARI varag'ida aniq birikma, haftalik soat va bir kunda maksimumni kiriting.",
         "5. Texnologiya/Jismoniy tarbiya uchun O'g'il bolalar yoki Qiz bolalar; til/Informatika uchun 1-guruh yoki 2-guruhni tanlash mumkin.",
         "6. MALUMOT varag'ida aynan shu maktabdagi sinflar, ruxsat etilgan fanlar, lavozimlar va toifalar ko'rsatiladi.",
         "7. Ish staji ixtiyoriy; 0 dan 80 gacha butun son yoziladi.",
@@ -8488,6 +8535,13 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     )
     staj_ustuni = ustun_top("Ish staji (yil)", "Ish staji")
     toifa_ustuni = ustun_top("Toifasi", "Toifa")
+    haftalik_yuklama_ustuni = ustun_top(
+        "Haftalik dars yuklamasi (soat)", "Haftalik dars yuklamasi", "Haftalik yuklama"
+    )
+    bir_sinf_soati_ustuni = ustun_top(
+        "Har bir tanlangan sinfga haftalik soat", "Tanlangan har bir sinfga haftalik soat",
+        "Bir sinfga haftalik soat"
+    )
 
     # V18.43 — XODIMLAR varag'ining H ustunidan boshlangan ☑/☐ sinf tanlovlarini topamiz.
     # Sarlavha sinf nomining o'zi (masalan 1-A, 2-B), H esa HAMMASI.
@@ -8609,6 +8663,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         staj_xom = qator_qiymati(row, staj_ustuni)
         toifa_xom = qator_qiymati(row, toifa_ustuni)
         haftalik_yuklama_xom = qator_qiymati(row, haftalik_yuklama_ustuni)
+        bir_sinf_soati_xom = qator_qiymati(row, bir_sinf_soati_ustuni)
 
         try:
             sinf_rahbarligi = _xodim_sinf_nomini_normalla(rahbar_xom) if rahbar_xom else ""
@@ -8658,6 +8713,15 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 f"{excel_qatori}-qator ({fish}): haftalik dars yuklamasi 0 dan 60 gacha butun son bo'lishi kerak"
             )
             continue
+        try:
+            bir_sinf_soati = int(bir_sinf_soati_xom) if bir_sinf_soati_xom not in (None, "") else None
+            if bir_sinf_soati is not None and not 0 <= bir_sinf_soati <= 20:
+                raise ValueError
+        except (ValueError, TypeError):
+            tekshiruv_xatolari.append(
+                f"{excel_qatori}-qator ({fish}): har bir tanlangan sinfga haftalik soat 0 dan 20 gacha bo'lishi kerak"
+            )
+            continue
 
         fanlar_royxati = _xodim_fan_royxatini_ajrat(fanlar_xom)
         togridan_birikmalar = []
@@ -8670,6 +8734,9 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                             "fan": fan_moslashtir(sinf_nomi, fan),
                             "guruh_kaliti": "whole",
                             "guruh_nomi": "Butun sinf",
+                            "haftalik_soat": bir_sinf_soati,
+                            "kunlik_max": 1,
+                            "manba": "xodimlar",
                         })
             except ValueError as error:
                 tekshiruv_xatolari.append(f"{excel_qatori}-qator ({fish}): {error}")
@@ -8693,6 +8760,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             "ish_staji": ish_staji,
             "toifasi": _TOIFA_MATNDAN.get(toifa_matni.lower(), toifa_matni or None),
             "haftalik_dars_soati": haftalik_dars_soati,
+            "bir_sinf_soati": bir_sinf_soati,
         })
 
     xodimlar_kalit_boyicha = {}
@@ -8726,6 +8794,8 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         birikma_sinf_ustuni = birikma_ustuni("Sinf")
         birikma_fan_ustuni = birikma_ustuni("Fan")
         birikma_guruh_ustuni = birikma_ustuni("Guruh (ixtiyoriy)", "Guruh")
+        birikma_soat_ustuni = birikma_ustuni("Haftalik soat", "Haftalik dars soati", "Soat")
+        birikma_kunlik_ustuni = birikma_ustuni("Bir kunda max", "Kunlik max")
         if None in (birikma_xodim_ustuni, birikma_sinf_ustuni, birikma_fan_ustuni):
             tekshiruv_xatolari.append(
                 "DARS_BIRIKMALARI sarlavhasi mos emas: Xodim F.I.Sh, Sinf va Fan ustunlari kerak"
@@ -8738,6 +8808,8 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 sinf_xom = qator_qiymati(row, birikma_sinf_ustuni)
                 fan_xom = qator_qiymati(row, birikma_fan_ustuni)
                 guruh_xom = qator_qiymati(row, birikma_guruh_ustuni)
+                soat_xom = qator_qiymati(row, birikma_soat_ustuni)
+                kunlik_xom = qator_qiymati(row, birikma_kunlik_ustuni)
                 if not any(qiymat not in (None, "") for qiymat in (xodim_xom, sinf_xom, fan_xom)):
                     continue
                 if not all(qiymat not in (None, "") for qiymat in (xodim_xom, sinf_xom, fan_xom)):
@@ -8757,7 +8829,14 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                         raise ValueError(f"maktabda mavjud bo'lmagan sinf — {sinf_nomi}")
                     fan = fan_moslashtir(sinf_nomi, fan_xom)
                     guruh_kaliti, guruh_nomi = guruh_moslashtir(sinf_nomi, guruh_xom)
-                except ValueError as error:
+                    default_soat = xodimlar_kalit_boyicha[xodim_kaliti].get("bir_sinf_soati")
+                    haftalik_soat = int(soat_xom) if soat_xom not in (None, "") else default_soat
+                    kunlik_max = int(kunlik_xom) if kunlik_xom not in (None, "") else 1
+                    if haftalik_soat is not None and not 0 <= haftalik_soat <= 20:
+                        raise ValueError("haftalik soat 0 dan 20 gacha bo'lishi kerak")
+                    if not 1 <= kunlik_max <= 4:
+                        raise ValueError("bir kunda max 1 dan 4 gacha bo'lishi kerak")
+                except (ValueError, TypeError) as error:
                     tekshiruv_xatolari.append(
                         f"DARS_BIRIKMALARI {excel_qatori}-qator ({xodim_xom}): {error}"
                     )
@@ -8767,20 +8846,25 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     "fan": fan,
                     "guruh_kaliti": guruh_kaliti,
                     "guruh_nomi": guruh_nomi,
+                    "haftalik_soat": haftalik_soat,
+                    "kunlik_max": kunlik_max,
+                    "manba": "dars_birikmalari",
                 })
 
     for qator in tayyor_qatorlar:
-        noyob_birikmalar = []
-        korilgan_birikmalar = set()
+        birikma_tartibi = []
+        birikma_map = {}
         for birikma in qator["dars_birikmalari"]:
             kalit = (
                 birikma["sinf"],
                 _xodim_excel_sarlavha_kaliti(birikma["fan"]),
                 birikma.get("guruh_kaliti", "whole"),
             )
-            if kalit not in korilgan_birikmalar:
-                noyob_birikmalar.append(birikma)
-                korilgan_birikmalar.add(kalit)
+            if kalit not in birikma_map:
+                birikma_tartibi.append(kalit)
+            # DARS_BIRIKMALARI keyin o'qiladi va umumiy tanlovni aniq qiymat bilan almashtiradi.
+            birikma_map[kalit] = birikma
+        noyob_birikmalar = [birikma_map[k] for k in birikma_tartibi]
         qator["dars_birikmalari"] = noyob_birikmalar
         qator["dars_sinflari"] = list(dict.fromkeys(
             qator["dars_sinflari"] + [birikma["sinf"] for birikma in noyob_birikmalar]
@@ -8797,6 +8881,23 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 fan_kalitlari.add(kalit)
         qator["fanlar_royxati"] = fanlar_noyob
         qator["fanlari"] = "\n".join(fanlar_noyob)
+
+        # Parallel guruhlar bir vaqtda o'tgani uchun bir sinf+fan bo'yicha eng katta soat olinadi.
+        sinf_fan_soatlari = {}
+        for birikma in noyob_birikmalar:
+            soat = birikma.get("haftalik_soat")
+            if soat in (None, ""):
+                continue
+            kalit = (birikma["sinf"], _xodim_excel_sarlavha_kaliti(birikma["fan"]))
+            sinf_fan_soatlari[kalit] = max(int(soat), int(sinf_fan_soatlari.get(kalit, 0)))
+        hisoblangan_yuklama = sum(sinf_fan_soatlari.values())
+        if qator.get("haftalik_dars_soati") is None and hisoblangan_yuklama:
+            qator["haftalik_dars_soati"] = hisoblangan_yuklama
+        elif qator.get("haftalik_dars_soati") is not None and hisoblangan_yuklama > int(qator["haftalik_dars_soati"]):
+            tekshiruv_xatolari.append(
+                f"{qator['excel_qatori']}-qator ({qator['fish']}): sinf/fan soatlari jami {hisoblangan_yuklama}, "
+                f"lekin xodim haftalik yuklamasi {qator['haftalik_dars_soati']} soat. Yuklamani oshiring yoki soatlarni tekshiring"
+            )
 
     if tekshiruv_xatolari:
         conn.rollback(); cur.close(); conn.close()
@@ -8895,13 +8996,40 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             for birikma in qator["dars_birikmalari"]:
                 cur.execute("""
                     INSERT INTO maktab_dars_birikmalari(
-                        maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti
-                    ) VALUES(%s,%s,%s,%s,%s)
-                    ON CONFLICT(user_id,sinf_id,fan_nomi,guruh_kaliti) DO NOTHING
+                        maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti,haftalik_soat,kunlik_max,manba
+                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+                    ON CONFLICT(user_id,sinf_id,fan_nomi,guruh_kaliti) DO UPDATE SET
+                      haftalik_soat=EXCLUDED.haftalik_soat,
+                      kunlik_max=EXCLUDED.kunlik_max,
+                      manba=EXCLUDED.manba
                 """, (
                     maktab_id, yangi_id, mavjud_sinflar[birikma["sinf"]]["id"],
                     birikma["fan"], birikma.get("guruh_kaliti", "whole"),
+                    birikma.get("haftalik_soat"), birikma.get("kunlik_max", 1), birikma.get("manba"),
                 ))
+
+            # Shablondagi aniq sinf-fan soatlarini Aqlli jadval yuklamasiga ham uzatamiz.
+            if "_v1852_tables" in globals():
+                _v1852_tables(cur)
+                yuklama_map = {}
+                for birikma in qator["dars_birikmalari"]:
+                    soat = birikma.get("haftalik_soat")
+                    if soat in (None, "") or int(soat) <= 0:
+                        continue
+                    sinf_id = mavjud_sinflar[birikma["sinf"]]["id"]
+                    kalit = (sinf_id, birikma["fan"])
+                    old_y = yuklama_map.get(kalit)
+                    if old_y is None or int(soat) > int(old_y[0]):
+                        yuklama_map[kalit] = (int(soat), int(birikma.get("kunlik_max") or 1))
+                for (sinf_id, fan_nomi), (soat, kunlik_max) in yuklama_map.items():
+                    cur.execute("""INSERT INTO aqlli_sinf_fan_yuklamalari_v2(
+                        maktab_id,sinf_id,fan_nomi,haftalik_soat,kunlik_max,asosiy_oqituvchi_user_id)
+                        VALUES(%s,%s,%s,%s,%s,%s)
+                        ON CONFLICT(maktab_id,sinf_id,fan_nomi) DO UPDATE SET
+                          haftalik_soat=EXCLUDED.haftalik_soat,
+                          kunlik_max=EXCLUDED.kunlik_max,
+                          asosiy_oqituvchi_user_id=COALESCE(aqlli_sinf_fan_yuklamalari_v2.asosiy_oqituvchi_user_id,EXCLUDED.asosiy_oqituvchi_user_id)
+                    """, (maktab_id,sinf_id,fan_nomi,soat,kunlik_max,yangi_id))
 
             natijalar.append({
                 "fish": qator["fish"],
@@ -23047,6 +23175,22 @@ _V1852_VAQT_TURLARI = {"band", "afzal_bosh", "metod_kuni"}
 _V1852_HAFTA = {1: "Dushanba", 2: "Seshanba", 3: "Chorshanba", 4: "Payshanba", 5: "Juma", 6: "Shanba", 7: "Yakshanba"}
 
 
+def _v1855_sinf_raqami(value):
+    """`1`, `1-sinf`, `01` kabi qiymatlardan sinf raqamini xavfsiz oladi."""
+    match = re.search(r"\d+", str(value or ""))
+    if not match:
+        return None
+    try:
+        return int(match.group(0))
+    except (TypeError, ValueError):
+        return None
+
+
+def _v1855_boshlangich_sinf(class_row):
+    grade = _v1855_sinf_raqami((class_row or {}).get("sinf"))
+    return grade is not None and 1 <= grade <= 4
+
+
 def _v1852_create_tables(cur):
     global _V1852_TABLES_READY
     _rejalashtirish_jadvallari(cur)
@@ -23269,9 +23413,7 @@ def _v1852_startup_tables():
 
 
 def _v1852_manager(cur, user_id: int, maktab_id: int) -> bool:
-    # _maktab_boshqaruvchi_mi() umumiy adminni ham o'zi tekshiradi.
-    # Oldingi V18.52 dagi _adminmi nomi mavjud emas edi va shu sabab
-    # aqlli jadval sozlamalari endpointi NameError bilan yiqilardi.
+    # _maktab_boshqaruvchi_mi umumiy adminni ham tekshiradi.
     return _maktab_boshqaruvchi_mi(cur, user_id, maktab_id)
 
 
@@ -23840,6 +23982,12 @@ def _v1852_setup_payload(cur, maktab_id: int):
         "fanlar": subjects, "xonalar": rooms, "oqituvchi_qoidalari": teacher_rules,
         "oqituvchi_vaqtlari": teacher_times, "fan_soatlari": loads,
         "guruh_sozlamalari": group_settings, "birikmalar": assignments, "urinishlar": runs,
+        "avtomatik_qoidalar": {
+            "boshlangich_shanba_taqiq": True,
+            "boshlangich_sinflar": [1, 2, 3, 4],
+            "taqiqlangan_hafta_kuni": 6,
+            "izoh": "1–4-sinflarga Shanba kuni dars qo'yilmaydi",
+        },
     }
 
 
@@ -24155,7 +24303,11 @@ def _v1852_generate_attempt(jobs, context, seed):
             continue
         candidates = []
         reject_counter = _v1852_Counter()
+        class_row = context["classes"].get(job["sinf_id"], {})
         for day in range(1, context["weekdays"] + 1):
+            if day == 6 and _v1855_boshlangich_sinf(class_row):
+                reject_counter.update(["1–4-sinflarga Shanba kuni dars qo'yilmaydi"])
+                continue
             for slot in shift["slotlar"]:
                 period = int(slot["dars_raqami"])
                 teachers = _v1852_choose_teacher(job, day, period, state, context)
@@ -24231,6 +24383,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             cap = caps.get(tid)
             teacher_summary.append({"user_id": tid, "full_name": teacher["full_name"], "jadval_soati": actual, "yuklama": cap, "farq": None if cap is None else cap - actual})
         warnings = list(initial_warnings)
+        if context["weekdays"] >= 6 and any(_v1855_boshlangich_sinf(row) for row in classes.values()):
+            warnings.append("Qattiq qoida: 1–4-sinflarga Shanba kuni dars qo'yilmadi")
         for job in jobs:
             if job["groups"] and any(g.get("xona_id") is None for g in job["groups"]):
                 cls = classes[job["sinf_id"]]
@@ -24328,6 +24482,18 @@ def v1852_approve(sorov: V1852Approve, token: str):
             raise HTTPException(status_code=403, detail="Faqat rahbariyat tasdiqlaydi")
         if run["holat"] != "draft":
             raise HTTPException(status_code=409, detail="Faqat draft jadval tasdiqlanadi")
+        cur.execute("""SELECT COUNT(*) AS son
+                       FROM aqlli_jadval_slotlari_v2 e
+                       JOIN maktab_sinflari s ON s.id=e.sinf_id
+                       WHERE e.urinish_id=%s AND e.hafta_kuni=6
+                         AND REGEXP_REPLACE(COALESCE(s.sinf,''), '[^0-9]', '', 'g') IN ('1','2','3','4')""",
+                    (run["id"],))
+        saturday_primary = int((cur.fetchone() or {}).get("son") or 0)
+        if saturday_primary:
+            raise HTTPException(
+                status_code=409,
+                detail=f"Draftda 1–4-sinflar uchun Shanba kuniga {saturday_primary} ta dars tushgan. Bu qattiq qoida sabab tasdiqlanmaydi",
+            )
         if int(run["joylashtirilmadi"] or 0) > 0 and not sorov.majburan:
             raise HTTPException(status_code=409, detail="Joylashtirilmagan darslar bor. Muammolarni tuzating yoki majburan tasdiqlashni tanlang")
         cur.execute("UPDATE aqlli_jadval_urinishlari_v2 SET holat='almashtirilgan' WHERE maktab_id=%s AND holat='tasdiqlangan'", (run["maktab_id"],))
@@ -24384,14 +24550,20 @@ def v1852_change_request(sorov: V1852ChangeRequest, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        cur.execute("""SELECT e.*,r.holat FROM aqlli_jadval_slotlari_v2 e
+        cur.execute("""SELECT e.*,r.holat,s.sinf AS sinf_daraja
+                       FROM aqlli_jadval_slotlari_v2 e
                        JOIN aqlli_jadval_urinishlari_v2 r ON r.id=e.urinish_id
+                       JOIN maktab_sinflari s ON s.id=e.sinf_id
                        WHERE e.id=%s""", (sorov.slot_id,))
         slot = cur.fetchone()
         if not slot or slot["holat"] != "tasdiqlangan":
             raise HTTPException(status_code=404, detail="Faol dars topilmadi")
         if user_id != slot.get("oqituvchi_user_id") and not _v1852_manager(cur, user_id, slot["maktab_id"]):
             raise HTTPException(status_code=403, detail="Faqat shu dars o'qituvchisi yoki rahbariyat so'rov beradi")
+        if sorov.yangi_hafta_kuni not in range(1, 7):
+            raise HTTPException(status_code=400, detail="Hafta kuni Dushanbadan Shanbagacha bo'lishi kerak")
+        if sorov.yangi_hafta_kuni == 6 and 1 <= (_v1855_sinf_raqami(slot.get("sinf_daraja")) or 0) <= 4:
+            raise HTTPException(status_code=400, detail="1–4-sinflarga Shanba kuni dars ko'chirish mumkin emas")
         cur.execute("""INSERT INTO aqlli_jadval_ozgartirish_sorovlari_v2(
             maktab_id,slot_id,soragan_user_id,yangi_hafta_kuni,yangi_smena,yangi_dars_raqami,izoh)
             VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
@@ -24662,6 +24834,10 @@ def v1852_topic_calendar_edit(sorov: V1852TopicCalendarEdit, token: str):
             raise HTTPException(status_code=404, detail="Mavzu taqvimi yozuvi topilmadi")
         _v1852_topic_permission(cur, user_id, sorov.maktab_id, row["sinf_id"], row["fan_nomi"])
         new_date = sorov.sana or row["sana"]
+        cur.execute("SELECT sinf FROM maktab_sinflari WHERE id=%s AND maktab_id=%s", (row["sinf_id"], sorov.maktab_id))
+        class_row = cur.fetchone() or {}
+        if new_date.isoweekday() == 6 and _v1855_boshlangich_sinf(class_row):
+            raise HTTPException(status_code=400, detail="1–4-sinflar mavzusini Shanba kuniga ko'chirish mumkin emas")
         year = _v1852_active_year(cur, sorov.maktab_id)
         run = _v1852_active_run(cur, sorov.maktab_id)
         if not year or not run or not _v1852_is_school_day(cur, sorov.maktab_id, new_date, int(year["hafta_kunlari"])):
@@ -24719,3 +24895,182 @@ def v1852_topic_unlock(token: str, maktab_id: int, taqvim_id: int):
 
 # ========================= V18.52 END =========================
 
+# ═══════════════════════════════════════════════════════════
+# V18.54 — KASBIY RIVOJLANISH KUNI + OMMAVIY O'QITUVCHI VAQTI
+# Aniq hafta kuni respublika bo'yicha bitta qilib belgilanmagan; tizim
+# fan guruhlari va maktab haftasidan kelib chiqib TAXMINIY tavsiya beradi.
+# ═══════════════════════════════════════════════════════════
+
+class V1854BulkTeacherAvailability(BaseModel):
+    maktab_id: int
+    user_ids: list[int]
+    qoidalar: Optional[V1852TeacherRules] = None
+    vaqtlar: list[dict] = []
+    rejim: str = "almashtirish"  # almashtirish | ustiga_qoshish
+
+
+def _v1854_validate_time_items(items):
+    rows = []
+    for item in items:
+        day = int(item.get("hafta_kuni") or 0)
+        shift = int(item.get("smena") or 0)
+        period = int(item.get("dars_raqami") or 0)
+        kind = str(item.get("turi") or "")
+        hard = bool(item.get("qattiq", True))
+        if day not in range(1, 8) or shift not in (0, 1, 2) or period not in range(0, 13) or kind not in _V1852_VAQT_TURLARI:
+            raise HTTPException(status_code=400, detail="Ommaviy vaqt sozlamalaridan biri noto'g'ri")
+        if kind == "metod_kuni":
+            shift, period = 0, 0
+        rows.append((day, shift, period, kind, hard, item.get("izoh")))
+    return rows
+
+
+@app.put("/api/maktab/aqlli_jadval/v2/oqituvchi_vaqti_bulk")
+def v1854_teacher_availability_bulk(sorov: V1854BulkTeacherAvailability, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Ommaviy sozlamani faqat maktab rahbariyati qo'llaydi")
+        user_ids = list(dict.fromkeys(int(x) for x in sorov.user_ids if int(x)))
+        if not user_ids:
+            raise HTTPException(status_code=400, detail="Kamida bitta o'qituvchini tanlang")
+        if sorov.rejim not in ("almashtirish", "ustiga_qoshish"):
+            raise HTTPException(status_code=400, detail="Ommaviy qo'llash rejimi noto'g'ri")
+        cur.execute("SELECT user_id FROM users WHERE maktab_id=%s AND user_id=ANY(%s)", (sorov.maktab_id, user_ids))
+        topilgan = {int(r["user_id"]) for r in cur.fetchall()}
+        yoq = [x for x in user_ids if x not in topilgan]
+        if yoq:
+            raise HTTPException(status_code=400, detail=f"Maktabda topilmagan xodim IDlari: {yoq[:10]}")
+        rows = _v1854_validate_time_items(sorov.vaqtlar)
+        for uid in user_ids:
+            if sorov.qoidalar is not None:
+                r = sorov.qoidalar
+                if r.eng_kech_dars < r.eng_erta_dars:
+                    raise HTTPException(status_code=400, detail="Eng kech dars eng erta darsdan oldin bo'lmaydi")
+                cur.execute("""INSERT INTO aqlli_oqituvchi_qoidalari_v2(
+                    maktab_id,user_id,kunlik_max,ketma_ket_max,okno_max,afzal_smena,eng_erta_dars,eng_kech_dars)
+                    VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+                    ON CONFLICT(maktab_id,user_id) DO UPDATE SET
+                      kunlik_max=EXCLUDED.kunlik_max,ketma_ket_max=EXCLUDED.ketma_ket_max,
+                      okno_max=EXCLUDED.okno_max,afzal_smena=EXCLUDED.afzal_smena,
+                      eng_erta_dars=EXCLUDED.eng_erta_dars,eng_kech_dars=EXCLUDED.eng_kech_dars""",
+                    (sorov.maktab_id,uid,r.kunlik_max,r.ketma_ket_max,r.okno_max,r.afzal_smena,r.eng_erta_dars,r.eng_kech_dars))
+            if sorov.rejim == "almashtirish":
+                cur.execute("DELETE FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s AND user_id=%s", (sorov.maktab_id,uid))
+            for day, shift, period, kind, hard, note in rows:
+                cur.execute("""INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                    maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi,qattiq,izoh)
+                    VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+                    ON CONFLICT(maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi) DO UPDATE SET
+                      qattiq=EXCLUDED.qattiq,izoh=EXCLUDED.izoh""",
+                    (sorov.maktab_id,uid,day,shift,period,kind,hard,note))
+        conn.commit()
+        return {"holat":"saqlandi","o'qituvchi_soni":len(user_ids),"vaqt_soni":len(rows)}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V1854MethodSuggestion(BaseModel):
+    maktab_id: int
+    user_ids: list[int] = []
+    saqlash: bool = False
+    qattiq: bool = False
+    almashtirish: bool = False
+
+
+def _v1854_subject_group(fanlari):
+    text = " ".join(str(fanlari or "").lower().replace("\\n", " ").split())
+    if any(k in text for k in ("boshlang", "maktabgacha")):
+        return "Boshlang'ich ta'lim"
+    if any(k in text for k in ("algebra", "geometri", "matemat", "informat", "fizika", "astronom")):
+        return "Aniq fanlar"
+    if any(k in text for k in ("biolog", "kimyo", "geograf", "tabiiy", "ekolog")):
+        return "Tabiiy fanlar"
+    if any(k in text for k in ("ingliz", "rus tili", "nemis", "fransuz", "ona tili", "adabiyot")):
+        return "Tillar va adabiyot"
+    if any(k in text for k in ("tarix", "huquq", "tarbiya", "iqtisod", "ma'nav")):
+        return "Ijtimoiy fanlar"
+    if any(k in text for k in ("musiqa", "tasvir", "chizmach", "texnolog", "jismoniy")):
+        return "Amaliy fanlar"
+    return "Boshqa fanlar"
+
+
+@app.post("/api/maktab/aqlli_jadval/v2/metod_kun_tavsiya")
+def v1854_method_day_suggest(sorov: V1854MethodSuggestion, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Kasbiy rivojlanish kunini faqat maktab rahbariyati tavsiya qiladi")
+        year = _v1852_active_year(cur, sorov.maktab_id)
+        weekdays = int((year or {}).get("hafta_kunlari") or 6)
+        ids = list(dict.fromkeys(int(x) for x in sorov.user_ids if int(x)))
+        params = [sorov.maktab_id]
+        extra = ""
+        if ids:
+            extra = " AND user_id=ANY(%s)"
+            params.append(ids)
+        cur.execute(f"""SELECT user_id,full_name,fanlari FROM users
+                        WHERE maktab_id=%s AND lavozim IS NOT NULL {extra}
+                        ORDER BY full_name""", tuple(params))
+        teachers = cur.fetchall()
+        groups = {}
+        for t in teachers:
+            groups.setdefault(_v1854_subject_group(t.get("fanlari")), []).append(t)
+        day_counts = {d:0 for d in range(1,weekdays+1)}
+        group_days = {}
+        for group in sorted(groups, key=lambda g: (-len(groups[g]), g)):
+            day = min(day_counts, key=lambda d: (day_counts[d], d))
+            group_days[group] = day
+            day_counts[day] += len(groups[group])
+        existing = set()
+        cur.execute("SELECT user_id FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s AND turi='metod_kuni'", (sorov.maktab_id,))
+        existing = {int(r["user_id"]) for r in cur.fetchall()}
+        suggestions = []
+        saved = 0
+        for group, rows in groups.items():
+            day = group_days[group]
+            for t in rows:
+                uid = int(t["user_id"])
+                suggestions.append({
+                    "user_id":uid,"full_name":t["full_name"],"fan_guruhi":group,
+                    "hafta_kuni":day,"kun_nomi":_V1852_HAFTA.get(day,str(day)),
+                    "holat":"taxminiy","mavjud":uid in existing,
+                })
+                if sorov.saqlash:
+                    if uid in existing and not sorov.almashtirish:
+                        continue
+                    if sorov.almashtirish:
+                        cur.execute("DELETE FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s AND user_id=%s AND turi='metod_kuni'", (sorov.maktab_id,uid))
+                    cur.execute("""INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                        maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi,qattiq,izoh)
+                        VALUES(%s,%s,%s,0,0,'metod_kuni',%s,%s)
+                        ON CONFLICT(maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi) DO UPDATE SET
+                          qattiq=EXCLUDED.qattiq,izoh=EXCLUDED.izoh""",
+                        (sorov.maktab_id,uid,day,sorov.qattiq,
+                         "V18.54 taxminiy kasbiy rivojlanish kuni; tuman/tayanch maktab jadvali bilan tasdiqlang"))
+                    saved += 1
+        if sorov.saqlash:
+            conn.commit()
+        return {
+            "tavsiyalar":suggestions,"saqlandi":saved,
+            "ogohlantirish":"Kasbiy rivojlanish kuni rasmiy tizimda mavjud, ammo aniq hafta kuni hudud va tayanch maktab jadvali bilan belgilanadi. Bu faqat taxminiy, tahrirlanadigan tavsiya.",
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+# ========================= V18.54 END =========================
+
+
+
+# ═══════════════════════════════════════════════════════════
+# V18.55 — 1–4-SINFLAR UCHUN SHANBA QATTIQ BLOK
+# Generator, draft tasdig'i, dars ko'chirish va mavzu sanasida bir xil qoida.
+# ═══════════════════════════════════════════════════════════
