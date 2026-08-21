@@ -92,8 +92,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.55",
-        "previous_version": "smart-school-timetable-v18.54",
+        "versiya": "smart-school-timetable-v18.56",
+        "previous_version": "smart-school-timetable-v18.55",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -114,8 +114,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "primary-no-saturday-hard-rule-v18.55",
-            "school_workspace": "primary-no-saturday-visible-rule-v18.55",
+            "school_timetable": "flexible-class-day-rules-v18.56",
+            "school_workspace": "one-click-class-day-rules-v18.56",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -23191,6 +23191,95 @@ def _v1855_boshlangich_sinf(class_row):
     return grade is not None and 1 <= grade <= 4
 
 
+def _v1856_seed_default_class_day_rules(cur, maktab_id: int):
+    """Birinchi ishga tushishda eski 1–4/Shanba qoidasini preset sifatida saqlaydi.
+
+    Marker yozilgach admin uni o'chirsa, keyingi reload'da qayta paydo bo'lmaydi.
+    """
+    cur.execute("SELECT 1 FROM aqlli_sinf_kun_blok_seed_v2 WHERE maktab_id=%s", (maktab_id,))
+    if cur.fetchone():
+        return
+    cur.execute("SELECT COUNT(*) AS son FROM aqlli_sinf_kun_bloklari_v2 WHERE maktab_id=%s", (maktab_id,))
+    existing = int((cur.fetchone() or {}).get("son") or 0)
+    if existing == 0:
+        for grade in (1, 2, 3, 4):
+            cur.execute("""INSERT INTO aqlli_sinf_kun_bloklari_v2(
+                maktab_id,sinf_daraja,hafta_kuni,izoh,faol)
+                VALUES(%s,%s,6,%s,TRUE)""",
+                (maktab_id, grade, "Boshlang'ich parallel uchun Shanba kuni dars yo'q"))
+    cur.execute("""INSERT INTO aqlli_sinf_kun_blok_seed_v2(maktab_id,versiya)
+                   VALUES(%s,1) ON CONFLICT(maktab_id) DO NOTHING""", (maktab_id,))
+
+
+def _v1856_class_day_rule_rows(cur, maktab_id: int):
+    _v1856_seed_default_class_day_rules(cur, maktab_id)
+    cur.execute("""SELECT b.*,s.sinf,s.harf
+                   FROM aqlli_sinf_kun_bloklari_v2 b
+                   LEFT JOIN maktab_sinflari s ON s.id=b.sinf_id
+                   WHERE b.maktab_id=%s AND b.faol=TRUE
+                   ORDER BY COALESCE(b.sinf_daraja,999),s.sinf::int NULLS LAST,s.harf,b.hafta_kuni""",
+                (maktab_id,))
+    rows = cur.fetchall()
+    for row in rows:
+        day_name = _V1852_HAFTA.get(int(row["hafta_kuni"]), str(row["hafta_kuni"]))
+        if row.get("sinf_id") is not None:
+            row["qamrov"] = "sinf"
+            row["yorliq"] = f"{row.get('sinf','')}-{row.get('harf','')} · {day_name}"
+        else:
+            row["qamrov"] = "parallel"
+            row["yorliq"] = f"Barcha {row.get('sinf_daraja')}-sinflar · {day_name}"
+    return rows
+
+
+def _v1856_class_day_rule_map(rows):
+    exact = set()
+    grades = set()
+    for row in rows or []:
+        day = int(row.get("hafta_kuni") or 0)
+        if row.get("sinf_id") is not None:
+            exact.add((int(row["sinf_id"]), day))
+        elif row.get("sinf_daraja") is not None:
+            grades.add((int(row["sinf_daraja"]), day))
+    return {"exact": exact, "grades": grades, "rows": rows or []}
+
+
+def _v1856_class_day_block_reason(class_row, day: int, rule_map):
+    class_id = int((class_row or {}).get("id") or 0)
+    grade = _v1855_sinf_raqami((class_row or {}).get("sinf"))
+    day_name = _V1852_HAFTA.get(int(day), str(day))
+    if (class_id, int(day)) in rule_map.get("exact", set()):
+        return f"{(class_row or {}).get('sinf','')}-{(class_row or {}).get('harf','')} uchun {day_name} kuni dars bloklangan"
+    if grade is not None and (grade, int(day)) in rule_map.get("grades", set()):
+        return f"Barcha {grade}-sinflar uchun {day_name} kuni dars bloklangan"
+    return None
+
+
+def _v1856_schedule_block_violations(cur, maktab_id: int, run_id: int | None = None):
+    _v1856_seed_default_class_day_rules(cur, maktab_id)
+    if run_id is None:
+        run = _v1852_active_run(cur, maktab_id)
+        if not run:
+            return []
+        run_id = int(run["id"])
+    cur.execute("""SELECT s.id AS sinf_id,s.sinf,s.harf,e.hafta_kuni,
+                          COUNT(DISTINCT e.id) AS dars_soni
+                   FROM aqlli_jadval_slotlari_v2 e
+                   JOIN maktab_sinflari s ON s.id=e.sinf_id
+                   JOIN aqlli_sinf_kun_bloklari_v2 b
+                     ON b.maktab_id=e.maktab_id AND b.faol=TRUE
+                    AND b.hafta_kuni=e.hafta_kuni
+                    AND (b.sinf_id=e.sinf_id OR
+                         (b.sinf_id IS NULL AND b.sinf_daraja=
+                          NULLIF(REGEXP_REPLACE(COALESCE(s.sinf,''),'[^0-9]','','g'),'')::int))
+                   WHERE e.maktab_id=%s AND e.urinish_id=%s
+                   GROUP BY s.id,s.sinf,s.harf,e.hafta_kuni
+                   ORDER BY s.sinf::int,s.harf,e.hafta_kuni""", (maktab_id, run_id))
+    rows = cur.fetchall()
+    for row in rows:
+        row["kun_nomi"] = _V1852_HAFTA.get(int(row["hafta_kuni"]), str(row["hafta_kuni"]))
+    return rows
+
+
 def _v1852_create_tables(cur):
     global _V1852_TABLES_READY
     _rejalashtirish_jadvallari(cur)
@@ -23386,6 +23475,30 @@ def _v1852_create_tables(cur):
     )""")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_aqlli_kalendar_v2 ON aqlli_kalendar_kunlari_v2(maktab_id,sana)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_aqlli_slot_teacher_v2 ON aqlli_jadval_slotlari_v2(urinish_id,oqituvchi_user_id,hafta_kuni,dars_raqami)")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_sinf_kun_bloklari_v2(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sinf_id INTEGER REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        sinf_daraja INTEGER,
+        hafta_kuni INTEGER NOT NULL CHECK(hafta_kuni BETWEEN 1 AND 6),
+        izoh TEXT,
+        faol BOOLEAN NOT NULL DEFAULT TRUE,
+        yaratgan_user_id BIGINT,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        CHECK ((sinf_id IS NOT NULL AND sinf_daraja IS NULL) OR
+               (sinf_id IS NULL AND sinf_daraja BETWEEN 1 AND 11))
+    )""")
+    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_aqlli_sinf_kun_blok_exact_v2
+                   ON aqlli_sinf_kun_bloklari_v2(maktab_id,sinf_id,hafta_kuni)
+                   WHERE sinf_id IS NOT NULL""")
+    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_aqlli_sinf_kun_blok_parallel_v2
+                   ON aqlli_sinf_kun_bloklari_v2(maktab_id,sinf_daraja,hafta_kuni)
+                   WHERE sinf_daraja IS NOT NULL""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_sinf_kun_blok_seed_v2(
+        maktab_id INTEGER PRIMARY KEY REFERENCES maktablar(id) ON DELETE CASCADE,
+        versiya INTEGER NOT NULL DEFAULT 1,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_aqlli_slot_class_v2 ON aqlli_jadval_slotlari_v2(urinish_id,sinf_id,hafta_kuni,dars_raqami)")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_aqlli_topic_calendar_v2 ON aqlli_mavzu_taqvimi_v2(maktab_id,sinf_id,fan_nomi,chorak,sana)")
     _V1852_TABLES_READY = True
@@ -23976,19 +24089,131 @@ def _v1852_setup_payload(cur, maktab_id: int):
     cur.execute("""SELECT id,holat,yaratilgan_at,tasdiqlangan_at,sifat,joylashtirildi,joylashtirilmadi,diagnostika
                    FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s ORDER BY id DESC LIMIT 10""", (maktab_id,))
     runs = cur.fetchall()
+    class_day_blocks = _v1856_class_day_rule_rows(cur, maktab_id)
     return {
         "oquv_yili": year, "choraklar": quarters, "maxsus_kunlar": special_days,
         "smenalar": shifts, "sinflar": classes, "oqituvchilar": teachers,
         "fanlar": subjects, "xonalar": rooms, "oqituvchi_qoidalari": teacher_rules,
         "oqituvchi_vaqtlari": teacher_times, "fan_soatlari": loads,
         "guruh_sozlamalari": group_settings, "birikmalar": assignments, "urinishlar": runs,
+        "sinf_kun_bloklari": class_day_blocks,
         "avtomatik_qoidalar": {
-            "boshlangich_shanba_taqiq": True,
-            "boshlangich_sinflar": [1, 2, 3, 4],
-            "taqiqlangan_hafta_kuni": 6,
-            "izoh": "1–4-sinflarga Shanba kuni dars qo'yilmaydi",
+            "sinf_kun_bloklari": class_day_blocks,
+            "izoh": "Rahbariyat xohlagan parallel yoki aniq sinf uchun dars bo'lmaydigan hafta kunini belgilaydi",
         },
     }
+
+
+class V1856ClassDayBlocks(BaseModel):
+    maktab_id: int
+    qamrov: str = "parallel"
+    sinf_darajalari: list[int] = []
+    sinf_idlar: list[int] = []
+    hafta_kunlari: list[int] = []
+    izoh: Optional[str] = None
+
+
+@app.put("/api/maktab/aqlli_jadval/v2/sinf_kun_bloklari")
+def v1856_class_day_blocks_save(sorov: V1856ClassDayBlocks, token: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, user_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf kunlarini faqat maktab rahbariyati boshqaradi")
+        _v1856_seed_default_class_day_rules(cur, sorov.maktab_id)
+        qamrov = str(sorov.qamrov or "parallel").strip().lower()
+        days = sorted(set(int(x) for x in sorov.hafta_kunlari))
+        if not days or any(day not in range(1, 7) for day in days):
+            raise HTTPException(status_code=400, detail="Kamida bitta Dushanba–Shanba kunini tanlang")
+        created = 0
+        if qamrov == "parallel":
+            grades = sorted(set(int(x) for x in sorov.sinf_darajalari))
+            if not grades or any(grade not in range(1, 12) for grade in grades):
+                raise HTTPException(status_code=400, detail="Kamida bitta 1–11-sinf parallelini tanlang")
+            cur.execute("""SELECT DISTINCT NULLIF(REGEXP_REPLACE(COALESCE(sinf,''),'[^0-9]','','g'),'')::int AS grade
+                           FROM maktab_sinflari WHERE maktab_id=%s""", (sorov.maktab_id,))
+            available = {int(r["grade"]) for r in cur.fetchall() if r.get("grade") is not None}
+            missing = [grade for grade in grades if grade not in available]
+            if missing:
+                raise HTTPException(status_code=400, detail=f"Maktabda bu parallellar yo'q: {', '.join(map(str, missing))}-sinf")
+            for grade in grades:
+                for day in days:
+                    cur.execute("""SELECT id FROM aqlli_sinf_kun_bloklari_v2
+                                   WHERE maktab_id=%s AND sinf_id IS NULL AND sinf_daraja=%s AND hafta_kuni=%s""",
+                                (sorov.maktab_id, grade, day))
+                    row = cur.fetchone()
+                    if row:
+                        cur.execute("""UPDATE aqlli_sinf_kun_bloklari_v2 SET faol=TRUE,izoh=%s,
+                                       yaratgan_user_id=%s,yangilangan_at=NOW() WHERE id=%s""",
+                                    (sorov.izoh, user_id, row["id"]))
+                    else:
+                        cur.execute("""INSERT INTO aqlli_sinf_kun_bloklari_v2(
+                            maktab_id,sinf_daraja,hafta_kuni,izoh,faol,yaratgan_user_id)
+                            VALUES(%s,%s,%s,%s,TRUE,%s)""",
+                            (sorov.maktab_id, grade, day, sorov.izoh, user_id))
+                        created += 1
+        elif qamrov == "sinf":
+            class_ids = sorted(set(int(x) for x in sorov.sinf_idlar))
+            if not class_ids:
+                raise HTTPException(status_code=400, detail="Kamida bitta aniq sinfni tanlang")
+            cur.execute("SELECT id FROM maktab_sinflari WHERE maktab_id=%s AND id=ANY(%s)",
+                        (sorov.maktab_id, class_ids))
+            found = {int(r["id"]) for r in cur.fetchall()}
+            missing = [cid for cid in class_ids if cid not in found]
+            if missing:
+                raise HTTPException(status_code=400, detail="Tanlangan sinflardan biri bu maktabga tegishli emas")
+            for class_id in class_ids:
+                for day in days:
+                    cur.execute("""SELECT id FROM aqlli_sinf_kun_bloklari_v2
+                                   WHERE maktab_id=%s AND sinf_id=%s AND hafta_kuni=%s""",
+                                (sorov.maktab_id, class_id, day))
+                    row = cur.fetchone()
+                    if row:
+                        cur.execute("""UPDATE aqlli_sinf_kun_bloklari_v2 SET faol=TRUE,izoh=%s,
+                                       yaratgan_user_id=%s,yangilangan_at=NOW() WHERE id=%s""",
+                                    (sorov.izoh, user_id, row["id"]))
+                    else:
+                        cur.execute("""INSERT INTO aqlli_sinf_kun_bloklari_v2(
+                            maktab_id,sinf_id,hafta_kuni,izoh,faol,yaratgan_user_id)
+                            VALUES(%s,%s,%s,%s,TRUE,%s)""",
+                            (sorov.maktab_id, class_id, day, sorov.izoh, user_id))
+                        created += 1
+        else:
+            raise HTTPException(status_code=400, detail="Qamrov parallel yoki sinf bo'lishi kerak")
+        rules = _v1856_class_day_rule_rows(cur, sorov.maktab_id)
+        violations = _v1856_schedule_block_violations(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "saqlandi", "yangi_qoida_soni": created,
+            "qoidalar": rules, "faol_jadvaldagi_zid_darslar": violations,
+            "zid_dars_soni": sum(int(x.get("dars_soni") or 0) for x in violations),
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.delete("/api/maktab/aqlli_jadval/v2/sinf_kun_bloki")
+def v1856_class_day_block_delete(token: str, maktab_id: int, blok_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf kunlarini faqat maktab rahbariyati boshqaradi")
+        cur.execute("DELETE FROM aqlli_sinf_kun_bloklari_v2 WHERE id=%s AND maktab_id=%s RETURNING id",
+                    (blok_id, maktab_id))
+        if not cur.fetchone():
+            raise HTTPException(status_code=404, detail="Qoida topilmadi")
+        rules = _v1856_class_day_rule_rows(cur, maktab_id)
+        conn.commit()
+        return {"holat": "o'chirildi", "qoidalar": rules}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 @app.get("/api/maktab/aqlli_jadval/v2/sozlamalar")
@@ -24305,8 +24530,9 @@ def _v1852_generate_attempt(jobs, context, seed):
         reject_counter = _v1852_Counter()
         class_row = context["classes"].get(job["sinf_id"], {})
         for day in range(1, context["weekdays"] + 1):
-            if day == 6 and _v1855_boshlangich_sinf(class_row):
-                reject_counter.update(["1–4-sinflarga Shanba kuni dars qo'yilmaydi"])
+            blocked_reason = _v1856_class_day_block_reason(class_row, day, context.get("class_day_blocks", {}))
+            if blocked_reason:
+                reject_counter.update([blocked_reason])
                 continue
             for slot in shift["slotlar"]:
                 period = int(slot["dars_raqami"])
@@ -24346,12 +24572,14 @@ def v1852_generate(sorov: V1852Generate, token: str):
         jobs, initial_warnings = _v1852_build_jobs(classes, loads, assignments, group_settings, teachers)
         rules = _v1852_teacher_rules_map(rules_rows)
         hard, soft, method_hard, method_soft = _v1852_availability_maps(availability_rows)
+        class_day_rule_rows = _v1856_class_day_rule_rows(cur, sorov.maktab_id)
+        class_day_blocks = _v1856_class_day_rule_map(class_day_rule_rows)
         caps = {tid: (int(row["haftalik_dars_soati"]) if row.get("haftalik_dars_soati") is not None else None) for tid, row in teachers.items()}
         context = {
             "weekdays": int(year["hafta_kunlari"]), "shifts": shifts, "classes": classes,
             "rules": rules, "default_rules": {"kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1, "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12},
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
-            "teacher_caps": caps,
+            "teacher_caps": caps, "class_day_blocks": class_day_blocks,
         }
         attempts = max(1, min(20, int(sorov.urinishlar_soni or 8)))
         best = None
@@ -24383,8 +24611,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             cap = caps.get(tid)
             teacher_summary.append({"user_id": tid, "full_name": teacher["full_name"], "jadval_soati": actual, "yuklama": cap, "farq": None if cap is None else cap - actual})
         warnings = list(initial_warnings)
-        if context["weekdays"] >= 6 and any(_v1855_boshlangich_sinf(row) for row in classes.values()):
-            warnings.append("Qattiq qoida: 1–4-sinflarga Shanba kuni dars qo'yilmadi")
+        for rule in class_day_rule_rows[:50]:
+            warnings.append(f"Qattiq qoida: {rule.get('yorliq')}")
         for job in jobs:
             if job["groups"] and any(g.get("xona_id") is None for g in job["groups"]):
                 cls = classes[job["sinf_id"]]
@@ -24402,7 +24630,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             VALUES(%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
             (sorov.maktab_id, user_id, quality, placed_count, len(unplaced),
              json.dumps(diagnostics, ensure_ascii=False, default=str),
-             json.dumps({"hafta_kunlari": context["weekdays"], "oquv_yili_id": year["id"]}, ensure_ascii=False)))
+             json.dumps({"hafta_kunlari": context["weekdays"], "oquv_yili_id": year["id"],
+                         "sinf_kun_bloklari": [{"id": r.get("id"), "yorliq": r.get("yorliq")} for r in class_day_rule_rows]},
+                        ensure_ascii=False)))
         run_id = cur.fetchone()["id"]
         shift_slot_map = {(s, int(slot["dars_raqami"])): slot for s, row in shifts.items() for slot in row["slotlar"]}
         entry_rows = []
@@ -24482,17 +24712,15 @@ def v1852_approve(sorov: V1852Approve, token: str):
             raise HTTPException(status_code=403, detail="Faqat rahbariyat tasdiqlaydi")
         if run["holat"] != "draft":
             raise HTTPException(status_code=409, detail="Faqat draft jadval tasdiqlanadi")
-        cur.execute("""SELECT COUNT(*) AS son
-                       FROM aqlli_jadval_slotlari_v2 e
-                       JOIN maktab_sinflari s ON s.id=e.sinf_id
-                       WHERE e.urinish_id=%s AND e.hafta_kuni=6
-                         AND REGEXP_REPLACE(COALESCE(s.sinf,''), '[^0-9]', '', 'g') IN ('1','2','3','4')""",
-                    (run["id"],))
-        saturday_primary = int((cur.fetchone() or {}).get("son") or 0)
-        if saturday_primary:
+        violations = _v1856_schedule_block_violations(cur, run["maktab_id"], run["id"])
+        if violations:
+            details = "; ".join(
+                f"{row['sinf']}-{row['harf']} · {row['kun_nomi']} ({row['dars_soni']} ta)"
+                for row in violations[:8]
+            )
             raise HTTPException(
                 status_code=409,
-                detail=f"Draftda 1–4-sinflar uchun Shanba kuniga {saturday_primary} ta dars tushgan. Bu qattiq qoida sabab tasdiqlanmaydi",
+                detail=f"Draftda sinf-kun qoidalariga zid darslar bor: {details}. Yangi draft yarating",
             )
         if int(run["joylashtirilmadi"] or 0) > 0 and not sorov.majburan:
             raise HTTPException(status_code=409, detail="Joylashtirilmagan darslar bor. Muammolarni tuzating yoki majburan tasdiqlashni tanlang")
@@ -24550,7 +24778,7 @@ def v1852_change_request(sorov: V1852ChangeRequest, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        cur.execute("""SELECT e.*,r.holat,s.sinf AS sinf_daraja
+        cur.execute("""SELECT e.*,r.holat,s.sinf AS sinf_daraja,s.harf AS sinf_harfi
                        FROM aqlli_jadval_slotlari_v2 e
                        JOIN aqlli_jadval_urinishlari_v2 r ON r.id=e.urinish_id
                        JOIN maktab_sinflari s ON s.id=e.sinf_id
@@ -24562,8 +24790,13 @@ def v1852_change_request(sorov: V1852ChangeRequest, token: str):
             raise HTTPException(status_code=403, detail="Faqat shu dars o'qituvchisi yoki rahbariyat so'rov beradi")
         if sorov.yangi_hafta_kuni not in range(1, 7):
             raise HTTPException(status_code=400, detail="Hafta kuni Dushanbadan Shanbagacha bo'lishi kerak")
-        if sorov.yangi_hafta_kuni == 6 and 1 <= (_v1855_sinf_raqami(slot.get("sinf_daraja")) or 0) <= 4:
-            raise HTTPException(status_code=400, detail="1–4-sinflarga Shanba kuni dars ko'chirish mumkin emas")
+        rule_map = _v1856_class_day_rule_map(_v1856_class_day_rule_rows(cur, slot["maktab_id"]))
+        blocked_reason = _v1856_class_day_block_reason(
+            {"id": slot["sinf_id"], "sinf": slot.get("sinf_daraja"), "harf": slot.get("sinf_harfi")},
+            sorov.yangi_hafta_kuni, rule_map,
+        )
+        if blocked_reason:
+            raise HTTPException(status_code=400, detail=f"Darsni ko'chirish mumkin emas: {blocked_reason}")
         cur.execute("""INSERT INTO aqlli_jadval_ozgartirish_sorovlari_v2(
             maktab_id,slot_id,soragan_user_id,yangi_hafta_kuni,yangi_smena,yangi_dars_raqami,izoh)
             VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
@@ -24715,12 +24948,17 @@ def _v1852_schedule_occurrences(cur, maktab_id: int, sinf_id: int, fan: str, qua
                    GROUP BY hafta_kuni,smena,dars_raqami ORDER BY hafta_kuni,smena,dars_raqami""",
                 (run_id, sinf_id, fan))
     patterns = cur.fetchall()
+    cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE id=%s AND maktab_id=%s", (sinf_id, maktab_id))
+    class_row = cur.fetchone() or {"id": sinf_id}
+    rule_map = _v1856_class_day_rule_map(_v1856_class_day_rule_rows(cur, maktab_id))
     occurrences = []
     current = quarter_row["boshlanish"]
     while current <= quarter_row["tugash"]:
         if _v1852_is_school_day(cur, maktab_id, current, int(year_row["hafta_kunlari"])):
             for pattern in patterns:
                 if current.isoweekday() == int(pattern["hafta_kuni"]):
+                    if _v1856_class_day_block_reason(class_row, current.isoweekday(), rule_map):
+                        continue
                     occurrences.append({"sana": current, **pattern})
         current += timedelta(days=1)
     occurrences.sort(key=lambda x: (x["sana"], x["smena"], x["dars_raqami"]))
@@ -24834,10 +25072,12 @@ def v1852_topic_calendar_edit(sorov: V1852TopicCalendarEdit, token: str):
             raise HTTPException(status_code=404, detail="Mavzu taqvimi yozuvi topilmadi")
         _v1852_topic_permission(cur, user_id, sorov.maktab_id, row["sinf_id"], row["fan_nomi"])
         new_date = sorov.sana or row["sana"]
-        cur.execute("SELECT sinf FROM maktab_sinflari WHERE id=%s AND maktab_id=%s", (row["sinf_id"], sorov.maktab_id))
-        class_row = cur.fetchone() or {}
-        if new_date.isoweekday() == 6 and _v1855_boshlangich_sinf(class_row):
-            raise HTTPException(status_code=400, detail="1–4-sinflar mavzusini Shanba kuniga ko'chirish mumkin emas")
+        cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE id=%s AND maktab_id=%s", (row["sinf_id"], sorov.maktab_id))
+        class_row = cur.fetchone() or {"id": row["sinf_id"]}
+        rule_map = _v1856_class_day_rule_map(_v1856_class_day_rule_rows(cur, sorov.maktab_id))
+        blocked_reason = _v1856_class_day_block_reason(class_row, new_date.isoweekday(), rule_map)
+        if blocked_reason:
+            raise HTTPException(status_code=400, detail=f"Mavzuni bu sanaga ko'chirish mumkin emas: {blocked_reason}")
         year = _v1852_active_year(cur, sorov.maktab_id)
         run = _v1852_active_run(cur, sorov.maktab_id)
         if not year or not run or not _v1852_is_school_day(cur, sorov.maktab_id, new_date, int(year["hafta_kunlari"])):
@@ -25071,6 +25311,6 @@ def v1854_method_day_suggest(sorov: V1854MethodSuggestion, token: str):
 
 
 # ═══════════════════════════════════════════════════════════
-# V18.55 — 1–4-SINFLAR UCHUN SHANBA QATTIQ BLOK
-# Generator, draft tasdig'i, dars ko'chirish va mavzu sanasida bir xil qoida.
+# V18.56 — MOSLASHUVCHAN SINF-KUN QOIDALARI
+# Rahbariyat xohlagan parallel yoki aniq sinfga xohlagan hafta kunini bir tugma bilan bloklaydi.
 # ═══════════════════════════════════════════════════════════
