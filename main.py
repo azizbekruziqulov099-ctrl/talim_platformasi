@@ -92,7 +92,7 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.52",
+        "versiya": "smart-school-timetable-v18.53",
         "previous_version": "duplicate-safe-school-os-v18.50",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
@@ -114,7 +114,7 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "calendar-shifts-draft-approval-topics-v18.52",
+            "school_timetable": "calendar-shifts-draft-approval-topics-v18.53",
             "school_workspace": "fullscreen-portal-no-sidebar-overlap-v18.52",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
@@ -23269,7 +23269,10 @@ def _v1852_startup_tables():
 
 
 def _v1852_manager(cur, user_id: int, maktab_id: int) -> bool:
-    return _adminmi(cur, user_id) or _maktab_boshqaruvchi_mi(cur, user_id, maktab_id)
+    # _maktab_boshqaruvchi_mi() umumiy adminni ham o'zi tekshiradi.
+    # Oldingi V18.52 dagi _adminmi nomi mavjud emas edi va shu sabab
+    # aqlli jadval sozlamalari endpointi NameError bilan yiqilardi.
+    return _maktab_boshqaruvchi_mi(cur, user_id, maktab_id)
 
 
 def _v1852_staff(cur, user_id: int, maktab_id: int) -> bool:
