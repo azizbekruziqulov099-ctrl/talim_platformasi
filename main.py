@@ -107,7 +107,7 @@ def versiya():
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
         "versiya": "smart-school-timetable-v18.62",
-        "previous_version": "smart-school-timetable-v18.61",
+        "previous_version": "smart-school-timetable-v18.60",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -128,8 +128,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "hard-reset-row-only-freeze-v18.62",
-            "school_workspace": "teacher-subject-method-report-v18.61",
+            "school_timetable": "template-no-freeze-scroll-v18.62",
+            "school_workspace": "teacher-subject-method-report-v18.62",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -8140,10 +8140,10 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     from openpyxl.styles import Font, PatternFill, Alignment
     from openpyxl.comments import Comment
     from openpyxl.worksheet.datavalidation import DataValidation
+    from openpyxl.worksheet.views import Selection
     from openpyxl.formatting.rule import CellIsRule
     from openpyxl.workbook.defined_name import DefinedName
     from openpyxl.utils import quote_sheetname, get_column_letter
-    from openpyxl.worksheet.views import Selection
     import io
     from fastapi.responses import StreamingResponse
 
@@ -8215,12 +8215,17 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         c.fill = PatternFill("solid", fgColor="1B4B7A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
 
-    # Faqat yuqori sarlavha va F.I.Sh ustuni qotiriladi.
-    # Oldingi K2 qotirish ekranning deyarli hammasini muzlatib, gorizontal yurishni to'xtatardi.
-    ws.freeze_panes = "A2"
+    # V18.62: XODIMLAR varag'ida hech qanday qotirilgan/split panel qoldirilmaydi.
+    # Ayrim Windows Excel versiyalarida B2 freeze ham faol katakni oynadan tashqariga
+    # olib chiqib, ekran uning ortidan yurmasligiga sabab bo'ldi. Endi varaq oddiy
+    # Excel varag'i kabi to'liq erkin siljiydi.
+    ws.freeze_panes = None
+    ws.sheet_view.pane = None
+    ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
+    ws.sheet_view.topLeftCell = "A1"
     ws.auto_filter.ref = f"A1:H{MAX_XODIM_QATORI}"
-    ws.sheet_view.zoomScale = 85
-    ws.sheet_view.zoomScaleNormal = 85
+    ws.sheet_view.zoomScale = 100
+    ws.sheet_view.zoomScaleNormal = 100
     ws.row_dimensions[1].height = 32
     ws.cell(1, 4).comment = Comment(
         "Bu ustunga qo'lda yozmang. O'ng tomondagi har bir '<sinf> soat' katagiga raqam yozing: "
@@ -8372,9 +8377,12 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
             ),
         )
 
-        # V18.61: faqat F.I.Sh ustuni va sarlavha qotiriladi.
-        # Shunda K, L, M... sinf soatlari tomon yurganda ekran active katak bilan birga siljiydi.
-        ws.freeze_panes = "A2"
+        # V18.62: freeze/split butunlay o'chiriladi — ekran active katak bilan birga
+        # erkin yuradi. Boshqa Excel fayllaridagi kabi oddiy gorizontal scroll ishlaydi.
+        ws.freeze_panes = None
+        ws.sheet_view.pane = None
+        ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
+        ws.sheet_view.topLeftCell = "A1"
         ws.auto_filter.ref = f"A1:{get_column_letter(sinf_soat_oxirgi_ustuni)}{MAX_XODIM_QATORI}"
         ws.row_dimensions[1].height = 62
 
@@ -8503,12 +8511,12 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
 
     ws2 = wb.create_sheet("IZOH")
     izohlar = [
-        "AQILLI XODIM SHABLONI V18.62 — TO'LDIRISH TARTIBI",
+        "AQILLI XODIM SHABLONI — TO'LDIRISH TARTIBI",
         "1. XODIMLAR varag'ida F.I.Sh.ni yozing; lavozim va toifani ro'yxatdan tanlang.",
         "2. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Bu import yangi sinf yaratmaydi.",
         "3. XODIMLAR varag'ida har bir sinf ustuniga aynan shu sinfdagi haftalik soatni yozing: masalan 1-A=2, 1-B=4. Bo'sh katak — tanlanmagan sinf.",
         "4. Hamma sinflarda soat bir xil bo'lsa HAMMASI ni ☑ qilib 'Barcha sinflarga bir xil soat' katagiga bir marta yozing. D va jami yuklama avtomatik to'ladi.",
-        "4A. Gorizontal yurishda HECH QAYSI ustun qotirilmaydi; faqat yuqori sarlavha qatori turadi. Katak o'ngga yursa ekran ham uning ortidan siljiydi.",
+        "4A. XODIMLAR varag'ida hech bir ustun qotirilmagan. Pastdagi gorizontal scroll, sichqoncha g'ildiragi yoki klaviatura bilan sinf ustunlari bo'ylab erkin yuring.",
         "5. Bir o'qituvchi bir nechta fan yoki guruh o'tsa, fan/guruh kesimidagi aniq soatlarni DARS_BIRIKMALARI varag'ida kiriting.",
         "6. Texnologiya/Jismoniy tarbiya uchun O'g'il bolalar yoki Qiz bolalar; til/Informatika uchun 1-guruh yoki 2-guruhni tanlash mumkin.",
         "7. MALUMOT varag'ida aynan shu maktabdagi sinflar, ruxsat etilgan fanlar, lavozimlar va toifalar ko'rsatiladi.",
@@ -8530,34 +8538,26 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
 
     wb.active = 0
     ws.sheet_view.view = "normal"
-
-    # V18.62: Excel oynasidagi barcha eski split/freeze holatlarini mutlaq tozalaymiz.
-    # Faqat 1-qator qotadi; birorta ustun qotmaydi.
+    # Saqlashdan oldin ham Excel oynasidagi barcha freeze/split izlarini tozalaymiz.
     ws.freeze_panes = None
     ws.sheet_view.pane = None
-    ws.sheet_view.selection = [Selection(activeCell="A1", sqref="A1")]
-    ws.freeze_panes = "A2"
-    ws.sheet_view.selection = [
-        Selection(pane="bottomLeft", activeCell="A2", sqref="A2")
-    ]
+    ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
     ws.sheet_view.topLeftCell = "A1"
-    ws.sheet_view.zoomScale = 90
-    ws.sheet_view.zoomScaleNormal = 90
-
-    wb.properties.title = "SamTM Xodimlar shabloni V18.62"
-    wb.properties.subject = "Faqat yuqori qator qotirilgan; gorizontal erkin siljish"
-
+    ws.sheet_view.showGridLines = True
+    if wb.views:
+        wb.views[0].showHorizontalScroll = True
+        wb.views[0].showVerticalScroll = True
+        wb.views[0].showSheetTabs = True
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
     return StreamingResponse(
         buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={
-            "Content-Disposition": 'attachment; filename="xodimlar_shablon_v18_62.xlsx"',
+            "Content-Disposition": "attachment; filename=xodimlar_shablon_v18_62.xlsx",
             "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
             "Pragma": "no-cache",
             "Expires": "0",
-            "X-SamTM-Template-Version": "18.62",
         },
     )
 
