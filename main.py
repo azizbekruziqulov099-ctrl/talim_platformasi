@@ -106,8 +106,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.71",
-        "previous_version": "smart-school-timetable-v18.70",
+        "versiya": "smart-school-timetable-v18.73",
+        "previous_version": "smart-school-timetable-v18.72",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -128,8 +128,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "optional-auto-method-rules-v18.71",
-            "school_workspace": "auto-method-toggle-and-report-v18.71",
+            "school_timetable": "official-method-preset-compact-matrix-v18.73",
+            "school_workspace": "six-day-fit-method-matrix-v18.73",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -26963,4 +26963,340 @@ def v1871_auto_method_save(sorov: V1871AutoMethodSettings, token: str):
         conn.close()
 
 # ========================= V18.71 END =========================
+
+# ═══════════════════════════════════════════════════════════
+# V18.73 — RASMIY METOD KUNLARI PRESETI + PSIXOLOG ISTISNOSI
+# O'zA 12.12.2024 dagi fan guruhlari asosida birinchi ochilishda
+# qattiq metod kunlari avtomatik qo'llanadi. Keyin rahbariyat
+# o'qituvchi vaqt matritsasida bittalab tuzatishi mumkin.
+# ═══════════════════════════════════════════════════════════
+
+_V1873_METHOD_PREFIX = "V18.73 RASMIY METOD:"
+_V1873_SOURCE_URL = "https://uza.uz/cn/posts/kasbiy-rivojlanish-kuni-va-kasbiy-rivojlanish-soati-joriy-etildi_667022"
+_V1873_DAY_LABELS = {
+    1: "Dushanba", 2: "Seshanba", 3: "Chorshanba",
+    4: "Payshanba", 5: "Juma", 6: "Shanba",
+}
+_V1873_OFFICIAL_DISPLAY = {
+    1: ["Tarix", "Davlat va huquq asoslari", "Tarbiya"],
+    2: ["Ona tili", "Adabiyot", "O‘zbek tili", "Rus tili"],
+    3: ["Fizika", "Astronomiya", "Kimyo", "Biologiya", "Geografiya", "Iqtisodiyot", "Tabiiy fan"],
+    4: ["Matematika", "Algebra", "Geometriya", "Informatika", "Axborot texnologiyalari"],
+    5: ["Ingliz tili", "Nemis tili", "Fransuz tili", "Boshqa xorijiy tillar"],
+    6: ["Boshlang‘ich ta’lim", "Tasviriy san’at", "Chizmachilik", "Musiqa", "Texnologiya", "Jismoniy tarbiya", "Chaqiruvga qadar boshlang‘ich tayyorgarlik"],
+}
+
+
+def _v1873_norm(value):
+    text = str(value or "").casefold()
+    for old in ("‘", "’", "`", "ʼ", "ʻ"):
+        text = text.replace(old, "'")
+    text = re.sub(r"[^0-9a-zа-яёўқғҳў' ]+", " ", text, flags=re.IGNORECASE)
+    return " ".join(text.split())
+
+
+def _v1873_subject_day(subject):
+    key = _v1873_norm(subject)
+    if not key:
+        return None
+
+    # Shanba amaliy fanlari avval tekshiriladi: "jismoniy tarbiya"
+    # oddiy "tarbiya" bilan Dushanbaga tushib ketmasin.
+    if any(token in key for token in (
+        "jismoniy tarbiya", "tasviriy san", "chizmachilik",
+        "musiqa", "chaqiruvga qadar", "boshlang'ich harbiy",
+    )):
+        return 6
+    if "texnologiya" in key and "axborot" not in key and "informatika" not in key:
+        return 6
+
+    # Xorijiy tillar. Ona/O'zbek/Rus tili Seshanbada qoladi.
+    if any(token in key for token in ("ingliz tili", "nemis tili", "fransuz tili", "xorijiy til")):
+        return 5
+
+    # Aniq fanlar.
+    if any(token in key for token in ("matematika", "algebra", "geometriya", "informatika", "axborot texnolog")):
+        return 4
+
+    # Tabiiy fanlar va iqtisodiyot.
+    if any(token in key for token in (
+        "fizika", "astronomiya", "kimyo", "biologiya", "geografiya",
+        "iqtisod", "tadbirkor", "tabiiy fan", "science",
+    )):
+        return 3
+
+    # Filologiya.
+    if any(token in key for token in ("ona tili", "adabiyot", "o'zbek tili", "rus tili", "o'qish savodxonligi")):
+        return 2
+
+    # Ijtimoiy fanlar.
+    if "tarix" in key or "davlat va huquq" in key or key == "tarbiya":
+        return 1
+
+    # "Boshqa xorijiy tillar": yuqoridagi ichki tillar chiqarib tashlangach
+    # qolgan "... tili" fanlari Juma bo'ladi.
+    if key.endswith(" tili"):
+        return 5
+    return None
+
+
+def _v1873_tables(cur):
+    _v1871_auto_method_tables(cur)
+    cur.execute(
+        "ALTER TABLE aqlli_metod_avto_sozlamalari_v2 "
+        "ADD COLUMN IF NOT EXISTS rasmiy_preset_v1873 BOOLEAN NOT NULL DEFAULT FALSE"
+    )
+    cur.execute(
+        "ALTER TABLE aqlli_metod_avto_sozlamalari_v2 "
+        "ADD COLUMN IF NOT EXISTS rasmiy_manba TEXT"
+    )
+
+
+def _v1873_primary_teacher_ids(cur, maktab_id):
+    cur.execute("""
+        SELECT DISTINCT rahbar_user_id AS user_id
+        FROM maktab_sinflari
+        WHERE maktab_id=%s AND rahbar_user_id IS NOT NULL
+          AND NULLIF(REGEXP_REPLACE(COALESCE(sinf,''),'[^0-9]','','g'),'')::int BETWEEN 1 AND 4
+    """, (maktab_id,))
+    return {int(row["user_id"]) for row in cur.fetchall()}
+
+
+def _v1873_assignments(cur, maktab_id):
+    primary_ids = _v1873_primary_teacher_ids(cur, maktab_id)
+    teachers = [
+        row for row in _v1859_effective_teachers(cur, maktab_id)
+        if row.get("dars_beruvchi") and str(row.get("lavozim") or "") != "psixolog"
+    ]
+    assignments = []
+    conflicts = []
+    for teacher in teachers:
+        uid = int(teacher["user_id"])
+        class_grades = []
+        for class_name in teacher.get("sinflar_royxati") or []:
+            match = re.match(r"^\s*(\d+)", str(class_name))
+            if match:
+                class_grades.append(int(match.group(1)))
+        subject_keys = [_v1873_norm(subject) for subject in (teacher.get("fanlar_royxati") or [])]
+        primary_subject_hits = sum(
+            1 for key in subject_keys
+            if any(token in key for token in (
+                "ona tili", "o'qish savodxonligi", "matematika",
+                "tabiiy fan", "boshlang'ich ta'lim"
+            ))
+        )
+        primary_teacher = (
+            uid in primary_ids
+            or any("boshlang'ich ta'lim" in key for key in subject_keys)
+            or (class_grades and max(class_grades) <= 4 and primary_subject_hits >= 2)
+        )
+        if primary_teacher:
+            assignments.append({
+                "user_id": uid,
+                "full_name": teacher["full_name"],
+                "hafta_kuni": 6,
+                "asos": "Boshlang‘ich ta’lim",
+                "fanlar": teacher.get("fanlar_royxati") or [],
+            })
+            continue
+
+        by_day = {}
+        for subject in teacher.get("fanlar_royxati") or []:
+            day = _v1873_subject_day(subject)
+            if day:
+                by_day.setdefault(day, []).append(str(subject))
+        if not by_day:
+            continue
+
+        # Bir nechta guruhga tushgan o'qituvchida eng ko'p fan tushgan kun;
+        # teng bo'lsa haftadagi oldingi kun tanlanadi. Hisobotda ziddiyat chiqadi.
+        chosen_day = sorted(by_day, key=lambda d: (-len(by_day[d]), d))[0]
+        if len(by_day) > 1:
+            conflicts.append({
+                "user_id": uid,
+                "full_name": teacher["full_name"],
+                "kunlar": [
+                    {"hafta_kuni": day, "kun_nomi": _V1873_DAY_LABELS[day], "fanlar": by_day[day]}
+                    for day in sorted(by_day)
+                ],
+                "tanlangan_kun": chosen_day,
+                "tanlangan_kun_nomi": _V1873_DAY_LABELS[chosen_day],
+            })
+        assignments.append({
+            "user_id": uid,
+            "full_name": teacher["full_name"],
+            "hafta_kuni": chosen_day,
+            "asos": ", ".join(by_day[chosen_day]),
+            "fanlar": teacher.get("fanlar_royxati") or [],
+        })
+    return assignments, conflicts
+
+
+def _v1873_apply_official(cur, maktab_id, replace_existing=True):
+    assignments, conflicts = _v1873_assignments(cur, maktab_id)
+    user_ids = [row["user_id"] for row in assignments]
+
+    # Avval eski V18.71/V18.73 avtomatik qatorlar tozalanadi.
+    cur.execute("""
+        DELETE FROM aqlli_oqituvchi_vaqti_v2
+        WHERE maktab_id=%s AND turi='metod_kuni'
+          AND (COALESCE(izoh,'') LIKE 'V18.71 AUTO METOD:%%'
+               OR COALESCE(izoh,'') LIKE 'V18.73 RASMIY METOD:%%')
+    """, (maktab_id,))
+
+    if replace_existing and user_ids:
+        # Birinchi rasmiy qo'llashda shu o'qituvchilarning noto'g'ri qo'lda
+        # kiritilgan metod kunlari ham almashtiriladi. Psixolog bu ro'yxatda yo'q.
+        cur.execute("""
+            DELETE FROM aqlli_oqituvchi_vaqti_v2
+            WHERE maktab_id=%s AND turi='metod_kuni' AND user_id=ANY(%s)
+        """, (maktab_id, user_ids))
+
+    rows = []
+    for item in assignments:
+        note = (
+            f"{_V1873_METHOD_PREFIX} {item['asos']} | "
+            f"{_V1873_DAY_LABELS[item['hafta_kuni']]}"
+        )
+        rows.append((
+            maktab_id, item["user_id"], item["hafta_kuni"], 0, 0,
+            "metod_kuni", True, note,
+        ))
+    if rows:
+        psycopg2.extras.execute_values(cur, """
+            INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi,qattiq,izoh)
+            VALUES %s
+            ON CONFLICT(maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi)
+            DO UPDATE SET qattiq=EXCLUDED.qattiq,izoh=EXCLUDED.izoh
+        """, rows)
+    return assignments, conflicts
+
+
+def _v1873_report(assignments, conflicts):
+    grouped = []
+    for day in range(1, 7):
+        teachers = [row for row in assignments if int(row["hafta_kuni"]) == day]
+        grouped.append({
+            "hafta_kuni": day,
+            "kun_nomi": _V1873_DAY_LABELS[day],
+            "fanlar": _V1873_OFFICIAL_DISPLAY[day],
+            "oqituvchi_soni": len(teachers),
+            "oqituvchilar": [
+                {"user_id": row["user_id"], "full_name": row["full_name"], "asos": row["asos"]}
+                for row in teachers[:80]
+            ],
+        })
+    return {
+        "kunlar": grouped,
+        "jami_oqituvchi": len(assignments),
+        "ziddiyatlar": conflicts,
+        "ziddiyat_soni": len(conflicts),
+        "psixolog_izohi": "Psixologga metod kuni avtomatik belgilanmaydi.",
+        "manba": _V1873_SOURCE_URL,
+    }
+
+
+class V1873OfficialMethodSettings(BaseModel):
+    maktab_id: int
+    yoqilgan: bool = True
+    qayta_qollash: bool = False
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/metod_rasmiy_sozlama")
+def v1873_official_method_get(token: str, maktab_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        _v1873_tables(cur)
+        if not _v1852_staff(cur, actor_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Metod kuni sozlamasini ko'rishga ruxsat yo'q")
+
+        cur.execute("""
+            SELECT yoqilgan,rasmiy_preset_v1873
+            FROM aqlli_metod_avto_sozlamalari_v2 WHERE maktab_id=%s
+        """, (maktab_id,))
+        setting = cur.fetchone()
+        first_apply = False
+
+        if _v1852_manager(cur, actor_id, maktab_id) and not bool((setting or {}).get("rasmiy_preset_v1873")):
+            assignments, conflicts = _v1873_apply_official(cur, maktab_id, replace_existing=True)
+            cur.execute("""
+                INSERT INTO aqlli_metod_avto_sozlamalari_v2(
+                    maktab_id,yoqilgan,yangilagan_user_id,yangilangan_at,
+                    rasmiy_preset_v1873,rasmiy_manba)
+                VALUES(%s,TRUE,%s,NOW(),TRUE,%s)
+                ON CONFLICT(maktab_id) DO UPDATE SET
+                    yoqilgan=TRUE,
+                    yangilagan_user_id=EXCLUDED.yangilagan_user_id,
+                    yangilangan_at=NOW(),
+                    rasmiy_preset_v1873=TRUE,
+                    rasmiy_manba=EXCLUDED.rasmiy_manba
+            """, (maktab_id, actor_id, _V1873_SOURCE_URL))
+            conn.commit()
+            first_apply = True
+            enabled = True
+        else:
+            assignments, conflicts = _v1873_assignments(cur, maktab_id)
+            enabled = bool((setting or {}).get("yoqilgan"))
+
+        return {
+            "yoqilgan": enabled,
+            "birinchi_marta_qollandi": first_apply,
+            **_v1873_report(assignments, conflicts),
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/metod_rasmiy_sozlama")
+def v1873_official_method_save(sorov: V1873OfficialMethodSettings, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        _v1873_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Rasmiy metod kunlarini faqat maktab rahbariyati boshqaradi")
+
+        assignments, conflicts = _v1873_assignments(cur, sorov.maktab_id)
+        if sorov.yoqilgan:
+            assignments, conflicts = _v1873_apply_official(
+                cur, sorov.maktab_id, replace_existing=True
+            )
+        else:
+            cur.execute("""
+                DELETE FROM aqlli_oqituvchi_vaqti_v2
+                WHERE maktab_id=%s AND turi='metod_kuni'
+                  AND COALESCE(izoh,'') LIKE %s
+            """, (sorov.maktab_id, _V1873_METHOD_PREFIX + "%"))
+
+        cur.execute("""
+            INSERT INTO aqlli_metod_avto_sozlamalari_v2(
+                maktab_id,yoqilgan,yangilagan_user_id,yangilangan_at,
+                rasmiy_preset_v1873,rasmiy_manba)
+            VALUES(%s,%s,%s,NOW(),TRUE,%s)
+            ON CONFLICT(maktab_id) DO UPDATE SET
+                yoqilgan=EXCLUDED.yoqilgan,
+                yangilagan_user_id=EXCLUDED.yangilagan_user_id,
+                yangilangan_at=NOW(),
+                rasmiy_preset_v1873=TRUE,
+                rasmiy_manba=EXCLUDED.rasmiy_manba
+        """, (sorov.maktab_id, bool(sorov.yoqilgan), actor_id, _V1873_SOURCE_URL))
+        conn.commit()
+        return {
+            "holat": "saqlandi",
+            "yoqilgan": bool(sorov.yoqilgan),
+            "qayta_qollandi": bool(sorov.yoqilgan and sorov.qayta_qollash),
+            **_v1873_report(assignments, conflicts),
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+# ========================= V18.73 END =========================
 
