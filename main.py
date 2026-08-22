@@ -106,8 +106,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.60",
-        "previous_version": "smart-school-timetable-v18.59",
+        "versiya": "smart-school-timetable-v18.62",
+        "previous_version": "smart-school-timetable-v18.61",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -128,8 +128,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "per-class-hour-template-v18.60",
-            "school_workspace": "teacher-subject-method-report-v18.60",
+            "school_timetable": "hard-reset-row-only-freeze-v18.62",
+            "school_workspace": "teacher-subject-method-report-v18.61",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -8143,11 +8143,15 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     from openpyxl.formatting.rule import CellIsRule
     from openpyxl.workbook.defined_name import DefinedName
     from openpyxl.utils import quote_sheetname, get_column_letter
+    from openpyxl.worksheet.views import Selection
     import io
     from fastapi.responses import StreamingResponse
 
     wb = openpyxl.Workbook()
     ws = wb.active
+    # V18.61: 5000 ta formula qatori Excelni sekinlashtirardi.
+    # 1000 qator maktab xodimlari uchun yetarli va fayl ancha yengil ishlaydi.
+    MAX_XODIM_QATORI = 1000
     ws.title = "XODIMLAR"
     mavjud_sinflar = []
     mavjud_fanlar = []
@@ -8211,8 +8215,12 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         c.fill = PatternFill("solid", fgColor="1B4B7A")
         c.alignment = Alignment(wrap_text=True, vertical="center")
 
+    # Faqat yuqori sarlavha va F.I.Sh ustuni qotiriladi.
+    # Oldingi K2 qotirish ekranning deyarli hammasini muzlatib, gorizontal yurishni to'xtatardi.
     ws.freeze_panes = "A2"
-    ws.auto_filter.ref = "A1:H5000"
+    ws.auto_filter.ref = f"A1:H{MAX_XODIM_QATORI}"
+    ws.sheet_view.zoomScale = 85
+    ws.sheet_view.zoomScaleNormal = 85
     ws.row_dimensions[1].height = 32
     ws.cell(1, 4).comment = Comment(
         "Bu ustunga qo'lda yozmang. O'ng tomondagi har bir '<sinf> soat' katagiga raqam yozing: "
@@ -8278,7 +8286,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     ws.add_data_validation(hammasi_tanlov)
     hammasi_tanlov.add(
         f"{get_column_letter(sinf_hammasi_ustuni)}2:"
-        f"{get_column_letter(sinf_hammasi_ustuni)}5000"
+        f"{get_column_letter(sinf_hammasi_ustuni)}{MAX_XODIM_QATORI}"
     )
 
     sinf_soat_tanlov = DataValidation(
@@ -8296,7 +8304,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     ws.add_data_validation(sinf_soat_tanlov)
     sinf_soat_tanlov.add(
         f"{get_column_letter(sinf_tez_soat_ustuni)}2:"
-        f"{get_column_letter(sinf_tez_soat_ustuni)}5000"
+        f"{get_column_letter(sinf_tez_soat_ustuni)}{MAX_XODIM_QATORI}"
     )
 
     for offset, sinf_nomi in enumerate(mavjud_sinflar):
@@ -8313,14 +8321,14 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         )
         ws.column_dimensions[c.column_letter].width = 10
         sinf_soat_tanlov.add(
-            f"{get_column_letter(col)}2:{get_column_letter(col)}5000"
+            f"{get_column_letter(col)}2:{get_column_letter(col)}{MAX_XODIM_QATORI}"
         )
 
     if mavjud_sinflar:
         hammasi_harfi = get_column_letter(sinf_hammasi_ustuni)
         tez_soat_harfi = get_column_letter(sinf_tez_soat_ustuni)
 
-        for row_index in range(2, 5001):
+        for row_index in range(2, MAX_XODIM_QATORI + 1):
             ws.cell(row_index, sinf_hammasi_ustuni, "☐").alignment = Alignment(
                 horizontal="center", vertical="center"
             )
@@ -8353,7 +8361,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
         # Raqam kiritilgan sinf kataklari yashil ko'rinadi — tanlangan sinfni ko'z bilan tez ajratish mumkin.
         sinf_soat_oraliq = (
             f"{get_column_letter(sinf_soat_birinchi_ustuni)}2:"
-            f"{get_column_letter(sinf_soat_oxirgi_ustuni)}5000"
+            f"{get_column_letter(sinf_soat_oxirgi_ustuni)}{MAX_XODIM_QATORI}"
         )
         ws.conditional_formatting.add(
             sinf_soat_oraliq,
@@ -8364,9 +8372,10 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
             ),
         )
 
-        # Chapdagi xodim ma'lumotlari va tezkor kataklar gorizontal aylantirganda ko'rinib tursin.
-        ws.freeze_panes = f"{get_column_letter(sinf_soat_birinchi_ustuni)}2"
-        ws.auto_filter.ref = f"A1:{get_column_letter(sinf_soat_oxirgi_ustuni)}5000"
+        # V18.61: faqat F.I.Sh ustuni va sarlavha qotiriladi.
+        # Shunda K, L, M... sinf soatlari tomon yurganda ekran active katak bilan birga siljiydi.
+        ws.freeze_panes = "A2"
+        ws.auto_filter.ref = f"A1:{get_column_letter(sinf_soat_oxirgi_ustuni)}{MAX_XODIM_QATORI}"
         ws.row_dimensions[1].height = 62
 
         # Excel fayl ochilganda formulalarni majburiy qayta hisoblasin.
@@ -8466,7 +8475,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     nomlangan_oraliq("Toifalar", "MALUMOT", "C", len(TOIFALAR))
     nomlangan_oraliq("Fanlar", "MALUMOT", "D", len(fan_tanlovlari))
     nomlangan_oraliq("DarsGuruhlari", "MALUMOT", "E", len(guruh_tanlovlari))
-    nomlangan_oraliq("XodimIsmlari", "XODIMLAR", "A", 4999)
+    nomlangan_oraliq("XodimIsmlari", "XODIMLAR", "A", MAX_XODIM_QATORI - 1)
 
     def tanlov_qosh(varaq, formula, kataklar, xato, xatoni_blokla=True, prompt=None):
         tanlov = DataValidation(type="list", formula1=formula, allow_blank=True)
@@ -8494,11 +8503,12 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
 
     ws2 = wb.create_sheet("IZOH")
     izohlar = [
-        "AQILLI XODIM SHABLONI — TO'LDIRISH TARTIBI",
+        "AQILLI XODIM SHABLONI V18.62 — TO'LDIRISH TARTIBI",
         "1. XODIMLAR varag'ida F.I.Sh.ni yozing; lavozim va toifani ro'yxatdan tanlang.",
         "2. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Bu import yangi sinf yaratmaydi.",
         "3. XODIMLAR varag'ida har bir sinf ustuniga aynan shu sinfdagi haftalik soatni yozing: masalan 1-A=2, 1-B=4. Bo'sh katak — tanlanmagan sinf.",
         "4. Hamma sinflarda soat bir xil bo'lsa HAMMASI ni ☑ qilib 'Barcha sinflarga bir xil soat' katagiga bir marta yozing. D va jami yuklama avtomatik to'ladi.",
+        "4A. Gorizontal yurishda HECH QAYSI ustun qotirilmaydi; faqat yuqori sarlavha qatori turadi. Katak o'ngga yursa ekran ham uning ortidan siljiydi.",
         "5. Bir o'qituvchi bir nechta fan yoki guruh o'tsa, fan/guruh kesimidagi aniq soatlarni DARS_BIRIKMALARI varag'ida kiriting.",
         "6. Texnologiya/Jismoniy tarbiya uchun O'g'il bolalar yoki Qiz bolalar; til/Informatika uchun 1-guruh yoki 2-guruhni tanlash mumkin.",
         "7. MALUMOT varag'ida aynan shu maktabdagi sinflar, ruxsat etilgan fanlar, lavozimlar va toifalar ko'rsatiladi.",
@@ -8518,12 +8528,37 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     for row_index in range(2, len(izohlar) + 1):
         ws2.row_dimensions[row_index].height = 34
 
+    wb.active = 0
+    ws.sheet_view.view = "normal"
+
+    # V18.62: Excel oynasidagi barcha eski split/freeze holatlarini mutlaq tozalaymiz.
+    # Faqat 1-qator qotadi; birorta ustun qotmaydi.
+    ws.freeze_panes = None
+    ws.sheet_view.pane = None
+    ws.sheet_view.selection = [Selection(activeCell="A1", sqref="A1")]
+    ws.freeze_panes = "A2"
+    ws.sheet_view.selection = [
+        Selection(pane="bottomLeft", activeCell="A2", sqref="A2")
+    ]
+    ws.sheet_view.topLeftCell = "A1"
+    ws.sheet_view.zoomScale = 90
+    ws.sheet_view.zoomScaleNormal = 90
+
+    wb.properties.title = "SamTM Xodimlar shabloni V18.62"
+    wb.properties.subject = "Faqat yuqori qator qotirilgan; gorizontal erkin siljish"
+
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
     return StreamingResponse(
         buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": "attachment; filename=xodimlar_shablon.xlsx"},
+        headers={
+            "Content-Disposition": 'attachment; filename="xodimlar_shablon_v18_62.xlsx"',
+            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+            "Pragma": "no-cache",
+            "Expires": "0",
+            "X-SamTM-Template-Version": "18.62",
+        },
     )
 
 
