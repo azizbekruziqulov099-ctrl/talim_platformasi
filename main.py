@@ -106,8 +106,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.66",
-        "previous_version": "smart-school-timetable-v18.65",
+        "versiya": "smart-school-timetable-v18.68",
+        "previous_version": "smart-school-timetable-v18.67",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -128,8 +128,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "class-hour-fixed-slot-and-method-clear-v18.66",
-            "school_workspace": "method-clear-and-class-hour-ui-v18.66",
+            "school_timetable": "exact-subject-teacher-time-matrix-v18.68",
+            "school_workspace": "all-teachers-day-period-matrix-v18.68",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -26469,3 +26469,119 @@ def _v1866_class_hour_violations(cur, maktab_id: int, run_id: int):
 
 # ========================= V18.66 END =========================
 
+
+
+# ═══════════════════════════════════════════════════════════
+# V18.68 — O'QITUVCHI VAQT MATRITSASI
+# ═══════════════════════════════════════════════════════════
+
+class V1868TeacherMatrixItem(BaseModel):
+    user_id: int
+    qoidalar: Optional[V1852TeacherRules] = None
+    vaqtlar: list[dict] = []
+
+
+class V1868TeacherMatrixSave(BaseModel):
+    maktab_id: int
+    oqituvchilar: list[V1868TeacherMatrixItem]
+
+
+@app.put("/api/maktab/aqlli_jadval/v2/oqituvchi_vaqt_matritsasi")
+def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        items_by_user = {}
+        for item in sorov.oqituvchilar:
+            uid = int(item.user_id)
+            if uid:
+                items_by_user[uid] = item
+        if not items_by_user:
+            raise HTTPException(status_code=400, detail="Saqlash uchun o'qituvchi tanlanmagan")
+        if len(items_by_user) > 300:
+            raise HTTPException(status_code=400, detail="Bir so'rovda 300 tadan ortiq xodim saqlanmaydi")
+
+        manager = _v1852_manager(cur, actor_id, sorov.maktab_id)
+        if not manager and (len(items_by_user) != 1 or actor_id not in items_by_user):
+            raise HTTPException(
+                status_code=403,
+                detail="O'qituvchi faqat o'z vaqtini, rahbariyat esa barcha o'qituvchilarni o'zgartira oladi",
+            )
+
+        user_ids = list(items_by_user)
+        cur.execute(
+            "SELECT user_id FROM users WHERE maktab_id=%s AND user_id=ANY(%s)",
+            (sorov.maktab_id, user_ids),
+        )
+        found = {int(row["user_id"]) for row in cur.fetchall()}
+        missing = [uid for uid in user_ids if uid not in found]
+        if missing:
+            raise HTTPException(status_code=400, detail=f"Maktabda topilmagan xodimlar: {missing[:10]}")
+
+        inserted_count = 0
+        for uid, item in items_by_user.items():
+            if item.qoidalar is not None:
+                rules = item.qoidalar
+                if rules.eng_kech_dars < rules.eng_erta_dars:
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{uid}: eng kech dars eng erta darsdan oldin bo'lmaydi",
+                    )
+                cur.execute(
+                    """INSERT INTO aqlli_oqituvchi_qoidalari_v2(
+                        maktab_id,user_id,kunlik_max,ketma_ket_max,okno_max,
+                        afzal_smena,eng_erta_dars,eng_kech_dars)
+                       VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+                       ON CONFLICT(maktab_id,user_id) DO UPDATE SET
+                         kunlik_max=EXCLUDED.kunlik_max,
+                         ketma_ket_max=EXCLUDED.ketma_ket_max,
+                         okno_max=EXCLUDED.okno_max,
+                         afzal_smena=EXCLUDED.afzal_smena,
+                         eng_erta_dars=EXCLUDED.eng_erta_dars,
+                         eng_kech_dars=EXCLUDED.eng_kech_dars""",
+                    (
+                        sorov.maktab_id, uid, rules.kunlik_max, rules.ketma_ket_max,
+                        rules.okno_max, rules.afzal_smena, rules.eng_erta_dars,
+                        rules.eng_kech_dars,
+                    ),
+                )
+
+            validated = _v1854_validate_time_items(item.vaqtlar)
+            unique_rows = {}
+            for day, row_shift, period, kind, hard, note in validated:
+                unique_rows[(day, row_shift, period, kind)] = (
+                    day, row_shift, period, kind, hard, note
+                )
+
+            cur.execute(
+                "DELETE FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s AND user_id=%s",
+                (sorov.maktab_id, uid),
+            )
+            rows = [
+                (sorov.maktab_id, uid, day, row_shift, period, kind, hard, note)
+                for day, row_shift, period, kind, hard, note in unique_rows.values()
+            ]
+            if rows:
+                psycopg2.extras.execute_values(
+                    cur,
+                    """INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                        maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi,qattiq,izoh)
+                       VALUES %s""",
+                    rows,
+                )
+                inserted_count += len(rows)
+
+        conn.commit()
+        return {
+            "holat": "saqlandi",
+            "oqituvchi_soni": len(items_by_user),
+            "vaqt_soni": inserted_count,
+        }
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close(); conn.close()
+
+# ========================= V18.68 END =========================
