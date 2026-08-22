@@ -106,8 +106,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.68",
-        "previous_version": "smart-school-timetable-v18.67",
+        "versiya": "smart-school-timetable-v18.69",
+        "previous_version": "smart-school-timetable-v18.68",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -128,8 +128,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "exact-subject-teacher-time-matrix-v18.68",
-            "school_workspace": "all-teachers-day-period-matrix-v18.68",
+            "school_timetable": "simple-two-shift-method-matrix-v18.69",
+            "school_workspace": "two-shifts-visible-method-colors-v18.69",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
