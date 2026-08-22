@@ -106,8 +106,8 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "smart-school-timetable-v18.70",
-        "previous_version": "smart-school-timetable-v18.69",
+        "versiya": "smart-school-timetable-v18.71",
+        "previous_version": "smart-school-timetable-v18.70",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -128,8 +128,8 @@ def versiya():
             "performance": "safe-db-pool-compression-request-guards-v18.35",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "auto-select-exact-subject-teachers-v18.70",
-            "school_workspace": "subject-selection-auto-targets-v18.70",
+            "school_timetable": "optional-auto-method-rules-v18.71",
+            "school_workspace": "auto-method-toggle-and-report-v18.71",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -26585,3 +26585,382 @@ def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
         cur.close(); conn.close()
 
 # ========================= V18.68 END =========================
+
+# ═══════════════════════════════════════════════════════════
+# V18.71 — AVTO METOD KUNI FAQAT ADMIN YOQQANDA ISHLAYDI
+# Maktab fan → kun qoidalarini bir marta saqlaydi. Avto O'CHIQ bo'lsa
+# tizim o'zi hech qanday metod kuni topmaydi va eski avto belgilarni olib tashlaydi.
+# ═══════════════════════════════════════════════════════════
+
+_V1871_AUTO_METHOD_PREFIX = "V18.71 AUTO METOD:"
+_V1871_OLD_AUTO_PREFIX = "V18.54 taxminiy kasbiy rivojlanish kuni"
+
+
+def _v1871_method_subject_key(value):
+    text = str(value or "").casefold()
+    for old in ("‘", "’", "`", "ʼ", "ʻ"):
+        text = text.replace(old, "'")
+    return " ".join(text.split())
+
+
+def _v1871_auto_method_tables(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_metod_avto_sozlamalari_v2(
+        maktab_id INTEGER PRIMARY KEY REFERENCES maktablar(id) ON DELETE CASCADE,
+        yoqilgan BOOLEAN NOT NULL DEFAULT FALSE,
+        yangilagan_user_id BIGINT,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_metod_fan_qoidalari_v2(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        fan_nomi TEXT NOT NULL,
+        fan_kaliti TEXT NOT NULL,
+        hafta_kuni INTEGER NOT NULL CHECK(hafta_kuni BETWEEN 1 AND 7),
+        qattiq BOOLEAN NOT NULL DEFAULT TRUE,
+        tartib INTEGER NOT NULL DEFAULT 0,
+        UNIQUE(maktab_id, fan_kaliti)
+    )""")
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS idx_metod_fan_qoidalari_v2 "
+        "ON aqlli_metod_fan_qoidalari_v2(maktab_id,tartib,id)"
+    )
+
+
+def _v1871_auto_method_where():
+    return "(COALESCE(izoh,'') LIKE %s OR COALESCE(izoh,'') LIKE %s)"
+
+
+def _v1871_method_rules(cur, maktab_id: int):
+    cur.execute(
+        """SELECT id,fan_nomi,fan_kaliti,hafta_kuni,qattiq,tartib
+           FROM aqlli_metod_fan_qoidalari_v2
+           WHERE maktab_id=%s ORDER BY tartib,id""",
+        (maktab_id,),
+    )
+    return cur.fetchall()
+
+
+def _v1871_method_report(cur, maktab_id: int, rules=None):
+    rules = list(rules if rules is not None else _v1871_method_rules(cur, maktab_id))
+    teachers = [
+        row for row in _v1859_effective_teachers(cur, maktab_id)
+        if row.get("dars_beruvchi")
+    ]
+    result = []
+    for rule in rules:
+        matched = []
+        for teacher in teachers:
+            subjects = teacher.get("fanlar_royxati") or []
+            if any(
+                _v1871_method_subject_key(subject) == rule["fan_kaliti"]
+                for subject in subjects
+            ):
+                matched.append({
+                    "user_id": int(teacher["user_id"]),
+                    "full_name": teacher["full_name"],
+                })
+        result.append({
+            "id": rule.get("id"),
+            "fan_nomi": rule["fan_nomi"],
+            "hafta_kuni": int(rule["hafta_kuni"]),
+            "kun_nomi": _V1852_HAFTA.get(
+                int(rule["hafta_kuni"]), str(rule["hafta_kuni"])
+            ),
+            "qattiq": bool(rule["qattiq"]),
+            "oqituvchi_soni": len(matched),
+            "oqituvchilar": matched[:50],
+        })
+    return result
+
+
+class V1871AutoMethodRule(BaseModel):
+    fan_nomi: str
+    hafta_kuni: int
+    qattiq: bool = True
+
+
+class V1871AutoMethodSettings(BaseModel):
+    maktab_id: int
+    yoqilgan: bool = False
+    qoidalar: list[V1871AutoMethodRule] = []
+
+
+@app.on_event("startup")
+def _v1871_startup_disable_old_auto_methods():
+    """Eski V18.54 taxminiy avtomatik metod kunlarini bir marta tozalaydi.
+
+    Qo'lda belgilangan metod kunlariga tegmaydi. V18.71 dagi yangi avto
+    qoidalar faqat administrator YOQ qilgandan keyin yaratiladi.
+    """
+    try:
+        conn = _db()
+        cur = conn.cursor()
+        _v1871_auto_method_tables(cur)
+        cur.execute(
+            """DELETE FROM aqlli_oqituvchi_vaqti_v2
+               WHERE turi='metod_kuni' AND COALESCE(izoh,'') LIKE %s""",
+            (_V1871_OLD_AUTO_PREFIX + "%",),
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as exc:
+        print(f"[V18.71 eski avto metod tozalash] {exc}")
+
+
+@app.get("/api/maktab/aqlli_jadval/v2/metod_avto_sozlama")
+def v1871_auto_method_get(token: str, maktab_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        _v1871_auto_method_tables(cur)
+        if not _v1852_staff(cur, actor_id, maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Bu maktab metod kuni sozlamasini ko'rishga ruxsat yo'q",
+            )
+        cur.execute(
+            "SELECT yoqilgan FROM aqlli_metod_avto_sozlamalari_v2 "
+            "WHERE maktab_id=%s",
+            (maktab_id,),
+        )
+        row = cur.fetchone()
+        rules = _v1871_method_rules(cur, maktab_id)
+        return {
+            "yoqilgan": bool((row or {}).get("yoqilgan")),
+            "qoidalar": [
+                {
+                    "id": rule.get("id"),
+                    "fan_nomi": rule["fan_nomi"],
+                    "hafta_kuni": int(rule["hafta_kuni"]),
+                    "qattiq": bool(rule["qattiq"]),
+                }
+                for rule in rules
+            ],
+            "hisobot": _v1871_method_report(cur, maktab_id, rules),
+            "izoh": (
+                "Avto O'CHIQ bo'lsa tizim metod kunini o'zi aniqlamaydi. "
+                "Avto YOQ bo'lsa faqat shu fan→kun qoidalari ishlaydi."
+            ),
+        }
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.put("/api/maktab/aqlli_jadval/v2/metod_avto_sozlama")
+def v1871_auto_method_save(sorov: V1871AutoMethodSettings, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        _v1871_auto_method_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Avto metod kunini faqat maktab rahbariyati boshqaradi",
+            )
+
+        year = _v1852_active_year(cur, sorov.maktab_id)
+        weekdays = int((year or {}).get("hafta_kunlari") or 6)
+
+        # Faqat maktabdagi aniq fan nomlari. TARIX/TARBIYA kabi yaqin
+        # so'zlar hech qachon bir-biriga aralashmaydi.
+        teachers = [
+            row for row in _v1859_effective_teachers(cur, sorov.maktab_id)
+            if row.get("dars_beruvchi")
+        ]
+        canonical = {}
+        for teacher in teachers:
+            for subject in teacher.get("fanlar_royxati") or []:
+                key = _v1871_method_subject_key(subject)
+                if key:
+                    canonical.setdefault(key, str(subject).strip())
+
+        normalized_rules = []
+        seen = set()
+        for index, item in enumerate(sorov.qoidalar):
+            key = _v1871_method_subject_key(item.fan_nomi)
+            if not key or key in seen:
+                continue
+            if key not in canonical:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "Maktab o'qituvchilarida aniq fan topilmadi: "
+                        f"{item.fan_nomi}"
+                    ),
+                )
+            day = int(item.hafta_kuni)
+            if day < 1 or day > weekdays:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{canonical[key]} uchun hafta kuni noto'g'ri",
+                )
+            seen.add(key)
+            normalized_rules.append({
+                "fan_nomi": canonical[key],
+                "fan_kaliti": key,
+                "hafta_kuni": day,
+                "qattiq": bool(item.qattiq),
+                "tartib": index,
+            })
+
+        if sorov.yoqilgan and not normalized_rules:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Avto metod kunini yoqish uchun kamida bitta "
+                    "fan→kun qoidasi kerak"
+                ),
+            )
+
+        cur.execute(
+            "DELETE FROM aqlli_metod_fan_qoidalari_v2 WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        for rule in normalized_rules:
+            cur.execute(
+                """INSERT INTO aqlli_metod_fan_qoidalari_v2(
+                    maktab_id,fan_nomi,fan_kaliti,hafta_kuni,qattiq,tartib)
+                   VALUES(%s,%s,%s,%s,%s,%s)""",
+                (
+                    sorov.maktab_id,
+                    rule["fan_nomi"],
+                    rule["fan_kaliti"],
+                    rule["hafta_kuni"],
+                    rule["qattiq"],
+                    rule["tartib"],
+                ),
+            )
+
+        cur.execute(
+            """INSERT INTO aqlli_metod_avto_sozlamalari_v2(
+                maktab_id,yoqilgan,yangilagan_user_id,yangilangan_at)
+               VALUES(%s,%s,%s,NOW())
+               ON CONFLICT(maktab_id) DO UPDATE SET
+                 yoqilgan=EXCLUDED.yoqilgan,
+                 yangilagan_user_id=EXCLUDED.yangilagan_user_id,
+                 yangilangan_at=NOW()""",
+            (sorov.maktab_id, bool(sorov.yoqilgan), actor_id),
+        )
+
+        # Eski va yangi avtomatik qatorlar qayta quriladi.
+        # Qo'lda belgilangan metod kunlariga tegilmaydi.
+        auto_where = _v1871_auto_method_where()
+        cur.execute(
+            f"""DELETE FROM aqlli_oqituvchi_vaqti_v2
+                WHERE maktab_id=%s AND turi='metod_kuni'
+                  AND {auto_where}""",
+            (
+                sorov.maktab_id,
+                _V1871_AUTO_METHOD_PREFIX + "%",
+                _V1871_OLD_AUTO_PREFIX + "%",
+            ),
+        )
+
+        applied = 0
+        skipped_manual = []
+        conflicts = []
+
+        if sorov.yoqilgan:
+            cur.execute(
+                f"""SELECT DISTINCT user_id
+                    FROM aqlli_oqituvchi_vaqti_v2
+                    WHERE maktab_id=%s AND turi='metod_kuni'
+                      AND NOT {auto_where}""",
+                (
+                    sorov.maktab_id,
+                    _V1871_AUTO_METHOD_PREFIX + "%",
+                    _V1871_OLD_AUTO_PREFIX + "%",
+                ),
+            )
+            manual_users = {int(row["user_id"]) for row in cur.fetchall()}
+
+            for teacher in teachers:
+                uid = int(teacher["user_id"])
+                subject_keys = {
+                    _v1871_method_subject_key(subject)
+                    for subject in (teacher.get("fanlar_royxati") or [])
+                }
+                matched = [
+                    rule
+                    for rule in normalized_rules
+                    if rule["fan_kaliti"] in subject_keys
+                ]
+                if not matched:
+                    continue
+
+                if uid in manual_users:
+                    skipped_manual.append({
+                        "user_id": uid,
+                        "full_name": teacher["full_name"],
+                    })
+                    continue
+
+                chosen = matched[0]
+                days = sorted({rule["hafta_kuni"] for rule in matched})
+                if len(days) > 1:
+                    conflicts.append({
+                        "user_id": uid,
+                        "full_name": teacher["full_name"],
+                        "fanlar": [rule["fan_nomi"] for rule in matched],
+                        "kunlar": [
+                            _V1852_HAFTA.get(day, str(day))
+                            for day in days
+                        ],
+                        "tanlangan": _V1852_HAFTA.get(
+                            chosen["hafta_kuni"],
+                            str(chosen["hafta_kuni"]),
+                        ),
+                    })
+
+                note = (
+                    f"{_V1871_AUTO_METHOD_PREFIX} {chosen['fan_nomi']} | "
+                    f"{_V1852_HAFTA.get(chosen['hafta_kuni'], chosen['hafta_kuni'])}"
+                )
+                cur.execute(
+                    """INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                        maktab_id,user_id,hafta_kuni,smena,dars_raqami,
+                        turi,qattiq,izoh)
+                       VALUES(%s,%s,%s,0,0,'metod_kuni',%s,%s)
+                       ON CONFLICT(
+                         maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi
+                       ) DO UPDATE SET
+                         qattiq=EXCLUDED.qattiq,
+                         izoh=EXCLUDED.izoh""",
+                    (
+                        sorov.maktab_id,
+                        uid,
+                        chosen["hafta_kuni"],
+                        chosen["qattiq"],
+                        note,
+                    ),
+                )
+                applied += 1
+
+        conn.commit()
+        rules = _v1871_method_rules(cur, sorov.maktab_id)
+        return {
+            "holat": "saqlandi",
+            "yoqilgan": bool(sorov.yoqilgan),
+            "qoida_soni": len(rules),
+            "avto_belgilangan": applied,
+            "qolda_metod_borligi_uchun_otkazildi": skipped_manual,
+            "bir_necha_fan_kuni_ziddiyati": conflicts,
+            "hisobot": _v1871_method_report(
+                cur, sorov.maktab_id, rules
+            ),
+        }
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+# ========================= V18.71 END =========================
+
