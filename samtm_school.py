@@ -6552,6 +6552,23 @@ def _v1876_group_review_report(cur, maktab_id: int):
             for warning in warnings
         )
 
+        # Parallel guruh hisobining uchta alohida o'lchovi:
+        #   1) sinf reja soati — guruhlar soniga ko'paymaydi;
+        #   2) o'qituvchi-soat — har bir guruh o'qituvchisiga alohida yoziladi;
+        #   3) jadval sloti — guruhlar bir vaqtda parallel turgani uchun reja soatiga teng.
+        parallel_guruh_soni = (
+            len(group_payload)
+            if mode == "group" and group_payload
+            else (
+                len(distinct_teachers)
+                if mode == "group" and len(distinct_teachers) >= 2
+                else 1
+            )
+        )
+        sinf_reja_soati = int(weekly_hours or 0)
+        jadval_parallel_slot_soni = int(weekly_hours or 0)
+        oqituvchi_soat_jami = int(weekly_hours or 0) * int(parallel_guruh_soni)
+
         review_pairs.append({
             "sinf_id": pair["sinf_id"],
             "sinf": pair["sinf"],
@@ -6560,6 +6577,11 @@ def _v1876_group_review_report(cur, maktab_id: int):
             "fan_nomi": pair["fan_nomi"],
             "fan_kaliti": pair["fan_kaliti"],
             "haftalik_soat": weekly_hours,
+            "sinf_reja_soati": sinf_reja_soati,
+            "jadval_parallel_slot_soni": jadval_parallel_slot_soni,
+            "parallel_guruh_soni": parallel_guruh_soni,
+            "har_bir_guruh_oqituvchi_soati": int(weekly_hours or 0),
+            "oqituvchi_soat_jami": oqituvchi_soat_jami,
             "kunlik_max": daily_max,
             "status": status,
             "tasdiqlangan": status == "tasdiqlangan",
@@ -7170,6 +7192,1030 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
         cur.close(); conn.close()
 
 # ========================= V18.76 QUICK GROUP SYSTEM END =========================
+
+
+# ═══════════════════════════════════════════════════════════
+# V19.2 — O'QITUVCHI-ASOSLI YUKLAMA + AQILLI ALMASHTIRISH
+#
+# Bitta kanonik qator:
+#   o'qituvchi + fan + sinf + aniq guruh + haftalik soat.
+#
+# Excel import va saytdagi qo'lda kiritish aynan bir xil
+# maktab_dars_birikmalari manbasiga yozadi. Shuning uchun bir o'qituvchi
+# Fizika, Astronomiya va Iqtisoddan turli sinf/guruhlarga kirsa ham fanlar
+# aralashmaydi. Sinf reja soati guruhlar soniga ko'paymaydi, o'qituvchi
+# yuklamasi esa har bir guruh bo'yicha alohida yig'iladi.
+# ═══════════════════════════════════════════════════════════
+
+
+SAMTM_V19_2_AUTO_SWAP_DEFAULT = str(
+    os.getenv("SAMTM_V19_2_AUTO_SWAP_DEFAULT", "true")
+).strip().lower() not in {"0", "false", "no", "off"}
+SAMTM_V19_2_SWAP_SUGGESTION_LIMIT = max(
+    1, min(60, int(os.getenv("SAMTM_V19_2_SWAP_SUGGESTION_LIMIT", "24")))
+)
+
+
+def _v192_tables(cur):
+    _v1876_tables(cur)
+    cur.execute(
+        "ALTER TABLE maktab_dars_birikmalari "
+        "ADD COLUMN IF NOT EXISTS xona_id BIGINT REFERENCES aqlli_xonalar_v2(id) ON DELETE SET NULL"
+    )
+    cur.execute(
+        "ALTER TABLE maktab_dars_birikmalari "
+        "ADD COLUMN IF NOT EXISTS yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()"
+    )
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_boshqaruv_v19_2(
+        maktab_id INTEGER PRIMARY KEY REFERENCES maktablar(id) ON DELETE CASCADE,
+        avtomatik_tavsiya BOOLEAN NOT NULL DEFAULT TRUE,
+        yangilagan_user_id BIGINT,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_ozgarish_log_v19_2(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
+        manba_slot_id BIGINT,
+        eski_hafta_kuni INTEGER NOT NULL,
+        eski_dars_raqami INTEGER NOT NULL,
+        yangi_hafta_kuni INTEGER NOT NULL,
+        yangi_dars_raqami INTEGER NOT NULL,
+        turi TEXT NOT NULL CHECK(turi IN ('kochirish','almashtirish')),
+        bajargan_user_id BIGINT,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS idx_v192_change_log_run "
+        "ON aqlli_jadval_ozgarish_log_v19_2(urinish_id,yaratilgan_at DESC)"
+    )
+
+
+@app.on_event("startup")
+def _v192_startup_tables():
+    try:
+        conn = _db(); cur = conn.cursor()
+        _v192_tables(cur)
+        conn.commit(); cur.close(); conn.close()
+    except Exception as exc:
+        print(f"[V19.2 o'qituvchi yuklamasi] {exc}", flush=True)
+
+
+def _v192_clean_subject(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def _v192_group_variants(cur, maktab_id: int):
+    systems = _v1876_group_system_catalog(cur, maktab_id)
+    cur.execute("""SELECT id,sinf,harf,COALESCE(smena,1) AS smena
+                   FROM maktab_sinflari WHERE maktab_id=%s
+                   ORDER BY sinf::int,harf""", (maktab_id,))
+    classes = [dict(row) for row in cur.fetchall()]
+    systems_by_class = {}
+    for system in systems:
+        systems_by_class.setdefault(int(system["sinf_id"]), []).append(system)
+
+    result = []
+    for cls in classes:
+        class_id = int(cls["id"])
+        class_name = f"{cls['sinf']}-{cls['harf']}"
+        result.append({
+            "sinf_id": class_id,
+            "sinf": class_name,
+            "guruh_kaliti": "whole",
+            "guruh_nomi": "Butun sinf",
+            "qisqa": class_name,
+            "turi": "whole",
+            "tizim_id": None,
+            "fanlar": [],
+        })
+        seen = set()
+        for system in systems_by_class.get(class_id, []):
+            for group in system.get("guruhlar") or []:
+                key = str(group.get("guruh_kaliti") or "").strip()
+                if not key or key in seen:
+                    continue
+                seen.add(key)
+                short = {
+                    "group_1": "1G",
+                    "group_2": "2G",
+                    "boys": "O‘",
+                    "girls": "Q",
+                }.get(key, str(group.get("guruh_nomi") or key)[:8])
+                result.append({
+                    "sinf_id": class_id,
+                    "sinf": class_name,
+                    "guruh_kaliti": key,
+                    "guruh_nomi": str(group.get("guruh_nomi") or key),
+                    "qisqa": short,
+                    "turi": str(system.get("turi") or "manual"),
+                    "tizim_id": int(system["id"]),
+                    "fanlar": list(system.get("fanlar") or []),
+                })
+    return classes, systems, result
+
+
+def _v192_assignment_rows(cur, maktab_id: int):
+    cur.execute("""SELECT b.id,b.maktab_id,b.user_id,b.sinf_id,b.fan_nomi,
+                          COALESCE(NULLIF(b.guruh_kaliti,''),'whole') AS guruh_kaliti,
+                          COALESCE(b.haftalik_soat,0) AS haftalik_soat,
+                          COALESCE(b.kunlik_max,1) AS kunlik_max,b.xona_id,
+                          COALESCE(b.manba,'noma_lum') AS manba,
+                          u.full_name,s.sinf,s.harf,COALESCE(s.smena,1) AS smena
+                   FROM maktab_dars_birikmalari b
+                   JOIN users u ON u.user_id=b.user_id
+                   JOIN maktab_sinflari s ON s.id=b.sinf_id
+                   WHERE b.maktab_id=%s
+                   ORDER BY u.full_name,s.sinf::int,s.harf,b.fan_nomi,b.guruh_kaliti""",
+                (maktab_id,))
+    return [dict(row) for row in cur.fetchall()]
+
+
+def _v192_totals(cur, maktab_id: int, rows, classes):
+    teacher_base = {}
+    class_subject = {}
+    for row in rows:
+        hours = max(0, int(row.get("haftalik_soat") or 0))
+        teacher_id = int(row["user_id"])
+        teacher_base[teacher_id] = teacher_base.get(teacher_id, 0) + hours
+        pair = (int(row["sinf_id"]), _v1875_subject_key(row["fan_nomi"]))
+        data = class_subject.setdefault(pair, {"whole": [], "groups": [], "fan_nomi": row["fan_nomi"]})
+        if _v1875_group_key(row.get("guruh_kaliti")) == "whole":
+            data["whole"].append(hours)
+        else:
+            data["groups"].append(hours)
+
+    cur.execute("""SELECT s.rahbar_user_id,COUNT(*) AS son
+                   FROM aqlli_sinf_soati_qoidalari_v2 q
+                   JOIN maktab_sinflari s ON s.id=q.sinf_id
+                   WHERE q.maktab_id=%s AND q.faol=TRUE
+                     AND s.rahbar_user_id IS NOT NULL
+                   GROUP BY s.rahbar_user_id""", (maktab_id,))
+    class_hour_extra = {}
+    for row in cur.fetchall():
+        teacher_id = row.get("rahbar_user_id")
+        if teacher_id is not None:
+            class_hour_extra[int(teacher_id)] = int(row.get("son") or 0)
+
+    class_totals = {int(cls["id"]): 0 for cls in classes}
+    subject_totals = []
+    warnings = []
+    for (class_id, _), data in class_subject.items():
+        if data["whole"] and data["groups"]:
+            warnings.append(f"{data['fan_nomi']}: butun sinf va guruh qatori birga yozilgan")
+        if data["groups"]:
+            values = [value for value in data["groups"] if value > 0]
+            weekly = max(values, default=0)
+            if len(set(values)) > 1:
+                warnings.append(f"{data['fan_nomi']}: parallel guruh soatlari teng emas")
+        else:
+            weekly = sum(data["whole"])
+        class_totals[class_id] = class_totals.get(class_id, 0) + weekly
+        subject_totals.append({
+            "sinf_id": class_id,
+            "fan_nomi": data["fan_nomi"],
+            "haftalik_soat": weekly,
+        })
+
+    year = _v1852_active_year(cur, maktab_id)
+    school_days = 0
+    school_weeks = 0.0
+    if year:
+        current = year["boshlanish"]
+        end = year["tugash"]
+        weekdays = int(year.get("hafta_kunlari") or 6)
+        while current <= end:
+            if _v1852_is_school_day(cur, maktab_id, current, weekdays):
+                school_days += 1
+            current += timedelta(days=1)
+        school_weeks = round(school_days / max(1, weekdays), 2)
+
+    teacher_totals = []
+    cur.execute("SELECT user_id,full_name FROM users WHERE maktab_id=%s ORDER BY full_name", (maktab_id,))
+    for teacher in cur.fetchall():
+        teacher_id = int(teacher["user_id"])
+        base = int(teacher_base.get(teacher_id, 0))
+        extra = int(class_hour_extra.get(teacher_id, 0))
+        teacher_totals.append({
+            "user_id": teacher_id,
+            "full_name": teacher["full_name"],
+            "fan_soati": base,
+            "sinf_soati": extra,
+            "haftalik_jami": base + extra,
+        })
+
+    school_weekly = sum(class_totals.values())
+    return {
+        "oqituvchilar": teacher_totals,
+        "sinflar": [
+            {
+                "sinf_id": int(cls["id"]),
+                "sinf": f"{cls['sinf']}-{cls['harf']}",
+                "haftalik_soat": int(class_totals.get(int(cls["id"]), 0)),
+                "yillik_soat": round(int(class_totals.get(int(cls["id"]), 0)) * school_weeks),
+            }
+            for cls in classes
+        ],
+        "fanlar": subject_totals,
+        "maktab_haftalik_soat": school_weekly,
+        "maktab_yillik_soat": round(school_weekly * school_weeks),
+        "oquv_kuni": school_days,
+        "oquv_haftasi": school_weeks,
+        "oqituvchi_soat_jami": sum(item["haftalik_jami"] for item in teacher_totals),
+        "ogohlantirishlar": list(dict.fromkeys(warnings)),
+    }
+
+
+def _v192_matrix_payload(cur, maktab_id: int):
+    classes, systems, variants = _v192_group_variants(cur, maktab_id)
+    rows = _v192_assignment_rows(cur, maktab_id)
+    variant_names = {
+        (int(row["sinf_id"]), str(row["guruh_kaliti"])): row
+        for row in variants
+    }
+    for row in rows:
+        variant = variant_names.get(
+            (int(row["sinf_id"]), _v1875_group_key(row.get("guruh_kaliti")))
+        )
+        row["guruh_nomi"] = (variant or {}).get("guruh_nomi", row["guruh_kaliti"])
+        row["guruh_qisqa"] = (variant or {}).get("qisqa", row["guruh_kaliti"])
+        row["sinf_nomi"] = f"{row['sinf']}-{row['harf']}"
+
+    teachers = _v1859_effective_teachers(cur, maktab_id)
+    cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
+    subjects = [row["fan_nomi"] for row in cur.fetchall()]
+    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE ORDER BY nomi", (maktab_id,))
+    rooms = [dict(row) for row in cur.fetchall()]
+    cur.execute("""SELECT avtomatik_tavsiya FROM aqlli_jadval_boshqaruv_v19_2
+                   WHERE maktab_id=%s""", (maktab_id,))
+    mode = cur.fetchone()
+    return {
+        "versiya": "teacher-first-smart-load-v19.2",
+        "paket": "all-14-sections-updated",
+        "sinflar": classes,
+        "oqituvchilar": teachers,
+        "fanlar": subjects,
+        "xonalar": rooms,
+        "guruh_variantlari": variants,
+        "birikmalar": rows,
+        "hisob": _v192_totals(cur, maktab_id, rows, classes),
+        "avtomatik_tavsiya": (
+            SAMTM_V19_2_AUTO_SWAP_DEFAULT
+            if not mode else bool(mode["avtomatik_tavsiya"])
+        ),
+    }
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/yuklama_matritsasi")
+def v192_load_matrix(token: str, maktab_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        if not _v1852_staff(cur, actor_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Bu maktab yuklamasini ko'rishga ruxsat yo'q")
+        payload = _v192_matrix_payload(cur, maktab_id)
+        conn.commit()
+        return payload
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V192TeacherLoadRow(BaseModel):
+    sinf_id: int
+    fan_nomi: str
+    guruh_kaliti: str = "whole"
+    haftalik_soat: int
+    kunlik_max: int = 1
+    xona_id: Optional[int] = None
+
+
+class V192TeacherLoadSave(BaseModel):
+    maktab_id: int
+    user_id: int
+    qatorlar: list[V192TeacherLoadRow]
+
+
+def _v192_sync_schedule_sources(cur, maktab_id: int):
+    rows = _v192_assignment_rows(cur, maktab_id)
+    pairs = {}
+    for row in rows:
+        subject = _v192_clean_subject(row["fan_nomi"])
+        pair = pairs.setdefault(
+            (int(row["sinf_id"]), _v1875_subject_key(subject)),
+            {"sinf_id": int(row["sinf_id"]), "fan_nomi": subject, "rows": []},
+        )
+        pair["rows"].append(row)
+
+    cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
+                   SET haftalik_soat=0,asosiy_oqituvchi_user_id=NULL
+                   WHERE maktab_id=%s""", (maktab_id,))
+    cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
+    warnings = []
+    for pair in pairs.values():
+        whole = [row for row in pair["rows"] if _v1875_group_key(row.get("guruh_kaliti")) == "whole"]
+        groups = [row for row in pair["rows"] if _v1875_group_key(row.get("guruh_kaliti")) != "whole"]
+        if whole and groups:
+            warnings.append(
+                f"{pair['fan_nomi']}: butun sinf va guruh qatorlari birga yozilgan"
+            )
+        active = groups if groups else whole
+        hours = [max(0, int(row.get("haftalik_soat") or 0)) for row in active]
+        weekly = max(hours, default=0) if groups else sum(hours)
+        daily = max([int(row.get("kunlik_max") or 1) for row in active], default=1)
+        if groups and len(set(value for value in hours if value > 0)) > 1:
+            warnings.append(
+                f"{pair['fan_nomi']}: parallel guruhlar haftalik soati teng emas"
+            )
+        primary = int(whole[0]["user_id"]) if len(whole) == 1 and not groups else None
+        room = int(whole[0]["xona_id"]) if len(whole) == 1 and whole[0].get("xona_id") else None
+        cur.execute("""INSERT INTO aqlli_sinf_fan_yuklamalari_v2(
+                        maktab_id,sinf_id,fan_nomi,haftalik_soat,kunlik_max,
+                        asosiy_oqituvchi_user_id,xona_id)
+                       VALUES(%s,%s,%s,%s,%s,%s,%s)
+                       ON CONFLICT(maktab_id,sinf_id,fan_nomi) DO UPDATE SET
+                         haftalik_soat=EXCLUDED.haftalik_soat,
+                         kunlik_max=EXCLUDED.kunlik_max,
+                         asosiy_oqituvchi_user_id=EXCLUDED.asosiy_oqituvchi_user_id,
+                         xona_id=EXCLUDED.xona_id""",
+                    (
+                        maktab_id, pair["sinf_id"], pair["fan_nomi"], weekly,
+                        daily, primary, room,
+                    ))
+        for row in groups:
+            cur.execute("""INSERT INTO aqlli_guruh_sozlamalari_v2(
+                            maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                            oqituvchi_user_id,xona_id)
+                           VALUES(%s,%s,%s,%s,%s,%s)
+                           ON CONFLICT(maktab_id,sinf_id,fan_nomi,guruh_kaliti)
+                           DO UPDATE SET
+                             oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+                             xona_id=EXCLUDED.xona_id""",
+                        (
+                            maktab_id, pair["sinf_id"], pair["fan_nomi"],
+                            _v1875_group_key(row.get("guruh_kaliti")),
+                            row["user_id"], row.get("xona_id"),
+                        ))
+    cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
+                   WHERE maktab_id=%s AND holat='draft'""", (maktab_id,))
+    cur.execute("""UPDATE aqlli_fan_guruh_tasdiqlari_v2
+                   SET tasdiqlangan=FALSE,yangilangan_at=NOW()
+                   WHERE maktab_id=%s""", (maktab_id,))
+    return list(dict.fromkeys(warnings))
+
+
+def _v192_auto_confirm_exact_pairs(cur, maktab_id: int, actor_id: int):
+    """Saytdagi aniq qatorlar to'liq bo'lsa alohida qayta tasdiq talab qilmaydi."""
+    systems = _v1876_group_system_catalog(cur, maktab_id)
+    systems_by_class = {}
+    for system in systems:
+        systems_by_class.setdefault(int(system["sinf_id"]), []).append(system)
+    pairs = _v1876_pair_assignment_rows(cur, maktab_id)
+    confirmed = 0
+    pending = 0
+    for pair in pairs.values():
+        rows = pair["rows"]
+        whole = [row for row in rows if row["guruh_kaliti"] == "whole"]
+        groups = [row for row in rows if row["guruh_kaliti"] != "whole"]
+        mode = None
+        system_id = None
+        valid = False
+        if len(whole) == 1 and not groups and int(whole[0].get("haftalik_soat") or 0) > 0:
+            mode = "whole"
+            valid = True
+        elif groups and not whole:
+            group_keys = {str(row["guruh_kaliti"]) for row in groups}
+            hours = {int(row.get("haftalik_soat") or 0) for row in groups}
+            teachers = {int(row["user_id"]) for row in groups}
+            matching_system = next((
+                system for system in systems_by_class.get(pair["sinf_id"], [])
+                if pair["fan_kaliti"] in (system.get("fan_kalitlari") or [])
+                and {
+                    str(group["guruh_kaliti"])
+                    for group in system.get("guruhlar") or []
+                } == group_keys
+            ), None)
+            if (
+                matching_system
+                and len(hours) == 1
+                and next(iter(hours), 0) > 0
+                and len(teachers) == len(groups)
+            ):
+                mode = "group"
+                system_id = int(matching_system["id"])
+                valid = True
+        pair_systems = systems_by_class.get(pair["sinf_id"], [])
+        source_hash = _v1876_pair_hash(rows, pair_systems, pair["fan_kaliti"])
+        cur.execute("""INSERT INTO aqlli_fan_guruh_tasdiqlari_v2(
+                        maktab_id,sinf_id,fan_nomi,fan_kaliti,turi,tizim_id,
+                        manba_hash,tasdiqlangan,tasdiqlagan_user_id,yangilangan_at)
+                       VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())
+                       ON CONFLICT(maktab_id,sinf_id,fan_kaliti) DO UPDATE SET
+                         fan_nomi=EXCLUDED.fan_nomi,turi=EXCLUDED.turi,
+                         tizim_id=EXCLUDED.tizim_id,manba_hash=EXCLUDED.manba_hash,
+                         tasdiqlangan=EXCLUDED.tasdiqlangan,
+                         tasdiqlagan_user_id=EXCLUDED.tasdiqlagan_user_id,
+                         yangilangan_at=NOW()""",
+                    (
+                        maktab_id, pair["sinf_id"], pair["fan_nomi"],
+                        pair["fan_kaliti"], mode or "group", system_id,
+                        source_hash, valid, actor_id if valid else None,
+                    ))
+        if valid:
+            confirmed += 1
+        else:
+            pending += 1
+    return {"avto_tasdiqlangan": confirmed, "kutilmoqda": pending}
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/oqituvchi_yuklamasi")
+def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O'qituvchi yuklamasini faqat rahbariyat boshqaradi")
+        cur.execute("""SELECT user_id,full_name FROM users
+                       WHERE user_id=%s AND maktab_id=%s FOR UPDATE""",
+                    (sorov.user_id, sorov.maktab_id))
+        teacher = cur.fetchone()
+        if not teacher:
+            raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
+        classes, systems, variants = _v192_group_variants(cur, sorov.maktab_id)
+        valid_classes = {int(row["id"]) for row in classes}
+        variant_map = {
+            (int(row["sinf_id"]), str(row["guruh_kaliti"])): row
+            for row in variants
+        }
+        seen = set()
+        cleaned = []
+        for index, item in enumerate(sorov.qatorlar, start=1):
+            if int(item.sinf_id) not in valid_classes:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: sinf bu maktabga tegishli emas")
+            subject = _v192_clean_subject(item.fan_nomi)
+            if not subject:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: fan tanlanmagan")
+            group_key = _v1875_group_key(item.guruh_kaliti)
+            variant = variant_map.get((int(item.sinf_id), group_key))
+            if not variant:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: tanlangan guruh bu sinfda yo'q")
+            hours = int(item.haftalik_soat)
+            daily = int(item.kunlik_max)
+            if hours < 1 or hours > 20:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: haftalik soat 1–20 bo'lishi kerak")
+            if daily < 1 or daily > 4:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: kunlik maksimum 1–4 bo'lishi kerak")
+            key = (int(item.sinf_id), _v1875_subject_key(subject), group_key)
+            if key in seen:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: bir xil fan–sinf–guruh ikki marta yozilgan")
+            seen.add(key)
+            cur.execute("""SELECT b.user_id,u.full_name FROM maktab_dars_birikmalari b
+                           JOIN users u ON u.user_id=b.user_id
+                           WHERE b.maktab_id=%s AND b.sinf_id=%s
+                             AND LOWER(TRIM(b.fan_nomi))=LOWER(TRIM(%s))
+                             AND COALESCE(NULLIF(b.guruh_kaliti,''),'whole')=%s
+                             AND b.user_id<>%s LIMIT 1""",
+                        (sorov.maktab_id, item.sinf_id, subject, group_key, sorov.user_id))
+            owner = cur.fetchone()
+            if owner:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        f"{subject} / {variant['sinf']} / {variant['guruh_nomi']} "
+                        f"allaqachon {owner['full_name']}ga biriktirilgan"
+                    ),
+                )
+            cleaned.append({
+                "sinf_id": int(item.sinf_id),
+                "fan_nomi": subject,
+                "guruh_kaliti": group_key,
+                "haftalik_soat": hours,
+                "kunlik_max": daily,
+                "xona_id": int(item.xona_id) if item.xona_id else None,
+                "variant": variant,
+            })
+
+        cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=%s",
+                    (sorov.maktab_id, sorov.user_id))
+        for row in cleaned:
+            cur.execute("""INSERT INTO maktab_dars_birikmalari(
+                            maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti,
+                            haftalik_soat,kunlik_max,xona_id,manba,yangilangan_at)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s,'v19.2_sayt',NOW())""",
+                        (
+                            sorov.maktab_id, sorov.user_id, row["sinf_id"],
+                            row["fan_nomi"], row["guruh_kaliti"],
+                            row["haftalik_soat"], row["kunlik_max"], row["xona_id"],
+                        ))
+            cur.execute("""INSERT INTO maktab_fanlari(maktab_id,fan_nomi)
+                           VALUES(%s,%s) ON CONFLICT DO NOTHING""",
+                        (sorov.maktab_id, row["fan_nomi"]))
+            system_id = row["variant"].get("tizim_id")
+            if system_id:
+                cur.execute("SELECT fanlar FROM maktab_sinf_guruh_tizimlari WHERE id=%s FOR UPDATE", (system_id,))
+                system = cur.fetchone()
+                current_subjects = list((system or {}).get("fanlar") or [])
+                if all(_v1875_subject_key(value) != _v1875_subject_key(row["fan_nomi"]) for value in current_subjects):
+                    current_subjects.append(row["fan_nomi"])
+                    cur.execute("""UPDATE maktab_sinf_guruh_tizimlari
+                                   SET fanlar=%s,yangilangan_at=NOW() WHERE id=%s""",
+                                (current_subjects, system_id))
+
+        cur.execute("DELETE FROM maktab_xodim_sinflari WHERE maktab_id=%s AND user_id=%s",
+                    (sorov.maktab_id, sorov.user_id))
+        by_class = {}
+        for row in cleaned:
+            by_class.setdefault(row["sinf_id"], []).append(row["fan_nomi"])
+        for class_id, subjects in by_class.items():
+            unique_subjects = list(dict.fromkeys(subjects))
+            cur.execute("""INSERT INTO maktab_xodim_sinflari(
+                            maktab_id,user_id,sinf_id,fanlari)
+                           VALUES(%s,%s,%s,%s)""",
+                        (sorov.maktab_id, sorov.user_id, class_id, "; ".join(unique_subjects)))
+        subject_list = sorted(
+            set(row["fan_nomi"] for row in cleaned),
+            key=lambda value: value.casefold(),
+        )
+        weekly_total = sum(row["haftalik_soat"] for row in cleaned)
+        cur.execute("""UPDATE users SET fanlari=%s,haftalik_dars_soati=%s,
+                                      oqitadigan_sinflari=%s
+                       WHERE user_id=%s""",
+                    (
+                        "; ".join(subject_list) or None,
+                        weekly_total,
+                        "; ".join(
+                            sorted(
+                                {row["variant"]["sinf"] for row in cleaned},
+                                key=_v1859_sinf_sort_key,
+                            )
+                        ) or None,
+                        sorov.user_id,
+                    ))
+        warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
+        auto_confirmation = _v192_auto_confirm_exact_pairs(
+            cur, sorov.maktab_id, actor_id
+        )
+        payload = _v192_matrix_payload(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "saqlandi",
+            "oqituvchi": teacher["full_name"],
+            "qator_soni": len(cleaned),
+            "haftalik_jami": weekly_total,
+            "ogohlantirishlar": warnings,
+            "guruh_tasdiqlari": auto_confirmation,
+            "matritsa": payload,
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V192AutoMode(BaseModel):
+    maktab_id: int
+    avtomatik_tavsiya: bool
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/almashtirish_rejimi")
+def v192_swap_mode(sorov: V192AutoMode, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Jadval rejimini faqat rahbariyat o'zgartiradi")
+        cur.execute("""INSERT INTO aqlli_jadval_boshqaruv_v19_2(
+                        maktab_id,avtomatik_tavsiya,yangilagan_user_id,yangilangan_at)
+                       VALUES(%s,%s,%s,NOW())
+                       ON CONFLICT(maktab_id) DO UPDATE SET
+                         avtomatik_tavsiya=EXCLUDED.avtomatik_tavsiya,
+                         yangilagan_user_id=EXCLUDED.yangilagan_user_id,
+                         yangilangan_at=NOW()""",
+                    (sorov.maktab_id, sorov.avtomatik_tavsiya, actor_id))
+        conn.commit()
+        return {"holat": "saqlandi", "avtomatik_tavsiya": sorov.avtomatik_tavsiya}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+def _v192_run_slots(cur, run_id: int):
+    cur.execute("""SELECT e.*,s.sinf,s.harf,u.full_name AS oqituvchi_ismi,
+                          COALESCE(r.nomi,e.xona_matni) AS xona_nomi
+                   FROM aqlli_jadval_slotlari_v2 e
+                   JOIN maktab_sinflari s ON s.id=e.sinf_id
+                   LEFT JOIN users u ON u.user_id=e.oqituvchi_user_id
+                   LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
+                   WHERE e.urinish_id=%s
+                   ORDER BY e.hafta_kuni,e.smena,e.dars_raqami,
+                            s.sinf::int,s.harf,e.guruh_kaliti""", (run_id,))
+    return [dict(row) for row in cur.fetchall()]
+
+
+def _v192_bundle_for_slot(slots, slot_id: int):
+    source = next((row for row in slots if int(row["id"]) == int(slot_id)), None)
+    if not source:
+        return None, []
+    bundle = [
+        row for row in slots
+        if int(row["sinf_id"]) == int(source["sinf_id"])
+        and int(row["hafta_kuni"]) == int(source["hafta_kuni"])
+        and int(row["smena"]) == int(source["smena"])
+        and int(row["dars_raqami"]) == int(source["dars_raqami"])
+    ]
+    return source, bundle
+
+
+def _v192_bundle_label(bundle):
+    if not bundle:
+        return "Bo'sh vaqt"
+    subjects = list(dict.fromkeys(str(row["fan_nomi"]) for row in bundle))
+    teachers = list(dict.fromkeys(
+        str(row.get("oqituvchi_ismi") or "O'qituvchi belgilanmagan")
+        for row in bundle
+    ))
+    return f"{' + '.join(subjects)} · {' + '.join(teachers)}"
+
+
+def _v192_candidate_conflicts(
+    moving_bundle, target_day, target_period, all_slots, ignored_ids,
+    hard_rows, class_row, class_day_map, room_check=True,
+):
+    reasons = []
+    shift = int(moving_bundle[0]["smena"])
+    blocked = _v1856_class_day_block_reason(class_row, target_day, class_day_map)
+    if blocked:
+        reasons.append(blocked)
+    moving_teachers = [
+        int(row["oqituvchi_user_id"])
+        for row in moving_bundle if row.get("oqituvchi_user_id") is not None
+    ]
+    if len(moving_teachers) != len(set(moving_teachers)):
+        reasons.append("bir o'qituvchi parallel guruhlarda takrorlangan")
+    for teacher_id in moving_teachers:
+        for rule in hard_rows:
+            if int(rule["user_id"]) != teacher_id or not bool(rule.get("qattiq")):
+                continue
+            if int(rule["hafta_kuni"]) != int(target_day):
+                continue
+            if rule["turi"] == "metod_kuni":
+                reasons.append("o'qituvchining metod kuni")
+                break
+            rule_shift = int(rule.get("smena") or 0)
+            rule_period = int(rule.get("dars_raqami") or 0)
+            if rule_shift in (0, shift) and rule_period in (0, int(target_period)):
+                reasons.append("o'qituvchi bu vaqtda band")
+                break
+        if any(
+            int(row["id"]) not in ignored_ids
+            and row.get("oqituvchi_user_id") is not None
+            and int(row["oqituvchi_user_id"]) == teacher_id
+            and int(row["hafta_kuni"]) == int(target_day)
+            and int(row["smena"]) == shift
+            and int(row["dars_raqami"]) == int(target_period)
+            for row in all_slots
+        ):
+            reasons.append("o'qituvchi boshqa sinfda")
+    if room_check:
+        for moving in moving_bundle:
+            room_id = moving.get("xona_id")
+            room_text = str(moving.get("xona_matni") or "").strip().casefold()
+            if room_id and any(
+                    int(row["id"]) not in ignored_ids
+                    and row.get("xona_id") is not None
+                    and int(row["xona_id"]) == int(room_id)
+                    and int(row["hafta_kuni"]) == int(target_day)
+                    and int(row["smena"]) == shift
+                    and int(row["dars_raqami"]) == int(target_period)
+                    for row in all_slots
+            ):
+                reasons.append("xona bu vaqtda band")
+            elif room_text and any(
+                    int(row["id"]) not in ignored_ids
+                    and str(row.get("xona_matni") or "").strip().casefold() == room_text
+                    and int(row["hafta_kuni"]) == int(target_day)
+                    and int(row["smena"]) == shift
+                    and int(row["dars_raqami"]) == int(target_period)
+                    for row in all_slots
+            ):
+                reasons.append("sinf xonasi bu vaqtda band")
+    return list(dict.fromkeys(reasons))
+
+
+def _v192_parallel_conflicts(slots):
+    grouped = {}
+    for row in slots:
+        teacher_id = row.get("oqituvchi_user_id")
+        if teacher_id is None:
+            continue
+        key = (
+            int(teacher_id), int(row["hafta_kuni"]),
+            int(row["smena"]), int(row["dars_raqami"]),
+        )
+        grouped.setdefault(key, []).append(row)
+    result = []
+    for key, rows in grouped.items():
+        class_ids = {int(row["sinf_id"]) for row in rows}
+        if len(rows) > 1:
+            result.append({
+                "oqituvchi_user_id": key[0],
+                "oqituvchi_ismi": rows[0].get("oqituvchi_ismi"),
+                "hafta_kuni": key[1],
+                "smena": key[2],
+                "dars_raqami": key[3],
+                "sinflar": list(dict.fromkeys(f"{row['sinf']}-{row['harf']}" for row in rows)),
+                "slot_idlar": [int(row["id"]) for row in rows],
+            })
+    return result
+
+
+def _v192_swap_suggestions(cur, run_id: int, slot_id: int):
+    cur.execute("SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s", (run_id,))
+    run = cur.fetchone()
+    if not run:
+        raise HTTPException(status_code=404, detail="Jadval topilmadi")
+    slots = _v192_run_slots(cur, run_id)
+    source, source_bundle = _v192_bundle_for_slot(slots, slot_id)
+    if not source:
+        raise HTTPException(status_code=404, detail="Tanlangan dars topilmadi")
+    if any(str(row.get("fan_nomi") or "").strip().casefold() == "sinf soati" for row in source_bundle):
+        raise HTTPException(status_code=409, detail="Sinf soati faqat 3-bosqichdagi qoida orqali ko'chiriladi")
+    cur.execute("SELECT * FROM maktab_sinflari WHERE id=%s", (source["sinf_id"],))
+    class_row = cur.fetchone()
+    class_day_map = _v1856_class_day_rule_map(
+        _v1856_class_day_rule_rows(cur, run["maktab_id"])
+    )
+    cur.execute("""SELECT * FROM aqlli_oqituvchi_vaqti_v2
+                   WHERE maktab_id=%s""", (run["maktab_id"],))
+    hard_rows = [dict(row) for row in cur.fetchall()]
+    cur.execute("""SELECT dars_soni FROM aqlli_smena_sozlamalari_v2
+                   WHERE maktab_id=%s AND smena=%s""",
+                (run["maktab_id"], source["smena"]))
+    shift = cur.fetchone()
+    max_period = int((shift or {}).get("dars_soni") or 7)
+    year = _v1852_active_year(cur, run["maktab_id"])
+    weekdays = int((year or {}).get("hafta_kunlari") or 6)
+    source_ids = {int(row["id"]) for row in source_bundle}
+    suggestions = []
+    for day in range(1, weekdays + 1):
+        for period in range(1, max_period + 1):
+            if day == int(source["hafta_kuni"]) and period == int(source["dars_raqami"]):
+                continue
+            target_bundle = [
+                row for row in slots
+                if int(row["sinf_id"]) == int(source["sinf_id"])
+                and int(row["hafta_kuni"]) == day
+                and int(row["smena"]) == int(source["smena"])
+                and int(row["dars_raqami"]) == period
+            ]
+            if any(str(row.get("fan_nomi") or "").strip().casefold() == "sinf soati" for row in target_bundle):
+                continue
+            target_ids = {int(row["id"]) for row in target_bundle}
+            source_reasons = _v192_candidate_conflicts(
+                source_bundle, day, period, slots, source_ids | target_ids,
+                hard_rows, class_row, class_day_map,
+            )
+            target_reasons = []
+            if target_bundle:
+                target_reasons = _v192_candidate_conflicts(
+                    target_bundle, int(source["hafta_kuni"]), int(source["dars_raqami"]),
+                    slots, source_ids | target_ids, hard_rows, class_row, class_day_map,
+                )
+            reasons = list(dict.fromkeys(source_reasons + target_reasons))
+            if reasons:
+                continue
+            kind = "almashtirish" if target_bundle else "kochirish"
+            distance = abs(day - int(source["hafta_kuni"])) * 2 + abs(period - int(source["dars_raqami"]))
+            teacher_daily = sum(
+                1 for row in slots
+                if row.get("oqituvchi_user_id") in {
+                    item.get("oqituvchi_user_id") for item in source_bundle
+                }
+                and int(row["hafta_kuni"]) == day
+            )
+            score = distance + teacher_daily + (3 if kind == "almashtirish" else 0)
+            suggestions.append({
+                "turi": kind,
+                "yangi_hafta_kuni": day,
+                "yangi_smena": int(source["smena"]),
+                "yangi_dars_raqami": period,
+                "baho": score,
+                "nishon": _v192_bundle_label(target_bundle),
+                "nishon_slot_idlar": sorted(target_ids),
+                "izoh": (
+                    "Bo'sh katakka ko'chirish mumkin"
+                    if not target_bundle
+                    else "Ikki dars joyini xavfsiz almashtirish mumkin"
+                ),
+            })
+    suggestions.sort(key=lambda row: (row["baho"], row["yangi_hafta_kuni"], row["yangi_dars_raqami"]))
+    cur.execute("""SELECT avtomatik_tavsiya FROM aqlli_jadval_boshqaruv_v19_2
+                   WHERE maktab_id=%s""", (run["maktab_id"],))
+    mode = cur.fetchone()
+    return {
+        "urinish_id": int(run["id"]),
+        "maktab_id": int(run["maktab_id"]),
+        "manba": {
+            "slot_id": int(source["id"]),
+            "sinf_id": int(source["sinf_id"]),
+            "sinf": f"{source['sinf']}-{source['harf']}",
+            "fan": _v192_bundle_label(source_bundle),
+            "hafta_kuni": int(source["hafta_kuni"]),
+            "smena": int(source["smena"]),
+            "dars_raqami": int(source["dars_raqami"]),
+            "slot_idlar": sorted(source_ids),
+        },
+        "tavsiyalar": suggestions[:SAMTM_V19_2_SWAP_SUGGESTION_LIMIT],
+        "avtomatik_tavsiya": (
+            SAMTM_V19_2_AUTO_SWAP_DEFAULT
+            if not mode else bool(mode["avtomatik_tavsiya"])
+        ),
+        "parallel_ziddiyatlar": _v192_parallel_conflicts(slots),
+    }
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/almashtirish_tavsiyalari")
+def v192_swap_suggestions(token: str, urinish_id: int, slot_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        cur.execute("SELECT maktab_id FROM aqlli_jadval_urinishlari_v2 WHERE id=%s", (urinish_id,))
+        run = cur.fetchone()
+        if not run:
+            raise HTTPException(status_code=404, detail="Jadval topilmadi")
+        if not _v1852_staff(cur, actor_id, run["maktab_id"]):
+            raise HTTPException(status_code=403, detail="Ruxsat yo'q")
+        result = _v192_swap_suggestions(cur, urinish_id, slot_id)
+        conn.commit()
+        return result
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V192SwapApply(BaseModel):
+    urinish_id: int
+    slot_id: int
+    yangi_hafta_kuni: int
+    yangi_dars_raqami: int
+    turi: str = "almashtirish"
+
+
+def _v192_clone_run(cur, run, actor_id: int):
+    cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
+                    maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,
+                    joylashtirilmadi,diagnostika,sozlamalar)
+                   VALUES(%s,'draft',%s,%s,%s,%s,%s,%s) RETURNING id""",
+                (
+                    run["maktab_id"], actor_id, run.get("sifat") or 0,
+                    run.get("joylashtirildi") or 0, run.get("joylashtirilmadi") or 0,
+                    psycopg2.extras.Json(run.get("diagnostika") or {}),
+                    psycopg2.extras.Json({
+                        **(run.get("sozlamalar") or {}),
+                        "v19_2_manba_urinish_id": int(run["id"]),
+                    }),
+                ))
+    new_run_id = int(cur.fetchone()["id"])
+    cur.execute("""INSERT INTO aqlli_jadval_slotlari_v2(
+                    urinish_id,maktab_id,sinf_id,hafta_kuni,smena,dars_raqami,
+                    fan_nomi,oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                    boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami)
+                   SELECT %s,maktab_id,sinf_id,hafta_kuni,smena,dars_raqami,
+                          fan_nomi,oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                          boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami
+                   FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s""",
+                (new_run_id, run["id"]))
+    return new_run_id
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/almashtirish")
+def v192_swap_apply(sorov: V192SwapApply, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        cur.execute("SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE", (sorov.urinish_id,))
+        original_run = cur.fetchone()
+        if not original_run:
+            raise HTTPException(status_code=404, detail="Jadval topilmadi")
+        if not _v1852_manager(cur, actor_id, original_run["maktab_id"]):
+            raise HTTPException(status_code=403, detail="Jadvalni faqat rahbariyat o'zgartiradi")
+        source_slots = _v192_run_slots(cur, original_run["id"])
+        original_source = next((row for row in source_slots if int(row["id"]) == int(sorov.slot_id)), None)
+        if not original_source:
+            raise HTTPException(status_code=404, detail="Dars topilmadi")
+
+        run_id = int(original_run["id"])
+        slot_id = int(sorov.slot_id)
+        if original_run["holat"] == "tasdiqlangan":
+            run_id = _v192_clone_run(cur, original_run, actor_id)
+            cur.execute("""SELECT id FROM aqlli_jadval_slotlari_v2
+                           WHERE urinish_id=%s AND sinf_id=%s AND hafta_kuni=%s
+                             AND smena=%s AND dars_raqami=%s AND fan_nomi=%s
+                             AND guruh_kaliti=%s LIMIT 1""",
+                        (
+                            run_id, original_source["sinf_id"], original_source["hafta_kuni"],
+                            original_source["smena"], original_source["dars_raqami"],
+                            original_source["fan_nomi"], original_source["guruh_kaliti"],
+                        ))
+            slot_id = int(cur.fetchone()["id"])
+        elif original_run["holat"] != "draft":
+            raise HTTPException(status_code=409, detail="Faqat draft yoki faol jadval o'zgartiriladi")
+
+        report = _v192_swap_suggestions(cur, run_id, slot_id)
+        candidate = next((
+            row for row in report["tavsiyalar"]
+            if int(row["yangi_hafta_kuni"]) == int(sorov.yangi_hafta_kuni)
+            and int(row["yangi_dars_raqami"]) == int(sorov.yangi_dars_raqami)
+            and str(row["turi"]) == str(sorov.turi)
+        ), None)
+        if not candidate:
+            raise HTTPException(
+                status_code=409,
+                detail="Tanlangan joy endi xavfsiz emas. Tavsiyalarni qayta yuklang",
+            )
+        slots = _v192_run_slots(cur, run_id)
+        source, source_bundle = _v192_bundle_for_slot(slots, slot_id)
+        source_ids = [int(row["id"]) for row in source_bundle]
+        target_bundle = [
+            row for row in slots
+            if int(row["sinf_id"]) == int(source["sinf_id"])
+            and int(row["hafta_kuni"]) == int(candidate["yangi_hafta_kuni"])
+            and int(row["smena"]) == int(source["smena"])
+            and int(row["dars_raqami"]) == int(candidate["yangi_dars_raqami"])
+        ]
+        target_ids = [int(row["id"]) for row in target_bundle]
+        old_day = int(source["hafta_kuni"])
+        old_period = int(source["dars_raqami"])
+        cur.execute("""UPDATE aqlli_jadval_slotlari_v2
+                       SET hafta_kuni=7 WHERE id=ANY(%s)""", (source_ids,))
+        if target_ids:
+            cur.execute("""UPDATE aqlli_jadval_slotlari_v2
+                           SET hafta_kuni=%s,dars_raqami=%s WHERE id=ANY(%s)""",
+                        (old_day, old_period, target_ids))
+        cur.execute("""UPDATE aqlli_jadval_slotlari_v2
+                       SET hafta_kuni=%s,dars_raqami=%s WHERE id=ANY(%s)""",
+                    (
+                        int(candidate["yangi_hafta_kuni"]),
+                        int(candidate["yangi_dars_raqami"]),
+                        source_ids,
+                    ))
+        after_slots = _v192_run_slots(cur, run_id)
+        parallel_conflicts = _v192_parallel_conflicts(after_slots)
+        if parallel_conflicts:
+            raise HTTPException(
+                status_code=409,
+                detail="O'qituvchi parallel darsga tushib qoldi; o'zgarish bekor qilindi",
+            )
+        cur.execute("""INSERT INTO aqlli_jadval_ozgarish_log_v19_2(
+                        maktab_id,urinish_id,manba_slot_id,eski_hafta_kuni,
+                        eski_dars_raqami,yangi_hafta_kuni,yangi_dars_raqami,
+                        turi,bajargan_user_id)
+                       VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                    (
+                        original_run["maktab_id"], run_id, slot_id, old_day, old_period,
+                        candidate["yangi_hafta_kuni"], candidate["yangi_dars_raqami"],
+                        candidate["turi"], actor_id,
+                    ))
+        exact = _v1875_schedule_integrity_report(cur, original_run["maktab_id"], run_id)
+        hygiene = _v1874_schedule_hygiene_violations(cur, original_run["maktab_id"], run_id)
+        class_blocks = _v1856_schedule_block_violations(cur, original_run["maktab_id"], run_id)
+        diagnostic = {
+            "tasdiqlash_mumkin": bool(exact.get("tayyor") and not hygiene and not class_blocks),
+            "jadval_mosligi": exact,
+            "gigiyena_xatolari": hygiene,
+            "sinf_kun_xatolari": class_blocks,
+            "v19_2_ozgartirish": {
+                "turi": candidate["turi"],
+                "eski": [old_day, old_period],
+                "yangi": [candidate["yangi_hafta_kuni"], candidate["yangi_dars_raqami"]],
+            },
+        }
+        cur.execute("""UPDATE aqlli_jadval_urinishlari_v2
+                       SET diagnostika=%s WHERE id=%s""",
+                    (psycopg2.extras.Json(diagnostic), run_id))
+        conn.commit()
+        return {
+            "holat": "almashtirildi" if target_ids else "ko'chirildi",
+            "urinish_id": run_id,
+            "yangi_draft": run_id != int(original_run["id"]),
+            "tasdiqlash_mumkin": diagnostic["tasdiqlash_mumkin"],
+            "diagnostika": diagnostic,
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+# ========================= V19.2 END =========================
 
 # Preserve Python monolith semantics: late definitions must be visible to
 # earlier platform routes such as the employee import endpoint.
