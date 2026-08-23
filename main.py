@@ -3,7 +3,7 @@
 Run locally: uvicorn main:app --host 0.0.0.0 --port 8080
 Production: gunicorn main:app -c gunicorn_conf.py
 """
-SAMTM_ASGI_RELEASE = "samtm-teacher-first-smart-timetable-v19.2"
+SAMTM_ASGI_RELEASE = "samtm-teacher-first-no-gap-smart-timetable-v19.2"
 
 try:
     from . import samtm_platform, samtm_school
