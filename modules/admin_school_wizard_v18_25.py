@@ -29,6 +29,11 @@ def normalize_optional_text(value: Optional[str], max_length: int = 160) -> Opti
     return normalized[:max_length]
 
 
+class AdminSchoolGroupSystemInput(BaseModel):
+    type: str
+    name: Optional[str] = Field(default=None, max_length=80)
+
+
 class AdminSchoolClassInput(BaseModel):
     name: str = Field(min_length=2, max_length=8)
     shift: int = 1
@@ -40,6 +45,7 @@ class AdminSchoolClassInput(BaseModel):
     room: Optional[str] = Field(default=None, max_length=40)
     group_method: str = "none"
     group_count: int = 2
+    group_systems: list[AdminSchoolGroupSystemInput] = Field(default_factory=list, max_length=3)
 
 
 class AdminSchoolRoomInput(BaseModel):
@@ -91,6 +97,34 @@ def ensure_school_wizard_columns(cur) -> None:
     cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinf_azolari ADD COLUMN IF NOT EXISTS "
         "guruh_raqami SMALLINT"
+    )
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS maktab_sinf_guruh_tizimlari(
+            id BIGSERIAL PRIMARY KEY,
+            sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+            turi TEXT NOT NULL CHECK(turi IN ('gender','alphabet','manual')),
+            nomi TEXT NOT NULL,
+            fanlar TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+            faol BOOLEAN NOT NULL DEFAULT TRUE,
+            yaratilgan_by BIGINT REFERENCES users(user_id) ON DELETE SET NULL,
+            yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            UNIQUE(sinf_id,turi)
+        )
+        """
+    )
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS maktab_sinf_guruh_azolari(
+            tizim_id BIGINT NOT NULL REFERENCES maktab_sinf_guruh_tizimlari(id) ON DELETE CASCADE,
+            user_id BIGINT NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,
+            guruh_kaliti TEXT NOT NULL,
+            guruh_nomi TEXT NOT NULL,
+            yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            PRIMARY KEY(tizim_id,user_id)
+        )
+        """
     )
     cur.execute(
         """
@@ -272,22 +306,45 @@ def create_admin_school_wizard_router(
             if shift not in (1, 2):
                 raise HTTPException(status_code=400, detail=f"{grade}-{letter} uchun smena 1 yoki 2 bo'lishi kerak")
 
-            group_method = str(item.group_method or "none").strip().lower()
-            if group_method not in ("none", "gender", "alphabet", "manual"):
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"{grade}-{letter} uchun guruhlash usuli noto'g'ri",
-                )
-            group_count = int(item.group_count or 2)
-            if group_method == "none":
-                group_count = 1
-            elif group_method == "gender":
-                group_count = 2
-            elif group_count not in (2, 3, 4):
-                raise HTTPException(
-                    status_code=400,
-                    detail=f"{grade}-{letter} uchun guruh soni 2, 3 yoki 4 bo'lishi kerak",
-                )
+            raw_group_systems = list(item.group_systems or [])
+            legacy_group_method = str(item.group_method or "none").strip().lower()
+            if not raw_group_systems and legacy_group_method != "none":
+                raw_group_systems = [
+                    AdminSchoolGroupSystemInput(type=legacy_group_method, name=None)
+                ]
+            group_systems = []
+            seen_group_types = set()
+            default_group_names = {
+                "alphabet": "Alifbo bo'yicha 1/2-guruh",
+                "gender": "O'g'il / qiz",
+                "manual": "Boshqa guruh turi",
+            }
+            for group_system in raw_group_systems:
+                group_type = str(group_system.type or "").strip().lower()
+                if group_type not in default_group_names:
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{grade}-{letter} uchun guruhlash turi noto'g'ri",
+                    )
+                if group_type in seen_group_types:
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{grade}-{letter} uchun {group_type} turi ikki marta qo'shilgan",
+                    )
+                group_name = normalize_optional_text(group_system.name, 80) or default_group_names[group_type]
+                if group_type == "manual" and len(group_name) < 2:
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{grade}-{letter} uchun boshqa guruh turi nomini yozing",
+                    )
+                seen_group_types.add(group_type)
+                group_systems.append({"type": group_type, "name": group_name})
+            group_method = (
+                "none" if not group_systems
+                else group_systems[0]["type"] if len(group_systems) == 1
+                else "manual"
+            )
+            group_count = 1 if not group_systems else 2
 
             building_key = normalize_optional_text(item.building_key, 80)
             room_number = normalize_optional_text(item.room_number, 40)
@@ -325,6 +382,7 @@ def create_admin_school_wizard_router(
                     "room": room_number or normalize_optional_text(item.room, 40),
                     "group_method": group_method,
                     "group_count": group_count,
+                    "group_systems": group_systems,
                 }
             )
 
@@ -429,15 +487,31 @@ def create_admin_school_wizard_router(
                         item["group_count"],
                     ),
                 )
+                class_id = int(cur.fetchone()["id"])
+                for group_system in item["group_systems"]:
+                    cur.execute(
+                        """
+                        INSERT INTO maktab_sinf_guruh_tizimlari(
+                            sinf_id,turi,nomi,fanlar,faol,yaratilgan_by,yangilangan_at
+                        ) VALUES(%s,%s,%s,ARRAY[]::TEXT[],TRUE,%s,NOW())
+                        """,
+                        (
+                            class_id,
+                            group_system["type"],
+                            group_system["name"],
+                            admin_user_id,
+                        ),
+                    )
                 created_classes.append(
                     {
-                        "id": int(cur.fetchone()["id"]),
+                        "id": class_id,
                         "name": f"{item['grade']}-{item['letter']}",
                         "shift": item["shift"],
                         "building": item["building"],
                         "room": item["room"],
                         "group_method": item["group_method"],
                         "group_count": item["group_count"],
+                        "group_systems": item["group_systems"],
                     }
                 )
 
