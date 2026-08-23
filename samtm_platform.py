@@ -1,6 +1,7 @@
-"""main.py — SamTM Ta'lim veb-sayt backend'i (v3).
+"""SamTM V19.2 platform backend.
 
-Haqiqiy jadvallarga ulangan + Google orqali kirish (OAuth) qo'shildi.
+Haqiqiy jadvallar, Google OAuth, eski Excel import va V19.2 dagi
+o'qituvchi-asosli yuklama bilan bir paketda ishlaydi.
 """
 import os
 import asyncio
@@ -37,6 +38,8 @@ JWT_MAXFIY_KALIT = os.getenv("JWT_MAXFIY_KALIT", "")
 BAZA_URL = os.getenv("BAZA_URL", "https://talimplatformasi-production.up.railway.app")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "https://talimplatformasi-production.up.railway.app")
 REDIRECT_URI = f"{BAZA_URL}/auth/google/callback"
+SAMTM_RELEASE = "samtm-teacher-first-smart-timetable-v19.2"
+SAMTM_PACKAGE_REVISION = "all-14-sections-updated"
 
 if len(JWT_MAXFIY_KALIT.encode("utf-8")) < 32:
     raise RuntimeError(
@@ -44,7 +47,7 @@ if len(JWT_MAXFIY_KALIT.encode("utf-8")) < 32:
         "Kamida 32 baytli tasodifiy sir kiriting."
     )
 
-app = FastAPI(title="SamTM Ta'lim API")
+app = FastAPI(title="SamTM Ta'lim API", version="19.2")
 FRONTEND_ORIGINS = [
     origin.strip().rstrip("/")
     for origin in os.getenv("FRONTEND_URLS", FRONTEND_URL).split(",")
@@ -106,8 +109,10 @@ def versiya():
     """Deploy tekshiruvi uchun — hech qanday token/parametr kerak
     emas, brauzerda to'g'ridan-to'g'ri ochiladi."""
     return {
-        "versiya": "samtm-clean-scale-v19.0",
-        "previous_version": "smart-school-timetable-v18.77",
+        "versiya": SAMTM_RELEASE,
+        "package_revision": SAMTM_PACKAGE_REVISION,
+        "all_14_sections_updated": True,
+        "previous_version": "samtm-group-matrix-v19.1",
         "modules": [
             "kindergarten-v2", "school-v2", "learning-center-v2",
             "institute-v1",
@@ -123,13 +128,15 @@ def versiya():
             "voice": "stream-cache-visible-state-v18.22",
             "institution_security": "admin-password-365-day-archive-v18.24",
             "admin_school_creation": "bulk-class-multi-group-v18.36",
-            "employee_import": "database-group-aware-template-v18.77",
+            "employee_import": "same-sheet-class-group-hours-v19.1",
             "student_groups": "bulk-manual-groups-v18.34",
             "performance": "modular-runtime-cache-pgbouncer-v19.0",
             "frontend_chunks": "lazy-test-admin-tools-v18.37",
             "class_group_sets": "simultaneous-gender-alphabet-manual-v18.36",
-            "school_timetable": "group-target-template-before-draft-v18.77",
-            "school_workspace": "group-template-and-confirmation-v18.77",
+            "school_timetable": "safe-swap-recommendation-manual-auto-v19.2",
+            "school_workspace": "teacher-subject-class-group-hours-v19.2",
+            "teacher_load_entry": "teacher-first-compact-matrix-v19.2",
+            "schedule_conflicts": "hard-teacher-parallel-guard-v19.2",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
@@ -8218,656 +8225,518 @@ def _v1877_group_template_catalog(cur, maktab_id: int):
 
 @app.get("/api/admin/xodim_shablon")
 def xodim_shablon(token: str, maktab_id: Optional[int] = None):
-    """Maktabning mavjud sinf va fanlariga bog'langan aqlli Excel beradi.
+    """V19.1 xodim shabloni — butun sinf va real guruhlar bitta varaqda.
 
-    XODIMLAR varag'ida oddiy sinf darslari yoziladi. Butun sinf uchun aniq
-    fan–soat DARS_BIRIKMALARI varag'ida beriladi. Sinf oldindan 1/2-guruh,
-    o'g'il/qiz yoki mustaqil guruhlarga bo'lingan bo'lsa, shablon bazadagi real
-    guruhlarni GURUHLI_DARSLAR varag'iga "5-A / 1-guruh", "5-A / Qizlar guruhi"
-    ko'rinishida avtomatik chiqaradi. Bu qatorlarda faqat o'sha guruh tizimiga
-    oldindan biriktirilgan fanlar bo'ladi. Import yangi guruh yaratmaydi.
+    XODIMLAR varag'ida:
+      * oddiy sinflar ``5-A / jami soat`` ustuni sifatida;
+      * guruhli fanlar ``5-A / 1-guruh | INGLIZ TILI`` kabi aniq
+        guruh+fan ustuni sifatida chiqadi.
+
+    Guruh ustunidagi raqam o'qituvchining shu guruhdagi haftalik yuklamasi.
+    Parallel guruhlarning sinf reja soati yig'ilmaydi: masalan 1 soatlik fan
+    2 guruhga bo'linsa sinf rejasida 1 soat, ikki o'qituvchida 1+1=2
+    o'qituvchi-soat, jadvalda esa bitta parallel vaqt sloti bo'ladi.
     """
     _admin_tekshir(token)
     import openpyxl
-    from openpyxl.styles import Font, PatternFill, Alignment
+    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
     from openpyxl.comments import Comment
     from openpyxl.worksheet.datavalidation import DataValidation
     from openpyxl.worksheet.views import Selection
-    from openpyxl.formatting.rule import CellIsRule, FormulaRule
+    from openpyxl.formatting.rule import CellIsRule
     from openpyxl.workbook.defined_name import DefinedName
     from openpyxl.utils import quote_sheetname, get_column_letter
     import io
     from fastapi.responses import StreamingResponse
 
+    MAX_XODIM_QATORI = 1000
     wb = openpyxl.Workbook()
     ws = wb.active
-    # V18.61: 5000 ta formula qatori Excelni sekinlashtirardi.
-    # 1000 qator maktab xodimlari uchun yetarli va fayl ancha yengil ishlaydi.
-    MAX_XODIM_QATORI = 1000
     ws.title = "XODIMLAR"
+
     mavjud_sinflar = []
     mavjud_fanlar = []
     sinf_guruh_usullari = {}
-    guruhli_dars_qatorlari = []
-    guruh_tizim_hisoboti = []
-    if maktab_id is not None:
-        conn = _db()
-        cur = conn.cursor()
-        _maktab_sinflari_jadvali(cur)
-        _maktab_fanlari_jadvali(cur)
-        _sinf_kop_guruh_jadvallari(cur)
-        cur.execute(
-            """SELECT s.sinf,s.harf,s.guruhlash_usuli,
-                      COALESCE(ARRAY(
-                          SELECT t.turi FROM maktab_sinf_guruh_tizimlari t
-                          WHERE t.sinf_id=s.id AND t.faol=TRUE ORDER BY t.id
-                      ),ARRAY[]::TEXT[]) AS guruh_turlari
-               FROM maktab_sinflari s WHERE s.maktab_id=%s
-            """
-            "ORDER BY sinf::int, harf",
-            (maktab_id,),
-        )
-        sinf_qatorlari = cur.fetchall()
-        mavjud_sinflar = [
-            _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
-            for row in sinf_qatorlari
-        ]
-        for row in sinf_qatorlari:
-            sinf_nomi = _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
-            turlar = list(row.get("guruh_turlari") or [])
-            if not turlar and (row.get("guruhlash_usuli") or "none") != "none":
-                turlar = [row.get("guruhlash_usuli")]
-            nomlar = [{
-                "gender": "O‘g‘il / qiz",
-                "alphabet": "Alifbo: 1-guruh / 2-guruh",
-                "manual": "Mustaqil guruhlar",
-            }.get(str(tur).lower(), str(tur)) for tur in turlar]
-            sinf_guruh_usullari[sinf_nomi] = " + ".join(nomlar) if nomlar else "Bo‘linmaydi"
-        cur.execute(
-            "SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi",
-            (maktab_id,),
-        )
-        mavjud_fanlar = [row["fan_nomi"] for row in cur.fetchall()]
-        if not mavjud_fanlar:
-            cur.close()
-            conn.close()
-            raise HTTPException(
-                status_code=400,
-                detail="Avval maktab fanlarini tanlab saqlang, keyin xodim shablonini oling",
-            )
+    guruh_katalogi = {"qatorlar": [], "hisobot": [], "xatolar": []}
 
-        guruh_katalogi = _v1877_group_template_catalog(cur, maktab_id)
-        guruhli_dars_qatorlari = guruh_katalogi["qatorlar"]
-        guruh_tizim_hisoboti = guruh_katalogi["hisobot"]
-        if guruh_katalogi["xatolar"]:
+    if maktab_id is not None:
+        conn = _db(); cur = conn.cursor()
+        try:
+            _maktab_sinflari_jadvali(cur)
+            _maktab_fanlari_jadvali(cur)
+            _sinf_kop_guruh_jadvallari(cur)
+            cur.execute(
+                """SELECT s.id,s.sinf,s.harf,s.guruhlash_usuli,
+                          COALESCE(ARRAY(
+                              SELECT t.turi FROM maktab_sinf_guruh_tizimlari t
+                              WHERE t.sinf_id=s.id AND t.faol=TRUE ORDER BY t.id
+                          ),ARRAY[]::TEXT[]) AS guruh_turlari
+                   FROM maktab_sinflari s
+                   WHERE s.maktab_id=%s
+                   ORDER BY s.sinf::int,s.harf""",
+                (maktab_id,),
+            )
+            class_rows = cur.fetchall()
+            mavjud_sinflar = [
+                _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
+                for row in class_rows
+            ]
+            type_labels = {
+                "gender": "O‘g‘il / Qiz",
+                "alphabet": "1-guruh / 2-guruh",
+                "manual": "Mustaqil guruhlar",
+            }
+            for row in class_rows:
+                label = _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
+                types = list(row.get("guruh_turlari") or [])
+                legacy = str(row.get("guruhlash_usuli") or "none").lower()
+                if not types and legacy != "none":
+                    types = [legacy]
+                sinf_guruh_usullari[label] = " + ".join(
+                    type_labels.get(str(value).lower(), str(value)) for value in types
+                ) if types else "Bo‘linmaydi"
+
+            cur.execute(
+                "SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi",
+                (maktab_id,),
+            )
+            mavjud_fanlar = [row["fan_nomi"] for row in cur.fetchall()]
+            if not mavjud_fanlar:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Avval maktab fanlarini tanlab saqlang, keyin xodim shablonini oling",
+                )
+
+            guruh_katalogi = _v1877_group_template_catalog(cur, maktab_id)
+            if guruh_katalogi.get("xatolar"):
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "Shablon yaratishdan oldin sinf guruhlarini to'g'rilang:\n"
+                        + "\n".join(guruh_katalogi["xatolar"][:30])
+                    ),
+                )
+            conn.commit()
+        except Exception:
             conn.rollback()
-            cur.close()
-            conn.close()
+            raise
+        finally:
+            cur.close(); conn.close()
+
+    group_rows = sorted(
+        list(guruh_katalogi.get("qatorlar") or []),
+        key=lambda item: (
+            int(str(item.get("sinf") or "0").split("-")[0]),
+            str(item.get("sinf") or ""),
+            str(item.get("fan_nomi") or "").casefold(),
+            str(item.get("guruh_nomi") or "").casefold(),
+        ),
+    )
+    seen_group_headers = {}
+    for item in group_rows:
+        item["excel_header"] = f"{item['target_label']} | {item['fan_nomi']}"
+        item["excel_header_key"] = _xodim_excel_sarlavha_kaliti(item["excel_header"])
+        old = seen_group_headers.get(item["excel_header_key"])
+        if old:
             raise HTTPException(
                 status_code=400,
                 detail=(
-                    "Shablon yaratishdan oldin sinf guruhlarini to'g'rilang:\n"
-                    + "\n".join(guruh_katalogi["xatolar"][:30])
+                    "Guruh nomlari takrorlangan: "
+                    f"'{old['excel_header']}' va '{item['excel_header']}'. "
+                    "Sinf guruh nomlarini saytda to'g'rilang"
                 ),
             )
-        # Alphabet/gender guruh a'zolari yangilangan bo'lsa saqlab qo'yamiz.
-        conn.commit()
-        cur.close()
-        conn.close()
+        seen_group_headers[item["excel_header_key"]] = item
 
-    ustunlar = [
-        "F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)",
-        "Dars beradigan sinflari (ixtiyoriy)", "O'qitadigan fanlari (ixtiyoriy)",
-        "Ish staji (yil)", "Toifasi", "Haftalik dars yuklamasi — fanlar bo‘yicha avtomatik jami",
+    group_signature_payload = [
+        {
+            "sinf_id": int(item["sinf_id"]),
+            "tizim_id": int(item["tizim_id"]),
+            "tizim_turi": str(item.get("tizim_turi") or ""),
+            "guruh_kaliti": str(item["guruh_kaliti"]),
+            "guruh_nomi": str(item.get("guruh_nomi") or ""),
+            "fan_kaliti": str(item["fan_kaliti"]),
+            "fan_nomi": str(item.get("fan_nomi") or ""),
+            "target_label": str(item.get("target_label") or ""),
+        }
+        for item in sorted(
+            group_rows,
+            key=lambda value: (
+                int(value["sinf_id"]), int(value["tizim_id"]),
+                str(value["guruh_kaliti"]), str(value["fan_kaliti"]),
+            ),
+        )
     ]
-    for col, h in enumerate(ustunlar, 1):
-        c = ws.cell(1, col, h)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="1B4B7A")
-        c.alignment = Alignment(wrap_text=True, vertical="center")
+    group_hash = hashlib.sha256(
+        json.dumps(group_signature_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
 
-    # V18.62: XODIMLAR varag'ida hech qanday qotirilgan/split panel qoldirilmaydi.
-    # Ayrim Windows Excel versiyalarida B2 freeze ham faol katakni oynadan tashqariga
-    # olib chiqib, ekran uning ortidan yurmasligiga sabab bo'ldi. Endi varaq oddiy
-    # Excel varag'i kabi to'liq erkin siljiydi.
-    ws.freeze_panes = None
-    ws.sheet_view.pane = None
-    ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
-    ws.sheet_view.topLeftCell = "A1"
-    ws.auto_filter.ref = f"A1:H{MAX_XODIM_QATORI}"
-    ws.sheet_view.zoomScale = 100
-    ws.sheet_view.zoomScaleNormal = 100
-    ws.row_dimensions[1].height = 32
+    base_headers = [
+        "F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)",
+        "Dars beradigan obyektlar — avtomatik", "O'qitadigan fanlari (ixtiyoriy)",
+        "Ish staji (yil)", "Toifasi", "Haftalik dars yuklamasi — avtomatik jami",
+    ]
+    for col, header in enumerate(base_headers, 1):
+        cell = ws.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1B4B7A")
+        cell.alignment = Alignment(wrap_text=True, vertical="center")
+
     ws.cell(1, 4).comment = Comment(
-        "Bu ustunga qo'lda yozmang. O'ng tomondagi har bir '<sinf> soat' katagiga raqam yozing: "
-        "masalan 1-A=2, 1-B=4. D katak avtomatik '1-A (2 soat); 1-B (4 soat)' deb to'ladi. "
-        "Bo'sh sinf katagi — tanlanmagan sinf.",
+        "Bu ustunga yozmang. O'ng tomondagi oddiy sinf yoki guruh+fan kataklariga "
+        "raqam yozilganda tanlovlar avtomatik hisoblanadi.",
         "SamTM",
     )
     ws.cell(1, 5).comment = Comment(
-        "Bitta fanni tanlang yoki bir nechta fanni nuqtali vergul bilan yozing. "
-        "Butun sinf darslarini DARS_BIRIKMALARI, oldindan yaratilgan guruh darslarini "
-        "esa GURUHLI_DARSLAR varag'ida aniq yozing.",
+        "O'qituvchi o'tadigan fanlarni yozing. Oddiy sinfda bir nechta fan va turli "
+        "soatlar bo'lsa DARS_BIRIKMALARI varag'ida aniq bo'ling. Guruh ustuni esa "
+        "allaqachon aniq fan bilan bog'langan.",
         "SamTM",
     )
     ws.cell(1, 8).comment = Comment(
-        "Bu ustun avtomatik. DARS_BIRIKMALARI va GURUHLI_DARSLAR varaqalaridagi "
-        "aniq soatlar yig'iladi. Aniq qator bo'lmasa XODIMLARdagi sinf soatlari hisoblanadi.",
+        "O'qituvchining jami haftalik yuklamasi: butun-sinf darslari + guruhli darslar. "
+        "Parallel 2 guruhning har biri 1 soat bo'lsa ikki o'qituvchi jami 2 soat oladi, "
+        "ammo sinf rejasida va jadval slotida 1 soat bo'lib qoladi.",
         "SamTM",
     )
-    for col, w in zip("ABCDEFGH", [32, 48, 27, 31, 32, 15, 25, 24]):
-        ws.column_dimensions[col].width = w
+    for col, width in zip("ABCDEFGH", [32, 48, 27, 34, 34, 15, 25, 24]):
+        ws.column_dimensions[col].width = width
 
-    # V18.60 — har bir sinf katagining o'ziga aynan shu sinfning haftalik
-    # dars soati yoziladi. Bo'sh katak = bu sinf tanlanmagan. Masalan:
-    # 1-A ustuniga 2, 1-B ustuniga 4 yozilsa, D ustunda "1-A (2 soat); 1-B (4 soat)"
-    # va H ustunda jami 6 soat avtomatik ko'rinadi.
-    # I = HAMMASI, J = barcha sinflarga bir xil soat berish uchun tezkor maydon,
-    # K dan boshlab har bir sinf uchun bittadan "<SINF> soat" ustuni.
-    sinf_hammasi_ustuni = 9  # I = HAMMASI
-    sinf_tez_soat_ustuni = 10  # J = HAMMASI uchun bir xil soat
-    sinf_soat_birinchi_ustuni = 11  # K dan sinflar boshlanadi
-    sinf_soat_oxirgi_ustuni = sinf_soat_birinchi_ustuni + max(0, len(mavjud_sinflar) - 1)
+    all_col = 9
+    quick_col = 10
+    target_start = 11
+    class_start = target_start
+    class_end = class_start + max(0, len(mavjud_sinflar) - 1)
+    group_start = class_end + 1
+    group_end = group_start + max(0, len(group_rows) - 1)
+    target_end = max(class_end, group_end if group_rows else class_end)
 
-    c = ws.cell(1, sinf_hammasi_ustuni, "HAMMASI")
-    c.font = Font(bold=True, color="FFFFFF")
-    c.fill = PatternFill("solid", fgColor="168A55")
-    c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-    c.comment = Comment(
-        "O'qituvchi barcha sinflarga bir xil soatda kirsa ☑ qiling va yonidagi "
-        "'Barcha sinflarga bir xil soat' katagiga haftalik soatni yozing.",
+    cell = ws.cell(1, all_col, "HAMMA ODDIY SINFLAR")
+    cell.font = Font(bold=True, color="FFFFFF")
+    cell.fill = PatternFill("solid", fgColor="168A55")
+    cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    cell.comment = Comment(
+        "Faqat oddiy/butun sinf ustunlariga bir xil jami soat tarqatadi. Guruh ustunlariga tegmaydi.",
         "SamTM",
     )
-    ws.column_dimensions[c.column_letter].width = 12
+    ws.column_dimensions[cell.column_letter].width = 14
 
-    c = ws.cell(1, sinf_tez_soat_ustuni, "Barcha sinflarga HAR BIR FAN uchun bir xil soat (tezkor)")
-    c.font = Font(bold=True, color="FFFFFF")
-    c.fill = PatternFill("solid", fgColor="B7791F")
-    c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
-    c.comment = Comment(
-        "HAMMASI=☑ bo‘lsa bu raqam barcha sinflarga va E ustunidagi HAR BIR fanga "
-        "qo‘llanadi. Masalan 2 ta fan bo‘lsa va bu yerga 1 yozilsa, har sinfda "
-        "2 soat jami hosil bo‘ladi. Fanlar soati turlicha bo‘lsa DARS_BIRIKMALARI "
-        "varag‘idan foydalaning.",
+    cell = ws.cell(1, quick_col, "Oddiy sinflarga bir xil JAMI soat")
+    cell.font = Font(bold=True, color="FFFFFF")
+    cell.fill = PatternFill("solid", fgColor="B7791F")
+    cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    cell.comment = Comment(
+        "Bu raqam har bir fanga ko'paytirilmaydi. O'qituvchining har bir oddiy sinfdagi "
+        "jami haftalik soati sifatida olinadi.",
         "SamTM",
     )
-    ws.column_dimensions[c.column_letter].width = 21
+    ws.column_dimensions[cell.column_letter].width = 18
 
-    hammasi_tanlov = DataValidation(type="list", formula1='"☐,☑"', allow_blank=True)
-    hammasi_tanlov.error = "☐ yoki ☑ ni tanlang"
-    hammasi_tanlov.errorTitle = "Barcha sinflar"
-    hammasi_tanlov.promptTitle = "HAMMASI"
-    hammasi_tanlov.prompt = "☑ bo'lsa tezkor soat barcha sinflarga qo'llanadi."
-    hammasi_tanlov.showErrorMessage = True
-    hammasi_tanlov.showInputMessage = True
-    ws.add_data_validation(hammasi_tanlov)
-    hammasi_tanlov.add(
-        f"{get_column_letter(sinf_hammasi_ustuni)}2:"
-        f"{get_column_letter(sinf_hammasi_ustuni)}{MAX_XODIM_QATORI}"
-    )
+    all_validation = DataValidation(type="list", formula1='"☐,☑"', allow_blank=True)
+    all_validation.showErrorMessage = True
+    all_validation.error = "☐ yoki ☑ ni tanlang"
+    ws.add_data_validation(all_validation)
+    all_validation.add(f"I2:I{MAX_XODIM_QATORI}")
 
-    sinf_soat_tanlov = DataValidation(
+    hour_validation = DataValidation(
         type="whole", operator="between", formula1="1", formula2="20", allow_blank=True
     )
-    sinf_soat_tanlov.error = "Sinf haftalik soati 1 dan 20 gacha butun son bo'lishi kerak"
-    sinf_soat_tanlov.errorTitle = "Sinf haftalik soati"
-    sinf_soat_tanlov.promptTitle = "Har bir fanga necha soat?"
-    sinf_soat_tanlov.prompt = (
-        "Raqam E ustunidagi HAR BIR fanga qo‘llanadi. Masalan 3 ta fan va bu "
-        "katakda 1 bo‘lsa, shu sinfda jami 3 soat yaratiladi. Bo‘sh katak — "
-        "sinf tanlanmagan."
-    )
-    sinf_soat_tanlov.showErrorMessage = True
-    sinf_soat_tanlov.showInputMessage = True
-    ws.add_data_validation(sinf_soat_tanlov)
-    sinf_soat_tanlov.add(
-        f"{get_column_letter(sinf_tez_soat_ustuni)}2:"
-        f"{get_column_letter(sinf_tez_soat_ustuni)}{MAX_XODIM_QATORI}"
-    )
+    hour_validation.showErrorMessage = True
+    hour_validation.error = "Haftalik soat 1 dan 20 gacha butun son bo'lishi kerak"
+    hour_validation.promptTitle = "Haftalik soat"
+    hour_validation.prompt = "Raqam o'qituvchining aynan shu dars obyektidagi haftalik yuklamasi."
+    hour_validation.showInputMessage = True
+    ws.add_data_validation(hour_validation)
+    hour_validation.add(f"J2:J{MAX_XODIM_QATORI}")
 
-    for offset, sinf_nomi in enumerate(mavjud_sinflar):
-        col = sinf_soat_birinchi_ustuni + offset
-        c = ws.cell(1, col, f"{sinf_nomi} / har bir fanga soat")
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="168A55")
-        c.alignment = Alignment(horizontal="center", vertical="center", text_rotation=45, wrap_text=True)
-        c.comment = Comment(
-            f"{sinf_nomi} sinfida E ustunidagi HAR BIR fanga necha soat "
-            f"berilishini yozing. Masalan fanlar 2 ta va bu katakka 1 yozsangiz, "
-            f"{sinf_nomi} uchun 2 ta birikma — har biriga 1 soatdan yaratiladi. "
-            "Fanlar soati turlicha bo‘lsa DARS_BIRIKMALARI varag‘ida aniq yozing.",
+    class_columns = []
+    for offset, class_name in enumerate(mavjud_sinflar):
+        col = class_start + offset
+        class_columns.append((col, class_name))
+        cell = ws.cell(1, col, f"{class_name} / jami soat")
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="168A55")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True, textRotation=45)
+        cell.comment = Comment(
+            f"{class_name} uchun o'qituvchining JAMI haftalik soatini yozing. Bu raqam "
+            "fanlar soniga ko'paytirilmaydi. Agar o'qituvchi bu sinfda bir nechta fanni "
+            "turli soatda o'tsa, fanlar kesimini DARS_BIRIKMALARI varag'ida yozing.",
             "SamTM",
         )
-        ws.column_dimensions[c.column_letter].width = 10
-        sinf_soat_tanlov.add(
-            f"{get_column_letter(col)}2:{get_column_letter(col)}{MAX_XODIM_QATORI}"
+        ws.column_dimensions[cell.column_letter].width = 12
+        hour_validation.add(f"{cell.column_letter}2:{cell.column_letter}{MAX_XODIM_QATORI}")
+
+    group_columns = []
+    for offset, item in enumerate(group_rows):
+        col = group_start + offset
+        group_columns.append((col, item))
+        cell = ws.cell(1, col, item["excel_header"])
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="6B4E9B")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True, textRotation=45)
+        cell.comment = Comment(
+            f"Aniq dars obyekti: {item['target_label']}; fan: {item['fan_nomi']}. "
+            "Katakdagi raqam shu guruh o'qituvchisining haftalik soati. Masalan fan 1 soat "
+            "va 2 guruh bo'lsa, 1-guruh o'qituvchisiga 1, 2-guruh o'qituvchisiga 1 yoziladi. "
+            "Sinf rejasida 1 soat, o'qituvchilar yuklamasida 2 soat, jadvalda 1 parallel slot.",
+            "SamTM",
         )
+        ws.column_dimensions[cell.column_letter].width = 15
+        hour_validation.add(f"{cell.column_letter}2:{cell.column_letter}{MAX_XODIM_QATORI}")
 
-    if mavjud_sinflar:
-        hammasi_harfi = get_column_letter(sinf_hammasi_ustuni)
-        tez_soat_harfi = get_column_letter(sinf_tez_soat_ustuni)
+    if target_end >= target_start:
+        ws.auto_filter.ref = f"A1:{get_column_letter(target_end)}{MAX_XODIM_QATORI}"
+    else:
+        ws.auto_filter.ref = f"A1:J{MAX_XODIM_QATORI}"
 
-        for row_index in range(2, MAX_XODIM_QATORI + 1):
-            ws.cell(row_index, sinf_hammasi_ustuni, "☐").alignment = Alignment(
-                horizontal="center", vertical="center"
-            )
-
-            # HAMMASI=☑ bo'lsa J dagi tezkor soat sinf kataklarida ko'rinadi.
-            # Individual soat kerak bo'lsa foydalanuvchi sinf katagidagi formulani oddiy raqam bilan almashtiradi.
-            for offset, _sinf_nomi in enumerate(mavjud_sinflar):
-                col = sinf_soat_birinchi_ustuni + offset
-                harf = get_column_letter(col)
-                ws.cell(row_index, col).value = (
-                    f'=IF(${hammasi_harfi}{row_index}="☑",'
-                    f'IF(${tez_soat_harfi}{row_index}<>"",${tez_soat_harfi}{row_index},""),"")'
-                )
-                ws.cell(row_index, col).alignment = Alignment(horizontal="center", vertical="center")
-
-            # D — tanlangan sinflar + har birining soati. Faqat eski Excelga ham mos IF va & ishlatiladi.
-            d_qismlar = []
-            h_qismlar = []
-            for offset, sinf_nomi in enumerate(mavjud_sinflar):
-                col = sinf_soat_birinchi_ustuni + offset
-                harf = get_column_letter(col)
-                sinf_excel = sinf_nomi.replace('"', '""')
-                d_qismlar.append(
-                    f'IF({harf}{row_index}<>"","{sinf_excel} (har bir fanga "&{harf}{row_index}&" soat); ","")'
-                )
-                h_qismlar.append(f'IF({harf}{row_index}="",0,{harf}{row_index})')
-            auto_d = "&".join(d_qismlar) if d_qismlar else '""'
-            auto_h = "+".join(h_qismlar) if h_qismlar else "0"
-            aniq_soni = (
-                f'COUNTIF(DARS_BIRIKMALARI!$A:$A,A{row_index})+'
-                f'COUNTIF(GURUHLI_DARSLAR!$C:$C,A{row_index})'
-            )
-            ws.cell(row_index, 4).value = (
-                f'=IF(({aniq_soni})>0,'
-                f'"Aniq fan-soat DARS_BIRIKMALARI / GURUHLI_DARSLAR varag‘ida",{auto_d})'
-            )
-            fan_soni = (
-                f'IF(TRIM(E{row_index})="",0,'
-                f'LEN(TRIM(E{row_index}))-LEN(SUBSTITUTE(TRIM(E{row_index}),";",""))+1)'
-            )
-            ws.cell(row_index, 8).value = (
-                f'=IF(({aniq_soni})>0,'
-                f'SUMIF(DARS_BIRIKMALARI!$A:$A,A{row_index},DARS_BIRIKMALARI!$E:$E)+'
-                f'SUMIF(GURUHLI_DARSLAR!$C:$C,A{row_index},GURUHLI_DARSLAR!$D:$D),'
-                f'({fan_soni})*({auto_h}))'
-            )
-
-        # Raqam kiritilgan sinf kataklari yashil ko'rinadi — tanlangan sinfni ko'z bilan tez ajratish mumkin.
-        sinf_soat_oraliq = (
-            f"{get_column_letter(sinf_soat_birinchi_ustuni)}2:"
-            f"{get_column_letter(sinf_soat_oxirgi_ustuni)}{MAX_XODIM_QATORI}"
+    for row in range(2, MAX_XODIM_QATORI + 1):
+        ws.cell(row, all_col, "☐")
+        for col, _class_name in class_columns:
+            letter = get_column_letter(col)
+            ws.cell(row, col, f'=IF($I{row}="☑",IF($J{row}<>"",$J{row},""),"")')
+        exact_sum = f'SUMIF(DARS_BIRIKMALARI!$A:$A,A{row},DARS_BIRIKMALARI!$D:$D)'
+        exact_count = f'COUNTIF(DARS_BIRIKMALARI!$A:$A,A{row})'
+        class_sum = (
+            f"SUM({get_column_letter(class_start)}{row}:{get_column_letter(class_end)}{row})"
+            if class_columns else "0"
         )
+        group_sum = (
+            f"SUM({get_column_letter(group_start)}{row}:{get_column_letter(group_end)}{row})"
+            if group_columns else "0"
+        )
+        ws.cell(row, 8, f'=IF({exact_count}>0,{exact_sum},{class_sum})+{group_sum}')
+        ws.cell(row, 4, f'=IF(H{row}>0,"Tanlangan dars obyektlari o‘ngdagi ustunlarda","")')
+
+    ws.conditional_formatting.add(
+        f"H2:H{MAX_XODIM_QATORI}",
+        CellIsRule(operator="greaterThan", formula=["40"], fill=PatternFill("solid", fgColor="FCE8E6")),
+    )
+    if class_columns:
         ws.conditional_formatting.add(
-            sinf_soat_oraliq,
-            CellIsRule(
-                operator="greaterThanOrEqual",
-                formula=["1"],
-                fill=PatternFill("solid", fgColor="DFF4E8"),
-            ),
+            f"{get_column_letter(class_start)}2:{get_column_letter(class_end)}{MAX_XODIM_QATORI}",
+            CellIsRule(operator="greaterThan", formula=["0"], fill=PatternFill("solid", fgColor="DFF4E8")),
+        )
+    if group_columns:
+        ws.conditional_formatting.add(
+            f"{get_column_letter(group_start)}2:{get_column_letter(group_end)}{MAX_XODIM_QATORI}",
+            CellIsRule(operator="greaterThan", formula=["0"], fill=PatternFill("solid", fgColor="E9DFF7")),
         )
 
-        # V18.62: freeze/split butunlay o'chiriladi — ekran active katak bilan birga
-        # erkin yuradi. Boshqa Excel fayllaridagi kabi oddiy gorizontal scroll ishlaydi.
-        ws.freeze_panes = None
-        ws.sheet_view.pane = None
-        ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
-        ws.sheet_view.topLeftCell = "A1"
-        ws.auto_filter.ref = f"A1:{get_column_letter(sinf_soat_oxirgi_ustuni)}{MAX_XODIM_QATORI}"
-        ws.row_dimensions[1].height = 62
-
-        # Excel fayl ochilganda formulalarni majburiy qayta hisoblasin.
-        try:
-            wb.calculation.fullCalcOnLoad = True
-            wb.calculation.forceFullCalc = True
-            wb.calculation.calcMode = "auto"
-        except Exception:
-            pass
-
-    # H ustuni endi sinflardagi soatlar yig'indisini avtomatik ko'rsatadi.
-    ws.cell(1, 8).value = "Haftalik dars yuklamasi — HAR BIR FAN bo‘yicha avtomatik jami"
-    ws.cell(1, 8).comment = Comment(
-        "DARS_BIRIKMALARI va GURUHLI_DARSLAR varaqalaridagi aniq soatlar yig'iladi. "
-        "Faqat aniq qator bo'lmasa XODIMLARdagi sinf soatlari fanlar soniga ko'paytiriladi.",
-        "SamTM",
-    )
-    birikmalar = wb.create_sheet("DARS_BIRIKMALARI")
-    for col, sarlavha in enumerate((
-        "Xodim F.I.Sh", "Sinf", "Fan", "Dars turi (faqat Butun sinf)",
-        "Haftalik soat", "Bir kunda max",
-    ), 1):
-        c = birikmalar.cell(1, col, sarlavha)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="1B4B7A")
-        c.alignment = Alignment(wrap_text=True, vertical="center")
-    birikmalar.freeze_panes = "A2"
-    birikmalar.auto_filter.ref = "A1:F5000"
-    birikmalar.row_dimensions[1].height = 30
-    for col, width in zip("ABCDEF", (34, 18, 34, 24, 18, 16)):
-        birikmalar.column_dimensions[col].width = width
-    birikmalar.cell(1, 1).comment = Comment(
-        "Avval XODIMLAR varag'ida xodimni yozing, keyin bu yerda o'sha F.I.Sh.ni tanlang.",
-        "SamTM",
-    )
-    birikmalar.cell(1, 4).comment = Comment(
-        "Bu varaq faqat BUTUN SINF darslari uchun. Guruhga bo'lingan darslarni "
-        "GURUHLI_DARSLAR varag'ida to'ldiring; u yerda 5-A / 1-guruh, "
-        "5-A / Qizlar guruhi kabi real guruhlar bazadan tayyor chiqadi.",
-        "SamTM",
-    )
-    birikmalar.cell(1, 5).comment = Comment(
-        "Fanlar soati turlicha yoki guruhli bo‘lsa bu o‘qituvchining BARCHA aniq "
-        "sinf–fan–soat qatorlarini shu yerda yozing. O‘qituvchi uchun bu varaqda "
-        "biror qator mavjud bo‘lsa, XODIMLARdagi avtomatik fan kombinatsiyalari "
-        "butunlay chetga olinadi va faqat shu aniq qatorlar import qilinadi.",
-        "SamTM",
-    )
-    birikmalar.cell(1, 6).comment = Comment(
-        "Shu fan bir kunda eng ko'pi bilan necha marta tushishi mumkin. Odatda 1, blok dars uchun 2.",
-        "SamTM",
-    )
-    birikma_soat_tanlov = DataValidation(type="whole", operator="between", formula1="0", formula2="20", allow_blank=True)
-    birikma_soat_tanlov.error = "Haftalik soat 0 dan 20 gacha butun son bo'lishi kerak"
-    birikma_soat_tanlov.showErrorMessage = True
-    birikmalar.add_data_validation(birikma_soat_tanlov)
-    birikma_soat_tanlov.add("E2:E5000")
-    birikma_kunlik_tanlov = DataValidation(type="whole", operator="between", formula1="1", formula2="4", allow_blank=True)
-    birikma_kunlik_tanlov.error = "Bir kunda max 1 dan 4 gacha bo'lishi kerak"
-    birikma_kunlik_tanlov.showErrorMessage = True
-    birikmalar.add_data_validation(birikma_kunlik_tanlov)
-    birikma_kunlik_tanlov.add("F2:F5000")
-
-    guruhli_darslar = wb.create_sheet("GURUHLI_DARSLAR")
-    guruh_sarlavhalari = (
-        "Sinf / guruh", "Fan", "O'qituvchi F.I.Sh",
-        "Haftalik soat", "Bir kunda max",
-        "Sinf ID", "Tizim ID", "Guruh kaliti", "Guruh nomi", "Fan kaliti",
-    )
-    for col, sarlavha in enumerate(guruh_sarlavhalari, 1):
-        c = guruhli_darslar.cell(1, col, sarlavha)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="6B4E9B")
-        c.alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
-    guruhli_darslar.freeze_panes = "A2"
-    guruhli_darslar.auto_filter.ref = "A1:E5000"
-    guruhli_darslar.row_dimensions[1].height = 34
-    for col, width in zip("ABCDE", (32, 34, 34, 18, 16)):
-        guruhli_darslar.column_dimensions[col].width = width
-    for col in "FGHIJ":
-        guruhli_darslar.column_dimensions[col].hidden = True
-
-    guruhli_darslar.cell(1, 1).comment = Comment(
-        "Bu qiymatlar maktabda shablondan OLDIN yaratilgan real guruhlardan keladi: "
-        "masalan 5-A / 1-guruh, 5-A / 2-guruh, 5-A / O‘g‘il bolalar guruhi, "
-        "5-A / Qizlar guruhi. A va B ustunlarini o'zgartirmang.",
-        "SamTM",
-    )
-    guruhli_darslar.cell(1, 2).comment = Comment(
-        "Faqat shu guruhlash tizimiga sinf yaratishda oldindan biriktirilgan fan chiqadi. "
-        "Boshqa fan kerak bo'lsa avval saytda sinf guruh sozlamasini o'zgartirib, "
-        "shablonni yangidan yuklab oling.",
-        "SamTM",
-    )
-    guruhli_darslar.cell(1, 3).comment = Comment(
-        "Shu guruh va fanga kiradigan o'qituvchini XODIMLAR varag'idagi F.I.Sh.dan tanlang.",
-        "SamTM",
-    )
-
-    type_fill = {
-        "alphabet": "DDEBF7",
-        "gender": "E4DFEC",
-        "manual": "FFF2CC",
-    }
-    for row_index, item in enumerate(guruhli_dars_qatorlari, 2):
-        guruhli_darslar.cell(row_index, 1, item["target_label"])
-        guruhli_darslar.cell(row_index, 2, item["fan_nomi"])
-        guruhli_darslar.cell(row_index, 3, None)
-        guruhli_darslar.cell(row_index, 4, None)
-        guruhli_darslar.cell(row_index, 5, 1)
-        guruhli_darslar.cell(row_index, 6, item["sinf_id"])
-        guruhli_darslar.cell(row_index, 7, item["tizim_id"])
-        guruhli_darslar.cell(row_index, 8, item["guruh_kaliti"])
-        guruhli_darslar.cell(row_index, 9, item["guruh_nomi"])
-        guruhli_darslar.cell(row_index, 10, item["fan_kaliti"])
-        fill = PatternFill("solid", fgColor=type_fill.get(item["tizim_turi"], "F2F2F2"))
-        for col in (1, 2):
-            guruhli_darslar.cell(row_index, col).fill = fill
-            guruhli_darslar.cell(row_index, col).font = Font(bold=True, color="1B2B3A")
-        for col in range(1, 6):
-            guruhli_darslar.cell(row_index, col).alignment = Alignment(
-                wrap_text=True, vertical="center"
-            )
-        guruhli_darslar.row_dimensions[row_index].height = 28
-
-    if not guruhli_dars_qatorlari:
-        guruhli_darslar.merge_cells("A2:E4")
-        guruhli_darslar["A2"] = (
-            "Guruhli dars qatori yo'q. Sinflarda guruhlash tizimi va unga tegishli "
-            "fanlar saytda oldindan yaratilgach, shablonni qayta yuklab oling."
-        )
-        guruhli_darslar["A2"].alignment = Alignment(
-            wrap_text=True, horizontal="center", vertical="center"
-        )
-        guruhli_darslar["A2"].fill = PatternFill("solid", fgColor="FFF2CC")
-        guruhli_darslar["A2"].font = Font(bold=True, color="9C5700")
-
-    guruh_soat_tanlov = DataValidation(
-        type="whole", operator="between", formula1="1", formula2="20", allow_blank=True
-    )
-    guruh_soat_tanlov.error = "Haftalik soat 1 dan 20 gacha butun son bo'lishi kerak"
-    guruh_soat_tanlov.showErrorMessage = True
-    guruhli_darslar.add_data_validation(guruh_soat_tanlov)
-    guruh_soat_tanlov.add("D2:D5000")
-
-    guruh_kunlik_tanlov = DataValidation(
-        type="whole", operator="between", formula1="1", formula2="4", allow_blank=True
-    )
-    guruh_kunlik_tanlov.error = "Bir kunda max 1 dan 4 gacha bo'lishi kerak"
-    guruh_kunlik_tanlov.showErrorMessage = True
-    guruhli_darslar.add_data_validation(guruh_kunlik_tanlov)
-    guruh_kunlik_tanlov.add("E2:E5000")
-
-    if guruhli_dars_qatorlari:
-        last_group_row = len(guruhli_dars_qatorlari) + 1
-        guruhli_darslar.conditional_formatting.add(
-            f"C2:C{last_group_row}",
-            FormulaRule(
-                formula=['AND($A2<>"",$C2="")'],
-                fill=PatternFill("solid", fgColor="FDE2E2"),
-            ),
-        )
-        guruhli_darslar.conditional_formatting.add(
-            f"D2:D{last_group_row}",
-            FormulaRule(
-                formula=['AND($A2<>"",$C2<>"",$D2="")'],
-                fill=PatternFill("solid", fgColor="FDE2E2"),
-            ),
-        )
-
-    psixolog_sinflari = wb.create_sheet("PSIXOLOG_SINFLARI")
-    for col, sarlavha in enumerate(("Psixolog F.I.Sh", "Sinf"), 1):
-        c = psixolog_sinflari.cell(1, col, sarlavha)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="6B4E9B")
-        c.alignment = Alignment(wrap_text=True, vertical="center")
-    psixolog_sinflari.freeze_panes = "A2"
-    psixolog_sinflari.auto_filter.ref = "A1:B5000"
-    psixolog_sinflari.row_dimensions[1].height = 30
-    psixolog_sinflari.column_dimensions["A"].width = 34
-    psixolog_sinflari.column_dimensions["B"].width = 18
-    psixolog_sinflari.cell(1, 1).comment = Comment(
-        "Lavozimi Psixolog bo‘lgan xodimni tanlang. Bir psixolog bir nechta "
-        "sinfga xizmat qilsa, har bir sinfni alohida qatorda yozing.",
-        "SamTM",
-    )
-    psixolog_sinflari.cell(1, 2).comment = Comment(
-        "Bu xizmat birikmasi dars emas va haftalik dars yuklamasiga qo‘shilmaydi. "
-        "Psixolog fan ham o‘qitsa, DARS_BIRIKMALARI varag‘ida alohida yozing.",
-        "SamTM",
-    )
-
-    malumot = wb.create_sheet("MALUMOT")
-    malumot_sarlavhalari = (
-        "Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari",
-        "Butun sinf dars turi", "Sinf guruhlash sozlamasi",
-        "Guruhli dars obyekti", "Shu guruhdagi fan", "Bo'linish turi",
-    )
-    for col, sarlavha in enumerate(malumot_sarlavhalari, 1):
-        c = malumot.cell(1, col, sarlavha)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="1B4B7A")
-        c.alignment = Alignment(wrap_text=True, vertical="center")
-    malumot.freeze_panes = "A2"
-    malumot.auto_filter.ref = "A1:I5000"
-    malumot.row_dimensions[1].height = 30
-    for col, width in zip("ABCDEFGHI", (22, 52, 42, 36, 24, 32, 34, 34, 24)):
-        malumot.column_dimensions[col].width = width
-
-    sinf_tanlovlari = mavjud_sinflar or ["Avval maktab sinflarini yarating"]
-    fan_tanlovlari = mavjud_fanlar or ["Fanlar bazada topilmadi"]
-    for row_index, sinf_nomi in enumerate(sinf_tanlovlari, 2):
-        malumot.cell(row_index, 1, sinf_nomi)
-        malumot.cell(row_index, 6, sinf_guruh_usullari.get(sinf_nomi, ""))
-    for row_index, lavozim in enumerate(LAVOZIMLAR.values(), 2):
-        malumot.cell(row_index, 2, lavozim)
-    for row_index, toifa in enumerate(TOIFALAR, 2):
-        malumot.cell(row_index, 3, toifa)
-    for row_index, fan in enumerate(fan_tanlovlari, 2):
-        malumot.cell(row_index, 4, fan)
-    guruh_tanlovlari = ["Butun sinf"]
-    for row_index, guruh in enumerate(guruh_tanlovlari, 2):
-        malumot.cell(row_index, 5, guruh)
-    for row_index, item in enumerate(guruhli_dars_qatorlari, 2):
-        malumot.cell(row_index, 7, item["target_label"])
-        malumot.cell(row_index, 8, item["fan_nomi"])
-        malumot.cell(row_index, 9, item["tizim_nomi"])
-
-    def nomlangan_oraliq(nom, varaq, ustun, uzunlik):
-        oxirgi_qator = max(2, uzunlik + 1)
-        manzil = f"{quote_sheetname(varaq)}!${ustun}$2:${ustun}${oxirgi_qator}"
-        wb.defined_names.add(DefinedName(nom, attr_text=manzil))
-
-    nomlangan_oraliq("MavjudSinflar", "MALUMOT", "A", len(sinf_tanlovlari))
-    nomlangan_oraliq("Lavozimlar", "MALUMOT", "B", len(LAVOZIMLAR))
-    nomlangan_oraliq("Toifalar", "MALUMOT", "C", len(TOIFALAR))
-    nomlangan_oraliq("Fanlar", "MALUMOT", "D", len(fan_tanlovlari))
-    nomlangan_oraliq("DarsGuruhlari", "MALUMOT", "E", len(guruh_tanlovlari))
-    nomlangan_oraliq("GuruhDarsObyektlari", "MALUMOT", "G", len(guruhli_dars_qatorlari))
-    nomlangan_oraliq("XodimIsmlari", "XODIMLAR", "A", MAX_XODIM_QATORI - 1)
-
-    def tanlov_qosh(varaq, formula, kataklar, xato, xatoni_blokla=True, prompt=None):
-        tanlov = DataValidation(type="list", formula1=formula, allow_blank=True)
-        tanlov.error = xato
-        tanlov.errorTitle = "Ro'yxatdan tanlang"
-        tanlov.promptTitle = "Tanlash"
-        tanlov.prompt = prompt or "Katak yonidagi belgini bosib ro'yxatdan tanlang."
-        tanlov.showErrorMessage = xatoni_blokla
-        tanlov.showInputMessage = True
-        varaq.add_data_validation(tanlov)
-        tanlov.add(kataklar)
-
-    tanlov_qosh(ws, "=Lavozimlar", "B2:B5000", "Lavozimni MALUMOT varag'idagi ro'yxatdan tanlang")
-    tanlov_qosh(ws, "=MavjudSinflar", "C2:C5000", "Faqat maktabdagi mavjud sinfni tanlang")
-    tanlov_qosh(
-        ws, "=Fanlar", "E2:E5000",
-        "Faqat maktab fanlarini yozing", False,
-        "Bitta fanni tanlang yoki ko'p fanni nuqtali vergul bilan yozing.",
-    )
-    tanlov_qosh(ws, "=Toifalar", "G2:G5000", "Toifani MALUMOT varag'idagi ro'yxatdan tanlang")
-    tanlov_qosh(birikmalar, "=XodimIsmlari", "A2:A5000", "Xodimni XODIMLAR varag'idagi F.I.Sh.dan tanlang")
-    tanlov_qosh(birikmalar, "=MavjudSinflar", "B2:B5000", "Faqat maktabdagi mavjud sinfni tanlang")
-    tanlov_qosh(birikmalar, "=Fanlar", "C2:C5000", "Fanni MALUMOT varag'idagi ro'yxatdan tanlang")
-    tanlov_qosh(birikmalar, "=DarsGuruhlari", "D2:D5000", "Bu varaqda faqat Butun sinfni tanlang")
-    tanlov_qosh(guruhli_darslar, "=XodimIsmlari", "C2:C5000", "O'qituvchini XODIMLAR varag'idagi F.I.Sh.dan tanlang")
-    tanlov_qosh(psixolog_sinflari, "=XodimIsmlari", "A2:A5000", "Psixologni XODIMLAR varag‘idan tanlang")
-    tanlov_qosh(psixolog_sinflari, "=MavjudSinflar", "B2:B5000", "Faqat mavjud sinfni tanlang")
-
-    ws2 = wb.create_sheet("IZOH")
-    izohlar = [
-        "AQILLI XODIM SHABLONI V18.77 — BAZADAGI REAL GURUHLAR BILAN",
-        "1. XODIMLAR varag'ida F.I.Sh.ni yozing; lavozim va toifani ro'yxatdan tanlang.",
-        "2. Sinf rahbarligi faqat bitta mavjud sinf bo'ladi. Bu import yangi sinf yaratmaydi.",
-        "3. Har bir sinf katagidagi raqam E ustunida yozilgan HAR BIR fanga qo‘llanadi. Masalan E=Ona tili; Adabiyot va 5-A=1 bo‘lsa, ikkala fanga ham 1 soatdan yaratiladi.",
-        "4. Hamma sinflarda va har bir fanda soat bir xil bo‘lsa HAMMASI ni ☑ qilib tezkor katakka bir marta yozing. D va haftalik jami avtomatik to‘ladi.",
-        "4A. XODIMLAR varag'ida hech bir ustun qotirilmagan. Pastdagi gorizontal scroll, sichqoncha g'ildiragi yoki klaviatura bilan sinf ustunlari bo'ylab erkin yuring.",
-        "5. Butun sinf darslarini DARS_BIRIKMALARI varag'ida yozing. Bu varaqdagi guruh turi faqat Butun sinf bo'ladi.",
-        "6. Guruhli darslar GURUHLI_DARSLAR varag'ida bazadan tayyor chiqadi: masalan 5-A / 1-guruh, 5-A / 2-guruh, 5-A / Qizlar guruhi. A va B ustunlarini o'zgartirmang; faqat o'qituvchi, haftalik soat va kunlik maksimumni to'ldiring.",
-        "7. GURUHLI_DARSLARda faqat sinf guruhlash tizimiga oldindan biriktirilgan fanlar chiqadi. Guruh yoki fan o'zgarsa, saytda avval sinf guruhini to'g'rilab, shablonni qayta yuklang.",
-        "8. Bir o'qituvchi DARS_BIRIKMALARI varag'ida aniq qatorga ega bo'lsa, uning butun sinf darslarini shu varaqda to'liq yozing; guruh darslari GURUHLI_DARSLARdan qo'shiladi.",
-        "9. MALUMOT varag'ida maktab sinflari, fanlari va guruhli dars katalogi ko'rsatiladi.",
-        "10. Ish staji ixtiyoriy; 0 dan 80 gacha butun son yoziladi.",
-        "11. Haftalik dars yuklamasi — o'qituvchining jami haftalik dars soati. Aqlli jadval shu limitni hisobga oladi.",
-        "12. Psixolog xizmat qiladigan sinflarni PSIXOLOG_SINFLARI varag‘ida yozing. Bu dars soati emas.",
-        "13. Psixolog fan ham o‘qitsa, uning fan–sinf–soatini DARS_BIRIKMALARI varag‘ida yozing.",
-        "14. Majburiy ustunlar: F.I.Sh va Lavozim. Qolganlari vazifaga qarab ixtiyoriy.",
-    ]
-    for row_index, izoh in enumerate(izohlar, 1):
-        c = ws2.cell(row_index, 1, izoh)
-        c.alignment = Alignment(wrap_text=True, vertical="top")
-        if row_index == 1:
-            c.font = Font(bold=True, color="FFFFFF", size=13)
-            c.fill = PatternFill("solid", fgColor="1B4B7A")
-        elif row_index in (2, 4, 5):
-            c.font = Font(bold=True)
-    ws2.column_dimensions["A"].width = 125
-    for row_index in range(2, len(izohlar) + 1):
-        ws2.row_dimensions[row_index].height = 34
-
-    namuna = wb.create_sheet("NAMUNA")
-    namuna.merge_cells("A1:F1")
-    namuna["A1"] = "V18.64 — FANLAR SOATI TURLICHA BO'LSA"
-    namuna["A1"].font = Font(bold=True, color="FFFFFF", size=13)
-    namuna["A1"].fill = PatternFill("solid", fgColor="1B4B7A")
-    namuna["A1"].alignment = Alignment(horizontal="center", vertical="center")
-    for col, value in enumerate(("Xodim", "Sinf", "Fan", "Haftalik soat", "Jami", "Qayerga yoziladi?"), 1):
-        c = namuna.cell(3, col, value)
-        c.font = Font(bold=True, color="FFFFFF")
-        c.fill = PatternFill("solid", fgColor="168A55")
-        c.alignment = Alignment(wrap_text=True, horizontal="center", vertical="center")
-    for row_i, values in enumerate([
-        ("Aliyev A.", "5-A", "ONA TILI", 4, 6, "DARS_BIRIKMALARI"),
-        ("Aliyev A.", "5-A", "ADABIYOT", 2, 6, "DARS_BIRIKMALARI"),
-        ("Karimov K.", "8-A", "ALGEBRA", 3, 5, "DARS_BIRIKMALARI"),
-        ("Karimov K.", "8-A", "GEOMETRIYA", 2, 5, "DARS_BIRIKMALARI"),
-    ], 4):
-        for col_i, value in enumerate(values, 1):
-            namuna.cell(row_i, col_i, value)
-    namuna.merge_cells("A9:F10")
-    namuna["A9"] = (
-        "MUHIM: DARS_BIRIKMALARI faqat butun sinf uchun. Guruhli darslar bazadagi "
-        "real guruhlar bilan GURUHLI_DARSLAR varag'ida alohida chiqadi."
-    )
-    namuna["A9"].alignment = Alignment(wrap_text=True, vertical="top")
-    namuna["A9"].font = Font(bold=True, color="9C5700")
-    namuna["A9"].fill = PatternFill("solid", fgColor="FFF2CC")
-    for col, width in zip("ABCDEF", (22, 14, 30, 16, 16, 26)):
-        namuna.column_dimensions[col].width = width
-    namuna.freeze_panes = "A3"
-
-    wb.active = 0
-    ws.sheet_view.view = "normal"
-    # Saqlashdan oldin ham Excel oynasidagi barcha freeze/split izlarini tozalaymiz.
     ws.freeze_panes = None
     ws.sheet_view.pane = None
     ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
     ws.sheet_view.topLeftCell = "A1"
-    ws.sheet_view.showGridLines = True
+    ws.sheet_view.zoomScale = 90
+    ws.sheet_view.zoomScaleNormal = 90
+    ws.row_dimensions[1].height = 78
+
+    # Butun sinfdagi bir nechta fan va turli soatlar uchun aniq varaq.
+    details = wb.create_sheet("DARS_BIRIKMALARI")
+    detail_headers = (
+        "Xodim F.I.Sh", "Sinf", "Fan", "Haftalik soat", "Bir kunda max"
+    )
+    for col, header in enumerate(detail_headers, 1):
+        cell = details.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1B4B7A")
+        cell.alignment = Alignment(wrap_text=True, vertical="center")
+    details.freeze_panes = "A2"
+    details.auto_filter.ref = "A1:E5000"
+    for col, width in zip("ABCDE", (34, 18, 36, 18, 16)):
+        details.column_dimensions[col].width = width
+    details.cell(1, 1).comment = Comment(
+        "Faqat BUTUN SINFDA bir nechta fan turli soatda bo'lsa ishlating. Guruhli fanlar XODIMLARdagi binafsha ustunlarda.",
+        "SamTM",
+    )
+
+    detail_hours = DataValidation(type="whole", operator="between", formula1="1", formula2="20", allow_blank=True)
+    detail_hours.error = "Haftalik soat 1–20 bo'lishi kerak"
+    detail_hours.showErrorMessage = True
+    details.add_data_validation(detail_hours)
+    detail_hours.add("D2:D5000")
+    detail_daily = DataValidation(type="whole", operator="between", formula1="1", formula2="4", allow_blank=True)
+    detail_daily.error = "Bir kunda max 1–4 bo'lishi kerak"
+    detail_daily.showErrorMessage = True
+    details.add_data_validation(detail_daily)
+    detail_daily.add("E2:E5000")
+
+    # Psixolog sinflari.
+    psych = wb.create_sheet("PSIXOLOG_SINFLARI")
+    for col, header in enumerate(("Psixolog F.I.Sh", "Sinf"), 1):
+        cell = psych.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="6B4E9B")
+        cell.alignment = Alignment(wrap_text=True, vertical="center")
+    psych.freeze_panes = "A2"
+    psych.auto_filter.ref = "A1:B5000"
+    psych.column_dimensions["A"].width = 34
+    psych.column_dimensions["B"].width = 18
+
+    # Ma'lumot va dropdownlar.
+    info = wb.create_sheet("MALUMOT")
+    info_headers = (
+        "Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari",
+        "Sinf guruhlash sozlamasi", "Guruhli dars obyekti", "Guruhdagi fan",
+    )
+    for col, header in enumerate(info_headers, 1):
+        cell = info.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1B4B7A")
+        cell.alignment = Alignment(wrap_text=True, vertical="center")
+    info.freeze_panes = "A2"
+    info.auto_filter.ref = "A1:G5000"
+    for col, width in zip("ABCDEFG", (22, 52, 42, 36, 32, 48, 36)):
+        info.column_dimensions[col].width = width
+
+    class_choices = mavjud_sinflar or ["Avval maktab sinflarini yarating"]
+    fan_choices = mavjud_fanlar or ["Fanlar bazada topilmadi"]
+    for index, class_name in enumerate(class_choices, 2):
+        info.cell(index, 1, class_name)
+        info.cell(index, 5, sinf_guruh_usullari.get(class_name, ""))
+    for index, role in enumerate(LAVOZIMLAR.values(), 2):
+        info.cell(index, 2, role)
+    for index, category in enumerate(TOIFALAR, 2):
+        info.cell(index, 3, category)
+    for index, subject in enumerate(fan_choices, 2):
+        info.cell(index, 4, subject)
+    for index, item in enumerate(group_rows, 2):
+        info.cell(index, 6, item["target_label"])
+        info.cell(index, 7, item["fan_nomi"])
+
+    def named_range(name, sheet, column, length):
+        last = max(2, length + 1)
+        address = f"{quote_sheetname(sheet)}!${column}$2:${column}${last}"
+        wb.defined_names.add(DefinedName(name, attr_text=address))
+
+    named_range("MavjudSinflar", "MALUMOT", "A", len(class_choices))
+    named_range("Lavozimlar", "MALUMOT", "B", len(LAVOZIMLAR))
+    named_range("Toifalar", "MALUMOT", "C", len(TOIFALAR))
+    named_range("Fanlar", "MALUMOT", "D", len(fan_choices))
+    named_range("XodimIsmlari", "XODIMLAR", "A", MAX_XODIM_QATORI - 1)
+
+    def add_list_validation(sheet, formula, cells, error, block=True, prompt=None):
+        validation = DataValidation(type="list", formula1=formula, allow_blank=True)
+        validation.error = error
+        validation.errorTitle = "Ro'yxatdan tanlang"
+        validation.promptTitle = "Tanlash"
+        validation.prompt = prompt or "Katak yonidagi belgini bosib ro'yxatdan tanlang."
+        validation.showErrorMessage = block
+        validation.showInputMessage = True
+        sheet.add_data_validation(validation)
+        validation.add(cells)
+
+    add_list_validation(ws, "=Lavozimlar", "B2:B5000", "Lavozimni ro'yxatdan tanlang")
+    add_list_validation(ws, "=MavjudSinflar", "C2:C5000", "Mavjud sinfni tanlang")
+    add_list_validation(ws, "=Fanlar", "E2:E5000", "Maktab fanlarini yozing", False,
+                        "Bitta fan tanlang yoki ko'p fanni nuqtali vergul bilan yozing.")
+    add_list_validation(ws, "=Toifalar", "G2:G5000", "Toifani ro'yxatdan tanlang")
+    add_list_validation(details, "=XodimIsmlari", "A2:A5000", "Xodimni XODIMLARdan tanlang")
+    add_list_validation(details, "=MavjudSinflar", "B2:B5000", "Mavjud sinfni tanlang")
+    add_list_validation(details, "=Fanlar", "C2:C5000", "Maktab fanini tanlang")
+    add_list_validation(psych, "=XodimIsmlari", "A2:A5000", "Psixologni XODIMLARdan tanlang")
+    add_list_validation(psych, "=MavjudSinflar", "B2:B5000", "Mavjud sinfni tanlang")
+
+    notes = wb.create_sheet("IZOH")
+    note_lines = [
+        "SAMTM V19.1 — SINF VA REAL GURUHLAR BITTA XODIMLAR VARAG'IDA",
+        "1. Guruhlar va ularga tegishli fanlar avval saytda yaratiladi; shablon ularni bazadan tayyor oladi.",
+        "2. Yashil ustun: oddiy/butun sinf. Raqam o'qituvchining shu sinfdagi JAMI haftalik soati; fanlar soniga ko'paytirilmaydi.",
+        "3. Binafsha ustun: aniq guruh + aniq fan. Masalan '5-A / 1-guruh | INGLIZ TILI'. Raqam shu guruh o'qituvchisining haftalik soati.",
+        "4. 1 soatlik fan 2 guruhga bo'linsa: 1-guruh o'qituvchisiga 1, 2-guruh o'qituvchisiga 1 yoziladi. Sinf rejasida 1, o'qituvchi yuklamasida 2, jadvalda 1 parallel slot.",
+        "5. Guruh ustunlari faqat o'sha guruhlash tizimiga saytda biriktirilgan fanlar uchun chiqadi; guruh yoki fan nomini qo'lda yozmaysiz.",
+        "6. Oddiy sinfda bir o'qituvchi bir nechta fanni turli soatda o'tsa, DARS_BIRIKMALARI varag'ida fan kesimini aniq yozing.",
+        "7. DARS_BIRIKMALARI guruh uchun ishlatilmaydi; guruhli darslar XODIMLARdagi binafsha ustunlardan olinadi.",
+        "8. Haftalik jami H ustunida avtomatik: butun-sinf soatlari + guruh o'qituvchisi soatlari.",
+        "9. Shablon yuklab olingandan keyin guruh/fan sozlamasi o'zgarsa, import eski shablonni rad etadi va yangisini yuklashni so'raydi.",
+        "10. Psixolog xizmat sinflari PSIXOLOG_SINFLARI varag'ida; ular dars yuklamasiga qo'shilmaydi.",
+    ]
+    for index, line in enumerate(note_lines, 1):
+        cell = notes.cell(index, 1, line)
+        cell.alignment = Alignment(wrap_text=True, vertical="top")
+        if index == 1:
+            cell.font = Font(bold=True, color="FFFFFF", size=13)
+            cell.fill = PatternFill("solid", fgColor="1B4B7A")
+        elif index in (2, 3, 4, 5):
+            cell.font = Font(bold=True)
+    notes.column_dimensions["A"].width = 128
+    for index in range(2, len(note_lines) + 1):
+        notes.row_dimensions[index].height = 38
+
+    sample = wb.create_sheet("NAMUNA")
+    sample.merge_cells("A1:F1")
+    sample["A1"] = "GURUHLI 1 SOATNING TO'G'RI HISOBI"
+    sample["A1"].font = Font(bold=True, color="FFFFFF", size=13)
+    sample["A1"].fill = PatternFill("solid", fgColor="1B4B7A")
+    sample["A1"].alignment = Alignment(horizontal="center", vertical="center")
+    sample_headers = ("Dars obyekti", "Fan", "O'qituvchi", "Katakka yoziladi", "Hisob turi", "Natija")
+    for col, header in enumerate(sample_headers, 1):
+        cell = sample.cell(3, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="168A55")
+        cell.alignment = Alignment(wrap_text=True, horizontal="center")
+    example_rows = [
+        ("5-A / 1-guruh", "INGLIZ TILI", "O'qituvchi A", 1, "O'qituvchi yuklamasi", "1 soat"),
+        ("5-A / 2-guruh", "INGLIZ TILI", "O'qituvchi B", 1, "O'qituvchi yuklamasi", "1 soat"),
+        ("5-A", "INGLIZ TILI", "—", "—", "Sinf reja soati", "1 soat (2 emas)"),
+        ("Seshanba 2-dars", "INGLIZ TILI", "A + B", "—", "Jadval", "1 parallel slot"),
+    ]
+    for row_index, values in enumerate(example_rows, 4):
+        for col_index, value in enumerate(values, 1):
+            sample.cell(row_index, col_index, value)
+    sample.merge_cells("A9:F10")
+    sample["A9"] = (
+        "MUHIM: parallel guruhlar soni sinf fan soatini ko'paytirmaydi. "
+        "Sinf fan soati = 1; o'qituvchi-soat = 1+1=2; jadval vaqt sloti = 1."
+    )
+    sample["A9"].alignment = Alignment(wrap_text=True, vertical="center")
+    sample["A9"].font = Font(bold=True, color="6B4E9B")
+    sample["A9"].fill = PatternFill("solid", fgColor="E9DFF7")
+    for col, width in zip("ABCDEF", (28, 25, 24, 18, 24, 22)):
+        sample.column_dimensions[col].width = width
+    sample.freeze_panes = "A3"
+
+    # Texnik metadata foydalanuvchiga ko'rinmaydi; import eski shablonni aniqlaydi.
+    meta = wb.create_sheet("SAMTM_META")
+    meta.sheet_state = "veryHidden"
+    meta.append(["key", "value"])
+    meta.append(["template_version", "samtm-v19.1-group-matrix"])
+    meta.append(["maktab_id", maktab_id if maktab_id is not None else ""])
+    meta.append(["group_hash", group_hash])
+    meta.append([])
+    meta.append([
+        "excel_header_key", "excel_header", "sinf", "sinf_id", "tizim_id",
+        "guruh_kaliti", "guruh_nomi", "fan_nomi", "fan_kaliti",
+    ])
+    for item in group_rows:
+        meta.append([
+            item["excel_header_key"], item["excel_header"], item["sinf"],
+            item["sinf_id"], item["tizim_id"], item["guruh_kaliti"],
+            item["guruh_nomi"], item["fan_nomi"], item["fan_kaliti"],
+        ])
+
+    wb.active = 0
+    ws.sheet_view.view = "normal"
+    ws.freeze_panes = None
+    ws.sheet_view.pane = None
+    ws.sheet_view.selection = [Selection(activeCell="A2", sqref="A2")]
+    ws.sheet_view.topLeftCell = "A1"
     if wb.views:
         wb.views[0].showHorizontalScroll = True
         wb.views[0].showVerticalScroll = True
         wb.views[0].showSheetTabs = True
-    buf = io.BytesIO()
-    wb.save(buf)
-    buf.seek(0)
+
+    buffer = io.BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
     return StreamingResponse(
-        buf, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        buffer,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={
-            "Content-Disposition": "attachment; filename=xodimlar_shablon_v18_77_real_guruhlar.xlsx",
+            "Content-Disposition": 'attachment; filename="xodimlar_shablon_v19_1_sinf_guruh_bitta.xlsx"',
             "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
             "Pragma": "no-cache",
             "Expires": "0",
+            "X-SamTM-Template-Version": "19.1",
         },
     )
 
@@ -8930,6 +8799,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     lavozim_ustuni = ustun_top("Lavozim")
     rahbar_ustuni = ustun_top("Sinf rahbarligi (ixtiyoriy)", "Sinf rahbarligi")
     dars_sinflari_ustuni = ustun_top(
+        "Dars beradigan obyektlar — avtomatik", "Dars beradigan obyektlar - avtomatik",
         "Dars beradigan sinfi (ixtiyoriy)", "Dars beradigan sinfi",
         "Dars beradigan sinflari (ixtiyoriy)", "Dars beradigan sinflari",
         "O'qitadigan sinflari (ixtiyoriy)", "O'qitadigan sinflari",
@@ -8942,12 +8812,15 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     staj_ustuni = ustun_top("Ish staji (yil)", "Ish staji")
     toifa_ustuni = ustun_top("Toifasi", "Toifa")
     haftalik_yuklama_ustuni = ustun_top(
+        "Haftalik dars yuklamasi — avtomatik jami",
+        "Haftalik dars yuklamasi - avtomatik jami",
         "Haftalik dars yuklamasi — HAR BIR FAN bo‘yicha avtomatik jami",
         "Haftalik dars yuklamasi — fanlar bo‘yicha avtomatik jami",
         "Haftalik dars yuklamasi — avtomatik jami", "Haftalik dars yuklamasi - avtomatik jami",
         "Haftalik dars yuklamasi (soat)", "Haftalik dars yuklamasi", "Haftalik yuklama"
     )
     bir_sinf_soati_ustuni = ustun_top(
+        "Oddiy sinflarga bir xil JAMI soat", "Oddiy sinflarga bir xil jami soat",
         "Barcha sinflarga HAR BIR FAN uchun bir xil soat (tezkor)",
         "Barcha sinflarga HAR BIR FAN uchun bir xil soat",
         "Barcha sinflarga bir xil soat (tezkor)", "Barcha sinflarga bir xil soat",
@@ -8963,7 +8836,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     sinf_soat_ustunlari = {}    # yangi shablon: sinf -> ustun
     for cell in ws[1]:
         sarlavha = re.sub(r"\s+", " ", str(cell.value or "")).strip()
-        if cell.column >= 9 and sarlavha.upper() == "HAMMASI":
+        if cell.column >= 9 and sarlavha.upper() in {"HAMMASI", "HAMMA ODDIY SINFLAR"}:
             hammasi_belgi_ustuni = cell.column - 1
 
     def _v1842_belgilangan(qiymat):
@@ -9017,19 +8890,79 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         ): item
         for item in guruh_katalogi["qatorlar"]
     }
+    guruh_sarlavha_map = {}
+    for item in guruh_katalogi["qatorlar"]:
+        item["excel_header"] = f"{item['target_label']} | {item['fan_nomi']}"
+        item["excel_header_key"] = _xodim_excel_sarlavha_kaliti(item["excel_header"])
+        guruh_sarlavha_map[item["excel_header_key"]] = item
 
-    # Sarlavhadagi yangi "1-A soat" ustunlari va eski "1-A" checkbox ustunlarini topamiz.
+    # V19.1 shablon guruh sozlamasidan keyin yaratiladi. Guruh/fan o'zgargan
+    # bo'lsa eski Excel jim import qilinmaydi.
+    current_group_payload = [
+        {
+            "sinf_id": int(item["sinf_id"]),
+            "tizim_id": int(item["tizim_id"]),
+            "tizim_turi": str(item.get("tizim_turi") or ""),
+            "guruh_kaliti": str(item["guruh_kaliti"]),
+            "guruh_nomi": str(item.get("guruh_nomi") or ""),
+            "fan_kaliti": str(item["fan_kaliti"]),
+            "fan_nomi": str(item.get("fan_nomi") or ""),
+            "target_label": str(item.get("target_label") or ""),
+        }
+        for item in sorted(
+            guruh_katalogi["qatorlar"],
+            key=lambda value: (
+                int(value["sinf_id"]), int(value["tizim_id"]),
+                str(value["guruh_kaliti"]), str(value["fan_kaliti"]),
+            ),
+        )
+    ]
+    current_group_hash = hashlib.sha256(
+        json.dumps(current_group_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+    if "SAMTM_META" in wb.sheetnames:
+        meta_ws = wb["SAMTM_META"]
+        meta_values = {
+            str(row[0] or "").strip(): str(row[1] or "").strip()
+            for row in meta_ws.iter_rows(min_row=1, max_row=4, values_only=True)
+            if row and row[0]
+        }
+        template_version = meta_values.get("template_version", "")
+        template_school = meta_values.get("maktab_id", "")
+        template_hash = meta_values.get("group_hash", "")
+        if template_version.startswith("samtm-v19.1"):
+            if template_school and str(template_school) != str(maktab_id):
+                conn.rollback(); cur.close(); conn.close()
+                raise HTTPException(
+                    status_code=400,
+                    detail="Bu xodim shabloni boshqa maktab uchun yaratilgan. Shablonni shu maktabdan yangidan yuklang",
+                )
+            if template_hash != current_group_hash:
+                conn.rollback(); cur.close(); conn.close()
+                raise HTTPException(
+                    status_code=400,
+                    detail="Sinf guruhlari yoki ularga biriktirilgan fanlar o'zgargan. Xodim shablonini yangidan yuklang",
+                )
+
+    guruh_soat_ustunlari = {}  # XODIMLAR ustun indeksi -> aniq guruh+fan
+
+    # Sarlavhadagi oddiy sinf, real guruh+fan va eski checkbox ustunlarini topamiz.
     for cell in ws[1]:
         if cell.column < 9:
             continue
         sarlavha = re.sub(r"\s+", " ", str(cell.value or "")).strip()
-        if not sarlavha or sarlavha.upper() == "HAMMASI":
+        if not sarlavha or sarlavha.upper() in {"HAMMASI", "HAMMA ODDIY SINFLAR"}:
             continue
 
-        # Yangi formatlar: "1-A soat", "1-A haftalik soat" yoki
-        # "1-A / har bir fanga soat".
+        sarlavha_kaliti = _xodim_excel_sarlavha_kaliti(sarlavha)
+        if sarlavha_kaliti in guruh_sarlavha_map:
+            guruh_soat_ustunlari[cell.column - 1] = guruh_sarlavha_map[sarlavha_kaliti]
+            continue
+
+        # Oddiy sinf formatlari: "1-A soat", "1-A / jami soat",
+        # "1-A haftalik soat" yoki eski "1-A / har bir fanga soat".
         soat_asosi = re.sub(
-            r"\s*(?:[/\-–—]\s*)?(?:har\s+bir\s+fanga\s+)?(?:haftalik\s+)?soat\s*$",
+            r"\s*(?:[/\-–—]\s*)?(?:(?:har\s+bir\s+fanga|jami)\s+)?(?:haftalik\s+)?soat\s*$",
             "", sarlavha, flags=re.IGNORECASE,
         ).strip()
         if soat_asosi != sarlavha:
@@ -9127,7 +9060,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         try:
             bir_sinf_soati = int(bir_sinf_soati_xom) if bir_sinf_soati_xom not in (None, "") else None
             if bir_sinf_soati is not None and not 1 <= bir_sinf_soati <= 20:
-                raise ValueError("Barcha sinflarga bir xil soat 1 dan 20 gacha bo'lishi kerak")
+                raise ValueError("Oddiy sinflarga bir xil jami soat 1 dan 20 gacha bo'lishi kerak")
 
             sinf_rahbarligi = _xodim_sinf_nomini_normalla(rahbar_xom) if rahbar_xom else ""
             hammasi_tanlangan = (
@@ -9190,24 +9123,88 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             )
             continue
         fanlar_royxati = _xodim_fan_royxatini_ajrat(fanlar_xom)
+        fan_kalitlari = {
+            _xodim_excel_sarlavha_kaliti(fan): fan
+            for fan in fanlar_royxati if str(fan or "").strip()
+        }
         togridan_birikmalar = []
-        if dars_sinflari and fanlar_royxati:
+        kop_fanli_sinf_jamilari = {}
+
+        # Oddiy sinf ustunidagi raqam JAMI soat. Bitta fan bo'lsa avtomatik
+        # aniq birikma yaratiladi. Bir nechta fan bo'lsa fanlar kesimi
+        # DARS_BIRIKMALARI varag'ida berilishi shart — raqam fanlar soniga
+        # ko'paytirilmaydi.
+        if dars_sinflari:
+            if not fanlar_royxati:
+                tekshiruv_xatolari.append(
+                    f"{excel_qatori}-qator ({fish}): sinf soati yozilgan, lekin fan tanlanmagan"
+                )
+                continue
             try:
-                for sinf_nomi in dars_sinflari:
-                    for fan in fanlar_royxati:
+                if len(fanlar_royxati) == 1:
+                    only_fan = fan_moslashtir(dars_sinflari[0], fanlar_royxati[0])
+                    for sinf_nomi in dars_sinflari:
+                        soat = sinf_soatlari.get(sinf_nomi)
+                        if soat is None:
+                            continue
                         togridan_birikmalar.append({
                             "sinf": sinf_nomi,
-                            "fan": fan_moslashtir(sinf_nomi, fan),
+                            "fan": fan_moslashtir(sinf_nomi, only_fan),
                             "guruh_kaliti": "whole",
                             "guruh_nomi": "Butun sinf",
-                            # V18.63: sinf katagidagi raqam E ustunidagi HAR BIR fanga qo‘llanadi.
-                            "haftalik_soat": sinf_soatlari.get(sinf_nomi),
+                            "haftalik_soat": soat,
                             "kunlik_max": 1,
                             "manba": "xodimlar",
                         })
+                else:
+                    kop_fanli_sinf_jamilari = {
+                        sinf_nomi: soat
+                        for sinf_nomi, soat in sinf_soatlari.items()
+                        if soat is not None
+                    }
+                    # Fan nomlarini hozir tekshiramiz; soat taqsimoti keyin
+                    # DARS_BIRIKMALARI bilan solishtiriladi.
+                    for sinf_nomi in dars_sinflari:
+                        for fan in fanlar_royxati:
+                            fan_moslashtir(sinf_nomi, fan)
             except ValueError as error:
                 tekshiruv_xatolari.append(f"{excel_qatori}-qator ({fish}): {error}")
                 continue
+
+        # Binafsha guruh+fan ustunlari aniq manba. Katakdagi raqam shu
+        # guruh o'qituvchisining haftalik yuklamasi; sinf rejasida parallel
+        # guruhlar keyin bitta umumiy soat sifatida hisoblanadi.
+        guruh_birikmalar = []
+        try:
+            for column_index, canonical in guruh_soat_ustunlari.items():
+                weekly = _v1860_sinf_soati(
+                    qator_qiymati(row, column_index), canonical["excel_header"]
+                )
+                if weekly is None:
+                    continue
+                if canonical["fan_kaliti"] not in fan_kalitlari:
+                    raise ValueError(
+                        f"{canonical['excel_header']} katagiga {weekly} yozilgan, "
+                        f"lekin E ustunidagi fanlarda '{canonical['fan_nomi']}' yo'q"
+                    )
+                guruh_birikmalar.append({
+                    "sinf": canonical["sinf"],
+                    "fan": canonical["fan_nomi"],
+                    "guruh_kaliti": canonical["guruh_kaliti"],
+                    "guruh_nomi": canonical["guruh_nomi"],
+                    "tizim_id": int(canonical["tizim_id"]),
+                    "haftalik_soat": weekly,
+                    "kunlik_max": 1,
+                    "manba": "xodimlar_guruh_matritsasi",
+                })
+        except (ValueError, TypeError) as error:
+            tekshiruv_xatolari.append(f"{excel_qatori}-qator ({fish}): {error}")
+            continue
+
+        togridan_birikmalar.extend(guruh_birikmalar)
+        dars_sinflari = list(dict.fromkeys(
+            list(dars_sinflari) + [item["sinf"] for item in guruh_birikmalar]
+        ))
         toifa_matni = str(toifa_xom).strip() if toifa_xom else ""
         if toifa_matni and toifa_matni.lower() not in _TOIFA_MATNDAN:
             tekshiruv_xatolari.append(
@@ -9229,6 +9226,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             "haftalik_dars_soati": haftalik_dars_soati,
             "bir_sinf_soati": bir_sinf_soati,
             "sinf_soatlari": sinf_soatlari,
+            "kop_fanli_sinf_jamilari": kop_fanli_sinf_jamilari,
         })
 
     xodimlar_kalit_boyicha = {}
@@ -9331,9 +9329,9 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     "manba": "dars_birikmalari",
                 })
 
-    # V18.77 — bazadagi real guruhlar uchun alohida, chalkashmaydigan varaq.
-    # Guruh tizimiga oldindan biriktirilgan barcha sinf+fan juftliklari
-    # yangi shablonda faqat GURUHLI_DARSLAR orqali kiritiladi.
+    # V19.1: yangi shablonda real guruh+fan ustunlari XODIMLAR varag'ining
+    # o'zida turadi. Eski GURUHLI_DARSLAR varag'i faqat orqaga moslik uchun
+    # o'qiladi; yangi shablon uni yaratmaydi.
     guruhli_pairlar = {
         (item["sinf"], item["fan_kaliti"])
         for item in guruh_katalogi["qatorlar"]
@@ -9447,8 +9445,25 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     "manba": "guruhli_darslar",
                 })
 
-    # Bir xil sinf+fan GURUHLI_DARSLARda bo'lsa, DARS_BIRIKMALARIda qayta
-    # yozilmasin. Bu butun sinf va parallel guruhlarning aralashib ketishini to'xtatadi.
+    # Guruh tizimiga bog'langan fan uchun oddiy sinf ustuni ham to'ldirilsa
+    # sinf soati ikki marta ko'rinishi mumkin. Yangi shablonda guruhli fan faqat
+    # binafsha aniq guruh+fan ustunlarida yoziladi.
+    if guruhli_pairlar:
+        for qator in tayyor_qatorlar:
+            for birikma in qator["dars_birikmalari"]:
+                pair = (
+                    birikma["sinf"],
+                    _xodim_excel_sarlavha_kaliti(birikma["fan"]),
+                )
+                if birikma.get("manba") == "xodimlar" and pair in guruhli_pairlar:
+                    tekshiruv_xatolari.append(
+                        f"{qator['excel_qatori']}-qator ({qator['fish']}): "
+                        f"{birikma['sinf']} / {birikma['fan']} guruhli fan. "
+                        "Oddiy yashil sinf ustunini bo'sh qoldiring va faqat "
+                        "binafsha guruh+fan ustunlariga soat yozing"
+                    )
+
+    # Bir xil sinf+fan guruhli bo'lsa DARS_BIRIKMALARIda qayta yozilmasin.
     if guruhli_pairlar:
         for qator in tayyor_qatorlar:
             for birikma in qator["dars_birikmalari"]:
@@ -9462,7 +9477,8 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     tekshiruv_xatolari.append(
                         f"{qator['excel_qatori']}-qator ({qator['fish']}): "
                         f"{birikma['sinf']} / {birikma['fan']} guruhli fan. "
-                        "Uni DARS_BIRIKMALARIga emas, faqat GURUHLI_DARSLARga yozing"
+                        "Uni DARS_BIRIKMALARIga yozmang; XODIMLARdagi binafsha "
+                        "guruh+fan ustunida tegishli o'qituvchiga soat yozing"
                     )
 
     psixolog_sinflari_boyicha = {}
@@ -9542,13 +9558,13 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             b for b in barcha_birikmalar if b.get("manba") == "dars_birikmalari"
         ]
         guruh_aniq = [
-            b for b in barcha_birikmalar if b.get("manba") == "guruhli_darslar"
+            b for b in barcha_birikmalar
+            if b.get("manba") in ("guruhli_darslar", "xodimlar_guruh_matritsasi")
         ]
 
-        # DARS_BIRIKMALARI o'qituvchi uchun butun-sinf darslarining to'liq aniq
-        # manbasi bo'lib qoladi. GURUHLI_DARSLAR esa faqat o'z sinf+fan juftligini
-        # XODIMLARdagi avtomatik butun-sinf qatoridan ustun qo'yadi; shu bilan
-        # guruh darsi boshqa oddiy sinf darslarini yo'qotmaydi.
+        # DARS_BIRIKMALARI faqat butun-sinfdagi fan kesimining aniq manbasi.
+        # XODIMLARdagi binafsha guruh+fan ustunlari esa faqat o'z sinf+fan
+        # juftligini guruhli qiladi; ular boshqa oddiy sinf darslarini yo'qotmaydi.
         qator["aniq_fan_soat_rejimi"] = bool(dars_aniq)
         qator["guruhli_fan_rejimi"] = bool(guruh_aniq)
         if dars_aniq:
@@ -9560,9 +9576,36 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             }
             ishlatiladigan_birikmalar = [
                 b for b in barcha_birikmalar
-                if b.get("manba") not in ("dars_birikmalari", "guruhli_darslar")
+                if b.get("manba") not in (
+                    "dars_birikmalari", "guruhli_darslar", "xodimlar_guruh_matritsasi"
+                )
                 and (b["sinf"], _xodim_excel_sarlavha_kaliti(b["fan"])) not in guruh_pairs
             ] + guruh_aniq
+
+        # Oddiy sinf ustunida ko'rsatilgan jami soat bir nechta fanga
+        # bo'linadigan bo'lsa, DARS_BIRIKMALARI aynan shu jami bilan mos bo'lishi shart.
+        kop_fanli_jamilar = qator.get("kop_fanli_sinf_jamilari") or {}
+        if kop_fanli_jamilar:
+            if not dars_aniq:
+                tekshiruv_xatolari.append(
+                    f"{qator['excel_qatori']}-qator ({qator['fish']}): bir nechta fan tanlangan. "
+                    "Oddiy sinf katagidagi jami soatni fanlarga bo'lish uchun "
+                    "DARS_BIRIKMALARI varag'ida har bir fan soatini aniq yozing"
+                )
+            else:
+                for sinf_nomi, kutilgan_jami in kop_fanli_jamilar.items():
+                    aniq_jami = sum(
+                        int(item.get("haftalik_soat") or 0)
+                        for item in dars_aniq
+                        if item.get("sinf") == sinf_nomi
+                        and str(item.get("guruh_kaliti") or "whole") == "whole"
+                    )
+                    if int(aniq_jami) != int(kutilgan_jami or 0):
+                        tekshiruv_xatolari.append(
+                            f"{qator['excel_qatori']}-qator ({qator['fish']}): {sinf_nomi} "
+                            f"ustunida jami {kutilgan_jami} soat, DARS_BIRIKMALARI fanlari "
+                            f"yig'indisi {aniq_jami} soat. Ikkalasi teng bo'lishi kerak"
+                        )
 
         birikma_tartibi = []
         birikma_map = {}
@@ -9615,7 +9658,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
             tekshiruv_xatolari.append(
                 f"{qator['excel_qatori']}-qator ({qator['fish']}): haftalik soati "
                 f"ko'rsatilmagan — {', '.join(soatsiz[:8])}. "
-                "DARS_BIRIKMALARI varag'idagi E ustunga aniq haftalik soatni yozing."
+                "DARS_BIRIKMALARI varag'idagi 'Haftalik soat' ustuniga aniq qiymat yozing."
             )
 
         # Parallel guruhlar bir vaqtda o'tadi: bir sinf+fan bo'yicha eng katta
@@ -9794,13 +9837,13 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 "haftalik_dars_soati": qator["haftalik_dars_soati"],
                 "import_holati": "yangilandi" if yangilandi else "yangi",
                 "fan_soat_manbasi": (
-                    "DARS_BIRIKMALARI + GURUHLI_DARSLAR"
+                    "DARS_BIRIKMALARI + XODIMLAR guruh ustunlari"
                     if qator.get("aniq_fan_soat_rejimi") and qator.get("guruhli_fan_rejimi")
                     else (
                         "DARS_BIRIKMALARI"
                         if qator.get("aniq_fan_soat_rejimi")
                         else (
-                            "XODIMLAR + GURUHLI_DARSLAR"
+                            "XODIMLAR sinf/guruh ustunlari"
                             if qator.get("guruhli_fan_rejimi")
                             else "XODIMLAR"
                         )
