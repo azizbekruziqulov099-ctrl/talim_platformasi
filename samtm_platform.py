@@ -138,6 +138,7 @@ def versiya():
             "teacher_load_entry": "manual-teacher-create-load-compact-matrix-v19.2",
             "manual_teacher_entry": "teacher-subject-class-group-hours-one-screen-v19.2",
             "schedule_conflicts": "hard-teacher-parallel-guard-v19.2",
+            "class_schedule_hygiene": "no-internal-gaps-subject-period-windows-v19.2",
             "written_answers": "language-aware-exact-hints-v18.8",
         },
     }
