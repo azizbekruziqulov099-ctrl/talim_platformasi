@@ -13,3 +13,6 @@ pypdf
 nudenet
 clamd
 Pillow
+# Add these lines to the repository's existing requirements.txt
+gunicorn>=23,<24
+redis>=5.2,<7
