@@ -6231,9 +6231,10 @@ def _v1876_seed_legacy_group_systems(cur, maktab_id: int):
 def _v1876_system_group_rows(cur, system):
     kind = str(system.get("turi") or "")
     if kind == "alphabet":
+        guruh_soni = _sinf_guruh_soni_normalizatsiya("alphabet", system.get("guruh_soni"))
         return [
-            {"guruh_kaliti": "group_1", "guruh_nomi": "1-guruh", "oquvchi_soni": 0},
-            {"guruh_kaliti": "group_2", "guruh_nomi": "2-guruh", "oquvchi_soni": 0},
+            {"guruh_kaliti": f"group_{raqam}", "guruh_nomi": f"{raqam}-guruh", "oquvchi_soni": 0}
+            for raqam in range(1, guruh_soni + 1)
         ]
     if kind == "gender":
         return [
@@ -6253,7 +6254,7 @@ def _v1876_group_system_catalog(cur, maktab_id: int):
     _sinf_kop_guruh_jadvallari(cur)
     _v1876_seed_legacy_group_systems(cur, maktab_id)
     cur.execute("""SELECT t.id,t.sinf_id,t.turi,t.nomi,t.fanlar,t.yangilangan_at,
-                          s.sinf,s.harf,COALESCE(s.smena,1) AS smena
+                          s.sinf,s.harf,COALESCE(s.smena,1) AS smena,s.guruh_soni
                    FROM maktab_sinf_guruh_tizimlari t
                    JOIN maktab_sinflari s ON s.id=t.sinf_id
                    WHERE s.maktab_id=%s AND t.faol=TRUE
