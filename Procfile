@@ -1,1 +1,1 @@
-web: gunicorn main:app -c gunicorn_conf.py
+web: gunicorn --name samtm-v19.2 main:app -c gunicorn_conf.py
