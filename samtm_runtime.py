@@ -51,7 +51,7 @@ MAX_INFLIGHT = max(16, int(os.getenv("MAX_INFLIGHT_REQUESTS", "250")))
 MAX_HEAVY = max(1, int(os.getenv("MAX_HEAVY_REQUESTS", "2")))
 HEAVY_PATH_PARTS = (
     "/yaratish", "/xodim_import", "/shablon_import", "/import",
-    "/oqituvchi_yuklamasi", "/almashtirish",
+    "/oqituvchi_yuklamasi", "/oqituvchi_qoshish", "/almashtirish",
 )
 
 class _LocalCache:
@@ -180,7 +180,7 @@ def register_runtime(app, platform, school):
     @app.get("/api/admin/performance_v19", include_in_schema=False)
     def perf(token: str):
         platform._admin_tekshir(token)
-        return {"version":"19.2","teacher_first":True,"smart_swap":True,"max_inflight_per_worker":MAX_INFLIGHT,"max_heavy_per_worker":MAX_HEAVY,"db_pool_per_worker":platform._DB_POOL_MAX,"microcache_ttl":CACHE_TTL,"redis":bool(_REDIS),"schema_helpers_cached":sorted(_SCHEMA_READY)}
+        return {"version":"19.2","teacher_first":True,"smart_swap":True,"class_no_gap":True,"subject_period_windows":True,"max_inflight_per_worker":MAX_INFLIGHT,"max_heavy_per_worker":MAX_HEAVY,"db_pool_per_worker":platform._DB_POOL_MAX,"microcache_ttl":CACHE_TTL,"redis":bool(_REDIS),"schema_helpers_cached":sorted(_SCHEMA_READY)}
 
     @app.on_event("startup")
     def migrate_once():
