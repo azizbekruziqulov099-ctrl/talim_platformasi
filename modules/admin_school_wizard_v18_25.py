@@ -39,6 +39,7 @@ class AdminSchoolClassInput(BaseModel):
     building: Optional[str] = Field(default=None, max_length=80)
     room: Optional[str] = Field(default=None, max_length=40)
     group_method: str = "none"
+    group_count: int = 2
 
 
 class AdminSchoolRoomInput(BaseModel):
@@ -82,6 +83,10 @@ def ensure_school_wizard_columns(cur) -> None:
     cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS "
         "guruhlash_usuli TEXT NOT NULL DEFAULT 'none'"
+    )
+    cur.execute(
+        "ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS "
+        "guruh_soni SMALLINT NOT NULL DEFAULT 2"
     )
     cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinf_azolari ADD COLUMN IF NOT EXISTS "
@@ -268,10 +273,20 @@ def create_admin_school_wizard_router(
                 raise HTTPException(status_code=400, detail=f"{grade}-{letter} uchun smena 1 yoki 2 bo'lishi kerak")
 
             group_method = str(item.group_method or "none").strip().lower()
-            if group_method not in ("none", "gender", "alphabet"):
+            if group_method not in ("none", "gender", "alphabet", "manual"):
                 raise HTTPException(
                     status_code=400,
                     detail=f"{grade}-{letter} uchun guruhlash usuli noto'g'ri",
+                )
+            group_count = int(item.group_count or 2)
+            if group_method == "none":
+                group_count = 1
+            elif group_method == "gender":
+                group_count = 2
+            elif group_count not in (2, 3, 4):
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{grade}-{letter} uchun guruh soni 2, 3 yoki 4 bo'lishi kerak",
                 )
 
             building_key = normalize_optional_text(item.building_key, 80)
@@ -309,6 +324,7 @@ def create_admin_school_wizard_router(
                     "building": building_name,
                     "room": room_number or normalize_optional_text(item.room, 40),
                     "group_method": group_method,
+                    "group_count": group_count,
                 }
             )
 
@@ -393,8 +409,8 @@ def create_admin_school_wizard_router(
                     INSERT INTO maktab_sinflari(
                         maktab_id,sinf,harf,smena,rahbar_user_id,
                         psixolog_user_id,bino,xona,bino_id,xona_id,qoshilish_paroli,
-                        guruhlash_usuli
-                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        guruhlash_usuli,guruh_soni
+                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                     RETURNING id
                     """,
                     (
@@ -410,6 +426,7 @@ def create_admin_school_wizard_router(
                         room_id,
                         join_password,
                         item["group_method"],
+                        item["group_count"],
                     ),
                 )
                 created_classes.append(
@@ -420,6 +437,7 @@ def create_admin_school_wizard_router(
                         "building": item["building"],
                         "room": item["room"],
                         "group_method": item["group_method"],
+                        "group_count": item["group_count"],
                     }
                 )
 
