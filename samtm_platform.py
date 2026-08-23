@@ -9984,7 +9984,7 @@ def maktab_sinflari_royxati(token: str, maktab_id: int):
     cur = conn.cursor()
     _maktab_sinflari_jadvali(cur)
     cur.execute("""
-        SELECT s.id, s.sinf, s.harf, s.smena, s.bino, s.xona,s.guruhlash_usuli,
+        SELECT s.id, s.sinf, s.harf, s.smena, s.bino, s.xona,s.bino_id,s.xona_id,s.guruhlash_usuli,
                s.qoshilish_paroli, u.full_name AS rahbar_ismi,
                p.full_name AS psixolog_ismi
         FROM maktab_sinflari s
@@ -10990,6 +10990,8 @@ class MaktabSinfSozlash(BaseModel):
     smena: Optional[int] = None
     bino_id: Optional[int] = None
     xona_id: Optional[int] = None
+    joyni_tozalash: bool = False
+    xona_tozalash: bool = False
     guruhlash_usuli: Optional[str] = None
 
 
@@ -11099,8 +11101,11 @@ def maktab_sinf_sozlash(sorov: MaktabSinfSozlash):
     if guruhlash not in ("none", "gender", "alphabet", "manual"):
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Guruhlash usuli noto'g'ri")
-    bino_id = sorov.bino_id if sorov.bino_id is not None else sinf["bino_id"]
-    xona_id = sorov.xona_id if sorov.xona_id is not None else sinf["xona_id"]
+    if sorov.joyni_tozalash:
+        bino_id = xona_id = None
+    else:
+        bino_id = sorov.bino_id if sorov.bino_id is not None else sinf["bino_id"]
+        xona_id = None if sorov.xona_tozalash else (sorov.xona_id if sorov.xona_id is not None else sinf["xona_id"])
     bino_nomi = xona_raqami = None
     if xona_id is not None:
         cur.execute("""
@@ -11121,6 +11126,13 @@ def maktab_sinf_sozlash(sorov: MaktabSinfSozlash):
         if band:
             cur.close(); conn.close()
             raise HTTPException(status_code=409, detail=f"Bu xona {smena}-smenada {band['sinf']}-{band['harf']} sinfga band")
+    elif bino_id is not None:
+        cur.execute("SELECT nomi FROM maktab_binolari WHERE id=%s AND maktab_id=%s", (bino_id, sinf["maktab_id"]))
+        bino = cur.fetchone()
+        if not bino:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Tanlangan bino shu maktabga tegishli emas")
+        bino_nomi = bino["nomi"]
     cur.execute("""
         UPDATE maktab_sinflari SET smena=%s,bino_id=%s,xona_id=%s,bino=%s,xona=%s,guruhlash_usuli=%s
         WHERE id=%s
