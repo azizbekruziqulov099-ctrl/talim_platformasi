@@ -16,3 +16,7 @@ Pillow
 # Add these lines to the repository's existing requirements.txt
 gunicorn>=23,<24
 redis>=5.2,<7
+# SamTM V19.2 production overlay dependencies.
+# Add these lines to the repository's existing requirements.txt.
+uvicorn[standard]>=0.30,<1
+
