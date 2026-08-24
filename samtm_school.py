@@ -7493,7 +7493,8 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
     if not missing:
         return
     for class_row in missing:
-        for item in _v193_template_rows_for_class(class_row):
+        template_rows = _v193_template_rows_for_class(class_row)
+        for item in template_rows:
             cur.execute("""INSERT INTO aqlli_oquv_reja_qatorlari_v19_3(
                             maktab_id,sinf_id,fan_nomi,haftalik_soat,
                             kunlik_max,manba,yangilangan_at)
@@ -7503,6 +7504,7 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
                             maktab_id, item["sinf_id"], item["fan_nomi"],
                             item["haftalik_soat"], item["kunlik_max"], item["manba"],
                         ))
+        for item in template_rows:
             cur.execute("""INSERT INTO maktab_fanlari(maktab_id,fan_nomi)
                            VALUES(%s,%s) ON CONFLICT DO NOTHING""",
                         (maktab_id, item["fan_nomi"]))
@@ -7733,6 +7735,7 @@ def _v192_totals(cur, maktab_id: int, rows, classes):
 
 def _v192_matrix_payload(cur, maktab_id: int):
     classes, systems, variants = _v192_group_variants(cur, maktab_id)
+    plan = _v193_plan_payload(cur, maktab_id, classes)
     rows = _v192_assignment_rows(cur, maktab_id)
     variant_names = {
         (int(row["sinf_id"]), str(row["guruh_kaliti"])): row
