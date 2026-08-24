@@ -8112,36 +8112,23 @@ def _maktab_fan_yaqin_taklif(fan_nomi, katalog):
 
 
 def _maktab_fan_katalogi(cur, maktab_id):
-    """Rasmiy 2026-2027 reja + DTS + maktabning maxsus fanlari katalogi."""
+    """Faqat rasmiy 1–11-sinf 2026–2027 fanlari katalogi.
+
+    dts_tree ichida test, xalqaro baholash, o'g'il/qiz texnologiyasi yoki
+    maktabning boshqa maxsus fanlari ham bo'lishi mumkin. Ular maktab fanlari
+    tanloviga avtomatik qo'shilmaydi. Oldin ataylab saqlangan maxsus fanlar
+    GET javobida alohida ``maxsus`` yozuv sifatida saqlanib qoladi.
+    """
     fanlar = {}
     for fan_nomi, hours in SAMTM_2026_2027_UZBEK_CURRICULUM:
         key = _xodim_excel_sarlavha_kaliti(fan_nomi)
         fanlar[key] = {
             "nomi": fan_nomi,
-            "manba": "MMTV 133-son · 2026-2027",
+            "manba": "Rasmiy 1–11 fan",
             "standart_sinflar": sorted(int(grade) for grade in hours),
             "standart_soatlar": {int(grade): float(value) for grade, value in hours.items()},
             "maxsus": False,
         }
-    cur.execute(
-        "SELECT DISTINCT subject_name,grade FROM dts_tree "
-        "WHERE COALESCE(is_deleted,FALSE)=FALSE AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
-        "ORDER BY subject_name,grade"
-    )
-    for row in cur.fetchall():
-        fan_nomi = re.sub(r"\s+", " ", str(row["subject_name"] or "")).strip()
-        if not fan_nomi:
-            continue
-        kalit = _xodim_excel_sarlavha_kaliti(fan_nomi)
-        match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(row.get("grade") or ""))
-        grade = int(match.group(1)) if match else None
-        item = fanlar.setdefault(kalit, {
-            "nomi": fan_nomi, "manba": "DTS · maxsus/tanlov",
-            "standart_sinflar": [], "standart_soatlar": {}, "maxsus": True,
-        })
-        if grade and grade not in item["standart_sinflar"]:
-            item["standart_sinflar"].append(grade)
-            item["standart_sinflar"].sort()
     return sorted(fanlar.values(), key=lambda fan: fan["nomi"].casefold())
 
 
@@ -8334,10 +8321,17 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
         (maktab_id,),
     )
     tanlangan = []
+    tanlangan_kalitlari = set()
+    takror_yozuv_soni = 0
     for row in cur.fetchall():
         kalit = _xodim_excel_sarlavha_kaliti(row["fan_nomi"])
+        if not kalit or kalit in tanlangan_kalitlari:
+            if kalit:
+                takror_yozuv_soni += 1
+            continue
         fan_nomi = (katalog_by_key.get(kalit) or {}).get("nomi", row["fan_nomi"])
         tanlangan.append(fan_nomi)
+        tanlangan_kalitlari.add(kalit)
         if kalit not in katalog_by_key:
             item = {
                 "nomi": fan_nomi, "manba": "Maktab qo'shgan · maxsus",
@@ -8350,7 +8344,11 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
     saved_grades = {}
     for row in cur.fetchall():
         key = _xodim_excel_sarlavha_kaliti(row["fan_nomi"])
-        saved_grades.setdefault(key, []).append(int(row["sinf_darajasi"]))
+        grade = int(row["sinf_darajasi"])
+        grade_set = saved_grades.setdefault(key, set())
+        if grade in grade_set:
+            takror_yozuv_soni += 1
+        grade_set.add(grade)
     fan_sinflari = []
     for fan_nomi in tanlangan:
         key = _xodim_excel_sarlavha_kaliti(fan_nomi)
@@ -8360,7 +8358,7 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
             # Eski saqlangan fanlar birinchi ochilishda yo'qolmaydi. Rasmiy/DTS
             # sinflari UIga migratsiya taklifi sifatida qaytariladi va keyingi
             # saqlashda aniq bog'lanma bo'lib yoziladi.
-            grades = list(catalog_item.get("standart_sinflar") or [])
+            grades = set(catalog_item.get("standart_sinflar") or [])
         fan_sinflari.append({
             "fan_nomi": fan_nomi,
             "sinflar": sorted(set(int(grade) for grade in grades if 1 <= int(grade) <= 11)),
@@ -8376,6 +8374,7 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
         "tanlangan_fanlar": tanlangan,
         "fan_sinflari": fan_sinflari,
         "rasmiy_reja": SAMTM_2026_2027_CURRICULUM_SOURCE,
+        "takror_yozuv_soni": takror_yozuv_soni,
         "sozlangan": bool(tanlangan),
     }
 
