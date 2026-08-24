@@ -53,6 +53,7 @@ class AdminSchoolRoomInput(BaseModel):
     number: str = Field(min_length=1, max_length=40)
     floor: int = 1
     room_type: str = "classroom"
+    is_additional: bool = False
 
 
 class AdminSchoolBuildingInput(BaseModel):
@@ -164,12 +165,35 @@ def ensure_school_wizard_columns(cur) -> None:
         "darsga_yaroqli BOOLEAN NOT NULL DEFAULT TRUE"
     )
     cur.execute(
+        "ALTER TABLE IF EXISTS maktab_xonalari ADD COLUMN IF NOT EXISTS "
+        "qoshimcha_xona BOOLEAN NOT NULL DEFAULT FALSE"
+    )
+    cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS "
         "bino_id BIGINT REFERENCES maktab_binolari(id) ON DELETE SET NULL"
     )
     cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS "
         "xona_id BIGINT REFERENCES maktab_xonalari(id) ON DELETE SET NULL"
+    )
+    # Oldingi versiyada qo'shimcha xonalar nomiga qarab sport/reserve/non_teaching
+    # deb belgilangan. Ularni yangi qat'iy qoidaga bir marta moslaymiz.
+    cur.execute(
+        """
+        UPDATE maktab_xonalari
+        SET qoshimcha_xona=TRUE,
+            xona_turi='non_teaching',
+            darsga_yaroqli=FALSE
+        WHERE qoshimcha_xona=TRUE OR xona_turi<>'classroom'
+        """
+    )
+    cur.execute(
+        """
+        UPDATE maktab_sinflari s
+        SET xona_id=NULL
+        FROM maktab_xonalari x
+        WHERE s.xona_id=x.id AND x.qoshimcha_xona=TRUE
+        """
     )
     cur.execute(
         """
@@ -195,6 +219,14 @@ def ensure_school_wizard_columns(cur) -> None:
     cur.execute(
         "ALTER TABLE IF EXISTS aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS "
         "darsga_yaroqli BOOLEAN NOT NULL DEFAULT TRUE"
+    )
+    cur.execute(
+        """
+        UPDATE aqlli_xonalar_v2 a
+        SET faol=FALSE,darsga_yaroqli=FALSE
+        FROM maktab_xonalari x
+        WHERE a.manba_xona_id=x.id AND x.qoshimcha_xona=TRUE
+        """
     )
     cur.execute(
         "CREATE UNIQUE INDEX IF NOT EXISTS ux_aqlli_xonalar_manba_xona "
@@ -236,7 +268,7 @@ def create_admin_school_wizard_router(
                 """
                 SELECT b.id,b.nomi,b.qavat_soni,
                        x.id AS xona_id,x.xona_raqami,x.qavat,
-                       x.xona_turi,x.darsga_yaroqli
+                       x.xona_turi,x.darsga_yaroqli,x.qoshimcha_xona
                 FROM maktab_binolari b
                 LEFT JOIN maktab_xonalari x ON x.bino_id=b.id
                 WHERE b.maktab_id=%s
@@ -263,6 +295,7 @@ def create_admin_school_wizard_router(
                             "floor": int(row["qavat"] or 1),
                             "room_type": row.get("xona_turi") or "classroom",
                             "teaching_enabled": bool(row.get("darsga_yaroqli", True)),
+                            "is_additional": bool(row.get("qoshimcha_xona", False)),
                         }
                     )
             conn.commit()
@@ -309,7 +342,10 @@ def create_admin_school_wizard_router(
             for room in building.rooms:
                 room_number = normalize_optional_text(room.number, 40)
                 floor = int(room.floor)
-                room_type = str(room.room_type or "classroom").strip().lower()
+                is_additional = bool(room.is_additional)
+                # Qo'shimcha maydonga vergul bilan yozilgan har qanday xona
+                # nomidan qat'i nazar darsga yaroqsiz. Standart xona esa dars xonasi.
+                room_type = "non_teaching" if is_additional else "classroom"
                 if not room_number:
                     raise HTTPException(status_code=400, detail=f"{building_name}: xona raqami bo'sh")
                 if room_type not in _ROOM_TYPES:
@@ -330,7 +366,8 @@ def create_admin_school_wizard_router(
                     "number": room_number,
                     "floor": floor,
                     "room_type": room_type,
-                    "teaching_enabled": room_type != "non_teaching",
+                    "teaching_enabled": not is_additional,
+                    "is_additional": is_additional,
                 })
 
             normalized = {
@@ -496,12 +533,14 @@ def create_admin_school_wizard_router(
                     cur.execute(
                         """
                         INSERT INTO maktab_xonalari(
-                            bino_id,xona_raqami,qavat,xona_turi,darsga_yaroqli
-                        ) VALUES(%s,%s,%s,%s,%s) RETURNING id
+                            bino_id,xona_raqami,qavat,xona_turi,darsga_yaroqli,
+                            qoshimcha_xona
+                        ) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id
                         """,
                         (
                             building_id, room["number"], room["floor"],
                             room["room_type"], room["teaching_enabled"],
+                            room["is_additional"],
                         ),
                     )
                     room_id = int(cur.fetchone()["id"])
@@ -530,6 +569,7 @@ def create_admin_school_wizard_router(
                         "floor": room["floor"],
                         "room_type": room["room_type"],
                         "teaching_enabled": room["teaching_enabled"],
+                        "is_additional": room["is_additional"],
                     })
                 created_buildings.append(
                     {
