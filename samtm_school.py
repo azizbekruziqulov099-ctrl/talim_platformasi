@@ -1066,6 +1066,11 @@ def _v1852_create_tables(cur):
         faol BOOLEAN NOT NULL DEFAULT TRUE,
         UNIQUE(maktab_id,nomi)
     )""")
+    cur.execute("ALTER TABLE aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS manba_xona_id BIGINT")
+    cur.execute("ALTER TABLE aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS bino_id BIGINT")
+    cur.execute("ALTER TABLE aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS darsga_yaroqli BOOLEAN NOT NULL DEFAULT TRUE")
+    cur.execute("UPDATE aqlli_xonalar_v2 SET turi='reserve' WHERE turi='maxsus'")
+    cur.execute("UPDATE aqlli_xonalar_v2 SET turi='classroom' WHERE turi='oddiy'")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_oqituvchi_vaqti_v2(
         id BIGSERIAL PRIMARY KEY,
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
@@ -1572,7 +1577,7 @@ def v1852_special_day_delete(token: str, maktab_id: int, sana: date):
 class V1852Room(BaseModel):
     maktab_id: int
     nomi: str
-    turi: str = "oddiy"
+    turi: str = "classroom"
     sigim: Optional[int] = None
 
 
@@ -1587,11 +1592,18 @@ def v1852_room_save(sorov: V1852Room, token: str):
         name = re.sub(r"\s+", " ", sorov.nomi or "").strip()
         if not name:
             raise HTTPException(status_code=400, detail="Xona nomini kiriting")
-        cur.execute("""INSERT INTO aqlli_xonalar_v2(maktab_id,nomi,turi,sigim,faol)
-                       VALUES(%s,%s,%s,%s,TRUE)
+        room_type = str(sorov.turi or "classroom").strip().lower()
+        room_type = {"oddiy": "classroom", "maxsus": "reserve"}.get(room_type, room_type)
+        if room_type not in {"classroom", "reserve", "sport", "non_teaching"}:
+            raise HTTPException(status_code=400, detail="Xona turi noto'g'ri")
+        teaching_enabled = room_type != "non_teaching"
+        cur.execute("""INSERT INTO aqlli_xonalar_v2(
+                         maktab_id,nomi,turi,sigim,faol,darsga_yaroqli)
+                       VALUES(%s,%s,%s,%s,TRUE,%s)
                        ON CONFLICT(maktab_id,nomi) DO UPDATE SET turi=EXCLUDED.turi,
-                         sigim=EXCLUDED.sigim,faol=TRUE RETURNING id""",
-                    (sorov.maktab_id, name, sorov.turi or "oddiy", sorov.sigim))
+                         sigim=EXCLUDED.sigim,faol=TRUE,
+                         darsga_yaroqli=EXCLUDED.darsga_yaroqli RETURNING id""",
+                    (sorov.maktab_id, name, room_type, sorov.sigim, teaching_enabled))
         room_id = cur.fetchone()["id"]
         conn.commit(); return {"holat": "saqlandi", "xona_id": room_id}
     except Exception:
@@ -1958,7 +1970,7 @@ def _v1852_setup_payload(cur, maktab_id: int):
         teacher["haftalik_reja_jami"] = (int(base) + extra) if base is not None else (extra or None)
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
     subjects = [r["fan_nomi"] for r in cur.fetchall()]
-    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE ORDER BY nomi", (maktab_id,))
+    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE ORDER BY nomi", (maktab_id,))
     rooms = cur.fetchall()
     cur.execute("SELECT * FROM aqlli_oqituvchi_qoidalari_v2 WHERE maktab_id=%s ORDER BY user_id", (maktab_id,))
     teacher_rules = cur.fetchall()
@@ -2228,7 +2240,7 @@ def _v1852_prepare_generation(cur, maktab_id: int):
     availability_rows = cur.fetchall()
     cur.execute("SELECT user_id,full_name,haftalik_dars_soati FROM users WHERE maktab_id=%s AND lavozim IS NOT NULL", (maktab_id,))
     teachers = {int(row["user_id"]): row for row in cur.fetchall()}
-    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE", (maktab_id,))
+    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE", (maktab_id,))
     rooms = {int(row["id"]): row for row in cur.fetchall()}
     return year, shifts, classes, loads, assignments, group_settings, rules_rows, availability_rows, teachers, rooms
 
@@ -2294,6 +2306,8 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
 
 def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, state, context):
     reasons = []
+    if job["groups"] and any(group.get("xona_id") is None for group in job["groups"][1:]):
+        reasons.append("bo'linishga xona topilmadi")
     non_null_teachers = [teacher for teacher in selected_teachers if teacher is not None]
     if len(non_null_teachers) != len(set(non_null_teachers)):
         reasons.append("bir o'qituvchi ikki parallel guruhga biriktirilgan")
@@ -2347,13 +2361,17 @@ def _v1852_choose_teacher(job, day, period, state, context):
 
 
 def _v1852_room_keys(job, selected_teachers, classes):
-    if job["groups"]:
-        return [f"room:{g['xona_id']}" if g.get("xona_id") else None for g in job["groups"]]
-    if job.get("room_id"):
-        return [f"room:{job['room_id']}"]
     class_row = classes[job["sinf_id"]]
     room_text = "|".join(str(class_row.get(x) or "").strip() for x in ("bino", "xona")).strip("|")
-    return [f"classroom:{room_text.casefold()}" if room_text else None]
+    home_room_key = f"classroom:{room_text.casefold()}" if room_text else None
+    if job["groups"]:
+        return [
+            f"room:{group['xona_id']}" if group.get("xona_id") else home_room_key
+            for group in job["groups"]
+        ]
+    if job.get("room_id"):
+        return [f"room:{job['room_id']}"]
+    return [home_room_key]
 
 
 def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
@@ -2579,9 +2597,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
         for rule in class_day_rule_rows[:50]:
             warnings.append(f"Qattiq qoida: {rule.get('yorliq')}")
         for job in jobs:
-            if job["groups"] and any(g.get("xona_id") is None for g in job["groups"]):
+            if job["groups"] and any(g.get("xona_id") is None for g in job["groups"][1:]):
                 cls = classes[job["sinf_id"]]
-                message = f"{cls['sinf']}-{cls['harf']} {job['fan']}: parallel guruh xonalaridan biri ko'rsatilmagan"
+                message = f"{cls['sinf']}-{cls['harf']} {job['fan']}: bo'linishga xona topilmadi"
                 if message not in warnings:
                     warnings.append(message)
         diagnostics = {
@@ -2614,9 +2632,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
             job, day, period, selected_teachers = placement["job"], placement["day"], placement["period"], placement["teachers"]
             time_slot = shift_slot_map[(job["smena"], period)]
             if job["groups"]:
-                for group, teacher in zip(job["groups"], selected_teachers):
+                class_row = classes[job["sinf_id"]]
+                home_room_text = " ".join(x for x in [class_row.get("bino"), class_row.get("xona")] if x) or None
+                for group_index, (group, teacher) in enumerate(zip(job["groups"], selected_teachers)):
                     room_id = group.get("xona_id")
-                    room_text = rooms.get(room_id, {}).get("nomi") if room_id else None
+                    room_text = rooms.get(room_id, {}).get("nomi") if room_id else (home_room_text if group_index == 0 else None)
                     entry_rows.append((run_id, sorov.maktab_id, job["sinf_id"], day, job["smena"], period,
                                        job["fan"], teacher, group["guruh_kaliti"], room_id, room_text,
                                        time_slot["boshlanish"], time_slot["tugash"], job["load_id"], job["occurrence"]))
@@ -6422,6 +6442,14 @@ def _v1876_group_review_report(cur, maktab_id: int):
 
     candidate_map = _v1876_teacher_candidates(cur, maktab_id)
     load_map = _v1876_load_map(cur, maktab_id)
+    cur.execute(
+        """SELECT id,nomi,turi,sigim FROM aqlli_xonalar_v2
+           WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE
+           ORDER BY CASE turi WHEN 'sport' THEN 1 WHEN 'reserve' THEN 2 ELSE 3 END,nomi""",
+        (maktab_id,),
+    )
+    teaching_rooms = [dict(row) for row in cur.fetchall()]
+    teaching_room_by_id = {int(row["id"]): row for row in teaching_rooms}
     review_pairs = []
     global_errors = []
     global_warnings = []
@@ -6542,6 +6570,11 @@ def _v1876_group_review_report(cur, maktab_id: int):
             if selected_system:
                 system_groups = selected_system.get("guruhlar") or []
                 saved = settings.get(key, {})
+                used_room_ids = set()
+                sport_subject = any(
+                    word in pair["fan_kaliti"]
+                    for word in ("jismoniy", "sport", "fizkultura")
+                )
                 explicit_by_key = {row["guruh_kaliti"]: row for row in explicit}
                 ordered_whole = sorted(
                     whole,
@@ -6567,11 +6600,33 @@ def _v1876_group_review_report(cur, maktab_id: int):
                         ),
                         source.get("full_name") if source else None,
                     )
+                    room_id = None if index == 0 else setting.get("xona_id")
+                    if room_id is not None and int(room_id) not in teaching_room_by_id:
+                        room_id = None
+                    if room_id is None and index > 0:
+                        preferred_types = ("sport",) if sport_subject else ("reserve", "classroom")
+                        suggested_room = next(
+                            (
+                                room for room in teaching_rooms
+                                if str(room.get("turi") or "classroom") in preferred_types
+                                and int(room["id"]) not in used_room_ids
+                            ),
+                            None,
+                        )
+                        if suggested_room:
+                            room_id = int(suggested_room["id"])
+                        else:
+                            warnings.append(
+                                "Bo'linishga xona topilmadi — bir guruh sinf xonasida qoladi, qolganiga sport zal yoki zaxira xona kiriting"
+                            )
+                    if room_id is not None:
+                        used_room_ids.add(int(room_id))
                     group_payload.append({
                         **group,
                         "oqituvchi_user_id": int(teacher_id) if teacher_id is not None else None,
                         "oqituvchi_ismi": teacher_name,
-                        "xona_id": setting.get("xona_id"),
+                        "xona_id": int(room_id) if room_id is not None else None,
+                        "xona_nomi": teaching_room_by_id.get(int(room_id), {}).get("nomi") if room_id is not None else None,
                     })
 
                 teacher_ids = [
@@ -6724,6 +6779,7 @@ def _v1876_group_review_report(cur, maktab_id: int):
             key=lambda row: (row["sinf_daraja"], row["sinf"]),
         ),
         "fanlar": review_pairs,
+        "xonalar": teaching_rooms,
         "xatolar": list(dict.fromkeys(global_errors))[:300],
         "ogohlantirishlar": list(dict.fromkeys(global_warnings))[:300],
     }
@@ -6882,6 +6938,12 @@ def v1876_group_confirm(sorov: V1876GroupConfirmBatch, token: str):
             (sorov.maktab_id,),
         )
         classes = {int(row["id"]): dict(row) for row in cur.fetchall()}
+        cur.execute(
+            """SELECT id FROM aqlli_xonalar_v2
+               WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE""",
+            (sorov.maktab_id,),
+        )
+        allowed_room_ids = {int(row["id"]) for row in cur.fetchall()}
         old_group_settings = {}
         cur.execute(
             "SELECT * FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s",
@@ -7027,6 +7089,23 @@ def v1876_group_confirm(sorov: V1876GroupConfirmBatch, token: str):
                             status_code=400,
                             detail=f"{subject}: {teacher_id} bu fanga mos o'qituvchi emas",
                         )
+                selected_room_ids = []
+                for group_key in expected_groups:
+                    selected_room_id = payload_map[group_key].xona_id
+                    if selected_room_id is None:
+                        continue
+                    selected_room_id = int(selected_room_id)
+                    if selected_room_id not in allowed_room_ids:
+                        raise HTTPException(
+                            status_code=400,
+                            detail=f"{subject}: tanlangan xona dars o'tishga yaroqli emas yoki faol emas",
+                        )
+                    selected_room_ids.append(selected_room_id)
+                if len(selected_room_ids) != len(set(selected_room_ids)):
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{subject}: parallel guruhlarga bir xil qo'shimcha xona tanlangan",
+                    )
                 if row_ids:
                     cur.execute(
                         "DELETE FROM maktab_dars_birikmalari WHERE id=ANY(%s)",
@@ -7035,7 +7114,7 @@ def v1876_group_confirm(sorov: V1876GroupConfirmBatch, token: str):
                 _v1876_delete_group_settings(
                     cur, sorov.maktab_id, class_id, subject_key
                 )
-                for group_key in expected_groups:
+                for group_index, group_key in enumerate(expected_groups):
                     group = payload_map[group_key]
                     teacher_id = int(group.oqituvchi_user_id)
                     cur.execute("""INSERT INTO maktab_dars_birikmalari(
@@ -7049,7 +7128,7 @@ def v1876_group_confirm(sorov: V1876GroupConfirmBatch, token: str):
                     old = old_group_settings.get(
                         (class_id, subject_key, group_key), {}
                     )
-                    room_id = (
+                    room_id = None if group_index == 0 else (
                         group.xona_id
                         if group.xona_id is not None
                         else old.get("xona_id")
@@ -7502,7 +7581,7 @@ def _v192_matrix_payload(cur, maktab_id: int):
     teachers = _v1859_effective_teachers(cur, maktab_id)
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
     subjects = [row["fan_nomi"] for row in cur.fetchall()]
-    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE ORDER BY nomi", (maktab_id,))
+    cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE ORDER BY nomi", (maktab_id,))
     rooms = [dict(row) for row in cur.fetchall()]
     cur.execute("""SELECT avtomatik_tavsiya FROM aqlli_jadval_boshqaruv_v19_2
                    WHERE maktab_id=%s""", (maktab_id,))
@@ -8286,6 +8365,122 @@ def _v192_clone_run(cur, run, actor_id: int):
                    FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s""",
                 (new_run_id, run["id"]))
     return new_run_id
+
+
+class V192SlotRoomUpdate(BaseModel):
+    urinish_id: int
+    slot_id: int
+    xona_id: Optional[int] = None
+    xona_matni: Optional[str] = None
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/slot_xonasi")
+def v192_slot_room_update(sorov: V192SlotRoomUpdate, token: str):
+    """Jadval katagidagi xonani katalogdan yoki qo'lda xavfsiz tuzatadi."""
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        cur.execute(
+            "SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE",
+            (sorov.urinish_id,),
+        )
+        original_run = cur.fetchone()
+        if not original_run:
+            raise HTTPException(status_code=404, detail="Jadval topilmadi")
+        if not _v1852_manager(cur, actor_id, original_run["maktab_id"]):
+            raise HTTPException(status_code=403, detail="Jadval xonasini faqat rahbariyat o'zgartiradi")
+
+        original_slots = _v192_run_slots(cur, int(original_run["id"]))
+        original_slot = next(
+            (row for row in original_slots if int(row["id"]) == int(sorov.slot_id)),
+            None,
+        )
+        if not original_slot:
+            raise HTTPException(status_code=404, detail="Dars katagi topilmadi")
+
+        run_id = int(original_run["id"])
+        slot_id = int(sorov.slot_id)
+        if original_run["holat"] == "tasdiqlangan":
+            run_id = _v192_clone_run(cur, original_run, actor_id)
+            cur.execute(
+                """SELECT id FROM aqlli_jadval_slotlari_v2
+                   WHERE urinish_id=%s AND sinf_id=%s AND hafta_kuni=%s
+                     AND smena=%s AND dars_raqami=%s AND fan_nomi=%s
+                     AND guruh_kaliti=%s
+                     AND COALESCE(oqituvchi_user_id,0)=COALESCE(%s,0)
+                     AND COALESCE(takror_raqami,0)=COALESCE(%s,0)
+                   ORDER BY id LIMIT 1""",
+                (
+                    run_id, original_slot["sinf_id"], original_slot["hafta_kuni"],
+                    original_slot["smena"], original_slot["dars_raqami"],
+                    original_slot["fan_nomi"], original_slot["guruh_kaliti"],
+                    original_slot.get("oqituvchi_user_id"),
+                    original_slot.get("takror_raqami"),
+                ),
+            )
+            cloned_slot = cur.fetchone()
+            if not cloned_slot:
+                raise HTTPException(status_code=409, detail="Yangi draftdagi dars topilmadi")
+            slot_id = int(cloned_slot["id"])
+        elif original_run["holat"] != "draft":
+            raise HTTPException(status_code=409, detail="Faqat draft yoki faol jadval xonasi o'zgartiriladi")
+
+        room_id = int(sorov.xona_id) if sorov.xona_id is not None else None
+        room_text = re.sub(r"\s+", " ", str(sorov.xona_matni or "")).strip()[:80] or None
+        if room_id is not None:
+            cur.execute(
+                """SELECT id,nomi FROM aqlli_xonalar_v2
+                   WHERE id=%s AND maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE""",
+                (room_id, original_run["maktab_id"]),
+            )
+            selected_room = cur.fetchone()
+            if not selected_room:
+                raise HTTPException(status_code=400, detail="Tanlangan xona dars o'tishga yaroqli emas")
+            room_text = selected_room["nomi"]
+        if not room_text:
+            cur.execute(
+                """SELECT NULLIF(TRIM(CONCAT_WS(' ',bino,xona)),'') AS xona
+                   FROM maktab_sinflari WHERE id=%s""",
+                (original_slot["sinf_id"],),
+            )
+            class_room = cur.fetchone()
+            room_text = class_room.get("xona") if class_room else None
+
+        if room_text:
+            cur.execute(
+                """SELECT e.id,COALESCE(r.nomi,e.xona_matni) AS xona_nomi
+                   FROM aqlli_jadval_slotlari_v2 e
+                   LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
+                   WHERE e.urinish_id=%s AND e.id<>%s AND e.hafta_kuni=%s
+                     AND e.smena=%s AND e.dars_raqami=%s""",
+                (
+                    run_id, slot_id, original_slot["hafta_kuni"],
+                    original_slot["smena"], original_slot["dars_raqami"],
+                ),
+            )
+            normalized_room = room_text.casefold()
+            if any(str(row.get("xona_nomi") or "").strip().casefold() == normalized_room for row in cur.fetchall()):
+                raise HTTPException(status_code=409, detail=f"{room_text} bu vaqtda boshqa darsga band")
+
+        cur.execute(
+            """UPDATE aqlli_jadval_slotlari_v2
+               SET xona_id=%s,xona_matni=%s WHERE id=%s""",
+            (room_id, room_text, slot_id),
+        )
+        conn.commit()
+        return {
+            "holat": "xona_yangilandi",
+            "urinish_id": run_id,
+            "slot_id": slot_id,
+            "xona_id": room_id,
+            "xona": room_text,
+            "yangi_draft": run_id != int(original_run["id"]),
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 @app.post("/api/maktab/aqlli_jadval/v3/almashtirish")
