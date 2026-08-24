@@ -1858,10 +1858,14 @@ def _v1859_sinf_sort_key(label):
 
 
 def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None):
-    cur.execute("""SELECT user_id,full_name,lavozim,fanlari,oqitadigan_sinflari,haftalik_dars_soati
-                   FROM users
-                   WHERE maktab_id=%s AND lavozim IS NOT NULL
-                   ORDER BY full_name,user_id""", (maktab_id,))
+    cur.execute("""SELECT u.user_id,u.full_name,u.lavozim,u.fanlari,
+                          u.oqitadigan_sinflari,u.haftalik_dars_soati,
+                          to_jsonb(u)->>'mutaxassisligi' AS mutaxassisligi,
+                          NULLIF(to_jsonb(u)->>'haftalik_maqsad_soat','')::INTEGER
+                              AS haftalik_maqsad_soat
+                   FROM users u
+                   WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
+                   ORDER BY u.full_name,u.user_id""", (maktab_id,))
     rows = [dict(row) for row in cur.fetchall()]
     if user_ids:
         wanted = {int(x) for x in user_ids}
@@ -7360,6 +7364,12 @@ def _v192_tables(cur):
         "ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE"
     )
     cur.execute(
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS mutaxassisligi TEXT"
+    )
+    cur.execute(
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_maqsad_soat INTEGER"
+    )
+    cur.execute(
         "ALTER TABLE maktab_dars_birikmalari "
         "ADD COLUMN IF NOT EXISTS xona_id BIGINT REFERENCES aqlli_xonalar_v2(id) ON DELETE SET NULL"
     )
@@ -7387,12 +7397,42 @@ def _v192_tables(cur):
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
         sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
         fan_nomi TEXT NOT NULL,
-        haftalik_soat INTEGER NOT NULL CHECK(haftalik_soat BETWEEN 1 AND 20),
+        haftalik_soat NUMERIC(4,1) NOT NULL CHECK(haftalik_soat BETWEEN 0.5 AND 20),
         kunlik_max INTEGER NOT NULL DEFAULT 1 CHECK(kunlik_max BETWEEN 1 AND 4),
         manba TEXT NOT NULL DEFAULT 'qolda',
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         UNIQUE(maktab_id,sinf_id,fan_nomi)
     )""")
+    # 2026–2027 tayanch rejada 0,5 va 1,5 soatli fanlar bor. Eski INTEGER
+    # ustunni ma'lumotni yo'qotmasdan kasr soat saqlaydigan turga o'tkazamiz.
+    cur.execute("""DO $$
+        DECLARE constraint_name TEXT;
+        BEGIN
+          FOR constraint_name IN
+            SELECT c.conname
+            FROM pg_constraint c
+            JOIN pg_class t ON t.oid=c.conrelid
+            WHERE t.relname='aqlli_oquv_reja_qatorlari_v19_3'
+              AND c.contype='c'
+              AND pg_get_constraintdef(c.oid) ILIKE '%haftalik_soat%'
+          LOOP
+            EXECUTE format(
+              'ALTER TABLE aqlli_oquv_reja_qatorlari_v19_3 DROP CONSTRAINT %I',
+              constraint_name
+            );
+          END LOOP;
+        END $$""")
+    cur.execute("""ALTER TABLE aqlli_oquv_reja_qatorlari_v19_3
+                   ALTER COLUMN haftalik_soat TYPE NUMERIC(4,1)
+                   USING haftalik_soat::NUMERIC(4,1)""")
+    cur.execute("""DO $$ BEGIN
+        ALTER TABLE aqlli_oquv_reja_qatorlari_v19_3
+          ADD CONSTRAINT aqlli_oquv_reja_v193_haftalik_soat_check
+          CHECK(haftalik_soat BETWEEN 0.5 AND 20);
+      EXCEPTION WHEN duplicate_object THEN NULL; END $$""")
+    cur.execute("""ALTER TABLE aqlli_sinf_fan_yuklamalari_v2
+                   ALTER COLUMN haftalik_soat TYPE NUMERIC(4,1)
+                   USING haftalik_soat::NUMERIC(4,1)""")
     cur.execute(
         "CREATE INDEX IF NOT EXISTS idx_v193_plan_class "
         "ON aqlli_oquv_reja_qatorlari_v19_3(maktab_id,sinf_id)"
@@ -7430,37 +7470,7 @@ def _v192_clean_subject(value):
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
-SAMTM_V19_3_DEFAULT_CURRICULUM = (
-    ("Ona tili", {1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4, 7: 3, 8: 3, 9: 3, 10: 2, 11: 2}),
-    ("O‘qish savodxonligi", {1: 4, 2: 3, 3: 3, 4: 3}),
-    ("Adabiyot", {5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
-    ("Rus tili", {2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
-    ("Chet tili", {1: 1, 2: 2, 3: 2, 4: 2, 5: 4, 6: 4, 7: 4, 8: 3, 9: 3, 10: 2, 11: 2}),
-    ("Tarixdan hikoyalar", {5: 2}),
-    ("Qadimgi dunyo tarixi", {6: 2}),
-    ("O‘zbekiston tarixi", {7: 2, 8: 2, 9: 2, 10: 1, 11: 1}),
-    ("Jahon tarixi", {7: 1, 8: 1, 9: 1, 10: 1, 11: 1}),
-    ("Davlat va huquq asoslari", {8: 1, 9: 1, 10: 1, 11: 1}),
-    ("Tarbiya", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1}),
-    ("Matematika", {1: 5, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5}),
-    ("Algebra", {8: 3, 9: 3, 10: 3, 11: 3}),
-    ("Geometriya", {8: 2, 9: 2, 10: 2, 11: 2}),
-    ("Informatika va AT", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 2, 10: 2, 11: 2}),
-    ("Fizika", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
-    ("Astronomiya", {11: 1}),
-    ("Kimyo", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
-    ("Biologiya", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
-    ("Geografiya", {7: 2, 8: 2, 9: 2, 10: 2}),
-    ("Iqtisodiy bilim asoslari", {8: 1, 9: 1}),
-    ("Tadbirkorlik asoslari", {11: 1}),
-    ("Tabiiy fan (Science)", {1: 1, 2: 1, 3: 1, 4: 1, 5: 2, 6: 3}),
-    ("Musiqa madaniyati", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1}),
-    ("Tasviriy san’at", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1}),
-    ("Chizmachilik", {8: 1, 9: 1}),
-    ("Texnologiya", {1: 1, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 1, 9: 1}),
-    ("Jismoniy tarbiya", {1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
-    ("ChQBT", {10: 2, 11: 2}),
-)
+SAMTM_V19_3_DEFAULT_CURRICULUM = SAMTM_2026_2027_UZBEK_CURRICULUM
 
 
 def _v193_grade_number(value):
@@ -7468,22 +7478,43 @@ def _v193_grade_number(value):
     return int(match.group(0)) if match else 0
 
 
-def _v193_template_rows_for_class(class_row):
+def _v194_school_subject_grades(cur, maktab_id: int):
+    """None — eski maktab; dict — fanlar sinflar bo'yicha aniq sozlangan."""
+    cur.execute("SELECT to_regclass('public.maktab_fan_sinflari_v19_4') AS jadval")
+    if not (cur.fetchone() or {}).get("jadval"):
+        return None
+    cur.execute("""SELECT fan_nomi,sinf_darajasi
+                   FROM maktab_fan_sinflari_v19_4
+                   WHERE maktab_id=%s ORDER BY sinf_darajasi,fan_nomi""", (maktab_id,))
+    rows = cur.fetchall()
+    if not rows:
+        return None
+    result = {}
+    for row in rows:
+        grade = int(row["sinf_darajasi"])
+        result.setdefault(grade, {})[_v1875_subject_key(row["fan_nomi"])] = row["fan_nomi"]
+    return result
+
+
+def _v193_template_rows_for_class(class_row, selected_by_grade=None):
     grade = _v193_grade_number(class_row.get("sinf"))
+    allowed = (selected_by_grade or {}).get(grade) if selected_by_grade is not None else None
     return [
         {
             "sinf_id": int(class_row["id"]),
-            "fan_nomi": subject,
-            "haftalik_soat": int(hours[grade]),
+            "fan_nomi": (allowed or {}).get(_v1875_subject_key(subject), subject),
+            "haftalik_soat": float(hours[grade]),
             "kunlik_max": 1,
             "manba": "tayanch_2026_2027",
         }
         for subject, hours in SAMTM_V19_3_DEFAULT_CURRICULUM
-        if int(hours.get(grade, 0)) > 0
+        if float(hours.get(grade, 0)) > 0
+        and (allowed is None or _v1875_subject_key(subject) in allowed)
     ]
 
 
 def _v193_ensure_plan(cur, maktab_id: int, classes):
+    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
     cur.execute("""INSERT INTO aqlli_oquv_reja_holati_v19_3(maktab_id)
                    VALUES(%s) ON CONFLICT(maktab_id) DO NOTHING""", (maktab_id,))
     cur.execute("""SELECT DISTINCT sinf_id FROM aqlli_oquv_reja_qatorlari_v19_3
@@ -7493,7 +7524,7 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
     if not missing:
         return
     for class_row in missing:
-        template_rows = _v193_template_rows_for_class(class_row)
+        template_rows = _v193_template_rows_for_class(class_row, selected_by_grade)
         for item in template_rows:
             cur.execute("""INSERT INTO aqlli_oquv_reja_qatorlari_v19_3(
                             maktab_id,sinf_id,fan_nomi,haftalik_soat,
@@ -7516,6 +7547,7 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
 
 def _v193_plan_payload(cur, maktab_id: int, classes):
     _v193_ensure_plan(cur, maktab_id, classes)
+    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
     cur.execute("""SELECT holat,versiya,tasdiqlagan_user_id,
                           tasdiqlangan_at,yangilangan_at
                    FROM aqlli_oquv_reja_holati_v19_3 WHERE maktab_id=%s""",
@@ -7527,28 +7559,40 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
                    WHERE maktab_id=%s
                    ORDER BY sinf_id,fan_nomi""", (maktab_id,))
     rows = [dict(row) for row in cur.fetchall()]
+    if selected_by_grade is not None:
+        class_grades = {int(row["id"]): _v193_grade_number(row.get("sinf")) for row in classes}
+        rows = [
+            row for row in rows
+            if _v1875_subject_key(row["fan_nomi"])
+            in selected_by_grade.get(class_grades.get(int(row["sinf_id"]), 0), {})
+        ]
     class_totals = {}
     for row in rows:
         class_id = int(row["sinf_id"])
-        class_totals[class_id] = class_totals.get(class_id, 0) + int(row["haftalik_soat"])
+        class_totals[class_id] = class_totals.get(class_id, 0.0) + float(row["haftalik_soat"])
     template_rows = []
     for class_row in classes:
-        template_rows.extend(_v193_template_rows_for_class(class_row))
+        template_rows.extend(_v193_template_rows_for_class(class_row, selected_by_grade))
     return {
         "holat": status.get("holat") or "draft",
         "versiya": int(status.get("versiya") or 1),
         "tasdiqlangan_at": status.get("tasdiqlangan_at"),
         "yangilangan_at": status.get("yangilangan_at"),
-        "andoza_nomi": "2026–2027 tayanch o‘quv reja",
+        "andoza_nomi": "MMTV 133-son · 2026–2027 tayanch o‘quv reja",
+        "andoza_manbasi": SAMTM_2026_2027_CURRICULUM_SOURCE,
         "qatorlar": rows,
         "andoza_qatorlar": template_rows,
         "sinf_jami": [
             {
                 "sinf_id": int(class_row["id"]),
                 "sinf": f"{class_row['sinf']}-{class_row['harf']}",
-                "haftalik_soat": int(class_totals.get(int(class_row["id"]), 0)),
+                "haftalik_soat": float(class_totals.get(int(class_row["id"]), 0)),
             }
             for class_row in classes
+        ],
+        "tanlangan_fan_sinflari": [
+            {"sinf_darajasi": grade, "fanlar": list(subjects.values())}
+            for grade, subjects in sorted((selected_by_grade or {}).items())
         ],
     }
 
@@ -7736,6 +7780,7 @@ def _v192_totals(cur, maktab_id: int, rows, classes):
 def _v192_matrix_payload(cur, maktab_id: int):
     classes, systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
+    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
     rows = _v192_assignment_rows(cur, maktab_id)
     variant_names = {
         (int(row["sinf_id"]), str(row["guruh_kaliti"])): row
@@ -7763,6 +7808,16 @@ def _v192_matrix_payload(cur, maktab_id: int):
         "sinflar": classes,
         "oqituvchilar": teachers,
         "fanlar": subjects,
+        "fan_sinflari": [
+            {
+                "sinf_id": int(cls["id"]),
+                "sinf_darajasi": _v193_grade_number(cls.get("sinf")),
+                "fanlar": list((selected_by_grade or {}).get(
+                    _v193_grade_number(cls.get("sinf")), {}
+                ).values()) if selected_by_grade is not None else subjects,
+            }
+            for cls in classes
+        ],
         "xonalar": rooms,
         "guruh_variantlari": variants,
         "birikmalar": rows,
@@ -7794,7 +7849,7 @@ def v192_load_matrix(token: str, maktab_id: int):
 
 class V193CurriculumItem(BaseModel):
     fan_nomi: str
-    haftalik_soat: int
+    haftalik_soat: float
     kunlik_max: int = 1
 
 
@@ -7807,7 +7862,7 @@ class V193CurriculumClassSave(BaseModel):
 class V193CurriculumMatrixItem(BaseModel):
     sinf_id: int
     fan_nomi: str
-    haftalik_soat: int
+    haftalik_soat: float
     kunlik_max: int = 1
 
 
@@ -7834,6 +7889,8 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
         class_row = cur.fetchone()
         if not class_row:
             raise HTTPException(status_code=404, detail="Sinf topilmadi")
+        selected_by_grade = _v194_school_subject_grades(cur, sorov.maktab_id)
+        allowed = (selected_by_grade or {}).get(_v193_grade_number(class_row.get("sinf")), {})
         received = set()
         cleaned = []
         for index, item in enumerate(sorov.fanlar, start=1):
@@ -7841,13 +7898,17 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
             if not subject:
                 raise HTTPException(status_code=400, detail=f"{index}-qator: fan nomi kiritilmagan")
             key = _v1875_subject_key(subject)
+            if selected_by_grade is not None and key not in allowed:
+                raise HTTPException(status_code=400, detail=f"{subject}: bu sinf uchun maktab fanlari ro'yxatida yo'q")
+            if key in allowed:
+                subject = allowed[key]
             if key in received:
                 raise HTTPException(status_code=400, detail=f"{subject}: reja qatorida ikki marta yozilgan")
             received.add(key)
-            hours = int(item.haftalik_soat)
+            hours = float(item.haftalik_soat)
             daily = int(item.kunlik_max)
-            if hours < 1 or hours > 20:
-                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 1–20 bo'lishi kerak")
+            if hours < 0.5 or hours > 20 or hours * 2 != int(hours * 2):
+                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 0,5–20 oralig'ida, 0,5 qadam bilan bo'lishi kerak")
             if daily < 1 or daily > 4:
                 raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1–4 bo'lishi kerak")
             cleaned.append((subject, hours, daily))
@@ -7907,6 +7968,7 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
                     (sorov.maktab_id,))
         classes = [dict(row) for row in cur.fetchall()]
         valid_classes = {int(row["id"]): row for row in classes}
+        selected_by_grade = _v194_school_subject_grades(cur, sorov.maktab_id)
         if not valid_classes:
             raise HTTPException(status_code=400, detail="Maktabda birorta ham sinf topilmadi")
         if not sorov.qatorlar:
@@ -7921,10 +7983,22 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
             subject = _v192_clean_subject(item.fan_nomi)
             if not subject:
                 raise HTTPException(status_code=400, detail=f"{index}-qator: fan nomi kiritilmagan")
-            hours = int(item.haftalik_soat)
+            subject_key = _v1875_subject_key(subject)
+            allowed = (selected_by_grade or {}).get(
+                _v193_grade_number(valid_classes[class_id].get("sinf")), {}
+            )
+            if selected_by_grade is not None and subject_key not in allowed:
+                cls = valid_classes[class_id]
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{cls['sinf']}-{cls['harf']} / {subject}: maktabning fan–sinf tanlovida yo'q",
+                )
+            if subject_key in allowed:
+                subject = allowed[subject_key]
+            hours = float(item.haftalik_soat)
             daily = int(item.kunlik_max)
-            if hours < 1 or hours > 20:
-                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 1–20 bo'lishi kerak")
+            if hours < 0.5 or hours > 20 or hours * 2 != int(hours * 2):
+                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 0,5–20 oralig'ida, 0,5 qadam bilan bo'lishi kerak")
             if daily < 1 or daily > 4:
                 raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1–4 bo'lishi kerak")
             key = (class_id, _v1875_subject_key(subject))
@@ -8053,17 +8127,33 @@ class V192TeacherLoadRow(BaseModel):
 class V192TeacherLoadSave(BaseModel):
     maktab_id: int
     user_id: int
+    mutaxassisligi: Optional[str] = None
+    haftalik_maqsad_soat: Optional[int] = None
     qatorlar: list[V192TeacherLoadRow]
 
 
 class V192ManualTeacherCreate(BaseModel):
     maktab_id: int
     full_name: str
+    mutaxassisligi: Optional[str] = None
+    haftalik_maqsad_soat: Optional[int] = None
     tugilgan_yili: Optional[int] = None
     ish_staji: Optional[int] = None
     toifasi: Optional[str] = None
     rahbar_sinf_id: Optional[int] = None
     qatorlar: list[V192TeacherLoadRow]
+
+
+def _v194_teacher_profile_values(mutaxassisligi, haftalik_maqsad_soat):
+    specialty = re.sub(r"\s+", " ", str(mutaxassisligi or "")).strip() or None
+    if specialty and len(specialty) > 120:
+        raise HTTPException(status_code=400, detail="Mutaxassislik nomi 120 ta belgidan oshmasligi kerak")
+    target = haftalik_maqsad_soat
+    if target is not None:
+        target = int(target)
+        if target < 1 or target > 60:
+            raise HTTPException(status_code=400, detail="Haftalik maqsad soati 1–60 oralig'ida bo'lishi kerak")
+    return specialty, target
 
 
 def _v192_sync_schedule_sources(cur, maktab_id: int):
@@ -8082,6 +8172,10 @@ def _v192_sync_schedule_sources(cur, maktab_id: int):
         cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
                        SET haftalik_soat=0,asosiy_oqituvchi_user_id=NULL
                        WHERE maktab_id=%s""", (maktab_id,))
+        cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
+        return [
+            "O'qituvchi yuklamasi qo'lda saqlandi. O'quv reja tasdiqlanmagani uchun avtomatik soat va dars jadvali manbasi hali yoqilmadi"
+        ]
     else:
         # Tasdiqlangan rejada hali o'qituvchi biriktirilmagan fanlarning
         # soati yo'qolmaydi. Faqat aniq birikma bor fanlar quyida yangilanadi.
@@ -8217,13 +8311,21 @@ def _v192_save_teacher_load_rows(
     if not teacher:
         raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
     approved_plan = _v193_approved_plan_map(cur, maktab_id)
-    if approved_plan is None:
-        raise HTTPException(
-            status_code=409,
-            detail="Avval o'quv rejasini tekshirib, tasdiqlang. Shundan keyin o'qituvchi yuklamasi kiritiladi",
-        )
     classes, _systems, variants = _v192_group_variants(cur, maktab_id)
     valid_classes = {int(row["id"]) for row in classes}
+    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
+    cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s", (maktab_id,))
+    fallback_subjects = {
+        _v1875_subject_key(row["fan_nomi"]): row["fan_nomi"]
+        for row in cur.fetchall()
+    }
+    allowed_by_class = {}
+    for cls in classes:
+        grade = _v193_grade_number(cls.get("sinf"))
+        allowed_by_class[int(cls["id"])] = (
+            dict((selected_by_grade or {}).get(grade, {}))
+            if selected_by_grade is not None else dict(fallback_subjects)
+        )
     variant_map = {
         (int(row["sinf_id"]), str(row["guruh_kaliti"])): row
         for row in variants
@@ -8237,17 +8339,24 @@ def _v192_save_teacher_load_rows(
         subject = _v192_clean_subject(item.fan_nomi)
         if not subject:
             raise HTTPException(status_code=400, detail=f"{index}-qator: fan tanlanmagan")
-        plan_item = approved_plan.get(
-            (int(item.sinf_id), _v1875_subject_key(subject))
+        subject_key = _v1875_subject_key(subject)
+        plan_item = (
+            approved_plan.get((int(item.sinf_id), subject_key))
+            if approved_plan is not None else None
         )
-        if not plan_item:
+        if approved_plan is not None and not plan_item:
             raise HTTPException(
                 status_code=400,
-                detail=(
-                    f"{index}-qator: {subject} tanlangan sinfning tasdiqlangan "
-                    "o'quv rejasida yo'q"
-                ),
+                detail=f"{index}-qator: {subject} tanlangan sinfning tasdiqlangan o'quv rejasida yo'q",
             )
+        if approved_plan is None:
+            allowed_subject = allowed_by_class.get(int(item.sinf_id), {}).get(subject_key)
+            if not allowed_subject:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{index}-qator: {subject} bu sinf uchun maktab fanlari ro'yxatida yo'q",
+                )
+            subject = allowed_subject
         group_key = _v1875_group_key(item.guruh_kaliti)
         variant = variant_map.get((int(item.sinf_id), group_key))
         if not variant:
@@ -8258,11 +8367,12 @@ def _v192_save_teacher_load_rows(
             raise HTTPException(status_code=400, detail=f"{index}-qator: haftalik soat 1–20 bo'lishi kerak")
         if daily < 1 or daily > 4:
             raise HTTPException(status_code=400, detail=f"{index}-qator: kunlik maksimum 1–4 bo'lishi kerak")
-        plan_hours = int(plan_item.get("haftalik_soat") or 0)
-        if hours != plan_hours:
-            plan_overrides.append(
-                f"{variant['sinf']} / {subject}: reja {plan_hours}, qo'lda {hours} soat"
-            )
+        if plan_item is not None:
+            plan_hours = float(plan_item.get("haftalik_soat") or 0)
+            if hours != plan_hours:
+                plan_overrides.append(
+                    f"{variant['sinf']} / {subject}: reja {plan_hours:g}, qo'lda {hours} soat"
+                )
         key = (int(item.sinf_id), _v1875_subject_key(subject), group_key)
         if key in seen:
             raise HTTPException(status_code=400, detail=f"{index}-qator: bir xil fan–sinf–guruh ikki marta yozilgan")
@@ -8373,6 +8483,20 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
         _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'qituvchi yuklamasini faqat rahbariyat boshqaradi")
+        supplied_fields = set(
+            getattr(sorov, "model_fields_set", getattr(sorov, "__fields_set__", set()))
+        )
+        profile_fields = {"mutaxassisligi", "haftalik_maqsad_soat"}
+        if supplied_fields.intersection(profile_fields):
+            specialty, target = _v194_teacher_profile_values(
+                sorov.mutaxassisligi, sorov.haftalik_maqsad_soat
+            )
+            cur.execute("""UPDATE users
+                           SET mutaxassisligi=%s,haftalik_maqsad_soat=%s
+                           WHERE user_id=%s AND maktab_id=%s""",
+                        (specialty, target, sorov.user_id, sorov.maktab_id))
+            if int(cur.rowcount or 0) != 1:
+                raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
         result = _v192_save_teacher_load_rows(
             cur, actor_id, sorov.maktab_id, sorov.user_id, sorov.qatorlar
         )
@@ -8413,6 +8537,9 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         category = re.sub(r"\s+", " ", str(sorov.toifasi or "")).strip() or None
         if category and category not in TOIFALAR:
             raise HTTPException(status_code=400, detail="O'qituvchi toifasi noto'g'ri")
+        specialty, target_hours = _v194_teacher_profile_values(
+            sorov.mutaxassisligi, sorov.haftalik_maqsad_soat
+        )
 
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(sorov.maktab_id),))
         leader_class = None
@@ -8445,13 +8572,14 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         )
         cur.execute("""INSERT INTO users(
                         user_id,full_name,role,maktab_id,lavozim,tugilgan_sana,
-                        ish_staji,toifasi,haftalik_dars_soati)
-                       VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,%s,0)""",
+                        ish_staji,toifasi,mutaxassisligi,haftalik_maqsad_soat,
+                        haftalik_dars_soati)
+                       VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,%s,%s,%s,0)""",
                     (
                         new_user_id, full_name, sorov.maktab_id,
                         _date(int(birth_year), 1, 1) if birth_year is not None else None,
                         int(work_years) if work_years is not None else None,
-                        category,
+                        category, specialty, target_hours,
                     ))
         plain_code, stored_code = _xodim_kod_yarat()
         cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)",
@@ -8469,6 +8597,8 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
             "kirish_kodi": plain_code,
             "kirish_kodi_muddati": "7 kun",
             "qolda_kiritildi": True,
+            "mutaxassisligi": specialty,
+            "haftalik_maqsad_soat": target_hours,
             "tugilgan_yili": int(birth_year) if birth_year is not None else None,
             "rahbar_sinf_id": int(leader_class["id"]) if leader_class else None,
             "rahbar_sinf_nomi": (
