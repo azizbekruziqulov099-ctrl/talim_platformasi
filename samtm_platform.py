@@ -7998,7 +7998,7 @@ def _xodim_sinf_birikmalari_jadvali(cur):
 
 
 def _maktab_fanlari_jadvali(cur):
-    """Har bir maktab xodim importida ishlatadigan fanlar ro'yxati."""
+    """Maktab fanlari va ularning 1-11-sinf bo'yicha aniq qo'llanishi."""
     cur.execute("""
         CREATE TABLE IF NOT EXISTS maktab_fanlari(
             maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
@@ -8007,34 +8007,314 @@ def _maktab_fanlari_jadvali(cur):
             PRIMARY KEY(maktab_id, fan_nomi)
         )
     """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS maktab_fan_sinflari_v19_4(
+            maktab_id INTEGER NOT NULL,
+            fan_nomi TEXT NOT NULL,
+            sinf_darajasi INTEGER NOT NULL CHECK(sinf_darajasi BETWEEN 1 AND 11),
+            manba TEXT NOT NULL DEFAULT 'maktab_tanlovi',
+            yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            PRIMARY KEY(maktab_id,fan_nomi,sinf_darajasi),
+            FOREIGN KEY(maktab_id,fan_nomi)
+                REFERENCES maktab_fanlari(maktab_id,fan_nomi)
+                ON UPDATE CASCADE ON DELETE CASCADE
+        )
+    """)
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS ix_maktab_fan_sinflari_v194_grade "
+        "ON maktab_fan_sinflari_v19_4(maktab_id,sinf_darajasi,fan_nomi)"
+    )
+
+
+# O'zbekiston Respublikasi Maktabgacha va maktab ta'limi vazirining
+# 2026-yil 10-apreldagi 133-son buyrug'i, 1-ilova (o'zbek tilidagi maktablar).
+# 8-9-sinflardagi 1,5 va 0,5 soatlar ataylab kasr ko'rinishida saqlanadi.
+SAMTM_2026_2027_UZBEK_CURRICULUM = (
+    ("Ona tili", {1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4, 7: 3, 8: 3, 9: 3, 10: 2, 11: 2}),
+    ("O'qish savodxonligi", {1: 4, 2: 3, 3: 3, 4: 3}),
+    ("Adabiyot", {5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Rus tili", {2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Chet tili", {1: 1, 2: 2, 3: 2, 4: 2, 5: 4, 6: 4, 7: 4, 8: 3, 9: 3, 10: 2, 11: 2}),
+    ("Tarixdan hikoyalar", {5: 2}),
+    ("Qadimgi dunyo tarixi", {6: 2}),
+    ("O'zbekiston tarixi", {7: 2, 8: 2, 9: 2, 10: 1, 11: 1}),
+    ("Jahon tarixi", {7: 1, 8: 1, 9: 1, 10: 1, 11: 1}),
+    ("Davlat va huquq asoslari", {8: 1, 9: 1, 10: 1, 11: 1}),
+    ("Tarbiya", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1}),
+    ("Matematika", {1: 5, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5}),
+    ("Algebra", {8: 3, 9: 3, 10: 3, 11: 3}),
+    ("Geometriya", {8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Informatika va axborot texnologiyalari", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 2, 10: 2, 11: 2}),
+    ("Fizika", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Astronomiya", {11: 1}),
+    ("Kimyo", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Biologiya", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Geografiya", {7: 2, 8: 1.5, 9: 1.5, 10: 2}),
+    ("Iqtisodiy bilim asoslari", {8: 0.5, 9: 0.5}),
+    ("Tadbirkorlik asoslari", {11: 1}),
+    ("Tabiiy fan (Science)", {1: 1, 2: 1, 3: 1, 4: 1, 5: 2, 6: 3}),
+    ("Musiqa madaniyati", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1}),
+    ("Tasviriy san'at", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1}),
+    ("Chizmachilik", {8: 1, 9: 1}),
+    ("Texnologiya", {1: 1, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 1, 9: 1}),
+    ("Jismoniy tarbiya", {1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Chaqiruvga qadar boshlang'ich tayyorgarlik", {10: 2, 11: 2}),
+)
+
+SAMTM_2026_2027_CURRICULUM_SOURCE = {
+    "nomi": "2026-2027 tayanch o'quv reja",
+    "buyruq": "MMTV 133-son",
+    "sana": "2026-04-10",
+    "ilova": "1-ilova",
+    "talim_tili": "o'zbek",
+    "sinf_jami": {1: 21, 2: 24, 3: 24, 4: 24, 5: 29, 6: 30, 7: 35, 8: 33, 9: 34, 10: 31, 11: 31},
+}
+
+
+def _maktab_fan_masofasi(left, right):
+    """Qisqa fan nomlarida ham barqaror ishlaydigan Levenshtein masofasi."""
+    left = str(left or "")
+    right = str(right or "")
+    if left == right:
+        return 0
+    if not left:
+        return len(right)
+    if not right:
+        return len(left)
+    previous = list(range(len(right) + 1))
+    for left_index, left_char in enumerate(left, start=1):
+        current = [left_index]
+        for right_index, right_char in enumerate(right, start=1):
+            current.append(min(
+                current[-1] + 1,
+                previous[right_index] + 1,
+                previous[right_index - 1] + (left_char != right_char),
+            ))
+        previous = current
+    return previous[-1]
+
+
+def _maktab_fan_yaqin_taklif(fan_nomi, katalog):
+    key = _xodim_excel_sarlavha_kaliti(fan_nomi)
+    if len(key) < 4:
+        return None
+    best = None
+    for item in katalog:
+        candidate = _xodim_excel_sarlavha_kaliti(item["nomi"])
+        if not candidate or candidate == key:
+            continue
+        distance = _maktab_fan_masofasi(key, candidate)
+        ratio = distance / max(len(key), len(candidate), 1)
+        limit = 1 if max(len(key), len(candidate)) <= 7 else (2 if max(len(key), len(candidate)) <= 15 else 3)
+        if distance <= limit and ratio <= 0.22 and (best is None or (distance, ratio) < best[:2]):
+            best = (distance, ratio, item["nomi"])
+    return best[2] if best else None
 
 
 def _maktab_fan_katalogi(cur, maktab_id):
-    """DTS fanlarini faqat tavsiya sifatida qaytaradi; sinfga biriktirmaydi."""
-    cur.execute(
-        "SELECT DISTINCT subject_name FROM dts_tree "
-        "WHERE COALESCE(is_deleted,FALSE)=FALSE AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
-        "ORDER BY subject_name"
-    )
+    """Rasmiy 2026-2027 reja + DTS + maktabning maxsus fanlari katalogi."""
     fanlar = {}
+    for fan_nomi, hours in SAMTM_2026_2027_UZBEK_CURRICULUM:
+        key = _xodim_excel_sarlavha_kaliti(fan_nomi)
+        fanlar[key] = {
+            "nomi": fan_nomi,
+            "manba": "MMTV 133-son · 2026-2027",
+            "standart_sinflar": sorted(int(grade) for grade in hours),
+            "standart_soatlar": {int(grade): float(value) for grade, value in hours.items()},
+            "maxsus": False,
+        }
+    cur.execute(
+        "SELECT DISTINCT subject_name,grade FROM dts_tree "
+        "WHERE COALESCE(is_deleted,FALSE)=FALSE AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
+        "ORDER BY subject_name,grade"
+    )
     for row in cur.fetchall():
         fan_nomi = re.sub(r"\s+", " ", str(row["subject_name"] or "")).strip()
         if not fan_nomi:
             continue
         kalit = _xodim_excel_sarlavha_kaliti(fan_nomi)
-        fanlar.setdefault(kalit, {"nomi": fan_nomi, "manba": "DTS"})
+        match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(row.get("grade") or ""))
+        grade = int(match.group(1)) if match else None
+        item = fanlar.setdefault(kalit, {
+            "nomi": fan_nomi, "manba": "DTS · maxsus/tanlov",
+            "standart_sinflar": [], "standart_soatlar": {}, "maxsus": True,
+        })
+        if grade and grade not in item["standart_sinflar"]:
+            item["standart_sinflar"].append(grade)
+            item["standart_sinflar"].sort()
     return sorted(fanlar.values(), key=lambda fan: fan["nomi"].casefold())
+
+
+class MaktabFanSinfTanlovi(BaseModel):
+    fan_nomi: str
+    sinflar: list[int] = []
+    imlo_tasdiq: bool = False
 
 
 class MaktabFanlariniSozlash(BaseModel):
     token: str
     maktab_id: int
-    fanlar: list[str]
+    fanlar: list[str] = []
+    fan_sinflari: list[MaktabFanSinfTanlovi] = []
+    ochirish_tasdiqlari: list[str] = []
+
+
+def _maktab_fan_ochirish_kaliti(fan_nomi, sinf_darajasi):
+    return f"{_xodim_excel_sarlavha_kaliti(fan_nomi)}|{int(sinf_darajasi)}"
+
+
+def _maktab_fan_ochirish_tasiri(cur, maktab_id, fan_nomi, sinf_darajasi=None):
+    """Saqlangan fan/sinf bog'lanmasi o'chsa ta'sir qiladigan real yozuvlar."""
+    cur.execute("""SELECT id,sinf,harf FROM maktab_sinflari
+                   WHERE maktab_id=%s ORDER BY id""", (maktab_id,))
+    classes = []
+    for row in cur.fetchall():
+        match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(row.get("sinf") or ""))
+        grade = int(match.group(1)) if match else 0
+        if sinf_darajasi is None or grade == int(sinf_darajasi):
+            classes.append({**dict(row), "grade": grade})
+    class_ids = [int(row["id"]) for row in classes]
+    class_names = [f"{row['sinf']}-{row['harf']}" for row in classes]
+    result = {
+        "fan_nomi": fan_nomi,
+        "sinf_darajasi": int(sinf_darajasi) if sinf_darajasi is not None else None,
+        "sinflar": class_names,
+        "oquv_reja_qatori": 0,
+        "oquv_reja_soati": 0.0,
+        "oqituvchi_birikmasi": 0,
+        "oqituvchi_soni": 0,
+        "oqituvchi_soati": 0,
+        "aqlli_jadval_sloti": 0,
+        "eski_jadval_sloti": 0,
+        "mavzu_reja_qatori": 0,
+        "guruh_tizimi": 0,
+    }
+    if not class_ids:
+        result["jami_boglanish"] = 0
+        result["ogohlantirishlar"] = []
+        return result
+
+    def table_exists(table_name):
+        cur.execute("SELECT to_regclass(%s) AS jadval", (f"public.{table_name}",))
+        return bool((cur.fetchone() or {}).get("jadval"))
+
+    if table_exists("aqlli_oquv_reja_qatorlari_v19_3"):
+        cur.execute("""SELECT COUNT(*) AS son,COALESCE(SUM(haftalik_soat),0) AS soat
+                       FROM aqlli_oquv_reja_qatorlari_v19_3
+                       WHERE maktab_id=%s AND sinf_id=ANY(%s)
+                         AND LOWER(TRIM(fan_nomi))=LOWER(TRIM(%s))""",
+                    (maktab_id, class_ids, fan_nomi))
+        row = cur.fetchone() or {}
+        result["oquv_reja_qatori"] = int(row.get("son") or 0)
+        result["oquv_reja_soati"] = float(row.get("soat") or 0)
+    if table_exists("maktab_dars_birikmalari"):
+        cur.execute("""SELECT COUNT(*) AS son,COUNT(DISTINCT user_id) AS ustoz,
+                              COALESCE(SUM(haftalik_soat),0) AS soat
+                       FROM maktab_dars_birikmalari
+                       WHERE maktab_id=%s AND sinf_id=ANY(%s)
+                         AND LOWER(TRIM(fan_nomi))=LOWER(TRIM(%s))""",
+                    (maktab_id, class_ids, fan_nomi))
+        row = cur.fetchone() or {}
+        result["oqituvchi_birikmasi"] = int(row.get("son") or 0)
+        result["oqituvchi_soni"] = int(row.get("ustoz") or 0)
+        result["oqituvchi_soati"] = int(row.get("soat") or 0)
+    if table_exists("aqlli_jadval_slotlari_v2"):
+        cur.execute("""SELECT COUNT(*) AS son FROM aqlli_jadval_slotlari_v2 e
+                       JOIN aqlli_jadval_urinishlari_v2 r ON r.id=e.urinish_id
+                       WHERE e.maktab_id=%s AND e.sinf_id=ANY(%s)
+                         AND r.holat IN ('draft','tasdiqlangan')
+                         AND LOWER(TRIM(e.fan_nomi))=LOWER(TRIM(%s))""",
+                    (maktab_id, class_ids, fan_nomi))
+        result["aqlli_jadval_sloti"] = int((cur.fetchone() or {}).get("son") or 0)
+    if table_exists("dars_jadvali"):
+        cur.execute("""SELECT COUNT(*) AS son FROM dars_jadvali
+                       WHERE sinf_id=ANY(%s) AND LOWER(TRIM(fan))=LOWER(TRIM(%s))""",
+                    (class_ids, fan_nomi))
+        result["eski_jadval_sloti"] = int((cur.fetchone() or {}).get("son") or 0)
+    if table_exists("aqlli_mavzu_rejalari_v2"):
+        cur.execute("""SELECT COUNT(*) AS son FROM aqlli_mavzu_rejalari_v2
+                       WHERE maktab_id=%s AND sinf_id=ANY(%s)
+                         AND LOWER(TRIM(fan_nomi))=LOWER(TRIM(%s))""",
+                    (maktab_id, class_ids, fan_nomi))
+        result["mavzu_reja_qatori"] = int((cur.fetchone() or {}).get("son") or 0)
+    if table_exists("maktab_sinf_guruh_tizimlari"):
+        cur.execute("""SELECT fanlar FROM maktab_sinf_guruh_tizimlari
+                       WHERE sinf_id=ANY(%s)""", (class_ids,))
+        result["guruh_tizimi"] = sum(
+            1 for row in cur.fetchall()
+            if any(
+                _xodim_excel_sarlavha_kaliti(value) == _xodim_excel_sarlavha_kaliti(fan_nomi)
+                for value in list(row.get("fanlar") or [])
+            )
+        )
+    warnings = []
+    if result["oquv_reja_qatori"]:
+        warnings.append(
+            f"O'quv rejada {result['oquv_reja_qatori']} ta qator va {result['oquv_reja_soati']:g} haftalik soat bor"
+        )
+    if result["oqituvchi_birikmasi"]:
+        warnings.append(
+            f"{result['oqituvchi_soni']} ta o'qituvchining {result['oqituvchi_birikmasi']} ta birikmasi, jami {result['oqituvchi_soati']} soat bor"
+        )
+    schedule_slots = result["aqlli_jadval_sloti"] + result["eski_jadval_sloti"]
+    if schedule_slots:
+        warnings.append(f"Dars jadvalida {schedule_slots} ta slot bor")
+    if result["mavzu_reja_qatori"]:
+        warnings.append(f"Mavzu rejada {result['mavzu_reja_qatori']} ta qator bor")
+    if result["guruh_tizimi"]:
+        warnings.append(f"{result['guruh_tizimi']} ta guruhlash tizimiga bog'langan")
+    result["jami_boglanish"] = (
+        result["oquv_reja_qatori"] + result["oqituvchi_birikmasi"]
+        + schedule_slots + result["mavzu_reja_qatori"] + result["guruh_tizimi"]
+    )
+    result["ogohlantirishlar"] = warnings
+    return result
+
+
+@app.get("/api/admin/maktab_fan_ochirish_tasiri")
+def maktab_fan_ochirish_tasiri(
+    token: str, maktab_id: int, fan_nomi: str, sinf_darajasi: Optional[int] = None,
+):
+    _admin_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _maktab_jadvali(cur)
+        _maktab_sinflari_jadvali(cur)
+        _maktab_fanlari_jadvali(cur)
+        cur.execute("SELECT id FROM maktablar WHERE id=%s", (maktab_id,))
+        if not cur.fetchone():
+            raise HTTPException(status_code=404, detail="Maktab topilmadi")
+        cur.execute("""SELECT fan_nomi,sinf_darajasi FROM maktab_fan_sinflari_v19_4
+                       WHERE maktab_id=%s AND LOWER(TRIM(fan_nomi))=LOWER(TRIM(%s))
+                         AND (%s IS NULL OR sinf_darajasi=%s)
+                       ORDER BY sinf_darajasi""",
+                    (maktab_id, fan_nomi, sinf_darajasi, sinf_darajasi))
+        saved = [dict(row) for row in cur.fetchall()]
+        if not saved:
+            return {"saqlangan": False, "tasdiq_kalitlari": [], "tasir": None}
+        impacts = [
+            _maktab_fan_ochirish_tasiri(
+                cur, maktab_id, row["fan_nomi"], int(row["sinf_darajasi"])
+            )
+            for row in saved
+        ]
+        return {
+            "saqlangan": True,
+            "fan_nomi": saved[0]["fan_nomi"],
+            "sinf_darajasi": sinf_darajasi,
+            "tasdiq_kalitlari": [
+                _maktab_fan_ochirish_kaliti(row["fan_nomi"], row["sinf_darajasi"])
+                for row in saved
+            ],
+            "tasirlar": impacts,
+        }
+    finally:
+        cur.close(); conn.close()
 
 
 @app.get("/api/admin/maktab_fan_sozlamalari")
 def maktab_fan_sozlamalari(token: str, maktab_id: int):
-    """Xodimlardan oldin tanlanadigan maktab fanlari katalogi."""
+    """Saqlangan fanlar va ularning 1-11-sinf bo'yicha qo'llanishi."""
     _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
@@ -8046,8 +8326,8 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Maktab topilmadi")
     katalog = _maktab_fan_katalogi(cur, maktab_id)
-    katalog_kalitlari = {
-        _xodim_excel_sarlavha_kaliti(fan["nomi"]): fan["nomi"] for fan in katalog
+    katalog_by_key = {
+        _xodim_excel_sarlavha_kaliti(fan["nomi"]): fan for fan in katalog
     }
     cur.execute(
         "SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi",
@@ -8056,28 +8336,59 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
     tanlangan = []
     for row in cur.fetchall():
         kalit = _xodim_excel_sarlavha_kaliti(row["fan_nomi"])
-        fan_nomi = katalog_kalitlari.get(kalit, row["fan_nomi"])
+        fan_nomi = (katalog_by_key.get(kalit) or {}).get("nomi", row["fan_nomi"])
         tanlangan.append(fan_nomi)
-        if kalit not in katalog_kalitlari:
-            katalog.append({"nomi": fan_nomi, "manba": "Maktab qo‘shgan"})
-            katalog_kalitlari[kalit] = fan_nomi
+        if kalit not in katalog_by_key:
+            item = {
+                "nomi": fan_nomi, "manba": "Maktab qo'shgan · maxsus",
+                "standart_sinflar": [], "standart_soatlar": {}, "maxsus": True,
+            }
+            katalog.append(item)
+            katalog_by_key[kalit] = item
+    cur.execute("""SELECT fan_nomi,sinf_darajasi FROM maktab_fan_sinflari_v19_4
+                   WHERE maktab_id=%s ORDER BY sinf_darajasi,fan_nomi""", (maktab_id,))
+    saved_grades = {}
+    for row in cur.fetchall():
+        key = _xodim_excel_sarlavha_kaliti(row["fan_nomi"])
+        saved_grades.setdefault(key, []).append(int(row["sinf_darajasi"]))
+    fan_sinflari = []
+    for fan_nomi in tanlangan:
+        key = _xodim_excel_sarlavha_kaliti(fan_nomi)
+        catalog_item = katalog_by_key.get(key) or {}
+        grades = saved_grades.get(key)
+        if grades is None:
+            # Eski saqlangan fanlar birinchi ochilishda yo'qolmaydi. Rasmiy/DTS
+            # sinflari UIga migratsiya taklifi sifatida qaytariladi va keyingi
+            # saqlashda aniq bog'lanma bo'lib yoziladi.
+            grades = list(catalog_item.get("standart_sinflar") or [])
+        fan_sinflari.append({
+            "fan_nomi": fan_nomi,
+            "sinflar": sorted(set(int(grade) for grade in grades if 1 <= int(grade) <= 11)),
+            "manba": catalog_item.get("manba") or "Maktab qo'shgan",
+            "standart_soatlar": catalog_item.get("standart_soatlar") or {},
+            "maxsus": bool(catalog_item.get("maxsus", True)),
+        })
+    katalog.sort(key=lambda fan: fan["nomi"].casefold())
     cur.close()
     conn.close()
     return {
         "fanlar": katalog,
         "tanlangan_fanlar": tanlangan,
+        "fan_sinflari": fan_sinflari,
+        "rasmiy_reja": SAMTM_2026_2027_CURRICULUM_SOURCE,
         "sozlangan": bool(tanlangan),
     }
 
 
 @app.put("/api/admin/maktab_fan_sozlamalari")
 def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
-    """Tanlangan DTS fanlari va maktab qo'shgan yangi fanlarni saqlaydi."""
+    """Fan nomi + tegishli sinflarni bitta tranzaksiyada saqlaydi."""
     _admin_tekshir(sorov.token)
     conn = _db()
     cur = conn.cursor()
     _maktab_jadvali(cur)
     _maktab_sinflari_jadvali(cur)
+    _xodim_sinf_birikmalari_jadvali(cur)
     _maktab_fanlari_jadvali(cur)
     cur.execute("SELECT id FROM maktablar WHERE id=%s", (sorov.maktab_id,))
     if not cur.fetchone():
@@ -8085,36 +8396,286 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
         raise HTTPException(status_code=404, detail="Maktab topilmadi")
 
     katalog = _maktab_fan_katalogi(cur, sorov.maktab_id)
-    katalog_kalitlari = {
-        _xodim_excel_sarlavha_kaliti(fan["nomi"]): fan["nomi"] for fan in katalog
+    katalog_by_key = {
+        _xodim_excel_sarlavha_kaliti(fan["nomi"]): fan for fan in katalog
     }
-    tanlangan_kalitlar = []
-    tanlangan_nomlar = {}
-    for fan_xom in sorov.fanlar:
-        fan_toza = re.sub(r"\s+", " ", str(fan_xom or "")).strip()
+    structured = list(sorov.fan_sinflari or [])
+    if not structured:
+        # V19.3 dan oldingi frontend yuborgan oddiy fanlar ro'yxati ham ishlaydi.
+        structured = [MaktabFanSinfTanlovi(fan_nomi=fan) for fan in sorov.fanlar]
+    cur.execute("SELECT DISTINCT sinf FROM maktab_sinflari WHERE maktab_id=%s", (sorov.maktab_id,))
+    school_grades = sorted({
+        int(match.group(1))
+        for row in cur.fetchall()
+        for match in [re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(row.get("sinf") or ""))]
+        if match
+    })
+    selected = []
+    seen = set()
+    for item in structured:
+        fan_toza = re.sub(r"\s+", " ", str(item.fan_nomi or "")).strip()
         if len(fan_toza) > 100:
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Fan nomi 100 belgidan oshmasligi kerak")
-        kalit = _xodim_excel_sarlavha_kaliti(fan_toza)
-        if kalit and kalit not in tanlangan_kalitlar:
-            tanlangan_kalitlar.append(kalit)
-            tanlangan_nomlar[kalit] = katalog_kalitlari.get(kalit, fan_toza)
-    if not tanlangan_kalitlar:
+        key = _xodim_excel_sarlavha_kaliti(fan_toza)
+        if not key or key in seen:
+            continue
+        catalog_item = katalog_by_key.get(key)
+        if catalog_item:
+            fan_nomi = catalog_item["nomi"]
+        else:
+            suggestion = _maktab_fan_yaqin_taklif(fan_toza, katalog)
+            if suggestion and not bool(item.imlo_tasdiq):
+                cur.close(); conn.close()
+                raise HTTPException(status_code=409, detail={
+                    "code": "FAN_IMLO_TAKLIFI",
+                    "kiritilgan": fan_toza,
+                    "taklif": suggestion,
+                    "message": f"'{fan_toza}' o'rniga '{suggestion}' nazarda tutilganmi?",
+                })
+            fan_nomi = fan_toza
+        grades = sorted(set(int(grade) for grade in (item.sinflar or [])))
+        if not grades:
+            grades = list((catalog_item or {}).get("standart_sinflar") or [])
+        if not grades and not sorov.fan_sinflari:
+            grades = list(school_grades)
+        if not grades:
+            cur.close(); conn.close()
+            raise HTTPException(
+                status_code=400,
+                detail=f"{fan_nomi}: kamida bitta 1-11-sinfni belgilang",
+            )
+        if any(grade < 1 or grade > 11 for grade in grades):
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail=f"{fan_nomi}: sinf 1-11 oralig'ida bo'lishi kerak")
+        seen.add(key)
+        selected.append({
+            "fan_nomi": fan_nomi,
+            "sinflar": grades,
+            "manba": (catalog_item or {}).get("manba") or "Maktab qo'shgan · maxsus",
+            "standart_soatlar": (catalog_item or {}).get("standart_soatlar") or {},
+            "maxsus": bool((catalog_item or {}).get("maxsus", True)),
+        })
+    if not selected:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Kamida bitta maktab fanini tanlang")
+
+    cur.execute("""SELECT fan_nomi,sinf_darajasi
+                   FROM maktab_fan_sinflari_v19_4
+                   WHERE maktab_id=%s ORDER BY fan_nomi,sinf_darajasi""", (sorov.maktab_id,))
+    current_pairs = {
+        (_xodim_excel_sarlavha_kaliti(row["fan_nomi"]), int(row["sinf_darajasi"])): row["fan_nomi"]
+        for row in cur.fetchall()
+    }
+    next_pairs = {
+        (_xodim_excel_sarlavha_kaliti(item["fan_nomi"]), int(grade))
+        for item in selected for grade in item["sinflar"]
+    }
+    removed_pairs = [
+        (key, grade, fan_nomi)
+        for (key, grade), fan_nomi in current_pairs.items()
+        if (key, grade) not in next_pairs
+    ]
+    provided_confirmations = set(str(value) for value in (sorov.ochirish_tasdiqlari or []))
+    missing_confirmations = [
+        _maktab_fan_ochirish_kaliti(fan_nomi, grade)
+        for _key, grade, fan_nomi in removed_pairs
+        if _maktab_fan_ochirish_kaliti(fan_nomi, grade) not in provided_confirmations
+    ]
+    removed_impacts = [
+        _maktab_fan_ochirish_tasiri(cur, sorov.maktab_id, fan_nomi, grade)
+        for _key, grade, fan_nomi in removed_pairs
+    ]
+    if missing_confirmations:
+        conn.rollback(); cur.close(); conn.close()
+        raise HTTPException(status_code=409, detail={
+            "code": "FAN_OCHIRISH_TASDIQI",
+            "message": (
+                "Saqlangan fan yoki sinf bog'lanmasi o'chirilmoqda. "
+                "Bu o'qituvchi tanlovi, o'quv reja va dars jadvaliga ta'sir qilishi mumkin."
+            ),
+            "tasdiq_kalitlari": missing_confirmations,
+            "tasirlar": removed_impacts,
+        })
+
+    cur.execute("DELETE FROM maktab_fan_sinflari_v19_4 WHERE maktab_id=%s", (sorov.maktab_id,))
     cur.execute("DELETE FROM maktab_fanlari WHERE maktab_id=%s", (sorov.maktab_id,))
     saqlangan = []
-    for kalit in tanlangan_kalitlar:
-        fan_nomi = tanlangan_nomlar[kalit]
+    for item in selected:
+        fan_nomi = item["fan_nomi"]
         cur.execute(
             "INSERT INTO maktab_fanlari(maktab_id,fan_nomi) VALUES(%s,%s)",
             (sorov.maktab_id, fan_nomi),
         )
+        for grade in item["sinflar"]:
+            cur.execute("""INSERT INTO maktab_fan_sinflari_v19_4(
+                            maktab_id,fan_nomi,sinf_darajasi,manba)
+                           VALUES(%s,%s,%s,%s)""",
+                        (sorov.maktab_id, fan_nomi, grade, item["manba"]))
         saqlangan.append(fan_nomi)
+
+    # Tasdiqlangan o'chirish atomar ishlaydi: fan–sinf bog'lanmasiga mos kelmay
+    # qolgan reja, o'qituvchi va jadval qoldiqlari bitta tranzaksiyada tozalanadi.
+    cleanup = {
+        "oquv_reja_qatori": 0, "oqituvchi_birikmasi": 0,
+        "aqlli_jadval_sloti": 0, "eski_jadval_sloti": 0,
+        "mavzu_reja_qatori": 0, "guruh_sozlamasi": 0,
+        "fan_yuklamasi": 0,
+    }
+    cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_qatorlari_v19_3') AS jadval")
+    if (cur.fetchone() or {}).get("jadval"):
+        cur.execute("""DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 p
+                       USING maktab_sinflari s
+                       WHERE p.maktab_id=%s AND s.id=p.sinf_id
+                         AND NOT EXISTS(
+                           SELECT 1 FROM maktab_fan_sinflari_v19_4 m
+                           WHERE m.maktab_id=p.maktab_id
+                             AND m.sinf_darajasi=CASE
+                               WHEN s.sinf::text ~ '^\\d+$' THEN s.sinf::int ELSE 0 END
+                             AND LOWER(TRIM(m.fan_nomi))=LOWER(TRIM(p.fan_nomi))
+                         )""", (sorov.maktab_id,))
+        cleanup["oquv_reja_qatori"] = max(0, int(cur.rowcount or 0))
+        cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_holati_v19_3') AS jadval")
+        if (cur.fetchone() or {}).get("jadval"):
+            cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
+                           SET holat='draft',tasdiqlagan_user_id=NULL,
+                               tasdiqlangan_at=NULL,yangilangan_at=NOW()
+                           WHERE maktab_id=%s""", (sorov.maktab_id,))
+
+    def _delete_disallowed(table_name, subject_column="fan_nomi", school_column=True):
+        cur.execute("SELECT to_regclass(%s) AS jadval", (f"public.{table_name}",))
+        if not (cur.fetchone() or {}).get("jadval"):
+            return 0
+        school_filter = f"t.maktab_id=%s AND" if school_column else ""
+        params = (sorov.maktab_id,) if school_column else ()
+        cur.execute(f"""DELETE FROM {table_name} t USING maktab_sinflari s
+                        WHERE {school_filter} s.id=t.sinf_id AND s.maktab_id=%s
+                          AND NOT EXISTS(
+                            SELECT 1 FROM maktab_fan_sinflari_v19_4 m
+                            WHERE m.maktab_id=s.maktab_id
+                              AND m.sinf_darajasi=CASE
+                                WHEN s.sinf::text ~ '^\\d+$' THEN s.sinf::int ELSE 0 END
+                              AND LOWER(TRIM(m.fan_nomi))=LOWER(TRIM(t.{subject_column}))
+                          )""", params + (sorov.maktab_id,))
+        return max(0, int(cur.rowcount or 0))
+
+    # Jadval slotlari yuklama qatoriga FK bilan bog'langan bo'lishi mumkin;
+    # shuning uchun avval slot va mavzu, keyin guruh/yuklama manbasi o'chadi.
+    cur.execute("SELECT to_regclass('public.aqlli_jadval_slotlari_v2') AS jadval")
+    if (cur.fetchone() or {}).get("jadval"):
+        cur.execute("""DELETE FROM aqlli_jadval_slotlari_v2 t
+                       USING maktab_sinflari s,aqlli_jadval_urinishlari_v2 r
+                       WHERE t.maktab_id=%s AND s.id=t.sinf_id
+                         AND r.id=t.urinish_id AND r.holat IN ('draft','tasdiqlangan')
+                         AND NOT EXISTS(
+                           SELECT 1 FROM maktab_fan_sinflari_v19_4 m
+                           WHERE m.maktab_id=t.maktab_id
+                             AND m.sinf_darajasi=CASE
+                               WHEN s.sinf::text ~ '^\\d+$' THEN s.sinf::int ELSE 0 END
+                             AND LOWER(TRIM(m.fan_nomi))=LOWER(TRIM(t.fan_nomi))
+                         )""", (sorov.maktab_id,))
+        cleanup["aqlli_jadval_sloti"] = max(0, int(cur.rowcount or 0))
+    cleanup["eski_jadval_sloti"] = _delete_disallowed("dars_jadvali", "fan", False)
+    cleanup["mavzu_reja_qatori"] = _delete_disallowed("aqlli_mavzu_rejalari_v2")
+    cleanup["guruh_sozlamasi"] = _delete_disallowed("aqlli_guruh_sozlamalari_v2")
+    cleanup["fan_yuklamasi"] = _delete_disallowed("aqlli_sinf_fan_yuklamalari_v2")
+    _delete_disallowed("aqlli_fan_guruh_tasdiqlari_v2")
+
+    cur.execute("""SELECT DISTINCT b.user_id FROM maktab_dars_birikmalari b
+                   JOIN maktab_sinflari s ON s.id=b.sinf_id
+                   WHERE b.maktab_id=%s AND NOT EXISTS(
+                     SELECT 1 FROM maktab_fan_sinflari_v19_4 m
+                     WHERE m.maktab_id=b.maktab_id
+                       AND m.sinf_darajasi=CASE
+                         WHEN s.sinf::text ~ '^\\d+$' THEN s.sinf::int ELSE 0 END
+                       AND LOWER(TRIM(m.fan_nomi))=LOWER(TRIM(b.fan_nomi))
+                   )""", (sorov.maktab_id,))
+    affected_users = [int(row["user_id"]) for row in cur.fetchall()]
+    cur.execute("""DELETE FROM maktab_dars_birikmalari b USING maktab_sinflari s
+                   WHERE b.maktab_id=%s AND s.id=b.sinf_id AND NOT EXISTS(
+                     SELECT 1 FROM maktab_fan_sinflari_v19_4 m
+                     WHERE m.maktab_id=b.maktab_id
+                       AND m.sinf_darajasi=CASE
+                         WHEN s.sinf::text ~ '^\\d+$' THEN s.sinf::int ELSE 0 END
+                       AND LOWER(TRIM(m.fan_nomi))=LOWER(TRIM(b.fan_nomi))
+                   )""", (sorov.maktab_id,))
+    cleanup["oqituvchi_birikmasi"] = max(0, int(cur.rowcount or 0))
+
+    # O'chirilgan birikmadan keyin o'qituvchining fan/sinf/haftalik jami
+    # xulosasi ham darhol haqiqiy qolgan qatorlardan qayta hisoblanadi.
+    for user_id in affected_users:
+        cur.execute("DELETE FROM maktab_xodim_sinflari WHERE maktab_id=%s AND user_id=%s",
+                    (sorov.maktab_id, user_id))
+        cur.execute("""SELECT b.sinf_id,b.fan_nomi,COALESCE(b.haftalik_soat,0) AS soat,
+                              s.sinf,s.harf
+                       FROM maktab_dars_birikmalari b
+                       JOIN maktab_sinflari s ON s.id=b.sinf_id
+                       WHERE b.maktab_id=%s AND b.user_id=%s
+                       ORDER BY s.sinf,s.harf,b.fan_nomi""",
+                    (sorov.maktab_id, user_id))
+        remaining = [dict(row) for row in cur.fetchall()]
+        by_class = {}
+        for row in remaining:
+            by_class.setdefault(int(row["sinf_id"]), []).append(row["fan_nomi"])
+        for class_id, subjects in by_class.items():
+            unique_subjects = list(dict.fromkeys(subjects))
+            cur.execute("""INSERT INTO maktab_xodim_sinflari(
+                            maktab_id,user_id,sinf_id,fanlari)
+                           VALUES(%s,%s,%s,%s)""",
+                        (sorov.maktab_id, user_id, class_id, "; ".join(unique_subjects)))
+        subject_names = sorted(set(row["fan_nomi"] for row in remaining), key=str.casefold)
+        class_names = sorted(
+            {f"{row['sinf']}-{row['harf']}" for row in remaining},
+            key=lambda value: [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", value)],
+        )
+        cur.execute("""UPDATE users SET fanlari=%s,oqitadigan_sinflari=%s,
+                                      haftalik_dars_soati=%s
+                       WHERE user_id=%s""",
+                    (
+                        "; ".join(subject_names) or None,
+                        "; ".join(class_names) or None,
+                        sum(int(row.get("soat") or 0) for row in remaining),
+                        user_id,
+                    ))
+
+    cur.execute("SELECT to_regclass('public.maktab_sinf_guruh_tizimlari') AS jadval")
+    if (cur.fetchone() or {}).get("jadval"):
+        allowed_by_grade = {}
+        for item in selected:
+            for grade in item["sinflar"]:
+                allowed_by_grade.setdefault(int(grade), set()).add(
+                    _xodim_excel_sarlavha_kaliti(item["fan_nomi"])
+                )
+        cur.execute("""SELECT gst.id,gst.fanlar,s.sinf FROM maktab_sinf_guruh_tizimlari gst
+                       JOIN maktab_sinflari s ON s.id=gst.sinf_id
+                       WHERE s.maktab_id=%s FOR UPDATE""", (sorov.maktab_id,))
+        for system in cur.fetchall():
+            match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(system.get("sinf") or ""))
+            grade = int(match.group(1)) if match else 0
+            cleaned_subjects = [
+                fan for fan in list(system.get("fanlar") or [])
+                if _xodim_excel_sarlavha_kaliti(fan) in allowed_by_grade.get(grade, set())
+            ]
+            cur.execute("""UPDATE maktab_sinf_guruh_tizimlari
+                           SET fanlar=%s,yangilangan_at=NOW() WHERE id=%s""",
+                        (cleaned_subjects, system["id"]))
+
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "saqlandi", "tanlangan_fanlar": saqlangan}
+    return {
+        "holat": "saqlandi",
+        "tanlangan_fanlar": saqlangan,
+        "fan_sinflari": selected,
+        "rasmiy_reja": SAMTM_2026_2027_CURRICULUM_SOURCE,
+        "ochirilgan_tasirlar": removed_impacts,
+        "tozalangan": cleanup,
+        "ogohlantirish": (
+            "Fan/sinf o'chirilgani uchun bog'liq o'quv reja draftga qaytdi; "
+            "o'qituvchi yuklamasi va dars jadvalidagi tegishli qatorlar tozalandi"
+            if removed_pairs else None
+        ),
+    }
 
 
 
