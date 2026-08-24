@@ -7961,6 +7961,7 @@ def _xodim_excel_sarlavha_kaliti(value):
 
 def _xodim_sinf_birikmalari_jadvali(cur):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS oqitadigan_sinflari TEXT")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute("""
         CREATE TABLE IF NOT EXISTS maktab_xodim_sinflari(
             maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
@@ -8227,6 +8228,289 @@ def _v1877_group_template_catalog(cur, maktab_id: int):
     }
 
 
+def _v193_xodim_bitta_qator_shabloni(maktab_id: Optional[int] = None):
+    """Bir xodim bir qatorda: fan bir marta, uning sinf/guruh+soatlari yonida."""
+    import io
+    import openpyxl
+    from datetime import date
+    from fastapi.responses import StreamingResponse
+    from openpyxl.comments import Comment
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.worksheet.datavalidation import DataValidation
+    from openpyxl.workbook.defined_name import DefinedName
+    from openpyxl.utils import get_column_letter, quote_sheetname
+
+    max_rows = 1000
+    fan_bloklari = 5
+    fan_boshiga_obyekt = 16
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = "XODIMLAR"
+
+    class_rows = []
+    fanlar = []
+    group_catalog = {"qatorlar": [], "xatolar": []}
+    if maktab_id is not None:
+        conn = _db(); cur = conn.cursor()
+        try:
+            _maktab_sinflari_jadvali(cur)
+            _maktab_fanlari_jadvali(cur)
+            _sinf_kop_guruh_jadvallari(cur)
+            cur.execute("""SELECT id,sinf,harf FROM maktab_sinflari
+                           WHERE maktab_id=%s ORDER BY sinf::int,harf""", (maktab_id,))
+            class_rows = [dict(row) for row in cur.fetchall()]
+            cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
+            fanlar = [row["fan_nomi"] for row in cur.fetchall()]
+            if not fanlar:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Avval maktab fanlarini tanlab saqlang, keyin xodim shablonini oling",
+                )
+            group_catalog = _v1877_group_template_catalog(cur, maktab_id)
+            if group_catalog.get("xatolar"):
+                raise HTTPException(
+                    status_code=400,
+                    detail="Sinf guruhlarini to'g'rilang:\n" + "\n".join(group_catalog["xatolar"][:30]),
+                )
+            conn.commit()
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            cur.close(); conn.close()
+
+    class_names = [
+        _xodim_sinf_nomini_normalla(f"{row['sinf']}-{row['harf']}")
+        for row in class_rows
+    ]
+    target_rows = [
+        {
+            "label": f"{class_name} / Butun sinf", "sinf": class_name,
+            "sinf_id": int(row["id"]), "tizim_id": "", "guruh_kaliti": "whole",
+            "guruh_nomi": "Butun sinf", "fan_kalitlari": "*",
+        }
+        for row, class_name in zip(class_rows, class_names)
+    ]
+    group_targets = {}
+    for item in group_catalog.get("qatorlar") or []:
+        key = (int(item["sinf_id"]), str(item["guruh_kaliti"]))
+        current = group_targets.setdefault(key, {
+            "label": item["target_label"], "sinf": item["sinf"],
+            "sinf_id": int(item["sinf_id"]), "tizim_id": int(item["tizim_id"]),
+            "guruh_kaliti": item["guruh_kaliti"], "guruh_nomi": item["guruh_nomi"],
+            "fan_kalitlari": [],
+        })
+        if item["fan_kaliti"] not in current["fan_kalitlari"]:
+            current["fan_kalitlari"].append(item["fan_kaliti"])
+    for item in group_targets.values():
+        item["fan_kalitlari"] = ";".join(item["fan_kalitlari"])
+        target_rows.append(item)
+
+    signature_payload = [
+        {
+            "sinf_id": int(item["sinf_id"]),
+            "tizim_id": int(item["tizim_id"]),
+            "tizim_turi": str(item.get("tizim_turi") or ""),
+            "guruh_kaliti": str(item["guruh_kaliti"]),
+            "guruh_nomi": str(item.get("guruh_nomi") or ""),
+            "fan_kaliti": str(item["fan_kaliti"]),
+            "fan_nomi": str(item.get("fan_nomi") or ""),
+            "target_label": str(item.get("target_label") or ""),
+        }
+        for item in sorted(
+            group_catalog.get("qatorlar") or [],
+            key=lambda value: (
+                int(value["sinf_id"]), int(value["tizim_id"]),
+                str(value["guruh_kaliti"]), str(value["fan_kaliti"]),
+            ),
+        )
+    ]
+    group_hash = hashlib.sha256(
+        json.dumps(signature_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+
+    base_headers = [
+        "F.I.Sh", "Lavozim", "Sinf rahbarligi (ixtiyoriy)",
+        "Tug'ilgan yili (ixtiyoriy)", "Ish staji (yil)", "Toifasi",
+        "Haftalik jami — avtomatik",
+    ]
+    for col, header in enumerate(base_headers, 1):
+        cell = ws.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1B4B7A")
+        cell.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
+    for col, width in zip("ABCDEFG", (32, 42, 24, 18, 15, 25, 18)):
+        ws.column_dimensions[col].width = width
+
+    block_colors = ("168A55", "6B4E9B", "B7791F", "2B6F8A", "8A4F68")
+    fan_columns = []
+    target_columns = []
+    hour_columns = []
+    next_col = 8
+    for block in range(1, fan_bloklari + 1):
+        color = block_colors[(block - 1) % len(block_colors)]
+        fan_col = next_col
+        fan_columns.append(fan_col)
+        cell = ws.cell(1, fan_col, f"{block}-FAN")
+        cell.comment = Comment(
+            f"{block}-fan bir marta tanlanadi. Uning o'ngidagi 16 ta sinf/guruh va soat katagi shu fanga tegishli.",
+            "SamTM",
+        )
+        ws.column_dimensions[get_column_letter(fan_col)].width = 26
+        next_col += 1
+        for slot in range(1, fan_boshiga_obyekt + 1):
+            target_col = next_col
+            hour_col = next_col + 1
+            target_columns.append((block, slot, target_col))
+            hour_columns.append((block, slot, hour_col))
+            ws.cell(1, target_col, f"{block}.{slot}-SINF/GURUH")
+            ws.cell(1, hour_col, f"{block}.{slot}-SOAT")
+            ws.column_dimensions[get_column_letter(target_col)].width = 25
+            ws.column_dimensions[get_column_letter(hour_col)].width = 9
+            next_col += 2
+        for col in range(fan_col, next_col):
+            cell = ws.cell(1, col)
+            cell.font = Font(bold=True, color="FFFFFF")
+            cell.fill = PatternFill("solid", fgColor=color)
+            cell.alignment = Alignment(wrap_text=True, vertical="center", horizontal="center")
+
+    last_col = next_col - 1
+    ws.row_dimensions[1].height = 58
+    ws.freeze_panes = "H2"
+    ws.auto_filter.ref = f"A1:{get_column_letter(last_col)}{max_rows}"
+    ws.sheet_view.zoomScale = 80
+    ws.cell(1, 7).comment = Comment(
+        "Barcha fan bloklaridagi SOAT kataklari avtomatik qo'shiladi.", "SamTM"
+    )
+    hour_letters = [get_column_letter(col) for _block, _slot, col in hour_columns]
+    for row in range(2, max_rows + 1):
+        sum_cells = ",".join(f"{letter}{row}" for letter in hour_letters)
+        ws.cell(row, 7, f'=IF(A{row}="","",SUM({sum_cells}))')
+
+    info = wb.create_sheet("MALUMOT")
+    info_headers = ("Mavjud sinflar", "Lavozimlar", "Toifalar", "Maktab fanlari", "Sinf/guruh obyektlari")
+    for col, header in enumerate(info_headers, 1):
+        cell = info.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="1B4B7A")
+    for col, width in zip("ABCDE", (22, 52, 42, 36, 38)):
+        info.column_dimensions[col].width = width
+    for index, value in enumerate(class_names or ["Avval sinflarni yarating"], 2):
+        info.cell(index, 1, value)
+    for index, value in enumerate(LAVOZIMLAR.values(), 2):
+        info.cell(index, 2, value)
+    for index, value in enumerate(TOIFALAR, 2):
+        info.cell(index, 3, value)
+    for index, value in enumerate(fanlar or ["Fanlar bazada topilmadi"], 2):
+        info.cell(index, 4, value)
+    for index, item in enumerate(target_rows or [{"label": "Avval sinflarni yarating"}], 2):
+        info.cell(index, 5, item["label"])
+
+    def named_range(name, column, count):
+        last = max(2, count + 1)
+        wb.defined_names.add(DefinedName(
+            name,
+            attr_text=f"{quote_sheetname('MALUMOT')}!${column}$2:${column}${last}",
+        ))
+
+    named_range("MavjudSinflar", "A", len(class_names))
+    named_range("Lavozimlar", "B", len(LAVOZIMLAR))
+    named_range("Toifalar", "C", len(TOIFALAR))
+    named_range("Fanlar", "D", len(fanlar))
+    named_range("DarsObyektlari", "E", len(target_rows))
+
+    def add_list(formula, ranges, error):
+        validation = DataValidation(type="list", formula1=formula, allow_blank=True)
+        validation.showErrorMessage = True
+        validation.error = error
+        ws.add_data_validation(validation)
+        for cells in ranges:
+            validation.add(cells)
+
+    add_list("=Lavozimlar", [f"B2:B{max_rows}"], "Lavozimni ro'yxatdan tanlang")
+    add_list("=MavjudSinflar", [f"C2:C{max_rows}"], "Sinfni ro'yxatdan tanlang")
+    add_list("=Toifalar", [f"F2:F{max_rows}"], "Toifani ro'yxatdan tanlang")
+    add_list("=Fanlar", [f"{get_column_letter(col)}2:{get_column_letter(col)}{max_rows}" for col in fan_columns], "Fanni ro'yxatdan tanlang")
+    add_list("=DarsObyektlari", [f"{get_column_letter(col)}2:{get_column_letter(col)}{max_rows}" for _b, _s, col in target_columns], "Sinf yoki aniq guruhni ro'yxatdan tanlang")
+    hours = DataValidation(type="whole", operator="between", formula1="1", formula2="20", allow_blank=True)
+    hours.showErrorMessage = True
+    hours.error = "Haftalik soat 1–20 oralig'ida bo'lishi kerak"
+    ws.add_data_validation(hours)
+    for _b, _s, col in hour_columns:
+        letter = get_column_letter(col)
+        hours.add(f"{letter}2:{letter}{max_rows}")
+    years = DataValidation(type="whole", operator="between", formula1="1900", formula2=str(date.today().year), allow_blank=True)
+    years.showErrorMessage = True
+    years.error = f"Tug'ilgan yil 1900–{date.today().year} oralig'ida bo'lishi kerak"
+    ws.add_data_validation(years); years.add(f"D2:D{max_rows}")
+
+    psych = wb.create_sheet("PSIXOLOG_SINFLARI")
+    for col, header in enumerate(("Psixolog F.I.Sh", "Sinf"), 1):
+        cell = psych.cell(1, col, header)
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="6B4E9B")
+    psych.column_dimensions["A"].width = 34
+    psych.column_dimensions["B"].width = 18
+    wb.defined_names.add(DefinedName("XodimIsmlari", attr_text=f"{quote_sheetname('XODIMLAR')}!$A$2:$A${max_rows}"))
+    for formula, cells in (("=XodimIsmlari", "A2:A5000"), ("=MavjudSinflar", "B2:B5000")):
+        validation = DataValidation(type="list", formula1=formula, allow_blank=True)
+        psych.add_data_validation(validation); validation.add(cells)
+
+    notes = wb.create_sheet("IZOH")
+    note_lines = [
+        "SAMTM V19.3 — BITTA O'QITUVCHI BITTA QATORDA",
+        "1. F.I.Sh bir marta yoziladi; o'qituvchi boshqa qatorda takrorlanmaydi.",
+        "2. 1-FANni tanlang, keyin 1.1, 1.2 ... kataklarda shu fan o'tiladigan sinf/guruh va yonidagi SOATni tanlang.",
+        "3. Masalan: Matematika → 6-A / Butun sinf → 5; 6-B / Butun sinf → 5; 7-A / Butun sinf → 4.",
+        "4. Keyingi boshqa fan uchun 2-FAN blokidan foydalaning.",
+        "5. Guruhga dars o'tilsa, masalan 6-A / 1-guruh yoki 6-A / Qizlar guruhi tanlanadi va soati yoniga yoziladi.",
+        "6. Haftalik jami avtomatik hisoblanadi; import har bir fan–sinf–guruhni jadval manbasiga alohida saqlaydi.",
+        "7. Har bir fan uchun 16 ta sinf/guruh joyi, bir o'qituvchi uchun 5 ta fan bloki mavjud.",
+    ]
+    for index, line in enumerate(note_lines, 1):
+        cell = notes.cell(index, 1, line)
+        cell.alignment = Alignment(wrap_text=True, vertical="top")
+        if index == 1:
+            cell.font = Font(bold=True, color="FFFFFF", size=13)
+            cell.fill = PatternFill("solid", fgColor="1B4B7A")
+    notes.column_dimensions["A"].width = 130
+
+    sample = wb.create_sheet("NAMUNA")
+    sample.append(["F.I.Sh", "1-FAN", "1.1-SINF/GURUH", "1.1-SOAT", "1.2-SINF/GURUH", "1.2-SOAT", "2-FAN", "2.1-SINF/GURUH", "2.1-SOAT"])
+    sample.append(["Aliyev Anvar", "Matematika", "6-A / Butun sinf", 5, "6-B / Butun sinf", 5, "Informatika", "7-A / 1-guruh", 2])
+    for cell in sample[1]:
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="168A55")
+    for column in sample.columns:
+        sample.column_dimensions[get_column_letter(column[0].column)].width = 24
+
+    meta = wb.create_sheet("SAMTM_META")
+    meta.sheet_state = "veryHidden"
+    meta.append(["key", "value"])
+    meta.append(["template_version", "samtm-v19.3-teacher-single-row"])
+    meta.append(["maktab_id", maktab_id if maktab_id is not None else ""])
+    meta.append(["group_hash", group_hash])
+    meta.append(["fan_bloklari", fan_bloklari])
+    meta.append(["fan_boshiga_obyekt", fan_boshiga_obyekt])
+    meta.append([])
+    meta.append(["label", "sinf", "sinf_id", "tizim_id", "guruh_kaliti", "guruh_nomi", "fan_kalitlari"])
+    for item in target_rows:
+        meta.append([item["label"], item["sinf"], item["sinf_id"], item["tizim_id"], item["guruh_kaliti"], item["guruh_nomi"], item["fan_kalitlari"]])
+
+    wb.active = 0
+    buffer = io.BytesIO()
+    wb.save(buffer); buffer.seek(0)
+    return StreamingResponse(
+        buffer,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={
+            "Content-Disposition": 'attachment; filename="xodimlar_shablon_v19_3_bitta_qator.xlsx"',
+            "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0",
+            "X-SamTM-Template-Version": "19.3",
+        },
+    )
+
+
 @app.get("/api/admin/xodim_shablon")
 def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     """V19.1 xodim shabloni — butun sinf va real guruhlar bitta varaqda.
@@ -8242,6 +8526,10 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
     o'qituvchi-soat, jadvalda esa bitta parallel vaqt sloti bo'ladi.
     """
     _admin_tekshir(token)
+    return _v193_xodim_bitta_qator_shabloni(maktab_id)
+
+    # V19.1 shablon kodi orqaga moslik uchun saqlangan; yangi yuklab olish
+    # yuqoridagi V19.3 bitta-qator shablonini qaytaradi.
     import openpyxl
     from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
     from openpyxl.comments import Comment
@@ -8813,6 +9101,10 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         "O'qitadigan fani (ixtiyoriy)", "O'qitadigan fani",
         "O'qitadigan fanlari (ixtiyoriy)", "O'qitadigan fanlari", "Fanlari", "Fan",
     )
+    tugilgan_yili_ustuni = ustun_top(
+        "Tug'ilgan yili (ixtiyoriy)", "Tug‘ilgan yili (ixtiyoriy)",
+        "Tug'ilgan yili", "Tug‘ilgan yili",
+    )
     staj_ustuni = ustun_top("Ish staji (yil)", "Ish staji")
     toifa_ustuni = ustun_top("Toifasi", "Toifa")
     haftalik_yuklama_ustuni = ustun_top(
@@ -8924,6 +9216,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     current_group_hash = hashlib.sha256(
         json.dumps(current_group_payload, ensure_ascii=False, sort_keys=True).encode("utf-8")
     ).hexdigest()
+    template_version = ""
     if "SAMTM_META" in wb.sheetnames:
         meta_ws = wb["SAMTM_META"]
         meta_values = {
@@ -8934,7 +9227,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
         template_version = meta_values.get("template_version", "")
         template_school = meta_values.get("maktab_id", "")
         template_hash = meta_values.get("group_hash", "")
-        if template_version.startswith("samtm-v19.1"):
+        if template_version.startswith(("samtm-v19.1", "samtm-v19.3")):
             if template_school and str(template_school) != str(maktab_id):
                 conn.rollback(); cur.close(); conn.close()
                 raise HTTPException(
@@ -9040,6 +9333,49 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
     def qator_qiymati(row, index):
         return row[index] if index is not None and index < len(row) else None
 
+    # V19.3: bitta o'qituvchi bitta qatorda. Har bir fan blokida shu fanga
+    # tegishli 16 tagacha aniq sinf/guruh va uning yonida haftalik soat bor.
+    v193_fan_ustunlari = {}
+    v193_obyekt_ustunlari = {}
+    v193_soat_ustunlari = {}
+    for cell in ws[1]:
+        header = re.sub(r"\s+", " ", str(cell.value or "")).strip()
+        fan_match = re.match(r"^(\d+)\s*[-–—.]\s*FAN$", header, flags=re.IGNORECASE)
+        target_match = re.match(
+            r"^(\d+)\.(\d+)\s*[-–—.]\s*SINF\s*/\s*GURUH$",
+            header, flags=re.IGNORECASE,
+        )
+        hour_match = re.match(
+            r"^(\d+)\.(\d+)\s*[-–—.]\s*SOAT$",
+            header, flags=re.IGNORECASE,
+        )
+        if fan_match:
+            v193_fan_ustunlari[int(fan_match.group(1))] = cell.column - 1
+        elif target_match:
+            v193_obyekt_ustunlari[(int(target_match.group(1)), int(target_match.group(2)))] = cell.column - 1
+        elif hour_match:
+            v193_soat_ustunlari[(int(hour_match.group(1)), int(hour_match.group(2)))] = cell.column - 1
+    v193_bitta_qator = template_version.startswith("samtm-v19.3") or bool(v193_fan_ustunlari)
+
+    v193_target_map = {}
+    for sinf_nomi, class_row in mavjud_sinflar.items():
+        canonical = {
+            "sinf": sinf_nomi, "sinf_id": int(class_row["id"]),
+            "guruh_kaliti": "whole", "guruh_nomi": "Butun sinf",
+            "fan_kalitlari": None,
+        }
+        v193_target_map[_xodim_excel_sarlavha_kaliti(f"{sinf_nomi} / Butun sinf")] = canonical
+        v193_target_map[_xodim_excel_sarlavha_kaliti(sinf_nomi)] = canonical
+    for item in guruh_katalogi["qatorlar"]:
+        key = _xodim_excel_sarlavha_kaliti(item["target_label"])
+        canonical = v193_target_map.setdefault(key, {
+            "sinf": item["sinf"], "sinf_id": int(item["sinf_id"]),
+            "tizim_id": int(item["tizim_id"]),
+            "guruh_kaliti": item["guruh_kaliti"], "guruh_nomi": item["guruh_nomi"],
+            "fan_kalitlari": set(),
+        })
+        canonical["fan_kalitlari"].add(item["fan_kaliti"])
+
     tayyor_qatorlar = []
     tekshiruv_xatolari = []
     for excel_qatori, row in enumerate(ws.iter_rows(min_row=2, values_only=True), 2):
@@ -9055,6 +9391,118 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 f"{excel_qatori}-qator ({fish}): lavozimni MALUMOT varag'idagi ro'yxatdan tanlang"
             )
             continue
+
+        if v193_bitta_qator:
+            try:
+                rahbar_xom = qator_qiymati(row, rahbar_ustuni)
+                sinf_rahbarligi = _xodim_sinf_nomini_normalla(rahbar_xom) if rahbar_xom else ""
+                if sinf_rahbarligi and sinf_rahbarligi not in mavjud_sinflar:
+                    raise ValueError(f"maktabda mavjud bo'lmagan sinf rahbarligi — {sinf_rahbarligi}")
+
+                birth_raw = qator_qiymati(row, tugilgan_yili_ustuni)
+                birth_year = int(birth_raw) if birth_raw not in (None, "") else None
+                current_year = datetime.now().year
+                if birth_year is not None and not 1900 <= birth_year <= current_year:
+                    raise ValueError(f"tug'ilgan yil 1900–{current_year} oralig'ida bo'lishi kerak")
+                tugilgan_sana = f"{birth_year:04d}-01-01" if birth_year is not None else None
+
+                staj_raw = qator_qiymati(row, staj_ustuni)
+                ish_staji = int(staj_raw) if staj_raw not in (None, "") else None
+                if ish_staji is not None and not 0 <= ish_staji <= 80:
+                    raise ValueError("ish staji 0–80 yil oralig'ida bo'lishi kerak")
+                toifa_raw = qator_qiymati(row, toifa_ustuni)
+                toifa_matni = str(toifa_raw).strip() if toifa_raw else ""
+                if toifa_matni and toifa_matni.lower() not in _TOIFA_MATNDAN:
+                    raise ValueError("toifani MALUMOT varag'idagi ro'yxatdan tanlang")
+
+                dars_birikmalari = []
+                fanlar_royxati = []
+                exact_seen = set()
+                for block in sorted(v193_fan_ustunlari):
+                    fan_raw = qator_qiymati(row, v193_fan_ustunlari[block])
+                    slot_keys = sorted(
+                        key for key in v193_obyekt_ustunlari if key[0] == block
+                    )
+                    has_slot_value = any(
+                        qator_qiymati(row, v193_obyekt_ustunlari[key]) not in (None, "")
+                        or qator_qiymati(row, v193_soat_ustunlari.get(key)) not in (None, "")
+                        for key in slot_keys
+                    )
+                    if fan_raw in (None, ""):
+                        if has_slot_value:
+                            raise ValueError(f"{block}-FAN tanlanmagan, lekin uning sinf/guruh yoki soat katagi to'ldirilgan")
+                        continue
+                    fan = fan_moslashtir("", fan_raw)
+                    if _xodim_excel_sarlavha_kaliti(fan) not in {
+                        _xodim_excel_sarlavha_kaliti(value) for value in fanlar_royxati
+                    }:
+                        fanlar_royxati.append(fan)
+                    block_count = 0
+                    for key in slot_keys:
+                        target_raw = qator_qiymati(row, v193_obyekt_ustunlari[key])
+                        hour_raw = qator_qiymati(row, v193_soat_ustunlari.get(key))
+                        if target_raw in (None, "") and hour_raw in (None, ""):
+                            continue
+                        if target_raw in (None, "") or hour_raw in (None, ""):
+                            raise ValueError(
+                                f"{block}.{key[1]} katakda sinf/guruh va soat ikkalasi ham tanlanishi kerak"
+                            )
+                        target = v193_target_map.get(_xodim_excel_sarlavha_kaliti(target_raw))
+                        if not target:
+                            raise ValueError(f"'{target_raw}' maktabdagi sinf/guruh ro'yxatida topilmadi")
+                        weekly = int(hour_raw)
+                        if not 1 <= weekly <= 20:
+                            raise ValueError(f"{block}.{key[1]}-SOAT 1–20 oralig'ida bo'lishi kerak")
+                        fan_key = _xodim_excel_sarlavha_kaliti(fan)
+                        allowed = target.get("fan_kalitlari")
+                        if allowed is not None and fan_key not in allowed:
+                            raise ValueError(
+                                f"{target_raw} guruhiga '{fan}' fani biriktirilmagan; avval sinf guruh sozlamasida belgilang"
+                            )
+                        exact_key = (target["sinf"], fan_key, target["guruh_kaliti"])
+                        if exact_key in exact_seen:
+                            raise ValueError(
+                                f"{fan} / {target_raw} ikki marta tanlangan"
+                            )
+                        exact_seen.add(exact_key)
+                        dars_birikmalari.append({
+                            "sinf": target["sinf"], "fan": fan,
+                            "guruh_kaliti": target["guruh_kaliti"],
+                            "guruh_nomi": target["guruh_nomi"],
+                            "haftalik_soat": weekly, "kunlik_max": 1,
+                            "manba": (
+                                "dars_birikmalari"
+                                if target["guruh_kaliti"] == "whole"
+                                else "xodimlar_guruh_matritsasi"
+                            ),
+                        })
+                        block_count += 1
+                    if block_count == 0:
+                        raise ValueError(f"{block}-FAN uchun kamida bitta sinf/guruh va soat tanlang")
+
+                dars_sinflari = list(dict.fromkeys(item["sinf"] for item in dars_birikmalari))
+                weekly_total = sum(int(item["haftalik_soat"]) for item in dars_birikmalari)
+                if lavozim_kaliti == "fan_oqituvchisi" and not dars_birikmalari:
+                    raise ValueError("fan o'qituvchisi uchun kamida bitta fan–sinf/guruh–soat kiriting")
+                tayyor_qatorlar.append({
+                    "excel_qatori": excel_qatori, "fish": fish,
+                    "lavozim_matni": lavozim_matni, "lavozim_kaliti": lavozim_kaliti,
+                    "sinf_rahbarligi": sinf_rahbarligi,
+                    "dars_sinflari": dars_sinflari,
+                    "dars_birikmalari": dars_birikmalari,
+                    "fanlar_royxati": fanlar_royxati,
+                    "fanlari": "\n".join(fanlar_royxati),
+                    "tugilgan_sana": tugilgan_sana,
+                    "ish_staji": ish_staji,
+                    "toifasi": _TOIFA_MATNDAN.get(toifa_matni.lower(), toifa_matni or None),
+                    "haftalik_dars_soati": weekly_total,
+                    "bir_sinf_soati": None, "sinf_soatlari": {},
+                    "kop_fanli_sinf_jamilari": {}, "bitta_qator_rejimi": True,
+                })
+            except (ValueError, TypeError) as error:
+                tekshiruv_xatolari.append(f"{excel_qatori}-qator ({fish}): {error}")
+            continue
+
         rahbar_xom = qator_qiymati(row, rahbar_ustuni)
         dars_sinflari_xom = qator_qiymati(row, dars_sinflari_ustuni)
         fanlar_xom = qator_qiymati(row, fanlar_ustuni)
@@ -9682,7 +10130,11 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 continue
             kalit = (birikma["sinf"], _xodim_excel_sarlavha_kaliti(birikma["fan"]))
             sinf_fan_soatlari[kalit] = max(soat_soni, int(sinf_fan_soatlari.get(kalit, 0)))
-        hisoblangan_yuklama = sum(sinf_fan_soatlari.values())
+        hisoblangan_yuklama = (
+            sum(int(item.get("haftalik_soat") or 0) for item in noyob_birikmalar)
+            if qator.get("bitta_qator_rejimi")
+            else sum(sinf_fan_soatlari.values())
+        )
         if hisoblangan_yuklama:
             qator["haftalik_dars_soati"] = hisoblangan_yuklama
         qator["sinf_fan_soatlari"] = sinf_fan_soatlari
@@ -9721,12 +10173,13 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                     UPDATE users
                     SET full_name=%s, role='oqituvchi', maktab_id=%s, lavozim=%s,
                         fanlari=%s, oqitadigan_sinflari=%s, ish_staji=%s,
-                        toifasi=%s, haftalik_dars_soati=%s
+                        toifasi=%s, haftalik_dars_soati=%s,tugilgan_sana=%s
                     WHERE user_id=%s
                 """, (
                     qator["fish"], maktab_id, qator["lavozim_kaliti"],
                     qator["fanlari"] or None, "; ".join(qator["dars_sinflari"]) or None,
                     qator["ish_staji"], qator["toifasi"], qator["haftalik_dars_soati"],
+                    qator.get("tugilgan_sana"),
                     yangi_id,
                 ))
                 # Excel hozirgi holatning manbasi: eski sinf/fan birikmalarini yangidan tuzamiz.
@@ -9746,12 +10199,14 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 cur.execute("""
                     INSERT INTO users(
                         user_id,full_name,role,maktab_id,lavozim,fanlari,
-                        oqitadigan_sinflari,ish_staji,toifasi,haftalik_dars_soati
-                    ) VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s,%s,%s)
+                        oqitadigan_sinflari,ish_staji,toifasi,haftalik_dars_soati,
+                        tugilgan_sana
+                    ) VALUES(%s,%s,'oqituvchi',%s,%s,%s,%s,%s,%s,%s,%s)
                 """, (
                     yangi_id, qator["fish"], maktab_id, qator["lavozim_kaliti"],
                     qator["fanlari"] or None, "; ".join(qator["dars_sinflari"]) or None,
                     qator["ish_staji"], qator["toifasi"], qator["haftalik_dars_soati"],
+                    qator.get("tugilgan_sana"),
                 ))
 
             if qator["lavozim_kaliti"] == "direktor":
@@ -9839,6 +10294,7 @@ async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...))
                 "dars_sinflari": qator["dars_sinflari"],
                 "fanlari": qator["fanlari"] or None,
                 "dars_birikmalari": qator["dars_birikmalari"],
+                "tugilgan_sana": qator.get("tugilgan_sana"),
                 "ish_staji": qator["ish_staji"], "toifasi": qator["toifasi"],
                 "haftalik_dars_soati": qator["haftalik_dars_soati"],
                 "import_holati": "yangilandi" if yangilandi else "yangi",
