@@ -7356,6 +7356,9 @@ SAMTM_V19_2_SWAP_SUGGESTION_LIMIT = max(
 def _v192_tables(cur):
     _v1876_tables(cur)
     cur.execute(
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE"
+    )
+    cur.execute(
         "ALTER TABLE maktab_dars_birikmalari "
         "ADD COLUMN IF NOT EXISTS xona_id BIGINT REFERENCES aqlli_xonalar_v2(id) ON DELETE SET NULL"
     )
@@ -7404,9 +7407,12 @@ def _v192_clean_subject(value):
 
 def _v192_group_variants(cur, maktab_id: int):
     systems = _v1876_group_system_catalog(cur, maktab_id)
-    cur.execute("""SELECT id,sinf,harf,COALESCE(smena,1) AS smena
-                   FROM maktab_sinflari WHERE maktab_id=%s
-                   ORDER BY sinf::int,harf""", (maktab_id,))
+    cur.execute("""SELECT s.id,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,
+                          s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
+                   FROM maktab_sinflari s
+                   LEFT JOIN users u ON u.user_id=s.rahbar_user_id
+                   WHERE s.maktab_id=%s
+                   ORDER BY s.sinf::int,s.harf""", (maktab_id,))
     classes = [dict(row) for row in cur.fetchall()]
     systems_by_class = {}
     for system in systems:
@@ -7638,8 +7644,10 @@ class V192TeacherLoadSave(BaseModel):
 class V192ManualTeacherCreate(BaseModel):
     maktab_id: int
     full_name: str
+    tugilgan_yili: Optional[int] = None
     ish_staji: Optional[int] = None
     toifasi: Optional[str] = None
+    rahbar_sinf_id: Optional[int] = None
     qatorlar: list[V192TeacherLoadRow]
 
 
@@ -7931,6 +7939,8 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
 
 @app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_qoshish")
 def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
+    from datetime import date as _date
+
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
@@ -7946,11 +7956,33 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         work_years = sorov.ish_staji
         if work_years is not None and not 0 <= int(work_years) <= 60:
             raise HTTPException(status_code=400, detail="Ish staji 0–60 yil oralig'ida bo'lishi kerak")
+        birth_year = sorov.tugilgan_yili
+        current_year = _date.today().year
+        if birth_year is not None and not 1900 <= int(birth_year) <= current_year:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Tug'ilgan yil 1900–{current_year} oralig'ida bo'lishi kerak",
+            )
         category = re.sub(r"\s+", " ", str(sorov.toifasi or "")).strip() or None
         if category and category not in TOIFALAR:
             raise HTTPException(status_code=400, detail="O'qituvchi toifasi noto'g'ri")
 
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(sorov.maktab_id),))
+        leader_class = None
+        if sorov.rahbar_sinf_id is not None:
+            cur.execute("""SELECT id,sinf,harf,rahbar_user_id
+                           FROM maktab_sinflari
+                           WHERE id=%s AND maktab_id=%s
+                           FOR UPDATE""",
+                        (int(sorov.rahbar_sinf_id), int(sorov.maktab_id)))
+            leader_class = cur.fetchone()
+            if not leader_class:
+                raise HTTPException(status_code=404, detail="Sinf rahbarligi uchun tanlangan sinf topilmadi")
+            if leader_class.get("rahbar_user_id") is not None:
+                raise HTTPException(
+                    status_code=409,
+                    detail=f"{leader_class['sinf']}-{leader_class['harf']} sinfiga rahbar allaqachon tayinlangan",
+                )
         cur.execute("""SELECT user_id FROM users
                        WHERE maktab_id=%s
                          AND LOWER(REGEXP_REPLACE(TRIM(full_name), '\\s+', ' ', 'g'))
@@ -7965,17 +7997,23 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
             if smallest and smallest.get("eng_kichik") is not None else -1
         )
         cur.execute("""INSERT INTO users(
-                        user_id,full_name,role,maktab_id,lavozim,ish_staji,toifasi,
-                        haftalik_dars_soati)
-                       VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,0)""",
+                        user_id,full_name,role,maktab_id,lavozim,tugilgan_sana,
+                        ish_staji,toifasi,haftalik_dars_soati)
+                       VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,%s,0)""",
                     (
                         new_user_id, full_name, sorov.maktab_id,
+                        _date(int(birth_year), 1, 1) if birth_year is not None else None,
                         int(work_years) if work_years is not None else None,
                         category,
                     ))
         plain_code, stored_code = _xodim_kod_yarat()
         cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)",
                     (stored_code, new_user_id))
+        if leader_class:
+            cur.execute("""UPDATE maktab_sinflari
+                           SET rahbar_user_id=%s
+                           WHERE id=%s AND maktab_id=%s""",
+                        (new_user_id, int(leader_class["id"]), int(sorov.maktab_id)))
         result = _v192_save_teacher_load_rows(
             cur, actor_id, sorov.maktab_id, new_user_id, sorov.qatorlar
         )
@@ -7984,6 +8022,11 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
             "kirish_kodi": plain_code,
             "kirish_kodi_muddati": "7 kun",
             "qolda_kiritildi": True,
+            "tugilgan_yili": int(birth_year) if birth_year is not None else None,
+            "rahbar_sinf_id": int(leader_class["id"]) if leader_class else None,
+            "rahbar_sinf_nomi": (
+                f"{leader_class['sinf']}-{leader_class['harf']}" if leader_class else None
+            ),
         })
         conn.commit()
         return result
