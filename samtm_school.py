@@ -7573,7 +7573,8 @@ def _v192_group_variants(cur, maktab_id: int):
                    FROM maktab_sinflari s
                    LEFT JOIN users u ON u.user_id=s.rahbar_user_id
                    WHERE s.maktab_id=%s
-                   ORDER BY s.sinf::int,s.harf""", (maktab_id,))
+                   ORDER BY CASE WHEN s.sinf::text ~ '^\\d+$' THEN s.sinf::int ELSE 999 END,s.harf""",
+                (maktab_id,))
     classes = [dict(row) for row in cur.fetchall()]
     systems_by_class = {}
     for system in systems:
@@ -7800,6 +7801,18 @@ class V193CurriculumClassSave(BaseModel):
     fanlar: list[V193CurriculumItem]
 
 
+class V193CurriculumMatrixItem(BaseModel):
+    sinf_id: int
+    fan_nomi: str
+    haftalik_soat: int
+    kunlik_max: int = 1
+
+
+class V193CurriculumMatrixSave(BaseModel):
+    maktab_id: int
+    qatorlar: list[V193CurriculumMatrixItem]
+
+
 class V193CurriculumAction(BaseModel):
     maktab_id: int
 
@@ -7869,6 +7882,91 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
             "fan_soni": len(cleaned),
             "haftalik_jami": total,
             "matritsa": result,
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/oquv_reja/matritsa")
+def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O'quv rejasini faqat rahbariyat boshqaradi")
+        cur.execute("""SELECT id,sinf,harf FROM maktab_sinflari
+                       WHERE maktab_id=%s
+                       ORDER BY CASE WHEN sinf::text ~ '^\\d+$' THEN sinf::int ELSE 999 END,harf
+                       FOR UPDATE""",
+                    (sorov.maktab_id,))
+        classes = [dict(row) for row in cur.fetchall()]
+        valid_classes = {int(row["id"]): row for row in classes}
+        if not valid_classes:
+            raise HTTPException(status_code=400, detail="Maktabda birorta ham sinf topilmadi")
+        if not sorov.qatorlar:
+            raise HTTPException(status_code=400, detail="O'quv reja matritsasi bo'sh")
+        seen = set()
+        cleaned = []
+        class_totals = {class_id: 0 for class_id in valid_classes}
+        for index, item in enumerate(sorov.qatorlar, start=1):
+            class_id = int(item.sinf_id)
+            if class_id not in valid_classes:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: sinf bu maktabga tegishli emas")
+            subject = _v192_clean_subject(item.fan_nomi)
+            if not subject:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: fan nomi kiritilmagan")
+            hours = int(item.haftalik_soat)
+            daily = int(item.kunlik_max)
+            if hours < 1 or hours > 20:
+                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 1–20 bo'lishi kerak")
+            if daily < 1 or daily > 4:
+                raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1–4 bo'lishi kerak")
+            key = (class_id, _v1875_subject_key(subject))
+            if key in seen:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{valid_classes[class_id]['sinf']}-{valid_classes[class_id]['harf']} / {subject}: ikki marta yuborilgan",
+                )
+            seen.add(key)
+            class_totals[class_id] += hours
+            if class_totals[class_id] > 60:
+                cls = valid_classes[class_id]
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{cls['sinf']}-{cls['harf']}: haftalik jami 60 soatdan oshdi",
+                )
+            cleaned.append((class_id, subject, hours, daily))
+        cur.execute("""INSERT INTO aqlli_oquv_reja_holati_v19_3(maktab_id)
+                       VALUES(%s) ON CONFLICT(maktab_id) DO NOTHING""", (sorov.maktab_id,))
+        cur.execute("DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 WHERE maktab_id=%s",
+                    (sorov.maktab_id,))
+        for class_id, subject, hours, daily in cleaned:
+            cur.execute("""INSERT INTO aqlli_oquv_reja_qatorlari_v19_3(
+                            maktab_id,sinf_id,fan_nomi,haftalik_soat,
+                            kunlik_max,manba,yangilangan_at)
+                           VALUES(%s,%s,%s,%s,%s,'matritsa',NOW())""",
+                        (sorov.maktab_id, class_id, subject, hours, daily))
+            cur.execute("""INSERT INTO maktab_fanlari(maktab_id,fan_nomi)
+                           VALUES(%s,%s) ON CONFLICT DO NOTHING""",
+                        (sorov.maktab_id, subject))
+        cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
+                       SET holat='draft',versiya=versiya+1,
+                           tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
+                           yangilangan_at=NOW() WHERE maktab_id=%s""",
+                    (sorov.maktab_id,))
+        cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
+                       WHERE maktab_id=%s AND holat='draft'""", (sorov.maktab_id,))
+        matrix = _v192_matrix_payload(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "matritsa_draft_saqlandi",
+            "sinf_soni": len(valid_classes),
+            "fan_qatori": len(cleaned),
+            "maktab_haftalik_jami": sum(class_totals.values()),
+            "matritsa": matrix,
         }
     except Exception:
         conn.rollback(); raise
