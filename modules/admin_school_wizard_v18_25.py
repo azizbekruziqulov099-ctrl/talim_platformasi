@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field
 
 
 _CLASS_RE = re.compile(r"^\s*(1[01]|[1-9])\s*[-–—_ ]?\s*([A-Za-zА-Яа-я])\s*$")
+_ROOM_TYPES = {"classroom", "reserve", "sport", "non_teaching"}
 
 
 def normalize_class_name(value: str) -> tuple[str, str]:
@@ -51,6 +52,7 @@ class AdminSchoolClassInput(BaseModel):
 class AdminSchoolRoomInput(BaseModel):
     number: str = Field(min_length=1, max_length=40)
     floor: int = 1
+    room_type: str = "classroom"
 
 
 class AdminSchoolBuildingInput(BaseModel):
@@ -154,12 +156,49 @@ def ensure_school_wizard_columns(cur) -> None:
         """
     )
     cur.execute(
+        "ALTER TABLE IF EXISTS maktab_xonalari ADD COLUMN IF NOT EXISTS "
+        "xona_turi TEXT NOT NULL DEFAULT 'classroom'"
+    )
+    cur.execute(
+        "ALTER TABLE IF EXISTS maktab_xonalari ADD COLUMN IF NOT EXISTS "
+        "darsga_yaroqli BOOLEAN NOT NULL DEFAULT TRUE"
+    )
+    cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS "
         "bino_id BIGINT REFERENCES maktab_binolari(id) ON DELETE SET NULL"
     )
     cur.execute(
         "ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS "
         "xona_id BIGINT REFERENCES maktab_xonalari(id) ON DELETE SET NULL"
+    )
+    cur.execute(
+        """
+        CREATE TABLE IF NOT EXISTS aqlli_xonalar_v2(
+            id BIGSERIAL PRIMARY KEY,
+            maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+            nomi TEXT NOT NULL,
+            turi TEXT NOT NULL DEFAULT 'oddiy',
+            sigim INTEGER,
+            faol BOOLEAN NOT NULL DEFAULT TRUE,
+            UNIQUE(maktab_id,nomi)
+        )
+        """
+    )
+    cur.execute(
+        "ALTER TABLE IF EXISTS aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS "
+        "manba_xona_id BIGINT REFERENCES maktab_xonalari(id) ON DELETE SET NULL"
+    )
+    cur.execute(
+        "ALTER TABLE IF EXISTS aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS "
+        "bino_id BIGINT REFERENCES maktab_binolari(id) ON DELETE SET NULL"
+    )
+    cur.execute(
+        "ALTER TABLE IF EXISTS aqlli_xonalar_v2 ADD COLUMN IF NOT EXISTS "
+        "darsga_yaroqli BOOLEAN NOT NULL DEFAULT TRUE"
+    )
+    cur.execute(
+        "CREATE UNIQUE INDEX IF NOT EXISTS ux_aqlli_xonalar_manba_xona "
+        "ON aqlli_xonalar_v2(manba_xona_id) WHERE manba_xona_id IS NOT NULL"
     )
 
 
@@ -196,7 +235,8 @@ def create_admin_school_wizard_router(
             cur.execute(
                 """
                 SELECT b.id,b.nomi,b.qavat_soni,
-                       x.id AS xona_id,x.xona_raqami,x.qavat
+                       x.id AS xona_id,x.xona_raqami,x.qavat,
+                       x.xona_turi,x.darsga_yaroqli
                 FROM maktab_binolari b
                 LEFT JOIN maktab_xonalari x ON x.bino_id=b.id
                 WHERE b.maktab_id=%s
@@ -221,6 +261,8 @@ def create_admin_school_wizard_router(
                             "id": int(row["xona_id"]),
                             "number": row["xona_raqami"],
                             "floor": int(row["qavat"] or 1),
+                            "room_type": row.get("xona_turi") or "classroom",
+                            "teaching_enabled": bool(row.get("darsga_yaroqli", True)),
                         }
                     )
             conn.commit()
@@ -267,8 +309,14 @@ def create_admin_school_wizard_router(
             for room in building.rooms:
                 room_number = normalize_optional_text(room.number, 40)
                 floor = int(room.floor)
+                room_type = str(room.room_type or "classroom").strip().lower()
                 if not room_number:
                     raise HTTPException(status_code=400, detail=f"{building_name}: xona raqami bo'sh")
+                if room_type not in _ROOM_TYPES:
+                    raise HTTPException(
+                        status_code=400,
+                        detail=f"{building_name}, {room_number}: xona turi noto'g'ri",
+                    )
                 if floor < 1 or floor > floors:
                     raise HTTPException(
                         status_code=400,
@@ -278,7 +326,12 @@ def create_admin_school_wizard_router(
                 if room_key in seen_rooms:
                     raise HTTPException(status_code=400, detail=f"{building_name}: {room_number}-xona ikki marta kiritilgan")
                 seen_rooms.add(room_key)
-                rooms.append({"number": room_number, "floor": floor})
+                rooms.append({
+                    "number": room_number,
+                    "floor": floor,
+                    "room_type": room_type,
+                    "teaching_enabled": room_type != "non_teaching",
+                })
 
             normalized = {
                 "key": building_key,
@@ -286,6 +339,7 @@ def create_admin_school_wizard_router(
                 "floors": floors,
                 "rooms": rooms,
                 "room_numbers": {room["number"].casefold() for room in rooms},
+                "room_by_number": {room["number"].casefold(): room for room in rooms},
             }
             normalized_buildings.append(normalized)
             building_by_key[building_key] = normalized
@@ -362,6 +416,12 @@ def create_admin_school_wizard_router(
                         detail=f"{grade}-{letter}: {building_name}dagi {room_number}-xona topilmadi",
                     )
                 if room_number:
+                    selected_room = selected_building["room_by_number"][room_number.casefold()]
+                    if selected_room["room_type"] != "classroom":
+                        raise HTTPException(
+                            status_code=400,
+                            detail=f"{grade}-{letter}: doimiy sinf xonasi faqat oddiy dars xonasi bo'lishi kerak",
+                        )
                     room_shift_key = (shift, building_key, room_number.casefold())
                     if room_shift_key in occupied_room_shifts:
                         raise HTTPException(
@@ -435,14 +495,42 @@ def create_admin_school_wizard_router(
                 for room in building["rooms"]:
                     cur.execute(
                         """
-                        INSERT INTO maktab_xonalari(bino_id,xona_raqami,qavat)
-                        VALUES(%s,%s,%s) RETURNING id
+                        INSERT INTO maktab_xonalari(
+                            bino_id,xona_raqami,qavat,xona_turi,darsga_yaroqli
+                        ) VALUES(%s,%s,%s,%s,%s) RETURNING id
                         """,
-                        (building_id, room["number"], room["floor"]),
+                        (
+                            building_id, room["number"], room["floor"],
+                            room["room_type"], room["teaching_enabled"],
+                        ),
                     )
                     room_id = int(cur.fetchone()["id"])
                     room_ids[(building["key"], room["number"].casefold())] = room_id
-                    created_rooms.append({"id": room_id, "number": room["number"], "floor": room["floor"]})
+                    if room["room_type"] in {"sport", "reserve"}:
+                        smart_name = f"{building['name']} · {room['number']}"
+                        cur.execute(
+                            """
+                            INSERT INTO aqlli_xonalar_v2(
+                                maktab_id,nomi,turi,sigim,faol,
+                                manba_xona_id,bino_id,darsga_yaroqli
+                            ) VALUES(%s,%s,%s,NULL,TRUE,%s,%s,TRUE)
+                            ON CONFLICT(maktab_id,nomi) DO UPDATE SET
+                                turi=EXCLUDED.turi,faol=TRUE,
+                                manba_xona_id=EXCLUDED.manba_xona_id,
+                                bino_id=EXCLUDED.bino_id,darsga_yaroqli=TRUE
+                            """,
+                            (
+                                school_id, smart_name, room["room_type"],
+                                room_id, building_id,
+                            ),
+                        )
+                    created_rooms.append({
+                        "id": room_id,
+                        "number": room["number"],
+                        "floor": room["floor"],
+                        "room_type": room["room_type"],
+                        "teaching_enabled": room["teaching_enabled"],
+                    })
                 created_buildings.append(
                     {
                         "id": building_id,
