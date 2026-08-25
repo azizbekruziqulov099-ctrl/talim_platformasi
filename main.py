@@ -6,9 +6,10 @@ yashirincha ishlab qolmaydi: deploy aniq xato bilan to'xtaydi.
 """
 
 SAMTM_ASGI_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_REQUIRED_WORKSPACE_ROUTE = (
-    "/api/maktab/aqlli_jadval/v3/maktab_workspace_boglash"
-)
+SAMTM_REQUIRED_ROUTES = {
+    "/api/maktab/aqlli_jadval/v3/maktab_workspace_boglash",
+    "/api/maktab/aqlli_jadval/v3/soat_imkoniyatlari",
+}
 
 try:
     from . import samtm_platform, samtm_school
@@ -37,10 +38,11 @@ registered_paths = {
     getattr(route, "path", None)
     for route in getattr(app, "routes", [])
 }
-if SAMTM_REQUIRED_WORKSPACE_ROUTE not in registered_paths:
+missing_required_routes = sorted(SAMTM_REQUIRED_ROUTES - registered_paths)
+if missing_required_routes:
     raise RuntimeError(
-        "V19.8 yangi maktab bog'lash API-si ro'yxatdan o'tmadi: "
-        f"{SAMTM_REQUIRED_WORKSPACE_ROUTE}"
+        "V19.8 majburiy API route'lari ro'yxatdan o'tmadi: "
+        + ", ".join(missing_required_routes)
     )
 
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
