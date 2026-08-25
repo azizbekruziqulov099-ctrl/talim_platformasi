@@ -28,7 +28,7 @@ active_school_release = getattr(
 )
 if active_school_release != SAMTM_ASGI_RELEASE:
     raise RuntimeError(
-        "backend/samtm_school.py eski yoki noto'g'ri joyda. "
+        "samtm_school.py eski yoki repository ildizida emas. "
         "V19.8 paketdagi samtm_school.py ni to'liq almashtiring. "
         f"Kutilgan={SAMTM_ASGI_RELEASE}; topilgan={active_school_release or 'yoq'}"
     )
