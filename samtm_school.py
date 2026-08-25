@@ -7936,6 +7936,56 @@ def _v192_clean_subject(value):
     return re.sub(r"\s+", " ", str(value or "")).strip()
 
 
+# O'zbekiston Respublikasi Maktabgacha va maktab ta'limi vazirining
+# 2026-yil 10-apreldagi 133-son buyrug'i, 1-ilova (o'zbek tilidagi maktablar).
+# Bu ikki konstanta avvalgi monolitdan modulga ajratishda tushib qolgan edi.
+# Ular modul importi paytida kerak: bo'lmasa Railway yangi deployni
+# ``NameError: SAMTM_2026_2027_UZBEK_CURRICULUM`` bilan to'xtatadi.
+SAMTM_2026_2027_UZBEK_CURRICULUM = (
+    ("Ona tili", {1: 4, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4, 7: 3, 8: 3, 9: 3, 10: 2, 11: 2}),
+    ("O'qish savodxonligi", {1: 4, 2: 3, 3: 3, 4: 3}),
+    ("Adabiyot", {5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Rus tili", {2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Chet tili", {1: 1, 2: 2, 3: 2, 4: 2, 5: 4, 6: 4, 7: 4, 8: 3, 9: 3, 10: 2, 11: 2}),
+    ("Tarixdan hikoyalar", {5: 2}),
+    ("Qadimgi dunyo tarixi", {6: 2}),
+    ("O'zbekiston tarixi", {7: 2, 8: 2, 9: 2, 10: 1, 11: 1}),
+    ("Jahon tarixi", {7: 1, 8: 1, 9: 1, 10: 1, 11: 1}),
+    ("Davlat va huquq asoslari", {8: 1, 9: 1, 10: 1, 11: 1}),
+    ("Tarbiya", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 1, 10: 1, 11: 1}),
+    ("Matematika", {1: 5, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5}),
+    ("Algebra", {8: 3, 9: 3, 10: 3, 11: 3}),
+    ("Geometriya", {8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Informatika va axborot texnologiyalari", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1, 8: 1, 9: 2, 10: 2, 11: 2}),
+    ("Fizika", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Astronomiya", {11: 1}),
+    ("Kimyo", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Biologiya", {7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Geografiya", {7: 2, 8: 1.5, 9: 1.5, 10: 2}),
+    ("Iqtisodiy bilim asoslari", {8: 0.5, 9: 0.5}),
+    ("Tadbirkorlik asoslari", {11: 1}),
+    ("Tabiiy fan (Science)", {1: 1, 2: 1, 3: 1, 4: 1, 5: 2, 6: 3}),
+    ("Musiqa madaniyati", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1}),
+    ("Tasviriy san'at", {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1, 7: 1}),
+    ("Chizmachilik", {8: 1, 9: 1}),
+    ("Texnologiya", {1: 1, 2: 1, 3: 1, 4: 1, 5: 2, 6: 2, 7: 2, 8: 1, 9: 1}),
+    ("Jismoniy tarbiya", {1: 1, 2: 2, 3: 2, 4: 2, 5: 2, 6: 2, 7: 2, 8: 2, 9: 2, 10: 2, 11: 2}),
+    ("Chaqiruvga qadar boshlang'ich tayyorgarlik", {10: 2, 11: 2}),
+)
+
+SAMTM_2026_2027_CURRICULUM_SOURCE = {
+    "nomi": "2026-2027 tayanch o'quv reja",
+    "buyruq": "MMTV 133-son",
+    "sana": "2026-04-10",
+    "ilova": "1-ilova",
+    "talim_tili": "o'zbek",
+    "sinf_jami": {
+        1: 21, 2: 24, 3: 24, 4: 24, 5: 29, 6: 30,
+        7: 35, 8: 33, 9: 34, 10: 31, 11: 31,
+    },
+}
+
+
 SAMTM_V19_3_DEFAULT_CURRICULUM = SAMTM_2026_2027_UZBEK_CURRICULUM
 
 
