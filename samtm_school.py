@@ -1934,7 +1934,7 @@ def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None):
     cur.execute("""SELECT u.user_id,u.full_name,u.lavozim,u.fanlari,
                           u.oqitadigan_sinflari,u.haftalik_dars_soati,
                           to_jsonb(u)->>'mutaxassisligi' AS mutaxassisligi,
-                          NULLIF(to_jsonb(u)->>'haftalik_maqsad_soat','')::INTEGER
+                          NULLIF(to_jsonb(u)->>'haftalik_maqsad_soat','')::NUMERIC(5,1)
                               AS haftalik_maqsad_soat
                    FROM users u
                    WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
@@ -2045,7 +2045,10 @@ def _v1852_setup_payload(cur, maktab_id: int):
         extra = int(class_hour_counts.get(int(teacher["user_id"]), 0))
         teacher["sinf_soati_soni"] = extra
         base = teacher.get("haftalik_dars_soati")
-        teacher["haftalik_reja_jami"] = (int(base) + extra) if base is not None else (extra or None)
+        teacher["haftalik_reja_jami"] = (
+            round(float(base) + extra, 1)
+            if base is not None else (extra or None)
+        )
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
     subjects = [r["fan_nomi"] for r in cur.fetchall()]
     cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE ORDER BY nomi", (maktab_id,))
@@ -3759,7 +3762,7 @@ def v1857_safe_workload(token: str, maktab_id: int):
             for assignment in cur.fetchall():
                 uid = int(assignment["user_id"])
                 if uid in assigned_counts:
-                    assigned_counts[uid] = int(assignment.get("soat") or 0)
+                    assigned_counts[uid] = float(assignment.get("soat") or 0)
         psixolog_class_counts = {}
         class_hour_counts = {}
         if _v1857_has_columns(cur, "aqlli_sinf_soati_qoidalari_v2", {"maktab_id", "sinf_id", "faol"}) and            _v1857_has_columns(cur, "maktab_sinflari", {"id", "rahbar_user_id"}):
@@ -3829,7 +3832,7 @@ def v1857_safe_workload(token: str, maktab_id: int):
                 grouped[key] = current
             current["birlashtirilgan_idlar"].append(uid)
             current["jadvaldagi_soat"] += int(counts.get(uid, 0))
-            current["biriktirilgan_soat"] += int(assigned_counts.get(uid, 0))
+            current["biriktirilgan_soat"] += float(assigned_counts.get(uid, 0))
             current["psixolog_sinf_soni"] += int(psixolog_class_counts.get(uid, 0))
             current["sinf_soati_soni"] += int(class_hour_counts.get(uid, 0))
             if current.get("haftalik_dars_soati") is None and person.get("haftalik_dars_soati") is not None:
@@ -3844,19 +3847,24 @@ def v1857_safe_workload(token: str, maktab_id: int):
         for row in result:
             base_plan = row.get("haftalik_dars_soati")
             extra = int(row.get("sinf_soati_soni") or 0)
-            plan = (int(base_plan) + extra) if base_plan is not None else (extra or None)
+            plan = (
+                round(float(base_plan) + extra, 1)
+                if base_plan is not None else (extra or None)
+            )
             row["haftalik_reja_jami"] = plan
-            actual = int(
+            actual = float(
                 row.get("jadvaldagi_soat") if active_run_id
                 else row.get("biriktirilgan_soat") or 0
             )
+            actual = round(actual, 1)
             row["amaldagi_soat"] = actual
             row["hisob_manbasi"] = "tasdiqlangan_jadval" if active_run_id else "oqituvchi_yuklamasi"
-            row["farq"] = None if plan is None else int(plan)-actual
+            difference = None if plan is None else round(float(plan) - actual, 1)
+            row["farq"] = difference
             row["holat"] = (
                 "kiritilmagan" if plan is None else
-                "ortiqcha" if actual>int(plan) else
-                "toliq" if actual==int(plan) else "yetishmaydi"
+                "ortiqcha" if difference < -1e-9 else
+                "toliq" if abs(difference) <= 1e-9 else "yetishmaydi"
             )
         return {"xodimlar": result, "diagnostika_ogohlantirishlari": warnings}
     finally:
@@ -5545,7 +5553,11 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
     for row in cur.fetchall():
         if row.get("haftalik_dars_soati") is None:
             continue
-        cap = int(row["haftalik_dars_soati"]) + int(row.get("sinf_soati") or 0)
+        cap = round(
+            float(row["haftalik_dars_soati"])
+            + int(row.get("sinf_soati") or 0),
+            1,
+        )
         actual = int(row.get("amaldagi") or 0)
         if actual > cap:
             violations.append({
@@ -6965,9 +6977,12 @@ def _v1876_group_review_report(cur, maktab_id: int):
                 else 1
             )
         )
-        sinf_reja_soati = int(weekly_hours or 0)
-        jadval_parallel_slot_soni = int(weekly_hours or 0)
-        oqituvchi_soat_jami = int(weekly_hours or 0) * int(parallel_guruh_soni)
+        sinf_reja_soati = round(float(weekly_hours or 0), 1)
+        jadval_parallel_slot_soni = round(float(weekly_hours or 0), 1)
+        oqituvchi_soat_jami = round(
+            float(weekly_hours or 0) * int(parallel_guruh_soni),
+            1,
+        )
 
         review_pairs.append({
             "sinf_id": pair["sinf_id"],
@@ -6980,7 +6995,7 @@ def _v1876_group_review_report(cur, maktab_id: int):
             "sinf_reja_soati": sinf_reja_soati,
             "jadval_parallel_slot_soni": jadval_parallel_slot_soni,
             "parallel_guruh_soni": parallel_guruh_soni,
-            "har_bir_guruh_oqituvchi_soati": int(weekly_hours or 0),
+            "har_bir_guruh_oqituvchi_soati": round(float(weekly_hours or 0), 1),
             "oqituvchi_soat_jami": oqituvchi_soat_jami,
             "kunlik_max": daily_max,
             "status": status,
