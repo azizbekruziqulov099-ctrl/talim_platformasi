@@ -2428,9 +2428,11 @@ def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, sta
             reasons.append("o'qituvchining haftalik yuklamasi to'lgan")
         if state["teacher_daily"].get((teacher, day), 0) >= rules["kunlik_max"]:
             reasons.append("o'qituvchining kunlik maksimumi to'lgan")
-        periods = set(state["teacher_periods"].get((teacher, day, job["smena"]), set())) | {period}
-        if _v1852_max_streak(periods) > rules["ketma_ket_max"]:
-            reasons.append("o'qituvchining ketma-ket dars limiti")
+        # Ketma-ket dars soni qulaylik talabi, majburiy blok emas. Masalan,
+        # metod kuni bor 30 soatli o'qituvchi qolgan 5 kunda 6 tadan dars
+        # o'tishi mumkin; 4 ta ketma-ket limitini qattiq qo'llash uning 6 ta
+        # darsini asossiz ravishda jadvaldan chiqarib yuborar edi. Me'yordan
+        # oshish pastdagi ballashda jazolanadi, lekin dars tashlab ketilmaydi.
     for key in room_keys:
         if key and (key, day, job["smena"], period) in state["room_busy"]:
             reasons.append("xona band")
@@ -2492,6 +2494,9 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         score += state["teacher_daily"].get((teacher, day), 0) * 1.8
         if after_gap > rules["okno_max"]:
             score += (after_gap - rules["okno_max"]) * 6
+        new_streak = _v1852_max_streak(existing | {period})
+        if new_streak > rules["ketma_ket_max"]:
+            score += (new_streak - rules["ketma_ket_max"]) * 65
     same_day = state["subject_daily"].get((job["sinf_id"], job["fan"].casefold(), day), 0)
     score += same_day * 14
     if period > job["preferred_last"]:
@@ -2521,16 +2526,243 @@ def _v1852_place_job(job, day, period, teachers, room_keys, state, context):
     state["placements"].append({"job": job, "day": day, "period": period, "teachers": teachers, "room_keys": room_keys})
 
 
-def _v1852_generate_attempt(jobs, context, seed):
-    rng = _v1852_random.Random(seed)
-    state = {
+def _v1852_new_schedule_state():
+    return {
         "class_busy": set(), "teacher_busy": set(), "room_busy": set(),
-        "subject_daily": _v1852_defaultdict(int), "class_subject_periods": _v1852_defaultdict(set),
-        "teacher_week": _v1852_defaultdict(int), "teacher_daily": _v1852_defaultdict(int),
+        "subject_daily": _v1852_defaultdict(int),
+        "class_subject_periods": _v1852_defaultdict(set),
+        "teacher_week": _v1852_defaultdict(int),
+        "teacher_daily": _v1852_defaultdict(int),
         "teacher_periods": _v1852_defaultdict(set), "placements": [],
     }
-    # Murakkab, guruhli, xonali va ko'p soatli ishlar oldin joylashtiriladi.
-    ordered = sorted(jobs, key=lambda j: (-j["difficulty"], rng.random()))
+
+
+def _v1852_job_teacher_ids(job):
+    result = set()
+    members = job.get("rotation_members") or []
+    source_jobs = members or [job]
+    for source in source_jobs:
+        groups = source.get("groups") or []
+        if groups:
+            for group in groups:
+                if group.get("teacher") is not None:
+                    result.add(int(group["teacher"]))
+        else:
+            for teacher in source.get("teacher_options") or []:
+                if teacher is not None:
+                    result.add(int(teacher))
+    return result
+
+
+def _v1852_open_candidates(job, state, context, rng, exact=None):
+    """Hozirgi holatda ishning barcha haqiqiy bo'sh slotlarini qaytaradi."""
+    shift = context["shifts"].get(job["smena"])
+    if not shift:
+        return [], _v1852_Counter({"smena sozlanmagan": 1})
+    candidates = []
+    rejected = _v1852_Counter()
+    class_row = context["classes"].get(job["sinf_id"], {})
+    fixed_day = int(job.get("fixed_day") or 0)
+    fixed_period = int(job.get("fixed_period") or 0)
+    days = [fixed_day] if fixed_day else range(1, context["weekdays"] + 1)
+    for day in days:
+        if day not in range(1, context["weekdays"] + 1):
+            rejected.update(["belgilangan sinf soati kuni o'qish haftasidan tashqari"])
+            continue
+        blocked_reason = _v1856_class_day_block_reason(
+            class_row, day, context.get("class_day_blocks", {})
+        )
+        if blocked_reason:
+            rejected.update([blocked_reason])
+            continue
+        slots = [
+            slot for slot in shift["slotlar"]
+            if (not fixed_period or int(slot["dars_raqami"]) == fixed_period)
+            and (not exact or (int(day), int(slot["dars_raqami"])) == exact)
+        ]
+        if fixed_period and not slots and not exact:
+            rejected.update(["belgilangan sinf soati dars raqami smenada mavjud emas"])
+        for slot in slots:
+            period = int(slot["dars_raqami"])
+            teachers = _v1852_choose_teacher(job, day, period, state, context)
+            room_keys = _v1852_room_keys(job, teachers, context["classes"])
+            reasons = _v1852_candidate_reasons(
+                job, day, period, teachers, room_keys, state, context
+            )
+            if reasons:
+                rejected.update(reasons)
+                continue
+            score = (
+                0.0 if fixed_day and fixed_period
+                else _v1852_candidate_score(job, day, period, teachers, state, context, rng)
+            )
+            candidates.append((score, day, period, teachers, room_keys))
+    candidates.sort(key=lambda row: row[0])
+    return candidates, rejected
+
+
+def _v1852_rebuild_schedule_state(placements, context):
+    state = _v1852_new_schedule_state()
+    for placement in placements:
+        _v1852_place_job(
+            placement["job"], placement["day"], placement["period"],
+            placement["teachers"], placement["room_keys"], state, context,
+        )
+    return state
+
+
+def _v1852_repair_unplaced(state, unplaced, context, rng):
+    """To'qnashgan darsni ko'chirib, qolgan fanlarni jadvalga qaytaradi.
+
+    Eski greedy generator oxirida kelgan 1–2 soatli fanlarni tashlab ketardi.
+    Bu bosqich kerakli katakdagi sinf/o'qituvchi/xona darslarini vaqtincha olib,
+    yangi darsni qo'yadi va olib turilgan darslarni boshqa bo'sh katakka qaytaradi.
+    """
+    remaining = list(unplaced)
+    for _round in range(3):
+        if not remaining:
+            break
+        progress = False
+        next_remaining = []
+        remaining.sort(
+            key=lambda item: (
+                len(_v1852_job_teacher_ids(item["job"])),
+                float(item["job"].get("difficulty") or 0),
+            ),
+            reverse=True,
+        )
+        for item in remaining:
+            job = item["job"]
+            direct, rejected = _v1852_open_candidates(job, state, context, rng)
+            if direct:
+                _, day, period, teachers, room_keys = direct[0]
+                _v1852_place_job(job, day, period, teachers, room_keys, state, context)
+                progress = True
+                continue
+
+            shift = context["shifts"].get(job["smena"])
+            if not shift:
+                next_remaining.append({"job": job, "sabablar": dict(rejected.most_common(6))})
+                continue
+            fixed_day = int(job.get("fixed_day") or 0)
+            fixed_period = int(job.get("fixed_period") or 0)
+            days = [fixed_day] if fixed_day else range(1, context["weekdays"] + 1)
+            desired = []
+            for day in days:
+                class_row = context["classes"].get(job["sinf_id"], {})
+                if _v1856_class_day_block_reason(
+                    class_row, day, context.get("class_day_blocks", {})
+                ):
+                    continue
+                for slot in shift["slotlar"]:
+                    period = int(slot["dars_raqami"])
+                    if fixed_period and period != fixed_period:
+                        continue
+                    teachers = _v1852_choose_teacher(job, day, period, state, context)
+                    room_keys = _v1852_room_keys(job, teachers, context["classes"])
+                    score = 0.0 if fixed_day and fixed_period else _v1852_candidate_score(
+                        job, day, period, teachers, state, context, rng
+                    )
+                    desired.append((score, day, period, teachers, room_keys))
+            desired.sort(key=lambda row: row[0])
+
+            repaired = None
+            for _, day, period, teachers, room_keys in desired[:24]:
+                teacher_set = {int(x) for x in teachers if x is not None}
+                room_set = {x for x in room_keys if x}
+                blockers = []
+                for placement in state["placements"]:
+                    same_slot = (
+                        int(placement["day"]) == int(day)
+                        and int(placement["period"]) == int(period)
+                        and int(placement["job"].get("smena") or 1) == int(job["smena"])
+                    )
+                    if not same_slot:
+                        continue
+                    placement_teachers = {
+                        int(x) for x in placement.get("teachers") or [] if x is not None
+                    }
+                    placement_rooms = {x for x in placement.get("room_keys") or [] if x}
+                    if (
+                        int(placement["job"]["sinf_id"]) == int(job["sinf_id"])
+                        or bool(teacher_set & placement_teachers)
+                        or bool(room_set & placement_rooms)
+                    ):
+                        blockers.append(placement)
+                if not blockers or len(blockers) > 4:
+                    continue
+                blocker_ids = {id(placement) for placement in blockers}
+                trial = _v1852_rebuild_schedule_state(
+                    [p for p in state["placements"] if id(p) not in blocker_ids], context
+                )
+                target_candidates, _ = _v1852_open_candidates(
+                    job, trial, context, rng, exact=(int(day), int(period))
+                )
+                if not target_candidates:
+                    continue
+                _, target_day, target_period, target_teachers, target_rooms = target_candidates[0]
+                _v1852_place_job(
+                    job, target_day, target_period, target_teachers, target_rooms, trial, context
+                )
+                blocker_order = sorted(
+                    blockers,
+                    key=lambda placement: (
+                        bool(placement["job"].get("fixed_day")),
+                        len(_v1852_job_teacher_ids(placement["job"])),
+                        float(placement["job"].get("difficulty") or 0),
+                    ),
+                    reverse=True,
+                )
+                all_returned = True
+                for blocker in blocker_order:
+                    options, _ = _v1852_open_candidates(
+                        blocker["job"], trial, context, rng
+                    )
+                    if not options:
+                        all_returned = False
+                        break
+                    _, new_day, new_period, new_teachers, new_rooms = options[0]
+                    _v1852_place_job(
+                        blocker["job"], new_day, new_period,
+                        new_teachers, new_rooms, trial, context,
+                    )
+                if all_returned:
+                    repaired = trial
+                    break
+            if repaired is not None:
+                state = repaired
+                progress = True
+            else:
+                next_remaining.append({"job": job, "sabablar": dict(rejected.most_common(6))})
+        remaining = next_remaining
+        if not progress:
+            break
+    return state, remaining
+
+
+def _v1852_generate_attempt(jobs, context, seed):
+    rng = _v1852_random.Random(seed)
+    state = _v1852_new_schedule_state()
+    # Eng kam bo'sh vaqti bor va eng band o'qituvchilarga tegishli ishlar
+    # oldin joylashadi. Faqat fan soatiga qarab saralash 1–2 soatli fanlarni
+    # eng oxirga surib, bo'sh katak bo'lsa ham ularni tashlab ketayotgan edi.
+    empty_state = _v1852_new_schedule_state()
+    demand = context.get("v196_teacher_demand") or {}
+    scarcity = {}
+    for job in jobs:
+        domain, _ = _v1852_open_candidates(job, empty_state, context, rng)
+        teacher_pressure = sum(float(demand.get(tid, 0) or 0) for tid in _v1852_job_teacher_ids(job))
+        scarcity[id(job)] = (len(domain), teacher_pressure)
+    ordered = sorted(
+        jobs,
+        key=lambda job: (
+            0 if job.get("fixed_day") and job.get("fixed_period") else 1,
+            scarcity[id(job)][0],
+            -len(_v1852_job_teacher_ids(job)),
+            -scarcity[id(job)][1],
+            rng.random(),
+        ),
+    )
     unplaced = []
     total_penalty = 0.0
     for job in ordered:
@@ -2571,9 +2803,11 @@ def _v1852_generate_attempt(jobs, context, seed):
         score, day, period, teachers, room_keys = min(candidates, key=lambda x: x[0])
         total_penalty += score
         _v1852_place_job(job, day, period, teachers, room_keys, state, context)
+    state, unplaced = _v1852_repair_unplaced(state, unplaced, context, rng)
     gap_count = sum(_v1852_gap_count(periods) for periods in state["teacher_periods"].values())
     class_gap_count = sum(
-        _v1852_gap_count(set(period_jobs.keys()))
+        (max(set(period_jobs.keys())) - len(set(period_jobs.keys())))
+        if period_jobs else 0
         for period_jobs in state.get("class_period_jobs", {}).values()
     )
     state["class_gap_count"] = int(class_gap_count)
@@ -2663,7 +2897,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
         cur = None
         conn = None
 
-        attempts = max(24, min(80, int(sorov.urinishlar_soni or 24)))
+        # Birinchi topilgan jadvalga yopishib qolmaymiz: turli fan/o'qituvchi
+        # tartiblarida yetarli variant hisoblanadi va eng avval barcha darslari
+        # joylashgan, keyin esa oknosi kam natija olinadi.
+        attempts = max(48, min(96, int(sorov.urinishlar_soni or 48)))
         best = None
         base_seed = int(datetime.now().timestamp())
         for index in range(attempts):
@@ -5418,15 +5655,18 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
     _, _, _, difficulty_map, period_jobs = _v1874_state_maps(state)
     max_period = _v1874_max_total_periods(grade)
 
-    # Sinf jadvalida ichki "okno" qolmasin. Bu jarima fan vaqtiga berilgan
-    # yumshoq ustuvorliklardan ancha kuchli: avval uzluksiz jadval tanlanadi.
+    # Sinf jadvalida boshidagi bo'sh 1–2-soatlar ham, ichki "okno" ham
+    # qolmasin. Eski hisob faqat ikki dars orasidagi teshikni sanab, kun
+    # 2- yoki 3-darsdan boshlansa ham "okno 0" deb ko'rsatardi.
     existing_periods = set(period_jobs.get((job["sinf_id"], day), {}).keys())
-    score += max(
-        0,
-        _v1852_gap_count(existing_periods | {period}) - _v1852_gap_count(existing_periods),
-    ) * 420
+    new_periods = existing_periods | {period}
+    before_void = max(existing_periods) - len(existing_periods) if existing_periods else 0
+    after_void = max(new_periods) - len(new_periods) if new_periods else 0
+    score += (after_void - before_void) * 650
     if existing_periods and any(abs(period - item) == 1 for item in existing_periods):
         score -= 18
+    elif not existing_periods and int(period) == 1:
+        score -= 24
 
     score += _v1874_subject_period_penalty(profile, grade, period, max_period)
 
