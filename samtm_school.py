@@ -2456,9 +2456,16 @@ def _v1852_room_keys(job, selected_teachers, classes):
     room_text = "|".join(str(class_row.get(x) or "").strip() for x in ("bino", "xona")).strip("|")
     home_room_key = f"classroom:{room_text.casefold()}" if room_text else None
     if job["groups"]:
+        # Guruh xonasi yozilmagan bo'lsa barcha guruhga bir xil sinf xonasi
+        # kalitini berish mumkin emas: bu ularni soxta "bir xil xona" ziddiyatiga
+        # tushirib, butun guruhli fanni jadvaldan chiqarib yuborar edi. Birinchi
+        # guruh sinf xonasida qoladi, keyingi xonasiz guruhlar esa jadvalga
+        # room=None bilan tushadi va frontendda "Xona yo'q" deb ko'rinadi.
         return [
-            f"room:{group['xona_id']}" if group.get("xona_id") else home_room_key
-            for group in job["groups"]
+            f"room:{group['xona_id']}"
+            if group.get("xona_id")
+            else (home_room_key if group_index == 0 else None)
+            for group_index, group in enumerate(job["groups"])
         ]
     if job.get("room_id"):
         return [f"room:{job['room_id']}"]
