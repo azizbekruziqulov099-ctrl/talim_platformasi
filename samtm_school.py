@@ -2651,6 +2651,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
             "teacher_caps": caps, "class_day_blocks": class_day_blocks,
         }
+
+        # Generator o'n minglab variantlarni Python xotirasida hisoblaydi. Shu
+        # paytda ochiq tranzaksiya 30 soniyadan ortiq bo'sh qolsa PostgreSQL
+        # idle_in_transaction_session_timeout sabab ulanishni yopadi. Manba
+        # sinxronlashini avval commit qilib, hisoblash vaqtida DB ulanishini
+        # havuzga qaytaramiz; natijani yozishda yangi ulanish olamiz.
+        conn.commit()
+        cur.close()
+        conn.close()
+        cur = None
+        conn = None
+
         attempts = max(24, min(80, int(sorov.urinishlar_soni or 24)))
         best = None
         base_seed = int(datetime.now().timestamp())
@@ -2712,6 +2724,27 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "manba_mosligi": preflight,
             "tasdiqlash_mumkin": False,
         }
+
+        # Uzoq hisoblashdan keyin yangi, sog'lom ulanish bilan yozamiz. Shu
+        # orada yuklama yoki vaqt qoidasi o'zgargan bo'lsa eskirgan natijani
+        # saqlamaymiz — foydalanuvchi yangi manba bilan qayta yaratadi.
+        conn = _db()
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT pg_try_advisory_xact_lock(%s) AS locked",
+            (1900000000 + int(sorov.maktab_id),),
+        )
+        if not bool((cur.fetchone() or {}).get("locked")):
+            raise HTTPException(
+                status_code=409,
+                detail="Bu maktab uchun boshqa jadval yozilmoqda. Bir necha soniyadan keyin qayta urinib ko'ring.",
+            )
+        current_source_hash = _v1875_source_fingerprint(cur, sorov.maktab_id)
+        if current_source_hash != source_hash:
+            raise HTTPException(
+                status_code=409,
+                detail="Jadval hisoblanayotgan paytda yuklama yoki vaqt sozlamasi o'zgardi. Yangi ma'lumot bilan yana yarating.",
+            )
         cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
             maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar)
             VALUES(%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
@@ -2803,9 +2836,24 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "tasdiqlash_mumkin": tasdiqlash_mumkin,
                 "moslik": jadval_mosligi}
     except Exception:
-        conn.rollback(); raise
+        if conn is not None:
+            try:
+                if not bool(getattr(conn, "closed", True)):
+                    conn.rollback()
+            except Exception:
+                pass
+        raise
     finally:
-        cur.close(); conn.close()
+        if cur is not None:
+            try:
+                cur.close()
+            except Exception:
+                pass
+        if conn is not None:
+            try:
+                conn.close()
+            except Exception:
+                pass
 
 
 @app.get("/api/maktab/aqlli_jadval/v2/urinish")
