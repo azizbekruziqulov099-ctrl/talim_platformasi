@@ -13,6 +13,19 @@ except ImportError:  # Railway working directory may be backend/
 
 _V19_IMPORTED_NAMES = set(globals())
 
+# V19.7 deploy belgisi: samtm_school.py haqiqatan backendga yuklanganini
+# /api/versiya va kasr-soat capability endpointi orqali aniq tekshiramiz.
+# Eski backend qolib ketganida frontend 0,5/1,5 ni yuborib, tushunarsiz 422
+# olmasligi kerak.
+SAMTM_SCHOOL_RELEASE = "samtm-fractional-hours-ab-week-v19.7"
+SAMTM_SCHOOL_PACKAGE_REVISION = "fractional-hours-ab-week-deployment-guard"
+_platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
+_platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
+try:
+    app.version = "19.7"
+except Exception:
+    pass
+
 # ═══════════════════════════════════════════════════════════
 # V18.45 — AQILLI MAKTAB BOSH SAHIFASI / O'QITUVCHI BUGUNI / YUKLAMA
 # Kundalikning o'rnini bosmaydi: bu yerda ichki monitoring, yordamchi
@@ -2648,6 +2661,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "oqituvchi_oknolari": gap_count,
             "oknolar": gap_count,
             "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
+            "qulaylik_strategiyasi": state.get("v196_metrics", {}),
             "urinishlar_soni": attempts,
             "manba_mosligi": preflight,
             "tasdiqlash_mumkin": False,
@@ -5158,9 +5172,20 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
         half_by_class[signature].append(job)
     rotation_pairs = 0
     for signature, half_jobs in sorted(half_by_class.items(), key=lambda item: item[0]):
+        # Bir katakda almashadigan 0,5 fanlar vaqt talabi bo'yicha bir-biriga
+        # yaqin bo'lsin: og'ir fan og'ir fan bilan, amaliy/yengil fan esa
+        # shunga o'xshash fan bilan juftlanadi. Shunda A/B slotning ikkala
+        # haftasi ham bir xil qulay dars vaqtiga tushadi.
         ordered_halves = sorted(
             half_jobs,
-            key=lambda item: (str(item.get("fan") or "").casefold(), int(item.get("load_id") or 0)),
+            key=lambda item: (
+                bool((item.get("v1874_profile") or {}).get("physical")),
+                bool((item.get("v1874_profile") or {}).get("light")),
+                int((item.get("v1874_profile") or {}).get("difficulty") or 0),
+                int(item.get("preferred_last") or 5),
+                str(item.get("fan") or "").casefold(),
+                int(item.get("load_id") or 0),
+            ),
         )
         for index in range(0, len(ordered_halves), 2):
             members = ordered_halves[index:index + 2]
@@ -7699,8 +7724,35 @@ def _v192_startup_tables():
         conn = _db(); cur = conn.cursor()
         _v192_tables(cur)
         conn.commit(); cur.close(); conn.close()
+        app.state.samtm_fractional_hours_ready = True
+        app.state.samtm_fractional_hours_error = None
     except Exception as exc:
-        print(f"[V19.2 o'qituvchi yuklamasi] {exc}", flush=True)
+        app.state.samtm_fractional_hours_ready = False
+        app.state.samtm_fractional_hours_error = type(exc).__name__
+        print(f"[V19.7 0,5/1,5 soat migratsiyasi] {exc}", flush=True)
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/soat_imkoniyatlari")
+def v197_fractional_hour_capabilities():
+    """Frontend saqlashdan oldin aynan yangi backend ishlayotganini tekshiradi."""
+    schema_ready = bool(
+        getattr(app.state, "samtm_fractional_hours_ready", False)
+    )
+    return {
+        "release": SAMTM_SCHOOL_RELEASE,
+        "fractional_hours": schema_ready,
+        "fraction_step": 0.5,
+        "ab_week": schema_ready,
+        "schema_ready": schema_ready,
+        "example": {
+            "geografiya": 1.5,
+            "iqtisodiy_bilim_asoslari": 0.5,
+            "ikki_haftalik_slotlar": [
+                {"hafta": "toq", "geografiya": 2, "iqtisod": 0},
+                {"hafta": "juft", "geografiya": 1, "iqtisod": 1},
+            ],
+        },
+    }
 
 
 def _v192_clean_subject(value):
@@ -9683,6 +9735,296 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
 
 
 # ========================= V19.2 END =========================
+
+# ═══════════════════════════════════════════════════════════
+# V19.6 — PEDAGOGIK VA O'QITUVCHIGA QULAY JOYLASHTIRISH
+# 0,5 fanlar A/B haftada aniq ko'rinadi. Generator sinf yoshiga mos
+# dars vaqtini, og'ir/yengil fan almashuvini, jismoniy tarbiyadan
+# keyingi tiklanishni va o'qituvchining oknosiz ixcham ish kunini
+# birgalikda ballaydi.
+# ═══════════════════════════════════════════════════════════
+
+_v196_base_build_jobs = _v1852_build_jobs
+_v196_base_candidate_score = _v1852_candidate_score
+_v196_base_place_job = _v1852_place_job
+_v196_base_generate_attempt = _v1852_generate_attempt
+
+
+def _v196_rotation_profile(job, context=None):
+    """A/B slotning ikkala faniga ham mos yagona vaqt profilini qaytaradi."""
+    profiles = []
+    members = job.get("rotation_members") or []
+    class_row = (context or {}).get("classes", {}).get(job.get("sinf_id"), {})
+    grade = int(job.get("v1874_grade") or _v1874_grade(class_row))
+    for member in members:
+        profiles.append(
+            member.get("v1874_profile")
+            or _v1874_subject_profile(member.get("fan"), grade)
+        )
+    if not profiles:
+        return job.get("v1874_profile") or _v1874_subject_profile(job.get("fan"), grade)
+
+    # Eng talabchan a'zo slot vaqtini belgilaydi. "light" faqat ikkala fan
+    # ham yengil bo'lganda rost: og'ir + yengil juftlik ertaroq joylashadi.
+    most_difficult = max(profiles, key=lambda item: int(item.get("difficulty") or 0))
+    return {
+        **most_difficult,
+        "key": " / ".join(str(profile.get("key") or "") for profile in profiles),
+        "academic": any(bool(profile.get("academic")) for profile in profiles),
+        "physical": any(bool(profile.get("physical")) for profile in profiles),
+        "light": all(bool(profile.get("light")) for profile in profiles),
+        "primary_light": all(bool(profile.get("primary_light")) for profile in profiles),
+        "primary_core": any(bool(profile.get("primary_core")) for profile in profiles),
+        "heavy": any(bool(profile.get("heavy")) for profile in profiles),
+        "written_heavy": any(bool(profile.get("written_heavy")) for profile in profiles),
+        "math": any(bool(profile.get("math")) for profile in profiles),
+        "difficulty": max(int(profile.get("difficulty") or 0) for profile in profiles),
+    }
+
+
+def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
+    jobs, warnings = _v196_base_build_jobs(
+        classes, loads, assignments, group_settings, teachers
+    )
+    rotation_count = 0
+    for job in jobs:
+        if job.get("rotation_members"):
+            rotation_count += 1
+            job["v1874_profile"] = _v196_rotation_profile(
+                job, {"classes": classes}
+            )
+    warnings.append(
+        "V19.6 qulaylik strategiyasi faol: 5–6-sinflar 1–3-darsga, "
+        "7–8-sinflar 2–4-darsga, 9–11-sinflarning og'ir fanlari 2–4-darsga "
+        "ustuvor; o'qituvchi oknosi va jismoniy tarbiyadan keyingi og'ir fan jazolanadi"
+    )
+    if rotation_count:
+        warnings.append(
+            f"A/B ko'rinishi: {rotation_count} ta jadval katagida 0,5 fanlar "
+            "TOQ/JUFT hafta yorlig'i bilan almashadi"
+        )
+    return jobs, warnings
+
+
+def _v196_grade_period_penalty(profile, grade, period):
+    """Sinf yoshi va fan zo'riqishiga mos yumshoq dars-vaqti balli."""
+    grade = int(grade or 0)
+    period = int(period or 0)
+    heavy = bool(profile.get("heavy") or profile.get("written_heavy"))
+    light = bool(profile.get("light"))
+    physical = bool(profile.get("physical"))
+
+    if 1 <= grade <= 4:
+        if heavy or profile.get("primary_core"):
+            return {1: 5, 2: -14, 3: -12, 4: 5, 5: 70}.get(period, 90)
+        return 0
+
+    # 5–6-sinf o'quvchisi uchun 1-dars 9–11-sinfga qaraganda mosroq;
+    # eng talabchan fanlar baribir 2–3-darsda qoladi.
+    if 5 <= grade <= 6:
+        if heavy:
+            return {1: -5, 2: -15, 3: -11, 4: 1, 5: 14, 6: 30}.get(period, 35)
+        if not light and not physical:
+            return {1: -6, 2: -9, 3: -6, 4: 0, 5: 5, 6: 11}.get(period, 15)
+        return 0
+
+    if 7 <= grade <= 8:
+        if heavy:
+            return {1: 5, 2: -13, 3: -15, 4: -9, 5: 8, 6: 24}.get(period, 30)
+        if not light and not physical:
+            return {1: 2, 2: -7, 3: -8, 4: -5, 5: 2, 6: 9}.get(period, 15)
+        return 0
+
+    if 9 <= grade <= 11:
+        if heavy:
+            return {1: 24, 2: -10, 3: -17, 4: -12, 5: 7, 6: 22}.get(period, 32)
+        if not light and not physical:
+            return {1: 9, 2: -5, 3: -9, 4: -6, 5: 1, 6: 8}.get(period, 14)
+    return 0
+
+
+def _v196_teacher_demand(jobs):
+    demand = _v1852_defaultdict(float)
+    for job in jobs:
+        members = job.get("rotation_members") or []
+        if members:
+            for member in members:
+                teachers = [
+                    teacher for teacher in _v199_rotation_member_teachers(member)
+                    if teacher is not None
+                ]
+                for teacher in set(teachers):
+                    demand[int(teacher)] += 0.5
+            continue
+        if job.get("groups"):
+            for teacher in {
+                group.get("teacher") for group in job.get("groups") or []
+                if group.get("teacher") is not None
+            }:
+                demand[int(teacher)] += 1.0
+            continue
+        options = [teacher for teacher in job.get("teacher_options") or [] if teacher is not None]
+        share = 1.0 / max(1, len(options))
+        for teacher in options:
+            demand[int(teacher)] += share
+    return dict(demand)
+
+
+def _v196_teacher_used_days(state, teacher):
+    return {
+        int(day) for (uid, day), count in state.get("teacher_daily", {}).items()
+        if int(uid) == int(teacher) and float(count or 0) > 0
+    }
+
+
+def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
+    score = float(_v196_base_candidate_score(
+        job, day, period, teachers, state, context, rng
+    ))
+    profile = _v196_rotation_profile(job, context)
+    class_row = context.get("classes", {}).get(job.get("sinf_id"), {})
+    grade = int(job.get("v1874_grade") or _v1874_grade(class_row))
+    score += _v196_grade_period_penalty(profile, grade, period)
+
+    teacher_jobs = state.setdefault(
+        "v196_teacher_period_jobs", _v1852_defaultdict(dict)
+    )
+    demands = context.get("v196_teacher_demand") or {}
+    for teacher in teachers:
+        if teacher is None:
+            continue
+        teacher = int(teacher)
+        existing = set(
+            state.get("teacher_periods", {}).get(
+                (teacher, day, job.get("smena")), set()
+            )
+        )
+        before_gap = _v1852_gap_count(existing)
+        after_gap = _v1852_gap_count(existing | {int(period)})
+
+        # Bazaviy ball yangi oknoga juda kichik jazo beradi. V19.6 da
+        # o'qituvchining 1–2–bo'sh–4 kabi kuni ancha qimmat hisoblanadi.
+        score += max(0, after_gap - before_gap) * 72
+        daily_count = float(state.get("teacher_daily", {}).get((teacher, day), 0) or 0)
+        if existing and any(abs(int(period) - item) == 1 for item in existing):
+            score -= 22
+        if daily_count > 0:
+            # Bazadagi +1.8 tarqatish jarimasini bekor qilib, ixcham kunni afzal qilamiz.
+            score -= daily_count * 4.0
+
+        used_days = _v196_teacher_used_days(state, teacher)
+        rules = context.get("rules", {}).get(teacher, context.get("default_rules", {}))
+        daily_capacity = max(1, min(4, int(rules.get("kunlik_max") or 6)))
+        expected_days = max(1, int(math.ceil(float(demands.get(teacher, 1.0)) / daily_capacity)))
+        if int(day) not in used_days and len(used_days) >= expected_days:
+            score += 34 + (len(used_days) - expected_days) * 8
+
+        # Ketma-ket darslarda juda uzoq sinf bosqichlari orasida sakrashni
+        # kamaytirish: 5-sinfdan birdan 11-sinfga o'tish zarur bo'lmasa tanlanmaydi.
+        neighbor_jobs = teacher_jobs.get((teacher, day, job.get("smena")), {})
+        for neighbor_period in (int(period) - 1, int(period) + 1):
+            neighbor = neighbor_jobs.get(neighbor_period)
+            if not neighbor:
+                continue
+            neighbor_grade = int(
+                neighbor.get("v1874_grade")
+                or _v1874_grade(context.get("classes", {}).get(neighbor.get("sinf_id"), {}))
+            )
+            grade_distance = abs(grade - neighbor_grade)
+            if grade_distance <= 1:
+                score -= 3
+            elif grade_distance >= 5:
+                score += 7
+
+    # Bir kunda ketma-ket ikki og'ir yozma fan bo'lsa charchoq oshadi.
+    daily_jobs = state.get("class_period_jobs", {}).get((job.get("sinf_id"), day), {})
+    for neighbor_period in (int(period) - 1, int(period) + 1):
+        neighbor = daily_jobs.get(neighbor_period)
+        if not neighbor:
+            continue
+        neighbor_profile = _v196_rotation_profile(neighbor, context)
+        if profile.get("heavy") and neighbor_profile.get("heavy"):
+            score += 32
+        if neighbor_period == int(period) - 1 and neighbor_profile.get("physical"):
+            if profile.get("written_heavy"):
+                score += 220
+            elif profile.get("light"):
+                score -= 12
+        if neighbor_period == int(period) + 1 and profile.get("physical"):
+            if neighbor_profile.get("written_heavy"):
+                score += 220
+            elif neighbor_profile.get("light"):
+                score -= 12
+    return score
+
+
+def _v1852_place_job(job, day, period, teachers, room_keys, state, context):
+    _v196_base_place_job(job, day, period, teachers, room_keys, state, context)
+    teacher_jobs = state.setdefault(
+        "v196_teacher_period_jobs", _v1852_defaultdict(dict)
+    )
+    for teacher in teachers:
+        if teacher is not None:
+            teacher_jobs[(int(teacher), int(day), int(job.get("smena") or 1))][int(period)] = job
+
+
+def _v196_attempt_metrics(state, context):
+    single_teacher_days = sum(
+        1 for periods in state.get("teacher_periods", {}).values()
+        if len(set(periods)) == 1
+    )
+    teacher_active_days = len({
+        (int(teacher), int(day))
+        for (teacher, day), count in state.get("teacher_daily", {}).items()
+        if float(count or 0) > 0
+    })
+    heavy_pairs = 0
+    pe_before_heavy = 0
+    upper_first_heavy = 0
+    by_class_day = state.get("class_period_jobs", {})
+    for (_, _), period_jobs in by_class_day.items():
+        for period, job in period_jobs.items():
+            profile = _v196_rotation_profile(job, context)
+            grade = int(
+                job.get("v1874_grade")
+                or _v1874_grade(context.get("classes", {}).get(job.get("sinf_id"), {}))
+            )
+            if grade >= 9 and int(period) == 1 and profile.get("heavy"):
+                upper_first_heavy += 1
+            next_job = period_jobs.get(int(period) + 1)
+            if not next_job:
+                continue
+            next_profile = _v196_rotation_profile(next_job, context)
+            if profile.get("heavy") and next_profile.get("heavy"):
+                heavy_pairs += 1
+            if profile.get("physical") and next_profile.get("written_heavy"):
+                pe_before_heavy += 1
+    return {
+        "oqituvchi_bitta_darsli_kun": int(single_teacher_days),
+        "oqituvchi_faol_kun": int(teacher_active_days),
+        "ketma_ket_ogir_fan": int(heavy_pairs),
+        "jismoniydan_keyin_ogir_fan": int(pe_before_heavy),
+        "9_11_birinchi_dars_ogir": int(upper_first_heavy),
+    }
+
+
+def _v1852_generate_attempt(jobs, context, seed):
+    context["v196_teacher_demand"] = context.get("v196_teacher_demand") or _v196_teacher_demand(jobs)
+    state, unplaced, penalty, gaps, late = _v196_base_generate_attempt(
+        jobs, context, seed
+    )
+    metrics = _v196_attempt_metrics(state, context)
+    state["v196_metrics"] = metrics
+    penalty += (
+        metrics["oqituvchi_bitta_darsli_kun"] * 3
+        + metrics["ketma_ket_ogir_fan"] * 9
+        + metrics["jismoniydan_keyin_ogir_fan"] * 60
+        + metrics["9_11_birinchi_dars_ogir"] * 12
+    )
+    return state, unplaced, penalty, gaps, late
+
+
+# ========================= V19.6 END =========================
 
 # Preserve Python monolith semantics: late definitions must be visible to
 # earlier platform routes such as the employee import endpoint.
