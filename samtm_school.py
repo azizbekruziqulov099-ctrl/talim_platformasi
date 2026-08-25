@@ -3,6 +3,9 @@
 The public URLs and business logic are preserved.  Definitions are patched back
 into samtm_platform so older route functions that resolve late-bound helpers keep
 the same behaviour they had in one file.
+
+V19.8: parallel guruh xonasi yozilmagan bo'lsa ham jadval yaratiladi; xona
+keyin frontendda "Xona yo'q" holatida tahrirlanadi.
 """
 try:
     from . import samtm_platform as _platform
@@ -2393,8 +2396,9 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
 
 def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, state, context):
     reasons = []
-    if job["groups"] and any(group.get("xona_id") is None for group in job["groups"][1:]):
-        reasons.append("bo'linishga xona topilmadi")
+    # Xona — jadval yaratishni to'xtatadigan shart emas. Parallel guruhning
+    # alohida xonasi hali yozilmagan bo'lsa slot baribir yaratiladi; frontend
+    # uni "Xona yo'q" deb ko'rsatadi va keyin qo'lda to'ldirish mumkin.
     non_null_teachers = [teacher for teacher in selected_teachers if teacher is not None]
     if len(non_null_teachers) != len(set(non_null_teachers)):
         reasons.append("bir o'qituvchi ikki parallel guruhga biriktirilgan")
