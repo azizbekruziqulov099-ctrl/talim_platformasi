@@ -254,13 +254,13 @@ def v1845_oqituvchi_bugun(token: str):
     else:
         cur.execute("""
             SELECT DISTINCT j.id,j.dars_raqami,j.fan,j.xona,j.boshlanish_vaqti,j.tugash_vaqti,
-                   s.id AS sinf_id,s.sinf,s.harf,j.guruh_kaliti
+                   s.id AS sinf_id,s.sinf,s.harf,j.guruh_kaliti,s.sinf::int AS sinf_sort
             FROM dars_jadvali j
             JOIN maktab_sinflari s ON s.id=j.sinf_id
             LEFT JOIN maktab_dars_birikmalari b
               ON b.sinf_id=j.sinf_id AND LOWER(TRIM(b.fan_nomi))=LOWER(TRIM(j.fan)) AND b.user_id=%s
             WHERE j.kun=%s AND (j.oqituvchi_user_id=%s OR (j.oqituvchi_user_id IS NULL AND b.user_id=%s))
-            ORDER BY j.dars_raqami,s.sinf::int,s.harf
+            ORDER BY j.dars_raqami,sinf_sort,s.harf
         """, (teacher_id, kun, teacher_id, teacher_id))
         darslar = cur.fetchall()
         cur.execute("""
@@ -655,11 +655,11 @@ def v1847_maktab_rol_korish(
                 raise HTTPException(status_code=404, detail="Tanlangan o'qituvchi topilmadi")
             response["tanlangan"] = teacher
             cur.execute("""
-                SELECT DISTINCT s.id AS sinf_id,s.sinf,s.harf,b.fan_nomi
+                SELECT DISTINCT s.id AS sinf_id,s.sinf,s.harf,b.fan_nomi,s.sinf::int AS sinf_sort
                 FROM maktab_dars_birikmalari b
                 JOIN maktab_sinflari s ON s.id=b.sinf_id
                 WHERE b.user_id=%s AND b.maktab_id=%s
-                ORDER BY s.sinf::int,s.harf,b.fan_nomi
+                ORDER BY sinf_sort,s.harf,b.fan_nomi
             """, (user_id, maktab_id))
             birikmalar = cur.fetchall()
             cur.execute("""
@@ -5452,11 +5452,12 @@ def _v1852_place_job(job, day, period, teachers, room_keys, state, context):
 
 def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
     cur.execute(
-        """SELECT DISTINCT e.sinf_id,s.sinf,s.harf,e.hafta_kuni,e.dars_raqami,e.fan_nomi
+        """SELECT DISTINCT e.sinf_id,s.sinf,s.harf,e.hafta_kuni,e.dars_raqami,e.fan_nomi,
+                          s.sinf::int AS sinf_sort
            FROM aqlli_jadval_slotlari_v2 e
            JOIN maktab_sinflari s ON s.id=e.sinf_id
            WHERE e.maktab_id=%s AND e.urinish_id=%s
-           ORDER BY s.sinf::int,s.harf,e.hafta_kuni,e.dars_raqami,e.fan_nomi""",
+           ORDER BY sinf_sort,s.harf,e.hafta_kuni,e.dars_raqami,e.fan_nomi""",
         (maktab_id, run_id),
     )
     rows = cur.fetchall()
