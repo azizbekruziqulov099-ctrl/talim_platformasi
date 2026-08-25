@@ -13,16 +13,14 @@ except ImportError:  # Railway working directory may be backend/
 
 _V19_IMPORTED_NAMES = set(globals())
 
-# V19.7 deploy belgisi: samtm_school.py haqiqatan backendga yuklanganini
-# /api/versiya va kasr-soat capability endpointi orqali aniq tekshiramiz.
-# Eski backend qolib ketganida frontend 0,5/1,5 ni yuborib, tushunarsiz 422
-# olmasligi kerak.
-SAMTM_SCHOOL_RELEASE = "samtm-fractional-hours-ab-week-v19.7"
-SAMTM_SCHOOL_PACKAGE_REVISION = "fractional-hours-ab-week-deployment-guard"
+# V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
+# yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
+SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
+SAMTM_SCHOOL_PACKAGE_REVISION = "v17-school-legacy-id-auto-provision"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
-    app.version = "19.7"
+    app.version = "19.8"
 except Exception:
     pass
 
@@ -7729,7 +7727,7 @@ def _v192_startup_tables():
     except Exception as exc:
         app.state.samtm_fractional_hours_ready = False
         app.state.samtm_fractional_hours_error = type(exc).__name__
-        print(f"[V19.7 0,5/1,5 soat migratsiyasi] {exc}", flush=True)
+        print(f"[V19.8 0,5/1,5 soat migratsiyasi] {exc}", flush=True)
 
 
 @app.get("/api/maktab/aqlli_jadval/v3/soat_imkoniyatlari")
@@ -7739,7 +7737,11 @@ def v197_fractional_hour_capabilities():
         getattr(app.state, "samtm_fractional_hours_ready", False)
     )
     return {
-        "release": SAMTM_SCHOOL_RELEASE,
+        # Eski V19.7 frontend aynan shu qiymatni tekshiradi. Platformaning
+        # haqiqiy yangi versiyasi alohida qaytariladi — backendni birinchi
+        # deploy qilganda foydalanuvchi V19.7 frontend bilan ham saqlay oladi.
+        "release": "samtm-fractional-hours-ab-week-v19.7",
+        "platform_release": SAMTM_SCHOOL_RELEASE,
         "fractional_hours": schema_ready,
         "fraction_step": 0.5,
         "ab_week": schema_ready,
@@ -7753,6 +7755,181 @@ def v197_fractional_hour_capabilities():
             ],
         },
     }
+
+
+class V198SchoolWorkspaceLinkRequest(BaseModel):
+    """V17 muassasasini eski maktab workspace'iga xavfsiz bog'lash so'rovi.
+
+    Frontend tanlangan muassasa IDlarini yuboradi. Eski, xato holatdagi
+    frontend umuman ID yubormasa ham joriy foydalanuvchining eng so'nggi
+    V17 maktabi topilib tiklanadi.
+    """
+
+    organization_v17_id: Optional[int] = None
+    context_id: Optional[int] = None
+
+
+def _v198_existing_school_for_user(cur, user_id: int):
+    """V17 yozuvi bo'lmasa, mavjud legacy maktab a'zoligini qaytaradi."""
+    cur.execute(
+        """SELECT m.id AS maktab_id,m.nomi AS maktab_nomi
+             FROM users u JOIN maktablar m ON m.id=u.maktab_id
+            WHERE u.user_id=%s LIMIT 1""",
+        (user_id,),
+    )
+    row = cur.fetchone()
+    if row:
+        return row
+    cur.execute(
+        """SELECT m.id AS maktab_id,m.nomi AS maktab_nomi
+             FROM foydalanuvchi_muassasalari fm
+             JOIN maktablar m ON m.id=fm.muassasa_id
+            WHERE fm.user_id=%s AND fm.muassasa_turi='maktab'
+            ORDER BY fm.id DESC LIMIT 1""",
+        (user_id,),
+    )
+    return cur.fetchone()
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/maktab_workspace_boglash")
+def v198_link_school_workspace(
+    sorov: V198SchoolWorkspaceLinkRequest,
+    token: str,
+):
+    """Yangi yaratilgan V17 maktabga haqiqiy ``maktablar.id`` beradi.
+
+    Oldingi frontend ``learning_contexts.id`` ni ``maktab_id`` deb yuborgan,
+    holbuki maktab dashboardi faqat ``maktablar.id`` bilan ishlaydi. Ushbu
+    endpoint organization row'ni bloklab, bir martalik legacy maktab yaratadi,
+    external_id ni yozadi va direktor a'zoligini atomar saqlaydi. Bir necha
+    marta chaqirilsa yangi maktab ko'paymaydi.
+    """
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _maktab_jadvali(cur)
+        _muassasa_jadvali(cur)
+        cur.execute(
+            """SELECT to_regclass('public.organization_trials') AS trials,
+                      to_regclass('public.learning_contexts') AS contexts"""
+        )
+        tables = cur.fetchone() or {}
+        organization = None
+        if tables.get("trials") and tables.get("contexts"):
+            filters = ["o.creator_user_id=%s", "o.organization_type='school'"]
+            params = [user_id]
+            if sorov.organization_v17_id is not None:
+                filters.append("o.id=%s")
+                params.append(int(sorov.organization_v17_id))
+            if sorov.context_id is not None:
+                filters.append("o.context_id=%s")
+                params.append(int(sorov.context_id))
+            cur.execute(
+                f"""SELECT o.id AS organization_v17_id,o.context_id,
+                           o.display_name,o.lifecycle_status,c.external_id
+                      FROM organization_trials o
+                      JOIN learning_contexts c ON c.id=o.context_id
+                     WHERE {' AND '.join(filters)}
+                     ORDER BY o.id DESC LIMIT 1
+                     FOR UPDATE OF o,c""",
+                tuple(params),
+            )
+            organization = cur.fetchone()
+
+        if organization is None:
+            if sorov.organization_v17_id is not None or sorov.context_id is not None:
+                raise HTTPException(
+                    status_code=404,
+                    detail="Tanlangan maktab topilmadi yoki u sizga tegishli emas.",
+                )
+            existing = _v198_existing_school_for_user(cur, user_id)
+            if not existing:
+                raise HTTPException(
+                    status_code=404,
+                    detail="Sizga tegishli maktab topilmadi. Maktabni qayta tanlang yoki yangisini yarating.",
+                )
+            conn.commit()
+            return {
+                "holat": "mavjud",
+                "maktab_id": int(existing["maktab_id"]),
+                "maktab_nomi": existing["maktab_nomi"],
+                "legacy_yaratildi": False,
+            }
+
+        maktab_id = None
+        if organization.get("external_id") is not None:
+            try:
+                candidate_id = int(organization["external_id"])
+            except (TypeError, ValueError):
+                candidate_id = 0
+            if candidate_id > 0:
+                cur.execute(
+                    "SELECT id,nomi FROM maktablar WHERE id=%s",
+                    (candidate_id,),
+                )
+                linked_school = cur.fetchone()
+                if linked_school:
+                    maktab_id = int(linked_school["id"])
+
+        created = False
+        school_name = str(organization.get("display_name") or "Yangi maktab").strip()
+        if maktab_id is None:
+            cur.execute(
+                """INSERT INTO maktablar(
+                       nomi,smena_soni,direktor_user_id,pulli,oylik_tolov
+                   ) VALUES(%s,1,%s,FALSE,NULL) RETURNING id""",
+                (school_name, user_id),
+            )
+            maktab_id = int(cur.fetchone()["id"])
+            cur.execute(
+                "UPDATE learning_contexts SET external_id=%s WHERE id=%s",
+                (maktab_id, int(organization["context_id"])),
+            )
+            created = True
+
+        cur.execute(
+            """INSERT INTO foydalanuvchi_muassasalari(
+                   user_id,muassasa_turi,muassasa_id,lavozim
+               ) VALUES(%s,'maktab',%s,'direktor')
+               ON CONFLICT(user_id,muassasa_turi,muassasa_id)
+               DO UPDATE SET lavozim='direktor'""",
+            (user_id, maktab_id),
+        )
+        cur.execute(
+            """UPDATE users
+                  SET maktab_id=COALESCE(maktab_id,%s),
+                      lavozim=COALESCE(NULLIF(lavozim,''),'direktor')
+                WHERE user_id=%s""",
+            (maktab_id, user_id),
+        )
+        cur.execute(
+            """UPDATE maktablar
+                  SET direktor_user_id=COALESCE(direktor_user_id,%s)
+                WHERE id=%s""",
+            (user_id, maktab_id),
+        )
+        # external_id avval mavjud bo'lsa ham normal integer qiymatga keladi.
+        cur.execute(
+            "UPDATE learning_contexts SET external_id=%s WHERE id=%s",
+            (maktab_id, int(organization["context_id"])),
+        )
+        conn.commit()
+        return {
+            "holat": "boglandi",
+            "maktab_id": maktab_id,
+            "maktab_nomi": school_name,
+            "organization_v17_id": int(organization["organization_v17_id"]),
+            "context_id": int(organization["context_id"]),
+            "legacy_yaratildi": created,
+            "lifecycle_status": organization.get("lifecycle_status"),
+        }
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
 
 
 def _v192_clean_subject(value):
