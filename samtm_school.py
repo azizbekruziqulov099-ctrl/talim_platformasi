@@ -11,6 +11,15 @@ except ImportError:  # Railway working directory may be backend/
     import samtm_platform as _platform
     from samtm_platform import *
 
+# ``from samtm_platform import *`` Python qoidasiga ko'ra nomi ``_`` bilan
+# boshlanadigan yordamchilarni import qilmaydi. Maktab kodi esa eski monolitdagi
+# shu ichki yordamchilardan ham foydalanadi. Dunder metama'lumotlarni tegmasdan,
+# platformadagi barcha oddiy va private nomlarni lokal namespace'ga ulaymiz.
+# setdefault maktab modulining o'z ta'riflarini keyin xavfsiz ustun qo'yadi.
+for _platform_name, _platform_value in vars(_platform).items():
+    if not _platform_name.startswith("__"):
+        globals().setdefault(_platform_name, _platform_value)
+
 _V19_IMPORTED_NAMES = set(globals())
 
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
@@ -23,6 +32,31 @@ try:
     app.version = "19.8"
 except Exception:
     pass
+
+def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
+    """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
+
+    Bu helper eski monolitda maktab modulidan oldin ta'riflangan edi. Modulga
+    ajratishda ta'rifi tushib qolib, yuklama matritsasida NameError bergan.
+    """
+    usul = (usul or "none").strip().lower()
+    if usul == "none":
+        return 1
+    if usul == "gender":
+        return 2
+    try:
+        soni = int(guruh_soni or 2)
+    except (TypeError, ValueError) as error:
+        raise HTTPException(
+            status_code=400,
+            detail="Guruh soni raqam bo'lishi kerak",
+        ) from error
+    if soni not in (2, 3, 4):
+        raise HTTPException(
+            status_code=400,
+            detail="Guruh soni 2, 3 yoki 4 bo'lishi kerak",
+        )
+    return soni
 
 # ═══════════════════════════════════════════════════════════
 # V18.45 — AQILLI MAKTAB BOSH SAHIFASI / O'QITUVCHI BUGUNI / YUKLAMA
