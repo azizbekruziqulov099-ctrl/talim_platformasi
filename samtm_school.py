@@ -5,7 +5,9 @@ into samtm_platform so older route functions that resolve late-bound helpers kee
 the same behaviour they had in one file.
 
 V19.8: parallel guruh xonasi yozilmagan bo'lsa ham jadval yaratiladi; xona
-keyin frontendda "Xona yo'q" holatida tahrirlanadi.
+keyin frontendda "Xona yo'q" holatida tahrirlanadi. Yakuniy generator repair
+bosqichi sinf ichki oknosini yopadi, kunlik soatlarni tenglashtiradi va J/T
+hamda texnologiyani imkon qadar 3–6-darsga xavfsiz almashtiradi.
 """
 try:
     from . import samtm_platform as _platform
@@ -2940,10 +2942,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
             early_practical = int(comfort.get("amaliy_fan_1_2", 0))
             pe_before_core = int(comfort.get("jismoniydan_keyin_ogir_fan", 0))
             cross_shift_blocks = int(comfort.get("oqituvchi_smenalar_orasi_blok", 0))
+            cross_shift_minutes = int(comfort.get("oqituvchi_smenalar_orasi_daqiqa", 0))
+            cross_shift_max = int(comfort.get("eng_uzoq_smena_oraligi_daqiqa", 0))
+            cross_shift_over_two = int(comfort.get("ikki_smenali_2soatdan_uzoq", 0))
             cross_shift_long = int(comfort.get("ikki_smenali_uzoq_tanaffus", 0))
+            teacher_active_days = int(comfort.get("oqituvchi_faol_kun", 0))
             rank = (
                 len(unplaced), class_gaps, class_imbalance, short_days,
-                late_core, early_practical, pe_before_core, cross_shift_long,
+                early_practical, late_core, pe_before_core, cross_shift_long,
+                cross_shift_over_two, teacher_active_days,
+                cross_shift_max, cross_shift_minutes,
                 cross_shift_blocks, gaps, late, round(penalty, 2),
             )
             if best is None or rank < best[0]:
@@ -5840,10 +5848,9 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
         total_sessions = len(period_fans)
         max_total = _v1874_max_total_periods(grade)
         if period_fans:
-            first_period = min(period_fans)
             last_period = max(period_fans)
             missing_periods = [
-                period for period in range(first_period, last_period + 1)
+                period for period in range(1, last_period + 1)
                 if period not in period_fans
             ]
             if missing_periods:
@@ -10386,6 +10393,7 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
 # ═══════════════════════════════════════════════════════════
 
 _v196_base_build_jobs = _v1852_build_jobs
+_v196_base_candidate_reasons = _v1852_candidate_reasons
 _v196_base_candidate_score = _v1852_candidate_score
 _v196_base_place_job = _v1852_place_job
 _v196_base_generate_attempt = _v1852_generate_attempt
@@ -10425,6 +10433,22 @@ def _v196_rotation_profile(job, context=None):
         "core_priority": any(bool(profile.get("core_priority")) for profile in profiles),
         "difficulty": max(int(profile.get("difficulty") or 0) for profile in profiles),
     }
+
+
+def _v1852_candidate_reasons(
+    job, day, period, selected_teachers, room_keys, state, context
+):
+    reasons = list(_v196_base_candidate_reasons(
+        job, day, period, selected_teachers, room_keys, state, context
+    ))
+    profile = _v196_rotation_profile(job, context)
+    if int(period) == 1 and (
+        profile.get("physical") or profile.get("technology")
+    ):
+        reasons.append(
+            "jismoniy tarbiya va texnologiya 1-darsga qo'yilmaydi"
+        )
+    return list(dict.fromkeys(reasons))
 
 
 def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
@@ -10524,6 +10548,69 @@ def _v196_teacher_shift_demand(jobs):
 def _v196_shift_max_period(context, shift):
     slots = (context.get("shifts", {}).get(int(shift), {}) or {}).get("slotlar") or []
     return max([int(slot.get("dars_raqami") or 0) for slot in slots] or [6])
+
+
+def _v196_clock_minutes(value):
+    text = _v1852_time_str(value)
+    try:
+        hour, minute = text.split(":", 1)
+        return int(hour) * 60 + int(minute[:2])
+    except (TypeError, ValueError, AttributeError):
+        return None
+
+
+def _v196_slot_interval(context, shift, period):
+    slots = (context.get("shifts", {}).get(int(shift), {}) or {}).get("slotlar") or []
+    row = next(
+        (slot for slot in slots if int(slot.get("dars_raqami") or 0) == int(period)),
+        None,
+    )
+    if not row:
+        return None
+    start = _v196_clock_minutes(row.get("boshlanish"))
+    end = _v196_clock_minutes(row.get("tugash"))
+    return (start, end) if start is not None and end is not None else None
+
+
+def _v196_cross_shift_gap_minutes(state, teacher, day, context, extra=None):
+    """1-smena oxiri bilan 2-smena boshi orasidagi haqiqiy daqiqalar."""
+    by_shift = {}
+    for shift in (1, 2):
+        by_shift[shift] = set(
+            int(value) for value in state.get("teacher_periods", {}).get(
+                (int(teacher), int(day), shift), set()
+            )
+        )
+    if extra:
+        shift, period = extra
+        by_shift.setdefault(int(shift), set()).add(int(period))
+    if not by_shift.get(1) or not by_shift.get(2):
+        return None
+    first_intervals = [
+        _v196_slot_interval(context, 1, period) for period in by_shift[1]
+    ]
+    second_intervals = [
+        _v196_slot_interval(context, 2, period) for period in by_shift[2]
+    ]
+    first_intervals = [row for row in first_intervals if row]
+    second_intervals = [row for row in second_intervals if row]
+    if not first_intervals or not second_intervals:
+        return None
+    latest_first_end = max(row[1] for row in first_intervals)
+    earliest_second_start = min(row[0] for row in second_intervals)
+    return int(max(0, earliest_second_start - latest_first_end))
+
+
+def _v196_cross_shift_gap_penalty(minutes):
+    """1–2 soat qulay, 3 soat istisno, 3 soatdan ortiq juda qimmat."""
+    if minutes is None:
+        return 0.0
+    minutes = max(0, int(minutes))
+    if minutes <= 120:
+        return minutes * 0.35
+    if minutes <= 180:
+        return 42 + (minutes - 120) * 3.2
+    return 234 + (minutes - 180) * 12.0
 
 
 def _v196_cross_shift_edge_blocks(state, teacher, day, context, extra=None):
@@ -10643,6 +10730,21 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
     grade = int(job.get("v1874_grade") or _v1874_grade(class_row))
     score += _v196_grade_period_penalty(profile, grade, period)
 
+    # Sinf kuni 1-darsdan boshlanib uzluksiz ketishi kerak. Oldingi 650
+    # ballik jarimani boshqa yumshoq qulayliklar yig'indisi ba'zan yengib
+    # ketardi. Qo'shimcha katta qiymat sinf oknosini deyarli qattiq shartga
+    # aylantiradi; yakuniy repair qolgan istisnolarni xavfsiz siqadi.
+    class_periods = set(
+        state.get("class_period_jobs", {}).get((job.get("sinf_id"), day), {}).keys()
+    )
+    new_class_periods = class_periods | {int(period)}
+    old_class_void = max(class_periods) - len(class_periods) if class_periods else 0
+    new_class_void = (
+        max(new_class_periods) - len(new_class_periods)
+        if new_class_periods else 0
+    )
+    score += (new_class_void - old_class_void) * 4350
+
     # Sinf haftasini 2 ta darsli va 7 ta darsli kunlarga parchalamasdan,
     # reja jami bo'yicha imkon qadar teng 4/5/6 darsli kunlarga yoyamiz.
     target = (context.get("v196_class_distribution") or {}).get(job.get("sinf_id"))
@@ -10702,20 +10804,23 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
             elif current_shift == 2:
                 score += max(0, int(period) - 1) * 32
 
-            before_cross = _v196_cross_shift_edge_blocks(
+            before_cross = _v196_cross_shift_gap_minutes(
                 state, teacher, day, context
             )
-            after_cross = _v196_cross_shift_edge_blocks(
+            after_cross = _v196_cross_shift_gap_minutes(
                 state, teacher, day, context,
                 extra=(current_shift, int(period)),
             )
             if before_cross is None and after_cross is not None:
-                # Ikki smenani bir kunga ixcham birlashtirish yangi alohida ish
-                # kuni ochishdan foydaliroq; chetdan uzoq slot esa baribir jazolanadi.
-                score -= 150
-                score += after_cross * 58
+                # Ikki smenani bir kunga ixcham birlashtirish foydali, ammo
+                # haqiqiy tanaffus 3 soatdan oshsa bu bonus butunlay yo'qoladi.
+                score -= 230
+                score += _v196_cross_shift_gap_penalty(after_cross)
             elif before_cross is not None and after_cross is not None:
-                score += (after_cross - before_cross) * 72
+                score += (
+                    _v196_cross_shift_gap_penalty(after_cross)
+                    - _v196_cross_shift_gap_penalty(before_cross)
+                )
 
         used_days = _v196_teacher_used_days(state, teacher)
         rules = context.get("rules", {}).get(teacher, context.get("default_rules", {}))
@@ -10811,6 +10916,264 @@ def _v1852_place_job(job, day, period, teachers, room_keys, state, context):
             teacher_jobs[(int(teacher), int(day), int(job.get("smena") or 1))][int(period)] = job
 
 
+def _v196_class_gap_count(state):
+    """Sinf kunidagi bosh va ichki bo'sh darslarning aniq soni."""
+    return int(sum(
+        max(set(period_jobs.keys())) - len(set(period_jobs.keys()))
+        if period_jobs else 0
+        for period_jobs in state.get("class_period_jobs", {}).values()
+    ))
+
+
+def _v196_movable_placement(placement):
+    job = placement.get("job") or {}
+    return not (
+        job.get("is_class_hour")
+        or int(job.get("fixed_day") or 0)
+        or int(job.get("fixed_period") or 0)
+    )
+
+
+def _v196_place_exact(job, day, period, state, context, rng):
+    candidates, _ = _v1852_open_candidates(
+        job, state, context, rng, exact=(int(day), int(period))
+    )
+    if not candidates:
+        return False
+    _, target_day, target_period, teachers, rooms = candidates[0]
+    _v1852_place_job(
+        job, target_day, target_period, teachers, rooms, state, context
+    )
+    return True
+
+
+def _v196_compact_class_gaps(state, context, rng, max_moves=32):
+    """1–2–3–bo'sh–5 ni 1–2–3–4 ko'rinishiga xavfsiz siqadi."""
+    moves = 0
+    while moves < int(max_moves):
+        before_gap = _v196_class_gap_count(state)
+        if before_gap <= 0:
+            break
+        changed = False
+        class_days = sorted(
+            state.get("class_period_jobs", {}).items(),
+            key=lambda item: (
+                -(max(item[1]) - len(item[1]) if item[1] else 0),
+                int(item[0][0]), int(item[0][1]),
+            ),
+        )
+        for (class_id, day), period_jobs in class_days:
+            periods = sorted(int(value) for value in period_jobs)
+            if not periods:
+                continue
+            missing = next(
+                (value for value in range(1, max(periods)) if value not in period_jobs),
+                None,
+            )
+            if missing is None:
+                continue
+            donors = sorted(
+                [
+                    placement for placement in state.get("placements", [])
+                    if int(placement["job"].get("sinf_id") or 0) == int(class_id)
+                    and int(placement.get("day") or 0) == int(day)
+                    and int(placement.get("period") or 0) > int(missing)
+                    and _v196_movable_placement(placement)
+                ],
+                key=lambda placement: int(placement.get("period") or 0),
+                reverse=True,
+            )
+            for donor in donors:
+                donor_id = id(donor)
+                trial = _v1852_rebuild_schedule_state(
+                    [
+                        placement for placement in state.get("placements", [])
+                        if id(placement) != donor_id
+                    ],
+                    context,
+                )
+                if not _v196_place_exact(
+                    donor["job"], day, missing, trial, context, rng
+                ):
+                    continue
+                if _v196_class_gap_count(trial) >= before_gap:
+                    continue
+                state = trial
+                moves += 1
+                changed = True
+                break
+            if changed:
+                break
+        if not changed:
+            break
+    state["class_gap_count"] = _v196_class_gap_count(state)
+    return state
+
+
+def _v196_balance_class_days(state, context, rng, max_moves=24):
+    """2/6 kabi notekis kunlarni reja bo'yicha 4/5/6 ga tenglashtiradi."""
+    moves = 0
+    while moves < int(max_moves):
+        before_imbalance, _ = _v196_class_distribution_metrics(state, context)
+        if before_imbalance <= 0:
+            break
+        changed = False
+        for class_id, target in sorted(
+            (context.get("v196_class_distribution") or {}).items()
+        ):
+            counts = {
+                int(day): int(
+                    state.get("class_daily_total", {}).get((class_id, day), 0)
+                )
+                for day in target["days"]
+            }
+            recipients = sorted(
+                [day for day, count in counts.items() if count < int(target["low"])],
+                key=lambda day: (counts[day], day),
+            )
+            donors = sorted(
+                [day for day, count in counts.items() if count > int(target["high"])],
+                key=lambda day: (-counts[day], day),
+            )
+            if not recipients:
+                recipients = sorted(
+                    [day for day in counts if counts[day] == min(counts.values())]
+                )
+            if not donors:
+                donors = sorted(
+                    [day for day in counts if counts[day] == max(counts.values())]
+                )
+            for recipient in recipients:
+                for donor_day in donors:
+                    if counts[donor_day] - counts[recipient] < 2:
+                        continue
+                    recipient_periods = state.get("class_period_jobs", {}).get(
+                        (class_id, recipient), {}
+                    )
+                    target_period = len(recipient_periods) + 1
+                    if target_period in recipient_periods:
+                        continue
+                    donor_placements = sorted(
+                        [
+                            placement for placement in state.get("placements", [])
+                            if int(placement["job"].get("sinf_id") or 0) == int(class_id)
+                            and int(placement.get("day") or 0) == int(donor_day)
+                            and _v196_movable_placement(placement)
+                        ],
+                        key=lambda placement: int(placement.get("period") or 0),
+                        reverse=True,
+                    )
+                    for donor in donor_placements:
+                        donor_id = id(donor)
+                        trial = _v1852_rebuild_schedule_state(
+                            [
+                                placement for placement in state.get("placements", [])
+                                if id(placement) != donor_id
+                            ],
+                            context,
+                        )
+                        if not _v196_place_exact(
+                            donor["job"], recipient, target_period,
+                            trial, context, rng,
+                        ):
+                            continue
+                        trial = _v196_compact_class_gaps(
+                            trial, context, rng, max_moves=4
+                        )
+                        after_imbalance, _ = _v196_class_distribution_metrics(
+                            trial, context
+                        )
+                        if after_imbalance >= before_imbalance:
+                            continue
+                        if _v196_class_gap_count(trial) > _v196_class_gap_count(state):
+                            continue
+                        state = trial
+                        moves += 1
+                        changed = True
+                        break
+                    if changed:
+                        break
+                if changed:
+                    break
+            if changed:
+                break
+        if not changed:
+            break
+    return state
+
+
+def _v196_relocate_early_practical(state, context, rng, max_swaps=24):
+    """J/T va texnologiyani 1–2-darsdan 3–6-darsga xavfsiz almashtiradi."""
+    swaps = 0
+    while swaps < int(max_swaps):
+        early = []
+        for placement in state.get("placements", []):
+            profile = _v196_rotation_profile(placement["job"], context)
+            if (
+                int(placement.get("period") or 0) <= 2
+                and (profile.get("physical") or profile.get("technology"))
+                and _v196_movable_placement(placement)
+            ):
+                early.append(placement)
+        if not early:
+            break
+        changed = False
+        for practical in sorted(
+            early,
+            key=lambda placement: (
+                int(placement.get("period") or 0),
+                int(placement["job"].get("sinf_id") or 0),
+                int(placement.get("day") or 0),
+            ),
+        ):
+            class_id = int(practical["job"].get("sinf_id") or 0)
+            day = int(practical.get("day") or 0)
+            candidates = []
+            for other in state.get("placements", []):
+                if (
+                    int(other["job"].get("sinf_id") or 0) != class_id
+                    or int(other.get("day") or 0) != day
+                    or int(other.get("period") or 0) < 3
+                    or not _v196_movable_placement(other)
+                ):
+                    continue
+                other_profile = _v196_rotation_profile(other["job"], context)
+                if other_profile.get("physical") or other_profile.get("technology"):
+                    continue
+                candidates.append((
+                    0 if other_profile.get("core_priority") else 1,
+                    0 if int(other.get("period") or 0) >= 4 else 1,
+                    -int(other.get("period") or 0),
+                    other,
+                ))
+            for _, _, _, other in sorted(candidates, key=lambda row: row[:3]):
+                removed = {id(practical), id(other)}
+                trial = _v1852_rebuild_schedule_state(
+                    [
+                        placement for placement in state.get("placements", [])
+                        if id(placement) not in removed
+                    ],
+                    context,
+                )
+                if not _v196_place_exact(
+                    other["job"], day, practical["period"], trial, context, rng
+                ):
+                    continue
+                if not _v196_place_exact(
+                    practical["job"], day, other["period"], trial, context, rng
+                ):
+                    continue
+                state = trial
+                swaps += 1
+                changed = True
+                break
+            if changed:
+                break
+        if not changed:
+            break
+    return state
+
+
 def _v196_attempt_metrics(state, context):
     single_teacher_days = sum(
         1 for periods in state.get("teacher_periods", {}).values()
@@ -10852,6 +11215,9 @@ def _v196_attempt_metrics(state, context):
                 pe_before_heavy += 1
     cross_shift_blocks = 0
     cross_shift_long_days = 0
+    cross_shift_over_two_hours = 0
+    cross_shift_total_minutes = 0
+    cross_shift_max_minutes = 0
     teacher_days = {
         (int(teacher), int(day))
         for (teacher, day), count in state.get("teacher_daily", {}).items()
@@ -10859,10 +11225,15 @@ def _v196_attempt_metrics(state, context):
     }
     for teacher, day in teacher_days:
         blocks = _v196_cross_shift_edge_blocks(state, teacher, day, context)
-        if blocks is None:
+        minutes = _v196_cross_shift_gap_minutes(state, teacher, day, context)
+        if blocks is None or minutes is None:
             continue
         cross_shift_blocks += int(blocks)
-        if int(blocks) >= 3:
+        cross_shift_total_minutes += int(minutes)
+        cross_shift_max_minutes = max(cross_shift_max_minutes, int(minutes))
+        if int(minutes) > 120:
+            cross_shift_over_two_hours += 1
+        if int(minutes) > 180:
             cross_shift_long_days += 1
     class_imbalance, class_short_days = _v196_class_distribution_metrics(state, context)
     return {
@@ -10874,6 +11245,9 @@ def _v196_attempt_metrics(state, context):
         "asosiy_fan_5_6": int(late_core),
         "amaliy_fan_1_2": int(early_practical),
         "oqituvchi_smenalar_orasi_blok": int(cross_shift_blocks),
+        "oqituvchi_smenalar_orasi_daqiqa": int(cross_shift_total_minutes),
+        "eng_uzoq_smena_oraligi_daqiqa": int(cross_shift_max_minutes),
+        "ikki_smenali_2soatdan_uzoq": int(cross_shift_over_two_hours),
         "ikki_smenali_uzoq_tanaffus": int(cross_shift_long_days),
         "sinf_kun_taqsimoti_farqi": class_imbalance,
         "sinf_qisqa_kunlari": class_short_days,
@@ -10891,6 +11265,27 @@ def _v1852_generate_attempt(jobs, context, seed):
     state, unplaced, penalty, gaps, late = _v196_base_generate_attempt(
         jobs, context, seed
     )
+    # Greedy joylashtirish tugagach jadvalni o'quvchi nuqtai nazaridan
+    # majburiy sayqallaymiz: avval oknolar yopiladi, keyin 2/6 kabi notekis
+    # kunlar tenglashtiriladi, oxirida J/T va texnologiya ertalabki katakdan
+    # keyinroqqa xavfsiz almashtiriladi. Har qadam qattiq to'qnashuv
+    # tekshiruvlaridan qayta o'tadi.
+    repair_rng = _v1852_random.Random(int(seed) ^ 0x19_08_26)
+    state = _v196_compact_class_gaps(state, context, repair_rng)
+    state = _v196_balance_class_days(state, context, repair_rng)
+    state = _v196_compact_class_gaps(state, context, repair_rng)
+    state = _v196_relocate_early_practical(state, context, repair_rng)
+    state["class_gap_count"] = _v196_class_gap_count(state)
+    gaps = sum(
+        _v1852_gap_count(set(periods))
+        for periods in state.get("teacher_periods", {}).values()
+    )
+    late = sum(
+        1 for placement in state.get("placements", [])
+        if int(placement.get("period") or 0)
+        > int(placement["job"].get("preferred_last") or 6)
+        and int(placement["job"].get("weight") or 1) >= 2
+    )
     metrics = _v196_attempt_metrics(state, context)
     state["v196_metrics"] = metrics
     penalty += (
@@ -10901,7 +11296,9 @@ def _v1852_generate_attempt(jobs, context, seed):
         + metrics["asosiy_fan_5_6"] * 180
         + metrics["amaliy_fan_1_2"] * 180
         + metrics["oqituvchi_smenalar_orasi_blok"] * 55
-        + metrics["ikki_smenali_uzoq_tanaffus"] * 140
+        + metrics["oqituvchi_smenalar_orasi_daqiqa"] * 0.35
+        + metrics["ikki_smenali_2soatdan_uzoq"] * 260
+        + metrics["ikki_smenali_uzoq_tanaffus"] * 1200
         + metrics["sinf_kun_taqsimoti_farqi"] * 45
         + metrics["sinf_qisqa_kunlari"] * 120
     )
