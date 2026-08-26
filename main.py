@@ -48,7 +48,7 @@ if missing_required_routes:
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_ASGI_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "v17-school-legacy-id-auto-provision-main-guard"
+    "bounded-timetable-generation-rev49"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
