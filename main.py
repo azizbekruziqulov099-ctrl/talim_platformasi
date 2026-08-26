@@ -1,4 +1,4 @@
-"""SamTM V20 ASGI entry point — REV54 institut poydevori.
+"""SamTM V20 ASGI entry point — REV55 ko'p maktab va 2 oylik kirish kodi.
 
 Railway BACKEND xizmati ``gunicorn main:app`` bilan aynan shu faylni
 ishga tushirishi kerak. V19.8 school moduli yuklanmasa eski v19.2 server
@@ -6,7 +6,8 @@ yashirincha ishlab qolmaydi: deploy aniq xato bilan to'xtaydi.
 """
 
 SAMTM_ASGI_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_PLATFORM_RELEASE = "samtm-institute-foundation-v20"
+SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
+SAMTM_PLATFORM_RELEASE = "samtm-multi-school-access-v20"
 SAMTM_REQUIRED_ROUTES = {
     "/api/maktab/aqlli_jadval/v3/maktab_workspace_boglash",
     "/api/maktab/aqlli_jadval/v3/soat_imkoniyatlari",
@@ -40,6 +41,18 @@ if active_school_release != SAMTM_ASGI_RELEASE:
         f"Kutilgan={SAMTM_ASGI_RELEASE}; topilgan={active_school_release or 'yoq'}"
     )
 
+active_school_package_revision = getattr(
+    samtm_school,
+    "SAMTM_SCHOOL_PACKAGE_REVISION",
+    "",
+)
+if active_school_package_revision != SAMTM_SCHOOL_PACKAGE_REVISION:
+    raise RuntimeError(
+        "samtm_school.py REV55 emas. Paketdagi faylni to'liq almashtiring. "
+        f"Kutilgan={SAMTM_SCHOOL_PACKAGE_REVISION}; "
+        f"topilgan={active_school_package_revision or 'yoq'}"
+    )
+
 samtm_institute.register_institute(app, samtm_platform)
 
 registered_paths = {
@@ -56,7 +69,7 @@ if missing_required_routes:
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_PLATFORM_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "institute-foundation-v20-rev54"
+    "multi-school-access-2month-rev55"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
