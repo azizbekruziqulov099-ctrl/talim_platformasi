@@ -16,6 +16,8 @@ except ImportError:  # Railway working directory may be backend/
     import samtm_platform as _platform
     from samtm_platform import *
 
+import time as _samtm_time
+
 # ``from samtm_platform import *`` Python qoidasiga ko'ra nomi ``_`` bilan
 # boshlanadigan yordamchilarni import qilmaydi. Maktab kodi esa eski monolitdagi
 # shu ichki yordamchilardan ham foydalanadi. Dunder metama'lumotlarni tegmasdan,
@@ -30,7 +32,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_SCHOOL_PACKAGE_REVISION = "existing-school-selected-id-compat-rev48"
+SAMTM_SCHOOL_PACKAGE_REVISION = "bounded-timetable-generation-rev49"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
@@ -2845,7 +2847,7 @@ def _v1852_generate_attempt(jobs, context, seed):
 
 class V1852Generate(BaseModel):
     maktab_id: int
-    urinishlar_soni: int = 8
+    urinishlar_soni: int = 12
 
 
 @app.post("/api/maktab/aqlli_jadval/v2/yaratish")
@@ -2925,14 +2927,37 @@ def v1852_generate(sorov: V1852Generate, token: str):
         cur = None
         conn = None
 
-        # Birinchi topilgan jadvalga yopishib qolmaymiz: turli fan/o'qituvchi
-        # tartiblarida yetarli variant hisoblanadi va eng avval barcha darslari
-        # joylashgan, keyin esa oknosi kam natija olinadi.
-        attempts = max(48, min(96, int(sorov.urinishlar_soni or 48)))
+        # Railway HTTP/worker ulanishi ochiq turgan paytda 48–96 ta to'liq
+        # variantni ketma-ket hisoblash brauzerga ``Failed to fetch`` qaytarar
+        # edi. Endi so'ralgan urinish haqiqatan hurmat qilinadi va generator
+        # qat'iy vaqt byudjeti ichida eng yaxshi topilgan draftni qaytaradi.
+        # Shu bilan algoritm sifati saqlanadi, lekin POST /yaratish proksi
+        # va gunicorn timeoutidan oldin albatta yakunlanadi.
+        requested_attempts = max(4, min(24, int(sorov.urinishlar_soni or 12)))
+        try:
+            generation_budget = float(
+                os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "18")
+            )
+        except (TypeError, ValueError):
+            generation_budget = 18.0
+        generation_budget = max(8.0, min(24.0, generation_budget))
+        generation_started = _samtm_time.monotonic()
+        completed_attempts = 0
+        stopped_by_budget = False
         best = None
         base_seed = int(datetime.now().timestamp())
-        for index in range(attempts):
+        print(
+            "[JADVAL-REV49] boshlandi "
+            f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
+            f"reja_urinish={requested_attempts} byudjet={generation_budget:.0f}s",
+            flush=True,
+        )
+        for index in range(requested_attempts):
+            if index > 0 and (_samtm_time.monotonic() - generation_started) >= generation_budget:
+                stopped_by_budget = True
+                break
             result = _v1852_generate_attempt(jobs, context, base_seed + index * 7919)
+            completed_attempts = index + 1
             state, unplaced, penalty, gaps, late = result
             class_gaps = int(state.get("class_gap_count", 0))
             comfort = state.get("v196_metrics", {})
@@ -2966,6 +2991,20 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
             if best is None or rank < best[0]:
                 best = (rank, result)
+            # To'liq va sinf oknosiz variant topilgan bo'lsa, sifatni yana bir
+            # necha urug'da solishtiramiz; qolgan vaqtni bekorga sarflamaymiz.
+            elapsed = _samtm_time.monotonic() - generation_started
+            if completed_attempts >= 6 and not unplaced and class_gaps == 0:
+                if elapsed >= min(10.0, generation_budget * 0.55):
+                    break
+
+        if best is None:
+            # Amalda birinchi urinish vaqt tekshiruvidan oldin bajariladi.
+            # Bu qo'riqchi noto'g'ri muhit qiymati sabab bo'sh natija
+            # qaytishining oldini oladi.
+            result = _v1852_generate_attempt(jobs, context, base_seed)
+            best = ((len(result[1]),), result)
+            completed_attempts = 1
         _, (state, unplaced, penalty, gap_count, late_heavy) = best
         # Ko'p urinishdan tanlangan eng yaxshi jadvalni sinf kataklarini
         # o'zgartirmasdan yana bir marta o'qituvchi nuqtai nazaridan siqamiz.
@@ -3029,10 +3068,22 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "oknolar": gap_count,
             "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
             "qulaylik_strategiyasi": state.get("v196_metrics", {}),
-            "urinishlar_soni": attempts,
+            "urinishlar_soni": completed_attempts,
+            "urinishlar_rejasi": requested_attempts,
+            "hisoblash_soniya": round(_samtm_time.monotonic() - generation_started, 2),
+            "vaqt_chegarasi_soniya": generation_budget,
+            "vaqt_chegarasida_toxtadi": stopped_by_budget,
             "manba_mosligi": preflight,
             "tasdiqlash_mumkin": False,
         }
+        print(
+            "[JADVAL-REV49] hisoblash tugadi "
+            f"maktab_id={sorov.maktab_id} urinish={completed_attempts} "
+            f"joylashdi={placed_count}/{total_count} "
+            f"soniya={diagnostics['hisoblash_soniya']} "
+            f"vaqt_chegarasi={stopped_by_budget}",
+            flush=True,
+        )
 
         # Uzoq hisoblashdan keyin yangi, sog'lom ulanish bilan yozamiz. Shu
         # orada yuklama yoki vaqt qoidasi o'zgargan bo'lsa eskirgan natijani
