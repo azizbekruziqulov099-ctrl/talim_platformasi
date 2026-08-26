@@ -1299,11 +1299,15 @@ def muassasalarim(token: str):
         }
         for org in cur.fetchall():
             turi = type_map[org["organization_type"]]
-            if turi == "bogcha" and org["external_id"] is not None:
+            # V17 context haqiqiy legacy muassasaga bog'langan bo'lsa,
+            # ro'yxatda context_id emas aynan external_id ishlatiladi. Oldin
+            # bu faqat bog'cha uchun bajarilgani sabab yangi maktab context ID
+            # bilan ochilib, "Maktab ID topilmadi" xatosiga tushayotgan edi.
+            if org["external_id"] is not None:
                 natija = [
                     item for item in natija
                     if not (
-                        item["turi"] == "bogcha"
+                        item["turi"] == turi
                         and int(item["muassasa_id"]) == int(org["external_id"])
                     )
                 ]
@@ -1317,13 +1321,14 @@ def muassasalarim(token: str):
             natija.append(
                 {
                     "turi": turi,
-                    "muassasa_id": (
-                        int(org["external_id"])
-                        if turi == "bogcha" and org["external_id"] is not None
-                        else int(org["context_id"])
-                    ),
+                    "muassasa_id": int(org["external_id"])
+                    if org["external_id"] is not None
+                    else int(org["context_id"]),
                     "context_id": int(org["context_id"]),
                     "organization_v17_id": int(org["organization_v17_id"]),
+                    "external_id": int(org["external_id"])
+                    if org["external_id"] is not None
+                    else None,
                     "muassasa_nomi": org["display_name"],
                     "lavozim": "owner",
                     "lifecycle_status": (
