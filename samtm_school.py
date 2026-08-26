@@ -2944,6 +2944,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             cross_shift_blocks = int(comfort.get("oqituvchi_smenalar_orasi_blok", 0))
             cross_shift_minutes = int(comfort.get("oqituvchi_smenalar_orasi_daqiqa", 0))
             cross_shift_max = int(comfort.get("eng_uzoq_smena_oraligi_daqiqa", 0))
+            cross_shift_over_one = int(comfort.get("ikki_smenali_1soatdan_uzoq", 0))
+            repeated_long_cross = int(comfort.get("bir_ustozda_takror_uzoq_smena", 0))
             cross_shift_over_two = int(comfort.get("ikki_smenali_2soatdan_uzoq", 0))
             cross_shift_long = int(comfort.get("ikki_smenali_uzoq_tanaffus", 0))
             teacher_gap_days = int(comfort.get("oqituvchi_oknoli_smena_kun", 0))
@@ -2955,13 +2957,17 @@ def v1852_generate(sorov: V1852Generate, token: str):
             medium_unbalanced_days = int(comfort.get("10_15_notekis_kun", 0))
             teacher_active_days = int(comfort.get("oqituvchi_faol_kun", 0))
             rank = (
-                len(unplaced), class_gaps, class_imbalance, short_days,
-                early_practical, late_core, pe_before_core, cross_shift_long,
-                cross_shift_over_two, cross_shift_max, cross_shift_minutes,
+                len(unplaced), class_gaps,
+                # To'liq va uzluksiz sinfdan keyingi bosh mezon — ustozning
+                # 1/2-smena oralig'i va ichki oynasi. Pedagogik fan-vaqti
+                # qulayligi bular tuzalgandan keyin tanlanadi.
+                cross_shift_long, cross_shift_over_two,
+                repeated_long_cross, cross_shift_over_one, cross_shift_max,
                 teacher_multi_gap_days, teacher_max_gap, teacher_gap_days,
-                teacher_internal_gaps, medium_extra_days,
+                teacher_internal_gaps, medium_extra_days, cross_shift_minutes,
                 medium_adjacent_days, medium_unbalanced_days,
-                teacher_active_days,
+                teacher_active_days, class_imbalance, short_days,
+                early_practical, late_core, pe_before_core,
                 cross_shift_blocks, gaps, late, round(penalty, 2),
             )
             if best is None or rank < best[0]:
@@ -2974,7 +2980,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # smena orasidagi 4–5 soatlik kutishi qisqaradi.
         final_rng = _v1852_random.Random(base_seed ^ 0x20_26_08_26)
         state = _v196_optimize_teacher_windows(
-            state, context, final_rng, max_swaps=36
+            state, context, final_rng, max_swaps=64
         )
         state = _v196_compact_class_gaps(
             state, context, final_rng, max_moves=48
@@ -4327,6 +4333,51 @@ def _v1866_class_hour_rule_rows(cur, maktab_id: int):
                    WHERE q.maktab_id=%s AND q.faol=TRUE
                    ORDER BY s.sinf::int,s.harf""", (maktab_id,))
     return cur.fetchall()
+
+
+def _v199_ensure_class_hour_rules(cur, maktab_id: int, class_ids=None, actor_id=None):
+    """Har sinf uchun yagona, takrorlanmaydigan SINF SOATI qoidasini yaratadi.
+
+    Sinf soati fan yuklamasiga yozilmaydi: jadval generatorida u alohida bitta
+    sessiya sifatida hisoblanadi. Shu sabab o'quv reja jami ham, o'qituvchi
+    yuklamasi ham bir soatga oshadi, lekin fan soatlari ikki marta sanalmaydi.
+    Mavjud qo'lda sozlangan kun/dars o'zgartirilmaydi.
+    """
+    _v1852_tables(cur)
+    year = _v1852_active_year(cur, maktab_id)
+    weekdays = max(1, min(6, int((year or {}).get("hafta_kunlari") or 6)))
+    default_day = min(5, weekdays)  # odatda Juma
+    args = [int(maktab_id)]
+    where = ["maktab_id=%s"]
+    if class_ids is not None:
+        ids = sorted({int(value) for value in class_ids if value is not None})
+        if not ids:
+            return {"yaratildi": 0, "jami": 0, "hafta_kuni": default_day, "dars_raqami": 1}
+        where.append("id=ANY(%s)")
+        args.append(ids)
+    cur.execute(
+        "SELECT id FROM maktab_sinflari WHERE " + " AND ".join(where) + " ORDER BY id",
+        tuple(args),
+    )
+    target_ids = [int(row["id"]) for row in cur.fetchall()]
+    created = 0
+    for class_id in target_ids:
+        cur.execute(
+            """INSERT INTO aqlli_sinf_soati_qoidalari_v2(
+                   maktab_id,sinf_id,hafta_kuni,dars_raqami,faol,
+                   yaratgan_user_id,yangilangan_at)
+               VALUES(%s,%s,%s,1,TRUE,%s,NOW())
+               ON CONFLICT(maktab_id,sinf_id) DO UPDATE SET
+                 faol=TRUE,yangilangan_at=NOW()""",
+            (maktab_id, class_id, default_day, actor_id),
+        )
+        created += int(cur.rowcount or 0)
+    return {
+        "yaratildi": created,
+        "jami": len(target_ids),
+        "hafta_kuni": default_day,
+        "dars_raqami": 1,
+    }
 
 
 def _v1866_target_classes(cur, sorov: V1866ClassHourBulk):
@@ -8618,6 +8669,9 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
     for row in rows:
         class_id = int(row["sinf_id"])
         class_totals[class_id] = class_totals.get(class_id, 0.0) + float(row["haftalik_soat"])
+    cur.execute("""SELECT sinf_id FROM aqlli_sinf_soati_qoidalari_v2
+                   WHERE maktab_id=%s AND faol=TRUE""", (maktab_id,))
+    class_hour_ids = {int(row["sinf_id"]) for row in cur.fetchall()}
     template_rows = []
     for class_row in classes:
         template_rows.extend(_v193_template_rows_for_class(class_row, selected_by_grade))
@@ -8628,13 +8682,18 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
         "yangilangan_at": status.get("yangilangan_at"),
         "andoza_nomi": "MMTV 133-son · 2026–2027 tayanch o‘quv reja",
         "andoza_manbasi": SAMTM_2026_2027_CURRICULUM_SOURCE,
+        "sinf_soati_avtomatik": True,
+        "sinf_soati_haftalik": 1,
         "qatorlar": rows,
         "andoza_qatorlar": template_rows,
         "sinf_jami": [
             {
                 "sinf_id": int(class_row["id"]),
                 "sinf": f"{class_row['sinf']}-{class_row['harf']}",
-                "haftalik_soat": float(class_totals.get(int(class_row["id"]), 0)),
+                "fan_soati": float(class_totals.get(int(class_row["id"]), 0)),
+                "sinf_soati": 1 if int(class_row["id"]) in class_hour_ids else 0,
+                "haftalik_soat": float(class_totals.get(int(class_row["id"]), 0))
+                + (1 if int(class_row["id"]) in class_hour_ids else 0),
             }
             for class_row in classes
         ],
@@ -8744,17 +8803,17 @@ def _v192_totals(cur, maktab_id: int, rows, classes):
         else:
             data["groups"].append(hours)
 
-    cur.execute("""SELECT s.rahbar_user_id,COUNT(*) AS son
+    cur.execute("""SELECT q.sinf_id,s.rahbar_user_id
                    FROM aqlli_sinf_soati_qoidalari_v2 q
                    JOIN maktab_sinflari s ON s.id=q.sinf_id
-                   WHERE q.maktab_id=%s AND q.faol=TRUE
-                     AND s.rahbar_user_id IS NOT NULL
-                   GROUP BY s.rahbar_user_id""", (maktab_id,))
+                   WHERE q.maktab_id=%s AND q.faol=TRUE""", (maktab_id,))
     class_hour_extra = {}
+    class_hour_classes = set()
     for row in cur.fetchall():
+        class_hour_classes.add(int(row["sinf_id"]))
         teacher_id = row.get("rahbar_user_id")
         if teacher_id is not None:
-            class_hour_extra[int(teacher_id)] = int(row.get("son") or 0)
+            class_hour_extra[int(teacher_id)] = class_hour_extra.get(int(teacher_id), 0) + 1
 
     class_totals = {int(cls["id"]): 0 for cls in classes}
     subject_totals = []
@@ -8774,6 +8833,13 @@ def _v192_totals(cur, maktab_id: int, rows, classes):
             "sinf_id": class_id,
             "fan_nomi": data["fan_nomi"],
             "haftalik_soat": weekly,
+        })
+    for class_id in class_hour_classes:
+        class_totals[class_id] = class_totals.get(class_id, 0) + 1
+        subject_totals.append({
+            "sinf_id": class_id,
+            "fan_nomi": "SINF SOATI",
+            "haftalik_soat": 1,
         })
 
     year = _v1852_active_year(cur, maktab_id)
@@ -9047,6 +9113,11 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
             if not subject:
                 raise HTTPException(status_code=400, detail=f"{index}-qator: fan nomi kiritilmagan")
             key = _v1875_subject_key(subject)
+            if key == "sinf soati":
+                raise HTTPException(
+                    status_code=400,
+                    detail="SINF SOATI fan qatoriga yozilmaydi; u har sinfga avtomatik 1 soat qo'shiladi",
+                )
             if selected_by_grade is not None and key not in allowed:
                 raise HTTPException(status_code=400, detail=f"{subject}: bu sinf uchun maktab fanlari ro'yxatida yo'q")
             if key in allowed:
@@ -9087,6 +9158,9 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
                     (sorov.maktab_id,))
         cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                        WHERE maktab_id=%s AND holat='draft'""", (sorov.maktab_id,))
+        class_hour_result = _v199_ensure_class_hour_rules(
+            cur, sorov.maktab_id, [sorov.sinf_id], actor_id
+        )
         result = _v192_matrix_payload(cur, sorov.maktab_id)
         conn.commit()
         return {
@@ -9094,6 +9168,7 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
             "sinf": f"{class_row['sinf']}-{class_row['harf']}",
             "fan_soni": len(cleaned),
             "haftalik_jami": total,
+            "sinf_soati": class_hour_result,
             "matritsa": result,
         }
     except Exception:
@@ -9133,6 +9208,11 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
             if not subject:
                 raise HTTPException(status_code=400, detail=f"{index}-qator: fan nomi kiritilmagan")
             subject_key = _v1875_subject_key(subject)
+            if subject_key == "sinf soati":
+                raise HTTPException(
+                    status_code=400,
+                    detail="SINF SOATI fan qatoriga yozilmaydi; u har sinfga avtomatik 1 soat qo'shiladi",
+                )
             allowed = (selected_by_grade or {}).get(
                 _v193_grade_number(valid_classes[class_id].get("sinf")), {}
             )
@@ -9185,6 +9265,9 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
                     (sorov.maktab_id,))
         cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                        WHERE maktab_id=%s AND holat='draft'""", (sorov.maktab_id,))
+        class_hour_result = _v199_ensure_class_hour_rules(
+            cur, sorov.maktab_id, valid_classes.keys(), actor_id
+        )
         matrix = _v192_matrix_payload(cur, sorov.maktab_id)
         conn.commit()
         return {
@@ -9192,6 +9275,7 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
             "sinf_soni": len(valid_classes),
             "fan_qatori": len(cleaned),
             "maktab_haftalik_jami": sum(class_totals.values()),
+            "sinf_soati": class_hour_result,
             "matritsa": matrix,
         }
     except Exception:
@@ -9247,6 +9331,9 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
                            tasdiqlangan_at=NOW(),yangilangan_at=NOW()
                        WHERE maktab_id=%s""", (actor_id, sorov.maktab_id))
         reconcile = _v195_reconcile_teacher_loads_with_plan(cur, sorov.maktab_id)
+        class_hour_result = _v199_ensure_class_hour_rules(
+            cur, sorov.maktab_id, [row["id"] for row in classes], actor_id
+        )
         sync_warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
         if reconcile["ochirilgan_qator"]:
             sync_warnings.append(
@@ -9265,6 +9352,7 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
             "sinf_soni": len(classes),
             "fan_qatori": len(plan_rows),
             "yuklama_moslash": reconcile,
+            "sinf_soati": class_hour_result,
             "ogohlantirishlar": sync_warnings,
             "matritsa": result,
         }
@@ -9287,7 +9375,13 @@ class V192TeacherLoadSave(BaseModel):
     maktab_id: int
     user_id: int
     mutaxassisligi: Optional[str] = None
+    otadigan_fanlari: Optional[list[str]] = None
     haftalik_maqsad_soat: Optional[float] = None
+    tugilgan_sana: Optional[date] = None
+    tugilgan_yili: Optional[int] = None
+    ish_staji: Optional[int] = None
+    toifasi: Optional[str] = None
+    rahbar_sinf_id: Optional[int] = None
     qatorlar: list[V192TeacherLoadRow]
 
 
@@ -9318,6 +9412,52 @@ def _v194_teacher_profile_values(mutaxassisligi, haftalik_maqsad_soat):
                 detail="Haftalik maqsad soati 0,5–60 oralig'ida va 0,5 qadamda bo'lishi kerak",
             )
     return specialty, target
+
+
+def _v199_save_teacher_leadership(cur, maktab_id: int, user_id: int,
+                                  rahbar_sinf_id, actor_id: int):
+    """O'qituvchining bitta sinf rahbarligini va uning 1 soat sinf soatini saqlaydi."""
+    leader_class = None
+    if rahbar_sinf_id is not None:
+        cur.execute("""SELECT id,sinf,harf,rahbar_user_id
+                       FROM maktab_sinflari
+                       WHERE id=%s AND maktab_id=%s FOR UPDATE""",
+                    (int(rahbar_sinf_id), int(maktab_id)))
+        leader_class = cur.fetchone()
+        if not leader_class:
+            raise HTTPException(status_code=404, detail="Sinf rahbarligi uchun tanlangan sinf topilmadi")
+        current_leader = leader_class.get("rahbar_user_id")
+        if current_leader is not None and int(current_leader) != int(user_id):
+            raise HTTPException(
+                status_code=409,
+                detail=f"{leader_class['sinf']}-{leader_class['harf']} sinfiga boshqa rahbar tayinlangan",
+            )
+    cur.execute("""UPDATE maktab_sinflari SET rahbar_user_id=NULL
+                   WHERE maktab_id=%s AND rahbar_user_id=%s
+                     AND (%s::INTEGER IS NULL OR id<>%s::INTEGER)""",
+                (maktab_id, user_id, rahbar_sinf_id, rahbar_sinf_id))
+    if leader_class:
+        cur.execute("""UPDATE maktab_sinflari SET rahbar_user_id=%s
+                       WHERE id=%s AND maktab_id=%s""",
+                    (user_id, int(leader_class["id"]), maktab_id))
+        _v199_ensure_class_hour_rules(
+            cur, maktab_id, [int(leader_class["id"])], actor_id
+        )
+    return leader_class
+
+
+def _v199_teacher_total_with_class_hour(cur, maktab_id: int, user_id: int, result: dict):
+    fan_hours = round(float(result.get("haftalik_jami") or 0), 1)
+    cur.execute("""SELECT COUNT(*) AS son
+                   FROM aqlli_sinf_soati_qoidalari_v2 q
+                   JOIN maktab_sinflari s ON s.id=q.sinf_id
+                   WHERE q.maktab_id=%s AND q.faol=TRUE AND s.rahbar_user_id=%s""",
+                (maktab_id, user_id))
+    class_hours = int((cur.fetchone() or {}).get("son") or 0)
+    result["fan_soati"] = fan_hours
+    result["sinf_soati"] = class_hours
+    result["haftalik_jami"] = round(fan_hours + class_hours, 1)
+    return result
 
 
 def _v192_sync_schedule_sources(cur, maktab_id: int):
@@ -9640,6 +9780,8 @@ def _v192_save_teacher_load_rows(
 
 @app.put("/api/maktab/aqlli_jadval/v3/oqituvchi_yuklamasi")
 def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
+    from datetime import date as _date
+
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
@@ -9649,20 +9791,59 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
         supplied_fields = set(
             getattr(sorov, "model_fields_set", getattr(sorov, "__fields_set__", set()))
         )
-        profile_fields = {"mutaxassisligi", "haftalik_maqsad_soat"}
+        profile_fields = {
+            "mutaxassisligi", "haftalik_maqsad_soat", "tugilgan_sana",
+            "tugilgan_yili", "ish_staji", "toifasi",
+        }
         if supplied_fields.intersection(profile_fields):
             specialty, target = _v194_teacher_profile_values(
                 sorov.mutaxassisligi, sorov.haftalik_maqsad_soat
             )
+            work_years = sorov.ish_staji
+            if work_years is not None and not 0 <= int(work_years) <= 60:
+                raise HTTPException(status_code=400, detail="Ish staji 0–60 yil oralig'ida bo'lishi kerak")
+            birth_date = sorov.tugilgan_sana
+            birth_year = birth_date.year if birth_date is not None else sorov.tugilgan_yili
+            current_year = _date.today().year
+            if birth_year is not None and not 1900 <= int(birth_year) <= current_year:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"Tug'ilgan yil 1900–{current_year} oralig'ida bo'lishi kerak",
+                )
+            if birth_date is not None and birth_date > _date.today():
+                raise HTTPException(status_code=400, detail="Tug'ilgan sana kelajakda bo'lishi mumkin emas")
+            category = re.sub(r"\s+", " ", str(sorov.toifasi or "")).strip() or None
+            if category and category not in TOIFALAR:
+                raise HTTPException(status_code=400, detail="O'qituvchi toifasi noto'g'ri")
             cur.execute("""UPDATE users
-                           SET mutaxassisligi=%s,haftalik_maqsad_soat=%s
+                           SET mutaxassisligi=%s,haftalik_maqsad_soat=%s,
+                               tugilgan_sana=%s,ish_staji=%s,toifasi=%s
                            WHERE user_id=%s AND maktab_id=%s""",
-                        (specialty, target, sorov.user_id, sorov.maktab_id))
+                        (
+                            specialty, target,
+                            birth_date or (_date(int(birth_year), 1, 1) if birth_year is not None else None),
+                            int(work_years) if work_years is not None else None,
+                            category, sorov.user_id, sorov.maktab_id,
+                        ))
             if int(cur.rowcount or 0) != 1:
                 raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
+        leader_class = None
+        if "rahbar_sinf_id" in supplied_fields:
+            leader_class = _v199_save_teacher_leadership(
+                cur, sorov.maktab_id, sorov.user_id, sorov.rahbar_sinf_id, actor_id
+            )
         result = _v192_save_teacher_load_rows(
             cur, actor_id, sorov.maktab_id, sorov.user_id, sorov.qatorlar
         )
+        _v199_teacher_total_with_class_hour(
+            cur, sorov.maktab_id, sorov.user_id, result
+        )
+        result.update({
+            "rahbar_sinf_id": int(leader_class["id"]) if leader_class else None,
+            "rahbar_sinf_nomi": (
+                f"{leader_class['sinf']}-{leader_class['harf']}" if leader_class else None
+            ),
+        })
         conn.commit()
         return result
     except Exception:
@@ -9755,8 +9936,14 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
                            SET rahbar_user_id=%s
                            WHERE id=%s AND maktab_id=%s""",
                         (new_user_id, int(leader_class["id"]), int(sorov.maktab_id)))
+            _v199_ensure_class_hour_rules(
+                cur, sorov.maktab_id, [int(leader_class["id"])], actor_id
+            )
         result = _v192_save_teacher_load_rows(
             cur, actor_id, sorov.maktab_id, new_user_id, sorov.qatorlar
+        )
+        _v199_teacher_total_with_class_hour(
+            cur, sorov.maktab_id, new_user_id, result
         )
         result.update({
             "holat": "oqituvchi_va_yuklama_saqlandi",
@@ -10552,6 +10739,38 @@ def _v1852_candidate_reasons(
     reasons = list(_v196_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
+    # 15–19 soatli, 5–11-sinflarga fan o'tadigan ustozni 4 kunga zichlash
+    # uchun kuniga 6 darslik standart limit ba'zan yetmaydi. Foydalanuvchi
+    # talabi bo'yicha bunday ustozga 7–8 tagacha dars ruxsat etiladi. Boshqa
+    # ustoz va barcha qo'lda bloklangan vaqtlar o'z kuchida qoladi.
+    if "o'qituvchining kunlik maksimumi to'lgan" in reasons:
+        demands = context.get("v196_teacher_demand") or {}
+        still_blocked = False
+        for teacher in selected_teachers:
+            if teacher is None:
+                continue
+            teacher = int(teacher)
+            rules = context.get("rules", {}).get(
+                teacher, context.get("default_rules", {})
+            )
+            configured = max(1, int((rules or {}).get("kunlik_max") or 6))
+            daily_count = float(
+                state.get("teacher_daily", {}).get((teacher, int(day)), 0) or 0
+            )
+            if daily_count < configured:
+                continue
+            demand = float(demands.get(teacher, 0) or 0)
+            effective = _v196_effective_daily_limit(
+                teacher, rules, demand, context
+            )
+            if daily_count >= effective:
+                still_blocked = True
+                break
+        if not still_blocked:
+            reasons = [
+                reason for reason in reasons
+                if reason != "o'qituvchining kunlik maksimumi to'lgan"
+            ]
     profile = _v196_rotation_profile(job, context)
     if int(period) == 1 and (
         profile.get("physical") or profile.get("technology")
@@ -10730,20 +10949,42 @@ def _v196_cross_shift_gap_minutes(state, teacher, day, context, extra=None):
 
 
 def _v196_cross_shift_gap_penalty(minutes):
-    """1–2 soat qulay, 3 soat istisno, 3 soatdan ortiq juda qimmat."""
+    """0–1 soat maqsad, 1–2 soat istisno, 2 soatdan ortiq favqulodda."""
     if minutes is None:
         return 0.0
     minutes = max(0, int(minutes))
     if minutes <= 60:
-        return minutes * 0.08
+        return minutes * 0.12
     if minutes <= 120:
-        return 4.8 + (minutes - 60) * 0.45
+        return 7.2 + (minutes - 60) * 85.0
     if minutes <= 180:
-        return 31.8 + (minutes - 120) * 18.0
-    # 3 soatdan oshgan variant faqat boshqa qattiq cheklov sabab mutlaqo
-    # iloj qolmaganda yashab qolishi mumkin. 4–5 soatlik kutish endi oddiy
-    # pedagogik bonuslar bilan hech qachon yengilmaydi.
-    return 1111.8 + (minutes - 180) * 95.0
+        return 5107.2 + (minutes - 120) * 420.0
+    # 3–4 soatlik kutish hech qanday pedagogik bonus bilan yengilmasin.
+    # Darsni tashlab yubormaslik uchun bu yumshoq jarima bo'lib qoladi,
+    # lekin amalda faqat qattiq bandlik mutlaqo boshqa yo'l qoldirmasa tanlanadi.
+    return 30307.2 + (minutes - 180) * 2200.0
+
+
+def _v196_teacher_cross_shift_days(state, teacher, context, extra=None):
+    """Ustozning ikki smenali kunlaridagi haqiqiy kutish daqiqalari.
+
+    ``extra`` = (kun, smena, dars) bo'lsa hali joylanmagan nomzod ham hisobga
+    olinadi. Bu bir ustozda bir necha kun 2–4 soatlik kutish yig'ilib qolishini
+    alohida jazolash imkonini beradi.
+    """
+    extra_day = int(extra[0]) if extra else None
+    result = {}
+    weekdays = int(context.get("weekdays") or 6)
+    for day in range(1, weekdays + 1):
+        day_extra = None
+        if extra and int(day) == extra_day:
+            day_extra = (int(extra[1]), int(extra[2]))
+        minutes = _v196_cross_shift_gap_minutes(
+            state, int(teacher), int(day), context, extra=day_extra
+        )
+        if minutes is not None:
+            result[int(day)] = int(minutes)
+    return result
 
 
 def _v196_cross_shift_edge_blocks(state, teacher, day, context, extra=None):
@@ -10799,6 +11040,43 @@ def _v196_teacher_demand(jobs):
     return dict(demand)
 
 
+def _v196_teacher_grade_catalog(jobs, classes):
+    """Har bir o'qituvchi dars o'tadigan sinf bosqichlarini qaytaradi.
+
+    15–19 soatli fan o'qituvchisini boshlang'ich sinf rahbaridan ajratish
+    uchun lavozim matniga tayanmaymiz: haqiqiy biriktirilgan sinflar olinadi.
+    Kamida bitta 5–11-sinf darsi bo'lsa u fan o'qituvchisi hisoblanadi.
+    """
+    result = _v1852_defaultdict(set)
+    for job in jobs:
+        class_row = (classes or {}).get(job.get("sinf_id"), {})
+        grade = int(job.get("v1874_grade") or _v1874_grade(class_row))
+        for teacher in _v1852_job_teacher_ids(job):
+            result[int(teacher)].add(grade)
+    return {int(teacher): set(grades) for teacher, grades in result.items()}
+
+
+def _v196_is_secondary_subject_teacher(teacher, context):
+    grades = (context.get("v196_teacher_grades") or {}).get(int(teacher), set())
+    return any(int(grade or 0) >= 5 for grade in grades)
+
+
+def _v196_compact_15_19_teacher(teacher, demand, context):
+    return bool(
+        teacher is not None
+        and 15 <= float(demand or 0) <= 19
+        and _v196_is_secondary_subject_teacher(int(teacher), context)
+    )
+
+
+def _v196_effective_daily_limit(teacher, rules, demand, context):
+    """15–19 soatli fan ustoziga zich 4/5 kunlik jadval uchun 8 tagacha joy."""
+    configured = max(1, int((rules or {}).get("kunlik_max") or 6))
+    if _v196_compact_15_19_teacher(teacher, demand, context):
+        return max(configured, 8)
+    return configured
+
+
 def _v196_teacher_used_days(state, teacher):
     return {
         int(day) for (uid, day), count in state.get("teacher_daily", {}).items()
@@ -10806,13 +11084,22 @@ def _v196_teacher_used_days(state, teacher):
     }
 
 
-def _v196_teacher_target_days(demand, rules):
+def _v196_teacher_target_days(demand, rules, teacher=None, context=None):
     """Haftalik yuklamaga mos ixcham, lekin real ishlash kunlari soni."""
     demand = float(demand or 0)
-    daily_limit = max(1, min(6, int((rules or {}).get("kunlik_max") or 6)))
+    context = context or {}
+    daily_limit = _v196_effective_daily_limit(
+        teacher, rules, demand, context
+    ) if teacher is not None else max(
+        1, min(6, int((rules or {}).get("kunlik_max") or 6))
+    )
     minimum = max(1, int(math.ceil(demand / daily_limit)))
-    if 10 <= demand <= 15:
-        # 10–15 soat: odatda 3 kun (kuniga 3–5 soat), faqat kunlik limit
+    if _v196_compact_15_19_teacher(teacher, demand, context):
+        # Boshlang'ichdan tashqari 15–19 soatli fan ustozlari: avval 4 kun.
+        # Qattiq bandlik/metod kuni tufayli sig'masa generator 5-kunni ochadi.
+        return max(4, minimum)
+    if 10 <= demand < 15:
+        # 10–14,5 soat: odatda 3 kun (kuniga 3–5 soat), faqat kunlik limit
         # yoki boshqa qattiq qoida majbur qilsa 4-kun ochiladi.
         return max(3, minimum)
     compact_capacity = max(1, min(4, daily_limit))
@@ -10925,18 +11212,20 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         before_gap = _v1852_gap_count(existing)
         after_gap = _v1852_gap_count(existing | {int(period)})
 
-        # Bazaviy ball yangi oknoga juda kichik jazo beradi. V19.6 da
-        # o'qituvchining 1–2–bo'sh–4 kabi kuni ancha qimmat hisoblanadi.
+        # O'qituvchining smena ichidagi oynasi sinfning pedagogik yumshoq
+        # bonuslaridan ancha qimmat. 1–2–bo'sh–4 yoki 1–bo'sh–3–bo'sh–5
+        # ko'rinishi faqat boshqa qattiq bandlik mutlaqo majbur qilsa qoladi.
         new_internal_gaps = max(0, after_gap - before_gap)
-        score += new_internal_gaps * 1100
+        score += new_internal_gaps * 24000
         if after_gap > 1:
-            score += (after_gap - 1) * 1750
+            score += (after_gap - 1) * 72000
         daily_count = float(state.get("teacher_daily", {}).get((teacher, day), 0) or 0)
         if existing and any(abs(int(period) - item) == 1 for item in existing):
-            score -= 125
+            score -= 1450
         if daily_count > 0:
-            # Bazadagi +1.8 tarqatish jarimasini bekor qilib, ixcham kunni afzal qilamiz.
-            score -= daily_count * 4.0
+            # Bazadagi tarqatish jarimasini bekor qilib, o'sha kunni ixcham
+            # to'ldirishni yangi kun ochishdan ustun qilamiz.
+            score -= daily_count * 95.0
 
         # Ikki smenada ishlaydigan ustoz uchun 1-smena darslari kun oxiriga,
         # 2-smena darslari kun boshiga yaqinlashadi. Shunda 1-smenada 1–3,
@@ -10949,9 +11238,9 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         if 1 in teacher_shifts and 2 in teacher_shifts:
             current_shift = int(job.get("smena") or 1)
             if current_shift == 1:
-                score += max(0, _v196_shift_max_period(context, 1) - int(period)) * 245
+                score += max(0, _v196_shift_max_period(context, 1) - int(period)) * 1750
             elif current_shift == 2:
-                score += max(0, int(period) - 1) * 245
+                score += max(0, int(period) - 1) * 1750
 
             before_cross = _v196_cross_shift_gap_minutes(
                 state, teacher, day, context
@@ -10961,24 +11250,51 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                 extra=(current_shift, int(period)),
             )
             if before_cross is None and after_cross is not None:
-                # Ikki smenani bir kunga ixcham birlashtirish foydali, ammo
-                # haqiqiy tanaffus 3 soatdan oshsa bu bonus butunlay yo'qoladi.
-                if int(after_cross) <= 120:
-                    score -= 430
-                elif int(after_cross) <= 180:
-                    score -= 90
+                # Ikki smenani bir kunga faqat chegaralari yaqin bo'lsa
+                # birlashtiramiz: 0–1 soat yaxshi, 1–2 soat bir kunlik istisno.
+                if int(after_cross) <= 60:
+                    score -= 6200
+                elif int(after_cross) <= 120:
+                    score -= 650
                 score += _v196_cross_shift_gap_penalty(after_cross)
             elif before_cross is not None and after_cross is not None:
                 score += (
                     _v196_cross_shift_gap_penalty(after_cross)
                     - _v196_cross_shift_gap_penalty(before_cross)
                 )
+            after_blocks = _v196_cross_shift_edge_blocks(
+                state, teacher, day, context,
+                extra=(current_shift, int(period)),
+            )
+            if after_blocks is not None:
+                score += int(after_blocks) * 2800
+
+            projected_cross = _v196_teacher_cross_shift_days(
+                state, teacher, context,
+                extra=(int(day), current_shift, int(period)),
+            )
+            over_one_hour = sum(
+                1 for value in projected_cross.values() if int(value) > 60
+            )
+            over_two_hours = sum(
+                1 for value in projected_cross.values() if int(value) > 120
+            )
+            # Odatda barcha kun 0–1 soat. Faqat bitta kunda 1–2 soatlik
+            # istisno yashashi mumkin; bir necha kun yoki 2 soatdan ortig'i
+            # keskin qimmat bo'ladi.
+            score += max(0, over_one_hour - 1) * 48000
+            score += over_two_hours * 130000
 
         used_days = _v196_teacher_used_days(state, teacher)
         rules = context.get("rules", {}).get(teacher, context.get("default_rules", {}))
         teacher_demand = float(demands.get(teacher, 1.0) or 1.0)
-        expected_days = _v196_teacher_target_days(teacher_demand, rules)
-        if 10 <= teacher_demand <= 15:
+        expected_days = _v196_teacher_target_days(
+            teacher_demand, rules, teacher=teacher, context=context
+        )
+        compact_15_19 = _v196_compact_15_19_teacher(
+            teacher, teacher_demand, context
+        )
+        if 10 <= teacher_demand < 15 or compact_15_19:
             if int(day) not in used_days:
                 projected_days = sorted(used_days | {int(day)})
                 adjacent_pairs = sum(
@@ -10986,18 +11302,36 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                     if right - left == 1
                 )
                 if len(used_days) >= expected_days:
-                    # 4-kun faqat 3 kunlik variantga boshqa qattiq cheklov
-                    # sig'dirmasa ishlatiladi; darsning o'zi tashlab ketilmaydi.
-                    score += 2400 + (len(used_days) - expected_days) * 1800
+                    # 10–14 soatli ustozda 4-kun, 15–19 soatli fan ustozida
+                    # 5-kun faqat qattiq bandlik sabab sig'masa ochiladi.
+                    score += 18500 + (len(used_days) - expected_days) * 12000
                 else:
-                    # Dushanba–Chorshanba–Juma yoki
-                    # Seshanba–Payshanba–Shanba kabi oralatib ishlash.
-                    score += adjacent_pairs * 620
-                    if used_days and adjacent_pairs == 0:
-                        score -= 150
+                    if not compact_15_19:
+                        # 10–14 soat uchun Dush–Chor–Juma kabi oralatish.
+                        score += adjacent_pairs * 620
+                        if used_days and adjacent_pairs == 0:
+                            score -= 150
+                    elif used_days:
+                        # 15–19 soatli ustozda avval mavjud 4 kunni zich
+                        # to'ldirish; bo'sh kun faqat kerakli 4 kun sonigacha.
+                        sparse_days = sum(
+                            1 for used_day in used_days
+                            if float(state.get("teacher_daily", {}).get(
+                                (teacher, used_day), 0
+                            ) or 0) < 4
+                        )
+                        score += sparse_days * 950
             else:
-                desired_daily = max(3, int(math.ceil(teacher_demand / expected_days)))
-                if daily_count >= desired_daily:
+                desired_daily = max(
+                    3, int(math.ceil(teacher_demand / expected_days))
+                )
+                if compact_15_19:
+                    # 4 kunga zichlashda 6–7, zaruratda 8 darsgacha ruxsat.
+                    if daily_count < 7:
+                        score -= (7 - daily_count) * 520
+                    elif daily_count >= 8:
+                        score += 9000
+                elif daily_count >= desired_daily:
                     score += (daily_count - desired_daily + 1) * 420
         elif int(day) not in used_days and len(used_days) >= expected_days:
             score += 120 + (len(used_days) - expected_days) * 45
@@ -11386,9 +11720,9 @@ def _v196_teacher_gap_metrics(state):
 def _v196_teacher_comfort_signature(state, context):
     """Kichik qiymat — pedagogik va o'qituvchi uchun yaxshiroq jadval.
 
-    Sinf uzluksizligi hamda asosiy/amaliy fan vaqti birinchi o'rinda qoladi.
-    Shundan keyin 3 soatdan uzun smena oralig'i, 2 soatdan uzun istisnolar va
-    nihoyat smena ichidagi ko'p/har kungi oynalar kamaytiriladi.
+    Sinf uzluksizligi qattiq birinchi mezon. Undan keyin o'qituvchining
+    1/2-smena oralig'i va smena ichidagi oynalari turadi; fan vaqtining
+    pedagogik yumshoq qulayligi faqat shu shartlardan keyin baholanadi.
     """
     metrics = _v196_attempt_metrics(state, context)
     excess_cross = max(
@@ -11398,23 +11732,36 @@ def _v196_teacher_comfort_signature(state, context):
     )
     return (
         int(_v196_class_gap_count(state)),
-        int(metrics.get("amaliy_fan_1_2", 0)),
-        int(metrics.get("jismoniydan_keyin_ogir_fan", 0)),
-        int(metrics.get("asosiy_fan_5_6", 0)),
         int(metrics.get("ikki_smenali_uzoq_tanaffus", 0)),
         int(metrics.get("ikki_smenali_2soatdan_uzoq", 0)),
+        int(metrics.get("bir_ustozda_takror_uzoq_smena", 0)),
+        int(metrics.get("ikki_smenali_1soatdan_uzoq", 0)),
         int(metrics.get("eng_uzoq_smena_oraligi_daqiqa", 0)),
-        int(excess_cross),
         int(metrics.get("oqituvchi_kop_oknoli_smena_kun", 0)),
         int(metrics.get("eng_katta_ichki_okno", 0)),
         int(metrics.get("oqituvchi_oknoli_smena_kun", 0)),
         int(metrics.get("oqituvchi_ichki_okno", 0)),
+        int(metrics.get("10_15_ortiqcha_kun", 0)),
+        int(excess_cross),
+        int(metrics.get("amaliy_fan_1_2", 0)),
+        int(metrics.get("jismoniydan_keyin_ogir_fan", 0)),
+        int(metrics.get("asosiy_fan_5_6", 0)),
         int(metrics.get("ketma_ket_ogir_fan", 0)),
     )
 
 
-def _v196_swap_same_class_day(state, first, second, context, rng):
-    """Bir sinf-kundagi ikki dars o'rnini, ustozlarini saqlab almashtiradi."""
+def _v196_swap_class_cells(state, first, second, context, rng):
+    """Bir sinfning ikki band katagini xavfsiz almashtiradi.
+
+    Kataklar bir kunda ham, boshqa kunlarda ham bo'lishi mumkin. Har ikki
+    katak avvaldan band bo'lgani uchun sinfning kunlik dars soni va uzluksiz
+    1..N ko'rinishi o'zgarmaydi; o'qituvchi, xona va fan kunlik maksimumi esa
+    qayta joylashtirishda boshqatdan tekshiriladi.
+    """
+    if int(first["job"].get("sinf_id") or 0) != int(
+        second["job"].get("sinf_id") or 0
+    ):
+        return None
     removed = {id(first), id(second)}
     base = [
         placement for placement in state.get("placements", [])
@@ -11422,18 +11769,24 @@ def _v196_swap_same_class_day(state, first, second, context, rng):
     ]
     orders = ((second, first), (first, second))
     targets = {
-        id(first): int(second.get("period") or 0),
-        id(second): int(first.get("period") or 0),
+        id(first): (
+            int(second.get("day") or 0), int(second.get("period") or 0)
+        ),
+        id(second): (
+            int(first.get("day") or 0), int(first.get("period") or 0)
+        ),
     }
     for leading, trailing in orders:
         trial = _v1852_rebuild_schedule_state(base, context)
+        leading_day, leading_period = targets[id(leading)]
         if not _v196_place_exact(
-            leading["job"], leading["day"], targets[id(leading)],
+            leading["job"], leading_day, leading_period,
             trial, context, rng, expected_teachers=leading.get("teachers"),
         ):
             continue
+        trailing_day, trailing_period = targets[id(trailing)]
         if not _v196_place_exact(
-            trailing["job"], trailing["day"], targets[id(trailing)],
+            trailing["job"], trailing_day, trailing_period,
             trial, context, rng, expected_teachers=trailing.get("teachers"),
         ):
             continue
@@ -11442,35 +11795,62 @@ def _v196_swap_same_class_day(state, first, second, context, rng):
     return None
 
 
-def _v196_teacher_window_candidates(state, context, limit=96):
-    """Eng yomon o'qituvchi-kunlardan foydali bo'lishi mumkin swaplarni oladi."""
-    issues = []
+def _v196_teacher_window_candidates(state, context, limit=160):
+    """Ichki okno, smena oralig'i va ortiqcha ish kunini tuzatuvchi swaplar."""
+    placements = list(state.get("placements", []))
     teacher_days = {
         (int(teacher), int(day))
         for (teacher, day), count in state.get("teacher_daily", {}).items()
         if float(count or 0) > 0
     }
+    demands = context.get("v196_teacher_demand") or {}
+    issues = []
     for teacher, day in teacher_days:
-        first = set(state.get("teacher_periods", {}).get((teacher, day, 1), set()))
-        second = set(state.get("teacher_periods", {}).get((teacher, day, 2), set()))
-        internal = int(_v1852_gap_count(first) + _v1852_gap_count(second))
-        cross = _v196_cross_shift_gap_minutes(state, teacher, day, context)
-        cross_value = int(cross or 0)
-        if internal <= 0 and cross_value <= 120:
+        first_shift = set(
+            state.get("teacher_periods", {}).get((teacher, day, 1), set())
+        )
+        second_shift = set(
+            state.get("teacher_periods", {}).get((teacher, day, 2), set())
+        )
+        internal = int(
+            _v1852_gap_count(first_shift) + _v1852_gap_count(second_shift)
+        )
+        cross = int(
+            _v196_cross_shift_gap_minutes(
+                state, teacher, day, context
+            ) or 0
+        )
+        demand = float(demands.get(teacher, 0) or 0)
+        rules = context.get("rules", {}).get(
+            teacher, context.get("default_rules", {})
+        )
+        active_days = _v196_teacher_used_days(state, teacher)
+        target_days = _v196_teacher_target_days(
+            demand, rules, teacher=teacher, context=context
+        )
+        compact_extra = bool(
+            _v196_compact_15_19_teacher(teacher, demand, context)
+            and len(active_days) > target_days
+        )
+        if internal <= 0 and cross <= 60 and not compact_extra:
             continue
         issues.append((
-            1 if cross_value > 180 else 0,
-            1 if cross_value > 120 else 0,
-            cross_value,
+            1 if cross > 180 else 0,
+            1 if cross > 120 else 0,
+            1 if cross > 60 else 0,
             internal,
+            cross,
+            1 if compact_extra else 0,
             teacher,
             day,
         ))
 
-    placements = list(state.get("placements", []))
-    pairs = []
+    ranked_pairs = []
     seen = set()
-    for _, _, cross, internal, teacher, day in sorted(issues, reverse=True)[:10]:
+    # Avval 4+ soatlik va ko'p ichki oynali kunlar ko'riladi.
+    for _, _, _, internal, cross, compact_extra, teacher, day in sorted(
+        issues, reverse=True
+    )[:24]:
         owned = [
             placement for placement in placements
             if int(placement.get("day") or 0) == int(day)
@@ -11489,14 +11869,17 @@ def _v196_teacher_window_candidates(state, context, limit=96):
             )
             before_internal = int(_v1852_gap_count(current_periods))
             class_id = int(first["job"].get("sinf_id") or 0)
-            alternatives = [
-                other for other in placements
-                if int(other.get("day") or 0) == int(day)
-                and int(other["job"].get("sinf_id") or 0) == class_id
-                and int(other.get("period") or 0) != int(first.get("period") or 0)
-                and _v196_movable_placement(other)
-            ]
-            for second in alternatives:
+
+            # 1) Shu sinf-kunning o'zida fanlar o'rnini almashtirish.
+            for second in placements:
+                if (
+                    int(second.get("day") or 0) != int(day)
+                    or int(second["job"].get("sinf_id") or 0) != class_id
+                    or int(second.get("period") or 0)
+                    == int(first.get("period") or 0)
+                    or not _v196_movable_placement(second)
+                ):
+                    continue
                 moved_periods = (
                     current_periods - {int(first.get("period") or 0)}
                 ) | {int(second.get("period") or 0)}
@@ -11504,7 +11887,7 @@ def _v196_teacher_window_candidates(state, context, limit=96):
                     int(_v1852_gap_count(moved_periods)) < before_internal
                 )
                 improves_cross = bool(
-                    cross > 120 and (
+                    cross > 60 and (
                         (shift == 1 and int(second["period"]) > int(first["period"]))
                         or (shift == 2 and int(second["period"]) < int(first["period"]))
                     )
@@ -11515,22 +11898,88 @@ def _v196_teacher_window_candidates(state, context, limit=96):
                 if key in seen:
                     continue
                 seen.add(key)
-                pairs.append((first, second))
-                if len(pairs) >= int(limit):
-                    return pairs
-    return pairs
+                ranked_pairs.append((
+                    0 if improves_internal else 1,
+                    -max(0, before_internal - int(_v1852_gap_count(moved_periods))),
+                    -abs(int(second["period"]) - int(first["period"])),
+                    first, second,
+                ))
+
+            # 2) 15–19 soatli fan ustozining siyrak/uzoq kutishli kunini
+            # boshqa faol kuniga ko'chirish. Shu sinfning boshqa kundagi band
+            # katagi bilan swap bo'lgani uchun sinf dars soni buzilmaydi.
+            active_days = _v196_teacher_used_days(state, teacher)
+            source_load = float(
+                state.get("teacher_daily", {}).get((teacher, int(day)), 0) or 0
+            )
+            demand = float(demands.get(teacher, 0) or 0)
+            compact_profile = _v196_compact_15_19_teacher(
+                teacher, demand, context
+            )
+            if compact_profile or cross > 60 or internal > 0:
+                for second in placements:
+                    target_day = int(second.get("day") or 0)
+                    if (
+                        target_day == int(day)
+                        or target_day not in active_days
+                        or int(second["job"].get("sinf_id") or 0) != class_id
+                        or not _v196_movable_placement(second)
+                        or int(teacher) in {
+                            int(value) for value in second.get("teachers") or []
+                            if value is not None
+                        }
+                    ):
+                        continue
+                    target_load = float(
+                        state.get("teacher_daily", {}).get(
+                            (teacher, target_day), 0
+                        ) or 0
+                    )
+                    rules = context.get("rules", {}).get(
+                        teacher, context.get("default_rules", {})
+                    )
+                    if target_load >= _v196_effective_daily_limit(
+                        teacher, rules, demand, context
+                    ):
+                        continue
+                    target_shift = int(first["job"].get("smena") or 1)
+                    target_period = int(second.get("period") or 0)
+                    target_periods = set(
+                        state.get("teacher_periods", {}).get(
+                            (teacher, target_day, target_shift), set()
+                        )
+                    )
+                    distance = min(
+                        [abs(target_period - value) for value in target_periods]
+                        or [7]
+                    )
+                    # Avval yagona/siyrak darsni yo'qotadigan va nishonda
+                    # mavjud blokka tutashadigan swaplar sinovdan o'tadi.
+                    key = tuple(sorted((id(first), id(second))))
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    ranked_pairs.append((
+                        0 if source_load <= 1.0 else 1,
+                        0 if distance == 1 else 2 + distance,
+                        0 if compact_extra else 1,
+                        first, second,
+                    ))
+
+    ranked_pairs.sort(key=lambda row: row[:3])
+    return [(row[3], row[4]) for row in ranked_pairs[:int(limit)]]
 
 
-def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
+def _v196_optimize_teacher_windows(state, context, rng, max_swaps=64):
     """Sinf kataklarini saqlab, ichki va smenalararo kutishni qisqartiradi."""
     current_signature = _v196_teacher_comfort_signature(state, context)
     swaps = 0
     while swaps < int(max_swaps):
         best = None
         for first, second in _v196_teacher_window_candidates(
-            state, context, limit=96
+            state, context, limit=160
         ):
-            trial = _v196_swap_same_class_day(
+            trial = _v196_swap_class_cells(
                 state, first, second, context, rng
             )
             if trial is None:
@@ -11592,6 +12041,8 @@ def _v196_attempt_metrics(state, context):
     cross_shift_over_two_hours = 0
     cross_shift_total_minutes = 0
     cross_shift_max_minutes = 0
+    cross_shift_over_one_hour = 0
+    teachers_with_repeated_long_cross = 0
     teacher_days = {
         (int(teacher), int(day))
         for (teacher, day), count in state.get("teacher_daily", {}).items()
@@ -11603,12 +12054,17 @@ def _v196_attempt_metrics(state, context):
     demands = context.get("v196_teacher_demand") or {}
     for teacher, demand in demands.items():
         demand = float(demand or 0)
-        if not (10 <= demand <= 15):
+        compact_15_19 = _v196_compact_15_19_teacher(
+            int(teacher), demand, context
+        )
+        if not (10 <= demand < 15 or compact_15_19):
             continue
         rules = context.get("rules", {}).get(
             int(teacher), context.get("default_rules", {})
         )
-        target_days = _v196_teacher_target_days(demand, rules)
+        target_days = _v196_teacher_target_days(
+            demand, rules, teacher=int(teacher), context=context
+        )
         active = sorted(
             day for uid, day in teacher_days if int(uid) == int(teacher)
         )
@@ -11625,6 +12081,7 @@ def _v196_attempt_metrics(state, context):
             medium_unbalanced_days += max(
                 0, int(math.ceil(max(daily_loads) - min(daily_loads) - 2))
             )
+    teacher_cross_long_counts = _v1852_defaultdict(int)
     for teacher, day in teacher_days:
         blocks = _v196_cross_shift_edge_blocks(state, teacher, day, context)
         minutes = _v196_cross_shift_gap_minutes(state, teacher, day, context)
@@ -11633,10 +12090,16 @@ def _v196_attempt_metrics(state, context):
         cross_shift_blocks += int(blocks)
         cross_shift_total_minutes += int(minutes)
         cross_shift_max_minutes = max(cross_shift_max_minutes, int(minutes))
+        if int(minutes) > 60:
+            cross_shift_over_one_hour += 1
+            teacher_cross_long_counts[int(teacher)] += 1
         if int(minutes) > 120:
             cross_shift_over_two_hours += 1
         if int(minutes) > 180:
             cross_shift_long_days += 1
+    teachers_with_repeated_long_cross = sum(
+        1 for count in teacher_cross_long_counts.values() if int(count) > 1
+    )
     class_imbalance, class_short_days = _v196_class_distribution_metrics(state, context)
     teacher_gap_metrics = _v196_teacher_gap_metrics(state)
     return {
@@ -11650,6 +12113,8 @@ def _v196_attempt_metrics(state, context):
         "oqituvchi_smenalar_orasi_blok": int(cross_shift_blocks),
         "oqituvchi_smenalar_orasi_daqiqa": int(cross_shift_total_minutes),
         "eng_uzoq_smena_oraligi_daqiqa": int(cross_shift_max_minutes),
+        "ikki_smenali_1soatdan_uzoq": int(cross_shift_over_one_hour),
+        "bir_ustozda_takror_uzoq_smena": int(teachers_with_repeated_long_cross),
         "ikki_smenali_2soatdan_uzoq": int(cross_shift_over_two_hours),
         "ikki_smenali_uzoq_tanaffus": int(cross_shift_long_days),
         "10_15_ortiqcha_kun": int(medium_extra_days),
@@ -11662,6 +12127,10 @@ def _v196_attempt_metrics(state, context):
 
 
 def _v1852_generate_attempt(jobs, context, seed):
+    context["v196_teacher_grades"] = (
+        context.get("v196_teacher_grades")
+        or _v196_teacher_grade_catalog(jobs, context.get("classes", {}))
+    )
     context["v196_teacher_demand"] = context.get("v196_teacher_demand") or _v196_teacher_demand(jobs)
     context["v196_teacher_shift_demand"] = (
         context.get("v196_teacher_shift_demand") or _v196_teacher_shift_demand(jobs)
@@ -11703,17 +12172,19 @@ def _v1852_generate_attempt(jobs, context, seed):
         + metrics["9_11_birinchi_dars_ogir"] * 12
         + metrics["asosiy_fan_5_6"] * 180
         + metrics["amaliy_fan_1_2"] * 180
-        + metrics["oqituvchi_smenalar_orasi_blok"] * 55
-        + metrics["oqituvchi_smenalar_orasi_daqiqa"] * 0.35
-        + metrics["ikki_smenali_2soatdan_uzoq"] * 260
-        + metrics["ikki_smenali_uzoq_tanaffus"] * 1200
-        + metrics["10_15_ortiqcha_kun"] * 1800
+        + metrics["oqituvchi_smenalar_orasi_blok"] * 650
+        + metrics["oqituvchi_smenalar_orasi_daqiqa"] * 4.0
+        + metrics["ikki_smenali_1soatdan_uzoq"] * 8500
+        + metrics["bir_ustozda_takror_uzoq_smena"] * 26000
+        + metrics["ikki_smenali_2soatdan_uzoq"] * 52000
+        + metrics["ikki_smenali_uzoq_tanaffus"] * 210000
+        + metrics["10_15_ortiqcha_kun"] * 18500
         + metrics["10_15_yonma_yon_kun"] * 520
         + metrics["10_15_notekis_kun"] * 360
-        + metrics["oqituvchi_ichki_okno"] * 650
-        + metrics["oqituvchi_oknoli_smena_kun"] * 280
-        + metrics["oqituvchi_kop_oknoli_smena_kun"] * 1400
-        + metrics["eng_katta_ichki_okno"] * 900
+        + metrics["oqituvchi_ichki_okno"] * 9500
+        + metrics["oqituvchi_oknoli_smena_kun"] * 4800
+        + metrics["oqituvchi_kop_oknoli_smena_kun"] * 36000
+        + metrics["eng_katta_ichki_okno"] * 22000
         + metrics["sinf_kun_taqsimoti_farqi"] * 45
         + metrics["sinf_qisqa_kunlari"] * 120
     )
