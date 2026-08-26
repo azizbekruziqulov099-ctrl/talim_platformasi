@@ -32,7 +32,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_SCHOOL_PACKAGE_REVISION = "manual-method-compact-days-rev52"
+SAMTM_SCHOOL_PACKAGE_REVISION = "parallel-group-method-availability-rev53"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
@@ -2595,6 +2595,10 @@ def _v1852_job_teacher_ids(job):
 
 
 _V201_UNPLACED_REASON_TEXT = {
+    "parallel guruhlar uchun umumiy vaqt topilmadi": (
+        "Bu fan 1-/2-guruh yoki o'g'il/qiz guruhida bir vaqtda o'tishi kerak. Sinf va barcha guruh o'qituvchilari bir paytda bo'sh bo'lgan katak topilmadi.",
+        "O'qituvchi vaqti bo'limida guruh o'qituvchilariga kamida bitta umumiy ochiq katak qoldiring; so'ng yangi draft yarating. Tizim bitta sinf katagida guruhlarni tagma-tag joylaydi.",
+    ),
     "sinf band": (
         "Sinfning ruxsat etilgan kataklari boshqa darslar bilan band bo'lib qolgan.",
         "Sinfning qattiq bloklarini va kunlik dars sig'imini tekshiring; so'ng yangi draft yarating.",
@@ -2696,19 +2700,49 @@ def _v201_unplaced_teacher_rows(job, teachers):
     members = job.get("rotation_members") or []
     if members:
         for member in members:
+            member_groups = member.get("groups") or []
+            if member_groups:
+                for group in member_groups:
+                    teacher_id = group.get("teacher")
+                    if teacher_id is None:
+                        continue
+                    rows.append({
+                        "user_id": int(teacher_id),
+                        "full_name": (teachers.get(int(teacher_id), {}) or {}).get("full_name") or str(teacher_id),
+                        "fan": member.get("fan") or job.get("fan"),
+                        "guruh_kaliti": group.get("guruh_kaliti") or "whole",
+                        "soat": 0.5,
+                    })
+                continue
             for teacher_id in sorted(_v1852_job_teacher_ids(member)):
                 rows.append({
                     "user_id": int(teacher_id),
                     "full_name": (teachers.get(int(teacher_id), {}) or {}).get("full_name") or str(teacher_id),
                     "fan": member.get("fan") or job.get("fan"),
+                    "guruh_kaliti": "whole",
                     "soat": 0.5,
                 })
+        return rows
+    groups = job.get("groups") or []
+    if groups:
+        for group in groups:
+            teacher_id = group.get("teacher")
+            if teacher_id is None:
+                continue
+            rows.append({
+                "user_id": int(teacher_id),
+                "full_name": (teachers.get(int(teacher_id), {}) or {}).get("full_name") or str(teacher_id),
+                "fan": job.get("fan"),
+                "guruh_kaliti": group.get("guruh_kaliti") or "whole",
+                "soat": 1.0,
+            })
         return rows
     for teacher_id, hours in sorted(_v201_unplaced_teacher_weights(job).items()):
         rows.append({
             "user_id": int(teacher_id),
             "full_name": (teachers.get(int(teacher_id), {}) or {}).get("full_name") or str(teacher_id),
             "fan": job.get("fan"),
+            "guruh_kaliti": "whole",
             "soat": round(float(hours), 1),
         })
     return rows
@@ -2778,6 +2812,157 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
     Bu bosqich kerakli katakdagi sinf/o'qituvchi/xona darslarini vaqtincha olib,
     yangi darsni qo'yadi va olib turilgan darslarni boshqa bo'sh katakka qaytaradi.
     """
+    def _job_is_fixed(job):
+        return bool(
+            job.get("is_class_hour")
+            or int(job.get("fixed_day") or 0)
+            or int(job.get("fixed_period") or 0)
+        )
+
+    def _slot_blockers(job, day, period, teachers, room_keys, source_state):
+        """Bitta katakka halaqit qilayotgan aniq dars paketlarini qaytaradi.
+
+        Guruhli fan bitta ``job`` bo'lib, ichida ikki yoki undan ko'p ustoz
+        turadi. Shuning uchun to'qnashuv ham alohida guruh satri emas, butun
+        parallel paket bo'yicha topiladi.
+        """
+        teacher_set = {int(value) for value in teachers if value is not None}
+        room_set = {value for value in room_keys if value}
+        result = []
+        for placement in source_state.get("placements", []):
+            if (
+                int(placement.get("day") or 0) != int(day)
+                or int(placement.get("period") or 0) != int(period)
+                or int(placement.get("job", {}).get("smena") or 1)
+                != int(job.get("smena") or 1)
+            ):
+                continue
+            placement_teachers = {
+                int(value) for value in placement.get("teachers") or []
+                if value is not None
+            }
+            placement_rooms = {
+                value for value in placement.get("room_keys") or [] if value
+            }
+            if (
+                int(placement["job"].get("sinf_id") or 0)
+                == int(job.get("sinf_id") or 0)
+                or bool(teacher_set & placement_teachers)
+                or bool(room_set & placement_rooms)
+            ):
+                result.append(placement)
+        return result
+
+    def _candidate_targets(job, source_state):
+        shift = context["shifts"].get(job.get("smena"))
+        if not shift:
+            return []
+        fixed_day = int(job.get("fixed_day") or 0)
+        fixed_period = int(job.get("fixed_period") or 0)
+        days = [fixed_day] if fixed_day else range(1, context["weekdays"] + 1)
+        result = []
+        for day in days:
+            class_row = context["classes"].get(job.get("sinf_id"), {})
+            if _v1856_class_day_block_reason(
+                class_row, day, context.get("class_day_blocks", {})
+            ):
+                continue
+            for slot in shift.get("slotlar") or []:
+                period = int(slot.get("dars_raqami") or 0)
+                if fixed_period and period != fixed_period:
+                    continue
+                teachers = _v1852_choose_teacher(
+                    job, day, period, source_state, context
+                )
+                room_keys = _v1852_room_keys(
+                    job, teachers, context["classes"]
+                )
+                score = (
+                    0.0
+                    if fixed_day and fixed_period
+                    else _v1852_candidate_score(
+                        job, day, period, teachers, source_state, context, rng
+                    )
+                )
+                result.append((score, day, period, teachers, room_keys))
+        result.sort(key=lambda row: row[0])
+        return result
+
+    def _place_with_chain(job, source_state, depth, path):
+        """Bir necha darsni zanjirli ko'chirish orqali ishni joylaydi.
+
+        Oldingi ta'mirlash faqat bitta qatlamni ko'rardi: guruhli fan uchun
+        sinf darsi va ikki ustozning darsini surish kerak bo'lsa, ikkinchi
+        ko'chirishdayoq to'xtardi. Bu qidiruv uch qatlamgacha xavfsiz yuradi;
+        qattiq sinf soati, metod kuni va BAND kataklari hech qachon buzilmaydi.
+        """
+        direct, _ = _v1852_open_candidates(job, source_state, context, rng)
+        if direct:
+            _, day, period, teachers, rooms = direct[0]
+            trial = _v1852_rebuild_schedule_state(
+                list(source_state.get("placements", [])), context
+            )
+            _v1852_place_job(job, day, period, teachers, rooms, trial, context)
+            return trial
+        if depth <= 0:
+            return None
+
+        for _, day, period, teachers, rooms in _candidate_targets(
+            job, source_state
+        )[:36]:
+            blockers = _slot_blockers(
+                job, day, period, teachers, rooms, source_state
+            )
+            if not blockers or len(blockers) > 5:
+                continue
+            blocker_job_ids = {id(row.get("job")) for row in blockers}
+            if blocker_job_ids & set(path):
+                continue
+            if any(_job_is_fixed(row.get("job") or {}) for row in blockers):
+                continue
+
+            blocker_ids = {id(row) for row in blockers}
+            trial = _v1852_rebuild_schedule_state(
+                [
+                    row for row in source_state.get("placements", [])
+                    if id(row) not in blocker_ids
+                ],
+                context,
+            )
+            target, _ = _v1852_open_candidates(
+                job, trial, context, rng, exact=(int(day), int(period))
+            )
+            if not target:
+                continue
+            _, target_day, target_period, target_teachers, target_rooms = target[0]
+            _v1852_place_job(
+                job, target_day, target_period,
+                target_teachers, target_rooms, trial, context,
+            )
+
+            returned = True
+            ordered_blockers = sorted(
+                blockers,
+                key=lambda row: (
+                    len(_v1852_job_teacher_ids(row.get("job") or {})),
+                    float((row.get("job") or {}).get("difficulty") or 0),
+                ),
+                reverse=True,
+            )
+            next_path = set(path) | {id(job)} | blocker_job_ids
+            for blocker in ordered_blockers:
+                repaired = _place_with_chain(
+                    blocker["job"], trial, depth - 1,
+                    next_path - {id(blocker["job"])},
+                )
+                if repaired is None:
+                    returned = False
+                    break
+                trial = repaired
+            if returned:
+                return trial
+        return None
+
     remaining = list(unplaced)
     for _round in range(3):
         if not remaining:
@@ -2893,7 +3078,19 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
                 state = repaired
                 progress = True
             else:
-                next_remaining.append({"job": job, "sabablar": dict(rejected.most_common(6))})
+                # Parallel guruhlar ko'pincha bitta sinf darsi va ikki
+                # o'qituvchining darsini bir vaqtda siljitishni talab qiladi.
+                # Bitta qatlamli almashtirish yetmasa, zanjirli ta'mirlashni
+                # ishlatamiz. Natijada 1-/2-guruh bir katakda qoladi.
+                chained = _place_with_chain(job, state, 3, {id(job)})
+                if chained is not None:
+                    state = chained
+                    progress = True
+                else:
+                    next_remaining.append({
+                        "job": job,
+                        "sabablar": dict(rejected.most_common(6)),
+                    })
         remaining = next_remaining
         if not progress:
             break
@@ -3096,7 +3293,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         best = None
         base_seed = int(datetime.now().timestamp())
         print(
-            "[JADVAL-REV52] boshlandi "
+            "[JADVAL-REV53] boshlandi "
             f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
             f"reja_urinish={requested_attempts} byudjet={generation_budget:.0f}s",
             flush=True,
@@ -3196,6 +3393,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
             cls = classes.get(job["sinf_id"], {})
             top_reasons = item.get("sabablar") or {"mos bo'sh vaqt topilmadi": 1}
             primary_reason = max(top_reasons, key=top_reasons.get)
+            parallel_groups = job.get("groups") or []
+            if len(parallel_groups) >= 2:
+                # ``sinf band`` faqat oxirgi ko'ringan simptom: bu paketda
+                # asl talab sinf + barcha guruh ustozlari bir vaqtda bo'sh
+                # bo'lishidir. Foydalanuvchiga aynan shu ildiz sababni aytamiz.
+                primary_reason = "parallel guruhlar uchun umumiy vaqt topilmadi"
             reason_text, solution_text = _v201_unplaced_reason_copy(primary_reason)
             teacher_rows = _v201_unplaced_teacher_rows(job, teachers)
             unplaced_payload.append({
@@ -3203,6 +3406,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "fan": job["fan"], "takror_raqami": job["occurrence"],
                 "sabab": primary_reason, "sabablar": top_reasons,
                 "sabab_izohi": reason_text, "yechim": solution_text,
+                "parallel_guruh": len(parallel_groups) >= 2,
+                "guruhlar": [
+                    {
+                        "guruh_kaliti": group.get("guruh_kaliti") or "whole",
+                        "oqituvchi_user_id": group.get("teacher"),
+                        "oqituvchi_ismi": (
+                            teachers.get(int(group["teacher"]), {}).get("full_name")
+                            if group.get("teacher") is not None else None
+                        ),
+                    }
+                    for group in parallel_groups
+                ],
                 "oqituvchilar": teacher_rows,
                 "oqituvchi_user_idlar": sorted({int(row["user_id"]) for row in teacher_rows}),
             })
@@ -3212,6 +3427,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 teacher_unplaced[int(teacher["user_id"])].append({
                     "sinf": problem.get("sinf"),
                     "fan": teacher.get("fan") or problem.get("fan"),
+                    "guruh_kaliti": teacher.get("guruh_kaliti") or "whole",
+                    "parallel_guruh": bool(problem.get("parallel_guruh")),
                     "soat": float(teacher.get("soat") or 0),
                     "sabab": problem.get("sabab"),
                     "sabab_izohi": problem.get("sabab_izohi"),
@@ -3257,7 +3474,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "tasdiqlash_mumkin": False,
         }
         print(
-            "[JADVAL-REV52] hisoblash tugadi "
+            "[JADVAL-REV53] hisoblash tugadi "
             f"maktab_id={sorov.maktab_id} urinish={completed_attempts} "
             f"joylashdi={placed_count}/{total_count} "
             f"soniya={diagnostics['hisoblash_soniya']} "
