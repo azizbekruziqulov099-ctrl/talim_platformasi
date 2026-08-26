@@ -119,7 +119,7 @@ def versiya():
         ],
         "module_versions": {
             "learning_center": "learning-center-v2-secure-v14",
-            "institute": "institute-v1-secure-v15",
+            "institute": "institute-foundation-v20-rev54",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "fast-feedback-v18.22",
