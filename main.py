@@ -9,6 +9,7 @@ SAMTM_ASGI_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_REQUIRED_ROUTES = {
     "/api/maktab/aqlli_jadval/v3/maktab_workspace_boglash",
     "/api/maktab/aqlli_jadval/v3/soat_imkoniyatlari",
+    "/api/maktab/aqlli_jadval/v3/jadval_xlsx",
 }
 
 try:
@@ -48,7 +49,7 @@ if missing_required_routes:
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_ASGI_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "bounded-timetable-generation-rev49"
+    "class-hour-unified-timeline-xlsx-rev50"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
