@@ -6,7 +6,7 @@ lavozimga asoslangan ruxsatlar va HEMISgacha bo'lgan qabul kontingenti.
 Muhim tamoyillar:
 - import avval preview qilinadi, keyin bitta tranzaksiyada commit bo'ladi;
 - talabaning maxfiy ma'lumoti faqat vakolatli rolga beriladi;
-- xodim/talaba uchun doim bir martalik, 7 kunlik kirish kodi beriladi;
+- xodim/talaba uchun doim bir martalik, 2 oylik kirish kodi beriladi;
 - qabulda dublikat universitet + JSHSHIR bo'yicha bloklanadi/upsert qilinadi.
 """
 from __future__ import annotations
@@ -26,7 +26,7 @@ from fastapi import APIRouter, File, Header, HTTPException, Query, UploadFile
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "institute-foundation-v20-rev54"
+SAMTM_INSTITUTE_RELEASE = "institute-access-2month-v20-rev55"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -994,7 +994,7 @@ def manual_staff(req: StaffCreate):
         _audit(cur, req.universitet_id, user_id, "xodim_qoshildi", "xodim_rol", role_id, {"rol": req.rol})
         conn.commit()
         return {"holat": "yaratildi", "user_id": placeholder, "rol_id": role_id, "fish": fish,
-                "lavozim": ROLE_LABELS[req.rol], "kirish_kodi": code, "kod_muddati": "7 kun"}
+                "lavozim": ROLE_LABELS[req.rol], "kirish_kodi": code, "kod_muddati": "2 oy"}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -1089,7 +1089,7 @@ def structure_commit(req: BatchCommit):
                 if len(candidates) == 1: program_id = candidates[0]
             placeholder, role_id, code = _new_placeholder(cur, person["fish"], university_id, role, person.get("telefon"), actor, faculty_id, department_id, program_id)
             counts["xodim"] += 1
-            credentials.append({"fish": person["fish"], "lavozim": ROLE_LABELS[role], "kirish_kodi": code, "kod_muddati": "7 kun"})
+            credentials.append({"fish": person["fish"], "lavozim": ROLE_LABELS[role], "kirish_kodi": code, "kod_muddati": "2 oy"})
         cur.execute("UPDATE universitet_import_batchlar SET holat='committed',commit_at=NOW() WHERE id=%s", (req.batch_id,))
         _audit(cur, university_id, actor, "tuzilma_import_commit", "import_batch", req.batch_id, counts)
         conn.commit(); return {"holat": "import_qilindi", "sonlar": counts, "kirish_kodlari": credentials,
@@ -1350,7 +1350,7 @@ def update_stage(student_id: int, req: StageUpdate):
                 hujjat_topshirgan_at=CASE WHEN %s>=2 THEN COALESCE(hujjat_topshirgan_at,NOW()) ELSE NULL END,
                 yangilangan_at=NOW() WHERE id=%s""", (req.bosqich, req.bosqich, student_id))
         _audit(cur, row["universitet_id"], actor, "qabul_bosqichi", "qabul_talaba", student_id, {"bosqich": req.bosqich})
-        conn.commit(); return {"holat": "yangilandi", "bosqich": req.bosqich, "kirish_kodi": code, "kod_muddati": "7 kun" if code else None}
+        conn.commit(); return {"holat": "yangilandi", "bosqich": req.bosqich, "kirish_kodi": code, "kod_muddati": "2 oy" if code else None}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -1370,7 +1370,7 @@ def invite_student(student_id: int, req: InviteSend):
         code = _create_student_invite(cur, dict(row), actor)
         base = getattr(p, "FRONTEND_URL", "").rstrip("/")
         link = f"{base}/?kirish_kodi={code}"
-        text = f"Institut ta'lim platformasiga kirish kodi: {code}. Kod 7 kun amal qiladi. Kirish: {link}"
+        text = f"Institut ta'lim platformasiga kirish kodi: {code}. Kod 2 oy amal qiladi. Kirish: {link}"
         sent = False
         if req.kanal == "sms":
             if not row["telefon"]: raise HTTPException(status_code=400, detail="Talabada telefon raqami yo'q")
@@ -1389,7 +1389,7 @@ def redeem_code(req: RedeemCode):
     conn = p._db(); cur = conn.cursor()
     try:
         _ensure_schema(cur); p._xodim_kod_jadvali(cur)
-        cur.execute("""SELECT tk.*,xk.ishlatildi,(xk.yaratildi>NOW()-INTERVAL '7 days') hali_yangi
+        cur.execute("""SELECT tk.*,xk.ishlatildi,(xk.yaratildi>NOW()-INTERVAL '2 months') hali_yangi
             FROM universitet_taklif_kodlari tk JOIN xodim_kod xk ON xk.kod=tk.kod_hash
             WHERE tk.kod_hash IN (%s,%s) FOR UPDATE""", (stored, plain)); invite = cur.fetchone()
         if not invite: raise HTTPException(status_code=400, detail="Kirish kodi noto'g'ri")
