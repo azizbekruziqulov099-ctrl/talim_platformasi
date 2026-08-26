@@ -30,7 +30,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_SCHOOL_PACKAGE_REVISION = "existing-school-id-first-no-duplicate-rev47"
+SAMTM_SCHOOL_PACKAGE_REVISION = "existing-school-selected-id-compat-rev48"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
@@ -8263,6 +8263,10 @@ class V198SchoolWorkspaceLinkRequest(BaseModel):
     # aynan ``maktab_id`` nomi bilan yuboradi. Avval bu maydon qabul
     # qilinmagani uchun mavjud maktab ham yangi maktab oqimiga tushib qolardi.
     maktab_id: Optional[int] = None
+    # REV48: productiondagi eski frontend ``selected_id`` yuboradi. Uni
+    # tashlab yubormaymiz: agar bu ID foydalanuvchiga tegishli haqiqiy
+    # maktab bo'lsa, V17 jadvallariga kirmasdan bevosita shu maktab ochiladi.
+    selected_id: Optional[int] = None
     existing_only: bool = False
     create_new: bool = False
     nomi: Optional[str] = None
@@ -8383,41 +8387,20 @@ def v198_link_school_workspace(
     conn = _db()
     cur = conn.cursor()
     try:
-        _maktab_jadvali(cur)
-        _muassasa_jadvali(cur)
-        if sorov.existing_only:
-            existing = _v198_existing_school_for_user(
+        # Eski va yangi frontendlar bilan bir xil ishlaydi. Muhim jihat:
+        # mavjud maktabni topish V17 schema/helper so'rovlaridan OLDIN
+        # bajariladi. Shuning uchun organization_trials/learning_contexts
+        # vaqtincha xato qilsa ham eski maktab yangi yaratish oynasiga
+        # tushmaydi.
+        preferred_school_id = sorov.maktab_id or sorov.selected_id
+        requested_school = None
+        if preferred_school_id is not None or sorov.existing_only:
+            requested_school = _v198_existing_school_for_user(
                 cur,
                 user_id,
-                preferred_id=sorov.maktab_id,
+                preferred_id=preferred_school_id,
                 preferred_name=sorov.nomi,
             )
-            if not existing:
-                raise HTTPException(
-                    status_code=404,
-                    detail="Sizga tegishli mavjud maktab topilmadi.",
-                )
-            maktab_id = int(existing["maktab_id"])
-            cur.execute(
-                """UPDATE users
-                      SET maktab_id=%s,
-                          lavozim=COALESCE(NULLIF(lavozim,''),'direktor')
-                    WHERE user_id=%s""",
-                (maktab_id, user_id),
-            )
-            conn.commit()
-            return {
-                "holat": "mavjud_tiklandi",
-                "maktab_id": maktab_id,
-                "maktab_nomi": existing["maktab_nomi"],
-                "legacy_yaratildi": False,
-            }
-        requested_school = _v198_existing_school_for_user(
-            cur,
-            user_id,
-            preferred_id=sorov.maktab_id,
-            preferred_name=sorov.nomi,
-        ) if sorov.maktab_id is not None else None
         if requested_school:
             maktab_id = int(requested_school["maktab_id"])
             cur.execute(
@@ -8429,11 +8412,28 @@ def v198_link_school_workspace(
             )
             conn.commit()
             return {
-                "holat": "mavjud_id",
+                "holat": (
+                    "mavjud_tiklandi"
+                    if sorov.existing_only
+                    else "mavjud_id_rev48"
+                ),
                 "maktab_id": maktab_id,
                 "maktab_nomi": requested_school["maktab_nomi"],
                 "legacy_yaratildi": False,
+                "frontend_mosligi": (
+                    "selected_id"
+                    if sorov.maktab_id is None and sorov.selected_id is not None
+                    else "maktab_id"
+                ),
             }
+        if sorov.existing_only:
+            raise HTTPException(
+                status_code=404,
+                detail="Sizga tegishli mavjud maktab topilmadi.",
+            )
+
+        _maktab_jadvali(cur)
+        _muassasa_jadvali(cur)
         cur.execute(
             """SELECT to_regclass('public.organization_trials') AS trials,
                       to_regclass('public.learning_contexts') AS contexts"""
@@ -8474,7 +8474,7 @@ def v198_link_school_workspace(
                 existing = _v198_existing_school_for_user(
                     cur,
                     user_id,
-                    preferred_id=sorov.maktab_id,
+                    preferred_id=sorov.maktab_id or sorov.selected_id,
                     preferred_name=sorov.nomi,
                 )
                 if existing:
