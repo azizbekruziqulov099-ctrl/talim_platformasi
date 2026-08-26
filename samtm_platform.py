@@ -1104,7 +1104,7 @@ def telefon_royxat(sorov: TelefonRoyxatSorov):
 def hisob_ulash(sorov: UlashSorov):
     """Google hisobini bot user_id'siga kod orqali bog'laydi. Ikki xil
     kod manbasini tekshiradi: botdagi veb_ulash_kod (15 daqiqa amal
-    qiladi) VA xodimlar uchun xodim_kod (7 kun amal qiladi,
+    qiladi) VA xodimlar uchun xodim_kod (2 oy amal qiladi,
     admin Excel orqali xodim import qilganda yaratiladi) — shu sabab
     bitta "kod kiritish" ekrani ikkalasi uchun ham ishlaydi."""
     registration = _google_registration_tekshir(sorov.oauth_grant, sorov.email)
@@ -1134,7 +1134,7 @@ def hisob_ulash(sorov: UlashSorov):
         plain_code, hashed_code = _xodim_kod_variantlari(kod)
         cur.execute("""
             SELECT kod AS stored_code,user_id,ishlatildi,
-                   (yaratildi > NOW() - INTERVAL '7 days') AS hali_yangi
+                   (yaratildi > NOW() - INTERVAL '2 months') AS hali_yangi
             FROM xodim_kod
             WHERE kod IN (%s,%s)
               AND (kod LIKE 'sha256:%%' OR LENGTH(kod)>=12)
@@ -1143,7 +1143,7 @@ def hisob_ulash(sorov: UlashSorov):
             FOR UPDATE
         """, (hashed_code, plain_code, hashed_code))
         r = cur.fetchone()
-        muddat_matni = "7 kun"
+        muddat_matni = "2 oy"
         jadval_nomi = "xodim_kod"
 
     if not r:
@@ -7769,7 +7769,7 @@ def admin_foydalanuvchi_qidir(token: str, ism: str):
 # ═══════════════════════════════════════════════════════════
 # MAKTAB TIZIMI — 2-BOSQICH: xodimlarni Excel orqali kiritish
 # Har bir xodim uchun avtomatik KIRISH KODI (mavjud veb_ulash_kod
-# mexanizmiga o'xshash, lekin 7 kun amal qiladigan)
+# mexanizmiga o'xshash, lekin 2 oy amal qiladigan)
 # yaratiladi. Agar "Sinf rahbarligi" to'ldirilgan bo'lsa — o'sha
 # sinf (maktab_sinflari) ham shu bilan birga yaratiladi/yangilanadi,
 # 4 xonali qo'shilish paroli bilan.
@@ -8745,7 +8745,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
 @app.post("/api/admin/xodim_import")
 async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...)):
     """To'ldirilgan xodimlar shablonini import qiladi — har biriga
-    hisob va 7 kun amal qiladigan 12 belgili KIRISH KODI yaratadi.
+    hisob va 2 oy amal qiladigan 12 belgili KIRISH KODI yaratadi.
     Sinf rahbarligi va dars beradigan sinflari faqat maktabda oldindan
     yaratilgan sinflarga bog'lanadi; import yangi sinf yaratmaydi."""
     _admin_tekshir(token)
@@ -12884,7 +12884,7 @@ def markaz_xodim_shablon(token: str):
 
 @app.post("/api/admin/markaz_xodim_import")
 async def markaz_xodim_import(token: str, markaz_id: int, fayl: UploadFile = File(...)):
-    """Xuddi maktab xodim importi kabi — har biriga hisob va 7 kunlik
+    """Xuddi maktab xodim importi kabi — har biriga hisob va 2 oylik
     kirish kodi yaratadi. "Fan o'qituvchisi" bo'lganlar keyinchalik
     to'garak (guruh) yaratganda, u AVTOMATIK shu markazga bog'lanadi."""
     _admin_tekshir(token)
@@ -13120,7 +13120,7 @@ def kirish_kodi_orqali_qoshil(
     cur.execute("""
         SELECT xk.kod AS stored_code,xk.user_id AS placeholder_id,
                xk.ishlatildi,
-               (xk.yaratildi > NOW() - INTERVAL '7 days') AS hali_yangi
+               (xk.yaratildi > NOW() - INTERVAL '2 months') AS hali_yangi
         FROM xodim_kod xk
         WHERE xk.kod IN (%s,%s)
           AND (xk.kod LIKE 'sha256:%%' OR LENGTH(xk.kod)>=12)
@@ -13148,7 +13148,7 @@ def kirish_kodi_orqali_qoshil(
         conn.close()
         raise HTTPException(
             status_code=400,
-            detail="Kod muddati tugagan (7 kun) — admindan yangisini so'rang",
+            detail="Kod muddati tugagan (2 oy) — admindan yangisini so'rang",
         )
 
     pass  # V19: DDL moved to startup migration.
