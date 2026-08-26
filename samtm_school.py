@@ -32,7 +32,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_SCHOOL_PACKAGE_REVISION = "parallel-group-method-availability-rev53"
+SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
@@ -8926,6 +8926,37 @@ def v198_link_school_workspace(
     conn = _db()
     cur = conn.cursor()
     try:
+        _maktab_jadvali(cur)
+        _muassasa_jadvali(cur)
+
+        # REV55: yangi maktabga o'tishdan oldin joriy eski maktabni
+        # ko'p-muassasali jadvalga kafolatli yozamiz. Keyingi UPDATE faqat
+        # faol workspace ko'rsatkichini almashtiradi; eski maktab va uning
+        # ma'lumotlari hamda a'zoligi hech qachon o'chirilmaydi.
+        cur.execute(
+            "SELECT maktab_id,lavozim FROM users WHERE user_id=%s FOR UPDATE",
+            (user_id,),
+        )
+        current_user = cur.fetchone()
+        previous_school_id = (
+            int(current_user["maktab_id"])
+            if current_user and current_user.get("maktab_id")
+            else None
+        )
+        if previous_school_id:
+            cur.execute(
+                """INSERT INTO foydalanuvchi_muassasalari(
+                       user_id,muassasa_turi,muassasa_id,lavozim
+                   ) VALUES(%s,'maktab',%s,%s)
+                   ON CONFLICT(user_id,muassasa_turi,muassasa_id)
+                   DO UPDATE SET lavozim=EXCLUDED.lavozim""",
+                (
+                    user_id,
+                    previous_school_id,
+                    str(current_user.get("lavozim") or "direktor"),
+                ),
+            )
+
         # Eski va yangi frontendlar bilan bir xil ishlaydi. Muhim jihat:
         # mavjud maktabni topish V17 schema/helper so'rovlaridan OLDIN
         # bajariladi. Shuning uchun organization_trials/learning_contexts
@@ -8971,11 +9002,10 @@ def v198_link_school_workspace(
                 detail="Sizga tegishli mavjud maktab topilmadi.",
             )
 
-        _maktab_jadvali(cur)
-        _muassasa_jadvali(cur)
         cur.execute(
             """SELECT to_regclass('public.organization_trials') AS trials,
-                      to_regclass('public.learning_contexts') AS contexts"""
+                      to_regclass('public.learning_contexts') AS contexts,
+                      to_regclass('public.context_memberships') AS memberships"""
         )
         tables = cur.fetchone() or {}
         organization = None
@@ -8985,8 +9015,24 @@ def v198_link_school_workspace(
             and sorov.context_id is None
         )
         if tables.get("trials") and tables.get("contexts") and not explicit_new_school:
-            filters = ["o.creator_user_id=%s", "o.organization_type='school'"]
-            params = [user_id]
+            access_parts = [
+                "EXISTS(SELECT 1 FROM admin_akkaunt aa WHERE aa.uid=%s)",
+                "o.creator_user_id=%s",
+                "c.owner_user_id=%s",
+            ]
+            params = [user_id, user_id, user_id]
+            if tables.get("memberships"):
+                access_parts.append(
+                    """EXISTS(
+                         SELECT 1 FROM context_memberships cm
+                          WHERE cm.context_id=o.context_id
+                            AND cm.user_id=%s
+                            AND cm.status='active'
+                            AND cm.member_role IN ('owner','manager','director','administrator')
+                       )"""
+                )
+                params.append(user_id)
+            filters = [f"({' OR '.join(access_parts)})", "o.organization_type='school'"]
             if sorov.organization_v17_id is not None:
                 filters.append("o.id=%s")
                 params.append(int(sorov.organization_v17_id))
@@ -10646,7 +10692,7 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         result.update({
             "holat": "oqituvchi_va_yuklama_saqlandi",
             "kirish_kodi": plain_code,
-            "kirish_kodi_muddati": "7 kun",
+            "kirish_kodi_muddati": "2 oy",
             "qolda_kiritildi": True,
             "mutaxassisligi": specialty,
             "haftalik_maqsad_soat": target_hours,
