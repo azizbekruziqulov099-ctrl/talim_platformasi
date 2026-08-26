@@ -2772,6 +2772,18 @@ def _v1852_generate_attempt(jobs, context, seed):
         key=lambda job: (
             0 if job.get("fixed_day") and job.get("fixed_period") else 1,
             scarcity[id(job)][0],
+            # Bo'sh vaqti bir xil bo'lgan fanlardan avval o'quvchining diqqatini
+            # ko'proq talab qiladigan asosiy fanlar joylashadi. Shunda amaliy/yengil
+            # fanlar 1–2-darslarni egallab, algebra, geometriya yoki fizika 5–6 ga
+            # siqilib qolmaydi. Eng kam domen mezoni oldinda qoladi — to'liq jadval
+            # tuzish pedagogik tartibdan ham ustun qattiq talabdir.
+            0 if (job.get("v1874_profile") or {}).get("core_priority") else (
+                2 if (
+                    (job.get("v1874_profile") or {}).get("physical")
+                    or (job.get("v1874_profile") or {}).get("technology")
+                    or (job.get("v1874_profile") or {}).get("light")
+                ) else 1
+            ),
             -len(_v1852_job_teacher_ids(job)),
             -scarcity[id(job)][1],
             rng.random(),
@@ -2924,9 +2936,15 @@ def v1852_generate(sorov: V1852Generate, token: str):
             comfort = state.get("v196_metrics", {})
             class_imbalance = int(comfort.get("sinf_kun_taqsimoti_farqi", 0))
             short_days = int(comfort.get("sinf_qisqa_kunlari", 0))
+            late_core = int(comfort.get("asosiy_fan_5_6", 0))
+            early_practical = int(comfort.get("amaliy_fan_1_2", 0))
+            pe_before_core = int(comfort.get("jismoniydan_keyin_ogir_fan", 0))
+            cross_shift_blocks = int(comfort.get("oqituvchi_smenalar_orasi_blok", 0))
+            cross_shift_long = int(comfort.get("ikki_smenali_uzoq_tanaffus", 0))
             rank = (
                 len(unplaced), class_gaps, class_imbalance, short_days,
-                gaps, late, round(penalty, 2),
+                late_core, early_practical, pe_before_core, cross_shift_long,
+                cross_shift_blocks, gaps, late, round(penalty, 2),
             )
             if best is None or rank < best[0]:
                 best = (rank, result)
@@ -5313,6 +5331,7 @@ def _v1874_subject_profile(fan, grade):
     is_upbringing = _v1874_contains(key, "tarbiya") and not is_physical
     is_military = _v1874_contains(key, "chaqiruvga qadar")
     is_math = _v1874_contains(key, "matematika", "algebra", "geometriya")
+    is_native_language = _v1874_contains(key, "ona tili", "ozbek tili")
     is_reading = _v1874_contains(key, "oqish savodxonligi", "oqish")
     is_language = _v1874_contains(
         key, "ona tili", "ozbek tili", "rus tili", "ingliz tili",
@@ -5325,6 +5344,9 @@ def _v1874_subject_profile(fan, grade):
     )
     is_history = _v1874_contains(key, "tarix", "davlat va huquq", "huquq asoslari")
     is_literature = _v1874_contains(key, "adabiyot")
+    is_core_science = _v1874_contains(
+        key, "fizika", "kimyo", "biologiya", "tabiiy fan", "tabiat"
+    )
 
     primary_light = bool(
         is_class_hour or is_physical or is_technology or is_art or
@@ -5389,6 +5411,14 @@ def _v1874_subject_profile(fan, grade):
         is_math or is_language or is_reading or is_natural or
         is_history or is_literature
     ))
+    # Pedagogik asosiy fanlar: aynan o'quvchining ertalabki yuqori diqqatini
+    # talab qiladigan yozma/tahliliy fanlar. Xorijiy til, informatika, tarix va
+    # geografiya muhim, lekin bu qatlamga avtomatik kiritilmaydi — aks holda
+    # deyarli barcha fan "asosiy" bo'lib, ustuvorlikning ma'nosi yo'qoladi.
+    core_priority = bool(
+        primary_core or is_math or is_native_language or is_literature
+        or is_core_science or is_reading
+    )
 
     return {
         "key": key,
@@ -5402,6 +5432,9 @@ def _v1874_subject_profile(fan, grade):
         "heavy": heavy,
         "written_heavy": written_heavy,
         "math": is_math,
+        "native_language": is_native_language,
+        "core_science": is_core_science,
+        "core_priority": core_priority,
         "difficulty": int(difficulty),
     }
 
@@ -5417,13 +5450,13 @@ def _v1874_subject_period_penalty(profile, grade, period, max_period=None):
     max_period = int(max_period or _v1874_max_total_periods(grade))
     if profile.get("physical"):
         # Jismoniy tarbiya 3–6-darslarda afzal; 1–2 faqat zarur istisno.
-        return {1: 90, 2: 45, 3: 2, 4: -7, 5: -11, 6: -13}.get(
+        return {1: 320, 2: 190, 3: 25, 4: -12, 5: -24, 6: -28}.get(
             period, 20 + abs(period - min(6, max_period)) * 8
         )
     if profile.get("technology"):
         # Texnologiya amaliy fan: 1–2-dars faqat boshqa yechim qolmaganda,
         # odatda 4–6-darslarda (imkon bo'lsa J/T dan keyin) joylashadi.
-        return {1: 170, 2: 95, 3: 18, 4: -8, 5: -15, 6: -18}.get(
+        return {1: 330, 2: 220, 3: 48, 4: -12, 5: -25, 6: -30}.get(
             period, 35 + abs(period - min(6, max_period)) * 8
         )
     if profile.get("math"):
@@ -5745,7 +5778,7 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
             (neighbor_profile["physical"] and profile["written_heavy"] and neighbor_period == period - 1)
             or (profile["physical"] and neighbor_profile["written_heavy"] and neighbor_period == period + 1)
         ):
-            score += 80
+            score += 900
 
     return score
 
@@ -10387,6 +10420,9 @@ def _v196_rotation_profile(job, context=None):
         "heavy": any(bool(profile.get("heavy")) for profile in profiles),
         "written_heavy": any(bool(profile.get("written_heavy")) for profile in profiles),
         "math": any(bool(profile.get("math")) for profile in profiles),
+        "native_language": any(bool(profile.get("native_language")) for profile in profiles),
+        "core_science": any(bool(profile.get("core_science")) for profile in profiles),
+        "core_priority": any(bool(profile.get("core_priority")) for profile in profiles),
         "difficulty": max(int(profile.get("difficulty") or 0) for profile in profiles),
     }
 
@@ -10403,9 +10439,10 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
                 job, {"classes": classes}
             )
     warnings.append(
-        "V19.6 qulaylik strategiyasi faol: 5–6-sinflar 1–3-darsga, "
-        "7–8-sinflar 2–4-darsga, 9–11-sinflarning og'ir fanlari 2–4-darsga "
-        "ustuvor; o'qituvchi oknosi va jismoniy tarbiyadan keyingi og'ir fan jazolanadi"
+        "V19.8 pedagogik strategiya faol: ona tili, adabiyot, matematika, "
+        "algebra, geometriya, fizika, kimyo va biologiya 1–4-darsga; jismoniy "
+        "tarbiya 3–6-darsga ustuvor. O'qituvchining ichki oknosi va ikki smena "
+        "orasidagi uzoq kutish birgalikda kamaytiriladi"
     )
     if rotation_count:
         warnings.append(
@@ -10423,8 +10460,22 @@ def _v196_grade_period_penalty(profile, grade, period):
     light = bool(profile.get("light"))
     physical = bool(profile.get("physical"))
 
+    if physical:
+        # J/T 1-darsga qo'yilmaydi, 2-dars faqat boshqa majburiy cheklov
+        # bo'lsa ishlatiladi. Asosiy yo'lak 3–6; ayniqsa 4–6 qulay.
+        return {1: 520, 2: 280, 3: 35, 4: -24, 5: -36, 6: -40}.get(period, 80)
+
     if profile.get("technology"):
-        return {1: 155, 2: 85, 3: 16, 4: -7, 5: -14, 6: -17}.get(period, 28)
+        return {1: 380, 2: 240, 3: 55, 4: -15, 5: -28, 6: -32}.get(period, 80)
+
+    # Ona tili/adabiyot, matematika–algebra–geometriya hamda fizika, kimyo,
+    # biologiya kabi asosiy fanlar 1–4-darsda bo'lishi kerak. 5–6 yumshoq
+    # istisno bo'lib qoladi, lekin generator undan juda qimmat variant sifatida
+    # foydalanadi. Bu J/T dan keyin 5–6-dars algebra/geometriya chiqishini kesadi.
+    if profile.get("core_priority"):
+        if 1 <= grade <= 4:
+            return {1: -34, 2: -42, 3: -34, 4: -14, 5: 210, 6: 430}.get(period, 500)
+        return {1: -38, 2: -46, 3: -38, 4: -16, 5: 240, 6: 480}.get(period, 560)
 
     if 1 <= grade <= 4:
         if heavy or profile.get("primary_core"):
@@ -10453,6 +10504,52 @@ def _v196_grade_period_penalty(profile, grade, period):
         if not light and not physical:
             return {1: 9, 2: -5, 3: -9, 4: -6, 5: 1, 6: 8}.get(period, 14)
     return 0
+
+
+def _v196_teacher_shift_demand(jobs):
+    """O'qituvchining qaysi smenalarda darsi borligini oldindan hisoblaydi."""
+    result = _v1852_defaultdict(lambda: _v1852_defaultdict(float))
+    for job in jobs:
+        shift = int(job.get("smena") or 1)
+        members = job.get("rotation_members") or []
+        source_jobs = members or [job]
+        contribution = 0.5 if members else 1.0
+        for source in source_jobs:
+            teachers = _v1852_job_teacher_ids(source)
+            for teacher in teachers:
+                result[int(teacher)][shift] += contribution
+    return {teacher: dict(shifts) for teacher, shifts in result.items()}
+
+
+def _v196_shift_max_period(context, shift):
+    slots = (context.get("shifts", {}).get(int(shift), {}) or {}).get("slotlar") or []
+    return max([int(slot.get("dars_raqami") or 0) for slot in slots] or [6])
+
+
+def _v196_cross_shift_edge_blocks(state, teacher, day, context, extra=None):
+    """Ikki smena orasidagi oldini olish mumkin bo'lgan bo'sh bloklar.
+
+    1-smena oxiridagi bo'sh darslar + 2-smena boshidagi bo'sh darslar olinadi.
+    Masalan, 1-smena 1–3 va 2-smena 4–5 bo'lsa 3+3=6 blok; 1-smena
+    4–6 va 2-smena 1–2 bo'lsa 0 blok. Faqat ikkala smena shu kunda faol
+    bo'lgandagina qiymat qaytariladi.
+    """
+    by_shift = {}
+    for shift in (1, 2):
+        by_shift[shift] = set(
+            int(value) for value in state.get("teacher_periods", {}).get(
+                (int(teacher), int(day), shift), set()
+            )
+        )
+    if extra:
+        shift, period = extra
+        by_shift.setdefault(int(shift), set()).add(int(period))
+    if not by_shift.get(1) or not by_shift.get(2):
+        return None
+    return int(
+        max(0, _v196_shift_max_period(context, 1) - max(by_shift[1]))
+        + max(0, min(by_shift[2]) - 1)
+    )
 
 
 def _v196_teacher_demand(jobs):
@@ -10567,6 +10664,7 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         "v196_teacher_period_jobs", _v1852_defaultdict(dict)
     )
     demands = context.get("v196_teacher_demand") or {}
+    shift_demands = context.get("v196_teacher_shift_demand") or {}
     for teacher in teachers:
         if teacher is None:
             continue
@@ -10589,6 +10687,36 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
             # Bazadagi +1.8 tarqatish jarimasini bekor qilib, ixcham kunni afzal qilamiz.
             score -= daily_count * 4.0
 
+        # Ikki smenada ishlaydigan ustoz uchun 1-smena darslari kun oxiriga,
+        # 2-smena darslari kun boshiga yaqinlashadi. Shunda 1-smenada 1–3,
+        # keyin 2-smenada 4–5 kabi uzoq kutish o'rniga 4–6 + 1–2 chiqadi.
+        teacher_shifts = {
+            int(shift): float(value or 0)
+            for shift, value in (shift_demands.get(teacher) or {}).items()
+            if float(value or 0) > 0
+        }
+        if 1 in teacher_shifts and 2 in teacher_shifts:
+            current_shift = int(job.get("smena") or 1)
+            if current_shift == 1:
+                score += max(0, _v196_shift_max_period(context, 1) - int(period)) * 32
+            elif current_shift == 2:
+                score += max(0, int(period) - 1) * 32
+
+            before_cross = _v196_cross_shift_edge_blocks(
+                state, teacher, day, context
+            )
+            after_cross = _v196_cross_shift_edge_blocks(
+                state, teacher, day, context,
+                extra=(current_shift, int(period)),
+            )
+            if before_cross is None and after_cross is not None:
+                # Ikki smenani bir kunga ixcham birlashtirish yangi alohida ish
+                # kuni ochishdan foydaliroq; chetdan uzoq slot esa baribir jazolanadi.
+                score -= 150
+                score += after_cross * 58
+            elif before_cross is not None and after_cross is not None:
+                score += (after_cross - before_cross) * 72
+
         used_days = _v196_teacher_used_days(state, teacher)
         rules = context.get("rules", {}).get(teacher, context.get("default_rules", {}))
         daily_capacity = max(1, min(4, int(rules.get("kunlik_max") or 6)))
@@ -10599,6 +10727,23 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         # Ketma-ket darslarda juda uzoq sinf bosqichlari orasida sakrashni
         # kamaytirish: 5-sinfdan birdan 11-sinfga o'tish zarur bo'lmasa tanlanmaydi.
         neighbor_jobs = teacher_jobs.get((teacher, day, job.get("smena")), {})
+        if profile.get("physical") or profile.get("technology"):
+            practical_periods = [
+                int(item_period)
+                for item_period, item_job in neighbor_jobs.items()
+                if (
+                    _v196_rotation_profile(item_job, context).get("physical")
+                    or _v196_rotation_profile(item_job, context).get("technology")
+                )
+            ]
+            if practical_periods:
+                nearest = min(abs(int(period) - item) for item in practical_periods)
+                if nearest == 1:
+                    # J/T yoki texnologiya ustozining ikki darsi 4–5 yoki 5–6
+                    # kabi uzluksiz tursin.
+                    score -= 130
+                else:
+                    score += max(1, nearest - 1) * 95
         for neighbor_period in (int(period) - 1, int(period) + 1):
             neighbor = neighbor_jobs.get(neighbor_period)
             if not neighbor:
@@ -10623,19 +10768,36 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         if profile.get("heavy") and neighbor_profile.get("heavy"):
             score += 32
         if neighbor_period == int(period) - 1 and neighbor_profile.get("physical"):
-            if profile.get("written_heavy"):
-                score += 220
+            if profile.get("core_priority"):
+                score += 1600
+            elif profile.get("written_heavy"):
+                score += 900
             elif profile.get("light"):
                 score -= 12
             if profile.get("technology"):
                 score -= 34
         if neighbor_period == int(period) + 1 and profile.get("physical"):
-            if neighbor_profile.get("written_heavy"):
-                score += 220
+            if neighbor_profile.get("core_priority"):
+                score += 1600
+            elif neighbor_profile.get("written_heavy"):
+                score += 900
             elif neighbor_profile.get("light"):
                 score -= 12
             if neighbor_profile.get("technology"):
                 score -= 34
+        # To'g'ri pedagogik yo'nalish: avval asosiy fan, keyin J/T; yoki J/T dan
+        # keyin texnologiya/yengil fan. Bu bonus yuqoridagi noto'g'ri ketma-ketlik
+        # jarimasidan kichik, ya'ni qattiq cheklovlarni buzmaydi.
+        if neighbor_period == int(period) - 1:
+            if profile.get("physical") and neighbor_profile.get("core_priority"):
+                score -= 85
+            if profile.get("technology") and neighbor_profile.get("physical"):
+                score -= 70
+        if neighbor_period == int(period) + 1:
+            if profile.get("core_priority") and neighbor_profile.get("physical"):
+                score -= 85
+            if profile.get("physical") and neighbor_profile.get("technology"):
+                score -= 70
     return score
 
 
@@ -10662,6 +10824,8 @@ def _v196_attempt_metrics(state, context):
     heavy_pairs = 0
     pe_before_heavy = 0
     upper_first_heavy = 0
+    late_core = 0
+    early_practical = 0
     by_class_day = state.get("class_period_jobs", {})
     for (_, _), period_jobs in by_class_day.items():
         for period, job in period_jobs.items():
@@ -10672,6 +10836,12 @@ def _v196_attempt_metrics(state, context):
             )
             if grade >= 9 and int(period) == 1 and profile.get("heavy"):
                 upper_first_heavy += 1
+            if int(period) >= 5 and profile.get("core_priority"):
+                late_core += 1
+            if int(period) <= 2 and (
+                profile.get("physical") or profile.get("technology")
+            ):
+                early_practical += 1
             next_job = period_jobs.get(int(period) + 1)
             if not next_job:
                 continue
@@ -10680,6 +10850,20 @@ def _v196_attempt_metrics(state, context):
                 heavy_pairs += 1
             if profile.get("physical") and next_profile.get("written_heavy"):
                 pe_before_heavy += 1
+    cross_shift_blocks = 0
+    cross_shift_long_days = 0
+    teacher_days = {
+        (int(teacher), int(day))
+        for (teacher, day), count in state.get("teacher_daily", {}).items()
+        if float(count or 0) > 0
+    }
+    for teacher, day in teacher_days:
+        blocks = _v196_cross_shift_edge_blocks(state, teacher, day, context)
+        if blocks is None:
+            continue
+        cross_shift_blocks += int(blocks)
+        if int(blocks) >= 3:
+            cross_shift_long_days += 1
     class_imbalance, class_short_days = _v196_class_distribution_metrics(state, context)
     return {
         "oqituvchi_bitta_darsli_kun": int(single_teacher_days),
@@ -10687,6 +10871,10 @@ def _v196_attempt_metrics(state, context):
         "ketma_ket_ogir_fan": int(heavy_pairs),
         "jismoniydan_keyin_ogir_fan": int(pe_before_heavy),
         "9_11_birinchi_dars_ogir": int(upper_first_heavy),
+        "asosiy_fan_5_6": int(late_core),
+        "amaliy_fan_1_2": int(early_practical),
+        "oqituvchi_smenalar_orasi_blok": int(cross_shift_blocks),
+        "ikki_smenali_uzoq_tanaffus": int(cross_shift_long_days),
         "sinf_kun_taqsimoti_farqi": class_imbalance,
         "sinf_qisqa_kunlari": class_short_days,
     }
@@ -10694,6 +10882,9 @@ def _v196_attempt_metrics(state, context):
 
 def _v1852_generate_attempt(jobs, context, seed):
     context["v196_teacher_demand"] = context.get("v196_teacher_demand") or _v196_teacher_demand(jobs)
+    context["v196_teacher_shift_demand"] = (
+        context.get("v196_teacher_shift_demand") or _v196_teacher_shift_demand(jobs)
+    )
     context["v196_class_distribution"] = (
         context.get("v196_class_distribution") or _v196_class_distribution(jobs, context)
     )
@@ -10707,6 +10898,10 @@ def _v1852_generate_attempt(jobs, context, seed):
         + metrics["ketma_ket_ogir_fan"] * 9
         + metrics["jismoniydan_keyin_ogir_fan"] * 60
         + metrics["9_11_birinchi_dars_ogir"] * 12
+        + metrics["asosiy_fan_5_6"] * 180
+        + metrics["amaliy_fan_1_2"] * 180
+        + metrics["oqituvchi_smenalar_orasi_blok"] * 55
+        + metrics["ikki_smenali_uzoq_tanaffus"] * 140
         + metrics["sinf_kun_taqsimoti_farqi"] * 45
         + metrics["sinf_qisqa_kunlari"] * 120
     )
