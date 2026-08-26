@@ -2257,7 +2257,18 @@ def _v1852_availability_maps(rows):
     for row in rows:
         key = (int(row["user_id"]), int(row["hafta_kuni"]), int(row.get("smena") or 0), int(row.get("dars_raqami") or 0))
         if row["turi"] == "metod_kuni":
-            (method_hard if row.get("qattiq") else method_soft).add((key[0], key[1]))
+            # Rasmiy/avtomatik metod kuni darsni yo'qotadigan qattiq taqiq
+            # emas. U jadvalda kuchli qulaylik tavsiyasi bo'lib qoladi, ammo
+            # haftalik fan soatini to'liq joylashtirish uchun zarur bo'lsa
+            # generator shu kundan ham foydalanadi. Faqat rahbariyat qo'lda
+            # kiritgan qattiq metod kuni haqiqiy blok sifatida saqlanadi.
+            note = str(row.get("izoh") or "")
+            automatic = note.startswith((
+                "V18.71 AUTO METOD:",
+                "V18.73 RASMIY METOD:",
+            ))
+            target = method_hard if row.get("qattiq") and not automatic else method_soft
+            target.add((key[0], key[1]))
         elif row["turi"] == "band":
             (hard if row.get("qattiq") else soft).add(key)
         else:
@@ -2482,7 +2493,10 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
             continue
         rules = context["rules"].get(teacher, context["default_rules"])
         if (teacher, day) in context["method_soft"]:
-            score += 35
+            # Rasmiy metod kuni avval boshqa barcha amaliy slotlardan keyin
+            # ko'riladi. Lekin u qattiq blok emas: aks holda kuniga bir marta
+            # o'tiladigan 5 soatlik fan 4 soatga tushib qoladi.
+            score += 900
         if _v1852_soft_blocked(context["soft"], teacher, day, job["smena"], period):
             score += 25
         if rules["afzal_smena"] and rules["afzal_smena"] != job["smena"]:
@@ -2907,7 +2921,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
             result = _v1852_generate_attempt(jobs, context, base_seed + index * 7919)
             state, unplaced, penalty, gaps, late = result
             class_gaps = int(state.get("class_gap_count", 0))
-            rank = (len(unplaced), class_gaps, gaps, late, round(penalty, 2))
+            comfort = state.get("v196_metrics", {})
+            class_imbalance = int(comfort.get("sinf_kun_taqsimoti_farqi", 0))
+            short_days = int(comfort.get("sinf_qisqa_kunlari", 0))
+            rank = (
+                len(unplaced), class_gaps, class_imbalance, short_days,
+                gaps, late, round(penalty, 2),
+            )
             if best is None or rank < best[0]:
                 best = (rank, result)
         _, (state, unplaced, penalty, gap_count, late_heavy) = best
@@ -5375,6 +5395,7 @@ def _v1874_subject_profile(fan, grade):
         "academic": not is_class_hour,
         "class_hour": is_class_hour,
         "physical": is_physical,
+        "technology": is_technology,
         "light": light,
         "primary_light": primary_light,
         "primary_core": primary_core,
@@ -5398,6 +5419,12 @@ def _v1874_subject_period_penalty(profile, grade, period, max_period=None):
         # Jismoniy tarbiya 3–6-darslarda afzal; 1–2 faqat zarur istisno.
         return {1: 90, 2: 45, 3: 2, 4: -7, 5: -11, 6: -13}.get(
             period, 20 + abs(period - min(6, max_period)) * 8
+        )
+    if profile.get("technology"):
+        # Texnologiya amaliy fan: 1–2-dars faqat boshqa yechim qolmaganda,
+        # odatda 4–6-darslarda (imkon bo'lsa J/T dan keyin) joylashadi.
+        return {1: 170, 2: 95, 3: 18, 4: -8, 5: -15, 6: -18}.get(
+            period, 35 + abs(period - min(6, max_period)) * 8
         )
     if profile.get("math"):
         # Matematika 1–5 oralig'ida qoladi, 2–4 eng samarali vaqt.
@@ -5608,6 +5635,11 @@ def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, sta
     reasons = list(_v1874_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
+    if job.get("is_class_hour"):
+        # Sinf soati rahbariyat belgilagan aniq katakka tushishi shart.
+        # Rasmiy metod kuni bu majburiy qoidani bekor qilmaydi. Qo'lda
+        # belgilangan haqiqiy band vaqt va o'qituvchi to'qnashuvi esa qoladi.
+        reasons = [reason for reason in reasons if reason != "o'qituvchining metod kuni"]
     profile = _v1874_profile_for_job(job, context)
     grade = int(job.get("v1874_grade") or 0)
     total_map, academic_map, fifth_map, _, _ = _v1874_state_maps(state)
@@ -10348,6 +10380,7 @@ def _v196_rotation_profile(job, context=None):
         "key": " / ".join(str(profile.get("key") or "") for profile in profiles),
         "academic": any(bool(profile.get("academic")) for profile in profiles),
         "physical": any(bool(profile.get("physical")) for profile in profiles),
+        "technology": any(bool(profile.get("technology")) for profile in profiles),
         "light": all(bool(profile.get("light")) for profile in profiles),
         "primary_light": all(bool(profile.get("primary_light")) for profile in profiles),
         "primary_core": any(bool(profile.get("primary_core")) for profile in profiles),
@@ -10389,6 +10422,9 @@ def _v196_grade_period_penalty(profile, grade, period):
     heavy = bool(profile.get("heavy") or profile.get("written_heavy"))
     light = bool(profile.get("light"))
     physical = bool(profile.get("physical"))
+
+    if profile.get("technology"):
+        return {1: 155, 2: 85, 3: 16, 4: -7, 5: -14, 6: -17}.get(period, 28)
 
     if 1 <= grade <= 4:
         if heavy or profile.get("primary_core"):
@@ -10453,6 +10489,54 @@ def _v196_teacher_used_days(state, teacher):
     }
 
 
+def _v196_class_distribution(jobs, context):
+    """Har bir sinf uchun 4/5/6 darsli barqaror kun maqsadini tayyorlaydi."""
+    totals = _v1852_Counter(int(job["sinf_id"]) for job in jobs)
+    result = {}
+    weekdays = int(context.get("weekdays") or 6)
+    for class_id, total in totals.items():
+        class_row = context.get("classes", {}).get(class_id, {})
+        grade = _v1874_grade(class_row)
+        allowed = []
+        for day in range(1, weekdays + 1):
+            if 1 <= grade <= 4 and day == 6:
+                continue
+            if _v1856_class_day_block_reason(
+                class_row, day, context.get("class_day_blocks", {})
+            ):
+                continue
+            allowed.append(day)
+        if not allowed:
+            continue
+        low, remainder = divmod(int(total), len(allowed))
+        result[class_id] = {
+            "total": int(total),
+            "days": tuple(allowed),
+            "low": int(low),
+            "high": int(low + (1 if remainder else 0)),
+            "remainder": int(remainder),
+        }
+    return result
+
+
+def _v196_class_distribution_metrics(state, context):
+    imbalance = 0
+    short_days = 0
+    for class_id, target in (context.get("v196_class_distribution") or {}).items():
+        days = list(target["days"])
+        actual = sorted(
+            int(state.get("class_daily_total", {}).get((class_id, day), 0))
+            for day in days
+        )
+        ideal = sorted(
+            [target["low"]] * (len(days) - target["remainder"])
+            + [target["high"]] * target["remainder"]
+        )
+        imbalance += sum(abs(a - b) for a, b in zip(actual, ideal))
+        short_days += sum(1 for count in actual if 0 < count < target["low"])
+    return int(imbalance), int(short_days)
+
+
 def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
     score = float(_v196_base_candidate_score(
         job, day, period, teachers, state, context, rng
@@ -10461,6 +10545,23 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
     class_row = context.get("classes", {}).get(job.get("sinf_id"), {})
     grade = int(job.get("v1874_grade") or _v1874_grade(class_row))
     score += _v196_grade_period_penalty(profile, grade, period)
+
+    # Sinf haftasini 2 ta darsli va 7 ta darsli kunlarga parchalamasdan,
+    # reja jami bo'yicha imkon qadar teng 4/5/6 darsli kunlarga yoyamiz.
+    target = (context.get("v196_class_distribution") or {}).get(job.get("sinf_id"))
+    if target and int(day) in target["days"]:
+        daily_map = state.get("class_daily_total", {})
+        current = int(daily_map.get((job.get("sinf_id"), day), 0))
+        other_counts = [
+            int(daily_map.get((job.get("sinf_id"), item_day), 0))
+            for item_day in target["days"] if int(item_day) != int(day)
+        ]
+        if current < target["low"]:
+            score -= (target["low"] - current) * 115
+        elif any(count < target["low"] for count in other_counts):
+            score += 210 + sum(max(0, target["low"] - count) for count in other_counts) * 18
+        if current >= target["high"]:
+            score += (current - target["high"] + 1) * 330
 
     teacher_jobs = state.setdefault(
         "v196_teacher_period_jobs", _v1852_defaultdict(dict)
@@ -10526,11 +10627,15 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                 score += 220
             elif profile.get("light"):
                 score -= 12
+            if profile.get("technology"):
+                score -= 34
         if neighbor_period == int(period) + 1 and profile.get("physical"):
             if neighbor_profile.get("written_heavy"):
                 score += 220
             elif neighbor_profile.get("light"):
                 score -= 12
+            if neighbor_profile.get("technology"):
+                score -= 34
     return score
 
 
@@ -10575,17 +10680,23 @@ def _v196_attempt_metrics(state, context):
                 heavy_pairs += 1
             if profile.get("physical") and next_profile.get("written_heavy"):
                 pe_before_heavy += 1
+    class_imbalance, class_short_days = _v196_class_distribution_metrics(state, context)
     return {
         "oqituvchi_bitta_darsli_kun": int(single_teacher_days),
         "oqituvchi_faol_kun": int(teacher_active_days),
         "ketma_ket_ogir_fan": int(heavy_pairs),
         "jismoniydan_keyin_ogir_fan": int(pe_before_heavy),
         "9_11_birinchi_dars_ogir": int(upper_first_heavy),
+        "sinf_kun_taqsimoti_farqi": class_imbalance,
+        "sinf_qisqa_kunlari": class_short_days,
     }
 
 
 def _v1852_generate_attempt(jobs, context, seed):
     context["v196_teacher_demand"] = context.get("v196_teacher_demand") or _v196_teacher_demand(jobs)
+    context["v196_class_distribution"] = (
+        context.get("v196_class_distribution") or _v196_class_distribution(jobs, context)
+    )
     state, unplaced, penalty, gaps, late = _v196_base_generate_attempt(
         jobs, context, seed
     )
@@ -10596,6 +10707,8 @@ def _v1852_generate_attempt(jobs, context, seed):
         + metrics["ketma_ket_ogir_fan"] * 9
         + metrics["jismoniydan_keyin_ogir_fan"] * 60
         + metrics["9_11_birinchi_dars_ogir"] * 12
+        + metrics["sinf_kun_taqsimoti_farqi"] * 45
+        + metrics["sinf_qisqa_kunlari"] * 120
     )
     return state, unplaced, penalty, gaps, late
 
