@@ -19,4 +19,8 @@ redis>=5.2,<7
 # SamTM V19.2 production overlay dependencies.
 # Add these lines to the repository's existing requirements.txt.
 uvicorn[standard]>=0.30,<1
+# Add these lines to the production backend requirements.txt.
+openpyxl>=3.1,<4
+xlrd>=2.0,<3
+python-multipart>=0.0.9,<1
 
