@@ -119,7 +119,7 @@ def versiya():
         ],
         "module_versions": {
             "learning_center": "learning-center-v2-secure-v14",
-            "institute": "faculty-student-import-no-institute-password-v20-rev62",
+            "institute": "daily-admission-calendar-tutor-site-status-v20-rev65",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "fast-feedback-v18.22",
