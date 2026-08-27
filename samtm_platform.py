@@ -1,4 +1,3 @@
-
 """SamTM V19.2 platform backend.
 
 Haqiqiy jadvallar, Google OAuth, eski Excel import va V19.2 dagi
@@ -8037,19 +8036,28 @@ def _maktab_fanlari_jadvali(cur):
 
 
 def _maktab_fan_katalogi(cur, maktab_id):
-    """DTS fanlarini faqat tavsiya sifatida qaytaradi; sinfga biriktirmaydi."""
-    cur.execute(
-        "SELECT DISTINCT subject_name FROM dts_tree "
-        "WHERE COALESCE(is_deleted,FALSE)=FALSE AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
-        "ORDER BY subject_name"
-    )
+    """Admin markaziy andozasini qaytaradi; eski bazada DTS zaxira bo'ladi."""
+    cur.execute("SELECT to_regclass('public.admin_maktab_andoza_fanlari_v20_1') AS jadval")
+    central_ready = bool((cur.fetchone() or {}).get("jadval"))
+    if central_ready:
+        cur.execute("""SELECT DISTINCT fan_nomi AS subject_name
+                         FROM admin_maktab_andoza_fanlari_v20_1 f
+                         JOIN admin_maktab_andoza_versiyalari_v20_1 v ON v.id=f.versiya_id
+                        WHERE v.faol=TRUE AND f.faol=TRUE
+                        ORDER BY fan_nomi""")
+    else:
+        cur.execute(
+            "SELECT DISTINCT subject_name FROM dts_tree "
+            "WHERE COALESCE(is_deleted,FALSE)=FALSE AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
+            "ORDER BY subject_name"
+        )
     fanlar = {}
     for row in cur.fetchall():
         fan_nomi = re.sub(r"\s+", " ", str(row["subject_name"] or "")).strip()
         if not fan_nomi:
             continue
         kalit = _xodim_excel_sarlavha_kaliti(fan_nomi)
-        fanlar.setdefault(kalit, {"nomi": fan_nomi, "manba": "DTS"})
+        fanlar.setdefault(kalit, {"nomi": fan_nomi, "manba": "Admin andozasi" if central_ready else "DTS zaxira"})
     return sorted(fanlar.values(), key=lambda fan: fan["nomi"].casefold())
 
 
@@ -8098,12 +8106,21 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
     for row in cur.fetchall():
         saqlangan_sinf_fanlari[str(row["sinf_darajasi"])].append(row["fan_nomi"])
     dts_sinf_fanlari = {str(daraja): [] for daraja in range(1, 12)}
-    cur.execute(
-        "SELECT DISTINCT grade,subject_name FROM dts_tree "
-        "WHERE COALESCE(is_deleted,FALSE)=FALSE "
-        "AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
-        "ORDER BY grade,subject_name"
-    )
+    cur.execute("SELECT to_regclass('public.admin_maktab_andoza_fanlari_v20_1') AS jadval")
+    central_ready = bool((cur.fetchone() or {}).get("jadval"))
+    if central_ready:
+        cur.execute("""SELECT f.sinf_darajasi AS grade,f.fan_nomi AS subject_name
+                         FROM admin_maktab_andoza_fanlari_v20_1 f
+                         JOIN admin_maktab_andoza_versiyalari_v20_1 v ON v.id=f.versiya_id
+                        WHERE v.faol=TRUE AND f.faol=TRUE
+                        ORDER BY f.sinf_darajasi,f.tartib,f.fan_nomi""")
+    else:
+        cur.execute(
+            "SELECT DISTINCT grade,subject_name FROM dts_tree "
+            "WHERE COALESCE(is_deleted,FALSE)=FALSE "
+            "AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
+            "ORDER BY grade,subject_name"
+        )
     dts_kalitlari = {str(daraja): set() for daraja in range(1, 12)}
     for row in cur.fetchall():
         sinf_match = re.search(r"\d+", str(row.get("grade") or ""))
@@ -8123,6 +8140,7 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
         "fanlar": katalog,
         "tanlangan_fanlar": tanlangan,
         "sozlangan": bool(tanlangan),
+        "manba": "admin_andozasi" if central_ready else "dts_zaxira",
         "dts_sinf_fanlari": dts_sinf_fanlari,
         "sinf_fanlari": {
             str(daraja): (saqlangan_sinf_fanlari[str(daraja)] or dts_sinf_fanlari[str(daraja)])
@@ -8180,6 +8198,13 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
                 )
                 canonical_fanlar.append(fan)
             qaytadigan[str(daraja)] = canonical_fanlar
+        cur.execute("SELECT to_regclass('public.maktab_andoza_override_v20_1') AS jadval")
+        if (cur.fetchone() or {}).get("jadval"):
+            cur.execute("""INSERT INTO maktab_andoza_override_v20_1(
+                            maktab_id,bolim,alohida,yangilangan_at)
+                           VALUES(%s,'fanlar',TRUE,NOW())
+                           ON CONFLICT(maktab_id,bolim) DO UPDATE SET
+                             alohida=TRUE,yangilangan_at=NOW()""", (sorov.maktab_id,))
         conn.commit(); cur.close(); conn.close()
         return {
             "holat": "saqlandi",
