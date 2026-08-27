@@ -9831,6 +9831,7 @@ def _v193_approved_plan_map(cur, maktab_id: int):
 def _v192_group_variants(cur, maktab_id: int):
     systems = _v1876_group_system_catalog(cur, maktab_id)
     cur.execute("""SELECT s.id,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,
+                          s.bino,s.xona,
                           s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
                    FROM maktab_sinflari s
                    LEFT JOIN users u ON u.user_id=s.rahbar_user_id
@@ -12166,6 +12167,26 @@ def _v1852_candidate_reasons(
     reasons = list(_v196_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
+    # Oddiy urinishda fan kuniga bir marta qo‘yiladi. Jadvalning hamma darsi
+    # sig‘may qolsa, generatorning zaxira urinishigina bitta sinfda haftasiga
+    # avval 1 kun, mutlaqo iloj bo‘lmasa 2 kungacha shu fanni ikki marta
+    # qo‘yishi mumkin. O‘qituvchining ayni vaqtdagi bandligi filtrlanmaydi.
+    emergency_repeat_days = int(context.get("v203_emergency_repeat_days") or 0)
+    if emergency_repeat_days and "fan kunlik maksimumga yetgan" in reasons:
+        subject_counts = state.get("subject_daily", {})
+        subject_key = str(job.get("fan") or "").casefold()
+        current_count = int(subject_counts.get((job["sinf_id"], subject_key, day), 0))
+        already_repeat_days = {
+            int(subject_day)
+            for (class_id, _subject, subject_day), count in subject_counts.items()
+            if int(class_id) == int(job["sinf_id"]) and int(count or 0) >= 2
+        }
+        may_use_day = int(day) in already_repeat_days or len(already_repeat_days) < emergency_repeat_days
+        if current_count < 2 and may_use_day:
+            reasons = [reason for reason in reasons if reason not in {
+                "fan kunlik maksimumga yetgan",
+                "boshlang‘ich sinfda bir fan shu kuni takror qo‘yilmaydi",
+            }]
     profile = _v196_rotation_profile(job, context)
     if int(period) == 1 and (
         profile.get("physical") or profile.get("technology")
@@ -13425,6 +13446,31 @@ def _v1852_generate_attempt(jobs, context, seed):
     state, unplaced, penalty, gaps, late = _v196_base_generate_attempt(
         jobs, context, seed
     )
+    # Asosiy pedagogik urinish darslarni turli kunlarga yoyadi. Faqat u
+    # barcha darsni joylay olmasa, 1 kunlik va keyin 2 kunlik nazoratli
+    # takror fallback sinovdan o‘tadi. Eng kam joylashmagan darsli natija olinadi.
+    best_attempt = (state, unplaced, penalty, gaps, late, 0)
+    if unplaced:
+        for repeat_days in (1, 2):
+            relaxed_context = dict(context)
+            relaxed_context["v203_emergency_repeat_days"] = repeat_days
+            candidate = _v196_base_generate_attempt(
+                jobs, relaxed_context, int(seed) + repeat_days * 100003
+            )
+            candidate_with_mode = (*candidate, repeat_days)
+            if (len(candidate[1]), float(candidate[2])) < (
+                len(best_attempt[1]), float(best_attempt[2])
+            ):
+                best_attempt = candidate_with_mode
+            if not candidate[1]:
+                break
+    state, unplaced, penalty, gaps, late, selected_repeat_days = best_attempt
+    if selected_repeat_days:
+        context["v203_emergency_repeat_days"] = selected_repeat_days
+        state.setdefault("ogohlantirishlar", []).append(
+            f"Jadvalni to‘liq sig‘dirish uchun ayrim fanlar haftasiga "
+            f"{selected_repeat_days} kungacha bir kunda 2 marta joylashtirildi"
+        )
     # Greedy joylashtirish tugagach jadvalni o'quvchi nuqtai nazaridan
     # majburiy sayqallaymiz: avval oknolar yopiladi, keyin 2/6 kabi notekis
     # kunlar tenglashtiriladi, oxirida J/T va texnologiya ertalabki katakdan
