@@ -10156,6 +10156,15 @@ class SinfYaratish(BaseModel):
     guruhlash_usuli: str = "none"
 
 
+class SinfTahrirlash(BaseModel):
+    token: str
+    sinf_id: int
+    harf: str
+    smena: int
+    bino: Optional[str] = None
+    xona: Optional[str] = None
+
+
 @app.post("/api/admin/maktab_sinf_yarat")
 def maktab_sinf_yarat(sorov: SinfYaratish):
     """Qo'lda, Excel'siz ham bitta sinf qo'shish imkoni — masalan
@@ -10193,6 +10202,62 @@ def maktab_sinf_yarat(sorov: SinfYaratish):
     cur.close()
     conn.close()
     return {"holat": "yaratildi", "sinf_id": natija["id"], "qoshilish_paroli": natija["qoshilish_paroli"]}
+
+
+@app.put("/api/admin/maktab_sinf_tahrirla")
+def maktab_sinf_tahrirla(sorov: SinfTahrirlash):
+    """Sinfni o‘chirmasdan harfi, smenasi va asosiy xonasini yangilaydi."""
+    user_id = _jwt_tekshir(sorov.token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _maktab_sinflari_jadvali(cur)
+        cur.execute("""SELECT id,maktab_id,sinf,harf FROM maktab_sinflari
+                        WHERE id=%s FOR UPDATE""", (int(sorov.sinf_id),))
+        mavjud = cur.fetchone()
+        if not mavjud:
+            raise HTTPException(status_code=404, detail="Sinf topilmadi")
+        if not _maktab_sinf_boshqaruvchi_mi(cur, user_id, int(mavjud["maktab_id"])):
+            raise HTTPException(status_code=403, detail="Bu sinfni o‘zgartirishga ruxsat yo‘q")
+        if int(sorov.smena) not in (1, 2):
+            raise HTTPException(status_code=400, detail="Smena faqat 1 yoki 2 bo‘ladi")
+        try:
+            _, harf = _xodim_sinf_nomini_normalla(
+                f"{mavjud['sinf']}-{str(sorov.harf or '').strip()}"
+            ).split("-", 1)
+        except ValueError as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        bino = re.sub(r"\s+", " ", str(sorov.bino or "")).strip() or None
+        xona = re.sub(r"\s+", " ", str(sorov.xona or "")).strip() or None
+        cur.execute("""SELECT id FROM maktab_sinflari
+                        WHERE maktab_id=%s AND sinf=%s AND UPPER(harf)=UPPER(%s) AND id<>%s
+                        LIMIT 1""", (mavjud["maktab_id"], mavjud["sinf"], harf, mavjud["id"]))
+        if cur.fetchone():
+            raise HTTPException(status_code=409, detail=f"{mavjud['sinf']}-{harf} sinfi allaqachon mavjud")
+        if xona:
+            cur.execute("""SELECT sinf,harf FROM maktab_sinflari
+                            WHERE maktab_id=%s AND id<>%s AND COALESCE(smena,1)=%s
+                              AND LOWER(TRIM(COALESCE(bino,'')))=LOWER(TRIM(COALESCE(%s,'')))
+                              AND LOWER(TRIM(COALESCE(xona,'')))=LOWER(TRIM(%s))
+                            LIMIT 1""",
+                        (mavjud["maktab_id"], mavjud["id"], int(sorov.smena), bino, xona))
+            band = cur.fetchone()
+            if band:
+                raise HTTPException(
+                    status_code=409,
+                    detail=f"Bu xona {sorov.smena}-smenada {band['sinf']}-{band['harf']} sinfiga band",
+                )
+        cur.execute("""UPDATE maktab_sinflari
+                          SET harf=%s,smena=%s,bino=%s,xona=%s
+                        WHERE id=%s
+                    RETURNING id,sinf,harf,smena,bino,xona""",
+                    (harf, int(sorov.smena), bino, xona, mavjud["id"]))
+        natija = dict(cur.fetchone())
+        conn.commit()
+        return {"holat": "yangilandi", "sinf": natija}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 @app.put("/api/admin/sinf_parolini_tashla")
