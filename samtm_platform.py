@@ -8145,7 +8145,6 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
         raise HTTPException(status_code=404, detail="Maktab topilmadi")
 
     if sorov.sinf_fanlari is not None:
-        cur.execute("DELETE FROM maktab_fan_sinflari_v19_4 WHERE maktab_id=%s", (sorov.maktab_id,))
         barcha_fanlar = {}
         qaytadigan = {str(daraja): [] for daraja in range(1, 12)}
         for daraja in range(1, 12):
@@ -8156,15 +8155,30 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
                 kalit = _xodim_excel_sarlavha_kaliti(fan)
                 if any(_xodim_excel_sarlavha_kaliti(x) == kalit for x in qaytadigan[str(daraja)]):
                     continue
+                qaytadigan[str(daraja)].append(fan)
+                barcha_fanlar.setdefault(kalit, fan)
+        if not barcha_fanlar:
+            cur.close(); conn.close()
+            raise HTTPException(status_code=400, detail="Kamida bitta sinf uchun fan tanlang")
+        # Eski katalogni o'chirmaymiz: unga o'qituvchi/yuklama kabi boshqa
+        # jadvallar bog'langan bo'lishi mumkin. Avval barcha ota fanlarni
+        # xavfsiz qo'shamiz, so'ng faqat sinf-fan tanlovini yangilaymiz.
+        for fan in barcha_fanlar.values():
+            cur.execute(
+                "INSERT INTO maktab_fanlari(maktab_id,fan_nomi) VALUES(%s,%s) ON CONFLICT DO NOTHING",
+                (sorov.maktab_id, fan),
+            )
+        cur.execute("DELETE FROM maktab_fan_sinflari_v19_4 WHERE maktab_id=%s", (sorov.maktab_id,))
+        for daraja in range(1, 12):
+            canonical_fanlar = []
+            for fan in qaytadigan[str(daraja)]:
+                fan = barcha_fanlar[_xodim_excel_sarlavha_kaliti(fan)]
                 cur.execute(
                     "INSERT INTO maktab_fan_sinflari_v19_4(maktab_id,sinf_darajasi,fan_nomi) VALUES(%s,%s,%s)",
                     (sorov.maktab_id, daraja, fan),
                 )
-                qaytadigan[str(daraja)].append(fan)
-                barcha_fanlar.setdefault(kalit, fan)
-        cur.execute("DELETE FROM maktab_fanlari WHERE maktab_id=%s", (sorov.maktab_id,))
-        for fan in barcha_fanlar.values():
-            cur.execute("INSERT INTO maktab_fanlari(maktab_id,fan_nomi) VALUES(%s,%s)", (sorov.maktab_id, fan))
+                canonical_fanlar.append(fan)
+            qaytadigan[str(daraja)] = canonical_fanlar
         conn.commit(); cur.close(); conn.close()
         return {
             "holat": "saqlandi",
