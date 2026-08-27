@@ -9375,10 +9375,24 @@ def _v201_central_school_settings_tables(cur):
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         PRIMARY KEY(maktab_id,bolim)
     )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS admin_maktab_andoza_tasdiqlari_v20_2(
+        versiya_id BIGINT NOT NULL REFERENCES admin_maktab_andoza_versiyalari_v20_1(id) ON DELETE CASCADE,
+        bolim TEXT NOT NULL CHECK(bolim IN ('fanlar','yuklama','jadval','metod')),
+        tasdiqlangan BOOLEAN NOT NULL DEFAULT FALSE,
+        tasdiqlagan_user_id BIGINT,
+        tasdiqlangan_at TIMESTAMPTZ,
+        PRIMARY KEY(versiya_id,bolim)
+    )""")
     cur.execute("SELECT id FROM admin_maktab_andoza_versiyalari_v20_1 WHERE faol=TRUE LIMIT 1")
     version = cur.fetchone()
     if version:
-        return int(version["id"])
+        version_id = int(version["id"])
+        for section in ("fanlar", "yuklama", "jadval", "metod"):
+            cur.execute("""INSERT INTO admin_maktab_andoza_tasdiqlari_v20_2(
+                            versiya_id,bolim,tasdiqlangan)
+                           VALUES(%s,%s,TRUE) ON CONFLICT DO NOTHING""",
+                        (version_id, section))
+        return version_id
     cur.execute("""INSERT INTO admin_maktab_andoza_versiyalari_v20_1(nomi,faol)
                    VALUES('Amaldagi maktab andozasi',TRUE) RETURNING id""")
     version_id = int(cur.fetchone()["id"])
@@ -9392,6 +9406,10 @@ def _v201_central_school_settings_tables(cur):
                         (version_id, int(grade), subject,
                          _v1875_subject_key(subject), float(hours), order))
         order += 1
+    for section in ("fanlar", "yuklama", "jadval", "metod"):
+        cur.execute("""INSERT INTO admin_maktab_andoza_tasdiqlari_v20_2(
+                        versiya_id,bolim,tasdiqlangan)
+                       VALUES(%s,%s,TRUE)""", (version_id, section))
     return version_id
 
 
@@ -9435,6 +9453,8 @@ class V201CentralSubjectRow(BaseModel):
 
 class V201CentralSchoolSettings(BaseModel):
     qatorlar: list[V201CentralSubjectRow]
+    bolim: str = "fanlar"
+    tasdiqlash: bool = True
 
 
 @app.on_event("startup")
@@ -9452,7 +9472,15 @@ def v201_central_school_settings_get(token: str):
     _admin_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
+        version_id = _v201_central_school_settings_tables(cur)
         rows = _v201_central_rows(cur)
+        cur.execute("""SELECT bolim,tasdiqlangan,tasdiqlangan_at
+                         FROM admin_maktab_andoza_tasdiqlari_v20_2
+                        WHERE versiya_id=%s""", (version_id,))
+        approvals = {row["bolim"]: {
+            "tasdiqlangan": bool(row["tasdiqlangan"]),
+            "tasdiqlangan_at": row["tasdiqlangan_at"],
+        } for row in cur.fetchall()}
         return {
             "nomi": "Amaldagi maktab andozasi",
             "qatorlar": rows,
@@ -9460,6 +9488,7 @@ def v201_central_school_settings_get(token: str):
                 str(grade): [row["fan_nomi"] for row in rows if int(row["sinf_darajasi"]) == grade]
                 for grade in range(1, 12)
             },
+            "tasdiqlar": approvals,
         }
     finally:
         cur.close(); conn.close()
@@ -9468,6 +9497,9 @@ def v201_central_school_settings_get(token: str):
 @app.put("/api/admin/maktab_markaziy_sozlamalari")
 def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: str):
     actor_id = _admin_tekshir(token)
+    section = str(sorov.bolim or "").strip().lower()
+    if section not in {"fanlar", "yuklama", "jadval", "metod"}:
+        raise HTTPException(status_code=400, detail="Sozlama bo‘limi noto‘g‘ri")
     normalized = []
     seen = set()
     for index, item in enumerate(sorov.qatorlar):
@@ -9501,6 +9533,19 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
         cur.execute("""UPDATE admin_maktab_andoza_versiyalari_v20_1
                           SET yangilagan_user_id=%s,yangilangan_at=NOW() WHERE id=%s""",
                     (actor_id, version_id))
+        cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
+                          SET tasdiqlangan=FALSE,tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL
+                        WHERE versiya_id=%s AND bolim=%s""", (version_id, section))
+        if section == "fanlar":
+            cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
+                              SET tasdiqlangan=FALSE,tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL
+                            WHERE versiya_id=%s AND bolim IN ('yuklama','jadval','metod')""",
+                        (version_id,))
+        if sorov.tasdiqlash:
+            cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
+                              SET tasdiqlangan=TRUE,tasdiqlagan_user_id=%s,tasdiqlangan_at=NOW()
+                            WHERE versiya_id=%s AND bolim=%s""",
+                        (actor_id, version_id, section))
         # Markaziy o'zgarish faqat alohida sozlama qilmagan maktablarga
         # tarqaladi. Ularning keyingi ochilishida reja yangi andozadan qayta
         # quriladi; maxsus maktab sozlamasi hech qachon bosib ketilmaydi.
@@ -9532,7 +9577,8 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
                     _v1873_apply_official(cur, school_id, replace_existing=True)
                 method_updated += 1
         conn.commit()
-        return {"holat": "saqlandi", "qator_soni": len(normalized),
+        return {"holat": "tasdiqlandi" if sorov.tasdiqlash else "saqlandi",
+                "bolim": section, "qator_soni": len(normalized),
                 "maktablar": {"fanlar": fan_updated, "oquv_reja": plan_updated,
                               "metod_kunlari": method_updated},
                 "izoh": "Alohida override qilmagan maktablar bu andozani avtomatik oladi."}
