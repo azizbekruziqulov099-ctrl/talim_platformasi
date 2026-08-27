@@ -8024,6 +8024,15 @@ def _maktab_fanlari_jadvali(cur):
             PRIMARY KEY(maktab_id, fan_nomi)
         )
     """)
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS maktab_fan_sinflari_v19_4(
+            maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+            sinf_darajasi SMALLINT NOT NULL CHECK(sinf_darajasi BETWEEN 1 AND 11),
+            fan_nomi TEXT NOT NULL,
+            yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            PRIMARY KEY(maktab_id, sinf_darajasi, fan_nomi)
+        )
+    """)
 
 
 def _maktab_fan_katalogi(cur, maktab_id):
@@ -8047,6 +8056,7 @@ class MaktabFanlariniSozlash(BaseModel):
     token: str
     maktab_id: int
     fanlar: list[str]
+    sinf_fanlari: Optional[dict[str, list[str]]] = None
 
 
 @app.get("/api/admin/maktab_fan_sozlamalari")
@@ -8078,12 +8088,37 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
         if kalit not in katalog_kalitlari:
             katalog.append({"nomi": fan_nomi, "manba": "Maktab qo‘shgan"})
             katalog_kalitlari[kalit] = fan_nomi
+    cur.execute(
+        "SELECT sinf_darajasi,fan_nomi FROM maktab_fan_sinflari_v19_4 "
+        "WHERE maktab_id=%s ORDER BY sinf_darajasi,fan_nomi",
+        (maktab_id,),
+    )
+    saqlangan_sinf_fanlari = {str(daraja): [] for daraja in range(1, 12)}
+    for row in cur.fetchall():
+        saqlangan_sinf_fanlari[str(row["sinf_darajasi"])].append(row["fan_nomi"])
+    dts_sinf_fanlari = {}
+    for daraja in range(1, 12):
+        cur.execute(
+            "SELECT DISTINCT subject_name FROM dts_tree WHERE grade=%s "
+            "AND COALESCE(is_deleted,FALSE)=FALSE "
+            "AND NULLIF(TRIM(subject_name),'') IS NOT NULL ORDER BY subject_name",
+            (daraja,),
+        )
+        dts_sinf_fanlari[str(daraja)] = [
+            re.sub(r"\s+", " ", str(row["subject_name"])).strip()
+            for row in cur.fetchall()
+        ]
     cur.close()
     conn.close()
     return {
         "fanlar": katalog,
         "tanlangan_fanlar": tanlangan,
         "sozlangan": bool(tanlangan),
+        "dts_sinf_fanlari": dts_sinf_fanlari,
+        "sinf_fanlari": {
+            str(daraja): (saqlangan_sinf_fanlari[str(daraja)] or dts_sinf_fanlari[str(daraja)])
+            for daraja in range(1, 12)
+        },
     }
 
 
@@ -8100,6 +8135,34 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
     if not cur.fetchone():
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Maktab topilmadi")
+
+    if sorov.sinf_fanlari is not None:
+        cur.execute("DELETE FROM maktab_fan_sinflari_v19_4 WHERE maktab_id=%s", (sorov.maktab_id,))
+        barcha_fanlar = {}
+        qaytadigan = {str(daraja): [] for daraja in range(1, 12)}
+        for daraja in range(1, 12):
+            for fan_xom in sorov.sinf_fanlari.get(str(daraja), []):
+                fan = re.sub(r"\s+", " ", str(fan_xom or "")).strip()
+                if not fan or len(fan) > 100:
+                    continue
+                kalit = _xodim_excel_sarlavha_kaliti(fan)
+                if any(_xodim_excel_sarlavha_kaliti(x) == kalit for x in qaytadigan[str(daraja)]):
+                    continue
+                cur.execute(
+                    "INSERT INTO maktab_fan_sinflari_v19_4(maktab_id,sinf_darajasi,fan_nomi) VALUES(%s,%s,%s)",
+                    (sorov.maktab_id, daraja, fan),
+                )
+                qaytadigan[str(daraja)].append(fan)
+                barcha_fanlar.setdefault(kalit, fan)
+        cur.execute("DELETE FROM maktab_fanlari WHERE maktab_id=%s", (sorov.maktab_id,))
+        for fan in barcha_fanlar.values():
+            cur.execute("INSERT INTO maktab_fanlari(maktab_id,fan_nomi) VALUES(%s,%s)", (sorov.maktab_id, fan))
+        conn.commit(); cur.close(); conn.close()
+        return {
+            "holat": "saqlandi",
+            "sinf_fanlari": qaytadigan,
+            "tanlangan_fanlar": list(barcha_fanlar.values()),
+        }
 
     katalog = _maktab_fan_katalogi(cur, sorov.maktab_id)
     katalog_kalitlari = {
