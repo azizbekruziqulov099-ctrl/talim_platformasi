@@ -119,7 +119,7 @@ def versiya():
         ],
         "module_versions": {
             "learning_center": "learning-center-v2-secure-v14",
-            "institute": "institute-foundation-v20-rev54",
+            "institute": "school-id-existing-schools-single-html-v20-rev60",
             "teacher_tools": "teacher-analytics-repetitor-v16",
             "organization_trials": "private-trial-wallet-v17",
             "test_games": "fast-feedback-v18.22",
@@ -1299,11 +1299,14 @@ def muassasalarim(token: str):
         }
         for org in cur.fetchall():
             turi = type_map[org["organization_type"]]
-            if turi == "bogcha" and org["external_id"] is not None:
+            # V17 yozuvi legacy muassasaga allaqachon bog'langan bo'lsa,
+            # ayni maktab/markaz/bog'chani ro'yxatda ikki marta ko'rsatmaymiz.
+            # Boshqa IDli eski maktablar esa o'z joyida saqlanib qoladi.
+            if org["external_id"] is not None:
                 natija = [
                     item for item in natija
                     if not (
-                        item["turi"] == "bogcha"
+                        item["turi"] == turi
                         and int(item["muassasa_id"]) == int(org["external_id"])
                     )
                 ]
@@ -1319,8 +1322,24 @@ def muassasalarim(token: str):
                     "turi": turi,
                     "muassasa_id": (
                         int(org["external_id"])
-                        if turi == "bogcha" and org["external_id"] is not None
+                        if org["external_id"] is not None
                         else int(org["context_id"])
+                    ),
+                    # REV60: maktab workspace faqat maktablar.id bilan
+                    # ishlaydi. context_id ni maktab ID deb yuborish
+                    # "Maktab ID topilmadi" xatosiga olib kelardi.
+                    # Haqiqiy bog'lanish mavjud bo'lsa uni alohida va aniq
+                    # maydonda ham qaytaramiz; eski frontendlar uchun
+                    # muassasa_id yuqorida mos qiymatni saqlaydi.
+                    "maktab_id": (
+                        int(org["external_id"])
+                        if turi == "maktab" and org["external_id"] is not None
+                        else None
+                    ),
+                    "external_id": (
+                        int(org["external_id"])
+                        if org["external_id"] is not None
+                        else None
                     ),
                     "context_id": int(org["context_id"]),
                     "organization_v17_id": int(org["organization_v17_id"]),
@@ -14313,12 +14332,51 @@ def _universitet_boshqaruvchi_mi(cur, user_id, universitet_id):
     return lavozim in ("rektor", "prorektor")
 
 
+def _universitet_rol_bogla(cur, universitet_id, user_id, rol, fakultet_id=None, kafedra_id=None):
+    """Legacy rahbar maydonini V20 rol jadvali bilan sinxronlaydi."""
+    cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS jadval")
+    if not cur.fetchone()["jadval"]:
+        return None
+    singleton_sql, singleton_params = None, []
+    if rol == "rektor": singleton_sql, singleton_params = "universitet_id=%s AND rol='rektor'", [universitet_id]
+    elif rol == "dekan": singleton_sql, singleton_params = "fakultet_id=%s AND rol='dekan'", [fakultet_id]
+    elif rol == "kafedra_mudiri": singleton_sql, singleton_params = "kafedra_id=%s AND rol='kafedra_mudiri'", [kafedra_id]
+    if singleton_sql:
+        cur.execute(f"SELECT id FROM universitet_xodim_rollari WHERE {singleton_sql} AND faol=TRUE ORDER BY id LIMIT 1", singleton_params)
+        old = cur.fetchone()
+        if old:
+            cur.execute("""UPDATE universitet_xodim_rollari
+                SET user_id=%s,universitet_id=%s,fakultet_id=%s,kafedra_id=%s
+                WHERE id=%s""", (user_id, universitet_id, fakultet_id, kafedra_id, old["id"]))
+            return old["id"]
+    cur.execute("""INSERT INTO universitet_xodim_rollari(universitet_id,fakultet_id,kafedra_id,user_id,rol)
+        VALUES(%s,%s,%s,%s,%s) RETURNING id""", (universitet_id, fakultet_id, kafedra_id, user_id, rol))
+    return cur.fetchone()["id"]
+
+
+def _universitet_yangi_rahbar(cur, fish, universitet_id, rol, fakultet_id=None, kafedra_id=None):
+    """Faqat F.I.Sh. yozilsa ham hisob, rol va 2 oylik bir martalik kod yaratadi."""
+    fish = str(fish or "").strip()
+    if not fish:
+        return None, None
+    cur.execute("SELECT pg_advisory_xact_lock(%s)", (20005401,))
+    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id<0")
+    row = cur.fetchone(); user_id = (row["eng_kichik"] - 1) if row and row["eng_kichik"] is not None else -1
+    cur.execute("""INSERT INTO users(user_id,full_name,role,universitet_id,lavozim)
+        VALUES(%s,%s,'oqituvchi',%s,%s)""", (user_id, fish, universitet_id, rol))
+    _universitet_rol_bogla(cur, universitet_id, user_id, rol, fakultet_id, kafedra_id)
+    _xodim_kod_jadvali(cur); plain, stored = _xodim_kod_yarat()
+    cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)", (stored, user_id))
+    return user_id, plain
+
+
 class UniversitetYaratish(BaseModel):
     token: str
     nomi: str
     viloyat: Optional[str] = None
     tuman: Optional[str] = None
     rektor_user_id: Optional[int] = None
+    rektor_ismi: Optional[str] = None
 
 
 @app.post("/api/admin/universitet_yarat")
@@ -14339,10 +14397,16 @@ def universitet_yarat(sorov: UniversitetYaratish):
         VALUES(%s,%s,%s,%s) RETURNING id
     """, (sorov.nomi.strip(), sorov.viloyat, sorov.tuman, sorov.rektor_user_id))
     yangi_id = cur.fetchone()["id"]
+    kirish_kodi = None
+    if sorov.rektor_user_id is not None:
+        _universitet_rol_bogla(cur, yangi_id, sorov.rektor_user_id, "rektor")
+    elif sorov.rektor_ismi and sorov.rektor_ismi.strip():
+        rektor_id, kirish_kodi = _universitet_yangi_rahbar(cur, sorov.rektor_ismi, yangi_id, "rektor")
+        cur.execute("UPDATE universitetlar SET rektor_user_id=%s WHERE id=%s", (rektor_id, yangi_id))
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "yaratildi", "universitet_id": yangi_id}
+    return {"holat": "yaratildi", "universitet_id": yangi_id, "kirish_kodi": kirish_kodi, "kod_muddati": "2 oy" if kirish_kodi else None}
 
 
 @app.get("/api/admin/universitetlar")
@@ -14369,6 +14433,7 @@ class FakultetYaratish(BaseModel):
     universitet_id: int
     nomi: str
     dekan_user_id: Optional[int] = None
+    dekan_ismi: Optional[str] = None
 
 
 @app.post("/api/admin/fakultet_yarat")
@@ -14384,10 +14449,16 @@ def fakultet_yarat(sorov: FakultetYaratish):
         VALUES(%s,%s,%s) RETURNING id
     """, (sorov.universitet_id, sorov.nomi.strip(), sorov.dekan_user_id))
     yangi_id = cur.fetchone()["id"]
+    kirish_kodi = None
+    if sorov.dekan_user_id is not None:
+        _universitet_rol_bogla(cur, sorov.universitet_id, sorov.dekan_user_id, "dekan", yangi_id)
+    elif sorov.dekan_ismi and sorov.dekan_ismi.strip():
+        dekan_id, kirish_kodi = _universitet_yangi_rahbar(cur, sorov.dekan_ismi, sorov.universitet_id, "dekan", yangi_id)
+        cur.execute("UPDATE fakultetlar SET dekan_user_id=%s WHERE id=%s", (dekan_id, yangi_id))
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "yaratildi", "fakultet_id": yangi_id}
+    return {"holat": "yaratildi", "fakultet_id": yangi_id, "kirish_kodi": kirish_kodi, "kod_muddati": "2 oy" if kirish_kodi else None}
 
 
 @app.get("/api/admin/fakultetlar")
@@ -14413,6 +14484,7 @@ class KafedraYaratish(BaseModel):
     fakultet_id: int
     nomi: str
     mudir_user_id: Optional[int] = None
+    mudir_ismi: Optional[str] = None
 
 
 @app.post("/api/admin/kafedra_yarat")
@@ -14423,15 +14495,24 @@ def kafedra_yarat(sorov: KafedraYaratish):
     conn = _db()
     cur = conn.cursor()
     _universitet_jadvali(cur)
+    cur.execute("SELECT universitet_id FROM fakultetlar WHERE id=%s", (sorov.fakultet_id,)); faculty = cur.fetchone()
+    if not faculty:
+        cur.close(); conn.close(); raise HTTPException(status_code=404, detail="Fakultet topilmadi")
     cur.execute("""
         INSERT INTO kafedralar(fakultet_id, nomi, mudir_user_id)
         VALUES(%s,%s,%s) RETURNING id
     """, (sorov.fakultet_id, sorov.nomi.strip(), sorov.mudir_user_id))
     yangi_id = cur.fetchone()["id"]
+    kirish_kodi = None
+    if sorov.mudir_user_id is not None:
+        _universitet_rol_bogla(cur, faculty["universitet_id"], sorov.mudir_user_id, "kafedra_mudiri", sorov.fakultet_id, yangi_id)
+    elif sorov.mudir_ismi and sorov.mudir_ismi.strip():
+        mudir_id, kirish_kodi = _universitet_yangi_rahbar(cur, sorov.mudir_ismi, faculty["universitet_id"], "kafedra_mudiri", sorov.fakultet_id, yangi_id)
+        cur.execute("UPDATE kafedralar SET mudir_user_id=%s WHERE id=%s", (mudir_id, yangi_id))
     conn.commit()
     cur.close()
     conn.close()
-    return {"holat": "yaratildi", "kafedra_id": yangi_id}
+    return {"holat": "yaratildi", "kafedra_id": yangi_id, "kirish_kodi": kirish_kodi, "kod_muddati": "2 oy" if kirish_kodi else None}
 
 
 @app.get("/api/admin/kafedralar")
