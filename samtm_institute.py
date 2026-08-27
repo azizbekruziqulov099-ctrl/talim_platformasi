@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "faculty-student-import-no-institute-password-v20-rev62"
+SAMTM_INSTITUTE_RELEASE = "daily-admission-calendar-tutor-site-status-v20-rev65"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -1930,12 +1930,12 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             if bosqich not in (1, 2, 3, 4): raise HTTPException(status_code=400, detail="Bosqich 1–4 oralig'ida bo'lishi kerak")
             if bosqich == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
             if bosqich == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
-            if bosqich == 4: where.append("(qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
+            if bosqich == 4: where.append("(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
         elif bosqich_min is not None:
             requested_stage = max(1, min(4, bosqich_min))
             if requested_stage == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
             if requested_stage == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
-            if requested_stage == 4: where.append("(qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
+            if requested_stage == 4: where.append("(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
         if fakultet_id: where.append("y.fakultet_id=%s"); params.append(fakultet_id)
         if yonalish_id: where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
         if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
@@ -1954,8 +1954,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             qt.bazaga_kiritilgan_at,qt.birinchi_kirish_at,qt.telefon,y.id yonalish_id,y.nomi yonalish_nomi,
             (qt.hujjat_topshirgan_at IS NOT NULL) hujjat_topshirgan,
             (qt.bazaga_kiritilgan_at IS NOT NULL) bazaga_kiritilgan,
-            (qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 OR xk.ishlatildi) saytga_kirgan,
-            CASE WHEN qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 OR xk.ishlatildi THEN 'saytga_kirgan'
+            (qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 OR xk.ishlatildi) saytga_kirgan,
+            CASE WHEN qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 OR xk.ishlatildi THEN 'saytga_kirgan'
                  WHEN tk.kod_hash IS NOT NULL THEN 'kirish_kodi_tayyor'
                  ELSE 'bazaga_kiritilmagan' END sayt_holati
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
@@ -1968,8 +1968,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             if tutor_only:
                 item.pop("qabul_bosqichi", None)
                 item["bazaga_belgilash_mumkin"] = bool(item["hujjat_topshirgan"] and not item["bazaga_kiritilgan"])
-                item.pop("hujjat_topshirgan", None); item.pop("saytga_kirgan", None)
-                for hidden in ("hujjat_topshirgan_at", "bazaga_kiritilgan_at", "birinchi_kirish_at", "sayt_holati"):
+                item.pop("hujjat_topshirgan", None)
+                for hidden in ("hujjat_topshirgan_at", "bazaga_kiritilgan_at", "birinchi_kirish_at"):
                     item.pop(hidden, None)
             rows.append(item)
         sw = "qt.universitet_id=%s AND " + scope_sql
@@ -1977,7 +1977,7 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         cur.execute(f"""SELECT COUNT(*) jami,
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL) hujjat,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) baza,
-            COUNT(*) FILTER(WHERE qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) sayt
+            COUNT(*) FILTER(WHERE qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) sayt
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
             WHERE {sw}""", count_params)
         counts = cur.fetchone()
@@ -1988,9 +1988,49 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
             WHERE {sw}""", count_params)
         filter_options = cur.fetchone()
-        safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0)} if tutor_only else counts
+        safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0), "sayt": int(counts["sayt"] or 0)} if tutor_only else counts
         return {"talabalar": rows, "jami": total, "sahifa": page, "sahifa_soni": math.ceil(total/page_size) if total else 0,
                 "hisoblar": safe_counts, "filtrlar": filter_options, "tyutor_rejimi": tutor_only}
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/qabul/kunlik_hisobot")
+def admission_daily_report(universitet_id: int, kun: Optional[date] = None,
+                           token: Optional[str] = Query(None, include_in_schema=False),
+                           authorization: Optional[str] = Header(None)):
+    """Dekan/admin tanlagan kun bo'yicha hujjat, baza va sayt hisobotini ko'radi."""
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    selected_day = kun or date.today()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
+        if not _has_any(roles, MARK_DOCUMENT_ROLES):
+            raise HTTPException(status_code=403, detail="Kunlik qabul hisoboti dekan va administrator uchun")
+        scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
+        params: list[Any] = [selected_day, selected_day, selected_day, universitet_id, *scope_params]
+        cur.execute(f"""SELECT
+            COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s) hujjat,
+            COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at::date=%s) baza,
+            COUNT(*) FILTER(WHERE COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s) sayt
+          FROM universitet_qabul_talabalari qt
+          JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+         WHERE qt.universitet_id=%s AND {scope_sql}""", params)
+        totals = dict(cur.fetchone())
+        cur.execute(f"""SELECT f.id fakultet_id,f.nomi fakultet_nomi,y.id yonalish_id,y.nomi yonalish_nomi,
+            COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s) hujjat,
+            COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at::date=%s) baza,
+            COUNT(*) FILTER(WHERE COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s) sayt
+          FROM universitet_qabul_talabalari qt
+          JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+          JOIN fakultetlar f ON f.id=y.fakultet_id
+         WHERE qt.universitet_id=%s AND {scope_sql}
+         GROUP BY f.id,f.nomi,y.id,y.nomi
+        HAVING COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s
+                                OR qt.bazaga_kiritilgan_at::date=%s
+                                OR COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s)>0
+         ORDER BY f.nomi,y.nomi""", params + [selected_day, selected_day, selected_day])
+        rows = [dict(row) for row in cur.fetchall()]
+        return {"kun": selected_day.isoformat(), "hisoblar": totals, "yonalishlar": rows}
     finally:
         cur.close(); conn.close()
 
@@ -2004,8 +2044,8 @@ def admission_detail(student_id: int, universitet_id: int, token: Optional[str] 
         cur.execute("""SELECT qt.*,y.nomi yonalish_nomi,y.fakultet_id,f.nomi fakultet_nomi,k.nomi kafedra_nomi,
             (qt.hujjat_topshirgan_at IS NOT NULL) hujjat_topshirgan,
             (qt.bazaga_kiritilgan_at IS NOT NULL) bazaga_kiritilgan,
-            (qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) saytga_kirgan,
-            CASE WHEN qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 THEN 'saytga_kirgan'
+            (qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) saytga_kirgan,
+            CASE WHEN qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 THEN 'saytga_kirgan'
                  WHEN qt.user_id<0 THEN 'kirish_kodi_tayyor'
                  ELSE 'bazaga_kiritilmagan' END sayt_holati
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
@@ -2018,9 +2058,9 @@ def admission_detail(student_id: int, universitet_id: int, token: Optional[str] 
         conn.commit(); result = dict(row); result["fish"] = " ".join(x for x in [row["familiya"],row["ism"],row["ota_ism"]] if x)
         names = _role_names(roles)
         if "tyutor" in names and not (names & MARK_DOCUMENT_ROLES):
-            for hidden in ("qabul_bosqichi", "hujjat_topshirgan_at", "bazaga_kiritilgan_at", "saytga_kiritilgan_at", "birinchi_kirish_at", "sayt_holati", "user_id"):
+            for hidden in ("qabul_bosqichi", "hujjat_topshirgan_at", "bazaga_kiritilgan_at", "saytga_kiritilgan_at", "birinchi_kirish_at", "user_id"):
                 result.pop(hidden, None)
-            result.pop("hujjat_topshirgan", None); result.pop("saytga_kirgan", None)
+            result.pop("hujjat_topshirgan", None)
         return result
     except Exception:
         conn.rollback(); raise
@@ -2030,7 +2070,7 @@ def admission_detail(student_id: int, universitet_id: int, token: Optional[str] 
 
 @router.patch("/qabul/talaba/{student_id}/bosqich")
 def update_stage(student_id: int, req: StageUpdate):
-    if req.bosqich not in (2, 3): raise HTTPException(status_code=400, detail="Qo'lda faqat 2-bosqich (hujjat) yoki 3-bosqich (baza) belgilanadi")
+    if req.bosqich not in (2, 3, 4): raise HTTPException(status_code=400, detail="Qo'lda faqat hujjat, baza yoki saytga kirish bosqichi belgilanadi")
     p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
     try:
         _ensure_schema(cur); cur.execute("SELECT * FROM universitet_qabul_talabalari WHERE id=%s FOR UPDATE", (student_id,)); row = cur.fetchone()
@@ -2039,15 +2079,22 @@ def update_stage(student_id: int, req: StageUpdate):
         if not _student_access_allowed(cur, row["universitet_id"], actor, roles, dict(row)):
             raise HTTPException(status_code=403, detail="Bu talaba sizga biriktirilmagan")
         if "tyutor" in names and not (names & MARK_DOCUMENT_ROLES):
-            if req.bosqich != 3: raise HTTPException(status_code=403, detail="Tyutor faqat o'z qamrovidagi talabaning bazaga kiritilganini belgilaydi")
+            if req.bosqich not in (3, 4): raise HTTPException(status_code=403, detail="Tyutor faqat o'z qamrovidagi talabaning baza va sayt holatini belgilaydi")
             if row["hujjat_topshirgan_at"] is None: raise HTTPException(status_code=409, detail="Avval admin hujjat topshirilganini tasdiqlashi kerak")
         elif not (names & MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Bosqichni o'zgartirish huquqi yo'q")
         if req.bosqich == 2 and row["hujjat_topshirgan_at"] is not None:
             conn.commit(); return {"holat": "avval_belgilangan", "bosqich": 2}
         if req.bosqich == 3 and row["bazaga_kiritilgan_at"] is not None:
             conn.commit(); return {"holat": "avval_belgilangan", "bosqich": 3}
+        if req.bosqich == 4 and row["saytga_kiritilgan_at"] is not None:
+            conn.commit(); return {"holat": "avval_belgilangan", "bosqich": 4}
         code = None
-        if req.bosqich == 3:
+        if req.bosqich == 4:
+            if row["bazaga_kiritilgan_at"] is None:
+                raise HTTPException(status_code=409, detail="Avval talabaning bazaga kiritilganini belgilang")
+            cur.execute("""UPDATE universitet_qabul_talabalari SET qabul_bosqichi=GREATEST(qabul_bosqichi,4),
+                saytga_kiritilgan_at=COALESCE(saytga_kiritilgan_at,NOW()),yangilangan_at=NOW() WHERE id=%s""", (student_id,))
+        elif req.bosqich == 3:
             if row["hujjat_topshirgan_at"] is None:
                 raise HTTPException(status_code=409, detail="Avval hujjat topshirilganini belgilang")
             code = _create_student_invite(cur, dict(row), actor)
@@ -2075,6 +2122,8 @@ def invite_student(student_id: int, req: InviteSend):
         if not _has_any(roles, PASSWORD_VIEW_ROLES) or not _student_access_allowed(cur, row["universitet_id"], actor, roles, dict(row)):
             raise HTTPException(status_code=403, detail="Taklif yuborish huquqi yo'q")
         if row["bazaga_kiritilgan_at"] is None: raise HTTPException(status_code=409, detail="Talaba hali bazaga kiritilgan deb belgilanmagan")
+        if row["saytga_kiritilgan_at"] is not None or row["birinchi_kirish_at"] is not None or (row["user_id"] is not None and int(row["user_id"]) >= 0):
+            raise HTTPException(status_code=409, detail="Talaba saytga kirgan; kirish kodi qayta berilmaydi")
         code = _create_student_invite(cur, dict(row), actor)
         base = getattr(p, "FRONTEND_URL", "").rstrip("/")
         link = f"{base}/?kirish_kodi={code}"
@@ -2102,7 +2151,7 @@ def reveal_student_password(student_id: int, token: Optional[str] = Query(None, 
             raise HTTPException(status_code=403, detail="Talaba kirish kodini ko'rish huquqi yo'q")
         if not _student_access_allowed(cur, row["universitet_id"], actor, roles, dict(row)):
             raise HTTPException(status_code=403, detail="Bu talaba sizning qamrovingizga tegishli emas")
-        if row["birinchi_kirish_at"] is not None or (row["user_id"] is not None and int(row["user_id"]) >= 0):
+        if row["saytga_kiritilgan_at"] is not None or row["birinchi_kirish_at"] is not None or (row["user_id"] is not None and int(row["user_id"]) >= 0):
             raise HTTPException(status_code=409, detail="Talaba saytga birinchi marta kirgan; xavfsizlik uchun parol endi ko'rsatilmaydi")
         code = _create_student_invite(cur, dict(row), actor)
         _audit(cur, row["universitet_id"], actor, "talaba_kirish_kodi_korildi", "qabul_talaba", student_id)
