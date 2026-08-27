@@ -1,4 +1,4 @@
-"""SamTM V20 ASGI entry point — REV55 ko'p maktab va 2 oylik kirish kodi.
+"""SamTM V20 ASGI entry point — REV60 maktab ID va ko'p maktab tuzatishi.
 
 Railway BACKEND xizmati ``gunicorn main:app`` bilan aynan shu faylni
 ishga tushirishi kerak. V19.8 school moduli yuklanmasa eski v19.2 server
@@ -7,7 +7,7 @@ yashirincha ishlab qolmaydi: deploy aniq xato bilan to'xtaydi.
 
 SAMTM_ASGI_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
-SAMTM_PLATFORM_RELEASE = "samtm-multi-school-access-v20"
+SAMTM_PLATFORM_RELEASE = "samtm-institute-role-scope-four-stage-v20"
 SAMTM_REQUIRED_ROUTES = {
     "/api/maktab/aqlli_jadval/v3/maktab_workspace_boglash",
     "/api/maktab/aqlli_jadval/v3/soat_imkoniyatlari",
@@ -69,7 +69,7 @@ if missing_required_routes:
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_PLATFORM_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "multi-school-access-2month-rev55"
+    "school-id-existing-schools-single-html-rev60"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
