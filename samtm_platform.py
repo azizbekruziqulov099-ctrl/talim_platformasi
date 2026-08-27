@@ -8205,6 +8205,24 @@ def maktab_fan_sozlamalarini_saqla(sorov: MaktabFanlariniSozlash):
                            VALUES(%s,'fanlar',TRUE,NOW())
                            ON CONFLICT(maktab_id,bolim) DO UPDATE SET
                              alohida=TRUE,yangilangan_at=NOW()""", (sorov.maktab_id,))
+            # Fan tanlovi o'zgarsa, alohida o'quv reja tuzmagan maktabning
+            # eski matritsasini qoldirmaymiz. Keyingi yuklashda u aynan yangi
+            # fan tanlovi + super-admin soat andozasidan qayta quriladi.
+            cur.execute("""SELECT 1 FROM maktab_andoza_override_v20_1
+                            WHERE maktab_id=%s AND bolim='oquv_reja'
+                              AND alohida=TRUE""", (sorov.maktab_id,))
+            if not cur.fetchone():
+                cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_qatorlari_v19_3') AS jadval")
+                if (cur.fetchone() or {}).get("jadval"):
+                    cur.execute("DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 WHERE maktab_id=%s",
+                                (sorov.maktab_id,))
+                cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_holati_v19_3') AS jadval")
+                if (cur.fetchone() or {}).get("jadval"):
+                    cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
+                                      SET holat='draft',versiya=versiya+1,
+                                          tasdiqlagan_user_id=NULL,
+                                          tasdiqlangan_at=NULL,yangilangan_at=NOW()
+                                    WHERE maktab_id=%s""", (sorov.maktab_id,))
         conn.commit(); cur.close(); conn.close()
         return {
             "holat": "saqlandi",
