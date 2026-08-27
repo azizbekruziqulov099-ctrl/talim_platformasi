@@ -8096,18 +8096,26 @@ def maktab_fan_sozlamalari(token: str, maktab_id: int):
     saqlangan_sinf_fanlari = {str(daraja): [] for daraja in range(1, 12)}
     for row in cur.fetchall():
         saqlangan_sinf_fanlari[str(row["sinf_darajasi"])].append(row["fan_nomi"])
-    dts_sinf_fanlari = {}
-    for daraja in range(1, 12):
-        cur.execute(
-            "SELECT DISTINCT subject_name FROM dts_tree WHERE grade=%s "
-            "AND COALESCE(is_deleted,FALSE)=FALSE "
-            "AND NULLIF(TRIM(subject_name),'') IS NOT NULL ORDER BY subject_name",
-            (daraja,),
-        )
-        dts_sinf_fanlari[str(daraja)] = [
-            re.sub(r"\s+", " ", str(row["subject_name"])).strip()
-            for row in cur.fetchall()
-        ]
+    dts_sinf_fanlari = {str(daraja): [] for daraja in range(1, 12)}
+    cur.execute(
+        "SELECT DISTINCT grade,subject_name FROM dts_tree "
+        "WHERE COALESCE(is_deleted,FALSE)=FALSE "
+        "AND NULLIF(TRIM(subject_name),'') IS NOT NULL "
+        "ORDER BY grade,subject_name"
+    )
+    dts_kalitlari = {str(daraja): set() for daraja in range(1, 12)}
+    for row in cur.fetchall():
+        sinf_match = re.search(r"\d+", str(row.get("grade") or ""))
+        if not sinf_match:
+            continue
+        daraja = int(sinf_match.group(0))
+        if daraja < 1 or daraja > 11:
+            continue
+        fan = re.sub(r"\s+", " ", str(row.get("subject_name") or "")).strip()
+        fan_kaliti = _xodim_excel_sarlavha_kaliti(fan)
+        if fan and fan_kaliti not in dts_kalitlari[str(daraja)]:
+            dts_kalitlari[str(daraja)].add(fan_kaliti)
+            dts_sinf_fanlari[str(daraja)].append(fan)
     cur.close()
     conn.close()
     return {
