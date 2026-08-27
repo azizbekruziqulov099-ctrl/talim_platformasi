@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "super-admin-no-password-student-import-v20-rev61"
+SAMTM_INSTITUTE_RELEASE = "faculty-student-import-no-institute-password-v20-rev62"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -1707,7 +1707,7 @@ def update_tutor_assignment(assignment_id: int, req: TutorAssignmentUpdate):
 
 
 @router.post("/qabul/import_preview")
-async def admission_preview(universitet_id: int, fayl: UploadFile = File(...), token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+async def admission_preview(universitet_id: int, fakultet_id: Optional[int] = None, fayl: UploadFile = File(...), token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p()
     content = await fayl.read()
     if len(content) > 25 * 1024 * 1024: raise HTTPException(status_code=413, detail="Qabul fayli 25 MB dan katta")
@@ -1717,13 +1717,24 @@ async def admission_preview(universitet_id: int, fayl: UploadFile = File(...), t
     try:
         _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
         if not _has_any(roles, MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Qabul importiga ruxsat yo'q")
+        if fakultet_id is not None:
+            cur.execute("SELECT id,nomi FROM fakultetlar WHERE id=%s AND universitet_id=%s", (fakultet_id, universitet_id))
+            selected_faculty = cur.fetchone()
+            if not selected_faculty: raise HTTPException(status_code=400, detail="Tanlangan fakultet bu institutga tegishli emas")
+            _validate_assignment_scope(cur, universitet_id, roles, fakultet_id, None, None)
+        else:
+            selected_faculty = None
         cur.execute("""SELECT y.id,y.kodi,y.nomi,y.kafedra_id,f.nomi fakultet_nomi,k.nomi kafedra_nomi
             FROM universitet_yonalishlari y JOIN fakultetlar f ON f.id=y.fakultet_id
             JOIN kafedralar k ON k.id=y.kafedra_id
-            WHERE y.universitet_id=%s AND y.faol=TRUE""", (universitet_id,))
+            WHERE y.universitet_id=%s AND y.faol=TRUE
+              AND (%s IS NULL OR y.fakultet_id=%s)""", (universitet_id, fakultet_id, fakultet_id))
         program_rows = [dict(row) for row in cur.fetchall()]
+        if fakultet_id is not None and not program_rows:
+            raise HTTPException(status_code=409, detail="Bu fakultetda hali yo'nalish yo'q. Avval mavjud yo'nalishlarni kiriting")
         cur.execute("""SELECT k.id,k.nomi,f.nomi fakultet_nomi FROM kafedralar k
-            JOIN fakultetlar f ON f.id=k.fakultet_id WHERE f.universitet_id=%s ORDER BY f.nomi,k.nomi""", (universitet_id,))
+            JOIN fakultetlar f ON f.id=k.fakultet_id WHERE f.universitet_id=%s
+              AND (%s IS NULL OR f.id=%s) ORDER BY f.nomi,k.nomi""", (universitet_id, fakultet_id, fakultet_id))
         department_rows = [dict(row) for row in cur.fetchall()]
         matching, exact, ambiguous, unknown = {}, {}, {}, {}
         for name, count in summary["yonalishlar"].items():
@@ -1740,17 +1751,14 @@ async def admission_preview(universitet_id: int, fayl: UploadFile = File(...), t
                 top = ranked[0]; gap = top["moslik_foizi"] - (ranked[1]["moslik_foizi"] if len(ranked) > 1 else 0)
                 if top["moslik_foizi"] >= 88 and gap >= 5:
                     selected_program_id, status = top["id"], "yaqin_topildi"
-                elif top["moslik_foizi"] >= 65:
-                    selected_program_id, status = top["id"], "tasdiq_kerak"
+                else:
+                    # Talaba Excelidagi nom aynan teng bo'lmasa ham yangi
+                    # yo'nalish ochmaymiz. Tanlangan fakultetdagi mavjud
+                    # yo'nalishlardan eng mosini oldindan belgilaymiz va admin
+                    # previewda uch variantdan tekshirib/tuzatib tasdiqlaydi.
+                    selected_program_id, status = top["id"], "avtomatik_moslandi"
             create_name = None
-            if not selected_program_id:
-                unknown[name] = count
-                if departments and departments[0]["moslik_foizi"] >= 50:
-                    selected_department_id, status = departments[0]["id"], "yangi_yonalish"
-                    # Kafedra nomi aniq/yaqin bo'lsa, yangi yo'nalishni manbadagi
-                    # xato yozuv bilan emas, mavjud kafedraning toza nomi bilan ochamiz.
-                    if departments[0]["moslik_foizi"] >= 88:
-                        create_name = departments[0]["nomi"]
+            if not selected_program_id: unknown[name] = count
             variants = [item for item in summary.get("yonalish_variantlari", []) if item["yonalish"] == name]
             matching[name] = {
                 "talaba_soni": count, "holat": status,
@@ -1759,8 +1767,10 @@ async def admission_preview(universitet_id: int, fayl: UploadFile = File(...), t
                 "yaratiladigan_yonalish_nomi": create_name,
                 "variantlar": variants,
                 "yonalish_variantlari": ranked,
-                "kafedra_variantlari": departments,
+                "kafedra_variantlari": [],
             }
+        summary["tanlangan_fakultet_id"] = int(fakultet_id) if fakultet_id is not None else None
+        summary["tanlangan_fakultet_nomi"] = selected_faculty["nomi"] if selected_faculty else None
         summary["noma_lum_yonalishlar"] = unknown
         summary["noaniq_yonalishlar"] = ambiguous
         summary["mos_yonalishlar"] = exact
@@ -1806,6 +1816,7 @@ def admission_commit(req: BatchCommit):
             item = dict(row); all_programs.append(item); program_rows.setdefault(_key(row["nomi"]), []).append(item)
         program_by_id = {int(row["id"]): row for row in all_programs}
         summary_matching = summary.get("yonalish_moslashtirish") or {}
+        selected_faculty_id = summary.get("tanlangan_fakultet_id")
         direction_names = sorted({r["yonalish_nomi"] for r in payload})
         resolved: dict[str, dict[str, Any]] = {}
         for name in direction_names:
@@ -1816,6 +1827,8 @@ def admission_commit(req: BatchCommit):
             if explicit_id:
                 program = program_by_id.get(int(explicit_id))
                 if not program: raise HTTPException(status_code=400, detail=f"{name}: tanlangan yo'nalish bu institutga tegishli emas")
+                if selected_faculty_id and int(program["fakultet_id"]) != int(selected_faculty_id):
+                    raise HTTPException(status_code=400, detail=f"{name}: yo'nalish tanlangan fakultetga tegishli emas")
                 resolved[name] = program; continue
             if len(exact_rows) == 1:
                 resolved[name] = exact_rows[0]; continue
@@ -1823,6 +1836,8 @@ def admission_commit(req: BatchCommit):
                 program = program_by_id.get(int(suggested_id))
                 if program:
                     resolved[name] = program; continue
+            if selected_faculty_id:
+                raise HTTPException(status_code=400, detail=f"{name}: tanlangan fakultetdagi mavjud yo'nalishlardan birini tasdiqlang")
             department_id = req.yangi_yonalish_kafedralari.get(name)
             if not department_id and req.auto_create_yonalishlar and req.default_kafedra_id:
                 department_id = req.default_kafedra_id
@@ -1898,7 +1913,7 @@ def admission_commit(req: BatchCommit):
 
 
 @router.get("/qabul/talabalar")
-def admission_students(universitet_id: int, q: str = "", yonalish_id: Optional[int] = None,
+def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[int] = None, yonalish_id: Optional[int] = None,
                        bosqich: Optional[int] = None, bosqich_min: Optional[int] = None,
                        talim_shakli: Optional[str] = None, talim_tili: Optional[str] = None,
                        region: Optional[str] = None, qabul_turi: Optional[str] = None,
@@ -1921,6 +1936,7 @@ def admission_students(universitet_id: int, q: str = "", yonalish_id: Optional[i
             if requested_stage == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
             if requested_stage == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
             if requested_stage == 4: where.append("(qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
+        if fakultet_id: where.append("y.fakultet_id=%s"); params.append(fakultet_id)
         if yonalish_id: where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
         if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
         if talim_tili: where.append("qt.talim_tili=%s"); params.append(talim_tili)
