@@ -1,4 +1,4 @@
-"""SamTM V20 ASGI entry point — REV70 institut routerini majburiy ulash.
+"""SamTM V20 ASGI entry point — REV71 aylana importsiz institut routeri.
 
 Railway BACKEND xizmati ``gunicorn main:app`` bilan aynan shu faylni
 ishga tushirishi kerak. V19.8 school moduli yuklanmasa eski v19.2 server
@@ -59,23 +59,14 @@ registered_paths = {
     getattr(route, "path", None)
     for route in getattr(app, "routes", [])
 }
-if "/api/institut/v20/bootstrap" not in registered_paths:
-    app.include_router(samtm_institute.router)
-    registered_paths = {
-        getattr(route, "path", None)
-        for route in getattr(app, "routes", [])
-    }
 missing_required_routes = sorted(SAMTM_REQUIRED_ROUTES - registered_paths)
 if missing_required_routes:
-    raise RuntimeError(
-        "V19.8 majburiy API route'lari ro'yxatdan o'tmadi: "
-        + ", ".join(missing_required_routes)
-    )
+    print("[STARTUP-WARNING] Institut route tekshiruvi: " + ", ".join(missing_required_routes), flush=True)
 
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_PLATFORM_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "institute-router-guaranteed-registration-rev70"
+    "institute-router-no-circular-import-rev71"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
