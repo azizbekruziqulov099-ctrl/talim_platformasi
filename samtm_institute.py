@@ -1724,50 +1724,36 @@ async def admission_preview(universitet_id: int, fakultet_id: Optional[int] = No
             _validate_assignment_scope(cur, universitet_id, roles, fakultet_id, None, None)
         else:
             selected_faculty = None
-        cur.execute("""SELECT y.id,y.kodi,y.nomi,y.kafedra_id,f.nomi fakultet_nomi,k.nomi kafedra_nomi
-            FROM universitet_yonalishlari y JOIN fakultetlar f ON f.id=y.fakultet_id
-            JOIN kafedralar k ON k.id=y.kafedra_id
-            WHERE y.universitet_id=%s AND y.faol=TRUE
-              AND (%s IS NULL OR y.fakultet_id=%s)""", (universitet_id, fakultet_id, fakultet_id))
-        program_rows = [dict(row) for row in cur.fetchall()]
-        if fakultet_id is not None and not program_rows:
-            raise HTTPException(status_code=409, detail="Bu fakultetda hali yo'nalish yo'q. Avval mavjud yo'nalishlarni kiriting")
-        cur.execute("""SELECT k.id,k.nomi,f.nomi fakultet_nomi FROM kafedralar k
+        cur.execute("""SELECT k.id,k.nomi,k.fakultet_id,f.nomi fakultet_nomi FROM kafedralar k
             JOIN fakultetlar f ON f.id=k.fakultet_id WHERE f.universitet_id=%s
               AND (%s IS NULL OR f.id=%s) ORDER BY f.nomi,k.nomi""", (universitet_id, fakultet_id, fakultet_id))
         department_rows = [dict(row) for row in cur.fetchall()]
         matching, exact, ambiguous, unknown = {}, {}, {}, {}
         for name, count in summary["yonalishlar"].items():
-            same = [row for row in program_rows if _key(row["nomi"]) == _key(name) or (row.get("kodi") and _key(row["kodi"]) == _key(name))]
-            ranked = _rank_programs(name, program_rows)
+            same = [row for row in department_rows if _key(row["nomi"]) == _key(name)]
             departments = _rank_departments(name, department_rows)
-            selected_program_id, selected_department_id, status = None, None, "tanlash_kerak"
+            selected_department_id, status = None, "yangi_kafedra"
             if len(same) == 1:
-                selected_program_id, status = int(same[0]["id"]), "aniq"
-                exact[name] = selected_program_id
+                selected_department_id, status = int(same[0]["id"]), "aniq"
+                exact[name] = selected_department_id
             elif len(same) > 1:
                 ambiguous[name] = len(same)
-            elif ranked:
-                top = ranked[0]; gap = top["moslik_foizi"] - (ranked[1]["moslik_foizi"] if len(ranked) > 1 else 0)
+            elif departments:
+                top = departments[0]; gap = top["moslik_foizi"] - (departments[1]["moslik_foizi"] if len(departments) > 1 else 0)
                 if top["moslik_foizi"] >= 88 and gap >= 5:
-                    selected_program_id, status = top["id"], "yaqin_topildi"
-                else:
-                    # Talaba Excelidagi nom aynan teng bo'lmasa ham yangi
-                    # yo'nalish ochmaymiz. Tanlangan fakultetdagi mavjud
-                    # yo'nalishlardan eng mosini oldindan belgilaymiz va admin
-                    # previewda uch variantdan tekshirib/tuzatib tasdiqlaydi.
-                    selected_program_id, status = top["id"], "avtomatik_moslandi"
-            create_name = None
-            if not selected_program_id: unknown[name] = count
+                    selected_department_id, status = top["id"], "yaqin_topildi"
+            create_name = None if selected_department_id else _base_program_name(name)
+            if not selected_department_id: unknown[name] = count
             variants = [item for item in summary.get("yonalish_variantlari", []) if item["yonalish"] == name]
             matching[name] = {
                 "talaba_soni": count, "holat": status,
-                "tanlangan_yonalish_id": selected_program_id,
+                "tanlangan_yonalish_id": None,
                 "tanlangan_kafedra_id": selected_department_id,
+                "yaratiladigan_kafedra_nomi": create_name,
                 "yaratiladigan_yonalish_nomi": create_name,
                 "variantlar": variants,
-                "yonalish_variantlari": ranked,
-                "kafedra_variantlari": [],
+                "yonalish_variantlari": [],
+                "kafedra_variantlari": departments,
             }
         summary["tanlangan_fakultet_id"] = int(fakultet_id) if fakultet_id is not None else None
         summary["tanlangan_fakultet_nomi"] = selected_faculty["nomi"] if selected_faculty else None
@@ -1786,7 +1772,7 @@ async def admission_preview(universitet_id: int, fakultet_id: Optional[int] = No
         summary["otm_nomi_farqi"] = foreign_names
         batch_id = _store_batch(cur, universitet_id, "qabul", fayl.filename or "qabul.xls", content, parsed, summary, user_id)
         conn.commit(); return {"batch_id": batch_id, "xulosa": summary,
-                               "commit_mumkin": summary["xato_soni"] == 0 and bool(department_rows)}
+                               "commit_mumkin": summary["xato_soni"] == 0 and fakultet_id is not None}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -1809,50 +1795,44 @@ def admission_commit(req: BatchCommit):
         if summary.get("xato_soni"): raise HTTPException(status_code=400, detail="Xatoli fayl commit qilinmaydi; preview xatolarini tuzating")
         if summary.get("otm_nomi_farqi") and not req.otm_nomi_farqini_tasdiqlash:
             raise HTTPException(status_code=400, detail="Fayldagi OTM nomi tanlangan institutga mos emas; avval farqni tasdiqlang")
-        cur.execute("SELECT id,nomi,fakultet_id,kafedra_id FROM universitet_yonalishlari WHERE universitet_id=%s AND faol=TRUE", (batch["universitet_id"],))
-        program_rows: dict[str, list[dict[str, Any]]] = {}
-        all_programs = []
-        for row in cur.fetchall():
-            item = dict(row); all_programs.append(item); program_rows.setdefault(_key(row["nomi"]), []).append(item)
-        program_by_id = {int(row["id"]): row for row in all_programs}
         summary_matching = summary.get("yonalish_moslashtirish") or {}
         selected_faculty_id = summary.get("tanlangan_fakultet_id")
+        if not selected_faculty_id:
+            raise HTTPException(status_code=400, detail="Talabalar importi uchun fakultet tanlanmagan")
+        cur.execute("""SELECT k.id,k.nomi,k.fakultet_id FROM kafedralar k
+            JOIN fakultetlar f ON f.id=k.fakultet_id
+            WHERE f.universitet_id=%s AND k.fakultet_id=%s""",
+            (batch["universitet_id"], selected_faculty_id))
+        departments = [dict(row) for row in cur.fetchall()]
+        department_by_id = {int(row["id"]): row for row in departments}
+        department_by_name = {_key(row["nomi"]): row for row in departments}
         direction_names = sorted({r["yonalish_nomi"] for r in payload})
         resolved: dict[str, dict[str, Any]] = {}
         for name in direction_names:
-            explicit_id = req.yonalish_mosliklari.get(name)
-            exact_rows = program_rows.get(_key(name), [])
             suggested = summary_matching.get(name) or {}
-            suggested_id = suggested.get("tanlangan_yonalish_id")
-            if explicit_id:
-                program = program_by_id.get(int(explicit_id))
-                if not program: raise HTTPException(status_code=400, detail=f"{name}: tanlangan yo'nalish bu institutga tegishli emas")
-                if selected_faculty_id and int(program["fakultet_id"]) != int(selected_faculty_id):
-                    raise HTTPException(status_code=400, detail=f"{name}: yo'nalish tanlangan fakultetga tegishli emas")
-                resolved[name] = program; continue
-            if len(exact_rows) == 1:
-                resolved[name] = exact_rows[0]; continue
-            if suggested_id and suggested.get("holat") in {"aniq", "yaqin_topildi"}:
-                program = program_by_id.get(int(suggested_id))
-                if program:
-                    resolved[name] = program; continue
-            if selected_faculty_id:
-                raise HTTPException(status_code=400, detail=f"{name}: tanlangan fakultetdagi mavjud yo'nalishlardan birini tasdiqlang")
-            department_id = req.yangi_yonalish_kafedralari.get(name)
-            if not department_id and req.auto_create_yonalishlar and req.default_kafedra_id:
-                department_id = req.default_kafedra_id
-            if department_id:
-                cur.execute("""SELECT k.id,k.fakultet_id FROM kafedralar k JOIN fakultetlar f ON f.id=k.fakultet_id
-                    WHERE k.id=%s AND f.universitet_id=%s""", (department_id, batch["universitet_id"])); dep = cur.fetchone()
-                if not dep: raise HTTPException(status_code=400, detail=f"{name}: tanlangan kafedra bu institutga tegishli emas")
-                program_name = _norm(suggested.get("yaratiladigan_yonalish_nomi")) or name
-                cur.execute("""INSERT INTO universitet_yonalishlari(universitet_id,fakultet_id,kafedra_id,nomi)
-                    VALUES(%s,%s,%s,%s)
-                    ON CONFLICT(universitet_id,kafedra_id,nomi,daraja) DO UPDATE SET faol=TRUE
-                    RETURNING id,nomi,fakultet_id,kafedra_id""", (batch["universitet_id"], dep["fakultet_id"], dep["id"], program_name))
-                program = dict(cur.fetchone()); resolved[name] = program; program_by_id[int(program["id"])] = program
-                continue
-            raise HTTPException(status_code=400, detail=f"{name}: mavjud yo'nalishni yoki yangi yo'nalish uchun kafedrani tanlang")
+            department_id = req.yangi_yonalish_kafedralari.get(name) or suggested.get("tanlangan_kafedra_id")
+            department = department_by_id.get(int(department_id)) if department_id else department_by_name.get(_key(name))
+            if not department:
+                department_name = (_norm(suggested.get("yaratiladigan_kafedra_nomi"))
+                                   or _base_program_name(name) or name)
+                cur.execute("""INSERT INTO kafedralar(fakultet_id,nomi)
+                    VALUES(%s,%s) ON CONFLICT(fakultet_id,nomi) DO UPDATE SET nomi=EXCLUDED.nomi
+                    RETURNING id,nomi,fakultet_id""", (selected_faculty_id, department_name))
+                department = dict(cur.fetchone())
+                department_by_id[int(department["id"])] = department
+                department_by_name[_key(department["nomi"])] = department
+            if int(department["fakultet_id"]) != int(selected_faculty_id):
+                raise HTTPException(status_code=400, detail=f"{name}: kafedra tanlangan fakultetga tegishli emas")
+            # Mavjud jadval va tyutor qamrovi yonalish_id bilan ishlaydi.
+            # Shu sabab kafedra bilan bir xil nomdagi ichki yozuv yaratiladi;
+            # foydalanuvchi interfeysida u alohida yo'nalish sifatida ko'rsatilmaydi.
+            cur.execute("""INSERT INTO universitet_yonalishlari(
+                    universitet_id,fakultet_id,kafedra_id,nomi)
+                VALUES(%s,%s,%s,%s)
+                ON CONFLICT(universitet_id,kafedra_id,nomi,daraja) DO UPDATE SET faol=TRUE
+                RETURNING id,nomi,fakultet_id,kafedra_id""",
+                (batch["universitet_id"], selected_faculty_id, department["id"], department["nomi"]))
+            resolved[name] = dict(cur.fetchone())
         for variant in {(r["yonalish_nomi"], r["talim_shakli"], r["talim_tili"]) for r in payload}:
             program_id = resolved[variant[0]]["id"]
             cur.execute("""INSERT INTO universitet_yonalish_variantlari(yonalish_id,talim_shakli,talim_tili)
