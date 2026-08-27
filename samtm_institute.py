@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "daily-admission-calendar-tutor-site-status-v20-rev65"
+SAMTM_INSTITUTE_RELEASE = "faculty-screen-direct-student-xls-import-v20-rev66"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
