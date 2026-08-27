@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "school-id-existing-schools-single-html-v20-rev60"
+SAMTM_INSTITUTE_RELEASE = "super-admin-no-password-student-import-v20-rev61"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -1255,6 +1255,36 @@ def create_institute(req: InstituteCreate):
         _audit(cur, university_id, user_id, "institut_yaratildi", "universitet", university_id)
         conn.commit()
         return {"holat": "yaratildi", "universitet_id": university_id}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/super_admin/institutlar")
+def super_admin_institutes(token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    """Super-admin institut parolisiz mavjud institutni tanlaydi.
+
+    Taklif kodi faqat oddiy xodim va talaba uchun. Global administratorga
+    institutlar ro'yxati va yangi institut yaratish huquqi to'g'ridan-to'g'ri
+    beriladi.
+    """
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        if not _is_global_admin(cur, user_id):
+            raise HTTPException(status_code=403, detail="Faqat super administrator uchun")
+        cur.execute("""SELECT u.id,u.nomi,u.viloyat,u.tuman,
+                       COUNT(DISTINCT f.id) fakultet_soni,
+                       COUNT(DISTINCT qt.id) talaba_soni
+                  FROM universitetlar u
+                  LEFT JOIN fakultetlar f ON f.universitet_id=u.id
+                  LEFT JOIN universitet_qabul_talabalari qt ON qt.universitet_id=u.id
+                 GROUP BY u.id,u.nomi,u.viloyat,u.tuman
+                 ORDER BY u.nomi""")
+        rows = cur.fetchall()
+        conn.commit()
+        return {"super_admin": True, "institutlar": rows}
     except Exception:
         conn.rollback(); raise
     finally:
