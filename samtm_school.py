@@ -9342,17 +9342,34 @@ def _v194_school_subject_grades(cur, maktab_id: int):
 def _v193_template_rows_for_class(class_row, selected_by_grade=None):
     grade = _v193_grade_number(class_row.get("sinf"))
     allowed = (selected_by_grade or {}).get(grade) if selected_by_grade is not None else None
+    default_hours = {
+        _v1875_subject_key(subject): float(hours.get(grade, 0) or 0)
+        for subject, hours in SAMTM_V19_3_DEFAULT_CURRICULUM
+    }
+    if allowed is not None:
+        # O'quv reja ustunlari faqat maktab 1–11-sinflar uchun saqlagan
+        # fanlardan tuziladi. Tayanchda topilmagan yangi fan ham yo'qolmaydi:
+        # u 0 soat bilan ko'rinadi va rahbariyat soatini qo'lda kiritadi.
+        return [
+            {
+                "sinf_id": int(class_row["id"]),
+                "fan_nomi": subject,
+                "haftalik_soat": default_hours.get(key, 0.0),
+                "kunlik_max": 1,
+                "manba": "tayanch_2026_2027" if default_hours.get(key, 0) > 0 else "maktab_fan_tanlovi",
+            }
+            for key, subject in allowed.items()
+        ]
     return [
         {
             "sinf_id": int(class_row["id"]),
-            "fan_nomi": (allowed or {}).get(_v1875_subject_key(subject), subject),
+            "fan_nomi": subject,
             "haftalik_soat": float(hours[grade]),
             "kunlik_max": 1,
             "manba": "tayanch_2026_2027",
         }
         for subject, hours in SAMTM_V19_3_DEFAULT_CURRICULUM
         if float(hours.get(grade, 0)) > 0
-        and (allowed is None or _v1875_subject_key(subject) in allowed)
     ]
 
 
@@ -9369,6 +9386,8 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
     for class_row in missing:
         template_rows = _v193_template_rows_for_class(class_row, selected_by_grade)
         for item in template_rows:
+            if float(item["haftalik_soat"] or 0) <= 0:
+                continue
             cur.execute("""INSERT INTO aqlli_oquv_reja_qatorlari_v19_3(
                             maktab_id,sinf_id,fan_nomi,haftalik_soat,
                             kunlik_max,manba,yangilangan_at)
