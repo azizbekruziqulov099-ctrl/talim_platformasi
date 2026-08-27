@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "faculty-screen-direct-student-xls-import-v20-rev66"
+SAMTM_INSTITUTE_RELEASE = "institute-hierarchy-archive-tutor-import-v20-rev72"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -464,6 +464,25 @@ def _institut_v20_jadvallari(cur):
     )""")
     cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS bazaga_kiritilgan_at TIMESTAMPTZ")
     cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS birinchi_kirish_at TIMESTAMPTZ")
+    # Tuzilma elementlari o‘chirilmaydi: 1 yil yumshoq arxivda saqlanadi.
+    cur.execute("ALTER TABLE fakultetlar ADD COLUMN IF NOT EXISTS faol BOOLEAN NOT NULL DEFAULT TRUE")
+    cur.execute("ALTER TABLE fakultetlar ADD COLUMN IF NOT EXISTS arxiv_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE fakultetlar ADD COLUMN IF NOT EXISTS arxiv_until TIMESTAMPTZ")
+    cur.execute("ALTER TABLE kafedralar ADD COLUMN IF NOT EXISTS faol BOOLEAN NOT NULL DEFAULT TRUE")
+    cur.execute("ALTER TABLE kafedralar ADD COLUMN IF NOT EXISTS arxiv_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE kafedralar ADD COLUMN IF NOT EXISTS arxiv_until TIMESTAMPTZ")
+    cur.execute("ALTER TABLE universitet_yonalishlari ADD COLUMN IF NOT EXISTS arxiv_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE universitet_yonalishlari ADD COLUMN IF NOT EXISTS arxiv_until TIMESTAMPTZ")
+    cur.execute("""CREATE TABLE IF NOT EXISTS universitet_tuzilma_arxivi(
+        id BIGSERIAL PRIMARY KEY, universitet_id INTEGER NOT NULL,
+        obyekt_turi TEXT NOT NULL CHECK(obyekt_turi IN ('fakultet','kafedra','yonalish')),
+        obyekt_id INTEGER NOT NULL, nomi TEXT NOT NULL, hisoblar JSONB NOT NULL DEFAULT '{}'::jsonb,
+        arxivlagan_by BIGINT, arxiv_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        arxiv_until TIMESTAMPTZ NOT NULL DEFAULT (NOW()+INTERVAL '1 year'),
+        tiklangan_at TIMESTAMPTZ, faol BOOLEAN NOT NULL DEFAULT TRUE
+    )""")
+    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_uni_tuzilma_faol_arxiv
+        ON universitet_tuzilma_arxivi(universitet_id,obyekt_turi,obyekt_id) WHERE faol=TRUE""")
     cur.execute("ALTER TABLE universitet_qabul_talabalari DROP CONSTRAINT IF EXISTS universitet_qabul_talabalari_qabul_bosqichi_check")
     cur.execute("""UPDATE universitet_qabul_talabalari SET
         qabul_bosqichi=CASE WHEN qabul_bosqichi=3 AND user_id>=0 THEN 4 ELSE qabul_bosqichi END,
@@ -1230,6 +1249,19 @@ class StageUpdate(BaseModel):
     bosqich: int
 
 
+class StructureArchiveCommit(BaseModel):
+    token: str
+    universitet_id: int
+    obyekt_turi: str
+    obyekt_id: int
+    tasdiq: bool = False
+
+
+class StructureRestore(BaseModel):
+    token: str
+    universitet_id: int
+
+
 class InviteSend(BaseModel):
     token: str
     kanal: str = "copy"  # copy | sms
@@ -1340,10 +1372,10 @@ def structure(universitet_id: int, token: Optional[str] = Query(None, include_in
         cur.execute("""SELECT f.id,f.nomi,
             (SELECT COUNT(*) FROM kafedralar k WHERE k.fakultet_id=f.id) kafedra_soni,
             (SELECT COUNT(*) FROM universitet_yonalishlari y WHERE y.fakultet_id=f.id AND y.faol=TRUE) yonalish_soni
-            FROM fakultetlar f WHERE f.universitet_id=%s ORDER BY f.nomi""", (universitet_id,))
+            FROM fakultetlar f WHERE f.universitet_id=%s AND f.faol=TRUE ORDER BY f.nomi""", (universitet_id,))
         faculties = [dict(r) for r in cur.fetchall()]
         for f in faculties:
-            cur.execute("SELECT id,nomi FROM kafedralar WHERE fakultet_id=%s ORDER BY nomi", (f["id"],))
+            cur.execute("SELECT id,nomi FROM kafedralar WHERE fakultet_id=%s AND faol=TRUE ORDER BY nomi", (f["id"],))
             f["kafedralar"] = [dict(r) for r in cur.fetchall()]
             for d in f["kafedralar"]:
                 cur.execute("SELECT id,kodi,nomi,daraja FROM universitet_yonalishlari WHERE kafedra_id=%s AND faol=TRUE ORDER BY nomi", (d["id"],))
@@ -1823,15 +1855,14 @@ def admission_commit(req: BatchCommit):
                 department_by_name[_key(department["nomi"])] = department
             if int(department["fakultet_id"]) != int(selected_faculty_id):
                 raise HTTPException(status_code=400, detail=f"{name}: kafedra tanlangan fakultetga tegishli emas")
-            # Mavjud jadval va tyutor qamrovi yonalish_id bilan ishlaydi.
-            # Shu sabab kafedra bilan bir xil nomdagi ichki yozuv yaratiladi;
-            # foydalanuvchi interfeysida u alohida yo'nalish sifatida ko'rsatilmaydi.
+            # Yo‘nalish kafedraning o‘zi emas. Excel nomi aynan yo‘nalish nomi
+            # sifatida saqlanadi; shakl va til uning variantlari bo‘ladi.
             cur.execute("""INSERT INTO universitet_yonalishlari(
                     universitet_id,fakultet_id,kafedra_id,nomi)
                 VALUES(%s,%s,%s,%s)
                 ON CONFLICT(universitet_id,kafedra_id,nomi,daraja) DO UPDATE SET faol=TRUE
                 RETURNING id,nomi,fakultet_id,kafedra_id""",
-                (batch["universitet_id"], selected_faculty_id, department["id"], department["nomi"]))
+                (batch["universitet_id"], selected_faculty_id, department["id"], name))
             resolved[name] = dict(cur.fetchone())
         for variant in {(r["yonalish_nomi"], r["talim_shakli"], r["talim_tili"]) for r in payload}:
             program_id = resolved[variant[0]]["id"]
@@ -1923,7 +1954,13 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         if region: where.append("qt.doimiy_region=%s"); params.append(region)
         if qabul_turi == "grant": where.append("qt.tavsiya_turi ILIKE %s"); params.append("%grant%")
         if qabul_turi == "kontrakt": where.append("qt.tavsiya_turi ILIKE %s"); params.append("%kontrakt%")
-        if _norm(q): where.append("(qt.familiya ILIKE %s OR qt.ism ILIKE %s OR qt.abitur_id ILIKE %s)"); term = "%" + _norm(q) + "%"; params += [term, term, term]
+        if _norm(q):
+            term = "%" + _norm(q) + "%"; digits = _digits(q)
+            search_parts = ["qt.familiya ILIKE %s", "qt.ism ILIKE %s", "qt.ota_ism ILIKE %s", "qt.abitur_id ILIKE %s", "qt.telefon ILIKE %s"]
+            params += [term, term, term, term, term]
+            if len(digits) == 14:
+                search_parts.append("qt.jshshir_hash=%s"); params.append(hashlib.sha256(digits.encode()).hexdigest())
+            where.append("(" + " OR ".join(search_parts) + ")")
         order = {"ball_desc": "qt.ball DESC NULLS LAST,qt.familiya", "ball_asc": "qt.ball ASC NULLS LAST,qt.familiya", "name": "qt.familiya,qt.ism", "newest": "qt.id DESC"}.get(sort, "qt.ball DESC NULLS LAST")
         clause = " AND ".join(where)
         cur.execute(f"""SELECT COUNT(*) n FROM universitet_qabul_talabalari qt
@@ -2179,6 +2216,107 @@ def redeem_code(req: RedeemCode):
         conn.rollback(); raise
     finally:
         cur.close(); conn.close()
+
+
+def _structure_archive_summary(cur, universitet_id: int, kind: str, object_id: int) -> dict[str, Any]:
+    if kind == "fakultet":
+        cur.execute("SELECT id,nomi FROM fakultetlar WHERE id=%s AND universitet_id=%s AND faol=TRUE", (object_id, universitet_id)); row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Fakultet topilmadi")
+        cur.execute("""SELECT COUNT(DISTINCT k.id) kafedra,COUNT(DISTINCT y.id) yonalish,
+            COUNT(DISTINCT qt.id) talaba,COUNT(DISTINCT xr.id) xodim
+            FROM fakultetlar f LEFT JOIN kafedralar k ON k.fakultet_id=f.id
+            LEFT JOIN universitet_yonalishlari y ON y.fakultet_id=f.id
+            LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
+            LEFT JOIN universitet_xodim_rollari xr ON xr.fakultet_id=f.id AND xr.faol=TRUE WHERE f.id=%s""", (object_id,))
+    elif kind == "kafedra":
+        cur.execute("""SELECT k.id,k.nomi FROM kafedralar k JOIN fakultetlar f ON f.id=k.fakultet_id
+            WHERE k.id=%s AND f.universitet_id=%s AND k.faol=TRUE""", (object_id, universitet_id)); row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Kafedra topilmadi")
+        cur.execute("""SELECT 1 kafedra,COUNT(DISTINCT y.id) yonalish,COUNT(DISTINCT qt.id) talaba,
+            COUNT(DISTINCT xr.id) xodim FROM kafedralar k
+            LEFT JOIN universitet_yonalishlari y ON y.kafedra_id=k.id
+            LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
+            LEFT JOIN universitet_xodim_rollari xr ON xr.kafedra_id=k.id AND xr.faol=TRUE WHERE k.id=%s""", (object_id,))
+    elif kind == "yonalish":
+        cur.execute("SELECT id,nomi FROM universitet_yonalishlari WHERE id=%s AND universitet_id=%s AND faol=TRUE", (object_id, universitet_id)); row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Yo‘nalish topilmadi")
+        cur.execute("""SELECT 0 kafedra,1 yonalish,COUNT(DISTINCT qt.id) talaba,
+            COUNT(DISTINCT xr.id) xodim FROM universitet_yonalishlari y
+            LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
+            LEFT JOIN universitet_xodim_rollari xr ON xr.yonalish_id=y.id AND xr.faol=TRUE WHERE y.id=%s""", (object_id,))
+    else:
+        raise HTTPException(status_code=400, detail="Obyekt turi noto‘g‘ri")
+    counts = dict(cur.fetchone()); return {"obyekt_turi": kind, "obyekt_id": object_id, "nomi": row["nomi"], "hisoblar": counts, "saqlanish_muddati": "1 yil"}
+
+
+@router.get("/tuzilma/arxiv_preview")
+def structure_archive_preview(universitet_id: int, obyekt_turi: str, obyekt_id: int,
+                              token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        if not _has_any(roles, MANAGE_STRUCTURE_ROLES): raise HTTPException(status_code=403, detail="Tuzilmani arxivlash huquqi yo‘q")
+        return _structure_archive_summary(cur, universitet_id, obyekt_turi, obyekt_id)
+    finally: cur.close(); conn.close()
+
+
+@router.post("/tuzilma/arxivlash")
+def structure_archive_commit(req: StructureArchiveCommit):
+    if not req.tasdiq: raise HTTPException(status_code=400, detail="Arxivlash tasdiqlanmadi")
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, req.universitet_id)
+        if not _has_any(roles, MANAGE_STRUCTURE_ROLES): raise HTTPException(status_code=403, detail="Tuzilmani arxivlash huquqi yo‘q")
+        summary = _structure_archive_summary(cur, req.universitet_id, req.obyekt_turi, req.obyekt_id)
+        if req.obyekt_turi == "fakultet":
+            cur.execute("UPDATE fakultetlar SET faol=FALSE,arxiv_at=NOW(),arxiv_until=NOW()+INTERVAL '1 year' WHERE id=%s", (req.obyekt_id,))
+        elif req.obyekt_turi == "kafedra":
+            cur.execute("UPDATE kafedralar SET faol=FALSE,arxiv_at=NOW(),arxiv_until=NOW()+INTERVAL '1 year' WHERE id=%s", (req.obyekt_id,))
+        else:
+            cur.execute("UPDATE universitet_yonalishlari SET faol=FALSE,arxiv_at=NOW(),arxiv_until=NOW()+INTERVAL '1 year' WHERE id=%s", (req.obyekt_id,))
+        cur.execute("""INSERT INTO universitet_tuzilma_arxivi(universitet_id,obyekt_turi,obyekt_id,nomi,hisoblar,arxivlagan_by)
+            VALUES(%s,%s,%s,%s,%s::jsonb,%s)""", (req.universitet_id,req.obyekt_turi,req.obyekt_id,summary["nomi"],json.dumps(summary["hisoblar"]),actor))
+        _audit(cur, req.universitet_id, actor, "tuzilma_arxivlandi", req.obyekt_turi, req.obyekt_id, summary["hisoblar"])
+        conn.commit(); return {"holat": "arxivlandi", **summary}
+    except Exception: conn.rollback(); raise
+    finally: cur.close(); conn.close()
+
+
+@router.get("/tuzilma/arxiv")
+def structure_archive_list(universitet_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        if not _has_any(roles, MANAGE_STRUCTURE_ROLES): raise HTTPException(status_code=403, detail="Arxivni ko‘rish huquqi yo‘q")
+        cur.execute("SELECT id,obyekt_turi,obyekt_id,nomi,hisoblar,arxiv_at,arxiv_until FROM universitet_tuzilma_arxivi WHERE universitet_id=%s AND faol=TRUE ORDER BY arxiv_at DESC", (universitet_id,))
+        return {"arxiv": [dict(row) for row in cur.fetchall()]}
+    finally: cur.close(); conn.close()
+
+
+@router.post("/tuzilma/arxiv/{archive_id}/tiklash")
+def structure_archive_restore(archive_id: int, req: StructureRestore):
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, req.universitet_id)
+        if not _has_any(roles, MANAGE_STRUCTURE_ROLES): raise HTTPException(status_code=403, detail="Arxivdan tiklash huquqi yo‘q")
+        cur.execute("SELECT * FROM universitet_tuzilma_arxivi WHERE id=%s AND universitet_id=%s AND faol=TRUE FOR UPDATE", (archive_id,req.universitet_id)); item=cur.fetchone()
+        if not item: raise HTTPException(status_code=404, detail="Arxiv yozuvi topilmadi")
+        table={"fakultet":"fakultetlar","kafedra":"kafedralar","yonalish":"universitet_yonalishlari"}[item["obyekt_turi"]]
+        cur.execute(f"UPDATE {table} SET faol=TRUE,arxiv_at=NULL,arxiv_until=NULL WHERE id=%s", (item["obyekt_id"],))
+        # Bola obyekt tiklansa, ko‘rinishi uchun uning ota zanjiri ham ochiladi.
+        if item["obyekt_turi"] == "kafedra":
+            cur.execute("""UPDATE fakultetlar f SET faol=TRUE,arxiv_at=NULL,arxiv_until=NULL
+                FROM kafedralar k WHERE k.id=%s AND f.id=k.fakultet_id""", (item["obyekt_id"],))
+        elif item["obyekt_turi"] == "yonalish":
+            cur.execute("""UPDATE kafedralar k SET faol=TRUE,arxiv_at=NULL,arxiv_until=NULL
+                FROM universitet_yonalishlari y WHERE y.id=%s AND k.id=y.kafedra_id""", (item["obyekt_id"],))
+            cur.execute("""UPDATE fakultetlar f SET faol=TRUE,arxiv_at=NULL,arxiv_until=NULL
+                FROM universitet_yonalishlari y WHERE y.id=%s AND f.id=y.fakultet_id""", (item["obyekt_id"],))
+        cur.execute("UPDATE universitet_tuzilma_arxivi SET faol=FALSE,tiklangan_at=NOW() WHERE id=%s", (archive_id,))
+        _audit(cur,req.universitet_id,actor,"tuzilma_arxivdan_tiklandi",item["obyekt_turi"],item["obyekt_id"])
+        conn.commit(); return {"holat":"tiklandi","nomi":item["nomi"]}
+    except Exception: conn.rollback(); raise
+    finally: cur.close(); conn.close()
 
 
 @router.get("/talaba/yonalish_katalogi")
