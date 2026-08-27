@@ -1,4 +1,4 @@
-"""SamTM V20 ASGI entry point — REV61 super-admin va talaba importi.
+"""SamTM V20 ASGI entry point — REV62 fakultet ichidagi talaba importi.
 
 Railway BACKEND xizmati ``gunicorn main:app`` bilan aynan shu faylni
 ishga tushirishi kerak. V19.8 school moduli yuklanmasa eski v19.2 server
@@ -69,7 +69,7 @@ if missing_required_routes:
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_PLATFORM_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "super-admin-no-password-student-import-rev61"
+    "faculty-student-import-no-institute-password-rev62"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
