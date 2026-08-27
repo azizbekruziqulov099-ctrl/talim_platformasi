@@ -64,11 +64,16 @@ MARK_DOCUMENT_ROLES = INSTITUTE_WIDE | FACULTY_WIDE | DEPARTMENT_WIDE
 MARK_DATABASE_ROLES = MARK_DOCUMENT_ROLES | {"tyutor"}
 PASSWORD_VIEW_ROLES = MARK_DOCUMENT_ROLES
 ADMIN_ROLES = {"institut_admin", "fakultet_admin"}
+_REGISTERED_APP_IDS: set[int] = set()
 
 
 def register_institute(app, platform):
     global PLATFORM
     PLATFORM = platform
+    app_id = id(app)
+    if app_id in _REGISTERED_APP_IDS:
+        return
+    _REGISTERED_APP_IDS.add(app_id)
     app.include_router(router)
 
     @app.on_event("startup")
