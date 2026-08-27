@@ -1,25 +1,22 @@
 fastapi>=0.115,<1
 uvicorn[standard]>=0.30,<1
+gunicorn>=23,<24
+
 psycopg2-binary>=2.9,<3
+redis>=5.2,<7
 httpx>=0.27,<1
+
 python-jose[cryptography]>=3.3,<4
 pydantic>=2.8,<3
 python-multipart>=0.0.9,<1
 python-dotenv>=1,<2
-edge-tts>=7,<8
-python-docx>=1.1,<2
-pypdf
-nudenet
-clamd
-Pillow
-# Add these lines to the repository's existing requirements.txt
-gunicorn>=23,<24
-redis>=5.2,<7
-# SamTM V19.2 production overlay dependencies.
-# Add these lines to the repository's existing requirements.txt.
-uvicorn[standard]>=0.30,<1
-# Add these lines to the production backend requirements.txt.
+
 openpyxl>=3.1,<4
 xlrd>=2.0,<3
+python-docx>=1.1,<2
+pypdf
+Pillow
 
-
+edge-tts>=7,<8
+nudenet
+clamd
