@@ -69,8 +69,6 @@ ADMIN_ROLES = {"institut_admin", "fakultet_admin"}
 def register_institute(app, platform):
     global PLATFORM
     PLATFORM = platform
-    if any(getattr(route, "path", None) == "/api/institut/v20/bootstrap" for route in getattr(app, "routes", [])):
-        return
     app.include_router(router)
 
     @app.on_event("startup")
