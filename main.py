@@ -1,4 +1,4 @@
-"""SamTM V20 ASGI entry point — REV65 kunlik qabul hisoboti va tyutor nazorati.
+"""SamTM V20 ASGI entry point — REV66 fakultet ekranidan talaba XLS importi.
 
 Railway BACKEND xizmati ``gunicorn main:app`` bilan aynan shu faylni
 ishga tushirishi kerak. V19.8 school moduli yuklanmasa eski v19.2 server
@@ -69,7 +69,7 @@ if missing_required_routes:
 # /api/versiya samtm_platform modulidagi global qiymatlarni o'qiydi.
 samtm_platform.SAMTM_RELEASE = SAMTM_PLATFORM_RELEASE
 samtm_platform.SAMTM_PACKAGE_REVISION = (
-    "daily-admission-calendar-tutor-site-status-rev65"
+    "faculty-screen-direct-student-xls-import-rev66"
 )
 
 register_runtime(app, samtm_platform, samtm_school)
