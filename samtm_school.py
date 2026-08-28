@@ -3432,6 +3432,19 @@ def v1852_generate(sorov: V1852Generate, token: str):
         placed_count = len(state["placements"])
         total_count = len(jobs)
         placement_ratio = (placed_count / total_count) if total_count else 1.0
+        if unplaced:
+            # Yarim jadval draft sifatida ham saqlanmaydi. Natija faqat
+            # barcha darslar joylashganida davom etadi; parallel o‘qituvchi
+            # nazorati pastdagi yaxlitlik tekshiruvida yana qat’iy bajariladi.
+            first = unplaced[0].get("job") or {}
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"Jadval to‘liq joylashmagani uchun saqlanmadi: "
+                    f"{first.get('fan') or 'fan'} darsi uchun qat’iy mos vaqt topilmadi. "
+                    "Qizil kun yoki sinf sig‘imini tahrirlab yana yarating."
+                ),
+            )
         class_gap_count = int(state.get("class_gap_count", 0))
         final_class_imbalance = int(
             final_metrics.get("sinf_kun_taqsimoti_farqi", 0)
@@ -5047,10 +5060,10 @@ def v1866_class_hour_delete(token: str, maktab_id: int, sinf_id: int):
         _v1852_tables(cur)
         if not _v1852_manager(cur, actor_id, maktab_id):
             raise HTTPException(status_code=403, detail="Sinf soatini faqat maktab rahbariyati o‘chiradi")
-        cur.execute("DELETE FROM aqlli_sinf_soati_qoidalari_v2 WHERE maktab_id=%s AND sinf_id=%s", (maktab_id, sinf_id))
-        deleted = int(cur.rowcount or 0)
-        conn.commit()
-        return {"holat": "o‘chirildi", "o‘chirildi": deleted}
+        raise HTTPException(
+            status_code=409,
+            detail="KELAJAK SOATI majburiy: uni o‘chirib bo‘lmaydi, faqat kuni, vaqti va nomini tahrirlang",
+        )
     except Exception:
         conn.rollback(); raise
     finally:
@@ -5067,15 +5080,17 @@ def _v1866_build_class_hour_jobs(classes, rules):
             continue
         leader = cls.get("rahbar_user_id")
         if leader is None:
-            warnings.append(f"{cls['sinf']}-{cls['harf']} sinf soati: sinf rahbari belgilanmagan")
-            # Rahbar keyin tayinlanishi mumkin. Hozir o‘qituvchisiz KELAJAK
-            # SOATI jobi yasab butun fan jadvalini bloklamaymiz.
-            continue
+            warnings.append(
+                f"{cls['sinf']}-{cls['harf']} KELAJAK SOATI qat’iy katakka "
+                "o‘qituvchisiz qo‘yildi; sinf rahbarini keyin biriktiring"
+            )
         weekly = max(1, min(5, int(row.get("haftalik_soat") or 1)))
         for occurrence in range(1, weekly + 1):
             jobs.append({
                 "job_id": f"sinf-soati:{class_id}:{occurrence}", "load_id": None,
-                "sinf_id": class_id, "fan": "SINF SOATI", "occurrence": occurrence,
+                "sinf_id": class_id,
+                "fan": _v192_clean_subject(row.get("fan_nomi")) or "KELAJAK SOATI",
+                "occurrence": occurrence,
                 "smena": int(cls.get("smena") or 1), "daily_max": 1,
                 "consecutive_allowed": False, "preferred_last": int(row["dars_raqami"]),
                 "weight": 1, "room_id": None, "groups": [],
@@ -5092,15 +5107,12 @@ def _v1866_class_hour_violations(cur, maktab_id: int, run_id: int):
     rules = _v1866_class_hour_rule_rows(cur, maktab_id)
     errors = []
     for row in rules:
-        if row.get("rahbar_user_id") is None:
-            # Vaqtinchalik holat: rahbar tayinlangach keyingi draftda qo‘shiladi.
-            continue
         cur.execute("""SELECT 1 FROM aqlli_jadval_slotlari_v2
                        WHERE urinish_id=%s AND sinf_id=%s AND hafta_kuni=%s AND smena=%s
-                         AND dars_raqami=%s AND UPPER(TRIM(fan_nomi))='SINF SOATI'
-                         AND oqituvchi_user_id=%s LIMIT 1""",
+                         AND dars_raqami=%s
+                         AND (%s IS NULL OR oqituvchi_user_id=%s) LIMIT 1""",
                     (run_id, row["sinf_id"], row["hafta_kuni"], row["smena"],
-                     row["dars_raqami"], row["rahbar_user_id"]))
+                     row["dars_raqami"], row.get("rahbar_user_id"), row.get("rahbar_user_id")))
         if not cur.fetchone():
             errors.append({
                 "sinf_id": row["sinf_id"],
@@ -7064,11 +7076,9 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 allowed_days.append(day)
         fan_hours = float(model["class_hours"].get(class_id, 0))
         class_hour_rule = class_hour_by_class.get(class_id, {})
-        class_hour = int(class_hour_rule.get("haftalik_soat") or 0) if cls.get("rahbar_user_id") is not None else 0
-        if class_hour_rule and cls.get("rahbar_user_id") is None:
-            warnings.append(
-                f"{cls['sinf']}-{cls['harf']}: sinf rahbari belgilanmagani uchun KELAJAK SOATI vaqtincha jadvalga kiritilmaydi"
-            )
+        # KELAJAK SOATI rahbar hali biriktirilmagan bo‘lsa ham sinfning
+        # qat’iy jadval katagi hisoblanadi. Rahbar keyin tahrirda ulanadi.
+        class_hour = int(class_hour_rule.get("haftalik_soat") or 0)
         if 1 <= grade <= 4:
             base_per_day = min(4, shift_periods)
             fifth_extra = min(_v1874_fifth_day_limit(grade), len(allowed_days)) if shift_periods >= 5 else 0
@@ -7099,8 +7109,6 @@ def _v1875_preflight_report(cur, maktab_id: int):
             )
         rule = class_hour_by_class.get(class_id)
         if rule:
-            if rule.get("rahbar_user_id") is None:
-                warnings.append(f"{cls['sinf']}-{cls['harf']}: KELAJAK SOATI rahbar tanlanguncha jadvalga qo'yilmadi")
             blocked = _v1856_class_day_block_reason(cls, int(rule["hafta_kuni"]), class_day_blocks)
             if blocked:
                 errors.append(f"{cls['sinf']}-{cls['harf']} sinf soati: {blocked}")
@@ -12506,20 +12514,20 @@ def _v200_all_teacher_idle_signature(state, context):
 
 
 def _v196_cross_shift_gap_penalty(minutes):
-    """1–2 soat qulay, 3 soat istisno, 3 soatdan ortiq juda qimmat."""
+    """1 soat maqsad, 2 soat zaxira; undan uzog‘i faqat oxirgi chora."""
     if minutes is None:
         return 0.0
     minutes = max(0, int(minutes))
     if minutes <= 60:
         return minutes * 0.08
     if minutes <= 120:
-        return 4.8 + (minutes - 60) * 0.45
+        return 4.8 + (minutes - 60) * 1.8
     if minutes <= 180:
-        return 31.8 + (minutes - 120) * 18.0
+        return 112.8 + (minutes - 120) * 75.0
     # 3 soatdan oshgan variant faqat boshqa qattiq cheklov sabab mutlaqo
     # iloj qolmaganda yashab qolishi mumkin. 4–5 soatlik kutish endi oddiy
     # pedagogik bonuslar bilan hech qachon yengilmaydi.
-    return 1111.8 + (minutes - 180) * 95.0
+    return 4612.8 + (minutes - 180) * 240.0
 
 
 def _v196_cross_shift_edge_blocks(state, teacher, day, context, extra=None):
@@ -12596,8 +12604,9 @@ def _v196_teacher_target_days(demand, rules):
         # 7–10 soat: 3 ish kuni.
         return max(3, minimum)
     if demand <= 15:
-        # 11–15 soat: 4 ish kuni.
-        return max(4, minimum)
+        # 11–15 soat: kunlik sig‘im yetarli bo‘lsa 3 kun. Masalan,
+        # 14 soat 5+5+4 bo‘lib joylashadi; 4-kun faqat zaxira.
+        return max(3, minimum)
     if demand < 20:
         # 15 soatdan yuqori yuklama odatda 4–5 kunda ixcham joylashadi.
         return max(4, minimum)
@@ -12616,7 +12625,7 @@ def _v201_teacher_fallback_days(demand, rules):
     if demand <= 10:
         return max(target, 4)
     if demand <= 15:
-        return max(target, 5)
+        return max(target, 4)
     if demand < 20:
         return max(target, 5)
     return target
@@ -12750,8 +12759,8 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         score += (
             (after_idle["jami_daqiqa"] - before_idle["jami_daqiqa"]) * 11.0
             + (after_idle["okno_soni"] - before_idle["okno_soni"]) * 900
-            + (after_idle["ikki_soatdan_uzoq"] - before_idle["ikki_soatdan_uzoq"]) * 4200
-            + (after_idle["uch_soatdan_uzoq"] - before_idle["uch_soatdan_uzoq"]) * 12000
+            + (after_idle["ikki_soatdan_uzoq"] - before_idle["ikki_soatdan_uzoq"]) * 18000
+            + (after_idle["uch_soatdan_uzoq"] - before_idle["uch_soatdan_uzoq"]) * 65000
         )
         if existing and any(abs(int(period) - item) == 1 for item in existing):
             score -= 125
@@ -12812,11 +12821,11 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                     # Yuklamani ruxsat etilgan zaxira kundan ham ko'pga yoyish
                     # faqat qizil vaqtlar yoki boshqa qattiq to'qnashuvlar
                     # mutlaqo majbur qilganda qoladigan eng qimmat variantdir.
-                    score += 52000 + (projected_count - fallback_days) * 26000
+                    score += 140000 + (projected_count - fallback_days) * 70000
                 elif projected_count > expected_days:
                     # Birinchi zaxira kun: dars tashlab ketilmasligi uchun
                     # qattiq taqiq emas, lekin oddiy qulaylik bonuslaridan ancha qimmat.
-                    score += 12500 + (projected_count - expected_days - 1) * 9000
+                    score += 42000 + (projected_count - expected_days - 1) * 26000
                 else:
                     # Dushanba–Chorshanba–Juma yoki
                     # Seshanba–Payshanba–Shanba kabi oralatib ishlash. 4 kun
