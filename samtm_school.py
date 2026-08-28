@@ -3380,7 +3380,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # To'liq va sinf oknosiz variant topilgan bo'lsa, sifatni yana bir
             # necha urug'da solishtiramiz; qolgan vaqtni bekorga sarflamaymiz.
             elapsed = _samtm_time.monotonic() - generation_started
-            if completed_attempts >= 6 and not unplaced and class_gaps == 0:
+            if (
+                completed_attempts >= 6
+                and not unplaced
+                and class_gaps == 0
+                and class_imbalance == 0
+            ):
                 if elapsed >= min(10.0, generation_budget * 0.55):
                     break
 
@@ -3398,11 +3403,27 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # sinfda okno paydo bo'lmaydi, lekin ustozning ichki oynasi va ikki
         # smena orasidagi 4–5 soatlik kutishi qisqaradi.
         final_rng = _v1852_random.Random(base_seed ^ 0x20_26_08_26)
-        state = _v196_compact_class_gaps(
-            state, context, final_rng, max_moves=48
-        )
+        # Yakuniy natijada sinf oknosi va 3/6 kabi notekis kun qolmasin.
+        # Bir marta siqish ayrim murakkab o'qituvchi almashuvlarida yetmaydi;
+        # siqish va kunlarni tenglashtirish navbat bilan bir necha marta ishlaydi.
+        for _ in range(4):
+            state = _v196_compact_class_gaps(
+                state, context, final_rng, max_moves=96
+            )
+            state = _v196_balance_class_days(
+                state, context, final_rng, max_moves=72
+            )
         state = _v196_optimize_teacher_windows(
             state, context, final_rng, max_swaps=54
+        )
+        state = _v196_compact_class_gaps(
+            state, context, final_rng, max_moves=96
+        )
+        state = _v196_balance_class_days(
+            state, context, final_rng, max_moves=72
+        )
+        state = _v196_compact_class_gaps(
+            state, context, final_rng, max_moves=96
         )
         state["class_gap_count"] = _v196_class_gap_count(state)
         final_metrics = _v196_attempt_metrics(state, context)
@@ -3412,6 +3433,26 @@ def v1852_generate(sorov: V1852Generate, token: str):
         total_count = len(jobs)
         placement_ratio = (placed_count / total_count) if total_count else 1.0
         class_gap_count = int(state.get("class_gap_count", 0))
+        final_class_imbalance = int(
+            final_metrics.get("sinf_kun_taqsimoti_farqi", 0)
+        )
+        if class_gap_count > 0 or final_class_imbalance > 0:
+            problems = []
+            if class_gap_count > 0:
+                problems.append(
+                    f"sinflarda {class_gap_count} ta ichki bo'sh dars qoldi"
+                )
+            if final_class_imbalance > 0:
+                problems.append(
+                    "ayrim sinf kunlari 3/5/6 kabi notekis taqsimlandi"
+                )
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Sifatsiz draft saqlanmadi: " + "; ".join(problems)
+                    + ". Qizil o'qituvchi vaqtlarini tekshiring yoki yana yarating."
+                ),
+            )
         quality = max(0, min(100, round(
             placement_ratio * 88
             + max(0, 12 - class_gap_count * 4 - gap_count * 0.25 - late_heavy * 0.2)
@@ -7445,9 +7486,17 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
         count = sum(0.5 if session[2] in {"toq", "juft"} else 1.0 for session in sessions)
         load = loads.get((class_id, subject_key))
-        if load and count > int(load.get("kunlik_max") or 1):
+        allowed_daily = int(load.get("kunlik_max") or 1) if load else 1
+        if load:
+            cls_for_profile = classes.get(class_id, {})
+            subject_profile = _v1874_subject_profile(
+                load.get("fan_nomi"), _v1874_grade(cls_for_profile)
+            )
+            if subject_profile.get("physical") or subject_profile.get("technology"):
+                allowed_daily = max(2, allowed_daily)
+        if load and count > allowed_daily:
             cls = classes.get(class_id, {})
-            errors.append(f"{cls.get('sinf','')}-{cls.get('harf','')} / {load['fan_nomi']}: {_V1852_HAFTA.get(day, day)} {count} marta, kunlik max {load.get('kunlik_max')}")
+            errors.append(f"{cls.get('sinf','')}-{cls.get('harf','')} / {load['fan_nomi']}: {_V1852_HAFTA.get(day, day)} {count} marta, kunlik max {allowed_daily}")
 
     hygiene = _v1874_schedule_hygiene_violations(cur, maktab_id, run_id)
     for item in hygiene:
@@ -12538,11 +12587,19 @@ def _v196_teacher_target_days(demand, rules):
     demand = float(demand or 0)
     daily_limit = max(1, min(6, int((rules or {}).get("kunlik_max") or 6)))
     minimum = max(1, int(math.ceil(demand / daily_limit)))
-    if 10 <= demand < 15:
-        # 10–14,5 soat: 3 kun; kunlik sig'im yetmasa 4-kun.
+    if demand <= 1:
+        return 1
+    if demand <= 6:
+        # 2–6 soat: 2 ish kuni; faqat kunlik limit majbur qilsa ko'payadi.
+        return max(2, minimum)
+    if demand <= 10:
+        # 7–10 soat: 3 ish kuni.
         return max(3, minimum)
-    if 15 <= demand < 20:
-        # 15–19,5 soat: 4 kun; kunlik sig'im yetmasa 5-kun.
+    if demand <= 15:
+        # 11–15 soat: 4 ish kuni.
+        return max(4, minimum)
+    if demand < 20:
+        # 15 soatdan yuqori yuklama odatda 4–5 kunda ixcham joylashadi.
         return max(4, minimum)
     compact_capacity = max(1, min(4, daily_limit))
     return max(minimum, int(math.ceil(demand / compact_capacity)))
@@ -12552,9 +12609,15 @@ def _v201_teacher_fallback_days(demand, rules):
     """Maqsad sig'masa ruxsat etiladigan birinchi zaxira kun soni."""
     demand = float(demand or 0)
     target = _v196_teacher_target_days(demand, rules)
-    if 10 <= demand < 15:
+    if demand <= 1:
+        return 1
+    if demand <= 6:
+        return max(target, 3)
+    if demand <= 10:
         return max(target, 4)
-    if 15 <= demand < 20:
+    if demand <= 15:
+        return max(target, 5)
+    if demand < 20:
         return max(target, 5)
     return target
 
@@ -12736,7 +12799,7 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         rules = context.get("rules", {}).get(teacher, context.get("default_rules", {}))
         teacher_demand = float(demands.get(teacher, 1.0) or 1.0)
         expected_days = _v196_teacher_target_days(teacher_demand, rules)
-        if 10 <= teacher_demand < 20:
+        if teacher_demand > 0:
             if int(day) not in used_days:
                 projected_days = sorted(used_days | {int(day)})
                 projected_count = len(projected_days)
@@ -12746,14 +12809,14 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                 )
                 fallback_days = _v201_teacher_fallback_days(teacher_demand, rules)
                 if projected_count > fallback_days:
-                    # 10–14 soatni 5–6 kunga yoki 15–19 soatni 6 kunga
-                    # yoyish faqat qattiq cheklovlar majbur qilganda qoladigan
-                    # juda qimmat zaxira variantidir.
-                    score += 22000 + (projected_count - fallback_days) * 12000
+                    # Yuklamani ruxsat etilgan zaxira kundan ham ko'pga yoyish
+                    # faqat qizil vaqtlar yoki boshqa qattiq to'qnashuvlar
+                    # mutlaqo majbur qilganda qoladigan eng qimmat variantdir.
+                    score += 52000 + (projected_count - fallback_days) * 26000
                 elif projected_count > expected_days:
-                    # Birinchi zaxira: 10–14 uchun 4-kun, 15–19 uchun 5-kun.
-                    # Dars tashlab ketilmasligi uchun bu qattiq taqiq emas.
-                    score += 5200 + (projected_count - expected_days - 1) * 3800
+                    # Birinchi zaxira kun: dars tashlab ketilmasligi uchun
+                    # qattiq taqiq emas, lekin oddiy qulaylik bonuslaridan ancha qimmat.
+                    score += 12500 + (projected_count - expected_days - 1) * 9000
                 else:
                     # Dushanba–Chorshanba–Juma yoki
                     # Seshanba–Payshanba–Shanba kabi oralatib ishlash. 4 kun
@@ -12814,7 +12877,7 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
             score += 32
         if neighbor_period == int(period) - 1 and neighbor_profile.get("physical"):
             if profile.get("core_priority"):
-                score += 1600
+                score += 12000
             elif profile.get("written_heavy"):
                 score += 900
             elif profile.get("light"):
@@ -12823,7 +12886,7 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                 score -= 34
         if neighbor_period == int(period) + 1 and profile.get("physical"):
             if neighbor_profile.get("core_priority"):
-                score += 1600
+                score += 12000
             elif neighbor_profile.get("written_heavy"):
                 score += 900
             elif neighbor_profile.get("light"):
@@ -13402,8 +13465,6 @@ def _v196_attempt_metrics(state, context):
     demands = context.get("v196_teacher_demand") or {}
     for teacher, demand in demands.items():
         demand = float(demand or 0)
-        if not (10 <= demand < 20):
-            continue
         rules = context.get("rules", {}).get(
             int(teacher), context.get("default_rules", {})
         )
@@ -13552,6 +13613,59 @@ def _v1852_generate_attempt(jobs, context, seed):
         + metrics["sinf_qisqa_kunlari"] * 120
     )
     return state, unplaced, penalty, gaps, late
+
+
+# V20.4 — qattiq real-vaqt to'qnashuvi va amaliy fanlarning juft darsi.
+# Bu wrapper V19.6/V19.8 dagi barcha sinf, guruh, xona va qizil vaqt
+# tekshiruvlarini saqlaydi; faqat yetishmagan ikki holatni qo'shadi.
+_v204_base_candidate_reasons = _v1852_candidate_reasons
+
+
+def _v1852_candidate_reasons(
+    job, day, period, selected_teachers, room_keys, state, context
+):
+    reasons = list(_v204_base_candidate_reasons(
+        job, day, period, selected_teachers, room_keys, state, context
+    ))
+    profile = _v196_rotation_profile(job, context)
+
+    # Jismoniy tarbiya yoki texnologiya haftasiga 2+ soat bo'lsa, imkon
+    # topilganda bir kunda yonma-yon ikki dars bo'lishi mumkin. Bir kunda
+    # uchinchi darsga hech qachon ruxsat berilmaydi.
+    if profile.get("physical") or profile.get("technology"):
+        subject_key = str(job.get("fan") or "").casefold()
+        current_count = int(state.get("subject_daily", {}).get(
+            (job.get("sinf_id"), subject_key, int(day)), 0
+        ))
+        if current_count < 2:
+            reasons = [
+                reason for reason in reasons
+                if reason != "fan kunlik maksimumga yetgan"
+            ]
+
+    # Parallel dars faqat "bir xil smena+dars raqami" emas. Smenalar
+    # vaqti bir-biriga tegib yoki ustma-ust kelsa ham o'qituvchi ikki joyda
+    # bo'la olmaydi. Haqiqiy boshlanish/tugash daqiqalari qattiq tekshiriladi.
+    new_interval = _v196_slot_interval(
+        context, int(job.get("smena") or 1), int(period)
+    )
+    if new_interval:
+        new_start, new_end = new_interval
+        for teacher in selected_teachers:
+            if teacher is None:
+                continue
+            timeline = _v200_teacher_day_timeline(
+                state, int(teacher), int(day), context
+            )
+            if any(
+                int(new_start) < int(old_end)
+                and int(old_start) < int(new_end)
+                for old_start, old_end, _shift, _period in timeline
+            ):
+                reasons.append(
+                    "o'qituvchi boshqa smenadagi dars bilan real vaqtda ustma-ust"
+                )
+    return list(dict.fromkeys(reasons))
 
 
 # ========================= V19.6 END =========================
