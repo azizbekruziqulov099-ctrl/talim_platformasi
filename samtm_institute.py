@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "institute-hierarchy-archive-tutor-import-v20-rev72"
+SAMTM_INSTITUTE_RELEASE = "institute-direction-first-v21-rev80"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -429,6 +429,7 @@ def _institut_v20_jadvallari(cur):
         yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )""")
     cur.execute("ALTER TABLE universitet_tyutor_yonalishlari ADD COLUMN IF NOT EXISTS fakultet_id INTEGER REFERENCES fakultetlar(id) ON DELETE CASCADE")
+    cur.execute("ALTER TABLE universitet_tyutor_yonalishlari ADD COLUMN IF NOT EXISTS qabul_turi TEXT")
     cur.execute("ALTER TABLE universitet_tyutor_yonalishlari ALTER COLUMN yonalish_id DROP NOT NULL")
     cur.execute("""DELETE FROM universitet_tyutor_yonalishlari old USING universitet_tyutor_yonalishlari newer
         WHERE old.id<newer.id AND old.universitet_id=newer.universitet_id
@@ -437,10 +438,11 @@ def _institut_v20_jadvallari(cur):
           AND old.yonalish_id IS NOT DISTINCT FROM newer.yonalish_id
           AND old.talim_shakli IS NOT DISTINCT FROM newer.talim_shakli
           AND old.talim_tili IS NOT DISTINCT FROM newer.talim_tili""")
-    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_uni_tyutor_qamrov
+    cur.execute("DROP INDEX IF EXISTS uq_uni_tyutor_qamrov")
+    cur.execute("""CREATE UNIQUE INDEX uq_uni_tyutor_qamrov
         ON universitet_tyutor_yonalishlari(
           universitet_id,tyutor_user_id,COALESCE(fakultet_id,-1),COALESCE(yonalish_id,-1),
-          COALESCE(talim_shakli,''),COALESCE(talim_tili,''))""")
+          COALESCE(talim_shakli,''),COALESCE(talim_tili,''),COALESCE(qabul_turi,''))""")
     cur.execute("""CREATE TABLE IF NOT EXISTS universitet_qabul_talabalari(
         id BIGSERIAL PRIMARY KEY,
         universitet_id INTEGER NOT NULL REFERENCES universitetlar(id) ON DELETE CASCADE,
@@ -647,7 +649,10 @@ def _student_scope_clause(cur, university_id: int, user_id: int, roles: list[dic
               AND (ty.fakultet_id IS NULL OR ty.fakultet_id={program_alias}.fakultet_id)
               AND (ty.yonalish_id IS NULL OR ty.yonalish_id={student_alias}.yonalish_id)
               AND (ty.talim_shakli IS NULL OR ty.talim_shakli={student_alias}.talim_shakli)
-              AND (ty.talim_tili IS NULL OR ty.talim_tili={student_alias}.talim_tili))""")
+              AND (ty.talim_tili IS NULL OR ty.talim_tili={student_alias}.talim_tili)
+              AND (ty.qabul_turi IS NULL OR ty.qabul_turi=CASE
+                    WHEN LOWER(COALESCE({student_alias}.tavsiya_turi,'')) LIKE '%%grant%%' THEN 'grant'
+                    ELSE 'kontrakt' END))""")
         params.extend([university_id, user_id])
     return ("(" + " OR ".join(clauses) + ")", params) if clauses else ("FALSE", [])
 
@@ -670,7 +675,9 @@ def _student_access_allowed(cur, university_id: int, user_id: int, roles: list[d
           AND (ty.yonalish_id IS NULL OR ty.yonalish_id=%s)
           AND (ty.talim_shakli IS NULL OR ty.talim_shakli=%s)
           AND (ty.talim_tili IS NULL OR ty.talim_tili=%s)
-        LIMIT 1""", (program_id, university_id, user_id, program_id, row["talim_shakli"], row["talim_tili"]))
+          AND (ty.qabul_turi IS NULL OR ty.qabul_turi=CASE
+                WHEN LOWER(COALESCE(%s,'')) LIKE '%%grant%%' THEN 'grant' ELSE 'kontrakt' END)
+        LIMIT 1""", (program_id, university_id, user_id, program_id, row["talim_shakli"], row["talim_tili"], row.get("tavsiya_turi")))
     return cur.fetchone() is not None
 
 
@@ -1238,11 +1245,16 @@ class TutorAssign(BaseModel):
     yonalish_id: Optional[int] = None
     talim_shakli: Optional[str] = None
     talim_tili: Optional[str] = None
+    qabul_turi: Optional[str] = None
 
 
 class TutorAssignmentUpdate(BaseModel):
     token: str
     faol: bool = False
+
+
+class InstituteToken(BaseModel):
+    token: str
 
 
 class BatchCommit(BaseModel):
@@ -1653,13 +1665,13 @@ def structure_commit(req: BatchCommit):
 
 
 @router.get("/xodimlar")
-def staff_list(universitet_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+def staff_list(universitet_id: int, arxiv: bool = False, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
     try:
         _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id); names = _role_names(roles)
         if not (names & (INSTITUTE_WIDE | FACULTY_WIDE | DEPARTMENT_WIDE)):
             raise HTTPException(status_code=403, detail="Xodimlar ro'yxatini ko'rish huquqi yo'q")
-        where = ["xr.universitet_id=%s", "xr.faol=TRUE"]; params: list[Any] = [universitet_id]
+        where = ["xr.universitet_id=%s", "xr.faol=%s"]; params: list[Any] = [universitet_id, not arxiv]
         if not (names & INSTITUTE_WIDE):
             faculty_ids = sorted({int(r["fakultet_id"]) for r in roles if r.get("fakultet_id") and r["rol"] in FACULTY_WIDE})
             department_ids = sorted({int(r["kafedra_id"]) for r in roles if r.get("kafedra_id") and r["rol"] in DEPARTMENT_WIDE})
@@ -1677,7 +1689,56 @@ def staff_list(universitet_id: int, token: Optional[str] = Query(None, include_i
             WHERE {' AND '.join(where)} ORDER BY f.nomi NULLS FIRST,xr.rol,u.full_name""", params)
         rows = [dict(r) for r in cur.fetchall()]
         for r in rows: r["lavozim_nomi"] = ROLE_LABELS.get(r["rol"], r["rol"])
-        return {"xodimlar": rows, "lavozimlar": ROLE_LABELS}
+        return {"xodimlar": rows, "lavozimlar": ROLE_LABELS, "arxiv": arxiv}
+    finally:
+        cur.close(); conn.close()
+
+
+@router.post("/xodim/{role_id}/kirish_kodi")
+def staff_invite_code(role_id: int, req: InstituteToken):
+    """Super-admin/rahbar xodimning ishlatilmagan kodini ko'radi; bo'lmasa yangisini yaratadi."""
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        cur.execute("""SELECT xr.*,u.full_name FROM universitet_xodim_rollari xr
+            JOIN users u ON u.user_id=xr.user_id WHERE xr.id=%s FOR UPDATE""", (role_id,))
+        row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Xodim topilmadi")
+        roles = _require_member(cur, actor, row["universitet_id"])
+        if not _has_any(roles, MANAGE_STAFF_ROLES):
+            raise HTTPException(status_code=403, detail="Kirish kodini boshqarish huquqi yo'q")
+        cur.execute("""SELECT tk.kod_shifr FROM universitet_taklif_kodlari tk
+            JOIN xodim_kod xk ON xk.kod=tk.kod_hash
+            WHERE tk.xodim_rol_id=%s AND xk.ishlatildi=FALSE
+              AND xk.yaratildi>NOW()-INTERVAL '2 months'
+            ORDER BY tk.id DESC LIMIT 1""", (role_id,))
+        found = cur.fetchone(); code = _open_invite_code(found["kod_shifr"]) if found else None
+        if not code:
+            _, _, code = _new_placeholder(cur, row["full_name"], row["universitet_id"], row["rol"], None,
+                                           actor, row["fakultet_id"], row["kafedra_id"], row["yonalish_id"])
+        _audit(cur, row["universitet_id"], actor, "xodim_kirish_kodi_korildi", "xodim_rol", role_id)
+        conn.commit(); return {"fish": row["full_name"], "lavozim": ROLE_LABELS.get(row["rol"], row["rol"]),
+                               "kirish_kodi": code, "kod_muddati": "2 oy"}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/audit")
+def audit_list(universitet_id: int, q: str = "", page: int = 1, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        if not (_role_names(roles) & INSTITUTE_WIDE):
+            raise HTTPException(status_code=403, detail="Institut logini faqat institut rahbariyati ko'radi")
+        term = f"%{_norm(q)}%"; offset = (max(1, page)-1)*100
+        cur.execute("""SELECT l.id,l.amal,l.obyekt_turi,l.obyekt_id,l.tafsilot,l.yaratilgan_at,
+                   u.full_name actor_fish
+            FROM universitet_audit_log l LEFT JOIN users u ON u.user_id=l.actor_user_id
+            WHERE l.universitet_id=%s AND (%s='' OR l.amal ILIKE %s OR COALESCE(u.full_name,'') ILIKE %s)
+            ORDER BY l.id DESC LIMIT 100 OFFSET %s""", (universitet_id, _norm(q), term, term, offset))
+        return {"loglar": [dict(x) for x in cur.fetchall()], "page": max(1, page)}
     finally:
         cur.close(); conn.close()
 
@@ -1702,25 +1763,29 @@ def assign_tutor(req: TutorAssign):
             raise HTTPException(status_code=403, detail="Barcha institut qamrovini faqat institut rahbariyati biriktiradi")
         form = _canonical_choice(req.talim_shakli, TA_LIM_SHAKLLARI) if req.talim_shakli else None
         language = _canonical_choice(req.talim_tili, TA_LIM_TILLARI) if req.talim_tili else None
+        admission_type = _norm(req.qabul_turi).lower() or None
+        if admission_type not in {None, "grant", "kontrakt"}:
+            raise HTTPException(status_code=400, detail="Qabul turi grant yoki kontrakt bo'lishi kerak")
         cur.execute("SELECT 1 FROM universitet_xodim_rollari WHERE universitet_id=%s AND user_id=%s AND rol='tyutor' AND faol=TRUE", (req.universitet_id, req.tyutor_user_id))
         if not cur.fetchone(): raise HTTPException(status_code=400, detail="Tanlangan xodim tyutor emas")
         cur.execute("""SELECT id,faol FROM universitet_tyutor_yonalishlari
             WHERE universitet_id=%s AND tyutor_user_id=%s
               AND fakultet_id IS NOT DISTINCT FROM %s AND yonalish_id IS NOT DISTINCT FROM %s
               AND talim_shakli IS NOT DISTINCT FROM %s AND talim_tili IS NOT DISTINCT FROM %s
-            LIMIT 1""", (req.universitet_id, req.tyutor_user_id, faculty_id, program_id, form, language))
+              AND qabul_turi IS NOT DISTINCT FROM %s
+            LIMIT 1""", (req.universitet_id, req.tyutor_user_id, faculty_id, program_id, form, language, admission_type))
         existing = cur.fetchone()
         if existing:
             cur.execute("UPDATE universitet_tyutor_yonalishlari SET faol=TRUE,yaratilgan_by=%s WHERE id=%s", (actor, existing["id"]))
             assignment_id, status = int(existing["id"]), "qayta_faollashtirildi" if not existing["faol"] else "avval_biriktirilgan"
         else:
             cur.execute("""INSERT INTO universitet_tyutor_yonalishlari(
-                universitet_id,tyutor_user_id,fakultet_id,yonalish_id,talim_shakli,talim_tili,yaratilgan_by)
-                VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
-                (req.universitet_id, req.tyutor_user_id, faculty_id, program_id, form, language, actor))
+                universitet_id,tyutor_user_id,fakultet_id,yonalish_id,talim_shakli,talim_tili,qabul_turi,yaratilgan_by)
+                VALUES(%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+                (req.universitet_id, req.tyutor_user_id, faculty_id, program_id, form, language, admission_type, actor))
             assignment_id, status = int(cur.fetchone()["id"]), "biriktirildi"
         _audit(cur, req.universitet_id, actor, "tyutor_qamrovi_biriktirildi", "tyutor_qamrovi", assignment_id,
-               {"fakultet_id": faculty_id, "yonalish_id": program_id, "talim_shakli": form, "talim_tili": language})
+               {"fakultet_id": faculty_id, "yonalish_id": program_id, "talim_shakli": form, "talim_tili": language, "qabul_turi": admission_type})
         conn.commit()
         return {"holat": status, "biriktirish_id": assignment_id}
     except Exception:
@@ -1744,7 +1809,7 @@ def tutor_assignments(universitet_id: int, token: Optional[str] = Query(None, in
                 clauses.append("COALESCE(ty.fakultet_id,y.fakultet_id)=ANY(%s)"); scoped.append(faculty_ids)
             where.append("(" + " OR ".join(clauses) + ")"); params.extend(scoped)
         cur.execute(f"""SELECT ty.id,ty.tyutor_user_id,u.full_name,ty.fakultet_id,f.nomi fakultet_nomi,
-            ty.yonalish_id,y.nomi yonalish_nomi,ty.talim_shakli,ty.talim_tili
+            ty.yonalish_id,y.nomi yonalish_nomi,ty.talim_shakli,ty.talim_tili,ty.qabul_turi
             FROM universitet_tyutor_yonalishlari ty JOIN users u ON u.user_id=ty.tyutor_user_id
             LEFT JOIN universitet_yonalishlari y ON y.id=ty.yonalish_id
             LEFT JOIN fakultetlar f ON f.id=COALESCE(ty.fakultet_id,y.fakultet_id)
