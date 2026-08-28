@@ -33,7 +33,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_JADVAL_RELEASE = "JADVAL-REV57"
-SAMTM_SCHOOL_PACKAGE_REVISION = "timetable-group-gap-repair-rev56"
+SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
@@ -7366,9 +7366,16 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     (class_id, day, shift, period, week_type)
                 )
             teacher_slot_map[(teacher_id, day, shift, period)].add((class_id, week_type))
-            if (teacher_id, day) in method_hard:
+            class_hour_red_exception = is_class_hour and (
+                (teacher_id, day) in method_hard
+                or (teacher_id, day, 0, 0) in hard
+            )
+            if (teacher_id, day) in method_hard and not class_hour_red_exception:
                 errors.append(f"{slot.get('oqituvchi_ismi')}: {_V1852_HAFTA.get(day, day)} metod kuniga dars qo'yilgan")
-            if _v1852_blocked(hard, teacher_id, day, shift, period):
+            if (
+                _v1852_blocked(hard, teacher_id, day, shift, period)
+                and not class_hour_red_exception
+            ):
                 errors.append(f"{slot.get('oqituvchi_ismi')}: {_V1852_HAFTA.get(day, day)} {shift}-smena {period}-dars qattiq bloklangan")
         room_key = slot.get("xona_id") or slot.get("xona_matni")
         if room_key:
@@ -13713,6 +13720,18 @@ def _v1852_generate_attempt(jobs, context, seed):
 _v204_base_candidate_reasons = _v1852_candidate_reasons
 
 
+def _v205_class_hour_red_day_exception(job, teacher, day, context):
+    """Kelajak soati uchun faqat rahbarning butun yopiq kunini istisno qiladi."""
+    if not job.get("is_class_hour") or teacher is None:
+        return False
+    teacher = int(teacher)
+    day = int(day)
+    return (
+        (teacher, day) in context.get("method_hard", set())
+        or (teacher, day, 0, 0) in context.get("hard", set())
+    )
+
+
 def _v1852_candidate_reasons(
     job, day, period, selected_teachers, room_keys, state, context
 ):
@@ -13729,6 +13748,28 @@ def _v1852_candidate_reasons(
         reasons = [
             reason for reason in reasons
             if reason != "o'qituvchi biriktirilmagan"
+        ]
+
+    # Faqat sinf rahbarining qat'iy Kelajak soati uchun metod kuni yoki
+    # butun kunlik qizil belgi istisno. Oddiy fan, alohida qizil soat va
+    # parallel dars to'qnashuvi avvalgidek qattiq qoladi.
+    if job.get("is_class_hour") and any(
+        _v205_class_hour_red_day_exception(job, teacher, day, context)
+        for teacher in selected_teachers
+        if teacher is not None
+    ):
+        reasons = [
+            reason for reason in reasons
+            if reason != "o'qituvchining metod kuni"
+            and not (
+                reason == "o'qituvchi bu vaqtda band"
+                and any(
+                    teacher is not None
+                    and (int(teacher), int(day), 0, 0)
+                    in context.get("hard", set())
+                    for teacher in selected_teachers
+                )
+            )
         ]
 
     # Jismoniy tarbiya yoki texnologiya haftasiga 2+ soat bo'lsa, imkon
@@ -13770,7 +13811,7 @@ def _v1852_candidate_reasons(
     return list(dict.fromkeys(reasons))
 
 
-# ========================= V19.6 END ========================
+# ========================= V19.6 END =========================
 
 # Preserve Python monolith semantics: late definitions must be visible to
 # earlier platform routes such as the employee import endpoint.
@@ -13779,4 +13820,3 @@ for _v19_name, _v19_value in list(globals().items()):
         setattr(_platform, _v19_name, _v19_value)
 
 __all__ = [name for name in globals() if not name.startswith("__")]
-SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
