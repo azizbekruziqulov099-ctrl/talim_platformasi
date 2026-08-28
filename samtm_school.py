@@ -4934,9 +4934,6 @@ def _v199_ensure_class_hour_rules(cur, maktab_id: int, class_ids=None, actor_id=
                    yaratgan_user_id,yangilangan_at)
                VALUES(%s,%s,%s,1,TRUE,%s,NOW())
                ON CONFLICT(maktab_id,sinf_id) DO UPDATE SET
-                 faol=TRUE,
-                 fan_nomi=COALESCE(NULLIF(TRIM(aqlli_sinf_soati_qoidalari_v2.fan_nomi),''),'KELAJAK SOATI'),
-                 haftalik_soat=GREATEST(1,COALESCE(aqlli_sinf_soati_qoidalari_v2.haftalik_soat,1)),
                  yangilangan_at=NOW()""",
             (maktab_id, class_id, default_day, actor_id),
         )
@@ -6580,11 +6577,7 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
     cur.execute(
         """SELECT e.oqituvchi_user_id,u.full_name,u.haftalik_dars_soati,
                   COUNT(DISTINCT (e.sinf_id,e.hafta_kuni,e.smena,e.dars_raqami)) AS amaldagi,
-                  COUNT(DISTINCT CASE WHEN EXISTS(
-                       SELECT 1 FROM aqlli_sinf_soati_qoidalari_v2 q
-                       WHERE q.maktab_id=e.maktab_id AND q.sinf_id=e.sinf_id
-                         AND q.faol=TRUE AND q.hafta_kuni=e.hafta_kuni
-                         AND q.dars_raqami=e.dars_raqami)
+                  COUNT(DISTINCT CASE WHEN UPPER(TRIM(e.fan_nomi))='SINF SOATI'
                        THEN (e.sinf_id,e.hafta_kuni,e.smena,e.dars_raqami) END) AS sinf_soati
            FROM aqlli_jadval_slotlari_v2 e
            JOIN users u ON u.user_id=e.oqituvchi_user_id
@@ -7277,13 +7270,6 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
     classes = {int(row["id"]): dict(row) for row in cur.fetchall()}
     cur.execute("SELECT * FROM aqlli_sinf_fan_yuklamalari_v2 WHERE maktab_id=%s AND haftalik_soat>0", (maktab_id,))
     loads = {(int(row["sinf_id"]), _v1875_subject_key(row["fan_nomi"])): dict(row) for row in cur.fetchall()}
-    integrity_class_hour_rules = _v1866_class_hour_rule_rows(cur, maktab_id)
-    class_hour_subject_by_class = {
-        int(row["sinf_id"]): _v1875_subject_key(
-            row.get("fan_nomi") or "KELAJAK SOATI"
-        )
-        for row in integrity_class_hour_rules
-    }
 
     for slot in slots:
         class_id = int(slot["sinf_id"])
@@ -7295,12 +7281,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         subject_key = _v1875_subject_key(subject)
         session = (day, shift, period)
         class_sessions[class_id].add(session)
-        is_class_hour = subject_key in {
-            _v1875_subject_key("SINF SOATI"),
-            _v1875_subject_key("KELAJAK SOATI"),
-            class_hour_subject_by_class.get(class_id),
-        }
-        if is_class_hour:
+        if subject_key == _v1875_subject_key("SINF SOATI"):
             class_hour_sessions[class_id].add((*session, week_type))
         else:
             pair_key = (class_id, subject_key)
@@ -7331,7 +7312,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         if teacher_id is not None:
             teacher_id = int(teacher_id)
             teacher_sessions[teacher_id].add((class_id, day, shift, period, week_type))
-            if is_class_hour:
+            if subject_key == _v1875_subject_key("SINF SOATI"):
                 teacher_class_hour_sessions[teacher_id].add(
                     (class_id, day, shift, period, week_type)
                 )
@@ -7379,7 +7360,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     f"{pair['sinf']} / {pair['fan_nomi']} / {occurrence}-takror: parallel guruhlar to'liq va bir vaqtda emas"
                 )
 
-    class_hour_rules = integrity_class_hour_rules
+    class_hour_rules = _v1866_class_hour_rule_rows(cur, maktab_id)
     class_hour_by_teacher = _v1852_Counter()
     for row in class_hour_rules:
         if row.get("rahbar_user_id") is not None:
@@ -7499,11 +7480,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
             weight = 0.5 if str(slot.get("hafta_turi") or "har_hafta") in {"toq", "juft"} else 1.0
             daily_teacher_counts[(int(teacher_id), int(slot["hafta_kuni"]))] += weight
         subject_key = _v1875_subject_key(slot.get("fan_nomi"))
-        if subject_key not in {
-            _v1875_subject_key("SINF SOATI"),
-            _v1875_subject_key("KELAJAK SOATI"),
-            class_hour_subject_by_class.get(int(slot["sinf_id"])),
-        }:
+        if subject_key != _v1875_subject_key("SINF SOATI"):
             daily_subject_sessions[(
                 int(slot["sinf_id"]), subject_key, int(slot["hafta_kuni"])
             )].add((
@@ -12289,9 +12266,7 @@ def _v1852_candidate_reasons(
         already_repeat_days = {
             int(subject_day)
             for (class_id, _subject, subject_day), count in subject_counts.items()
-            if int(class_id) == int(job["sinf_id"])
-            and str(_subject) == subject_key
-            and int(count or 0) >= 2
+            if int(class_id) == int(job["sinf_id"]) and int(count or 0) >= 2
         }
         may_use_day = int(day) in already_repeat_days or len(already_repeat_days) < emergency_repeat_days
         if current_count < 2 and may_use_day:
@@ -13571,12 +13546,24 @@ def _v1852_generate_attempt(jobs, context, seed):
     state, unplaced, penalty, gaps, late = _v196_base_generate_attempt(
         jobs, context, seed
     )
-    # Kunlik maksimum qattiq qoida. Ilgari shu yerda darhol ishlagan
-    # fallback jadvalni to'ldirish uchun ko'plab oddiy fanlarni bir kunda
-    # ikki marta qo'yar va yaroqsiz draftni "to'liq" deb tanlardi.
-    # Jismoniy tarbiya/texnologiyaning ruxsat etilgan juft darsi V20.4 da
-    # alohida qoladi, boshqa fanlarning kunlik maksimumi buzilmaydi.
+    # Asosiy pedagogik urinish darslarni turli kunlarga yoyadi. Faqat u
+    # barcha darsni joylay olmasa, 1 kunlik va keyin 2 kunlik nazoratli
+    # takror fallback sinovdan o‘tadi. Eng kam joylashmagan darsli natija olinadi.
     best_attempt = (state, unplaced, penalty, gaps, late, 0)
+    if unplaced:
+        for repeat_days in (1, 2):
+            relaxed_context = dict(context)
+            relaxed_context["v203_emergency_repeat_days"] = repeat_days
+            candidate = _v196_base_generate_attempt(
+                jobs, relaxed_context, int(seed) + repeat_days * 100003
+            )
+            candidate_with_mode = (*candidate, repeat_days)
+            if (len(candidate[1]), float(candidate[2])) < (
+                len(best_attempt[1]), float(best_attempt[2])
+            ):
+                best_attempt = candidate_with_mode
+            if not candidate[1]:
+                break
     state, unplaced, penalty, gaps, late, selected_repeat_days = best_attempt
     if selected_repeat_days:
         context["v203_emergency_repeat_days"] = selected_repeat_days
@@ -13650,16 +13637,6 @@ def _v1852_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
     profile = _v196_rotation_profile(job, context)
-
-    # Sinf rahbari keyin tayinlanishi mumkin. Shunday sinfning qat'iy
-    # KELAJAK/SINF SOATI katagi o'qituvchisiz bo'lsa ham yo'qolmaydi.
-    if job.get("is_class_hour") and not any(
-        teacher is not None for teacher in selected_teachers
-    ):
-        reasons = [
-            reason for reason in reasons
-            if reason != "o'qituvchi biriktirilmagan"
-        ]
 
     # Jismoniy tarbiya yoki texnologiya haftasiga 2+ soat bo'lsa, imkon
     # topilganda bir kunda yonma-yon ikki dars bo'lishi mumkin. Bir kunda
