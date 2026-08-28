@@ -1219,6 +1219,17 @@ class StaffCreate(BaseModel):
     yonalish_id: Optional[int] = None
 
 
+class StaffUpdate(BaseModel):
+    token: str
+    universitet_id: int
+    fish: str
+    rol: str
+    fakultet_id: Optional[int] = None
+    kafedra_id: Optional[int] = None
+    yonalish_id: Optional[int] = None
+    faol: bool = True
+
+
 class TutorAssign(BaseModel):
     token: str
     universitet_id: int
@@ -1496,6 +1507,37 @@ def manual_staff(req: StaffCreate):
         cur.close(); conn.close()
 
 
+@router.patch("/xodim/{role_id}")
+def update_staff(role_id: int, req: StaffUpdate):
+    """Rahbar/xodim F.I.Sh., lavozimi va qamrovini haqiqiy bazada tahrirlaydi."""
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, req.universitet_id)
+        if not _has_any(roles, MANAGE_STAFF_ROLES):
+            raise HTTPException(status_code=403, detail="Xodimni tahrirlash huquqi yo'q")
+        cur.execute("SELECT * FROM universitet_xodim_rollari WHERE id=%s AND universitet_id=%s FOR UPDATE", (role_id, req.universitet_id))
+        current = cur.fetchone()
+        if not current: raise HTTPException(status_code=404, detail="Xodim biriktirishi topilmadi")
+        if (req.rol in ADMIN_ROLES or current["rol"] in ADMIN_ROLES) and not _is_global_admin(cur, actor):
+            raise HTTPException(status_code=403, detail="Administratorni faqat super administrator tahrirlaydi")
+        if not (_role_names(roles) & INSTITUTE_WIDE) and req.rol in INSTITUTE_WIDE:
+            raise HTTPException(status_code=403, detail="Institut rahbariyatini faqat institut administratori tahrirlaydi")
+        _validate_assignment_scope(cur, req.universitet_id, roles, req.fakultet_id, req.kafedra_id, req.yonalish_id)
+        fish = _norm(req.fish)
+        if not fish: raise HTTPException(status_code=400, detail="F.I.Sh. kiriting")
+        cur.execute("UPDATE users SET full_name=%s WHERE user_id=%s", (fish, current["user_id"]))
+        cur.execute("""UPDATE universitet_xodim_rollari
+            SET rol=%s,fakultet_id=%s,kafedra_id=%s,yonalish_id=%s,faol=%s
+            WHERE id=%s""", (req.rol, req.fakultet_id, req.kafedra_id, req.yonalish_id, req.faol, role_id))
+        _audit(cur, req.universitet_id, actor, "xodim_tahrirlandi", "xodim_rol", role_id,
+               {"rol": req.rol, "faol": req.faol})
+        conn.commit(); return {"holat": "saqlandi", "rol_id": role_id, "fish": fish}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @router.post("/tuzilma/import_preview")
 async def structure_preview(universitet_id: int, fayl: UploadFile = File(...), token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p()
@@ -1625,7 +1667,7 @@ def staff_list(universitet_id: int, token: Optional[str] = Query(None, include_i
             if faculty_ids: clauses.append("xr.fakultet_id=ANY(%s)"); scoped.append(faculty_ids)
             if department_ids: clauses.append("xr.kafedra_id=ANY(%s)"); scoped.append(department_ids)
             where.append("(" + " OR ".join(clauses) + ")"); params.extend(scoped)
-        cur.execute(f"""SELECT xr.id,xr.user_id,xr.rol,u.full_name,f.nomi fakultet_nomi,k.nomi kafedra_nomi,y.nomi yonalish_nomi,
+        cur.execute(f"""SELECT xr.id,xr.user_id,xr.rol,xr.fakultet_id,xr.kafedra_id,xr.yonalish_id,u.full_name,f.nomi fakultet_nomi,k.nomi kafedra_nomi,y.nomi yonalish_nomi,
             CASE WHEN tk.id IS NULL THEN NULL WHEN xk.ishlatildi THEN 'ulangan' ELSE 'taklif_yuborilgan' END kirish_holati
             FROM universitet_xodim_rollari xr JOIN users u ON u.user_id=xr.user_id
             LEFT JOIN fakultetlar f ON f.id=xr.fakultet_id LEFT JOIN kafedralar k ON k.id=xr.kafedra_id
@@ -1760,14 +1802,27 @@ async def admission_preview(universitet_id: int, fakultet_id: Optional[int] = No
             JOIN fakultetlar f ON f.id=k.fakultet_id WHERE f.universitet_id=%s
               AND (%s IS NULL OR f.id=%s) ORDER BY f.nomi,k.nomi""", (universitet_id, fakultet_id, fakultet_id))
         department_rows = [dict(row) for row in cur.fetchall()]
+        cur.execute("""SELECT y.id,y.nomi,y.kafedra_id,y.fakultet_id
+            FROM universitet_yonalishlari y
+            WHERE y.universitet_id=%s AND y.faol=TRUE
+              AND (%s IS NULL OR y.fakultet_id=%s)
+            ORDER BY y.nomi""", (universitet_id, fakultet_id, fakultet_id))
+        program_rows = [dict(row) for row in cur.fetchall()]
         matching, exact, ambiguous, unknown = {}, {}, {}, {}
         for name, count in summary["yonalishlar"].items():
+            same_programs = [row for row in program_rows if _key(row["nomi"]) == _key(name)]
             same = [row for row in department_rows if _key(row["nomi"]) == _key(name)]
             departments = _rank_departments(name, department_rows)
-            selected_department_id, status = None, "yangi_kafedra"
-            if len(same) == 1:
+            selected_program_id, selected_department_id, status = None, None, "yangi_yonalish"
+            if len(same_programs) == 1:
+                selected_program_id = int(same_programs[0]["id"])
+                selected_department_id = int(same_programs[0]["kafedra_id"])
+                status = "yonalish_aniq"
+                exact[name] = selected_program_id
+            elif len(same_programs) > 1:
+                ambiguous[name] = len(same_programs)
+            elif len(same) == 1:
                 selected_department_id, status = int(same[0]["id"]), "aniq"
-                exact[name] = selected_department_id
             elif len(same) > 1:
                 ambiguous[name] = len(same)
             elif departments:
@@ -1775,11 +1830,11 @@ async def admission_preview(universitet_id: int, fakultet_id: Optional[int] = No
                 if top["moslik_foizi"] >= 88 and gap >= 5:
                     selected_department_id, status = top["id"], "yaqin_topildi"
             create_name = None if selected_department_id else _base_program_name(name)
-            if not selected_department_id: unknown[name] = count
+            if not selected_program_id and not selected_department_id: unknown[name] = count
             variants = [item for item in summary.get("yonalish_variantlari", []) if item["yonalish"] == name]
             matching[name] = {
                 "talaba_soni": count, "holat": status,
-                "tanlangan_yonalish_id": None,
+                "tanlangan_yonalish_id": selected_program_id,
                 "tanlangan_kafedra_id": selected_department_id,
                 "yaratiladigan_kafedra_nomi": create_name,
                 "yaratiladigan_yonalish_nomi": create_name,
@@ -1842,6 +1897,17 @@ def admission_commit(req: BatchCommit):
         resolved: dict[str, dict[str, Any]] = {}
         for name in direction_names:
             suggested = summary_matching.get(name) or {}
+            program_id = req.yonalish_mosliklari.get(name) or suggested.get("tanlangan_yonalish_id")
+            if program_id:
+                cur.execute("""SELECT id,nomi,fakultet_id,kafedra_id
+                    FROM universitet_yonalishlari
+                    WHERE id=%s AND universitet_id=%s AND fakultet_id=%s AND faol=TRUE""",
+                    (program_id, batch["universitet_id"], selected_faculty_id))
+                existing_program = cur.fetchone()
+                if not existing_program:
+                    raise HTTPException(status_code=400, detail=f"{name}: tanlangan yo‘nalish bu fakultetga tegishli emas")
+                resolved[name] = dict(existing_program)
+                continue
             department_id = req.yangi_yonalish_kafedralari.get(name) or suggested.get("tanlangan_kafedra_id")
             department = department_by_id.get(int(department_id)) if department_id else department_by_name.get(_key(name))
             if not department:
@@ -1893,22 +1959,12 @@ def admission_commit(req: BatchCommit):
             saved = cur.fetchone(); imported_students.append((int(saved["id"]), r))
             if saved["inserted"]: inserted += 1
             else: updated += 1
+        # Importning asosiy vazifasi — talabalarni tez va ishonchli bazaga
+        # saqlash. Yuzlab kirish kodlarini shu tranzaksiyada yaratish Railway
+        # timeoutiga olib kelib, butun importni rollback qilardi. Kod talaba
+        # kartasidagi “Kirish kodi” amali bilan keyin, kerak bo‘lganda yaratiladi.
         credentials = []
         connected = 0
-        for student_id, source in imported_students:
-            cur.execute("SELECT * FROM universitet_qabul_talabalari WHERE id=%s FOR UPDATE", (student_id,)); student = dict(cur.fetchone())
-            try:
-                code = _create_student_invite(cur, student, actor)
-            except HTTPException as exc:
-                if exc.status_code == 409:
-                    connected += 1; continue
-                raise
-            credentials.append({
-                "fish": " ".join(x for x in [source["familiya"], source["ism"], source.get("ota_ism")] if x),
-                "lavozim": "Talaba", "yonalish": resolved[source["yonalish_nomi"]]["nomi"],
-                "talim_shakli": source["talim_shakli"], "talim_tili": source["talim_tili"],
-                "telefon": source.get("telefon"), "kirish_kodi": code, "kod_muddati": "2 oy",
-            })
         cur.execute("UPDATE universitet_import_batchlar SET holat='committed',commit_at=NOW() WHERE id=%s", (req.batch_id,))
         audit_detail = {"yangi": inserted, "yangilangan": updated, "kod_yaratildi": len(credentials), "avval_ulangan": connected}
         _audit(cur, batch["universitet_id"], actor, "qabul_import_commit", "import_batch", req.batch_id, audit_detail)
@@ -1916,7 +1972,7 @@ def admission_commit(req: BatchCommit):
         conn.commit(); return {"holat": "import_qilindi", "yangi": inserted, "yangilangan": updated,
                                "jami": inserted + updated, "kod_yaratildi": len(credentials),
                                "avval_ulangan": connected, "kirish_kodlari_fayli": credential_file,
-                               "keyingi_bosqich": "talabalar_kod_bilan_kiradi"}
+                               "keyingi_bosqich": "talabalar_saqlanib_boldi_kod_keyin_beriladi"}
     except Exception:
         conn.rollback(); raise
     finally:
