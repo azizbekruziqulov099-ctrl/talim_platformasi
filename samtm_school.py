@@ -13779,3 +13779,4 @@ for _v19_name, _v19_value in list(globals().items()):
         setattr(_platform, _v19_name, _v19_value)
 
 __all__ = [name for name in globals() if not name.startswith("__")]
+SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
