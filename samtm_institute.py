@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "institute-direction-first-v21-rev80"
+SAMTM_INSTITUTE_RELEASE = "institute-direction-scope-v21-rev81"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -1401,7 +1401,14 @@ def structure(universitet_id: int, token: Optional[str] = Query(None, include_in
             cur.execute("SELECT id,nomi FROM kafedralar WHERE fakultet_id=%s AND faol=TRUE ORDER BY nomi", (f["id"],))
             f["kafedralar"] = [dict(r) for r in cur.fetchall()]
             for d in f["kafedralar"]:
-                cur.execute("SELECT id,kodi,nomi,daraja FROM universitet_yonalishlari WHERE kafedra_id=%s AND faol=TRUE ORDER BY nomi", (d["id"],))
+                cur.execute("""SELECT y.id,y.kodi,y.nomi,y.daraja,
+                    COUNT(qt.id) AS talaba_soni,
+                    COALESCE(ARRAY_AGG(DISTINCT qt.talim_shakli) FILTER(WHERE qt.talim_shakli IS NOT NULL), ARRAY[]::TEXT[]) AS talim_shakllari,
+                    COALESCE(ARRAY_AGG(DISTINCT qt.talim_tili) FILTER(WHERE qt.talim_tili IS NOT NULL), ARRAY[]::TEXT[]) AS talim_tillari
+                    FROM universitet_yonalishlari y
+                    LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
+                    WHERE y.kafedra_id=%s AND y.faol=TRUE
+                    GROUP BY y.id ORDER BY y.nomi""", (d["id"],))
                 d["yonalishlar"] = cur.fetchall()
                 cur.execute("""SELECT xr.user_id,u.full_name FROM universitet_xodim_rollari xr
                     JOIN users u ON u.user_id=xr.user_id
@@ -1989,6 +1996,16 @@ def admission_commit(req: BatchCommit):
         for name in direction_names:
             suggested = summary_matching.get(name) or {}
             program_id = req.yonalish_mosliklari.get(name) or suggested.get("tanlangan_yonalish_id")
+            if not program_id:
+                cur.execute("""SELECT y.id FROM universitet_yonalishlari y
+                    LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
+                    WHERE y.universitet_id=%s AND y.fakultet_id=%s AND y.faol=TRUE
+                      AND LOWER(TRIM(y.nomi))=LOWER(TRIM(%s))
+                    GROUP BY y.id ORDER BY COUNT(qt.id) DESC,y.id LIMIT 1""",
+                    (batch["universitet_id"], selected_faculty_id, name))
+                exact_program = cur.fetchone()
+                if exact_program:
+                    program_id = int(exact_program["id"])
             if program_id:
                 cur.execute("""SELECT id,nomi,fakultet_id,kafedra_id
                     FROM universitet_yonalishlari
