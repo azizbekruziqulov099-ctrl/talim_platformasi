@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "institute-direction-scope-v21-rev81"
+SAMTM_INSTITUTE_RELEASE = "institute-direction-scope-v21-rev82"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -733,6 +733,18 @@ def _sync_legacy_leader(cur, university_id: int, user_id: int, role: str,
             WHERE k.id=%s AND k.fakultet_id=f.id AND f.universitet_id=%s""", (user_id, department_id, university_id))
 
 
+def _normalized_role_scope(role: str, faculty_id: Optional[int], department_id: Optional[int],
+                           program_id: Optional[int]) -> tuple[Optional[int], Optional[int], Optional[int]]:
+    """Rahbariyat rolini eng keng haqiqiy qamrovga kanoniklashtiradi."""
+    if role in INSTITUTE_WIDE:
+        return None, None, None
+    if role in FACULTY_WIDE:
+        return faculty_id, None, None
+    if role in DEPARTMENT_WIDE:
+        return faculty_id, department_id, None
+    return faculty_id, department_id, program_id
+
+
 def _assign_role(cur, university_id: int, user_id: int, role: str, faculty_id: Optional[int] = None, department_id: Optional[int] = None, program_id: Optional[int] = None, created_by: Optional[int] = None) -> int:
     if role not in ROLE_LABELS or role == "talaba":
         raise HTTPException(status_code=400, detail=f"Noto'g'ri lavozim: {role}")
@@ -740,6 +752,9 @@ def _assign_role(cur, university_id: int, user_id: int, role: str, faculty_id: O
         raise HTTPException(status_code=400, detail="Bu lavozim uchun fakultet tanlanishi shart")
     if role in DEPARTMENT_WIDE and not department_id:
         raise HTTPException(status_code=400, detail="Kafedra mudiri uchun kafedra tanlanishi shart")
+    faculty_id, department_id, program_id = _normalized_role_scope(
+        role, faculty_id, department_id, program_id
+    )
     cur.execute("""SELECT id FROM universitet_xodim_rollari
         WHERE universitet_id=%s AND user_id=%s AND rol=%s
           AND fakultet_id IS NOT DISTINCT FROM %s
@@ -1421,6 +1436,52 @@ def structure(universitet_id: int, token: Optional[str] = Query(None, include_in
             counts = {role: sum(1 for x in f["rahbariyat"] if x["rol"] == role) for role in ("dekan", "zam_dekan", "manaviyatchi", "fakultet_admin")}
             f["toldirilish"] = {"dekan": counts["dekan"], "zam_dekan": counts["zam_dekan"], "manaviyatchi": counts["manaviyatchi"], "admin": counts["fakultet_admin"],
                                 "tayyor": counts["dekan"] == 1 and counts["zam_dekan"] == 2 and counts["manaviyatchi"] == 1 and counts["fakultet_admin"] >= 1}
+            # Bir xil nomdagi eski bo'sh kafedra va importdan kelgan haqiqiy
+            # kafedra ikkita bo'lib ko'rinmasin. Talabali yo'nalishlar va mudir
+            # saqlanadi, bo'sh alias esa faqat ko'rinishdan birlashtiriladi.
+            department_groups: dict[str, list[dict[str, Any]]] = {}
+            for department in f["kafedralar"]:
+                department_groups.setdefault(_key(department["nomi"]), []).append(department)
+            canonical_departments = []
+            for variants in department_groups.values():
+                canonical_department = max(
+                    variants,
+                    key=lambda item: (
+                        sum(int(program.get("talaba_soni") or 0) for program in item.get("yonalishlar", [])),
+                        len(item.get("yonalishlar", [])), int(item["id"]),
+                    ),
+                )
+                canonical_department["alias_ids"] = sorted({int(item["id"]) for item in variants})
+                canonical_department["yonalishlar"] = [
+                    program for item in variants for program in item.get("yonalishlar", [])
+                ]
+                canonical_department["mudir"] = next(
+                    (item.get("mudir") for item in variants if item.get("mudir")), None
+                )
+                canonical_departments.append(canonical_department)
+            f["kafedralar"] = sorted(canonical_departments, key=lambda item: _key(item["nomi"]))
+            f["kafedra_soni"] = len(canonical_departments)
+            # Eski qo'lda yaratilgan bo'sh yo'nalish va Excel importida
+            # yaratilgan ayni nomdagi yo'nalish ikkita karta bo'lib qolmasin.
+            # Bazadagi yozuvlarni o'chirmaymiz: UI uchun bitta kanonik karta
+            # qaytaramiz va uning alias_ids maydoni orqali barcha talabalar
+            # bir ro'yxatda ko'rsatiladi.
+            grouped: dict[tuple[str, str], list[tuple[dict[str, Any], dict[str, Any]]]] = {}
+            for department in f["kafedralar"]:
+                for raw_program in department["yonalishlar"]:
+                    program = dict(raw_program)
+                    grouped.setdefault((_key(program["nomi"]), _key(program.get("daraja"))), []).append((department, program))
+                department["yonalishlar"] = []
+            for variants in grouped.values():
+                owner, canonical = max(variants, key=lambda pair: (int(pair[1].get("talaba_soni") or 0), int(pair[1]["id"])))
+                canonical["alias_ids"] = sorted({int(program["id"]) for _, program in variants})
+                canonical["talaba_soni"] = sum(int(program.get("talaba_soni") or 0) for _, program in variants)
+                canonical["talim_shakllari"] = sorted({value for _, program in variants for value in (program.get("talim_shakllari") or []) if value})
+                canonical["talim_tillari"] = sorted({value for _, program in variants for value in (program.get("talim_tillari") or []) if value})
+                owner["yonalishlar"].append(canonical)
+            for department in f["kafedralar"]:
+                department["yonalishlar"].sort(key=lambda item: _key(item["nomi"]))
+            f["yonalish_soni"] = len(grouped)
         cur.execute("""SELECT xr.rol,xr.user_id,u.full_name FROM universitet_xodim_rollari xr
             JOIN users u ON u.user_id=xr.user_id
             WHERE xr.universitet_id=%s AND xr.fakultet_id IS NULL AND xr.faol=TRUE
@@ -1452,8 +1513,22 @@ def faculty_programs(faculty_id: int, token: Optional[str] = Query(None, include
             LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
             WHERE y.fakultet_id=%s AND y.faol=TRUE
             GROUP BY y.id,k.nomi ORDER BY y.nomi""", (faculty_id,))
+        raw_programs = [dict(row) for row in cur.fetchall()]
+        grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
+        for program in raw_programs:
+            grouped.setdefault((_key(program["nomi"]), _key(program.get("daraja"))), []).append(program)
+        programs = []
+        for variants in grouped.values():
+            canonical = max(variants, key=lambda item: (int(item.get("talaba_soni") or 0), int(item["id"])))
+            canonical["alias_ids"] = sorted({int(item["id"]) for item in variants})
+            for count_key in ("talaba_soni", "hujjat_soni", "baza_soni"):
+                canonical[count_key] = sum(int(item.get(count_key) or 0) for item in variants)
+            canonical["talim_shakllari"] = ", ".join(sorted({part.strip() for item in variants for part in str(item.get("talim_shakllari") or "").split(",") if part.strip()}))
+            canonical["talim_tillari"] = ", ".join(sorted({part.strip() for item in variants for part in str(item.get("talim_tillari") or "").split(",") if part.strip()}))
+            programs.append(canonical)
+        programs.sort(key=lambda item: _key(item["nomi"]))
         return {"fakultet_id": faculty_id, "fakultet_nomi": faculty["nomi"],
-                "yonalishlar": [dict(row) for row in cur.fetchall()]}
+                "yonalishlar": programs}
     finally:
         cur.close(); conn.close()
 
@@ -1537,11 +1612,17 @@ def manual_staff(req: StaffCreate):
             raise HTTPException(status_code=403, detail="Institut va fakultet administratorini faqat super administrator qo'shadi")
         if not (_role_names(roles) & INSTITUTE_WIDE) and req.rol in INSTITUTE_WIDE:
             raise HTTPException(status_code=403, detail="Institut rahbari yoki adminini faqat institut administratori qo'shadi")
-        _validate_assignment_scope(cur, req.universitet_id, roles, req.fakultet_id, req.kafedra_id, req.yonalish_id)
+        faculty_id, department_id, program_id = _normalized_role_scope(
+            req.rol, req.fakultet_id, req.kafedra_id, req.yonalish_id
+        )
+        _validate_assignment_scope(cur, req.universitet_id, roles, faculty_id, department_id, program_id)
         fish = _norm(req.fish); phone = _telefon(req.telefon) if req.telefon else None
         if not fish: raise HTTPException(status_code=400, detail="F.I.Sh. kiriting")
         if req.telefon and not phone: raise HTTPException(status_code=400, detail="Telefon +998 bilan to'g'ri yozilsin")
-        placeholder, role_id, code = _new_placeholder(cur, fish, req.universitet_id, req.rol, phone, user_id, req.fakultet_id, req.kafedra_id, req.yonalish_id)
+        placeholder, role_id, code = _new_placeholder(
+            cur, fish, req.universitet_id, req.rol, phone, user_id,
+            faculty_id, department_id, program_id
+        )
         _audit(cur, req.universitet_id, user_id, "xodim_qoshildi", "xodim_rol", role_id, {"rol": req.rol})
         conn.commit()
         return {"holat": "yaratildi", "user_id": placeholder, "rol_id": role_id, "fish": fish,
@@ -1567,13 +1648,16 @@ def update_staff(role_id: int, req: StaffUpdate):
             raise HTTPException(status_code=403, detail="Administratorni faqat super administrator tahrirlaydi")
         if not (_role_names(roles) & INSTITUTE_WIDE) and req.rol in INSTITUTE_WIDE:
             raise HTTPException(status_code=403, detail="Institut rahbariyatini faqat institut administratori tahrirlaydi")
-        _validate_assignment_scope(cur, req.universitet_id, roles, req.fakultet_id, req.kafedra_id, req.yonalish_id)
+        faculty_id, department_id, program_id = _normalized_role_scope(
+            req.rol, req.fakultet_id, req.kafedra_id, req.yonalish_id
+        )
+        _validate_assignment_scope(cur, req.universitet_id, roles, faculty_id, department_id, program_id)
         fish = _norm(req.fish)
         if not fish: raise HTTPException(status_code=400, detail="F.I.Sh. kiriting")
         cur.execute("UPDATE users SET full_name=%s WHERE user_id=%s", (fish, current["user_id"]))
         cur.execute("""UPDATE universitet_xodim_rollari
             SET rol=%s,fakultet_id=%s,kafedra_id=%s,yonalish_id=%s,faol=%s
-            WHERE id=%s""", (req.rol, req.fakultet_id, req.kafedra_id, req.yonalish_id, req.faol, role_id))
+            WHERE id=%s""", (req.rol, faculty_id, department_id, program_id, req.faol, role_id))
         _audit(cur, req.universitet_id, actor, "xodim_tahrirlandi", "xodim_rol", role_id,
                {"rol": req.rol, "faol": req.faol})
         conn.commit(); return {"holat": "saqlandi", "rol_id": role_id, "fish": fish}
@@ -2089,6 +2173,7 @@ def admission_commit(req: BatchCommit):
 
 @router.get("/qabul/talabalar")
 def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[int] = None, yonalish_id: Optional[int] = None,
+                       yonalish_ids: Optional[str] = None,
                        bosqich: Optional[int] = None, bosqich_min: Optional[int] = None,
                        talim_shakli: Optional[str] = None, talim_tili: Optional[str] = None,
                        region: Optional[str] = None, qabul_turi: Optional[str] = None,
@@ -2112,7 +2197,16 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             if requested_stage == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
             if requested_stage == 4: where.append("(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
         if fakultet_id: where.append("y.fakultet_id=%s"); params.append(fakultet_id)
-        if yonalish_id: where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
+        if yonalish_ids:
+            try:
+                requested_program_ids = sorted({int(value.strip()) for value in yonalish_ids.split(",") if value.strip()})
+            except ValueError:
+                raise HTTPException(status_code=400, detail="Yo‘nalish identifikatorlari noto‘g‘ri")
+            if not requested_program_ids:
+                raise HTTPException(status_code=400, detail="Yo‘nalish tanlanmagan")
+            where.append("qt.yonalish_id=ANY(%s)"); params.append(requested_program_ids)
+        elif yonalish_id:
+            where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
         if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
         if talim_tili: where.append("qt.talim_tili=%s"); params.append(talim_tili)
         if region: where.append("qt.doimiy_region=%s"); params.append(region)
