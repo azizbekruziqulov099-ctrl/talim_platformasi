@@ -5001,6 +5001,9 @@ def _v1866_build_class_hour_jobs(classes, rules):
         leader = cls.get("rahbar_user_id")
         if leader is None:
             warnings.append(f"{cls['sinf']}-{cls['harf']} sinf soati: sinf rahbari belgilanmagan")
+            # Rahbar keyin tayinlanishi mumkin. Hozir o‘qituvchisiz KELAJAK
+            # SOATI jobi yasab butun fan jadvalini bloklamaymiz.
+            continue
         weekly = max(1, min(5, int(row.get("haftalik_soat") or 1)))
         for occurrence in range(1, weekly + 1):
             jobs.append({
@@ -5023,7 +5026,7 @@ def _v1866_class_hour_violations(cur, maktab_id: int, run_id: int):
     errors = []
     for row in rules:
         if row.get("rahbar_user_id") is None:
-            errors.append({"sinf_id": row["sinf_id"], "izoh": f"{row['sinf']}-{row['harf']}: sinf rahbari yo‘q"})
+            # Vaqtinchalik holat: rahbar tayinlangach keyingi draftda qo‘shiladi.
             continue
         cur.execute("""SELECT 1 FROM aqlli_jadval_slotlari_v2
                        WHERE urinish_id=%s AND sinf_id=%s AND hafta_kuni=%s AND smena=%s
@@ -6997,7 +7000,12 @@ def _v1875_preflight_report(cur, maktab_id: int):
             if not _v1856_class_day_block_reason(cls, day, class_day_blocks):
                 allowed_days.append(day)
         fan_hours = float(model["class_hours"].get(class_id, 0))
-        class_hour = int(class_hour_by_class.get(class_id, {}).get("haftalik_soat") or 0)
+        class_hour_rule = class_hour_by_class.get(class_id, {})
+        class_hour = int(class_hour_rule.get("haftalik_soat") or 0) if cls.get("rahbar_user_id") is not None else 0
+        if class_hour_rule and cls.get("rahbar_user_id") is None:
+            warnings.append(
+                f"{cls['sinf']}-{cls['harf']}: sinf rahbari belgilanmagani uchun KELAJAK SOATI vaqtincha jadvalga kiritilmaydi"
+            )
         if 1 <= grade <= 4:
             base_per_day = min(4, shift_periods)
             fifth_extra = min(_v1874_fifth_day_limit(grade), len(allowed_days)) if shift_periods >= 5 else 0
