@@ -1425,6 +1425,32 @@ def structure(universitet_id: int, token: Optional[str] = Query(None, include_in
         cur.close(); conn.close()
 
 
+@router.get("/fakultet/{faculty_id}/yonalishlar")
+def faculty_programs(faculty_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    """Muassasalar tashqi oynasi uchun haqiqiy yo'nalishlar va talaba soni."""
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        cur.execute("SELECT universitet_id,nomi FROM fakultetlar WHERE id=%s", (faculty_id,)); faculty = cur.fetchone()
+        if not faculty: raise HTTPException(status_code=404, detail="Fakultet topilmadi")
+        _require_member(cur, actor, faculty["universitet_id"])
+        cur.execute("""SELECT y.id,y.nomi,y.daraja,y.kodi,y.kafedra_id,k.nomi kafedra_nomi,
+                   COUNT(qt.id) AS talaba_soni,
+                   COUNT(qt.id) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL) AS hujjat_soni,
+                   COUNT(qt.id) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) AS baza_soni,
+                   COALESCE(STRING_AGG(DISTINCT qt.talim_shakli, ', '), '') AS talim_shakllari,
+                   COALESCE(STRING_AGG(DISTINCT qt.talim_tili, ', '), '') AS talim_tillari
+            FROM universitet_yonalishlari y
+            JOIN kafedralar k ON k.id=y.kafedra_id
+            LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
+            WHERE y.fakultet_id=%s AND y.faol=TRUE
+            GROUP BY y.id,k.nomi ORDER BY y.nomi""", (faculty_id,))
+        return {"fakultet_id": faculty_id, "fakultet_nomi": faculty["nomi"],
+                "yonalishlar": [dict(row) for row in cur.fetchall()]}
+    finally:
+        cur.close(); conn.close()
+
+
 @router.get("/tuzilma/shablon")
 def structure_template(universitet_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
