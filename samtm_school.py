@@ -13770,7 +13770,7 @@ def _v1852_candidate_reasons(
     return list(dict.fromkeys(reasons))
 
 
-# ========================= V19.6 END =========================
+# ========================= V19.6 END ========================
 
 # Preserve Python monolith semantics: late definitions must be visible to
 # earlier platform routes such as the employee import endpoint.
