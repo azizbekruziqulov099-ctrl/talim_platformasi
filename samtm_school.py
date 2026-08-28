@@ -31,7 +31,8 @@ _V19_IMPORTED_NAMES = set(globals())
 
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
-SAMTM_SCHOOL_RELEASE = "samtm-school-jadval-rev57"
+SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
+SAMTM_JADVAL_RELEASE = "JADVAL-REV57"
 SAMTM_SCHOOL_PACKAGE_REVISION = "timetable-group-gap-repair-rev56"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -8950,6 +8951,7 @@ def v197_fractional_hour_capabilities():
         # deploy qilganda foydalanuvchi V19.7 frontend bilan ham saqlay oladi.
         "release": "samtm-fractional-hours-ab-week-v19.7",
         "platform_release": SAMTM_SCHOOL_RELEASE,
+        "jadval_release": SAMTM_JADVAL_RELEASE,
         "fractional_hours": schema_ready,
         "fraction_step": 0.5,
         "ab_week": schema_ready,
