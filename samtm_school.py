@@ -33,7 +33,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_JADVAL_RELEASE = "JADVAL-REV57"
-SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
+SAMTM_SCHOOL_PACKAGE_REVISION = "timetable-group-gap-repair-rev56"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
