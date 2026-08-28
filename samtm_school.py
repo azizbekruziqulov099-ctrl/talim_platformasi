@@ -1405,6 +1405,37 @@ def _v1852_active_year(cur, maktab_id: int):
     return cur.fetchone()
 
 
+def _v1890_generation_year(cur, maktab_id: int):
+    """Jadval uchun o'quv yilini majburiy qilmaydigan ichki vaqt oralig'i."""
+    year = _v1852_active_year(cur, maktab_id)
+    if year:
+        return year
+    today = date.today()
+    start_year = today.year if today.month >= 7 else today.year - 1
+    start = date(start_year, 9, 1)
+    end = date(start_year + 1, 5, 31)
+    name = f"__JADVAL_VAQTINCHA_{start_year}_{start_year + 1}__"
+    cur.execute("""INSERT INTO aqlli_oquv_yillari_v2(
+        maktab_id,nomi,boshlanish,tugash,hafta_kunlari,faol,yangilangan_at)
+        VALUES(%s,%s,%s,%s,6,TRUE,NOW())
+        ON CONFLICT(maktab_id,nomi) DO UPDATE SET faol=TRUE,yangilangan_at=NOW()
+        RETURNING *""", (maktab_id, name, start, end))
+    year = cur.fetchone()
+    quarters = [
+        (1, start, date(start_year, 10, 31)),
+        (2, date(start_year, 11, 1), date(start_year, 12, 31)),
+        (3, date(start_year + 1, 1, 1), date(start_year + 1, 3, 31)),
+        (4, date(start_year + 1, 4, 1), end),
+    ]
+    for number, q_start, q_end in quarters:
+        cur.execute("""INSERT INTO aqlli_choraklar_v2(
+            oquv_yili_id,chorak,boshlanish,tugash,holat)
+            VALUES(%s,%s,%s,%s,'taxminiy')
+            ON CONFLICT(oquv_yili_id,chorak) DO NOTHING""",
+            (year["id"], number, q_start, q_end))
+    return year
+
+
 def _v1852_active_run(cur, maktab_id: int):
     cur.execute("SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s AND holat='tasdiqlangan' ORDER BY id DESC LIMIT 1", (maktab_id,))
     return cur.fetchone()
@@ -2325,12 +2356,7 @@ def _v1852_gap_count(periods: set[int]) -> int:
 
 
 def _v1852_prepare_generation(cur, maktab_id: int):
-    year = _v1852_active_year(cur, maktab_id)
-    if not year:
-        raise HTTPException(status_code=400, detail="Avval o'quv yili va choraklarni saqlang")
-    cur.execute("SELECT COUNT(*) AS son FROM aqlli_choraklar_v2 WHERE oquv_yili_id=%s", (year["id"],))
-    if int(cur.fetchone()["son"] or 0) != 4:
-        raise HTTPException(status_code=400, detail="Barcha 4 chorakni kiriting")
+    year = _v1890_generation_year(cur, maktab_id)
     _v1852_default_shifts(cur, maktab_id)
     cur.execute("SELECT * FROM aqlli_smena_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
     shift_rows = cur.fetchall()
@@ -6943,11 +6969,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
     errors = list(model["xatolar"])
     warnings = list(model["ogohlantirishlar"])
 
-    year = _v1852_active_year(cur, maktab_id)
-    if not year:
-        errors.append("O'quv yili saqlanmagan")
-        return {"tayyor": False, "xatolar": errors, "ogohlantirishlar": warnings,
-                "sinflar": [], "oqituvchilar": [], "fanlar": [], "manba_hash": None}
+    year = _v1890_generation_year(cur, maktab_id)
     weekdays = int(year.get("hafta_kunlari") or 6)
     _v1852_default_shifts(cur, maktab_id)
     cur.execute("SELECT * FROM aqlli_smena_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
@@ -7037,7 +7059,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
         rule = class_hour_by_class.get(class_id)
         if rule:
             if rule.get("rahbar_user_id") is None:
-                errors.append(f"{cls['sinf']}-{cls['harf']}: sinf soati bor, lekin sinf rahbari belgilanmagan")
+                warnings.append(f"{cls['sinf']}-{cls['harf']}: KELAJAK SOATI rahbar tanlanguncha jadvalga qo'yilmadi")
             blocked = _v1856_class_day_block_reason(cls, int(rule["hafta_kuni"]), class_day_blocks)
             if blocked:
                 errors.append(f"{cls['sinf']}-{cls['harf']} sinf soati: {blocked}")
