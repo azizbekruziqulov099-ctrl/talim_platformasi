@@ -2595,9 +2595,56 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
     if adjacent:
         score += -4 if job["consecutive_allowed"] else 10
     score += rng.random() * 1.5
-    # V21: yagona kuchli strategiya. Fan takrori qattiq sabablar qatlamida
-    # bloklanadi; bu ball esa xavfsiz nomzodlardan sinf va o'qituvchi uchun
-    # eng ixcham, barqaror katakni tanlaydi.
+    # V20.8: olti rejim faqat nom emas — har biri nomzod kataklarni alohida
+    # ustuvorlik bilan baholaydi. Qattiq cheklovlar candidate_reasons ichida
+    # qoladi; bu qism faqat xavfsiz kataklar orasidan turli strategiya tanlaydi.
+    mode_number = int(
+        (context.get("v208_mode_config") or {}).get("raqam")
+        or context.get("v207_requested_mode") or 1
+    )
+    class_day_count = int(state.get("class_daily_total", {}).get(
+        (job.get("sinf_id"), int(day)), 0
+    ))
+    subject_day_count = int(state.get("subject_daily", {}).get(
+        (job.get("sinf_id"), str(job.get("fan") or "").casefold(), int(day)), 0
+    ))
+    teacher_used_today = sum(
+        float(state.get("teacher_daily", {}).get((int(teacher), int(day)), 0) or 0)
+        for teacher in teachers if teacher is not None
+    )
+    if mode_number == 1:
+        # Pedagogik: fanlar tarqalishi va sinf kunining tengligi eng muhim.
+        score += abs(class_day_count - 4) * 95 + subject_day_count * 900
+    elif mode_number == 2:
+        # Ehtiyotkor: 1-rejimga yaqin, lekin o'qituvchi kunini ixchamlaydi.
+        score += abs(class_day_count - 4) * 65
+        if teacher_used_today:
+            score -= min(220, teacher_used_today * 35)
+    elif mode_number == 3:
+        # Muvozanat: sinf va o'qituvchi mezoni teng og'irlikda.
+        score += abs(class_day_count - 5) * 35
+        if teacher_used_today:
+            score -= min(300, teacher_used_today * 42)
+    elif mode_number == 4:
+        # Ixcham: yangi ish kuni ochishdan ko'ra mavjud yashil kunni to'ldiradi.
+        score -= min(520, teacher_used_today * 70)
+        score -= min(180, class_day_count * 24)
+    elif mode_number == 5:
+        # Kuchli: zaruratdagi bir kunlik fan juftini yonma-yon qilishni afzal.
+        score -= min(650, teacher_used_today * 80)
+        if subject_day_count:
+            score -= 260
+    elif mode_number == 6:
+        # Oxirgi: barcha xavfsiz soatni avval uzluksiz sinf kuniga sig'diradi.
+        score -= min(760, teacher_used_today * 90)
+        score -= min(340, class_day_count * 45)
+        if subject_day_count:
+            score -= 340
+    # V20.8: olti generator bir xil niqob emas. Qattiq cheklovlar barcha
+    # rejimlarda bir xil qoladi, xavfsiz nomzodlar esa alohida strategiya
+    # bilan tartiblanadi.
+    mode_config = context.get("v208_mode_config") or {}
+    mode_number = int(mode_config.get("raqam") or context.get("v207_requested_mode") or 1)
     class_id = job.get("sinf_id")
     class_day_count = int(state.get("class_daily_total", {}).get((class_id, day), 0) or 0)
     subject_day_count = int(
@@ -2607,9 +2654,23 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         float(state.get("teacher_daily", {}).get((int(teacher), day), 0) or 0)
         for teacher in teachers if teacher is not None
     )
-    score += subject_day_count * 12000
-    score += abs(class_day_count - 4) * 85
-    score -= class_day_count * 26 + teacher_used_today * 48
+    if mode_number == 1:
+        score += subject_day_count * 9000 + abs(class_day_count - 4) * 95
+    elif mode_number == 2:
+        score += subject_day_count * 7600 + abs(class_day_count - 4) * 70
+        score -= teacher_used_today * 18
+    elif mode_number == 3:
+        score += subject_day_count * 6200 + abs(class_day_count - 4) * 45
+        score -= teacher_used_today * 28
+    elif mode_number == 4:
+        score += subject_day_count * 4800
+        score -= class_day_count * 24 + teacher_used_today * 42
+    elif mode_number == 5:
+        score += subject_day_count * 1500
+        score -= class_day_count * 38 + teacher_used_today * 52
+    else:
+        score += subject_day_count * 650
+        score -= class_day_count * 52 + teacher_used_today * 64
     return score
 
 
@@ -3349,7 +3410,6 @@ def _v1852_generate_attempt(jobs, context, seed):
 class V1852Generate(BaseModel):
     maktab_id: int
     urinishlar_soni: int = 12
-    # Eski klientlar yuborsa ham e'tiborga olinmaydi: V4 da bitta generator bor.
     generator_rejimi: int = 1
 
 
@@ -3428,7 +3488,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "rules": rules, "default_rules": {"kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1, "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12},
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
             "teacher_caps": caps, "class_day_blocks": class_day_blocks,
-            "v207_requested_mode": 1,
+            "v207_requested_mode": max(1, min(6, int(sorov.generator_rejimi or 1))),
         }
 
         # Generator o'n minglab variantlarni Python xotirasida hisoblaydi. Shu
@@ -3452,9 +3512,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # qilinadi. Oldingi max(4, ...) Railway 30 soniyalik HTTP chegarasida
         # keraksiz 4 variantni majburan hisoblab, tayyor natijani ham brauzerga
         # qaytara olmay qolayotgan edi.
-        # Bitta kuchli generator vaqt byudjeti ichida 12 xil urug'ni sinaydi.
-        # Frontenddagi eski qiymat algoritm sifatini pasaytirmaydi.
-        requested_attempts = 12
+        requested_attempts = max(1, min(12, int(sorov.urinishlar_soni or 1)))
         try:
             generation_budget = float(
                 os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "14")
@@ -3524,17 +3582,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
             if best is None or rank < best[0]:
                 best = (rank, result)
-            # Faqat sinf emas, o'qituvchi jadvali ham haqiqatan ixcham bo'lsa
-            # erta to'xtaymiz. Oldingi tekshiruv birinchi joylashgan variantni
-            # darhol qabul qilib, keyingi sifatli urug'larni sinamas edi.
+            # Birinchi to'liq, sinf oknosiz va barqaror variantning o'zi
+            # yetarli: boshqa urug'larni hisoblab foydalanuvchini kuttirmaymiz.
             if (
                 not unplaced
                 and class_gaps == 0
                 and class_imbalance == 0
-                and unified_count == 0
-                and cross_shift_over_two == 0
-                and teacher_multi_gap_days == 0
-                and compact_overflow_days == 0
             ):
                 break
 
@@ -3546,16 +3599,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
             best = ((len(result[1]),), result)
             completed_attempts = 1
         _, (state, unplaced, penalty, gap_count, late_heavy) = best
-        final_context = dict(context)
+        final_context = context
         final_repeat_days = int(state.get("v203_emergency_repeat_days") or 0)
-        final_policy_stage = str(state.get("v207_policy_stage") or "powerful")
+        final_policy_stage = str(state.get("v207_policy_stage") or "strict")
         final_mode_config = state.get("v208_mode_config") or _timetable_mode_config(
-            1
+            state.get("v207_generator_mode") or sorov.generator_rejimi or 1
         )
         final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
-        final_context["v203_emergency_repeat_days"] = 0
-        final_context["v207_policy_stage"] = "powerful"
-        final_context["v208_mode_config"] = dict(final_mode_config)
+        if final_repeat_days or final_policy_stage != "strict":
+            final_context = dict(context)
+            final_context["v203_emergency_repeat_days"] = final_repeat_days
+            final_context["v207_policy_stage"] = final_policy_stage
+            final_context["v208_mode_config"] = dict(final_mode_config)
         # Ko'p urinishdan tanlangan eng yaxshi jadvalni sinf kataklarini
         # o'zgartirmasdan yana bir marta o'qituvchi nuqtai nazaridan siqamiz.
         # Bir sinf-kun ichidagi ikki fanning o'rni xavfsiz almashtiriladi:
@@ -3726,8 +3781,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
             "qulaylik_strategiyasi": state.get("v196_metrics", {}),
             "generator_moduli": SAMTM_TIMETABLE_ENGINE_RELEASE,
-            "generator_rejimi": 1,
-            "yumshatish_rejimi": "yagona_kuchli",
+            "generator_rejimi": int(state.get("v207_generator_mode") or 1),
+            "yumshatish_rejimi": str(state.get("v207_policy_stage") or "strict"),
             "urinishlar_soni": completed_attempts,
             "urinishlar_rejasi": requested_attempts,
             "hisoblash_soniya": round(_samtm_time.monotonic() - generation_started, 2),
@@ -3843,7 +3898,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "ta sinf", "smenaga tushgan", "bloklangan kunda dars",
             "bo'sh okno", "reja manbasida yo'q", "reja ",
             "parallel guruhlar", "guruh bilan yozilgan", "kutilmagan guruh",
-            "reja o'qituvchisi", "bir fan ikki marta", "kunlik max",
+            "reja o'qituvchisi",
         )
         hard_integrity_errors = [
             str(error) for error in jadval_mosligi.get("xatolar", [])
@@ -3856,7 +3911,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     "code": "QATTIQ_QOIDA_BUZILDI",
                     "message": "Xavfsiz bo'lmagan jadval saqlanmadi.",
                     "muammolar": hard_integrity_errors[:20],
-                    "generator_rejimi": 1,
+                    "generator_rejimi": int(final_mode_config.get("raqam") or 1),
                 },
             )
         tasdiqlash_mumkin = bool(
@@ -13165,8 +13220,11 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
             if profile.get("physical") and neighbor_profile.get("technology"):
                 score -= 70
 
-    # V21: yagona kuchli strategiya. Fan takrori qattiq sabablar qatlamida
-    # bloklanadi; bu ball xavfsiz nomzodlardan eng ixchamini tanlaydi.
+    # V20.8: olti generator bir xil niqob emas. Qattiq cheklovlar barcha
+    # rejimlarda bir xil qoladi, xavfsiz nomzodlar esa alohida strategiya
+    # bilan tartiblanadi.
+    mode_config = context.get("v208_mode_config") or {}
+    mode_number = int(mode_config.get("raqam") or context.get("v207_requested_mode") or 1)
     class_id = job.get("sinf_id")
     class_day_count = int(state.get("class_daily_total", {}).get((class_id, day), 0) or 0)
     subject_day_count = int(
@@ -13176,9 +13234,23 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
         float(state.get("teacher_daily", {}).get((int(teacher), day), 0) or 0)
         for teacher in teachers if teacher is not None
     )
-    score += subject_day_count * 12000
-    score += abs(class_day_count - 4) * 85
-    score -= class_day_count * 26 + teacher_used_today * 48
+    if mode_number == 1:
+        score += subject_day_count * 9000 + abs(class_day_count - 4) * 95
+    elif mode_number == 2:
+        score += subject_day_count * 7600 + abs(class_day_count - 4) * 70
+        score -= teacher_used_today * 18
+    elif mode_number == 3:
+        score += subject_day_count * 6200 + abs(class_day_count - 4) * 45
+        score -= teacher_used_today * 28
+    elif mode_number == 4:
+        score += subject_day_count * 4800
+        score -= class_day_count * 24 + teacher_used_today * 42
+    elif mode_number == 5:
+        score += subject_day_count * 1500
+        score -= class_day_count * 38 + teacher_used_today * 52
+    else:
+        score += subject_day_count * 650
+        score -= class_day_count * 52 + teacher_used_today * 64
     return score
 
 
