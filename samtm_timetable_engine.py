@@ -1,12 +1,12 @@
-"""SamTM maktabi uchun yagona, bosqichli jadval siyosati.
+"""SamTM maktabi uchun yagona feasibility-first jadval siyosati.
 
-Foydalanuvchi endi rejim tanlamaydi. Bitta generator avval qattiq qoidalar
-bilan ishlaydi, zarurat tug'ilsa faqat pedagogik tavsiyalarni ichkarida
-yumshatadi. Qizil vaqt, metod kuni, smena, sinf/o'qituvchi/xona to'qnashuvi
-va guruh sinxronligi hech qaysi bosqichda yumshamaydi.
+Foydalanuvchi rejim tanlamaydi. Bitta generator avval barcha majburiy darsni
+qattiq qoidalar ichida joylashtiradi, pedagogik qulayliklarni esa ball bilan
+yaxshilaydi. Qizil vaqt, metod kuni, smena, sinf/o'qituvchi/xona to'qnashuvi
+va guruh sinxronligi hech qachon yumshamaydi.
 """
 
-ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V4-ONE"
+ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V7-PHASE-AWARE-WINDOW-REPORT"
 
 INTERNAL_STAGES = ("strict", "balanced", "completion")
 
@@ -30,6 +30,7 @@ HARD_MARKERS = (
     "haftalik maksimum",
     "o'qituvchi biriktirilmagan",
     "xona band",
+    "asosiy og'ir fan 6-darsga haftada ko'pi bilan 2 kun",
 )
 
 # Faqat ichki yakunlash bosqichida olib tashlanishi mumkin bo'lgan pedagogik
@@ -98,13 +99,18 @@ def mode_config(_mode=None):
     """Eski API bilan mos, lekin doim bitta ommaviy generatorni qaytaradi."""
     return {
         "raqam": 1,
-        "stage": "adaptive",
-        "repeat_days": 0,
+        "stage": "feasibility_first",
+        "repeat_days": 2,
         "attempts": 4,
         "imbalance_limit": 2,
         "strategy": "yagona",
         "nomi": "Yagona kuchli generator",
-        "izoh": "Qattiq qoidalarni saqlab, ichki bosqichlarda eng yaxshi to'liq jadvalni topadi.",
+        "izoh": (
+            "Avval qattiq qoidalar ichida barcha darsni sig'diradi; keyin "
+            "oyna, fan vaqti va kun taqsimotini yaxshilaydi. Asosiy fanlar "
+            "1-5-darsda turadi; faqat boshqa legal katak qolmasa 6-darsga "
+            "tushadi va bir sinfda haftasiga ikki kundan oshmaydi."
+        ),
     }
 
 
