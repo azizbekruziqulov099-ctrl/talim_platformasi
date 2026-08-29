@@ -2595,6 +2595,21 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
     if adjacent:
         score += -4 if job["consecutive_allowed"] else 10
     score += rng.random() * 1.5
+    # V21: yagona kuchli strategiya. Fan takrori qattiq sabablar qatlamida
+    # bloklanadi; bu ball esa xavfsiz nomzodlardan sinf va o'qituvchi uchun
+    # eng ixcham, barqaror katakni tanlaydi.
+    class_id = job.get("sinf_id")
+    class_day_count = int(state.get("class_daily_total", {}).get((class_id, day), 0) or 0)
+    subject_day_count = int(
+        state.get("subject_daily", {}).get((class_id, job.get("fan_id"), day), 0) or 0
+    )
+    teacher_used_today = sum(
+        float(state.get("teacher_daily", {}).get((int(teacher), day), 0) or 0)
+        for teacher in teachers if teacher is not None
+    )
+    score += subject_day_count * 12000
+    score += abs(class_day_count - 4) * 85
+    score -= class_day_count * 26 + teacher_used_today * 48
     return score
 
 
@@ -3334,6 +3349,7 @@ def _v1852_generate_attempt(jobs, context, seed):
 class V1852Generate(BaseModel):
     maktab_id: int
     urinishlar_soni: int = 12
+    # Eski klientlar yuborsa ham e'tiborga olinmaydi: V4 da bitta generator bor.
     generator_rejimi: int = 1
 
 
@@ -3412,7 +3428,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "rules": rules, "default_rules": {"kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1, "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12},
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
             "teacher_caps": caps, "class_day_blocks": class_day_blocks,
-            "v207_requested_mode": max(1, min(6, int(sorov.generator_rejimi or 1))),
+            "v207_requested_mode": 1,
         }
 
         # Generator o'n minglab variantlarni Python xotirasida hisoblaydi. Shu
@@ -3436,7 +3452,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # qilinadi. Oldingi max(4, ...) Railway 30 soniyalik HTTP chegarasida
         # keraksiz 4 variantni majburan hisoblab, tayyor natijani ham brauzerga
         # qaytara olmay qolayotgan edi.
-        requested_attempts = max(1, min(12, int(sorov.urinishlar_soni or 1)))
+        # Bitta kuchli generator vaqt byudjeti ichida 12 xil urug'ni sinaydi.
+        # Frontenddagi eski qiymat algoritm sifatini pasaytirmaydi.
+        requested_attempts = 12
         try:
             generation_budget = float(
                 os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "14")
@@ -3506,12 +3524,17 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
             if best is None or rank < best[0]:
                 best = (rank, result)
-            # Birinchi to'liq, sinf oknosiz va barqaror variantning o'zi
-            # yetarli: boshqa urug'larni hisoblab foydalanuvchini kuttirmaymiz.
+            # Faqat sinf emas, o'qituvchi jadvali ham haqiqatan ixcham bo'lsa
+            # erta to'xtaymiz. Oldingi tekshiruv birinchi joylashgan variantni
+            # darhol qabul qilib, keyingi sifatli urug'larni sinamas edi.
             if (
                 not unplaced
                 and class_gaps == 0
                 and class_imbalance == 0
+                and unified_count == 0
+                and cross_shift_over_two == 0
+                and teacher_multi_gap_days == 0
+                and compact_overflow_days == 0
             ):
                 break
 
@@ -3523,13 +3546,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
             best = ((len(result[1]),), result)
             completed_attempts = 1
         _, (state, unplaced, penalty, gap_count, late_heavy) = best
-        final_context = context
+        final_context = dict(context)
         final_repeat_days = int(state.get("v203_emergency_repeat_days") or 0)
-        final_policy_stage = str(state.get("v207_policy_stage") or "strict")
-        if final_repeat_days or final_policy_stage != "strict":
-            final_context = dict(context)
-            final_context["v203_emergency_repeat_days"] = final_repeat_days
-            final_context["v207_policy_stage"] = final_policy_stage
+        final_policy_stage = str(state.get("v207_policy_stage") or "powerful")
+        final_mode_config = state.get("v208_mode_config") or _timetable_mode_config(
+            1
+        )
+        final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
+        final_context["v203_emergency_repeat_days"] = 0
+        final_context["v207_policy_stage"] = "powerful"
+        final_context["v208_mode_config"] = dict(final_mode_config)
         # Ko'p urinishdan tanlangan eng yaxshi jadvalni sinf kataklarini
         # o'zgartirmasdan yana bir marta o'qituvchi nuqtai nazaridan siqamiz.
         # Bir sinf-kun ichidagi ikki fanning o'rni xavfsiz almashtiriladi:
@@ -3592,15 +3618,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
         final_class_imbalance = int(
             final_metrics.get("sinf_kun_taqsimoti_farqi", 0)
         )
-        if class_gap_count > 0 or final_class_imbalance > 0:
+        if class_gap_count > 0 or final_class_imbalance > final_imbalance_limit:
             problems = []
             if class_gap_count > 0:
                 problems.append(
                     f"sinflarda {class_gap_count} ta ichki bo'sh dars qoldi"
                 )
-            if final_class_imbalance > 0:
+            if final_class_imbalance > final_imbalance_limit:
                 problems.append(
-                    "ayrim sinf kunlari 3/5/6 kabi notekis taqsimlandi"
+                    f"sinf kunlari notekisligi {final_class_imbalance}; "
+                    f"{int(final_mode_config.get('raqam') or 1)}-rejim chegarasi {final_imbalance_limit}"
                 )
             raise HTTPException(
                 status_code=409,
@@ -3699,8 +3726,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
             "qulaylik_strategiyasi": state.get("v196_metrics", {}),
             "generator_moduli": SAMTM_TIMETABLE_ENGINE_RELEASE,
-            "generator_rejimi": int(state.get("v207_generator_mode") or 1),
-            "yumshatish_rejimi": str(state.get("v207_policy_stage") or "strict"),
+            "generator_rejimi": 1,
+            "yumshatish_rejimi": "yagona_kuchli",
             "urinishlar_soni": completed_attempts,
             "urinishlar_rejasi": requested_attempts,
             "hisoblash_soniya": round(_samtm_time.monotonic() - generation_started, 2),
@@ -3808,6 +3835,30 @@ def v1852_generate(sorov: V1852Generate, token: str):
         jadval_mosligi = _v1875_schedule_integrity_report(
             cur, sorov.maktab_id, run_id
         )
+        # Qizil/metod vaqt, parallel, smena, bloklangan sinf kuni, reja-soat
+        # tafovuti va sinf oknosi hech qaysi rejimda saqlanmaydi. Oldin bu
+        # xatolar diagnostikada ko'rinsa ham draft bazada qolib ketardi.
+        hard_integrity_markers = (
+            "metod kuniga dars", "qattiq bloklangan", "ikki sinf",
+            "ta sinf", "smenaga tushgan", "bloklangan kunda dars",
+            "bo'sh okno", "reja manbasida yo'q", "reja ",
+            "parallel guruhlar", "guruh bilan yozilgan", "kutilmagan guruh",
+            "reja o'qituvchisi", "bir fan ikki marta", "kunlik max",
+        )
+        hard_integrity_errors = [
+            str(error) for error in jadval_mosligi.get("xatolar", [])
+            if any(marker in str(error).casefold() for marker in hard_integrity_markers)
+        ]
+        if hard_integrity_errors:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "code": "QATTIQ_QOIDA_BUZILDI",
+                    "message": "Xavfsiz bo'lmagan jadval saqlanmadi.",
+                    "muammolar": hard_integrity_errors[:20],
+                    "generator_rejimi": 1,
+                },
+            )
         tasdiqlash_mumkin = bool(
             int(len(unplaced)) == 0 and jadval_mosligi.get("tayyor")
         )
@@ -13113,6 +13164,21 @@ def _v1852_candidate_score(job, day, period, teachers, state, context, rng):
                 score -= 85
             if profile.get("physical") and neighbor_profile.get("technology"):
                 score -= 70
+
+    # V21: yagona kuchli strategiya. Fan takrori qattiq sabablar qatlamida
+    # bloklanadi; bu ball xavfsiz nomzodlardan eng ixchamini tanlaydi.
+    class_id = job.get("sinf_id")
+    class_day_count = int(state.get("class_daily_total", {}).get((class_id, day), 0) or 0)
+    subject_day_count = int(
+        state.get("subject_daily", {}).get((class_id, job.get("fan_id"), day), 0) or 0
+    )
+    teacher_used_today = sum(
+        float(state.get("teacher_daily", {}).get((int(teacher), day), 0) or 0)
+        for teacher in teachers if teacher is not None
+    )
+    score += subject_day_count * 12000
+    score += abs(class_day_count - 4) * 85
+    score -= class_day_count * 26 + teacher_used_today * 48
     return score
 
 
@@ -13764,12 +13830,14 @@ def _v1852_generate_attempt(jobs, context, seed):
     repair_context = dict(context)
     repair_context["v203_emergency_repeat_days"] = selected_repeat_days
     repair_context["v207_policy_stage"] = selected_policy_stage
+    repair_context["v208_mode_config"] = dict(selected_mode)
     state, unplaced, penalty, gaps, late = _v196_base_generate_attempt(
         jobs, repair_context, seed
     )
     state["v203_emergency_repeat_days"] = selected_repeat_days
     state["v207_policy_stage"] = selected_policy_stage
     state["v207_generator_mode"] = int(selected_mode["raqam"])
+    state["v208_mode_config"] = dict(selected_mode)
     # Greedy joylashtirish tugagach jadvalni o'quvchi nuqtai nazaridan
     # majburiy sayqallaymiz: avval oknolar yopiladi, keyin 2/6 kabi notekis
     # kunlar tenglashtiriladi, oxirida J/T va texnologiya ertalabki katakdan
