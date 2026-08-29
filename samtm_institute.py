@@ -30,7 +30,7 @@ from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "institute-direction-scope-v21-rev82"
+SAMTM_INSTITUTE_RELEASE = "institute-people-admission-v22-rev84"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
@@ -387,6 +387,12 @@ def _institut_v20_jadvallari(cur):
     cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_uni_kafedra_mudir
         ON universitet_xodim_rollari(kafedra_id)
         WHERE faol=TRUE AND rol='kafedra_mudiri'""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS universitet_xodim_profili(
+        xodim_rol_id BIGINT PRIMARY KEY REFERENCES universitet_xodim_rollari(id) ON DELETE CASCADE,
+        ilmiy_daraja TEXT, ilmiy_unvon TEXT, staj_yil NUMERIC(5,1),
+        mutaxassislik TEXT, qisqa_izoh TEXT,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
     # REV57: eski Admin → Muassasalar ekranidagi rahbar ustunlari va yangi
     # rol jadvali ikki tomonga sinxron bo'lsin. Shu ko'prik bo'lmasa xodim
     # import qilingan bo'lsa ham eski ekranda "belgilanmagan" qizil chiqadi.
@@ -774,9 +780,11 @@ def _assign_role(cur, university_id: int, user_id: int, role: str, faculty_id: O
     elif role == "kafedra_mudiri" and department_id:
         singleton_where, singleton_params = "kafedra_id=%s AND rol='kafedra_mudiri'", [department_id]
     if singleton_where:
-        cur.execute(f"SELECT id FROM universitet_xodim_rollari WHERE {singleton_where} AND faol=TRUE ORDER BY id LIMIT 1", singleton_params)
+        cur.execute(f"SELECT id,user_id FROM universitet_xodim_rollari WHERE {singleton_where} AND faol=TRUE ORDER BY id LIMIT 1", singleton_params)
         occupied = cur.fetchone()
         if occupied:
+            if int(occupied["user_id"]) != int(user_id):
+                cur.execute("DELETE FROM universitet_xodim_profili WHERE xodim_rol_id=%s", (occupied["id"],))
             cur.execute("""UPDATE universitet_xodim_rollari
                 SET user_id=%s,universitet_id=%s,fakultet_id=%s,kafedra_id=%s,yonalish_id=%s,yaratilgan_by=%s
                 WHERE id=%s""", (user_id, university_id, faculty_id, department_id, program_id, created_by, occupied["id"]))
@@ -794,6 +802,39 @@ def _assign_role(cur, university_id: int, user_id: int, role: str, faculty_id: O
     role_id = int(cur.fetchone()["id"])
     _sync_legacy_leader(cur, university_id, user_id, role, faculty_id, department_id)
     return role_id
+
+
+def _save_staff_profile(cur, role_id: int, *, ilmiy_daraja: Any = None,
+                        ilmiy_unvon: Any = None, staj_yil: Any = None,
+                        mutaxassislik: Any = None, qisqa_izoh: Any = None,
+                        force: bool = False) -> None:
+    """Kasbiy ma'lumotni rol yozuvidan alohida va ixtiyoriy saqlaydi.
+
+    Eski xodimlar uchun barcha maydonlar ``NULL`` bo'lib qolishi mumkin;
+    shu sababli yangi yo'nalish jamoasi ekrani eski bazani ham buzmaydi.
+    """
+    experience = _float(staj_yil)
+    if experience is not None and not 0 <= experience <= 80:
+        raise HTTPException(status_code=400, detail="Mehnat staji 0–80 yil oralig'ida bo'lishi kerak")
+    values = (
+        _norm(ilmiy_daraja) or None,
+        _norm(ilmiy_unvon) or None,
+        experience,
+        _norm(mutaxassislik) or None,
+        _norm(qisqa_izoh)[:500] or None,
+    )
+    if not force and not any(value is not None for value in values):
+        return
+    cur.execute("""INSERT INTO universitet_xodim_profili(
+        xodim_rol_id,ilmiy_daraja,ilmiy_unvon,staj_yil,mutaxassislik,qisqa_izoh)
+        VALUES(%s,%s,%s,%s,%s,%s)
+        ON CONFLICT(xodim_rol_id) DO UPDATE SET
+          ilmiy_daraja=EXCLUDED.ilmiy_daraja,
+          ilmiy_unvon=EXCLUDED.ilmiy_unvon,
+          staj_yil=EXCLUDED.staj_yil,
+          mutaxassislik=EXCLUDED.mutaxassislik,
+          qisqa_izoh=EXCLUDED.qisqa_izoh,
+          yangilangan_at=NOW()""", (role_id, *values))
 
 
 def _new_placeholder(cur, full_name: str, university_id: int, role: str, phone: Optional[str], created_by: int, faculty_id: Optional[int] = None, department_id: Optional[int] = None, program_id: Optional[int] = None) -> tuple[int, int, str]:
@@ -957,21 +998,25 @@ def _structure_template_xlsx(university: dict[str, Any], structure_rows: list[di
         for row in structure_rows: structure.append([row.get("fakultet"), row.get("kafedra"), row.get("kodi"), row.get("yonalish"), row.get("daraja"), row.get("talim_shakli"), row.get("talim_tili")])
     else:
         for row in departments: structure.append([row.get("fakultet"), row.get("kafedra"), None, None, "Bakalavriat", "Kunduzgi", "O‘zbekcha"])
-    staff.append(["INSTITUT XODIMLARI VA ROLLARI"] + [None] * 6); staff.merge_cells("A1:G1")
-    staff.append(["F.I.Sh. kataklarini to'ldiring. Importdan keyin har biriga 2 oylik kirish kodi Excelda tushadi."] + [None] * 6); staff.merge_cells("A2:G2")
-    staff.append([]); staff.append(["F.I.Sh.", "Telefon", "Lavozim", "Fakultet", "Kafedra", "Yo'nalish", "Izoh"])
-    staff.append([None, None, "Rektor", None, None, None, "Majburiy"])
+    staff.append(["INSTITUT XODIMLARI VA ROLLARI"] + [None] * 11); staff.merge_cells("A1:L1")
+    staff.append(["F.I.Sh. kataklarini to'ldiring. Importdan keyin har biriga 2 oylik kirish kodi Excelda tushadi."] + [None] * 11); staff.merge_cells("A2:L2")
+    staff.append([]); staff.append(["F.I.Sh.", "Telefon", "Lavozim", "Fakultet", "Kafedra", "Yo'nalish",
+                                    "Ilmiy daraja", "Ilmiy unvon", "Staj (yil)", "Mutaxassislik",
+                                    "Qisqa izoh", "Shablon izohi"])
+    staff.append([None, None, "Rektor", None, None, None, None, None, None, None, None, "Majburiy"])
     for faculty in faculties:
         for role, note in [("Dekan", "1 ta"), ("Dekan o'rinbosari", "1/2"), ("Dekan o'rinbosari", "2/2"), ("Ma'naviy-ma'rifiy ishlar mas'uli", "1 ta")]:
-            staff.append([None, None, role, faculty["nomi"], None, None, note])
+            staff.append([None, None, role, faculty["nomi"], None, None, None, None, None, None, None, note])
     for department in departments:
-        staff.append([None, None, "Kafedra mudiri", department["fakultet"], department["kafedra"], None, "1 ta"])
+        staff.append([None, None, "Kafedra mudiri", department["fakultet"], department["kafedra"], None,
+                      None, None, None, None, None, "1 ta"])
     tutor_seen = set()
     for row in structure_rows:
         tutor_key = (_key(row.get("fakultet")), _key(row.get("kafedra")), _key(row.get("yonalish")))
         if not row.get("yonalish") or tutor_key in tutor_seen: continue
         tutor_seen.add(tutor_key)
-        staff.append([None, None, "Tyutor", row.get("fakultet"), row.get("kafedra"), row.get("yonalish"), "Kerakli miqdorda qatorni nusxalang"])
+        staff.append([None, None, "Tyutor", row.get("fakultet"), row.get("kafedra"), row.get("yonalish"),
+                      None, None, None, None, None, "Kerakli miqdorda qatorni nusxalang"])
     notes.append(["QADAM", "NIMA QILASIZ"]); notes.append([1, "INSTITUT varag'idagi nomni o'zgartirmang."]); notes.append([2, "TUZILMA varag'ida yo'nalish, shakl va tilning har bir variantini alohida qator qiling."]); notes.append([3, "XODIMLAR varag'ida rektor, har fakultetga 1 dekan, 2 zamdekan, 1 ma'naviy mas'ul va har kafedraga 1 mudir yozing."]); notes.append([4, "Faylni saytda Tekshirishdan o'tkazing; xato bo'lmasa import qiling."]); notes.append([5, "Xodimlarning kirish kodlari avtomatik XLSX bo'lib yuklanadi."])
     list_values = [["Daraja", "Ta'lim shakli", "Ta'lim tili", "Lavozim"]]
     max_len = max(len(DARAJALAR), len(TA_LIM_SHAKLLARI), len(TA_LIM_TILLARI), len(ROLE_LABELS) - 2)
@@ -982,7 +1027,9 @@ def _structure_template_xlsx(university: dict[str, Any], structure_rows: list[di
     validations = [(structure, "E5:E500", f"'ROYXATLAR'!$A$2:$A${len(DARAJALAR)+1}"), (structure, "F5:F500", f"'ROYXATLAR'!$B$2:$B${len(TA_LIM_SHAKLLARI)+1}"), (structure, "G5:G500", f"'ROYXATLAR'!$C$2:$C${len(TA_LIM_TILLARI)+1}"), (staff, "C5:C500", f"'ROYXATLAR'!$D$2:$D${len(roles)+1}")]
     for sheet, cell_range, formula in validations:
         validation = DataValidation(type="list", formula1=formula, allow_blank=True); sheet.add_data_validation(validation); validation.add(cell_range)
-    for sheet, widths in [(institute, [25, 55]), (structure, [27, 30, 18, 38, 18, 20, 18]), (staff, [32, 19, 31, 28, 30, 38, 34]), (notes, [10, 110])]:
+    for sheet, widths in [(institute, [25, 55]), (structure, [27, 30, 18, 38, 18, 20, 18]),
+                          (staff, [32, 19, 31, 28, 30, 38, 24, 24, 14, 30, 42, 34]),
+                          (notes, [10, 110])]:
         sheet.sheet_view.showGridLines = False; sheet.freeze_panes = "A5" if sheet in (structure, staff) else "A2"
         for index, width in enumerate(widths, 1): sheet.column_dimensions[chr(64 + index)].width = width
         for cell in sheet[1]: cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF", size=14)
@@ -1039,12 +1086,21 @@ def _parse_admission(content: bytes, filename: str) -> tuple[list[dict[str, Any]
         birth = _iso_date(_cell(values, headers, "Tug'ilgan sana"))
         if not birth:
             warnings.append({"qator": excel_row, "ogohlantirish": "Tug'ilgan sana aniqlanmadi"})
+        passport_number = _text_number(_cell(values, headers, "Pasport raqam")) or None
+        if passport_number and re.fullmatch(r"\d{6}", passport_number):
+            warnings.append({
+                "qator": excel_row,
+                "ogohlantirish": (
+                    "Pasport raqami 6 xonali. Excel boshidagi 0 ni olib tashlagan bo'lishi mumkin; "
+                    "tizim avtomatik 0 qo'shmadi, manba faylni tekshiring."
+                ),
+            })
         parsed.append({
             "excel_row": excel_row, "abitur_id": abitur, "jshshir": pin,
             "jshshir_hash": hashlib.sha256(pin.encode()).hexdigest(),
             "familiya": family, "ism": name, "ota_ism": _norm(_cell(values, headers, "Ota ism")) or None,
             "tugilgan_sana": birth, "pasport_seriya": _norm(_cell(values, headers, "Pasport seriya")) or None,
-            "pasport_raqam": _text_number(_cell(values, headers, "Pasport raqam")) or None,
+            "pasport_raqam": passport_number,
             "tavsiya_turi": _norm(_cell(values, headers, "Tavsiya turi")) or None,
             "talim_shakli": form, "talim_tili": language,
             "otm_nomi": _norm(_cell(values, headers, "OTM")),
@@ -1154,19 +1210,31 @@ def _parse_structure(content: bytes, filename: str) -> tuple[dict[str, Any], dic
         faculty = _norm(_cell(row, xh, "Fakultet")) or None
         department = _norm(_cell(row, xh, "Kafedra")) or None
         program = _norm(_cell(row, xh, "Yo'nalish")) or None
+        experience_raw = _cell(row, xh, "Staj (yil)", "Staj", "Mehnat staji")
+        experience = _float(experience_raw) if experience_raw not in (None, "") else None
         row_errors = []
         if not fish: row_errors.append("F.I.Sh. bo'sh")
         if not role: row_errors.append("Lavozim tanilmadi")
         if phone_raw not in (None, "") and not phone: row_errors.append("Telefon noto'g'ri")
         if role in FACULTY_WIDE and not faculty: row_errors.append("Bu lavozim uchun fakultet shart")
         if role in DEPARTMENT_WIDE and not department: row_errors.append("Kafedra mudiri uchun kafedra shart")
+        if experience_raw not in (None, "") and experience is None:
+            row_errors.append("Staj son emas")
+        if experience is not None and not 0 <= experience <= 80:
+            row_errors.append("Staj 0–80 yil oralig'ida bo'lishi kerak")
         person_key = (_key(fish), role, _key(faculty), _key(department), _key(program))
         if person_key in seen_people: row_errors.append("Xodim qatori takrorlangan")
         if row_errors:
             errors.append({"varaq": "XODIMLAR", "qator": row_no, "xatolar": row_errors}); continue
         seen_people.add(person_key)
         staff.append({"fish": fish, "telefon": phone, "rol": role, "fakultet": faculty,
-                      "kafedra": department, "yonalish": program, "excel_row": row_no})
+                      "kafedra": department, "yonalish": program,
+                      "ilmiy_daraja": _norm(_cell(row, xh, "Ilmiy daraja")) or None,
+                      "ilmiy_unvon": _norm(_cell(row, xh, "Ilmiy unvon")) or None,
+                      "staj_yil": experience,
+                      "mutaxassislik": _norm(_cell(row, xh, "Mutaxassislik")) or None,
+                      "qisqa_izoh": _norm(_cell(row, xh, "Qisqa izoh"))[:500] or None,
+                      "excel_row": row_no})
 
     faculty_names = sorted({x["fakultet"] for x in structures})
     department_pairs = {(x["fakultet"], x["kafedra"]) for x in structures}
@@ -1199,12 +1267,93 @@ def _parse_structure(content: bytes, filename: str) -> tuple[dict[str, Any], dic
     return payload, summary
 
 
+def _parse_staff_template(content: bytes, filename: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Alohida XODIMLAR shablonini tuzilmani o'zgartirmasdan tekshiradi."""
+    sheets = _workbook_rows(content, filename)
+    rows = _named_rows(sheets, "XODIMLAR") or _active_rows(sheets)
+    header_index, headers = _find_header_row(rows, ["F.I.Sh.", "Lavozim"], "XODIMLAR")
+    staff: list[dict[str, Any]] = []; errors: list[dict[str, Any]] = []; seen = set()
+    for row_no, row in enumerate(rows[header_index + 1:], header_index + 2):
+        fish = _norm(_cell(row, headers, "F.I.Sh.", "FISH"))
+        # Yuklangan tayyor shablondagi namunaviy/majburiy bo'sh qatorlar xato emas.
+        if not fish:
+            continue
+        role = _role_key(_cell(row, headers, "Lavozim"))
+        phone_raw = _cell(row, headers, "Telefon")
+        phone = _telefon(phone_raw) if phone_raw not in (None, "") else None
+        faculty = _norm(_cell(row, headers, "Fakultet")) or None
+        department = _norm(_cell(row, headers, "Kafedra")) or None
+        program = _norm(_cell(row, headers, "Yo'nalish")) or None
+        experience_raw = _cell(row, headers, "Staj (yil)", "Staj", "Mehnat staji")
+        experience = _float(experience_raw) if experience_raw not in (None, "") else None
+        row_errors = []
+        if not role: row_errors.append("Lavozim tanilmadi")
+        if phone_raw not in (None, "") and not phone: row_errors.append("Telefon noto'g'ri")
+        if role in FACULTY_WIDE and not faculty: row_errors.append("Bu lavozim uchun fakultet shart")
+        if role in DEPARTMENT_WIDE and not department: row_errors.append("Kafedra mudiri uchun kafedra shart")
+        if experience_raw not in (None, "") and experience is None: row_errors.append("Staj son emas")
+        if experience is not None and not 0 <= experience <= 80: row_errors.append("Staj 0–80 yil oralig'ida bo'lishi kerak")
+        unique_key = (_key(fish), role, _key(faculty), _key(department), _key(program))
+        if unique_key in seen: row_errors.append("Xodim qatori takrorlangan")
+        if row_errors:
+            errors.append({"varaq": "XODIMLAR", "qator": row_no, "xatolar": row_errors}); continue
+        seen.add(unique_key)
+        staff.append({
+            "fish": fish, "telefon": phone, "rol": role,
+            "fakultet": faculty, "kafedra": department, "yonalish": program,
+            "ilmiy_daraja": _norm(_cell(row, headers, "Ilmiy daraja")) or None,
+            "ilmiy_unvon": _norm(_cell(row, headers, "Ilmiy unvon")) or None,
+            "staj_yil": experience,
+            "mutaxassislik": _norm(_cell(row, headers, "Mutaxassislik")) or None,
+            "qisqa_izoh": _norm(_cell(row, headers, "Qisqa izoh"))[:500] or None,
+            "excel_row": row_no,
+        })
+    if not staff and not errors:
+        errors.append({"varaq": "XODIMLAR", "qator": None, "xatolar": ["Kamida 1 ta F.I.Sh. kiriting"]})
+    return staff, {"xodim_soni": len(staff), "xato_soni": len(errors), "xatolar": errors[:150]}
+
+
 def _store_batch(cur, university_id: Optional[int], kind: str, filename: str, content: bytes, payload: Any, summary: dict, user_id: int) -> int:
     cur.execute("""INSERT INTO universitet_import_batchlar(
         universitet_id,import_turi,fayl_nomi,fayl_sha256,payload,xulosa,yaratilgan_by)
         VALUES(%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s) RETURNING id""",
         (university_id, kind, filename, hashlib.sha256(content).hexdigest(), json.dumps(payload, ensure_ascii=False), json.dumps(summary, ensure_ascii=False), user_id))
     return int(cur.fetchone()["id"])
+
+
+def _resolve_staff_named_scope(cur, university_id: int, item: dict[str, Any]) -> tuple[Optional[int], Optional[int], Optional[int]]:
+    """Xodim shablonidagi nomlarni aynan bitta haqiqiy tuzilma zanjiriga yechadi."""
+    faculty_id = department_id = program_id = None
+    if item.get("fakultet"):
+        cur.execute("SELECT id,nomi FROM fakultetlar WHERE universitet_id=%s AND faol=TRUE", (university_id,))
+        matches = [row for row in cur.fetchall() if _key(row["nomi"]) == _key(item["fakultet"])]
+        if len(matches) != 1:
+            raise HTTPException(status_code=400, detail=f"Fakultet aniq topilmadi: {item['fakultet']}")
+        faculty_id = int(matches[0]["id"])
+    if item.get("kafedra"):
+        cur.execute("""SELECT k.id,k.nomi,k.fakultet_id FROM kafedralar k
+            JOIN fakultetlar f ON f.id=k.fakultet_id
+            WHERE f.universitet_id=%s AND k.faol=TRUE""", (university_id,))
+        matches = [row for row in cur.fetchall()
+                   if _key(row["nomi"]) == _key(item["kafedra"])
+                   and (faculty_id is None or int(row["fakultet_id"]) == faculty_id)]
+        if len(matches) != 1:
+            raise HTTPException(status_code=400, detail=f"Kafedra aniq topilmadi: {item['kafedra']}")
+        department_id = int(matches[0]["id"])
+        faculty_id = faculty_id or int(matches[0]["fakultet_id"])
+    if item.get("yonalish"):
+        cur.execute("""SELECT id,nomi,fakultet_id,kafedra_id FROM universitet_yonalishlari
+            WHERE universitet_id=%s AND faol=TRUE""", (university_id,))
+        matches = [row for row in cur.fetchall()
+                   if _key(row["nomi"]) == _key(item["yonalish"])
+                   and (faculty_id is None or int(row["fakultet_id"]) == faculty_id)
+                   and (department_id is None or int(row["kafedra_id"]) == department_id)]
+        if len(matches) != 1:
+            raise HTTPException(status_code=400, detail=f"Yo'nalish aniq topilmadi: {item['yonalish']}")
+        program_id = int(matches[0]["id"])
+        faculty_id = faculty_id or int(matches[0]["fakultet_id"])
+        department_id = department_id or int(matches[0]["kafedra_id"])
+    return _normalized_role_scope(item["rol"], faculty_id, department_id, program_id)
 
 
 class InstituteCreate(BaseModel):
@@ -1239,6 +1388,11 @@ class StaffCreate(BaseModel):
     fakultet_id: Optional[int] = None
     kafedra_id: Optional[int] = None
     yonalish_id: Optional[int] = None
+    ilmiy_daraja: Optional[str] = None
+    ilmiy_unvon: Optional[str] = None
+    staj_yil: Optional[float] = Field(default=None, ge=0, le=80)
+    mutaxassislik: Optional[str] = None
+    qisqa_izoh: Optional[str] = Field(default=None, max_length=500)
 
 
 class StaffUpdate(BaseModel):
@@ -1250,6 +1404,11 @@ class StaffUpdate(BaseModel):
     kafedra_id: Optional[int] = None
     yonalish_id: Optional[int] = None
     faol: bool = True
+    ilmiy_daraja: Optional[str] = None
+    ilmiy_unvon: Optional[str] = None
+    staj_yil: Optional[float] = Field(default=None, ge=0, le=80)
+    mutaxassislik: Optional[str] = None
+    qisqa_izoh: Optional[str] = Field(default=None, max_length=500)
 
 
 class TutorAssign(BaseModel):
@@ -1370,9 +1529,16 @@ def bootstrap(workspace_id: Optional[int] = None, universitet_id: Optional[int] 
         roles = _require_member(cur, user_id, uid)
         cur.execute("SELECT id,nomi,viloyat,tuman FROM universitetlar WHERE id=%s", (uid,))
         university = cur.fetchone()
-        cur.execute("SELECT COUNT(*) n FROM fakultetlar WHERE universitet_id=%s", (uid,)); faculties = int(cur.fetchone()["n"])
+        cur.execute("SELECT COUNT(*) n FROM fakultetlar WHERE universitet_id=%s AND faol=TRUE", (uid,)); faculties = int(cur.fetchone()["n"])
         cur.execute("SELECT COUNT(*) n FROM universitet_yonalishlari WHERE universitet_id=%s AND faol=TRUE", (uid,)); programs = int(cur.fetchone()["n"])
         cur.execute("SELECT COUNT(*) n FROM universitet_qabul_talabalari WHERE universitet_id=%s", (uid,)); students = int(cur.fetchone()["n"])
+        cur.execute("""SELECT
+            COUNT(DISTINCT user_id) FILTER(WHERE rol NOT IN ('owner','institut_admin','fakultet_admin')) xodim,
+            COUNT(DISTINCT user_id) FILTER(WHERE rol='professor_oqituvchi') oqituvchi,
+            COUNT(DISTINCT user_id) FILTER(WHERE rol='tyutor') tyutor
+            FROM universitet_xodim_rollari
+            WHERE universitet_id=%s AND faol=TRUE""", (uid,))
+        staff_counts = cur.fetchone()
         names = _role_names(roles); global_admin = _is_global_admin(cur, user_id)
         permissions = {
             "tuzilma_korish": True,
@@ -1395,7 +1561,10 @@ def bootstrap(workspace_id: Optional[int] = None, universitet_id: Optional[int] 
         conn.commit()
         return {"release": SAMTM_INSTITUTE_RELEASE, "universitet": university, "rollar": roles,
                 "asosiy_rol": roles[0]["rol"], "ruxsatlar": permissions,
-                "sonlar": {"fakultet": faculties, "yonalish": programs, "talaba": students}}
+                "sonlar": {"fakultet": faculties, "yonalish": programs, "talaba": students,
+                           "xodim": int(staff_counts["xodim"] or 0),
+                           "oqituvchi": int(staff_counts["oqituvchi"] or 0),
+                           "tyutor": int(staff_counts["tyutor"] or 0)}}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -1408,7 +1577,7 @@ def structure(universitet_id: int, token: Optional[str] = Query(None, include_in
     try:
         _ensure_schema(cur); _require_member(cur, user_id, universitet_id)
         cur.execute("""SELECT f.id,f.nomi,
-            (SELECT COUNT(*) FROM kafedralar k WHERE k.fakultet_id=f.id) kafedra_soni,
+            (SELECT COUNT(*) FROM kafedralar k WHERE k.fakultet_id=f.id AND k.faol=TRUE) kafedra_soni,
             (SELECT COUNT(*) FROM universitet_yonalishlari y WHERE y.fakultet_id=f.id AND y.faol=TRUE) yonalish_soni
             FROM fakultetlar f WHERE f.universitet_id=%s AND f.faol=TRUE ORDER BY f.nomi""", (universitet_id,))
         faculties = [dict(r) for r in cur.fetchall()]
@@ -1564,6 +1733,157 @@ def structure_template(universitet_id: int, token: Optional[str] = Query(None, i
         cur.close(); conn.close()
 
 
+@router.get("/xodim/shablon")
+def staff_template(universitet_id: int,
+                   token: Optional[str] = Query(None, include_in_schema=False),
+                   authorization: Optional[str] = Header(None)):
+    """Admin uchun faqat o'z qamrovidagi tuzilma bilan XODIMLAR XLSX shabloni."""
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        if not _has_any(roles, MANAGE_STAFF_ROLES):
+            raise HTTPException(status_code=403, detail="Xodim shablonini yuklash huquqi yo'q")
+        cur.execute("SELECT id,nomi,viloyat,tuman FROM universitetlar WHERE id=%s", (universitet_id,))
+        university = cur.fetchone()
+        if not university: raise HTTPException(status_code=404, detail="Institut topilmadi")
+        names = _role_names(roles)
+        faculty_scope = None if names & INSTITUTE_WIDE else sorted({
+            int(role["fakultet_id"]) for role in roles
+            if role.get("fakultet_id") and role["rol"] in {"dekan", "fakultet_admin"}
+        })
+        if faculty_scope is not None and not faculty_scope:
+            raise HTTPException(status_code=403, detail="Xodim shabloni uchun fakultet qamrovi topilmadi")
+        faculty_where = "universitet_id=%s"; faculty_params: list[Any] = [universitet_id]
+        if faculty_scope is not None:
+            faculty_where += " AND id=ANY(%s)"; faculty_params.append(faculty_scope)
+        cur.execute(f"SELECT id,nomi FROM fakultetlar WHERE {faculty_where} AND faol=TRUE ORDER BY nomi", faculty_params)
+        faculties = [dict(row) for row in cur.fetchall()]
+        faculty_ids = [int(item["id"]) for item in faculties]
+        cur.execute("""SELECT k.id,k.nomi kafedra,f.nomi fakultet
+            FROM kafedralar k JOIN fakultetlar f ON f.id=k.fakultet_id
+            WHERE f.universitet_id=%s AND f.id=ANY(%s) AND k.faol=TRUE
+            ORDER BY f.nomi,k.nomi""", (universitet_id, faculty_ids or [-1]))
+        departments = [dict(row) for row in cur.fetchall()]
+        cur.execute("""SELECT f.nomi fakultet,k.nomi kafedra,y.kodi,y.nomi yonalish,y.daraja,
+                   v.talim_shakli,v.talim_tili
+            FROM universitet_yonalishlari y
+            JOIN fakultetlar f ON f.id=y.fakultet_id JOIN kafedralar k ON k.id=y.kafedra_id
+            LEFT JOIN universitet_yonalish_variantlari v ON v.yonalish_id=y.id AND v.faol=TRUE
+            WHERE y.universitet_id=%s AND y.fakultet_id=ANY(%s) AND y.faol=TRUE
+            ORDER BY f.nomi,k.nomi,y.nomi""", (universitet_id, faculty_ids or [-1]))
+        rows = [dict(row) for row in cur.fetchall()]
+        content = _structure_template_xlsx(dict(university), rows, faculties, departments)
+        return Response(content=content,
+                        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        headers={"Content-Disposition": 'attachment; filename="institut_xodimlari_shabloni.xlsx"'})
+    finally:
+        cur.close(); conn.close()
+
+
+@router.post("/xodim/import_preview")
+async def staff_import_preview(universitet_id: int, fayl: UploadFile = File(...),
+                               token: Optional[str] = Query(None, include_in_schema=False),
+                               authorization: Optional[str] = Header(None)):
+    actor = _uid(token, authorization); content = await fayl.read(); filename = fayl.filename or "xodimlar.xlsx"
+    if len(content) > 10 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Xodimlar fayli 10 MB dan katta")
+    if not filename.lower().endswith((".xlsx", ".xls")):
+        raise HTTPException(status_code=400, detail="Xodimlar uchun XLSX yoki XLS fayl yuklang")
+    staff, summary = _parse_staff_template(content, filename)
+    p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        if not _has_any(roles, MANAGE_STAFF_ROLES):
+            raise HTTPException(status_code=403, detail="Xodim importiga ruxsat yo'q")
+        errors = list(summary["xatolar"]); resolved = []
+        for item in staff:
+            try:
+                if item["rol"] in ADMIN_ROLES and not _is_global_admin(cur, actor):
+                    raise HTTPException(status_code=403, detail="Administratorni faqat super administrator import qiladi")
+                if not (_role_names(roles) & INSTITUTE_WIDE) and item["rol"] in INSTITUTE_WIDE:
+                    raise HTTPException(status_code=403, detail="Institut rahbariyatini fakultet administratori import qilmaydi")
+                faculty_id, department_id, program_id = _resolve_staff_named_scope(cur, universitet_id, item)
+                _validate_assignment_scope(cur, universitet_id, roles, faculty_id, department_id, program_id)
+                resolved.append({**item, "fakultet_id": faculty_id,
+                                 "kafedra_id": department_id, "yonalish_id": program_id})
+            except HTTPException as exc:
+                errors.append({"varaq": "XODIMLAR", "qator": item["excel_row"],
+                               "xatolar": [str(exc.detail)]})
+        summary.update({"xato_soni": len(errors), "xatolar": errors[:150],
+                        "xodim_soni": len(resolved)})
+        batch_id = _store_batch(cur, universitet_id, "xodim", filename, content,
+                                {"xodimlar": resolved}, summary, actor)
+        conn.commit()
+        return {"batch_id": batch_id, "xulosa": summary,
+                "commit_mumkin": summary["xato_soni"] == 0}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@router.post("/xodim/import_commit")
+def staff_import_commit(req: BatchCommit):
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        cur.execute("SELECT * FROM universitet_import_batchlar WHERE id=%s FOR UPDATE", (req.batch_id,))
+        batch = cur.fetchone()
+        if not batch or batch["import_turi"] != "xodim":
+            raise HTTPException(status_code=404, detail="Xodim preview topilmadi")
+        if batch["holat"] != "preview":
+            raise HTTPException(status_code=409, detail="Bu preview avval ishlatilgan")
+        if int(batch["yaratilgan_by"]) != actor and not _is_global_admin(cur, actor):
+            raise HTTPException(status_code=403, detail="Bu preview boshqa foydalanuvchiga tegishli")
+        university_id = int(batch["universitet_id"])
+        roles = _require_member(cur, actor, university_id)
+        if not _has_any(roles, MANAGE_STAFF_ROLES):
+            raise HTTPException(status_code=403, detail="Xodim importiga ruxsat yo'q")
+        summary = batch["xulosa"] if isinstance(batch["xulosa"], dict) else json.loads(batch["xulosa"])
+        if summary.get("xato_soni"):
+            raise HTTPException(status_code=400, detail="Xatoli xodimlar shabloni import qilinmaydi")
+        payload = batch["payload"] if isinstance(batch["payload"], dict) else json.loads(batch["payload"])
+        credentials = []
+        for item in payload["xodimlar"]:
+            if item["rol"] in ADMIN_ROLES and not _is_global_admin(cur, actor):
+                raise HTTPException(status_code=403, detail="Administratorni faqat super administrator import qiladi")
+            faculty_id, department_id, program_id = _resolve_staff_named_scope(cur, university_id, item)
+            _validate_assignment_scope(cur, university_id, roles, faculty_id, department_id, program_id)
+            user_id, role_id, code = _new_placeholder(
+                cur, item["fish"], university_id, item["rol"], item.get("telefon"), actor,
+                faculty_id, department_id, program_id,
+            )
+            _save_staff_profile(
+                cur, role_id, ilmiy_daraja=item.get("ilmiy_daraja"),
+                ilmiy_unvon=item.get("ilmiy_unvon"), staj_yil=item.get("staj_yil"),
+                mutaxassislik=item.get("mutaxassislik"), qisqa_izoh=item.get("qisqa_izoh"),
+            )
+            if item["rol"] == "tyutor" and program_id:
+                cur.execute("""INSERT INTO universitet_tyutor_yonalishlari(
+                    universitet_id,tyutor_user_id,fakultet_id,yonalish_id,yaratilgan_by)
+                    VALUES(%s,%s,%s,%s,%s) ON CONFLICT DO NOTHING""",
+                    (university_id, user_id, faculty_id, program_id, actor))
+            credentials.append({"fish": item["fish"], "lavozim": ROLE_LABELS[item["rol"]],
+                                "fakultet": item.get("fakultet"), "kafedra": item.get("kafedra"),
+                                "yonalish": item.get("yonalish"), "telefon": item.get("telefon"),
+                                "kirish_kodi": code, "kod_muddati": "2 oy"})
+        cur.execute("UPDATE universitet_import_batchlar SET holat='committed',commit_at=NOW() WHERE id=%s",
+                    (req.batch_id,))
+        _audit(cur, university_id, actor, "xodim_import_commit", "import_batch",
+               req.batch_id, {"xodim": len(credentials)})
+        credential_file = _credentials_xlsx(
+            credentials, "institut_xodimlari_kirish_kodlari.xlsx",
+            "INSTITUT XODIMLARI — BIR MARTALIK KIRISH KODLARI",
+        ) if credentials else None
+        conn.commit()
+        return {"holat": "import_qilindi", "xodim": len(credentials),
+                "kirish_kodlari": credentials, "kirish_kodlari_fayli": credential_file}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @router.post("/tuzilma/manual")
 def manual_structure(req: StructureManual):
     p = _p(); user_id = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
@@ -1623,6 +1943,11 @@ def manual_staff(req: StaffCreate):
             cur, fish, req.universitet_id, req.rol, phone, user_id,
             faculty_id, department_id, program_id
         )
+        _save_staff_profile(
+            cur, role_id, ilmiy_daraja=req.ilmiy_daraja,
+            ilmiy_unvon=req.ilmiy_unvon, staj_yil=req.staj_yil,
+            mutaxassislik=req.mutaxassislik, qisqa_izoh=req.qisqa_izoh,
+        )
         _audit(cur, req.universitet_id, user_id, "xodim_qoshildi", "xodim_rol", role_id, {"rol": req.rol})
         conn.commit()
         return {"holat": "yaratildi", "user_id": placeholder, "rol_id": role_id, "fish": fish,
@@ -1644,6 +1969,8 @@ def update_staff(role_id: int, req: StaffUpdate):
         cur.execute("SELECT * FROM universitet_xodim_rollari WHERE id=%s AND universitet_id=%s FOR UPDATE", (role_id, req.universitet_id))
         current = cur.fetchone()
         if not current: raise HTTPException(status_code=404, detail="Xodim biriktirishi topilmadi")
+        if req.rol not in ROLE_LABELS or req.rol == "talaba":
+            raise HTTPException(status_code=400, detail=f"Noto'g'ri lavozim: {req.rol}")
         if (req.rol in ADMIN_ROLES or current["rol"] in ADMIN_ROLES) and not _is_global_admin(cur, actor):
             raise HTTPException(status_code=403, detail="Administratorni faqat super administrator tahrirlaydi")
         if not (_role_names(roles) & INSTITUTE_WIDE) and req.rol in INSTITUTE_WIDE:
@@ -1651,13 +1978,63 @@ def update_staff(role_id: int, req: StaffUpdate):
         faculty_id, department_id, program_id = _normalized_role_scope(
             req.rol, req.fakultet_id, req.kafedra_id, req.yonalish_id
         )
+        if req.rol in FACULTY_WIDE and not faculty_id:
+            raise HTTPException(status_code=400, detail="Bu lavozim uchun fakultet tanlanishi shart")
+        if req.rol in DEPARTMENT_WIDE and not department_id:
+            raise HTTPException(status_code=400, detail="Kafedra mudiri uchun kafedra tanlanishi shart")
         _validate_assignment_scope(cur, req.universitet_id, roles, faculty_id, department_id, program_id)
+        if req.faol:
+            singleton_sql, singleton_params = None, []
+            if req.rol == "rektor":
+                singleton_sql, singleton_params = "universitet_id=%s AND rol='rektor'", [req.universitet_id]
+            elif req.rol in {"dekan", "manaviyatchi"}:
+                singleton_sql, singleton_params = "fakultet_id=%s AND rol=%s", [faculty_id, req.rol]
+            elif req.rol == "kafedra_mudiri":
+                singleton_sql, singleton_params = "kafedra_id=%s AND rol='kafedra_mudiri'", [department_id]
+            if singleton_sql:
+                cur.execute(f"""SELECT 1 FROM universitet_xodim_rollari
+                    WHERE {singleton_sql} AND faol=TRUE AND id<>%s LIMIT 1""",
+                    singleton_params + [role_id])
+                if cur.fetchone():
+                    raise HTTPException(status_code=409, detail="Bu lavozimga boshqa xodim allaqachon biriktirilgan")
+            if req.rol == "zam_dekan":
+                cur.execute("""SELECT COUNT(*) n FROM universitet_xodim_rollari
+                    WHERE fakultet_id=%s AND rol='zam_dekan' AND faol=TRUE AND id<>%s""",
+                    (faculty_id, role_id))
+                if int(cur.fetchone()["n"] or 0) >= 2:
+                    raise HTTPException(status_code=409, detail="Bu fakultetda 2 ta dekan o'rinbosari allaqachon bor")
         fish = _norm(req.fish)
         if not fish: raise HTTPException(status_code=400, detail="F.I.Sh. kiriting")
         cur.execute("UPDATE users SET full_name=%s WHERE user_id=%s", (fish, current["user_id"]))
+        # Eski rahbar qamrovi o'zgarsa legacy Muassasalar kartasida arvoh
+        # rahbar qolmasin; yangi qamrov quyidagi _sync bilan qayta yoziladi.
+        if current["rol"] == "rektor" and (not req.faol or req.rol != "rektor"):
+            cur.execute("UPDATE universitetlar SET rektor_user_id=NULL WHERE id=%s AND rektor_user_id=%s",
+                        (req.universitet_id, current["user_id"]))
+        elif current["rol"] == "dekan" and current.get("fakultet_id") and (
+                not req.faol or req.rol != "dekan" or current["fakultet_id"] != faculty_id):
+            cur.execute("UPDATE fakultetlar SET dekan_user_id=NULL WHERE id=%s AND dekan_user_id=%s",
+                        (current["fakultet_id"], current["user_id"]))
+        elif current["rol"] == "kafedra_mudiri" and current.get("kafedra_id") and (
+                not req.faol or req.rol != "kafedra_mudiri" or current["kafedra_id"] != department_id):
+            cur.execute("UPDATE kafedralar SET mudir_user_id=NULL WHERE id=%s AND mudir_user_id=%s",
+                        (current["kafedra_id"], current["user_id"]))
         cur.execute("""UPDATE universitet_xodim_rollari
             SET rol=%s,fakultet_id=%s,kafedra_id=%s,yonalish_id=%s,faol=%s
             WHERE id=%s""", (req.rol, faculty_id, department_id, program_id, req.faol, role_id))
+        if req.faol:
+            _sync_legacy_leader(cur, req.universitet_id, int(current["user_id"]), req.rol,
+                                faculty_id, department_id)
+        profile_fields = {"ilmiy_daraja", "ilmiy_unvon", "staj_yil", "mutaxassislik", "qisqa_izoh"}
+        supplied_fields = set(getattr(req, "model_fields_set", getattr(req, "__fields_set__", set())))
+        if supplied_fields & profile_fields:
+            cur.execute("SELECT * FROM universitet_xodim_profili WHERE xodim_rol_id=%s", (role_id,))
+            old_profile = dict(cur.fetchone() or {})
+            profile_values = {
+                field: getattr(req, field) if field in supplied_fields else old_profile.get(field)
+                for field in profile_fields
+            }
+            _save_staff_profile(cur, role_id, force=True, **profile_values)
         _audit(cur, req.universitet_id, actor, "xodim_tahrirlandi", "xodim_rol", role_id,
                {"rol": req.rol, "faol": req.faol})
         conn.commit(); return {"holat": "saqlandi", "rol_id": role_id, "fish": fish}
@@ -1760,6 +2137,12 @@ def structure_commit(req: BatchCommit):
                               and key[1] == _key(person["yonalish"])]
                 if len(candidates) == 1: program_id = candidates[0]
             placeholder, role_id, code = _new_placeholder(cur, person["fish"], university_id, role, person.get("telefon"), actor, faculty_id, department_id, program_id)
+            _save_staff_profile(
+                cur, role_id, ilmiy_daraja=person.get("ilmiy_daraja"),
+                ilmiy_unvon=person.get("ilmiy_unvon"), staj_yil=person.get("staj_yil"),
+                mutaxassislik=person.get("mutaxassislik"),
+                qisqa_izoh=person.get("qisqa_izoh"),
+            )
             if role == "tyutor" and program_id:
                 cur.execute("""INSERT INTO universitet_tyutor_yonalishlari(
                     universitet_id,tyutor_user_id,yonalish_id,yaratilgan_by)
@@ -1797,16 +2180,245 @@ def staff_list(universitet_id: int, arxiv: bool = False, token: Optional[str] = 
             if department_ids: clauses.append("xr.kafedra_id=ANY(%s)"); scoped.append(department_ids)
             where.append("(" + " OR ".join(clauses) + ")"); params.extend(scoped)
         cur.execute(f"""SELECT xr.id,xr.user_id,xr.rol,xr.fakultet_id,xr.kafedra_id,xr.yonalish_id,u.full_name,f.nomi fakultet_nomi,k.nomi kafedra_nomi,y.nomi yonalish_nomi,
+            xp.ilmiy_daraja,xp.ilmiy_unvon,xp.staj_yil,xp.mutaxassislik,xp.qisqa_izoh,
             CASE WHEN tk.id IS NULL THEN NULL WHEN xk.ishlatildi THEN 'ulangan' ELSE 'taklif_yuborilgan' END kirish_holati
             FROM universitet_xodim_rollari xr JOIN users u ON u.user_id=xr.user_id
             LEFT JOIN fakultetlar f ON f.id=xr.fakultet_id LEFT JOIN kafedralar k ON k.id=xr.kafedra_id
             LEFT JOIN universitet_yonalishlari y ON y.id=xr.yonalish_id
+            LEFT JOIN universitet_xodim_profili xp ON xp.xodim_rol_id=xr.id
             LEFT JOIN LATERAL (SELECT * FROM universitet_taklif_kodlari t WHERE t.xodim_rol_id=xr.id ORDER BY t.id DESC LIMIT 1) tk ON TRUE
             LEFT JOIN xodim_kod xk ON xk.kod=tk.kod_hash
             WHERE {' AND '.join(where)} ORDER BY f.nomi NULLS FIRST,xr.rol,u.full_name""", params)
         rows = [dict(r) for r in cur.fetchall()]
         for r in rows: r["lavozim_nomi"] = ROLE_LABELS.get(r["rol"], r["rol"])
         return {"xodimlar": rows, "lavozimlar": ROLE_LABELS, "arxiv": arxiv}
+    finally:
+        cur.close(); conn.close()
+
+
+def _program_visible_to_member(cur, university_id: int, user_id: int,
+                               roles: list[dict[str, Any]], program: dict[str, Any]) -> bool:
+    """Yo'nalish jamoasi va lokal ro'yxatlari uchun bitta qamrov tekshiruvi."""
+    names = _role_names(roles)
+    if names & INSTITUTE_WIDE:
+        return True
+    program_id = int(program["id"])
+    faculty_id = int(program["fakultet_id"])
+    department_id = int(program["kafedra_id"])
+    for role in roles:
+        if role["rol"] == "talaba" and role.get("yonalish_id") == program_id:
+            return True
+        if role.get("yonalish_id") and int(role["yonalish_id"]) == program_id:
+            return True
+        if role.get("kafedra_id") and int(role["kafedra_id"]) == department_id:
+            return True
+        if role.get("fakultet_id") and int(role["fakultet_id"]) == faculty_id:
+            return True
+    if "tyutor" in names:
+        cur.execute("""SELECT 1 FROM universitet_tyutor_yonalishlari ty
+            WHERE ty.universitet_id=%s AND ty.tyutor_user_id=%s AND ty.faol=TRUE
+              AND (ty.fakultet_id IS NULL OR ty.fakultet_id=%s)
+              AND (ty.yonalish_id IS NULL OR ty.yonalish_id=%s)
+            LIMIT 1""", (university_id, user_id, faculty_id, program_id))
+        return cur.fetchone() is not None
+    return False
+
+
+@router.get("/xodimlar/team")
+def direction_team(universitet_id: int, yonalish_id: int,
+                   yonalish_ids: Optional[str] = None,
+                   token: Optional[str] = Query(None, include_in_schema=False),
+                   authorization: Optional[str] = Header(None)):
+    """Tanlangan yo'nalishning rahbariyat, mudir, o'qituvchi va tyutorlari.
+
+    Kasbiy profil eski bazada bo'lmasa ``null`` qaytadi. Shaxsiy telefon,
+    login yoki taklif kodi bu endpoint orqali hech qachon berilmaydi.
+    """
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        cur.execute("""SELECT y.id,y.nomi,y.daraja,y.fakultet_id,y.kafedra_id,
+                   f.nomi fakultet_nomi,k.nomi kafedra_nomi
+            FROM universitet_yonalishlari y
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            JOIN kafedralar k ON k.id=y.kafedra_id
+            WHERE y.id=%s AND y.universitet_id=%s AND y.faol=TRUE""",
+            (yonalish_id, universitet_id))
+        program = cur.fetchone()
+        if not program:
+            raise HTTPException(status_code=404, detail="Yo'nalish topilmadi")
+        program_ids = {int(yonalish_id)}
+        aliases: list[dict[str, Any]] = []
+        if yonalish_ids:
+            try:
+                program_ids.update(int(value.strip()) for value in yonalish_ids.split(",") if value.strip())
+            except ValueError:
+                raise HTTPException(status_code=400, detail="Yo'nalish identifikatorlari noto'g'ri")
+            cur.execute("""SELECT id,nomi,daraja,fakultet_id,kafedra_id FROM universitet_yonalishlari
+                WHERE universitet_id=%s AND faol=TRUE AND id=ANY(%s)""",
+                (universitet_id, sorted(program_ids)))
+            aliases = [dict(item) for item in cur.fetchall()]
+            if len(aliases) != len(program_ids):
+                raise HTTPException(status_code=400, detail="Alias yo'nalishlardan biri topilmadi")
+            if any(int(item["fakultet_id"]) != int(program["fakultet_id"])
+                   or _key(item["nomi"]) != _key(program["nomi"])
+                   or _key(item["daraja"]) != _key(program["daraja"])
+                   for item in aliases):
+                raise HTTPException(status_code=400, detail="Faqat bir xil nom va darajadagi yo'nalish aliaslari birlashtiriladi")
+        visible_programs = [dict(program)]
+        if yonalish_ids:
+            visible_programs.extend(item for item in aliases if int(item["id"]) != int(yonalish_id))
+        if not any(_program_visible_to_member(cur, universitet_id, actor, roles, item)
+                   for item in visible_programs):
+            raise HTTPException(status_code=403, detail="Bu yo'nalish jamoasini ko'rish huquqi yo'q")
+        department_ids = sorted({int(item["kafedra_id"]) for item in visible_programs})
+        cur.execute("""SELECT DISTINCT ON (xr.id)
+                   xr.id,xr.user_id,xr.rol,u.full_name,
+                   xr.fakultet_id,xr.kafedra_id,xr.yonalish_id,
+                   f.nomi fakultet_nomi,k.nomi kafedra_nomi,y.nomi yonalish_nomi,
+                   xp.ilmiy_daraja,xp.ilmiy_unvon,xp.staj_yil,
+                   xp.mutaxassislik,xp.qisqa_izoh
+            FROM universitet_xodim_rollari xr
+            JOIN users u ON u.user_id=xr.user_id
+            LEFT JOIN fakultetlar f ON f.id=xr.fakultet_id
+            LEFT JOIN kafedralar k ON k.id=xr.kafedra_id
+            LEFT JOIN universitet_yonalishlari y ON y.id=xr.yonalish_id
+            LEFT JOIN universitet_xodim_profili xp ON xp.xodim_rol_id=xr.id
+            WHERE xr.universitet_id=%s AND xr.faol=TRUE AND (
+                 xr.rol IN ('rektor','prorektor')
+              OR (xr.rol IN ('dekan','zam_dekan','manaviyatchi','fakultet_admin')
+                  AND xr.fakultet_id=%s)
+              OR (xr.rol='kafedra_mudiri' AND xr.kafedra_id=ANY(%s))
+              OR (xr.rol='professor_oqituvchi' AND (
+                    xr.yonalish_id=ANY(%s)
+                 OR (xr.yonalish_id IS NULL AND xr.kafedra_id=ANY(%s))
+                 OR (xr.yonalish_id IS NULL AND xr.kafedra_id IS NULL AND xr.fakultet_id=%s)))
+              OR (xr.rol='tyutor' AND (
+                    xr.yonalish_id=ANY(%s)
+                 OR (xr.yonalish_id IS NULL AND xr.fakultet_id=%s)
+                 OR EXISTS(SELECT 1 FROM universitet_tyutor_yonalishlari ty
+                     WHERE ty.universitet_id=xr.universitet_id
+                       AND ty.tyutor_user_id=xr.user_id AND ty.faol=TRUE
+                       AND (ty.fakultet_id IS NULL OR ty.fakultet_id=%s)
+                       AND (ty.yonalish_id IS NULL OR ty.yonalish_id=ANY(%s)))))
+            )
+            ORDER BY xr.id,u.full_name""",
+            (universitet_id, program["fakultet_id"], department_ids,
+             sorted(program_ids), department_ids, program["fakultet_id"],
+             sorted(program_ids), program["fakultet_id"], program["fakultet_id"], sorted(program_ids)))
+        category_for_role = {
+            "rektor": "institut_rahbariyati", "prorektor": "institut_rahbariyati",
+            "dekan": "fakultet_rahbariyati", "zam_dekan": "fakultet_rahbariyati",
+            "manaviyatchi": "fakultet_rahbariyati", "fakultet_admin": "fakultet_rahbariyati",
+            "kafedra_mudiri": "kafedra_rahbariyati",
+            "professor_oqituvchi": "oqituvchilar", "tyutor": "tyutorlar",
+        }
+        groups = {key: [] for key in (
+            "institut_rahbariyati", "fakultet_rahbariyati", "kafedra_rahbariyati",
+            "oqituvchilar", "tyutorlar",
+        )}
+        staff = []
+        for raw in cur.fetchall():
+            item = dict(raw)
+            item["fish"] = item.pop("full_name")
+            item["lavozim_nomi"] = ROLE_LABELS.get(item["rol"], item["rol"])
+            item["guruh"] = category_for_role.get(item["rol"], "oqituvchilar")
+            groups[item["guruh"]].append(item); staff.append(item)
+        for items in groups.values():
+            items.sort(key=lambda item: (_key(item["lavozim_nomi"]), _key(item["fish"])))
+        program_payload = dict(program); program_payload["alias_ids"] = sorted(program_ids)
+        return {"yonalish": program_payload, "guruhlar": groups, "xodimlar": staff,
+                "jami": len(staff)}
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/qidiruv/odamlar")
+def global_people_search(universitet_id: int, q: str = "", limit: int = 20,
+                         token: Optional[str] = Query(None, include_in_schema=False),
+                         authorization: Optional[str] = Header(None)):
+    """Institut bo'ylab ism/ID bo'yicha xodim va talabani ruxsat doirasida topadi."""
+    actor = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, actor, universitet_id)
+        names = _role_names(roles)
+        if not (names & PRIVATE_ROLES):
+            raise HTTPException(status_code=403, detail="Odamlar qidiruviga ruxsat yo'q")
+        query = _norm(q)
+        if len(query) < 2:
+            return {"q": query, "natijalar": [], "jami": 0, "minimal_belgi": 2}
+        limit = max(5, min(50, limit)); term = f"%{query}%"
+        results: list[dict[str, Any]] = []
+
+        staff_where = ["xr.universitet_id=%s", "xr.faol=TRUE"]
+        staff_params: list[Any] = [universitet_id]
+        if not (names & INSTITUTE_WIDE):
+            faculty_id_set = {int(r["fakultet_id"]) for r in roles if r.get("fakultet_id")}
+            department_id_set = {int(r["kafedra_id"]) for r in roles if r.get("kafedra_id")}
+            program_id_set = {int(r["yonalish_id"]) for r in roles if r.get("yonalish_id")}
+            if "tyutor" in names:
+                cur.execute("""SELECT COALESCE(ty.fakultet_id,y.fakultet_id) fakultet_id,
+                           y.kafedra_id,ty.yonalish_id
+                    FROM universitet_tyutor_yonalishlari ty
+                    LEFT JOIN universitet_yonalishlari y ON y.id=ty.yonalish_id
+                    WHERE ty.universitet_id=%s AND ty.tyutor_user_id=%s AND ty.faol=TRUE""",
+                    (universitet_id, actor))
+                for assignment in cur.fetchall():
+                    if assignment.get("fakultet_id"): faculty_id_set.add(int(assignment["fakultet_id"]))
+                    if assignment.get("kafedra_id"): department_id_set.add(int(assignment["kafedra_id"]))
+                    if assignment.get("yonalish_id"): program_id_set.add(int(assignment["yonalish_id"]))
+            faculty_ids = sorted(faculty_id_set)
+            department_ids = sorted(department_id_set)
+            program_ids = sorted(program_id_set)
+            staff_scope = ["xr.user_id=%s"]; staff_scope_params: list[Any] = [actor]
+            if faculty_ids:
+                staff_scope.append("xr.fakultet_id=ANY(%s)"); staff_scope_params.append(faculty_ids)
+            if department_ids:
+                staff_scope.append("xr.kafedra_id=ANY(%s)"); staff_scope_params.append(department_ids)
+            if program_ids:
+                staff_scope.append("xr.yonalish_id=ANY(%s)"); staff_scope_params.append(program_ids)
+            staff_where.append("(" + " OR ".join(staff_scope) + ")")
+            staff_params.extend(staff_scope_params)
+        staff_where.append("u.full_name ILIKE %s"); staff_params.append(term)
+        cur.execute(f"""SELECT xr.id,xr.user_id,xr.rol,u.full_name,
+                   f.nomi fakultet_nomi,k.nomi kafedra_nomi,y.nomi yonalish_nomi
+            FROM universitet_xodim_rollari xr JOIN users u ON u.user_id=xr.user_id
+            LEFT JOIN fakultetlar f ON f.id=xr.fakultet_id
+            LEFT JOIN kafedralar k ON k.id=xr.kafedra_id
+            LEFT JOIN universitet_yonalishlari y ON y.id=xr.yonalish_id
+            WHERE {' AND '.join(staff_where)}
+            ORDER BY u.full_name LIMIT %s""", staff_params + [limit])
+        for raw in cur.fetchall():
+            item = dict(raw)
+            item.update({"turi": "xodim", "fish": item.pop("full_name"),
+                         "lavozim_nomi": ROLE_LABELS.get(item["rol"], item["rol"])})
+            results.append(item)
+
+        student_scope_sql, student_scope_params = _student_scope_clause(
+            cur, universitet_id, actor, roles
+        )
+        student_search = """(qt.familiya ILIKE %s OR qt.ism ILIKE %s
+            OR qt.ota_ism ILIKE %s OR CONCAT_WS(' ',qt.familiya,qt.ism,qt.ota_ism) ILIKE %s
+            OR qt.abitur_id ILIKE %s)"""
+        cur.execute(f"""SELECT qt.id,qt.abitur_id,qt.familiya,qt.ism,qt.ota_ism,
+                   qt.talim_shakli,qt.talim_tili,y.id yonalish_id,y.nomi yonalish_nomi,
+                   f.id fakultet_id,f.nomi fakultet_nomi
+            FROM universitet_qabul_talabalari qt
+            JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            WHERE qt.universitet_id=%s AND {student_scope_sql} AND {student_search}
+            ORDER BY qt.familiya,qt.ism LIMIT %s""",
+            [universitet_id, *student_scope_params, term, term, term, term, term, limit])
+        for raw in cur.fetchall():
+            item = dict(raw)
+            item["fish"] = " ".join(value for value in (
+                item.pop("familiya"), item.pop("ism"), item.pop("ota_ism")
+            ) if value)
+            item["turi"] = "talaba"; results.append(item)
+        results.sort(key=lambda item: (_key(item["fish"]), item["turi"]))
+        results = results[:limit]
+        return {"q": query, "natijalar": results, "jami": len(results),
+                "chegara": limit}
     finally:
         cur.close(); conn.close()
 
@@ -1824,11 +2436,17 @@ def staff_invite_code(role_id: int, req: InstituteToken):
         roles = _require_member(cur, actor, row["universitet_id"])
         if not _has_any(roles, MANAGE_STAFF_ROLES):
             raise HTTPException(status_code=403, detail="Kirish kodini boshqarish huquqi yo'q")
+        if row["user_id"] is None or int(row["user_id"]) >= 0:
+            raise HTTPException(
+                status_code=409,
+                detail="Xodim haqiqiy akkauntga ulangan; unga yangi kirish kodi yaratib yoki ko'rsatib bo'lmaydi",
+            )
         cur.execute("""SELECT tk.kod_shifr FROM universitet_taklif_kodlari tk
             JOIN xodim_kod xk ON xk.kod=tk.kod_hash
             WHERE tk.xodim_rol_id=%s AND xk.ishlatildi=FALSE
+              AND tk.placeholder_user_id=%s
               AND xk.yaratildi>NOW()-INTERVAL '2 months'
-            ORDER BY tk.id DESC LIMIT 1""", (role_id,))
+            ORDER BY tk.id DESC LIMIT 1""", (role_id, row["user_id"]))
         found = cur.fetchone(); code = _open_invite_code(found["kod_shifr"]) if found else None
         if not code:
             _, _, code = _new_placeholder(cur, row["full_name"], row["universitet_id"], row["rol"], None,
@@ -2175,6 +2793,7 @@ def admission_commit(req: BatchCommit):
 def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[int] = None, yonalish_id: Optional[int] = None,
                        yonalish_ids: Optional[str] = None,
                        bosqich: Optional[int] = None, bosqich_min: Optional[int] = None,
+                       holat: str = "all",
                        talim_shakli: Optional[str] = None, talim_tili: Optional[str] = None,
                        region: Optional[str] = None, qabul_turi: Optional[str] = None,
                        sort: str = "ball_desc", page: int = 1, page_size: int = 50,
@@ -2191,16 +2810,38 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         # vaqtinchalik UI filtrlari bu kontekstni o'zgartirmaydi.
         context_where = ["qt.universitet_id=%s", scope_sql]
         context_params: list[Any] = [universitet_id, *scope_params]
+        site_entered_sql = "(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR (qt.user_id IS NOT NULL AND qt.user_id>=0))"
+        status_aliases = {
+            "all": "all", "barchasi": "all", "jami": "all",
+            "hujjat": "hujjat", "hujjattopshirgan": "hujjat",
+            "baza": "baza", "bazagakiritilgan": "baza",
+            "saytgakirmagan": "saytga_kirmagan",
+            "saytgakirgan": "saytga_kirgan",
+        }
+        selected_status = status_aliases.get(_key(holat or "all"))
+        if selected_status is None:
+            raise HTTPException(
+                status_code=400,
+                detail="Holat all, hujjat, baza, saytga_kirmagan yoki saytga_kirgan bo'lishi kerak",
+            )
+        if selected_status == "hujjat":
+            where.append("qt.hujjat_topshirgan_at IS NOT NULL")
+        elif selected_status == "baza":
+            where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
+        elif selected_status == "saytga_kirmagan":
+            where.append(f"NOT {site_entered_sql}")
+        elif selected_status == "saytga_kirgan":
+            where.append(site_entered_sql)
         if bosqich is not None:
             if bosqich not in (1, 2, 3, 4): raise HTTPException(status_code=400, detail="Bosqich 1–4 oralig'ida bo'lishi kerak")
             if bosqich == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
             if bosqich == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
-            if bosqich == 4: where.append("(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
+            if bosqich == 4: where.append(site_entered_sql)
         elif bosqich_min is not None:
             requested_stage = max(1, min(4, bosqich_min))
             if requested_stage == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
             if requested_stage == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
-            if requested_stage == 4: where.append("(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
+            if requested_stage == 4: where.append(site_entered_sql)
         if fakultet_id:
             where.append("y.fakultet_id=%s"); params.append(fakultet_id)
             context_where.append("y.fakultet_id=%s"); context_params.append(fakultet_id)
@@ -2242,8 +2883,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             qt.bazaga_kiritilgan_at,qt.birinchi_kirish_at,qt.telefon,y.id yonalish_id,y.nomi yonalish_nomi,
             (qt.hujjat_topshirgan_at IS NOT NULL) hujjat_topshirgan,
             (qt.bazaga_kiritilgan_at IS NOT NULL) bazaga_kiritilgan,
-            (qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 OR xk.ishlatildi) saytga_kirgan,
-            CASE WHEN qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 OR xk.ishlatildi THEN 'saytga_kirgan'
+            {site_entered_sql} saytga_kirgan,
+            CASE WHEN {site_entered_sql} THEN 'saytga_kirgan'
                  WHEN tk.kod_hash IS NOT NULL THEN 'kirish_kodi_tayyor'
                  ELSE 'bazaga_kiritilmagan' END sayt_holati
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
@@ -2264,7 +2905,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         cur.execute(f"""SELECT COUNT(*) jami,
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL) hujjat,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) baza,
-            COUNT(*) FILTER(WHERE qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) sayt
+            COUNT(*) FILTER(WHERE {site_entered_sql}) sayt,
+            COUNT(*) FILTER(WHERE NOT {site_entered_sql}) saytga_kirmagan
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
             WHERE {context_clause}""", context_params)
         counts = cur.fetchone()
@@ -2274,10 +2916,14 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.doimiy_region ORDER BY qt.doimiy_region),NULL) hududlar
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
             WHERE {context_clause}""", context_params)
-        filter_options = cur.fetchone()
-        safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0), "sayt": int(counts["sayt"] or 0)} if tutor_only else counts
+        filter_options = dict(cur.fetchone())
+        filter_options["qabul_turlari"] = ["grant", "kontrakt"]
+        safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0),
+                       "sayt": int(counts["sayt"] or 0),
+                       "saytga_kirmagan": int(counts["saytga_kirmagan"] or 0)} if tutor_only else counts
         return {"talabalar": rows, "jami": total, "sahifa": page, "sahifa_soni": math.ceil(total/page_size) if total else 0,
-                "hisoblar": safe_counts, "filtrlar": filter_options, "tyutor_rejimi": tutor_only}
+                "hisoblar": safe_counts, "filtrlar": filter_options, "holat": selected_status,
+                "tyutor_rejimi": tutor_only}
     finally:
         cur.close(); conn.close()
 
@@ -2357,8 +3003,10 @@ def admission_detail(student_id: int, universitet_id: int, token: Optional[str] 
         cur.execute("""SELECT qt.*,y.nomi yonalish_nomi,y.fakultet_id,f.nomi fakultet_nomi,k.nomi kafedra_nomi,
             (qt.hujjat_topshirgan_at IS NOT NULL) hujjat_topshirgan,
             (qt.bazaga_kiritilgan_at IS NOT NULL) bazaga_kiritilgan,
-            (qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) saytga_kirgan,
-            CASE WHEN qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0 THEN 'saytga_kirgan'
+            (qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR
+             (qt.user_id IS NOT NULL AND qt.user_id>=0)) saytga_kirgan,
+            CASE WHEN qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR
+                           (qt.user_id IS NOT NULL AND qt.user_id>=0) THEN 'saytga_kirgan'
                  WHEN qt.user_id<0 THEN 'kirish_kodi_tayyor'
                  ELSE 'bazaga_kiritilmagan' END sayt_holati
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
@@ -2371,7 +3019,14 @@ def admission_detail(student_id: int, universitet_id: int, token: Optional[str] 
         conn.commit(); result = dict(row); result["fish"] = " ".join(x for x in [row["familiya"],row["ism"],row["ota_ism"]] if x)
         names = _role_names(roles)
         if "tyutor" in names and not (names & MARK_DOCUMENT_ROLES):
-            for hidden in ("qabul_bosqichi", "hujjat_topshirgan_at", "bazaga_kiritilgan_at", "saytga_kiritilgan_at", "birinchi_kirish_at", "user_id"):
+            result["telefon_mask"] = _mask_phone(result.get("telefon"))
+            for hidden in (
+                "jshshir", "jshshir_hash", "tugilgan_sana", "pasport_seriya", "pasport_raqam",
+                "telefon", "telegram_username", "max_username", "doimiy_region", "doimiy_tuman",
+                "maktab_region", "maktab_tuman", "maktab_turi", "maktab_nomi", "attestat",
+                "import_batch_id", "qabul_bosqichi", "hujjat_topshirgan_at",
+                "bazaga_kiritilgan_at", "saytga_kiritilgan_at", "birinchi_kirish_at", "user_id",
+            ):
                 result.pop(hidden, None)
             result.pop("hujjat_topshirgan", None)
         return result
@@ -2492,8 +3147,6 @@ def redeem_code(req: RedeemCode):
         cur.execute("SELECT universitet_id FROM users WHERE user_id=%s FOR UPDATE", (user_id,))
         account = cur.fetchone()
         if not account: raise HTTPException(status_code=404, detail="Foydalanuvchi akkaunti topilmadi")
-        if account["universitet_id"] is not None and int(account["universitet_id"]) != int(invite["universitet_id"]):
-            raise HTTPException(status_code=409, detail="Bu akkaunt boshqa institutga biriktirilgan")
         if invite["xodim_rol_id"]:
             cur.execute("UPDATE universitet_xodim_rollari SET user_id=%s WHERE id=%s", (user_id, invite["xodim_rol_id"]))
         if invite["qabul_talaba_id"]:
@@ -2503,7 +3156,11 @@ def redeem_code(req: RedeemCode):
                 yangilangan_at=NOW() WHERE id=%s""", (user_id, invite["qabul_talaba_id"]))
         p._telefon_jadvallari(cur)
         cur.execute("UPDATE telefon_hisob SET user_id=%s WHERE user_id=%s", (user_id, placeholder))
-        cur.execute("UPDATE users SET universitet_id=%s,lavozim=COALESCE(lavozim,%s) WHERE user_id=%s", (invite["universitet_id"], "talaba" if invite["turi"] == "talaba" else "institut_xodimi", user_id))
+        cur.execute("""UPDATE users SET
+            universitet_id=COALESCE(universitet_id,%s),
+            lavozim=COALESCE(lavozim,%s)
+            WHERE user_id=%s""",
+            (invite["universitet_id"], "talaba" if invite["turi"] == "talaba" else "institut_xodimi", user_id))
         cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s", (invite["kod_hash"],))
         cur.execute("UPDATE universitet_taklif_kodlari SET ishlatildi_at=NOW(),kod_shifr=NULL WHERE id=%s", (invite["id"],))
         _audit(cur, invite["universitet_id"], user_id, "kirish_kodi_qabul", invite["turi"], invite["qabul_talaba_id"] or invite["xodim_rol_id"])
@@ -2627,7 +3284,7 @@ def student_directory(universitet_id: int, token: Optional[str] = Query(None, in
             FROM universitet_yonalishlari y JOIN fakultetlar f ON f.id=y.fakultet_id JOIN kafedralar k ON k.id=y.kafedra_id WHERE y.id=%s""", (program_id,)); program = cur.fetchone()
         cur.execute("""SELECT qt.id,qt.familiya,qt.ism,qt.ota_ism FROM universitet_qabul_talabalari qt
             WHERE qt.universitet_id=%s AND qt.yonalish_id=%s
-              AND (qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)
+              AND (qt.birinchi_kirish_at IS NOT NULL OR (qt.user_id IS NOT NULL AND qt.user_id>=0))
             ORDER BY qt.familiya,qt.ism""", (universitet_id, program_id))
         students = [{"id": r["id"], "fish": " ".join(x for x in [r["familiya"],r["ism"],r["ota_ism"]] if x)} for r in cur.fetchall()]
         cur.execute("""SELECT DISTINCT xr.rol,u.full_name FROM universitet_xodim_rollari xr JOIN users u ON u.user_id=xr.user_id
