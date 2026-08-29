@@ -1417,12 +1417,36 @@ def _v1852_shift_slots(row: dict) -> list[dict]:
     return result
 
 
-def _v1852_default_shifts(cur, maktab_id: int):
+def _v1852_default_shifts(cur, maktab_id: int, shift_count=None):
+    """Maktab e'lon qilgan smenalar uchungina standart vaqtlarni yaratadi.
+
+    ``shift_count`` berilmagan eski chaqiruvlar maktabning ``smena_soni``
+    qiymatini bazadan oladi. Avval yaratilgan ortiqcha smena qatorlari ataylab
+    o'chirilmaydi: tarixiy sozlamani yo'qotmasdan, faqat yangi noto'g'ri qator
+    qo'shilishining oldi olinadi.
+    """
+    if shift_count is None:
+        cur.execute(
+            "SELECT COALESCE(smena_soni,1) AS smena_soni FROM maktablar WHERE id=%s",
+            (maktab_id,),
+        )
+        school_row = cur.fetchone()
+        if isinstance(school_row, dict):
+            shift_count = school_row.get("smena_soni")
+        elif school_row:
+            shift_count = school_row[0]
+    try:
+        shift_count = int(shift_count or 1)
+    except (TypeError, ValueError):
+        shift_count = 1
+    if shift_count not in (1, 2):
+        shift_count = 1
+
     defaults = [
         (1, 7, "08:00", 45, 5, 3, 15),
         (2, 7, "13:30", 45, 5, 3, 15),
     ]
-    for smena, dars_soni, start, lesson, pause, big_after, big_pause in defaults:
+    for smena, dars_soni, start, lesson, pause, big_after, big_pause in defaults[:shift_count]:
         cur.execute("""INSERT INTO aqlli_smena_sozlamalari_v2(
             maktab_id,smena,dars_soni,boshlanish_vaqti,dars_daqiqa,tanaffus_daqiqa,
             katta_tanaffus_darsdan_keyin,katta_tanaffus_daqiqa)
@@ -17319,6 +17343,14 @@ def _v1852_candidate_reasons(
 # xonasining ikki sinfga berilmaganini transactiondan oldin qayta tekshiradi.
 # ═══════════════════════════════════════════════════════════════════════════
 
+SAMTM_SCHOOL_CREATION_PATCH = "v20.9-contract-b-f-safe"
+
+_V209_MEMBER_ROLE_ORDER = {
+    "sinf_rahbari": 1,
+    "psixolog": 2,
+    "direktor": 3,
+}
+
 
 class V209SchoolCreationRoom(BaseModel):
     number: str
@@ -17369,6 +17401,33 @@ def _v209_model_dict(value):
 
 def _v209_clean_text(value, maximum=160):
     return re.sub(r"\s+", " ", str(value or "")).strip()[:maximum]
+
+
+def _v209_creation_signature(actor_id, school_name, school_number, region, district):
+    """Double-click qulfi uchun ajralishi aniq, maktab raqamli imzo."""
+    parts = [
+        str(int(actor_id)),
+        _v209_clean_text(school_name, 200).casefold(),
+        _v209_clean_text(school_number, 40).casefold(),
+        _v209_clean_text(region, 120).casefold(),
+        _v209_clean_text(district, 120).casefold(),
+    ]
+    return "|".join(f"{len(part)}:{part}" for part in parts)
+
+
+def _v209_keep_highest_member_role(member_roles, user_id, role):
+    """Bir foydalanuvchining maktabdagi eng yuqori vakolatini saqlaydi."""
+    if user_id is None:
+        return
+    if role not in _V209_MEMBER_ROLE_ORDER:
+        raise ValueError(f"Noma'lum maktab roli: {role}")
+    user_id = int(user_id)
+    current = member_roles.get(user_id)
+    if (
+        current is None
+        or _V209_MEMBER_ROLE_ORDER[role] > _V209_MEMBER_ROLE_ORDER[current]
+    ):
+        member_roles[user_id] = role
 
 
 def _v209_normalize_class_name(value):
@@ -17454,6 +17513,7 @@ def _v209_normalize_buildings(raw_buildings):
     buildings = []
     key_seen = set()
     name_seen = set()
+    catalog_seen = {}
     rooms = {}
     for source in raw_buildings or []:
         item = _v209_model_dict(source)
@@ -17476,9 +17536,16 @@ def _v209_normalize_buildings(raw_buildings):
         if floors not in range(1, 21):
             raise ValueError(f"{name} qavat soni 1–20 oralig‘ida bo‘lishi kerak.")
 
+        room_sources = item.get("rooms") or []
+        if not room_sources:
+            raise ValueError(
+                f"{name} binosida kamida bitta xona bo‘lishi kerak. "
+                "Aks holda bino va xonalarni keyin kiritishni tanlang."
+            )
+
         building_rooms = []
         local_seen = set()
-        for room_source in item.get("rooms") or []:
+        for room_source in room_sources:
             room = _v209_model_dict(room_source)
             number = _v209_clean_text(room.get("number"), 100)
             if not number:
@@ -17510,6 +17577,19 @@ def _v209_normalize_buildings(raw_buildings):
                 room_type = {"maxsus": "reserve"}.get(room_type, room_type)
             else:
                 raise ValueError(f"{name} / {number}: xona turi noto‘g‘ri.")
+            catalog_name = f"{name} {number}"
+            catalog_norm = catalog_name.casefold()
+            previous_room = catalog_seen.get(catalog_norm)
+            if previous_room is not None:
+                raise ValueError(
+                    "Xona katalog nomi to‘qnashdi: "
+                    f"{previous_room['building']} / {previous_room['number']} va "
+                    f"{name} / {number}. Bino yoki xona nomini aniqlashtiring."
+                )
+            catalog_seen[catalog_norm] = {
+                "building": name,
+                "number": number,
+            }
             normalized_room = {
                 "number": number,
                 "number_norm": number_norm,
@@ -17518,7 +17598,7 @@ def _v209_normalize_buildings(raw_buildings):
                 "darsga_yaroqli": teaching,
                 # Eski generator aynan `bino + xona` matnini katalogdan
                 # qidiradi. Shu nom ikki binodagi bir xil 101 ni ajratadi.
-                "catalog_name": f"{name} {number}",
+                "catalog_name": catalog_name,
                 "building_key_norm": key_norm,
             }
             building_rooms.append(normalized_room)
@@ -17698,16 +17778,19 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
         _v209_require_known_users(cur, selected_users)
         # Bitta adminning tasodifiy double-clicki ikki aynan teng maktab
         # yaratmasin. Advisory lock transaction oxirigacha shu imzoni yopadi.
-        creation_signature = f"{int(actor_id)}|{school_name.casefold()}|{region.casefold()}|{district.casefold()}"
+        creation_signature = _v209_creation_signature(
+            actor_id, school_name, school_number, region, district
+        )
         cur.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", (creation_signature,))
         cur.execute(
             """SELECT id FROM maktablar
                 WHERE lower(trim(nomi))=lower(trim(%s))
+                  AND lower(trim(COALESCE(maktab_raqami,'')))=lower(trim(%s))
                   AND lower(trim(COALESCE(viloyat,'')))=lower(trim(%s))
                   AND lower(trim(COALESCE(tuman,'')))=lower(trim(%s))
                   AND yaratilgan_at >= NOW() - INTERVAL '2 minutes'
                 ORDER BY id DESC LIMIT 1""",
-            (school_name, region, district),
+            (school_name, school_number or "", region, district),
         )
         if cur.fetchone():
             raise HTTPException(
@@ -17795,10 +17878,12 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
                 ),
             )
             class_id = int(cur.fetchone()["id"])
-            if row.get("leader_user_id") is not None:
-                member_roles[int(row["leader_user_id"])] = "sinf_rahbari"
-            if row.get("psychologist_user_id") is not None:
-                member_roles[int(row["psychologist_user_id"])] = "psixolog"
+            _v209_keep_highest_member_role(
+                member_roles, row.get("leader_user_id"), "sinf_rahbari"
+            )
+            _v209_keep_highest_member_role(
+                member_roles, row.get("psychologist_user_id"), "psixolog"
+            )
             class_payload.append({
                 "id": class_id,
                 "name": row["name"],
@@ -17809,15 +17894,16 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
                 "xona": room_number,
             })
 
-        if sorov.director_user_id is not None:
-            member_roles[int(sorov.director_user_id)] = "direktor"
-        role_order = {"sinf_rahbari": 1, "psixolog": 2, "direktor": 3}
+        _v209_keep_highest_member_role(
+            member_roles, sorov.director_user_id, "direktor"
+        )
         for user_id, role in sorted(
-            member_roles.items(), key=lambda pair: role_order[pair[1]]
+            member_roles.items(),
+            key=lambda pair: _V209_MEMBER_ROLE_ORDER[pair[1]],
         ):
             _v209_attach_school_member(cur, user_id, school_id, role)
 
-        _v1852_default_shifts(cur, school_id)
+        _v1852_default_shifts(cur, school_id, int(sorov.shift_count))
         conn.commit()
         school = {
             "id": school_id,
