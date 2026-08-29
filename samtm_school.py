@@ -51,7 +51,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V1"
+SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.3-PRIMARY-METHOD-1-2H-REPORT"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -2845,6 +2845,35 @@ def _v1852_job_teacher_ids(job):
     return result
 
 
+_V213_CORE_PERIOD6_LIMIT = 2
+_V213_CORE_PERIOD6_REASON = (
+    "asosiy og'ir fan 6-darsga haftada ko'pi bilan 2 kun qo'yiladi"
+)
+
+
+def _v213_candidate_sort_key(job, row, context):
+    """Asosiy fanlarning 6-darsini har qanday 1–5 variantdan keyin qo'yadi."""
+    profile = _v196_rotation_profile(job, context)
+    return (
+        1 if profile.get("core_priority") and int(row[2]) == 6 else 0,
+        float(row[0]),
+    )
+
+
+def _v213_candidate_window(job, rows, context, width):
+    """Chegaralangan repair oynasida eng yaxshi 6-dars fallbackni saqlaydi."""
+    ordered = list(rows or [])
+    selected = ordered[:max(0, int(width or 0))]
+    if not _v196_rotation_profile(job, context).get("core_priority"):
+        return selected
+    if any(int(row[2]) == 6 for row in selected):
+        return selected
+    fallback = next((row for row in ordered if int(row[2]) == 6), None)
+    if fallback is not None:
+        selected.append(fallback)
+    return selected
+
+
 _V201_UNPLACED_REASON_TEXT = {
     "parallel guruhlar uchun umumiy vaqt topilmadi": (
         "Bu fan 1-/2-guruh yoki o'g'il/qiz guruhida bir vaqtda o'tishi kerak. Sinf va barcha guruh o'qituvchilari bir paytda bo'sh bo'lgan katak topilmadi.",
@@ -2890,6 +2919,10 @@ _V201_UNPLACED_REASON_TEXT = {
         "Faqat 1-dars bo'sh qolgan, lekin Jismoniy tarbiya/Texnologiya 1-darsga qo'yilmaydi.",
         "3–6-darslardan joy oching yoki boshqa fanlarni xavfsiz almashtiring.",
     ),
+    _V213_CORE_PERIOD6_REASON: (
+        "Matematika, algebra, geometriya, ona tili, adabiyot, fizika, kimyo yoki biologiya kabi asosiy fanlar bu sinfda haftaning ikki kunida 6-darsga tushib bo'lgan.",
+        "O'qituvchining 1–5-darsdagi qizil/band vaqtini kamaytiring yoki sinfning avvalgi darslaridan xavfsiz katak oching; 6-darsdagi ikki kunlik chegara oshirilmaydi.",
+    ),
     "xona band": (
         "Fan uchun tanlangan xona mos vaqtda boshqa dars bilan band bo'lgan.",
         "Xonani almashtiring; guruh xonasi bo'lmasa 'Xona yo'q' bilan yaratish mumkin.",
@@ -2930,16 +2963,16 @@ _V205_SCHEDULE_RULES = [
     "KELAJAK SOATI tanlangan kun va dars raqamiga qat'iy joylashtiriladi; boshqa vaqtga surilmaydi.",
     "Sinf faqat o'z smenasida va shu smena uchun yaratilgan mavjud dars raqamlariga joylashtiriladi.",
     "Sinfning qizil/yopiq kuni va 1–4-sinf uchun Shanba taqiqi buzilmaydi.",
-    "Fan bir kunda belgilangan kunlik maksimumdan oshmaydi; favqulodda takror faqat alohida zaxira qoidasi bilan ishlaydi.",
+    "Fan odatda bir kunda bir marta qo'yiladi; metod/qizil kunlar sabab umumiy kun yetmasa, to'liq jadval uchun bir kunda ko'pi bilan 2 marta va haftada ko'pi bilan 2 kunda nazoratli takror ishlaydi hamda ogohlantirish chiqaradi.",
     "1–4-sinfda 6-dars qo'yilmaydi; boshlang'ich sinfning akademik va yengil fan limitlari saqlanadi.",
     "O'qituvchining eng erta–eng kech darsi, kunlik maksimumi va haftalik yuklama chegarasi tekshiriladi.",
     "Bir xona bir vaqtda ikki darsga berilmaydi; xona yozilmagan bo'lsa dars 'Xona yo'q' bilan yaratilishi mumkin.",
     "Sinf jadvalida kun boshidan yoki darslar orasida bo'sh okno qoldirilmaydi.",
     "Sinfning kunlik yuklamasi imkon qadar barqaror taqsimlanadi; keskin 3/5/6 kabi notekis kun saqlanmaydi.",
-    "Asosiy og'ir fanlar ertaroq, jismoniy tarbiya va texnologiya 3–6-darslarga ustuvor joylashtiriladi.",
+    "Matematika, algebra, geometriya, ona tili, adabiyot, fizika, kimyo va biologiya kabi asosiy fanlar 1–5-darslarga ustuvor joylashtiriladi; boshqa legal katak qolmasa 6-dars ishlatiladi, lekin bir sinfda haftasiga ko'pi bilan 2 kun.",
     "Jismoniy tarbiya va texnologiya 1-darsga qo'yilmaydi; zarur bo'lsa haftada bir marta yonma-yon juft dars bo'lishi mumkin.",
     "Metod kunidan tashqari ish kataklarining 20 foizidan ko'pi qizil/yopiq bo'lgan o'qituvchilar avval joylashtiriladi; oddiy darslari faqat qolgan yashil kataklarga ixcham va oknosiz yig'iladi.",
-    "Ikki smenada ishlaydigan o'qituvchining real vaqt oralig'i tekshiriladi; uzoq kutish keskin jazolanadi.",
+    "Ikki smenada ishlaydigan o'qituvchining real vaqt ustma-ustligi qat'iy taqiqlanadi; uzoq kutish keskin jazolanadigan qulaylik mezoni bo'lib, to'liq xavfsiz jadvalni bekor qilmaydi.",
     "Barcha qat'iy darslar sig'masa yarim jadval saqlanmaydi; aniq sig'magan dars va uni to'sgan barcha qoidalar qaytariladi.",
 ]
 
@@ -2956,7 +2989,11 @@ def _v205_unplaced_failure_detail(
             raw_reasons.items(), key=lambda pair: (-int(pair[1] or 0), str(pair[0]))
         )
         reason_rows = []
-        for reason, count in ordered_reasons:
+        # Oldingi UI barcha 6–11 sababni bir xil vaznda ko'rsatib, turli
+        # kataklarda uchragan simptomlarni bitta qarama-qarshilikdek talqin
+        # qilardi. Foydalanuvchiga eng ko'p katakni yopgan to'rtta sababni va
+        # ularning real chastotasini beramiz; to'liq ledger backendda qoladi.
+        for reason, count in ordered_reasons[:4]:
             explanation, solution = _v201_unplaced_reason_copy(reason)
             reason_rows.append({
                 "sabab": str(reason), "rad_etilgan_katak_soni": int(count or 0),
@@ -2977,15 +3014,16 @@ def _v205_unplaced_failure_detail(
             ),
             "oqituvchilar": [row.get("full_name") for row in teacher_rows if row.get("full_name")],
             "sabablar": reason_rows,
+            "tekshirilgan_sabablar_soni": len(ordered_reasons),
         })
     first = problems[0] if problems else {}
     first_reason = (first.get("sabablar") or [{}])[0].get("sabab", "mos vaqt topilmadi")
     if timed_out:
         code = "HISOBLASH_VAQTI_TUGADI"
         message = (
-            f"Hisoblash vaqti tugaganda {len(problems)} ta dars hali "
-            "joylashtirilmagan edi. Bu jadval matematik jihatdan imkonsiz "
-            "degani emas. Yana yarating yoki server hisoblash vaqtini oshiring. "
+            f"Qidiruv vaqti tugaganda {len(problems)} ta dars hali "
+            "joylashtirilmagan edi. Bu kirilgan qoidalar xato yoki jadval "
+            "imkonsiz degani emas. Qayta yaratish boshqa global tartibni sinaydi. "
         )
     else:
         code = "TOLIQ_VARIANT_TOPILMADI"
@@ -3000,10 +3038,28 @@ def _v205_unplaced_failure_detail(
     )
     return {
         "code": code,
+        "solver_status": "UNKNOWN" if timed_out else "SEARCH_EXHAUSTED",
         "message": message,
         "muammolar": problems,
         "qayta_urinish_mumkin": True,
     }
+
+
+def _v212_hygiene_is_soft(reason):
+    """Gigiyena hisobotidagi pedagogik tavsiya va qattiq xatoni ajratadi.
+
+    Sinf oynasi, Shanba, maksimal dars soni va smena chegarasi qat'iy qoladi.
+    Faqat to'liq jadval uchun zaruratda ishlatilishi mumkin bo'lgan 5-darsdagi
+    og'ir fan hamda 5 akademik darsli kunlar soni ogohlantirish bo'ladi.
+    """
+    normalized = (
+        str(reason or "").casefold()
+        .replace("‘", "'").replace("’", "'").replace("`", "'")
+    )
+    return any(marker in normalized for marker in (
+        "5-darsda og'ir fan",
+        "5 akademik darsli kunlar",
+    ))
 
 
 def _v201_unplaced_teacher_weights(job):
@@ -3128,7 +3184,14 @@ def _v1852_open_candidates(job, state, context, rng, exact=None):
                 else _v1852_candidate_score(job, day, period, teachers, state, context, rng)
             )
             candidates.append((score, day, period, teachers, room_keys))
-    candidates.sort(key=lambda row: row[0])
+    # Asosiy fan (matematika/algebra/geometriya, ona tili/adabiyot hamda
+    # fizika/kimyo/biologiya) uchun 6-dars oddiy tanlov emas, faqat zaxira.
+    # Lexicographic tartib barcha legal 1–5 katakni 6-darsdan oldin ko'radi.
+    # 6-darsni ro'yxatdan o'chirmaymiz: bounded/global repair boshqa darslar
+    # bilan bog'liq boshi berk holatdan chiqish uchun uni fallback qila oladi.
+    candidates.sort(key=lambda row: _v213_candidate_sort_key(
+        job, row, context
+    ))
     return candidates, rejected
 
 
@@ -3161,25 +3224,34 @@ def _v211_bounded_conflict_repair(
         return source_state
 
     started = _samtm_time.monotonic()
-    local_deadline = started + 1.25
+    # Har bir anchor eski kodda 1.25s olardi: 9 ta qoldiqning o'zi 11.25s
+    # bo'lib, 14s umumiy budgetni tugatardi. Kattaroq, lekin qisqa MRV hududi
+    # bir nechta seedga navbat beradi.
+    local_deadline = started + 0.65
     try:
         shared_deadline = float((context or {}).get("v206_deadline") or 0)
     except (TypeError, ValueError):
         shared_deadline = 0.0
     if shared_deadline:
         local_deadline = min(local_deadline, shared_deadline - 0.05)
+    try:
+        attempt_deadline = float((context or {}).get("v212_attempt_deadline") or 0)
+    except (TypeError, ValueError):
+        attempt_deadline = 0.0
+    if attempt_deadline:
+        local_deadline = min(local_deadline, attempt_deadline - 0.03)
     if local_deadline <= started:
         return source_state
 
     # V21.1 qat'iy hisoblash chegaralari. Bu qiymatlar 26 sinf / taxminan
     # 755 slotli maktabda kichik lokal hududni tekshirishga yetadi, lekin
     # butun jadvalni DFS qilib HTTP so'rovini ushlab qolmaydi.
-    max_nodes = 700
-    max_pending = 10
-    max_evictions = 8
-    direct_width = 5
-    target_width = 8
-    blocker_plan_width = 4
+    max_nodes = 1200
+    max_pending = 14
+    max_evictions = 10
+    direct_width = 7
+    target_width = 10
+    blocker_plan_width = 5
 
     initial_count = len(source_state.get("placements", []))
     nodes = 0
@@ -3257,7 +3329,9 @@ def _v211_bounded_conflict_repair(
                     )
                 )
                 rows.append((score, day, period, teachers, room_keys))
-        rows.sort(key=lambda row: row[0])
+        rows.sort(key=lambda row: _v213_candidate_sort_key(
+            job, row, context
+        ))
         return rows
 
     def _intervals_overlap(first, second):
@@ -3316,9 +3390,20 @@ def _v211_bounded_conflict_repair(
                 and placed_shift == shift
                 and placed_period == int(period)
             )
-            teacher_collision = bool(
-                teacher_set.intersection(placed_teachers) and time_overlap
+            teacher_phase_helper = globals().get(
+                "_v212_teacher_phase_collision"
             )
+            if callable(teacher_phase_helper):
+                teacher_collision = bool(
+                    time_overlap
+                    and teacher_phase_helper(
+                        job, teachers, placement
+                    )
+                )
+            else:
+                teacher_collision = bool(
+                    teacher_set.intersection(placed_teachers) and time_overlap
+                )
             phase_room_collision = _room_phases_collide(
                 job, room_keys, placement
             )
@@ -3481,7 +3566,9 @@ def _v211_bounded_conflict_repair(
         rest = [row for row in pending if _job_key(row) != chosen_key]
 
         # Avval hech narsani chiqarmaydigan haqiqiy bo'sh kataklar.
-        for _, day, period, teachers, rooms in candidates[:direct_width]:
+        for _, day, period, teachers, rooms in _v213_candidate_window(
+            chosen_job, candidates, context, direct_width
+        ):
             if _time_finished():
                 return None
             trial = _v1852_rebuild_schedule_state(
@@ -3499,9 +3586,12 @@ def _v211_bounded_conflict_repair(
 
         # Direct variantlarning birinchi tanlovi keyingi blockerlarni berkitsa,
         # DFS bu yerga qaytib boshqa target/eviction kombinatsiyasini ko'radi.
-        for _, day, period, teachers, rooms in _target_rows(
-            chosen_job, current_state
-        )[:target_width]:
+        for _, day, period, teachers, rooms in _v213_candidate_window(
+            chosen_job,
+            _target_rows(chosen_job, current_state),
+            context,
+            target_width,
+        ):
             if _time_finished():
                 return None
             plans = _blocker_plans(
@@ -3570,6 +3660,19 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
             or int(job.get("fixed_period") or 0)
         )
 
+    def _repair_time_finished():
+        """Global va joriy urinish deadline'ini barcha repair yo'llarida tekshiradi."""
+        now = _samtm_time.monotonic()
+        deadlines = []
+        for key in ("v206_deadline", "v212_attempt_deadline"):
+            try:
+                value = float((context or {}).get(key) or 0)
+            except (TypeError, ValueError):
+                value = 0.0
+            if value:
+                deadlines.append(value)
+        return bool(deadlines and now >= min(deadlines) - 0.03)
+
     def _slot_blockers(job, day, period, teachers, room_keys, source_state):
         """Bitta katakka halaqit qilayotgan aniq dars paketlarini qaytaradi.
 
@@ -3595,11 +3698,27 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
             placement_rooms = {
                 value for value in placement.get("room_keys") or [] if value
             }
+            teacher_phase_helper = globals().get(
+                "_v212_teacher_phase_collision"
+            )
+            teacher_collision = (
+                bool(teacher_phase_helper(job, teachers, placement))
+                if callable(teacher_phase_helper)
+                else bool(teacher_set & placement_teachers)
+            )
+            room_phase_helper = globals().get("_v209_phase_room_collision")
+            room_collision = (
+                bool(room_phase_helper(
+                    job, room_keys, placement, context.get("classes", {})
+                ))
+                if callable(room_phase_helper)
+                else bool(room_set & placement_rooms)
+            )
             if (
                 int(placement["job"].get("sinf_id") or 0)
                 == int(job.get("sinf_id") or 0)
-                or bool(teacher_set & placement_teachers)
-                or bool(room_set & placement_rooms)
+                or teacher_collision
+                or room_collision
             ):
                 result.append(placement)
         return result
@@ -3636,7 +3755,9 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
                     )
                 )
                 result.append((score, day, period, teachers, room_keys))
-        result.sort(key=lambda row: row[0])
+        result.sort(key=lambda row: _v213_candidate_sort_key(
+            job, row, context
+        ))
         return result
 
     def _place_with_chain(job, source_state, depth, path):
@@ -3647,6 +3768,8 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
         ko'chirishdayoq to'xtardi. Bu qidiruv uch qatlamgacha xavfsiz yuradi;
         qattiq sinf soati, metod kuni va BAND kataklari hech qachon buzilmaydi.
         """
+        if _repair_time_finished():
+            return None
         direct, _ = _v1852_open_candidates(job, source_state, context, rng)
         if direct:
             _, day, period, teachers, rooms = direct[0]
@@ -3658,9 +3781,14 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
         if depth <= 0:
             return None
 
-        for _, day, period, teachers, rooms in _candidate_targets(
-            job, source_state
-        )[:36]:
+        for _, day, period, teachers, rooms in _v213_candidate_window(
+            job,
+            _candidate_targets(job, source_state),
+            context,
+            36,
+        ):
+            if _repair_time_finished():
+                return None
             blockers = _slot_blockers(
                 job, day, period, teachers, rooms, source_state
             )
@@ -3716,7 +3844,7 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
 
     remaining = list(unplaced)
     for _round in range(3):
-        if not remaining:
+        if not remaining or _repair_time_finished():
             break
         progress = False
         next_remaining = []
@@ -3727,7 +3855,13 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
             ),
             reverse=True,
         )
-        for item in remaining:
+        for item_index, item in enumerate(remaining):
+            if _repair_time_finished():
+                # Deadline paytida hali ko'rilmagan satrlar aynan bir marta va
+                # o'z tartibida qaytadi. Eski identity/membership aralashmasi
+                # ayrim dictlarni qayta tartiblab yoki takrorlab yuborardi.
+                next_remaining.extend(remaining[item_index:])
+                break
             job = item["job"]
             direct, rejected = _v1852_open_candidates(job, state, context, rng)
             if direct:
@@ -3760,10 +3894,14 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
                         job, day, period, teachers, state, context, rng
                     )
                     desired.append((score, day, period, teachers, room_keys))
-            desired.sort(key=lambda row: row[0])
+            desired.sort(key=lambda row: _v213_candidate_sort_key(
+                job, row, context
+            ))
 
             repaired = None
-            for _, day, period, teachers, room_keys in desired[:24]:
+            for _, day, period, teachers, room_keys in _v213_candidate_window(
+                job, desired, context, 24
+            ):
                 teacher_set = {int(x) for x in teachers if x is not None}
                 room_set = {x for x in room_keys if x}
                 blockers = []
@@ -3779,10 +3917,29 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
                         int(x) for x in placement.get("teachers") or [] if x is not None
                     }
                     placement_rooms = {x for x in placement.get("room_keys") or [] if x}
+                    teacher_phase_helper = globals().get(
+                        "_v212_teacher_phase_collision"
+                    )
+                    teacher_collision = (
+                        bool(teacher_phase_helper(job, teachers, placement))
+                        if callable(teacher_phase_helper)
+                        else bool(teacher_set & placement_teachers)
+                    )
+                    room_phase_helper = globals().get(
+                        "_v209_phase_room_collision"
+                    )
+                    room_collision = (
+                        bool(room_phase_helper(
+                            job, room_keys, placement,
+                            context.get("classes", {}),
+                        ))
+                        if callable(room_phase_helper)
+                        else bool(room_set & placement_rooms)
+                    )
                     if (
                         int(placement["job"]["sinf_id"]) == int(job["sinf_id"])
-                        or bool(teacher_set & placement_teachers)
-                        or bool(room_set & placement_rooms)
+                        or teacher_collision
+                        or room_collision
                     ):
                         blockers.append(placement)
                 if not blockers or len(blockers) > 4:
@@ -3829,24 +3986,26 @@ def _v1852_repair_unplaced(state, unplaced, context, rng):
                 state = repaired
                 progress = True
             else:
-                # Parallel guruhlar ko'pincha bitta sinf darsi va ikki
-                # o'qituvchining darsini bir vaqtda siljitishni talab qiladi.
-                # Bitta qatlamli almashtirish yetmasa, zanjirli ta'mirlashni
-                # ishlatamiz. Natijada 1-/2-guruh bir katakda qoladi.
-                chained = _place_with_chain(job, state, 3, {id(job)})
-                if chained is not None:
-                    state = chained
+                # Avval real vaqt, hafta fazasi va bir nechta blockerlarni MRV
+                # bilan birga ko'radigan bounded repair ishlaydi. Eski tartibda
+                # same-period chain qimmat vaqtni yeb, cross-shift blockerga
+                # yetmasdi.
+                bounded = _v211_bounded_conflict_repair(
+                    state, job, context, rng, len(remaining)
+                )
+                if (
+                    bounded is not state
+                    and len(bounded.get("placements", []))
+                    > len(state.get("placements", []))
+                ):
+                    state = bounded
                     progress = True
                 else:
-                    bounded = _v211_bounded_conflict_repair(
-                        state, job, context, rng, len(remaining)
-                    )
-                    if (
-                        bounded is not state
-                        and len(bounded.get("placements", []))
-                        > len(state.get("placements", []))
-                    ):
-                        state = bounded
+                    # Parallel guruhlar ko'pincha bitta sinf darsi va ikki
+                    # o'qituvchining darsini bir vaqtda siljitishni talab qiladi.
+                    chained = _place_with_chain(job, state, 3, {id(job)})
+                    if chained is not None:
+                        state = chained
                         progress = True
                     else:
                         next_remaining.append({
@@ -3945,42 +4104,52 @@ def _v1852_generate_attempt(jobs, context, seed):
     )
     unplaced = []
     total_penalty = 0.0
-    for job in ordered:
-        shift = context["shifts"].get(job["smena"])
-        if not shift:
-            unplaced.append({"job": job, "sabablar": {"smena sozlanmagan": 1}})
+    pending = list(ordered)
+    while pending:
+        # Eski greedy empty_state domenini faqat bir marta hisoblar va keyin
+        # har jobning eng arzon bitta katagini qaytmasdan commit qilardi. Oxirgi
+        # 72 ta darsda domenlar eng tez o'zgaradi; ularni har qadam yangidan
+        # hisoblab MRV (eng kam joriy legal katak) bilan tanlaymiz. Bu 755-job
+        # maktabda to'liq global backtracking narxisiz eng xavfli oxirgi qarorni
+        # globalroq ko'radi.
+        attempt_deadline = float(context.get("v212_attempt_deadline") or 0)
+        use_dynamic_mrv = (
+            len(pending) <= 72
+            and (not attempt_deadline or _samtm_time.monotonic() < attempt_deadline - 1.2)
+        )
+        selected_index = 0
+        selected_candidates = None
+        selected_rejected = None
+        if use_dynamic_mrv:
+            domain_rows = []
+            for index, candidate_job in enumerate(pending):
+                candidates, rejected = _v1852_open_candidates(
+                    candidate_job, state, context, rng
+                )
+                domain_rows.append((
+                    len(candidates),
+                    0 if candidate_job.get("fixed_day") and candidate_job.get("fixed_period") else 1,
+                    -len(_v1852_job_teacher_ids(candidate_job)),
+                    -float(candidate_job.get("difficulty") or 0),
+                    index,
+                    candidates,
+                    rejected,
+                ))
+            domain_rows.sort(key=lambda row: row[:5])
+            _, _, _, _, selected_index, selected_candidates, selected_rejected = domain_rows[0]
+
+        job = pending.pop(selected_index)
+        if selected_candidates is None:
+            selected_candidates, selected_rejected = _v1852_open_candidates(
+                job, state, context, rng
+            )
+        if not selected_candidates:
+            unplaced.append({
+                "job": job,
+                "sabablar": dict(selected_rejected or {"mos bo'sh vaqt topilmadi": 1}),
+            })
             continue
-        candidates = []
-        reject_counter = _v1852_Counter()
-        class_row = context["classes"].get(job["sinf_id"], {})
-        fixed_day = int(job.get("fixed_day") or 0)
-        fixed_period = int(job.get("fixed_period") or 0)
-        days = [fixed_day] if fixed_day else range(1, context["weekdays"] + 1)
-        for day in days:
-            if day not in range(1, context["weekdays"] + 1):
-                reject_counter.update(["belgilangan sinf soati kuni o‘qish haftasidan tashqari"])
-                continue
-            blocked_reason = _v1856_class_day_block_reason(class_row, day, context.get("class_day_blocks", {}))
-            if blocked_reason:
-                reject_counter.update([blocked_reason])
-                continue
-            slots = [slot for slot in shift["slotlar"] if not fixed_period or int(slot["dars_raqami"]) == fixed_period]
-            if fixed_period and not slots:
-                reject_counter.update(["belgilangan sinf soati dars raqami smenada mavjud emas"])
-            for slot in slots:
-                period = int(slot["dars_raqami"])
-                teachers = _v1852_choose_teacher(job, day, period, state, context)
-                room_keys = _v1852_room_keys(job, teachers, context["classes"])
-                reasons = _v1852_candidate_reasons(job, day, period, teachers, room_keys, state, context)
-                if reasons:
-                    reject_counter.update(reasons)
-                    continue
-                score = 0.0 if fixed_day and fixed_period else _v1852_candidate_score(job, day, period, teachers, state, context, rng)
-                candidates.append((score, day, period, teachers, room_keys))
-        if not candidates:
-            unplaced.append({"job": job, "sabablar": dict(reject_counter)})
-            continue
-        score, day, period, teachers, room_keys = min(candidates, key=lambda x: x[0])
+        score, day, period, teachers, room_keys = selected_candidates[0]
         total_penalty += score
         _v1852_place_job(job, day, period, teachers, room_keys, state, context)
     state, unplaced = _v1852_repair_unplaced(state, unplaced, context, rng)
@@ -4137,6 +4306,10 @@ def _v209_integrity_failure_detail(errors):
 class V1852Generate(BaseModel):
     maktab_id: int
     urinishlar_soni: int = 4
+    # Frontend har bosishda yangi nonce yuboradi. Source hash barqaror qoladi,
+    # lekin foydalanuvchining haqiqiy yangi qidiruvi boshqa teng variantlarni
+    # ko'radi. Nonce yubormaydigan eski klient deterministik ishlashda davom etadi.
+    qidiruv_nonce: Optional[int] = None
     # Eski frontendlar yuborishi mumkin. Yagona generator bu qiymatni
     # e'tiborsiz qoldiradi va har doim bir xil kuchli siyosatni ishlatadi.
     generator_rejimi: int = 1
@@ -4222,6 +4395,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "rules": rules, "default_rules": {"kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1, "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12},
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
             "teacher_caps": caps, "class_day_blocks": class_day_blocks,
+            # Actionable hisobotga availability qatorining id/turi kerak.
+            # Generatorning hot-path'i setlardan foydalanishda davom etadi.
+            "availability_rows": [dict(row) for row in availability_rows],
             "v207_requested_mode": 1,
         }
 
@@ -4249,13 +4425,29 @@ def v1852_generate(sorov: V1852Generate, token: str):
         requested_attempts = max(1, min(4, int(sorov.urinishlar_soni or 4)))
         try:
             generation_budget = float(
-                os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "14")
+                os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "24")
             )
         except (TypeError, ValueError):
-            generation_budget = 14.0
-        generation_budget = max(8.0, min(18.0, generation_budget))
+            generation_budget = 24.0
+        # Railway/Gunicornning odatiy 30 soniyalik HTTP chegarasidan oldin
+        # javob qaytadi, lekin 26 sinfli real jadvalga oldingi 14 soniyadan
+        # ancha ko'p global repair vaqti beradi.
+        generation_budget = max(12.0, min(26.0, generation_budget))
         generation_started = _samtm_time.monotonic()
-        context["v206_deadline"] = generation_started + generation_budget
+        generation_hard_deadline = generation_started + generation_budget
+        # Oxirgi 2.8 soniya topilgan incumbentdagi sinf oknolarini yopish,
+        # kunlarni tenglashtirish va mustaqil metrikalarni qayta hisoblashga
+        # ajratiladi. Shundan oxirgi 0.8 soniyasi o'qituvchi oynalari uchun
+        # mutatsiyasiz, bitta-katak what-if hisobotiga beriladi. Eski kod
+        # barcha vaqtni seed qidiruviga yeb, to'liq lekin
+        # 1 ta oknoli variantni tuzatishga bir millisekund ham qoldirmasdi.
+        generation_search_deadline = max(
+            generation_started + 3.0,
+            generation_hard_deadline - 2.8,
+        )
+        generation_report_deadline = generation_hard_deadline
+        generation_finalization_deadline = generation_hard_deadline - 0.8
+        context["v206_deadline"] = generation_search_deadline
         completed_attempts = 0
         stopped_by_budget = False
         best = None
@@ -4265,16 +4457,28 @@ def v1852_generate(sorov: V1852Generate, token: str):
             base_seed = int(str(source_hash)[:16], 16)
         except (TypeError, ValueError):
             base_seed = int(sorov.maktab_id) * 1_000_003 + len(jobs)
+        if sorov.qidiruv_nonce is not None:
+            base_seed ^= int(sorov.qidiruv_nonce) & ((1 << 63) - 1)
         print(
-            "[JADVAL-ONE-V1] boshlandi "
+            "[JADVAL-ONE-V2.3] boshlandi "
             f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
             f"reja_urinish={requested_attempts} byudjet={generation_budget:.0f}s",
             flush=True,
         )
         for index in range(requested_attempts):
-            if index > 0 and (_samtm_time.monotonic() - generation_started) >= generation_budget:
+            if index > 0 and _samtm_time.monotonic() >= generation_search_deadline:
                 stopped_by_budget = True
                 break
+            # Bitta greedy/repair urinish butun global byudjetni yeb qo'ymasligi
+            # kerak. Qolgan vaqt qolgan urinishlarga teng taqsimlanadi; barcha
+            # ichki repair yordamchilari shu deadline'ni ham hurmat qiladi.
+            now = _samtm_time.monotonic()
+            remaining_seconds = max(0.1, context["v206_deadline"] - now)
+            remaining_attempts = max(1, requested_attempts - index)
+            context["v212_attempt_deadline"] = min(
+                context["v206_deadline"],
+                now + max(3.0, remaining_seconds / remaining_attempts),
+            )
             result = _v1852_generate_attempt(jobs, context, base_seed + index * 7919)
             completed_attempts = index + 1
             state, unplaced, penalty, gaps, late = result
@@ -4283,6 +4487,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             class_imbalance = int(comfort.get("sinf_kun_taqsimoti_farqi", 0))
             short_days = int(comfort.get("sinf_qisqa_kunlari", 0))
             late_core = int(comfort.get("asosiy_fan_5_6", 0))
+            core_period6_days = int(comfort.get("asosiy_fan_6_kunlari", 0))
+            core_period6_overflow = int(
+                comfort.get("asosiy_fan_6_limitdan_ortiq", 0)
+            )
             early_practical = int(comfort.get("amaliy_fan_1_2", 0))
             pe_before_core = int(comfort.get("jismoniydan_keyin_ogir_fan", 0))
             cross_shift_blocks = int(comfort.get("oqituvchi_smenalar_orasi_blok", 0))
@@ -4314,6 +4522,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             teacher_active_days = int(comfort.get("oqituvchi_faol_kun", 0))
             rank = (
                 len(unplaced), class_gaps,
+                core_period6_overflow, core_period6_days,
                 cross_shift_over_four, cross_shift_exception_overflow,
                 compact_overflow_days, compact_extra_days,
                 compact_adjacent_days, compact_unbalanced_days,
@@ -4332,16 +4541,14 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
             if best is None or rank < best[0]:
                 best = (rank, result)
-            # Birinchi to'liq, sinf oknosiz va barqaror variantning o'zi
-            # yetarli: boshqa urug'larni hisoblab foydalanuvchini kuttirmaymiz.
+            # 6-darsga asosiy fan tushmagan to'liq, oknosiz variant topilsa
+            # darhol tugatamiz. Agar to'liq variantda 1–2 ta zaxira 6-dars bor
+            # bo'lsa, qolgan vaqt ichida boshqa seed bilan undan ham ertaroq
+            # variant qidiriladi; outer rank eng kam 6-darsli draftni tanlaydi.
             if (
                 not unplaced
                 and class_gaps == 0
-                and class_imbalance == 0
-                and cross_shift_over_four == 0
-                and cross_shift_exception_overflow == 0
-                and cross_shift_over_one == 0
-                and teacher_gap_overflow == 0
+                and core_period6_days == 0
             ):
                 break
 
@@ -4353,6 +4560,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             best = ((len(result[1]),), result)
             completed_attempts = 1
         _, (state, unplaced, penalty, gap_count, late_heavy) = best
+        if _samtm_time.monotonic() >= generation_search_deadline:
+            stopped_by_budget = True
+        # Yakuniy hard-safe kompaktlash alohida rezervdan foydalanadi.
+        context["v206_deadline"] = generation_finalization_deadline
         final_context = context
         final_repeat_days = int(state.get("v203_emergency_repeat_days") or 0)
         final_policy_stage = str(state.get("v207_policy_stage") or "strict")
@@ -4391,9 +4602,17 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
         if final_repeat_days:
             state["v203_emergency_repeat_days"] = final_repeat_days
+            repeated_subject_days = sum(
+                1 for count in state.get("subject_daily", {}).values()
+                if int(count or 0) >= 2
+            )
+        else:
+            repeated_subject_days = 0
+        if repeated_subject_days:
             state.setdefault("ogohlantirishlar", []).append(
                 f"Jadvalni to'liq sig'dirish uchun ayrim fanlar haftasiga "
-                f"{final_repeat_days} kungacha bir kunda 2 marta joylashtirildi"
+                f"{final_repeat_days} kungacha bir kunda 2 marta joylashtirildi "
+                f"({repeated_subject_days} ta fan-kun)"
             )
         if final_policy_stage != "strict":
             state["v207_policy_stage"] = final_policy_stage
@@ -4436,11 +4655,61 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 status_code=409,
                 detail=_v209_class_gap_failure_detail(state, classes),
             )
-        # Ikki smenali ustozning 1 soatlik oralig'i maqsad, 2 soatgacha
-        # zaxira. Haftada faqat bir kun 2–4 soatlik istisno bo'lishi mumkin;
-        # 4 soatdan uzun yoki ikkinchi istisno kuni bo'lgan draft saqlanmaydi.
-        # Bu tekshiruv qurish vaqtida emas, yakunda ishlaydi: oraliq holatda
-        # katta ko'ringan kutishni keyingi darslar yopishi mumkin.
+        # Jadval to'liq va sinf oynasisiz bo'lgandan keyingina aniq qulaylik
+        # tahlili qilinadi. Bu hisobot joriy state/contextni mutatsiya qilmaydi,
+        # tavsiya qilingan qizil/metod istisnosini esa avtomatik qo'llamaydi.
+        # Hisobotdagi nosozlik valid jadvalni yo'qotmasligi shart.
+        report_context = dict(final_context)
+        report_context["hard"] = set(final_context.get("hard", set()))
+        report_context["soft"] = set(final_context.get("soft", set()))
+        report_context["method_hard"] = set(
+            final_context.get("method_hard", set())
+        )
+        report_context["method_soft"] = set(
+            final_context.get("method_soft", set())
+        )
+        report_context["v214_analysis_deadline"] = generation_report_deadline
+        report_context["v214_avval_qayta_yaratish"] = bool(
+            stopped_by_budget
+        )
+        try:
+            teacher_window_report = _v214_teacher_window_relaxation_report(
+                state, report_context, teachers,
+                max_suggestions=8, max_probes=48,
+            )
+            teacher_window_report["manba_hash"] = source_hash
+        except Exception as report_error:
+            teacher_window_report = {
+                "jami_okno_oldin": int(gap_count),
+                "jami_okno_daqiqa_oldin": int(
+                    final_metrics.get("oqituvchi_birlashgan_okno_daqiqa", 0)
+                ),
+                "oknoli_oqituvchi_soni": 0,
+                "oknoli_oqituvchilar": [],
+                "tavsiyalar": [],
+                "tekshirilgan_variantlar": 0,
+                "cheklangan": True,
+                "hisobot_toliq": False,
+                "avtomatik_qollanmadi": True,
+                "avval_qayta_yaratish": True,
+                "manba_hash": source_hash,
+                "izoh": (
+                    "Jadval yaratildi, lekin oyna tavsiyalarining qo'shimcha "
+                    "tahlili tugamadi. Qizil vaqtni hozircha o'zgartirmang; "
+                    "yagona generatorni yana ishga tushiring."
+                ),
+            }
+            print(
+                "[JADVAL-ONE-V2.3] oyna hisoboti xatosi "
+                f"maktab_id={sorov.maktab_id}: {report_error}",
+                flush=True,
+            )
+        # Ikki smena oralig'i va o'qituvchi oynasi QULAYLIK mezoni. Ular
+        # sinf/o'qituvchi real vaqt kolliziyasi kabi xavfsizlik buzilishi emas.
+        # Eski kod to'liq va to'qnashuvsiz jadvalni shu yumshoq ko'rsatkichlar
+        # sabab 409 bilan bekor qilardi. Endi draft saqlanadi, aniq holatlar
+        # ogohlantirish sifatida ko'rsatiladi va keyin qo'lda/yangi seed bilan
+        # yaxshilanishi mumkin.
         cross_shift_policy_rows = list(
             final_metrics.get("ikki_smenali_oraliq_muammolari") or []
         )
@@ -4478,31 +4747,24 @@ def v1852_generate(sorov: V1852Generate, token: str):
             policy_summary = "; ".join(policy_problems) or (
                 "ikki smenali o'qituvchining ruxsat etilgan oralig'i buzildi"
             )
-            policy_detail = _v209_integrity_failure_detail(
-                policy_problems or [policy_summary]
-            )
-            policy_detail.update({
-                "asl_code": "OQITUVCHI_SMENA_ORALIGI_SIGMADI",
-                "message": (
-                    "Ikki smenali o‘qituvchi uchun 1 soat maqsad, 2 soat "
-                    "zaxira va haftada bitta 4 soatgacha istisno qoidasi "
-                    "bajarilmadi. Xavfsiz bo‘lmagan draft saqlanmadi."
-                ),
-                "aniq_xulosa": policy_summary,
-            })
-            raise HTTPException(
-                status_code=409,
-                detail=policy_detail,
+            state.setdefault("ogohlantirishlar", []).append(
+                "Qulaylik · ikki smena oralig'i: " + policy_summary
             )
         teacher_gap_overflow = list(
             final_metrics.get("oqituvchi_ichki_okno_ortiqcha_kunlar") or []
         )
         if teacher_gap_overflow:
-            raise HTTPException(
-                status_code=409,
-                detail=_v209_teacher_gap_failure_detail(
-                    final_metrics, teachers
-                ),
+            teacher_names = sorted({
+                str(
+                    (teachers.get(int(item.get("oqituvchi_id") or 0)) or {}).get("full_name")
+                    or item.get("oqituvchi_id")
+                    or "O'qituvchi"
+                )
+                for item in teacher_gap_overflow
+            })
+            state.setdefault("ogohlantirishlar", []).append(
+                "Qulaylik · ichki oyna belgilangan maqsaddan oshgan: "
+                + ", ".join(teacher_names[:12])
             )
         quality = max(0, min(100, round(
             placement_ratio * 88
@@ -4593,6 +4855,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "oknolar": gap_count,
             "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
             "qulaylik_strategiyasi": state.get("v196_metrics", {}),
+            "oqituvchi_okno_hisoboti": teacher_window_report,
             "generator_moduli": SAMTM_TIMETABLE_ENGINE_RELEASE,
             "generator_rejimi": 1,
             "generator_nomi": "Yagona kuchli generator",
@@ -4607,7 +4870,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "tasdiqlash_mumkin": False,
         }
         print(
-            "[JADVAL-ONE-V1] hisoblash tugadi "
+            "[JADVAL-ONE-V2.3] hisoblash tugadi "
             f"maktab_id={sorov.maktab_id} urinish={completed_attempts} "
             f"joylashdi={placed_count}/{total_count} "
             f"soniya={diagnostics['hisoblash_soniya']} "
@@ -4744,6 +5007,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
         )
         diagnostics["jadval_mosligi"] = jadval_mosligi
         diagnostics["tasdiqlash_mumkin"] = tasdiqlash_mumkin
+        diagnostics["solver_status"] = (
+            "FEASIBLE_VALIDATED" if tasdiqlash_mumkin else "INVALID"
+        )
         diagnostic_teachers = {
             int(row["user_id"]): row
             for row in teacher_summary if row.get("user_id") is not None
@@ -4795,6 +5061,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         return {"holat": "draft_yaratildi", "urinish_id": run_id, "sifat": quality,
                 "jami_soat": total_count, "joylashtirildi": placed_count,
                 "joylashtirilmadi": len(unplaced), "diagnostika": diagnostics,
+                "solver_status": diagnostics["solver_status"],
                 "tasdiqlash_mumkin": tasdiqlash_mumkin,
                 "moslik": jadval_mosligi}
     except Exception:
@@ -4911,10 +5178,28 @@ def v1852_approve(sorov: V1852Approve, token: str):
         gigiyena_xatolari = _v1874_schedule_hygiene_violations(
             cur, run["maktab_id"], run["id"]
         )
-        if gigiyena_xatolari:
+        run_diagnostics = run.get("diagnostika") or {}
+        run_warnings = (
+            run_diagnostics.get("ogohlantirishlar", [])
+            if isinstance(run_diagnostics, dict) else []
+        )
+        emergency_repeat_used = any(
+            "bir kunda 2 marta" in str(message)
+            for message in run_warnings
+        )
+        qattiq_gigiyena_xatolari = [
+            row for row in gigiyena_xatolari
+            if not _v212_hygiene_is_soft(row.get("sabab"))
+            and not (
+                emergency_repeat_used
+                and "bir fan ikki marta qo‘yilgan"
+                in str(row.get("sabab") or "")
+            )
+        ]
+        if qattiq_gigiyena_xatolari:
             details = "; ".join(
                 f"{row['sinf']}: {row['sabab']}"
-                for row in gigiyena_xatolari[:10]
+                for row in qattiq_gigiyena_xatolari[:10]
             )
             raise HTTPException(
                 status_code=409,
@@ -7680,6 +7965,7 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
 
     violations = []
     fifth_days = _v1852_defaultdict(set)
+    core_period6_days = _v1852_defaultdict(set)
     for (class_id, day), day_rows in by_class_day.items():
         class_name, grade = class_names[class_id]
         period_fans = _v1852_defaultdict(set)
@@ -7724,6 +8010,8 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
                 if profile["academic"]:
                     has_academic = True
                     subject_periods[profile["key"]].add(period)
+                if int(period) == 6 and profile.get("core_priority"):
+                    core_period6_days[class_id].add(int(day))
                 if 1 <= grade <= 4 and period == 5 and profile["academic"] and not profile["primary_light"]:
                     violations.append({
                         "sinf": class_name,
@@ -7749,6 +8037,17 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
                 "sinf": class_name,
                 "sabab": f"5 akademik darsli kunlar {len(days)} ta; maksimum {limit}",
             })
+
+    for class_id, days in core_period6_days.items():
+        if len(days) <= _V213_CORE_PERIOD6_LIMIT:
+            continue
+        class_name, _grade = class_names[class_id]
+        violations.append({
+            "sinf": class_name,
+            "sabab": (
+                f"{_V213_CORE_PERIOD6_REASON}: {len(days)} kun topildi"
+            ),
+        })
 
     # O‘qituvchining haftalik chegarasi ham tasdiqlash oldidan qayta tekshiriladi.
     cur.execute(
@@ -8364,10 +8663,23 @@ def _v1875_preflight_report(cur, maktab_id: int):
             if not _v1856_class_day_block_reason(cls, day, class_day_blocks)
         )
         daily_max = 1 if 1 <= grade <= 4 else int(pair.get("kunlik_max") or 1)
-        if float(pair.get("haftalik_soat") or 0) > allowed_days * daily_max:
+        weekly_hours = float(pair.get("haftalik_soat") or 0)
+        regular_capacity = allowed_days * daily_max
+        # Yagona generator kunlik max=1 fan uchun faqat zaruratda haftada
+        # ko'pi bilan ikki kunda ikkinchi soatni ochadi. Preflight ham ayni
+        # kontraktni ishlatishi shart; aks holda solver sig'dira oladigan
+        # 6–7 soatlik fan manba tekshiruvida asossiz to'xtab qoladi.
+        controlled_capacity = regular_capacity + (min(2, allowed_days) if daily_max == 1 else 0)
+        if weekly_hours > controlled_capacity:
             errors.append(
-                f"{pair['sinf']} / {pair['fan_nomi']}: {pair['haftalik_soat']} soatni "
-                f"{allowed_days} kunga kunlik max {daily_max} bilan joylab bo'lmaydi"
+                f"{pair['sinf']} / {pair['fan_nomi']}: {weekly_hours:g} soatni "
+                f"{allowed_days} kunga kunlik max {daily_max} va ko'pi bilan "
+                "2 ta nazoratli takror kuni bilan joylab bo'lmaydi"
+            )
+        elif weekly_hours > regular_capacity:
+            warnings.append(
+                f"{pair['sinf']} / {pair['fan_nomi']}: to'liq joylash uchun "
+                "haftada 1–2 kunda nazoratli ikkinchi dars kerak bo'ladi"
             )
 
     cur.execute("SELECT * FROM aqlli_oqituvchi_qoidalari_v2 WHERE maktab_id=%s", (maktab_id,))
@@ -8485,6 +8797,11 @@ def _v1875_preflight_report(cur, maktab_id: int):
     unique_warnings = list(dict.fromkeys(warnings))
     return {
         "tayyor": not unique_errors,
+        # Bu lokal manba/capacity tekshiruvi. U global jadval mavjudligini
+        # isbotlamaydi; shuning uchun frontend endi uni soxta "100%" deb
+        # ko'rsatmaydi.
+        "solver_status": "INPUT_VALID" if not unique_errors else "INPUT_INVALID",
+        "global_yechim_isbotlandi": False,
         "manba_hash": source_hash,
         "xatolar": unique_errors[:300],
         "ogohlantirishlar": unique_warnings[:300],
@@ -8990,7 +9307,10 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
     hygiene = _v1874_schedule_hygiene_violations(cur, maktab_id, run_id)
     for item in hygiene:
         message = f"{item['sinf']}: {item['sabab']}"
-        if emergency_repeat_used and "bir fan ikki marta qo‘yilgan" in str(item.get("sabab") or ""):
+        reason = str(item.get("sabab") or "")
+        if _v212_hygiene_is_soft(reason):
+            warnings.append("Pedagogik zaxira · " + message)
+        elif emergency_repeat_used and "bir fan ikki marta qo‘yilgan" in reason:
             warnings.append("Nazoratli istisno · " + message)
         else:
             errors.append(message)
@@ -13279,6 +13599,27 @@ def _v192_class_periods_contiguous(slots, class_id: int, changes=None):
     return all(_v1852_gap_count(periods) == 0 for periods in day_periods.values())
 
 
+def _v213_projected_core_period6_days(slots, class_id: int, changes=None):
+    """Qo'lda ko'chirishdan keyingi asosiy-fan 6-dars kunlarini hisoblaydi."""
+    changes = changes or {}
+    result = set()
+    for row in slots:
+        if int(row.get("sinf_id") or 0) != int(class_id):
+            continue
+        day = int(row.get("hafta_kuni") or 0)
+        period = int(row.get("dars_raqami") or 0)
+        replacement = changes.get(int(row.get("id") or 0))
+        if replacement:
+            day, period = int(replacement[0]), int(replacement[1])
+        if period != 6:
+            continue
+        grade = _v1874_grade(row)
+        profile = _v1874_subject_profile(row.get("fan_nomi"), grade)
+        if profile.get("core_priority"):
+            result.add(day)
+    return result
+
+
 def _v192_swap_suggestions(cur, run_id: int, slot_id: int):
     cur.execute("SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s", (run_id,))
     run = cur.fetchone()
@@ -13333,6 +13674,10 @@ def _v192_swap_suggestions(cur, run_id: int, slot_id: int):
             if not _v192_class_periods_contiguous(
                 slots, int(source["sinf_id"]), projected_changes
             ):
+                continue
+            if len(_v213_projected_core_period6_days(
+                slots, int(source["sinf_id"]), projected_changes
+            )) > _V213_CORE_PERIOD6_LIMIT:
                 continue
             source_reasons = _v192_candidate_conflicts(
                 source_bundle, day, period, slots, source_ids | target_ids,
@@ -13754,6 +14099,27 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
         target_ids = [int(row["id"]) for row in target_bundle]
         old_day = int(source["hafta_kuni"])
         old_period = int(source["dars_raqami"])
+        projected_changes = {
+            int(row["id"]): (
+                int(candidate["yangi_hafta_kuni"]),
+                int(candidate["yangi_dars_raqami"]),
+            )
+            for row in source_bundle
+        }
+        projected_changes.update({
+            int(row["id"]): (old_day, old_period)
+            for row in target_bundle
+        })
+        projected_core_period6_days = _v213_projected_core_period6_days(
+            slots, int(source["sinf_id"]), projected_changes
+        )
+        if len(projected_core_period6_days) > _V213_CORE_PERIOD6_LIMIT:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"{_V213_CORE_PERIOD6_REASON}. O'zgarish bekor qilindi"
+                ),
+            )
         cur.execute("""UPDATE aqlli_jadval_slotlari_v2
                        SET hafta_kuni=7 WHERE id=ANY(%s)""", (source_ids,))
         if target_ids:
@@ -13773,6 +14139,16 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
             raise HTTPException(
                 status_code=409,
                 detail="O'qituvchi parallel darsga tushib qoldi; o'zgarish bekor qilindi",
+            )
+        core_period6_days = _v213_projected_core_period6_days(
+            after_slots, int(source["sinf_id"])
+        )
+        if len(core_period6_days) > _V213_CORE_PERIOD6_LIMIT:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"{_V213_CORE_PERIOD6_REASON}. O'zgarish bekor qilindi"
+                ),
             )
         cur.execute("""INSERT INTO aqlli_jadval_ozgarish_log_v19_2(
                         maktab_id,urinish_id,manba_slot_id,eski_hafta_kuni,
@@ -13926,9 +14302,10 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
             )
     warnings.append(
         "V19.8 pedagogik strategiya faol: ona tili, adabiyot, matematika, "
-        "algebra, geometriya, fizika, kimyo va biologiya 1–4-darsga; jismoniy "
-        "tarbiya 3–6-darsga ustuvor. O'qituvchining ichki oknosi va ikki smena "
-        "orasidagi uzoq kutish birgalikda kamaytiriladi"
+        "algebra, geometriya, fizika, kimyo va biologiya 1–5-darsga; faqat "
+        "boshqa legal katak qolmasa 6-darsga (bir sinfda haftasiga ko'pi bilan "
+        "2 kun); jismoniy tarbiya 3–6-darsga ustuvor. O'qituvchining ichki "
+        "oknosi va ikki smena orasidagi uzoq kutish birgalikda kamaytiriladi"
     )
     if rotation_count:
         warnings.append(
@@ -13955,9 +14332,9 @@ def _v196_grade_period_penalty(profile, grade, period):
         return {1: 380, 2: 240, 3: 55, 4: -15, 5: -28, 6: -32}.get(period, 80)
 
     # Ona tili/adabiyot, matematika–algebra–geometriya hamda fizika, kimyo,
-    # biologiya kabi asosiy fanlar 1–4-darsda bo'lishi kerak. 5–6 yumshoq
-    # istisno bo'lib qoladi, lekin generator undan juda qimmat variant sifatida
-    # foydalanadi. Bu J/T dan keyin 5–6-dars algebra/geometriya chiqishini kesadi.
+    # biologiya kabi asosiy fanlar 1–5-dars oralig'ida bo'lishi kerak; 1–4
+    # pedagogik jihatdan eng qulay. 6-dars faqat boshqa legal katak qolmaganda
+    # ishlatiladigan zaxira va sinf kesimida haftasiga ikki kun bilan cheklangan.
     if profile.get("core_priority"):
         if 1 <= grade <= 4:
             return {1: -34, 2: -42, 3: -34, 4: -14, 5: 210, 6: 430}.get(period, 500)
@@ -14964,6 +15341,11 @@ def _v196_teacher_comfort_signature(state, context):
     )
     return (
         int(_v196_class_gap_count(state)),
+        # 6-darsdagi asosiy fan faqat boshqa legal kombinatsiya qolmaganda
+        # ishlatiladi. Ta'mirlash o'qituvchi oynasini qisqartirish bahonasida
+        # bunday kunni ko'paytirmasligi uchun u comfort mezonidan oldin turadi.
+        int(metrics.get("asosiy_fan_6_limitdan_ortiq", 0)),
+        int(metrics.get("asosiy_fan_6_kunlari", 0)),
         # Ikki smenali ustoz uchun 4 soatdan uzun kutish hech qachon tayyor
         # variant hisoblanmaydi; 2 soatdan uzun istisno esa haftada ko'pi
         # bilan bir kun bo'lishi mumkin. Lokal swap avval shu ikki buzilishni
@@ -15145,6 +15527,1146 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
     return state
 
 
+def _v214_teacher_phase_window_snapshot(state, context, teacher_id):
+    """TOQ/JUFT haftani aralashtirmasdan bitta ustoz oynalarini hisoblaydi.
+
+    ``teacher_periods`` indeksi fizik kataklar uchun qulay, ammo u A/B
+    aylanishidagi TOQ va JUFT darslarni bitta hafta deb ko'rsatadi. Hisobot
+    foydalanuvchiga yolg'on oyna aytmasligi uchun placementlar fazasi bo'yicha
+    qayta yig'iladi. TOQ/JUFT farq qilsa umumiy son va daqiqa ikki haftalik
+    sikl yig'indisi, maksimum esa ikkala haftaning kattasidir; oddiy
+    ``har_hafta`` jadval ikki marta sanalmaydi.
+    """
+    teacher_id = int(teacher_id)
+    phase_periods = {
+        "toq": _v1852_defaultdict(set),
+        "juft": _v1852_defaultdict(set),
+    }
+    for placement in state.get("placements", []):
+        phases = _v212_job_teacher_phases(
+            placement.get("job") or {}, placement.get("teachers") or []
+        ).get(teacher_id, set())
+        if not phases:
+            continue
+        day = int(placement.get("day") or 0)
+        shift = int((placement.get("job") or {}).get("smena") or 1)
+        period = int(placement.get("period") or 0)
+        for actual_phase in ("toq", "juft"):
+            if any(
+                _v209_week_phases_overlap(actual_phase, configured_phase)
+                for configured_phase in phases
+            ):
+                phase_periods[actual_phase][(day, shift)].add(period)
+
+    def phase_result(phase):
+        by_day = _v1852_defaultdict(list)
+        internal = 0
+        rows = []
+        for (day, shift), periods in sorted(phase_periods[phase].items()):
+            ordered = sorted(int(value) for value in periods if int(value) > 0)
+            if not ordered:
+                continue
+            missing = [
+                period for period in range(min(ordered), max(ordered) + 1)
+                if period not in periods
+            ]
+            internal += len(missing)
+            for period in ordered:
+                interval = _v196_slot_interval(context, shift, period)
+                if interval:
+                    by_day[int(day)].append((
+                        int(interval[0]), int(interval[1]), int(shift), int(period)
+                    ))
+            if missing:
+                rows.append({
+                    "hafta_turi": phase,
+                    "kun": int(day),
+                    "kun_nomi": _V1852_HAFTA.get(int(day), str(day)),
+                    "smena": int(shift),
+                    "darslar": ordered,
+                    "bosh_darslar": missing,
+                    "ichki_okno": len(missing),
+                })
+        gap_count = 0
+        gap_minutes = 0
+        max_minutes = 0
+        for day, timeline in sorted(by_day.items()):
+            timeline = sorted(set(timeline))
+            day_gaps = []
+            for previous, current in zip(timeline, timeline[1:]):
+                minutes = max(0, int(current[0]) - int(previous[1]))
+                if minutes > 25:
+                    day_gaps.append(minutes)
+            if day_gaps:
+                gap_count += len(day_gaps)
+                gap_minutes += sum(day_gaps)
+                max_minutes = max(max_minutes, max(day_gaps))
+                rows.append({
+                    "hafta_turi": phase,
+                    "kun": int(day),
+                    "kun_nomi": _V1852_HAFTA.get(int(day), str(day)),
+                    "smena": 0,
+                    "darslar": [],
+                    "bosh_darslar": [],
+                    "real_okno_soni": len(day_gaps),
+                    "real_okno_daqiqalari": day_gaps,
+                    "jami_daqiqa": sum(day_gaps),
+                })
+        return {
+            "hafta_turi": phase,
+            "okno_soni": int(gap_count),
+            "jami_daqiqa": int(gap_minutes),
+            "eng_katta_daqiqa": int(max_minutes),
+            "ichki_okno": int(internal),
+            "kunlar": rows,
+        }
+
+    toq = phase_result("toq")
+    juft = phase_result("juft")
+    # Har bir faza alohida saqlanadi. Avvalgi lexicographic ``selected``
+    # bitta haftadagi oyna sonini, boshqa haftadagi 300 daqiqalik kutishni esa
+    # yashirib qo'yishi mumkin edi. Endi TOQ/JUFT farq qilsa son va daqiqalar
+    # aniq ikki haftalik sikl bo'yicha yig'iladi, maksimum esa ikkala haftadan
+    # olinadi. Oddiy ``har_hafta`` jadval bir marta sanaladi.
+    same = phase_periods["toq"] == phase_periods["juft"]
+    canonical_phases = [toq, juft]
+    if same:
+        display = {
+            **toq,
+            "hafta_turi": "har_hafta",
+            "kunlar": [
+                {**row, "hafta_turi": "har_hafta"}
+                for row in toq["kunlar"]
+            ],
+        }
+        phase_rows = [display]
+        aggregate_rows = [toq]
+    else:
+        phase_rows = canonical_phases
+        aggregate_rows = canonical_phases
+    selected = max(
+        canonical_phases,
+        key=lambda row: (
+            int(row["okno_soni"]), int(row["jami_daqiqa"]),
+            int(row["eng_katta_daqiqa"]), int(row["ichki_okno"]),
+            1 if row["hafta_turi"] == "toq" else 0,
+        ),
+    )
+    return {
+        "okno_soni": int(sum(row["okno_soni"] for row in aggregate_rows)),
+        "jami_daqiqa": int(sum(row["jami_daqiqa"] for row in aggregate_rows)),
+        "eng_katta_daqiqa": int(max(
+            [row["eng_katta_daqiqa"] for row in aggregate_rows] or [0]
+        )),
+        "ichki_okno": int(sum(row["ichki_okno"] for row in aggregate_rows)),
+        "eng_yomon_hafta": selected["hafta_turi"],
+        "hisoblash_davri": "har_hafta" if same else "ikki_haftalik_sikl",
+        "kunlar": [row for phase in phase_rows for row in phase["kunlar"]],
+        "haftalar": phase_rows,
+        # Solishtirish doimo ikkala real faza bilan bajariladi. ``haftalar``
+        # esa UI uchun bir xil TOQ/JUFT jadvalni ``har_hafta`` deb ixchamlaydi.
+        "fazalar": canonical_phases,
+    }
+
+
+def _v214_effective_availability_rows(rows, teacher_id, day, shift, period):
+    """Bitta fizik katakni yopayotgan raw qizil/metod qatorlarini qaytaradi."""
+    result = []
+    for source in rows or []:
+        if int(source.get("user_id") or 0) != int(teacher_id):
+            continue
+        if int(source.get("hafta_kuni") or 0) != int(day):
+            continue
+        kind = str(source.get("turi") or "")
+        if kind == "metod_kuni":
+            result.append(dict(source))
+            continue
+        if kind != "band" or not bool(source.get("qattiq")):
+            continue
+        source_shift = int(source.get("smena") or 0)
+        source_period = int(source.get("dars_raqami") or 0)
+        if source_shift not in (0, int(shift)):
+            continue
+        if source_period not in (0, int(period)):
+            continue
+        result.append(dict(source))
+    return result
+
+
+def _v214_single_slot_write_plan(
+    rows, context, teacher_id, day, shift, period, additional_slots=None
+):
+    """What-if istisnosini DB/UI orqali qayta yaratish uchun to'liq reja.
+
+    Kun/smena umbrella qatorini shunchaki yumshatish uning barcha katagini
+    ochib yuboradi. Metod kuni esa ``qattiq=False`` bo'lsa ham generator uchun
+    qattiq. Shu sabab manba qatorlari o'chiriladi va targetdan boshqa qamrov
+    exact ``band/qattiq`` qatorlarga materializatsiya qilinadi. Rejada manba
+    id yo'q bo'lsa tavsiya actionable emas va umuman qaytarilmaydi.
+    """
+    teacher_id, day = int(teacher_id), int(day)
+    shift, period = int(shift), int(period)
+    sources = [dict(row) for row in (rows or [])]
+    if not sources or any(row.get("id") is None for row in sources):
+        return None
+
+    all_slots = sorted({
+        (int(shift_key), int(slot.get("dars_raqami") or 0))
+        for shift_key, shift_row in (context.get("shifts") or {}).items()
+        for slot in (shift_row or {}).get("slotlar") or []
+        if int(slot.get("dars_raqami") or 0) > 0
+    })
+    target_slots = {(shift, period)} | {
+        (int(value[0]), int(value[1]))
+        for value in (additional_slots or [])
+    }
+    if not target_slots or not target_slots.issubset(set(all_slots)):
+        return None
+
+    def source_covers(source, candidate_shift, candidate_period):
+        if str(source.get("turi") or "") == "metod_kuni":
+            return True
+        source_shift = int(source.get("smena") or 0)
+        source_period = int(source.get("dars_raqami") or 0)
+        return (
+            source_shift in (0, int(candidate_shift))
+            and source_period in (0, int(candidate_period))
+        )
+
+    preserved_slots = {
+        (candidate_shift, candidate_period)
+        for candidate_shift, candidate_period in all_slots
+        if (candidate_shift, candidate_period) not in target_slots
+        and any(
+            source_covers(source, candidate_shift, candidate_period)
+            for source in sources
+        )
+    }
+    source_ids = sorted({int(row["id"]) for row in sources})
+    hard_rows = [
+        {
+            "user_id": teacher_id,
+            "hafta_kuni": day,
+            "smena": candidate_shift,
+            "dars_raqami": candidate_period,
+            "turi": "band",
+            "qattiq": True,
+            "izoh": "Metod/qizil qoida: exact katak saqlandi",
+        }
+        for candidate_shift, candidate_period in sorted(preserved_slots)
+    ]
+    target_soft_rows = [
+        {
+            "user_id": teacher_id,
+            "hafta_kuni": day,
+            "smena": target_shift,
+            "dars_raqami": target_period,
+            "turi": "band",
+            "qattiq": False,
+            "izoh": "Oyna hisobotidagi exact-katak istisnosi",
+        }
+        for target_shift, target_period in sorted(target_slots)
+    ]
+    source_types = {str(row.get("turi") or "") for row in sources}
+    return {
+        "to_liq": True,
+        "manba_idlar": source_ids,
+        "manba_qatorlari": [
+            {
+                key: row.get(key)
+                for key in (
+                    "id", "user_id", "hafta_kuni", "smena",
+                    "dars_raqami", "turi", "qattiq", "izoh",
+                )
+            }
+            for row in sources
+        ],
+        "amallar": [
+            {
+                "amal": "ochirish",
+                "availability_id": source_id,
+            }
+            for source_id in source_ids
+        ] + [
+            {"amal": "yaratish", "qator": row}
+            for row in hard_rows
+        ] + [
+            {"amal": "yaratish", "qator": row}
+            for row in target_soft_rows
+        ],
+        "qolgan_qattiq_kataklar": hard_rows,
+        "ochiladigan_katak": target_soft_rows[0],
+        "ochiladigan_kataklar": target_soft_rows,
+        "istisno_soati": len(target_soft_rows),
+        "metod_qatori_almashtiriladi": "metod_kuni" in source_types,
+        "izoh": (
+            "Manba qatorlarining barchasini shunchaki yumshatmang: "
+            "ko'rsatilgan idlarni o'chirib, qamrovdagi boshqa kataklarni "
+            "exact qizil/qattiq qilib qayta yarating; faqat ko'rsatilgan "
+            f"{len(target_soft_rows)} ta target katakni yashil/yumshoq qiling."
+        ),
+    }
+
+
+def _v214_context_with_single_slot_exception(
+    context, teacher_id, day, shift, period
+):
+    """Faqat target katakni ochib, umbrella qoidaning qolganini yopiq qoldiradi."""
+    teacher_id, day = int(teacher_id), int(day)
+    shift, period = int(shift), int(period)
+    hard = set(context.get("hard", set()))
+    soft = set(context.get("soft", set()))
+    method_hard = set(context.get("method_hard", set()))
+    method_soft = set(context.get("method_soft", set()))
+    was_method = (teacher_id, day) in method_hard
+    was_red = _v1852_blocked(hard, teacher_id, day, shift, period)
+    if not was_method and not was_red:
+        return None, None
+
+    all_slots = []
+    for shift_key, shift_row in sorted(
+        (context.get("shifts") or {}).items(), key=lambda item: int(item[0])
+    ):
+        for slot in (shift_row or {}).get("slotlar") or []:
+            all_slots.append((int(shift_key), int(slot.get("dars_raqami") or 0)))
+
+    def key_matches(key, candidate_shift, candidate_period):
+        return (
+            int(key[0]) == teacher_id
+            and int(key[1]) == day
+            and int(key[2]) in (0, int(candidate_shift))
+            and int(key[3]) in (0, int(candidate_period))
+        )
+
+    removed_keys = [
+        key for key in hard if key_matches(key, shift, period)
+    ]
+    for key in removed_keys:
+        hard.discard(key)
+        for other_shift, other_period in all_slots:
+            if (other_shift, other_period) == (shift, period):
+                continue
+            if key_matches(key, other_shift, other_period):
+                hard.add((teacher_id, day, other_shift, other_period))
+    if was_method:
+        method_hard.discard((teacher_id, day))
+        # Amaldagi availability modeli yumshoq metod kunini ifodalamaydi:
+        # ``metod_kuni`` qatori qattiq=False bo'lsa ham qattiq sanaladi.
+        # Sinov yuqoridagi yozish rejasiga aynan mos bo'lishi uchun metod qatori
+        # olib tashlanadi, qolgan kataklar exact hard, target esa soft bo'ladi.
+        method_soft.discard((teacher_id, day))
+        for other_shift, other_period in all_slots:
+            if (other_shift, other_period) != (shift, period):
+                hard.add((teacher_id, day, other_shift, other_period))
+    soft.add((teacher_id, day, shift, period))
+    trial = dict(context)
+    trial["hard"] = hard
+    trial["soft"] = soft
+    trial["method_hard"] = method_hard
+    trial["method_soft"] = method_soft
+    kind = (
+        "metod_va_qizil" if was_method and was_red
+        else "metod_kuni" if was_method
+        else "qizil_soat"
+    )
+    return trial, kind
+
+
+def _v214_teacher_window_relaxation_report(
+    state, context, teachers, *, max_suggestions=8, max_probes=48
+):
+    """Joriy valid draftni o'zgartirmay, bitta-katak what-if hisobotini beradi.
+
+    Raqamli kamayish faqat ikki dars exact qayta joylashtirilib, barcha qattiq
+    qoidalar (e'lon qilingan bitta availability istisnosidan tashqari) va
+    pedagogik himoyalar qayta tekshirilganda chiqadi. Deadline tugashi yoki
+    diagnostika xatosi jadvalni saqlashga xalaqit bermaydi.
+    """
+    started = _samtm_time.monotonic()
+    try:
+        deadline = float(context.get("v214_analysis_deadline") or 0)
+    except (TypeError, ValueError):
+        deadline = 0.0
+    if not deadline:
+        deadline = started + 0.8
+    max_suggestions = max(0, min(12, int(max_suggestions or 0)))
+    max_probes = max(0, min(180, int(max_probes or 0)))
+    availability_rows = list(context.get("availability_rows") or [])
+
+    teacher_ids = sorted({
+        int(value) for value in teachers
+    } | {
+        int(teacher)
+        for placement in state.get("placements", [])
+        for teacher in (placement.get("teachers") or [])
+        if teacher is not None
+    })
+    snapshots = {
+        teacher_id: _v214_teacher_phase_window_snapshot(
+            state, context, teacher_id
+        )
+        for teacher_id in teacher_ids
+    }
+
+    def phase_metrics(snapshot):
+        """Snapshotni TOQ/JUFT bo'yicha taqqoslanadigan tuple'ga aylantiradi."""
+        result = {}
+        rows = list(snapshot.get("fazalar") or snapshot.get("haftalar") or [])
+        for row in rows:
+            phase = str(row.get("hafta_turi") or "har_hafta")
+            metric = (
+                int(row.get("okno_soni") or 0),
+                int(row.get("jami_daqiqa") or 0),
+                int(row.get("eng_katta_daqiqa") or 0),
+                int(row.get("ichki_okno") or 0),
+            )
+            if phase == "har_hafta":
+                result["toq"] = metric
+                result["juft"] = metric
+            else:
+                result[phase] = metric
+        zero = (0, 0, 0, 0)
+        result.setdefault("toq", zero)
+        result.setdefault("juft", zero)
+        return result
+
+    def snapshot_not_worse(after, before, *, require_improvement=False):
+        before_phases = phase_metrics(before)
+        after_phases = phase_metrics(after)
+        strictly_better = False
+        for phase in ("toq", "juft"):
+            before_metric = before_phases[phase]
+            after_metric = after_phases[phase]
+            if any(
+                int(after_value) > int(before_value)
+                for after_value, before_value in zip(
+                    after_metric, before_metric
+                )
+            ):
+                return False
+            if any(
+                int(after_value) < int(before_value)
+                for after_value, before_value in zip(
+                    after_metric, before_metric
+                )
+            ):
+                strictly_better = True
+        return strictly_better if require_improvement else True
+
+    affected = []
+    for teacher_id, snapshot in snapshots.items():
+        if not snapshot["okno_soni"] and not snapshot["ichki_okno"]:
+            continue
+        teacher_name = str(
+            (teachers.get(teacher_id) or {}).get("full_name") or teacher_id
+        )
+        affected.append({
+            "oqituvchi_id": int(teacher_id),
+            "full_name": teacher_name,
+            **snapshot,
+        })
+    affected.sort(key=lambda row: (
+        -int(row["jami_daqiqa"]), -int(row["okno_soni"]),
+        -int(row["ichki_okno"]), str(row["full_name"]), int(row["oqituvchi_id"]),
+    ))
+
+    result = {
+        "jami_okno_oldin": int(sum(row["okno_soni"] for row in affected)),
+        "jami_ichki_okno_oldin": int(sum(row["ichki_okno"] for row in affected)),
+        "jami_okno_daqiqa_oldin": int(sum(row["jami_daqiqa"] for row in affected)),
+        "eng_katta_okno_daqiqa": int(max(
+            [row["eng_katta_daqiqa"] for row in affected] or [0]
+        )),
+        "oknoli_oqituvchi_soni": len(affected),
+        "oknoli_oqituvchilar": affected,
+        "tavsiyalar": [],
+        "tekshirilgan_variantlar": 0,
+        # Bu butun constraint space isboti emas: eng yomon ustozlar atrofidagi
+        # deterministik, chegaralangan ikki-dars swap qidiruvidir. Oynasi bor
+        # holatda uni hech qachon ``to'liq`` deb ko'rsatmaymiz.
+        "cheklangan": bool(affected),
+        "hisobot_toliq": not bool(affected),
+        "qidiruv_turi": (
+            "chegaralangan_lokal" if affected else "tekshiruv_shart_emas"
+        ),
+        "cheklash_sabablari": (
+            [
+                "faqat eng ustuvor 10 o'qituvchi",
+                "har o'qituvchida ko'pi bilan 12 manba dars",
+                "faqat bir sinf ichidagi ikki-dars exact swap",
+            ]
+            if affected else []
+        ),
+        "avtomatik_qollanmadi": True,
+        "avval_qayta_yaratish": bool(
+            context.get("v214_avval_qayta_yaratish")
+        ),
+        "izoh": (
+            "Haqiqiy ko'rsatkich TOQ/JUFT haftani alohida hisoblaydi. "
+            + (
+                "Qidiruv to'liq tugamadi; tekshirilmagan variantlar bor. "
+                if affected else ""
+            )
+            +
+            "Tavsiya jadvalga qo'llanmadi; vaqtni tahrirlab, yagona "
+            "generatorni qayta ishga tushirish kerak."
+        ),
+    }
+    if not affected or max_suggestions <= 0 or max_probes <= 0:
+        return result
+
+    placements = list(state.get("placements", []))
+    by_class = _v1852_defaultdict(list)
+    for placement in placements:
+        by_class[int((placement.get("job") or {}).get("sinf_id") or 0)].append(
+            placement
+        )
+    before_metrics = dict(
+        state.get("v196_metrics") or _v196_attempt_metrics(state, context)
+    )
+    # `_v196_attempt_metrics` qaytaradigan barcha sonli pedagogik/qulaylik
+    # mezonlari himoyalanadi. Faqat ayrim "muhim" kalitlarni sanash boshqa
+    # ustozga yangi uzun oyna, qo'shimcha ish kuni yoki smena oralig'i berib
+    # qo'yishi mumkin edi. Ro'yxatlarni (diagnostika qatorlarini) emas, ularning
+    # quyidagi aniq sonli agregatlarini oldin→keyin solishtiramiz.
+    protected_metric_keys = (
+        "oqituvchi_bitta_darsli_kun", "oqituvchi_faol_kun",
+        "ketma_ket_ogir_fan", "jismoniydan_keyin_ogir_fan",
+        "9_11_birinchi_dars_ogir", "asosiy_fan_5_6",
+        "asosiy_fan_6_kunlari", "asosiy_fan_6_limitdan_ortiq",
+        "amaliy_fan_1_2",
+        "oqituvchi_smenalar_orasi_blok",
+        "oqituvchi_smenalar_orasi_daqiqa",
+        "eng_uzoq_smena_oraligi_daqiqa",
+        "ikki_smenali_1soatdan_uzoq", "ikki_smenali_2soatdan_uzoq",
+        "ikki_smenali_uzoq_tanaffus", "ikki_smenali_4soatdan_uzoq",
+        "ikki_smenali_istisno_ortiqcha_kun",
+        "10_19_ortiqcha_kun", "10_19_limitdan_ortiq_kun",
+        "10_19_yonma_yon_kun", "10_19_notekis_kun",
+        "sinf_kun_taqsimoti_farqi", "sinf_qisqa_kunlari",
+        "oqituvchi_ichki_okno", "oqituvchi_oknoli_smena_kun",
+        "oqituvchi_kop_oknoli_smena_kun", "eng_katta_ichki_okno",
+        "oqituvchi_ichki_okno_ortiqcha_ustoz",
+        "oqituvchi_birlashgan_3soat_okno",
+        "oqituvchi_birlashgan_2soat_okno",
+        "oqituvchi_birlashgan_eng_katta_daqiqa",
+        "oqituvchi_birlashgan_okno_daqiqa",
+        "oqituvchi_birlashgan_okno_soni",
+    )
+    before_repeat_days = int(sum(
+        1 for count in state.get("subject_daily", {}).values()
+        if int(count or 0) >= 2
+    ))
+    best_by_teacher = {}
+    probes = 0
+    source_rows_truncated = False
+    # Boshlang'ich metod kuni uchun tekshirilgan 2-soatlik variantga kamida
+    # sakkizta lokal swap sinovi qolsin. Kichik test limitida esa barcha
+    # probe bitta-katak tahliliga beriladi.
+    single_probe_limit = (
+        max_probes - 8 if max_probes >= 16 else max_probes
+    )
+
+    for teacher_row in affected[:10]:
+        if probes >= single_probe_limit or _samtm_time.monotonic() >= deadline:
+            break
+        teacher_id = int(teacher_row["oqituvchi_id"])
+        gap_days = {
+            int(row.get("kun") or 0)
+            for row in teacher_row.get("kunlar") or []
+            if row.get("real_okno_soni") or row.get("ichki_okno")
+        }
+        sources = [
+            placement for placement in placements
+            if teacher_id in {
+                int(value) for value in placement.get("teachers") or []
+                if value is not None
+            }
+            and int(placement.get("day") or 0) in gap_days
+            and _v196_movable_placement(placement)
+        ]
+        sources.sort(key=lambda placement: (
+            int(placement.get("day") or 0),
+            int((placement.get("job") or {}).get("smena") or 1),
+            int(placement.get("period") or 0),
+            int((placement.get("job") or {}).get("load_id") or 0),
+        ))
+        if len(sources) > 12:
+            source_rows_truncated = True
+        pair_candidates = []
+        for first in sources[:12]:
+            first_job = first.get("job") or {}
+            class_id = int(first_job.get("sinf_id") or 0)
+            first_day = int(first.get("day") or 0)
+            first_shift = int(first_job.get("smena") or 1)
+            first_period = int(first.get("period") or 0)
+            for second in by_class.get(class_id, []):
+                if second is first or not _v196_movable_placement(second):
+                    continue
+                second_job = second.get("job") or {}
+                target_day = int(second.get("day") or 0)
+                target_shift = int(second_job.get("smena") or 1)
+                target_period = int(second.get("period") or 0)
+                if (target_day, target_shift, target_period) == (
+                    first_day, first_shift, first_period
+                ):
+                    continue
+                method_target = (
+                    teacher_id, target_day
+                ) in context.get("method_hard", set())
+                red_target = _v1852_blocked(
+                    context.get("hard", set()), teacher_id,
+                    target_day, target_shift, target_period,
+                )
+                if not method_target and not red_target:
+                    continue
+                class_row = context.get("classes", {}).get(class_id, {})
+                grade = int(
+                    first_job.get("v1874_grade") or _v1874_grade(class_row)
+                )
+                # Yuqori sinflarda metod kuni faqat katta (120+ daqiqa)
+                # kutishni tuzatish uchun oxirgi variant. Boshlang'ich 1–4 da
+                # esa bir yoki ikki exact soatlik metod istisnosi kichikroq
+                # oynani ham yopishi mumkin; faqat Shanba qat'iy qoladi.
+                if (
+                    method_target
+                    and int(teacher_row["jami_daqiqa"]) <= 120
+                    and not 1 <= grade <= 4
+                ):
+                    continue
+                if _v1856_class_day_block_reason(
+                    class_row, target_day, context.get("class_day_blocks", {})
+                ):
+                    continue
+                if 1 <= grade <= 4 and target_day == 6:
+                    continue
+                if grade <= 4 and target_period >= 6:
+                    continue
+                rows = _v214_effective_availability_rows(
+                    availability_rows, teacher_id, target_day,
+                    target_shift, target_period,
+                )
+                write_plan = _v214_single_slot_write_plan(
+                    rows, context, teacher_id, target_day,
+                    target_shift, target_period,
+                )
+                # Manba idlari va qolgan kataklarni saqlaydigan to'liq write
+                # plan bo'lmasa foydalanuvchi what-if holatini qaytara olmaydi.
+                # Bunday variant raqamli jihatdan yaxshi bo'lsa ham aytilmaydi.
+                if write_plan is None:
+                    continue
+                pair_candidates.append((
+                    1 if method_target else 0,
+                    0 if target_day == first_day else 1,
+                    target_day, target_shift, target_period,
+                    first, second, rows, write_plan,
+                ))
+
+        for _, _, target_day, target_shift, target_period, first, second, rows, write_plan in sorted(
+            pair_candidates,
+            key=lambda item: (
+                item[0], item[1], item[2], item[3], item[4],
+                int((item[5].get("job") or {}).get("load_id") or 0),
+                int((item[6].get("job") or {}).get("load_id") or 0),
+            ),
+        ):
+            if probes >= single_probe_limit or _samtm_time.monotonic() >= deadline:
+                break
+            trial_context, kind = _v214_context_with_single_slot_exception(
+                context, teacher_id, target_day, target_shift, target_period
+            )
+            if trial_context is None:
+                continue
+            trial_context["v206_deadline"] = deadline
+            removed_ids = {id(first), id(second)}
+            base = [
+                placement for placement in placements
+                if id(placement) not in removed_ids
+            ]
+            trial = None
+            for leading, trailing in ((first, second), (second, first)):
+                if probes >= single_probe_limit or _samtm_time.monotonic() >= deadline:
+                    break
+                probes += 1
+                candidate_state = _v1852_rebuild_schedule_state(
+                    base, trial_context
+                )
+                targets = {
+                    id(first): (int(second.get("day") or 0), int(second.get("period") or 0)),
+                    id(second): (int(first.get("day") or 0), int(first.get("period") or 0)),
+                }
+                lead_day, lead_period = targets[id(leading)]
+                tail_day, tail_period = targets[id(trailing)]
+                if not _v196_place_exact(
+                    leading.get("job") or {}, lead_day, lead_period,
+                    candidate_state, trial_context,
+                    _v1852_random.Random(teacher_id * 1009 + probes),
+                    expected_teachers=leading.get("teachers"),
+                ):
+                    continue
+                if not _v196_place_exact(
+                    trailing.get("job") or {}, tail_day, tail_period,
+                    candidate_state, trial_context,
+                    _v1852_random.Random(teacher_id * 1013 + probes),
+                    expected_teachers=trailing.get("teachers"),
+                ):
+                    continue
+                trial = candidate_state
+                break
+            if trial is None or len(trial.get("placements", [])) != len(placements):
+                continue
+            if _v196_class_gap_count(trial) != _v196_class_gap_count(state):
+                continue
+
+            changed_teachers = {
+                int(value)
+                for placement in (first, second)
+                for value in (placement.get("teachers") or [])
+                if value is not None
+            }
+            after_snapshots = {
+                value: _v214_teacher_phase_window_snapshot(
+                    trial, trial_context, value
+                )
+                for value in changed_teachers
+            }
+            before_target = snapshots[teacher_id]
+            after_target = after_snapshots.get(teacher_id, before_target)
+            target_improved = snapshot_not_worse(
+                after_target, before_target, require_improvement=True
+            )
+            if not target_improved:
+                continue
+            other_worsened = any(
+                not snapshot_not_worse(
+                    after_snapshots[value], snapshots[value]
+                )
+                for value in changed_teachers if value != teacher_id
+            )
+            if other_worsened:
+                continue
+            after_metrics = _v196_attempt_metrics(trial, trial_context)
+            if any(
+                int(after_metrics.get(key, 0)) > int(before_metrics.get(key, 0))
+                for key in protected_metric_keys
+            ):
+                continue
+            after_repeat_days = int(sum(
+                1 for count in trial.get("subject_daily", {}).values()
+                if int(count or 0) >= 2
+            ))
+            if after_repeat_days > before_repeat_days:
+                continue
+
+            first_job = first.get("job") or {}
+            second_job = second.get("job") or {}
+            class_row = context.get("classes", {}).get(first_job.get("sinf_id"), {})
+            class_name = f"{class_row.get('sinf','')}-{class_row.get('harf','')}"
+            availability_ids = list(write_plan["manba_idlar"])
+            action = (
+                f"{_V1852_HAFTA.get(target_day, target_day)} kuni "
+                f"{target_shift}-smena {target_period}-dars uchun "
+                + (
+                    "metod kuni va ustma-ust qizil manba qatorlarining "
+                    "barchasini yozish rejasiga ko'ra o'chirib/ajratib, "
+                    "qamrovdagi boshqa kataklarni exact qizil qiling; faqat "
+                    "shu target katakni yashil/yumshoq qiling."
+                    if kind == "metod_va_qizil"
+                    else
+                    "metod kuni qatorini exact qizil kataklarga ajratib, faqat "
+                    "shu katakni yashil/yumshoq qiling; qolgan kataklar yopiq qolsin."
+                    if kind == "metod_kuni"
+                    else "ustma-ust qizil manba qatorlarining barchasini "
+                    "yozish rejasiga ko'ra o'chirib/ajrating: faqat shu "
+                    "target katakni yashil/yumshoq, qolgan qamrovni exact "
+                    "qizil/qattiq qiling."
+                )
+            )
+            suggestion = {
+                "oqituvchi_id": teacher_id,
+                "full_name": teacher_row["full_name"],
+                "turi": kind,
+                "availability_idlar": availability_ids,
+                "yozish_rejasi": write_plan,
+                "tahrir_rejasi": write_plan,
+                "kun": int(target_day),
+                "kun_nomi": _V1852_HAFTA.get(target_day, str(target_day)),
+                "smena": int(target_shift),
+                "dars_raqami": int(target_period),
+                "dars_raqamlari": [int(target_period)],
+                "istisno_kataklari": [{
+                    "smena": int(target_shift),
+                    "dars_raqami": int(target_period),
+                }],
+                "istisno_soati": 1,
+                "boshlangich_sinf": bool(1 <= grade <= 4),
+                "oldin_okno": int(before_target["okno_soni"]),
+                "keyin_okno": int(after_target["okno_soni"]),
+                "kamayish": int(before_target["okno_soni"] - after_target["okno_soni"]),
+                "oldin_ichki_okno": int(before_target["ichki_okno"]),
+                "keyin_ichki_okno": int(after_target["ichki_okno"]),
+                "oldin_daqiqa": int(before_target["jami_daqiqa"]),
+                "keyin_daqiqa": int(after_target["jami_daqiqa"]),
+                "daqiqa_kamayishi": int(before_target["jami_daqiqa"] - after_target["jami_daqiqa"]),
+                "isbotlangan": True,
+                "ishonch": "local_proven",
+                "qayta_yaratish_shart": True,
+                "fan": str(first_job.get("fan") or ""),
+                "sinf": class_name,
+                "amal_matni": action,
+                "sabab": (
+                    f"{class_name} {first_job.get('fan','')} darsi "
+                    f"{int(first.get('day') or 0)}-kun {int(first.get('period') or 0)}-darsdan "
+                    f"{target_day}-kun {target_period}-darsga o'tkazilib, "
+                    f"{second_job.get('fan','')} bilan xavfsiz almashtirildi. "
+                    "Sinf, xona, smena, parallel ustoz va qattiq qoidalar "
+                    "tekshirildi; asosiy/og'ir/amaliy fan, kun taqsimoti, "
+                    "takror va o'qituvchi qulayligi ko'rsatkichlari yomonlashmadi."
+                ),
+            }
+            current_best = best_by_teacher.get(teacher_id)
+            suggestion_rank = (
+                -int(suggestion["daqiqa_kamayishi"]),
+                -int(suggestion["kamayish"]),
+                1 if kind in {"metod_kuni", "metod_va_qizil"} else 0,
+                int(target_day), int(target_shift), int(target_period),
+            )
+            if current_best is None or suggestion_rank < current_best[0]:
+                best_by_teacher[teacher_id] = (
+                    suggestion_rank, suggestion, trial, trial_context,
+                    set(changed_teachers),
+                )
+
+    # Boshlang'ich sinf uchun Shanbadan boshqa metod kunida foyda bergan
+    # 1-soatlik variant topilsa, o'sha kunning yana bitta aniq katagini ochish
+    # ham alohida SINOV qilinadi. Ikki katak birdan taxmin qilinmaydi: birinchi
+    # valid trial ustiga ikkinchi exact swap qo'yilib, oldin→keyin qayta
+    # o'lchanadi. Qolgan metod kuni yopiq qoladi.
+    double_suggestions = []
+    for teacher_id, best_value in sorted(best_by_teacher.items()):
+        if probes >= max_probes or _samtm_time.monotonic() >= deadline:
+            break
+        _, single, first_trial, first_trial_context, first_changed = best_value
+        if (
+            single.get("turi") not in {"metod_kuni", "metod_va_qizil"}
+            or not single.get("boshlangich_sinf")
+            or int(single.get("kun") or 0) == 6
+        ):
+            continue
+        first_snapshot = _v214_teacher_phase_window_snapshot(
+            first_trial, first_trial_context, teacher_id
+        )
+        if not first_snapshot["okno_soni"] and not first_snapshot["ichki_okno"]:
+            continue
+        gap_days = {
+            int(row.get("kun") or 0)
+            for row in first_snapshot.get("kunlar") or []
+            if row.get("real_okno_soni") or row.get("ichki_okno")
+        }
+        current_placements = list(first_trial.get("placements", []))
+        current_by_class = _v1852_defaultdict(list)
+        for placement in current_placements:
+            current_by_class[int(
+                (placement.get("job") or {}).get("sinf_id") or 0
+            )].append(placement)
+        second_pairs = []
+        used_slots = {
+            (int(row.get("smena") or 0), int(row.get("dars_raqami") or 0))
+            for row in single.get("istisno_kataklari") or []
+        }
+        for first in current_placements:
+            first_job = first.get("job") or {}
+            if (
+                teacher_id not in {
+                    int(value) for value in first.get("teachers") or []
+                    if value is not None
+                }
+                or int(first.get("day") or 0) not in gap_days
+                or not _v196_movable_placement(first)
+            ):
+                continue
+            class_id = int(first_job.get("sinf_id") or 0)
+            class_row = context.get("classes", {}).get(class_id, {})
+            grade = int(
+                first_job.get("v1874_grade") or _v1874_grade(class_row)
+            )
+            if not 1 <= grade <= 4:
+                continue
+            for second in current_by_class.get(class_id, []):
+                if second is first or not _v196_movable_placement(second):
+                    continue
+                second_job = second.get("job") or {}
+                target_day = int(second.get("day") or 0)
+                target_shift = int(second_job.get("smena") or 1)
+                target_period = int(second.get("period") or 0)
+                if target_day != int(single.get("kun") or 0):
+                    continue
+                if target_day == 6 or target_period >= 6:
+                    continue
+                if (target_shift, target_period) in used_slots:
+                    continue
+                if not _v1852_blocked(
+                    first_trial_context.get("hard", set()), teacher_id,
+                    target_day, target_shift, target_period,
+                ):
+                    continue
+                if _v1856_class_day_block_reason(
+                    class_row, target_day,
+                    first_trial_context.get("class_day_blocks", {}),
+                ):
+                    continue
+                second_pairs.append((
+                    target_day, target_shift, target_period, first, second,
+                ))
+
+        best_double = None
+        for target_day, target_shift, target_period, first, second in sorted(
+            second_pairs,
+            key=lambda item: (
+                item[0], item[1], item[2],
+                int((item[3].get("job") or {}).get("load_id") or 0),
+                int((item[4].get("job") or {}).get("load_id") or 0),
+            ),
+        ):
+            if probes >= max_probes or _samtm_time.monotonic() >= deadline:
+                break
+            first_exception = list(single.get("istisno_kataklari") or [])
+            if not first_exception:
+                continue
+            first_exception_shift = int(first_exception[0].get("smena") or 0)
+            first_exception_period = int(
+                first_exception[0].get("dars_raqami") or 0
+            )
+            combined_source_rows = {}
+            for source in (
+                _v214_effective_availability_rows(
+                    availability_rows, teacher_id, target_day,
+                    first_exception_shift, first_exception_period,
+                )
+                + _v214_effective_availability_rows(
+                    availability_rows, teacher_id, target_day,
+                    target_shift, target_period,
+                )
+            ):
+                if source.get("id") is not None:
+                    combined_source_rows[int(source["id"])] = dict(source)
+            combined_write_plan = _v214_single_slot_write_plan(
+                list(combined_source_rows.values()), context,
+                teacher_id, target_day,
+                first_exception_shift, first_exception_period,
+                additional_slots=[(target_shift, target_period)],
+            )
+            if combined_write_plan is None:
+                continue
+            second_context, _ = _v214_context_with_single_slot_exception(
+                first_trial_context, teacher_id,
+                target_day, target_shift, target_period,
+            )
+            if second_context is None:
+                continue
+            second_context["v206_deadline"] = deadline
+            removed_ids = {id(first), id(second)}
+            base = [
+                placement for placement in current_placements
+                if id(placement) not in removed_ids
+            ]
+            second_trial = None
+            for leading, trailing in ((first, second), (second, first)):
+                if probes >= max_probes or _samtm_time.monotonic() >= deadline:
+                    break
+                probes += 1
+                candidate_state = _v1852_rebuild_schedule_state(
+                    base, second_context
+                )
+                targets = {
+                    id(first): (
+                        int(second.get("day") or 0),
+                        int(second.get("period") or 0),
+                    ),
+                    id(second): (
+                        int(first.get("day") or 0),
+                        int(first.get("period") or 0),
+                    ),
+                }
+                lead_day, lead_period = targets[id(leading)]
+                tail_day, tail_period = targets[id(trailing)]
+                if not _v196_place_exact(
+                    leading.get("job") or {}, lead_day, lead_period,
+                    candidate_state, second_context,
+                    _v1852_random.Random(teacher_id * 2017 + probes),
+                    expected_teachers=leading.get("teachers"),
+                ):
+                    continue
+                if not _v196_place_exact(
+                    trailing.get("job") or {}, tail_day, tail_period,
+                    candidate_state, second_context,
+                    _v1852_random.Random(teacher_id * 2027 + probes),
+                    expected_teachers=trailing.get("teachers"),
+                ):
+                    continue
+                second_trial = candidate_state
+                break
+            if (
+                second_trial is None
+                or len(second_trial.get("placements", [])) != len(placements)
+                or _v196_class_gap_count(second_trial)
+                != _v196_class_gap_count(state)
+            ):
+                continue
+            changed_teachers = set(first_changed) | {
+                int(value)
+                for placement in (first, second)
+                for value in (placement.get("teachers") or [])
+                if value is not None
+            }
+            after_snapshots = {
+                value: _v214_teacher_phase_window_snapshot(
+                    second_trial, second_context, value
+                )
+                for value in changed_teachers
+            }
+            after_target = after_snapshots.get(teacher_id, first_snapshot)
+            further_improved = snapshot_not_worse(
+                after_target, first_snapshot, require_improvement=True
+            )
+            if not further_improved:
+                continue
+            if any(
+                not snapshot_not_worse(
+                    after_snapshots[value], snapshots[value]
+                )
+                for value in changed_teachers if value != teacher_id
+            ):
+                continue
+            after_metrics = _v196_attempt_metrics(second_trial, second_context)
+            if any(
+                int(after_metrics.get(key, 0)) > int(before_metrics.get(key, 0))
+                for key in protected_metric_keys
+            ):
+                continue
+            after_repeat_days = int(sum(
+                1 for count in second_trial.get("subject_daily", {}).values()
+                if int(count or 0) >= 2
+            ))
+            if after_repeat_days > before_repeat_days:
+                continue
+
+            slots = sorted(
+                list(single.get("istisno_kataklari") or []) + [{
+                    "smena": int(target_shift),
+                    "dars_raqami": int(target_period),
+                }],
+                key=lambda row: (
+                    int(row.get("smena") or 0),
+                    int(row.get("dars_raqami") or 0),
+                ),
+            )
+            slot_text = " va ".join(
+                f"{int(row['smena'])}-smena {int(row['dars_raqami'])}-dars"
+                for row in slots
+            )
+            combined = dict(single)
+            combined_types = {
+                str(row.get("turi") or "")
+                for row in combined_source_rows.values()
+            }
+            combined_kind = (
+                "metod_va_qizil"
+                if "metod_kuni" in combined_types and "band" in combined_types
+                else "metod_kuni"
+            )
+            combined.update({
+                "turi": combined_kind,
+                "availability_idlar": sorted(combined_source_rows),
+                "yozish_rejasi": combined_write_plan,
+                "tahrir_rejasi": combined_write_plan,
+                "dars_raqami": int(slots[0]["dars_raqami"]),
+                "dars_raqamlari": [
+                    int(row["dars_raqami"]) for row in slots
+                ],
+                "istisno_kataklari": slots,
+                "istisno_soati": 2,
+                "keyin_okno": int(after_target["okno_soni"]),
+                "kamayish": int(
+                    snapshots[teacher_id]["okno_soni"]
+                    - after_target["okno_soni"]
+                ),
+                "keyin_ichki_okno": int(after_target["ichki_okno"]),
+                "keyin_daqiqa": int(after_target["jami_daqiqa"]),
+                "daqiqa_kamayishi": int(
+                    snapshots[teacher_id]["jami_daqiqa"]
+                    - after_target["jami_daqiqa"]
+                ),
+                "amal_matni": (
+                    f"{_V1852_HAFTA.get(target_day, target_day)} "
+                    + (
+                        "metod kuni va ustma-ust qizil manba qatorlarining "
+                        "barchasini yozish rejasiga ko'ra o'chirib/ajratib, "
+                        if combined_kind == "metod_va_qizil"
+                        else "metod kuni manba qatorini yozish rejasiga "
+                        "ko'ra o'chirib, "
+                    )
+                    + f"faqat {slot_text} target kataklarini yashil/yumshoq "
+                    "qiling; qamrovdagi boshqa kataklarni exact qizil/qattiq "
+                    "qilib qayta yarating."
+                ),
+                "sabab": (
+                    str(single.get("sabab") or "")
+                    + " Ikkinchi boshlang'ich dars ham alohida exact swapda "
+                    "tekshirildi; ikkala istisno birga qo'llanganda boshqa "
+                    "ustoz yoki pedagogik ko'rsatkich yomonlashmadi."
+                ),
+            })
+            rank = (
+                -int(combined["daqiqa_kamayishi"]),
+                -int(combined["kamayish"]),
+                int(target_shift), int(target_period),
+            )
+            if best_double is None or rank < best_double[0]:
+                best_double = (rank, combined)
+        if best_double is not None:
+            double_suggestions.append(best_double[1])
+
+    suggestions = [value[1] for value in best_by_teacher.values()]
+    suggestions.extend(double_suggestions)
+    suggestions.sort(key=lambda row: (
+        -int(row["daqiqa_kamayishi"]), -int(row["kamayish"]),
+        str(row["full_name"]), int(row["kun"]),
+        int(row["smena"]), int(row["dars_raqami"]),
+    ))
+    omitted_suggestions = max(0, len(suggestions) - max_suggestions)
+    result["tavsiyalar"] = suggestions[:max_suggestions]
+    result["tekshirilgan_variantlar"] = int(probes)
+    if len(affected) > 10:
+        result["cheklash_sabablari"].append(
+            f"{len(affected) - 10} o'qituvchi ustuvor limitdan tashqarida qoldi"
+        )
+    if source_rows_truncated:
+        result["cheklash_sabablari"].append(
+            "ayrim o'qituvchida 12 tadan ortiq manba dars bor"
+        )
+    if probes >= max_probes:
+        result["cheklash_sabablari"].append(
+            f"{max_probes} ta sinov limiti tugadi"
+        )
+    if _samtm_time.monotonic() >= deadline:
+        result["cheklash_sabablari"].append("hisobot vaqt limiti tugadi")
+    if omitted_suggestions:
+        result["cheklash_sabablari"].append(
+            f"{omitted_suggestions} ta pastroq ustuvor tavsiya ko'rsatilmagan"
+        )
+    # Oynasi mavjud bo'lsa bu har doim chegaralangan lokal dalil; butun yechim
+    # fazosi to'liq ko'rildi degan yolg'on signal berilmaydi.
+    result["cheklangan"] = bool(affected)
+    result["hisobot_toliq"] = not bool(affected)
+    if not result["tavsiyalar"]:
+        result["izoh"] += (
+            " Chegaralangan lokal sinovlarda aniq foydali tahrir "
+            "isbotlanmadi; tekshirilmagan variantlar mavjud."
+        )
+    return result
+
+
 def _v196_attempt_metrics(state, context):
     single_teacher_days = sum(
         1 for periods in state.get("teacher_periods", {}).values()
@@ -15160,8 +16682,9 @@ def _v196_attempt_metrics(state, context):
     upper_first_heavy = 0
     late_core = 0
     early_practical = 0
+    core_period6_by_class = _v1852_defaultdict(set)
     by_class_day = state.get("class_period_jobs", {})
-    for (_, _), period_jobs in by_class_day.items():
+    for (class_id, class_day), period_jobs in by_class_day.items():
         for period, job in period_jobs.items():
             profile = _v196_rotation_profile(job, context)
             grade = int(
@@ -15172,6 +16695,8 @@ def _v196_attempt_metrics(state, context):
                 upper_first_heavy += 1
             if int(period) >= 5 and profile.get("core_priority"):
                 late_core += 1
+            if int(period) == 6 and profile.get("core_priority"):
+                core_period6_by_class[int(class_id)].add(int(class_day))
             if int(period) <= 2 and (
                 profile.get("physical") or profile.get("technology")
             ):
@@ -15269,6 +16794,13 @@ def _v196_attempt_metrics(state, context):
             })
     class_imbalance, class_short_days = _v196_class_distribution_metrics(state, context)
     teacher_gap_metrics = _v196_teacher_gap_metrics(state, context)
+    core_period6_days = sum(
+        len(days) for days in core_period6_by_class.values()
+    )
+    core_period6_overflow = sum(
+        max(0, len(days) - _V213_CORE_PERIOD6_LIMIT)
+        for days in core_period6_by_class.values()
+    )
     return {
         "oqituvchi_bitta_darsli_kun": int(single_teacher_days),
         "oqituvchi_faol_kun": int(teacher_active_days),
@@ -15276,6 +16808,8 @@ def _v196_attempt_metrics(state, context):
         "jismoniydan_keyin_ogir_fan": int(pe_before_heavy),
         "9_11_birinchi_dars_ogir": int(upper_first_heavy),
         "asosiy_fan_5_6": int(late_core),
+        "asosiy_fan_6_kunlari": int(core_period6_days),
+        "asosiy_fan_6_limitdan_ortiq": int(core_period6_overflow),
         "amaliy_fan_1_2": int(early_practical),
         "oqituvchi_smenalar_orasi_blok": int(cross_shift_blocks),
         "oqituvchi_smenalar_orasi_daqiqa": int(cross_shift_total_minutes),
@@ -15316,13 +16850,24 @@ def _v1852_generate_attempt(jobs, context, seed):
 
     best = None
     tried = []
-    stages = ("strict", "balanced", "completion")
+    # Constraint-solver tamoyili: avval barcha HARD qoidalar bilan to'liq
+    # FEASIBLE jadval topiladi, pedagogik afzalliklar esa score orqali
+    # yaxshilanadi. Eski strict→balanced→completion ketma-ketligi birinchi
+    # strict repairda butun deadline'ni yeb, aynan completion'ga yetmasdi.
+    # ``completion`` filtrida qizil/metod, collision, smena, fixed va guruh
+    # qoidalari baribir qattiq; faqat kech og'ir fan kabi tavsiyalar yumshoq.
+    stages = ("completion",)
     for stage_index, stage in enumerate(stages):
         if stage_index and _v206_deadline_reached(context):
             break
         policy = _timetable_internal_policy(stage)
         repair_context = dict(context)
-        repair_context["v203_emergency_repeat_days"] = 0
+        # 5 soatlik boshlang'ich fan + ustozning metod kuni kabi real holatda
+        # beshta alohida umumiy kun qolmasligi mumkin. Bitta generator takrorni
+        # boshidan legal zaxira sifatida biladi, lekin score uni 5000 ball bilan
+        # jazolagani uchun faqat boshqa kun topilmaganda ishlatadi. Bitta fan
+        # bir kunda ko'pi bilan 2 marta, haftada ko'pi bilan 2 kunda takrorlanadi.
+        repair_context["v203_emergency_repeat_days"] = 2
         repair_context["v207_policy_stage"] = stage
         repair_context["v208_mode_config"] = _timetable_mode_config()
 
@@ -15361,7 +16906,7 @@ def _v1852_generate_attempt(jobs, context, seed):
                 state, repair_context, repair_rng, max_moves=48
             )
 
-        state["v203_emergency_repeat_days"] = 0
+        state["v203_emergency_repeat_days"] = 2
         state["v207_policy_stage"] = stage
         state["v207_generator_mode"] = 1
         state["v208_mode_config"] = _timetable_mode_config()
@@ -15383,6 +16928,8 @@ def _v1852_generate_attempt(jobs, context, seed):
             + metrics.get("ketma_ket_ogir_fan", 0) * 35
             + metrics.get("jismoniydan_keyin_ogir_fan", 0) * 250
             + metrics.get("asosiy_fan_5_6", 0) * 800
+            + metrics.get("asosiy_fan_6_kunlari", 0) * 20000
+            + metrics.get("asosiy_fan_6_limitdan_ortiq", 0) * 1000000
             + metrics.get("amaliy_fan_1_2", 0) * 220
             + metrics.get("ikki_smenali_1soatdan_uzoq", 0) * 2400
             + metrics.get("ikki_smenali_2soatdan_uzoq", 0) * 12000
@@ -15398,6 +16945,8 @@ def _v1852_generate_attempt(jobs, context, seed):
         rank = (
             len(unplaced),
             int(state.get("class_gap_count") or 0),
+            int(metrics.get("asosiy_fan_6_limitdan_ortiq") or 0),
+            int(metrics.get("asosiy_fan_6_kunlari") or 0),
             int(metrics.get("ikki_smenali_4soatdan_uzoq") or 0),
             int(metrics.get("ikki_smenali_istisno_ortiqcha_kun") or 0),
             int(metrics.get("ikki_smenali_1soatdan_uzoq") or 0),
@@ -15432,7 +16981,7 @@ def _v1852_generate_attempt(jobs, context, seed):
         policy = _timetable_internal_policy("strict")
         fallback_context = dict(context)
         fallback_context["v207_policy_stage"] = policy["stage"]
-        fallback_context["v203_emergency_repeat_days"] = 0
+        fallback_context["v203_emergency_repeat_days"] = 2
         fallback_context["v208_mode_config"] = _timetable_mode_config()
         result = _v196_base_generate_attempt(jobs, fallback_context, int(seed))
         best = ((len(result[1]),), result)
@@ -15489,6 +17038,49 @@ def _v209_phase_room_collision(
     )
 
 
+def _v212_job_teacher_phases(job, fallback_teachers=None):
+    """Job ustozlarini TOQ/JUFT/har_hafta fazasi bilan qaytaradi.
+
+    A/B aylanishidagi ikki fan bir fizik katakda turadi, ammo ularning
+    ustozlari turli haftada ishlaydi. Eski ``teacher_busy`` indeksida faza
+    yo'q edi va TOQ ustoz sabab JUFT ustozning legal darsi ham yopilardi.
+    """
+    result = _v1852_defaultdict(set)
+    members = (job or {}).get("rotation_members") or []
+    if members:
+        for member in members:
+            phase = str(member.get("hafta_turi") or "har_hafta")
+            for teacher in _v199_rotation_member_teachers(member):
+                if teacher is not None:
+                    result[int(teacher)].add(phase)
+    else:
+        phase = str((job or {}).get("hafta_turi") or "har_hafta")
+        teachers = (
+            list(fallback_teachers)
+            if fallback_teachers is not None
+            else list(_v1852_job_teacher_ids(job or {}))
+        )
+        for teacher in teachers:
+            if teacher is not None:
+                result[int(teacher)].add(phase)
+    return {teacher: set(phases) for teacher, phases in result.items()}
+
+
+def _v212_teacher_phase_collision(incoming_job, incoming_teachers, placement):
+    """Ikki paketda ayni ustozning bir-birini kesadigan hafta fazasi bormi."""
+    incoming = _v212_job_teacher_phases(incoming_job, incoming_teachers)
+    existing_job = (placement or {}).get("job") or {}
+    existing = _v212_job_teacher_phases(
+        existing_job, (placement or {}).get("teachers") or []
+    )
+    return any(
+        _v209_week_phases_overlap(incoming_phase, existing_phase)
+        for teacher in set(incoming).intersection(existing)
+        for incoming_phase in incoming[teacher]
+        for existing_phase in existing[teacher]
+    )
+
+
 def _v205_class_hour_red_day_exception(job, teacher, day, period, context):
     """Faqat qo'lda tanlangan qat'iy Kelajak soati qizil/metod vaqtini ochadi."""
     if not job.get("is_class_hour") or teacher is None:
@@ -15510,6 +17102,27 @@ def _v205_class_hour_red_day_exception(job, teacher, day, period, context):
     )
 
 
+def _v213_core_period6_days(state, class_id, context):
+    """Sinfning asosiy fan 6-darsga tushgan aniq hafta kunlarini qaytaradi.
+
+    A/B aylanish katagida ikki fan bitta fizik slotni egallaydi; ulardan biri
+    asosiy fan bo'lsa ham kun bir marta sanaladi. Hisob ``class_period_jobs``
+    dan olinadi, shuning uchun rebuild va bounded-repair holatlarida ham bir xil.
+    """
+    result = set()
+    for (placed_class_id, placed_day), period_jobs in (
+        state.get("class_period_jobs", {}) or {}
+    ).items():
+        if int(placed_class_id) != int(class_id):
+            continue
+        placed_job = (period_jobs or {}).get(6)
+        if placed_job and _v196_rotation_profile(
+            placed_job, context
+        ).get("core_priority"):
+            result.add(int(placed_day))
+    return result
+
+
 def _v1852_candidate_reasons(
     job, day, period, selected_teachers, room_keys, state, context
 ):
@@ -15517,6 +17130,20 @@ def _v1852_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
     profile = _v196_rotation_profile(job, context)
+
+    # Asosiy fanlar avval 1–5-darslardan joy oladi. Boshqa legal kombinatsiya
+    # qolmasa 6-dars zaxira sifatida ishlaydi, ammo bir sinfning haftasida
+    # bunday kunlar ikkitadan oshmaydi. Bu pedagogik afzallik emas, foydalanuvchi
+    # belgilagan yakuniy chegara; completion bosqichi ham uni olib tashlamaydi.
+    if int(period) == 6 and profile.get("core_priority"):
+        core_period6_days = _v213_core_period6_days(
+            state, job.get("sinf_id"), context
+        )
+        if (
+            int(day) not in core_period6_days
+            and len(core_period6_days) >= _V213_CORE_PERIOD6_LIMIT
+        ):
+            reasons.append(_V213_CORE_PERIOD6_REASON)
 
     # Eski room_busy to'plami hafta fazasini saqlamaydi. Shuning uchun u
     # toq haftadagi xona sabab juft haftadagi boshqa darsni ham yopardi.
@@ -15535,6 +17162,26 @@ def _v1852_candidate_reasons(
         )
         if not exact_phase_collision:
             reasons = [reason for reason in reasons if reason != "xona band"]
+
+    # ``teacher_busy`` ham eski fazasiz indeks. Ayni TOQ ustozning katagi
+    # JUFT haftadagi o'sha ustoz yoki boshqa aylanish paketini asossiz
+    # bloklamasin; faqat kesishadigan hafta fazasi real kolliziya hisoblanadi.
+    if "o'qituvchi boshqa darsda" in reasons:
+        exact_teacher_collision = any(
+            int(placement.get("day") or 0) == int(day)
+            and int((placement.get("job") or {}).get("smena") or 1)
+            == int(job.get("smena") or 1)
+            and int(placement.get("period") or 0) == int(period)
+            and _v212_teacher_phase_collision(
+                job, selected_teachers, placement
+            )
+            for placement in state.get("placements", [])
+        )
+        if not exact_teacher_collision:
+            reasons = [
+                reason for reason in reasons
+                if reason != "o'qituvchi boshqa darsda"
+            ]
 
     # Sinf rahbari keyin tayinlanishi mumkin. Shunday sinfning qat'iy
     # KELAJAK/SINF SOATI katagi o'qituvchisiz bo'lsa ham yo'qolmaydi.
@@ -15606,20 +17253,27 @@ def _v1852_candidate_reasons(
     )
     if new_interval:
         new_start, new_end = new_interval
-        for teacher in selected_teachers:
-            if teacher is None:
+        for placement in state.get("placements", []):
+            if int(placement.get("day") or 0) != int(day):
                 continue
-            timeline = _v200_teacher_day_timeline(
-                state, int(teacher), int(day), context
-            )
-            if any(
-                int(new_start) < int(old_end)
-                and int(old_start) < int(new_end)
-                for old_start, old_end, _shift, _period in timeline
+            if not _v212_teacher_phase_collision(
+                job, selected_teachers, placement
             ):
+                continue
+            old_job = placement.get("job") or {}
+            old_interval = _v196_slot_interval(
+                context,
+                int(old_job.get("smena") or 1),
+                int(placement.get("period") or 0),
+            )
+            if not old_interval:
+                continue
+            old_start, old_end = old_interval
+            if int(new_start) < int(old_end) and int(old_start) < int(new_end):
                 reasons.append(
                     "o'qituvchi boshqa smenadagi dars bilan real vaqtda ustma-ust"
                 )
+                break
         # Xona ham dars raqami bilan emas, haqiqiy vaqt oralig'i bilan band.
         # Masalan, 1-smena 6-darsi 2-smena 1-darsi bilan ustma-ust tushishi
         # mumkin. Kanonik room:<id>/text:<nom> kalitlari bir xil jismoniy
