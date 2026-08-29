@@ -2186,6 +2186,11 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         tutor_only = "tyutor" in names and not (names & MARK_DOCUMENT_ROLES)
         scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
         where = ["qt.universitet_id=%s", scope_sql]; params: list[Any] = [universitet_id, *scope_params]
+        # Hisob kartalari va filtr variantlari ham aynan ochilgan
+        # fakultet/yo'nalish doirasida hisoblanadi. Qidiruv yoki bosqich kabi
+        # vaqtinchalik UI filtrlari bu kontekstni o'zgartirmaydi.
+        context_where = ["qt.universitet_id=%s", scope_sql]
+        context_params: list[Any] = [universitet_id, *scope_params]
         if bosqich is not None:
             if bosqich not in (1, 2, 3, 4): raise HTTPException(status_code=400, detail="Bosqich 1–4 oralig'ida bo'lishi kerak")
             if bosqich == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
@@ -2196,7 +2201,9 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             if requested_stage == 2: where.append("qt.hujjat_topshirgan_at IS NOT NULL")
             if requested_stage == 3: where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
             if requested_stage == 4: where.append("(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0)")
-        if fakultet_id: where.append("y.fakultet_id=%s"); params.append(fakultet_id)
+        if fakultet_id:
+            where.append("y.fakultet_id=%s"); params.append(fakultet_id)
+            context_where.append("y.fakultet_id=%s"); context_params.append(fakultet_id)
         if yonalish_ids:
             try:
                 requested_program_ids = sorted({int(value.strip()) for value in yonalish_ids.split(",") if value.strip()})
@@ -2205,8 +2212,10 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             if not requested_program_ids:
                 raise HTTPException(status_code=400, detail="Yo‘nalish tanlanmagan")
             where.append("qt.yonalish_id=ANY(%s)"); params.append(requested_program_ids)
+            context_where.append("qt.yonalish_id=ANY(%s)"); context_params.append(requested_program_ids)
         elif yonalish_id:
             where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
+            context_where.append("qt.yonalish_id=%s"); context_params.append(yonalish_id)
         if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
         if talim_tili: where.append("qt.talim_tili=%s"); params.append(talim_tili)
         if region: where.append("qt.doimiy_region=%s"); params.append(region)
@@ -2214,8 +2223,12 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         if qabul_turi == "kontrakt": where.append("qt.tavsiya_turi ILIKE %s"); params.append("%kontrakt%")
         if _norm(q):
             term = "%" + _norm(q) + "%"; digits = _digits(q)
-            search_parts = ["qt.familiya ILIKE %s", "qt.ism ILIKE %s", "qt.ota_ism ILIKE %s", "qt.abitur_id ILIKE %s", "qt.telefon ILIKE %s"]
-            params += [term, term, term, term, term]
+            search_parts = [
+                "qt.familiya ILIKE %s", "qt.ism ILIKE %s", "qt.ota_ism ILIKE %s",
+                "CONCAT_WS(' ',qt.familiya,qt.ism,qt.ota_ism) ILIKE %s",
+                "qt.abitur_id ILIKE %s", "qt.telefon ILIKE %s",
+            ]
+            params += [term, term, term, term, term, term]
             if len(digits) == 14:
                 search_parts.append("qt.jshshir_hash=%s"); params.append(hashlib.sha256(digits.encode()).hexdigest())
             where.append("(" + " OR ".join(search_parts) + ")")
@@ -2247,21 +2260,20 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
                 for hidden in ("hujjat_topshirgan_at", "bazaga_kiritilgan_at", "birinchi_kirish_at"):
                     item.pop(hidden, None)
             rows.append(item)
-        sw = "qt.universitet_id=%s AND " + scope_sql
-        count_params: list[Any] = [universitet_id, *scope_params]
+        context_clause = " AND ".join(context_where)
         cur.execute(f"""SELECT COUNT(*) jami,
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL) hujjat,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) baza,
             COUNT(*) FILTER(WHERE qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR qt.user_id>=0) sayt
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
-            WHERE {sw}""", count_params)
+            WHERE {context_clause}""", context_params)
         counts = cur.fetchone()
         cur.execute(f"""SELECT
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.talim_shakli ORDER BY qt.talim_shakli),NULL) shakllar,
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.talim_tili ORDER BY qt.talim_tili),NULL) tillar,
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.doimiy_region ORDER BY qt.doimiy_region),NULL) hududlar
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
-            WHERE {sw}""", count_params)
+            WHERE {context_clause}""", context_params)
         filter_options = cur.fetchone()
         safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0), "sayt": int(counts["sayt"] or 0)} if tutor_only else counts
         return {"talabalar": rows, "jami": total, "sahifa": page, "sahifa_soni": math.ceil(total/page_size) if total else 0,
@@ -2272,6 +2284,7 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
 
 @router.get("/qabul/kunlik_hisobot")
 def admission_daily_report(universitet_id: int, kun: Optional[date] = None,
+                           fakultet_id: Optional[int] = None,
                            token: Optional[str] = Query(None, include_in_schema=False),
                            authorization: Optional[str] = Header(None)):
     """Dekan/admin tanlagan kun bo'yicha hujjat, baza va sayt hisobotini ko'radi."""
@@ -2280,16 +2293,41 @@ def admission_daily_report(universitet_id: int, kun: Optional[date] = None,
     try:
         _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
         if not _has_any(roles, MARK_DOCUMENT_ROLES):
-            raise HTTPException(status_code=403, detail="Kunlik qabul hisoboti dekan va administrator uchun")
+            raise HTTPException(status_code=403, detail="Kunlik qabul hisoboti vakolatli rahbar va administrator uchun")
+        if fakultet_id is not None:
+            cur.execute("SELECT id FROM fakultetlar WHERE id=%s AND universitet_id=%s", (fakultet_id, universitet_id))
+            if not cur.fetchone():
+                raise HTTPException(status_code=400, detail="Fakultet bu institutga tegishli emas")
+            names = _role_names(roles)
+            if not (names & INSTITUTE_WIDE):
+                allowed_faculties = {
+                    int(role["fakultet_id"])
+                    for role in roles
+                    if role.get("fakultet_id") and role["rol"] in FACULTY_WIDE
+                }
+                department_ids = [
+                    int(role["kafedra_id"])
+                    for role in roles
+                    if role.get("kafedra_id") and role["rol"] in DEPARTMENT_WIDE
+                ]
+                if department_ids:
+                    cur.execute("SELECT DISTINCT fakultet_id FROM kafedralar WHERE id=ANY(%s)", (department_ids,))
+                    allowed_faculties.update(int(row["fakultet_id"]) for row in cur.fetchall())
+                if int(fakultet_id) not in allowed_faculties:
+                    raise HTTPException(status_code=403, detail="Bu fakultet hisobotini ko‘rish huquqi yo‘q")
         scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
         params: list[Any] = [selected_day, selected_day, selected_day, universitet_id, *scope_params]
+        faculty_sql = ""
+        if fakultet_id is not None:
+            faculty_sql = " AND y.fakultet_id=%s"
+            params.append(fakultet_id)
         cur.execute(f"""SELECT
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s) hujjat,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at::date=%s) baza,
             COUNT(*) FILTER(WHERE COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s) sayt
           FROM universitet_qabul_talabalari qt
           JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
-         WHERE qt.universitet_id=%s AND {scope_sql}""", params)
+         WHERE qt.universitet_id=%s AND {scope_sql}{faculty_sql}""", params)
         totals = dict(cur.fetchone())
         cur.execute(f"""SELECT f.id fakultet_id,f.nomi fakultet_nomi,y.id yonalish_id,y.nomi yonalish_nomi,
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s) hujjat,
@@ -2298,7 +2336,7 @@ def admission_daily_report(universitet_id: int, kun: Optional[date] = None,
           FROM universitet_qabul_talabalari qt
           JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
           JOIN fakultetlar f ON f.id=y.fakultet_id
-         WHERE qt.universitet_id=%s AND {scope_sql}
+         WHERE qt.universitet_id=%s AND {scope_sql}{faculty_sql}
          GROUP BY f.id,f.nomi,y.id,y.nomi
         HAVING COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s
                                 OR qt.bazaga_kiritilgan_at::date=%s
