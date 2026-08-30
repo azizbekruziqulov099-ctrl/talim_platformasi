@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-CROSS-SHIFT-EDGE-V22.9"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-SAME-DAY-CROSS-SHIFT-V22.10"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1131,13 +1131,19 @@ def _build_model(
     # weakened, yet a needless 4–5 hour wait between shift 1 and shift 2 is
     # far more expensive than an ordinary short school break.
     teacher_real_day: dict[tuple[int, int, str], list[int]] = defaultdict(list)
+    teacher_shift_day: dict[tuple[int, int, str, int], list[int]] = defaultdict(list)
     teacher_any_phase_day: dict[tuple[int, int], list[int]] = defaultdict(list)
     for index, row in enumerate(candidates):
         for teacher, phases in row["teacher_phases"].items():
             teacher_any_phase_day[(teacher, row["day"])].append(index)
             for phase in phases:
                 teacher_real_day[(teacher, row["day"], phase)].append(index)
+                teacher_shift_day[(teacher, row["day"], phase, row["shift"])].append(index)
     teacher_real_idle_terms: list[Any] = []
+    teacher_cross_shift_wait_terms: list[Any] = []
+    teacher_cross_shift_over60_terms: list[Any] = []
+    teacher_cross_shift_over120_terms: list[Any] = []
+    teacher_cross_shift_over180_terms: list[Any] = []
     teacher_used_day_terms: list[Any] = []
     teacher_used_days: dict[int, list[Any]] = defaultdict(list)
     for (teacher, day), raw_indices in teacher_any_phase_day.items():
@@ -1240,6 +1246,59 @@ def _build_model(
         )
         teacher_real_idle_terms.append(excess_idle)
 
+    # Faqat aynan bir kunda ikkala smenada darsi bor ustoz uchun 1-smenaning
+    # oxirgi darsi bilan 2-smenaning birinchi darsi orasidagi haqiqiy minut.
+    # Bu soft: 0–60 daqiqa eng yaxshi, 60/120/180 dan oshgan qismi tobora
+    # qimmatroq; hech biri to'liq jadvalni INFEASIBLE qilmaydi.
+    shift_day_keys = {
+        (teacher, day, phase)
+        for teacher, day, phase, shift in teacher_shift_day
+        if shift in (1, 2)
+    }
+    for teacher, day, phase in sorted(shift_day_keys):
+        first_indices = sorted(set(teacher_shift_day.get((teacher, day, phase, 1), [])))
+        second_indices = sorted(set(teacher_shift_day.get((teacher, day, phase, 2), [])))
+        if not first_indices or not second_indices or not quality_enabled:
+            continue
+        label = f"{teacher}_{day}_{phase}"
+        first_used = model.NewBoolVar(f"cross_first_used_{label}")
+        second_used = model.NewBoolVar(f"cross_second_used_{label}")
+        model.AddMaxEquality(first_used, [variables[index] for index in first_indices])
+        model.AddMaxEquality(second_used, [variables[index] for index in second_indices])
+        both_used = model.NewBoolVar(f"cross_both_used_{label}")
+        model.Add(both_used <= first_used)
+        model.Add(both_used <= second_used)
+        model.Add(both_used >= first_used + second_used - 1)
+        horizon = max(
+            int(candidates[index]["interval"][1])
+            for index in first_indices + second_indices
+        )
+        last_first_end = model.NewIntVar(0, horizon, f"cross_last_first_{label}")
+        model.AddMaxEquality(last_first_end, [
+            int(candidates[index]["interval"][1]) * variables[index]
+            for index in first_indices
+        ])
+        first_second_start = model.NewIntVar(0, horizon, f"cross_first_second_{label}")
+        model.AddMinEquality(first_second_start, [
+            int(candidates[index]["interval"][0]) * variables[index]
+            + horizon * (1 - variables[index])
+            for index in second_indices
+        ])
+        raw_wait = model.NewIntVar(-horizon, horizon, f"cross_raw_wait_{label}")
+        model.Add(raw_wait == first_second_start - last_first_end).OnlyEnforceIf(both_used)
+        model.Add(raw_wait == 0).OnlyEnforceIf(both_used.Not())
+        wait = model.NewIntVar(0, horizon, f"cross_wait_{label}")
+        model.AddMaxEquality(wait, [raw_wait, 0])
+        teacher_cross_shift_wait_terms.append(wait)
+        for threshold, target in (
+            (60, teacher_cross_shift_over60_terms),
+            (120, teacher_cross_shift_over120_terms),
+            (180, teacher_cross_shift_over180_terms),
+        ):
+            excess = model.NewIntVar(0, horizon, f"cross_over_{threshold}_{label}")
+            model.AddMaxEquality(excess, [wait - threshold, 0])
+            target.append(excess)
+
     # A core subject may use period 6 on at most two class-days per phase.
     core_limit = max(0, int(context.get("core_period6_day_limit", 2)))
     core_by_class_day: dict[tuple[int, int, str], list[int]] = defaultdict(list)
@@ -1329,15 +1388,6 @@ def _build_model(
             return None, [{"reason": "Metod kunida legal, qizil/BAND bo'lmagan katak topilmadi"}]
 
     objective_terms: list[Any] = []
-    teacher_shift_demand = context.get("v196_teacher_shift_demand") or {}
-    shift_max_periods: dict[int, int] = {}
-    for raw_shift, shift_row in (context.get("shifts") or {}).items():
-        shift = int(raw_shift)
-        slots = (shift_row or {}).get("slotlar") or []
-        shift_max_periods[shift] = max(
-            [int(slot.get("dars_raqami") or 0) for slot in slots]
-            or [int((shift_row or {}).get("dars_soni") or 6)]
-        )
     # Candidate-local pedagogical costs.  They cannot sacrifice feasibility.
     for index, row in enumerate(candidates):
         if not quality_enabled:
@@ -1358,21 +1408,6 @@ def _build_model(
         cost += max(0, period - preferred_last) * max(2, int(job.get("weight") or 1) * 4)
         for teacher in row["teachers"]:
             teacher_rules = (rules.get(teacher, defaults) or defaults)
-            shift_demand = teacher_shift_demand.get(int(teacher), {}) or {}
-            works_both_shifts = bool(
-                float(shift_demand.get(1) or 0) > 0
-                and float(shift_demand.get(2) or 0) > 0
-            )
-            if works_both_shifts:
-                # Ikki smenali ustoz: 1-smena oxiriga, 2-smena boshiga tortiladi.
-                # Bu hard emas; boshqa qat'iy qoida majbur qilsa istalgan legal
-                # slot qoladi va to'liq jadval yaratish to'xtamaydi.
-                if int(row["shift"]) == 1:
-                    cost += max(
-                        0, int(shift_max_periods.get(1, 6)) - int(period)
-                    ) * 800
-                elif int(row["shift"]) == 2:
-                    cost += max(0, int(period) - 1) * 800
             preferred_shift = int(teacher_rules.get("afzal_smena") or 0)
             if preferred_shift and preferred_shift != row["shift"]:
                 cost += 15
@@ -1390,6 +1425,10 @@ def _build_model(
     # qimmat sifat nuqsonlaridan biri. Haqiqiy minut bo'yicha smenalararo
     # kutish oddiy fan-vaqt afzalligidan ancha ustun turadi.
     objective_terms.extend(term * 200 for term in teacher_real_idle_terms)
+    objective_terms.extend(term * 50 for term in teacher_cross_shift_wait_terms)
+    objective_terms.extend(term * 200 for term in teacher_cross_shift_over60_terms)
+    objective_terms.extend(term * 500 for term in teacher_cross_shift_over120_terms)
+    objective_terms.extend(term * 1_000 for term in teacher_cross_shift_over180_terms)
     objective_terms.extend(term * 500 for term in teacher_used_day_terms)
     # Repetition is a feasibility fallback, not a preferred layout.  One
     # repeat-day costs more than all ordinary early/late nudges of one job.
