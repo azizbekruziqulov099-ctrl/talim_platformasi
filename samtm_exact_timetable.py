@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-BALANCED-COMPACT-EXACT-V22.11"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-RESTRICTED-FIRST-STABLE-V22.15"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -973,6 +973,9 @@ def _build_model(
             model.AddAtMostOne([variables[index] for index in sorted(domain)])
 
     weekdays = int(context.get("weekdays") or 6)
+    enforce_balanced_class_days = bool(
+        context.get("exact_enforce_balanced_class_days")
+    )
     # Class occupancy and prefix constraints: a used day is 1..N, never 2..N.
     class_period_vars: dict[tuple[int, int, str, int], list[int]] = defaultdict(list)
     class_day_vars: dict[tuple[int, int, str], list[int]] = defaultdict(list)
@@ -989,7 +992,28 @@ def _build_model(
                 1 for job in jobs if int(job.get("sinf_id") or 0) == class_id
                 and phase in _job_class_phases(job)
             )
-            for day in range(1, weekdays + 1):
+            # Balance against the CLASS CALENDAR, not against candidate
+            # availability.  A day does not disappear from the target merely
+            # because its current teachers have difficult domains; the global
+            # solver must exchange subjects and fill that open class day.
+            # Grades 1--4 still exclude their hard-blocked Saturday.
+            class_phase_jobs = [
+                job for job in jobs
+                if int(job.get("sinf_id") or 0) == class_id
+                and phase in _job_class_phases(job)
+            ]
+            representative_job = class_phase_jobs[0] if class_phase_jobs else None
+            legal_balance_days = [
+                day for day in range(1, weekdays + 1)
+                if representative_job is not None
+                and not _class_day_blocked(representative_job, day, context)
+                and not (
+                    1 <= _grade(representative_job, context) <= 4
+                    and day == 6
+                )
+            ]
+            legal_day_count = max(1, len(legal_balance_days))
+            for day in legal_balance_days:
                 periods = sorted({
                     key[3] for key in class_period_vars
                     if key[:3] == (class_id, day, phase)
@@ -1012,10 +1036,32 @@ def _build_model(
                         0, min(phase_job_count, max(0, len(indices))),
                         f"class_count_{class_id}_{day}_{phase}",
                     )
-                    model.Add(count == sum(variables[index] for index in indices))
-                    deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
-                    model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
-                    balance_terms.append(deviation)
+                    if indices:
+                        model.Add(count == sum(variables[index] for index in indices))
+                    else:
+                        model.Add(count == 0)
+                    if enforce_balanced_class_days:
+                        # Quality pass only: require the mathematically even
+                        # floor/ceil distribution.  The feasibility pass has
+                        # no such constraint, so a timetable is still returned
+                        # if teacher availability makes perfect balance
+                        # impossible.
+                        daily_floor = phase_job_count // legal_day_count
+                        daily_ceil = int(math.ceil(
+                            phase_job_count / legal_day_count
+                        ))
+                        model.Add(count >= daily_floor)
+                        model.Add(count <= daily_ceil)
+                    deviation = model.NewIntVar(
+                        0, phase_job_count * legal_day_count,
+                        f"balance_{class_id}_{day}_{phase}",
+                    )
+                    model.AddAbsEquality(
+                        deviation,
+                        count * legal_day_count - phase_job_count,
+                    )
+                    if not enforce_balanced_class_days:
+                        balance_terms.append(deviation)
 
     # Subject repetitions and controlled repeat-day fallback.
     subject_groups: dict[tuple[int, str, int, str], list[int]] = defaultdict(list)
@@ -1133,18 +1179,48 @@ def _build_model(
     teacher_real_day: dict[tuple[int, int, str], list[int]] = defaultdict(list)
     teacher_shift_day: dict[tuple[int, int, str, int], list[int]] = defaultdict(list)
     teacher_any_phase_day: dict[tuple[int, int], list[int]] = defaultdict(list)
+    teacher_weekly_shifts: dict[int, set[int]] = defaultdict(set)
     for index, row in enumerate(candidates):
         for teacher, phases in row["teacher_phases"].items():
+            teacher_weekly_shifts[int(teacher)].add(int(row["shift"]))
             teacher_any_phase_day[(teacher, row["day"])].append(index)
             for phase in phases:
                 teacher_real_day[(teacher, row["day"], phase)].append(index)
                 teacher_shift_day[(teacher, row["day"], phase, row["shift"])].append(index)
+    # Teachers who closed more than 20% of their otherwise usable weekly
+    # slots receive the first quality priority.  Method day and every hard
+    # red/BAND token count as closed; none is ever reopened.
+    hard_slots = context.get("hard") or ()
+    method_days = set(context.get("method_hard") or ())
+    restricted_teachers: set[int] = set()
+    for teacher, shifts in teacher_weekly_shifts.items():
+        total_slots = 0
+        closed_slots = 0
+        for day in range(1, weekdays + 1):
+            for shift in sorted(shifts):
+                shift_slots = [
+                    int(slot.get("dars_raqami") or 0)
+                    for slot in ((context.get("shifts") or {}).get(shift, {}).get("slotlar") or [])
+                    if int(slot.get("dars_raqami") or 0) > 0
+                ]
+                for period in shift_slots:
+                    total_slots += 1
+                    if (
+                        (int(teacher), day) in method_days
+                        or _blocked(hard_slots, int(teacher), day, shift, period)
+                    ):
+                        closed_slots += 1
+        if total_slots and (closed_slots / total_slots) > 0.20:
+            restricted_teachers.add(int(teacher))
     teacher_real_idle_terms: list[Any] = []
     teacher_cross_shift_wait_terms: list[Any] = []
     teacher_cross_shift_over60_terms: list[Any] = []
     teacher_cross_shift_over120_terms: list[Any] = []
     teacher_cross_shift_over180_terms: list[Any] = []
     teacher_used_day_terms: list[Any] = []
+    restricted_teacher_used_day_terms: list[Any] = []
+    restricted_teacher_idle_terms: list[Any] = []
+    restricted_teacher_cross_wait_terms: list[Any] = []
     teacher_used_days: dict[int, list[Any]] = defaultdict(list)
     for (teacher, day), raw_indices in teacher_any_phase_day.items():
         indices = sorted(set(raw_indices))
@@ -1164,28 +1240,24 @@ def _build_model(
             continue
         if demand <= 1:
             target_days, maximum_days = 1, 1
-        elif demand <= 6:
-            target_days, maximum_days = 2, 4
-        elif demand <= 10:
-            target_days, maximum_days = 3, 4
-        elif demand <= 15:
-            target_days, maximum_days = 3, 4
-        elif demand < 20:
-            target_days, maximum_days = 4, 5
+        elif demand <= 9:
+            target_days, maximum_days = 2, 3
         else:
-            daily_limit = max(1, min(6, int(
-                (rules.get(int(teacher), defaults) or defaults).get("kunlik_max") or 6
-            )))
-            target_days = int(math.ceil(demand / max(1, min(4, daily_limit))))
-            maximum_days = max(target_days, min(6, len(used_days)))
+            target_days, maximum_days = 3, 4
         target_days = min(int(target_days), len(used_days))
         maximum_days = min(max(int(maximum_days), target_days), len(used_days))
         if quality_enabled:
             # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
-            # qilish legal to'liq jadvalni bekordan-bekor INFEASIBLE qilardi.
-            # Solver imkon qadar targetga yaqinlashadi, sig'masa esa 5–6 kunga
-            # yoyib bo'lsa ham avval to'liq jadvalni yaratadi.
+            # qilish birinchi feasibility jadvalini hech qachon to'xtatmaydi.
+            # Ideal quality passda esa foydalanuvchi belgilagan yuqori chegara
+            # saqlanadi: 1--6 va 7--15 soatli ustoz ko'pi bilan 4 kun. Agar bu
+            # ideal model sig'masa, oldingi to'liq incumbent baribir qoladi.
+            if enforce_balanced_class_days:
+                model.Add(sum(used_days) >= target_days)
+                model.Add(sum(used_days) <= maximum_days)
             teacher_used_day_terms.extend(used_days)
+            if int(teacher) in restricted_teachers:
+                restricted_teacher_used_day_terms.extend(used_days)
     ordinary_break_minutes = max(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
@@ -1245,6 +1317,8 @@ def _build_model(
             [raw_idle - ordinary_break_minutes * break_count, 0],
         )
         teacher_real_idle_terms.append(excess_idle)
+        if int(teacher) in restricted_teachers:
+            restricted_teacher_idle_terms.append(excess_idle)
 
     # Faqat aynan bir kunda ikkala smenada darsi bor ustoz uchun 1-smenaning
     # oxirgi darsi bilan 2-smenaning birinchi darsi orasidagi haqiqiy minut.
@@ -1290,6 +1364,8 @@ def _build_model(
         wait = model.NewIntVar(0, horizon, f"cross_wait_{label}")
         model.AddMaxEquality(wait, [raw_wait, 0])
         teacher_cross_shift_wait_terms.append(wait)
+        if int(teacher) in restricted_teachers:
+            restricted_teacher_cross_wait_terms.append(wait)
         for threshold, target in (
             (60, teacher_cross_shift_over60_terms),
             (120, teacher_cross_shift_over120_terms),
@@ -1415,6 +1491,15 @@ def _build_model(
                 cost += 120
             if _blocked(context.get("soft") or (), teacher, row["day"], row["shift"], period):
                 cost += 40
+            # A teacher who genuinely works in both shifts is placed near the
+            # meeting edge: shift 1 prefers periods 3--6, shift 2 prefers
+            # periods 1--4.  Red/BAND and method days were already removed
+            # from the candidate domain, so this never reopens them.
+            if len(teacher_weekly_shifts.get(int(teacher), set())) >= 2:
+                if int(row["shift"]) == 1:
+                    cost += max(0, 3 - int(period)) * 500_000
+                elif int(row["shift"]) == 2:
+                    cost += max(0, int(period) - 4) * 500_000
         if cost:
             objective_terms.append(variables[index] * int(cost))
     objective_terms.extend(term * 5_000 for term in gap_terms)
@@ -1432,7 +1517,22 @@ def _build_model(
     # A teacher may work a dense 7--8 lesson day when the timetable permits.
     # Fewer work days and adjacent lessons are preferences only: they can
     # never make the hard-safe timetable infeasible.
-    objective_terms.extend(term * 100_000 for term in teacher_used_day_terms)
+    # Coming to school on one additional day is much worse than an ordinary
+    # short break.  This prevents 10 lessons becoming five 1--2 lesson days.
+    # Very long same-day/cross-shift waits still carry larger tiered penalties,
+    # so the solver cannot buy a six-hour wait merely to remove one work day.
+    objective_terms.extend(term * 20_000_000 for term in teacher_used_day_terms)
+    # Scarce (>20% closed) teachers win resource ties before dual-shift edge
+    # preferences and ordinary teachers.
+    objective_terms.extend(
+        term * 40_000_000 for term in restricted_teacher_used_day_terms
+    )
+    objective_terms.extend(
+        term * 100_000 for term in restricted_teacher_idle_terms
+    )
+    objective_terms.extend(
+        term * 100_000 for term in restricted_teacher_cross_wait_terms
+    )
     # Repetition is a feasibility fallback, not a preferred layout.  One
     # repeat-day costs more than all ordinary early/late nudges of one job.
     objective_terms.extend(term * 5_000_000 for term in repeat_terms)
