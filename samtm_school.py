@@ -8313,6 +8313,38 @@ def _v1875_preflight_report(cur, maktab_id: int):
     cur.execute("SELECT user_id,full_name,haftalik_dars_soati FROM users WHERE maktab_id=%s", (maktab_id,))
     teacher_rows = {int(row["user_id"]): dict(row) for row in cur.fetchall()}
 
+    def _pair_teacher_closed_day_report(teacher_ids, shift, max_period):
+        """Qizil kun foizini dars soatidan emas, oddiy ish kunidan hisobla.
+
+        Metod kuni denominatorga ham, yopilgan qizil kun soniga ham kirmaydi.
+        Kun faqat shu smenadagi barcha mavjud darslari qizil/BAND bo'lsa yopiq.
+        """
+        reports = []
+        for teacher_id in teacher_ids:
+            ordinary_days = []
+            closed_days = []
+            for day in range(1, weekdays + 1):
+                if (int(teacher_id), day) in method_hard:
+                    continue
+                ordinary_days.append(day)
+                periods = range(1, max_period + 1)
+                if periods and all(
+                    _v1852_blocked(hard, int(teacher_id), day, shift, period)
+                    for period in periods
+                ):
+                    closed_days.append(day)
+            percent = (
+                100.0 * len(closed_days) / len(ordinary_days)
+                if ordinary_days else 0.0
+            )
+            reports.append({
+                "teacher_id": int(teacher_id),
+                "ordinary_days": len(ordinary_days),
+                "closed_days": len(closed_days),
+                "percent": percent,
+            })
+        return reports
+
     # Pair-level common-domain preflight.  Old report class capacity and each
     # teacher capacity separately checked, but never asked whether the class
     # and every parallel-group teacher share the *same* legal day/period.  A
@@ -8395,6 +8427,24 @@ def _v1875_preflight_report(cur, maktab_id: int):
             repeat_extras[:repeat_day_limit]
         )
         weekly_sessions = float(pair.get("haftalik_soat") or 0)
+        closed_day_reports = _pair_teacher_closed_day_report(
+            teacher_ids, shift, max_period
+        )
+        restricted_reports = [
+            row for row in closed_day_reports if row["percent"] > 20.0
+        ]
+        if restricted_reports:
+            priority_text = ", ".join(
+                f"{teacher_rows.get(row['teacher_id'], {}).get('full_name') or row['teacher_id']}: "
+                f"{row['closed_days']}/{row['ordinary_days']} kun "
+                f"({row['percent']:.0f}%)"
+                for row in restricted_reports
+            )
+            warnings.append(
+                f"{pair['sinf']} / {pair['fan_nomi']}: {priority_text} qizil/BAND. "
+                "Metod kuni foizga qo'shilmadi; 20% dan yuqori bo'lgani uchun "
+                "exact generatorda cheklangan o'qituvchi sifatida ustuvor hisoblanadi."
+            )
         if weekly_sessions > common_capacity + 1e-9:
             teacher_names = ", ".join(
                 str(teacher_rows.get(teacher_id, {}).get("full_name") or teacher_id)
@@ -8417,7 +8467,9 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 f"{pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
-                f"{weekly_sessions:g}."
+                f"{weekly_sessions:g}. Kunlik max {daily_max} sabab bu fan "
+                f"kamida {int(math.ceil(weekly_sessions / max(1, per_day_limit)))} "
+                "ta alohida ochiq kun talab qiladi."
             )
             if bounded_primary_candidate:
                 warnings.append(
@@ -8429,8 +8481,11 @@ def _v1875_preflight_report(cur, maktab_id: int):
             else:
                 errors.append(
                     message
-                    + " Qizil yoki metod kunini taxminan ochmang; aynan "
-                    "shu fan/o'qituvchi vaqtini tahrirlang."
+                    + " Qizil kun foizi faqat joylashtirish ustuvorligini "
+                    "belgilaydi, yetishmayotgan legal kunni yaratmaydi. Qizil "
+                    "yoki metod kunini taxminan ochmang; aynan shu fan uchun "
+                    "kunlik maksimumni yoki o'qituvchining yopiq kunini ongli "
+                    "ravishda tahrirlang."
                 )
         elif weekly_sessions > len(common_days) and per_day_limit > 1:
             extra = weekly_sessions - len(common_days)
@@ -14512,12 +14567,12 @@ def _v196_teacher_target_days(demand, rules):
     demand = float(demand or 0)
     daily_limit = max(1, min(6, int((rules or {}).get("kunlik_max") or 6)))
     minimum = max(1, int(math.ceil(demand / daily_limit)))
-    if demand <= 2:
-        # Haftasiga 1–2 soatli ustozni ikki-uch kunga sochmaymiz. Mos katak
-        # bo'lsa ikkala dars bitta ixcham kunda turadi.
+    if demand <= 1:
+        # Bitta darsni sun'iy ravishda ikki kunga bo'lib bo'lmaydi.
         return 1
     if demand <= 6:
-        # 2–6 soat: 2 ish kuni; faqat kunlik limit majbur qilsa ko'payadi.
+        # 3–6 soat: maqsad 2 ish kuni; daily_max yoki sinf kolliziyasi
+        # majbur qilsa 3, keyin ko'pi bilan 4 kun ishlatiladi.
         return max(2, minimum)
     if demand <= 10:
         # 7–10 soat: 3 ish kuni.
@@ -14537,10 +14592,10 @@ def _v201_teacher_fallback_days(demand, rules):
     """Maqsad sig'masa ruxsat etiladigan birinchi zaxira kun soni."""
     demand = float(demand or 0)
     target = _v196_teacher_target_days(demand, rules)
-    if demand <= 2:
+    if demand <= 1:
         return 1
     if demand <= 6:
-        return max(target, 3)
+        return max(target, 4)
     if demand <= 10:
         return max(target, 4)
     if demand <= 15:
