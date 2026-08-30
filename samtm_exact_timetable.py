@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-FEASIBILITY-FIRST-V22.5"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-CROSS-SHIFT-EDGE-V22.9"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -735,15 +735,9 @@ def candidate_hard_violations(
                 errors.append("candidate sinf rahbari manbaga mos emas")
         elif len(teachers) != 1 or int(teachers[0]) not in allowed_teachers:
             errors.append("candidate o'qituvchisi manbaga mos emas")
-    non_null_rooms = [str(value) for value in candidate.get("room_keys") or () if value]
-    if len(non_null_rooms) != len(set(non_null_rooms)):
-        errors.append("parallel guruhlar bir xil xonaga biriktirilgan")
-    room_by_phase: dict[tuple[str, str], int] = defaultdict(int)
-    for room, phases in (candidate.get("room_phases") or {}).items():
-        for phase in phases:
-            room_by_phase[(str(room), str(phase))] += 1
-    if any(count > 1 for count in room_by_phase.values()):
-        errors.append("parallel guruhlar bir xil xonaga biriktirilgan")
+    # Xona ma'lumoti operatsion tavsiya, jadvalning hard resursi emas.
+    # Bir xona ikki sinf/guruhga yozilgan bo'lsa ham dars sloti yaratiladi;
+    # natijada administratorga xonani keyin tahrirlash tavsiya qilinadi.
     hard = context.get("hard") or ()
     raw_method_hard = context.get("method_hard") or ()
     method_hard = (
@@ -967,10 +961,8 @@ def _build_model(
             for phase in phases:
                 for segment in segments:
                     resource_buckets[("teacher", teacher, day, phase, segment)].add(index)
-        for room, phases in row["room_phases"].items():
-            for phase in phases:
-                for segment in segments:
-                    resource_buckets[("room", room, day, phase, segment)].add(index)
+        # Xona kolliziyasi jadvalni INFEASIBLE qilmaydi. Sinf va o'qituvchi
+        # real-vaqt xavfsizligi hard qoladi; xona keyin tahrirlanadi.
     seen_resource_domains: set[frozenset[int]] = set()
     for indices in resource_buckets.values():
         if len(indices) > 1:
@@ -1337,6 +1329,15 @@ def _build_model(
             return None, [{"reason": "Metod kunida legal, qizil/BAND bo'lmagan katak topilmadi"}]
 
     objective_terms: list[Any] = []
+    teacher_shift_demand = context.get("v196_teacher_shift_demand") or {}
+    shift_max_periods: dict[int, int] = {}
+    for raw_shift, shift_row in (context.get("shifts") or {}).items():
+        shift = int(raw_shift)
+        slots = (shift_row or {}).get("slotlar") or []
+        shift_max_periods[shift] = max(
+            [int(slot.get("dars_raqami") or 0) for slot in slots]
+            or [int((shift_row or {}).get("dars_soni") or 6)]
+        )
     # Candidate-local pedagogical costs.  They cannot sacrifice feasibility.
     for index, row in enumerate(candidates):
         if not quality_enabled:
@@ -1357,6 +1358,21 @@ def _build_model(
         cost += max(0, period - preferred_last) * max(2, int(job.get("weight") or 1) * 4)
         for teacher in row["teachers"]:
             teacher_rules = (rules.get(teacher, defaults) or defaults)
+            shift_demand = teacher_shift_demand.get(int(teacher), {}) or {}
+            works_both_shifts = bool(
+                float(shift_demand.get(1) or 0) > 0
+                and float(shift_demand.get(2) or 0) > 0
+            )
+            if works_both_shifts:
+                # Ikki smenali ustoz: 1-smena oxiriga, 2-smena boshiga tortiladi.
+                # Bu hard emas; boshqa qat'iy qoida majbur qilsa istalgan legal
+                # slot qoladi va to'liq jadval yaratish to'xtamaydi.
+                if int(row["shift"]) == 1:
+                    cost += max(
+                        0, int(shift_max_periods.get(1, 6)) - int(period)
+                    ) * 800
+                elif int(row["shift"]) == 2:
+                    cost += max(0, int(period) - 1) * 800
             preferred_shift = int(teacher_rules.get("afzal_smena") or 0)
             if preferred_shift and preferred_shift != row["shift"]:
                 cost += 15
@@ -1370,13 +1386,18 @@ def _build_model(
     # One extra real idle minute costs more than small period preferences;
     # using an additional work day is also discouraged. Daily/weekly caps and
     # all red/method rules remain hard constraints, so these are safe tie-breaks.
-    objective_terms.extend(term * 20 for term in teacher_real_idle_terms)
-    objective_terms.extend(term * 80 for term in teacher_used_day_terms)
+    # O'qituvchining 4–5 soat dars uchun ertalabdan kechgacha qolishi eng
+    # qimmat sifat nuqsonlaridan biri. Haqiqiy minut bo'yicha smenalararo
+    # kutish oddiy fan-vaqt afzalligidan ancha ustun turadi.
+    objective_terms.extend(term * 200 for term in teacher_real_idle_terms)
+    objective_terms.extend(term * 500 for term in teacher_used_day_terms)
     # Repetition is a feasibility fallback, not a preferred layout.  One
     # repeat-day costs more than all ordinary early/late nudges of one job.
     objective_terms.extend(term * 5_000 for term in repeat_terms)
     objective_terms.extend(term * 2_500 for term in practical_repeat_terms)
-    objective_terms.extend(term * 2 for term in balance_terms)
+    # Sinf yuklamasi kunlar bo'yicha imkon qadar teng: masalan 30 soat/6 kun
+    # => 5+5+5+5+5+5; 22/5 => faqat 4 va 5 soatlik kunlar.
+    objective_terms.extend(term * 100 for term in balance_terms)
     quality = sum(objective_terms) if objective_terms else 0
     has_objective = False
     if relax_method:
@@ -1718,9 +1739,7 @@ def validate_candidate_selection(
                 units = int(row["teacher_phase_loads"][teacher][phase])
                 teacher_daily_lessons[(teacher, row["day"], phase)] += 1
                 teacher_week_units[(teacher, phase)] += units
-        for room, phases in row["room_phases"].items():
-            for phase in phases:
-                resource_rows.append(("xona", room, row["day"], phase, interval, job_index))
+        # Xona yakuniy hard validatorda ham bloklovchi resurs emas.
         for subject, phases in row["subject_phases"].items():
             row_daily_limit = max(1, int(
                 (row.get("subject_daily_limits") or {}).get(
@@ -2435,6 +2454,7 @@ def solve_exact_timetable(
             try:
                 requested_quality_seconds = max(
                     0.0, float(context.get("exact_quality_seconds") or 2.0)
+                    + float(context.get("exact_quality_extension_seconds") or 0.0)
                 )
             except (TypeError, ValueError):
                 requested_quality_seconds = 2.0
