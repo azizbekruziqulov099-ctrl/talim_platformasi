@@ -16,9 +16,10 @@ except ImportError:  # Railway working directory may be backend/
     import samtm_platform as _platform
     from samtm_platform import *
 
+import copy as _samtm_copy
 import time as _samtm_time
 
-# V21.7 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
+# V21.8 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
 # yashirincha qaytmaydi: bitta kanonik generator — exact CP-SAT. Shu orqali
 # deploydagi yetishmagan dependency darhol aniq ko'rinadi va eski/qisman
@@ -28,6 +29,7 @@ try:
         ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
         analyze_method_day_relaxations as _v216_analyze_method_days,
         solve_exact_timetable as _v216_solve_exact,
+        validate_timetable_placements as _v218_validate_placements,
     )
 except ImportError:  # Railway working directory may be backend/
     try:
@@ -35,11 +37,13 @@ except ImportError:  # Railway working directory may be backend/
             ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
             analyze_method_day_relaxations as _v216_analyze_method_days,
             solve_exact_timetable as _v216_solve_exact,
+            validate_timetable_placements as _v218_validate_placements,
         )
     except ImportError as _v216_exact_import_error:
         _V216_ORTOOLS_AVAILABLE = False
         _v216_analyze_method_days = None
         _v216_solve_exact = None
+        _v218_validate_placements = None
         _V216_EXACT_IMPORT_ERROR = str(_v216_exact_import_error)
     else:
         _V216_EXACT_IMPORT_ERROR = None
@@ -79,8 +83,8 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.5-EXACT-SAFETY-DIAGNOSTICS"
-SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.7"
+SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.6-FEASIBILITY-FIRST"
+SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.8"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -4976,6 +4980,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         exact_solver_status = None
         exact_solver_diagnostics = {}
         exact_solver_wall_time = 0.0
+        exact_safe_state = None
         print(
             "[JADVAL-ONE-V2.4] boshlandi "
             f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
@@ -5005,10 +5010,17 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # (qizil/BANDni ochmaydigan) metod-istisno modelini aynan bir marta
             # chaqirib, tavsiyani result ichida qaytaradi.
             exact_context["exact_analyze_method_relaxation"] = True
-            exact_context["exact_relaxation_seconds"] = 4.0
+            exact_context["exact_analyze_method_on_unknown"] = False
+            exact_context["exact_relaxation_seconds"] = 3.0
+            # Birinchi va eng muhim bosqich faqat qat'iy qoidalarga to'liq
+            # yechim topadi. Oyna/balans/fan-vaqti kabi yumshoq maqsadlar bu
+            # modelni kattalashtirmaydi; to'liq incumbent topilgandan keyin
+            # mavjud hard-safe finalizator qulaylikni yaxshilaydi.
+            exact_context["exact_feasibility_only"] = True
+            exact_context["exact_stop_after_first_solution"] = True
             try:
                 exact_context["exact_num_workers"] = max(1, min(
-                    8,
+                    4,
                     int(os.getenv("SAMTM_EXACT_NUM_WORKERS", "4")),
                 ))
             except (TypeError, ValueError):
@@ -5023,9 +5035,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             exact_context.pop("exact_candidate_filter", None)
             # Hisobot, final validator va SQL yozishga rezerv qoladi. Solver
             # FEASIBLE topsa barcha job aynan bir marta joylashgan bo'lishi shart.
-            exact_max_seconds = max(3.0, generation_budget - 6.0)
+            exact_max_seconds = max(3.0, generation_budget - 4.0)
             print(
-                "[JADVAL-EXACT-V21.7] safety-first exact qidiruv boshlandi "
+                "[JADVAL-EXACT-V21.8] hard-feasibility qidiruvi boshlandi "
                 f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
                 f"limit={exact_max_seconds:.1f}s red_metod=QAT_IY",
                 flush=True,
@@ -5042,7 +5054,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             except (ImportError, ModuleNotFoundError) as exact_import_error:
                 if "ortools" in str(exact_import_error).casefold():
                     print(
-                        "[JADVAL-EXACT-V21.7] OR-Tools topilmadi; "
+                        "[JADVAL-EXACT-V21.8] OR-Tools topilmadi; "
                         "jadval yaratish to'xtatildi: " + str(exact_import_error),
                         flush=True,
                     )
@@ -5118,6 +5130,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         )
                     else:
                         exact_solver_used = True
+                        exact_safe_state = _samtm_copy.deepcopy(exact_state)
                         exact_state["v207_policy_stage"] = "strict"
                         exact_state["v203_emergency_repeat_days"] = 2
                         exact_state["v216_exact_solver"] = {
@@ -5166,7 +5179,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         ), exact_result_tuple)
                         completed_attempts = 1
                         print(
-                            "[JADVAL-EXACT-V21.7] to'liq natija "
+                            "[JADVAL-EXACT-V21.8] to'liq hard-safe natija "
                             f"maktab_id={sorov.maktab_id} "
                             f"status={exact_solver_status} "
                             f"joylashdi={len(exact_state.get('placements') or [])}/"
@@ -5258,7 +5271,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         teachers,
                     )
                     print(
-                        "[JADVAL-EXACT-V21.7] exact natija saqlanmadi "
+                        "[JADVAL-EXACT-V21.8] exact natija saqlanmadi "
                         f"maktab_id={sorov.maktab_id} "
                         f"status={failure_detail['solver_status']} "
                         f"proof={failure_detail['proof_complete']} "
@@ -5276,7 +5289,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     )
         else:
             print(
-                "[JADVAL-EXACT-V21.7] OR-Tools mavjud emas; "
+                "[JADVAL-EXACT-V21.8] OR-Tools mavjud emas; "
                 "jadval yaratish to'xtatildi"
                 + (
                     f": {_V216_EXACT_IMPORT_ERROR}"
@@ -5509,6 +5522,29 @@ def v1852_generate(sorov: V1852Generate, token: str):
         state = _v196_compact_class_gaps(
             state, final_context, final_rng, max_moves=96
         )
+        # Qulaylik optimizatorlari faqat exact yechimni yaxshilashi mumkin.
+        # Ularning biror ko'chirishi qat'iy exact qoidaga tegsa, butun
+        # post-processing bekor qilinadi va oldindan validatsiyadan o'tgan
+        # to'liq incumbent saqlanadi. Shu sabab qizil/BAND, metod, real-vaqt
+        # kolliziyasi yoki limit qulaylik uchun hech qachon qurbon qilinmaydi.
+        if (
+            exact_solver_used
+            and exact_safe_state is not None
+            and callable(_v218_validate_placements)
+        ):
+            postprocess_errors = _v218_validate_placements(
+                jobs,
+                state.get("placements") or [],
+                exact_context,
+            )
+            if postprocess_errors:
+                state = _samtm_copy.deepcopy(exact_safe_state)
+                state.setdefault("ogohlantirishlar", []).append(
+                    "Qulaylik almashtirishining qat'iy tekshiruvi o'tmadi; "
+                    "validator tasdiqlagan dastlabki to'liq jadval saqlandi."
+                )
+                state["v218_postprocess_reverted"] = True
+                state["v218_postprocess_errors"] = postprocess_errors[:20]
         state["class_gap_count"] = _v196_class_gap_count(state)
         final_metrics = _v196_attempt_metrics(state, final_context)
         state["v196_metrics"] = final_metrics
@@ -11684,7 +11720,8 @@ def v197_fractional_hour_capabilities():
         "generator_turi": "yagona-exact-cp-sat",
         "generator_nomi": "Yagona kuchli generator",
         "exact_engine_ready": bool(_V216_ORTOOLS_AVAILABLE),
-        "diagnostics_contract": "exact-failure-v21.7",
+        "diagnostics_contract": "exact-failure-v21.8",
+        "solver_pipeline": "hard-feasibility-first",
         "exact_engine": "google-ortools-cp-sat",
         "required_dependency": "ortools>=9.15,<9.16",
         "generator": _timetable_mode_config(),
