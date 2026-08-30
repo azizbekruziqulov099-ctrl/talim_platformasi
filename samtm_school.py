@@ -51,7 +51,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.3-PRIMARY-METHOD-1-2H-REPORT"
+SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.4-EXACT-RESIDUAL-COMPLETION"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -3047,7 +3047,9 @@ def _v205_unplaced_failure_detail(
         message = (
             f"Qidiruv vaqti tugaganda {len(problems)} ta dars hali "
             "joylashtirilmagan edi. Bu kirilgan qoidalar xato yoki jadval "
-            "imkonsiz degani emas. Qayta yaratish boshqa global tartibni sinaydi. "
+            "imkonsiz degani emas. Yagona generator oldingi darslarni "
+            "zanjirli ko'chirish completion bosqichini ham tugatdi; bu "
+            "natija yarim jadval sifatida saqlanmadi. "
         )
     else:
         code = "TOLIQ_VARIANT_TOPILMADI"
@@ -3062,7 +3064,8 @@ def _v205_unplaced_failure_detail(
     )
     return {
         "code": code,
-        "solver_status": "UNKNOWN" if timed_out else "SEARCH_EXHAUSTED",
+        # Bu bounded MRV/DFS natijasi; matematik UNSAT isboti emas.
+        "solver_status": "UNKNOWN",
         "message": message,
         "muammolar": problems,
         "qayta_urinish_mumkin": True,
@@ -4146,7 +4149,18 @@ def _v1852_generate_attempt(jobs, context, seed):
         selected_rejected = None
         if use_dynamic_mrv:
             domain_rows = []
+            domain_scan_complete = True
             for index, candidate_job in enumerate(pending):
+                # Bitta qimmat domen skani joriy urinishning butun repair
+                # rezervini yeb qo'ymasligi kerak. Deadline yaqinlashsa yarim
+                # MRV ro'yxatidan noto'g'ri xulosa qilmaymiz; pastdagi oddiy
+                # joriy job yo'li bilan davom etib, vaqtni completionga beramiz.
+                if (
+                    attempt_deadline
+                    and _samtm_time.monotonic() >= attempt_deadline - 1.2
+                ):
+                    domain_scan_complete = False
+                    break
                 candidates, rejected = _v1852_open_candidates(
                     candidate_job, state, context, rng
                 )
@@ -4159,8 +4173,9 @@ def _v1852_generate_attempt(jobs, context, seed):
                     candidates,
                     rejected,
                 ))
-            domain_rows.sort(key=lambda row: row[:5])
-            _, _, _, _, selected_index, selected_candidates, selected_rejected = domain_rows[0]
+            if domain_scan_complete and domain_rows:
+                domain_rows.sort(key=lambda row: row[:5])
+                _, _, _, _, selected_index, selected_candidates, selected_rejected = domain_rows[0]
 
         job = pending.pop(selected_index)
         if selected_candidates is None:
@@ -4459,16 +4474,20 @@ def v1852_generate(sorov: V1852Generate, token: str):
         generation_budget = max(12.0, min(26.0, generation_budget))
         generation_started = _samtm_time.monotonic()
         generation_hard_deadline = generation_started + generation_budget
-        # Oxirgi 2.8 soniya topilgan incumbentdagi sinf oknolarini yopish,
-        # kunlarni tenglashtirish va mustaqil metrikalarni qayta hisoblashga
-        # ajratiladi. Shundan oxirgi 0.8 soniyasi o'qituvchi oynalari uchun
-        # mutatsiyasiz, bitta-katak what-if hisobotiga beriladi. Eski kod
-        # barcha vaqtni seed qidiruviga yeb, to'liq lekin
-        # 1 ta oknoli variantni tuzatishga bir millisekund ham qoldirmasdi.
+        # Seedlar butun HTTP vaqtini yeb qo'ymaydi: oxirida qoldiq 1–20 dars
+        # uchun alohida atomar completion, undan keyin qisqa qulaylik va
+        # mutatsiyasiz hisobot rezervi bor. ``legacy_quality_deadline`` eski
+        # 2.8 soniyalik rezerv chegarasini hujjatlashtiradi; completion uchun
+        # kattaroq 5.8 soniyalik rezerv tanlanadi.
+        legacy_quality_deadline = generation_hard_deadline - 2.8
         generation_search_deadline = max(
             generation_started + 3.0,
-            generation_hard_deadline - 2.8,
+            min(
+                legacy_quality_deadline,
+                generation_hard_deadline - 5.8,
+            ),
         )
+        generation_completion_deadline = generation_hard_deadline - 1.3
         generation_report_deadline = generation_hard_deadline
         generation_finalization_deadline = generation_hard_deadline - 0.8
         context["v206_deadline"] = generation_search_deadline
@@ -4484,7 +4503,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         if sorov.qidiruv_nonce is not None:
             base_seed ^= int(sorov.qidiruv_nonce) & ((1 << 63) - 1)
         print(
-            "[JADVAL-ONE-V2.3] boshlandi "
+            "[JADVAL-ONE-V2.4] boshlandi "
             f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
             f"reja_urinish={requested_attempts} byudjet={generation_budget:.0f}s",
             flush=True,
@@ -4586,12 +4605,58 @@ def v1852_generate(sorov: V1852Generate, token: str):
         _, (state, unplaced, penalty, gap_count, late_heavy) = best
         if _samtm_time.monotonic() >= generation_search_deadline:
             stopped_by_budget = True
+
+        # Seedlardan eng yaxshisi 1–20 ta qoldiq bilan tugagan bo'lsa, oxirgi
+        # alohida rezervda barcha qoldiqni birgalikda augmenting-path DFSga
+        # beramiz. Joriy urinishdan qolgan ``v212_attempt_deadline`` allaqachon
+        # tugagan bo'lishi mumkin; uni reset qilmasak fallback birinchi qatorda
+        # to'xtab qoladi. Bu bosqich muvaffaqiyatsiz bo'lsa state atomar tarzda
+        # o'zgarmaydi va aniq diagnostika qaytariladi.
+        final_repeat_days = int(
+            state.get("v203_emergency_repeat_days") or 0
+        )
+        final_policy_stage = str(
+            state.get("v207_policy_stage") or "strict"
+        )
+        final_mode_config = _timetable_mode_config()
+        if unplaced and 1 <= len(unplaced) <= 20:
+            completion_context = dict(context)
+            completion_context["v203_emergency_repeat_days"] = (
+                final_repeat_days
+            )
+            completion_context["v207_policy_stage"] = final_policy_stage
+            completion_context["v208_mode_config"] = dict(final_mode_config)
+            completion_context["v206_deadline"] = (
+                generation_completion_deadline
+            )
+            completion_context["v212_attempt_deadline"] = (
+                generation_completion_deadline
+            )
+            state, unplaced = _v215_complete_small_residuals(
+                state,
+                unplaced,
+                completion_context,
+                base_seed ^ 0x21_15_F1_A1,
+                generation_completion_deadline,
+            )
+        if unplaced:
+            raise HTTPException(
+                status_code=409,
+                detail=_v205_unplaced_failure_detail(
+                    unplaced,
+                    classes,
+                    teachers,
+                    timed_out=bool(
+                        stopped_by_budget
+                        or _samtm_time.monotonic()
+                        >= generation_completion_deadline
+                    ),
+                ),
+            )
+
         # Yakuniy hard-safe kompaktlash alohida rezervdan foydalanadi.
         context["v206_deadline"] = generation_finalization_deadline
         final_context = context
-        final_repeat_days = int(state.get("v203_emergency_repeat_days") or 0)
-        final_policy_stage = str(state.get("v207_policy_stage") or "strict")
-        final_mode_config = _timetable_mode_config()
         final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
         if final_repeat_days or final_policy_stage != "strict":
             final_context = dict(context)
@@ -4657,19 +4722,6 @@ def v1852_generate(sorov: V1852Generate, token: str):
         placed_count = len(state["placements"])
         total_count = len(jobs)
         placement_ratio = (placed_count / total_count) if total_count else 1.0
-        if unplaced:
-            raise HTTPException(
-                status_code=409,
-                detail=_v205_unplaced_failure_detail(
-                    unplaced,
-                    classes,
-                    teachers,
-                    timed_out=bool(
-                        stopped_by_budget
-                        or _v206_deadline_reached(final_context)
-                    ),
-                ),
-            )
         class_gap_count = int(state.get("class_gap_count", 0))
         final_class_imbalance = int(
             final_metrics.get("sinf_kun_taqsimoti_farqi", 0)
@@ -4724,7 +4776,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 ),
             }
             print(
-                "[JADVAL-ONE-V2.3] oyna hisoboti xatosi "
+                "[JADVAL-ONE-V2.4] oyna hisoboti xatosi "
                 f"maktab_id={sorov.maktab_id}: {report_error}",
                 flush=True,
             )
@@ -4879,6 +4931,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "oknolar": gap_count,
             "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
             "qulaylik_strategiyasi": state.get("v196_metrics", {}),
+            "avtomatik_qayta_joylashtirish": (
+                dict(state.get("v215_completion") or {})
+            ),
             "oqituvchi_okno_hisoboti": teacher_window_report,
             "generator_moduli": SAMTM_TIMETABLE_ENGINE_RELEASE,
             "generator_rejimi": 1,
@@ -4894,7 +4949,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "tasdiqlash_mumkin": False,
         }
         print(
-            "[JADVAL-ONE-V2.3] hisoblash tugadi "
+            "[JADVAL-ONE-V2.4] hisoblash tugadi "
             f"maktab_id={sorov.maktab_id} urinish={completed_attempts} "
             f"joylashdi={placed_count}/{total_count} "
             f"soniya={diagnostics['hisoblash_soniya']} "
@@ -16854,6 +16909,525 @@ def _v196_attempt_metrics(state, context):
     }
 
 
+def _v215_complete_small_residuals(
+    source_state, unplaced, context, rng_or_seed, deadline
+):
+    """1–20 ta qoldiq darsni atomar augmenting-path DFS bilan tugatadi.
+
+    Greedy jadvaldagi bir katakni ochish uchun o'sha katakdagi sinf,
+    o'qituvchi yoki xona darsi boshqa legal katakka ko'chirilishi mumkin.
+    Qidiruv barcha qoldiq darsni bitta ``pending`` to'plamida ko'radi: avval
+    joylashtirilgan qoldiq keyingi zanjirda chiqarilsa, u ham pendingga qaytadi.
+
+    Har bir branch ``_v1852_rebuild_schedule_state`` bilan alohida holatda
+    quriladi va har bir yangi joy ``_v1852_open_candidates(..., exact=...)``
+    orqali joriy qizil/metod, smena, parallel guruh, xona hamda real vaqt
+    qoidalaridan qayta o'tadi. To'liq, takrorsiz va sinf-oknosiz leaf topilmasa
+    kirgan ``source_state`` aynan o'zgarmagan holda qaytariladi.
+    """
+    original_remaining = list(unplaced or [])
+    residual_count = len(original_remaining)
+    if not (1 <= residual_count <= 20):
+        return source_state, original_remaining
+
+    try:
+        local_deadline = float(deadline or 0)
+    except (TypeError, ValueError):
+        local_deadline = 0.0
+    if not local_deadline or _samtm_time.monotonic() >= local_deadline:
+        return source_state, original_remaining
+
+    if hasattr(rng_or_seed, "random"):
+        rng = rng_or_seed
+    else:
+        try:
+            numeric_seed = int(rng_or_seed or 0)
+        except (TypeError, ValueError):
+            numeric_seed = 0
+        rng = _v1852_random.Random(numeric_seed)
+
+    max_nodes = 4000
+    max_pending = 26
+    max_moved_jobs = 20
+    # Odatdagi 6 kun × 6 dars domenining hammasi ko'rilsin. 2-B kabi nol
+    # zaxirali sinfda yagona foydali swap ball bo'yicha 25-katak bo'lib qolishi
+    # mumkin; 24 ta target bilan kesish aynan shunday yechimni yashirardi.
+    # Node va vaqt limitlari eksponentsial kengayishni baribir qat'iy to'xtatadi.
+    direct_width = 12
+    target_width = 36
+    blocker_plan_width = 6
+    max_optional_blockers = 9
+    nodes = 0
+    seen = {}
+    mutable_keys = set()
+
+    def _finished():
+        return (
+            nodes >= max_nodes
+            or _samtm_time.monotonic() >= local_deadline
+        )
+
+    def _job_key(job):
+        value = (job or {}).get("job_id")
+        if value is not None:
+            return str(value)
+        return "legacy:" + ":".join((
+            str((job or {}).get("load_id") or ""),
+            str((job or {}).get("sinf_id") or ""),
+            str((job or {}).get("fan") or ""),
+            str((job or {}).get("occurrence") or ""),
+            str(id(job)),
+        ))
+
+    source_placements = list((source_state or {}).get("placements", []))
+    source_keys = [
+        _job_key((row or {}).get("job") or {}) for row in source_placements
+    ]
+    if len(source_keys) != len(set(source_keys)):
+        return source_state, original_remaining
+
+    pending_by_key = {}
+    for item in original_remaining:
+        job = (item or {}).get("job") or {}
+        key = _job_key(job)
+        if key not in set(source_keys):
+            pending_by_key.setdefault(key, item)
+    if not pending_by_key:
+        return source_state, []
+    if len(pending_by_key) > 20:
+        return source_state, original_remaining
+
+    expected_keys = set(source_keys) | set(pending_by_key)
+    expected_count = len(expected_keys)
+    mutable_keys.update(pending_by_key)
+
+    def _placement_signature(placement):
+        return (
+            _job_key((placement or {}).get("job") or {}),
+            int((placement or {}).get("day") or 0),
+            int((placement or {}).get("period") or 0),
+            tuple(
+                "" if value is None else str(value)
+                for value in (placement or {}).get("teachers") or []
+            ),
+            tuple(
+                "" if value is None else str(value)
+                for value in (placement or {}).get("room_keys") or []
+            ),
+        )
+
+    fixed_source = {
+        _job_key((row or {}).get("job") or {}): _placement_signature(row)
+        for row in source_placements
+        if not _v196_movable_placement(row)
+    }
+
+    def _class_gap_count(candidate_state):
+        helper = globals().get("_v196_class_gap_count")
+        if callable(helper):
+            return int(helper(candidate_state))
+        by_class_day = _v1852_defaultdict(set)
+        for row in candidate_state.get("placements", []):
+            job = row.get("job") or {}
+            by_class_day[(
+                int(job.get("sinf_id") or 0), int(row.get("day") or 0)
+            )].add(int(row.get("period") or 0))
+        return int(sum(
+            max(periods) - len(periods) if periods else 0
+            for periods in by_class_day.values()
+        ))
+
+    def _leaf_is_complete(candidate_state):
+        rows = list(candidate_state.get("placements", []))
+        keys = [_job_key((row.get("job") or {})) for row in rows]
+        if (
+            len(rows) != expected_count
+            or len(keys) != len(set(keys))
+            or set(keys) != expected_keys
+            or _class_gap_count(candidate_state) != 0
+        ):
+            return False
+        current_fixed = {
+            _job_key((row or {}).get("job") or {}): _placement_signature(row)
+            for row in rows
+            if _job_key((row or {}).get("job") or {}) in fixed_source
+        }
+        return current_fixed == fixed_source
+
+    def _target_rows(job, current_state):
+        shift = (context.get("shifts") or {}).get(
+            int((job or {}).get("smena") or 1)
+        )
+        if not shift:
+            return []
+        fixed_day = int((job or {}).get("fixed_day") or 0)
+        fixed_period = int((job or {}).get("fixed_period") or 0)
+        weekdays = int(context.get("weekdays") or 6)
+        days = [fixed_day] if fixed_day else range(1, weekdays + 1)
+        rows = []
+        for day in days:
+            if day not in range(1, weekdays + 1):
+                continue
+            class_row = (context.get("classes") or {}).get(
+                (job or {}).get("sinf_id"), {}
+            )
+            if _v1856_class_day_block_reason(
+                class_row, day, context.get("class_day_blocks", {})
+            ):
+                continue
+            for slot in shift.get("slotlar") or []:
+                period = int(slot.get("dars_raqami") or 0)
+                if fixed_period and period != fixed_period:
+                    continue
+                teachers = _v1852_choose_teacher(
+                    job, day, period, current_state, context
+                )
+                rooms = _v1852_room_keys(
+                    job, teachers, context.get("classes") or {}
+                )
+                score = (
+                    0.0
+                    if fixed_day and fixed_period
+                    else _v1852_candidate_score(
+                        job, day, period, teachers,
+                        current_state, context, rng,
+                    )
+                )
+                rows.append((score, day, period, teachers, rooms))
+        rows.sort(key=lambda row: (
+            _v213_candidate_sort_key(job, row, context),
+            int(row[1]), int(row[2]),
+            tuple("" if value is None else str(value) for value in row[3]),
+            tuple("" if value is None else str(value) for value in row[4]),
+        ))
+        return rows
+
+    def _intervals_overlap(first, second, *, same_slot=False):
+        if first and second:
+            return (
+                int(first[0]) < int(second[1])
+                and int(second[0]) < int(first[1])
+            )
+        return bool(same_slot)
+
+    def _blocker_rows(job, target, current_state):
+        """Majburiy collision va aggregate-limit uchun foydali blockerlar."""
+        _, day, period, teachers, rooms = target
+        day = int(day)
+        period = int(period)
+        shift = int((job or {}).get("smena") or 1)
+        class_id = int((job or {}).get("sinf_id") or 0)
+        subject_key = str((job or {}).get("fan") or "").casefold()
+        teacher_set = {
+            int(value) for value in teachers if value is not None
+        }
+        new_interval = _v196_slot_interval(context, shift, period)
+        mandatory = {}
+        optional = {}
+        incoming_profile = _v196_rotation_profile(job, context)
+
+        for placement in current_state.get("placements", []):
+            placed_job = placement.get("job") or {}
+            placed_key = _job_key(placed_job)
+            placed_day = int(placement.get("day") or 0)
+            placed_period = int(placement.get("period") or 0)
+            placed_shift = int(placed_job.get("smena") or 1)
+            placed_class = int(placed_job.get("sinf_id") or 0)
+            placed_teachers = {
+                int(value) for value in placement.get("teachers") or []
+                if value is not None
+            }
+            same_day = placed_day == day
+            same_physical_slot = bool(
+                same_day and placed_shift == shift
+                and placed_period == period
+            )
+            old_interval = _v196_slot_interval(
+                context, placed_shift, placed_period
+            )
+            time_overlap = bool(
+                same_day and _intervals_overlap(
+                    new_interval, old_interval,
+                    same_slot=same_physical_slot,
+                )
+            )
+            same_class_slot = bool(
+                same_physical_slot and placed_class == class_id
+            )
+            teacher_helper = globals().get(
+                "_v212_teacher_phase_collision"
+            )
+            teacher_collision = bool(
+                time_overlap
+                and (
+                    teacher_helper(job, teachers, placement)
+                    if callable(teacher_helper)
+                    else bool(teacher_set.intersection(placed_teachers))
+                )
+            )
+            room_helper = globals().get("_v209_phase_room_collision")
+            room_collision = bool(
+                time_overlap
+                and (
+                    room_helper(
+                        job, rooms, placement,
+                        context.get("classes", {}),
+                    )
+                    if callable(room_helper)
+                    else bool(
+                        {value for value in rooms if value}.intersection(
+                            value for value
+                            in placement.get("room_keys") or [] if value
+                        )
+                    )
+                )
+            )
+            if same_class_slot or teacher_collision or room_collision:
+                mandatory[placed_key] = placement
+                continue
+            if not _v196_movable_placement(placement):
+                continue
+
+            priority = None
+            if (
+                same_day and placed_class == class_id
+                and str(placed_job.get("fan") or "").casefold()
+                == subject_key
+            ):
+                priority = 0
+            elif same_day and placed_class == class_id:
+                priority = 1
+            elif same_day and teacher_set.intersection(placed_teachers):
+                priority = 2
+            elif (
+                int(period) == 6
+                and incoming_profile.get("core_priority")
+                and placed_class == class_id
+                and placed_period == 6
+                and _v196_rotation_profile(
+                    placed_job, context
+                ).get("core_priority")
+            ):
+                # Asosiy fan 6-darsning ikki-kunlik limiti boshqa kundagi
+                # 6-darsni surmasdan ochilmaydi.
+                priority = 3
+            if priority is not None:
+                previous = optional.get(placed_key)
+                if previous is None or priority < previous[0]:
+                    optional[placed_key] = (priority, placement)
+
+        mandatory_rows = list(mandatory.values())
+        if any(not _v196_movable_placement(row) for row in mandatory_rows):
+            return None, None
+        optional_rows = [
+            pair[1] for pair in sorted(
+                optional.values(),
+                key=lambda pair: (
+                    int(pair[0]),
+                    float((pair[1].get("job") or {}).get("difficulty") or 0),
+                    _job_key(pair[1].get("job") or {}),
+                ),
+            )
+            if _job_key(pair[1].get("job") or {}) not in mandatory
+        ][:max_optional_blockers]
+        return mandatory_rows, optional_rows
+
+    def _blocker_plans(job, target, current_state, moved_keys):
+        nonlocal nodes
+        if _finished():
+            return []
+        mandatory, optional = _blocker_rows(job, target, current_state)
+        if mandatory is None:
+            return []
+        if len(mandatory) > blocker_plan_width:
+            return []
+        from itertools import combinations
+
+        plans = []
+        max_extra = min(
+            len(optional), blocker_plan_width - len(mandatory)
+        )
+        for extra_count in range(0, max_extra + 1):
+            for extras in combinations(optional, extra_count):
+                if _finished():
+                    return plans
+                blockers = list(mandatory) + list(extras)
+                if not blockers:
+                    continue
+                blocker_keys = {
+                    _job_key((row or {}).get("job") or {})
+                    for row in blockers
+                }
+                if len(set(moved_keys).union(blocker_keys)) > max_moved_jobs:
+                    continue
+                nodes += 1
+                reduced = _v1852_rebuild_schedule_state(
+                    [
+                        row for row in current_state.get("placements", [])
+                        if _job_key((row or {}).get("job") or {})
+                        not in blocker_keys
+                    ],
+                    context,
+                )
+                _, day, period, _, _ = target
+                exact, _ = _v1852_open_candidates(
+                    job, reduced, context, rng,
+                    exact=(int(day), int(period)),
+                )
+                if exact:
+                    plans.append((reduced, exact[0], blockers, blocker_keys))
+                    if len(plans) >= blocker_plan_width:
+                        return plans
+        return plans
+
+    def _search(current_state, pending_items, moved_keys):
+        nonlocal nodes
+        if _finished():
+            return None
+        nodes += 1
+
+        placed_keys = {
+            _job_key((row or {}).get("job") or {})
+            for row in current_state.get("placements", [])
+        }
+        pending_map = {}
+        for item in pending_items:
+            job = (item or {}).get("job") or {}
+            key = _job_key(job)
+            if key not in placed_keys:
+                pending_map.setdefault(key, item)
+        pending = list(pending_map.values())
+        if not pending:
+            return current_state if _leaf_is_complete(current_state) else None
+        if len(pending) > max_pending:
+            return None
+
+        local_assignments = tuple(sorted(
+            _placement_signature(row)
+            for row in current_state.get("placements", [])
+            if _job_key((row or {}).get("job") or {}) in mutable_keys
+        ))
+        signature = (
+            tuple(sorted(pending_map)),
+            local_assignments,
+        )
+        previous_moved = seen.get(signature)
+        if previous_moved is not None and previous_moved <= len(moved_keys):
+            return None
+        seen[signature] = len(moved_keys)
+
+        domains = []
+        for item in pending:
+            if _finished():
+                return None
+            job = item.get("job") or {}
+            candidates, _ = _v1852_open_candidates(
+                job, current_state, context, rng
+            )
+            domains.append((
+                len(candidates),
+                0 if (
+                    job.get("is_class_hour")
+                    or int(job.get("fixed_day") or 0)
+                    or int(job.get("fixed_period") or 0)
+                ) else 1,
+                -float(job.get("difficulty") or 0),
+                _job_key(job), item, candidates,
+            ))
+        domains.sort(key=lambda row: row[:4])
+        _, _, _, chosen_key, chosen_item, direct = domains[0]
+        chosen_job = chosen_item.get("job") or {}
+        rest = [
+            item for item in pending
+            if _job_key(item.get("job") or {}) != chosen_key
+        ]
+
+        for _, day, period, teachers, rooms in _v213_candidate_window(
+            chosen_job, direct, context, direct_width
+        ):
+            if _finished():
+                return None
+            trial = _v1852_rebuild_schedule_state(
+                list(current_state.get("placements", [])), context
+            )
+            _v1852_place_job(
+                chosen_job, day, period, teachers, rooms, trial, context
+            )
+            result = _search(trial, rest, moved_keys)
+            if result is not None:
+                return result
+
+        for target in _v213_candidate_window(
+            chosen_job,
+            _target_rows(chosen_job, current_state),
+            context,
+            target_width,
+        ):
+            if _finished():
+                return None
+            for reduced, exact, blockers, blocker_keys in _blocker_plans(
+                chosen_job, target, current_state, moved_keys
+            ):
+                if _finished():
+                    return None
+                trial = _v1852_rebuild_schedule_state(
+                    list(reduced.get("placements", [])), context
+                )
+                _, day, period, teachers, rooms = exact
+                _v1852_place_job(
+                    chosen_job, day, period,
+                    teachers, rooms, trial, context,
+                )
+                mutable_keys.update(blocker_keys)
+                next_pending = rest + [
+                    {"job": row.get("job") or {}, "sabablar": {}}
+                    for row in blockers
+                ]
+                result = _search(
+                    trial, next_pending, set(moved_keys).union(blocker_keys)
+                )
+                if result is not None:
+                    return result
+        return None
+
+    root_state = _v1852_rebuild_schedule_state(source_placements, context)
+    repaired = _search(
+        root_state, list(pending_by_key.values()), set()
+    )
+    if repaired is None:
+        return source_state, original_remaining
+
+    # Rebuild jadval indekslarini to'liq tiklaydi, lekin generatorning tanlangan
+    # ichki bosqichi va hisobot metama'lumotlari jadval indekslari emas.
+    # Ularni muvaffaqiyatli atomar natijaga alohida nusxalab o'tkazamiz.
+    for key in (
+        "v203_emergency_repeat_days",
+        "v207_policy_stage",
+        "v207_generator_mode",
+        "v208_mode_config",
+        "v210_yagona_generator_bosqichlari",
+    ):
+        if key not in source_state:
+            continue
+        value = source_state[key]
+        repaired[key] = (
+            dict(value) if isinstance(value, dict)
+            else list(value) if isinstance(value, list)
+            else value
+        )
+    if source_state.get("ogohlantirishlar"):
+        repaired["ogohlantirishlar"] = list(
+            source_state.get("ogohlantirishlar") or []
+        )
+    repaired["class_gap_count"] = 0
+    repaired["v215_completion"] = {
+        "qoldiq": int(len(pending_by_key)),
+        "tugun": int(nodes),
+        "holat": "TOLIQ",
+    }
+    return repaired, []
+
+
 def _v1852_generate_attempt(jobs, context, seed):
     """Bitta generatorning deterministik, ichki bosqichli urinishini bajaradi.
 
@@ -16902,30 +17476,57 @@ def _v1852_generate_attempt(jobs, context, seed):
             int(seed) ^ (0x21_00_00 + stage_index * 7919)
         )
 
+        # P0: qoldiq bor paytda qulaylik optimizatorlari placementlarni yana
+        # aralashtirib, ozgina qolgan repair vaqtini yeb qo'ymasligi kerak.
+        # Avval barcha qoldiq birgalikda atomar completiondan o'tadi; faqat
+        # to'liq variant topilgach pedagogik/oyna optimizatsiyasi boshlanadi.
+        completion_deadlines = []
+        for deadline_key in ("v206_deadline", "v212_attempt_deadline"):
+            try:
+                deadline_value = float(repair_context.get(deadline_key) or 0)
+            except (TypeError, ValueError):
+                deadline_value = 0.0
+            if deadline_value:
+                completion_deadlines.append(deadline_value)
+        attempt_completion_deadline = min(completion_deadlines or [0.0])
+        if (
+            unplaced
+            and 1 <= len(unplaced) <= 20
+            and attempt_completion_deadline
+            and _samtm_time.monotonic() < attempt_completion_deadline
+        ):
+            state, unplaced = _v215_complete_small_residuals(
+                state,
+                unplaced,
+                repair_context,
+                int(seed) ^ (0x21_15_00 + stage_index * 1543),
+                attempt_completion_deadline,
+            )
+
         # Qattiq-safe lokal tuzatishlar. Har bir yordamchi candidate_reasons
         # orqali sinf, ustoz, xona, qizil vaqt va real smena kolliziyasini
         # qayta tekshiradi.
-        if not _v206_deadline_reached(repair_context):
+        if not unplaced and not _v206_deadline_reached(repair_context):
             state = _v196_compact_class_gaps(
                 state, repair_context, repair_rng, max_moves=96
             )
-        if not _v206_deadline_reached(repair_context):
+        if not unplaced and not _v206_deadline_reached(repair_context):
             state = _v196_balance_class_days(
                 state, repair_context, repair_rng, max_moves=72
             )
-        if not _v206_deadline_reached(repair_context):
+        if not unplaced and not _v206_deadline_reached(repair_context):
             state = _v196_compact_class_gaps(
                 state, repair_context, repair_rng, max_moves=64
             )
-        if not _v206_deadline_reached(repair_context):
+        if not unplaced and not _v206_deadline_reached(repair_context):
             state = _v196_optimize_teacher_windows(
                 state, repair_context, repair_rng, max_swaps=32
             )
-        if not _v206_deadline_reached(repair_context):
+        if not unplaced and not _v206_deadline_reached(repair_context):
             state = _v196_relocate_early_practical(
                 state, repair_context, repair_rng, max_swaps=24
             )
-        if not _v206_deadline_reached(repair_context):
+        if not unplaced and not _v206_deadline_reached(repair_context):
             state = _v196_compact_class_gaps(
                 state, repair_context, repair_rng, max_moves=48
             )
