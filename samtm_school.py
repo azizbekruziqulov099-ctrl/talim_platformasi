@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-CROSS-SHIFT-EDGE-V22.9"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-SAME-DAY-CROSS-SHIFT-V22.10"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
