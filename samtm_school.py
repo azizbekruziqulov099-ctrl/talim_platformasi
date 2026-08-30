@@ -19,6 +19,8 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-2PLUS2PLUS1-V22.4"
+
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
 # yashirincha qaytmaydi: bitta kanonik generator — exact CP-SAT. Shu orqali
@@ -8284,7 +8286,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
         weekly_hours = float(pair.get("haftalik_soat") or 0)
         profile = _v1874_subject_profile(pair.get("fan_nomi"), grade)
         practical = bool(profile.get("physical") or profile.get("technology"))
-        per_day_limit = min(2, daily_max) if practical else daily_max
+        effective_daily_max = 2 if daily_max == 1 and weekly_hours > allowed_days else daily_max
+        per_day_limit = min(2, effective_daily_max)
         repeat_day_limit = 1 if practical else 2
         # Exact kontrakt bilan aynan bir xil sig'im: har kuni avval bittadan,
         # manbada daily_max>1 bo'lsagina ko'pi bilan 1/2 ta kunda qo'shimcha
@@ -8300,7 +8303,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
         if weekly_hours > regular_capacity:
             errors.append(
                 f"{pair['sinf']} / {pair['fan_nomi']}: {weekly_hours:g} soatni "
-                f"{allowed_days} kunga kunlik max {daily_max} va takroriy "
+                f"{allowed_days} kunga kunlik max {effective_daily_max} va takroriy "
                 f"kun limiti {repeat_day_limit} bilan "
                 "ushbu qoida bilan joylab bo'lmaydi; kunlik maksimumni yoki o'qish "
                 "kunlarini ongli ravishda tahrirlang"
@@ -8427,6 +8430,14 @@ def _v1875_preflight_report(cur, maktab_id: int):
             repeat_extras[:repeat_day_limit]
         )
         weekly_sessions = float(pair.get("haftalik_soat") or 0)
+        # Fan ochiq kunlar sonidan ko'p bo'lsa, oldindan xato bilan to'xtash
+        # o'rniga exact generatorga ko'pi bilan ikki takror kunlik zaxira ber.
+        # Qizil/BAND va metod kunlari baribir legal domen tarkibiga kirmaydi.
+        if daily_max == 1 and weekly_sessions > len(common_days):
+            per_day_limit = 2
+            common_capacity = len(common_days) + min(
+                repeat_day_limit, len(common_days)
+            )
         closed_day_reports = _pair_teacher_closed_day_report(
             teacher_ids, shift, max_period
         )
@@ -8467,7 +8478,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 f"{pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
-                f"{weekly_sessions:g}. Kunlik max {daily_max} sabab bu fan "
+                f"{weekly_sessions:g}. Zarur zaxirada kunlik max 2 bilan bu fan "
                 f"kamida {int(math.ceil(weekly_sessions / max(1, per_day_limit)))} "
                 "ta alohida ochiq kun talab qiladi."
             )
@@ -8481,11 +8492,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
             else:
                 errors.append(
                     message
-                    + " Qizil kun foizi faqat joylashtirish ustuvorligini "
-                    "belgilaydi, yetishmayotgan legal kunni yaratmaydi. Qizil "
-                    "yoki metod kunini taxminan ochmang; aynan shu fan uchun "
-                    "kunlik maksimumni yoki o'qituvchining yopiq kunini ongli "
-                    "ravishda tahrirlang."
+                    + " Qizil/BAND va metod kuni ochilmadi; hatto 2+2+1 "
+                    "zaxira taqsimoti bilan ham legal katak yetarli emas."
                 )
         elif weekly_sessions > len(common_days) and per_day_limit > 1:
             extra = weekly_sessions - len(common_days)
