@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-2PLUS2PLUS1-CROSSSHIFT-V22.17"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-NO-QUALITY-ROLLBACK-V22.18"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1581,7 +1581,12 @@ def _build_model(
     # comfort nudges.  Thus 22 lessons over five legal days becomes 4/4/4/5/5
     # whenever hard rules allow it; teacher compactness is optimized inside
     # that best balance instead of trading the balance away.
-    objective_terms.extend(term * 10_000_000 for term in balance_terms)
+    # Balance is the first SOFT lexicographic tier.  Keeping it soft guarantees
+    # that the complete feasibility incumbent is valid in the quality model;
+    # a globally impossible perfect balance can no longer discard every
+    # teacher-window and 2+2+1 improvement.  The scale dominates all teacher
+    # comfort tiers whenever a better class distribution is feasible.
+    objective_terms.extend(term * 1_000_000_000 for term in balance_terms)
     quality = sum(objective_terms) if objective_terms else 0
     has_objective = False
     if relax_method:
