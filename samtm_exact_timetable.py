@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-NO-QUALITY-ROLLBACK-V22.18"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-2PLUS2PLUS1-SATURDAY5-V22.20"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1097,6 +1097,8 @@ def _build_model(
     repeat_group_limits: dict[tuple[int, str, str], int] = {}
     repeat_terms: list[Any] = []
     practical_repeat_terms: list[Any] = []
+    compact_subject_used_days: dict[tuple[int, str, str], list[Any]] = defaultdict(list)
+    compact_subject_day_targets: dict[tuple[int, str, str], int] = {}
     for (class_id, subject, day, phase), indices in subject_groups.items():
         indices = sorted(set(indices))
         normal_limit = subject_daily_limits[(class_id, subject)]
@@ -1133,6 +1135,16 @@ def _build_model(
             allowed_repeat_days = max(
                 int(allowed_repeat_days), required_sessions // 2
             )
+            used_subject_day = model.NewBoolVar(
+                f"compact_used_{class_id}_{abs(hash(subject))}_{day}_{phase}"
+            )
+            model.Add(count >= used_subject_day)
+            model.Add(count <= per_day_limit * used_subject_day)
+            compact_key = (class_id, subject, phase)
+            compact_subject_used_days[compact_key].append(used_subject_day)
+            compact_subject_day_targets[compact_key] = int(
+                math.ceil(required_sessions / 2)
+            )
         repeat = model.NewBoolVar(
             f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
         )
@@ -1155,6 +1167,13 @@ def _build_model(
                         continue
                     if abs(int(left["period"]) - int(right["period"])) != 1:
                         model.Add(variables[left_index] + variables[right_index] <= 1)
+    for compact_key, used_days in compact_subject_used_days.items():
+        # 5 sessions => exactly three used days (2+2+1); 6 => three days
+        # (2+2+2).  This is quality-pass only and never affects the initial
+        # full feasibility timetable.
+        model.Add(
+            sum(used_days) == compact_subject_day_targets[compact_key]
+        )
     for (class_id, subject, phase), booleans in repeat_bools.items():
         limit = int(repeat_group_limits.get(
             (class_id, subject, phase),
@@ -1228,6 +1247,7 @@ def _build_model(
         if total_slots and (closed_slots / total_slots) > 0.20:
             restricted_teachers.add(int(teacher))
     teacher_real_idle_terms: list[Any] = []
+    teacher_real_idle_over120_terms: list[Any] = []
     teacher_cross_shift_wait_terms: list[Any] = []
     teacher_cross_shift_over60_terms: list[Any] = []
     teacher_cross_shift_over120_terms: list[Any] = []
@@ -1352,6 +1372,12 @@ def _build_model(
             [raw_idle - ordinary_break_minutes * break_count, 0],
         )
         teacher_real_idle_terms.append(excess_idle)
+        idle_over120 = model.NewIntVar(
+            0, max(0, horizon_end - horizon_start),
+            f"teacher_idle_over120_{label}",
+        )
+        model.AddMaxEquality(idle_over120, [excess_idle - 120, 0])
+        teacher_real_idle_over120_terms.append(idle_over120)
         if int(teacher) in restricted_teachers:
             restricted_teacher_idle_terms.append(excess_idle)
 
@@ -1535,6 +1561,11 @@ def _build_model(
                     cost += max(0, 3 - int(period)) * 500_000
                 elif int(row["shift"]) == 2:
                     cost += max(0, int(period) - 4) * 500_000
+        # Saturday period 6 is a last-resort slot.  It remains legal for a
+        # genuinely full 36-hour class, but ordinary 29--31 hour classes are
+        # optimized to finish Saturday in period 4 or 5.
+        if int(row["day"]) == 6 and int(period) == 6:
+            cost += 500_000_000
         if cost:
             objective_terms.append(variables[index] * int(cost))
     objective_terms.extend(term * 5_000 for term in gap_terms)
@@ -1545,9 +1576,12 @@ def _build_model(
     # qimmat sifat nuqsonlaridan biri. Haqiqiy minut bo'yicha smenalararo
     # kutish oddiy fan-vaqt afzalligidan ancha ustun turadi.
     objective_terms.extend(term * 20_000 for term in teacher_real_idle_terms)
+    objective_terms.extend(
+        term * 1_000_000_000 for term in teacher_real_idle_over120_terms
+    )
     objective_terms.extend(term * 5_000 for term in teacher_cross_shift_wait_terms)
     objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
-    objective_terms.extend(term * 5_000_000 for term in teacher_cross_shift_over120_terms)
+    objective_terms.extend(term * 1_000_000_000 for term in teacher_cross_shift_over120_terms)
     objective_terms.extend(term * 10_000_000 for term in teacher_cross_shift_over180_terms)
     # A teacher may work a dense 7--8 lesson day when the timetable permits.
     # Fewer work days and adjacent lessons are preferences only: they can
