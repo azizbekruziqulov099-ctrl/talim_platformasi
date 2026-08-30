@@ -1228,10 +1228,10 @@ def _build_model(
     # o'qituvchi avval chegaraga yig'iladi:
     #   1-smena 1/2 = qizil, 3 = sariq;
     #   2-smena 5/6 = qizil, 4 = sariq.
-    # Strict model sig'masa solve_exact_timetable quyida soati eng ko'p
-    # o'qituvchidan boshlab avval 1-smena 2, keyin 2-smena 5 ni sariqqa
-    # aylantirib qayta urinadi. Foydalanuvchining haqiqiy BAND/qizil katagi
-    # candidate domeniga kirmagani uchun bu mexanizm uni hech qachon ochmaydi.
+    # Bu zonalar foydalanuvchining haqiqiy BAND/qizil vaqti emas. Shuning uchun
+    # ular candidate domenini yopmaydi: juda katta SOFT jarima bilan oxirgi
+    # chora bo'lib qoladi. Aks holda sun'iy rang butun jadvalni INFEASIBLE
+    # qilib, avval ishlagan 762 ta darsli yechimni ham yo'qotardi.
     synthetic_relaxed = {
         (int(token[0]), int(token[1]), int(token[2]))
         for token in (context.get("exact_dual_shift_synthetic_relaxed") or ())
@@ -1250,7 +1250,9 @@ def _build_model(
             red = (shift == 1 and period in (1, 2)) or (shift == 2 and period in (5, 6))
             relaxed = (int(teacher), shift, period) in synthetic_relaxed
             if red and not relaxed:
-                model.Add(variables[index] == 0)
+                synthetic_dual_edge_terms.extend(
+                    [variables[index]] * (80 + 10 * synthetic_rank.get(int(teacher), 0))
+                )
             elif (shift == 1 and period == 3) or (shift == 2 and period == 4):
                 synthetic_dual_edge_terms.append(variables[index])
             elif relaxed:
@@ -1326,10 +1328,10 @@ def _build_model(
         #   13--15 soat -> ko'pi bilan 4 kun.
         # Shu aniq diapazonlardan tashqaridagi yuklamalarning V22.24 erkin
         # feasibility xulqi o'zgarmaydi.
-        if 5 <= demand <= 7:
-            model.Add(sum(used_days) <= min(3, len(used_days)))
-        elif 10 <= demand <= 15:
-            model.Add(sum(used_days) <= min(4, len(used_days)))
+        # Bu diapazonlar ham SOFT. 3/4 kunlik chegara qattiq bo'lsa, fanlarning
+        # sinf kunlik taqsimoti yoki haqiqiy BAND/metod kuni bilan to'qnashib,
+        # to'liq jadvalni bekor qilishi mumkin. Pastdagi above_maximum jarimasi
+        # imkon bo'lsa shu chegarani saqlaydi, sig'masa 1 qo'shimcha kunni oladi.
         if quality_enabled:
             # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
             # qilish birinchi feasibility jadvalini hech qachon to'xtatmaydi.
