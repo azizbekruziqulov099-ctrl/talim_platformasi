@@ -1030,7 +1030,12 @@ def _build_model(
                         used_by_period[period] = used
                     for period in range(1, max(periods)):
                         model.Add(used_by_period[period] >= used_by_period[period + 1])
-                if quality_enabled and phase_job_count:
+                # The floor/ceil class-day distribution is a hard timetable
+                # rule when requested, not merely a best-effort quality goal.
+                # Build its counters in the initial feasibility model too;
+                # otherwise a timed-out refinement could return layouts such
+                # as 22 hours = 5+5+2+5+5.
+                if (quality_enabled or enforce_balanced_class_days) and phase_job_count:
                     indices = sorted(set(class_day_vars.get((class_id, day, phase), [])))
                     count = model.NewIntVar(
                         0, min(phase_job_count, max(0, len(indices))),
@@ -1041,11 +1046,9 @@ def _build_model(
                     else:
                         model.Add(count == 0)
                     if enforce_balanced_class_days:
-                        # Quality pass only: require the mathematically even
-                        # floor/ceil distribution.  The feasibility pass has
-                        # no such constraint, so a timetable is still returned
-                        # if teacher availability makes perfect balance
-                        # impossible.
+                        # Require the mathematically even floor/ceil
+                        # distribution in every exact pass.  For example,
+                        # 22/5 is always 4..5 and 30/6 is always exactly 5.
                         daily_floor = phase_job_count // legal_day_count
                         daily_ceil = int(math.ceil(
                             phase_job_count / legal_day_count
@@ -1060,7 +1063,7 @@ def _build_model(
                         deviation,
                         count * legal_day_count - phase_job_count,
                     )
-                    if not enforce_balanced_class_days:
+                    if quality_enabled and not enforce_balanced_class_days:
                         balance_terms.append(deviation)
 
     # Subject repetitions and controlled repeat-day fallback.
