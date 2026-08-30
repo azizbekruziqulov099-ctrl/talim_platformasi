@@ -48,6 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-2PLUS2PLUS1-V22.4"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1028,6 +1029,8 @@ def _build_model(
     subject_groups: dict[tuple[int, str, int, str], list[int]] = defaultdict(list)
     subject_daily_limits: dict[tuple[int, str], int] = {}
     subject_is_practical: dict[tuple[int, str], bool] = {}
+    subject_job_keys: dict[tuple[int, str], set[int]] = defaultdict(set)
+    subject_candidate_days: dict[tuple[int, str], set[int]] = defaultdict(set)
     for index, row in enumerate(candidates):
         for subject, phases in row["subject_phases"].items():
             normal_limit = max(1, int(
@@ -1044,6 +1047,8 @@ def _build_model(
                 or profile.get("practical") or profile.get("physical")
                 or profile.get("technology")
             )
+            subject_job_keys[(row["class_id"], subject)].add(id(row["job"]))
+            subject_candidate_days[(row["class_id"], subject)].add(int(row["day"]))
             for phase in phases:
                 subject_groups[(row["class_id"], subject, row["day"], phase)].append(index)
     repeat_day_limit = max(0, int(context.get("max_subject_repeat_days") or 0))
@@ -1057,12 +1062,16 @@ def _build_model(
     for (class_id, subject, day, phase), indices in subject_groups.items():
         indices = sorted(set(indices))
         normal_limit = subject_daily_limits[(class_id, subject)]
+        required_sessions = len(subject_job_keys.get((class_id, subject), ()))
+        legal_day_count = len(subject_candidate_days.get((class_id, subject), ()))
+        # Avval har legal kunga bittadan. Faqat ochiq kun yetishmasa qizil
+        # yoki metod kunini ochish o'rniga 2+2+1 kabi cheklangan zaxira ishlaydi.
+        if normal_limit == 1 and required_sessions > legal_day_count:
+            normal_limit = 2
         practical = bool(subject_is_practical.get((class_id, subject)))
         count = sum(variables[index] for index in indices)
-        # ``daily_max`` is always hard.  A value of 1 can never be relaxed by
-        # an internal mode; an explicit value >=2 permits a repeat only on a
-        # bounded number of days.  This is the exact version of the user's
-        # Algebra/Geometry rule: spread first, use a double only if required.
+        # Takror faqat zarur sig'im holatida yoki administrator daily_max>=2
+        # berganida va cheklangan kunlarda ishlaydi.
         per_day_limit = min(2, normal_limit) if practical else normal_limit
         model.Add(count <= per_day_limit)
         if normal_limit <= 1:
@@ -1770,12 +1779,23 @@ def validate_candidate_selection(
         0, int(context.get("practical_repeat_day_limit", 1))
     )
     effective_repeat_limits: dict[tuple[int, str], int] = {}
+    subject_session_totals: dict[tuple[int, str, str], int] = defaultdict(int)
+    subject_used_days: dict[tuple[int, str, str], set[int]] = defaultdict(set)
+    for (class_id, subject, day, phase), count in subject_counts.items():
+        subject_session_totals[(class_id, subject, phase)] += int(count)
+        if count:
+            subject_used_days[(class_id, subject, phase)].add(int(day))
     for (class_id, subject, day, phase), count in subject_counts.items():
         daily_max = int(subject_limits.get((class_id, subject), 1))
         practical = bool(subject_practical.get((class_id, subject)))
         allowed_repeat_days = practical_repeat_limit if practical else repeat_limit
         effective_repeat_limits[(class_id, subject)] = int(allowed_repeat_days)
-        allowed = min(2, daily_max) if practical else daily_max
+        adaptive_repeat = bool(
+            daily_max == 1
+            and subject_session_totals[(class_id, subject, phase)]
+            > len(subject_used_days[(class_id, subject, phase)])
+        )
+        allowed = 2 if adaptive_repeat else (min(2, daily_max) if practical else daily_max)
         if count > allowed:
             errors.append(f"Sinf {class_id} {subject}: {day}-kun {phase} takror limiti oshgan")
         if count >= 2:
