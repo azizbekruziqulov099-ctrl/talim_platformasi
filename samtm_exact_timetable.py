@@ -1319,8 +1319,11 @@ def _build_model(
     ordinary_break_minutes = max(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
+    enforce_teacher_window_limits = bool(
+        context.get("exact_enforce_teacher_window_limits")
+    )
     for (teacher, day, phase), raw_indices in teacher_real_day.items():
-        if not quality_enabled:
+        if not (quality_enabled or enforce_teacher_window_limits):
             continue
         indices = sorted(set(raw_indices))
         if not indices:
@@ -1374,14 +1377,16 @@ def _build_model(
             excess_idle,
             [raw_idle - ordinary_break_minutes * break_count, 0],
         )
-        teacher_real_idle_terms.append(excess_idle)
+        if quality_enabled:
+            teacher_real_idle_terms.append(excess_idle)
         idle_over120 = model.NewIntVar(
             0, max(0, horizon_end - horizon_start),
             f"teacher_idle_over120_{label}",
         )
         model.AddMaxEquality(idle_over120, [excess_idle - 120, 0])
-        teacher_real_idle_over120_terms.append(idle_over120)
-        if int(teacher) in restricted_teachers:
+        if quality_enabled:
+            teacher_real_idle_over120_terms.append(idle_over120)
+        if quality_enabled and int(teacher) in restricted_teachers:
             restricted_teacher_idle_terms.append(excess_idle)
 
     # Faqat aynan bir kunda ikkala smenada darsi bor ustoz uchun 1-smenaning
@@ -1396,7 +1401,11 @@ def _build_model(
     for teacher, day, phase in sorted(shift_day_keys):
         first_indices = sorted(set(teacher_shift_day.get((teacher, day, phase, 1), [])))
         second_indices = sorted(set(teacher_shift_day.get((teacher, day, phase, 2), [])))
-        if not first_indices or not second_indices or not quality_enabled:
+        if (
+            not first_indices
+            or not second_indices
+            or not (quality_enabled or enforce_teacher_window_limits)
+        ):
             continue
         label = f"{teacher}_{day}_{phase}"
         first_used = model.NewBoolVar(f"cross_first_used_{label}")
@@ -1427,8 +1436,16 @@ def _build_model(
         model.Add(raw_wait == 0).OnlyEnforceIf(both_used.Not())
         wait = model.NewIntVar(0, horizon, f"cross_wait_{label}")
         model.AddMaxEquality(wait, [raw_wait, 0])
-        teacher_cross_shift_wait_terms.append(wait)
-        if int(teacher) in restricted_teachers:
+        if enforce_teacher_window_limits:
+            # A teacher working both shifts on the same day may wait for at
+            # most two real hours between the last first-shift lesson and the
+            # first second-shift lesson.  This is enforced in the initial
+            # feasibility model as well, so refinement timeout cannot return
+            # a 6--8 hour cross-shift window.
+            model.Add(wait <= 120).OnlyEnforceIf(both_used)
+        if quality_enabled:
+            teacher_cross_shift_wait_terms.append(wait)
+        if quality_enabled and int(teacher) in restricted_teachers:
             restricted_teacher_cross_wait_terms.append(wait)
         for threshold, target in (
             (60, teacher_cross_shift_over60_terms),
@@ -1437,7 +1454,8 @@ def _build_model(
         ):
             excess = model.NewIntVar(0, horizon, f"cross_over_{threshold}_{label}")
             model.AddMaxEquality(excess, [wait - threshold, 0])
-            target.append(excess)
+            if quality_enabled:
+                target.append(excess)
 
     # A core subject may use period 6 on at most two class-days per phase.
     core_limit = max(0, int(context.get("core_period6_day_limit", 2)))
@@ -1472,7 +1490,7 @@ def _build_model(
     for (teacher, day, shift, phase, period), indices in teacher_periods.items():
         grouped_teacher_periods[(teacher, day, shift, phase)][period] = sorted(set(indices))
     for key, period_map in grouped_teacher_periods.items():
-        if not quality_enabled:
+        if not (quality_enabled or enforce_teacher_window_limits):
             continue
         if len(period_map) < 3:
             continue
@@ -1486,6 +1504,7 @@ def _build_model(
             else:
                 model.Add(value == 0)
             used[period] = value
+        local_gap_terms: list[Any] = []
         for period in range(2, max_period):
             before = model.NewBoolVar(f"tbefore_{'_'.join(map(str, key))}_{period}")
             after = model.NewBoolVar(f"tafter_{'_'.join(map(str, key))}_{period}")
@@ -1496,7 +1515,13 @@ def _build_model(
             model.Add(gap <= after)
             model.Add(gap + used[period] <= 1)
             model.Add(gap >= before + after - used[period] - 1)
-            gap_terms.append(gap)
+            local_gap_terms.append(gap)
+            if quality_enabled:
+                gap_terms.append(gap)
+        if enforce_teacher_window_limits and local_gap_terms:
+            # Within one shift/day a teacher may have at most two empty lesson
+            # periods between the first and last lesson.
+            model.Add(sum(local_gap_terms) <= 2)
 
     exception_variables: dict[tuple[int, int, int, int], Any] = {}
     teacher_exception_variables: dict[int, Any] = {}
