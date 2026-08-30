@@ -165,16 +165,42 @@ def _contains(key: str, *phrases: str) -> bool:
     return any(_subject_key(item) in key for item in phrases)
 
 
+def _finalize_subject_profile(
+    job: Mapping[str, Any], profile: Mapping[str, Any]
+) -> dict[str, Any]:
+    result = dict(profile)
+    result["practical"] = bool(
+        result.get("practical")
+        or result.get("physical")
+        or result.get("technology")
+    )
+    if job.get("is_class_hour"):
+        # Administrator fan nomini erkin yozadi. Masalan, "Texnologik
+        # kelajak soati" matndan amaliy fan deb topilib, qat'iy 1-dars
+        # domenidan yo'qolmasligi kerak. Job turi matndan ustun turadi.
+        result.update({
+            "physical": False,
+            "technology": False,
+            "practical": False,
+            "light": True,
+            "primary_light": True,
+            "primary_core": False,
+            "heavy": False,
+            "written_heavy": False,
+            "core_priority": False,
+            "academic": False,
+            "class_hour": True,
+            "difficulty": 2,
+        })
+    return result
+
+
 def subject_profile(job: Mapping[str, Any], context: Mapping[str, Any]) -> dict[str, Any]:
     """Small pure profile compatible with the monolith's V18.74 flags."""
 
     stored = job.get("v1874_profile")
     if isinstance(stored, Mapping):
-        result = dict(stored)
-        result["practical"] = bool(
-            result.get("practical") or result.get("physical") or result.get("technology")
-        )
-        return result
+        return _finalize_subject_profile(job, stored)
     key = _subject_key(job.get("fan"))
     is_math = _contains(key, "matematika", "algebra", "geometriya")
     is_native = _contains(key, "ona tili", "ozbek tili")
@@ -192,7 +218,7 @@ def subject_profile(job: Mapping[str, Any], context: Mapping[str, Any]) -> dict[
     )
     difficulty = int(job.get("weight") or (2 if light else 7))
     heavy = bool(not light and (difficulty >= 3 or is_math or is_native or is_science))
-    return {
+    return _finalize_subject_profile(job, {
         "key": key,
         "physical": physical,
         "technology": technology,
@@ -204,7 +230,17 @@ def subject_profile(job: Mapping[str, Any], context: Mapping[str, Any]) -> dict[
         "academic": not bool(job.get("is_class_hour")),
         "primary_light": light,
         "difficulty": difficulty,
-    }
+    })
+
+
+def _subject_daily_limits(job: Mapping[str, Any]) -> dict[str, int]:
+    sources = list(job.get("rotation_members") or []) or [job]
+    result: dict[str, int] = {}
+    for source in sources:
+        key = _subject_key(source.get("fan") or job.get("fan"))
+        value = max(1, int(source.get("daily_max") or 1))
+        result[key] = min(result.get(key, value), value)
+    return result
 
 
 def _grade(job: Mapping[str, Any], context: Mapping[str, Any]) -> int:
@@ -233,14 +269,16 @@ def _fixed_class_hour_availability_exception(
 ) -> bool:
     """Explicit legacy exception for an administrator-fixed class hour.
 
-    This does not open a general method/red slot.  It applies only when the
-    context flag is on and this very class-hour job is already fixed to the
-    candidate's exact day+period.  Class/teacher/room collisions remain model
-    constraints and can never be bypassed.
+    This opens only the configured method day for this exact class-hour slot.
+    Hard red/BAND is checked separately and is never bypassed.  Class,
+    teacher and room collisions also remain model constraints.
     """
 
     return bool(
-        context.get("allow_fixed_class_hour_availability_exception")
+        (
+            context.get("allow_fixed_class_hour_method_exception")
+            or context.get("allow_fixed_class_hour_availability_exception")
+        )
         and job.get("is_class_hour")
         and int(job.get("fixed_day") or 0) == int(day)
         and int(job.get("fixed_period") or 0) == int(period)
@@ -290,9 +328,11 @@ def _job_class_phases(job: Mapping[str, Any]) -> frozenset[str]:
 
 def _home_room_key(job: Mapping[str, Any], context: Mapping[str, Any]) -> Optional[str]:
     row = (context.get("classes") or {}).get(job.get("sinf_id"), {}) or {}
-    value = row.get("_home_room_key")
-    if value:
-        return str(value)
+    if "_home_room_key" in row:
+        value = row.get("_home_room_key")
+        return str(value) if value else None
+    if row.get("_home_room_invalid"):
+        return None
     room_id = row.get("xona_id") or job.get("room_id")
     return f"room:{int(room_id)}" if room_id not in (None, "") else None
 
@@ -395,7 +435,9 @@ class DefaultTimetableAdapter:
                     invalid = False
                     for member, selected in zip(sources, selected_by_member):
                         member_phases = expand_phases(member.get("hafta_turi") if members else job.get("hafta_turi"))
-                        load_units = 1 if members else 2
+                        # One-phase TOQ/JUFT lesson is 0.5 contractual hour;
+                        # a regular lesson active in both phases is 1.0 hour.
+                        load_units = 1 if len(member_phases) == 1 else 2
                         for teacher in selected:
                             if teacher not in placement_teachers:
                                 placement_teachers.append(teacher)
@@ -422,14 +464,14 @@ class DefaultTimetableAdapter:
                         ):
                             invalid = True
                             break
-                        fixed_exception = _fixed_class_hour_availability_exception(
+                        fixed_method_exception = _fixed_class_hour_availability_exception(
                             job, teacher, day, shift, period, context
                         )
-                        if _blocked(hard, teacher, day, shift, period) and not fixed_exception:
+                        if _blocked(hard, teacher, day, shift, period):
                             invalid = True
                             break
                         if (teacher, day) in method_hard:
-                            if fixed_exception:
+                            if fixed_method_exception:
                                 pass
                             elif (teacher, day) not in ignored_method:
                                 invalid = True
@@ -477,6 +519,7 @@ class DefaultTimetableAdapter:
                             _subject_key(member.get("fan") or job.get("fan")): subject_profile(member, context)
                             for member in sources
                         },
+                        "subject_daily_limits": _subject_daily_limits(job),
                         "method_exceptions": frozenset(method_exceptions) if mark_method_exceptions else frozenset(),
                     })
         return result
@@ -500,7 +543,13 @@ def _normalize_candidate(
     day = int(raw.get("day") or 0)
     period = int(raw.get("period") or 0)
     shift = int(raw.get("shift") or job.get("smena") or 1)
-    class_id = int(raw.get("class_id") or job.get("sinf_id") or 0)
+    expected_class_id = int(job.get("sinf_id") or 0)
+    raw_class_id = raw.get("class_id")
+    if raw_class_id not in (None, "") and int(raw_class_id) != expected_class_id:
+        raise ValueError(
+            "Candidate class_id manba job.sinf_id qiymatiga mos emas"
+        )
+    class_id = expected_class_id
     if day <= 0 or period <= 0 or class_id <= 0:
         raise ValueError("Candidate day/period/class_id musbat bo'lishi kerak")
     interval = raw.get("interval") or _slot_interval(context, shift, period)
@@ -511,16 +560,29 @@ def _normalize_candidate(
     room_keys = tuple(item if item is None else str(item) for item in raw.get("room_keys") or [None])
     class_phases = expand_phases(raw.get("class_phases") or _job_class_phases(job))
 
-    def normalize_resource_phases(value: Any, keys: Iterable[Any], default: frozenset[str]) -> dict[Any, frozenset[str]]:
-        mapping = value if isinstance(value, Mapping) else {}
+    def normalize_resource_phases(
+        value: Any, keys: Iterable[Any], default: frozenset[str],
+        key_converter: Callable[[Any], Any],
+    ) -> dict[Any, frozenset[str]]:
+        mapping: dict[Any, Any] = {}
+        if isinstance(value, Mapping):
+            for raw_key, raw_value in value.items():
+                try:
+                    mapping[key_converter(raw_key)] = raw_value
+                except (TypeError, ValueError):
+                    continue
         return {
             key: expand_phases(mapping.get(key) if key in mapping else default)
             for key in keys
         }
 
-    teacher_phases = normalize_resource_phases(raw.get("teacher_phases"), teachers, class_phases)
+    teacher_phases = normalize_resource_phases(
+        raw.get("teacher_phases"), teachers, class_phases, int
+    )
     room_non_null = tuple(key for key in room_keys if key)
-    room_phases = normalize_resource_phases(raw.get("room_phases"), room_non_null, class_phases)
+    room_phases = normalize_resource_phases(
+        raw.get("room_phases"), room_non_null, class_phases, str
+    )
     subject_raw = raw.get("subject_phases")
     if isinstance(subject_raw, Mapping):
         subject_phases = {
@@ -538,14 +600,30 @@ def _normalize_candidate(
         subject_profiles = {
             subject: subject_profile(job, context) for subject in subject_phases
         }
-    loads_raw = raw.get("teacher_phase_loads") or {}
+    loads_raw: dict[int, Any] = {}
+    if isinstance(raw.get("teacher_phase_loads"), Mapping):
+        for raw_teacher, raw_load in raw["teacher_phase_loads"].items():
+            try:
+                loads_raw[int(raw_teacher)] = raw_load
+            except (TypeError, ValueError):
+                continue
     teacher_phase_loads: dict[int, dict[str, int]] = {}
     for teacher in teachers:
-        phase_load = loads_raw.get(teacher, {}) if isinstance(loads_raw, Mapping) else {}
+        phase_load = loads_raw.get(teacher, {})
+        if not isinstance(phase_load, Mapping):
+            phase_load = {}
         teacher_phase_loads[teacher] = {
-            phase: max(1, int((phase_load or {}).get(phase, 2)))
+            phase: max(1, int((phase_load or {}).get(
+                phase,
+                1 if len(teacher_phases.get(teacher, class_phases)) == 1 else 2,
+            )))
             for phase in teacher_phases.get(teacher, class_phases)
         }
+    daily_limits_raw = raw.get("subject_daily_limits")
+    subject_daily_limits = _subject_daily_limits(job)
+    if isinstance(daily_limits_raw, Mapping):
+        for subject, value in daily_limits_raw.items():
+            subject_daily_limits[_subject_key(subject)] = max(1, int(value or 1))
     exceptions = frozenset(
         (int(item[0]), int(item[1]), int(item[2]), int(item[3]))
         for item in raw.get("method_exceptions") or ()
@@ -558,6 +636,7 @@ def _normalize_candidate(
         "teacher_phase_loads": teacher_phase_loads,
         "room_phases": room_phases, "subject_phases": subject_phases,
         "subject_profiles": subject_profiles,
+        "subject_daily_limits": subject_daily_limits,
         "method_exceptions": exceptions,
     }
 
@@ -610,6 +689,31 @@ def candidate_hard_violations(
         errors.append("o'qituvchi biriktirilmagan")
     if len(teachers) != len(set(teachers)):
         errors.append("bitta o'qituvchi parallel guruhlarda takrorlangan")
+    # Custom adapter manba jobdagi rahbar/o'qituvchini tashlab yuborishi yoki
+    # boshqa user bilan almashtirishi mumkin emas. Aks holda haqiqiy ustozning
+    # qizil/BAND qoidasi validatorga umuman yetib kelmay qolardi.
+    groups = list(job.get("groups") or [])
+    rotation_members = list(job.get("rotation_members") or [])
+    if not rotation_members and groups:
+        expected_group_teachers = tuple(
+            int(group["teacher"])
+            for group in groups if group.get("teacher") is not None
+        )
+        if (
+            len(expected_group_teachers) != len(groups)
+            or set(teachers) != set(expected_group_teachers)
+        ):
+            errors.append("candidate guruh o'qituvchilari manbaga mos emas")
+    elif not rotation_members and "teacher_options" in job:
+        allowed_teachers = {
+            int(value) for value in job.get("teacher_options") or []
+            if value is not None
+        }
+        if bool(job.get("is_class_hour")):
+            if set(teachers) != allowed_teachers:
+                errors.append("candidate sinf rahbari manbaga mos emas")
+        elif len(teachers) != 1 or int(teachers[0]) not in allowed_teachers:
+            errors.append("candidate o'qituvchisi manbaga mos emas")
     non_null_rooms = [str(value) for value in candidate.get("room_keys") or () if value]
     if len(non_null_rooms) != len(set(non_null_rooms)):
         errors.append("parallel guruhlar bir xil xonaga biriktirilgan")
@@ -633,14 +737,14 @@ def candidate_hard_violations(
             teacher_rules.get("eng_kech_dars") or 12
         ):
             errors.append(f"o'qituvchi {teacher} ruxsat etgan dars oralig'idan tashqari")
-        fixed_exception = _fixed_class_hour_availability_exception(
+        fixed_method_exception = _fixed_class_hour_availability_exception(
             job, teacher, day, shift, period, context
         )
-        if _blocked(hard, teacher, day, shift, period) and not fixed_exception:
+        if _blocked(hard, teacher, day, shift, period):
             errors.append(f"o'qituvchi {teacher} qizil/BAND vaqtda")
         if (teacher, day) in method_hard:
             token = (teacher, day, shift, period)
-            if fixed_exception:
+            if fixed_method_exception:
                 pass
             elif not allow_method_exceptions or token not in exception_tokens:
                 errors.append(f"o'qituvchi {teacher} metod kunida")
@@ -700,9 +804,23 @@ def _enumerate_candidates(
             candidates.append(candidate)
             by_job[job_index].append(candidate["candidate_index"])
         if not by_job[job_index]:
+            teacher_ids = sorted({
+                int(teacher)
+                for source in (list(job.get("rotation_members") or []) or [job])
+                for teacher in (
+                    [group.get("teacher") for group in source.get("groups") or []]
+                    if source.get("groups")
+                    else list(source.get("teacher_options") or [])
+                )
+                if teacher is not None
+            })
             empty.append({
+                "job_index": int(job_index),
                 "job_id": canonical_job_id(job, job_index),
                 "sinf_id": job.get("sinf_id"), "fan": job.get("fan"),
+                "smena": int(job.get("smena") or 1),
+                "takror_raqami": int(job.get("occurrence") or 1),
+                "teacher_ids": teacher_ids,
                 "fixed_day": job.get("fixed_day"), "fixed_period": job.get("fixed_period"),
                 "reason": "Qattiq qoidalar ichida bitta ham legal katak yo'q",
             })
@@ -815,9 +933,12 @@ def _build_model(
     subject_daily_limits: dict[tuple[int, str], int] = {}
     subject_is_practical: dict[tuple[int, str], bool] = {}
     for index, row in enumerate(candidates):
-        job = row["job"]
-        normal_limit = max(1, int(job.get("daily_max") or 1))
         for subject, phases in row["subject_phases"].items():
+            normal_limit = max(1, int(
+                (row.get("subject_daily_limits") or {}).get(
+                    subject, row["job"].get("daily_max") or 1
+                )
+            ))
             subject_daily_limits[(row["class_id"], subject)] = min(
                 subject_daily_limits.get((row["class_id"], subject), normal_limit), normal_limit
             )
@@ -969,10 +1090,14 @@ def _build_model(
     core_limit = max(0, int(context.get("core_period6_day_limit", 2)))
     core_by_class_day: dict[tuple[int, int, str], list[int]] = defaultdict(list)
     for index, row in enumerate(candidates):
-        if row["period"] != 6 or not subject_profile(row["job"], context).get("core_priority"):
+        if row["period"] != 6:
             continue
-        for phase in row["class_phases"]:
-            core_by_class_day[(row["class_id"], row["day"], phase)].append(index)
+        for subject, phases in row["subject_phases"].items():
+            profile = (row.get("subject_profiles") or {}).get(subject, {})
+            if not profile.get("core_priority"):
+                continue
+            for phase in phases:
+                core_by_class_day[(row["class_id"], row["day"], phase)].append(index)
     core_days: dict[tuple[int, str], list[Any]] = defaultdict(list)
     for (class_id, day, phase), indices in core_by_class_day.items():
         used = model.NewBoolVar(f"core6_{class_id}_{day}_{phase}")
@@ -1106,6 +1231,239 @@ def _build_model(
     ), []
 
 
+def _class_label(class_id: int, context: Mapping[str, Any]) -> str:
+    row = (context.get("classes") or {}).get(int(class_id), {}) or {}
+    grade = str(row.get("sinf") or "").strip()
+    letter = str(row.get("harf") or "").strip()
+    return f"{grade}-{letter}".strip("-") or str(class_id)
+
+
+def _teacher_label(teacher_id: int, context: Mapping[str, Any]) -> str:
+    row = (context.get("teachers") or {}).get(int(teacher_id), {}) or {}
+    return str(
+        row.get("full_name") or row.get("fish") or row.get("fio")
+        or teacher_id
+    )
+
+
+def _capacity_conflicts(
+    bundle: _ModelBundle, context: Mapping[str, Any], *, limit: int = 24,
+) -> list[dict[str, Any]]:
+    """Return proven, user-facing lower-bound conflicts for an UNSAT model.
+
+    CP-SAT can prove that the whole model is infeasible, but a normal solve
+    does not automatically explain *which* entity caused it.  These checks do
+    not guess from a partial draft.  They compare mandatory job lower bounds
+    with the union of legal candidate slots, so every returned shortage is a
+    genuine contradiction.  The list may be empty even when the global model
+    is infeasible (for example, a longer alternating-resource cycle).
+    """
+
+    conflicts: list[dict[str, Any]] = []
+    candidates = bundle.candidates
+    by_job = bundle.by_job
+
+    # A class has no teacher choice that can change its number of sessions.
+    # If even the union of all legal slots is smaller than the required job
+    # count, no global reordering can make that class fit.
+    class_required: dict[tuple[int, str], int] = defaultdict(int)
+    class_slots: dict[tuple[int, str], set[tuple[int, tuple[int, int]]]] = defaultdict(set)
+    for job in bundle.jobs:
+        class_id = int(job.get("sinf_id") or 0)
+        for phase in _job_class_phases(job):
+            class_required[(class_id, phase)] += 1
+    for row in candidates:
+        token = (int(row["day"]), tuple(row["interval"]))
+        for phase in row["class_phases"]:
+            class_slots[(int(row["class_id"]), str(phase))].add(token)
+    for key, required in sorted(class_required.items()):
+        available = len(class_slots.get(key, set()))
+        if required <= available:
+            continue
+        class_id, phase = key
+        shortage = required - available
+        label = _class_label(class_id, context)
+        conflicts.append({
+            "kind": "class_capacity",
+            "class_id": class_id,
+            "class_name": label,
+            "phase": phase,
+            "required_lessons": required,
+            "available_lessons": available,
+            "shortage": shortage,
+            "message": (
+                f"{label} sinfning {phase.upper()} haftasida {required} ta dars "
+                f"bor, ammo qattiq kun/smena chegaralarida ko'pi bilan "
+                f"{available} ta turli legal vaqt katagi qolgan."
+            ),
+            "solution": (
+                "Shu sinfning qat'iy yopilgan kunini yoki oldindan qotirilgan "
+                "dars vaqtini tekshiring; qizil/BAND vaqtni taxminan ochmang."
+            ),
+        })
+
+    # Count only jobs for which a teacher is unavoidable in every candidate.
+    # Optional whole-class teacher choices are deliberately not blamed.
+    teacher_required: dict[tuple[int, str], int] = defaultdict(int)
+    teacher_required_units: dict[tuple[int, str], int] = defaultdict(int)
+    for job_index in range(len(bundle.jobs)):
+        rows = [candidates[index] for index in by_job.get(job_index, [])]
+        if not rows:
+            continue
+        all_tokens: Optional[set[tuple[int, str]]] = None
+        for row in rows:
+            row_tokens = {
+                (int(teacher), str(phase))
+                for teacher, phases in row["teacher_phases"].items()
+                for phase in phases
+            }
+            all_tokens = row_tokens if all_tokens is None else all_tokens.intersection(row_tokens)
+        for teacher, phase in sorted(all_tokens or set()):
+            teacher_required[(teacher, phase)] += 1
+            unit_values = [
+                int(row["teacher_phase_loads"][teacher][phase])
+                for row in rows
+                if teacher in row["teacher_phase_loads"]
+                and phase in row["teacher_phase_loads"][teacher]
+            ]
+            teacher_required_units[(teacher, phase)] += min(unit_values or [2])
+
+    teacher_slots: dict[tuple[int, str, int], set[tuple[int, int]]] = defaultdict(set)
+    for row in candidates:
+        interval = tuple(row["interval"])
+        for teacher, phases in row["teacher_phases"].items():
+            for phase in phases:
+                teacher_slots[(int(teacher), str(phase), int(row["day"]))].add(interval)
+    rules = context.get("rules") or {}
+    defaults = context.get("default_rules") or {"kunlik_max": 6}
+    method_hard = set(context.get("method_hard") or ())
+    for key, required in sorted(teacher_required.items()):
+        teacher, phase = key
+        daily_limit = int(math.floor(float(
+            (rules.get(teacher, defaults) or defaults).get("kunlik_max") or 6
+        ) + 1e-9))
+        days = sorted({
+            day for candidate_teacher, candidate_phase, day in teacher_slots
+            if candidate_teacher == teacher and candidate_phase == phase
+        })
+        available = sum(min(
+            daily_limit,
+            len(teacher_slots.get((teacher, phase, day), set())),
+        ) for day in days)
+        cap = (context.get("teacher_caps") or {}).get(teacher)
+        cap_lessons = None if cap is None else int(math.floor(float(cap) + 1e-9))
+        if cap_lessons is not None:
+            available = min(available, cap_lessons)
+        required_units = teacher_required_units.get(key, required * 2)
+        cap_units = None if cap is None else int(math.floor(float(cap) * 2 + 1e-9))
+        unit_shortage = cap_units is not None and required_units > cap_units
+        if required <= available and not unit_shortage:
+            continue
+        label = _teacher_label(teacher, context)
+        effective_cap_units = (
+            required_units if cap_units is None else cap_units
+        )
+        shortage = max(required - available, int(math.ceil(
+            max(0, required_units - effective_cap_units) / 2
+        )))
+        method_days = sorted(
+            int(day) for candidate_teacher, day in method_hard
+            if int(candidate_teacher) == int(teacher)
+        )
+        method_text = (
+            " Metod kuni: " + ", ".join(
+                _WEEKDAY_NAMES.get(day, str(day)) for day in method_days
+            ) + "."
+            if method_days else ""
+        )
+        conflicts.append({
+            "kind": "teacher_capacity",
+            "teacher_id": teacher,
+            "teacher_name": label,
+            "phase": phase,
+            "required_lessons": required,
+            "available_lessons": available,
+            "shortage": max(1, shortage),
+            "method_days": method_days,
+            "message": (
+                f"{label}ning {phase.upper()} haftasida kamida {required} ta "
+                f"majburiy darsi bor, ammo qizil/BAND, metod kuni, dars "
+                f"oralig'i va kunlik limitdan keyin ko'pi bilan {available} ta "
+                f"legal dars sig'adi.{method_text}"
+            ),
+            "solution": (
+                "Pastdagi isbotlangan metod-kuni tavsiyasi chiqsa, faqat o'sha "
+                "1–2 katakni administrator qo'lda ochishi mumkin. Aks holda "
+                "o'qituvchining yuklamasi yoki qat'iy BAND vaqtini tekshiring."
+            ),
+        })
+
+    # Singleton domains expose exact fixed collisions directly.
+    forced = [
+        candidates[indices[0]]
+        for indices in by_job.values() if len(indices) == 1
+    ]
+    for left_index, left in enumerate(forced):
+        for right in forced[left_index + 1:]:
+            if int(left["day"]) != int(right["day"]):
+                continue
+            if not intervals_overlap(left["interval"], right["interval"]):
+                continue
+            shared_phases = set(left["class_phases"]).intersection(right["class_phases"])
+            if not shared_phases:
+                continue
+            resource = None
+            if int(left["class_id"]) == int(right["class_id"]):
+                resource = f"{_class_label(int(left['class_id']), context)} sinf"
+            else:
+                shared_teachers = {
+                    teacher
+                    for teacher in set(left["teachers"]).intersection(right["teachers"])
+                    if set(left["teacher_phases"].get(teacher, ())).intersection(
+                        right["teacher_phases"].get(teacher, ())
+                    )
+                }
+                if shared_teachers:
+                    teacher = sorted(shared_teachers)[0]
+                    resource = _teacher_label(int(teacher), context)
+                else:
+                    shared_rooms = {
+                        value for value in left["room_keys"] if value
+                    }.intersection(value for value in right["room_keys"] if value)
+                    shared_rooms = {
+                        room for room in shared_rooms
+                        if set(left["room_phases"].get(room, ())).intersection(
+                            right["room_phases"].get(room, ())
+                        )
+                    }
+                    if shared_rooms:
+                        resource = f"xona {sorted(shared_rooms)[0]}"
+            if not resource:
+                continue
+            left_job = left["job"]
+            right_job = right["job"]
+            conflicts.append({
+                "kind": "fixed_collision",
+                "class_id": int(left["class_id"]),
+                "class_name": _class_label(int(left["class_id"]), context),
+                "resource": resource,
+                "day": int(left["day"]),
+                "period": int(left["period"]),
+                "message": (
+                    f"{resource} uchun {_WEEKDAY_NAMES.get(int(left['day']), left['day'])} "
+                    f"kuni bir xil real vaqtda ikkita yagona qat'iy variant "
+                    f"to'qnashgan: {left_job.get('fan')} va {right_job.get('fan')}."
+                ),
+                "solution": (
+                    "Shu ikki darsdan birining oldindan qotirilgan kun-soatini "
+                    "o'zgartiring; qizil/BAND vaqt avtomatik ochilmaydi."
+                ),
+            })
+            if len(conflicts) >= max(1, int(limit)):
+                return conflicts[:limit]
+    return conflicts[:max(1, int(limit))]
+
+
 def _new_solver(seed: int, max_seconds: float, context: Mapping[str, Any]) -> Any:
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = max(0.05, float(max_seconds))
@@ -1190,12 +1548,17 @@ def validate_candidate_selection(
             for phase in phases:
                 resource_rows.append(("xona", room, row["day"], phase, interval, job_index))
         for subject, phases in row["subject_phases"].items():
+            row_daily_limit = max(1, int(
+                (row.get("subject_daily_limits") or {}).get(
+                    subject, jobs[job_index].get("daily_max") or 1
+                )
+            ))
             subject_limits[(row["class_id"], subject)] = min(
                 subject_limits.get(
                     (row["class_id"], subject),
-                    max(1, int(jobs[job_index].get("daily_max") or 1)),
+                    row_daily_limit,
                 ),
-                max(1, int(jobs[job_index].get("daily_max") or 1)),
+                row_daily_limit,
             )
             profile = (row.get("subject_profiles") or {}).get(subject, {})
             subject_practical[(row["class_id"], subject)] = bool(
@@ -1208,9 +1571,11 @@ def validate_candidate_selection(
                 subject_periods[(row["class_id"], subject, row["day"], phase)].append(
                     int(row["period"])
                 )
-        if row["period"] == 6 and subject_profile(jobs[job_index], context).get("core_priority"):
-            for phase in row["class_phases"]:
-                core_days[(row["class_id"], phase)].add(row["day"])
+                if (
+                    int(row["period"]) == 6
+                    and profile.get("core_priority")
+                ):
+                    core_days[(row["class_id"], phase)].add(row["day"])
     for index, first in enumerate(resource_rows):
         for second in resource_rows[index + 1:]:
             if (
@@ -1356,12 +1721,12 @@ def _recommendations_from_relaxed(
     return rows
 
 
-def analyze_method_day_relaxations(
+def _analyze_method_day_relaxations_detailed(
     jobs: Iterable[Mapping[str, Any]], context: Mapping[str, Any],
     candidate_builder: Any = None, *, adapter: Any = None,
     seed: int = 0, max_seconds: float = 2.0,
     limit_teachers: int = 2, limit_slots: int = 2,
-) -> list[dict[str, Any]]:
+) -> dict[str, Any]:
     """Run a separate diagnostic CP model with at most two method exceptions.
 
     BAND/red slots remain absent from candidate domains.  A recommendation is
@@ -1369,34 +1734,99 @@ def analyze_method_day_relaxations(
     schedule.  The schedule is intentionally discarded.
     """
 
-    if cp_model is None or not jobs or not (context.get("method_hard") or ()):
-        return []
+    started = time.monotonic()
+
+    def finish(status: str, message: str, recommendations=None, **extra):
+        return {
+            "status": str(status),
+            "message": str(message),
+            "recommendations": list(recommendations or []),
+            "wall_time_seconds": round(time.monotonic() - started, 6),
+            **extra,
+        }
+
+    if cp_model is None:
+        return finish("NOT_AVAILABLE", "OR-Tools mavjud emas.")
+    if not jobs:
+        return finish("NOT_NEEDED", "Jadvalda dars yo'q.")
+    if not (context.get("method_hard") or ()):
+        return finish("NOT_NEEDED", "Qattiq metod kuni belgilanmagan.")
     try:
         selected_adapter = _adapter_for(candidate_builder, adapter)
         if not bool(getattr(selected_adapter, "supports_method_relaxation", False)):
-            return []
+            return finish(
+                "UNSUPPORTED",
+                "Tanlangan candidate adapter metod-kuni diagnostikasini qo'llamaydi.",
+            )
         job_list = [dict(job) for job in jobs]
         bundle, empty = _build_model(job_list, context, selected_adapter, relax_method=True)
         if bundle is None or empty:
-            return []
+            return finish(
+                "INFEASIBLE",
+                "Ko'pi bilan ikki metod katagini ochganda ham ayrim darsda legal domen qolmadi.",
+                empty_domains=empty,
+            )
         solver = _new_solver(seed ^ 0x4D455448, max_seconds, context)
-        status = solver.Solve(bundle.model)
-        if _model_status_name(status) not in {FEASIBLE, OPTIMAL}:
-            return []
+        raw_status = solver.Solve(bundle.model)
+        status = _model_status_name(raw_status)
+        if status not in {FEASIBLE, OPTIMAL}:
+            return finish(
+                status,
+                (
+                    "Ikki metod katagigacha bo'lgan diagnostik model ham yechimsiz."
+                    if status == INFEASIBLE else
+                    "Metod-kuni diagnostikasi vaqt ichida yakuniy xulosa bermadi."
+                ),
+                conflicts=int(solver.NumConflicts()),
+                branches=int(solver.NumBranches()),
+            )
         _, chosen = _extract_placements(bundle, solver)
-        if validate_candidate_selection(
+        validation_errors = validate_candidate_selection(
             job_list, chosen, context, allow_method_exceptions=True
-        ):
+        )
+        if validation_errors:
             # The pure validator sees method slots as candidates but never
             # treats them as BAND.  Any other hard error suppresses advice.
-            return []
-        return _recommendations_from_relaxed(
+            return finish(
+                "MODEL_INVALID",
+                "Metod-kuni diagnostik natijasi mustaqil hard-validator tekshiruvidan o'tmadi.",
+                validation_errors=validation_errors,
+            )
+        recommendations = _recommendations_from_relaxed(
             bundle, solver, chosen, context,
             limit_teachers=limit_teachers, limit_slots=limit_slots,
         )
-    except Exception:
+        return finish(
+            status,
+            (
+                "Quyidagi aniq metod kataklari bilan to'liq jadval topildi."
+                if recommendations else
+                "Relaxed model to'liq bo'ldi, ammo ishlatilgan metod istisnosi topilmadi."
+            ),
+            recommendations,
+        )
+    except Exception as error:
         # Advice is optional and must never turn a strict solve into a crash.
-        return []
+        return finish(
+            "ERROR",
+            f"Metod-kuni diagnostikasida {type(error).__name__}: {error}",
+        )
+
+
+def analyze_method_day_relaxations(
+    jobs: Iterable[Mapping[str, Any]], context: Mapping[str, Any],
+    candidate_builder: Any = None, *, adapter: Any = None,
+    seed: int = 0, max_seconds: float = 2.0,
+    limit_teachers: int = 2, limit_slots: int = 2,
+) -> list[dict[str, Any]]:
+    """Backward-compatible list API for the detailed method-day analysis."""
+
+    detail = _analyze_method_day_relaxations_detailed(
+        jobs, context, candidate_builder, adapter=adapter,
+        seed=seed, max_seconds=max_seconds,
+        limit_teachers=limit_teachers, limit_slots=limit_slots,
+    )
+    return list(detail.get("recommendations") or [])
 
 
 def solve_exact_timetable(
@@ -1470,15 +1900,24 @@ def solve_exact_timetable(
         selected_adapter = _adapter_for(candidate_builder, adapter)
         bundle, empty = _build_model(job_list, context, selected_adapter, relax_method=False)
         if bundle is None:
-            recommendations = analyze_method_day_relaxations(
-                job_list, context, candidate_builder,
-                adapter=adapter, seed=seed, max_seconds=min(2.0, max(0.1, max_seconds * 0.15)),
-            ) if empty else []
+            method_analysis = (
+                _analyze_method_day_relaxations_detailed(
+                    job_list, context, candidate_builder,
+                    adapter=adapter, seed=seed,
+                    max_seconds=float(context.get("exact_relaxation_seconds") or min(
+                        4.0, max(0.1, max_seconds * 0.2)
+                    )),
+                )
+                if empty and bool(context.get("exact_analyze_method_relaxation", True))
+                else {"status": "NOT_RUN", "recommendations": []}
+            )
+            recommendations = list(method_analysis.get("recommendations") or [])
             result = _empty_result(INFEASIBLE if empty else MODEL_INVALID, {
                 "code": "EMPTY_CANDIDATE_DOMAIN" if empty else "MODEL_BUILD_FAILED",
                 "empty_domains": empty,
                 "message": "Kamida bitta dars uchun qat'iy qoidalar ichida legal katak yo'q.",
                 "metod_kuni_istisno_tavsiyalari": recommendations,
+                "metod_kuni_tahlili": method_analysis,
             }, time.monotonic() - started)
             result["recommendations"] = recommendations
             result["metod_kuni_istisno_tavsiyalari"] = recommendations
@@ -1497,12 +1936,33 @@ def solve_exact_timetable(
         }
         if status not in {FEASIBLE, OPTIMAL}:
             recommendations = []
+            method_analysis = {"status": "NOT_RUN", "recommendations": []}
             if status in {INFEASIBLE, UNKNOWN} and bool(context.get("exact_analyze_method_relaxation", True)):
-                recommendations = analyze_method_day_relaxations(
+                method_analysis = _analyze_method_day_relaxations_detailed(
                     job_list, context, candidate_builder, adapter=adapter, seed=seed,
-                    max_seconds=float(context.get("exact_relaxation_seconds") or min(2.0, max(0.1, numeric_max_seconds * 0.15))),
+                    max_seconds=float(context.get("exact_relaxation_seconds") or min(4.0, max(0.1, numeric_max_seconds * 0.2))),
                 )
+                recommendations = list(method_analysis.get("recommendations") or [])
             diagnostics["metod_kuni_istisno_tavsiyalari"] = recommendations
+            diagnostics["metod_kuni_tahlili"] = method_analysis
+            if status == INFEASIBLE:
+                hard_conflicts = _capacity_conflicts(bundle, context)
+                if not hard_conflicts:
+                    hard_conflicts = [{
+                        "kind": "global_resource_cycle",
+                        "message": (
+                            "Har bir darsning alohida legal katagi bor, ammo "
+                            "ularni sinf, o'qituvchi va xona real-vaqt "
+                            "to'qnashuvlarisiz bir vaqtda tanlab bo'lmadi."
+                        ),
+                        "solution": (
+                            "Pastdagi metod-kuni tavsiyasi bo'lsa faqat o'sha "
+                            "aniq katakni ko'rib chiqing. Tavsiya bo'lmasa "
+                            "o'qituvchilarning qat'iy BAND va eng erta–eng "
+                            "kech dars oralig'ini tekshiring."
+                        ),
+                    }]
+                diagnostics["hard_conflicts"] = hard_conflicts
             diagnostics["message"] = {
                 INFEASIBLE: "Qattiq qoidalar ichida to'liq jadval matematik jihatdan mavjud emas.",
                 UNKNOWN: "Ajratilgan vaqtda to'liq yechim ham, imkonsizlik isboti ham topilmadi.",
