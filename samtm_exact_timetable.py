@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-SAME-DAY-CROSS-SHIFT-V22.10"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-BALANCED-COMPACT-EXACT-V22.11"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1417,26 +1417,33 @@ def _build_model(
                 cost += 40
         if cost:
             objective_terms.append(variables[index] * int(cost))
-    objective_terms.extend(term * 50 for term in gap_terms)
+    objective_terms.extend(term * 5_000 for term in gap_terms)
     # One extra real idle minute costs more than small period preferences;
     # using an additional work day is also discouraged. Daily/weekly caps and
     # all red/method rules remain hard constraints, so these are safe tie-breaks.
     # O'qituvchining 4–5 soat dars uchun ertalabdan kechgacha qolishi eng
     # qimmat sifat nuqsonlaridan biri. Haqiqiy minut bo'yicha smenalararo
     # kutish oddiy fan-vaqt afzalligidan ancha ustun turadi.
-    objective_terms.extend(term * 200 for term in teacher_real_idle_terms)
-    objective_terms.extend(term * 50 for term in teacher_cross_shift_wait_terms)
-    objective_terms.extend(term * 200 for term in teacher_cross_shift_over60_terms)
-    objective_terms.extend(term * 500 for term in teacher_cross_shift_over120_terms)
-    objective_terms.extend(term * 1_000 for term in teacher_cross_shift_over180_terms)
-    objective_terms.extend(term * 500 for term in teacher_used_day_terms)
+    objective_terms.extend(term * 20_000 for term in teacher_real_idle_terms)
+    objective_terms.extend(term * 5_000 for term in teacher_cross_shift_wait_terms)
+    objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
+    objective_terms.extend(term * 50_000 for term in teacher_cross_shift_over120_terms)
+    objective_terms.extend(term * 100_000 for term in teacher_cross_shift_over180_terms)
+    # A teacher may work a dense 7--8 lesson day when the timetable permits.
+    # Fewer work days and adjacent lessons are preferences only: they can
+    # never make the hard-safe timetable infeasible.
+    objective_terms.extend(term * 100_000 for term in teacher_used_day_terms)
     # Repetition is a feasibility fallback, not a preferred layout.  One
     # repeat-day costs more than all ordinary early/late nudges of one job.
-    objective_terms.extend(term * 5_000 for term in repeat_terms)
-    objective_terms.extend(term * 2_500 for term in practical_repeat_terms)
+    objective_terms.extend(term * 5_000_000 for term in repeat_terms)
+    objective_terms.extend(term * 2_500_000 for term in practical_repeat_terms)
     # Sinf yuklamasi kunlar bo'yicha imkon qadar teng: masalan 30 soat/6 kun
     # => 5+5+5+5+5+5; 22/5 => faqat 4 va 5 soatlik kunlar.
-    objective_terms.extend(term * 100 for term in balance_terms)
+    # This scale makes class-day balance lexicographically dominant over
+    # comfort nudges.  Thus 22 lessons over five legal days becomes 4/4/4/5/5
+    # whenever hard rules allow it; teacher compactness is optimized inside
+    # that best balance instead of trading the balance away.
+    objective_terms.extend(term * 10_000_000 for term in balance_terms)
     quality = sum(objective_terms) if objective_terms else 0
     has_objective = False
     if relax_method:
