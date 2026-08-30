@@ -1104,17 +1104,18 @@ def _build_model(
     compact_subject_day_targets: dict[tuple[int, str, str], int] = {}
     for (class_id, subject, day, phase), indices in subject_groups.items():
         indices = sorted(set(indices))
-        normal_limit = subject_daily_limits[(class_id, subject)]
+        configured_normal_limit = subject_daily_limits[(class_id, subject)]
+        # All subjects may be paired on one class day when that helps compact
+        # a teacher's week.  This is permission, not a requirement; the
+        # quality objective decides whether the pair is actually beneficial.
+        normal_limit = max(2, configured_normal_limit)
         required_sessions = len(subject_job_keys.get((class_id, subject), ()))
         legal_day_count = len(subject_candidate_days.get((class_id, subject), ()))
         # Avval har legal kunga bittadan. Faqat ochiq kun yetishmasa qizil
         # yoki metod kunini ochish o'rniga 2+2+1 kabi cheklangan zaxira ishlaydi.
-        if normal_limit == 1 and required_sessions > legal_day_count:
-            normal_limit = 2
         compact_repeat = bool(
             quality_enabled
             and context.get("exact_compact_subject_repeats")
-            and normal_limit == 1
             and required_sessions >= 5
         )
         if compact_repeat:
@@ -1126,9 +1127,11 @@ def _build_model(
         count = sum(variables[index] for index in indices)
         # Takror faqat zarur sig'im holatida yoki administrator daily_max>=2
         # berganida va cheklangan kunlarda ishlaydi.
-        per_day_limit = min(2, normal_limit) if practical else normal_limit
+        # Every subject may occupy at most two periods in the same class/day.
+        # This permits compact 2+2+1 distributions, but never a triple lesson.
+        per_day_limit = min(2, normal_limit)
         model.Add(count <= per_day_limit)
-        if normal_limit <= 1:
+        if per_day_limit <= 1:
             continue
 
         allowed_repeat_days = (
@@ -1217,7 +1220,10 @@ def _build_model(
     teacher_shift_day: dict[tuple[int, int, str, int], list[int]] = defaultdict(list)
     teacher_any_phase_day: dict[tuple[int, int], list[int]] = defaultdict(list)
     teacher_weekly_shifts: dict[int, set[int]] = defaultdict(set)
-    for index, row in enumerate(candidates):
+    comfort_enabled = bool(
+        quality_enabled or context.get("exact_enforce_teacher_window_limits")
+    )
+    for index, row in (enumerate(candidates) if comfort_enabled else ()):
         for teacher, phases in row["teacher_phases"].items():
             teacher_weekly_shifts[int(teacher)].add(int(row["shift"]))
             teacher_any_phase_day[(teacher, row["day"])].append(index)
@@ -1242,7 +1248,7 @@ def _build_model(
         for teacher, rank in (context.get("exact_dual_shift_fallback_rank") or {}).items()
     }
     synthetic_dual_edge_terms: list[Any] = []
-    for index, row in enumerate(candidates):
+    for index, row in (enumerate(candidates) if quality_enabled else ()):
         shift, period = int(row["shift"]), int(row["period"])
         for teacher in row["teachers"]:
             if len(teacher_weekly_shifts.get(int(teacher), set())) < 2:
@@ -1267,7 +1273,9 @@ def _build_model(
     hard_slots = context.get("hard") or ()
     method_days = set(context.get("method_hard") or ())
     restricted_teachers: set[int] = set()
-    for teacher, shifts in teacher_weekly_shifts.items():
+    for teacher, shifts in (
+        teacher_weekly_shifts.items() if quality_enabled else ()
+    ):
         total_slots = 0
         closed_slots = 0
         for day in range(1, weekdays + 1):
@@ -1298,7 +1306,9 @@ def _build_model(
     restricted_teacher_idle_terms: list[Any] = []
     restricted_teacher_cross_wait_terms: list[Any] = []
     teacher_used_days: dict[int, list[Any]] = defaultdict(list)
-    for (teacher, day), raw_indices in teacher_any_phase_day.items():
+    for (teacher, day), raw_indices in (
+        teacher_any_phase_day.items() if quality_enabled else ()
+    ):
         indices = sorted(set(raw_indices))
         if not indices:
             continue
@@ -1310,7 +1320,9 @@ def _build_model(
     # sinf+bir fan daily_max qoidasi yuqorida alohida hard; turli sinf yoki
     # turli fanlar esa bir kunda ixcham yig'ilishi mumkin.
     teacher_demands = context.get("v196_teacher_demand") or {}
-    for teacher, used_days in teacher_used_days.items():
+    for teacher, used_days in (
+        teacher_used_days.items() if quality_enabled else ()
+    ):
         demand = float(teacher_demands.get(int(teacher)) or 0)
         if demand <= 0 or not used_days:
             continue
@@ -3029,6 +3041,14 @@ def solve_exact_timetable(
                             "incumbent_hint_complete": False,
                         }
         state = state_builder(placements, context) if callable(state_builder) else {"placements": placements}
+        quality_refinement = diagnostics.get("quality_refinement") or {}
+        diagnostics["generation_pipeline"] = {
+            "mode": "feasibility_then_quality" if bool(context.get("exact_quality_after_feasible")) else "hard_feasibility_only",
+            "teacher_window_optimization": bool(quality_refinement),
+            "low_load_two_day_compaction": bool(quality_refinement),
+            "configured_red_band_untouched": True,
+            "maximum_search_seconds": numeric_max_seconds,
+        }
         diagnostics["message"] = "Barcha dars aynan bir marta joylashtirildi va hard-validator tasdiqladi."
         diagnostics["validator_passed"] = True
         return {
