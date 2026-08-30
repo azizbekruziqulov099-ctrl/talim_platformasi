@@ -1130,12 +1130,55 @@ def _build_model(
     # weakened, yet a needless 4–5 hour wait between shift 1 and shift 2 is
     # far more expensive than an ordinary short school break.
     teacher_real_day: dict[tuple[int, int, str], list[int]] = defaultdict(list)
+    teacher_any_phase_day: dict[tuple[int, int], list[int]] = defaultdict(list)
     for index, row in enumerate(candidates):
         for teacher, phases in row["teacher_phases"].items():
+            teacher_any_phase_day[(teacher, row["day"])].append(index)
             for phase in phases:
                 teacher_real_day[(teacher, row["day"], phase)].append(index)
     teacher_real_idle_terms: list[Any] = []
     teacher_used_day_terms: list[Any] = []
+    teacher_used_days: dict[int, list[Any]] = defaultdict(list)
+    for (teacher, day), raw_indices in teacher_any_phase_day.items():
+        indices = sorted(set(raw_indices))
+        if not indices:
+            continue
+        used_day = model.NewBoolVar(f"teacher_any_phase_day_{teacher}_{day}")
+        model.AddMaxEquality(used_day, [variables[index] for index in indices])
+        teacher_used_days[int(teacher)].append(used_day)
+
+    # O'qituvchining ish kunlari jami haftalik yuklamadan boshqariladi. Bir
+    # sinf+bir fan daily_max qoidasi yuqorida alohida hard; turli sinf yoki
+    # turli fanlar esa bir kunda ixcham yig'ilishi mumkin.
+    teacher_demands = context.get("v196_teacher_demand") or {}
+    for teacher, used_days in teacher_used_days.items():
+        demand = float(teacher_demands.get(int(teacher)) or 0)
+        if demand <= 0 or not used_days:
+            continue
+        if demand <= 1:
+            target_days, maximum_days = 1, 1
+        elif demand <= 6:
+            target_days, maximum_days = 2, 4
+        elif demand <= 10:
+            target_days, maximum_days = 3, 4
+        elif demand <= 15:
+            target_days, maximum_days = 3, 4
+        elif demand < 20:
+            target_days, maximum_days = 4, 5
+        else:
+            daily_limit = max(1, min(6, int(
+                (rules.get(int(teacher), defaults) or defaults).get("kunlik_max") or 6
+            )))
+            target_days = int(math.ceil(demand / max(1, min(4, daily_limit))))
+            maximum_days = max(target_days, min(6, len(used_days)))
+        target_days = min(int(target_days), len(used_days))
+        maximum_days = min(max(int(maximum_days), target_days), len(used_days))
+        model.Add(sum(used_days) >= target_days)
+        model.Add(sum(used_days) <= maximum_days)
+        if quality_enabled:
+            # Umumiy work-day minimizatsiyasi targetdan yuqori kunni faqat
+            # daily_max, qizil vaqt yoki kolliziya majbur qilganda ishlatadi.
+            teacher_used_day_terms.extend(used_days)
     ordinary_break_minutes = max(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
@@ -1152,8 +1195,6 @@ def _build_model(
         label = f"{teacher}_{day}_{phase}"
         used_day = model.NewBoolVar(f"teacher_day_used_{label}")
         model.AddMaxEquality(used_day, [variables[index] for index in indices])
-        teacher_used_day_terms.append(used_day)
-
         lesson_count = model.NewIntVar(0, len(indices), f"teacher_count_{label}")
         model.Add(lesson_count == sum(variables[index] for index in indices))
         first_start = model.NewIntVar(
