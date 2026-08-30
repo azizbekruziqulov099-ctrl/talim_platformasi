@@ -1416,6 +1416,18 @@ def _build_model(
         model.Add(both_used <= first_used)
         model.Add(both_used <= second_used)
         model.Add(both_used >= first_used + second_used - 1)
+        if enforce_teacher_window_limits:
+            # When both shifts are used on one real day, compact them around
+            # the shift boundary: first shift periods 3..6 and second shift
+            # periods 1..4.  This encodes the administrator's intended
+            # priority directly instead of hoping a weighted objective finds
+            # it before timeout.
+            for index in first_indices:
+                if int(candidates[index]["period"]) < 3:
+                    model.Add(variables[index] + second_used <= 1)
+            for index in second_indices:
+                if int(candidates[index]["period"]) > 4:
+                    model.Add(variables[index] + first_used <= 1)
         horizon = max(
             int(candidates[index]["interval"][1])
             for index in first_indices + second_indices
@@ -1522,6 +1534,59 @@ def _build_model(
             # Within one shift/day a teacher may have at most two empty lesson
             # periods between the first and last lesson.
             model.Add(sum(local_gap_terms) <= 2)
+
+    # The teacher screen merges TOQ/JUFT rows.  Phase-specific limits above
+    # are necessary for real collision safety, but alone they can still show
+    # 7--15 apparent windows after the two phases are rendered together.
+    # Build the same merged occupancy seen by the UI and cap the teacher's
+    # total visible internal windows to two across the whole week.
+    if enforce_teacher_window_limits:
+        merged_periods: dict[
+            tuple[int, int, int], dict[int, list[int]]
+        ] = defaultdict(dict)
+        for (teacher, day, shift, _phase, period), indices in teacher_periods.items():
+            bucket = merged_periods[(teacher, day, shift)].setdefault(period, [])
+            bucket.extend(indices)
+        merged_teacher_gaps: dict[int, list[Any]] = defaultdict(list)
+        for key, period_map in merged_periods.items():
+            if len(period_map) < 3:
+                continue
+            teacher, day, shift = key
+            max_period = max(period_map)
+            used: dict[int, Any] = {}
+            for period in range(1, max_period + 1):
+                value = model.NewBoolVar(
+                    f"tmerged_used_{teacher}_{day}_{shift}_{period}"
+                )
+                indices = sorted(set(period_map.get(period, [])))
+                if indices:
+                    for index in indices:
+                        model.Add(value >= variables[index])
+                    model.Add(value <= sum(variables[index] for index in indices))
+                else:
+                    model.Add(value == 0)
+                used[period] = value
+            for period in range(2, max_period):
+                before = model.NewBoolVar(
+                    f"tmerged_before_{teacher}_{day}_{shift}_{period}"
+                )
+                after = model.NewBoolVar(
+                    f"tmerged_after_{teacher}_{day}_{shift}_{period}"
+                )
+                model.AddMaxEquality(before, [used[item] for item in range(1, period)])
+                model.AddMaxEquality(
+                    after, [used[item] for item in range(period + 1, max_period + 1)]
+                )
+                gap = model.NewBoolVar(
+                    f"tmerged_gap_{teacher}_{day}_{shift}_{period}"
+                )
+                model.Add(gap <= before)
+                model.Add(gap <= after)
+                model.Add(gap + used[period] <= 1)
+                model.Add(gap >= before + after - used[period] - 1)
+                merged_teacher_gaps[int(teacher)].append(gap)
+        for gaps in merged_teacher_gaps.values():
+            model.Add(sum(gaps) <= 2)
 
     exception_variables: dict[tuple[int, int, int, int], Any] = {}
     teacher_exception_variables: dict[int, Any] = {}
