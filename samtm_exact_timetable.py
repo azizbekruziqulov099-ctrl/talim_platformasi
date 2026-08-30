@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-RESTRICTED-FIRST-STABLE-V22.15"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-2PLUS2PLUS1-CROSSSHIFT-V22.17"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1106,6 +1106,17 @@ def _build_model(
         # yoki metod kunini ochish o'rniga 2+2+1 kabi cheklangan zaxira ishlaydi.
         if normal_limit == 1 and required_sessions > legal_day_count:
             normal_limit = 2
+        compact_repeat = bool(
+            quality_enabled
+            and context.get("exact_compact_subject_repeats")
+            and normal_limit == 1
+            and required_sessions >= 5
+        )
+        if compact_repeat:
+            # Five weekly sessions may become 2+2+1 instead of forcing five
+            # separate teacher work days.  A single class/subject still never
+            # exceeds two lessons on one day.
+            normal_limit = 2
         practical = bool(subject_is_practical.get((class_id, subject)))
         count = sum(variables[index] for index in indices)
         # Takror faqat zarur sig'im holatida yoki administrator daily_max>=2
@@ -1118,6 +1129,10 @@ def _build_model(
         allowed_repeat_days = (
             practical_repeat_day_limit if practical else repeat_day_limit
         )
+        if compact_repeat and not practical:
+            allowed_repeat_days = max(
+                int(allowed_repeat_days), required_sessions // 2
+            )
         repeat = model.NewBoolVar(
             f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
         )
@@ -1218,6 +1233,7 @@ def _build_model(
     teacher_cross_shift_over120_terms: list[Any] = []
     teacher_cross_shift_over180_terms: list[Any] = []
     teacher_used_day_terms: list[Any] = []
+    teacher_day_range_violation_terms: list[Any] = []
     restricted_teacher_used_day_terms: list[Any] = []
     restricted_teacher_idle_terms: list[Any] = []
     restricted_teacher_cross_wait_terms: list[Any] = []
@@ -1252,9 +1268,28 @@ def _build_model(
             # Ideal quality passda esa foydalanuvchi belgilagan yuqori chegara
             # saqlanadi: 1--6 va 7--15 soatli ustoz ko'pi bilan 4 kun. Agar bu
             # ideal model sig'masa, oldingi to'liq incumbent baribir qoladi.
-            if enforce_balanced_class_days:
-                model.Add(sum(used_days) >= target_days)
-                model.Add(sum(used_days) <= maximum_days)
+            # Teacher day ranges are intentionally SOFT.  Making them hard in
+            # the same quality model caused one difficult teacher to reject
+            # the entire balanced solution and fall back to a 6/6/6/5/2/5
+            # class layout.  Strong under/over variables preserve the desired
+            # 2--3 or 3--4 day range without sacrificing class-day balance.
+            day_count = model.NewIntVar(
+                0, len(used_days), f"teacher_used_days_count_{teacher}"
+            )
+            model.Add(day_count == sum(used_days))
+            below_target = model.NewIntVar(
+                0, len(used_days), f"teacher_days_below_{teacher}"
+            )
+            model.AddMaxEquality(below_target, [target_days - day_count, 0])
+            above_maximum = model.NewIntVar(
+                0, len(used_days), f"teacher_days_above_{teacher}"
+            )
+            model.AddMaxEquality(
+                above_maximum, [day_count - maximum_days, 0]
+            )
+            teacher_day_range_violation_terms.extend(
+                [below_target, above_maximum]
+            )
             teacher_used_day_terms.extend(used_days)
             if int(teacher) in restricted_teachers:
                 restricted_teacher_used_day_terms.extend(used_days)
@@ -1512,8 +1547,8 @@ def _build_model(
     objective_terms.extend(term * 20_000 for term in teacher_real_idle_terms)
     objective_terms.extend(term * 5_000 for term in teacher_cross_shift_wait_terms)
     objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
-    objective_terms.extend(term * 50_000 for term in teacher_cross_shift_over120_terms)
-    objective_terms.extend(term * 100_000 for term in teacher_cross_shift_over180_terms)
+    objective_terms.extend(term * 5_000_000 for term in teacher_cross_shift_over120_terms)
+    objective_terms.extend(term * 10_000_000 for term in teacher_cross_shift_over180_terms)
     # A teacher may work a dense 7--8 lesson day when the timetable permits.
     # Fewer work days and adjacent lessons are preferences only: they can
     # never make the hard-safe timetable infeasible.
@@ -1522,6 +1557,9 @@ def _build_model(
     # Very long same-day/cross-shift waits still carry larger tiered penalties,
     # so the solver cannot buy a six-hour wait merely to remove one work day.
     objective_terms.extend(term * 20_000_000 for term in teacher_used_day_terms)
+    objective_terms.extend(
+        term * 200_000_000 for term in teacher_day_range_violation_terms
+    )
     # Scarce (>20% closed) teachers win resource ties before dual-shift edge
     # preferences and ordinary teachers.
     objective_terms.extend(
@@ -1954,10 +1992,20 @@ def validate_candidate_selection(
         daily_max = int(subject_limits.get((class_id, subject), 1))
         practical = bool(subject_practical.get((class_id, subject)))
         allowed_repeat_days = practical_repeat_limit if practical else repeat_limit
+        total_sessions = subject_session_totals[(class_id, subject, phase)]
+        if (
+            not practical
+            and context.get("exact_compact_subject_repeats")
+            and daily_max == 1
+            and total_sessions >= 5
+        ):
+            allowed_repeat_days = max(
+                int(allowed_repeat_days), int(total_sessions) // 2
+            )
         effective_repeat_limits[(class_id, subject)] = int(allowed_repeat_days)
         adaptive_repeat = bool(
             daily_max == 1
-            and subject_session_totals[(class_id, subject, phase)]
+            and total_sessions
             > len(subject_used_days[(class_id, subject, phase)])
         )
         allowed = 2 if adaptive_repeat else (min(2, daily_max) if practical else daily_max)
