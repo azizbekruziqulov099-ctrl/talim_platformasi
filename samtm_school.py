@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-# V21.8 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
+# V21.9 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
 # yashirincha qaytmaydi: bitta kanonik generator — exact CP-SAT. Shu orqali
 # deploydagi yetishmagan dependency darhol aniq ko'rinadi va eski/qisman
@@ -83,8 +83,8 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.6-FEASIBILITY-FIRST"
-SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.8"
+SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.7-STRICT-DAILY-SUBJECT"
+SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.9"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -3020,7 +3020,7 @@ _V205_SCHEDULE_RULES = [
     "KELAJAK SOATI tanlangan kun va dars raqamiga qat'iy joylashtiriladi; boshqa vaqtga surilmaydi.",
     "Sinf faqat o'z smenasida va shu smena uchun yaratilgan mavjud dars raqamlariga joylashtiriladi.",
     "Sinfning qizil/yopiq kuni va 1–4-sinf uchun Shanba taqiqi buzilmaydi.",
-    "Fan odatda bir kunda bir marta qo'yiladi; metod/qizil kunlar sabab umumiy kun yetmasa, to'liq jadval uchun bir kunda ko'pi bilan 2 marta va haftada ko'pi bilan 2 kunda nazoratli takror ishlaydi hamda ogohlantirish chiqaradi.",
+    "Har bir fan sinf-fan yuklamasidagi kunlik maksimumdan oshmaydi; kunlik max 1 bo'lsa shu fan bir kunda ikkinchi marta qo'yilmaydi.",
     "1–4-sinfda 6-dars qo'yilmaydi; boshlang'ich sinfning akademik va yengil fan limitlari saqlanadi.",
     "O'qituvchining eng erta–eng kech darsi, kunlik maksimumi va haftalik yuklama chegarasi tekshiriladi.",
     "Bir xona bir vaqtda ikki darsga berilmaydi; xona yozilmagan bo'lsa dars 'Xona yo'q' bilan yaratilishi mumkin.",
@@ -4896,12 +4896,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
             "teacher_caps": caps, "class_day_blocks": class_day_blocks,
             "teachers": teachers,
-            # Bir fan odatda kuniga bir marta. Barcha darsni sig'dirish zarur
-            # bo'lsa exact objective jarima bilan haftasiga ko'pi bilan 2 kun
-            # yonma-yon/takror darsga ruxsat beradi; qizil va metod vaqt esa
-            # bundan qat'i nazar yopiq qoladi.
-            "max_subject_repeat_days": 2,
-            "practical_repeat_day_limit": 1,
+            # Fan–sinf yuklamasidagi kunlik_max qat'iy. Feasibility-only
+            # qidiruvda jarima objective'i yo'q, shuning uchun oldingi
+            # nazoratli-repeat zaxirasi 108 ta keraksiz kunlik takror yaratishi
+            # mumkin edi. Endi oddiy fan ham, daily_max=1 amaliy fan ham bir
+            # kunda ikkinchi marta qo'yilmaydi.
+            "max_subject_repeat_days": 0,
+            "practical_repeat_day_limit": 0,
             "core_period6_day_limit": 2,
             "practical_min_period": 2,
             # Administrator oldindan tanlagan KELAJAK/SINF SOATI aniq
@@ -4997,10 +4998,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
         if exact_ready:
             exact_context = dict(context)
             exact_context["v207_policy_stage"] = "strict"
-            exact_context["v203_emergency_repeat_days"] = 2
+            exact_context["v203_emergency_repeat_days"] = 0
             exact_context["teachers"] = teachers
-            exact_context["max_subject_repeat_days"] = 2
-            exact_context["practical_repeat_day_limit"] = 1
+            exact_context["max_subject_repeat_days"] = 0
+            exact_context["practical_repeat_day_limit"] = 0
             exact_context["core_period6_day_limit"] = 2
             exact_context["allow_fixed_class_hour_method_exception"] = True
             exact_context["v208_mode_config"] = dict(
@@ -5018,6 +5019,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # mavjud hard-safe finalizator qulaylikni yaxshilaydi.
             exact_context["exact_feasibility_only"] = True
             exact_context["exact_stop_after_first_solution"] = True
+            # Birinchi hard-safe yechim topilgach qolgan exact byudjetning
+            # ko'pi bilan 2.5 soniyasida to'liq incumbent hint bilan global
+            # sifat bosqichi ishlaydi. U daily_max=2 takrorlarini, o'qituvchi
+            # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
+            # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
+            exact_context["exact_quality_after_feasible"] = True
+            exact_context["exact_quality_seconds"] = 2.5
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
@@ -5037,7 +5045,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # FEASIBLE topsa barcha job aynan bir marta joylashgan bo'lishi shart.
             exact_max_seconds = max(3.0, generation_budget - 4.0)
             print(
-                "[JADVAL-EXACT-V21.8] hard-feasibility qidiruvi boshlandi "
+                "[JADVAL-EXACT-V21.9] strict-daily hard-feasibility qidiruvi boshlandi "
                 f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
                 f"limit={exact_max_seconds:.1f}s red_metod=QAT_IY",
                 flush=True,
@@ -5054,7 +5062,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             except (ImportError, ModuleNotFoundError) as exact_import_error:
                 if "ortools" in str(exact_import_error).casefold():
                     print(
-                        "[JADVAL-EXACT-V21.8] OR-Tools topilmadi; "
+                        "[JADVAL-EXACT-V21.9] OR-Tools topilmadi; "
                         "jadval yaratish to'xtatildi: " + str(exact_import_error),
                         flush=True,
                     )
@@ -5130,9 +5138,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         )
                     else:
                         exact_solver_used = True
-                        exact_safe_state = _samtm_copy.deepcopy(exact_state)
                         exact_state["v207_policy_stage"] = "strict"
-                        exact_state["v203_emergency_repeat_days"] = 2
+                        exact_state["v203_emergency_repeat_days"] = 0
                         exact_state["v216_exact_solver"] = {
                             "status": exact_solver_status,
                             "complete": True,
@@ -5146,6 +5153,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
                             "fixed_class_hour_red_exception": False,
                             "automatic_relaxation": False,
                         }
+                        # Protected incumbent barcha policy metadata bilan
+                        # birga olinadi. Post-processing qaytarilsa validator
+                        # va SQL bir xil strict-repeat kontraktini ko'radi.
+                        exact_safe_state = _samtm_copy.deepcopy(exact_state)
                         exact_state["class_gap_count"] = (
                             _v196_class_gap_count(exact_state)
                         )
@@ -5179,7 +5190,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         ), exact_result_tuple)
                         completed_attempts = 1
                         print(
-                            "[JADVAL-EXACT-V21.8] to'liq hard-safe natija "
+                            "[JADVAL-EXACT-V21.9] to'liq hard-safe natija "
                             f"maktab_id={sorov.maktab_id} "
                             f"status={exact_solver_status} "
                             f"joylashdi={len(exact_state.get('placements') or [])}/"
@@ -5271,7 +5282,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         teachers,
                     )
                     print(
-                        "[JADVAL-EXACT-V21.8] exact natija saqlanmadi "
+                        "[JADVAL-EXACT-V21.9] exact natija saqlanmadi "
                         f"maktab_id={sorov.maktab_id} "
                         f"status={failure_detail['solver_status']} "
                         f"proof={failure_detail['proof_complete']} "
@@ -5289,7 +5300,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     )
         else:
             print(
-                "[JADVAL-EXACT-V21.8] OR-Tools mavjud emas; "
+                "[JADVAL-EXACT-V21.9] OR-Tools mavjud emas; "
                 "jadval yaratish to'xtatildi"
                 + (
                     f": {_V216_EXACT_IMPORT_ERROR}"
@@ -5487,6 +5498,15 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
             state = _v196_balance_class_days(
                 state, final_context, final_rng, max_moves=72
+            )
+        # ``kunlik_max=2`` ikkinchi darsni majbur qilmaydi. Masalan ayni
+        # ustozning Algebra+Algebra kuni va boshqa kundagi Geometriya darsi
+        # hard-safe almashtirilsa, avval shu variant tanlanadi. Faqat boshqa
+        # legal taqsimot qolmasa bir fan bir kunda ikki marta saqlanadi.
+        if not _v206_deadline_reached(final_context):
+            state = _v219_reduce_avoidable_subject_repeats(
+                state, final_context, final_rng,
+                max_swaps=16, max_trials=120,
             )
         if not _v206_deadline_reached(final_context):
             state = _v196_optimize_teacher_windows(
@@ -6127,23 +6147,9 @@ def v1852_approve(sorov: V1852Approve, token: str):
         gigiyena_xatolari = _v1874_schedule_hygiene_violations(
             cur, run["maktab_id"], run["id"]
         )
-        run_diagnostics = run.get("diagnostika") or {}
-        run_warnings = (
-            run_diagnostics.get("ogohlantirishlar", [])
-            if isinstance(run_diagnostics, dict) else []
-        )
-        emergency_repeat_used = any(
-            "bir kunda 2 marta" in str(message)
-            for message in run_warnings
-        )
         qattiq_gigiyena_xatolari = [
             row for row in gigiyena_xatolari
             if not _v212_hygiene_is_soft(row.get("sabab"))
-            and not (
-                emergency_repeat_used
-                and "bir fan ikki marta qo‘yilgan"
-                in str(row.get("sabab") or "")
-            )
         ]
         if qattiq_gigiyena_xatolari:
             details = "; ".join(
@@ -9650,22 +9656,28 @@ def _v1875_preflight_report(cur, maktab_id: int):
         )
         daily_max = 1 if 1 <= grade <= 4 else int(pair.get("kunlik_max") or 1)
         weekly_hours = float(pair.get("haftalik_soat") or 0)
-        regular_capacity = allowed_days * daily_max
-        # Yagona generator kunlik max=1 fan uchun faqat zaruratda haftada
-        # ko'pi bilan ikki kunda ikkinchi soatni ochadi. Preflight ham ayni
-        # kontraktni ishlatishi shart; aks holda solver sig'dira oladigan
-        # 6–7 soatlik fan manba tekshiruvida asossiz to'xtab qoladi.
-        controlled_capacity = regular_capacity + (min(2, allowed_days) if daily_max == 1 else 0)
-        if weekly_hours > controlled_capacity:
+        profile = _v1874_subject_profile(pair.get("fan_nomi"), grade)
+        explicit_practical_double = bool(
+            daily_max > 1
+            and (profile.get("physical") or profile.get("technology"))
+        )
+        # Exact model amaliy fan uchun ko'pi bilan BITTA yonma-yon juft kun
+        # beradi. Demak 5 kun × daily_max=2 = 10 emas, haqiqiy sig'im 5+1=6.
+        regular_capacity = (
+            allowed_days + (1 if allowed_days else 0)
+            if explicit_practical_double
+            else allowed_days * daily_max
+        )
+        # Preflight, exact model va yakuniy SQL validator bitta kontraktda:
+        # kunlik_max=1 bo'lsa bir fan bir kunda faqat bir marta. Sig'im bundan
+        # oshsa generatorga yuborib oxirida 108 ta xato chiqarish o'rniga shu
+        # yerning o'zida bitta aniq manba xatosi qaytariladi.
+        if weekly_hours > regular_capacity:
             errors.append(
                 f"{pair['sinf']} / {pair['fan_nomi']}: {weekly_hours:g} soatni "
-                f"{allowed_days} kunga kunlik max {daily_max} va ko'pi bilan "
-                "2 ta nazoratli takror kuni bilan joylab bo'lmaydi"
-            )
-        elif weekly_hours > regular_capacity:
-            warnings.append(
-                f"{pair['sinf']} / {pair['fan_nomi']}: to'liq joylash uchun "
-                "haftada 1–2 kunda nazoratli ikkinchi dars kerak bo'ladi"
+                f"{allowed_days} kunga kunlik max {daily_max} bilan "
+                "ushbu qoida bilan joylab bo'lmaydi; kunlik maksimumni yoki o'qish "
+                "kunlarini ongli ravishda tahrirlang"
             )
 
     cur.execute("SELECT * FROM aqlli_oqituvchi_qoidalari_v2 WHERE maktab_id=%s", (maktab_id,))
@@ -9829,15 +9841,6 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                 "ogohlantirishlar": [], "sinflar": [], "oqituvchilar": [], "fanlar": []}
 
     settings = run.get("sozlamalar") or {}
-    run_diagnostics = run.get("diagnostika") or {}
-    diagnostic_warnings = (
-        run_diagnostics.get("ogohlantirishlar", [])
-        if isinstance(run_diagnostics, dict) else []
-    )
-    emergency_repeat_used = any(
-        "bir kunda 2 marta" in str(message)
-        for message in diagnostic_warnings
-    )
     current_hash = _v1875_source_fingerprint(cur, maktab_id)
     stored_hash = settings.get("manba_hash") if isinstance(settings, dict) else None
     if stored_hash and stored_hash != current_hash:
@@ -10228,13 +10231,17 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                         "ikki smenadagi dars bilan real vaqtda ustma-ust"
                     )
 
-    daily_teacher_counts = _v1852_Counter()
+    daily_teacher_sessions = _v1852_defaultdict(set)
     daily_subject_sessions = _v1852_defaultdict(set)
     for slot in slots:
         teacher_id = slot.get("oqituvchi_user_id")
         if teacher_id is not None:
-            weight = 0.5 if str(slot.get("hafta_turi") or "har_hafta") in {"toq", "juft"} else 1.0
-            daily_teacher_counts[(int(teacher_id), int(slot["hafta_kuni"]))] += weight
+            daily_teacher_sessions[(
+                int(teacher_id), int(slot["hafta_kuni"])
+            )].add((
+                int(slot["smena"]), int(slot["dars_raqami"]),
+                str(slot.get("hafta_turi") or "har_hafta"),
+            ))
         subject_key = _v1875_subject_key(slot.get("fan_nomi"))
         if subject_key not in {
             _v1875_subject_key("SINF SOATI"),
@@ -10247,44 +10254,64 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                 int(slot["smena"]), int(slot["dars_raqami"]),
                 str(slot.get("hafta_turi") or "har_hafta"),
             ))
-    for (teacher_id, day), count in daily_teacher_counts.items():
+    for (teacher_id, day), sessions in daily_teacher_sessions.items():
         limit = int(teacher_rules.get(teacher_id, {"kunlik_max": 6})["kunlik_max"])
-        if count > limit:
-            errors.append(f"{teacher_rows.get(teacher_id, {}).get('full_name', teacher_id)}: {_V1852_HAFTA.get(day, day)} {count} dars, kunlik max {limit}")
+        for phase in ("toq", "juft"):
+            count = len({
+                (session[0], session[1]) for session in sessions
+                if session[2] == "har_hafta" or session[2] == phase
+            })
+            if count > limit:
+                errors.append(
+                    f"{teacher_rows.get(teacher_id, {}).get('full_name', teacher_id)}: "
+                    f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
+                    f"{count} dars, kunlik max {limit}"
+                )
     practical_repeat_days = _v1852_defaultdict(list)
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
-        count = sum(0.5 if session[2] in {"toq", "juft"} else 1.0 for session in sessions)
         load = loads.get((class_id, subject_key))
-        allowed_daily = int(load.get("kunlik_max") or 1) if load else 1
+        configured_daily = int(load.get("kunlik_max") or 1) if load else 1
+        cls_for_profile = classes.get(class_id, {})
+        grade = _v1874_grade(cls_for_profile)
+        effective_daily = 1 if 1 <= grade <= 4 else configured_daily
         subject_profile = {}
         if load:
-            cls_for_profile = classes.get(class_id, {})
             subject_profile = _v1874_subject_profile(
-                load.get("fan_nomi"), _v1874_grade(cls_for_profile)
+                load.get("fan_nomi"), grade
             )
-            if subject_profile.get("physical") or subject_profile.get("technology"):
-                allowed_daily = max(2, allowed_daily)
-                if count > 1:
-                    periods = sorted({int(session[1]) for session in sessions})
-                    practical_repeat_days[(class_id, subject_key)].append(int(day))
-                    if len(periods) != 2 or periods[1] - periods[0] != 1:
-                        cls = classes.get(class_id, {})
-                        errors.append(
-                            f"{cls.get('sinf','')}-{cls.get('harf','')} / "
-                            f"{load['fan_nomi']}: amaliy fan juftligi "
-                            f"{_V1852_HAFTA.get(day, day)} kuni yonma-yon emas"
-                        )
-        if load and count > allowed_daily:
-            cls = classes.get(class_id, {})
-            message = (
-                f"{cls.get('sinf','')}-{cls.get('harf','')} / {load['fan_nomi']}: "
-                f"{_V1852_HAFTA.get(day, day)} {count} marta, kunlik max {allowed_daily}"
-            )
-            if emergency_repeat_used and count <= 2:
-                warnings.append("Nazoratli istisno · " + message)
-            else:
-                errors.append(message)
-    for (class_id, subject_key), repeat_days in practical_repeat_days.items():
+        practical = bool(
+            subject_profile.get("physical") or subject_profile.get("technology")
+        )
+        explicit_practical_double = bool(practical and effective_daily > 1)
+        allowed_daily = min(2, effective_daily) if practical else effective_daily
+
+        # TOQ/JUFT — ikkita real hafta fazasi. ``har_hafta`` ikkalasida ham
+        # sanaladi; shu hisob exact solverning faza kontrakti bilan bir xil.
+        for phase in ("toq", "juft"):
+            phase_sessions = {
+                session for session in sessions
+                if session[2] == "har_hafta" or session[2] == phase
+            }
+            count = len(phase_sessions)
+            if explicit_practical_double and count > 1:
+                periods = sorted({int(session[1]) for session in phase_sessions})
+                practical_repeat_days[(class_id, subject_key, phase)].append(int(day))
+                if len(periods) != 2 or periods[1] - periods[0] != 1:
+                    cls = classes.get(class_id, {})
+                    errors.append(
+                        f"{cls.get('sinf','')}-{cls.get('harf','')} / "
+                        f"{load['fan_nomi']}: amaliy fan juftligi "
+                        f"{_V1852_HAFTA.get(day, day)} kuni {phase.upper()} "
+                        "haftada yonma-yon emas"
+                    )
+            if load and count > allowed_daily:
+                cls = classes.get(class_id, {})
+                errors.append(
+                    f"{cls.get('sinf','')}-{cls.get('harf','')} / {load['fan_nomi']}: "
+                    f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
+                    f"{count} marta, kunlik max {allowed_daily}"
+                )
+    for (class_id, subject_key, phase), repeat_days in practical_repeat_days.items():
         unique_days = sorted(set(int(day) for day in repeat_days))
         if len(unique_days) <= 1:
             continue
@@ -10293,7 +10320,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         errors.append(
             f"{cls.get('sinf','')}-{cls.get('harf','')} / "
             f"{load.get('fan_nomi') or subject_key}: amaliy fan juftligi "
-            f"haftada {len(unique_days)} kun; maksimum 1 kun"
+            f"{phase.upper()} haftada {len(unique_days)} kun; maksimum 1 kun"
         )
 
     hygiene = _v1874_schedule_hygiene_violations(cur, maktab_id, run_id)
@@ -10302,8 +10329,6 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         reason = str(item.get("sabab") or "")
         if _v212_hygiene_is_soft(reason):
             warnings.append("Pedagogik zaxira · " + message)
-        elif emergency_repeat_used and "bir fan ikki marta qo‘yilgan" in reason:
-            warnings.append("Nazoratli istisno · " + message)
         else:
             errors.append(message)
     for item in _v1856_schedule_block_violations(cur, maktab_id, run_id):
@@ -11720,7 +11745,7 @@ def v197_fractional_hour_capabilities():
         "generator_turi": "yagona-exact-cp-sat",
         "generator_nomi": "Yagona kuchli generator",
         "exact_engine_ready": bool(_V216_ORTOOLS_AVAILABLE),
-        "diagnostics_contract": "exact-failure-v21.8",
+        "diagnostics_contract": "exact-failure-v21.9",
         "solver_pipeline": "hard-feasibility-first",
         "exact_engine": "google-ortools-cp-sat",
         "required_dependency": "ortools>=9.15,<9.16",
@@ -15293,6 +15318,15 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
     )
     rotation_count = 0
     for job in jobs:
+        grade = _v1874_grade(classes.get(int(job.get("sinf_id") or 0), {}))
+        # Boshlang'ich sinf kontrakti preflight, exact solver va yakuniy
+        # gigiyena tekshiruvida bir xil: manbada daily_max=2 qolgan bo'lsa
+        # ham bir fan bir kunda takrorlanmaydi. A/B paketining ichki a'zolari
+        # ham o'z limitini olib yuradi, shuning uchun ularni ham tuzatamiz.
+        if 1 <= grade <= 4:
+            job["daily_max"] = 1
+            for member in job.get("rotation_members") or []:
+                member["daily_max"] = 1
         if job.get("rotation_members"):
             rotation_count += 1
             job["v1874_profile"] = _v196_rotation_profile(
@@ -16522,6 +16556,244 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
         current_signature, state = best
         swaps += 1
     state["v196_teacher_window_swaps"] = int(swaps)
+    return state
+
+
+def _v219_subject_repeat_signature(state, context=None):
+    """Kunlik ruxsat 2 bo'lsa ham ishlatilgan ikkinchi fanlarni sanaydi.
+
+    Kichik qiymat yaxshi. ``daily_max=2`` majburiyat emas, faqat yechimni
+    saqlab qoluvchi zaxira; shu sabab qulaylik bosqichi imkon topganda bunday
+    takrorni boshqa kundagi fan bilan xavfsiz almashtiradi.
+    """
+    context = context or {}
+    practical_pairs = set()
+    periods_by_key = _v1852_defaultdict(set)
+    for placement in state.get("placements", []) or []:
+        job = placement.get("job") or {}
+        pair = (
+            int(job.get("sinf_id") or 0),
+            str(job.get("fan") or "").casefold(),
+        )
+        profile = _v196_rotation_profile(job, context)
+        if profile.get("physical") or profile.get("technology"):
+            practical_pairs.add(pair)
+        periods_by_key[(
+            pair[0], pair[1], int(placement.get("day") or 0)
+        )].add(int(placement.get("period") or 0))
+    excess = []
+    adjacent = 0
+    for key, raw_count in (state.get("subject_daily", {}) or {}).items():
+        try:
+            count = int(raw_count or 0)
+        except (TypeError, ValueError):
+            count = 0
+        if count > 1 and tuple(key[:2]) not in practical_pairs:
+            excess.append((tuple(key), count - 1))
+            ordered = sorted(periods_by_key.get(tuple(key), set()))
+            adjacent += sum(
+                1 for left, right in zip(ordered, ordered[1:])
+                if int(right) - int(left) == 1
+            )
+    return (
+        sum(value for _key, value in excess),
+        int(adjacent),
+        len(excess),
+        tuple(sorted((str(key), value) for key, value in excess)),
+    )
+
+
+def _v219_swap_across_class_days(state, first, second, context, rng):
+    """Bir sinfning ikki kunidagi darslarini hard-safe tarzda almashtiradi."""
+    first_job = first.get("job") or {}
+    second_job = second.get("job") or {}
+    if (
+        int(first_job.get("sinf_id") or 0)
+        != int(second_job.get("sinf_id") or 0)
+        or int(first.get("day") or 0) == int(second.get("day") or 0)
+    ):
+        return None
+    removed = {id(first), id(second)}
+    base = [
+        placement for placement in state.get("placements", [])
+        if id(placement) not in removed
+    ]
+    targets = {
+        id(first): (int(second.get("day") or 0), int(second.get("period") or 0)),
+        id(second): (int(first.get("day") or 0), int(first.get("period") or 0)),
+    }
+    for leading, trailing in ((first, second), (second, first)):
+        trial = _v1852_rebuild_schedule_state(base, context)
+        lead_day, lead_period = targets[id(leading)]
+        trail_day, trail_period = targets[id(trailing)]
+        if not _v196_place_exact(
+            leading["job"], lead_day, lead_period, trial, context, rng,
+            expected_teachers=leading.get("teachers"),
+        ):
+            continue
+        if not _v196_place_exact(
+            trailing["job"], trail_day, trail_period, trial, context, rng,
+            expected_teachers=trailing.get("teachers"),
+        ):
+            continue
+        if _v196_class_gap_count(trial) <= _v196_class_gap_count(state):
+            return trial
+    return None
+
+
+def _v219_reduce_avoidable_subject_repeats(
+    state, context, rng, max_swaps=16, max_trials=120
+):
+    """Algebra+Algebra kabi takrorni boshqa kun faniga xavfsiz almashtiradi.
+
+    Avval ayni o'qituvchining shu sinfdagi boshqa fani (masalan Geometriya),
+    keyin boshqa legal fan sinab ko'riladi. Har sinov butun state'ni qayta
+    quradi; qizil/BAND, metod kuni, sinf/o'qituvchi/xona kolliziyasi, kunlik
+    limit va real smena vaqti yana tekshiriladi. O'qituvchi qulayligi yoki
+    sinf oknosi yomonlashadigan swap qabul qilinmaydi.
+    """
+    before = _v219_subject_repeat_signature(state, context)
+    state["v219_subject_repeat_before"] = int(before[0])
+    swaps = 0
+    trials = 0
+    while swaps < int(max_swaps) and trials < int(max_trials):
+        if _v206_deadline_reached(context):
+            break
+        current_repeat = _v219_subject_repeat_signature(state, context)
+        if current_repeat[0] <= 0:
+            break
+        current_comfort = _v196_teacher_comfort_signature(state, context)
+        placements = list(state.get("placements", []))
+        repeated = {
+            (int(key[0]), str(key[1]), int(key[2]))
+            for key, count in (state.get("subject_daily", {}) or {}).items()
+            if int(count or 0) > 1
+        }
+        targets = [
+            placement for placement in placements
+            if _v196_movable_placement(placement)
+            and not (
+                _v196_rotation_profile(
+                    placement.get("job") or {}, context
+                ).get("physical")
+                or _v196_rotation_profile(
+                    placement.get("job") or {}, context
+                ).get("technology")
+            )
+            and (
+                int((placement.get("job") or {}).get("sinf_id") or 0),
+                str((placement.get("job") or {}).get("fan") or "").casefold(),
+                int(placement.get("day") or 0),
+            ) in repeated
+        ]
+        best = None
+        for first in sorted(
+            targets,
+            key=lambda row: (
+                int((row.get("job") or {}).get("sinf_id") or 0),
+                int(row.get("day") or 0), int(row.get("period") or 0),
+            ),
+        ):
+            if _v206_deadline_reached(context) or trials >= int(max_trials):
+                break
+            first_job = first.get("job") or {}
+            class_id = int(first_job.get("sinf_id") or 0)
+            subject = str(first_job.get("fan") or "").casefold()
+            first_teachers = {
+                int(value) for value in first.get("teachers") or []
+                if value is not None
+            }
+            alternatives = [
+                other for other in placements
+                if _v196_movable_placement(other)
+                and int((other.get("job") or {}).get("sinf_id") or 0) == class_id
+                and int(other.get("day") or 0) != int(first.get("day") or 0)
+                and str((other.get("job") or {}).get("fan") or "").casefold()
+                != subject
+                and int((state.get("subject_daily", {}) or {}).get((
+                    class_id, subject, int(other.get("day") or 0)
+                ), 0) or 0) == 0
+            ]
+            alternatives.sort(key=lambda other: (
+                0 if first_teachers.intersection({
+                    int(value) for value in other.get("teachers") or []
+                    if value is not None
+                }) else 1,
+                int(other.get("day") or 0), int(other.get("period") or 0),
+                str((other.get("job") or {}).get("fan") or "").casefold(),
+            ))
+            for second in alternatives:
+                if _v206_deadline_reached(context) or trials >= int(max_trials):
+                    break
+                trials += 1
+                trial = _v219_swap_across_class_days(
+                    state, first, second, context, rng
+                )
+                if trial is None:
+                    continue
+                repeat_signature = _v219_subject_repeat_signature(trial, context)
+                if repeat_signature >= current_repeat:
+                    continue
+                comfort = _v196_teacher_comfort_signature(trial, context)
+                if comfort > current_comfort:
+                    continue
+                shared_teacher = bool(first_teachers.intersection({
+                    int(value) for value in second.get("teachers") or []
+                    if value is not None
+                }))
+                rank = (
+                    repeat_signature,
+                    0 if shared_teacher else 1,
+                    comfort,
+                )
+                if best is None or rank < best[0]:
+                    best = (rank, trial)
+            # Boshqa kunga tarqatish topilmasa, A-A-G ni A-G-A qilish ham
+            # foydali: fan o'sha kuni qoladi, ammo ikki bir xil dars orasiga
+            # boshqa fan kiradi. Bu ham to'liq hard-safe swap orqali o'tadi.
+            if best is None or best[0][0][0] >= current_repeat[0]:
+                same_day = [
+                    other for other in placements
+                    if _v196_movable_placement(other)
+                    and int((other.get("job") or {}).get("sinf_id") or 0)
+                    == class_id
+                    and int(other.get("day") or 0)
+                    == int(first.get("day") or 0)
+                    and str((other.get("job") or {}).get("fan") or "").casefold()
+                    != subject
+                ]
+                for second in same_day:
+                    if _v206_deadline_reached(context) or trials >= int(max_trials):
+                        break
+                    trials += 1
+                    trial = _v196_swap_same_class_day(
+                        state, first, second, context, rng
+                    )
+                    if trial is None:
+                        continue
+                    repeat_signature = _v219_subject_repeat_signature(
+                        trial, context
+                    )
+                    if repeat_signature >= current_repeat:
+                        continue
+                    comfort = _v196_teacher_comfort_signature(trial, context)
+                    if comfort > current_comfort:
+                        continue
+                    rank = (repeat_signature, 0, comfort)
+                    if best is None or rank < best[0]:
+                        best = (rank, trial)
+            if best is not None and best[0][0][0] == 0:
+                break
+        if best is None:
+            break
+        state = best[1]
+        swaps += 1
+    after = _v219_subject_repeat_signature(state, context)
+    state["v219_subject_repeat_before"] = int(before[0])
+    state["v219_subject_repeat_after"] = int(after[0])
+    state["v219_subject_adjacent_after"] = int(after[1])
+    state["v219_subject_repeat_swaps"] = int(swaps)
+    state["v219_subject_repeat_trials"] = int(trials)
     return state
 
 
@@ -18765,11 +19037,13 @@ def _v1852_candidate_reasons(
             if reason != "o'qituvchining metod kuni"
         ]
 
-    # Jismoniy tarbiya yoki texnologiya haftasiga 2+ soat bo'lsa, faqat bir
-    # marta yonma-yon juft dars bo'lishi mumkin. Avvalgi kod daily_max sababini
+    # Jismoniy tarbiya yoki texnologiyada administrator daily_max>=2 ni aniq
+    # belgilagan bo'lsa, faqat bir marta yonma-yon juft dars mumkin. Avvalgi kod
     # current_count < 2 bo'lsa shunchaki olib tashlar, natijada bir haftada bir
     # nechta va hatto yonma-yon bo'lmagan takror paydo bo'lishi mumkin edi.
-    if profile.get("physical") or profile.get("technology"):
+    if (
+        profile.get("physical") or profile.get("technology")
+    ) and int(job.get("daily_max") or 1) > 1:
         subject_key = str(job.get("fan") or "").casefold()
         class_id = job.get("sinf_id")
         subject_daily = state.get("subject_daily", {})
