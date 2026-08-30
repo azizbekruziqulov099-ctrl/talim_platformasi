@@ -18,6 +18,34 @@ except ImportError:  # Railway working directory may be backend/
 
 import time as _samtm_time
 
+# V21.6 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
+# jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
+# yashirincha qaytmaydi: bitta kanonik generator — exact CP-SAT. Shu orqali
+# deploydagi yetishmagan dependency darhol aniq ko'rinadi va eski/qisman
+# natija yangi generatorniki deb saqlanib qolmaydi.
+try:
+    from .samtm_exact_timetable import (
+        ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
+        analyze_method_day_relaxations as _v216_analyze_method_days,
+        solve_exact_timetable as _v216_solve_exact,
+    )
+except ImportError:  # Railway working directory may be backend/
+    try:
+        from samtm_exact_timetable import (
+            ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
+            analyze_method_day_relaxations as _v216_analyze_method_days,
+            solve_exact_timetable as _v216_solve_exact,
+        )
+    except ImportError as _v216_exact_import_error:
+        _V216_ORTOOLS_AVAILABLE = False
+        _v216_analyze_method_days = None
+        _v216_solve_exact = None
+        _V216_EXACT_IMPORT_ERROR = str(_v216_exact_import_error)
+    else:
+        _V216_EXACT_IMPORT_ERROR = None
+else:
+    _V216_EXACT_IMPORT_ERROR = None
+
 try:
     from .samtm_timetable_engine import (
         ENGINE_RELEASE as SAMTM_TIMETABLE_ENGINE_RELEASE,
@@ -52,6 +80,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.4-EXACT-RESIDUAL-COMPLETION"
+SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.6"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -4342,6 +4371,246 @@ def _v209_integrity_failure_detail(errors):
     }
 
 
+def _v216_exact_candidate_filter(
+    job, day, period, teachers, room_keys, context
+):
+    """Exact model domenini faol Python hard-qoidalari bilan ham tekshiradi.
+
+    CP-SAT o'zining global sinf/o'qituvchi/xona cheklovlarini quradi. Bu filter
+    esa fayl oxirida faol bo'ladigan wrapperlarni ham chaqirib, yangi statik
+    qoida keyin qo'shilsa exact domen chetlab o'tmasligini ta'minlaydi. Holat
+    ataylab bo'sh: global kolliziyalar modelning o'zida birgalikda yechiladi.
+    """
+    strict_context = context
+    if str((context or {}).get("v207_policy_stage") or "strict") != "strict":
+        strict_context = dict(context or {})
+        strict_context["v207_policy_stage"] = "strict"
+    empty_state = _v1852_new_schedule_state()
+    return list(_v1852_candidate_reasons(
+        job,
+        int(day),
+        int(period),
+        list(teachers or []),
+        list(room_keys or []),
+        empty_state,
+        strict_context,
+    ))
+
+
+def _v216_exact_job_key(job):
+    """Exact natijada bir job yo'qolmagan/takrorlanmaganini tekshirish kaliti."""
+    job = job or {}
+    if job.get("job_id") is not None:
+        return ("job_id", str(job.get("job_id")))
+    return (
+        "legacy",
+        str(job.get("load_id") or ""),
+        str(job.get("sinf_id") or ""),
+        str(job.get("fan") or ""),
+        str(job.get("occurrence") or ""),
+        str(job.get("hafta_turi") or "har_hafta"),
+    )
+
+
+def _v216_exact_complete_state(result, jobs, context):
+    """Faqat barcha job aynan bir marta qaytgan exact natijani state qiladi."""
+    placements = list((result or {}).get("placements") or [])
+    expected = _v1852_Counter(_v216_exact_job_key(job) for job in jobs)
+    actual = _v1852_Counter(
+        _v216_exact_job_key((placement or {}).get("job") or {})
+        for placement in placements
+    )
+    if len(placements) != len(jobs) or actual != expected:
+        raise ValueError(
+            "Exact solver to'liq deb qaytardi, ammo joblar soni yoki "
+            "identifikatorlari manba bilan teng emas"
+        )
+    for placement in placements:
+        if not isinstance(placement, dict):
+            raise ValueError("Exact placement obyekt bo'lishi kerak")
+        if not int(placement.get("day") or 0) or not int(
+            placement.get("period") or 0
+        ):
+            raise ValueError("Exact placement kuni yoki dars raqami yo'q")
+        placement["teachers"] = list(placement.get("teachers") or [])
+        placement["room_keys"] = list(placement.get("room_keys") or [])
+    # Modul state qaytarsa ham kanonik indekslarni shu faylning faol builderi
+    # bilan qayta quramiz. Keyingi qulaylik va SQL validator bir xil formatni
+    # ko'radi; solver qaytargan begona/yetishmagan indeksga ishonilmaydi.
+    return _v1852_rebuild_schedule_state(placements, context)
+
+
+def _v216_method_day_recommendations(raw_rows, context, teachers):
+    """Strict muvaffaqiyatsiz bo'lsa ko'pi bilan 2 ta qo'lda istisno tavsiyasi.
+
+    Tavsiya hech qachon contextni mutatsiya qilmaydi. Qizil/BAND bilan ham
+    yopilgan katak chiqarib tashlanadi: metod kuni istisnosi qizil vaqtni ochib
+    yubormaydi. Administrator keyin o'zi tanlamaguncha hech narsa qo'llanmaydi.
+    """
+    result = []
+    seen = set()
+    method_hard = set((context or {}).get("method_hard") or set())
+    hard = set((context or {}).get("hard") or set())
+    shifts = (context or {}).get("shifts") or {}
+    for raw in list(raw_rows or []):
+        if len(result) >= 2:
+            break
+        raw = dict(raw or {})
+        recommendation_kind = str(
+            raw.get("turi") or raw.get("kind") or "metod_kuni"
+        ).casefold()
+        if recommendation_kind not in {"metod_kuni", "method_day"}:
+            continue
+        # Exact analyzer complete relaxed solve bilan isbotlamagan satr UIga
+        # chiqmaydi. Maydon bo'lmagan eski adapter natijasi pastdagi method/hard
+        # va qizil tekshiruvlardan baribir o'tishi shart.
+        if raw.get("isbotlangan") is False or raw.get("proven") is False:
+            continue
+        try:
+            teacher_id = int(
+                raw.get("oqituvchi_id")
+                or raw.get("teacher_id")
+                or raw.get("user_id")
+                or 0
+            )
+            day = int(raw.get("kun") or raw.get("day") or 0)
+            period = int(
+                raw.get("dars")
+                or raw.get("dars_raqami")
+                or raw.get("period")
+                or 0
+            )
+        except (TypeError, ValueError):
+            continue
+        if not teacher_id or not day or not period:
+            continue
+        if (teacher_id, day) not in method_hard:
+            continue
+        requested_shift = raw.get("smena") or raw.get("shift")
+        try:
+            requested_shift = int(requested_shift) if requested_shift else None
+        except (TypeError, ValueError):
+            requested_shift = None
+        shift_candidates = (
+            [requested_shift] if requested_shift in shifts else sorted(shifts)
+        )
+        safe_shift = next((
+            int(shift)
+            for shift in shift_candidates
+            if not _v1852_blocked(
+                hard, teacher_id, day, int(shift), period
+            )
+        ), None)
+        if safe_shift is None:
+            # Metod qatorini yumshatish baribir qizil/BAND sabab yordam bermaydi.
+            continue
+        signature = (teacher_id, day, safe_shift, period)
+        if signature in seen:
+            continue
+        seen.add(signature)
+        slot = next((
+            item for item in (shifts.get(safe_shift) or {}).get("slotlar", [])
+            if int(item.get("dars_raqami") or 0) == period
+        ), None)
+        time_label = None
+        if slot:
+            start = str(slot.get("boshlanish") or "")[:5]
+            end = str(slot.get("tugash") or "")[:5]
+            if start or end:
+                time_label = f"{start}–{end}".strip("–")
+        teacher_name = str(
+            raw.get("oqituvchi")
+            or raw.get("teacher_name")
+            or (teachers.get(teacher_id) or {}).get("full_name")
+            or teacher_id
+        )
+        lessons = raw.get("joylashadigan_darslar")
+        if lessons is None:
+            lessons = raw.get("affected_lessons") or raw.get("jobs") or []
+        if not isinstance(lessons, list):
+            lessons = [lessons] if lessons else []
+        result.append({
+            "raqam": len(result) + 1,
+            "oqituvchi_id": teacher_id,
+            "oqituvchi": teacher_name,
+            "kun": day,
+            "kun_nomi": _V1852_HAFTA.get(day, str(day)),
+            "smena": safe_shift,
+            "dars": period,
+            "vaqt": time_label,
+            "sabab": str(
+                raw.get("sabab")
+                or raw.get("reason")
+                or "Shu metod kuni katagini ochish strict modelga qo'shimcha legal variant beradi."
+            ),
+            "joylashadigan_darslar": lessons,
+            "kamayadigan_oynalar": int(
+                raw.get("kamayadigan_oynalar")
+                or raw.get("reduced_gaps")
+                or raw.get("kamayish")
+                or 0
+            ),
+            "qizil_buzilmaydi": True,
+            "avtomatik_qollanmagan": True,
+            "amal": (
+                f"{_V1852_HAFTA.get(day, day)} kuni {teacher_name} uchun "
+                f"faqat {safe_shift}-smena {period}-darsni metod kuni "
+                "istisnosi sifatida qo'lda ruxsat bering; qizil/BAND "
+                "vaqtlarini o'zgartirmang."
+            ),
+        })
+    return result
+
+
+def _v216_exact_failure_detail(status, exact_result, recommendations):
+    """CP-SAT statusini foydalanuvchiga yolg'onsiz, kanonik ko'rinishda beradi."""
+    normalized = str(status or "UNKNOWN").upper()
+    proof_complete = normalized == "INFEASIBLE"
+    if normalized == "INFEASIBLE":
+        code = "QAT_IY_QOIDALARDA_YECHIM_YOQ"
+        message = (
+            "Exact solver qizil/BAND, metod kuni, smena, sinf, o'qituvchi "
+            "va xona qoidalarining barchasini saqlagan holda to'liq jadval "
+            "mavjud emasligini isbotladi. Hech qanday yarim draft saqlanmadi."
+        )
+        retry = False
+    elif normalized == "MODEL_INVALID":
+        code = "EXACT_MODEL_INVALID"
+        message = (
+            "Exact jadval modeli texnik tekshiruvdan o'tmadi. Legacy natija "
+            "bilan yashirilmadi va hech qanday draft saqlanmadi."
+        )
+        retry = False
+    else:
+        normalized = "UNKNOWN"
+        code = "HISOBLASH_VAQTI_TUGADI"
+        message = (
+            "Exact qidiruv vaqt chegarasida to'liq jadval topmadi, lekin "
+            "imkonsizlikni ham isbotlamadi. Qisman natija saqlanmadi."
+        )
+        retry = True
+    return {
+        "code": code,
+        "solver_status": normalized,
+        "proof_complete": proof_complete,
+        "message": message,
+        "qayta_urinish_mumkin": retry,
+        "joylashtirilgan_qisman_natija_saqlanmadi": True,
+        "metod_kuni_istisno_tavsiyalari": list(recommendations or [])[:2],
+        "metod_kuni_tavsiya_izohi": (
+            "Alohida relaxed exact tekshiruv qizil/BAND vaqtlarini saqlagan "
+            "holda quyidagi 1–2 metod katagi yordam berishini to'liq jadval "
+            "bilan tasdiqladi; istisno avtomatik qo'llanmadi."
+            if recommendations else
+            "Qizil/BAND vaqtlarini saqlab faqat 1–2 metod katagini ochish "
+            "bilan to'liq yechim hosil bo'lishi isbotlanmadi; shu sabab "
+            "taxminiy istisno tavsiya qilinmadi."
+        ),
+        "avtomatik_yumshatish": False,
+        "diagnostika": dict((exact_result or {}).get("diagnostics") or {}),
+    }
+
+
 class V1852Generate(BaseModel):
     maktab_id: int
     urinishlar_soni: int = 4
@@ -4434,6 +4703,19 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "rules": rules, "default_rules": {"kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1, "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12},
             "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
             "teacher_caps": caps, "class_day_blocks": class_day_blocks,
+            "teachers": teachers,
+            # Bir fan odatda kuniga bir marta. Barcha darsni sig'dirish zarur
+            # bo'lsa exact objective jarima bilan haftasiga ko'pi bilan 2 kun
+            # yonma-yon/takror darsga ruxsat beradi; qizil va metod vaqt esa
+            # bundan qat'i nazar yopiq qoladi.
+            "max_subject_repeat_days": 2,
+            "practical_repeat_day_limit": 1,
+            "core_period6_day_limit": 2,
+            "practical_min_period": 2,
+            # Bu umumiy yumshatish emas: administrator oldindan tanlagan
+            # KELAJAK SOATI fixed_day+fixed_period katagigagina eski kanonik
+            # istisno tatbiq etiladi. Oddiy darsda qizil/metod qat'iy yopiq.
+            "allow_fixed_class_hour_availability_exception": True,
             # Actionable hisobotga availability qatorining id/turi kerak.
             # Generatorning hot-path'i setlardan foydalanishda davom etadi.
             "availability_rows": [dict(row) for row in availability_rows],
@@ -4502,13 +4784,330 @@ def v1852_generate(sorov: V1852Generate, token: str):
             base_seed = int(sorov.maktab_id) * 1_000_003 + len(jobs)
         if sorov.qidiruv_nonce is not None:
             base_seed ^= int(sorov.qidiruv_nonce) & ((1 << 63) - 1)
+        exact_solver_used = False
+        exact_solver_status = None
+        exact_solver_diagnostics = {}
+        exact_solver_wall_time = 0.0
         print(
             "[JADVAL-ONE-V2.4] boshlandi "
             f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
             f"reja_urinish={requested_attempts} byudjet={generation_budget:.0f}s",
             flush=True,
         )
-        for index in range(requested_attempts):
+
+        # Exact solver yagona kanonik yo'l. OR-Tools yo'q bo'lsa aniq deploy
+        # xatosi qaytadi; UNKNOWN/INFEASIBLE/MODEL_INVALID natijasi boshqa
+        # algoritm bilan yashirilmaydi va qisman jadval saqlanmaydi.
+        exact_ready = bool(
+            _V216_ORTOOLS_AVAILABLE and callable(_v216_solve_exact)
+        )
+        if exact_ready:
+            exact_context = dict(context)
+            exact_context["v207_policy_stage"] = "strict"
+            exact_context["v203_emergency_repeat_days"] = 2
+            exact_context["teachers"] = teachers
+            exact_context["max_subject_repeat_days"] = 2
+            exact_context["practical_repeat_day_limit"] = 1
+            exact_context["core_period6_day_limit"] = 2
+            exact_context[
+                "allow_fixed_class_hour_availability_exception"
+            ] = True
+            exact_context["v208_mode_config"] = dict(
+                _timetable_mode_config()
+            )
+            # Strict natija INFEASIBLE/UNKNOWN bo'lsa solver o'zining alohida
+            # (qizil/BANDni ochmaydigan) metod-istisno modelini aynan bir marta
+            # chaqirib, tavsiyani result ichida qaytaradi.
+            exact_context["exact_analyze_method_relaxation"] = True
+            try:
+                exact_context["exact_num_workers"] = max(1, min(
+                    8,
+                    int(os.getenv("SAMTM_EXACT_NUM_WORKERS", "4")),
+                ))
+            except (TypeError, ValueError):
+                exact_context["exact_num_workers"] = 4
+            exact_context["exact_candidate_filter"] = (
+                _v216_exact_candidate_filter
+            )
+            # Hisobot, final validator va SQL yozishga rezerv qoladi. Solver
+            # FEASIBLE topsa barcha job aynan bir marta joylashgan bo'lishi shart.
+            exact_max_seconds = max(3.0, generation_budget - 6.0)
+            print(
+                "[JADVAL-EXACT-V21.6] strict qidiruv boshlandi "
+                f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
+                f"limit={exact_max_seconds:.1f}s red_metod=QAT_IY",
+                flush=True,
+            )
+            try:
+                exact_result = _v216_solve_exact(
+                    jobs,
+                    exact_context,
+                    candidate_builder=None,
+                    state_builder=_v1852_rebuild_schedule_state,
+                    seed=base_seed,
+                    max_seconds=exact_max_seconds,
+                )
+            except (ImportError, ModuleNotFoundError) as exact_import_error:
+                if "ortools" in str(exact_import_error).casefold():
+                    print(
+                        "[JADVAL-EXACT-V21.6] OR-Tools topilmadi; "
+                        "jadval yaratish to'xtatildi: " + str(exact_import_error),
+                        flush=True,
+                    )
+                    raise HTTPException(
+                        status_code=503,
+                        detail={
+                            "code": "EXACT_ENGINE_NOT_INSTALLED",
+                            "solver_status": "MODEL_INVALID",
+                            "proof_complete": False,
+                            "message": (
+                                "OR-Tools yuklanmadi. requirements.txt ichiga "
+                                "ortools>=9.15,<9.16 qatorini qo'shib backendni "
+                                "qayta deploy qiling."
+                            ),
+                            "joylashtirilgan_qisman_natija_saqlanmadi": True,
+                            "metod_kuni_istisno_tavsiyalari": [],
+                            "avtomatik_yumshatish": False,
+                        },
+                    )
+                else:
+                    exact_result = {
+                        "status": "MODEL_INVALID",
+                        "complete": False,
+                        "diagnostics": {
+                            "exception": str(exact_import_error),
+                            "stage": "exact_import",
+                        },
+                    }
+            except Exception as exact_error:
+                # Exact modelning texnik xatosi greedy natija bilan berkitilmaydi.
+                exact_result = {
+                    "status": "MODEL_INVALID",
+                    "complete": False,
+                    "diagnostics": {
+                        "exception": str(exact_error),
+                        "stage": "exact_solve",
+                    },
+                }
+
+            if exact_ready:
+                exact_result = dict(exact_result or {})
+                exact_solver_status = str(
+                    exact_result.get("status") or "UNKNOWN"
+                ).upper()
+                exact_solver_diagnostics = dict(
+                    exact_result.get("diagnostics") or {}
+                )
+                try:
+                    exact_solver_wall_time = round(float(
+                        exact_result.get("wall_time_seconds") or 0.0
+                    ), 3)
+                except (TypeError, ValueError):
+                    exact_solver_wall_time = 0.0
+                exact_complete = bool(exact_result.get("complete"))
+                if (
+                    exact_solver_status in {"FEASIBLE", "OPTIMAL"}
+                    and exact_complete
+                ):
+                    try:
+                        exact_state = _v216_exact_complete_state(
+                            exact_result, jobs, exact_context
+                        )
+                    except Exception as exact_contract_error:
+                        exact_solver_status = "MODEL_INVALID"
+                        exact_complete = False
+                        exact_result["status"] = "MODEL_INVALID"
+                        exact_result["complete"] = False
+                        exact_solver_diagnostics["contract_error"] = str(
+                            exact_contract_error
+                        )
+                        exact_result["diagnostics"] = dict(
+                            exact_solver_diagnostics
+                        )
+                    else:
+                        exact_solver_used = True
+                        exact_state["v207_policy_stage"] = "strict"
+                        exact_state["v203_emergency_repeat_days"] = 2
+                        exact_state["v216_exact_solver"] = {
+                            "status": exact_solver_status,
+                            "complete": True,
+                            "objective_value": exact_result.get(
+                                "objective_value"
+                            ),
+                            "best_bound": exact_result.get("best_bound"),
+                            "wall_time_seconds": exact_solver_wall_time,
+                            "strict_red_method": True,
+                            "fixed_class_hour_exception": True,
+                            "automatic_relaxation": False,
+                        }
+                        exact_state["class_gap_count"] = (
+                            _v196_class_gap_count(exact_state)
+                        )
+                        exact_metrics = _v196_attempt_metrics(
+                            exact_state, exact_context
+                        )
+                        exact_state["v196_metrics"] = exact_metrics
+                        try:
+                            exact_penalty = float(
+                                exact_result.get("objective_value") or 0.0
+                            )
+                        except (TypeError, ValueError):
+                            exact_penalty = 0.0
+                        exact_gap_count = int(
+                            exact_metrics.get("oqituvchi_ichki_okno", 0)
+                        )
+                        exact_late_heavy = int(
+                            exact_metrics.get("asosiy_fan_5_6", 0)
+                        )
+                        exact_result_tuple = (
+                            exact_state,
+                            [],
+                            exact_penalty,
+                            exact_gap_count,
+                            exact_late_heavy,
+                        )
+                        best = ((
+                            0,
+                            int(exact_state.get("class_gap_count") or 0),
+                            exact_penalty,
+                        ), exact_result_tuple)
+                        completed_attempts = 1
+                        print(
+                            "[JADVAL-EXACT-V21.6] to'liq natija "
+                            f"maktab_id={sorov.maktab_id} "
+                            f"status={exact_solver_status} "
+                            f"joylashdi={len(exact_state.get('placements') or [])}/"
+                            f"{len(jobs)} soniya={exact_solver_wall_time}",
+                            flush=True,
+                        )
+
+                if not exact_solver_used:
+                    # FEASIBLE/OPTIMAL deb, ammo complete=False qaytishi kontrakt
+                    # xatosi; UNKNOWN deb ko'rsatib yubormaymiz.
+                    if exact_solver_status in {"FEASIBLE", "OPTIMAL"}:
+                        exact_solver_status = "MODEL_INVALID"
+                        exact_result["status"] = "MODEL_INVALID"
+                        exact_solver_diagnostics["contract_error"] = (
+                            "FEASIBLE/OPTIMAL natija complete=True emas"
+                        )
+                        exact_result["diagnostics"] = dict(
+                            exact_solver_diagnostics
+                        )
+                    recommendation_rows = []
+                    recommendation_key_present = (
+                        "metod_kuni_istisno_tavsiyalari" in exact_result
+                        or "recommendations" in exact_result
+                    )
+                    raw_recommendations = (
+                        exact_result.get(
+                            "metod_kuni_istisno_tavsiyalari"
+                        )
+                        if "metod_kuni_istisno_tavsiyalari" in exact_result
+                        else exact_result.get("recommendations")
+                    )
+                    # Yangi solver tavsiyani strict solve ichida allaqachon
+                    # hisoblaydi. Faqat eski adapter kalitni umuman qaytarmasa
+                    # va vaqt qolsa alohida analyzer chaqiriladi; bo'sh ro'yxat
+                    # "relaxed to'liq yechim topilmadi" degan yakuniy natijadir.
+                    if (
+                        exact_solver_status in {"UNKNOWN", "INFEASIBLE"}
+                        and not recommendation_key_present
+                        and callable(_v216_analyze_method_days)
+                        and _samtm_time.monotonic()
+                        < generation_hard_deadline - 0.5
+                    ):
+                        try:
+                            recommendation_context = dict(exact_context)
+                            recommendation_deadline = min(
+                                generation_hard_deadline - 0.4,
+                                _samtm_time.monotonic() + 3.0,
+                            )
+                            recommendation_context["v206_deadline"] = (
+                                recommendation_deadline
+                            )
+                            recommendation_context[
+                                "v212_attempt_deadline"
+                            ] = recommendation_deadline
+                            recommendation_seconds = max(
+                                0.1,
+                                recommendation_deadline
+                                - _samtm_time.monotonic(),
+                            )
+                            raw_recommendations = _v216_analyze_method_days(
+                                jobs,
+                                recommendation_context,
+                                candidate_builder=None,
+                                seed=base_seed,
+                                max_seconds=recommendation_seconds,
+                                limit_teachers=2,
+                                limit_slots=2,
+                            )
+                        except Exception as recommendation_error:
+                            exact_solver_diagnostics[
+                                "recommendation_error"
+                            ] = str(recommendation_error)
+                            exact_result["diagnostics"] = dict(
+                                exact_solver_diagnostics
+                            )
+                    if exact_solver_status in {"UNKNOWN", "INFEASIBLE"}:
+                        recommendation_rows = (
+                            _v216_method_day_recommendations(
+                                raw_recommendations,
+                                exact_context,
+                                teachers,
+                            )
+                        )
+                    failure_detail = _v216_exact_failure_detail(
+                        exact_solver_status,
+                        exact_result,
+                        recommendation_rows,
+                    )
+                    print(
+                        "[JADVAL-EXACT-V21.6] strict natija saqlanmadi "
+                        f"maktab_id={sorov.maktab_id} "
+                        f"status={failure_detail['solver_status']} "
+                        f"proof={failure_detail['proof_complete']} "
+                        f"metod_tavsiya={len(recommendation_rows)}",
+                        flush=True,
+                    )
+                    raise HTTPException(
+                        status_code=(
+                            500
+                            if failure_detail["solver_status"]
+                            == "MODEL_INVALID"
+                            else 409
+                        ),
+                        detail=failure_detail,
+                    )
+        else:
+            print(
+                "[JADVAL-EXACT-V21.6] OR-Tools mavjud emas; "
+                "jadval yaratish to'xtatildi"
+                + (
+                    f": {_V216_EXACT_IMPORT_ERROR}"
+                    if _V216_EXACT_IMPORT_ERROR else ""
+                ),
+                flush=True,
+            )
+            raise HTTPException(
+                status_code=503,
+                detail={
+                    "code": "EXACT_ENGINE_NOT_INSTALLED",
+                    "solver_status": "MODEL_INVALID",
+                    "proof_complete": False,
+                    "message": (
+                        "Yagona exact jadval generatori uchun OR-Tools "
+                        "o'rnatilmagan. Backend requirements.txt fayliga "
+                        "ortools>=9.15,<9.16 qatorini qo'shib qayta deploy "
+                        "qiling. Eski generator avtomatik ishlatilmadi."
+                    ),
+                    "joylashtirilgan_qisman_natija_saqlanmadi": True,
+                    "metod_kuni_istisno_tavsiyalari": [],
+                    "avtomatik_yumshatish": False,
+                },
+            )
+
+        for index in range(0 if exact_solver_used else requested_attempts):
             if index > 0 and _samtm_time.monotonic() >= generation_search_deadline:
                 stopped_by_budget = True
                 break
@@ -4936,6 +5535,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
             ),
             "oqituvchi_okno_hisoboti": teacher_window_report,
             "generator_moduli": SAMTM_TIMETABLE_ENGINE_RELEASE,
+            "solver_engine": (
+                "OR_TOOLS_CP_SAT" if exact_solver_used else "LEGACY_FALLBACK"
+            ),
+            "exact_solver_status": exact_solver_status,
+            "exact_solver_wall_time_seconds": exact_solver_wall_time,
+            "exact_solver_diagnostika": exact_solver_diagnostics,
+            "qat_iy_qoidalar": {
+                "qizil_band": True,
+                "metod_kuni": True,
+                "fixed_kelajak_soati_istisnosi": True,
+                "avtomatik_yumshatish": False,
+            },
             "generator_rejimi": 1,
             "generator_nomi": "Yagona kuchli generator",
             "ichki_bosqich": str(state.get("v207_policy_stage") or "strict"),
@@ -5084,10 +5695,37 @@ def v1852_generate(sorov: V1852Generate, token: str):
         tasdiqlash_mumkin = bool(
             int(len(unplaced)) == 0 and jadval_mosligi.get("tayyor")
         )
+        if exact_solver_used and not tasdiqlash_mumkin:
+            # Exact yo'lning yagona muvaffaqiyat holati — barcha job joylashgan
+            # va SQL manbaga nisbatan yakuniy integritet ham 100% mos. Hatto
+            # xatolar ro'yxati bo'sh, ammo ``tayyor`` false bo'lgan noodatiy
+            # holatda ham INSERTlar shu tranzaksiya bilan to'liq rollback.
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "code": "EXACT_FINAL_VALIDATION_FAILED",
+                    "solver_status": "MODEL_INVALID",
+                    "proof_complete": False,
+                    "message": (
+                        "Exact jadval CP-SATda to'liq topildi, ammo yakuniy "
+                        "SQL integritet tekshiruvi uni 100% tasdiqlamadi. "
+                        "Draft to'liq rollback qilindi."
+                    ),
+                    "joylashtirilgan_qisman_natija_saqlanmadi": True,
+                    "metod_kuni_istisno_tavsiyalari": [],
+                    "avtomatik_yumshatish": False,
+                    "diagnostika": jadval_mosligi,
+                },
+            )
         diagnostics["jadval_mosligi"] = jadval_mosligi
         diagnostics["tasdiqlash_mumkin"] = tasdiqlash_mumkin
         diagnostics["solver_status"] = (
-            "FEASIBLE_VALIDATED" if tasdiqlash_mumkin else "INVALID"
+            (
+                f"{exact_solver_status}_VALIDATED"
+                if exact_solver_used and exact_solver_status
+                else "FEASIBLE_VALIDATED"
+            )
+            if tasdiqlash_mumkin else "INVALID"
         )
         diagnostic_teachers = {
             int(row["user_id"]): row
@@ -10800,11 +11438,15 @@ def v197_fractional_hour_capabilities():
         "release": "samtm-fractional-hours-ab-week-v19.7",
         "platform_release": SAMTM_SCHOOL_RELEASE,
         "jadval_release": SAMTM_JADVAL_RELEASE,
+        "exact_jadval_release": SAMTM_EXACT_JADVAL_RELEASE,
         "timetable_engine_release": SAMTM_TIMETABLE_ENGINE_RELEASE,
         "single_generator": True,
         "generator_soni": 1,
-        "generator_turi": "yagona-kuchli-v1",
+        "generator_turi": "yagona-exact-cp-sat",
         "generator_nomi": "Yagona kuchli generator",
+        "exact_engine_ready": bool(_V216_ORTOOLS_AVAILABLE),
+        "exact_engine": "google-ortools-cp-sat",
+        "required_dependency": "ortools>=9.15,<9.16",
         "generator": _timetable_mode_config(),
         "generator_rejimlari": _timetable_public_modes(),
         "fractional_hours": schema_ready,
