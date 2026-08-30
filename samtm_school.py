@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-SAME-DAY-CROSS-SHIFT-V22.10"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-BALANCED-COMPACT-EXACT-V22.11"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -4150,7 +4150,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
         final_policy_stage = "strict"
         final_mode_config = _timetable_mode_config()
 
-        # Yakuniy hard-safe kompaktlash alohida rezervdan foydalanadi.
+        # Exact quality model already optimizes the whole school globally.
+        # The former local post-processors could keep every hard rule valid
+        # yet still turn a balanced 4/4/4/5/5 class into 5/3/5/5/4 and reopen
+        # teacher windows.  Therefore an exact result is now immutable here:
+        # no legacy class/teacher swap is allowed to overwrite it.
         context["v206_deadline"] = (
             generation_started
             if bounded_method_fallback_used
@@ -4172,7 +4176,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # Yakuniy natijada sinf oknosi va 3/6 kabi notekis kun qolmasin.
         # Bir marta siqish ayrim murakkab o'qituvchi almashuvlarida yetmaydi;
         # siqish va kunlarni tenglashtirish navbat bilan bir necha marta ishlaydi.
-        for _ in range(2):
+        run_legacy_postprocess = False
+        for _ in range(2 if run_legacy_postprocess else 0):
             if _v206_deadline_reached(final_context):
                 break
             state = _v196_compact_class_gaps(
@@ -4185,16 +4190,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # ustozning Algebra+Algebra kuni va boshqa kundagi Geometriya darsi
         # hard-safe almashtirilsa, avval shu variant tanlanadi. Faqat boshqa
         # legal taqsimot qolmasa bir fan bir kunda ikki marta saqlanadi.
-        if not _v206_deadline_reached(final_context):
+        if run_legacy_postprocess and not _v206_deadline_reached(final_context):
             state = _v219_reduce_avoidable_subject_repeats(
                 state, final_context, final_rng,
                 max_swaps=16, max_trials=120,
             )
-        if not _v206_deadline_reached(final_context):
+        if run_legacy_postprocess and not _v206_deadline_reached(final_context):
             state = _v196_optimize_teacher_windows(
                 state, final_context, final_rng, max_swaps=24
             )
-        if not _v206_deadline_reached(final_context):
+        if run_legacy_postprocess and not _v206_deadline_reached(final_context):
             state = _v196_compact_class_gaps(
                 state, final_context, final_rng, max_moves=48
             )
@@ -4204,12 +4209,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "Jadval to'liq sig'ishi uchun rejim: "
                 + _timetable_stage_label(final_policy_stage)
             )
-        state = _v196_balance_class_days(
-            state, final_context, final_rng, max_moves=72
-        )
-        state = _v196_compact_class_gaps(
-            state, final_context, final_rng, max_moves=96
-        )
+        if run_legacy_postprocess:
+            state = _v196_balance_class_days(
+                state, final_context, final_rng, max_moves=72
+            )
+            state = _v196_compact_class_gaps(
+                state, final_context, final_rng, max_moves=96
+            )
         # Qulaylik optimizatorlari faqat exact yechimni yaxshilashi mumkin.
         # Ularning biror ko'chirishi qat'iy exact qoidaga tegsa, butun
         # post-processing bekor qilinadi va oldindan validatsiyadan o'tgan
