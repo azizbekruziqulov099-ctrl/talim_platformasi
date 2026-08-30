@@ -29,10 +29,11 @@ fields are ``interval``, ``class_phases``, ``teacher_phases``,
 are ``har_hafta``, ``toq`` or ``juft``.
 
 The strict model never weakens BAND/red time or method days for ordinary
-lessons.  The only explicit compatibility exception is an administrator-fixed
-class hour when the caller enables that exact-slot flag.  A separate diagnostic
-model may *recommend* at most two explicitly identified method-day slots after
-strict INFEASIBLE/UNKNOWN.  That relaxed schedule is never returned or saved.
+lessons.  The only unconditional compatibility exception is an administrator-
+fixed class hour when the caller enables that exact-slot flag.  After a proven
+strict failure, a caller may explicitly enable one bounded fallback: at most
+two identified method-day slots for primary classes on non-Saturday days.
+BAND/red time remains impossible and every applied exception is returned.
 """
 
 from __future__ import annotations
@@ -256,7 +257,10 @@ def _grade(job: Mapping[str, Any], context: Mapping[str, Any]) -> int:
 
 
 def _blocked(hard: Iterable[Any], teacher: int, day: int, shift: int, period: int) -> bool:
-    values = set(hard or ())
+    # Candidate validation calls this tens of thousands of times. Production
+    # already supplies a set/frozenset; copying it on every call caused a long
+    # silent pre-solver pause before the visible CP-SAT timer even started.
+    values = hard if isinstance(hard, (set, frozenset)) else set(hard or ())
     return any(key in values for key in (
         (teacher, day, 0, 0), (teacher, day, shift, 0),
         (teacher, day, 0, period), (teacher, day, shift, period),
@@ -477,6 +481,11 @@ class DefaultTimetableAdapter:
                                 invalid = True
                                 break
                             else:
+                                if bool(context.get("method_exception_primary_only")) and (
+                                    not 1 <= int(grade) <= 4 or int(day) == 6
+                                ):
+                                    invalid = True
+                                    break
                                 method_exceptions.add((teacher, int(day), shift, int(period)))
                     if invalid:
                         continue
@@ -623,13 +632,18 @@ def _normalize_candidate(
     subject_daily_limits = _subject_daily_limits(job)
     if isinstance(daily_limits_raw, Mapping):
         for subject, value in daily_limits_raw.items():
-            subject_daily_limits[_subject_key(subject)] = max(1, int(value or 1))
-    # A custom adapter cannot smuggle a looser primary-school limit into the
-    # model. Grades 1–4 always keep one occurrence of a subject per real day.
-    if 1 <= _grade(job, context) <= 4:
-        subject_daily_limits = {
-            subject: 1 for subject in subject_daily_limits
-        }
+            subject_key = _subject_key(subject)
+            requested_limit = max(1, int(value or 1))
+            # A custom adapter may narrow a source rule, but it cannot make
+            # ``daily_max`` looser.  The same contract applies to every grade:
+            # an administrator's explicit ``2`` is a legal fallback, not a
+            # request to repeat the subject and not something the solver may
+            # silently overwrite with ``1``.
+            source_limit = subject_daily_limits.get(subject_key)
+            subject_daily_limits[subject_key] = (
+                min(int(source_limit), requested_limit)
+                if source_limit is not None else requested_limit
+            )
     exceptions = frozenset(
         (int(item[0]), int(item[1]), int(item[2]), int(item[3]))
         for item in raw.get("method_exceptions") or ()
@@ -730,7 +744,12 @@ def candidate_hard_violations(
     if any(count > 1 for count in room_by_phase.values()):
         errors.append("parallel guruhlar bir xil xonaga biriktirilgan")
     hard = context.get("hard") or ()
-    method_hard = set(context.get("method_hard") or ())
+    raw_method_hard = context.get("method_hard") or ()
+    method_hard = (
+        raw_method_hard
+        if isinstance(raw_method_hard, (set, frozenset))
+        else set(raw_method_hard)
+    )
     rules = context.get("rules") or {}
     defaults = context.get("default_rules") or {
         "eng_erta_dars": 1, "eng_kech_dars": 12,
@@ -1016,8 +1035,6 @@ def _build_model(
                     subject, row["job"].get("daily_max") or 1
                 )
             ))
-            if 1 <= _grade(row["job"], context) <= 4:
-                normal_limit = 1
             subject_daily_limits[(row["class_id"], subject)] = min(
                 subject_daily_limits.get((row["class_id"], subject), normal_limit), normal_limit
             )
@@ -1041,31 +1058,23 @@ def _build_model(
         indices = sorted(set(indices))
         normal_limit = subject_daily_limits[(class_id, subject)]
         practical = bool(subject_is_practical.get((class_id, subject)))
-        allowed_repeat_days = practical_repeat_day_limit if practical else repeat_day_limit
-        # Strict school policy disables implicit practical doubles when
-        # daily_max=1.  If an administrator explicitly configured
-        # daily_max>=2, one adjacent practical double-day remains legal and
-        # matches the final SQL validator's contract.
-        if practical and normal_limit > 1:
-            allowed_repeat_days = max(1, allowed_repeat_days)
-        if allowed_repeat_days <= 0 or (normal_limit > 1 and not practical):
-            count = sum(variables[index] for index in indices)
-            model.Add(count <= normal_limit)
-            # An explicit daily_max=2 is permission, not a target. The first
-            # feasibility pass stays small, while any quality-enabled pass
-            # pays a large cost for an avoidable Algebra+Algebra day.
-            if quality_enabled and normal_limit > 1:
-                repeat = model.NewBoolVar(
-                    f"optional_repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
-                )
-                model.Add(count <= 1 + (normal_limit - 1) * repeat)
-                model.Add(count >= 2 * repeat)
-                repeat_terms.append(repeat)
-            continue
-        repeat = model.NewBoolVar(f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}")
         count = sum(variables[index] for index in indices)
-        # Controlled fallback is never a triple lesson.
-        model.Add(count <= 1 + repeat)
+        # ``daily_max`` is always hard.  A value of 1 can never be relaxed by
+        # an internal mode; an explicit value >=2 permits a repeat only on a
+        # bounded number of days.  This is the exact version of the user's
+        # Algebra/Geometry rule: spread first, use a double only if required.
+        per_day_limit = min(2, normal_limit) if practical else normal_limit
+        model.Add(count <= per_day_limit)
+        if normal_limit <= 1:
+            continue
+
+        allowed_repeat_days = (
+            practical_repeat_day_limit if practical else repeat_day_limit
+        )
+        repeat = model.NewBoolVar(
+            f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
+        )
+        model.Add(count <= 1 + (per_day_limit - 1) * repeat)
         model.Add(count >= 2 * repeat)
         repeat_bools[(class_id, subject, phase)].append(repeat)
         repeat_group_limits[(class_id, subject, phase)] = int(
@@ -1606,6 +1615,10 @@ def _extract_placements(bundle: _ModelBundle, solver: Any) -> tuple[list[dict[st
             "day": int(row["day"]), "period": int(row["period"]),
             "teachers": list(row["teachers"]),
             "room_keys": list(row["room_keys"]),
+            "method_exceptions": [
+                tuple(int(value) for value in token)
+                for token in sorted(row.get("method_exceptions") or ())
+            ],
         })
     return placements, chosen
 
@@ -1664,8 +1677,6 @@ def validate_candidate_selection(
                     subject, jobs[job_index].get("daily_max") or 1
                 )
             ))
-            if 1 <= _grade(jobs[job_index], context) <= 4:
-                row_daily_limit = 1
             subject_limits[(row["class_id"], subject)] = min(
                 subject_limits.get(
                     (row["class_id"], subject),
@@ -1722,19 +1733,11 @@ def validate_candidate_selection(
         daily_max = int(subject_limits.get((class_id, subject), 1))
         practical = bool(subject_practical.get((class_id, subject)))
         allowed_repeat_days = practical_repeat_limit if practical else repeat_limit
-        # Keep this contract identical to ``_build_model``: strict mode
-        # forbids an implicit practical double when daily_max=1, while an
-        # administrator's explicit daily_max>=2 still permits exactly one
-        # adjacent practical double-day.
-        if practical and daily_max > 1:
-            allowed_repeat_days = max(1, allowed_repeat_days)
         effective_repeat_limits[(class_id, subject)] = int(allowed_repeat_days)
-        allowed = max(daily_max, 2 if allowed_repeat_days else daily_max)
-        if practical:
-            allowed = min(2, allowed)
+        allowed = min(2, daily_max) if practical else daily_max
         if count > allowed:
             errors.append(f"Sinf {class_id} {subject}: {day}-kun {phase} takror limiti oshgan")
-        if count >= 2 and (daily_max == 1 or practical):
+        if count >= 2:
             repeat_days[(class_id, subject, phase)] += 1
         if practical and count == 2:
             periods = sorted(subject_periods[(class_id, subject, day, phase)])
@@ -1762,6 +1765,7 @@ def validate_timetable_placements(
     context: Mapping[str, Any],
     *,
     adapter: Any = None,
+    allow_method_exceptions: bool = False,
 ) -> list[str]:
     """Rebuild canonical candidates and validate a post-processed schedule.
 
@@ -1775,6 +1779,16 @@ def validate_timetable_placements(
     job_list = [dict(job) for job in jobs]
     placement_list = [dict(row) for row in placements]
     selected_adapter = _adapter_for(adapter=adapter)
+    approved_method_tokens = {
+        tuple(int(value) for value in token)
+        for row in placement_list
+        for token in row.get("method_exceptions") or ()
+        if len(tuple(token)) == 4
+    } if allow_method_exceptions else set()
+    ignored_method_days = {
+        (teacher, day)
+        for teacher, day, _shift, _period in approved_method_tokens
+    }
     by_identifier: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for index, row in enumerate(placement_list):
         placement_job = row.get("job") or {}
@@ -1795,7 +1809,12 @@ def validate_timetable_placements(
         ))
         expected_rooms = tuple(placement.get("room_keys") or ())
         matches: list[dict[str, Any]] = []
-        for raw in selected_adapter.build_candidates(job, context):
+        for raw in selected_adapter.build_candidates(
+            job,
+            context,
+            ignored_method=ignored_method_days,
+            mark_method_exceptions=allow_method_exceptions,
+        ):
             candidate = _normalize_candidate(raw, job, context)
             if (
                 int(candidate["day"]) != int(placement.get("day") or 0)
@@ -1818,7 +1837,12 @@ def validate_timetable_placements(
         selected.append(matches[0])
     if errors:
         return list(dict.fromkeys(errors))
-    return validate_candidate_selection(job_list, selected, context)
+    return validate_candidate_selection(
+        job_list,
+        selected,
+        context,
+        allow_method_exceptions=allow_method_exceptions,
+    )
 
 
 def _empty_result(status: str, diagnostics: Mapping[str, Any], wall: float = 0.0) -> dict[str, Any]:
@@ -1916,11 +1940,13 @@ def _analyze_method_day_relaxations_detailed(
     seed: int = 0, max_seconds: float = 2.0,
     limit_teachers: int = 2, limit_slots: int = 2,
 ) -> dict[str, Any]:
-    """Run a separate diagnostic CP model with at most two method exceptions.
+    """Run a bounded CP model with at most two method exceptions.
 
     BAND/red slots remain absent from candidate domains.  A recommendation is
-    returned only when this relaxed diagnostic model itself finds a *complete*
-    schedule.  The schedule is intentionally discarded.
+    returned only when this relaxed model itself finds a *complete* schedule.
+    Placements are kept inside the detailed private result so an explicitly
+    enabled production fallback can save the same independently validated
+    solution instead of solving a third model.
     """
 
     started = time.monotonic()
@@ -1948,7 +1974,13 @@ def _analyze_method_day_relaxations_detailed(
                 "Tanlangan candidate adapter metod-kuni diagnostikasini qo'llamaydi.",
             )
         job_list = [dict(job) for job in jobs]
-        bundle, empty = _build_model(job_list, context, selected_adapter, relax_method=True)
+        bundle, empty = _build_model(
+            job_list,
+            context,
+            selected_adapter,
+            relax_method=True,
+            feasibility_only=True,
+        )
         if bundle is None or empty:
             return finish(
                 "INFEASIBLE",
@@ -1969,7 +2001,7 @@ def _analyze_method_day_relaxations_detailed(
                 conflicts=int(solver.NumConflicts()),
                 branches=int(solver.NumBranches()),
             )
-        _, chosen = _extract_placements(bundle, solver)
+        placements, chosen = _extract_placements(bundle, solver)
         validation_errors = validate_candidate_selection(
             job_list, chosen, context, allow_method_exceptions=True
         )
@@ -1993,6 +2025,14 @@ def _analyze_method_day_relaxations_detailed(
                 "Relaxed model to'liq bo'ldi, ammo ishlatilgan metod istisnosi topilmadi."
             ),
             recommendations,
+            placements=placements,
+            method_exceptions=sorted({
+                tuple(int(value) for value in token)
+                for row in chosen
+                for token in row.get("method_exceptions") or ()
+            }),
+            conflicts=int(solver.NumConflicts()),
+            branches=int(solver.NumBranches()),
         )
     except Exception as error:
         # Advice is optional and must never turn a strict solve into a crash.
@@ -2088,6 +2128,113 @@ def solve_exact_timetable(
             }
         selected_adapter = _adapter_for(candidate_builder, adapter)
         feasibility_only = bool(context.get("exact_feasibility_only"))
+
+        def remaining_method_analysis_seconds() -> float:
+            """Keep strict + bounded fallback inside the one exact budget."""
+
+            try:
+                requested = max(
+                    0.0,
+                    float(context.get("exact_relaxation_seconds") or min(
+                        4.0, max(0.1, numeric_max_seconds * 0.2)
+                    )),
+                )
+            except (TypeError, ValueError):
+                requested = min(4.0, max(0.1, numeric_max_seconds * 0.2))
+            remaining = max(
+                0.05,
+                numeric_max_seconds - (time.monotonic() - started) - 0.10,
+            )
+            return min(requested, remaining)
+
+        def bounded_method_fallback_result(
+            method_analysis: Mapping[str, Any],
+            strict_status: str,
+            strict_diagnostics: Mapping[str, Any],
+        ) -> Optional[dict[str, Any]]:
+            """Return the proven max-two-slot method fallback when enabled."""
+
+            if not bool(context.get("exact_apply_bounded_method_fallback")):
+                return None
+            if str(strict_status).upper() != INFEASIBLE:
+                return None
+            if str(method_analysis.get("status") or "").upper() not in {
+                FEASIBLE,
+                OPTIMAL,
+            }:
+                return None
+            relaxed_placements = [
+                dict(row) for row in method_analysis.get("placements") or []
+            ]
+            used_exceptions = sorted({
+                tuple(int(value) for value in token)
+                for row in relaxed_placements
+                for token in row.get("method_exceptions") or ()
+            })
+            if len(relaxed_placements) != len(job_list) or not used_exceptions:
+                return None
+            if len(used_exceptions) > 2:
+                return None
+            relaxed_errors = validate_timetable_placements(
+                job_list,
+                relaxed_placements,
+                context,
+                adapter=selected_adapter,
+                allow_method_exceptions=True,
+            )
+            if relaxed_errors:
+                return None
+            recommendations = []
+            for raw_recommendation in method_analysis.get("recommendations") or []:
+                recommendation = dict(raw_recommendation)
+                recommendation["avtomatik_qollanmagan"] = False
+                recommendation["avtomatik_qollanildi"] = True
+                recommendations.append(recommendation)
+            relaxed_state = (
+                state_builder(relaxed_placements, context)
+                if callable(state_builder)
+                else {"placements": relaxed_placements}
+            )
+            diagnostics = dict(strict_diagnostics)
+            diagnostics.update({
+                "code": "EXACT_BOUNDED_METHOD_FALLBACK",
+                "message": (
+                    "Strict model yechimsiz edi; qizil/BAND vaqtini ochmasdan "
+                    "boshlang'ich sinf o'qituvchilarining ko'pi bilan ikki "
+                    "aniq metod-kuni katagi bilan barcha dars joylashtirildi."
+                ),
+                "strict_solver_status": INFEASIBLE,
+                "strict_proof_complete": True,
+                "method_exception_applied": True,
+                "applied_method_exceptions": [
+                    list(token) for token in used_exceptions
+                ],
+                "metod_kuni_istisno_tavsiyalari": recommendations,
+                "metod_kuni_tahlili": dict(method_analysis),
+                "validator_passed": True,
+                "proof_complete": True,
+            })
+            # The private analysis carries placements only for this handoff;
+            # do not duplicate the whole schedule inside public diagnostics.
+            diagnostics["metod_kuni_tahlili"].pop("placements", None)
+            return {
+                "status": FEASIBLE,
+                "complete": True,
+                "proof_complete": True,
+                "placements": relaxed_placements,
+                "state": relaxed_state,
+                "recommendations": recommendations,
+                "metod_kuni_istisno_tavsiyalari": recommendations,
+                "method_exception_applied": True,
+                "applied_method_exceptions": [
+                    list(token) for token in used_exceptions
+                ],
+                "diagnostics": diagnostics,
+                "objective_value": 0.0,
+                "best_bound": 0.0,
+                "wall_time_seconds": round(time.monotonic() - started, 6),
+            }
+
         bundle, empty = _build_model(
             job_list,
             context,
@@ -2100,14 +2247,23 @@ def solve_exact_timetable(
                 _analyze_method_day_relaxations_detailed(
                     job_list, context, candidate_builder,
                     adapter=adapter, seed=seed,
-                    max_seconds=float(context.get("exact_relaxation_seconds") or min(
-                        4.0, max(0.1, max_seconds * 0.2)
-                    )),
+                    max_seconds=remaining_method_analysis_seconds(),
                 )
                 if empty and bool(context.get("exact_analyze_method_relaxation", True))
                 else {"status": "NOT_RUN", "recommendations": []}
             )
             recommendations = list(method_analysis.get("recommendations") or [])
+            fallback = bounded_method_fallback_result(
+                method_analysis,
+                INFEASIBLE if empty else MODEL_INVALID,
+                {
+                    "code": "EMPTY_CANDIDATE_DOMAIN" if empty else "MODEL_BUILD_FAILED",
+                    "empty_domains": empty,
+                    "metod_kuni_tahlili": method_analysis,
+                },
+            )
+            if fallback is not None:
+                return fallback
             result = _empty_result(INFEASIBLE if empty else MODEL_INVALID, {
                 "code": "EMPTY_CANDIDATE_DOMAIN" if empty else "MODEL_BUILD_FAILED",
                 "empty_domains": empty,
@@ -2149,11 +2305,18 @@ def solve_exact_timetable(
             ) and bool(context.get("exact_analyze_method_relaxation", True)):
                 method_analysis = _analyze_method_day_relaxations_detailed(
                     job_list, context, candidate_builder, adapter=adapter, seed=seed,
-                    max_seconds=float(context.get("exact_relaxation_seconds") or min(4.0, max(0.1, numeric_max_seconds * 0.2))),
+                    max_seconds=remaining_method_analysis_seconds(),
                 )
                 recommendations = list(method_analysis.get("recommendations") or [])
             diagnostics["metod_kuni_istisno_tavsiyalari"] = recommendations
             diagnostics["metod_kuni_tahlili"] = method_analysis
+            fallback = bounded_method_fallback_result(
+                method_analysis,
+                status,
+                diagnostics,
+            )
+            if fallback is not None:
+                return fallback
             if status == INFEASIBLE:
                 hard_conflicts = _capacity_conflicts(bundle, context)
                 if not hard_conflicts:
