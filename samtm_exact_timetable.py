@@ -775,6 +775,40 @@ class _ModelBundle:
     objective_terms: list[Any]
     exception_variables: dict[tuple[int, int, int, int], Any]
     teacher_exception_variables: dict[int, Any]
+    has_objective: bool = True
+    symmetry_breakers: int = 0
+
+
+def _freeze_symmetry_value(value: Any) -> Any:
+    """Turn a normalized candidate value into a stable comparable value.
+
+    Feasibility models may order genuinely interchangeable weekly
+    occurrences.  We compare the complete normalized candidate (except its
+    job/index bookkeeping), so the ordering can never merge two lessons that
+    participate in different hard constraints.
+    """
+
+    if isinstance(value, Mapping):
+        return tuple(sorted(
+            (str(key), _freeze_symmetry_value(item))
+            for key, item in value.items()
+        ))
+    if isinstance(value, (set, frozenset)):
+        return tuple(sorted(
+            (_freeze_symmetry_value(item) for item in value), key=repr
+        ))
+    if isinstance(value, (list, tuple)):
+        return tuple(_freeze_symmetry_value(item) for item in value)
+    return value
+
+
+def _candidate_hard_signature(candidate: Mapping[str, Any]) -> Any:
+    """Return the full non-bookkeeping signature used for safe symmetry."""
+
+    return _freeze_symmetry_value({
+        key: value for key, value in candidate.items()
+        if key not in {"candidate_index", "job_index", "job", "score"}
+    })
 
 
 def _enumerate_candidates(
@@ -842,7 +876,7 @@ def _model_status_name(status: Any) -> str:
 
 def _build_model(
     jobs: list[Mapping[str, Any]], context: Mapping[str, Any], adapter: Any,
-    *, relax_method: bool = False,
+    *, relax_method: bool = False, feasibility_only: bool = False,
 ) -> tuple[Optional[_ModelBundle], list[dict[str, Any]]]:
     if cp_model is None:
         return None, []
@@ -858,6 +892,34 @@ def _build_model(
     ]
     for job_index in range(len(jobs)):
         model.AddExactlyOne([variables[index] for index in by_job[job_index]])
+
+    # Weekly occurrences of the same lesson often have exactly the same hard
+    # candidate universe.  Without an ordering, k occurrences introduce k!
+    # meaningless permutations (six occurrences already mean 720 equivalent
+    # branches).  The full candidate signature makes this breaker safe: only
+    # truly interchangeable hard domains are ordered.
+    symmetry_breakers = 0
+    if feasibility_only and not relax_method:
+        equivalent_domains: dict[Any, list[int]] = defaultdict(list)
+        for job_index in range(len(jobs)):
+            signature = tuple(
+                _candidate_hard_signature(candidates[index])
+                for index in by_job[job_index]
+            )
+            equivalent_domains[signature].append(job_index)
+        for job_indices in equivalent_domains.values():
+            if len(job_indices) < 2:
+                continue
+            for left_job, right_job in zip(job_indices, job_indices[1:]):
+                left = by_job[left_job]
+                right = by_job[right_job]
+                if len(left) != len(right):
+                    continue
+                model.Add(
+                    sum(rank * variables[index] for rank, index in enumerate(left))
+                    <= sum(rank * variables[index] for rank, index in enumerate(right))
+                )
+                symmetry_breakers += 1
 
     # Convert overlapping real clock intervals into disjoint atomic segments.
     endpoints_by_day: dict[int, set[int]] = defaultdict(set)
@@ -883,9 +945,14 @@ def _build_model(
             for phase in phases:
                 for segment in segments:
                     resource_buckets[("room", room, day, phase, segment)].add(index)
+    seen_resource_domains: set[frozenset[int]] = set()
     for indices in resource_buckets.values():
         if len(indices) > 1:
-            model.AddAtMostOne([variables[index] for index in sorted(indices)])
+            domain = frozenset(indices)
+            if domain in seen_resource_domains:
+                continue
+            seen_resource_domains.add(domain)
+            model.AddAtMostOne([variables[index] for index in sorted(domain)])
 
     weekdays = int(context.get("weekdays") or 6)
     # Class occupancy and prefix constraints: a used day is 1..N, never 2..N.
@@ -896,6 +963,7 @@ def _build_model(
             class_period_vars[(row["class_id"], row["day"], phase, row["period"])].append(index)
             class_day_vars[(row["class_id"], row["day"], phase)].append(index)
     class_ids = sorted({int(job.get("sinf_id") or 0) for job in jobs})
+    quality_enabled = bool(not feasibility_only and not relax_method)
     balance_terms: list[Any] = []
     for class_id in class_ids:
         for phase in _ACTUAL_PHASES:
@@ -920,10 +988,13 @@ def _build_model(
                         used_by_period[period] = used
                     for period in range(1, max(periods)):
                         model.Add(used_by_period[period] >= used_by_period[period + 1])
-                indices = sorted(set(class_day_vars.get((class_id, day, phase), [])))
-                count = model.NewIntVar(0, max(0, len(indices)), f"class_count_{class_id}_{day}_{phase}")
-                model.Add(count == sum(variables[index] for index in indices))
-                if phase_job_count:
+                if quality_enabled and phase_job_count:
+                    indices = sorted(set(class_day_vars.get((class_id, day, phase), [])))
+                    count = model.NewIntVar(
+                        0, min(phase_job_count, max(0, len(indices))),
+                        f"class_count_{class_id}_{day}_{phase}",
+                    )
+                    model.Add(count == sum(variables[index] for index in indices))
                     deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
                     model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
                     balance_terms.append(deviation)
@@ -1030,6 +1101,8 @@ def _build_model(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
     for (teacher, day, phase), raw_indices in teacher_real_day.items():
+        if not quality_enabled:
+            continue
         indices = sorted(set(raw_indices))
         if not indices:
             continue
@@ -1119,6 +1192,8 @@ def _build_model(
     for (teacher, day, shift, phase, period), indices in teacher_periods.items():
         grouped_teacher_periods[(teacher, day, shift, phase)][period] = sorted(set(indices))
     for key, period_map in grouped_teacher_periods.items():
+        if not quality_enabled:
+            continue
         if len(period_map) < 3:
             continue
         max_period = max(period_map)
@@ -1175,6 +1250,8 @@ def _build_model(
     objective_terms: list[Any] = []
     # Candidate-local pedagogical costs.  They cannot sacrifice feasibility.
     for index, row in enumerate(candidates):
+        if not quality_enabled:
+            break
         job = row["job"]
         profile = subject_profile(job, context)
         period = row["period"]
@@ -1212,22 +1289,23 @@ def _build_model(
     objective_terms.extend(term * 2_500 for term in practical_repeat_terms)
     objective_terms.extend(term * 2 for term in balance_terms)
     quality = sum(objective_terms) if objective_terms else 0
+    has_objective = False
     if relax_method:
-        # Two-level objective: one extra method slot dominates every possible
-        # quality term, so recommendations are minimal before they are pretty.
-        # A complete school has far below 1e9 total quality penalty (each job
-        # is selected once and every auxiliary term is tightly bounded).  This
-        # coefficient therefore gives a real lexicographic order: first use
-        # the fewest method slots, only then compare comfort.
-        dominance = 1_000_000_000
-        model.Minimize(sum(exception_variables.values()) * dominance + quality)
-    else:
+        # This is a diagnostic model, never a saved timetable.  Minimize only
+        # the number of explicit method-day exceptions; building the entire
+        # comfort objective here made a timeout look like a recommendation.
+        model.Minimize(sum(exception_variables.values()))
+        has_objective = True
+    elif quality_enabled:
         model.Minimize(quality)
+        has_objective = True
     return _ModelBundle(
         model=model, jobs=jobs, candidates=candidates, variables=variables,
         by_job=by_job, objective_terms=objective_terms,
         exception_variables=exception_variables,
         teacher_exception_variables=teacher_exception_variables,
+        has_objective=has_objective,
+        symmetry_breakers=symmetry_breakers,
     ), []
 
 
@@ -1472,6 +1550,9 @@ def _new_solver(seed: int, max_seconds: float, context: Mapping[str, Any]) -> An
     # opt into parallel portfolio search explicitly via exact_num_workers.
     solver.parameters.num_search_workers = max(1, min(32, int(context.get("exact_num_workers") or 1)))
     solver.parameters.log_search_progress = bool(context.get("exact_log_search"))
+    solver.parameters.stop_after_first_solution = bool(
+        context.get("exact_stop_after_first_solution")
+    )
     return solver
 
 
@@ -1630,6 +1711,71 @@ def validate_candidate_selection(
         if len(days) > core_limit:
             errors.append(f"Sinf/faza {key}: asosiy fan 6-dars kunlari {len(days)}>{core_limit}")
     return list(dict.fromkeys(errors))
+
+
+def validate_timetable_placements(
+    jobs: Iterable[Mapping[str, Any]],
+    placements: Iterable[Mapping[str, Any]],
+    context: Mapping[str, Any],
+    *,
+    adapter: Any = None,
+) -> list[str]:
+    """Rebuild canonical candidates and validate a post-processed schedule.
+
+    The school layer may improve class balance or teacher windows after CP-SAT
+    returns.  This boundary converts those placements back to the exact
+    candidate universe and reruns every hard rule.  A convenience optimizer
+    therefore cannot silently invalidate a red/BAND, method, collision or
+    capacity rule.
+    """
+
+    job_list = [dict(job) for job in jobs]
+    placement_list = [dict(row) for row in placements]
+    selected_adapter = _adapter_for(adapter=adapter)
+    by_identifier: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for index, row in enumerate(placement_list):
+        placement_job = row.get("job") or {}
+        by_identifier[canonical_job_id(placement_job, index)].append(row)
+    selected: list[dict[str, Any]] = []
+    errors: list[str] = []
+    for job_index, job in enumerate(job_list):
+        identifier = canonical_job_id(job, job_index)
+        rows = by_identifier.get(identifier) or []
+        if len(rows) != 1:
+            errors.append(
+                f"{identifier}: yakuniy jadvalda {len(rows)} ta placement bor"
+            )
+            continue
+        placement = rows[0]
+        expected_teachers = tuple(sorted(
+            int(value) for value in placement.get("teachers") or ()
+        ))
+        expected_rooms = tuple(placement.get("room_keys") or ())
+        matches: list[dict[str, Any]] = []
+        for raw in selected_adapter.build_candidates(job, context):
+            candidate = _normalize_candidate(raw, job, context)
+            if (
+                int(candidate["day"]) != int(placement.get("day") or 0)
+                or int(candidate["period"]) != int(placement.get("period") or 0)
+                or tuple(sorted(int(value) for value in candidate["teachers"]))
+                != expected_teachers
+            ):
+                continue
+            if expected_rooms and tuple(candidate.get("room_keys") or ()) != expected_rooms:
+                continue
+            candidate["job_index"] = job_index
+            candidate["job"] = job
+            matches.append(candidate)
+        if len(matches) != 1:
+            errors.append(
+                f"{identifier}: yakuniy kun/soat/o'qituvchi exact domenida "
+                f"{len(matches)} marta topildi"
+            )
+            continue
+        selected.append(matches[0])
+    if errors:
+        return list(dict.fromkeys(errors))
+    return validate_candidate_selection(job_list, selected, context)
 
 
 def _empty_result(status: str, diagnostics: Mapping[str, Any], wall: float = 0.0) -> dict[str, Any]:
@@ -1898,7 +2044,14 @@ def solve_exact_timetable(
                 "wall_time_seconds": round(time.monotonic() - started, 6),
             }
         selected_adapter = _adapter_for(candidate_builder, adapter)
-        bundle, empty = _build_model(job_list, context, selected_adapter, relax_method=False)
+        feasibility_only = bool(context.get("exact_feasibility_only"))
+        bundle, empty = _build_model(
+            job_list,
+            context,
+            selected_adapter,
+            relax_method=False,
+            feasibility_only=feasibility_only,
+        )
         if bundle is None:
             method_analysis = (
                 _analyze_method_day_relaxations_detailed(
@@ -1928,6 +2081,13 @@ def solve_exact_timetable(
         diagnostics: dict[str, Any] = {
             "code": "EXACT_CP_SAT", "jobs": len(job_list),
             "candidates": len(bundle.candidates),
+            "model_variables": len(bundle.model.Proto().variables),
+            "model_constraints": len(bundle.model.Proto().constraints),
+            "solve_stage": (
+                "hard_feasibility" if feasibility_only else "quality"
+            ),
+            "quality_optimized": bool(bundle.has_objective),
+            "symmetry_breakers": int(bundle.symmetry_breakers),
             "conflicts": int(solver.NumConflicts()),
             "branches": int(solver.NumBranches()),
             "solver_wall_time_seconds": float(solver.WallTime()),
@@ -1937,7 +2097,13 @@ def solve_exact_timetable(
         if status not in {FEASIBLE, OPTIMAL}:
             recommendations = []
             method_analysis = {"status": "NOT_RUN", "recommendations": []}
-            if status in {INFEASIBLE, UNKNOWN} and bool(context.get("exact_analyze_method_relaxation", True)):
+            if (
+                status == INFEASIBLE
+                or (
+                    status == UNKNOWN
+                    and bool(context.get("exact_analyze_method_on_unknown"))
+                )
+            ) and bool(context.get("exact_analyze_method_relaxation", True)):
                 method_analysis = _analyze_method_day_relaxations_detailed(
                     job_list, context, candidate_builder, adapter=adapter, seed=seed,
                     max_seconds=float(context.get("exact_relaxation_seconds") or min(4.0, max(0.1, numeric_max_seconds * 0.2))),
@@ -1971,10 +2137,11 @@ def solve_exact_timetable(
             result = _empty_result(status, diagnostics, time.monotonic() - started)
             result["recommendations"] = recommendations
             result["metod_kuni_istisno_tavsiyalari"] = recommendations
-            try:
-                result["best_bound"] = float(solver.BestObjectiveBound())
-            except Exception:
-                pass
+            if bundle.has_objective:
+                try:
+                    result["best_bound"] = float(solver.BestObjectiveBound())
+                except Exception:
+                    pass
             return result
         placements, chosen = _extract_placements(bundle, solver)
         validation_errors = validate_candidate_selection(job_list, chosen, context)
@@ -1993,8 +2160,12 @@ def solve_exact_timetable(
             "placements": placements, "state": state,
             "recommendations": [], "metod_kuni_istisno_tavsiyalari": [],
             "diagnostics": diagnostics,
-            "objective_value": float(solver.ObjectiveValue()),
-            "best_bound": float(solver.BestObjectiveBound()),
+            "objective_value": (
+                float(solver.ObjectiveValue()) if bundle.has_objective else 0.0
+            ),
+            "best_bound": (
+                float(solver.BestObjectiveBound()) if bundle.has_objective else 0.0
+            ),
             "wall_time_seconds": round(time.monotonic() - started, 6),
         }
     except (TypeError, ValueError, KeyError) as error:
@@ -2014,6 +2185,6 @@ __all__ = [
     "normalize_phase", "expand_phases", "phases_overlap", "intervals_overlap",
     "canonical_job_id", "subject_profile", "DefaultTimetableAdapter",
     "CallableCandidateAdapter", "candidate_hard_violations",
-    "validate_candidate_selection",
+    "validate_candidate_selection", "validate_timetable_placements",
     "analyze_method_day_relaxations", "solve_exact_timetable",
 ]
