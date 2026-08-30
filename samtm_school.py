@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-BALANCED-COMPACT-EXACT-V22.11"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-RESTRICTED-FIRST-STABLE-V22.15"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -3848,6 +3848,14 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
+            # The optional quality pass first freezes every open class day to
+            # floor/ceil weekly balance (22/5 -> 4..5, 30/6 -> exactly 5).
+            # With class balance no longer competing in one huge weighted
+            # objective, the remaining search is devoted to teacher work-day,
+            # internal-window and cross-shift waiting minimization.  The first
+            # feasibility incumbent remains available if this ideal quality
+            # model cannot be solved in time.
+            exact_context["exact_enforce_balanced_class_days"] = True
             exact_context["exact_quality_seconds"] = 2.5
             # V22.8: katta maktabda global balans va smenalararo kutishni
             # real yaxshilash uchun, umumiy hard byudjet ichida qo'shimcha vaqt.
