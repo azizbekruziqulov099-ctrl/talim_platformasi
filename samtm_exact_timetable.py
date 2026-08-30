@@ -1112,8 +1112,7 @@ def _build_model(
         if normal_limit == 1 and required_sessions > legal_day_count:
             normal_limit = 2
         compact_repeat = bool(
-            quality_enabled
-            and context.get("exact_compact_subject_repeats")
+            context.get("exact_compact_subject_repeats")
             and normal_limit == 1
             and required_sessions >= 5
         )
@@ -1172,8 +1171,8 @@ def _build_model(
                         model.Add(variables[left_index] + variables[right_index] <= 1)
     for compact_key, used_days in compact_subject_used_days.items():
         # 5 sessions => exactly three used days (2+2+1); 6 => three days
-        # (2+2+2).  This is quality-pass only and never affects the initial
-        # full feasibility timetable.
+        # (2+2+2).  This is hard in the initial feasibility pass too, so a
+        # timed-out quality refinement can never return 1+1+1+1+1.
         model.Add(
             sum(used_days) == compact_subject_day_targets[compact_key]
         )
@@ -1279,12 +1278,17 @@ def _build_model(
             continue
         if demand <= 1:
             target_days, maximum_days = 1, 1
+        elif demand <= 4:
+            target_days, maximum_days = 2, 2
         elif demand <= 9:
             target_days, maximum_days = 2, 3
         else:
             target_days, maximum_days = 3, 4
         target_days = min(int(target_days), len(used_days))
         maximum_days = min(max(int(maximum_days), target_days), len(used_days))
+        # The upper work-day bound is hard from the first pass.  It prevents
+        # 5 weekly lessons from being scattered across five separate days.
+        model.Add(sum(used_days) <= maximum_days)
         if quality_enabled:
             # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
             # qilish birinchi feasibility jadvalini hech qachon to'xtatmaydi.
@@ -1676,9 +1680,10 @@ def _build_model(
     objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
     objective_terms.extend(term * 1_000_000_000 for term in teacher_cross_shift_over120_terms)
     objective_terms.extend(term * 10_000_000 for term in teacher_cross_shift_over180_terms)
-    # A teacher may work a dense 7--8 lesson day when the timetable permits.
-    # Fewer work days and adjacent lessons are preferences only: they can
-    # never make the hard-safe timetable infeasible.
+    # Within the hard weekly work-day ceiling, prefer the fewest used days
+    # and the smallest real-time gaps together.  This is the middle ground:
+    # lessons are compact, but not bought at the price of a huge same-day
+    # wait or a forbidden availability slot.
     # Coming to school on one additional day is much worse than an ordinary
     # short break.  This prevents 10 lessons becoming five 1--2 lesson days.
     # Very long same-day/cross-shift waits still carry larger tiered penalties,
