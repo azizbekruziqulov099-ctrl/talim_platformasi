@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-FEASIBILITY-FIRST-V22.5"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-FINAL-VALIDATOR-2PLUS2PLUS1-V22.7"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -3476,7 +3476,7 @@ def _v217_exact_failure_problems(exact_result, classes, teachers, status=None):
                 ),
                 "izoh": ((
                     "Har bir darsda alohida legal katak bo'lishi mumkin, ammo "
-                    "ularni sinf, o'qituvchi va xona real-vaqt "
+                    "ularni sinf va o'qituvchi real-vaqt "
                     "to'qnashuvlarisiz birgalikda tanlab bo'lmadi."
                 ) if proven else technical_detail if model_invalid else (
                     "Qidiruv vaqt chegarasida tugadi; bu jadval imkonsiz "
@@ -3501,7 +3501,7 @@ def _v216_exact_failure_detail(
         code = "QAT_IY_QOIDALARDA_YECHIM_YOQ"
         message = (
             "Exact solver qizil/BAND, metod kuni, qat'iy dars, smena hamda "
-            "sinf/o'qituvchi/xona real-vaqt xavfsizlik qoidalarini saqlagan "
+            "sinf/o'qituvchi real-vaqt xavfsizlik qoidalarini saqlagan "
             "holda to'liq jadval topilmasligini isbotladi. Quyida aniq "
             "sig'im yoki ziddiyat ko'rsatilgan; yarim draft saqlanmadi."
         )
@@ -3670,6 +3670,20 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 initial_warnings.append(
                     f"{class_row.get('sinf','')}-{class_row.get('harf','')}: "
                     f"{class_row['_home_room_invalid']}; jadvalda Xona yo'q ko'rsatiladi"
+                )
+        home_room_classes = _v1852_defaultdict(list)
+        for class_row in classes.values():
+            room_id = class_row.get("xona_id")
+            if room_id not in (None, ""):
+                home_room_classes[str(room_id)].append(
+                    f"{class_row.get('sinf', '')}-{class_row.get('harf', '')}"
+                )
+        for room_id, class_names in home_room_classes.items():
+            if len(class_names) > 1:
+                initial_warnings.append(
+                    f"Xona {room_id} bir nechta sinfga biriktirilgan: "
+                    f"{', '.join(class_names)}. Jadval yaratildi; xona nomini "
+                    "keyin tahrirlang."
                 )
         class_hour_rules = _v1866_class_hour_rule_rows(cur, sorov.maktab_id)
         class_hour_jobs, class_hour_warnings = _v1866_build_class_hour_jobs(classes, class_hour_rules)
@@ -9096,14 +9110,16 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     continue
                 room_label = room_labels.get(room_key, room_key)
                 if int(first["smena"]) == int(second["smena"]):
-                    errors.append(
+                    warnings.append(
                         f"Xona {room_label}: {_V1852_HAFTA.get(day, day)} "
-                        f"{first['smena']}-smena {first['dars_raqami']}-darsda ikki dars"
+                        f"{first['smena']}-smena {first['dars_raqami']}-darsda ikki dars; "
+                        "jadval yaratildi, xonani keyin tahrirlang"
                     )
                 else:
-                    errors.append(
+                    warnings.append(
                         f"Xona {room_label}: {_V1852_HAFTA.get(day, day)} "
-                        "ikki smenadagi dars bilan real vaqtda ustma-ust"
+                        "ikki smenadagi dars bilan real vaqtda ustma-ust; "
+                        "jadval yaratildi, xonani keyin tahrirlang"
                     )
 
     daily_teacher_sessions = _v1852_defaultdict(set)
@@ -9142,6 +9158,18 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
                     f"{count} dars, kunlik max {limit}"
                 )
+    subject_phase_totals = _v1852_defaultdict(int)
+    subject_phase_days = _v1852_defaultdict(set)
+    for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
+        for phase in ("toq", "juft"):
+            phase_count = len({
+                (session[0], session[1]) for session in sessions
+                if session[2] == "har_hafta" or session[2] == phase
+            })
+            subject_phase_totals[(class_id, subject_key, phase)] += phase_count
+            if phase_count:
+                subject_phase_days[(class_id, subject_key, phase)].add(int(day))
+
     subject_repeat_days = _v1852_defaultdict(list)
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
         load = loads.get((class_id, subject_key))
@@ -9168,6 +9196,12 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                 if session[2] == "har_hafta" or session[2] == phase
             }
             count = len(phase_sessions)
+            adaptive_daily = bool(
+                configured_daily == 1
+                and subject_phase_totals[(class_id, subject_key, phase)]
+                > len(subject_phase_days[(class_id, subject_key, phase)])
+            )
+            phase_allowed_daily = 2 if adaptive_daily else allowed_daily
             if count > 1:
                 subject_repeat_days[(
                     class_id, subject_key, phase, practical
@@ -9182,12 +9216,12 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                         f"{_V1852_HAFTA.get(day, day)} kuni {phase.upper()} "
                         "haftada yonma-yon emas"
                     )
-            if load and count > allowed_daily:
+            if load and count > phase_allowed_daily:
                 cls = classes.get(class_id, {})
                 errors.append(
                     f"{cls.get('sinf','')}-{cls.get('harf','')} / {load['fan_nomi']}: "
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
-                    f"{count} marta, kunlik max {allowed_daily}"
+                    f"{count} marta, kunlik max {phase_allowed_daily}"
                 )
     for (
         class_id, subject_key, phase, practical
@@ -16842,6 +16876,13 @@ def _v1852_candidate_reasons(
     reasons = list(_v204_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
+    # Xona xatolari tuzatiladigan ma'lumot: ular to'liq jadval yaratishni
+    # to'xtatmaydi. Sinf/o'qituvchi kolliziyasi va qizil/BAND hard qoladi.
+    reasons = [reason for reason in reasons if reason not in {
+        "xona band",
+        "parallel guruhlar bir xil xonaga biriktirilgan",
+        "xona band: boshqa smenadagi dars bilan real vaqtda ustma-ust",
+    }]
     profile = _v196_rotation_profile(job, context)
 
     # Asosiy fanlar avval 1–5-darslardan joy oladi. Boshqa legal kombinatsiya
@@ -17014,6 +17055,11 @@ def _v1852_candidate_reasons(
                         "xona band: boshqa smenadagi dars bilan real vaqtda ustma-ust"
                     )
                     break
+    reasons = [reason for reason in reasons if not (
+        reason == "xona band"
+        or reason == "parallel guruhlar bir xil xonaga biriktirilgan"
+        or str(reason).startswith("xona band:")
+    )]
     # V20.7: faqat pedagogik tavsiyalar bosqichma-bosqich yumshaydi.
     # Qizil vaqt, parallel, sinf bandligi, smena va metod kuni modulda
     # qat'iy deb tasniflangan va hech qachon filtrdan olib tashlanmaydi.
