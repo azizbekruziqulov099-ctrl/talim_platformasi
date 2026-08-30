@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-FINAL-VALIDATOR-2PLUS2PLUS1-V22.7"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-CROSS-SHIFT-EDGE-V22.9"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -3665,12 +3665,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
 
         year, shifts, classes, loads, assignments, group_settings, rules_rows, availability_rows, teachers, rooms = _v1852_prepare_generation(cur, sorov.maktab_id)
         jobs, initial_warnings = _v1852_build_jobs(classes, loads, assignments, group_settings, teachers)
+        invalid_home_room_classes = []
         for class_row in classes.values():
             if class_row.get("_home_room_invalid"):
-                initial_warnings.append(
-                    f"{class_row.get('sinf','')}-{class_row.get('harf','')}: "
-                    f"{class_row['_home_room_invalid']}; jadvalda Xona yo'q ko'rsatiladi"
+                invalid_home_room_classes.append(
+                    f"{class_row.get('sinf','')}-{class_row.get('harf','')}"
                 )
+        if invalid_home_room_classes:
+            initial_warnings.append(
+                f"{len(invalid_home_room_classes)} ta sinfning xona ID si katalogda "
+                f"topilmadi ({', '.join(invalid_home_room_classes)}); jadval yaratildi "
+                "va ularda Xona yo'q ko'rsatiladi."
+            )
         home_room_classes = _v1852_defaultdict(list)
         for class_row in classes.values():
             room_id = class_row.get("xona_id")
@@ -3837,12 +3843,15 @@ def v1852_generate(sorov: V1852Generate, token: str):
             exact_context["exact_feasibility_only"] = True
             exact_context["exact_stop_after_first_solution"] = True
             # Birinchi hard-safe yechim topilgach qolgan exact byudjetning
-            # ko'pi bilan 2.5 soniyasida to'liq incumbent hint bilan global
+            # ko'pi bilan 12 soniyasida to'liq incumbent hint bilan global
             # sifat bosqichi ishlaydi. U daily_max=2 takrorlarini, o'qituvchi
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
             exact_context["exact_quality_seconds"] = 2.5
+            # V22.8: katta maktabda global balans va smenalararo kutishni
+            # real yaxshilash uchun, umumiy hard byudjet ichida qo'shimcha vaqt.
+            exact_context["exact_quality_extension_seconds"] = 9.5
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
