@@ -20,5 +20,5 @@ Pillow
 edge-tts>=7,<8
 nudenet
 clamd
-
+ortools>=9.15,<9.16
 cryptography>=43,<47
