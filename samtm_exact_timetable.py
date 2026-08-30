@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-DUAL-SHIFT-SYNTHETIC-ZONES-V22.27"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-V22.24-DUAL-SHIFT-SYNTHETIC-ZONES"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1112,7 +1112,8 @@ def _build_model(
         if normal_limit == 1 and required_sessions > legal_day_count:
             normal_limit = 2
         compact_repeat = bool(
-            context.get("exact_compact_subject_repeats")
+            quality_enabled
+            and context.get("exact_compact_subject_repeats")
             and normal_limit == 1
             and required_sessions >= 5
         )
@@ -1171,8 +1172,8 @@ def _build_model(
                         model.Add(variables[left_index] + variables[right_index] <= 1)
     for compact_key, used_days in compact_subject_used_days.items():
         # 5 sessions => exactly three used days (2+2+1); 6 => three days
-        # (2+2+2).  This is hard in the initial feasibility pass too, so a
-        # timed-out quality refinement can never return 1+1+1+1+1.
+        # (2+2+2).  This is quality-pass only and never affects the initial
+        # full feasibility timetable.
         model.Add(
             sum(used_days) == compact_subject_day_targets[compact_key]
         )
@@ -1236,6 +1237,10 @@ def _build_model(
         for token in (context.get("exact_dual_shift_synthetic_relaxed") or ())
         if isinstance(token, (list, tuple)) and len(token) == 3
     }
+    synthetic_rank = {
+        int(teacher): int(rank)
+        for teacher, rank in (context.get("exact_dual_shift_fallback_rank") or {}).items()
+    }
     synthetic_dual_edge_terms: list[Any] = []
     for index, row in enumerate(candidates):
         shift, period = int(row["shift"]), int(row["period"])
@@ -1250,7 +1255,10 @@ def _build_model(
                 synthetic_dual_edge_terms.append(variables[index])
             elif relaxed:
                 # Fallback katagi legal, ammo oddiy sariqdan ham qimmatroq.
-                synthetic_dual_edge_terms.extend([variables[index]] * 20)
+                # Soati ko'p ustozning ranki kichik va katagi birinchi tanlanadi.
+                synthetic_dual_edge_terms.extend(
+                    [variables[index]] * (20 + 5 * synthetic_rank.get(int(teacher), 0))
+                )
     # Teachers who closed more than 20% of their otherwise usable weekly
     # slots receive the first quality priority.  Method day and every hard
     # red/BAND token count as closed; none is ever reopened.
@@ -1306,17 +1314,22 @@ def _build_model(
             continue
         if demand <= 1:
             target_days, maximum_days = 1, 1
-        elif demand <= 4:
-            target_days, maximum_days = 2, 2
         elif demand <= 9:
             target_days, maximum_days = 2, 3
         else:
             target_days, maximum_days = 3, 4
         target_days = min(int(target_days), len(used_days))
         maximum_days = min(max(int(maximum_days), target_days), len(used_days))
-        # The upper work-day bound is hard from the first pass.  It prevents
-        # 5 weekly lessons from being scattered across five separate days.
-        model.Add(sum(used_days) <= maximum_days)
+        # V22.24 bazasidagi tor sun'iy kun zonalari:
+        #   5--7 soat  -> 2 zich kun ideal, 3-kun sariq zaxira;
+        #   10--12 soat -> 3 zich kun ideal, 4-kun sariq zaxira;
+        #   13--15 soat -> ko'pi bilan 4 kun.
+        # Shu aniq diapazonlardan tashqaridagi yuklamalarning V22.24 erkin
+        # feasibility xulqi o'zgarmaydi.
+        if 5 <= demand <= 7:
+            model.Add(sum(used_days) <= min(3, len(used_days)))
+        elif 10 <= demand <= 15:
+            model.Add(sum(used_days) <= min(4, len(used_days)))
         if quality_enabled:
             # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
             # qilish birinchi feasibility jadvalini hech qachon to'xtatmaydi.
@@ -1715,10 +1728,9 @@ def _build_model(
     objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
     objective_terms.extend(term * 1_000_000_000 for term in teacher_cross_shift_over120_terms)
     objective_terms.extend(term * 10_000_000 for term in teacher_cross_shift_over180_terms)
-    # Within the hard weekly work-day ceiling, prefer the fewest used days
-    # and the smallest real-time gaps together.  This is the middle ground:
-    # lessons are compact, but not bought at the price of a huge same-day
-    # wait or a forbidden availability slot.
+    # A teacher may work a dense 7--8 lesson day when the timetable permits.
+    # Fewer work days and adjacent lessons are preferences only: they can
+    # never make the hard-safe timetable infeasible.
     # Coming to school on one additional day is much worse than an ordinary
     # short break.  This prevents 10 lessons becoming five 1--2 lesson days.
     # Very long same-day/cross-shift waits still carry larger tiered penalties,
@@ -2632,42 +2644,49 @@ def solve_exact_timetable(
             ordered = _dual_shift_teachers_by_load(job_list, context)
             if not ordered:
                 return None
-            attempts: list[tuple[str, int, set[tuple[int, int, int]]]] = []
-            relaxed: set[tuple[int, int, int]] = set()
-            # 1-bosqich: eng ko'p soatli ustozdan boshlab 1-smena 2-dars.
-            for teacher in ordered:
-                relaxed.add((int(teacher), 1, 2))
-                attempts.append(("1-smena 2-dars sariq", int(teacher), set(relaxed)))
-            # 2-bosqich: yuqoridagi ochilishlar saqlanadi, keyin 2-smena 5-dars.
-            for teacher in ordered:
-                relaxed.add((int(teacher), 2, 5))
-                attempts.append(("2-smena 5-dars sariq", int(teacher), set(relaxed)))
+            rank = {int(teacher): index for index, teacher in enumerate(ordered)}
+            first_stage = {(int(teacher), 1, 2) for teacher in ordered}
+            second_stage = first_stage | {(int(teacher), 2, 5) for teacher in ordered}
+            # Ikki marta qayta yechish kifoya: CP-SAT sariq katak narxi orqali
+            # eng ko'p soatli ustozdan boshlab faqat zarur kataklarni tanlaydi.
+            attempts = [
+                ("1-smena 2-dars sariq", first_stage),
+                ("2-smena 5-dars sariq", second_stage),
+            ]
             history = []
-            for label, teacher, allowed in attempts:
+            for label, allowed in attempts:
                 remaining = numeric_max_seconds - (time.monotonic() - started) - 0.10
                 if remaining < 0.35:
                     break
                 retry_context = dict(context)
                 retry_context["_exact_dual_shift_retry_active"] = True
                 retry_context["exact_dual_shift_synthetic_relaxed"] = sorted(allowed)
+                retry_context["exact_dual_shift_fallback_rank"] = rank
+                retry_context["exact_feasibility_only"] = False
                 retry_context["exact_analyze_method_relaxation"] = False
                 retry_context["exact_apply_bounded_method_fallback"] = False
                 retry = solve_exact_timetable(
                     job_list, retry_context, candidate_builder,
                     adapter=selected_adapter, state_builder=state_builder,
                     seed=seed ^ (0x2050 + len(history)),
-                    max_seconds=min(3.0, remaining),
+                    max_seconds=min(3.5, remaining),
                 )
                 history.append({
-                    "oqituvchi_user_id": teacher, "ochilgan_zona": label,
+                    "ochilgan_zona": label, "ustuvor_tartib": ordered,
                     "status": retry.get("status"),
                 })
                 if retry.get("status") in {FEASIBLE, OPTIMAL} and retry.get("complete"):
+                    actually_used = sorted({
+                        (int(teacher), int(row.get("shift") or row.get("smena") or 1), int(row.get("period") or row.get("dars") or 0))
+                        for row in (retry.get("placements") or [])
+                        for teacher in (row.get("teachers") or [])
+                        if (int(teacher), int(row.get("shift") or row.get("smena") or 1), int(row.get("period") or row.get("dars") or 0)) in allowed
+                    })
                     diagnostics = dict(retry.get("diagnostics") or {})
                     diagnostics.update({
                         "dual_shift_synthetic_fallback": True,
                         "dual_shift_fallback_history": history,
-                        "dual_shift_relaxed_slots": [list(token) for token in sorted(allowed)],
+                        "dual_shift_relaxed_slots": [list(token) for token in actually_used],
                         "message": (
                             "Ikki smenali o'qituvchilar avval sun'iy qizil/sariq "
                             "zonada joylandi; strict variant sig'magani uchun eng ko'p "
