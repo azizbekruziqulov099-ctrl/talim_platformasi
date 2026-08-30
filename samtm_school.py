@@ -18,6 +18,9 @@ except ImportError:  # Railway working directory may be backend/
 
 import copy as _samtm_copy
 import time as _samtm_time
+from io import BytesIO as _V205BytesIO
+from fastapi import Request as _V205Request
+from fastapi.responses import StreamingResponse as _V205StreamingResponse
 
 SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-2PLUS2PLUS1-SATURDAY5-V22.20"
 
@@ -3857,6 +3860,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # model cannot be solved in time. Teacher work-day ranges are now
             # soft, so they cannot make this class-balanced model infeasible.
             exact_context["exact_enforce_balanced_class_days"] = True
+            # O'qituvchi oynalari ham birinchi exact yechimning hard qoidasi:
+            # bir smena ichida ko'pi bilan 2 bo'sh dars, ikki smena orasida
+            # esa ko'pi bilan 120 daqiqa kutish.
+            exact_context["exact_enforce_teacher_window_limits"] = True
             exact_context["exact_compact_subject_repeats"] = True
             exact_context["exact_quality_seconds"] = 2.5
             # V22.8: katta maktabda global balans va smenalararo kutishni
@@ -11964,6 +11971,142 @@ def v192_load_matrix(token: str, maktab_id: int):
         cur.close(); conn.close()
 
 
+def _v205_teacher_template_workbook(payload):
+    """Saytdagi haqiqiy ro'yxatlar bilan to'ldirilgan, qayta import qilinadigan XLSX."""
+    import openpyxl
+    from openpyxl.formatting.rule import FormulaRule
+    from openpyxl.styles import Alignment, Font, PatternFill, Border, Side
+    from openpyxl.worksheet.datavalidation import DataValidation
+
+    wb = openpyxl.Workbook()
+    guide = wb.active
+    guide.title = "YO'RIQNOMA"
+    sheet = wb.create_sheet("OQITUVCHI_YUKLAMASI")
+    control = wb.create_sheet("SINF_NAZORATI")
+    lists = wb.create_sheet("ROYXATLAR")
+    navy, teal, sky, green, amber, red = "163A52", "0F766E", "EAF4F7", "E9F7EF", "FFF3D6", "FDE9E7"
+    thin = Side(style="thin", color="CADADF")
+    border = Border(left=thin, right=thin, top=thin, bottom=thin)
+
+    guide.merge_cells("A1:I2")
+    guide["A1"] = "SAMTM — O‘QITUVCHI VA YUKLAMA AQILLI SHABLONI"
+    guide["A1"].font = Font(size=18, bold=True, color="FFFFFF")
+    guide["A1"].fill = PatternFill("solid", fgColor=navy)
+    guide["A1"].alignment = Alignment(horizontal="center", vertical="center")
+    guide.merge_cells("A4:I4")
+    guide["A4"] = "Faqat OQITUVCHI_YUKLAMASI varag‘ini to‘ldiring. Har qator saytdagi bitta fan–sinf–guruh qatoriga teng."
+    guide["A4"].fill = PatternFill("solid", fgColor=sky)
+    guide["A4"].font = Font(bold=True, color=navy)
+    guide["A4"].alignment = Alignment(wrap_text=True, vertical="center")
+    guide.row_dimensions[4].height = 34
+    rules = [
+        ("Bir o‘qituvchi", "F.I.Sh. bir xil yozilsa, barcha qator bitta o‘qituvchiga birlashadi; dublikat yaratilmaydi."),
+        ("Sinf rahbari", "Rahbar bo‘lgan sinfni yozing, aks holda bo‘sh qoldiring."),
+        ("Butun sinf", "Ta’lim turi = Butun sinf va Guruh = whole."),
+        ("Guruhli fan", "Har guruh alohida qator: saytdagi ROYXATLAR varag‘idagi guruh nomini tanlang."),
+        ("Haftalik soat", "Tasdiqlangan o‘quv rejasidagi soatdan oshirmang. 0,5 qadam qabul qilinadi."),
+        ("Import", "Faylni saqlang va saytdagi “Excelni import qilish” tugmasidan tanlang."),
+    ]
+    guide.append([]); guide.append(["QOIDA", "IZOH"])
+    for title, text in rules: guide.append([title, text])
+    for cell in guide[6]:
+        cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
+    for row in guide.iter_rows(min_row=6, max_row=6 + len(rules), min_col=1, max_col=2):
+        for cell in row: cell.border = border; cell.alignment = Alignment(wrap_text=True, vertical="top")
+    guide.column_dimensions["A"].width = 24; guide.column_dimensions["B"].width = 86
+
+    headers = ["O‘qituvchi F.I.Sh.*", "Sinf rahbari", "Sinf*", "Fan*", "Ta’lim turi*", "Guruh*", "Haftalik soat*", "Kunlik max*", "Xona (ixtiyoriy)", "Qator holati"]
+    sheet.merge_cells("A1:J2"); sheet["A1"] = "O‘QITUVCHI YUKLAMASI — SAYTGA KIRITILADIGAN QATORLAR"
+    sheet["A1"].font = Font(size=16, bold=True, color="FFFFFF"); sheet["A1"].fill = PatternFill("solid", fgColor=navy)
+    sheet["A1"].alignment = Alignment(horizontal="center", vertical="center")
+    sheet.append(headers)
+    for cell in sheet[3]:
+        cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True); cell.border = border
+    sheet.freeze_panes = "A4"; sheet.auto_filter.ref = "A3:J503"
+
+    def class_sort_key(row):
+        match = re.search(r"\d+", str(row.get("sinf") or ""))
+        return (int(match.group()) if match else 999, str(row.get("harf") or ""))
+    classes = sorted(payload.get("sinflar") or [], key=class_sort_key)
+    class_names = [f"{row['sinf']}-{row['harf']}" for row in classes]
+    class_by_id = {int(row["id"]): f"{row['sinf']}-{row['harf']}" for row in classes}
+    teacher_by_id = {int(row["user_id"]): row for row in payload.get("oqituvchilar") or []}
+    leader_by_user = {int(row["rahbar_user_id"]): class_by_id[int(row["id"])] for row in classes if row.get("rahbar_user_id")}
+    variants = {(int(row["sinf_id"]), str(row["guruh_kaliti"])): row for row in payload.get("guruh_variantlari") or []}
+    room_by_id = {int(row["id"]): str(row.get("nomi") or "") for row in payload.get("xonalar") or []}
+    existing = sorted(payload.get("birikmalar") or [], key=lambda row: (str(row.get("full_name") or "").casefold(), class_by_id.get(int(row["sinf_id"]), ""), str(row.get("fan_nomi") or "")))
+    for item in existing:
+        teacher = teacher_by_id.get(int(item["user_id"]), {})
+        group = variants.get((int(item["sinf_id"]), str(item.get("guruh_kaliti") or "whole")), {})
+        group_key = str(item.get("guruh_kaliti") or "whole")
+        sheet.append([
+            item.get("full_name") or teacher.get("full_name") or "",
+            leader_by_user.get(int(item["user_id"]), ""), class_by_id.get(int(item["sinf_id"]), ""),
+            item.get("fan_nomi") or "", "Butun sinf" if group_key == "whole" else "Guruh",
+            group.get("guruh_nomi") or group_key, float(item.get("haftalik_soat") or 0),
+            int(item.get("kunlik_max") or 1), room_by_id.get(int(item["xona_id"]), "") if item.get("xona_id") else "",
+        ])
+    first_empty = max(4, sheet.max_row + 1)
+    for row_no in range(first_empty, 504):
+        sheet.cell(row_no, 10, f'=IF(COUNTA(A{row_no}:I{row_no})=0,"",IF(OR(A{row_no}="",C{row_no}="",D{row_no}="",E{row_no}="",F{row_no}="",G{row_no}="",H{row_no}=""),"TO‘LDIRING","TAYYOR"))')
+    for row_no in range(4, 504):
+        if not sheet.cell(row_no, 10).value:
+            sheet.cell(row_no, 10, f'=IF(COUNTA(A{row_no}:I{row_no})=0,"",IF(OR(A{row_no}="",C{row_no}="",D{row_no}="",E{row_no}="",F{row_no}="",G{row_no}="",H{row_no}=""),"TO‘LDIRING","TAYYOR"))')
+        for col in range(1, 11):
+            sheet.cell(row_no, col).border = border
+            if col <= 9: sheet.cell(row_no, col).fill = PatternFill("solid", fgColor="F8FBFC")
+    sheet.conditional_formatting.add("J4:J503", FormulaRule(formula=['J4="TAYYOR"'], fill=PatternFill("solid", fgColor=green)))
+    sheet.conditional_formatting.add("J4:J503", FormulaRule(formula=['J4="TO‘LDIRING"'], fill=PatternFill("solid", fgColor=red)))
+
+    subjects = list(dict.fromkeys(payload.get("fanlar") or []))
+    group_names = list(dict.fromkeys(["whole"] + [str(row.get("guruh_nomi") or row.get("guruh_kaliti")) for row in payload.get("guruh_variantlari") or []]))
+    rooms = [str(row.get("nomi") or "") for row in payload.get("xonalar") or [] if row.get("nomi")]
+    lists.append(["SINFLAR", "FANLAR", "GURUHLAR", "XONALAR"])
+    for index in range(max(len(class_names), len(subjects), len(group_names), len(rooms), 1)):
+        lists.append([class_names[index] if index < len(class_names) else None, subjects[index] if index < len(subjects) else None, group_names[index] if index < len(group_names) else None, rooms[index] if index < len(rooms) else None])
+    for cell in lists[1]: cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
+    for col in "ABCD": lists.column_dimensions[col].width = 32
+    def add_list_validation(column, formula):
+        dv = DataValidation(type="list", formula1=formula, allow_blank=True)
+        sheet.add_data_validation(dv); dv.add(f"{column}4:{column}503")
+    add_list_validation("B", "'ROYXATLAR'!$A$2:$A$%d" % (len(class_names) + 1))
+    add_list_validation("C", "'ROYXATLAR'!$A$2:$A$%d" % (len(class_names) + 1))
+    add_list_validation("D", "'ROYXATLAR'!$B$2:$B$%d" % (len(subjects) + 1))
+    add_list_validation("E", '"Butun sinf,Guruh"')
+    add_list_validation("F", "'ROYXATLAR'!$C$2:$C$%d" % (len(group_names) + 1))
+    if rooms: add_list_validation("I", "'ROYXATLAR'!$D$2:$D$%d" % (len(rooms) + 1))
+    dv_hours = DataValidation(type="decimal", operator="between", formula1="0.5", formula2="20"); sheet.add_data_validation(dv_hours); dv_hours.add("G4:G503")
+    dv_daily = DataValidation(type="whole", operator="between", formula1="1", formula2="4"); sheet.add_data_validation(dv_daily); dv_daily.add("H4:H503")
+    widths = [29,15,15,31,16,18,15,15,22,15]
+    for idx, width in enumerate(widths, 1): sheet.column_dimensions[openpyxl.utils.get_column_letter(idx)].width = width
+
+    control.append(["Sinf", "Reja soati", "Kiritilgan", "Qolgan", "Ortiqcha", "Holat"])
+    for cell in control[1]: cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
+    plan_totals = {int(row["sinf_id"]): float(row.get("fan_soati") or 0) for row in (payload.get("oquv_reja") or {}).get("sinf_jami", [])}
+    for idx, cls in enumerate(classes, 2):
+        control.append([class_by_id[int(cls["id"])], plan_totals.get(int(cls["id"]), ""), f'=SUMIF(\'OQITUVCHI_YUKLAMASI\'!$C$4:$C$503,A{idx},\'OQITUVCHI_YUKLAMASI\'!$G$4:$G$503)', f'=IF(B{idx}="","",MAX(0,B{idx}-C{idx}))', f'=IF(B{idx}="","",MAX(0,C{idx}-B{idx}))', f'=IF(B{idx}="","REJA YO‘Q",IF(E{idx}>0,"ORTIQCHA",IF(D{idx}>0,"QOLDI","TO‘LDI")))'])
+    for col, width in zip("ABCDEF", [15,16,16,16,16,24]): control.column_dimensions[col].width = width
+    control.freeze_panes = "A2"
+    return wb
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/oqituvchi_shablon")
+def v205_teacher_template_download(token: str, maktab_id: int):
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        if not _v1852_manager(cur, actor_id, maktab_id):
+            raise HTTPException(status_code=403, detail="O'qituvchi shablonini faqat rahbariyat yuklaydi")
+        wb = _v205_teacher_template_workbook(_v192_matrix_payload(cur, maktab_id))
+        stream = _V205BytesIO(); wb.save(stream); stream.seek(0)
+        filename = "SAMTM_OQITUVCHI_AQLLI_SHABLON.xlsx"
+        return _V205StreamingResponse(stream, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", headers={"Content-Disposition": f'attachment; filename="{filename}"'})
+    finally:
+        cur.close(); conn.close()
+
+
 class V193CurriculumItem(BaseModel):
     fan_nomi: str
     haftalik_soat: float
@@ -13021,6 +13164,140 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         })
         conn.commit()
         return result
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+def _v205_excel_text(value):
+    return re.sub(r"\s+", " ", str(value or "").replace("’", "'").replace("‘", "'")).strip()
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_shablon_import")
+async def v205_teacher_template_import(request: _V205Request, token: str, maktab_id: int):
+    """Aqlli XLSXni atomar tekshiradi va saytdagi aniq yuklama qatorlariga aylantiradi."""
+    import openpyxl
+
+    actor_id = _jwt_tekshir(token)
+    raw = await request.body()
+    if not raw:
+        raise HTTPException(status_code=400, detail="Excel fayl tanlanmagan")
+    if len(raw) > 8 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Excel fayl 8 MB dan katta bo'lmasligi kerak")
+    try:
+        wb = openpyxl.load_workbook(_V205BytesIO(raw), data_only=False, read_only=False)
+    except Exception:
+        raise HTTPException(status_code=400, detail="Fayl ochilmadi. Faqat .xlsx aqlli shablonini yuklang")
+    if "OQITUVCHI_YUKLAMASI" not in wb.sheetnames:
+        raise HTTPException(status_code=400, detail="OQITUVCHI_YUKLAMASI varag'i topilmadi. Saytdan yangi shablon yuklab oling")
+    ws = wb["OQITUVCHI_YUKLAMASI"]
+    expected = ["o'qituvchi f.i.sh.*", "sinf rahbari", "sinf*", "fan*", "ta'lim turi*", "guruh*", "haftalik soat*", "kunlik max*", "xona (ixtiyoriy)"]
+    actual = [_v205_excel_text(ws.cell(3, col).value).casefold() for col in range(1, 10)]
+    if actual != expected:
+        raise HTTPException(status_code=400, detail="Excel ustunlari o'zgartirilgan. Saytdan yangi shablon yuklab, faqat kataklarni to'ldiring")
+
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur); _xodim_kod_jadvali(cur)
+        if not _v1852_manager(cur, actor_id, maktab_id):
+            raise HTTPException(status_code=403, detail="O'qituvchi Excelini faqat rahbariyat import qiladi")
+        payload = _v192_matrix_payload(cur, maktab_id)
+        classes = {f"{row['sinf']}-{row['harf']}".casefold(): row for row in payload.get("sinflar") or []}
+        subjects = {_v1875_subject_key(name): name for name in payload.get("fanlar") or []}
+        rooms = {_v205_excel_text(row.get("nomi")).casefold(): row for row in payload.get("xonalar") or []}
+        variants = {}
+        for row in payload.get("guruh_variantlari") or []:
+            class_id = int(row["sinf_id"])
+            for label in (row.get("guruh_kaliti"), row.get("guruh_nomi"), row.get("qisqa")):
+                if label: variants[(class_id, _v205_excel_text(label).casefold())] = row
+        teachers = {_v205_excel_text(row.get("full_name")).casefold(): row for row in payload.get("oqituvchilar") or []}
+        grouped, leader_by_teacher, source_rows = {}, {}, {}
+        errors = []
+        for row_no in range(4, ws.max_row + 1):
+            values = [ws.cell(row_no, col).value for col in range(1, 10)]
+            if not any(value not in (None, "") for value in values): continue
+            name, leader_name, class_name, subject_name, education_type, group_name, hours, daily, room_name = values
+            name = _v205_excel_text(name); class_name = _v205_excel_text(class_name)
+            subject_name = _v205_excel_text(subject_name); group_name = _v205_excel_text(group_name)
+            if not name: errors.append(f"{row_no}-qator: o'qituvchi F.I.Sh. yozilmagan"); continue
+            if len(name) < 3 or len(name) > 160: errors.append(f"{row_no}-qator: F.I.Sh. 3–160 belgi bo'lishi kerak"); continue
+            cls = classes.get(class_name.casefold())
+            if not cls: errors.append(f"{row_no}-qator: '{class_name or 'bo‘sh'}' sinfi saytda yo'q"); continue
+            subject = subjects.get(_v1875_subject_key(subject_name))
+            if not subject: errors.append(f"{row_no}-qator: '{subject_name or 'bo‘sh'}' fani saytda yo'q"); continue
+            education_key = _v205_excel_text(education_type).casefold()
+            requested_group = "whole" if education_key in {"butun sinf", "whole", "sinf"} else group_name
+            variant = variants.get((int(cls["id"]), _v205_excel_text(requested_group).casefold()))
+            if not variant: errors.append(f"{row_no}-qator: {class_name}da '{group_name or requested_group}' guruhi yo'q"); continue
+            if education_key in {"guruh", "group"} and str(variant.get("guruh_kaliti")) == "whole":
+                errors.append(f"{row_no}-qator: Guruh tanlangan, lekin guruh nomi whole bo'lib qolgan"); continue
+            try:
+                weekly = round(float(str(hours).replace(",", ".")), 1)
+                daily_max = int(float(str(daily).replace(",", ".")))
+            except Exception:
+                errors.append(f"{row_no}-qator: haftalik soat yoki kunlik max son emas"); continue
+            if weekly < .5 or weekly > 20 or abs(weekly * 2 - round(weekly * 2)) > 1e-9:
+                errors.append(f"{row_no}-qator: haftalik soat 0,5–20 va 0,5 qadamda bo'lishi kerak"); continue
+            if daily_max < 1 or daily_max > 4:
+                errors.append(f"{row_no}-qator: kunlik max 1–4 bo'lishi kerak"); continue
+            room = rooms.get(_v205_excel_text(room_name).casefold()) if room_name else None
+            if room_name and not room:
+                errors.append(f"{row_no}-qator: '{_v205_excel_text(room_name)}' xonasi saytda yo'q"); continue
+            name_key = name.casefold()
+            grouped.setdefault(name_key, []).append(V192TeacherLoadRow(
+                sinf_id=int(cls["id"]), fan_nomi=subject,
+                guruh_kaliti=str(variant.get("guruh_kaliti") or "whole"),
+                haftalik_soat=weekly, kunlik_max=daily_max,
+                xona_id=int(room["id"]) if room else None,
+            ))
+            source_rows.setdefault(name_key, []).append(row_no)
+            leader_text = _v205_excel_text(leader_name)
+            if leader_text:
+                leader = classes.get(leader_text.casefold())
+                if not leader: errors.append(f"{row_no}-qator: rahbarlik sinfi '{leader_text}' saytda yo'q")
+                elif name_key in leader_by_teacher and int(leader_by_teacher[name_key]["id"]) != int(leader["id"]): errors.append(f"{row_no}-qator: {name}ga ikki xil rahbarlik sinfi yozilgan")
+                else: leader_by_teacher[name_key] = leader
+        if not grouped and not errors: errors.append("Import qilinadigan birorta yuklama qatori topilmadi")
+        if errors:
+            raise HTTPException(status_code=400, detail="Excel tekshiruvi:\n" + "\n".join(errors[:30]))
+
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(maktab_id),))
+        teacher_ids, created_codes = {}, []
+        for name_key, rows in grouped.items():
+            teacher = teachers.get(name_key)
+            if teacher:
+                teacher_ids[name_key] = int(teacher["user_id"])
+                continue
+            display_name = _v205_excel_text(ws.cell(source_rows[name_key][0], 1).value)
+            cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+            smallest = cur.fetchone() or {}; user_id = int(smallest.get("eng_kichik") or 0) - 1
+            subjects_for_teacher = list(dict.fromkeys(row.fan_nomi for row in rows))
+            total = round(sum(float(row.haftalik_soat) for row in rows), 1)
+            cur.execute("""INSERT INTO users(user_id,full_name,role,maktab_id,lavozim,mutaxassisligi,haftalik_maqsad_soat,haftalik_dars_soati)
+                           VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,0)""",
+                        (user_id, display_name, maktab_id, "; ".join(subjects_for_teacher), total))
+            plain_code, stored_code = _xodim_kod_yarat()
+            cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)", (stored_code, user_id))
+            teacher_ids[name_key] = user_id
+            created_codes.append({"oqituvchi": display_name, "kirish_kodi": plain_code})
+
+        imported_ids = list(teacher_ids.values())
+        cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=ANY(%s)", (maktab_id, imported_ids))
+        saved_rows = 0; warnings = []
+        for name_key, rows in grouped.items():
+            user_id = teacher_ids[name_key]
+            try:
+                result = _v192_save_teacher_load_rows(cur, actor_id, maktab_id, user_id, rows)
+            except HTTPException as exc:
+                display_name = _v205_excel_text(ws.cell(source_rows[name_key][0], 1).value)
+                raise HTTPException(status_code=exc.status_code, detail=f"{display_name} (Excel qatorlari {', '.join(map(str, source_rows[name_key]))}): {exc.detail}")
+            saved_rows += int(result.get("qator_soni") or 0); warnings.extend(result.get("ogohlantirishlar") or [])
+            leader = leader_by_teacher.get(name_key)
+            _v199_save_teacher_leadership(cur, maktab_id, user_id, int(leader["id"]) if leader else None, actor_id)
+        matrix = _v192_matrix_payload(cur, maktab_id)
+        conn.commit()
+        return {"holat": "import_qilindi", "oqituvchi_soni": len(grouped), "qator_soni": saved_rows, "yangi_oqituvchilar": created_codes, "ogohlantirishlar": list(dict.fromkeys(warnings)), "matritsa": matrix}
     except Exception:
         conn.rollback(); raise
     finally:
