@@ -624,6 +624,12 @@ def _normalize_candidate(
     if isinstance(daily_limits_raw, Mapping):
         for subject, value in daily_limits_raw.items():
             subject_daily_limits[_subject_key(subject)] = max(1, int(value or 1))
+    # A custom adapter cannot smuggle a looser primary-school limit into the
+    # model. Grades 1–4 always keep one occurrence of a subject per real day.
+    if 1 <= _grade(job, context) <= 4:
+        subject_daily_limits = {
+            subject: 1 for subject in subject_daily_limits
+        }
     exceptions = frozenset(
         (int(item[0]), int(item[1]), int(item[2]), int(item[3]))
         for item in raw.get("method_exceptions") or ()
@@ -1010,6 +1016,8 @@ def _build_model(
                     subject, row["job"].get("daily_max") or 1
                 )
             ))
+            if 1 <= _grade(row["job"], context) <= 4:
+                normal_limit = 1
             subject_daily_limits[(row["class_id"], subject)] = min(
                 subject_daily_limits.get((row["class_id"], subject), normal_limit), normal_limit
             )
@@ -1026,6 +1034,7 @@ def _build_model(
         0, int(context.get("practical_repeat_day_limit", 1))
     )
     repeat_bools: dict[tuple[int, str, str], list[Any]] = defaultdict(list)
+    repeat_group_limits: dict[tuple[int, str, str], int] = {}
     repeat_terms: list[Any] = []
     practical_repeat_terms: list[Any] = []
     for (class_id, subject, day, phase), indices in subject_groups.items():
@@ -1033,8 +1042,25 @@ def _build_model(
         normal_limit = subject_daily_limits[(class_id, subject)]
         practical = bool(subject_is_practical.get((class_id, subject)))
         allowed_repeat_days = practical_repeat_day_limit if practical else repeat_day_limit
+        # Strict school policy disables implicit practical doubles when
+        # daily_max=1.  If an administrator explicitly configured
+        # daily_max>=2, one adjacent practical double-day remains legal and
+        # matches the final SQL validator's contract.
+        if practical and normal_limit > 1:
+            allowed_repeat_days = max(1, allowed_repeat_days)
         if allowed_repeat_days <= 0 or (normal_limit > 1 and not practical):
-            model.Add(sum(variables[index] for index in indices) <= normal_limit)
+            count = sum(variables[index] for index in indices)
+            model.Add(count <= normal_limit)
+            # An explicit daily_max=2 is permission, not a target. The first
+            # feasibility pass stays small, while any quality-enabled pass
+            # pays a large cost for an avoidable Algebra+Algebra day.
+            if quality_enabled and normal_limit > 1:
+                repeat = model.NewBoolVar(
+                    f"optional_repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
+                )
+                model.Add(count <= 1 + (normal_limit - 1) * repeat)
+                model.Add(count >= 2 * repeat)
+                repeat_terms.append(repeat)
             continue
         repeat = model.NewBoolVar(f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}")
         count = sum(variables[index] for index in indices)
@@ -1042,6 +1068,9 @@ def _build_model(
         model.Add(count <= 1 + repeat)
         model.Add(count >= 2 * repeat)
         repeat_bools[(class_id, subject, phase)].append(repeat)
+        repeat_group_limits[(class_id, subject, phase)] = int(
+            allowed_repeat_days
+        )
         (practical_repeat_terms if practical else repeat_terms).append(repeat)
         if practical:
             # If the practical fan occurs twice on this day, the two selected
@@ -1056,11 +1085,12 @@ def _build_model(
                     if abs(int(left["period"]) - int(right["period"])) != 1:
                         model.Add(variables[left_index] + variables[right_index] <= 1)
     for (class_id, subject, phase), booleans in repeat_bools.items():
-        limit = (
+        limit = int(repeat_group_limits.get(
+            (class_id, subject, phase),
             practical_repeat_day_limit
             if subject_is_practical.get((class_id, subject))
-            else repeat_day_limit
-        )
+            else repeat_day_limit,
+        ))
         model.Add(sum(booleans) <= limit)
 
     # Daily limit is a real-day limit: an A/B-only lesson is still one full
@@ -1634,6 +1664,8 @@ def validate_candidate_selection(
                     subject, jobs[job_index].get("daily_max") or 1
                 )
             ))
+            if 1 <= _grade(jobs[job_index], context) <= 4:
+                row_daily_limit = 1
             subject_limits[(row["class_id"], subject)] = min(
                 subject_limits.get(
                     (row["class_id"], subject),
@@ -1685,10 +1717,18 @@ def validate_candidate_selection(
     practical_repeat_limit = max(
         0, int(context.get("practical_repeat_day_limit", 1))
     )
+    effective_repeat_limits: dict[tuple[int, str], int] = {}
     for (class_id, subject, day, phase), count in subject_counts.items():
         daily_max = int(subject_limits.get((class_id, subject), 1))
         practical = bool(subject_practical.get((class_id, subject)))
         allowed_repeat_days = practical_repeat_limit if practical else repeat_limit
+        # Keep this contract identical to ``_build_model``: strict mode
+        # forbids an implicit practical double when daily_max=1, while an
+        # administrator's explicit daily_max>=2 still permits exactly one
+        # adjacent practical double-day.
+        if practical and daily_max > 1:
+            allowed_repeat_days = max(1, allowed_repeat_days)
+        effective_repeat_limits[(class_id, subject)] = int(allowed_repeat_days)
         allowed = max(daily_max, 2 if allowed_repeat_days else daily_max)
         if practical:
             allowed = min(2, allowed)
@@ -1703,7 +1743,10 @@ def validate_candidate_selection(
                     f"Sinf {class_id} {subject}: {day}-kun {phase} amaliy juft dars yonma-yon emas"
                 )
     for key, count in repeat_days.items():
-        limit = practical_repeat_limit if subject_practical.get(key[:2]) else repeat_limit
+        limit = int(effective_repeat_limits.get(
+            key[:2],
+            practical_repeat_limit if subject_practical.get(key[:2]) else repeat_limit,
+        ))
         if count > limit:
             errors.append(f"Sinf/fan {key}: takror kunlari {count}>{limit}")
     core_limit = max(0, int(context.get("core_period6_day_limit", 2)))
@@ -2152,6 +2195,115 @@ def solve_exact_timetable(
                 "message": "Exact natija mustaqil hard-validator tekshiruvidan o'tmadi.",
                 "validation_errors": validation_errors,
             }, time.monotonic() - started)
+
+        objective_value = (
+            float(solver.ObjectiveValue()) if bundle.has_objective else 0.0
+        )
+        best_bound = (
+            float(solver.BestObjectiveBound()) if bundle.has_objective else 0.0
+        )
+        # Feasibility is never sacrificed for comfort. Once the first full
+        # hard-safe timetable exists, a short second CP-SAT pass receives that
+        # exact timetable as a complete hint and may globally rearrange all
+        # classes. This is what lets Algebra+Algebra trade with the same
+        # teacher's Geometry lesson even when it belongs to another class.
+        if feasibility_only and bool(context.get("exact_quality_after_feasible")):
+            try:
+                requested_quality_seconds = max(
+                    0.0, float(context.get("exact_quality_seconds") or 2.0)
+                )
+            except (TypeError, ValueError):
+                requested_quality_seconds = 2.0
+            remaining_before_build = (
+                numeric_max_seconds - (time.monotonic() - started)
+            )
+            if requested_quality_seconds > 0 and remaining_before_build >= 0.75:
+                quality_bundle, quality_empty = _build_model(
+                    job_list,
+                    context,
+                    selected_adapter,
+                    relax_method=False,
+                    feasibility_only=False,
+                )
+                remaining_after_build = (
+                    numeric_max_seconds - (time.monotonic() - started)
+                )
+                quality_seconds = min(
+                    requested_quality_seconds,
+                    max(0.0, remaining_after_build - 0.15),
+                )
+                if (
+                    quality_bundle is not None
+                    and quality_bundle.has_objective
+                    and not quality_empty
+                    and quality_seconds >= 0.20
+                ):
+                    hinted_indices: set[int] = set()
+                    complete_hint = True
+                    for job_index, incumbent in enumerate(chosen):
+                        incumbent_signature = _candidate_hard_signature(incumbent)
+                        matches = [
+                            index for index in quality_bundle.by_job[job_index]
+                            if _candidate_hard_signature(
+                                quality_bundle.candidates[index]
+                            ) == incumbent_signature
+                        ]
+                        if len(matches) != 1:
+                            complete_hint = False
+                            break
+                        hinted_indices.add(matches[0])
+                    if complete_hint:
+                        for index, variable in enumerate(quality_bundle.variables):
+                            quality_bundle.model.AddHint(
+                                variable, 1 if index in hinted_indices else 0
+                            )
+                        quality_context = dict(context)
+                        quality_context["exact_stop_after_first_solution"] = False
+                        quality_solver = _new_solver(
+                            seed ^ 0x21_09_51,
+                            quality_seconds,
+                            quality_context,
+                        )
+                        quality_raw_status = quality_solver.Solve(
+                            quality_bundle.model
+                        )
+                        quality_status = _model_status_name(quality_raw_status)
+                        diagnostics["quality_refinement"] = {
+                            "status": quality_status,
+                            "seconds": round(float(quality_solver.WallTime()), 6),
+                            "incumbent_hint_complete": True,
+                        }
+                        if quality_status in {FEASIBLE, OPTIMAL}:
+                            refined_placements, refined_chosen = _extract_placements(
+                                quality_bundle, quality_solver
+                            )
+                            refined_errors = validate_candidate_selection(
+                                job_list, refined_chosen, context
+                            )
+                            if not refined_errors:
+                                placements, chosen = (
+                                    refined_placements, refined_chosen
+                                )
+                                objective_value = float(
+                                    quality_solver.ObjectiveValue()
+                                )
+                                best_bound = float(
+                                    quality_solver.BestObjectiveBound()
+                                )
+                                diagnostics["quality_optimized"] = True
+                                diagnostics["quality_refinement"][
+                                    "validator_passed"
+                                ] = True
+                            else:
+                                diagnostics["quality_refinement"][
+                                    "validation_errors"
+                                ] = refined_errors[:20]
+                    else:
+                        diagnostics["quality_refinement"] = {
+                            "status": "SKIPPED",
+                            "reason": "incumbent candidate hint yagona emas",
+                            "incumbent_hint_complete": False,
+                        }
         state = state_builder(placements, context) if callable(state_builder) else {"placements": placements}
         diagnostics["message"] = "Barcha dars aynan bir marta joylashtirildi va hard-validator tasdiqladi."
         diagnostics["validator_passed"] = True
@@ -2160,12 +2312,8 @@ def solve_exact_timetable(
             "placements": placements, "state": state,
             "recommendations": [], "metod_kuni_istisno_tavsiyalari": [],
             "diagnostics": diagnostics,
-            "objective_value": (
-                float(solver.ObjectiveValue()) if bundle.has_objective else 0.0
-            ),
-            "best_bound": (
-                float(solver.BestObjectiveBound()) if bundle.has_objective else 0.0
-            ),
+            "objective_value": objective_value,
+            "best_bound": best_bound,
             "wall_time_seconds": round(time.monotonic() - started, 6),
         }
     except (TypeError, ValueError, KeyError) as error:
