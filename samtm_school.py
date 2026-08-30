@@ -19,7 +19,7 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-NO-QUALITY-ROLLBACK-V22.18"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-2PLUS2PLUS1-SATURDAY5-V22.20"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -3854,12 +3854,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # objective, the remaining search is devoted to teacher work-day,
             # internal-window and cross-shift waiting minimization.  The first
             # feasibility incumbent remains available if this ideal quality
-            # model cannot be solved in time.
-            # Class balance must remain a dominant soft tier.  Making every
-            # class floor/ceil bound hard caused one impossible class to reject
-            # the whole quality pass, leaving the raw feasibility timetable
-            # (5-hour teachers on five days and multi-hour windows) untouched.
-            exact_context["exact_enforce_balanced_class_days"] = False
+            # model cannot be solved in time. Teacher work-day ranges are now
+            # soft, so they cannot make this class-balanced model infeasible.
+            exact_context["exact_enforce_balanced_class_days"] = True
             exact_context["exact_compact_subject_repeats"] = True
             exact_context["exact_quality_seconds"] = 2.5
             # V22.8: katta maktabda global balans va smenalararo kutishni
