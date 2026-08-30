@@ -103,12 +103,12 @@ except Exception:
 
 
 def _v220_generation_budget_seconds():
-    """Return the single HTTP-safe search budget used by API and frontend."""
+    """Return the long feasibility budget used by API and frontend."""
     try:
-        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "24"))
+        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "600"))
     except (TypeError, ValueError):
-        value = 24.0
-    return max(12.0, min(26.0, value))
+        value = 600.0
+    return max(300.0, min(600.0, value))
 
 def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
     """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
@@ -3818,7 +3818,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             exact_context["teachers"] = teachers
             exact_context["max_subject_repeat_days"] = 2
             exact_context["practical_repeat_day_limit"] = 1
-            exact_context["core_period6_day_limit"] = 2
+            exact_context["core_period6_day_limit"] = 6
             exact_context["allow_fixed_class_hour_method_exception"] = True
             exact_context["v208_mode_config"] = dict(
                 _timetable_mode_config()
@@ -3859,16 +3859,19 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # feasibility incumbent remains available if this ideal quality
             # model cannot be solved in time. Teacher work-day ranges are now
             # soft, so they cannot make this class-balanced model infeasible.
-            exact_context["exact_enforce_balanced_class_days"] = True
+            exact_context["exact_enforce_balanced_class_days"] = False
             # O'qituvchi oynalari ham birinchi exact yechimning hard qoidasi:
             # bir smena ichida ko'pi bilan 2 bo'sh dars, ikki smena orasida
             # esa ko'pi bilan 120 daqiqa kutish.
-            exact_context["exact_enforce_teacher_window_limits"] = True
+            exact_context["exact_enforce_teacher_window_limits"] = False
+            # Faqat to'liq jadval topilgandan keyin sifat modeli ishlaydi.
+            # 5 soatlik fan 2+2+1 kabi yig'ilishi mumkin, ammo bir sinfda
+            # bitta fan bir kunda hech qachon 3 soat bo'lmaydi.
             exact_context["exact_compact_subject_repeats"] = True
-            exact_context["exact_quality_seconds"] = 2.5
+            exact_context["exact_quality_seconds"] = 300.0
             # V22.8: katta maktabda global balans va smenalararo kutishni
             # real yaxshilash uchun, umumiy hard byudjet ichida qo'shimcha vaqt.
-            exact_context["exact_quality_extension_seconds"] = 16.5
+            exact_context["exact_quality_extension_seconds"] = 0.0
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
@@ -11981,6 +11984,7 @@ def _v205_teacher_template_workbook(payload):
     wb = openpyxl.Workbook()
     guide = wb.active
     guide.title = "YO'RIQNOMA"
+    teachers_sheet = wb.create_sheet("OQITUVCHILAR")
     sheet = wb.create_sheet("OQITUVCHI_YUKLAMASI")
     control = wb.create_sheet("SINF_NAZORATI")
     lists = wb.create_sheet("ROYXATLAR")
@@ -11994,13 +11998,14 @@ def _v205_teacher_template_workbook(payload):
     guide["A1"].fill = PatternFill("solid", fgColor=navy)
     guide["A1"].alignment = Alignment(horizontal="center", vertical="center")
     guide.merge_cells("A4:I4")
-    guide["A4"] = "Faqat OQITUVCHI_YUKLAMASI varag‘ini to‘ldiring. Har qator saytdagi bitta fan–sinf–guruh qatoriga teng."
+    guide["A4"] = "OQITUVCHILAR varag‘ida har o‘qituvchi bir marta, OQITUVCHI_YUKLAMASI varag‘ida esa uning har bir fan–sinf–guruh darsi alohida qatorda turadi."
     guide["A4"].fill = PatternFill("solid", fgColor=sky)
     guide["A4"].font = Font(bold=True, color=navy)
     guide["A4"].alignment = Alignment(wrap_text=True, vertical="center")
     guide.row_dimensions[4].height = 34
     rules = [
-        ("Bir o‘qituvchi", "F.I.Sh. bir xil yozilsa, barcha qator bitta o‘qituvchiga birlashadi; dublikat yaratilmaydi."),
+        ("Bir o‘qituvchi — ko‘p sinf", "Masalan, bitta o‘qituvchi 15 ta sinfga kirsa, F.I.Sh. 15 qatorda aynan bir xil yoziladi. Import ularni bitta o‘qituvchiga birlashtiradi."),
+        ("Yangi o‘qituvchi", "Saytda saqlangandan keyin shablonni qayta yuklang: u OQITUVCHILAR ro‘yxatida va barcha yuklama qatorlari bilan darhol chiqadi."),
         ("Sinf rahbari", "Rahbar bo‘lgan sinfni yozing, aks holda bo‘sh qoldiring."),
         ("Butun sinf", "Ta’lim turi = Butun sinf va Guruh = whole."),
         ("Guruhli fan", "Har guruh alohida qator: saytdagi ROYXATLAR varag‘idagi guruh nomini tanlang."),
@@ -12036,6 +12041,41 @@ def _v205_teacher_template_workbook(payload):
     variants = {(int(row["sinf_id"]), str(row["guruh_kaliti"])): row for row in payload.get("guruh_variantlari") or []}
     room_by_id = {int(row["id"]): str(row.get("nomi") or "") for row in payload.get("xonalar") or []}
     existing = sorted(payload.get("birikmalar") or [], key=lambda row: (str(row.get("full_name") or "").casefold(), class_by_id.get(int(row["sinf_id"]), ""), str(row.get("fan_nomi") or "")))
+    loads_by_teacher = {}
+    for item in existing:
+        loads_by_teacher.setdefault(int(item["user_id"]), []).append(item)
+
+    teachers_sheet.merge_cells("A1:G2")
+    teachers_sheet["A1"] = "O‘QITUVCHILAR — HAR BIRI BITTA QATORDA"
+    teachers_sheet["A1"].font = Font(size=16, bold=True, color="FFFFFF")
+    teachers_sheet["A1"].fill = PatternFill("solid", fgColor=navy)
+    teachers_sheet["A1"].alignment = Alignment(horizontal="center", vertical="center")
+    teachers_sheet.append(["F.I.Sh.", "Yuklama qatori", "Haftalik jami", "Sinf rahbari", "Fanlar", "Sinflar", "Excel holati"])
+    for cell in teachers_sheet[3]:
+        cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True); cell.border = border
+    teacher_rows = sorted(teacher_by_id.values(), key=lambda row: str(row.get("full_name") or "").casefold())
+    for teacher in teacher_rows:
+        user_id = int(teacher["user_id"])
+        teacher_loads = loads_by_teacher.get(user_id, [])
+        teacher_subjects = sorted({str(row.get("fan_nomi") or "") for row in teacher_loads if row.get("fan_nomi")}, key=str.casefold)
+        teacher_classes = sorted({class_by_id.get(int(row["sinf_id"]), "") for row in teacher_loads}, key=_v1859_sinf_sort_key)
+        teachers_sheet.append([
+            teacher.get("full_name") or "", len(teacher_loads),
+            round(sum(float(row.get("haftalik_soat") or 0) for row in teacher_loads), 1),
+            leader_by_user.get(user_id, ""), ", ".join(teacher_subjects),
+            ", ".join(value for value in teacher_classes if value),
+            "YUKLAMA BOR" if teacher_loads else "YUKLAMA KIRITILMAGAN",
+        ])
+    for row in teachers_sheet.iter_rows(min_row=4, max_row=max(4, teachers_sheet.max_row), min_col=1, max_col=7):
+        for cell in row:
+            cell.border = border; cell.alignment = Alignment(wrap_text=True, vertical="top")
+    teachers_sheet.freeze_panes = "A4"
+    teachers_sheet.auto_filter.ref = f"A3:G{max(3, teachers_sheet.max_row)}"
+    for col, width in zip("ABCDEFG", [30,16,16,16,36,42,24]): teachers_sheet.column_dimensions[col].width = width
+    teachers_sheet.conditional_formatting.add(f"G4:G{max(4, teachers_sheet.max_row)}", FormulaRule(formula=['G4="YUKLAMA BOR"'], fill=PatternFill("solid", fgColor=green)))
+    teachers_sheet.conditional_formatting.add(f"G4:G{max(4, teachers_sheet.max_row)}", FormulaRule(formula=['G4="YUKLAMA KIRITILMAGAN"'], fill=PatternFill("solid", fgColor=amber)))
+
     for item in existing:
         teacher = teacher_by_id.get(int(item["user_id"]), {})
         group = variants.get((int(item["sinf_id"]), str(item.get("guruh_kaliti") or "whole")), {})
@@ -12062,15 +12102,17 @@ def _v205_teacher_template_workbook(payload):
     subjects = list(dict.fromkeys(payload.get("fanlar") or []))
     group_names = list(dict.fromkeys(["whole"] + [str(row.get("guruh_nomi") or row.get("guruh_kaliti")) for row in payload.get("guruh_variantlari") or []]))
     rooms = [str(row.get("nomi") or "") for row in payload.get("xonalar") or [] if row.get("nomi")]
-    lists.append(["SINFLAR", "FANLAR", "GURUHLAR", "XONALAR"])
-    for index in range(max(len(class_names), len(subjects), len(group_names), len(rooms), 1)):
-        lists.append([class_names[index] if index < len(class_names) else None, subjects[index] if index < len(subjects) else None, group_names[index] if index < len(group_names) else None, rooms[index] if index < len(rooms) else None])
+    teacher_names = [str(row.get("full_name") or "") for row in teacher_rows if row.get("full_name")]
+    lists.append(["SINFLAR", "FANLAR", "GURUHLAR", "XONALAR", "O‘QITUVCHILAR"])
+    for index in range(max(len(class_names), len(subjects), len(group_names), len(rooms), len(teacher_names), 1)):
+        lists.append([class_names[index] if index < len(class_names) else None, subjects[index] if index < len(subjects) else None, group_names[index] if index < len(group_names) else None, rooms[index] if index < len(rooms) else None, teacher_names[index] if index < len(teacher_names) else None])
     for cell in lists[1]: cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
-    for col in "ABCD": lists.column_dimensions[col].width = 32
+    for col in "ABCDE": lists.column_dimensions[col].width = 32
     def add_list_validation(column, formula):
         dv = DataValidation(type="list", formula1=formula, allow_blank=True)
         sheet.add_data_validation(dv); dv.add(f"{column}4:{column}503")
     add_list_validation("B", "'ROYXATLAR'!$A$2:$A$%d" % (len(class_names) + 1))
+    if teacher_names: add_list_validation("A", "'ROYXATLAR'!$E$2:$E$%d" % (len(teacher_names) + 1))
     add_list_validation("C", "'ROYXATLAR'!$A$2:$A$%d" % (len(class_names) + 1))
     add_list_validation("D", "'ROYXATLAR'!$B$2:$B$%d" % (len(subjects) + 1))
     add_list_validation("E", '"Butun sinf,Guruh"')
@@ -12102,7 +12144,7 @@ def v205_teacher_template_download(token: str, maktab_id: int):
         wb = _v205_teacher_template_workbook(_v192_matrix_payload(cur, maktab_id))
         stream = _V205BytesIO(); wb.save(stream); stream.seek(0)
         filename = "SAMTM_OQITUVCHI_AQLLI_SHABLON.xlsx"
-        return _V205StreamingResponse(stream, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", headers={"Content-Disposition": f'attachment; filename="{filename}"'})
+        return _V205StreamingResponse(stream, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", headers={"Content-Disposition": f'attachment; filename="{filename}"', "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0"})
     finally:
         cur.close(); conn.close()
 
