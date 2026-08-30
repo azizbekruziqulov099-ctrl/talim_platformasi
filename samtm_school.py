@@ -18,7 +18,7 @@ except ImportError:  # Railway working directory may be backend/
 
 import time as _samtm_time
 
-# V21.6 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
+# V21.7 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
 # yashirincha qaytmaydi: bitta kanonik generator — exact CP-SAT. Shu orqali
 # deploydagi yetishmagan dependency darhol aniq ko'rinadi va eski/qisman
@@ -79,8 +79,8 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.4-EXACT-RESIDUAL-COMPLETION"
-SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.6"
+SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V2.5-EXACT-SAFETY-DIAGNOSTICS"
+SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V21.7"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -3011,7 +3011,7 @@ _V205_SCHEDULE_RULES = [
     "Bitta sinf bir vaqtda faqat bitta dars paketida bo'ladi; guruhli fanlar esa shu katak ichida parallel ko'rsatiladi.",
     "Bitta o'qituvchi bir xil real vaqtda, smenasi boshqa bo'lsa ham, ikki sinfga qo'yilmaydi.",
     "Guruhli fanlarning barcha guruhlari uchun sinf va tegishli o'qituvchilar bir vaqtda bo'sh bo'lishi shart.",
-    "O'qituvchining qizil kuni/soati va qattiq BAND vaqti oddiy darslar uchun yopiq; faqat administrator tanlagan qat'iy KELAJAK SOATI katagi istisno.",
+    "O'qituvchining qizil kuni/soati va qattiq BAND vaqti barcha darslar, jumladan KELAJAK SOATI uchun ham qat'iy yopiq.",
     "Metod kuni oddiy darslar uchun yopiq; faqat oldindan qat'iy belgilangan KELAJAK SOATI sinf rahbariga istisno.",
     "KELAJAK SOATI tanlangan kun va dars raqamiga qat'iy joylashtiriladi; boshqa vaqtga surilmaydi.",
     "Sinf faqat o'z smenasida va shu smena uchun yaratilgan mavjud dars raqamlariga joylashtiriladi.",
@@ -4374,27 +4374,16 @@ def _v209_integrity_failure_detail(errors):
 def _v216_exact_candidate_filter(
     job, day, period, teachers, room_keys, context
 ):
-    """Exact model domenini faol Python hard-qoidalari bilan ham tekshiradi.
+    """Deprecated compatibility hook; exact hard rules live in exact.py.
 
-    CP-SAT o'zining global sinf/o'qituvchi/xona cheklovlarini quradi. Bu filter
-    esa fayl oxirida faol bo'ladigan wrapperlarni ham chaqirib, yangi statik
-    qoida keyin qo'shilsa exact domen chetlab o'tmasligini ta'minlaydi. Holat
-    ataylab bo'sh: global kolliziyalar modelning o'zida birgalikda yechiladi.
+    Legacy ``_v1852_candidate_reasons`` ni bu yerdan chaqirish mumkin emas:
+    uning final wrapperi period-5 og'ir fan kabi completionda yumshaydigan
+    pedagogik tavsiyalarni ham kandidat domenidan chiqaradi. Exact adapterning
+    ``candidate_hard_violations`` qo'riqchisi qizil/BAND, metod, fixed slot,
+    smena va o'qituvchi oralig'ini mustaqil tekshiradi; global model esa
+    sinf/o'qituvchi/xona kolliziyasini qattiq saqlaydi.
     """
-    strict_context = context
-    if str((context or {}).get("v207_policy_stage") or "strict") != "strict":
-        strict_context = dict(context or {})
-        strict_context["v207_policy_stage"] = "strict"
-    empty_state = _v1852_new_schedule_state()
-    return list(_v1852_candidate_reasons(
-        job,
-        int(day),
-        int(period),
-        list(teachers or []),
-        list(room_keys or []),
-        empty_state,
-        strict_context,
-    ))
+    return []
 
 
 def _v216_exact_job_key(job):
@@ -4562,16 +4551,184 @@ def _v216_method_day_recommendations(raw_rows, context, teachers):
     return result
 
 
-def _v216_exact_failure_detail(status, exact_result, recommendations):
+def _v217_exact_failure_problems(exact_result, classes, teachers, status=None):
+    """Exact diagnostikani frontend tushunadigan, hech qachon bo'sh bo'lmagan ro'yxatga aylantiradi."""
+    diagnostics = dict((exact_result or {}).get("diagnostics") or {})
+    classes = classes or {}
+    teachers = teachers or {}
+    problems = []
+
+    def class_name(class_id):
+        row = classes.get(int(class_id or 0), {}) or {}
+        grade = str(row.get("sinf") or "").strip()
+        letter = str(row.get("harf") or "").strip()
+        return f"{grade}-{letter}".strip("-") or str(class_id or "Noma'lum")
+
+    def teacher_rows(teacher_ids):
+        rows = []
+        for teacher_id in teacher_ids or []:
+            try:
+                teacher_id = int(teacher_id)
+            except (TypeError, ValueError):
+                continue
+            rows.append({
+                "user_id": teacher_id,
+                "full_name": str(
+                    (teachers.get(teacher_id) or {}).get("full_name")
+                    or teacher_id
+                ),
+            })
+        return rows
+
+    for item in list(diagnostics.get("empty_domains") or []):
+        item = dict(item or {})
+        class_id = item.get("sinf_id")
+        label = class_name(class_id)
+        fixed_day = int(item.get("fixed_day") or 0)
+        fixed_period = int(item.get("fixed_period") or 0)
+        fixed_text = (
+            f" Dars {_V1852_HAFTA.get(fixed_day, fixed_day)} kuni "
+            f"{fixed_period}-darsga qat'iy biriktirilgan."
+            if fixed_day and fixed_period else ""
+        )
+        problem_teachers = teacher_rows(item.get("teacher_ids") or [])
+        problems.append({
+            "raqam": len(problems) + 1,
+            "sarlavha": f"{label} sinf · {item.get('fan') or 'Dars'}",
+            "sinf": label,
+            "sinf_id": class_id,
+            "fan": item.get("fan") or "Dars",
+            "smena": int(item.get("smena") or 1),
+            "takror_raqami": int(item.get("takror_raqami") or 1),
+            "oqituvchilar": problem_teachers,
+            "sabablar": [{
+                "sabab": "legal katak qolmagan",
+                "izoh": (
+                    "Bu dars uchun smena, sinf kuni, o'qituvchi qizil/BAND, "
+                    "metod kuni va ruxsat etilgan dars oralig'idan o'tadigan "
+                    "bitta ham katak qolmagan." + fixed_text
+                ),
+                "yechim": (
+                    "Agar bu qat'iy Kelajak/Sinf soati bo'lsa uning tanlangan "
+                    "kun-soatini tekshiring. Oddiy fan bo'lsa ko'rsatilgan "
+                    "o'qituvchining metod kuni va BAND vaqtlarini tekshiring."
+                ),
+            }],
+        })
+
+    for conflict in list(diagnostics.get("hard_conflicts") or []):
+        conflict = dict(conflict or {})
+        kind = str(conflict.get("kind") or "global_resource_cycle")
+        teacher_id = conflict.get("teacher_id")
+        if kind == "teacher_capacity":
+            title = f"O'qituvchi sig'imi · {conflict.get('teacher_name') or teacher_id}"
+            label = "O'qituvchi sig'imi"
+            fan = str(conflict.get("teacher_name") or teacher_id or "O'qituvchi")
+            linked_teachers = teacher_rows([teacher_id])
+        elif kind == "class_capacity":
+            label = str(conflict.get("class_name") or class_name(conflict.get("class_id")))
+            title = f"{label} sinf · haftalik sig'im"
+            fan = "Haftalik sig'im"
+            linked_teachers = []
+        elif kind == "fixed_collision":
+            label = str(conflict.get("class_name") or "Qat'iy darslar")
+            title = f"Qat'iy vaqt to'qnashuvi · {conflict.get('resource') or label}"
+            fan = "Qat'iy vaqt to'qnashuvi"
+            linked_teachers = []
+        else:
+            label = "Butun jadval"
+            title = "Butun jadval · global resurs ziddiyati"
+            fan = "Global resurs ziddiyati"
+            linked_teachers = []
+        problems.append({
+            "raqam": len(problems) + 1,
+            "sarlavha": title,
+            "sinf": label,
+            "sinf_id": conflict.get("class_id"),
+            "fan": fan,
+            "oqituvchilar": linked_teachers,
+            "sabablar": [{
+                "sabab": kind,
+                "izoh": str(
+                    conflict.get("message")
+                    or "Qattiq resurs cheklovlari bir vaqtda ziddiyat qilgan."
+                ),
+                "yechim": str(
+                    conflict.get("solution")
+                    or "O'qituvchi qat'iy vaqtlarini va oldindan qotirilgan darslarni tekshiring."
+                ),
+            }],
+            "isbot": {
+                key: conflict.get(key)
+                for key in (
+                    "phase", "required_lessons", "available_lessons",
+                    "shortage", "method_days", "day", "period",
+                )
+                if conflict.get(key) is not None
+            },
+        })
+
+    if not problems:
+        normalized_status = str(
+            status or (exact_result or {}).get("status") or "UNKNOWN"
+        ).upper()
+        proven = normalized_status == "INFEASIBLE"
+        model_invalid = normalized_status == "MODEL_INVALID"
+        technical_detail = "; ".join(
+            str(value) for value in diagnostics.get("validation_errors") or []
+        ) or str(diagnostics.get("exception") or "Model texnik tekshiruvdan o'tmadi.")
+        problems.append({
+            "raqam": 1,
+            "sarlavha": (
+                "Butun jadval · global resurs ziddiyati"
+                if proven else
+                "Exact model · texnik tekshiruv xatosi"
+                if model_invalid else
+                "Butun jadval · qidiruv xulosasi yakunlanmadi"
+            ),
+            "sinf": "Butun jadval",
+            "fan": (
+                "Global resurs ziddiyati" if proven else
+                "Model tekshiruvi" if model_invalid else
+                "Qidiruv diagnostikasi"
+            ),
+            "oqituvchilar": [],
+            "sabablar": [{
+                "sabab": (
+                    "global qattiq ziddiyat" if proven else
+                    "model texnik xatosi" if model_invalid else
+                    "global sabab ajratilmadi"
+                ),
+                "izoh": ((
+                    "Har bir darsda alohida legal katak bo'lishi mumkin, ammo "
+                    "ularni sinf, o'qituvchi va xona real-vaqt "
+                    "to'qnashuvlarisiz birgalikda tanlab bo'lmadi."
+                ) if proven else technical_detail if model_invalid else (
+                    "Qidiruv vaqt chegarasida tugadi; bu jadval imkonsiz "
+                    "degan isbot emas va taxminiy qattiq ziddiyat ko'rsatilmaydi."
+                )),
+                "yechim": (
+                    "Metod-kuni bo'yicha isbotlangan tavsiya chiqsa faqat o'sha "
+                    "katakni ko'rib chiqing; aks holda qayta qidirish mumkin."
+                ),
+            }],
+        })
+    return problems[:100]
+
+
+def _v216_exact_failure_detail(
+    status, exact_result, recommendations, classes=None, teachers=None
+):
     """CP-SAT statusini foydalanuvchiga yolg'onsiz, kanonik ko'rinishda beradi."""
     normalized = str(status or "UNKNOWN").upper()
     proof_complete = normalized == "INFEASIBLE"
     if normalized == "INFEASIBLE":
         code = "QAT_IY_QOIDALARDA_YECHIM_YOQ"
         message = (
-            "Exact solver qizil/BAND, metod kuni, smena, sinf, o'qituvchi "
-            "va xona qoidalarining barchasini saqlagan holda to'liq jadval "
-            "mavjud emasligini isbotladi. Hech qanday yarim draft saqlanmadi."
+            "Exact solver qizil/BAND, metod kuni, qat'iy dars, smena hamda "
+            "sinf/o'qituvchi/xona real-vaqt xavfsizlik qoidalarini saqlagan "
+            "holda to'liq jadval topilmasligini isbotladi. Quyida aniq "
+            "sig'im yoki ziddiyat ko'rsatilgan; yarim draft saqlanmadi."
         )
         retry = False
     elif normalized == "MODEL_INVALID":
@@ -4589,25 +4746,56 @@ def _v216_exact_failure_detail(status, exact_result, recommendations):
             "imkonsizlikni ham isbotlamadi. Qisman natija saqlanmadi."
         )
         retry = True
+    problems = _v217_exact_failure_problems(
+        exact_result, classes or {}, teachers or {}, normalized
+    )
+    exact_diagnostics = dict((exact_result or {}).get("diagnostics") or {})
+    method_analysis = dict(
+        exact_diagnostics.get("metod_kuni_tahlili") or {}
+    )
+    method_status = str(method_analysis.get("status") or "NOT_RUN").upper()
+    if recommendations:
+        method_explanation = (
+            "Alohida relaxed exact tekshiruv qizil/BAND vaqtlarini saqlagan "
+            "holda quyidagi 1–2 metod katagi yordam berishini to'liq jadval "
+            "bilan tasdiqladi; istisno avtomatik qo'llanmadi."
+        )
+    elif method_status == "UNKNOWN":
+        method_explanation = (
+            "Metod-kuni bo'yicha alohida tekshiruv vaqt chegarasida xulosa "
+            "bermadi. Bo'sh tavsiya 'yordam bermaydi' degan isbot emas."
+        )
+    elif method_status == "ERROR":
+        method_explanation = (
+            "Metod-kuni diagnostikasida texnik xato qaytdi; shu sabab taxminiy "
+            "katak tavsiya qilinmadi."
+        )
+    elif method_status == "INFEASIBLE":
+        method_explanation = (
+            "Qizil/BANDni saqlab ko'pi bilan ikki metod katagini ochadigan "
+            "alohida model ham to'liq jadval topolmasligini isbotladi."
+        )
+    elif method_status == "NOT_NEEDED":
+        method_explanation = "Qattiq metod kuni belgilanmagan; metod istisnosi kerak emas."
+    else:
+        method_explanation = (
+            "Qizil/BAND vaqtlarini saqlab 1–2 metod katagi bilan to'liq yechim "
+            "tasdiqlanmadi; taxminiy istisno berilmadi."
+        )
     return {
         "code": code,
         "solver_status": normalized,
         "proof_complete": proof_complete,
         "message": message,
         "qayta_urinish_mumkin": retry,
+        "muammolar": problems,
+        "joylashtirilmagan": len(problems),
         "joylashtirilgan_qisman_natija_saqlanmadi": True,
         "metod_kuni_istisno_tavsiyalari": list(recommendations or [])[:2],
-        "metod_kuni_tavsiya_izohi": (
-            "Alohida relaxed exact tekshiruv qizil/BAND vaqtlarini saqlagan "
-            "holda quyidagi 1–2 metod katagi yordam berishini to'liq jadval "
-            "bilan tasdiqladi; istisno avtomatik qo'llanmadi."
-            if recommendations else
-            "Qizil/BAND vaqtlarini saqlab faqat 1–2 metod katagini ochish "
-            "bilan to'liq yechim hosil bo'lishi isbotlanmadi; shu sabab "
-            "taxminiy istisno tavsiya qilinmadi."
-        ),
+        "metod_kuni_tavsiya_izohi": method_explanation,
+        "metod_kuni_tahlili": method_analysis,
         "avtomatik_yumshatish": False,
-        "diagnostika": dict((exact_result or {}).get("diagnostics") or {}),
+        "diagnostika": exact_diagnostics,
     }
 
 
@@ -4712,10 +4900,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "practical_repeat_day_limit": 1,
             "core_period6_day_limit": 2,
             "practical_min_period": 2,
-            # Bu umumiy yumshatish emas: administrator oldindan tanlagan
-            # KELAJAK SOATI fixed_day+fixed_period katagigagina eski kanonik
-            # istisno tatbiq etiladi. Oddiy darsda qizil/metod qat'iy yopiq.
-            "allow_fixed_class_hour_availability_exception": True,
+            # Administrator oldindan tanlagan KELAJAK/SINF SOATI aniq
+            # fixed_day+fixed_period katagida metod kunidan o'tishi mumkin.
+            # Qizil/BAND esa bu maxsus dars uchun ham qat'iy yopiq qoladi.
+            "allow_fixed_class_hour_method_exception": True,
             # Actionable hisobotga availability qatorining id/turi kerak.
             # Generatorning hot-path'i setlardan foydalanishda davom etadi.
             "availability_rows": [dict(row) for row in availability_rows],
@@ -4809,9 +4997,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             exact_context["max_subject_repeat_days"] = 2
             exact_context["practical_repeat_day_limit"] = 1
             exact_context["core_period6_day_limit"] = 2
-            exact_context[
-                "allow_fixed_class_hour_availability_exception"
-            ] = True
+            exact_context["allow_fixed_class_hour_method_exception"] = True
             exact_context["v208_mode_config"] = dict(
                 _timetable_mode_config()
             )
@@ -4819,6 +5005,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # (qizil/BANDni ochmaydigan) metod-istisno modelini aynan bir marta
             # chaqirib, tavsiyani result ichida qaytaradi.
             exact_context["exact_analyze_method_relaxation"] = True
+            exact_context["exact_relaxation_seconds"] = 4.0
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     8,
@@ -4826,14 +5013,19 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 ))
             except (TypeError, ValueError):
                 exact_context["exact_num_workers"] = 4
-            exact_context["exact_candidate_filter"] = (
-                _v216_exact_candidate_filter
-            )
+            # Exact adapter + mustaqil hard-validator qizil/BAND, metod,
+            # fixed kun-soat, smena, sinf kuni, o'qituvchi oralig'i va barcha
+            # real-vaqt kolliziyalarini o'zi qattiq tekshiradi. Eski greedy
+            # ``_v1852_candidate_reasons`` wrapperini bu yerga ulash mumkin
+            # emas: u boshlang'ich sinfdagi 5-dars og'ir fan kabi completionda
+            # ataylab yumshaydigan pedagogik tavsiyani ham ``strict`` deb
+            # kandidat domenidan butunlay chiqarib, soxta INFEASIBLE yaratadi.
+            exact_context.pop("exact_candidate_filter", None)
             # Hisobot, final validator va SQL yozishga rezerv qoladi. Solver
             # FEASIBLE topsa barcha job aynan bir marta joylashgan bo'lishi shart.
             exact_max_seconds = max(3.0, generation_budget - 6.0)
             print(
-                "[JADVAL-EXACT-V21.6] strict qidiruv boshlandi "
+                "[JADVAL-EXACT-V21.7] safety-first exact qidiruv boshlandi "
                 f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
                 f"limit={exact_max_seconds:.1f}s red_metod=QAT_IY",
                 flush=True,
@@ -4850,7 +5042,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             except (ImportError, ModuleNotFoundError) as exact_import_error:
                 if "ortools" in str(exact_import_error).casefold():
                     print(
-                        "[JADVAL-EXACT-V21.6] OR-Tools topilmadi; "
+                        "[JADVAL-EXACT-V21.7] OR-Tools topilmadi; "
                         "jadval yaratish to'xtatildi: " + str(exact_import_error),
                         flush=True,
                     )
@@ -4937,7 +5129,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
                             "best_bound": exact_result.get("best_bound"),
                             "wall_time_seconds": exact_solver_wall_time,
                             "strict_red_method": True,
-                            "fixed_class_hour_exception": True,
+                            "fixed_class_hour_method_exception": True,
+                            "fixed_class_hour_red_exception": False,
                             "automatic_relaxation": False,
                         }
                         exact_state["class_gap_count"] = (
@@ -4973,7 +5166,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         ), exact_result_tuple)
                         completed_attempts = 1
                         print(
-                            "[JADVAL-EXACT-V21.6] to'liq natija "
+                            "[JADVAL-EXACT-V21.7] to'liq natija "
                             f"maktab_id={sorov.maktab_id} "
                             f"status={exact_solver_status} "
                             f"joylashdi={len(exact_state.get('placements') or [])}/"
@@ -5061,9 +5254,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         exact_solver_status,
                         exact_result,
                         recommendation_rows,
+                        classes,
+                        teachers,
                     )
                     print(
-                        "[JADVAL-EXACT-V21.6] strict natija saqlanmadi "
+                        "[JADVAL-EXACT-V21.7] exact natija saqlanmadi "
                         f"maktab_id={sorov.maktab_id} "
                         f"status={failure_detail['solver_status']} "
                         f"proof={failure_detail['proof_complete']} "
@@ -5081,7 +5276,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     )
         else:
             print(
-                "[JADVAL-EXACT-V21.6] OR-Tools mavjud emas; "
+                "[JADVAL-EXACT-V21.7] OR-Tools mavjud emas; "
                 "jadval yaratish to'xtatildi"
                 + (
                     f": {_V216_EXACT_IMPORT_ERROR}"
@@ -5544,7 +5739,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "qat_iy_qoidalar": {
                 "qizil_band": True,
                 "metod_kuni": True,
-                "fixed_kelajak_soati_istisnosi": True,
+                "fixed_kelajak_soati_metod_istisnosi": True,
+                "fixed_kelajak_soati_qizil_istisnosi": False,
                 "avtomatik_yumshatish": False,
             },
             "generator_rejimi": 1,
@@ -7118,6 +7314,13 @@ def v1866_class_hour_bulk_save(sorov: V1866ClassHourBulk, token: str):
         }
         shift_intervals = _v1866_shift_interval_map(shift_rows)
         class_day_map = _v1856_class_day_rule_map(_v1856_class_day_rule_rows(cur, sorov.maktab_id))
+        cur.execute(
+            "SELECT * FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        hard, _soft, _method_hard, _method_soft = (
+            _v1852_availability_maps(cur.fetchall())
+        )
         target_ids = {int(row["id"]) for row in classes}
         cur.execute("""SELECT q.sinf_id,q.hafta_kuni,q.dars_raqami,COALESCE(s.smena,1) AS smena,s.rahbar_user_id
                        FROM aqlli_sinf_soati_qoidalari_v2 q
@@ -7151,6 +7354,21 @@ def v1866_class_hour_bulk_save(sorov: V1866ClassHourBulk, token: str):
                 skipped.append({"sinf": label, "sabab": blocked})
                 continue
             if leader is not None:
+                if _v1852_blocked(
+                    hard,
+                    int(leader),
+                    int(sorov.hafta_kuni),
+                    shift,
+                    int(sorov.dars_raqami),
+                ):
+                    skipped.append({
+                        "sinf": label,
+                        "sabab": (
+                            "sinf rahbarining tanlangan vaqti qizil/BAND; "
+                            "KELAJAK SOATI ham qizil vaqtga qo'yilmaydi"
+                        ),
+                    })
+                    continue
                 target_interval = shift_intervals.get(
                     (shift, int(sorov.dars_raqami))
                 )
@@ -8768,18 +8986,33 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
 
     # O‘qituvchining haftalik chegarasi ham tasdiqlash oldidan qayta tekshiriladi.
     cur.execute(
-        """SELECT e.oqituvchi_user_id,u.full_name,u.haftalik_dars_soati,
-                  COUNT(DISTINCT (e.sinf_id,e.hafta_kuni,e.smena,e.dars_raqami)) AS amaldagi,
-                  COUNT(DISTINCT CASE WHEN EXISTS(
-                       SELECT 1 FROM aqlli_sinf_soati_qoidalari_v2 q
-                       WHERE q.maktab_id=e.maktab_id AND q.sinf_id=e.sinf_id
-                         AND q.faol=TRUE AND q.hafta_kuni=e.hafta_kuni
-                         AND q.dars_raqami=e.dars_raqami)
-                       THEN (e.sinf_id,e.hafta_kuni,e.smena,e.dars_raqami) END) AS sinf_soati
-           FROM aqlli_jadval_slotlari_v2 e
-           JOIN users u ON u.user_id=e.oqituvchi_user_id
-           WHERE e.maktab_id=%s AND e.urinish_id=%s AND e.oqituvchi_user_id IS NOT NULL
-           GROUP BY e.oqituvchi_user_id,u.full_name,u.haftalik_dars_soati""",
+        """WITH teacher_sessions AS (
+               SELECT DISTINCT
+                      e.oqituvchi_user_id,e.sinf_id,e.hafta_kuni,
+                      e.smena,e.dars_raqami,
+                      COALESCE(e.hafta_turi,'har_hafta') AS hafta_turi,
+                      EXISTS(
+                          SELECT 1 FROM aqlli_sinf_soati_qoidalari_v2 q
+                          WHERE q.maktab_id=e.maktab_id
+                            AND q.sinf_id=e.sinf_id
+                            AND q.faol=TRUE
+                            AND q.hafta_kuni=e.hafta_kuni
+                            AND q.dars_raqami=e.dars_raqami
+                      ) AS sinf_soati
+               FROM aqlli_jadval_slotlari_v2 e
+               WHERE e.maktab_id=%s AND e.urinish_id=%s
+                 AND e.oqituvchi_user_id IS NOT NULL
+           )
+           SELECT t.oqituvchi_user_id,u.full_name,u.haftalik_dars_soati,
+                  SUM(CASE WHEN t.hafta_turi IN ('toq','juft')
+                           THEN 0.5 ELSE 1.0 END) AS amaldagi,
+                  SUM(CASE WHEN t.sinf_soati
+                           THEN CASE WHEN t.hafta_turi IN ('toq','juft')
+                                     THEN 0.5 ELSE 1.0 END
+                           ELSE 0.0 END) AS sinf_soati
+           FROM teacher_sessions t
+           JOIN users u ON u.user_id=t.oqituvchi_user_id
+           GROUP BY t.oqituvchi_user_id,u.full_name,u.haftalik_dars_soati""",
         (maktab_id, run_id),
     )
     for row in cur.fetchall():
@@ -8787,11 +9020,11 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
             continue
         cap = round(
             float(row["haftalik_dars_soati"])
-            + int(row.get("sinf_soati") or 0),
+            + float(row.get("sinf_soati") or 0),
             1,
         )
-        actual = int(row.get("amaldagi") or 0)
-        if actual > cap:
+        actual = round(float(row.get("amaldagi") or 0), 1)
+        if actual > cap + 1e-9:
             violations.append({
                 "sinf": row["full_name"],
                 "sabab": f"o‘qituvchi yuklamasi {actual} soat, ruxsat etilgan {cap} soatdan oshgan",
@@ -9442,6 +9675,22 @@ def _v1875_preflight_report(cur, maktab_id: int):
                     f"o'qituvchi oralig'i {teacher_rules['eng_erta_dars']}–"
                     f"{teacher_rules['eng_kech_dars']}-dars"
                 )
+            fixed_day = int(fixed_row.get("hafta_kuni") or 0)
+            fixed_shift = int(fixed_row.get("smena") or 1)
+            if _v1852_blocked(
+                hard,
+                int(teacher_id),
+                fixed_day,
+                fixed_shift,
+                fixed_period,
+            ):
+                errors.append(
+                    f"{row.get('full_name')}: {fixed_row['sinf']}-{fixed_row['harf']} "
+                    f"KELAJAK SOATI {_V1852_HAFTA.get(fixed_day, fixed_day)} "
+                    f"kuni {fixed_period}-darsga tanlangan, ammo bu vaqt "
+                    "o'qituvchida qizil/BAND. KELAJAK SOATI faqat metod "
+                    "kunidan istisno bo'la oladi; qizil vaqtni buzmaydi"
+                )
         capacity = 0
         fixed_exception_capacity = 0
         for day in range(1, weekdays + 1):
@@ -9457,9 +9706,9 @@ def _v1875_preflight_report(cur, maktab_id: int):
                             continue
                         open_slots += 1
 
-            # Faqat oldindan tanlangan birinchi KELAJAK SOATI metod kuni yoki
-            # qizil katakka tushsa istisno. Qo'shimcha sinf-soati va barcha
-            # oddiy fanlar yashil katakda qoladi; kunlik maksimum oshirilmaydi.
+            # Oldindan tanlangan KELAJAK SOATI faqat metod kunidan istisno.
+            # Qizil/BAND katak barcha darslar uchun yopiq qoladi; kunlik
+            # maksimum ham oshirilmaydi.
             exceptional_fixed = 0
             for fixed_row in class_hour_rules_by_teacher.get(int(teacher_id), []):
                 if int(fixed_row.get("hafta_kuni") or 0) != day:
@@ -9471,11 +9720,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
                     or fixed_period > int(teacher_rules["eng_kech_dars"])
                 ):
                     continue
-                if (
-                    method_day
-                    or _v1852_blocked(
-                        hard, int(teacher_id), day, fixed_shift, fixed_period
-                    )
+                if method_day and not _v1852_blocked(
+                    hard, int(teacher_id), day, fixed_shift, fixed_period
                 ):
                     exceptional_fixed += 1
             daily_normal = min(open_slots, int(teacher_rules["kunlik_max"]))
@@ -9701,23 +9947,16 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     else _v196_clock_minutes(slot.get("tugash_vaqti"))
                 ),
             })
-            # Qizil/metod istisnosi fan nomiga emas, aynan administrator
-            # tanlagan qat'iy kun+smena+dars katagiga tegishli. Shu fanning
-            # haftadagi boshqa takrorlari oddiy qizil qoidani buzolmaydi.
+            # Faqat metod-kuni istisnosi fan nomiga emas, administrator
+            # tanlagan qat'iy kun+smena+dars katagiga tegishli. Qizil/BAND
+            # fixed Sinf soatida ham qat'iy yopiq qoladi.
             fixed_class_hour = bool(
                 is_class_hour
                 and class_hour_fixed_by_class.get(class_id) == session
             )
-            class_hour_red_exception = fixed_class_hour and (
-                (teacher_id, day) in method_hard
-                or _v1852_blocked(hard, teacher_id, day, shift, period)
-            )
-            if (teacher_id, day) in method_hard and not class_hour_red_exception:
+            if (teacher_id, day) in method_hard and not fixed_class_hour:
                 errors.append(f"{slot.get('oqituvchi_ismi')}: {_V1852_HAFTA.get(day, day)} metod kuniga dars qo'yilgan")
-            if (
-                _v1852_blocked(hard, teacher_id, day, shift, period)
-                and not class_hour_red_exception
-            ):
+            if _v1852_blocked(hard, teacher_id, day, shift, period):
                 errors.append(f"{slot.get('oqituvchi_ismi')}: {_V1852_HAFTA.get(day, day)} {shift}-smena {period}-dars qattiq bloklangan")
         room_key = _v205_persisted_room_key(
             slot.get("xona_id"), slot.get("xona_matni"), room_name_to_id
@@ -11445,6 +11684,7 @@ def v197_fractional_hour_capabilities():
         "generator_turi": "yagona-exact-cp-sat",
         "generator_nomi": "Yagona kuchli generator",
         "exact_engine_ready": bool(_V216_ORTOOLS_AVAILABLE),
+        "diagnostics_contract": "exact-failure-v21.7",
         "exact_engine": "google-ortools-cp-sat",
         "required_dependency": "ortools>=9.15,<9.16",
         "generator": _timetable_mode_config(),
@@ -16541,7 +16781,22 @@ def _v214_context_with_single_slot_exception(
     method_soft = set(context.get("method_soft", set()))
     was_method = (teacher_id, day) in method_hard
     was_red = _v1852_blocked(hard, teacher_id, day, shift, period)
-    if not was_method and not was_red:
+    method_origin_pairs = set(
+        context.get("_v214_method_origin_pairs", set())
+    )
+    synthetic_method_hard = set(
+        context.get("_v214_synthetic_method_hard", set())
+    )
+    target_token = (teacher_id, day, shift, period)
+    continued_method = (
+        (teacher_id, day) in method_origin_pairs
+        and target_token in synthetic_method_hard
+    )
+    # What-if faqat metod kunining aniq 1–2 katagini ko'radi. Qizil/BAND
+    # katakni hatto hisobot uchun ham ochib sinamaymiz va tavsiya qilmaymiz.
+    if (not was_method and not continued_method) or (
+        was_red and not continued_method
+    ):
         return None, None
 
     all_slots = []
@@ -16579,18 +16834,21 @@ def _v214_context_with_single_slot_exception(
         for other_shift, other_period in all_slots:
             if (other_shift, other_period) != (shift, period):
                 hard.add((teacher_id, day, other_shift, other_period))
+                synthetic_method_hard.add(
+                    (teacher_id, day, other_shift, other_period)
+                )
+        method_origin_pairs.add((teacher_id, day))
+    elif continued_method:
+        synthetic_method_hard.discard(target_token)
     soft.add((teacher_id, day, shift, period))
     trial = dict(context)
     trial["hard"] = hard
     trial["soft"] = soft
     trial["method_hard"] = method_hard
     trial["method_soft"] = method_soft
-    kind = (
-        "metod_va_qizil" if was_method and was_red
-        else "metod_kuni" if was_method
-        else "qizil_soat"
-    )
-    return trial, kind
+    trial["_v214_method_origin_pairs"] = method_origin_pairs
+    trial["_v214_synthetic_method_hard"] = synthetic_method_hard
+    return trial, "metod_kuni"
 
 
 def _v214_teacher_window_relaxation_report(
@@ -18349,7 +18607,10 @@ def _v212_teacher_phase_collision(incoming_job, incoming_teachers, placement):
 
 
 def _v205_class_hour_red_day_exception(job, teacher, day, period, context):
-    """Faqat qo'lda tanlangan qat'iy Kelajak soati qizil/metod vaqtini ochadi."""
+    """Faqat qo'lda tanlangan qat'iy Kelajak soati metod kunidan o'tadi.
+
+    Qizil/BAND bu yordamchida ham hech qachon ochilmaydi.
+    """
     if not job.get("is_class_hour") or teacher is None:
         return False
     teacher = int(teacher)
@@ -18360,13 +18621,7 @@ def _v205_class_hour_red_day_exception(job, teacher, day, period, context):
         or int(job.get("fixed_period") or 0) != period
     ):
         return False
-    shift = int(job.get("smena") or 1)
-    return (
-        (teacher, day) in context.get("method_hard", set())
-        or _v1852_blocked(
-            context.get("hard", set()), teacher, day, shift, period
-        )
-    )
+    return (teacher, day) in context.get("method_hard", set())
 
 
 def _v213_core_period6_days(state, class_id, context):
@@ -18461,9 +18716,8 @@ def _v1852_candidate_reasons(
         ]
 
     # Faqat sinf rahbarining administrator tanlagan qat'iy Kelajak soati
-    # katagi uchun metod yoki qizil vaqt istisno. Oddiy fanlar va shu maxsus
-    # fanning boshqa takrorlari ham qizil vaqtga qo'yilmaydi; parallel dars
-    # to'qnashuvi avvalgidek qattiq qoladi.
+    # katagi uchun metod-kuni istisno. Qizil/BAND bu maxsus darsda ham
+    # ochilmaydi; parallel dars to'qnashuvi avvalgidek qattiq qoladi.
     if job.get("is_class_hour") and any(
         _v205_class_hour_red_day_exception(job, teacher, day, period, context)
         for teacher in selected_teachers
@@ -18472,7 +18726,6 @@ def _v1852_candidate_reasons(
         reasons = [
             reason for reason in reasons
             if reason != "o'qituvchining metod kuni"
-            and reason != "o'qituvchi bu vaqtda band"
         ]
 
     # Jismoniy tarbiya yoki texnologiya haftasiga 2+ soat bo'lsa, faqat bir
