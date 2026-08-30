@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-2PLUS2PLUS1-SATURDAY5-V22.20"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-DUAL-SHIFT-SYNTHETIC-ZONES-V22.27"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1112,8 +1112,7 @@ def _build_model(
         if normal_limit == 1 and required_sessions > legal_day_count:
             normal_limit = 2
         compact_repeat = bool(
-            quality_enabled
-            and context.get("exact_compact_subject_repeats")
+            context.get("exact_compact_subject_repeats")
             and normal_limit == 1
             and required_sessions >= 5
         )
@@ -1172,8 +1171,8 @@ def _build_model(
                         model.Add(variables[left_index] + variables[right_index] <= 1)
     for compact_key, used_days in compact_subject_used_days.items():
         # 5 sessions => exactly three used days (2+2+1); 6 => three days
-        # (2+2+2).  This is quality-pass only and never affects the initial
-        # full feasibility timetable.
+        # (2+2+2).  This is hard in the initial feasibility pass too, so a
+        # timed-out quality refinement can never return 1+1+1+1+1.
         model.Add(
             sum(used_days) == compact_subject_day_targets[compact_key]
         )
@@ -1224,6 +1223,34 @@ def _build_model(
             for phase in phases:
                 teacher_real_day[(teacher, row["day"], phase)].append(index)
                 teacher_shift_day[(teacher, row["day"], phase, row["shift"])].append(index)
+    # Sun'iy ikki-smena zonasi. Ikki smenada ham haqiqiy yuklamasi bor
+    # o'qituvchi avval chegaraga yig'iladi:
+    #   1-smena 1/2 = qizil, 3 = sariq;
+    #   2-smena 5/6 = qizil, 4 = sariq.
+    # Strict model sig'masa solve_exact_timetable quyida soati eng ko'p
+    # o'qituvchidan boshlab avval 1-smena 2, keyin 2-smena 5 ni sariqqa
+    # aylantirib qayta urinadi. Foydalanuvchining haqiqiy BAND/qizil katagi
+    # candidate domeniga kirmagani uchun bu mexanizm uni hech qachon ochmaydi.
+    synthetic_relaxed = {
+        (int(token[0]), int(token[1]), int(token[2]))
+        for token in (context.get("exact_dual_shift_synthetic_relaxed") or ())
+        if isinstance(token, (list, tuple)) and len(token) == 3
+    }
+    synthetic_dual_edge_terms: list[Any] = []
+    for index, row in enumerate(candidates):
+        shift, period = int(row["shift"]), int(row["period"])
+        for teacher in row["teachers"]:
+            if len(teacher_weekly_shifts.get(int(teacher), set())) < 2:
+                continue
+            red = (shift == 1 and period in (1, 2)) or (shift == 2 and period in (5, 6))
+            relaxed = (int(teacher), shift, period) in synthetic_relaxed
+            if red and not relaxed:
+                model.Add(variables[index] == 0)
+            elif (shift == 1 and period == 3) or (shift == 2 and period == 4):
+                synthetic_dual_edge_terms.append(variables[index])
+            elif relaxed:
+                # Fallback katagi legal, ammo oddiy sariqdan ham qimmatroq.
+                synthetic_dual_edge_terms.extend([variables[index]] * 20)
     # Teachers who closed more than 20% of their otherwise usable weekly
     # slots receive the first quality priority.  Method day and every hard
     # red/BAND token count as closed; none is ever reopened.
@@ -1279,12 +1306,17 @@ def _build_model(
             continue
         if demand <= 1:
             target_days, maximum_days = 1, 1
+        elif demand <= 4:
+            target_days, maximum_days = 2, 2
         elif demand <= 9:
             target_days, maximum_days = 2, 3
         else:
             target_days, maximum_days = 3, 4
         target_days = min(int(target_days), len(used_days))
         maximum_days = min(max(int(maximum_days), target_days), len(used_days))
+        # The upper work-day bound is hard from the first pass.  It prevents
+        # 5 weekly lessons from being scattered across five separate days.
+        model.Add(sum(used_days) <= maximum_days)
         if quality_enabled:
             # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
             # qilish birinchi feasibility jadvalini hech qachon to'xtatmaydi.
@@ -1423,10 +1455,16 @@ def _build_model(
             # priority directly instead of hoping a weighted objective finds
             # it before timeout.
             for index in first_indices:
-                if int(candidates[index]["period"]) < 3:
+                candidate_period = int(candidates[index]["period"])
+                if candidate_period < 3 and (
+                    int(teacher), 1, candidate_period
+                ) not in synthetic_relaxed:
                     model.Add(variables[index] + second_used <= 1)
             for index in second_indices:
-                if int(candidates[index]["period"]) > 4:
+                candidate_period = int(candidates[index]["period"])
+                if candidate_period > 4 and (
+                    int(teacher), 2, candidate_period
+                ) not in synthetic_relaxed:
                     model.Add(variables[index] + first_used <= 1)
         horizon = max(
             int(candidates[index]["interval"][1])
@@ -1673,12 +1711,14 @@ def _build_model(
         term * 1_000_000_000 for term in teacher_real_idle_over120_terms
     )
     objective_terms.extend(term * 5_000 for term in teacher_cross_shift_wait_terms)
+    objective_terms.extend(term * 500_000 for term in synthetic_dual_edge_terms)
     objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
     objective_terms.extend(term * 1_000_000_000 for term in teacher_cross_shift_over120_terms)
     objective_terms.extend(term * 10_000_000 for term in teacher_cross_shift_over180_terms)
-    # A teacher may work a dense 7--8 lesson day when the timetable permits.
-    # Fewer work days and adjacent lessons are preferences only: they can
-    # never make the hard-safe timetable infeasible.
+    # Within the hard weekly work-day ceiling, prefer the fewest used days
+    # and the smallest real-time gaps together.  This is the middle ground:
+    # lessons are compact, but not bought at the price of a huge same-day
+    # wait or a forbidden availability slot.
     # Coming to school on one additional day is much worse than an ordinary
     # short break.  This prevents 10 lessons becoming five 1--2 lesson days.
     # Very long same-day/cross-shift waits still carry larger tiered penalties,
@@ -2464,6 +2504,36 @@ def analyze_method_day_relaxations(
     return list(detail.get("recommendations") or [])
 
 
+def _dual_shift_teachers_by_load(
+    jobs: Iterable[Mapping[str, Any]], context: Mapping[str, Any]
+) -> list[int]:
+    """Return genuine two-shift teachers, highest weekly load first."""
+    shifts: dict[int, set[int]] = defaultdict(set)
+    counted: dict[int, float] = defaultdict(float)
+    for job in jobs:
+        shift = int(job.get("smena") or 1)
+        sources = list(job.get("rotation_members") or []) or [job]
+        for member in sources:
+            teachers = []
+            groups = member.get("groups") or []
+            if groups:
+                teachers.extend(group.get("teacher") for group in groups)
+            else:
+                teachers.extend(member.get("teacher_options") or [])
+            for raw_teacher in teachers:
+                if raw_teacher is None:
+                    continue
+                teacher = int(raw_teacher)
+                shifts[teacher].add(shift)
+                counted[teacher] += 1.0
+    demands = context.get("v196_teacher_demand") or {}
+    dual = [teacher for teacher, values in shifts.items() if {1, 2}.issubset(values)]
+    return sorted(
+        dual,
+        key=lambda teacher: (-float(demands.get(teacher) or counted[teacher]), teacher),
+    )
+
+
 def solve_exact_timetable(
     jobs: Iterable[Mapping[str, Any]], context: Mapping[str, Any],
     candidate_builder: Any = None, *, adapter: Any = None,
@@ -2552,6 +2622,61 @@ def solve_exact_timetable(
                 numeric_max_seconds - (time.monotonic() - started) - 0.10,
             )
             return min(requested, remaining)
+
+        def dual_shift_synthetic_fallback() -> Optional[dict[str, Any]]:
+            """Open only synthetic edge zones, one high-load teacher at a time."""
+            if context.get("_exact_dual_shift_retry_active"):
+                return None
+            if not bool(context.get("exact_dual_shift_synthetic_fallback", True)):
+                return None
+            ordered = _dual_shift_teachers_by_load(job_list, context)
+            if not ordered:
+                return None
+            attempts: list[tuple[str, int, set[tuple[int, int, int]]]] = []
+            relaxed: set[tuple[int, int, int]] = set()
+            # 1-bosqich: eng ko'p soatli ustozdan boshlab 1-smena 2-dars.
+            for teacher in ordered:
+                relaxed.add((int(teacher), 1, 2))
+                attempts.append(("1-smena 2-dars sariq", int(teacher), set(relaxed)))
+            # 2-bosqich: yuqoridagi ochilishlar saqlanadi, keyin 2-smena 5-dars.
+            for teacher in ordered:
+                relaxed.add((int(teacher), 2, 5))
+                attempts.append(("2-smena 5-dars sariq", int(teacher), set(relaxed)))
+            history = []
+            for label, teacher, allowed in attempts:
+                remaining = numeric_max_seconds - (time.monotonic() - started) - 0.10
+                if remaining < 0.35:
+                    break
+                retry_context = dict(context)
+                retry_context["_exact_dual_shift_retry_active"] = True
+                retry_context["exact_dual_shift_synthetic_relaxed"] = sorted(allowed)
+                retry_context["exact_analyze_method_relaxation"] = False
+                retry_context["exact_apply_bounded_method_fallback"] = False
+                retry = solve_exact_timetable(
+                    job_list, retry_context, candidate_builder,
+                    adapter=selected_adapter, state_builder=state_builder,
+                    seed=seed ^ (0x2050 + len(history)),
+                    max_seconds=min(3.0, remaining),
+                )
+                history.append({
+                    "oqituvchi_user_id": teacher, "ochilgan_zona": label,
+                    "status": retry.get("status"),
+                })
+                if retry.get("status") in {FEASIBLE, OPTIMAL} and retry.get("complete"):
+                    diagnostics = dict(retry.get("diagnostics") or {})
+                    diagnostics.update({
+                        "dual_shift_synthetic_fallback": True,
+                        "dual_shift_fallback_history": history,
+                        "dual_shift_relaxed_slots": [list(token) for token in sorted(allowed)],
+                        "message": (
+                            "Ikki smenali o'qituvchilar avval sun'iy qizil/sariq "
+                            "zonada joylandi; strict variant sig'magani uchun eng ko'p "
+                            "soatli o'qituvchilardan boshlab chegara kataklari sariqqa ochildi."
+                        ),
+                    })
+                    retry["diagnostics"] = diagnostics
+                    return retry
+            return None
 
         def bounded_method_fallback_result(
             method_analysis: Mapping[str, Any],
@@ -2649,6 +2774,10 @@ def solve_exact_timetable(
             feasibility_only=feasibility_only,
         )
         if bundle is None:
+            if empty:
+                dual_fallback = dual_shift_synthetic_fallback()
+                if dual_fallback is not None:
+                    return dual_fallback
             method_analysis = (
                 _analyze_method_day_relaxations_detailed(
                     job_list, context, candidate_builder,
@@ -2700,6 +2829,10 @@ def solve_exact_timetable(
             "proof_complete": status == INFEASIBLE,
         }
         if status not in {FEASIBLE, OPTIMAL}:
+            if status == INFEASIBLE:
+                dual_fallback = dual_shift_synthetic_fallback()
+                if dual_fallback is not None:
+                    return dual_fallback
             recommendations = []
             method_analysis = {"status": "NOT_RUN", "recommendations": []}
             if (
