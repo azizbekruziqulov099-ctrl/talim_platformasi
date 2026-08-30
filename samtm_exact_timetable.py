@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-2PLUS2PLUS1-V22.4"
+SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-FEASIBILITY-FIRST-V22.5"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -1182,11 +1182,11 @@ def _build_model(
             maximum_days = max(target_days, min(6, len(used_days)))
         target_days = min(int(target_days), len(used_days))
         maximum_days = min(max(int(maximum_days), target_days), len(used_days))
-        model.Add(sum(used_days) >= target_days)
-        model.Add(sum(used_days) <= maximum_days)
         if quality_enabled:
-            # Umumiy work-day minimizatsiyasi targetdan yuqori kunni faqat
-            # daily_max, qizil vaqt yoki kolliziya majbur qilganda ishlatadi.
+            # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
+            # qilish legal to'liq jadvalni bekordan-bekor INFEASIBLE qilardi.
+            # Solver imkon qadar targetga yaqinlashadi, sig'masa esa 5–6 kunga
+            # yoyib bo'lsa ham avval to'liq jadvalni yaratadi.
             teacher_used_day_terms.extend(used_days)
     ordinary_break_minutes = max(
         0, int(context.get("teacher_normal_break_minutes") or 25)
