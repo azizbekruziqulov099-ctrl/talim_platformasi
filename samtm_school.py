@@ -28,6 +28,7 @@ import threading as _samtm_threading
 try:
     from .samtm_exact_timetable import (
         DefaultTimetableAdapter as _V220DefaultTimetableAdapter,
+        EXACT_SOLVER_RELEASE as _V230_EXACT_MODULE_RELEASE,
         ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
         candidate_hard_violations as _v220_candidate_hard_violations,
         solve_exact_timetable as _v216_solve_exact,
@@ -37,6 +38,7 @@ except ImportError:  # Railway working directory may be backend/
     try:
         from samtm_exact_timetable import (
             DefaultTimetableAdapter as _V220DefaultTimetableAdapter,
+            EXACT_SOLVER_RELEASE as _V230_EXACT_MODULE_RELEASE,
             ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
             candidate_hard_violations as _v220_candidate_hard_violations,
             solve_exact_timetable as _v216_solve_exact,
@@ -45,6 +47,7 @@ except ImportError:  # Railway working directory may be backend/
     except ImportError as _v216_exact_import_error:
         _V216_ORTOOLS_AVAILABLE = False
         _V220DefaultTimetableAdapter = None
+        _V230_EXACT_MODULE_RELEASE = "SAMTM-EXACT-MODULE-UNAVAILABLE"
         _v220_candidate_hard_violations = None
         _v216_solve_exact = None
         _v218_validate_placements = None
@@ -60,6 +63,7 @@ else:
 try:
     from .samtm_schedule_runtime import (
         Progress as _V230Progress,
+        RUNTIME_RELEASE as _V234_RUNTIME_RELEASE,
         RuntimePolicy as _V230RuntimePolicy,
         ScheduleRuntime as _V230ScheduleRuntime,
         Stage as _V230Stage,
@@ -68,6 +72,7 @@ try:
 except ImportError:
     from samtm_schedule_runtime import (
         Progress as _V230Progress,
+        RUNTIME_RELEASE as _V234_RUNTIME_RELEASE,
         RuntimePolicy as _V230RuntimePolicy,
         ScheduleRuntime as _V230ScheduleRuntime,
         Stage as _V230Stage,
@@ -97,11 +102,11 @@ _V19_IMPORTED_NAMES = set(globals())
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
-SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
+SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V23.4-100PCT-CHECKPOINT-STOP"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.53-REUSE-INCUMBENT-WORST-FIRST"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V23.4-FRESH-RUN-DAILY-BALANCE-WORST-FIRST"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -4087,6 +4092,20 @@ def _v2253_entry_rows_from_state(
     return rows
 
 
+def _v2258_json_class_day_signature(state):
+    """Tuple kalitli ichki signature'ni JSONB uchun xavfsiz yozuvlarga aylantiradi."""
+    return [
+        {
+            "sinf_id": int(class_id),
+            "hafta_kuni": int(day),
+            "dars_soni": int(count),
+        }
+        for (class_id, day), count in sorted(
+            _v226_frozen_class_day_signature(state).items()
+        )
+    ]
+
+
 def _v2258_save_complete_checkpoint(
     *, maktab_id, user_id, run_id, revision, source_hash, state, jobs,
     context, classes, rooms, shifts, year, qidiruv_nonce, stage,
@@ -4118,9 +4137,9 @@ def _v2258_save_complete_checkpoint(
             "v2258_revision": int(revision or 0),
             "v2258_stage": str(stage),
             "v2258_metrics": metrics,
-            "v2258_frozen_class_day_counts": dict(
-                _v226_frozen_class_day_signature(state)
-            ),
+            # JSON object kaliti tuple bo'la olmaydi. Ro'yxat ko'rinishi
+            # checkpoint saqlashni TypeError bilan yiqilishidan himoya qiladi.
+            "v2258_frozen_class_day_counts": _v2258_json_class_day_signature(state),
             "solver_status": "FEASIBLE_VALIDATED_CHECKPOINT",
             "tasdiqlash_mumkin": True,
             "yaxshilanish": dict(improvement or {}),
@@ -4319,7 +4338,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "practical_repeat_day_limit": 1,
             "core_period6_day_limit": 2,
             "practical_min_period": 2,
-            "allow_fixed_class_hour_method_exception": True,
+            # Metod kuni ham qizil/BAND kabi avtomatik ochilmaydi. Administrator
+            # avval manba qoidalarini aniq tuzatadi, generator esa qat'iy qoladi.
+            "allow_fixed_class_hour_method_exception": False,
             # Birinchi exact jadvalning o'zida sinf kunlari teng: masalan
             # 30 soat 6/6/6/6/6, 29 soat 6/6/6/6/5. 2/3/4/5/6 kabi
             # notekis taqsimot keyingi bosqichga qotirib qo'yilmaydi.
@@ -4335,36 +4356,15 @@ def v1852_generate(sorov: V1852Generate, token: str):
         context["v196_teacher_shift_demand"] = _v196_teacher_shift_demand(jobs)
         context["v196_class_distribution"] = _v196_class_distribution(jobs, context)
 
-        # Shu manbadagi 100% draft bo'lsa yangi raqam ochilmaydi: #60 -> #60.1.
-        cur.execute(
-            """SELECT id FROM aqlli_jadval_urinishlari_v2
-               WHERE maktab_id=%s AND holat='draft' AND joylashtirilmadi=0
-                 AND COALESCE(sozlamalar->>'manba_hash','')=%s
-               ORDER BY id DESC LIMIT 1""",
-            (sorov.maktab_id, source_hash),
-        )
-        reusable = cur.fetchone()
+        # Har bir yangi bosish yangi asosiy jadval ochadi. Eski #57/#60 draft
+        # yangi qidiruvga incumbent bo'lib aralashmaydi; faqat shu run ichidagi
+        # accepted yaxshilanishlar #NN.1, #NN.2 ko'rinishida davom etadi.
         initial_state = None
         starting_revision = 0
-        if reusable:
-            run_id = int(reusable["id"])
-            placements = _v2253_saved_run_placements(cur, run_id, jobs, context)
-            if placements:
-                initial_state = _v1852_rebuild_schedule_state(placements, context)
-                cur.execute(
-                    """SELECT COALESCE(MAX(revision),0) AS revision
-                       FROM aqlli_jadval_revisionlari_v2258
-                       WHERE urinish_id=%s""",
-                    (run_id,),
-                )
-                starting_revision = int(
-                    (cur.fetchone() or {}).get("revision") or 0
-                )
-        if initial_state is None:
-            cur.execute(
-                "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
-            )
-            run_id = int(cur.fetchone()["id"])
+        cur.execute(
+            "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
+        )
+        run_id = int(cur.fetchone()["id"])
 
         cur.execute(
             """INSERT INTO aqlli_jadval_jarayoni_v2243(
@@ -4375,7 +4375,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
                    qidiruv_nonce=EXCLUDED.qidiruv_nonce,
                    jadval_raqami=EXCLUDED.jadval_raqami,yaxshilanish=0,
                    foiz=8,bosqich='tayyorlash',xabar=EXCLUDED.xabar,
-                   toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
+                   toxtatish_soraldi=CASE
+                       WHEN aqlli_jadval_jarayoni_v2243.qidiruv_nonce
+                            IS NOT DISTINCT FROM EXCLUDED.qidiruv_nonce
+                       THEN aqlli_jadval_jarayoni_v2243.toxtatish_soraldi
+                       ELSE FALSE
+                   END,
+                   yangilangan_at=NOW()""",
             (
                 sorov.maktab_id, sorov.qidiruv_nonce, run_id,
                 f"Jadval #{run_id}: {len(jobs)} ta dars tayyorlandi.",
@@ -4412,11 +4418,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
         exact_context.update({
             "exact_feasibility_only": True,
             "exact_stop_after_first_solution": True,
-            "exact_quality_after_feasible": True,
-            "exact_quality_seconds": min(2.5, float(quality_seconds)),
+            # Birinchi 100% yechim runtime'ga darhol qaytadi va revision-0
+            # checkpoint sifatida saqlanadi. Sifat/ustoz oynosi faqat shundan
+            # keyingi revision bosqichida yaxshilanadi.
+            "exact_quality_after_feasible": False,
+            "exact_quality_seconds": 0.0,
             "exact_analyze_method_relaxation": True,
             "exact_analyze_method_on_unknown": False,
-            "exact_apply_bounded_method_fallback": True,
+            # Tahlil tavsiya berishi mumkin, lekin metod kunini avtomatik
+            # yumshatib natija sifatida qabul qilish qat'iyan o'chirilgan.
+            "exact_apply_bounded_method_fallback": False,
             "exact_relaxation_seconds": min(10.0, float(max_seconds)),
             "method_exception_primary_only": True,
             "exact_num_workers": max(1, min(4, int(os.getenv("SAMTM_EXACT_NUM_WORKERS", "4")))),
@@ -4589,6 +4600,28 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
         current_is_fresh = float(current.get("yangilanish_yoshi") or 0) < 90
         if current_is_fresh and current.get("bosqich") not in {None, "tayyor", "xato", "toxtatildi"}:
             raise HTTPException(status_code=409, detail="Bu maktab uchun jadval allaqachon yaratilmoqda")
+        # Progress qatori worker'dan OLDIN commit qilinadi. Foydalanuvchi
+        # "Boshlash" javobi kelishi bilan "To'xtatish"ni bossa ham so'rov
+        # yo'qolmaydi. Haqiqiy run id generator ichida ajratilgach 0 o'rnini
+        # atomar ravishda egallaydi.
+        cur.execute(
+            """INSERT INTO aqlli_jadval_jarayoni_v2243(
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,
+                   bosqich,xabar,toxtatish_soraldi,yangilangan_at)
+               VALUES(%s,%s,0,0,1,'navbatda',%s,FALSE,NOW())
+               ON CONFLICT(maktab_id) DO UPDATE SET
+                   qidiruv_nonce=EXCLUDED.qidiruv_nonce,
+                   jadval_raqami=0,yaxshilanish=0,foiz=1,
+                   bosqich='navbatda',xabar=EXCLUDED.xabar,
+                   toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
+            (
+                int(sorov.maktab_id),
+                int(sorov.qidiruv_nonce)
+                if sorov.qidiruv_nonce is not None else None,
+                "Jadval yaratish navbatga olindi; to‘xtatish tugmasi faol.",
+            ),
+        )
+        conn.commit()
     finally:
         cur.close(); conn.close()
 
@@ -4603,7 +4636,8 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
                 heartbeat_conn = _db(); heartbeat_cur = heartbeat_conn.cursor()
                 heartbeat_cur.execute(
                     """UPDATE aqlli_jadval_jarayoni_v2243 SET yangilangan_at=NOW()
-                       WHERE maktab_id=%s AND qidiruv_nonce=%s
+                       WHERE maktab_id=%s
+                         AND qidiruv_nonce IS NOT DISTINCT FROM %s
                          AND bosqich NOT IN ('tayyor','xato','toxtatildi')""",
                     (sorov.maktab_id, sorov.qidiruv_nonce),
                 )
@@ -4637,7 +4671,7 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
                     (sorov.maktab_id, sorov.qidiruv_nonce, sorov.qidiruv_nonce),
                 )
                 row = error_cur.fetchone() or {}
-                if row.get("jadval_raqami"):
+                if row.get("jadval_raqami") is not None:
                     was_cancelled = _v2244_cancel_requested(
                         sorov.maktab_id, sorov.qidiruv_nonce
                     )
@@ -8144,6 +8178,9 @@ def _v1875_preflight_report(cur, maktab_id: int):
     model = _v1875_exact_assignment_model(cur, maktab_id)
     errors = list(model["xatolar"])
     warnings = list(model["ogohlantirishlar"])
+    auto_method_relaxation = bool(
+        (_timetable_mode_config() or {}).get("method_day_relaxed", False)
+    )
 
     year = _v1890_generation_year(cur, maktab_id)
     weekdays = int(year.get("hafta_kunlari") or 6)
@@ -8441,7 +8478,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
             ) or "o'qituvchi biriktirilmagan"
             strict_shortage = weekly_sessions - common_capacity
             bounded_primary_candidate = bool(
-                1 <= grade <= 4
+                auto_method_relaxation
+                and 1 <= grade <= 4
                 and strict_shortage <= 2 + 1e-9
                 and any(
                     day != 6
@@ -8538,8 +8576,18 @@ def _v1875_preflight_report(cur, maktab_id: int):
                     f"{row.get('full_name')}: {fixed_row['sinf']}-{fixed_row['harf']} "
                     f"KELAJAK SOATI {_V1852_HAFTA.get(fixed_day, fixed_day)} "
                     f"kuni {fixed_period}-darsga tanlangan, ammo bu vaqt "
-                    "o'qituvchida qizil/BAND. KELAJAK SOATI faqat metod "
-                    "kunidan istisno bo'la oladi; qizil vaqtni buzmaydi"
+                    "o'qituvchida qizil/BAND. Qat’iy rejim bu katakni "
+                    "avtomatik ochmaydi; vaqtni manbada tahrirlang"
+                )
+            if (
+                not auto_method_relaxation
+                and (int(teacher_id), fixed_day) in method_hard
+            ):
+                errors.append(
+                    f"{row.get('full_name')}: {fixed_row['sinf']}-{fixed_row['harf']} "
+                    f"KELAJAK SOATI {_V1852_HAFTA.get(fixed_day, fixed_day)} "
+                    "metod kuniga tanlangan. Qat’iy rejim metod kunini "
+                    "avtomatik ochmaydi; kun yoki darsni manbada tahrirlang"
                 )
         capacity = 0
         fixed_exception_capacity = 0
@@ -8560,24 +8608,25 @@ def _v1875_preflight_report(cur, maktab_id: int):
 
             open_slots = _v220_max_nonoverlapping_interval_count(open_intervals)
 
-            # Oldindan tanlangan KELAJAK SOATI faqat metod kunidan istisno.
-            # Qizil/BAND katak barcha darslar uchun yopiq qoladi; kunlik
-            # maksimum ham oshirilmaydi.
+            # Faqat siyosat aniq ruxsat bersagina oldindan tanlangan KELAJAK
+            # SOATI metod kunidan istisno bo'lishi mumkin. V23 strict rejimida
+            # bu qiymat 0 qoladi; qizil/BAND esa har doim yopiq.
             exceptional_fixed = 0
-            for fixed_row in class_hour_rules_by_teacher.get(int(teacher_id), []):
-                if int(fixed_row.get("hafta_kuni") or 0) != day:
-                    continue
-                fixed_shift = int(fixed_row.get("smena") or 1)
-                fixed_period = int(fixed_row.get("dars_raqami") or 0)
-                if (
-                    fixed_period < int(teacher_rules["eng_erta_dars"])
-                    or fixed_period > int(teacher_rules["eng_kech_dars"])
-                ):
-                    continue
-                if method_day and not _v1852_blocked(
-                    hard, int(teacher_id), day, fixed_shift, fixed_period
-                ):
-                    exceptional_fixed += 1
+            if auto_method_relaxation:
+                for fixed_row in class_hour_rules_by_teacher.get(int(teacher_id), []):
+                    if int(fixed_row.get("hafta_kuni") or 0) != day:
+                        continue
+                    fixed_shift = int(fixed_row.get("smena") or 1)
+                    fixed_period = int(fixed_row.get("dars_raqami") or 0)
+                    if (
+                        fixed_period < int(teacher_rules["eng_erta_dars"])
+                        or fixed_period > int(teacher_rules["eng_kech_dars"])
+                    ):
+                        continue
+                    if method_day and not _v1852_blocked(
+                        hard, int(teacher_id), day, fixed_shift, fixed_period
+                    ):
+                        exceptional_fixed += 1
             daily_normal = min(open_slots, int(teacher_rules["kunlik_max"]))
             daily_total = min(
                 open_slots + exceptional_fixed,
@@ -8587,7 +8636,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
             fixed_exception_capacity += max(0, daily_total - daily_normal)
         strict_shortage = max(0.0, total_plan - capacity)
         bounded_primary_candidate = bool(
-            strict_shortage <= 2 + 1e-9
+            auto_method_relaxation
+            and strict_shortage <= 2 + 1e-9
             and int(teacher_id) in primary_method_fallback_teachers
             and any(
                 day != 6 and (int(teacher_id), day) in method_hard
@@ -10604,8 +10654,10 @@ def v197_fractional_hour_capabilities():
         "platform_release": SAMTM_SCHOOL_RELEASE,
         "jadval_release": SAMTM_JADVAL_RELEASE,
         "exact_jadval_release": SAMTM_EXACT_JADVAL_RELEASE,
+        "exact_module_release": _V230_EXACT_MODULE_RELEASE,
         "exact_internal_release": SAMTM_EXACT_INTERNAL_RELEASE,
         "timetable_engine_release": SAMTM_TIMETABLE_ENGINE_RELEASE,
+        "schedule_runtime_release": _V234_RUNTIME_RELEASE,
         "single_generator": True,
         "generator_soni": 1,
         "generator_turi": "yagona-exact-cp-sat",
@@ -15620,6 +15672,10 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
                 changed = _v225_changed_teachers(first, second)
                 if int(teacher_id) not in changed:
                     continue
+                before_changed_scores = {
+                    int(owner): _v225_teacher_score(state, context, owner)
+                    for owner in changed
+                }
                 trials += 1
                 if move_kind == "across_day":
                     trial = _v219_swap_across_class_days(
@@ -15639,12 +15695,24 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
                 )
                 if trial_class_safety > before_class_safety:
                     continue
+                after_changed_scores = {
+                    int(owner): _v225_teacher_score(trial, context, owner)
+                    for owner in changed
+                }
+                # Swapda darsi ko'chgan BARCHA ustoz himoyalanadi. Global
+                # aggregate yaxshilanish bir ustozning yomonlashishini yashira
+                # olmaydi.
+                if any(
+                    after_changed_scores[int(owner)] > before_score
+                    for owner, before_score in before_changed_scores.items()
+                ):
+                    continue
                 if any(
                     _v225_teacher_score(trial, context, owner) > protected
                     for owner, protected in frozen.items()
                 ):
                     continue
-                target_score = _v225_teacher_score(trial, context, teacher_id)
+                target_score = after_changed_scores[int(teacher_id)]
                 if target_score >= before:
                     continue
                 global_score = _v196_teacher_comfort_signature(trial, context)
