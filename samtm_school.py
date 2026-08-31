@@ -4333,6 +4333,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # Haqiqiy jadval raqami hisoblash tugashidan oldin band qilinadi.
         # Frontend shu sabab taxminiy emas, aynan yakunda saqlanadigan #51
         # raqamini ko‘rsatadi; yaxshilanishlar #51.1, #51.2 bo‘lib boradi.
+        improvement_source_changed = False
         if sorov.yaxshilash_bosqichi and sorov.asosiy_jadval_id:
             reserved_run_id = int(sorov.asosiy_jadval_id)
             cur.execute(
@@ -4353,8 +4354,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     existing_settings = json.loads(existing_settings)
                 except (TypeError, ValueError):
                     existing_settings = {}
-            if str(existing_settings.get("manba_hash") or "") != str(source_hash or ""):
-                raise HTTPException(status_code=409, detail="Draft yaratilgandan keyin manba o'zgargan; uni ustidan yozish mumkin emas")
+            improvement_source_changed = (
+                str(existing_settings.get("manba_hash") or "")
+                != str(source_hash or "")
+            )
             progress_revision = _v2251_latest_saved_revision(
                 cur, reserved_run_id, fallback=existing_run.get("rev") or 0
             )
@@ -5445,7 +5448,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             new_metric_values = tuple(
                 float(final_metrics.get(name) or 0) for name in metric_names
             )
-            comfort_improved = (
+            comfort_improved = improvement_source_changed or (
                 not missing_class_guard
                 and any(new < old for new, old in zip(new_metric_values, old_metric_values))
                 and all(new <= old for new, old in zip(new_metric_values, old_metric_values))
@@ -5818,8 +5821,15 @@ _V2244_INTERNAL_CALLS = set()
 @app.post("/api/maktab/aqlli_jadval/v3/boshlash")
 def v2244_start_generation(sorov: V1852Generate, token: str):
     """Uzun hisoblashni HTTP ulanishidan ajratib, darhol javob qaytaradi."""
-    if sorov.yaxshilash_bosqichi or sorov.yaxshilash_davom_etadi or sorov.asosiy_jadval_id:
-        raise HTTPException(status_code=400, detail="Ichki yaxshilash maydonlarini foydalanuvchi yubormaydi")
+    continue_existing = bool(sorov.yaxshilash_bosqichi and sorov.asosiy_jadval_id)
+    if sorov.yaxshilash_davom_etadi or (
+        (sorov.yaxshilash_bosqichi or sorov.asosiy_jadval_id)
+        and not continue_existing
+    ):
+        raise HTTPException(
+            status_code=400,
+            detail="Mavjud jadvalni yaxshilash uchun asosiy_jadval_id va yaxshilash_bosqichi birga yuboriladi",
+        )
     if sorov.qidiruv_nonce is None:
         generated_nonce = int(_samtm_time.time() * 1000)
         copy_request = getattr(sorov, "model_copy", None)
@@ -5896,6 +5906,19 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
             int(sorov.maktab_id), int(sorov.qidiruv_nonce or 0), "base", 0,
         )
         try:
+            if continue_existing:
+                improvement_internal_key = (
+                    int(sorov.maktab_id), int(sorov.qidiruv_nonce or 0),
+                    "improvement", int(sorov.asosiy_jadval_id),
+                )
+                with _V2244_BACKGROUND_LOCK:
+                    _V2244_INTERNAL_CALLS.add(improvement_internal_key)
+                try:
+                    v1852_generate(sorov, token)
+                finally:
+                    with _V2244_BACKGROUND_LOCK:
+                        _V2244_INTERNAL_CALLS.discard(improvement_internal_key)
+                return
             # 1-bosqich: birinchi hard-safe to'liq jadvalni tez topib saqlash.
             copy_request = getattr(sorov, "model_copy", None)
             if callable(copy_request):
