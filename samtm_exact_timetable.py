@@ -43,6 +43,7 @@ from dataclasses import dataclass
 from itertools import product
 import math
 import re
+import threading
 import time
 import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
@@ -1602,6 +1603,30 @@ def _new_solver(seed: int, max_seconds: float, context: Mapping[str, Any]) -> An
     return solver
 
 
+def _solve_with_user_cancel(solver: Any, model: Any, context: Mapping[str, Any]) -> Any:
+    """CP-SATni DBdagi foydalanuvchi signali bilan xavfsiz to‘xtatadi."""
+    cancel_requested = context.get("exact_cancel_requested")
+    if not callable(cancel_requested):
+        return solver.Solve(model)
+    watcher_done = threading.Event()
+
+    def watch_cancel() -> None:
+        while not watcher_done.wait(0.75):
+            try:
+                if cancel_requested():
+                    solver.StopSearch()
+                    return
+            except Exception:
+                continue
+
+    watcher = threading.Thread(target=watch_cancel, daemon=True)
+    watcher.start()
+    try:
+        return solver.Solve(model)
+    finally:
+        watcher_done.set()
+
+
 def _extract_placements(bundle: _ModelBundle, solver: Any) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     placements: list[dict[str, Any]] = []
     chosen: list[dict[str, Any]] = []
@@ -1995,7 +2020,7 @@ def _analyze_method_day_relaxations_detailed(
                 empty_domains=empty,
             )
         solver = _new_solver(seed ^ 0x4D455448, max_seconds, context)
-        raw_status = solver.Solve(bundle.model)
+        raw_status = _solve_with_user_cancel(solver, bundle.model, context)
         status = _model_status_name(raw_status)
         if status not in {FEASIBLE, OPTIMAL}:
             return finish(
@@ -2282,7 +2307,7 @@ def solve_exact_timetable(
             result["metod_kuni_istisno_tavsiyalari"] = recommendations
             return result
         solver = _new_solver(seed, numeric_max_seconds, context)
-        raw_status = solver.Solve(bundle.model)
+        raw_status = _solve_with_user_cancel(solver, bundle.model, context)
         status = _model_status_name(raw_status)
         diagnostics: dict[str, Any] = {
             "code": "EXACT_CP_SAT", "jobs": len(job_list),
@@ -2445,8 +2470,8 @@ def solve_exact_timetable(
                             quality_seconds,
                             quality_context,
                         )
-                        quality_raw_status = quality_solver.Solve(
-                            quality_bundle.model
+                        quality_raw_status = _solve_with_user_cancel(
+                            quality_solver, quality_bundle.model, quality_context
                         )
                         quality_status = _model_status_name(quality_raw_status)
                         diagnostics["quality_refinement"] = {
