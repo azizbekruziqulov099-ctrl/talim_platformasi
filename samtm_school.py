@@ -12663,6 +12663,27 @@ class V192TeacherLoadSave(BaseModel):
     qatorlar: list[V192TeacherLoadRow]
 
 
+class V204SkeletonLoadRow(BaseModel):
+    user_id: int
+    sinf_id: int
+    fan_nomi: str
+    guruh_kaliti: str = "whole"
+    haftalik_soat: float
+    kunlik_max: int = 1
+    xona_id: Optional[int] = None
+
+
+class V204SkeletonLeaderRow(BaseModel):
+    sinf_id: int
+    user_id: Optional[int] = None
+
+
+class V204SkeletonBulkSave(BaseModel):
+    maktab_id: int
+    qatorlar: list[V204SkeletonLoadRow] = []
+    rahbarlar: list[V204SkeletonLeaderRow] = []
+
+
 class V192ManualTeacherCreate(BaseModel):
     maktab_id: int
     full_name: str
@@ -12885,6 +12906,7 @@ def _v192_auto_confirm_exact_pairs(cur, maktab_id: int, actor_id: int):
 def _v192_save_teacher_load_rows(
     cur, actor_id: int, maktab_id: int, user_id: int,
     qatorlar: list[V192TeacherLoadRow],
+    finalize: bool = True,
 ):
     cur.execute("""SELECT user_id,full_name FROM users
                    WHERE user_id=%s AND maktab_id=%s FOR UPDATE""",
@@ -13040,6 +13062,15 @@ def _v192_save_teacher_load_rows(
                             (current_subjects, system_id))
 
     weekly_total = _v195_refresh_teacher_summary(cur, maktab_id, user_id)
+    if not finalize:
+        return {
+            "holat": "saqlandi",
+            "user_id": int(user_id),
+            "oqituvchi": teacher["full_name"],
+            "qator_soni": len(cleaned),
+            "haftalik_jami": weekly_total,
+            "ogohlantirishlar": plan_overrides,
+        }
     warnings = _v192_sync_schedule_sources(cur, maktab_id)
     warnings.extend(plan_overrides)
     auto_confirmation = _v192_auto_confirm_exact_pairs(cur, maktab_id, actor_id)
@@ -13144,8 +13175,6 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         full_name = re.sub(r"\s+", " ", str(sorov.full_name or "")).strip()
         if len(full_name) < 3 or len(full_name) > 160:
             raise HTTPException(status_code=400, detail="O'qituvchi F.I.Sh. 3–160 ta belgi bo'lishi kerak")
-        if not sorov.qatorlar:
-            raise HTTPException(status_code=400, detail="Kamida bitta fan–sinf–guruh qatorini kiriting")
         work_years = sorov.ish_staji
         if work_years is not None and not 0 <= int(work_years) <= 60:
             raise HTTPException(status_code=400, detail="Ish staji 0–60 yil oralig'ida bo'lishi kerak")
@@ -13239,6 +13268,115 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         })
         conn.commit()
         return result
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/sinf_skeleti_yuklama")
+def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
+    """
+    V20.4 — sinf skeleti orqali o'qituvchi yuklamasini bir martada saqlash.
+
+    Frontend sinf o'quv rejasini fanlari ko'pdan kamga qarab vaqtinchalik
+    kataklarga yoyadi. Bu endpoint kataklarning vaqtini saqlamaydi — faqat
+    sinf + fan + guruh + o'qituvchi + haftalik soat bog'lanishini atomik
+    saqlaydi. Shuning uchun skelet keyingi exact jadval generatoriga toza
+    manba bo'lib xizmat qiladi, lekin yakuniy dars kunlarini oldindan
+    qotirib qo'ymaydi.
+    """
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf skeletini faqat maktab rahbariyati saqlaydi")
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2040000000 + int(sorov.maktab_id),))
+
+        cur.execute("SELECT user_id,full_name FROM users WHERE maktab_id=%s", (sorov.maktab_id,))
+        school_users = {int(row["user_id"]): dict(row) for row in cur.fetchall()}
+        cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE maktab_id=%s", (sorov.maktab_id,))
+        school_classes = {int(row["id"]): dict(row) for row in cur.fetchall()}
+
+        rows_by_teacher = {}
+        for index, row in enumerate(sorov.qatorlar, start=1):
+            teacher_id = int(row.user_id)
+            class_id = int(row.sinf_id)
+            if teacher_id not in school_users:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: o'qituvchi bu maktabga tegishli emas")
+            if class_id not in school_classes:
+                raise HTTPException(status_code=400, detail=f"{index}-qator: sinf bu maktabga tegishli emas")
+            rows_by_teacher.setdefault(teacher_id, []).append(V192TeacherLoadRow(
+                sinf_id=class_id,
+                fan_nomi=row.fan_nomi,
+                guruh_kaliti=row.guruh_kaliti or "whole",
+                haftalik_soat=row.haftalik_soat,
+                kunlik_max=row.kunlik_max,
+                xona_id=row.xona_id,
+            ))
+
+        leader_teacher_ids = [int(item.user_id) for item in sorov.rahbarlar if item.user_id is not None]
+        if len(leader_teacher_ids) != len(set(leader_teacher_ids)):
+            raise HTTPException(status_code=409, detail="Bitta o'qituvchi bir vaqtning o'zida ikki sinf rahbari qilib tanlangan")
+        for item in sorov.rahbarlar:
+            class_id = int(item.sinf_id)
+            if class_id not in school_classes:
+                raise HTTPException(status_code=400, detail="Sinf rahbarligi uchun noma'lum sinf yuborildi")
+            if item.user_id is not None and int(item.user_id) not in school_users:
+                raise HTTPException(status_code=400, detail="Sinf rahbarligi uchun tanlangan o'qituvchi bu maktabga tegishli emas")
+
+        # Barcha yuklama bir tranzaksiyada almashtiriladi. Xato bo'lsa rollback
+        # eski holatni to'liq qaytaradi; yarim saqlangan jadval qolmaydi.
+        cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s", (sorov.maktab_id,))
+        cur.execute("UPDATE users SET haftalik_dars_soati=0 WHERE maktab_id=%s", (sorov.maktab_id,))
+
+        # Sinf rahbarlari ham shu skeletning bir qismi. Frontend barcha sinflarni
+        # yuboradi, shuning uchun eski noto'g'ri rahbarlar qolib ketmaydi.
+        if sorov.rahbarlar:
+            cur.execute("UPDATE maktab_sinflari SET rahbar_user_id=NULL WHERE maktab_id=%s", (sorov.maktab_id,))
+            leader_class_ids = []
+            for item in sorov.rahbarlar:
+                if item.user_id is None:
+                    continue
+                cur.execute(
+                    "UPDATE maktab_sinflari SET rahbar_user_id=%s WHERE id=%s AND maktab_id=%s",
+                    (int(item.user_id), int(item.sinf_id), int(sorov.maktab_id)),
+                )
+                leader_class_ids.append(int(item.sinf_id))
+            if leader_class_ids:
+                _v199_ensure_class_hour_rules(cur, sorov.maktab_id, leader_class_ids, actor_id)
+
+        saved_teachers = 0
+        saved_rows = 0
+        saved_hours = 0.0
+        warnings = []
+        # Deterministik tartib: bir xil payload har safar bir xil validatsiya yo'lidan o'tadi.
+        for teacher_id in sorted(rows_by_teacher):
+            result = _v192_save_teacher_load_rows(
+                cur, actor_id, sorov.maktab_id, teacher_id, rows_by_teacher[teacher_id],
+                finalize=False,
+            )
+            saved_teachers += 1
+            saved_rows += int(result.get("qator_soni") or 0)
+            saved_hours += float(result.get("haftalik_jami") or 0)
+            warnings.extend(result.get("ogohlantirishlar") or [])
+
+        # Yuklamasi bo'lmagan ustozlar uchun summary 0 bo'lib qoladi.
+        sync_warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
+        warnings.extend(sync_warnings or [])
+        auto_confirmation = _v192_auto_confirm_exact_pairs(cur, sorov.maktab_id, actor_id)
+        matrix = _v192_matrix_payload(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "sinf_skeleti_saqlandi",
+            "oqituvchi_soni": saved_teachers,
+            "qator_soni": saved_rows,
+            "fan_soati": round(saved_hours, 1),
+            "ogohlantirishlar": list(dict.fromkeys(str(x) for x in warnings if x))[:40],
+            "guruh_tasdiqlari": auto_confirmation,
+            "matritsa": matrix,
+        }
     except Exception:
         conn.rollback(); raise
     finally:
