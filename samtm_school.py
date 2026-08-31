@@ -4851,7 +4851,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
-            exact_context["exact_quality_seconds"] = generation_budget
+            # Hard-safe jadval topilgandan keyingi global CP-SAT bosqichi
+            # checkpointni 55% da butun byudjet davomida ushlab turmasin.
+            # O'qituvchi qisish keyingi checkpointli bosqichda davom etadi.
+            exact_context["exact_quality_seconds"] = min(2.5, generation_budget)
             exact_context["exact_progress_callback"] = _v2243_exact_progress
             exact_context["exact_cancel_requested"] = lambda: _v2244_cancel_requested(
                 sorov.maktab_id, sorov.qidiruv_nonce
@@ -5056,7 +5059,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         # V22.58: 100% topilgan natija endi 55% yozuvigina
                         # emas — o'qituvchi optimizatori boshlanishidan oldin
                         # haqiqatan bazaga yoziladi. To'xtatilsa shu # ochiladi.
-                        _v2258_save_complete_checkpoint(
+                        checkpoint_saved = _v2258_save_complete_checkpoint(
                             maktab_id=sorov.maktab_id,
                             user_id=user_id,
                             run_id=reserved_run_id,
@@ -5072,6 +5075,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
                             qidiruv_nonce=sorov.qidiruv_nonce,
                             stage="hard_feasible_before_teacher_optimizer",
                         )
+                        if not checkpoint_saved:
+                            raise RuntimeError(
+                                f"Jadval #{reserved_run_id} 100% topildi, ammo bazaga checkpoint yozilmadi"
+                            )
 
                 if not exact_solver_used:
                     # FEASIBLE/OPTIMAL deb, ammo complete=False qaytishi kontrakt
@@ -5857,7 +5864,48 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "foydalanuvchi_toxtatdi": cancelled}
     except Exception:
         if reserved_run_id is not None:
-            if _v2244_cancel_requested(sorov.maktab_id, sorov.qidiruv_nonce):
+            cancelled_now = _v2244_cancel_requested(
+                sorov.maktab_id, sorov.qidiruv_nonce
+            )
+            # Exact solver 100% jadvalni checkpointga yozib bo'lganidan keyin
+            # teacher-finalizerda texnik xato chiqishi mumkin. Bunday paytda
+            # foydalanuvchiga "jadval berilmadi" deb xato ko'rsatmaymiz:
+            # tranzaksiyada tekshirilgan to'liq checkpoint saqlangan va aynan
+            # shu jadval terminal natija sifatida ochiladi.
+            checkpoint_complete = False
+            checkpoint_conn = None
+            checkpoint_cur = None
+            try:
+                checkpoint_conn = _db()
+                checkpoint_cur = checkpoint_conn.cursor()
+                checkpoint_cur.execute(
+                    """SELECT 1 AS bor
+                       FROM aqlli_jadval_urinishlari_v2
+                       WHERE id=%s AND maktab_id=%s
+                         AND joylashtirildi>0 AND joylashtirilmadi=0""",
+                    (int(reserved_run_id), int(sorov.maktab_id)),
+                )
+                checkpoint_complete = bool(checkpoint_cur.fetchone())
+            except Exception:
+                checkpoint_complete = False
+            finally:
+                if checkpoint_cur is not None:
+                    checkpoint_cur.close()
+                if checkpoint_conn is not None:
+                    checkpoint_conn.close()
+            if checkpoint_complete:
+                _v2243_progress_write(
+                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                    progress_revision, 100,
+                    "toxtatildi" if cancelled_now else "tayyor",
+                    (
+                        f"To‘xtatildi. Eng yaxshi to‘liq Jadval #{reserved_run_id} saqlandi va ochildi."
+                        if cancelled_now else
+                        f"Jadval #{reserved_run_id} tayyor. Yakuniy yaxshilash to‘xtagan bo‘lsa ham "
+                        "100% joylashtirilgan, tekshirilgan checkpoint saqlandi va ochildi."
+                    ),
+                )
+            elif cancelled_now:
                 _v2243_progress_write(
                     sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
                     progress_revision, 100, "toxtatildi",
