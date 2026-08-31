@@ -28,6 +28,7 @@ import threading as _samtm_threading
 try:
     from .samtm_exact_timetable import (
         DefaultTimetableAdapter as _V220DefaultTimetableAdapter,
+        EXACT_SOLVER_RELEASE as _V2251_EXACT_SOLVER_RELEASE,
         ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
         candidate_hard_violations as _v220_candidate_hard_violations,
         solve_exact_timetable as _v216_solve_exact,
@@ -37,6 +38,7 @@ except ImportError:  # Railway working directory may be backend/
     try:
         from samtm_exact_timetable import (
             DefaultTimetableAdapter as _V220DefaultTimetableAdapter,
+            EXACT_SOLVER_RELEASE as _V2251_EXACT_SOLVER_RELEASE,
             ORTOOLS_AVAILABLE as _V216_ORTOOLS_AVAILABLE,
             candidate_hard_violations as _v220_candidate_hard_violations,
             solve_exact_timetable as _v216_solve_exact,
@@ -44,6 +46,7 @@ except ImportError:  # Railway working directory may be backend/
         )
     except ImportError as _v216_exact_import_error:
         _V216_ORTOOLS_AVAILABLE = False
+        _V2251_EXACT_SOLVER_RELEASE = None
         _V220DefaultTimetableAdapter = None
         _v220_candidate_hard_violations = None
         _v216_solve_exact = None
@@ -1294,6 +1297,28 @@ def _v1852_create_tables(cur):
         diagnostika JSONB NOT NULL DEFAULT '{}'::jsonb,
         sozlamalar JSONB NOT NULL DEFAULT '{}'::jsonb
     )""")
+    # V22.51: ``#56.3`` endi jarayon hisoblagichi emas, aynan bazada
+    # saqlangan immutable jadval nusxasi. Asosiy urinish qatori tezkor
+    # amallar uchun eng so'nggi holatni saqlashda davom etadi; tarix alohida
+    # jadvalda bo'lgani uchun eski endpointlar bir urinishning bir nechta
+    # slotini aralashtirib yubormaydi.
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_reviziyalari_v2251(
+        id BIGSERIAL PRIMARY KEY,
+        urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        yaxshilanish INTEGER NOT NULL CHECK(yaxshilanish >= 0),
+        sifat INTEGER NOT NULL DEFAULT 0,
+        joylashtirildi INTEGER NOT NULL DEFAULT 0,
+        joylashtirilmadi INTEGER NOT NULL DEFAULT 0,
+        diagnostika JSONB NOT NULL DEFAULT '{}'::jsonb,
+        sozlamalar JSONB NOT NULL DEFAULT '{}'::jsonb,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        UNIQUE(urinish_id,yaxshilanish)
+    )""")
+    cur.execute("""CREATE INDEX IF NOT EXISTS idx_aqlli_jadval_reviziyalari_v2251
+                   ON aqlli_jadval_reviziyalari_v2251(
+                     maktab_id,urinish_id,yaxshilanish DESC
+                   )""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_jarayoni_v2243(
         maktab_id INTEGER PRIMARY KEY REFERENCES maktablar(id) ON DELETE CASCADE,
         qidiruv_nonce BIGINT,
@@ -1306,6 +1331,8 @@ def _v1852_create_tables(cur):
     )""")
     cur.execute("""ALTER TABLE aqlli_jadval_jarayoni_v2243
                    ADD COLUMN IF NOT EXISTS toxtatish_soraldi BOOLEAN NOT NULL DEFAULT FALSE""")
+    cur.execute("""ALTER TABLE aqlli_jadval_jarayoni_v2243
+                   ADD COLUMN IF NOT EXISTS kandidat_soni INTEGER""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_slotlari_v2(
         id BIGSERIAL PRIMARY KEY,
         urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
@@ -1348,6 +1375,98 @@ def _v1852_create_tables(cur):
                    ON aqlli_jadval_slotlari_v2(
                      urinish_id,sinf_id,hafta_kuni,smena,dars_raqami,guruh_kaliti,hafta_turi
                    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_reviziya_slotlari_v2251(
+        id BIGSERIAL PRIMARY KEY,
+        reviziya_id BIGINT NOT NULL REFERENCES aqlli_jadval_reviziyalari_v2251(id) ON DELETE CASCADE,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        hafta_kuni INTEGER NOT NULL CHECK(hafta_kuni BETWEEN 1 AND 7),
+        smena INTEGER NOT NULL CHECK(smena IN (1,2)),
+        dars_raqami INTEGER NOT NULL CHECK(dars_raqami BETWEEN 1 AND 12),
+        fan_nomi TEXT NOT NULL,
+        oqituvchi_user_id BIGINT REFERENCES users(user_id),
+        guruh_kaliti TEXT NOT NULL DEFAULT 'whole',
+        xona_id BIGINT REFERENCES aqlli_xonalar_v2(id),
+        xona_matni TEXT,
+        boshlanish_vaqti TEXT,
+        tugash_vaqti TEXT,
+        yuklama_id BIGINT REFERENCES aqlli_sinf_fan_yuklamalari_v2(id),
+        takror_raqami INTEGER NOT NULL DEFAULT 1,
+        hafta_turi TEXT NOT NULL DEFAULT 'har_hafta',
+        UNIQUE(
+          reviziya_id,sinf_id,hafta_kuni,smena,dars_raqami,
+          guruh_kaliti,hafta_turi
+        )
+    )""")
+    cur.execute("""CREATE INDEX IF NOT EXISTS idx_aqlli_reviziya_slotlari_v2251
+                   ON aqlli_jadval_reviziya_slotlari_v2251(
+                     reviziya_id,sinf_id,hafta_kuni,smena,dars_raqami
+                   )""")
+    # Eski deploydan qolgan joriy jadvalning faqat HAQIQATDA mavjud so'nggi
+    # nusxasini tarixga ko'chiramiz. Masalan diagnostikada 245 bo'lsa,
+    # mavjud #56 jadval #56.245 sifatida ochiladi; mavjud bo'lmagan
+    # #56.1..244 nusxalari esa uydirib yaratilmaydi.
+    cur.execute("""DELETE FROM aqlli_jadval_reviziyalari_v2251 h
+                    USING aqlli_jadval_urinishlari_v2 r
+                    WHERE h.urinish_id=r.id
+                      AND h.diagnostika->>'reviziya_tarixi'='joriy_holatdan_backfill'
+                      AND (
+                        COALESCE(r.joylashtirildi,0)<=0
+                        OR COALESCE(r.joylashtirilmadi,0)<>0
+                        OR COALESCE(
+                          (r.diagnostika->>'tasdiqlash_mumkin')::boolean,
+                          FALSE
+                        )=FALSE
+                        OR NOT EXISTS (
+                          SELECT 1 FROM aqlli_jadval_slotlari_v2 e
+                           WHERE e.urinish_id=r.id
+                        )
+                      )""")
+    cur.execute("""INSERT INTO aqlli_jadval_reviziyalari_v2251(
+                     urinish_id,maktab_id,yaxshilanish,sifat,
+                     joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar,
+                     yaratilgan_at)
+                   SELECT r.id,r.maktab_id,
+                          GREATEST(0,COALESCE((r.diagnostika->>'yaxshilanish')::int,0)),
+                          r.sifat,r.joylashtirildi,r.joylashtirilmadi,
+                          r.diagnostika || '{"reviziya_tarixi":"joriy_holatdan_backfill"}'::jsonb,
+                          r.sozlamalar,r.yaratilgan_at
+                     FROM aqlli_jadval_urinishlari_v2 r
+                    WHERE COALESCE(r.joylashtirildi,0)>0
+                      AND COALESCE(r.joylashtirilmadi,0)=0
+                      AND COALESCE(
+                        (r.diagnostika->>'tasdiqlash_mumkin')::boolean,
+                        FALSE
+                      )=TRUE
+                      AND EXISTS (
+                        SELECT 1 FROM aqlli_jadval_slotlari_v2 e
+                         WHERE e.urinish_id=r.id
+                      )
+                      AND NOT EXISTS (
+                      SELECT 1 FROM aqlli_jadval_reviziyalari_v2251 h
+                       WHERE h.urinish_id=r.id
+                    )
+                   ON CONFLICT(urinish_id,yaxshilanish) DO NOTHING""")
+    cur.execute("""INSERT INTO aqlli_jadval_reviziya_slotlari_v2251(
+                     reviziya_id,sinf_id,hafta_kuni,smena,dars_raqami,
+                     fan_nomi,oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                     boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,
+                     hafta_turi)
+                   SELECT h.id,e.sinf_id,e.hafta_kuni,e.smena,e.dars_raqami,
+                          e.fan_nomi,e.oqituvchi_user_id,e.guruh_kaliti,
+                          e.xona_id,e.xona_matni,e.boshlanish_vaqti,
+                          e.tugash_vaqti,e.yuklama_id,e.takror_raqami,
+                          e.hafta_turi
+                     FROM aqlli_jadval_reviziyalari_v2251 h
+                     JOIN aqlli_jadval_urinishlari_v2 r ON r.id=h.urinish_id
+                     JOIN aqlli_jadval_slotlari_v2 e ON e.urinish_id=r.id
+                    WHERE h.yaxshilanish=GREATEST(
+                            0,COALESCE((r.diagnostika->>'yaxshilanish')::int,0)
+                          )
+                      AND NOT EXISTS (
+                        SELECT 1 FROM aqlli_jadval_reviziya_slotlari_v2251 hs
+                         WHERE hs.reviziya_id=h.id
+                      )
+                   ON CONFLICT DO NOTHING""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_mavzu_rejalari_v2(
         id BIGSERIAL PRIMARY KEY,
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
@@ -1447,6 +1566,252 @@ def _v1852_tables(cur):
     with _V1852_TABLES_LOCK:
         if not _V1852_TABLES_READY:
             _v1852_create_tables(cur)
+
+
+def _v2251_saved_revisions(cur, urinish_id: int) -> list[int]:
+    """Return only immutable revisions that really exist in PostgreSQL."""
+    cur.execute(
+        """SELECT yaxshilanish
+             FROM aqlli_jadval_reviziyalari_v2251
+            WHERE urinish_id=%s
+            ORDER BY yaxshilanish""",
+        (int(urinish_id),),
+    )
+    return [int(row.get("yaxshilanish") or 0) for row in cur.fetchall()]
+
+
+def _v2251_latest_saved_revision(cur, urinish_id: int, fallback=0) -> int:
+    cur.execute(
+        """SELECT MAX(yaxshilanish) AS yaxshilanish
+             FROM aqlli_jadval_reviziyalari_v2251
+            WHERE urinish_id=%s""",
+        (int(urinish_id),),
+    )
+    row = cur.fetchone() or {}
+    value = row.get("yaxshilanish")
+    return max(0, int(fallback or 0) if value is None else int(value))
+
+
+def _v2251_save_current_revision_snapshot(
+    cur, urinish_id: int, yaxshilanish: int
+) -> bool:
+    """Atomically freeze the current validated run without overwriting history.
+
+    The caller owns the transaction and must invoke this only after the final
+    SQL integrity validator has accepted the canonical run/slots.  A duplicate
+    ``(urinish_id, yaxshilanish)`` is deliberately a no-op: history is
+    immutable, even if a retry reaches the same code path.
+    """
+    revision = max(0, int(yaxshilanish or 0))
+    cur.execute(
+        """INSERT INTO aqlli_jadval_reviziyalari_v2251(
+               urinish_id,maktab_id,yaxshilanish,sifat,joylashtirildi,
+               joylashtirilmadi,diagnostika,sozlamalar,yaratilgan_at)
+           SELECT id,maktab_id,%s,sifat,joylashtirildi,joylashtirilmadi,
+                  diagnostika,sozlamalar,NOW()
+             FROM aqlli_jadval_urinishlari_v2
+            WHERE id=%s
+           ON CONFLICT(urinish_id,yaxshilanish) DO NOTHING
+           RETURNING id""",
+        (revision, int(urinish_id)),
+    )
+    inserted = cur.fetchone()
+    if not inserted:
+        return False
+    revision_id = int(inserted["id"])
+    cur.execute(
+        """INSERT INTO aqlli_jadval_reviziya_slotlari_v2251(
+               reviziya_id,sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+               oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+               boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,
+               hafta_turi)
+           SELECT %s,sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+                  oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                  boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,
+                  hafta_turi
+             FROM aqlli_jadval_slotlari_v2
+            WHERE urinish_id=%s
+            ORDER BY id""",
+        (revision_id, int(urinish_id)),
+    )
+    return True
+
+
+def _v2251_diagnostics_object(value) -> dict:
+    """Return a mutable diagnostics object without trusting JSON shape."""
+    if isinstance(value, dict):
+        return dict(value)
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+        except (TypeError, ValueError):
+            return {}
+        return dict(parsed) if isinstance(parsed, dict) else {}
+    return {}
+
+
+def _v2251_without_derived_metrics(value) -> dict:
+    """Drop comfort numbers that a manual move can make stale."""
+    diagnostics = _v2251_diagnostics_object(value)
+    for key in (
+        "qulaylik_strategiyasi",
+        "oqituvchi_okno_hisoboti",
+        "oqituvchi_oknolari",
+        "oknolar",
+        "sinf_oknolari",
+        "kech_tushgan_ogir_darslar",
+        "yumshoq_jazo",
+        "avtomatik_qayta_joylashtirish",
+    ):
+        diagnostics.pop(key, None)
+    diagnostics["qulaylik_metrikasi_holati"] = (
+        "manual_ozgarishdan_keyin_avto_yaxshilash_bloklangan"
+    )
+    diagnostics["avto_yaxshilash_bloklandi"] = True
+    return diagnostics
+
+
+def _v2251_begin_manual_revision(cur, run) -> tuple[int, dict]:
+    """Freeze the current canonical schedule before a manual safe change."""
+    if int(run.get("joylashtirildi") or 0) <= 0 or int(
+        run.get("joylashtirilmadi") or 0
+    ) != 0:
+        raise HTTPException(
+            status_code=409,
+            detail="Faqat to'liq saqlangan jadvalni o'zgartirish mumkin",
+        )
+    run_id = int(run["id"])
+    maktab_id = int(run["maktab_id"])
+    exact = _v1875_schedule_integrity_report(cur, maktab_id, run_id)
+    hygiene = _v1874_schedule_hygiene_violations(cur, maktab_id, run_id)
+    class_blocks = _v1856_schedule_block_violations(cur, maktab_id, run_id)
+    if not exact.get("tayyor") or hygiene or class_blocks:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Joriy jadval xavfsizlik validatoridan o'tmagan; "
+                "undan yangi reviziya yaratilmadi"
+            ),
+        )
+
+    diagnostics = {
+        **_v2251_diagnostics_object(run.get("diagnostika")),
+        "tasdiqlash_mumkin": True,
+        "jadval_mosligi": exact,
+        "gigiyena_xatolari": [],
+        "sinf_kun_xatolari": [],
+    }
+    cur.execute(
+        """SELECT id,yaxshilanish
+             FROM aqlli_jadval_reviziyalari_v2251
+            WHERE urinish_id=%s
+            ORDER BY yaxshilanish DESC LIMIT 1""",
+        (run_id,),
+    )
+    latest = cur.fetchone()
+    current_revision = max(
+        0, int(diagnostics.get("yaxshilanish") or 0)
+    )
+    latest_matches = False
+    if latest:
+        current_revision = int(latest["yaxshilanish"] or 0)
+        cur.execute(
+            """SELECT EXISTS(
+                   SELECT 1 FROM (
+                     (SELECT sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+                             oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                             boshlanish_vaqti,tugash_vaqti,yuklama_id,
+                             takror_raqami,hafta_turi
+                        FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s
+                      EXCEPT
+                      SELECT sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+                             oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                             boshlanish_vaqti,tugash_vaqti,yuklama_id,
+                             takror_raqami,hafta_turi
+                        FROM aqlli_jadval_reviziya_slotlari_v2251
+                       WHERE reviziya_id=%s)
+                     UNION ALL
+                     (SELECT sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+                             oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                             boshlanish_vaqti,tugash_vaqti,yuklama_id,
+                             takror_raqami,hafta_turi
+                        FROM aqlli_jadval_reviziya_slotlari_v2251
+                       WHERE reviziya_id=%s
+                      EXCEPT
+                      SELECT sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+                             oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                             boshlanish_vaqti,tugash_vaqti,yuklama_id,
+                             takror_raqami,hafta_turi
+                        FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s)
+                   ) farq
+                 ) AS farqli""",
+            (run_id, int(latest["id"]), int(latest["id"]), run_id),
+        )
+        latest_matches = not bool((cur.fetchone() or {}).get("farqli"))
+
+    if latest_matches:
+        return current_revision, diagnostics
+
+    # Eski deploy joriy slotlarni reviziyasiz o'zgartirgan bo'lishi mumkin.
+    # Ularni mavjud raqam ustidan yozmaymiz: hozirgi valid holat alohida
+    # haqiqiy revision bo'lib qotadi, keyingi qo'lda o'zgarish undan keyin keladi.
+    if latest:
+        current_revision += 1
+    diagnostics = _v2251_without_derived_metrics(diagnostics)
+    diagnostics["yaxshilanish"] = current_revision
+    cur.execute(
+        """UPDATE aqlli_jadval_urinishlari_v2
+              SET diagnostika=%s::jsonb WHERE id=%s""",
+        (
+            json.dumps(diagnostics, ensure_ascii=False, default=str),
+            run_id,
+        ),
+    )
+    if not _v2251_save_current_revision_snapshot(
+        cur, run_id, current_revision
+    ):
+        raise HTTPException(
+            status_code=409,
+            detail="Joriy jadvalning o'zgarishdan oldingi reviziyasi saqlanmadi",
+        )
+    return current_revision, diagnostics
+
+
+def _v2251_finish_manual_revision(
+    cur, urinish_id: int, previous_revision: int, diagnostics: dict,
+    *, invalidate_derived: bool = False,
+) -> tuple[int, dict]:
+    """Publish one validated manual change as one immutable revision."""
+    next_revision = int(previous_revision) + 1
+    base_diagnostics = (
+        _v2251_without_derived_metrics(diagnostics)
+        if invalidate_derived
+        else _v2251_diagnostics_object(diagnostics)
+    )
+    final_diagnostics = {
+        **base_diagnostics,
+        "yaxshilanish": next_revision,
+    }
+    cur.execute(
+        """UPDATE aqlli_jadval_urinishlari_v2
+              SET diagnostika=%s::jsonb
+            WHERE id=%s""",
+        (
+            json.dumps(final_diagnostics, ensure_ascii=False, default=str),
+            int(urinish_id),
+        ),
+    )
+    if not _v2251_save_current_revision_snapshot(
+        cur, int(urinish_id), next_revision
+    ):
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                f"Jadval #{urinish_id}.{next_revision} allaqachon mavjud; "
+                "saqlangan tarix ustidan yozilmadi"
+            ),
+        )
+    return next_revision, final_diagnostics
 
 
 @app.on_event("startup")
@@ -2312,8 +2677,20 @@ def _v1852_setup_payload(cur, maktab_id: int):
                           COALESCE((diagnostika->>'yaxshilanish')::int,0) AS yaxshilanish,
                           COALESCE((diagnostika->>'generator_rejimi')::int,1) AS generator_rejimi,
                           COALESCE(diagnostika->>'yumshatish_rejimi','strict') AS yumshatish_rejimi
-                   FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s ORDER BY id DESC LIMIT 4""", (maktab_id,))
+                   FROM aqlli_jadval_urinishlari_v2
+                   WHERE maktab_id=%s
+                     AND COALESCE(joylashtirildi,0)>0
+                     AND COALESCE(joylashtirilmadi,0)=0
+                   ORDER BY id DESC LIMIT 4""", (maktab_id,))
     runs = cur.fetchall()
+    # Kartada ko'rsatilgan har bir ``#ID.N`` aynan ochiladigan immutable
+    # snapshot bo'lsin. To'rtta base jadval saqlanish siyosati o'zgarmaydi;
+    # har birining mavjud revision raqamlari alohida metadata sifatida keladi.
+    for run in runs:
+        revisions = _v2251_saved_revisions(cur, int(run["id"]))
+        run["reviziyalar"] = revisions
+        if revisions:
+            run["yaxshilanish"] = int(revisions[-1])
     class_day_blocks = _v1856_class_day_rule_rows(cur, maktab_id)
     return {
         "oquv_yili": year, "choraklar": quarters, "maxsus_kunlar": special_days,
@@ -3653,7 +4030,8 @@ def _v216_exact_failure_detail(
 
 
 def _v2243_progress_write(
-    maktab_id, qidiruv_nonce, jadval_raqami, yaxshilanish, foiz, bosqich, xabar
+    maktab_id, qidiruv_nonce, jadval_raqami, yaxshilanish, foiz, bosqich,
+    xabar, kandidat_soni=None,
 ):
     """Uzoq generatorning ko‘rinadigan holatini alohida tranzaksiyada saqlaydi."""
     progress_conn = None
@@ -3663,8 +4041,9 @@ def _v2243_progress_write(
         progress_cur = progress_conn.cursor()
         progress_cur.execute(
             """INSERT INTO aqlli_jadval_jarayoni_v2243(
-                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar, yangilangan_at)
-               VALUES(%s,%s,%s,%s,%s,%s,%s,NOW())
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,
+                   bosqich,xabar,kandidat_soni,yangilangan_at)
+               VALUES(%s,%s,%s,%s,%s,%s,%s,%s,NOW())
                ON CONFLICT(maktab_id) DO UPDATE SET
                    qidiruv_nonce=EXCLUDED.qidiruv_nonce,
                    jadval_raqami=EXCLUDED.jadval_raqami,
@@ -3682,6 +4061,10 @@ def _v2243_progress_write(
                      THEN aqlli_jadval_jarayoni_v2243.xabar
                      ELSE EXCLUDED.xabar
                    END,
+                   kandidat_soni=COALESCE(
+                     EXCLUDED.kandidat_soni,
+                     aqlli_jadval_jarayoni_v2243.kandidat_soni
+                   ),
                    yangilangan_at=NOW()
                WHERE aqlli_jadval_jarayoni_v2243.qidiruv_nonce
                      IS NOT DISTINCT FROM EXCLUDED.qidiruv_nonce""",
@@ -3693,6 +4076,10 @@ def _v2243_progress_write(
                 max(0, min(100, int(foiz or 0))),
                 str(bosqich or "hisoblash"),
                 str(xabar or "Jadval hisoblanmoqda"),
+                (
+                    max(0, int(kandidat_soni))
+                    if kandidat_soni is not None else None
+                ),
             ),
         )
         progress_conn.commit()
@@ -3761,6 +4148,9 @@ def v2243_generation_progress(token: str, maktab_id: int, qidiruv_nonce: Optiona
             f"{payload['jadval_raqami']}.{payload['yaxshilanish']}"
             if int(payload.get("yaxshilanish") or 0) > 0
             else str(payload["jadval_raqami"])
+        )
+        payload["saqlangan_yaxshilanish"] = int(
+            payload.get("yaxshilanish") or 0
         )
         return payload
     finally:
@@ -3965,7 +4355,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     existing_settings = {}
             if str(existing_settings.get("manba_hash") or "") != str(source_hash or ""):
                 raise HTTPException(status_code=409, detail="Draft yaratilgandan keyin manba o'zgargan; uni ustidan yozish mumkin emas")
-            progress_revision = int(existing_run.get("rev") or 0)
+            progress_revision = _v2251_latest_saved_revision(
+                cur, reserved_run_id, fallback=existing_run.get("rev") or 0
+            )
         else:
             cur.execute(
                 "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
@@ -3973,13 +4365,15 @@ def v1852_generate(sorov: V1852Generate, token: str):
             reserved_run_id = int(cur.fetchone()["id"])
         cur.execute(
             """INSERT INTO aqlli_jadval_jarayoni_v2243(
-                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,toxtatish_soraldi,yangilangan_at)
-               VALUES(%s,%s,%s,%s,%s,%s,%s,FALSE,NOW())
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,
+                   bosqich,xabar,toxtatish_soraldi,kandidat_soni,yangilangan_at)
+               VALUES(%s,%s,%s,%s,%s,%s,%s,FALSE,0,NOW())
                ON CONFLICT(maktab_id) DO UPDATE SET
                    qidiruv_nonce=EXCLUDED.qidiruv_nonce,
                    jadval_raqami=EXCLUDED.jadval_raqami,
                    yaxshilanish=EXCLUDED.yaxshilanish,foiz=EXCLUDED.foiz,bosqich=EXCLUDED.bosqich,
                    xabar=EXCLUDED.xabar,
+                   kandidat_soni=0,
                    toxtatish_soraldi=aqlli_jadval_jarayoni_v2243.toxtatish_soraldi,
                    yangilangan_at=NOW()
                WHERE aqlli_jadval_jarayoni_v2243.qidiruv_nonce
@@ -4063,11 +4457,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
             _V216_ORTOOLS_AVAILABLE and callable(_v216_solve_exact)
         )
         if exact_ready:
-            quality_start_revision = int(progress_revision)
             quality_progress_percent = 58
+            quality_candidate_count = 0
 
             def _v2243_exact_progress(event, payload):
-                nonlocal progress_revision, quality_progress_percent
+                nonlocal quality_progress_percent, quality_candidate_count
                 placed = int((payload or {}).get("placed") or 0)
                 total = int((payload or {}).get("total") or len(jobs))
                 if event == "hard_feasible":
@@ -4086,11 +4480,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     improvement_count = int(
                         (payload or {}).get("improvement_count") or 0
                     )
-                    if event == "quality_improved":
-                        progress_revision = max(
-                            progress_revision,
-                            quality_start_revision + improvement_count,
-                        )
+                    quality_candidate_count = max(
+                        quality_candidate_count,
+                        int((payload or {}).get("solution_count") or 0),
+                        improvement_count,
+                    )
                     idle_seconds = float(
                         (payload or {}).get("idle_seconds") or 0.0
                     )
@@ -4102,23 +4496,27 @@ def v1852_generate(sorov: V1852Generate, token: str):
                         quality_progress_percent,
                         60 + min(24, int(24 * idle_seconds / idle_limit)),
                     )
-                    shown_revision = max(
-                        progress_revision,
-                        quality_start_revision + improvement_count,
-                    )
                     _v2243_progress_write(
                         sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                        shown_revision, quality_progress_percent,
+                        progress_revision, quality_progress_percent,
                         "global_yaxshilandi"
-                        if event == "quality_improved"
-                        else "yaxshilash_qidiruv",
+                        if sorov.yaxshilash_bosqichi and event == "quality_improved"
+                        else "sinf_kun_balansi"
+                        if not sorov.yaxshilash_bosqichi else
+                        "yaxshilash_qidiruv",
                         (
                             f"Jadval #{reserved_run_id}"
-                            f"{'.' + str(shown_revision) if shown_revision else ''}: "
-                            f"{improvement_count} ta yaxshiroq nomzod topildi; "
+                            f"{'.' + str(progress_revision) if progress_revision else ''}: "
+                            f"{quality_candidate_count} ta xavfsiz nomzod tekshirildi, "
+                            f"{improvement_count} tasi oldingisidan yaxshiroq; "
                             f"oxirgi foydali o'zgarishdan {idle_seconds:.0f}/{idle_limit:.0f} soniya o'tdi. "
-                            "Sinf kunlari va o'qituvchi qulayligi tekshirilmoqda."
+                            + (
+                                "Sinf kunlari va o'qituvchi qulayligi tekshirilmoqda."
+                                if sorov.yaxshilash_bosqichi else
+                                "Faqat sinflarning kunlik soatlari barqarorlashtirilmoqda."
+                            )
                         ),
+                        kandidat_soni=quality_candidate_count,
                     )
                 elif event == "quality_stopped":
                     reason = str((payload or {}).get("stop_reason") or "")
@@ -4142,28 +4540,33 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     quality_cancelled = str(
                         (payload or {}).get("stop_reason") or ""
                     ) == "user_cancel"
-                    improvement_count = max(
-                        1,
+                    quality_candidate_count = max(
+                        quality_candidate_count,
+                        int((payload or {}).get("solution_count") or 0),
                         int((payload or {}).get("improvement_count") or 0),
-                    )
-                    progress_revision = max(
-                        progress_revision,
-                        quality_start_revision + improvement_count,
                     )
                     _v2243_progress_write(
                         sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
                         progress_revision, 88,
                         "toxtatish_soraldi"
                         if quality_cancelled else
-                        "global_yaxshilandi",
+                        "global_yaxshilandi"
+                        if sorov.yaxshilash_bosqichi else
+                        "sinf_kun_balansi",
                         (
-                            f"Jadval #{reserved_run_id}.{progress_revision}: "
+                            f"Jadval #{reserved_run_id}"
+                            f"{'.' + str(progress_revision) if progress_revision else ''}: "
                             + (
-                                "to'xtatish qabul qilindi; topilgan eng yaxshi sinf-kun balansi xavfsiz saqlanmoqda."
+                                "to'xtatish qabul qilindi; topilgan eng yaxshi sinf-kun balansi yakuniy validatorga o'tdi."
                                 if quality_cancelled else
-                                "global sinf-kun balansi va qulaylik yaxshilandi; qattiq qoidalar hamda 100% dars saqlandi."
+                                (
+                                    "global sinf-kun balansi va qulaylik nomzodi yaxshilandi; qattiq qoidalar va 100% dars yakuniy tekshirilmoqda."
+                                    if sorov.yaxshilash_bosqichi else
+                                    "asosiy jadvalning sinf-kun balansi yaxshilandi; 100% dars yakuniy tekshirilmoqda."
+                                )
                             )
                         ),
+                        kandidat_soni=quality_candidate_count,
                     )
 
             exact_context = dict(context)
@@ -4204,13 +4607,20 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # sifat bosqichi ishlaydi. U daily_max=2 takrorlarini, o'qituvchi
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
-            exact_context["exact_quality_after_feasible"] = bool(sorov.yaxshilash_bosqichi)
-            exact_context["exact_quality_seconds"] = generation_budget if sorov.yaxshilash_bosqichi else 0.0
+            exact_context["exact_quality_after_feasible"] = True
+            exact_context["exact_quality_profile"] = (
+                "full" if sorov.yaxshilash_bosqichi else "class_balance"
+            )
+            exact_context["exact_quality_seconds"] = (
+                generation_budget if sorov.yaxshilash_bosqichi else 4.0
+            )
             exact_context["exact_quality_no_improvement_seconds"] = (
                 _v2250_quality_no_improvement_seconds()
+                if sorov.yaxshilash_bosqichi else 1.5
             )
             exact_context["exact_quality_first_solution_seconds"] = (
                 _v2250_quality_first_solution_seconds()
+                if sorov.yaxshilash_bosqichi else 2.5
             )
             exact_context["exact_progress_callback"] = _v2243_exact_progress
             exact_context["exact_cancel_requested"] = lambda: _v2244_cancel_requested(
@@ -4550,13 +4960,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             final_context["v208_mode_config"] = dict(final_mode_config)
 
         def _v2250_teacher_progress(payload):
-            nonlocal progress_revision
             teacher_id = int((payload or {}).get("oqituvchi_id") or 0)
             checked = int((payload or {}).get("tekshirildi") or 0)
             target_total = max(1, int((payload or {}).get("jami") or 1))
             improved_teacher = bool((payload or {}).get("yaxshilandi"))
-            if improved_teacher:
-                progress_revision += 1
             teacher_name = str(
                 (teachers.get(teacher_id) or {}).get("full_name")
                 or teacher_id
@@ -4585,7 +4992,6 @@ def v1852_generate(sorov: V1852Generate, token: str):
             final_context["v225_teacher_progress_callback"] = (
                 _v2250_teacher_progress
             )
-        finalizer_start_revision = int(progress_revision)
         # Ko'p urinishdan tanlangan eng yaxshi jadvalni sinf kataklarini
         # o'zgartirmasdan yana bir marta o'qituvchi nuqtai nazaridan siqamiz.
         # Bir sinf-kun ichidagi ikki fanning o'rni xavfsiz almashtiriladi:
@@ -4712,19 +5118,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
         if after_comfort != before_comfort and all(
             after <= before for after, before in zip(after_comfort, before_comfort)
         ):
-            if progress_revision == finalizer_start_revision:
-                progress_revision += 1
             _v2243_progress_write(
                 sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
                 progress_revision, 88,
                 "toxtatish_soraldi"
                 if cancelled_during_finalize else
                 "ustozlar_yaxshilandi",
-                f"Jadval #{reserved_run_id}.{progress_revision}: "
+                f"Jadval #{reserved_run_id}"
+                f"{'.' + str(progress_revision) if progress_revision else ''}: "
                 + (
-                    "to‘xtatish qabul qilindi; topilgan eng yaxshi o‘qituvchi qulayligi saqlanmoqda."
+                    "to‘xtatish qabul qilindi; topilgan eng yaxshi o‘qituvchi qulayligi yakuniy validatorga o'tdi."
                     if cancelled_during_finalize else
-                    "o‘qituvchi oynalari, uzoq kutish va kam-soatli ustozlarning kunlari yaxshilandi."
+                    "o‘qituvchi oynalari, uzoq kutish va kam-soatli ustozlarning kunlari yaxshilandi; nomzod tekshirilmoqda."
                 ),
             )
         else:
@@ -5047,7 +5452,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
             if not comfort_improved:
                 conn.rollback()
-                saved_revision = int(old_diagnostics.get("yaxshilanish") or 0)
+                # Rollbackdan keyin alohida progress ulanishi uchun faqat
+                # avvaldan immutable saqlangan raqamni ko'rsatamiz.
+                saved_revision = int(progress_revision or 0)
                 cancelled_without_change = _v2244_cancel_requested(
                     sorov.maktab_id, sorov.qidiruv_nonce
                 )
@@ -5066,13 +5473,27 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 )
                 return {"holat": "yaxshiroq_variant_topilmadi", "urinish_id": reserved_run_id,
                         "jadval_raqami": reserved_run_id, "yaxshilanish": saved_revision,
+                        "ko_rinish_raqami": (
+                            f"{reserved_run_id}.{saved_revision}"
+                            if saved_revision > 0 else str(reserved_run_id)
+                        ),
                         "sifat": old_quality, "jami_soat": total_count,
                         "joylashtirildi": total_count, "joylashtirilmadi": 0,
                         "tasdiqlash_mumkin": True}
-            progress_revision = max(
-                int(old_diagnostics.get("yaxshilanish") or 0) + 1,
-                int(progress_revision or 0),
+            saved_revision = _v2251_latest_saved_revision(
+                cur,
+                reserved_run_id,
+                fallback=old_diagnostics.get("yaxshilanish") or 0,
             )
+            # Legacy joriy jadval yoki rev0 hali snapshot qilinmagan bo'lsa,
+            # aynan eski canonical slotlarni o'chirishdan OLDIN qotiramiz.
+            _v2251_save_current_revision_snapshot(
+                cur, reserved_run_id, saved_revision
+            )
+            # Bitta yakuniy validator qabul qilgan variant = bitta haqiqiy
+            # revision. Solverning 245 ta ichki nomzodi bu raqamga ta'sir
+            # qilmaydi.
+            progress_revision = int(saved_revision) + 1
             diagnostics["yaxshilanish"] = progress_revision
             cur.execute("DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s", (reserved_run_id,))
         else:
@@ -5279,6 +5700,20 @@ def v1852_generate(sorov: V1852Generate, token: str):
                WHERE id=%s""",
             (quality, json.dumps(diagnostics, ensure_ascii=False, default=str), run_id),
         )
+        # Faqat 100% joylashgan va yuqoridagi SQL integritet validatoridan
+        # o'tgan canonical slotlar immutable tarixga kiradi. Snapshot ham shu
+        # tranzaksiyada; commit bo'lmasa revision ham ko'rinmaydi.
+        snapshot_inserted = _v2251_save_current_revision_snapshot(
+            cur, run_id, progress_revision
+        )
+        if not snapshot_inserted:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"Jadval #{run_id}.{progress_revision} revision raqami "
+                    "allaqachon mavjud; immutable tarix ustidan yozilmadi."
+                ),
+            )
 
         # Har bir maktab uchun faqat oxirgi to'rtta to'liq natija saqlanadi.
         # Slotlar ON DELETE CASCADE bilan birga tozalanadi; joriy run doimo
@@ -5332,6 +5767,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
         return {"holat": "draft_yaratildi", "urinish_id": run_id,
                 "jadval_raqami": run_id, "sifat": quality,
                 "yaxshilanish": progress_revision,
+                "ko_rinish_raqami": (
+                    f"{run_id}.{progress_revision}"
+                    if progress_revision > 0 else str(run_id)
+                ),
                 "jami_soat": total_count, "joylashtirildi": placed_count,
                 "joylashtirilmadi": len(unplaced), "diagnostika": diagnostics,
                 "solver_status": diagnostics["solver_status"],
@@ -5408,13 +5847,15 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
             raise HTTPException(status_code=409, detail="Bu maktab uchun jadval allaqachon yaratilmoqda")
         cur.execute(
             """INSERT INTO aqlli_jadval_jarayoni_v2243(
-                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,toxtatish_soraldi,yangilangan_at)
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,
+                   bosqich,xabar,toxtatish_soraldi,kandidat_soni,yangilangan_at)
                VALUES(%s,%s,0,0,1,'boshlanmoqda',
-                      %s,FALSE,NOW())
+                      %s,FALSE,0,NOW())
                ON CONFLICT(maktab_id) DO UPDATE SET
                    qidiruv_nonce=EXCLUDED.qidiruv_nonce,jadval_raqami=0,
                    yaxshilanish=0,foiz=1,bosqich='boshlanmoqda',
-                   xabar=EXCLUDED.xabar,toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
+                   xabar=EXCLUDED.xabar,toxtatish_soraldi=FALSE,
+                   kandidat_soni=0,yangilangan_at=NOW()""",
             (
                 sorov.maktab_id,
                 sorov.qidiruv_nonce,
@@ -5543,7 +5984,9 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
 
 
 @app.get("/api/maktab/aqlli_jadval/v2/urinish")
-def v1852_run_detail(token: str, urinish_id: int):
+def v1852_run_detail(
+    token: str, urinish_id: int, yaxshilanish: Optional[int] = None
+):
     user_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
@@ -5554,15 +5997,100 @@ def v1852_run_detail(token: str, urinish_id: int):
             raise HTTPException(status_code=404, detail="Jadval urinishi topilmadi")
         if not _v1852_staff(cur, user_id, run["maktab_id"]):
             raise HTTPException(status_code=403, detail="Ruxsat yo'q")
-        cur.execute("""SELECT e.*,s.sinf,s.harf,u.full_name AS oqituvchi_ismi,r.nomi AS xona_nomi
-                       FROM aqlli_jadval_slotlari_v2 e
-                       JOIN maktab_sinflari s ON s.id=e.sinf_id
-                       LEFT JOIN users u ON u.user_id=e.oqituvchi_user_id
-                       LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
-                       WHERE e.urinish_id=%s ORDER BY s.sinf::int,s.harf,e.hafta_kuni,e.smena,e.dars_raqami,e.guruh_kaliti""", (urinish_id,))
-        entries = cur.fetchall()
+        revisions = _v2251_saved_revisions(cur, urinish_id)
+        run_diagnostics = run.get("diagnostika") or {}
+        if isinstance(run_diagnostics, str):
+            try:
+                run_diagnostics = json.loads(run_diagnostics)
+            except (TypeError, ValueError):
+                run_diagnostics = {}
+        diagnostic_revision = max(
+            0, int(run_diagnostics.get("yaxshilanish") or 0)
+        )
+        current_revision = (
+            int(revisions[-1]) if revisions else diagnostic_revision
+        )
+        requested_revision = (
+            None if yaxshilanish is None else int(yaxshilanish)
+        )
+        if requested_revision is not None and requested_revision < 0:
+            raise HTTPException(
+                status_code=422,
+                detail="Jadval yaxshilanish raqami manfiy bo'lishi mumkin emas",
+            )
+
+        run_view = dict(run)
+        read_only_snapshot = requested_revision is not None
+        if requested_revision is not None:
+            cur.execute(
+                """SELECT *
+                     FROM aqlli_jadval_reviziyalari_v2251
+                    WHERE urinish_id=%s AND yaxshilanish=%s""",
+                (int(urinish_id), requested_revision),
+            )
+            revision_row = cur.fetchone()
+            if not revision_row:
+                raise HTTPException(
+                    status_code=404,
+                    detail=(
+                        f"Jadval #{urinish_id}.{requested_revision} "
+                        "saqlangan revisionlar orasida topilmadi"
+                    ),
+                )
+            selected_revision = requested_revision
+            run_view.update({
+                "sifat": revision_row.get("sifat"),
+                "joylashtirildi": revision_row.get("joylashtirildi"),
+                "joylashtirilmadi": revision_row.get("joylashtirilmadi"),
+                "diagnostika": revision_row.get("diagnostika") or {},
+                "sozlamalar": revision_row.get("sozlamalar") or {},
+                "yaxshilanish": selected_revision,
+            })
+            cur.execute(
+                """SELECT e.*,%s::BIGINT AS urinish_id,%s::INTEGER AS maktab_id,
+                          TRUE AS reviziya_snapshoti,
+                          s.sinf,s.harf,u.full_name AS oqituvchi_ismi,
+                          r.nomi AS xona_nomi
+                     FROM aqlli_jadval_reviziya_slotlari_v2251 e
+                     JOIN maktab_sinflari s ON s.id=e.sinf_id
+                     LEFT JOIN users u ON u.user_id=e.oqituvchi_user_id
+                     LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
+                    WHERE e.reviziya_id=%s
+                    ORDER BY s.sinf::int,s.harf,e.hafta_kuni,e.smena,
+                             e.dars_raqami,e.guruh_kaliti""",
+                (int(urinish_id), int(run["maktab_id"]), revision_row["id"]),
+            )
+            entries = cur.fetchall()
+        else:
+            selected_revision = current_revision
+            run_view["yaxshilanish"] = current_revision
+            cur.execute("""SELECT e.*,FALSE AS reviziya_snapshoti,
+                                  s.sinf,s.harf,u.full_name AS oqituvchi_ismi,
+                                  r.nomi AS xona_nomi
+                           FROM aqlli_jadval_slotlari_v2 e
+                           JOIN maktab_sinflari s ON s.id=e.sinf_id
+                           LEFT JOIN users u ON u.user_id=e.oqituvchi_user_id
+                           LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
+                           WHERE e.urinish_id=%s
+                           ORDER BY s.sinf::int,s.harf,e.hafta_kuni,e.smena,
+                                    e.dars_raqami,e.guruh_kaliti""", (urinish_id,))
+            entries = cur.fetchall()
         current_week_type = "toq" if datetime.now().isocalendar().week % 2 else "juft"
-        return {"urinish": run, "slotlar": entries, "joriy_hafta_turi": current_week_type}
+        display_number = (
+            f"{urinish_id}.{selected_revision}"
+            if int(selected_revision or 0) > 0 else str(urinish_id)
+        )
+        return {
+            "urinish": run_view,
+            "slotlar": entries,
+            "joriy_hafta_turi": current_week_type,
+            "tanlangan_yaxshilanish": int(selected_revision or 0),
+            "joriy_yaxshilanish": int(current_revision or 0),
+            "ko_rinish_raqami": display_number,
+            "tarixiy": bool(selected_revision != current_revision),
+            "faqat_oqish": bool(read_only_snapshot),
+            "reviziyalar": revisions,
+        }
     finally:
         cur.close(); conn.close()
 
@@ -11395,6 +11923,8 @@ def v197_fractional_hour_capabilities():
         "jadval_release": SAMTM_JADVAL_RELEASE,
         "exact_jadval_release": SAMTM_EXACT_JADVAL_RELEASE,
         "exact_internal_release": SAMTM_EXACT_INTERNAL_RELEASE,
+        "exact_solver_release": _V2251_EXACT_SOLVER_RELEASE,
+        "revision_history_contract": "immutable-saved-revisions-v22.51",
         "timetable_engine_release": SAMTM_TIMETABLE_ENGINE_RELEASE,
         "single_generator": True,
         "generator_soni": 1,
@@ -14477,6 +15007,11 @@ class V192SwapApply(BaseModel):
 
 
 def _v192_clone_run(cur, run, actor_id: int):
+    clone_diagnostics = _v2251_diagnostics_object(run.get("diagnostika"))
+    clone_diagnostics.update({
+        "yaxshilanish": 0,
+        "v19_2_manba_urinish_id": int(run["id"]),
+    })
     cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
                     maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,
                     joylashtirilmadi,diagnostika,sozlamalar)
@@ -14484,7 +15019,7 @@ def _v192_clone_run(cur, run, actor_id: int):
                 (
                     run["maktab_id"], actor_id, run.get("sifat") or 0,
                     run.get("joylashtirildi") or 0, run.get("joylashtirilmadi") or 0,
-                    psycopg2.extras.Json(run.get("diagnostika") or {}),
+                    psycopg2.extras.Json(clone_diagnostics),
                     psycopg2.extras.Json({
                         **(run.get("sozlamalar") or {}),
                         "v19_2_manba_urinish_id": int(run["id"]),
@@ -14500,6 +15035,11 @@ def _v192_clone_run(cur, run, actor_id: int):
                           boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,hafta_turi
                    FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s""",
                 (new_run_id, run["id"]))
+    if not _v2251_save_current_revision_snapshot(cur, new_run_id, 0):
+        raise HTTPException(
+            status_code=409,
+            detail="Yangi draftning asosiy revisioni saqlanmadi",
+        )
     return new_run_id
 
 
@@ -14518,14 +15058,25 @@ def v192_slot_room_update(sorov: V192SlotRoomUpdate, token: str):
     try:
         _v192_tables(cur)
         cur.execute(
+            "SELECT maktab_id FROM aqlli_jadval_urinishlari_v2 WHERE id=%s",
+            (sorov.urinish_id,),
+        )
+        run_identity = cur.fetchone()
+        if not run_identity:
+            raise HTTPException(status_code=404, detail="Jadval topilmadi")
+        if not _v1852_manager(cur, actor_id, run_identity["maktab_id"]):
+            raise HTTPException(status_code=403, detail="Jadval xonasini faqat rahbariyat o'zgartiradi")
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1900000000 + int(run_identity["maktab_id"]),),
+        )
+        cur.execute(
             "SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE",
             (sorov.urinish_id,),
         )
         original_run = cur.fetchone()
         if not original_run:
             raise HTTPException(status_code=404, detail="Jadval topilmadi")
-        if not _v1852_manager(cur, actor_id, original_run["maktab_id"]):
-            raise HTTPException(status_code=403, detail="Jadval xonasini faqat rahbariyat o'zgartiradi")
 
         original_slots = _v192_run_slots(cur, int(original_run["id"]))
         original_slot = next(
@@ -14700,10 +15251,58 @@ def v192_slot_room_update(sorov: V192SlotRoomUpdate, token: str):
             if occupied:
                 raise HTTPException(status_code=409, detail=f"{room_text} bu vaqtda boshqa darsga band")
 
+        same_room = (
+            int(original_slot.get("xona_id") or 0) == int(room_id or 0)
+            and _v205_room_normalized_name(original_slot.get("xona_matni"))
+            == _v205_room_normalized_name(room_text)
+        )
+        if same_room:
+            raise HTTPException(
+                status_code=409,
+                detail="Bu darsga aynan shu xona allaqachon biriktirilgan",
+            )
+
+        cur.execute(
+            "SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE",
+            (run_id,),
+        )
+        working_run = cur.fetchone()
+        previous_revision, working_diagnostics = _v2251_begin_manual_revision(
+            cur, working_run
+        )
         cur.execute(
             """UPDATE aqlli_jadval_slotlari_v2
                SET xona_id=%s,xona_matni=%s WHERE id=%s""",
             (room_id, room_text, slot_id),
+        )
+        exact = _v1875_schedule_integrity_report(
+            cur, original_run["maktab_id"], run_id
+        )
+        hygiene = _v1874_schedule_hygiene_violations(
+            cur, original_run["maktab_id"], run_id
+        )
+        class_blocks = _v1856_schedule_block_violations(
+            cur, original_run["maktab_id"], run_id
+        )
+        if not exact.get("tayyor") or hygiene or class_blocks:
+            raise HTTPException(
+                status_code=409,
+                detail="Xona o'zgarishi yakuniy xavfsizlik tekshiruvidan o'tmadi",
+            )
+        room_diagnostics = {
+            **working_diagnostics,
+            "tasdiqlash_mumkin": True,
+            "jadval_mosligi": exact,
+            "gigiyena_xatolari": [],
+            "sinf_kun_xatolari": [],
+            "v22_51_xona_ozgartirish": {
+                "slot_id": slot_id,
+                "xona_id": room_id,
+                "xona": room_text,
+            },
+        }
+        new_revision, room_diagnostics = _v2251_finish_manual_revision(
+            cur, run_id, previous_revision, room_diagnostics
         )
         conn.commit()
         return {
@@ -14712,6 +15311,8 @@ def v192_slot_room_update(sorov: V192SlotRoomUpdate, token: str):
             "slot_id": slot_id,
             "xona_id": room_id,
             "xona": room_text,
+            "yaxshilanish": new_revision,
+            "ko_rinish_raqami": f"{run_id}.{new_revision}",
             "yangi_draft": run_id != int(original_run["id"]),
         }
     except Exception:
@@ -14726,12 +15327,26 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v192_tables(cur)
-        cur.execute("SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE", (sorov.urinish_id,))
+        cur.execute(
+            "SELECT maktab_id FROM aqlli_jadval_urinishlari_v2 WHERE id=%s",
+            (sorov.urinish_id,),
+        )
+        run_identity = cur.fetchone()
+        if not run_identity:
+            raise HTTPException(status_code=404, detail="Jadval topilmadi")
+        if not _v1852_manager(cur, actor_id, run_identity["maktab_id"]):
+            raise HTTPException(status_code=403, detail="Jadvalni faqat rahbariyat o'zgartiradi")
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1900000000 + int(run_identity["maktab_id"]),),
+        )
+        cur.execute(
+            "SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE",
+            (sorov.urinish_id,),
+        )
         original_run = cur.fetchone()
         if not original_run:
             raise HTTPException(status_code=404, detail="Jadval topilmadi")
-        if not _v1852_manager(cur, actor_id, original_run["maktab_id"]):
-            raise HTTPException(status_code=403, detail="Jadvalni faqat rahbariyat o'zgartiradi")
         source_slots = _v192_run_slots(cur, original_run["id"])
         original_source = next((row for row in source_slots if int(row["id"]) == int(sorov.slot_id)), None)
         if not original_source:
@@ -14744,13 +15359,26 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
             cur.execute("""SELECT id FROM aqlli_jadval_slotlari_v2
                            WHERE urinish_id=%s AND sinf_id=%s AND hafta_kuni=%s
                              AND smena=%s AND dars_raqami=%s AND fan_nomi=%s
-                             AND guruh_kaliti=%s LIMIT 1""",
+                             AND guruh_kaliti=%s
+                             AND hafta_turi=%s
+                             AND COALESCE(oqituvchi_user_id,0)=COALESCE(%s,0)
+                             AND COALESCE(takror_raqami,0)=COALESCE(%s,0)
+                           ORDER BY id LIMIT 1""",
                         (
                             run_id, original_source["sinf_id"], original_source["hafta_kuni"],
                             original_source["smena"], original_source["dars_raqami"],
                             original_source["fan_nomi"], original_source["guruh_kaliti"],
+                            original_source.get("hafta_turi") or "har_hafta",
+                            original_source.get("oqituvchi_user_id"),
+                            original_source.get("takror_raqami"),
                         ))
-            slot_id = int(cur.fetchone()["id"])
+            cloned_slot = cur.fetchone()
+            if not cloned_slot:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Yangi draftdagi aynan shu dars topilmadi",
+                )
+            slot_id = int(cloned_slot["id"])
         elif original_run["holat"] != "draft":
             raise HTTPException(status_code=409, detail="Faqat draft yoki faol jadval o'zgartiriladi")
 
@@ -14766,6 +15394,14 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
                 status_code=409,
                 detail="Tanlangan joy endi xavfsiz emas. Tavsiyalarni qayta yuklang",
             )
+        cur.execute(
+            "SELECT * FROM aqlli_jadval_urinishlari_v2 WHERE id=%s FOR UPDATE",
+            (run_id,),
+        )
+        working_run = cur.fetchone()
+        previous_revision, working_diagnostics = _v2251_begin_manual_revision(
+            cur, working_run
+        )
         slots = _v192_run_slots(cur, run_id)
         source, source_bundle = _v192_bundle_for_slot(slots, slot_id)
         source_ids = [int(row["id"]) for row in source_bundle]
@@ -14843,7 +15479,13 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
         exact = _v1875_schedule_integrity_report(cur, original_run["maktab_id"], run_id)
         hygiene = _v1874_schedule_hygiene_violations(cur, original_run["maktab_id"], run_id)
         class_blocks = _v1856_schedule_block_violations(cur, original_run["maktab_id"], run_id)
+        if not exact.get("tayyor") or hygiene or class_blocks:
+            raise HTTPException(
+                status_code=409,
+                detail="Almashtirish yakuniy xavfsizlik tekshiruvidan o'tmadi",
+            )
         diagnostic = {
+            **working_diagnostics,
             "tasdiqlash_mumkin": bool(exact.get("tayyor") and not hygiene and not class_blocks),
             "jadval_mosligi": exact,
             "gigiyena_xatolari": hygiene,
@@ -14854,14 +15496,17 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
                 "yangi": [candidate["yangi_hafta_kuni"], candidate["yangi_dars_raqami"]],
             },
         }
-        cur.execute("""UPDATE aqlli_jadval_urinishlari_v2
-                       SET diagnostika=%s WHERE id=%s""",
-                    (psycopg2.extras.Json(diagnostic), run_id))
+        new_revision, diagnostic = _v2251_finish_manual_revision(
+            cur, run_id, previous_revision, diagnostic,
+            invalidate_derived=True,
+        )
         conn.commit()
         return {
             "holat": "almashtirildi" if target_ids else "ko'chirildi",
             "urinish_id": run_id,
             "yangi_draft": run_id != int(original_run["id"]),
+            "yaxshilanish": new_revision,
+            "ko_rinish_raqami": f"{run_id}.{new_revision}",
             "tasdiqlash_mumkin": diagnostic["tasdiqlash_mumkin"],
             "diagnostika": diagnostic,
         }
@@ -15602,7 +16247,8 @@ def _v196_balance_class_days(state, context, rng, max_moves=24):
     while moves < int(max_moves):
         if _v206_deadline_reached(context):
             break
-        before_imbalance, _ = _v196_class_distribution_metrics(state, context)
+        before_balance = _v2250_class_balance_signature(state, context)
+        before_imbalance = int(before_balance[2])
         if before_imbalance <= 0:
             break
         changed = False
@@ -15668,10 +16314,15 @@ def _v196_balance_class_days(state, context, rng, max_moves=24):
                         trial = _v196_compact_class_gaps(
                             trial, context, rng, max_moves=4
                         )
-                        after_imbalance, _ = _v196_class_distribution_metrics(
-                            trial, context
-                        )
-                        if after_imbalance >= before_imbalance:
+                        # L1 yig'indisi yaxshilangan bo'lsa ham eng yomon
+                        # sinf-kun spreadi yomonlashishi mumkin. CP-SAT topgan
+                        # barqarorlikni lokal finalizator buzmasligi uchun
+                        # aynan saqlashda ishlatiladigan to'liq leksikografik
+                        # imzoni qat'iy yaxshilashni talab qilamiz.
+                        if (
+                            _v2250_class_balance_signature(trial, context)
+                            >= before_balance
+                        ):
                             continue
                         if _v196_class_gap_count(trial) > _v196_class_gap_count(state):
                             continue
