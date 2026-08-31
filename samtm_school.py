@@ -90,7 +90,7 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.48-WORST-FIRST-FROZEN-CLASS-DAYS"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.53-REUSE-INCUMBENT-WORST-FIRST"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -3760,6 +3760,609 @@ def v2244_stop_generation(token: str, maktab_id: int, qidiruv_nonce: Optional[in
         cur.close(); conn.close()
 
 
+
+def _v2253_saved_run_placements(cur, run_id, jobs, context):
+    """Rebuild one already-saved complete draft into the in-memory optimizer state.
+
+    V22.53 does not throw away a good #57 merely because the user presses the
+    generator again.  When the source hash is unchanged, the stored full draft
+    is the incumbent.  We identify every canonical job by load_id + occurrence
+    (and A/B member phase), then restore the exact day/period and teacher set.
+    """
+    cur.execute(
+        """SELECT sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
+                  oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                  yuklama_id,takror_raqami,hafta_turi
+           FROM aqlli_jadval_slotlari_v2
+           WHERE urinish_id=%s
+           ORDER BY hafta_kuni,smena,dars_raqami,sinf_id,guruh_kaliti,hafta_turi,id""",
+        (int(run_id),),
+    )
+    slots = [dict(row) for row in cur.fetchall()]
+    if not slots:
+        return None
+
+    by_load = _v1852_defaultdict(list)
+    class_hour_rows = _v1852_defaultdict(list)
+    for row in slots:
+        if row.get("yuklama_id") is None:
+            class_hour_rows[
+                (
+                    int(row.get("sinf_id") or 0),
+                    _v1875_subject_key(row.get("fan_nomi")),
+                    int(row.get("takror_raqami") or 1),
+                )
+            ].append(row)
+        else:
+            by_load[
+                (
+                    int(row.get("yuklama_id") or 0),
+                    int(row.get("takror_raqami") or 1),
+                    str(row.get("hafta_turi") or "har_hafta"),
+                )
+            ].append(row)
+
+    def position(rows):
+        values = {
+            (int(row.get("hafta_kuni") or 0), int(row.get("dars_raqami") or 0))
+            for row in rows
+        }
+        return next(iter(values)) if len(values) == 1 else None
+
+    placements = []
+    for job in jobs:
+        selected_rows = []
+        members = job.get("rotation_members") or []
+        if members:
+            positions = set()
+            for member in members:
+                phase = str(member.get("hafta_turi") or "toq")
+                rows = by_load.get(
+                    (
+                        int(member.get("load_id") or 0),
+                        int(member.get("occurrence") or 1),
+                        phase,
+                    ),
+                    [],
+                )
+                if not rows:
+                    return None
+                pos = position(rows)
+                if not pos:
+                    return None
+                positions.add(pos)
+                selected_rows.extend(rows)
+            if len(positions) != 1:
+                return None
+            day, period = next(iter(positions))
+            teachers = [
+                teacher for teacher in _v1852_choose_teacher(
+                    job, day, period, _v1852_new_schedule_state(), context
+                )
+                if teacher is not None
+            ]
+        elif job.get("is_class_hour"):
+            rows = class_hour_rows.get(
+                (
+                    int(job.get("sinf_id") or 0),
+                    _v1875_subject_key(job.get("fan")),
+                    int(job.get("occurrence") or 1),
+                ),
+                [],
+            )
+            if not rows:
+                return None
+            pos = position(rows)
+            if not pos:
+                return None
+            day, period = pos
+            selected_rows = list(rows)
+            teacher = next(
+                (
+                    int(row["oqituvchi_user_id"])
+                    for row in rows
+                    if row.get("oqituvchi_user_id") is not None
+                ),
+                None,
+            )
+            if teacher is None:
+                options = [
+                    int(value) for value in job.get("teacher_options") or []
+                    if value is not None
+                ]
+                teacher = options[0] if options else None
+            teachers = [teacher] if teacher is not None else []
+        else:
+            rows = by_load.get(
+                (
+                    int(job.get("load_id") or 0),
+                    int(job.get("occurrence") or 1),
+                    "har_hafta",
+                ),
+                [],
+            )
+            # A half-hour job that was not paired can be stored as TOQ/JUFT.
+            if not rows and float(job.get("rotation_weight") or 1.0) < 1.0:
+                rows = (
+                    by_load.get(
+                        (
+                            int(job.get("load_id") or 0),
+                            int(job.get("occurrence") or 1),
+                            "toq",
+                        ),
+                        [],
+                    )
+                    or by_load.get(
+                        (
+                            int(job.get("load_id") or 0),
+                            int(job.get("occurrence") or 1),
+                            "juft",
+                        ),
+                        [],
+                    )
+                )
+            if not rows:
+                return None
+            pos = position(rows)
+            if not pos:
+                return None
+            day, period = pos
+            selected_rows = list(rows)
+            if job.get("groups"):
+                row_by_group = {
+                    str(row.get("guruh_kaliti") or "whole"): row
+                    for row in rows
+                }
+                teachers = []
+                for group in job.get("groups") or []:
+                    row = row_by_group.get(str(group.get("guruh_kaliti") or "whole"))
+                    teacher = (
+                        int(row["oqituvchi_user_id"])
+                        if row and row.get("oqituvchi_user_id") is not None
+                        else group.get("teacher")
+                    )
+                    if teacher is not None:
+                        teachers.append(int(teacher))
+            else:
+                teacher = next(
+                    (
+                        int(row["oqituvchi_user_id"])
+                        for row in rows
+                        if row.get("oqituvchi_user_id") is not None
+                    ),
+                    None,
+                )
+                if teacher is None:
+                    options = [
+                        int(value) for value in job.get("teacher_options") or []
+                        if value is not None
+                    ]
+                    teacher = options[0] if options else None
+                teachers = [teacher] if teacher is not None else []
+
+        room_keys = _v1852_room_keys(job, teachers, context.get("classes") or {})
+        placements.append(
+            {
+                "job": job,
+                "day": int(day),
+                "period": int(period),
+                "teachers": list(teachers),
+                "room_keys": list(room_keys),
+                "penalty": 0,
+            }
+        )
+
+    if len(placements) != len(jobs):
+        return None
+    return placements
+
+
+def _v2253_entry_rows_from_state(
+    state, run_id, maktab_id, classes, rooms, shifts
+):
+    """Serialize an optimized incumbent back to the existing run id."""
+    shift_slot_map = {
+        (s, int(slot["dars_raqami"])): slot
+        for s, row in shifts.items()
+        for slot in row["slotlar"]
+    }
+    rows = []
+    for placement in state.get("placements") or []:
+        job = placement["job"]
+        day = int(placement["day"])
+        period = int(placement["period"])
+        selected_teachers = list(placement.get("teachers") or [])
+        time_slot = shift_slot_map[(int(job["smena"]), period)]
+
+        if job.get("rotation_members"):
+            class_row = classes[job["sinf_id"]]
+            home_room_id = class_row.get("_home_room_id")
+            home_room_text = class_row.get("_home_room_text")
+            for member in job["rotation_members"]:
+                phase = member.get("hafta_turi") or "toq"
+                member_teachers = _v199_rotation_member_teachers(member)
+                if member.get("groups"):
+                    for group_index, (group, teacher) in enumerate(
+                        zip(member["groups"], member_teachers)
+                    ):
+                        room_id = group.get("xona_id")
+                        if room_id:
+                            room_text = rooms.get(int(room_id), {}).get("nomi")
+                        elif group_index == 0:
+                            room_id = home_room_id
+                            room_text = home_room_text
+                        else:
+                            room_text = None
+                        rows.append(
+                            (
+                                run_id, maktab_id, member["sinf_id"], day,
+                                member["smena"], period, member["fan"], teacher,
+                                group["guruh_kaliti"], room_id, room_text,
+                                time_slot["boshlanish"], time_slot["tugash"],
+                                member["load_id"], member["occurrence"], phase,
+                            )
+                        )
+                else:
+                    teacher = member_teachers[0] if member_teachers else None
+                    room_id = member.get("room_id")
+                    if room_id:
+                        room_text = rooms.get(int(room_id), {}).get("nomi")
+                    else:
+                        room_id = home_room_id
+                        room_text = home_room_text
+                    rows.append(
+                        (
+                            run_id, maktab_id, member["sinf_id"], day,
+                            member["smena"], period, member["fan"], teacher,
+                            "whole", room_id, room_text,
+                            time_slot["boshlanish"], time_slot["tugash"],
+                            member["load_id"], member["occurrence"], phase,
+                        )
+                    )
+        elif job.get("groups"):
+            class_row = classes[job["sinf_id"]]
+            home_room_id = class_row.get("_home_room_id")
+            home_room_text = class_row.get("_home_room_text")
+            for group_index, (group, teacher) in enumerate(
+                zip(job["groups"], selected_teachers)
+            ):
+                room_id = group.get("xona_id")
+                if room_id:
+                    room_text = rooms.get(int(room_id), {}).get("nomi")
+                elif group_index == 0:
+                    room_id = home_room_id
+                    room_text = home_room_text
+                else:
+                    room_text = None
+                rows.append(
+                    (
+                        run_id, maktab_id, job["sinf_id"], day, job["smena"],
+                        period, job["fan"], teacher, group["guruh_kaliti"],
+                        room_id, room_text, time_slot["boshlanish"],
+                        time_slot["tugash"], job["load_id"], job["occurrence"],
+                        "har_hafta",
+                    )
+                )
+        else:
+            teacher = selected_teachers[0] if selected_teachers else None
+            room_id = job.get("room_id")
+            class_row = classes[job["sinf_id"]]
+            if room_id:
+                room_text = rooms.get(int(room_id), {}).get("nomi")
+            else:
+                room_id = class_row.get("_home_room_id")
+                room_text = class_row.get("_home_room_text")
+            rows.append(
+                (
+                    run_id, maktab_id, job["sinf_id"], day, job["smena"],
+                    period, job["fan"], teacher, "whole", room_id, room_text,
+                    time_slot["boshlanish"], time_slot["tugash"],
+                    job["load_id"], job["occurrence"], "har_hafta",
+                )
+            )
+    return rows
+
+
+def _v2253_improve_existing_draft(
+    *, token, user_id, maktab_id, run_id, qidiruv_nonce, source_hash,
+    jobs, context, classes, teachers, rooms, shifts, year,
+):
+    """Improve #57 in place as #57.1, #57.2... instead of solving #58 from zero."""
+    read_conn = _db()
+    read_cur = read_conn.cursor()
+    try:
+        _v1852_tables(read_cur)
+        read_cur.execute(
+            """SELECT id,holat,sifat,joylashtirildi,joylashtirilmadi,
+                      diagnostika,sozlamalar
+               FROM aqlli_jadval_urinishlari_v2
+               WHERE id=%s AND maktab_id=%s AND holat='draft'
+                 AND joylashtirilmadi=0
+                 AND COALESCE(sozlamalar->>'manba_hash','')=%s""",
+            (int(run_id), int(maktab_id), str(source_hash)),
+        )
+        run = read_cur.fetchone()
+        if not run:
+            return None
+        placements = _v2253_saved_run_placements(
+            read_cur, run_id, jobs, context
+        )
+        if not placements:
+            return None
+        read_cur.execute(
+            """SELECT yaxshilanish FROM aqlli_jadval_jarayoni_v2243
+               WHERE maktab_id=%s AND jadval_raqami=%s""",
+            (int(maktab_id), int(run_id)),
+        )
+        progress_row = read_cur.fetchone() or {}
+        starting_revision = max(
+            0, int(progress_row.get("yaxshilanish") or 0)
+        )
+        stored_diagnostics = dict(run.get("diagnostika") or {})
+    finally:
+        read_cur.close()
+        read_conn.close()
+
+    exact_context = dict(context)
+    exact_context["v207_policy_stage"] = "strict"
+    exact_context["v203_emergency_repeat_days"] = 0
+    exact_context["teachers"] = teachers
+    exact_context["max_subject_repeat_days"] = 2
+    exact_context["practical_repeat_day_limit"] = 1
+    exact_context["core_period6_day_limit"] = 2
+    exact_context["allow_fixed_class_hour_method_exception"] = True
+    exact_context["v208_mode_config"] = dict(_timetable_mode_config())
+
+    validation_errors = (
+        _v218_validate_placements(
+            jobs, placements, exact_context,
+            allow_method_exceptions=False,
+        )
+        if callable(_v218_validate_placements)
+        else []
+    )
+    if validation_errors:
+        return None
+
+    state = _v1852_rebuild_schedule_state(placements, context)
+    before_metrics = _v196_attempt_metrics(state, context)
+    frozen_counts = dict(_v226_frozen_class_day_signature(state))
+    improve_context = dict(context)
+    improve_context["v226_frozen_class_day_counts"] = frozen_counts
+    improve_context["v206_deadline"] = _samtm_time.monotonic() + max(
+        8.0,
+        min(
+            45.0,
+            float(os.getenv("SAMTM_EXISTING_IMPROVE_SECONDS", "28")),
+        ),
+    )
+
+    revision = [starting_revision]
+
+    def improvement_callback(swap_no, teacher_id, before_score, after_score):
+        revision[0] += 1
+        teacher_name = str(
+            (teachers.get(int(teacher_id)) or {}).get("full_name")
+            or teacher_id
+        )
+        _v2243_progress_write(
+            maktab_id, qidiruv_nonce, run_id, revision[0],
+            min(92, 35 + int(swap_no) * 2),
+            "ustoz_yaxshilandi",
+            (
+                f"Jadval #{run_id}.{revision[0]}: {teacher_name} yaxshilandi. "
+                "Sinfning kunlik 2/3/4/5/6 dars sonlari o‘zgarmadi; "
+                "yaxshi natija qotirildi."
+            ),
+        )
+
+    improve_context["v2253_improvement_callback"] = improvement_callback
+    _v2243_progress_write(
+        maktab_id, qidiruv_nonce, run_id, revision[0], 20,
+        "mavjud_jadval_olindi",
+        (
+            f"Jadval #{run_id} 0 dan yaratilmayapti. Shu to‘liq jadvalning "
+            "eng yomon o‘qituvchilari topilib, worst-first yaxshilanmoqda."
+        ),
+    )
+
+    rng = _v1852_random.Random(
+        (int(run_id) * 1_000_003) ^ int(maktab_id) ^ 0x2253
+    )
+    state = _v196_optimize_teacher_windows(
+        state, improve_context, rng, max_swaps=240
+    )
+    state = _v219_reduce_avoidable_subject_repeats(
+        state, improve_context, rng, max_swaps=24, max_trials=180
+    )
+    # Subject swaps are accepted only if the frozen class-day signature stays exact.
+    if not _v226_class_day_counts_match(state, improve_context):
+        raise HTTPException(
+            status_code=409,
+            detail="Yaxshilash sinfning kunlik dars sonini o‘zgartirmoqchi bo‘ldi; eski # jadval o‘zgartirilmadi.",
+        )
+
+    final_errors = (
+        _v218_validate_placements(
+            jobs, state.get("placements") or [], exact_context,
+            allow_method_exceptions=False,
+        )
+        if callable(_v218_validate_placements)
+        else []
+    )
+    if final_errors:
+        raise HTTPException(
+            status_code=409,
+            detail={
+                "code": "INCUMBENT_IMPROVEMENT_REJECTED",
+                "message": (
+                    "Yaxshilangan variant hard-validator tekshiruvidan "
+                    "o‘tmadi. Oldingi jadval o‘zgartirilmadi."
+                ),
+                "xatolar": final_errors[:20],
+            },
+        )
+
+    after_metrics = _v196_attempt_metrics(state, improve_context)
+    changed = (
+        int(state.get("v196_teacher_window_swaps") or 0) > 0
+        or after_metrics != before_metrics
+    )
+    if not changed:
+        _v2243_progress_write(
+            maktab_id, qidiruv_nonce, run_id, revision[0], 100, "tayyor",
+            (
+                f"Jadval #{run_id}: mavjud to‘liq jadval tekshirildi. "
+                "Hard qoidalarni buzmasdan yaxshiroq swap topilmadi; jadval o‘zgarmadi."
+            ),
+        )
+        return {
+            "holat": "mavjud_jadval_tekshirildi",
+            "urinish_id": int(run_id),
+            "jadval_raqami": int(run_id),
+            "yaxshilanish": int(revision[0]),
+            "jami_soat": len(jobs),
+            "joylashtirildi": len(jobs),
+            "joylashtirilmadi": 0,
+            "sifat": int(stored_diagnostics.get("sifat") or 0),
+            "diagnostika": {
+                **stored_diagnostics,
+                "v2253_reused_incumbent": True,
+                "v2253_yangi_exact_boshlanmadi": True,
+                "v2253_swap_soni": 0,
+                "v2253_before_metrics": before_metrics,
+                "v2253_after_metrics": after_metrics,
+            },
+            "solver_status": "INCUMBENT_VALIDATED",
+            "tasdiqlash_mumkin": True,
+        }
+
+    write_conn = _db()
+    write_cur = write_conn.cursor()
+    try:
+        _v1852_tables(write_cur)
+        write_cur.execute(
+            "SELECT pg_try_advisory_xact_lock(%s) AS locked",
+            (1900000000 + int(maktab_id),),
+        )
+        if not bool((write_cur.fetchone() or {}).get("locked")):
+            raise HTTPException(
+                status_code=409,
+                detail="Jadvalni boshqa jarayon o‘zgartiryapti. Bir necha soniyadan keyin qayta urinib ko‘ring.",
+            )
+        if _v1875_source_fingerprint(write_cur, maktab_id) != source_hash:
+            raise HTTPException(
+                status_code=409,
+                detail="Yaxshilash paytida yuklama/vaqt sozlamasi o‘zgardi. Eski jadval o‘zgartirilmadi.",
+            )
+
+        entry_rows = _v2253_entry_rows_from_state(
+            state, run_id, maktab_id, classes, rooms, shifts
+        )
+        write_cur.execute(
+            "DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s",
+            (int(run_id),),
+        )
+        if entry_rows:
+            psycopg2.extras.execute_values(
+                write_cur,
+                """INSERT INTO aqlli_jadval_slotlari_v2(
+                    urinish_id,maktab_id,sinf_id,hafta_kuni,smena,dars_raqami,
+                    fan_nomi,oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                    boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,
+                    hafta_turi) VALUES %s""",
+                entry_rows,
+                page_size=1000,
+            )
+
+        moslik = _v1875_schedule_integrity_report(
+            write_cur, maktab_id, run_id
+        )
+        if moslik.get("xatolar") or not moslik.get("tayyor"):
+            raise HTTPException(
+                status_code=409,
+                detail=_v209_integrity_failure_detail(
+                    [str(value) for value in moslik.get("xatolar", [])]
+                    or ["SQL integritet tayyor emas"]
+                ),
+            )
+
+        gap_count = int(after_metrics.get("oqituvchi_ichki_okno", 0))
+        quality = max(
+            0,
+            min(
+                100,
+                round(
+                    100
+                    - gap_count * 0.25
+                    - int(after_metrics.get("asosiy_fan_5_6", 0)) * 0.2
+                ),
+            ),
+        )
+        diagnostics = {
+            **stored_diagnostics,
+            "v2253_reused_incumbent": True,
+            "v2253_yangi_exact_boshlanmadi": True,
+            "v2253_base_run_id": int(run_id),
+            "v2253_yaxshilanish": int(revision[0]),
+            "v2253_swap_soni": int(
+                state.get("v196_teacher_window_swaps") or 0
+            ),
+            "v2253_target_ustozlar": int(
+                state.get("v225_teacher_targets") or 0
+            ),
+            "v2253_yaxshilangan_ustozlar": list(
+                state.get("v225_teacher_improved") or []
+            ),
+            "v2253_sinf_kun_soatlari_qotirilgan": True,
+            "v2253_before_metrics": before_metrics,
+            "v2253_after_metrics": after_metrics,
+            "jadval_mosligi": moslik,
+            "tasdiqlash_mumkin": True,
+            "solver_status": "INCUMBENT_IMPROVED_VALIDATED",
+        }
+        write_cur.execute(
+            """UPDATE aqlli_jadval_urinishlari_v2
+               SET sifat=%s,joylashtirildi=%s,joylashtirilmadi=0,
+                   diagnostika=%s::jsonb
+               WHERE id=%s AND maktab_id=%s""",
+            (
+                quality, len(jobs),
+                json.dumps(diagnostics, ensure_ascii=False, default=str),
+                int(run_id), int(maktab_id),
+            ),
+        )
+        write_conn.commit()
+    except Exception:
+        write_conn.rollback()
+        raise
+    finally:
+        write_cur.close()
+        write_conn.close()
+
+    _v2243_progress_write(
+        maktab_id, qidiruv_nonce, run_id, revision[0], 100, "tayyor",
+        (
+            f"Jadval #{run_id}.{revision[0]} tayyor. Bu yangi jadval emas — "
+            f"#{run_id} ning yaxshilangan oxirgi holati va endi asosiy #{run_id} o‘rnida turadi."
+        ),
+    )
+    return {
+        "holat": "mavjud_jadval_yaxshilandi",
+        "urinish_id": int(run_id),
+        "jadval_raqami": int(run_id),
+        "yaxshilanish": int(revision[0]),
+        "jami_soat": len(jobs),
+        "joylashtirildi": len(jobs),
+        "joylashtirilmadi": 0,
+        "sifat": quality,
+        "diagnostika": diagnostics,
+        "solver_status": "INCUMBENT_IMPROVED_VALIDATED",
+        "tasdiqlash_mumkin": True,
+        "moslik": moslik,
+    }
+
+
 @app.post("/api/maktab/aqlli_jadval/v2/yaratish")
 def v1852_generate(sorov: V1852Generate, token: str):
     user_id = _jwt_tekshir(token)
@@ -3884,6 +4487,55 @@ def v1852_generate(sorov: V1852Generate, token: str):
         context["v196_class_distribution"] = _v196_class_distribution(
             jobs, context
         )
+
+        # V22.53 — ENG MUHIM: shu manba bilan oldindan 100% to‘liq draft
+        # mavjud bo‘lsa, yangi #58 ni 0 dan qidirmaymiz. Masalan #57 olinadi,
+        # sinf-kun dars sonlari qotiriladi va faqat teacher worst-first
+        # yaxshilash ishlaydi: #57.1, #57.2 ...; oxirgi holat yana #57 ning
+        # o‘rnida saqlanadi.
+        cur.execute(
+            """SELECT id FROM aqlli_jadval_urinishlari_v2
+               WHERE maktab_id=%s AND holat='draft' AND joylashtirilmadi=0
+                 AND COALESCE(sozlamalar->>'manba_hash','')=%s
+               ORDER BY id DESC LIMIT 1""",
+            (sorov.maktab_id, str(source_hash)),
+        )
+        reusable_row = cur.fetchone()
+        if reusable_row:
+            reusable_run_id = int(reusable_row["id"])
+            conn.commit()
+            cur.close(); conn.close()
+            cur = None; conn = None
+            reused = _v2253_improve_existing_draft(
+                token=token,
+                user_id=user_id,
+                maktab_id=sorov.maktab_id,
+                run_id=reusable_run_id,
+                qidiruv_nonce=sorov.qidiruv_nonce,
+                source_hash=source_hash,
+                jobs=jobs,
+                context=context,
+                classes=classes,
+                teachers=teachers,
+                rooms=rooms,
+                shifts=shifts,
+                year=year,
+            )
+            if reused is not None:
+                return reused
+            # Saqlangan draft eski formatda bo‘lib tiklanmasa, exact yo‘lga
+            # qaytamiz. Yangi DB ulanishida advisory lock qayta olinadi.
+            conn = _db(); cur = conn.cursor()
+            _v1852_tables(cur)
+            cur.execute(
+                "SELECT pg_try_advisory_xact_lock(%s) AS locked",
+                (1900000000 + int(sorov.maktab_id),),
+            )
+            if not bool((cur.fetchone() or {}).get("locked")):
+                raise HTTPException(
+                    status_code=409,
+                    detail="Jadval boshqa oynada yaratilmoqda. Tugashini kuting.",
+                )
 
         # Haqiqiy jadval raqami hisoblash tugashidan oldin band qilinadi.
         # Frontend shu sabab taxminiy emas, aynan yakunda saqlanadigan #51
@@ -15899,6 +16551,16 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
             frozen[int(teacher_id)] = _v225_teacher_score(
                 state, context, teacher_id
             )
+            progress_callback = (context or {}).get("v2253_improvement_callback")
+            if callable(progress_callback):
+                try:
+                    progress_callback(
+                        int(swaps), int(teacher_id), before,
+                        _v225_teacher_score(state, context, teacher_id),
+                    )
+                except Exception:
+                    # Progress UI must never invalidate a hard-safe improvement.
+                    pass
         if teacher_improved:
             improved.append(int(teacher_id))
             frozen[int(teacher_id)] = _v225_teacher_score(
