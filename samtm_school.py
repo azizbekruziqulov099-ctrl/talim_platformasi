@@ -2787,7 +2787,10 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
                 "job_id": f"{load['id']}:{occurrence}", "load_id": int(load["id"]),
                 "sinf_id": class_id, "fan": fan, "occurrence": occurrence,
                 "smena": int(classes[class_id].get("smena") or 1),
-                "daily_max": int(load.get("kunlik_max") or 1),
+                # V22.26 yagona kontrakt: fan bir sinfga bir kunda 2
+                # soatgacha joylashishi mumkin, lekin hech qachon 3 emas.
+                # Bu ruxsat sig'im uchun; optimizator imkon bo'lsa tarqatadi.
+                "daily_max": 2,
                 "consecutive_allowed": bool(load.get("ketma_ket_mumkin")),
                 "preferred_last": int(load.get("afzal_oxirgi_dars") or 5),
                 "weight": int(load.get("ogirlik") or 2),
@@ -8280,11 +8283,11 @@ def _v1875_preflight_report(cur, maktab_id: int):
             1 for day in range(1, weekdays + 1)
             if not _v1856_class_day_block_reason(cls, day, class_day_blocks)
         )
-        daily_max = max(1, int(pair.get("kunlik_max") or 1))
+        daily_max = 2
         weekly_hours = float(pair.get("haftalik_soat") or 0)
         profile = _v1874_subject_profile(pair.get("fan_nomi"), grade)
         practical = bool(profile.get("physical") or profile.get("technology"))
-        per_day_limit = min(2, daily_max) if practical else daily_max
+        per_day_limit = 2
         repeat_day_limit = 1 if practical else 2
         # Exact kontrakt bilan aynan bir xil sig'im: har kuni avval bittadan,
         # manbada daily_max>1 bo'lsagina ko'pi bilan 1/2 ta kunda qo'shimcha
@@ -8329,9 +8332,9 @@ def _v1875_preflight_report(cur, maktab_id: int):
         shift_periods = int(shifts.get(shift, {}).get("dars_soni") or 0)
         max_period = min(shift_periods, _v1874_max_total_periods(grade))
         profile = _v1874_subject_profile(pair.get("fan_nomi"), grade)
-        daily_max = max(1, int(pair.get("kunlik_max") or 1))
+        daily_max = 2
         practical = bool(profile.get("physical") or profile.get("technology"))
-        per_day_limit = min(2, daily_max) if practical else daily_max
+        per_day_limit = 2
         repeat_day_limit = 1 if practical else 2
         first_period = 2 if (
             practical
@@ -9044,12 +9047,20 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     )
 
     daily_teacher_sessions = _v1852_defaultdict(set)
+    daily_teacher_class_sessions = _v1852_defaultdict(set)
     daily_subject_sessions = _v1852_defaultdict(set)
     for slot in slots:
         teacher_id = slot.get("oqituvchi_user_id")
         if teacher_id is not None:
             daily_teacher_sessions[(
                 int(teacher_id), int(slot["hafta_kuni"])
+            )].add((
+                int(slot["smena"]), int(slot["dars_raqami"]),
+                str(slot.get("hafta_turi") or "har_hafta"),
+            ))
+            daily_teacher_class_sessions[(
+                int(teacher_id), int(slot["sinf_id"]),
+                int(slot["hafta_kuni"]),
             )].add((
                 int(slot["smena"]), int(slot["dars_raqami"]),
                 str(slot.get("hafta_turi") or "har_hafta"),
@@ -9079,13 +9090,27 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
                     f"{count} dars, kunlik max {limit}"
                 )
+    for (teacher_id, class_id, day), sessions in daily_teacher_class_sessions.items():
+        for phase in ("toq", "juft"):
+            count = len({
+                (session[0], session[1]) for session in sessions
+                if session[2] == "har_hafta" or session[2] == phase
+            })
+            if count > 2:
+                cls = classes.get(class_id, {})
+                errors.append(
+                    f"{teacher_rows.get(teacher_id, {}).get('full_name', teacher_id)}: "
+                    f"{cls.get('sinf', '')}-{cls.get('harf', '')} sinfga "
+                    f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
+                    f"{count} dars; bir o'qituvchi-bir sinf uchun kunlik max 2"
+                )
     subject_repeat_days = _v1852_defaultdict(list)
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
         load = loads.get((class_id, subject_key))
-        configured_daily = int(load.get("kunlik_max") or 1) if load else 1
+        configured_daily = 2
         cls_for_profile = classes.get(class_id, {})
         grade = _v1874_grade(cls_for_profile)
-        effective_daily = max(1, configured_daily)
+        effective_daily = 2
         subject_profile = {}
         if load:
             subject_profile = _v1874_subject_profile(
@@ -9095,7 +9120,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
             subject_profile.get("physical") or subject_profile.get("technology")
         )
         explicit_practical_double = bool(practical and effective_daily > 1)
-        allowed_daily = min(2, effective_daily) if practical else effective_daily
+        allowed_daily = 2
 
         # TOQ/JUFT — ikkita real hafta fazasi. ``har_hafta`` ikkalasida ham
         # sanaladi; shu hisob exact solverning faza kontrakti bilan bir xil.
@@ -14290,11 +14315,12 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
     rotation_count = 0
     for job in jobs:
         grade = _v1874_grade(classes.get(int(job.get("sinf_id") or 0), {}))
-        # Barcha sinflarda manbadagi ``daily_max`` saqlanadi. Ayniqsa
-        # boshlang'ich sinfda administrator tanlagan 2 ni yashirincha 1 ga
-        # almashtirish teacher/metod-kuni kesishmasida soxta INFEASIBLE
-        # chiqarardi. 2 — faqat ruxsat; exact objective va V22.0 hard-safe
-        # swap avval fanlarni boshqa kun/boshqa fan bilan yoyadi.
+        # V22.26: barcha fanlarda bir sinf-kun uchun yagona limit 2.
+        # Bu majburiy juft dars emas; faqat 3 legal kun ichiga 5 soat kabi
+        # yuklamani 2+2+1 ko'rinishida sig'dirish imkonidir.
+        job["daily_max"] = 2
+        for member in job.get("rotation_members") or []:
+            member["daily_max"] = 2
         if job.get("rotation_members"):
             rotation_count += 1
             job["v1874_profile"] = _v196_rotation_profile(
