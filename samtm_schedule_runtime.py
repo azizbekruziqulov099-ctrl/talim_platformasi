@@ -14,7 +14,7 @@ import time
 from typing import Any, Callable, Mapping, MutableMapping, Optional, Sequence
 
 
-RUNTIME_RELEASE = "SAMTM-SCHEDULE-RUNTIME-V23.4-IMMUTABLE-CHECKPOINT"
+RUNTIME_RELEASE = "SAMTM-SCHEDULE-RUNTIME-V23.5-BEST-REVISION-PROMOTION"
 
 
 class Stage(str, Enum):
@@ -292,7 +292,10 @@ class ScheduleRuntime:
             if self._is_cancelled(force=True):
                 raise GenerationCancelled()
 
-            improve_deadline = self.clock() + float(self.policy.improve_seconds)
+            improve_seconds = float(self.policy.improve_seconds)
+            improve_deadline = (
+                self.clock() + improve_seconds if improve_seconds > 0 else 0.0
+            )
 
             def accepted(candidate: MutableMapping[str, Any], details: Mapping[str, Any]) -> bool:
                 nonlocal revision, checkpoint, checkpoint_diagnostics
@@ -322,15 +325,21 @@ class ScheduleRuntime:
                 revision = next_revision
                 checkpoint = candidate_snapshot
                 checkpoint_diagnostics = next_diagnostics
+                improvement_summary = str(
+                    (details or {}).get("xulosa") or ""
+                ).strip()
                 self._progress(
                     run_id, revision, min(94, 55 + revision), Stage.REVISION,
-                    f"Jadval #{run_id}.{revision} saqlandi va ochish mumkin.",
+                    f"Jadval #{run_id}.{revision} saqlandi"
+                    + (f": {improvement_summary}." if improvement_summary else ".")
+                    + " Keyingi o‘qituvchi oknosi tekshirilmoqda.",
                 )
                 return True
 
             self._progress(
                 run_id, revision, 60, Stage.IMPROVING,
-                f"Jadval #{run_id}: eng yomon o‘qituvchi jadvalidan boshlab qisilyapti.",
+                f"Jadval #{run_id}: barcha muammoli o‘qituvchilarning haqiqiy "
+                "oknolari navbat bilan qisilyapti.",
             )
             improved = self.improve(
                 state=self._snapshot(checkpoint),
@@ -356,8 +365,10 @@ class ScheduleRuntime:
             ):
                 raise GenerationFailed("Yakuniy jadvalni belgilashda xato")
             message = (
-                f"Jadval #{run_id}{'.' + str(revision) if revision else ''} tayyor: "
-                f"{total}/{total} dars joylashdi va ochildi."
+                f"Eng yaxshi Jadval #{run_id}"
+                + (f".{revision}" if revision else "")
+                + f" asosiy #{run_id}ga qo‘yildi: {total}/{total} dars "
+                "joylashdi va ochildi."
             )
             self._progress(run_id, revision, 100, Stage.READY, message)
             return GenerationResult(
@@ -380,12 +391,12 @@ class ScheduleRuntime:
                         "terminal_persist_error": str(terminal_error),
                     }
                 message = (
-                    f"To‘xtatildi. Eng yaxshi Jadval #{run_id}"
-                    f"{'.' + str(revision) if revision else ''} "
+                    f"To‘xtatildi. Eng yaxshi #{run_id}"
+                    f"{'.' + str(revision) if revision else ''} varianti "
                     + (
-                        "saqlandi va ochildi."
+                        f"asosiy Jadval #{run_id}ga qo‘yildi va ochildi."
                         if terminal_saved else
-                        "oldin saqlangan checkpointdan ochildi."
+                        f"oldin saqlangan asosiy Jadval #{run_id}dan ochildi."
                     )
                 )
                 self._progress(run_id, revision, 100, Stage.STOPPED, message)
