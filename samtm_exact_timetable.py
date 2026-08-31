@@ -993,12 +993,24 @@ def _build_model(
             class_day_vars[(row["class_id"], row["day"], phase)].append(index)
     class_ids = sorted({int(job.get("sinf_id") or 0) for job in jobs})
     quality_enabled = bool(not feasibility_only and not relax_method)
+    hard_balance_enabled = bool(context.get("hard_balance_class_days", True))
     balance_terms: list[Any] = []
     for class_id in class_ids:
         for phase in _ACTUAL_PHASES:
             phase_job_count = sum(
                 1 for job in jobs if int(job.get("sinf_id") or 0) == class_id
                 and phase in _job_class_phases(job)
+            )
+            eligible_days = [
+                day for day in range(1, weekdays + 1)
+                if class_day_vars.get((class_id, day, phase))
+            ]
+            balanced_min = (
+                phase_job_count // len(eligible_days) if eligible_days else 0
+            )
+            balanced_max = (
+                int(math.ceil(phase_job_count / len(eligible_days)))
+                if eligible_days else 0
             )
             for day in range(1, weekdays + 1):
                 periods = sorted({
@@ -1017,16 +1029,20 @@ def _build_model(
                         used_by_period[period] = used
                     for period in range(1, max(periods)):
                         model.Add(used_by_period[period] >= used_by_period[period + 1])
-                if quality_enabled and phase_job_count:
+                if (quality_enabled or hard_balance_enabled) and phase_job_count:
                     indices = sorted(set(class_day_vars.get((class_id, day, phase), [])))
                     count = model.NewIntVar(
                         0, min(phase_job_count, max(0, len(indices))),
                         f"class_count_{class_id}_{day}_{phase}",
                     )
                     model.Add(count == sum(variables[index] for index in indices))
-                    deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
-                    model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
-                    balance_terms.append(deviation)
+                    if hard_balance_enabled and day in eligible_days:
+                        model.Add(count >= balanced_min)
+                        model.Add(count <= balanced_max)
+                    if quality_enabled:
+                        deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
+                        model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
+                        balance_terms.append(deviation)
 
     # Subject repetitions and controlled repeat-day fallback.
     subject_groups: dict[tuple[int, str, int, str], list[int]] = defaultdict(list)
@@ -1762,6 +1778,28 @@ def validate_candidate_selection(
     for (class_id, day, phase), periods in by_class_day.items():
         if periods and periods != set(range(1, max(periods) + 1)):
             errors.append(f"Sinf {class_id}: {day}-kun {phase} fazada okno bor: {sorted(periods)}")
+    if context.get("hard_balance_class_days", True):
+        class_jobs: dict[int, Mapping[str, Any]] = {}
+        for job in jobs:
+            class_jobs.setdefault(int(job.get("sinf_id") or 0), job)
+        weekdays = int(context.get("weekdays") or 6)
+        for class_id, representative in class_jobs.items():
+            grade = _grade(representative, context)
+            allowed_days = [
+                day for day in range(1, weekdays + 1)
+                if not (1 <= grade <= 4 and day == 6)
+                and not _class_day_blocked(representative, day, context)
+            ]
+            for phase in _ACTUAL_PHASES:
+                counts = [
+                    len(by_class_day.get((class_id, day, phase), set()))
+                    for day in allowed_days
+                ]
+                if counts and max(counts) - min(counts) > 1:
+                    errors.append(
+                        f"Sinf {class_id}: {phase} haftada kunlik darslar notekis "
+                        f"({counts}); farq ko‘pi bilan 1 bo‘lishi kerak"
+                    )
     rules = context.get("rules") or {}
     defaults = context.get("default_rules") or {"kunlik_max": 6}
     for (teacher, day, phase), lessons in teacher_daily_lessons.items():
