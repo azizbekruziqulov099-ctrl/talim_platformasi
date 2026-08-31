@@ -18,11 +18,6 @@ except ImportError:  # Railway working directory may be backend/
 
 import copy as _samtm_copy
 import time as _samtm_time
-from io import BytesIO as _V205BytesIO
-from fastapi import Request as _V205Request
-from fastapi.responses import StreamingResponse as _V205StreamingResponse
-
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-2PLUS2PLUS1-SATURDAY5-V22.20"
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -103,12 +98,12 @@ except Exception:
 
 
 def _v220_generation_budget_seconds():
-    """Return the long feasibility budget used by API and frontend."""
+    """Return the single HTTP-safe search budget used by API and frontend."""
     try:
-        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "600"))
+        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "24"))
     except (TypeError, ValueError):
-        value = 600.0
-    return max(300.0, min(600.0, value))
+        value = 24.0
+    return max(12.0, min(26.0, value))
 
 def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
     """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
@@ -3479,7 +3474,7 @@ def _v217_exact_failure_problems(exact_result, classes, teachers, status=None):
                 ),
                 "izoh": ((
                     "Har bir darsda alohida legal katak bo'lishi mumkin, ammo "
-                    "ularni sinf va o'qituvchi real-vaqt "
+                    "ularni sinf, o'qituvchi va xona real-vaqt "
                     "to'qnashuvlarisiz birgalikda tanlab bo'lmadi."
                 ) if proven else technical_detail if model_invalid else (
                     "Qidiruv vaqt chegarasida tugadi; bu jadval imkonsiz "
@@ -3504,7 +3499,7 @@ def _v216_exact_failure_detail(
         code = "QAT_IY_QOIDALARDA_YECHIM_YOQ"
         message = (
             "Exact solver qizil/BAND, metod kuni, qat'iy dars, smena hamda "
-            "sinf/o'qituvchi real-vaqt xavfsizlik qoidalarini saqlagan "
+            "sinf/o'qituvchi/xona real-vaqt xavfsizlik qoidalarini saqlagan "
             "holda to'liq jadval topilmasligini isbotladi. Quyida aniq "
             "sig'im yoki ziddiyat ko'rsatilgan; yarim draft saqlanmadi."
         )
@@ -3668,31 +3663,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
 
         year, shifts, classes, loads, assignments, group_settings, rules_rows, availability_rows, teachers, rooms = _v1852_prepare_generation(cur, sorov.maktab_id)
         jobs, initial_warnings = _v1852_build_jobs(classes, loads, assignments, group_settings, teachers)
-        invalid_home_room_classes = []
         for class_row in classes.values():
             if class_row.get("_home_room_invalid"):
-                invalid_home_room_classes.append(
-                    f"{class_row.get('sinf','')}-{class_row.get('harf','')}"
-                )
-        if invalid_home_room_classes:
-            initial_warnings.append(
-                f"{len(invalid_home_room_classes)} ta sinfning xona ID si katalogda "
-                f"topilmadi ({', '.join(invalid_home_room_classes)}); jadval yaratildi "
-                "va ularda Xona yo'q ko'rsatiladi."
-            )
-        home_room_classes = _v1852_defaultdict(list)
-        for class_row in classes.values():
-            room_id = class_row.get("xona_id")
-            if room_id not in (None, ""):
-                home_room_classes[str(room_id)].append(
-                    f"{class_row.get('sinf', '')}-{class_row.get('harf', '')}"
-                )
-        for room_id, class_names in home_room_classes.items():
-            if len(class_names) > 1:
                 initial_warnings.append(
-                    f"Xona {room_id} bir nechta sinfga biriktirilgan: "
-                    f"{', '.join(class_names)}. Jadval yaratildi; xona nomini "
-                    "keyin tahrirlang."
+                    f"{class_row.get('sinf','')}-{class_row.get('harf','')}: "
+                    f"{class_row['_home_room_invalid']}; jadvalda Xona yo'q ko'rsatiladi"
                 )
         class_hour_rules = _v1866_class_hour_rule_rows(cur, sorov.maktab_id)
         class_hour_jobs, class_hour_warnings = _v1866_build_class_hour_jobs(classes, class_hour_rules)
@@ -3818,7 +3793,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             exact_context["teachers"] = teachers
             exact_context["max_subject_repeat_days"] = 2
             exact_context["practical_repeat_day_limit"] = 1
-            exact_context["core_period6_day_limit"] = 6
+            exact_context["core_period6_day_limit"] = 2
             exact_context["allow_fixed_class_hour_method_exception"] = True
             exact_context["v208_mode_config"] = dict(
                 _timetable_mode_config()
@@ -3846,32 +3821,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
             exact_context["exact_feasibility_only"] = True
             exact_context["exact_stop_after_first_solution"] = True
             # Birinchi hard-safe yechim topilgach qolgan exact byudjetning
-            # ko'pi bilan 12 soniyasida to'liq incumbent hint bilan global
+            # ko'pi bilan 2.5 soniyasida to'liq incumbent hint bilan global
             # sifat bosqichi ishlaydi. U daily_max=2 takrorlarini, o'qituvchi
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
-            # The optional quality pass first freezes every open class day to
-            # floor/ceil weekly balance (22/5 -> 4..5, 30/6 -> exactly 5).
-            # With class balance no longer competing in one huge weighted
-            # objective, the remaining search is devoted to teacher work-day,
-            # internal-window and cross-shift waiting minimization.  The first
-            # feasibility incumbent remains available if this ideal quality
-            # model cannot be solved in time. Teacher work-day ranges are now
-            # soft, so they cannot make this class-balanced model infeasible.
-            exact_context["exact_enforce_balanced_class_days"] = False
-            # O'qituvchi oynalari ham birinchi exact yechimning hard qoidasi:
-            # bir smena ichida ko'pi bilan 2 bo'sh dars, ikki smena orasida
-            # esa ko'pi bilan 120 daqiqa kutish.
-            exact_context["exact_enforce_teacher_window_limits"] = False
-            # Faqat to'liq jadval topilgandan keyin sifat modeli ishlaydi.
-            # 5 soatlik fan 2+2+1 kabi yig'ilishi mumkin, ammo bir sinfda
-            # bitta fan bir kunda hech qachon 3 soat bo'lmaydi.
-            exact_context["exact_compact_subject_repeats"] = True
-            exact_context["exact_quality_seconds"] = 300.0
-            # V22.8: katta maktabda global balans va smenalararo kutishni
-            # real yaxshilash uchun, umumiy hard byudjet ichida qo'shimcha vaqt.
-            exact_context["exact_quality_extension_seconds"] = 0.0
+            exact_context["exact_quality_seconds"] = 2.5
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
@@ -4170,11 +4125,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         final_policy_stage = "strict"
         final_mode_config = _timetable_mode_config()
 
-        # Exact quality model already optimizes the whole school globally.
-        # The former local post-processors could keep every hard rule valid
-        # yet still turn a balanced 4/4/4/5/5 class into 5/3/5/5/4 and reopen
-        # teacher windows.  Therefore an exact result is now immutable here:
-        # no legacy class/teacher swap is allowed to overwrite it.
+        # Yakuniy hard-safe kompaktlash alohida rezervdan foydalanadi.
         context["v206_deadline"] = (
             generation_started
             if bounded_method_fallback_used
@@ -4196,8 +4147,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # Yakuniy natijada sinf oknosi va 3/6 kabi notekis kun qolmasin.
         # Bir marta siqish ayrim murakkab o'qituvchi almashuvlarida yetmaydi;
         # siqish va kunlarni tenglashtirish navbat bilan bir necha marta ishlaydi.
-        run_legacy_postprocess = False
-        for _ in range(2 if run_legacy_postprocess else 0):
+        for _ in range(2):
             if _v206_deadline_reached(final_context):
                 break
             state = _v196_compact_class_gaps(
@@ -4210,16 +4160,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # ustozning Algebra+Algebra kuni va boshqa kundagi Geometriya darsi
         # hard-safe almashtirilsa, avval shu variant tanlanadi. Faqat boshqa
         # legal taqsimot qolmasa bir fan bir kunda ikki marta saqlanadi.
-        if run_legacy_postprocess and not _v206_deadline_reached(final_context):
+        if not _v206_deadline_reached(final_context):
             state = _v219_reduce_avoidable_subject_repeats(
                 state, final_context, final_rng,
                 max_swaps=16, max_trials=120,
             )
-        if run_legacy_postprocess and not _v206_deadline_reached(final_context):
+        if not _v206_deadline_reached(final_context):
             state = _v196_optimize_teacher_windows(
                 state, final_context, final_rng, max_swaps=24
             )
-        if run_legacy_postprocess and not _v206_deadline_reached(final_context):
+        if not _v206_deadline_reached(final_context):
             state = _v196_compact_class_gaps(
                 state, final_context, final_rng, max_moves=48
             )
@@ -4229,13 +4179,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "Jadval to'liq sig'ishi uchun rejim: "
                 + _timetable_stage_label(final_policy_stage)
             )
-        if run_legacy_postprocess:
-            state = _v196_balance_class_days(
-                state, final_context, final_rng, max_moves=72
-            )
-            state = _v196_compact_class_gaps(
-                state, final_context, final_rng, max_moves=96
-            )
+        state = _v196_balance_class_days(
+            state, final_context, final_rng, max_moves=72
+        )
+        state = _v196_compact_class_gaps(
+            state, final_context, final_rng, max_moves=96
+        )
         # Qulaylik optimizatorlari faqat exact yechimni yaxshilashi mumkin.
         # Ularning biror ko'chirishi qat'iy exact qoidaga tegsa, butun
         # post-processing bekor qilinadi va oldindan validatsiyadan o'tgan
@@ -8335,8 +8284,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
         weekly_hours = float(pair.get("haftalik_soat") or 0)
         profile = _v1874_subject_profile(pair.get("fan_nomi"), grade)
         practical = bool(profile.get("physical") or profile.get("technology"))
-        effective_daily_max = 2 if daily_max == 1 and weekly_hours > allowed_days else daily_max
-        per_day_limit = min(2, effective_daily_max)
+        per_day_limit = min(2, daily_max) if practical else daily_max
         repeat_day_limit = 1 if practical else 2
         # Exact kontrakt bilan aynan bir xil sig'im: har kuni avval bittadan,
         # manbada daily_max>1 bo'lsagina ko'pi bilan 1/2 ta kunda qo'shimcha
@@ -8352,7 +8300,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
         if weekly_hours > regular_capacity:
             errors.append(
                 f"{pair['sinf']} / {pair['fan_nomi']}: {weekly_hours:g} soatni "
-                f"{allowed_days} kunga kunlik max {effective_daily_max} va takroriy "
+                f"{allowed_days} kunga kunlik max {daily_max} va takroriy "
                 f"kun limiti {repeat_day_limit} bilan "
                 "ushbu qoida bilan joylab bo'lmaydi; kunlik maksimumni yoki o'qish "
                 "kunlarini ongli ravishda tahrirlang"
@@ -8364,38 +8312,6 @@ def _v1875_preflight_report(cur, maktab_id: int):
     hard, soft, method_hard, method_soft = _v1852_availability_maps(cur.fetchall())
     cur.execute("SELECT user_id,full_name,haftalik_dars_soati FROM users WHERE maktab_id=%s", (maktab_id,))
     teacher_rows = {int(row["user_id"]): dict(row) for row in cur.fetchall()}
-
-    def _pair_teacher_closed_day_report(teacher_ids, shift, max_period):
-        """Qizil kun foizini dars soatidan emas, oddiy ish kunidan hisobla.
-
-        Metod kuni denominatorga ham, yopilgan qizil kun soniga ham kirmaydi.
-        Kun faqat shu smenadagi barcha mavjud darslari qizil/BAND bo'lsa yopiq.
-        """
-        reports = []
-        for teacher_id in teacher_ids:
-            ordinary_days = []
-            closed_days = []
-            for day in range(1, weekdays + 1):
-                if (int(teacher_id), day) in method_hard:
-                    continue
-                ordinary_days.append(day)
-                periods = range(1, max_period + 1)
-                if periods and all(
-                    _v1852_blocked(hard, int(teacher_id), day, shift, period)
-                    for period in periods
-                ):
-                    closed_days.append(day)
-            percent = (
-                100.0 * len(closed_days) / len(ordinary_days)
-                if ordinary_days else 0.0
-            )
-            reports.append({
-                "teacher_id": int(teacher_id),
-                "ordinary_days": len(ordinary_days),
-                "closed_days": len(closed_days),
-                "percent": percent,
-            })
-        return reports
 
     # Pair-level common-domain preflight.  Old report class capacity and each
     # teacher capacity separately checked, but never asked whether the class
@@ -8479,32 +8395,6 @@ def _v1875_preflight_report(cur, maktab_id: int):
             repeat_extras[:repeat_day_limit]
         )
         weekly_sessions = float(pair.get("haftalik_soat") or 0)
-        # Fan ochiq kunlar sonidan ko'p bo'lsa, oldindan xato bilan to'xtash
-        # o'rniga exact generatorga ko'pi bilan ikki takror kunlik zaxira ber.
-        # Qizil/BAND va metod kunlari baribir legal domen tarkibiga kirmaydi.
-        if daily_max == 1 and weekly_sessions > len(common_days):
-            per_day_limit = 2
-            common_capacity = len(common_days) + min(
-                repeat_day_limit, len(common_days)
-            )
-        closed_day_reports = _pair_teacher_closed_day_report(
-            teacher_ids, shift, max_period
-        )
-        restricted_reports = [
-            row for row in closed_day_reports if row["percent"] > 20.0
-        ]
-        if restricted_reports:
-            priority_text = ", ".join(
-                f"{teacher_rows.get(row['teacher_id'], {}).get('full_name') or row['teacher_id']}: "
-                f"{row['closed_days']}/{row['ordinary_days']} kun "
-                f"({row['percent']:.0f}%)"
-                for row in restricted_reports
-            )
-            warnings.append(
-                f"{pair['sinf']} / {pair['fan_nomi']}: {priority_text} qizil/BAND. "
-                "Metod kuni foizga qo'shilmadi; 20% dan yuqori bo'lgani uchun "
-                "exact generatorda cheklangan o'qituvchi sifatida ustuvor hisoblanadi."
-            )
         if weekly_sessions > common_capacity + 1e-9:
             teacher_names = ", ".join(
                 str(teacher_rows.get(teacher_id, {}).get("full_name") or teacher_id)
@@ -8527,9 +8417,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 f"{pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
-                f"{weekly_sessions:g}. Zarur zaxirada kunlik max 2 bilan bu fan "
-                f"kamida {int(math.ceil(weekly_sessions / max(1, per_day_limit)))} "
-                "ta alohida ochiq kun talab qiladi."
+                f"{weekly_sessions:g}."
             )
             if bounded_primary_candidate:
                 warnings.append(
@@ -8541,8 +8429,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
             else:
                 errors.append(
                     message
-                    + " Qizil/BAND va metod kuni ochilmadi; hatto 2+2+1 "
-                    "zaxira taqsimoti bilan ham legal katak yetarli emas."
+                    + " Qizil yoki metod kunini taxminan ochmang; aynan "
+                    "shu fan/o'qituvchi vaqtini tahrirlang."
                 )
         elif weekly_sessions > len(common_days) and per_day_limit > 1:
             extra = weekly_sessions - len(common_days)
@@ -9145,16 +9033,14 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     continue
                 room_label = room_labels.get(room_key, room_key)
                 if int(first["smena"]) == int(second["smena"]):
-                    warnings.append(
+                    errors.append(
                         f"Xona {room_label}: {_V1852_HAFTA.get(day, day)} "
-                        f"{first['smena']}-smena {first['dars_raqami']}-darsda ikki dars; "
-                        "jadval yaratildi, xonani keyin tahrirlang"
+                        f"{first['smena']}-smena {first['dars_raqami']}-darsda ikki dars"
                     )
                 else:
-                    warnings.append(
+                    errors.append(
                         f"Xona {room_label}: {_V1852_HAFTA.get(day, day)} "
-                        "ikki smenadagi dars bilan real vaqtda ustma-ust; "
-                        "jadval yaratildi, xonani keyin tahrirlang"
+                        "ikki smenadagi dars bilan real vaqtda ustma-ust"
                     )
 
     daily_teacher_sessions = _v1852_defaultdict(set)
@@ -9193,18 +9079,6 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
                     f"{count} dars, kunlik max {limit}"
                 )
-    subject_phase_totals = _v1852_defaultdict(int)
-    subject_phase_days = _v1852_defaultdict(set)
-    for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
-        for phase in ("toq", "juft"):
-            phase_count = len({
-                (session[0], session[1]) for session in sessions
-                if session[2] == "har_hafta" or session[2] == phase
-            })
-            subject_phase_totals[(class_id, subject_key, phase)] += phase_count
-            if phase_count:
-                subject_phase_days[(class_id, subject_key, phase)].add(int(day))
-
     subject_repeat_days = _v1852_defaultdict(list)
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
         load = loads.get((class_id, subject_key))
@@ -9231,12 +9105,6 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                 if session[2] == "har_hafta" or session[2] == phase
             }
             count = len(phase_sessions)
-            adaptive_daily = bool(
-                configured_daily == 1
-                and subject_phase_totals[(class_id, subject_key, phase)]
-                > len(subject_phase_days[(class_id, subject_key, phase)])
-            )
-            phase_allowed_daily = 2 if adaptive_daily else allowed_daily
             if count > 1:
                 subject_repeat_days[(
                     class_id, subject_key, phase, practical
@@ -9251,12 +9119,12 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                         f"{_V1852_HAFTA.get(day, day)} kuni {phase.upper()} "
                         "haftada yonma-yon emas"
                     )
-            if load and count > phase_allowed_daily:
+            if load and count > allowed_daily:
                 cls = classes.get(class_id, {})
                 errors.append(
                     f"{cls.get('sinf','')}-{cls.get('harf','')} / {load['fan_nomi']}: "
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
-                    f"{count} marta, kunlik max {phase_allowed_daily}"
+                    f"{count} marta, kunlik max {allowed_daily}"
                 )
     for (
         class_id, subject_key, phase, practical
@@ -11974,181 +11842,6 @@ def v192_load_matrix(token: str, maktab_id: int):
         cur.close(); conn.close()
 
 
-def _v205_teacher_template_workbook(payload):
-    """Saytdagi haqiqiy ro'yxatlar bilan to'ldirilgan, qayta import qilinadigan XLSX."""
-    import openpyxl
-    from openpyxl.formatting.rule import FormulaRule
-    from openpyxl.styles import Alignment, Font, PatternFill, Border, Side
-    from openpyxl.worksheet.datavalidation import DataValidation
-
-    wb = openpyxl.Workbook()
-    guide = wb.active
-    guide.title = "YO'RIQNOMA"
-    teachers_sheet = wb.create_sheet("OQITUVCHILAR")
-    sheet = wb.create_sheet("OQITUVCHI_YUKLAMASI")
-    control = wb.create_sheet("SINF_NAZORATI")
-    lists = wb.create_sheet("ROYXATLAR")
-    navy, teal, sky, green, amber, red = "163A52", "0F766E", "EAF4F7", "E9F7EF", "FFF3D6", "FDE9E7"
-    thin = Side(style="thin", color="CADADF")
-    border = Border(left=thin, right=thin, top=thin, bottom=thin)
-
-    guide.merge_cells("A1:I2")
-    guide["A1"] = "SAMTM — O‘QITUVCHI VA YUKLAMA AQILLI SHABLONI"
-    guide["A1"].font = Font(size=18, bold=True, color="FFFFFF")
-    guide["A1"].fill = PatternFill("solid", fgColor=navy)
-    guide["A1"].alignment = Alignment(horizontal="center", vertical="center")
-    guide.merge_cells("A4:I4")
-    guide["A4"] = "OQITUVCHILAR varag‘ida har o‘qituvchi bir marta, OQITUVCHI_YUKLAMASI varag‘ida esa uning har bir fan–sinf–guruh darsi alohida qatorda turadi."
-    guide["A4"].fill = PatternFill("solid", fgColor=sky)
-    guide["A4"].font = Font(bold=True, color=navy)
-    guide["A4"].alignment = Alignment(wrap_text=True, vertical="center")
-    guide.row_dimensions[4].height = 34
-    rules = [
-        ("Bir o‘qituvchi — ko‘p sinf", "Masalan, bitta o‘qituvchi 15 ta sinfga kirsa, F.I.Sh. 15 qatorda aynan bir xil yoziladi. Import ularni bitta o‘qituvchiga birlashtiradi."),
-        ("Yangi o‘qituvchi", "Saytda saqlangandan keyin shablonni qayta yuklang: u OQITUVCHILAR ro‘yxatida va barcha yuklama qatorlari bilan darhol chiqadi."),
-        ("Sinf rahbari", "Rahbar bo‘lgan sinfni yozing, aks holda bo‘sh qoldiring."),
-        ("Butun sinf", "Ta’lim turi = Butun sinf va Guruh = whole."),
-        ("Guruhli fan", "Har guruh alohida qator: saytdagi ROYXATLAR varag‘idagi guruh nomini tanlang."),
-        ("Haftalik soat", "Tasdiqlangan o‘quv rejasidagi soatdan oshirmang. 0,5 qadam qabul qilinadi."),
-        ("Import", "Faylni saqlang va saytdagi “Excelni import qilish” tugmasidan tanlang."),
-    ]
-    guide.append([]); guide.append(["QOIDA", "IZOH"])
-    for title, text in rules: guide.append([title, text])
-    for cell in guide[6]:
-        cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
-    for row in guide.iter_rows(min_row=6, max_row=6 + len(rules), min_col=1, max_col=2):
-        for cell in row: cell.border = border; cell.alignment = Alignment(wrap_text=True, vertical="top")
-    guide.column_dimensions["A"].width = 24; guide.column_dimensions["B"].width = 86
-
-    headers = ["O‘qituvchi F.I.Sh.*", "Sinf rahbari", "Sinf*", "Fan*", "Ta’lim turi*", "Guruh*", "Haftalik soat*", "Kunlik max*", "Xona (ixtiyoriy)", "Qator holati"]
-    sheet.merge_cells("A1:J2"); sheet["A1"] = "O‘QITUVCHI YUKLAMASI — SAYTGA KIRITILADIGAN QATORLAR"
-    sheet["A1"].font = Font(size=16, bold=True, color="FFFFFF"); sheet["A1"].fill = PatternFill("solid", fgColor=navy)
-    sheet["A1"].alignment = Alignment(horizontal="center", vertical="center")
-    sheet.append(headers)
-    for cell in sheet[3]:
-        cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
-        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True); cell.border = border
-    sheet.freeze_panes = "A4"; sheet.auto_filter.ref = "A3:J503"
-
-    def class_sort_key(row):
-        match = re.search(r"\d+", str(row.get("sinf") or ""))
-        return (int(match.group()) if match else 999, str(row.get("harf") or ""))
-    classes = sorted(payload.get("sinflar") or [], key=class_sort_key)
-    class_names = [f"{row['sinf']}-{row['harf']}" for row in classes]
-    class_by_id = {int(row["id"]): f"{row['sinf']}-{row['harf']}" for row in classes}
-    teacher_by_id = {int(row["user_id"]): row for row in payload.get("oqituvchilar") or []}
-    leader_by_user = {int(row["rahbar_user_id"]): class_by_id[int(row["id"])] for row in classes if row.get("rahbar_user_id")}
-    variants = {(int(row["sinf_id"]), str(row["guruh_kaliti"])): row for row in payload.get("guruh_variantlari") or []}
-    room_by_id = {int(row["id"]): str(row.get("nomi") or "") for row in payload.get("xonalar") or []}
-    existing = sorted(payload.get("birikmalar") or [], key=lambda row: (str(row.get("full_name") or "").casefold(), class_by_id.get(int(row["sinf_id"]), ""), str(row.get("fan_nomi") or "")))
-    loads_by_teacher = {}
-    for item in existing:
-        loads_by_teacher.setdefault(int(item["user_id"]), []).append(item)
-
-    teachers_sheet.merge_cells("A1:G2")
-    teachers_sheet["A1"] = "O‘QITUVCHILAR — HAR BIRI BITTA QATORDA"
-    teachers_sheet["A1"].font = Font(size=16, bold=True, color="FFFFFF")
-    teachers_sheet["A1"].fill = PatternFill("solid", fgColor=navy)
-    teachers_sheet["A1"].alignment = Alignment(horizontal="center", vertical="center")
-    teachers_sheet.append(["F.I.Sh.", "Yuklama qatori", "Haftalik jami", "Sinf rahbari", "Fanlar", "Sinflar", "Excel holati"])
-    for cell in teachers_sheet[3]:
-        cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
-        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True); cell.border = border
-    teacher_rows = sorted(teacher_by_id.values(), key=lambda row: str(row.get("full_name") or "").casefold())
-    for teacher in teacher_rows:
-        user_id = int(teacher["user_id"])
-        teacher_loads = loads_by_teacher.get(user_id, [])
-        teacher_subjects = sorted({str(row.get("fan_nomi") or "") for row in teacher_loads if row.get("fan_nomi")}, key=str.casefold)
-        teacher_classes = sorted({class_by_id.get(int(row["sinf_id"]), "") for row in teacher_loads}, key=_v1859_sinf_sort_key)
-        teachers_sheet.append([
-            teacher.get("full_name") or "", len(teacher_loads),
-            round(sum(float(row.get("haftalik_soat") or 0) for row in teacher_loads), 1),
-            leader_by_user.get(user_id, ""), ", ".join(teacher_subjects),
-            ", ".join(value for value in teacher_classes if value),
-            "YUKLAMA BOR" if teacher_loads else "YUKLAMA KIRITILMAGAN",
-        ])
-    for row in teachers_sheet.iter_rows(min_row=4, max_row=max(4, teachers_sheet.max_row), min_col=1, max_col=7):
-        for cell in row:
-            cell.border = border; cell.alignment = Alignment(wrap_text=True, vertical="top")
-    teachers_sheet.freeze_panes = "A4"
-    teachers_sheet.auto_filter.ref = f"A3:G{max(3, teachers_sheet.max_row)}"
-    for col, width in zip("ABCDEFG", [30,16,16,16,36,42,24]): teachers_sheet.column_dimensions[col].width = width
-    teachers_sheet.conditional_formatting.add(f"G4:G{max(4, teachers_sheet.max_row)}", FormulaRule(formula=['G4="YUKLAMA BOR"'], fill=PatternFill("solid", fgColor=green)))
-    teachers_sheet.conditional_formatting.add(f"G4:G{max(4, teachers_sheet.max_row)}", FormulaRule(formula=['G4="YUKLAMA KIRITILMAGAN"'], fill=PatternFill("solid", fgColor=amber)))
-
-    for item in existing:
-        teacher = teacher_by_id.get(int(item["user_id"]), {})
-        group = variants.get((int(item["sinf_id"]), str(item.get("guruh_kaliti") or "whole")), {})
-        group_key = str(item.get("guruh_kaliti") or "whole")
-        sheet.append([
-            item.get("full_name") or teacher.get("full_name") or "",
-            leader_by_user.get(int(item["user_id"]), ""), class_by_id.get(int(item["sinf_id"]), ""),
-            item.get("fan_nomi") or "", "Butun sinf" if group_key == "whole" else "Guruh",
-            group.get("guruh_nomi") or group_key, float(item.get("haftalik_soat") or 0),
-            int(item.get("kunlik_max") or 1), room_by_id.get(int(item["xona_id"]), "") if item.get("xona_id") else "",
-        ])
-    first_empty = max(4, sheet.max_row + 1)
-    for row_no in range(first_empty, 504):
-        sheet.cell(row_no, 10, f'=IF(COUNTA(A{row_no}:I{row_no})=0,"",IF(OR(A{row_no}="",C{row_no}="",D{row_no}="",E{row_no}="",F{row_no}="",G{row_no}="",H{row_no}=""),"TO‘LDIRING","TAYYOR"))')
-    for row_no in range(4, 504):
-        if not sheet.cell(row_no, 10).value:
-            sheet.cell(row_no, 10, f'=IF(COUNTA(A{row_no}:I{row_no})=0,"",IF(OR(A{row_no}="",C{row_no}="",D{row_no}="",E{row_no}="",F{row_no}="",G{row_no}="",H{row_no}=""),"TO‘LDIRING","TAYYOR"))')
-        for col in range(1, 11):
-            sheet.cell(row_no, col).border = border
-            if col <= 9: sheet.cell(row_no, col).fill = PatternFill("solid", fgColor="F8FBFC")
-    sheet.conditional_formatting.add("J4:J503", FormulaRule(formula=['J4="TAYYOR"'], fill=PatternFill("solid", fgColor=green)))
-    sheet.conditional_formatting.add("J4:J503", FormulaRule(formula=['J4="TO‘LDIRING"'], fill=PatternFill("solid", fgColor=red)))
-
-    subjects = list(dict.fromkeys(payload.get("fanlar") or []))
-    group_names = list(dict.fromkeys(["whole"] + [str(row.get("guruh_nomi") or row.get("guruh_kaliti")) for row in payload.get("guruh_variantlari") or []]))
-    rooms = [str(row.get("nomi") or "") for row in payload.get("xonalar") or [] if row.get("nomi")]
-    teacher_names = [str(row.get("full_name") or "") for row in teacher_rows if row.get("full_name")]
-    lists.append(["SINFLAR", "FANLAR", "GURUHLAR", "XONALAR", "O‘QITUVCHILAR"])
-    for index in range(max(len(class_names), len(subjects), len(group_names), len(rooms), len(teacher_names), 1)):
-        lists.append([class_names[index] if index < len(class_names) else None, subjects[index] if index < len(subjects) else None, group_names[index] if index < len(group_names) else None, rooms[index] if index < len(rooms) else None, teacher_names[index] if index < len(teacher_names) else None])
-    for cell in lists[1]: cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
-    for col in "ABCDE": lists.column_dimensions[col].width = 32
-    def add_list_validation(column, formula):
-        dv = DataValidation(type="list", formula1=formula, allow_blank=True)
-        sheet.add_data_validation(dv); dv.add(f"{column}4:{column}503")
-    add_list_validation("B", "'ROYXATLAR'!$A$2:$A$%d" % (len(class_names) + 1))
-    if teacher_names: add_list_validation("A", "'ROYXATLAR'!$E$2:$E$%d" % (len(teacher_names) + 1))
-    add_list_validation("C", "'ROYXATLAR'!$A$2:$A$%d" % (len(class_names) + 1))
-    add_list_validation("D", "'ROYXATLAR'!$B$2:$B$%d" % (len(subjects) + 1))
-    add_list_validation("E", '"Butun sinf,Guruh"')
-    add_list_validation("F", "'ROYXATLAR'!$C$2:$C$%d" % (len(group_names) + 1))
-    if rooms: add_list_validation("I", "'ROYXATLAR'!$D$2:$D$%d" % (len(rooms) + 1))
-    dv_hours = DataValidation(type="decimal", operator="between", formula1="0.5", formula2="20"); sheet.add_data_validation(dv_hours); dv_hours.add("G4:G503")
-    dv_daily = DataValidation(type="whole", operator="between", formula1="1", formula2="4"); sheet.add_data_validation(dv_daily); dv_daily.add("H4:H503")
-    widths = [29,15,15,31,16,18,15,15,22,15]
-    for idx, width in enumerate(widths, 1): sheet.column_dimensions[openpyxl.utils.get_column_letter(idx)].width = width
-
-    control.append(["Sinf", "Reja soati", "Kiritilgan", "Qolgan", "Ortiqcha", "Holat"])
-    for cell in control[1]: cell.fill = PatternFill("solid", fgColor=teal); cell.font = Font(bold=True, color="FFFFFF")
-    plan_totals = {int(row["sinf_id"]): float(row.get("fan_soati") or 0) for row in (payload.get("oquv_reja") or {}).get("sinf_jami", [])}
-    for idx, cls in enumerate(classes, 2):
-        control.append([class_by_id[int(cls["id"])], plan_totals.get(int(cls["id"]), ""), f'=SUMIF(\'OQITUVCHI_YUKLAMASI\'!$C$4:$C$503,A{idx},\'OQITUVCHI_YUKLAMASI\'!$G$4:$G$503)', f'=IF(B{idx}="","",MAX(0,B{idx}-C{idx}))', f'=IF(B{idx}="","",MAX(0,C{idx}-B{idx}))', f'=IF(B{idx}="","REJA YO‘Q",IF(E{idx}>0,"ORTIQCHA",IF(D{idx}>0,"QOLDI","TO‘LDI")))'])
-    for col, width in zip("ABCDEF", [15,16,16,16,16,24]): control.column_dimensions[col].width = width
-    control.freeze_panes = "A2"
-    return wb
-
-
-@app.get("/api/maktab/aqlli_jadval/v3/oqituvchi_shablon")
-def v205_teacher_template_download(token: str, maktab_id: int):
-    actor_id = _jwt_tekshir(token)
-    conn = _db(); cur = conn.cursor()
-    try:
-        _v192_tables(cur)
-        if not _v1852_manager(cur, actor_id, maktab_id):
-            raise HTTPException(status_code=403, detail="O'qituvchi shablonini faqat rahbariyat yuklaydi")
-        wb = _v205_teacher_template_workbook(_v192_matrix_payload(cur, maktab_id))
-        stream = _V205BytesIO(); wb.save(stream); stream.seek(0)
-        filename = "SAMTM_OQITUVCHI_AQLLI_SHABLON.xlsx"
-        return _V205StreamingResponse(stream, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", headers={"Content-Disposition": f'attachment; filename="{filename}"', "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0", "Pragma": "no-cache", "Expires": "0"})
-    finally:
-        cur.close(); conn.close()
-
-
 class V193CurriculumItem(BaseModel):
     fan_nomi: str
     haftalik_soat: float
@@ -13206,140 +12899,6 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         })
         conn.commit()
         return result
-    except Exception:
-        conn.rollback(); raise
-    finally:
-        cur.close(); conn.close()
-
-
-def _v205_excel_text(value):
-    return re.sub(r"\s+", " ", str(value or "").replace("’", "'").replace("‘", "'")).strip()
-
-
-@app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_shablon_import")
-async def v205_teacher_template_import(request: _V205Request, token: str, maktab_id: int):
-    """Aqlli XLSXni atomar tekshiradi va saytdagi aniq yuklama qatorlariga aylantiradi."""
-    import openpyxl
-
-    actor_id = _jwt_tekshir(token)
-    raw = await request.body()
-    if not raw:
-        raise HTTPException(status_code=400, detail="Excel fayl tanlanmagan")
-    if len(raw) > 8 * 1024 * 1024:
-        raise HTTPException(status_code=413, detail="Excel fayl 8 MB dan katta bo'lmasligi kerak")
-    try:
-        wb = openpyxl.load_workbook(_V205BytesIO(raw), data_only=False, read_only=False)
-    except Exception:
-        raise HTTPException(status_code=400, detail="Fayl ochilmadi. Faqat .xlsx aqlli shablonini yuklang")
-    if "OQITUVCHI_YUKLAMASI" not in wb.sheetnames:
-        raise HTTPException(status_code=400, detail="OQITUVCHI_YUKLAMASI varag'i topilmadi. Saytdan yangi shablon yuklab oling")
-    ws = wb["OQITUVCHI_YUKLAMASI"]
-    expected = ["o'qituvchi f.i.sh.*", "sinf rahbari", "sinf*", "fan*", "ta'lim turi*", "guruh*", "haftalik soat*", "kunlik max*", "xona (ixtiyoriy)"]
-    actual = [_v205_excel_text(ws.cell(3, col).value).casefold() for col in range(1, 10)]
-    if actual != expected:
-        raise HTTPException(status_code=400, detail="Excel ustunlari o'zgartirilgan. Saytdan yangi shablon yuklab, faqat kataklarni to'ldiring")
-
-    conn = _db(); cur = conn.cursor()
-    try:
-        _v192_tables(cur); _xodim_kod_jadvali(cur)
-        if not _v1852_manager(cur, actor_id, maktab_id):
-            raise HTTPException(status_code=403, detail="O'qituvchi Excelini faqat rahbariyat import qiladi")
-        payload = _v192_matrix_payload(cur, maktab_id)
-        classes = {f"{row['sinf']}-{row['harf']}".casefold(): row for row in payload.get("sinflar") or []}
-        subjects = {_v1875_subject_key(name): name for name in payload.get("fanlar") or []}
-        rooms = {_v205_excel_text(row.get("nomi")).casefold(): row for row in payload.get("xonalar") or []}
-        variants = {}
-        for row in payload.get("guruh_variantlari") or []:
-            class_id = int(row["sinf_id"])
-            for label in (row.get("guruh_kaliti"), row.get("guruh_nomi"), row.get("qisqa")):
-                if label: variants[(class_id, _v205_excel_text(label).casefold())] = row
-        teachers = {_v205_excel_text(row.get("full_name")).casefold(): row for row in payload.get("oqituvchilar") or []}
-        grouped, leader_by_teacher, source_rows = {}, {}, {}
-        errors = []
-        for row_no in range(4, ws.max_row + 1):
-            values = [ws.cell(row_no, col).value for col in range(1, 10)]
-            if not any(value not in (None, "") for value in values): continue
-            name, leader_name, class_name, subject_name, education_type, group_name, hours, daily, room_name = values
-            name = _v205_excel_text(name); class_name = _v205_excel_text(class_name)
-            subject_name = _v205_excel_text(subject_name); group_name = _v205_excel_text(group_name)
-            if not name: errors.append(f"{row_no}-qator: o'qituvchi F.I.Sh. yozilmagan"); continue
-            if len(name) < 3 or len(name) > 160: errors.append(f"{row_no}-qator: F.I.Sh. 3–160 belgi bo'lishi kerak"); continue
-            cls = classes.get(class_name.casefold())
-            if not cls: errors.append(f"{row_no}-qator: '{class_name or 'bo‘sh'}' sinfi saytda yo'q"); continue
-            subject = subjects.get(_v1875_subject_key(subject_name))
-            if not subject: errors.append(f"{row_no}-qator: '{subject_name or 'bo‘sh'}' fani saytda yo'q"); continue
-            education_key = _v205_excel_text(education_type).casefold()
-            requested_group = "whole" if education_key in {"butun sinf", "whole", "sinf"} else group_name
-            variant = variants.get((int(cls["id"]), _v205_excel_text(requested_group).casefold()))
-            if not variant: errors.append(f"{row_no}-qator: {class_name}da '{group_name or requested_group}' guruhi yo'q"); continue
-            if education_key in {"guruh", "group"} and str(variant.get("guruh_kaliti")) == "whole":
-                errors.append(f"{row_no}-qator: Guruh tanlangan, lekin guruh nomi whole bo'lib qolgan"); continue
-            try:
-                weekly = round(float(str(hours).replace(",", ".")), 1)
-                daily_max = int(float(str(daily).replace(",", ".")))
-            except Exception:
-                errors.append(f"{row_no}-qator: haftalik soat yoki kunlik max son emas"); continue
-            if weekly < .5 or weekly > 20 or abs(weekly * 2 - round(weekly * 2)) > 1e-9:
-                errors.append(f"{row_no}-qator: haftalik soat 0,5–20 va 0,5 qadamda bo'lishi kerak"); continue
-            if daily_max < 1 or daily_max > 4:
-                errors.append(f"{row_no}-qator: kunlik max 1–4 bo'lishi kerak"); continue
-            room = rooms.get(_v205_excel_text(room_name).casefold()) if room_name else None
-            if room_name and not room:
-                errors.append(f"{row_no}-qator: '{_v205_excel_text(room_name)}' xonasi saytda yo'q"); continue
-            name_key = name.casefold()
-            grouped.setdefault(name_key, []).append(V192TeacherLoadRow(
-                sinf_id=int(cls["id"]), fan_nomi=subject,
-                guruh_kaliti=str(variant.get("guruh_kaliti") or "whole"),
-                haftalik_soat=weekly, kunlik_max=daily_max,
-                xona_id=int(room["id"]) if room else None,
-            ))
-            source_rows.setdefault(name_key, []).append(row_no)
-            leader_text = _v205_excel_text(leader_name)
-            if leader_text:
-                leader = classes.get(leader_text.casefold())
-                if not leader: errors.append(f"{row_no}-qator: rahbarlik sinfi '{leader_text}' saytda yo'q")
-                elif name_key in leader_by_teacher and int(leader_by_teacher[name_key]["id"]) != int(leader["id"]): errors.append(f"{row_no}-qator: {name}ga ikki xil rahbarlik sinfi yozilgan")
-                else: leader_by_teacher[name_key] = leader
-        if not grouped and not errors: errors.append("Import qilinadigan birorta yuklama qatori topilmadi")
-        if errors:
-            raise HTTPException(status_code=400, detail="Excel tekshiruvi:\n" + "\n".join(errors[:30]))
-
-        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(maktab_id),))
-        teacher_ids, created_codes = {}, []
-        for name_key, rows in grouped.items():
-            teacher = teachers.get(name_key)
-            if teacher:
-                teacher_ids[name_key] = int(teacher["user_id"])
-                continue
-            display_name = _v205_excel_text(ws.cell(source_rows[name_key][0], 1).value)
-            cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
-            smallest = cur.fetchone() or {}; user_id = int(smallest.get("eng_kichik") or 0) - 1
-            subjects_for_teacher = list(dict.fromkeys(row.fan_nomi for row in rows))
-            total = round(sum(float(row.haftalik_soat) for row in rows), 1)
-            cur.execute("""INSERT INTO users(user_id,full_name,role,maktab_id,lavozim,mutaxassisligi,haftalik_maqsad_soat,haftalik_dars_soati)
-                           VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,0)""",
-                        (user_id, display_name, maktab_id, "; ".join(subjects_for_teacher), total))
-            plain_code, stored_code = _xodim_kod_yarat()
-            cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)", (stored_code, user_id))
-            teacher_ids[name_key] = user_id
-            created_codes.append({"oqituvchi": display_name, "kirish_kodi": plain_code})
-
-        imported_ids = list(teacher_ids.values())
-        cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=ANY(%s)", (maktab_id, imported_ids))
-        saved_rows = 0; warnings = []
-        for name_key, rows in grouped.items():
-            user_id = teacher_ids[name_key]
-            try:
-                result = _v192_save_teacher_load_rows(cur, actor_id, maktab_id, user_id, rows)
-            except HTTPException as exc:
-                display_name = _v205_excel_text(ws.cell(source_rows[name_key][0], 1).value)
-                raise HTTPException(status_code=exc.status_code, detail=f"{display_name} (Excel qatorlari {', '.join(map(str, source_rows[name_key]))}): {exc.detail}")
-            saved_rows += int(result.get("qator_soni") or 0); warnings.extend(result.get("ogohlantirishlar") or [])
-            leader = leader_by_teacher.get(name_key)
-            _v199_save_teacher_leadership(cur, maktab_id, user_id, int(leader["id"]) if leader else None, actor_id)
-        matrix = _v192_matrix_payload(cur, maktab_id)
-        conn.commit()
-        return {"holat": "import_qilindi", "oqituvchi_soni": len(grouped), "qator_soni": saved_rows, "yangi_oqituvchilar": created_codes, "ogohlantirishlar": list(dict.fromkeys(warnings)), "matritsa": matrix}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -14953,12 +14512,12 @@ def _v196_teacher_target_days(demand, rules):
     demand = float(demand or 0)
     daily_limit = max(1, min(6, int((rules or {}).get("kunlik_max") or 6)))
     minimum = max(1, int(math.ceil(demand / daily_limit)))
-    if demand <= 1:
-        # Bitta darsni sun'iy ravishda ikki kunga bo'lib bo'lmaydi.
+    if demand <= 2:
+        # Haftasiga 1–2 soatli ustozni ikki-uch kunga sochmaymiz. Mos katak
+        # bo'lsa ikkala dars bitta ixcham kunda turadi.
         return 1
     if demand <= 6:
-        # 3–6 soat: maqsad 2 ish kuni; daily_max yoki sinf kolliziyasi
-        # majbur qilsa 3, keyin ko'pi bilan 4 kun ishlatiladi.
+        # 2–6 soat: 2 ish kuni; faqat kunlik limit majbur qilsa ko'payadi.
         return max(2, minimum)
     if demand <= 10:
         # 7–10 soat: 3 ish kuni.
@@ -14978,10 +14537,10 @@ def _v201_teacher_fallback_days(demand, rules):
     """Maqsad sig'masa ruxsat etiladigan birinchi zaxira kun soni."""
     demand = float(demand or 0)
     target = _v196_teacher_target_days(demand, rules)
-    if demand <= 1:
+    if demand <= 2:
         return 1
     if demand <= 6:
-        return max(target, 4)
+        return max(target, 3)
     if demand <= 10:
         return max(target, 4)
     if demand <= 15:
@@ -15494,34 +15053,179 @@ def _v196_teacher_window_candidates(state, context, limit=96):
     return pairs
 
 
+def _v225_teacher_ids(state):
+    return sorted({
+        int(teacher_id)
+        for placement in state.get("placements", []) or []
+        for teacher_id in placement.get("teachers", []) or []
+        if teacher_id is not None
+    })
+
+
+def _v225_teacher_days(state, teacher_id):
+    return len({
+        int(day) for (owner, day), count
+        in (state.get("teacher_daily", {}) or {}).items()
+        if int(owner) == int(teacher_id) and float(count or 0) > 0
+    })
+
+
+def _v225_teacher_load(state, teacher_id):
+    return sum(
+        float(count or 0) for (owner, _day), count
+        in (state.get("teacher_daily", {}) or {}).items()
+        if int(owner) == int(teacher_id)
+    )
+
+
+def _v225_teacher_score(state, context, teacher_id):
+    """Bitta o'qituvchi uchun qat'iy lexicographic qulaylik bahosi."""
+    snapshot = _v214_teacher_phase_window_snapshot(state, context, teacher_id)
+    return (
+        int(snapshot.get("eng_katta_daqiqa") or 0),
+        int(snapshot.get("jami_daqiqa") or 0),
+        int(snapshot.get("okno_soni") or 0),
+        int(snapshot.get("ichki_okno") or 0),
+        int(_v225_teacher_days(state, teacher_id)),
+    )
+
+
+def _v225_changed_teachers(first, second):
+    return {
+        int(value)
+        for placement in (first, second)
+        for value in placement.get("teachers", []) or []
+        if value is not None
+    }
+
+
+def _v225_target_order(state, context):
+    """Avval juda uzun ikki-smena kutishi, keyin kam-soatli ustozlar."""
+    rows = []
+    for teacher_id in _v225_teacher_ids(state):
+        score = _v225_teacher_score(state, context, teacher_id)
+        load = _v225_teacher_load(state, teacher_id)
+        # 1–2 soatlik tabiiy tanaffus yaxshi jadvalni buzish uchun sabab emas.
+        bad_cross_shift = score[0] > 120 or score[1] > 180
+        low_hour = load <= 15
+        if not bad_cross_shift and not low_hour:
+            continue
+        rows.append((
+            0 if bad_cross_shift else 1,
+            -score[0], -score[1],
+            load if low_hour else 999.0,
+            int(teacher_id),
+        ))
+    return [row[-1] for row in sorted(rows)]
+
+
+def _v225_teacher_candidates(state, context, teacher_id, limit=320):
+    """Oyna uchun shu-kun, faol kun uchun kunlararo xavfsiz swaplar."""
+    yielded = 0
+    for first, second in _v196_teacher_window_candidates(
+        state, context, limit=min(240, int(limit))
+    ):
+        if int(teacher_id) in _v225_changed_teachers(first, second):
+            yield "same_day", first, second
+            yielded += 1
+            if yielded >= int(limit):
+                return
+    placements = list(state.get("placements", []) or [])
+    owned = [
+        row for row in placements
+        if int(teacher_id) in {
+            int(value) for value in row.get("teachers", []) or []
+            if value is not None
+        }
+        and _v196_movable_placement(row)
+    ]
+    for first in owned:
+        class_id = int((first.get("job") or {}).get("sinf_id") or 0)
+        for second in placements:
+            if not _v196_movable_placement(second):
+                continue
+            if int((second.get("job") or {}).get("sinf_id") or 0) != class_id:
+                continue
+            if int(second.get("day") or 0) == int(first.get("day") or 0):
+                continue
+            yield "across_day", first, second
+            yielded += 1
+            if yielded >= int(limit):
+                return
+
+
 def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
-    """Sinf kataklarini saqlab, ichki va smenalararo kutishni qisqartiradi."""
-    current_signature = _v196_teacher_comfort_signature(state, context)
+    """V22.25: ustozlarni ketma-ket yaxshilaydi va natijani qotiradi.
+
+    Har bir target alohida sinovdan o'tadi. Foydali variant qabul qilingach
+    o'sha ustozning bahosi ``frozen`` bo'ladi; keyingi swap uning oynasi,
+    kutish daqiqasi yoki faol kunini yomonlashtira olmaydi. Muvaffaqiyatsiz
+    trial faqat o'zi bekor bo'ladi, butun jarayon to'xtamaydi.
+    """
     swaps = 0
-    while swaps < int(max_swaps):
-        if _v206_deadline_reached(context):
+    trials = 0
+    frozen = {}
+    improved = []
+    targets = _v225_target_order(state, context)
+    for teacher_id in targets:
+        if swaps >= int(max_swaps) or _v206_deadline_reached(context):
             break
+        before = _v225_teacher_score(state, context, teacher_id)
         best = None
-        for first, second in _v196_teacher_window_candidates(
-            state, context, limit=160
+        for move_kind, first, second in _v225_teacher_candidates(
+            state, context, teacher_id, limit=320
         ):
             if _v206_deadline_reached(context):
                 break
-            trial = _v196_swap_same_class_day(
-                state, first, second, context, rng
-            )
+            changed = _v225_changed_teachers(first, second)
+            if int(teacher_id) not in changed:
+                continue
+            trials += 1
+            if move_kind == "across_day":
+                trial = _v219_swap_across_class_days(
+                    state, first, second, context, rng
+                )
+            else:
+                trial = _v196_swap_same_class_day(
+                    state, first, second, context, rng
+                )
             if trial is None:
                 continue
-            signature = _v196_teacher_comfort_signature(trial, context)
-            if signature >= current_signature:
+            # Oldin yaxshilangan o'qituvchilar qayta ochilmaydi.
+            if any(
+                _v225_teacher_score(trial, context, owner) > protected
+                for owner, protected in frozen.items()
+            ):
                 continue
-            if best is None or signature < best[0]:
-                best = (signature, trial)
+            target_score = _v225_teacher_score(trial, context, teacher_id)
+            if target_score >= before:
+                continue
+            # Swap tegadigan boshqa ustoz ham yomonlashmasin.
+            if any(
+                _v225_teacher_score(trial, context, owner)
+                > _v225_teacher_score(state, context, owner)
+                for owner in changed if owner != int(teacher_id)
+            ):
+                continue
+            global_score = _v196_teacher_comfort_signature(trial, context)
+            rank = (target_score, global_score)
+            if best is None or rank < best[0]:
+                best = (rank, trial)
         if best is None:
-            break
-        current_signature, state = best
+            continue
+        state = best[1]
         swaps += 1
+        improved.append(int(teacher_id))
+        frozen[int(teacher_id)] = _v225_teacher_score(
+            state, context, teacher_id
+        )
+
     state["v196_teacher_window_swaps"] = int(swaps)
+    state["v225_teacher_window_trials"] = int(trials)
+    state["v225_teacher_targets"] = int(len(targets))
+    state["v225_teacher_improved"] = list(improved)
+    state["v225_teacher_frozen"] = int(len(frozen))
+    state["v225_optimizer_mode"] = "sequential_frozen_incumbent"
     return state
 
 
@@ -17220,13 +16924,6 @@ def _v1852_candidate_reasons(
     reasons = list(_v204_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
-    # Xona xatolari tuzatiladigan ma'lumot: ular to'liq jadval yaratishni
-    # to'xtatmaydi. Sinf/o'qituvchi kolliziyasi va qizil/BAND hard qoladi.
-    reasons = [reason for reason in reasons if reason not in {
-        "xona band",
-        "parallel guruhlar bir xil xonaga biriktirilgan",
-        "xona band: boshqa smenadagi dars bilan real vaqtda ustma-ust",
-    }]
     profile = _v196_rotation_profile(job, context)
 
     # Asosiy fanlar avval 1–5-darslardan joy oladi. Boshqa legal kombinatsiya
@@ -17399,11 +17096,6 @@ def _v1852_candidate_reasons(
                         "xona band: boshqa smenadagi dars bilan real vaqtda ustma-ust"
                     )
                     break
-    reasons = [reason for reason in reasons if not (
-        reason == "xona band"
-        or reason == "parallel guruhlar bir xil xonaga biriktirilgan"
-        or str(reason).startswith("xona band:")
-    )]
     # V20.7: faqat pedagogik tavsiyalar bosqichma-bosqich yumshaydi.
     # Qizil vaqt, parallel, sinf bandligi, smena va metod kuni modulda
     # qat'iy deb tasniflangan va hech qachon filtrdan olib tashlanmaydi.
