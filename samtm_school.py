@@ -18,6 +18,7 @@ except ImportError:  # Railway working directory may be backend/
 
 import copy as _samtm_copy
 import time as _samtm_time
+import threading as _samtm_threading
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -100,12 +101,12 @@ except Exception:
 
 
 def _v220_generation_budget_seconds():
-    """Return the 5–10 minute search budget used by API and frontend."""
+    """Texnik xavfsizlik chegarasi; oddiy ishni faqat foydalanuvchi to‘xtatadi."""
     try:
-        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "600"))
+        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "604800"))
     except (TypeError, ValueError):
-        value = 600.0
-    return max(300.0, min(600.0, value))
+        value = 604800.0
+    return max(3600.0, min(2592000.0, value))
 
 def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
     """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
@@ -1277,6 +1278,8 @@ def _v1852_create_tables(cur):
         xabar TEXT NOT NULL,
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )""")
+    cur.execute("""ALTER TABLE aqlli_jadval_jarayoni_v2243
+                   ADD COLUMN IF NOT EXISTS toxtatish_soraldi BOOLEAN NOT NULL DEFAULT FALSE""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_slotlari_v2(
         id BIGSERIAL PRIMARY KEY,
         urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
@@ -3668,6 +3671,27 @@ def _v2243_progress_write(
             progress_conn.close()
 
 
+def _v2244_cancel_requested(maktab_id, qidiruv_nonce=None):
+    """Foydalanuvchining aynan joriy qidiruvni to‘xtatish signalini o‘qiydi."""
+    cancel_conn = None
+    cancel_cur = None
+    try:
+        cancel_conn = _db(); cancel_cur = cancel_conn.cursor()
+        cancel_cur.execute(
+            "SELECT qidiruv_nonce,toxtatish_soraldi FROM aqlli_jadval_jarayoni_v2243 WHERE maktab_id=%s",
+            (int(maktab_id),),
+        )
+        row = cancel_cur.fetchone() or {}
+        if qidiruv_nonce is not None and int(row.get("qidiruv_nonce") or 0) != int(qidiruv_nonce):
+            return False
+        return bool(row.get("toxtatish_soraldi"))
+    except Exception:
+        return False
+    finally:
+        if cancel_cur is not None: cancel_cur.close()
+        if cancel_conn is not None: cancel_conn.close()
+
+
 @app.get("/api/maktab/aqlli_jadval/v3/jarayon")
 def v2243_generation_progress(token: str, maktab_id: int, qidiruv_nonce: Optional[int] = None):
     user_id = _jwt_tekshir(token)
@@ -3685,7 +3709,7 @@ def v2243_generation_progress(token: str, maktab_id: int, qidiruv_nonce: Optiona
         if not row or (qidiruv_nonce is not None and int(row.get("qidiruv_nonce") or 0) != int(qidiruv_nonce)):
             return {"faol": False}
         payload = dict(row)
-        payload["faol"] = payload.get("bosqich") not in {"tayyor", "xato"}
+        payload["faol"] = payload.get("bosqich") not in {"tayyor", "xato", "toxtatildi"}
         payload["ko_rinish_raqami"] = (
             f"{payload['jadval_raqami']}.{payload['yaxshilanish']}"
             if int(payload.get("yaxshilanish") or 0) > 0
@@ -3706,6 +3730,29 @@ class V1852Generate(BaseModel):
     # Eski frontendlar yuborishi mumkin. Yagona generator bu qiymatni
     # e'tiborsiz qoldiradi va har doim bir xil kuchli siyosatni ishlatadi.
     generator_rejimi: int = 1
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/toxtatish")
+def v2244_stop_generation(token: str, maktab_id: int, qidiruv_nonce: Optional[int] = None):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Jadval jarayonini to‘xtatishga ruxsat yo‘q")
+        cur.execute(
+            """UPDATE aqlli_jadval_jarayoni_v2243
+               SET toxtatish_soraldi=TRUE,bosqich='toxtatish_soraldi',
+                   xabar='Foydalanuvchi to‘xtatishni so‘radi. Eng yaxshi to‘liq natija xavfsiz yakunlanmoqda.',
+                   yangilangan_at=NOW()
+               WHERE maktab_id=%s AND (%s IS NULL OR qidiruv_nonce=%s)
+               RETURNING jadval_raqami""",
+            (maktab_id, qidiruv_nonce, qidiruv_nonce),
+        )
+        row = cur.fetchone(); conn.commit()
+        return {"qabul_qilindi": bool(row), "jadval_raqami": row.get("jadval_raqami") if row else None}
+    finally:
+        cur.close(); conn.close()
 
 
 @app.post("/api/maktab/aqlli_jadval/v2/yaratish")
@@ -3842,13 +3889,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
         reserved_run_id = int(cur.fetchone()["id"])
         cur.execute(
             """INSERT INTO aqlli_jadval_jarayoni_v2243(
-                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,yangilangan_at)
-               VALUES(%s,%s,%s,0,8,'tayyorlash',%s,NOW())
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,toxtatish_soraldi,yangilangan_at)
+               VALUES(%s,%s,%s,0,8,'tayyorlash',%s,FALSE,NOW())
                ON CONFLICT(maktab_id) DO UPDATE SET
                    qidiruv_nonce=EXCLUDED.qidiruv_nonce,
                    jadval_raqami=EXCLUDED.jadval_raqami,
                    yaxshilanish=0,foiz=8,bosqich='tayyorlash',
-                   xabar=EXCLUDED.xabar,yangilangan_at=NOW()""",
+                   xabar=EXCLUDED.xabar,toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
             (
                 sorov.maktab_id,
                 sorov.qidiruv_nonce,
@@ -3973,8 +4020,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
-            exact_context["exact_quality_seconds"] = 120.0
+            exact_context["exact_quality_seconds"] = generation_budget
             exact_context["exact_progress_callback"] = _v2243_exact_progress
+            exact_context["exact_cancel_requested"] = lambda: _v2244_cancel_requested(
+                sorov.maktab_id, sorov.qidiruv_nonce
+            )
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
@@ -4887,11 +4937,18 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "moslik": jadval_mosligi}
     except Exception:
         if reserved_run_id is not None:
-            _v2243_progress_write(
-                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                progress_revision, 100, "xato",
-                f"Jadval #{reserved_run_id}: hisoblash yakunlanmadi. Oldingi jadval saqlandi.",
-            )
+            if _v2244_cancel_requested(sorov.maktab_id, sorov.qidiruv_nonce):
+                _v2243_progress_write(
+                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                    progress_revision, 100, "toxtatildi",
+                    f"Jadval #{reserved_run_id}: foydalanuvchi to‘xtatdi. Oldingi saqlangan jadval o‘zgarmadi.",
+                )
+            else:
+                _v2243_progress_write(
+                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                    progress_revision, 100, "xato",
+                    f"Jadval #{reserved_run_id}: hisoblash yakunlanmadi. Oldingi jadval saqlandi.",
+                )
         if conn is not None:
             try:
                 if not bool(getattr(conn, "closed", True)):
@@ -4910,6 +4967,77 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 conn.close()
             except Exception:
                 pass
+
+
+_V2244_BACKGROUND_JOBS = {}
+_V2244_BACKGROUND_LOCK = _samtm_threading.Lock()
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/boshlash")
+def v2244_start_generation(sorov: V1852Generate, token: str):
+    """Uzun hisoblashni HTTP ulanishidan ajratib, darhol javob qaytaradi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, user_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Jadvalni faqat maktab rahbariyati yaratadi")
+        cur.execute(
+            """SELECT bosqich,qidiruv_nonce,
+                      EXTRACT(EPOCH FROM (NOW()-yangilangan_at)) AS yangilanish_yoshi
+               FROM aqlli_jadval_jarayoni_v2243 WHERE maktab_id=%s""",
+            (sorov.maktab_id,),
+        )
+        current = cur.fetchone() or {}
+        current_is_fresh = float(current.get("yangilanish_yoshi") or 0) < 90
+        if current_is_fresh and current.get("bosqich") not in {None, "tayyor", "xato", "toxtatildi"}:
+            raise HTTPException(status_code=409, detail="Bu maktab uchun jadval allaqachon yaratilmoqda")
+    finally:
+        cur.close(); conn.close()
+
+    job_key = (int(sorov.maktab_id), int(sorov.qidiruv_nonce or 0))
+    heartbeat_done = _samtm_threading.Event()
+
+    def keep_heartbeat():
+        while not heartbeat_done.wait(10.0):
+            heartbeat_conn = None
+            heartbeat_cur = None
+            try:
+                heartbeat_conn = _db(); heartbeat_cur = heartbeat_conn.cursor()
+                heartbeat_cur.execute(
+                    """UPDATE aqlli_jadval_jarayoni_v2243 SET yangilangan_at=NOW()
+                       WHERE maktab_id=%s AND qidiruv_nonce=%s
+                         AND bosqich NOT IN ('tayyor','xato','toxtatildi')""",
+                    (sorov.maktab_id, sorov.qidiruv_nonce),
+                )
+                heartbeat_conn.commit()
+            except Exception:
+                if heartbeat_conn is not None: heartbeat_conn.rollback()
+            finally:
+                if heartbeat_cur is not None: heartbeat_cur.close()
+                if heartbeat_conn is not None: heartbeat_conn.close()
+
+    def run_background():
+        heartbeat = _samtm_threading.Thread(target=keep_heartbeat, daemon=True)
+        heartbeat.start()
+        try:
+            v1852_generate(sorov, token)
+        except Exception as error:
+            print(f"[JADVAL-BACKGROUND-V22.44] yakunlandi: {error}", flush=True)
+        finally:
+            heartbeat_done.set()
+            with _V2244_BACKGROUND_LOCK:
+                _V2244_BACKGROUND_JOBS.pop(job_key, None)
+
+    worker = _samtm_threading.Thread(target=run_background, daemon=True)
+    with _V2244_BACKGROUND_LOCK:
+        _V2244_BACKGROUND_JOBS[job_key] = worker
+    worker.start()
+    return {
+        "qabul_qilindi": True,
+        "qidiruv_nonce": sorov.qidiruv_nonce,
+        "xabar": "Jadval backendda mustaqil yaratila boshladi. Oynani yopish hisoblashni to‘xtatmaydi.",
+    }
 
 
 @app.get("/api/maktab/aqlli_jadval/v2/urinish")
