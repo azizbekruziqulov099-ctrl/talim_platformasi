@@ -48,7 +48,6 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
-SAMTM_ADAPTIVE_REPEAT_RELEASE = "SAMTM-EXACT-V22.24-DUAL-SHIFT-SYNTHETIC-ZONES"
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
     from ortools.sat.python import cp_model  # type: ignore
 except Exception as error:  # pragma: no cover - default test image has none.
@@ -735,9 +734,15 @@ def candidate_hard_violations(
                 errors.append("candidate sinf rahbari manbaga mos emas")
         elif len(teachers) != 1 or int(teachers[0]) not in allowed_teachers:
             errors.append("candidate o'qituvchisi manbaga mos emas")
-    # Xona ma'lumoti operatsion tavsiya, jadvalning hard resursi emas.
-    # Bir xona ikki sinf/guruhga yozilgan bo'lsa ham dars sloti yaratiladi;
-    # natijada administratorga xonani keyin tahrirlash tavsiya qilinadi.
+    non_null_rooms = [str(value) for value in candidate.get("room_keys") or () if value]
+    if len(non_null_rooms) != len(set(non_null_rooms)):
+        errors.append("parallel guruhlar bir xil xonaga biriktirilgan")
+    room_by_phase: dict[tuple[str, str], int] = defaultdict(int)
+    for room, phases in (candidate.get("room_phases") or {}).items():
+        for phase in phases:
+            room_by_phase[(str(room), str(phase))] += 1
+    if any(count > 1 for count in room_by_phase.values()):
+        errors.append("parallel guruhlar bir xil xonaga biriktirilgan")
     hard = context.get("hard") or ()
     raw_method_hard = context.get("method_hard") or ()
     method_hard = (
@@ -961,8 +966,10 @@ def _build_model(
             for phase in phases:
                 for segment in segments:
                     resource_buckets[("teacher", teacher, day, phase, segment)].add(index)
-        # Xona kolliziyasi jadvalni INFEASIBLE qilmaydi. Sinf va o'qituvchi
-        # real-vaqt xavfsizligi hard qoladi; xona keyin tahrirlanadi.
+        for room, phases in row["room_phases"].items():
+            for phase in phases:
+                for segment in segments:
+                    resource_buckets[("room", room, day, phase, segment)].add(index)
     seen_resource_domains: set[frozenset[int]] = set()
     for indices in resource_buckets.values():
         if len(indices) > 1:
@@ -973,9 +980,6 @@ def _build_model(
             model.AddAtMostOne([variables[index] for index in sorted(domain)])
 
     weekdays = int(context.get("weekdays") or 6)
-    enforce_balanced_class_days = bool(
-        context.get("exact_enforce_balanced_class_days")
-    )
     # Class occupancy and prefix constraints: a used day is 1..N, never 2..N.
     class_period_vars: dict[tuple[int, int, str, int], list[int]] = defaultdict(list)
     class_day_vars: dict[tuple[int, int, str], list[int]] = defaultdict(list)
@@ -992,28 +996,7 @@ def _build_model(
                 1 for job in jobs if int(job.get("sinf_id") or 0) == class_id
                 and phase in _job_class_phases(job)
             )
-            # Balance against the CLASS CALENDAR, not against candidate
-            # availability.  A day does not disappear from the target merely
-            # because its current teachers have difficult domains; the global
-            # solver must exchange subjects and fill that open class day.
-            # Grades 1--4 still exclude their hard-blocked Saturday.
-            class_phase_jobs = [
-                job for job in jobs
-                if int(job.get("sinf_id") or 0) == class_id
-                and phase in _job_class_phases(job)
-            ]
-            representative_job = class_phase_jobs[0] if class_phase_jobs else None
-            legal_balance_days = [
-                day for day in range(1, weekdays + 1)
-                if representative_job is not None
-                and not _class_day_blocked(representative_job, day, context)
-                and not (
-                    1 <= _grade(representative_job, context) <= 4
-                    and day == 6
-                )
-            ]
-            legal_day_count = max(1, len(legal_balance_days))
-            for day in legal_balance_days:
+            for day in range(1, weekdays + 1):
                 periods = sorted({
                     key[3] for key in class_period_vars
                     if key[:3] == (class_id, day, phase)
@@ -1030,48 +1013,21 @@ def _build_model(
                         used_by_period[period] = used
                     for period in range(1, max(periods)):
                         model.Add(used_by_period[period] >= used_by_period[period + 1])
-                # The floor/ceil class-day distribution is a hard timetable
-                # rule when requested, not merely a best-effort quality goal.
-                # Build its counters in the initial feasibility model too;
-                # otherwise a timed-out refinement could return layouts such
-                # as 22 hours = 5+5+2+5+5.
-                if (quality_enabled or enforce_balanced_class_days) and phase_job_count:
+                if quality_enabled and phase_job_count:
                     indices = sorted(set(class_day_vars.get((class_id, day, phase), [])))
                     count = model.NewIntVar(
                         0, min(phase_job_count, max(0, len(indices))),
                         f"class_count_{class_id}_{day}_{phase}",
                     )
-                    if indices:
-                        model.Add(count == sum(variables[index] for index in indices))
-                    else:
-                        model.Add(count == 0)
-                    if enforce_balanced_class_days:
-                        # Require the mathematically even floor/ceil
-                        # distribution in every exact pass.  For example,
-                        # 22/5 is always 4..5 and 30/6 is always exactly 5.
-                        daily_floor = phase_job_count // legal_day_count
-                        daily_ceil = int(math.ceil(
-                            phase_job_count / legal_day_count
-                        ))
-                        model.Add(count >= daily_floor)
-                        model.Add(count <= daily_ceil)
-                    deviation = model.NewIntVar(
-                        0, phase_job_count * legal_day_count,
-                        f"balance_{class_id}_{day}_{phase}",
-                    )
-                    model.AddAbsEquality(
-                        deviation,
-                        count * legal_day_count - phase_job_count,
-                    )
-                    if quality_enabled and not enforce_balanced_class_days:
-                        balance_terms.append(deviation)
+                    model.Add(count == sum(variables[index] for index in indices))
+                    deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
+                    model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
+                    balance_terms.append(deviation)
 
     # Subject repetitions and controlled repeat-day fallback.
     subject_groups: dict[tuple[int, str, int, str], list[int]] = defaultdict(list)
     subject_daily_limits: dict[tuple[int, str], int] = {}
     subject_is_practical: dict[tuple[int, str], bool] = {}
-    subject_job_keys: dict[tuple[int, str], set[int]] = defaultdict(set)
-    subject_candidate_days: dict[tuple[int, str], set[int]] = defaultdict(set)
     for index, row in enumerate(candidates):
         for subject, phases in row["subject_phases"].items():
             normal_limit = max(1, int(
@@ -1088,8 +1044,6 @@ def _build_model(
                 or profile.get("practical") or profile.get("physical")
                 or profile.get("technology")
             )
-            subject_job_keys[(row["class_id"], subject)].add(id(row["job"]))
-            subject_candidate_days[(row["class_id"], subject)].add(int(row["day"]))
             for phase in phases:
                 subject_groups[(row["class_id"], subject, row["day"], phase)].append(index)
     repeat_day_limit = max(0, int(context.get("max_subject_repeat_days") or 0))
@@ -1100,57 +1054,23 @@ def _build_model(
     repeat_group_limits: dict[tuple[int, str, str], int] = {}
     repeat_terms: list[Any] = []
     practical_repeat_terms: list[Any] = []
-    compact_subject_used_days: dict[tuple[int, str, str], list[Any]] = defaultdict(list)
-    compact_subject_day_targets: dict[tuple[int, str, str], int] = {}
     for (class_id, subject, day, phase), indices in subject_groups.items():
         indices = sorted(set(indices))
-        configured_normal_limit = subject_daily_limits[(class_id, subject)]
-        # All subjects may be paired on one class day when that helps compact
-        # a teacher's week.  This is permission, not a requirement; the
-        # quality objective decides whether the pair is actually beneficial.
-        normal_limit = max(2, configured_normal_limit)
-        required_sessions = len(subject_job_keys.get((class_id, subject), ()))
-        legal_day_count = len(subject_candidate_days.get((class_id, subject), ()))
-        # Avval har legal kunga bittadan. Faqat ochiq kun yetishmasa qizil
-        # yoki metod kunini ochish o'rniga 2+2+1 kabi cheklangan zaxira ishlaydi.
-        compact_repeat = bool(
-            quality_enabled
-            and context.get("exact_compact_subject_repeats")
-            and required_sessions >= 5
-        )
-        if compact_repeat:
-            # Five weekly sessions may become 2+2+1 instead of forcing five
-            # separate teacher work days.  A single class/subject still never
-            # exceeds two lessons on one day.
-            normal_limit = 2
+        normal_limit = subject_daily_limits[(class_id, subject)]
         practical = bool(subject_is_practical.get((class_id, subject)))
         count = sum(variables[index] for index in indices)
-        # Takror faqat zarur sig'im holatida yoki administrator daily_max>=2
-        # berganida va cheklangan kunlarda ishlaydi.
-        # Every subject may occupy at most two periods in the same class/day.
-        # This permits compact 2+2+1 distributions, but never a triple lesson.
-        per_day_limit = min(2, normal_limit)
+        # ``daily_max`` is always hard.  A value of 1 can never be relaxed by
+        # an internal mode; an explicit value >=2 permits a repeat only on a
+        # bounded number of days.  This is the exact version of the user's
+        # Algebra/Geometry rule: spread first, use a double only if required.
+        per_day_limit = min(2, normal_limit) if practical else normal_limit
         model.Add(count <= per_day_limit)
-        if per_day_limit <= 1:
+        if normal_limit <= 1:
             continue
 
         allowed_repeat_days = (
             practical_repeat_day_limit if practical else repeat_day_limit
         )
-        if compact_repeat and not practical:
-            allowed_repeat_days = max(
-                int(allowed_repeat_days), required_sessions // 2
-            )
-            used_subject_day = model.NewBoolVar(
-                f"compact_used_{class_id}_{abs(hash(subject))}_{day}_{phase}"
-            )
-            model.Add(count >= used_subject_day)
-            model.Add(count <= per_day_limit * used_subject_day)
-            compact_key = (class_id, subject, phase)
-            compact_subject_used_days[compact_key].append(used_subject_day)
-            compact_subject_day_targets[compact_key] = int(
-                math.ceil(required_sessions / 2)
-            )
         repeat = model.NewBoolVar(
             f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
         )
@@ -1173,13 +1093,6 @@ def _build_model(
                         continue
                     if abs(int(left["period"]) - int(right["period"])) != 1:
                         model.Add(variables[left_index] + variables[right_index] <= 1)
-    for compact_key, used_days in compact_subject_used_days.items():
-        # 5 sessions => exactly three used days (2+2+1); 6 => three days
-        # (2+2+2).  This is quality-pass only and never affects the initial
-        # full feasibility timetable.
-        model.Add(
-            sum(used_days) == compact_subject_day_targets[compact_key]
-        )
     for (class_id, subject, phase), booleans in repeat_bools.items():
         limit = int(repeat_group_limits.get(
             (class_id, subject, phase),
@@ -1217,172 +1130,17 @@ def _build_model(
     # weakened, yet a needless 4–5 hour wait between shift 1 and shift 2 is
     # far more expensive than an ordinary short school break.
     teacher_real_day: dict[tuple[int, int, str], list[int]] = defaultdict(list)
-    teacher_shift_day: dict[tuple[int, int, str, int], list[int]] = defaultdict(list)
-    teacher_any_phase_day: dict[tuple[int, int], list[int]] = defaultdict(list)
-    teacher_weekly_shifts: dict[int, set[int]] = defaultdict(set)
-    comfort_enabled = bool(
-        quality_enabled or context.get("exact_enforce_teacher_window_limits")
-    )
-    for index, row in (enumerate(candidates) if comfort_enabled else ()):
+    for index, row in enumerate(candidates):
         for teacher, phases in row["teacher_phases"].items():
-            teacher_weekly_shifts[int(teacher)].add(int(row["shift"]))
-            teacher_any_phase_day[(teacher, row["day"])].append(index)
             for phase in phases:
                 teacher_real_day[(teacher, row["day"], phase)].append(index)
-                teacher_shift_day[(teacher, row["day"], phase, row["shift"])].append(index)
-    # Sun'iy ikki-smena zonasi. Ikki smenada ham haqiqiy yuklamasi bor
-    # o'qituvchi avval chegaraga yig'iladi:
-    #   1-smena 1/2 = qizil, 3 = sariq;
-    #   2-smena 5/6 = qizil, 4 = sariq.
-    # Bu zonalar foydalanuvchining haqiqiy BAND/qizil vaqti emas. Shuning uchun
-    # ular candidate domenini yopmaydi: juda katta SOFT jarima bilan oxirgi
-    # chora bo'lib qoladi. Aks holda sun'iy rang butun jadvalni INFEASIBLE
-    # qilib, avval ishlagan 762 ta darsli yechimni ham yo'qotardi.
-    synthetic_relaxed = {
-        (int(token[0]), int(token[1]), int(token[2]))
-        for token in (context.get("exact_dual_shift_synthetic_relaxed") or ())
-        if isinstance(token, (list, tuple)) and len(token) == 3
-    }
-    synthetic_rank = {
-        int(teacher): int(rank)
-        for teacher, rank in (context.get("exact_dual_shift_fallback_rank") or {}).items()
-    }
-    synthetic_dual_edge_terms: list[Any] = []
-    for index, row in (enumerate(candidates) if quality_enabled else ()):
-        shift, period = int(row["shift"]), int(row["period"])
-        for teacher in row["teachers"]:
-            if len(teacher_weekly_shifts.get(int(teacher), set())) < 2:
-                continue
-            red = (shift == 1 and period in (1, 2)) or (shift == 2 and period in (5, 6))
-            relaxed = (int(teacher), shift, period) in synthetic_relaxed
-            if red and not relaxed:
-                synthetic_dual_edge_terms.extend(
-                    [variables[index]] * (80 + 10 * synthetic_rank.get(int(teacher), 0))
-                )
-            elif (shift == 1 and period == 3) or (shift == 2 and period == 4):
-                synthetic_dual_edge_terms.append(variables[index])
-            elif relaxed:
-                # Fallback katagi legal, ammo oddiy sariqdan ham qimmatroq.
-                # Soati ko'p ustozning ranki kichik va katagi birinchi tanlanadi.
-                synthetic_dual_edge_terms.extend(
-                    [variables[index]] * (20 + 5 * synthetic_rank.get(int(teacher), 0))
-                )
-    # Teachers who closed more than 20% of their otherwise usable weekly
-    # slots receive the first quality priority.  Method day and every hard
-    # red/BAND token count as closed; none is ever reopened.
-    hard_slots = context.get("hard") or ()
-    method_days = set(context.get("method_hard") or ())
-    restricted_teachers: set[int] = set()
-    for teacher, shifts in (
-        teacher_weekly_shifts.items() if quality_enabled else ()
-    ):
-        total_slots = 0
-        closed_slots = 0
-        for day in range(1, weekdays + 1):
-            for shift in sorted(shifts):
-                shift_slots = [
-                    int(slot.get("dars_raqami") or 0)
-                    for slot in ((context.get("shifts") or {}).get(shift, {}).get("slotlar") or [])
-                    if int(slot.get("dars_raqami") or 0) > 0
-                ]
-                for period in shift_slots:
-                    total_slots += 1
-                    if (
-                        (int(teacher), day) in method_days
-                        or _blocked(hard_slots, int(teacher), day, shift, period)
-                    ):
-                        closed_slots += 1
-        if total_slots and (closed_slots / total_slots) > 0.20:
-            restricted_teachers.add(int(teacher))
     teacher_real_idle_terms: list[Any] = []
-    teacher_real_idle_over120_terms: list[Any] = []
-    teacher_cross_shift_wait_terms: list[Any] = []
-    teacher_cross_shift_over60_terms: list[Any] = []
-    teacher_cross_shift_over120_terms: list[Any] = []
-    teacher_cross_shift_over180_terms: list[Any] = []
     teacher_used_day_terms: list[Any] = []
-    teacher_day_range_violation_terms: list[Any] = []
-    restricted_teacher_used_day_terms: list[Any] = []
-    restricted_teacher_idle_terms: list[Any] = []
-    restricted_teacher_cross_wait_terms: list[Any] = []
-    teacher_used_days: dict[int, list[Any]] = defaultdict(list)
-    for (teacher, day), raw_indices in (
-        teacher_any_phase_day.items() if quality_enabled else ()
-    ):
-        indices = sorted(set(raw_indices))
-        if not indices:
-            continue
-        used_day = model.NewBoolVar(f"teacher_any_phase_day_{teacher}_{day}")
-        model.AddMaxEquality(used_day, [variables[index] for index in indices])
-        teacher_used_days[int(teacher)].append(used_day)
-
-    # O'qituvchining ish kunlari jami haftalik yuklamadan boshqariladi. Bir
-    # sinf+bir fan daily_max qoidasi yuqorida alohida hard; turli sinf yoki
-    # turli fanlar esa bir kunda ixcham yig'ilishi mumkin.
-    teacher_demands = context.get("v196_teacher_demand") or {}
-    for teacher, used_days in (
-        teacher_used_days.items() if quality_enabled else ()
-    ):
-        demand = float(teacher_demands.get(int(teacher)) or 0)
-        if demand <= 0 or not used_days:
-            continue
-        if demand <= 1:
-            target_days, maximum_days = 1, 1
-        elif demand <= 9:
-            target_days, maximum_days = 2, 3
-        else:
-            target_days, maximum_days = 3, 4
-        target_days = min(int(target_days), len(used_days))
-        maximum_days = min(max(int(maximum_days), target_days), len(used_days))
-        # V22.24 bazasidagi tor sun'iy kun zonalari:
-        #   5--7 soat  -> 2 zich kun ideal, 3-kun sariq zaxira;
-        #   10--12 soat -> 3 zich kun ideal, 4-kun sariq zaxira;
-        #   13--15 soat -> ko'pi bilan 4 kun.
-        # Shu aniq diapazonlardan tashqaridagi yuklamalarning V22.24 erkin
-        # feasibility xulqi o'zgarmaydi.
-        # Bu diapazonlar ham SOFT. 3/4 kunlik chegara qattiq bo'lsa, fanlarning
-        # sinf kunlik taqsimoti yoki haqiqiy BAND/metod kuni bilan to'qnashib,
-        # to'liq jadvalni bekor qilishi mumkin. Pastdagi above_maximum jarimasi
-        # imkon bo'lsa shu chegarani saqlaydi, sig'masa 1 qo'shimcha kunni oladi.
-        if quality_enabled:
-            # Kunlarni ixchamlashtirish faqat sifat maqsadi. Uni hard min/max
-            # qilish birinchi feasibility jadvalini hech qachon to'xtatmaydi.
-            # Ideal quality passda esa foydalanuvchi belgilagan yuqori chegara
-            # saqlanadi: 1--6 va 7--15 soatli ustoz ko'pi bilan 4 kun. Agar bu
-            # ideal model sig'masa, oldingi to'liq incumbent baribir qoladi.
-            # Teacher day ranges are intentionally SOFT.  Making them hard in
-            # the same quality model caused one difficult teacher to reject
-            # the entire balanced solution and fall back to a 6/6/6/5/2/5
-            # class layout.  Strong under/over variables preserve the desired
-            # 2--3 or 3--4 day range without sacrificing class-day balance.
-            day_count = model.NewIntVar(
-                0, len(used_days), f"teacher_used_days_count_{teacher}"
-            )
-            model.Add(day_count == sum(used_days))
-            below_target = model.NewIntVar(
-                0, len(used_days), f"teacher_days_below_{teacher}"
-            )
-            model.AddMaxEquality(below_target, [target_days - day_count, 0])
-            above_maximum = model.NewIntVar(
-                0, len(used_days), f"teacher_days_above_{teacher}"
-            )
-            model.AddMaxEquality(
-                above_maximum, [day_count - maximum_days, 0]
-            )
-            teacher_day_range_violation_terms.extend(
-                [below_target, above_maximum]
-            )
-            teacher_used_day_terms.extend(used_days)
-            if int(teacher) in restricted_teachers:
-                restricted_teacher_used_day_terms.extend(used_days)
     ordinary_break_minutes = max(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
-    enforce_teacher_window_limits = bool(
-        context.get("exact_enforce_teacher_window_limits")
-    )
     for (teacher, day, phase), raw_indices in teacher_real_day.items():
-        if not (quality_enabled or enforce_teacher_window_limits):
+        if not quality_enabled:
             continue
         indices = sorted(set(raw_indices))
         if not indices:
@@ -1394,6 +1152,8 @@ def _build_model(
         label = f"{teacher}_{day}_{phase}"
         used_day = model.NewBoolVar(f"teacher_day_used_{label}")
         model.AddMaxEquality(used_day, [variables[index] for index in indices])
+        teacher_used_day_terms.append(used_day)
+
         lesson_count = model.NewIntVar(0, len(indices), f"teacher_count_{label}")
         model.Add(lesson_count == sum(variables[index] for index in indices))
         first_start = model.NewIntVar(
@@ -1436,103 +1196,7 @@ def _build_model(
             excess_idle,
             [raw_idle - ordinary_break_minutes * break_count, 0],
         )
-        if quality_enabled:
-            teacher_real_idle_terms.append(excess_idle)
-        idle_over120 = model.NewIntVar(
-            0, max(0, horizon_end - horizon_start),
-            f"teacher_idle_over120_{label}",
-        )
-        model.AddMaxEquality(idle_over120, [excess_idle - 120, 0])
-        if quality_enabled:
-            teacher_real_idle_over120_terms.append(idle_over120)
-        if quality_enabled and int(teacher) in restricted_teachers:
-            restricted_teacher_idle_terms.append(excess_idle)
-
-    # Faqat aynan bir kunda ikkala smenada darsi bor ustoz uchun 1-smenaning
-    # oxirgi darsi bilan 2-smenaning birinchi darsi orasidagi haqiqiy minut.
-    # Bu soft: 0–60 daqiqa eng yaxshi, 60/120/180 dan oshgan qismi tobora
-    # qimmatroq; hech biri to'liq jadvalni INFEASIBLE qilmaydi.
-    shift_day_keys = {
-        (teacher, day, phase)
-        for teacher, day, phase, shift in teacher_shift_day
-        if shift in (1, 2)
-    }
-    for teacher, day, phase in sorted(shift_day_keys):
-        first_indices = sorted(set(teacher_shift_day.get((teacher, day, phase, 1), [])))
-        second_indices = sorted(set(teacher_shift_day.get((teacher, day, phase, 2), [])))
-        if (
-            not first_indices
-            or not second_indices
-            or not (quality_enabled or enforce_teacher_window_limits)
-        ):
-            continue
-        label = f"{teacher}_{day}_{phase}"
-        first_used = model.NewBoolVar(f"cross_first_used_{label}")
-        second_used = model.NewBoolVar(f"cross_second_used_{label}")
-        model.AddMaxEquality(first_used, [variables[index] for index in first_indices])
-        model.AddMaxEquality(second_used, [variables[index] for index in second_indices])
-        both_used = model.NewBoolVar(f"cross_both_used_{label}")
-        model.Add(both_used <= first_used)
-        model.Add(both_used <= second_used)
-        model.Add(both_used >= first_used + second_used - 1)
-        if enforce_teacher_window_limits:
-            # When both shifts are used on one real day, compact them around
-            # the shift boundary: first shift periods 3..6 and second shift
-            # periods 1..4.  This encodes the administrator's intended
-            # priority directly instead of hoping a weighted objective finds
-            # it before timeout.
-            for index in first_indices:
-                candidate_period = int(candidates[index]["period"])
-                if candidate_period < 3 and (
-                    int(teacher), 1, candidate_period
-                ) not in synthetic_relaxed:
-                    model.Add(variables[index] + second_used <= 1)
-            for index in second_indices:
-                candidate_period = int(candidates[index]["period"])
-                if candidate_period > 4 and (
-                    int(teacher), 2, candidate_period
-                ) not in synthetic_relaxed:
-                    model.Add(variables[index] + first_used <= 1)
-        horizon = max(
-            int(candidates[index]["interval"][1])
-            for index in first_indices + second_indices
-        )
-        last_first_end = model.NewIntVar(0, horizon, f"cross_last_first_{label}")
-        model.AddMaxEquality(last_first_end, [
-            int(candidates[index]["interval"][1]) * variables[index]
-            for index in first_indices
-        ])
-        first_second_start = model.NewIntVar(0, horizon, f"cross_first_second_{label}")
-        model.AddMinEquality(first_second_start, [
-            int(candidates[index]["interval"][0]) * variables[index]
-            + horizon * (1 - variables[index])
-            for index in second_indices
-        ])
-        raw_wait = model.NewIntVar(-horizon, horizon, f"cross_raw_wait_{label}")
-        model.Add(raw_wait == first_second_start - last_first_end).OnlyEnforceIf(both_used)
-        model.Add(raw_wait == 0).OnlyEnforceIf(both_used.Not())
-        wait = model.NewIntVar(0, horizon, f"cross_wait_{label}")
-        model.AddMaxEquality(wait, [raw_wait, 0])
-        if enforce_teacher_window_limits:
-            # A teacher working both shifts on the same day may wait for at
-            # most two real hours between the last first-shift lesson and the
-            # first second-shift lesson.  This is enforced in the initial
-            # feasibility model as well, so refinement timeout cannot return
-            # a 6--8 hour cross-shift window.
-            model.Add(wait <= 120).OnlyEnforceIf(both_used)
-        if quality_enabled:
-            teacher_cross_shift_wait_terms.append(wait)
-        if quality_enabled and int(teacher) in restricted_teachers:
-            restricted_teacher_cross_wait_terms.append(wait)
-        for threshold, target in (
-            (60, teacher_cross_shift_over60_terms),
-            (120, teacher_cross_shift_over120_terms),
-            (180, teacher_cross_shift_over180_terms),
-        ):
-            excess = model.NewIntVar(0, horizon, f"cross_over_{threshold}_{label}")
-            model.AddMaxEquality(excess, [wait - threshold, 0])
-            if quality_enabled:
-                target.append(excess)
+        teacher_real_idle_terms.append(excess_idle)
 
     # A core subject may use period 6 on at most two class-days per phase.
     core_limit = max(0, int(context.get("core_period6_day_limit", 2)))
@@ -1567,7 +1231,7 @@ def _build_model(
     for (teacher, day, shift, phase, period), indices in teacher_periods.items():
         grouped_teacher_periods[(teacher, day, shift, phase)][period] = sorted(set(indices))
     for key, period_map in grouped_teacher_periods.items():
-        if not (quality_enabled or enforce_teacher_window_limits):
+        if not quality_enabled:
             continue
         if len(period_map) < 3:
             continue
@@ -1581,7 +1245,6 @@ def _build_model(
             else:
                 model.Add(value == 0)
             used[period] = value
-        local_gap_terms: list[Any] = []
         for period in range(2, max_period):
             before = model.NewBoolVar(f"tbefore_{'_'.join(map(str, key))}_{period}")
             after = model.NewBoolVar(f"tafter_{'_'.join(map(str, key))}_{period}")
@@ -1592,66 +1255,7 @@ def _build_model(
             model.Add(gap <= after)
             model.Add(gap + used[period] <= 1)
             model.Add(gap >= before + after - used[period] - 1)
-            local_gap_terms.append(gap)
-            if quality_enabled:
-                gap_terms.append(gap)
-        if enforce_teacher_window_limits and local_gap_terms:
-            # Within one shift/day a teacher may have at most two empty lesson
-            # periods between the first and last lesson.
-            model.Add(sum(local_gap_terms) <= 2)
-
-    # The teacher screen merges TOQ/JUFT rows.  Phase-specific limits above
-    # are necessary for real collision safety, but alone they can still show
-    # 7--15 apparent windows after the two phases are rendered together.
-    # Build the same merged occupancy seen by the UI and cap the teacher's
-    # total visible internal windows to two across the whole week.
-    if enforce_teacher_window_limits:
-        merged_periods: dict[
-            tuple[int, int, int], dict[int, list[int]]
-        ] = defaultdict(dict)
-        for (teacher, day, shift, _phase, period), indices in teacher_periods.items():
-            bucket = merged_periods[(teacher, day, shift)].setdefault(period, [])
-            bucket.extend(indices)
-        merged_teacher_gaps: dict[int, list[Any]] = defaultdict(list)
-        for key, period_map in merged_periods.items():
-            if len(period_map) < 3:
-                continue
-            teacher, day, shift = key
-            max_period = max(period_map)
-            used: dict[int, Any] = {}
-            for period in range(1, max_period + 1):
-                value = model.NewBoolVar(
-                    f"tmerged_used_{teacher}_{day}_{shift}_{period}"
-                )
-                indices = sorted(set(period_map.get(period, [])))
-                if indices:
-                    for index in indices:
-                        model.Add(value >= variables[index])
-                    model.Add(value <= sum(variables[index] for index in indices))
-                else:
-                    model.Add(value == 0)
-                used[period] = value
-            for period in range(2, max_period):
-                before = model.NewBoolVar(
-                    f"tmerged_before_{teacher}_{day}_{shift}_{period}"
-                )
-                after = model.NewBoolVar(
-                    f"tmerged_after_{teacher}_{day}_{shift}_{period}"
-                )
-                model.AddMaxEquality(before, [used[item] for item in range(1, period)])
-                model.AddMaxEquality(
-                    after, [used[item] for item in range(period + 1, max_period + 1)]
-                )
-                gap = model.NewBoolVar(
-                    f"tmerged_gap_{teacher}_{day}_{shift}_{period}"
-                )
-                model.Add(gap <= before)
-                model.Add(gap <= after)
-                model.Add(gap + used[period] <= 1)
-                model.Add(gap >= before + after - used[period] - 1)
-                merged_teacher_gaps[int(teacher)].append(gap)
-        for gaps in merged_teacher_gaps.values():
-            model.Add(sum(gaps) <= 2)
+            gap_terms.append(gap)
 
     exception_variables: dict[tuple[int, int, int, int], Any] = {}
     teacher_exception_variables: dict[int, Any] = {}
@@ -1710,76 +1314,19 @@ def _build_model(
                 cost += 120
             if _blocked(context.get("soft") or (), teacher, row["day"], row["shift"], period):
                 cost += 40
-            # A teacher who genuinely works in both shifts is placed near the
-            # meeting edge: shift 1 prefers periods 3--6, shift 2 prefers
-            # periods 1--4.  Red/BAND and method days were already removed
-            # from the candidate domain, so this never reopens them.
-            if len(teacher_weekly_shifts.get(int(teacher), set())) >= 2:
-                if int(row["shift"]) == 1:
-                    cost += max(0, 3 - int(period)) * 500_000
-                elif int(row["shift"]) == 2:
-                    cost += max(0, int(period) - 4) * 500_000
-        # Saturday period 6 is a last-resort slot.  It remains legal for a
-        # genuinely full 36-hour class, but ordinary 29--31 hour classes are
-        # optimized to finish Saturday in period 4 or 5.
-        if int(row["day"]) == 6 and int(period) == 6:
-            cost += 500_000_000
         if cost:
             objective_terms.append(variables[index] * int(cost))
-    objective_terms.extend(term * 5_000 for term in gap_terms)
+    objective_terms.extend(term * 50 for term in gap_terms)
     # One extra real idle minute costs more than small period preferences;
     # using an additional work day is also discouraged. Daily/weekly caps and
     # all red/method rules remain hard constraints, so these are safe tie-breaks.
-    # O'qituvchining 4–5 soat dars uchun ertalabdan kechgacha qolishi eng
-    # qimmat sifat nuqsonlaridan biri. Haqiqiy minut bo'yicha smenalararo
-    # kutish oddiy fan-vaqt afzalligidan ancha ustun turadi.
-    objective_terms.extend(term * 20_000 for term in teacher_real_idle_terms)
-    objective_terms.extend(
-        term * 1_000_000_000 for term in teacher_real_idle_over120_terms
-    )
-    objective_terms.extend(term * 5_000 for term in teacher_cross_shift_wait_terms)
-    objective_terms.extend(term * 500_000 for term in synthetic_dual_edge_terms)
-    objective_terms.extend(term * 20_000 for term in teacher_cross_shift_over60_terms)
-    objective_terms.extend(term * 1_000_000_000 for term in teacher_cross_shift_over120_terms)
-    objective_terms.extend(term * 10_000_000 for term in teacher_cross_shift_over180_terms)
-    # A teacher may work a dense 7--8 lesson day when the timetable permits.
-    # Fewer work days and adjacent lessons are preferences only: they can
-    # never make the hard-safe timetable infeasible.
-    # Coming to school on one additional day is much worse than an ordinary
-    # short break.  This prevents 10 lessons becoming five 1--2 lesson days.
-    # Very long same-day/cross-shift waits still carry larger tiered penalties,
-    # so the solver cannot buy a six-hour wait merely to remove one work day.
-    objective_terms.extend(term * 20_000_000 for term in teacher_used_day_terms)
-    objective_terms.extend(
-        term * 200_000_000 for term in teacher_day_range_violation_terms
-    )
-    # Scarce (>20% closed) teachers win resource ties before dual-shift edge
-    # preferences and ordinary teachers.
-    objective_terms.extend(
-        term * 40_000_000 for term in restricted_teacher_used_day_terms
-    )
-    objective_terms.extend(
-        term * 100_000 for term in restricted_teacher_idle_terms
-    )
-    objective_terms.extend(
-        term * 100_000 for term in restricted_teacher_cross_wait_terms
-    )
+    objective_terms.extend(term * 20 for term in teacher_real_idle_terms)
+    objective_terms.extend(term * 80 for term in teacher_used_day_terms)
     # Repetition is a feasibility fallback, not a preferred layout.  One
     # repeat-day costs more than all ordinary early/late nudges of one job.
-    objective_terms.extend(term * 5_000_000 for term in repeat_terms)
-    objective_terms.extend(term * 2_500_000 for term in practical_repeat_terms)
-    # Sinf yuklamasi kunlar bo'yicha imkon qadar teng: masalan 30 soat/6 kun
-    # => 5+5+5+5+5+5; 22/5 => faqat 4 va 5 soatlik kunlar.
-    # This scale makes class-day balance lexicographically dominant over
-    # comfort nudges.  Thus 22 lessons over five legal days becomes 4/4/4/5/5
-    # whenever hard rules allow it; teacher compactness is optimized inside
-    # that best balance instead of trading the balance away.
-    # Balance is the first SOFT lexicographic tier.  Keeping it soft guarantees
-    # that the complete feasibility incumbent is valid in the quality model;
-    # a globally impossible perfect balance can no longer discard every
-    # teacher-window and 2+2+1 improvement.  The scale dominates all teacher
-    # comfort tiers whenever a better class distribution is feasible.
-    objective_terms.extend(term * 1_000_000_000 for term in balance_terms)
+    objective_terms.extend(term * 5_000 for term in repeat_terms)
+    objective_terms.extend(term * 2_500 for term in practical_repeat_terms)
+    objective_terms.extend(term * 2 for term in balance_terms)
     quality = sum(objective_terms) if objective_terms else 0
     has_objective = False
     if relax_method:
@@ -2121,7 +1668,9 @@ def validate_candidate_selection(
                 units = int(row["teacher_phase_loads"][teacher][phase])
                 teacher_daily_lessons[(teacher, row["day"], phase)] += 1
                 teacher_week_units[(teacher, phase)] += units
-        # Xona yakuniy hard validatorda ham bloklovchi resurs emas.
+        for room, phases in row["room_phases"].items():
+            for phase in phases:
+                resource_rows.append(("xona", room, row["day"], phase, interval, job_index))
         for subject, phases in row["subject_phases"].items():
             row_daily_limit = max(1, int(
                 (row.get("subject_daily_limits") or {}).get(
@@ -2180,33 +1729,12 @@ def validate_candidate_selection(
         0, int(context.get("practical_repeat_day_limit", 1))
     )
     effective_repeat_limits: dict[tuple[int, str], int] = {}
-    subject_session_totals: dict[tuple[int, str, str], int] = defaultdict(int)
-    subject_used_days: dict[tuple[int, str, str], set[int]] = defaultdict(set)
-    for (class_id, subject, day, phase), count in subject_counts.items():
-        subject_session_totals[(class_id, subject, phase)] += int(count)
-        if count:
-            subject_used_days[(class_id, subject, phase)].add(int(day))
     for (class_id, subject, day, phase), count in subject_counts.items():
         daily_max = int(subject_limits.get((class_id, subject), 1))
         practical = bool(subject_practical.get((class_id, subject)))
         allowed_repeat_days = practical_repeat_limit if practical else repeat_limit
-        total_sessions = subject_session_totals[(class_id, subject, phase)]
-        if (
-            not practical
-            and context.get("exact_compact_subject_repeats")
-            and daily_max == 1
-            and total_sessions >= 5
-        ):
-            allowed_repeat_days = max(
-                int(allowed_repeat_days), int(total_sessions) // 2
-            )
         effective_repeat_limits[(class_id, subject)] = int(allowed_repeat_days)
-        adaptive_repeat = bool(
-            daily_max == 1
-            and total_sessions
-            > len(subject_used_days[(class_id, subject, phase)])
-        )
-        allowed = 2 if adaptive_repeat else (min(2, daily_max) if practical else daily_max)
+        allowed = min(2, daily_max) if practical else daily_max
         if count > allowed:
             errors.append(f"Sinf {class_id} {subject}: {day}-kun {phase} takror limiti oshgan")
         if count >= 2:
@@ -2530,36 +2058,6 @@ def analyze_method_day_relaxations(
     return list(detail.get("recommendations") or [])
 
 
-def _dual_shift_teachers_by_load(
-    jobs: Iterable[Mapping[str, Any]], context: Mapping[str, Any]
-) -> list[int]:
-    """Return genuine two-shift teachers, highest weekly load first."""
-    shifts: dict[int, set[int]] = defaultdict(set)
-    counted: dict[int, float] = defaultdict(float)
-    for job in jobs:
-        shift = int(job.get("smena") or 1)
-        sources = list(job.get("rotation_members") or []) or [job]
-        for member in sources:
-            teachers = []
-            groups = member.get("groups") or []
-            if groups:
-                teachers.extend(group.get("teacher") for group in groups)
-            else:
-                teachers.extend(member.get("teacher_options") or [])
-            for raw_teacher in teachers:
-                if raw_teacher is None:
-                    continue
-                teacher = int(raw_teacher)
-                shifts[teacher].add(shift)
-                counted[teacher] += 1.0
-    demands = context.get("v196_teacher_demand") or {}
-    dual = [teacher for teacher, values in shifts.items() if {1, 2}.issubset(values)]
-    return sorted(
-        dual,
-        key=lambda teacher: (-float(demands.get(teacher) or counted[teacher]), teacher),
-    )
-
-
 def solve_exact_timetable(
     jobs: Iterable[Mapping[str, Any]], context: Mapping[str, Any],
     candidate_builder: Any = None, *, adapter: Any = None,
@@ -2648,68 +2146,6 @@ def solve_exact_timetable(
                 numeric_max_seconds - (time.monotonic() - started) - 0.10,
             )
             return min(requested, remaining)
-
-        def dual_shift_synthetic_fallback() -> Optional[dict[str, Any]]:
-            """Open only synthetic edge zones, one high-load teacher at a time."""
-            if context.get("_exact_dual_shift_retry_active"):
-                return None
-            if not bool(context.get("exact_dual_shift_synthetic_fallback", True)):
-                return None
-            ordered = _dual_shift_teachers_by_load(job_list, context)
-            if not ordered:
-                return None
-            rank = {int(teacher): index for index, teacher in enumerate(ordered)}
-            first_stage = {(int(teacher), 1, 2) for teacher in ordered}
-            second_stage = first_stage | {(int(teacher), 2, 5) for teacher in ordered}
-            # Ikki marta qayta yechish kifoya: CP-SAT sariq katak narxi orqali
-            # eng ko'p soatli ustozdan boshlab faqat zarur kataklarni tanlaydi.
-            attempts = [
-                ("1-smena 2-dars sariq", first_stage),
-                ("2-smena 5-dars sariq", second_stage),
-            ]
-            history = []
-            for label, allowed in attempts:
-                remaining = numeric_max_seconds - (time.monotonic() - started) - 0.10
-                if remaining < 0.35:
-                    break
-                retry_context = dict(context)
-                retry_context["_exact_dual_shift_retry_active"] = True
-                retry_context["exact_dual_shift_synthetic_relaxed"] = sorted(allowed)
-                retry_context["exact_dual_shift_fallback_rank"] = rank
-                retry_context["exact_feasibility_only"] = False
-                retry_context["exact_analyze_method_relaxation"] = False
-                retry_context["exact_apply_bounded_method_fallback"] = False
-                retry = solve_exact_timetable(
-                    job_list, retry_context, candidate_builder,
-                    adapter=selected_adapter, state_builder=state_builder,
-                    seed=seed ^ (0x2050 + len(history)),
-                    max_seconds=min(3.5, remaining),
-                )
-                history.append({
-                    "ochilgan_zona": label, "ustuvor_tartib": ordered,
-                    "status": retry.get("status"),
-                })
-                if retry.get("status") in {FEASIBLE, OPTIMAL} and retry.get("complete"):
-                    actually_used = sorted({
-                        (int(teacher), int(row.get("shift") or row.get("smena") or 1), int(row.get("period") or row.get("dars") or 0))
-                        for row in (retry.get("placements") or [])
-                        for teacher in (row.get("teachers") or [])
-                        if (int(teacher), int(row.get("shift") or row.get("smena") or 1), int(row.get("period") or row.get("dars") or 0)) in allowed
-                    })
-                    diagnostics = dict(retry.get("diagnostics") or {})
-                    diagnostics.update({
-                        "dual_shift_synthetic_fallback": True,
-                        "dual_shift_fallback_history": history,
-                        "dual_shift_relaxed_slots": [list(token) for token in actually_used],
-                        "message": (
-                            "Ikki smenali o'qituvchilar avval sun'iy qizil/sariq "
-                            "zonada joylandi; strict variant sig'magani uchun eng ko'p "
-                            "soatli o'qituvchilardan boshlab chegara kataklari sariqqa ochildi."
-                        ),
-                    })
-                    retry["diagnostics"] = diagnostics
-                    return retry
-            return None
 
         def bounded_method_fallback_result(
             method_analysis: Mapping[str, Any],
@@ -2807,10 +2243,6 @@ def solve_exact_timetable(
             feasibility_only=feasibility_only,
         )
         if bundle is None:
-            if empty:
-                dual_fallback = dual_shift_synthetic_fallback()
-                if dual_fallback is not None:
-                    return dual_fallback
             method_analysis = (
                 _analyze_method_day_relaxations_detailed(
                     job_list, context, candidate_builder,
@@ -2862,10 +2294,6 @@ def solve_exact_timetable(
             "proof_complete": status == INFEASIBLE,
         }
         if status not in {FEASIBLE, OPTIMAL}:
-            if status == INFEASIBLE:
-                dual_fallback = dual_shift_synthetic_fallback()
-                if dual_fallback is not None:
-                    return dual_fallback
             recommendations = []
             method_analysis = {"status": "NOT_RUN", "recommendations": []}
             if (
@@ -2946,7 +2374,6 @@ def solve_exact_timetable(
             try:
                 requested_quality_seconds = max(
                     0.0, float(context.get("exact_quality_seconds") or 2.0)
-                    + float(context.get("exact_quality_extension_seconds") or 0.0)
                 )
             except (TypeError, ValueError):
                 requested_quality_seconds = 2.0
@@ -3041,14 +2468,6 @@ def solve_exact_timetable(
                             "incumbent_hint_complete": False,
                         }
         state = state_builder(placements, context) if callable(state_builder) else {"placements": placements}
-        quality_refinement = diagnostics.get("quality_refinement") or {}
-        diagnostics["generation_pipeline"] = {
-            "mode": "feasibility_then_quality" if bool(context.get("exact_quality_after_feasible")) else "hard_feasibility_only",
-            "teacher_window_optimization": bool(quality_refinement),
-            "low_load_two_day_compaction": bool(quality_refinement),
-            "configured_red_band_untouched": True,
-            "maximum_search_seconds": numeric_max_seconds,
-        }
         diagnostics["message"] = "Barcha dars aynan bir marta joylashtirildi va hard-validator tasdiqladi."
         diagnostics["validator_passed"] = True
         return {
