@@ -2129,7 +2129,7 @@ def _v1859_sinf_sort_key(label):
     return (int(match.group(1)), match.group(2).casefold())
 
 
-def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None):
+def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None, include_numbered=False):
     cur.execute("""SELECT u.user_id,u.full_name,u.lavozim,u.fanlari,
                           u.oqitadigan_sinflari,u.haftalik_dars_soati,u.jadval_raqami,
                           to_jsonb(u)->>'mutaxassisligi' AS mutaxassisligi,
@@ -2219,7 +2219,7 @@ def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None):
         row["fan_holati"] = "aniqlandi" if subjects else "fan_topilmadi"
         # V22.49: F.I.Sh. bilan oldindan kiritilgan, hali skeletga fan biriktirilmagan
         # o'qituvchi ham ro'yxatda qoladi. Uning jadval_raqami keyingi skelet tanlovining kaliti.
-        if row["dars_beruvchi"] or row.get("jadval_raqami") is not None:
+        if row["dars_beruvchi"] or (include_numbered and row.get("jadval_raqami") is not None):
             result.append(row)
     return result
 
@@ -12177,7 +12177,10 @@ def _v192_matrix_payload(cur, maktab_id: int):
         row["sinf_nomi"] = f"{row['sinf']}-{row['harf']}"
 
     _v2249_ensure_teacher_numbers(cur, maktab_id)
-    teachers = _v1859_effective_teachers(cur, maktab_id)
+    # V22.50: faqat skelet/raqam tanlash oynasi hali fan biriktirilmagan
+    # raqamlangan o‘qituvchilarni ham ko‘radi. Jadval generatori esa
+    # faqat haqiqiy dars yuklamasi bor o‘qituvchilarni oladi.
+    teachers = _v1859_effective_teachers(cur, maktab_id, include_numbered=True)
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
     subjects = [row["fan_nomi"] for row in cur.fetchall()]
     cur.execute("SELECT * FROM aqlli_xonalar_v2 WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE ORDER BY nomi", (maktab_id,))
