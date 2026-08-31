@@ -10,7 +10,7 @@ from __future__ import annotations
 from typing import Any, Iterable
 
 
-ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V23.4-STRICT"
+ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V23.5-STRICT"
 
 STRICT = "strict"
 
@@ -89,6 +89,13 @@ def mode_config() -> dict[str, Any]:
         "revision_history": True,
         "fresh_base_run_per_click": True,
         "stop_returns_last_checkpoint": True,
+        "teacher_presence_4_5_max_hours": 8,
+        "teacher_presence_6_7_max_hours": 10,
+        "teacher_okno_first": True,
+        "all_teachers_round_robin": True,
+        "dual_shift_teachers_first": True,
+        "single_shift_only_when_low_load": True,
+        "improvement_time_limit": None,
     }
 
 
