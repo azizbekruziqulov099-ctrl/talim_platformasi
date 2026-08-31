@@ -4129,6 +4129,9 @@ def _v2253_improve_existing_draft(
     frozen_counts = dict(_v226_frozen_class_day_signature(state))
     improve_context = dict(context)
     improve_context["v226_frozen_class_day_counts"] = frozen_counts
+    improve_context["v2244_cancel_requested"] = lambda: _v2244_cancel_requested(
+        maktab_id, qidiruv_nonce
+    )
     improve_context["v206_deadline"] = _samtm_time.monotonic() + max(
         8.0,
         min(
@@ -4218,9 +4221,15 @@ def _v2253_improve_existing_draft(
         or after_metrics != before_metrics
     )
     if not changed:
+        cancelled = bool(improve_context.get("v2244_cancelled")) or _v2244_cancel_requested(
+            maktab_id, qidiruv_nonce
+        )
         _v2243_progress_write(
-            maktab_id, qidiruv_nonce, run_id, revision[0], 100, "tayyor",
+            maktab_id, qidiruv_nonce, run_id, revision[0], 100,
+            "toxtatildi" if cancelled else "tayyor",
             (
+                f"To‘xtatildi. Oldingi to‘liq Jadval #{run_id} saqlandi va ochish mumkin."
+                if cancelled else
                 f"Jadval #{run_id}: mavjud to‘liq jadval tekshirildi. "
                 "Hard qoidalarni buzmasdan yaxshiroq swap topilmadi; jadval o‘zgarmadi."
             ),
@@ -4244,6 +4253,7 @@ def _v2253_improve_existing_draft(
             },
             "solver_status": "INCUMBENT_VALIDATED",
             "tasdiqlash_mumkin": True,
+            "foydalanuvchi_toxtatdi": cancelled,
         }
 
     write_conn = _db()
@@ -4349,9 +4359,16 @@ def _v2253_improve_existing_draft(
         write_cur.close()
         write_conn.close()
 
+    cancelled = bool(improve_context.get("v2244_cancelled")) or _v2244_cancel_requested(
+        maktab_id, qidiruv_nonce
+    )
     _v2243_progress_write(
-        maktab_id, qidiruv_nonce, run_id, revision[0], 100, "tayyor",
+        maktab_id, qidiruv_nonce, run_id, revision[0], 100,
+        "toxtatildi" if cancelled else "tayyor",
         (
+            f"To‘xtatildi. Shu paytgacha topilgan eng yaxshi Jadval #{run_id}"
+            f"{'.' + str(revision[0]) if revision[0] else ''} saqlandi va ochish mumkin."
+            if cancelled else
             f"Jadval #{run_id}.{revision[0]} tayyor. Bu yangi jadval emas — "
             f"#{run_id} ning yaxshilangan oxirgi holati va endi asosiy #{run_id} o‘rnida turadi."
         ),
@@ -4369,6 +4386,7 @@ def _v2253_improve_existing_draft(
         "solver_status": "INCUMBENT_IMPROVED_VALIDATED",
         "tasdiqlash_mumkin": True,
         "moslik": moslik,
+        "foydalanuvchi_toxtatdi": cancelled,
     }
 
 
@@ -4409,8 +4427,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # Endi bitta generator bor. Eski, tasdiqlanmagan 1–6 rejim draftlari
         # yangi natija bilan aralashmasligi uchun bekor qilinadi; tasdiqlangan
         # faol jadval yangi draft tasdiqlanguncha o'z joyida qoladi.
+        # V22.57: manba o'zgarmagan bo'lsa avvalgi 100% draft keyingi
+        # yaxshilashning incumbentidir. Uni shu yerda bekor qilish #57 ni
+        # topolmay, #58/#61 ni 0 dan boshlashga majbur qilardi.
         sync_report = _v1875_rebuild_schedule_sources(
-            cur, sorov.maktab_id, cancel_drafts=True, reason="jadval_yaratish"
+            cur, sorov.maktab_id, cancel_drafts=False, reason="jadval_yaratish"
         )
         if sync_report.get("xatolar"):
             raise HTTPException(
@@ -5001,6 +5022,9 @@ def v1852_generate(sorov: V1852Generate, token: str):
         final_context = dict(context)
         final_context["v226_frozen_class_day_counts"] = dict(
             _v226_frozen_class_day_signature(state)
+        )
+        final_context["v2244_cancel_requested"] = lambda: _v2244_cancel_requested(
+            sorov.maktab_id, sorov.qidiruv_nonce
         )
         final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
         if final_repeat_days or final_policy_stage != "strict":
@@ -5593,10 +5617,19 @@ def v1852_generate(sorov: V1852Generate, token: str):
         )
 
         conn.commit()
+        cancelled = bool(final_context.get("v2244_cancelled")) or _v2244_cancel_requested(
+            sorov.maktab_id, sorov.qidiruv_nonce
+        )
         _v2243_progress_write(
             sorov.maktab_id, sorov.qidiruv_nonce, run_id,
-            progress_revision, 100, "tayyor",
-            f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: {placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi.",
+            progress_revision, 100,
+            "toxtatildi" if cancelled else "tayyor",
+            (
+                f"To‘xtatildi. Shu paytgacha topilgan eng yaxshi Jadval #{run_id}"
+                f"{'.' + str(progress_revision) if progress_revision else ''} saqlandi va ochish mumkin."
+                if cancelled else
+                f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: {placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi."
+            ),
         )
         return {"holat": "draft_yaratildi", "urinish_id": run_id,
                 "jadval_raqami": run_id, "sifat": quality,
@@ -5605,7 +5638,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "joylashtirilmadi": len(unplaced), "diagnostika": diagnostics,
                 "solver_status": diagnostics["solver_status"],
                 "tasdiqlash_mumkin": tasdiqlash_mumkin,
-                "moslik": jadval_mosligi}
+                "moslik": jadval_mosligi,
+                "foydalanuvchi_toxtatdi": cancelled}
     except Exception:
         if reserved_run_id is not None:
             if _v2244_cancel_requested(sorov.maktab_id, sorov.qidiruv_nonce):
@@ -15908,8 +15942,28 @@ def _v196_place_exact(
 
 
 def _v206_deadline_reached(context):
-    deadline = float((context or {}).get("v206_deadline") or 0)
-    return bool(deadline and _samtm_time.monotonic() >= deadline)
+    context = context or {}
+    deadline = float(context.get("v206_deadline") or 0)
+    now = _samtm_time.monotonic()
+    if deadline and now >= deadline:
+        return True
+    if context.get("v2244_cancelled"):
+        return True
+    # Ichki optimizerlar bu funksiyani minglab marta chaqiradi. DB signalini
+    # har iteratsiyada emas, 0.25 soniyada bir tekshirib, To'xtatishni tez va
+    # bazaga ortiqcha yuk bermasdan ishlatamiz.
+    cancel_requested = context.get("v2244_cancel_requested")
+    if callable(cancel_requested):
+        next_check = float(context.get("v2244_cancel_next_check") or 0)
+        if now >= next_check:
+            context["v2244_cancel_next_check"] = now + 0.25
+            try:
+                if cancel_requested():
+                    context["v2244_cancelled"] = True
+                    return True
+            except Exception:
+                pass
+    return False
 
 
 def _v196_compact_class_gaps(state, context, rng, max_moves=32):
