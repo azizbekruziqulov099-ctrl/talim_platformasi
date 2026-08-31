@@ -89,7 +89,7 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.38-ADAPTIVE-DOUBLE"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.40-DAILY-BALANCE"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -100,12 +100,12 @@ except Exception:
 
 
 def _v220_generation_budget_seconds():
-    """Return the single HTTP-safe search budget used by API and frontend."""
+    """Return the 5–10 minute search budget used by API and frontend."""
     try:
-        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "24"))
+        value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "600"))
     except (TypeError, ValueError):
-        value = 24.0
-    return max(12.0, min(26.0, value))
+        value = 600.0
+    return max(300.0, min(600.0, value))
 
 def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
     """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
@@ -2272,7 +2272,7 @@ def _v1852_setup_payload(cur, maktab_id: int):
     cur.execute("""SELECT id,holat,yaratilgan_at,tasdiqlangan_at,sifat,joylashtirildi,joylashtirilmadi,diagnostika,
                           COALESCE((diagnostika->>'generator_rejimi')::int,1) AS generator_rejimi,
                           COALESCE(diagnostika->>'yumshatish_rejimi','strict') AS yumshatish_rejimi
-                   FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s ORDER BY id DESC LIMIT 10""", (maktab_id,))
+                   FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s ORDER BY id DESC LIMIT 4""", (maktab_id,))
     runs = cur.fetchall()
     class_day_blocks = _v1856_class_day_rule_rows(cur, maktab_id)
     return {
@@ -2522,19 +2522,25 @@ def _v205_annotate_class_home_room(class_row, catalog_rows):
             None,
         )
         if matched_by_id is None:
-            row["_home_room_invalid"] = "sinf xona ID si katalogda topilmadi"
-            return row
-        if not bool(matched_by_id.get("faol")) or not bool(
+            # Eski katalog qayta yaratilganda sinfda avvalgi xona ID si qolishi
+            # mumkin. Bu holat barcha sinflarni "Xona yo'q" ogohlantirishiga
+            # aylantirmasin: pastda mavjud xona matni bo'yicha qayta bog'laymiz.
+            # Matn ham bo'lmasa xona shunchaki ko'rsatilmaydi.
+            stored_room_id = None
+        if matched_by_id is not None and (
+            not bool(matched_by_id.get("faol")) or not bool(
             matched_by_id.get("darsga_yaroqli")
+            )
         ):
             row["_home_room_invalid"] = "sinf xonasi dars o'tishga yaroqsiz"
             return row
-        row["_home_room_id"] = stored_room_id
-        row["_home_room_text"] = str(
-            matched_by_id.get("nomi") or display_text or raw_room
-        ).strip()
-        row["_home_room_key"] = f"room:{stored_room_id}"
-        return row
+        if matched_by_id is not None:
+            row["_home_room_id"] = stored_room_id
+            row["_home_room_text"] = str(
+                matched_by_id.get("nomi") or display_text or raw_room
+            ).strip()
+            row["_home_room_key"] = f"room:{stored_room_id}"
+            return row
     if not raw_room:
         return row
 
@@ -2736,7 +2742,7 @@ def _v1852_prepare_generation(cur, maktab_id: int):
     return year, shifts, classes, loads, assignments, group_settings, rules_rows, availability_rows, teachers, rooms
 
 
-def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
+def _v1852_build_jobs_base(classes, loads, assignments, group_settings, teachers):
     assignment_map = _v1852_defaultdict(list)
     for row in assignments:
         assignment_map[(int(row["sinf_id"]), str(row["fan_nomi"]).strip().casefold())].append(row)
@@ -2804,7 +2810,7 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
     return jobs, warnings
 
 
-def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, state, context):
+def _v1852_candidate_reasons_base(job, day, period, selected_teachers, room_keys, state, context):
     reasons = []
     # Xona — jadval yaratishni to'xtatadigan shart emas. Parallel guruhning
     # alohida xonasi hali yozilmagan bo'lsa slot baribir yaratiladi; frontend
@@ -2913,7 +2919,7 @@ def _v1852_room_keys(job, selected_teachers, classes):
 
 
 
-def _v1852_place_job(job, day, period, teachers, room_keys, state, context):
+def _v1852_place_job_base(job, day, period, teachers, room_keys, state, context):
     state["class_busy"].add((job["sinf_id"], day, job["smena"], period))
     state["subject_daily"][(job["sinf_id"], job["fan"].casefold(), day)] += 1
     state["class_subject_periods"][(job["sinf_id"], job["fan"].casefold(), day)].add(period)
@@ -3672,7 +3678,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             if class_row.get("_home_room_invalid"):
                 initial_warnings.append(
                     f"{class_row.get('sinf','')}-{class_row.get('harf','')}: "
-                    f"{class_row['_home_room_invalid']}; jadvalda Xona yo'q ko'rsatiladi"
+                    f"{class_row['_home_room_invalid']}; jadvalda xona ko'rsatilmaydi"
                 )
         class_hour_rules = _v1866_class_hour_rule_rows(cur, sorov.maktab_id)
         class_hour_jobs, class_hour_warnings = _v1866_build_class_hour_jobs(classes, class_hour_rules)
@@ -3831,7 +3837,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
-            exact_context["exact_quality_seconds"] = 2.5
+            exact_context["exact_quality_seconds"] = 120.0
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
@@ -4172,7 +4178,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             )
         if not _v206_deadline_reached(final_context):
             state = _v196_optimize_teacher_windows(
-                state, final_context, final_rng, max_swaps=24
+                state, final_context, final_rng, max_swaps=240
             )
         if not _v206_deadline_reached(final_context):
             state = _v196_compact_class_gaps(
@@ -4257,6 +4263,16 @@ def v1852_generate(sorov: V1852Generate, token: str):
             raise HTTPException(
                 status_code=409,
                 detail=_v209_class_gap_failure_detail(state, classes),
+            )
+        if final_class_imbalance > 0:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "To'liq jadval topildi, ammo sinf darslari kunlarga teng "
+                    f"taqsimlanmadi (farq balli: {final_class_imbalance}). "
+                    "1–2 soatli kun va 5–6 soatli kun birga saqlanmaydi; "
+                    "generator yaxshiroq teng variant topishi kerak."
+                ),
             )
         # Jadval to'liq va sinf oynasisiz bo'lgandan keyingina aniq qulaylik
         # tahlili qilinadi. Bu hisobot joriy state/contextni mutatsiya qilmaydi,
@@ -4679,8 +4695,22 @@ def v1852_generate(sorov: V1852Generate, token: str):
             (quality, json.dumps(diagnostics, ensure_ascii=False, default=str), run_id),
         )
 
+        # Har bir maktab uchun faqat oxirgi to'rtta to'liq natija saqlanadi.
+        # Slotlar ON DELETE CASCADE bilan birga tozalanadi; joriy run doimo
+        # eng yangi bo'lgani uchun ushbu tranzaksiyada o'chib ketmaydi.
+        cur.execute(
+            """DELETE FROM aqlli_jadval_urinishlari_v2
+               WHERE maktab_id=%s
+                 AND id NOT IN (
+                     SELECT id FROM aqlli_jadval_urinishlari_v2
+                     WHERE maktab_id=%s ORDER BY id DESC LIMIT 4
+                 )""",
+            (sorov.maktab_id, sorov.maktab_id),
+        )
+
         conn.commit()
-        return {"holat": "draft_yaratildi", "urinish_id": run_id, "sifat": quality,
+        return {"holat": "draft_yaratildi", "urinish_id": run_id,
+                "jadval_raqami": run_id, "sifat": quality,
                 "jami_soat": total_count, "joylashtirildi": placed_count,
                 "joylashtirilmadi": len(unplaced), "diagnostika": diagnostics,
                 "solver_status": diagnostics["solver_status"],
@@ -7056,9 +7086,9 @@ def v1873_official_method_save(sorov: V1873OfficialMethodSettings, token: str):
 # jismoniy tarbiyani oxirgi darslarga joylashtirish.
 # ═══════════════════════════════════════════════════════════
 
-_v1874_base_build_jobs = _v1852_build_jobs
-_v1874_base_candidate_reasons = _v1852_candidate_reasons
-_v1874_base_place_job = _v1852_place_job
+_v1874_base_build_jobs = _v1852_build_jobs_base
+_v1874_base_candidate_reasons = _v1852_candidate_reasons_base
+_v1874_base_place_job = _v1852_place_job_base
 
 
 def _v1874_subject_key(value):
@@ -7294,7 +7324,7 @@ def _v1874_profile_for_job(job, context):
     return profile
 
 
-def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
+def _v1874_build_jobs(classes, loads, assignments, group_settings, teachers):
     jobs, warnings = _v1874_base_build_jobs(
         classes, loads, assignments, group_settings, teachers
     )
@@ -7450,7 +7480,7 @@ def _v1874_state_maps(state):
     return total, academic, fifth_days, difficulty, period_jobs
 
 
-def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, state, context):
+def _v1874_candidate_reasons(job, day, period, selected_teachers, room_keys, state, context):
     reasons = list(_v1874_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
@@ -7497,7 +7527,7 @@ def _v1852_candidate_reasons(job, day, period, selected_teachers, room_keys, sta
 
 
 
-def _v1852_place_job(job, day, period, teachers, room_keys, state, context):
+def _v1874_place_job(job, day, period, teachers, room_keys, state, context):
     _v1874_base_place_job(job, day, period, teachers, room_keys, state, context)
     rotation_members = job.get("rotation_members") or []
     if rotation_members:
@@ -8415,7 +8445,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
             )
             message = (
-                f"V22.38 ADAPTIVE-DOUBLE · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
+                f"V22.40 DAILY-BALANCE · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
                 f"{weekly_sessions:g}."
@@ -14046,9 +14076,9 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
 # birgalikda ballaydi.
 # ═══════════════════════════════════════════════════════════
 
-_v196_base_build_jobs = _v1852_build_jobs
-_v196_base_candidate_reasons = _v1852_candidate_reasons
-_v196_base_place_job = _v1852_place_job
+_v196_base_build_jobs = _v1874_build_jobs
+_v196_base_candidate_reasons = _v1874_candidate_reasons
+_v196_base_place_job = _v1874_place_job
 
 
 def _v196_rotation_profile(job, context=None):
@@ -14240,7 +14270,7 @@ def _v220_repair_fractional_pairs(jobs, context):
     return regular_jobs, warnings
 
 
-def _v1852_candidate_reasons(
+def _v196_candidate_reasons(
     job, day, period, selected_teachers, room_keys, state, context
 ):
     reasons = list(_v196_base_candidate_reasons(
@@ -14901,6 +14931,10 @@ def _v196_teacher_comfort_signature(state, context):
     )
     return (
         int(_v196_class_gap_count(state)),
+        # O'qituvchi oynasini qisqartirish sinfning 5+5+5+5+5+5 kabi
+        # teng taqsimotini 1+5+6+6+6+6 ga buzishi mumkin emas.
+        int(metrics.get("sinf_kun_taqsimoti_farqi", 0)),
+        int(metrics.get("sinf_qisqa_kunlari", 0)),
         # 6-darsdagi asosiy fan faqat boshqa legal kombinatsiya qolmaganda
         # ishlatiladi. Ta'mirlash o'qituvchi oynasini qisqartirish bahonasida
         # bunday kunni ko'paytirmasligi uchun u comfort mezonidan oldin turadi.
@@ -15173,55 +15207,74 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
     for teacher_id in targets:
         if swaps >= int(max_swaps) or _v206_deadline_reached(context):
             break
-        before = _v225_teacher_score(state, context, teacher_id)
-        best = None
-        for move_kind, first, second in _v225_teacher_candidates(
-            state, context, teacher_id, limit=320
-        ):
-            if _v206_deadline_reached(context):
+        teacher_improved = False
+        # Bitta foydali almashtirishdan keyin keyingi ustozga o'tib ketmaymiz.
+        # Shu ustoz uchun boshqa yaxshilanish qolmaguncha davom etamiz; so'ng
+        # uning eng yaxshi natijasini qotirib keyingi targetga o'tamiz.
+        while swaps < int(max_swaps) and not _v206_deadline_reached(context):
+            before = _v225_teacher_score(state, context, teacher_id)
+            before_class_safety = (
+                int(_v196_class_gap_count(state)),
+                *_v196_class_distribution_metrics(state, context),
+            )
+            best = None
+            for move_kind, first, second in _v225_teacher_candidates(
+                state, context, teacher_id, limit=320
+            ):
+                if _v206_deadline_reached(context):
+                    break
+                changed = _v225_changed_teachers(first, second)
+                if int(teacher_id) not in changed:
+                    continue
+                trials += 1
+                if move_kind == "across_day":
+                    trial = _v219_swap_across_class_days(
+                        state, first, second, context, rng
+                    )
+                else:
+                    trial = _v196_swap_same_class_day(
+                        state, first, second, context, rng
+                    )
+                if trial is None:
+                    continue
+                trial_class_safety = (
+                    int(_v196_class_gap_count(trial)),
+                    *_v196_class_distribution_metrics(trial, context),
+                )
+                if trial_class_safety > before_class_safety:
+                    continue
+                if any(
+                    _v225_teacher_score(trial, context, owner) > protected
+                    for owner, protected in frozen.items()
+                ):
+                    continue
+                target_score = _v225_teacher_score(
+                    trial, context, teacher_id
+                )
+                if target_score >= before:
+                    continue
+                if any(
+                    _v225_teacher_score(trial, context, owner)
+                    > _v225_teacher_score(state, context, owner)
+                    for owner in changed if owner != int(teacher_id)
+                ):
+                    continue
+                global_score = _v196_teacher_comfort_signature(
+                    trial, context
+                )
+                rank = (target_score, global_score)
+                if best is None or rank < best[0]:
+                    best = (rank, trial)
+            if best is None:
                 break
-            changed = _v225_changed_teachers(first, second)
-            if int(teacher_id) not in changed:
-                continue
-            trials += 1
-            if move_kind == "across_day":
-                trial = _v219_swap_across_class_days(
-                    state, first, second, context, rng
-                )
-            else:
-                trial = _v196_swap_same_class_day(
-                    state, first, second, context, rng
-                )
-            if trial is None:
-                continue
-            # Oldin yaxshilangan o'qituvchilar qayta ochilmaydi.
-            if any(
-                _v225_teacher_score(trial, context, owner) > protected
-                for owner, protected in frozen.items()
-            ):
-                continue
-            target_score = _v225_teacher_score(trial, context, teacher_id)
-            if target_score >= before:
-                continue
-            # Swap tegadigan boshqa ustoz ham yomonlashmasin.
-            if any(
-                _v225_teacher_score(trial, context, owner)
-                > _v225_teacher_score(state, context, owner)
-                for owner in changed if owner != int(teacher_id)
-            ):
-                continue
-            global_score = _v196_teacher_comfort_signature(trial, context)
-            rank = (target_score, global_score)
-            if best is None or rank < best[0]:
-                best = (rank, trial)
-        if best is None:
-            continue
-        state = best[1]
-        swaps += 1
-        improved.append(int(teacher_id))
-        frozen[int(teacher_id)] = _v225_teacher_score(
-            state, context, teacher_id
-        )
+            state = best[1]
+            swaps += 1
+            teacher_improved = True
+            frozen[int(teacher_id)] = _v225_teacher_score(
+                state, context, teacher_id
+            )
+        if teacher_improved:
+            improved.append(int(teacher_id))
 
     state["v196_teacher_window_swaps"] = int(swaps)
     state["v225_teacher_window_trials"] = int(trials)
@@ -16794,7 +16847,7 @@ def _v196_attempt_metrics(state, context):
 # V20.4 — qattiq real-vaqt to'qnashuvi va amaliy fanlarning juft darsi.
 # Bu wrapper V19.6/V19.8 dagi barcha sinf, guruh, xona va qizil vaqt
 # tekshiruvlarini saqlaydi; faqat yetishmagan ikki holatni qo'shadi.
-_v204_base_candidate_reasons = _v1852_candidate_reasons
+_v204_base_candidate_reasons = _v196_candidate_reasons
 
 
 def _v209_week_phases_overlap(first, second):
