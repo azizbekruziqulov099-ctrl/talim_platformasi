@@ -55,6 +55,21 @@ else:
     _V216_EXACT_IMPORT_ERROR = None
 
 try:
+    from .samtm_schedule_runtime import (
+        Progress as _V230Progress,
+        RuntimePolicy as _V230RuntimePolicy,
+        ScheduleRuntime as _V230ScheduleRuntime,
+        Stage as _V230Stage,
+    )
+except ImportError:
+    from samtm_schedule_runtime import (
+        Progress as _V230Progress,
+        RuntimePolicy as _V230RuntimePolicy,
+        ScheduleRuntime as _V230ScheduleRuntime,
+        Stage as _V230Stage,
+    )
+
+try:
     from . import samtm_timetable_engine as _timetable_engine
 except ImportError:  # Gunicorn ``main:app`` backend/ ichidan ishga tushadi.
     import samtm_timetable_engine as _timetable_engine
@@ -4199,1382 +4214,19 @@ def _v2258_save_complete_checkpoint(
         cur.close(); conn.close()
 
 
-def _v2253_improve_existing_draft(
-    *, token, user_id, maktab_id, run_id, qidiruv_nonce, source_hash,
-    jobs, context, classes, teachers, rooms, shifts, year,
-):
-    """Improve #57 in place as #57.1, #57.2... instead of solving #58 from zero."""
-    read_conn = _db()
-    read_cur = read_conn.cursor()
-    try:
-        _v1852_tables(read_cur)
-        read_cur.execute(
-            """SELECT id,holat,sifat,joylashtirildi,joylashtirilmadi,
-                      diagnostika,sozlamalar
-               FROM aqlli_jadval_urinishlari_v2
-               WHERE id=%s AND maktab_id=%s AND holat='draft'
-                 AND joylashtirilmadi=0
-                 AND COALESCE(sozlamalar->>'manba_hash','')=%s""",
-            (int(run_id), int(maktab_id), str(source_hash)),
-        )
-        run = read_cur.fetchone()
-        if not run:
-            return None
-        placements = _v2253_saved_run_placements(
-            read_cur, run_id, jobs, context
-        )
-        if not placements:
-            return None
-        read_cur.execute(
-            """SELECT yaxshilanish FROM aqlli_jadval_jarayoni_v2243
-               WHERE maktab_id=%s AND jadval_raqami=%s""",
-            (int(maktab_id), int(run_id)),
-        )
-        progress_row = read_cur.fetchone() or {}
-        starting_revision = max(
-            0, int(progress_row.get("yaxshilanish") or 0)
-        )
-        stored_diagnostics = dict(run.get("diagnostika") or {})
-    finally:
-        read_cur.close()
-        read_conn.close()
-
-    exact_context = dict(context)
-    exact_context["v207_policy_stage"] = "strict"
-    exact_context["v203_emergency_repeat_days"] = 0
-    exact_context["teachers"] = teachers
-    exact_context["max_subject_repeat_days"] = 2
-    exact_context["practical_repeat_day_limit"] = 1
-    exact_context["core_period6_day_limit"] = 2
-    exact_context["allow_fixed_class_hour_method_exception"] = True
-    exact_context["v208_mode_config"] = dict(_timetable_mode_config())
-
-    validation_errors = (
-        _v218_validate_placements(
-            jobs, placements, exact_context,
-            allow_method_exceptions=False,
-        )
-        if callable(_v218_validate_placements)
-        else []
-    )
-    if validation_errors:
-        return None
-
-    state = _v1852_rebuild_schedule_state(placements, context)
-    before_metrics = _v196_attempt_metrics(state, context)
-    frozen_counts = dict(_v226_frozen_class_day_signature(state))
-    improve_context = dict(context)
-    improve_context["v226_frozen_class_day_counts"] = frozen_counts
-    improve_context["v2244_cancel_requested"] = lambda: _v2244_cancel_requested(
-        maktab_id, qidiruv_nonce
-    )
-    improve_context["v206_deadline"] = _samtm_time.monotonic() + max(
-        8.0,
-        min(
-            60.0,
-            float(os.getenv("SAMTM_EXISTING_IMPROVE_SECONDS", "45")),
-        ),
-    )
-
-    revision = [starting_revision]
-
-    def improvement_callback(swap_no, teacher_id, before_score, after_score, checkpoint_state=None):
-        revision[0] += 1
-        teacher_name = str(
-            (teachers.get(int(teacher_id)) or {}).get("full_name")
-            or teacher_id
-        )
-        _v2243_progress_write(
-            maktab_id, qidiruv_nonce, run_id, revision[0],
-            min(92, 35 + int(swap_no) * 2),
-            "ustoz_yaxshilandi",
-            (
-                f"Jadval #{run_id}.{revision[0]}: {teacher_name} yaxshilandi. "
-                "Sinfning kunlik 2/3/4/5/6 dars sonlari o‘zgarmadi; "
-                "yaxshi natija qotirildi."
-            ),
-        )
-        if checkpoint_state is not None:
-            _v2258_save_complete_checkpoint(
-                maktab_id=maktab_id, user_id=user_id, run_id=run_id,
-                revision=revision[0], source_hash=source_hash,
-                state=checkpoint_state, jobs=jobs, context=improve_context,
-                classes=classes, rooms=rooms, shifts=shifts, year=year,
-                qidiruv_nonce=qidiruv_nonce,
-                stage=f"teacher_{teacher_id}_accepted",
-            )
-
-    improve_context["v2253_improvement_callback"] = improvement_callback
-    _v2243_progress_write(
-        maktab_id, qidiruv_nonce, run_id, revision[0], 20,
-        "mavjud_jadval_olindi",
-        (
-            f"Jadval #{run_id} 0 dan yaratilmayapti. Shu to‘liq jadvalning "
-            "eng yomon o‘qituvchilari topilib, worst-first yaxshilanmoqda."
-        ),
-    )
-
-    rng = _v1852_random.Random(
-        (int(run_id) * 1_000_003) ^ int(maktab_id) ^ 0x2253
-    )
-    state = _v196_optimize_teacher_windows(
-        state, improve_context, rng, max_swaps=240
-    )
-    _v2243_progress_write(
-        maktab_id, qidiruv_nonce, run_id, revision[0], 93,
-        "fan_taqsimoti_yaxshilanmoqda",
-        (
-            f"Jadval #{run_id}{'.' + str(revision[0]) if revision[0] else ''}: "
-            "o‘qituvchi oynalari tekshirildi; endi fan takrori va tarqalishi "
-            "hard-safe swaplar bilan tekshirilmoqda."
-        ),
-    )
-    state = _v219_reduce_avoidable_subject_repeats(
-        state, improve_context, rng, max_swaps=24, max_trials=180
-    )
-    # Subject swaps are accepted only if the frozen class-day signature stays exact.
-    if not _v226_class_day_counts_match(state, improve_context):
-        raise HTTPException(
-            status_code=409,
-            detail="Yaxshilash sinfning kunlik dars sonini o‘zgartirmoqchi bo‘ldi; eski # jadval o‘zgartirilmadi.",
-        )
-
-    final_errors = (
-        _v218_validate_placements(
-            jobs, state.get("placements") or [], exact_context,
-            allow_method_exceptions=False,
-        )
-        if callable(_v218_validate_placements)
-        else []
-    )
-    if final_errors:
-        raise HTTPException(
-            status_code=409,
-            detail={
-                "code": "INCUMBENT_IMPROVEMENT_REJECTED",
-                "message": (
-                    "Yaxshilangan variant hard-validator tekshiruvidan "
-                    "o‘tmadi. Oldingi jadval o‘zgartirilmadi."
-                ),
-                "xatolar": final_errors[:20],
-            },
-        )
-
-    after_metrics = _v196_attempt_metrics(state, improve_context)
-    changed = (
-        int(state.get("v196_teacher_window_swaps") or 0) > 0
-        or after_metrics != before_metrics
-    )
-    if not changed:
-        cancelled = bool(improve_context.get("v2244_cancelled")) or _v2244_cancel_requested(
-            maktab_id, qidiruv_nonce
-        )
-        _v2243_progress_write(
-            maktab_id, qidiruv_nonce, run_id, revision[0], 100,
-            "toxtatildi" if cancelled else "tayyor",
-            (
-                f"To‘xtatildi. Oldingi to‘liq Jadval #{run_id} saqlandi va ochish mumkin."
-                if cancelled else
-                f"Jadval #{run_id}: mavjud to‘liq jadval tekshirildi. "
-                "Hard qoidalarni buzmasdan yaxshiroq swap topilmadi; jadval o‘zgarmadi."
-            ),
-        )
-        return {
-            "holat": "mavjud_jadval_tekshirildi",
-            "urinish_id": int(run_id),
-            "jadval_raqami": int(run_id),
-            "yaxshilanish": int(revision[0]),
-            "jami_soat": len(jobs),
-            "joylashtirildi": len(jobs),
-            "joylashtirilmadi": 0,
-            "sifat": int(stored_diagnostics.get("sifat") or 0),
-            "diagnostika": {
-                **stored_diagnostics,
-                "v2253_reused_incumbent": True,
-                "v2253_yangi_exact_boshlanmadi": True,
-                "v2253_swap_soni": 0,
-                "v2253_before_metrics": before_metrics,
-                "v2253_after_metrics": after_metrics,
-            },
-            "solver_status": "INCUMBENT_VALIDATED",
-            "tasdiqlash_mumkin": True,
-            "foydalanuvchi_toxtatdi": cancelled,
-        }
-
-    write_conn = _db()
-    write_cur = write_conn.cursor()
-    try:
-        _v1852_tables(write_cur)
-        write_cur.execute(
-            "SELECT pg_try_advisory_xact_lock(%s) AS locked",
-            (1900000000 + int(maktab_id),),
-        )
-        if not bool((write_cur.fetchone() or {}).get("locked")):
-            raise HTTPException(
-                status_code=409,
-                detail="Jadvalni boshqa jarayon o‘zgartiryapti. Bir necha soniyadan keyin qayta urinib ko‘ring.",
-            )
-        if _v1875_source_fingerprint(write_cur, maktab_id) != source_hash:
-            raise HTTPException(
-                status_code=409,
-                detail="Yaxshilash paytida yuklama/vaqt sozlamasi o‘zgardi. Eski jadval o‘zgartirilmadi.",
-            )
-
-        entry_rows = _v2253_entry_rows_from_state(
-            state, run_id, maktab_id, classes, rooms, shifts
-        )
-        write_cur.execute(
-            "DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s",
-            (int(run_id),),
-        )
-        if entry_rows:
-            psycopg2.extras.execute_values(
-                write_cur,
-                """INSERT INTO aqlli_jadval_slotlari_v2(
-                    urinish_id,maktab_id,sinf_id,hafta_kuni,smena,dars_raqami,
-                    fan_nomi,oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
-                    boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,
-                    hafta_turi) VALUES %s""",
-                entry_rows,
-                page_size=1000,
-            )
-
-        moslik = _v1875_schedule_integrity_report(
-            write_cur, maktab_id, run_id
-        )
-        if moslik.get("xatolar") or not moslik.get("tayyor"):
-            raise HTTPException(
-                status_code=409,
-                detail=_v209_integrity_failure_detail(
-                    [str(value) for value in moslik.get("xatolar", [])]
-                    or ["SQL integritet tayyor emas"]
-                ),
-            )
-
-        gap_count = int(after_metrics.get("oqituvchi_ichki_okno", 0))
-        quality = max(
-            0,
-            min(
-                100,
-                round(
-                    100
-                    - gap_count * 0.25
-                    - int(after_metrics.get("asosiy_fan_5_6", 0)) * 0.2
-                ),
-            ),
-        )
-        diagnostics = {
-            **stored_diagnostics,
-            "v2253_reused_incumbent": True,
-            "v2253_yangi_exact_boshlanmadi": True,
-            "v2253_base_run_id": int(run_id),
-            "v2253_yaxshilanish": int(revision[0]),
-            "v2253_swap_soni": int(
-                state.get("v196_teacher_window_swaps") or 0
-            ),
-            "v2253_target_ustozlar": int(
-                state.get("v225_teacher_targets") or 0
-            ),
-            "v2253_yaxshilangan_ustozlar": list(
-                state.get("v225_teacher_improved") or []
-            ),
-            "v2253_sinf_kun_soatlari_qotirilgan": True,
-            "v2253_before_metrics": before_metrics,
-            "v2253_after_metrics": after_metrics,
-            "jadval_mosligi": moslik,
-            "tasdiqlash_mumkin": True,
-            "solver_status": "INCUMBENT_IMPROVED_VALIDATED",
-        }
-        write_cur.execute(
-            """UPDATE aqlli_jadval_urinishlari_v2
-               SET sifat=%s,joylashtirildi=%s,joylashtirilmadi=0,
-                   diagnostika=%s::jsonb
-               WHERE id=%s AND maktab_id=%s""",
-            (
-                quality, len(jobs),
-                json.dumps(diagnostics, ensure_ascii=False, default=str),
-                int(run_id), int(maktab_id),
-            ),
-        )
-        write_conn.commit()
-    except Exception:
-        write_conn.rollback()
-        raise
-    finally:
-        write_cur.close()
-        write_conn.close()
-
-    cancelled = bool(improve_context.get("v2244_cancelled")) or _v2244_cancel_requested(
-        maktab_id, qidiruv_nonce
-    )
-    _v2243_progress_write(
-        maktab_id, qidiruv_nonce, run_id, revision[0], 100,
-        "toxtatildi" if cancelled else "tayyor",
-        (
-            f"To‘xtatildi. Shu paytgacha topilgan eng yaxshi Jadval #{run_id}"
-            f"{'.' + str(revision[0]) if revision[0] else ''} saqlandi va ochish mumkin."
-            if cancelled else
-            f"Jadval #{run_id}.{revision[0]} tayyor. Bu yangi jadval emas — "
-            f"#{run_id} ning yaxshilangan oxirgi holati va endi asosiy #{run_id} o‘rnida turadi."
-        ),
-    )
-    return {
-        "holat": "mavjud_jadval_yaxshilandi",
-        "urinish_id": int(run_id),
-        "jadval_raqami": int(run_id),
-        "yaxshilanish": int(revision[0]),
-        "jami_soat": len(jobs),
-        "joylashtirildi": len(jobs),
-        "joylashtirilmadi": 0,
-        "sifat": quality,
-        "diagnostika": diagnostics,
-        "solver_status": "INCUMBENT_IMPROVED_VALIDATED",
-        "tasdiqlash_mumkin": True,
-        "moslik": moslik,
-        "foydalanuvchi_toxtatdi": cancelled,
-    }
-
-
 @app.post("/api/maktab/aqlli_jadval/v2/yaratish")
 def v1852_generate(sorov: V1852Generate, token: str):
+    """V23: eski generatorlardan mustaqil, bitta aniq lifecycle."""
     user_id = _jwt_tekshir(token)
-    reserved_run_id = None
-    progress_revision = 0
-    conn = _db(); cur = conn.cursor()
+    conn = _db()
+    cur = conn.cursor()
     try:
         _v1852_tables(cur)
         if not _v1852_manager(cur, user_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="Jadvalni faqat maktab rahbariyati yaratadi")
-        cur.execute("SELECT pg_try_advisory_xact_lock(%s) AS locked", (1900000000 + int(sorov.maktab_id),))
-        if not bool((cur.fetchone() or {}).get("locked")):
-            raise HTTPException(status_code=409, detail="Bu maktab uchun jadval boshqa oynada yaratilmoqda. Tugashini kuting.")
-
-        # Jadval manbasi va hash hisoblanishidan oldin barcha sinflarning
-        # SINF SOATI qoidasini tayyorlaymiz. Aks holda eski maktabda 21+1/22
-        # o'rniga 21/22 ko'rinib, bir soat har safar yetishmay qolardi.
-        _v199_ensure_class_hour_rules(
-            cur, sorov.maktab_id, actor_id=user_id
-        )
-
-        if "_v1876_group_review_report" in globals():
-            group_review = _v1876_group_review_report(cur, sorov.maktab_id)
-            if not group_review.get("tayyor"):
-                details = "; ".join(group_review.get("xatolar", [])[:10])
-                raise HTTPException(
-                    status_code=409,
-                    detail=(
-                        "Avval guruhli fanlarda qaysi guruhga qaysi o'qituvchi "
-                        "kirishini tasdiqlang" + (f": {details}" if details else "")
-                    ),
-                )
-
-        # DARS_BIRIKMALARI → sinf-fan yuklamasi → o'qituvchi jami bir xil manbaga keltiriladi.
-        # Endi bitta generator bor. Eski, tasdiqlanmagan 1–6 rejim draftlari
-        # yangi natija bilan aralashmasligi uchun bekor qilinadi; tasdiqlangan
-        # faol jadval yangi draft tasdiqlanguncha o'z joyida qoladi.
-        # V22.57: manba o'zgarmagan bo'lsa avvalgi 100% draft keyingi
-        # yaxshilashning incumbentidir. Uni shu yerda bekor qilish #57 ni
-        # topolmay, #58/#61 ni 0 dan boshlashga majbur qilardi.
-        sync_report = _v1875_rebuild_schedule_sources(
-            cur, sorov.maktab_id, cancel_drafts=False, reason="jadval_yaratish"
-        )
-        if sync_report.get("xatolar"):
             raise HTTPException(
-                status_code=409,
-                detail="Jadval manbasi mos emas: " + "; ".join(sync_report["xatolar"][:12]),
+                status_code=403,
+                detail="Jadvalni faqat maktab rahbariyati yaratadi",
             )
-        preflight = _v1875_preflight_report(cur, sorov.maktab_id)
-        if not preflight.get("tayyor"):
-            raise HTTPException(
-                status_code=409,
-                detail="Jadval yaratishdan oldingi tekshiruvdan o'tmadi: " + "; ".join(preflight.get("xatolar", [])[:12]),
-            )
-        source_hash = preflight.get("manba_hash")
-
-        year, shifts, classes, loads, assignments, group_settings, rules_rows, availability_rows, teachers, rooms = _v1852_prepare_generation(cur, sorov.maktab_id)
-        jobs, initial_warnings = _v1852_build_jobs(classes, loads, assignments, group_settings, teachers)
-        for class_row in classes.values():
-            if class_row.get("_home_room_invalid"):
-                initial_warnings.append(
-                    f"{class_row.get('sinf','')}-{class_row.get('harf','')}: "
-                    f"{class_row['_home_room_invalid']}; jadvalda xona ko'rsatilmaydi"
-                )
-        class_hour_rules = _v1866_class_hour_rule_rows(cur, sorov.maktab_id)
-        class_hour_jobs, class_hour_warnings = _v1866_build_class_hour_jobs(classes, class_hour_rules)
-        jobs = class_hour_jobs + jobs
-        initial_warnings.extend(class_hour_warnings)
-        rules = _v1852_teacher_rules_map(rules_rows)
-        hard, soft, method_hard, method_soft = _v1852_availability_maps(availability_rows)
-        class_day_rule_rows = _v1856_class_day_rule_rows(cur, sorov.maktab_id)
-        class_day_blocks = _v1856_class_day_rule_map(class_day_rule_rows)
-        class_hour_counts = _v1852_Counter(
-            int(job["teacher_options"][0]) for job in class_hour_jobs if job.get("teacher_options")
-        )
-        caps = {}
-        for tid, row in teachers.items():
-            base = float(row["haftalik_dars_soati"]) if row.get("haftalik_dars_soati") is not None else None
-            extra = int(class_hour_counts.get(int(tid), 0))
-            caps[tid] = (base + extra) if base is not None else None
-        context = {
-            "weekdays": int(year["hafta_kunlari"]), "shifts": shifts, "classes": classes,
-            "rules": rules, "default_rules": {"kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1, "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12},
-            "hard": hard, "soft": soft, "method_hard": method_hard, "method_soft": method_soft,
-            "teacher_caps": caps, "class_day_blocks": class_day_blocks,
-            "teachers": teachers,
-            # ``kunlik_max`` qat'iy: 1 hech qachon yumshamaydi. Manbada 2+
-            # aniq tanlangan bo'lsa, bu majburiy takror emas, faqat sig'im
-            # zaxirasi. Oddiy fan ko'pi bilan 2 kunda, amaliy fan ko'pi bilan
-            # 1 kunda takrorlanadi; sifat bosqichi avval Algebra/Geometriya
-            # kabi fanlarni kunlararo almashtirib takrorni yo'qotishga urinadi.
-            "max_subject_repeat_days": 2,
-            "practical_repeat_day_limit": 1,
-            "core_period6_day_limit": 2,
-            "practical_min_period": 2,
-            # Administrator oldindan tanlagan KELAJAK/SINF SOATI aniq
-            # fixed_day+fixed_period katagida metod kunidan o'tishi mumkin.
-            # Qizil/BAND esa bu maxsus dars uchun ham qat'iy yopiq qoladi.
-            "allow_fixed_class_hour_method_exception": True,
-            # Actionable hisobotga availability qatorining id/turi kerak.
-            # Generatorning hot-path'i setlardan foydalanishda davom etadi.
-            "availability_rows": [dict(row) for row in availability_rows],
-            "v207_requested_mode": 1,
-        }
-        # 0,5 soatli fanlarni dastlabki profil tartibi bilan ko'r-ko'rona
-        # juftlash soxta bo'sh domen yaratishi mumkin edi. O'qituvchi va sinf
-        # qattiq vaqtlari ma'lum bo'lgach, faqat umumiy legal katagi bor
-        # a'zolar deterministik A/B juft bo'ladi; mos kelmaydigan yarim dars
-        # alohida TOQ/JUFT fazada qoladi va exact solver uni xavfsiz joylaydi.
-        jobs, fractional_warnings = _v220_repair_fractional_pairs(
-            jobs, context
-        )
-        initial_warnings = [
-            warning for warning in initial_warnings
-            if not str(warning).startswith((
-                "A/B hafta aylanishi faol:", "A/B ko'rinishi:",
-            ))
-        ]
-        initial_warnings.extend(fractional_warnings)
-        # Exact yo'l eski generate-attempt wrapperidan o'tmaydi. Lokal
-        # hard-safe Algebra/Geometriya swap va o'qituvchi-oyna finalizatori
-        # ishlashi uchun talab/balans kontekstini shu yagona joyda tayyorlaymiz.
-        context["v196_teacher_demand"] = _v196_teacher_demand(jobs)
-        context["v196_teacher_shift_demand"] = _v196_teacher_shift_demand(jobs)
-        context["v196_class_distribution"] = _v196_class_distribution(
-            jobs, context
-        )
-
-        # V22.55 — ENG MUHIM: shu manba bilan oldindan 100% to‘liq draft
-        # mavjud bo‘lsa, yangi #58 ni 0 dan qidirmaymiz. Masalan #57 olinadi,
-        # sinf-kun dars sonlari qotiriladi va faqat teacher worst-first
-        # yaxshilash ishlaydi: #57.1, #57.2 ...; oxirgi holat yana #57 ning
-        # o‘rnida saqlanadi.
-        cur.execute(
-            """SELECT id FROM aqlli_jadval_urinishlari_v2
-               WHERE maktab_id=%s AND holat='draft' AND joylashtirilmadi=0
-                 AND COALESCE(sozlamalar->>'manba_hash','')=%s
-               ORDER BY id DESC LIMIT 1""",
-            (sorov.maktab_id, str(source_hash)),
-        )
-        reusable_row = cur.fetchone()
-        if reusable_row:
-            reusable_run_id = int(reusable_row["id"])
-            conn.commit()
-            cur.close(); conn.close()
-            cur = None; conn = None
-            reused = _v2253_improve_existing_draft(
-                token=token,
-                user_id=user_id,
-                maktab_id=sorov.maktab_id,
-                run_id=reusable_run_id,
-                qidiruv_nonce=sorov.qidiruv_nonce,
-                source_hash=source_hash,
-                jobs=jobs,
-                context=context,
-                classes=classes,
-                teachers=teachers,
-                rooms=rooms,
-                shifts=shifts,
-                year=year,
-            )
-            if reused is not None:
-                return reused
-            # Saqlangan draft eski formatda bo‘lib tiklanmasa, exact yo‘lga
-            # qaytamiz. Yangi DB ulanishida advisory lock qayta olinadi.
-            conn = _db(); cur = conn.cursor()
-            _v1852_tables(cur)
-            cur.execute(
-                "SELECT pg_try_advisory_xact_lock(%s) AS locked",
-                (1900000000 + int(sorov.maktab_id),),
-            )
-            if not bool((cur.fetchone() or {}).get("locked")):
-                raise HTTPException(
-                    status_code=409,
-                    detail="Jadval boshqa oynada yaratilmoqda. Tugashini kuting.",
-                )
-
-        # Haqiqiy jadval raqami hisoblash tugashidan oldin band qilinadi.
-        # Frontend shu sabab taxminiy emas, aynan yakunda saqlanadigan #51
-        # raqamini ko‘rsatadi; yaxshilanishlar #51.1, #51.2 bo‘lib boradi.
-        cur.execute(
-            "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
-        )
-        reserved_run_id = int(cur.fetchone()["id"])
-        cur.execute(
-            """INSERT INTO aqlli_jadval_jarayoni_v2243(
-                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,toxtatish_soraldi,yangilangan_at)
-               VALUES(%s,%s,%s,0,8,'tayyorlash',%s,FALSE,NOW())
-               ON CONFLICT(maktab_id) DO UPDATE SET
-                   qidiruv_nonce=EXCLUDED.qidiruv_nonce,
-                   jadval_raqami=EXCLUDED.jadval_raqami,
-                   yaxshilanish=0,foiz=8,bosqich='tayyorlash',
-                   xabar=EXCLUDED.xabar,toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
-            (
-                sorov.maktab_id,
-                sorov.qidiruv_nonce,
-                reserved_run_id,
-                f"Jadval #{reserved_run_id} uchun {len(jobs)} ta dars tayyorlandi. Qattiq qoidalar tekshirilmoqda.",
-            ),
-        )
-
-        # Generator o'n minglab variantlarni Python xotirasida hisoblaydi. Shu
-        # paytda ochiq tranzaksiya 30 soniyadan ortiq bo'sh qolsa PostgreSQL
-        # idle_in_transaction_session_timeout sabab ulanishni yopadi. Manba
-        # sinxronlashini avval commit qilib, hisoblash vaqtida DB ulanishini
-        # havuzga qaytaramiz; natijani yozishda yangi ulanish olamiz.
-        conn.commit()
-        cur.close()
-        conn.close()
-        cur = None
-        conn = None
-
-        # Bitta CP-SAT model barcha sinf va o'qituvchini global hisoblaydi.
-        # Eski ``urinishlar_soni`` request maydoni eski frontendlar uchun
-        # qabul qilinadi, ammo 4 ta alohida greedy generator endi yo'q.
-        requested_attempts = 1
-        # Capability endpoint ham aynan shu qiymatni qaytaradi; frontenddagi
-        # foiz yechim foizi emas, shu ajratilgan vaqtning sarflangan qismidir.
-        generation_budget = _v220_generation_budget_seconds()
-        generation_started = _samtm_time.monotonic()
-        generation_hard_deadline = generation_started + generation_budget
-        # Exact yechimdan keyingi validator/DB yozuvi uchun qisqa rezerv.
-        generation_report_deadline = generation_hard_deadline
-        generation_finalization_deadline = generation_hard_deadline - 0.8
-        completed_attempts = 0
-        stopped_by_budget = False
-        # Bir xil manba ikki marta yaratilsa bir xil tartib chiqadi. Timestamp
-        # sabab bugun ishlagan jadval ertaga boshqa natija berib qolmaydi.
-        try:
-            base_seed = int(str(source_hash)[:16], 16)
-        except (TypeError, ValueError):
-            base_seed = int(sorov.maktab_id) * 1_000_003 + len(jobs)
-        if sorov.qidiruv_nonce is not None:
-            base_seed ^= int(sorov.qidiruv_nonce) & ((1 << 63) - 1)
-        exact_solver_used = False
-        exact_solver_status = None
-        exact_solver_diagnostics = {}
-        exact_solver_wall_time = 0.0
-        exact_safe_state = None
-        bounded_method_fallback_used = False
-        applied_method_exceptions = []
-        print(
-            "[JADVAL-ONE-V3.0] boshlandi "
-            f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
-            f"global_model=1 byudjet={generation_budget:.0f}s",
-            flush=True,
-        )
-        _v2243_progress_write(
-            sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id, 0, 15,
-            "toliq_qidiruv",
-            f"Jadval #{reserved_run_id}: barcha darsni 100% joylashtirish qidirilmoqda.",
-        )
-
-        # Exact solver yagona kanonik yo'l. OR-Tools yo'q bo'lsa aniq deploy
-        # xatosi qaytadi; UNKNOWN/INFEASIBLE/MODEL_INVALID natijasi boshqa
-        # algoritm bilan yashirilmaydi va qisman jadval saqlanmaydi.
-        exact_ready = bool(
-            _V216_ORTOOLS_AVAILABLE and callable(_v216_solve_exact)
-        )
-        if exact_ready:
-            def _v2243_exact_progress(event, payload):
-                nonlocal progress_revision
-                placed = int((payload or {}).get("placed") or 0)
-                total = int((payload or {}).get("total") or len(jobs))
-                if event == "hard_feasible":
-                    _v2243_progress_write(
-                        sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                        progress_revision, 55, "toliq_topildi",
-                        f"Jadval #{reserved_run_id} topildi: {placed}/{total} dars 100% joylashdi. Hozir bazaga saqlanmoqda.",
-                    )
-                elif event == "quality_accepted":
-                    _v2243_progress_write(
-                        sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                        progress_revision, 74, "global_yaxshilandi",
-                        f"Jadval #{reserved_run_id}: global sifat yaxshilandi; qattiq qoidalar va 100% dars saqlandi. Bazaga checkpoint yozilmoqda.",
-                    )
-
-            exact_context = dict(context)
-            exact_context["v207_policy_stage"] = "strict"
-            exact_context["v203_emergency_repeat_days"] = 0
-            exact_context["teachers"] = teachers
-            exact_context["max_subject_repeat_days"] = 2
-            exact_context["practical_repeat_day_limit"] = 1
-            exact_context["core_period6_day_limit"] = 2
-            exact_context["allow_fixed_class_hour_method_exception"] = True
-            exact_context["v208_mode_config"] = dict(
-                _timetable_mode_config()
-            )
-            # Strict natija INFEASIBLE/UNKNOWN bo'lsa solver o'zining alohida
-            # (qizil/BANDni ochmaydigan) metod-istisno modelini aynan bir marta
-            # chaqirib, tavsiyani result ichida qaytaradi.
-            exact_context["exact_analyze_method_relaxation"] = True
-            exact_context["exact_analyze_method_on_unknown"] = False
-            # Strict model tezda haqiqiy INFEASIBLE isbotlasa, qolgan exact
-            # byudjetning ko'pi bilan 10 soniyasi boshlang'ich sinf metod-kuni
-            # fallbackiga beriladi. Exact modul bu qiymatni umumiy qolgan
-            # vaqt bilan yana cheklaydi; shuning uchun HTTP byudjeti oshmaydi.
-            exact_context["exact_relaxation_seconds"] = 10.0
-            # Strict model haqiqatan INFEASIBLE bo'lsagina ikkinchi exact
-            # model boshlang'ich sinf uchun, Shanbadan tashqari, ko'pi bilan
-            # 2 ta aniq metod-kuni katagini ishlatishi mumkin. Qizil/BAND
-            # candidate domeniga kirmaydi va hech qachon ochilmaydi.
-            exact_context["exact_apply_bounded_method_fallback"] = True
-            exact_context["method_exception_primary_only"] = True
-            # Birinchi va eng muhim bosqich faqat qat'iy qoidalarga to'liq
-            # yechim topadi. Oyna/balans/fan-vaqti kabi yumshoq maqsadlar bu
-            # modelni kattalashtirmaydi; to'liq incumbent topilgandan keyin
-            # mavjud hard-safe finalizator qulaylikni yaxshilaydi.
-            exact_context["exact_feasibility_only"] = True
-            exact_context["exact_stop_after_first_solution"] = True
-            # Birinchi hard-safe yechim topilgach qolgan exact byudjetning
-            # ko'pi bilan 2.5 soniyasida to'liq incumbent hint bilan global
-            # sifat bosqichi ishlaydi. U daily_max=2 takrorlarini, o'qituvchi
-            # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
-            # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
-            exact_context["exact_quality_after_feasible"] = True
-            # Hard-safe jadval topilgandan keyingi global CP-SAT bosqichi
-            # checkpointni 55% da butun byudjet davomida ushlab turmasin.
-            # O'qituvchi qisish keyingi checkpointli bosqichda davom etadi.
-            exact_context["exact_quality_seconds"] = min(2.5, generation_budget)
-            exact_context["exact_progress_callback"] = _v2243_exact_progress
-            exact_context["exact_cancel_requested"] = lambda: _v2244_cancel_requested(
-                sorov.maktab_id, sorov.qidiruv_nonce
-            )
-            try:
-                exact_context["exact_num_workers"] = max(1, min(
-                    4,
-                    int(os.getenv("SAMTM_EXACT_NUM_WORKERS", "4")),
-                ))
-            except (TypeError, ValueError):
-                exact_context["exact_num_workers"] = 4
-            # Exact adapter + mustaqil hard-validator qizil/BAND, metod,
-            # fixed kun-soat, smena, sinf kuni, o'qituvchi oralig'i va barcha
-            # real-vaqt kolliziyalarini o'zi qattiq tekshiradi. Eski greedy
-            # ``_v1852_candidate_reasons`` wrapperini bu yerga ulash mumkin
-            # emas: u boshlang'ich sinfdagi 5-dars og'ir fan kabi completionda
-            # ataylab yumshaydigan pedagogik tavsiyani ham ``strict`` deb
-            # kandidat domenidan butunlay chiqarib, soxta INFEASIBLE yaratadi.
-            exact_context.pop("exact_candidate_filter", None)
-            # Hisobot, final validator va SQL yozishga rezerv qoladi. Solver
-            # FEASIBLE topsa barcha job aynan bir marta joylashgan bo'lishi shart.
-            exact_max_seconds = max(
-                0.5,
-                generation_hard_deadline - _samtm_time.monotonic() - 4.0,
-            )
-            print(
-                "[JADVAL-EXACT-V22.0] bounded-repeat hard-feasibility qidiruvi boshlandi "
-                f"maktab_id={sorov.maktab_id} darslar={len(jobs)} "
-                f"limit={exact_max_seconds:.1f}s red_metod=QAT_IY",
-                flush=True,
-            )
-            try:
-                exact_result = _v216_solve_exact(
-                    jobs,
-                    exact_context,
-                    candidate_builder=None,
-                    state_builder=_v1852_rebuild_schedule_state,
-                    seed=base_seed,
-                    max_seconds=exact_max_seconds,
-                )
-            except (ImportError, ModuleNotFoundError) as exact_import_error:
-                if "ortools" in str(exact_import_error).casefold():
-                    print(
-                            "[JADVAL-EXACT-V22.0] OR-Tools topilmadi; "
-                        "jadval yaratish to'xtatildi: " + str(exact_import_error),
-                        flush=True,
-                    )
-                    raise HTTPException(
-                        status_code=503,
-                        detail={
-                            "code": "EXACT_ENGINE_NOT_INSTALLED",
-                            "solver_status": "MODEL_INVALID",
-                            "proof_complete": False,
-                            "message": (
-                                "OR-Tools yuklanmadi. requirements.txt ichiga "
-                                "ortools>=9.15,<9.16 qatorini qo'shib backendni "
-                                "qayta deploy qiling."
-                            ),
-                            "joylashtirilgan_qisman_natija_saqlanmadi": True,
-                            "metod_kuni_istisno_tavsiyalari": [],
-                            "avtomatik_yumshatish": False,
-                        },
-                    )
-                else:
-                    exact_result = {
-                        "status": "MODEL_INVALID",
-                        "complete": False,
-                        "diagnostics": {
-                            "exception": str(exact_import_error),
-                            "stage": "exact_import",
-                        },
-                    }
-            except Exception as exact_error:
-                # Exact modelning texnik xatosi greedy natija bilan berkitilmaydi.
-                exact_result = {
-                    "status": "MODEL_INVALID",
-                    "complete": False,
-                    "diagnostics": {
-                        "exception": str(exact_error),
-                        "stage": "exact_solve",
-                    },
-                }
-
-            if exact_ready:
-                exact_result = dict(exact_result or {})
-                exact_solver_status = str(
-                    exact_result.get("status") or "UNKNOWN"
-                ).upper()
-                exact_solver_diagnostics = dict(
-                    exact_result.get("diagnostics") or {}
-                )
-                try:
-                    exact_solver_wall_time = round(float(
-                        exact_result.get("wall_time_seconds") or 0.0
-                    ), 3)
-                except (TypeError, ValueError):
-                    exact_solver_wall_time = 0.0
-                exact_complete = bool(exact_result.get("complete"))
-                bounded_method_fallback_used = bool(
-                    exact_result.get("method_exception_applied")
-                    or exact_solver_diagnostics.get(
-                        "method_exception_applied"
-                    )
-                )
-                applied_method_exceptions = [
-                    tuple(int(value) for value in token)
-                    for token in (
-                        exact_result.get("applied_method_exceptions")
-                        or exact_solver_diagnostics.get(
-                            "applied_method_exceptions"
-                        )
-                        or []
-                    )
-                    if len(tuple(token)) == 4
-                ]
-                if (
-                    exact_solver_status in {"FEASIBLE", "OPTIMAL"}
-                    and exact_complete
-                ):
-                    try:
-                        exact_state = _v216_exact_complete_state(
-                            exact_result, jobs, exact_context
-                        )
-                    except Exception as exact_contract_error:
-                        exact_solver_status = "MODEL_INVALID"
-                        exact_complete = False
-                        exact_result["status"] = "MODEL_INVALID"
-                        exact_result["complete"] = False
-                        exact_solver_diagnostics["contract_error"] = str(
-                            exact_contract_error
-                        )
-                        exact_result["diagnostics"] = dict(
-                            exact_solver_diagnostics
-                        )
-                    else:
-                        exact_solver_used = True
-                        exact_state["v207_policy_stage"] = "strict"
-                        exact_state["v203_emergency_repeat_days"] = 0
-                        exact_state["v216_exact_solver"] = {
-                            "status": exact_solver_status,
-                            "complete": True,
-                            "objective_value": exact_result.get(
-                                "objective_value"
-                            ),
-                            "best_bound": exact_result.get("best_bound"),
-                            "wall_time_seconds": exact_solver_wall_time,
-                            "strict_red_method": True,
-                            "fixed_class_hour_method_exception": True,
-                            "fixed_class_hour_red_exception": False,
-                            "bounded_method_fallback": (
-                                bounded_method_fallback_used
-                            ),
-                            "applied_method_exceptions": [
-                                list(token)
-                                for token in applied_method_exceptions
-                            ],
-                            "automatic_relaxation": (
-                                bounded_method_fallback_used
-                            ),
-                        }
-                        # Protected incumbent barcha policy metadata bilan
-                        # birga olinadi. Post-processing qaytarilsa validator
-                        # va SQL bir xil strict-repeat kontraktini ko'radi.
-                        exact_safe_state = _samtm_copy.deepcopy(exact_state)
-                        exact_state["class_gap_count"] = (
-                            _v196_class_gap_count(exact_state)
-                        )
-                        exact_metrics = _v196_attempt_metrics(
-                            exact_state, exact_context
-                        )
-                        exact_state["v196_metrics"] = exact_metrics
-                        try:
-                            exact_penalty = float(
-                                exact_result.get("objective_value") or 0.0
-                            )
-                        except (TypeError, ValueError):
-                            exact_penalty = 0.0
-                        exact_gap_count = int(
-                            exact_metrics.get("oqituvchi_ichki_okno", 0)
-                        )
-                        exact_late_heavy = int(
-                            exact_metrics.get("asosiy_fan_5_6", 0)
-                        )
-                        # Exact-only route: keep the canonical complete state
-                        # directly. The old ``best`` portfolio below could
-                        # never run after exact success and retained hundreds
-                        # of misleading greedy/partial-result lines.
-                        state = exact_state
-                        unplaced = []
-                        penalty = exact_penalty
-                        gap_count = exact_gap_count
-                        late_heavy = exact_late_heavy
-                        completed_attempts = 1
-                        print(
-                            "[JADVAL-EXACT-V22.0] to'liq hard-safe natija "
-                            f"maktab_id={sorov.maktab_id} "
-                            f"status={exact_solver_status} "
-                            f"joylashdi={len(exact_state.get('placements') or [])}/"
-                            f"{len(jobs)} soniya={exact_solver_wall_time}",
-                            flush=True,
-                        )
-                        # V22.58: 100% topilgan natija endi 55% yozuvigina
-                        # emas — o'qituvchi optimizatori boshlanishidan oldin
-                        # haqiqatan bazaga yoziladi. To'xtatilsa shu # ochiladi.
-                        checkpoint_saved = _v2258_save_complete_checkpoint(
-                            maktab_id=sorov.maktab_id,
-                            user_id=user_id,
-                            run_id=reserved_run_id,
-                            revision=0,
-                            source_hash=source_hash,
-                            state=exact_state,
-                            jobs=jobs,
-                            context=exact_context,
-                            classes=classes,
-                            rooms=rooms,
-                            shifts=shifts,
-                            year=year,
-                            qidiruv_nonce=sorov.qidiruv_nonce,
-                            stage="hard_feasible_before_teacher_optimizer",
-                        )
-                        if not checkpoint_saved:
-                            raise RuntimeError(
-                                f"Jadval #{reserved_run_id} 100% topildi, ammo bazaga checkpoint yozilmadi"
-                            )
-
-                if not exact_solver_used:
-                    # FEASIBLE/OPTIMAL deb, ammo complete=False qaytishi kontrakt
-                    # xatosi; UNKNOWN deb ko'rsatib yubormaymiz.
-                    if exact_solver_status in {"FEASIBLE", "OPTIMAL"}:
-                        exact_solver_status = "MODEL_INVALID"
-                        exact_result["status"] = "MODEL_INVALID"
-                        exact_solver_diagnostics["contract_error"] = (
-                            "FEASIBLE/OPTIMAL natija complete=True emas"
-                        )
-                        exact_result["diagnostics"] = dict(
-                            exact_solver_diagnostics
-                        )
-                    recommendation_rows = []
-                    raw_recommendations = (
-                        exact_result.get(
-                            "metod_kuni_istisno_tavsiyalari"
-                        )
-                        if "metod_kuni_istisno_tavsiyalari" in exact_result
-                        else exact_result.get("recommendations")
-                    )
-                    # Exact modul har bir natijada tavsiya kalitini qaytaradi;
-                    # ikkinchi marta eski analyzer chaqirib qidiruv byudjetini
-                    # yashirincha uzaytirish endi yo'q.
-                    if exact_solver_status in {"UNKNOWN", "INFEASIBLE"}:
-                        recommendation_rows = (
-                            _v216_method_day_recommendations(
-                                raw_recommendations,
-                                exact_context,
-                                teachers,
-                            )
-                        )
-                    failure_detail = _v216_exact_failure_detail(
-                        exact_solver_status,
-                        exact_result,
-                        recommendation_rows,
-                        classes,
-                        teachers,
-                    )
-                    print(
-                        "[JADVAL-EXACT-V22.0] exact natija saqlanmadi "
-                        f"maktab_id={sorov.maktab_id} "
-                        f"status={failure_detail['solver_status']} "
-                        f"proof={failure_detail['proof_complete']} "
-                        f"metod_tavsiya={len(recommendation_rows)}",
-                        flush=True,
-                    )
-                    raise HTTPException(
-                        status_code=(
-                            500
-                            if failure_detail["solver_status"]
-                            == "MODEL_INVALID"
-                            else 409
-                        ),
-                        detail=failure_detail,
-                    )
-        else:
-            print(
-                "[JADVAL-EXACT-V22.0] OR-Tools mavjud emas; "
-                "jadval yaratish to'xtatildi"
-                + (
-                    f": {_V216_EXACT_IMPORT_ERROR}"
-                    if _V216_EXACT_IMPORT_ERROR else ""
-                ),
-                flush=True,
-            )
-            raise HTTPException(
-                status_code=503,
-                detail={
-                    "code": "EXACT_ENGINE_NOT_INSTALLED",
-                    "solver_status": "MODEL_INVALID",
-                    "proof_complete": False,
-                    "message": (
-                        "Yagona exact jadval generatori uchun OR-Tools "
-                        "o'rnatilmagan. Backend requirements.txt fayliga "
-                        "ortools>=9.15,<9.16 qatorini qo'shib qayta deploy "
-                        "qiling. Eski generator avtomatik ishlatilmadi."
-                    ),
-                    "joylashtirilgan_qisman_natija_saqlanmadi": True,
-                    "metod_kuni_istisno_tavsiyalari": [],
-                    "avtomatik_yumshatish": False,
-                },
-            )
-
-        # Exact solver muvaffaqiyatli qaytganda har bir job aynan bir marta
-        # joylashgani mustaqil tekshirilgan. Eski greedy portfolio, qoldiq DFS
-        # va yarim-draft yo'li bu nuqtaga hech qachon kira olmas edi; ular
-        # olib tashlandi. Finalizator faqat shu himoyalangan incumbentni
-        # hard-safe almashtirishlar bilan qulaylashtiradi.
-        if not exact_solver_used:
-            raise RuntimeError("Exact generator complete state yaratmadi")
-        state = exact_state
-        unplaced = []
-        penalty = exact_penalty
-        gap_count = exact_gap_count
-        late_heavy = exact_late_heavy
-        stopped_by_budget = False
-        final_repeat_days = 0
-        final_policy_stage = "strict"
-        final_mode_config = _timetable_mode_config()
-
-        # Yakuniy hard-safe kompaktlash alohida rezervdan foydalanadi.
-        context["v206_deadline"] = (
-            generation_started
-            if bounded_method_fallback_used
-            else generation_finalization_deadline
-        )
-        # V22.48: exact incumbentdagi har bir sinfning KUNLIK DARS SONI shu
-        # nuqtada qotadi. Keyingi teacher optimizer fanlarni o'ynatishi mumkin,
-        # lekin 2/3/4/5/6 soatni boshqa kunga ko'chira olmaydi.
-        final_context = dict(context)
-        final_context["v226_frozen_class_day_counts"] = dict(
-            _v226_frozen_class_day_signature(state)
-        )
-        final_context["v2244_cancel_requested"] = lambda: _v2244_cancel_requested(
-            sorov.maktab_id, sorov.qidiruv_nonce
-        )
-        def _v2258_new_run_improvement_callback(
-            swap_no, teacher_id, before_score, after_score, checkpoint_state=None
-        ):
-            nonlocal progress_revision
-            progress_revision += 1
-            if checkpoint_state is not None:
-                _v2258_save_complete_checkpoint(
-                    maktab_id=sorov.maktab_id, user_id=user_id,
-                    run_id=reserved_run_id, revision=progress_revision,
-                    source_hash=source_hash, state=checkpoint_state,
-                    jobs=jobs, context=final_context, classes=classes,
-                    rooms=rooms, shifts=shifts, year=year,
-                    qidiruv_nonce=sorov.qidiruv_nonce,
-                    stage=f"teacher_{teacher_id}_accepted",
-                )
-        final_context["v2253_improvement_callback"] = (
-            _v2258_new_run_improvement_callback
-        )
-        final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
-        if final_repeat_days or final_policy_stage != "strict":
-            final_context["v203_emergency_repeat_days"] = final_repeat_days
-            final_context["v207_policy_stage"] = final_policy_stage
-            final_context["v208_mode_config"] = dict(final_mode_config)
-        # Ko'p urinishdan tanlangan eng yaxshi jadvalni sinf kataklarini
-        # o'zgartirmasdan yana bir marta o'qituvchi nuqtai nazaridan siqamiz.
-        # Bir sinf-kun ichidagi ikki fanning o'rni xavfsiz almashtiriladi:
-        # sinfda okno paydo bo'lmaydi, lekin ustozning ichki oynasi va ikki
-        # smena orasidagi 4–5 soatlik kutishi qisqaradi.
-        final_rng = _v1852_random.Random(base_seed ^ 0x20_26_08_26)
-        # Yakuniy natijada sinf oknosi va 3/6 kabi notekis kun qolmasin.
-        # Bir marta siqish ayrim murakkab o'qituvchi almashuvlarida yetmaydi;
-        # siqish va kunlarni tenglashtirish navbat bilan bir necha marta ishlaydi.
-        for _ in range(2):
-            if _v206_deadline_reached(final_context):
-                break
-            state = _v196_compact_class_gaps(
-                state, final_context, final_rng, max_moves=96
-            )
-            state = _v196_balance_class_days(
-                state, final_context, final_rng, max_moves=72
-            )
-        # ``kunlik_max=2`` ikkinchi darsni majbur qilmaydi. Masalan ayni
-        # ustozning Algebra+Algebra kuni va boshqa kundagi Geometriya darsi
-        # hard-safe almashtirilsa, avval shu variant tanlanadi. Faqat boshqa
-        # legal taqsimot qolmasa bir fan bir kunda ikki marta saqlanadi.
-        if not _v206_deadline_reached(final_context):
-            state = _v219_reduce_avoidable_subject_repeats(
-                state, final_context, final_rng,
-                max_swaps=16, max_trials=120,
-            )
-        if not _v206_deadline_reached(final_context):
-            state = _v196_optimize_teacher_windows(
-                state, final_context, final_rng, max_swaps=240
-            )
-        if not _v206_deadline_reached(final_context):
-            state = _v196_compact_class_gaps(
-                state, final_context, final_rng, max_moves=48
-            )
-        if final_policy_stage != "strict":
-            state["v207_policy_stage"] = final_policy_stage
-            state.setdefault("ogohlantirishlar", []).append(
-                "Jadval to'liq sig'ishi uchun rejim: "
-                + _timetable_stage_label(final_policy_stage)
-            )
-        state = _v196_balance_class_days(
-            state, final_context, final_rng, max_moves=72
-        )
-        state = _v196_compact_class_gaps(
-            state, final_context, final_rng, max_moves=96
-        )
-        # Qulaylik optimizatorlari faqat exact yechimni yaxshilashi mumkin.
-        # Ularning biror ko'chirishi qat'iy exact qoidaga tegsa, butun
-        # post-processing bekor qilinadi va oldindan validatsiyadan o'tgan
-        # to'liq incumbent saqlanadi. Shu sabab qizil/BAND, metod, real-vaqt
-        # kolliziyasi yoki limit qulaylik uchun hech qachon qurbon qilinmaydi.
-        if (
-            exact_solver_used
-            and exact_safe_state is not None
-            and callable(_v218_validate_placements)
-        ):
-            postprocess_errors = _v218_validate_placements(
-                jobs,
-                state.get("placements") or [],
-                exact_context,
-                allow_method_exceptions=bounded_method_fallback_used,
-            )
-            if postprocess_errors:
-                state = _samtm_copy.deepcopy(exact_safe_state)
-                state.setdefault("ogohlantirishlar", []).append(
-                    "Qulaylik almashtirishining qat'iy tekshiruvi o'tmadi; "
-                    "validator tasdiqlagan dastlabki to'liq jadval saqlandi."
-                )
-                state["v218_postprocess_reverted"] = True
-                state["v218_postprocess_errors"] = postprocess_errors[:20]
-        repeated_subject_days = sum(
-            1 for count in state.get("subject_daily", {}).values()
-            if int(count or 0) >= 2
-        )
-        if repeated_subject_days:
-            state.setdefault("ogohlantirishlar", []).append(
-                "Kunlik max=2+ ruxsati faqat zarur joylarda ishlatildi: "
-                f"{repeated_subject_days} ta fan-kun takrorlangan. Oddiy fan "
-                "haftasiga ko'pi bilan 2 kun, amaliy fan 1 kun; Algebra/"
-                "Geometriya va boshqa hard-safe almashuvlar avval sinab "
-                "ko'rildi."
-            )
-        if bounded_method_fallback_used:
-            exception_labels = []
-            for teacher_id, day, shift, period in applied_method_exceptions:
-                teacher_name = str(
-                    (teachers.get(int(teacher_id)) or {}).get("full_name")
-                    or teacher_id
-                )
-                exception_labels.append(
-                    f"{teacher_name}: {_V1852_HAFTA.get(int(day), day)} "
-                    f"{int(shift)}-smena {int(period)}-dars"
-                )
-            state.setdefault("ogohlantirishlar", []).append(
-                "Strict model yechimsiz bo'lgani isbotlandi; qizil/BANDni "
-                "ochmasdan boshlang'ich sinf uchun tasdiqlangan metod-kuni "
-                "istisnosi qo'llandi: " + "; ".join(exception_labels)
-            )
-        state["class_gap_count"] = _v196_class_gap_count(state)
-        final_metrics = _v196_attempt_metrics(state, final_context)
-        state["v196_metrics"] = final_metrics
-        comfort_keys = (
-            "oqituvchi_ichki_okno", "oqituvchi_uzoq_kutish_daqiqa",
-            "oqituvchi_faol_kun", "sinf_kun_nomutanosibligi",
-        )
-        before_comfort = tuple(float(exact_metrics.get(key) or 0) for key in comfort_keys)
-        after_comfort = tuple(float(final_metrics.get(key) or 0) for key in comfort_keys)
-        if after_comfort != before_comfort and all(
-            after <= before for after, before in zip(after_comfort, before_comfort)
-        ):
-            progress_revision += 1
-            _v2243_progress_write(
-                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                progress_revision, 88, "ustozlar_yaxshilandi",
-                f"Jadval #{reserved_run_id}.{progress_revision}: o‘qituvchi oynalari, uzoq kutish va kam-soatli ustozlarning kunlari yaxshilandi.",
-            )
-        else:
-            _v2243_progress_write(
-                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                progress_revision, 88, "tekshirildi",
-                f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: o‘qituvchi qulayligi tekshirildi; yomonlashtiradigan o‘zgarish qabul qilinmadi.",
-            )
-        gap_count = int(final_metrics.get("oqituvchi_ichki_okno", 0))
-        placed_count = len(state["placements"])
-        total_count = len(jobs)
-        placement_ratio = (placed_count / total_count) if total_count else 1.0
-        class_gap_count = int(state.get("class_gap_count", 0))
-        final_class_imbalance = int(
-            final_metrics.get("sinf_kun_taqsimoti_farqi", 0)
-        )
-        if class_gap_count > 0:
-            raise HTTPException(
-                status_code=409,
-                detail=_v209_class_gap_failure_detail(state, classes),
-            )
-        if final_class_imbalance > 0:
-            raise HTTPException(
-                status_code=409,
-                detail=(
-                    "To'liq jadval topildi, ammo sinf darslari kunlarga teng "
-                    f"taqsimlanmadi (farq balli: {final_class_imbalance}). "
-                    "1–2 soatli kun va 5–6 soatli kun birga saqlanmaydi; "
-                    "generator yaxshiroq teng variant topishi kerak."
-                ),
-            )
-        # Jadval to'liq va sinf oynasisiz bo'lgandan keyingina aniq qulaylik
-        # tahlili qilinadi. Bu hisobot joriy state/contextni mutatsiya qilmaydi,
-        # tavsiya qilingan qizil/metod istisnosini esa avtomatik qo'llamaydi.
-        # Hisobotdagi nosozlik valid jadvalni yo'qotmasligi shart.
-        report_context = dict(final_context)
-        report_context["hard"] = set(final_context.get("hard", set()))
-        report_context["soft"] = set(final_context.get("soft", set()))
-        report_context["method_hard"] = set(
-            final_context.get("method_hard", set())
-        )
-        report_context["method_soft"] = set(
-            final_context.get("method_soft", set())
-        )
-        report_context["v214_analysis_deadline"] = generation_report_deadline
-        report_context["v214_avval_qayta_yaratish"] = bool(
-            stopped_by_budget
-        )
-        try:
-            teacher_window_report = _v214_teacher_window_relaxation_report(
-                state, report_context, teachers,
-                max_suggestions=8, max_probes=48,
-            )
-            teacher_window_report["manba_hash"] = source_hash
-        except Exception as report_error:
-            teacher_window_report = {
-                "jami_okno_oldin": int(gap_count),
-                "jami_okno_daqiqa_oldin": int(
-                    final_metrics.get("oqituvchi_birlashgan_okno_daqiqa", 0)
-                ),
-                "oknoli_oqituvchi_soni": 0,
-                "oknoli_oqituvchilar": [],
-                "tavsiyalar": [],
-                "tekshirilgan_variantlar": 0,
-                "cheklangan": True,
-                "hisobot_toliq": False,
-                "avtomatik_qollanmadi": True,
-                "avval_qayta_yaratish": True,
-                "manba_hash": source_hash,
-                "izoh": (
-                    "Jadval yaratildi, lekin oyna tavsiyalarining qo'shimcha "
-                    "tahlili tugamadi. Qizil vaqtni hozircha o'zgartirmang; "
-                    "yagona generatorni yana ishga tushiring."
-                ),
-            }
-            print(
-                "[JADVAL-ONE-V3.0] oyna hisoboti xatosi "
-                f"maktab_id={sorov.maktab_id}: {report_error}",
-                flush=True,
-            )
-        # Ikki smena oralig'i va o'qituvchi oynasi QULAYLIK mezoni. Ular
-        # sinf/o'qituvchi real vaqt kolliziyasi kabi xavfsizlik buzilishi emas.
-        # Eski kod to'liq va to'qnashuvsiz jadvalni shu yumshoq ko'rsatkichlar
-        # sabab 409 bilan bekor qilardi. Endi draft saqlanadi, aniq holatlar
-        # ogohlantirish sifatida ko'rsatiladi va keyin qo'lda/yangi seed bilan
-        # yaxshilanishi mumkin.
-        cross_shift_policy_rows = list(
-            final_metrics.get("ikki_smenali_oraliq_muammolari") or []
-        )
-        if cross_shift_policy_rows:
-            policy_problems = []
-            for item in cross_shift_policy_rows:
-                teacher_id = int(item.get("oqituvchi_id") or 0)
-                teacher_name = str(
-                    (teachers.get(teacher_id) or {}).get("full_name")
-                    or teacher_id
-                )
-                exception_days = list(
-                    item.get("120_daqiqadan_uzoq_kunlar") or []
-                )
-                over_four_days = list(
-                    item.get("240_daqiqadan_uzoq_kunlar") or []
-                )
-                if len(exception_days) > 1:
-                    day_text = ", ".join(
-                        f"{_V1852_HAFTA.get(int(row.get('kun') or 0), row.get('kun'))} "
-                        f"{int(row.get('daqiqalar') or 0)} daqiqa"
-                        for row in exception_days
-                    )
-                    policy_problems.append(
-                        f"{teacher_name}: 2 soatdan uzun istisno haftada "
-                        f"{len(exception_days)} kun ({day_text}); maksimum 1 kun"
-                    )
-                for row in over_four_days:
-                    policy_problems.append(
-                        f"{teacher_name}: "
-                        f"{_V1852_HAFTA.get(int(row.get('kun') or 0), row.get('kun'))} "
-                        f"kuni smenalar oralig'i {int(row.get('daqiqalar') or 0)} "
-                        "daqiqa; maksimum 240 daqiqa"
-                    )
-            policy_summary = "; ".join(policy_problems) or (
-                "ikki smenali o'qituvchining ruxsat etilgan oralig'i buzildi"
-            )
-            state.setdefault("ogohlantirishlar", []).append(
-                "Qulaylik · ikki smena oralig'i: " + policy_summary
-            )
-        teacher_gap_overflow = list(
-            final_metrics.get("oqituvchi_ichki_okno_ortiqcha_kunlar") or []
-        )
-        if teacher_gap_overflow:
-            teacher_names = sorted({
-                str(
-                    (teachers.get(int(item.get("oqituvchi_id") or 0)) or {}).get("full_name")
-                    or item.get("oqituvchi_id")
-                    or "O'qituvchi"
-                )
-                for item in teacher_gap_overflow
-            })
-            state.setdefault("ogohlantirishlar", []).append(
-                "Qulaylik · ichki oyna belgilangan maqsaddan oshgan: "
-                + ", ".join(teacher_names[:12])
-            )
-        quality = max(0, min(100, round(
-            placement_ratio * 88
-            + max(0, 12 - class_gap_count * 4 - gap_count * 0.25 - late_heavy * 0.2)
-        )))
-        # Exact kontrakt bu nuqtaga faqat barcha job joylashganda yetadi.
-        # Eski greedy yo'lning ``unplaced`` diagnostika sikli shu sabab o'lik
-        # kod edi va har bir muvaffaqiyatli javobda bekorga murakkab ko'rinardi.
-        unplaced_payload = []
-        teacher_summary = []
-        for tid, teacher in teachers.items():
-            actual = round(float(state["teacher_week"].get(tid, 0)), 1)
-            base = float(teacher["haftalik_dars_soati"]) if teacher.get("haftalik_dars_soati") is not None else None
-            extra = int(class_hour_counts.get(int(tid), 0))
-            cap = caps.get(tid)
-            missing_details = []
-            teacher_summary.append({
-                "user_id": tid, "full_name": teacher["full_name"], "jadval_soati": actual,
-                "asosiy_yuklama": base, "sinf_soati_soni": extra, "yuklama": cap,
-                "farq": None if cap is None else cap - actual,
-                "yetishmagan_darslar": missing_details,
-                "yetishmagan_soat": round(sum(float(row.get("soat") or 0) for row in missing_details), 1),
-            })
-        warnings = list(initial_warnings)
-        for message in state.get("ogohlantirishlar", []):
-            if message not in warnings:
-                warnings.append(message)
-        for rule in class_day_rule_rows[:50]:
-            warnings.append(f"Qattiq qoida: {rule.get('yorliq')}")
-        for job in jobs:
-            if job["groups"] and any(g.get("xona_id") is None for g in job["groups"][1:]):
-                cls = classes[job["sinf_id"]]
-                message = f"{cls['sinf']}-{cls['harf']} {job['fan']}: bo'linishga xona topilmadi"
-                if message not in warnings:
-                    warnings.append(message)
-        diagnostics = {
-            "muammolar": unplaced_payload[:100], "ogohlantirishlar": warnings[:100],
-            "jadval_qoidalari": [
-                {"raqam": index, "qoida": text}
-                for index, text in enumerate(_V205_SCHEDULE_RULES, 1)
-            ],
-            "oqituvchi_yuklamasi": teacher_summary,
-            "sinf_oknolari": class_gap_count,
-            "oqituvchi_oknolari": gap_count,
-            "oknolar": gap_count,
-            "kech_tushgan_ogir_darslar": late_heavy, "yumshoq_jazo": round(penalty, 2),
-            "qulaylik_strategiyasi": state.get("v196_metrics", {}),
-            "avtomatik_qayta_joylashtirish": {},
-            "oqituvchi_okno_hisoboti": teacher_window_report,
-            "generator_moduli": SAMTM_TIMETABLE_ENGINE_RELEASE,
-            "solver_engine": "OR_TOOLS_CP_SAT",
-            "exact_solver_status": exact_solver_status,
-            "exact_solver_wall_time_seconds": exact_solver_wall_time,
-            "exact_solver_diagnostika": exact_solver_diagnostics,
-            "qat_iy_qoidalar": {
-                "qizil_band": True,
-                "metod_kuni": not bounded_method_fallback_used,
-                "metod_kuni_boshlangich_max_2_istisno": (
-                    bounded_method_fallback_used
-                ),
-                "metod_kuni_istisnolari_qollanildi": [
-                    {
-                        "oqituvchi_id": teacher_id,
-                        "kun": day,
-                        "smena": shift,
-                        "dars": period,
-                    }
-                    for teacher_id, day, shift, period
-                    in applied_method_exceptions
-                ],
-                "fixed_kelajak_soati_metod_istisnosi": True,
-                "fixed_kelajak_soati_qizil_istisnosi": False,
-                "avtomatik_yumshatish": bounded_method_fallback_used,
-            },
-            "generator_rejimi": 1,
-            "generator_nomi": "Yagona kuchli generator",
-            "ichki_bosqich": str(state.get("v207_policy_stage") or "strict"),
-            "yumshatish_rejimi": str(state.get("v207_policy_stage") or "strict"),
-            "urinishlar_soni": completed_attempts,
-            "urinishlar_rejasi": requested_attempts,
-            "hisoblash_soniya": round(_samtm_time.monotonic() - generation_started, 2),
-            "vaqt_chegarasi_soniya": generation_budget,
-            "vaqt_chegarasida_toxtadi": stopped_by_budget,
-            "manba_mosligi": preflight,
-            "tasdiqlash_mumkin": False,
-        }
-        print(
-            "[JADVAL-ONE-V3.0] hisoblash tugadi "
-            f"maktab_id={sorov.maktab_id} urinish={completed_attempts} "
-            f"joylashdi={placed_count}/{total_count} "
-            f"soniya={diagnostics['hisoblash_soniya']} "
-            f"vaqt_chegarasi={stopped_by_budget}",
-            flush=True,
-        )
-
-        # Uzoq hisoblashdan keyin yangi, sog'lom ulanish bilan yozamiz. Shu
-        # orada yuklama yoki vaqt qoidasi o'zgargan bo'lsa eskirgan natijani
-        # saqlamaymiz — foydalanuvchi yangi manba bilan qayta yaratadi.
-        conn = _db()
-        cur = conn.cursor()
         cur.execute(
             "SELECT pg_try_advisory_xact_lock(%s) AS locked",
             (1900000000 + int(sorov.maktab_id),),
@@ -5582,359 +4234,303 @@ def v1852_generate(sorov: V1852Generate, token: str):
         if not bool((cur.fetchone() or {}).get("locked")):
             raise HTTPException(
                 status_code=409,
-                detail="Bu maktab uchun boshqa jadval yozilmoqda. Bir necha soniyadan keyin qayta urinib ko'ring.",
+                detail="Bu maktab uchun jadval boshqa oynada yaratilmoqda",
             )
-        current_source_hash = _v1875_source_fingerprint(cur, sorov.maktab_id)
-        if current_source_hash != source_hash:
-            raise HTTPException(
-                status_code=409,
-                detail="Jadval hisoblanayotgan paytda yuklama yoki vaqt sozlamasi o'zgardi. Yangi ma'lumot bilan yana yarating.",
-            )
-        _v2243_progress_write(
-            sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-            progress_revision, 96, "saqlash",
-            f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: yakuniy validator tekshiryapti va bazaga saqlayapti.",
-        )
-        cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
-            id,maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar)
-            VALUES(%s,%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb)
-            ON CONFLICT(id) DO UPDATE SET
-                holat='draft',yaratgan_user_id=EXCLUDED.yaratgan_user_id,
-                sifat=EXCLUDED.sifat,joylashtirildi=EXCLUDED.joylashtirildi,
-                joylashtirilmadi=EXCLUDED.joylashtirilmadi,
-                diagnostika=EXCLUDED.diagnostika,sozlamalar=EXCLUDED.sozlamalar
-            RETURNING id""",
-            (reserved_run_id, sorov.maktab_id, user_id, quality, placed_count, len(unplaced),
-             json.dumps(diagnostics, ensure_ascii=False, default=str),
-             json.dumps({"hafta_kunlari": context["weekdays"], "oquv_yili_id": year["id"],
-                         "manba_hash": source_hash,
-                         "metod_kuni_istisnolari": [
-                             {
-                                 "oqituvchi_id": teacher_id,
-                                 "kun": day,
-                                 "smena": shift,
-                                 "dars": period,
-                             }
-                             for teacher_id, day, shift, period
-                             in applied_method_exceptions
-                         ],
-                         "sinf_kun_bloklari": [{"id": r.get("id"), "yorliq": r.get("yorliq")} for r in class_day_rule_rows],
-                         "sinf_soatlari": [{"id": r.get("id"), "sinf_id": r.get("sinf_id"),
-                                            "hafta_kuni": r.get("hafta_kuni"), "dars_raqami": r.get("dars_raqami")}
-                                           for r in class_hour_rules]},
-                        ensure_ascii=False)))
-        run_id = cur.fetchone()["id"]
-        # Oldingi 55% checkpoint slotlari bilan yakuniy slotlar to'qnashmasin.
-        cur.execute(
-            "DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s",
-            (int(run_id),),
-        )
-        shift_slot_map = {(s, int(slot["dars_raqami"])): slot for s, row in shifts.items() for slot in row["slotlar"]}
-        entry_rows = []
-        for placement in state["placements"]:
-            job, day, period, selected_teachers = placement["job"], placement["day"], placement["period"], placement["teachers"]
-            time_slot = shift_slot_map[(job["smena"], period)]
-            if job.get("rotation_members"):
-                class_row = classes[job["sinf_id"]]
-                home_room_id = class_row.get("_home_room_id")
-                home_room_text = class_row.get("_home_room_text")
-                for member in job["rotation_members"]:
-                    phase = member.get("hafta_turi") or "toq"
-                    member_teachers = _v199_rotation_member_teachers(member)
-                    if member.get("groups"):
-                        for group_index, (group, teacher) in enumerate(zip(member["groups"], member_teachers)):
-                            room_id = group.get("xona_id")
-                            if room_id:
-                                room_text = rooms.get(int(room_id), {}).get("nomi")
-                            elif group_index == 0:
-                                room_id = home_room_id
-                                room_text = home_room_text
-                            else:
-                                room_text = None
-                            entry_rows.append((
-                                run_id, sorov.maktab_id, member["sinf_id"], day, member["smena"], period,
-                                member["fan"], teacher, group["guruh_kaliti"], room_id, room_text,
-                                time_slot["boshlanish"], time_slot["tugash"], member["load_id"],
-                                member["occurrence"], phase,
-                            ))
-                    else:
-                        teacher = member_teachers[0] if member_teachers else None
-                        room_id = member.get("room_id")
-                        if room_id:
-                            room_text = rooms.get(int(room_id), {}).get("nomi")
-                        else:
-                            room_id = home_room_id
-                            room_text = home_room_text
-                        entry_rows.append((
-                            run_id, sorov.maktab_id, member["sinf_id"], day, member["smena"], period,
-                            member["fan"], teacher, "whole", room_id, room_text,
-                            time_slot["boshlanish"], time_slot["tugash"], member["load_id"],
-                            member["occurrence"], phase,
-                        ))
-            elif job["groups"]:
-                class_row = classes[job["sinf_id"]]
-                home_room_id = class_row.get("_home_room_id")
-                home_room_text = class_row.get("_home_room_text")
-                for group_index, (group, teacher) in enumerate(zip(job["groups"], selected_teachers)):
-                    room_id = group.get("xona_id")
-                    if room_id:
-                        room_text = rooms.get(int(room_id), {}).get("nomi")
-                    elif group_index == 0:
-                        room_id = home_room_id
-                        room_text = home_room_text
-                    else:
-                        room_text = None
-                    entry_rows.append((run_id, sorov.maktab_id, job["sinf_id"], day, job["smena"], period,
-                                       job["fan"], teacher, group["guruh_kaliti"], room_id, room_text,
-                                       time_slot["boshlanish"], time_slot["tugash"], job["load_id"], job["occurrence"], "har_hafta"))
-            else:
-                teacher = selected_teachers[0] if selected_teachers else None
-                room_id = job.get("room_id")
-                class_row = classes[job["sinf_id"]]
-                if room_id:
-                    room_text = rooms.get(int(room_id), {}).get("nomi")
-                else:
-                    room_id = class_row.get("_home_room_id")
-                    room_text = class_row.get("_home_room_text")
-                entry_rows.append((run_id, sorov.maktab_id, job["sinf_id"], day, job["smena"], period,
-                                   job["fan"], teacher, "whole", room_id, room_text,
-                                   time_slot["boshlanish"], time_slot["tugash"], job["load_id"], job["occurrence"], "har_hafta"))
-        if entry_rows:
-            psycopg2.extras.execute_values(cur, """INSERT INTO aqlli_jadval_slotlari_v2(
-                urinish_id,maktab_id,sinf_id,hafta_kuni,smena,dars_raqami,fan_nomi,
-                oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,boshlanish_vaqti,
-                tugash_vaqti,yuklama_id,takror_raqami,hafta_turi) VALUES %s""", entry_rows, page_size=1000)
 
-        jadval_mosligi = _v1875_schedule_integrity_report(
-            cur, sorov.maktab_id, run_id
+        _v199_ensure_class_hour_rules(cur, sorov.maktab_id, actor_id=user_id)
+        if "_v1876_group_review_report" in globals():
+            group_review = _v1876_group_review_report(cur, sorov.maktab_id)
+            if not group_review.get("tayyor"):
+                raise HTTPException(
+                    status_code=409,
+                    detail="Avval guruh o‘qituvchilarini tasdiqlang: "
+                    + "; ".join(group_review.get("xatolar", [])[:10]),
+                )
+
+        sync = _v1875_rebuild_schedule_sources(
+            cur, sorov.maktab_id, cancel_drafts=False,
+            reason="jadval_yaratish_v23",
         )
-        # Yakuniy integritet hisoboti xato deb belgilagan HAR QANDAY holat
-        # draftni butunlay rollback qiladi. Xatoni matn bo'yicha whitelist
-        # qilish yangi tekshiruv qo'shilganda nomaqbul draftning sirg'alib
-        # bazada qolishiga olib kelar edi.
-        integrity_errors = [
-            str(error) for error in jadval_mosligi.get("xatolar", [])
-        ]
-        if integrity_errors:
+        if sync.get("xatolar"):
             raise HTTPException(
                 status_code=409,
-                detail=_v209_integrity_failure_detail(integrity_errors),
+                detail="Jadval manbasi mos emas: "
+                + "; ".join(sync["xatolar"][:12]),
             )
-        tasdiqlash_mumkin = bool(
-            int(len(unplaced)) == 0 and jadval_mosligi.get("tayyor")
-        )
-        if exact_solver_used and not tasdiqlash_mumkin:
-            # Exact yo'lning yagona muvaffaqiyat holati — barcha job joylashgan
-            # va SQL manbaga nisbatan yakuniy integritet ham 100% mos. Hatto
-            # xatolar ro'yxati bo'sh, ammo ``tayyor`` false bo'lgan noodatiy
-            # holatda ham INSERTlar shu tranzaksiya bilan to'liq rollback.
+        preflight = _v1875_preflight_report(cur, sorov.maktab_id)
+        if not preflight.get("tayyor"):
             raise HTTPException(
                 status_code=409,
-                detail={
-                    "code": "EXACT_FINAL_VALIDATION_FAILED",
-                    "solver_status": "MODEL_INVALID",
-                    "proof_complete": False,
-                    "message": (
-                        "Exact jadval CP-SATda to'liq topildi, ammo yakuniy "
-                        "SQL integritet tekshiruvi uni 100% tasdiqlamadi. "
-                        "Draft to'liq rollback qilindi."
-                    ),
-                    "joylashtirilgan_qisman_natija_saqlanmadi": True,
-                    "metod_kuni_istisno_tavsiyalari": [],
-                    "avtomatik_yumshatish": False,
-                    "diagnostika": jadval_mosligi,
-                },
+                detail="Jadval tekshiruvdan o‘tmadi: "
+                + "; ".join(preflight.get("xatolar", [])[:12]),
             )
-        diagnostics["jadval_mosligi"] = jadval_mosligi
-        diagnostics["tasdiqlash_mumkin"] = tasdiqlash_mumkin
-        diagnostics["solver_status"] = (
-            (
-                f"{exact_solver_status}_VALIDATED"
-                if exact_solver_used and exact_solver_status
-                else "FEASIBLE_VALIDATED"
-            )
-            if tasdiqlash_mumkin else "INVALID"
+        source_hash = str(preflight.get("manba_hash") or "")
+
+        (
+            year, shifts, classes, loads, assignments, group_settings,
+            rules_rows, availability_rows, teachers, rooms,
+        ) = _v1852_prepare_generation(cur, sorov.maktab_id)
+        jobs, warnings = _v1852_build_jobs(
+            classes, loads, assignments, group_settings, teachers
         )
-        diagnostic_teachers = {
-            int(row["user_id"]): row
-            for row in teacher_summary if row.get("user_id") is not None
+        class_hour_rules = _v1866_class_hour_rule_rows(cur, sorov.maktab_id)
+        class_hour_jobs, class_hour_warnings = _v1866_build_class_hour_jobs(
+            classes, class_hour_rules
+        )
+        jobs = class_hour_jobs + jobs
+        warnings.extend(class_hour_warnings)
+        rules = _v1852_teacher_rules_map(rules_rows)
+        hard, soft, method_hard, method_soft = _v1852_availability_maps(
+            availability_rows
+        )
+        class_day_blocks = _v1856_class_day_rule_map(
+            _v1856_class_day_rule_rows(cur, sorov.maktab_id)
+        )
+        class_hour_counts = _v1852_Counter(
+            int(job["teacher_options"][0])
+            for job in class_hour_jobs if job.get("teacher_options")
+        )
+        caps = {}
+        for teacher_id, teacher in teachers.items():
+            base = teacher.get("haftalik_dars_soati")
+            caps[teacher_id] = (
+                float(base) + int(class_hour_counts.get(int(teacher_id), 0))
+                if base is not None else None
+            )
+        context = {
+            "weekdays": int(year["hafta_kunlari"]),
+            "shifts": shifts,
+            "classes": classes,
+            "teachers": teachers,
+            "rules": rules,
+            "default_rules": {
+                "kunlik_max": 6, "ketma_ket_max": 4, "okno_max": 1,
+                "afzal_smena": 0, "eng_erta_dars": 1, "eng_kech_dars": 12,
+            },
+            "hard": hard,
+            "soft": soft,
+            "method_hard": method_hard,
+            "method_soft": method_soft,
+            "teacher_caps": caps,
+            "class_day_blocks": class_day_blocks,
+            "availability_rows": [dict(row) for row in availability_rows],
+            "max_subject_repeat_days": 2,
+            "practical_repeat_day_limit": 1,
+            "core_period6_day_limit": 2,
+            "practical_min_period": 2,
+            "allow_fixed_class_hour_method_exception": True,
+            "v207_policy_stage": "strict",
+            "v203_emergency_repeat_days": 0,
+            "v207_requested_mode": 1,
+            "v208_mode_config": dict(_timetable_mode_config()),
         }
-        for teacher_row in jadval_mosligi.get("oqituvchilar", []):
-            teacher_id = int(teacher_row.get("user_id") or 0)
-            source = diagnostic_teachers.get(teacher_id, {})
-            missing = max(
-                0.0,
-                float(teacher_row.get("reja") or 0) - float(teacher_row.get("jadval") or 0),
-            )
-            details = list(source.get("yetishmagan_darslar") or [])
-            explained = round(sum(float(row.get("soat") or 0) for row in details), 1)
-            if missing > explained + 0.01:
-                details.append({
-                    "sinf": "Fan–o'qituvchi birikmasi",
-                    "fan": "Hisob tafovuti",
-                    "soat": round(missing - explained, 1),
-                    "sabab": "reja va aniq dars satrlari teng emas",
-                    "sabab_izohi": (
-                        "O'qituvchining haftalik rejasidagi soat bilan unga biriktirilgan "
-                        "aniq fan–sinf–guruh satrlari yig'indisi teng emas."
-                    ),
-                    "yechim": (
-                        "O'qituvchi yuklamasini ochib fan–sinf–guruh qatorlari yig'indisini "
-                        "haftalik reja bilan tenglashtiring."
-                    ),
-                })
-            teacher_row["yetishmagan_soat"] = round(missing, 1)
-            teacher_row["yetishmagan_darslar"] = details
-            if missing > 0:
-                teacher_row["sabab_xulosasi"] = (
-                    f"Reja {float(teacher_row.get('reja') or 0):g} soat, jadvalga "
-                    f"{float(teacher_row.get('jadval') or 0):g} soat kirdi. "
-                    f"{missing:g} soat joylashmagan; quyida har bir fan va sabab ko'rsatilgan."
+        jobs, fractional_warnings = _v220_repair_fractional_pairs(jobs, context)
+        warnings.extend(fractional_warnings)
+        context["v196_teacher_demand"] = _v196_teacher_demand(jobs)
+        context["v196_teacher_shift_demand"] = _v196_teacher_shift_demand(jobs)
+        context["v196_class_distribution"] = _v196_class_distribution(jobs, context)
+
+        # Shu manbadagi 100% draft bo'lsa yangi raqam ochilmaydi: #60 -> #60.1.
+        cur.execute(
+            """SELECT id FROM aqlli_jadval_urinishlari_v2
+               WHERE maktab_id=%s AND holat='draft' AND joylashtirilmadi=0
+                 AND COALESCE(sozlamalar->>'manba_hash','')=%s
+               ORDER BY id DESC LIMIT 1""",
+            (sorov.maktab_id, source_hash),
+        )
+        reusable = cur.fetchone()
+        initial_state = None
+        starting_revision = 0
+        if reusable:
+            run_id = int(reusable["id"])
+            placements = _v2253_saved_run_placements(cur, run_id, jobs, context)
+            if placements:
+                initial_state = _v1852_rebuild_schedule_state(placements, context)
+                cur.execute(
+                    """SELECT COALESCE(MAX(revision),0) AS revision
+                       FROM aqlli_jadval_revisionlari_v2258
+                       WHERE urinish_id=%s""",
+                    (run_id,),
                 )
-            else:
-                teacher_row["sabab_xulosasi"] = "O'qituvchining barcha reja soati jadvalga to'liq kirgan."
-        if not tasdiqlash_mumkin:
-            quality = min(int(quality), 69)
+                starting_revision = int(
+                    (cur.fetchone() or {}).get("revision") or 0
+                )
+        if initial_state is None:
+            cur.execute(
+                "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
+            )
+            run_id = int(cur.fetchone()["id"])
+
         cur.execute(
-            """UPDATE aqlli_jadval_urinishlari_v2
-               SET sifat=%s,diagnostika=%s::jsonb
-               WHERE id=%s""",
-            (quality, json.dumps(diagnostics, ensure_ascii=False, default=str), run_id),
-        )
-        final_slot_keys = (
-            "urinish_id", "maktab_id", "sinf_id", "hafta_kuni", "smena",
-            "dars_raqami", "fan_nomi", "oqituvchi_user_id", "guruh_kaliti",
-            "xona_id", "xona_matni", "boshlanish_vaqti", "tugash_vaqti",
-            "yuklama_id", "takror_raqami", "hafta_turi",
-        )
-        cur.execute(
-            """INSERT INTO aqlli_jadval_revisionlari_v2258(
-                   maktab_id,urinish_id,revision,sifat,bosqich,metrics,slotlar)
-               VALUES(%s,%s,%s,%s,'yakuniy_eng_yaxshi',%s::jsonb,%s::jsonb)
-               ON CONFLICT(urinish_id,revision) DO UPDATE SET
-                   yaratilgan_at=NOW(),sifat=EXCLUDED.sifat,
-                   bosqich=EXCLUDED.bosqich,metrics=EXCLUDED.metrics,
-                   slotlar=EXCLUDED.slotlar""",
+            """INSERT INTO aqlli_jadval_jarayoni_v2243(
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,
+                   bosqich,xabar,toxtatish_soraldi,yangilangan_at)
+               VALUES(%s,%s,%s,0,8,'tayyorlash',%s,FALSE,NOW())
+               ON CONFLICT(maktab_id) DO UPDATE SET
+                   qidiruv_nonce=EXCLUDED.qidiruv_nonce,
+                   jadval_raqami=EXCLUDED.jadval_raqami,yaxshilanish=0,
+                   foiz=8,bosqich='tayyorlash',xabar=EXCLUDED.xabar,
+                   toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
             (
-                sorov.maktab_id, run_id, int(progress_revision), quality,
-                json.dumps(final_metrics, ensure_ascii=False, default=str),
-                json.dumps(
-                    [dict(zip(final_slot_keys, row)) for row in entry_rows],
-                    ensure_ascii=False, default=str,
-                ),
+                sorov.maktab_id, sorov.qidiruv_nonce, run_id,
+                f"Jadval #{run_id}: {len(jobs)} ta dars tayyorlandi.",
             ),
         )
-
-        # Har bir maktab uchun faqat oxirgi to'rtta to'liq natija saqlanadi.
-        # Slotlar ON DELETE CASCADE bilan birga tozalanadi; joriy run doimo
-        # eng yangi bo'lgani uchun ushbu tranzaksiyada o'chib ketmaydi.
-        cur.execute(
-            """DELETE FROM aqlli_jadval_urinishlari_v2
-               WHERE maktab_id=%s
-                 AND id NOT IN (
-                     SELECT id FROM aqlli_jadval_urinishlari_v2
-                     WHERE maktab_id=%s ORDER BY id DESC LIMIT 4
-                 )""",
-            (sorov.maktab_id, sorov.maktab_id),
-        )
-
         conn.commit()
-        cancelled = bool(final_context.get("v2244_cancelled")) or _v2244_cancel_requested(
-            sorov.maktab_id, sorov.qidiruv_nonce
-        )
+    finally:
+        cur.close()
+        conn.close()
+
+    try:
+        seed = int(source_hash[:16], 16)
+    except (TypeError, ValueError):
+        seed = int(sorov.maktab_id) * 1_000_003 + len(jobs)
+    if sorov.qidiruv_nonce is not None:
+        seed ^= int(sorov.qidiruv_nonce) & ((1 << 63) - 1)
+
+    def write_progress(progress: _V230Progress):
         _v2243_progress_write(
-            sorov.maktab_id, sorov.qidiruv_nonce, run_id,
-            progress_revision, 100,
-            "toxtatildi" if cancelled else "tayyor",
-            (
-                f"To‘xtatildi. Shu paytgacha topilgan eng yaxshi Jadval #{run_id}"
-                f"{'.' + str(progress_revision) if progress_revision else ''} saqlandi va ochish mumkin."
-                if cancelled else
-                f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: {placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi."
+            sorov.maktab_id, sorov.qidiruv_nonce, progress.run_id,
+            progress.revision, progress.percent, progress.stage.value,
+            progress.message,
+        )
+
+    def solve(*, jobs, context, seed, max_seconds, quality_seconds,
+              cancel_requested):
+        if not (_V216_ORTOOLS_AVAILABLE and callable(_v216_solve_exact)):
+            return {
+                "complete": False,
+                "status": "MODEL_INVALID",
+                "message": "OR-Tools o‘rnatilmagan",
+            }
+        exact_context = dict(context)
+        exact_context.update({
+            "exact_feasibility_only": True,
+            "exact_stop_after_first_solution": True,
+            "exact_quality_after_feasible": True,
+            "exact_quality_seconds": min(2.5, float(quality_seconds)),
+            "exact_analyze_method_relaxation": True,
+            "exact_analyze_method_on_unknown": False,
+            "exact_apply_bounded_method_fallback": True,
+            "exact_relaxation_seconds": min(10.0, float(max_seconds)),
+            "method_exception_primary_only": True,
+            "exact_num_workers": max(1, min(4, int(os.getenv("SAMTM_EXACT_NUM_WORKERS", "4")))),
+            "exact_cancel_requested": cancel_requested,
+        })
+        raw = dict(_v216_solve_exact(
+            jobs, exact_context, candidate_builder=None,
+            state_builder=_v1852_rebuild_schedule_state,
+            seed=seed, max_seconds=max_seconds,
+        ) or {})
+        if not raw.get("complete"):
+            return raw
+        try:
+            state = _v216_exact_complete_state(raw, jobs, exact_context)
+        except Exception as error:
+            return {
+                "complete": False, "status": "MODEL_INVALID",
+                "message": str(error),
+            }
+        return {
+            "complete": True,
+            "status": raw.get("status"),
+            "state": state,
+            "diagnostics": dict(raw.get("diagnostics") or {}),
+        }
+
+    def validate(rows):
+        if not callable(_v218_validate_placements):
+            return ["Hard-validator yuklanmagan"]
+        return _v218_validate_placements(
+            jobs, rows, context, allow_method_exceptions=False
+        )
+
+    def persist(*, run_id, revision, state, diagnostics, terminal):
+        return _v2258_save_complete_checkpoint(
+            maktab_id=sorov.maktab_id,
+            user_id=user_id,
+            run_id=run_id,
+            revision=revision,
+            source_hash=source_hash,
+            state=state,
+            jobs=jobs,
+            context=context,
+            classes=classes,
+            rooms=rooms,
+            shifts=shifts,
+            year=year,
+            qidiruv_nonce=sorov.qidiruv_nonce,
+            stage="yakuniy" if terminal else (
+                "hard_feasible" if not revision else "teacher_accepted"
             ),
         )
-        return {"holat": "draft_yaratildi", "urinish_id": run_id,
-                "jadval_raqami": run_id, "sifat": quality,
-                "yaxshilanish": progress_revision,
-                "jami_soat": total_count, "joylashtirildi": placed_count,
-                "joylashtirilmadi": len(unplaced), "diagnostika": diagnostics,
-                "solver_status": diagnostics["solver_status"],
-                "tasdiqlash_mumkin": tasdiqlash_mumkin,
-                "moslik": jadval_mosligi,
-                "foydalanuvchi_toxtatdi": cancelled}
-    except Exception:
-        if reserved_run_id is not None:
-            cancelled_now = _v2244_cancel_requested(
-                sorov.maktab_id, sorov.qidiruv_nonce
-            )
-            # Exact solver 100% jadvalni checkpointga yozib bo'lganidan keyin
-            # teacher-finalizerda texnik xato chiqishi mumkin. Bunday paytda
-            # foydalanuvchiga "jadval berilmadi" deb xato ko'rsatmaymiz:
-            # tranzaksiyada tekshirilgan to'liq checkpoint saqlangan va aynan
-            # shu jadval terminal natija sifatida ochiladi.
-            checkpoint_complete = False
-            checkpoint_conn = None
-            checkpoint_cur = None
-            try:
-                checkpoint_conn = _db()
-                checkpoint_cur = checkpoint_conn.cursor()
-                checkpoint_cur.execute(
-                    """SELECT 1 AS bor
-                       FROM aqlli_jadval_urinishlari_v2
-                       WHERE id=%s AND maktab_id=%s
-                         AND joylashtirildi>0 AND joylashtirilmadi=0""",
-                    (int(reserved_run_id), int(sorov.maktab_id)),
-                )
-                checkpoint_complete = bool(checkpoint_cur.fetchone())
-            except Exception:
-                checkpoint_complete = False
-            finally:
-                if checkpoint_cur is not None:
-                    checkpoint_cur.close()
-                if checkpoint_conn is not None:
-                    checkpoint_conn.close()
-            if checkpoint_complete:
-                _v2243_progress_write(
-                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                    progress_revision, 100,
-                    "toxtatildi" if cancelled_now else "tayyor",
-                    (
-                        f"To‘xtatildi. Eng yaxshi to‘liq Jadval #{reserved_run_id} saqlandi va ochildi."
-                        if cancelled_now else
-                        f"Jadval #{reserved_run_id} tayyor. Yakuniy yaxshilash to‘xtagan bo‘lsa ham "
-                        "100% joylashtirilgan, tekshirilgan checkpoint saqlandi va ochildi."
-                    ),
-                )
-            elif cancelled_now:
-                _v2243_progress_write(
-                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                    progress_revision, 100, "toxtatildi",
-                    f"Jadval #{reserved_run_id}: foydalanuvchi to‘xtatdi. Oldingi saqlangan jadval o‘zgarmadi.",
-                )
-            else:
-                _v2243_progress_write(
-                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                    progress_revision, 100, "xato",
-                    f"Jadval #{reserved_run_id}: hisoblash yakunlanmadi. Oldingi jadval saqlandi.",
-                )
-        if conn is not None:
-            try:
-                if not bool(getattr(conn, "closed", True)):
-                    conn.rollback()
-            except Exception:
-                pass
-        raise
-    finally:
-        if cur is not None:
-            try:
-                cur.close()
-            except Exception:
-                pass
-        if conn is not None:
-            try:
-                conn.close()
-            except Exception:
-                pass
+
+    def improve(*, state, context, deadline, cancel_requested, accepted, seed):
+        improve_context = dict(context)
+        improve_context["v206_deadline"] = deadline
+        improve_context["v2244_cancel_requested"] = cancel_requested
+        improve_context["v226_frozen_class_day_counts"] = dict(
+            _v226_frozen_class_day_signature(state)
+        )
+
+        def on_accept(swap_no, teacher_id, before_score, after_score,
+                      checkpoint_state=None):
+            if checkpoint_state is not None:
+                accepted(checkpoint_state, {
+                    "swap": int(swap_no),
+                    "teacher_id": int(teacher_id),
+                    "before_score": before_score,
+                    "after_score": after_score,
+                    "sinf_kun_soatlari_qotirilgan": True,
+                })
+
+        improve_context["v2253_improvement_callback"] = on_accept
+        rng = _v1852_random.Random(seed)
+        return _v196_optimize_teacher_windows(
+            state, improve_context, rng, max_swaps=240
+        )
+
+    runtime = _V230ScheduleRuntime(
+        solve=solve,
+        validate=validate,
+        persist=persist,
+        improve=improve,
+        write_progress=write_progress,
+        cancel_requested=lambda: _v2244_cancel_requested(
+            sorov.maktab_id, sorov.qidiruv_nonce
+        ),
+        policy=_V230RuntimePolicy(
+            solve_seconds=_v220_generation_budget_seconds(),
+            post_feasible_quality_seconds=2.5,
+            improve_seconds=max(8.0, min(
+                60.0, float(os.getenv("SAMTM_TEACHER_IMPROVE_SECONDS", "45"))
+            )),
+            cancel_poll_seconds=0.25,
+        ),
+    )
+    result = runtime.run(
+        run_id=run_id,
+        jobs=jobs,
+        context=context,
+        seed=seed,
+        initial_state=initial_state,
+        starting_revision=starting_revision,
+    )
+    return {
+        "holat": result.stage.value,
+        "urinish_id": result.run_id,
+        "jadval_raqami": result.run_id,
+        "yaxshilanish": result.revision,
+        "jami_soat": len(jobs),
+        "joylashtirildi": len(jobs) if result.complete else 0,
+        "joylashtirilmadi": 0 if result.complete else len(jobs),
+        "diagnostika": result.diagnostics,
+        "solver_status": "FEASIBLE_VALIDATED" if result.complete else "FAILED",
+        "tasdiqlash_mumkin": bool(result.complete),
+        "foydalanuvchi_toxtatdi": result.stage == _V230Stage.STOPPED,
+        "xabar": result.message,
+        "ogohlantirishlar": warnings,
+    }
 
 
 _V2244_BACKGROUND_JOBS = {}
