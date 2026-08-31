@@ -4132,8 +4132,8 @@ def _v2253_improve_existing_draft(
     improve_context["v206_deadline"] = _samtm_time.monotonic() + max(
         8.0,
         min(
-            45.0,
-            float(os.getenv("SAMTM_EXISTING_IMPROVE_SECONDS", "28")),
+            60.0,
+            float(os.getenv("SAMTM_EXISTING_IMPROVE_SECONDS", "45")),
         ),
     )
 
@@ -4171,6 +4171,15 @@ def _v2253_improve_existing_draft(
     )
     state = _v196_optimize_teacher_windows(
         state, improve_context, rng, max_swaps=240
+    )
+    _v2243_progress_write(
+        maktab_id, qidiruv_nonce, run_id, revision[0], 93,
+        "fan_taqsimoti_yaxshilanmoqda",
+        (
+            f"Jadval #{run_id}{'.' + str(revision[0]) if revision[0] else ''}: "
+            "o‘qituvchi oynalari tekshirildi; endi fan takrori va tarqalishi "
+            "hard-safe swaplar bilan tekshirilmoqda."
+        ),
     )
     state = _v219_reduce_avoidable_subject_repeats(
         state, improve_context, rng, max_swaps=24, max_trials=180
@@ -4488,7 +4497,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             jobs, context
         )
 
-        # V22.53 — ENG MUHIM: shu manba bilan oldindan 100% to‘liq draft
+        # V22.55 — ENG MUHIM: shu manba bilan oldindan 100% to‘liq draft
         # mavjud bo‘lsa, yangi #58 ni 0 dan qidirmaymiz. Masalan #57 olinadi,
         # sinf-kun dars sonlari qotiriladi va faqat teacher worst-first
         # yaxshilash ishlaydi: #57.1, #57.2 ...; oxirgi holat yana #57 ning
@@ -5685,7 +5694,36 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
         try:
             v1852_generate(sorov, token)
         except Exception as error:
-            print(f"[JADVAL-BACKGROUND-V22.44] yakunlandi: {error}", flush=True)
+            print(f"[JADVAL-BACKGROUND-V22.55] yakunlandi: {error}", flush=True)
+            # Frontend cheksiz 2–15% da qolib ketmasin. Generator ichida
+            # xato bo'lsa ham joriy progress qatori terminal "xato" holatiga
+            # o'tadi va foydalanuvchi aniq sababni ko'radi.
+            error_conn = None
+            error_cur = None
+            try:
+                error_conn = _db(); error_cur = error_conn.cursor()
+                _v1852_tables(error_cur)
+                error_cur.execute(
+                    """SELECT jadval_raqami,yaxshilanish
+                       FROM aqlli_jadval_jarayoni_v2243
+                       WHERE maktab_id=%s
+                         AND (%s IS NULL OR qidiruv_nonce=%s)""",
+                    (sorov.maktab_id, sorov.qidiruv_nonce, sorov.qidiruv_nonce),
+                )
+                row = error_cur.fetchone() or {}
+                if row.get("jadval_raqami"):
+                    _v2243_progress_write(
+                        sorov.maktab_id, sorov.qidiruv_nonce,
+                        int(row["jadval_raqami"]),
+                        int(row.get("yaxshilanish") or 0),
+                        100, "xato",
+                        f"Jadval hisoblash to'xtadi: {str(error)[:700]}",
+                    )
+            except Exception as progress_error:
+                print(f"[JADVAL-BACKGROUND-V22.55] xato holati yozilmadi: {progress_error}", flush=True)
+            finally:
+                if error_cur is not None: error_cur.close()
+                if error_conn is not None: error_conn.close()
         finally:
             heartbeat_done.set()
             with _V2244_BACKGROUND_LOCK:
