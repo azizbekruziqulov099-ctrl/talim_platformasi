@@ -61,6 +61,7 @@ class RuntimePolicy:
     post_feasible_quality_seconds: float = 2.5
     improve_seconds: float = 45.0
     cancel_poll_seconds: float = 0.25
+    retry_unknown_until_stopped: bool = True
 
 
 Solve = Callable[..., Mapping[str, Any]]
@@ -121,6 +122,14 @@ class ScheduleRuntime:
     def _placements(state: Optional[Mapping[str, Any]]) -> list[Mapping[str, Any]]:
         return list((state or {}).get("placements") or [])
 
+    @staticmethod
+    def _class_day_signature(state: Optional[Mapping[str, Any]]) -> tuple:
+        return tuple(sorted(
+            (int(key[0]), int(key[1]), int(value or 0))
+            for key, value in ((state or {}).get("class_daily_total") or {}).items()
+            if int(value or 0) > 0
+        ))
+
     def _validate_complete(
         self, state: MutableMapping[str, Any], expected_jobs: int,
     ) -> None:
@@ -163,19 +172,33 @@ class ScheduleRuntime:
                     run_id, revision, 15, Stage.SOLVING,
                     f"Jadval #{run_id}: barcha darsni 100% joylashtirish qidirilmoqda.",
                 )
-                solved = dict(self.solve(
-                    jobs=jobs,
-                    context=dict(context),
-                    seed=int(seed),
-                    max_seconds=float(self.policy.solve_seconds),
-                    quality_seconds=float(self.policy.post_feasible_quality_seconds),
-                    cancel_requested=lambda: self._is_cancelled(),
-                ) or {})
-                if self._is_cancelled(force=True) and not solved.get("complete"):
-                    raise GenerationCancelled()
-                if not solved.get("complete"):
+                attempt = 0
+                while True:
+                    attempt += 1
+                    solved = dict(self.solve(
+                        jobs=jobs,
+                        context=dict(context),
+                        seed=int(seed) + attempt - 1,
+                        max_seconds=float(self.policy.solve_seconds),
+                        quality_seconds=float(self.policy.post_feasible_quality_seconds),
+                        cancel_requested=lambda: self._is_cancelled(),
+                    ) or {})
+                    if self._is_cancelled(force=True) and not solved.get("complete"):
+                        raise GenerationCancelled()
+                    if solved.get("complete"):
+                        break
+                    status = str(solved.get("status") or "UNKNOWN").upper()
+                    # UNKNOWN — vaqt bo'lagi tugadi, imkonsizlik emas. Yangi
+                    # seed bilan qidiruv foydalanuvchi to'xtatmaguncha davom etadi.
+                    if status == "UNKNOWN" and self.policy.retry_unknown_until_stopped:
+                        self._progress(
+                            run_id, revision, 15 + (attempt % 30), Stage.SOLVING,
+                            f"Jadval #{run_id}: qidiruv davom etmoqda, {attempt}-bosqich. "
+                            "Vaqt bo‘lagi tugashi jadval imkonsiz degani emas.",
+                        )
+                        continue
                     raise GenerationFailed(
-                        str(solved.get("message") or solved.get("status") or
+                        str(solved.get("message") or status or
                             "100% jadval topilmadi")
                     )
                 state = solved.get("state")
@@ -187,6 +210,7 @@ class ScheduleRuntime:
                 checkpoint_diagnostics = {"reused_complete_schedule": True}
 
             self._validate_complete(state, total)
+            frozen_class_days = self._class_day_signature(state)
             if not self.persist(
                 run_id=run_id, revision=revision, state=state,
                 diagnostics=checkpoint_diagnostics, terminal=False,
@@ -210,6 +234,11 @@ class ScheduleRuntime:
                 if self._is_cancelled():
                     return False
                 self._validate_complete(candidate, total)
+                if self._class_day_signature(candidate) != frozen_class_days:
+                    # Birinchi jadvaldagi teng kunlik taqsimot (masalan
+                    # 6/6/6/6/6 yoki 6/6/6/6/5) mutlaq qotirilgan.
+                    # Notekis candidate ko'rsatilmaydi va saqlanmaydi.
+                    return False
                 next_revision = revision + 1
                 next_diagnostics = {
                     **checkpoint_diagnostics,
