@@ -54,20 +54,272 @@ except ImportError:  # Railway working directory may be backend/
 else:
     _V216_EXACT_IMPORT_ERROR = None
 
-try:
-    from .samtm_schedule_runtime import (
-        Progress as _V230Progress,
-        RuntimePolicy as _V230RuntimePolicy,
-        ScheduleRuntime as _V230ScheduleRuntime,
-        Stage as _V230Stage,
-    )
-except ImportError:
-    from samtm_schedule_runtime import (
-        Progress as _V230Progress,
-        RuntimePolicy as _V230RuntimePolicy,
-        ScheduleRuntime as _V230ScheduleRuntime,
-        Stage as _V230Stage,
-    )
+# V23 runtime shu fayl ichida. Railway ``main.py`` orqali top-level modul
+# sifatida yuklaganda alohida ``samtm_schedule_runtime.py`` bo'lmasa ham worker
+# yiqilmaydi.
+from dataclasses import dataclass as _v230_dataclass, field as _v230_field
+from enum import Enum as _V230Enum
+
+
+class _V230Stage(str, _V230Enum):
+    PREPARING = "tayyorlash"
+    SOLVING = "toliq_qidiruv"
+    CHECKPOINT = "toliq_saqlandi"
+    IMPROVING = "oqituvchi_yaxshilanmoqda"
+    REVISION = "revision_saqlandi"
+    READY = "tayyor"
+    STOPPED = "toxtatildi"
+    ERROR = "xato"
+
+
+@_v230_dataclass(frozen=True)
+class _V230Progress:
+    run_id: int
+    revision: int
+    percent: int
+    stage: _V230Stage
+    message: str
+
+
+@_v230_dataclass
+class _V230GenerationResult:
+    run_id: int
+    revision: int
+    stage: _V230Stage
+    complete: bool
+    state: object = None
+    diagnostics: dict = _v230_field(default_factory=dict)
+    message: str = ""
+
+
+@_v230_dataclass(frozen=True)
+class _V230RuntimePolicy:
+    solve_seconds: float = 45.0
+    post_feasible_quality_seconds: float = 2.5
+    improve_seconds: float = 45.0
+    cancel_poll_seconds: float = 0.25
+    retry_unknown_until_stopped: bool = True
+
+
+class _V230GenerationCancelled(RuntimeError):
+    pass
+
+
+class _V230GenerationFailed(RuntimeError):
+    pass
+
+
+class _V230ScheduleRuntime:
+    def __init__(self, *, solve, validate, persist, improve, write_progress,
+                 cancel_requested, policy=None, clock=_samtm_time.monotonic):
+        self.solve = solve
+        self.validate = validate
+        self.persist = persist
+        self.improve = improve
+        self.write_progress = write_progress
+        self.cancel_requested = cancel_requested
+        self.policy = policy or _V230RuntimePolicy()
+        self.clock = clock
+        self._last_cancel_poll = float("-inf")
+        self._cancelled = False
+
+    def _is_cancelled(self, force=False):
+        if self._cancelled:
+            return True
+        now = self.clock()
+        if force or now - self._last_cancel_poll >= self.policy.cancel_poll_seconds:
+            self._last_cancel_poll = now
+            self._cancelled = bool(self.cancel_requested())
+        return self._cancelled
+
+    def _progress(self, run_id, revision, percent, stage, message):
+        self.write_progress(_V230Progress(
+            int(run_id), int(revision), max(0, min(100, int(percent))),
+            stage, str(message),
+        ))
+
+    @staticmethod
+    def _class_day_signature(state):
+        return tuple(sorted(
+            (int(key[0]), int(key[1]), int(value or 0))
+            for key, value in ((state or {}).get("class_daily_total") or {}).items()
+            if int(value or 0) > 0
+        ))
+
+    def _validate_complete(self, state, expected):
+        rows = list((state or {}).get("placements") or [])
+        if len(rows) != int(expected):
+            raise _V230GenerationFailed(
+                f"To‘liq jadval emas: {len(rows)}/{int(expected)} dars"
+            )
+        errors = list(self.validate(rows) or [])
+        if errors:
+            raise _V230GenerationFailed(
+                "Jadval qattiq tekshiruvdan o‘tmadi: "
+                + "; ".join(str(value) for value in errors[:12])
+            )
+
+    def run(self, *, run_id, jobs, context, seed, initial_state=None,
+            starting_revision=0):
+        total = len(jobs)
+        revision = max(0, int(starting_revision))
+        checkpoint = None
+        diagnostics = {}
+        self._progress(run_id, revision, 8, _V230Stage.PREPARING,
+                       f"Jadval #{run_id}: {total} ta dars tayyorlandi.")
+        try:
+            if initial_state is None:
+                if self._is_cancelled(True):
+                    raise _V230GenerationCancelled()
+                self._progress(run_id, revision, 15, _V230Stage.SOLVING,
+                               f"Jadval #{run_id}: 100% jadval qidirilmoqda.")
+                attempt = 0
+                while True:
+                    attempt += 1
+                    solved = dict(self.solve(
+                        jobs=jobs, context=dict(context),
+                        seed=int(seed) + attempt - 1,
+                        max_seconds=float(self.policy.solve_seconds),
+                        quality_seconds=float(self.policy.post_feasible_quality_seconds),
+                        cancel_requested=lambda: self._is_cancelled(),
+                    ) or {})
+                    if self._is_cancelled(True) and not solved.get("complete"):
+                        raise _V230GenerationCancelled()
+                    if solved.get("complete"):
+                        break
+                    status = str(solved.get("status") or "UNKNOWN").upper()
+                    if status == "UNKNOWN" and self.policy.retry_unknown_until_stopped:
+                        self._progress(
+                            run_id, revision, 15 + attempt % 30,
+                            _V230Stage.SOLVING,
+                            f"Jadval #{run_id}: qidiruv davom etmoqda, {attempt}-bosqich. "
+                            "Vaqt bo‘lagi tugashi imkonsiz degani emas.",
+                        )
+                        continue
+                    raise _V230GenerationFailed(
+                        str(solved.get("message") or status)
+                    )
+                state = solved.get("state")
+                if not isinstance(state, dict):
+                    raise _V230GenerationFailed("Solver to‘liq state qaytarmadi")
+                diagnostics = dict(solved.get("diagnostics") or {})
+            else:
+                state = initial_state
+                diagnostics = {"reused_complete_schedule": True}
+
+            self._validate_complete(state, total)
+            frozen_days = self._class_day_signature(state)
+            if not self.persist(
+                run_id=run_id, revision=revision, state=state,
+                diagnostics=diagnostics, terminal=False,
+            ):
+                raise _V230GenerationFailed("100% jadval bazaga saqlanmadi")
+            checkpoint = state
+            self._progress(
+                run_id, revision, 55, _V230Stage.CHECKPOINT,
+                f"Jadval #{run_id} saqlandi: {total}/{total}. Uni hozir ochish mumkin.",
+            )
+            if self._is_cancelled(True):
+                raise _V230GenerationCancelled()
+
+            def accepted(candidate, details):
+                nonlocal revision, checkpoint, diagnostics
+                if self._is_cancelled():
+                    return False
+                self._validate_complete(candidate, total)
+                if self._class_day_signature(candidate) != frozen_days:
+                    return False
+                next_revision = revision + 1
+                next_diagnostics = {
+                    **diagnostics, **dict(details or {}),
+                    "revision": next_revision,
+                }
+                if not self.persist(
+                    run_id=run_id, revision=next_revision, state=candidate,
+                    diagnostics=next_diagnostics, terminal=False,
+                ):
+                    return False
+                revision = next_revision
+                checkpoint = candidate
+                diagnostics = next_diagnostics
+                self._progress(
+                    run_id, revision, min(94, 55 + revision),
+                    _V230Stage.REVISION,
+                    f"Jadval #{run_id}.{revision} saqlandi va ochish mumkin.",
+                )
+                return True
+
+            self._progress(
+                run_id, revision, 60, _V230Stage.IMPROVING,
+                f"Jadval #{run_id}: eng yomon o‘qituvchidan boshlab qisilyapti.",
+            )
+            self.improve(
+                state=checkpoint, context=dict(context),
+                deadline=self.clock() + float(self.policy.improve_seconds),
+                cancel_requested=lambda: self._is_cancelled(),
+                accepted=accepted, seed=int(seed) ^ 0x5A17,
+            )
+            if self._is_cancelled(True):
+                raise _V230GenerationCancelled()
+            if checkpoint is None:
+                raise _V230GenerationFailed("Saqlangan jadval yo‘q")
+            if not self.persist(
+                run_id=run_id, revision=revision, state=checkpoint,
+                diagnostics=diagnostics, terminal=True,
+            ):
+                raise _V230GenerationFailed("Yakuniy jadval belgilanmadi")
+            message = (
+                f"Jadval #{run_id}{'.' + str(revision) if revision else ''} "
+                f"tayyor: {total}/{total} dars joylashdi va ochildi."
+            )
+            self._progress(run_id, revision, 100, _V230Stage.READY, message)
+            return _V230GenerationResult(
+                run_id, revision, _V230Stage.READY, True,
+                checkpoint, diagnostics, message,
+            )
+        except _V230GenerationCancelled:
+            if checkpoint is not None:
+                self.persist(
+                    run_id=run_id, revision=revision, state=checkpoint,
+                    diagnostics=diagnostics, terminal=True,
+                )
+                message = (
+                    f"To‘xtatildi. Eng yaxshi Jadval #{run_id}"
+                    f"{'.' + str(revision) if revision else ''} saqlandi va ochildi."
+                )
+                self._progress(run_id, revision, 100, _V230Stage.STOPPED, message)
+                return _V230GenerationResult(
+                    run_id, revision, _V230Stage.STOPPED, True,
+                    checkpoint, diagnostics, message,
+                )
+            message = "To‘xtatildi. Hali 100% jadval topilmagan."
+            self._progress(run_id, revision, 100, _V230Stage.STOPPED, message)
+            return _V230GenerationResult(
+                run_id, revision, _V230Stage.STOPPED, False,
+                message=message,
+            )
+        except Exception as error:
+            if checkpoint is not None:
+                safe_diagnostics = {**diagnostics, "finalizer_error": str(error)}
+                self.persist(
+                    run_id=run_id, revision=revision, state=checkpoint,
+                    diagnostics=safe_diagnostics, terminal=True,
+                )
+                message = (
+                    f"Jadval #{run_id}{'.' + str(revision) if revision else ''} "
+                    "tayyor. 100% saqlangan eng yaxshi variant ochildi."
+                )
+                self._progress(run_id, revision, 100, _V230Stage.READY, message)
+                return _V230GenerationResult(
+                    run_id, revision, _V230Stage.READY, True,
+                    checkpoint, safe_diagnostics, message,
+                )
+            message = f"Jadval yaratilmadi: {str(error)[:700]}"
+            self._progress(run_id, revision, 100, _V230Stage.ERROR, message)
+            return _V230GenerationResult(
+                run_id, revision, _V230Stage.ERROR, False,
+                diagnostics={"error": str(error)}, message=message,
+            )
 
 try:
     from . import samtm_timetable_engine as _timetable_engine
