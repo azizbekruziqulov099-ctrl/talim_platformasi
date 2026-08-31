@@ -10,7 +10,7 @@ from __future__ import annotations
 from typing import Any, Iterable
 
 
-ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V23.1-STRICT"
+ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V23.4-STRICT"
 
 STRICT = "strict"
 
@@ -61,8 +61,10 @@ def internal_policy(stage: Any = STRICT) -> dict[str, Any]:
         "red_band_relaxed": False,
         "method_day_relaxed": False,
         "class_balance_hard": True,
+        "minimum_open_day_lessons": 2,
         "partial_schedule_allowed": False,
         "checkpoint_before_improvement": True,
+        "fresh_base_run_per_click": True,
     }
 
 
@@ -79,11 +81,13 @@ def mode_config() -> dict[str, Any]:
         ),
         "policy_stage": STRICT,
         "imbalance_limit": 1,
+        "minimum_open_day_lessons": 2,
         "hard_balance_class_days": True,
         "red_band_relaxed": False,
         "method_day_relaxed": False,
         "partial_schedule_allowed": False,
         "revision_history": True,
+        "fresh_base_run_per_click": True,
         "stop_returns_last_checkpoint": True,
     }
 
