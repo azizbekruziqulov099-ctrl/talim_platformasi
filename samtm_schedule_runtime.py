@@ -7,10 +7,14 @@ data, exact solver, validators and persistence callbacks.
 
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass, field
 from enum import Enum
 import time
 from typing import Any, Callable, Mapping, MutableMapping, Optional, Sequence
+
+
+RUNTIME_RELEASE = "SAMTM-SCHEDULE-RUNTIME-V23.4-IMMUTABLE-CHECKPOINT"
 
 
 class Stage(str, Enum):
@@ -124,11 +128,45 @@ class ScheduleRuntime:
 
     @staticmethod
     def _class_day_signature(state: Optional[Mapping[str, Any]]) -> tuple:
-        return tuple(sorted(
-            (int(key[0]), int(key[1]), int(value or 0))
-            for key, value in ((state or {}).get("class_daily_total") or {}).items()
+        source = state or {}
+        signature: list[tuple[str, int, int, str, int]] = [
+            ("aggregate", int(key[0]), int(key[1]), "", int(value or 0))
+            for key, value in (source.get("class_daily_total") or {}).items()
             if int(value or 0) > 0
-        ))
+        ]
+
+        # A/B weeks must be frozen independently too.  Aggregate class totals
+        # alone could let a TOQ-only lesson and a JUFT-only lesson trade days
+        # while keeping the visible total unchanged.
+        phase_totals: dict[tuple[int, int, str], int] = {}
+        for placement in source.get("placements") or ():
+            job = placement.get("job") or {}
+            class_id = int(job.get("sinf_id") or 0)
+            day = int(placement.get("day") or 0)
+            if not class_id or not day:
+                continue
+            raw_phases = [
+                member.get("hafta_turi")
+                for member in (job.get("rotation_members") or ())
+            ] or [job.get("hafta_turi")]
+            phases: set[str] = set()
+            for raw_phase in raw_phases:
+                phase = str(raw_phase or "har_hafta").strip().casefold()
+                if phase in {"toq", "odd", "a"}:
+                    phases.add("toq")
+                elif phase in {"juft", "even", "b"}:
+                    phases.add("juft")
+                else:
+                    phases.update(("toq", "juft"))
+            for phase in phases:
+                key = (class_id, day, phase)
+                phase_totals[key] = phase_totals.get(key, 0) + 1
+        signature.extend(
+            ("phase", class_id, day, phase, count)
+            for (class_id, day, phase), count in phase_totals.items()
+            if count > 0
+        )
+        return tuple(sorted(signature))
 
     def _validate_complete(
         self, state: MutableMapping[str, Any], expected_jobs: int,
@@ -144,6 +182,31 @@ class ScheduleRuntime:
                 "Jadval qattiq tekshiruvdan o‘tmadi: "
                 + "; ".join(str(value) for value in errors[:12])
             )
+
+    @staticmethod
+    def _snapshot(state: MutableMapping[str, Any]) -> MutableMapping[str, Any]:
+        """Detach a saved checkpoint from every mutable optimizer object."""
+
+        return copy.deepcopy(state)
+
+    @staticmethod
+    def _score_improved(details: Mapping[str, Any]) -> bool:
+        """Reject a revision when the optimizer proves it is not better.
+
+        Integrations that do not publish comparable scores keep the historical
+        behavior and are still checked by the hard validator and frozen class
+        day signature.  SamTM's teacher optimizer publishes lexicographic
+        ``before_score``/``after_score`` tuples where a smaller tuple is better.
+        """
+
+        before = details.get("before_score")
+        after = details.get("after_score")
+        if before is None or after is None:
+            return True
+        try:
+            return tuple(after) < tuple(before)
+        except (TypeError, ValueError):
+            return False
 
     def run(
         self,
@@ -210,15 +273,17 @@ class ScheduleRuntime:
                 checkpoint_diagnostics = {"reused_complete_schedule": True}
 
             self._validate_complete(state, total)
-            frozen_class_days = self._class_day_signature(state)
+            checkpoint_candidate = self._snapshot(state)
+            frozen_class_days = self._class_day_signature(checkpoint_candidate)
             if not self.persist(
-                run_id=run_id, revision=revision, state=state,
+                run_id=run_id, revision=revision,
+                state=self._snapshot(checkpoint_candidate),
                 diagnostics=checkpoint_diagnostics, terminal=False,
             ):
                 raise GenerationFailed(
                     f"Jadval #{run_id} topildi, ammo bazaga saqlanmadi"
                 )
-            checkpoint = state
+            checkpoint = checkpoint_candidate
             self._progress(
                 run_id, revision, 55, Stage.CHECKPOINT,
                 f"Jadval #{run_id} saqlandi: {total}/{total} dars. Uni hozir ochish mumkin.",
@@ -233,8 +298,11 @@ class ScheduleRuntime:
                 nonlocal revision, checkpoint, checkpoint_diagnostics
                 if self._is_cancelled():
                     return False
-                self._validate_complete(candidate, total)
-                if self._class_day_signature(candidate) != frozen_class_days:
+                if not self._score_improved(details or {}):
+                    return False
+                candidate_snapshot = self._snapshot(candidate)
+                self._validate_complete(candidate_snapshot, total)
+                if self._class_day_signature(candidate_snapshot) != frozen_class_days:
                     # Birinchi jadvaldagi teng kunlik taqsimot (masalan
                     # 6/6/6/6/6 yoki 6/6/6/6/5) mutlaq qotirilgan.
                     # Notekis candidate ko'rsatilmaydi va saqlanmaydi.
@@ -246,12 +314,13 @@ class ScheduleRuntime:
                     "revision": next_revision,
                 }
                 if not self.persist(
-                    run_id=run_id, revision=next_revision, state=candidate,
+                    run_id=run_id, revision=next_revision,
+                    state=self._snapshot(candidate_snapshot),
                     diagnostics=next_diagnostics, terminal=False,
                 ):
                     return False
                 revision = next_revision
-                checkpoint = candidate
+                checkpoint = candidate_snapshot
                 checkpoint_diagnostics = next_diagnostics
                 self._progress(
                     run_id, revision, min(94, 55 + revision), Stage.REVISION,
@@ -264,7 +333,7 @@ class ScheduleRuntime:
                 f"Jadval #{run_id}: eng yomon o‘qituvchi jadvalidan boshlab qisilyapti.",
             )
             improved = self.improve(
-                state=checkpoint,
+                state=self._snapshot(checkpoint),
                 context=dict(context),
                 deadline=improve_deadline,
                 cancel_requested=lambda: self._is_cancelled(),
@@ -279,8 +348,10 @@ class ScheduleRuntime:
 
             if checkpoint is None:
                 raise GenerationFailed("Saqlangan to‘liq jadval yo‘q")
+            self._validate_complete(checkpoint, total)
             if not self.persist(
-                run_id=run_id, revision=revision, state=checkpoint,
+                run_id=run_id, revision=revision,
+                state=self._snapshot(checkpoint),
                 diagnostics=checkpoint_diagnostics, terminal=True,
             ):
                 raise GenerationFailed("Yakuniy jadvalni belgilashda xato")
@@ -295,13 +366,27 @@ class ScheduleRuntime:
             )
         except GenerationCancelled:
             if checkpoint is not None:
-                self.persist(
-                    run_id=run_id, revision=revision, state=checkpoint,
-                    diagnostics=checkpoint_diagnostics, terminal=True,
-                )
+                self._validate_complete(checkpoint, total)
+                terminal_saved = False
+                try:
+                    terminal_saved = bool(self.persist(
+                        run_id=run_id, revision=revision,
+                        state=self._snapshot(checkpoint),
+                        diagnostics=checkpoint_diagnostics, terminal=True,
+                    ))
+                except Exception as terminal_error:
+                    checkpoint_diagnostics = {
+                        **checkpoint_diagnostics,
+                        "terminal_persist_error": str(terminal_error),
+                    }
                 message = (
                     f"To‘xtatildi. Eng yaxshi Jadval #{run_id}"
-                    f"{'.' + str(revision) if revision else ''} saqlandi va ochildi."
+                    f"{'.' + str(revision) if revision else ''} "
+                    + (
+                        "saqlandi va ochildi."
+                        if terminal_saved else
+                        "oldin saqlangan checkpointdan ochildi."
+                    )
                 )
                 self._progress(run_id, revision, 100, Stage.STOPPED, message)
                 return GenerationResult(
@@ -314,19 +399,32 @@ class ScheduleRuntime:
         except Exception as error:
             if checkpoint is not None:
                 # A post-processing failure must never hide a validated schedule.
-                self.persist(
-                    run_id=run_id, revision=revision, state=checkpoint,
-                    diagnostics={**checkpoint_diagnostics, "finalizer_error": str(error)},
-                    terminal=True,
-                )
+                self._validate_complete(checkpoint, total)
+                final_diagnostics = {
+                    **checkpoint_diagnostics, "finalizer_error": str(error),
+                }
+                try:
+                    terminal_saved = bool(self.persist(
+                        run_id=run_id, revision=revision,
+                        state=self._snapshot(checkpoint),
+                        diagnostics=final_diagnostics, terminal=True,
+                    ))
+                except Exception as terminal_error:
+                    terminal_saved = False
+                    final_diagnostics["terminal_persist_error"] = str(terminal_error)
                 message = (
                     f"Jadval #{run_id}{'.' + str(revision) if revision else ''} tayyor. "
-                    "100% saqlangan jadval ochildi; qo‘shimcha yaxshilash yakunlanmadi."
+                    + (
+                        "100% saqlangan jadval ochildi; "
+                        if terminal_saved else
+                        "100% oldingi checkpoint ochildi; "
+                    )
+                    + "qo‘shimcha yaxshilash yakunlanmadi."
                 )
                 self._progress(run_id, revision, 100, Stage.READY, message)
                 return GenerationResult(
                     run_id, revision, Stage.READY, True, checkpoint,
-                    {**checkpoint_diagnostics, "finalizer_error": str(error)}, message,
+                    final_diagnostics, message,
                 )
             message = f"Jadval yaratilmadi: {str(error)[:700]}"
             self._progress(run_id, revision, 100, Stage.ERROR, message)
