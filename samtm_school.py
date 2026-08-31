@@ -1308,6 +1308,8 @@ def _v1852_create_tables(cur):
         slotlar JSONB NOT NULL DEFAULT '[]'::jsonb,
         PRIMARY KEY(urinish_id,revision)
     )""")
+    cur.execute("""ALTER TABLE aqlli_jadval_revisionlari_v2258
+                   ADD COLUMN IF NOT EXISTS yaxshilanish JSONB NOT NULL DEFAULT '{}'::jsonb""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_slotlari_v2(
         id BIGSERIAL PRIMARY KEY,
         urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
@@ -4092,6 +4094,7 @@ def _v2253_entry_rows_from_state(
 def _v2258_save_complete_checkpoint(
     *, maktab_id, user_id, run_id, revision, source_hash, state, jobs,
     context, classes, rooms, shifts, year, qidiruv_nonce, stage,
+    improvement=None,
 ):
     """100% incumbentni optimizatordan OLDIN va har accepted swapdan keyin saqlaydi."""
     if len(state.get("placements") or []) != len(jobs):
@@ -4124,6 +4127,7 @@ def _v2258_save_complete_checkpoint(
             ),
             "solver_status": "FEASIBLE_VALIDATED_CHECKPOINT",
             "tasdiqlash_mumkin": True,
+            "yaxshilanish": dict(improvement or {}),
         }
         settings = {
             "hafta_kunlari": int(context.get("weekdays") or 0),
@@ -4177,17 +4181,18 @@ def _v2258_save_complete_checkpoint(
         snapshot = [dict(zip(slot_keys, row)) for row in rows]
         cur.execute(
             """INSERT INTO aqlli_jadval_revisionlari_v2258(
-                   maktab_id,urinish_id,revision,sifat,bosqich,metrics,slotlar)
-               VALUES(%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb)
+                   maktab_id,urinish_id,revision,sifat,bosqich,metrics,slotlar,yaxshilanish)
+               VALUES(%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb,%s::jsonb)
                ON CONFLICT(urinish_id,revision) DO UPDATE SET
                    yaratilgan_at=NOW(),sifat=EXCLUDED.sifat,
                    bosqich=EXCLUDED.bosqich,metrics=EXCLUDED.metrics,
-                   slotlar=EXCLUDED.slotlar""",
+                   slotlar=EXCLUDED.slotlar,yaxshilanish=EXCLUDED.yaxshilanish""",
             (
                 int(maktab_id), int(run_id), int(revision or 0), int(quality),
                 str(stage),
                 json.dumps(metrics, ensure_ascii=False, default=str),
                 json.dumps(snapshot, ensure_ascii=False, default=str),
+                json.dumps(dict(improvement or {}), ensure_ascii=False, default=str),
             ),
         )
         cur.execute(
@@ -4319,6 +4324,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             "core_period6_day_limit": 2,
             "practical_min_period": 2,
             "allow_fixed_class_hour_method_exception": True,
+            # Birinchi exact jadvalning o'zida sinf kunlari teng: masalan
+            # 30 soat 6/6/6/6/6, 29 soat 6/6/6/6/5. 2/3/4/5/6 kabi
+            # notekis taqsimot keyingi bosqichga qotirib qo'yilmaydi.
+            "hard_balance_class_days": True,
             "v207_policy_stage": "strict",
             "v203_emergency_repeat_days": 0,
             "v207_requested_mode": 1,
@@ -4463,6 +4472,10 @@ def v1852_generate(sorov: V1852Generate, token: str):
             stage="yakuniy" if terminal else (
                 "hard_feasible" if not revision else "teacher_accepted"
             ),
+            improvement=(
+                dict(diagnostics or {}).get("yaxshilanish")
+                or dict(diagnostics or {})
+            ) if int(revision or 0) > 0 else {},
         )
 
     def improve(*, state, context, deadline, cancel_requested, accepted, seed):
@@ -4476,12 +4489,35 @@ def v1852_generate(sorov: V1852Generate, token: str):
         def on_accept(swap_no, teacher_id, before_score, after_score,
                       checkpoint_state=None):
             if checkpoint_state is not None:
+                teacher_name = str(
+                    (teachers.get(int(teacher_id)) or {}).get("full_name")
+                    or f"O‘qituvchi {teacher_id}"
+                )
+                before_values = list(before_score or ())
+                after_values = list(after_score or ())
+                before_one = int(before_values[0]) if before_values else 0
+                after_one = int(after_values[0]) if after_values else 0
+                before_wait = int(before_values[2]) if len(before_values) > 2 else 0
+                after_wait = int(after_values[2]) if len(after_values) > 2 else 0
+                summary_parts = []
+                if after_one < before_one:
+                    summary_parts.append(
+                        f"1 darsli kun {before_one} tadan {after_one} taga kamaydi"
+                    )
+                if after_wait < before_wait:
+                    summary_parts.append(
+                        f"ortiqcha kutish {before_wait} daqiqadan {after_wait} daqiqaga qisqardi"
+                    )
+                if not summary_parts:
+                    summary_parts.append("darslar bir-biriga yaqinroq joylashtirildi")
                 accepted(checkpoint_state, {
                     "swap": int(swap_no),
                     "teacher_id": int(teacher_id),
+                    "oqituvchi": teacher_name,
                     "before_score": before_score,
                     "after_score": after_score,
                     "sinf_kun_soatlari_qotirilgan": True,
+                    "xulosa": teacher_name + ": " + "; ".join(summary_parts),
                 })
 
         improve_context["v2253_improvement_callback"] = on_accept
@@ -4500,12 +4536,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
             sorov.maktab_id, sorov.qidiruv_nonce
         ),
         policy=_V230RuntimePolicy(
-            solve_seconds=_v220_generation_budget_seconds(),
+            solve_seconds=max(15.0, min(45.0, _v220_generation_budget_seconds())),
             post_feasible_quality_seconds=2.5,
             improve_seconds=max(8.0, min(
                 60.0, float(os.getenv("SAMTM_TEACHER_IMPROVE_SECONDS", "45"))
             )),
             cancel_poll_seconds=0.25,
+            retry_unknown_until_stopped=True,
         ),
     )
     result = runtime.run(
@@ -4660,7 +4697,7 @@ def v2258_revision_list(token: str, urinish_id: int):
         if not run or not _v1852_staff(cur, user_id, run["maktab_id"]):
             raise HTTPException(status_code=404, detail="Jadval topilmadi")
         cur.execute(
-            """SELECT revision,yaratilgan_at,sifat,bosqich,metrics
+            """SELECT revision,yaratilgan_at,sifat,bosqich,metrics,yaxshilanish
                FROM aqlli_jadval_revisionlari_v2258
                WHERE urinish_id=%s ORDER BY revision""",
             (urinish_id,),
@@ -4684,7 +4721,7 @@ def v1852_run_detail(token: str, urinish_id: int, yaxshilanish: Optional[int] = 
             raise HTTPException(status_code=403, detail="Ruxsat yo'q")
         if yaxshilanish is not None:
             cur.execute(
-                """SELECT revision,yaratilgan_at,sifat,bosqich,metrics,slotlar
+                """SELECT revision,yaratilgan_at,sifat,bosqich,metrics,slotlar,yaxshilanish
                    FROM aqlli_jadval_revisionlari_v2258
                    WHERE urinish_id=%s AND revision=%s""",
                 (urinish_id, int(yaxshilanish)),
@@ -4718,7 +4755,11 @@ def v1852_run_detail(token: str, urinish_id: int, yaxshilanish: Optional[int] = 
             run["yaxshilanish"] = int(revision_row["revision"])
             run["yaratilgan_at"] = revision_row["yaratilgan_at"]
             run["sifat"] = revision_row["sifat"]
-            run["diagnostika"] = {**dict(run.get("diagnostika") or {}), "v2258_metrics": revision_row.get("metrics") or {}}
+            run["diagnostika"] = {
+                **dict(run.get("diagnostika") or {}),
+                "v2258_metrics": revision_row.get("metrics") or {},
+                "yaxshilanish": revision_row.get("yaxshilanish") or {},
+            }
         else:
             cur.execute("""SELECT e.*,s.sinf,s.harf,u.full_name AS oqituvchi_ismi,r.nomi AS xona_nomi
                        FROM aqlli_jadval_slotlari_v2 e
@@ -14992,9 +15033,9 @@ def _v226_class_day_counts_match(state, context):
 def _v196_balance_class_days(state, context, rng, max_moves=24):
     """Boshlang'ich exact jadvaldan keyin sinfning kunlik soati QOTIRILADI.
 
-    V22.48: o'qituvchi oynosini tuzatish 2/3/4/5/6 ko'rinishidagi sinf-kun
-    soatlarini boshqa kunga ko'chira olmaydi. Exact solver boshlang'ich
-    taqsimotni tanlaydi; keyingi qulaylashtirish faqat shu kataklar ichida
+    O'qituvchi oynosini tuzatish birinchi exact bosqich yaratgan teng
+    sinf-kun soatlarini boshqa kunga ko'chira olmaydi. Keyingi qulaylashtirish
+    faqat shu kataklar ichida
     fanlarni almashtiradi yoki ikki kun o'rtasida 1:1 swap qiladi.
     """
     if (context or {}).get("v226_frozen_class_day_counts"):
