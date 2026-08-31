@@ -90,8 +90,8 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.40-DAILY-BALANCE"
-SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.50-STABLE-DAYS"
+SAMTM_SCHOOL_PACKAGE_REVISION = "stable-days-collapsible-progress-rev56"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
@@ -107,6 +107,28 @@ def _v220_generation_budget_seconds():
     except (TypeError, ValueError):
         value = 604800.0
     return max(3600.0, min(2592000.0, value))
+
+
+def _v2250_quality_no_improvement_seconds():
+    """Yangi incumbent chiqmasa quality qidiruvini xavfsiz yakunlash oralig'i."""
+    try:
+        value = float(os.getenv(
+            "SAMTM_EXACT_QUALITY_NO_IMPROVEMENT_SECONDS", "15"
+        ))
+    except (TypeError, ValueError):
+        value = 15.0
+    return max(5.0, min(120.0, value))
+
+
+def _v2250_quality_first_solution_seconds():
+    """To'liq hintli quality model presolve'da cheksiz qolmasligi uchun guard."""
+    try:
+        value = float(os.getenv(
+            "SAMTM_EXACT_QUALITY_FIRST_SOLUTION_SECONDS", "30"
+        ))
+    except (TypeError, ValueError):
+        value = 30.0
+    return max(10.0, min(180.0, value))
 
 def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
     """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
@@ -2283,6 +2305,7 @@ def _v1852_setup_payload(cur, maktab_id: int):
                    ORDER BY s.sinf::int,s.harf,b.fan_nomi,b.guruh_kaliti,u.full_name""", (maktab_id,))
     assignments = cur.fetchall()
     cur.execute("""SELECT id,holat,yaratilgan_at,tasdiqlangan_at,sifat,joylashtirildi,joylashtirilmadi,diagnostika,
+                          COALESCE((diagnostika->>'yaxshilanish')::int,0) AS yaxshilanish,
                           COALESCE((diagnostika->>'generator_rejimi')::int,1) AS generator_rejimi,
                           COALESCE(diagnostika->>'yumshatish_rejimi','strict') AS yumshatish_rejimi
                    FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s ORDER BY id DESC LIMIT 4""", (maktab_id,))
@@ -3643,8 +3666,18 @@ def _v2243_progress_write(
                    jadval_raqami=EXCLUDED.jadval_raqami,
                    yaxshilanish=EXCLUDED.yaxshilanish,
                    foiz=EXCLUDED.foiz,
-                   bosqich=EXCLUDED.bosqich,
-                   xabar=EXCLUDED.xabar,
+                   bosqich=CASE
+                     WHEN aqlli_jadval_jarayoni_v2243.toxtatish_soraldi
+                          AND EXCLUDED.bosqich NOT IN ('tayyor','xato','toxtatildi')
+                     THEN 'toxtatish_soraldi'
+                     ELSE EXCLUDED.bosqich
+                   END,
+                   xabar=CASE
+                     WHEN aqlli_jadval_jarayoni_v2243.toxtatish_soraldi
+                          AND EXCLUDED.bosqich NOT IN ('tayyor','xato','toxtatildi')
+                     THEN aqlli_jadval_jarayoni_v2243.xabar
+                     ELSE EXCLUDED.xabar
+                   END,
                    yangilangan_at=NOW()
                WHERE aqlli_jadval_jarayoni_v2243.qidiruv_nonce
                      IS NOT DISTINCT FROM EXCLUDED.qidiruv_nonce""",
@@ -4009,7 +4042,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             flush=True,
         )
         _v2243_progress_write(
-            sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id, 0, 15,
+            sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+            progress_revision, 15,
             "yaxshilash_qidiruv" if sorov.yaxshilash_bosqichi else "toliq_qidiruv",
             (
                 f"Jadval #{reserved_run_id}: saqlangan to'liq jadvalni buzmasdan yaxshiroq variant qidirilmoqda."
@@ -4025,8 +4059,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
             _V216_ORTOOLS_AVAILABLE and callable(_v216_solve_exact)
         )
         if exact_ready:
+            quality_start_revision = int(progress_revision)
+            quality_progress_percent = 58
+
             def _v2243_exact_progress(event, payload):
-                nonlocal progress_revision
+                nonlocal progress_revision, quality_progress_percent
                 placed = int((payload or {}).get("placed") or 0)
                 total = int((payload or {}).get("total") or len(jobs))
                 if event == "hard_feasible":
@@ -4039,12 +4076,90 @@ def v1852_generate(sorov: V1852Generate, token: str):
                             f"Jadval #{reserved_run_id}: {placed}/{total} dars 100% joylashdi; yakuniy tekshiruvdan keyin saqlanadi."
                         ),
                     )
-                elif event == "quality_accepted":
-                    progress_revision += 1
+                elif event in {
+                    "quality_started", "quality_improved", "quality_progress"
+                }:
+                    improvement_count = int(
+                        (payload or {}).get("improvement_count") or 0
+                    )
+                    if event == "quality_improved":
+                        progress_revision = max(
+                            progress_revision,
+                            quality_start_revision + improvement_count,
+                        )
+                    idle_seconds = float(
+                        (payload or {}).get("idle_seconds") or 0.0
+                    )
+                    idle_limit = max(1.0, float(
+                        (payload or {}).get("no_improvement_seconds")
+                        or _v2250_quality_no_improvement_seconds()
+                    ))
+                    quality_progress_percent = max(
+                        quality_progress_percent,
+                        60 + min(24, int(24 * idle_seconds / idle_limit)),
+                    )
+                    shown_revision = max(
+                        progress_revision,
+                        quality_start_revision + improvement_count,
+                    )
                     _v2243_progress_write(
                         sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                        progress_revision, 74, "global_yaxshilandi",
-                        f"Jadval #{reserved_run_id}.{progress_revision}: global sifat yaxshilandi; qattiq qoidalar va 100% dars saqlandi.",
+                        shown_revision, quality_progress_percent,
+                        "global_yaxshilandi"
+                        if event == "quality_improved"
+                        else "yaxshilash_qidiruv",
+                        (
+                            f"Jadval #{reserved_run_id}"
+                            f"{'.' + str(shown_revision) if shown_revision else ''}: "
+                            f"{improvement_count} ta yaxshiroq nomzod topildi; "
+                            f"oxirgi foydali o'zgarishdan {idle_seconds:.0f}/{idle_limit:.0f} soniya o'tdi. "
+                            "Sinf kunlari va o'qituvchi qulayligi tekshirilmoqda."
+                        ),
+                    )
+                elif event == "quality_stopped":
+                    reason = str((payload or {}).get("stop_reason") or "")
+                    message = {
+                        "optimal": "Global sifat optimumi matematik tasdiqlandi.",
+                        "no_improvement": "Yangi xavfsiz yaxshilanish qolmadi; eng yaxshi nomzod yakuniy tekshiruvga o'tdi.",
+                        "first_solution_timeout": "Quality model yangi nomzod bermadi; saqlangan to'liq jadval yakuniy tekshiruvga o'tdi.",
+                        "user_cancel": "To'xtatish qabul qilindi; topilgan eng yaxshi to'liq natija saqlanmoqda.",
+                        "hard_limit": "Texnik qidiruv chegarasi tugadi; eng yaxshi topilgan nomzod saqlanmoqda.",
+                    }.get(reason, "Yaxshilash qidiruvi yakunlandi; eng yaxshi nomzod tekshirilmoqda.")
+                    _v2243_progress_write(
+                        sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                        progress_revision, 86,
+                        "toxtatish_soraldi"
+                        if reason == "user_cancel" else
+                        "yaxshilash_yakunlanmoqda",
+                        f"Jadval #{reserved_run_id}"
+                        f"{'.' + str(progress_revision) if progress_revision else ''}: {message}",
+                    )
+                elif event == "quality_accepted":
+                    quality_cancelled = str(
+                        (payload or {}).get("stop_reason") or ""
+                    ) == "user_cancel"
+                    improvement_count = max(
+                        1,
+                        int((payload or {}).get("improvement_count") or 0),
+                    )
+                    progress_revision = max(
+                        progress_revision,
+                        quality_start_revision + improvement_count,
+                    )
+                    _v2243_progress_write(
+                        sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                        progress_revision, 88,
+                        "toxtatish_soraldi"
+                        if quality_cancelled else
+                        "global_yaxshilandi",
+                        (
+                            f"Jadval #{reserved_run_id}.{progress_revision}: "
+                            + (
+                                "to'xtatish qabul qilindi; topilgan eng yaxshi sinf-kun balansi xavfsiz saqlanmoqda."
+                                if quality_cancelled else
+                                "global sinf-kun balansi va qulaylik yaxshilandi; qattiq qoidalar hamda 100% dars saqlandi."
+                            )
+                        ),
                     )
 
             exact_context = dict(context)
@@ -4087,6 +4202,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = bool(sorov.yaxshilash_bosqichi)
             exact_context["exact_quality_seconds"] = generation_budget if sorov.yaxshilash_bosqichi else 0.0
+            exact_context["exact_quality_no_improvement_seconds"] = (
+                _v2250_quality_no_improvement_seconds()
+            )
+            exact_context["exact_quality_first_solution_seconds"] = (
+                _v2250_quality_first_solution_seconds()
+            )
             exact_context["exact_progress_callback"] = _v2243_exact_progress
             exact_context["exact_cancel_requested"] = lambda: _v2244_cancel_requested(
                 sorov.maktab_id, sorov.qidiruv_nonce
@@ -4389,12 +4510,33 @@ def v1852_generate(sorov: V1852Generate, token: str):
         final_policy_stage = "strict"
         final_mode_config = _timetable_mode_config()
 
-        # Yakuniy hard-safe kompaktlash alohida rezervdan foydalanadi.
+        # Tez ko'rinadigan asosiy jadvalga ham 2 soniyagacha sinf-kun balansi
+        # beriladi. Chuqur o'qituvchi optimizatsiyasi esa faqat ikkinchi
+        # bosqichda ishlaydi. Foydalanuvchi cancel qilsa lokal bosqichlar ham
+        # navbatdagi tekshiruvda darhol yakunlanadi.
+        base_finalize_deadline = min(
+            generation_finalization_deadline,
+            _samtm_time.monotonic() + 2.0,
+        )
         context["v206_deadline"] = (
             generation_started
-            if bounded_method_fallback_used or not sorov.yaxshilash_bosqichi
+            if bounded_method_fallback_used
             else generation_finalization_deadline
+            if sorov.yaxshilash_bosqichi
+            else base_finalize_deadline
         )
+        local_cancel_cache = {"checked_at": 0.0, "cancelled": False}
+
+        def _v2250_local_cancel_requested():
+            now = _samtm_time.monotonic()
+            if now - float(local_cancel_cache["checked_at"]) >= 0.5:
+                local_cancel_cache["checked_at"] = now
+                local_cancel_cache["cancelled"] = _v2244_cancel_requested(
+                    sorov.maktab_id, sorov.qidiruv_nonce
+                )
+            return bool(local_cancel_cache["cancelled"])
+
+        context["v206_cancel_requested"] = _v2250_local_cancel_requested
         final_context = context
         final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
         if final_repeat_days or final_policy_stage != "strict":
@@ -4402,6 +4544,44 @@ def v1852_generate(sorov: V1852Generate, token: str):
             final_context["v203_emergency_repeat_days"] = final_repeat_days
             final_context["v207_policy_stage"] = final_policy_stage
             final_context["v208_mode_config"] = dict(final_mode_config)
+
+        def _v2250_teacher_progress(payload):
+            nonlocal progress_revision
+            teacher_id = int((payload or {}).get("oqituvchi_id") or 0)
+            checked = int((payload or {}).get("tekshirildi") or 0)
+            target_total = max(1, int((payload or {}).get("jami") or 1))
+            improved_teacher = bool((payload or {}).get("yaxshilandi"))
+            if improved_teacher:
+                progress_revision += 1
+            teacher_name = str(
+                (teachers.get(teacher_id) or {}).get("full_name")
+                or teacher_id
+            )
+            percent = min(95, 88 + int(7 * checked / target_total))
+            cancelled = _v2250_local_cancel_requested()
+            _v2243_progress_write(
+                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                progress_revision, percent,
+                "toxtatish_soraldi"
+                if cancelled else
+                "ustozlar_yaxshilandi"
+                if improved_teacher else
+                "ustoz_tekshirildi",
+                f"Jadval #{reserved_run_id}"
+                f"{'.' + str(progress_revision) if progress_revision else ''}: "
+                f"{checked}/{target_total} ta muammoli yoki kam-soatli o‘qituvchi tekshirildi. "
+                + (
+                    f"{teacher_name} uchun xavfsiz qulayroq variant qotirildi."
+                    if improved_teacher else
+                    f"{teacher_name} uchun yaxshiroq xavfsiz almashtirish qolmadi."
+                ),
+            )
+
+        if sorov.yaxshilash_bosqichi:
+            final_context["v225_teacher_progress_callback"] = (
+                _v2250_teacher_progress
+            )
+        finalizer_start_revision = int(progress_revision)
         # Ko'p urinishdan tanlangan eng yaxshi jadvalni sinf kataklarini
         # o'zgartirmasdan yana bir marta o'qituvchi nuqtai nazaridan siqamiz.
         # Bir sinf-kun ichidagi ikki fanning o'rni xavfsiz almashtiriladi:
@@ -4424,18 +4604,31 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # ustozning Algebra+Algebra kuni va boshqa kundagi Geometriya darsi
         # hard-safe almashtirilsa, avval shu variant tanlanadi. Faqat boshqa
         # legal taqsimot qolmasa bir fan bir kunda ikki marta saqlanadi.
-        if not _v206_deadline_reached(final_context):
+        if (
+            sorov.yaxshilash_bosqichi
+            and not _v206_deadline_reached(final_context)
+        ):
             state = _v219_reduce_avoidable_subject_repeats(
                 state, final_context, final_rng,
                 max_swaps=16, max_trials=120,
             )
+        # Kunlararo fan almashuvi sinf taqsimotiga ta'sir qilishi mumkin.
+        # Shu sabab barcha sinf balansi o'qituvchilarni qotirishdan OLDIN
+        # tugaydi; keyin hech bir bosqich yaxshilangan ustozni qayta buzmaydi.
         if not _v206_deadline_reached(final_context):
-            state = _v196_optimize_teacher_windows(
-                state, final_context, final_rng, max_swaps=240
+            state = _v196_balance_class_days(
+                state, final_context, final_rng, max_moves=96
             )
         if not _v206_deadline_reached(final_context):
             state = _v196_compact_class_gaps(
-                state, final_context, final_rng, max_moves=48
+                state, final_context, final_rng, max_moves=96
+            )
+        if (
+            sorov.yaxshilash_bosqichi
+            and not _v206_deadline_reached(final_context)
+        ):
+            state = _v196_optimize_teacher_windows(
+                state, final_context, final_rng, max_swaps=240
             )
         if final_policy_stage != "strict":
             state["v207_policy_stage"] = final_policy_stage
@@ -4443,12 +4636,6 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 "Jadval to'liq sig'ishi uchun rejim: "
                 + _timetable_stage_label(final_policy_stage)
             )
-        state = _v196_balance_class_days(
-            state, final_context, final_rng, max_moves=72
-        )
-        state = _v196_compact_class_gaps(
-            state, final_context, final_rng, max_moves=96
-        )
         # Qulaylik optimizatorlari faqat exact yechimni yaxshilashi mumkin.
         # Ularning biror ko'chirishi qat'iy exact qoidaga tegsa, butun
         # post-processing bekor qilinadi va oldindan validatsiyadan o'tgan
@@ -4505,26 +4692,52 @@ def v1852_generate(sorov: V1852Generate, token: str):
         final_metrics = _v196_attempt_metrics(state, final_context)
         state["v196_metrics"] = final_metrics
         comfort_keys = (
-            "oqituvchi_ichki_okno", "oqituvchi_uzoq_kutish_daqiqa",
-            "oqituvchi_faol_kun", "sinf_kun_nomutanosibligi",
+            "sinf_eng_yomon_spread",
+            "sinf_jami_spread",
+            "sinf_kun_taqsimoti_farqi",
+            "sinf_qisqa_kunlari",
+            "oqituvchi_ichki_okno",
+            "oqituvchi_birlashgan_okno_daqiqa",
+            "oqituvchi_faol_kun",
         )
         before_comfort = tuple(float(exact_metrics.get(key) or 0) for key in comfort_keys)
         after_comfort = tuple(float(final_metrics.get(key) or 0) for key in comfort_keys)
+        cancelled_during_finalize = _v2244_cancel_requested(
+            sorov.maktab_id, sorov.qidiruv_nonce
+        )
         if after_comfort != before_comfort and all(
             after <= before for after, before in zip(after_comfort, before_comfort)
         ):
-            progress_revision += 1
+            if progress_revision == finalizer_start_revision:
+                progress_revision += 1
             _v2243_progress_write(
                 sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                progress_revision, 88, "ustozlar_yaxshilandi",
-                f"Jadval #{reserved_run_id}.{progress_revision}: o‘qituvchi oynalari, uzoq kutish va kam-soatli ustozlarning kunlari yaxshilandi.",
+                progress_revision, 88,
+                "toxtatish_soraldi"
+                if cancelled_during_finalize else
+                "ustozlar_yaxshilandi",
+                f"Jadval #{reserved_run_id}.{progress_revision}: "
+                + (
+                    "to‘xtatish qabul qilindi; topilgan eng yaxshi o‘qituvchi qulayligi saqlanmoqda."
+                    if cancelled_during_finalize else
+                    "o‘qituvchi oynalari, uzoq kutish va kam-soatli ustozlarning kunlari yaxshilandi."
+                ),
             )
         else:
             _v2243_progress_write(
                 sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
                 progress_revision, 88,
-                "yaxshilash_tekshirildi" if sorov.yaxshilash_bosqichi else "tekshirildi",
-                f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: o‘qituvchi qulayligi tekshirildi; yomonlashtiradigan o‘zgarish qabul qilinmadi.",
+                "toxtatish_soraldi"
+                if cancelled_during_finalize else
+                "yaxshilash_tekshirildi"
+                if sorov.yaxshilash_bosqichi else
+                "tekshirildi",
+                f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: "
+                + (
+                    "to‘xtatish qabul qilindi; eng yaxshi mavjud variant saqlanmoqda."
+                    if cancelled_during_finalize else
+                    "o‘qituvchi qulayligi tekshirildi; yomonlashtiradigan o‘zgarish qabul qilinmadi."
+                ),
             )
         gap_count = int(final_metrics.get("oqituvchi_ichki_okno", 0))
         placed_count = len(state["placements"])
@@ -4539,15 +4752,12 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 status_code=409,
                 detail=_v209_class_gap_failure_detail(state, classes),
             )
-        if final_class_imbalance > 0 and sorov.yaxshilash_bosqichi:
-            raise HTTPException(
-                status_code=409,
-                detail=(
-                    "To'liq jadval topildi, ammo sinf darslari kunlarga teng "
-                    f"taqsimlanmadi (farq balli: {final_class_imbalance}). "
-                    "1–2 soatli kun va 5–6 soatli kun birga saqlanmaydi; "
-                    "generator yaxshiroq teng variant topishi kerak."
-                ),
+        if final_class_imbalance > 0:
+            state.setdefault("ogohlantirishlar", []).append(
+                "Sinf kunlari uchun barcha xavfsiz global va lokal variantlar "
+                "tekshirildi; qat'iy qoidalarni buzmasdan qolgan eng kichik "
+                f"taqsimot farqi {final_class_imbalance} ball bo'ldi. To'liq "
+                "jadval xato qilinmaydi va eng yaxshi valid variant saqlanadi."
             )
         # Jadval to'liq va sinf oynasisiz bo'lgandan keyingina aniq qulaylik
         # tahlili qilinadi. Bu hisobot joriy state/contextni mutatsiya qilmaydi,
@@ -4779,7 +4989,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
         _v2243_progress_write(
             sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
             progress_revision, 96,
-            "yaxshilash_saqlash" if sorov.yaxshilash_bosqichi else "saqlash",
+            "toxtatish_soraldi"
+            if _v2244_cancel_requested(
+                sorov.maktab_id, sorov.qidiruv_nonce
+            ) else
+            "yaxshilash_saqlash"
+            if sorov.yaxshilash_bosqichi else
+            "saqlash",
             f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: yakuniy validator tekshiryapti va bazaga saqlayapti.",
         )
         if sorov.yaxshilash_bosqichi:
@@ -4797,10 +5013,22 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     old_diagnostics = {}
             old_metrics = dict(old_diagnostics.get("qulaylik_strategiyasi") or {})
             metric_names = (
+                "sinf_eng_yomon_spread",
+                "sinf_jami_spread",
+                "sinf_kun_taqsimoti_farqi",
+                "sinf_qisqa_kunlari",
                 "oqituvchi_ichki_okno",
                 "oqituvchi_smenalar_orasi_daqiqa",
                 "oqituvchi_faol_kun",
-                "sinf_kun_taqsimoti_farqi",
+            )
+            # V22.50 base bosqichi bu kalitlarni doim saqlaydi. Juda eski
+            # draftda ular bo'lmasa uni taxminan yomonlashtirish o'rniga
+            # xavfsiz ravishda ustidan yozmaymiz; foydalanuvchi yangi asosiy
+            # raqam bilan toza generatsiyani boshlaydi.
+            missing_class_guard = any(
+                name not in old_metrics for name in (
+                    "sinf_eng_yomon_spread", "sinf_jami_spread",
+                )
             )
             old_metric_values = tuple(
                 float(old_metrics.get(name) or 0) for name in metric_names
@@ -4809,23 +5037,38 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 float(final_metrics.get(name) or 0) for name in metric_names
             )
             comfort_improved = (
-                any(new < old for new, old in zip(new_metric_values, old_metric_values))
+                not missing_class_guard
+                and any(new < old for new, old in zip(new_metric_values, old_metric_values))
                 and all(new <= old for new, old in zip(new_metric_values, old_metric_values))
             )
             if not comfort_improved:
                 conn.rollback()
                 saved_revision = int(old_diagnostics.get("yaxshilanish") or 0)
+                cancelled_without_change = _v2244_cancel_requested(
+                    sorov.maktab_id, sorov.qidiruv_nonce
+                )
                 _v2243_progress_write(
                     sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
-                    saved_revision, 100, "tayyor",
-                    f"Jadval #{reserved_run_id}{'.' + str(saved_revision) if saved_revision else ''}: barcha xavfsiz variantlar tekshirildi. Eng yaxshi saqlangan jadval o‘zgarmadi.",
+                    saved_revision, 100,
+                    "toxtatildi" if cancelled_without_change else "tayyor",
+                    (
+                        f"Jadval #{reserved_run_id}{'.' + str(saved_revision) if saved_revision else ''}: "
+                        + (
+                            "to‘xtatildi; eng yaxshi saqlangan jadval o‘zgarmadi."
+                            if cancelled_without_change else
+                            "bir to‘liq xavfsiz yaxshilash sikli tugadi; yangi yaxshiroq variant topilmadi. Eng yaxshi saqlangan jadval o‘zgarmadi."
+                        )
+                    ),
                 )
                 return {"holat": "yaxshiroq_variant_topilmadi", "urinish_id": reserved_run_id,
                         "jadval_raqami": reserved_run_id, "yaxshilanish": saved_revision,
                         "sifat": old_quality, "jami_soat": total_count,
                         "joylashtirildi": total_count, "joylashtirilmadi": 0,
                         "tasdiqlash_mumkin": True}
-            progress_revision = int(old_diagnostics.get("yaxshilanish") or 0) + 1
+            progress_revision = max(
+                int(old_diagnostics.get("yaxshilanish") or 0) + 1,
+                int(progress_revision or 0),
+            )
             diagnostics["yaxshilanish"] = progress_revision
             cur.execute("DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s", (reserved_run_id,))
         else:
@@ -5055,16 +5298,31 @@ def v1852_generate(sorov: V1852Generate, token: str):
         base_saved = bool(
             sorov.yaxshilash_davom_etadi and not sorov.yaxshilash_bosqichi
         )
+        cancelled_after_save = bool(
+            not base_saved
+            and _v2244_cancel_requested(
+                sorov.maktab_id, sorov.qidiruv_nonce
+            )
+        )
         _v2243_progress_write(
             sorov.maktab_id, sorov.qidiruv_nonce, run_id,
             progress_revision, 55 if base_saved else 100,
-            "asosiy_tayyor" if base_saved else "tayyor",
+            "asosiy_tayyor"
+            if base_saved else
+            "toxtatildi"
+            if cancelled_after_save else
+            "tayyor",
             (
                 f"Jadval #{run_id} yaratildi: {placed_count}/{total_count} dars to'liq joylashdi. "
                 "Jadval saqlandi; endi shu nusxani buzmasdan o'qituvchi oynalari yaxshilanmoqda."
                 if base_saved else
-                f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: "
-                f"{placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi."
+                f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} "
+                + (
+                    "foydalanuvchi so‘rovi bilan to‘xtatildi: "
+                    if cancelled_after_save else
+                    "tayyor: yaxshilanish qolmagan to‘liq sikl yakunlandi; "
+                )
+                + f"{placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi."
             ),
         )
         return {"holat": "draft_yaratildi", "urinish_id": run_id,
@@ -15157,6 +15415,21 @@ def _v196_class_distribution(jobs, context):
 
 
 def _v196_class_distribution_metrics(state, context):
+    _worst_spread, _total_spread, imbalance, short_days = (
+        _v2250_class_balance_signature(state, context)
+    )
+    return int(imbalance), int(short_days)
+
+
+def _v2250_class_balance_signature(state, context):
+    """Saqlashgacha bir xil class-balance tartibini qat'iy himoya qiladi.
+
+    ``imbalance`` yig'indisi teng bo'lgan ikki jadvalning eng yomon kuni
+    boshqacha bo'lishi mumkin. Shu sabab avval eng yomon spread-excess,
+    keyin ularning jami, so'ng ideal taqsimotdan L1 farqi solishtiriladi.
+    """
+    worst_spread = 0
+    total_spread = 0
     imbalance = 0
     short_days = 0
     for class_id, target in (context.get("v196_class_distribution") or {}).items():
@@ -15165,13 +15438,22 @@ def _v196_class_distribution_metrics(state, context):
             int(state.get("class_daily_total", {}).get((class_id, day), 0))
             for day in days
         )
+        spread_excess = max(
+            0,
+            (max(actual) - min(actual) - 1) if actual else 0,
+        )
+        worst_spread = max(worst_spread, int(spread_excess))
+        total_spread += int(spread_excess)
         ideal = sorted(
             [target["low"]] * (len(days) - target["remainder"])
             + [target["high"]] * target["remainder"]
         )
         imbalance += sum(abs(a - b) for a, b in zip(actual, ideal))
         short_days += sum(1 for count in actual if 0 < count < target["low"])
-    return int(imbalance), int(short_days)
+    return (
+        int(worst_spread), int(total_spread),
+        int(imbalance), int(short_days),
+    )
 
 
 
@@ -15232,6 +15514,13 @@ def _v196_place_exact(
 
 
 def _v206_deadline_reached(context):
+    cancel_requested = (context or {}).get("v206_cancel_requested")
+    if callable(cancel_requested):
+        try:
+            if cancel_requested():
+                return True
+        except Exception:
+            pass
     deadline = float((context or {}).get("v206_deadline") or 0)
     return bool(deadline and _samtm_time.monotonic() >= deadline)
 
@@ -15747,7 +16036,8 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
     frozen = {}
     improved = []
     targets = _v225_target_order(state, context)
-    for teacher_id in targets:
+    progress_callback = (context or {}).get("v225_teacher_progress_callback")
+    for target_index, teacher_id in enumerate(targets, 1):
         if swaps >= int(max_swaps) or _v206_deadline_reached(context):
             break
         teacher_improved = False
@@ -15818,6 +16108,18 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
             )
         if teacher_improved:
             improved.append(int(teacher_id))
+        if callable(progress_callback):
+            try:
+                progress_callback({
+                    "oqituvchi_id": int(teacher_id),
+                    "tekshirildi": int(target_index),
+                    "jami": int(len(targets)),
+                    "yaxshilandi": bool(teacher_improved),
+                    "almashtirishlar": int(swaps),
+                    "sinovlar": int(trials),
+                })
+            except Exception:
+                pass
 
     state["v196_teacher_window_swaps"] = int(swaps)
     state["v225_teacher_window_trials"] = int(trials)
@@ -16600,6 +16902,7 @@ def _v214_teacher_window_relaxation_report(
         "ikki_smenali_istisno_ortiqcha_kun",
         "10_19_ortiqcha_kun", "10_19_limitdan_ortiq_kun",
         "10_19_yonma_yon_kun", "10_19_notekis_kun",
+        "sinf_eng_yomon_spread", "sinf_jami_spread",
         "sinf_kun_taqsimoti_farqi", "sinf_qisqa_kunlari",
         "oqituvchi_ichki_okno", "oqituvchi_oknoli_smena_kun",
         "oqituvchi_kop_oknoli_smena_kun", "eng_katta_ichki_okno",
@@ -17349,7 +17652,12 @@ def _v196_attempt_metrics(state, context):
                 ],
                 "240_daqiqadan_uzoq_kunlar": over_four,
             })
-    class_imbalance, class_short_days = _v196_class_distribution_metrics(state, context)
+    (
+        class_worst_spread,
+        class_total_spread,
+        class_imbalance,
+        class_short_days,
+    ) = _v2250_class_balance_signature(state, context)
     teacher_gap_metrics = _v196_teacher_gap_metrics(state, context)
     core_period6_days = sum(
         len(days) for days in core_period6_by_class.values()
@@ -17381,6 +17689,8 @@ def _v196_attempt_metrics(state, context):
         "10_19_limitdan_ortiq_kun": int(compact_overflow_days),
         "10_19_yonma_yon_kun": int(compact_adjacent_days),
         "10_19_notekis_kun": int(compact_unbalanced_days),
+        "sinf_eng_yomon_spread": class_worst_spread,
+        "sinf_jami_spread": class_total_spread,
         "sinf_kun_taqsimoti_farqi": class_imbalance,
         "sinf_qisqa_kunlari": class_short_days,
         **teacher_gap_metrics,
