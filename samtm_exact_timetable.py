@@ -906,6 +906,19 @@ def _model_status_name(status: Any) -> str:
     return mapping.get(status, UNKNOWN)
 
 
+def _quality_profile(context: Mapping[str, Any]) -> str:
+    """Return the only two supported quality objective profiles.
+
+    ``class_balance`` is intentionally narrow: it is used before the first
+    visible/base timetable is saved, so CP-SAT spends its small bounded pass
+    only on stable class-day loads.  The normal improvement stage keeps the
+    complete teacher/subject comfort objective.
+    """
+
+    value = str(context.get("exact_quality_profile") or "full").strip().casefold()
+    return "class_balance" if value == "class_balance" else "full"
+
+
 def _build_model(
     jobs: list[Mapping[str, Any]], context: Mapping[str, Any], adapter: Any,
     *, relax_method: bool = False, feasibility_only: bool = False,
@@ -996,6 +1009,8 @@ def _build_model(
             class_day_vars[(row["class_id"], row["day"], phase)].append(index)
     class_ids = sorted({int(job.get("sinf_id") or 0) for job in jobs})
     quality_enabled = bool(not feasibility_only and not relax_method)
+    quality_profile = _quality_profile(context)
+    comfort_enabled = bool(quality_enabled and quality_profile == "full")
     balance_terms: list[Any] = []
     balance_spread_terms: list[Any] = []
     balance_deviation_upper_bound = 0
@@ -1226,7 +1241,7 @@ def _build_model(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
     for (teacher, day, phase), raw_indices in teacher_real_day.items():
-        if not quality_enabled:
+        if not comfort_enabled:
             continue
         indices = sorted(set(raw_indices))
         if not indices:
@@ -1320,7 +1335,7 @@ def _build_model(
     for (teacher, day, shift, phase, period), indices in teacher_periods.items():
         grouped_teacher_periods[(teacher, day, shift, phase)][period] = sorted(set(indices))
     for key, period_map in grouped_teacher_periods.items():
-        if not quality_enabled:
+        if not comfort_enabled:
             continue
         if len(period_map) < 3:
             continue
@@ -1379,7 +1394,7 @@ def _build_model(
     candidate_cost_upper_by_job: dict[int, int] = defaultdict(int)
     # Candidate-local pedagogical costs.  They cannot sacrifice feasibility.
     for index, row in enumerate(candidates):
-        if not quality_enabled:
+        if not comfort_enabled:
             break
         job = row["job"]
         profile = subject_profile(job, context)
@@ -1457,7 +1472,9 @@ def _build_model(
     ))
     comfort_quality = sum(objective_terms) if objective_terms else 0
     quality = (
-        class_balance_expression * (comfort_upper_bound + 1)
+        class_balance_expression
+        if quality_profile == "class_balance"
+        else class_balance_expression * (comfort_upper_bound + 1)
         + comfort_quality
     )
     has_objective = False
@@ -1843,6 +1860,24 @@ def _class_balance_signature_from_state(
             for actual, expected in zip(sorted(counts), ideal)
         )
     return int(worst_spread), int(total_spread), int(total_deviation)
+
+
+def _quality_refinement_accepts(
+    profile: str,
+    incumbent_balance: tuple[int, int, int],
+    refined_balance: tuple[int, int, int],
+) -> bool:
+    """Keep a base refinement only when its visible day balance is better.
+
+    The full improvement stage may accept an equal class balance because its
+    lower-priority objective improves teacher comfort.  A pre-save
+    ``class_balance`` pass has no such secondary purpose: accepting an equal
+    signature would merely reshuffle an already equivalent base timetable.
+    """
+
+    if str(profile) == "class_balance":
+        return tuple(refined_balance) < tuple(incumbent_balance)
+    return tuple(refined_balance) <= tuple(incumbent_balance)
 
 
 if cp_model is not None:  # pragma: no branch - class shape depends on OR-Tools.
@@ -2705,6 +2740,14 @@ def solve_exact_timetable(
         best_bound = (
             float(solver.BestObjectiveBound()) if bundle.has_objective else 0.0
         )
+        quality_profile = _quality_profile(context)
+        incumbent_balance_before_quality: Optional[tuple[int, int, int]] = None
+        if quality_profile == "class_balance" and callable(state_builder):
+            incumbent_balance_before_quality = (
+                _class_balance_signature_from_state(
+                    state_builder(placements, context), context
+                )
+            )
         # Feasibility is never sacrificed for comfort. Once the first full
         # hard-safe timetable exists, a short second CP-SAT pass receives that
         # exact timetable as a complete hint and may globally rearrange all
@@ -2717,6 +2760,20 @@ def solve_exact_timetable(
                 )
             except (TypeError, ValueError):
                 requested_quality_seconds = 2.0
+            # A perfectly floor/ceil-balanced base cannot be improved by the
+            # narrow objective.  Avoid rebuilding the larger quality model
+            # and return the hard-safe incumbent immediately.
+            if (
+                quality_profile == "class_balance"
+                and incumbent_balance_before_quality == (0, 0, 0)
+            ):
+                requested_quality_seconds = 0.0
+                diagnostics["quality_refinement"] = {
+                    "status": "SKIPPED",
+                    "quality_profile": quality_profile,
+                    "reason": "incumbent class-day balance already optimal",
+                    "incumbent_class_balance": [0, 0, 0],
+                }
             remaining_before_build = (
                 numeric_max_seconds - (time.monotonic() - started)
             )
@@ -2821,6 +2878,7 @@ def solve_exact_timetable(
                                 pass
                         diagnostics["quality_refinement"] = {
                             "status": quality_status,
+                            "quality_profile": quality_profile,
                             "seconds": round(float(quality_solver.WallTime()), 6),
                             "incumbent_hint_complete": True,
                             "stop_reason": tracker_snapshot.get("stop_reason"),
@@ -2873,7 +2931,25 @@ def solve_exact_timetable(
                                         refined_balance
                                     ),
                                 })
-                                if refined_balance <= incumbent_balance:
+                                refinement_accepted = (
+                                    _quality_refinement_accepts(
+                                        quality_profile,
+                                        incumbent_balance,
+                                        refined_balance,
+                                    )
+                                )
+                                diagnostics["quality_refinement"].update({
+                                    "class_balance_non_worsening": bool(
+                                        refined_balance <= incumbent_balance
+                                    ),
+                                    "class_balance_strictly_improved": bool(
+                                        refined_balance < incumbent_balance
+                                    ),
+                                    "refinement_accepted": bool(
+                                        refinement_accepted
+                                    ),
+                                })
+                                if refinement_accepted:
                                     placements, chosen = (
                                         refined_placements, refined_chosen
                                     )
@@ -2884,9 +2960,6 @@ def solve_exact_timetable(
                                         quality_solver.BestObjectiveBound()
                                     )
                                     diagnostics["quality_optimized"] = True
-                                    diagnostics["quality_refinement"][
-                                        "class_balance_non_worsening"
-                                    ] = True
                                     if callable(progress_callback):
                                         try:
                                             progress_callback("quality_accepted", {
@@ -2899,11 +2972,13 @@ def solve_exact_timetable(
                                             pass
                                 else:
                                     diagnostics["quality_refinement"][
-                                        "class_balance_non_worsening"
-                                    ] = False
-                                    diagnostics["quality_refinement"][
                                         "reason"
                                     ] = (
+                                        "Base class-balance profili qat'iy "
+                                        "yaxshilanmadi; hard-safe incumbent "
+                                        "saqlandi."
+                                        if quality_profile == "class_balance"
+                                        else
                                         "Refined jadval sinf kun balansini "
                                         "yomonlashtirdi; hard-safe incumbent "
                                         "saqlandi."
@@ -2915,6 +2990,7 @@ def solve_exact_timetable(
                     else:
                         diagnostics["quality_refinement"] = {
                             "status": "SKIPPED",
+                            "quality_profile": quality_profile,
                             "reason": "incumbent candidate hint yagona emas",
                             "incumbent_hint_complete": False,
                         }
