@@ -49,7 +49,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 # Deployda fayl haqiqatan yangilangani bir qarashda ko'rinadigan belgi.
-EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.50-STABLE-DAYS"
+EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.47-WORST-FIRST-COMPACT"
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
@@ -806,9 +806,6 @@ class _ModelBundle:
     teacher_exception_variables: dict[int, Any]
     has_objective: bool = True
     symmetry_breakers: int = 0
-    class_balance_expression: Any = 0
-    class_balance_upper_bound: int = 0
-    comfort_upper_bound: int = 0
 
 
 def _freeze_symmetry_value(value: Any) -> Any:
@@ -906,19 +903,6 @@ def _model_status_name(status: Any) -> str:
     return mapping.get(status, UNKNOWN)
 
 
-def _quality_profile(context: Mapping[str, Any]) -> str:
-    """Return the only two supported quality objective profiles.
-
-    ``class_balance`` is intentionally narrow: it is used before the first
-    visible/base timetable is saved, so CP-SAT spends its small bounded pass
-    only on stable class-day loads.  The normal improvement stage keeps the
-    complete teacher/subject comfort objective.
-    """
-
-    value = str(context.get("exact_quality_profile") or "full").strip().casefold()
-    return "class_balance" if value == "class_balance" else "full"
-
-
 def _build_model(
     jobs: list[Mapping[str, Any]], context: Mapping[str, Any], adapter: Any,
     *, relax_method: bool = False, feasibility_only: bool = False,
@@ -1009,44 +993,13 @@ def _build_model(
             class_day_vars[(row["class_id"], row["day"], phase)].append(index)
     class_ids = sorted({int(job.get("sinf_id") or 0) for job in jobs})
     quality_enabled = bool(not feasibility_only and not relax_method)
-    quality_profile = _quality_profile(context)
-    comfort_enabled = bool(quality_enabled and quality_profile == "full")
     balance_terms: list[Any] = []
-    balance_spread_terms: list[Any] = []
-    balance_deviation_upper_bound = 0
-    balance_spread_upper_bound = 0
-    balance_max_spread_upper_bound = 0
-    distribution_targets = context.get("v196_class_distribution") or {}
     for class_id in class_ids:
-        class_jobs = [
-            job for job in jobs
-            if int(job.get("sinf_id") or 0) == class_id
-        ]
-        target = (
-            distribution_targets.get(class_id)
-            or distribution_targets.get(str(class_id))
-            or {}
-        )
-        target_days = tuple(
-            int(day) for day in (target.get("days") or ())
-            if 1 <= int(day) <= weekdays
-        )
-        if not target_days:
-            sample_job = class_jobs[0] if class_jobs else {"sinf_id": class_id}
-            grade = _grade(sample_job, context)
-            target_days = tuple(
-                day for day in range(1, weekdays + 1)
-                if not (1 <= grade <= 4 and day == 6)
-                and not _class_day_blocked(sample_job, day, context)
-            )
-        active_day_count = max(1, len(target_days))
         for phase in _ACTUAL_PHASES:
             phase_job_count = sum(
                 1 for job in jobs if int(job.get("sinf_id") or 0) == class_id
                 and phase in _job_class_phases(job)
             )
-            phase_counts: list[Any] = []
-            phase_count_upper_bounds: list[int] = []
             for day in range(1, weekdays + 1):
                 periods = sorted({
                     key[3] for key in class_period_vars
@@ -1064,67 +1017,20 @@ def _build_model(
                         used_by_period[period] = used
                     for period in range(1, max(periods)):
                         model.Add(used_by_period[period] >= used_by_period[period + 1])
-                if quality_enabled and phase_job_count and day in target_days:
+                if quality_enabled and phase_job_count:
                     indices = sorted(set(class_day_vars.get((class_id, day, phase), [])))
-                    count_upper = min(
-                        phase_job_count,
-                        len(periods),
-                    )
                     count = model.NewIntVar(
-                        0, max(0, count_upper),
+                        0, min(phase_job_count, max(0, len(indices))),
                         f"class_count_{class_id}_{day}_{phase}",
                     )
-                    if indices:
-                        model.Add(count == sum(variables[index] for index in indices))
-                    else:
-                        model.Add(count == 0)
-                    deviation_upper = max(
-                        phase_job_count,
-                        abs(count_upper * active_day_count - phase_job_count),
-                    )
-                    deviation = model.NewIntVar(
-                        0, deviation_upper,
-                        f"balance_{class_id}_{day}_{phase}",
-                    )
-                    model.AddAbsEquality(
-                        deviation,
-                        count * active_day_count - phase_job_count,
-                    )
+                    model.Add(count == sum(variables[index] for index in indices))
+                    deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
+                    model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
                     balance_terms.append(deviation)
-                    phase_counts.append(count)
-                    phase_count_upper_bounds.append(count_upper)
-                    balance_deviation_upper_bound += deviation_upper
-            if quality_enabled and phase_job_count and phase_counts:
-                phase_upper = max(phase_count_upper_bounds or [0])
-                maximum = model.NewIntVar(
-                    0, phase_upper,
-                    f"class_max_{class_id}_{phase}",
-                )
-                minimum = model.NewIntVar(
-                    0, phase_upper,
-                    f"class_min_{class_id}_{phase}",
-                )
-                spread = model.NewIntVar(
-                    0, phase_upper,
-                    f"class_spread_{class_id}_{phase}",
-                )
-                spread_excess = model.NewIntVar(
-                    0, phase_upper,
-                    f"class_spread_excess_{class_id}_{phase}",
-                )
-                model.AddMaxEquality(maximum, phase_counts)
-                model.AddMinEquality(minimum, phase_counts)
-                model.Add(spread == maximum - minimum)
-                model.AddMaxEquality(spread_excess, [spread - 1, 0])
-                balance_spread_terms.append(spread_excess)
-                balance_spread_upper_bound += phase_upper
-                balance_max_spread_upper_bound = max(
-                    balance_max_spread_upper_bound,
-                    phase_upper,
-                )
 
     # Subject repetitions and controlled repeat-day fallback.
     subject_groups: dict[tuple[int, str, int, str], list[int]] = defaultdict(list)
+    subject_job_sets: dict[tuple[int, str, str], set[int]] = defaultdict(set)
     subject_daily_limits: dict[tuple[int, str], int] = {}
     subject_is_practical: dict[tuple[int, str], bool] = {}
     for index, row in enumerate(candidates):
@@ -1143,14 +1049,17 @@ def _build_model(
             )
             for phase in phases:
                 subject_groups[(row["class_id"], subject, row["day"], phase)].append(index)
+                subject_job_sets[(row["class_id"], subject, phase)].add(
+                    int(row["job_index"])
+                )
     repeat_day_limit = max(0, int(context.get("max_subject_repeat_days") or 0))
     practical_repeat_day_limit = max(
         0, int(context.get("practical_repeat_day_limit", 1))
     )
     repeat_bools: dict[tuple[int, str, str], list[Any]] = defaultdict(list)
     repeat_group_limits: dict[tuple[int, str, str], int] = {}
-    repeat_terms: list[Any] = []
-    practical_repeat_terms: list[Any] = []
+    repeat_terms: list[tuple[Any, int]] = []
+    practical_repeat_terms: list[tuple[Any, int]] = []
     for (class_id, subject, day, phase), indices in subject_groups.items():
         indices = sorted(set(indices))
         normal_limit = subject_daily_limits[(class_id, subject)]
@@ -1180,7 +1089,18 @@ def _build_model(
         repeat_group_limits[(class_id, subject, phase)] = int(
             allowed_repeat_days
         )
-        (practical_repeat_terms if practical else repeat_terms).append(repeat)
+        weekly_occurrences = len(subject_job_sets.get(
+            (class_id, subject, phase), set()
+        ))
+        # V22.47: 4–5 soatli fan uchun 2+2(+1) legal va foydali bo'lishi
+        # mumkin. Shuning uchun bunday juft kunni deyarli taqiqlovchi 5000
+        # ball bilan bosmaymiz. Sinf-kun balansi baribir 20000 ball bilan
+        # ustun, daily_max=2 va repeat-day limiti esa qattiq qoladi.
+        repeat_weight = 250 if weekly_occurrences in {4, 5} else 5_000
+        practical_weight = 1_500
+        (practical_repeat_terms if practical else repeat_terms).append(
+            (repeat, practical_weight if practical else repeat_weight)
+        )
         if practical:
             # If the practical fan occurs twice on this day, the two selected
             # occurrence candidates must be adjacent.  Pairwise forbidding is
@@ -1235,13 +1155,12 @@ def _build_model(
             for phase in phases:
                 teacher_real_day[(teacher, row["day"], phase)].append(index)
     teacher_real_idle_terms: list[Any] = []
-    teacher_real_idle_upper_bound = 0
     teacher_used_day_terms: list[Any] = []
     ordinary_break_minutes = max(
         0, int(context.get("teacher_normal_break_minutes") or 25)
     )
     for (teacher, day, phase), raw_indices in teacher_real_day.items():
-        if not comfort_enabled:
+        if not quality_enabled:
             continue
         indices = sorted(set(raw_indices))
         if not indices:
@@ -1298,9 +1217,6 @@ def _build_model(
             [raw_idle - ordinary_break_minutes * break_count, 0],
         )
         teacher_real_idle_terms.append(excess_idle)
-        teacher_real_idle_upper_bound += max(
-            0, horizon_end - horizon_start
-        )
 
     # A core subject may use period 6 on at most two class-days per phase.
     core_limit = max(0, int(context.get("core_period6_day_limit", 2)))
@@ -1335,7 +1251,7 @@ def _build_model(
     for (teacher, day, shift, phase, period), indices in teacher_periods.items():
         grouped_teacher_periods[(teacher, day, shift, phase)][period] = sorted(set(indices))
     for key, period_map in grouped_teacher_periods.items():
-        if not comfort_enabled:
+        if not quality_enabled:
             continue
         if len(period_map) < 3:
             continue
@@ -1391,10 +1307,9 @@ def _build_model(
             return None, [{"reason": "Metod kunida legal, qizil/BAND bo'lmagan katak topilmadi"}]
 
     objective_terms: list[Any] = []
-    candidate_cost_upper_by_job: dict[int, int] = defaultdict(int)
     # Candidate-local pedagogical costs.  They cannot sacrifice feasibility.
     for index, row in enumerate(candidates):
-        if not comfort_enabled:
+        if not quality_enabled:
             break
         job = row["job"]
         profile = subject_profile(job, context)
@@ -1421,62 +1336,23 @@ def _build_model(
                 cost += 40
         if cost:
             objective_terms.append(variables[index] * int(cost))
-            candidate_cost_upper_by_job[int(row["job_index"])] = max(
-                candidate_cost_upper_by_job[int(row["job_index"])],
-                int(cost),
-            )
     objective_terms.extend(term * 50 for term in gap_terms)
     # One extra real idle minute costs more than small period preferences;
     # using an additional work day is also discouraged. Daily/weekly caps and
     # all red/method rules remain hard constraints, so these are safe tie-breaks.
     objective_terms.extend(term * 20 for term in teacher_real_idle_terms)
-    objective_terms.extend(term * 80 for term in teacher_used_day_terms)
-    # Repetition is a feasibility fallback, not a preferred layout.  One
-    # repeat-day costs more than all ordinary early/late nudges of one job.
-    objective_terms.extend(term * 5_000 for term in repeat_terms)
-    objective_terms.extend(term * 2_500 for term in practical_repeat_terms)
-    # Sinf kunlari o'zining HAQIQIY faol kunlari bo'yicha tenglashtiriladi.
-    # Bu oddiy taxminiy weight emas: avval eng yomon spread, keyin jami
-    # spread, so'ng floor/ceil og'ishi, faqat undan keyin o'qituvchi comforti
-    # turadigan isbotlangan lexicographic butun-son kalitidir.
-    total_deviation = sum(balance_terms) if balance_terms else 0
-    total_spread = sum(balance_spread_terms) if balance_spread_terms else 0
-    max_spread = 0
-    if balance_spread_terms:
-        max_spread = model.NewIntVar(
-            0,
-            max(0, balance_max_spread_upper_bound),
-            "class_global_max_spread_excess",
-        )
-        model.AddMaxEquality(max_spread, balance_spread_terms)
-    deviation_scale = max(1, balance_deviation_upper_bound + 1)
-    spread_scale = max(1, balance_spread_upper_bound + 1)
-    class_balance_expression = (
-        max_spread * spread_scale * deviation_scale
-        + total_spread * deviation_scale
-        + total_deviation
-    )
-    class_balance_upper_bound = (
-        max(0, balance_max_spread_upper_bound)
-        * spread_scale * deviation_scale
-        + max(0, balance_spread_upper_bound) * deviation_scale
-        + max(0, balance_deviation_upper_bound)
-    )
-    comfort_upper_bound = max(1, int(
-        sum(candidate_cost_upper_by_job.values())
-        + len(gap_terms) * 50
-        + teacher_real_idle_upper_bound * 20
-        + len(teacher_used_day_terms) * 80
-        + len(repeat_terms) * 5_000
-        + len(practical_repeat_terms) * 2_500
-    ))
-    comfort_quality = sum(objective_terms) if objective_terms else 0
-    quality = (
-        class_balance_expression
-        if quality_profile == "class_balance"
-        else class_balance_expression * (comfort_upper_bound + 1)
-        + comfort_quality
-    )
+    # V22.47: kam/yengil yuklamali ustozni 2–4 kunga yig'ish uchun bir ortiqcha
+    # faol kun sezilarli xarajat. Bu hard kunlik maksimumni hech qachon buzmaydi.
+    objective_terms.extend(term * 300 for term in teacher_used_day_terms)
+    # 4–5 soatli fan 2+2(+1) bo'lishi mumkin; boshqa fanlarda repeat hanuz
+    # juda qimmat. Og'irlik yuqorida haftalik occurrence soniga qarab berildi.
+    objective_terms.extend(term * weight for term, weight in repeat_terms)
+    objective_terms.extend(term * weight for term, weight in practical_repeat_terms)
+    # Sinf kunlari 1/6 yoki 2/6 bo'lib qolmasin. Bu mezon o'qituvchini kam
+    # kunga yig'ish va mayda fan-vaqt afzalliklaridan oldin turadi. Masalan
+    # 30 soat/6 kun uchun 5+5+5+5+5+5, 29 soat uchun 4+5+5+5+5+5 afzal.
+    objective_terms.extend(term * 20_000 for term in balance_terms)
+    quality = sum(objective_terms) if objective_terms else 0
     has_objective = False
     if relax_method:
         # This is a diagnostic model, never a saved timetable.  Minimize only
@@ -1494,9 +1370,6 @@ def _build_model(
         teacher_exception_variables=teacher_exception_variables,
         has_objective=has_objective,
         symmetry_breakers=symmetry_breakers,
-        class_balance_expression=class_balance_expression,
-        class_balance_upper_bound=class_balance_upper_bound,
-        comfort_upper_bound=comfort_upper_bound,
     ), []
 
 
@@ -1747,214 +1620,26 @@ def _new_solver(seed: int, max_seconds: float, context: Mapping[str, Any]) -> An
     return solver
 
 
-class _ExactImprovementTracker:
-    """Quality qidiruvini foydali o'zgarish qolmaganda yakunlaydi.
-
-    Teng yoki yomon incumbent stagnatsiya vaqtini yangilamaydi. Tracker sof
-    va soat funksiyasi inject qilinadi, shuning uchun sleep ishlatmasdan
-    regressiya test qilinadi.
-    """
-
-    def __init__(
-        self,
-        no_improvement_seconds: float,
-        first_solution_seconds: float,
-        *,
-        clock: Callable[[], float] = time.monotonic,
-    ) -> None:
-        self.no_improvement_seconds = max(1.0, float(no_improvement_seconds))
-        self.first_solution_seconds = max(1.0, float(first_solution_seconds))
-        self._clock = clock
-        self._lock = threading.Lock()
-        self.started_at = float(clock())
-        self.first_solution_at: Optional[float] = None
-        self.last_improvement_at: Optional[float] = None
-        self.best_objective: Optional[float] = None
-        self.improvement_count = 0
-        self.solution_count = 0
-        self.stop_reason: Optional[str] = None
-
-    def observe(self, objective: float) -> tuple[bool, bool]:
-        """Return ``(first_solution, strict_improvement)``."""
-
-        now = float(self._clock())
-        value = float(objective)
-        with self._lock:
-            self.solution_count += 1
-            if self.best_objective is None:
-                self.best_objective = value
-                self.first_solution_at = now
-                self.last_improvement_at = now
-                return True, False
-            if value < self.best_objective - 1e-6:
-                self.best_objective = value
-                self.last_improvement_at = now
-                self.improvement_count += 1
-                return False, True
-            return False, False
-
-    def snapshot(self) -> dict[str, Any]:
-        now = float(self._clock())
-        with self._lock:
-            anchor = self.last_improvement_at or self.started_at
-            return {
-                "elapsed_seconds": max(0.0, now - self.started_at),
-                "idle_seconds": max(0.0, now - anchor),
-                "has_solution": self.best_objective is not None,
-                "best_objective": self.best_objective,
-                "improvement_count": int(self.improvement_count),
-                "solution_count": int(self.solution_count),
-                "no_improvement_seconds": float(
-                    self.no_improvement_seconds
-                ),
-                "first_solution_seconds": float(self.first_solution_seconds),
-                "stop_reason": self.stop_reason,
-            }
-
-    def should_stop(self) -> Optional[str]:
-        snapshot = self.snapshot()
-        if snapshot["has_solution"]:
-            if snapshot["idle_seconds"] >= self.no_improvement_seconds:
-                return "no_improvement"
-            return None
-        if snapshot["elapsed_seconds"] >= self.first_solution_seconds:
-            return "first_solution_timeout"
-        return None
-
-    def mark_stopped(self, reason: str) -> None:
-        with self._lock:
-            if self.stop_reason is None:
-                self.stop_reason = str(reason)
-
-
-def _class_balance_signature_from_state(
-    state: Mapping[str, Any], context: Mapping[str, Any]
-) -> tuple[int, int, int]:
-    """Lexicographic ``(worst spread, total spread, floor/ceil deviation)``."""
-
-    worst_spread = 0
-    total_spread = 0
-    total_deviation = 0
-    daily = state.get("class_daily_total") or {}
-    for class_id, target in (
-        context.get("v196_class_distribution") or {}
-    ).items():
-        days = [int(day) for day in target.get("days") or ()]
-        if not days:
-            continue
-        counts = [
-            int(daily.get((int(class_id), day), 0) or 0)
-            for day in days
-        ]
-        spread_excess = max(0, max(counts) - min(counts) - 1)
-        ideal = sorted(
-            [int(target.get("low") or 0)]
-            * (len(days) - int(target.get("remainder") or 0))
-            + [int(target.get("high") or 0)]
-            * int(target.get("remainder") or 0)
-        )
-        worst_spread = max(worst_spread, spread_excess)
-        total_spread += spread_excess
-        total_deviation += sum(
-            abs(actual - expected)
-            for actual, expected in zip(sorted(counts), ideal)
-        )
-    return int(worst_spread), int(total_spread), int(total_deviation)
-
-
-def _quality_refinement_accepts(
-    profile: str,
-    incumbent_balance: tuple[int, int, int],
-    refined_balance: tuple[int, int, int],
-) -> bool:
-    """Keep a base refinement only when its visible day balance is better.
-
-    The full improvement stage may accept an equal class balance because its
-    lower-priority objective improves teacher comfort.  A pre-save
-    ``class_balance`` pass has no such secondary purpose: accepting an equal
-    signature would merely reshuffle an already equivalent base timetable.
-    """
-
-    if str(profile) == "class_balance":
-        return tuple(refined_balance) < tuple(incumbent_balance)
-    return tuple(refined_balance) <= tuple(incumbent_balance)
-
-
-if cp_model is not None:  # pragma: no branch - class shape depends on OR-Tools.
-    class _ExactQualitySolutionCallback(cp_model.CpSolverSolutionCallback):
-        def __init__(self, tracker, progress_callback=None):
-            super().__init__()
-            self.tracker = tracker
-            self.progress_callback = progress_callback
-
-        def on_solution_callback(self):
-            first, improved = self.tracker.observe(self.ObjectiveValue())
-            if not (first or improved) or not callable(self.progress_callback):
-                return
-            event = "quality_started" if first else "quality_improved"
-            try:
-                self.progress_callback(event, self.tracker.snapshot())
-            except Exception:
-                pass
-else:  # pragma: no cover - only instantiated when OR-Tools is available.
-    _ExactQualitySolutionCallback = None
-
-
-def _solve_with_user_cancel(
-    solver: Any,
-    model: Any,
-    context: Mapping[str, Any],
-    *,
-    solution_callback: Any = None,
-    improvement_tracker: Optional[_ExactImprovementTracker] = None,
-) -> Any:
-    """CP-SATni cancel yoki stagnatsiyada eng yaxshi incumbent bilan to'xtatadi."""
+def _solve_with_user_cancel(solver: Any, model: Any, context: Mapping[str, Any]) -> Any:
+    """CP-SATni DBdagi foydalanuvchi signali bilan xavfsiz to‘xtatadi."""
     cancel_requested = context.get("exact_cancel_requested")
-    if not callable(cancel_requested) and improvement_tracker is None:
-        return (
-            solver.Solve(model, solution_callback)
-            if solution_callback is not None
-            else solver.Solve(model)
-        )
+    if not callable(cancel_requested):
+        return solver.Solve(model)
     watcher_done = threading.Event()
 
     def watch_cancel() -> None:
-        last_progress_at = 0.0
-        while not watcher_done.wait(0.50):
-            if callable(cancel_requested):
-                try:
-                    if cancel_requested():
-                        if improvement_tracker is not None:
-                            improvement_tracker.mark_stopped("user_cancel")
-                        solver.StopSearch()
-                        return
-                except Exception:
-                    pass
-            if improvement_tracker is None:
+        while not watcher_done.wait(0.75):
+            try:
+                if cancel_requested():
+                    solver.StopSearch()
+                    return
+            except Exception:
                 continue
-            reason = improvement_tracker.should_stop()
-            if reason:
-                improvement_tracker.mark_stopped(reason)
-                solver.StopSearch()
-                return
-            snapshot = improvement_tracker.snapshot()
-            elapsed = float(snapshot.get("elapsed_seconds") or 0.0)
-            progress_callback = context.get("exact_progress_callback")
-            if callable(progress_callback) and elapsed - last_progress_at >= 2.0:
-                last_progress_at = elapsed
-                try:
-                    progress_callback("quality_progress", snapshot)
-                except Exception:
-                    pass
 
     watcher = threading.Thread(target=watch_cancel, daemon=True)
     watcher.start()
     try:
-        return (
-            solver.Solve(model, solution_callback)
-            if solution_callback is not None
-            else solver.Solve(model)
-        )
+        return solver.Solve(model)
     finally:
         watcher_done.set()
 
@@ -2740,14 +2425,6 @@ def solve_exact_timetable(
         best_bound = (
             float(solver.BestObjectiveBound()) if bundle.has_objective else 0.0
         )
-        quality_profile = _quality_profile(context)
-        incumbent_balance_before_quality: Optional[tuple[int, int, int]] = None
-        if quality_profile == "class_balance" and callable(state_builder):
-            incumbent_balance_before_quality = (
-                _class_balance_signature_from_state(
-                    state_builder(placements, context), context
-                )
-            )
         # Feasibility is never sacrificed for comfort. Once the first full
         # hard-safe timetable exists, a short second CP-SAT pass receives that
         # exact timetable as a complete hint and may globally rearrange all
@@ -2760,20 +2437,6 @@ def solve_exact_timetable(
                 )
             except (TypeError, ValueError):
                 requested_quality_seconds = 2.0
-            # A perfectly floor/ceil-balanced base cannot be improved by the
-            # narrow objective.  Avoid rebuilding the larger quality model
-            # and return the hard-safe incumbent immediately.
-            if (
-                quality_profile == "class_balance"
-                and incumbent_balance_before_quality == (0, 0, 0)
-            ):
-                requested_quality_seconds = 0.0
-                diagnostics["quality_refinement"] = {
-                    "status": "SKIPPED",
-                    "quality_profile": quality_profile,
-                    "reason": "incumbent class-day balance already optimal",
-                    "incumbent_class_balance": [0, 0, 0],
-                }
             remaining_before_build = (
                 numeric_max_seconds - (time.monotonic() - started)
             )
@@ -2824,75 +2487,14 @@ def solve_exact_timetable(
                             quality_seconds,
                             quality_context,
                         )
-                        try:
-                            no_improvement_seconds = float(
-                                context.get(
-                                    "exact_quality_no_improvement_seconds",
-                                    15.0,
-                                )
-                            )
-                        except (TypeError, ValueError):
-                            no_improvement_seconds = 15.0
-                        try:
-                            first_solution_seconds = float(
-                                context.get(
-                                    "exact_quality_first_solution_seconds",
-                                    30.0,
-                                )
-                            )
-                        except (TypeError, ValueError):
-                            first_solution_seconds = 30.0
-                        quality_tracker = _ExactImprovementTracker(
-                            no_improvement_seconds,
-                            first_solution_seconds,
-                        )
-                        quality_callback = (
-                            _ExactQualitySolutionCallback(
-                                quality_tracker,
-                                progress_callback,
-                            )
-                            if _ExactQualitySolutionCallback is not None
-                            else None
-                        )
                         quality_raw_status = _solve_with_user_cancel(
-                            quality_solver,
-                            quality_bundle.model,
-                            quality_context,
-                            solution_callback=quality_callback,
-                            improvement_tracker=quality_tracker,
+                            quality_solver, quality_bundle.model, quality_context
                         )
                         quality_status = _model_status_name(quality_raw_status)
-                        if quality_tracker.stop_reason is None:
-                            quality_tracker.mark_stopped(
-                                "optimal"
-                                if quality_status == OPTIMAL
-                                else "hard_limit"
-                            )
-                        tracker_snapshot = quality_tracker.snapshot()
-                        if callable(progress_callback):
-                            try:
-                                progress_callback(
-                                    "quality_stopped", tracker_snapshot
-                                )
-                            except Exception:
-                                pass
                         diagnostics["quality_refinement"] = {
                             "status": quality_status,
-                            "quality_profile": quality_profile,
                             "seconds": round(float(quality_solver.WallTime()), 6),
                             "incumbent_hint_complete": True,
-                            "stop_reason": tracker_snapshot.get("stop_reason"),
-                            "improvement_count": int(
-                                tracker_snapshot.get("improvement_count") or 0
-                            ),
-                            "solution_count": int(
-                                tracker_snapshot.get("solution_count") or 0
-                            ),
-                            "no_improvement_seconds": float(
-                                tracker_snapshot.get(
-                                    "no_improvement_seconds"
-                                ) or no_improvement_seconds
-                            ),
                         }
                         if quality_status in {FEASIBLE, OPTIMAL}:
                             refined_placements, refined_chosen = _extract_placements(
@@ -2902,87 +2504,28 @@ def solve_exact_timetable(
                                 job_list, refined_chosen, context
                             )
                             if not refined_errors:
-                                incumbent_state = (
-                                    state_builder(placements, context)
-                                    if callable(state_builder)
-                                    else {"placements": placements}
+                                placements, chosen = (
+                                    refined_placements, refined_chosen
                                 )
-                                refined_state = (
-                                    state_builder(refined_placements, context)
-                                    if callable(state_builder)
-                                    else {"placements": refined_placements}
+                                objective_value = float(
+                                    quality_solver.ObjectiveValue()
                                 )
-                                incumbent_balance = (
-                                    _class_balance_signature_from_state(
-                                        incumbent_state, context
-                                    )
+                                best_bound = float(
+                                    quality_solver.BestObjectiveBound()
                                 )
-                                refined_balance = (
-                                    _class_balance_signature_from_state(
-                                        refined_state, context
-                                    )
-                                )
-                                diagnostics["quality_refinement"].update({
-                                    "validator_passed": True,
-                                    "incumbent_class_balance": list(
-                                        incumbent_balance
-                                    ),
-                                    "refined_class_balance": list(
-                                        refined_balance
-                                    ),
-                                })
-                                refinement_accepted = (
-                                    _quality_refinement_accepts(
-                                        quality_profile,
-                                        incumbent_balance,
-                                        refined_balance,
-                                    )
-                                )
-                                diagnostics["quality_refinement"].update({
-                                    "class_balance_non_worsening": bool(
-                                        refined_balance <= incumbent_balance
-                                    ),
-                                    "class_balance_strictly_improved": bool(
-                                        refined_balance < incumbent_balance
-                                    ),
-                                    "refinement_accepted": bool(
-                                        refinement_accepted
-                                    ),
-                                })
-                                if refinement_accepted:
-                                    placements, chosen = (
-                                        refined_placements, refined_chosen
-                                    )
-                                    objective_value = float(
-                                        quality_solver.ObjectiveValue()
-                                    )
-                                    best_bound = float(
-                                        quality_solver.BestObjectiveBound()
-                                    )
-                                    diagnostics["quality_optimized"] = True
-                                    if callable(progress_callback):
-                                        try:
-                                            progress_callback("quality_accepted", {
-                                                "placed": len(placements),
-                                                "total": len(job_list),
-                                                "status": quality_status,
-                                                **tracker_snapshot,
-                                            })
-                                        except Exception:
-                                            pass
-                                else:
-                                    diagnostics["quality_refinement"][
-                                        "reason"
-                                    ] = (
-                                        "Base class-balance profili qat'iy "
-                                        "yaxshilanmadi; hard-safe incumbent "
-                                        "saqlandi."
-                                        if quality_profile == "class_balance"
-                                        else
-                                        "Refined jadval sinf kun balansini "
-                                        "yomonlashtirdi; hard-safe incumbent "
-                                        "saqlandi."
-                                    )
+                                diagnostics["quality_optimized"] = True
+                                diagnostics["quality_refinement"][
+                                    "validator_passed"
+                                ] = True
+                                if callable(progress_callback):
+                                    try:
+                                        progress_callback("quality_accepted", {
+                                            "placed": len(placements),
+                                            "total": len(job_list),
+                                            "status": quality_status,
+                                        })
+                                    except Exception:
+                                        pass
                             else:
                                 diagnostics["quality_refinement"][
                                     "validation_errors"
@@ -2990,7 +2533,6 @@ def solve_exact_timetable(
                     else:
                         diagnostics["quality_refinement"] = {
                             "status": "SKIPPED",
-                            "quality_profile": quality_profile,
                             "reason": "incumbent candidate hint yagona emas",
                             "incumbent_hint_complete": False,
                         }
