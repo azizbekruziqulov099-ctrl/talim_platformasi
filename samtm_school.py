@@ -89,7 +89,7 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.34-PRIMARY5-UPPER3"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.35-SUBJECT-MAX2"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -8419,7 +8419,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
             )
             message = (
-                f"V22.34 PRIMARY5-UPPER3 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
+                f"V22.35 SUBJECT-MAX2 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
                 f"{weekly_sessions:g}."
@@ -9049,20 +9049,12 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     )
 
     daily_teacher_sessions = _v1852_defaultdict(set)
-    daily_teacher_class_sessions = _v1852_defaultdict(set)
     daily_subject_sessions = _v1852_defaultdict(set)
     for slot in slots:
         teacher_id = slot.get("oqituvchi_user_id")
         if teacher_id is not None:
             daily_teacher_sessions[(
                 int(teacher_id), int(slot["hafta_kuni"])
-            )].add((
-                int(slot["smena"]), int(slot["dars_raqami"]),
-                str(slot.get("hafta_turi") or "har_hafta"),
-            ))
-            daily_teacher_class_sessions[(
-                int(teacher_id), int(slot["sinf_id"]),
-                int(slot["hafta_kuni"]),
             )].add((
                 int(slot["smena"]), int(slot["dars_raqami"]),
                 str(slot.get("hafta_turi") or "har_hafta"),
@@ -9091,24 +9083,6 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     f"{teacher_rows.get(teacher_id, {}).get('full_name', teacher_id)}: "
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
                     f"{count} dars, kunlik max {limit}"
-                )
-    for (teacher_id, class_id, day), sessions in daily_teacher_class_sessions.items():
-        teacher_class_limit = (
-            5 if 1 <= _v1874_grade(classes.get(class_id, {})) <= 4 else 3
-        )
-        for phase in ("toq", "juft"):
-            count = len({
-                (session[0], session[1]) for session in sessions
-                if session[2] == "har_hafta" or session[2] == phase
-            })
-            if count > teacher_class_limit:
-                cls = classes.get(class_id, {})
-                errors.append(
-                    f"{teacher_rows.get(teacher_id, {}).get('full_name', teacher_id)}: "
-                    f"{cls.get('sinf', '')}-{cls.get('harf', '')} sinfga "
-                    f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
-                    f"{count} dars; bir o'qituvchi-bir sinf uchun kunlik max "
-                    f"{teacher_class_limit}"
                 )
     subject_repeat_days = _v1852_defaultdict(list)
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
