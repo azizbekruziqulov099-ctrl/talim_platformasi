@@ -89,7 +89,7 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.35-SUBJECT-MAX2"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.37-ONE-DOUBLE-DAY"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -7602,13 +7602,9 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
                 academic_periods += 1
         if academic_periods >= 5 and 1 <= grade <= 4:
             fifth_days[class_id].add(day)
-        if 1 <= grade <= 4:
-            for subject_key, periods in subject_periods.items():
-                if len(periods) > 1:
-                    violations.append({
-                        "sinf": class_name,
-                        "sabab": f"{_V1852_HAFTA.get(day, day)} kuni bir fan ikki marta qo‘yilgan: {subject_key}",
-                    })
+        # V22.36: ayni fan kuniga 2 marta bo'lishi qonuniy zaxira.
+        # Phase-aware yakuniy validator 3-martani alohida qat'iy rad etadi;
+        # gigiyena qatlami legal 2+1+1 / 2+2+1 taqsimotni qayta rad etmaydi.
 
     for class_id, days in fifth_days.items():
         class_name, grade = class_names[class_id]
@@ -8290,7 +8286,11 @@ def _v1875_preflight_report(cur, maktab_id: int):
         profile = _v1874_subject_profile(pair.get("fan_nomi"), grade)
         practical = bool(profile.get("physical") or profile.get("technology"))
         per_day_limit = 2
-        repeat_day_limit = 1 if practical else 2
+        subject_key = _v1875_subject_key(pair.get("fan_nomi"))
+        single_double_day = any(token in subject_key for token in (
+            "matematika", "ona tili", "oqish savodxonligi", "oqish",
+        ))
+        repeat_day_limit = 1 if (practical or single_double_day) else 2
         # Exact kontrakt bilan aynan bir xil sig'im: har kuni avval bittadan,
         # manbada daily_max>1 bo'lsagina ko'pi bilan 1/2 ta kunda qo'shimcha
         # dars. Masalan 5 kun va daily_max=2 => oddiy fan 7, amaliy fan 6.
@@ -8337,7 +8337,11 @@ def _v1875_preflight_report(cur, maktab_id: int):
         daily_max = 2
         practical = bool(profile.get("physical") or profile.get("technology"))
         per_day_limit = 2
-        repeat_day_limit = 1 if practical else 2
+        subject_key = _v1875_subject_key(pair.get("fan_nomi"))
+        single_double_day = any(token in subject_key for token in (
+            "matematika", "ona tili", "oqish savodxonligi", "oqish",
+        ))
+        repeat_day_limit = 1 if (practical or single_double_day) else 2
         first_period = 2 if (
             practical
         ) else 1
@@ -8419,7 +8423,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
             )
             message = (
-                f"V22.35 SUBJECT-MAX2 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
+                f"V22.37 ONE-DOUBLE-DAY · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
                 f"{weekly_sessions:g}."
@@ -9135,7 +9139,10 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         class_id, subject_key, phase, practical
     ), repeat_days in subject_repeat_days.items():
         unique_days = sorted(set(int(day) for day in repeat_days))
-        repeat_day_limit = 1 if practical else 2
+        single_double_day = any(token in subject_key for token in (
+            "matematika", "ona tili", "oqish savodxonligi", "oqish",
+        ))
+        repeat_day_limit = 1 if (practical or single_double_day) else 2
         if len(unique_days) <= repeat_day_limit:
             continue
         load = loads.get((class_id, subject_key), {})
