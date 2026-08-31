@@ -6,7 +6,7 @@ yaxshilaydi. Qizil vaqt, metod kuni, smena, sinf/o'qituvchi/xona to'qnashuvi
 va guruh sinxronligi hech qachon yumshamaydi.
 """
 
-ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V22.30-MAX2"
+ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V22.34-PRIMARY5-UPPER3"
 
 INTERNAL_STAGES = ("strict", "balanced", "completion")
 
