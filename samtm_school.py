@@ -86,7 +86,10 @@ _V19_IMPORTED_NAMES = set(globals())
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
-SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.30-MAX2"
+# Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
+# qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
+SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.34-PRIMARY5-UPPER3"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -8416,7 +8419,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
             )
             message = (
-                f"V22.30 MAX2 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
+                f"V22.34 PRIMARY5-UPPER3 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
                 f"{weekly_sessions:g}."
@@ -9090,18 +9093,22 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
                     f"{count} dars, kunlik max {limit}"
                 )
     for (teacher_id, class_id, day), sessions in daily_teacher_class_sessions.items():
+        teacher_class_limit = (
+            5 if 1 <= _v1874_grade(classes.get(class_id, {})) <= 4 else 3
+        )
         for phase in ("toq", "juft"):
             count = len({
                 (session[0], session[1]) for session in sessions
                 if session[2] == "har_hafta" or session[2] == phase
             })
-            if count > 2:
+            if count > teacher_class_limit:
                 cls = classes.get(class_id, {})
                 errors.append(
                     f"{teacher_rows.get(teacher_id, {}).get('full_name', teacher_id)}: "
                     f"{cls.get('sinf', '')}-{cls.get('harf', '')} sinfga "
                     f"{_V1852_HAFTA.get(day, day)} {phase.upper()} haftada "
-                    f"{count} dars; bir o'qituvchi-bir sinf uchun kunlik max 2"
+                    f"{count} dars; bir o'qituvchi-bir sinf uchun kunlik max "
+                    f"{teacher_class_limit}"
                 )
     subject_repeat_days = _v1852_defaultdict(list)
     for (class_id, subject_key, day), sessions in daily_subject_sessions.items():
@@ -10582,6 +10589,7 @@ def v197_fractional_hour_capabilities():
         "platform_release": SAMTM_SCHOOL_RELEASE,
         "jadval_release": SAMTM_JADVAL_RELEASE,
         "exact_jadval_release": SAMTM_EXACT_JADVAL_RELEASE,
+        "exact_internal_release": SAMTM_EXACT_INTERNAL_RELEASE,
         "timetable_engine_release": SAMTM_TIMETABLE_ENGINE_RELEASE,
         "single_generator": True,
         "generator_soni": 1,
