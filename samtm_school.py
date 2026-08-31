@@ -3730,6 +3730,9 @@ class V1852Generate(BaseModel):
     # Eski frontendlar yuborishi mumkin. Yagona generator bu qiymatni
     # e'tiborsiz qoldiradi va har doim bir xil kuchli siyosatni ishlatadi.
     generator_rejimi: int = 1
+    asosiy_jadval_id: Optional[int] = None
+    yaxshilash_bosqichi: bool = False
+    yaxshilash_davom_etadi: bool = False
 
 
 @app.post("/api/maktab/aqlli_jadval/v3/toxtatish")
@@ -3793,7 +3796,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # yangi natija bilan aralashmasligi uchun bekor qilinadi; tasdiqlangan
         # faol jadval yangi draft tasdiqlanguncha o'z joyida qoladi.
         sync_report = _v1875_rebuild_schedule_sources(
-            cur, sorov.maktab_id, cancel_drafts=True, reason="jadval_yaratish"
+            cur, sorov.maktab_id, cancel_drafts=not sorov.yaxshilash_bosqichi,
+            reason="jadval_yaxshilash" if sorov.yaxshilash_bosqichi else "jadval_yaratish"
         )
         if sync_report.get("xatolar"):
             raise HTTPException(
@@ -3883,24 +3887,42 @@ def v1852_generate(sorov: V1852Generate, token: str):
         # Haqiqiy jadval raqami hisoblash tugashidan oldin band qilinadi.
         # Frontend shu sabab taxminiy emas, aynan yakunda saqlanadigan #51
         # raqamini ko‘rsatadi; yaxshilanishlar #51.1, #51.2 bo‘lib boradi.
-        cur.execute(
-            "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
-        )
-        reserved_run_id = int(cur.fetchone()["id"])
+        if sorov.yaxshilash_bosqichi and sorov.asosiy_jadval_id:
+            reserved_run_id = int(sorov.asosiy_jadval_id)
+            cur.execute(
+                "SELECT COALESCE((diagnostika->>'yaxshilanish')::int,0) AS rev FROM aqlli_jadval_urinishlari_v2 WHERE id=%s AND maktab_id=%s",
+                (reserved_run_id, sorov.maktab_id),
+            )
+            existing_run = cur.fetchone()
+            if not existing_run:
+                raise HTTPException(status_code=404, detail="Yaxshilanadigan asosiy jadval topilmadi")
+            progress_revision = int(existing_run.get("rev") or 0)
+        else:
+            cur.execute(
+                "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
+            )
+            reserved_run_id = int(cur.fetchone()["id"])
         cur.execute(
             """INSERT INTO aqlli_jadval_jarayoni_v2243(
                    maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,toxtatish_soraldi,yangilangan_at)
-               VALUES(%s,%s,%s,0,8,'tayyorlash',%s,FALSE,NOW())
+               VALUES(%s,%s,%s,%s,%s,%s,%s,FALSE,NOW())
                ON CONFLICT(maktab_id) DO UPDATE SET
                    qidiruv_nonce=EXCLUDED.qidiruv_nonce,
                    jadval_raqami=EXCLUDED.jadval_raqami,
-                   yaxshilanish=0,foiz=8,bosqich='tayyorlash',
+                   yaxshilanish=EXCLUDED.yaxshilanish,foiz=EXCLUDED.foiz,bosqich=EXCLUDED.bosqich,
                    xabar=EXCLUDED.xabar,toxtatish_soraldi=FALSE,yangilangan_at=NOW()""",
             (
                 sorov.maktab_id,
                 sorov.qidiruv_nonce,
                 reserved_run_id,
-                f"Jadval #{reserved_run_id} uchun {len(jobs)} ta dars tayyorlandi. Qattiq qoidalar tekshirilmoqda.",
+                progress_revision,
+                58 if sorov.yaxshilash_bosqichi else 8,
+                "yaxshilash" if sorov.yaxshilash_bosqichi else "tayyorlash",
+                (
+                    f"Jadval #{reserved_run_id}.{progress_revision}: saqlangan to‘liq jadvalni buzmasdan yaxshiroq variant qidirilmoqda."
+                    if sorov.yaxshilash_bosqichi else
+                    f"Jadval #{reserved_run_id} uchun {len(jobs)} ta dars tayyorlandi. Qattiq qoidalar tekshirilmoqda."
+                ),
             ),
         )
 
@@ -4019,8 +4041,8 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # sifat bosqichi ishlaydi. U daily_max=2 takrorlarini, o'qituvchi
             # oynalarini va fan vaqtini barcha sinflar bo'ylab yaxshilaydi;
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
-            exact_context["exact_quality_after_feasible"] = True
-            exact_context["exact_quality_seconds"] = generation_budget
+            exact_context["exact_quality_after_feasible"] = bool(sorov.yaxshilash_bosqichi)
+            exact_context["exact_quality_seconds"] = generation_budget if sorov.yaxshilash_bosqichi else 0.0
             exact_context["exact_progress_callback"] = _v2243_exact_progress
             exact_context["exact_cancel_requested"] = lambda: _v2244_cancel_requested(
                 sorov.maktab_id, sorov.qidiruv_nonce
@@ -4712,9 +4734,64 @@ def v1852_generate(sorov: V1852Generate, token: str):
             progress_revision, 96, "saqlash",
             f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: yakuniy validator tekshiryapti va bazaga saqlayapti.",
         )
+        if sorov.yaxshilash_bosqichi:
+            cur.execute(
+                "SELECT sifat,diagnostika FROM aqlli_jadval_urinishlari_v2 WHERE id=%s AND maktab_id=%s",
+                (reserved_run_id, sorov.maktab_id),
+            )
+            old_run = cur.fetchone() or {}
+            old_quality = int(old_run.get("sifat") or 0)
+            old_diagnostics = old_run.get("diagnostika") or {}
+            if isinstance(old_diagnostics, str):
+                try:
+                    old_diagnostics = json.loads(old_diagnostics)
+                except (TypeError, ValueError):
+                    old_diagnostics = {}
+            old_metrics = dict(old_diagnostics.get("qulaylik_strategiyasi") or {})
+            metric_names = (
+                "oqituvchi_ichki_okno",
+                "oqituvchi_uzoq_kutish_daqiqa",
+                "oqituvchi_faol_kun",
+                "sinf_kun_nomutanosibligi",
+            )
+            old_metric_values = tuple(
+                float(old_metrics.get(name) or 0) for name in metric_names
+            )
+            new_metric_values = tuple(
+                float(final_metrics.get(name) or 0) for name in metric_names
+            )
+            comfort_improved = (
+                any(new < old for new, old in zip(new_metric_values, old_metric_values))
+                and all(new <= old for new, old in zip(new_metric_values, old_metric_values))
+            )
+            if int(quality) <= old_quality and not comfort_improved:
+                conn.rollback()
+                saved_revision = int(old_diagnostics.get("yaxshilanish") or 0)
+                _v2243_progress_write(
+                    sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                    saved_revision, 100, "tayyor",
+                    f"Jadval #{reserved_run_id}{'.' + str(saved_revision) if saved_revision else ''}: barcha xavfsiz variantlar tekshirildi. Eng yaxshi saqlangan jadval o‘zgarmadi.",
+                )
+                return {"holat": "yaxshiroq_variant_topilmadi", "urinish_id": reserved_run_id,
+                        "jadval_raqami": reserved_run_id, "yaxshilanish": saved_revision,
+                        "sifat": old_quality, "jami_soat": total_count,
+                        "joylashtirildi": total_count, "joylashtirilmadi": 0,
+                        "tasdiqlash_mumkin": True}
+            progress_revision = int(old_diagnostics.get("yaxshilanish") or 0) + 1
+            diagnostics["yaxshilanish"] = progress_revision
+            cur.execute("DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s", (reserved_run_id,))
+        else:
+            diagnostics["yaxshilanish"] = 0
         cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
             id,maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar)
-            VALUES(%s,%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
+            VALUES(%s,%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb)
+            ON CONFLICT(id) DO UPDATE SET
+                sifat=EXCLUDED.sifat,
+                joylashtirildi=EXCLUDED.joylashtirildi,
+                joylashtirilmadi=EXCLUDED.joylashtirilmadi,
+                diagnostika=EXCLUDED.diagnostika,
+                sozlamalar=EXCLUDED.sozlamalar
+            RETURNING id""",
             (reserved_run_id, sorov.maktab_id, user_id, quality, placed_count, len(unplaced),
              json.dumps(diagnostics, ensure_ascii=False, default=str),
              json.dumps({"hafta_kunlari": context["weekdays"], "oquv_yili_id": year["id"],
@@ -4922,10 +4999,23 @@ def v1852_generate(sorov: V1852Generate, token: str):
         )
 
         conn.commit()
+        # Asosiy to'liq jadval topilishi bilan darhol ko'rinadi va bazada
+        # saqlanadi. Fon ishchisi undan keyin aynan shu ID ustida qulaylikni
+        # yaxshilaydi; shu orada foydalanuvchi #51 ni ochib ko'ra oladi.
+        base_saved = bool(
+            sorov.yaxshilash_davom_etadi and not sorov.yaxshilash_bosqichi
+        )
         _v2243_progress_write(
             sorov.maktab_id, sorov.qidiruv_nonce, run_id,
-            progress_revision, 100, "tayyor",
-            f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: {placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi.",
+            progress_revision, 55 if base_saved else 100,
+            "asosiy_tayyor" if base_saved else "tayyor",
+            (
+                f"Jadval #{run_id} yaratildi: {placed_count}/{total_count} dars to'liq joylashdi. "
+                "Jadval saqlandi; endi shu nusxani buzmasdan o'qituvchi oynalari yaxshilanmoqda."
+                if base_saved else
+                f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: "
+                f"{placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi."
+            ),
         )
         return {"holat": "draft_yaratildi", "urinish_id": run_id,
                 "jadval_raqami": run_id, "sifat": quality,
@@ -5021,7 +5111,40 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
         heartbeat = _samtm_threading.Thread(target=keep_heartbeat, daemon=True)
         heartbeat.start()
         try:
-            v1852_generate(sorov, token)
+            # 1-bosqich: birinchi hard-safe to'liq jadvalni tez topib saqlash.
+            copy_request = getattr(sorov, "model_copy", None)
+            if callable(copy_request):
+                base_payload = copy_request(update={
+                    "asosiy_jadval_id": None,
+                    "yaxshilash_bosqichi": False,
+                    "yaxshilash_davom_etadi": True,
+                })
+            else:
+                base_payload = sorov.copy(update={
+                "asosiy_jadval_id": None,
+                "yaxshilash_bosqichi": False,
+                "yaxshilash_davom_etadi": True,
+                })
+            base_result = v1852_generate(base_payload, token)
+            run_id = int((base_result or {}).get("urinish_id") or 0)
+            if run_id and not _v2244_cancel_requested(
+                sorov.maktab_id, sorov.qidiruv_nonce
+            ):
+                # 2-bosqich: alohida yangi jadval yaratmaydi. Faqat sifat
+                # oshsa #ID.1 ko'rinishida o'sha saqlangan jadvalni yangilaydi.
+                if callable(copy_request):
+                    improvement_payload = copy_request(update={
+                        "asosiy_jadval_id": run_id,
+                        "yaxshilash_bosqichi": True,
+                        "yaxshilash_davom_etadi": False,
+                    })
+                else:
+                    improvement_payload = sorov.copy(update={
+                        "asosiy_jadval_id": run_id,
+                        "yaxshilash_bosqichi": True,
+                        "yaxshilash_davom_etadi": False,
+                    })
+                v1852_generate(improvement_payload, token)
         except Exception as error:
             print(f"[JADVAL-BACKGROUND-V22.44] yakunlandi: {error}", flush=True)
         finally:
@@ -18070,7 +18193,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
         conn.close()
 
 
-# ========================= V19.6 END ==========================
+# ========================= V19.6 END =========================
 
 # Preserve Python monolith semantics: late definitions must be visible to
 # earlier platform routes such as the employee import endpoint.
