@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 # Deployda fayl haqiqatan yangilangani bir qarashda ko'rinadigan belgi.
-EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.37-ONE-DOUBLE-DAY"
+EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.38-ADAPTIVE-DOUBLE"
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
@@ -245,14 +245,6 @@ def _subject_daily_limits(job: Mapping[str, Any]) -> dict[str, int]:
         value = max(1, int(source.get("daily_max") or 1))
         result[key] = min(result.get(key, value), value)
     return result
-
-
-def _single_double_day_subject(subject: Any) -> bool:
-    """Matematika/Ona tili/O'qish haftada faqat bir kun juft bo'ladi."""
-    key = _subject_key(subject)
-    return _contains(
-        key, "matematika", "ona tili", "oqish savodxonligi", "oqish"
-    )
 
 
 def _grade(job: Mapping[str, Any], context: Mapping[str, Any]) -> int:
@@ -1077,10 +1069,11 @@ def _build_model(
         if normal_limit <= 1:
             continue
 
+        # Juft kunlar objective'da jazolanadi: bir juft yetarli bo'lsa
+        # ikkinchisi tanlanmaydi. Ammo 5 soat/3 legal kun holatida 2+2+1
+        # yechimini qattiq bloklamaymiz.
         allowed_repeat_days = (
-            1 if _single_double_day_subject(subject)
-            else practical_repeat_day_limit if practical
-            else repeat_day_limit
+            practical_repeat_day_limit if practical else repeat_day_limit
         )
         repeat = model.NewBoolVar(
             f"repeat_{class_id}_{abs(hash(subject))}_{day}_{phase}"
@@ -1743,11 +1736,7 @@ def validate_candidate_selection(
     for (class_id, subject, day, phase), count in subject_counts.items():
         daily_max = int(subject_limits.get((class_id, subject), 1))
         practical = bool(subject_practical.get((class_id, subject)))
-        allowed_repeat_days = (
-            1 if _single_double_day_subject(subject)
-            else practical_repeat_limit if practical
-            else repeat_limit
-        )
+        allowed_repeat_days = practical_repeat_limit if practical else repeat_limit
         effective_repeat_limits[(class_id, subject)] = int(allowed_repeat_days)
         allowed = min(2, daily_max) if practical else daily_max
         if count > allowed:
