@@ -1030,11 +1030,9 @@ def _build_model(
     subject_is_practical: dict[tuple[int, str], bool] = {}
     for index, row in enumerate(candidates):
         for subject, phases in row["subject_phases"].items():
-            normal_limit = max(1, int(
-                (row.get("subject_daily_limits") or {}).get(
-                    subject, row["job"].get("daily_max") or 1
-                )
-            ))
+            # Backend preflight/final validator bilan yagona kontrakt:
+            # har bir fan kuniga ko'pi bilan 2, 3 esa qat'iy taqiqlangan.
+            normal_limit = 2
             subject_daily_limits[(row["class_id"], subject)] = min(
                 subject_daily_limits.get((row["class_id"], subject), normal_limit), normal_limit
             )
@@ -1063,7 +1061,7 @@ def _build_model(
         # an internal mode; an explicit value >=2 permits a repeat only on a
         # bounded number of days.  This is the exact version of the user's
         # Algebra/Geometry rule: spread first, use a double only if required.
-        per_day_limit = min(2, normal_limit) if practical else normal_limit
+        per_day_limit = 2
         model.Add(count <= per_day_limit)
         if normal_limit <= 1:
             continue
@@ -1106,11 +1104,15 @@ def _build_model(
     # occupied lesson on the phase in which it occurs.  Weekly contractual
     # load keeps half-hour units (2 = regular, 1 = one A/B-week occurrence).
     teacher_daily: dict[tuple[int, int, str], list[int]] = defaultdict(list)
+    teacher_class_daily: dict[tuple[int, int, int, str], list[int]] = defaultdict(list)
     teacher_week: dict[tuple[int, str], list[tuple[int, int]]] = defaultdict(list)
     for index, row in enumerate(candidates):
         for teacher, phase_loads in row["teacher_phase_loads"].items():
             for phase, units in phase_loads.items():
                 teacher_daily[(teacher, row["day"], phase)].append(index)
+                teacher_class_daily[(
+                    teacher, row["class_id"], row["day"], phase
+                )].append(index)
                 teacher_week[(teacher, phase)].append((index, int(units)))
     rules = context.get("rules") or {}
     defaults = context.get("default_rules") or {"kunlik_max": 6}
@@ -1120,6 +1122,9 @@ def _build_model(
             sum(variables[index] for index in sorted(set(indices)))
             <= int(math.floor(limit + 1e-9))
         )
+    # Bir o'qituvchi ayni sinfga turli fanlardan bersa ham kuniga jami 2.
+    for (_teacher, _class_id, _day, _phase), indices in teacher_class_daily.items():
+        model.Add(sum(variables[index] for index in sorted(set(indices))) <= 2)
     for (teacher, phase), terms in teacher_week.items():
         cap = (context.get("teacher_caps") or {}).get(teacher)
         if cap is not None:
@@ -1639,6 +1644,7 @@ def validate_candidate_selection(
     resource_rows: list[tuple[str, Any, int, str, tuple[int, int], int]] = []
     by_class_day: dict[tuple[int, int, str], set[int]] = defaultdict(set)
     teacher_daily_lessons: dict[tuple[int, int, str], int] = defaultdict(int)
+    teacher_class_daily_lessons: dict[tuple[int, int, int, str], int] = defaultdict(int)
     teacher_week_units: dict[tuple[int, str], int] = defaultdict(int)
     subject_counts: dict[tuple[int, str, int, str], int] = defaultdict(int)
     subject_limits: dict[tuple[int, str], int] = {}
@@ -1667,6 +1673,9 @@ def validate_candidate_selection(
                 resource_rows.append(("o'qituvchi", teacher, row["day"], phase, interval, job_index))
                 units = int(row["teacher_phase_loads"][teacher][phase])
                 teacher_daily_lessons[(teacher, row["day"], phase)] += 1
+                teacher_class_daily_lessons[(
+                    teacher, row["class_id"], row["day"], phase
+                )] += 1
                 teacher_week_units[(teacher, phase)] += units
         for room, phases in row["room_phases"].items():
             for phase in phases:
@@ -1719,6 +1728,12 @@ def validate_candidate_selection(
         limit = float((rules.get(teacher, defaults) or defaults).get("kunlik_max") or 6)
         if lessons > int(limit + 1e-9):
             errors.append(f"O'qituvchi {teacher}: {day}-kun {phase} kunlik limit oshgan")
+    for (teacher, class_id, day, phase), lessons in teacher_class_daily_lessons.items():
+        if lessons > 2:
+            errors.append(
+                f"O'qituvchi {teacher}: {class_id}-sinfga {day}-kun "
+                f"{phase} fazada {lessons} dars; maksimum 2"
+            )
     for (teacher, phase), units in teacher_week_units.items():
         cap = (context.get("teacher_caps") or {}).get(teacher)
         if cap is not None and units > int(float(cap) * 2 + 1e-9):
