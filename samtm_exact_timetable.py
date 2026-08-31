@@ -2366,6 +2366,17 @@ def solve_exact_timetable(
                 "validation_errors": validation_errors,
             }, time.monotonic() - started)
 
+        progress_callback = context.get("exact_progress_callback")
+        if callable(progress_callback):
+            try:
+                progress_callback("hard_feasible", {
+                    "placed": len(placements),
+                    "total": len(job_list),
+                    "status": status,
+                })
+            except Exception:
+                pass
+
         objective_value = (
             float(solver.ObjectiveValue()) if bundle.has_objective else 0.0
         )
@@ -2464,6 +2475,15 @@ def solve_exact_timetable(
                                 diagnostics["quality_refinement"][
                                     "validator_passed"
                                 ] = True
+                                if callable(progress_callback):
+                                    try:
+                                        progress_callback("quality_accepted", {
+                                            "placed": len(placements),
+                                            "total": len(job_list),
+                                            "status": quality_status,
+                                        })
+                                    except Exception:
+                                        pass
                             else:
                                 diagnostics["quality_refinement"][
                                     "validation_errors"
