@@ -54,23 +54,22 @@ else:
     _V216_EXACT_IMPORT_ERROR = None
 
 try:
-    from .samtm_timetable_engine import (
-        ENGINE_RELEASE as SAMTM_TIMETABLE_ENGINE_RELEASE,
-        filter_reasons as _timetable_filter_reasons,
-        internal_policy as _timetable_internal_policy,
-        mode_config as _timetable_mode_config,
-        public_modes as _timetable_public_modes,
-        stage_label as _timetable_stage_label,
-    )
-except ImportError:
-    from samtm_timetable_engine import (
-        ENGINE_RELEASE as SAMTM_TIMETABLE_ENGINE_RELEASE,
-        filter_reasons as _timetable_filter_reasons,
-        internal_policy as _timetable_internal_policy,
-        mode_config as _timetable_mode_config,
-        public_modes as _timetable_public_modes,
-        stage_label as _timetable_stage_label,
-    )
+    from . import samtm_timetable_engine as _timetable_engine
+except ImportError:  # Gunicorn ``main:app`` backend/ ichidan ishga tushadi.
+    import samtm_timetable_engine as _timetable_engine
+
+# Eski deploydagi engine funksiyalari bor, ammo ENGINE_RELEASE belgisi yo'q.
+# Bitta nom yo'qligi butun backend workerini yiqitmasligi kerak.
+SAMTM_TIMETABLE_ENGINE_RELEASE = getattr(
+    _timetable_engine,
+    "ENGINE_RELEASE",
+    "SAMTM-TIMETABLE-ENGINE-LEGACY-COMPAT",
+)
+_timetable_filter_reasons = _timetable_engine.filter_reasons
+_timetable_internal_policy = _timetable_engine.internal_policy
+_timetable_mode_config = _timetable_engine.mode_config
+_timetable_public_modes = _timetable_engine.public_modes
+_timetable_stage_label = _timetable_engine.stage_label
 
 # ``from samtm_platform import *`` Python qoidasiga ko'ra nomi ``_`` bilan
 # boshlanadigan yordamchilarni import qilmaydi. Maktab kodi esa eski monolitdagi
