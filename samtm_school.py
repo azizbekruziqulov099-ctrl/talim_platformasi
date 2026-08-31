@@ -2594,8 +2594,9 @@ def _v205_annotate_class_home_room(class_row, catalog_rows):
 def _v220_room_source_errors(classes, catalog_rows, group_settings):
     """Return deterministic room-source errors before the exact model runs.
 
-    The new-school wizard already forbids one physical home room from being
-    assigned to two classes, but older/imported rows can predate that check.
+    One physical home room may be shared by one class from each shift because
+    their real lesson times do not overlap.  Only duplicates inside the same
+    shift are a source error.
     The exact solver then quite correctly locks both classes to the same room
     and may only be able to report a generic global ``INFEASIBLE``.  Surface
     the violated source invariant here instead.
@@ -2614,16 +2615,18 @@ def _v220_room_source_errors(classes, catalog_rows, group_settings):
         if not room_key:
             continue
         label = f"{class_row.get('sinf', '')}-{class_row.get('harf', '')}"
-        previous = occupied_home_rooms.get(str(room_key))
+        shift = 2 if int(class_row.get("smena") or 1) == 2 else 1
+        occupied_key = (shift, str(room_key))
+        previous = occupied_home_rooms.get(occupied_key)
         if previous:
             errors.append(
-                "Uy xona takror biriktirilgan: "
-                f"{class_row.get('_home_room_text') or room_key}. Bitta uy "
-                "xonasi smenadan qat'i nazar faqat bitta sinfga beriladi "
+                "Uy xona bir smenada takror biriktirilgan: "
+                f"{class_row.get('_home_room_text') or room_key}. Bitta "
+                f"xona {shift}-smenada faqat bitta sinfga beriladi "
                 f"({previous} va {label})."
             )
         else:
-            occupied_home_rooms[str(room_key)] = label
+            occupied_home_rooms[occupied_key] = label
 
     valid_room_ids = {
         int(row["id"])
@@ -17469,15 +17472,17 @@ def _v209_validate_home_rooms(classes, buildings, rooms):
                     f"{row['name']} uchun {building['name']} / {room_number} "
                     "dars o‘tilmaydigan xona tanlangan."
                 )
-            owner = occupied.get(room_key)
+            shift = 2 if int(row.get("shift") or 1) == 2 else 1
+            occupied_key = (shift, room_key)
+            owner = occupied.get(occupied_key)
             if owner:
                 raise ValueError(
-                    "Xona takror biriktirilgan: "
-                    f"{building['name']} / {room_number}. Bitta uy xonasi "
-                    f"smenadan qat’i nazar faqat bitta sinfga beriladi "
+                    "Xona bir smenada takror biriktirilgan: "
+                    f"{building['name']} / {room_number}. Bitta xona "
+                    f"{shift}-smenada faqat bitta sinfga beriladi "
                     f"({owner} va {row['name']})."
                 )
-            occupied[room_key] = row["name"]
+            occupied[occupied_key] = row["name"]
             row["home_room"] = {"building": building, "room": room}
         result.append(row)
     return result
