@@ -18070,7 +18070,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
         conn.close()
 
 
-# ========================= V19.6 END =========================
+# ========================= V19.6 END ==========================
 
 # Preserve Python monolith semantics: late definitions must be visible to
 # earlier platform routes such as the employee import endpoint.
