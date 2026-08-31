@@ -49,7 +49,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 # Deployda fayl haqiqatan yangilangani bir qarashda ko'rinadigan belgi.
-EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.47-WORST-FIRST-COMPACT"
+EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V23.4-BALANCED-OPEN-DAYS"
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
@@ -903,6 +903,134 @@ def _model_status_name(status: Any) -> str:
     return mapping.get(status, UNKNOWN)
 
 
+def _class_phase_job_counts(
+    jobs: Iterable[Mapping[str, Any]],
+) -> dict[tuple[int, str], int]:
+    """Return the number of physical lesson jobs for each class/week phase."""
+
+    result: dict[tuple[int, str], int] = defaultdict(int)
+    for job in jobs:
+        class_id = int(job.get("sinf_id") or 0)
+        for phase in _job_class_phases(job):
+            result[(class_id, str(phase))] += 1
+    return dict(result)
+
+
+def _class_phase_eligible_days(
+    jobs: Iterable[Mapping[str, Any]],
+    context: Mapping[str, Any],
+    candidate_universe: Optional[Iterable[Mapping[str, Any]]] = None,
+) -> dict[tuple[int, str], tuple[int, ...]]:
+    """Build the one canonical class/phase day domain used by model and validator.
+
+    When canonical candidates are available, a day is eligible only when at
+    least one lesson of that class/phase has a legal candidate on that day.
+    This prevents the validator from later counting a fully unavailable day as
+    zero while the CP model correctly excluded it.  The calendar-only fallback
+    preserves the public pure-validator contract for callers that do not have a
+    candidate universe.
+    """
+
+    jobs = list(jobs)
+    result: dict[tuple[int, str], set[int]] = defaultdict(set)
+    if candidate_universe is not None:
+        for row in candidate_universe:
+            class_id = int(row.get("class_id") or 0)
+            day = int(row.get("day") or 0)
+            if not class_id or day <= 0:
+                continue
+            for phase in row.get("class_phases") or ():
+                normalized = str(phase)
+                if normalized in _ACTUAL_PHASES:
+                    result[(class_id, normalized)].add(day)
+    else:
+        weekdays = int(context.get("weekdays") or 6)
+        representative: dict[int, Mapping[str, Any]] = {}
+        for job in jobs:
+            representative.setdefault(int(job.get("sinf_id") or 0), job)
+        for class_id, job in representative.items():
+            grade = _grade(job, context)
+            days = {
+                day for day in range(1, weekdays + 1)
+                if not (1 <= grade <= 4 and day == 6)
+                and not _class_day_blocked(job, day, context)
+            }
+            for phase in _ACTUAL_PHASES:
+                result[(class_id, phase)].update(days)
+    return {
+        key: tuple(sorted(int(day) for day in days))
+        for key, days in result.items()
+    }
+
+
+def _class_phase_day_capacities(
+    candidate_universe: Optional[Iterable[Mapping[str, Any]]],
+) -> dict[tuple[int, int, str], int]:
+    """Return a conservative per-day count of distinct legal class slots."""
+
+    if candidate_universe is None:
+        return {}
+    slots: dict[tuple[int, int, str], set[tuple[Any, ...]]] = defaultdict(set)
+    for row in candidate_universe:
+        class_id = int(row.get("class_id") or 0)
+        day = int(row.get("day") or 0)
+        if not class_id or day <= 0:
+            continue
+        interval = tuple(row.get("interval") or ())
+        token = (
+            int(row.get("shift") or 0),
+            int(row.get("period") or 0),
+            interval,
+        )
+        for phase in row.get("class_phases") or ():
+            normalized = str(phase)
+            if normalized in _ACTUAL_PHASES:
+                slots[(class_id, day, normalized)].add(token)
+    return {key: len(values) for key, values in slots.items()}
+
+
+def _balanced_open_day_count(
+    job_count: int,
+    eligible_day_count: int,
+    day_capacities: Optional[Iterable[int]] = None,
+) -> int:
+    """Maximize open days while keeping each open day at two lessons or more.
+
+    A class with zero/one weekly lesson is the explicit exception: one open day
+    remains legal, so small loads never become impossible merely because of the
+    minimum-two policy.
+    """
+
+    jobs = max(0, int(job_count or 0))
+    days = max(0, int(eligible_day_count or 0))
+    if not jobs or not days:
+        return 0
+    if jobs < 2:
+        return 1
+    preferred = min(days, max(1, jobs // 2))
+
+    # If the candidate universe proves that the preferred number of days has
+    # too few distinct class slots, a singleton is unavoidable.  Open only the
+    # minimum extra days needed for capacity instead of falsely declaring the
+    # whole timetable impossible.
+    capacities = sorted(
+        (max(0, int(value or 0)) for value in day_capacities or ()),
+        reverse=True,
+    )
+    if capacities:
+        cumulative = 0
+        minimum_for_capacity = 0
+        for capacity in capacities:
+            cumulative += capacity
+            minimum_for_capacity += 1
+            if cumulative >= jobs:
+                break
+        if cumulative < jobs:
+            minimum_for_capacity = days
+        preferred = max(preferred, minimum_for_capacity)
+    return min(days, preferred)
+
+
 def _build_model(
     jobs: list[Mapping[str, Any]], context: Mapping[str, Any], adapter: Any,
     *, relax_method: bool = False, feasibility_only: bool = False,
@@ -994,24 +1122,38 @@ def _build_model(
     class_ids = sorted({int(job.get("sinf_id") or 0) for job in jobs})
     quality_enabled = bool(not feasibility_only and not relax_method)
     hard_balance_enabled = bool(context.get("hard_balance_class_days", True))
+    phase_job_counts = _class_phase_job_counts(jobs)
+    eligible_days_by_phase = _class_phase_eligible_days(
+        jobs, context, candidates
+    )
+    day_capacities_by_phase = _class_phase_day_capacities(candidates)
     balance_terms: list[Any] = []
     for class_id in class_ids:
         for phase in _ACTUAL_PHASES:
-            phase_job_count = sum(
-                1 for job in jobs if int(job.get("sinf_id") or 0) == class_id
-                and phase in _job_class_phases(job)
+            phase_job_count = int(
+                phase_job_counts.get((class_id, phase), 0)
             )
-            eligible_days = [
-                day for day in range(1, weekdays + 1)
-                if class_day_vars.get((class_id, day, phase))
-            ]
+            eligible_days = list(
+                eligible_days_by_phase.get((class_id, phase), ())
+            )
+            open_day_count = _balanced_open_day_count(
+                phase_job_count,
+                len(eligible_days),
+                [
+                    day_capacities_by_phase.get(
+                        (class_id, day, phase), 0
+                    )
+                    for day in eligible_days
+                ],
+            )
             balanced_min = (
-                phase_job_count // len(eligible_days) if eligible_days else 0
+                phase_job_count // open_day_count if open_day_count else 0
             )
             balanced_max = (
-                int(math.ceil(phase_job_count / len(eligible_days)))
-                if eligible_days else 0
+                int(math.ceil(phase_job_count / open_day_count))
+                if open_day_count else 0
             )
+            used_day_variables: list[Any] = []
             for day in range(1, weekdays + 1):
                 periods = sorted({
                     key[3] for key in class_period_vars
@@ -1037,12 +1179,18 @@ def _build_model(
                     )
                     model.Add(count == sum(variables[index] for index in indices))
                     if hard_balance_enabled and day in eligible_days:
-                        model.Add(count >= balanced_min)
-                        model.Add(count <= balanced_max)
+                        day_used = model.NewBoolVar(
+                            f"class_day_used_{class_id}_{day}_{phase}"
+                        )
+                        model.Add(count >= balanced_min * day_used)
+                        model.Add(count <= balanced_max * day_used)
+                        used_day_variables.append(day_used)
                     if quality_enabled:
                         deviation = model.NewIntVar(0, phase_job_count * weekdays, f"balance_{class_id}_{day}_{phase}")
                         model.AddAbsEquality(deviation, count * weekdays - phase_job_count)
                         balance_terms.append(deviation)
+            if hard_balance_enabled and phase_job_count:
+                model.Add(sum(used_day_variables) == open_day_count)
 
     # Subject repetitions and controlled repeat-day fallback.
     subject_groups: dict[tuple[int, str, int, str], list[int]] = defaultdict(list)
@@ -1691,11 +1839,16 @@ def _extract_placements(bundle: _ModelBundle, solver: Any) -> tuple[list[dict[st
 def validate_candidate_selection(
     jobs: Iterable[Mapping[str, Any]], selected: Iterable[Mapping[str, Any]],
     context: Mapping[str, Any], *, allow_method_exceptions: bool = False,
+    candidate_universe: Optional[Iterable[Mapping[str, Any]]] = None,
 ) -> list[str]:
     """Independent pure hard-safety validator for selected canonical candidates."""
 
     jobs = list(jobs)
     selected = [dict(row) for row in selected]
+    universe = (
+        list(candidate_universe)
+        if candidate_universe is not None else None
+    )
     errors: list[str] = []
     if len(selected) != len(jobs):
         errors.append(f"{len(jobs)} ish uchun {len(selected)} placement qaytdi")
@@ -1779,26 +1932,58 @@ def validate_candidate_selection(
         if periods and periods != set(range(1, max(periods) + 1)):
             errors.append(f"Sinf {class_id}: {day}-kun {phase} fazada okno bor: {sorted(periods)}")
     if context.get("hard_balance_class_days", True):
-        class_jobs: dict[int, Mapping[str, Any]] = {}
-        for job in jobs:
-            class_jobs.setdefault(int(job.get("sinf_id") or 0), job)
-        weekdays = int(context.get("weekdays") or 6)
-        for class_id, representative in class_jobs.items():
-            grade = _grade(representative, context)
-            allowed_days = [
-                day for day in range(1, weekdays + 1)
-                if not (1 <= grade <= 4 and day == 6)
-                and not _class_day_blocked(representative, day, context)
-            ]
+        eligible_days_by_phase = _class_phase_eligible_days(
+            jobs, context, universe
+        )
+        day_capacities_by_phase = _class_phase_day_capacities(universe)
+        phase_job_counts = _class_phase_job_counts(jobs)
+        class_ids = sorted({int(job.get("sinf_id") or 0) for job in jobs})
+        for class_id in class_ids:
             for phase in _ACTUAL_PHASES:
+                job_count = int(phase_job_counts.get((class_id, phase), 0))
+                eligible_days = list(
+                    eligible_days_by_phase.get((class_id, phase), ())
+                )
                 counts = [
                     len(by_class_day.get((class_id, day, phase), set()))
-                    for day in allowed_days
+                    for day in eligible_days
                 ]
-                if counts and max(counts) - min(counts) > 1:
+                active_counts = [count for count in counts if count > 0]
+                expected_open_days = _balanced_open_day_count(
+                    job_count,
+                    len(eligible_days),
+                    [
+                        day_capacities_by_phase.get(
+                            (class_id, day, phase), 0
+                        )
+                        for day in eligible_days
+                    ] if universe is not None else None,
+                )
+                if len(active_counts) != expected_open_days:
+                    errors.append(
+                        f"Sinf {class_id}: {phase} haftada ochiq kunlar soni "
+                        f"{len(active_counts)}, kutilgani {expected_open_days} "
+                        f"(kunlik darslar: {counts})"
+                    )
+                minimum_open_day_load = (
+                    job_count // expected_open_days
+                    if expected_open_days else 0
+                )
+                if (
+                    minimum_open_day_load >= 2
+                    and any(count == 1 for count in active_counts)
+                ):
+                    errors.append(
+                        f"Sinf {class_id}: {phase} haftada 1 darsli ochiq kun bor "
+                        f"({counts}); ochilgan kunda kamida 2 dars bo‘lishi kerak"
+                    )
+                if (
+                    active_counts
+                    and max(active_counts) - min(active_counts) > 1
+                ):
                     errors.append(
                         f"Sinf {class_id}: {phase} haftada kunlik darslar notekis "
-                        f"({counts}); farq ko‘pi bilan 1 bo‘lishi kerak"
+                        f"({counts}); ochiq kunlar farqi ko‘pi bilan 1 bo‘lishi kerak"
                     )
     rules = context.get("rules") or {}
     defaults = context.get("default_rules") or {"kunlik_max": 6}
@@ -1881,6 +2066,7 @@ def validate_timetable_placements(
         placement_job = row.get("job") or {}
         by_identifier[canonical_job_id(placement_job, index)].append(row)
     selected: list[dict[str, Any]] = []
+    candidate_universe: list[dict[str, Any]] = []
     errors: list[str] = []
     for job_index, job in enumerate(job_list):
         identifier = canonical_job_id(job, job_index)
@@ -1903,6 +2089,16 @@ def validate_timetable_placements(
             mark_method_exceptions=allow_method_exceptions,
         ):
             candidate = _normalize_candidate(raw, job, context)
+            if candidate_hard_violations(
+                candidate,
+                job,
+                context,
+                allow_method_exceptions=allow_method_exceptions,
+            ):
+                continue
+            candidate["job_index"] = job_index
+            candidate["job"] = job
+            candidate_universe.append(candidate)
             if (
                 int(candidate["day"]) != int(placement.get("day") or 0)
                 or int(candidate["period"]) != int(placement.get("period") or 0)
@@ -1912,8 +2108,6 @@ def validate_timetable_placements(
                 continue
             if expected_rooms and tuple(candidate.get("room_keys") or ()) != expected_rooms:
                 continue
-            candidate["job_index"] = job_index
-            candidate["job"] = job
             matches.append(candidate)
         if len(matches) != 1:
             errors.append(
@@ -1929,6 +2123,7 @@ def validate_timetable_placements(
         selected,
         context,
         allow_method_exceptions=allow_method_exceptions,
+        candidate_universe=candidate_universe,
     )
 
 
@@ -2090,7 +2285,8 @@ def _analyze_method_day_relaxations_detailed(
             )
         placements, chosen = _extract_placements(bundle, solver)
         validation_errors = validate_candidate_selection(
-            job_list, chosen, context, allow_method_exceptions=True
+            job_list, chosen, context, allow_method_exceptions=True,
+            candidate_universe=bundle.candidates,
         )
         if validation_errors:
             # The pure validator sees method slots as candidates but never
@@ -2437,7 +2633,10 @@ def solve_exact_timetable(
                     pass
             return result
         placements, chosen = _extract_placements(bundle, solver)
-        validation_errors = validate_candidate_selection(job_list, chosen, context)
+        validation_errors = validate_candidate_selection(
+            job_list, chosen, context,
+            candidate_universe=bundle.candidates,
+        )
         if validation_errors:
             return _empty_result(MODEL_INVALID, {
                 **diagnostics,
@@ -2539,7 +2738,8 @@ def solve_exact_timetable(
                                 quality_bundle, quality_solver
                             )
                             refined_errors = validate_candidate_selection(
-                                job_list, refined_chosen, context
+                                job_list, refined_chosen, context,
+                                candidate_universe=quality_bundle.candidates,
                             )
                             if not refined_errors:
                                 placements, chosen = (
