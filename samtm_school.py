@@ -1267,6 +1267,16 @@ def _v1852_create_tables(cur):
         diagnostika JSONB NOT NULL DEFAULT '{}'::jsonb,
         sozlamalar JSONB NOT NULL DEFAULT '{}'::jsonb
     )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_jarayoni_v2243(
+        maktab_id INTEGER PRIMARY KEY REFERENCES maktablar(id) ON DELETE CASCADE,
+        qidiruv_nonce BIGINT,
+        jadval_raqami BIGINT NOT NULL,
+        yaxshilanish INTEGER NOT NULL DEFAULT 0,
+        foiz INTEGER NOT NULL DEFAULT 0 CHECK(foiz BETWEEN 0 AND 100),
+        bosqich TEXT NOT NULL,
+        xabar TEXT NOT NULL,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_slotlari_v2(
         id BIGSERIAL PRIMARY KEY,
         urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
@@ -3612,6 +3622,80 @@ def _v216_exact_failure_detail(
     }
 
 
+def _v2243_progress_write(
+    maktab_id, qidiruv_nonce, jadval_raqami, yaxshilanish, foiz, bosqich, xabar
+):
+    """Uzoq generatorning ko‘rinadigan holatini alohida tranzaksiyada saqlaydi."""
+    progress_conn = None
+    progress_cur = None
+    try:
+        progress_conn = _db()
+        progress_cur = progress_conn.cursor()
+        progress_cur.execute(
+            """INSERT INTO aqlli_jadval_jarayoni_v2243(
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar, yangilangan_at)
+               VALUES(%s,%s,%s,%s,%s,%s,%s,NOW())
+               ON CONFLICT(maktab_id) DO UPDATE SET
+                   qidiruv_nonce=EXCLUDED.qidiruv_nonce,
+                   jadval_raqami=EXCLUDED.jadval_raqami,
+                   yaxshilanish=EXCLUDED.yaxshilanish,
+                   foiz=EXCLUDED.foiz,
+                   bosqich=EXCLUDED.bosqich,
+                   xabar=EXCLUDED.xabar,
+                   yangilangan_at=NOW()""",
+            (
+                int(maktab_id),
+                int(qidiruv_nonce) if qidiruv_nonce is not None else None,
+                int(jadval_raqami),
+                max(0, int(yaxshilanish or 0)),
+                max(0, min(100, int(foiz or 0))),
+                str(bosqich or "hisoblash"),
+                str(xabar or "Jadval hisoblanmoqda"),
+            ),
+        )
+        progress_conn.commit()
+    except Exception as progress_error:
+        if progress_conn is not None:
+            try:
+                progress_conn.rollback()
+            except Exception:
+                pass
+        print(f"[JADVAL-PROGRESS-V22.43] yozilmadi: {progress_error}", flush=True)
+    finally:
+        if progress_cur is not None:
+            progress_cur.close()
+        if progress_conn is not None:
+            progress_conn.close()
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/jarayon")
+def v2243_generation_progress(token: str, maktab_id: int, qidiruv_nonce: Optional[int] = None):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Jadval jarayonini ko‘rishga ruxsat yo‘q")
+        cur.execute(
+            "SELECT * FROM aqlli_jadval_jarayoni_v2243 WHERE maktab_id=%s",
+            (maktab_id,),
+        )
+        row = cur.fetchone()
+        conn.commit()
+        if not row or (qidiruv_nonce is not None and int(row.get("qidiruv_nonce") or 0) != int(qidiruv_nonce)):
+            return {"faol": False}
+        payload = dict(row)
+        payload["faol"] = payload.get("bosqich") not in {"tayyor", "xato"}
+        payload["ko_rinish_raqami"] = (
+            f"{payload['jadval_raqami']}.{payload['yaxshilanish']}"
+            if int(payload.get("yaxshilanish") or 0) > 0
+            else str(payload["jadval_raqami"])
+        )
+        return payload
+    finally:
+        cur.close(); conn.close()
+
+
 class V1852Generate(BaseModel):
     maktab_id: int
     urinishlar_soni: int = 1
@@ -3627,6 +3711,8 @@ class V1852Generate(BaseModel):
 @app.post("/api/maktab/aqlli_jadval/v2/yaratish")
 def v1852_generate(sorov: V1852Generate, token: str):
     user_id = _jwt_tekshir(token)
+    reserved_run_id = None
+    progress_revision = 0
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
@@ -3747,6 +3833,30 @@ def v1852_generate(sorov: V1852Generate, token: str):
             jobs, context
         )
 
+        # Haqiqiy jadval raqami hisoblash tugashidan oldin band qilinadi.
+        # Frontend shu sabab taxminiy emas, aynan yakunda saqlanadigan #51
+        # raqamini ko‘rsatadi; yaxshilanishlar #51.1, #51.2 bo‘lib boradi.
+        cur.execute(
+            "SELECT nextval(pg_get_serial_sequence('aqlli_jadval_urinishlari_v2','id')) AS id"
+        )
+        reserved_run_id = int(cur.fetchone()["id"])
+        cur.execute(
+            """INSERT INTO aqlli_jadval_jarayoni_v2243(
+                   maktab_id,qidiruv_nonce,jadval_raqami,yaxshilanish,foiz,bosqich,xabar,yangilangan_at)
+               VALUES(%s,%s,%s,0,8,'tayyorlash',%s,NOW())
+               ON CONFLICT(maktab_id) DO UPDATE SET
+                   qidiruv_nonce=EXCLUDED.qidiruv_nonce,
+                   jadval_raqami=EXCLUDED.jadval_raqami,
+                   yaxshilanish=0,foiz=8,bosqich='tayyorlash',
+                   xabar=EXCLUDED.xabar,yangilangan_at=NOW()""",
+            (
+                sorov.maktab_id,
+                sorov.qidiruv_nonce,
+                reserved_run_id,
+                f"Jadval #{reserved_run_id} uchun {len(jobs)} ta dars tayyorlandi. Qattiq qoidalar tekshirilmoqda.",
+            ),
+        )
+
         # Generator o'n minglab variantlarni Python xotirasida hisoblaydi. Shu
         # paytda ochiq tranzaksiya 30 soniyadan ortiq bo'sh qolsa PostgreSQL
         # idle_in_transaction_session_timeout sabab ulanishni yopadi. Manba
@@ -3793,6 +3903,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
             f"global_model=1 byudjet={generation_budget:.0f}s",
             flush=True,
         )
+        _v2243_progress_write(
+            sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id, 0, 15,
+            "toliq_qidiruv",
+            f"Jadval #{reserved_run_id}: barcha darsni 100% joylashtirish qidirilmoqda.",
+        )
 
         # Exact solver yagona kanonik yo'l. OR-Tools yo'q bo'lsa aniq deploy
         # xatosi qaytadi; UNKNOWN/INFEASIBLE/MODEL_INVALID natijasi boshqa
@@ -3801,6 +3916,24 @@ def v1852_generate(sorov: V1852Generate, token: str):
             _V216_ORTOOLS_AVAILABLE and callable(_v216_solve_exact)
         )
         if exact_ready:
+            def _v2243_exact_progress(event, payload):
+                nonlocal progress_revision
+                placed = int((payload or {}).get("placed") or 0)
+                total = int((payload or {}).get("total") or len(jobs))
+                if event == "hard_feasible":
+                    _v2243_progress_write(
+                        sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                        progress_revision, 55, "toliq_topildi",
+                        f"Jadval #{reserved_run_id} yaratildi: {placed}/{total} dars 100% joylashdi. Endi o‘qituvchilar uchun yaxshilanmoqda.",
+                    )
+                elif event == "quality_accepted":
+                    progress_revision += 1
+                    _v2243_progress_write(
+                        sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                        progress_revision, 74, "global_yaxshilandi",
+                        f"Jadval #{reserved_run_id}.{progress_revision}: global sifat yaxshilandi; qattiq qoidalar va 100% dars saqlandi.",
+                    )
+
             exact_context = dict(context)
             exact_context["v207_policy_stage"] = "strict"
             exact_context["v203_emergency_repeat_days"] = 0
@@ -3841,6 +3974,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             # natija topilmasa dastlabki to'liq jadval o'zgarishsiz qoladi.
             exact_context["exact_quality_after_feasible"] = True
             exact_context["exact_quality_seconds"] = 120.0
+            exact_context["exact_progress_callback"] = _v2243_exact_progress
             try:
                 exact_context["exact_num_workers"] = max(1, min(
                     4,
@@ -4254,6 +4388,27 @@ def v1852_generate(sorov: V1852Generate, token: str):
         state["class_gap_count"] = _v196_class_gap_count(state)
         final_metrics = _v196_attempt_metrics(state, final_context)
         state["v196_metrics"] = final_metrics
+        comfort_keys = (
+            "oqituvchi_ichki_okno", "oqituvchi_uzoq_kutish_daqiqa",
+            "oqituvchi_faol_kun", "sinf_kun_nomutanosibligi",
+        )
+        before_comfort = tuple(float(exact_metrics.get(key) or 0) for key in comfort_keys)
+        after_comfort = tuple(float(final_metrics.get(key) or 0) for key in comfort_keys)
+        if after_comfort != before_comfort and all(
+            after <= before for after, before in zip(after_comfort, before_comfort)
+        ):
+            progress_revision += 1
+            _v2243_progress_write(
+                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                progress_revision, 88, "ustozlar_yaxshilandi",
+                f"Jadval #{reserved_run_id}.{progress_revision}: o‘qituvchi oynalari, uzoq kutish va kam-soatli ustozlarning kunlari yaxshilandi.",
+            )
+        else:
+            _v2243_progress_write(
+                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                progress_revision, 88, "tekshirildi",
+                f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: o‘qituvchi qulayligi tekshirildi; yomonlashtiradigan o‘zgarish qabul qilinmadi.",
+            )
         gap_count = int(final_metrics.get("oqituvchi_ichki_okno", 0))
         placed_count = len(state["placements"])
         total_count = len(jobs)
@@ -4502,10 +4657,15 @@ def v1852_generate(sorov: V1852Generate, token: str):
                 status_code=409,
                 detail="Jadval hisoblanayotgan paytda yuklama yoki vaqt sozlamasi o'zgardi. Yangi ma'lumot bilan yana yarating.",
             )
+        _v2243_progress_write(
+            sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+            progress_revision, 96, "saqlash",
+            f"Jadval #{reserved_run_id}{'.' + str(progress_revision) if progress_revision else ''}: yakuniy validator tekshiryapti va bazaga saqlayapti.",
+        )
         cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
-            maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar)
-            VALUES(%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
-            (sorov.maktab_id, user_id, quality, placed_count, len(unplaced),
+            id,maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar)
+            VALUES(%s,%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
+            (reserved_run_id, sorov.maktab_id, user_id, quality, placed_count, len(unplaced),
              json.dumps(diagnostics, ensure_ascii=False, default=str),
              json.dumps({"hafta_kunlari": context["weekdays"], "oquv_yili_id": year["id"],
                          "manba_hash": source_hash,
@@ -4712,14 +4872,26 @@ def v1852_generate(sorov: V1852Generate, token: str):
         )
 
         conn.commit()
+        _v2243_progress_write(
+            sorov.maktab_id, sorov.qidiruv_nonce, run_id,
+            progress_revision, 100, "tayyor",
+            f"Jadval #{run_id}{'.' + str(progress_revision) if progress_revision else ''} tayyor: {placed_count}/{total_count} dars joylashdi. Eng yaxshi variant saqlandi.",
+        )
         return {"holat": "draft_yaratildi", "urinish_id": run_id,
                 "jadval_raqami": run_id, "sifat": quality,
+                "yaxshilanish": progress_revision,
                 "jami_soat": total_count, "joylashtirildi": placed_count,
                 "joylashtirilmadi": len(unplaced), "diagnostika": diagnostics,
                 "solver_status": diagnostics["solver_status"],
                 "tasdiqlash_mumkin": tasdiqlash_mumkin,
                 "moslik": jadval_mosligi}
     except Exception:
+        if reserved_run_id is not None:
+            _v2243_progress_write(
+                sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
+                progress_revision, 100, "xato",
+                f"Jadval #{reserved_run_id}: hisoblash yakunlanmadi. Oldingi jadval saqlandi.",
+            )
         if conn is not None:
             try:
                 if not bool(getattr(conn, "closed", True)):
