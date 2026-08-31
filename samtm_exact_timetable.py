@@ -49,7 +49,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 # Deployda fayl haqiqatan yangilangani bir qarashda ko'rinadigan belgi.
-EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V23.4-BALANCED-OPEN-DAYS"
+EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V23.5-BALANCED-OPEN-DAYS"
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
