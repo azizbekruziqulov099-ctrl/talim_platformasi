@@ -1282,6 +1282,17 @@ def _v1852_create_tables(cur):
     )""")
     cur.execute("""ALTER TABLE aqlli_jadval_jarayoni_v2243
                    ADD COLUMN IF NOT EXISTS toxtatish_soraldi BOOLEAN NOT NULL DEFAULT FALSE""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_revisionlari_v2258(
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
+        revision INTEGER NOT NULL CHECK(revision >= 0),
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        sifat INTEGER NOT NULL DEFAULT 0,
+        bosqich TEXT NOT NULL,
+        metrics JSONB NOT NULL DEFAULT '{}'::jsonb,
+        slotlar JSONB NOT NULL DEFAULT '[]'::jsonb,
+        PRIMARY KEY(urinish_id,revision)
+    )""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_jadval_slotlari_v2(
         id BIGSERIAL PRIMARY KEY,
         urinish_id BIGINT NOT NULL REFERENCES aqlli_jadval_urinishlari_v2(id) ON DELETE CASCADE,
@@ -4063,6 +4074,131 @@ def _v2253_entry_rows_from_state(
     return rows
 
 
+def _v2258_save_complete_checkpoint(
+    *, maktab_id, user_id, run_id, revision, source_hash, state, jobs,
+    context, classes, rooms, shifts, year, qidiruv_nonce, stage,
+):
+    """100% incumbentni optimizatordan OLDIN va har accepted swapdan keyin saqlaydi."""
+    if len(state.get("placements") or []) != len(jobs):
+        return False
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        cur.execute(
+            "SELECT pg_try_advisory_xact_lock(%s) AS locked",
+            (1900000000 + int(maktab_id),),
+        )
+        if not bool((cur.fetchone() or {}).get("locked")):
+            return False
+        if _v1875_source_fingerprint(cur, maktab_id) != source_hash:
+            return False
+        metrics = _v196_attempt_metrics(state, context)
+        quality = max(0, min(100, round(
+            100
+            - int(metrics.get("oqituvchi_bitta_darsli_kun") or 0) * 0.8
+            - int(metrics.get("oqituvchi_ichki_okno") or 0) * 0.25
+            - int(metrics.get("ikki_smenali_4soatdan_uzoq") or 0) * 2.0
+        )))
+        diagnostics = {
+            "v2258_checkpoint": True,
+            "v2258_revision": int(revision or 0),
+            "v2258_stage": str(stage),
+            "v2258_metrics": metrics,
+            "v2258_frozen_class_day_counts": dict(
+                _v226_frozen_class_day_signature(state)
+            ),
+            "solver_status": "FEASIBLE_VALIDATED_CHECKPOINT",
+            "tasdiqlash_mumkin": True,
+        }
+        settings = {
+            "hafta_kunlari": int(context.get("weekdays") or 0),
+            "oquv_yili_id": year.get("id"),
+            "manba_hash": source_hash,
+            "v2258_revision": int(revision or 0),
+        }
+        cur.execute(
+            """INSERT INTO aqlli_jadval_urinishlari_v2(
+                   id,maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,
+                   joylashtirilmadi,diagnostika,sozlamalar)
+               VALUES(%s,%s,'draft',%s,%s,%s,0,%s::jsonb,%s::jsonb)
+               ON CONFLICT(id) DO UPDATE SET
+                   sifat=EXCLUDED.sifat,joylashtirildi=EXCLUDED.joylashtirildi,
+                   joylashtirilmadi=0,diagnostika=EXCLUDED.diagnostika,
+                   sozlamalar=EXCLUDED.sozlamalar""",
+            (
+                int(run_id), int(maktab_id), int(user_id), int(quality),
+                len(jobs), json.dumps(diagnostics, ensure_ascii=False, default=str),
+                json.dumps(settings, ensure_ascii=False, default=str),
+            ),
+        )
+        cur.execute(
+            "DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s",
+            (int(run_id),),
+        )
+        rows = _v2253_entry_rows_from_state(
+            state, run_id, maktab_id, classes, rooms, shifts
+        )
+        if rows:
+            psycopg2.extras.execute_values(
+                cur,
+                """INSERT INTO aqlli_jadval_slotlari_v2(
+                    urinish_id,maktab_id,sinf_id,hafta_kuni,smena,dars_raqami,
+                    fan_nomi,oqituvchi_user_id,guruh_kaliti,xona_id,xona_matni,
+                    boshlanish_vaqti,tugash_vaqti,yuklama_id,takror_raqami,
+                    hafta_turi) VALUES %s""",
+                rows, page_size=1000,
+            )
+        report = _v1875_schedule_integrity_report(cur, maktab_id, run_id)
+        if report.get("xatolar") or not report.get("tayyor"):
+            conn.rollback()
+            return False
+        diagnostics["jadval_mosligi"] = report
+        slot_keys = (
+            "urinish_id", "maktab_id", "sinf_id", "hafta_kuni", "smena",
+            "dars_raqami", "fan_nomi", "oqituvchi_user_id", "guruh_kaliti",
+            "xona_id", "xona_matni", "boshlanish_vaqti", "tugash_vaqti",
+            "yuklama_id", "takror_raqami", "hafta_turi",
+        )
+        snapshot = [dict(zip(slot_keys, row)) for row in rows]
+        cur.execute(
+            """INSERT INTO aqlli_jadval_revisionlari_v2258(
+                   maktab_id,urinish_id,revision,sifat,bosqich,metrics,slotlar)
+               VALUES(%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb)
+               ON CONFLICT(urinish_id,revision) DO UPDATE SET
+                   yaratilgan_at=NOW(),sifat=EXCLUDED.sifat,
+                   bosqich=EXCLUDED.bosqich,metrics=EXCLUDED.metrics,
+                   slotlar=EXCLUDED.slotlar""",
+            (
+                int(maktab_id), int(run_id), int(revision or 0), int(quality),
+                str(stage),
+                json.dumps(metrics, ensure_ascii=False, default=str),
+                json.dumps(snapshot, ensure_ascii=False, default=str),
+            ),
+        )
+        cur.execute(
+            "UPDATE aqlli_jadval_urinishlari_v2 SET diagnostika=%s::jsonb WHERE id=%s",
+            (json.dumps(diagnostics, ensure_ascii=False, default=str), int(run_id)),
+        )
+        conn.commit()
+        _v2243_progress_write(
+            maktab_id, qidiruv_nonce, run_id, revision, 55 if not revision else min(94, 55 + int(revision)),
+            "toliq_saqlandi" if not revision else "revision_saqlandi",
+            (
+                f"Jadval #{run_id} bazaga saqlandi: {len(jobs)}/{len(jobs)} dars. "
+                "Uni hozir ochish mumkin; o‘qituvchilar yaxshilanmoqda."
+                if not revision else
+                f"Jadval #{run_id}.{revision} saqlandi. Oxirgi tekshirilgan variantni ochish mumkin."
+            ),
+        )
+        return True
+    except Exception as checkpoint_error:
+        conn.rollback()
+        print(f"[JADVAL-CHECKPOINT-V22.58] saqlanmadi: {checkpoint_error}", flush=True)
+        return False
+    finally:
+        cur.close(); conn.close()
+
+
 def _v2253_improve_existing_draft(
     *, token, user_id, maktab_id, run_id, qidiruv_nonce, source_hash,
     jobs, context, classes, teachers, rooms, shifts, year,
@@ -4142,7 +4278,7 @@ def _v2253_improve_existing_draft(
 
     revision = [starting_revision]
 
-    def improvement_callback(swap_no, teacher_id, before_score, after_score):
+    def improvement_callback(swap_no, teacher_id, before_score, after_score, checkpoint_state=None):
         revision[0] += 1
         teacher_name = str(
             (teachers.get(int(teacher_id)) or {}).get("full_name")
@@ -4158,6 +4294,15 @@ def _v2253_improve_existing_draft(
                 "yaxshi natija qotirildi."
             ),
         )
+        if checkpoint_state is not None:
+            _v2258_save_complete_checkpoint(
+                maktab_id=maktab_id, user_id=user_id, run_id=run_id,
+                revision=revision[0], source_hash=source_hash,
+                state=checkpoint_state, jobs=jobs, context=improve_context,
+                classes=classes, rooms=rooms, shifts=shifts, year=year,
+                qidiruv_nonce=qidiruv_nonce,
+                stage=f"teacher_{teacher_id}_accepted",
+            )
 
     improve_context["v2253_improvement_callback"] = improvement_callback
     _v2243_progress_write(
@@ -4658,14 +4803,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
                     _v2243_progress_write(
                         sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
                         progress_revision, 55, "toliq_topildi",
-                        f"Jadval #{reserved_run_id} yaratildi: {placed}/{total} dars 100% joylashdi. Endi o‘qituvchilar uchun yaxshilanmoqda.",
+                        f"Jadval #{reserved_run_id} topildi: {placed}/{total} dars 100% joylashdi. Hozir bazaga saqlanmoqda.",
                     )
                 elif event == "quality_accepted":
-                    progress_revision += 1
                     _v2243_progress_write(
                         sorov.maktab_id, sorov.qidiruv_nonce, reserved_run_id,
                         progress_revision, 74, "global_yaxshilandi",
-                        f"Jadval #{reserved_run_id}.{progress_revision}: global sifat yaxshilandi; qattiq qoidalar va 100% dars saqlandi.",
+                        f"Jadval #{reserved_run_id}: global sifat yaxshilandi; qattiq qoidalar va 100% dars saqlandi. Bazaga checkpoint yozilmoqda.",
                     )
 
             exact_context = dict(context)
@@ -4909,6 +5053,25 @@ def v1852_generate(sorov: V1852Generate, token: str):
                             f"{len(jobs)} soniya={exact_solver_wall_time}",
                             flush=True,
                         )
+                        # V22.58: 100% topilgan natija endi 55% yozuvigina
+                        # emas — o'qituvchi optimizatori boshlanishidan oldin
+                        # haqiqatan bazaga yoziladi. To'xtatilsa shu # ochiladi.
+                        _v2258_save_complete_checkpoint(
+                            maktab_id=sorov.maktab_id,
+                            user_id=user_id,
+                            run_id=reserved_run_id,
+                            revision=0,
+                            source_hash=source_hash,
+                            state=exact_state,
+                            jobs=jobs,
+                            context=exact_context,
+                            classes=classes,
+                            rooms=rooms,
+                            shifts=shifts,
+                            year=year,
+                            qidiruv_nonce=sorov.qidiruv_nonce,
+                            stage="hard_feasible_before_teacher_optimizer",
+                        )
 
                 if not exact_solver_used:
                     # FEASIBLE/OPTIMAL deb, ammo complete=False qaytishi kontrakt
@@ -5025,6 +5188,24 @@ def v1852_generate(sorov: V1852Generate, token: str):
         )
         final_context["v2244_cancel_requested"] = lambda: _v2244_cancel_requested(
             sorov.maktab_id, sorov.qidiruv_nonce
+        )
+        def _v2258_new_run_improvement_callback(
+            swap_no, teacher_id, before_score, after_score, checkpoint_state=None
+        ):
+            nonlocal progress_revision
+            progress_revision += 1
+            if checkpoint_state is not None:
+                _v2258_save_complete_checkpoint(
+                    maktab_id=sorov.maktab_id, user_id=user_id,
+                    run_id=reserved_run_id, revision=progress_revision,
+                    source_hash=source_hash, state=checkpoint_state,
+                    jobs=jobs, context=final_context, classes=classes,
+                    rooms=rooms, shifts=shifts, year=year,
+                    qidiruv_nonce=sorov.qidiruv_nonce,
+                    stage=f"teacher_{teacher_id}_accepted",
+                )
+        final_context["v2253_improvement_callback"] = (
+            _v2258_new_run_improvement_callback
         )
         final_imbalance_limit = int(final_mode_config.get("imbalance_limit") or 0)
         if final_repeat_days or final_policy_stage != "strict":
@@ -5409,7 +5590,13 @@ def v1852_generate(sorov: V1852Generate, token: str):
         )
         cur.execute("""INSERT INTO aqlli_jadval_urinishlari_v2(
             id,maktab_id,holat,yaratgan_user_id,sifat,joylashtirildi,joylashtirilmadi,diagnostika,sozlamalar)
-            VALUES(%s,%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
+            VALUES(%s,%s,'draft',%s,%s,%s,%s,%s::jsonb,%s::jsonb)
+            ON CONFLICT(id) DO UPDATE SET
+                holat='draft',yaratgan_user_id=EXCLUDED.yaratgan_user_id,
+                sifat=EXCLUDED.sifat,joylashtirildi=EXCLUDED.joylashtirildi,
+                joylashtirilmadi=EXCLUDED.joylashtirilmadi,
+                diagnostika=EXCLUDED.diagnostika,sozlamalar=EXCLUDED.sozlamalar
+            RETURNING id""",
             (reserved_run_id, sorov.maktab_id, user_id, quality, placed_count, len(unplaced),
              json.dumps(diagnostics, ensure_ascii=False, default=str),
              json.dumps({"hafta_kunlari": context["weekdays"], "oquv_yili_id": year["id"],
@@ -5430,6 +5617,11 @@ def v1852_generate(sorov: V1852Generate, token: str):
                                            for r in class_hour_rules]},
                         ensure_ascii=False)))
         run_id = cur.fetchone()["id"]
+        # Oldingi 55% checkpoint slotlari bilan yakuniy slotlar to'qnashmasin.
+        cur.execute(
+            "DELETE FROM aqlli_jadval_slotlari_v2 WHERE urinish_id=%s",
+            (int(run_id),),
+        )
         shift_slot_map = {(s, int(slot["dars_raqami"])): slot for s, row in shifts.items() for slot in row["slotlar"]}
         entry_rows = []
         for placement in state["placements"]:
@@ -5602,6 +5794,29 @@ def v1852_generate(sorov: V1852Generate, token: str):
                WHERE id=%s""",
             (quality, json.dumps(diagnostics, ensure_ascii=False, default=str), run_id),
         )
+        final_slot_keys = (
+            "urinish_id", "maktab_id", "sinf_id", "hafta_kuni", "smena",
+            "dars_raqami", "fan_nomi", "oqituvchi_user_id", "guruh_kaliti",
+            "xona_id", "xona_matni", "boshlanish_vaqti", "tugash_vaqti",
+            "yuklama_id", "takror_raqami", "hafta_turi",
+        )
+        cur.execute(
+            """INSERT INTO aqlli_jadval_revisionlari_v2258(
+                   maktab_id,urinish_id,revision,sifat,bosqich,metrics,slotlar)
+               VALUES(%s,%s,%s,%s,'yakuniy_eng_yaxshi',%s::jsonb,%s::jsonb)
+               ON CONFLICT(urinish_id,revision) DO UPDATE SET
+                   yaratilgan_at=NOW(),sifat=EXCLUDED.sifat,
+                   bosqich=EXCLUDED.bosqich,metrics=EXCLUDED.metrics,
+                   slotlar=EXCLUDED.slotlar""",
+            (
+                sorov.maktab_id, run_id, int(progress_revision), quality,
+                json.dumps(final_metrics, ensure_ascii=False, default=str),
+                json.dumps(
+                    [dict(zip(final_slot_keys, row)) for row in entry_rows],
+                    ensure_ascii=False, default=str,
+                ),
+            ),
+        )
 
         # Har bir maktab uchun faqat oxirgi to'rtta to'liq natija saqlanadi.
         # Slotlar ON DELETE CASCADE bilan birga tozalanadi; joriy run doimo
@@ -5746,12 +5961,28 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
                 )
                 row = error_cur.fetchone() or {}
                 if row.get("jadval_raqami"):
+                    was_cancelled = _v2244_cancel_requested(
+                        sorov.maktab_id, sorov.qidiruv_nonce
+                    )
+                    error_cur.execute(
+                        "SELECT 1 AS bor FROM aqlli_jadval_urinishlari_v2 WHERE id=%s AND joylashtirilmadi=0",
+                        (int(row["jadval_raqami"]),),
+                    )
+                    complete_saved = bool(error_cur.fetchone())
                     _v2243_progress_write(
                         sorov.maktab_id, sorov.qidiruv_nonce,
                         int(row["jadval_raqami"]),
                         int(row.get("yaxshilanish") or 0),
-                        100, "xato",
-                        f"Jadval hisoblash to'xtadi: {str(error)[:700]}",
+                        100, "toxtatildi" if was_cancelled else "xato",
+                        (
+                            f"To‘xtatildi. Jadval #{row['jadval_raqami']}"
+                            f"{'.' + str(row.get('yaxshilanish')) if int(row.get('yaxshilanish') or 0) else ''} "
+                            "saqlandi va ochish mumkin."
+                            if was_cancelled and complete_saved else
+                            "To‘xtatildi. Hali 100% to‘liq jadval saqlanmagan; oldingi jadval o‘chirilmagan."
+                            if was_cancelled else
+                            f"Jadval hisoblash to'xtadi: {str(error)[:700]}"
+                        ),
                     )
             except Exception as progress_error:
                 print(f"[JADVAL-BACKGROUND-V22.55] xato holati yozilmadi: {progress_error}", flush=True)
@@ -5774,8 +6005,29 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
     }
 
 
+@app.get("/api/maktab/aqlli_jadval/v3/revisionlar")
+def v2258_revision_list(token: str, urinish_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        cur.execute("SELECT maktab_id FROM aqlli_jadval_urinishlari_v2 WHERE id=%s", (urinish_id,))
+        run = cur.fetchone()
+        if not run or not _v1852_staff(cur, user_id, run["maktab_id"]):
+            raise HTTPException(status_code=404, detail="Jadval topilmadi")
+        cur.execute(
+            """SELECT revision,yaratilgan_at,sifat,bosqich,metrics
+               FROM aqlli_jadval_revisionlari_v2258
+               WHERE urinish_id=%s ORDER BY revision""",
+            (urinish_id,),
+        )
+        return {"urinish_id": urinish_id, "revisionlar": cur.fetchall()}
+    finally:
+        cur.close(); conn.close()
+
+
 @app.get("/api/maktab/aqlli_jadval/v2/urinish")
-def v1852_run_detail(token: str, urinish_id: int):
+def v1852_run_detail(token: str, urinish_id: int, yaxshilanish: Optional[int] = None):
     user_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
@@ -5786,13 +6038,51 @@ def v1852_run_detail(token: str, urinish_id: int):
             raise HTTPException(status_code=404, detail="Jadval urinishi topilmadi")
         if not _v1852_staff(cur, user_id, run["maktab_id"]):
             raise HTTPException(status_code=403, detail="Ruxsat yo'q")
-        cur.execute("""SELECT e.*,s.sinf,s.harf,u.full_name AS oqituvchi_ismi,r.nomi AS xona_nomi
+        if yaxshilanish is not None:
+            cur.execute(
+                """SELECT revision,yaratilgan_at,sifat,bosqich,metrics,slotlar
+                   FROM aqlli_jadval_revisionlari_v2258
+                   WHERE urinish_id=%s AND revision=%s""",
+                (urinish_id, int(yaxshilanish)),
+            )
+            revision_row = cur.fetchone()
+            if not revision_row:
+                raise HTTPException(status_code=404, detail="Jadval revisioni topilmadi")
+            entries = list(revision_row.get("slotlar") or [])
+            class_ids = sorted({int(row["sinf_id"]) for row in entries if row.get("sinf_id")})
+            teacher_ids = sorted({int(row["oqituvchi_user_id"]) for row in entries if row.get("oqituvchi_user_id")})
+            room_ids = sorted({int(row["xona_id"]) for row in entries if row.get("xona_id")})
+            class_map = {}
+            teacher_map = {}
+            room_map = {}
+            if class_ids:
+                cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE id=ANY(%s)", (class_ids,))
+                class_map = {int(row["id"]): row for row in cur.fetchall()}
+            if teacher_ids:
+                cur.execute("SELECT user_id,full_name FROM users WHERE user_id=ANY(%s)", (teacher_ids,))
+                teacher_map = {int(row["user_id"]): row["full_name"] for row in cur.fetchall()}
+            if room_ids:
+                cur.execute("SELECT id,nomi FROM aqlli_xonalar_v2 WHERE id=ANY(%s)", (room_ids,))
+                room_map = {int(row["id"]): row["nomi"] for row in cur.fetchall()}
+            for entry in entries:
+                cls = class_map.get(int(entry.get("sinf_id") or 0), {})
+                entry["sinf"] = cls.get("sinf")
+                entry["harf"] = cls.get("harf")
+                entry["oqituvchi_ismi"] = teacher_map.get(int(entry.get("oqituvchi_user_id") or 0))
+                entry["xona_nomi"] = room_map.get(int(entry.get("xona_id") or 0)) or entry.get("xona_matni")
+            run = dict(run)
+            run["yaxshilanish"] = int(revision_row["revision"])
+            run["yaratilgan_at"] = revision_row["yaratilgan_at"]
+            run["sifat"] = revision_row["sifat"]
+            run["diagnostika"] = {**dict(run.get("diagnostika") or {}), "v2258_metrics": revision_row.get("metrics") or {}}
+        else:
+            cur.execute("""SELECT e.*,s.sinf,s.harf,u.full_name AS oqituvchi_ismi,r.nomi AS xona_nomi
                        FROM aqlli_jadval_slotlari_v2 e
                        JOIN maktab_sinflari s ON s.id=e.sinf_id
                        LEFT JOIN users u ON u.user_id=e.oqituvchi_user_id
                        LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
                        WHERE e.urinish_id=%s ORDER BY s.sinf::int,s.harf,e.hafta_kuni,e.smena,e.dars_raqami,e.guruh_kaliti""", (urinish_id,))
-        entries = cur.fetchall()
+            entries = cur.fetchall()
         current_week_type = "toq" if datetime.now().isocalendar().week % 2 else "juft"
         return {"urinish": run, "slotlar": entries, "joriy_hafta_turi": current_week_type}
     finally:
@@ -16426,6 +16716,48 @@ def _v226_teacher_day_target(state, context, teacher_id):
     ))
 
 
+def _v2258_teacher_presence_policy(state, context, teacher_id):
+    """Ustozning dars soniga nisbatan maktabda ortiqcha qolishini baholaydi."""
+    max_span_by_lessons = {
+        1: 120,  # 1 darsli kun avvalo boshqa kunga yig'iladi
+        2: 240,
+        3: 360,
+        4: 480,
+        5: 540,
+        6: 600,
+        7: 720,
+    }
+    one_lesson_days = 0
+    overstay_total = 0
+    overstay_max = 0
+    span_total = 0
+    active_days = sorted({
+        int(day) for (owner, day), count
+        in (state.get("teacher_daily", {}) or {}).items()
+        if int(owner) == int(teacher_id) and float(count or 0) > 0
+    })
+    for day in active_days:
+        timeline = _v200_teacher_day_timeline(
+            state, teacher_id, day, context
+        )
+        if not timeline:
+            continue
+        lesson_count = len(timeline)
+        span = max(0, int(timeline[-1][1]) - int(timeline[0][0]))
+        allowed = int(max_span_by_lessons.get(min(7, lesson_count), 720))
+        excess = max(0, span - allowed)
+        one_lesson_days += int(lesson_count == 1)
+        span_total += span
+        overstay_total += excess
+        overstay_max = max(overstay_max, excess)
+    return {
+        "bitta_darsli_kun": int(one_lesson_days),
+        "ortiqcha_qolish_jami_daqiqa": int(overstay_total),
+        "eng_katta_ortiqcha_qolish_daqiqa": int(overstay_max),
+        "maktabda_jami_daqiqa": int(span_total),
+    }
+
+
 def _v225_teacher_score(state, context, teacher_id):
     """Bitta o'qituvchi uchun worst-first lexicographic baho.
 
@@ -16435,10 +16767,16 @@ def _v225_teacher_score(state, context, teacher_id):
     hisoblanmaydi; imkon bo'lsa 6–8 darslik ixcham oraliqqa siqiladi.
     """
     snapshot = _v214_teacher_phase_window_snapshot(state, context, teacher_id)
+    presence = _v2258_teacher_presence_policy(
+        state, context, teacher_id
+    )
     days = int(_v225_teacher_days(state, teacher_id))
     target_days = int(_v226_teacher_day_target(state, context, teacher_id))
     excess_days = max(0, days - target_days)
     return (
+        int(presence.get("bitta_darsli_kun") or 0),
+        int(presence.get("eng_katta_ortiqcha_qolish_daqiqa") or 0),
+        int(presence.get("ortiqcha_qolish_jami_daqiqa") or 0),
         int(snapshot.get("eng_katta_daqiqa") or 0),
         int(snapshot.get("jami_daqiqa") or 0),
         int(snapshot.get("okno_soni") or 0),
@@ -16476,12 +16814,11 @@ def _v225_target_order(state, context):
     for teacher_id in teacher_ids:
         score = _v225_teacher_score(state, context, teacher_id)
         # Oynosi yo'q va faol kunlari yuklamaga mos ustozni bekorga o'ynamaymiz.
-        if not any(int(value) > 0 for value in score[:5]):
+        if not any(int(value) > 0 for value in score[:-1]):
             continue
         load = float(_v225_teacher_load(state, teacher_id))
         rows.append((
-            -int(score[0]), -int(score[1]), -int(score[2]), -int(score[3]),
-            -int(score[4]), -int(score[5]),
+            *(-int(value) for value in score),
             load,
             int(teacher_id),
         ))
@@ -16649,6 +16986,7 @@ def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
                     progress_callback(
                         int(swaps), int(teacher_id), before,
                         _v225_teacher_score(state, context, teacher_id),
+                        state,
                     )
                 except Exception:
                     # Progress UI must never invalidate a hard-safe improvement.
