@@ -86,7 +86,7 @@ _V19_IMPORTED_NAMES = set(globals())
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
 SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
-SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.28-MAX2"
+SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.29-MAX2"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -8416,7 +8416,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
             )
             message = (
-                f"V22.28 MAX2 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
+                f"V22.29 MAX2 · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
                 f"{weekly_sessions:g}."
