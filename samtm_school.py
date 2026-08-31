@@ -90,7 +90,7 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
-SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.47-WORST-FIRST-FROZEN-CLASS-DAYS"
+SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.48-WORST-FIRST-FROZEN-CLASS-DAYS"
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
@@ -1145,6 +1145,8 @@ def _v1852_create_tables(cur):
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS xona_id BIGINT")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS psixolog_user_id BIGINT")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_dars_soati INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS jadval_raqami INTEGER")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS uq_users_maktab_jadval_raqami ON users(maktab_id,jadval_raqami) WHERE jadval_raqami IS NOT NULL")
 
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_oquv_yillari_v2(
         id BIGSERIAL PRIMARY KEY,
@@ -2129,7 +2131,7 @@ def _v1859_sinf_sort_key(label):
 
 def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None):
     cur.execute("""SELECT u.user_id,u.full_name,u.lavozim,u.fanlari,
-                          u.oqitadigan_sinflari,u.haftalik_dars_soati,
+                          u.oqitadigan_sinflari,u.haftalik_dars_soati,u.jadval_raqami,
                           to_jsonb(u)->>'mutaxassisligi' AS mutaxassisligi,
                           NULLIF(to_jsonb(u)->>'haftalik_maqsad_soat','')::NUMERIC(5,1)
                               AS haftalik_maqsad_soat
@@ -2215,7 +2217,9 @@ def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None):
             subjects or classes or assignment_counts[uid] or uid in class_head_ids
         )
         row["fan_holati"] = "aniqlandi" if subjects else "fan_topilmadi"
-        if row["dars_beruvchi"]:
+        # V22.49: F.I.Sh. bilan oldindan kiritilgan, hali skeletga fan biriktirilmagan
+        # o'qituvchi ham ro'yxatda qoladi. Uning jadval_raqami keyingi skelet tanlovining kaliti.
+        if row["dars_beruvchi"] or row.get("jadval_raqami") is not None:
             result.append(row)
     return result
 
@@ -2252,6 +2256,7 @@ def _v1852_setup_payload(cur, maktab_id: int):
         if row.get("rahbar_user_id") is not None:
             class_hour_counts[int(row["rahbar_user_id"])] += int(row.get("haftalik_soat") or 1)
     plan = _v193_plan_payload(cur, maktab_id, classes)
+    _v2249_ensure_teacher_numbers(cur, maktab_id)
     teachers = _v1859_effective_teachers(cur, maktab_id)
     for teacher in teachers:
         extra = int(class_hour_counts.get(int(teacher["user_id"]), 0))
@@ -4329,7 +4334,7 @@ def v1852_generate(sorov: V1852Generate, token: str):
             if bounded_method_fallback_used
             else generation_finalization_deadline
         )
-        # V22.47: exact incumbentdagi har bir sinfning KUNLIK DARS SONI shu
+        # V22.48: exact incumbentdagi har bir sinfning KUNLIK DARS SONI shu
         # nuqtada qotadi. Keyingi teacher optimizer fanlarni o'ynatishi mumkin,
         # lekin 2/3/4/5/6 soatni boshqa kunga ko'chira olmaydi.
         final_context = dict(context)
@@ -10771,6 +10776,13 @@ def _v192_tables(cur):
         "ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_maqsad_soat INTEGER"
     )
     cur.execute(
+        "ALTER TABLE users ADD COLUMN IF NOT EXISTS jadval_raqami INTEGER"
+    )
+    cur.execute(
+        "CREATE UNIQUE INDEX IF NOT EXISTS uq_users_maktab_jadval_raqami "
+        "ON users(maktab_id,jadval_raqami) WHERE jadval_raqami IS NOT NULL"
+    )
+    cur.execute(
         "ALTER TABLE maktab_dars_birikmalari "
         "ADD COLUMN IF NOT EXISTS xona_id BIGINT REFERENCES aqlli_xonalar_v2(id) ON DELETE SET NULL"
     )
@@ -12112,6 +12124,41 @@ def _v192_totals(cur, maktab_id: int, rows, classes):
     }
 
 
+def _v2249_ensure_teacher_numbers(cur, maktab_id: int):
+    """Har maktab o'qituvchisiga bir marta beriladigan, keyin o'zgarmaydigan jadval raqami."""
+    cur.execute(
+        """SELECT user_id,jadval_raqami,full_name
+           FROM users
+           WHERE maktab_id=%s
+             AND (LOWER(COALESCE(role,'')) IN ('oqituvchi','teacher')
+                  OR LOWER(COALESCE(lavozim,'')) LIKE '%%oqituvchi%%')
+           ORDER BY CASE WHEN jadval_raqami IS NULL THEN 1 ELSE 0 END,
+                    jadval_raqami NULLS LAST, LOWER(full_name), user_id
+           FOR UPDATE""",
+        (maktab_id,),
+    )
+    rows = [dict(row) for row in cur.fetchall()]
+    used = {int(row["jadval_raqami"]) for row in rows if row.get("jadval_raqami") is not None}
+    next_number = max(used, default=0) + 1
+    # Birinchi migratsiyada eski o'qituvchilar alfavit bo'yicha raqamlanadi.
+    # Keyin raqam hech qachon F.I.Sh. o'zgargani yoki yangi ustoz qo'shilgani uchun almashmaydi.
+    missing = sorted(
+        (row for row in rows if row.get("jadval_raqami") is None),
+        key=lambda row: (str(row.get("full_name") or "").casefold(), int(row["user_id"])),
+    )
+    for row in missing:
+        while next_number in used:
+            next_number += 1
+        cur.execute(
+            "UPDATE users SET jadval_raqami=%s WHERE user_id=%s AND maktab_id=%s",
+            (next_number, int(row["user_id"]), maktab_id),
+        )
+        row["jadval_raqami"] = next_number
+        used.add(next_number)
+        next_number += 1
+    return {int(row["user_id"]): int(row["jadval_raqami"]) for row in rows if row.get("jadval_raqami") is not None}
+
+
 def _v192_matrix_payload(cur, maktab_id: int):
     classes, systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
@@ -12129,6 +12176,7 @@ def _v192_matrix_payload(cur, maktab_id: int):
         row["guruh_qisqa"] = (variant or {}).get("qisqa", row["guruh_kaliti"])
         row["sinf_nomi"] = f"{row['sinf']}-{row['harf']}"
 
+    _v2249_ensure_teacher_numbers(cur, maktab_id)
     teachers = _v1859_effective_teachers(cur, maktab_id)
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
     subjects = [row["fan_nomi"] for row in cur.fetchall()]
@@ -12695,7 +12743,7 @@ class V192ManualTeacherCreate(BaseModel):
     ish_staji: Optional[int] = None
     toifasi: Optional[str] = None
     rahbar_sinf_id: Optional[int] = None
-    qatorlar: list[V192TeacherLoadRow]
+    qatorlar: list[V192TeacherLoadRow] = []
 
 
 def _v194_teacher_profile_values(mutaxassisligi, haftalik_maqsad_soat):
@@ -13235,6 +13283,8 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
                         int(work_years) if work_years is not None else None,
                         category, specialty, target_hours,
                     ))
+        teacher_numbers = _v2249_ensure_teacher_numbers(cur, sorov.maktab_id)
+        new_teacher_number = teacher_numbers.get(int(new_user_id))
         plain_code, stored_code = _xodim_kod_yarat()
         cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)",
                     (stored_code, new_user_id))
@@ -13257,6 +13307,7 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
             "kirish_kodi": plain_code,
             "kirish_kodi_muddati": "2 oy",
             "qolda_kiritildi": True,
+            "jadval_raqami": new_teacher_number,
             "mutaxassisligi": specialty,
             "haftalik_maqsad_soat": target_hours,
             "tugilgan_yili": int(birth_year) if birth_year is not None else None,
@@ -14752,7 +14803,7 @@ def _v196_candidate_reasons(
             "jismoniy tarbiya va texnologiya 1-darsga qo'yilmaydi"
         )
 
-    # V22.47: post-processing 4–5 soatli fanni 2+2(+1) ko'rinishida
+    # V22.48: post-processing 4–5 soatli fanni 2+2(+1) ko'rinishida
     # yig'ishi mumkin, ammo bir fan uchun juft darsli kunlar soni exact
     # validator limitidan oshmaydi. Bu o'qituvchi oynosini tuzatib bo'lgach
     # butun natijaning rollback bo'lishini oldini oladi.
@@ -14799,7 +14850,7 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
     rotation_count = 0
     for job in jobs:
         grade = _v1874_grade(classes.get(int(job.get("sinf_id") or 0), {}))
-        # V22.47: barcha fanlarda bir sinf-kun uchun limit 2; 4–5 soatli fan 2+2(+1) bo'lishi mumkin.
+        # V22.48: barcha fanlarda bir sinf-kun uchun limit 2; 4–5 soatli fan 2+2(+1) bo'lishi mumkin.
         # Bu majburiy juft dars emas; faqat 3 legal kun ichiga 5 soat kabi
         # yuklamani 2+2+1 ko'rinishida sig'dirish imkonidir.
         job["daily_max"] = 2
@@ -15020,7 +15071,7 @@ def _v196_teacher_demand(jobs):
 def _v196_teacher_target_days(demand, rules):
     """Haftalik yuklamani iloji boricha 1–4 ixcham ish kuniga yig'adi.
 
-    V22.47: 1 soat tabiiy ravishda 1 kunda qoladi. 2–6 soatli yuklama 2
+    V22.48: 1 soat tabiiy ravishda 1 kunda qoladi. 2–6 soatli yuklama 2
     kunga, 7–10 soat 3 kunga, 11–18 soat esa 3–4 kunga yig'iladi. Kunlik
     maksimum qattiq qoida bo'lib qoladi; maqsad sig'masa minimum kun soni
     avtomatik oshadi.
@@ -15260,7 +15311,7 @@ def _v226_class_day_counts_match(state, context):
 def _v196_balance_class_days(state, context, rng, max_moves=24):
     """Boshlang'ich exact jadvaldan keyin sinfning kunlik soati QOTIRILADI.
 
-    V22.47: o'qituvchi oynosini tuzatish 2/3/4/5/6 ko'rinishidagi sinf-kun
+    V22.48: o'qituvchi oynosini tuzatish 2/3/4/5/6 ko'rinishidagi sinf-kun
     soatlarini boshqa kunga ko'chira olmaydi. Exact solver boshlang'ich
     taqsimotni tanlaydi; keyingi qulaylashtirish faqat shu kataklar ichida
     fanlarni almashtiradi yoki ikki kun o'rtasida 1:1 swap qiladi.
@@ -15771,7 +15822,7 @@ def _v225_teacher_candidates(state, context, teacher_id, limit=480):
                 return
 
 def _v196_optimize_teacher_windows(state, context, rng, max_swaps=36):
-    """V22.47: bitta incumbentni worst-first yaxshilab, yaxshisini qotiradi.
+    """V22.48: bitta incumbentni worst-first yaxshilab, yaxshisini qotiradi.
 
     Yangi jadval boshidan yaratilmaydi. Exact jadvalning sinf-kun dars sonlari
     qotiriladi. Eng yomon 10–50 ustoz ketma-ket olinadi; har bir foydali swap
