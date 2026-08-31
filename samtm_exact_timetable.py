@@ -48,7 +48,7 @@ import unicodedata
 from typing import Any, Callable, Iterable, Mapping, Optional
 
 # Deployda fayl haqiqatan yangilangani bir qarashda ko'rinadigan belgi.
-EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.34-PRIMARY5-UPPER3"
+EXACT_SOLVER_RELEASE = "SAMTM-EXACT-SOLVER-V22.35-SUBJECT-MAX2"
 
 _ORTOOLS_IMPORT_ERROR: Optional[BaseException] = None
 try:  # pragma: no cover - exercised in an OR-Tools-enabled deployment.
@@ -1107,17 +1107,11 @@ def _build_model(
     # occupied lesson on the phase in which it occurs.  Weekly contractual
     # load keeps half-hour units (2 = regular, 1 = one A/B-week occurrence).
     teacher_daily: dict[tuple[int, int, str], list[int]] = defaultdict(list)
-    teacher_class_daily: dict[tuple[int, int, int, str], list[int]] = defaultdict(list)
-    class_grades: dict[int, int] = {}
     teacher_week: dict[tuple[int, str], list[tuple[int, int]]] = defaultdict(list)
     for index, row in enumerate(candidates):
-        class_grades[int(row["class_id"])] = _grade(row["job"], context)
         for teacher, phase_loads in row["teacher_phase_loads"].items():
             for phase, units in phase_loads.items():
                 teacher_daily[(teacher, row["day"], phase)].append(index)
-                teacher_class_daily[(
-                    teacher, row["class_id"], row["day"], phase
-                )].append(index)
                 teacher_week[(teacher, phase)].append((index, int(units)))
     rules = context.get("rules") or {}
     defaults = context.get("default_rules") or {"kunlik_max": 6}
@@ -1126,16 +1120,6 @@ def _build_model(
         model.Add(
             sum(variables[index] for index in sorted(set(indices)))
             <= int(math.floor(limit + 1e-9))
-        )
-    # 1–4-sinf o'qituvchisi turli fanlardan 5 soatgacha, 5–11-sinfda esa
-    # ayni ustoz+sinf kuni 3 soatgacha kirishi mumkin. Har bir alohida fan
-    # uchun max 2 qoidasi yuqorida mustaqil saqlanadi.
-    for (_teacher, class_id, _day, _phase), indices in teacher_class_daily.items():
-        grade = int(class_grades.get(int(class_id), 0))
-        teacher_class_limit = 5 if 1 <= grade <= 4 else 3
-        model.Add(
-            sum(variables[index] for index in sorted(set(indices)))
-            <= teacher_class_limit
         )
     for (teacher, phase), terms in teacher_week.items():
         cap = (context.get("teacher_caps") or {}).get(teacher)
@@ -1656,8 +1640,6 @@ def validate_candidate_selection(
     resource_rows: list[tuple[str, Any, int, str, tuple[int, int], int]] = []
     by_class_day: dict[tuple[int, int, str], set[int]] = defaultdict(set)
     teacher_daily_lessons: dict[tuple[int, int, str], int] = defaultdict(int)
-    teacher_class_daily_lessons: dict[tuple[int, int, int, str], int] = defaultdict(int)
-    class_grades: dict[int, int] = {}
     teacher_week_units: dict[tuple[int, str], int] = defaultdict(int)
     subject_counts: dict[tuple[int, str, int, str], int] = defaultdict(int)
     subject_limits: dict[tuple[int, str], int] = {}
@@ -1670,7 +1652,6 @@ def validate_candidate_selection(
             errors.append(f"Takror yoki noto'g'ri job_index: {job_index}")
             continue
         seen_jobs.add(job_index)
-        class_grades[int(row["class_id"])] = _grade(jobs[job_index], context)
         errors.extend(
             f"{canonical_job_id(jobs[job_index], job_index)}: {reason}"
             for reason in candidate_hard_violations(
@@ -1687,9 +1668,6 @@ def validate_candidate_selection(
                 resource_rows.append(("o'qituvchi", teacher, row["day"], phase, interval, job_index))
                 units = int(row["teacher_phase_loads"][teacher][phase])
                 teacher_daily_lessons[(teacher, row["day"], phase)] += 1
-                teacher_class_daily_lessons[(
-                    teacher, row["class_id"], row["day"], phase
-                )] += 1
                 teacher_week_units[(teacher, phase)] += units
         for room, phases in row["room_phases"].items():
             for phase in phases:
@@ -1742,15 +1720,6 @@ def validate_candidate_selection(
         limit = float((rules.get(teacher, defaults) or defaults).get("kunlik_max") or 6)
         if lessons > int(limit + 1e-9):
             errors.append(f"O'qituvchi {teacher}: {day}-kun {phase} kunlik limit oshgan")
-    for (teacher, class_id, day, phase), lessons in teacher_class_daily_lessons.items():
-        grade = int(class_grades.get(int(class_id), 0))
-        teacher_class_limit = 5 if 1 <= grade <= 4 else 3
-        if lessons > teacher_class_limit:
-            errors.append(
-                f"O'qituvchi {teacher}: {class_id}-sinfga {day}-kun "
-                f"{phase} fazada {lessons} dars; maksimum "
-                f"{teacher_class_limit}"
-            )
     for (teacher, phase), units in teacher_week_units.items():
         cap = (context.get("teacher_caps") or {}).get(teacher)
         if cap is not None and units > int(float(cap) * 2 + 1e-9):
