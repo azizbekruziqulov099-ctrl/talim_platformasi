@@ -2551,3 +2551,4 @@ __all__ = [
     "validate_candidate_selection", "validate_timetable_placements",
     "analyze_method_day_relaxations", "solve_exact_timetable",
 ]
+//
