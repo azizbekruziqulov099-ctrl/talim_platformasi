@@ -91,7 +91,11 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V3.0-BOUNDED-REPEAT-PROGRESS"
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
 SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.50-STABLE-DAYS"
-SAMTM_SCHOOL_PACKAGE_REVISION = "stable-days-collapsible-progress-rev56"
+# ``main.py`` production boot guard shu barqaror paket identifikatorini
+# tekshiradi. Jadval algoritmining real versiyasi yuqoridagi
+# ``SAMTM_EXACT_INTERNAL_RELEASE`` orqali V22.50 sifatida alohida beriladi;
+# bu compatibility belgisini o'zgartirish backend workerini ataylab yiqitadi.
+SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
