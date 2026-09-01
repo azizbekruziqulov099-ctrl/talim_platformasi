@@ -19,6 +19,12 @@ except ImportError:  # Railway working directory may be backend/
 import copy as _samtm_copy
 import time as _samtm_time
 import threading as _samtm_threading
+import base64 as _v237_base64
+import binascii as _v237_binascii
+import io as _v237_io
+import math as _v237_math
+import unicodedata as _v237_unicodedata
+import zipfile as _v237_zipfile
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
@@ -101,17 +107,17 @@ _V19_IMPORTED_NAMES = set(globals())
 
 # V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
 # yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
-SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
+SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v23.7"
 SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V23.6-LIVE-REATTACH-ALL-TEACHERS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
 SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V23.6-DUAL-SHIFT-WEEK-ROUND-ROBIN"
-SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
+SAMTM_SCHOOL_PACKAGE_REVISION = "teacher-xlsx-shift-alphabet-v23.7"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 try:
-    app.version = "19.8"
+    app.version = "23.7"
 except Exception:
     pass
 
@@ -1149,6 +1155,10 @@ def _v1852_create_tables(cur):
     _maktab_sinflari_jadvali(cur)
     _xodim_sinf_birikmalari_jadvali(cur)
     _maktab_fanlari_jadvali(cur)
+    cur.execute(
+        "ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS alifbo_turi "
+        "TEXT NOT NULL DEFAULT 'latin_xalqaro'"
+    )
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS smena INTEGER DEFAULT 1")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS bino TEXT")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS xona TEXT")
@@ -2282,8 +2292,29 @@ def _v1852_setup_payload(cur, maktab_id: int):
                           s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
                    FROM maktab_sinflari s
                    LEFT JOIN users u ON u.user_id=s.rahbar_user_id
-                   WHERE s.maktab_id=%s ORDER BY s.sinf::int,s.harf""", (maktab_id,))
+                   WHERE s.maktab_id=%s ORDER BY s.id""", (maktab_id,))
     classes = cur.fetchall()
+    cur.execute(
+        "SELECT COALESCE(alifbo_turi,'latin_xalqaro') AS alifbo_turi "
+        "FROM maktablar WHERE id=%s",
+        (maktab_id,),
+    )
+    alphabet_type = (cur.fetchone() or {}).get("alifbo_turi") or "latin_xalqaro"
+    classes.sort(key=lambda row: _v237_class_sort_key(row, alphabet_type))
+    alphabet = _V237_CLASS_ALPHABETS.get(
+        alphabet_type, _V237_CLASS_ALPHABETS["latin_xalqaro"]
+    )
+    alphabet_indexes = {
+        _v237_parallel_label_key(label): index for index, label in enumerate(alphabet)
+    }
+    for class_row in classes:
+        try:
+            label_key = _v237_parallel_label_key(class_row.get("harf"))
+        except ValueError:
+            label_key = str(class_row.get("harf") or "").casefold()
+        class_row["sinf_nomi"] = f"{class_row.get('sinf','')}-{class_row.get('harf','')}"
+        class_row["alifbo_turi"] = alphabet_type
+        class_row["alifbo_tartibi"] = alphabet_indexes.get(label_key)
     cur.execute("""SELECT q.*,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,
                           s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
                    FROM aqlli_sinf_soati_qoidalari_v2 q
@@ -2336,6 +2367,7 @@ def _v1852_setup_payload(cur, maktab_id: int):
     class_day_blocks = _v1856_class_day_rule_rows(cur, maktab_id)
     return {
         "oquv_yili": year, "choraklar": quarters, "maxsus_kunlar": special_days,
+        "alifbo_turi": alphabet_type,
         "smenalar": shifts, "sinflar": classes, "oqituvchilar": teachers,
         "fanlar": subjects, "xonalar": rooms, "oqituvchi_qoidalari": teacher_rules,
         "oqituvchi_vaqtlari": teacher_times, "fan_soatlari": loads,
@@ -6087,7 +6119,20 @@ def v1857_safe_school_dashboard(token: str, maktab_id: int):
         maktab_cols = _v1857_columns(cur, "maktablar")
         payment_expr = "pulli" if "pulli" in maktab_cols else "FALSE AS pulli"
         fee_expr = "oylik_tolov" if "oylik_tolov" in maktab_cols else "NULL::INTEGER AS oylik_tolov"
-        cur.execute(f"SELECT nomi,{payment_expr},{fee_expr} FROM maktablar WHERE id=%s", (maktab_id,))
+        shift_count_expr = (
+            "COALESCE(smena_soni,1) AS smena_soni"
+            if "smena_soni" in maktab_cols else "1 AS smena_soni"
+        )
+        alphabet_expr = (
+            "COALESCE(alifbo_turi,'latin_xalqaro') AS alifbo_turi"
+            if "alifbo_turi" in maktab_cols
+            else "'latin_xalqaro'::TEXT AS alifbo_turi"
+        )
+        cur.execute(
+            f"SELECT nomi,{payment_expr},{fee_expr},{shift_count_expr},{alphabet_expr} "
+            "FROM maktablar WHERE id=%s",
+            (maktab_id,),
+        )
         maktab = cur.fetchone()
         if not maktab:
             raise HTTPException(status_code=404, detail="Maktab topilmadi")
@@ -6096,8 +6141,9 @@ def v1857_safe_school_dashboard(token: str, maktab_id: int):
         psixolog_bor = "psixolog_user_id" in sinf_cols
         psixolog_select = "COALESCE(p.full_name,'') AS psixolog_ismi" if psixolog_bor else "''::TEXT AS psixolog_ismi"
         psixolog_join = "LEFT JOIN users p ON p.user_id=s.psixolog_user_id" if psixolog_bor else ""
+        smena_select = "COALESCE(s.smena,1) AS smena" if "smena" in sinf_cols else "1 AS smena"
         cur.execute(f"""
-            SELECT s.id,s.sinf,s.harf,
+            SELECT s.id,s.sinf,s.harf,{smena_select},
                    COALESCE(u.full_name,'') AS rahbar_ismi,
                    {psixolog_select},
                    (SELECT COUNT(*) FROM maktab_sinf_azolari a WHERE a.sinf_id=s.id) AS oquvchi_soni
@@ -6217,6 +6263,8 @@ def v1857_safe_school_dashboard(token: str, maktab_id: int):
 
         return {
             "maktab_nomi": maktab["nomi"],
+            "smena_soni": int(maktab.get("smena_soni") or 1),
+            "alifbo_turi": maktab.get("alifbo_turi") or "latin_xalqaro",
             "pulli": bool(maktab.get("pulli")),
             "oylik_tolov": maktab.get("oylik_tolov"),
             "sinflar": sinflar,
@@ -11202,6 +11250,184 @@ def v197_fractional_hour_capabilities():
     }
 
 
+SAMTM_SCHOOL_SETUP_RELEASE = "SAMTM-SCHOOL-SETUP-V23.7-XLSX-SHIFT-ALPHABET"
+
+# Sinfning raqam qismi alohida ``maktab_sinflari.sinf`` ustunida 1..11 bo'lib
+# qoladi. Quyidagi ketma-ketliklar faqat parallel yorlig'i (``harf``) uchun.
+# Bu eski generatorlardagi ``sinf::int`` tartiblashini buzmasdan lotin/kirill
+# tanlovini va ikki smenada uzluksiz davom etishni beradi.
+_V237_CLASS_ALPHABETS = {
+    "latin_xalqaro": tuple("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
+    "uzbek_lotin": (
+        "A", "B", "D", "E", "F", "G", "G‘", "H", "I", "J", "K", "L",
+        "M", "N", "O", "O‘", "P", "Q", "R", "S", "T", "U", "V", "X",
+        "Y", "Z", "Sh", "Ch", "Ng",
+    ),
+    "uzbek_kiril": (
+        "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К",
+        "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц",
+        "Ч", "Ш", "Ъ", "Ь", "Э", "Ю", "Я", "Ў", "Қ", "Ғ", "Ҳ",
+    ),
+}
+
+_V237_APOSTROPHES = str.maketrans({
+    "ʻ": "'", "ʼ": "'", "’": "'", "‘": "'", "`": "'", "´": "'",
+    "ʹ": "'", "＇": "'",
+})
+
+
+def _v237_clean_parallel_label(value):
+    label = re.sub(r"\s+", " ", str(value or "")).strip()
+    if not 1 <= len(label) <= 40:
+        raise ValueError("Sinf parallel nomi 1–40 ta belgi bo‘lishi kerak.")
+    if any(_v237_unicodedata.category(char).startswith("C") for char in label):
+        raise ValueError("Sinf parallel nomida boshqaruv/yashirin belgilar bo‘lishi mumkin emas.")
+    return label
+
+
+def _v237_parallel_label_key(value):
+    label = _v237_clean_parallel_label(value).translate(_V237_APOSTROPHES)
+    label = _v237_unicodedata.normalize("NFKC", label)
+    return re.sub(r"\s+", " ", label).strip().casefold()
+
+
+def _v237_class_sort_key(row, alphabet_type="latin_xalqaro"):
+    try:
+        grade = int(str((row or {}).get("sinf") or "").strip())
+    except (TypeError, ValueError):
+        grade = 999
+    alphabet = _V237_CLASS_ALPHABETS.get(
+        str(alphabet_type or "latin_xalqaro"),
+        _V237_CLASS_ALPHABETS["latin_xalqaro"],
+    )
+    indexes = {_v237_parallel_label_key(label): index for index, label in enumerate(alphabet)}
+    raw_label = str((row or {}).get("harf") or "")
+    try:
+        label_key = _v237_parallel_label_key(raw_label)
+    except ValueError:
+        label_key = raw_label.casefold()
+    natural = tuple(
+        (0, int(part)) if part.isdigit() else (1, part.casefold())
+        for part in re.split(r"(\d+)", raw_label)
+        if part != ""
+    )
+    return (grade, indexes.get(label_key, len(alphabet)), natural, int((row or {}).get("id") or 0))
+
+
+class V237SchoolClassPlan(BaseModel):
+    sinf: int
+    birinchi_smena: int = 0
+    ikkinchi_smena: int = 0
+
+
+def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
+    try:
+        shift_count = int(shift_count or 1)
+    except (TypeError, ValueError) as exc:
+        raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.") from exc
+    if shift_count not in (1, 2):
+        raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.")
+    alphabet_type = str(alphabet_type or "latin_xalqaro").strip().lower()
+    alphabet = _V237_CLASS_ALPHABETS.get(alphabet_type)
+    if alphabet is None:
+        raise ValueError(
+            "Alifbo turi latin_xalqaro, uzbek_lotin yoki uzbek_kiril bo‘lishi kerak."
+        )
+    sources = list(raw_plan or [])
+    if not sources:
+        return []
+    seen_grades = set()
+    materialized = []
+    for source in sources:
+        if isinstance(source, dict):
+            item = dict(source)
+        else:
+            dump = getattr(source, "model_dump", None)
+            item = dump() if callable(dump) else source.dict()
+        try:
+            grade = int(item.get("sinf"))
+            first_count = int(item.get("birinchi_smena") or 0)
+            second_count = int(item.get("ikkinchi_smena") or 0)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("Sinf va parallel sonlari butun raqam bo‘lishi kerak.") from exc
+        if grade not in range(1, 12):
+            raise ValueError("Sinf darajasi 1–11 oralig‘ida bo‘lishi kerak.")
+        if grade in seen_grades:
+            raise ValueError(f"{grade}-sinf rejasi ikki marta yuborilgan.")
+        seen_grades.add(grade)
+        if first_count < 0 or second_count < 0:
+            raise ValueError(f"{grade}-sinf parallel soni manfiy bo‘lishi mumkin emas.")
+        if shift_count == 1 and second_count:
+            raise ValueError(
+                f"{grade}-sinf uchun 2-smena tanlangan, lekin maktab 1 smenali."
+            )
+        total = first_count + second_count
+        if total > len(alphabet):
+            raise ValueError(
+                f"{grade}-sinf uchun {total} ta parallel tanlangan; "
+                f"{alphabet_type} alifbosida ko‘pi bilan {len(alphabet)} ta yorliq bor."
+            )
+        for index in range(total):
+            shift = 1 if index < first_count else 2
+            label = alphabet[index]
+            materialized.append({
+                "sinf": grade,
+                "harf": label,
+                "smena": shift,
+                "name": f"{grade}-{label}",
+                "alifbo_turi": alphabet_type,
+                "alifbo_tartibi": index,
+            })
+    if not materialized:
+        raise ValueError("Sinf rejasida kamida bitta parallel sonini kiriting.")
+    return sorted(materialized, key=lambda row: (row["sinf"], row["alifbo_tartibi"]))
+
+
+def _v237_school_retry_config_mismatches(
+    existing, shift_count, alphabet_type, region, district
+):
+    """Bir xil nomli tezkor retry faqat aynan o'sha maktab bo'lsa qabul qilinadi."""
+    row = dict(existing or {})
+
+    def normalized(value):
+        return re.sub(r"\s+", " ", str(value or "")).strip().casefold()
+
+    mismatches = []
+    try:
+        stored_shift_count = int(row.get("smena_soni") or 1)
+    except (TypeError, ValueError):
+        stored_shift_count = 1
+    if stored_shift_count != int(shift_count or 1):
+        mismatches.append("smena soni")
+    if normalized(row.get("alifbo_turi") or "latin_xalqaro") != normalized(
+        alphabet_type or "latin_xalqaro"
+    ):
+        mismatches.append("alifbo")
+    if normalized(row.get("viloyat")) != normalized(region):
+        mismatches.append("viloyat")
+    if normalized(row.get("tuman")) != normalized(district):
+        mismatches.append("tuman")
+    return mismatches
+
+
+def _v237_school_retry_class_plan_matches(expected_rows, actual_rows):
+    """Retry faqat saqlangan va yuborilgan sinf rejalari aynan teng bo'lsa xavfsiz."""
+    def keys(rows):
+        return {
+            (
+                str(row["sinf"]),
+                _v237_parallel_label_key(row["harf"]),
+                int(row["smena"]),
+            )
+            for row in (rows or [])
+        }
+
+    try:
+        return keys(expected_rows) == keys(actual_rows)
+    except (KeyError, TypeError, ValueError):
+        return False
+
+
 class V198SchoolWorkspaceLinkRequest(BaseModel):
     """V17 muassasasini eski maktab workspace'iga xavfsiz bog'lash so'rovi.
 
@@ -11226,6 +11452,8 @@ class V198SchoolWorkspaceLinkRequest(BaseModel):
     viloyat: Optional[str] = None
     tuman: Optional[str] = None
     smena_soni: int = 1
+    alifbo_turi: str = "latin_xalqaro"
+    sinf_rejasi: list[V237SchoolClassPlan] = []
 
 
 def _v198_existing_school_for_user(
@@ -11508,6 +11736,17 @@ def v198_link_school_workspace(
                         status_code=400,
                         detail="Smena soni 1 yoki 2 bo‘lishi kerak.",
                     )
+                try:
+                    planned_classes = _v237_materialize_class_plan(
+                        sorov.sinf_rejasi,
+                        int(sorov.smena_soni or 1),
+                        sorov.alifbo_turi,
+                    )
+                except ValueError as exc:
+                    raise HTTPException(status_code=400, detail=str(exc)) from exc
+                alphabet_type = str(sorov.alifbo_turi or "latin_xalqaro").strip().lower()
+                _maktab_sinflari_jadvali(cur)
+                _v1852_tables(cur)
 
                 # Bir foydalanuvchining ikki marta tez bosishi ikki maktab
                 # yaratmasin. Users qatori transaction tugaguncha bloklanadi;
@@ -11519,23 +11758,45 @@ def v198_link_school_workspace(
                 if not cur.fetchone():
                     raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi.")
                 cur.execute(
-                    """SELECT id,nomi FROM maktablar
+                    """SELECT id,nomi,COALESCE(smena_soni,1) AS smena_soni,
+                              COALESCE(alifbo_turi,'latin_xalqaro') AS alifbo_turi,
+                              COALESCE(viloyat,'') AS viloyat,
+                              COALESCE(tuman,'') AS tuman
+                         FROM maktablar
                         WHERE direktor_user_id=%s
                           AND lower(trim(nomi))=lower(trim(%s))
                           AND yaratilgan_at >= NOW() - INTERVAL '2 minutes'
-                        ORDER BY id DESC LIMIT 1""",
+                        ORDER BY id DESC LIMIT 1
+                        FOR UPDATE""",
                     (user_id, school_name),
                 )
                 linked_school = cur.fetchone()
                 created = linked_school is None
                 if linked_school:
+                    config_mismatches = _v237_school_retry_config_mismatches(
+                        linked_school,
+                        int(sorov.smena_soni or 1),
+                        alphabet_type,
+                        sorov.viloyat,
+                        sorov.tuman,
+                    )
+                    if config_mismatches:
+                        raise HTTPException(
+                            status_code=409,
+                            detail=(
+                                "Aynan shu nomli maktab hozirgina boshqa sozlama bilan "
+                                "yaratildi (" + ", ".join(config_mismatches) + "). "
+                                "Mavjud maktabni oching yoki boshqa nom bilan yarating."
+                            ),
+                        )
                     maktab_id = int(linked_school["id"])
+                    school_name = str(linked_school["nomi"])
                 else:
                     cur.execute(
                         """INSERT INTO maktablar(
                                nomi,viloyat,tuman,smena_soni,direktor_user_id,
-                               pulli,oylik_tolov
-                           ) VALUES(%s,%s,%s,%s,%s,FALSE,NULL)
+                               pulli,oylik_tolov,alifbo_turi
+                           ) VALUES(%s,%s,%s,%s,%s,FALSE,NULL,%s)
                            RETURNING id""",
                         (
                             school_name,
@@ -11543,9 +11804,70 @@ def v198_link_school_workspace(
                             str(sorov.tuman or "").strip() or None,
                             int(sorov.smena_soni or 1),
                             user_id,
+                            alphabet_type,
                         ),
                     )
                     maktab_id = int(cur.fetchone()["id"])
+                cur.execute(
+                    """SELECT id,sinf,harf,COALESCE(smena,1) AS smena
+                         FROM maktab_sinflari WHERE maktab_id=%s
+                         ORDER BY id FOR UPDATE""",
+                    (maktab_id,),
+                )
+                current_classes = [dict(row) for row in cur.fetchall()]
+                class_payload = []
+                if not created and not _v237_school_retry_class_plan_matches(
+                    planned_classes, current_classes
+                ):
+                    raise HTTPException(
+                        status_code=409,
+                        detail=(
+                            "Aynan shu maktab hozirgina boshqa sinf rejasi bilan yaratildi. "
+                            "Mavjud maktabni ochib sinflarni tahrirlang."
+                        ),
+                    )
+                if current_classes:
+                    class_payload = [
+                        {
+                            "id": int(row["id"]),
+                            "name": f"{row['sinf']}-{row['harf']}",
+                            "sinf": str(row["sinf"]),
+                            "harf": row["harf"],
+                            "smena": int(row["smena"]),
+                        }
+                        for row in sorted(
+                            current_classes,
+                            key=lambda item: _v237_class_sort_key(item, alphabet_type),
+                        )
+                    ]
+                elif created and planned_classes:
+                    cur.execute(
+                        "UPDATE maktablar SET alifbo_turi=%s WHERE id=%s",
+                        (alphabet_type, maktab_id),
+                    )
+                    for class_row in planned_classes:
+                        cur.execute(
+                            """INSERT INTO maktab_sinflari(maktab_id,sinf,harf,smena)
+                               VALUES(%s,%s,%s,%s) RETURNING id""",
+                            (
+                                maktab_id,
+                                str(class_row["sinf"]),
+                                class_row["harf"],
+                                int(class_row["smena"]),
+                            ),
+                        )
+                        class_id = int(cur.fetchone()["id"])
+                        class_payload.append({
+                            "id": class_id,
+                            "name": class_row["name"],
+                            "sinf": str(class_row["sinf"]),
+                            "harf": class_row["harf"],
+                            "smena": int(class_row["smena"]),
+                            "alifbo_tartibi": int(class_row["alifbo_tartibi"]),
+                        })
+                _v1852_default_shifts(
+                    cur, maktab_id, int(sorov.smena_soni or 1)
+                )
                 cur.execute(
                     """INSERT INTO foydalanuvchi_muassasalari(
                            user_id,muassasa_turi,muassasa_id,lavozim
@@ -11570,6 +11892,23 @@ def v198_link_school_workspace(
                     "maktab_id": maktab_id,
                     "maktab_nomi": school_name,
                     "legacy_yaratildi": created,
+                    "smena_soni": (
+                        int(linked_school.get("smena_soni") or 1)
+                        if linked_school else int(sorov.smena_soni or 1)
+                    ),
+                    "alifbo_turi": (
+                        str(linked_school.get("alifbo_turi") or "latin_xalqaro")
+                        if linked_school else alphabet_type
+                    ),
+                    "viloyat": (
+                        linked_school.get("viloyat") if linked_school else
+                        (str(sorov.viloyat or "").strip() or None)
+                    ),
+                    "tuman": (
+                        linked_school.get("tuman") if linked_school else
+                        (str(sorov.tuman or "").strip() or None)
+                    ),
+                    "sinflar": class_payload,
                 }
             existing = _v198_existing_school_for_user(cur, user_id)
             if not existing:
@@ -11671,6 +12010,125 @@ def v198_link_school_workspace(
     finally:
         cur.close()
         conn.close()
+
+
+class V237ClassEditRequest(BaseModel):
+    maktab_id: int
+    sinf_id: int
+    harf: str
+    smena: int
+
+
+@app.patch("/api/maktab/aqlli_jadval/v3/sinf_tahrirlash")
+@app.put("/api/maktab/aqlli_jadval/v3/sinf_tahrirlash")
+def v237_class_edit(sorov: V237ClassEditRequest, token: str):
+    """Sinf ID sini saqlagan holda parallel yorlig'i va smenasini tahrirlaydi."""
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Sinf nomi va smenasini faqat maktab rahbariyati tahrirlaydi",
+            )
+        try:
+            new_label = _v237_clean_parallel_label(sorov.harf)
+            new_key = _v237_parallel_label_key(new_label)
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        new_shift = int(sorov.smena)
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (2373000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT COALESCE(smena_soni,1) AS smena_soni FROM maktablar WHERE id=%s FOR UPDATE",
+            (sorov.maktab_id,),
+        )
+        school = cur.fetchone()
+        if not school:
+            raise HTTPException(status_code=404, detail="Maktab topilmadi")
+        shift_count = int(school.get("smena_soni") or 1)
+        if new_shift not in (1, 2) or new_shift > shift_count:
+            raise HTTPException(
+                status_code=400,
+                detail=f"Bu maktab {shift_count} smenali; {new_shift}-smena tanlab bo‘lmaydi",
+            )
+        cur.execute(
+            """SELECT id,sinf,harf,COALESCE(smena,1) AS smena
+                 FROM maktab_sinflari
+                WHERE id=%s AND maktab_id=%s FOR UPDATE""",
+            (sorov.sinf_id, sorov.maktab_id),
+        )
+        current = cur.fetchone()
+        if not current:
+            raise HTTPException(status_code=404, detail="Sinf topilmadi")
+        # ``sinf`` raqam bo'lib qoladi. Faqat ayni darajadagi parallel yorlig'i
+        # case/apostrof/bo'shliq normallashgan holda takror bo'lmasligi tekshiriladi.
+        cur.execute(
+            """SELECT id,harf FROM maktab_sinflari
+                WHERE maktab_id=%s AND sinf=%s AND id<>%s FOR UPDATE""",
+            (sorov.maktab_id, current["sinf"], sorov.sinf_id),
+        )
+        duplicate = None
+        for row in cur.fetchall():
+            try:
+                existing_key = _v237_parallel_label_key(row.get("harf"))
+            except ValueError:
+                # Tarixiy buzilgan/bo'sh yorliq boshqa sog'lom sinfni
+                # tahrirlashga to'sqinlik qilmasin; o'zi tahrirlanganda yangi
+                # validatsiyadan baribir o'tadi.
+                continue
+            if existing_key == new_key:
+                duplicate = row
+                break
+        if duplicate:
+            raise HTTPException(
+                status_code=409,
+                detail=f"{current['sinf']}-{new_label} sinfi allaqachon mavjud",
+            )
+        changed_shift = int(current.get("smena") or 1) != new_shift
+        changed_label = str(current.get("harf") or "") != new_label
+        if changed_shift or changed_label:
+            cur.execute(
+                """UPDATE maktab_sinflari SET harf=%s,smena=%s
+                    WHERE id=%s AND maktab_id=%s""",
+                (new_label, new_shift, sorov.sinf_id, sorov.maktab_id),
+            )
+            # Draft eski smenaga qarab yaratilgan bo'lishi mumkin. Tasdiqlangan
+            # jadval arxiv sifatida qoladi; yangi draft esa qayta yaratiladi.
+            if changed_shift:
+                cur.execute(
+                    """UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
+                        WHERE maktab_id=%s AND holat='draft'""",
+                    (sorov.maktab_id,),
+                )
+        cur.execute(
+            "SELECT COALESCE(alifbo_turi,'latin_xalqaro') AS alifbo_turi FROM maktablar WHERE id=%s",
+            (sorov.maktab_id,),
+        )
+        alphabet_type = (cur.fetchone() or {}).get("alifbo_turi") or "latin_xalqaro"
+        result = {
+            "id": int(sorov.sinf_id),
+            "sinf": str(current["sinf"]),
+            "harf": new_label,
+            "name": f"{current['sinf']}-{new_label}",
+            "smena": new_shift,
+            "alifbo_turi": alphabet_type,
+            "tartib": list(_v237_class_sort_key({
+                "id": sorov.sinf_id,
+                "sinf": current["sinf"],
+                "harf": new_label,
+            }, alphabet_type)[:2]),
+            "jadval_qayta_yaratish_kerak": changed_shift,
+        }
+        conn.commit()
+        return {"holat": "saqlandi", "sinf": result, "ozgardi": changed_shift or changed_label}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 def _v192_clean_subject(value):
@@ -13224,13 +13682,13 @@ def _v192_save_teacher_load_rows(
     qatorlar: list[V192TeacherLoadRow],
     finalize: bool = True,
 ):
+    cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(maktab_id),))
     cur.execute("""SELECT user_id,full_name FROM users
                    WHERE user_id=%s AND maktab_id=%s FOR UPDATE""",
                 (user_id, maktab_id))
     teacher = cur.fetchone()
     if not teacher:
         raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
-    cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(maktab_id),))
     approved_plan = _v193_approved_plan_map(cur, maktab_id)
     classes, _systems, variants = _v192_group_variants(cur, maktab_id)
     valid_classes = {int(row["id"]) for row in classes}
@@ -13410,9 +13868,26 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
-        _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'qituvchi yuklamasini faqat rahbariyat boshqaradi")
+        # Precheck SELECT locklari keyingi ALTER TABLE lockiga upgrade qilinmasin.
+        conn.commit()
+        _v192_tables(cur)
+        # Og'ir schema ensure locklarini yuklama business transactioni
+        # davomida ushlab turmaymiz; vakolat keyingi transactionda qayta tekshiriladi.
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O'qituvchi yuklamasini faqat rahbariyat boshqaradi")
+        # Import va manual create bilan bir canonical maktab locki barcha
+        # profil/yuklama/rahbarlik mutatsiyalarini ketma-ketlashtiradi.
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1925000000 + int(sorov.maktab_id),),
+        )
         supplied_fields = set(
             getattr(sorov, "model_fields_set", getattr(sorov, "__fields_set__", set()))
         )
@@ -13427,18 +13902,15 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
             # maktab lockidan foydalanadi. Shu tariqa bir xil F.I.Sh. parallel
             # so'rovlarda ham yashirin dublikat bo'lib qolmaydi.
             cur.execute(
-                "SELECT pg_advisory_xact_lock(%s)",
-                (1922000000 + int(sorov.maktab_id),),
+                """SELECT user_id,full_name FROM users
+                   WHERE maktab_id=%s AND user_id<>%s""",
+                (sorov.maktab_id, sorov.user_id),
             )
-            cur.execute(
-                """SELECT user_id FROM users
-                   WHERE maktab_id=%s AND user_id<>%s
-                     AND LOWER(REGEXP_REPLACE(TRIM(full_name), '\\s+', ' ', 'g'))
-                         = LOWER(REGEXP_REPLACE(TRIM(%s), '\\s+', ' ', 'g'))
-                   LIMIT 1""",
-                (sorov.maktab_id, sorov.user_id, full_name),
-            )
-            if cur.fetchone():
+            candidate_name_key = _v237_teacher_name_key(full_name)
+            if any(
+                _v237_teacher_name_key(row.get("full_name")) == candidate_name_key
+                for row in cur.fetchall()
+            ):
                 raise HTTPException(
                     status_code=409,
                     detail="Bu F.I.Sh. bilan boshqa xodim allaqachon mavjud",
@@ -13518,8 +13990,15 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O'qituvchini faqat maktab rahbariyati qo'shadi")
+        # Precheck SELECT locklari keyingi ALTER TABLE lockiga upgrade qilinmasin.
+        conn.commit()
         _v192_tables(cur)
         _xodim_kod_jadvali(cur)
+        # Og'ir schema ensure locklari xodim yaratish/raqamlash transactioniga
+        # o'tmasin; vakolat va locklar commitdan keyin qayta olinadi.
+        conn.commit()
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'qituvchini faqat maktab rahbariyati qo'shadi")
         full_name = re.sub(r"\s+", " ", str(sorov.full_name or "")).strip()
@@ -13545,7 +14024,13 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
             sorov.mutaxassisligi, sorov.haftalik_maqsad_soat
         )
 
+        # ``users.user_id`` manfiy identifikatori barcha maktablar uchun bitta
+        # global ketma-ketlikdan olinadi. Import endpointi bilan parallel
+        # qo'shishda ham bir xil ID chiqmasligi uchun lock tartibi doimo
+        # GLOBAL -> maktab -> yuklama bo'ladi.
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2370000001,))
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(sorov.maktab_id),))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(sorov.maktab_id),))
         leader_class = None
         if sorov.rahbar_sinf_id is not None:
             cur.execute("""SELECT id,sinf,harf,rahbar_user_id
@@ -13561,12 +14046,15 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
                     status_code=409,
                     detail=f"{leader_class['sinf']}-{leader_class['harf']} sinfiga rahbar allaqachon tayinlangan",
                 )
-        cur.execute("""SELECT user_id FROM users
-                       WHERE maktab_id=%s
-                         AND LOWER(REGEXP_REPLACE(TRIM(full_name), '\\s+', ' ', 'g'))
-                             = LOWER(REGEXP_REPLACE(TRIM(%s), '\\s+', ' ', 'g'))
-                       LIMIT 1""", (sorov.maktab_id, full_name))
-        if cur.fetchone():
+        cur.execute(
+            "SELECT user_id,full_name FROM users WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        candidate_name_key = _v237_teacher_name_key(full_name)
+        if any(
+            _v237_teacher_name_key(row.get("full_name")) == candidate_name_key
+            for row in cur.fetchall()
+        ):
             raise HTTPException(status_code=409, detail="Bu F.I.Sh. bilan xodim allaqachon mavjud")
         cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
         smallest = cur.fetchone()
@@ -13627,6 +14115,616 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         cur.close(); conn.close()
 
 
+class V237TeacherImportPayload(BaseModel):
+    maktab_id: int
+    fayl_nomi: Optional[str] = "Oqituvchilar_import.xlsx"
+    xlsx_base64: str
+
+
+_V237_TEACHER_XLSX_MAX_BYTES = 3 * 1024 * 1024
+_V237_TEACHER_XLSX_MAX_UNCOMPRESSED = 15 * 1024 * 1024
+_V237_TEACHER_XLSX_MAX_ROWS = 5000
+_V237_TEACHER_XLSX_MAX_BASE64_CHARS = (
+    4 * ((_V237_TEACHER_XLSX_MAX_BYTES + 2) // 3)
+)
+_V237_TEACHER_IMPORT_BODY_MAX_BYTES = (
+    _V237_TEACHER_XLSX_MAX_BASE64_CHARS + 1024 * 1024
+)
+_V237_TEACHER_IMPORT_MAX_REQUEST_FRAMES = 8192
+_V237_TEACHER_IMPORT_PATHS = frozenset({
+    "/api/maktab/aqlli_jadval/v3/oqituvchi_import_preview",
+    "/api/maktab/aqlli_jadval/v3/oqituvchi_import_commit",
+})
+
+
+async def _v237_send_teacher_import_body_too_large(send):
+    body = (
+        '{"detail":"Excel import so‘rovi juda katta; '
+        'XLSX fayl 3 MB dan oshmasligi kerak."}'
+    ).encode("utf-8")
+    await send({
+        "type": "http.response.start",
+        "status": 413,
+        "headers": [
+            (b"content-type", b"application/json; charset=utf-8"),
+            (b"content-length", str(len(body)).encode("ascii")),
+        ],
+    })
+    await send({"type": "http.response.body", "body": body, "more_body": False})
+
+
+class _V237TeacherImportBodyLimitMiddleware:
+    """Limit only teacher-import JSON before FastAPI buffers or parses it."""
+
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        request_path = str(scope.get("path") or "")
+        root_prefix = str(scope.get("root_path") or "").rstrip("/")
+        if root_prefix and (
+            request_path == root_prefix
+            or request_path.startswith(root_prefix + "/")
+        ):
+            request_path = request_path[len(root_prefix):] or "/"
+        if (
+            scope.get("type") != "http"
+            or str(scope.get("method") or "").upper() != "POST"
+            or request_path not in _V237_TEACHER_IMPORT_PATHS
+        ):
+            return await self.app(scope, receive, send)
+
+        declared_sizes = []
+        for name, value in scope.get("headers", ()):
+            if name.lower() != b"content-length":
+                continue
+            try:
+                declared_size = int(value)
+            except (TypeError, ValueError):
+                continue
+            if declared_size >= 0:
+                declared_sizes.append(declared_size)
+        declared_too_large = (
+            bool(declared_sizes)
+            and max(declared_sizes) > _V237_TEACHER_IMPORT_BODY_MAX_BYTES
+        )
+        if declared_too_large:
+            return await _v237_send_teacher_import_body_too_large(send)
+
+        buffered_body = bytearray()
+        request_frames = 0
+        terminal_message = None
+        while True:
+            message = await receive()
+            if message.get("type") == "http.request":
+                request_frames += 1
+                if request_frames > _V237_TEACHER_IMPORT_MAX_REQUEST_FRAMES:
+                    buffered_body.clear()
+                    message = None
+                    return await _v237_send_teacher_import_body_too_large(send)
+                chunk = message.get("body") or b""
+                if len(chunk) > (
+                    _V237_TEACHER_IMPORT_BODY_MAX_BYTES - len(buffered_body)
+                ):
+                    buffered_body.clear()
+                    message = None
+                    return await _v237_send_teacher_import_body_too_large(send)
+                buffered_body.extend(chunk)
+                if message.get("more_body", False):
+                    continue
+            else:
+                terminal_message = message
+            break
+
+        combined_request = {
+            "type": "http.request",
+            "body": bytes(buffered_body),
+            "more_body": terminal_message is not None,
+        }
+        buffered_body.clear()
+        message = None
+        combined_pending = True
+        terminal_pending = terminal_message is not None
+
+        async def replay_receive():
+            nonlocal combined_pending, terminal_pending
+            if combined_pending:
+                combined_pending = False
+                return combined_request
+            if terminal_pending:
+                terminal_pending = False
+                return terminal_message
+            return await receive()
+
+        return await self.app(scope, replay_receive, send)
+
+
+if not getattr(app.state, "samtm_v237_teacher_import_body_limit", False):
+    app.add_middleware(_V237TeacherImportBodyLimitMiddleware)
+    app.state.samtm_v237_teacher_import_body_limit = True
+
+
+def _v237_teacher_name_clean(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def _v237_teacher_name_key(value):
+    name = _v237_unicodedata.normalize(
+        "NFKC", _v237_teacher_name_clean(value).translate(_V237_APOSTROPHES)
+    )
+    return re.sub(r"\s+", " ", name).strip().casefold()
+
+
+def _v237_excel_header_key(value):
+    raw = _v237_unicodedata.normalize(
+        "NFKC", str(value or "").translate(_V237_APOSTROPHES)
+    ).casefold().strip()
+    if raw == "№":
+        return "number"
+    compact = re.sub(r"[^\w]+", "", raw, flags=re.UNICODE)
+    if compact in {"n", "no", "nomer", "raqam", "tr", "tartibraqami"}:
+        return "number"
+    if compact in {
+        "fish", "fio", "fullname", "oqituvchi", "oqituvchifish",
+        "oqituvchiningfish", "ismfamiliya", "familiyaismsharif",
+    }:
+        return "full_name"
+    if compact in {
+        "skeletsoati", "skeletsoat", "haftaliksoat", "haftalikdarssoati",
+        "haftalikmaqsadsoat", "darssoati", "soat",
+    }:
+        return "skeleton_hours"
+    return compact
+
+
+def _v237_decode_teacher_xlsx(payload: V237TeacherImportPayload):
+    filename = _v237_teacher_name_clean(payload.fayl_nomi or "Oqituvchilar_import.xlsx")
+    if filename and not filename.casefold().endswith(".xlsx"):
+        raise ValueError("Faqat .xlsx fayl qabul qilinadi.")
+    original_encoded = str(payload.xlsx_base64 or "")
+    if len(original_encoded) > _V237_TEACHER_IMPORT_BODY_MAX_BYTES:
+        raise ValueError("XLSX fayl 3 MB dan oshmasligi kerak.")
+    encoded = original_encoded.strip()
+    if encoded.startswith("data:"):
+        if "," not in encoded:
+            raise ValueError("XLSX base64 data URL noto‘g‘ri.")
+        encoded = encoded.split(",", 1)[1]
+    encoded = re.sub(r"\s+", "", encoded)
+    if not encoded:
+        raise ValueError("XLSX fayl yuborilmadi.")
+    # Base64 taxminan 4/3 kattalashadi. Decode qilishdan oldin ham qattiq limit.
+    if len(encoded) > _V237_TEACHER_XLSX_MAX_BASE64_CHARS + 16:
+        raise ValueError("XLSX fayl 3 MB dan oshmasligi kerak.")
+    try:
+        raw = _v237_base64.b64decode(encoded, validate=True)
+    except (_v237_binascii.Error, ValueError) as exc:
+        raise ValueError("XLSX base64 ma’lumoti buzilgan.") from exc
+    if not raw or len(raw) > _V237_TEACHER_XLSX_MAX_BYTES:
+        raise ValueError("XLSX fayl bo‘sh yoki 3 MB dan katta.")
+    try:
+        with _v237_zipfile.ZipFile(_v237_io.BytesIO(raw)) as archive:
+            members = archive.infolist()
+            if len(members) > 200:
+                raise ValueError("XLSX ichida ortiqcha fayllar mavjud.")
+            unpacked = 0
+            for member in members:
+                normalized_name = str(member.filename or "").replace("\\", "/")
+                if normalized_name.startswith("/") or ".." in normalized_name.split("/"):
+                    raise ValueError("XLSX ichki fayl yo‘li xavfsiz emas.")
+                unpacked += int(member.file_size or 0)
+                if unpacked > _V237_TEACHER_XLSX_MAX_UNCOMPRESSED:
+                    raise ValueError("XLSX ochilgandagi hajmi xavfsizlik limitidan oshdi.")
+    except _v237_zipfile.BadZipFile as exc:
+        raise ValueError("Fayl haqiqiy XLSX emas yoki buzilgan.") from exc
+    return raw
+
+
+def _v237_teacher_hour_value(value, row_number):
+    if value is None or str(value).strip() == "":
+        return None
+    if isinstance(value, bool):
+        raise ValueError(f"{row_number}-qator: Skelet soati raqam bo‘lishi kerak.")
+    text = str(value).strip().replace(",", ".")
+    try:
+        hours = float(text)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(
+            f"{row_number}-qator: Skelet soati 0,5–60 oralig‘ida bo‘lishi kerak."
+        ) from exc
+    if (
+        not _v237_math.isfinite(hours)
+        or hours < 0.5
+        or hours > 60
+        or abs(hours * 2 - round(hours * 2)) > 1e-9
+    ):
+        raise ValueError(
+            f"{row_number}-qator: Skelet soati 0,5–60 oralig‘ida, 0,5 qadamda bo‘lishi kerak."
+        )
+    return round(hours, 1)
+
+
+def _v237_parse_teacher_xlsx(raw):
+    try:
+        import openpyxl
+        workbook = openpyxl.load_workbook(
+            _v237_io.BytesIO(raw), read_only=True, data_only=False, keep_links=False
+        )
+    except Exception as exc:
+        raise ValueError("XLSX ochilmadi. Fayl buzilmaganini tekshiring.") from exc
+    try:
+        preferred = []
+        fallback = []
+        for worksheet in workbook.worksheets:
+            sheet_key = _v237_excel_header_key(worksheet.title)
+            if sheet_key in {"toldirishnamunasi", "namuna", "korsatma", "qollanma"}:
+                continue
+            if sheet_key in {"oqituvchilar", "oqituvchi"}:
+                preferred.append(worksheet)
+            else:
+                fallback.append(worksheet)
+        candidates = preferred + fallback
+        selected = None
+        header_row = None
+        columns = None
+        for worksheet in candidates:
+            for row_number, cells in enumerate(
+                worksheet.iter_rows(min_row=1, max_row=20, max_col=30), start=1
+            ):
+                keys = [_v237_excel_header_key(cell.value) for cell in cells]
+                mapping = {}
+                for index, key in enumerate(keys):
+                    if key in {"number", "full_name", "skeleton_hours"} and key not in mapping:
+                        mapping[key] = index
+                if {"full_name", "skeleton_hours"}.issubset(mapping):
+                    selected = worksheet
+                    header_row = row_number
+                    columns = mapping
+                    break
+            if selected is not None:
+                break
+        if selected is None:
+            raise ValueError(
+                "O‘qituvchilar varag‘ida “F.I.Sh.” va “Skelet soati” sarlavhalari topilmadi."
+            )
+
+        parsed = []
+        errors = []
+        seen = {}
+        max_column = min(max(int(selected.max_column or 1), max(columns.values()) + 1), 30)
+        scanned = 0
+        for row_number, cells in enumerate(
+            selected.iter_rows(min_row=header_row + 1, max_col=max_column),
+            start=header_row + 1,
+        ):
+            scanned += 1
+            if scanned > _V237_TEACHER_XLSX_MAX_ROWS:
+                errors.append({
+                    "qator": row_number,
+                    "xato": f"Ko‘pi bilan {_V237_TEACHER_XLSX_MAX_ROWS} ta o‘qituvchi yuklash mumkin.",
+                })
+                break
+            formula_cell = next((
+                cell for cell in cells
+                if cell.data_type == "f" or str(cell.value or "").lstrip().startswith("=")
+            ), None)
+            if formula_cell is not None:
+                errors.append({
+                    "qator": row_number,
+                    "xato": "Formula qabul qilinmaydi; qiymatni oddiy matn/raqam qilib yozing.",
+                })
+                continue
+            name_value = cells[columns["full_name"]].value
+            hour_value = cells[columns["skeleton_hours"]].value
+            number_value = (
+                cells[columns["number"]].value if "number" in columns else None
+            )
+            if all(value is None or str(value).strip() == "" for value in (name_value, hour_value, number_value)):
+                continue
+            name = _v237_teacher_name_clean(name_value)
+            if not 3 <= len(name) <= 160:
+                errors.append({
+                    "qator": row_number,
+                    "xato": "O‘qituvchi F.I.Sh. 3–160 ta belgi bo‘lishi kerak.",
+                })
+                continue
+            # F.I.Sh. boshqa ustunda xato bo'lsa ham fayldagi takror sifatida
+            # hisoblanadi. Aks holda birinchi nusxaning soati xato bo'lganda
+            # ikkinchi nusxa yashirincha yaroqli bo'lib qolardi.
+            name_key = _v237_teacher_name_key(name)
+            if name_key in seen:
+                errors.append({
+                    "qator": row_number,
+                    "xato": f"{name} faylda takrorlangan (oldingi qator: {seen[name_key]}).",
+                })
+                continue
+            seen[name_key] = row_number
+            try:
+                target_hours = _v237_teacher_hour_value(hour_value, row_number)
+            except ValueError as exc:
+                errors.append({"qator": row_number, "xato": str(exc)})
+                continue
+            parsed.append({
+                "qator": row_number,
+                "full_name": name,
+                "skelet_soati": target_hours,
+                "name_key": name_key,
+            })
+        if not parsed and not errors:
+            errors.append({"qator": None, "xato": "Import uchun birorta o‘qituvchi topilmadi."})
+        return parsed, errors, selected.title, int(header_row)
+    finally:
+        workbook.close()
+
+
+def _v237_teacher_import_db_errors(cur, maktab_id, parsed):
+    cur.execute(
+        "SELECT user_id,full_name FROM users WHERE maktab_id=%s",
+        (maktab_id,),
+    )
+    existing = {
+        _v237_teacher_name_key(row.get("full_name")): dict(row)
+        for row in cur.fetchall()
+        if _v237_teacher_name_clean(row.get("full_name"))
+    }
+    errors = []
+    for item in parsed:
+        old = existing.get(item["name_key"])
+        if old:
+            errors.append({
+                "qator": item["qator"],
+                "xato": (
+                    f"{item['full_name']} bu maktabda allaqachon mavjud "
+                    f"(ID {old['user_id']})."
+                ),
+            })
+    return errors
+
+
+def _v237_teacher_template_bytes():
+    import openpyxl
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.worksheet.datavalidation import DataValidation
+
+    workbook = openpyxl.Workbook()
+    main = workbook.active
+    main.title = "O‘qituvchilar"
+    main.append(["№", "F.I.Sh.", "Skelet soati"])
+    # Asosiy varaq ataylab mutlaqo namunasiz: namuna qatori tasodifan import
+    # bo'lib ketmasligi uchun to'rtta misol alohida varaqda turadi.
+    example = workbook.create_sheet("To‘ldirish namunasi")
+    example.append(["№", "F.I.Sh.", "Skelet soati"])
+    examples = [
+        (1, "Aliyeva Dilnoza Anvarovna", 18),
+        (2, "Karimov Sardor Bahodirovich", 16.5),
+        (3, "Rasulova Mohira Otabekovna", 20),
+        (4, "Abdullayev Jasur Akmalovich", 12.5),
+    ]
+    for row in examples:
+        example.append(row)
+    guide = workbook.create_sheet("Ko‘rsatma")
+    guide.append(["O‘QITUVCHILARNI EXCEL ORQALI YUKLASH"])
+    guide.append(["1", "Faqat “O‘qituvchilar” varag‘ini to‘ldiring."])
+    guide.append(["2", "F.I.Sh. 3–160 ta belgi bo‘lsin; bir xil F.I.Sh. takrorlanmasin."])
+    guide.append(["3", "Skelet soati bo‘sh qolishi yoki 0,5–60 oralig‘ida 0,5 qadamda yozilishi mumkin."])
+    guide.append(["4", "Formula yozmang. O‘qituvchi raqami sayt tomonidan o‘zgarmas qilib beriladi."])
+    guide.append(["5", "“To‘ldirish namunasi” faqat ko‘rish uchun; u import qilinmaydi."])
+    guide.merge_cells("A1:C1")
+    guide["A1"].font = Font(size=15, bold=True, color="FFFFFF")
+    guide["A1"].fill = PatternFill("solid", fgColor="155A7A")
+
+    for worksheet in (main, example):
+        for cell in worksheet[1]:
+            cell.font = Font(bold=True, color="FFFFFF")
+            cell.fill = PatternFill("solid", fgColor="0F7C82")
+            cell.alignment = Alignment(horizontal="center")
+        worksheet.freeze_panes = "A2"
+        worksheet.auto_filter.ref = f"A1:C{max(2, worksheet.max_row)}"
+        worksheet.column_dimensions["A"].width = 9
+        worksheet.column_dimensions["B"].width = 42
+        worksheet.column_dimensions["C"].width = 19
+        validation = DataValidation(
+            type="custom",
+            formula1='OR(C2="",AND(ISNUMBER(C2),C2>=0.5,C2<=60,MOD(C2*2,1)=0))',
+            allow_blank=True,
+        )
+        validation.error = "0,5–60 oralig‘ida, 0,5 qadamda kiriting"
+        validation.errorTitle = "Skelet soati noto‘g‘ri"
+        validation.prompt = "Masalan: 18 yoki 16,5"
+        validation.promptTitle = "Skelet soati"
+        validation.showErrorMessage = True
+        validation.showInputMessage = True
+        worksheet.add_data_validation(validation)
+        validation.add("C2:C5001")
+    guide.column_dimensions["A"].width = 10
+    guide.column_dimensions["B"].width = 95
+    output = _v237_io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue()
+
+
+def _v237_require_teacher_import_manager(actor_id, maktab_id, action):
+    """XLSXni ochishdan oldin arzon va yozuvsiz ruxsat tekshiruvi."""
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _v1852_manager(cur, actor_id, maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail=f"O‘qituvchi importini faqat maktab rahbariyati {action}",
+            )
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/oqituvchi_import_shablon")
+def v237_teacher_import_template(token: str, maktab_id: int):
+    from fastapi.responses import StreamingResponse
+    from urllib.parse import quote
+
+    actor_id = _jwt_tekshir(token)
+    _v237_require_teacher_import_manager(actor_id, maktab_id, "yuklaydi")
+    raw = _v237_teacher_template_bytes()
+    filename = "SAMTM_Oqituvchilar_import_shabloni.xlsx"
+    return StreamingResponse(
+        _v237_io.BytesIO(raw),
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={
+            "Content-Disposition": f"attachment; filename*=UTF-8''{quote(filename)}",
+            "X-SAMTM-Template-Examples": "4",
+        },
+    )
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_import_preview")
+def v237_teacher_import_preview(sorov: V237TeacherImportPayload, token: str):
+    actor_id = _jwt_tekshir(token)
+    _v237_require_teacher_import_manager(actor_id, sorov.maktab_id, "tekshiradi")
+    try:
+        raw = _v237_decode_teacher_xlsx(sorov)
+        parsed, parse_errors, sheet_name, header_row = _v237_parse_teacher_xlsx(raw)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O‘qituvchi importini faqat maktab rahbariyati tekshiradi")
+        db_errors = _v237_teacher_import_db_errors(cur, sorov.maktab_id, parsed)
+        errors = [dict(item) for item in (parse_errors + db_errors)]
+        for error in errors:
+            error["excel_qatori"] = error.get("qator")
+        error_rows = {
+            int(item["qator"])
+            for item in errors
+            if item.get("qator") is not None
+        }
+        public_rows = [
+            {
+                "excel_qatori": int(row["qator"]),
+                "qator": int(row["qator"]),
+                "full_name": row["full_name"],
+                "haftalik_maqsad_soat": row["skelet_soati"],
+                "skelet_soati": row["skelet_soati"],
+            }
+            for row in parsed
+            if int(row["qator"]) not in error_rows
+        ]
+        all_rows = {
+            int(row["qator"]) for row in parsed if row.get("qator") is not None
+        } | error_rows
+        return {
+            "holat": "xato" if errors else "tayyor",
+            "valid": not errors,
+            "varaq": sheet_name,
+            "sarlavha_qatori": header_row,
+            "qatorlar": public_rows,
+            "jami": len(all_rows),
+            "yaroqli": len(public_rows),
+            "yangi_soni": len(public_rows),
+            "xatolar": len(errors),
+            "xato_qatorlar": errors,
+        }
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_import_commit")
+def v237_teacher_import_commit(sorov: V237TeacherImportPayload, token: str):
+    actor_id = _jwt_tekshir(token)
+    _v237_require_teacher_import_manager(actor_id, sorov.maktab_id, "saqlaydi")
+    try:
+        raw = _v237_decode_teacher_xlsx(sorov)
+        parsed, parse_errors, _sheet_name, _header_row = _v237_parse_teacher_xlsx(raw)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if parse_errors:
+        raise HTTPException(
+            status_code=400,
+            detail={
+                "message": "XLSX qatorlarida xato bor; hech narsa yozilmadi",
+                "xabar": "XLSX qatorlarida xato bor; hech narsa yozilmadi",
+                "xato_qatorlar": parse_errors,
+            },
+        )
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        _xodim_kod_jadvali(cur)
+        # `_v192_tables` va `_xodim_kod_jadvali` og'ir DDL locklarini import,
+        # raqamlash va matritsa davomida ushlab turmaymiz. Keyingi SQL alohida
+        # business transaction boshlaydi.
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O‘qituvchi importini faqat maktab rahbariyati saqlaydi")
+        # Negative users.user_id butun users jadvali bo'yicha global. Avval global,
+        # keyin barcha teacher create/rename yo'llari ishlatadigan maktab locki
+        # olinadi: turli maktab parallel importida ham PK urilmaydi.
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2370000001,))
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
+        db_errors = _v237_teacher_import_db_errors(cur, sorov.maktab_id, parsed)
+        if db_errors:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "message": "Import qayta yuborilgan yoki F.I.Sh. allaqachon mavjud; hech narsa yozilmadi",
+                    "xabar": "Import qayta yuborilgan yoki F.I.Sh. allaqachon mavjud; hech narsa yozilmadi",
+                    "xatolar": db_errors,
+                },
+            )
+        cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+        smallest = cur.fetchone() or {}
+        next_user_id = (
+            int(smallest["eng_kichik"]) - 1
+            if smallest.get("eng_kichik") is not None else -1
+        )
+        created = []
+        for item in parsed:
+            user_id = next_user_id
+            next_user_id -= 1
+            cur.execute(
+                """INSERT INTO users(
+                       user_id,full_name,role,maktab_id,lavozim,
+                       haftalik_maqsad_soat,haftalik_dars_soati)
+                   VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,0)""",
+                (
+                    user_id,
+                    item["full_name"],
+                    sorov.maktab_id,
+                    item["skelet_soati"],
+                ),
+            )
+            plain_code, stored_code = _xodim_kod_yarat()
+            cur.execute(
+                "INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)",
+                (stored_code, user_id),
+            )
+            created.append({
+                "user_id": user_id,
+                "full_name": item["full_name"],
+                "skelet_soati": item["skelet_soati"],
+                "haftalik_maqsad_soat": item["skelet_soati"],
+                "kirish_kodi": plain_code,
+            })
+        teacher_numbers = _v2249_ensure_teacher_numbers(cur, sorov.maktab_id)
+        for row in created:
+            row["jadval_raqami"] = teacher_numbers.get(int(row["user_id"]))
+        matrix = _v192_matrix_payload(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "oqituvchilar_import_qilindi",
+            "yaratildi": len(created),
+            "kodlar": created,
+            "kirish_kodlari": created,
+            "matritsa": matrix,
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @app.put("/api/maktab/aqlli_jadval/v3/sinf_skeleti_yuklama")
 def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
     """
@@ -13642,10 +14740,19 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
-        _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Sinf skeletini faqat maktab rahbariyati saqlaydi")
+        conn.commit()
+        _v192_tables(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf skeletini faqat maktab rahbariyati saqlaydi")
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (2040000000 + int(sorov.maktab_id),))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(sorov.maktab_id),))
 
         cur.execute("SELECT user_id,full_name FROM users WHERE maktab_id=%s", (sorov.maktab_id,))
         school_users = {int(row["user_id"]): dict(row) for row in cur.fetchall()}
@@ -13748,13 +14855,21 @@ def v195_teacher_delete(sorov: V195TeacherDelete, token: str):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="O'qituvchini faqat maktab rahbariyati o'chiradi")
+        conn.commit()
         _v192_tables(cur)
+        conn.commit()
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'qituvchini faqat maktab rahbariyati o'chiradi")
         if not sorov.tasdiq:
             raise HTTPException(status_code=400, detail="O'chirish uchun Ha tasdig'i kerak")
         if int(sorov.user_id) == int(actor_id):
             raise HTTPException(status_code=400, detail="O'zingizning rahbariyat hisobingizni bu yerdan o'chira olmaysiz")
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(sorov.maktab_id),))
         cur.execute("""SELECT user_id,full_name,lavozim FROM users
                        WHERE user_id=%s AND maktab_id=%s FOR UPDATE""",
