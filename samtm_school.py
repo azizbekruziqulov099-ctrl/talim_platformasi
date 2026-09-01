@@ -7,7 +7,7 @@ the same behaviour they had in one file.
 V19.8: parallel guruh xonasi yozilmagan bo'lsa ham jadval yaratiladi; xona
 keyin frontendda "Xona yo'q" holatida tahrirlanadi. Yakuniy generator repair
 bosqichi sinf ichki oknosini yopadi, kunlik soatlarni tenglashtiradi va J/T
-hamda texnologiyani imkon qadar 3–6-darsga xavfsiz almashtiradi.
+hamda texnologiyani imkon qadar 3вЂ“6-darsga xavfsiz almashtiradi.
 """
 try:
     from . import samtm_platform as _platform
@@ -28,7 +28,7 @@ import zipfile as _v237_zipfile
 
 # V22.0 exact solver alohida modulda saqlanadi. Modul importi xavfsiz, ammo
 # jadval endpointi OR-Tools o'rnatilmagan muhitda eski greedy generatorga
-# yashirincha qaytmaydi: bitta kanonik generator — exact CP-SAT. Shu orqali
+# yashirincha qaytmaydi: bitta kanonik generator вЂ” exact CP-SAT. Shu orqali
 # deploydagi yetishmagan dependency darhol aniq ko'rinadi va eski/qisman
 # natija yangi generatorniki deb saqlanib qolmaydi.
 try:
@@ -130,7 +130,7 @@ except Exception:
 
 
 def _v220_generation_budget_seconds():
-    """Texnik xavfsizlik chegarasi; oddiy ishni faqat foydalanuvchi to‘xtatadi."""
+    """Texnik xavfsizlik chegarasi; oddiy ishni faqat foydalanuvchi toвЂxtatadi."""
     try:
         value = float(os.getenv("SAMTM_JADVAL_GENERATION_BUDGET_SECONDS", "604800"))
     except (TypeError, ValueError):
@@ -138,7 +138,7 @@ def _v220_generation_budget_seconds():
     return max(3600.0, min(2592000.0, value))
 
 def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
-    """Guruh usuliga mos 1–4 oralig'idagi haqiqiy guruh sonini qaytaradi.
+    """Guruh usuliga mos 1вЂ“4 oralig'idagi haqiqiy guruh sonini qaytaradi.
 
     Bu helper eski monolitda maktab modulidan oldin ta'riflangan edi. Modulga
     ajratishda ta'rifi tushib qolib, yuklama matritsasida NameError bergan.
@@ -162,11 +162,11 @@ def _sinf_guruh_soni_normalizatsiya(usul, guruh_soni):
         )
     return soni
 
-# ═══════════════════════════════════════════════════════════
-# V18.45 — AQILLI MAKTAB BOSH SAHIFASI / O'QITUVCHI BUGUNI / YUKLAMA
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.45 вЂ” AQILLI MAKTAB BOSH SAHIFASI / O'QITUVCHI BUGUNI / YUKLAMA
 # Kundalikning o'rnini bosmaydi: bu yerda ichki monitoring, yordamchi
 # signal va rejalashtirish ishlaydi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 def _v1845_smart_school_tables(cur):
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS haftalik_dars_soati INTEGER")
@@ -236,11 +236,11 @@ def _v1845_davomat_holat_yangila(cur, maktab_id, bola_id, sana):
     if son == 1:
         daraja, masul, sarlavha = 1, "sinf_rahbari", "Birinchi sababsiz davomat signali"
     elif son == 2:
-        daraja, masul, sarlavha = 2, "psixolog_va_manaviyat", "Takroriy davomat — maktab ichki kuzatuvi"
+        daraja, masul, sarlavha = 2, "psixolog_va_manaviyat", "Takroriy davomat вЂ” maktab ichki kuzatuvi"
     elif son == 3:
         daraja, masul, sarlavha = 3, "direktor", "Davomat bo'yicha rahbariyat ko'rigi kerak"
     else:
-        daraja, masul, sarlavha = 4, "vakolatli_hamkor_korigi", "Surunkali davomat — vakolatli ko'rib chiqish tavsiyasi"
+        daraja, masul, sarlavha = 4, "vakolatli_hamkor_korigi", "Surunkali davomat вЂ” vakolatli ko'rib chiqish tavsiyasi"
     cur.execute("""
         SELECT id FROM aqlli_holatlar
         WHERE maktab_id=%s AND oquvchi_user_id=%s AND turi='davomat'
@@ -488,11 +488,11 @@ def v1845_holatlarni_yangila(token: str, maktab_id: int):
 # ========================= V18.45 END =========================
 
 
-# ═══════════════════════════════════════════════════════════
-# V18.47 — ADMIN UCHUN "ROL SIFATIDA KO'RISH" (READ-ONLY PREVIEW)
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.47 вЂ” ADMIN UCHUN "ROL SIFATIDA KO'RISH" (READ-ONLY PREVIEW)
 # Admin maktabni turli rollar ko'zidan ko'radi, lekin bu endpointlar
 # hech qanday ma'lumotni o'zgartirmaydi va boshqa foydalanuvchi tokenini bermaydi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 _V1847_PREVIEW_ROLLAR = {
     "maktab_admin": "Maktab admini",
@@ -644,7 +644,7 @@ def v1847_maktab_rol_korish(
             "tanlangan": {},
             "kartalar": [],
             "bolimlar": [],
-            "ogohlantirish": "ADMIN KO'RISH REJIMI — bu oynada hech qanday ma'lumot o'zgartirilmaydi.",
+            "ogohlantirish": "ADMIN KO'RISH REJIMI вЂ” bu oynada hech qanday ma'lumot o'zgartirilmaydi.",
         }
 
         def card(label, value, tone="blue"):
@@ -670,7 +670,7 @@ def v1847_maktab_rol_korish(
                     {"title": "Dars jadvali va yuklama", "detail": "O'qituvchi yuklamasi, bo'sh darslar va konfliktlar."},
                     {"title": "Davomat signallari", "detail": f"Bugun {xulosa['bugun_kelmagan']} ta kelmagan yozuvi bor."},
                     {"title": "Aqlli holatlar", "detail": f"{xulosa['ochiq_holatlar']} ta ochiq kuzatuv holati."},
-                    {"title": "Sinf va xodimlar", "detail": f"{xulosa['sinf_soni']} sinf · {xulosa['xodim_soni']} xodim."},
+                    {"title": "Sinf va xodimlar", "detail": f"{xulosa['sinf_soni']} sinf В· {xulosa['xodim_soni']} xodim."},
                 ],
             )
 
@@ -691,7 +691,7 @@ def v1847_maktab_rol_korish(
             card("O'qituvchilar", sum(1 for x in xodimlar if x.get("fanlari")), "blue")
             card("Bugun kelmagan", xulosa["bugun_kelmagan"], "amber")
             section("O'qituvchi yuklamasi", "Jadval va belgilangan haftalik soatni solishtirish.", [
-                {"title": x["full_name"], "detail": f"{x.get('fanlari') or 'Fan ko‘rsatilmagan'} · reja {x.get('haftalik_dars_soati') if x.get('haftalik_dars_soati') is not None else '—'} · jadval {int(x.get('jadvaldagi_soat') or 0)}"}
+                {"title": x["full_name"], "detail": f"{x.get('fanlari') or 'Fan koвЂrsatilmagan'} В· reja {x.get('haftalik_dars_soati') if x.get('haftalik_dars_soati') is not None else 'вЂ”'} В· jadval {int(x.get('jadvaldagi_soat') or 0)}"}
                 for x in yuklama
             ], "Yuklama ma'lumoti yo'q")
 
@@ -708,7 +708,7 @@ def v1847_maktab_rol_korish(
             card("Ochiq holatlar", xulosa["ochiq_holatlar"], "red" if xulosa["ochiq_holatlar"] else "green")
             card("Sinflar", xulosa["sinf_soni"], "teal")
             section("E'tibor talab qiladigan o'quvchilar", "Davomat va tarbiyaviy kuzatuvlar.", [
-                {"title": x["full_name"], "detail": f"Daraja {x['daraja']} · {x['sarlavha']}"}
+                {"title": x["full_name"], "detail": f"Daraja {x['daraja']} В· {x['sarlavha']}"}
                 for x in holatlar
             ], "Hozircha ochiq holat yo'q")
 
@@ -725,11 +725,11 @@ def v1847_maktab_rol_korish(
             card("Ko'rib chiqiladigan holat", len(holatlar), "amber" if holatlar else "green")
             card("Jami o'quvchi", xulosa["oquvchi_soni"], "blue")
             section("Psixolog ish navbati", "Faqat psixologga tegishli yoki yordam talab qiladigan holatlar.", [
-                {"title": x["full_name"], "detail": f"Daraja {x['daraja']} · {x['sarlavha']}"}
+                {"title": x["full_name"], "detail": f"Daraja {x['daraja']} В· {x['sarlavha']}"}
                 for x in holatlar
             ], "Psixolog uchun ochiq signal yo'q")
 
-        # Hamshira — sog'liq yozuvlari alohida modul sifatida keyin ulanadi.
+        # Hamshira вЂ” sog'liq yozuvlari alohida modul sifatida keyin ulanadi.
         elif rol == "hamshira":
             card("Jami o'quvchi", xulosa["oquvchi_soni"], "blue")
             card("Sinflar", xulosa["sinf_soni"], "teal")
@@ -772,9 +772,9 @@ def v1847_maktab_rol_korish(
             bugun = cur.fetchall()
             card("Bugungi dars", len(bugun), "teal")
             card("Biriktirilgan sinf/fan", len(birikmalar), "blue")
-            card("Haftalik yuklama", teacher.get("haftalik_dars_soati") if teacher.get("haftalik_dars_soati") is not None else "—", "green")
+            card("Haftalik yuklama", teacher.get("haftalik_dars_soati") if teacher.get("haftalik_dars_soati") is not None else "вЂ”", "green")
             section("Bugungi darslarim", teacher["full_name"], [
-                {"title": f"{x['dars_raqami']}-dars · {x['fan']}", "detail": f"{x['sinf']}-{x['harf']}" + (f" · {x['boshlanish_vaqti']}" if x.get("boshlanish_vaqti") else "")}
+                {"title": f"{x['dars_raqami']}-dars В· {x['fan']}", "detail": f"{x['sinf']}-{x['harf']}" + (f" В· {x['boshlanish_vaqti']}" if x.get("boshlanish_vaqti") else "")}
                 for x in bugun
             ], "Bugun dars topilmadi")
             section("Mening sinf/fanlarim", "Monitoring va to'garak uchun asosiy ish maydoni.", [
@@ -807,7 +807,7 @@ def v1847_maktab_rol_korish(
             card("O'quvchilar", len(bolalar), "blue")
             card("Rahbar", sinf.get("rahbar_ismi") or "Biriktirilmagan", "teal")
             section(f"{sinf['sinf']}-{sinf['harf']} sinfim", "Sinf rahbari faqat o'z sinfiga kerakli ishlarni ko'radi.", [
-                {"title": x["full_name"], "detail": f"30 kun: {int(x.get('kelmadi30') or 0)} kelmadi · {int(x.get('kechikdi30') or 0)} kechikdi"}
+                {"title": x["full_name"], "detail": f"30 kun: {int(x.get('kelmadi30') or 0)} kelmadi В· {int(x.get('kechikdi30') or 0)} kechikdi"}
                 for x in bolalar
             ], "Sinfda o'quvchi yo'q")
 
@@ -857,8 +857,8 @@ def v1847_maktab_rol_korish(
                 ortacha = round(sum(float(x.get("foiz") or 0) for x in fanlar) / len(fanlar))
                 card("Monitoring o'rtacha", f"{ortacha}%", "blue")
             title = "Mening bilim xaritam" if rol == "oquvchi" else "Farzandimning bilim xaritasi"
-            section(title, f"{bola['full_name']} · {bola['sinf']}-{bola['harf']}", [
-                {"title": x["fan"], "detail": f"{int(round(float(x.get('foiz') or 0)))}% · {int(x.get('urinish') or 0)} ta monitoring"}
+            section(title, f"{bola['full_name']} В· {bola['sinf']}-{bola['harf']}", [
+                {"title": x["fan"], "detail": f"{int(round(float(x.get('foiz') or 0)))}% В· {int(x.get('urinish') or 0)} ta monitoring"}
                 for x in fanlar
             ], "Hali monitoring natijasi yo'q")
             section(
@@ -878,13 +878,13 @@ def v1847_maktab_rol_korish(
 # ========================= V18.47 END =========================
 
 
-# ═══════════════════════════════════════════════════════════
-# V18.50 — XODIM DUBLIKATLARINI AVTOMATIK TUZATISH
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.50 вЂ” XODIM DUBLIKATLARINI AVTOMATIK TUZATISH
 # Faqat Excel importidan yaratilgan manfiy user_id xodimlarga tegadi.
 # Haqiqiy Google/Telegram foydalanuvchi hisoblari avtomatik birlashtirilmaydi.
 # Eng yangi import yozuvi (eng kichik/manfiy user_id) saqlanadi.
 # Eski dublikatlar xavfsiz arxivlanadi, bog'lanishlar yangi yozuvga ko'chiriladi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 def _v1850_xodim_dublikatlarini_tozala(cur, maktab_id: int):
     _xodim_kod_jadvali(cur)
@@ -977,7 +977,7 @@ def _v1850_xodim_dublikatlarini_tozala(cur, maktab_id: int):
                 (asosiy, maktab_id, eski),
             )
 
-            # Xodim davomatida bir kunlik conflict bo'lishi mumkin — avval merge.
+            # Xodim davomatida bir kunlik conflict bo'lishi mumkin вЂ” avval merge.
             cur.execute("""
                 INSERT INTO xodim_davomati(maktab_id,user_id,sana,holat,izoh,belgilagan_user_id,belgilangan_at)
                 SELECT maktab_id,%s,sana,holat,izoh,belgilagan_user_id,belgilangan_at
@@ -1000,7 +1000,7 @@ def _v1850_xodim_dublikatlarini_tozala(cur, maktab_id: int):
             cur.execute("DELETE FROM xodim_kod WHERE user_id=%s", (eski,))
 
             # FK sabab foydalanuvchini qattiq DELETE qilmaymiz.
-            # Maktabdan chiqarib, lavozimini bo'shatamiz — dashboard/importda qayta chiqmaydi.
+            # Maktabdan chiqarib, lavozimini bo'shatamiz вЂ” dashboard/importda qayta chiqmaydi.
             cur.execute("""
                 UPDATE users
                 SET maktab_id=NULL,
@@ -1032,11 +1032,11 @@ def v1850_maktab_xodim_dublikatlarini_tozala(token: str, maktab_id: int):
 
 # ========================= V18.50 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.52 — AQILLI DARS JADVALI 2.0
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.52 вЂ” AQILLI DARS JADVALI 2.0
 # Kalendar, smena, o'qituvchi vaqti/yuklamasi, xonalar, parallel guruhlar,
-# draft→tasdiq, aniq diagnostika va mavzu rejasini real sanalarga taqsimlash.
-# ═══════════════════════════════════════════════════════════
+# draftв†’tasdiq, aniq diagnostika va mavzu rejasini real sanalarga taqsimlash.
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 import random as _v1852_random
 from collections import defaultdict as _v1852_defaultdict, Counter as _v1852_Counter
@@ -1068,7 +1068,7 @@ def _v1855_boshlangich_sinf(class_row):
 
 
 def _v1856_seed_default_class_day_rules(cur, maktab_id: int):
-    """Birinchi ishga tushishda eski 1–4/Shanba qoidasini preset sifatida saqlaydi.
+    """Birinchi ishga tushishda eski 1вЂ“4/Shanba qoidasini preset sifatida saqlaydi.
 
     Marker yozilgach admin uni o'chirsa, keyingi reload'da qayta paydo bo'lmaydi.
     """
@@ -1100,10 +1100,10 @@ def _v1856_class_day_rule_rows(cur, maktab_id: int):
         day_name = _V1852_HAFTA.get(int(row["hafta_kuni"]), str(row["hafta_kuni"]))
         if row.get("sinf_id") is not None:
             row["qamrov"] = "sinf"
-            row["yorliq"] = f"{row.get('sinf','')}-{row.get('harf','')} · {day_name}"
+            row["yorliq"] = f"{row.get('sinf','')}-{row.get('harf','')} В· {day_name}"
         else:
             row["qamrov"] = "parallel"
-            row["yorliq"] = f"Barcha {row.get('sinf_daraja')}-sinflar · {day_name}"
+            row["yorliq"] = f"Barcha {row.get('sinf_daraja')}-sinflar В· {day_name}"
     return rows
 
 
@@ -1363,7 +1363,7 @@ def _v1852_create_tables(cur):
         takror_raqami INTEGER NOT NULL DEFAULT 1,
         UNIQUE(urinish_id,sinf_id,hafta_kuni,smena,dars_raqami,guruh_kaliti)
     )""")
-    # 0,5 soat — yarimta dars emas: bitta slotda toq/juft haftalar
+    # 0,5 soat вЂ” yarimta dars emas: bitta slotda toq/juft haftalar
     # almashadi. Ikki aylanish qatori bir xil kun va dars raqamida
     # qonuniy saqlanishi uchun hafta turi unikal kalitga kiradi.
     cur.execute("""ALTER TABLE aqlli_jadval_slotlari_v2
@@ -2236,8 +2236,8 @@ class V1852GroupSettings(BaseModel):
     maktab_id: int
     sinf_id: int
     guruhlar: list[V1852GroupSettingItem]
-    # Backward-safe default: keyingi guruh turi oldingi 1/2 yoki O‘g‘il/Qiz
-    # sozlamalarini o‘chirib yubormaydi. To‘liq almashtirish faqat UI aniq
+    # Backward-safe default: keyingi guruh turi oldingi 1/2 yoki OвЂgвЂil/Qiz
+    # sozlamalarini oвЂchirib yubormaydi. ToвЂliq almashtirish faqat UI aniq
     # tasdiqlab FALSE yuborgandagina bajariladi.
     oldingi_tizimlarni_saqlash: bool = True
 
@@ -2290,7 +2290,7 @@ def v1852_group_settings_save(sorov: V1852GroupSettings, token: str):
 
 
 
-# V18.59 — shablonda tanlangan fanlarni bir joyga yig'ish.
+# V18.59 вЂ” shablonda tanlangan fanlarni bir joyga yig'ish.
 # Eski importlarda fan users.fanlari, maktab_xodim_sinflari yoki
 # maktab_dars_birikmalari jadvallaridan faqat bittasida qolgan bo'lishi mumkin.
 def _v1859_fanlarni_ajrat(value):
@@ -2309,7 +2309,7 @@ def _v1859_fanlarni_ajrat(value):
 
 
 def _v1859_sinf_sort_key(label):
-    match = re.match(r"^\s*(\d+)\s*[-–]?\s*(.*)$", str(label or ""))
+    match = re.match(r"^\s*(\d+)\s*[-вЂ“]?\s*(.*)$", str(label or ""))
     if not match:
         return (999, str(label or ""))
     return (int(match.group(1)), match.group(2).casefold())
@@ -2382,7 +2382,7 @@ def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None, include_number
             continue
         for fan in _v1859_fanlarni_ajrat(link.get("fanlari")):
             fan_maps[uid][_xodim_excel_sarlavha_kaliti(fan)] = fan
-            source_maps[uid].add("Sinf–fan birikmasi")
+            source_maps[uid].add("SinfвЂ“fan birikmasi")
         class_maps[uid].add(f"{link['sinf']}-{link['harf']}")
 
     # Faqat shu maktabning haqiqiy dars jarayoniga biriktirilgan xodimlari
@@ -2550,7 +2550,7 @@ def v1856_class_day_blocks_save(sorov: V1856ClassDayBlocks, token: str):
         qamrov = str(sorov.qamrov or "parallel").strip().lower()
         days = sorted(set(int(x) for x in sorov.hafta_kunlari))
         if not days or any(day not in range(1, 7) for day in days):
-            raise HTTPException(status_code=400, detail="Dushanba–Shanbadan bitta kunni tanlang")
+            raise HTTPException(status_code=400, detail="DushanbaвЂ“Shanbadan bitta kunni tanlang")
         if len(days) != 1:
             raise HTTPException(
                 status_code=400,
@@ -2560,7 +2560,7 @@ def v1856_class_day_blocks_save(sorov: V1856ClassDayBlocks, token: str):
         if qamrov == "parallel":
             grades = sorted(set(int(x) for x in sorov.sinf_darajalari))
             if not grades or any(grade not in range(1, 12) for grade in grades):
-                raise HTTPException(status_code=400, detail="Kamida bitta 1–11-sinf parallelini tanlang")
+                raise HTTPException(status_code=400, detail="Kamida bitta 1вЂ“11-sinf parallelini tanlang")
             cur.execute("""SELECT DISTINCT NULLIF(REGEXP_REPLACE(COALESCE(sinf,''),'[^0-9]','','g'),'')::int AS grade
                            FROM maktab_sinflari WHERE maktab_id=%s""", (sorov.maktab_id,))
             available = {int(r["grade"]) for r in cur.fetchall() if r.get("grade") is not None}
@@ -3055,7 +3055,7 @@ def _v1852_build_jobs_base(classes, loads, assignments, group_settings, teachers
 
 def _v1852_candidate_reasons_base(job, day, period, selected_teachers, room_keys, state, context):
     reasons = []
-    # Xona — jadval yaratishni to'xtatadigan shart emas. Parallel guruhning
+    # Xona вЂ” jadval yaratishni to'xtatadigan shart emas. Parallel guruhning
     # alohida xonasi hali yozilmagan bo'lsa slot baribir yaratiladi; frontend
     # uni "Xona yo'q" deb ko'rsatadi va keyin qo'lda to'ldirish mumkin.
     non_null_teachers = [teacher for teacher in selected_teachers if teacher is not None]
@@ -3218,22 +3218,22 @@ _V213_CORE_PERIOD6_REASON = (
 
 
 _V205_SCHEDULE_RULES = [
-    "Tasdiqlangan fan–sinf–guruh yuklamasidagi har bir soat aynan bir marta joylashtiriladi; ortiqcha yoki tushib qolgan darsga ruxsat yo'q.",
+    "Tasdiqlangan fanвЂ“sinfвЂ“guruh yuklamasidagi har bir soat aynan bir marta joylashtiriladi; ortiqcha yoki tushib qolgan darsga ruxsat yo'q.",
     "Bitta sinf bir vaqtda faqat bitta dars paketida bo'ladi; guruhli fanlar esa shu katak ichida parallel ko'rsatiladi.",
     "Bitta o'qituvchi bir xil real vaqtda, smenasi boshqa bo'lsa ham, ikki sinfga qo'yilmaydi.",
     "Guruhli fanlarning barcha guruhlari uchun sinf va tegishli o'qituvchilar bir vaqtda bo'sh bo'lishi shart.",
     "O'qituvchining qizil kuni/soati va qattiq BAND vaqti barcha darslar, jumladan KELAJAK SOATI uchun ham qat'iy yopiq.",
-    "Metod kuni oddiy darslar uchun yopiq. Qat'iy model yechimsizligini isbotlasa, faqat 1–4-sinf o'qituvchisining Shanbadan boshqa metod kunidagi ko'pi bilan 2 aniq katak qizil/BANDni ochmaydigan ikkinchi exact model bilan ishlatilishi mumkin; qo'llangan kataklar hisobotda saqlanadi.",
+    "Metod kuni oddiy darslar uchun yopiq. Qat'iy model yechimsizligini isbotlasa, faqat 1вЂ“4-sinf o'qituvchisining Shanbadan boshqa metod kunidagi ko'pi bilan 2 aniq katak qizil/BANDni ochmaydigan ikkinchi exact model bilan ishlatilishi mumkin; qo'llangan kataklar hisobotda saqlanadi.",
     "KELAJAK SOATI tanlangan kun va dars raqamiga qat'iy joylashtiriladi; boshqa vaqtga surilmaydi.",
     "Sinf faqat o'z smenasida va shu smena uchun yaratilgan mavjud dars raqamlariga joylashtiriladi.",
-    "Sinfning qizil/yopiq kuni va 1–4-sinf uchun Shanba taqiqi buzilmaydi.",
+    "Sinfning qizil/yopiq kuni va 1вЂ“4-sinf uchun Shanba taqiqi buzilmaydi.",
     "Har bir fan sinf-fan yuklamasidagi kunlik maksimumdan oshmaydi; kunlik max 1 bo'lsa shu fan bir kunda ikkinchi marta qo'yilmaydi.",
-    "1–4-sinfda 6-dars qo'yilmaydi; boshlang'ich sinfning akademik va yengil fan limitlari saqlanadi.",
-    "O'qituvchining eng erta–eng kech darsi, kunlik maksimumi va haftalik yuklama chegarasi tekshiriladi.",
+    "1вЂ“4-sinfda 6-dars qo'yilmaydi; boshlang'ich sinfning akademik va yengil fan limitlari saqlanadi.",
+    "O'qituvchining eng ertaвЂ“eng kech darsi, kunlik maksimumi va haftalik yuklama chegarasi tekshiriladi.",
     "Bir xona bir vaqtda ikki darsga berilmaydi; xona yozilmagan bo'lsa dars 'Xona yo'q' bilan yaratilishi mumkin.",
     "Sinf jadvalida kun boshidan yoki darslar orasida bo'sh okno qoldirilmaydi.",
     "Sinfning kunlik yuklamasi imkon qadar barqaror taqsimlanadi; keskin 3/5/6 kabi notekis kun saqlanmaydi.",
-    "Matematika, algebra, geometriya, ona tili, adabiyot, fizika, kimyo va biologiya kabi asosiy fanlar 1–5-darslarga ustuvor joylashtiriladi; boshqa legal katak qolmasa 6-dars ishlatiladi, lekin bir sinfda haftasiga ko'pi bilan 2 kun.",
+    "Matematika, algebra, geometriya, ona tili, adabiyot, fizika, kimyo va biologiya kabi asosiy fanlar 1вЂ“5-darslarga ustuvor joylashtiriladi; boshqa legal katak qolmasa 6-dars ishlatiladi, lekin bir sinfda haftasiga ko'pi bilan 2 kun.",
     "Jismoniy tarbiya va texnologiya 1-darsga qo'yilmaydi; zarur bo'lsa haftada bir marta yonma-yon juft dars bo'lishi mumkin.",
     "Metod kunidan tashqari ish kataklarining 20 foizidan ko'pi qizil/yopiq bo'lgan o'qituvchilar avval joylashtiriladi; oddiy darslari faqat qolgan yashil kataklarga ixcham va oknosiz yig'iladi.",
     "Ikki smenada ishlaydigan o'qituvchining real vaqt ustma-ustligi qat'iy taqiqlanadi; uzoq kutish keskin jazolanadigan qulaylik mezoni bo'lib, to'liq xavfsiz jadvalni bekor qilmaydi.",
@@ -3252,7 +3252,7 @@ def _v212_hygiene_is_soft(reason):
     """
     normalized = (
         str(reason or "").casefold()
-        .replace("‘", "'").replace("’", "'").replace("`", "'")
+        .replace("вЂ", "'").replace("вЂ™", "'").replace("`", "'")
     )
     return any(marker in normalized for marker in (
         "5-darsda og'ir fan",
@@ -3352,7 +3352,7 @@ def _v209_class_gap_failure_detail(state, classes):
             "raqam": len(problems) + 1,
             "sinf_id": class_id,
             "sinf": class_name,
-            "fan": "Sinf jadvalidagi ichki bo‘shliq",
+            "fan": "Sinf jadvalidagi ichki boвЂshliq",
             "kun": day,
             "kun_nomi": day_name,
             "bosh_darslar": missing,
@@ -3360,12 +3360,12 @@ def _v209_class_gap_failure_detail(state, classes):
             "sabablar": [{
                 "sabab": "sinf ichki oknosi",
                 "izoh": (
-                    f"{class_name}: {day_name} kuni {missing_text} bo‘sh, "
-                    f"lekin undan keyin {max(clean_periods)}-darsgacha mashg‘ulot bor."
+                    f"{class_name}: {day_name} kuni {missing_text} boвЂsh, "
+                    f"lekin undan keyin {max(clean_periods)}-darsgacha mashgвЂulot bor."
                 ),
                 "yechim": (
-                    "Sinfning kunlik sig‘imi yoki qattiq o‘qituvchi vaqtlarini "
-                    "tahrirlang; generator bo‘shliq bilan draft saqlamaydi."
+                    "Sinfning kunlik sigвЂimi yoki qattiq oвЂqituvchi vaqtlarini "
+                    "tahrirlang; generator boвЂshliq bilan draft saqlamaydi."
                 ),
             }],
         })
@@ -3373,7 +3373,7 @@ def _v209_class_gap_failure_detail(state, classes):
         "code": "JADVALGA_SIGMADI",
         "asl_code": "SINF_ICHKI_OKNOSI",
         "message": (
-            "Sinf jadvalida ichki bo‘sh dars qoldi. Xavfsiz bo‘lmagan draft saqlanmadi."
+            "Sinf jadvalida ichki boвЂsh dars qoldi. Xavfsiz boвЂlmagan draft saqlanmadi."
         ),
         "muammolar": problems,
         "joylashmagan": len(problems),
@@ -3396,7 +3396,7 @@ def _v209_integrity_failure_detail(errors):
                 "sabab": "yakuniy moslik xatosi",
                 "izoh": text,
                 "yechim": (
-                    "Ko‘rsatilgan sinf, o‘qituvchi, xona yoki yuklama "
+                    "KoвЂrsatilgan sinf, oвЂqituvchi, xona yoki yuklama "
                     "sozlamasini tahrirlab yagona generatorni qayta ishga tushiring."
                 ),
             }],
@@ -3404,7 +3404,7 @@ def _v209_integrity_failure_detail(errors):
     return {
         "code": "JADVALGA_SIGMADI",
         "asl_code": "JADVAL_MOSLIGI_XATOSI",
-        "message": "Yakuniy tekshiruv xato topdi; draft to‘liq rollback qilindi.",
+        "message": "Yakuniy tekshiruv xato topdi; draft toвЂliq rollback qilindi.",
         "muammolar": problems,
         "joylashmagan": len(problems),
         "generator_rejimi": 1,
@@ -3533,7 +3533,7 @@ def _v216_method_day_recommendations(raw_rows, context, teachers):
             start = str(slot.get("boshlanish") or "")[:5]
             end = str(slot.get("tugash") or "")[:5]
             if start or end:
-                time_label = f"{start}–{end}".strip("–")
+                time_label = f"{start}вЂ“{end}".strip("вЂ“")
         teacher_name = str(
             raw.get("oqituvchi")
             or raw.get("teacher_name")
@@ -3621,7 +3621,7 @@ def _v217_exact_failure_problems(exact_result, classes, teachers, status=None):
         problem_teachers = teacher_rows(item.get("teacher_ids") or [])
         problems.append({
             "raqam": len(problems) + 1,
-            "sarlavha": f"{label} sinf · {item.get('fan') or 'Dars'}",
+            "sarlavha": f"{label} sinf В· {item.get('fan') or 'Dars'}",
             "sinf": label,
             "sinf_id": class_id,
             "fan": item.get("fan") or "Dars",
@@ -3648,23 +3648,23 @@ def _v217_exact_failure_problems(exact_result, classes, teachers, status=None):
         kind = str(conflict.get("kind") or "global_resource_cycle")
         teacher_id = conflict.get("teacher_id")
         if kind == "teacher_capacity":
-            title = f"O'qituvchi sig'imi · {conflict.get('teacher_name') or teacher_id}"
+            title = f"O'qituvchi sig'imi В· {conflict.get('teacher_name') or teacher_id}"
             label = "O'qituvchi sig'imi"
             fan = str(conflict.get("teacher_name") or teacher_id or "O'qituvchi")
             linked_teachers = teacher_rows([teacher_id])
         elif kind == "class_capacity":
             label = str(conflict.get("class_name") or class_name(conflict.get("class_id")))
-            title = f"{label} sinf · haftalik sig'im"
+            title = f"{label} sinf В· haftalik sig'im"
             fan = "Haftalik sig'im"
             linked_teachers = []
         elif kind == "fixed_collision":
             label = str(conflict.get("class_name") or "Qat'iy darslar")
-            title = f"Qat'iy vaqt to'qnashuvi · {conflict.get('resource') or label}"
+            title = f"Qat'iy vaqt to'qnashuvi В· {conflict.get('resource') or label}"
             fan = "Qat'iy vaqt to'qnashuvi"
             linked_teachers = []
         else:
             label = "Butun jadval"
-            title = "Butun jadval · global resurs ziddiyati"
+            title = "Butun jadval В· global resurs ziddiyati"
             fan = "Global resurs ziddiyati"
             linked_teachers = []
         problems.append({
@@ -3707,11 +3707,11 @@ def _v217_exact_failure_problems(exact_result, classes, teachers, status=None):
         problems.append({
             "raqam": 1,
             "sarlavha": (
-                "Butun jadval · global resurs ziddiyati"
+                "Butun jadval В· global resurs ziddiyati"
                 if proven else
-                "Exact model · texnik tekshiruv xatosi"
+                "Exact model В· texnik tekshiruv xatosi"
                 if model_invalid else
-                "Butun jadval · qidiruv xulosasi yakunlanmadi"
+                "Butun jadval В· qidiruv xulosasi yakunlanmadi"
             ),
             "sinf": "Butun jadval",
             "fan": (
@@ -3784,7 +3784,7 @@ def _v216_exact_failure_detail(
     if recommendations:
         method_explanation = (
             "Alohida relaxed exact tekshiruv qizil/BAND vaqtlarini saqlagan "
-            "holda quyidagi 1–2 metod katagi yordam berishini to'liq jadval "
+            "holda quyidagi 1вЂ“2 metod katagi yordam berishini to'liq jadval "
             "bilan tasdiqladi; istisno avtomatik qo'llanmadi."
         )
     elif method_status == "UNKNOWN":
@@ -3806,7 +3806,7 @@ def _v216_exact_failure_detail(
         method_explanation = "Qattiq metod kuni belgilanmagan; metod istisnosi kerak emas."
     else:
         method_explanation = (
-            "Qizil/BAND vaqtlarini saqlab 1–2 metod katagi bilan to'liq yechim "
+            "Qizil/BAND vaqtlarini saqlab 1вЂ“2 metod katagi bilan to'liq yechim "
             "tasdiqlanmadi; taxminiy istisno berilmadi."
         )
     try:
@@ -3885,12 +3885,12 @@ def _v2243_progress_write(
             f".{revision}" if revision else ""
         )
         stopped_message = (
-            f"To‘xtatildi. Eng yaxshi Jadval #{stopped_number} saqlandi "
+            f"ToвЂxtatildi. Eng yaxshi Jadval #{stopped_number} saqlandi "
             "va ochish mumkin."
         )
         cancelled_error_message = (
-            "To‘xtatildi. 100% checkpoint saqlangan bo‘lsa uni ochish mumkin; "
-            "aks holda oldingi jadval o‘zgarmadi."
+            "ToвЂxtatildi. 100% checkpoint saqlangan boвЂlsa uni ochish mumkin; "
+            "aks holda oldingi jadval oвЂzgarmadi."
         )
         progress_cur.execute(
             """UPDATE aqlli_jadval_jarayoni_v2243
@@ -3955,7 +3955,7 @@ def _v2243_progress_write(
 
 
 def _v2244_cancel_requested(maktab_id, qidiruv_nonce=None, run_id=None):
-    """Aynan joriy server lease + run uchun Stop signalini o‘qiydi.
+    """Aynan joriy server lease + run uchun Stop signalini oвЂqiydi.
 
     DB tekshiruvi ishlamasa fail-closed: solver eski yoki nazoratsiz lease bilan
     davom etmaydi. Canonical start workerga hech qachon None/0 lease bermaydi.
@@ -4037,7 +4037,7 @@ def v2243_generation_progress(token: str, maktab_id: int, qidiruv_nonce: Optiona
     try:
         _v1852_tables(cur)
         if not _v1852_manager(cur, user_id, maktab_id):
-            raise HTTPException(status_code=403, detail="Jadval jarayonini ko‘rishga ruxsat yo‘q")
+            raise HTTPException(status_code=403, detail="Jadval jarayonini koвЂrishga ruxsat yoвЂq")
         cur.execute(
             """SELECT p.*,
                       EXTRACT(EPOCH FROM (NOW()-p.yangilangan_at)) AS yangilanish_yoshi,
@@ -4073,10 +4073,10 @@ def v2243_generation_progress(token: str, maktab_id: int, qidiruv_nonce: Optiona
             if saved_number and saved_number != "0" and saved_revision > 0:
                 saved_number += f".{saved_revision}"
             stale_message = (
-                f"To‘xtatildi. Jadval #{saved_number} saqlandi va ochish mumkin."
+                f"ToвЂxtatildi. Jadval #{saved_number} saqlandi va ochish mumkin."
                 if bool(payload.get("toliq_jadval_saqlandi")) else
-                "To‘xtatildi. Hali 100% to‘liq jadval saqlanmagan; "
-                "oldingi jadval o‘chirilmagan."
+                "ToвЂxtatildi. Hali 100% toвЂliq jadval saqlanmagan; "
+                "oldingi jadval oвЂchirilmagan."
             )
             cur.execute(
                 """UPDATE aqlli_jadval_jarayoni_v2243
@@ -4163,11 +4163,11 @@ def v2244_stop_generation(token: str, maktab_id: int, qidiruv_nonce: Optional[in
     try:
         _v1852_tables(cur)
         if not _v1852_manager(cur, user_id, maktab_id):
-            raise HTTPException(status_code=403, detail="Jadval jarayonini to‘xtatishga ruxsat yo‘q")
+            raise HTTPException(status_code=403, detail="Jadval jarayonini toвЂxtatishga ruxsat yoвЂq")
         cur.execute(
             """UPDATE aqlli_jadval_jarayoni_v2243
                SET toxtatish_soraldi=TRUE,bosqich='toxtatish_soraldi',
-                   xabar='Foydalanuvchi to‘xtatishni so‘radi. Eng yaxshi to‘liq natija xavfsiz yakunlanmoqda.',
+                   xabar='Foydalanuvchi toвЂxtatishni soвЂradi. Eng yaxshi toвЂliq natija xavfsiz yakunlanmoqda.',
                    yangilangan_at=NOW()
                WHERE maktab_id=%s
                  AND qidiruv_nonce IS NOT DISTINCT FROM %s
@@ -4659,7 +4659,7 @@ def _v2258_save_complete_checkpoint(
             "toliq_saqlandi" if not revision else "revision_saqlandi",
             (
                 f"Jadval #{run_id} bazaga saqlandi: {len(jobs)}/{len(jobs)} dars. "
-                "Uni hozir ochish mumkin; o‘qituvchilar yaxshilanmoqda."
+                "Uni hozir ochish mumkin; oвЂqituvchilar yaxshilanmoqda."
                 if not revision else
                 f"Jadval #{run_id}.{revision} saqlandi. Oxirgi tekshirilgan variantni ochish mumkin."
             ),
@@ -4722,7 +4722,7 @@ def _v237_generate_claimed(
             raise RuntimeError("Generator lease/run claim eskirgan")
         if bool(claimed.get("toxtatish_soraldi")):
             conn.rollback()
-            raise RuntimeError("Generator boshlanishidan oldin to‘xtatildi")
+            raise RuntimeError("Generator boshlanishidan oldin toвЂxtatildi")
 
         # Lease qatorining FOR UPDATE va advisory locklari faqat yuqoridagi
         # qisqa ownership tekshiruvi uchun. Manbalarni qayta qurish, preflight
@@ -4739,7 +4739,7 @@ def _v237_generate_claimed(
                 # terminal ``toxtatildi`` progressini yozadi.
                 conn.rollback()
                 raise RuntimeError(
-                    f"Generator {phase} bosqichida to‘xtatildi"
+                    f"Generator {phase} bosqichida toвЂxtatildi"
                 )
 
         abort_if_cancelled("tayyorlash boshlanishi")
@@ -4750,7 +4750,7 @@ def _v237_generate_claimed(
             if not group_review.get("tayyor"):
                 raise HTTPException(
                     status_code=409,
-                    detail="Avval guruh o‘qituvchilarini tasdiqlang: "
+                    detail="Avval guruh oвЂqituvchilarini tasdiqlang: "
                     + "; ".join(group_review.get("xatolar", [])[:10]),
                 )
 
@@ -4772,7 +4772,7 @@ def _v237_generate_claimed(
         if not preflight.get("tayyor"):
             raise HTTPException(
                 status_code=409,
-                detail="Jadval tekshiruvdan o‘tmadi: "
+                detail="Jadval tekshiruvdan oвЂtmadi: "
                 + "; ".join(preflight.get("xatolar", [])[:12]),
             )
         source_hash = str(preflight.get("manba_hash") or "")
@@ -4906,7 +4906,7 @@ def _v237_generate_claimed(
             return {
                 "complete": False,
                 "status": "MODEL_INVALID",
-                "message": "OR-Tools o‘rnatilmagan",
+                "message": "OR-Tools oвЂrnatilmagan",
             }
         exact_context = dict(context)
         exact_context.update({
@@ -4999,7 +4999,7 @@ def _v237_generate_claimed(
             last_scan_progress_at[0] = now
             teacher_name = str(
                 (teachers.get(int(teacher_id)) or {}).get("full_name")
-                or f"O‘qituvchi {teacher_id}"
+                or f"OвЂqituvchi {teacher_id}"
             )
             # Foiz faqat saqlangan revision bilan oshadi; tekshiruv tartibi
             # xabardagi N/Jami orqali ko'rinadi. Shunda keyingi revision
@@ -5012,9 +5012,9 @@ def _v237_generate_claimed(
                 sorov.maktab_id, active_lease, run_id,
                 int(starting_revision) + int(swap_count), percent,
                 "oqituvchi_yaxshilanmoqda",
-                f"Jadval #{run_id}: {int(target_index)}/{int(target_total)} — "
+                f"Jadval #{run_id}: {int(target_index)}/{int(target_total)} вЂ” "
                 f"{teacher_name} oknolari tekshirilmoqda; "
-                f"{int(trial_count)} ta xavfsiz variant ko‘rildi "
+                f"{int(trial_count)} ta xavfsiz variant koвЂrildi "
                 f"({int(pass_no)}-aylanish).",
             )
 
@@ -5025,7 +5025,7 @@ def _v237_generate_claimed(
             if checkpoint_state is not None:
                 teacher_name = str(
                     (teachers.get(int(teacher_id)) or {}).get("full_name")
-                    or f"O‘qituvchi {teacher_id}"
+                    or f"OвЂqituvchi {teacher_id}"
                 )
                 before_values = list(before_score or ())
                 after_values = list(after_score or ())
@@ -5173,7 +5173,7 @@ def _v237_claim_generation(cur, maktab_id: int):
         cur.execute(
             """UPDATE aqlli_jadval_jarayoni_v2243
                   SET bosqich='toxtatildi',foiz=100,
-                      xabar='To‘xtatish so‘rovi yakunlandi. Saqlangan 100% jadval o‘chirilmagan.',
+                      xabar='ToвЂxtatish soвЂrovi yakunlandi. Saqlangan 100% jadval oвЂchirilmagan.',
                       yangilangan_at=NOW()
                 WHERE maktab_id=%s
                   AND qidiruv_nonce IS NOT DISTINCT FROM %s
@@ -5186,7 +5186,7 @@ def _v237_claim_generation(cur, maktab_id: int):
                 int(current.get("jadval_raqami") or 0),
             ),
         )
-        # CAS yutdimi yoki boshqa worker qatorni o'zgartirdimi — qaror doim
+        # CAS yutdimi yoki boshqa worker qatorni o'zgartirdimi вЂ” qaror doim
         # yangi snapshotdan olinadi.
         current = current_row()
     elif current_expiry == "xato":
@@ -5251,7 +5251,7 @@ def _v237_claim_generation(cur, maktab_id: int):
            RETURNING qidiruv_nonce,jadval_raqami""",
         (
             school_id, lease, run_id,
-            f"Jadval #{run_id} yaratish navbatga olindi; to‘xtatish tugmasi faol.",
+            f"Jadval #{run_id} yaratish navbatga olindi; toвЂxtatish tugmasi faol.",
         ),
     )
     claimed = cur.fetchone() or {}
@@ -5327,7 +5327,7 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
             )
         except Exception as error:
             print(f"[JADVAL-BACKGROUND-V22.55] yakunlandi: {error}", flush=True)
-            # Frontend cheksiz 2–15% da qolib ketmasin. Generator ichida
+            # Frontend cheksiz 2вЂ“15% da qolib ketmasin. Generator ichida
             # xato bo'lsa ham joriy progress qatori terminal "xato" holatiga
             # o'tadi va foydalanuvchi aniq sababni ko'radi.
             error_conn = None
@@ -5359,11 +5359,11 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
                         int(row.get("yaxshilanish") or 0),
                         100, "toxtatildi" if was_cancelled else "xato",
                         (
-                            f"To‘xtatildi. Jadval #{row['jadval_raqami']}"
+                            f"ToвЂxtatildi. Jadval #{row['jadval_raqami']}"
                             f"{'.' + str(row.get('yaxshilanish')) if int(row.get('yaxshilanish') or 0) else ''} "
                             "saqlandi va ochish mumkin."
                             if was_cancelled and complete_saved else
-                            "To‘xtatildi. Hali 100% to‘liq jadval saqlanmagan; oldingi jadval o‘chirilmagan."
+                            "ToвЂxtatildi. Hali 100% toвЂliq jadval saqlanmagan; oldingi jadval oвЂchirilmagan."
                             if was_cancelled else
                             f"Jadval hisoblash to'xtadi: {str(error)[:700]}"
                         ),
@@ -5399,13 +5399,13 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
         )
         raise HTTPException(
             status_code=500,
-            detail="Jadval background workerini boshlash imkoni bo‘lmadi",
+            detail="Jadval background workerini boshlash imkoni boвЂlmadi",
         )
     return {
         "qabul_qilindi": True,
         "qidiruv_nonce": active_lease,
         "jadval_raqami": run_id,
-        "xabar": "Jadval backendda mustaqil yaratila boshladi. Oynani yopish hisoblashni to‘xtatmaydi.",
+        "xabar": "Jadval backendda mustaqil yaratila boshladi. Oynani yopish hisoblashni toвЂxtatmaydi.",
     }
 
 
@@ -5556,7 +5556,7 @@ def v1852_approve(sorov: V1852Approve, token: str):
         violations = _v1856_schedule_block_violations(cur, run["maktab_id"], run["id"])
         if violations:
             details = "; ".join(
-                f"{row['sinf']}-{row['harf']} · {row['kun_nomi']} ({row['dars_soni']} ta)"
+                f"{row['sinf']}-{row['harf']} В· {row['kun_nomi']} ({row['dars_soni']} ta)"
                 for row in violations[:8]
             )
             raise HTTPException(
@@ -5568,7 +5568,7 @@ def v1852_approve(sorov: V1852Approve, token: str):
             details = "; ".join(row["izoh"] for row in sinf_soati_xatolari[:8])
             raise HTTPException(
                 status_code=409,
-                detail=f"Sinf soati qoidasi bajarilmagan: {details}. 3-bosqichdagi qoidani yoki o‘qituvchi vaqtini tuzatib yangi draft yarating",
+                detail=f"Sinf soati qoidasi bajarilmagan: {details}. 3-bosqichdagi qoidani yoki oвЂqituvchi vaqtini tuzatib yangi draft yarating",
             )
         gigiyena_xatolari = _v1874_schedule_hygiene_violations(
             cur, run["maktab_id"], run["id"]
@@ -5661,7 +5661,7 @@ def v1852_change_request(sorov: V1852ChangeRequest, token: str):
         if str(slot.get("fan_nomi") or "").strip().casefold() == "sinf soati":
             raise HTTPException(
                 status_code=409,
-                detail="Sinf soati qo‘lda ko‘chirilmaydi. 3-bosqichda kun yoki dars raqamini o‘zgartirib yangi draft yarating",
+                detail="Sinf soati qoвЂlda koвЂchirilmaydi. 3-bosqichda kun yoki dars raqamini oвЂzgartirib yangi draft yarating",
             )
         if user_id != slot.get("oqituvchi_user_id") and not _v1852_manager(cur, user_id, slot["maktab_id"]):
             raise HTTPException(status_code=403, detail="Faqat shu dars o'qituvchisi yoki rahbariyat so'rov beradi")
@@ -5741,7 +5741,7 @@ def v1852_topic_plan_save(sorov: V1852TopicPlan, token: str):
         _v1852_tables(cur)
         _v1852_topic_permission(cur, user_id, sorov.maktab_id, sorov.sinf_id, sorov.fan_nomi)
         if sorov.chorak not in (1, 2, 3, 4):
-            raise HTTPException(status_code=400, detail="Chorak 1–4 bo'lishi kerak")
+            raise HTTPException(status_code=400, detail="Chorak 1вЂ“4 bo'lishi kerak")
         rows = []
         for index, item in enumerate(sorov.mavzular, 1):
             title = re.sub(r"\s+", " ", item.mavzu or "").strip()
@@ -6017,11 +6017,11 @@ def v1852_topic_unlock(token: str, maktab_id: int, taqvim_id: int):
 
 # ========================= V18.52 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.54 — KASBIY RIVOJLANISH KUNI + OMMAVIY O'QITUVCHI VAQTI
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.54 вЂ” KASBIY RIVOJLANISH KUNI + OMMAVIY O'QITUVCHI VAQTI
 # Aniq hafta kuni respublika bo'yicha bitta qilib belgilanmagan; tizim
 # fan guruhlari va maktab haftasidan kelib chiqib TAXMINIY tavsiya beradi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 class V1854BulkTeacherAvailability(BaseModel):
     maktab_id: int
@@ -6116,45 +6116,45 @@ def _v240_normalize_bulk_method_days(user_ids, hafta_kunlari, rejim):
     """Ommaviy metod kuni so'rovini yozuvdan oldin to'liq tekshiradi."""
     mode = str(rejim or "").strip().lower()
     if mode not in {"almashtirish", "ustiga_qoshish"}:
-        raise ValueError("Metod kunini saqlash rejimi noto‘g‘ri.")
+        raise ValueError("Metod kunini saqlash rejimi notoвЂgвЂri.")
 
     normalized_users = []
     seen_users = set()
     for raw in list(user_ids or []):
         if isinstance(raw, bool):
-            raise ValueError("O‘qituvchi ID raqam bo‘lishi kerak.")
+            raise ValueError("OвЂqituvchi ID raqam boвЂlishi kerak.")
         try:
             user_id = int(raw)
         except (TypeError, ValueError) as exc:
-            raise ValueError("O‘qituvchi ID raqam bo‘lishi kerak.") from exc
+            raise ValueError("OвЂqituvchi ID raqam boвЂlishi kerak.") from exc
         if user_id <= 0:
-            raise ValueError("O‘qituvchi ID musbat bo‘lishi kerak.")
+            raise ValueError("OвЂqituvchi ID musbat boвЂlishi kerak.")
         if user_id in seen_users:
-            raise ValueError(f"O‘qituvchi ID {user_id} ikki marta yuborilgan.")
+            raise ValueError(f"OвЂqituvchi ID {user_id} ikki marta yuborilgan.")
         seen_users.add(user_id)
         normalized_users.append(user_id)
     if not normalized_users:
-        raise ValueError("Kamida bitta o‘qituvchini tanlang.")
+        raise ValueError("Kamida bitta oвЂqituvchini tanlang.")
     if len(normalized_users) > 300:
-        raise ValueError("Bir so‘rovda 300 tadan ortiq o‘qituvchi saqlanmaydi.")
+        raise ValueError("Bir soвЂrovda 300 tadan ortiq oвЂqituvchi saqlanmaydi.")
 
     normalized_days = []
     seen_days = set()
     for raw in list(hafta_kunlari or []):
         if isinstance(raw, bool):
-            raise ValueError("Metod kuni 1–7 oralig‘idagi raqam bo‘lishi kerak.")
+            raise ValueError("Metod kuni 1вЂ“7 oraligвЂidagi raqam boвЂlishi kerak.")
         try:
             day = int(raw)
         except (TypeError, ValueError) as exc:
-            raise ValueError("Metod kuni 1–7 oralig‘idagi raqam bo‘lishi kerak.") from exc
+            raise ValueError("Metod kuni 1вЂ“7 oraligвЂidagi raqam boвЂlishi kerak.") from exc
         if day not in range(1, 8):
-            raise ValueError("Metod kuni 1–7 oralig‘ida bo‘lishi kerak.")
+            raise ValueError("Metod kuni 1вЂ“7 oraligвЂida boвЂlishi kerak.")
         if day in seen_days:
             raise ValueError(f"{day}-metod kuni ikki marta yuborilgan.")
         seen_days.add(day)
         normalized_days.append(day)
     if mode == "ustiga_qoshish" and not normalized_days:
-        raise ValueError("Qo‘shish rejimida kamida bitta metod kunini tanlang.")
+        raise ValueError("QoвЂshish rejimida kamida bitta metod kunini tanlang.")
     return {
         "user_ids": normalized_users,
         "hafta_kunlari": normalized_days,
@@ -6197,7 +6197,7 @@ def v240_bulk_teacher_method_days(
                 status_code=400,
                 detail=(
                     f"Maktab haftasi {active_weekdays} kunlik. "
-                    f"Metod kuni sifatida tanlab bo‘lmaydigan kunlar: "
+                    f"Metod kuni sifatida tanlab boвЂlmaydigan kunlar: "
                     f"{invalid_school_days}"
                 ),
             )
@@ -6229,7 +6229,7 @@ def v240_bulk_teacher_method_days(
                 0,
                 "metod_kuni",
                 True,
-                "V24.0 QO‘LDA OMMAVIY METOD KUNI",
+                "V24.0 QOвЂLDA OMMAVIY METOD KUNI",
             )
             for user_id in normalized["user_ids"]
             for day in normalized["hafta_kunlari"]
@@ -6386,16 +6386,16 @@ def v1859_teacher_subject_report(token: str, maktab_id: int):
 
 
 
-# ═══════════════════════════════════════════════════════════
-# V18.56 — MOSLASHUVCHAN SINF-KUN QOIDALARI
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.56 вЂ” MOSLASHUVCHAN SINF-KUN QOIDALARI
 # Rahbariyat xohlagan parallel yoki aniq sinfga xohlagan hafta kunini bir tugma bilan bloklaydi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
-# ═══════════════════════════════════════════════════════════
-# V18.57 — MAKTAB BOSH SAHIFASI UCHUN XAVFSIZ READ API
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.57 вЂ” MAKTAB BOSH SAHIFASI UCHUN XAVFSIZ READ API
 # Bir qo'shimcha jadval buzilsa ham butun bosh sahifa yiqilmaydi.
 # GET so'rovlari dublikat tozalash yoki migratsiya kabi yozuv amali bajarmaydi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 def _v1857_table_exists(cur, table_name: str) -> bool:
     cur.execute("SELECT to_regclass(%s) AS table_name", (f"public.{table_name}",))
@@ -6762,9 +6762,9 @@ def v1857_safe_smart_cases(token: str, maktab_id: int, holat: str = "ochiq"):
 
 # ========================= V18.60 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.66 — METOD KUNINI OMMAVIY TOZALASH + QAT'IY SINF SOATI
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.66 вЂ” METOD KUNINI OMMAVIY TOZALASH + QAT'IY SINF SOATI
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 class V1866MethodDayClear(BaseModel):
     maktab_id: int
@@ -6782,9 +6782,9 @@ def v1866_method_days_clear(sorov: V1866MethodDayClear, token: str):
             raise HTTPException(status_code=403, detail="Metod kunlarini faqat maktab rahbariyati ommaviy tozalaydi")
         ids = list(dict.fromkeys(int(x) for x in sorov.user_ids if int(x)))
         if not ids:
-            raise HTTPException(status_code=400, detail="Kamida bitta o‘qituvchini tanlang")
+            raise HTTPException(status_code=400, detail="Kamida bitta oвЂqituvchini tanlang")
         if sorov.hafta_kuni is not None and int(sorov.hafta_kuni) not in range(1, 7):
-            raise HTTPException(status_code=400, detail="Hafta kuni Dushanba–Shanba oralig‘ida bo‘lishi kerak")
+            raise HTTPException(status_code=400, detail="Hafta kuni DushanbaвЂ“Shanba oraligвЂida boвЂlishi kerak")
         cur.execute("SELECT user_id FROM users WHERE maktab_id=%s AND user_id=ANY(%s)", (sorov.maktab_id, ids))
         found = {int(row["user_id"]) for row in cur.fetchall()}
         missing = [uid for uid in ids if uid not in found]
@@ -6883,7 +6883,7 @@ def _v1866_target_classes(cur, sorov: V1866ClassHourBulk):
     if qamrov == "parallel":
         grades = sorted(set(int(x) for x in sorov.sinf_darajalari))
         if not grades or any(g not in range(1, 12) for g in grades):
-            raise HTTPException(status_code=400, detail="Kamida bitta 1–11-sinf parallelini tanlang")
+            raise HTTPException(status_code=400, detail="Kamida bitta 1вЂ“11-sinf parallelini tanlang")
         cur.execute("""SELECT s.id,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,s.rahbar_user_id,
                               COALESCE(u.full_name,'') AS rahbar_ismi
                        FROM maktab_sinflari s LEFT JOIN users u ON u.user_id=s.rahbar_user_id
@@ -6900,7 +6900,7 @@ def _v1866_target_classes(cur, sorov: V1866ClassHourBulk):
                        WHERE s.maktab_id=%s AND s.id=ANY(%s)
                        ORDER BY s.sinf::int,s.harf""", (sorov.maktab_id, ids))
     else:
-        raise HTTPException(status_code=400, detail="Qamrov parallel yoki aniq bo‘lishi kerak")
+        raise HTTPException(status_code=400, detail="Qamrov parallel yoki aniq boвЂlishi kerak")
     rows = cur.fetchall()
     if not rows:
         raise HTTPException(status_code=404, detail="Tanlangan sinflar topilmadi")
@@ -6967,13 +6967,13 @@ def v1866_class_hour_bulk_save(sorov: V1866ClassHourBulk, token: str):
         year = _v1852_active_year(cur, sorov.maktab_id)
         weekdays = int((year or {}).get("hafta_kunlari") or 6)
         if int(sorov.hafta_kuni) not in range(1, weekdays + 1):
-            raise HTTPException(status_code=400, detail=f"O‘qish haftasi {weekdays} kun. Mos hafta kunini tanlang")
+            raise HTTPException(status_code=400, detail=f"OвЂqish haftasi {weekdays} kun. Mos hafta kunini tanlang")
         if int(sorov.dars_raqami) not in range(1, 13):
-            raise HTTPException(status_code=400, detail="Dars raqami 1–12 oralig‘ida bo‘lishi kerak")
+            raise HTTPException(status_code=400, detail="Dars raqami 1вЂ“12 oraligвЂida boвЂlishi kerak")
         fan_nomi = _v192_clean_subject(sorov.fan_nomi) or "KELAJAK SOATI"
         haftalik_soat = int(sorov.haftalik_soat)
         if haftalik_soat not in range(1, 6):
-            raise HTTPException(status_code=400, detail="Kelajak soati haftasiga 1–5 soat bo‘lishi mumkin")
+            raise HTTPException(status_code=400, detail="Kelajak soati haftasiga 1вЂ“5 soat boвЂlishi mumkin")
         classes = _v1866_target_classes(cur, sorov)
         cur.execute("SELECT * FROM aqlli_smena_sozlamalari_v2 WHERE maktab_id=%s", (sorov.maktab_id,))
         shift_rows = [dict(row) for row in cur.fetchall()]
@@ -7083,7 +7083,7 @@ def v1866_class_hour_bulk_save(sorov: V1866ClassHourBulk, token: str):
             saved += 1
         if saved == 0:
             detail = "; ".join(f"{row['sinf']}: {row['sabab']}" for row in skipped[:8]) or "mos sinf topilmadi"
-            raise HTTPException(status_code=400, detail=f"Sinf soati saqlanmadi — {detail}")
+            raise HTTPException(status_code=400, detail=f"Sinf soati saqlanmadi вЂ” {detail}")
         conn.commit()
         return {"holat": "saqlandi", "saqlandi": saved, "otkazib_yuborildi": skipped}
     except Exception:
@@ -7099,10 +7099,10 @@ def v1866_class_hour_delete(token: str, maktab_id: int, sinf_id: int):
     try:
         _v1852_tables(cur)
         if not _v1852_manager(cur, actor_id, maktab_id):
-            raise HTTPException(status_code=403, detail="Sinf soatini faqat maktab rahbariyati o‘chiradi")
+            raise HTTPException(status_code=403, detail="Sinf soatini faqat maktab rahbariyati oвЂchiradi")
         raise HTTPException(
             status_code=409,
-            detail="KELAJAK SOATI majburiy: uni o‘chirib bo‘lmaydi, faqat kuni, vaqti va nomini tahrirlang",
+            detail="KELAJAK SOATI majburiy: uni oвЂchirib boвЂlmaydi, faqat kuni, vaqti va nomini tahrirlang",
         )
     except Exception:
         conn.rollback(); raise
@@ -7121,8 +7121,8 @@ def _v1866_build_class_hour_jobs(classes, rules):
         leader = cls.get("rahbar_user_id")
         if leader is None:
             warnings.append(
-                f"{cls['sinf']}-{cls['harf']} KELAJAK SOATI qat’iy katakka "
-                "o‘qituvchisiz qo‘yildi; sinf rahbarini keyin biriktiring"
+                f"{cls['sinf']}-{cls['harf']} KELAJAK SOATI qatвЂ™iy katakka "
+                "oвЂqituvchisiz qoвЂyildi; sinf rahbarini keyin biriktiring"
             )
         weekly = max(1, min(5, int(row.get("haftalik_soat") or 1)))
         for occurrence in range(1, weekly + 1):
@@ -7156,7 +7156,7 @@ def _v1866_class_hour_violations(cur, maktab_id: int, run_id: int):
         if not cur.fetchone():
             errors.append({
                 "sinf_id": row["sinf_id"],
-                "izoh": f"{row['sinf']}-{row['harf']} · {_V1852_HAFTA.get(int(row['hafta_kuni']), row['hafta_kuni'])} · {row['dars_raqami']}-dars",
+                "izoh": f"{row['sinf']}-{row['harf']} В· {_V1852_HAFTA.get(int(row['hafta_kuni']), row['hafta_kuni'])} В· {row['dars_raqami']}-dars",
             })
     return errors
 
@@ -7164,9 +7164,9 @@ def _v1866_class_hour_violations(cur, maktab_id: int, run_id: int):
 
 
 
-# ═══════════════════════════════════════════════════════════
-# V18.68 — O'QITUVCHI VAQT MATRITSASI
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.68 вЂ” O'QITUVCHI VAQT MATRITSASI
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 class V1868TeacherMatrixItem(BaseModel):
     user_id: int
@@ -7281,11 +7281,11 @@ def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
 
 # ========================= V18.68 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.71 — AVTO METOD KUNI FAQAT ADMIN YOQQANDA ISHLAYDI
-# Maktab fan → kun qoidalarini bir marta saqlaydi. Avto O'CHIQ bo'lsa
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.71 вЂ” AVTO METOD KUNI FAQAT ADMIN YOQQANDA ISHLAYDI
+# Maktab fan в†’ kun qoidalarini bir marta saqlaydi. Avto O'CHIQ bo'lsa
 # tizim o'zi hech qanday metod kuni topmaydi va eski avto belgilarni olib tashlaydi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 _V1871_AUTO_METHOD_PREFIX = "V18.71 AUTO METOD:"
 _V1871_OLD_AUTO_PREFIX = "V18.54 taxminiy kasbiy rivojlanish kuni"
@@ -7293,7 +7293,7 @@ _V1871_OLD_AUTO_PREFIX = "V18.54 taxminiy kasbiy rivojlanish kuni"
 
 def _v1871_method_subject_key(value):
     text = str(value or "").casefold()
-    for old in ("‘", "’", "`", "ʼ", "ʻ"):
+    for old in ("вЂ", "вЂ™", "`", "Кј", "К»"):
         text = text.replace(old, "'")
     return " ".join(text.split())
 
@@ -7437,7 +7437,7 @@ def v1871_auto_method_get(token: str, maktab_id: int):
             "hisobot": _v1871_method_report(cur, maktab_id, rules),
             "izoh": (
                 "Avto O'CHIQ bo'lsa tizim metod kunini o'zi aniqlamaydi. "
-                "Avto YOQ bo'lsa faqat shu fan→kun qoidalari ishlaydi."
+                "Avto YOQ bo'lsa faqat shu fanв†’kun qoidalari ishlaydi."
             ),
         }
     finally:
@@ -7509,7 +7509,7 @@ def v1871_auto_method_save(sorov: V1871AutoMethodSettings, token: str):
                 status_code=400,
                 detail=(
                     "Avto metod kunini yoqish uchun kamida bitta "
-                    "fan→kun qoidasi kerak"
+                    "fanв†’kun qoidasi kerak"
                 ),
             )
 
@@ -7659,12 +7659,12 @@ def v1871_auto_method_save(sorov: V1871AutoMethodSettings, token: str):
 
 # ========================= V18.71 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.73 — RASMIY METOD KUNLARI PRESETI + PSIXOLOG ISTISNOSI
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.73 вЂ” RASMIY METOD KUNLARI PRESETI + PSIXOLOG ISTISNOSI
 # O'zA 12.12.2024 dagi fan guruhlari asosida birinchi ochilishda
 # qattiq metod kunlari avtomatik qo'llanadi. Keyin rahbariyat
 # o'qituvchi vaqt matritsasida bittalab tuzatishi mumkin.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 _V1873_METHOD_PREFIX = "V18.73 RASMIY METOD:"
 _V1873_SOURCE_URL = "https://uza.uz/cn/posts/kasbiy-rivojlanish-kuni-va-kasbiy-rivojlanish-soati-joriy-etildi_667022"
@@ -7674,19 +7674,19 @@ _V1873_DAY_LABELS = {
 }
 _V1873_OFFICIAL_DISPLAY = {
     1: ["Tarix", "Davlat va huquq asoslari", "Tarbiya"],
-    2: ["Ona tili", "Adabiyot", "O‘zbek tili", "Rus tili"],
+    2: ["Ona tili", "Adabiyot", "OвЂzbek tili", "Rus tili"],
     3: ["Fizika", "Astronomiya", "Kimyo", "Biologiya", "Geografiya", "Iqtisodiyot", "Tabiiy fan"],
     4: ["Matematika", "Algebra", "Geometriya", "Informatika", "Axborot texnologiyalari"],
     5: ["Ingliz tili", "Nemis tili", "Fransuz tili", "Boshqa xorijiy tillar"],
-    6: ["Boshlang‘ich ta’lim", "Tasviriy san’at", "Chizmachilik", "Musiqa", "Texnologiya", "Jismoniy tarbiya", "Chaqiruvga qadar boshlang‘ich tayyorgarlik"],
+    6: ["BoshlangвЂich taвЂ™lim", "Tasviriy sanвЂ™at", "Chizmachilik", "Musiqa", "Texnologiya", "Jismoniy tarbiya", "Chaqiruvga qadar boshlangвЂich tayyorgarlik"],
 }
 
 
 def _v1873_norm(value):
     text = str(value or "").casefold()
-    for old in ("‘", "’", "`", "ʼ", "ʻ"):
+    for old in ("вЂ", "вЂ™", "`", "Кј", "К»"):
         text = text.replace(old, "'")
-    text = re.sub(r"[^0-9a-zа-яёўқғҳў' ]+", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"[^0-9a-zР°-СЏС‘СћТ›Т“ТіСћ' ]+", " ", text, flags=re.IGNORECASE)
     return " ".join(text.split())
 
 
@@ -7827,7 +7827,7 @@ def _v1873_assignments(cur, maktab_id):
         )
         teacher_languages.setdefault(user_id, set()).add(language)
     # Legacy importlarda canonical dars birikmasi hali yaratilmagan, ammo
-    # xodim–sinf fan bog'lanishi mavjud bo'lishi mumkin. Bunday o'qituvchini
+    # xodimвЂ“sinf fan bog'lanishi mavjud bo'lishi mumkin. Bunday o'qituvchini
     # UZga majburan tushirmay, bog'langan sinfning haqiqiy tilini olamiz.
     cur.execute("""SELECT x.user_id,x.fanlari,
                           COALESCE(s.talim_tili,'uz') AS talim_tili
@@ -7923,7 +7923,7 @@ def _v1873_assignments(cur, maktab_id):
                 "user_id": uid,
                 "full_name": teacher["full_name"],
                 "hafta_kuni": 6,
-                "asos": "Boshlang‘ich ta’lim (legacy)",
+                "asos": "BoshlangвЂich taвЂ™lim (legacy)",
                 "fanlar": teacher.get("fanlar_royxati") or [],
             })
             continue
@@ -8263,12 +8263,12 @@ def v1873_official_method_save(sorov: V1873OfficialMethodSettings, token: str):
 
 # ========================= V18.73 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.74 — SANQvaN ASOSIDAGI DARS JADVALI MANTIG'I
-# 1–4-sinf kunlik yuklama, 5–11-sinf 6 dars limiti,
-# asosiy fanlarni 2–3/2–4-darslarga, yengil fanlarni kechroq,
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.74 вЂ” SANQvaN ASOSIDAGI DARS JADVALI MANTIG'I
+# 1вЂ“4-sinf kunlik yuklama, 5вЂ“11-sinf 6 dars limiti,
+# asosiy fanlarni 2вЂ“3/2вЂ“4-darslarga, yengil fanlarni kechroq,
 # jismoniy tarbiyani oxirgi darslarga joylashtirish.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 _v1874_base_build_jobs = _v1852_build_jobs_base
 _v1874_base_candidate_reasons = _v1852_candidate_reasons_base
@@ -8277,9 +8277,9 @@ _v1874_base_place_job = _v1852_place_job_base
 
 def _v1874_subject_key(value):
     text = unicodedata.normalize("NFKC", str(value or "")).casefold()
-    for old in ("‘", "’", "`", "ʼ", "ʻ", "'", "\""):
+    for old in ("вЂ", "вЂ™", "`", "Кј", "К»", "'", "\""):
         text = text.replace(old, "")
-    text = re.sub(r"[^a-z0-9а-яёқғҳў]+", " ", text, flags=re.IGNORECASE)
+    text = re.sub(r"[^a-z0-9Р°-СЏС‘Т›Т“ТіСћ]+", " ", text, flags=re.IGNORECASE)
     return " ".join(text.split())
 
 
@@ -8403,7 +8403,7 @@ def _v1874_subject_profile(fan, grade):
     ))
     # Pedagogik asosiy fanlar: aynan o'quvchining ertalabki yuqori diqqatini
     # talab qiladigan yozma/tahliliy fanlar. Xorijiy til, informatika, tarix va
-    # geografiya muhim, lekin bu qatlamga avtomatik kiritilmaydi — aks holda
+    # geografiya muhim, lekin bu qatlamga avtomatik kiritilmaydi вЂ” aks holda
     # deyarli barcha fan "asosiy" bo'lib, ustuvorlikning ma'nosi yo'qoladi.
     core_priority = bool(
         primary_core or is_math or is_native_language or is_literature
@@ -8439,18 +8439,18 @@ def _v1874_subject_period_penalty(profile, grade, period, max_period=None):
     period = int(period or 0)
     max_period = int(max_period or _v1874_max_total_periods(grade))
     if profile.get("physical"):
-        # Jismoniy tarbiya 3–6-darslarda afzal; 1–2 faqat zarur istisno.
+        # Jismoniy tarbiya 3вЂ“6-darslarda afzal; 1вЂ“2 faqat zarur istisno.
         return {1: 320, 2: 190, 3: 25, 4: -12, 5: -24, 6: -28}.get(
             period, 20 + abs(period - min(6, max_period)) * 8
         )
     if profile.get("technology"):
-        # Texnologiya amaliy fan: 1–2-dars faqat boshqa yechim qolmaganda,
-        # odatda 4–6-darslarda (imkon bo'lsa J/T dan keyin) joylashadi.
+        # Texnologiya amaliy fan: 1вЂ“2-dars faqat boshqa yechim qolmaganda,
+        # odatda 4вЂ“6-darslarda (imkon bo'lsa J/T dan keyin) joylashadi.
         return {1: 330, 2: 220, 3: 48, 4: -12, 5: -25, 6: -30}.get(
             period, 35 + abs(period - min(6, max_period)) * 8
         )
     if profile.get("math"):
-        # Matematika 1–5 oralig'ida qoladi, 2–4 eng samarali vaqt.
+        # Matematika 1вЂ“5 oralig'ida qoladi, 2вЂ“4 eng samarali vaqt.
         return {1: 2, 2: -10, 3: -12, 4: -9, 5: 5, 6: 70}.get(
             period, 90 + max(0, period - 6) * 15
         )
@@ -8632,8 +8632,8 @@ def _v1874_build_jobs(classes, loads, assignments, group_settings, teachers):
             )
 
     warnings.append(
-        "SanQvaN profili faol: 1–4-sinfda 6-dars qo‘yilmaydi; "
-        "5–11-sinfda majburiy darslar 6 tadan oshmaydi; asosiy fanlar ertaroq, "
+        "SanQvaN profili faol: 1вЂ“4-sinfda 6-dars qoвЂyilmaydi; "
+        "5вЂ“11-sinfda majburiy darslar 6 tadan oshmaydi; asosiy fanlar ertaroq, "
         "yengil va jismoniy tarbiya darslari kechroq joylashtiriladi"
     )
     if rotation_pairs:
@@ -8688,20 +8688,20 @@ def _v1874_candidate_reasons(job, day, period, selected_teachers, room_keys, sta
     max_total = _v1874_max_total_periods(grade)
 
     if 1 <= grade <= 4 and int(day) == 6:
-        reasons.append("1–4-sinf uchun Shanba o‘qish kuni emas")
+        reasons.append("1вЂ“4-sinf uchun Shanba oвЂqish kuni emas")
     if int(period) > max_total:
-        reasons.append(f"{grade}-sinf uchun {max_total}-darsdan keyin majburiy dars qo‘yilmaydi")
+        reasons.append(f"{grade}-sinf uchun {max_total}-darsdan keyin majburiy dars qoвЂyilmaydi")
     if total_count >= max_total:
-        reasons.append(f"sinfning kunlik jami {max_total} ta mashg‘ulot limiti to‘lgan")
+        reasons.append(f"sinfning kunlik jami {max_total} ta mashgвЂulot limiti toвЂlgan")
 
     if 1 <= grade <= 4:
         if profile["academic"]:
             if state["subject_daily"].get(
                 (job["sinf_id"], job["fan"].casefold(), day), 0
             ) >= 1:
-                reasons.append("boshlang‘ich sinfda bir fan shu kuni takror qo‘yilmaydi")
+                reasons.append("boshlangвЂich sinfda bir fan shu kuni takror qoвЂyilmaydi")
             if academic_count >= 5:
-                reasons.append("boshlang‘ich sinfning akademik kunlik limiti to‘lgan")
+                reasons.append("boshlangвЂich sinfning akademik kunlik limiti toвЂlgan")
             if academic_count == 4:
                 fifth_days = fifth_map.get(job["sinf_id"], set())
                 fifth_limit = _v1874_fifth_day_limit(grade)
@@ -8710,9 +8710,9 @@ def _v1874_candidate_reasons(job, day, period, selected_teachers, room_keys, sta
                         f"{grade}-sinfda 5 akademik darsli kunlar soni {fifth_limit} tadan oshmaydi"
                     )
                 if not profile["primary_light"]:
-                    reasons.append("boshlang‘ichda 5-akademik dars faqat yengil fan bo‘lishi kerak")
+                    reasons.append("boshlangвЂichda 5-akademik dars faqat yengil fan boвЂlishi kerak")
         if int(period) == 5 and profile["academic"] and not profile["primary_light"]:
-            reasons.append("5-darsga matematika, til, o‘qish yoki boshqa og‘ir fan qo‘yilmaydi")
+            reasons.append("5-darsga matematika, til, oвЂqish yoki boshqa ogвЂir fan qoвЂyilmaydi")
 
     return list(dict.fromkeys(reasons))
 
@@ -8792,11 +8792,11 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
                     ),
                 })
         if 1 <= grade <= 4 and day == 6:
-            violations.append({"sinf": class_name, "sabab": "Shanba kuni boshlang‘ich sinf darsi bor"})
+            violations.append({"sinf": class_name, "sabab": "Shanba kuni boshlangвЂich sinf darsi bor"})
         if total_sessions > max_total:
             violations.append({
                 "sinf": class_name,
-                "sabab": f"{_V1852_HAFTA.get(day, day)} kuni {total_sessions} ta mashg‘ulot; maksimum {max_total}",
+                "sabab": f"{_V1852_HAFTA.get(day, day)} kuni {total_sessions} ta mashgвЂulot; maksimum {max_total}",
             })
         if period_fans and max(period_fans) > max_total:
             violations.append({
@@ -8818,7 +8818,7 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
                 if 1 <= grade <= 4 and period == 5 and profile["academic"] and not profile["primary_light"]:
                     violations.append({
                         "sinf": class_name,
-                        "sabab": f"{_V1852_HAFTA.get(day, day)} 5-darsda og‘ir fan: {fan}",
+                        "sabab": f"{_V1852_HAFTA.get(day, day)} 5-darsda ogвЂir fan: {fan}",
                     })
             if has_academic:
                 academic_periods += 1
@@ -8848,7 +8848,7 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
             ),
         })
 
-    # O‘qituvchining haftalik chegarasi ham tasdiqlash oldidan qayta tekshiriladi.
+    # OвЂqituvchining haftalik chegarasi ham tasdiqlash oldidan qayta tekshiriladi.
     cur.execute(
         """WITH teacher_sessions AS (
                SELECT DISTINCT
@@ -8891,7 +8891,7 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
         if actual > cap + 1e-9:
             violations.append({
                 "sinf": row["full_name"],
-                "sabab": f"o‘qituvchi yuklamasi {actual} soat, ruxsat etilgan {cap} soatdan oshgan",
+                "sabab": f"oвЂqituvchi yuklamasi {actual} soat, ruxsat etilgan {cap} soatdan oshgan",
             })
 
     unique = []
@@ -8905,12 +8905,12 @@ def _v1874_schedule_hygiene_violations(cur, maktab_id: int, run_id: int):
 
 # ========================= V18.74 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V18.75 — SHABLON → REJA → DRAFT → TASDIQ 100% MOSLIK
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.75 вЂ” SHABLON в†’ REJA в†’ DRAFT в†’ TASDIQ 100% MOSLIK
 # O'qituvchi haftalik jami, o'qituvchi kun/vaqt cheklovi,
 # sinf haftalik jami, fan haftalik soati va haqiqiy jadval bir xil bo'lmasa
 # tasdiqlash mutlaqo rad etiladi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 
 def _v1875_tables(cur):
@@ -8981,7 +8981,7 @@ def _v1875_exact_assignment_model(cur, maktab_id: int):
                 f"{class_label} / {subject} / {row.get('full_name')}: haftalik soat 0 yoki bo'sh"
             )
         if daily_max < 1 or daily_max > 4:
-            errors.append(f"{class_label} / {subject}: kunlik max 1–4 bo'lishi kerak")
+            errors.append(f"{class_label} / {subject}: kunlik max 1вЂ“4 bo'lishi kerak")
         key = (int(row["sinf_id"]), subject_key)
         pair = pairs.setdefault(key, {
             "sinf_id": int(row["sinf_id"]),
@@ -9453,7 +9453,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
 
     if not model["pairs"]:
-        errors.append("DARS_BIRIKMALARI varag'idan birorta ham aniq sinf–fan–soat topilmadi")
+        errors.append("DARS_BIRIKMALARI varag'idan birorta ham aniq sinfвЂ“fanвЂ“soat topilmadi")
 
     class_summary = []
     for class_id, cls in classes.items():
@@ -9466,8 +9466,8 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 allowed_days.append(day)
         fan_hours = float(model["class_hours"].get(class_id, 0))
         class_hour_rule = class_hour_by_class.get(class_id, {})
-        # KELAJAK SOATI rahbar hali biriktirilmagan bo‘lsa ham sinfning
-        # qat’iy jadval katagi hisoblanadi. Rahbar keyin tahrirda ulanadi.
+        # KELAJAK SOATI rahbar hali biriktirilmagan boвЂlsa ham sinfning
+        # qatвЂ™iy jadval katagi hisoblanadi. Rahbar keyin tahrirda ulanadi.
         class_hour = int(class_hour_rule.get("haftalik_soat") or 0)
         if 1 <= grade <= 4:
             base_per_day = min(4, shift_periods)
@@ -9664,7 +9664,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 )
             )
             message = (
-                f"V22.40 DAILY-BALANCE · {pair['sinf']} / {pair['fan_nomi']}: sinf va "
+                f"V22.40 DAILY-BALANCE В· {pair['sinf']} / {pair['fan_nomi']}: sinf va "
                 f"{teacher_names} uchun strict umumiy legal kun "
                 f"{len(common_days)} ta; sig'im {common_capacity:g}, reja "
                 f"{weekly_sessions:g}."
@@ -9733,7 +9733,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 errors.append(
                     f"{row.get('full_name')}: {fixed_row['sinf']}-{fixed_row['harf']} "
                     f"KELAJAK SOATI {fixed_period}-darsga qat'iy tanlangan, lekin "
-                    f"o'qituvchi oralig'i {teacher_rules['eng_erta_dars']}–"
+                    f"o'qituvchi oralig'i {teacher_rules['eng_erta_dars']}вЂ“"
                     f"{teacher_rules['eng_kech_dars']}-dars"
                 )
             fixed_day = int(fixed_row.get("hafta_kuni") or 0)
@@ -9749,7 +9749,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                     f"{row.get('full_name')}: {fixed_row['sinf']}-{fixed_row['harf']} "
                     f"KELAJAK SOATI {_V1852_HAFTA.get(fixed_day, fixed_day)} "
                     f"kuni {fixed_period}-darsga tanlangan, ammo bu vaqt "
-                    "o'qituvchida qizil/BAND. Qat’iy rejim bu katakni "
+                    "o'qituvchida qizil/BAND. QatвЂ™iy rejim bu katakni "
                     "avtomatik ochmaydi; vaqtni manbada tahrirlang"
                 )
             if (
@@ -9759,7 +9759,7 @@ def _v1875_preflight_report(cur, maktab_id: int):
                 errors.append(
                     f"{row.get('full_name')}: {fixed_row['sinf']}-{fixed_row['harf']} "
                     f"KELAJAK SOATI {_V1852_HAFTA.get(fixed_day, fixed_day)} "
-                    "metod kuniga tanlangan. Qat’iy rejim metod kunini "
+                    "metod kuniga tanlangan. QatвЂ™iy rejim metod kunini "
                     "avtomatik ochmaydi; kun yoki darsni manbada tahrirlang"
                 )
         capacity = 0
@@ -9908,7 +9908,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
     current_hash = _v1875_source_fingerprint(cur, maktab_id)
     stored_hash = settings.get("manba_hash") if isinstance(settings, dict) else None
     if stored_hash and stored_hash != current_hash:
-        errors.append("Draft yaratilgandan keyin shablon, fan soati yoki vaqt qoidalari o'zgargan — yangi draft kerak")
+        errors.append("Draft yaratilgandan keyin shablon, fan soati yoki vaqt qoidalari o'zgargan вЂ” yangi draft kerak")
 
     cur.execute("""SELECT e.*,s.sinf,s.harf,COALESCE(s.smena,1) AS sinf_smena,
                           u.full_name AS oqituvchi_ismi
@@ -10359,7 +10359,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         explicit_practical_double = bool(practical and effective_daily > 1)
         allowed_daily = 2
 
-        # TOQ/JUFT — ikkita real hafta fazasi. ``har_hafta`` ikkalasida ham
+        # TOQ/JUFT вЂ” ikkita real hafta fazasi. ``har_hafta`` ikkalasida ham
         # sanaladi; shu hisob exact solverning faza kontrakti bilan bir xil.
         for phase in ("toq", "juft"):
             phase_sessions = {
@@ -10409,7 +10409,7 @@ def _v1875_schedule_integrity_report(cur, maktab_id: int, run_id: int):
         message = f"{item['sinf']}: {item['sabab']}"
         reason = str(item.get("sabab") or "")
         if _v212_hygiene_is_soft(reason):
-            warnings.append("Pedagogik zaxira · " + message)
+            warnings.append("Pedagogik zaxira В· " + message)
         else:
             errors.append(message)
     for item in _v1856_schedule_block_violations(cur, maktab_id, run_id):
@@ -10492,12 +10492,12 @@ def v1875_schedule_preflight(token: str, maktab_id: int):
 # ========================= V18.75 END =========================
 
 
-# ═══════════════════════════════════════════════════════════
-# V18.76 — GURUHLI FANLARNI JADVALDAN OLDIN TASDIQLASH
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V18.76 вЂ” GURUHLI FANLARNI JADVALDAN OLDIN TASDIQLASH
 # Sinf yaratishda saqlangan guruh tizimlari va Excel DARS_BIRIKMALARI
-# bitta hisobotda solishtiriladi. Guruh→o'qituvchi taqsimoti to'liq
+# bitta hisobotda solishtiriladi. Guruhв†’o'qituvchi taqsimoti to'liq
 # tasdiqlanmaguncha moslik tekshiruvi, draft yaratish va tasdiqlash yopiq.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 
 def _v1876_tables(cur):
@@ -10562,7 +10562,7 @@ def _v1876_seed_legacy_group_systems(cur, maktab_id: int):
             "1/2": "alphabet", "1_2": "alphabet", "numbered": "alphabet",
             "half": "alphabet", "ikki_guruh": "alphabet",
             "ogil_qiz": "gender", "o'g'il/qiz": "gender",
-            "o‘g‘il/qiz": "gender", "boys_girls": "gender",
+            "oвЂgвЂil/qiz": "gender", "boys_girls": "gender",
         }.get(kind, kind)
         if kind not in _SINF_GURUH_TIZIM_NOMLARI:
             continue
@@ -10883,7 +10883,7 @@ def _v1876_group_review_report(cur, maktab_id: int):
         fallback_load = load_map.get(key) or {}
         if not positive_hours and float(fallback_load.get("haftalik_soat") or 0) > 0:
             positive_hours = [float(fallback_load["haftalik_soat"])]
-            warnings.append("Haftalik soat oldingi sinf–fan yuklamasidan olindi")
+            warnings.append("Haftalik soat oldingi sinfвЂ“fan yuklamasidan olindi")
         if not nonempty_daily and fallback_load:
             nonempty_daily = [int(fallback_load.get("kunlik_max") or 1)]
 
@@ -10907,7 +10907,7 @@ def _v1876_group_review_report(cur, maktab_id: int):
             elif not candidate_systems and not selected_system:
                 errors.append("Bu fan uchun qaysi guruhlash tizimi ishlashi aniqlanmagan")
             elif len(candidate_systems) > 1 and not selected_system:
-                warnings.append("Bir nechta guruhlash tizimi mos keldi — bittasini tanlang")
+                warnings.append("Bir nechta guruhlash tizimi mos keldi вЂ” bittasini tanlang")
 
             if selected_system:
                 system_groups = selected_system.get("guruhlar") or []
@@ -10982,7 +10982,7 @@ def _v1876_group_review_report(cur, maktab_id: int):
                             room_id = int(suggested_room["id"])
                         else:
                             warnings.append(
-                                "Bo'linishga xona topilmadi — bir guruh sinf xonasida qoladi, qolganiga sport zal yoki zaxira xona kiriting"
+                                "Bo'linishga xona topilmadi вЂ” bir guruh sinf xonasida qoladi, qolganiga sport zal yoki zaxira xona kiriting"
                             )
                     if room_id is not None:
                         used_room_ids.add(int(room_id))
@@ -11031,9 +11031,9 @@ def _v1876_group_review_report(cur, maktab_id: int):
         )
 
         # Parallel guruh hisobining uchta alohida o'lchovi:
-        #   1) sinf reja soati — guruhlar soniga ko'paymaydi;
-        #   2) o'qituvchi-soat — har bir guruh o'qituvchisiga alohida yoziladi;
-        #   3) jadval sloti — guruhlar bir vaqtda parallel turgani uchun reja soatiga teng.
+        #   1) sinf reja soati вЂ” guruhlar soniga ko'paymaydi;
+        #   2) o'qituvchi-soat вЂ” har bir guruh o'qituvchisiga alohida yoziladi;
+        #   3) jadval sloti вЂ” guruhlar bir vaqtda parallel turgani uchun reja soatiga teng.
         parallel_guruh_soni = (
             len(group_payload)
             if mode == "group" and group_payload
@@ -11757,7 +11757,7 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
         if int((cur.fetchone() or {}).get("soni") or 0) == 0:
             _sinf_guruh_tizimini_taqsimla(cur, system_id)
 
-        # Tezkor tugma faqat sinf–fan guruh sxemasini yaratadi/bog'laydi.
+        # Tezkor tugma faqat sinfвЂ“fan guruh sxemasini yaratadi/bog'laydi.
         # O'qituvchining ``whole`` yoki aniq guruh yuklamasi bu endpointda
         # UPDATE/DELETE qilinmaydi; foydalanuvchi uni setkada ongli tanlaydi.
 
@@ -11816,11 +11816,11 @@ def _v238_normalize_group_system(value):
     normalized = {
         "alphabet": "alphabet", "1/2": "alphabet", "1_2": "alphabet",
         "numbered": "alphabet", "ikki_guruh": "alphabet",
-        "gender": "gender", "o'g'il/qiz": "gender", "o‘g‘il/qiz": "gender",
+        "gender": "gender", "o'g'il/qiz": "gender", "oвЂgвЂil/qiz": "gender",
         "ogil_qiz": "gender", "boys_girls": "gender",
     }.get(key)
     if normalized is None:
-        raise ValueError("Guruh turi faqat 1/2-guruh yoki O‘g‘il/Qiz bo‘lishi kerak")
+        raise ValueError("Guruh turi faqat 1/2-guruh yoki OвЂgвЂil/Qiz boвЂlishi kerak")
     return normalized
 
 
@@ -11831,12 +11831,12 @@ def _v238_normalize_subject_group_mode(value):
         "none": "whole", "bolinmagan": "whole",
         "alphabet": "alphabet", "1/2": "alphabet", "1_2": "alphabet",
         "numbered": "alphabet", "ikki_guruh": "alphabet",
-        "gender": "gender", "o'g'il/qiz": "gender", "o‘g‘il/qiz": "gender",
+        "gender": "gender", "o'g'il/qiz": "gender", "oвЂgвЂil/qiz": "gender",
         "ogil_qiz": "gender", "boys_girls": "gender",
     }.get(key)
     if normalized is None:
         raise ValueError(
-            "Guruh turi faqat Butun sinf, 1/2-guruh yoki O‘g‘il/Qiz bo‘lishi kerak"
+            "Guruh turi faqat Butun sinf, 1/2-guruh yoki OвЂgвЂil/Qiz boвЂlishi kerak"
         )
     return normalized
 
@@ -12037,7 +12037,7 @@ def _v238_matching_subject_rows(
     }
     # Bir sinfda Ingliz va Nemis kabi bir oiladagi ikki mustaqil fan bo'lsa
     # taxmin qilmaymiz: faqat exact nom xavfsiz. Yagona canonical fan bo'lsa
-    # eski "Ingliz tili" ↔ yangi "Chet tili" aliasi shu pairga tegishli.
+    # eski "Ingliz tili" в†” yangi "Chet tili" aliasi shu pairga tegishli.
     return family if len(planned_family) == 1 else []
 
 
@@ -12107,7 +12107,7 @@ def _v238_validate_pair_mode_source(
                 raise HTTPException(
                     status_code=409,
                     detail=(
-                        f"Bu sinf–fan {label} qatorida boshqa maktabga tegishli "
+                        f"Bu sinfвЂ“fan {label} qatorida boshqa maktabga tegishli "
                         "yoki mavjud bo'lmagan o'qituvchi bor. Ma'lumot o'zgartirilmadi"
                     ),
                 )
@@ -12120,7 +12120,7 @@ def _v238_validate_pair_mode_source(
                 raise HTTPException(
                     status_code=409,
                     detail=(
-                        f"Bu sinf–fan {label} qatorida boshqa maktabga tegishli "
+                        f"Bu sinfвЂ“fan {label} qatorida boshqa maktabga tegishli "
                         "yoki mavjud bo'lmagan xona bor. Ma'lumot o'zgartirilmadi"
                     ),
                 )
@@ -12147,7 +12147,7 @@ def _v238_validate_pair_mode_source(
         raise HTTPException(
             status_code=409,
             detail=(
-                "Bu sinf–fan qatorida bitta guruhga bir nechta faol qator yoki "
+                "Bu sinfвЂ“fan qatorida bitta guruhga bir nechta faol qator yoki "
                 "sozlama yozilgan. Avval ziddiyatni qo'lda tuzating"
             ),
         )
@@ -12160,7 +12160,7 @@ def _v238_validate_pair_mode_source(
         raise HTTPException(
             status_code=409,
             detail=(
-                "Bu sinf–fanda Butun sinf va guruh qator/sozlamalari aralash. "
+                "Bu sinfвЂ“fanda Butun sinf va guruh qator/sozlamalari aralash. "
                 "Avval ziddiyatni qo'lda tuzating"
             ),
         )
@@ -12699,7 +12699,7 @@ def _v238_replace_subject_mode_rows(
     )
     current_archive_id = int(cur.fetchone()["id"])
 
-    # Faqat subject↔mode havolasi ko'chadi. Guruh tizimi va a'zolari shu
+    # Faqat subjectв†”mode havolasi ko'chadi. Guruh tizimi va a'zolari shu
     # holicha qoladi; whole bo'lsa fan barcha sxemalardan uziladi.
     _v1876_update_system_subjects(
         cur, class_id, subject,
@@ -13069,16 +13069,16 @@ def v238_subject_group_mode_switch(sorov: V238SubjectGroupModeSwitch, token: str
 
 @app.put("/api/maktab/aqlli_jadval/v3/sinf_guruh_tizimlari")
 def v238_class_group_systems_add(sorov: V238ClassGroupSystemsBatch, token: str):
-    """Tanlangan sinflarga guruh sxemalarini faqat qo‘shadi (merge/upsert).
+    """Tanlangan sinflarga guruh sxemalarini faqat qoвЂshadi (merge/upsert).
 
-    1/2-guruhdan keyin O‘g‘il/Qiz qo‘shilsa birinchi sxema, uning fanlari,
-    a’zolari va o‘qituvchi/xona sozlamalari o‘chirilmaydi.
+    1/2-guruhdan keyin OвЂgвЂil/Qiz qoвЂshilsa birinchi sxema, uning fanlari,
+    aвЂ™zolari va oвЂqituvchi/xona sozlamalari oвЂchirilmaydi.
     """
     actor_id = _jwt_tekshir(token)
     try:
         class_ids = sorted({int(value) for value in sorov.sinf_idlar})
     except (TypeError, ValueError) as exc:
-        raise HTTPException(status_code=400, detail="Sinf IDlari noto‘g‘ri") from exc
+        raise HTTPException(status_code=400, detail="Sinf IDlari notoвЂgвЂri") from exc
     if not class_ids:
         raise HTTPException(status_code=400, detail="Kamida bitta sinfni tanlang")
     try:
@@ -13115,7 +13115,7 @@ def v238_class_group_systems_add(sorov: V238ClassGroupSystemsBatch, token: str):
         if missing:
             raise HTTPException(
                 status_code=404,
-                detail="Bu maktabga tegishli bo‘lmagan sinf IDlari: "
+                detail="Bu maktabga tegishli boвЂlmagan sinf IDlari: "
                 + ", ".join(map(str, missing)),
             )
 
@@ -13204,8 +13204,8 @@ def v238_class_group_systems_add(sorov: V238ClassGroupSystemsBatch, token: str):
 # ========================= V18.76 QUICK/ADDITIVE GROUP SYSTEM END =========================
 
 
-# ═══════════════════════════════════════════════════════════
-# V19.2 — O'QITUVCHI-ASOSLI YUKLAMA + AQILLI ALMASHTIRISH
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V19.2 вЂ” O'QITUVCHI-ASOSLI YUKLAMA + AQILLI ALMASHTIRISH
 #
 # Bitta kanonik qator:
 #   o'qituvchi + fan + sinf + aniq guruh + haftalik soat.
@@ -13215,7 +13215,7 @@ def v238_class_group_systems_add(sorov: V238ClassGroupSystemsBatch, token: str):
 # Fizika, Astronomiya va Iqtisoddan turli sinf/guruhlarga kirsa ham fanlar
 # aralashmaydi. Sinf reja soati guruhlar soniga ko'paymaydi, o'qituvchi
 # yuklamasi esa har bir guruh bo'yicha alohida yig'iladi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 
 SAMTM_V19_2_AUTO_SWAP_DEFAULT = str(
@@ -13300,7 +13300,7 @@ def _v192_tables(cur):
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         UNIQUE(maktab_id,sinf_id,fan_nomi)
     )""")
-    # 2026–2027 tayanch rejada 0,5 va 1,5 soatli fanlar bor. Eski INTEGER
+    # 2026вЂ“2027 tayanch rejada 0,5 va 1,5 soatli fanlar bor. Eski INTEGER
     # ustunni ma'lumotni yo'qotmasdan kasr soat saqlaydigan turga o'tkazamiz.
     cur.execute("""DO $$
         DECLARE constraint_name TEXT;
@@ -13375,7 +13375,7 @@ def v197_fractional_hour_capabilities():
     )
     return {
         # Eski V19.7 frontend aynan shu qiymatni tekshiradi. Platformaning
-        # haqiqiy yangi versiyasi alohida qaytariladi — backendni birinchi
+        # haqiqiy yangi versiyasi alohida qaytariladi вЂ” backendni birinchi
         # deploy qilganda foydalanuvchi V19.7 frontend bilan ham saqlay oladi.
         "release": "samtm-fractional-hours-ab-week-v19.7",
         "platform_release": SAMTM_SCHOOL_RELEASE,
@@ -13421,78 +13421,78 @@ SAMTM_SCHOOL_SETUP_RELEASE = "SAMTM-SCHOOL-SETUP-V23.7-XLSX-SHIFT-ALPHABET"
 _V237_CLASS_ALPHABETS = {
     "latin_xalqaro": tuple("ABCDEFGHIJKLMNOPQRSTUVWXYZ"),
     "uzbek_lotin": (
-        "A", "B", "D", "E", "F", "G", "G‘", "H", "I", "J", "K", "L",
-        "M", "N", "O", "O‘", "P", "Q", "R", "S", "T", "U", "V", "X",
+        "A", "B", "D", "E", "F", "G", "GвЂ", "H", "I", "J", "K", "L",
+        "M", "N", "O", "OвЂ", "P", "Q", "R", "S", "T", "U", "V", "X",
         "Y", "Z", "Sh", "Ch", "Ng",
     ),
     "uzbek_kiril": (
-        "А", "Б", "В", "Г", "Д", "Е", "Ё", "Ж", "З", "И", "Й", "К",
-        "Л", "М", "Н", "О", "П", "Р", "С", "Т", "У", "Ф", "Х", "Ц",
-        "Ч", "Ш", "Ъ", "Ь", "Э", "Ю", "Я", "Ў", "Қ", "Ғ", "Ҳ",
+        "Рђ", "Р‘", "Р’", "Р“", "Р”", "Р•", "РЃ", "Р–", "Р—", "Р", "Р™", "Рљ",
+        "Р›", "Рњ", "Рќ", "Рћ", "Рџ", "Р ", "РЎ", "Рў", "РЈ", "Р¤", "РҐ", "Р¦",
+        "Р§", "РЁ", "РЄ", "Р¬", "Р­", "Р®", "РЇ", "РЋ", "Тљ", "Т’", "ТІ",
     ),
 }
 
 
 _V238_INSTRUCTION_LANGUAGES = {
-    "uz": "O‘zbek tili",
+    "uz": "OвЂzbek tili",
     "ru": "Rus tili",
     "en": "Ingliz tili",
 }
 _V238_INSTRUCTION_LANGUAGE_ALIASES = {
     "uz": "uz", "uzb": "uz", "uzbek": "uz", "o'zbek": "uz",
-    "o‘zbek": "uz", "ўзбек": "uz",
-    "ru": "ru", "rus": "ru", "russian": "ru", "рус": "ru",
-    "русский": "ru",
+    "oвЂzbek": "uz", "СћР·Р±РµРє": "uz",
+    "ru": "ru", "rus": "ru", "russian": "ru", "СЂСѓСЃ": "ru",
+    "СЂСѓСЃСЃРєРёР№": "ru",
     "en": "en", "eng": "en", "english": "en", "ingliz": "en",
 }
 
 
-# V24.0 — yangi maktab oynasidagi viloyat va tuman/shahar maydonlari erkin
+# V24.0 вЂ” yangi maktab oynasidagi viloyat va tuman/shahar maydonlari erkin
 # matn emas, bitta bog'langan katalogdan tanlanadi. Katalog 2026-yilgi MHOBT
 # (Milliy statistika qo'mitasi SIAT) nomlariga mos va frontendga shu backend
 # endpointidan beriladi. Eski maktabda katalogdan tashqari tarixiy qiymat bo'lsa
 # o'sha qiymatni o'zgartirmasdan saqlash mumkin, ammo yangi/yangi tahrir qilingan
 # juftlik katalogdagi aynan bitta viloyatga tegishli bo'lishi shart.
 _V240_UZBEKISTAN_LOCATIONS = (
-    ("Qoraqalpog‘iston Respublikasi", (
+    ("QoraqalpogвЂiston Respublikasi", (
         "Nukus shahri", "Amudaryo tumani", "Beruniy tumani",
-        "Bo‘zatov tumani", "Chimboy tumani", "Ellikkala tumani",
-        "Kegeyli tumani", "Mo‘ynoq tumani", "Nukus tumani",
-        "Qanliko‘l tumani", "Qo‘ng‘irot tumani", "Qorao‘zak tumani",
-        "Shumanay tumani", "Taxtako‘pir tumani", "Taxiatosh tumani",
-        "To‘rtko‘l tumani", "Xo‘jayli tumani",
+        "BoвЂzatov tumani", "Chimboy tumani", "Ellikkala tumani",
+        "Kegeyli tumani", "MoвЂynoq tumani", "Nukus tumani",
+        "QanlikoвЂl tumani", "QoвЂngвЂirot tumani", "QoraoвЂzak tumani",
+        "Shumanay tumani", "TaxtakoвЂpir tumani", "Taxiatosh tumani",
+        "ToвЂrtkoвЂl tumani", "XoвЂjayli tumani",
     )),
     ("Andijon viloyati", (
         "Andijon shahri", "Xonobod shahri", "Andijon tumani",
-        "Asaka tumani", "Baliqchi tumani", "Bo‘ston tumani",
+        "Asaka tumani", "Baliqchi tumani", "BoвЂston tumani",
         "Buloqboshi tumani", "Izboskan tumani", "Jalaquduq tumani",
-        "Marhamat tumani", "Oltinko‘l tumani", "Paxtaobod tumani",
-        "Qo‘rg‘ontepa tumani", "Shahrixon tumani", "Ulug‘nor tumani",
-        "Xo‘jaobod tumani",
+        "Marhamat tumani", "OltinkoвЂl tumani", "Paxtaobod tumani",
+        "QoвЂrgвЂontepa tumani", "Shahrixon tumani", "UlugвЂnor tumani",
+        "XoвЂjaobod tumani",
     )),
     ("Buxoro viloyati", (
-        "Buxoro shahri", "Kogon shahri", "Buxoro tumani", "G‘ijduvon tumani",
+        "Buxoro shahri", "Kogon shahri", "Buxoro tumani", "GвЂijduvon tumani",
         "Jondor tumani", "Kogon tumani", "Olot tumani", "Peshku tumani",
-        "Qorako‘l tumani", "Qorovulbozor tumani", "Romitan tumani",
+        "QorakoвЂl tumani", "Qorovulbozor tumani", "Romitan tumani",
         "Shofirkon tumani", "Vobkent tumani",
     )),
     ("Jizzax viloyati", (
         "Jizzax shahri", "Arnasoy tumani", "Baxmal tumani",
-        "Do‘stlik tumani", "Forish tumani", "G‘allaorol tumani",
-        "Mirzacho‘l tumani", "Paxtakor tumani", "Sharof Rashidov tumani",
+        "DoвЂstlik tumani", "Forish tumani", "GвЂallaorol tumani",
+        "MirzachoвЂl tumani", "Paxtakor tumani", "Sharof Rashidov tumani",
         "Yangiobod tumani", "Zafarobod tumani", "Zarbdor tumani",
         "Zomin tumani",
     )),
     ("Qashqadaryo viloyati", (
         "Qarshi shahri", "Shahrisabz shahri", "Chiroqchi tumani",
-        "Dehqonobod tumani", "G‘uzor tumani", "Kasbi tumani",
-        "Kitob tumani", "Ko‘kdala tumani", "Koson tumani",
+        "Dehqonobod tumani", "GвЂuzor tumani", "Kasbi tumani",
+        "Kitob tumani", "KoвЂkdala tumani", "Koson tumani",
         "Mirishkor tumani", "Muborak tumani", "Nishon tumani",
         "Qamashi tumani", "Qarshi tumani", "Shahrisabz tumani",
-        "Yakkabog‘ tumani",
+        "YakkabogвЂ tumani",
     )),
     ("Navoiy viloyati", (
-        "Navoiy shahri", "Zarafshon shahri", "G‘ozg‘on shahri",
+        "Navoiy shahri", "Zarafshon shahri", "GвЂozgвЂon shahri",
         "Karmana tumani", "Konimex tumani", "Navbahor tumani",
         "Nurota tumani", "Qiziltepa tumani", "Tomdi tumani",
         "Uchquduq tumani", "Xatirchi tumani",
@@ -13501,22 +13501,22 @@ _V240_UZBEKISTAN_LOCATIONS = (
         "Namangan shahri", "Chortoq tumani", "Chust tumani",
         "Davlatobod tumani", "Kosonsoy tumani", "Mingbuloq tumani",
         "Namangan tumani", "Norin tumani", "Pop tumani",
-        "To‘raqo‘rg‘on tumani", "Uchqo‘rg‘on tumani", "Uychi tumani",
-        "Yangi Namangan tumani", "Yangiqo‘rg‘on tumani",
+        "ToвЂraqoвЂrgвЂon tumani", "UchqoвЂrgвЂon tumani", "Uychi tumani",
+        "Yangi Namangan tumani", "YangiqoвЂrgвЂon tumani",
     )),
     ("Samarqand viloyati", (
-        "Samarqand shahri", "Kattaqo‘rg‘on shahri", "Bulung‘ur tumani",
-        "Ishtixon tumani", "Jomboy tumani", "Kattaqo‘rg‘on tumani",
+        "Samarqand shahri", "KattaqoвЂrgвЂon shahri", "BulungвЂur tumani",
+        "Ishtixon tumani", "Jomboy tumani", "KattaqoвЂrgвЂon tumani",
         "Narpay tumani", "Nurobod tumani", "Oqdaryo tumani",
-        "Pastdarg‘om tumani", "Paxtachi tumani", "Payariq tumani",
-        "Qo‘shrabot tumani", "Samarqand tumani", "Tayloq tumani",
+        "PastdargвЂom tumani", "Paxtachi tumani", "Payariq tumani",
+        "QoвЂshrabot tumani", "Samarqand tumani", "Tayloq tumani",
         "Urgut tumani",
     )),
     ("Surxondaryo viloyati", (
         "Termiz shahri", "Angor tumani", "Bandixon tumani", "Boysun tumani",
-        "Denov tumani", "Jarqo‘rg‘on tumani", "Muzrabot tumani",
-        "Oltinsoy tumani", "Qiziriq tumani", "Qumqo‘rg‘on tumani",
-        "Sariosiyo tumani", "Sherobod tumani", "Sho‘rchi tumani",
+        "Denov tumani", "JarqoвЂrgвЂon tumani", "Muzrabot tumani",
+        "Oltinsoy tumani", "Qiziriq tumani", "QumqoвЂrgвЂon tumani",
+        "Sariosiyo tumani", "Sherobod tumani", "ShoвЂrchi tumani",
         "Termiz tumani", "Uzun tumani",
     )),
     ("Sirdaryo viloyati", (
@@ -13528,38 +13528,38 @@ _V240_UZBEKISTAN_LOCATIONS = (
     ("Toshkent viloyati", (
         "Nurafshon shahri", "Angren shahri", "Bekobod shahri",
         "Chirchiq shahri", "Ohangaron shahri", "Olmaliq shahri",
-        "Yangiyo‘l shahri", "Bekobod tumani", "Bo‘ka tumani",
-        "Bo‘stonliq tumani", "Chinoz tumani", "Ohangaron tumani",
-        "Oqqo‘rg‘on tumani", "O‘rtachirchiq tumani", "Parkent tumani",
+        "YangiyoвЂl shahri", "Bekobod tumani", "BoвЂka tumani",
+        "BoвЂstonliq tumani", "Chinoz tumani", "Ohangaron tumani",
+        "OqqoвЂrgвЂon tumani", "OвЂrtachirchiq tumani", "Parkent tumani",
         "Piskent tumani", "Qibray tumani", "Quyichirchiq tumani",
-        "Toshkent tumani", "Yangiyo‘l tumani", "Yuqorichirchiq tumani",
+        "Toshkent tumani", "YangiyoвЂl tumani", "Yuqorichirchiq tumani",
         "Zangiota tumani",
     )),
-    ("Farg‘ona viloyati", (
-        "Farg‘ona shahri", "Marg‘ilon shahri", "Qo‘qon shahri",
-        "Quvasoy shahri", "Beshariq tumani", "Bog‘dod tumani",
-        "Buvayda tumani", "Dang‘ara tumani", "Farg‘ona tumani",
-        "Furqat tumani", "Oltiariq tumani", "O‘zbekiston tumani",
-        "Qo‘shtepa tumani", "Quva tumani", "Rishton tumani",
-        "So‘x tumani", "Toshloq tumani", "Uchko‘prik tumani",
+    ("FargвЂona viloyati", (
+        "FargвЂona shahri", "MargвЂilon shahri", "QoвЂqon shahri",
+        "Quvasoy shahri", "Beshariq tumani", "BogвЂdod tumani",
+        "Buvayda tumani", "DangвЂara tumani", "FargвЂona tumani",
+        "Furqat tumani", "Oltiariq tumani", "OвЂzbekiston tumani",
+        "QoвЂshtepa tumani", "Quva tumani", "Rishton tumani",
+        "SoвЂx tumani", "Toshloq tumani", "UchkoвЂprik tumani",
         "Yozyovon tumani",
     )),
     ("Xorazm viloyati", (
-        "Urganch shahri", "Xiva shahri", "Bog‘ot tumani", "Gurlan tumani",
-        "Hazorasp tumani", "Qo‘shko‘pir tumani", "Shovot tumani",
-        "Tuproqqal’a tumani", "Urganch tumani", "Xiva tumani",
+        "Urganch shahri", "Xiva shahri", "BogвЂot tumani", "Gurlan tumani",
+        "Hazorasp tumani", "QoвЂshkoвЂpir tumani", "Shovot tumani",
+        "TuproqqalвЂ™a tumani", "Urganch tumani", "Xiva tumani",
         "Xonqa tumani", "Yangiariq tumani", "Yangibozor tumani",
     )),
     ("Toshkent shahri", (
         "Bektemir tumani", "Chilonzor tumani", "Mirobod tumani",
-        "Mirzo Ulug‘bek tumani", "Olmazor tumani", "Sergeli tumani",
+        "Mirzo UlugвЂbek tumani", "Olmazor tumani", "Sergeli tumani",
         "Shayxontohur tumani", "Uchtepa tumani", "Yakkasaroy tumani",
         "Yangihayot tumani", "Yashnobod tumani", "Yunusobod tumani",
     )),
 )
 _V240_LOCATION_SOURCE = {
-    "nomi": "O‘zbekiston Respublikasi MHOBT hududlar katalogi",
-    "tashkilot": "O‘zbekiston Respublikasi Milliy statistika qo‘mitasi",
+    "nomi": "OвЂzbekiston Respublikasi MHOBT hududlar katalogi",
+    "tashkilot": "OвЂzbekiston Respublikasi Milliy statistika qoвЂmitasi",
     "versiya": "SIAT-2026",
     "havola": "https://siat.stat.uz/data/307/",
 }
@@ -13568,9 +13568,9 @@ _V240_LOCATION_SOURCE = {
 def _v240_location_key(value):
     """Hudud nomini apostrof/registr/bo'shliqdan mustaqil solishtiradi."""
     text = _v237_unicodedata.normalize("NFKC", str(value or "")).casefold()
-    for old in ("‘", "’", "`", "ʼ", "ʻ", "´", "ʹ", "＇"):
+    for old in ("вЂ", "вЂ™", "`", "Кј", "К»", "Вґ", "К№", "пј‡"):
         text = text.replace(old, "'")
-    return " ".join(re.sub(r"[^0-9a-zа-яёқғҳў' ]+", " ", text).split())
+    return " ".join(re.sub(r"[^0-9a-zР°-СЏС‘Т›Т“ТіСћ' ]+", " ", text).split())
 
 
 def _v240_location_aliases(value, suffixes):
@@ -13642,14 +13642,14 @@ def _v240_validate_school_location(
     if canonical_district is None:
         raise ValueError(
             "Tanlangan tuman/shahar shu viloyatga tegishli emas. "
-            "Viloyatni qayta tanlab, ro‘yxatdan tuman/shaharni belgilang."
+            "Viloyatni qayta tanlab, roвЂyxatdan tuman/shaharni belgilang."
         )
     return canonical_region, canonical_district
 
 
 @app.get("/api/maktab/aqlli_jadval/v3/hududlar")
 def v240_uzbekistan_locations(token: str):
-    """Yangi maktab formasi uchun bog'langan viloyat → tuman/shahar katalogi."""
+    """Yangi maktab formasi uchun bog'langan viloyat в†’ tuman/shahar katalogi."""
     _jwt_tekshir(token)
     return {
         "manba": dict(_V240_LOCATION_SOURCE),
@@ -13669,29 +13669,29 @@ def v240_uzbekistan_locations(token: str):
 
 
 def _v238_normalize_instruction_language(value, default="uz"):
-    """Sinf/o‘quv reja tilini bitta qat’iy DB kalitiga keltiradi."""
+    """Sinf/oвЂquv reja tilini bitta qatвЂ™iy DB kalitiga keltiradi."""
     raw = re.sub(r"\s+", " ", str(value or "")).strip().casefold()
     if not raw:
         raw = str(default or "uz").strip().casefold()
     normalized = _V238_INSTRUCTION_LANGUAGE_ALIASES.get(raw)
     if normalized is None:
         raise ValueError(
-            "Ta’lim tili noto‘g‘ri. Faqat uz (o‘zbek), ru (rus) yoki en (ingliz) tanlanadi."
+            "TaвЂ™lim tili notoвЂgвЂri. Faqat uz (oвЂzbek), ru (rus) yoki en (ingliz) tanlanadi."
         )
     return normalized
 
 _V237_APOSTROPHES = str.maketrans({
-    "ʻ": "'", "ʼ": "'", "’": "'", "‘": "'", "`": "'", "´": "'",
-    "ʹ": "'", "＇": "'",
+    "К»": "'", "Кј": "'", "вЂ™": "'", "вЂ": "'", "`": "'", "Вґ": "'",
+    "К№": "'", "пј‡": "'",
 })
 
 
 def _v237_clean_parallel_label(value):
     label = re.sub(r"\s+", " ", str(value or "")).strip()
     if not 1 <= len(label) <= 40:
-        raise ValueError("Sinf parallel nomi 1–40 ta belgi bo‘lishi kerak.")
+        raise ValueError("Sinf parallel nomi 1вЂ“40 ta belgi boвЂlishi kerak.")
     if any(_v237_unicodedata.category(char).startswith("C") for char in label):
-        raise ValueError("Sinf parallel nomida boshqaruv/yashirin belgilar bo‘lishi mumkin emas.")
+        raise ValueError("Sinf parallel nomida boshqaruv/yashirin belgilar boвЂlishi mumkin emas.")
     return label
 
 
@@ -13735,14 +13735,14 @@ def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
     try:
         shift_count = int(shift_count or 1)
     except (TypeError, ValueError) as exc:
-        raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.") from exc
+        raise ValueError("Smena soni 1 yoki 2 boвЂlishi kerak.") from exc
     if shift_count not in (1, 2):
-        raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.")
+        raise ValueError("Smena soni 1 yoki 2 boвЂlishi kerak.")
     alphabet_type = str(alphabet_type or "latin_xalqaro").strip().lower()
     alphabet = _V237_CLASS_ALPHABETS.get(alphabet_type)
     if alphabet is None:
         raise ValueError(
-            "Alifbo turi latin_xalqaro, uzbek_lotin yoki uzbek_kiril bo‘lishi kerak."
+            "Alifbo turi latin_xalqaro, uzbek_lotin yoki uzbek_kiril boвЂlishi kerak."
         )
     sources = list(raw_plan or [])
     if not sources:
@@ -13763,9 +13763,9 @@ def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
                 item.get("talim_tili")
             )
         except (TypeError, ValueError) as exc:
-            raise ValueError("Sinf va parallel sonlari butun raqam bo‘lishi kerak.") from exc
+            raise ValueError("Sinf va parallel sonlari butun raqam boвЂlishi kerak.") from exc
         if grade not in range(1, 12):
-            raise ValueError("Sinf darajasi 1–11 oralig‘ida bo‘lishi kerak.")
+            raise ValueError("Sinf darajasi 1вЂ“11 oraligвЂida boвЂlishi kerak.")
         pair = (grade, instruction_language)
         if pair in seen_grade_languages:
             raise ValueError(
@@ -13774,7 +13774,7 @@ def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
             )
         seen_grade_languages.add(pair)
         if first_count < 0 or second_count < 0:
-            raise ValueError(f"{grade}-sinf parallel soni manfiy bo‘lishi mumkin emas.")
+            raise ValueError(f"{grade}-sinf parallel soni manfiy boвЂlishi mumkin emas.")
         if shift_count == 1 and second_count:
             raise ValueError(
                 f"{grade}-sinf uchun 2-smena tanlangan, lekin maktab 1 smenali."
@@ -13801,7 +13801,7 @@ def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
         if total > len(alphabet):
             raise ValueError(
                 f"{grade}-sinf uchun {total} ta parallel tanlangan; "
-                f"{alphabet_type} alifbosida ko‘pi bilan {len(alphabet)} ta yorliq bor."
+                f"{alphabet_type} alifbosida koвЂpi bilan {len(alphabet)} ta yorliq bor."
             )
         # Bir xil darajadagi UZ -> RU -> EN ketma-ketligi saqlanadi. Shu bilan
         # birga barcha 1-smena harflari tugagach 2-smena davom etadi; masalan
@@ -14263,7 +14263,7 @@ def v198_link_school_workspace(
                 if int(sorov.smena_soni or 1) not in (1, 2):
                     raise HTTPException(
                         status_code=400,
-                        detail="Smena soni 1 yoki 2 bo‘lishi kerak.",
+                        detail="Smena soni 1 yoki 2 boвЂlishi kerak.",
                     )
                 try:
                     requested_region, requested_district = (
@@ -14418,7 +14418,7 @@ def v198_link_school_workspace(
                        DO UPDATE SET lavozim='direktor'""",
                     (user_id, maktab_id),
                 )
-                # Yangi yaratilgan/tanlangan maktab joriy faol maktab bo‘ladi.
+                # Yangi yaratilgan/tanlangan maktab joriy faol maktab boвЂladi.
                 # COALESCE eski maktab ID sini saqlab qolib, yangi workspace'ni
                 # yana eski maktabga qaytarayotgan edi.
                 cur.execute(
@@ -14577,7 +14577,7 @@ class V237ClassEditRequest(BaseModel):
     # TRUE bo'lmaguncha mavjud xona tasodifan NULL bo'lib qolmaydi.
     xona_id: Optional[int] = None
     xona_yangilansin: bool = False
-    # Eski frontend yubormasa mavjud sinf tili o‘zgarmaydi.
+    # Eski frontend yubormasa mavjud sinf tili oвЂzgarmaydi.
     talim_tili: Optional[str] = None
 
 
@@ -14658,7 +14658,7 @@ def v237_class_create(sorov: V237ClassCreateRequest, token: str):
         except (TypeError, ValueError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         if grade not in range(1, 12):
-            raise HTTPException(status_code=400, detail="Sinf darajasi 1–11 oralig'ida bo'lishi kerak")
+            raise HTTPException(status_code=400, detail="Sinf darajasi 1вЂ“11 oralig'ida bo'lishi kerak")
         shift = int(sorov.smena)
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (2373000000 + int(sorov.maktab_id),))
         cur.execute(
@@ -14786,7 +14786,7 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
         if new_shift not in (1, 2) or new_shift > shift_count:
             raise HTTPException(
                 status_code=400,
-                detail=f"Bu maktab {shift_count} smenali; {new_shift}-smena tanlab bo‘lmaydi",
+                detail=f"Bu maktab {shift_count} smenali; {new_shift}-smena tanlab boвЂlmaydi",
             )
         cur.execute(
             """SELECT id,sinf,harf,COALESCE(smena,1) AS smena,
@@ -14838,9 +14838,9 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
         )
         changed_language = current_language != new_language
         if changed_language:
-            # Tilni jim almashtirib eski fan/yuklama/guruh/jadvalni o‘chirish
-            # mumkin emas. Bo‘sh sinfda ruxsat; ishlatilgan sinf uchun alohida
-            # ko‘chirish oqimi kerakligi aniq 409 bilan bildiriladi.
+            # Tilni jim almashtirib eski fan/yuklama/guruh/jadvalni oвЂchirish
+            # mumkin emas. BoвЂsh sinfda ruxsat; ishlatilgan sinf uchun alohida
+            # koвЂchirish oqimi kerakligi aniq 409 bilan bildiriladi.
             cur.execute(
                 """SELECT
                      (SELECT COUNT(*) FROM aqlli_oquv_reja_qatorlari_v19_3
@@ -14866,9 +14866,9 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
                 raise HTTPException(
                     status_code=409,
                     detail=(
-                        "Bu sinfda o‘quv reja/yuklama/guruh yoki jadval ma’lumoti bor. "
-                        "Ta’lim tilini almashtirish ma’lumotni o‘chirishi mumkin; yangi "
-                        "sinfni to‘g‘ri tilda yarating yoki maxsus ko‘chirishni bajaring."
+                        "Bu sinfda oвЂquv reja/yuklama/guruh yoki jadval maвЂ™lumoti bor. "
+                        "TaвЂ™lim tilini almashtirish maвЂ™lumotni oвЂchirishi mumkin; yangi "
+                        "sinfni toвЂgвЂri tilda yarating yoki maxsus koвЂchirishni bajaring."
                     ),
                 )
         room = {
@@ -15007,26 +15007,26 @@ SAMTM_2026_2027_CURRICULUM_SOURCE = {
 
 
 _V238_RU_SUBJECT_NAMES = {
-    "Ona tili": "Русский язык",
-    "O'qish savodxonligi": "Литературное чтение",
-    "Adabiyot": "Литература", "Rus tili": "Узбекский язык",
-    "Chet tili": "Иностранный язык",
-    "Tarixdan hikoyalar": "Рассказы по истории",
-    "Qadimgi dunyo tarixi": "История древнего мира",
-    "O'zbekiston tarixi": "История Узбекистана", "Jahon tarixi": "Всемирная история",
-    "Davlat va huquq asoslari": "Основы государства и права",
-    "Tarbiya": "Воспитание", "Matematika": "Математика",
-    "Algebra": "Алгебра", "Geometriya": "Геометрия",
-    "Informatika va axborot texnologiyalari": "Информатика и информационные технологии",
-    "Fizika": "Физика", "Astronomiya": "Астрономия", "Kimyo": "Химия",
-    "Biologiya": "Биология", "Geografiya": "География",
-    "Iqtisodiy bilim asoslari": "Основы экономических знаний",
-    "Tadbirkorlik asoslari": "Основы предпринимательства",
-    "Tabiiy fan (Science)": "Естествознание (Science)",
-    "Musiqa madaniyati": "Музыкальная культура", "Tasviriy san'at": "Изобразительное искусство",
-    "Chizmachilik": "Черчение", "Texnologiya": "Технология",
-    "Jismoniy tarbiya": "Физическая культура",
-    "Chaqiruvga qadar boshlang'ich tayyorgarlik": "Начальная допризывная подготовка",
+    "Ona tili": "Р СѓСЃСЃРєРёР№ СЏР·С‹Рє",
+    "O'qish savodxonligi": "Р›РёС‚РµСЂР°С‚СѓСЂРЅРѕРµ С‡С‚РµРЅРёРµ",
+    "Adabiyot": "Р›РёС‚РµСЂР°С‚СѓСЂР°", "Rus tili": "РЈР·Р±РµРєСЃРєРёР№ СЏР·С‹Рє",
+    "Chet tili": "РРЅРѕСЃС‚СЂР°РЅРЅС‹Р№ СЏР·С‹Рє",
+    "Tarixdan hikoyalar": "Р Р°СЃСЃРєР°Р·С‹ РїРѕ РёСЃС‚РѕСЂРёРё",
+    "Qadimgi dunyo tarixi": "РСЃС‚РѕСЂРёСЏ РґСЂРµРІРЅРµРіРѕ РјРёСЂР°",
+    "O'zbekiston tarixi": "РСЃС‚РѕСЂРёСЏ РЈР·Р±РµРєРёСЃС‚Р°РЅР°", "Jahon tarixi": "Р’СЃРµРјРёСЂРЅР°СЏ РёСЃС‚РѕСЂРёСЏ",
+    "Davlat va huquq asoslari": "РћСЃРЅРѕРІС‹ РіРѕСЃСѓРґР°СЂСЃС‚РІР° Рё РїСЂР°РІР°",
+    "Tarbiya": "Р’РѕСЃРїРёС‚Р°РЅРёРµ", "Matematika": "РњР°С‚РµРјР°С‚РёРєР°",
+    "Algebra": "РђР»РіРµР±СЂР°", "Geometriya": "Р“РµРѕРјРµС‚СЂРёСЏ",
+    "Informatika va axborot texnologiyalari": "РРЅС„РѕСЂРјР°С‚РёРєР° Рё РёРЅС„РѕСЂРјР°С†РёРѕРЅРЅС‹Рµ С‚РµС…РЅРѕР»РѕРіРёРё",
+    "Fizika": "Р¤РёР·РёРєР°", "Astronomiya": "РђСЃС‚СЂРѕРЅРѕРјРёСЏ", "Kimyo": "РҐРёРјРёСЏ",
+    "Biologiya": "Р‘РёРѕР»РѕРіРёСЏ", "Geografiya": "Р“РµРѕРіСЂР°С„РёСЏ",
+    "Iqtisodiy bilim asoslari": "РћСЃРЅРѕРІС‹ СЌРєРѕРЅРѕРјРёС‡РµСЃРєРёС… Р·РЅР°РЅРёР№",
+    "Tadbirkorlik asoslari": "РћСЃРЅРѕРІС‹ РїСЂРµРґРїСЂРёРЅРёРјР°С‚РµР»СЊСЃС‚РІР°",
+    "Tabiiy fan (Science)": "Р•СЃС‚РµСЃС‚РІРѕР·РЅР°РЅРёРµ (Science)",
+    "Musiqa madaniyati": "РњСѓР·С‹РєР°Р»СЊРЅР°СЏ РєСѓР»СЊС‚СѓСЂР°", "Tasviriy san'at": "РР·РѕР±СЂР°Р·РёС‚РµР»СЊРЅРѕРµ РёСЃРєСѓСЃСЃС‚РІРѕ",
+    "Chizmachilik": "Р§РµСЂС‡РµРЅРёРµ", "Texnologiya": "РўРµС…РЅРѕР»РѕРіРёСЏ",
+    "Jismoniy tarbiya": "Р¤РёР·РёС‡РµСЃРєР°СЏ РєСѓР»СЊС‚СѓСЂР°",
+    "Chaqiruvga qadar boshlang'ich tayyorgarlik": "РќР°С‡Р°Р»СЊРЅР°СЏ РґРѕРїСЂРёР·С‹РІРЅР°СЏ РїРѕРґРіРѕС‚РѕРІРєР°",
 }
 _V238_EN_SUBJECT_NAMES = {
     "Ona tili": "English Language", "O'qish savodxonligi": "Reading Literacy",
@@ -15106,7 +15106,7 @@ def _v201_central_school_settings_tables(cur):
         "ADD COLUMN IF NOT EXISTS talim_tili TEXT NOT NULL DEFAULT 'uz'"
     )
     # Eski unique(versiya,sinf,fan) RU/EN qatorlarini bloklaydi. Uni faqat
-    # aniq shu jadvaldagi legacy unique bo‘lsa olib, til qatnashgan indexga
+    # aniq shu jadvaldagi legacy unique boвЂlsa olib, til qatnashgan indexga
     # almashtiramiz; PK yoki boshqa constraintlarga tegmaymiz.
     cur.execute("""DO $$
         DECLARE constraint_name TEXT;
@@ -15212,7 +15212,7 @@ def _v201_central_school_settings_tables(cur):
             cur.execute("""SELECT id FROM admin_maktab_andoza_versiyalari_v20_1
                             WHERE faol=TRUE LIMIT 1""")
             version_id = int(cur.fetchone()["id"])
-    # Mavjud o‘zbek qatorlari o‘zgarmaydi. Yetishmagan RU/EN til tablari bir
+    # Mavjud oвЂzbek qatorlari oвЂzgarmaydi. Yetishmagan RU/EN til tablari bir
     # marta ayni haftalik soatlar + aniq tarjima nomlari bilan seed qilinadi;
     # admin har tilni keyin mustaqil tahrirlaydi.
     for language, curriculum in SAMTM_2026_2027_CURRICULA.items():
@@ -15415,7 +15415,7 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     section = str(sorov.bolim or "").strip().lower()
     if section not in {"fanlar", "yuklama", "jadval", "metod"}:
-        raise HTTPException(status_code=400, detail="Sozlama bo‘limi noto‘g‘ri")
+        raise HTTPException(status_code=400, detail="Sozlama boвЂlimi notoвЂgвЂri")
     if section in {"yuklama", "jadval"}:
         # Amaldagi admin oynasi fan nomi, haftalik soat va kunlik maksimumni
         # bitta to'liq snapshotda yuboradi. Ularni alohida bo'lim sifatida
@@ -15424,7 +15424,7 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
             status_code=409,
             detail=(
                 "Fanlar, haftalik yuklama va kunlik maksimum bitta andoza "
-                "sifatida ‘fanlar’ bo‘limidan tasdiqlanadi"
+                "sifatida вЂfanlarвЂ™ boвЂlimidan tasdiqlanadi"
             ),
         )
     if not sorov.tasdiqlash:
@@ -15433,7 +15433,7 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
         # ketardi. Shuning uchun draftni jim jonlantirish o'rniga aniq bloklaymiz.
         raise HTTPException(
             status_code=409,
-            detail="Markaziy andoza faqat ‘Saqlash va tasdiqlash’ orqali yangilanadi",
+            detail="Markaziy andoza faqat вЂSaqlash va tasdiqlashвЂ™ orqali yangilanadi",
         )
     normalized = []
     seen = set()
@@ -15445,17 +15445,17 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
         method_day = int(item.metod_kuni) if item.metod_kuni is not None else None
         daily_max = int(item.kunlik_max)
         if grade not in range(1, 12) or not key:
-            raise HTTPException(status_code=400, detail="Sinf yoki fan nomi noto‘g‘ri")
+            raise HTTPException(status_code=400, detail="Sinf yoki fan nomi notoвЂgвЂri")
         if (grade, key) in seen:
             raise HTTPException(status_code=400, detail=f"{grade}-sinf / {subject} takrorlangan")
         if not 0 <= hours <= 20 or daily_max not in range(1, 5):
-            raise HTTPException(status_code=400, detail=f"{grade}-sinf / {subject} soati noto‘g‘ri")
+            raise HTTPException(status_code=400, detail=f"{grade}-sinf / {subject} soati notoвЂgвЂri")
         if method_day is not None and method_day not in range(1, 7):
-            raise HTTPException(status_code=400, detail=f"{subject} metod kuni noto‘g‘ri")
+            raise HTTPException(status_code=400, detail=f"{subject} metod kuni notoвЂgвЂri")
         seen.add((grade, key))
         normalized.append((grade, subject, key, hours, method_day, daily_max, index))
     if not normalized:
-        raise HTTPException(status_code=400, detail="Kamida bitta sinf–fan qatori kerak")
+        raise HTTPException(status_code=400, detail="Kamida bitta sinfвЂ“fan qatori kerak")
     if section == "metod":
         # UI bitta fan uchun bitta metod kunini ko'rsatadi. API orqali shu fan
         # turli sinflarda boshqa-boshqa kun bilan yuborilsa, keyingi o'qituvchi
@@ -15494,7 +15494,7 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
                     status_code=409,
                     detail=(
                         "Metod kunlari mavjud til andozasidagi barcha "
-                        "sinf–fan qatorlari uchun to‘liq yuborilishi kerak"
+                        "sinfвЂ“fan qatorlari uchun toвЂliq yuborilishi kerak"
                     ),
                 )
             for grade, _subject, key, _hours, method_day, _daily, _order in normalized:
@@ -15621,7 +15621,7 @@ def v242_apply_central_method_days(
     sorov: V242CentralMethodDaysApply,
     token: str,
 ):
-    """Tasdiqlangan fan→metod-kun andozasini maktablarga xavfsiz qo'llaydi.
+    """Tasdiqlangan fanв†’metod-kun andozasini maktablarga xavfsiz qo'llaydi.
 
     Faqat markaziy andozadan foydalanadigan maktab/til kesimi yangilanadi.
     ``_v240_refresh_central_method_days`` qo'lda saqlangan metod kuni hamda
@@ -15703,7 +15703,7 @@ def v242_apply_central_method_days(
                 if not cur.fetchone():
                     continue
                 result["maktab_til_kesimi"] += 1
-                # Eski V18.71 oynasida maktabning o'zi fan→kun qoidasi
+                # Eski V18.71 oynasida maktabning o'zi fanв†’kun qoidasi
                 # yaratgan bo'lsa, markaziy tugma bu ongli siyosatni bosmaydi.
                 if school_id in custom_method_school_ids:
                     result["maktab_fan_qoidasi_sababi_otkazildi"] += 1
@@ -15763,7 +15763,7 @@ def _v201_school_has_override(
 
 
 def _v194_school_subject_grades(cur, maktab_id: int, talim_tili="uz"):
-    """None — eski maktab; dict — fanlar sinflar bo'yicha aniq sozlangan."""
+    """None вЂ” eski maktab; dict вЂ” fanlar sinflar bo'yicha aniq sozlangan."""
     language = _v238_normalize_instruction_language(talim_tili)
     if (
         language != "uz"
@@ -15785,7 +15785,7 @@ def _v194_school_subject_grades(cur, maktab_id: int, talim_tili="uz"):
     rows = cur.fetchall()
     if not rows:
         # Yangi maktab DTSdagi tasodifiy nomlardan emas, admin tasdiqlagan
-        # markaziy 1–11-sinf andozasidan boshlaydi.
+        # markaziy 1вЂ“11-sinf andozasidan boshlaydi.
         central_result = {}
         for row in _v201_central_rows(cur, language):
             grade = int(row["sinf_darajasi"])
@@ -15820,7 +15820,7 @@ def _v193_template_rows_for_class(class_row, selected_by_grade=None, curriculum=
         for item in curriculum_items
     }
     if allowed is not None:
-        # O'quv reja ustunlari faqat maktab 1–11-sinflar uchun saqlagan
+        # O'quv reja ustunlari faqat maktab 1вЂ“11-sinflar uchun saqlagan
         # fanlardan tuziladi. Tayanchda topilmagan yangi fan ham yo'qolmaydi:
         # u 0 soat bilan ko'rinadi va rahbariyat soatini qo'lda kiritadi.
         return [
@@ -16076,7 +16076,7 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
         # UI yilni koddan emas, maktabning faol o'quv yilidan oladi.
         # Shu sabab keyingi o'quv yilida frontend kodi almashtirilmaydi.
         "oquv_yili_nomi": active_year_name,
-        "andoza_nomi": "Amaldagi tayanch o‘quv reja",
+        "andoza_nomi": "Amaldagi tayanch oвЂquv reja",
         "andoza_manbasi": SAMTM_2026_2027_CURRICULUM_SOURCE,
         "andoza_manbalari": SAMTM_2026_2027_CURRICULUM_SOURCES,
         "markaziy_andoza": not any(custom_plan_by_language.values()),
@@ -16177,7 +16177,7 @@ def _v192_group_variants(cur, maktab_id: int):
                 short = {
                     "group_1": "1G",
                     "group_2": "2G",
-                    "boys": "O‘",
+                    "boys": "OвЂ",
                     "girls": "Q",
                 }.get(key, str(group.get("guruh_nomi") or key)[:8])
                 result.append({
@@ -16806,12 +16806,12 @@ def _v204_validate_complete_skeleton_payload(
         if key in explicit_blank:
             raise HTTPException(
                 status_code=409,
-                detail="Bitta bo'sh fan–sinf–guruh kaliti ikki marta yuborilgan",
+                detail="Bitta bo'sh fanвЂ“sinfвЂ“guruh kaliti ikki marta yuborilgan",
             )
         if key in submitted:
             raise HTTPException(
                 status_code=409,
-                detail="Bitta fan–sinf–guruh ham o'qituvchili, ham bo'sh yuborilgan",
+                detail="Bitta fanвЂ“sinfвЂ“guruh ham o'qituvchili, ham bo'sh yuborilgan",
             )
         explicit_blank.add(key)
 
@@ -16901,7 +16901,7 @@ def _v204_validate_complete_skeleton_payload(
         if len(rows) != 1:
             raise HTTPException(
                 status_code=409,
-                detail="Bitta fan–sinf–guruhga aynan bitta o'qituvchi tanlanishi kerak",
+                detail="Bitta fanвЂ“sinfвЂ“guruhga aynan bitta o'qituvchi tanlanishi kerak",
             )
         row = rows[0]
         if abs(
@@ -16957,8 +16957,8 @@ def _v192_matrix_payload(cur, maktab_id: int):
 
     _v2249_ensure_teacher_numbers(cur, maktab_id)
     # V22.50: faqat skelet/raqam tanlash oynasi hali fan biriktirilmagan
-    # raqamlangan o‘qituvchilarni ham ko‘radi. Jadval generatori esa
-    # faqat haqiqiy dars yuklamasi bor o‘qituvchilarni oladi.
+    # raqamlangan oвЂqituvchilarni ham koвЂradi. Jadval generatori esa
+    # faqat haqiqiy dars yuklamasi bor oвЂqituvchilarni oladi.
     teachers = _v1859_effective_teachers(cur, maktab_id, include_numbered=True)
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s ORDER BY fan_nomi", (maktab_id,))
     subjects = [row["fan_nomi"] for row in cur.fetchall()]
@@ -17082,7 +17082,7 @@ def v20_class_hour_plan_save(sorov: V20ClassHourPlanSave, token: str):
         if not valid_ids:
             raise HTTPException(
                 status_code=400,
-                detail=f"{language} ta’lim tilidagi sinf topilmadi",
+                detail=f"{language} taвЂ™lim tilidagi sinf topilmadi",
             )
         received = set()
         for item in sorov.qatorlar:
@@ -17092,7 +17092,7 @@ def v20_class_hour_plan_save(sorov: V20ClassHourPlanSave, token: str):
             name = _v192_clean_subject(item.fan_nomi) or "KELAJAK SOATI"
             hours = int(item.haftalik_soat)
             if hours not in range(1, 6):
-                raise HTTPException(status_code=400, detail="Kelajak soati haftasiga 1–5 soat bo‘lishi mumkin")
+                raise HTTPException(status_code=400, detail="Kelajak soati haftasiga 1вЂ“5 soat boвЂlishi mumkin")
             received.add(class_id)
             cur.execute("""INSERT INTO aqlli_sinf_soati_qoidalari_v2(
                             maktab_id,sinf_id,hafta_kuni,dars_raqami,faol,
@@ -17268,7 +17268,7 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
         if requested_language != class_language:
             raise HTTPException(
                 status_code=409,
-                detail="Yuborilgan ta’lim tili tanlangan sinf tiliga mos emas",
+                detail="Yuborilgan taвЂ™lim tili tanlangan sinf tiliga mos emas",
             )
         _v201_mark_school_override(
             cur, sorov.maktab_id, "oquv_reja", actor_id, class_language
@@ -17291,7 +17291,7 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
                     status_code=400,
                     detail=(
                         f"{subject}: {class_language} tilidagi "
-                        "sinf o‘quv rejasida bu fan yo‘q"
+                        "sinf oвЂquv rejasida bu fan yoвЂq"
                     ),
                 )
             if key in allowed:
@@ -17302,9 +17302,9 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
             hours = float(item.haftalik_soat)
             daily = int(item.kunlik_max)
             if hours < 0.5 or hours > 20 or hours * 2 != int(hours * 2):
-                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 0,5–20 oralig'ida, 0,5 qadam bilan bo'lishi kerak")
+                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 0,5вЂ“20 oralig'ida, 0,5 qadam bilan bo'lishi kerak")
             if daily < 1 or daily > 4:
-                raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1–4 bo'lishi kerak")
+                raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1вЂ“4 bo'lishi kerak")
             cleaned.append((subject, hours, daily))
         if not cleaned:
             raise HTTPException(status_code=400, detail="Sinf o'quv rejasida kamida bitta fan bo'lishi kerak")
@@ -17430,8 +17430,8 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
                 raise HTTPException(
                     status_code=400,
                     detail=(
-                        f"{subject}: {language} tilidagi sinf o‘quv "
-                        "rejasida bu fan yo‘q"
+                        f"{subject}: {language} tilidagi sinf oвЂquv "
+                        "rejasida bu fan yoвЂq"
                     ),
                 )
             if subject_key in allowed:
@@ -17439,9 +17439,9 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
             hours = float(item.haftalik_soat)
             daily = int(item.kunlik_max)
             if hours < 0.5 or hours > 20 or hours * 2 != int(hours * 2):
-                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 0,5–20 oralig'ida, 0,5 qadam bilan bo'lishi kerak")
+                raise HTTPException(status_code=400, detail=f"{subject}: haftalik soat 0,5вЂ“20 oralig'ida, 0,5 qadam bilan bo'lishi kerak")
             if daily < 1 or daily > 4:
-                raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1–4 bo'lishi kerak")
+                raise HTTPException(status_code=400, detail=f"{subject}: kunlik maksimum 1вЂ“4 bo'lishi kerak")
             key = (class_id, _v1875_subject_key(subject))
             if key in seen:
                 raise HTTPException(
@@ -17468,7 +17468,7 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
             raise HTTPException(
                 status_code=409,
                 detail=(
-                    f"{language} til matritsasi to‘liq emas. Qator yuborilmagan "
+                    f"{language} til matritsasi toвЂliq emas. Qator yuborilmagan "
                     "sinflar: " + ", ".join(labels[:30])
                 ),
             )
@@ -17553,7 +17553,7 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
         if not classes:
             raise HTTPException(
                 status_code=400,
-                detail=f"{language} ta’lim tilidagi sinf topilmadi",
+                detail=f"{language} taвЂ™lim tilidagi sinf topilmadi",
             )
         target_class_ids = sorted(int(row["id"]) for row in classes)
         cur.execute("""SELECT sinf_id,COUNT(*) AS fan_soni,SUM(haftalik_soat) AS jami
@@ -17634,7 +17634,7 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
             sync_warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
         else:
             sync_warnings.append(
-                "Qolgan ta’lim tillari tasdiqlangach umumiy jadval manbasi sinxronlanadi"
+                "Qolgan taвЂ™lim tillari tasdiqlangach umumiy jadval manbasi sinxronlanadi"
             )
         if reconcile["ochirilgan_qator"]:
             sync_warnings.append(
@@ -17755,7 +17755,7 @@ def _v194_teacher_profile_values(mutaxassisligi, haftalik_maqsad_soat):
         if target < 0.5 or target > 60 or abs(target * 2 - round(target * 2)) > 1e-9:
             raise HTTPException(
                 status_code=400,
-                detail="Haftalik maqsad soati 0,5–60 oralig'ida va 0,5 qadamda bo'lishi kerak",
+                detail="Haftalik maqsad soati 0,5вЂ“60 oralig'ida va 0,5 qadamda bo'lishi kerak",
             )
     return specialty, target
 
@@ -18023,10 +18023,10 @@ def _v192_save_teacher_load_rows(
         if hours < 0.5 or hours > 20 or abs(hours * 2 - round(hours * 2)) > 1e-9:
             raise HTTPException(
                 status_code=400,
-                detail=f"{index}-qator: haftalik soat 0,5–20 oralig'ida va 0,5 qadamda bo'lishi kerak",
+                detail=f"{index}-qator: haftalik soat 0,5вЂ“20 oralig'ida va 0,5 qadamda bo'lishi kerak",
             )
         if daily < 1 or daily > 4:
-            raise HTTPException(status_code=400, detail=f"{index}-qator: kunlik maksimum 1–4 bo'lishi kerak")
+            raise HTTPException(status_code=400, detail=f"{index}-qator: kunlik maksimum 1вЂ“4 bo'lishi kerak")
         key = (int(item.sinf_id), _v1875_subject_key(subject), group_key)
         existing = cleaned_by_key.get(key)
         if existing:
@@ -18096,7 +18096,7 @@ def _v192_save_teacher_load_rows(
                 )
     if duplicate_merged:
         plan_overrides.append(
-            f"Bir xil fan–sinf–guruhdagi {duplicate_merged} ta takror qator bitta qatorga qo'shildi"
+            f"Bir xil fanвЂ“sinfвЂ“guruhdagi {duplicate_merged} ta takror qator bitta qatorga qo'shildi"
         )
 
     cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=%s",
@@ -18184,14 +18184,14 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
         if not sorov.qatorlar:
             raise HTTPException(
                 status_code=400,
-                detail="O'qituvchida kamida bitta aniq fan–sinf–guruh yuklamasi bo'lishi kerak",
+                detail="O'qituvchida kamida bitta aniq fanвЂ“sinfвЂ“guruh yuklamasi bo'lishi kerak",
             )
         if "full_name" in supplied_fields:
             full_name = re.sub(r"\s+", " ", str(sorov.full_name or "")).strip()
             if len(full_name) < 3 or len(full_name) > 160:
                 raise HTTPException(
                     status_code=400,
-                    detail="O'qituvchi F.I.Sh. 3–160 ta belgi bo'lishi kerak",
+                    detail="O'qituvchi F.I.Sh. 3вЂ“160 ta belgi bo'lishi kerak",
                 )
             # Yangi o'qituvchi qo'shish va mavjudini qayta nomlash bir xil
             # maktab lockidan foydalanadi. Shu tariqa bir xil F.I.Sh. parallel
@@ -18243,7 +18243,7 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
         if "ish_staji" in supplied_fields:
             work_years = sorov.ish_staji
             if work_years is not None and not 0 <= int(work_years) <= 60:
-                raise HTTPException(status_code=400, detail="Ish staji 0–60 yil oralig'ida bo'lishi kerak")
+                raise HTTPException(status_code=400, detail="Ish staji 0вЂ“60 yil oralig'ida bo'lishi kerak")
             profile_updates.append("ish_staji=%s")
             profile_values.append(int(work_years) if work_years is not None else None)
         if "tugilgan_sana" in supplied_fields or "tugilgan_yili" in supplied_fields:
@@ -18256,7 +18256,7 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
             if birth_year is not None and not 1900 <= int(birth_year) <= current_year:
                 raise HTTPException(
                     status_code=400,
-                    detail=f"Tug'ilgan yil 1900–{current_year} oralig'ida bo'lishi kerak",
+                    detail=f"Tug'ilgan yil 1900вЂ“{current_year} oralig'ida bo'lishi kerak",
                 )
             if birth_date is not None and birth_date > _date.today():
                 raise HTTPException(status_code=400, detail="Tug'ilgan sana kelajakda bo'lishi mumkin emas")
@@ -18326,17 +18326,17 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
             raise HTTPException(status_code=403, detail="O'qituvchini faqat maktab rahbariyati qo'shadi")
         full_name = re.sub(r"\s+", " ", str(sorov.full_name or "")).strip()
         if len(full_name) < 3 or len(full_name) > 160:
-            raise HTTPException(status_code=400, detail="O'qituvchi F.I.Sh. 3–160 ta belgi bo'lishi kerak")
+            raise HTTPException(status_code=400, detail="O'qituvchi F.I.Sh. 3вЂ“160 ta belgi bo'lishi kerak")
         work_years = sorov.ish_staji
         if work_years is not None and not 0 <= int(work_years) <= 60:
-            raise HTTPException(status_code=400, detail="Ish staji 0–60 yil oralig'ida bo'lishi kerak")
+            raise HTTPException(status_code=400, detail="Ish staji 0вЂ“60 yil oralig'ida bo'lishi kerak")
         birth_date = sorov.tugilgan_sana
         birth_year = birth_date.year if birth_date is not None else sorov.tugilgan_yili
         current_year = _date.today().year
         if birth_year is not None and not 1900 <= int(birth_year) <= current_year:
             raise HTTPException(
                 status_code=400,
-                detail=f"Tug'ilgan yil 1900–{current_year} oralig'ida bo'lishi kerak",
+                detail=f"Tug'ilgan yil 1900вЂ“{current_year} oralig'ida bo'lishi kerak",
             )
         if birth_date is not None and birth_date > _date.today():
             raise HTTPException(status_code=400, detail="Tug'ilgan sana kelajakda bo'lishi mumkin emas")
@@ -18354,7 +18354,7 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         if not sorov.qatorlar:
             raise HTTPException(
                 status_code=400,
-                detail="Yangi o'qituvchida kamida bitta aniq fan–sinf–guruh yuklamasi bo'lishi kerak",
+                detail="Yangi o'qituvchida kamida bitta aniq fanвЂ“sinfвЂ“guruh yuklamasi bo'lishi kerak",
             )
 
         # ``users.user_id`` manfiy identifikatori barcha maktablar uchun bitta
@@ -18474,7 +18474,7 @@ _V237_TEACHER_IMPORT_PATHS = frozenset({
 
 async def _v237_send_teacher_import_body_too_large(send):
     body = (
-        '{"detail":"Excel import so‘rovi juda katta; '
+        '{"detail":"Excel import soвЂrovi juda katta; '
         'XLSX fayl 3 MB dan oshmasligi kerak."}'
     ).encode("utf-8")
     await send({
@@ -18594,7 +18594,7 @@ def _v237_excel_header_key(value):
     raw = _v237_unicodedata.normalize(
         "NFKC", str(value or "").translate(_V237_APOSTROPHES)
     ).casefold().strip()
-    if raw == "№":
+    if raw == "в„–":
         return "number"
     compact = re.sub(r"[^\w]+", "", raw, flags=re.UNICODE)
     if compact in {"n", "no", "nomer", "raqam", "tr", "tartibraqami"}:
@@ -18622,7 +18622,7 @@ def _v237_decode_teacher_xlsx(payload: V237TeacherImportPayload):
     encoded = original_encoded.strip()
     if encoded.startswith("data:"):
         if "," not in encoded:
-            raise ValueError("XLSX base64 data URL noto‘g‘ri.")
+            raise ValueError("XLSX base64 data URL notoвЂgвЂri.")
         encoded = encoded.split(",", 1)[1]
     encoded = re.sub(r"\s+", "", encoded)
     if not encoded:
@@ -18633,9 +18633,9 @@ def _v237_decode_teacher_xlsx(payload: V237TeacherImportPayload):
     try:
         raw = _v237_base64.b64decode(encoded, validate=True)
     except (_v237_binascii.Error, ValueError) as exc:
-        raise ValueError("XLSX base64 ma’lumoti buzilgan.") from exc
+        raise ValueError("XLSX base64 maвЂ™lumoti buzilgan.") from exc
     if not raw or len(raw) > _V237_TEACHER_XLSX_MAX_BYTES:
-        raise ValueError("XLSX fayl bo‘sh yoki 3 MB dan katta.")
+        raise ValueError("XLSX fayl boвЂsh yoki 3 MB dan katta.")
     try:
         with _v237_zipfile.ZipFile(_v237_io.BytesIO(raw)) as archive:
             members = archive.infolist()
@@ -18645,7 +18645,7 @@ def _v237_decode_teacher_xlsx(payload: V237TeacherImportPayload):
             for member in members:
                 normalized_name = str(member.filename or "").replace("\\", "/")
                 if normalized_name.startswith("/") or ".." in normalized_name.split("/"):
-                    raise ValueError("XLSX ichki fayl yo‘li xavfsiz emas.")
+                    raise ValueError("XLSX ichki fayl yoвЂli xavfsiz emas.")
                 unpacked += int(member.file_size or 0)
                 if unpacked > _V237_TEACHER_XLSX_MAX_UNCOMPRESSED:
                     raise ValueError("XLSX ochilgandagi hajmi xavfsizlik limitidan oshdi.")
@@ -18658,13 +18658,13 @@ def _v237_teacher_hour_value(value, row_number):
     if value is None or str(value).strip() == "":
         return None
     if isinstance(value, bool):
-        raise ValueError(f"{row_number}-qator: Skelet soati raqam bo‘lishi kerak.")
+        raise ValueError(f"{row_number}-qator: Skelet soati raqam boвЂlishi kerak.")
     text = str(value).strip().replace(",", ".")
     try:
         hours = float(text)
     except (TypeError, ValueError) as exc:
         raise ValueError(
-            f"{row_number}-qator: Skelet soati 0,5–60 oralig‘ida bo‘lishi kerak."
+            f"{row_number}-qator: Skelet soati 0,5вЂ“60 oraligвЂida boвЂlishi kerak."
         ) from exc
     if (
         not _v237_math.isfinite(hours)
@@ -18673,7 +18673,7 @@ def _v237_teacher_hour_value(value, row_number):
         or abs(hours * 2 - round(hours * 2)) > 1e-9
     ):
         raise ValueError(
-            f"{row_number}-qator: Skelet soati 0,5–60 oralig‘ida, 0,5 qadamda bo‘lishi kerak."
+            f"{row_number}-qator: Skelet soati 0,5вЂ“60 oraligвЂida, 0,5 qadamda boвЂlishi kerak."
         )
     return round(hours, 1)
 
@@ -18719,7 +18719,7 @@ def _v237_parse_teacher_xlsx(raw):
                 break
         if selected is None:
             raise ValueError(
-                "O‘qituvchilar varag‘ida “F.I.Sh.” va “Skelet soati” sarlavhalari topilmadi."
+                "OвЂqituvchilar varagвЂida вЂњF.I.Sh.вЂќ va вЂњSkelet soatiвЂќ sarlavhalari topilmadi."
             )
 
         parsed = []
@@ -18735,7 +18735,7 @@ def _v237_parse_teacher_xlsx(raw):
             if scanned > _V237_TEACHER_XLSX_MAX_ROWS:
                 errors.append({
                     "qator": row_number,
-                    "xato": f"Ko‘pi bilan {_V237_TEACHER_XLSX_MAX_ROWS} ta o‘qituvchi yuklash mumkin.",
+                    "xato": f"KoвЂpi bilan {_V237_TEACHER_XLSX_MAX_ROWS} ta oвЂqituvchi yuklash mumkin.",
                 })
                 break
             formula_cell = next((
@@ -18759,7 +18759,7 @@ def _v237_parse_teacher_xlsx(raw):
             if not 3 <= len(name) <= 160:
                 errors.append({
                     "qator": row_number,
-                    "xato": "O‘qituvchi F.I.Sh. 3–160 ta belgi bo‘lishi kerak.",
+                    "xato": "OвЂqituvchi F.I.Sh. 3вЂ“160 ta belgi boвЂlishi kerak.",
                 })
                 continue
             # F.I.Sh. boshqa ustunda xato bo'lsa ham fayldagi takror sifatida
@@ -18785,7 +18785,7 @@ def _v237_parse_teacher_xlsx(raw):
                 "name_key": name_key,
             })
         if not parsed and not errors:
-            errors.append({"qator": None, "xato": "Import uchun birorta o‘qituvchi topilmadi."})
+            errors.append({"qator": None, "xato": "Import uchun birorta oвЂqituvchi topilmadi."})
         return parsed, errors, selected.title, int(header_row)
     finally:
         workbook.close()
@@ -18822,12 +18822,12 @@ def _v237_teacher_template_bytes():
 
     workbook = openpyxl.Workbook()
     main = workbook.active
-    main.title = "O‘qituvchilar"
-    main.append(["№", "F.I.Sh.", "Skelet soati"])
+    main.title = "OвЂqituvchilar"
+    main.append(["в„–", "F.I.Sh.", "Skelet soati"])
     # Asosiy varaq ataylab mutlaqo namunasiz: namuna qatori tasodifan import
     # bo'lib ketmasligi uchun to'rtta misol alohida varaqda turadi.
-    example = workbook.create_sheet("To‘ldirish namunasi")
-    example.append(["№", "F.I.Sh.", "Skelet soati"])
+    example = workbook.create_sheet("ToвЂldirish namunasi")
+    example.append(["в„–", "F.I.Sh.", "Skelet soati"])
     examples = [
         (1, "Aliyeva Dilnoza Anvarovna", 18),
         (2, "Karimov Sardor Bahodirovich", 16.5),
@@ -18836,13 +18836,13 @@ def _v237_teacher_template_bytes():
     ]
     for row in examples:
         example.append(row)
-    guide = workbook.create_sheet("Ko‘rsatma")
-    guide.append(["O‘QITUVCHILARNI EXCEL ORQALI YUKLASH"])
-    guide.append(["1", "Faqat “O‘qituvchilar” varag‘ini to‘ldiring."])
-    guide.append(["2", "F.I.Sh. 3–160 ta belgi bo‘lsin; bir xil F.I.Sh. takrorlanmasin."])
-    guide.append(["3", "Skelet soati bo‘sh qolishi yoki 0,5–60 oralig‘ida 0,5 qadamda yozilishi mumkin."])
-    guide.append(["4", "Formula yozmang. O‘qituvchi raqami sayt tomonidan o‘zgarmas qilib beriladi."])
-    guide.append(["5", "“To‘ldirish namunasi” faqat ko‘rish uchun; u import qilinmaydi."])
+    guide = workbook.create_sheet("KoвЂrsatma")
+    guide.append(["OвЂQITUVCHILARNI EXCEL ORQALI YUKLASH"])
+    guide.append(["1", "Faqat вЂњOвЂqituvchilarвЂќ varagвЂini toвЂldiring."])
+    guide.append(["2", "F.I.Sh. 3вЂ“160 ta belgi boвЂlsin; bir xil F.I.Sh. takrorlanmasin."])
+    guide.append(["3", "Skelet soati boвЂsh qolishi yoki 0,5вЂ“60 oraligвЂida 0,5 qadamda yozilishi mumkin."])
+    guide.append(["4", "Formula yozmang. OвЂqituvchi raqami sayt tomonidan oвЂzgarmas qilib beriladi."])
+    guide.append(["5", "вЂњToвЂldirish namunasiвЂќ faqat koвЂrish uchun; u import qilinmaydi."])
     guide.merge_cells("A1:C1")
     guide["A1"].font = Font(size=15, bold=True, color="FFFFFF")
     guide["A1"].fill = PatternFill("solid", fgColor="155A7A")
@@ -18862,8 +18862,8 @@ def _v237_teacher_template_bytes():
             formula1='OR(C2="",AND(ISNUMBER(C2),C2>=0.5,C2<=60,MOD(C2*2,1)=0))',
             allow_blank=True,
         )
-        validation.error = "0,5–60 oralig‘ida, 0,5 qadamda kiriting"
-        validation.errorTitle = "Skelet soati noto‘g‘ri"
+        validation.error = "0,5вЂ“60 oraligвЂida, 0,5 qadamda kiriting"
+        validation.errorTitle = "Skelet soati notoвЂgвЂri"
         validation.prompt = "Masalan: 18 yoki 16,5"
         validation.promptTitle = "Skelet soati"
         validation.showErrorMessage = True
@@ -18885,7 +18885,7 @@ def _v237_require_teacher_import_manager(actor_id, maktab_id, action):
         if not _v1852_manager(cur, actor_id, maktab_id):
             raise HTTPException(
                 status_code=403,
-                detail=f"O‘qituvchi importini faqat maktab rahbariyati {action}",
+                detail=f"OвЂqituvchi importini faqat maktab rahbariyati {action}",
             )
     finally:
         cur.close(); conn.close()
@@ -18922,7 +18922,7 @@ def v237_teacher_import_preview(sorov: V237TeacherImportPayload, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="O‘qituvchi importini faqat maktab rahbariyati tekshiradi")
+            raise HTTPException(status_code=403, detail="OвЂqituvchi importini faqat maktab rahbariyati tekshiradi")
         db_errors = _v237_teacher_import_db_errors(cur, sorov.maktab_id, parsed)
         errors = [dict(item) for item in (parse_errors + db_errors)]
         for error in errors:
@@ -18989,7 +18989,7 @@ def v237_teacher_import_commit(sorov: V237TeacherImportPayload, token: str):
         # business transaction boshlaydi.
         conn.commit()
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="O‘qituvchi importini faqat maktab rahbariyati saqlaydi")
+            raise HTTPException(status_code=403, detail="OвЂqituvchi importini faqat maktab rahbariyati saqlaydi")
         # Negative users.user_id butun users jadvali bo'yicha global. Avval global,
         # keyin barcha teacher create/rename yo'llari ishlatadigan maktab locki
         # olinadi: turli maktab parallel importida ham PK urilmaydi.
@@ -19060,9 +19060,9 @@ def v237_teacher_import_commit(sorov: V237TeacherImportPayload, token: str):
         cur.close(); conn.close()
 
 
-# ═══════════════════════════════════════════════════════════
-# V24.2 — STEP-3 SKELET XLSX (one weekly row/class-subject)
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V24.2 вЂ” STEP-3 SKELET XLSX (one weekly row/class-subject)
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 _V241_STEP3_XLSX_FORMAT = "SAMTM_STEP3_XLSX_V24.2.0"
 _V241_STEP3_DAY_NAMES = (
@@ -19233,7 +19233,7 @@ def _v241_step3_context(cur, maktab_id, ensure_teacher_numbers=True):
         if key is None:
             # Xonali legacy alias keyingi applyda o'chirilishi mumkin. U bitta
             # canonical fan/guruhga ishonchli yechilmasa xonani jim tashlab
-            # ketmaymiz — shu fan juftligini conflict qilib previewni to'xtatamiz.
+            # ketmaymiz вЂ” shu fan juftligini conflict qilib previewni to'xtatamiz.
             matching_pairs = {
                 expected_key[:2]
                 for expected_key, expected_row in expected.items()
@@ -19308,22 +19308,22 @@ def _v241_teacher_selector(code, name, new_teacher=False):
     if not clean_name:
         return ""
     if new_teacher or code is None:
-        return f"YANGI · {clean_name}"
-    return f"#{int(code)} · {clean_name}"
+        return f"YANGI В· {clean_name}"
+    return f"#{int(code)} В· {clean_name}"
 
 
 def _v241_parse_teacher_selector(value):
     text = _v241_cell_text(value)
     if not text:
         return {"kind": None, "code": None, "name": ""}
-    existing = re.fullmatch(r"#\s*(\d+)\s*·\s*(.+)", text)
+    existing = re.fullmatch(r"#\s*(\d+)\s*В·\s*(.+)", text)
     if existing:
         return {
             "kind": "existing",
             "code": int(existing.group(1)),
             "name": _v237_teacher_name_clean(existing.group(2)),
         }
-    new_teacher = re.fullmatch(r"YANGI\s*·\s*(.+)", text, flags=re.IGNORECASE)
+    new_teacher = re.fullmatch(r"YANGI\s*В·\s*(.+)", text, flags=re.IGNORECASE)
     if new_teacher:
         return {
             "kind": "new",
@@ -19345,11 +19345,12 @@ def _v241_step3_template_bytes(context):
     teachers_sheet.title = "Oqituvchilar"
     teachers_sheet.append(["STEP-3 O'QITUVCHILAR RO'YXATI"])
     teachers_sheet.append([
-        "Mavjud ustoz kodi/IDsi o'zgartirilmaydi. Yangi ustoz uchun kod va IDni bo'sh qoldirib, F.I.Sh. va fanlarni yozing."
+        "Faqat F.I.Sh. ustunini to'ldiring. Fanlar va haftalik jami sinf varaqlaridagi o'qituvchi tanlovlaridan avtomatik yig'iladi."
     ])
     teacher_headers = [
-        "O'qituvchi kodi", "User ID", "F.I.Sh.", "Fanlar",
-        "Skelet tanlovi", "Haftalik jami",
+        "O'qituvchi kodi (texnik)", "User ID (texnik)",
+        "F.I.Sh.", "Fanlar (server hisoblaydi)",
+        "Skelet tanlovi (texnik)", "Haftalik jami",
     ]
     teachers_sheet.append(teacher_headers)
     teacher_rows = sorted(
@@ -19360,7 +19361,6 @@ def _v241_step3_template_bytes(context):
         ),
     )
     for teacher in teacher_rows:
-        subjects = teacher.get("fanlar_royxati") or []
         teachers_sheet.append([
             teacher.get("jadval_raqami"),
             int(teacher["user_id"]),
@@ -19373,10 +19373,6 @@ def _v241_step3_template_bytes(context):
         _v241_xlsx_literal(
             teachers_sheet.cell(row_number, 3),
             teacher.get("full_name") or "",
-        )
-        _v241_xlsx_literal(
-            teachers_sheet.cell(row_number, 4),
-            ", ".join(str(value) for value in subjects),
         )
 
     pairs_by_class = {}
@@ -19414,7 +19410,7 @@ def _v241_step3_template_bytes(context):
         worksheet.append([None])
         _v241_xlsx_literal(
             worksheet.cell(1, 1),
-            f"{class_name} · fan va o'qituvchi yuklamasi",
+            f"{class_name} В· fan va o'qituvchi yuklamasi",
         )
         worksheet.append([
             "Har fan bitta qatorda. Faqat guruh turi va o'qituvchi tanlovini tahrirlang; kun/darsni jadval generatori joylaydi."
@@ -19508,13 +19504,19 @@ def _v241_step3_template_bytes(context):
     max_teacher_row = max(503, teachers_sheet.max_row)
     for row_number in range(4, max_teacher_row + 1):
         teachers_sheet.cell(row_number, 5).value = (
-            f'=IF(C{row_number}="","",IF(A{row_number}="","YANGI · "&C{row_number},'
-            f'"#"&A{row_number}&" · "&C{row_number}))'
+            f'=IF(C{row_number}="","",IF(A{row_number}="","YANGI В· "&C{row_number},'
+            f'"#"&A{row_number}&" В· "&C{row_number}))'
         )
         teachers_sheet.cell(row_number, 6).value = (
-            f'=SUMIF(\'_SAMTM_JAMI\'!$A$2:$A${max_total_row},E{row_number},'
-            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})+SUMIF('_SAMTM_JAMI'!$B$2:$B${max_total_row},E{row_number},"
-            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})"
+            f'=IF(C{row_number}="","",'
+            f'SUMIF(\'_SAMTM_JAMI\'!$A$2:$A${max_total_row},E{row_number},'
+            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})+"
+            f"SUMIF('_SAMTM_JAMI'!$B$2:$B${max_total_row},E{row_number},"
+            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})+"
+            f"SUMIF('_SAMTM_JAMI'!$A$2:$A${max_total_row},C{row_number},"
+            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})+"
+            f"SUMIF('_SAMTM_JAMI'!$B$2:$B${max_total_row},C{row_number},"
+            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row}))"
         )
     teachers_sheet.freeze_panes = "A4"
     teachers_sheet.auto_filter.ref = f"A3:F{max(4, teachers_sheet.max_row)}"
@@ -19523,6 +19525,11 @@ def _v241_step3_template_bytes(context):
         (20, 15, 38, 45, 48, 18),
     ):
         teachers_sheet.column_dimensions[column].width = width
+    # Foydalanuvchi uchun faqat F.I.Sh. va avtomatik haftalik jami ko'rinadi.
+    # Kod/ID va selector backendning barqaror matching kontrakti uchun saqlanadi;
+    # eski Fanlar ustuni esa moslik uchun qoladi, lekin importda o'qilmaydi.
+    for column in ("A", "B", "D", "E"):
+        teachers_sheet.column_dimensions[column].hidden = True
 
     meta = workbook.create_sheet("_SAMTM")
     meta.append(["format", _V241_STEP3_XLSX_FORMAT])
@@ -19550,6 +19557,13 @@ def _v241_step3_template_bytes(context):
         worksheet["A1"].font = Font(size=15, bold=True, color="17324D")
         worksheet.merge_cells(start_row=1, start_column=1, end_row=1, end_column=min(9, worksheet.max_column))
         worksheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=min(9, worksheet.max_column))
+
+    # openpyxl formulalarni hisoblamaydi; Excel/LibreOffice fayl ochilganda
+    # selector va jami ustunlarini albatta qayta hisoblasin.
+    workbook.calculation.calcMode = "auto"
+    workbook.calculation.fullCalcOnLoad = True
+    workbook.calculation.forceFullCalc = True
+    workbook.calculation.calcOnSave = True
 
     output = _v237_io.BytesIO()
     workbook.save(output)
@@ -19581,7 +19595,7 @@ def _v241_import_mode(value):
     aliases = {
         "butunsinf": "whole", "whole": "whole",
         "1/2guruh": "alphabet", "1/2": "alphabet", "alphabet": "alphabet",
-        "o'g'il/qiz": "gender", "o‘g‘il/qiz": "gender",
+        "o'g'il/qiz": "gender", "oвЂgвЂil/qiz": "gender",
         "ogil/qiz": "gender", "gender": "gender",
     }
     if key not in aliases:
@@ -19610,7 +19624,7 @@ def _v241_parse_step3_xlsx(raw):
 
     try:
         if not workbook.sheetnames or workbook.sheetnames[0] != "Oqituvchilar":
-            raise ValueError("Birinchi varaq aynan “Oqituvchilar” bo'lishi kerak.")
+            raise ValueError("Birinchi varaq aynan вЂњOqituvchilarвЂќ bo'lishi kerak.")
         if "_SAMTM" not in workbook.sheetnames:
             raise ValueError("Bu SAMTM Step-3 shabloni emas: _SAMTM metadata topilmadi.")
         meta_sheet = workbook["_SAMTM"]
@@ -19641,13 +19655,16 @@ def _v241_parse_step3_xlsx(raw):
         teacher_rows = []
         scanned = 0
         for excel_row, cells in enumerate(
-            teacher_sheet.iter_rows(min_row=4, max_col=6), start=4
+            teacher_sheet.iter_rows(min_row=4, max_col=3), start=4
         ):
             scanned += 1
             if scanned > _V237_TEACHER_XLSX_MAX_ROWS:
                 add_error("Oqituvchilar", excel_row, "qator", "O'qituvchi qatorlari limitdan oshdi")
                 break
-            editable = cells[:4]
+            # Faqat texnik A/B va foydalanuvchi kiritadigan C (F.I.Sh.) input.
+            # D/E/F hamda keyingi formula/output ustunlari hech qachon import
+            # manbasi emas: server fan va soatni sinf varaqlaridan hisoblaydi.
+            editable = cells
             if all(cell.value is None or str(cell.value).strip() == "" for cell in editable):
                 continue
             formula = next((
@@ -19664,16 +19681,13 @@ def _v241_parse_step3_xlsx(raw):
                 add_error("Oqituvchilar", excel_row, "identifikator", exc)
                 continue
             name = _v237_teacher_name_clean(cells[2].value)
-            subjects = _v238_clean_subject_list(
-                re.split(r"[,;\n]+", str(cells[3].value or ""))
-            )
             teacher_rows.append({
                 "excel_qatori": int(excel_row),
                 "jadval_raqami": code,
                 "user_id": user_id,
                 "full_name": name,
                 "name_key": _v237_teacher_name_key(name),
-                "fanlar": subjects,
+                "fanlar": [],
             })
 
         pair_rows = []
@@ -19891,7 +19905,7 @@ def _v241_validate_step3_import(parsed, context):
         name = item.get("full_name") or ""
         name_key = item.get("name_key") or ""
         if not 3 <= len(name) <= 160:
-            add_error(sheet, row_number, "F.I.Sh.", "F.I.Sh. 3–160 ta belgi bo'lishi kerak")
+            add_error(sheet, row_number, "F.I.Sh.", "F.I.Sh. 3вЂ“160 ta belgi bo'lishi kerak")
             continue
         user_id = item.get("user_id")
         code = item.get("jadval_raqami")
@@ -19935,7 +19949,6 @@ def _v241_validate_step3_import(parsed, context):
                 "jadval_raqami": int(resolved.get("jadval_raqami") or 0),
                 "full_name": str(resolved.get("full_name") or ""),
                 "name_key": _v237_teacher_name_key(resolved.get("full_name")),
-                "fanlar": item.get("fanlar") or [],
             }
         else:
             if not name_key or name_key in seen_new_names or name_key in by_name:
@@ -19945,7 +19958,6 @@ def _v241_validate_step3_import(parsed, context):
             entry = {
                 "kind": "new", "user_id": None, "jadval_raqami": None,
                 "full_name": name, "name_key": name_key,
-                "fanlar": item.get("fanlar") or [],
                 "excel_qatori": row_number,
             }
             new_teachers.append(entry)
@@ -20117,7 +20129,7 @@ def _v241_validate_step3_import(parsed, context):
                 None,
                 None,
                 "xona",
-                f"{pair.get('sinf_nomi')} · {pair['fan_nomi']}: {room_error}",
+                f"{pair.get('sinf_nomi')} В· {pair['fan_nomi']}: {room_error}",
             )
         if (
             state["turi"] == "whole"
@@ -20129,7 +20141,7 @@ def _v241_validate_step3_import(parsed, context):
                 None,
                 "xona",
                 (
-                    f"{pair.get('sinf_nomi')} · {pair['fan_nomi']}: "
+                    f"{pair.get('sinf_nomi')} В· {pair['fan_nomi']}: "
                     "butun sinf o'qituvchisini bo'shatishdan oldin "
                     "joriy xona bog'lanishini alohida olib tashlang"
                 ),
@@ -20151,11 +20163,6 @@ def _v241_validate_step3_import(parsed, context):
             key = teacher.get("name_key")
             teacher_totals[key] = round(
                 teacher_totals.get(key, 0.0) + float(plan["haftalik_soat"]), 1
-            )
-    for teacher in new_teachers:
-        if not teacher.get("fanlar"):
-            warnings.append(
-                f"{teacher['full_name']}: fanlar bo'sh; fanlar skelet birikmalaridan yig'iladi"
             )
     return {
         "valid": not errors,
@@ -20472,22 +20479,9 @@ def _v241_apply_step3_xlsx_plan(
         teacher_summaries[str(teacher_id)] = _v195_refresh_teacher_summary(
             cur, maktab_id, teacher_id
         )
-    # Summary canonical assignmentsdan fanlarni qayta quradi. XLSX orqali
-    # yangi qo'shilgan ustozning hali skeletga biriktirilmagan mutaxassislik
-    # fanlari ham yo'qolmasligi uchun declared + assigned unionni oxirida
-    # qayta saqlaymiz; haftalik soat esa baribir faqat assignmentdan olinadi.
-    for teacher in validation.get("new_teachers") or []:
-        teacher_id = int(new_ids[teacher["name_key"]])
-        assigned = [
-            row[3] for row in assignment_rows if int(row[1]) == teacher_id
-        ]
-        durable_subjects = _v238_clean_subject_list(
-            list(teacher.get("fanlar") or []) + assigned
-        )
-        cur.execute(
-            "UPDATE users SET fanlari=%s WHERE user_id=%s AND maktab_id=%s",
-            ("; ".join(durable_subjects) or None, teacher_id, maktab_id),
-        )
+    # F.I.Sh. yagona qo'lda kiritiladigan o'qituvchi maydoni. Fanlar, sinflar
+    # va haftalik soat yuqoridagi canonical assignment_rows asosida
+    # _v195_refresh_teacher_summary tomonidan qayta qurildi.
     warnings = list(validation.get("warnings") or [])
     warnings.extend(_v192_sync_schedule_sources(cur, maktab_id) or [])
     confirmations = _v192_auto_confirm_exact_pairs(cur, maktab_id, actor_id)
@@ -20566,8 +20560,7 @@ def v241_step3_xlsx_commit(sorov: V241Step3XlsxPayload, token: str):
             user_id = next_user_id
             next_user_id -= 1
             subjects = _v238_clean_subject_list(
-                list(teacher.get("fanlar") or [])
-                + assigned_subjects.get(teacher["name_key"], [])
+                assigned_subjects.get(teacher["name_key"], [])
             )
             target_hours = float(validation["teacher_totals"].get(teacher["name_key"], 0)) or None
             cur.execute(
@@ -20730,14 +20723,14 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
                 raise HTTPException(
                     status_code=400,
                     detail=(
-                        f"{index}-qator: fan–sinf–guruh tasdiqlangan "
+                        f"{index}-qator: fanвЂ“sinfвЂ“guruh tasdiqlangan "
                         "o'quv rejasida yo'q"
                     ),
                 )
             if key in targeted:
                 raise HTTPException(
                     status_code=409,
-                    detail="Bitta fan–sinf–guruh o'zgarishi ikki marta yuborilgan",
+                    detail="Bitta fanвЂ“sinfвЂ“guruh o'zgarishi ikki marta yuborilgan",
                 )
             expected_row = expected[key]
             if abs(
@@ -20754,7 +20747,7 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
             if int(row.kunlik_max) not in range(1, 5):
                 raise HTTPException(
                     status_code=400,
-                    detail=f"{index}-qator: kunlik maksimum 1–4 bo'lishi kerak",
+                    detail=f"{index}-qator: kunlik maksimum 1вЂ“4 bo'lishi kerak",
                 )
             room_id = int(row.xona_id) if row.xona_id is not None else None
             if room_id is not None and room_id not in allowed_room_ids:
@@ -20784,14 +20777,14 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
                 raise HTTPException(
                     status_code=400,
                     detail=(
-                        f"O'chirish {index}: fan–sinf–guruh tasdiqlangan "
+                        f"O'chirish {index}: fanвЂ“sinfвЂ“guruh tasdiqlangan "
                         "o'quv rejasida yo'q"
                     ),
                 )
             if key in targeted:
                 raise HTTPException(
                     status_code=409,
-                    detail="Bitta fan–sinf–guruh ham saqlash, ham o'chirishga yuborilgan",
+                    detail="Bitta fanвЂ“sinfвЂ“guruh ham saqlash, ham o'chirishga yuborilgan",
                 )
             targeted[key] = None
 
@@ -20811,7 +20804,7 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
                 raise HTTPException(
                     status_code=409,
                     detail=(
-                        "Tanlangan fan–sinf–guruh eski ma'lumotda bir nechta "
+                        "Tanlangan fanвЂ“sinfвЂ“guruh eski ma'lumotda bir nechta "
                         "o'qituvchiga yozilgan. Ma'lumot yo'qolmasligi uchun "
                         "avval O'qituvchi va yuklama oynasida bitta aniq "
                         "qatorga keltiring"
@@ -21062,10 +21055,10 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
 @app.put("/api/maktab/aqlli_jadval/v3/sinf_skeleti_yuklama")
 def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
     """
-    V20.4 — sinf skeleti orqali o'qituvchi yuklamasini bir martada saqlash.
+    V20.4 вЂ” sinf skeleti orqali o'qituvchi yuklamasini bir martada saqlash.
 
     Frontend sinf o'quv rejasini fanlari ko'pdan kamga qarab vaqtinchalik
-    kataklarga yoyadi. Bu endpoint kataklarning vaqtini saqlamaydi — faqat
+    kataklarga yoyadi. Bu endpoint kataklarning vaqtini saqlamaydi вЂ” faqat
     sinf + fan + guruh + o'qituvchi + haftalik soat bog'lanishini atomik
     saqlaydi. Shuning uchun skelet keyingi exact jadval generatoriga toza
     manba bo'lib xizmat qiladi, lekin yakuniy dars kunlarini oldindan
@@ -21517,7 +21510,7 @@ def _v200_xlsx_slot_text(rows, teacher_view=False):
         group_label = ""
         if group != "whole":
             normalized = group.casefold()
-            if normalized in {"boys", "boy", "ogil", "o'g'il", "o‘g‘il"}:
+            if normalized in {"boys", "boy", "ogil", "o'g'il", "oвЂgвЂil"}:
                 group_label = "O'g'il bolalar"
             elif normalized in {"girls", "girl", "qiz"}:
                 group_label = "Qiz bolalar"
@@ -21532,14 +21525,14 @@ def _v200_xlsx_slot_text(rows, teacher_view=False):
         class_label = f"{row.get('sinf','')}-{row.get('harf','')}"
         teacher = str(row.get("oqituvchi_ismi") or "O'qituvchi yo'q")
         room = str(row.get("xona_nomi") or row.get("xona_matni") or "Xona yo'q")
-        prefix = " · ".join(value for value in [group_label, week_label] if value)
-        first = " · ".join(value for value in [class_label if teacher_view else "", prefix, subject] if value)
-        second = " · ".join(value for value in ["" if teacher_view else teacher, room] if value)
+        prefix = " В· ".join(value for value in [group_label, week_label] if value)
+        first = " В· ".join(value for value in [class_label if teacher_view else "", prefix, subject] if value)
+        second = " В· ".join(value for value in ["" if teacher_view else teacher, room] if value)
         text = f"{first}\n{second}" if second else first
         if text not in seen:
             seen.add(text)
             lines.append(text)
-    return "\n——\n".join(lines)
+    return "\nвЂ”вЂ”\n".join(lines)
 
 
 def _v200_xlsx_style_workbook(workbook):
@@ -21590,7 +21583,7 @@ def _v200_xlsx_prepare_schedule_sheet(
         key_map[(int(row["hafta_kuni"]), int(row["smena"]), int(row["dars_raqami"]))].append(row)
     schedule_rows = []
     if teacher_view:
-        schedule_rows = [(shift, period, f"{shift}-smena · {period}") for shift in (1, 2) for period in range(1, 7)]
+        schedule_rows = [(shift, period, f"{shift}-smena В· {period}") for shift in (1, 2) for period in range(1, 7)]
     else:
         class_shift = int(rows[0].get("smena") or default_shift) if rows else int(default_shift or 1)
         schedule_rows = [(class_shift, period, str(period)) for period in range(1, 7)]
@@ -21686,12 +21679,12 @@ def v200_schedule_xlsx(token: str, urinish_id: int, turi: str = "sinflar"):
                 rows = [row for row in slots if int(row["sinf_id"]) == entity_id]
                 summary = class_summary.get(entity_id, {})
                 summary_text = summary.get("tasdiq_matni") or (
-                    f"Reja {summary.get('reja', 0)} · jadval {summary.get('jadval', 0)}"
+                    f"Reja {summary.get('reja', 0)} В· jadval {summary.get('jadval', 0)}"
                 )
                 sheet_name = _v200_xlsx_sheet_name(label, used)
                 ws = workbook.create_sheet(sheet_name)
                 _v200_xlsx_prepare_schedule_sheet(
-                    ws, f"{label} · haftalik dars jadvali",
+                    ws, f"{label} В· haftalik dars jadvali",
                     school.get("nomi") or "Maktab", summary_text,
                     weekdays, rows, teacher_view=False,
                     default_shift=int(entity.get("smena") or 1),
@@ -21709,12 +21702,12 @@ def v200_schedule_xlsx(token: str, urinish_id: int, turi: str = "sinflar"):
                 rows = [row for row in slots if int(row.get("oqituvchi_user_id") or 0) == entity_id]
                 summary = teacher_summary.get(entity_id, {})
                 summary_text = summary.get("tasdiq_matni") or (
-                    f"Reja {summary.get('reja', 0)} · jadval {summary.get('jadval', 0)}"
+                    f"Reja {summary.get('reja', 0)} В· jadval {summary.get('jadval', 0)}"
                 )
                 sheet_name = _v200_xlsx_sheet_name(label, used)
                 ws = workbook.create_sheet(sheet_name)
                 _v200_xlsx_prepare_schedule_sheet(
-                    ws, f"{label} · haftalik ish jadvali",
+                    ws, f"{label} В· haftalik ish jadvali",
                     school.get("nomi") or "Maktab", summary_text,
                     weekdays, rows, teacher_view=True,
                 )
@@ -21777,7 +21770,7 @@ def _v192_bundle_label(bundle):
         str(row.get("oqituvchi_ismi") or "O'qituvchi belgilanmagan")
         for row in bundle
     ))
-    return f"{' + '.join(subjects)} · {' + '.join(teachers)}"
+    return f"{' + '.join(subjects)} В· {' + '.join(teachers)}"
 
 
 def _v192_candidate_conflicts(
@@ -22488,13 +22481,13 @@ def v192_swap_apply(sorov: V192SwapApply, token: str):
 
 # ========================= V19.2 END =========================
 
-# ═══════════════════════════════════════════════════════════
-# V19.6 — PEDAGOGIK VA O'QITUVCHIGA QULAY JOYLASHTIRISH
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V19.6 вЂ” PEDAGOGIK VA O'QITUVCHIGA QULAY JOYLASHTIRISH
 # 0,5 fanlar A/B haftada aniq ko'rinadi. Generator sinf yoshiga mos
 # dars vaqtini, og'ir/yengil fan almashuvini, jismoniy tarbiyadan
 # keyingi tiklanishni va o'qituvchining oknosiz ixcham ish kunini
 # birgalikda ballaydi.
-# ═══════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 _v196_base_build_jobs = _v1874_build_jobs
 _v196_base_candidate_reasons = _v1874_candidate_reasons
@@ -22696,10 +22689,10 @@ def _v196_candidate_reasons(
     reasons = list(_v196_base_candidate_reasons(
         job, day, period, selected_teachers, room_keys, state, context
     ))
-    # Oddiy urinishda fan kuniga bir marta qo‘yiladi. Jadvalning hamma darsi
-    # sig‘may qolsa, generatorning zaxira urinishigina bitta sinfda haftasiga
-    # avval 1 kun, mutlaqo iloj bo‘lmasa 2 kungacha shu fanni ikki marta
-    # qo‘yishi mumkin. O‘qituvchining ayni vaqtdagi bandligi filtrlanmaydi.
+    # Oddiy urinishda fan kuniga bir marta qoвЂyiladi. Jadvalning hamma darsi
+    # sigвЂmay qolsa, generatorning zaxira urinishigina bitta sinfda haftasiga
+    # avval 1 kun, mutlaqo iloj boвЂlmasa 2 kungacha shu fanni ikki marta
+    # qoвЂyishi mumkin. OвЂqituvchining ayni vaqtdagi bandligi filtrlanmaydi.
     emergency_repeat_days = int(context.get("v203_emergency_repeat_days") or 0)
     if emergency_repeat_days and "fan kunlik maksimumga yetgan" in reasons:
         subject_counts = state.get("subject_daily", {})
@@ -22716,7 +22709,7 @@ def _v196_candidate_reasons(
         if current_count < 2 and may_use_day:
             reasons = [reason for reason in reasons if reason not in {
                 "fan kunlik maksimumga yetgan",
-                "boshlang‘ich sinfda bir fan shu kuni takror qo‘yilmaydi",
+                "boshlangвЂich sinfda bir fan shu kuni takror qoвЂyilmaydi",
             }]
     profile = _v196_rotation_profile(job, context)
     if int(period) == 1 and (
@@ -22726,7 +22719,7 @@ def _v196_candidate_reasons(
             "jismoniy tarbiya va texnologiya 1-darsga qo'yilmaydi"
         )
 
-    # V22.48: post-processing 4–5 soatli fanni 2+2(+1) ko'rinishida
+    # V22.48: post-processing 4вЂ“5 soatli fanni 2+2(+1) ko'rinishida
     # yig'ishi mumkin, ammo bir fan uchun juft darsli kunlar soni exact
     # validator limitidan oshmaydi. Bu o'qituvchi oynosini tuzatib bo'lgach
     # butun natijaning rollback bo'lishini oldini oladi.
@@ -22759,7 +22752,7 @@ def _v196_candidate_reasons(
 
     # Qurish vaqtida vaqtinchalik sinf oknosini qattiq taqiqlamaymiz. Aks
     # holda navbatda oldin kelgan ikki-o'qituvchili Chet tili 3-darsga bo'sh
-    # bo'lsa ham, 1–2-dars hali joylashmagani uchungina nomzodsiz qolardi.
+    # bo'lsa ham, 1вЂ“2-dars hali joylashmagani uchungina nomzodsiz qolardi.
     # Nomzod ballida okno 4350 ball bilan keskin jazolanadi; qurish tugagach
     # _v196_compact_class_gaps uni yopadi va saqlashdan oldingi qattiq
     # tekshiruv bitta ham sinf oknosi qolgan draftni qabul qilmaydi.
@@ -22773,7 +22766,7 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
     rotation_count = 0
     for job in jobs:
         grade = _v1874_grade(classes.get(int(job.get("sinf_id") or 0), {}))
-        # V22.48: barcha fanlarda bir sinf-kun uchun limit 2; 4–5 soatli fan 2+2(+1) bo'lishi mumkin.
+        # V22.48: barcha fanlarda bir sinf-kun uchun limit 2; 4вЂ“5 soatli fan 2+2(+1) bo'lishi mumkin.
         # Bu majburiy juft dars emas; faqat 3 legal kun ichiga 5 soat kabi
         # yuklamani 2+2+1 ko'rinishida sig'dirish imkonidir.
         job["daily_max"] = 2
@@ -22786,9 +22779,9 @@ def _v1852_build_jobs(classes, loads, assignments, group_settings, teachers):
             )
     warnings.append(
         "V19.8 pedagogik strategiya faol: ona tili, adabiyot, matematika, "
-        "algebra, geometriya, fizika, kimyo va biologiya 1–5-darsga; faqat "
+        "algebra, geometriya, fizika, kimyo va biologiya 1вЂ“5-darsga; faqat "
         "boshqa legal katak qolmasa 6-darsga (bir sinfda haftasiga ko'pi bilan "
-        "2 kun); jismoniy tarbiya 3–6-darsga ustuvor. O'qituvchining ichki "
+        "2 kun); jismoniy tarbiya 3вЂ“6-darsga ustuvor. O'qituvchining ichki "
         "oknosi va ikki smena orasidagi uzoq kutish birgalikda kamaytiriladi"
     )
     if rotation_count:
@@ -22940,8 +22933,8 @@ def _v196_cross_shift_edge_blocks(state, teacher, day, context, extra=None):
     """Ikki smena orasidagi oldini olish mumkin bo'lgan bo'sh bloklar.
 
     1-smena oxiridagi bo'sh darslar + 2-smena boshidagi bo'sh darslar olinadi.
-    Masalan, 1-smena 1–3 va 2-smena 4–5 bo'lsa 3+3=6 blok; 1-smena
-    4–6 va 2-smena 1–2 bo'lsa 0 blok. Faqat ikkala smena shu kunda faol
+    Masalan, 1-smena 1вЂ“3 va 2-smena 4вЂ“5 bo'lsa 3+3=6 blok; 1-smena
+    4вЂ“6 va 2-smena 1вЂ“2 bo'lsa 0 blok. Faqat ikkala smena shu kunda faol
     bo'lgandagina qiymat qaytariladi.
     """
     by_shift = {}
@@ -22992,10 +22985,10 @@ def _v196_teacher_demand(jobs):
 
 
 def _v196_teacher_target_days(demand, rules):
-    """Haftalik yuklamani iloji boricha 1–4 ixcham ish kuniga yig'adi.
+    """Haftalik yuklamani iloji boricha 1вЂ“4 ixcham ish kuniga yig'adi.
 
-    V22.48: 1 soat tabiiy ravishda 1 kunda qoladi. 2–6 soatli yuklama 2
-    kunga, 7–10 soat 3 kunga, 11–18 soat esa 3–4 kunga yig'iladi. Kunlik
+    V22.48: 1 soat tabiiy ravishda 1 kunda qoladi. 2вЂ“6 soatli yuklama 2
+    kunga, 7вЂ“10 soat 3 kunga, 11вЂ“18 soat esa 3вЂ“4 kunga yig'iladi. Kunlik
     maksimum qattiq qoida bo'lib qoladi; maqsad sig'masa minimum kun soni
     avtomatik oshadi.
     """
@@ -23163,7 +23156,7 @@ def _v206_deadline_reached(context):
 
 
 def _v196_compact_class_gaps(state, context, rng, max_moves=32):
-    """1–2–3–bo'sh–5 ni 1–2–3–4 ko'rinishiga xavfsiz siqadi."""
+    """1вЂ“2вЂ“3вЂ“bo'shвЂ“5 ni 1вЂ“2вЂ“3вЂ“4 ko'rinishiga xavfsiz siqadi."""
     moves = 0
     while moves < int(max_moves):
         if _v206_deadline_reached(context):
@@ -23415,7 +23408,7 @@ def _v196_teacher_gap_metrics(state, context):
 
 
 def _v196_teacher_comfort_signature(state, context):
-    """Kichik qiymat — pedagogik va o'qituvchi uchun yaxshiroq jadval.
+    """Kichik qiymat вЂ” pedagogik va o'qituvchi uchun yaxshiroq jadval.
 
     Sinf uzluksizligi hamda asosiy/amaliy fan vaqti birinchi o'rinda qoladi.
     Shundan keyin 3 soatdan uzun smena oralig'i, 2 soatdan uzun istisnolar va
@@ -23625,7 +23618,7 @@ def _v226_teacher_day_target(state, context, teacher_id):
 def _v2258_presence_limit_minutes(lesson_count):
     """Kunlik dars soni uchun foydalanuvchi belgilagan real vaqt chegarasi.
 
-    4–5 dars birinchi darsdan oxirgisigacha ko'pi bilan 8 soatga, 6–7 dars
+    4вЂ“5 dars birinchi darsdan oxirgisigacha ko'pi bilan 8 soatga, 6вЂ“7 dars
     esa ko'pi bilan 10 soatga sig'ishi kerak. Qisqaroq variant doim yaxshiroq;
     bu qiymatlar minimum emas, ortiqcha maktabda ushlab qolishning yuqori
     chegarasidir.
@@ -23748,9 +23741,9 @@ def _v2258_teacher_presence_policy(state, context, teacher_id):
 def _v225_teacher_score(state, context, teacher_id):
     """Bitta o'qituvchi uchun worst-first lexicographic baho.
 
-    Foydalanuvchi uchun asosiy muammo — real okno. Shu sabab avval eng katta
-    va jami kutish, keyin okno soni kamayadi. Faqat shundan keyin 4–5 darsni
-    8 soatga, 6–7 darsni 10 soatga sig'dirish va ortiqcha ish kunini yig'ish
+    Foydalanuvchi uchun asosiy muammo вЂ” real okno. Shu sabab avval eng katta
+    va jami kutish, keyin okno soni kamayadi. Faqat shundan keyin 4вЂ“5 darsni
+    8 soatga, 6вЂ“7 darsni 10 soatga sig'dirish va ortiqcha ish kunini yig'ish
     baholanadi. Bitta ustozning ish kunini qisqartirish qolgan ustozlarning
     oknosini navbatsiz qoldira olmaydi.
     """
@@ -23862,7 +23855,7 @@ def _v225_target_order(state, context):
         if not any(int(value) > 0 for value in score[:8]):
             continue
         # Faqat bitta smenada 4+ ketma-ket darsi bor ustozga tegilmaydi.
-        # Bitta smenalidan faqat 1–3 darsli kuni, 1 darsli kun/ortiqcha ish
+        # Bitta smenalidan faqat 1вЂ“3 darsli kuni, 1 darsli kun/ortiqcha ish
         # kuni yoki haqiqiy oknosi bo'lganlar yengil siqiladi.
         if not both_shifts:
             has_single_shift_problem = bool(
@@ -23932,7 +23925,7 @@ def _v225_teacher_candidates(state, context, teacher_id, limit=None):
     def single_shift_donor_allowed(row):
         counts = applicable_phase_counts(row)
         # Noma'lum fazani xavfsizlik uchun ko'chirmaymiz. Row tegishli bo'lgan
-        # har bir haqiqiy fazada aynan 1–3 dars bo'lishi shart; 4+ bo'lsa yo'q.
+        # har bir haqiqiy fazada aynan 1вЂ“3 dars bo'lishi shart; 4+ bo'lsa yo'q.
         return bool(counts) and all(1 <= int(count) <= 3 for count in counts)
 
     owned = [
@@ -23944,7 +23937,7 @@ def _v225_teacher_candidates(state, context, teacher_id, limit=None):
         and _v196_movable_placement(row)
         # Faqat bitta smenada ishlaydigan ustozning 4+ darsli kuniga
         # tegilmaydi. Ustoz ikki smenada ishlasa barcha muammoli kunlari
-        # tekshiriladi; bitta smenalidan faqat 1–3 darsli kun donor bo'ladi.
+        # tekshiriladi; bitta smenalidan faqat 1вЂ“3 darsli kun donor bo'ladi.
         and (
             both_shifts
             or single_shift_donor_allowed(row)
@@ -23955,7 +23948,7 @@ def _v225_teacher_candidates(state, context, teacher_id, limit=None):
     seen = set()
     yielded = 0
 
-    # 1) Kam soatli ustozni 2–4 faol kunga yig'ish: avval eng bo'sh kun donor.
+    # 1) Kam soatli ustozni 2вЂ“4 faol kunga yig'ish: avval eng bo'sh kun donor.
     owned_days = {
         int(day) for (_phase, day), count in phase_daily.items()
         if int(count or 0) > 0
@@ -24834,7 +24827,7 @@ def _v214_context_with_single_slot_exception(
         (teacher_id, day) in method_origin_pairs
         and target_token in synthetic_method_hard
     )
-    # What-if faqat metod kunining aniq 1–2 katagini ko'radi. Qizil/BAND
+    # What-if faqat metod kunining aniq 1вЂ“2 katagini ko'radi. Qizil/BAND
     # katakni hatto hisobot uchun ham ochib sinamaymiz va tavsiya qilmaymiz.
     if (not was_method and not continued_method) or (
         was_red and not continued_method
@@ -25049,7 +25042,7 @@ def _v214_teacher_window_relaxation_report(
     # mezonlari himoyalanadi. Faqat ayrim "muhim" kalitlarni sanash boshqa
     # ustozga yangi uzun oyna, qo'shimcha ish kuni yoki smena oralig'i berib
     # qo'yishi mumkin edi. Ro'yxatlarni (diagnostika qatorlarini) emas, ularning
-    # quyidagi aniq sonli agregatlarini oldin→keyin solishtiramiz.
+    # quyidagi aniq sonli agregatlarini oldinв†’keyin solishtiramiz.
     protected_metric_keys = (
         "oqituvchi_bitta_darsli_kun", "oqituvchi_faol_kun",
         "ketma_ket_ogir_fan", "jismoniydan_keyin_ogir_fan",
@@ -25146,7 +25139,7 @@ def _v214_teacher_window_relaxation_report(
                     first_job.get("v1874_grade") or _v1874_grade(class_row)
                 )
                 # Yuqori sinflarda metod kuni faqat katta (120+ daqiqa)
-                # kutishni tuzatish uchun oxirgi variant. Boshlang'ich 1–4 da
+                # kutishni tuzatish uchun oxirgi variant. Boshlang'ich 1вЂ“4 da
                 # esa bir yoki ikki exact soatlik metod istisnosi kichikroq
                 # oynani ham yopishi mumkin; faqat Shanba qat'iy qoladi.
                 if (
@@ -25361,7 +25354,7 @@ def _v214_teacher_window_relaxation_report(
     # Boshlang'ich sinf uchun Shanbadan boshqa metod kunida foyda bergan
     # 1-soatlik variant topilsa, o'sha kunning yana bitta aniq katagini ochish
     # ham alohida SINOV qilinadi. Ikki katak birdan taxmin qilinmaydi: birinchi
-    # valid trial ustiga ikkinchi exact swap qo'yilib, oldin→keyin qayta
+    # valid trial ustiga ikkinchi exact swap qo'yilib, oldinв†’keyin qayta
     # o'lchanadi. Qolgan metod kuni yopiq qoladi.
     double_suggestions = []
     for teacher_id, best_value in sorted(best_by_teacher.items()):
@@ -25851,7 +25844,7 @@ def _v196_attempt_metrics(state, context):
     }
 
 
-# V20.4 — qattiq real-vaqt to'qnashuvi va amaliy fanlarning juft darsi.
+# V20.4 вЂ” qattiq real-vaqt to'qnashuvi va amaliy fanlarning juft darsi.
 # Bu wrapper V19.6/V19.8 dagi barcha sinf, guruh, xona va qizil vaqt
 # tekshiruvlarini saqlaydi; faqat yetishmagan ikki holatni qo'shadi.
 _v204_base_candidate_reasons = _v196_candidate_reasons
@@ -25989,7 +25982,7 @@ def _v1852_candidate_reasons(
     ))
     profile = _v196_rotation_profile(job, context)
 
-    # Asosiy fanlar avval 1–5-darslardan joy oladi. Boshqa legal kombinatsiya
+    # Asosiy fanlar avval 1вЂ“5-darslardan joy oladi. Boshqa legal kombinatsiya
     # qolmasa 6-dars zaxira sifatida ishlaydi, ammo bir sinfning haftasida
     # bunday kunlar ikkitadan oshmaydi. Bu pedagogik afzallik emas, foydalanuvchi
     # belgilagan yakuniy chegara; completion bosqichi ham uni olib tashlamaydi.
@@ -26168,14 +26161,14 @@ def _v1852_candidate_reasons(
     )
 
 
-# ═══════════════════════════════════════════════════════════════════════════
-# V20.9 — ADMIN MAKTAB USTASI: BITTA ATOMAR, KANONIK BACKEND KONTRAKTI
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+# V20.9 вЂ” ADMIN MAKTAB USTASI: BITTA ATOMAR, KANONIK BACKEND KONTRAKTI
 #
 # Frontend parallel sonlarini 1/2-smena uchun alohida hisoblab, tayyor sinf
 # qatorlari sifatida yuboradi. Backend frontendga ishonib ketmaydi: sinf
 # harflarini, bino+xona identifikatorini, xizmat xonalarini va bitta uy
 # xonasining ikki sinfga berilmaganini transactiondan oldin qayta tekshiradi.
-# ═══════════════════════════════════════════════════════════════════════════
+# в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
 
 SAMTM_SCHOOL_CREATION_PATCH = "v20.9-contract-b-f-safe"
 
@@ -26267,12 +26260,12 @@ def _v209_keep_highest_member_role(member_roles, user_id, role):
 
 
 def _v209_normalize_class_name(value, alphabet_type="latin_xalqaro"):
-    """`1-A`, `1-Б`, `1-Rus` yoki `1-001` ni raqam + yorliqqa ajratadi."""
+    """`1-A`, `1-Р‘`, `1-Rus` yoki `1-001` ni raqam + yorliqqa ajratadi."""
     raw = _v209_clean_text(value, 64)
     # Raqam bilan boshlanuvchi erkin yorliq faqat aniq ajratgichdan keyin
     # qabul qilinadi. Shu sabab oddiy ``11`` xato qilib 1-sinf + ``1``
     # paralleliga aylanmaydi, lekin ``1-001`` qonuniy bo'ladi.
-    match = re.fullmatch(r"(1[01]|[1-9])\s*[-–—_]\s*(.+)", raw)
+    match = re.fullmatch(r"(1[01]|[1-9])\s*[-вЂ“вЂ”_]\s*(.+)", raw)
     if not match:
         match = re.fullmatch(r"(1[01]|[1-9])\s+(.+)", raw)
     if not match:
@@ -26299,12 +26292,12 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count,
     try:
         shift_count = int(shift_count)
     except (TypeError, ValueError) as exc:
-        raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.") from exc
+        raise ValueError("Smena soni 1 yoki 2 boвЂlishi kerak.") from exc
     if shift_count not in (1, 2):
-        raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.")
+        raise ValueError("Smena soni 1 yoki 2 boвЂlishi kerak.")
     alphabet_type = str(alphabet_type or "latin_xalqaro").strip().lower()
     if alphabet_type not in _V237_CLASS_ALPHABETS:
-        raise ValueError("Sinf alifbosi noto‘g‘ri.")
+        raise ValueError("Sinf alifbosi notoвЂgвЂri.")
     alphabet = _V237_CLASS_ALPHABETS[alphabet_type]
     alphabet_indexes = {
         _v237_parallel_label_key(label): index
@@ -26321,8 +26314,8 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count,
         parsed = _v209_normalize_class_name(item.get("name"), alphabet_type)
         if parsed is None:
             raise ValueError(
-                f"“{_v209_clean_text(item.get('name'), 64) or '?'}” sinf nomi noto‘g‘ri. "
-                "Masalan 1-A, 1-Б yoki 1-Rus ko‘rinishida kiriting."
+                f"вЂњ{_v209_clean_text(item.get('name'), 64) or '?'}вЂќ sinf nomi notoвЂgвЂri. "
+                "Masalan 1-A, 1-Р‘ yoki 1-Rus koвЂrinishida kiriting."
             )
         grade, letter = parsed
         name = f"{grade}-{letter}"
@@ -26333,7 +26326,7 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count,
         try:
             shift = int(item.get("shift") or 1)
         except (TypeError, ValueError) as exc:
-            raise ValueError(f"{name} uchun smena noto‘g‘ri.") from exc
+            raise ValueError(f"{name} uchun smena notoвЂgвЂri.") from exc
         if shift not in (1, 2) or (shift_count == 1 and shift != 1):
             raise ValueError(
                 f"{name} uchun {shift}-smena maktabning {shift_count} smena sozlamasiga mos emas."
@@ -26364,7 +26357,7 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count,
         )
         actual_keys = [_v237_parallel_label_key(row["letter"]) for row in ordered]
         # Tanlangan alifbodagi standart harflar ishlatilsa A/B/... yoki
-        # А/Б/... uzluksizligi saqlanadi. Erkin nomlar (Rus, STEM, A-1)
+        # Рђ/Р‘/... uzluksizligi saqlanadi. Erkin nomlar (Rus, STEM, A-1)
         # esa takrorlanmasa qabul qilinadi va tabiiy tartiblanadi.
         if all(key in alphabet_indexes for key in actual_keys):
             expected = list(alphabet[:len(ordered)])
@@ -26386,8 +26379,8 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count,
                 second_started = True
             elif second_started:
                 raise ValueError(
-                    f"{grade}-sinf smenalari harflar bo‘yicha uzluksiz emas: "
-                    "avval 1-smena, keyin 2-smena bo‘lishi kerak."
+                    f"{grade}-sinf smenalari harflar boвЂyicha uzluksiz emas: "
+                    "avval 1-smena, keyin 2-smena boвЂlishi kerak."
                 )
     return sorted(
         normalized,
@@ -26408,7 +26401,7 @@ def _v209_normalize_buildings(raw_buildings):
         client_key = _v209_clean_text(item.get("key"), 160)
         name = _v209_clean_text(item.get("name"), 160)
         if not client_key or not name:
-            raise ValueError("Har bir binoning kaliti va nomi bo‘lishi kerak.")
+            raise ValueError("Har bir binoning kaliti va nomi boвЂlishi kerak.")
         key_norm = client_key.casefold()
         name_norm = name.casefold()
         if key_norm in key_seen:
@@ -26420,14 +26413,14 @@ def _v209_normalize_buildings(raw_buildings):
         try:
             floors = int(item.get("floors") or 1)
         except (TypeError, ValueError) as exc:
-            raise ValueError(f"{name} qavat soni noto‘g‘ri.") from exc
+            raise ValueError(f"{name} qavat soni notoвЂgвЂri.") from exc
         if floors not in range(1, 21):
-            raise ValueError(f"{name} qavat soni 1–20 oralig‘ida bo‘lishi kerak.")
+            raise ValueError(f"{name} qavat soni 1вЂ“20 oraligвЂida boвЂlishi kerak.")
 
         room_sources = item.get("rooms") or []
         if not room_sources:
             raise ValueError(
-                f"{name} binosida kamida bitta xona bo‘lishi kerak. "
+                f"{name} binosida kamida bitta xona boвЂlishi kerak. "
                 "Aks holda bino va xonalarni keyin kiritishni tanlang."
             )
 
@@ -26437,10 +26430,10 @@ def _v209_normalize_buildings(raw_buildings):
             room = _v209_model_dict(room_source)
             number = _v209_clean_text(room.get("number"), 100)
             if not number:
-                raise ValueError(f"{name} binosida xona raqami bo‘sh.")
+                raise ValueError(f"{name} binosida xona raqami boвЂsh.")
             if re.search(r"[;,\n]", str(room.get("number") or "")):
                 raise ValueError(
-                    f"{name} / {number}: har bir xona alohida qator bo‘lishi kerak."
+                    f"{name} / {number}: har bir xona alohida qator boвЂlishi kerak."
                 )
             number_norm = number.casefold()
             if number_norm in local_seen:
@@ -26449,10 +26442,10 @@ def _v209_normalize_buildings(raw_buildings):
             try:
                 floor = int(room.get("floor") or 1)
             except (TypeError, ValueError) as exc:
-                raise ValueError(f"{name} / {number} qavati noto‘g‘ri.") from exc
+                raise ValueError(f"{name} / {number} qavati notoвЂgвЂri.") from exc
             if floor not in range(1, floors + 1):
                 raise ValueError(
-                    f"{name} / {number}: qavat 1–{floors} oralig‘ida bo‘lishi kerak."
+                    f"{name} / {number}: qavat 1вЂ“{floors} oraligвЂida boвЂlishi kerak."
                 )
             room_type = _v209_clean_text(room.get("turi") or "classroom", 32).lower()
             teaching = bool(room.get("darsga_yaroqli", True))
@@ -26464,13 +26457,13 @@ def _v209_normalize_buildings(raw_buildings):
             elif room_type in {"maxsus", "reserve", "sport"}:
                 room_type = {"maxsus": "reserve"}.get(room_type, room_type)
             else:
-                raise ValueError(f"{name} / {number}: xona turi noto‘g‘ri.")
+                raise ValueError(f"{name} / {number}: xona turi notoвЂgвЂri.")
             catalog_name = f"{name} {number}"
             catalog_norm = catalog_name.casefold()
             previous_room = catalog_seen.get(catalog_norm)
             if previous_room is not None:
                 raise ValueError(
-                    "Xona katalog nomi to‘qnashdi: "
+                    "Xona katalog nomi toвЂqnashdi: "
                     f"{previous_room['building']} / {previous_room['number']} va "
                     f"{name} / {number}. Bino yoki xona nomini aniqlashtiring."
                 )
@@ -26528,7 +26521,7 @@ def _v209_validate_home_rooms(classes, buildings, rooms):
             if not room["darsga_yaroqli"] or room["turi"] == "non_teaching":
                 raise ValueError(
                     f"{row['name']} uchun {building['name']} / {room_number} "
-                    "dars o‘tilmaydigan xona tanlangan."
+                    "dars oвЂtilmaydigan xona tanlangan."
                 )
             shift = 2 if int(row.get("shift") or 1) == 2 else 1
             occupied_key = (shift, room_key)
@@ -26647,7 +26640,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
     district = _v209_clean_text(sorov.district, 120)
     school_number = _v209_clean_text(sorov.school_number, 40) or None
     if len(school_name) < 2:
-        raise HTTPException(status_code=400, detail="Maktab nomini to‘liq kiriting.")
+        raise HTTPException(status_code=400, detail="Maktab nomini toвЂliq kiriting.")
     if not region or not district:
         raise HTTPException(status_code=400, detail="Viloyat va tumanni tanlang.")
     try:
@@ -26691,7 +26684,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
         if cur.fetchone():
             raise HTTPException(
                 status_code=409,
-                detail="Aynan shu maktab hozirgina yaratildi. Sahifani yangilab ro‘yxatdan oching.",
+                detail="Aynan shu maktab hozirgina yaratildi. Sahifani yangilab roвЂyxatdan oching.",
             )
 
         cur.execute(
