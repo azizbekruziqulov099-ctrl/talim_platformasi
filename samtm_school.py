@@ -16385,6 +16385,14 @@ def _v204_patch_group_setting_actions(
         # proven to belong to this exact class-plan pair, every old setting
         # for that pair can be removed without interpreting its group alias.
         if pair in target_whole_pairs:
+            if room_id is not None:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Xonali eski butun sinf guruh sozlamasini avval "
+                        "alohida olib tashlang. Ma'lumot o'zgartirilmadi"
+                    ),
+                )
             delete_for_whole.append(row)
             continue
         resolved = _v204_resolve_expected_skeleton_key(
@@ -16489,8 +16497,18 @@ def _v204_patch_group_setting_actions(
     return {"delete_rows": delete_rows, "upserts": upserts}
 
 
-def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
-    """Prove full plan/group coverage before the school-wide replacement."""
+def _v204_validate_complete_skeleton_payload(
+    cur,
+    maktab_id: int,
+    qatorlar,
+    bosh_kalitlar=None,
+):
+    """Prove exact assignment + explicit-blank coverage before replacement.
+
+    A missing key is never silently treated as a clear.  Step 3 may save a
+    teacher-less draft, but every blank cell must be named in ``bosh_kalitlar``
+    so a partial/stale browser payload cannot erase unrelated assignments.
+    """
     expected = _v204_expected_skeleton_rows(cur, maktab_id)
     # _v204_group_subject_matches is applied by the shared resolver so the
     # full and partial endpoints accept exactly the same unambiguous aliases.
@@ -16510,8 +16528,31 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
             )
         submitted.setdefault(key, []).append(row)
 
+    explicit_blank = set()
+    for row in bosh_kalitlar or []:
+        key = _v204_resolve_expected_skeleton_key(
+            expected, row.sinf_id, row.fan_nomi, row.guruh_kaliti,
+        )
+        if key is None:
+            key = (
+                int(row.sinf_id),
+                _v1875_subject_key(row.fan_nomi),
+                _v1875_group_key(row.guruh_kaliti),
+            )
+        if key in explicit_blank:
+            raise HTTPException(
+                status_code=409,
+                detail="Bitta bo'sh fan–sinf–guruh kaliti ikki marta yuborilgan",
+            )
+        if key in submitted:
+            raise HTTPException(
+                status_code=409,
+                detail="Bitta fan–sinf–guruh ham o'qituvchili, ham bo'sh yuborilgan",
+            )
+        explicit_blank.add(key)
+
     expected_keys = set(expected)
-    submitted_keys = set(submitted)
+    submitted_keys = set(submitted) | explicit_blank
     if expected_keys != submitted_keys:
         missing = sorted(expected_keys - submitted_keys)
         extra = sorted(submitted_keys - expected_keys)
@@ -16524,6 +16565,72 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
             status_code=409,
             detail="Skelet o'quv reja bilan to'liq mos emas: " + "; ".join(details),
         )
+
+    whole_target_keys = {
+        key for key in submitted_keys if _v1875_group_key(key[2]) == "whole"
+    }
+    whole_blank_keys = {
+        key for key in explicit_blank if _v1875_group_key(key[2]) == "whole"
+    }
+
+    def reject_room_loss(rows, protected_keys, source):
+        for current in rows:
+            key = _v204_resolve_expected_skeleton_key(
+                expected,
+                current["sinf_id"],
+                current["fan_nomi"],
+                current.get("guruh_kaliti"),
+            )
+            if key in protected_keys:
+                if source == "setting":
+                    detail = (
+                        "Xonali eski butun sinf guruh sozlamasini avval "
+                        "alohida olib tashlang"
+                    )
+                else:
+                    detail = (
+                        "Xonasi biriktirilgan butun sinf o'qituvchisini "
+                        "bo'shatishdan oldin xona bog'lanishini alohida olib tashlang"
+                    )
+                raise HTTPException(status_code=409, detail=detail)
+            if key is None and any(
+                int(target_key[0]) == int(current["sinf_id"])
+                and _v204_group_subject_matches(
+                    expected[target_key]["fan_nomi"], current["fan_nomi"]
+                )
+                for target_key in protected_keys
+            ):
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Xonali eski fan aliasi joriy butun sinf qatoriga "
+                        "aniq ulanmaydi; avval xona/fan bog'lanishini tuzating"
+                    ),
+                )
+
+    # Whole target guruh-setting qatorini har doim o'chiradi. Teacher tanlangan
+    # bo'lsa ham settingdagi yashirin xona payloadga ko'chmaydi, shuning uchun
+    # bunday legacy/durable xona avval alohida tuzatilishi shart.
+    if whole_target_keys:
+        cur.execute(
+            """SELECT sinf_id,fan_nomi,guruh_kaliti,xona_id
+                 FROM aqlli_guruh_sozlamalari_v2
+                WHERE maktab_id=%s AND xona_id IS NOT NULL""",
+            (maktab_id,),
+        )
+        reject_room_loss(cur.fetchall(), whole_target_keys, "setting")
+
+    # Canonical assignment roomi teacher saqlansa payloaddagi xona_id orqali
+    # aniq yangilanadi. Faqat teacher bo'shatilganda uni saqlaydigan qator
+    # qolmaydi, shuning uchun blank WHOLE holatini bloklaymiz.
+    if whole_blank_keys:
+        cur.execute(
+            """SELECT sinf_id,fan_nomi,guruh_kaliti,xona_id
+                 FROM maktab_dars_birikmalari
+                WHERE maktab_id=%s AND xona_id IS NOT NULL""",
+            (maktab_id,),
+        )
+        reject_room_loss(cur.fetchall(), whole_blank_keys, "assignment")
 
     grouped_teachers = {}
     for key, rows in submitted.items():
@@ -16541,6 +16648,14 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
                 status_code=409,
                 detail="Skeletdagi haftalik soat tasdiqlangan o'quv reja bilan teng emas",
             )
+        if int(row.kunlik_max) != int(expected[key]["kunlik_max"]):
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Skeletdagi kunlik maksimum tasdiqlangan o'quv reja "
+                    "bilan teng emas"
+                ),
+            )
         if key[2] != "whole":
             grouped_teachers.setdefault(key[:2], []).append(int(row.user_id))
     if any(len(teachers) != len(set(teachers)) for teachers in grouped_teachers.values()):
@@ -16548,7 +16663,11 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
             status_code=409,
             detail="Bitta guruhli fanning har bir guruhiga alohida o'qituvchi tanlanishi kerak",
         )
-    return {"qator_soni": len(expected_keys)}
+    return {
+        "qator_soni": len(expected_keys),
+        "biriktirilgan_soni": len(submitted),
+        "bosh_soni": len(explicit_blank),
+    }
 
 
 def _v192_matrix_payload(cur, maktab_id: int):
@@ -17321,18 +17440,22 @@ class V204SkeletonLeaderRow(BaseModel):
     user_id: Optional[int] = None
 
 
-class V204SkeletonBulkSave(BaseModel):
-    maktab_id: int
-    qatorlar: list[V204SkeletonLoadRow] = []
-    rahbarlar: list[V204SkeletonLeaderRow] = []
-    toliq_snapshot: bool = False
-    kutilgan_yuklama_revision: Optional[str] = None
-
-
 class V204SkeletonAssignmentKey(BaseModel):
     sinf_id: int
     fan_nomi: str
     guruh_kaliti: str = "whole"
+
+
+class V204SkeletonBulkSave(BaseModel):
+    maktab_id: int
+    qatorlar: list[V204SkeletonLoadRow] = []
+    # Teacher tanlanmagan kataklar to'liq snapshotda alohida ko'rsatiladi.
+    # Omitted kalitni blank deb taxmin qilish boshqa tab ma'lumotini o'chirishi
+    # mumkin, shuning uchun qatorlar + bo_sh_kalitlar to'liq coverage bo'ladi.
+    bo_sh_kalitlar: list[V204SkeletonAssignmentKey] = []
+    rahbarlar: list[V204SkeletonLeaderRow] = []
+    toliq_snapshot: bool = False
+    kutilgan_yuklama_revision: Optional[str] = None
 
 
 class V204SkeletonPatchSave(BaseModel):
@@ -18080,6 +18203,8 @@ _V237_TEACHER_IMPORT_MAX_REQUEST_FRAMES = 8192
 _V237_TEACHER_IMPORT_PATHS = frozenset({
     "/api/maktab/aqlli_jadval/v3/oqituvchi_import_preview",
     "/api/maktab/aqlli_jadval/v3/oqituvchi_import_commit",
+    "/api/maktab/aqlli_jadval/v3/sinf_skeleti_xlsx_preview",
+    "/api/maktab/aqlli_jadval/v3/sinf_skeleti_xlsx_commit",
 })
 
 
@@ -18671,6 +18796,1561 @@ def v237_teacher_import_commit(sorov: V237TeacherImportPayload, token: str):
         cur.close(); conn.close()
 
 
+# ═══════════════════════════════════════════════════════════
+# V24.1 — STEP-3 SKELET XLSX (teacher catalog + one sheet/class)
+# ═══════════════════════════════════════════════════════════
+
+_V241_STEP3_XLSX_FORMAT = "SAMTM_STEP3_XLSX_V24.1.1"
+_V241_STEP3_DAY_NAMES = (
+    "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma",
+    "Shanba", "Yakshanba",
+)
+
+
+class V241Step3XlsxPayload(V237TeacherImportPayload):
+    fayl_nomi: Optional[str] = "SAMTM_Sinf_skeleti.xlsx"
+
+
+def _v241_step3_schema_revision(expected, classes):
+    """Hash only canonical curriculum/group topology, never display formulas."""
+    class_map = {int(row["id"]): row for row in classes or []}
+    payload = []
+    for key, row in sorted((expected or {}).items()):
+        class_row = class_map.get(int(row["sinf_id"])) or {}
+        payload.append({
+            "sinf_id": int(row["sinf_id"]),
+            "sinf": f"{class_row.get('sinf', '')}-{class_row.get('harf', '')}",
+            "talim_tili": _v238_normalize_instruction_language(
+                class_row.get("talim_tili")
+            ),
+            "fan_kaliti": str(row["fan_kaliti"]),
+            "guruh_kaliti": _v1875_group_key(row["guruh_kaliti"]),
+            "haftalik_soat": round(float(row["haftalik_soat"]), 4),
+            "kunlik_max": int(row["kunlik_max"]),
+        })
+    raw = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _v241_step3_pairs(expected, classes, assignments):
+    class_map = {int(row["id"]): dict(row) for row in classes or []}
+    assignment_map = {}
+    for row in assignments or []:
+        key = (
+            int(row["sinf_id"]),
+            _v1875_subject_key(row["fan_nomi"]),
+            _v1875_group_key(row.get("guruh_kaliti")),
+        )
+        assignment_map.setdefault(key, []).append(dict(row))
+    pairs = {}
+    for key, row in sorted((expected or {}).items()):
+        pair_key = key[:2]
+        pair = pairs.setdefault(pair_key, {
+            "sinf_id": int(row["sinf_id"]),
+            "fan_nomi": str(row["fan_nomi"]),
+            "fan_kaliti": str(row["fan_kaliti"]),
+            "haftalik_soat": float(row["haftalik_soat"]),
+            "kunlik_max": int(row["kunlik_max"]),
+            "guruh_kalitlari": [],
+            "oqituvchilar": {},
+        })
+        group_key = _v1875_group_key(row["guruh_kaliti"])
+        pair["guruh_kalitlari"].append(group_key)
+        current = assignment_map.get(key, [])
+        if len(current) > 1:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"{pair['fan_nomi']}: bitta skelet kalitida bir nechta "
+                    "o'qituvchi bor; XLSX olishdan oldin ziddiyatni tuzating"
+                ),
+            )
+        pair["oqituvchilar"][group_key] = current[0] if current else None
+    result = []
+    for pair in pairs.values():
+        keys = sorted(set(pair["guruh_kalitlari"]))
+        if keys == ["whole"]:
+            pair["turi"] = "whole"
+        elif keys == ["group_1", "group_2"]:
+            pair["turi"] = "alphabet"
+        elif keys == ["boys", "girls"]:
+            pair["turi"] = "gender"
+        else:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"{pair['fan_nomi']}: XLSX faqat Butun sinf, aniq "
+                    "1/2 guruh yoki O'g'il/Qiz holatini qabul qiladi"
+                ),
+            )
+        cls = class_map.get(pair["sinf_id"]) or {}
+        pair["sinf_nomi"] = f"{cls.get('sinf', '')}-{cls.get('harf', '')}"
+        pair["talim_tili"] = _v238_normalize_instruction_language(
+            cls.get("talim_tili")
+        )
+        result.append(pair)
+    return result
+
+
+def _v241_step3_context(cur, maktab_id, ensure_teacher_numbers=True):
+    classes, systems, _variants = _v192_group_variants(cur, maktab_id)
+    cur.execute(
+        "SELECT id,guruh_soni FROM maktab_sinflari WHERE maktab_id=%s",
+        (maktab_id,),
+    )
+    group_counts = {int(row["id"]): row.get("guruh_soni") for row in cur.fetchall()}
+    for class_row in classes:
+        class_row["guruh_soni"] = group_counts.get(int(class_row["id"]))
+    expected = _v204_expected_skeleton_rows(cur, maktab_id)
+    assignments = _v192_assignment_rows(cur, maktab_id)
+    cur.execute(
+        "SELECT id FROM aqlli_xonalar_v2 WHERE maktab_id=%s ORDER BY id",
+        (maktab_id,),
+    )
+    allowed_room_ids = {int(row["id"]) for row in cur.fetchall()}
+    cur.execute(
+        """SELECT sinf_id,fan_nomi,guruh_kaliti,xona_id
+             FROM aqlli_guruh_sozlamalari_v2
+            WHERE maktab_id=%s
+            ORDER BY sinf_id,fan_nomi,guruh_kaliti""",
+        (maktab_id,),
+    )
+    group_settings = [dict(row) for row in cur.fetchall()]
+    revision = _v204_assignment_revision(assignments, classes)
+    teacher_numbers = (
+        _v2249_ensure_teacher_numbers(cur, maktab_id)
+        if ensure_teacher_numbers else {}
+    )
+    teachers = [
+        dict(row) for row in _v1859_effective_teachers(
+            cur, maktab_id, include_numbered=True
+        )
+    ]
+    for teacher in teachers:
+        teacher["jadval_raqami"] = teacher_numbers.get(
+            int(teacher["user_id"]), teacher.get("jadval_raqami")
+        )
+    plan = _v193_plan_payload(cur, maktab_id, classes)
+    weekdays = max(5, min(7, int(plan.get("hafta_kunlari") or 6)))
+    pairs = _v241_step3_pairs(expected, classes, assignments)
+    accepted_room_keys = {
+        (
+            int(pair["sinf_id"]),
+            str(pair["fan_kaliti"]),
+            _v1875_group_key(group_key),
+        )
+        for pair in pairs
+        for group_key in pair["guruh_kalitlari"]
+    }
+    room_candidates = {}
+    invalid_room_keys = set()
+    for row in list(assignments) + group_settings:
+        room_id = row.get("xona_id")
+        if room_id is None:
+            continue
+        key = _v204_resolve_expected_skeleton_key(
+            expected,
+            row["sinf_id"],
+            row["fan_nomi"],
+            row.get("guruh_kaliti"),
+        )
+        if key is None:
+            # Xonali legacy alias keyingi applyda o'chirilishi mumkin. U bitta
+            # canonical fan/guruhga ishonchli yechilmasa xonani jim tashlab
+            # ketmaymiz — shu fan juftligini conflict qilib previewni to'xtatamiz.
+            matching_pairs = {
+                expected_key[:2]
+                for expected_key, expected_row in expected.items()
+                if int(expected_key[0]) == int(row["sinf_id"])
+                and _v204_group_subject_matches(
+                    expected_row["fan_nomi"], row["fan_nomi"]
+                )
+            }
+            for pair_key in matching_pairs:
+                invalid_room_keys.update(
+                    candidate
+                    for candidate in accepted_room_keys
+                    if candidate[:2] == pair_key
+                )
+            continue
+        if key not in accepted_room_keys:
+            continue
+        room_id = int(room_id)
+        if room_id not in allowed_room_ids:
+            invalid_room_keys.add(key)
+            continue
+        room_candidates.setdefault(key, set()).add(room_id)
+    preserved_rooms = {
+        key: next(iter(values))
+        for key, values in room_candidates.items()
+        if len(values) == 1 and key not in invalid_room_keys
+    }
+    room_conflicts = sorted(
+        set(invalid_room_keys)
+        | {key for key, values in room_candidates.items() if len(values) > 1}
+    )
+    return {
+        "maktab_id": int(maktab_id),
+        "classes": classes,
+        "systems": systems,
+        "expected": expected,
+        "assignments": assignments,
+        "pairs": pairs,
+        "teachers": teachers,
+        "preserved_rooms": preserved_rooms,
+        "room_conflicts": room_conflicts,
+        "yuklama_revision": revision,
+        "schema_revision": _v241_step3_schema_revision(expected, classes),
+        "hafta_kunlari": weekdays,
+    }
+
+
+def _v241_xlsx_sheet_name(value, used):
+    name = re.sub(r"[\\/*?:\[\]]", "-", str(value or "Sinf")).strip()[:31] or "Sinf"
+    base = name
+    number = 2
+    while name.casefold() in used:
+        suffix = f"-{number}"
+        name = (base[:31 - len(suffix)] + suffix).strip()
+        number += 1
+    used.add(name.casefold())
+    return name
+
+
+def _v241_xlsx_literal(cell, value):
+    """Write untrusted DB text as an exact Excel literal, never a formula."""
+    cell.value = "" if value is None else str(value)
+    cell.data_type = "s"
+    # Excel also treats leading +, -, @ and = as literal while the stored
+    # value remains exact, so import matching does not gain a fake apostrophe.
+    cell.quotePrefix = True
+    return cell
+
+
+def _v241_teacher_selector(code, name, new_teacher=False):
+    clean_name = _v237_teacher_name_clean(name)
+    if not clean_name:
+        return ""
+    if new_teacher or code is None:
+        return f"YANGI · {clean_name}"
+    return f"#{int(code)} · {clean_name}"
+
+
+def _v241_parse_teacher_selector(value):
+    text = _v241_cell_text(value)
+    if not text:
+        return {"kind": None, "code": None, "name": ""}
+    existing = re.fullmatch(r"#\s*(\d+)\s*·\s*(.+)", text)
+    if existing:
+        return {
+            "kind": "existing",
+            "code": int(existing.group(1)),
+            "name": _v237_teacher_name_clean(existing.group(2)),
+        }
+    new_teacher = re.fullmatch(r"YANGI\s*·\s*(.+)", text, flags=re.IGNORECASE)
+    if new_teacher:
+        return {
+            "kind": "new",
+            "code": None,
+            "name": _v237_teacher_name_clean(new_teacher.group(1)),
+        }
+    # Qo'lda yozilgan yagona F.I.Sh. ham O'qituvchilar varag'idagi aynan
+    # bitta qatorga yechilishi mumkin. Kod + tanlov birga qabul qilinmaydi.
+    return {"kind": "name", "code": None, "name": text}
+
+
+def _v241_step3_template_bytes(context):
+    import openpyxl
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.worksheet.datavalidation import DataValidation
+
+    workbook = openpyxl.Workbook()
+    teachers_sheet = workbook.active
+    teachers_sheet.title = "Oqituvchilar"
+    teachers_sheet.append(["STEP-3 O'QITUVCHILAR RO'YXATI"])
+    teachers_sheet.append([
+        "Mavjud ustoz kodi/IDsi o'zgartirilmaydi. Yangi ustoz uchun kod va IDni bo'sh qoldirib, F.I.Sh. va fanlarni yozing."
+    ])
+    teacher_headers = [
+        "O'qituvchi kodi", "User ID", "F.I.Sh.", "Fanlar",
+        "Skelet tanlovi", "Haftalik jami",
+    ]
+    teachers_sheet.append(teacher_headers)
+    teacher_rows = sorted(
+        context["teachers"],
+        key=lambda row: (
+            int(row.get("jadval_raqami") or 10**9),
+            str(row.get("full_name") or "").casefold(),
+        ),
+    )
+    for teacher in teacher_rows:
+        subjects = teacher.get("fanlar_royxati") or []
+        teachers_sheet.append([
+            teacher.get("jadval_raqami"),
+            int(teacher["user_id"]),
+            None,
+            None,
+            None,
+            None,
+        ])
+        row_number = teachers_sheet.max_row
+        _v241_xlsx_literal(
+            teachers_sheet.cell(row_number, 3),
+            teacher.get("full_name") or "",
+        )
+        _v241_xlsx_literal(
+            teachers_sheet.cell(row_number, 4),
+            ", ".join(str(value) for value in subjects),
+        )
+
+    pairs_by_class = {}
+    for pair in context["pairs"]:
+        pairs_by_class.setdefault(int(pair["sinf_id"]), []).append(pair)
+    used = {"oqituvchilar"}
+    class_sheet_meta = []
+    total_links = []
+    teacher_code_by_id = {
+        int(row["user_id"]): row.get("jadval_raqami") for row in teacher_rows
+    }
+    teacher_name_by_id = {
+        int(row["user_id"]): str(row.get("full_name") or "") for row in teacher_rows
+    }
+    mode_labels = {
+        "whole": "Butun sinf", "alphabet": "1/2 guruh", "gender": "O'g'il/Qiz"
+    }
+    class_map = {int(row["id"]): row for row in context["classes"]}
+    # Har bir maktab sinfi uchun varaq bo'ladi. O'quv rejasi hali bo'sh sinf
+    # ham shablondan yo'qolib ketmasin; unda faqat sarlavha qoladi.
+    for class_id, pairs in sorted(
+        (
+            (int(class_id), pairs_by_class.get(int(class_id), []))
+            for class_id in class_map
+        ),
+        key=lambda item: (
+            int(re.sub(r"\D", "", str(class_map[item[0]].get("sinf") or "999")) or 999),
+            str(class_map[item[0]].get("harf") or ""),
+        ),
+    ):
+        cls = class_map[class_id]
+        class_name = f"{cls.get('sinf', '')}-{cls.get('harf', '')}"
+        sheet_name = _v241_xlsx_sheet_name(class_name, used)
+        worksheet = workbook.create_sheet(sheet_name)
+        worksheet.append([None])
+        _v241_xlsx_literal(
+            worksheet.cell(1, 1),
+            f"{class_name} · haftalik vaqtinchalik skelet",
+        )
+        worksheet.append([
+            "Bu yakuniy jadval emas. Faqat guruh turi va o'qituvchi kodi/F.I.Sh.ni tahrirlang."
+        ])
+        headers = [
+            "Kun", "Dars", "Fan", "Soat", "Guruh turi",
+            "O'qituvchi-1 kodi (yashirin)", "O'qituvchi-1 tanlovi",
+            "O'qituvchi-2 kodi (yashirin)", "O'qituvchi-2 tanlovi",
+            "Sinf ID", "Fan kaliti", "Katak ID", "Ta'lim tili",
+        ]
+        worksheet.append(headers)
+        cells = []
+        for pair in sorted(
+            pairs,
+            key=lambda row: (-float(row["haftalik_soat"]), str(row["fan_nomi"])),
+        ):
+            remaining = round(float(pair["haftalik_soat"]), 4)
+            sequence = 0
+            while remaining > 1e-9:
+                amount = min(1.0, remaining)
+                cells.append((pair, sequence, amount))
+                remaining = round(remaining - amount, 4)
+                sequence += 1
+        periods = max(1, int(_v237_math.ceil(len(cells) / context["hafta_kunlari"])))
+        for index, (pair, sequence, amount) in enumerate(cells):
+            day_index = min(context["hafta_kunlari"] - 1, index // periods)
+            period = index % periods + 1
+            group_keys = {
+                "whole": ("whole", None),
+                "alphabet": ("group_1", "group_2"),
+                "gender": ("boys", "girls"),
+            }[pair["turi"]]
+            first = pair["oqituvchilar"].get(group_keys[0])
+            second = pair["oqituvchilar"].get(group_keys[1]) if group_keys[1] else None
+            first_id = int(first["user_id"]) if first else None
+            second_id = int(second["user_id"]) if second else None
+            worksheet.append([
+                None, period, None, amount, None,
+                None, None,
+                None, None,
+                class_id, None, None, None,
+            ])
+            row_number = worksheet.max_row
+            literal_values = {
+                1: _V241_STEP3_DAY_NAMES[day_index],
+                3: pair["fan_nomi"],
+                5: mode_labels[pair["turi"]],
+                7: _v241_teacher_selector(
+                    teacher_code_by_id.get(first_id),
+                    teacher_name_by_id.get(first_id, ""),
+                ),
+                9: _v241_teacher_selector(
+                    teacher_code_by_id.get(second_id),
+                    teacher_name_by_id.get(second_id, ""),
+                ),
+                11: pair["fan_kaliti"],
+                12: f"{class_id}:{pair['fan_kaliti']}:{sequence}",
+                13: pair["talim_tili"],
+            }
+            for column, value in literal_values.items():
+                _v241_xlsx_literal(worksheet.cell(row_number, column), value)
+            total_links.append((sheet_name, worksheet.max_row))
+        class_sheet_meta.append((
+            class_id,
+            sheet_name,
+            class_name,
+            _v238_normalize_instruction_language(cls.get("talim_tili")),
+        ))
+        worksheet.freeze_panes = "A4"
+        worksheet.auto_filter.ref = f"A3:I{max(4, worksheet.max_row)}"
+        for column, width in enumerate((15, 8, 30, 10, 18, 20, 30, 20, 30), start=1):
+            worksheet.column_dimensions[openpyxl.utils.get_column_letter(column)].width = width
+        for column in ("J", "K", "L", "M"):
+            worksheet.column_dimensions[column].hidden = True
+        # F/H legacy code ustunlari ko'rinmaydi va shablonda doim bo'sh.
+        # Foydalanuvchi faqat yagona G/I selectorini o'zgartiradi.
+        for column in ("F", "H"):
+            worksheet.column_dimensions[column].hidden = True
+        mode_validation = DataValidation(
+            type="list",
+            formula1='"Butun sinf,1/2 guruh,O\'g\'il/Qiz"',
+            allow_blank=False,
+        )
+        teacher_validation = DataValidation(
+            type="list", formula1="=Oqituvchilar!$E$4:$E$503", allow_blank=True
+        )
+        worksheet.add_data_validation(mode_validation)
+        worksheet.add_data_validation(teacher_validation)
+        mode_validation.add(f"E4:E{max(4, worksheet.max_row)}")
+        teacher_validation.add(f"G4:G{max(4, worksheet.max_row)}")
+        teacher_validation.add(f"I4:I{max(4, worksheet.max_row)}")
+
+    # Formulas are presentation-only. The server ignores them and recomputes
+    # every total from immutable slot IDs + canonical plan hours.
+    totals = workbook.create_sheet("_SAMTM_JAMI")
+    totals.append(["Tanlov-1", "Tanlov-2", "Soat"])
+    for sheet_name, row_number in total_links:
+        quoted = sheet_name.replace("'", "''")
+        totals.append([
+            f"='{quoted}'!G{row_number}", f"='{quoted}'!I{row_number}",
+            f"='{quoted}'!D{row_number}",
+        ])
+    totals.sheet_state = "hidden"
+    max_total_row = max(2, totals.max_row)
+    max_teacher_row = max(503, teachers_sheet.max_row)
+    for row_number in range(4, max_teacher_row + 1):
+        teachers_sheet.cell(row_number, 5).value = (
+            f'=IF(C{row_number}="","",IF(A{row_number}="","YANGI · "&C{row_number},'
+            f'"#"&A{row_number}&" · "&C{row_number}))'
+        )
+        teachers_sheet.cell(row_number, 6).value = (
+            f'=SUMIF(\'_SAMTM_JAMI\'!$A$2:$A${max_total_row},E{row_number},'
+            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})+SUMIF('_SAMTM_JAMI'!$B$2:$B${max_total_row},E{row_number},"
+            f"'_SAMTM_JAMI'!$C$2:$C${max_total_row})"
+        )
+    teachers_sheet.freeze_panes = "A4"
+    teachers_sheet.auto_filter.ref = f"A3:F{max(4, teachers_sheet.max_row)}"
+    for column, width in zip(
+        ("A", "B", "C", "D", "E", "F"),
+        (20, 15, 38, 45, 48, 18),
+    ):
+        teachers_sheet.column_dimensions[column].width = width
+
+    meta = workbook.create_sheet("_SAMTM")
+    meta.append(["format", _V241_STEP3_XLSX_FORMAT])
+    meta.append(["maktab_id", int(context["maktab_id"])])
+    meta.append(["yuklama_revision", context["yuklama_revision"]])
+    meta.append(["schema_revision", context["schema_revision"]])
+    meta.append(["hafta_kunlari", int(context["hafta_kunlari"])])
+    meta.append([])
+    meta.append(["class_id", "sheet", "class_name", "language"])
+    for class_id, sheet_name, class_name, language in class_sheet_meta:
+        meta.append([class_id, None, None, None])
+        row_number = meta.max_row
+        _v241_xlsx_literal(meta.cell(row_number, 2), sheet_name)
+        _v241_xlsx_literal(meta.cell(row_number, 3), class_name)
+        _v241_xlsx_literal(meta.cell(row_number, 4), language)
+    meta.sheet_state = "veryHidden"
+
+    header_fill = PatternFill("solid", fgColor="0F7C82")
+    for worksheet in [teachers_sheet] + [workbook[name] for _, name, _, _ in class_sheet_meta]:
+        header_row = 3
+        for cell in worksheet[header_row]:
+            cell.font = Font(bold=True, color="FFFFFF")
+            cell.fill = header_fill
+            cell.alignment = Alignment(horizontal="center", vertical="center")
+        worksheet["A1"].font = Font(size=15, bold=True, color="17324D")
+        worksheet.merge_cells(start_row=1, start_column=1, end_row=1, end_column=min(9, worksheet.max_column))
+        worksheet.merge_cells(start_row=2, start_column=1, end_row=2, end_column=min(9, worksheet.max_column))
+
+    output = _v237_io.BytesIO()
+    workbook.save(output)
+    workbook.close()
+    return output.getvalue()
+
+
+def _v241_cell_text(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def _v241_optional_int(value, label):
+    if value is None or str(value).strip() == "":
+        return None
+    if isinstance(value, bool):
+        raise ValueError(f"{label} butun raqam bo'lishi kerak")
+    text = str(value).strip()
+    try:
+        number = int(float(text))
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{label} butun raqam bo'lishi kerak") from exc
+    if str(number) != text and str(float(number)) != text:
+        raise ValueError(f"{label} butun raqam bo'lishi kerak")
+    return number
+
+
+def _v241_import_mode(value):
+    key = re.sub(r"\s+", "", _v241_cell_text(value)).casefold()
+    aliases = {
+        "butunsinf": "whole", "whole": "whole",
+        "1/2guruh": "alphabet", "1/2": "alphabet", "alphabet": "alphabet",
+        "o'g'il/qiz": "gender", "o‘g‘il/qiz": "gender",
+        "ogil/qiz": "gender", "gender": "gender",
+    }
+    if key not in aliases:
+        raise ValueError("Guruh turi Butun sinf, 1/2 guruh yoki O'g'il/Qiz bo'lishi kerak")
+    return aliases[key]
+
+
+def _v241_parse_step3_xlsx(raw):
+    """Parse generated workbook without consulting or mutating the database."""
+    try:
+        import openpyxl
+        workbook = openpyxl.load_workbook(
+            _v237_io.BytesIO(raw), read_only=True, data_only=False, keep_links=False
+        )
+    except Exception as exc:
+        raise ValueError("XLSX ochilmadi. Fayl buzilmaganini tekshiring.") from exc
+    errors = []
+
+    def add_error(sheet, row, field, message):
+        errors.append({
+            "varaq": sheet,
+            "excel_qatori": int(row) if row is not None else None,
+            "maydon": field,
+            "xato": str(message),
+        })
+
+    try:
+        if not workbook.sheetnames or workbook.sheetnames[0] != "Oqituvchilar":
+            raise ValueError("Birinchi varaq aynan “Oqituvchilar” bo'lishi kerak.")
+        if "_SAMTM" not in workbook.sheetnames:
+            raise ValueError("Bu SAMTM Step-3 shabloni emas: _SAMTM metadata topilmadi.")
+        meta_sheet = workbook["_SAMTM"]
+        metadata = {}
+        for row in meta_sheet.iter_rows(min_row=1, max_row=5, max_col=2):
+            key = _v241_cell_text(row[0].value)
+            if key:
+                metadata[key] = row[1].value
+        class_sheets = []
+        for row in meta_sheet.iter_rows(min_row=8, max_col=4):
+            if all(cell.value is None or str(cell.value).strip() == "" for cell in row):
+                continue
+            try:
+                class_id = _v241_optional_int(row[0].value, "Sinf ID")
+            except ValueError as exc:
+                add_error("_SAMTM", row[0].row, "class_id", exc)
+                continue
+            class_sheets.append({
+                "sinf_id": class_id,
+                "varaq": _v241_cell_text(row[1].value),
+                "sinf_nomi": _v241_cell_text(row[2].value),
+                "talim_tili": _v238_normalize_instruction_language(row[3].value),
+            })
+        if not class_sheets:
+            raise ValueError("Metadata ichida sinf varaqlari topilmadi.")
+
+        teacher_sheet = workbook["Oqituvchilar"]
+        teacher_rows = []
+        scanned = 0
+        for excel_row, cells in enumerate(
+            teacher_sheet.iter_rows(min_row=4, max_col=6), start=4
+        ):
+            scanned += 1
+            if scanned > _V237_TEACHER_XLSX_MAX_ROWS:
+                add_error("Oqituvchilar", excel_row, "qator", "O'qituvchi qatorlari limitdan oshdi")
+                break
+            editable = cells[:4]
+            if all(cell.value is None or str(cell.value).strip() == "" for cell in editable):
+                continue
+            formula = next((
+                cell for cell in editable
+                if cell.data_type == "f"
+            ), None)
+            if formula is not None:
+                add_error("Oqituvchilar", formula.row, "formula", "O'qituvchi maydonlarida formula qabul qilinmaydi")
+                continue
+            try:
+                code = _v241_optional_int(cells[0].value, "O'qituvchi kodi")
+                user_id = _v241_optional_int(cells[1].value, "User ID")
+            except ValueError as exc:
+                add_error("Oqituvchilar", excel_row, "identifikator", exc)
+                continue
+            name = _v237_teacher_name_clean(cells[2].value)
+            subjects = _v238_clean_subject_list(
+                re.split(r"[,;\n]+", str(cells[3].value or ""))
+            )
+            teacher_rows.append({
+                "excel_qatori": int(excel_row),
+                "jadval_raqami": code,
+                "user_id": user_id,
+                "full_name": name,
+                "name_key": _v237_teacher_name_key(name),
+                "fanlar": subjects,
+            })
+
+        slot_rows = []
+        scanned_slots = 0
+        seen_sheet_names = set()
+        for class_meta in class_sheets:
+            sheet_name = class_meta["varaq"]
+            if not sheet_name or sheet_name in seen_sheet_names:
+                add_error("_SAMTM", None, "varaq", "Sinf varaq nomi bo'sh yoki takror")
+                continue
+            seen_sheet_names.add(sheet_name)
+            if sheet_name not in workbook.sheetnames:
+                add_error(sheet_name, None, "varaq", "Metadata ko'rsatgan sinf varag'i topilmadi")
+                continue
+            worksheet = workbook[sheet_name]
+            for excel_row, cells in enumerate(
+                worksheet.iter_rows(min_row=4, max_col=13), start=4
+            ):
+                scanned_slots += 1
+                if scanned_slots > _V237_TEACHER_XLSX_MAX_ROWS:
+                    add_error(sheet_name, excel_row, "qator", "Skelet kataklari limitdan oshdi")
+                    break
+                if all(cell.value is None or str(cell.value).strip() == "" for cell in cells):
+                    continue
+                formula = next((
+                    cell for cell in cells
+                    if cell.data_type == "f"
+                ), None)
+                if formula is not None:
+                    add_error(sheet_name, formula.row, "formula", "Sinf skeletida formula qabul qilinmaydi")
+                    continue
+                try:
+                    period = _v241_optional_int(cells[1].value, "Dars")
+                    class_id = _v241_optional_int(cells[9].value, "Sinf ID")
+                    mode = _v241_import_mode(cells[4].value)
+                    teacher_1_code = _v241_optional_int(cells[5].value, "O'qituvchi-1 kodi")
+                    teacher_2_code = _v241_optional_int(cells[7].value, "O'qituvchi-2 kodi")
+                    amount = float(str(cells[3].value).replace(",", "."))
+                    if not _v237_math.isfinite(amount) or amount not in (0.5, 1.0):
+                        raise ValueError("Soat faqat 0,5 yoki 1 bo'lishi kerak")
+                except (TypeError, ValueError) as exc:
+                    add_error(sheet_name, excel_row, "qator", exc)
+                    continue
+                slot_rows.append({
+                    "varaq": sheet_name,
+                    "excel_qatori": int(excel_row),
+                    "kun": _v241_cell_text(cells[0].value),
+                    "dars": period,
+                    "fan_nomi": _v241_cell_text(cells[2].value),
+                    "soat": amount,
+                    "turi": mode,
+                    "oqituvchi_1_kodi": teacher_1_code,
+                    "oqituvchi_1_ismi": _v237_teacher_name_clean(cells[6].value),
+                    "oqituvchi_2_kodi": teacher_2_code,
+                    "oqituvchi_2_ismi": _v237_teacher_name_clean(cells[8].value),
+                    "sinf_id": class_id,
+                    "fan_kaliti": _v241_cell_text(cells[10].value),
+                    "katak_id": _v241_cell_text(cells[11].value),
+                    "talim_tili": _v238_normalize_instruction_language(cells[12].value),
+                })
+        return {
+            "metadata": metadata,
+            "class_sheets": class_sheets,
+            "teacher_rows": teacher_rows,
+            "slot_rows": slot_rows,
+            "errors": errors,
+        }
+    finally:
+        workbook.close()
+
+
+def _v241_expected_slot_map(context):
+    slots = {}
+    for pair in context.get("pairs") or []:
+        remaining = round(float(pair["haftalik_soat"]), 4)
+        sequence = 0
+        while remaining > 1e-9:
+            amount = min(1.0, remaining)
+            slot_id = f"{int(pair['sinf_id'])}:{pair['fan_kaliti']}:{sequence}"
+            slots[slot_id] = {
+                "sinf_id": int(pair["sinf_id"]),
+                "fan_nomi": str(pair["fan_nomi"]),
+                "fan_kaliti": str(pair["fan_kaliti"]),
+                "talim_tili": str(pair["talim_tili"]),
+                "soat": float(amount),
+                "pair": pair,
+            }
+            remaining = round(remaining - amount, 4)
+            sequence += 1
+    return slots
+
+
+def _v241_preserved_room_plan(context, pair, new_group_keys):
+    """Map hidden current rooms without inventing or silently deleting them.
+
+    Exact canonical keys win.  Alphabet <-> gender uses deterministic group
+    order.  A one-room whole <-> grouped change carries that one room to the
+    first target group only; it is never duplicated into two simultaneous
+    groups.  Two different rooms cannot be collapsed into one whole-class row
+    without an explicit room editor, so that import is rejected.
+    """
+    pair_key = (int(pair["sinf_id"]), str(pair["fan_kaliti"]))
+    old_group_keys = tuple(
+        _v1875_group_key(value) for value in pair.get("guruh_kalitlari") or []
+    )
+    new_group_keys = tuple(_v1875_group_key(value) for value in new_group_keys)
+    room_map = context.get("preserved_rooms") or {}
+    conflict_keys = set(context.get("room_conflicts") or [])
+    relevant_keys = {
+        (pair_key[0], pair_key[1], group_key)
+        for group_key in old_group_keys
+    }
+    if relevant_keys & conflict_keys:
+        return {}, "Joriy xona bog'lanishi ziddiyatli yoki boshqa maktabga tegishli"
+
+    old_rooms = {
+        group_key: room_map.get((pair_key[0], pair_key[1], group_key))
+        for group_key in old_group_keys
+    }
+    result = {
+        group_key: room_map[(pair_key[0], pair_key[1], group_key)]
+        for group_key in new_group_keys
+        if (pair_key[0], pair_key[1], group_key) in room_map
+    }
+    if len(old_group_keys) == len(new_group_keys):
+        for old_key, new_key in zip(old_group_keys, new_group_keys):
+            if new_key not in result and old_rooms.get(old_key) is not None:
+                result[new_key] = int(old_rooms[old_key])
+        return result, None
+
+    distinct_rooms = {
+        int(room_id) for room_id in old_rooms.values() if room_id is not None
+    }
+    if len(distinct_rooms) > 1:
+        return {}, (
+            "Bir nechta amaldagi xonani bitta yangi guruh holatiga xavfsiz "
+            "ko'chirib bo'lmaydi"
+        )
+    if distinct_rooms:
+        room_id = next(iter(distinct_rooms))
+        first_unmapped = next(
+            (key for key in new_group_keys if key not in result), None
+        )
+        if first_unmapped is not None:
+            result[first_unmapped] = room_id
+    return result, None
+
+
+def _v241_validate_step3_import(parsed, context):
+    """Resolve the complete workbook into a mutation-free import plan."""
+    errors = [dict(row) for row in (parsed.get("errors") or [])]
+    warnings = []
+
+    def add_error(sheet, row, field, message):
+        errors.append({
+            "varaq": sheet,
+            "excel_qatori": int(row) if row is not None else None,
+            "maydon": field,
+            "xato": str(message),
+        })
+
+    metadata = parsed.get("metadata") or {}
+    if str(metadata.get("format") or "") != _V241_STEP3_XLSX_FORMAT:
+        add_error("_SAMTM", 1, "format", "XLSX format versiyasi mos emas")
+    try:
+        workbook_school_id = int(metadata.get("maktab_id"))
+    except (TypeError, ValueError):
+        workbook_school_id = None
+    if workbook_school_id != int(context["maktab_id"]):
+        add_error("_SAMTM", 2, "maktab_id", "XLSX boshqa maktab uchun yaratilgan")
+    if str(metadata.get("yuklama_revision") or "") != str(context["yuklama_revision"]):
+        add_error("_SAMTM", 3, "yuklama_revision", "O'qituvchi yuklamasi shablon olingandan keyin o'zgargan")
+    if str(metadata.get("schema_revision") or "") != str(context["schema_revision"]):
+        add_error("_SAMTM", 4, "schema_revision", "Sinf, o'quv reja yoki guruh skeleti shablondan keyin o'zgargan")
+
+    class_map = {int(row["id"]): dict(row) for row in context.get("classes") or []}
+    sheet_class_ids = []
+    for row in parsed.get("class_sheets") or []:
+        class_id = row.get("sinf_id")
+        sheet_class_ids.append(class_id)
+        cls = class_map.get(class_id)
+        if not cls:
+            add_error(row.get("varaq"), None, "sinf_id", "Sinf bu maktabga tegishli emas")
+            continue
+        expected_name = f"{cls.get('sinf', '')}-{cls.get('harf', '')}"
+        if row.get("sinf_nomi") != expected_name:
+            add_error(row.get("varaq"), None, "sinf", "Sinf nomi metadata bilan mos emas")
+        language = _v238_normalize_instruction_language(cls.get("talim_tili"))
+        if row.get("talim_tili") != language:
+            add_error(row.get("varaq"), None, "talim_tili", "Sinf ta'lim tili mos emas")
+    if set(sheet_class_ids) != set(class_map) or len(sheet_class_ids) != len(set(sheet_class_ids)):
+        add_error("_SAMTM", None, "sinflar", "Sinf varaqlari to'liq va takrorsiz bo'lishi kerak")
+
+    allowed_teachers = [dict(row) for row in context.get("teachers") or []]
+    by_id = {}
+    by_code = {}
+    by_name = {}
+    for teacher in allowed_teachers:
+        user_id = int(teacher["user_id"])
+        by_id[user_id] = teacher
+        code = teacher.get("jadval_raqami")
+        if code is not None:
+            by_code.setdefault(int(code), []).append(teacher)
+        name_key = _v237_teacher_name_key(teacher.get("full_name"))
+        if name_key:
+            by_name.setdefault(name_key, []).append(teacher)
+
+    catalog_entries = []
+    catalog_by_name = {}
+    seen_existing_ids = set()
+    seen_new_names = set()
+    new_teachers = []
+    for item in parsed.get("teacher_rows") or []:
+        sheet = "Oqituvchilar"
+        row_number = item.get("excel_qatori")
+        name = item.get("full_name") or ""
+        name_key = item.get("name_key") or ""
+        if not 3 <= len(name) <= 160:
+            add_error(sheet, row_number, "F.I.Sh.", "F.I.Sh. 3–160 ta belgi bo'lishi kerak")
+            continue
+        user_id = item.get("user_id")
+        code = item.get("jadval_raqami")
+        resolved = None
+        if user_id is not None:
+            resolved = by_id.get(int(user_id))
+            if resolved is None:
+                add_error(sheet, row_number, "User ID", "User ID bu maktab o'qituvchisiga tegishli emas")
+                continue
+            if code is not None and int(resolved.get("jadval_raqami") or 0) != int(code):
+                add_error(sheet, row_number, "O'qituvchi kodi", "Kod User ID bilan bir o'qituvchiga tegishli emas")
+                continue
+            if _v237_teacher_name_key(resolved.get("full_name")) != name_key:
+                add_error(sheet, row_number, "F.I.Sh.", "F.I.Sh. User ID bilan mos emas")
+                continue
+        elif code is not None:
+            matches = by_code.get(int(code), [])
+            if len(matches) != 1:
+                add_error(sheet, row_number, "O'qituvchi kodi", "Kod topilmadi yoki noaniq")
+                continue
+            resolved = matches[0]
+            if _v237_teacher_name_key(resolved.get("full_name")) != name_key:
+                add_error(sheet, row_number, "F.I.Sh.", "F.I.Sh. o'qituvchi kodi bilan mos emas")
+                continue
+        else:
+            matches = by_name.get(name_key, [])
+            if len(matches) > 1:
+                add_error(sheet, row_number, "F.I.Sh.", "Bir xil F.I.Sh. uchun kod yoki User ID kerak")
+                continue
+            if len(matches) == 1:
+                resolved = matches[0]
+
+        if resolved is not None:
+            resolved_id = int(resolved["user_id"])
+            if resolved_id in seen_existing_ids:
+                add_error(sheet, row_number, "o'qituvchi", "Mavjud o'qituvchi ro'yxatda takrorlangan")
+                continue
+            seen_existing_ids.add(resolved_id)
+            entry = {
+                "kind": "existing", "user_id": resolved_id,
+                "jadval_raqami": int(resolved.get("jadval_raqami") or 0),
+                "full_name": str(resolved.get("full_name") or ""),
+                "name_key": _v237_teacher_name_key(resolved.get("full_name")),
+                "fanlar": item.get("fanlar") or [],
+            }
+        else:
+            if not name_key or name_key in seen_new_names or name_key in by_name:
+                add_error(sheet, row_number, "F.I.Sh.", "Yangi o'qituvchi F.I.Sh. takrorlangan yoki noaniq")
+                continue
+            seen_new_names.add(name_key)
+            entry = {
+                "kind": "new", "user_id": None, "jadval_raqami": None,
+                "full_name": name, "name_key": name_key,
+                "fanlar": item.get("fanlar") or [],
+                "excel_qatori": row_number,
+            }
+            new_teachers.append(entry)
+        catalog_entries.append(entry)
+        catalog_by_name.setdefault(entry["name_key"], []).append(entry)
+
+    def resolve_reference(code, name, sheet, row, field):
+        selector = _v241_parse_teacher_selector(name)
+        selector_name = selector["name"]
+        name_key = _v237_teacher_name_key(selector_name)
+        if code is not None and selector_name:
+            add_error(
+                sheet,
+                row,
+                field,
+                "Yagona tanlov ustuni ishlatilganda yashirin kod bo'sh bo'lishi kerak",
+            )
+            return "error"
+        if code is None and not name_key:
+            return None
+        if selector["kind"] == "existing":
+            code = selector["code"]
+        if code is not None:
+            matches = by_code.get(int(code), [])
+            if len(matches) != 1:
+                add_error(sheet, row, field, "O'qituvchi kodi bu maktabda topilmadi yoki noaniq")
+                return "error"
+            teacher = matches[0]
+            if name_key and _v237_teacher_name_key(teacher.get("full_name")) != name_key:
+                add_error(sheet, row, field, "Kod va F.I.Sh. boshqa-boshqa o'qituvchini ko'rsatmoqda")
+                return "error"
+            return {
+                "kind": "existing", "user_id": int(teacher["user_id"]),
+                "name_key": _v237_teacher_name_key(teacher.get("full_name")),
+                "full_name": teacher.get("full_name"),
+            }
+        matches = catalog_by_name.get(name_key, [])
+        if len(matches) != 1:
+            add_error(sheet, row, field, "F.I.Sh. Oqituvchilar varag'ida topilmadi yoki noaniq")
+            return "error"
+        if selector["kind"] == "new" and matches[0].get("kind") != "new":
+            add_error(
+                sheet,
+                row,
+                field,
+                "YANGI tanlovi mavjud o'qituvchiga tegishli bo'lib qoldi",
+            )
+            return "error"
+        return dict(matches[0])
+
+    expected_slots = _v241_expected_slot_map(context)
+    submitted_slots = {}
+    pair_state = {}
+    for row in parsed.get("slot_rows") or []:
+        slot_id = row.get("katak_id") or ""
+        sheet = row.get("varaq")
+        row_number = row.get("excel_qatori")
+        if slot_id in submitted_slots:
+            add_error(sheet, row_number, "Katak ID", "Skelet katagi takrorlangan")
+            continue
+        submitted_slots[slot_id] = row
+        expected_slot = expected_slots.get(slot_id)
+        if expected_slot is None:
+            add_error(sheet, row_number, "Katak ID", "Noma'lum yoki o'zgartirilgan skelet katagi")
+            continue
+        if (
+            int(row.get("sinf_id") or 0) != expected_slot["sinf_id"]
+            or str(row.get("fan_kaliti") or "") != expected_slot["fan_kaliti"]
+            or _v1875_subject_key(row.get("fan_nomi")) != expected_slot["fan_kaliti"]
+            or row.get("talim_tili") != expected_slot["talim_tili"]
+        ):
+            add_error(sheet, row_number, "canonical", "Sinf/fan/til ustunlari shablon bilan mos emas")
+            continue
+        if abs(float(row.get("soat") or 0) - expected_slot["soat"]) > 1e-9:
+            add_error(sheet, row_number, "Soat", "Katak soati o'quv reja bilan mos emas")
+            continue
+        first = resolve_reference(
+            row.get("oqituvchi_1_kodi"), row.get("oqituvchi_1_ismi"),
+            sheet, row_number, "O'qituvchi-1",
+        )
+        second = resolve_reference(
+            row.get("oqituvchi_2_kodi"), row.get("oqituvchi_2_ismi"),
+            sheet, row_number, "O'qituvchi-2",
+        )
+        if first == "error" or second == "error":
+            continue
+        mode = row["turi"]
+        if mode == "whole" and second is not None:
+            add_error(sheet, row_number, "O'qituvchi-2", "Butun sinf holatida ikkinchi o'qituvchi bo'sh bo'lishi kerak")
+            continue
+        identity = lambda teacher: (
+            None if teacher is None else
+            (teacher.get("kind"), teacher.get("user_id"), teacher.get("name_key"))
+        )
+        if mode != "whole" and first is not None and identity(first) == identity(second):
+            add_error(sheet, row_number, "o'qituvchilar", "Ikki guruhga bitta o'qituvchi tanlanmaydi")
+            continue
+        pair_key = (expected_slot["sinf_id"], expected_slot["fan_kaliti"])
+        state = (mode, identity(first), identity(second))
+        old = pair_state.get(pair_key)
+        if old is not None and old["state"] != state:
+            add_error(sheet, row_number, "tanlov", "Bir fan takroriy kataklarida guruh turi/o'qituvchi bir xil emas")
+            continue
+        if old is None:
+            pair_state[pair_key] = {
+                "state": state, "turi": mode, "oqituvchi_1": first,
+                "oqituvchi_2": second, "pair": expected_slot["pair"],
+            }
+
+    missing_slots = sorted(set(expected_slots) - set(submitted_slots))
+    if missing_slots:
+        add_error(None, None, "coverage", f"{len(missing_slots)} ta skelet katagi faylda yo'q")
+    extra_slots = sorted(set(submitted_slots) - set(expected_slots))
+    if extra_slots:
+        add_error(None, None, "coverage", f"{len(extra_slots)} ta ortiqcha skelet katagi bor")
+
+    pair_plans = []
+    expected_pairs = {(int(row["sinf_id"]), row["fan_kaliti"]): row for row in context.get("pairs") or []}
+    if set(pair_state) != set(expected_pairs):
+        missing_pairs = set(expected_pairs) - set(pair_state)
+        if missing_pairs:
+            add_error(None, None, "coverage", f"{len(missing_pairs)} ta fan tanlovi to'liq yechilmadi")
+    for pair_key, state in sorted(pair_state.items()):
+        pair = expected_pairs.get(pair_key)
+        if pair is None:
+            continue
+        if state["turi"] == "alphabet":
+            class_row = class_map.get(pair_key[0]) or {}
+            try:
+                alphabet_count = _sinf_guruh_soni_normalizatsiya(
+                    "alphabet", class_row.get("guruh_soni")
+                )
+            except HTTPException as exc:
+                alphabet_count = 0
+                add_error(None, None, "guruh_soni", exc.detail)
+            if alphabet_count != 2:
+                add_error(
+                    None, None, "guruh_soni",
+                    f"{pair.get('sinf_nomi')}: 1/2 guruh uchun sinf guruh soni 2 bo'lishi kerak",
+                )
+        group_keys = {
+            "whole": ("whole",),
+            "alphabet": ("group_1", "group_2"),
+            "gender": ("boys", "girls"),
+        }[state["turi"]]
+        if state["turi"] != "whole":
+            matching_systems = [
+                system for system in context.get("systems") or []
+                if int(system["sinf_id"]) == pair_key[0]
+                and str(system.get("turi")) == state["turi"]
+            ]
+            if len(matching_systems) > 1:
+                add_error(None, None, "guruh_tizimi", "Sinfda takror guruh tizimi bor")
+            elif matching_systems:
+                actual_keys = tuple(sorted(
+                    str(group["guruh_kaliti"])
+                    for group in matching_systems[0].get("guruhlar") or []
+                ))
+                if actual_keys != tuple(sorted(group_keys)):
+                    add_error(None, None, "guruh_tizimi", "Guruh tizimi 2 ta canonical guruhdan iborat emas")
+        refs = [state["oqituvchi_1"]]
+        if len(group_keys) == 2:
+            refs.append(state["oqituvchi_2"])
+        room_ids, room_error = _v241_preserved_room_plan(
+            context, pair, group_keys
+        )
+        if room_error:
+            add_error(
+                None,
+                None,
+                "xona",
+                f"{pair.get('sinf_nomi')} · {pair['fan_nomi']}: {room_error}",
+            )
+        if (
+            state["turi"] == "whole"
+            and refs[0] is None
+            and room_ids.get("whole") is not None
+        ):
+            add_error(
+                None,
+                None,
+                "xona",
+                (
+                    f"{pair.get('sinf_nomi')} · {pair['fan_nomi']}: "
+                    "butun sinf o'qituvchisini bo'shatishdan oldin "
+                    "joriy xona bog'lanishini alohida olib tashlang"
+                ),
+            )
+        pair_plans.append({
+            "sinf_id": pair_key[0], "fan_nomi": pair["fan_nomi"],
+            "fan_kaliti": pair_key[1], "turi": state["turi"],
+            "guruh_kalitlari": group_keys, "oqituvchilar": refs,
+            "xona_ids": room_ids,
+            "haftalik_soat": float(pair["haftalik_soat"]),
+            "kunlik_max": int(pair["kunlik_max"]),
+        })
+
+    teacher_totals = {}
+    for plan in pair_plans:
+        for teacher in plan["oqituvchilar"]:
+            if teacher is None:
+                continue
+            key = teacher.get("name_key")
+            teacher_totals[key] = round(
+                teacher_totals.get(key, 0.0) + float(plan["haftalik_soat"]), 1
+            )
+    for teacher in new_teachers:
+        if not teacher.get("fanlar"):
+            warnings.append(
+                f"{teacher['full_name']}: fanlar bo'sh; fanlar skelet birikmalaridan yig'iladi"
+            )
+    return {
+        "valid": not errors,
+        "errors": errors,
+        "warnings": warnings,
+        "new_teachers": new_teachers,
+        "teacher_catalog": catalog_entries,
+        "pair_plans": pair_plans,
+        "teacher_totals": teacher_totals,
+        "slot_count": len(submitted_slots),
+        "blank_count": sum(
+            1 for plan in pair_plans for teacher in plan["oqituvchilar"]
+            if teacher is None
+        ),
+    }
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/sinf_skeleti_xlsx_shablon")
+def v241_step3_xlsx_template(token: str, maktab_id: int):
+    from fastapi.responses import StreamingResponse
+    from urllib.parse import quote
+
+    actor_id = _jwt_tekshir(token)
+    _v237_require_teacher_import_manager(actor_id, maktab_id, "yuklaydi")
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        _xodim_kod_jadvali(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf skeleti XLSXini faqat maktab rahbariyati yuklaydi")
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(maktab_id),))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2040000000 + int(maktab_id),))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(maktab_id),))
+        context = _v241_step3_context(cur, maktab_id, ensure_teacher_numbers=True)
+        raw = _v241_step3_template_bytes(context)
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close(); conn.close()
+    filename = f"SAMTM_Sinf_skeleti_{int(maktab_id)}.xlsx"
+    return StreamingResponse(
+        _v237_io.BytesIO(raw),
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={
+            "Content-Disposition": f"attachment; filename*=UTF-8''{quote(filename)}",
+            "X-SAMTM-Step3-Format": _V241_STEP3_XLSX_FORMAT,
+        },
+    )
+
+
+def _v241_step3_preview_payload(validation, context):
+    pairs = validation.get("pair_plans") or []
+    class_ids = {int(row["sinf_id"]) for row in pairs}
+    assigned = sum(
+        1 for pair in pairs for teacher in pair.get("oqituvchilar") or []
+        if teacher is not None
+    )
+    return {
+        "valid": bool(validation.get("valid")),
+        "holat": "tayyor" if validation.get("valid") else "xato",
+        "commit_mumkin": bool(validation.get("valid")),
+        "format": _V241_STEP3_XLSX_FORMAT,
+        "yuklama_revision": context["yuklama_revision"],
+        "skelet_schema_revision": context["schema_revision"],
+        "xatolar": validation.get("errors") or [],
+        "xato_qatorlar": validation.get("errors") or [],
+        "ogohlantirishlar": validation.get("warnings") or [],
+        "oqituvchilar": {
+            "mavjud": sum(
+                1 for row in validation.get("teacher_catalog") or []
+                if row.get("kind") == "existing"
+            ),
+            "yangi": len(validation.get("new_teachers") or []),
+            "biriktirilgan": assigned,
+            "bosh": int(validation.get("blank_count") or 0),
+        },
+        "sinflar": [
+            {
+                "sinf_id": class_id,
+                "sinf": next(
+                    (
+                        f"{row.get('sinf', '')}-{row.get('harf', '')}"
+                        for row in context.get("classes") or []
+                        if int(row["id"]) == class_id
+                    ),
+                    str(class_id),
+                ),
+                "fan_soni": sum(1 for pair in pairs if int(pair["sinf_id"]) == class_id),
+            }
+            for class_id in sorted(class_ids)
+        ],
+        "jami": {
+            "katak": int(validation.get("slot_count") or 0),
+            "fan": len(pairs),
+            "sinf": len(class_ids),
+            "yangi_oqituvchi": len(validation.get("new_teachers") or []),
+        },
+        "oqituvchi_soatlari": validation.get("teacher_totals") or {},
+    }
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/sinf_skeleti_xlsx_preview")
+def v241_step3_xlsx_preview(sorov: V241Step3XlsxPayload, token: str):
+    actor_id = _jwt_tekshir(token)
+    _v237_require_teacher_import_manager(actor_id, sorov.maktab_id, "tekshiradi")
+    try:
+        raw = _v237_decode_teacher_xlsx(sorov)
+        parsed = _v241_parse_step3_xlsx(raw)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf skeleti XLSXini faqat maktab rahbariyati tekshiradi")
+        context = _v241_step3_context(
+            cur, sorov.maktab_id, ensure_teacher_numbers=False
+        )
+        validation = _v241_validate_step3_import(parsed, context)
+        # Contextdagi legacy seed/numbering yordamchilari previewda commit
+        # qilinmaydi. Faqat tekshiruv javobi qaytariladi.
+        conn.rollback()
+        return _v241_step3_preview_payload(validation, context)
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close(); conn.close()
+
+
+def _v241_resolved_teacher_id(reference, new_ids):
+    if reference is None:
+        return None
+    if reference.get("kind") == "existing":
+        return int(reference["user_id"])
+    return int(new_ids[reference["name_key"]])
+
+
+def _v241_apply_step3_xlsx_plan(
+    cur, actor_id, maktab_id, context, validation, new_ids
+):
+    """Apply an already fully validated plan inside the caller transaction."""
+    class_ids = sorted({int(row["sinf_id"]) for row in validation["pair_plans"]})
+    for plan in validation["pair_plans"]:
+        class_id = int(plan["sinf_id"])
+        mode = str(plan["turi"])
+        selected_system_id = None
+        if mode != "whole":
+            cur.execute(
+                """INSERT INTO maktab_sinf_guruh_tizimlari(
+                       sinf_id,turi,nomi,fanlar,faol,yaratilgan_by,yangilangan_at)
+                   VALUES(%s,%s,%s,ARRAY[]::TEXT[],TRUE,%s,NOW())
+                   ON CONFLICT(sinf_id,turi) DO UPDATE SET
+                     nomi=EXCLUDED.nomi,faol=TRUE,yangilangan_at=NOW()
+                   RETURNING id""",
+                (class_id, mode, _SINF_GURUH_TIZIM_NOMLARI[mode], actor_id),
+            )
+            selected_system_id = int(cur.fetchone()["id"])
+            cur.execute(
+                "SELECT COUNT(*) AS soni FROM maktab_sinf_guruh_azolari WHERE tizim_id=%s",
+                (selected_system_id,),
+            )
+            if int((cur.fetchone() or {}).get("soni") or 0) == 0:
+                _sinf_guruh_tizimini_taqsimla(cur, selected_system_id)
+        _v1876_update_system_subjects(
+            cur,
+            class_id,
+            plan["fan_nomi"],
+            selected_system_id,
+            safe_subject_keys={plan["fan_kaliti"]},
+        )
+        # Old exact/legacy alias setting rows for this one canonical pair are
+        # removed only after the complete workbook has passed validation.
+        plan_subjects = _v238_class_plan_subjects(
+            cur,
+            maktab_id,
+            next(row for row in context["classes"] if int(row["id"]) == class_id),
+        )
+        safe_keys = _v238_safe_subject_match_keys(
+            cur, maktab_id, class_id, plan["fan_nomi"], plan_subjects
+        )
+        cur.execute(
+            """SELECT fan_nomi,guruh_kaliti
+                 FROM aqlli_guruh_sozlamalari_v2
+                WHERE maktab_id=%s AND sinf_id=%s""",
+            (maktab_id, class_id),
+        )
+        for old_setting in cur.fetchall():
+            if _v1875_subject_key(old_setting.get("fan_nomi")) in safe_keys:
+                cur.execute(
+                    """DELETE FROM aqlli_guruh_sozlamalari_v2
+                        WHERE maktab_id=%s AND sinf_id=%s
+                          AND fan_nomi=%s AND guruh_kaliti=%s""",
+                    (
+                        maktab_id, class_id, old_setting["fan_nomi"],
+                        old_setting["guruh_kaliti"],
+                    ),
+                )
+
+    for class_id in class_ids:
+        cur.execute(
+            "SELECT turi FROM maktab_sinf_guruh_tizimlari "
+            "WHERE sinf_id=%s AND faol=TRUE ORDER BY id",
+            (class_id,),
+        )
+        active_types = [str(row["turi"]) for row in cur.fetchall()]
+        legacy_mode = (
+            active_types[0] if len(active_types) == 1
+            else ("manual" if active_types else "none")
+        )
+        cur.execute(
+            "UPDATE maktab_sinflari SET guruhlash_usuli=%s WHERE id=%s",
+            (legacy_mode, class_id),
+        )
+
+    old_teacher_ids = {
+        int(row["user_id"]) for row in context.get("assignments") or []
+    }
+    # Full XLSX snapshot eski canonical assignmentdan tashqari qolib ketgan
+    # derived sinf-summarylarni ham tozalaydi. Aks holda ilgari o'chirilgan
+    # yuklama o'qituvchi profilida yana ko'rinib qolishi mumkin.
+    cur.execute(
+        "SELECT DISTINCT user_id FROM maktab_xodim_sinflari WHERE maktab_id=%s",
+        (maktab_id,),
+    )
+    old_derived_teacher_ids = {
+        int(row["user_id"]) for row in cur.fetchall()
+    }
+    assignment_rows = []
+    blank_keys = []
+    for plan in validation["pair_plans"]:
+        for group_key, reference in zip(
+            plan["guruh_kalitlari"], plan["oqituvchilar"]
+        ):
+            teacher_id = _v241_resolved_teacher_id(reference, new_ids)
+            room_id = (plan.get("xona_ids") or {}).get(group_key)
+            if teacher_id is None:
+                blank_keys.append((
+                    int(plan["sinf_id"]), plan["fan_nomi"], group_key
+                ))
+            else:
+                assignment_rows.append((
+                    maktab_id, teacher_id, int(plan["sinf_id"]),
+                    plan["fan_nomi"], group_key,
+                    float(plan["haftalik_soat"]), int(plan["kunlik_max"]),
+                    room_id, "v24.1_skelet_xlsx",
+                ))
+            if plan["turi"] != "whole":
+                cur.execute(
+                    """INSERT INTO aqlli_guruh_sozlamalari_v2(
+                           maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                           oqituvchi_user_id,xona_id)
+                       VALUES(%s,%s,%s,%s,%s,%s)
+                       ON CONFLICT(maktab_id,sinf_id,fan_nomi,guruh_kaliti)
+                       DO UPDATE SET
+                         oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+                         xona_id=EXCLUDED.xona_id""",
+                    (
+                        maktab_id, int(plan["sinf_id"]), plan["fan_nomi"],
+                        group_key, teacher_id, room_id,
+                    ),
+                )
+
+    new_teacher_ids = {int(value) for value in new_ids.values()}
+    new_assignment_ids = {int(row[1]) for row in assignment_rows}
+    affected_teacher_ids = sorted(
+        old_teacher_ids
+        | old_derived_teacher_ids
+        | new_teacher_ids
+        | new_assignment_ids
+    )
+    cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s", (maktab_id,))
+    if affected_teacher_ids:
+        cur.execute(
+            "DELETE FROM maktab_xodim_sinflari WHERE maktab_id=%s AND user_id=ANY(%s)",
+            (maktab_id, affected_teacher_ids),
+        )
+        cur.execute(
+            """UPDATE users SET haftalik_dars_soati=0,
+                                  oqitadigan_sinflari=NULL
+                 WHERE maktab_id=%s AND user_id=ANY(%s)""",
+            (maktab_id, affected_teacher_ids),
+        )
+    if assignment_rows:
+        psycopg2.extras.execute_values(
+            cur,
+            """INSERT INTO maktab_dars_birikmalari(
+                   maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti,
+                   haftalik_soat,kunlik_max,xona_id,manba,yangilangan_at)
+               VALUES %s""",
+            assignment_rows,
+            template="(%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())",
+        )
+    for plan in validation["pair_plans"]:
+        cur.execute(
+            "INSERT INTO maktab_fanlari(maktab_id,fan_nomi) VALUES(%s,%s) "
+            "ON CONFLICT DO NOTHING",
+            (maktab_id, plan["fan_nomi"]),
+        )
+    teacher_summaries = {}
+    for teacher_id in affected_teacher_ids:
+        teacher_summaries[str(teacher_id)] = _v195_refresh_teacher_summary(
+            cur, maktab_id, teacher_id
+        )
+    # Summary canonical assignmentsdan fanlarni qayta quradi. XLSX orqali
+    # yangi qo'shilgan ustozning hali skeletga biriktirilmagan mutaxassislik
+    # fanlari ham yo'qolmasligi uchun declared + assigned unionni oxirida
+    # qayta saqlaymiz; haftalik soat esa baribir faqat assignmentdan olinadi.
+    for teacher in validation.get("new_teachers") or []:
+        teacher_id = int(new_ids[teacher["name_key"]])
+        assigned = [
+            row[3] for row in assignment_rows if int(row[1]) == teacher_id
+        ]
+        durable_subjects = _v238_clean_subject_list(
+            list(teacher.get("fanlar") or []) + assigned
+        )
+        cur.execute(
+            "UPDATE users SET fanlari=%s WHERE user_id=%s AND maktab_id=%s",
+            ("; ".join(durable_subjects) or None, teacher_id, maktab_id),
+        )
+    warnings = list(validation.get("warnings") or [])
+    warnings.extend(_v192_sync_schedule_sources(cur, maktab_id) or [])
+    confirmations = _v192_auto_confirm_exact_pairs(cur, maktab_id, actor_id)
+    cur.execute(
+        "UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor' "
+        "WHERE maktab_id=%s AND holat='draft'",
+        (maktab_id,),
+    )
+    matrix = _v192_matrix_payload(cur, maktab_id)
+    return {
+        "assignment_rows": assignment_rows,
+        "blank_keys": blank_keys,
+        "teacher_summaries": teacher_summaries,
+        "warnings": list(dict.fromkeys(str(value) for value in warnings if value))[:40],
+        "confirmations": confirmations,
+        "matrix": matrix,
+    }
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/sinf_skeleti_xlsx_commit")
+def v241_step3_xlsx_commit(sorov: V241Step3XlsxPayload, token: str):
+    actor_id = _jwt_tekshir(token)
+    _v237_require_teacher_import_manager(actor_id, sorov.maktab_id, "saqlaydi")
+    try:
+        raw = _v237_decode_teacher_xlsx(sorov)
+        parsed = _v241_parse_step3_xlsx(raw)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        _xodim_kod_jadvali(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf skeleti XLSXini faqat maktab rahbariyati saqlaydi")
+        # Negative teacher ID allocator lock is global and always precedes the
+        # three established school workload locks, matching teacher import.
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2370000001,))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1922000000 + int(sorov.maktab_id),))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2040000000 + int(sorov.maktab_id),))
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(sorov.maktab_id),))
+        cur.execute(
+            "SELECT id FROM maktab_sinflari WHERE maktab_id=%s ORDER BY id FOR UPDATE",
+            (sorov.maktab_id,),
+        )
+        cur.fetchall()
+        context = _v241_step3_context(
+            cur, sorov.maktab_id, ensure_teacher_numbers=True
+        )
+        validation = _v241_validate_step3_import(parsed, context)
+        if not validation["valid"]:
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "message": "XLSX to'liq tekshiruvdan o'tmadi; hech narsa yozilmadi",
+                    "xato_qatorlar": validation["errors"],
+                },
+            )
+
+        cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id<0")
+        minimum = cur.fetchone() or {}
+        next_user_id = (
+            int(minimum["eng_kichik"]) - 1
+            if minimum.get("eng_kichik") is not None else -1
+        )
+        assigned_subjects = {}
+        for plan in validation["pair_plans"]:
+            for reference in plan["oqituvchilar"]:
+                if reference and reference.get("kind") == "new":
+                    assigned_subjects.setdefault(reference["name_key"], []).append(
+                        plan["fan_nomi"]
+                    )
+        new_ids = {}
+        created = []
+        for teacher in validation["new_teachers"]:
+            user_id = next_user_id
+            next_user_id -= 1
+            subjects = _v238_clean_subject_list(
+                list(teacher.get("fanlar") or [])
+                + assigned_subjects.get(teacher["name_key"], [])
+            )
+            target_hours = float(validation["teacher_totals"].get(teacher["name_key"], 0)) or None
+            cur.execute(
+                """INSERT INTO users(
+                       user_id,full_name,role,maktab_id,lavozim,fanlari,
+                       haftalik_maqsad_soat,haftalik_dars_soati)
+                   VALUES(%s,%s,'oqituvchi',%s,'fan_oqituvchisi',%s,%s,0)""",
+                (
+                    user_id, teacher["full_name"], sorov.maktab_id,
+                    ", ".join(subjects) or None, target_hours,
+                ),
+            )
+            plain_code, stored_code = _xodim_kod_yarat()
+            cur.execute(
+                "INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)",
+                (stored_code, user_id),
+            )
+            new_ids[teacher["name_key"]] = user_id
+            created.append({
+                "user_id": user_id, "full_name": teacher["full_name"],
+                "kirish_kodi": plain_code, "fanlar": subjects,
+            })
+        numbers = _v2249_ensure_teacher_numbers(cur, sorov.maktab_id)
+        for teacher in created:
+            teacher["jadval_raqami"] = numbers.get(int(teacher["user_id"]))
+
+        applied = _v241_apply_step3_xlsx_plan(
+            cur, actor_id, sorov.maktab_id, context, validation, new_ids
+        )
+        conn.commit()
+        return {
+            "holat": "sinf_skeleti_xlsx_import_qilindi",
+            "yangi_oqituvchilar": created,
+            "oqituvchi_soni": len({int(row[1]) for row in applied["assignment_rows"]}),
+            "sinf_soni": len({int(plan["sinf_id"]) for plan in validation["pair_plans"]}),
+            "qator_soni": len(applied["assignment_rows"]),
+            "bosh_qator_soni": len(applied["blank_keys"]),
+            "guruh_sozlamasi_yangilandi": sum(
+                len(plan["guruh_kalitlari"])
+                for plan in validation["pair_plans"] if plan["turi"] != "whole"
+            ),
+            "oqituvchi_soatlari": applied["teacher_summaries"],
+            "ogohlantirishlar": applied["warnings"],
+            "guruh_tasdiqlari": applied["confirmations"],
+            "matritsa": applied["matrix"],
+            "yuklama_revision": applied["matrix"].get("yuklama_revision"),
+        }
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close(); conn.close()
+
+
 @app.put("/api/maktab/aqlli_jadval/v3/sinf_skeleti_yuklama_qisman")
 def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
     """Save only changed Step-3 cells without replacing another teacher's rows."""
@@ -19137,8 +20817,12 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (2040000000 + int(sorov.maktab_id),))
         cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(sorov.maktab_id),))
 
-        cur.execute("SELECT user_id,full_name FROM users WHERE maktab_id=%s", (sorov.maktab_id,))
-        school_users = {int(row["user_id"]): dict(row) for row in cur.fetchall()}
+        school_teachers = {
+            int(row["user_id"]): dict(row)
+            for row in _v1859_effective_teachers(
+                cur, sorov.maktab_id, include_numbered=True
+            )
+        }
         cur.execute("SELECT id,sinf,harf,rahbar_user_id FROM maktab_sinflari WHERE maktab_id=%s", (sorov.maktab_id,))
         school_classes = {int(row["id"]): dict(row) for row in cur.fetchall()}
 
@@ -19150,10 +20834,13 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
                 status_code=400,
                 detail="Skelet faqat to'liq snapshot sifatida saqlanadi. Sahifani yangilab qayta urinib ko'ring",
             )
-        if not sorov.qatorlar:
+        if not (sorov.qatorlar or sorov.bo_sh_kalitlar):
             raise HTTPException(
                 status_code=400,
-                detail="Bo'sh skelet bilan mavjud o'qituvchi yuklamasini o'chirib bo'lmaydi",
+                detail=(
+                    "To'liq skeletda o'qituvchili qatorlar yoki aniq "
+                    "bo'sh kalitlar yuborilishi kerak"
+                ),
             )
         current_assignment_rows = _v192_assignment_rows(cur, sorov.maktab_id)
         current_revision = _v204_assignment_revision(
@@ -19170,7 +20857,7 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
         for index, row in enumerate(sorov.qatorlar, start=1):
             teacher_id = int(row.user_id)
             class_id = int(row.sinf_id)
-            if teacher_id not in school_users:
+            if teacher_id not in school_teachers:
                 raise HTTPException(status_code=400, detail=f"{index}-qator: o'qituvchi bu maktabga tegishli emas")
             if class_id not in school_classes:
                 raise HTTPException(status_code=400, detail=f"{index}-qator: sinf bu maktabga tegishli emas")
@@ -19184,7 +20871,77 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
             ))
 
         _v204_validate_complete_skeleton_payload(
-            cur, sorov.maktab_id, sorov.qatorlar
+            cur,
+            sorov.maktab_id,
+            sorov.qatorlar,
+            sorov.bo_sh_kalitlar,
+        )
+
+        # Full Step-3 snapshot assignmentdan tashqari durable guruh settingini
+        # ham ayni transactionda yangilaydi. Ayniqsa teacher blank qilinganda
+        # eski setting keyingi mode-switchda ustozni qayta tiriltirmasligi kerak.
+        expected_skeleton = _v204_expected_skeleton_rows(
+            cur, sorov.maktab_id
+        )
+        cur.execute(
+            "SELECT id FROM aqlli_xonalar_v2 WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        all_school_room_ids = {int(row["id"]) for row in cur.fetchall()}
+        targeted = {}
+        for index, row in enumerate(sorov.qatorlar, start=1):
+            key = _v204_resolve_expected_skeleton_key(
+                expected_skeleton,
+                row.sinf_id,
+                row.fan_nomi,
+                row.guruh_kaliti,
+            )
+            room_id = int(row.xona_id) if row.xona_id is not None else None
+            if room_id is not None and room_id not in all_school_room_ids:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{index}-qator: xona bu maktabga tegishli emas",
+                )
+            targeted[key] = {
+                **expected_skeleton[key],
+                "user_id": int(row.user_id),
+                "xona_id": room_id,
+            }
+        for item in sorov.bo_sh_kalitlar:
+            key = _v204_resolve_expected_skeleton_key(
+                expected_skeleton,
+                item.sinf_id,
+                item.fan_nomi,
+                item.guruh_kaliti,
+            )
+            targeted[key] = None
+        current_by_key = {}
+        for row in current_assignment_rows:
+            key = _v204_resolve_expected_skeleton_key(
+                expected_skeleton,
+                row["sinf_id"],
+                row["fan_nomi"],
+                row["guruh_kaliti"],
+            )
+            if key is not None:
+                current_by_key.setdefault(key, []).append(row)
+        cur.execute(
+            """SELECT maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                      oqituvchi_user_id,xona_id
+                 FROM aqlli_guruh_sozlamalari_v2
+                WHERE maktab_id=%s
+                ORDER BY sinf_id,fan_nomi,guruh_kaliti
+                FOR UPDATE""",
+            (sorov.maktab_id,),
+        )
+        group_setting_actions = _v204_patch_group_setting_actions(
+            expected_skeleton,
+            targeted,
+            [dict(row) for row in cur.fetchall()],
+            allowed_teacher_ids=school_teachers,
+            allowed_room_ids=all_school_room_ids,
+            preservable_room_ids=all_school_room_ids,
+            current_rows_by_key=current_by_key,
         )
 
         leader_class_ids = [int(item.sinf_id) for item in sorov.rahbarlar]
@@ -19202,7 +20959,7 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
             class_id = int(item.sinf_id)
             if class_id not in school_classes:
                 raise HTTPException(status_code=400, detail="Sinf rahbarligi uchun noma'lum sinf yuborildi")
-            if item.user_id is not None and int(item.user_id) not in school_users:
+            if item.user_id is not None and int(item.user_id) not in school_teachers:
                 raise HTTPException(status_code=400, detail="Sinf rahbarligi uchun tanlangan o'qituvchi bu maktabga tegishli emas")
 
         # Barcha yuklama bir tranzaksiyada almashtiriladi. Xato bo'lsa rollback
@@ -19221,6 +20978,37 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
         affected_teacher_ids = sorted(
             old_assignment_teacher_ids | old_derived_teacher_ids | set(rows_by_teacher)
         )
+        for setting in group_setting_actions["delete_rows"]:
+            cur.execute(
+                """DELETE FROM aqlli_guruh_sozlamalari_v2
+                    WHERE maktab_id=%s AND sinf_id=%s
+                      AND fan_nomi=%s AND guruh_kaliti=%s""",
+                (
+                    sorov.maktab_id,
+                    setting["sinf_id"],
+                    setting["fan_nomi"],
+                    setting["guruh_kaliti"],
+                ),
+            )
+        for setting in group_setting_actions["upserts"]:
+            cur.execute(
+                """INSERT INTO aqlli_guruh_sozlamalari_v2(
+                       maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                       oqituvchi_user_id,xona_id)
+                   VALUES(%s,%s,%s,%s,%s,%s)
+                   ON CONFLICT(maktab_id,sinf_id,fan_nomi,guruh_kaliti)
+                   DO UPDATE SET
+                     oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+                     xona_id=EXCLUDED.xona_id""",
+                (
+                    sorov.maktab_id,
+                    setting["sinf_id"],
+                    setting["fan_nomi"],
+                    setting["guruh_kaliti"],
+                    setting["oqituvchi_user_id"],
+                    setting["xona_id"],
+                ),
+            )
         cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s", (sorov.maktab_id,))
         if affected_teacher_ids:
             # Canonical qatorlar to'liq almashtirilganda eski derived fan/sinf
