@@ -117,7 +117,7 @@ SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V23.6-DUAL-SHIFT-WEEK-ROUND-R
 # ``main.py`` REV55 ni ham qat'iy tekshiradi. Bu ikkinchi public handshake
 # o'zgarmaydi; yangi imkoniyatlar alohida feature revision bilan belgilanadi.
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
-SAMTM_SCHOOL_FEATURE_REVISION = "teacher-xlsx-shift-alphabet-v23.7"
+SAMTM_SCHOOL_FEATURE_REVISION = "teacher-full-load-exact-group-v23.7.1"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 _platform.SAMTM_FEATURE_REVISION = SAMTM_SCHOOL_FEATURE_REVISION
@@ -2192,7 +2192,14 @@ def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None, include_number
                           u.oqitadigan_sinflari,u.haftalik_dars_soati,u.jadval_raqami,
                           to_jsonb(u)->>'mutaxassisligi' AS mutaxassisligi,
                           NULLIF(to_jsonb(u)->>'haftalik_maqsad_soat','')::NUMERIC(5,1)
-                              AS haftalik_maqsad_soat
+                              AS haftalik_maqsad_soat,
+                          NULLIF(to_jsonb(u)->>'tugilgan_sana','') AS tugilgan_sana,
+                          CASE
+                              WHEN COALESCE(to_jsonb(u)->>'ish_staji','') ~ '^\\d+$'
+                              THEN (to_jsonb(u)->>'ish_staji')::INTEGER
+                              ELSE NULL
+                          END AS ish_staji,
+                          NULLIF(to_jsonb(u)->>'toifasi','') AS toifasi
                    FROM users u
                    WHERE u.maktab_id=%s AND u.lavozim IS NOT NULL
                    ORDER BY u.full_name,u.user_id""", (maktab_id,))
@@ -2271,6 +2278,12 @@ def _v1859_effective_teachers(cur, maktab_id: int, user_ids=None, include_number
         row["sinflari"] = "; ".join(classes) or None
         row["fan_manbalari"] = sorted(source_maps[uid])
         row["dars_birikma_soni"] = int(assignment_counts[uid])
+        # Formada tanlangan, lekin hali sinf qatori berilmagan fanlar ham
+        # mutaxassislik profilidan qaytadi. Canonical dars yuklamasi baribir
+        # maktab_dars_birikmalari bo'lib qoladi.
+        row["otadigan_fanlari"] = _v1859_fanlarni_ajrat(
+            row.get("mutaxassisligi")
+        )
         row["dars_beruvchi"] = bool(
             subjects or classes or assignment_counts[uid] or uid in class_head_ids
         )
@@ -12888,6 +12901,149 @@ def _v2249_ensure_teacher_numbers(cur, maktab_id: int):
     return {int(row["user_id"]): int(row["jadval_raqami"]) for row in rows if row.get("jadval_raqami") is not None}
 
 
+def _v204_assignment_revision(rows, classes=None):
+    """Exact workload + leadership snapshot hash used to reject stale saves."""
+    assignments = sorted(
+        (
+            int(row.get("user_id") or 0),
+            int(row.get("sinf_id") or 0),
+            re.sub(r"\s+", " ", str(row.get("fan_nomi") or "")).strip().casefold(),
+            str(row.get("guruh_kaliti") or "whole"),
+            round(float(row.get("haftalik_soat") or 0), 4),
+            int(row.get("kunlik_max") or 1),
+            int(row.get("xona_id")) if row.get("xona_id") is not None else None,
+        )
+        for row in rows or []
+    )
+    leadership = sorted(
+        (
+            int(row.get("id") or 0),
+            int(row.get("rahbar_user_id"))
+            if row.get("rahbar_user_id") is not None else None,
+        )
+        for row in classes or []
+    )
+    raw = json.dumps(
+        {"assignments": assignments, "leadership": leadership},
+        ensure_ascii=False,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+
+def _v204_group_subject_family(value):
+    key = _v1875_subject_key(value)
+    if re.search(r"chet tili|ingliz tili|english|nemis tili|fransuz tili", key):
+        return "chet_tili"
+    if re.search(r"rus tili|russki", key):
+        return "rus_tili"
+    if re.search(r"informatika|axborot texnolog", key):
+        return "informatika"
+    if re.search(r"jismoniy tarbiya|fizkultura|sport", key):
+        return "jismoniy"
+    if re.search(r"texnologiya|mehnat", key):
+        return "texnologiya"
+    return key
+
+
+def _v204_group_subject_matches(left, right):
+    left_key = _v1875_subject_key(left)
+    right_key = _v1875_subject_key(right)
+    return bool(
+        left_key and right_key and (
+            left_key == right_key
+            or _v204_group_subject_family(left_key)
+            == _v204_group_subject_family(right_key)
+        )
+    )
+
+
+def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
+    """Prove full plan/group coverage before the school-wide replacement."""
+    classes, _systems, variants = _v192_group_variants(cur, maktab_id)
+    plan = _v193_plan_payload(cur, maktab_id, classes)
+    saved_plan_rows = plan.get("qatorlar") or []
+    plan_rows = saved_plan_rows or (plan.get("andoza_qatorlar") or [])
+    variants_by_class = {}
+    for variant in variants:
+        if _v1875_group_key(variant.get("guruh_kaliti")) == "whole":
+            continue
+        variants_by_class.setdefault(int(variant["sinf_id"]), []).append(variant)
+
+    expected = {}
+    for row in plan_rows:
+        hours = round(float(row.get("haftalik_soat") or 0), 4)
+        if hours <= 0:
+            continue
+        subject = _v192_clean_subject(row.get("fan_nomi"))
+        subject_key = _v1875_subject_key(subject)
+        if subject_key in {
+            _v1875_subject_key("SINF SOATI"),
+            _v1875_subject_key("KELAJAK SOATI"),
+        }:
+            continue
+        class_id = int(row["sinf_id"])
+        linked = [
+            variant for variant in variants_by_class.get(class_id, [])
+            if any(
+                _v204_group_subject_matches(item, subject)
+                for item in (variant.get("fanlar") or [])
+            )
+        ]
+        group_keys = sorted({
+            _v1875_group_key(variant.get("guruh_kaliti"))
+            for variant in linked
+        }) or ["whole"]
+        for group_key in group_keys:
+            expected[(class_id, subject_key, group_key)] = hours
+
+    submitted = {}
+    for row in qatorlar:
+        key = (
+            int(row.sinf_id),
+            _v1875_subject_key(row.fan_nomi),
+            _v1875_group_key(row.guruh_kaliti),
+        )
+        submitted.setdefault(key, []).append(row)
+
+    expected_keys = set(expected)
+    submitted_keys = set(submitted)
+    if expected_keys != submitted_keys:
+        missing = sorted(expected_keys - submitted_keys)
+        extra = sorted(submitted_keys - expected_keys)
+        details = []
+        if missing:
+            details.append(f"{len(missing)} ta reja qatori yetishmaydi")
+        if extra:
+            details.append(f"{len(extra)} ta ortiqcha yoki noto'g'ri guruh qatori bor")
+        raise HTTPException(
+            status_code=409,
+            detail="Skelet o'quv reja bilan to'liq mos emas: " + "; ".join(details),
+        )
+
+    grouped_teachers = {}
+    for key, rows in submitted.items():
+        if len(rows) != 1:
+            raise HTTPException(
+                status_code=409,
+                detail="Bitta fan–sinf–guruhga aynan bitta o'qituvchi tanlanishi kerak",
+            )
+        row = rows[0]
+        if abs(float(row.haftalik_soat) - float(expected[key])) > 1e-6:
+            raise HTTPException(
+                status_code=409,
+                detail="Skeletdagi haftalik soat tasdiqlangan o'quv reja bilan teng emas",
+            )
+        if key[2] != "whole":
+            grouped_teachers.setdefault(key[:2], []).append(int(row.user_id))
+    if any(len(teachers) != len(set(teachers)) for teachers in grouped_teachers.values()):
+        raise HTTPException(
+            status_code=409,
+            detail="Bitta guruhli fanning har bir guruhiga alohida o'qituvchi tanlanishi kerak",
+        )
+    return {"qator_soni": len(expected_keys)}
+
+
 def _v192_matrix_payload(cur, maktab_id: int):
     classes, systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
@@ -12936,6 +13092,7 @@ def _v192_matrix_payload(cur, maktab_id: int):
         "xonalar": rooms,
         "guruh_variantlari": variants,
         "birikmalar": rows,
+        "yuklama_revision": _v204_assignment_revision(rows, classes),
         "oquv_reja": plan,
         "hisob": _v192_totals(cur, maktab_id, rows, classes),
         "avtomatik_tavsiya": (
@@ -13463,6 +13620,8 @@ class V204SkeletonBulkSave(BaseModel):
     maktab_id: int
     qatorlar: list[V204SkeletonLoadRow] = []
     rahbarlar: list[V204SkeletonLeaderRow] = []
+    toliq_snapshot: bool = False
+    kutilgan_yuklama_revision: Optional[str] = None
 
 
 class V192ManualTeacherCreate(BaseModel):
@@ -13777,6 +13936,18 @@ def _v192_save_teacher_load_rows(
             }
 
     cleaned = list(cleaned_by_key.values())
+    teacher_group_pairs = {}
+    for row in cleaned:
+        if row["guruh_kaliti"] == "whole":
+            continue
+        teacher_group_pairs.setdefault(
+            (row["sinf_id"], row["fan_kaliti"]), set()
+        ).add(row["guruh_kaliti"])
+    if any(len(group_keys) > 1 for group_keys in teacher_group_pairs.values()):
+        raise HTTPException(
+            status_code=409,
+            detail="Bitta o'qituvchiga bir sinfdagi bir guruhli fanning faqat bitta aniq guruhi beriladi",
+        )
     for row in cleaned:
         cur.execute("""SELECT COALESCE(SUM(b.haftalik_soat),0) AS band_soat,
                               STRING_AGG(DISTINCT u.full_name, ', ' ORDER BY u.full_name) AS oqituvchilar
@@ -13898,6 +14069,11 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
         supplied_fields = set(
             getattr(sorov, "model_fields_set", getattr(sorov, "__fields_set__", set()))
         )
+        if not sorov.qatorlar:
+            raise HTTPException(
+                status_code=400,
+                detail="O'qituvchida kamida bitta aniq fan–sinf–guruh yuklamasi bo'lishi kerak",
+            )
         if "full_name" in supplied_fields:
             full_name = re.sub(r"\s+", " ", str(sorov.full_name or "")).strip()
             if len(full_name) < 3 or len(full_name) > 160:
@@ -13929,19 +14105,41 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
             )
             if int(cur.rowcount or 0) != 1:
                 raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
-        profile_fields = {
-            "mutaxassisligi", "haftalik_maqsad_soat", "tugilgan_sana",
-            "tugilgan_yili", "ish_staji", "toifasi",
-        }
-        if supplied_fields.intersection(profile_fields):
-            specialty, target = _v194_teacher_profile_values(
-                sorov.mutaxassisligi, sorov.haftalik_maqsad_soat
+        # Partial API klienti bitta profil maydonini yuborsa, qolgan eski
+        # qiymatlar NULL bilan ustidan yozilmaydi. Frontend barcha maydonlarni
+        # (tozalash uchun explicit null bilan) yuboradi; har biri alohida
+        # tekshiriladi va faqat yuborilgan ustun yangilanadi.
+        profile_updates = []
+        profile_values = []
+        if "mutaxassisligi" in supplied_fields or "otadigan_fanlari" in supplied_fields:
+            specialty_source = sorov.mutaxassisligi
+            if not specialty_source and sorov.otadigan_fanlari:
+                specialty_source = ";".join(
+                    _v1859_fanlarni_ajrat(";".join(sorov.otadigan_fanlari))
+                )
+            specialty, _ = _v194_teacher_profile_values(
+                specialty_source, None
             )
+            profile_updates.append("mutaxassisligi=%s")
+            profile_values.append(specialty)
+        if "haftalik_maqsad_soat" in supplied_fields:
+            _, target = _v194_teacher_profile_values(
+                None, sorov.haftalik_maqsad_soat
+            )
+            profile_updates.append("haftalik_maqsad_soat=%s")
+            profile_values.append(target)
+        if "ish_staji" in supplied_fields:
             work_years = sorov.ish_staji
             if work_years is not None and not 0 <= int(work_years) <= 60:
                 raise HTTPException(status_code=400, detail="Ish staji 0–60 yil oralig'ida bo'lishi kerak")
-            birth_date = sorov.tugilgan_sana
-            birth_year = birth_date.year if birth_date is not None else sorov.tugilgan_yili
+            profile_updates.append("ish_staji=%s")
+            profile_values.append(int(work_years) if work_years is not None else None)
+        if "tugilgan_sana" in supplied_fields or "tugilgan_yili" in supplied_fields:
+            birth_date = sorov.tugilgan_sana if "tugilgan_sana" in supplied_fields else None
+            birth_year = (
+                birth_date.year if birth_date is not None
+                else sorov.tugilgan_yili
+            )
             current_year = _date.today().year
             if birth_year is not None and not 1900 <= int(birth_year) <= current_year:
                 raise HTTPException(
@@ -13950,19 +14148,25 @@ def v192_teacher_load_save(sorov: V192TeacherLoadSave, token: str):
                 )
             if birth_date is not None and birth_date > _date.today():
                 raise HTTPException(status_code=400, detail="Tug'ilgan sana kelajakda bo'lishi mumkin emas")
+            profile_updates.append("tugilgan_sana=%s")
+            profile_values.append(
+                birth_date or (
+                    _date(int(birth_year), 1, 1)
+                    if birth_year is not None else None
+                )
+            )
+        if "toifasi" in supplied_fields:
             category = re.sub(r"\s+", " ", str(sorov.toifasi or "")).strip() or None
             if category and category not in TOIFALAR:
                 raise HTTPException(status_code=400, detail="O'qituvchi toifasi noto'g'ri")
-            cur.execute("""UPDATE users
-                           SET mutaxassisligi=%s,haftalik_maqsad_soat=%s,
-                               tugilgan_sana=%s,ish_staji=%s,toifasi=%s
-                           WHERE user_id=%s AND maktab_id=%s""",
-                        (
-                            specialty, target,
-                            birth_date or (_date(int(birth_year), 1, 1) if birth_year is not None else None),
-                            int(work_years) if work_years is not None else None,
-                            category, sorov.user_id, sorov.maktab_id,
-                        ))
+            profile_updates.append("toifasi=%s")
+            profile_values.append(category)
+        if profile_updates:
+            cur.execute(
+                f"""UPDATE users SET {', '.join(profile_updates)}
+                    WHERE user_id=%s AND maktab_id=%s""",
+                (*profile_values, sorov.user_id, sorov.maktab_id),
+            )
             if int(cur.rowcount or 0) != 1:
                 raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
         leader_class = None
@@ -14027,9 +14231,19 @@ def v192_manual_teacher_create(sorov: V192ManualTeacherCreate, token: str):
         category = re.sub(r"\s+", " ", str(sorov.toifasi or "")).strip() or None
         if category and category not in TOIFALAR:
             raise HTTPException(status_code=400, detail="O'qituvchi toifasi noto'g'ri")
+        specialty_source = sorov.mutaxassisligi
+        if not specialty_source and sorov.otadigan_fanlari:
+            specialty_source = ";".join(
+                _v1859_fanlarni_ajrat(";".join(sorov.otadigan_fanlari))
+            )
         specialty, target_hours = _v194_teacher_profile_values(
-            sorov.mutaxassisligi, sorov.haftalik_maqsad_soat
+            specialty_source, sorov.haftalik_maqsad_soat
         )
+        if not sorov.qatorlar:
+            raise HTTPException(
+                status_code=400,
+                detail="Yangi o'qituvchida kamida bitta aniq fan–sinf–guruh yuklamasi bo'lishi kerak",
+            )
 
         # ``users.user_id`` manfiy identifikatori barcha maktablar uchun bitta
         # global ketma-ketlikdan olinadi. Import endpointi bilan parallel
@@ -14763,8 +14977,32 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
 
         cur.execute("SELECT user_id,full_name FROM users WHERE maktab_id=%s", (sorov.maktab_id,))
         school_users = {int(row["user_id"]): dict(row) for row in cur.fetchall()}
-        cur.execute("SELECT id,sinf,harf FROM maktab_sinflari WHERE maktab_id=%s", (sorov.maktab_id,))
+        cur.execute("SELECT id,sinf,harf,rahbar_user_id FROM maktab_sinflari WHERE maktab_id=%s", (sorov.maktab_id,))
         school_classes = {int(row["id"]): dict(row) for row in cur.fetchall()}
+
+        # Bu endpoint butun maktab yuklamasini almashtiradi. Eski tab yoki eski
+        # frontend yangi ma'lumotni ustidan yozmasligi uchun to'liq snapshot va
+        # GET matritsasida olingan ayni revision majburiy.
+        if not sorov.toliq_snapshot:
+            raise HTTPException(
+                status_code=400,
+                detail="Skelet faqat to'liq snapshot sifatida saqlanadi. Sahifani yangilab qayta urinib ko'ring",
+            )
+        if not sorov.qatorlar:
+            raise HTTPException(
+                status_code=400,
+                detail="Bo'sh skelet bilan mavjud o'qituvchi yuklamasini o'chirib bo'lmaydi",
+            )
+        current_assignment_rows = _v192_assignment_rows(cur, sorov.maktab_id)
+        current_revision = _v204_assignment_revision(
+            current_assignment_rows, school_classes.values()
+        )
+        expected_revision = str(sorov.kutilgan_yuklama_revision or "").strip().lower()
+        if not expected_revision or expected_revision != current_revision:
+            raise HTTPException(
+                status_code=409,
+                detail="O'qituvchi yuklamasi boshqa oynada yangilangan. Yangi ma'lumot yo'qolmasligi uchun sahifani qayta yuklang",
+            )
 
         rows_by_teacher = {}
         for index, row in enumerate(sorov.qatorlar, start=1):
@@ -14783,6 +15021,18 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
                 xona_id=row.xona_id,
             ))
 
+        _v204_validate_complete_skeleton_payload(
+            cur, sorov.maktab_id, sorov.qatorlar
+        )
+
+        leader_class_ids = [int(item.sinf_id) for item in sorov.rahbarlar]
+        if len(leader_class_ids) != len(set(leader_class_ids)):
+            raise HTTPException(status_code=409, detail="Bitta sinf rahbarlar ro'yxatida ikki marta yuborilgan")
+        if set(leader_class_ids) != set(school_classes):
+            raise HTTPException(
+                status_code=400,
+                detail="Sinf rahbarlari ham barcha sinflar bo'yicha to'liq snapshot bo'lishi kerak",
+            )
         leader_teacher_ids = [int(item.user_id) for item in sorov.rahbarlar if item.user_id is not None]
         if len(leader_teacher_ids) != len(set(leader_teacher_ids)):
             raise HTTPException(status_code=409, detail="Bitta o'qituvchi bir vaqtning o'zida ikki sinf rahbari qilib tanlangan")
@@ -14795,8 +15045,36 @@ def v204_class_skeleton_bulk_save(sorov: V204SkeletonBulkSave, token: str):
 
         # Barcha yuklama bir tranzaksiyada almashtiriladi. Xato bo'lsa rollback
         # eski holatni to'liq qaytaradi; yarim saqlangan jadval qolmaydi.
+        old_assignment_teacher_ids = {
+            int(row["user_id"]) for row in current_assignment_rows
+        }
+        cur.execute(
+            """SELECT DISTINCT user_id FROM maktab_xodim_sinflari
+               WHERE maktab_id=%s""",
+            (sorov.maktab_id,),
+        )
+        old_derived_teacher_ids = {
+            int(row["user_id"]) for row in cur.fetchall()
+        }
+        affected_teacher_ids = sorted(
+            old_assignment_teacher_ids | old_derived_teacher_ids | set(rows_by_teacher)
+        )
         cur.execute("DELETE FROM maktab_dars_birikmalari WHERE maktab_id=%s", (sorov.maktab_id,))
-        cur.execute("UPDATE users SET haftalik_dars_soati=0 WHERE maktab_id=%s", (sorov.maktab_id,))
+        if affected_teacher_ids:
+            # Canonical qatorlar to'liq almashtirilganda eski derived fan/sinf
+            # summarylari qolib, keyingi matritsaga soxta yuklama bo'lib
+            # qaytmasin. Profil, maqsad soati, staj va jadval raqami tegilmaydi.
+            cur.execute(
+                """DELETE FROM maktab_xodim_sinflari
+                   WHERE maktab_id=%s AND user_id=ANY(%s)""",
+                (sorov.maktab_id, affected_teacher_ids),
+            )
+            cur.execute(
+                """UPDATE users SET haftalik_dars_soati=0,
+                                      fanlari=NULL,oqitadigan_sinflari=NULL
+                   WHERE maktab_id=%s AND user_id=ANY(%s)""",
+                (sorov.maktab_id, affected_teacher_ids),
+            )
 
         # Sinf rahbarlari ham shu skeletning bir qismi. Frontend barcha sinflarni
         # yuboradi, shuning uchun eski noto'g'ri rahbarlar qolib ketmaydi.
