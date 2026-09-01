@@ -105,9 +105,10 @@ for _platform_name, _platform_value in vars(_platform).items():
 
 _V19_IMPORTED_NAMES = set(globals())
 
-# V19.8 deploy belgisi: V19.7 kasr-soat imkoniyatlari saqlanadi va V17 da
-# yaratilgan maktab legacy maktab workspace'iga atomar bog'lanadi.
-SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v23.7"
+# V19.8 public compatibility belgisi ``main.py`` va amaldagi frontendda
+# qattiq tekshiriladi. V23.7 funksiyalari package revision/app.version orqali
+# ajratiladi; bu public qiymatni o'zgartirish Railway worker bootini to'xtatadi.
+SAMTM_SCHOOL_RELEASE = "samtm-school-workspace-link-v19.8"
 SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V23.6-LIVE-REATTACH-ALL-TEACHERS"
 # Eski frontend aynan V22.0 satrini qattiq tekshiradi. Public compatibility
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
