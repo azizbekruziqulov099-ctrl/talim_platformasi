@@ -2905,7 +2905,7 @@ def _v1852_candidate_reasons_base(job, day, period, selected_teachers, room_keys
     return list(dict.fromkeys(reasons))
 
 
-def _v1852_choose_teacher(job, day, period, state, context):
+def _v199_base_choose_teacher(job, day, period, state, context):
     if job["groups"]:
         return [g.get("teacher") for g in job["groups"]]
     options = job["teacher_options"]
@@ -4617,6 +4617,15 @@ def v2244_start_generation(sorov: V1852Generate, token: str):
         _v1852_tables(cur)
         if not _v1852_manager(cur, user_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Jadvalni faqat maktab rahbariyati yaratadi")
+        # Ikki browser yoki ikki Gunicorn workeri ayni paytda "Boshlash"ni
+        # bossa, tekshirish + navbatga yozish bitta maktab uchun atomar bo'lsin.
+        # Birinchi tranzaksiya progress qatorini commit qilgach, ikkinchisi shu
+        # yangi faol holatni ko'radi va 409 bilan qaytadi; ikki daemon solver
+        # yonma-yon ishga tushmaydi.
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1900000000 + int(sorov.maktab_id),),
+        )
         cur.execute(
             """SELECT bosqich,qidiruv_nonce,
                       EXTRACT(EPOCH FROM (NOW()-yangilangan_at)) AS yangilanish_yoshi
@@ -7524,9 +7533,6 @@ def _v1874_build_jobs(classes, loads, assignments, group_settings, teachers):
             "toq va juft haftalarda navbat bilan o'tadi"
         )
     return jobs, warnings
-
-
-_v199_base_choose_teacher = _v1852_choose_teacher
 
 
 def _v199_rotation_member_teachers(member):
