@@ -10040,6 +10040,26 @@ def _v1876_tables(cur):
         "CREATE INDEX IF NOT EXISTS idx_fan_guruh_tasdiq_v2 "
         "ON aqlli_fan_guruh_tasdiqlari_v2(maktab_id,tasdiqlangan)"
     )
+    # Fan uchun Butun sinf / 1-2 guruh / O'g'il-Qiz turi almashtirilganda
+    # kanonik faol qatorlar yangi kalitlarga o'tadi. Oldingi o'qituvchi, xona
+    # va soatlar qayta tanlash uchun yo'qolmasdan shu audit snapshotda qoladi.
+    # Sinfning guruh sxemasi va o'quvchi a'zoligi esa umuman ko'chirilmaydi.
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_fan_guruh_turi_tarixi_v238(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        sinf_id INTEGER NOT NULL REFERENCES maktab_sinflari(id) ON DELETE CASCADE,
+        fan_nomi TEXT NOT NULL,
+        eski_turi TEXT NOT NULL,
+        yangi_turi TEXT NOT NULL,
+        tanlovlar JSONB NOT NULL DEFAULT '[]'::jsonb,
+        guruh_sozlamalari JSONB NOT NULL DEFAULT '[]'::jsonb,
+        ozgartirgan_user_id BIGINT,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute(
+        "CREATE INDEX IF NOT EXISTS idx_fan_guruh_turi_tarixi_v238 "
+        "ON aqlli_fan_guruh_turi_tarixi_v238(maktab_id,sinf_id,fan_nomi,yaratilgan_at DESC)"
+    )
 
 
 @app.on_event("startup")
@@ -10706,22 +10726,70 @@ def _v1876_delete_group_settings(cur, maktab_id: int, class_id: int, subject_key
                         (maktab_id, class_id, row["fan_nomi"], row["guruh_kaliti"]))
 
 
-def _v1876_update_system_subjects(cur, class_id: int, subject: str, selected_system_id: Optional[int]):
+def _v1876_update_system_subjects(
+    cur,
+    class_id: int,
+    subject: str,
+    selected_system_id: Optional[int],
+    safe_subject_keys=None,
+):
+    """Move one resolved subject between systems without touching siblings.
+
+    ``Chet tili`` aliases used to be removed with a family-wide fuzzy match.
+    In a class that teaches English, German and French that unlinked all three.
+    The caller can now pass the exact keys proved to belong to this one planned
+    subject.  Older callers get the same proof from this class's curriculum;
+    when that proof is unavailable the safe fallback is exact-only.
+    """
     cur.execute("""SELECT id,fanlar FROM maktab_sinf_guruh_tizimlari
-                   WHERE sinf_id=%s AND faol=TRUE ORDER BY id FOR UPDATE""", (class_id,))
-    subject_key = _v1875_subject_key(subject)
-    for row in cur.fetchall():
+                   WHERE sinf_id=%s ORDER BY id FOR UPDATE""", (class_id,))
+    system_rows = [dict(row) for row in cur.fetchall()]
+    if safe_subject_keys is None:
+        safe_subject_keys = {_v1875_subject_key(subject)}
+        cur.execute(
+            "SELECT id,maktab_id,sinf,harf,COALESCE(talim_tili,'uz') AS talim_tili "
+            "FROM maktab_sinflari WHERE id=%s",
+            (class_id,),
+        )
+        class_row = cur.fetchone()
+        if class_row:
+            try:
+                plan_subjects = _v238_class_plan_subjects(
+                    cur, int(class_row["maktab_id"]), dict(class_row)
+                )
+                observed = [
+                    value
+                    for row in system_rows
+                    for value in (row.get("fanlar") or [])
+                ]
+                safe_subject_keys = _v238_safe_subject_keys(
+                    plan_subjects, subject, observed
+                )
+            except Exception:
+                # This compatibility helper is also used by old administrative
+                # endpoints.  A missing legacy plan must never broaden deletion.
+                safe_subject_keys = {_v1875_subject_key(subject)}
+    safe_subject_keys = {
+        _v1875_subject_key(value)
+        for value in (safe_subject_keys or [])
+        if _v1875_subject_key(value)
+    } or {_v1875_subject_key(subject)}
+
+    for row in system_rows:
         subjects = [
             re.sub(r"\s+", " ", str(value or "")).strip()
             for value in (row.get("fanlar") or [])
             if str(value or "").strip()
         ]
-        subjects = [value for value in subjects if _v1875_subject_key(value) != subject_key]
+        subjects = [
+            value for value in subjects
+            if _v1875_subject_key(value) not in safe_subject_keys
+        ]
         if selected_system_id is not None and int(row["id"]) == int(selected_system_id):
             subjects.append(subject)
         cur.execute(
-            "UPDATE maktab_sinf_guruh_tizimlari "
-            "SET fanlar=%s,yangilangan_at=NOW() WHERE id=%s",
+            "UPDATE maktab_sinf_guruh_tizimlari SET "
+            "fanlar=%s,yangilangan_at=NOW() WHERE id=%s",
             (subjects, row["id"]),
         )
 
@@ -11253,6 +11321,16 @@ class V238ClassGroupSystemsBatch(BaseModel):
     tizimlar: list[str]
 
 
+class V238SubjectGroupModeSwitch(BaseModel):
+    maktab_id: int
+    sinf_id: int
+    fan_nomi: str
+    turi: str
+    # Step-3 matritsasi boshqa tabda o'zgargan bo'lsa eski oynadagi guruh
+    # almashtirishi yangi o'qituvchi tanlovlarini ustidan yozmasligi shart.
+    kutilgan_yuklama_revision: str
+
+
 def _v238_normalize_group_system(value):
     key = re.sub(r"\s+", "", str(value or "")).strip().casefold()
     normalized = {
@@ -11264,6 +11342,1249 @@ def _v238_normalize_group_system(value):
     if normalized is None:
         raise ValueError("Guruh turi faqat 1/2-guruh yoki O‘g‘il/Qiz bo‘lishi kerak")
     return normalized
+
+
+def _v238_normalize_subject_group_mode(value):
+    key = re.sub(r"\s+", "", str(value or "")).strip().casefold()
+    normalized = {
+        "whole": "whole", "butunsinf": "whole", "butun_sinf": "whole",
+        "none": "whole", "bolinmagan": "whole",
+        "alphabet": "alphabet", "1/2": "alphabet", "1_2": "alphabet",
+        "numbered": "alphabet", "ikki_guruh": "alphabet",
+        "gender": "gender", "o'g'il/qiz": "gender", "o‘g‘il/qiz": "gender",
+        "ogil_qiz": "gender", "boys_girls": "gender",
+    }.get(key)
+    if normalized is None:
+        raise ValueError(
+            "Guruh turi faqat Butun sinf, 1/2-guruh yoki O‘g‘il/Qiz bo‘lishi kerak"
+        )
+    return normalized
+
+
+def _v238_clean_subject_list(values):
+    """Return stable, normalized-name-unique subject labels."""
+    result = []
+    seen = set()
+    for value in values or []:
+        name = re.sub(r"\s+", " ", str(value or "")).strip()
+        key = _v1875_subject_key(name)
+        if not key or key in seen:
+            continue
+        seen.add(key)
+        result.append(name)
+    return result
+
+
+def _v238_class_plan_subjects(cur, maktab_id: int, class_row):
+    """Read this class's active curriculum without creating/updating a plan."""
+    class_id = int(class_row["id"])
+    cur.execute(
+        """SELECT fan_nomi,haftalik_soat
+             FROM aqlli_oquv_reja_qatorlari_v19_3
+            WHERE maktab_id=%s AND sinf_id=%s AND haftalik_soat>0
+            ORDER BY id""",
+        (maktab_id, class_id),
+    )
+    saved = [dict(row) for row in cur.fetchall()]
+    language, selected_by_grade, curriculum = _v238_class_curriculum_context(
+        cur, maktab_id, class_row, {}
+    )
+    grade = _v193_grade_number(class_row.get("sinf"))
+    allowed = (
+        (selected_by_grade or {}).get(grade)
+        if selected_by_grade is not None else None
+    )
+    custom = _v201_school_has_override(cur, maktab_id, "oquv_reja", language)
+    active_saved = [
+        row["fan_nomi"]
+        for row in saved
+        if (
+            custom
+            or allowed is None
+            or _v1875_subject_key(row.get("fan_nomi")) in (allowed or {})
+        )
+    ]
+    if active_saved:
+        return _v238_clean_subject_list(active_saved)
+    template = _v193_template_rows_for_class(
+        class_row, selected_by_grade, curriculum
+    )
+    return _v238_clean_subject_list(
+        row.get("fan_nomi")
+        for row in template
+        if float(row.get("haftalik_soat") or 0) > 0
+    )
+
+
+def _v238_resolve_planned_subject(plan_subjects, requested_subject: str):
+    """Resolve exact first; a family alias is legal only for one plan member.
+
+    The helper is deliberately pure so the destructive endpoint can prove the
+    requested pair before it performs any database mutation.
+    """
+    planned = _v238_clean_subject_list(plan_subjects)
+    requested = re.sub(r"\s+", " ", str(requested_subject or "")).strip()
+    requested_key = _v1875_subject_key(requested)
+    exact = [name for name in planned if _v1875_subject_key(name) == requested_key]
+    if exact:
+        canonical = exact[0]
+        return canonical, _v1875_subject_key(canonical)
+    family = [
+        name for name in planned
+        if _v204_group_subject_matches(name, requested)
+    ]
+    family_keys = {_v1875_subject_key(name) for name in family}
+    if len(family_keys) == 1:
+        canonical = family[0]
+        return canonical, _v1875_subject_key(canonical)
+    if len(family_keys) > 1:
+        raise ValueError("fan_oilasi_noaniq")
+    raise ValueError("fan_rejada_topilmadi")
+
+
+def _v238_safe_subject_keys(plan_subjects, subject: str, observed_subjects=None):
+    """Return only keys proven to represent this one class-plan subject."""
+    subject_key = _v1875_subject_key(subject)
+    safe = {subject_key} if subject_key else set()
+    family_members = {
+        _v1875_subject_key(value)
+        for value in _v238_clean_subject_list(plan_subjects)
+        if _v204_group_subject_matches(value, subject)
+    }
+    if len(family_members) == 1:
+        safe.update(
+            _v1875_subject_key(value)
+            for value in (observed_subjects or [])
+            if _v204_group_subject_matches(value, subject)
+        )
+    return {key for key in safe if key}
+
+
+def _v238_safe_subject_match_keys(
+    cur,
+    maktab_id: int,
+    class_id: int,
+    subject: str,
+    plan_subjects,
+):
+    """Collect aliases from current pair state, then apply plan-safe proof."""
+    observed = []
+    cur.execute(
+        "SELECT fanlar FROM maktab_sinf_guruh_tizimlari WHERE sinf_id=%s",
+        (class_id,),
+    )
+    observed.extend(
+        value
+        for row in cur.fetchall()
+        for value in (row.get("fanlar") or [])
+    )
+    for table in ("maktab_dars_birikmalari", "aqlli_guruh_sozlamalari_v2"):
+        cur.execute(
+            f"SELECT fan_nomi FROM {table} WHERE maktab_id=%s AND sinf_id=%s",
+            (maktab_id, class_id),
+        )
+        observed.extend(row.get("fan_nomi") for row in cur.fetchall())
+    return _v238_safe_subject_keys(plan_subjects, subject, observed)
+
+
+def _v238_reject_ambiguous_family_settings(
+    settings, plan_subjects, subject, safe_subject_keys
+):
+    """Fail closed on a generic family alias that belongs to no exact sibling."""
+    safe = {
+        _v1875_subject_key(value) for value in (safe_subject_keys or [])
+    }
+    planned_keys = {
+        _v1875_subject_key(value) for value in _v238_clean_subject_list(plan_subjects)
+    }
+    ambiguous = [
+        row for row in (settings or [])
+        if _v1875_subject_key(row.get("fan_nomi")) not in safe
+        and _v1875_subject_key(row.get("fan_nomi")) not in planned_keys
+        and _v204_group_subject_matches(row.get("fan_nomi"), subject)
+    ]
+    if ambiguous:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Eski guruh sozlamasidagi umumiy fan aliasini aynan bitta "
+                "reja faniga bog'lab bo'lmadi. Ma'lumot o'zgartirilmadi"
+            ),
+        )
+
+
+def _v238_matching_subject_rows(
+    cur,
+    maktab_id: int,
+    class_id: int,
+    subject: str,
+    rows,
+    safe_subject_keys=None,
+):
+    """Canonical fan topilmasa faqat bitta aniq reja oilasidagi aliasni oladi."""
+    subject_key = _v1875_subject_key(subject)
+    if safe_subject_keys is not None:
+        safe = {
+            _v1875_subject_key(value)
+            for value in safe_subject_keys
+            if _v1875_subject_key(value)
+        }
+        return [
+            dict(row) for row in rows
+            if _v1875_subject_key(row.get("fan_nomi")) in safe
+        ]
+    exact = [
+        dict(row) for row in rows
+        if _v1875_subject_key(row.get("fan_nomi")) == subject_key
+    ]
+    if exact:
+        return exact
+    family = [
+        dict(row) for row in rows
+        if _v204_group_subject_matches(row.get("fan_nomi"), subject)
+    ]
+    if not family:
+        return []
+    cur.execute(
+        """SELECT fan_nomi FROM aqlli_oquv_reja_qatorlari_v19_3
+            WHERE maktab_id=%s AND sinf_id=%s""",
+        (maktab_id, class_id),
+    )
+    planned_family = {
+        _v1875_subject_key(row.get("fan_nomi"))
+        for row in cur.fetchall()
+        if _v204_group_subject_matches(row.get("fan_nomi"), subject)
+    }
+    # Bir sinfda Ingliz va Nemis kabi bir oiladagi ikki mustaqil fan bo'lsa
+    # taxmin qilmaymiz: faqat exact nom xavfsiz. Yagona canonical fan bo'lsa
+    # eski "Ingliz tili" ↔ yangi "Chet tili" aliasi shu pairga tegishli.
+    return family if len(planned_family) == 1 else []
+
+
+def _v238_subject_pair_assignment_rows(
+    cur, maktab_id: int, class_id: int, subject: str, safe_subject_keys=None
+):
+    cur.execute(
+        """SELECT b.*,u.full_name
+             FROM maktab_dars_birikmalari b
+             JOIN users u ON u.user_id=b.user_id
+            WHERE b.maktab_id=%s AND b.sinf_id=%s
+            ORDER BY b.id""",
+        (maktab_id, class_id),
+    )
+    return _v238_matching_subject_rows(
+        cur, maktab_id, class_id, subject, cur.fetchall(), safe_subject_keys
+    )
+
+
+def _v238_subject_pair_settings(
+    cur, maktab_id: int, class_id: int, subject_key: str, safe_subject_keys=None
+):
+    cur.execute(
+        """SELECT maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                  oqituvchi_user_id,xona_id
+             FROM aqlli_guruh_sozlamalari_v2
+            WHERE maktab_id=%s AND sinf_id=%s
+            ORDER BY fan_nomi,guruh_kaliti""",
+        (maktab_id, class_id),
+    )
+    return _v238_matching_subject_rows(
+        cur, maktab_id, class_id, subject_key, cur.fetchall(), safe_subject_keys
+    )
+
+
+def _v238_validate_pair_mode_source(
+    rows,
+    systems,
+    safe_subject_keys,
+    settings=None,
+    allowed_teacher_ids=None,
+    allowed_room_ids=None,
+):
+    """Reject legacy pair states that cannot be migrated without guessing."""
+    safe = {
+        _v1875_subject_key(value)
+        for value in (safe_subject_keys or [])
+        if _v1875_subject_key(value)
+    }
+    allowed_teachers = (
+        {int(value) for value in allowed_teacher_ids}
+        if allowed_teacher_ids is not None else None
+    )
+    allowed_rooms = (
+        {int(value) for value in allowed_room_ids}
+        if allowed_room_ids is not None else None
+    )
+
+    def validate_ownership(source_rows, teacher_field, label, allow_blank):
+        for row in source_rows:
+            teacher_id = int(row.get(teacher_field) or 0)
+            if (
+                allowed_teachers is not None
+                and (not allow_blank or teacher_id)
+                and teacher_id not in allowed_teachers
+            ):
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        f"Bu sinf–fan {label} qatorida boshqa maktabga tegishli "
+                        "yoki mavjud bo'lmagan o'qituvchi bor. Ma'lumot o'zgartirilmadi"
+                    ),
+                )
+            room_id = row.get("xona_id")
+            if (
+                room_id is not None
+                and allowed_rooms is not None
+                and int(room_id) not in allowed_rooms
+            ):
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        f"Bu sinf–fan {label} qatorida boshqa maktabga tegishli "
+                        "yoki mavjud bo'lmagan xona bor. Ma'lumot o'zgartirilmadi"
+                    ),
+                )
+
+    rows = [dict(row) for row in (rows or [])]
+    settings = [dict(row) for row in (settings or [])]
+    validate_ownership(rows, "user_id", "yuklama", False)
+    validate_ownership(settings, "oqituvchi_user_id", "guruh sozlamasi", True)
+
+    def index_groups(source_rows):
+        result = {}
+        for row in source_rows:
+            key = _v1875_group_key(row.get("guruh_kaliti"))
+            result.setdefault(key, []).append(row)
+        return result
+
+    by_group = index_groups(rows)
+    settings_by_group = index_groups(settings)
+    duplicates = sorted(key for key, values in by_group.items() if len(values) > 1)
+    setting_duplicates = sorted(
+        key for key, values in settings_by_group.items() if len(values) > 1
+    )
+    if duplicates or setting_duplicates:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Bu sinf–fan qatorida bitta guruhga bir nechta faol qator yoki "
+                "sozlama yozilgan. Avval ziddiyatni qo'lda tuzating"
+            ),
+        )
+    non_whole = {key for key in by_group if key != "whole"}
+    setting_non_whole = {key for key in settings_by_group if key != "whole"}
+    if (
+        ("whole" in by_group and (non_whole or setting_non_whole))
+        or "whole" in settings_by_group
+    ):
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Bu sinf–fanda Butun sinf va guruh qator/sozlamalari aralash. "
+                "Avval ziddiyatni qo'lda tuzating"
+            ),
+        )
+
+    def ensure_parallel_teachers_unique(source_rows, teacher_field, label):
+        teacher_ids = [
+            int(row.get(teacher_field) or 0)
+            for row in source_rows
+            if _v1875_group_key(row.get("guruh_kaliti")) != "whole"
+            and int(row.get(teacher_field) or 0)
+        ]
+        if len(teacher_ids) != len(set(teacher_ids)):
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"Bitta o'qituvchi {label} ichida ikki parallel guruhga "
+                    "yozilgan. Avval ziddiyatni qo'lda tuzating"
+                ),
+            )
+
+    ensure_parallel_teachers_unique(rows, "user_id", "faol yuklama")
+    ensure_parallel_teachers_unique(
+        settings, "oqituvchi_user_id", "guruh sozlamasi"
+    )
+
+    for group_key in sorted(set(by_group).intersection(settings_by_group)):
+        active = by_group[group_key][0]
+        setting = settings_by_group[group_key][0]
+        setting_teacher = int(setting.get("oqituvchi_user_id") or 0)
+        # NULL is an intentional durable blank, not a wildcard. An active
+        # assignment and its same-key setting must therefore name the exact
+        # same teacher; otherwise migration would silently choose one side.
+        if setting_teacher != int(active.get("user_id") or 0):
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Faol guruh o'qituvchisi va saqlangan guruh sozlamasi "
+                    "bir-biriga mos emas. Ma'lumot o'zgartirilmadi"
+                ),
+            )
+        active_room = (
+            int(active["xona_id"]) if active.get("xona_id") is not None else None
+        )
+        setting_room = (
+            int(setting["xona_id"])
+            if setting.get("xona_id") is not None else None
+        )
+        if active_room != setting_room:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Faol guruh xonasi va saqlangan guruh sozlamasi "
+                    "bir-biriga mos emas. Ma'lumot o'zgartirilmadi"
+                ),
+            )
+    for group_key, setting_rows in settings_by_group.items():
+        if (
+            group_key != "whole"
+            and int(setting_rows[0].get("oqituvchi_user_id") or 0)
+            and group_key not in by_group
+        ):
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Faol yuklamasi yo'q, lekin o'qituvchisi saqlangan eski "
+                    "guruh sozlamasi topildi. Ma'lumot o'zgartirilmadi"
+                ),
+            )
+    linked = [
+        system for system in (systems or [])
+        if safe.intersection(system.get("fan_kalitlari") or [])
+    ]
+    if len(linked) > 1:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Bu fan bir nechta guruh tizimiga bog'langan. "
+                "Qaysi tizim faol ekanini aniq belgilang"
+            ),
+        )
+    def attributed_system(group_keys):
+        if not group_keys:
+            return None
+        key_candidates = []
+        for system in systems or []:
+            system_group_keys = {
+                _v1875_group_key(group.get("guruh_kaliti"))
+                for group in (system.get("guruhlar") or [])
+            }
+            if group_keys.issubset(system_group_keys):
+                key_candidates.append(system)
+        candidates = (
+            [system for system in key_candidates if system in linked]
+            if linked else key_candidates
+        )
+        if len(candidates) != 1:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Eski guruh qator/sozlamalarini aynan bitta ma'lum guruh "
+                    "tizimiga bog'lab bo'lmadi. Ma'lumot o'zgartirilmadi"
+                ),
+            )
+        return candidates[0]
+
+    row_system = attributed_system(non_whole)
+    setting_system = attributed_system(setting_non_whole)
+    if (
+        row_system is not None
+        and setting_system is not None
+        and int(row_system["id"]) != int(setting_system["id"])
+    ):
+        raise HTTPException(
+            status_code=409,
+            detail="Faol guruh qatori va guruh sozlamasi turli tizimlarga tegishli",
+        )
+
+    if not non_whole and not setting_non_whole:
+        mode = "whole" if rows else (
+            str(linked[0].get("turi") or "group") if linked else "whole"
+        )
+        return {
+            "turi": mode,
+            "tizim_id": int(linked[0]["id"]) if linked else None,
+        }
+
+    system = row_system or setting_system
+    return {"turi": str(system.get("turi") or "group"), "tizim_id": int(system["id"])}
+
+
+def _v238_subject_mode_from_state(rows, systems, subject_key: str):
+    non_whole_keys = {
+        _v1875_group_key(row.get("guruh_kaliti"))
+        for row in rows
+        if _v1875_group_key(row.get("guruh_kaliti")) != "whole"
+    }
+    if rows and not non_whole_keys:
+        return "whole"
+    if non_whole_keys:
+        for system in systems:
+            group_keys = {
+                str(group.get("guruh_kaliti") or "")
+                for group in (system.get("guruhlar") or [])
+            }
+            if non_whole_keys.issubset(group_keys):
+                return str(system.get("turi") or "group")
+    linked = [
+        system for system in systems
+        if subject_key in (system.get("fan_kalitlari") or [])
+    ]
+    if len(linked) == 1:
+        return str(linked[0].get("turi") or "group")
+    return "whole" if not non_whole_keys else "group"
+
+
+def _v238_latest_mode_snapshot(
+    cur,
+    maktab_id: int,
+    class_id: int,
+    subject: str,
+    target_mode: str,
+    plan_subjects,
+):
+    """Read the newest exact/unambiguous snapshot of the requested mode."""
+    cur.execute(
+        """SELECT id,fan_nomi,eski_turi,yangi_turi,tanlovlar,
+                  guruh_sozlamalari,yaratilgan_at
+             FROM aqlli_fan_guruh_turi_tarixi_v238
+            WHERE maktab_id=%s AND sinf_id=%s AND eski_turi=%s
+            ORDER BY id DESC""",
+        (maktab_id, class_id, target_mode),
+    )
+    rows = [dict(row) for row in cur.fetchall()]
+    subject_key = _v1875_subject_key(subject)
+    exact = [
+        row for row in rows
+        if _v1875_subject_key(row.get("fan_nomi")) == subject_key
+    ]
+    if exact:
+        return exact[0]
+    family_members = {
+        _v1875_subject_key(value)
+        for value in _v238_clean_subject_list(plan_subjects)
+        if _v204_group_subject_matches(value, subject)
+    }
+    if len(family_members) != 1:
+        return None
+    family = [
+        row for row in rows
+        if _v204_group_subject_matches(row.get("fan_nomi"), subject)
+    ]
+    return family[0] if family else None
+
+
+def _v238_json_list(value):
+    if isinstance(value, list):
+        return value
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+            return parsed if isinstance(parsed, list) else []
+        except (TypeError, ValueError):
+            return []
+    return []
+
+
+def _v238_restore_target_snapshot_choices(
+    snapshot,
+    target_group_keys,
+    allowed_teacher_ids,
+    allowed_room_ids=None,
+):
+    """Pure archive reader: restore only exact target keys and valid owners."""
+    if not snapshot:
+        return []
+    allowed_teachers = {int(value) for value in (allowed_teacher_ids or [])}
+    allowed_rooms = (
+        {int(value) for value in allowed_room_ids}
+        if allowed_room_ids is not None else None
+    )
+    assignments = {}
+    for raw in _v238_json_list(snapshot.get("tanlovlar")):
+        row = dict(raw or {})
+        key = _v1875_group_key(row.get("guruh_kaliti"))
+        assignments.setdefault(key, row)
+    settings = {}
+    for raw in _v238_json_list(snapshot.get("guruh_sozlamalari")):
+        row = dict(raw or {})
+        key = _v1875_group_key(row.get("guruh_kaliti"))
+        settings.setdefault(key, row)
+
+    restored = []
+    for raw_key in target_group_keys or []:
+        group_key = _v1875_group_key(raw_key)
+        if group_key not in assignments and group_key not in settings:
+            # No archived choice for this target: current explicit rows may
+            # safely fill the gap. This differs from an archived explicit blank.
+            continue
+        source = assignments.get(group_key) or {}
+        setting = settings.get(group_key) or {}
+        archived_teacher_id = int(source.get("user_id") or 0)
+        if not archived_teacher_id:
+            archived_teacher_id = int(setting.get("oqituvchi_user_id") or 0)
+        explicit_blank = not archived_teacher_id
+        teacher_id = archived_teacher_id
+        if teacher_id not in allowed_teachers:
+            teacher_id = 0
+        room_value = (
+            source.get("xona_id")
+            if source.get("xona_id") is not None else setting.get("xona_id")
+        )
+        room_id = int(room_value) if room_value is not None else None
+        if room_id is not None and allowed_rooms is not None and room_id not in allowed_rooms:
+            room_id = None
+        restored.append({
+            "guruh_kaliti": group_key,
+            "oqituvchi_user_id": teacher_id or None,
+            "xona_id": room_id,
+            "haftalik_soat": float(source.get("haftalik_soat") or 0),
+            "kunlik_max": int(source.get("kunlik_max") or 1),
+            "tarix_id": int(snapshot.get("id") or 0) or None,
+            "arxivda_ochiq_bosh": explicit_blank,
+        })
+    return restored
+
+
+def _v238_map_subject_mode_choices(
+    *,
+    target_group_keys,
+    old_rows,
+    old_settings,
+    archive_snapshot,
+    allowed_teacher_ids,
+    allowed_room_ids,
+    default_hours,
+    default_daily,
+    new_mode,
+):
+    """Map choices deterministically; archive exact keys win, current fills gaps."""
+    allowed_teachers = {int(value) for value in (allowed_teacher_ids or [])}
+    allowed_rooms = {int(value) for value in (allowed_room_ids or [])}
+    restored = _v238_restore_target_snapshot_choices(
+        archive_snapshot,
+        target_group_keys,
+        allowed_teachers,
+        allowed_rooms,
+    )
+    restored_by_key = {
+        _v1875_group_key(row.get("guruh_kaliti")): row for row in restored
+    }
+    current_rows = [dict(row) for row in (old_rows or [])]
+    settings_by_key = {}
+    for raw in old_settings or []:
+        row = dict(raw)
+        settings_by_key.setdefault(
+            _v1875_group_key(row.get("guruh_kaliti")), []
+        ).append(row)
+
+    unused_row_indexes = list(range(len(current_rows)))
+    used_teacher_ids = set()
+    mapped = []
+
+    def candidate_from_row(row, *, setting=False, row_index=None, source="joriy"):
+        teacher_value = (
+            row.get("oqituvchi_user_id") if setting else row.get("user_id")
+        )
+        teacher_id = int(teacher_value or 0)
+        room_value = row.get("xona_id")
+        room_id = int(room_value) if room_value is not None else None
+        if room_id is not None and room_id not in allowed_rooms:
+            room_id = None
+        return {
+            "oqituvchi_user_id": teacher_id or None,
+            "xona_id": room_id,
+            "haftalik_soat": float(row.get("haftalik_soat") or 0),
+            "kunlik_max": int(row.get("kunlik_max") or default_daily or 1),
+            "row_index": row_index,
+            "manba": source,
+            "tarix_id": row.get("tarix_id"),
+            "arxivda_ochiq_bosh": bool(row.get("arxivda_ochiq_bosh")),
+        }
+
+    for raw_key in target_group_keys or []:
+        group_key = _v1875_group_key(raw_key)
+        candidates = []
+        archived = restored_by_key.get(group_key)
+        if archived:
+            candidates.append(candidate_from_row(archived, setting=True, source="tarix"))
+        for index in list(unused_row_indexes):
+            if _v1875_group_key(current_rows[index].get("guruh_kaliti")) == group_key:
+                candidates.append(candidate_from_row(
+                    current_rows[index], row_index=index, source="joriy_exact"
+                ))
+        for setting in settings_by_key.get(group_key, []):
+            candidates.append(candidate_from_row(
+                setting, setting=True, source="joriy_sozlama"
+            ))
+        for index in list(unused_row_indexes):
+            candidates.append(candidate_from_row(
+                current_rows[index], row_index=index, source="joriy_moslash"
+            ))
+
+        selected = None
+        # An exact archived blank is a user choice, not a missing value. Keep
+        # it blank instead of silently filling it from the intervening mode.
+        if archived and archived.get("arxivda_ochiq_bosh"):
+            selected = candidates[0]
+        else:
+            for candidate in candidates:
+                teacher_id = int(candidate.get("oqituvchi_user_id") or 0)
+                if teacher_id not in allowed_teachers:
+                    continue
+                if new_mode != "whole" and teacher_id in used_teacher_ids:
+                    continue
+                selected = candidate
+                break
+        if selected is None:
+            selected = {
+                "oqituvchi_user_id": None,
+                "xona_id": None,
+                "haftalik_soat": 0.0,
+                "kunlik_max": int(default_daily or 1),
+                "row_index": None,
+                "manba": "bosh",
+                "tarix_id": None,
+            }
+        row_index = selected.get("row_index")
+        if row_index is not None and row_index in unused_row_indexes:
+            unused_row_indexes.remove(row_index)
+        teacher_id = int(selected.get("oqituvchi_user_id") or 0)
+        if teacher_id:
+            used_teacher_ids.add(teacher_id)
+        hours = float(selected.get("haftalik_soat") or 0)
+        if hours <= 0:
+            hours = float(default_hours or 0)
+        daily = max(1, min(4, int(selected.get("kunlik_max") or default_daily or 1)))
+        mapped.append({
+            "guruh_kaliti": group_key,
+            "oqituvchi_user_id": teacher_id or None,
+            "xona_id": selected.get("xona_id"),
+            "haftalik_soat": hours,
+            "kunlik_max": daily,
+            "faol": bool(teacher_id and hours > 0),
+            "tiklash_manbasi": selected.get("manba"),
+            "tarix_id": selected.get("tarix_id"),
+        })
+    return mapped
+
+
+def _v238_subject_plan_defaults(cur, maktab_id: int, class_id: int, subject_key: str, rows):
+    positive_hours = [
+        float(row.get("haftalik_soat") or 0)
+        for row in rows if float(row.get("haftalik_soat") or 0) > 0
+    ]
+    daily_values = [
+        int(row.get("kunlik_max") or 1)
+        for row in rows if row.get("kunlik_max") not in (None, "")
+    ]
+    if positive_hours:
+        return positive_hours[0], (daily_values[0] if daily_values else 1)
+    for table in (
+        "aqlli_oquv_reja_qatorlari_v19_3",
+        "aqlli_sinf_fan_yuklamalari_v2",
+    ):
+        cur.execute(
+            f"SELECT fan_nomi,haftalik_soat,kunlik_max FROM {table} "
+            "WHERE maktab_id=%s AND sinf_id=%s",
+            (maktab_id, class_id),
+        )
+        match = next(
+            (
+                dict(row) for row in cur.fetchall()
+                if _v1875_subject_key(row.get("fan_nomi")) == subject_key
+                and float(row.get("haftalik_soat") or 0) > 0
+            ),
+            None,
+        )
+        if match:
+            return (
+                float(match.get("haftalik_soat") or 0),
+                max(1, min(4, int(match.get("kunlik_max") or 1))),
+            )
+    return 0.0, 1
+
+
+def _v238_replace_subject_mode_rows(
+    cur,
+    *,
+    maktab_id: int,
+    class_id: int,
+    subject: str,
+    subject_key: str,
+    old_mode: str,
+    new_mode: str,
+    selected_system_id: Optional[int],
+    target_group_keys,
+    old_rows,
+    old_settings,
+    actor_id: int,
+    safe_subject_keys,
+    plan_subjects,
+    class_systems,
+    allowed_teacher_ids,
+    allowed_room_ids,
+):
+    """Pairning active projectionini target guruh kalitlariga xavfsiz ko'chiradi.
+
+    Eski qator/xona tanlovlari avval JSONB auditga snapshot qilinadi. Shundan
+    keyingina aynan bitta sinf+fan qatori almashtiriladi; boshqa fan, sinf,
+    guruh sxemasi, o'quvchi a'zoligi va reja yuklamasi tegilmaydi.
+    """
+    # Revision tekshirilgach aynan shu pairni qator darajasida ham bloklaymiz.
+    # Snapshot va replacement orasiga parallel o'qituvchi saqlashi kira olmaydi.
+    cur.execute(
+        """SELECT b.*,u.full_name
+             FROM maktab_dars_birikmalari b
+             JOIN users u ON u.user_id=b.user_id
+            WHERE b.maktab_id=%s AND b.sinf_id=%s
+            ORDER BY b.id FOR UPDATE""",
+        (maktab_id, class_id),
+    )
+    old_rows = _v238_matching_subject_rows(
+        cur, maktab_id, class_id, subject, cur.fetchall(), safe_subject_keys
+    )
+    cur.execute(
+        """SELECT maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                  oqituvchi_user_id,xona_id
+             FROM aqlli_guruh_sozlamalari_v2
+            WHERE maktab_id=%s AND sinf_id=%s
+            ORDER BY fan_nomi,guruh_kaliti FOR UPDATE""",
+        (maktab_id, class_id),
+    )
+    all_locked_settings = [dict(row) for row in cur.fetchall()]
+    _v238_reject_ambiguous_family_settings(
+        all_locked_settings, plan_subjects, subject, safe_subject_keys
+    )
+    old_settings = _v238_matching_subject_rows(
+        cur, maktab_id, class_id, subject, all_locked_settings, safe_subject_keys
+    )
+    # The revision guard protects the screen snapshot; this row-lock-time
+    # validation protects against corrupt legacy rows and concurrent writers.
+    # It runs before archive/relink/delete, so 409 leaves the pair untouched.
+    _v238_validate_pair_mode_source(
+        old_rows,
+        class_systems,
+        safe_subject_keys,
+        settings=old_settings,
+        allowed_teacher_ids=allowed_teacher_ids,
+        allowed_room_ids=allowed_room_ids,
+    )
+    archive_snapshot = None
+    if new_mode != old_mode:
+        archive_snapshot = _v238_latest_mode_snapshot(
+            cur,
+            maktab_id,
+            class_id,
+            subject,
+            new_mode,
+            plan_subjects,
+        )
+    assignment_snapshot = [
+        {
+            "id": int(row.get("id") or 0),
+            "user_id": int(row.get("user_id") or 0),
+            "guruh_kaliti": _v1875_group_key(row.get("guruh_kaliti")),
+            "xona_id": int(row["xona_id"]) if row.get("xona_id") is not None else None,
+            "haftalik_soat": float(row.get("haftalik_soat") or 0),
+            "kunlik_max": int(row.get("kunlik_max") or 1),
+            "manba": str(row.get("manba") or "noma_lum"),
+        }
+        for row in old_rows
+    ]
+    setting_snapshot = [
+        {
+            "fan_nomi": str(row.get("fan_nomi") or subject),
+            "guruh_kaliti": _v1875_group_key(row.get("guruh_kaliti")),
+            "oqituvchi_user_id": (
+                int(row["oqituvchi_user_id"])
+                if row.get("oqituvchi_user_id") is not None else None
+            ),
+            "xona_id": int(row["xona_id"]) if row.get("xona_id") is not None else None,
+        }
+        for row in old_settings
+    ]
+    cur.execute(
+        """INSERT INTO aqlli_fan_guruh_turi_tarixi_v238(
+               maktab_id,sinf_id,fan_nomi,eski_turi,yangi_turi,
+               tanlovlar,guruh_sozlamalari,ozgartirgan_user_id)
+           VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+           RETURNING id""",
+        (
+            maktab_id, class_id, subject, old_mode, new_mode,
+            psycopg2.extras.Json(assignment_snapshot),
+            psycopg2.extras.Json(setting_snapshot), actor_id,
+        ),
+    )
+    current_archive_id = int(cur.fetchone()["id"])
+
+    # Faqat subject↔mode havolasi ko'chadi. Guruh tizimi va a'zolari shu
+    # holicha qoladi; whole bo'lsa fan barcha sxemalardan uziladi.
+    _v1876_update_system_subjects(
+        cur, class_id, subject,
+        selected_system_id if new_mode != "whole" else None,
+        safe_subject_keys=safe_subject_keys,
+    )
+
+    default_hours, default_daily = _v238_subject_plan_defaults(
+        cur, maktab_id, class_id, subject_key, old_rows
+    )
+    mapped = _v238_map_subject_mode_choices(
+        target_group_keys=target_group_keys,
+        old_rows=old_rows,
+        old_settings=old_settings,
+        archive_snapshot=archive_snapshot,
+        allowed_teacher_ids=allowed_teacher_ids,
+        allowed_room_ids=allowed_room_ids,
+        default_hours=default_hours,
+        default_daily=default_daily,
+        new_mode=new_mode,
+    )
+
+    old_row_ids = [int(row["id"]) for row in old_rows if row.get("id") is not None]
+    if old_row_ids:
+        cur.execute(
+            "DELETE FROM maktab_dars_birikmalari "
+            "WHERE maktab_id=%s AND sinf_id=%s AND id=ANY(%s)",
+            (maktab_id, class_id, old_row_ids),
+        )
+    for row in old_settings:
+        cur.execute(
+            """DELETE FROM aqlli_guruh_sozlamalari_v2
+                WHERE maktab_id=%s AND sinf_id=%s
+                  AND fan_nomi=%s AND guruh_kaliti=%s""",
+            (
+                maktab_id, class_id, row["fan_nomi"],
+                row["guruh_kaliti"],
+            ),
+        )
+
+    for choice in mapped:
+        if choice["faol"]:
+            cur.execute(
+                """INSERT INTO maktab_dars_birikmalari(
+                       maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti,
+                       haftalik_soat,kunlik_max,xona_id,manba,yangilangan_at)
+                   VALUES(%s,%s,%s,%s,%s,%s,%s,%s,'guruh_turi_v238',NOW())""",
+                (
+                    maktab_id, choice["oqituvchi_user_id"], class_id, subject,
+                    choice["guruh_kaliti"], choice["haftalik_soat"],
+                    choice["kunlik_max"], choice["xona_id"],
+                ),
+            )
+        if new_mode != "whole":
+            # Blank is a durable choice: every target group gets a canonical
+            # setting row even when it has no active assignment/teacher yet.
+            cur.execute(
+                """INSERT INTO aqlli_guruh_sozlamalari_v2(
+                       maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                       oqituvchi_user_id,xona_id)
+                   VALUES(%s,%s,%s,%s,%s,%s)
+                   ON CONFLICT(maktab_id,sinf_id,fan_nomi,guruh_kaliti)
+                   DO UPDATE SET
+                     oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+                     xona_id=EXCLUDED.xona_id""",
+                (
+                    maktab_id, class_id, subject, choice["guruh_kaliti"],
+                    choice["oqituvchi_user_id"], choice["xona_id"],
+                ),
+            )
+    return {
+        "saqlangan_tanlovlar": mapped,
+        "oldingi_tanlovlar": assignment_snapshot,
+        "oldingi_guruh_sozlamalari": setting_snapshot,
+        "arxivlangan_tarix_id": current_archive_id,
+        "qayta_tiklangan_tarix_id": next(
+            (
+                int(row["tarix_id"])
+                for row in mapped
+                if row.get("tiklash_manbasi") == "tarix"
+                and row.get("tarix_id") is not None
+            ),
+            None,
+        ),
+        "ta'sirlangan_oqituvchilar": sorted({
+            int(row["user_id"]) for row in assignment_snapshot
+            if int(row.get("user_id") or 0)
+        } | {
+            int(row["oqituvchi_user_id"]) for row in mapped
+            if row.get("oqituvchi_user_id") is not None
+        }),
+    }
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/sinf_fan_guruh_turi")
+def v238_subject_group_mode_switch(sorov: V238SubjectGroupModeSwitch, token: str):
+    """Step-3 dagi bitta sinf+fan uchun whole/alphabet/gender ni almashtiradi."""
+    actor_id = _jwt_tekshir(token)
+    try:
+        mode = _v238_normalize_subject_group_mode(sorov.turi)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    requested_subject = re.sub(r"\s+", " ", str(sorov.fan_nomi or "")).strip()
+    subject = requested_subject
+    subject_key = _v1875_subject_key(requested_subject)
+    if not subject_key:
+        raise HTTPException(status_code=400, detail="Fan nomi bo'sh")
+
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v192_tables(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Fan guruh turini faqat maktab rahbariyati o'zgartiradi",
+            )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (2040000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1925000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            """SELECT id,sinf,harf,rahbar_user_id,
+                      COALESCE(talim_tili,'uz') AS talim_tili
+                 FROM maktab_sinflari
+                WHERE maktab_id=%s ORDER BY id FOR UPDATE""",
+            (sorov.maktab_id,),
+        )
+        class_rows = [dict(row) for row in cur.fetchall()]
+        classes = {int(row["id"]): row for row in class_rows}
+        class_id = int(sorov.sinf_id)
+        if class_id not in classes:
+            raise HTTPException(status_code=404, detail="Sinf topilmadi")
+
+        current_rows = _v192_assignment_rows(cur, sorov.maktab_id)
+        current_revision = _v204_assignment_revision(current_rows, class_rows)
+        expected_revision = str(
+            sorov.kutilgan_yuklama_revision or ""
+        ).strip().lower()
+        if not expected_revision or expected_revision != current_revision:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "O'qituvchi yuklamasi boshqa oynada yangilangan. "
+                    "Guruh turini almashtirishdan oldin sahifani qayta yuklang"
+                ),
+            )
+
+        # Fan nomini har qanday relink/archive yozuvidan oldin aynan shu
+        # sinfning faol rejasiga yechamiz. Oila aliasi faqat bitta canonical
+        # fan bo'lsa qabul qilinadi; Ingliz/Nemis/Fransuz yonma-yon bo'lsa
+        # noaniq "Chet tili" so'rovi hech narsani o'zgartirmaydi.
+        plan_subjects = _v238_class_plan_subjects(
+            cur, sorov.maktab_id, classes[class_id]
+        )
+        try:
+            subject, subject_key = _v238_resolve_planned_subject(
+                plan_subjects, requested_subject
+            )
+        except ValueError as exc:
+            if str(exc) == "fan_oilasi_noaniq":
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Bu nom sinf rejasidagi bir nechta mustaqil fanga mos. "
+                        "Ingliz, Nemis yoki Fransuz fanini aynan tanlang"
+                    ),
+                ) from exc
+            raise HTTPException(
+                status_code=400,
+                detail="Tanlangan fan bu sinfning faol o'quv rejasida topilmadi",
+            ) from exc
+        safe_subject_keys = _v238_safe_subject_match_keys(
+            cur,
+            sorov.maktab_id,
+            class_id,
+            subject,
+            plan_subjects,
+        )
+
+        systems_before = _v1876_group_system_catalog(cur, sorov.maktab_id)
+        class_systems_before = [
+            system for system in systems_before
+            if int(system["sinf_id"]) == class_id
+        ]
+        old_rows = _v238_subject_pair_assignment_rows(
+            cur, sorov.maktab_id, class_id, subject, safe_subject_keys
+        )
+        cur.execute(
+            """SELECT maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                      oqituvchi_user_id,xona_id
+                 FROM aqlli_guruh_sozlamalari_v2
+                WHERE maktab_id=%s AND sinf_id=%s
+                ORDER BY fan_nomi,guruh_kaliti""",
+            (sorov.maktab_id, class_id),
+        )
+        all_class_settings = [dict(row) for row in cur.fetchall()]
+        _v238_reject_ambiguous_family_settings(
+            all_class_settings, plan_subjects, subject, safe_subject_keys
+        )
+        old_settings = _v238_matching_subject_rows(
+            cur,
+            sorov.maktab_id,
+            class_id,
+            subject,
+            all_class_settings,
+            safe_subject_keys,
+        )
+        cur.execute(
+            "SELECT user_id FROM users WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        allowed_current_teacher_ids = {
+            int(row["user_id"]) for row in cur.fetchall()
+        }
+        cur.execute(
+            "SELECT id FROM aqlli_xonalar_v2 WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        allowed_current_room_ids = {int(row["id"]) for row in cur.fetchall()}
+        source_state = _v238_validate_pair_mode_source(
+            old_rows,
+            class_systems_before,
+            safe_subject_keys,
+            settings=old_settings,
+            allowed_teacher_ids=allowed_current_teacher_ids,
+            allowed_room_ids=allowed_current_room_ids,
+        )
+        old_mode = source_state["turi"]
+
+        selected_system_id = None
+        target_group_keys = ["whole"]
+        if mode != "whole":
+            cur.execute(
+                """INSERT INTO maktab_sinf_guruh_tizimlari(
+                       sinf_id,turi,nomi,fanlar,faol,yaratilgan_by,yangilangan_at)
+                   VALUES(%s,%s,%s,ARRAY[]::TEXT[],TRUE,%s,NOW())
+                   ON CONFLICT(sinf_id,turi) DO UPDATE SET
+                     nomi=EXCLUDED.nomi,faol=TRUE,yangilangan_at=NOW()
+                   RETURNING id""",
+                (
+                    class_id, mode, _SINF_GURUH_TIZIM_NOMLARI[mode], actor_id,
+                ),
+            )
+            selected_system_id = int(cur.fetchone()["id"])
+            cur.execute(
+                "SELECT COUNT(*) AS soni FROM maktab_sinf_guruh_azolari "
+                "WHERE tizim_id=%s",
+                (selected_system_id,),
+            )
+            if int((cur.fetchone() or {}).get("soni") or 0) == 0:
+                _sinf_guruh_tizimini_taqsimla(cur, selected_system_id)
+
+        cur.execute(
+            "SELECT turi FROM maktab_sinf_guruh_tizimlari "
+            "WHERE sinf_id=%s AND faol=TRUE ORDER BY id",
+            (class_id,),
+        )
+        active_types = [str(row["turi"]) for row in cur.fetchall()]
+        legacy_group_mode = (
+            active_types[0]
+            if len(active_types) == 1
+            else ("manual" if active_types else "none")
+        )
+        cur.execute(
+            "UPDATE maktab_sinflari SET guruhlash_usuli=%s WHERE id=%s",
+            (legacy_group_mode, class_id),
+        )
+
+        systems_after = _v1876_group_system_catalog(cur, sorov.maktab_id)
+        if mode != "whole":
+            selected_system = next(
+                (
+                    system for system in systems_after
+                    if int(system["id"]) == int(selected_system_id)
+                ),
+                None,
+            )
+            target_group_keys = [
+                str(group["guruh_kaliti"])
+                for group in ((selected_system or {}).get("guruhlar") or [])
+            ]
+            if len(target_group_keys) < 2:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Tanlangan guruh tizimida kamida 2 ta guruh topilmadi",
+                )
+
+        migration = _v238_replace_subject_mode_rows(
+            cur,
+            maktab_id=int(sorov.maktab_id),
+            class_id=class_id,
+            subject=subject,
+            subject_key=subject_key,
+            old_mode=old_mode,
+            new_mode=mode,
+            selected_system_id=selected_system_id,
+            target_group_keys=target_group_keys,
+            old_rows=old_rows,
+            old_settings=old_settings,
+            actor_id=actor_id,
+            safe_subject_keys=safe_subject_keys,
+            plan_subjects=plan_subjects,
+            class_systems=class_systems_before,
+            allowed_teacher_ids=allowed_current_teacher_ids,
+            allowed_room_ids=allowed_current_room_ids,
+        )
+
+        # Faqat shu pair tasdig'i eskiradi; boshqa sinf/fan tasdiqlari qoladi.
+        alias_confirmation_keys = sorted(
+            key for key in safe_subject_keys if key != subject_key
+        )
+        if alias_confirmation_keys:
+            cur.execute(
+                """DELETE FROM aqlli_fan_guruh_tasdiqlari_v2
+                    WHERE maktab_id=%s AND sinf_id=%s
+                      AND fan_kaliti=ANY(%s)""",
+                (sorov.maktab_id, class_id, alias_confirmation_keys),
+            )
+        cur.execute(
+            """UPDATE aqlli_fan_guruh_tasdiqlari_v2
+                  SET turi=%s,tizim_id=%s,tasdiqlangan=FALSE,
+                      tasdiqlagan_user_id=NULL,yangilangan_at=NOW()
+                WHERE maktab_id=%s AND sinf_id=%s AND fan_kaliti=%s""",
+            (
+                "whole" if mode == "whole" else "group",
+                selected_system_id, sorov.maktab_id, class_id, subject_key,
+            ),
+        )
+        for teacher_id in migration["ta'sirlangan_oqituvchilar"]:
+            _v195_refresh_teacher_summary(cur, sorov.maktab_id, teacher_id)
+        cur.execute(
+            """UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
+                 WHERE maktab_id=%s AND holat='draft'""",
+            (sorov.maktab_id,),
+        )
+        matrix = _v192_matrix_payload(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "guruh_turi_almashtirildi",
+            "sinf_id": class_id,
+            "fan_nomi": subject,
+            "turi": mode,
+            "oldingi_turi": old_mode,
+            "tizim_id": selected_system_id,
+            "saqlangan_tanlovlar": migration["saqlangan_tanlovlar"],
+            "oldingi_tanlovlar": migration["oldingi_tanlovlar"],
+            "arxivlangan_tarix_id": migration["arxivlangan_tarix_id"],
+            "qayta_tiklangan_tarix_id": migration["qayta_tiklangan_tarix_id"],
+            "ma_lumotlar_saqlandi": True,
+            "matritsa": matrix,
+            "yuklama_revision": matrix.get("yuklama_revision"),
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 @app.put("/api/maktab/aqlli_jadval/v3/sinf_guruh_tizimlari")
@@ -14129,6 +15450,34 @@ def _v204_group_subject_matches(left, right):
     )
 
 
+def _v204_linked_variants_for_subject(variants, class_plan_subjects, subject):
+    """Link exact variants first; family fallback requires one plan member."""
+    subject_key = _v1875_subject_key(subject)
+    exact = [
+        variant for variant in (variants or [])
+        if any(
+            _v1875_subject_key(item) == subject_key
+            for item in (variant.get("fanlar") or [])
+        )
+    ]
+    if exact:
+        return exact
+    family_members = {
+        _v1875_subject_key(value)
+        for value in _v238_clean_subject_list(class_plan_subjects)
+        if _v204_group_subject_matches(value, subject)
+    }
+    if len(family_members) != 1:
+        return []
+    return [
+        variant for variant in (variants or [])
+        if any(
+            _v204_group_subject_matches(item, subject)
+            for item in (variant.get("fanlar") or [])
+        )
+    ]
+
+
 def _v204_expected_skeleton_rows(cur, maktab_id: int):
     """Return the canonical plan/group keys accepted by both skeleton saves."""
     classes, _systems, variants = _v192_group_variants(cur, maktab_id)
@@ -14140,6 +15489,13 @@ def _v204_expected_skeleton_rows(cur, maktab_id: int):
         if _v1875_group_key(variant.get("guruh_kaliti")) == "whole":
             continue
         variants_by_class.setdefault(int(variant["sinf_id"]), []).append(variant)
+    plan_subjects_by_class = {}
+    for row in plan_rows:
+        if float(row.get("haftalik_soat") or 0) <= 0:
+            continue
+        plan_subjects_by_class.setdefault(int(row["sinf_id"]), []).append(
+            _v192_clean_subject(row.get("fan_nomi"))
+        )
 
     expected = {}
     for row in plan_rows:
@@ -14154,13 +15510,11 @@ def _v204_expected_skeleton_rows(cur, maktab_id: int):
         }:
             continue
         class_id = int(row["sinf_id"])
-        linked = [
-            variant for variant in variants_by_class.get(class_id, [])
-            if any(
-                _v204_group_subject_matches(item, subject)
-                for item in (variant.get("fanlar") or [])
-            )
-        ]
+        linked = _v204_linked_variants_for_subject(
+            variants_by_class.get(class_id, []),
+            plan_subjects_by_class.get(class_id, []),
+            subject,
+        )
         group_keys = sorted({
             _v1875_group_key(variant.get("guruh_kaliti"))
             for variant in linked
@@ -14192,6 +15546,236 @@ def _v204_resolve_expected_skeleton_key(expected, class_id, subject, group_key):
         and _v204_group_subject_matches(row["fan_nomi"], subject)
     ]
     return matches[0] if len(matches) == 1 else None
+
+
+def _v204_patch_group_setting_actions(
+    expected,
+    targeted,
+    settings_rows,
+    allowed_teacher_ids,
+    allowed_room_ids,
+    preservable_room_ids=None,
+    current_rows_by_key=None,
+):
+    """Plan exact canonical group-setting deletes/upserts for a Step-3 patch.
+
+    No database mutation happens here. Alias rows are removable only when the
+    class plan proves exact or a single family member; ambiguous and orphan
+    settings fail closed instead of being guessed or left able to resurrect.
+    """
+    touched_pairs = {key[:2] for key in targeted}
+    allowed_teachers = {int(value) for value in (allowed_teacher_ids or [])}
+    allowed_rooms = {int(value) for value in (allowed_room_ids or [])}
+    preservable_rooms = (
+        {int(value) for value in preservable_room_ids}
+        if preservable_room_ids is not None else allowed_rooms
+    )
+    class_plan_subjects = {}
+    for row in expected.values():
+        class_plan_subjects.setdefault(int(row["sinf_id"]), []).append(
+            row["fan_nomi"]
+        )
+    pair_subjects = {
+        pair: next(
+            row["fan_nomi"]
+            for key, row in expected.items()
+            if key[:2] == pair
+        )
+        for pair in touched_pairs
+    }
+    target_whole_pairs = {
+        key[:2] for key in targeted if _v1875_group_key(key[2]) == "whole"
+    }
+    current_rows_by_key = current_rows_by_key or {}
+    for key in targeted:
+        for current in current_rows_by_key.get(key, []):
+            teacher_id = int(current.get("user_id") or 0)
+            if teacher_id not in allowed_teachers:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Eski yuklama qatoridagi o'qituvchi bu maktabga "
+                        "tegishli emas. Ma'lumot o'zgartirilmadi"
+                    ),
+                )
+            room_id = current.get("xona_id")
+            if room_id is not None and int(room_id) not in allowed_rooms:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Eski yuklama qatoridagi xona bu maktabga tegishli "
+                        "emas. Ma'lumot o'zgartirilmadi"
+                    ),
+                )
+    resolved_by_key = {}
+    pair_rows = {pair: [] for pair in touched_pairs}
+    delete_for_whole = []
+
+    for raw in settings_rows or []:
+        row = dict(raw)
+        class_id = int(row.get("sinf_id") or 0)
+        if not any(pair[0] == class_id for pair in touched_pairs):
+            continue
+        subject_name = str(row.get("fan_nomi") or "")
+        subject_key = _v1875_subject_key(subject_name)
+        matching_pairs = []
+        for pair in touched_pairs:
+            if pair[0] != class_id:
+                continue
+            canonical = pair_subjects[pair]
+            safe_keys = _v238_safe_subject_keys(
+                class_plan_subjects.get(class_id, []),
+                canonical,
+                [subject_name],
+            )
+            if subject_key in safe_keys:
+                matching_pairs.append(pair)
+                continue
+            planned_keys = {
+                _v1875_subject_key(value)
+                for value in _v238_clean_subject_list(
+                    class_plan_subjects.get(class_id, [])
+                )
+            }
+            if (
+                subject_key not in planned_keys
+                and _v204_group_subject_matches(subject_name, canonical)
+            ):
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Eski guruh sozlamasidagi fan aliasi bir nechta reja "
+                        "faniga mos. Ma'lumot o'zgartirilmadi"
+                    ),
+                )
+
+        if not matching_pairs:
+            continue
+        if len(matching_pairs) != 1:
+            raise HTTPException(
+                status_code=409,
+                detail="Eski guruh sozlamasi aynan bitta fan juftligiga yechilmadi",
+            )
+        pair = matching_pairs[0]
+        teacher_id = int(row.get("oqituvchi_user_id") or 0)
+        if teacher_id and teacher_id not in allowed_teachers:
+            raise HTTPException(
+                status_code=409,
+                detail="Eski guruh sozlamasidagi o'qituvchi bu maktabga tegishli emas",
+            )
+        room_id = row.get("xona_id")
+        if room_id is not None and int(room_id) not in allowed_rooms:
+            raise HTTPException(
+                status_code=409,
+                detail="Eski guruh sozlamasidagi xona bu maktabga tegishli emas",
+            )
+        pair_rows[pair].append(row)
+        # Whole is not a group-setting mode. Once the subject alias was
+        # proven to belong to this exact class-plan pair, every old setting
+        # for that pair can be removed without interpreting its group alias.
+        if pair in target_whole_pairs:
+            delete_for_whole.append(row)
+            continue
+        resolved = _v204_resolve_expected_skeleton_key(
+            expected,
+            class_id,
+            subject_name,
+            row.get("guruh_kaliti"),
+        )
+        if resolved is not None and resolved[:2] == pair:
+            if _v1875_group_key(resolved[2]) == "whole":
+                raise HTTPException(
+                    status_code=409,
+                    detail="Butun sinf uchun guruh sozlamasi saqlangan; avval ziddiyatni tuzating",
+                )
+            resolved_by_key.setdefault(resolved, []).append(row)
+        else:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Eski guruh sozlamasi joriy reja guruhiga ulanmagan. "
+                    "Ma'lumot o'zgartirilmadi"
+                ),
+            )
+
+    for key, rows in resolved_by_key.items():
+        if len(rows) > 1:
+            raise HTTPException(
+                status_code=409,
+                detail="Bitta canonical guruh uchun takror alias sozlamalari topildi",
+            )
+    for pair, rows in pair_rows.items():
+        group_keys = {
+            _v1875_group_key(row.get("guruh_kaliti")) for row in rows
+        }
+        if "whole" in group_keys and len(group_keys) > 1:
+            raise HTTPException(
+                status_code=409,
+                detail="Butun sinf va guruh sozlamalari aralash saqlangan",
+            )
+        teacher_ids = [
+            int(row.get("oqituvchi_user_id") or 0)
+            for row in rows
+            if int(row.get("oqituvchi_user_id") or 0)
+        ]
+        if len(teacher_ids) != len(set(teacher_ids)):
+            raise HTTPException(
+                status_code=409,
+                detail="Bitta o'qituvchi ikki parallel guruh sozlamasiga yozilgan",
+            )
+
+    delete_rows = []
+    delete_seen = set()
+    upserts = []
+
+    def add_delete(row):
+        identity = (
+            int(row["sinf_id"]),
+            str(row["fan_nomi"]),
+            str(row["guruh_kaliti"]),
+        )
+        if identity not in delete_seen:
+            delete_seen.add(identity)
+            delete_rows.append({
+                "sinf_id": identity[0],
+                "fan_nomi": identity[1],
+                "guruh_kaliti": identity[2],
+            })
+
+    for row in delete_for_whole:
+        add_delete(row)
+    for key, replacement in targeted.items():
+        if _v1875_group_key(key[2]) == "whole":
+            for row in pair_rows.get(key[:2], []):
+                add_delete(row)
+            continue
+        prior_rows = resolved_by_key.get(key, [])
+        for row in prior_rows:
+            add_delete(row)
+        prior_room_candidates = {
+            int(row["xona_id"])
+            for row in (
+                list(prior_rows) + list(current_rows_by_key.get(key, []))
+            )
+            if row.get("xona_id") is not None
+            and int(row["xona_id"]) in preservable_rooms
+        }
+        prior_room = (
+            next(iter(prior_room_candidates))
+            if len(prior_room_candidates) == 1 else None
+        )
+        upserts.append({
+            "sinf_id": int(key[0]),
+            "fan_nomi": str(expected[key]["fan_nomi"]),
+            "guruh_kaliti": _v1875_group_key(key[2]),
+            "oqituvchi_user_id": (
+                int(replacement["user_id"]) if replacement is not None else None
+            ),
+            "xona_id": (
+                replacement.get("xona_id") if replacement is not None else prior_room
+            ),
+        })
+    return {"delete_rows": delete_rows, "upserts": upserts}
 
 
 def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
@@ -16454,6 +18038,11 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
             (sorov.maktab_id,),
         )
         allowed_room_ids = {int(row["id"]) for row in cur.fetchall()}
+        cur.execute(
+            "SELECT id FROM aqlli_xonalar_v2 WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        all_school_room_ids = {int(row["id"]) for row in cur.fetchall()}
 
         # targeted[key] is a cleaned replacement row, or None for an explicit
         # clear. Duplicate/overlapping keys are rejected instead of silently
@@ -16607,6 +18196,35 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
                     ),
                 )
 
+        # Step-3 katagi va uning durable guruh sozlamasi bitta canonical
+        # o'zgarishdir. Barcha setting qatorlarini bloklab, faqat touched
+        # sinf+fan+guruh aliaslari uchun xavfsiz delete/upsert rejasini
+        # oldindan tuzamiz. Helperdagi har qanday 409 hali birorta biznes
+        # qatori o'zgarmasidan transactionni to'xtatadi.
+        cur.execute(
+            """SELECT maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                      oqituvchi_user_id,xona_id
+                 FROM aqlli_guruh_sozlamalari_v2
+                WHERE maktab_id=%s
+                ORDER BY sinf_id,fan_nomi,guruh_kaliti
+                FOR UPDATE""",
+            (sorov.maktab_id,),
+        )
+        current_group_settings = [dict(row) for row in cur.fetchall()]
+        group_setting_actions = _v204_patch_group_setting_actions(
+            expected,
+            targeted,
+            current_group_settings,
+            allowed_teacher_ids=school_users,
+            allowed_room_ids=all_school_room_ids,
+            # A same-school legacy room remains owned data even when it was
+            # later disabled for new selections. A teacher clear must not
+            # silently discard that room; foreign/nonexistent rooms already
+            # fail ownership validation above.
+            preservable_room_ids=all_school_room_ids,
+            current_rows_by_key=current_by_key,
+        )
+
         leader_class_ids = [int(item.sinf_id) for item in sorov.rahbarlar]
         if len(leader_class_ids) != len(set(leader_class_ids)):
             raise HTTPException(
@@ -16647,6 +18265,42 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
                 detail=(
                     "Bitta o'qituvchi bir vaqtning o'zida ikki sinf "
                     "rahbari qilib tanlangan"
+                ),
+            )
+
+        # Alias rows are removed by their exact primary-key identity; the
+        # canonical row is then written for every targeted non-whole key.
+        # An explicit clear is intentionally persisted with NULL teacher so
+        # a later whole -> group round-trip cannot resurrect a stale teacher.
+        for setting in group_setting_actions["delete_rows"]:
+            cur.execute(
+                """DELETE FROM aqlli_guruh_sozlamalari_v2
+                    WHERE maktab_id=%s AND sinf_id=%s
+                      AND fan_nomi=%s AND guruh_kaliti=%s""",
+                (
+                    sorov.maktab_id,
+                    setting["sinf_id"],
+                    setting["fan_nomi"],
+                    setting["guruh_kaliti"],
+                ),
+            )
+        for setting in group_setting_actions["upserts"]:
+            cur.execute(
+                """INSERT INTO aqlli_guruh_sozlamalari_v2(
+                       maktab_id,sinf_id,fan_nomi,guruh_kaliti,
+                       oqituvchi_user_id,xona_id)
+                   VALUES(%s,%s,%s,%s,%s,%s)
+                   ON CONFLICT(maktab_id,sinf_id,fan_nomi,guruh_kaliti)
+                   DO UPDATE SET
+                     oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+                     xona_id=EXCLUDED.xona_id""",
+                (
+                    sorov.maktab_id,
+                    setting["sinf_id"],
+                    setting["fan_nomi"],
+                    setting["guruh_kaliti"],
+                    setting["oqituvchi_user_id"],
+                    setting["xona_id"],
                 ),
             )
 
@@ -16726,6 +18380,9 @@ def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
             "ochirilgan_qator_soni": cleared_rows,
             "saqlangan_qator": saved_rows,
             "ochirilgan_kalit": cleared_rows,
+            "guruh_sozlamasi_yangilandi": len(
+                group_setting_actions["upserts"]
+            ),
             "rahbar_ozgarishi": len(sorov.rahbarlar),
             "oqituvchi_soatlari": teacher_totals,
             "ogohlantirishlar": list(
