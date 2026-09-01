@@ -10,7 +10,7 @@ from __future__ import annotations
 from typing import Any, Iterable
 
 
-ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V23.5-STRICT"
+ENGINE_RELEASE = "SAMTM-TIMETABLE-ENGINE-V23.6-DUAL-SHIFT-WEEK"
 
 STRICT = "strict"
 
