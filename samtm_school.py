@@ -114,11 +114,17 @@ SAMTM_JADVAL_RELEASE = "JADVAL-ONE-V23.6-LIVE-REATTACH-ALL-TEACHERS"
 # qiymati o'zgarmaydi; real algoritm versiyasi alohida qaytariladi.
 SAMTM_EXACT_JADVAL_RELEASE = "SAMTM-EXACT-CP-SAT-V22.0"
 SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V23.6-DUAL-SHIFT-WEEK-ROUND-ROBIN"
-SAMTM_SCHOOL_PACKAGE_REVISION = "teacher-xlsx-shift-alphabet-v23.7"
+# ``main.py`` REV55 ni ham qat'iy tekshiradi. Bu ikkinchi public handshake
+# o'zgarmaydi; yangi imkoniyatlar alohida feature revision bilan belgilanadi.
+SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
+SAMTM_SCHOOL_FEATURE_REVISION = "teacher-xlsx-shift-alphabet-v23.7"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
+_platform.SAMTM_FEATURE_REVISION = SAMTM_SCHOOL_FEATURE_REVISION
 try:
-    app.version = "23.7"
+    # FastAPI public app version ham eski main/deploy handshake bilan mos qoladi.
+    # Real feature build yuqoridagi SAMTM_SCHOOL_FEATURE_REVISION da ko'rsatilgan.
+    app.version = "19.8"
 except Exception:
     pass
 
