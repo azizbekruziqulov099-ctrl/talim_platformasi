@@ -1505,6 +1505,62 @@ def _v1852_manager(cur, user_id: int, maktab_id: int) -> bool:
     return _maktab_boshqaruvchi_mi(cur, user_id, maktab_id)
 
 
+def _v240_lock_teacher_time_scope(
+    cur,
+    maktab_id,
+    user_ids,
+    *,
+    require_all=True,
+    missing_status_code=400,
+    missing_detail=None,
+):
+    """O'qituvchi vaqti yozuvchilarini bitta qat'iy lock tartibida navbatlaydi.
+
+    Avval maktabga tegishli ``users`` qatorlari bloklanadi. Bu yangi vaqt
+    qatori hali mavjud bo'lmagan holatda ham gap-lock vazifasini bajaradi.
+    Keyin mavjud vaqt qatorlari bir xil tartibda bloklanadi. Markaziy metod
+    refreshi va qo'lda/ommaviy saqlash endpointlari shu helperdan foydalansa,
+    manual qator read-delete-upsert oralig'ida yo'qolib qolmaydi.
+    """
+    normalized_values = set()
+    for value in user_ids or []:
+        try:
+            user_id = int(value)
+        except (TypeError, ValueError):
+            continue
+        if user_id > 0:
+            normalized_values.add(user_id)
+    normalized = sorted(normalized_values)
+    if not normalized:
+        return []
+    cur.execute(
+        """SELECT user_id FROM users
+            WHERE maktab_id=%s AND user_id=ANY(%s)
+            ORDER BY user_id FOR UPDATE""",
+        (int(maktab_id), normalized),
+    )
+    locked = sorted({int(row["user_id"]) for row in cur.fetchall()})
+    missing = [user_id for user_id in normalized if user_id not in set(locked)]
+    if missing and require_all:
+        raise HTTPException(
+            status_code=int(missing_status_code),
+            detail=(
+                missing_detail
+                or f"Bu maktabga tegishli bo'lmagan o'qituvchi IDlari: {missing[:10]}"
+            ),
+        )
+    if locked:
+        cur.execute(
+            """SELECT id FROM aqlli_oqituvchi_vaqti_v2
+                WHERE maktab_id=%s AND user_id=ANY(%s)
+                ORDER BY user_id,id FOR UPDATE""",
+            (int(maktab_id), locked),
+        )
+        # Server-side cursorlar natija tugaguncha row lockni to'liq olmaydi.
+        cur.fetchall()
+    return locked
+
+
 def _v1852_staff(cur, user_id: int, maktab_id: int) -> bool:
     return _v1852_manager(cur, user_id, maktab_id) or _maktab_xodimi_mi(cur, user_id, maktab_id)
 
@@ -1969,9 +2025,13 @@ def v1852_teacher_availability_save(sorov: V1852TeacherAvailability, token: str)
         _v1852_tables(cur)
         if actor_id != sorov.user_id and not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Faqat o'qituvchining o'zi yoki rahbariyat o'zgartira oladi")
-        cur.execute("SELECT 1 FROM users WHERE user_id=%s AND maktab_id=%s", (sorov.user_id, sorov.maktab_id))
-        if not cur.fetchone():
-            raise HTTPException(status_code=404, detail="O'qituvchi shu maktabda topilmadi")
+        _v240_lock_teacher_time_scope(
+            cur,
+            sorov.maktab_id,
+            [sorov.user_id],
+            missing_status_code=404,
+            missing_detail="O'qituvchi shu maktabda topilmadi",
+        )
         rules = sorov.qoidalar
         if rules.eng_kech_dars < rules.eng_erta_dars:
             raise HTTPException(status_code=400, detail="Eng kech dars eng erta darsdan oldin bo'lmaydi")
@@ -5962,12 +6022,13 @@ def v1854_teacher_availability_bulk(sorov: V1854BulkTeacherAvailability, token: 
             raise HTTPException(status_code=400, detail="Kamida bitta o'qituvchini tanlang")
         if sorov.rejim not in ("almashtirish", "ustiga_qoshish"):
             raise HTTPException(status_code=400, detail="Ommaviy qo'llash rejimi noto'g'ri")
-        cur.execute("SELECT user_id FROM users WHERE maktab_id=%s AND user_id=ANY(%s)", (sorov.maktab_id, user_ids))
-        topilgan = {int(r["user_id"]) for r in cur.fetchall()}
-        yoq = [x for x in user_ids if x not in topilgan]
-        if yoq:
-            raise HTTPException(status_code=400, detail=f"Maktabda topilmagan xodim IDlari: {yoq[:10]}")
         rows = _v1854_validate_time_items(sorov.vaqtlar)
+        _v240_lock_teacher_time_scope(
+            cur,
+            sorov.maktab_id,
+            user_ids,
+            missing_detail="Maktabda topilmagan xodim IDlari bor",
+        )
         for uid in user_ids:
             if sorov.qoidalar is not None:
                 r = sorov.qoidalar
@@ -5992,6 +6053,158 @@ def v1854_teacher_availability_bulk(sorov: V1854BulkTeacherAvailability, token: 
                     (sorov.maktab_id,uid,day,shift,period,kind,hard,note))
         conn.commit()
         return {"holat":"saqlandi","o'qituvchi_soni":len(user_ids),"vaqt_soni":len(rows)}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V240BulkTeacherMethodDays(BaseModel):
+    maktab_id: int
+    user_ids: list[int]
+    hafta_kunlari: list[int]
+    rejim: str = "almashtirish"  # almashtirish | ustiga_qoshish
+
+
+def _v240_normalize_bulk_method_days(user_ids, hafta_kunlari, rejim):
+    """Ommaviy metod kuni so'rovini yozuvdan oldin to'liq tekshiradi."""
+    mode = str(rejim or "").strip().lower()
+    if mode not in {"almashtirish", "ustiga_qoshish"}:
+        raise ValueError("Metod kunini saqlash rejimi noto‘g‘ri.")
+
+    normalized_users = []
+    seen_users = set()
+    for raw in list(user_ids or []):
+        if isinstance(raw, bool):
+            raise ValueError("O‘qituvchi ID raqam bo‘lishi kerak.")
+        try:
+            user_id = int(raw)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("O‘qituvchi ID raqam bo‘lishi kerak.") from exc
+        if user_id <= 0:
+            raise ValueError("O‘qituvchi ID musbat bo‘lishi kerak.")
+        if user_id in seen_users:
+            raise ValueError(f"O‘qituvchi ID {user_id} ikki marta yuborilgan.")
+        seen_users.add(user_id)
+        normalized_users.append(user_id)
+    if not normalized_users:
+        raise ValueError("Kamida bitta o‘qituvchini tanlang.")
+    if len(normalized_users) > 300:
+        raise ValueError("Bir so‘rovda 300 tadan ortiq o‘qituvchi saqlanmaydi.")
+
+    normalized_days = []
+    seen_days = set()
+    for raw in list(hafta_kunlari or []):
+        if isinstance(raw, bool):
+            raise ValueError("Metod kuni 1–7 oralig‘idagi raqam bo‘lishi kerak.")
+        try:
+            day = int(raw)
+        except (TypeError, ValueError) as exc:
+            raise ValueError("Metod kuni 1–7 oralig‘idagi raqam bo‘lishi kerak.") from exc
+        if day not in range(1, 8):
+            raise ValueError("Metod kuni 1–7 oralig‘ida bo‘lishi kerak.")
+        if day in seen_days:
+            raise ValueError(f"{day}-metod kuni ikki marta yuborilgan.")
+        seen_days.add(day)
+        normalized_days.append(day)
+    if mode == "ustiga_qoshish" and not normalized_days:
+        raise ValueError("Qo‘shish rejimida kamida bitta metod kunini tanlang.")
+    return {
+        "user_ids": normalized_users,
+        "hafta_kunlari": normalized_days,
+        "rejim": mode,
+    }
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/metod_kunlari_bulk")
+def v240_bulk_teacher_method_days(
+    sorov: V240BulkTeacherMethodDays,
+    token: str,
+):
+    """Tanlangan o'qituvchilarning faqat metod kunini bitta transactionda saqlaydi."""
+    actor_id = _jwt_tekshir(token)
+    try:
+        normalized = _v240_normalize_bulk_method_days(
+            sorov.user_ids,
+            sorov.hafta_kunlari,
+            sorov.rejim,
+        )
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Metod kunini faqat maktab rahbariyati saqlaydi",
+            )
+        active_year = _v1852_active_year(cur, sorov.maktab_id)
+        active_weekdays = int((active_year or {}).get("hafta_kunlari") or 6)
+        invalid_school_days = [
+            day for day in normalized["hafta_kunlari"]
+            if day > active_weekdays
+        ]
+        if invalid_school_days:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"Maktab haftasi {active_weekdays} kunlik. "
+                    f"Metod kuni sifatida tanlab bo‘lmaydigan kunlar: "
+                    f"{invalid_school_days}"
+                ),
+            )
+        # Barcha IDlar aynan shu maktabniki ekanini va mavjud vaqt qatorlarini
+        # birinchi yozuvdan OLDIN bloklaymiz. Shu lockni central refresh ham
+        # oladi; qo'lda saqlangan metod kuni poygada yo'qolmaydi.
+        _v240_lock_teacher_time_scope(
+            cur,
+            sorov.maktab_id,
+            normalized["user_ids"],
+        )
+
+        if normalized["rejim"] == "almashtirish":
+            cur.execute(
+                """DELETE FROM aqlli_oqituvchi_vaqti_v2
+                    WHERE maktab_id=%s AND user_id=ANY(%s)
+                      AND turi='metod_kuni'""",
+                (sorov.maktab_id, normalized["user_ids"]),
+            )
+        rows = [
+            (
+                sorov.maktab_id,
+                user_id,
+                day,
+                0,
+                0,
+                "metod_kuni",
+                True,
+                "V24.0 QO‘LDA OMMAVIY METOD KUNI",
+            )
+            for user_id in normalized["user_ids"]
+            for day in normalized["hafta_kunlari"]
+        ]
+        if rows:
+            psycopg2.extras.execute_values(
+                cur,
+                """INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                       maktab_id,user_id,hafta_kuni,smena,dars_raqami,
+                       turi,qattiq,izoh)
+                   VALUES %s
+                   ON CONFLICT(maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi)
+                   DO UPDATE SET qattiq=EXCLUDED.qattiq,izoh=EXCLUDED.izoh""",
+                rows,
+            )
+        conn.commit()
+        return {
+            "holat": "saqlandi",
+            "maktab_id": int(sorov.maktab_id),
+            "oqituvchi_soni": len(normalized["user_ids"]),
+            "metod_kunlari": normalized["hafta_kunlari"],
+            "yozuv_soni": len(rows),
+            "rejim": normalized["rejim"],
+        }
     except Exception:
         conn.rollback(); raise
     finally:
@@ -6941,14 +7154,11 @@ def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
             )
 
         user_ids = list(items_by_user)
-        cur.execute(
-            "SELECT user_id FROM users WHERE maktab_id=%s AND user_id=ANY(%s)",
-            (sorov.maktab_id, user_ids),
+        _v240_lock_teacher_time_scope(
+            cur,
+            sorov.maktab_id,
+            user_ids,
         )
-        found = {int(row["user_id"]) for row in cur.fetchall()}
-        missing = [uid for uid in user_ids if uid not in found]
-        if missing:
-            raise HTTPException(status_code=400, detail=f"Maktabda topilmagan xodimlar: {missing[:10]}")
 
         inserted_count = 0
         for uid, item in items_by_user.items():
@@ -7474,6 +7684,32 @@ def _v1873_subject_day(subject, central_days=None):
     return None
 
 
+def _v240_resolve_language_method_day(
+    subject,
+    talim_tili,
+    central_days_by_language,
+):
+    """Fan metod kunini faqat o'sha sinf tilining tasdiqlangan andozasidan oladi.
+
+    Markaziy til andozasi mavjud bo'lsa exact fan kaliti topilmagan qator boshqa
+    til yoki o'xshash nomga tushirilmaydi. Faqat markaziy jadvallar paydo
+    bo'lishidan oldingi UZ bazalar uchun, UZ xaritasi butunlay bo'sh bo'lsa,
+    tarixiy fan-guruh heuristikasi saqlanadi.
+    """
+    language = _v238_normalize_instruction_language(talim_tili)
+    language_days = dict((central_days_by_language or {}).get(language) or {})
+    exact = language_days.get(_v1875_subject_key(subject))
+    if exact is not None:
+        try:
+            exact = int(exact)
+        except (TypeError, ValueError):
+            return None
+        return exact if exact in range(1, 7) else None
+    if language_days or language != "uz":
+        return None
+    return _v1873_subject_day(subject, {})
+
+
 def _v1873_tables(cur):
     _v1871_auto_method_tables(cur)
     cur.execute(
@@ -7517,11 +7753,15 @@ def _v1873_assignments(cur, maktab_id):
                      JOIN maktab_sinflari s ON s.id=b.sinf_id
                     WHERE b.maktab_id=%s""", (maktab_id,))
     subject_languages = {}
+    teacher_languages = {}
     for row in cur.fetchall():
-        key = (int(row["user_id"]), _v1875_subject_key(row["fan_nomi"]))
+        user_id = int(row["user_id"])
+        language = _v238_normalize_instruction_language(row.get("talim_tili"))
+        key = (user_id, _v1875_subject_key(row["fan_nomi"]))
         subject_languages.setdefault(key, set()).add(
-            _v238_normalize_instruction_language(row.get("talim_tili"))
+            language
         )
+        teacher_languages.setdefault(user_id, set()).add(language)
     # Legacy importlarda canonical dars birikmasi hali yaratilmagan, ammo
     # xodim–sinf fan bog'lanishi mavjud bo'lishi mumkin. Bunday o'qituvchini
     # UZga majburan tushirmay, bog'langan sinfning haqiqiy tilini olamiz.
@@ -7531,10 +7771,24 @@ def _v1873_assignments(cur, maktab_id):
                      JOIN maktab_sinflari s ON s.id=x.sinf_id
                     WHERE x.maktab_id=%s""", (maktab_id,))
     for row in cur.fetchall():
+        user_id = int(row["user_id"])
         language = _v238_normalize_instruction_language(row.get("talim_tili"))
+        teacher_languages.setdefault(user_id, set()).add(language)
         for subject in _v1859_fanlarni_ajrat(row.get("fanlari")):
-            key = (int(row["user_id"]), _v1875_subject_key(subject))
+            key = (user_id, _v1875_subject_key(subject))
             subject_languages.setdefault(key, set()).add(language)
+    # Sinf rahbarida eski import sabab fan qatori bo'lmasligi mumkin. Bunday
+    # holatda ham UZ deb taxmin qilmaymiz: rahbar bo'lgan sinf(lar) haqiqiy
+    # tilini alohida dalil sifatida yig'amiz.
+    cur.execute("""SELECT rahbar_user_id AS user_id,
+                          COALESCE(talim_tili,'uz') AS talim_tili
+                     FROM maktab_sinflari
+                    WHERE maktab_id=%s AND rahbar_user_id IS NOT NULL""",
+                (maktab_id,))
+    for row in cur.fetchall():
+        user_id = int(row["user_id"])
+        language = _v238_normalize_instruction_language(row.get("talim_tili"))
+        teacher_languages.setdefault(user_id, set()).add(language)
     primary_ids = _v1873_primary_teacher_ids(cur, maktab_id)
     teachers = [
         row for row in _v1859_effective_teachers(cur, maktab_id)
@@ -7562,25 +7816,24 @@ def _v1873_assignments(cur, maktab_id):
             or any("boshlang'ich ta'lim" in key for key in subject_keys)
             or (class_grades and max(class_grades) <= 4 and primary_subject_hits >= 2)
         )
-        if primary_teacher:
-            assignments.append({
-                "user_id": uid,
-                "full_name": teacher["full_name"],
-                "hafta_kuni": 6,
-                "asos": "Boshlang‘ich ta’lim",
-                "fanlar": teacher.get("fanlar_royxati") or [],
-            })
-            continue
-
         by_day = {}
         for subject in teacher.get("fanlar_royxati") or []:
-            languages = subject_languages.get(
-                (uid, _v1875_subject_key(subject)), {"uz"}
+            exact_languages = subject_languages.get(
+                (uid, _v1875_subject_key(subject))
             )
+            # Markaziy metod qoidasi faqat aynan shu fan qatori bog'langan
+            # sinf tilidan olinadi. O'qituvchining boshqa fan/sinf tilini bu
+            # fanga ko'chirmaymiz: aks holda RU/EN yoki aralash o'qituvchi UZ
+            # andozasini noto'g'ri olishi mumkin. Teacher-wide til dalili
+            # quyida faqat tarixiy boshlang'ich Shanba fallbackini xavfsiz
+            # cheklash uchun ishlatiladi.
+            languages = set(exact_languages or ())
             days_for_subject = {}
             for language in sorted(languages):
-                day = _v1873_subject_day(
-                    subject, central_days_by_language.get(language, {})
+                day = _v240_resolve_language_method_day(
+                    subject,
+                    language,
+                    central_days_by_language,
                 )
                 if day:
                     days_for_subject.setdefault(day, []).append(language)
@@ -7592,6 +7845,22 @@ def _v1873_assignments(cur, maktab_id):
                 if len(days_for_subject) > 1:
                     label = f"{label} [{'/'.join(value.upper() for value in day_languages)}]"
                 by_day.setdefault(day, []).append(label)
+        if (
+            not by_day
+            and primary_teacher
+            and set(teacher_languages.get(uid) or ()) == {"uz"}
+        ):
+            # Faqat shu fanlarning tasdiqlangan til andozasida exact metod
+            # qoidasi bo'lmasa va sinf tili aniq UZ bo'lsa tarixiy
+            # boshlang'ich-ta'lim Shanbasi ishlaydi.
+            assignments.append({
+                "user_id": uid,
+                "full_name": teacher["full_name"],
+                "hafta_kuni": 6,
+                "asos": "Boshlang‘ich ta’lim (legacy)",
+                "fanlar": teacher.get("fanlar_royxati") or [],
+            })
+            continue
         if not by_day:
             continue
 
@@ -7658,6 +7927,133 @@ def _v1873_apply_official(cur, maktab_id, replace_existing=True):
             DO UPDATE SET qattiq=EXCLUDED.qattiq,izoh=EXCLUDED.izoh
         """, rows)
     return assignments, conflicts
+
+
+def _v240_refresh_central_method_days(cur, maktab_id, talim_tili):
+    """Til andozasi o'zgarganda faqat markaziy-avto metod qatorlarini yangilaydi.
+
+    Qo'lda saqlangan metod kuni hamda BAND/afzal vaqtlar tegilmaydi. Bitta
+    o'qituvchi turli ta'lim tillarida ishlasa `_v1873_assignments` har bir
+    sinfning haqiqiy tilini ko'rib, ziddiyatni hisobotda saqlaydi; UZ qoidasi
+    RU/EN sinfiga fallback qilmaydi.
+    """
+    _v1852_tables(cur)
+    _v1873_tables(cur)
+    cur.execute(
+        "SELECT yoqilgan FROM aqlli_metod_avto_sozlamalari_v2 WHERE maktab_id=%s",
+        (maktab_id,),
+    )
+    setting = cur.fetchone()
+    if setting is not None and not bool(setting.get("yoqilgan")):
+        return {"qollandi": False, "sabab": "maktabda_ochirilgan", "oqituvchi_soni": 0}
+
+    language = _v238_normalize_instruction_language(talim_tili)
+    assignments, conflicts = _v1873_assignments(cur, maktab_id)
+    # Faqat yangilangan til sinflariga bog'langan o'qituvchilar nishonlanadi.
+    # Shu o'qituvchi boshqa tilda ham dars bersa uning yakuniy global metod kuni
+    # barcha haqiqiy til bog'lanishlari bo'yicha qayta hisoblanadi; boshqa tilga
+    # umuman aloqasi bo'lmagan o'qituvchi qatori esa yozilmaydi/o'chirilmaydi.
+    cur.execute(
+        """SELECT DISTINCT user_id FROM (
+               SELECT b.user_id
+                 FROM maktab_dars_birikmalari b
+                 JOIN maktab_sinflari s ON s.id=b.sinf_id
+                WHERE b.maktab_id=%s AND COALESCE(s.talim_tili,'uz')=%s
+               UNION
+               SELECT x.user_id
+                 FROM maktab_xodim_sinflari x
+                 JOIN maktab_sinflari s ON s.id=x.sinf_id
+                WHERE x.maktab_id=%s AND COALESCE(s.talim_tili,'uz')=%s
+               UNION
+               SELECT s.rahbar_user_id AS user_id
+                 FROM maktab_sinflari s
+                WHERE s.maktab_id=%s AND COALESCE(s.talim_tili,'uz')=%s
+                  AND s.rahbar_user_id IS NOT NULL
+           ) scoped""",
+        (maktab_id, language, maktab_id, language, maktab_id, language),
+    )
+    scoped_user_ids = {int(row["user_id"]) for row in cur.fetchall()}
+    if not scoped_user_ids:
+        return {
+            "qollandi": True,
+            "oqituvchi_soni": 0,
+            "qolda_saqlangan": 0,
+            "ziddiyat_soni": 0,
+        }
+    # Qo'lda va markaziy saqlash ayni o'qituvchi uchun parallel kelsa,
+    # users qatori mavjud bo'lmagan yangi metod yozuvi uchun ham gap-lock
+    # bo'ladi; mavjud vaqt qatorlari esa manual holatni o'qishdan oldin
+    # bevosita FOR UPDATE qilinadi. Eski/stale boshqa maktab useri jim chiqariladi.
+    scoped_user_ids = set(_v240_lock_teacher_time_scope(
+        cur,
+        maktab_id,
+        scoped_user_ids,
+        require_all=False,
+    ))
+    if not scoped_user_ids:
+        return {
+            "qollandi": True,
+            "oqituvchi_soni": 0,
+            "qolda_saqlangan": 0,
+            "ziddiyat_soni": 0,
+        }
+    legacy_auto_where = _v1871_auto_method_where()
+    all_auto_where = (
+        f"({legacy_auto_where} OR COALESCE(izoh,'') LIKE %s)"
+    )
+    auto_params = (
+        _V1871_AUTO_METHOD_PREFIX + "%",
+        _V1871_OLD_AUTO_PREFIX + "%",
+        _V1873_METHOD_PREFIX + "%",
+    )
+    cur.execute(
+        f"""SELECT DISTINCT user_id
+             FROM aqlli_oqituvchi_vaqti_v2
+            WHERE maktab_id=%s AND turi='metod_kuni'
+              AND user_id=ANY(%s)
+              AND NOT {all_auto_where}""",
+        (maktab_id, sorted(scoped_user_ids), *auto_params),
+    )
+    manual_user_ids = {int(row["user_id"]) for row in cur.fetchall()}
+    cur.execute(
+        f"""DELETE FROM aqlli_oqituvchi_vaqti_v2
+            WHERE maktab_id=%s AND turi='metod_kuni'
+              AND user_id=ANY(%s)
+              AND {all_auto_where}""",
+        (maktab_id, sorted(scoped_user_ids), *auto_params),
+    )
+    rows = []
+    for item in assignments:
+        if (
+            int(item["user_id"]) not in scoped_user_ids
+            or int(item["user_id"]) in manual_user_ids
+        ):
+            continue
+        note = (
+            f"{_V1873_METHOD_PREFIX} {item['asos']} | "
+            f"{_V1873_DAY_LABELS[item['hafta_kuni']]}"
+        )
+        rows.append((
+            maktab_id, int(item["user_id"]), int(item["hafta_kuni"]),
+            0, 0, "metod_kuni", True, note,
+        ))
+    if rows:
+        psycopg2.extras.execute_values(
+            cur,
+            """INSERT INTO aqlli_oqituvchi_vaqti_v2(
+                   maktab_id,user_id,hafta_kuni,smena,dars_raqami,
+                   turi,qattiq,izoh)
+               VALUES %s
+               ON CONFLICT(maktab_id,user_id,hafta_kuni,smena,dars_raqami,turi)
+               DO UPDATE SET qattiq=EXCLUDED.qattiq,izoh=EXCLUDED.izoh""",
+            rows,
+        )
+    return {
+        "qollandi": True,
+        "oqituvchi_soni": len(rows),
+        "qolda_saqlangan": len(manual_user_ids),
+        "ziddiyat_soni": len(conflicts),
+    }
 
 
 def _v1873_report(assignments, conflicts):
@@ -12967,6 +13363,227 @@ _V238_INSTRUCTION_LANGUAGE_ALIASES = {
 }
 
 
+# V24.0 — yangi maktab oynasidagi viloyat va tuman/shahar maydonlari erkin
+# matn emas, bitta bog'langan katalogdan tanlanadi. Katalog 2026-yilgi MHOBT
+# (Milliy statistika qo'mitasi SIAT) nomlariga mos va frontendga shu backend
+# endpointidan beriladi. Eski maktabda katalogdan tashqari tarixiy qiymat bo'lsa
+# o'sha qiymatni o'zgartirmasdan saqlash mumkin, ammo yangi/yangi tahrir qilingan
+# juftlik katalogdagi aynan bitta viloyatga tegishli bo'lishi shart.
+_V240_UZBEKISTAN_LOCATIONS = (
+    ("Qoraqalpog‘iston Respublikasi", (
+        "Nukus shahri", "Amudaryo tumani", "Beruniy tumani",
+        "Bo‘zatov tumani", "Chimboy tumani", "Ellikkala tumani",
+        "Kegeyli tumani", "Mo‘ynoq tumani", "Nukus tumani",
+        "Qanliko‘l tumani", "Qo‘ng‘irot tumani", "Qorao‘zak tumani",
+        "Shumanay tumani", "Taxtako‘pir tumani", "Taxiatosh tumani",
+        "To‘rtko‘l tumani", "Xo‘jayli tumani",
+    )),
+    ("Andijon viloyati", (
+        "Andijon shahri", "Xonobod shahri", "Andijon tumani",
+        "Asaka tumani", "Baliqchi tumani", "Bo‘ston tumani",
+        "Buloqboshi tumani", "Izboskan tumani", "Jalaquduq tumani",
+        "Marhamat tumani", "Oltinko‘l tumani", "Paxtaobod tumani",
+        "Qo‘rg‘ontepa tumani", "Shahrixon tumani", "Ulug‘nor tumani",
+        "Xo‘jaobod tumani",
+    )),
+    ("Buxoro viloyati", (
+        "Buxoro shahri", "Kogon shahri", "Buxoro tumani", "G‘ijduvon tumani",
+        "Jondor tumani", "Kogon tumani", "Olot tumani", "Peshku tumani",
+        "Qorako‘l tumani", "Qorovulbozor tumani", "Romitan tumani",
+        "Shofirkon tumani", "Vobkent tumani",
+    )),
+    ("Jizzax viloyati", (
+        "Jizzax shahri", "Arnasoy tumani", "Baxmal tumani",
+        "Do‘stlik tumani", "Forish tumani", "G‘allaorol tumani",
+        "Mirzacho‘l tumani", "Paxtakor tumani", "Sharof Rashidov tumani",
+        "Yangiobod tumani", "Zafarobod tumani", "Zarbdor tumani",
+        "Zomin tumani",
+    )),
+    ("Qashqadaryo viloyati", (
+        "Qarshi shahri", "Shahrisabz shahri", "Chiroqchi tumani",
+        "Dehqonobod tumani", "G‘uzor tumani", "Kasbi tumani",
+        "Kitob tumani", "Ko‘kdala tumani", "Koson tumani",
+        "Mirishkor tumani", "Muborak tumani", "Nishon tumani",
+        "Qamashi tumani", "Qarshi tumani", "Shahrisabz tumani",
+        "Yakkabog‘ tumani",
+    )),
+    ("Navoiy viloyati", (
+        "Navoiy shahri", "Zarafshon shahri", "G‘ozg‘on shahri",
+        "Karmana tumani", "Konimex tumani", "Navbahor tumani",
+        "Nurota tumani", "Qiziltepa tumani", "Tomdi tumani",
+        "Uchquduq tumani", "Xatirchi tumani",
+    )),
+    ("Namangan viloyati", (
+        "Namangan shahri", "Chortoq tumani", "Chust tumani",
+        "Davlatobod tumani", "Kosonsoy tumani", "Mingbuloq tumani",
+        "Namangan tumani", "Norin tumani", "Pop tumani",
+        "To‘raqo‘rg‘on tumani", "Uchqo‘rg‘on tumani", "Uychi tumani",
+        "Yangi Namangan tumani", "Yangiqo‘rg‘on tumani",
+    )),
+    ("Samarqand viloyati", (
+        "Samarqand shahri", "Kattaqo‘rg‘on shahri", "Bulung‘ur tumani",
+        "Ishtixon tumani", "Jomboy tumani", "Kattaqo‘rg‘on tumani",
+        "Narpay tumani", "Nurobod tumani", "Oqdaryo tumani",
+        "Pastdarg‘om tumani", "Paxtachi tumani", "Payariq tumani",
+        "Qo‘shrabot tumani", "Samarqand tumani", "Tayloq tumani",
+        "Urgut tumani",
+    )),
+    ("Surxondaryo viloyati", (
+        "Termiz shahri", "Angor tumani", "Bandixon tumani", "Boysun tumani",
+        "Denov tumani", "Jarqo‘rg‘on tumani", "Muzrabot tumani",
+        "Oltinsoy tumani", "Qiziriq tumani", "Qumqo‘rg‘on tumani",
+        "Sariosiyo tumani", "Sherobod tumani", "Sho‘rchi tumani",
+        "Termiz tumani", "Uzun tumani",
+    )),
+    ("Sirdaryo viloyati", (
+        "Guliston shahri", "Shirin shahri", "Yangiyer shahri",
+        "Boyovut tumani", "Guliston tumani", "Mirzaobod tumani",
+        "Oqoltin tumani", "Sardoba tumani", "Sayxunobod tumani",
+        "Sirdaryo tumani", "Xovos tumani",
+    )),
+    ("Toshkent viloyati", (
+        "Nurafshon shahri", "Angren shahri", "Bekobod shahri",
+        "Chirchiq shahri", "Ohangaron shahri", "Olmaliq shahri",
+        "Yangiyo‘l shahri", "Bekobod tumani", "Bo‘ka tumani",
+        "Bo‘stonliq tumani", "Chinoz tumani", "Ohangaron tumani",
+        "Oqqo‘rg‘on tumani", "O‘rtachirchiq tumani", "Parkent tumani",
+        "Piskent tumani", "Qibray tumani", "Quyichirchiq tumani",
+        "Toshkent tumani", "Yangiyo‘l tumani", "Yuqorichirchiq tumani",
+        "Zangiota tumani",
+    )),
+    ("Farg‘ona viloyati", (
+        "Farg‘ona shahri", "Marg‘ilon shahri", "Qo‘qon shahri",
+        "Quvasoy shahri", "Beshariq tumani", "Bog‘dod tumani",
+        "Buvayda tumani", "Dang‘ara tumani", "Farg‘ona tumani",
+        "Furqat tumani", "Oltiariq tumani", "O‘zbekiston tumani",
+        "Qo‘shtepa tumani", "Quva tumani", "Rishton tumani",
+        "So‘x tumani", "Toshloq tumani", "Uchko‘prik tumani",
+        "Yozyovon tumani",
+    )),
+    ("Xorazm viloyati", (
+        "Urganch shahri", "Xiva shahri", "Bog‘ot tumani", "Gurlan tumani",
+        "Hazorasp tumani", "Qo‘shko‘pir tumani", "Shovot tumani",
+        "Tuproqqal’a tumani", "Urganch tumani", "Xiva tumani",
+        "Xonqa tumani", "Yangiariq tumani", "Yangibozor tumani",
+    )),
+    ("Toshkent shahri", (
+        "Bektemir tumani", "Chilonzor tumani", "Mirobod tumani",
+        "Mirzo Ulug‘bek tumani", "Olmazor tumani", "Sergeli tumani",
+        "Shayxontohur tumani", "Uchtepa tumani", "Yakkasaroy tumani",
+        "Yangihayot tumani", "Yashnobod tumani", "Yunusobod tumani",
+    )),
+)
+_V240_LOCATION_SOURCE = {
+    "nomi": "O‘zbekiston Respublikasi MHOBT hududlar katalogi",
+    "tashkilot": "O‘zbekiston Respublikasi Milliy statistika qo‘mitasi",
+    "versiya": "SIAT-2026",
+    "havola": "https://siat.stat.uz/data/307/",
+}
+
+
+def _v240_location_key(value):
+    """Hudud nomini apostrof/registr/bo'shliqdan mustaqil solishtiradi."""
+    text = _v237_unicodedata.normalize("NFKC", str(value or "")).casefold()
+    for old in ("‘", "’", "`", "ʼ", "ʻ", "´", "ʹ", "＇"):
+        text = text.replace(old, "'")
+    return " ".join(re.sub(r"[^0-9a-zа-яёқғҳў' ]+", " ", text).split())
+
+
+def _v240_location_aliases(value, suffixes):
+    canonical = re.sub(r"\s+", " ", str(value or "")).strip()
+    aliases = {_v240_location_key(canonical)}
+    key = _v240_location_key(canonical)
+    for suffix in suffixes:
+        suffix_key = _v240_location_key(suffix)
+        if key.endswith(" " + suffix_key):
+            aliases.add(key[:-(len(suffix_key) + 1)].strip())
+    return {item for item in aliases if item}
+
+
+def _v240_unique_alias_index(items, suffixes):
+    candidates = {}
+    for item in items:
+        for alias in _v240_location_aliases(item, suffixes):
+            candidates.setdefault(alias, set()).add(item)
+    return {
+        alias: next(iter(values))
+        for alias, values in candidates.items()
+        if len(values) == 1
+    }
+
+
+def _v240_validate_school_location(
+    viloyat,
+    tuman,
+    allow_empty=False,
+    legacy_pair=None,
+):
+    """Bog'langan viloyat+tuman/shahar juftligini kanonik ko'rinishda qaytaradi.
+
+    ``legacy_pair`` faqat mavjud DB qiymati aynan o'zgarmay qayta yuborilganda
+    katalogdan tashqari tarixiy nomni saqlaydi. U yangi noto'g'ri qiymat kiritish
+    yoki tumanni boshqa viloyatga ko'chirish uchun ishlatilmaydi.
+    """
+    region_raw = re.sub(r"\s+", " ", str(viloyat or "")).strip()
+    district_raw = re.sub(r"\s+", " ", str(tuman or "")).strip()
+    if not region_raw and not district_raw and allow_empty:
+        return None, None
+    if not region_raw or not district_raw:
+        raise ValueError("Viloyat va tuman/shaharni tanlang.")
+
+    if legacy_pair:
+        legacy_region = re.sub(r"\s+", " ", str(legacy_pair[0] or "")).strip()
+        legacy_district = re.sub(r"\s+", " ", str(legacy_pair[1] or "")).strip()
+        if (
+            _v240_location_key(region_raw) == _v240_location_key(legacy_region)
+            and _v240_location_key(district_raw) == _v240_location_key(legacy_district)
+        ):
+            return legacy_region or None, legacy_district or None
+
+    region_index = _v240_unique_alias_index(
+        (row[0] for row in _V240_UZBEKISTAN_LOCATIONS),
+        ("viloyati", "Respublikasi", "shahri"),
+    )
+    canonical_region = region_index.get(_v240_location_key(region_raw))
+    if canonical_region is None:
+        raise ValueError("Tanlangan viloyat katalogda topilmadi.")
+    children = next(
+        row[1] for row in _V240_UZBEKISTAN_LOCATIONS
+        if row[0] == canonical_region
+    )
+    district_index = _v240_unique_alias_index(
+        children, ("tumani", "shahri")
+    )
+    canonical_district = district_index.get(_v240_location_key(district_raw))
+    if canonical_district is None:
+        raise ValueError(
+            "Tanlangan tuman/shahar shu viloyatga tegishli emas. "
+            "Viloyatni qayta tanlab, ro‘yxatdan tuman/shaharni belgilang."
+        )
+    return canonical_region, canonical_district
+
+
+@app.get("/api/maktab/aqlli_jadval/v3/hududlar")
+def v240_uzbekistan_locations(token: str):
+    """Yangi maktab formasi uchun bog'langan viloyat → tuman/shahar katalogi."""
+    _jwt_tekshir(token)
+    return {
+        "manba": dict(_V240_LOCATION_SOURCE),
+        "versiya": _V240_LOCATION_SOURCE["versiya"],
+        "viloyatlar": [
+            {
+                "kalit": _v240_location_key(region),
+                "nomi": region,
+                "tumanlar": [
+                    {"kalit": _v240_location_key(child), "nomi": child}
+                    for child in children
+                ],
+            }
+            for region, children in _V240_UZBEKISTAN_LOCATIONS
+        ],
+    }
+
+
 def _v238_normalize_instruction_language(value, default="uz"):
     """Sinf/o‘quv reja tilini bitta qat’iy DB kalitiga keltiradi."""
     raw = re.sub(r"\s+", " ", str(value or "")).strip().casefold()
@@ -13199,6 +13816,83 @@ class V198SchoolWorkspaceLinkRequest(BaseModel):
     sinf_rejasi: list[V237SchoolClassPlan] = []
 
 
+def _v240_require_institution_create_access(
+    cur,
+    user_id,
+    organization_v17_id=None,
+    context_id=None,
+):
+    """Maktab yaratish huquqini faqat serverdagi rol dalilidan tekshiradi.
+
+    To'g'ridan-to'g'ri yangi maktab ochish admin-only. V17 tashkilot IDsi
+    yuborilgan eski oqimda esa shu tashkilot yaratuvchisi/context egasi yoki
+    faol owner/manager/director/administrator a'zosi ham qonuniy. Brauzer
+    yuborgan ruxsat belgisi bu qarorga ta'sir qilmaydi.
+    """
+    user_id = int(user_id)
+    cur.execute(
+        "SELECT EXISTS(SELECT 1 FROM admin_akkaunt WHERE uid=%s) AS ruxsat",
+        (user_id,),
+    )
+    admin_row = cur.fetchone() or {}
+    if bool(admin_row.get("ruxsat")):
+        return "admin"
+
+    if organization_v17_id is None and context_id is None:
+        raise HTTPException(
+            status_code=403,
+            detail="Yangi maktabni faqat tizim administratori yaratadi.",
+        )
+
+    cur.execute(
+        """SELECT to_regclass('public.organization_trials') AS trials,
+                  to_regclass('public.learning_contexts') AS contexts,
+                  to_regclass('public.context_memberships') AS memberships"""
+    )
+    tables = cur.fetchone() or {}
+    if not tables.get("trials") or not tables.get("contexts"):
+        raise HTTPException(
+            status_code=403,
+            detail="Tanlangan muassasani yaratish vakolati tasdiqlanmadi.",
+        )
+
+    access_parts = ["o.creator_user_id=%s", "c.owner_user_id=%s"]
+    params = [user_id, user_id]
+    if tables.get("memberships"):
+        access_parts.append(
+            """EXISTS(
+                 SELECT 1 FROM context_memberships cm
+                  WHERE cm.context_id=o.context_id
+                    AND cm.user_id=%s
+                    AND cm.status='active'
+                    AND LOWER(COALESCE(cm.member_role,'')) IN
+                        ('owner','manager','director','administrator')
+               )"""
+        )
+        params.append(user_id)
+    filters = ["o.organization_type='school'", f"({' OR '.join(access_parts)})"]
+    if organization_v17_id is not None:
+        filters.append("o.id=%s")
+        params.append(int(organization_v17_id))
+    if context_id is not None:
+        filters.append("o.context_id=%s")
+        params.append(int(context_id))
+    cur.execute(
+        f"""SELECT 1
+              FROM organization_trials o
+              JOIN learning_contexts c ON c.id=o.context_id
+             WHERE {' AND '.join(filters)}
+             LIMIT 1""",
+        tuple(params),
+    )
+    if cur.fetchone():
+        return "organization"
+    raise HTTPException(
+        status_code=403,
+        detail="Tanlangan muassasani yaratish vakolati tasdiqlanmadi.",
+    )
+
+
 def _v198_existing_school_for_user(
     cur,
     user_id: int,
@@ -13311,6 +14005,13 @@ def v198_link_school_workspace(
     conn = _db()
     cur = conn.cursor()
     try:
+        if sorov.create_new:
+            _v240_require_institution_create_access(
+                cur,
+                user_id,
+                organization_v17_id=sorov.organization_v17_id,
+                context_id=sorov.context_id,
+            )
         _maktab_jadvali(cur)
         _muassasa_jadvali(cur)
 
@@ -13413,7 +14114,8 @@ def v198_link_school_workspace(
                           WHERE cm.context_id=o.context_id
                             AND cm.user_id=%s
                             AND cm.status='active'
-                            AND cm.member_role IN ('owner','manager','director','administrator')
+                            AND LOWER(COALESCE(cm.member_role,'')) IN
+                                ('owner','manager','director','administrator')
                        )"""
                 )
                 params.append(user_id)
@@ -13480,6 +14182,12 @@ def v198_link_school_workspace(
                         detail="Smena soni 1 yoki 2 bo‘lishi kerak.",
                     )
                 try:
+                    requested_region, requested_district = (
+                        _v240_validate_school_location(
+                            sorov.viloyat,
+                            sorov.tuman,
+                        )
+                    )
                     planned_classes = _v237_materialize_class_plan(
                         sorov.sinf_rejasi,
                         int(sorov.smena_soni or 1),
@@ -13520,8 +14228,8 @@ def v198_link_school_workspace(
                         linked_school,
                         int(sorov.smena_soni or 1),
                         alphabet_type,
-                        sorov.viloyat,
-                        sorov.tuman,
+                        requested_region,
+                        requested_district,
                     )
                     if config_mismatches:
                         raise HTTPException(
@@ -13543,8 +14251,8 @@ def v198_link_school_workspace(
                            RETURNING id""",
                         (
                             school_name,
-                            str(sorov.viloyat or "").strip() or None,
-                            str(sorov.tuman or "").strip() or None,
+                            requested_region,
+                            requested_district,
                             int(sorov.smena_soni or 1),
                             user_id,
                             alphabet_type,
@@ -13652,11 +14360,11 @@ def v198_link_school_workspace(
                     ),
                     "viloyat": (
                         linked_school.get("viloyat") if linked_school else
-                        (str(sorov.viloyat or "").strip() or None)
+                        requested_region
                     ),
                     "tuman": (
                         linked_school.get("tuman") if linked_school else
-                        (str(sorov.tuman or "").strip() or None)
+                        requested_district
                     ),
                     "sinflar": class_payload,
                 }
@@ -14638,7 +15346,7 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
             raise HTTPException(status_code=400, detail=f"{grade}-sinf / {subject} takrorlangan")
         if not 0 <= hours <= 20 or daily_max not in range(1, 5):
             raise HTTPException(status_code=400, detail=f"{grade}-sinf / {subject} soati noto‘g‘ri")
-        if method_day is not None and method_day not in range(1, 8):
+        if method_day is not None and method_day not in range(1, 7):
             raise HTTPException(status_code=400, detail=f"{subject} metod kuni noto‘g‘ri")
         seen.add((grade, key))
         normalized.append((grade, subject, key, hours, method_day, daily_max, index))
@@ -14728,11 +15436,10 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
         schools = [int(row["id"]) for row in cur.fetchall()]
         if (
             not sorov.tasdiqlash
-            or not plan_ready
-            or section not in {"fanlar", "yuklama", "jadval"}
+            or section not in {"fanlar", "metod"}
+            or (section == "fanlar" and not plan_ready)
         ):
-            # Markaziy draft yoki faqat metod-kun tahriri maktablarning
-            # amaldagi rejalariga tarqalmaydi.
+            # Faqat to'liq tasdiqlangan fan/reja yoki metod snapshoti tarqaladi.
             schools = []
         fan_updated = plan_updated = method_updated = 0
         for school_id in schools:
@@ -14746,6 +15453,15 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
                             WHERE maktab_id=%s AND talim_tili=%s
                               AND alohida=TRUE""", (school_id, language))
             overrides = {row["bolim"] for row in cur.fetchall()}
+            if section == "metod":
+                if "metod_kunlari" in overrides:
+                    continue
+                refresh = _v240_refresh_central_method_days(
+                    cur, school_id, language
+                )
+                if bool(refresh.get("qollandi")):
+                    method_updated += 1
+                continue
             if "fanlar" not in overrides:
                 fan_updated += 1
             if "oquv_reja" not in overrides:
@@ -14772,11 +15488,6 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
                 cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                                 WHERE maktab_id=%s AND holat='draft'""", (school_id,))
                 plan_updated += 1
-            if "metod_kunlari" not in overrides:
-                # Metod qoidasi hozir fan nomiga bog‘langan, sinf tiliga emas.
-                # Bitta til tabini saqlashda boshqa tillarning metod kunlarini
-                # ommaviy DELETE qilish xavfli; admin uni alohida tasdiqlaydi.
-                pass
         conn.commit()
         return {"holat": "tasdiqlandi" if sorov.tasdiqlash else "saqlandi",
                 "bolim": section, "talim_tili": language,
@@ -23881,6 +24592,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
     if not region or not district:
         raise HTTPException(status_code=400, detail="Viloyat va tumanni tanlang.")
     try:
+        region, district = _v240_validate_school_location(region, district)
         alphabet_type = str(sorov.alifbo_turi or "latin_xalqaro").strip().lower()
         classes = _v209_normalize_materialized_classes(
             sorov.classes, sorov.shift_count, alphabet_type
