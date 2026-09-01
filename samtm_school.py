@@ -1167,6 +1167,10 @@ def _v1852_create_tables(cur):
         "TEXT NOT NULL DEFAULT 'latin_xalqaro'"
     )
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS smena INTEGER DEFAULT 1")
+    cur.execute(
+        "ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS "
+        "talim_tili TEXT NOT NULL DEFAULT 'uz'"
+    )
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS bino TEXT")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS xona TEXT")
     # Yangi maktab ustasi xona nomini matn sifatida ham saqlaydi, lekin
@@ -1749,7 +1753,7 @@ def v1852_calendar_save(sorov: V1852CalendarSave, token: str):
     user_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
-        _v1852_tables(cur)
+        _v192_tables(cur)
         if not _v1852_manager(cur, user_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Kalendarni faqat maktab rahbariyati boshqaradi")
         if sorov.hafta_kunlari not in (5, 6) or sorov.tugash <= sorov.boshlanish:
@@ -2133,6 +2137,10 @@ class V1852GroupSettings(BaseModel):
     maktab_id: int
     sinf_id: int
     guruhlar: list[V1852GroupSettingItem]
+    # Backward-safe default: keyingi guruh turi oldingi 1/2 yoki O‘g‘il/Qiz
+    # sozlamalarini o‘chirib yubormaydi. To‘liq almashtirish faqat UI aniq
+    # tasdiqlab FALSE yuborgandagina bajariladi.
+    oldingi_tizimlarni_saqlash: bool = True
 
 
 @app.put("/api/maktab/aqlli_jadval/v2/guruh_sozlamalari")
@@ -2143,7 +2151,12 @@ def v1852_group_settings_save(sorov: V1852GroupSettings, token: str):
         _v1852_tables(cur)
         if not _v1852_manager(cur, user_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Parallel guruhlarni faqat rahbariyat sozlaydi")
-        cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s AND sinf_id=%s", (sorov.maktab_id, sorov.sinf_id))
+        if not sorov.oldingi_tizimlarni_saqlash:
+            cur.execute(
+                "DELETE FROM aqlli_guruh_sozlamalari_v2 "
+                "WHERE maktab_id=%s AND sinf_id=%s",
+                (sorov.maktab_id, sorov.sinf_id),
+            )
         rows = []
         for item in sorov.guruhlar:
             fan = re.sub(r"\s+", " ", item.fan_nomi or "").strip()
@@ -2153,8 +2166,24 @@ def v1852_group_settings_save(sorov: V1852GroupSettings, token: str):
             rows.append((sorov.maktab_id, sorov.sinf_id, fan, group_key, item.oqituvchi_user_id, item.xona_id))
         if rows:
             psycopg2.extras.execute_values(cur, """INSERT INTO aqlli_guruh_sozlamalari_v2(
-                maktab_id,sinf_id,fan_nomi,guruh_kaliti,oqituvchi_user_id,xona_id) VALUES %s""", rows)
-        conn.commit(); return {"holat": "saqlandi", "guruh_soni": len(rows)}
+                maktab_id,sinf_id,fan_nomi,guruh_kaliti,oqituvchi_user_id,xona_id)
+                VALUES %s
+                ON CONFLICT(maktab_id,sinf_id,fan_nomi,guruh_kaliti)
+                DO UPDATE SET
+                  oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
+                  xona_id=EXCLUDED.xona_id""", rows)
+        cur.execute(
+            "SELECT COUNT(*) AS soni FROM aqlli_guruh_sozlamalari_v2 "
+            "WHERE maktab_id=%s AND sinf_id=%s",
+            (sorov.maktab_id, sorov.sinf_id),
+        )
+        active_count = int((cur.fetchone() or {}).get("soni") or 0)
+        conn.commit(); return {
+            "holat": "saqlandi",
+            "guruh_soni": len(rows),
+            "faol_guruh_soni": active_count,
+            "oldingi_tizimlar_saqlandi": bool(sorov.oldingi_tizimlarni_saqlash),
+        }
     except Exception:
         conn.rollback(); raise
     finally:
@@ -2309,6 +2338,7 @@ def _v1852_setup_payload(cur, maktab_id: int):
     for shift in shifts:
         shift["slotlar"] = _v1852_shift_slots(shift)
     cur.execute("""SELECT s.id,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,s.bino,s.xona,
+                          COALESCE(s.talim_tili,'uz') AS talim_tili,
                           s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
                    FROM maktab_sinflari s
                    LEFT JOIN users u ON u.user_id=s.rahbar_user_id
@@ -7467,10 +7497,44 @@ def _v1873_primary_teacher_ids(cur, maktab_id):
 
 
 def _v1873_assignments(cur, maktab_id):
-    central_days = {}
-    for row in _v201_central_rows(cur):
-        if row.get("metod_kuni"):
-            central_days[_v1875_subject_key(row["fan_nomi"])] = int(row["metod_kuni"])
+    central_days_by_language = {}
+    for language in _V238_INSTRUCTION_LANGUAGES:
+        central_days_by_language[language] = {
+            _v1875_subject_key(row["fan_nomi"]): int(row["metod_kuni"])
+            for row in _v201_central_rows(
+                cur,
+                language,
+                required_sections=("metod",),
+            )
+            if row.get("metod_kuni")
+        }
+    # Har fan qatori o'zi biriktirilgan sinf tilidan metod kunini oladi.
+    # Bitta o'qituvchi turli tillarda dars bersa, ziddiyat odatdagi hisobotda
+    # ko'rsatiladi; UZ metod kuni RU/EN faniga jim qo'llanmaydi.
+    cur.execute("""SELECT b.user_id,b.fan_nomi,
+                          COALESCE(s.talim_tili,'uz') AS talim_tili
+                     FROM maktab_dars_birikmalari b
+                     JOIN maktab_sinflari s ON s.id=b.sinf_id
+                    WHERE b.maktab_id=%s""", (maktab_id,))
+    subject_languages = {}
+    for row in cur.fetchall():
+        key = (int(row["user_id"]), _v1875_subject_key(row["fan_nomi"]))
+        subject_languages.setdefault(key, set()).add(
+            _v238_normalize_instruction_language(row.get("talim_tili"))
+        )
+    # Legacy importlarda canonical dars birikmasi hali yaratilmagan, ammo
+    # xodim–sinf fan bog'lanishi mavjud bo'lishi mumkin. Bunday o'qituvchini
+    # UZga majburan tushirmay, bog'langan sinfning haqiqiy tilini olamiz.
+    cur.execute("""SELECT x.user_id,x.fanlari,
+                          COALESCE(s.talim_tili,'uz') AS talim_tili
+                     FROM maktab_xodim_sinflari x
+                     JOIN maktab_sinflari s ON s.id=x.sinf_id
+                    WHERE x.maktab_id=%s""", (maktab_id,))
+    for row in cur.fetchall():
+        language = _v238_normalize_instruction_language(row.get("talim_tili"))
+        for subject in _v1859_fanlarni_ajrat(row.get("fanlari")):
+            key = (int(row["user_id"]), _v1875_subject_key(subject))
+            subject_languages.setdefault(key, set()).add(language)
     primary_ids = _v1873_primary_teacher_ids(cur, maktab_id)
     teachers = [
         row for row in _v1859_effective_teachers(cur, maktab_id)
@@ -7510,9 +7574,24 @@ def _v1873_assignments(cur, maktab_id):
 
         by_day = {}
         for subject in teacher.get("fanlar_royxati") or []:
-            day = _v1873_subject_day(subject, central_days)
-            if day:
-                by_day.setdefault(day, []).append(str(subject))
+            languages = subject_languages.get(
+                (uid, _v1875_subject_key(subject)), {"uz"}
+            )
+            days_for_subject = {}
+            for language in sorted(languages):
+                day = _v1873_subject_day(
+                    subject, central_days_by_language.get(language, {})
+                )
+                if day:
+                    days_for_subject.setdefault(day, []).append(language)
+            # Bir fan UZ/RU/ENda ayni metod kuniga tushsa u ovozni ikki marta
+            # oshirmaydi. Faqat haqiqatan boshqa kun bo'lsa til belgisi bilan
+            # alohida nomzod bo'lib qoladi.
+            for day, day_languages in sorted(days_for_subject.items()):
+                label = str(subject)
+                if len(days_for_subject) > 1:
+                    label = f"{label} [{'/'.join(value.upper() for value in day_languages)}]"
+                by_day.setdefault(day, []).append(label)
         if not by_day:
             continue
 
@@ -7669,7 +7748,13 @@ def v1873_official_method_save(sorov: V1873OfficialMethodSettings, token: str):
         _v1873_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Rasmiy metod kunlarini faqat maktab rahbariyati boshqaradi")
-        _v201_mark_school_override(cur, sorov.maktab_id, "metod_kunlari", actor_id)
+        # Rasmiy metod sozlamasi o'qituvchi bo'yicha global qo'llanadi. Shuning
+        # uchun maktabdagi barcha ta'lim tillarida markaziy metod override deb
+        # belgilanadi; faqat UZni belgilash RU/ENni keyin bosib ketishi mumkin.
+        for language in _V238_INSTRUCTION_LANGUAGES:
+            _v201_mark_school_override(
+                cur, sorov.maktab_id, "metod_kunlari", actor_id, language
+            )
 
         assignments, conflicts = _v1873_assignments(cur, sorov.maktab_id)
         if sorov.yoqilgan:
@@ -8633,6 +8718,33 @@ def _v1875_rebuild_schedule_sources(cur, maktab_id: int, cancel_drafts=True, rea
     if model["xatolar"]:
         return model
 
+    # Ko'p tilli rejada tillardan bittasi draft bo'lsa global reja ham draft.
+    # Bu holatda eski, tasdiqlangan yuklama va guruh sozlamalariga umuman
+    # tegmaymiz: yangi qo'lda kiritilgan birikmalar keyingi to'liq tasdiqdan
+    # so'ng UPSERT orqali sinxronlanadi.
+    if _v193_approved_plan_map(cur, maktab_id) is None:
+        draft_message = (
+            "O'quv rejaning barcha faol tillari tasdiqlanmaguncha "
+            "eski jadval manbasi o'zgartirilmaydi"
+        )
+        return {
+            "tayyor": False,
+            "fan_sinf_soni": 0,
+            "oqituvchi_soni": len(model.get("teacher_hours") or {}),
+            "sinflar": dict(model.get("class_hours") or {}),
+            "oqituvchilar": dict(model.get("teacher_hours") or {}),
+            "xatolar": (
+                [draft_message]
+                if reason in {"jadval_yaratish_v23", "moslik_tekshiruvi"}
+                else []
+            ),
+            "ogohlantirishlar": list(dict.fromkeys([
+                *(model.get("ogohlantirishlar") or []),
+                draft_message,
+            ])),
+            "yuklamalar": [],
+        }
+
     # Old pedagogik sozlamalarni fan nomi normallashgan kalit bilan saqlab qolamiz.
     cur.execute("SELECT * FROM aqlli_sinf_fan_yuklamalari_v2 WHERE maktab_id=%s", (maktab_id,))
     old_loads = [dict(row) for row in cur.fetchall()]
@@ -8648,11 +8760,8 @@ def _v1875_rebuild_schedule_sources(cur, maktab_id: int, cancel_drafts=True, rea
         for row in cur.fetchall()
     }
 
-    # FK sabab yuklama qatorlarini o'chirmaymiz: eskilarni 0/eskirgan qilamiz.
-    cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
-                   SET haftalik_soat=0,manba='eskirgan'
-                   WHERE maktab_id=%s""", (maktab_id,))
-    cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
+    # Faqat modeldagi aniq juftliklar UPSERT qilinadi. Maktab bo'yicha global
+    # nolga tushirish/DELETE boshqa til yoki avvalgi guruh sxemasini yo'qotar edi.
 
     synced_pairs = []
     for key, pair in sorted(model["pairs"].items(), key=lambda item: (item[0][0], item[1]["fan_nomi"].casefold())):
@@ -8723,9 +8832,8 @@ def _v1875_rebuild_schedule_sources(cur, maktab_id: int, cancel_drafts=True, rea
             "turi": pair["turi"], "oqituvchilar": pair["oqituvchilar"],
         })
 
-    # O'qituvchining shablondagi jami — exact birikmalar yig'indisi.
-    cur.execute("""UPDATE users SET haftalik_dars_soati=0
-                   WHERE maktab_id=%s AND lavozim='fan_oqituvchisi'""", (maktab_id,))
+    # Faqat ayni modelda qatnashgan o'qituvchilar jami yangilanadi; aloqasiz
+    # tarixiy/xizmat yozuvlari ommaviy nolga tushirilmaydi.
     for teacher_id, hours in model["teacher_hours"].items():
         cur.execute("UPDATE users SET haftalik_dars_soati=%s WHERE maktab_id=%s AND user_id=%s",
                     (round(float(hours), 1), maktab_id, int(teacher_id)))
@@ -9884,6 +9992,15 @@ def v1875_schedule_preflight(token: str, maktab_id: int):
                     "ogohlantirishlar": sync.get("ogohlantirishlar", []),
                     "sinflar": [], "oqituvchilar": [], "fanlar": [],
                     "xulosa": {"xato_soni": len(sync["xatolar"])}}
+        if not sync.get("tayyor"):
+            conn.rollback()
+            return {
+                "tayyor": False,
+                "xatolar": ["Barcha faol ta'lim tillari rejasi tasdiqlanmagan"],
+                "ogohlantirishlar": sync.get("ogohlantirishlar", []),
+                "sinflar": [], "oqituvchilar": [], "fanlar": [],
+                "xulosa": {"xato_soni": 1},
+            }
         report = _v1875_preflight_report(cur, maktab_id)
         conn.commit()
         return report
@@ -10001,7 +10118,13 @@ def _v1876_group_system_catalog(cur, maktab_id: int):
     for raw in cur.fetchall():
         system = dict(raw)
         if system["turi"] in ("gender", "alphabet"):
-            _sinf_guruh_tizimini_taqsimla(cur, int(system["id"]))
+            cur.execute(
+                "SELECT COUNT(*) AS soni FROM maktab_sinf_guruh_azolari "
+                "WHERE tizim_id=%s",
+                (system["id"],),
+            )
+            if int((cur.fetchone() or {}).get("soni") or 0) == 0:
+                _sinf_guruh_tizimini_taqsimla(cur, int(system["id"]))
         groups = _v1876_system_group_rows(cur, system)
         if system["turi"] in ("gender", "alphabet"):
             cur.execute("""SELECT guruh_kaliti,COUNT(*) AS soni
@@ -11024,18 +11147,19 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
         )
 
         cur.execute(
-            "SELECT id,turi,fanlar FROM maktab_sinf_guruh_tizimlari "
-            "WHERE sinf_id=%s AND faol=TRUE ORDER BY id FOR UPDATE",
+            "SELECT id,turi,fanlar,faol FROM maktab_sinf_guruh_tizimlari "
+            "WHERE sinf_id=%s ORDER BY id FOR UPDATE",
             (sorov.sinf_id,),
         )
-        active_systems = [dict(row) for row in cur.fetchall()]
+        all_systems = [dict(row) for row in cur.fetchall()]
         existing = next(
-            (row for row in active_systems if str(row.get("turi")) == kind),
+            (row for row in all_systems if str(row.get("turi")) == kind),
             None,
         )
         linked_elsewhere = [
-            row for row in active_systems
+            row for row in all_systems
             if str(row.get("turi")) != kind
+            and bool(row.get("faol", True))
             and any(
                 _v204_group_subject_matches(value, subject)
                 for value in (row.get("fanlar") or [])
@@ -11077,71 +11201,17 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
                         actor_id,
                     ))
         system_id = int(cur.fetchone()["id"])
-        _sinf_guruh_tizimini_taqsimla(cur, system_id)
-
-        # Fan avval butun sinf o'qituvchisiga biriktirilgan bo'lsa, guruh
-        # tizimi yoqilganda eski ``whole`` qatori ko'rinmay qolib dublikat
-        # yuklamaga aylanmasin. Uni birinchi guruhga xavfsiz ko'chiramiz;
-        # qolgan guruh o'qituvchisini foydalanuvchi setkada tanlaydi.
-        target_group_keys = (
-            {"group_1", "group_2"}
-            if kind == "alphabet" else {"boys", "girls"}
-        )
-        first_group_key = "group_1" if kind == "alphabet" else "boys"
         cur.execute(
-            """SELECT id,user_id,fan_nomi,
-                      COALESCE(NULLIF(guruh_kaliti,''),'whole') AS guruh_kaliti
-                 FROM maktab_dars_birikmalari
-                WHERE maktab_id=%s AND sinf_id=%s
-                ORDER BY id FOR UPDATE""",
-            (sorov.maktab_id, sorov.sinf_id),
+            "SELECT COUNT(*) AS soni FROM maktab_sinf_guruh_azolari "
+            "WHERE tizim_id=%s",
+            (system_id,),
         )
-        matching_rows = [
-            dict(row) for row in cur.fetchall()
-            if _v204_group_subject_matches(row.get("fan_nomi"), subject)
-        ]
-        whole_rows = [
-            row for row in matching_rows
-            if _v1875_group_key(row.get("guruh_kaliti")) == "whole"
-        ]
-        grouped_rows = [
-            row for row in matching_rows
-            if _v1875_group_key(row.get("guruh_kaliti")) != "whole"
-        ]
-        incompatible_group_rows = [
-            row for row in grouped_rows
-            if _v1875_group_key(row.get("guruh_kaliti"))
-            not in target_group_keys
-        ]
-        if incompatible_group_rows:
-            raise HTTPException(
-                status_code=409,
-                detail=(
-                    "Bu fanda oldingi boshqa turdagi guruh yuklamasi bor. "
-                    "Uni O'qituvchi va yuklama oynasida tozalab, keyin yangi "
-                    "guruh turini tanlang"
-                ),
-            )
-        if len(whole_rows) > 1:
-            raise HTTPException(
-                status_code=409,
-                detail="Bu fan butun sinf bo'yicha bir nechta o'qituvchiga bo'lingan; avval yuklamani bitta qatorga birlashtiring",
-            )
-        affected_teachers = set()
-        if whole_rows and not grouped_rows:
-            cur.execute(
-                "UPDATE maktab_dars_birikmalari SET guruh_kaliti=%s WHERE id=%s",
-                (first_group_key, int(whole_rows[0]["id"])),
-            )
-            affected_teachers.add(int(whole_rows[0]["user_id"]))
-        elif whole_rows and grouped_rows:
-            cur.execute(
-                "DELETE FROM maktab_dars_birikmalari WHERE id=%s",
-                (int(whole_rows[0]["id"]),),
-            )
-            affected_teachers.add(int(whole_rows[0]["user_id"]))
-        for teacher_id in sorted(affected_teachers):
-            _v195_refresh_teacher_summary(cur, sorov.maktab_id, teacher_id)
+        if int((cur.fetchone() or {}).get("soni") or 0) == 0:
+            _sinf_guruh_tizimini_taqsimla(cur, system_id)
+
+        # Tezkor tugma faqat sinf–fan guruh sxemasini yaratadi/bog'laydi.
+        # O'qituvchining ``whole`` yoki aniq guruh yuklamasi bu endpointda
+        # UPDATE/DELETE qilinmaydi; foydalanuvchi uni setkada ongli tanlaydi.
 
         cur.execute(
             "SELECT turi FROM maktab_sinf_guruh_tizimlari "
@@ -11176,7 +11246,161 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
     finally:
         cur.close(); conn.close()
 
-# ========================= V18.76 QUICK GROUP SYSTEM END =========================
+
+class V238ClassGroupSystemsBatch(BaseModel):
+    maktab_id: int
+    sinf_idlar: list[int]
+    tizimlar: list[str]
+
+
+def _v238_normalize_group_system(value):
+    key = re.sub(r"\s+", "", str(value or "")).strip().casefold()
+    normalized = {
+        "alphabet": "alphabet", "1/2": "alphabet", "1_2": "alphabet",
+        "numbered": "alphabet", "ikki_guruh": "alphabet",
+        "gender": "gender", "o'g'il/qiz": "gender", "o‘g‘il/qiz": "gender",
+        "ogil_qiz": "gender", "boys_girls": "gender",
+    }.get(key)
+    if normalized is None:
+        raise ValueError("Guruh turi faqat 1/2-guruh yoki O‘g‘il/Qiz bo‘lishi kerak")
+    return normalized
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/sinf_guruh_tizimlari")
+def v238_class_group_systems_add(sorov: V238ClassGroupSystemsBatch, token: str):
+    """Tanlangan sinflarga guruh sxemalarini faqat qo‘shadi (merge/upsert).
+
+    1/2-guruhdan keyin O‘g‘il/Qiz qo‘shilsa birinchi sxema, uning fanlari,
+    a’zolari va o‘qituvchi/xona sozlamalari o‘chirilmaydi.
+    """
+    actor_id = _jwt_tekshir(token)
+    try:
+        class_ids = sorted({int(value) for value in sorov.sinf_idlar})
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail="Sinf IDlari noto‘g‘ri") from exc
+    if not class_ids:
+        raise HTTPException(status_code=400, detail="Kamida bitta sinfni tanlang")
+    try:
+        kinds = []
+        for value in sorov.tizimlar:
+            kind = _v238_normalize_group_system(value)
+            if kind not in kinds:
+                kinds.append(kind)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    if not kinds:
+        raise HTTPException(status_code=400, detail="Kamida bitta guruh turini tanlang")
+
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1876_tables(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Guruh tizimini faqat maktab rahbariyati sozlaydi",
+            )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1926000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT id FROM maktab_sinflari "
+            "WHERE maktab_id=%s AND id=ANY(%s) ORDER BY id FOR UPDATE",
+            (sorov.maktab_id, class_ids),
+        )
+        found = {int(row["id"]) for row in cur.fetchall()}
+        missing = sorted(set(class_ids) - found)
+        if missing:
+            raise HTTPException(
+                status_code=404,
+                detail="Bu maktabga tegishli bo‘lmagan sinf IDlari: "
+                + ", ".join(map(str, missing)),
+            )
+
+        created = 0
+        restored = 0
+        for class_id in class_ids:
+            for kind in kinds:
+                cur.execute(
+                    "SELECT id,faol FROM maktab_sinf_guruh_tizimlari "
+                    "WHERE sinf_id=%s AND turi=%s FOR UPDATE",
+                    (class_id, kind),
+                )
+                existing = cur.fetchone()
+                if existing:
+                    if not bool(existing.get("faol", True)):
+                        restored += 1
+                    cur.execute(
+                        "UPDATE maktab_sinf_guruh_tizimlari "
+                        "SET nomi=%s,faol=TRUE,yangilangan_at=NOW() WHERE id=%s",
+                        (_SINF_GURUH_TIZIM_NOMLARI[kind], existing["id"]),
+                    )
+                    # Mavjud fanlar va a'zolar saqlanadi. Faqat tarixiy yarim
+                    # qolgan, a'zosi umuman yo'q tizim qayta taqsimlanadi.
+                    cur.execute(
+                        "SELECT COUNT(*) AS soni FROM maktab_sinf_guruh_azolari "
+                        "WHERE tizim_id=%s",
+                        (existing["id"],),
+                    )
+                    if int((cur.fetchone() or {}).get("soni") or 0) == 0:
+                        _sinf_guruh_tizimini_taqsimla(cur, int(existing["id"]))
+                    continue
+                cur.execute(
+                    """INSERT INTO maktab_sinf_guruh_tizimlari(
+                         sinf_id,turi,nomi,fanlar,faol,yaratilgan_by,yangilangan_at)
+                       VALUES(%s,%s,%s,ARRAY[]::TEXT[],TRUE,%s,NOW())
+                       RETURNING id""",
+                    (class_id, kind, _SINF_GURUH_TIZIM_NOMLARI[kind], actor_id),
+                )
+                system_id = int(cur.fetchone()["id"])
+                _sinf_guruh_tizimini_taqsimla(cur, system_id)
+                created += 1
+
+            cur.execute(
+                "SELECT turi FROM maktab_sinf_guruh_tizimlari "
+                "WHERE sinf_id=%s AND faol=TRUE ORDER BY id",
+                (class_id,),
+            )
+            active_types = [row["turi"] for row in cur.fetchall()]
+            legacy = (
+                active_types[0] if len(active_types) == 1
+                else ("manual" if active_types else "none")
+            )
+            cur.execute(
+                "UPDATE maktab_sinflari SET guruhlash_usuli=%s WHERE id=%s",
+                (legacy, class_id),
+            )
+
+        cur.execute(
+            "UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor' "
+            "WHERE maktab_id=%s AND holat='draft'",
+            (sorov.maktab_id,),
+        )
+        cur.execute(
+            """SELECT t.id,t.sinf_id,t.turi,t.nomi,t.fanlar,t.faol
+                 FROM maktab_sinf_guruh_tizimlari t
+                WHERE t.sinf_id=ANY(%s) AND t.faol=TRUE
+                ORDER BY t.sinf_id,t.id""",
+            (class_ids,),
+        )
+        active = [dict(row) for row in cur.fetchall()]
+        conn.commit()
+        return {
+            "holat": "saqlandi",
+            "qoshildi": created,
+            "qayta_faollashtirildi": restored,
+            "oldingi_tizimlar_saqlandi": True,
+            "sinflar": class_ids,
+            "tizimlar": active,
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+# ========================= V18.76 QUICK/ADDITIVE GROUP SYSTEM END =========================
 
 
 # ═══════════════════════════════════════════════════════════
@@ -11253,6 +11477,16 @@ def _v192_tables(cur):
         tasdiqlagan_user_id BIGINT,
         tasdiqlangan_at TIMESTAMPTZ,
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_oquv_reja_til_holati_v238(
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        talim_tili TEXT NOT NULL,
+        holat TEXT NOT NULL DEFAULT 'draft' CHECK(holat IN ('draft','tasdiqlangan')),
+        versiya INTEGER NOT NULL DEFAULT 1,
+        tasdiqlagan_user_id BIGINT,
+        tasdiqlangan_at TIMESTAMPTZ,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        PRIMARY KEY(maktab_id,talim_tili)
     )""")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_oquv_reja_qatorlari_v19_3(
         id BIGSERIAL PRIMARY KEY,
@@ -11397,6 +11631,33 @@ _V237_CLASS_ALPHABETS = {
     ),
 }
 
+
+_V238_INSTRUCTION_LANGUAGES = {
+    "uz": "O‘zbek tili",
+    "ru": "Rus tili",
+    "en": "Ingliz tili",
+}
+_V238_INSTRUCTION_LANGUAGE_ALIASES = {
+    "uz": "uz", "uzb": "uz", "uzbek": "uz", "o'zbek": "uz",
+    "o‘zbek": "uz", "ўзбек": "uz",
+    "ru": "ru", "rus": "ru", "russian": "ru", "рус": "ru",
+    "русский": "ru",
+    "en": "en", "eng": "en", "english": "en", "ingliz": "en",
+}
+
+
+def _v238_normalize_instruction_language(value, default="uz"):
+    """Sinf/o‘quv reja tilini bitta qat’iy DB kalitiga keltiradi."""
+    raw = re.sub(r"\s+", " ", str(value or "")).strip().casefold()
+    if not raw:
+        raw = str(default or "uz").strip().casefold()
+    normalized = _V238_INSTRUCTION_LANGUAGE_ALIASES.get(raw)
+    if normalized is None:
+        raise ValueError(
+            "Ta’lim tili noto‘g‘ri. Faqat uz (o‘zbek), ru (rus) yoki en (ingliz) tanlanadi."
+        )
+    return normalized
+
 _V237_APOSTROPHES = str.maketrans({
     "ʻ": "'", "ʼ": "'", "’": "'", "‘": "'", "`": "'", "´": "'",
     "ʹ": "'", "＇": "'",
@@ -11445,6 +11706,7 @@ class V237SchoolClassPlan(BaseModel):
     sinf: int
     birinchi_smena: int = 0
     ikkinchi_smena: int = 0
+    talim_tili: str = "uz"
 
 
 def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
@@ -11463,8 +11725,8 @@ def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
     sources = list(raw_plan or [])
     if not sources:
         return []
-    seen_grades = set()
-    materialized = []
+    seen_grade_languages = set()
+    normalized_sources = []
     for source in sources:
         if isinstance(source, dict):
             item = dict(source)
@@ -11475,36 +11737,68 @@ def _v237_materialize_class_plan(raw_plan, shift_count, alphabet_type):
             grade = int(item.get("sinf"))
             first_count = int(item.get("birinchi_smena") or 0)
             second_count = int(item.get("ikkinchi_smena") or 0)
+            instruction_language = _v238_normalize_instruction_language(
+                item.get("talim_tili")
+            )
         except (TypeError, ValueError) as exc:
             raise ValueError("Sinf va parallel sonlari butun raqam bo‘lishi kerak.") from exc
         if grade not in range(1, 12):
             raise ValueError("Sinf darajasi 1–11 oralig‘ida bo‘lishi kerak.")
-        if grade in seen_grades:
-            raise ValueError(f"{grade}-sinf rejasi ikki marta yuborilgan.")
-        seen_grades.add(grade)
+        pair = (grade, instruction_language)
+        if pair in seen_grade_languages:
+            raise ValueError(
+                f"{grade}-sinf / {_V238_INSTRUCTION_LANGUAGES[instruction_language]} "
+                "rejasi ikki marta yuborilgan."
+            )
+        seen_grade_languages.add(pair)
         if first_count < 0 or second_count < 0:
             raise ValueError(f"{grade}-sinf parallel soni manfiy bo‘lishi mumkin emas.")
         if shift_count == 1 and second_count:
             raise ValueError(
                 f"{grade}-sinf uchun 2-smena tanlangan, lekin maktab 1 smenali."
             )
-        total = first_count + second_count
+        normalized_sources.append({
+            "sinf": grade,
+            "talim_tili": instruction_language,
+            "birinchi_smena": first_count,
+            "ikkinchi_smena": second_count,
+        })
+
+    materialized = []
+    language_order = {"uz": 0, "ru": 1, "en": 2}
+    grades = sorted({row["sinf"] for row in normalized_sources})
+    for grade in grades:
+        grade_rows = sorted(
+            (row for row in normalized_sources if row["sinf"] == grade),
+            key=lambda row: language_order[row["talim_tili"]],
+        )
+        total = sum(
+            row["birinchi_smena"] + row["ikkinchi_smena"]
+            for row in grade_rows
+        )
         if total > len(alphabet):
             raise ValueError(
                 f"{grade}-sinf uchun {total} ta parallel tanlangan; "
                 f"{alphabet_type} alifbosida ko‘pi bilan {len(alphabet)} ta yorliq bor."
             )
-        for index in range(total):
-            shift = 1 if index < first_count else 2
-            label = alphabet[index]
-            materialized.append({
-                "sinf": grade,
-                "harf": label,
-                "smena": shift,
-                "name": f"{grade}-{label}",
-                "alifbo_turi": alphabet_type,
-                "alifbo_tartibi": index,
-            })
+        # Bir xil darajadagi UZ -> RU -> EN ketma-ketligi saqlanadi. Shu bilan
+        # birga barcha 1-smena harflari tugagach 2-smena davom etadi; masalan
+        # UZ(A), RU(B), EN(C), keyin 2-smena UZ(D)...
+        next_index = 0
+        for shift_key, shift in (("birinchi_smena", 1), ("ikkinchi_smena", 2)):
+            for row in grade_rows:
+                for _ in range(int(row[shift_key])):
+                    label = alphabet[next_index]
+                    materialized.append({
+                        "sinf": grade,
+                        "harf": label,
+                        "smena": shift,
+                        "name": f"{grade}-{label}",
+                        "talim_tili": row["talim_tili"],
+                        "alifbo_turi": alphabet_type,
+                        "alifbo_tartibi": next_index,
+                    })
+                    next_index += 1
     if not materialized:
         raise ValueError("Sinf rejasida kamida bitta parallel sonini kiriting.")
     return sorted(materialized, key=lambda row: (row["sinf"], row["alifbo_tartibi"]))
@@ -11545,6 +11839,7 @@ def _v237_school_retry_class_plan_matches(expected_rows, actual_rows):
                 str(row["sinf"]),
                 _v237_parallel_label_key(row["harf"]),
                 int(row["smena"]),
+                _v238_normalize_instruction_language(row.get("talim_tili")),
             )
             for row in (rows or [])
         }
@@ -11936,7 +12231,8 @@ def v198_link_school_workspace(
                     )
                     maktab_id = int(cur.fetchone()["id"])
                 cur.execute(
-                    """SELECT id,sinf,harf,COALESCE(smena,1) AS smena
+                    """SELECT id,sinf,harf,COALESCE(smena,1) AS smena,
+                              COALESCE(talim_tili,'uz') AS talim_tili
                          FROM maktab_sinflari WHERE maktab_id=%s
                          ORDER BY id FOR UPDATE""",
                     (maktab_id,),
@@ -11961,6 +12257,9 @@ def v198_link_school_workspace(
                             "sinf": str(row["sinf"]),
                             "harf": row["harf"],
                             "smena": int(row["smena"]),
+                            "talim_tili": _v238_normalize_instruction_language(
+                                row.get("talim_tili")
+                            ),
                         }
                         for row in sorted(
                             current_classes,
@@ -11974,13 +12273,15 @@ def v198_link_school_workspace(
                     )
                     for class_row in planned_classes:
                         cur.execute(
-                            """INSERT INTO maktab_sinflari(maktab_id,sinf,harf,smena)
-                               VALUES(%s,%s,%s,%s) RETURNING id""",
+                            """INSERT INTO maktab_sinflari(
+                                   maktab_id,sinf,harf,smena,talim_tili)
+                               VALUES(%s,%s,%s,%s,%s) RETURNING id""",
                             (
                                 maktab_id,
                                 str(class_row["sinf"]),
                                 class_row["harf"],
                                 int(class_row["smena"]),
+                                class_row["talim_tili"],
                             ),
                         )
                         class_id = int(cur.fetchone()["id"])
@@ -11990,6 +12291,7 @@ def v198_link_school_workspace(
                             "sinf": str(class_row["sinf"]),
                             "harf": class_row["harf"],
                             "smena": int(class_row["smena"]),
+                            "talim_tili": class_row["talim_tili"],
                             "alifbo_tartibi": int(class_row["alifbo_tartibi"]),
                         })
                 _v1852_default_shifts(
@@ -12145,6 +12447,7 @@ class V237ClassCreateRequest(BaseModel):
     harf: str
     smena: int = 1
     xona_id: Optional[int] = None
+    talim_tili: str = "uz"
 
 
 class V237SchoolAlphabetRequest(BaseModel):
@@ -12161,6 +12464,8 @@ class V237ClassEditRequest(BaseModel):
     # TRUE bo'lmaguncha mavjud xona tasodifan NULL bo'lib qolmaydi.
     xona_id: Optional[int] = None
     xona_yangilansin: bool = False
+    # Eski frontend yubormasa mavjud sinf tili o‘zgarmaydi.
+    talim_tili: Optional[str] = None
 
 
 def _v237_resolve_class_room(cur, maktab_id: int, xona_id, smena: int,
@@ -12234,6 +12539,9 @@ def v237_class_create(sorov: V237ClassCreateRequest, token: str):
             grade = int(sorov.sinf)
             label = _v237_clean_parallel_label(sorov.harf)
             label_key = _v237_parallel_label_key(label)
+            instruction_language = _v238_normalize_instruction_language(
+                sorov.talim_tili
+            )
         except (TypeError, ValueError) as exc:
             raise HTTPException(status_code=400, detail=str(exc)) from exc
         if grade not in range(1, 12):
@@ -12266,17 +12574,20 @@ def v237_class_create(sorov: V237ClassCreateRequest, token: str):
         )
         cur.execute(
             """INSERT INTO maktab_sinflari(
-                   maktab_id,sinf,harf,smena,bino,xona,bino_id,xona_id
-               ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+                   maktab_id,sinf,harf,smena,bino,xona,bino_id,xona_id,
+                   talim_tili
+               ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
             (
                 sorov.maktab_id, str(grade), label, shift,
                 room["bino"], room["xona"], room["bino_id"], room["xona_id"],
+                instruction_language,
             ),
         )
         class_id = int(cur.fetchone()["id"])
         _v199_ensure_class_hour_rules(cur, sorov.maktab_id, [class_id], actor_id)
         cur.execute(
-            "SELECT id,sinf,harf,COALESCE(smena,1) AS smena FROM maktab_sinflari "
+            "SELECT id,sinf,harf,COALESCE(smena,1) AS smena,"
+            "COALESCE(talim_tili,'uz') AS talim_tili FROM maktab_sinflari "
             "WHERE maktab_id=%s ORDER BY id",
             (sorov.maktab_id,),
         )
@@ -12288,7 +12599,8 @@ def v237_class_create(sorov: V237ClassCreateRequest, token: str):
         )
         result = {
             "id": class_id, "sinf": str(grade), "harf": label,
-            "name": f"{grade}-{label}", "smena": shift, **room,
+            "name": f"{grade}-{label}", "smena": shift,
+            "talim_tili": instruction_language, **room,
         }
         conn.commit()
         return {"holat": "yaratildi", "sinf": result, "oquv_reja_holati": "draft"}
@@ -12332,7 +12644,7 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
-        _v1852_tables(cur)
+        _v192_tables(cur)
         _v209_school_creation_tables(cur)
         conn.commit()
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
@@ -12365,7 +12677,8 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
             )
         cur.execute(
             """SELECT id,sinf,harf,COALESCE(smena,1) AS smena,
-                      bino,xona,bino_id,xona_id
+                      bino,xona,bino_id,xona_id,
+                      COALESCE(talim_tili,'uz') AS talim_tili
                  FROM maktab_sinflari
                 WHERE id=%s AND maktab_id=%s FOR UPDATE""",
             (sorov.sinf_id, sorov.maktab_id),
@@ -12397,8 +12710,54 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
                 status_code=409,
                 detail=f"{current['sinf']}-{new_label} sinfi allaqachon mavjud",
             )
+        try:
+            new_language = (
+                _v238_normalize_instruction_language(sorov.talim_tili)
+                if sorov.talim_tili is not None
+                else _v238_normalize_instruction_language(current.get("talim_tili"))
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
         changed_shift = int(current.get("smena") or 1) != new_shift
         changed_label = str(current.get("harf") or "") != new_label
+        current_language = _v238_normalize_instruction_language(
+            current.get("talim_tili")
+        )
+        changed_language = current_language != new_language
+        if changed_language:
+            # Tilni jim almashtirib eski fan/yuklama/guruh/jadvalni o‘chirish
+            # mumkin emas. Bo‘sh sinfda ruxsat; ishlatilgan sinf uchun alohida
+            # ko‘chirish oqimi kerakligi aniq 409 bilan bildiriladi.
+            cur.execute(
+                """SELECT
+                     (SELECT COUNT(*) FROM aqlli_oquv_reja_qatorlari_v19_3
+                       WHERE maktab_id=%s AND sinf_id=%s) AS reja,
+                     (SELECT COUNT(*) FROM maktab_dars_birikmalari
+                       WHERE maktab_id=%s AND sinf_id=%s) AS birikma,
+                     (SELECT COUNT(*) FROM maktab_sinf_guruh_tizimlari
+                       WHERE sinf_id=%s AND faol=TRUE) AS guruh,
+                     (SELECT COUNT(*) FROM aqlli_jadval_slotlari_v2 e
+                       JOIN aqlli_jadval_urinishlari_v2 u ON u.id=e.urinish_id
+                      WHERE u.maktab_id=%s AND e.sinf_id=%s) AS jadval""",
+                (
+                    sorov.maktab_id, sorov.sinf_id,
+                    sorov.maktab_id, sorov.sinf_id,
+                    sorov.sinf_id,
+                    sorov.maktab_id, sorov.sinf_id,
+                ),
+            )
+            used = dict(cur.fetchone() or {})
+            if any(int(used.get(key) or 0) > 0 for key in (
+                "reja", "birikma", "guruh", "jadval"
+            )):
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Bu sinfda o‘quv reja/yuklama/guruh yoki jadval ma’lumoti bor. "
+                        "Ta’lim tilini almashtirish ma’lumotni o‘chirishi mumkin; yangi "
+                        "sinfni to‘g‘ri tilda yarating yoki maxsus ko‘chirishni bajaring."
+                    ),
+                )
         room = {
             "xona_id": current.get("xona_id"),
             "bino_id": current.get("bino_id"),
@@ -12417,25 +12776,35 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
             (current.get(key) or None) != (room.get(key) or None)
             for key in ("xona_id", "bino_id", "xona", "bino")
         )
-        if changed_shift or changed_label or changed_room:
+        if changed_shift or changed_label or changed_room or changed_language:
             cur.execute(
                 """UPDATE maktab_sinflari
-                      SET harf=%s,smena=%s,bino=%s,xona=%s,bino_id=%s,xona_id=%s
+                      SET harf=%s,smena=%s,bino=%s,xona=%s,bino_id=%s,xona_id=%s,
+                          talim_tili=%s
                     WHERE id=%s AND maktab_id=%s""",
                 (
                     new_label, new_shift, room["bino"], room["xona"],
                     room["bino_id"], room["xona_id"],
+                    new_language,
                     sorov.sinf_id, sorov.maktab_id,
                 ),
             )
             # Draft eski smenaga qarab yaratilgan bo'lishi mumkin. Tasdiqlangan
             # jadval arxiv sifatida qoladi; yangi draft esa qayta yaratiladi.
-            if changed_shift or changed_room:
+            if changed_shift or changed_room or changed_language:
                 cur.execute(
                     """UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                         WHERE maktab_id=%s AND holat='draft'""",
                     (sorov.maktab_id,),
                 )
+            if changed_language:
+                _v238_mark_plan_languages_draft(
+                    cur, sorov.maktab_id, [current_language, new_language]
+                )
+                cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
+                                  SET holat='draft',tasdiqlagan_user_id=NULL,
+                                      tasdiqlangan_at=NULL,yangilangan_at=NOW()
+                                WHERE maktab_id=%s""", (sorov.maktab_id,))
         cur.execute(
             "SELECT COALESCE(alifbo_turi,'latin_xalqaro') AS alifbo_turi FROM maktablar WHERE id=%s",
             (sorov.maktab_id,),
@@ -12447,6 +12816,7 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
             "harf": new_label,
             "name": f"{current['sinf']}-{new_label}",
             "smena": new_shift,
+            "talim_tili": new_language,
             **room,
             "alifbo_turi": alphabet_type,
             "tartib": list(_v237_class_sort_key({
@@ -12454,12 +12824,14 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
                 "sinf": current["sinf"],
                 "harf": new_label,
             }, alphabet_type)[:2]),
-            "jadval_qayta_yaratish_kerak": changed_shift or changed_room,
+            "jadval_qayta_yaratish_kerak": (
+                changed_shift or changed_room or changed_language
+            ),
         }
         conn.commit()
         return {
             "holat": "saqlandi", "sinf": result,
-            "ozgardi": changed_shift or changed_label or changed_room,
+            "ozgardi": changed_shift or changed_label or changed_room or changed_language,
         }
     except Exception:
         conn.rollback(); raise
@@ -12521,6 +12893,65 @@ SAMTM_2026_2027_CURRICULUM_SOURCE = {
 }
 
 
+_V238_RU_SUBJECT_NAMES = {
+    "Ona tili": "Русский язык",
+    "O'qish savodxonligi": "Литературное чтение",
+    "Adabiyot": "Литература", "Rus tili": "Узбекский язык",
+    "Chet tili": "Иностранный язык",
+    "Tarixdan hikoyalar": "Рассказы по истории",
+    "Qadimgi dunyo tarixi": "История древнего мира",
+    "O'zbekiston tarixi": "История Узбекистана", "Jahon tarixi": "Всемирная история",
+    "Davlat va huquq asoslari": "Основы государства и права",
+    "Tarbiya": "Воспитание", "Matematika": "Математика",
+    "Algebra": "Алгебра", "Geometriya": "Геометрия",
+    "Informatika va axborot texnologiyalari": "Информатика и информационные технологии",
+    "Fizika": "Физика", "Astronomiya": "Астрономия", "Kimyo": "Химия",
+    "Biologiya": "Биология", "Geografiya": "География",
+    "Iqtisodiy bilim asoslari": "Основы экономических знаний",
+    "Tadbirkorlik asoslari": "Основы предпринимательства",
+    "Tabiiy fan (Science)": "Естествознание (Science)",
+    "Musiqa madaniyati": "Музыкальная культура", "Tasviriy san'at": "Изобразительное искусство",
+    "Chizmachilik": "Черчение", "Texnologiya": "Технология",
+    "Jismoniy tarbiya": "Физическая культура",
+    "Chaqiruvga qadar boshlang'ich tayyorgarlik": "Начальная допризывная подготовка",
+}
+_V238_EN_SUBJECT_NAMES = {
+    "Ona tili": "English Language", "O'qish savodxonligi": "Reading Literacy",
+    "Adabiyot": "Literature", "Rus tili": "Russian Language",
+    "Chet tili": "Foreign Language", "Tarixdan hikoyalar": "Stories from History",
+    "Qadimgi dunyo tarixi": "Ancient World History",
+    "O'zbekiston tarixi": "History of Uzbekistan", "Jahon tarixi": "World History",
+    "Davlat va huquq asoslari": "Foundations of State and Law", "Tarbiya": "Character Education",
+    "Matematika": "Mathematics", "Algebra": "Algebra", "Geometriya": "Geometry",
+    "Informatika va axborot texnologiyalari": "Computer Science and Information Technology",
+    "Fizika": "Physics", "Astronomiya": "Astronomy", "Kimyo": "Chemistry",
+    "Biologiya": "Biology", "Geografiya": "Geography",
+    "Iqtisodiy bilim asoslari": "Foundations of Economics",
+    "Tadbirkorlik asoslari": "Foundations of Entrepreneurship",
+    "Tabiiy fan (Science)": "Natural Science", "Musiqa madaniyati": "Music",
+    "Tasviriy san'at": "Visual Arts", "Chizmachilik": "Technical Drawing",
+    "Texnologiya": "Technology", "Jismoniy tarbiya": "Physical Education",
+    "Chaqiruvga qadar boshlang'ich tayyorgarlik": "Pre-conscription Training",
+}
+SAMTM_2026_2027_RUSSIAN_CURRICULUM = tuple(
+    (_V238_RU_SUBJECT_NAMES.get(subject, subject), hours)
+    for subject, hours in SAMTM_2026_2027_UZBEK_CURRICULUM
+)
+SAMTM_2026_2027_ENGLISH_CURRICULUM = tuple(
+    (_V238_EN_SUBJECT_NAMES.get(subject, subject), hours)
+    for subject, hours in SAMTM_2026_2027_UZBEK_CURRICULUM
+)
+SAMTM_2026_2027_CURRICULA = {
+    "uz": SAMTM_2026_2027_UZBEK_CURRICULUM,
+    "ru": SAMTM_2026_2027_RUSSIAN_CURRICULUM,
+    "en": SAMTM_2026_2027_ENGLISH_CURRICULUM,
+}
+SAMTM_2026_2027_CURRICULUM_SOURCES = {
+    language: {**SAMTM_2026_2027_CURRICULUM_SOURCE, "talim_tili": language}
+    for language in _V238_INSTRUCTION_LANGUAGES
+}
+
+
 SAMTM_V19_3_DEFAULT_CURRICULUM = SAMTM_2026_2027_UZBEK_CURRICULUM
 
 
@@ -12538,6 +12969,7 @@ def _v201_central_school_settings_tables(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS admin_maktab_andoza_fanlari_v20_1(
         id BIGSERIAL PRIMARY KEY,
         versiya_id BIGINT NOT NULL REFERENCES admin_maktab_andoza_versiyalari_v20_1(id) ON DELETE CASCADE,
+        talim_tili TEXT NOT NULL DEFAULT 'uz',
         sinf_darajasi INTEGER NOT NULL CHECK(sinf_darajasi BETWEEN 1 AND 11),
         fan_nomi TEXT NOT NULL,
         fan_kaliti TEXT NOT NULL,
@@ -12545,83 +12977,218 @@ def _v201_central_school_settings_tables(cur):
         metod_kuni INTEGER CHECK(metod_kuni BETWEEN 1 AND 7),
         kunlik_max INTEGER NOT NULL DEFAULT 1 CHECK(kunlik_max BETWEEN 1 AND 4),
         faol BOOLEAN NOT NULL DEFAULT TRUE,
-        tartib INTEGER NOT NULL DEFAULT 0,
-        UNIQUE(versiya_id,sinf_darajasi,fan_kaliti)
+        tartib INTEGER NOT NULL DEFAULT 0
     )""")
+    cur.execute(
+        "ALTER TABLE admin_maktab_andoza_fanlari_v20_1 "
+        "ADD COLUMN IF NOT EXISTS talim_tili TEXT NOT NULL DEFAULT 'uz'"
+    )
+    # Eski unique(versiya,sinf,fan) RU/EN qatorlarini bloklaydi. Uni faqat
+    # aniq shu jadvaldagi legacy unique bo‘lsa olib, til qatnashgan indexga
+    # almashtiramiz; PK yoki boshqa constraintlarga tegmaymiz.
+    cur.execute("""DO $$
+        DECLARE constraint_name TEXT;
+        BEGIN
+          FOR constraint_name IN
+            SELECT c.conname
+              FROM pg_constraint c
+              JOIN pg_class t ON t.oid=c.conrelid
+             WHERE t.relname='admin_maktab_andoza_fanlari_v20_1'
+               AND c.contype='u'
+               AND pg_get_constraintdef(c.oid) ILIKE '%versiya_id%'
+               AND pg_get_constraintdef(c.oid) ILIKE '%sinf_darajasi%'
+               AND pg_get_constraintdef(c.oid) ILIKE '%fan_kaliti%'
+               AND pg_get_constraintdef(c.oid) NOT ILIKE '%talim_tili%'
+          LOOP
+            EXECUTE format(
+              'ALTER TABLE admin_maktab_andoza_fanlari_v20_1 DROP CONSTRAINT %I',
+              constraint_name
+            );
+          END LOOP;
+        END $$""")
+    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_admin_andoza_fan_til_v238
+                   ON admin_maktab_andoza_fanlari_v20_1(
+                     versiya_id,talim_tili,sinf_darajasi,fan_kaliti)""")
     cur.execute("""CREATE TABLE IF NOT EXISTS maktab_andoza_override_v20_1(
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        talim_tili TEXT NOT NULL DEFAULT 'uz',
         bolim TEXT NOT NULL CHECK(bolim IN ('fanlar','oquv_reja','metod_kunlari')),
         alohida BOOLEAN NOT NULL DEFAULT FALSE,
         yangilagan_user_id BIGINT,
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-        PRIMARY KEY(maktab_id,bolim)
+        PRIMARY KEY(maktab_id,talim_tili,bolim)
     )""")
+    cur.execute(
+        "ALTER TABLE maktab_andoza_override_v20_1 "
+        "ADD COLUMN IF NOT EXISTS talim_tili TEXT NOT NULL DEFAULT 'uz'"
+    )
+    cur.execute("""DO $$
+        DECLARE constraint_name TEXT;
+        BEGIN
+          FOR constraint_name IN
+            SELECT c.conname FROM pg_constraint c
+            JOIN pg_class t ON t.oid=c.conrelid
+            WHERE t.relname='maktab_andoza_override_v20_1'
+              AND c.contype='p'
+              AND pg_get_constraintdef(c.oid) NOT ILIKE '%talim_tili%'
+          LOOP
+            EXECUTE format(
+              'ALTER TABLE maktab_andoza_override_v20_1 DROP CONSTRAINT %I',
+              constraint_name
+            );
+          END LOOP;
+        END $$""")
+    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_maktab_andoza_override_til_v238
+                   ON maktab_andoza_override_v20_1(
+                     maktab_id,talim_tili,bolim)""")
     cur.execute("""CREATE TABLE IF NOT EXISTS admin_maktab_andoza_tasdiqlari_v20_2(
         versiya_id BIGINT NOT NULL REFERENCES admin_maktab_andoza_versiyalari_v20_1(id) ON DELETE CASCADE,
+        talim_tili TEXT NOT NULL DEFAULT 'uz',
         bolim TEXT NOT NULL CHECK(bolim IN ('fanlar','yuklama','jadval','metod')),
         tasdiqlangan BOOLEAN NOT NULL DEFAULT FALSE,
         tasdiqlagan_user_id BIGINT,
         tasdiqlangan_at TIMESTAMPTZ,
-        PRIMARY KEY(versiya_id,bolim)
+        PRIMARY KEY(versiya_id,talim_tili,bolim)
     )""")
+    cur.execute(
+        "ALTER TABLE admin_maktab_andoza_tasdiqlari_v20_2 "
+        "ADD COLUMN IF NOT EXISTS talim_tili TEXT NOT NULL DEFAULT 'uz'"
+    )
+    cur.execute("""DO $$
+        DECLARE constraint_name TEXT;
+        BEGIN
+          FOR constraint_name IN
+            SELECT c.conname FROM pg_constraint c
+            JOIN pg_class t ON t.oid=c.conrelid
+            WHERE t.relname='admin_maktab_andoza_tasdiqlari_v20_2'
+              AND c.contype='p'
+              AND pg_get_constraintdef(c.oid) NOT ILIKE '%talim_tili%'
+          LOOP
+            EXECUTE format(
+              'ALTER TABLE admin_maktab_andoza_tasdiqlari_v20_2 DROP CONSTRAINT %I',
+              constraint_name
+            );
+          END LOOP;
+        END $$""")
+    cur.execute("""CREATE UNIQUE INDEX IF NOT EXISTS uq_admin_andoza_tasdiq_til_v238
+                   ON admin_maktab_andoza_tasdiqlari_v20_2(
+                     versiya_id,talim_tili,bolim)""")
     cur.execute("SELECT id FROM admin_maktab_andoza_versiyalari_v20_1 WHERE faol=TRUE LIMIT 1")
     version = cur.fetchone()
     if version:
         version_id = int(version["id"])
+    else:
+        cur.execute("""INSERT INTO admin_maktab_andoza_versiyalari_v20_1(nomi,faol)
+                       VALUES('Amaldagi maktab andozasi',TRUE)
+                       ON CONFLICT DO NOTHING RETURNING id""")
+        created_version = cur.fetchone()
+        if created_version:
+            version_id = int(created_version["id"])
+        else:
+            # Gunicorn workerlari startupni parallel bajarsa, boshqa worker
+            # yaratgan faol versiyani kutib, aynan o'shani olamiz.
+            cur.execute("""SELECT id FROM admin_maktab_andoza_versiyalari_v20_1
+                            WHERE faol=TRUE LIMIT 1""")
+            version_id = int(cur.fetchone()["id"])
+    # Mavjud o‘zbek qatorlari o‘zgarmaydi. Yetishmagan RU/EN til tablari bir
+    # marta ayni haftalik soatlar + aniq tarjima nomlari bilan seed qilinadi;
+    # admin har tilni keyin mustaqil tahrirlaydi.
+    for language, curriculum in SAMTM_2026_2027_CURRICULA.items():
+        cur.execute(
+            "SELECT 1 FROM admin_maktab_andoza_fanlari_v20_1 "
+            "WHERE versiya_id=%s AND talim_tili=%s LIMIT 1",
+            (version_id, language),
+        )
+        if cur.fetchone():
+            continue
+        order = 0
+        for subject, grades in curriculum:
+            for grade, hours in grades.items():
+                cur.execute("""INSERT INTO admin_maktab_andoza_fanlari_v20_1(
+                                versiya_id,talim_tili,sinf_darajasi,fan_nomi,
+                                fan_kaliti,haftalik_soat,kunlik_max,tartib)
+                               VALUES(%s,%s,%s,%s,%s,%s,1,%s)
+                               ON CONFLICT DO NOTHING""",
+                            (version_id, language, int(grade), subject,
+                             _v1875_subject_key(subject), float(hours), order))
+            order += 1
+    for language in _V238_INSTRUCTION_LANGUAGES:
         for section in ("fanlar", "yuklama", "jadval", "metod"):
             cur.execute("""INSERT INTO admin_maktab_andoza_tasdiqlari_v20_2(
-                            versiya_id,bolim,tasdiqlangan)
-                           VALUES(%s,%s,TRUE) ON CONFLICT DO NOTHING""",
-                        (version_id, section))
-        return version_id
-    cur.execute("""INSERT INTO admin_maktab_andoza_versiyalari_v20_1(nomi,faol)
-                   VALUES('Amaldagi maktab andozasi',TRUE) RETURNING id""")
-    version_id = int(cur.fetchone()["id"])
-    order = 0
-    for subject, grades in SAMTM_V19_3_DEFAULT_CURRICULUM:
-        for grade, hours in grades.items():
-            cur.execute("""INSERT INTO admin_maktab_andoza_fanlari_v20_1(
-                            versiya_id,sinf_darajasi,fan_nomi,fan_kaliti,
-                            haftalik_soat,kunlik_max,tartib)
-                           VALUES(%s,%s,%s,%s,%s,1,%s)""",
-                        (version_id, int(grade), subject,
-                         _v1875_subject_key(subject), float(hours), order))
-        order += 1
-    for section in ("fanlar", "yuklama", "jadval", "metod"):
-        cur.execute("""INSERT INTO admin_maktab_andoza_tasdiqlari_v20_2(
-                        versiya_id,bolim,tasdiqlangan)
-                       VALUES(%s,%s,TRUE)""", (version_id, section))
+                            versiya_id,talim_tili,bolim,tasdiqlangan)
+                           VALUES(%s,%s,%s,%s) ON CONFLICT DO NOTHING""",
+                        (version_id, language, section, language == "uz"))
+    # Oldingi build mexanik seed qilgan RU/EN qatorlar TRUE, lekin kim va
+    # qachon tasdiqlagani NULL bo'lib qolgan. Faqat shunday texnik seedlar
+    # draftga qaytariladi; haqiqiy admin tasdig'iga tegilmaydi.
+    cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
+                      SET tasdiqlangan=FALSE
+                    WHERE versiya_id=%s AND talim_tili IN ('ru','en')
+                      AND tasdiqlangan=TRUE
+                      AND tasdiqlagan_user_id IS NULL
+                      AND tasdiqlangan_at IS NULL""", (version_id,))
     return version_id
 
 
-def _v201_central_rows(cur):
+def _v201_central_rows(
+    cur,
+    talim_tili="uz",
+    include_unapproved=False,
+    required_sections=None,
+):
     version_id = _v201_central_school_settings_tables(cur)
-    cur.execute("""SELECT sinf_darajasi,fan_nomi,haftalik_soat,metod_kuni,
+    language = _v238_normalize_instruction_language(talim_tili)
+    if not include_unapproved:
+        sections = tuple(required_sections or ("fanlar", "yuklama", "jadval"))
+        cur.execute("""SELECT bolim,tasdiqlangan
+                         FROM admin_maktab_andoza_tasdiqlari_v20_2
+                        WHERE versiya_id=%s AND talim_tili=%s
+                          AND bolim=ANY(%s)""",
+                    (version_id, language, list(sections)))
+        approved = {
+            row["bolim"] for row in cur.fetchall()
+            if bool(row.get("tasdiqlangan"))
+        }
+        if not set(sections) <= approved:
+            return []
+    cur.execute("""SELECT talim_tili,sinf_darajasi,fan_nomi,haftalik_soat,metod_kuni,
                           kunlik_max,tartib
                      FROM admin_maktab_andoza_fanlari_v20_1
-                    WHERE versiya_id=%s AND faol=TRUE
-                    ORDER BY sinf_darajasi,tartib,fan_nomi""", (version_id,))
+                    WHERE versiya_id=%s AND talim_tili=%s AND faol=TRUE
+                    ORDER BY sinf_darajasi,tartib,fan_nomi""", (version_id, language))
     return [dict(row) for row in cur.fetchall()]
 
 
-def _v201_central_curriculum(cur):
+def _v201_central_curriculum(cur, talim_tili="uz"):
     grouped = {}
+    daily_limits = {}
     names = {}
-    for row in _v201_central_rows(cur):
+    for row in _v201_central_rows(cur, talim_tili):
         key = _v1875_subject_key(row["fan_nomi"])
         names[key] = row["fan_nomi"]
         grouped.setdefault(key, {})[int(row["sinf_darajasi"])] = float(row["haftalik_soat"])
-    return tuple((names[key], grades) for key, grades in grouped.items())
+        daily_limits.setdefault(key, {})[int(row["sinf_darajasi"])] = int(
+            row.get("kunlik_max") or 1
+        )
+    return tuple(
+        (names[key], grades, daily_limits.get(key, {}))
+        for key, grades in grouped.items()
+    )
 
 
-def _v201_mark_school_override(cur, maktab_id: int, section: str, actor_id: int):
+def _v201_mark_school_override(
+    cur, maktab_id: int, section: str, actor_id: int, talim_tili="uz"
+):
     _v201_central_school_settings_tables(cur)
+    language = _v238_normalize_instruction_language(talim_tili)
     cur.execute("""INSERT INTO maktab_andoza_override_v20_1(
-                    maktab_id,bolim,alohida,yangilagan_user_id,yangilangan_at)
-                   VALUES(%s,%s,TRUE,%s,NOW())
-                   ON CONFLICT(maktab_id,bolim) DO UPDATE SET
+                    maktab_id,talim_tili,bolim,alohida,
+                    yangilagan_user_id,yangilangan_at)
+                   VALUES(%s,%s,%s,TRUE,%s,NOW())
+                   ON CONFLICT(maktab_id,talim_tili,bolim) DO UPDATE SET
                      alohida=TRUE,yangilagan_user_id=EXCLUDED.yangilagan_user_id,
-                     yangilangan_at=NOW()""", (maktab_id, section, actor_id))
+                     yangilangan_at=NOW()""",
+                (maktab_id, language, section, actor_id))
 
 
 class V201CentralSubjectRow(BaseModel):
@@ -12636,6 +13203,7 @@ class V201CentralSchoolSettings(BaseModel):
     qatorlar: list[V201CentralSubjectRow]
     bolim: str = "fanlar"
     tasdiqlash: bool = True
+    talim_tili: str = "uz"
 
 
 @app.on_event("startup")
@@ -12649,27 +13217,57 @@ def _v201_central_school_settings_startup():
 
 
 @app.get("/api/admin/maktab_markaziy_sozlamalari")
-def v201_central_school_settings_get(token: str):
+def v201_central_school_settings_get(token: str, talim_tili: str = "uz"):
     _admin_tekshir(token)
+    try:
+        language = _v238_normalize_instruction_language(talim_tili)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     conn = _db(); cur = conn.cursor()
     try:
         version_id = _v201_central_school_settings_tables(cur)
-        rows = _v201_central_rows(cur)
-        cur.execute("""SELECT bolim,tasdiqlangan,tasdiqlangan_at
+        rows = _v201_central_rows(cur, language, include_unapproved=True)
+        by_language = {
+            key: _v201_central_rows(cur, key, include_unapproved=True)
+            for key in _V238_INSTRUCTION_LANGUAGES
+        }
+        cur.execute("""SELECT talim_tili,bolim,tasdiqlangan,tasdiqlangan_at
                          FROM admin_maktab_andoza_tasdiqlari_v20_2
-                        WHERE versiya_id=%s""", (version_id,))
+                        WHERE versiya_id=%s AND talim_tili=%s""",
+                    (version_id, language))
+        selected_approval_rows = [dict(row) for row in cur.fetchall()]
         approvals = {row["bolim"]: {
             "tasdiqlangan": bool(row["tasdiqlangan"]),
             "tasdiqlangan_at": row["tasdiqlangan_at"],
-        } for row in cur.fetchall()}
+        } for row in selected_approval_rows}
+        cur.execute("""SELECT talim_tili,bolim,tasdiqlangan,tasdiqlangan_at
+                         FROM admin_maktab_andoza_tasdiqlari_v20_2
+                        WHERE versiya_id=%s""", (version_id,))
+        approval_rows = [dict(row) for row in cur.fetchall()]
         return {
             "nomi": "Amaldagi maktab andozasi",
+            "talim_tili": language,
+            "tillar": [
+                {"kalit": key, "nomi": label, "qator_soni": len(by_language[key])}
+                for key, label in _V238_INSTRUCTION_LANGUAGES.items()
+            ],
+            "til_boyicha": by_language,
             "qatorlar": rows,
             "sinf_fanlari": {
                 str(grade): [row["fan_nomi"] for row in rows if int(row["sinf_darajasi"]) == grade]
                 for grade in range(1, 12)
             },
             "tasdiqlar": approvals,
+            "tasdiqlar_til_boyicha": {
+                key: {
+                    row["bolim"]: {
+                        "tasdiqlangan": bool(row["tasdiqlangan"]),
+                        "tasdiqlangan_at": row["tasdiqlangan_at"],
+                    }
+                    for row in approval_rows if row["talim_tili"] == key
+                }
+                for key in _V238_INSTRUCTION_LANGUAGES
+            },
         }
     finally:
         cur.close(); conn.close()
@@ -12678,9 +13276,32 @@ def v201_central_school_settings_get(token: str):
 @app.put("/api/admin/maktab_markaziy_sozlamalari")
 def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: str):
     actor_id = _admin_tekshir(token)
+    try:
+        language = _v238_normalize_instruction_language(sorov.talim_tili)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     section = str(sorov.bolim or "").strip().lower()
     if section not in {"fanlar", "yuklama", "jadval", "metod"}:
         raise HTTPException(status_code=400, detail="Sozlama bo‘limi noto‘g‘ri")
+    if section in {"yuklama", "jadval"}:
+        # Amaldagi admin oynasi fan nomi, haftalik soat va kunlik maksimumni
+        # bitta to'liq snapshotda yuboradi. Ularni alohida bo'lim sifatida
+        # saqlash bitta live jadvalda qisman tasdiqlangan holat yaratadi.
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                "Fanlar, haftalik yuklama va kunlik maksimum bitta andoza "
+                "sifatida ‘fanlar’ bo‘limidan tasdiqlanadi"
+            ),
+        )
+    if not sorov.tasdiqlash:
+        # Bu jadval amaldagi markaziy andoza. Alohida draft jadvali yo'q ekan,
+        # tasdiqlanmagan yozuvni shu yerga saqlash eski live qiymatni bosib
+        # ketardi. Shuning uchun draftni jim jonlantirish o'rniga aniq bloklaymiz.
+        raise HTTPException(
+            status_code=409,
+            detail="Markaziy andoza faqat ‘Saqlash va tasdiqlash’ orqali yangilanadi",
+        )
     normalized = []
     seen = set()
     for index, item in enumerate(sorov.qatorlar):
@@ -12705,61 +13326,141 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
     conn = _db(); cur = conn.cursor()
     try:
         version_id = _v201_central_school_settings_tables(cur)
-        cur.execute("DELETE FROM admin_maktab_andoza_fanlari_v20_1 WHERE versiya_id=%s", (version_id,))
-        for row in normalized:
-            cur.execute("""INSERT INTO admin_maktab_andoza_fanlari_v20_1(
-                            versiya_id,sinf_darajasi,fan_nomi,fan_kaliti,
-                            haftalik_soat,metod_kuni,kunlik_max,tartib)
-                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s)""", (version_id, *row))
+        if section == "metod":
+            # Metod kuni alohida tasdiqlanadi, ammo fan/soat/maksimum bilan
+            # bir jadvalda saqlanadi. Shu endpoint o'sha reja ustunlarini
+            # qayta yozmasligi shart: yuborilgan snapshot aynan mavjud fanlar
+            # to'plamiga mos bo'lsa, faqat ``metod_kuni`` yangilanadi.
+            cur.execute("""SELECT sinf_darajasi,fan_kaliti
+                             FROM admin_maktab_andoza_fanlari_v20_1
+                            WHERE versiya_id=%s AND talim_tili=%s AND faol=TRUE""",
+                        (version_id, language))
+            existing_keys = {
+                (int(row["sinf_darajasi"]), str(row["fan_kaliti"]))
+                for row in cur.fetchall()
+            }
+            received_keys = {(row[0], row[2]) for row in normalized}
+            if received_keys != existing_keys:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Metod kunlari mavjud til andozasidagi barcha "
+                        "sinf–fan qatorlari uchun to‘liq yuborilishi kerak"
+                    ),
+                )
+            for grade, _subject, key, _hours, method_day, _daily, _order in normalized:
+                cur.execute("""UPDATE admin_maktab_andoza_fanlari_v20_1
+                                  SET metod_kuni=%s
+                                WHERE versiya_id=%s AND talim_tili=%s
+                                  AND sinf_darajasi=%s AND fan_kaliti=%s""",
+                            (method_day, version_id, language, grade, key))
+        else:
+            cur.execute(
+                "DELETE FROM admin_maktab_andoza_fanlari_v20_1 "
+                "WHERE versiya_id=%s AND talim_tili=%s",
+                (version_id, language),
+            )
+            for row in normalized:
+                cur.execute("""INSERT INTO admin_maktab_andoza_fanlari_v20_1(
+                                versiya_id,talim_tili,sinf_darajasi,fan_nomi,fan_kaliti,
+                                haftalik_soat,metod_kuni,kunlik_max,tartib)
+                               VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                            (version_id, language, *row))
         cur.execute("""UPDATE admin_maktab_andoza_versiyalari_v20_1
                           SET yangilagan_user_id=%s,yangilangan_at=NOW() WHERE id=%s""",
                     (actor_id, version_id))
+        approval_sections = (
+            ["fanlar", "yuklama", "jadval"]
+            if section == "fanlar" else ["metod"]
+        )
         cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
                           SET tasdiqlangan=FALSE,tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL
-                        WHERE versiya_id=%s AND bolim=%s""", (version_id, section))
+                        WHERE versiya_id=%s AND talim_tili=%s
+                          AND bolim=ANY(%s)""",
+                    (version_id, language, approval_sections))
         if section == "fanlar":
             cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
                               SET tasdiqlangan=FALSE,tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL
-                            WHERE versiya_id=%s AND bolim IN ('yuklama','jadval','metod')""",
-                        (version_id,))
+                            WHERE versiya_id=%s AND talim_tili=%s
+                              AND bolim='metod'""",
+                        (version_id, language))
         if sorov.tasdiqlash:
             cur.execute("""UPDATE admin_maktab_andoza_tasdiqlari_v20_2
                               SET tasdiqlangan=TRUE,tasdiqlagan_user_id=%s,tasdiqlangan_at=NOW()
-                            WHERE versiya_id=%s AND bolim=%s""",
-                        (actor_id, version_id, section))
+                            WHERE versiya_id=%s AND talim_tili=%s
+                              AND bolim=ANY(%s)""",
+                        (actor_id, version_id, language, approval_sections))
+        cur.execute("""SELECT bolim,tasdiqlangan
+                         FROM admin_maktab_andoza_tasdiqlari_v20_2
+                        WHERE versiya_id=%s AND talim_tili=%s
+                          AND bolim IN ('fanlar','yuklama','jadval')""",
+                    (version_id, language))
+        plan_approvals = {
+            row["bolim"] for row in cur.fetchall()
+            if bool(row.get("tasdiqlangan"))
+        }
+        plan_ready = {"fanlar", "yuklama", "jadval"} <= plan_approvals
         # Markaziy o'zgarish faqat alohida sozlama qilmagan maktablarga
         # tarqaladi. Ularning keyingi ochilishida reja yangi andozadan qayta
         # quriladi; maxsus maktab sozlamasi hech qachon bosib ketilmaydi.
         cur.execute("SELECT id FROM maktablar ORDER BY id")
         schools = [int(row["id"]) for row in cur.fetchall()]
+        if (
+            not sorov.tasdiqlash
+            or not plan_ready
+            or section not in {"fanlar", "yuklama", "jadval"}
+        ):
+            # Markaziy draft yoki faqat metod-kun tahriri maktablarning
+            # amaldagi rejalariga tarqalmaydi.
+            schools = []
         fan_updated = plan_updated = method_updated = 0
         for school_id in schools:
+            cur.execute("""SELECT 1 FROM maktab_sinflari
+                            WHERE maktab_id=%s
+                              AND COALESCE(talim_tili,'uz')=%s LIMIT 1""",
+                        (school_id, language))
+            if not cur.fetchone():
+                continue
             cur.execute("""SELECT bolim FROM maktab_andoza_override_v20_1
-                            WHERE maktab_id=%s AND alohida=TRUE""", (school_id,))
+                            WHERE maktab_id=%s AND talim_tili=%s
+                              AND alohida=TRUE""", (school_id, language))
             overrides = {row["bolim"] for row in cur.fetchall()}
             if "fanlar" not in overrides:
-                cur.execute("DELETE FROM maktab_fan_sinflari_v19_4 WHERE maktab_id=%s", (school_id,))
                 fan_updated += 1
             if "oquv_reja" not in overrides:
-                cur.execute("DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 WHERE maktab_id=%s", (school_id,))
+                cur.execute(
+                    """DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 q
+                         USING maktab_sinflari s
+                         WHERE q.maktab_id=%s AND q.sinf_id=s.id
+                           AND s.maktab_id=%s
+                           AND COALESCE(s.talim_tili,'uz')=%s""",
+                    (school_id, school_id, language),
+                )
                 cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
                                   SET holat='draft',versiya=versiya+1,
                                       tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
                                       yangilangan_at=NOW() WHERE maktab_id=%s""", (school_id,))
+                cur.execute("""INSERT INTO aqlli_oquv_reja_til_holati_v238(
+                                maktab_id,talim_tili,holat,versiya,yangilangan_at)
+                               VALUES(%s,%s,'draft',1,NOW())
+                               ON CONFLICT(maktab_id,talim_tili) DO UPDATE SET
+                                 holat='draft',
+                                 versiya=aqlli_oquv_reja_til_holati_v238.versiya+1,
+                                 tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
+                                 yangilangan_at=NOW()""", (school_id, language))
                 cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                                 WHERE maktab_id=%s AND holat='draft'""", (school_id,))
                 plan_updated += 1
             if "metod_kunlari" not in overrides:
-                cur.execute("DELETE FROM aqlli_metod_fan_qoidalari_v2 WHERE maktab_id=%s", (school_id,))
-                cur.execute("""SELECT yoqilgan FROM aqlli_metod_avto_sozlamalari_v2
-                                WHERE maktab_id=%s""", (school_id,))
-                enabled = bool((cur.fetchone() or {}).get("yoqilgan"))
-                if enabled:
-                    _v1873_apply_official(cur, school_id, replace_existing=True)
-                method_updated += 1
+                # Metod qoidasi hozir fan nomiga bog‘langan, sinf tiliga emas.
+                # Bitta til tabini saqlashda boshqa tillarning metod kunlarini
+                # ommaviy DELETE qilish xavfli; admin uni alohida tasdiqlaydi.
+                pass
         conn.commit()
         return {"holat": "tasdiqlandi" if sorov.tasdiqlash else "saqlandi",
-                "bolim": section, "qator_soni": len(normalized),
+                "bolim": section, "talim_tili": language,
+                "til_rejasi_faol": plan_ready,
+                "qator_soni": len(normalized),
                 "maktablar": {"fanlar": fan_updated, "oquv_reja": plan_updated,
                               "metod_kunlari": method_updated},
                 "izoh": "Alohida override qilmagan maktablar bu andozani avtomatik oladi."}
@@ -12774,20 +13475,28 @@ def _v193_grade_number(value):
     return int(match.group(0)) if match else 0
 
 
-def _v201_school_has_override(cur, maktab_id: int, section: str) -> bool:
+def _v201_school_has_override(
+    cur, maktab_id: int, section: str, talim_tili="uz"
+) -> bool:
     """Maktab markaziy andozadan aynan shu bo'limda chetlaganmi."""
     _v201_central_school_settings_tables(cur)
+    language = _v238_normalize_instruction_language(talim_tili)
     cur.execute("""SELECT 1 FROM maktab_andoza_override_v20_1
-                   WHERE maktab_id=%s AND bolim=%s AND alohida=TRUE""",
-                (maktab_id, section))
+                   WHERE maktab_id=%s AND talim_tili=%s
+                     AND bolim=%s AND alohida=TRUE""",
+                (maktab_id, language, section))
     return bool(cur.fetchone())
 
 
-def _v194_school_subject_grades(cur, maktab_id: int):
+def _v194_school_subject_grades(cur, maktab_id: int, talim_tili="uz"):
     """None — eski maktab; dict — fanlar sinflar bo'yicha aniq sozlangan."""
-    if not _v201_school_has_override(cur, maktab_id, "fanlar"):
+    language = _v238_normalize_instruction_language(talim_tili)
+    if (
+        language != "uz"
+        or not _v201_school_has_override(cur, maktab_id, "fanlar", language)
+    ):
         central_result = {}
-        for row in _v201_central_rows(cur):
+        for row in _v201_central_rows(cur, language):
             grade = int(row["sinf_darajasi"])
             central_result.setdefault(grade, {})[
                 _v1875_subject_key(row["fan_nomi"])
@@ -12804,7 +13513,7 @@ def _v194_school_subject_grades(cur, maktab_id: int):
         # Yangi maktab DTSdagi tasodifiy nomlardan emas, admin tasdiqlagan
         # markaziy 1–11-sinf andozasidan boshlaydi.
         central_result = {}
-        for row in _v201_central_rows(cur):
+        for row in _v201_central_rows(cur, language):
             grade = int(row["sinf_darajasi"])
             central_result.setdefault(grade, {})[
                 _v1875_subject_key(row["fan_nomi"])
@@ -12820,9 +13529,21 @@ def _v194_school_subject_grades(cur, maktab_id: int):
 def _v193_template_rows_for_class(class_row, selected_by_grade=None, curriculum=None):
     grade = _v193_grade_number(class_row.get("sinf"))
     allowed = (selected_by_grade or {}).get(grade) if selected_by_grade is not None else None
+    # ``None`` faqat tarixiy UZ fallbackni anglatadi. Bo'sh tuple esa RU/EN
+    # andozasi hali tasdiqlanmaganini bildiradi va UZ fanlariga tushmasligi shart.
+    curriculum_items = list(
+        SAMTM_V19_3_DEFAULT_CURRICULUM
+        if curriculum is None else curriculum
+    )
     default_hours = {
         _v1875_subject_key(subject): float(hours.get(grade, 0) or 0)
-        for subject, hours in (curriculum or SAMTM_V19_3_DEFAULT_CURRICULUM)
+        for subject, hours, *_rest in curriculum_items
+    }
+    daily_limits = {
+        _v1875_subject_key(item[0]): int(
+            (item[2] if len(item) > 2 else {}).get(grade, 1) or 1
+        )
+        for item in curriculum_items
     }
     if allowed is not None:
         # O'quv reja ustunlari faqat maktab 1–11-sinflar uchun saqlagan
@@ -12833,7 +13554,7 @@ def _v193_template_rows_for_class(class_row, selected_by_grade=None, curriculum=
                 "sinf_id": int(class_row["id"]),
                 "fan_nomi": subject,
                 "haftalik_soat": default_hours.get(key, 0.0),
-                "kunlik_max": 1,
+                "kunlik_max": daily_limits.get(key, 1),
                 "manba": "amaldagi_tayanch_reja" if default_hours.get(key, 0) > 0 else "maktab_fan_tanlovi",
             }
             for key, subject in allowed.items()
@@ -12843,47 +13564,105 @@ def _v193_template_rows_for_class(class_row, selected_by_grade=None, curriculum=
             "sinf_id": int(class_row["id"]),
             "fan_nomi": subject,
             "haftalik_soat": float(hours[grade]),
-            "kunlik_max": 1,
+            "kunlik_max": int((daily or {}).get(grade, 1) or 1),
             "manba": "amaldagi_tayanch_reja",
         }
-        for subject, hours in (curriculum or SAMTM_V19_3_DEFAULT_CURRICULUM)
+        for subject, hours, *daily_parts in curriculum_items
+        for daily in [daily_parts[0] if daily_parts else {}]
         if float(hours.get(grade, 0)) > 0
     ]
 
 
+def _v238_class_curriculum_context(cur, maktab_id: int, class_row, cache=None):
+    cache = cache if cache is not None else {}
+    language = _v238_normalize_instruction_language(
+        (class_row or {}).get("talim_tili")
+    )
+    if language not in cache:
+        cache[language] = (
+            _v194_school_subject_grades(cur, maktab_id, language),
+            _v201_central_curriculum(cur, language),
+        )
+    selected_by_grade, curriculum = cache[language]
+    return language, selected_by_grade, curriculum
+
+
+def _v238_mark_plan_languages_draft(cur, maktab_id: int, languages):
+    """Rejasi o'zgargan tillarning eski tasdiq belgisini xavfsiz bekor qiladi."""
+    normalized = sorted({
+        _v238_normalize_instruction_language(language)
+        for language in languages
+    })
+    for language in normalized:
+        cur.execute("""INSERT INTO aqlli_oquv_reja_til_holati_v238(
+                        maktab_id,talim_tili,holat,versiya,yangilangan_at)
+                       VALUES(%s,%s,'draft',1,NOW())
+                       ON CONFLICT(maktab_id,talim_tili) DO UPDATE SET
+                         holat='draft',
+                         versiya=aqlli_oquv_reja_til_holati_v238.versiya+1,
+                         tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
+                         yangilangan_at=NOW()""", (maktab_id, language))
+
+
 def _v193_ensure_plan(cur, maktab_id: int, classes):
-    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
-    curriculum = _v201_central_curriculum(cur)
+    context_cache = {}
     cur.execute("""INSERT INTO aqlli_oquv_reja_holati_v19_3(maktab_id)
                    VALUES(%s) ON CONFLICT(maktab_id) DO NOTHING""", (maktab_id,))
-    central_plan = not _v201_school_has_override(cur, maktab_id, "oquv_reja")
-    cur.execute("""SELECT sinf_id,fan_nomi,haftalik_soat
+    cur.execute("""SELECT sinf_id,fan_nomi,haftalik_soat,kunlik_max
                    FROM aqlli_oquv_reja_qatorlari_v19_3 WHERE maktab_id=%s""",
                 (maktab_id,))
     saved_rows = cur.fetchall()
     existing = {int(row["sinf_id"]) for row in saved_rows}
-    if central_plan:
-        expected_rows = []
-        for class_row in classes:
-            expected_rows.extend(
-                row for row in _v193_template_rows_for_class(
-                    class_row, selected_by_grade, curriculum
-                ) if float(row["haftalik_soat"] or 0) > 0
+    expected_rows = []
+    class_by_id = {int(row["id"]): row for row in classes}
+    centrally_managed_ids = set()
+    for class_row in classes:
+        talim_tili, selected_by_grade, curriculum = _v238_class_curriculum_context(
+            cur, maktab_id, class_row, context_cache
+        )
+        if _v201_school_has_override(
+            cur, maktab_id, "oquv_reja", talim_tili
+        ):
+            continue
+        # Unapproved RU/EN seed operational reja emas. U mavjud rejani
+        # o'chirmaydi va UZ fallbackka ham tushmaydi.
+        if not curriculum and not selected_by_grade:
+            continue
+        centrally_managed_ids.add(int(class_row["id"]))
+        expected_rows.extend(
+            row for row in _v193_template_rows_for_class(
+                class_row, selected_by_grade, curriculum
+            ) if float(row["haftalik_soat"] or 0) > 0
+        )
+    if centrally_managed_ids:
+        saved_by_class = {}
+        for row in saved_rows:
+            saved_by_class.setdefault(int(row["sinf_id"]), set()).add(
+                (_v1875_subject_key(row["fan_nomi"]),
+                 round(float(row["haftalik_soat"] or 0), 3),
+                 int(row.get("kunlik_max") or 1))
             )
-        saved_signature = {
-            (int(row["sinf_id"]), _v1875_subject_key(row["fan_nomi"]),
-             round(float(row["haftalik_soat"] or 0), 3))
-            for row in saved_rows
-        }
-        expected_signature = {
-            (int(row["sinf_id"]), _v1875_subject_key(row["fan_nomi"]),
-             round(float(row["haftalik_soat"] or 0), 3))
-            for row in expected_rows
-        }
-        if saved_signature != expected_signature:
-            cur.execute("DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 WHERE maktab_id=%s",
-                        (maktab_id,))
+        expected_by_class = {}
+        for row in expected_rows:
+            expected_by_class.setdefault(int(row["sinf_id"]), set()).add(
+                (_v1875_subject_key(row["fan_nomi"]),
+                 round(float(row["haftalik_soat"] or 0), 3),
+                 int(row.get("kunlik_max") or 1))
+            )
+        changed_class_ids = sorted(
+            class_id for class_id in centrally_managed_ids
+            if saved_by_class.get(class_id, set())
+            != expected_by_class.get(class_id, set())
+        )
+        if changed_class_ids:
+            cur.execute(
+                "DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 "
+                "WHERE maktab_id=%s AND sinf_id=ANY(%s)",
+                (maktab_id, changed_class_ids),
+            )
             for item in expected_rows:
+                if int(item["sinf_id"]) not in changed_class_ids:
+                    continue
                 cur.execute("""INSERT INTO aqlli_oquv_reja_qatorlari_v19_3(
                                 maktab_id,sinf_id,fan_nomi,haftalik_soat,
                                 kunlik_max,manba,yangilangan_at)
@@ -12897,11 +13676,25 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
                            SET holat='draft',versiya=versiya+1,
                                tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
                                yangilangan_at=NOW() WHERE maktab_id=%s""", (maktab_id,))
+            _v238_mark_plan_languages_draft(
+                cur, maktab_id,
+                [class_by_id[class_id].get("talim_tili")
+                 for class_id in changed_class_ids],
+            )
             return
     missing = [row for row in classes if int(row["id"]) not in existing]
+    missing = [
+        row for row in missing
+        if any(_v238_class_curriculum_context(
+            cur, maktab_id, row, context_cache
+        )[1:])
+    ]
     if not missing:
         return
     for class_row in missing:
+        talim_tili, selected_by_grade, curriculum = _v238_class_curriculum_context(
+            cur, maktab_id, class_row, context_cache
+        )
         template_rows = _v193_template_rows_for_class(class_row, selected_by_grade, curriculum)
         for item in template_rows:
             if float(item["haftalik_soat"] or 0) <= 0:
@@ -12923,30 +13716,63 @@ def _v193_ensure_plan(cur, maktab_id: int, classes):
                    SET holat='draft',tasdiqlagan_user_id=NULL,
                        tasdiqlangan_at=NULL,yangilangan_at=NOW()
                    WHERE maktab_id=%s""", (maktab_id,))
+    _v238_mark_plan_languages_draft(
+        cur, maktab_id,
+        [row.get("talim_tili") for row in missing],
+    )
 
 
 def _v193_plan_payload(cur, maktab_id: int, classes):
     _v193_ensure_plan(cur, maktab_id, classes)
-    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
-    curriculum = _v201_central_curriculum(cur)
+    context_cache = {}
+    class_languages = {
+        _v238_normalize_instruction_language(row.get("talim_tili"))
+        for row in classes
+    }
+    custom_plan_by_language = {
+        language: _v201_school_has_override(
+            cur, maktab_id, "oquv_reja", language
+        )
+        for language in class_languages
+    }
     cur.execute("""SELECT holat,versiya,tasdiqlagan_user_id,
                           tasdiqlangan_at,yangilangan_at
                    FROM aqlli_oquv_reja_holati_v19_3 WHERE maktab_id=%s""",
                 (maktab_id,))
     status = dict(cur.fetchone() or {})
+    cur.execute("""SELECT talim_tili,holat,versiya,tasdiqlangan_at,yangilangan_at
+                     FROM aqlli_oquv_reja_til_holati_v238
+                    WHERE maktab_id=%s ORDER BY talim_tili""", (maktab_id,))
+    language_statuses = {
+        row["talim_tili"]: dict(row) for row in cur.fetchall()
+    }
     cur.execute("""SELECT id,sinf_id,fan_nomi,haftalik_soat,kunlik_max,
                           manba,yangilangan_at
                    FROM aqlli_oquv_reja_qatorlari_v19_3
                    WHERE maktab_id=%s
                    ORDER BY sinf_id,fan_nomi""", (maktab_id,))
     rows = [dict(row) for row in cur.fetchall()]
-    if selected_by_grade is not None:
-        class_grades = {int(row["id"]): _v193_grade_number(row.get("sinf")) for row in classes}
-        rows = [
-            row for row in rows
-            if _v1875_subject_key(row["fan_nomi"])
-            in selected_by_grade.get(class_grades.get(int(row["sinf_id"]), 0), {})
-        ]
+    class_by_id = {int(row["id"]): row for row in classes}
+    filtered_rows = []
+    for row in rows:
+        class_row = class_by_id.get(int(row["sinf_id"]))
+        if class_row is None:
+            continue
+        row["talim_tili"] = _v238_normalize_instruction_language(
+            class_row.get("talim_tili")
+        )
+        _, selected_by_grade, _ = _v238_class_curriculum_context(
+            cur, maktab_id, class_row, context_cache
+        )
+        grade = _v193_grade_number(class_row.get("sinf"))
+        allowed = (selected_by_grade or {}).get(grade) if selected_by_grade is not None else None
+        if (
+            custom_plan_by_language.get(row["talim_tili"], False)
+            or allowed is None
+            or _v1875_subject_key(row["fan_nomi"]) in allowed
+        ):
+            filtered_rows.append(row)
+    rows = filtered_rows
     class_totals = {}
     for row in rows:
         class_id = int(row["sinf_id"])
@@ -12956,7 +13782,15 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
     class_hour_rows = {int(row["sinf_id"]): dict(row) for row in cur.fetchall()}
     template_rows = []
     for class_row in classes:
-        template_rows.extend(_v193_template_rows_for_class(class_row, selected_by_grade, curriculum))
+        language, selected_by_grade, curriculum = _v238_class_curriculum_context(
+            cur, maktab_id, class_row, context_cache
+        )
+        class_templates = _v193_template_rows_for_class(
+            class_row, selected_by_grade, curriculum
+        )
+        for item in class_templates:
+            item["talim_tili"] = language
+        template_rows.extend(class_templates)
     active_year = _v1852_active_year(cur, maktab_id)
     active_year_name = str((active_year or {}).get("nomi") or "").strip()
     return {
@@ -12964,12 +13798,18 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
         "versiya": int(status.get("versiya") or 1),
         "tasdiqlangan_at": status.get("tasdiqlangan_at"),
         "yangilangan_at": status.get("yangilangan_at"),
+        "til_holatlari": language_statuses,
         # UI yilni koddan emas, maktabning faol o'quv yilidan oladi.
         # Shu sabab keyingi o'quv yilida frontend kodi almashtirilmaydi.
         "oquv_yili_nomi": active_year_name,
         "andoza_nomi": "Amaldagi tayanch o‘quv reja",
         "andoza_manbasi": SAMTM_2026_2027_CURRICULUM_SOURCE,
-        "markaziy_andoza": not _v201_school_has_override(cur, maktab_id, "oquv_reja"),
+        "andoza_manbalari": SAMTM_2026_2027_CURRICULUM_SOURCES,
+        "markaziy_andoza": not any(custom_plan_by_language.values()),
+        "markaziy_andoza_til_boyicha": {
+            language: not custom
+            for language, custom in custom_plan_by_language.items()
+        },
         "sinf_soati_avtomatik": True,
         "sinf_soati_haftalik": 1,
         "sinf_soati_nomi": next((row.get("fan_nomi") for row in class_hour_rows.values()), "KELAJAK SOATI"),
@@ -12979,6 +13819,9 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
             {
                 "sinf_id": int(class_row["id"]),
                 "sinf": f"{class_row['sinf']}-{class_row['harf']}",
+                "talim_tili": _v238_normalize_instruction_language(
+                    class_row.get("talim_tili")
+                ),
                 "fan_soati": float(class_totals.get(int(class_row["id"]), 0)),
                 "sinf_soati": int(class_hour_rows.get(int(class_row["id"]), {}).get("haftalik_soat") or 0),
                 "sinf_soati_nomi": class_hour_rows.get(int(class_row["id"]), {}).get("fan_nomi") or "KELAJAK SOATI",
@@ -12988,8 +13831,19 @@ def _v193_plan_payload(cur, maktab_id: int, classes):
             for class_row in classes
         ],
         "tanlangan_fan_sinflari": [
-            {"sinf_darajasi": grade, "fanlar": list(subjects.values())}
-            for grade, subjects in sorted((selected_by_grade or {}).items())
+            {
+                "sinf_id": int(class_row["id"]),
+                "sinf_darajasi": _v193_grade_number(class_row.get("sinf")),
+                "talim_tili": _v238_normalize_instruction_language(
+                    class_row.get("talim_tili")
+                ),
+                "fanlar": list((
+                    _v238_class_curriculum_context(
+                        cur, maktab_id, class_row, context_cache
+                    )[1] or {}
+                ).get(_v193_grade_number(class_row.get("sinf")), {}).values()),
+            }
+            for class_row in classes
         ],
     }
 
@@ -13012,6 +13866,7 @@ def _v193_approved_plan_map(cur, maktab_id: int):
 def _v192_group_variants(cur, maktab_id: int):
     systems = _v1876_group_system_catalog(cur, maktab_id)
     cur.execute("""SELECT s.id,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,
+                          COALESCE(s.talim_tili,'uz') AS talim_tili,
                           s.bino,s.xona,s.bino_id,s.xona_id,
                           s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
                    FROM maktab_sinflari s
@@ -13404,7 +14259,11 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
 def _v192_matrix_payload(cur, maktab_id: int):
     classes, systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
-    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
+    plan_subjects_by_class = {}
+    for plan_row in plan.get("qatorlar") or plan.get("andoza_qatorlar") or []:
+        plan_subjects_by_class.setdefault(int(plan_row["sinf_id"]), []).append(
+            plan_row["fan_nomi"]
+        )
     rows = _v192_assignment_rows(cur, maktab_id)
     variant_names = {
         (int(row["sinf_id"]), str(row["guruh_kaliti"])): row
@@ -13440,9 +14299,10 @@ def _v192_matrix_payload(cur, maktab_id: int):
             {
                 "sinf_id": int(cls["id"]),
                 "sinf_darajasi": _v193_grade_number(cls.get("sinf")),
-                "fanlar": list((selected_by_grade or {}).get(
-                    _v193_grade_number(cls.get("sinf")), {}
-                ).values()) if selected_by_grade is not None else subjects,
+                "talim_tili": _v238_normalize_instruction_language(
+                    cls.get("talim_tili")
+                ),
+                "fanlar": plan_subjects_by_class.get(int(cls["id"]), []),
             }
             for cls in classes
         ],
@@ -13486,6 +14346,7 @@ class V193CurriculumClassSave(BaseModel):
     maktab_id: int
     sinf_id: int
     fanlar: list[V193CurriculumItem]
+    talim_tili: Optional[str] = None
 
 
 class V193CurriculumMatrixItem(BaseModel):
@@ -13498,10 +14359,12 @@ class V193CurriculumMatrixItem(BaseModel):
 class V193CurriculumMatrixSave(BaseModel):
     maktab_id: int
     qatorlar: list[V193CurriculumMatrixItem]
+    talim_tili: str = "uz"
 
 
 class V193CurriculumAction(BaseModel):
     maktab_id: int
+    talim_tili: str = "uz"
 
 
 class V20ClassHourPlanItem(BaseModel):
@@ -13513,20 +14376,36 @@ class V20ClassHourPlanItem(BaseModel):
 class V20ClassHourPlanSave(BaseModel):
     maktab_id: int
     qatorlar: list[V20ClassHourPlanItem] = []
+    talim_tili: str = "uz"
 
 
 @app.put("/api/maktab/aqlli_jadval/v3/oquv_reja/sinf_soati")
 def v20_class_hour_plan_save(sorov: V20ClassHourPlanSave, token: str):
     """Kelajak soati nomi, soati va qaysi sinflarga tegishliligini saqlaydi."""
     actor_id = _jwt_tekshir(token)
+    try:
+        language = _v238_normalize_instruction_language(sorov.talim_tili)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     conn = _db(); cur = conn.cursor()
     try:
         _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="Kelajak soatini faqat rahbariyat boshqaradi")
-        _v201_mark_school_override(cur, sorov.maktab_id, "oquv_reja", actor_id)
-        cur.execute("SELECT id FROM maktab_sinflari WHERE maktab_id=%s", (sorov.maktab_id,))
+        _v201_mark_school_override(
+            cur, sorov.maktab_id, "oquv_reja", actor_id, language
+        )
+        cur.execute(
+            "SELECT id FROM maktab_sinflari WHERE maktab_id=%s "
+            "AND COALESCE(talim_tili,'uz')=%s",
+            (sorov.maktab_id, language),
+        )
         valid_ids = {int(row["id"]) for row in cur.fetchall()}
+        if not valid_ids:
+            raise HTTPException(
+                status_code=400,
+                detail=f"{language} ta’lim tilidagi sinf topilmadi",
+            )
         received = set()
         for item in sorov.qatorlar:
             class_id = int(item.sinf_id)
@@ -13546,14 +14425,29 @@ def v20_class_hour_plan_save(sorov: V20ClassHourPlanSave, token: str):
                              haftalik_soat=EXCLUDED.haftalik_soat,
                              yaratgan_user_id=EXCLUDED.yaratgan_user_id,yangilangan_at=NOW()""",
                         (sorov.maktab_id, class_id, actor_id, name, hours))
-        if received:
-            cur.execute("""UPDATE aqlli_sinf_soati_qoidalari_v2 SET faol=FALSE,yangilangan_at=NOW()
-                           WHERE maktab_id=%s AND NOT(sinf_id=ANY(%s))""",
-                        (sorov.maktab_id, list(received)))
-        else:
-            cur.execute("UPDATE aqlli_sinf_soati_qoidalari_v2 SET faol=FALSE,yangilangan_at=NOW() WHERE maktab_id=%s", (sorov.maktab_id,))
+        cur.execute(
+            """UPDATE aqlli_sinf_soati_qoidalari_v2
+                  SET faol=FALSE,yangilangan_at=NOW()
+                WHERE maktab_id=%s AND sinf_id=ANY(%s)
+                  AND NOT(sinf_id=ANY(%s))""",
+            (sorov.maktab_id, sorted(valid_ids), sorted(received) or [-1]),
+        )
+        _v238_mark_plan_languages_draft(cur, sorov.maktab_id, [language])
+        cur.execute(
+            "UPDATE aqlli_oquv_reja_holati_v19_3 "
+            "SET holat='draft',tasdiqlagan_user_id=NULL," 
+            "tasdiqlangan_at=NULL,yangilangan_at=NOW() "
+            "WHERE maktab_id=%s",
+            (sorov.maktab_id,),
+        )
+        cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
+                         WHERE maktab_id=%s AND holat='draft'""",
+                    (sorov.maktab_id,))
         conn.commit()
-        return {"holat": "saqlandi", "faol_sinf_soni": len(received)}
+        return {
+            "holat": "saqlandi", "talim_tili": language,
+            "faol_sinf_soni": len(received),
+        }
     except Exception:
         conn.rollback(); raise
     finally:
@@ -13602,21 +14496,26 @@ def _v195_refresh_teacher_summary(cur, maktab_id: int, user_id: int):
     return weekly_total
 
 
-def _v195_reconcile_teacher_loads_with_plan(cur, maktab_id: int):
+def _v195_reconcile_teacher_loads_with_plan(cur, maktab_id: int, class_ids=None):
     """Tasdiqlanayotgan reja bilan eski o'qituvchi yuklamalarini moslashtiradi."""
+    scoped_ids = sorted({int(value) for value in (class_ids or [])})
+    plan_scope = " AND sinf_id=ANY(%s)" if scoped_ids else ""
+    plan_args = (maktab_id, scoped_ids) if scoped_ids else (maktab_id,)
     cur.execute("""SELECT sinf_id,fan_nomi,haftalik_soat
                    FROM aqlli_oquv_reja_qatorlari_v19_3
-                   WHERE maktab_id=%s""", (maktab_id,))
+                   WHERE maktab_id=%s""" + plan_scope, plan_args)
     plan = {
         (int(row["sinf_id"]), _v1875_subject_key(row["fan_nomi"])): dict(row)
         for row in cur.fetchall()
     }
+    assignment_scope = " AND sinf_id=ANY(%s)" if scoped_ids else ""
+    assignment_args = (maktab_id, scoped_ids) if scoped_ids else (maktab_id,)
     cur.execute("""SELECT id,user_id,sinf_id,fan_nomi,
                           COALESCE(NULLIF(guruh_kaliti,''),'whole') AS guruh_kaliti,
                           COALESCE(haftalik_soat,0) AS haftalik_soat
                    FROM maktab_dars_birikmalari
-                   WHERE maktab_id=%s
-                   ORDER BY sinf_id,fan_nomi,guruh_kaliti,id""", (maktab_id,))
+                   WHERE maktab_id=%s""" + assignment_scope + """
+                   ORDER BY sinf_id,fan_nomi,guruh_kaliti,id""", assignment_args)
     assignments = [dict(row) for row in cur.fetchall()]
     remaining = {}
     affected_users = set()
@@ -13669,14 +14568,33 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
         _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'quv rejasini faqat rahbariyat boshqaradi")
-        _v201_mark_school_override(cur, sorov.maktab_id, "oquv_reja", actor_id)
-        cur.execute("""SELECT id,sinf,harf FROM maktab_sinflari
+        cur.execute("""SELECT id,sinf,harf,COALESCE(talim_tili,'uz') AS talim_tili
+                         FROM maktab_sinflari
                        WHERE id=%s AND maktab_id=%s FOR UPDATE""",
                     (sorov.sinf_id, sorov.maktab_id))
         class_row = cur.fetchone()
         if not class_row:
             raise HTTPException(status_code=404, detail="Sinf topilmadi")
-        selected_by_grade = _v194_school_subject_grades(cur, sorov.maktab_id)
+        class_language, selected_by_grade, _curriculum = (
+            _v238_class_curriculum_context(
+                cur, sorov.maktab_id, class_row, {}
+            )
+        )
+        try:
+            requested_language = (
+                _v238_normalize_instruction_language(sorov.talim_tili)
+                if sorov.talim_tili is not None else class_language
+            )
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        if requested_language != class_language:
+            raise HTTPException(
+                status_code=409,
+                detail="Yuborilgan ta’lim tili tanlangan sinf tiliga mos emas",
+            )
+        _v201_mark_school_override(
+            cur, sorov.maktab_id, "oquv_reja", actor_id, class_language
+        )
         allowed = (selected_by_grade or {}).get(_v193_grade_number(class_row.get("sinf")), {})
         received = set()
         cleaned = []
@@ -13689,6 +14607,14 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
                 raise HTTPException(
                     status_code=400,
                     detail="SINF SOATI fan qatoriga yozilmaydi; u har sinfga avtomatik 1 soat qo'shiladi",
+                )
+            if key not in allowed:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        f"{subject}: {class_language} tilidagi "
+                        "sinf o‘quv rejasida bu fan yo‘q"
+                    ),
                 )
             if key in allowed:
                 subject = allowed[key]
@@ -13721,14 +14647,25 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
             cur.execute("""INSERT INTO maktab_fanlari(maktab_id,fan_nomi)
                            VALUES(%s,%s) ON CONFLICT DO NOTHING""",
                         (sorov.maktab_id, subject))
-            cur.execute("""INSERT INTO maktab_fan_sinflari_v19_4(maktab_id,fan_nomi,sinf_darajasi)
-                           VALUES(%s,%s,%s) ON CONFLICT DO NOTHING""",
-                        (sorov.maktab_id, subject, _v193_grade_number(class_row.get("sinf"))))
+            if class_language == "uz":
+                # Bu jadval tarixiy UZ katalogi; RU/EN fanlarini unga yozish
+                # o'zbek sinflarining ruxsat etilgan fanlarini ifloslantiradi.
+                cur.execute("""INSERT INTO maktab_fan_sinflari_v19_4(maktab_id,fan_nomi,sinf_darajasi)
+                               VALUES(%s,%s,%s) ON CONFLICT DO NOTHING""",
+                            (sorov.maktab_id, subject, _v193_grade_number(class_row.get("sinf"))))
         cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
                        SET holat='draft',versiya=versiya+1,
                            tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
                            yangilangan_at=NOW() WHERE maktab_id=%s""",
                     (sorov.maktab_id,))
+        cur.execute("""INSERT INTO aqlli_oquv_reja_til_holati_v238(
+                        maktab_id,talim_tili,holat,versiya,yangilangan_at)
+                       VALUES(%s,%s,'draft',1,NOW())
+                       ON CONFLICT(maktab_id,talim_tili) DO UPDATE SET
+                         holat='draft',versiya=aqlli_oquv_reja_til_holati_v238.versiya+1,
+                         tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
+                         yangilangan_at=NOW()""",
+                    (sorov.maktab_id, class_language))
         cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                        WHERE maktab_id=%s AND holat='draft'""", (sorov.maktab_id,))
         class_hour_result = _v199_ensure_class_hour_rules(
@@ -13739,6 +14676,7 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
         return {
             "holat": "draft_saqlandi",
             "sinf": f"{class_row['sinf']}-{class_row['harf']}",
+            "talim_tili": class_language,
             "fan_soni": len(cleaned),
             "haftalik_jami": total,
             "sinf_soati": class_hour_result,
@@ -13753,24 +14691,46 @@ def v193_curriculum_save(sorov: V193CurriculumClassSave, token: str):
 @app.put("/api/maktab/aqlli_jadval/v3/oquv_reja/matritsa")
 def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
     actor_id = _jwt_tekshir(token)
+    try:
+        language = _v238_normalize_instruction_language(sorov.talim_tili)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     conn = _db(); cur = conn.cursor()
     try:
         _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'quv rejasini faqat rahbariyat boshqaradi")
-        _v201_mark_school_override(cur, sorov.maktab_id, "oquv_reja", actor_id)
-        cur.execute("""SELECT id,sinf,harf FROM maktab_sinflari
-                       WHERE maktab_id=%s
+        _v201_mark_school_override(
+            cur, sorov.maktab_id, "oquv_reja", actor_id, language
+        )
+        cur.execute("""SELECT id,sinf,harf,COALESCE(talim_tili,'uz') AS talim_tili
+                         FROM maktab_sinflari
+                       WHERE maktab_id=%s AND COALESCE(talim_tili,'uz')=%s
                        ORDER BY CASE WHEN sinf::text ~ '^\\d+$' THEN sinf::int ELSE 999 END,harf
                        FOR UPDATE""",
-                    (sorov.maktab_id,))
+                    (sorov.maktab_id, language))
         classes = [dict(row) for row in cur.fetchall()]
         valid_classes = {int(row["id"]): row for row in classes}
-        selected_by_grade = _v194_school_subject_grades(cur, sorov.maktab_id)
         if not valid_classes:
             raise HTTPException(status_code=400, detail="Maktabda birorta ham sinf topilmadi")
         if not sorov.qatorlar:
             raise HTTPException(status_code=400, detail="O'quv reja matritsasi bo'sh")
+        context_cache = {}
+        allowed_by_class = {}
+        for class_id, class_row in valid_classes.items():
+            class_language, selected_by_grade, _curriculum = (
+                _v238_class_curriculum_context(
+                    cur, sorov.maktab_id, class_row, context_cache
+                )
+            )
+            if class_language != language:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Sinf ta'lim tili matritsa tiliga mos emas",
+                )
+            allowed_by_class[class_id] = (selected_by_grade or {}).get(
+                _v193_grade_number(class_row.get("sinf")), {}
+            )
         seen = set()
         cleaned = []
         class_totals = {class_id: 0 for class_id in valid_classes}
@@ -13787,9 +14747,15 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
                     status_code=400,
                     detail="SINF SOATI fan qatoriga yozilmaydi; u har sinfga avtomatik 1 soat qo'shiladi",
                 )
-            allowed = (selected_by_grade or {}).get(
-                _v193_grade_number(valid_classes[class_id].get("sinf")), {}
-            )
+            allowed = allowed_by_class[class_id]
+            if subject_key not in allowed:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        f"{subject}: {language} tilidagi sinf o‘quv "
+                        "rejasida bu fan yo‘q"
+                    ),
+                )
             if subject_key in allowed:
                 subject = allowed[subject_key]
             hours = float(item.haftalik_soat)
@@ -13813,10 +14779,29 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
                     detail=f"{cls['sinf']}-{cls['harf']}: haftalik jami 60 soatdan oshdi",
                 )
             cleaned.append((class_id, subject, hours, daily))
+        missing_class_ids = [
+            class_id for class_id, total in class_totals.items() if total <= 0
+        ]
+        if missing_class_ids:
+            labels = [
+                f"{valid_classes[class_id]['sinf']}-{valid_classes[class_id]['harf']}"
+                for class_id in missing_class_ids
+            ]
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"{language} til matritsasi to‘liq emas. Qator yuborilmagan "
+                    "sinflar: " + ", ".join(labels[:30])
+                ),
+            )
         cur.execute("""INSERT INTO aqlli_oquv_reja_holati_v19_3(maktab_id)
                        VALUES(%s) ON CONFLICT(maktab_id) DO NOTHING""", (sorov.maktab_id,))
-        cur.execute("DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 WHERE maktab_id=%s",
-                    (sorov.maktab_id,))
+        target_class_ids = sorted(valid_classes)
+        cur.execute(
+            "DELETE FROM aqlli_oquv_reja_qatorlari_v19_3 "
+            "WHERE maktab_id=%s AND sinf_id=ANY(%s)",
+            (sorov.maktab_id, target_class_ids),
+        )
         for class_id, subject, hours, daily in cleaned:
             cur.execute("""INSERT INTO aqlli_oquv_reja_qatorlari_v19_3(
                             maktab_id,sinf_id,fan_nomi,haftalik_soat,
@@ -13826,15 +14811,24 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
             cur.execute("""INSERT INTO maktab_fanlari(maktab_id,fan_nomi)
                            VALUES(%s,%s) ON CONFLICT DO NOTHING""",
                         (sorov.maktab_id, subject))
-            cur.execute("""INSERT INTO maktab_fan_sinflari_v19_4(maktab_id,fan_nomi,sinf_darajasi)
-                           VALUES(%s,%s,%s) ON CONFLICT DO NOTHING""",
-                        (sorov.maktab_id, subject,
-                         _v193_grade_number(valid_classes[class_id].get("sinf"))))
+            if language == "uz":
+                cur.execute("""INSERT INTO maktab_fan_sinflari_v19_4(maktab_id,fan_nomi,sinf_darajasi)
+                               VALUES(%s,%s,%s) ON CONFLICT DO NOTHING""",
+                            (sorov.maktab_id, subject,
+                             _v193_grade_number(valid_classes[class_id].get("sinf"))))
         cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
                        SET holat='draft',versiya=versiya+1,
                            tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
                            yangilangan_at=NOW() WHERE maktab_id=%s""",
                     (sorov.maktab_id,))
+        cur.execute("""INSERT INTO aqlli_oquv_reja_til_holati_v238(
+                        maktab_id,talim_tili,holat,versiya,yangilangan_at)
+                       VALUES(%s,%s,'draft',1,NOW())
+                       ON CONFLICT(maktab_id,talim_tili) DO UPDATE SET
+                         holat='draft',versiya=aqlli_oquv_reja_til_holati_v238.versiya+1,
+                         tasdiqlagan_user_id=NULL,tasdiqlangan_at=NULL,
+                         yangilangan_at=NOW()""",
+                    (sorov.maktab_id, language))
         cur.execute("""UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                        WHERE maktab_id=%s AND holat='draft'""", (sorov.maktab_id,))
         class_hour_result = _v199_ensure_class_hour_rules(
@@ -13844,6 +14838,7 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
         conn.commit()
         return {
             "holat": "matritsa_draft_saqlandi",
+            "talim_tili": language,
             "sinf_soni": len(valid_classes),
             "fan_qatori": len(cleaned),
             "maktab_haftalik_jami": sum(class_totals.values()),
@@ -13859,16 +14854,35 @@ def v193_curriculum_matrix_save(sorov: V193CurriculumMatrixSave, token: str):
 @app.post("/api/maktab/aqlli_jadval/v3/oquv_reja/tasdiqlash")
 def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
     actor_id = _jwt_tekshir(token)
+    try:
+        language = _v238_normalize_instruction_language(sorov.talim_tili)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
     conn = _db(); cur = conn.cursor()
     try:
         _v192_tables(cur)
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(status_code=403, detail="O'quv rejasini faqat rahbariyat tasdiqlaydi")
-        classes, _systems, _variants = _v192_group_variants(cur, sorov.maktab_id)
-        _v193_ensure_plan(cur, sorov.maktab_id, classes)
+        all_classes, _systems, _variants = _v192_group_variants(
+            cur, sorov.maktab_id
+        )
+        _v193_ensure_plan(cur, sorov.maktab_id, all_classes)
+        classes = [
+            row for row in all_classes
+            if _v238_normalize_instruction_language(row.get("talim_tili"))
+            == language
+        ]
+        if not classes:
+            raise HTTPException(
+                status_code=400,
+                detail=f"{language} ta’lim tilidagi sinf topilmadi",
+            )
+        target_class_ids = sorted(int(row["id"]) for row in classes)
         cur.execute("""SELECT sinf_id,COUNT(*) AS fan_soni,SUM(haftalik_soat) AS jami
                        FROM aqlli_oquv_reja_qatorlari_v19_3
-                       WHERE maktab_id=%s GROUP BY sinf_id""", (sorov.maktab_id,))
+                       WHERE maktab_id=%s AND sinf_id=ANY(%s)
+                       GROUP BY sinf_id""",
+                    (sorov.maktab_id, target_class_ids))
         totals = {int(row["sinf_id"]): row for row in cur.fetchall()}
         missing = [
             f"{row['sinf']}-{row['harf']}"
@@ -13882,10 +14896,12 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
             )
         cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
                        SET haftalik_soat=0,asosiy_oqituvchi_user_id=NULL
-                       WHERE maktab_id=%s""", (sorov.maktab_id,))
+                       WHERE maktab_id=%s AND sinf_id=ANY(%s)""",
+                    (sorov.maktab_id, target_class_ids))
         cur.execute("""SELECT sinf_id,fan_nomi,haftalik_soat,kunlik_max
                        FROM aqlli_oquv_reja_qatorlari_v19_3
-                       WHERE maktab_id=%s""", (sorov.maktab_id,))
+                       WHERE maktab_id=%s AND sinf_id=ANY(%s)""",
+                    (sorov.maktab_id, target_class_ids))
         plan_rows = cur.fetchall()
         for row in plan_rows:
             cur.execute("""INSERT INTO aqlli_sinf_fan_yuklamalari_v2(
@@ -13898,15 +14914,50 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
                             sorov.maktab_id, row["sinf_id"], row["fan_nomi"],
                             row["haftalik_soat"], row["kunlik_max"],
                         ))
+        cur.execute("""INSERT INTO aqlli_oquv_reja_til_holati_v238(
+                        maktab_id,talim_tili,holat,tasdiqlagan_user_id,
+                        tasdiqlangan_at,yangilangan_at)
+                       VALUES(%s,%s,'tasdiqlangan',%s,NOW(),NOW())
+                       ON CONFLICT(maktab_id,talim_tili) DO UPDATE SET
+                         holat='tasdiqlangan',
+                         tasdiqlagan_user_id=EXCLUDED.tasdiqlagan_user_id,
+                         tasdiqlangan_at=NOW(),yangilangan_at=NOW()""",
+                    (sorov.maktab_id, language, actor_id))
+        used_languages = sorted({
+            _v238_normalize_instruction_language(row.get("talim_tili"))
+            for row in all_classes
+        })
+        cur.execute("""SELECT talim_tili,holat
+                         FROM aqlli_oquv_reja_til_holati_v238
+                        WHERE maktab_id=%s AND talim_tili=ANY(%s)""",
+                    (sorov.maktab_id, used_languages))
+        approved_languages = {
+            row["talim_tili"] for row in cur.fetchall()
+            if row.get("holat") == "tasdiqlangan"
+        }
+        all_approved = set(used_languages) <= approved_languages
         cur.execute("""UPDATE aqlli_oquv_reja_holati_v19_3
-                       SET holat='tasdiqlangan',tasdiqlagan_user_id=%s,
-                           tasdiqlangan_at=NOW(),yangilangan_at=NOW()
-                       WHERE maktab_id=%s""", (actor_id, sorov.maktab_id))
-        reconcile = _v195_reconcile_teacher_loads_with_plan(cur, sorov.maktab_id)
+                       SET holat=%s,
+                           tasdiqlagan_user_id=CASE WHEN %s THEN %s ELSE NULL END,
+                           tasdiqlangan_at=CASE WHEN %s THEN NOW() ELSE NULL END,
+                           yangilangan_at=NOW()
+                       WHERE maktab_id=%s""",
+                    (
+                        "tasdiqlangan" if all_approved else "draft",
+                        all_approved, actor_id, all_approved, sorov.maktab_id,
+                    ))
+        reconcile = _v195_reconcile_teacher_loads_with_plan(cur,
+            sorov.maktab_id, target_class_ids)
         class_hour_result = _v199_ensure_class_hour_rules(
             cur, sorov.maktab_id, [row["id"] for row in classes], actor_id
         )
-        sync_warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
+        sync_warnings = []
+        if all_approved:
+            sync_warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
+        else:
+            sync_warnings.append(
+                "Qolgan ta’lim tillari tasdiqlangach umumiy jadval manbasi sinxronlanadi"
+            )
         if reconcile["ochirilgan_qator"]:
             sync_warnings.append(
                 f"O'quv rejada qolmagan {reconcile['ochirilgan_qator']} ta eski o'qituvchi yuklama qatori olib tashlandi"
@@ -13921,6 +14972,8 @@ def v193_curriculum_approve(sorov: V193CurriculumAction, token: str):
         conn.commit()
         return {
             "holat": "tasdiqlangan",
+            "talim_tili": language,
+            "barcha_tillar_tasdiqlandi": all_approved,
             "sinf_soni": len(classes),
             "fan_qatori": len(plan_rows),
             "yuklama_moslash": reconcile,
@@ -14084,10 +15137,9 @@ def _v192_sync_schedule_sources(cur, maktab_id: int):
 
     approved_plan = _v193_approved_plan_map(cur, maktab_id)
     if approved_plan is None:
-        cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
-                       SET haftalik_soat=0,asosiy_oqituvchi_user_id=NULL,xona_id=NULL
-                       WHERE maktab_id=%s""", (maktab_id,))
-        cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
+        # Bir til qayta tahrirlanayotgan paytda global holat draft bo'ladi.
+        # Shu vaqtda boshqa tillarning tasdiqlangan yuklama/guruh ma'lumotini
+        # nolga tushirish yoki o'chirish mutlaqo mumkin emas.
         return [
             "O'qituvchi yuklamasi qo'lda saqlandi. O'quv reja tasdiqlanmagani uchun avtomatik soat va dars jadvali manbasi hali yoqilmadi"
         ]
@@ -14097,7 +15149,8 @@ def _v192_sync_schedule_sources(cur, maktab_id: int):
         cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
                        SET asosiy_oqituvchi_user_id=NULL,xona_id=NULL
                        WHERE maktab_id=%s""", (maktab_id,))
-    cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
+    # Guruh qatorlari UPSERT qilinadi. Maktab bo'yicha ommaviy DELETE eski
+    # 1/2 yoki O'g'il/Qiz sxemasini va boshqa til sozlamasini yo'qotardi.
     warnings = []
     for pair in pairs.values():
         whole = [row for row in pair["rows"] if _v1875_group_key(row.get("guruh_kaliti")) == "whole"]
@@ -14230,15 +15283,20 @@ def _v192_save_teacher_load_rows(
     approved_plan = _v193_approved_plan_map(cur, maktab_id)
     classes, _systems, variants = _v192_group_variants(cur, maktab_id)
     valid_classes = {int(row["id"]) for row in classes}
-    selected_by_grade = _v194_school_subject_grades(cur, maktab_id)
     cur.execute("SELECT fan_nomi FROM maktab_fanlari WHERE maktab_id=%s", (maktab_id,))
     fallback_subjects = {
         _v1875_subject_key(row["fan_nomi"]): row["fan_nomi"]
         for row in cur.fetchall()
     }
     allowed_by_class = {}
+    context_cache = {}
     for cls in classes:
         grade = _v193_grade_number(cls.get("sinf"))
+        _language, selected_by_grade, _curriculum = (
+            _v238_class_curriculum_context(
+                cur, maktab_id, cls, context_cache
+            )
+        )
         allowed_by_class[int(cls["id"])] = (
             dict((selected_by_grade or {}).get(grade, {}))
             if selected_by_grade is not None else dict(fallback_subjects)
@@ -20718,6 +21776,7 @@ class V209SchoolCreationBuilding(BaseModel):
 class V209SchoolCreationClass(BaseModel):
     name: str
     shift: int = 1
+    talim_tili: str = "uz"
     leader_user_id: Optional[int] = None
     psychologist_user_id: Optional[int] = None
     building_key: Optional[str] = None
@@ -20852,12 +21911,19 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count,
             raise ValueError(
                 f"{name} uchun {shift}-smena maktabning {shift_count} smena sozlamasiga mos emas."
             )
+        try:
+            instruction_language = _v238_normalize_instruction_language(
+                item.get("talim_tili")
+            )
+        except ValueError as exc:
+            raise ValueError(f"{name}: {exc}") from exc
         row = {
             **item,
             "name": name,
             "grade": grade,
             "letter": letter,
             "shift": shift,
+            "talim_tili": instruction_language,
         }
         normalized.append(row)
         by_grade[grade].append(row)
@@ -21060,6 +22126,10 @@ def _v209_school_creation_tables(cur):
     _v1852_tables(cur)
     cur.execute("ALTER TABLE maktablar ADD COLUMN IF NOT EXISTS maktab_raqami TEXT")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS smena INTEGER DEFAULT 1")
+    cur.execute(
+        "ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS "
+        "talim_tili TEXT NOT NULL DEFAULT 'uz'"
+    )
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS bino TEXT")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS xona TEXT")
     cur.execute("ALTER TABLE maktab_sinflari ADD COLUMN IF NOT EXISTS bino_id BIGINT")
@@ -21266,13 +22336,14 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
             cur.execute(
                 """INSERT INTO maktab_sinflari(
                        maktab_id,sinf,harf,smena,bino,xona,bino_id,xona_id,
-                       rahbar_user_id,psixolog_user_id
-                   ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                       rahbar_user_id,psixolog_user_id,talim_tili
+                   ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                    RETURNING id""",
                 (
                     school_id, str(row["grade"]), row["letter"], row["shift"],
                     building_name, room_number, building_id, room_id,
                     row.get("leader_user_id"), row.get("psychologist_user_id"),
+                    row["talim_tili"],
                 ),
             )
             class_id = int(cur.fetchone()["id"])
@@ -21290,6 +22361,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
                 "xona_id": room_id,
                 "bino": building_name,
                 "xona": room_number,
+                "talim_tili": row["talim_tili"],
             })
 
         _v209_keep_highest_member_role(
