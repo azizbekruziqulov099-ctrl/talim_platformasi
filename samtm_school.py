@@ -117,7 +117,7 @@ SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V23.6-DUAL-SHIFT-WEEK-ROUND-R
 # ``main.py`` REV55 ni ham qat'iy tekshiradi. Bu ikkinchi public handshake
 # o'zgarmaydi; yangi imkoniyatlar alohida feature revision bilan belgilanadi.
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
-SAMTM_SCHOOL_FEATURE_REVISION = "teacher-full-load-exact-group-v23.7.1"
+SAMTM_SCHOOL_FEATURE_REVISION = "teacher-grid-partial-group-class-v23.7.2"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 _platform.SAMTM_FEATURE_REVISION = SAMTM_SCHOOL_FEATURE_REVISION
@@ -9941,6 +9941,12 @@ def _v1876_seed_legacy_group_systems(cur, maktab_id: int):
                    FROM maktab_sinflari WHERE maktab_id=%s""", (maktab_id,))
     for cls in cur.fetchall():
         kind = str(cls.get("guruhlash_usuli") or "none").strip().lower()
+        kind = {
+            "1/2": "alphabet", "1_2": "alphabet", "numbered": "alphabet",
+            "half": "alphabet", "ikki_guruh": "alphabet",
+            "ogil_qiz": "gender", "o'g'il/qiz": "gender",
+            "o‘g‘il/qiz": "gender", "boys_girls": "gender",
+        }.get(kind, kind)
         if kind not in _SINF_GURUH_TIZIM_NOMLARI:
             continue
         cur.execute(
@@ -10990,6 +10996,10 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v1876_tables(cur)
+        # DDL tayyorlash transactionini canonical yuklama transactionidan
+        # ajratamiz. Guruh yaratish va Step-3 qisman saqlash bir vaqtda kelsa
+        # ham fan/guruh kalitlari bir-birining ustidan yozilmaydi.
+        conn.commit()
         cur.execute(
             "SELECT maktab_id FROM maktab_sinflari WHERE id=%s",
             (sorov.sinf_id,),
@@ -11004,13 +11014,41 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
                 status_code=403,
                 detail="Guruh tizimini faqat admin yoki o'quv ishlari zavuchi yaratadi",
             )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1925000000 + int(sorov.maktab_id),),
+        )
 
         cur.execute(
-            "SELECT id,fanlar FROM maktab_sinf_guruh_tizimlari "
-            "WHERE sinf_id=%s AND turi=%s FOR UPDATE",
-            (sorov.sinf_id, kind),
+            "SELECT id,turi,fanlar FROM maktab_sinf_guruh_tizimlari "
+            "WHERE sinf_id=%s AND faol=TRUE ORDER BY id FOR UPDATE",
+            (sorov.sinf_id,),
         )
-        existing = cur.fetchone()
+        active_systems = [dict(row) for row in cur.fetchall()]
+        existing = next(
+            (row for row in active_systems if str(row.get("turi")) == kind),
+            None,
+        )
+        linked_elsewhere = [
+            row for row in active_systems
+            if str(row.get("turi")) != kind
+            and any(
+                _v204_group_subject_matches(value, subject)
+                for value in (row.get("fanlar") or [])
+            )
+        ]
+        if linked_elsewhere:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Bu fan boshqa guruh turiga biriktirilgan. Avval o'sha "
+                    "fan yuklamasini tozalab, keyin guruh turini almashtiring"
+                ),
+            )
         subjects = [
             re.sub(r"\s+", " ", str(value or "")).strip()
             for value in ((existing or {}).get("fanlar") or [])
@@ -11041,6 +11079,70 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
         system_id = int(cur.fetchone()["id"])
         _sinf_guruh_tizimini_taqsimla(cur, system_id)
 
+        # Fan avval butun sinf o'qituvchisiga biriktirilgan bo'lsa, guruh
+        # tizimi yoqilganda eski ``whole`` qatori ko'rinmay qolib dublikat
+        # yuklamaga aylanmasin. Uni birinchi guruhga xavfsiz ko'chiramiz;
+        # qolgan guruh o'qituvchisini foydalanuvchi setkada tanlaydi.
+        target_group_keys = (
+            {"group_1", "group_2"}
+            if kind == "alphabet" else {"boys", "girls"}
+        )
+        first_group_key = "group_1" if kind == "alphabet" else "boys"
+        cur.execute(
+            """SELECT id,user_id,fan_nomi,
+                      COALESCE(NULLIF(guruh_kaliti,''),'whole') AS guruh_kaliti
+                 FROM maktab_dars_birikmalari
+                WHERE maktab_id=%s AND sinf_id=%s
+                ORDER BY id FOR UPDATE""",
+            (sorov.maktab_id, sorov.sinf_id),
+        )
+        matching_rows = [
+            dict(row) for row in cur.fetchall()
+            if _v204_group_subject_matches(row.get("fan_nomi"), subject)
+        ]
+        whole_rows = [
+            row for row in matching_rows
+            if _v1875_group_key(row.get("guruh_kaliti")) == "whole"
+        ]
+        grouped_rows = [
+            row for row in matching_rows
+            if _v1875_group_key(row.get("guruh_kaliti")) != "whole"
+        ]
+        incompatible_group_rows = [
+            row for row in grouped_rows
+            if _v1875_group_key(row.get("guruh_kaliti"))
+            not in target_group_keys
+        ]
+        if incompatible_group_rows:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Bu fanda oldingi boshqa turdagi guruh yuklamasi bor. "
+                    "Uni O'qituvchi va yuklama oynasida tozalab, keyin yangi "
+                    "guruh turini tanlang"
+                ),
+            )
+        if len(whole_rows) > 1:
+            raise HTTPException(
+                status_code=409,
+                detail="Bu fan butun sinf bo'yicha bir nechta o'qituvchiga bo'lingan; avval yuklamani bitta qatorga birlashtiring",
+            )
+        affected_teachers = set()
+        if whole_rows and not grouped_rows:
+            cur.execute(
+                "UPDATE maktab_dars_birikmalari SET guruh_kaliti=%s WHERE id=%s",
+                (first_group_key, int(whole_rows[0]["id"])),
+            )
+            affected_teachers.add(int(whole_rows[0]["user_id"]))
+        elif whole_rows and grouped_rows:
+            cur.execute(
+                "DELETE FROM maktab_dars_birikmalari WHERE id=%s",
+                (int(whole_rows[0]["id"]),),
+            )
+            affected_teachers.add(int(whole_rows[0]["user_id"]))
+        for teacher_id in sorted(affected_teachers):
+            _v195_refresh_teacher_summary(cur, sorov.maktab_id, teacher_id)
+
         cur.execute(
             "SELECT turi FROM maktab_sinf_guruh_tizimlari "
             "WHERE sinf_id=%s AND faol=TRUE ORDER BY id",
@@ -11055,6 +11157,11 @@ def v1876_quick_group_system(sorov: V1876QuickGroupSystem, token: str):
         cur.execute(
             "UPDATE maktab_sinflari SET guruhlash_usuli=%s WHERE id=%s",
             (legacy, sorov.sinf_id),
+        )
+        cur.execute(
+            """UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
+                 WHERE maktab_id=%s AND holat='draft'""",
+            (sorov.maktab_id,),
         )
         report = _v1876_group_review_report(cur, sorov.maktab_id)
         conn.commit()
@@ -12032,11 +12139,190 @@ def v198_link_school_workspace(
         conn.close()
 
 
+class V237ClassCreateRequest(BaseModel):
+    maktab_id: int
+    sinf: int
+    harf: str
+    smena: int = 1
+    xona_id: Optional[int] = None
+
+
+class V237SchoolAlphabetRequest(BaseModel):
+    maktab_id: int
+    alifbo_turi: str
+
+
 class V237ClassEditRequest(BaseModel):
     maktab_id: int
     sinf_id: int
     harf: str
     smena: int
+    # Eski frontend bu maydonlarni yubormaydi. ``xona_yangilansin`` aniq
+    # TRUE bo'lmaguncha mavjud xona tasodifan NULL bo'lib qolmaydi.
+    xona_id: Optional[int] = None
+    xona_yangilansin: bool = False
+
+
+def _v237_resolve_class_room(cur, maktab_id: int, xona_id, smena: int,
+                             exclude_sinf_id=None):
+    """Uy xonasini tekshiradi va maktab_sinflari uchun kanonik qiymat beradi."""
+    if xona_id is None:
+        return {
+            "xona_id": None, "bino_id": None,
+            "xona": None, "bino": None,
+        }
+    try:
+        room_id = int(xona_id)
+    except (TypeError, ValueError) as exc:
+        raise HTTPException(status_code=400, detail="Sinf xonasi noto'g'ri") from exc
+    cur.execute(
+        """SELECT r.id,r.nomi,r.turi,r.faol,r.darsga_yaroqli,
+                  r.bino_id,r.xona_raqami,b.nomi AS bino_nomi
+             FROM aqlli_xonalar_v2 r
+             LEFT JOIN aqlli_binolar_v2 b ON b.id=r.bino_id
+            WHERE r.id=%s AND r.maktab_id=%s FOR UPDATE OF r""",
+        (room_id, int(maktab_id)),
+    )
+    room = cur.fetchone()
+    if not room:
+        raise HTTPException(status_code=404, detail="Tanlangan xona bu maktabda topilmadi")
+    if not bool(room.get("faol", True)) or not bool(room.get("darsga_yaroqli", True)) \
+            or str(room.get("turi") or "").strip().lower() == "non_teaching":
+        raise HTTPException(status_code=409, detail="Tanlangan xona dars uchun faol emas")
+    args = [int(maktab_id), int(smena), room_id]
+    exclude_sql = ""
+    if exclude_sinf_id is not None:
+        exclude_sql = " AND id<>%s"
+        args.append(int(exclude_sinf_id))
+    cur.execute(
+        """SELECT id,sinf,harf FROM maktab_sinflari
+            WHERE maktab_id=%s AND COALESCE(smena,1)=%s AND xona_id=%s"""
+        + exclude_sql + " LIMIT 1 FOR UPDATE",
+        tuple(args),
+    )
+    occupied = cur.fetchone()
+    if occupied:
+        raise HTTPException(
+            status_code=409,
+            detail=(
+                f"Bu xona {occupied['sinf']}-{occupied['harf']} sinfiga "
+                f"{int(smena)}-smenada biriktirilgan"
+            ),
+        )
+    room_text = str(room.get("xona_raqami") or room.get("nomi") or "").strip() or None
+    return {
+        "xona_id": room_id,
+        "bino_id": int(room["bino_id"]) if room.get("bino_id") is not None else None,
+        "xona": room_text,
+        "bino": str(room.get("bino_nomi") or "").strip() or None,
+    }
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/sinf_yaratish")
+def v237_class_create(sorov: V237ClassCreateRequest, token: str):
+    """Mavjud maktabga ID-bog'lanishlarni buzmasdan bitta yangi sinf qo'shadi."""
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        # Xona/bino va o'quv reja jadvallari biznes qulfidan oldin tayyorlanadi.
+        _v192_tables(cur)
+        _v209_school_creation_tables(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinfni faqat maktab rahbariyati qo'shadi")
+        try:
+            grade = int(sorov.sinf)
+            label = _v237_clean_parallel_label(sorov.harf)
+            label_key = _v237_parallel_label_key(label)
+        except (TypeError, ValueError) as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+        if grade not in range(1, 12):
+            raise HTTPException(status_code=400, detail="Sinf darajasi 1–11 oralig'ida bo'lishi kerak")
+        shift = int(sorov.smena)
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2373000000 + int(sorov.maktab_id),))
+        cur.execute(
+            "SELECT COALESCE(smena_soni,1) AS smena_soni FROM maktablar WHERE id=%s FOR UPDATE",
+            (sorov.maktab_id,),
+        )
+        school = cur.fetchone()
+        if not school:
+            raise HTTPException(status_code=404, detail="Maktab topilmadi")
+        shift_count = int(school.get("smena_soni") or 1)
+        if shift not in (1, 2) or shift > shift_count:
+            raise HTTPException(status_code=400, detail=f"Bu maktab {shift_count} smenali")
+        cur.execute(
+            "SELECT id,harf FROM maktab_sinflari WHERE maktab_id=%s AND sinf=%s FOR UPDATE",
+            (sorov.maktab_id, str(grade)),
+        )
+        for row in cur.fetchall():
+            try:
+                duplicate = _v237_parallel_label_key(row.get("harf")) == label_key
+            except ValueError:
+                duplicate = False
+            if duplicate:
+                raise HTTPException(status_code=409, detail=f"{grade}-{label} sinfi allaqachon mavjud")
+        room = _v237_resolve_class_room(
+            cur, sorov.maktab_id, sorov.xona_id, shift
+        )
+        cur.execute(
+            """INSERT INTO maktab_sinflari(
+                   maktab_id,sinf,harf,smena,bino,xona,bino_id,xona_id
+               ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+            (
+                sorov.maktab_id, str(grade), label, shift,
+                room["bino"], room["xona"], room["bino_id"], room["xona_id"],
+            ),
+        )
+        class_id = int(cur.fetchone()["id"])
+        _v199_ensure_class_hour_rules(cur, sorov.maktab_id, [class_id], actor_id)
+        cur.execute(
+            "SELECT id,sinf,harf,COALESCE(smena,1) AS smena FROM maktab_sinflari "
+            "WHERE maktab_id=%s ORDER BY id",
+            (sorov.maktab_id,),
+        )
+        _v193_ensure_plan(cur, sorov.maktab_id, [dict(row) for row in cur.fetchall()])
+        cur.execute(
+            "UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor' "
+            "WHERE maktab_id=%s AND holat='draft'",
+            (sorov.maktab_id,),
+        )
+        result = {
+            "id": class_id, "sinf": str(grade), "harf": label,
+            "name": f"{grade}-{label}", "smena": shift, **room,
+        }
+        conn.commit()
+        return {"holat": "yaratildi", "sinf": result, "oquv_reja_holati": "draft"}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/sinf_alifbosi")
+def v237_school_alphabet_save(sorov: V237SchoolAlphabetRequest, token: str):
+    """Keyingi sinf takliflari/saralashi uchun alifboni saqlaydi; nomlarni o'zgartirmaydi."""
+    actor_id = _jwt_tekshir(token)
+    alphabet_type = str(sorov.alifbo_turi or "").strip().lower()
+    if alphabet_type not in _V237_CLASS_ALPHABETS:
+        raise HTTPException(status_code=400, detail="Sinf alifbosi noto'g'ri")
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Sinf alifbosini faqat rahbariyat o'zgartiradi")
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (2373000000 + int(sorov.maktab_id),))
+        cur.execute(
+            "UPDATE maktablar SET alifbo_turi=%s WHERE id=%s RETURNING id",
+            (alphabet_type, sorov.maktab_id),
+        )
+        if not cur.fetchone():
+            raise HTTPException(status_code=404, detail="Maktab topilmadi")
+        conn.commit()
+        return {"holat": "saqlandi", "alifbo_turi": alphabet_type}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 @app.patch("/api/maktab/aqlli_jadval/v3/sinf_tahrirlash")
@@ -12047,6 +12333,8 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
+        _v209_school_creation_tables(cur)
+        conn.commit()
         if not _v1852_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(
                 status_code=403,
@@ -12076,7 +12364,8 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
                 detail=f"Bu maktab {shift_count} smenali; {new_shift}-smena tanlab bo‘lmaydi",
             )
         cur.execute(
-            """SELECT id,sinf,harf,COALESCE(smena,1) AS smena
+            """SELECT id,sinf,harf,COALESCE(smena,1) AS smena,
+                      bino,xona,bino_id,xona_id
                  FROM maktab_sinflari
                 WHERE id=%s AND maktab_id=%s FOR UPDATE""",
             (sorov.sinf_id, sorov.maktab_id),
@@ -12110,15 +12399,38 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
             )
         changed_shift = int(current.get("smena") or 1) != new_shift
         changed_label = str(current.get("harf") or "") != new_label
-        if changed_shift or changed_label:
+        room = {
+            "xona_id": current.get("xona_id"),
+            "bino_id": current.get("bino_id"),
+            "xona": current.get("xona"),
+            "bino": current.get("bino"),
+        }
+        if sorov.xona_yangilansin or (changed_shift and current.get("xona_id") is not None):
+            room = _v237_resolve_class_room(
+                cur,
+                sorov.maktab_id,
+                sorov.xona_id if sorov.xona_yangilansin else current.get("xona_id"),
+                new_shift,
+                exclude_sinf_id=sorov.sinf_id,
+            )
+        changed_room = any(
+            (current.get(key) or None) != (room.get(key) or None)
+            for key in ("xona_id", "bino_id", "xona", "bino")
+        )
+        if changed_shift or changed_label or changed_room:
             cur.execute(
-                """UPDATE maktab_sinflari SET harf=%s,smena=%s
+                """UPDATE maktab_sinflari
+                      SET harf=%s,smena=%s,bino=%s,xona=%s,bino_id=%s,xona_id=%s
                     WHERE id=%s AND maktab_id=%s""",
-                (new_label, new_shift, sorov.sinf_id, sorov.maktab_id),
+                (
+                    new_label, new_shift, room["bino"], room["xona"],
+                    room["bino_id"], room["xona_id"],
+                    sorov.sinf_id, sorov.maktab_id,
+                ),
             )
             # Draft eski smenaga qarab yaratilgan bo'lishi mumkin. Tasdiqlangan
             # jadval arxiv sifatida qoladi; yangi draft esa qayta yaratiladi.
-            if changed_shift:
+            if changed_shift or changed_room:
                 cur.execute(
                     """UPDATE aqlli_jadval_urinishlari_v2 SET holat='bekor'
                         WHERE maktab_id=%s AND holat='draft'""",
@@ -12135,16 +12447,20 @@ def v237_class_edit(sorov: V237ClassEditRequest, token: str):
             "harf": new_label,
             "name": f"{current['sinf']}-{new_label}",
             "smena": new_shift,
+            **room,
             "alifbo_turi": alphabet_type,
             "tartib": list(_v237_class_sort_key({
                 "id": sorov.sinf_id,
                 "sinf": current["sinf"],
                 "harf": new_label,
             }, alphabet_type)[:2]),
-            "jadval_qayta_yaratish_kerak": changed_shift,
+            "jadval_qayta_yaratish_kerak": changed_shift or changed_room,
         }
         conn.commit()
-        return {"holat": "saqlandi", "sinf": result, "ozgardi": changed_shift or changed_label}
+        return {
+            "holat": "saqlandi", "sinf": result,
+            "ozgardi": changed_shift or changed_label or changed_room,
+        }
     except Exception:
         conn.rollback(); raise
     finally:
@@ -12696,7 +13012,7 @@ def _v193_approved_plan_map(cur, maktab_id: int):
 def _v192_group_variants(cur, maktab_id: int):
     systems = _v1876_group_system_catalog(cur, maktab_id)
     cur.execute("""SELECT s.id,s.sinf,s.harf,COALESCE(s.smena,1) AS smena,
-                          s.bino,s.xona,
+                          s.bino,s.xona,s.bino_id,s.xona_id,
                           s.rahbar_user_id,COALESCE(u.full_name,'') AS rahbar_ismi
                    FROM maktab_sinflari s
                    LEFT JOIN users u ON u.user_id=s.rahbar_user_id
@@ -12958,8 +13274,8 @@ def _v204_group_subject_matches(left, right):
     )
 
 
-def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
-    """Prove full plan/group coverage before the school-wide replacement."""
+def _v204_expected_skeleton_rows(cur, maktab_id: int):
+    """Return the canonical plan/group keys accepted by both skeleton saves."""
     classes, _systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
     saved_plan_rows = plan.get("qatorlar") or []
@@ -12995,15 +13311,53 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
             for variant in linked
         }) or ["whole"]
         for group_key in group_keys:
-            expected[(class_id, subject_key, group_key)] = hours
+            expected[(class_id, subject_key, group_key)] = {
+                "sinf_id": class_id,
+                "fan_nomi": subject,
+                "fan_kaliti": subject_key,
+                "guruh_kaliti": group_key,
+                "haftalik_soat": hours,
+                "kunlik_max": max(1, min(4, int(row.get("kunlik_max") or 1))),
+            }
+    return expected
+
+
+def _v204_resolve_expected_skeleton_key(expected, class_id, subject, group_key):
+    """Resolve aliases only when one canonical plan row matches unambiguously."""
+    class_id = int(class_id)
+    subject_key = _v1875_subject_key(subject)
+    group_key = _v1875_group_key(group_key)
+    exact = (class_id, subject_key, group_key)
+    if exact in expected:
+        return exact
+    matches = [
+        key for key, row in expected.items()
+        if key[0] == class_id
+        and key[2] == group_key
+        and _v204_group_subject_matches(row["fan_nomi"], subject)
+    ]
+    return matches[0] if len(matches) == 1 else None
+
+
+def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
+    """Prove full plan/group coverage before the school-wide replacement."""
+    expected = _v204_expected_skeleton_rows(cur, maktab_id)
+    # _v204_group_subject_matches is applied by the shared resolver so the
+    # full and partial endpoints accept exactly the same unambiguous aliases.
 
     submitted = {}
     for row in qatorlar:
-        key = (
-            int(row.sinf_id),
-            _v1875_subject_key(row.fan_nomi),
-            _v1875_group_key(row.guruh_kaliti),
+        key = _v204_resolve_expected_skeleton_key(
+            expected, row.sinf_id, row.fan_nomi, row.guruh_kaliti,
         )
+        if key is None:
+            # Noma'lum qator submitted_keys ichida qolib, to'liq snapshot
+            # xatosida ortiqcha qator sifatida aniq ko'rinadi.
+            key = (
+                int(row.sinf_id),
+                _v1875_subject_key(row.fan_nomi),
+                _v1875_group_key(row.guruh_kaliti),
+            )
         submitted.setdefault(key, []).append(row)
 
     expected_keys = set(expected)
@@ -13029,7 +13383,10 @@ def _v204_validate_complete_skeleton_payload(cur, maktab_id: int, qatorlar):
                 detail="Bitta fan–sinf–guruhga aynan bitta o'qituvchi tanlanishi kerak",
             )
         row = rows[0]
-        if abs(float(row.haftalik_soat) - float(expected[key])) > 1e-6:
+        if abs(
+            float(row.haftalik_soat)
+            - float(expected[key]["haftalik_soat"])
+        ) > 1e-6:
             raise HTTPException(
                 status_code=409,
                 detail="Skeletdagi haftalik soat tasdiqlangan o'quv reja bilan teng emas",
@@ -13624,6 +13981,21 @@ class V204SkeletonBulkSave(BaseModel):
     kutilgan_yuklama_revision: Optional[str] = None
 
 
+class V204SkeletonAssignmentKey(BaseModel):
+    sinf_id: int
+    fan_nomi: str
+    guruh_kaliti: str = "whole"
+
+
+class V204SkeletonPatchSave(BaseModel):
+    """Only keys explicitly listed here are changed; every other row survives."""
+    maktab_id: int
+    qatorlar: list[V204SkeletonLoadRow] = []
+    ochirilgan_kalitlar: list[V204SkeletonAssignmentKey] = []
+    rahbarlar: list[V204SkeletonLeaderRow] = []
+    kutilgan_yuklama_revision: Optional[str] = None
+
+
 class V192ManualTeacherCreate(BaseModel):
     maktab_id: int
     full_name: str
@@ -13713,7 +14085,7 @@ def _v192_sync_schedule_sources(cur, maktab_id: int):
     approved_plan = _v193_approved_plan_map(cur, maktab_id)
     if approved_plan is None:
         cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
-                       SET haftalik_soat=0,asosiy_oqituvchi_user_id=NULL
+                       SET haftalik_soat=0,asosiy_oqituvchi_user_id=NULL,xona_id=NULL
                        WHERE maktab_id=%s""", (maktab_id,))
         cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
         return [
@@ -13723,7 +14095,7 @@ def _v192_sync_schedule_sources(cur, maktab_id: int):
         # Tasdiqlangan rejada hali o'qituvchi biriktirilmagan fanlarning
         # soati yo'qolmaydi. Faqat aniq birikma bor fanlar quyida yangilanadi.
         cur.execute("""UPDATE aqlli_sinf_fan_yuklamalari_v2
-                       SET asosiy_oqituvchi_user_id=NULL
+                       SET asosiy_oqituvchi_user_id=NULL,xona_id=NULL
                        WHERE maktab_id=%s""", (maktab_id,))
     cur.execute("DELETE FROM aqlli_guruh_sozlamalari_v2 WHERE maktab_id=%s", (maktab_id,))
     warnings = []
@@ -14938,6 +15310,370 @@ def v237_teacher_import_commit(sorov: V237TeacherImportPayload, token: str):
             "yaratildi": len(created),
             "kodlar": created,
             "kirish_kodlari": created,
+            "matritsa": matrix,
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.put("/api/maktab/aqlli_jadval/v3/sinf_skeleti_yuklama_qisman")
+def v204_class_skeleton_patch_save(sorov: V204SkeletonPatchSave, token: str):
+    """Save only changed Step-3 cells without replacing another teacher's rows."""
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Sinf skeletini faqat maktab rahbariyati saqlaydi",
+            )
+        # Schema ensure alohida transactionda tugaydi; business transaction
+        # faqat bitta maktabning canonical yuklamasini bloklaydi.
+        conn.commit()
+        _v192_tables(cur)
+        conn.commit()
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(
+                status_code=403,
+                detail="Sinf skeletini faqat maktab rahbariyati saqlaydi",
+            )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1922000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (2040000000 + int(sorov.maktab_id),),
+        )
+        cur.execute(
+            "SELECT pg_advisory_xact_lock(%s)",
+            (1925000000 + int(sorov.maktab_id),),
+        )
+
+        if not (sorov.qatorlar or sorov.ochirilgan_kalitlar or sorov.rahbarlar):
+            raise HTTPException(
+                status_code=400,
+                detail="Saqlash uchun kamida bitta o'zgargan katak yuborilishi kerak",
+            )
+
+        # Matrixda ko'rinadigan haqiqiy/raqamlangan o'qituvchilar aynan shu
+        # allowlistdan olinadi. Admin, o'quvchi yoki boshqa maktab xodimini
+        # API orqali yashirincha darsga/rahbarlikka biriktirib bo'lmaydi.
+        school_users = {
+            int(row["user_id"]): dict(row)
+            for row in _v1859_effective_teachers(
+                cur, sorov.maktab_id, include_numbered=True
+            )
+        }
+        cur.execute(
+            """SELECT id,sinf,harf,rahbar_user_id FROM maktab_sinflari
+               WHERE maktab_id=%s ORDER BY id FOR UPDATE""",
+            (sorov.maktab_id,),
+        )
+        school_classes = {int(row["id"]): dict(row) for row in cur.fetchall()}
+        current_rows = _v192_assignment_rows(cur, sorov.maktab_id)
+        current_revision = _v204_assignment_revision(
+            current_rows, school_classes.values()
+        )
+        expected_revision = str(
+            sorov.kutilgan_yuklama_revision or ""
+        ).strip().lower()
+        if not expected_revision or expected_revision != current_revision:
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "O'qituvchi yuklamasi boshqa oynada yangilangan. "
+                    "Yangi ma'lumot yo'qolmasligi uchun sahifani qayta yuklang"
+                ),
+            )
+
+        expected = _v204_expected_skeleton_rows(cur, sorov.maktab_id)
+        cur.execute(
+            """SELECT id FROM aqlli_xonalar_v2
+               WHERE maktab_id=%s AND faol=TRUE AND darsga_yaroqli=TRUE""",
+            (sorov.maktab_id,),
+        )
+        allowed_room_ids = {int(row["id"]) for row in cur.fetchall()}
+
+        # targeted[key] is a cleaned replacement row, or None for an explicit
+        # clear. Duplicate/overlapping keys are rejected instead of silently
+        # choosing the last browser value.
+        targeted = {}
+        for index, row in enumerate(sorov.qatorlar, start=1):
+            class_id = int(row.sinf_id)
+            teacher_id = int(row.user_id)
+            if class_id not in school_classes:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{index}-qator: sinf bu maktabga tegishli emas",
+                )
+            if teacher_id not in school_users:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{index}-qator: o'qituvchi bu maktabga tegishli emas",
+                )
+            key = _v204_resolve_expected_skeleton_key(
+                expected, class_id, row.fan_nomi, row.guruh_kaliti,
+            )
+            if key is None:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        f"{index}-qator: fan–sinf–guruh tasdiqlangan "
+                        "o'quv rejasida yo'q"
+                    ),
+                )
+            if key in targeted:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Bitta fan–sinf–guruh o'zgarishi ikki marta yuborilgan",
+                )
+            expected_row = expected[key]
+            if abs(
+                float(row.haftalik_soat)
+                - float(expected_row["haftalik_soat"])
+            ) > 1e-6:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        f"{index}-qator: haftalik soat tasdiqlangan "
+                        "o'quv reja bilan teng emas"
+                    ),
+                )
+            if int(row.kunlik_max) not in range(1, 5):
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{index}-qator: kunlik maksimum 1–4 bo'lishi kerak",
+                )
+            room_id = int(row.xona_id) if row.xona_id is not None else None
+            if room_id is not None and room_id not in allowed_room_ids:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"{index}-qator: xona bu maktabga tegishli emas yoki faol emas",
+                )
+            targeted[key] = {
+                **expected_row,
+                "user_id": teacher_id,
+                # O'quv reja kunlik maksimumi canonical manba bo'lib qoladi.
+                "kunlik_max": int(expected_row["kunlik_max"]),
+                "xona_id": room_id,
+            }
+
+        for index, item in enumerate(sorov.ochirilgan_kalitlar, start=1):
+            class_id = int(item.sinf_id)
+            if class_id not in school_classes:
+                raise HTTPException(
+                    status_code=400,
+                    detail=f"O'chirish {index}: sinf bu maktabga tegishli emas",
+                )
+            key = _v204_resolve_expected_skeleton_key(
+                expected, class_id, item.fan_nomi, item.guruh_kaliti,
+            )
+            if key is None:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        f"O'chirish {index}: fan–sinf–guruh tasdiqlangan "
+                        "o'quv rejasida yo'q"
+                    ),
+                )
+            if key in targeted:
+                raise HTTPException(
+                    status_code=409,
+                    detail="Bitta fan–sinf–guruh ham saqlash, ham o'chirishga yuborilgan",
+                )
+            targeted[key] = None
+
+        current_by_key = {}
+        unresolved_current_rows = []
+        for row in current_rows:
+            key = _v204_resolve_expected_skeleton_key(
+                expected, row["sinf_id"], row["fan_nomi"], row["guruh_kaliti"],
+            )
+            if key is not None:
+                current_by_key.setdefault(key, []).append(row)
+            else:
+                unresolved_current_rows.append(row)
+
+        for key in targeted:
+            if len(current_by_key.get(key, [])) > 1:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Tanlangan fan–sinf–guruh eski ma'lumotda bir nechta "
+                        "o'qituvchiga yozilgan. Ma'lumot yo'qolmasligi uchun "
+                        "avval O'qituvchi va yuklama oynasida bitta aniq "
+                        "qatorga keltiring"
+                    ),
+                )
+            canonical_subject = expected[key]["fan_nomi"]
+            hidden_rows = [
+                row for row in unresolved_current_rows
+                if int(row.get("sinf_id") or 0) == int(key[0])
+                and _v204_group_subject_matches(
+                    row.get("fan_nomi"), canonical_subject
+                )
+            ]
+            if hidden_rows:
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Bu sinf-fanda joriy guruh tizimiga ulanmagan eski "
+                        "yuklama bor. Uni O'qituvchi va yuklama oynasida "
+                        "tozalamasdan yangi tanlov bilan ustidan yozib bo'lmaydi"
+                    ),
+                )
+
+        # Patchdan keyingi guruhlar holatini oldindan tekshiramiz. Bitta ustoz
+        # ayni sinf-fanning ikki guruhiga tushsa transaction boshlanmaydi.
+        touched_pairs = {key[:2] for key in targeted}
+        resulting_by_key = dict(current_by_key)
+        for key, replacement in targeted.items():
+            resulting_by_key[key] = [] if replacement is None else [replacement]
+        for pair in touched_pairs:
+            group_teacher_ids = []
+            for key, rows in resulting_by_key.items():
+                if key[:2] != pair or key[2] == "whole":
+                    continue
+                group_teacher_ids.extend(
+                    int(row["user_id"]) for row in rows
+                )
+            if len(group_teacher_ids) != len(set(group_teacher_ids)):
+                raise HTTPException(
+                    status_code=409,
+                    detail=(
+                        "Bitta guruhli fanning har bir guruhiga alohida "
+                        "o'qituvchi tanlanishi kerak"
+                    ),
+                )
+
+        leader_class_ids = [int(item.sinf_id) for item in sorov.rahbarlar]
+        if len(leader_class_ids) != len(set(leader_class_ids)):
+            raise HTTPException(
+                status_code=409,
+                detail="Bitta sinf rahbarlar ro'yxatida ikki marta yuborilgan",
+            )
+        resulting_leaders = {
+            class_id: (
+                int(row["rahbar_user_id"])
+                if row.get("rahbar_user_id") is not None else None
+            )
+            for class_id, row in school_classes.items()
+        }
+        for item in sorov.rahbarlar:
+            class_id = int(item.sinf_id)
+            if class_id not in school_classes:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Sinf rahbarligi uchun noma'lum sinf yuborildi",
+                )
+            teacher_id = int(item.user_id) if item.user_id is not None else None
+            if teacher_id is not None and teacher_id not in school_users:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        "Sinf rahbarligi uchun tanlangan o'qituvchi "
+                        "bu maktabga tegishli emas"
+                    ),
+                )
+            resulting_leaders[class_id] = teacher_id
+        leader_teacher_ids = [
+            teacher_id for teacher_id in resulting_leaders.values()
+            if teacher_id is not None
+        ]
+        if len(leader_teacher_ids) != len(set(leader_teacher_ids)):
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    "Bitta o'qituvchi bir vaqtning o'zida ikki sinf "
+                    "rahbari qilib tanlangan"
+                ),
+            )
+
+        affected_teacher_ids = set()
+        delete_ids = []
+        for key in targeted:
+            for old_row in current_by_key.get(key, []):
+                delete_ids.append(int(old_row["id"]))
+                affected_teacher_ids.add(int(old_row["user_id"]))
+        if delete_ids:
+            cur.execute(
+                """DELETE FROM maktab_dars_birikmalari
+                   WHERE maktab_id=%s AND id=ANY(%s)""",
+                (sorov.maktab_id, sorted(set(delete_ids))),
+            )
+
+        saved_rows = 0
+        cleared_rows = 0
+        for key, row in targeted.items():
+            if row is None:
+                cleared_rows += 1
+                continue
+            affected_teacher_ids.add(int(row["user_id"]))
+            cur.execute(
+                """INSERT INTO maktab_dars_birikmalari(
+                       maktab_id,user_id,sinf_id,fan_nomi,guruh_kaliti,
+                       haftalik_soat,kunlik_max,xona_id,manba,yangilangan_at)
+                   VALUES(%s,%s,%s,%s,%s,%s,%s,%s,
+                          'v20.4_skelet_qisman',NOW())""",
+                (
+                    sorov.maktab_id, row["user_id"], row["sinf_id"],
+                    row["fan_nomi"], row["guruh_kaliti"],
+                    row["haftalik_soat"], row["kunlik_max"], row["xona_id"],
+                ),
+            )
+            cur.execute(
+                """INSERT INTO maktab_fanlari(maktab_id,fan_nomi)
+                   VALUES(%s,%s) ON CONFLICT DO NOTHING""",
+                (sorov.maktab_id, row["fan_nomi"]),
+            )
+            saved_rows += 1
+
+        leader_rule_class_ids = []
+        for item in sorov.rahbarlar:
+            teacher_id = int(item.user_id) if item.user_id is not None else None
+            old_teacher_id = school_classes[int(item.sinf_id)].get("rahbar_user_id")
+            if old_teacher_id is not None:
+                affected_teacher_ids.add(int(old_teacher_id))
+            if teacher_id is not None:
+                affected_teacher_ids.add(teacher_id)
+            cur.execute(
+                """UPDATE maktab_sinflari SET rahbar_user_id=%s
+                   WHERE id=%s AND maktab_id=%s""",
+                (teacher_id, int(item.sinf_id), sorov.maktab_id),
+            )
+            if teacher_id is not None:
+                leader_rule_class_ids.append(int(item.sinf_id))
+        if leader_rule_class_ids:
+            _v199_ensure_class_hour_rules(
+                cur, sorov.maktab_id, leader_rule_class_ids, actor_id
+            )
+
+        teacher_totals = {}
+        for teacher_id in sorted(affected_teacher_ids):
+            teacher_totals[str(teacher_id)] = _v195_refresh_teacher_summary(
+                cur, sorov.maktab_id, teacher_id
+            )
+        warnings = _v192_sync_schedule_sources(cur, sorov.maktab_id)
+        auto_confirmation = _v192_auto_confirm_exact_pairs(
+            cur, sorov.maktab_id, actor_id
+        )
+        matrix = _v192_matrix_payload(cur, sorov.maktab_id)
+        conn.commit()
+        return {
+            "holat": "joriy_ozgarishlar_saqlandi",
+            "qator_soni": saved_rows,
+            "ochirilgan_qator_soni": cleared_rows,
+            "saqlangan_qator": saved_rows,
+            "ochirilgan_kalit": cleared_rows,
+            "rahbar_ozgarishi": len(sorov.rahbarlar),
+            "oqituvchi_soatlari": teacher_totals,
+            "ogohlantirishlar": list(
+                dict.fromkeys(str(item) for item in (warnings or []) if item)
+            )[:40],
+            "guruh_tasdiqlari": auto_confirmation,
             "matritsa": matrix,
         }
     except Exception:
@@ -19995,6 +20731,7 @@ class V209SchoolCreationRequest(BaseModel):
     region: str
     district: str
     shift_count: int = 1
+    alifbo_turi: str = "latin_xalqaro"
     director_user_id: Optional[int] = None
     buildings: list[V209SchoolCreationBuilding] = []
     classes: list[V209SchoolCreationClass] = []
@@ -20043,25 +20780,50 @@ def _v209_keep_highest_member_role(member_roles, user_id, role):
         member_roles[user_id] = role
 
 
-def _v209_normalize_class_name(value):
-    """`1-a` ni (1, A) ga aylantiradi; generator harfi A–Z bo'lishi shart."""
-    match = re.fullmatch(
-        r"(1[01]|[1-9])\s*[-–—_ ]?\s*([A-Za-z])",
-        _v209_clean_text(value, 24),
-    )
+def _v209_normalize_class_name(value, alphabet_type="latin_xalqaro"):
+    """`1-A`, `1-Б`, `1-Rus` yoki `1-001` ni raqam + yorliqqa ajratadi."""
+    raw = _v209_clean_text(value, 64)
+    # Raqam bilan boshlanuvchi erkin yorliq faqat aniq ajratgichdan keyin
+    # qabul qilinadi. Shu sabab oddiy ``11`` xato qilib 1-sinf + ``1``
+    # paralleliga aylanmaydi, lekin ``1-001`` qonuniy bo'ladi.
+    match = re.fullmatch(r"(1[01]|[1-9])\s*[-–—_]\s*(.+)", raw)
+    if not match:
+        match = re.fullmatch(r"(1[01]|[1-9])\s+(.+)", raw)
+    if not match:
+        match = re.fullmatch(r"(1[01]|[1-9])([^\d\s].*)", raw)
     if not match:
         return None
-    return int(match.group(1)), match.group(2).upper()
+    try:
+        label = _v237_clean_parallel_label(match.group(2))
+    except ValueError:
+        return None
+    alphabet = _V237_CLASS_ALPHABETS.get(
+        str(alphabet_type or "latin_xalqaro").strip().lower(),
+        _V237_CLASS_ALPHABETS["latin_xalqaro"],
+    )
+    canonical = {
+        _v237_parallel_label_key(item): item for item in alphabet
+    }.get(_v237_parallel_label_key(label), label)
+    return int(match.group(1)), canonical
 
 
-def _v209_normalize_materialized_classes(raw_classes, shift_count):
-    """Frontend materializatsiyasini takroriy va uzilgan parallelga yopadi."""
+def _v209_normalize_materialized_classes(raw_classes, shift_count,
+                                         alphabet_type="latin_xalqaro"):
+    """Frontend sinflarini Unicode alifbo va erkin yorliqlar bilan tekshiradi."""
     try:
         shift_count = int(shift_count)
     except (TypeError, ValueError) as exc:
         raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.") from exc
     if shift_count not in (1, 2):
         raise ValueError("Smena soni 1 yoki 2 bo‘lishi kerak.")
+    alphabet_type = str(alphabet_type or "latin_xalqaro").strip().lower()
+    if alphabet_type not in _V237_CLASS_ALPHABETS:
+        raise ValueError("Sinf alifbosi noto‘g‘ri.")
+    alphabet = _V237_CLASS_ALPHABETS[alphabet_type]
+    alphabet_indexes = {
+        _v237_parallel_label_key(label): index
+        for index, label in enumerate(alphabet)
+    }
     rows = [_v209_model_dict(item) for item in (raw_classes or [])]
     if not rows:
         raise ValueError("Kamida bitta sinf yarating.")
@@ -20070,17 +20832,18 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count):
     names = set()
     by_grade = _v1852_defaultdict(list)
     for item in rows:
-        parsed = _v209_normalize_class_name(item.get("name"))
+        parsed = _v209_normalize_class_name(item.get("name"), alphabet_type)
         if parsed is None:
             raise ValueError(
-                f"“{_v209_clean_text(item.get('name'), 24) or '?'}” sinf nomi noto‘g‘ri. "
-                "Sinfni 1-A … 11-Z ko‘rinishida kiriting."
+                f"“{_v209_clean_text(item.get('name'), 64) or '?'}” sinf nomi noto‘g‘ri. "
+                "Masalan 1-A, 1-Б yoki 1-Rus ko‘rinishida kiriting."
             )
         grade, letter = parsed
         name = f"{grade}-{letter}"
-        if name in names:
+        name_key = (grade, _v237_parallel_label_key(letter))
+        if name_key in names:
             raise ValueError(f"{name} sinfi ikki marta yuborilgan.")
-        names.add(name)
+        names.add(name_key)
         try:
             shift = int(item.get("shift") or 1)
         except (TypeError, ValueError) as exc:
@@ -20100,13 +20863,27 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count):
         by_grade[grade].append(row)
 
     for grade, grade_rows in sorted(by_grade.items()):
-        ordered = sorted(grade_rows, key=lambda row: row["letter"])
-        expected = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[:len(ordered)])
-        actual = [row["letter"] for row in ordered]
-        if actual != expected:
+        ordered = sorted(
+            grade_rows,
+            key=lambda row: _v237_class_sort_key({
+                "id": 0, "sinf": grade, "harf": row["letter"],
+            }, alphabet_type),
+        )
+        actual_keys = [_v237_parallel_label_key(row["letter"]) for row in ordered]
+        # Tanlangan alifbodagi standart harflar ishlatilsa A/B/... yoki
+        # А/Б/... uzluksizligi saqlanadi. Erkin nomlar (Rus, STEM, A-1)
+        # esa takrorlanmasa qabul qilinadi va tabiiy tartiblanadi.
+        if all(key in alphabet_indexes for key in actual_keys):
+            expected = list(alphabet[:len(ordered)])
+            expected_keys = [_v237_parallel_label_key(value) for value in expected]
+        else:
+            expected = []
+            expected_keys = actual_keys
+        if actual_keys != expected_keys:
             raise ValueError(
                 f"{grade}-sinf parallellari uzluksiz emas: "
-                f"kutilgan {', '.join(expected)}, yuborilgan {', '.join(actual)}."
+                f"kutilgan {', '.join(expected)}, yuborilgan "
+                f"{', '.join(row['letter'] for row in ordered)}."
             )
         # 1-smena harflari tugagach 2-smena davom etadi; A/C ni birinchi,
         # B/D ni ikkinchi smenaga aralashtirib yuborish qabul qilinmaydi.
@@ -20119,7 +20896,12 @@ def _v209_normalize_materialized_classes(raw_classes, shift_count):
                     f"{grade}-sinf smenalari harflar bo‘yicha uzluksiz emas: "
                     "avval 1-smena, keyin 2-smena bo‘lishi kerak."
                 )
-    return sorted(normalized, key=lambda row: (row["grade"], row["letter"]))
+    return sorted(
+        normalized,
+        key=lambda row: _v237_class_sort_key({
+            "id": 0, "sinf": row["grade"], "harf": row["letter"],
+        }, alphabet_type),
+    )
 
 
 def _v209_normalize_buildings(raw_buildings):
@@ -20372,8 +21154,9 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
     if not region or not district:
         raise HTTPException(status_code=400, detail="Viloyat va tumanni tanlang.")
     try:
+        alphabet_type = str(sorov.alifbo_turi or "latin_xalqaro").strip().lower()
         classes = _v209_normalize_materialized_classes(
-            sorov.classes, sorov.shift_count
+            sorov.classes, sorov.shift_count, alphabet_type
         )
         buildings, rooms = _v209_normalize_buildings(sorov.buildings)
         classes = _v209_validate_home_rooms(classes, buildings, rooms)
@@ -20416,12 +21199,12 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
         cur.execute(
             """INSERT INTO maktablar(
                    nomi,maktab_raqami,viloyat,tuman,smena_soni,
-                   direktor_user_id,pulli,oylik_tolov
-               ) VALUES(%s,%s,%s,%s,%s,%s,FALSE,NULL)
+                   direktor_user_id,pulli,oylik_tolov,alifbo_turi
+               ) VALUES(%s,%s,%s,%s,%s,%s,FALSE,NULL,%s)
                RETURNING id""",
             (
                 school_name, school_number, region, district,
-                int(sorov.shift_count), sorov.director_user_id,
+                int(sorov.shift_count), sorov.director_user_id, alphabet_type,
             ),
         )
         school_id = int(cur.fetchone()["id"])
@@ -20533,6 +21316,7 @@ def v209_admin_create_school(sorov: V209SchoolCreationRequest):
             "tuman": district,
             "shift_count": int(sorov.shift_count),
             "smena_soni": int(sorov.shift_count),
+            "alifbo_turi": alphabet_type,
         }
         return {
             "holat": "yaratildi",
