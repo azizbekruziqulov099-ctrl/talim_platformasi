@@ -14,7 +14,7 @@ import time
 from typing import Any, Callable, Mapping, MutableMapping, Optional, Sequence
 
 
-RUNTIME_RELEASE = "SAMTM-SCHEDULE-RUNTIME-V23.5-BEST-REVISION-PROMOTION"
+RUNTIME_RELEASE = "SAMTM-SCHEDULE-RUNTIME-V23.6-DIAGNOSTIC-CONTINUE"
 
 
 class Stage(str, Enum):
@@ -220,6 +220,7 @@ class ScheduleRuntime:
     ) -> GenerationResult:
         total = len(jobs)
         revision = max(0, int(starting_revision))
+        revision_at_start = revision
         checkpoint: Optional[MutableMapping[str, Any]] = None
         checkpoint_diagnostics: dict[str, Any] = {}
 
@@ -299,29 +300,46 @@ class ScheduleRuntime:
 
             def accepted(candidate: MutableMapping[str, Any], details: Mapping[str, Any]) -> bool:
                 nonlocal revision, checkpoint, checkpoint_diagnostics
+
+                def rejected(reason: str) -> bool:
+                    if isinstance(details, MutableMapping):
+                        details["runtime_rejection_reason"] = str(reason)
+                    return False
+
                 if self._is_cancelled():
-                    return False
+                    return rejected("cancel_requested")
                 if not self._score_improved(details or {}):
-                    return False
+                    return rejected("score_not_improved")
                 candidate_snapshot = self._snapshot(candidate)
-                self._validate_complete(candidate_snapshot, total)
+                try:
+                    self._validate_complete(candidate_snapshot, total)
+                except Exception as validation_error:
+                    return rejected(
+                        "hard_validator:" + type(validation_error).__name__
+                    )
                 if self._class_day_signature(candidate_snapshot) != frozen_class_days:
                     # Birinchi jadvaldagi teng kunlik taqsimot (masalan
                     # 6/6/6/6/6 yoki 6/6/6/6/5) mutlaq qotirilgan.
                     # Notekis candidate ko'rsatilmaydi va saqlanmaydi.
-                    return False
+                    return rejected("frozen_class_day_signature")
                 next_revision = revision + 1
                 next_diagnostics = {
                     **checkpoint_diagnostics,
                     **dict(details or {}),
                     "revision": next_revision,
                 }
-                if not self.persist(
-                    run_id=run_id, revision=next_revision,
-                    state=self._snapshot(candidate_snapshot),
-                    diagnostics=next_diagnostics, terminal=False,
-                ):
-                    return False
+                try:
+                    persisted = bool(self.persist(
+                        run_id=run_id, revision=next_revision,
+                        state=self._snapshot(candidate_snapshot),
+                        diagnostics=next_diagnostics, terminal=False,
+                    ))
+                except Exception as persist_error:
+                    return rejected(
+                        "persist_exception:" + type(persist_error).__name__
+                    )
+                if not persisted:
+                    return rejected("persist_rejected")
                 revision = next_revision
                 checkpoint = candidate_snapshot
                 checkpoint_diagnostics = next_diagnostics
@@ -329,7 +347,7 @@ class ScheduleRuntime:
                     (details or {}).get("xulosa") or ""
                 ).strip()
                 self._progress(
-                    run_id, revision, min(94, 55 + revision), Stage.REVISION,
+                    run_id, revision, min(94, 60 + revision), Stage.REVISION,
                     f"Jadval #{run_id}.{revision} saqlandi"
                     + (f": {improvement_summary}." if improvement_summary else ".")
                     + " Keyingi o‘qituvchi oknosi tekshirilmoqda.",
@@ -351,6 +369,49 @@ class ScheduleRuntime:
             )
             if isinstance(improved, MutableMapping):
                 self._validate_complete(improved, total)
+                optimizer_diagnostics = {
+                    str(key): copy.deepcopy(value)
+                    for key, value in improved.items()
+                    if str(key).startswith((
+                        "v225_teacher_", "v196_teacher_window_",
+                        "v226_class_day_counts_", "v225_optimizer_",
+                    ))
+                }
+                checkpoint_diagnostics = {
+                    **checkpoint_diagnostics,
+                    **optimizer_diagnostics,
+                }
+
+            optimized_targets = int(
+                checkpoint_diagnostics.get("v225_teacher_targets") or 0
+            )
+            optimized_trials = int(
+                checkpoint_diagnostics.get("v225_teacher_window_trials") or 0
+            )
+            optimized_swaps = int(
+                checkpoint_diagnostics.get("v196_teacher_window_swaps") or 0
+            )
+            callback_rejections = int(
+                checkpoint_diagnostics.get("v225_teacher_callback_rejections") or 0
+            )
+            rejection_reasons = dict(
+                checkpoint_diagnostics.get("v225_teacher_rejection_reasons")
+                or {}
+            )
+            rejection_reason_text = ", ".join(
+                f"{reason}={int(count or 0)}"
+                for reason, count in sorted(rejection_reasons.items())
+            )
+            if revision == revision_at_start:
+                self._progress(
+                    run_id, revision, 95, Stage.IMPROVING,
+                    f"Jadval #{run_id}: {optimized_targets} ta muammoli o‘qituvchi "
+                    f"uchun {optimized_trials} ta hard-safe almashuv tekshirildi; "
+                    f"{callback_rejections} ta nomzod validator/baza tomonidan rad etildi"
+                    + (f" ({rejection_reason_text})" if rejection_reason_text else "")
+                    + ". "
+                    + "Saqlashga yaroqli yangi revision topilmadi.",
+                )
 
             if self._is_cancelled(force=True):
                 raise GenerationCancelled()
@@ -369,6 +430,13 @@ class ScheduleRuntime:
                 + (f".{revision}" if revision else "")
                 + f" asosiy #{run_id}ga qo‘yildi: {total}/{total} dars "
                 "joylashdi va ochildi."
+                + (
+                    f" {optimized_targets} ta o‘qituvchi bo‘yicha "
+                    f"{optimized_trials} ta variant tekshirildi, "
+                    f"{optimized_swaps} ta yaxshilanish saqlandi."
+                    if optimized_targets or optimized_trials or optimized_swaps
+                    else ""
+                )
             )
             self._progress(run_id, revision, 100, Stage.READY, message)
             return GenerationResult(
