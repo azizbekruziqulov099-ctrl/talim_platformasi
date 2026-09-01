@@ -1561,6 +1561,42 @@ def _v240_lock_teacher_time_scope(
     return locked
 
 
+def _v242_method_manual_override_tables(cur):
+    """Qo'lda saqlangan "metod kuni yo'q" qarorini ham eslab qoladi.
+
+    Faqat mavjud ``metod_kuni`` qatoriga qarash yetarli emas: foydalanuvchi
+    pastdagi setkada metod kunini tozalab saqlasa, qatorning o'zi qolmaydi.
+    Shu ownership jadvali markaziy avto-qo'llashga o'sha o'qituvchini qayta
+    bosmaslik kerakligini bildiradi.
+    """
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_metod_qolda_override_v242(
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        user_id BIGINT NOT NULL,
+        yangilagan_user_id BIGINT,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        PRIMARY KEY(maktab_id,user_id)
+    )""")
+
+
+def _v242_mark_manual_method_override(
+    cur, maktab_id: int, user_ids, actor_id: Optional[int] = None
+):
+    _v242_method_manual_override_tables(cur)
+    values = sorted({int(value) for value in (user_ids or []) if int(value) > 0})
+    if not values:
+        return
+    cur.execute(
+        """INSERT INTO aqlli_metod_qolda_override_v242(
+               maktab_id,user_id,yangilagan_user_id,yangilangan_at)
+           SELECT %s,source.user_id,%s,NOW()
+             FROM UNNEST(%s::bigint[]) AS source(user_id)
+           ON CONFLICT(maktab_id,user_id) DO UPDATE SET
+             yangilagan_user_id=EXCLUDED.yangilagan_user_id,
+             yangilangan_at=NOW()""",
+        (int(maktab_id), actor_id, values),
+    )
+
+
 def _v1852_staff(cur, user_id: int, maktab_id: int) -> bool:
     return _v1852_manager(cur, user_id, maktab_id) or _maktab_xodimi_mi(cur, user_id, maktab_id)
 
@@ -2031,6 +2067,9 @@ def v1852_teacher_availability_save(sorov: V1852TeacherAvailability, token: str)
             [sorov.user_id],
             missing_status_code=404,
             missing_detail="O'qituvchi shu maktabda topilmadi",
+        )
+        _v242_mark_manual_method_override(
+            cur, sorov.maktab_id, [sorov.user_id], actor_id
         )
         rules = sorov.qoidalar
         if rules.eng_kech_dars < rules.eng_erta_dars:
@@ -6029,6 +6068,13 @@ def v1854_teacher_availability_bulk(sorov: V1854BulkTeacherAvailability, token: 
             user_ids,
             missing_detail="Maktabda topilmagan xodim IDlari bor",
         )
+        if (
+            sorov.rejim == "almashtirish"
+            or any(row[3] == "metod_kuni" for row in rows)
+        ):
+            _v242_mark_manual_method_override(
+                cur, sorov.maktab_id, user_ids, actor_id
+            )
         for uid in user_ids:
             if sorov.qoidalar is not None:
                 r = sorov.qoidalar
@@ -6162,6 +6208,9 @@ def v240_bulk_teacher_method_days(
             cur,
             sorov.maktab_id,
             normalized["user_ids"],
+        )
+        _v242_mark_manual_method_override(
+            cur, sorov.maktab_id, normalized["user_ids"], actor_id
         )
 
         if normalized["rejim"] == "almashtirish":
@@ -7159,6 +7208,11 @@ def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
             sorov.maktab_id,
             user_ids,
         )
+        # Matritsa to'liq snapshot: metod kuni tanlangan bo'lsa ham, ataylab
+        # tozalangan bo'lsa ham keyingi markaziy apply bu qarorni bosmaydi.
+        _v242_mark_manual_method_override(
+            cur, sorov.maktab_id, user_ids, actor_id
+        )
 
         inserted_count = 0
         for uid, item in items_by_user.items():
@@ -7688,6 +7742,7 @@ def _v240_resolve_language_method_day(
     subject,
     talim_tili,
     central_days_by_language,
+    central_templates_by_language=None,
 ):
     """Fan metod kunini faqat o'sha sinf tilining tasdiqlangan andozasidan oladi.
 
@@ -7705,7 +7760,13 @@ def _v240_resolve_language_method_day(
         except (TypeError, ValueError):
             return None
         return exact if exact in range(1, 7) else None
-    if language_days or language != "uz":
+    # Tasdiqlangan markaziy metod snapshotida fan uchun kun bo'sh qoldirilsa,
+    # bu adminning ongli "metod kuni yo'q" tanlovidir. UZ tarixiy heuristikasi
+    # faqat markaziy metod andozasi umuman mavjud bo'lmagan eski bazada ishlaydi.
+    has_central_template = bool(
+        (central_templates_by_language or {}).get(language)
+    )
+    if has_central_template or language_days or language != "uz":
         return None
     return _v1873_subject_day(subject, {})
 
@@ -7734,14 +7795,17 @@ def _v1873_primary_teacher_ids(cur, maktab_id):
 
 def _v1873_assignments(cur, maktab_id):
     central_days_by_language = {}
+    central_templates_by_language = {}
     for language in _V238_INSTRUCTION_LANGUAGES:
+        central_rows = _v201_central_rows(
+            cur,
+            language,
+            required_sections=("metod",),
+        )
+        central_templates_by_language[language] = bool(central_rows)
         central_days_by_language[language] = {
             _v1875_subject_key(row["fan_nomi"]): int(row["metod_kuni"])
-            for row in _v201_central_rows(
-                cur,
-                language,
-                required_sections=("metod",),
-            )
+            for row in central_rows
             if row.get("metod_kuni")
         }
     # Har fan qatori o'zi biriktirilgan sinf tilidan metod kunini oladi.
@@ -7834,6 +7898,7 @@ def _v1873_assignments(cur, maktab_id):
                     subject,
                     language,
                     central_days_by_language,
+                    central_templates_by_language,
                 )
                 if day:
                     days_for_subject.setdefault(day, []).append(language)
@@ -7849,10 +7914,11 @@ def _v1873_assignments(cur, maktab_id):
             not by_day
             and primary_teacher
             and set(teacher_languages.get(uid) or ()) == {"uz"}
+            and not bool(central_templates_by_language.get("uz"))
         ):
-            # Faqat shu fanlarning tasdiqlangan til andozasida exact metod
-            # qoidasi bo'lmasa va sinf tili aniq UZ bo'lsa tarixiy
-            # boshlang'ich-ta'lim Shanbasi ishlaydi.
+            # Tarixiy Shanba faqat markaziy metod andozasi umuman bo'lmagan
+            # eski UZ bazada ishlaydi. Tasdiqlangan andozadagi bo'sh kun
+            # administratorning ongli "metod kuni yo'q" qaroridir.
             assignments.append({
                 "user_id": uid,
                 "full_name": teacher["full_name"],
@@ -8006,6 +8072,13 @@ def _v240_refresh_central_method_days(cur, maktab_id, talim_tili):
         _V1871_OLD_AUTO_PREFIX + "%",
         _V1873_METHOD_PREFIX + "%",
     )
+    _v242_method_manual_override_tables(cur)
+    cur.execute(
+        """SELECT user_id FROM aqlli_metod_qolda_override_v242
+            WHERE maktab_id=%s AND user_id=ANY(%s)""",
+        (maktab_id, sorted(scoped_user_ids)),
+    )
+    manual_user_ids = {int(row["user_id"]) for row in cur.fetchall()}
     cur.execute(
         f"""SELECT DISTINCT user_id
              FROM aqlli_oqituvchi_vaqti_v2
@@ -8014,7 +8087,7 @@ def _v240_refresh_central_method_days(cur, maktab_id, talim_tili):
               AND NOT {all_auto_where}""",
         (maktab_id, sorted(scoped_user_ids), *auto_params),
     )
-    manual_user_ids = {int(row["user_id"]) for row in cur.fetchall()}
+    manual_user_ids.update(int(row["user_id"]) for row in cur.fetchall())
     cur.execute(
         f"""DELETE FROM aqlli_oqituvchi_vaqti_v2
             WHERE maktab_id=%s AND turi='metod_kuni'
@@ -8219,8 +8292,19 @@ def _v1874_contains(key, *phrases):
     return any(_v1874_subject_key(phrase) in key for phrase in phrases)
 
 
+def _v242_canonical_subject_name(value):
+    """Return the UZ scheduling identity for a standard localized subject.
+
+    The curriculum keeps its original localized label for storage and display.
+    Only pedagogical classification needs one shared identity so the RU/EN
+    standard subjects receive exactly the same timetable profile as UZ.
+    """
+    key = _v1874_subject_key(value)
+    return globals().get("_V242_CANONICAL_SUBJECT_BY_KEY", {}).get(key, value)
+
+
 def _v1874_subject_profile(fan, grade):
-    key = _v1874_subject_key(fan)
+    key = _v1874_subject_key(_v242_canonical_subject_name(fan))
     is_class_hour = (
         key == "sinf soati"
         or "sinf soati" in key
@@ -14962,6 +15046,15 @@ _V238_EN_SUBJECT_NAMES = {
     "Texnologiya": "Technology", "Jismoniy tarbiya": "Physical Education",
     "Chaqiruvga qadar boshlang'ich tayyorgarlik": "Pre-conscription Training",
 }
+_V242_CANONICAL_SUBJECT_BY_KEY = {
+    _v1874_subject_key(localized_name): canonical_name
+    for canonical_name in _V238_RU_SUBJECT_NAMES
+    for localized_name in (
+        canonical_name,
+        _V238_RU_SUBJECT_NAMES[canonical_name],
+        _V238_EN_SUBJECT_NAMES[canonical_name],
+    )
+}
 SAMTM_2026_2027_RUSSIAN_CURRICULUM = tuple(
     (_V238_RU_SUBJECT_NAMES.get(subject, subject), hours)
     for subject, hours in SAMTM_2026_2027_UZBEK_CURRICULUM
@@ -15235,6 +15328,17 @@ class V201CentralSchoolSettings(BaseModel):
     talim_tili: str = "uz"
 
 
+class V242CentralMethodDaysApply(BaseModel):
+    """Markaziy metod kunlarini qayta qo'llash doirasi.
+
+    ``talim_tili`` berilmasa uchala tasdiqlangan til bir bosishda qo'llanadi.
+    Maktabning alohida metod-kun sozlamasi va qo'lda kiritilgan o'qituvchi
+    vaqtlari himoyalangan holda qoladi.
+    """
+
+    talim_tili: Optional[str] = None
+
+
 @app.on_event("startup")
 def _v201_central_school_settings_startup():
     try:
@@ -15352,6 +15456,22 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
         normalized.append((grade, subject, key, hours, method_day, daily_max, index))
     if not normalized:
         raise HTTPException(status_code=400, detail="Kamida bitta sinf–fan qatori kerak")
+    if section == "metod":
+        # UI bitta fan uchun bitta metod kunini ko'rsatadi. API orqali shu fan
+        # turli sinflarda boshqa-boshqa kun bilan yuborilsa, keyingi o'qituvchi
+        # hisobida "oxirgi sinf yutishi" mumkin edi. Bunday noaniq snapshotni
+        # bazaga yozmasdan atomik rad etamiz.
+        method_days_by_subject = {}
+        for _grade, subject, key, _hours, method_day, _daily, _order in normalized:
+            if key in method_days_by_subject and method_days_by_subject[key] != method_day:
+                raise HTTPException(
+                    status_code=400,
+                    detail=(
+                        f"{subject} uchun barcha sinflarda bitta metod kuni "
+                        "tanlanishi kerak"
+                    ),
+                )
+            method_days_by_subject[key] = method_day
     conn = _db(); cur = conn.cursor()
     try:
         version_id = _v201_central_school_settings_tables(cur)
@@ -15438,8 +15558,11 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
             not sorov.tasdiqlash
             or section not in {"fanlar", "metod"}
             or (section == "fanlar" and not plan_ready)
+            or section == "metod"
         ):
-            # Faqat to'liq tasdiqlangan fan/reja yoki metod snapshoti tarqaladi.
+            # Metod snapshotini bu PUT faqat saqlaydi. Barcha maktablarga
+            # tarqatish alohida V24.2 POST tugmasida bir marta bajariladi;
+            # aks holda bitta UI bosishi tanlangan tilni ikki marta yozardi.
             schools = []
         fan_updated = plan_updated = method_updated = 0
         for school_id in schools:
@@ -15453,15 +15576,6 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
                             WHERE maktab_id=%s AND talim_tili=%s
                               AND alohida=TRUE""", (school_id, language))
             overrides = {row["bolim"] for row in cur.fetchall()}
-            if section == "metod":
-                if "metod_kunlari" in overrides:
-                    continue
-                refresh = _v240_refresh_central_method_days(
-                    cur, school_id, language
-                )
-                if bool(refresh.get("qollandi")):
-                    method_updated += 1
-                continue
             if "fanlar" not in overrides:
                 fan_updated += 1
             if "oquv_reja" not in overrides:
@@ -15498,6 +15612,134 @@ def v201_central_school_settings_save(sorov: V201CentralSchoolSettings, token: s
                 "izoh": "Alohida override qilmagan maktablar bu andozani avtomatik oladi."}
     except Exception:
         conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/admin/maktab_markaziy_metod_kunlarini_qollash")
+def v242_apply_central_method_days(
+    sorov: V242CentralMethodDaysApply,
+    token: str,
+):
+    """Tasdiqlangan fan→metod-kun andozasini maktablarga xavfsiz qo'llaydi.
+
+    Faqat markaziy andozadan foydalanadigan maktab/til kesimi yangilanadi.
+    ``_v240_refresh_central_method_days`` qo'lda saqlangan metod kuni hamda
+    BAND/afzal vaqtlarni o'chirmaydi; markaziy-avto qatorlargina qayta
+    hisoblanadi.
+    """
+
+    _admin_tekshir(token)
+    if sorov.talim_tili is None:
+        languages = list(_V238_INSTRUCTION_LANGUAGES)
+    else:
+        try:
+            languages = [
+                _v238_normalize_instruction_language(sorov.talim_tili)
+            ]
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+    conn = _db(); cur = conn.cursor()
+    try:
+        version_id = _v201_central_school_settings_tables(cur)
+        # Markaziy snapshot butun qo'llash davomida o'zgarmasin. Markaziy
+        # saqlash shu versiya qatorini UPDATE qiladi va bu SHARE lock tugaguncha
+        # kutadi; barcha maktablar bir xil tasdiqlangan xaritani oladi.
+        cur.execute(
+            "SELECT id FROM admin_maktab_andoza_versiyalari_v20_1 "
+            "WHERE id=%s FOR SHARE",
+            (version_id,),
+        )
+        if not cur.fetchone():
+            raise HTTPException(status_code=409, detail="Markaziy andoza topilmadi")
+        _v1871_auto_method_tables(cur)
+        cur.execute(
+            "SELECT DISTINCT maktab_id FROM aqlli_metod_fan_qoidalari_v2"
+        )
+        custom_method_school_ids = {
+            int(row["maktab_id"]) for row in cur.fetchall()
+        }
+        cur.execute(
+            """SELECT talim_tili,tasdiqlangan
+                 FROM admin_maktab_andoza_tasdiqlari_v20_2
+                WHERE versiya_id=%s AND bolim='metod'
+                  AND talim_tili=ANY(%s)""",
+            (version_id, languages),
+        )
+        approved = {
+            str(row["talim_tili"])
+            for row in cur.fetchall()
+            if bool(row.get("tasdiqlangan"))
+        }
+
+        cur.execute("SELECT id FROM maktablar ORDER BY id")
+        school_ids = [int(row["id"]) for row in cur.fetchall()]
+        result = {
+            "tillar": languages,
+            "tasdiqlanmagan_tillar": [
+                language for language in languages if language not in approved
+            ],
+            "maktab_til_kesimi": 0,
+            "yangilangan_maktablar": 0,
+            "oqituvchi_yozuvlari": 0,
+            "qolda_saqlangan": 0,
+            "ziddiyat_soni": 0,
+            "alohida_sozlama_sababi_otkazildi": 0,
+            "maktab_fan_qoidasi_sababi_otkazildi": 0,
+            "maktabda_avto_ochirilgan": 0,
+        }
+        updated_school_ids = set()
+        for language in languages:
+            if language not in approved:
+                continue
+            for school_id in school_ids:
+                cur.execute(
+                    """SELECT 1 FROM maktab_sinflari
+                        WHERE maktab_id=%s
+                          AND COALESCE(talim_tili,'uz')=%s LIMIT 1""",
+                    (school_id, language),
+                )
+                if not cur.fetchone():
+                    continue
+                result["maktab_til_kesimi"] += 1
+                # Eski V18.71 oynasida maktabning o'zi fan→kun qoidasi
+                # yaratgan bo'lsa, markaziy tugma bu ongli siyosatni bosmaydi.
+                if school_id in custom_method_school_ids:
+                    result["maktab_fan_qoidasi_sababi_otkazildi"] += 1
+                    continue
+                cur.execute(
+                    """SELECT 1 FROM maktab_andoza_override_v20_1
+                        WHERE maktab_id=%s AND talim_tili=%s
+                          AND bolim='metod_kunlari' AND alohida=TRUE""",
+                    (school_id, language),
+                )
+                if cur.fetchone():
+                    result["alohida_sozlama_sababi_otkazildi"] += 1
+                    continue
+                refreshed = _v240_refresh_central_method_days(
+                    cur, school_id, language
+                )
+                if not bool(refreshed.get("qollandi")):
+                    if refreshed.get("sabab") == "maktabda_ochirilgan":
+                        result["maktabda_avto_ochirilgan"] += 1
+                    continue
+                updated_school_ids.add(school_id)
+                result["oqituvchi_yozuvlari"] += int(
+                    refreshed.get("oqituvchi_soni") or 0
+                )
+                result["qolda_saqlangan"] += int(
+                    refreshed.get("qolda_saqlangan") or 0
+                )
+                result["ziddiyat_soni"] += int(
+                    refreshed.get("ziddiyat_soni") or 0
+                )
+        result["yangilangan_maktablar"] = len(updated_school_ids)
+        conn.commit()
+        return result
+    except Exception:
+        conn.rollback()
+        raise
     finally:
         cur.close(); conn.close()
 
@@ -16135,7 +16377,7 @@ def _v204_assignment_revision(rows, classes=None):
 
 
 def _v204_group_subject_family(value):
-    key = _v1875_subject_key(value)
+    key = _v1875_subject_key(_v242_canonical_subject_name(value))
     if re.search(r"chet tili|ingliz tili|english|nemis tili|fransuz tili", key):
         return "chet_tili"
     if re.search(r"rus tili|russki", key):
@@ -16189,12 +16431,34 @@ def _v204_linked_variants_for_subject(variants, class_plan_subjects, subject):
     ]
 
 
+def _v242_effective_plan_rows(plan):
+    """Choose saved/template curriculum rows independently for every class.
+
+    A multilingual school can have a saved UZ plan while RU/EN are still
+    represented by their approved central template.  The old global
+    ``saved or template`` expression dropped every RU/EN template row as soon
+    as one UZ row existed.  Saved rows now win only for their own class.
+    """
+
+    saved = [dict(row) for row in (plan or {}).get("qatorlar") or []]
+    template = [
+        dict(row) for row in (plan or {}).get("andoza_qatorlar") or []
+    ]
+    saved_class_ids = {
+        int(row["sinf_id"]) for row in saved if row.get("sinf_id") is not None
+    }
+    return saved + [
+        row for row in template
+        if row.get("sinf_id") is not None
+        and int(row["sinf_id"]) not in saved_class_ids
+    ]
+
+
 def _v204_expected_skeleton_rows(cur, maktab_id: int):
     """Return the canonical plan/group keys accepted by both skeleton saves."""
     classes, _systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
-    saved_plan_rows = plan.get("qatorlar") or []
-    plan_rows = saved_plan_rows or (plan.get("andoza_qatorlar") or [])
+    plan_rows = _v242_effective_plan_rows(plan)
     variants_by_class = {}
     for variant in variants:
         if _v1875_group_key(variant.get("guruh_kaliti")) == "whole":
@@ -16674,7 +16938,7 @@ def _v192_matrix_payload(cur, maktab_id: int):
     classes, systems, variants = _v192_group_variants(cur, maktab_id)
     plan = _v193_plan_payload(cur, maktab_id, classes)
     plan_subjects_by_class = {}
-    for plan_row in plan.get("qatorlar") or plan.get("andoza_qatorlar") or []:
+    for plan_row in _v242_effective_plan_rows(plan):
         plan_subjects_by_class.setdefault(int(plan_row["sinf_id"]), []).append(
             plan_row["fan_nomi"]
         )
@@ -18797,10 +19061,10 @@ def v237_teacher_import_commit(sorov: V237TeacherImportPayload, token: str):
 
 
 # ═══════════════════════════════════════════════════════════
-# V24.1 — STEP-3 SKELET XLSX (teacher catalog + one sheet/class)
+# V24.2 — STEP-3 SKELET XLSX (one weekly row/class-subject)
 # ═══════════════════════════════════════════════════════════
 
-_V241_STEP3_XLSX_FORMAT = "SAMTM_STEP3_XLSX_V24.1.1"
+_V241_STEP3_XLSX_FORMAT = "SAMTM_STEP3_XLSX_V24.2.0"
 _V241_STEP3_DAY_NAMES = (
     "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma",
     "Shanba", "Yakshanba",
@@ -18845,6 +19109,18 @@ def _v241_step3_pairs(expected, classes, assignments):
     pairs = {}
     for key, row in sorted((expected or {}).items()):
         pair_key = key[:2]
+        existing_pair = pairs.get(pair_key)
+        if existing_pair is not None and (
+            abs(float(existing_pair["haftalik_soat"]) - float(row["haftalik_soat"])) > 1e-9
+            or int(existing_pair["kunlik_max"]) != int(row["kunlik_max"])
+        ):
+            raise HTTPException(
+                status_code=409,
+                detail=(
+                    f"{existing_pair['fan_nomi']}: parallel guruhlarning "
+                    "haftalik soati yoki kunlik maksimumi bir xil emas"
+                ),
+            )
         pair = pairs.setdefault(pair_key, {
             "sinf_id": int(row["sinf_id"]),
             "fan_nomi": str(row["fan_nomi"]),
@@ -19138,34 +19414,22 @@ def _v241_step3_template_bytes(context):
         worksheet.append([None])
         _v241_xlsx_literal(
             worksheet.cell(1, 1),
-            f"{class_name} · haftalik vaqtinchalik skelet",
+            f"{class_name} · fan va o'qituvchi yuklamasi",
         )
         worksheet.append([
-            "Bu yakuniy jadval emas. Faqat guruh turi va o'qituvchi kodi/F.I.Sh.ni tahrirlang."
+            "Har fan bitta qatorda. Faqat guruh turi va o'qituvchi tanlovini tahrirlang; kun/darsni jadval generatori joylaydi."
         ])
         headers = [
-            "Kun", "Dars", "Fan", "Soat", "Guruh turi",
+            "Fan", "Haftalik soat", "Guruh turi",
             "O'qituvchi-1 kodi (yashirin)", "O'qituvchi-1 tanlovi",
             "O'qituvchi-2 kodi (yashirin)", "O'qituvchi-2 tanlovi",
-            "Sinf ID", "Fan kaliti", "Katak ID", "Ta'lim tili",
+            "Sinf ID", "Fan kaliti", "Qator ID", "Ta'lim tili",
         ]
         worksheet.append(headers)
-        cells = []
         for pair in sorted(
             pairs,
             key=lambda row: (-float(row["haftalik_soat"]), str(row["fan_nomi"])),
         ):
-            remaining = round(float(pair["haftalik_soat"]), 4)
-            sequence = 0
-            while remaining > 1e-9:
-                amount = min(1.0, remaining)
-                cells.append((pair, sequence, amount))
-                remaining = round(remaining - amount, 4)
-                sequence += 1
-        periods = max(1, int(_v237_math.ceil(len(cells) / context["hafta_kunlari"])))
-        for index, (pair, sequence, amount) in enumerate(cells):
-            day_index = min(context["hafta_kunlari"] - 1, index // periods)
-            period = index % periods + 1
             group_keys = {
                 "whole": ("whole", None),
                 "alphabet": ("group_1", "group_2"),
@@ -19176,27 +19440,25 @@ def _v241_step3_template_bytes(context):
             first_id = int(first["user_id"]) if first else None
             second_id = int(second["user_id"]) if second else None
             worksheet.append([
-                None, period, None, amount, None,
-                None, None,
-                None, None,
+                None, float(pair["haftalik_soat"]), None,
+                None, None, None, None,
                 class_id, None, None, None,
             ])
             row_number = worksheet.max_row
             literal_values = {
-                1: _V241_STEP3_DAY_NAMES[day_index],
-                3: pair["fan_nomi"],
-                5: mode_labels[pair["turi"]],
-                7: _v241_teacher_selector(
+                1: pair["fan_nomi"],
+                3: mode_labels[pair["turi"]],
+                5: _v241_teacher_selector(
                     teacher_code_by_id.get(first_id),
                     teacher_name_by_id.get(first_id, ""),
                 ),
-                9: _v241_teacher_selector(
+                7: _v241_teacher_selector(
                     teacher_code_by_id.get(second_id),
                     teacher_name_by_id.get(second_id, ""),
                 ),
-                11: pair["fan_kaliti"],
-                12: f"{class_id}:{pair['fan_kaliti']}:{sequence}",
-                13: pair["talim_tili"],
+                9: pair["fan_kaliti"],
+                10: f"{class_id}:{pair['fan_kaliti']}",
+                11: pair["talim_tili"],
             }
             for column, value in literal_values.items():
                 _v241_xlsx_literal(worksheet.cell(row_number, column), value)
@@ -19208,14 +19470,14 @@ def _v241_step3_template_bytes(context):
             _v238_normalize_instruction_language(cls.get("talim_tili")),
         ))
         worksheet.freeze_panes = "A4"
-        worksheet.auto_filter.ref = f"A3:I{max(4, worksheet.max_row)}"
-        for column, width in enumerate((15, 8, 30, 10, 18, 20, 30, 20, 30), start=1):
+        worksheet.auto_filter.ref = f"A3:G{max(4, worksheet.max_row)}"
+        for column, width in enumerate((32, 14, 18, 20, 34, 20, 34), start=1):
             worksheet.column_dimensions[openpyxl.utils.get_column_letter(column)].width = width
-        for column in ("J", "K", "L", "M"):
+        for column in ("H", "I", "J", "K"):
             worksheet.column_dimensions[column].hidden = True
-        # F/H legacy code ustunlari ko'rinmaydi va shablonda doim bo'sh.
-        # Foydalanuvchi faqat yagona G/I selectorini o'zgartiradi.
-        for column in ("F", "H"):
+        # D/F legacy code ustunlari ko'rinmaydi va shablonda doim bo'sh.
+        # Foydalanuvchi faqat yagona E/G selectorini o'zgartiradi.
+        for column in ("D", "F"):
             worksheet.column_dimensions[column].hidden = True
         mode_validation = DataValidation(
             type="list",
@@ -19227,19 +19489,19 @@ def _v241_step3_template_bytes(context):
         )
         worksheet.add_data_validation(mode_validation)
         worksheet.add_data_validation(teacher_validation)
-        mode_validation.add(f"E4:E{max(4, worksheet.max_row)}")
+        mode_validation.add(f"C4:C{max(4, worksheet.max_row)}")
+        teacher_validation.add(f"E4:E{max(4, worksheet.max_row)}")
         teacher_validation.add(f"G4:G{max(4, worksheet.max_row)}")
-        teacher_validation.add(f"I4:I{max(4, worksheet.max_row)}")
 
     # Formulas are presentation-only. The server ignores them and recomputes
-    # every total from immutable slot IDs + canonical plan hours.
+    # every total from immutable pair IDs + canonical weekly plan hours.
     totals = workbook.create_sheet("_SAMTM_JAMI")
     totals.append(["Tanlov-1", "Tanlov-2", "Soat"])
     for sheet_name, row_number in total_links:
         quoted = sheet_name.replace("'", "''")
         totals.append([
-            f"='{quoted}'!G{row_number}", f"='{quoted}'!I{row_number}",
-            f"='{quoted}'!D{row_number}",
+            f"='{quoted}'!E{row_number}", f"='{quoted}'!G{row_number}",
+            f"='{quoted}'!B{row_number}",
         ])
     totals.sheet_state = "hidden"
     max_total_row = max(2, totals.max_row)
@@ -19414,8 +19676,8 @@ def _v241_parse_step3_xlsx(raw):
                 "fanlar": subjects,
             })
 
-        slot_rows = []
-        scanned_slots = 0
+        pair_rows = []
+        scanned_pairs = 0
         seen_sheet_names = set()
         for class_meta in class_sheets:
             sheet_name = class_meta["varaq"]
@@ -19428,11 +19690,11 @@ def _v241_parse_step3_xlsx(raw):
                 continue
             worksheet = workbook[sheet_name]
             for excel_row, cells in enumerate(
-                worksheet.iter_rows(min_row=4, max_col=13), start=4
+                worksheet.iter_rows(min_row=4, max_col=11), start=4
             ):
-                scanned_slots += 1
-                if scanned_slots > _V237_TEACHER_XLSX_MAX_ROWS:
-                    add_error(sheet_name, excel_row, "qator", "Skelet kataklari limitdan oshdi")
+                scanned_pairs += 1
+                if scanned_pairs > _V237_TEACHER_XLSX_MAX_ROWS:
+                    add_error(sheet_name, excel_row, "qator", "Skelet qatorlari limitdan oshdi")
                     break
                 if all(cell.value is None or str(cell.value).strip() == "" for cell in cells):
                     continue
@@ -19444,39 +19706,43 @@ def _v241_parse_step3_xlsx(raw):
                     add_error(sheet_name, formula.row, "formula", "Sinf skeletida formula qabul qilinmaydi")
                     continue
                 try:
-                    period = _v241_optional_int(cells[1].value, "Dars")
-                    class_id = _v241_optional_int(cells[9].value, "Sinf ID")
-                    mode = _v241_import_mode(cells[4].value)
-                    teacher_1_code = _v241_optional_int(cells[5].value, "O'qituvchi-1 kodi")
-                    teacher_2_code = _v241_optional_int(cells[7].value, "O'qituvchi-2 kodi")
-                    amount = float(str(cells[3].value).replace(",", "."))
-                    if not _v237_math.isfinite(amount) or amount not in (0.5, 1.0):
-                        raise ValueError("Soat faqat 0,5 yoki 1 bo'lishi kerak")
+                    amount = float(str(cells[1].value).replace(",", "."))
+                    if not _v237_math.isfinite(amount) or not 0 < amount <= 20:
+                        raise ValueError("Haftalik soat 0 dan katta va 20 dan oshmagan bo'lishi kerak")
+                    mode = _v241_import_mode(cells[2].value)
+                    teacher_1_code = _v241_optional_int(
+                        cells[3].value, "O'qituvchi-1 kodi"
+                    )
+                    teacher_2_code = _v241_optional_int(
+                        cells[5].value, "O'qituvchi-2 kodi"
+                    )
+                    class_id = _v241_optional_int(cells[7].value, "Sinf ID")
+                    language_raw = _v241_cell_text(cells[10].value)
+                    language = _v238_normalize_instruction_language(language_raw)
                 except (TypeError, ValueError) as exc:
                     add_error(sheet_name, excel_row, "qator", exc)
                     continue
-                slot_rows.append({
+                pair_rows.append({
                     "varaq": sheet_name,
                     "excel_qatori": int(excel_row),
-                    "kun": _v241_cell_text(cells[0].value),
-                    "dars": period,
-                    "fan_nomi": _v241_cell_text(cells[2].value),
+                    "fan_nomi": _v241_cell_text(cells[0].value),
                     "soat": amount,
                     "turi": mode,
                     "oqituvchi_1_kodi": teacher_1_code,
-                    "oqituvchi_1_ismi": _v237_teacher_name_clean(cells[6].value),
+                    "oqituvchi_1_ismi": _v237_teacher_name_clean(cells[4].value),
                     "oqituvchi_2_kodi": teacher_2_code,
-                    "oqituvchi_2_ismi": _v237_teacher_name_clean(cells[8].value),
+                    "oqituvchi_2_ismi": _v237_teacher_name_clean(cells[6].value),
                     "sinf_id": class_id,
-                    "fan_kaliti": _v241_cell_text(cells[10].value),
-                    "katak_id": _v241_cell_text(cells[11].value),
-                    "talim_tili": _v238_normalize_instruction_language(cells[12].value),
+                    "fan_kaliti": _v241_cell_text(cells[8].value),
+                    "qator_id": _v241_cell_text(cells[9].value),
+                    "talim_tili": language,
+                    "talim_tili_raw": language_raw,
                 })
         return {
             "metadata": metadata,
             "class_sheets": class_sheets,
             "teacher_rows": teacher_rows,
-            "slot_rows": slot_rows,
+            "pair_rows": pair_rows,
             "errors": errors,
         }
     finally:
@@ -19484,24 +19750,19 @@ def _v241_parse_step3_xlsx(raw):
 
 
 def _v241_expected_slot_map(context):
-    slots = {}
+    """Return one immutable workbook row per canonical class/subject pair."""
+    rows = {}
     for pair in context.get("pairs") or []:
-        remaining = round(float(pair["haftalik_soat"]), 4)
-        sequence = 0
-        while remaining > 1e-9:
-            amount = min(1.0, remaining)
-            slot_id = f"{int(pair['sinf_id'])}:{pair['fan_kaliti']}:{sequence}"
-            slots[slot_id] = {
-                "sinf_id": int(pair["sinf_id"]),
-                "fan_nomi": str(pair["fan_nomi"]),
-                "fan_kaliti": str(pair["fan_kaliti"]),
-                "talim_tili": str(pair["talim_tili"]),
-                "soat": float(amount),
-                "pair": pair,
-            }
-            remaining = round(remaining - amount, 4)
-            sequence += 1
-    return slots
+        row_id = f"{int(pair['sinf_id'])}:{pair['fan_kaliti']}"
+        rows[row_id] = {
+            "sinf_id": int(pair["sinf_id"]),
+            "fan_nomi": str(pair["fan_nomi"]),
+            "fan_kaliti": str(pair["fan_kaliti"]),
+            "talim_tili": str(pair["talim_tili"]),
+            "soat": float(pair["haftalik_soat"]),
+            "pair": pair,
+        }
+    return rows
 
 
 def _v241_preserved_room_plan(context, pair, new_group_keys):
@@ -19735,31 +19996,37 @@ def _v241_validate_step3_import(parsed, context):
             return "error"
         return dict(matches[0])
 
-    expected_slots = _v241_expected_slot_map(context)
-    submitted_slots = {}
+    expected_rows = _v241_expected_slot_map(context)
+    submitted_rows = {}
     pair_state = {}
-    for row in parsed.get("slot_rows") or []:
-        slot_id = row.get("katak_id") or ""
+    sheet_class_map = {
+        str(row.get("varaq") or ""): row.get("sinf_id")
+        for row in parsed.get("class_sheets") or []
+    }
+    for row in parsed.get("pair_rows") or []:
+        row_id = row.get("qator_id") or ""
         sheet = row.get("varaq")
         row_number = row.get("excel_qatori")
-        if slot_id in submitted_slots:
-            add_error(sheet, row_number, "Katak ID", "Skelet katagi takrorlangan")
+        if row_id in submitted_rows:
+            add_error(sheet, row_number, "Qator ID", "Skelet qatori takrorlangan")
             continue
-        submitted_slots[slot_id] = row
-        expected_slot = expected_slots.get(slot_id)
-        if expected_slot is None:
-            add_error(sheet, row_number, "Katak ID", "Noma'lum yoki o'zgartirilgan skelet katagi")
+        submitted_rows[row_id] = row
+        expected_row = expected_rows.get(row_id)
+        if expected_row is None:
+            add_error(sheet, row_number, "Qator ID", "Noma'lum yoki o'zgartirilgan skelet qatori")
             continue
         if (
-            int(row.get("sinf_id") or 0) != expected_slot["sinf_id"]
-            or str(row.get("fan_kaliti") or "") != expected_slot["fan_kaliti"]
-            or _v1875_subject_key(row.get("fan_nomi")) != expected_slot["fan_kaliti"]
-            or row.get("talim_tili") != expected_slot["talim_tili"]
+            int(row.get("sinf_id") or 0) != expected_row["sinf_id"]
+            or sheet_class_map.get(str(sheet or "")) != expected_row["sinf_id"]
+            or str(row.get("fan_kaliti") or "") != expected_row["fan_kaliti"]
+            or str(row.get("fan_nomi") or "") != expected_row["fan_nomi"]
+            or not row.get("talim_tili_raw")
+            or row.get("talim_tili") != expected_row["talim_tili"]
         ):
             add_error(sheet, row_number, "canonical", "Sinf/fan/til ustunlari shablon bilan mos emas")
             continue
-        if abs(float(row.get("soat") or 0) - expected_slot["soat"]) > 1e-9:
-            add_error(sheet, row_number, "Soat", "Katak soati o'quv reja bilan mos emas")
+        if abs(float(row.get("soat") or 0) - expected_row["soat"]) > 1e-9:
+            add_error(sheet, row_number, "Haftalik soat", "Haftalik soat o'quv reja bilan mos emas")
             continue
         first = resolve_reference(
             row.get("oqituvchi_1_kodi"), row.get("oqituvchi_1_ismi"),
@@ -19782,24 +20049,18 @@ def _v241_validate_step3_import(parsed, context):
         if mode != "whole" and first is not None and identity(first) == identity(second):
             add_error(sheet, row_number, "o'qituvchilar", "Ikki guruhga bitta o'qituvchi tanlanmaydi")
             continue
-        pair_key = (expected_slot["sinf_id"], expected_slot["fan_kaliti"])
-        state = (mode, identity(first), identity(second))
-        old = pair_state.get(pair_key)
-        if old is not None and old["state"] != state:
-            add_error(sheet, row_number, "tanlov", "Bir fan takroriy kataklarida guruh turi/o'qituvchi bir xil emas")
-            continue
-        if old is None:
-            pair_state[pair_key] = {
-                "state": state, "turi": mode, "oqituvchi_1": first,
-                "oqituvchi_2": second, "pair": expected_slot["pair"],
-            }
+        pair_key = (expected_row["sinf_id"], expected_row["fan_kaliti"])
+        pair_state[pair_key] = {
+            "turi": mode, "oqituvchi_1": first,
+            "oqituvchi_2": second, "pair": expected_row["pair"],
+        }
 
-    missing_slots = sorted(set(expected_slots) - set(submitted_slots))
-    if missing_slots:
-        add_error(None, None, "coverage", f"{len(missing_slots)} ta skelet katagi faylda yo'q")
-    extra_slots = sorted(set(submitted_slots) - set(expected_slots))
-    if extra_slots:
-        add_error(None, None, "coverage", f"{len(extra_slots)} ta ortiqcha skelet katagi bor")
+    missing_rows = sorted(set(expected_rows) - set(submitted_rows))
+    if missing_rows:
+        add_error(None, None, "coverage", f"{len(missing_rows)} ta skelet qatori faylda yo'q")
+    extra_rows = sorted(set(submitted_rows) - set(expected_rows))
+    if extra_rows:
+        add_error(None, None, "coverage", f"{len(extra_rows)} ta ortiqcha skelet qatori bor")
 
     pair_plans = []
     expected_pairs = {(int(row["sinf_id"]), row["fan_kaliti"]): row for row in context.get("pairs") or []}
@@ -19904,7 +20165,10 @@ def _v241_validate_step3_import(parsed, context):
         "teacher_catalog": catalog_entries,
         "pair_plans": pair_plans,
         "teacher_totals": teacher_totals,
-        "slot_count": len(submitted_slots),
+        "row_count": len(submitted_rows),
+        # Eski API iste'molchilari uchun kalit saqlanadi. V24.2 da bu qiymat
+        # takroriy dars kataklari emas, canonical fan qatorlari sonidir.
+        "slot_count": len(submitted_rows),
         "blank_count": sum(
             1 for plan in pair_plans for teacher in plan["oqituvchilar"]
             if teacher is None
@@ -19950,7 +20214,11 @@ def v241_step3_xlsx_template(token: str, maktab_id: int):
 
 def _v241_step3_preview_payload(validation, context):
     pairs = validation.get("pair_plans") or []
-    class_ids = {int(row["sinf_id"]) for row in pairs}
+    # Shablonda har bir haqiqiy sinf alohida varaq. O'qituvchi tanlanmagan
+    # yoki fan qatori bo'sh sinf ham previewdan yo'qolib ketmasin.
+    class_ids = {
+        int(row["id"]) for row in context.get("classes") or []
+    } or {int(row["sinf_id"]) for row in pairs}
     assigned = sum(
         1 for pair in pairs for teacher in pair.get("oqituvchilar") or []
         if teacher is not None
@@ -19990,8 +20258,11 @@ def _v241_step3_preview_payload(validation, context):
             for class_id in sorted(class_ids)
         ],
         "jami": {
-            "katak": int(validation.get("slot_count") or 0),
+            "qator_soni": int(validation.get("row_count") or 0),
+            "qator": int(validation.get("row_count") or 0),
+            "katak": int(validation.get("row_count") or 0),
             "fan": len(pairs),
+            "sinf_soni": len(class_ids),
             "sinf": len(class_ids),
             "yangi_oqituvchi": len(validation.get("new_teachers") or []),
         },
