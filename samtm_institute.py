@@ -770,8 +770,11 @@ def _student_scope_clause(cur, university_id: int, user_id: int, roles: list[dic
               AND (ty.talim_shakli IS NULL OR ty.talim_shakli={student_alias}.talim_shakli)
               AND (ty.talim_tili IS NULL OR ty.talim_tili={student_alias}.talim_tili)
               AND (ty.qabul_turi IS NULL OR ty.qabul_turi=CASE
-                    WHEN LOWER(COALESCE({student_alias}.tavsiya_turi,'')) LIKE '%%grant%%' THEN 'grant'
-                    ELSE 'kontrakt' END))""")
+                    WHEN LOWER(COALESCE({student_alias}.tavsiya_turi,'')) LIKE '%%grant%%'
+                      OR LOWER(COALESCE({student_alias}.tavsiya_turi,'')) LIKE '%%budjet%%' THEN 'grant'
+                    WHEN LOWER(COALESCE({student_alias}.tavsiya_turi,'')) LIKE '%%kontrakt%%'
+                      OR LOWER(COALESCE({student_alias}.tavsiya_turi,'')) LIKE '%%shartnoma%%' THEN 'kontrakt'
+                    ELSE NULL END))""")
         params.extend([university_id, user_id])
     return ("(" + " OR ".join(clauses) + ")", params) if clauses else ("FALSE", [])
 
@@ -787,6 +790,7 @@ def _student_access_allowed(cur, university_id: int, user_id: int, roles: list[d
         return True
     if "tyutor" not in names:
         return False
+    admission_value = row.get("tavsiya_turi")
     cur.execute("""SELECT 1 FROM universitet_tyutor_yonalishlari ty
         JOIN universitet_yonalishlari y ON y.id=%s AND y.universitet_id=ty.universitet_id
         WHERE ty.universitet_id=%s AND ty.tyutor_user_id=%s AND ty.faol=TRUE
@@ -795,8 +799,16 @@ def _student_access_allowed(cur, university_id: int, user_id: int, roles: list[d
           AND (ty.talim_shakli IS NULL OR ty.talim_shakli=%s)
           AND (ty.talim_tili IS NULL OR ty.talim_tili=%s)
           AND (ty.qabul_turi IS NULL OR ty.qabul_turi=CASE
-                WHEN LOWER(COALESCE(%s,'')) LIKE '%%grant%%' THEN 'grant' ELSE 'kontrakt' END)
-        LIMIT 1""", (program_id, university_id, user_id, program_id, row["talim_shakli"], row["talim_tili"], row.get("tavsiya_turi")))
+                WHEN LOWER(COALESCE(%s,'')) LIKE '%%grant%%'
+                  OR LOWER(COALESCE(%s,'')) LIKE '%%budjet%%' THEN 'grant'
+                WHEN LOWER(COALESCE(%s,'')) LIKE '%%kontrakt%%'
+                  OR LOWER(COALESCE(%s,'')) LIKE '%%shartnoma%%' THEN 'kontrakt'
+                ELSE NULL END)
+        LIMIT 1""", (
+            program_id, university_id, user_id, program_id,
+            row["talim_shakli"], row["talim_tili"],
+            admission_value, admission_value, admission_value, admission_value,
+        ))
     return cur.fetchone() is not None
 
 
@@ -2982,16 +2994,18 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         if not _has_any(roles, PRIVATE_ROLES): raise HTTPException(status_code=403, detail="Qabul ro'yxatini ko'rish huquqi yo'q")
         tutor_only = "tyutor" in names and not (names & MARK_DOCUMENT_ROLES)
         scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
-        where = ["qt.universitet_id=%s", scope_sql]; params: list[Any] = [universitet_id, *scope_params]
+        where = ["qt.universitet_id=%s", "y.faol=TRUE", "f.faol=TRUE", "k.faol=TRUE", scope_sql]; params: list[Any] = [universitet_id, *scope_params]
         # Hisob kartalari va filtr variantlari ham aynan ochilgan
         # fakultet/yo'nalish doirasida hisoblanadi. Qidiruv yoki bosqich kabi
         # vaqtinchalik UI filtrlari bu kontekstni o'zgartirmaydi.
-        context_where = ["qt.universitet_id=%s", scope_sql]
+        context_where = ["qt.universitet_id=%s", "y.faol=TRUE", "f.faol=TRUE", "k.faol=TRUE", scope_sql]
         context_params: list[Any] = [universitet_id, *scope_params]
         site_entered_sql = "(qt.saytga_kiritilgan_at IS NOT NULL OR qt.birinchi_kirish_at IS NOT NULL OR (qt.user_id IS NOT NULL AND qt.user_id>=0))"
         status_aliases = {
             "all": "all", "barchasi": "all", "jami": "all",
             "hujjat": "hujjat", "hujjattopshirgan": "hujjat",
+            "topshirmagan": "topshirmagan", "hujjattopshirmagan": "topshirmagan",
+            "hujjatqolgan": "topshirmagan", "qolgan": "topshirmagan",
             "baza": "baza", "bazagakiritilgan": "baza",
             "saytgakirmagan": "saytga_kirmagan",
             "saytgakirgan": "saytga_kirgan",
@@ -3000,10 +3014,12 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         if selected_status is None:
             raise HTTPException(
                 status_code=400,
-                detail="Holat all, hujjat, baza, saytga_kirmagan yoki saytga_kirgan bo'lishi kerak",
+                detail="Holat all, hujjat, topshirmagan, baza, saytga_kirmagan yoki saytga_kirgan bo'lishi kerak",
             )
         if selected_status == "hujjat":
             where.append("qt.hujjat_topshirgan_at IS NOT NULL")
+        elif selected_status == "topshirmagan":
+            where.append("qt.hujjat_topshirgan_at IS NULL")
         elif selected_status == "baza":
             where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
         elif selected_status == "saytga_kirmagan":
@@ -3035,11 +3051,33 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         elif yonalish_id:
             where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
             context_where.append("qt.yonalish_id=%s"); context_params.append(yonalish_id)
-        if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
-        if talim_tili: where.append("qt.talim_tili=%s"); params.append(talim_tili)
-        if region: where.append("qt.doimiy_region=%s"); params.append(region)
-        if qabul_turi == "grant": where.append("qt.tavsiya_turi ILIKE %s"); params.append("%grant%")
-        if qabul_turi == "kontrakt": where.append("qt.tavsiya_turi ILIKE %s"); params.append("%kontrakt%")
+
+        # Dropdown variantlari boshqa dropdown tanlovi sabab yo'qolib ketmasin.
+        # Fakultet/yo'nalish qamrovi saqlanadi, shakl/til/hudud esa mustaqil qoladi.
+        option_where = list(context_where)
+        option_params = list(context_params)
+        if talim_shakli:
+            where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
+            context_where.append("qt.talim_shakli=%s"); context_params.append(talim_shakli)
+        if talim_tili:
+            where.append("qt.talim_tili=%s"); params.append(talim_tili)
+            context_where.append("qt.talim_tili=%s"); context_params.append(talim_tili)
+        if region:
+            where.append("qt.doimiy_region=%s"); params.append(region)
+            context_where.append("qt.doimiy_region=%s"); context_params.append(region)
+        admission_kind = _key(qabul_turi)
+        if admission_kind in {"grant", "budjet", "budjetgrant"}:
+            admission_filter = "(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)"
+            admission_params = ["%grant%", "%budjet%"]
+            where.append(admission_filter); params.extend(admission_params)
+            context_where.append(admission_filter); context_params.extend(admission_params)
+        elif admission_kind in {"kontrakt", "shartnoma", "tolovkontrakt"}:
+            admission_filter = "(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)"
+            admission_params = ["%kontrakt%", "%shartnoma%"]
+            where.append(admission_filter); params.extend(admission_params)
+            context_where.append(admission_filter); context_params.extend(admission_params)
+        elif admission_kind:
+            raise HTTPException(status_code=400, detail="Qabul turi grant yoki kontrakt bo'lishi kerak")
         if _norm(q):
             term = "%" + _norm(q) + "%"; digits = _digits(q)
             search_parts = [
@@ -3054,7 +3092,10 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         order = {"ball_desc": "qt.ball DESC NULLS LAST,qt.familiya", "ball_asc": "qt.ball ASC NULLS LAST,qt.familiya", "name": "qt.familiya,qt.ism", "newest": "qt.id DESC"}.get(sort, "qt.ball DESC NULLS LAST")
         clause = " AND ".join(where)
         cur.execute(f"""SELECT COUNT(*) n FROM universitet_qabul_talabalari qt
-            JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id WHERE {clause}""", params); total = int(cur.fetchone()["n"])
+            JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            JOIN kafedralar k ON k.id=y.kafedra_id
+            WHERE {clause}""", params); total = int(cur.fetchone()["n"])
         page_size = max(10, min(100, page_size)); page = max(1, page); offset = (page - 1) * page_size
         cur.execute(f"""SELECT qt.id,qt.familiya,qt.ism,qt.ota_ism,qt.ball,qt.talim_shakli,qt.talim_tili,qt.tavsiya_turi,
             qt.doimiy_region,qt.doimiy_tuman,qt.qabul_bosqichi,qt.hujjat_topshirgan_at,
@@ -3066,13 +3107,16 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
                  WHEN tk.kod_hash IS NOT NULL THEN 'kirish_kodi_tayyor'
                  ELSE 'bazaga_kiritilmagan' END sayt_holati
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            JOIN kafedralar k ON k.id=y.kafedra_id
             LEFT JOIN LATERAL (SELECT tk.kod_hash FROM universitet_taklif_kodlari tk WHERE tk.qabul_talaba_id=qt.id ORDER BY tk.id DESC LIMIT 1) tk ON TRUE
             LEFT JOIN xodim_kod xk ON xk.kod=tk.kod_hash
             WHERE {clause} ORDER BY {order} LIMIT %s OFFSET %s""", params + [page_size, offset])
         rows = []
-        for r in cur.fetchall():
-            item = dict(r); item["fish"] = " ".join(x for x in [r["familiya"], r["ism"], r["ota_ism"]] if x); item["telefon_mask"] = _mask_phone(r["telefon"]); item.pop("telefon", None)
+        for row_index, r in enumerate(cur.fetchall(), start=offset + 1):
+            item = dict(r); item["fish"] = " ".join(x for x in [r["familiya"], r["ism"], r["ota_ism"]] if x); item["telefon_mask"] = _mask_phone(r["telefon"]); item["tartib_raqami"] = row_index
             if tutor_only:
+                item.pop("telefon", None)
                 item.pop("qabul_bosqichi", None)
                 item["bazaga_belgilash_mumkin"] = bool(item["hujjat_topshirgan"] and not item["bazaga_kiritilgan"])
                 item.pop("hujjat_topshirgan", None)
@@ -3082,18 +3126,28 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         context_clause = " AND ".join(context_where)
         cur.execute(f"""SELECT COUNT(*) jami,
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL) hujjat,
+            COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NULL) topshirmagan,
+            COUNT(*) FILTER(WHERE qt.tavsiya_turi ILIKE '%%grant%%'
+                                  OR qt.tavsiya_turi ILIKE '%%budjet%%') grant,
+            COUNT(*) FILTER(WHERE qt.tavsiya_turi ILIKE '%%kontrakt%%'
+                                  OR qt.tavsiya_turi ILIKE '%%shartnoma%%') kontrakt,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) baza,
             COUNT(*) FILTER(WHERE {site_entered_sql}) sayt,
             COUNT(*) FILTER(WHERE NOT {site_entered_sql}) saytga_kirmagan
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            JOIN kafedralar k ON k.id=y.kafedra_id
             WHERE {context_clause}""", context_params)
         counts = cur.fetchone()
+        option_clause = " AND ".join(option_where)
         cur.execute(f"""SELECT
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.talim_shakli ORDER BY qt.talim_shakli),NULL) shakllar,
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.talim_tili ORDER BY qt.talim_tili),NULL) tillar,
             ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.doimiy_region ORDER BY qt.doimiy_region),NULL) hududlar
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
-            WHERE {context_clause}""", context_params)
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            JOIN kafedralar k ON k.id=y.kafedra_id
+            WHERE {option_clause}""", option_params)
         filter_options = dict(cur.fetchone())
         filter_options["qabul_turlari"] = ["grant", "kontrakt"]
         safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0),
@@ -3332,9 +3386,11 @@ def _admission_general_report_data(
         where.append("qt.talim_tili=%s"); params.append(talim_tili)
     admission_kind = _key(qabul_turi)
     if admission_kind in {"grant", "budjet", "budjetgrant"}:
-        where.append("qt.tavsiya_turi ILIKE %s"); params.append("%grant%")
-    elif admission_kind == "kontrakt":
-        where.append("qt.tavsiya_turi ILIKE %s"); params.append("%kontrakt%")
+        where.append("(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)")
+        params.extend(["%grant%", "%budjet%"])
+    elif admission_kind in {"kontrakt", "shartnoma", "tolovkontrakt"}:
+        where.append("(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)")
+        params.extend(["%kontrakt%", "%shartnoma%"])
     elif admission_kind:
         raise HTTPException(status_code=400, detail="Qabul turi grant yoki kontrakt bo'lishi kerak")
     if _norm(q):
