@@ -1217,9 +1217,15 @@ def joriy_foydalanuvchi(token: str):
 
     if r["maktab_id"]:
         _maktab_jadvali(cur)
-        cur.execute("SELECT nomi FROM maktablar WHERE id=%s", (r["maktab_id"],))
+        cur.execute(
+            "SELECT nomi FROM maktablar WHERE id=%s AND archived_at IS NULL",
+            (r["maktab_id"],),
+        )
         m = cur.fetchone()
         r["maktab_nomi"] = m["nomi"] if m else None
+        if not m:
+            # Arxivlangan maktab profil fallbacki orqali yana chiqib qolmasin.
+            r["maktab_id"] = None
     else:
         r["maktab_nomi"] = None
 
@@ -1279,7 +1285,10 @@ def muassasalarim(token: str):
         # Profil yoki eski a'zolik ko'rsatkichi arxivlangandan keyin ham qolishi
         # mumkin. Arxivlangan legacy muassasani faol ro'yxatga qayta qo'shmaymiz.
         cur.execute(
-            f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s AND archived_at IS NULL",
+            f"""SELECT muassasa.nomi
+                FROM {jadval_nomi[turi]} AS muassasa
+                WHERE muassasa.id=%s
+                  AND NULLIF(to_jsonb(muassasa)->>'archived_at','') IS NULL""",
             (muassasa_id,),
         )
         m = cur.fetchone()
