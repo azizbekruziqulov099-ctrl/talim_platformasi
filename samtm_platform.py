@@ -1240,11 +1240,11 @@ def muassasalarim(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute(
         "SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
         (user_id,),
@@ -1254,30 +1254,99 @@ def muassasalarim(token: str):
     topilganlar = {}  # (turi, muassasa_id) -> lavozim
     if u:
         for turi, mid in [("maktab", u["maktab_id"]), ("markaz", u["markaz_id"]), ("bogcha", u["bogcha_id"]), ("universitet", u["universitet_id"])]:
-            if mid and u["lavozim"]:
-                topilganlar[(turi, mid)] = u["lavozim"]
+            # Profil fallbacki ID mavjud bo'lsa institutni darhol ko'rsatadi.
+            # API ham lavozim bo'sh bo'lgani uchun ayni IDni yo'qotmasligi kerak;
+            # haqiqiy amal ruxsati baribir tegishli workspace backendida tekshiriladi.
+            if mid:
+                topilganlar[(turi, mid)] = u["lavozim"] or ""
 
     _muassasa_jadvali(cur)
     cur.execute("SELECT muassasa_turi, muassasa_id, lavozim FROM foydalanuvchi_muassasalari WHERE user_id=%s", (user_id,))
     for r in cur.fetchall():
         topilganlar[(r["muassasa_turi"], r["muassasa_id"])] = r["lavozim"]
 
+    cur.execute("""SELECT
+        to_regclass('public.organization_trials') AS trials,
+        to_regclass('public.learning_contexts') AS contexts,
+        to_regclass('public.context_memberships') AS memberships,
+        to_regclass('public.universitet_workspace_map') AS workspace_map""")
+    v17_tables = cur.fetchone() or {}
+    v17_ready = bool(v17_tables.get("trials") and v17_tables.get("contexts"))
     jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}
+    v17_turi = {"maktab": "school", "markaz": "learning_center", "bogcha": "kindergarten", "universitet": "institute"}
     natija = []
     for (turi, muassasa_id), lavozim in topilganlar.items():
-        if institution_is_archived(cur, turi, muassasa_id):
-            continue
         cur.execute(f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s", (muassasa_id,))
         m = cur.fetchone()
-        if m:
-            natija.append({"turi": turi, "muassasa_id": muassasa_id, "muassasa_nomi": m["nomi"], "lavozim": lavozim})
+        if not m:
+            # O'chib ketgan legacy ID frontendda nomsiz/stale kartaga aylanmasin.
+            continue
+        if v17_ready:
+            if turi == "universitet" and v17_tables.get("workspace_map"):
+                # Eski xatoda school contexti universitet sifatida xaritaga
+                # yozilgan. WHERE'da faqat institute qidirsak o'sha noto'g'ri
+                # map ko'rinmay qoladi va "Harbiylashgan maktab" yana chiqadi.
+                # Shu bois avval har qanday mapni topamiz, keyin uning aynan
+                # faol university/institute ekanini BOOL_OR ichida tekshiramiz.
+                cur.execute("""SELECT
+                        COUNT(*) AS v17_soni,
+                        BOOL_OR(
+                          o.organization_type='institute'
+                          AND c.context_type='university'
+                          AND c.active=TRUE
+                          AND LOWER(COALESCE(o.lifecycle_status,''))
+                              IN ('trial','read_only','active')
+                        ) AS faol_v17
+                    FROM organization_trials o
+                    JOIN learning_contexts c ON c.id=o.context_id
+                    LEFT JOIN universitet_workspace_map uwm
+                      ON uwm.context_id=o.context_id
+                    WHERE uwm.universitet_id=%s OR (
+                      o.organization_type='institute'
+                      AND c.context_type='university'
+                      AND c.external_id=%s
+                    )""", (muassasa_id, muassasa_id))
+            else:
+                cur.execute("""SELECT
+                        COUNT(*) AS v17_soni,
+                        BOOL_OR(
+                          c.active=TRUE
+                          AND LOWER(COALESCE(o.lifecycle_status,''))
+                              IN ('trial','read_only','active')
+                        ) AS faol_v17
+                    FROM organization_trials o
+                    JOIN learning_contexts c ON c.id=o.context_id
+                    WHERE o.organization_type=%s AND c.external_id=%s""",
+                    (v17_turi[turi], muassasa_id))
+            v17_state = cur.fetchone() or {}
+            if int(v17_state.get("v17_soni") or 0) > 0 and not bool(v17_state.get("faol_v17")):
+                # Arxivlangan self-service muassasaning users/FM pointeri qolgan
+                # bo'lsa ham uni qayta ko'rsatmaymiz.
+                continue
+        natija.append({"turi": turi, "muassasa_id": muassasa_id, "muassasa_nomi": m["nomi"], "lavozim": lavozim, "faol": True})
 
     # V17 self-service muassasalari modulli context/profile/role yozuvlariga
     # ulangan. Ularni eski pastki menyu DTO'siga ham qo'shamiz, shunda sahifa
     # yangilangandan keyin yaratilgan ish joyi yo'qolib qolmaydi. Bog'cha uchun
     # legacy a'zolik bo'lsa, V17 holatli yozuv o'sha eski yozuvni almashtiradi.
-    cur.execute("SELECT to_regclass('public.organization_trials') AS table_name")
-    if cur.fetchone()["table_name"]:
+    if v17_ready:
+        membership_sql = (
+            "OR EXISTS(SELECT 1 FROM context_memberships cm "
+            "WHERE cm.context_id=o.context_id AND cm.user_id=%s AND cm.status='active')"
+            if v17_tables.get("memberships") else ""
+        )
+        query_params = [user_id]
+        if membership_sql:
+            query_params.append(user_id)
+        workspace_join = (
+            "LEFT JOIN universitet_workspace_map uwm ON uwm.context_id=o.context_id"
+            if v17_tables.get("workspace_map") else ""
+        )
+        external_id_sql = (
+            "CASE WHEN o.organization_type='institute' "
+            "THEN uwm.universitet_id ELSE c.external_id END"
+            if v17_tables.get("workspace_map") else "c.external_id"
+        )
         cur.execute(
             """SELECT o.id organization_v17_id,o.context_id,
                       o.organization_type,o.display_name,o.lifecycle_status,
@@ -1285,11 +1354,21 @@ def muassasalarim(token: str):
                       GREATEST(
                         0,CEIL(EXTRACT(EPOCH FROM (o.trial_ends_at-NOW()))/86400.0)
                       )::INTEGER days_remaining,
-                      c.external_id
+                      {external_id_sql} AS external_id
                  FROM organization_trials o
                  JOIN learning_contexts c ON c.id=o.context_id
-                WHERE o.creator_user_id=%s ORDER BY o.id""",
-            (user_id,),
+                 {workspace_join}
+                WHERE (o.creator_user_id=%s {membership_sql})
+                  AND c.active=TRUE
+                  AND (o.organization_type<>'institute' OR c.context_type='university')
+                  AND LOWER(COALESCE(o.lifecycle_status,''))
+                      IN ('trial','read_only','active')
+                ORDER BY o.id""".format(
+                    membership_sql=membership_sql,
+                    workspace_join=workspace_join,
+                    external_id_sql=external_id_sql,
+                ),
+            query_params,
         )
         type_map = {
             "kindergarten": "bogcha",
@@ -1298,10 +1377,11 @@ def muassasalarim(token: str):
             "institute": "universitet",
         }
         for org in cur.fetchall():
-            turi = type_map[org["organization_type"]]
-            # V17 yozuvi legacy muassasaga allaqachon bog'langan bo'lsa,
-            # ayni maktab/markaz/bog'chani ro'yxatda ikki marta ko'rsatmaymiz.
-            # Boshqa IDli eski maktablar esa o'z joyida saqlanib qoladi.
+            turi = type_map.get(org["organization_type"])
+            if not turi:
+                continue
+            # V17 context legacy obyektga ulangan bo'lsa, eski kartani barcha
+            # muassasa turlarida almashtiramiz (avval faqat bog'chada edi).
             if org["external_id"] is not None:
                 natija = [
                     item for item in natija
@@ -1325,22 +1405,6 @@ def muassasalarim(token: str):
                         if org["external_id"] is not None
                         else int(org["context_id"])
                     ),
-                    # REV60: maktab workspace faqat maktablar.id bilan
-                    # ishlaydi. context_id ni maktab ID deb yuborish
-                    # "Maktab ID topilmadi" xatosiga olib kelardi.
-                    # Haqiqiy bog'lanish mavjud bo'lsa uni alohida va aniq
-                    # maydonda ham qaytaramiz; eski frontendlar uchun
-                    # muassasa_id yuqorida mos qiymatni saqlaydi.
-                    "maktab_id": (
-                        int(org["external_id"])
-                        if turi == "maktab" and org["external_id"] is not None
-                        else None
-                    ),
-                    "external_id": (
-                        int(org["external_id"])
-                        if org["external_id"] is not None
-                        else None
-                    ),
                     "context_id": int(org["context_id"]),
                     "organization_v17_id": int(org["organization_v17_id"]),
                     "muassasa_nomi": org["display_name"],
@@ -1352,8 +1416,15 @@ def muassasalarim(token: str):
                     "access_mode": "read_only" if effective_read_only else "write",
                     "trial_ends_at": org["trial_ends_at"],
                     "days_remaining": int(org["days_remaining"] or 0),
+                    "faol": True,
                 }
             )
+    # DB qaytish tartibi o'zgarsa ham ro'yxat va frontend tanlovi barqaror.
+    natija.sort(key=lambda item: (
+        str(item.get("turi") or ""),
+        str(item.get("muassasa_nomi") or "").casefold(),
+        int(item.get("context_id") or item.get("muassasa_id") or 0),
+    ))
     cur.close()
     conn.close()
     return {"muassasalar": natija}
@@ -14609,11 +14680,33 @@ def universitetlar_royxati(token: str):
     conn = _db()
     cur = conn.cursor()
     _universitet_jadvali(cur)
-    cur.execute("""
+    cur.execute("""SELECT
+        to_regclass('public.universitet_workspace_map') AS workspace_map,
+        to_regclass('public.organization_trials') AS trials,
+        to_regclass('public.learning_contexts') AS contexts""")
+    source_tables = cur.fetchone() or {}
+    source_join = ""
+    source_filter = ""
+    if all(source_tables.get(key) for key in ("workspace_map", "trials", "contexts")):
+        source_join = """
+        LEFT JOIN universitet_workspace_map uwm ON uwm.universitet_id=u.id
+        LEFT JOIN organization_trials ot ON ot.context_id=uwm.context_id
+        LEFT JOIN learning_contexts lc ON lc.id=uwm.context_id
+        """
+        source_filter = """WHERE uwm.context_id IS NULL OR (
+            ot.organization_type='institute'
+            AND lc.context_type='university'
+            AND lc.active=TRUE
+            AND LOWER(COALESCE(ot.lifecycle_status,''))
+                IN ('trial','read_only','active')
+        )"""
+    cur.execute(f"""
         SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
                (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni
-        FROM universitetlar u LEFT JOIN users us ON us.user_id = u.rektor_user_id
-        WHERE u.archived_at IS NULL
+        FROM universitetlar u
+        LEFT JOIN users us ON us.user_id = u.rektor_user_id
+        {source_join}
+        {source_filter}
         ORDER BY u.nomi
     """)
     natija = cur.fetchall()
