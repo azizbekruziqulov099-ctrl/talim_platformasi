@@ -1276,7 +1276,12 @@ def muassasalarim(token: str):
     v17_turi = {"maktab": "school", "markaz": "learning_center", "bogcha": "kindergarten", "universitet": "institute"}
     natija = []
     for (turi, muassasa_id), lavozim in topilganlar.items():
-        cur.execute(f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s", (muassasa_id,))
+        # Profil yoki eski a'zolik ko'rsatkichi arxivlangandan keyin ham qolishi
+        # mumkin. Arxivlangan legacy muassasani faol ro'yxatga qayta qo'shmaymiz.
+        cur.execute(
+            f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s AND archived_at IS NULL",
+            (muassasa_id,),
+        )
         m = cur.fetchone()
         if not m:
             # O'chib ketgan legacy ID frontendda nomsiz/stale kartaga aylanmasin.
