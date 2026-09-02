@@ -118,6 +118,7 @@ SAMTM_EXACT_INTERNAL_RELEASE = "SAMTM-EXACT-CP-SAT-V23.6-DUAL-SHIFT-WEEK-ROUND-R
 # o'zgarmaydi; yangi imkoniyatlar alohida feature revision bilan belgilanadi.
 SAMTM_SCHOOL_PACKAGE_REVISION = "multi-school-access-2month-rev55"
 SAMTM_SCHOOL_FEATURE_REVISION = "teacher-grid-partial-group-class-v23.7.2"
+SAMTM_SCHOOL_WORKSPACE_CONTRACT = "school-step3-xlsx-three-language-v24.5"
 _platform.SAMTM_RELEASE = SAMTM_SCHOOL_RELEASE
 _platform.SAMTM_PACKAGE_REVISION = SAMTM_SCHOOL_PACKAGE_REVISION
 _platform.SAMTM_FEATURE_REVISION = SAMTM_SCHOOL_FEATURE_REVISION
@@ -10501,6 +10502,12 @@ def v1875_schedule_preflight(token: str, maktab_id: int):
 
 
 def _v1876_tables(cur):
+    # Startup migratsiyasi muvaffaqiyatli tugaganidan keyin request ichida
+    # CREATE/ALTER/INDEX buyruqlarini qayta-qayta ishlatmaymiz. Bu endpointlar
+    # parallel ochilganda PostgreSQL katalog locklarini va sahifa qotishini
+    # oldini oladi. Startup muvaffaqiyatsiz bo'lsa eski fallback saqlanadi.
+    if bool(getattr(app.state, "samtm_v1876_schema_ready", False)):
+        return
     _v1875_tables(cur)
     _sinf_kop_guruh_jadvallari(cur)
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_fan_guruh_tasdiqlari_v2(
@@ -10548,7 +10555,9 @@ def _v1876_startup_tables():
         conn = _db(); cur = conn.cursor()
         _v1876_tables(cur)
         conn.commit(); cur.close(); conn.close()
+        app.state.samtm_v1876_schema_ready = True
     except Exception as exc:
+        app.state.samtm_v1876_schema_ready = False
         print(f"[V18.76 guruh tasdiq jadvallari] {exc}", flush=True)
 
 
@@ -13227,6 +13236,10 @@ SAMTM_V19_2_SWAP_SUGGESTION_LIMIT = max(
 
 
 def _v192_tables(cur):
+    # DDL faqat startupda bajariladi. Avval bu funksiya chaqirilgan har bir
+    # API request ALTER TYPE/constraint introspectionni qayta bajarar edi.
+    if bool(getattr(app.state, "samtm_fractional_hours_ready", False)):
+        return
     _v1876_tables(cur)
     cur.execute(
         "ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE"
@@ -13379,6 +13392,7 @@ def v197_fractional_hour_capabilities():
         # deploy qilganda foydalanuvchi V19.7 frontend bilan ham saqlay oladi.
         "release": "samtm-fractional-hours-ab-week-v19.7",
         "platform_release": SAMTM_SCHOOL_RELEASE,
+        "school_workspace_contract": SAMTM_SCHOOL_WORKSPACE_CONTRACT,
         "jadval_release": SAMTM_JADVAL_RELEASE,
         "exact_jadval_release": SAMTM_EXACT_JADVAL_RELEASE,
         "exact_module_release": _V230_EXACT_MODULE_RELEASE,
@@ -15079,6 +15093,17 @@ SAMTM_V19_3_DEFAULT_CURRICULUM = SAMTM_2026_2027_UZBEK_CURRICULUM
 
 def _v201_central_school_settings_tables(cur):
     """Admin boshqaradigan, yil nomiga qotirilmagan maktab andozasi."""
+    # Startupdan keyingi odatiy requestda DDL va uch til seedini takrorlamay,
+    # faqat faol andoza ID sini o'qiymiz. Faol qator yo'qolgan bo'lsa pastdagi
+    # idempotent migratsiya o'zini tiklaydi.
+    if bool(getattr(app.state, "samtm_central_school_settings_ready", False)):
+        cur.execute(
+            "SELECT id FROM admin_maktab_andoza_versiyalari_v20_1 "
+            "WHERE faol=TRUE LIMIT 1"
+        )
+        ready_version = cur.fetchone()
+        if ready_version:
+            return int(ready_version["id"])
     cur.execute("""CREATE TABLE IF NOT EXISTS admin_maktab_andoza_versiyalari_v20_1(
         id BIGSERIAL PRIMARY KEY,
         nomi TEXT NOT NULL DEFAULT 'Amaldagi maktab andozasi',
@@ -15345,7 +15370,9 @@ def _v201_central_school_settings_startup():
         conn = _db(); cur = conn.cursor()
         _v201_central_school_settings_tables(cur)
         conn.commit(); cur.close(); conn.close()
+        app.state.samtm_central_school_settings_ready = True
     except Exception as exc:
+        app.state.samtm_central_school_settings_ready = False
         print(f"[V20.1 markaziy maktab sozlamasi] {exc}", flush=True)
 
 
