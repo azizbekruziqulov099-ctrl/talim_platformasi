@@ -20,20 +20,22 @@ import re
 import secrets
 import string
 import unicodedata
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from difflib import SequenceMatcher
 from typing import Any, Optional
 
 from cryptography.fernet import Fernet, InvalidToken
 from fastapi import APIRouter, File, Header, HTTPException, Query, UploadFile
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
 
 
-SAMTM_INSTITUTE_RELEASE = "institute-people-admission-v22-rev84"
+SAMTM_INSTITUTE_RELEASE = "institute-workspace-isolation-hierarchy-reports-v24-rev87"
 router = APIRouter(prefix="/api/institut/v20", tags=["Institut V20"])
 PLATFORM = None
 _SCHEMA_READY = False
+_V17_SOURCE_TABLES_READY: Optional[bool] = None
 
 TA_LIM_SHAKLLARI = ["Kunduzgi", "Kechki", "Sirtqi", "Masofaviy", "Dual ta'lim"]
 TA_LIM_TILLARI = ["O‘zbekcha", "Ruscha", "Tojikcha", "Qoraqalpoqcha", "Inglizcha"]
@@ -44,6 +46,7 @@ ROLE_LABELS = {
     "rektor": "Rektor",
     "prorektor": "Prorektor",
     "institut_admin": "Institut administratori",
+    "qabul_operator": "Qabul operatori",
     "dekan": "Dekan",
     "zam_dekan": "Dekan o‘rinbosari",
     "manaviyatchi": "Ma’naviy-ma’rifiy ishlar mas’uli",
@@ -57,12 +60,26 @@ ROLE_LABELS = {
 INSTITUTE_WIDE = {"owner", "rektor", "prorektor", "institut_admin"}
 FACULTY_WIDE = {"dekan", "zam_dekan", "manaviyatchi", "fakultet_admin"}
 DEPARTMENT_WIDE = {"kafedra_mudiri"}
-PRIVATE_ROLES = INSTITUTE_WIDE | FACULTY_WIDE | DEPARTMENT_WIDE | {"tyutor"}
+# Qabul vakolati tuzilma/xodim vakolatidan ataylab ajratilgan. Masalan,
+# qabul operatorini INSTITUTE_WIDE ga qo'shish unga tuzilmani tahrirlash
+# huquqini ham berib yuboradi.
+ADMISSION_VIEW_ROLES = (
+    INSTITUTE_WIDE
+    | {"fakultet_admin", "qabul_operator", "dekan", "zam_dekan"}
+    | DEPARTMENT_WIDE
+    | {"tyutor"}
+)
+PRIVATE_ROLES = ADMISSION_VIEW_ROLES
 MANAGE_STRUCTURE_ROLES = INSTITUTE_WIDE
 MANAGE_STAFF_ROLES = INSTITUTE_WIDE | {"dekan", "fakultet_admin"}
-MARK_DOCUMENT_ROLES = INSTITUTE_WIDE | FACULTY_WIDE | DEPARTMENT_WIDE
-MARK_DATABASE_ROLES = MARK_DOCUMENT_ROLES | {"tyutor"}
-PASSWORD_VIEW_ROLES = MARK_DOCUMENT_ROLES
+ADMISSION_IMPORT_ROLES = {"institut_admin", "fakultet_admin", "qabul_operator"}
+MARK_DOCUMENT_ROLES = ADMISSION_IMPORT_ROLES
+MARK_HEMIS_ROLES = {"kafedra_mudiri", "tyutor"}
+# Eski nomni import qiladigan boshqa modul bo'lsa, huquq kengayib ketmasdan
+# yangi HEMIS qoidalariga yo'naltiriladi.
+MARK_DATABASE_ROLES = MARK_HEMIS_ROLES
+REPORT_VIEW_ROLES = ADMISSION_VIEW_ROLES
+PASSWORD_VIEW_ROLES = {"institut_admin"}
 ADMIN_ROLES = {"institut_admin", "fakultet_admin"}
 
 
@@ -500,6 +517,15 @@ def _institut_v20_jadvallari(cur):
     cur.execute("ALTER TABLE universitet_qabul_talabalari ADD CONSTRAINT universitet_qabul_talabalari_qabul_bosqichi_check CHECK(qabul_bosqichi BETWEEN 1 AND 4)")
     cur.execute("""CREATE INDEX IF NOT EXISTS ix_uni_qabul_filter
         ON universitet_qabul_talabalari(universitet_id,yonalish_id,qabul_bosqichi,talim_shakli,talim_tili,ball DESC)""")
+    cur.execute("""CREATE INDEX IF NOT EXISTS ix_uni_qabul_hujjat_sana
+        ON universitet_qabul_talabalari(universitet_id,hujjat_topshirgan_at)
+        WHERE hujjat_topshirgan_at IS NOT NULL""")
+    cur.execute("""CREATE INDEX IF NOT EXISTS ix_uni_qabul_hemis_sana
+        ON universitet_qabul_talabalari(universitet_id,bazaga_kiritilgan_at)
+        WHERE bazaga_kiritilgan_at IS NOT NULL""")
+    cur.execute("""CREATE INDEX IF NOT EXISTS ix_uni_yonalish_scope
+        ON universitet_yonalishlari(universitet_id,fakultet_id,kafedra_id,id)
+        WHERE faol=TRUE""")
     cur.execute("""CREATE TABLE IF NOT EXISTS universitet_import_batchlar(
         id BIGSERIAL PRIMARY KEY,
         universitet_id INTEGER REFERENCES universitetlar(id) ON DELETE CASCADE,
@@ -543,29 +569,102 @@ def _is_global_admin(cur, user_id: int) -> bool:
     return cur.fetchone() is not None
 
 
+def _require_active_university_source(cur, university_id: int) -> None:
+    """V17 workspace'dan yaratilgan institut hali faol ekanini tekshiradi.
+
+    Eski, qo'lda yaratilgan ``universitetlar`` yozuvida xarita bo'lmaydi va u
+    odatdagidek ishlaydi. Xaritalangan yozuv esa faqat faol institut contexti
+    bilan ochiladi; arxivlangan yoki adashib maktabga bog'langan yozuv UI'ga
+    qayta sizib chiqmaydi.
+    """
+    global _V17_SOURCE_TABLES_READY
+    if _V17_SOURCE_TABLES_READY is None:
+        cur.execute("""SELECT
+            to_regclass('public.universitet_workspace_map') IS NOT NULL
+            AND to_regclass('public.organization_trials') IS NOT NULL
+            AND to_regclass('public.learning_contexts') IS NOT NULL AS tayyor""")
+        readiness = cur.fetchone()
+        _V17_SOURCE_TABLES_READY = bool(readiness and readiness["tayyor"])
+    if not _V17_SOURCE_TABLES_READY:
+        return
+    cur.execute("""SELECT uwm.context_id,o.organization_type,
+            c.context_type,
+            c.active AS context_active,
+            LOWER(COALESCE(o.lifecycle_status,'')) AS lifecycle_status
+        FROM universitet_workspace_map uwm
+        LEFT JOIN organization_trials o ON o.context_id=uwm.context_id
+        LEFT JOIN learning_contexts c ON c.id=uwm.context_id
+        WHERE uwm.universitet_id=%s""", (university_id,))
+    source = cur.fetchone()
+    if not source:
+        return
+    if not (
+        source.get("organization_type") == "institute"
+        and source.get("context_type") == "university"
+        and bool(source.get("context_active"))
+        and source.get("lifecycle_status") in {"trial", "read_only", "active"}
+    ):
+        raise HTTPException(
+            status_code=410,
+            detail="Institut ish maydoni arxivlangan yoki faol emas",
+        )
+
+
 def _resolve_university(cur, user_id: int, workspace_id: Optional[int], create: bool = True) -> int:
-    """V17 context id ni legacy universitet id ga xavfsiz xaritalaydi."""
+    """Faol V17 institut contextini legacy universitet IDga xaritalaydi.
+
+    Muhim: bu funksiya boshqa turdagi yoki arxivlangan workspace'ni institut
+    sifatida hech qachon ochmaydi. Mavjud xarita ham qayta tekshiriladi;
+    shuning uchun eski noto'g'ri ``school -> universitet`` bog'lanishi institut
+    oynasiga sizib kira olmaydi.
+    """
     if not workspace_id:
-        cur.execute("SELECT universitet_id FROM users WHERE user_id=%s", (user_id,))
+        cur.execute("""SELECT u.universitet_id
+            FROM users u JOIN universitetlar universitet
+              ON universitet.id=u.universitet_id
+            WHERE u.user_id=%s""", (user_id,))
         row = cur.fetchone()
         if row and row["universitet_id"]:
-            return int(row["universitet_id"])
+            university_id = int(row["universitet_id"])
+            _require_active_university_source(cur, university_id)
+            return university_id
         raise HTTPException(status_code=404, detail="Institut ish maydoni topilmadi")
-    cur.execute("SELECT universitet_id FROM universitet_workspace_map WHERE context_id=%s", (workspace_id,))
+
+    # Avval contextning o'zi tekshiriladi. Bu tekshiruv xarita topilgan holatda
+    # ham INSERT/UPDATE yoki return'dan oldin bajarilishi shart.
+    cur.execute("""SELECT o.display_name,o.creator_user_id,
+            LOWER(COALESCE(o.lifecycle_status,'')) lifecycle_status,
+            EXISTS(
+              SELECT 1 FROM context_memberships cm
+              WHERE cm.context_id=o.context_id AND cm.user_id=%s
+                AND cm.status='active'
+            ) faol_azo
+        FROM organization_trials o
+        JOIN learning_contexts c ON c.id=o.context_id
+        WHERE o.context_id=%s
+          AND o.organization_type='institute'
+          AND c.context_type='university'
+          AND c.active=TRUE
+          AND LOWER(COALESCE(o.lifecycle_status,''))
+              IN ('trial','read_only','active')""", (user_id, workspace_id))
+    org = cur.fetchone()
+    if not org:
+        raise HTTPException(
+            status_code=410,
+            detail="Institut ish maydoni arxivlangan, faol emas yoki turi institut emas",
+        )
+
+    cur.execute("""SELECT uwm.universitet_id
+        FROM universitet_workspace_map uwm
+        JOIN universitetlar u ON u.id=uwm.universitet_id
+        WHERE uwm.context_id=%s""", (workspace_id,))
     mapped = cur.fetchone()
     if mapped:
         return int(mapped["universitet_id"])
     if not create:
         raise HTTPException(status_code=404, detail="Institut xaritasi topilmadi")
-    cur.execute("""SELECT o.display_name
-        FROM organization_trials o JOIN learning_contexts c ON c.id=o.context_id
-        WHERE o.context_id=%s AND o.organization_type='institute'
-          AND (o.creator_user_id=%s OR EXISTS(
-              SELECT 1 FROM context_memberships cm WHERE cm.context_id=o.context_id
-              AND cm.user_id=%s AND cm.status='active'))""", (workspace_id, user_id, user_id))
-    org = cur.fetchone()
-    if not org:
-        raise HTTPException(status_code=403, detail="Bu institut ish maydoniga ruxsat yo'q")
+    if int(org.get("creator_user_id") or 0) != int(user_id) and not _is_global_admin(cur, user_id):
+        raise HTTPException(status_code=403, detail="Institut xaritasini faqat yaratuvchi yoki super administrator ochadi")
     cur.execute("INSERT INTO universitetlar(nomi) VALUES(%s) RETURNING id", (org["display_name"],))
     university_id = int(cur.fetchone()["id"])
     cur.execute("INSERT INTO universitet_workspace_map(context_id,universitet_id) VALUES(%s,%s)", (workspace_id, university_id))
@@ -590,6 +689,7 @@ def _roles(cur, user_id: int, university_id: int) -> list[dict[str, Any]]:
 
 
 def _require_member(cur, user_id: int, university_id: int) -> list[dict[str, Any]]:
+    _require_active_university_source(cur, university_id)
     roles = _roles(cur, user_id, university_id)
     if not roles:
         raise HTTPException(status_code=403, detail="Siz bu institutga biriktirilmagansiz")
@@ -600,12 +700,25 @@ def _role_names(roles: list[dict[str, Any]]) -> set[str]:
     return {r["rol"] for r in roles}
 
 
+def _operator_has_institute_scope(roles: list[dict[str, Any]]) -> bool:
+    """Fakultetsiz qabul operatori faqat qabul modulida institut qamroviga ega."""
+    return any(
+        role.get("rol") == "qabul_operator" and not role.get("fakultet_id")
+        for role in roles
+    )
+
+
 def _scope_program_ids(cur, university_id: int, roles: list[dict[str, Any]]) -> Optional[set[int]]:
     names = _role_names(roles)
-    if names & INSTITUTE_WIDE:
+    if names & INSTITUTE_WIDE or _operator_has_institute_scope(roles):
         return None
     ids: set[int] = set()
-    faculties = {int(r["fakultet_id"]) for r in roles if r.get("fakultet_id") and r["rol"] in FACULTY_WIDE}
+    faculties = {
+        int(r["fakultet_id"])
+        for r in roles
+        if r.get("fakultet_id")
+        and (r["rol"] in FACULTY_WIDE or r["rol"] == "qabul_operator")
+    }
     departments = {int(r["kafedra_id"]) for r in roles if r.get("kafedra_id") and r["rol"] in DEPARTMENT_WIDE}
     direct = {int(r["yonalish_id"]) for r in roles if r.get("yonalish_id") and r["rol"] not in {"tyutor", "talaba"}}
     ids |= direct
@@ -641,7 +754,7 @@ def _student_scope_clause(cur, university_id: int, user_id: int, roles: list[dic
                           student_alias: str = "qt", program_alias: str = "y") -> tuple[str, list[Any]]:
     """Talaba qatoriga rol + fakultet/yo'nalish/shakl/til qamrovini qo'llaydi."""
     names = _role_names(roles)
-    if names & INSTITUTE_WIDE:
+    if names & INSTITUTE_WIDE or _operator_has_institute_scope(roles):
         return "TRUE", []
     clauses: list[str] = []
     params: list[Any] = []
@@ -666,7 +779,7 @@ def _student_scope_clause(cur, university_id: int, user_id: int, roles: list[dic
 def _student_access_allowed(cur, university_id: int, user_id: int, roles: list[dict[str, Any]], row: dict[str, Any]) -> bool:
     """Bitta talaba uchun qamrov tekshiruvi; tyutorning shakl va tilini ham saqlaydi."""
     names = _role_names(roles)
-    if names & INSTITUTE_WIDE:
+    if names & INSTITUTE_WIDE or _operator_has_institute_scope(roles):
         return True
     program_id = int(row["yonalish_id"])
     program_ids = _scope_program_ids(cur, university_id, [r for r in roles if r["rol"] != "tyutor"])
@@ -696,27 +809,45 @@ def _validate_assignment_scope(cur, university_id: int, roles: list[dict[str, An
                                program_id: Optional[int]) -> Optional[int]:
     """Tanlangan fakultet/kafedra/yo'nalish bir institut va bir zanjirda ekanini tekshiradi."""
     candidates: list[int] = []
+    selected_department_id: Optional[int] = None
     if faculty_id:
-        cur.execute("SELECT id FROM fakultetlar WHERE id=%s AND universitet_id=%s", (faculty_id, university_id))
+        cur.execute("SELECT id FROM fakultetlar WHERE id=%s AND universitet_id=%s AND faol=TRUE", (faculty_id, university_id))
         row = cur.fetchone()
         if not row: raise HTTPException(status_code=400, detail="Fakultet bu institutga tegishli emas")
         candidates.append(int(row["id"]))
     if department_id:
         cur.execute("""SELECT f.id FROM kafedralar k JOIN fakultetlar f ON f.id=k.fakultet_id
-            WHERE k.id=%s AND f.universitet_id=%s""", (department_id, university_id))
+            WHERE k.id=%s AND f.universitet_id=%s
+              AND k.faol=TRUE AND f.faol=TRUE""", (department_id, university_id))
         row = cur.fetchone()
         if not row: raise HTTPException(status_code=400, detail="Kafedra bu institutga tegishli emas")
         candidates.append(int(row["id"]))
+        selected_department_id = int(department_id)
     if program_id:
-        cur.execute("SELECT fakultet_id FROM universitet_yonalishlari WHERE id=%s AND universitet_id=%s AND faol=TRUE", (program_id, university_id))
+        cur.execute("""SELECT y.fakultet_id,y.kafedra_id
+            FROM universitet_yonalishlari y
+            JOIN fakultetlar f ON f.id=y.fakultet_id
+            JOIN kafedralar k ON k.id=y.kafedra_id AND k.fakultet_id=f.id
+            WHERE y.id=%s AND y.universitet_id=%s
+              AND y.faol=TRUE AND k.faol=TRUE AND f.faol=TRUE""", (program_id, university_id))
         row = cur.fetchone()
         if not row: raise HTTPException(status_code=400, detail="Yo'nalish bu institutga tegishli emas")
         candidates.append(int(row["fakultet_id"]))
+        if selected_department_id is not None and int(row["kafedra_id"]) != selected_department_id:
+            raise HTTPException(
+                status_code=400,
+                detail="Tanlangan yo'nalish aynan tanlangan kafedraga tegishli emas",
+            )
     if len(set(candidates)) > 1:
         raise HTTPException(status_code=400, detail="Fakultet, kafedra va yo'nalish bir-biriga mos emas")
     target_faculty = candidates[0] if candidates else None
-    if not (_role_names(roles) & INSTITUTE_WIDE):
-        allowed = {int(r["fakultet_id"]) for r in roles if r.get("fakultet_id") and r["rol"] in FACULTY_WIDE}
+    if not (_role_names(roles) & INSTITUTE_WIDE) and not _operator_has_institute_scope(roles):
+        allowed = {
+            int(r["fakultet_id"])
+            for r in roles
+            if r.get("fakultet_id")
+            and (r["rol"] in FACULTY_WIDE or r["rol"] == "qabul_operator")
+        }
         if target_faculty is None or target_faculty not in allowed:
             raise HTTPException(status_code=403, detail="Faqat o'zingizga biriktirilgan fakultet doirasida ishlashingiz mumkin")
     return target_faculty
@@ -748,6 +879,8 @@ def _normalized_role_scope(role: str, faculty_id: Optional[int], department_id: 
         return faculty_id, None, None
     if role in DEPARTMENT_WIDE:
         return faculty_id, department_id, None
+    if role == "qabul_operator":
+        return faculty_id, None, None
     return faculty_id, department_id, program_id
 
 
@@ -1043,6 +1176,62 @@ def _structure_template_xlsx(university: dict[str, Any], structure_rows: list[di
     stream = io.BytesIO(); wb.save(stream); wb.close(); return stream.getvalue()
 
 
+def _admission_template_xlsx(university: dict[str, Any], programs: list[dict[str, Any]]) -> bytes:
+    """Qabul importeri o'qiydigan ustunlar bilan toza XLSX shablon yaratadi."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.utils import get_column_letter
+    from openpyxl.worksheet.datavalidation import DataValidation
+
+    headers = [
+        "AbiturID", "JSHSHIR", "Familya", "Ism", "Ota ism", "Tug'ilgan sana",
+        "Pasport seriya", "Pasport raqam", "Tavsiya turi", "Ta'lim shakli",
+        "Ta'lim Tili", "OTM", "Yo'nalish", "Telefon", "Ball", "D y region",
+        "D y tuman", "Maktab region", "Maktab tuman", "Maktab turi",
+        "Maktab nomi", "Tugatgan yili", "Serya va raqam",
+    ]
+    wb = Workbook(); sheet = wb.active; sheet.title = "QABUL"
+    lists = wb.create_sheet("ROYXATLAR")
+    sheet.append(headers)
+    # Birinchi bo'sh qatorda OTM nomi tayyor turadi; qolganini foydalanuvchi
+    # qo'lda yoki rasmiy qabul ro'yxatidan nusxalab to'ldiradi.
+    sheet.append([None] * 11 + [university.get("nomi")] + [None] * 11)
+
+    program_names = sorted({_norm(item.get("nomi")) for item in programs if _norm(item.get("nomi"))})
+    list_columns = [
+        ("Tavsiya turi", ["Davlat granti", "To'lov-kontrakt"]),
+        ("Ta'lim shakli", TA_LIM_SHAKLLARI),
+        ("Ta'lim tili", TA_LIM_TILLARI),
+        ("Yo'nalish", program_names),
+    ]
+    max_rows = max([len(values) for _, values in list_columns] + [1])
+    lists.append([label for label, _ in list_columns])
+    for index in range(max_rows):
+        lists.append([values[index] if index < len(values) else None for _, values in list_columns])
+    lists.sheet_state = "hidden"
+
+    for column, list_index, value_count in (("I", 1, 2), ("J", 2, len(TA_LIM_SHAKLLARI)),
+                                             ("K", 3, len(TA_LIM_TILLARI)), ("M", 4, len(program_names))):
+        if value_count < 1:
+            continue
+        end = value_count + 1
+        validation = DataValidation(type="list", formula1=f"'ROYXATLAR'!${get_column_letter(list_index)}$2:${get_column_letter(list_index)}${end}", allow_blank=True)
+        sheet.add_data_validation(validation); validation.add(f"{column}2:{column}2000")
+
+    widths = [14, 18, 22, 20, 20, 17, 16, 18, 20, 18, 17, 38, 38, 18, 12,
+              20, 20, 20, 20, 18, 34, 15, 20]
+    for index, width in enumerate(widths, 1):
+        sheet.column_dimensions[get_column_letter(index)].width = width
+    for cell in sheet[1]:
+        cell.fill = PatternFill("solid", fgColor="173E5B")
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    for cell in sheet[2]:
+        cell.fill = PatternFill("solid", fgColor="FFF8E8")
+    sheet.freeze_panes = "A2"; sheet.auto_filter.ref = "A1:W2000"; sheet.sheet_view.showGridLines = False
+    stream = io.BytesIO(); wb.save(stream); wb.close(); return stream.getvalue()
+
+
 def _parse_admission(content: bytes, filename: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     sheets = _workbook_rows(content, filename)
     rows = _active_rows(sheets, ("QABUL", "Лист1", "Sheet1"))
@@ -1140,6 +1329,7 @@ def _role_key(value: Any) -> Optional[str]:
     aliases = {
         "institutegasi": "owner", "rektor": "rektor", "prorektor": "prorektor",
         "institutadministratori": "institut_admin", "institutadmin": "institut_admin",
+        "qabuloperatori": "qabul_operator", "qabuloperator": "qabul_operator",
         "dekan": "dekan", "dekano'rinbosari": "zam_dekan", "dekanorinbosari": "zam_dekan",
         "zamdekan": "zam_dekan", "manaviyatchi": "manaviyatchi",
         "manaviyma'rifiyishlarmas'uli": "manaviyatchi", "manaviymarifiyishlarmasuli": "manaviyatchi",
@@ -1504,12 +1694,21 @@ def super_admin_institutes(token: Optional[str] = Query(None, include_in_schema=
         if not _is_global_admin(cur, user_id):
             raise HTTPException(status_code=403, detail="Faqat super administrator uchun")
         cur.execute("""SELECT u.id,u.nomi,u.viloyat,u.tuman,
-                       COUNT(DISTINCT f.id) fakultet_soni,
-                       COUNT(DISTINCT qt.id) talaba_soni
+                       (SELECT COUNT(*) FROM fakultetlar f
+                         WHERE f.universitet_id=u.id AND f.faol=TRUE) fakultet_soni,
+                       (SELECT COUNT(*) FROM universitet_qabul_talabalari qt
+                         WHERE qt.universitet_id=u.id) talaba_soni
                   FROM universitetlar u
-                  LEFT JOIN fakultetlar f ON f.universitet_id=u.id
-                  LEFT JOIN universitet_qabul_talabalari qt ON qt.universitet_id=u.id
-                 GROUP BY u.id,u.nomi,u.viloyat,u.tuman
+                  LEFT JOIN universitet_workspace_map uwm ON uwm.universitet_id=u.id
+                  LEFT JOIN organization_trials o ON o.context_id=uwm.context_id
+                  LEFT JOIN learning_contexts c ON c.id=uwm.context_id
+                 WHERE uwm.context_id IS NULL OR (
+                       o.organization_type='institute'
+                       AND c.context_type='university'
+                       AND c.active=TRUE
+                       AND LOWER(COALESCE(o.lifecycle_status,''))
+                           IN ('trial','read_only','active')
+                 )
                  ORDER BY u.nomi""")
         rows = cur.fetchall()
         conn.commit()
@@ -1526,9 +1725,12 @@ def bootstrap(workspace_id: Optional[int] = None, universitet_id: Optional[int] 
     try:
         _ensure_schema(cur)
         uid = int(universitet_id) if universitet_id else _resolve_university(cur, user_id, workspace_id, create=True)
-        roles = _require_member(cur, user_id, uid)
+        _require_active_university_source(cur, uid)
         cur.execute("SELECT id,nomi,viloyat,tuman FROM universitetlar WHERE id=%s", (uid,))
         university = cur.fetchone()
+        if not university:
+            raise HTTPException(status_code=404, detail="Institut topilmadi")
+        roles = _require_member(cur, user_id, uid)
         cur.execute("SELECT COUNT(*) n FROM fakultetlar WHERE universitet_id=%s AND faol=TRUE", (uid,)); faculties = int(cur.fetchone()["n"])
         cur.execute("SELECT COUNT(*) n FROM universitet_yonalishlari WHERE universitet_id=%s AND faol=TRUE", (uid,)); programs = int(cur.fetchone()["n"])
         cur.execute("SELECT COUNT(*) n FROM universitet_qabul_talabalari WHERE universitet_id=%s", (uid,)); students = int(cur.fetchone()["n"])
@@ -1547,7 +1749,9 @@ def bootstrap(workspace_id: Optional[int] = None, universitet_id: Optional[int] 
             "xodim_boshqarish": bool(names & MANAGE_STAFF_ROLES),
             "admin_boshqarish": global_admin,
             "qabul_korish": bool(names & PRIVATE_ROLES),
+            "qabul_hisobot_korish": bool(names & REPORT_VIEW_ROLES),
             "hujjat_belgilash": bool(names & MARK_DOCUMENT_ROLES),
+            "hemis_belgilash": bool(names & MARK_HEMIS_ROLES),
             "bazaga_belgilash": bool(names & MARK_DATABASE_ROLES),
             "saytga_kiritish": bool(names & MARK_DATABASE_ROLES),
             "qabul_holatlari_toliq": bool(names & MARK_DOCUMENT_ROLES),
@@ -1605,52 +1809,20 @@ def structure(universitet_id: int, token: Optional[str] = Query(None, include_in
             counts = {role: sum(1 for x in f["rahbariyat"] if x["rol"] == role) for role in ("dekan", "zam_dekan", "manaviyatchi", "fakultet_admin")}
             f["toldirilish"] = {"dekan": counts["dekan"], "zam_dekan": counts["zam_dekan"], "manaviyatchi": counts["manaviyatchi"], "admin": counts["fakultet_admin"],
                                 "tayyor": counts["dekan"] == 1 and counts["zam_dekan"] == 2 and counts["manaviyatchi"] == 1 and counts["fakultet_admin"] >= 1}
-            # Bir xil nomdagi eski bo'sh kafedra va importdan kelgan haqiqiy
-            # kafedra ikkita bo'lib ko'rinmasin. Talabali yo'nalishlar va mudir
-            # saqlanadi, bo'sh alias esa faqat ko'rinishdan birlashtiriladi.
-            department_groups: dict[str, list[dict[str, Any]]] = {}
+            # Kafedra va yo'nalishlar DBdagi haqiqiy ota-ona IDsi bilan
+            # qaytariladi. Nom bir xil bo'lsa ham turli kafedralardagi obyektlar
+            # birlashtirilmaydi va boshqa kafedraga ko'chirib ko'rsatilmaydi.
+            f["kafedralar"] = sorted(f["kafedralar"], key=lambda item: _key(item["nomi"]))
             for department in f["kafedralar"]:
-                department_groups.setdefault(_key(department["nomi"]), []).append(department)
-            canonical_departments = []
-            for variants in department_groups.values():
-                canonical_department = max(
-                    variants,
-                    key=lambda item: (
-                        sum(int(program.get("talaba_soni") or 0) for program in item.get("yonalishlar", [])),
-                        len(item.get("yonalishlar", [])), int(item["id"]),
-                    ),
+                department["yonalishlar"] = sorted(
+                    [dict(program) for program in department["yonalishlar"]],
+                    key=lambda item: (_key(item["nomi"]), int(item["id"])),
                 )
-                canonical_department["alias_ids"] = sorted({int(item["id"]) for item in variants})
-                canonical_department["yonalishlar"] = [
-                    program for item in variants for program in item.get("yonalishlar", [])
-                ]
-                canonical_department["mudir"] = next(
-                    (item.get("mudir") for item in variants if item.get("mudir")), None
-                )
-                canonical_departments.append(canonical_department)
-            f["kafedralar"] = sorted(canonical_departments, key=lambda item: _key(item["nomi"]))
-            f["kafedra_soni"] = len(canonical_departments)
-            # Eski qo'lda yaratilgan bo'sh yo'nalish va Excel importida
-            # yaratilgan ayni nomdagi yo'nalish ikkita karta bo'lib qolmasin.
-            # Bazadagi yozuvlarni o'chirmaymiz: UI uchun bitta kanonik karta
-            # qaytaramiz va uning alias_ids maydoni orqali barcha talabalar
-            # bir ro'yxatda ko'rsatiladi.
-            grouped: dict[tuple[str, str], list[tuple[dict[str, Any], dict[str, Any]]]] = {}
-            for department in f["kafedralar"]:
-                for raw_program in department["yonalishlar"]:
-                    program = dict(raw_program)
-                    grouped.setdefault((_key(program["nomi"]), _key(program.get("daraja"))), []).append((department, program))
-                department["yonalishlar"] = []
-            for variants in grouped.values():
-                owner, canonical = max(variants, key=lambda pair: (int(pair[1].get("talaba_soni") or 0), int(pair[1]["id"])))
-                canonical["alias_ids"] = sorted({int(program["id"]) for _, program in variants})
-                canonical["talaba_soni"] = sum(int(program.get("talaba_soni") or 0) for _, program in variants)
-                canonical["talim_shakllari"] = sorted({value for _, program in variants for value in (program.get("talim_shakllari") or []) if value})
-                canonical["talim_tillari"] = sorted({value for _, program in variants for value in (program.get("talim_tillari") or []) if value})
-                owner["yonalishlar"].append(canonical)
-            for department in f["kafedralar"]:
-                department["yonalishlar"].sort(key=lambda item: _key(item["nomi"]))
-            f["yonalish_soni"] = len(grouped)
+            f["kafedra_soni"] = len(f["kafedralar"])
+            f["yonalish_soni"] = sum(
+                len(department["yonalishlar"])
+                for department in f["kafedralar"]
+            )
         cur.execute("""SELECT xr.rol,xr.user_id,u.full_name FROM universitet_xodim_rollari xr
             JOIN users u ON u.user_id=xr.user_id
             WHERE xr.universitet_id=%s AND xr.fakultet_id IS NULL AND xr.faol=TRUE
@@ -1682,20 +1854,8 @@ def faculty_programs(faculty_id: int, token: Optional[str] = Query(None, include
             LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
             WHERE y.fakultet_id=%s AND y.faol=TRUE
             GROUP BY y.id,k.nomi ORDER BY y.nomi""", (faculty_id,))
-        raw_programs = [dict(row) for row in cur.fetchall()]
-        grouped: dict[tuple[str, str], list[dict[str, Any]]] = {}
-        for program in raw_programs:
-            grouped.setdefault((_key(program["nomi"]), _key(program.get("daraja"))), []).append(program)
-        programs = []
-        for variants in grouped.values():
-            canonical = max(variants, key=lambda item: (int(item.get("talaba_soni") or 0), int(item["id"])))
-            canonical["alias_ids"] = sorted({int(item["id"]) for item in variants})
-            for count_key in ("talaba_soni", "hujjat_soni", "baza_soni"):
-                canonical[count_key] = sum(int(item.get(count_key) or 0) for item in variants)
-            canonical["talim_shakllari"] = ", ".join(sorted({part.strip() for item in variants for part in str(item.get("talim_shakllari") or "").split(",") if part.strip()}))
-            canonical["talim_tillari"] = ", ".join(sorted({part.strip() for item in variants for part in str(item.get("talim_tillari") or "").split(",") if part.strip()}))
-            programs.append(canonical)
-        programs.sort(key=lambda item: _key(item["nomi"]))
+        programs = [dict(row) for row in cur.fetchall()]
+        programs.sort(key=lambda item: (_key(item["kafedra_nomi"]), _key(item["nomi"]), int(item["id"])))
         return {"fakultet_id": faculty_id, "fakultet_nomi": faculty["nomi"],
                 "yonalishlar": programs}
     finally:
@@ -2580,30 +2740,69 @@ def update_tutor_assignment(assignment_id: int, req: TutorAssignmentUpdate):
         cur.close(); conn.close()
 
 
+@router.get("/qabul/shablon")
+def admission_template(
+    universitet_id: int,
+    fakultet_id: Optional[int] = None,
+    token: Optional[str] = Query(None, include_in_schema=False),
+    authorization: Optional[str] = Header(None),
+):
+    """Tanlangan institut/fakultet yo'nalishlari bilan qabul XLSX shabloni."""
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
+        if not _has_any(roles, ADMISSION_IMPORT_ROLES):
+            raise HTTPException(status_code=403, detail="Qabul shablonini yuklash huquqi yo'q")
+        if fakultet_id is not None:
+            _validate_assignment_scope(cur, universitet_id, roles, fakultet_id, None, None)
+        cur.execute("SELECT id,nomi FROM universitetlar WHERE id=%s", (universitet_id,))
+        university = cur.fetchone()
+        if not university:
+            raise HTTPException(status_code=404, detail="Institut topilmadi")
+        cur.execute("""SELECT y.id,y.nomi
+            FROM universitet_yonalishlari y
+            JOIN fakultetlar f ON f.id=y.fakultet_id AND f.faol=TRUE
+            JOIN kafedralar k ON k.id=y.kafedra_id AND k.faol=TRUE
+            WHERE y.universitet_id=%s AND y.faol=TRUE
+              AND (%s IS NULL OR y.fakultet_id=%s)
+            ORDER BY y.nomi""", (universitet_id, fakultet_id, fakultet_id))
+        content = _admission_template_xlsx(dict(university), [dict(row) for row in cur.fetchall()])
+        return _xlsx_download(content, "institut_qabul_shabloni.xlsx")
+    finally:
+        cur.close(); conn.close()
+
+
 @router.post("/qabul/import_preview")
 async def admission_preview(universitet_id: int, fakultet_id: Optional[int] = None, fayl: UploadFile = File(...), token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p()
     content = await fayl.read()
     if len(content) > 25 * 1024 * 1024: raise HTTPException(status_code=413, detail="Qabul fayli 25 MB dan katta")
     if not (fayl.filename or "").lower().endswith((".xls", ".xlsx")): raise HTTPException(status_code=400, detail="Faqat .xls yoki .xlsx fayl qabul qilinadi")
-    parsed, summary = _parse_admission(content, fayl.filename or "qabul.xls")
+    parsed, summary = await run_in_threadpool(
+        _parse_admission,
+        content,
+        fayl.filename or "qabul.xls",
+    )
     conn = p._db(); cur = conn.cursor()
     try:
         _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
         if not _has_any(roles, MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Qabul importiga ruxsat yo'q")
         if fakultet_id is not None:
-            cur.execute("SELECT id,nomi FROM fakultetlar WHERE id=%s AND universitet_id=%s", (fakultet_id, universitet_id))
+            cur.execute("SELECT id,nomi FROM fakultetlar WHERE id=%s AND universitet_id=%s AND faol=TRUE", (fakultet_id, universitet_id))
             selected_faculty = cur.fetchone()
             if not selected_faculty: raise HTTPException(status_code=400, detail="Tanlangan fakultet bu institutga tegishli emas")
             _validate_assignment_scope(cur, universitet_id, roles, fakultet_id, None, None)
         else:
             selected_faculty = None
         cur.execute("""SELECT k.id,k.nomi,k.fakultet_id,f.nomi fakultet_nomi FROM kafedralar k
-            JOIN fakultetlar f ON f.id=k.fakultet_id WHERE f.universitet_id=%s
+            JOIN fakultetlar f ON f.id=k.fakultet_id
+            WHERE f.universitet_id=%s AND f.faol=TRUE AND k.faol=TRUE
               AND (%s IS NULL OR f.id=%s) ORDER BY f.nomi,k.nomi""", (universitet_id, fakultet_id, fakultet_id))
         department_rows = [dict(row) for row in cur.fetchall()]
         cur.execute("""SELECT y.id,y.nomi,y.kafedra_id,y.fakultet_id
             FROM universitet_yonalishlari y
+            JOIN fakultetlar f ON f.id=y.fakultet_id AND f.faol=TRUE
+            JOIN kafedralar k ON k.id=y.kafedra_id AND k.faol=TRUE
             WHERE y.universitet_id=%s AND y.faol=TRUE
               AND (%s IS NULL OR y.fakultet_id=%s)
             ORDER BY y.nomi""", (universitet_id, fakultet_id, fakultet_id))
@@ -2682,64 +2881,43 @@ def admission_commit(req: BatchCommit):
         if summary.get("xato_soni"): raise HTTPException(status_code=400, detail="Xatoli fayl commit qilinmaydi; preview xatolarini tuzating")
         if summary.get("otm_nomi_farqi") and not req.otm_nomi_farqini_tasdiqlash:
             raise HTTPException(status_code=400, detail="Fayldagi OTM nomi tanlangan institutga mos emas; avval farqni tasdiqlang")
+        if req.auto_create_yonalishlar:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Qabul importi tuzilma yaratmaydi. Har bir Excel "
+                    "yo'nalishini mavjud kafedra ichidagi yo'nalishga moslang"
+                ),
+            )
         summary_matching = summary.get("yonalish_moslashtirish") or {}
         selected_faculty_id = summary.get("tanlangan_fakultet_id")
         if not selected_faculty_id:
             raise HTTPException(status_code=400, detail="Talabalar importi uchun fakultet tanlanmagan")
-        cur.execute("""SELECT k.id,k.nomi,k.fakultet_id FROM kafedralar k
-            JOIN fakultetlar f ON f.id=k.fakultet_id
-            WHERE f.universitet_id=%s AND k.fakultet_id=%s""",
-            (batch["universitet_id"], selected_faculty_id))
-        departments = [dict(row) for row in cur.fetchall()]
-        department_by_id = {int(row["id"]): row for row in departments}
-        department_by_name = {_key(row["nomi"]): row for row in departments}
         direction_names = sorted({r["yonalish_nomi"] for r in payload})
         resolved: dict[str, dict[str, Any]] = {}
         for name in direction_names:
             suggested = summary_matching.get(name) or {}
             program_id = req.yonalish_mosliklari.get(name) or suggested.get("tanlangan_yonalish_id")
-            if not program_id:
-                cur.execute("""SELECT y.id FROM universitet_yonalishlari y
-                    LEFT JOIN universitet_qabul_talabalari qt ON qt.yonalish_id=y.id
-                    WHERE y.universitet_id=%s AND y.fakultet_id=%s AND y.faol=TRUE
-                      AND LOWER(TRIM(y.nomi))=LOWER(TRIM(%s))
-                    GROUP BY y.id ORDER BY COUNT(qt.id) DESC,y.id LIMIT 1""",
-                    (batch["universitet_id"], selected_faculty_id, name))
-                exact_program = cur.fetchone()
-                if exact_program:
-                    program_id = int(exact_program["id"])
             if program_id:
-                cur.execute("""SELECT id,nomi,fakultet_id,kafedra_id
-                    FROM universitet_yonalishlari
-                    WHERE id=%s AND universitet_id=%s AND fakultet_id=%s AND faol=TRUE""",
+                cur.execute("""SELECT y.id,y.nomi,y.fakultet_id,y.kafedra_id
+                    FROM universitet_yonalishlari y
+                    JOIN fakultetlar f ON f.id=y.fakultet_id AND f.faol=TRUE
+                    JOIN kafedralar k ON k.id=y.kafedra_id AND k.faol=TRUE
+                    WHERE y.id=%s AND y.universitet_id=%s
+                      AND y.fakultet_id=%s AND y.faol=TRUE""",
                     (program_id, batch["universitet_id"], selected_faculty_id))
                 existing_program = cur.fetchone()
                 if not existing_program:
                     raise HTTPException(status_code=400, detail=f"{name}: tanlangan yo‘nalish bu fakultetga tegishli emas")
                 resolved[name] = dict(existing_program)
                 continue
-            department_id = req.yangi_yonalish_kafedralari.get(name) or suggested.get("tanlangan_kafedra_id")
-            department = department_by_id.get(int(department_id)) if department_id else department_by_name.get(_key(name))
-            if not department:
-                department_name = (_norm(suggested.get("yaratiladigan_kafedra_nomi"))
-                                   or _base_program_name(name) or name)
-                cur.execute("""INSERT INTO kafedralar(fakultet_id,nomi)
-                    VALUES(%s,%s) ON CONFLICT(fakultet_id,nomi) DO UPDATE SET nomi=EXCLUDED.nomi
-                    RETURNING id,nomi,fakultet_id""", (selected_faculty_id, department_name))
-                department = dict(cur.fetchone())
-                department_by_id[int(department["id"])] = department
-                department_by_name[_key(department["nomi"])] = department
-            if int(department["fakultet_id"]) != int(selected_faculty_id):
-                raise HTTPException(status_code=400, detail=f"{name}: kafedra tanlangan fakultetga tegishli emas")
-            # Yo‘nalish kafedraning o‘zi emas. Excel nomi aynan yo‘nalish nomi
-            # sifatida saqlanadi; shakl va til uning variantlari bo‘ladi.
-            cur.execute("""INSERT INTO universitet_yonalishlari(
-                    universitet_id,fakultet_id,kafedra_id,nomi)
-                VALUES(%s,%s,%s,%s)
-                ON CONFLICT(universitet_id,kafedra_id,nomi,daraja) DO UPDATE SET faol=TRUE
-                RETURNING id,nomi,fakultet_id,kafedra_id""",
-                (batch["universitet_id"], selected_faculty_id, department["id"], name))
-            resolved[name] = dict(cur.fetchone())
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    f"{name}: mavjud yo'nalish tanlanmagan. "
+                    "Qabul importi kafedra yoki yo'nalish yaratmaydi"
+                ),
+            )
         for variant in {(r["yonalish_nomi"], r["talim_shakli"], r["talim_tili"]) for r in payload}:
             program_id = resolved[variant[0]]["id"]
             cur.execute("""INSERT INTO universitet_yonalish_variantlari(yonalish_id,talim_shakli,talim_tili)
@@ -2928,68 +3106,455 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         cur.close(); conn.close()
 
 
-@router.get("/qabul/kunlik_hisobot")
-def admission_daily_report(universitet_id: int, kun: Optional[date] = None,
-                           fakultet_id: Optional[int] = None,
-                           token: Optional[str] = Query(None, include_in_schema=False),
-                           authorization: Optional[str] = Header(None)):
-    """Dekan/admin tanlagan kun bo'yicha hujjat, baza va sayt hisobotini ko'radi."""
-    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
-    selected_day = kun or date.today()
+def _admission_report_range(
+    boshlanish: Optional[date],
+    tugash: Optional[date],
+    kun: Optional[date] = None,
+) -> tuple[date, date]:
+    """Yangi sana oralig'i va eski bitta-kun kontraktini birga qo'llaydi."""
+    if kun is not None and boshlanish is None and tugash is None:
+        boshlanish = tugash = kun
+    elif boshlanish is None and tugash is None:
+        boshlanish = tugash = date.today()
+    elif boshlanish is None:
+        boshlanish = tugash
+    elif tugash is None:
+        tugash = boshlanish
+    if boshlanish is None or tugash is None or boshlanish > tugash:
+        raise HTTPException(status_code=400, detail="Hisobot sana oralig'i noto'g'ri")
+    if (tugash - boshlanish).days > 365:
+        raise HTTPException(status_code=400, detail="Bir so'rovda ko'pi bilan 366 kun tanlanadi")
+    return boshlanish, tugash
+
+
+def _validate_admission_report_dimensions(
+    cur,
+    university_id: int,
+    faculty_id: Optional[int] = None,
+    department_id: Optional[int] = None,
+    program_id: Optional[int] = None,
+) -> None:
+    """Hisobot filtrlari bir faol institut zanjiriga tegishli ekanini tekshiradi."""
+    if program_id is not None:
+        cur.execute("""SELECT y.fakultet_id,y.kafedra_id
+            FROM universitet_yonalishlari y
+            JOIN fakultetlar f ON f.id=y.fakultet_id AND f.faol=TRUE
+            JOIN kafedralar k ON k.id=y.kafedra_id AND k.faol=TRUE
+            WHERE y.id=%s AND y.universitet_id=%s AND y.faol=TRUE""",
+                    (program_id, university_id))
+        row = cur.fetchone()
+        if not row:
+            raise HTTPException(status_code=400, detail="Yo'nalish bu institutga tegishli emas")
+        if faculty_id is not None and int(row["fakultet_id"]) != int(faculty_id):
+            raise HTTPException(status_code=400, detail="Yo'nalish tanlangan fakultetga tegishli emas")
+        if department_id is not None and int(row["kafedra_id"]) != int(department_id):
+            raise HTTPException(status_code=400, detail="Yo'nalish tanlangan kafedraga tegishli emas")
+        return
+    if department_id is not None:
+        cur.execute("""SELECT k.fakultet_id
+            FROM kafedralar k JOIN fakultetlar f ON f.id=k.fakultet_id
+            WHERE k.id=%s AND f.universitet_id=%s
+              AND k.faol=TRUE AND f.faol=TRUE""", (department_id, university_id))
+        row = cur.fetchone()
+        if not row:
+            raise HTTPException(status_code=400, detail="Kafedra bu institutga tegishli emas")
+        if faculty_id is not None and int(row["fakultet_id"]) != int(faculty_id):
+            raise HTTPException(status_code=400, detail="Kafedra tanlangan fakultetga tegishli emas")
+        return
+    if faculty_id is not None:
+        cur.execute("SELECT 1 FROM fakultetlar WHERE id=%s AND universitet_id=%s AND faol=TRUE",
+                    (faculty_id, university_id))
+        if not cur.fetchone():
+            raise HTTPException(status_code=400, detail="Fakultet bu institutga tegishli emas")
+
+
+def _admission_report_access(cur, university_id: int, user_id: int) -> list[dict[str, Any]]:
+    roles = _require_member(cur, user_id, university_id)
+    if not _has_any(roles, REPORT_VIEW_ROLES):
+        raise HTTPException(status_code=403, detail="Qabul hisobotini ko'rish huquqi yo'q")
+    return roles
+
+
+def _admission_daily_report_data(
+    cur,
+    university_id: int,
+    user_id: int,
+    boshlanish: date,
+    tugash: date,
+    faculty_id: Optional[int] = None,
+) -> dict[str, Any]:
+    roles = _admission_report_access(cur, university_id, user_id)
+    _validate_admission_report_dimensions(cur, university_id, faculty_id=faculty_id)
+    scope_sql, scope_params = _student_scope_clause(cur, university_id, user_id, roles)
+    where = [
+        "qt.universitet_id=%s",
+        "f.faol=TRUE",
+        "k.faol=TRUE",
+        "y.faol=TRUE",
+        scope_sql,
+        "event.event_at >= (%s::date AT TIME ZONE 'Asia/Tashkent')",
+        "event.event_at < ((%s::date + 1) AT TIME ZONE 'Asia/Tashkent')",
+    ]
+    params: list[Any] = [university_id, *scope_params, boshlanish, tugash]
+    if faculty_id is not None:
+        where.append("y.fakultet_id=%s")
+        params.append(faculty_id)
+    cur.execute(f"""SELECT
+            f.id fakultet_id,f.nomi fakultet_nomi,
+            k.id kafedra_id,k.nomi kafedra_nomi,
+            y.id yonalish_id,y.nomi yonalish_nomi,
+            qt.talim_shakli,qt.talim_tili,
+            event.event_type,
+            (event.event_at AT TIME ZONE 'Asia/Tashkent')::date event_day,
+            COUNT(*)::INTEGER soni
+        FROM universitet_qabul_talabalari qt
+        JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+        JOIN fakultetlar f ON f.id=y.fakultet_id
+        JOIN kafedralar k ON k.id=y.kafedra_id
+        CROSS JOIN LATERAL (VALUES
+            ('hujjat',qt.hujjat_topshirgan_at),
+            ('hemis',qt.bazaga_kiritilgan_at),
+            ('sayt',COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at))
+        ) AS event(event_type,event_at)
+        WHERE {' AND '.join(where)}
+        GROUP BY f.id,f.nomi,k.id,k.nomi,y.id,y.nomi,
+                 qt.talim_shakli,qt.talim_tili,event.event_type,event_day
+        ORDER BY f.nomi,k.nomi,y.nomi,qt.talim_shakli,qt.talim_tili,event_day""", params)
+
+    days = [
+        (boshlanish + timedelta(days=offset)).isoformat()
+        for offset in range((tugash - boshlanish).days + 1)
+    ]
+    grouped: dict[tuple[Any, ...], dict[str, Any]] = {}
+    totals = {"hujjat": 0, "baza": 0, "hemis": 0, "sayt": 0}
+    day_totals = {day: 0 for day in days}
+    for raw in cur.fetchall():
+        item = dict(raw)
+        key = (
+            item["fakultet_id"], item["kafedra_id"], item["yonalish_id"],
+            item.get("talim_shakli"), item.get("talim_tili"),
+        )
+        report_row = grouped.setdefault(key, {
+            "fakultet_id": int(item["fakultet_id"]),
+            "fakultet_nomi": item["fakultet_nomi"],
+            "kafedra_id": int(item["kafedra_id"]),
+            "kafedra_nomi": item["kafedra_nomi"],
+            "yonalish_id": int(item["yonalish_id"]),
+            "asosiy_yonalish_nomi": item["yonalish_nomi"],
+            "yonalish_nomi": " · ".join(filter(None, (
+                item["yonalish_nomi"], item.get("talim_shakli"), item.get("talim_tili"),
+            ))),
+            "talim_shakli": item.get("talim_shakli"),
+            "talim_tili": item.get("talim_tili"),
+            "kunlar": {day: 0 for day in days},
+            "hemis_kunlar": {day: 0 for day in days},
+            "sayt_kunlar": {day: 0 for day in days},
+            "hujjat": 0,
+            "baza": 0,
+            "hemis": 0,
+            "sayt": 0,
+            "jami": 0,
+        })
+        event_type = item["event_type"]
+        event_day = item["event_day"].isoformat()
+        count = int(item["soni"] or 0)
+        if event_type == "hujjat":
+            report_row["kunlar"][event_day] = count
+            report_row["hujjat"] += count
+            report_row["jami"] += count
+            totals["hujjat"] += count
+            day_totals[event_day] = day_totals.get(event_day, 0) + count
+        elif event_type == "hemis":
+            report_row["hemis_kunlar"][event_day] = count
+            report_row["baza"] += count
+            report_row["hemis"] += count
+            totals["baza"] += count
+            totals["hemis"] += count
+        elif event_type == "sayt":
+            report_row["sayt_kunlar"][event_day] = count
+            report_row["sayt"] += count
+            totals["sayt"] += count
+
+    rows = list(grouped.values())
+    document_rows = [row for row in rows if row["hujjat"] > 0]
+    return {
+        "boshlanish": boshlanish.isoformat(),
+        "tugash": tugash.isoformat(),
+        "kun": boshlanish.isoformat() if boshlanish == tugash else None,
+        "kunlar": days,
+        "sanalar": days,
+        "hisoblar": totals,
+        "jami_kunlar": day_totals,
+        "kun_jami": day_totals,
+        "jami": totals["hujjat"],
+        "qatorlar": document_rows,
+        # Eski bir-kunlik frontend baza/sayt ustunlarini shu aliasdan o'qiydi.
+        "yonalishlar": rows,
+    }
+
+
+def _admission_general_report_data(
+    cur,
+    university_id: int,
+    user_id: int,
+    *,
+    q: str = "",
+    faculty_id: Optional[int] = None,
+    department_id: Optional[int] = None,
+    program_id: Optional[int] = None,
+    talim_shakli: Optional[str] = None,
+    talim_tili: Optional[str] = None,
+    qabul_turi: Optional[str] = None,
+) -> dict[str, Any]:
+    roles = _admission_report_access(cur, university_id, user_id)
+    _validate_admission_report_dimensions(
+        cur, university_id, faculty_id=faculty_id,
+        department_id=department_id, program_id=program_id,
+    )
+    scope_sql, scope_params = _student_scope_clause(cur, university_id, user_id, roles)
+    where = [
+        "qt.universitet_id=%s", "f.faol=TRUE", "k.faol=TRUE", "y.faol=TRUE", scope_sql,
+    ]
+    params: list[Any] = [university_id, *scope_params]
+    if faculty_id is not None:
+        where.append("y.fakultet_id=%s"); params.append(faculty_id)
+    if department_id is not None:
+        where.append("y.kafedra_id=%s"); params.append(department_id)
+    if program_id is not None:
+        where.append("qt.yonalish_id=%s"); params.append(program_id)
+
+    # Dropdown variantlari qidiruv yoki boshqa dropdown tanlovi sabab yo'qolmasin.
+    option_clause = " AND ".join(where)
+    option_params = list(params)
+    if talim_shakli:
+        where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
+    if talim_tili:
+        where.append("qt.talim_tili=%s"); params.append(talim_tili)
+    admission_kind = _key(qabul_turi)
+    if admission_kind in {"grant", "budjet", "budjetgrant"}:
+        where.append("qt.tavsiya_turi ILIKE %s"); params.append("%grant%")
+    elif admission_kind == "kontrakt":
+        where.append("qt.tavsiya_turi ILIKE %s"); params.append("%kontrakt%")
+    elif admission_kind:
+        raise HTTPException(status_code=400, detail="Qabul turi grant yoki kontrakt bo'lishi kerak")
+    if _norm(q):
+        term = "%" + _norm(q) + "%"
+        where.append("""(qt.familiya ILIKE %s OR qt.ism ILIKE %s OR qt.ota_ism ILIKE %s
+            OR CONCAT_WS(' ',qt.familiya,qt.ism,qt.ota_ism) ILIKE %s
+            OR qt.abitur_id ILIKE %s)""")
+        params.extend([term, term, term, term, term])
+
+    cur.execute(f"""SELECT
+            f.id fakultet_id,f.nomi fakultet_nomi,
+            k.id kafedra_id,k.nomi kafedra_nomi,
+            y.id yonalish_id,y.nomi yonalish_nomi,
+            COUNT(*)::INTEGER jami,
+            (COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL))::INTEGER hujjat,
+            (COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL))::INTEGER hemis
+        FROM universitet_qabul_talabalari qt
+        JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+        JOIN fakultetlar f ON f.id=y.fakultet_id
+        JOIN kafedralar k ON k.id=y.kafedra_id
+        WHERE {' AND '.join(where)}
+        GROUP BY f.id,f.nomi,k.id,k.nomi,y.id,y.nomi
+        ORDER BY f.nomi,k.nomi,y.nomi""", params)
+    rows: list[dict[str, Any]] = []
+    totals = {"jami": 0, "hujjat": 0, "qolgan": 0, "hemis": 0,
+              "baza": 0, "hemis_kutilmoqda": 0}
+    for raw in cur.fetchall():
+        row = dict(raw)
+        row["jami"] = int(row["jami"] or 0)
+        row["hujjat"] = int(row["hujjat"] or 0)
+        row["hemis"] = int(row["hemis"] or 0)
+        row["baza"] = row["hemis"]
+        row["qolgan"] = max(0, row["jami"] - row["hujjat"])
+        row["hemis_kutilmoqda"] = max(0, row["hujjat"] - row["hemis"])
+        for key in totals:
+            totals[key] += int(row[key] or 0)
+        rows.append(row)
+
+    cur.execute(f"""SELECT
+            ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.talim_shakli ORDER BY qt.talim_shakli),NULL) shakllar,
+            ARRAY_REMOVE(ARRAY_AGG(DISTINCT qt.talim_tili ORDER BY qt.talim_tili),NULL) tillar
+        FROM universitet_qabul_talabalari qt
+        JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+        JOIN fakultetlar f ON f.id=y.fakultet_id
+        JOIN kafedralar k ON k.id=y.kafedra_id
+        WHERE {option_clause}""", option_params)
+    options = dict(cur.fetchone())
+    options["shakllar"] = options.get("shakllar") or []
+    options["tillar"] = options.get("tillar") or []
+    options["qabul_turlari"] = ["grant", "kontrakt"]
+    return {"hisoblar": totals, "qatorlar": rows, "yonalishlar": rows, "filtrlar": options}
+
+
+def _admission_report_xlsx(
+    title: str,
+    subtitle: str,
+    headers: list[str],
+    rows: list[list[Any]],
+    widths: list[int],
+    freeze_panes: str = "A4",
+) -> bytes:
     try:
-        _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
-        if not _has_any(roles, MARK_DOCUMENT_ROLES):
-            raise HTTPException(status_code=403, detail="Kunlik qabul hisoboti vakolatli rahbar va administrator uchun")
-        if fakultet_id is not None:
-            cur.execute("SELECT id FROM fakultetlar WHERE id=%s AND universitet_id=%s", (fakultet_id, universitet_id))
-            if not cur.fetchone():
-                raise HTTPException(status_code=400, detail="Fakultet bu institutga tegishli emas")
-            names = _role_names(roles)
-            if not (names & INSTITUTE_WIDE):
-                allowed_faculties = {
-                    int(role["fakultet_id"])
-                    for role in roles
-                    if role.get("fakultet_id") and role["rol"] in FACULTY_WIDE
-                }
-                department_ids = [
-                    int(role["kafedra_id"])
-                    for role in roles
-                    if role.get("kafedra_id") and role["rol"] in DEPARTMENT_WIDE
-                ]
-                if department_ids:
-                    cur.execute("SELECT DISTINCT fakultet_id FROM kafedralar WHERE id=ANY(%s)", (department_ids,))
-                    allowed_faculties.update(int(row["fakultet_id"]) for row in cur.fetchall())
-                if int(fakultet_id) not in allowed_faculties:
-                    raise HTTPException(status_code=403, detail="Bu fakultet hisobotini ko‘rish huquqi yo‘q")
-        scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
-        params: list[Any] = [selected_day, selected_day, selected_day, universitet_id, *scope_params]
-        faculty_sql = ""
-        if fakultet_id is not None:
-            faculty_sql = " AND y.fakultet_id=%s"
-            params.append(fakultet_id)
-        cur.execute(f"""SELECT
-            COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s) hujjat,
-            COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at::date=%s) baza,
-            COUNT(*) FILTER(WHERE COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s) sayt
-          FROM universitet_qabul_talabalari qt
-          JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
-         WHERE qt.universitet_id=%s AND {scope_sql}{faculty_sql}""", params)
-        totals = dict(cur.fetchone())
-        cur.execute(f"""SELECT f.id fakultet_id,f.nomi fakultet_nomi,y.id yonalish_id,y.nomi yonalish_nomi,
-            COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s) hujjat,
-            COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at::date=%s) baza,
-            COUNT(*) FILTER(WHERE COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s) sayt
-          FROM universitet_qabul_talabalari qt
-          JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
-          JOIN fakultetlar f ON f.id=y.fakultet_id
-         WHERE qt.universitet_id=%s AND {scope_sql}{faculty_sql}
-         GROUP BY f.id,f.nomi,y.id,y.nomi
-        HAVING COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at::date=%s
-                                OR qt.bazaga_kiritilgan_at::date=%s
-                                OR COALESCE(qt.birinchi_kirish_at,qt.saytga_kiritilgan_at)::date=%s)>0
-         ORDER BY f.nomi,y.nomi""", params + [selected_day, selected_day, selected_day])
-        rows = [dict(row) for row in cur.fetchall()]
-        return {"kun": selected_day.isoformat(), "hisoblar": totals, "yonalishlar": rows}
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+        from openpyxl.utils import get_column_letter
+    except ImportError as exc:
+        raise HTTPException(status_code=500, detail="Hisobot XLSX uchun openpyxl o'rnatilmagan") from exc
+    wb = Workbook(); ws = wb.active; ws.title = "QABUL HISOBOTI"
+    ws.append([title] + [None] * (len(headers) - 1))
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=len(headers))
+    ws.append([subtitle] + [None] * (len(headers) - 1))
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=len(headers))
+    ws.append(headers)
+    ws["A1"].font = Font(bold=True, color="FFFFFF", size=15)
+    ws["A1"].fill = PatternFill("solid", fgColor="0D7A77")
+    ws["A1"].alignment = Alignment(horizontal="center")
+    ws["A2"].font = Font(italic=True, color="5A6A72")
+    ws["A2"].alignment = Alignment(horizontal="center")
+    for cell in ws[3]:
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = PatternFill("solid", fgColor="173E5B")
+        cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    for row in rows:
+        ws.append(row)
+    for column, width in enumerate(widths, 1):
+        ws.column_dimensions[get_column_letter(column)].width = width
+    ws.freeze_panes = freeze_panes
+    ws.auto_filter.ref = f"A3:{get_column_letter(len(headers))}{max(3, ws.max_row)}"
+    ws.sheet_view.showGridLines = False
+    for row in ws.iter_rows(min_row=4):
+        for cell in row:
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
+    stream = io.BytesIO(); wb.save(stream); wb.close(); return stream.getvalue()
+
+
+def _xlsx_download(content: bytes, filename: str) -> Response:
+    return Response(
+        content=content,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@router.get("/qabul/kunlik_hisobot")
+def admission_daily_report(
+    universitet_id: int,
+    boshlanish: Optional[date] = None,
+    tugash: Optional[date] = None,
+    kun: Optional[date] = None,
+    fakultet_id: Optional[int] = None,
+    token: Optional[str] = Query(None, include_in_schema=False),
+    authorization: Optional[str] = Header(None),
+):
+    """Hujjat qabuli va keyingi bosqichlarni sana oralig'ida jamlaydi."""
+    start, end = _admission_report_range(boshlanish, tugash, kun)
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        return _admission_daily_report_data(cur, universitet_id, user_id, start, end, fakultet_id)
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/qabul/kunlik_hisobot.xlsx")
+def admission_daily_report_xlsx(
+    universitet_id: int,
+    boshlanish: Optional[date] = None,
+    tugash: Optional[date] = None,
+    kun: Optional[date] = None,
+    fakultet_id: Optional[int] = None,
+    token: Optional[str] = Query(None, include_in_schema=False),
+    authorization: Optional[str] = Header(None),
+):
+    start, end = _admission_report_range(boshlanish, tugash, kun)
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        report = _admission_daily_report_data(cur, universitet_id, user_id, start, end, fakultet_id)
+        day_headers = [datetime.fromisoformat(day).strftime("%d.%m") for day in report["kunlar"]]
+        body = []
+        for index, row in enumerate(report["qatorlar"], 1):
+            body.append([
+                index, row["fakultet_nomi"], row["kafedra_nomi"],
+                row["asosiy_yonalish_nomi"], row.get("talim_shakli"), row.get("talim_tili"),
+                *[row["kunlar"].get(day, 0) for day in report["kunlar"]], row["jami"],
+            ])
+        body.append([None, None, None, "Jami", None, None,
+                     *[report["jami_kunlar"].get(day, 0) for day in report["kunlar"]], report["jami"]])
+        headers = ["№", "Fakultet", "Kafedra", "Yo'nalish", "Ta'lim shakli", "Ta'lim tili",
+                   *day_headers, "Jami"]
+        content = _admission_report_xlsx(
+            "HUJJAT QABULI — KUNLIK HISOBOT",
+            f"{start.isoformat()} — {end.isoformat()}",
+            headers, body, [7, 26, 28, 38, 18, 18, *([11] * len(day_headers)), 12], "G4",
+        )
+        return _xlsx_download(content, "qabul_kunlik_hisobot.xlsx")
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/qabul/umumiy_hisobot")
+def admission_general_report(
+    universitet_id: int,
+    q: str = "",
+    fakultet_id: Optional[int] = None,
+    kafedra_id: Optional[int] = None,
+    yonalish_id: Optional[int] = None,
+    talim_shakli: Optional[str] = None,
+    talim_tili: Optional[str] = None,
+    qabul_turi: Optional[str] = None,
+    token: Optional[str] = Query(None, include_in_schema=False),
+    authorization: Optional[str] = Header(None),
+):
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        return _admission_general_report_data(
+            cur, universitet_id, user_id, q=q, faculty_id=fakultet_id,
+            department_id=kafedra_id, program_id=yonalish_id,
+            talim_shakli=talim_shakli, talim_tili=talim_tili, qabul_turi=qabul_turi,
+        )
+    finally:
+        cur.close(); conn.close()
+
+
+@router.get("/qabul/umumiy_hisobot.xlsx")
+def admission_general_report_xlsx(
+    universitet_id: int,
+    q: str = "",
+    fakultet_id: Optional[int] = None,
+    kafedra_id: Optional[int] = None,
+    yonalish_id: Optional[int] = None,
+    talim_shakli: Optional[str] = None,
+    talim_tili: Optional[str] = None,
+    qabul_turi: Optional[str] = None,
+    token: Optional[str] = Query(None, include_in_schema=False),
+    authorization: Optional[str] = Header(None),
+):
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur)
+        report = _admission_general_report_data(
+            cur, universitet_id, user_id, q=q, faculty_id=fakultet_id,
+            department_id=kafedra_id, program_id=yonalish_id,
+            talim_shakli=talim_shakli, talim_tili=talim_tili, qabul_turi=qabul_turi,
+        )
+        body = [[
+            index, row["fakultet_nomi"], row["kafedra_nomi"], row["yonalish_nomi"],
+            row["jami"], row["hujjat"], row["qolgan"], row["hemis"], row["hemis_kutilmoqda"],
+        ] for index, row in enumerate(report["qatorlar"], 1)]
+        totals = report["hisoblar"]
+        body.append([None, None, None, "Jami", totals["jami"], totals["hujjat"],
+                     totals["qolgan"], totals["hemis"], totals["hemis_kutilmoqda"]])
+        content = _admission_report_xlsx(
+            "HUJJAT QABULI — UMUMIY HISOBOT",
+            "Filtrlangan natija; shaxsiy ma'lumotlar eksport qilinmaydi",
+            ["№", "Fakultet", "Kafedra", "Yo'nalish", "Jami", "Hujjat", "Qolgan", "HEMIS", "HEMIS kutilmoqda"],
+            body, [7, 26, 28, 40, 12, 12, 12, 12, 18], "A4",
+        )
+        return _xlsx_download(content, "qabul_umumiy_hisobot.xlsx")
     finally:
         cur.close(); conn.close()
 
@@ -3046,10 +3611,17 @@ def update_stage(student_id: int, req: StageUpdate):
         roles = _require_member(cur, actor, row["universitet_id"]); names = _role_names(roles)
         if not _student_access_allowed(cur, row["universitet_id"], actor, roles, dict(row)):
             raise HTTPException(status_code=403, detail="Bu talaba sizga biriktirilmagan")
-        if "tyutor" in names and not (names & MARK_DOCUMENT_ROLES):
-            if req.bosqich not in (3, 4): raise HTTPException(status_code=403, detail="Tyutor faqat o'z qamrovidagi talabaning baza va sayt holatini belgilaydi")
-            if row["hujjat_topshirgan_at"] is None: raise HTTPException(status_code=409, detail="Avval admin hujjat topshirilganini tasdiqlashi kerak")
-        elif not (names & MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Bosqichni o'zgartirish huquqi yo'q")
+        if req.bosqich == 2:
+            if not (names & MARK_DOCUMENT_ROLES):
+                raise HTTPException(status_code=403, detail="Hujjat qabulini belgilash huquqi yo'q")
+        else:
+            # HEMIS/baza va sayt holatini faqat kafedra mudiri yoki aynan shu
+            # qamrovga biriktirilgan tyutor belgilaydi. Admin hujjat qabulini
+            # tasdiqlaydi, ammo keyingi bosqichlarni uning nomidan bosmaydi.
+            if not (names & MARK_HEMIS_ROLES):
+                raise HTTPException(status_code=403, detail="HEMIS va sayt holatini belgilash huquqi yo'q")
+            if row["hujjat_topshirgan_at"] is None:
+                raise HTTPException(status_code=409, detail="Avval admin hujjat topshirilganini tasdiqlashi kerak")
         if req.bosqich == 2 and row["hujjat_topshirgan_at"] is not None:
             conn.commit(); return {"holat": "avval_belgilangan", "bosqich": 2}
         if req.bosqich == 3 and row["bazaga_kiritilgan_at"] is not None:
