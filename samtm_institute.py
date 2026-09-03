@@ -3711,6 +3711,50 @@ def update_stage(student_id: int, req: StageUpdate):
         cur.close(); conn.close()
 
 
+@router.patch("/qabul/talaba/{student_id}/bosqich_bekor")
+def revert_stage(student_id: int, req: StageUpdate):
+    """Xato belgilangan bosqichni qaytaradi: 2 — hujjat, 3 — baza/HEMIS.
+
+    Hujjat belgisi faqat baza belgisi yo'q bo'lsa qaytariladi; baza belgisi
+    talaba saytga kirmagan bo'lsa qaytariladi. Saytga kirgan talaba qaytarilmaydi.
+    """
+    if req.bosqich not in (2, 3): raise HTTPException(status_code=400, detail="Faqat hujjat (2) yoki baza (3) belgisi bekor qilinadi")
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); cur.execute("SELECT * FROM universitet_qabul_talabalari WHERE id=%s FOR UPDATE", (student_id,)); row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Talaba topilmadi")
+        roles = _require_member(cur, actor, row["universitet_id"]); names = _role_names(roles)
+        if not _student_access_allowed(cur, row["universitet_id"], actor, roles, dict(row)):
+            raise HTTPException(status_code=403, detail="Bu talaba sizga biriktirilmagan")
+        site_entered = row["saytga_kiritilgan_at"] is not None or row["birinchi_kirish_at"] is not None or (row["user_id"] is not None and int(row["user_id"]) >= 0)
+        if req.bosqich == 2:
+            if not (names & MARK_DOCUMENT_ROLES):
+                raise HTTPException(status_code=403, detail="Hujjat belgisini bekor qilish huquqi yo'q")
+            if row["bazaga_kiritilgan_at"] is not None:
+                raise HTTPException(status_code=409, detail="Avval “Bazaga kiritilgan” belgisini bekor qiling")
+            if row["hujjat_topshirgan_at"] is None:
+                conn.commit(); return {"holat": "belgilanmagan", "bosqich": 2}
+            cur.execute("""UPDATE universitet_qabul_talabalari
+                              SET hujjat_topshirgan_at=NULL,qabul_bosqichi=1,yangilangan_at=NOW()
+                            WHERE id=%s""", (student_id,))
+        else:
+            if not (names & MARK_HEMIS_ROLES):
+                raise HTTPException(status_code=403, detail="Baza belgisini bekor qilish huquqi yo'q")
+            if site_entered:
+                raise HTTPException(status_code=409, detail="Talaba saytga kirgan; baza belgisi qaytarilmaydi")
+            if row["bazaga_kiritilgan_at"] is None:
+                conn.commit(); return {"holat": "belgilanmagan", "bosqich": 3}
+            cur.execute("""UPDATE universitet_qabul_talabalari
+                              SET bazaga_kiritilgan_at=NULL,qabul_bosqichi=2,yangilangan_at=NOW()
+                            WHERE id=%s""", (student_id,))
+        _audit(cur, row["universitet_id"], actor, "qabul_bosqichi_bekor", "qabul_talaba", student_id, {"bosqich": req.bosqich})
+        conn.commit(); return {"holat": "bekor_qilindi", "bosqich": req.bosqich}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @router.post("/qabul/talaba/{student_id}/taklif")
 def invite_student(student_id: int, req: InviteSend):
     p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
