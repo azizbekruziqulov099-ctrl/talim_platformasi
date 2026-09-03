@@ -3632,6 +3632,126 @@ def admission_general_report_xlsx(
         cur.close(); conn.close()
 
 
+def _admission_students_xlsx_multi(sheets: list[dict[str, Any]]) -> bytes:
+    """Bir necha varaqli talabalar ro'yxati (topshirgan / topshirmagan / xulosa)."""
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+        from openpyxl.utils import get_column_letter
+    except ImportError as exc:
+        raise HTTPException(status_code=500, detail="Hisobot XLSX uchun openpyxl o'rnatilmagan") from exc
+    wb = Workbook(); first = True
+    for sheet in sheets:
+        ws = wb.active if first else wb.create_sheet(); first = False
+        ws.title = str(sheet["title"])[:31]
+        headers = sheet["headers"]; n = len(headers)
+        ws.append([sheet["heading"]] + [None] * (n - 1)); ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=n)
+        ws.append([sheet.get("subtitle", "")] + [None] * (n - 1)); ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=n)
+        ws.append(headers)
+        ws["A1"].font = Font(bold=True, color="FFFFFF", size=14); ws["A1"].fill = PatternFill("solid", fgColor=sheet.get("color", "0D7A77")); ws["A1"].alignment = Alignment(horizontal="center")
+        ws["A2"].font = Font(italic=True, color="5A6A72"); ws["A2"].alignment = Alignment(horizontal="center")
+        for cell in ws[3]:
+            cell.font = Font(bold=True, color="FFFFFF"); cell.fill = PatternFill("solid", fgColor="173E5B")
+            cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        for row in sheet["rows"]:
+            ws.append(row)
+        for column, width in enumerate(sheet["widths"], 1):
+            ws.column_dimensions[get_column_letter(column)].width = width
+        ws.freeze_panes = "A4"
+        ws.auto_filter.ref = f"A3:{get_column_letter(n)}{max(3, ws.max_row)}"
+        ws.sheet_view.showGridLines = False
+        for row in ws.iter_rows(min_row=4):
+            for cell in row:
+                cell.alignment = Alignment(vertical="top", wrap_text=True)
+    stream = io.BytesIO(); wb.save(stream); wb.close(); return stream.getvalue()
+
+
+@router.get("/qabul/talabalar_royxati.xlsx")
+def admission_students_xlsx(
+    universitet_id: int,
+    q: str = "",
+    fakultet_id: Optional[int] = None,
+    yonalish_id: Optional[int] = None,
+    yonalish_ids: Optional[str] = None,
+    talim_shakli: Optional[str] = None,
+    talim_tili: Optional[str] = None,
+    qabul_turi: Optional[str] = None,
+    token: Optional[str] = Query(None, include_in_schema=False),
+    authorization: Optional[str] = Header(None),
+):
+    """Talabalar ro'yxati Excel: 1-varaq hujjat topshirganlar, 2-varaq topshirmaganlar (izoh bilan), 3-varaq xulosa."""
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id); names = _role_names(roles)
+        if not (names & MARK_DOCUMENT_ROLES):
+            raise HTTPException(status_code=403, detail="Talabalar ro'yxatini eksport qilish huquqi yo'q")
+        scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
+        where = ["qt.universitet_id=%s", "y.faol=TRUE", "f.faol=TRUE", "k.faol=TRUE", scope_sql]; params: list[Any] = [universitet_id, *scope_params]
+        if fakultet_id: where.append("y.fakultet_id=%s"); params.append(fakultet_id)
+        if yonalish_ids:
+            try: ids = sorted({int(v.strip()) for v in yonalish_ids.split(",") if v.strip()})
+            except ValueError: raise HTTPException(status_code=400, detail="Yo‘nalish identifikatorlari noto‘g‘ri")
+            if ids: where.append("qt.yonalish_id=ANY(%s)"); params.append(ids)
+        elif yonalish_id: where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
+        if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
+        if talim_tili: where.append("qt.talim_tili=%s"); params.append(talim_tili)
+        kind = _key(qabul_turi)
+        if kind in {"grant", "budjet", "budjetgrant"}: where.append("(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)"); params += ["%grant%", "%budjet%"]
+        elif kind in {"kontrakt", "shartnoma", "tolovkontrakt"}: where.append("(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)"); params += ["%kontrakt%", "%shartnoma%"]
+        if _norm(q):
+            term = "%" + _norm(q) + "%"
+            where.append("(qt.familiya ILIKE %s OR qt.ism ILIKE %s OR qt.ota_ism ILIKE %s OR CONCAT_WS(' ',qt.familiya,qt.ism,qt.ota_ism) ILIKE %s OR qt.abitur_id ILIKE %s OR qt.telefon ILIKE %s)")
+            params += [term] * 6
+        cur.execute(f"""SELECT qt.familiya,qt.ism,qt.ota_ism,qt.abitur_id,qt.ball,qt.talim_shakli,qt.talim_tili,qt.tavsiya_turi,
+                qt.doimiy_region,qt.doimiy_tuman,qt.telefon,qt.hujjat_topshirgan_at,qt.bazaga_kiritilgan_at,
+                qt.aloqa_izohi,qt.aloqa_izohi_at,y.nomi yonalish_nomi,k.nomi kafedra_nomi,f.nomi fakultet_nomi
+            FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+            JOIN fakultetlar f ON f.id=y.fakultet_id JOIN kafedralar k ON k.id=y.kafedra_id
+            WHERE {" AND ".join(where)}
+            ORDER BY f.nomi,k.nomi,y.nomi,qt.familiya,qt.ism""", params)
+        rows = [dict(r) for r in cur.fetchall()]
+        _audit(cur, universitet_id, user_id, "talabalar_royxati_xlsx", "universitet", universitet_id, {"soni": len(rows)})
+        conn.commit()
+
+        def fish(r): return " ".join(x for x in [r["familiya"], r["ism"], r["ota_ism"]] if x)
+        def dt(v): return v.strftime("%d.%m.%Y") if v else None
+        def region(r): return ", ".join(x for x in [r["doimiy_region"], r["doimiy_tuman"]] if x) or None
+        submitted = [r for r in rows if r["hujjat_topshirgan_at"] is not None]
+        pending = [r for r in rows if r["hujjat_topshirgan_at"] is None]
+        with_note = sum(1 for r in pending if (r["aloqa_izohi"] or "").strip())
+        submitted_rows = [[i, fish(r), r["yonalish_nomi"], r["kafedra_nomi"], r["talim_shakli"], r["talim_tili"], r["tavsiya_turi"], r["ball"], r["telefon"], region(r), dt(r["hujjat_topshirgan_at"]), "Ha" if r["bazaga_kiritilgan_at"] else "Yo'q", r["aloqa_izohi"]] for i, r in enumerate(submitted, 1)]
+        pending_rows = [[i, fish(r), r["yonalish_nomi"], r["kafedra_nomi"], r["talim_shakli"], r["talim_tili"], r["tavsiya_turi"], r["ball"], r["telefon"], region(r), r["aloqa_izohi"], dt(r["aloqa_izohi_at"])] for i, r in enumerate(pending, 1)]
+        # Xulosa: yo'nalish kesimida
+        summary: dict[str, dict[str, Any]] = {}
+        for r in rows:
+            key = (r["fakultet_nomi"], r["kafedra_nomi"], r["yonalish_nomi"])
+            item = summary.setdefault(key, {"jami": 0, "hujjat": 0, "qolgan": 0, "hemis": 0, "izoh": 0})
+            item["jami"] += 1
+            if r["hujjat_topshirgan_at"]: item["hujjat"] += 1
+            else:
+                item["qolgan"] += 1
+                if (r["aloqa_izohi"] or "").strip(): item["izoh"] += 1
+            if r["bazaga_kiritilgan_at"]: item["hemis"] += 1
+        summary_rows = [[i, k[0], k[1], k[2], v["jami"], v["hujjat"], v["qolgan"], v["izoh"], v["hemis"]] for i, (k, v) in enumerate(sorted(summary.items()), 1)]
+        summary_rows.append([None, None, None, "Jami", len(rows), len(submitted), len(pending), with_note, sum(1 for r in rows if r["bazaga_kiritilgan_at"])])
+        content = _admission_students_xlsx_multi([
+            {"title": "Hujjat topshirgan", "heading": f"HUJJAT TOPSHIRGANLAR — {len(submitted)} ta", "subtitle": "Fakultet → kafedra → yo'nalish → familiya tartibida", "color": "8A5A1C",
+             "headers": ["№", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Topshirgan sana", "HEMIS", "Izoh"],
+             "widths": [6, 34, 28, 22, 12, 12, 16, 8, 16, 26, 14, 8, 36], "rows": submitted_rows},
+            {"title": "Hujjat topshirmagan", "heading": f"HUJJAT TOPSHIRMAGANLAR — {len(pending)} ta (izohli: {with_note})", "subtitle": "Telefon suhbati izohi bilan: nega topshirmadi, qachon keladi", "color": "A84444",
+             "headers": ["№", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Suhbat izohi", "Izoh sanasi"],
+             "widths": [6, 34, 28, 22, 12, 12, 16, 8, 16, 26, 44, 12], "rows": pending_rows},
+            {"title": "Xulosa", "heading": "YO'NALISHLAR KESIMIDA XULOSA", "subtitle": "Filtrlangan natija", "color": "0D7A77",
+             "headers": ["№", "Fakultet", "Kafedra", "Yo'nalish", "Jami", "Hujjat topshirgan", "Topshirmagan", "Izohli (suhbat)", "HEMIS"],
+             "widths": [6, 26, 26, 36, 10, 16, 14, 14, 10], "rows": summary_rows},
+        ])
+        return _xlsx_download(content, "qabul_talabalar_royxati.xlsx")
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @router.get("/qabul/talaba/{student_id}")
 def admission_detail(student_id: int, universitet_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
