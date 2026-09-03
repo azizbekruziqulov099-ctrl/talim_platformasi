@@ -21375,6 +21375,54 @@ class V195TeacherDelete(BaseModel):
     tasdiq: bool = False
 
 
+class V2251TeacherRenumber(BaseModel):
+    maktab_id: int
+
+
+@app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_raqamlarini_alfavit_tartibla")
+def v2251_teacher_renumber_alphabetical(sorov: V2251TeacherRenumber, token: str):
+    """Maktab o'qituvchilarining jadval raqamlarini F.I.Sh. alfavit tartibida 1..N qilib qayta beradi.
+
+    Raqam faqat users.jadval_raqami da saqlanadi; skelet va jadval user_id bilan
+    bog'langan, shuning uchun qayta raqamlash mavjud jadvalni buzmaydi.
+    """
+    actor_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Raqamlarni faqat maktab rahbariyati qayta tartiblaydi")
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (1925000000 + int(sorov.maktab_id),))
+        _v2249_ensure_teacher_numbers(cur, sorov.maktab_id)
+        cur.execute(
+            """SELECT user_id,full_name FROM users
+               WHERE maktab_id=%s AND jadval_raqami IS NOT NULL
+               FOR UPDATE""",
+            (sorov.maktab_id,),
+        )
+        rows = sorted(
+            (dict(row) for row in cur.fetchall()),
+            key=lambda row: (re.sub(r"\s+", " ", str(row.get("full_name") or "")).strip().casefold(), int(row["user_id"])),
+        )
+        # Unique index (maktab_id,jadval_raqami) to'qnashmasligi uchun avval manfiy vaqtinchalik raqam.
+        cur.execute(
+            "UPDATE users SET jadval_raqami=-jadval_raqami WHERE maktab_id=%s AND jadval_raqami IS NOT NULL",
+            (sorov.maktab_id,),
+        )
+        result = []
+        for number, row in enumerate(rows, start=1):
+            cur.execute(
+                "UPDATE users SET jadval_raqami=%s WHERE user_id=%s AND maktab_id=%s",
+                (number, int(row["user_id"]), sorov.maktab_id),
+            )
+            result.append({"user_id": int(row["user_id"]), "full_name": row.get("full_name"), "jadval_raqami": number})
+        conn.commit()
+        return {"holat": "tartiblandi", "soni": len(result), "oqituvchilar": result}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_ochirish")
 def v195_teacher_delete(sorov: V195TeacherDelete, token: str):
     """O'qituvchini maktabdan va barcha faol yuklamalardan to'liq chiqaradi."""
