@@ -16370,6 +16370,25 @@ def _v2249_ensure_teacher_numbers(cur, maktab_id: int):
         row["jadval_raqami"] = next_number
         used.add(next_number)
         next_number += 1
+    # V2251: raqamlar doim 1..N va F.I.Sh. alfavit tartibida bo'lishi kerak.
+    # O'qituvchi o'chirilsa yoki xato kiritilib qayta kiritilsa ham bo'sh joy qolmaydi.
+    ordered = sorted(
+        rows,
+        key=lambda row: (re.sub(r"\s+", " ", str(row.get("full_name") or "")).strip().casefold(), int(row["user_id"])),
+    )
+    if any(int(row["jadval_raqami"]) != number for number, row in enumerate(ordered, start=1)):
+        cur.execute(
+            "UPDATE users SET jadval_raqami=-jadval_raqami WHERE maktab_id=%s AND jadval_raqami IS NOT NULL AND jadval_raqami>0",
+            (maktab_id,),
+        )
+        for number, row in enumerate(ordered, start=1):
+            cur.execute(
+                "UPDATE users SET jadval_raqami=%s WHERE user_id=%s AND maktab_id=%s",
+                (number, int(row["user_id"]), maktab_id),
+            )
+            row["jadval_raqami"] = number
+        # Ro'yxatda bo'lmagan (rol o'zgargan) eski manfiy raqamlar tozalanadi.
+        cur.execute("UPDATE users SET jadval_raqami=NULL WHERE maktab_id=%s AND jadval_raqami<0", (maktab_id,))
     return {int(row["user_id"]): int(row["jadval_raqami"]) for row in rows if row.get("jadval_raqami") is not None}
 
 
