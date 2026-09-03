@@ -489,6 +489,10 @@ def _institut_v20_jadvallari(cur):
     )""")
     cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS bazaga_kiritilgan_at TIMESTAMPTZ")
     cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS birinchi_kirish_at TIMESTAMPTZ")
+    # Qabul xodimi bilan telefon suhbati izohi (nega topshirmadi, qachon keladi...)
+    cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS aloqa_izohi TEXT")
+    cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS aloqa_izohi_at TIMESTAMPTZ")
+    cur.execute("ALTER TABLE universitet_qabul_talabalari ADD COLUMN IF NOT EXISTS aloqa_izohi_by BIGINT")
     # Tuzilma elementlari o‘chirilmaydi: 1 yil yumshoq arxivda saqlanadi.
     cur.execute("ALTER TABLE fakultetlar ADD COLUMN IF NOT EXISTS faol BOOLEAN NOT NULL DEFAULT TRUE")
     cur.execute("ALTER TABLE fakultetlar ADD COLUMN IF NOT EXISTS arxiv_at TIMESTAMPTZ")
@@ -1646,6 +1650,11 @@ class BatchCommit(BaseModel):
 class StageUpdate(BaseModel):
     token: str
     bosqich: int
+
+
+class ContactNoteUpdate(BaseModel):
+    token: str
+    izoh: str = ""
 
 
 class StructureArchiveCommit(BaseModel):
@@ -3010,6 +3019,7 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             "saytgakirmagan": "saytga_kirmagan",
             "saytgakirgan": "saytga_kirgan",
             "hemiskutilmoqda": "hemis_kutilmoqda", "bazakutilmoqda": "hemis_kutilmoqda",
+            "suhbat": "suhbat", "suhbatlashgan": "suhbat", "izohli": "suhbat",
         }
         selected_status = status_aliases.get(_key(holat or "all"))
         if selected_status is None:
@@ -3025,6 +3035,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
         elif selected_status == "hemis_kutilmoqda":
             where.append("qt.hujjat_topshirgan_at IS NOT NULL AND qt.bazaga_kiritilgan_at IS NULL")
+        elif selected_status == "suhbat":
+            where.append("NULLIF(BTRIM(qt.aloqa_izohi),'') IS NOT NULL")
         elif selected_status == "saytga_kirmagan":
             where.append(f"NOT {site_entered_sql}")
         elif selected_status == "saytga_kirgan":
@@ -3102,7 +3114,7 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         page_size = max(10, min(100, page_size)); page = max(1, page); offset = (page - 1) * page_size
         cur.execute(f"""SELECT qt.id,qt.familiya,qt.ism,qt.ota_ism,qt.ball,qt.talim_shakli,qt.talim_tili,qt.tavsiya_turi,
             qt.doimiy_region,qt.doimiy_tuman,qt.qabul_bosqichi,qt.hujjat_topshirgan_at,
-            qt.bazaga_kiritilgan_at,qt.birinchi_kirish_at,qt.telefon,y.id yonalish_id,y.nomi yonalish_nomi,
+            qt.bazaga_kiritilgan_at,qt.birinchi_kirish_at,qt.telefon,qt.aloqa_izohi,qt.aloqa_izohi_at,y.id yonalish_id,y.nomi yonalish_nomi,
             (qt.hujjat_topshirgan_at IS NOT NULL) hujjat_topshirgan,
             (qt.bazaga_kiritilgan_at IS NOT NULL) bazaga_kiritilgan,
             {site_entered_sql} saytga_kirgan,
@@ -3136,7 +3148,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
                                   OR qt.tavsiya_turi ILIKE '%%shartnoma%%') AS kontrakt,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) baza,
             COUNT(*) FILTER(WHERE {site_entered_sql}) sayt,
-            COUNT(*) FILTER(WHERE NOT {site_entered_sql}) saytga_kirmagan
+            COUNT(*) FILTER(WHERE NOT {site_entered_sql}) saytga_kirmagan,
+            COUNT(*) FILTER(WHERE NULLIF(BTRIM(qt.aloqa_izohi),'') IS NOT NULL) suhbat
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
             JOIN fakultetlar f ON f.id=y.fakultet_id
             JOIN kafedralar k ON k.id=y.kafedra_id
@@ -3155,7 +3168,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
         filter_options["qabul_turlari"] = ["grant", "kontrakt"]
         safe_counts = {"jami": int(counts["jami"] or 0), "baza": int(counts["baza"] or 0),
                        "sayt": int(counts["sayt"] or 0),
-                       "saytga_kirmagan": int(counts["saytga_kirmagan"] or 0)} if tutor_only else counts
+                       "saytga_kirmagan": int(counts["saytga_kirmagan"] or 0),
+                       "suhbat": int(counts["suhbat"] or 0)} if tutor_only else counts
         return {"talabalar": rows, "jami": total, "sahifa": page, "sahifa_soni": math.ceil(total/page_size) if total else 0,
                 "hisoblar": safe_counts, "filtrlar": filter_options, "holat": selected_status,
                 "tyutor_rejimi": tutor_only}
@@ -3749,6 +3763,33 @@ def revert_stage(student_id: int, req: StageUpdate):
                             WHERE id=%s""", (student_id,))
         _audit(cur, row["universitet_id"], actor, "qabul_bosqichi_bekor", "qabul_talaba", student_id, {"bosqich": req.bosqich})
         conn.commit(); return {"holat": "bekor_qilindi", "bosqich": req.bosqich}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@router.patch("/qabul/talaba/{student_id}/izoh")
+def update_contact_note(student_id: int, req: ContactNoteUpdate):
+    """Telefon suhbati izohi. Bo'sh matn yuborilsa izoh o'chiriladi."""
+    note = re.sub(r"\s+", " ", str(req.izoh or "")).strip()[:600]
+    p = _p(); actor = p._jwt_tekshir(req.token); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); cur.execute("SELECT * FROM universitet_qabul_talabalari WHERE id=%s FOR UPDATE", (student_id,)); row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Talaba topilmadi")
+        roles = _require_member(cur, actor, row["universitet_id"])
+        if not _has_any(roles, PRIVATE_ROLES) or not _student_access_allowed(cur, row["universitet_id"], actor, roles, dict(row)):
+            raise HTTPException(status_code=403, detail="Bu talabaga izoh yozish huquqi yo'q")
+        if note:
+            cur.execute("""UPDATE universitet_qabul_talabalari
+                              SET aloqa_izohi=%s,aloqa_izohi_at=NOW(),aloqa_izohi_by=%s,yangilangan_at=NOW()
+                            WHERE id=%s""", (note, actor, student_id))
+        else:
+            cur.execute("""UPDATE universitet_qabul_talabalari
+                              SET aloqa_izohi=NULL,aloqa_izohi_at=NULL,aloqa_izohi_by=NULL,yangilangan_at=NOW()
+                            WHERE id=%s""", (student_id,))
+        _audit(cur, row["universitet_id"], actor, "qabul_aloqa_izohi", "qabul_talaba", student_id, {"izoh": note})
+        conn.commit(); return {"holat": "saqlandi" if note else "ochirildi", "aloqa_izohi": note or None}
     except Exception:
         conn.rollback(); raise
     finally:
