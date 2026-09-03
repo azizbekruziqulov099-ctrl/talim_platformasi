@@ -14716,7 +14716,9 @@ def universitetlar_royxati(token: str):
         )"""
     cur.execute(f"""
         SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
-               (SELECT COUNT(*) FROM fakultetlar WHERE universitet_id=u.id) AS fakultet_soni
+               (SELECT COUNT(*) FROM fakultetlar fk WHERE fk.universitet_id=u.id
+                  AND COALESCE(to_jsonb(fk)->>'faol','true')<>'false') AS fakultet_soni,
+               {"CASE WHEN uwm.context_id IS NULL THEN TRUE ELSE FALSE END" if source_join else "FALSE"} AS eski_yozuv
         FROM universitetlar u
         LEFT JOIN users us ON us.user_id = u.rektor_user_id
         {source_join}
