@@ -3009,12 +3009,13 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             "baza": "baza", "bazagakiritilgan": "baza",
             "saytgakirmagan": "saytga_kirmagan",
             "saytgakirgan": "saytga_kirgan",
+            "hemiskutilmoqda": "hemis_kutilmoqda", "bazakutilmoqda": "hemis_kutilmoqda",
         }
         selected_status = status_aliases.get(_key(holat or "all"))
         if selected_status is None:
             raise HTTPException(
                 status_code=400,
-                detail="Holat all, hujjat, topshirmagan, baza, saytga_kirmagan yoki saytga_kirgan bo'lishi kerak",
+                detail="Holat all, hujjat, topshirmagan, baza, hemis_kutilmoqda, saytga_kirmagan yoki saytga_kirgan bo'lishi kerak",
             )
         if selected_status == "hujjat":
             where.append("qt.hujjat_topshirgan_at IS NOT NULL")
@@ -3022,6 +3023,8 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             where.append("qt.hujjat_topshirgan_at IS NULL")
         elif selected_status == "baza":
             where.append("qt.bazaga_kiritilgan_at IS NOT NULL")
+        elif selected_status == "hemis_kutilmoqda":
+            where.append("qt.hujjat_topshirgan_at IS NOT NULL AND qt.bazaga_kiritilgan_at IS NULL")
         elif selected_status == "saytga_kirmagan":
             where.append(f"NOT {site_entered_sql}")
         elif selected_status == "saytga_kirgan":
