@@ -3128,9 +3128,9 @@ def admission_students(universitet_id: int, q: str = "", fakultet_id: Optional[i
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NOT NULL) hujjat,
             COUNT(*) FILTER(WHERE qt.hujjat_topshirgan_at IS NULL) topshirmagan,
             COUNT(*) FILTER(WHERE qt.tavsiya_turi ILIKE '%%grant%%'
-                                  OR qt.tavsiya_turi ILIKE '%%budjet%%') grant,
+                                  OR qt.tavsiya_turi ILIKE '%%budjet%%') AS "grant",
             COUNT(*) FILTER(WHERE qt.tavsiya_turi ILIKE '%%kontrakt%%'
-                                  OR qt.tavsiya_turi ILIKE '%%shartnoma%%') kontrakt,
+                                  OR qt.tavsiya_turi ILIKE '%%shartnoma%%') AS kontrakt,
             COUNT(*) FILTER(WHERE qt.bazaga_kiritilgan_at IS NOT NULL) baza,
             COUNT(*) FILTER(WHERE {site_entered_sql}) sayt,
             COUNT(*) FILTER(WHERE NOT {site_entered_sql}) saytga_kirmagan
