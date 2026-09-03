@@ -494,13 +494,44 @@ def _jwt_yarat(user_id: int) -> str:
     return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
 
 
+import contextvars as _contextvars
+# Joriy HTTP metodi (middleware yozadi). Admin "ko'rish rejimi" tokeni bilan
+# faqat o'qish (GET/HEAD/OPTIONS) so'rovlariga ruxsat beriladi.
+_JORIY_HTTP_METOD = _contextvars.ContextVar("samtm_joriy_http_metod", default="GET")
+
+
+@app.middleware("http")
+async def _v2252_http_metodni_yoz(request, call_next):
+    token_ctx = _JORIY_HTTP_METOD.set(str(request.method or "GET").upper())
+    try:
+        return await call_next(request)
+    finally:
+        _JORIY_HTTP_METOD.reset(token_ctx)
+
+
+def _jwt_korish_tokeni_yarat(admin_id: int, target_user_id: int) -> str:
+    """Admin uchun 90 daqiqalik “ko'rish rejimi” tokeni: interfeys o'sha
+    foydalanuvchi ko'zi bilan ochiladi, lekin hech narsa o'zgartirib bo'lmaydi."""
+    payload = {
+        "user_id": int(target_user_id),
+        "admin_korish": int(admin_id),
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=90),
+    }
+    return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
+
+
 def _jwt_tekshir(token: str) -> int:
     """Tokenni tekshiradi, user_id qaytaradi. Noto'g'ri bo'lsa xato beradi."""
     try:
         payload = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
-        return payload["user_id"]
     except JWTError:
         raise HTTPException(status_code=401, detail="Sessiya eskirgan, qaytadan kiring")
+    if payload.get("admin_korish") and _JORIY_HTTP_METOD.get() not in ("GET", "HEAD", "OPTIONS"):
+        raise HTTPException(
+            status_code=403,
+            detail="Admin ko'rish rejimi: bu oynada hech narsa o'zgartirilmaydi (faqat ko'rish).",
+        )
+    return payload["user_id"]
 
 
 def _jwt_header_yoki_query(
@@ -7743,6 +7774,166 @@ def _admin_tekshir(token: str):
     if not natija:
         raise HTTPException(status_code=403, detail="Faqat admin uchun")
     return user_id
+
+
+_SINOV_INSTITUT_ROLLARI = {
+    "rektor": "Rektor", "prorektor": "Prorektor", "institut_admin": "Institut administratori",
+    "qabul_operator": "Qabul operatori", "dekan": "Dekan", "zam_dekan": "Dekan o'rinbosari",
+    "manaviyatchi": "Ma'naviy-ma'rifiy ishlar mas'uli", "fakultet_admin": "Fakultet administratori",
+    "kafedra_mudiri": "Kafedra mudiri", "professor_oqituvchi": "Professor-o'qituvchi", "tyutor": "Tyutor",
+}
+_SINOV_FAKULTET_ROLLARI = {"dekan", "zam_dekan", "manaviyatchi", "fakultet_admin", "kafedra_mudiri", "professor_oqituvchi", "tyutor"}
+_SINOV_KAFEDRA_ROLLARI = {"kafedra_mudiri", "professor_oqituvchi", "tyutor"}
+
+
+def _sinov_yangi_user_id(cur) -> int:
+    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+    row = cur.fetchone()
+    return (int(row["eng_kichik"]) - 1) if row and row.get("eng_kichik") is not None else -1
+
+
+@app.get("/api/admin/sinov_rol_tokeni")
+def v2253_admin_sinov_rol_tokeni(
+    token: str,
+    turi: str,
+    muassasa_id: int,
+    rol: str,
+    fakultet_id: Optional[int] = None,
+    kafedra_id: Optional[int] = None,
+):
+    """Rol bo'yicha ko'rish: shu rolda odam bo'lsa — o'sha bilan, bo'lmasa
+    “SINOV · <Rol>” nomli sinov xodimi yaratilib, u bilan faqat-o'qish token beriladi.
+    Sinov xodimlari oddiy ro'yxatlarda “SINOV ·” prefiksi bilan ko'rinadi va
+    keyin oddiy xodim kabi o'chirib yuboriladi."""
+    admin_id = _admin_tekshir(token)
+    turi = (turi or "").strip().lower()
+    rol = (rol or "").strip()
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        created = False
+        target_id = None
+        if turi == "maktab":
+            if rol not in LAVOZIMLAR:
+                raise HTTPException(status_code=400, detail="Maktab lavozimi noto'g'ri")
+            cur.execute("SELECT id FROM maktablar WHERE id=%s", (muassasa_id,))
+            if not cur.fetchone():
+                raise HTTPException(status_code=404, detail="Maktab topilmadi")
+            cur.execute(
+                """SELECT user_id, full_name FROM users
+                   WHERE maktab_id=%s AND lavozim=%s
+                   ORDER BY (full_name LIKE 'SINOV ·%%') ASC, user_id DESC LIMIT 1""",
+                (muassasa_id, rol),
+            )
+            row = cur.fetchone()
+            if row:
+                target_id = int(row["user_id"]); full_name = row["full_name"]
+            else:
+                target_id = _sinov_yangi_user_id(cur)
+                full_name = f"SINOV · {LAVOZIMLAR[rol]}"
+                cur.execute(
+                    """INSERT INTO users(user_id,full_name,role,maktab_id,lavozim,haftalik_dars_soati)
+                       VALUES(%s,%s,'oqituvchi',%s,%s,0)""",
+                    (target_id, full_name, muassasa_id, rol),
+                )
+                if rol == "direktor":
+                    cur.execute(
+                        "UPDATE maktablar SET direktor_user_id=%s WHERE id=%s AND direktor_user_id IS NULL",
+                        (target_id, muassasa_id),
+                    )
+                created = True
+        elif turi == "institut":
+            if rol not in _SINOV_INSTITUT_ROLLARI:
+                raise HTTPException(status_code=400, detail="Institut roli noto'g'ri (talaba uchun real talabani tanlang)")
+            cur.execute("SELECT id FROM universitetlar WHERE id=%s", (muassasa_id,))
+            if not cur.fetchone():
+                raise HTTPException(status_code=404, detail="Institut topilmadi")
+            if rol in _SINOV_FAKULTET_ROLLARI and not fakultet_id:
+                cur.execute("SELECT id FROM fakultetlar WHERE universitet_id=%s ORDER BY id LIMIT 1", (muassasa_id,))
+                f = cur.fetchone()
+                if not f:
+                    raise HTTPException(status_code=400, detail="Bu rol uchun institutda kamida bitta fakultet bo'lishi kerak")
+                fakultet_id = int(f["id"])
+            if rol in _SINOV_KAFEDRA_ROLLARI and not kafedra_id:
+                cur.execute("SELECT id FROM kafedralar WHERE fakultet_id=%s ORDER BY id LIMIT 1", (fakultet_id,))
+                k = cur.fetchone()
+                if not k:
+                    raise HTTPException(status_code=400, detail="Bu rol uchun fakultetda kamida bitta kafedra bo'lishi kerak")
+                kafedra_id = int(k["id"])
+            cur.execute(
+                """SELECT r.user_id, u.full_name FROM universitet_xodim_rollari r
+                   JOIN users u ON u.user_id=r.user_id
+                   WHERE r.universitet_id=%s AND r.rol=%s AND r.faol=TRUE
+                     AND (%s::int IS NULL OR r.fakultet_id=%s)
+                     AND (%s::int IS NULL OR r.kafedra_id=%s)
+                   ORDER BY (u.full_name LIKE 'SINOV ·%%') ASC, r.id DESC LIMIT 1""",
+                (muassasa_id, rol, fakultet_id, fakultet_id, kafedra_id, kafedra_id),
+            )
+            row = cur.fetchone()
+            if row:
+                target_id = int(row["user_id"]); full_name = row["full_name"]
+            else:
+                target_id = _sinov_yangi_user_id(cur)
+                full_name = f"SINOV · {_SINOV_INSTITUT_ROLLARI[rol]}"
+                cur.execute(
+                    "INSERT INTO users(user_id,full_name,role) VALUES(%s,%s,'oqituvchi')",
+                    (target_id, full_name),
+                )
+                cur.execute(
+                    """INSERT INTO universitet_xodim_rollari(universitet_id,fakultet_id,kafedra_id,user_id,rol,faol,yaratilgan_by)
+                       VALUES(%s,%s,%s,%s,%s,TRUE,%s)""",
+                    (muassasa_id, fakultet_id if rol in _SINOV_FAKULTET_ROLLARI else None,
+                     kafedra_id if rol in _SINOV_KAFEDRA_ROLLARI else None, target_id, rol, admin_id),
+                )
+                if rol == "rektor":
+                    cur.execute(
+                        "UPDATE universitetlar SET rektor_user_id=%s WHERE id=%s AND rektor_user_id IS NULL",
+                        (target_id, muassasa_id),
+                    )
+                created = True
+        else:
+            raise HTTPException(status_code=400, detail="turi maktab yoki institut bo'lishi kerak")
+        conn.commit()
+        return {
+            "token": _jwt_korish_tokeni_yarat(admin_id, target_id),
+            "user": {"user_id": target_id, "full_name": full_name, "rol": rol},
+            "sinov_yaratildi": created,
+            "amal_muddati_daqiqa": 90,
+            "read_only": True,
+        }
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/admin/rol_sifatida_kirish_tokeni")
+def v2252_admin_korish_tokeni(token: str, user_id: int):
+    """Admin istalgan foydalanuvchi interfeysini “o'sha odam ko'zi bilan” ochish
+    uchun qisqa muddatli, faqat-o'qish token oladi. Yangi oynada ochiladi,
+    admin sessiyasi o'zgarmaydi."""
+    admin_id = _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT user_id, full_name, lavozim FROM users WHERE user_id=%s", (user_id,))
+        row = cur.fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+        cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+        if cur.fetchone() and int(user_id) != int(admin_id):
+            raise HTTPException(status_code=403, detail="Boshqa admin akkaunti ko'rish rejimida ochilmaydi")
+        return {
+            "token": _jwt_korish_tokeni_yarat(admin_id, int(user_id)),
+            "user": {"user_id": int(row["user_id"]), "full_name": row["full_name"], "lavozim": row["lavozim"]},
+            "amal_muddati_daqiqa": 90,
+            "read_only": True,
+        }
+    finally:
+        cur.close()
+        conn.close()
 
 
 # ═══════════════════════════════════════════════════════════
