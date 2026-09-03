@@ -38,6 +38,10 @@ class AdminSchoolClassInput(BaseModel):
     room_number: Optional[str] = Field(default=None, max_length=40)
     building: Optional[str] = Field(default=None, max_length=80)
     room: Optional[str] = Field(default=None, max_length=40)
+    talim_tili: str = Field(default="uz", max_length=8)  # uz | ru | en
+
+
+CLASS_LANGUAGES = {"uz": "O'zbek", "ru": "Rus", "en": "Ingliz"}
 
 
 class AdminSchoolRoomInput(BaseModel):
@@ -78,6 +82,7 @@ def ensure_school_wizard_columns(cur) -> None:
     )
     cur.execute("ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS bino TEXT")
     cur.execute("ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS xona TEXT")
+    cur.execute("ALTER TABLE IF EXISTS maktab_sinflari ADD COLUMN IF NOT EXISTS talim_tili TEXT NOT NULL DEFAULT 'uz'")
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS maktab_binolari(
@@ -207,6 +212,10 @@ def create_admin_school_wizard_router(
             if shift not in (1, 2):
                 raise HTTPException(status_code=400, detail=f"{grade}-{letter} uchun smena 1 yoki 2 bo'lishi kerak")
 
+            talim_tili = (item.talim_tili or "uz").strip().lower()
+            if talim_tili not in CLASS_LANGUAGES:
+                raise HTTPException(status_code=400, detail=f"{grade}-{letter}: ta'lim tili uz, ru yoki en bo'lishi kerak")
+
             building_key = normalize_optional_text(item.building_key, 80)
             room_number = normalize_optional_text(item.room_number, 40)
             building_name = normalize_optional_text(item.building, 80)
@@ -227,6 +236,7 @@ def create_admin_school_wizard_router(
                     "grade": grade,
                     "letter": letter,
                     "shift": shift,
+                    "talim_tili": talim_tili,
                     "leader_user_id": item.leader_user_id,
                     "psychologist_user_id": item.psychologist_user_id,
                     "building_key": building_key,
@@ -316,8 +326,8 @@ def create_admin_school_wizard_router(
                     """
                     INSERT INTO maktab_sinflari(
                         maktab_id,sinf,harf,smena,rahbar_user_id,
-                        psixolog_user_id,bino,xona,bino_id,xona_id,qoshilish_paroli
-                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                        psixolog_user_id,bino,xona,bino_id,xona_id,qoshilish_paroli,talim_tili
+                    ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                     RETURNING id
                     """,
                     (
@@ -332,6 +342,7 @@ def create_admin_school_wizard_router(
                         building_id,
                         room_id,
                         join_password,
+                        item["talim_tili"],
                     ),
                 )
                 created_classes.append(
@@ -339,6 +350,7 @@ def create_admin_school_wizard_router(
                         "id": int(cur.fetchone()["id"]),
                         "name": f"{item['grade']}-{item['letter']}",
                         "shift": item["shift"],
+                        "talim_tili": item["talim_tili"],
                         "building": item["building"],
                         "room": item["room"],
                     }
