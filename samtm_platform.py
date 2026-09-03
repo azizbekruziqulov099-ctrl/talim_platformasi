@@ -1302,6 +1302,29 @@ def muassasalarim(token: str):
     for r in cur.fetchall():
         topilganlar[(r["muassasa_turi"], r["muassasa_id"])] = r["lavozim"]
 
+    # V2254: institut xodim rollari (rektor, dekan, kafedra mudiri, tyutor...) va
+    # institut talabalari ham "mening muassasalarim" ro'yxatiga kiradi — aks holda
+    # dekan kirganda umumiy o'qituvchi ish maydoniga tushib qolar edi.
+    cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r1, to_regclass('public.universitet_qabul_talabalari') AS r2")
+    _inst = cur.fetchone() or {}
+    if _inst.get("r1"):
+        cur.execute(
+            """SELECT universitet_id, rol FROM universitet_xodim_rollari
+               WHERE user_id=%s AND faol=TRUE
+               ORDER BY CASE rol WHEN 'owner' THEN 0 WHEN 'rektor' THEN 1 WHEN 'prorektor' THEN 2
+                                 WHEN 'institut_admin' THEN 3 WHEN 'dekan' THEN 4 WHEN 'zam_dekan' THEN 5
+                                 WHEN 'fakultet_admin' THEN 6 WHEN 'kafedra_mudiri' THEN 7 ELSE 9 END, id""",
+            (user_id,),
+        )
+        for r in cur.fetchall():
+            key = ("universitet", int(r["universitet_id"]))
+            if key not in topilganlar or not topilganlar[key]:
+                topilganlar[key] = r["rol"]
+    if _inst.get("r2"):
+        cur.execute("SELECT universitet_id FROM universitet_qabul_talabalari WHERE user_id=%s", (user_id,))
+        for r in cur.fetchall():
+            topilganlar.setdefault(("universitet", int(r["universitet_id"])), "talaba")
+
     cur.execute("""SELECT
         to_regclass('public.organization_trials') AS trials,
         to_regclass('public.learning_contexts') AS contexts,
