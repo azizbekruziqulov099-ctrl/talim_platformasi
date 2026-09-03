@@ -15413,6 +15413,12 @@ def v201_central_school_settings_get(token: str, talim_tili: str = "uz"):
             ],
             "til_boyicha": by_language,
             "qatorlar": rows,
+            # Fan nomlari uchun tillar orasidagi mos keluvchi kanonik (o'zbek) nom:
+            # metod kunlarini o'zbek andozasidan rus/ingliz andozaga avtomatik ko'chirish uchun.
+            "fan_kanonik": {
+                row["fan_nomi"]: _V242_CANONICAL_SUBJECT_BY_KEY.get(_v1874_subject_key(row["fan_nomi"]), row["fan_nomi"])
+                for language_rows in by_language.values() for row in language_rows
+            },
             "sinf_fanlari": {
                 str(grade): [row["fan_nomi"] for row in rows if int(row["sinf_darajasi"]) == grade]
                 for grade in range(1, 12)
