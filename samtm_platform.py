@@ -7898,12 +7898,15 @@ def v2253_admin_sinov_rol_tokeni(
             row = cur.fetchone()
             if row:
                 target_id = int(row["user_id"]); full_name = row["full_name"]
+                cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+                cur.execute("UPDATE users SET universitet_id=%s WHERE user_id=%s AND universitet_id IS NULL", (muassasa_id, target_id))
             else:
                 target_id = _sinov_yangi_user_id(cur)
                 full_name = f"SINOV · {_SINOV_INSTITUT_ROLLARI[rol]}"
+                cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
                 cur.execute(
-                    "INSERT INTO users(user_id,full_name,role) VALUES(%s,%s,'oqituvchi')",
-                    (target_id, full_name),
+                    "INSERT INTO users(user_id,full_name,role,universitet_id) VALUES(%s,%s,'oqituvchi',%s)",
+                    (target_id, full_name, muassasa_id),
                 )
                 cur.execute(
                     """INSERT INTO universitet_xodim_rollari(universitet_id,fakultet_id,kafedra_id,user_id,rol,faol,yaratilgan_by)
