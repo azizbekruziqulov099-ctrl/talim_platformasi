@@ -632,6 +632,22 @@ def _resolve_university(cur, user_id: int, workspace_id: Optional[int], create: 
             university_id = int(row["universitet_id"])
             _require_active_university_source(cur, university_id)
             return university_id
+        # V2255: users.universitet_id bo'sh bo'lsa ham — xodim roli yoki talaba yozuvi
+        # bo'yicha institut topiladi (dekan, tyutor, mudir kirganda 404 bo'lmasin).
+        cur.execute("""SELECT r.universitet_id FROM universitet_xodim_rollari r
+                       JOIN universitetlar u ON u.id=r.universitet_id
+                       WHERE r.user_id=%s AND r.faol=TRUE ORDER BY r.id LIMIT 1""", (user_id,))
+        row = cur.fetchone()
+        if not row:
+            cur.execute("""SELECT t.universitet_id FROM universitet_qabul_talabalari t
+                           JOIN universitetlar u ON u.id=t.universitet_id
+                           WHERE t.user_id=%s ORDER BY t.id LIMIT 1""", (user_id,))
+            row = cur.fetchone()
+        if row and row["universitet_id"]:
+            university_id = int(row["universitet_id"])
+            _require_active_university_source(cur, university_id)
+            cur.execute("UPDATE users SET universitet_id=%s WHERE user_id=%s AND universitet_id IS NULL", (university_id, user_id))
+            return university_id
         raise HTTPException(status_code=404, detail="Institut ish maydoni topilmadi")
 
     # Avval contextning o'zi tekshiriladi. Bu tekshiruv xarita topilgan holatda
@@ -950,6 +966,8 @@ def _assign_role(cur, university_id: int, user_id: int, role: str, faculty_id: O
         (university_id, faculty_id, department_id, program_id, user_id, role, created_by))
     role_id = int(cur.fetchone()["id"])
     _sync_legacy_leader(cur, university_id, user_id, role, faculty_id, department_id)
+    # V2255: xodim kirganda to'g'ridan-to'g'ri shu institutga tushishi uchun
+    cur.execute("UPDATE users SET universitet_id=%s WHERE user_id=%s AND universitet_id IS NULL", (university_id, user_id))
     return role_id
 
 
