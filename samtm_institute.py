@@ -1793,8 +1793,10 @@ def bootstrap(workspace_id: Optional[int] = None, universitet_id: Optional[int] 
             "hemis_belgilash": bool(names & MARK_HEMIS_ROLES),
             "bazaga_belgilash": bool(names & MARK_DATABASE_ROLES),
             "saytga_kiritish": bool(names & MARK_DATABASE_ROLES),
-            "qabul_holatlari_toliq": bool(names & MARK_DOCUMENT_ROLES),
-            "sayt_holati_korish": bool(names & MARK_DOCUMENT_ROLES),
+            # V2256: rahbariyat (rektor, dekan, mudir, ma'naviyatchi...) hujjat holatini
+            # to'liq ko'radi (topshirgan/topshirmagan, izoh, hisobot); belgilash huquqi alohida.
+            "qabul_holatlari_toliq": bool(names & (MARK_DOCUMENT_ROLES | INSTITUTE_WIDE | FACULTY_WIDE | DEPARTMENT_WIDE)),
+            "sayt_holati_korish": bool(names & (MARK_DOCUMENT_ROLES | INSTITUTE_WIDE | FACULTY_WIDE | DEPARTMENT_WIDE)),
             "parol_korish": bool(names & PASSWORD_VIEW_ROLES),
             "tyutor_korish": bool(names & (INSTITUTE_WIDE | FACULTY_WIDE | {"tyutor"})),
             "tyutor_boshqarish": bool(names & (INSTITUTE_WIDE | {"dekan", "fakultet_admin"})),
