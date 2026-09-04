@@ -1307,6 +1307,7 @@ def muassasalarim(token: str):
     # dekan kirganda umumiy o'qituvchi ish maydoniga tushib qolar edi.
     cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r1, to_regclass('public.universitet_qabul_talabalari') AS r2")
     _inst = cur.fetchone() or {}
+    rol_manbai = set()  # institut rol jadvalidan kelganlar — v17 filtr ularga tegmaydi
     if _inst.get("r1"):
         cur.execute(
             """SELECT universitet_id, rol FROM universitet_xodim_rollari
@@ -1318,11 +1319,13 @@ def muassasalarim(token: str):
         )
         for r in cur.fetchall():
             key = ("universitet", int(r["universitet_id"]))
+            rol_manbai.add(key)
             if key not in topilganlar or not topilganlar[key]:
                 topilganlar[key] = r["rol"]
     if _inst.get("r2"):
         cur.execute("SELECT universitet_id FROM universitet_qabul_talabalari WHERE user_id=%s", (user_id,))
         for r in cur.fetchall():
+            rol_manbai.add(("universitet", int(r["universitet_id"])))
             topilganlar.setdefault(("universitet", int(r["universitet_id"])), "talaba")
 
     cur.execute("""SELECT
@@ -1349,7 +1352,7 @@ def muassasalarim(token: str):
         if not m:
             # O'chib ketgan legacy ID frontendda nomsiz/stale kartaga aylanmasin.
             continue
-        if v17_ready:
+        if v17_ready and (turi, muassasa_id) not in rol_manbai:
             if turi == "universitet" and v17_tables.get("workspace_map"):
                 # Eski xatoda school contexti universitet sifatida xaritaga
                 # yozilgan. WHERE'da faqat institute qidirsak o'sha noto'g'ri
