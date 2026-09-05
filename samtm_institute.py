@@ -3772,6 +3772,111 @@ def admission_students_xlsx(
         cur.close(); conn.close()
 
 
+def _abitur_id_key(value: Any) -> str:
+    """Excel'dan kelgan AbiturID ni normallashtiradi: 12345.0 -> 12345, bo'shliqlar olib tashlanadi."""
+    if value is None:
+        return ""
+    if isinstance(value, float) and value.is_integer():
+        value = int(value)
+    text = str(value).strip()
+    if text.endswith(".0") and text[:-2].isdigit():
+        text = text[:-2]
+    return re.sub(r"\s+", "", text).upper()
+
+
+@router.get("/qabul/hujjat_import_shablon.xlsx")
+def admission_document_import_template(universitet_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    """Bitta ustunli shablon: AbiturID. Xodim ID larni qo'yib import qiladi — hammasi “Hujjat topshirgan” bo'ladi."""
+    user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
+        if not _has_any(roles, MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Hujjat belgilash huquqi yo'q")
+    finally:
+        cur.close(); conn.close()
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+    except ImportError as exc:
+        raise HTTPException(status_code=500, detail="openpyxl o'rnatilmagan") from exc
+    wb = Workbook(); ws = wb.active; ws.title = "HUJJAT"
+    ws.append(["AbiturID"]); ws.append(["1234567"]); ws.append(["1234568"])
+    ws["A1"].font = Font(bold=True, color="FFFFFF"); ws["A1"].fill = PatternFill("solid", fgColor="173E5B"); ws["A1"].alignment = Alignment(horizontal="center")
+    ws.column_dimensions["A"].width = 18
+    ws["C1"] = "Yo'riqnoma"; ws["C1"].font = Font(bold=True)
+    ws["C2"] = "A ustuniga hujjat topshirgan abituriyentlarning AbiturID raqamlarini yozing (har qatorga bittadan)."
+    ws["C3"] = "Namuna qatorlarni (1234567, 1234568) o'chirib tashlang. Boshqa ustunlar o'qilmaydi."
+    ws["C4"] = "Faylni “Hujjat topshirganlarni import qilish” tugmasi orqali yuklang — ID lar bazadan topilib, “Hujjat topshirgan” qilib belgilanadi."
+    ws.column_dimensions["C"].width = 110
+    ws.freeze_panes = "A2"
+    stream = io.BytesIO(); wb.save(stream); wb.close()
+    return _xlsx_download(stream.getvalue(), "hujjat_topshirganlar_shablon.xlsx")
+
+
+@router.post("/qabul/hujjat_import")
+async def admission_document_import(universitet_id: int, fayl: UploadFile = File(...), tasdiqlash: int = 0, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    """Excel'dagi AbiturID lar bo'yicha ommaviy “Hujjat topshirgan” belgilash.
+
+    tasdiqlash=0 — faqat tekshirish (nechta topildi, nechtasi allaqachon belgilangan, nechtasi topilmadi).
+    tasdiqlash=1 — belgilash.
+    """
+    user_id = _uid(token, authorization); p = _p()
+    content = await fayl.read()
+    if len(content) > 10 * 1024 * 1024: raise HTTPException(status_code=413, detail="Fayl 10 MB dan katta")
+    if not (fayl.filename or "").lower().endswith((".xls", ".xlsx")): raise HTTPException(status_code=400, detail="Faqat .xls yoki .xlsx fayl qabul qilinadi")
+    sheets = await run_in_threadpool(_workbook_rows, content, fayl.filename or "hujjat.xlsx")
+    rows = _active_rows(sheets, ("HUJJAT", "AbiturID", "Sheet1"))
+    ids: list[str] = []
+    seen: set[str] = set()
+    for index, row in enumerate(rows):
+        value = row[0] if row else None
+        key = _abitur_id_key(value)
+        if not key: continue
+        if index == 0 and _key(key) in {"abiturid", "abituriyentid", "id"}: continue
+        if key in {"1234567", "1234568"}: continue  # shablon namunasi
+        if key in seen: continue
+        seen.add(key); ids.append(key)
+    if not ids: raise HTTPException(status_code=400, detail="Faylda AbiturID topilmadi — A ustunini tekshiring")
+    if len(ids) > 20000: raise HTTPException(status_code=400, detail="Bir importda ko'pi bilan 20 000 ta ID")
+    conn = p._db(); cur = conn.cursor()
+    try:
+        _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
+        if not _has_any(roles, MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Hujjat belgilash huquqi yo'q")
+        scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
+        cur.execute(f"""SELECT qt.id,qt.abitur_id,qt.familiya,qt.ism,qt.ota_ism,qt.hujjat_topshirgan_at,y.nomi yonalish_nomi
+                        FROM universitet_qabul_talabalari qt
+                        JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
+                        JOIN fakultetlar f ON f.id=y.fakultet_id
+                        JOIN kafedralar k ON k.id=y.kafedra_id
+                        WHERE qt.universitet_id=%s AND UPPER(REGEXP_REPLACE(COALESCE(qt.abitur_id,''),'\\s','','g'))=ANY(%s) AND {scope_sql}""",
+                    [universitet_id, ids, *scope_params])
+        found = {_abitur_id_key(r["abitur_id"]): dict(r) for r in cur.fetchall()}
+        to_mark = [found[k] for k in ids if k in found and found[k]["hujjat_topshirgan_at"] is None]
+        already = [found[k] for k in ids if k in found and found[k]["hujjat_topshirgan_at"] is not None]
+        missing = [k for k in ids if k not in found]
+        def fish(r): return " ".join(x for x in [r["familiya"], r["ism"], r["ota_ism"]] if x)
+        marked = 0
+        if int(tasdiqlash or 0) == 1 and to_mark:
+            cur.execute("""UPDATE universitet_qabul_talabalari
+                              SET hujjat_topshirgan_at=NOW(),qabul_bosqichi=GREATEST(qabul_bosqichi,2),yangilangan_at=NOW()
+                            WHERE id=ANY(%s) AND hujjat_topshirgan_at IS NULL""", ([int(r["id"]) for r in to_mark],))
+            marked = cur.rowcount
+            _audit(cur, universitet_id, user_id, "hujjat_import", "universitet", universitet_id, {"belgilandi": marked, "allaqachon": len(already), "topilmadi": len(missing)})
+        conn.commit()
+        return {
+            "tasdiqlandi": int(tasdiqlash or 0) == 1,
+            "jami_id": len(ids),
+            "belgilanadi": len(to_mark), "belgilandi": marked,
+            "allaqachon": len(already), "topilmadi": len(missing),
+            "belgilanadi_royxat": [{"abitur_id": r["abitur_id"], "fish": fish(r), "yonalish": r["yonalish_nomi"]} for r in to_mark[:300]],
+            "allaqachon_royxat": [{"abitur_id": r["abitur_id"], "fish": fish(r)} for r in already[:100]],
+            "topilmadi_royxat": missing[:300],
+        }
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
 @router.get("/qabul/talaba/{student_id}")
 def admission_detail(student_id: int, universitet_id: int, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
     user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
