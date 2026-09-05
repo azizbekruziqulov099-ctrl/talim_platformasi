@@ -21448,6 +21448,543 @@ def v2251_teacher_renumber_alphabetical(sorov: V2251TeacherRenumber, token: str)
         cur.close(); conn.close()
 
 
+# =============================================================================
+# KABUTAR — maktab ichidagi rasmiy aloqa (V2257)
+# Mavjud chat jadvallari (chat_xabarlari) ustiga quriladi. Yangilik: kim kimga
+# yoza olishi SERVERDA, maktabdagi roliga qarab tekshiriladi.
+#   Rahbariyat (direktor, o'rinbosarlar, psixolog, kotib) <-> maktabning hamma xodimi, o'quvchisi, ota-onasi
+#   O'qituvchi <-> xodimlar; o'zi dars beradigan / rahbar bo'lgan sinf o'quvchilari va ularning ota-onalari
+#   O'quvchi <-> rahbariyat, sinf rahbari, o'z fanlari o'qituvchilari
+#   Ota-ona <-> rahbariyat, farzandining sinf rahbari va fan o'qituvchilari
+# =============================================================================
+_KABUTAR_RAHBARIYAT = {"direktor", "zam_direktor_uquv", "zam_direktor_tarbiya", "psixolog", "kotib"}
+_KABUTAR_LAVOZIM_NOMI = {
+    "direktor": "Direktor", "zam_direktor_uquv": "O'quv ishlari bo'yicha o'rinbosar",
+    "zam_direktor_tarbiya": "Ma'naviy-ma'rifiy ishlar bo'yicha o'rinbosar", "psixolog": "Psixolog",
+    "kotib": "Kotib", "fan_oqituvchisi": "Fan o'qituvchisi",
+}
+_KABUTAR_FAYL_TURLARI = {
+    "audio": ({"audio/webm", "audio/ogg", "audio/mpeg", "audio/mp4", "audio/wav", "audio/x-m4a", "audio/aac"}, 15),
+    "video": ({"video/webm", "video/mp4", "video/quicktime"}, 40),
+    "hujjat": ({"application/pdf", "image/jpeg", "image/png", "image/webp",
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}, 15),
+}
+
+
+def _kabutar_user_context(cur, user_id: int, maktab_id: int):
+    """Foydalanuvchining shu maktabdagi o'rni: xodim / o'quvchi / ota-ona."""
+    cur.execute("SELECT user_id, full_name, role, maktab_id, lavozim FROM users WHERE user_id=%s", (user_id,))
+    me = cur.fetchone()
+    if not me:
+        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+    me = dict(me)
+    ctx = {"me": me, "xodim": False, "rahbariyat": False, "oqituvchi": False, "sinf_ids": set(), "rahbar_sinf_ids": set(), "farzandlar": []}
+    if me.get("maktab_id") and int(me["maktab_id"]) == int(maktab_id) and me.get("lavozim"):
+        ctx["xodim"] = True
+        ctx["rahbariyat"] = me["lavozim"] in _KABUTAR_RAHBARIYAT
+        ctx["oqituvchi"] = True
+        cur.execute("SELECT id FROM maktab_sinflari WHERE maktab_id=%s AND rahbar_user_id=%s", (maktab_id, user_id))
+        ctx["rahbar_sinf_ids"] = {int(r["id"]) for r in cur.fetchall()}
+        cur.execute("SELECT DISTINCT sinf_id FROM maktab_dars_birikmalari WHERE maktab_id=%s AND user_id=%s", (maktab_id, user_id))
+        ctx["sinf_ids"] = {int(r["sinf_id"]) for r in cur.fetchall()} | ctx["rahbar_sinf_ids"]
+        return ctx
+    # o'quvchimi?
+    cur.execute("""SELECT a.sinf_id FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id
+                   WHERE a.user_id=%s AND s.maktab_id=%s""", (user_id, maktab_id))
+    rows = cur.fetchall()
+    if rows:
+        ctx["oquvchi"] = True
+        ctx["sinf_ids"] = {int(r["sinf_id"]) for r in rows}
+        return ctx
+    # ota-onami?
+    cur.execute("""SELECT pc.child_id, a.sinf_id FROM parent_child pc
+                   JOIN maktab_sinf_azolari a ON a.user_id=pc.child_id
+                   JOIN maktab_sinflari s ON s.id=a.sinf_id
+                   WHERE pc.parent_id=%s AND s.maktab_id=%s""", (user_id, maktab_id))
+    rows = cur.fetchall()
+    if rows:
+        ctx["ota_ona"] = True
+        ctx["farzandlar"] = [int(r["child_id"]) for r in rows]
+        ctx["sinf_ids"] = {int(r["sinf_id"]) for r in rows}
+        return ctx
+    raise HTTPException(status_code=403, detail="Siz bu maktabga biriktirilmagansiz")
+
+
+def _kabutar_aloqalar(cur, user_id: int, maktab_id: int):
+    """Ruxsat etilgan suhbatdoshlar — guruhlangan. Har bir element: user_id, full_name, rol, izoh."""
+    ctx = _kabutar_user_context(cur, user_id, maktab_id)
+    groups = {"rahbariyat": [], "oqituvchilar": [], "sinf_rahbarlari": [], "oquvchilar": [], "ota_onalar": []}
+    seen = {int(user_id)}
+
+    def add(group, row, izoh=""):
+        uid = int(row["user_id"])
+        if uid in seen:
+            return
+        seen.add(uid)
+        groups[group].append({"user_id": uid, "full_name": row["full_name"], "rol": group, "izoh": izoh})
+
+    # Xodimlar (hamma uchun rahbariyat ochiq; xodimlar bir-biriga to'liq)
+    cur.execute("""SELECT user_id, full_name, lavozim, fanlari FROM users
+                   WHERE maktab_id=%s AND lavozim IS NOT NULL ORDER BY full_name""", (maktab_id,))
+    staff = [dict(r) for r in cur.fetchall()]
+    cur.execute("SELECT id, sinf, harf, rahbar_user_id FROM maktab_sinflari WHERE maktab_id=%s", (maktab_id,))
+    classes = {int(r["id"]): dict(r) for r in cur.fetchall()}
+    class_label = lambda cid: f"{classes[cid]['sinf']}-{classes[cid]['harf']}" if cid in classes else ""
+    leader_of = {}
+    for cid, c in classes.items():
+        if c.get("rahbar_user_id"):
+            leader_of.setdefault(int(c["rahbar_user_id"]), []).append(class_label(cid))
+
+    def staff_izoh(x):
+        parts = [_KABUTAR_LAVOZIM_NOMI.get(x.get("lavozim"), x.get("lavozim") or "")]
+        if x.get("fanlari"):
+            parts.append(str(x["fanlari"]))
+        if int(x["user_id"]) in leader_of:
+            parts.append("sinf rahbari: " + ", ".join(leader_of[int(x["user_id"])]))
+        return " · ".join(p for p in parts if p)
+
+    for x in staff:
+        if x["lavozim"] in _KABUTAR_RAHBARIYAT:
+            add("rahbariyat", x, staff_izoh(x))
+
+    if ctx["xodim"]:
+        for x in staff:
+            if int(x["user_id"]) in leader_of and x["lavozim"] not in _KABUTAR_RAHBARIYAT:
+                add("sinf_rahbarlari", x, staff_izoh(x))
+        for x in staff:
+            if x["lavozim"] not in _KABUTAR_RAHBARIYAT:
+                add("oqituvchilar", x, staff_izoh(x))
+        # o'quvchilar va ota-onalar: rahbariyat — hammasi; o'qituvchi — o'z sinflari
+        sinf_ids = set(classes.keys()) if ctx["rahbariyat"] else ctx["sinf_ids"]
+        if sinf_ids:
+            cur.execute("""SELECT a.sinf_id, u.user_id, u.full_name FROM maktab_sinf_azolari a
+                           JOIN users u ON u.user_id=a.user_id WHERE a.sinf_id=ANY(%s) ORDER BY a.sinf_id, u.full_name""",
+                        (sorted(sinf_ids),))
+            pupils = [dict(r) for r in cur.fetchall()]
+            for r in pupils:
+                add("oquvchilar", r, f"{class_label(int(r['sinf_id']))} o'quvchisi")
+            if pupils:
+                cur.execute("""SELECT pc.child_id, u.user_id, u.full_name FROM parent_child pc
+                               JOIN users u ON u.user_id=pc.parent_id WHERE pc.child_id=ANY(%s) ORDER BY u.full_name""",
+                            ([int(r["user_id"]) for r in pupils],))
+                child_name = {int(r["user_id"]): (r["full_name"], class_label(int(r["sinf_id"]))) for r in pupils}
+                for r in cur.fetchall():
+                    nm, cl = child_name.get(int(r["child_id"]), ("", ""))
+                    add("ota_onalar", r, f"{nm} ({cl}) ota-onasi")
+        return ctx, groups
+
+    # O'quvchi yoki ota-ona: sinf rahbari + shu sinf fan o'qituvchilari
+    sinf_ids = ctx["sinf_ids"]
+    if sinf_ids:
+        for cid in sinf_ids:
+            leader = classes.get(cid, {}).get("rahbar_user_id")
+            if leader:
+                for x in staff:
+                    if int(x["user_id"]) == int(leader):
+                        add("sinf_rahbarlari", x, f"{class_label(cid)} sinf rahbari")
+        cur.execute("""SELECT DISTINCT b.user_id, b.fan_nomi, b.sinf_id FROM maktab_dars_birikmalari b
+                       WHERE b.maktab_id=%s AND b.sinf_id=ANY(%s)""", (maktab_id, sorted(sinf_ids)))
+        subj = {}
+        for r in cur.fetchall():
+            subj.setdefault(int(r["user_id"]), set()).add(str(r["fan_nomi"]))
+        for x in staff:
+            if int(x["user_id"]) in subj:
+                add("oqituvchilar", x, ", ".join(sorted(subj[int(x["user_id"])])))
+    if ctx.get("ota_ona"):
+        # farzandlarning o'zi ham (rasmiy suhbat)
+        cur.execute("SELECT user_id, full_name FROM users WHERE user_id=ANY(%s)", (ctx["farzandlar"],))
+        for r in cur.fetchall():
+            add("oquvchilar", r, "farzandingiz")
+    return ctx, groups
+
+
+def _kabutar_ruxsat(cur, user_id: int, maktab_id, other_id: int) -> bool:
+    """Ruxsat: (1) shu maktab rollari bo'yicha, yoki (2) universal — muassasalarim bo'yicha,
+    yoki (3) ilgari shu ikki kishi orasida xabar bo'lgan (ID orqali topib yozilgan)."""
+    if int(user_id) == int(other_id):
+        return False
+    if maktab_id:
+        try:
+            _, groups = _kabutar_aloqalar(cur, user_id, int(maktab_id))
+            if any(int(item["user_id"]) == int(other_id) for items in groups.values() for item in items):
+                return True
+        except HTTPException:
+            pass
+    groups = _kabutar_universal_aloqalar(cur, user_id)
+    if any(int(item["user_id"]) == int(other_id) for g in groups for item in g["azolar"]):
+        return True
+    cur.execute("""SELECT 1 FROM chat_xabarlari WHERE guruh_id IS NULL
+                   AND ((yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s) OR (yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s)) LIMIT 1""",
+                (user_id, other_id, other_id, user_id))
+    return cur.fetchone() is not None
+
+
+# ---------- Universal identifikator va aloqalar ----------
+def _kabutar_jadval(cur):
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_id TEXT")
+    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS users_kabutar_id_uq ON users(kabutar_id) WHERE kabutar_id IS NOT NULL")
+
+
+def _kabutar_id_ber(cur, user_id: int) -> str:
+    """Har akkauntga bir marta 6 xonali Kabutar ID (KB-XXXXXX). Yo'q bo'lsa yaratiladi."""
+    _kabutar_jadval(cur)
+    cur.execute("SELECT kabutar_id FROM users WHERE user_id=%s", (user_id,))
+    row = cur.fetchone()
+    if row and row.get("kabutar_id"):
+        return row["kabutar_id"]
+    import secrets as _secrets
+    for _ in range(25):
+        candidate = f"KB-{_secrets.randbelow(900000) + 100000}"
+        cur.execute("UPDATE users SET kabutar_id=%s WHERE user_id=%s AND kabutar_id IS NULL AND NOT EXISTS (SELECT 1 FROM users WHERE kabutar_id=%s)",
+                    (candidate, user_id, candidate))
+        if cur.rowcount:
+            return candidate
+    raise HTTPException(status_code=500, detail="Kabutar ID yaratilmadi, qayta urinib ko'ring")
+
+
+def _kabutar_shaxs(cur, user_id: int) -> dict:
+    """Shaxs kartochkasi: ism, Kabutar ID, barcha muassasalardagi rollari (kimligini bildirish uchun)."""
+    _kabutar_jadval(cur)
+    cur.execute("SELECT user_id, full_name, role, lavozim, maktab_id, universitet_id, markaz_id, bogcha_id, kabutar_id, (profil_rasm IS NOT NULL) AS rasm_bormi FROM users WHERE user_id=%s", (user_id,))
+    u = cur.fetchone()
+    if not u:
+        return None
+    u = dict(u)
+    rollar = []
+    if u.get("maktab_id") and u.get("lavozim"):
+        cur.execute("SELECT nomi FROM maktablar WHERE id=%s", (u["maktab_id"],))
+        m = cur.fetchone()
+        rollar.append({"turi": "maktab", "muassasa": m["nomi"] if m else "Maktab", "rol": _KABUTAR_LAVOZIM_NOMI.get(u["lavozim"], u["lavozim"])})
+        cur.execute("SELECT sinf, harf FROM maktab_sinflari WHERE rahbar_user_id=%s AND maktab_id=%s ORDER BY sinf, harf", (user_id, u["maktab_id"]))
+        leads = [f"{r['sinf']}-{r['harf']}" for r in cur.fetchall()]
+        if leads:
+            rollar.append({"turi": "maktab", "muassasa": m["nomi"] if m else "Maktab", "rol": "Sinf rahbari: " + ", ".join(leads)})
+    cur.execute("""SELECT s.sinf, s.harf, mk.nomi FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id
+                   JOIN maktablar mk ON mk.id=s.maktab_id WHERE a.user_id=%s""", (user_id,))
+    for r in cur.fetchall():
+        rollar.append({"turi": "maktab", "muassasa": r["nomi"], "rol": f"{r['sinf']}-{r['harf']} sinf o'quvchisi"})
+    cur.execute("""SELECT c.full_name, s.sinf, s.harf, mk.nomi FROM parent_child pc JOIN users c ON c.user_id=pc.child_id
+                   LEFT JOIN maktab_sinf_azolari a ON a.user_id=pc.child_id LEFT JOIN maktab_sinflari s ON s.id=a.sinf_id
+                   LEFT JOIN maktablar mk ON mk.id=s.maktab_id WHERE pc.parent_id=%s""", (user_id,))
+    for r in cur.fetchall():
+        cls = f" ({r['sinf']}-{r['harf']})" if r.get("sinf") else ""
+        rollar.append({"turi": "ota_ona", "muassasa": r["nomi"] or "", "rol": f"{r['full_name']}{cls} ota-onasi"})
+    cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r1, to_regclass('public.universitet_qabul_talabalari') AS r2")
+    t = cur.fetchone() or {}
+    if t.get("r1"):
+        cur.execute("""SELECT r.rol, un.nomi, f.nomi AS fakultet FROM universitet_xodim_rollari r JOIN universitetlar un ON un.id=r.universitet_id
+                       LEFT JOIN fakultetlar f ON f.id=r.fakultet_id WHERE r.user_id=%s AND r.faol=TRUE""", (user_id,))
+        names = {"rektor": "Rektor", "prorektor": "Prorektor", "institut_admin": "Institut administratori", "qabul_operator": "Qabul operatori",
+                 "dekan": "Dekan", "zam_dekan": "Dekan o'rinbosari", "manaviyatchi": "Ma'naviyatchi", "fakultet_admin": "Fakultet administratori",
+                 "kafedra_mudiri": "Kafedra mudiri", "professor_oqituvchi": "Professor-o'qituvchi", "tyutor": "Tyutor", "owner": "Rahbar"}
+        for r in cur.fetchall():
+            rollar.append({"turi": "institut", "muassasa": r["nomi"], "rol": names.get(r["rol"], r["rol"]) + (f" · {r['fakultet']}" if r.get("fakultet") else "")})
+    if t.get("r2"):
+        cur.execute("""SELECT un.nomi, y.nomi AS yonalish FROM universitet_qabul_talabalari qt JOIN universitetlar un ON un.id=qt.universitet_id
+                       JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id WHERE qt.user_id=%s""", (user_id,))
+        for r in cur.fetchall():
+            rollar.append({"turi": "institut", "muassasa": r["nomi"], "rol": f"Talaba · {r['yonalish']}"})
+    if u.get("markaz_id"):
+        cur.execute("SELECT nomi FROM oquv_markazlari WHERE id=%s", (u["markaz_id"],))
+        r = cur.fetchone()
+        rollar.append({"turi": "markaz", "muassasa": r["nomi"] if r else "O'quv markazi", "rol": _KABUTAR_LAVOZIM_NOMI.get(u.get("lavozim"), u.get("lavozim") or "Xodim")})
+    if u.get("bogcha_id"):
+        cur.execute("SELECT nomi FROM bogchalar WHERE id=%s", (u["bogcha_id"],))
+        r = cur.fetchone()
+        rollar.append({"turi": "bogcha", "muassasa": r["nomi"] if r else "Bog'cha", "rol": _KABUTAR_LAVOZIM_NOMI.get(u.get("lavozim"), u.get("lavozim") or "Xodim")})
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        rollar.append({"turi": "platforma", "muassasa": "SamTM", "rol": "Platforma administratori"})
+    if not rollar:
+        rollar.append({"turi": "foydalanuvchi", "muassasa": "", "rol": {"oqituvchi": "O'qituvchi", "oquvchi": "O'quvchi", "ota_ona": "Ota-ona"}.get(u.get("role"), "Foydalanuvchi")})
+    return {"user_id": int(u["user_id"]), "full_name": u["full_name"], "kabutar_id": u.get("kabutar_id"), "rasm_bormi": bool(u.get("rasm_bormi")), "rollar": rollar,
+            "qisqa": " · ".join(dict.fromkeys(f"{r['rol']}" + (f" — {r['muassasa']}" if r["muassasa"] else "") for r in rollar[:3]))}
+
+
+def _kabutar_universal_aloqalar(cur, user_id: int):
+    """Barcha muassasalarim bo'yicha ruxsat etilgan suhbatdoshlar: [{muassasa, turi, azolar:[...]}, ...]."""
+    result = []
+    cur.execute("SELECT maktab_id, universitet_id, markaz_id, bogcha_id, lavozim FROM users WHERE user_id=%s", (user_id,))
+    me = dict(cur.fetchone() or {})
+    # Maktablar: xodim / o'quvchi / ota-ona sifatida
+    maktab_ids = set()
+    if me.get("maktab_id") and me.get("lavozim"):
+        maktab_ids.add(int(me["maktab_id"]))
+    cur.execute("SELECT DISTINCT s.maktab_id FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id WHERE a.user_id=%s", (user_id,))
+    maktab_ids |= {int(r["maktab_id"]) for r in cur.fetchall()}
+    cur.execute("""SELECT DISTINCT s.maktab_id FROM parent_child pc JOIN maktab_sinf_azolari a ON a.user_id=pc.child_id
+                   JOIN maktab_sinflari s ON s.id=a.sinf_id WHERE pc.parent_id=%s""", (user_id,))
+    maktab_ids |= {int(r["maktab_id"]) for r in cur.fetchall()}
+    for mid in sorted(maktab_ids):
+        try:
+            _, groups = _kabutar_aloqalar(cur, user_id, mid)
+        except HTTPException:
+            continue
+        cur.execute("SELECT nomi FROM maktablar WHERE id=%s", (mid,))
+        m = cur.fetchone()
+        flat = []
+        for key, items in groups.items():
+            for item in items:
+                flat.append({**item, "guruh": key})
+        result.append({"turi": "maktab", "muassasa_id": mid, "muassasa": m["nomi"] if m else f"Maktab #{mid}", "azolar": flat})
+    # Institutlar: xodimlar bir-biriga; talaba — o'z fakulteti xodimlariga
+    cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r1, to_regclass('public.universitet_qabul_talabalari') AS r2")
+    t = cur.fetchone() or {}
+    if t.get("r1"):
+        cur.execute("SELECT DISTINCT universitet_id, NULL::int AS fakultet_id FROM universitet_xodim_rollari WHERE user_id=%s AND faol=TRUE", (user_id,))
+        inst = {int(r["universitet_id"]): None for r in cur.fetchall()}
+        if t.get("r2"):
+            cur.execute("""SELECT qt.universitet_id, y.fakultet_id FROM universitet_qabul_talabalari qt
+                           JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id WHERE qt.user_id=%s""", (user_id,))
+            for r in cur.fetchall():
+                inst.setdefault(int(r["universitet_id"]), int(r["fakultet_id"]) if r.get("fakultet_id") else None)
+        names = {"rektor": "Rektor", "prorektor": "Prorektor", "institut_admin": "Institut administratori", "qabul_operator": "Qabul operatori",
+                 "dekan": "Dekan", "zam_dekan": "Dekan o'rinbosari", "manaviyatchi": "Ma'naviyatchi", "fakultet_admin": "Fakultet administratori",
+                 "kafedra_mudiri": "Kafedra mudiri", "professor_oqituvchi": "Professor-o'qituvchi", "tyutor": "Tyutor", "owner": "Rahbar"}
+        for uid_, fak in inst.items():
+            cur.execute("SELECT nomi FROM universitetlar WHERE id=%s", (uid_,))
+            un = cur.fetchone()
+            cur.execute("""SELECT r.user_id, u.full_name, r.rol, f.nomi AS fakultet FROM universitet_xodim_rollari r
+                           JOIN users u ON u.user_id=r.user_id LEFT JOIN fakultetlar f ON f.id=r.fakultet_id
+                           WHERE r.universitet_id=%s AND r.faol=TRUE AND r.user_id<>%s
+                             AND (%s::int IS NULL OR r.fakultet_id IS NULL OR r.fakultet_id=%s)
+                           ORDER BY u.full_name""", (uid_, user_id, fak, fak))
+            seen = set(); azolar = []
+            for r in cur.fetchall():
+                if int(r["user_id"]) in seen: continue
+                seen.add(int(r["user_id"]))
+                azolar.append({"user_id": int(r["user_id"]), "full_name": r["full_name"], "guruh": "rahbariyat" if r["rol"] in ("rektor", "prorektor", "institut_admin", "dekan", "zam_dekan", "owner") else "oqituvchilar",
+                               "izoh": names.get(r["rol"], r["rol"]) + (f" · {r['fakultet']}" if r.get("fakultet") else "")})
+            result.append({"turi": "institut", "muassasa_id": uid_, "muassasa": un["nomi"] if un else f"Institut #{uid_}", "azolar": azolar})
+    # Markaz va bog'cha: bir muassasadagi hamma xodim
+    for col, table, turi in (("markaz_id", "oquv_markazlari", "markaz"), ("bogcha_id", "bogchalar", "bogcha")):
+        if me.get(col):
+            cur.execute(f"SELECT nomi FROM {table} WHERE id=%s", (me[col],))
+            n = cur.fetchone()
+            cur.execute(f"SELECT user_id, full_name, lavozim FROM users WHERE {col}=%s AND user_id<>%s ORDER BY full_name", (me[col], user_id))
+            azolar = [{"user_id": int(r["user_id"]), "full_name": r["full_name"], "guruh": "oqituvchilar", "izoh": _KABUTAR_LAVOZIM_NOMI.get(r.get("lavozim"), r.get("lavozim") or "Xodim")} for r in cur.fetchall()]
+            result.append({"turi": turi, "muassasa_id": int(me[col]), "muassasa": n["nomi"] if n else turi, "azolar": azolar})
+    return result
+
+
+@app.get("/api/kabutar/men")
+def v2258_kabutar_men(token: str):
+    """Mening Kabutar ID va shaxs kartochkam (kimligim)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _kabutar_id_ber(cur, user_id); conn.commit()
+        return _kabutar_shaxs(cur, user_id)
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/kabutar/izla")
+def v2258_kabutar_izla(token: str, kabutar_id: str):
+    """ID bo'yicha odam topish. Faqat kartochka qaytadi (ism, rollar) — telefon yo'q."""
+    user_id = _jwt_tekshir(token)
+    key = re.sub(r"[^0-9A-Za-z]", "", str(kabutar_id or "")).upper()
+    if key.startswith("KB"):
+        key = key[2:]
+    if not key.isdigit() or len(key) != 6:
+        raise HTTPException(status_code=400, detail="Kabutar ID 6 xonali: masalan KB-123456")
+    conn = _db(); cur = conn.cursor()
+    try:
+        _kabutar_jadval(cur)
+        cur.execute("SELECT user_id FROM users WHERE kabutar_id=%s", (f"KB-{key}",))
+        row = cur.fetchone()
+        if not row:
+            raise HTTPException(status_code=404, detail="Bunday ID topilmadi")
+        if int(row["user_id"]) == int(user_id):
+            raise HTTPException(status_code=400, detail="Bu sizning o'z ID ingiz")
+        return _kabutar_shaxs(cur, int(row["user_id"]))
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/kabutar/aloqalar_umumiy")
+def v2258_kabutar_aloqalar_umumiy(token: str):
+    """Barcha muassasalarim bo'yicha suhbatdoshlar + oxirgi suhbatlarim (ID orqali topilganlar ham) + o'qilmaganlar."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_jadvallari(cur); _kabutar_id_ber(cur, user_id); conn.commit()
+        men = _kabutar_shaxs(cur, user_id)
+        muassasalar = _kabutar_universal_aloqalar(cur, user_id)
+        cur.execute("""SELECT x.yuboruvchi_user_id AS uid, COUNT(*) AS n FROM chat_xabarlari x
+                       LEFT JOIN chat_oxirgi_korish k ON k.user_id=%s AND k.boshqa_user_id=x.yuboruvchi_user_id AND k.guruh_id IS NULL
+                       WHERE x.qabul_qiluvchi_user_id=%s AND x.guruh_id IS NULL AND COALESCE(x.ochirilgan,FALSE)=FALSE
+                         AND (k.oxirgi_xabar_id IS NULL OR x.id>k.oxirgi_xabar_id)
+                       GROUP BY x.yuboruvchi_user_id""", (user_id, user_id))
+        unread = {int(r["uid"]): int(r["n"]) for r in cur.fetchall()}
+        cur.execute("""SELECT CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS uid,
+                              MAX(id) AS oxirgi_id, MAX(yaratilgan_at) AS oxirgi
+                       FROM chat_xabarlari WHERE guruh_id IS NULL AND COALESCE(ochirilgan,FALSE)=FALSE AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s)
+                       GROUP BY 1 ORDER BY 3 DESC LIMIT 60""", (user_id, user_id, user_id))
+        recent_rows = [dict(r) for r in cur.fetchall()]
+        known = {int(a["user_id"]) for m in muassasalar for a in m["azolar"]}
+        suhbatlar = []
+        for r in recent_rows:
+            uid_ = int(r["uid"])
+            cur.execute("SELECT matn, fayl_turi, yuboruvchi_user_id FROM chat_xabarlari WHERE id=%s", (r["oxirgi_id"],))
+            lastm = cur.fetchone() or {}
+            card = _kabutar_shaxs(cur, uid_) if uid_ not in known else None
+            cur.execute("SELECT full_name FROM users WHERE user_id=%s", (uid_,))
+            nm = cur.fetchone()
+            suhbatlar.append({"user_id": uid_, "full_name": (nm or {}).get("full_name") or "", "izoh": card["qisqa"] if card else "",
+                              "oxirgi_matn": (lastm.get("matn") or {"audio": "🎙 ovozli xabar", "video": "🎬 video", "hujjat": "📎 hujjat"}.get(lastm.get("fayl_turi"), "")),
+                              "oxirgi_meniki": int(lastm.get("yuboruvchi_user_id") or 0) == int(user_id),
+                              "oxirgi_xabar_at": r["oxirgi"].isoformat() if r["oxirgi"] else None, "oqilmagan": unread.get(uid_, 0), "tashqi": uid_ not in known})
+        for m in muassasalar:
+            for a in m["azolar"]:
+                a["oqilmagan"] = unread.get(int(a["user_id"]), 0)
+        return {"men": men, "suhbatlar": suhbatlar, "muassasalar": muassasalar, "jami_oqilmagan": sum(unread.values())}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/kabutar/shaxs")
+def v2258_kabutar_shaxs(token: str, user_id: int):
+    """Suhbatdosh kartochkasi — xabar yozganda uning kimligi ko'rinishi uchun (faqat ruxsat bo'lsa)."""
+    me = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _kabutar_ruxsat(cur, me, None, user_id):
+            raise HTTPException(status_code=403, detail="Bu odam bilan aloqa ruxsati yo'q")
+        card = _kabutar_shaxs(cur, user_id)
+        if not card:
+            raise HTTPException(status_code=404, detail="Topilmadi")
+        return card
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/kabutar/aloqalar")
+def v2257_kabutar_aloqalar(token: str, maktab_id: int):
+    """Menga yozish ruxsat etilgan odamlar (rollar bo'yicha) + o'qilmagan xabarlar soni."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        ctx, groups = _kabutar_aloqalar(cur, user_id, maktab_id)
+        # o'qilmagan: menga kelgan shaxsiy xabarlar, oxirgi ko'rilganidan keyingilar
+        cur.execute("""SELECT x.yuboruvchi_user_id AS uid, COUNT(*) AS n, MAX(x.yaratilgan_at) AS oxirgi
+                       FROM chat_xabarlari x
+                       LEFT JOIN chat_oxirgi_korish k ON k.user_id=%s AND k.boshqa_user_id=x.yuboruvchi_user_id AND k.guruh_id IS NULL
+                       WHERE x.qabul_qiluvchi_user_id=%s AND x.guruh_id IS NULL AND COALESCE(x.ochirilgan,FALSE)=FALSE
+                         AND (k.oxirgi_xabar_id IS NULL OR x.id>k.oxirgi_xabar_id)
+                       GROUP BY x.yuboruvchi_user_id""", (user_id, user_id))
+        unread = {int(r["uid"]): {"n": int(r["n"]), "oxirgi": r["oxirgi"].isoformat() if r["oxirgi"] else None} for r in cur.fetchall()}
+        # oxirgi xabar vaqti (tartiblash uchun)
+        cur.execute("""SELECT CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS uid,
+                              MAX(yaratilgan_at) AS oxirgi
+                       FROM chat_xabarlari WHERE guruh_id IS NULL AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s)
+                       GROUP BY 1""", (user_id, user_id, user_id))
+        last = {int(r["uid"]): r["oxirgi"].isoformat() if r["oxirgi"] else None for r in cur.fetchall()}
+        for items in groups.values():
+            for item in items:
+                item["oqilmagan"] = unread.get(item["user_id"], {}).get("n", 0)
+                item["oxirgi_xabar_at"] = last.get(item["user_id"])
+        me = ctx["me"]
+        mening_rol = ("rahbariyat" if ctx.get("rahbariyat") else "oqituvchi" if ctx.get("xodim") else "oquvchi" if ctx.get("oquvchi") else "ota_ona")
+        return {
+            "men": {"user_id": int(me["user_id"]), "full_name": me["full_name"], "rol": mening_rol,
+                    "lavozim": _KABUTAR_LAVOZIM_NOMI.get(me.get("lavozim"), me.get("lavozim"))},
+            "guruhlar": groups,
+            "jami_oqilmagan": sum(v["n"] for v in unread.values()),
+        }
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/kabutar/yubor")
+async def v2257_kabutar_yubor(
+    token: str = Form(...),
+    qabul_qiluvchi_user_id: int = Form(...),
+    maktab_id: Optional[int] = Form(None),
+    matn: Optional[str] = Form(None),
+    fayl_turi: Optional[str] = Form(None),
+    fayl: Optional[UploadFile] = File(None),
+    kabutar_id: Optional[str] = Form(None),
+):
+    """Rasmiy xabar: faqat ruxsat etilgan suhbatdoshga. Matn 4000 belgigacha; fayl turi va hajmi tekshiriladi."""
+    user_id = _jwt_tekshir(token)
+    matn_toza = re.sub(r"\s+", " ", (matn or "")).strip()[:4000]
+    if not matn_toza and fayl is None:
+        raise HTTPException(status_code=400, detail="Xabar matni yoki fayl kerak")
+    data = None; content_type = None; filename = None; size_kb = None
+    if fayl is not None:
+        if fayl_turi not in _KABUTAR_FAYL_TURLARI:
+            raise HTTPException(status_code=400, detail="Fayl turi: audio, video yoki hujjat")
+        allowed, max_mb = _KABUTAR_FAYL_TURLARI[fayl_turi]
+        content_type = (fayl.content_type or "").split(";")[0].strip().lower()
+        if content_type not in allowed:
+            raise HTTPException(status_code=400, detail=f"Bu fayl formati qabul qilinmaydi ({content_type or 'noma’lum'})")
+        data = await fayl.read()
+        if len(data) > max_mb * 1024 * 1024:
+            raise HTTPException(status_code=413, detail=f"Fayl {max_mb} MB dan katta")
+        if not data:
+            raise HTTPException(status_code=400, detail="Fayl bo'sh")
+        filename = (fayl.filename or f"{fayl_turi}.bin")[:120]
+        size_kb = max(1, len(data) // 1024)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_jadvallari(cur); _kabutar_jadval(cur)
+        ruxsat = _kabutar_ruxsat(cur, user_id, maktab_id, qabul_qiluvchi_user_id)
+        if not ruxsat and kabutar_id:
+            # ID orqali topib yozish — kabutar_id aynan shu odamga tegishli bo'lsa ruxsat
+            key = re.sub(r"[^0-9]", "", str(kabutar_id))[-6:]
+            cur.execute("SELECT 1 FROM users WHERE user_id=%s AND kabutar_id=%s", (qabul_qiluvchi_user_id, f"KB-{key}"))
+            ruxsat = cur.fetchone() is not None
+        if not ruxsat:
+            raise HTTPException(status_code=403, detail="Bu odamga rasmiy xabar yozish ruxsati yo'q — Kabutar ID sini so'rang")
+        cur.execute("""INSERT INTO chat_xabarlari(qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
+                       VALUES(%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id, yaratilgan_at""",
+                    (qabul_qiluvchi_user_id, user_id, matn_toza or None, fayl_turi if data else None,
+                     psycopg2.Binary(data) if data else None, filename, content_type, size_kb))
+        row = cur.fetchone()
+        conn.commit()
+        return {"holat": "yuborildi", "id": int(row["id"]), "yaratilgan_at": row["yaratilgan_at"].isoformat(),
+                "matn": matn_toza or None, "fayl_turi": fayl_turi if data else None, "fayl_nomi": filename, "fayl_hajmi_kb": size_kb}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.get("/api/kabutar/xabarlar")
+def v2257_kabutar_xabarlar(token: str, boshqa_user_id: int, maktab_id: Optional[int] = None, oxirgidan: Optional[int] = None, keyingidan: Optional[int] = None):
+    """Ikki kishi orasidagi suhbat. keyingidan=ID — faqat yangi xabarlar (yengil so'rov, 5-10 soniyada bir)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_jadvallari(cur)
+        if not _kabutar_ruxsat(cur, user_id, maktab_id, boshqa_user_id):
+            raise HTTPException(status_code=403, detail="Bu suhbat sizga ochiq emas")
+        where = ["x.guruh_id IS NULL", "COALESCE(x.ochirilgan,FALSE)=FALSE",
+                 "((x.yuboruvchi_user_id=%s AND x.qabul_qiluvchi_user_id=%s) OR (x.yuboruvchi_user_id=%s AND x.qabul_qiluvchi_user_id=%s))"]
+        params = [user_id, boshqa_user_id, boshqa_user_id, user_id]
+        if keyingidan:
+            where.append("x.id>%s"); params.append(keyingidan)
+        if oxirgidan:
+            where.append("x.id<%s"); params.append(oxirgidan)
+        cur.execute(f"""SELECT x.id, x.yuboruvchi_user_id, x.qabul_qiluvchi_user_id, x.matn, x.fayl_turi, x.fayl_nomi, x.fayl_hajmi_kb, x.yaratilgan_at,
+                               COALESCE(x.tahrirlangan,FALSE) AS tahrirlangan
+                        FROM chat_xabarlari x WHERE {" AND ".join(where)}
+                        ORDER BY x.id DESC LIMIT 60""", params)
+        rows = [dict(r) for r in cur.fetchall()][::-1]
+        for r in rows:
+            r["yaratilgan_at"] = r["yaratilgan_at"].isoformat() if r["yaratilgan_at"] else None
+            r["meniki"] = int(r["yuboruvchi_user_id"]) == int(user_id)
+        # qarshi tomon oxirgi ko'rgani
+        cur.execute("SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND boshqa_user_id=%s AND guruh_id IS NULL",
+                    (boshqa_user_id, user_id))
+        seen = cur.fetchone()
+        return {"xabarlar": rows, "qarshi_tomon_korgan_id": int(seen["oxirgi_xabar_id"]) if seen and seen.get("oxirgi_xabar_id") else None}
+    finally:
+        cur.close(); conn.close()
+
+
 @app.post("/api/maktab/aqlli_jadval/v3/oqituvchi_ochirish")
 def v195_teacher_delete(sorov: V195TeacherDelete, token: str):
     """O'qituvchini maktabdan va barcha faol yuklamalardan to'liq chiqaradi."""
