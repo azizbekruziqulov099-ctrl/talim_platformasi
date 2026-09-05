@@ -509,14 +509,17 @@ async def _v2252_http_metodni_yoz(request, call_next):
         _JORIY_HTTP_METOD.reset(token_ctx)
 
 
-def _jwt_korish_tokeni_yarat(admin_id: int, target_user_id: int) -> str:
-    """Admin uchun 90 daqiqalik “ko'rish rejimi” tokeni: interfeys o'sha
-    foydalanuvchi ko'zi bilan ochiladi, lekin hech narsa o'zgartirib bo'lmaydi."""
+def _jwt_korish_tokeni_yarat(admin_id: int, target_user_id: int, yozish: bool = False) -> str:
+    """Admin uchun 90 daqiqalik “ko'rish rejimi” tokeni. yozish=False — faqat ko'rish;
+    yozish=True — SINOV rejimi: o'sha rol qila oladigan hamma amalni bajarish mumkin
+    (sayt hali ishga tushmaganda funksiyalarni sinash uchun)."""
     payload = {
         "user_id": int(target_user_id),
         "admin_korish": int(admin_id),
-        "exp": datetime.now(timezone.utc) + timedelta(minutes=90),
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=90 if not yozish else 240),
     }
+    if yozish:
+        payload["yozish"] = 1
     return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
 
 
@@ -526,7 +529,7 @@ def _jwt_tekshir(token: str) -> int:
         payload = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
     except JWTError:
         raise HTTPException(status_code=401, detail="Sessiya eskirgan, qaytadan kiring")
-    if payload.get("admin_korish") and _JORIY_HTTP_METOD.get() not in ("GET", "HEAD", "OPTIONS"):
+    if payload.get("admin_korish") and not payload.get("yozish") and _JORIY_HTTP_METOD.get() not in ("GET", "HEAD", "OPTIONS"):
         raise HTTPException(
             status_code=403,
             detail="Admin ko'rish rejimi: bu oynada hech narsa o'zgartirilmaydi (faqat ko'rish).",
@@ -7826,6 +7829,7 @@ def v2253_admin_sinov_rol_tokeni(
     rol: str,
     fakultet_id: Optional[int] = None,
     kafedra_id: Optional[int] = None,
+    yozish: int = 0,
 ):
     """Rol bo'yicha ko'rish: shu rolda odam bo'lsa — o'sha bilan, bo'lmasa
     “SINOV · <Rol>” nomli sinov xodimi yaratilib, u bilan faqat-o'qish token beriladi.
@@ -7924,11 +7928,11 @@ def v2253_admin_sinov_rol_tokeni(
             raise HTTPException(status_code=400, detail="turi maktab yoki institut bo'lishi kerak")
         conn.commit()
         return {
-            "token": _jwt_korish_tokeni_yarat(admin_id, target_id),
+            "token": _jwt_korish_tokeni_yarat(admin_id, target_id, yozish=bool(yozish)),
             "user": {"user_id": target_id, "full_name": full_name, "rol": rol},
             "sinov_yaratildi": created,
-            "amal_muddati_daqiqa": 90,
-            "read_only": True,
+            "amal_muddati_daqiqa": 240 if yozish else 90,
+            "read_only": not bool(yozish),
         }
     except Exception:
         conn.rollback()
@@ -7938,8 +7942,67 @@ def v2253_admin_sinov_rol_tokeni(
         conn.close()
 
 
+@app.post("/api/admin/sinov_izlarini_tozalash")
+def v2259_sinov_izlarini_tozalash(token: str, turi: str, muassasa_id: int):
+    """“SINOV · …” xodimlari va ularning barcha izlarini (xabarlar, rollar, biriktirishlar) o'chiradi —
+    muassasa xuddi sinovdan oldingi holatiga qaytadi. Real odamlarga tegilmaydi."""
+    _admin_tekshir(token)
+    turi = (turi or "").strip().lower()
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        if turi == "maktab":
+            cur.execute("SELECT user_id FROM users WHERE maktab_id=%s AND full_name LIKE 'SINOV ·%%' AND user_id<0", (muassasa_id,))
+        elif turi == "institut":
+            cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r")
+            if not (cur.fetchone() or {}).get("r"):
+                return {"holat": "tozalandi", "xodimlar": 0}
+            cur.execute("""SELECT DISTINCT u.user_id FROM users u
+                           WHERE u.full_name LIKE 'SINOV ·%%' AND u.user_id<0
+                             AND (u.universitet_id=%s OR EXISTS (SELECT 1 FROM universitet_xodim_rollari r WHERE r.user_id=u.user_id AND r.universitet_id=%s))""",
+                        (muassasa_id, muassasa_id))
+        else:
+            raise HTTPException(status_code=400, detail="turi maktab yoki institut bo'lishi kerak")
+        ids = [int(r["user_id"]) for r in cur.fetchall()]
+        if not ids:
+            return {"holat": "tozalandi", "xodimlar": 0, "xabarlar": 0}
+        stats = {}
+        def run(sql, params, key):
+            try:
+                cur.execute("SAVEPOINT sp")
+                cur.execute(sql, params)
+                stats[key] = stats.get(key, 0) + (cur.rowcount if cur.rowcount and cur.rowcount > 0 else 0)
+                cur.execute("RELEASE SAVEPOINT sp")
+            except Exception:
+                cur.execute("ROLLBACK TO SAVEPOINT sp")
+        run("DELETE FROM chat_xabarlari WHERE yuboruvchi_user_id=ANY(%s) OR qabul_qiluvchi_user_id=ANY(%s)", (ids, ids), "xabarlar")
+        run("DELETE FROM chat_oxirgi_korish WHERE user_id=ANY(%s) OR boshqa_user_id=ANY(%s)", (ids, ids), "korishlar")
+        run("DELETE FROM chat_azolari WHERE user_id=ANY(%s)", (ids,), "guruh_azoliklari")
+        run("UPDATE maktab_sinflari SET rahbar_user_id=NULL WHERE rahbar_user_id=ANY(%s)", (ids,), "sinf_rahbarliklari")
+        run("UPDATE maktab_sinflari SET psixolog_user_id=NULL WHERE psixolog_user_id=ANY(%s)", (ids,), "psixolog_biriktirishlari")
+        run("DELETE FROM maktab_dars_birikmalari WHERE user_id=ANY(%s)", (ids,), "dars_birikmalari")
+        run("UPDATE maktablar SET direktor_user_id=NULL WHERE direktor_user_id=ANY(%s)", (ids,), "direktorlik")
+        run("DELETE FROM universitet_xodim_rollari WHERE user_id=ANY(%s)", (ids,), "institut_rollari")
+        run("UPDATE universitetlar SET rektor_user_id=NULL WHERE rektor_user_id=ANY(%s)", (ids,), "rektorlik")
+        run("UPDATE fakultetlar SET dekan_user_id=NULL WHERE dekan_user_id=ANY(%s)", (ids,), "dekanlik")
+        run("UPDATE kafedralar SET mudir_user_id=NULL WHERE mudir_user_id=ANY(%s)", (ids,), "mudirlik")
+        run("DELETE FROM xodim_davomati WHERE user_id=ANY(%s) OR belgilagan_user_id=ANY(%s)", (ids, ids), "davomat")
+        run("DELETE FROM dars_monitoring_baholari WHERE oqituvchi_user_id=ANY(%s)", (ids,), "baholar")
+        run("DELETE FROM bildirishnomalar WHERE user_id=ANY(%s)", (ids,), "bildirishnomalar")
+        # Oxirida foydalanuvchi o'zi — FK bo'lsa tegilmaydi (holat saqlanadi)
+        run("DELETE FROM users WHERE user_id=ANY(%s)", (ids,), "xodimlar")
+        conn.commit()
+        return {"holat": "tozalandi", "topilgan_sinov_xodimlari": len(ids), **stats}
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
 @app.get("/api/admin/rol_sifatida_kirish_tokeni")
-def v2252_admin_korish_tokeni(token: str, user_id: int):
+def v2252_admin_korish_tokeni(token: str, user_id: int, yozish: int = 0):
     """Admin istalgan foydalanuvchi interfeysini “o'sha odam ko'zi bilan” ochish
     uchun qisqa muddatli, faqat-o'qish token oladi. Yangi oynada ochiladi,
     admin sessiyasi o'zgarmaydi."""
@@ -7955,10 +8018,10 @@ def v2252_admin_korish_tokeni(token: str, user_id: int):
         if cur.fetchone() and int(user_id) != int(admin_id):
             raise HTTPException(status_code=403, detail="Boshqa admin akkaunti ko'rish rejimida ochilmaydi")
         return {
-            "token": _jwt_korish_tokeni_yarat(admin_id, int(user_id)),
+            "token": _jwt_korish_tokeni_yarat(admin_id, int(user_id), yozish=bool(yozish)),
             "user": {"user_id": int(row["user_id"]), "full_name": row["full_name"], "lavozim": row["lavozim"]},
-            "amal_muddati_daqiqa": 90,
-            "read_only": True,
+            "amal_muddati_daqiqa": 240 if yozish else 90,
+            "read_only": not bool(yozish),
         }
     finally:
         cur.close()
