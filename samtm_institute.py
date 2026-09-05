@@ -3812,13 +3812,23 @@ def admission_document_import_template(universitet_id: int, token: Optional[str]
     return _xlsx_download(stream.getvalue(), "hujjat_topshirganlar_shablon.xlsx")
 
 
-@router.post("/qabul/hujjat_import")
-async def admission_document_import(universitet_id: int, fayl: UploadFile = File(...), tasdiqlash: int = 0, token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
-    """Excel'dagi AbiturID lar bo'yicha ommaviy “Hujjat topshirgan” belgilash.
+_DOC_IMPORT_ACTIONS = {
+    # amal: (ustun, yangi qiymat SQL, "allaqachon shunday" sharti, huquq to'plami nomi, tavsif)
+    "hujjat_belgilash": ("hujjat_topshirgan_at", "NOW()", "IS NOT NULL", "hujjat", "Hujjat topshirgan qilish"),
+    "hujjat_bekor": ("hujjat_topshirgan_at", "NULL", "IS NULL", "hujjat", "Hujjat topshirgan belgisini olib tashlash"),
+    "baza_belgilash": ("bazaga_kiritilgan_at", "NOW()", "IS NOT NULL", "baza", "Bazaga (HEMIS) kiritilgan qilish"),
+    "baza_bekor": ("bazaga_kiritilgan_at", "NULL", "IS NULL", "baza", "Baza belgisini olib tashlash"),
+}
 
-    tasdiqlash=0 — faqat tekshirish (nechta topildi, nechtasi allaqachon belgilangan, nechtasi topilmadi).
-    tasdiqlash=1 — belgilash.
+
+@router.post("/qabul/hujjat_import")
+async def admission_document_import(universitet_id: int, fayl: UploadFile = File(...), tasdiqlash: int = 0, amal: str = "hujjat_belgilash", token: Optional[str] = Query(None, include_in_schema=False), authorization: Optional[str] = Header(None)):
+    """Excel'dagi AbiturID lar bo'yicha ommaviy amal: hujjat belgilash / bekor, baza belgilash / bekor.
+
+    tasdiqlash=0 — faqat tekshirish; tasdiqlash=1 — bajarish.
     """
+    if amal not in _DOC_IMPORT_ACTIONS: raise HTTPException(status_code=400, detail="Amal noto'g'ri")
+    column, new_value_sql, already_sql, right, action_label = _DOC_IMPORT_ACTIONS[amal]
     user_id = _uid(token, authorization); p = _p()
     content = await fayl.read()
     if len(content) > 10 * 1024 * 1024: raise HTTPException(status_code=413, detail="Fayl 10 MB dan katta")
@@ -3840,9 +3850,11 @@ async def admission_document_import(universitet_id: int, fayl: UploadFile = File
     conn = p._db(); cur = conn.cursor()
     try:
         _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id)
-        if not _has_any(roles, MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Hujjat belgilash huquqi yo'q")
+        if right == "hujjat" and not _has_any(roles, MARK_DOCUMENT_ROLES): raise HTTPException(status_code=403, detail="Hujjat belgilash huquqi yo'q")
+        if right == "baza" and not _has_any(roles, MARK_HEMIS_ROLES): raise HTTPException(status_code=403, detail="Baza belgilash huquqi yo'q")
         scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
-        cur.execute(f"""SELECT qt.id,qt.abitur_id,qt.familiya,qt.ism,qt.ota_ism,qt.hujjat_topshirgan_at,y.nomi yonalish_nomi
+        cur.execute(f"""SELECT qt.id,qt.abitur_id,qt.familiya,qt.ism,qt.ota_ism,qt.hujjat_topshirgan_at,qt.bazaga_kiritilgan_at,
+                               qt.saytga_kiritilgan_at,qt.birinchi_kirish_at,qt.user_id,y.nomi yonalish_nomi
                         FROM universitet_qabul_talabalari qt
                         JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
                         JOIN fakultetlar f ON f.id=y.fakultet_id
@@ -3850,20 +3862,39 @@ async def admission_document_import(universitet_id: int, fayl: UploadFile = File
                         WHERE qt.universitet_id=%s AND UPPER(REGEXP_REPLACE(COALESCE(qt.abitur_id,''),'\\s','','g'))=ANY(%s) AND {scope_sql}""",
                     [universitet_id, ids, *scope_params])
         found = {_abitur_id_key(r["abitur_id"]): dict(r) for r in cur.fetchall()}
-        to_mark = [found[k] for k in ids if k in found and found[k]["hujjat_topshirgan_at"] is None]
-        already = [found[k] for k in ids if k in found and found[k]["hujjat_topshirgan_at"] is not None]
+        def already_done(r):
+            return (r[column] is not None) if already_sql == "IS NOT NULL" else (r[column] is None)
+        def blocked_reason(r):
+            # Tartib buzilmasin: hujjat belgisi bazadan oldin; baza belgisi saytga kirgandan keyin olinmaydi.
+            if amal == "hujjat_bekor" and r["bazaga_kiritilgan_at"] is not None: return "avval baza belgisini olib tashlang"
+            if amal == "baza_belgilash" and r["hujjat_topshirgan_at"] is None: return "hujjat topshirmagan"
+            site_entered = r["saytga_kiritilgan_at"] is not None or r["birinchi_kirish_at"] is not None or (r["user_id"] is not None and int(r["user_id"]) >= 0)
+            if amal == "baza_bekor" and site_entered: return "talaba saytga kirgan"
+            return None
+        to_mark, already, blocked = [], [], []
+        for k in ids:
+            if k not in found: continue
+            r = found[k]
+            if already_done(r): already.append(r); continue
+            reason = blocked_reason(r)
+            if reason: blocked.append({**r, "sabab": reason}); continue
+            to_mark.append(r)
         missing = [k for k in ids if k not in found]
         def fish(r): return " ".join(x for x in [r["familiya"], r["ism"], r["ota_ism"]] if x)
         marked = 0
         if int(tasdiqlash or 0) == 1 and to_mark:
-            cur.execute("""UPDATE universitet_qabul_talabalari
-                              SET hujjat_topshirgan_at=NOW(),qabul_bosqichi=GREATEST(qabul_bosqichi,2),yangilangan_at=NOW()
-                            WHERE id=ANY(%s) AND hujjat_topshirgan_at IS NULL""", ([int(r["id"]) for r in to_mark],))
+            stage_sql = {"hujjat_belgilash": "GREATEST(qabul_bosqichi,2)", "hujjat_bekor": "1", "baza_belgilash": "GREATEST(qabul_bosqichi,3)", "baza_bekor": "2"}[amal]
+            cur.execute(f"""UPDATE universitet_qabul_talabalari
+                              SET {column}={new_value_sql},qabul_bosqichi={stage_sql},yangilangan_at=NOW()
+                            WHERE id=ANY(%s)""", ([int(r["id"]) for r in to_mark],))
             marked = cur.rowcount
-            _audit(cur, universitet_id, user_id, "hujjat_import", "universitet", universitet_id, {"belgilandi": marked, "allaqachon": len(already), "topilmadi": len(missing)})
+            _audit(cur, universitet_id, user_id, f"ommaviy_{amal}", "universitet", universitet_id, {"belgilandi": marked, "allaqachon": len(already), "topilmadi": len(missing), "bloklandi": len(blocked)})
         conn.commit()
         return {
             "tasdiqlandi": int(tasdiqlash or 0) == 1,
+            "amal": amal, "amal_nomi": action_label,
+            "bloklandi": len(blocked),
+            "bloklandi_royxat": [{"abitur_id": r["abitur_id"], "fish": fish(r), "sabab": r["sabab"]} for r in blocked[:100]],
             "jami_id": len(ids),
             "belgilanadi": len(to_mark), "belgilandi": marked,
             "allaqachon": len(already), "topilmadi": len(missing),
