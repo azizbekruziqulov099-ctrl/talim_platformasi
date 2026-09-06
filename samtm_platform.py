@@ -7830,6 +7830,7 @@ def v2253_admin_sinov_rol_tokeni(
     fakultet_id: Optional[int] = None,
     kafedra_id: Optional[int] = None,
     yozish: int = 0,
+    sinf_id: Optional[int] = None,
 ):
     """Rol bo'yicha ko'rish: shu rolda odam bo'lsa — o'sha bilan, bo'lmasa
     “SINOV · <Rol>” nomli sinov xodimi yaratilib, u bilan faqat-o'qish token beriladi.
@@ -7843,7 +7844,40 @@ def v2253_admin_sinov_rol_tokeni(
     try:
         created = False
         target_id = None
-        if turi == "maktab":
+        if turi == "maktab" and rol in ("oquvchi", "ota_ona"):
+            # Sinf tanlangan bo'lishi kerak; o'quvchi yo'q bo'lsa SINOV o'quvchi (va ota-ona) yaratiladi
+            cur.execute("SELECT id, sinf, harf FROM maktab_sinflari WHERE maktab_id=%s AND (%s::int IS NULL OR id=%s) ORDER BY sinf::int, harf LIMIT 1", (muassasa_id, sinf_id, sinf_id))
+            cls = cur.fetchone()
+            if not cls:
+                raise HTTPException(status_code=404, detail="Sinf topilmadi")
+            sinf_id = int(cls["id"]); sinf_nomi = f"{cls['sinf']}-{cls['harf']}"
+            cur.execute("""SELECT u.user_id, u.full_name FROM maktab_sinf_azolari a JOIN users u ON u.user_id=a.user_id
+                           WHERE a.sinf_id=%s ORDER BY (u.full_name LIKE 'SINOV ·%%') ASC, u.full_name LIMIT 1""", (sinf_id,))
+            pupil = cur.fetchone()
+            if not pupil:
+                pupil_id = _sinov_yangi_user_id(cur)
+                cur.execute("INSERT INTO users(user_id,full_name,role,maktab_id) VALUES(%s,%s,'oquvchi',%s)", (pupil_id, f"SINOV · O'quvchi {sinf_nomi}", muassasa_id))
+                cur.execute("INSERT INTO maktab_sinf_azolari(sinf_id,user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING", (sinf_id, pupil_id))
+                created = True
+            else:
+                pupil_id = int(pupil["user_id"])
+            if rol == "oquvchi":
+                target_id = pupil_id
+                cur.execute("SELECT full_name FROM users WHERE user_id=%s", (target_id,)); full_name = cur.fetchone()["full_name"]
+            else:
+                cur.execute("""SELECT u.user_id, u.full_name FROM parent_child pc JOIN users u ON u.user_id=pc.parent_id
+                               WHERE pc.child_id=%s ORDER BY (u.full_name LIKE 'SINOV ·%%') ASC LIMIT 1""", (pupil_id,))
+                parent = cur.fetchone()
+                if parent:
+                    target_id = int(parent["user_id"]); full_name = parent["full_name"]
+                else:
+                    target_id = _sinov_yangi_user_id(cur)
+                    cur.execute("SELECT full_name FROM users WHERE user_id=%s", (pupil_id,)); pn = cur.fetchone()["full_name"]
+                    full_name = f"SINOV · Ota-ona ({pn})"
+                    cur.execute("INSERT INTO users(user_id,full_name,role) VALUES(%s,%s,'ota_ona')", (target_id, full_name))
+                    cur.execute("INSERT INTO parent_child(parent_id,child_id) VALUES(%s,%s)", (target_id, pupil_id))
+                    created = True
+        elif turi == "maktab":
             if rol not in LAVOZIMLAR:
                 raise HTTPException(status_code=400, detail="Maktab lavozimi noto'g'ri")
             cur.execute("SELECT id FROM maktablar WHERE id=%s", (muassasa_id,))
@@ -7952,7 +7986,10 @@ def v2259_sinov_izlarini_tozalash(token: str, turi: str, muassasa_id: int):
     cur = conn.cursor()
     try:
         if turi == "maktab":
-            cur.execute("SELECT user_id FROM users WHERE maktab_id=%s AND full_name LIKE 'SINOV ·%%' AND user_id<0", (muassasa_id,))
+            cur.execute("""SELECT DISTINCT u.user_id FROM users u
+                           LEFT JOIN maktab_sinf_azolari a ON a.user_id=u.user_id LEFT JOIN maktab_sinflari s ON s.id=a.sinf_id
+                           LEFT JOIN parent_child pc ON pc.parent_id=u.user_id LEFT JOIN maktab_sinf_azolari a2 ON a2.user_id=pc.child_id LEFT JOIN maktab_sinflari s2 ON s2.id=a2.sinf_id
+                           WHERE u.full_name LIKE 'SINOV ·%%' AND u.user_id<0 AND (u.maktab_id=%s OR s.maktab_id=%s OR s2.maktab_id=%s)""", (muassasa_id, muassasa_id, muassasa_id))
         elif turi == "institut":
             cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r")
             if not (cur.fetchone() or {}).get("r"):
@@ -7975,6 +8012,9 @@ def v2259_sinov_izlarini_tozalash(token: str, turi: str, muassasa_id: int):
                 cur.execute("RELEASE SAVEPOINT sp")
             except Exception:
                 cur.execute("ROLLBACK TO SAVEPOINT sp")
+        run("DELETE FROM parent_child WHERE parent_id=ANY(%s) OR child_id=ANY(%s)", (ids, ids), "ota_ona_boglanishlari")
+        run("DELETE FROM maktab_sinf_azolari WHERE user_id=ANY(%s)", (ids,), "sinf_azoliklari")
+        run("DELETE FROM dars_monitoring_baholari WHERE oquvchi_user_id=ANY(%s)", (ids,), "oquvchi_baholari")
         run("DELETE FROM chat_xabarlari WHERE yuboruvchi_user_id=ANY(%s) OR qabul_qiluvchi_user_id=ANY(%s)", (ids, ids), "xabarlar")
         run("DELETE FROM chat_oxirgi_korish WHERE user_id=ANY(%s) OR boshqa_user_id=ANY(%s)", (ids, ids), "korishlar")
         run("DELETE FROM chat_azolari WHERE user_id=ANY(%s)", (ids,), "guruh_azoliklari")
