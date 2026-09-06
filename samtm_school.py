@@ -474,7 +474,7 @@ def _v2262_kalendar_darslar(cur, maktab_id: int, dan, gacha, sinf_id=None, teach
         where = ["maktab_id=%s", "sana BETWEEN %s AND %s"]; params = [maktab_id, dan, gacha]
         if sinf_id: where.append("sinf_id=%s"); params.append(sinf_id)
         cur.execute("ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
-        cur.execute(f"SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qulflangan, qisqa_izoh FROM aqlli_mavzu_taqvimi_v2 WHERE {' AND '.join(where)}", params)
+        cur.execute(f"SELECT id AS taqvim_id, sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qulflangan, qisqa_izoh, tushuntirish, misollar, uy_vazifa, ochiq_dars, ochiq_dars_mavzu FROM aqlli_mavzu_taqvimi_v2 WHERE {' AND '.join(where)}", params)
         for r in cur.fetchall():
             mavzular[(int(r["sinf_id"]), _v1874_subject_key(r["fan_nomi"]), r["sana"], int(r["dars_raqami"]), int(r["smena"]))] = dict(r)
 
@@ -498,7 +498,8 @@ def _v2262_kalendar_darslar(cur, maktab_id: int, dan, gacha, sinf_id=None, teach
                 m = mavzular.get((int(x["sinf_id"]), _v1874_subject_key(x["fan"]), d, int(x["dars_raqami"]), int(x["smena"])))
                 metodda = int(x["oqituvchi_user_id"] or 0) in metod and wd in metod[int(x["oqituvchi_user_id"])]
                 darslar.append({**x, "sana": d.isoformat(), "chorak": chorak, "hafta_turi_sana": ht,
-                                "mavzu": (m or {}).get("mavzu"), "mavzu_tartib": (m or {}).get("tartib"), "mavzu_manba": (m or {}).get("manba"), "mavzu_turi": (m or {}).get("turi"), "qisqa_izoh": (m or {}).get("qisqa_izoh"),
+                                "mavzu": (m or {}).get("mavzu"), "mavzu_tartib": (m or {}).get("tartib"), "mavzu_manba": (m or {}).get("manba"), "mavzu_turi": (m or {}).get("turi"), "qisqa_izoh": (m or {}).get("qisqa_izoh"), "taqvim_id": (m or {}).get("taqvim_id"),
+                                "uy_vazifa": (m or {}).get("uy_vazifa"), "ochiq_dars": bool((m or {}).get("ochiq_dars")), "ochiq_dars_mavzu": (m or {}).get("ochiq_dars_mavzu"),
                                 "ogohlantirish": "o'qituvchining metod kuni" if metodda else None,
                                 "holat": "otildi" if d < bugun else "bugun" if d == bugun else "kutilmoqda"})
             darslar.sort(key=lambda z: (int(z["smena"]), int(z["dars_raqami"]), z["sinf_nomi"]))
@@ -599,6 +600,185 @@ def v2263_kalendar_tasdiq_bekor(token: str, maktab_id: int, tasdiq_id: int):
         _v2263_tasdiq_jadvali(cur)
         cur.execute("DELETE FROM aqlli_kalendar_tasdiqlari_v2263 WHERE id=%s AND maktab_id=%s", (tasdiq_id, maktab_id))
         conn.commit(); return {"holat": "bekor_qilindi", "ochirildi": cur.rowcount}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+# =============================================================================
+# ISH REJASI SHABLONI (V2264): o'qituvchining kalendaridagi haqiqiy kunlar + mavzular
+# Excel'ga chiqadi; o'qituvchi izoh/tushuntirish/misol/uy vazifasini to'ldirib qaytaradi;
+# import kunlarga (taqvim_id → sana+dars → mavzu matni) moslanadi. Ochiq dars belgilanadi.
+# =============================================================================
+_V2264_SHEET = "ISH REJASI"
+_V2264_HEADERS = ["#ID", "Sana", "Hafta kuni", "Dars №", "Mavzu", "Turi", "Ota-onaga qisqa izoh", "Tushuntirish (o'qituvchi uchun)", "Misollar / masalalar", "Uyga vazifa", "Ochiq dars (Ha)", "Ochiq dars mavzusi"]
+
+
+def _v2264_control_note(rows, index):
+    """Nazorat ishi uchun: undan oldingi mavzular ro'yxatidan avto izoh."""
+    prev = [r["mavzu"] for r in rows[:index] if r.get("turi") == "mavzu"]
+    prev = prev[-6:]
+    return ("Nazorat ishi — quyidagi mavzulardan: " + "; ".join(prev) + ". Farzandingiz shu mavzularni takrorlab kelsin.") if prev else "Nazorat ishi — o'tilgan mavzular bo'yicha."
+
+
+@app.get("/api/maktab/aqlli_jadval/v2/ish_rejasi_shablon.xlsx")
+def v2264_ish_rejasi_shablon(token: str, maktab_id: int, sinf_id: int, fan: str, chorak: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur); _v1852_topic_permission(cur, user_id, maktab_id, sinf_id, fan)
+        cur.execute("""SELECT t.id, t.sana, t.hafta_kuni, t.dars_raqami, t.mavzu, t.turi, t.qisqa_izoh, t.tushuntirish, t.misollar, t.uy_vazifa, t.ochiq_dars, t.ochiq_dars_mavzu,
+                              s.sinf, s.harf FROM aqlli_mavzu_taqvimi_v2 t JOIN maktab_sinflari s ON s.id=t.sinf_id
+                       WHERE t.maktab_id=%s AND t.sinf_id=%s AND LOWER(t.fan_nomi)=LOWER(%s) AND t.chorak=%s ORDER BY t.sana, t.smena, t.dars_raqami""",
+                    (maktab_id, sinf_id, fan, chorak))
+        rows = [dict(r) for r in cur.fetchall()]
+        if not rows:
+            raise HTTPException(status_code=404, detail="Bu sinf-fan-chorak uchun mavzular hali sanalarga joylanmagan. Avval 'Sanalarga joylash'ni bosing.")
+        cur.execute("SELECT full_name FROM users WHERE user_id=%s", (user_id,)); me = cur.fetchone()
+    finally:
+        cur.close(); conn.close()
+    try:
+        from openpyxl import Workbook
+        from openpyxl.styles import Alignment, Font, PatternFill
+        from openpyxl.utils import get_column_letter
+    except ImportError as exc:
+        raise HTTPException(status_code=500, detail="openpyxl o'rnatilmagan") from exc
+    kun = ["", "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"]
+    turi_nomi = {"mavzu": "Mavzu", "nazorat": "Nazorat ishi", "xato_tahlil": "Xato tahlili", "mustahkamlash": "Mustahkamlash", "masala": "Masalalar"}
+    wb = Workbook(); ws = wb.active; ws.title = _V2264_SHEET
+    ws.append([f"{rows[0]['sinf']}-{rows[0]['harf']} · {fan} · {chorak}-chorak · {me['full_name'] if me else ''}"] + [None] * (len(_V2264_HEADERS) - 1))
+    ws.merge_cells(start_row=1, start_column=1, end_row=1, end_column=len(_V2264_HEADERS))
+    ws["A1"].font = Font(bold=True, size=13, color="FFFFFF"); ws["A1"].fill = PatternFill("solid", fgColor="1B4B7A"); ws["A1"].alignment = Alignment(horizontal="center")
+    ws.append(["A–F ustunlarni o'zgartirmang (kalendardan). G–L ustunlarni to'ldiring: ota-onaga qisqa izoh (1–2 gap), tushuntirish, misollar, uyga vazifa. Ochiq dars uchun K ustuniga 'Ha'."] + [None] * (len(_V2264_HEADERS) - 1))
+    ws.merge_cells(start_row=2, start_column=1, end_row=2, end_column=len(_V2264_HEADERS)); ws["A2"].font = Font(italic=True, color="5A6A72")
+    ws.append(_V2264_HEADERS)
+    for c in ws[3]:
+        c.font = Font(bold=True, color="FFFFFF"); c.fill = PatternFill("solid", fgColor="173E5B"); c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+    for i, r in enumerate(rows):
+        izoh = r.get("qisqa_izoh") or (_v2264_control_note(rows, i) if r.get("turi") == "nazorat" else "")
+        ws.append([int(r["id"]), r["sana"].isoformat(), kun[int(r["hafta_kuni"])], int(r["dars_raqami"]), r["mavzu"], turi_nomi.get(r["turi"], r["turi"]),
+                   izoh, r.get("tushuntirish") or "", r.get("misollar") or "", r.get("uy_vazifa") or "", "Ha" if r.get("ochiq_dars") else "", r.get("ochiq_dars_mavzu") or ""])
+    widths = [8, 12, 12, 8, 42, 14, 44, 44, 36, 28, 12, 30]
+    for i, w in enumerate(widths, 1): ws.column_dimensions[get_column_letter(i)].width = w
+    ws.freeze_panes = "E4"
+    for row in ws.iter_rows(min_row=4):
+        for c in row: c.alignment = Alignment(vertical="top", wrap_text=True)
+        row[0].font = Font(color="9AA5AE", size=8)
+        for c in row[1:6]: c.fill = PatternFill("solid", fgColor="F3F1EC")
+    stream = _v237_io.BytesIO(); wb.save(stream); wb.close()
+    fname = f"ish_rejasi_{rows[0]['sinf']}{rows[0]['harf']}_{re.sub(r'[^A-Za-z0-9]+','_',fan)}_{chorak}ch.xlsx"
+    return Response(content=stream.getvalue(), media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                    headers={"Content-Disposition": f'attachment; filename="{fname}"'})
+
+
+@app.post("/api/maktab/aqlli_jadval/v2/ish_rejasi_import")
+async def v2264_ish_rejasi_import(token: str = Form(...), maktab_id: int = Form(...), sinf_id: int = Form(...), fan: str = Form(...), chorak: int = Form(...),
+                                  tasdiqlash: int = Form(0), fayl: UploadFile = File(...)):
+    """To'ldirilgan shablonni kalendarga moslab yuklaydi. tasdiqlash=0 — tekshirish, 1 — yozish.
+    Moslash tartibi: #ID → (sana, dars №) → mavzu matni. Oldindan yozilgan (boshqa tartibdagi) fayl ham moslanadi."""
+    user_id = _jwt_tekshir(token)
+    data = await fayl.read()
+    if len(data) > 8 * 1024 * 1024: raise HTTPException(status_code=413, detail="Fayl 8 MB dan katta")
+    try:
+        from openpyxl import load_workbook
+    except ImportError as exc:
+        raise HTTPException(status_code=500, detail="openpyxl o'rnatilmagan") from exc
+    try:
+        wb = load_workbook(_v237_io.BytesIO(data), read_only=True, data_only=True)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail="Excel fayl o'qilmadi (.xlsx bo'lsin)") from exc
+    ws = wb[_V2264_SHEET] if _V2264_SHEET in wb.sheetnames else wb.active
+    raw = [list(r) for r in ws.iter_rows(values_only=True)]
+    wb.close()
+    # sarlavha qatorini topamiz
+    head_i = next((i for i, r in enumerate(raw) if r and any(str(c or "").strip().lower().startswith("mavzu") for c in r)), None)
+    if head_i is None: raise HTTPException(status_code=400, detail="Sarlavha qatori topilmadi (Mavzu ustuni bo'lishi kerak)")
+    head = [str(c or "").strip().lower() for c in raw[head_i]]
+    def col(*names):
+        for n in names:
+            for i, h in enumerate(head):
+                if h.startswith(n): return i
+        return None
+    ci = {"id": col("#id", "id"), "sana": col("sana"), "dars": col("dars"), "mavzu": col("mavzu"), "izoh": col("ota-onaga", "qisqa izoh", "izoh"),
+          "tush": col("tushuntirish"), "mis": col("misol"), "uy": col("uyga", "uy vazifa"), "ochiq": col("ochiq dars ("), "ochiq_m": col("ochiq dars mavzu")}
+    def cell(r, k):
+        i = ci.get(k); v = r[i] if i is not None and i < len(r) else None
+        return re.sub(r"\s+", " ", str(v)).strip() if v is not None else ""
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur); _v1852_topic_permission(cur, user_id, maktab_id, sinf_id, fan)
+        cur.execute("""SELECT id, sana, dars_raqami, mavzu FROM aqlli_mavzu_taqvimi_v2
+                       WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s ORDER BY sana, dars_raqami""", (maktab_id, sinf_id, fan, chorak))
+        cal = [dict(r) for r in cur.fetchall()]
+        if not cal: raise HTTPException(status_code=404, detail="Kalendar bo'sh — avval 'Sanalarga joylash'")
+        by_id = {int(c["id"]): c for c in cal}
+        by_key = {(c["sana"].isoformat(), int(c["dars_raqami"])): c for c in cal}
+        by_topic = {}
+        for c in cal: by_topic.setdefault(_v1874_subject_key(c["mavzu"]), []).append(c)
+        used = set(); matched = []; unmatched = []
+        for r in raw[head_i + 1:]:
+            if not r or not any(str(c or "").strip() for c in r): continue
+            target = None
+            try:
+                idv = int(float(cell(r, "id"))) if cell(r, "id") else None
+                if idv in by_id: target = by_id[idv]
+            except ValueError: pass
+            if target is None and cell(r, "sana"):
+                sana = cell(r, "sana")[:10].replace(".", "-")
+                if re.match(r"^\d{2}-\d{2}-\d{4}$", sana): sana = "-".join(reversed(sana.split("-")))
+                try: dars = int(float(cell(r, "dars") or 0))
+                except ValueError: dars = 0
+                target = by_key.get((sana, dars))
+            if target is None and cell(r, "mavzu"):
+                cands = [c for c in by_topic.get(_v1874_subject_key(cell(r, "mavzu")), []) if int(c["id"]) not in used]
+                if cands: target = cands[0]
+            if target is None or int(target["id"]) in used:
+                unmatched.append({"sana": cell(r, "sana"), "mavzu": cell(r, "mavzu")[:80]}); continue
+            used.add(int(target["id"]))
+            matched.append({"id": int(target["id"]), "sana": target["sana"].isoformat(), "mavzu": target["mavzu"], "qisqa_izoh": cell(r, "izoh")[:400] or None,
+                            "tushuntirish": cell(r, "tush")[:4000] or None, "misollar": cell(r, "mis")[:4000] or None, "uy_vazifa": cell(r, "uy")[:1000] or None,
+                            "ochiq_dars": cell(r, "ochiq").lower() in ("ha", "yes", "+", "1", "true", "✓"), "ochiq_dars_mavzu": cell(r, "ochiq_m")[:300] or None})
+        written = 0
+        if int(tasdiqlash or 0) == 1:
+            for m in matched:
+                cur.execute("""UPDATE aqlli_mavzu_taqvimi_v2 SET qisqa_izoh=COALESCE(%s,qisqa_izoh), tushuntirish=COALESCE(%s,tushuntirish), misollar=COALESCE(%s,misollar),
+                                  uy_vazifa=COALESCE(%s,uy_vazifa), ochiq_dars=%s, ochiq_dars_mavzu=CASE WHEN %s THEN COALESCE(%s,ochiq_dars_mavzu) ELSE ochiq_dars_mavzu END,
+                                  ochiq_dars_belgilagan=CASE WHEN %s THEN %s ELSE ochiq_dars_belgilagan END
+                               WHERE id=%s AND maktab_id=%s""",
+                            (m["qisqa_izoh"], m["tushuntirish"], m["misollar"], m["uy_vazifa"], m["ochiq_dars"], m["ochiq_dars"], m["ochiq_dars_mavzu"], m["ochiq_dars"], user_id, m["id"], maktab_id))
+                written += cur.rowcount
+            conn.commit()
+        return {"tasdiqlandi": int(tasdiqlash or 0) == 1, "moslandi": len(matched), "yozildi": written, "moslanmadi": len(unmatched),
+                "kalendar_soni": len(cal), "moslangan_royxat": matched[:200], "moslanmagan_royxat": unmatched[:100]}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+class V2264OchiqDars(BaseModel):
+    maktab_id: int
+    taqvim_id: int
+    ochiq: bool = True
+    mavzu: Optional[str] = None
+
+
+@app.post("/api/maktab/aqlli_jadval/v2/ochiq_dars")
+def v2264_ochiq_dars(sorov: V2264OchiqDars, token: str):
+    """Ochiq dars: o'qituvchi o'z darsiga, rahbariyat (zavuch) istalgan o'qituvchi darsiga belgilaydi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1852_tables(cur)
+        cur.execute("SELECT sinf_id, fan_nomi, oqituvchi_user_id FROM aqlli_mavzu_taqvimi_v2 WHERE id=%s AND maktab_id=%s", (sorov.taqvim_id, sorov.maktab_id))
+        row = cur.fetchone()
+        if not row: raise HTTPException(status_code=404, detail="Dars topilmadi")
+        if not _maktab_boshqaruvchi_mi(cur, user_id, sorov.maktab_id) and int(row.get("oqituvchi_user_id") or 0) != int(user_id):
+            _v1852_topic_permission(cur, user_id, sorov.maktab_id, int(row["sinf_id"]), row["fan_nomi"])
+        cur.execute("""UPDATE aqlli_mavzu_taqvimi_v2 SET ochiq_dars=%s, ochiq_dars_mavzu=%s, ochiq_dars_belgilagan=%s WHERE id=%s""",
+                    (bool(sorov.ochiq), (sorov.mavzu or "").strip()[:300] or None if sorov.ochiq else None, user_id if sorov.ochiq else None, sorov.taqvim_id))
+        conn.commit(); return {"holat": "belgilandi" if sorov.ochiq else "bekor_qilindi"}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -846,7 +1026,7 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
         if taq_bor and hafta:
             sinf_ids = sorted({int(h["sinf_id"]) for h in hafta})
             cur.execute("ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
-            cur.execute("""SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qisqa_izoh
+            cur.execute("""SELECT id AS taqvim_id, sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qisqa_izoh, tushuntirish, misollar, uy_vazifa, ochiq_dars, ochiq_dars_mavzu
                            FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=ANY(%s) AND sana IN (%s,%s)""",
                         (mid, sinf_ids, bugun, ertaga))
             for r in cur.fetchall():
@@ -863,7 +1043,9 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
             out = []
             for h in rows:
                 m = mavzu_by_key.get((int(h["sinf_id"]), _v1874_subject_key(h["fan"]), d, int(h["dars_raqami"]), int(h["smena"])))
-                out.append({**h, "sana": d.isoformat(), "mavzu": (m or {}).get("mavzu"), "mavzu_turi": (m or {}).get("turi"), "mavzu_manba": (m or {}).get("manba"), "mavzu_tartib": (m or {}).get("tartib"), "qisqa_izoh": (m or {}).get("qisqa_izoh")})
+                out.append({**h, "sana": d.isoformat(), "mavzu": (m or {}).get("mavzu"), "mavzu_turi": (m or {}).get("turi"), "mavzu_manba": (m or {}).get("manba"), "mavzu_tartib": (m or {}).get("tartib"), "qisqa_izoh": (m or {}).get("qisqa_izoh"), "taqvim_id": (m or {}).get("taqvim_id"),
+                            "tushuntirish": (m or {}).get("tushuntirish"), "misollar": (m or {}).get("misollar"), "uy_vazifa": (m or {}).get("uy_vazifa"),
+                            "ochiq_dars": bool((m or {}).get("ochiq_dars")), "ochiq_dars_mavzu": (m or {}).get("ochiq_dars_mavzu")})
             return out
 
         bugun_darslar = kun_darslari(bugun) if oquv_kunimi(bugun) else []
@@ -1935,7 +2117,9 @@ def _v1852_create_tables(cur):
         UNIQUE(maktab_id,sinf_id,fan_nomi,chorak,tartib)
     )""")
     cur.execute("ALTER TABLE aqlli_mavzu_rejalari_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
-    cur.execute("ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
+    for col in ("qisqa_izoh TEXT", "tushuntirish TEXT", "misollar TEXT", "uy_vazifa TEXT",
+                "ochiq_dars BOOLEAN NOT NULL DEFAULT FALSE", "ochiq_dars_mavzu TEXT", "ochiq_dars_belgilagan BIGINT"):
+        cur.execute(f"ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS {col}")
     cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_mavzu_taqvimi_v2(
         id BIGSERIAL PRIMARY KEY,
@@ -6241,16 +6425,45 @@ def v1852_import_dts_topics(token: str, maktab_id: int, sinf_id: int, fan: str, 
         if not cls:
             raise HTTPException(status_code=404, detail="Sinf topilmadi")
         cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
-        cur.execute("""SELECT MIN(topic_code) AS topic_code, MAX(qisqa_izoh) AS qisqa_izoh,
-                              COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) AS mavzu
-                       FROM dts_tree
-                       WHERE grade=%s AND UPPER(TRIM(subject_name))=UPPER(TRIM(%s))
-                         AND is_deleted=FALSE AND COALESCE(NULLIF(quarter,''),'1')=%s
-                       GROUP BY COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name)
-                       HAVING COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) IS NOT NULL
-                       ORDER BY MIN(topic_code)""", (str(cls["sinf"]), fan, str(chorak)))
-        topics = [{"mavzu": row["mavzu"], "soat": 1, "turi": "mavzu", "topic_code": row["topic_code"], "manba": "dts", "qisqa_izoh": row.get("qisqa_izoh")} for row in cur.fetchall()]
-        return {"mavzular": topics, "sinf": cls["sinf"], "fan": fan, "chorak": chorak}
+        # V2265: fan nomi va chorak "yumshoq" moslanadi:
+        #  - fan: harflar bo'yicha kalit (Matematika = MATEMATIKA = matematika), RU/EN nomlar kanonik o'zbekchaga keltiriladi,
+        #         "Musiqa madaniyati" ~ "Musiqa" kabi qisqa/uzun variantlar ham topiladi
+        #  - chorak: '1', '01', '01-chorak', '1-chorak' — hammasi 1
+        #  - sinf: '1', '01', '1-sinf'
+        fan_key = _v1874_subject_key(fan)
+        keys = _v2266_dts_subject_keys(fan)
+        grade_int = int(re.sub(r"\D", "", str(cls["sinf"])) or 0)
+        rows_try = []
+        # 1) aniq alias moslik; 2) topilmasa — qisqa/uzun (LIKE) moslik
+        for attempt in ("aniq", "yumshoq"):
+            if attempt == "aniq":
+                cond = "BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g'))=ANY(%s)"; cond_params = [keys]
+            else:
+                cond = "(BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g')) LIKE %s OR %s LIKE '%%' || BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g')) || '%%')"
+                cond_params = [fan_key + "%", fan_key]
+            cur.execute(f"""SELECT MIN(topic_code) AS topic_code, MAX(qisqa_izoh) AS qisqa_izoh, MIN(subject_name) AS dts_fan,
+                                   COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) AS mavzu
+                            FROM dts_tree
+                            WHERE NULLIF(REGEXP_REPLACE(COALESCE(grade,''),'\\D','','g'),'')::int=%s
+                              AND is_deleted=FALSE
+                              AND COALESCE(NULLIF(REGEXP_REPLACE(COALESCE(quarter,''),'\\D','','g'),'')::int,1)=%s
+                              AND {cond}
+                            GROUP BY COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name)
+                            HAVING COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) IS NOT NULL
+                            ORDER BY MIN(topic_code)""", [grade_int, int(chorak), *cond_params])
+            rows_try = cur.fetchall()
+            if rows_try:
+                break
+        rows = rows_try
+        topics = [{"mavzu": row["mavzu"], "soat": 1, "turi": "mavzu", "topic_code": row["topic_code"], "manba": "dts", "qisqa_izoh": row.get("qisqa_izoh")} for row in rows]
+        mavjud = []
+        if not topics:
+            # Nima bor — o'qituvchiga ko'rsatamiz: shu sinf uchun DTS'da qaysi fanlar va choraklar bor
+            cur.execute("""SELECT subject_name, COALESCE(NULLIF(REGEXP_REPLACE(COALESCE(quarter,''),'\\D','','g'),'')::int,1) AS ch, COUNT(*) AS n
+                           FROM dts_tree WHERE NULLIF(REGEXP_REPLACE(COALESCE(grade,''),'\\D','','g'),'')::int=%s AND is_deleted=FALSE
+                           GROUP BY subject_name, ch ORDER BY subject_name, ch""", (int(re.sub(r"\D", "", str(cls["sinf"])) or 0),))
+            mavjud = [{"fan": r["subject_name"], "chorak": int(r["ch"]), "mavzu_soni": int(r["n"])} for r in cur.fetchall()]
+        return {"mavzular": topics, "sinf": cls["sinf"], "fan": fan, "chorak": chorak, "dts_fan": rows[0]["dts_fan"] if rows else None, "dts_mavjud": mavjud}
     finally:
         cur.close(); conn.close()
 
@@ -15600,6 +15813,45 @@ _V238_EN_SUBJECT_NAMES = {
     "Texnologiya": "Technology", "Jismoniy tarbiya": "Physical Education",
     "Chaqiruvga qadar boshlang'ich tayyorgarlik": "Pre-conscription Training",
 }
+# V2266: Maktab (o'quv reja) fan nomi -> DTS bazasidagi nom variantlari.
+# DTS'da sinfdan sinfga nom farq qiladi (1-sinf "ONA TILI VA YOZUV", 2-sinf "ONA TILI"; 5-sinf "MUSIQA", 6-sinf "MUSIQA MADANIYATI";
+# "TEXNALOGIYA" xato yozuvi, "O'G'IL/QIZLAR" variantlari va h.k.). Kalitlar _v1874_subject_key orqali solishtiriladi.
+_V2266_DTS_ALIASES = {
+    "Ona tili": ["ONA TILI", "ONA TILI VA YOZUV"],
+    "O'qish savodxonligi": ["O'QISH SAVODXONLIGI", "O'QISH SAVODXONLIGI VA ALIFBE", "OQISH SAVODXONLIGI"],
+    "Adabiyot": ["ADABIYOT"],
+    "Chet tili": ["INGLIZ TILI", "NEMIS TILI", "FRANSUZ TILI", "CHET TILI"],
+    "Ingliz tili": ["INGLIZ TILI"], "Nemis tili": ["NEMIS TILI"], "Fransuz tili": ["FRANSUZ TILI"], "Rus tili": ["RUS TILI"],
+    "Matematika": ["MATEMATIKA"], "Algebra": ["ALGEBRA"], "Geometriya": ["GEOMETRIYA"],
+    "Informatika va axborot texnologiyalari": ["INFORMATIKA", "INFORMATIKA VA AXBOROT TEXNOLOGIYALARI"],
+    "Tabiiy fan (Science)": ["TABIIY FAN", "TABIIY FANLAR", "TABIIY FAN (SCIENCE)"],
+    "Fizika": ["FIZIKA"], "Kimyo": ["KIMYO"], "Biologiya": ["BIOLOGIYA"], "Geografiya": ["GEOGRAFIYA"], "Astronomiya": ["ASTRONOMIYA"],
+    "Tarixdan hikoyalar": ["TARIXDAN HIKOYALAR"], "Qadimgi dunyo tarixi": ["QADIMGI DUNYO TARIXI"], "Jahon tarixi": ["JAHON TARIXI"],
+    "O'zbekiston tarixi": ["O'ZBEKISTON TARIXI", "OZBEKISTON TARIXI"],
+    "Davlat va huquq asoslari": ["DAVLAT VA HUQUQ ASOSLARI"], "Iqtisodiy bilim asoslari": ["IQTISODIY BILIM ASOSLARI"],
+    "Tadbirkorlik asoslari": ["TADBIRKORLIK ASOSLARI"], "Tarbiya": ["TARBIYA"],
+    "Musiqa madaniyati": ["MUSIQA MADANIYATI", "MUSIQA"], "Tasviriy san'at": ["TASVIRIY SAN'AT", "TASVIRIY SANAT"], "Chizmachilik": ["CHIZMACHILIK"],
+    "Texnologiya": ["TEXNOLOGIYA", "TEXNALOGIYA", "TEXNALOGIYA O'G'IL", "TEXNALOGIYA OGIL BOLALAR", "TEXNALOGIYA QIZLAR", "TEXNOLOGIYA O'G'IL BOLALAR", "TEXNOLOGIYA QIZLAR"],
+    "Jismoniy tarbiya": ["JISMONIY TARBIYA"],
+    "Chaqiruvga qadar boshlang'ich tayyorgarlik": ["CHAQIRUVGA QADAR BOSHLANG'ICH TAYYORGARLIK", "CHAQIRUVGA QADAR BOSHLANGICH TAYYORGARLIK", "CHQBT"],
+}
+
+
+def _v2266_dts_subject_keys(fan: str):
+    """Maktab fan nomi uchun DTS'da qidiriladigan barcha kalitlar (o'zi, kanonik, aliaslar)."""
+    fan_key = _v1874_subject_key(fan)
+    canon = _V242_CANONICAL_SUBJECT_BY_KEY.get(fan_key)
+    keys = {fan_key}
+    if canon:
+        keys.add(_v1874_subject_key(canon))
+    for canonical_name, aliases in _V2266_DTS_ALIASES.items():
+        ck = _v1874_subject_key(canonical_name)
+        alias_keys = {_v1874_subject_key(a) for a in aliases}
+        if fan_key == ck or fan_key in alias_keys or (canon and _v1874_subject_key(canon) == ck):
+            keys |= alias_keys | {ck}
+    return sorted(k for k in keys if k)
+
+
 _V242_CANONICAL_SUBJECT_BY_KEY = {
     _v1874_subject_key(localized_name): canonical_name
     for canonical_name in _V238_RU_SUBJECT_NAMES
