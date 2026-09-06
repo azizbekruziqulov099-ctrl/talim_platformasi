@@ -526,8 +526,42 @@ def _v2263_tasdiq_jadvali(cur):
     )""")
 
 
+def _v2263_avto_uzaytir(cur, maktab_id: int):
+    """Oldingi chorak barcha sinf uchun tasdiqlangan bo'lsa va yangi chorak yaqinlashsa (14 kun) —
+    yangi chorak avtomatik tasdiqlanadi (izoh: avto) va mavzu avtopiloti ishga tushadi.
+    Rahbariyat avto tasdiqni bekor qilsa, o'sha chorak qayta avtolanmaydi."""
+    try:
+        cur.execute("ALTER TABLE aqlli_kalendar_tasdiqlari_v2263 ADD COLUMN IF NOT EXISTS avto BOOLEAN NOT NULL DEFAULT FALSE")
+        cur.execute("CREATE TABLE IF NOT EXISTS aqlli_kalendar_avto_bekor_v2263(maktab_id INTEGER NOT NULL, chorak INTEGER NOT NULL, PRIMARY KEY(maktab_id, chorak))")
+        year = _v1852_active_year(cur, maktab_id)
+        if not year:
+            return
+        cur.execute("SELECT chorak, boshlanish, tugash FROM aqlli_choraklar_v2 WHERE oquv_yili_id=%s ORDER BY chorak", (year["id"],))
+        qs = [dict(r) for r in cur.fetchall()]
+        bugun = datetime.now().date()
+        cur.execute("SELECT dan, gacha, sinf_ids FROM aqlli_kalendar_tasdiqlari_v2263 WHERE maktab_id=%s", (maktab_id,))
+        ts = [dict(r) for r in cur.fetchall()]
+        if not ts:
+            return
+        cur.execute("SELECT chorak FROM aqlli_kalendar_avto_bekor_v2263 WHERE maktab_id=%s", (maktab_id,))
+        bekor = {int(r["chorak"]) for r in cur.fetchall()}
+        for i, q in enumerate(qs):
+            if i == 0 or q["boshlanish"] > bugun + timedelta(days=14) or int(q["chorak"]) in bekor:
+                continue
+            prev = qs[i - 1]
+            prev_ok = any(t["dan"] <= prev["boshlanish"] and t["gacha"] >= prev["tugash"] and not t["sinf_ids"] for t in ts)
+            cur_has = any(t["dan"] <= q["tugash"] and t["gacha"] >= q["boshlanish"] for t in ts)
+            if prev_ok and not cur_has:
+                cur.execute("""INSERT INTO aqlli_kalendar_tasdiqlari_v2263(maktab_id,dan,gacha,sinf_ids,izoh,tasdiqlagan_user_id,avto)
+                               VALUES(%s,%s,%s,NULL,%s,NULL,TRUE)""", (maktab_id, q["boshlanish"], q["tugash"], f"avto: {q['chorak']}-chorak (oldingi chorak tasdiqlangan edi)"))
+                _v2268_spawn([maktab_id], [int(q["chorak"])], "avto_chorak")
+    except Exception:
+        pass
+
+
 def _v2263_tasdiqlar(cur, maktab_id: int):
     _v2263_tasdiq_jadvali(cur)
+    _v2263_avto_uzaytir(cur, maktab_id)
     cur.execute("""SELECT t.id, t.dan, t.gacha, t.sinf_ids, t.izoh, t.yaratilgan_at, u.full_name AS tasdiqlagan
                    FROM aqlli_kalendar_tasdiqlari_v2263 t LEFT JOIN users u ON u.user_id=t.tasdiqlagan_user_id
                    WHERE t.maktab_id=%s ORDER BY t.dan""", (maktab_id,))
@@ -584,7 +618,8 @@ def v2263_kalendar_tasdiqlash(sorov: V2263KalendarTasdiq, token: str):
                        VALUES(%s,%s,%s,%s,%s,%s) RETURNING id""", (sorov.maktab_id, d0, d1, sinf_ids, (sorov.izoh or "").strip()[:200] or None, user_id))
         new_id = int(cur.fetchone()["id"])
         conn.commit()
-        return {"holat": "tasdiqlandi", "id": new_id, "dan": d0.isoformat(), "gacha": d1.isoformat(), "sinf_ids": sinf_ids}
+        _v2268_spawn([sorov.maktab_id], None, "kalendar_tasdiqlandi")
+        return {"holat": "tasdiqlandi", "id": new_id, "dan": d0.isoformat(), "gacha": d1.isoformat(), "sinf_ids": sinf_ids, "mavzu_avtopilot": "boshlandi"}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -599,6 +634,16 @@ def v2263_kalendar_tasdiq_bekor(token: str, maktab_id: int, tasdiq_id: int):
         if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
             raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati")
         _v2263_tasdiq_jadvali(cur)
+        cur.execute("ALTER TABLE aqlli_kalendar_tasdiqlari_v2263 ADD COLUMN IF NOT EXISTS avto BOOLEAN NOT NULL DEFAULT FALSE")
+        cur.execute("CREATE TABLE IF NOT EXISTS aqlli_kalendar_avto_bekor_v2263(maktab_id INTEGER NOT NULL, chorak INTEGER NOT NULL, PRIMARY KEY(maktab_id, chorak))")
+        cur.execute("SELECT dan, gacha, avto FROM aqlli_kalendar_tasdiqlari_v2263 WHERE id=%s AND maktab_id=%s", (tasdiq_id, maktab_id))
+        row = cur.fetchone()
+        if row and row.get("avto"):
+            year = _v1852_active_year(cur, maktab_id)
+            if year:
+                cur.execute("SELECT chorak FROM aqlli_choraklar_v2 WHERE oquv_yili_id=%s AND boshlanish<=%s AND tugash>=%s", (year["id"], row["dan"], row["dan"]))
+                for r in cur.fetchall():
+                    cur.execute("INSERT INTO aqlli_kalendar_avto_bekor_v2263(maktab_id,chorak) VALUES(%s,%s) ON CONFLICT DO NOTHING", (maktab_id, int(r["chorak"])))
         cur.execute("DELETE FROM aqlli_kalendar_tasdiqlari_v2263 WHERE id=%s AND maktab_id=%s", (tasdiq_id, maktab_id))
         conn.commit(); return {"holat": "bekor_qilindi", "ochirildi": cur.rowcount}
     except Exception:
@@ -823,6 +868,150 @@ def v2264_ochiq_dars(sorov: V2264OchiqDars, token: str):
         conn.rollback(); raise
     finally:
         cur.close(); conn.close()
+
+
+# =============================================================================
+# MAVZU AVTOPILOTI (V2268): jadval + kalendar tasdiqlangach barcha sinf-fan uchun DTS mavzularini
+# fon rejimida qo'yadi. Har maktab uchun alohida qulf; sinf-fan bo'yicha alohida commit; qotmaydi.
+# O'qituvchi tasdiqlagan/qulflagan qatorlarga tegilmaydi. Jadval o'zgarsa qayta ishlaydi.
+# =============================================================================
+_V2268_LOCKS = {}
+_V2268_LOCKS_GUARD = _samtm_threading.Lock()
+_V2268_LOG = {}   # maktab_id -> oxirgi natija
+
+
+def _v2268_lock_for(maktab_id: int):
+    with _V2268_LOCKS_GUARD:
+        return _V2268_LOCKS.setdefault(int(maktab_id), _samtm_threading.Lock())
+
+
+def _v2268_run_school(maktab_id: int, choraklar=None, sabab: str = ""):
+    """Bitta maktab uchun avtopilot (fon threadida chaqiriladi)."""
+    lock = _v2268_lock_for(maktab_id)
+    if not lock.acquire(blocking=False):
+        return {"holat": "band"}
+    stats = {"maktab_id": int(maktab_id), "sabab": sabab, "reja_yaratildi": 0, "taqsimlandi": 0, "otkazildi": 0, "xatolar": [], "boshlandi": datetime.now().isoformat()}
+    conn = None
+    try:
+        conn = _db(); cur = conn.cursor()
+        _v1852_tables(cur); _v2263_tasdiq_jadvali(cur)
+        run = _v1852_active_run(cur, maktab_id)
+        year = _v1852_active_year(cur, maktab_id)
+        if not run or not year:
+            stats["holat"] = "jadval_yoki_yil_yoq"; _V2268_LOG[int(maktab_id)] = stats; return stats
+        tasdiqlar = _v2263_tasdiqlar(cur, maktab_id)
+        cur.execute("SELECT chorak, boshlanish, tugash FROM aqlli_choraklar_v2 WHERE oquv_yili_id=%s ORDER BY chorak", (year["id"],))
+        qrows = {int(r["chorak"]): dict(r) for r in cur.fetchall()}
+        def chorak_tasdiqlanganmi(ch, sinf_id):
+            q = qrows.get(ch)
+            if not q: return False
+            return any(t["dan"] <= q["tugash"] and t["gacha"] >= q["boshlanish"] and (not t["sinf_ids"] or int(sinf_id) in [int(x) for x in t["sinf_ids"]]) for t in tasdiqlar)
+        target_q = [int(c) for c in (choraklar or [1, 2, 3, 4])]
+        cur.execute("""SELECT DISTINCT e.sinf_id, e.fan_nomi, s.sinf FROM aqlli_jadval_slotlari_v2 e JOIN maktab_sinflari s ON s.id=e.sinf_id
+                       WHERE e.urinish_id=%s ORDER BY e.sinf_id, e.fan_nomi""", (run["id"],))
+        pairs = [dict(r) for r in cur.fetchall()]
+        conn.commit()
+        for n, pr in enumerate(pairs):
+            for ch in target_q:
+                if not chorak_tasdiqlanganmi(ch, pr["sinf_id"]):
+                    continue
+                try:
+                    cur.execute("SELECT COUNT(*) AS n FROM aqlli_mavzu_rejalari_v2 WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s",
+                                (maktab_id, pr["sinf_id"], pr["fan_nomi"], ch))
+                    has_plan = int(cur.fetchone()["n"] or 0) > 0
+                    if not has_plan:
+                        topics = _v2268_dts_rows(cur, pr["sinf"], pr["fan_nomi"], ch)
+                        if not topics:
+                            stats["otkazildi"] += 1; conn.commit(); continue
+                        rows = [(maktab_id, pr["sinf_id"], pr["fan_nomi"], ch, i + 1, t["mavzu"], 1, "mavzu", t.get("topic_code"), "dts", t.get("qisqa_izoh")) for i, t in enumerate(topics)]
+                        psycopg2.extras.execute_values(cur, """INSERT INTO aqlli_mavzu_rejalari_v2(
+                            maktab_id,sinf_id,fan_nomi,chorak,tartib,mavzu,soat,turi,topic_code,manba,qisqa_izoh) VALUES %s ON CONFLICT DO NOTHING""", rows)
+                        stats["reja_yaratildi"] += 1
+                    cur.execute("""SELECT COUNT(*) AS n, COUNT(*) FILTER(WHERE urinish_id IS DISTINCT FROM %s) AS eski
+                                   FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s""",
+                                (run["id"], maktab_id, pr["sinf_id"], pr["fan_nomi"], ch))
+                    c = cur.fetchone()
+                    if int(c["n"] or 0) == 0 or int(c["eski"] or 0) > 0:
+                        _v1852_distribute_topics_one(cur, maktab_id, pr["sinf_id"], pr["fan_nomi"], ch)
+                        stats["taqsimlandi"] += 1
+                    conn.commit()
+                except Exception as exc:
+                    conn.rollback()
+                    if len(stats["xatolar"]) < 20:
+                        stats["xatolar"].append(f"{pr['sinf']}-sinf {pr['fan_nomi']} {ch}-ch: {exc}")
+            if n % 25 == 24:
+                _samtm_time.sleep(0.05)
+        stats["holat"] = "tugadi"
+    except Exception as exc:
+        stats["holat"] = "xato"; stats["xatolar"].append(str(exc))
+        if conn:
+            try: conn.rollback()
+            except Exception: pass
+    finally:
+        if conn:
+            try: conn.close()
+            except Exception: pass
+        stats["tugadi"] = datetime.now().isoformat()
+        _V2268_LOG[int(maktab_id)] = stats
+        lock.release()
+    return stats
+
+
+def _v2268_spawn(maktab_ids, choraklar=None, sabab: str = ""):
+    """Fon threadida ketma-ket (bir vaqtning o'zida faqat bitta maktab ishlanadi)."""
+    ids = [int(x) for x in maktab_ids]
+    def worker():
+        for mid in ids:
+            try:
+                _v2268_run_school(mid, choraklar, sabab)
+            except Exception as exc:
+                _V2268_LOG[mid] = {"holat": "xato", "xatolar": [str(exc)]}
+            _samtm_time.sleep(0.1)
+    _samtm_threading.Thread(target=worker, name=f"mavzu-avtopilot-{len(ids)}", daemon=True).start()
+
+
+@app.get("/api/maktab/mavzu_avtopilot_holati")
+def v2268_holat(token: str, maktab_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Faqat rahbariyat")
+        lock = _v2268_lock_for(maktab_id)
+        return {"ishlayapti": lock.locked(), "oxirgi": _V2268_LOG.get(int(maktab_id))}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/maktab/mavzu_avtopilot_boshlash")
+def v2268_boshlash(token: str, maktab_id: int, chorak: Optional[int] = None):
+    """Rahbariyat qo'lda ham ishga tushira oladi (masalan DTS yangilangandan keyin)."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Faqat rahbariyat")
+    finally:
+        cur.close(); conn.close()
+    _v2268_spawn([maktab_id], [chorak] if chorak else None, "qolda")
+    return {"holat": "boshlandi"}
+
+
+@app.post("/api/admin/dts_mavzularni_barcha_maktabga")
+def v2268_admin_hammasi(token: str, maktab_id: Optional[int] = None):
+    """Admin: barcha (yoki bitta) maktab uchun DTS mavzularini avto qo'yish — fon rejimida, navbat bilan."""
+    _admin_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if maktab_id:
+            ids = [int(maktab_id)]
+        else:
+            cur.execute("SELECT DISTINCT maktab_id FROM aqlli_jadval_urinishlari_v2 WHERE holat='tasdiqlangan' ORDER BY maktab_id")
+            ids = [int(r["maktab_id"]) for r in cur.fetchall()]
+    finally:
+        cur.close(); conn.close()
+    _v2268_spawn(ids, None, "admin")
+    return {"holat": "boshlandi", "maktablar": len(ids)}
 
 
 @app.get("/api/maktab/kalendar_jurnal")
@@ -6361,8 +6550,9 @@ def v1852_approve(sorov: V1852Approve, token: str):
         cur.execute("UPDATE aqlli_jadval_urinishlari_v2 SET holat='tasdiqlangan',tasdiqlangan_at=NOW() WHERE id=%s", (run["id"],))
         rebuild = _v1852_rebuild_all_topic_calendars(cur, run["maktab_id"])
         conn.commit()
+        _v2268_spawn([run["maktab_id"]], None, "jadval_tasdiqlandi")
         return {"holat": "tasdiqlandi", "urinish_id": run["id"],
-                "moslik": exact_moslik, **rebuild}
+                "moslik": exact_moslik, **rebuild, "mavzu_avtopilot": "boshlandi"}
     except Exception:
         conn.rollback(); raise
     finally:
@@ -6472,30 +6662,7 @@ def v1852_import_dts_topics(token: str, maktab_id: int, sinf_id: int, fan: str, 
         #         "Musiqa madaniyati" ~ "Musiqa" kabi qisqa/uzun variantlar ham topiladi
         #  - chorak: '1', '01', '01-chorak', '1-chorak' — hammasi 1
         #  - sinf: '1', '01', '1-sinf'
-        fan_key = _v1874_subject_key(fan)
-        keys = _v2266_dts_subject_keys(fan)
-        grade_int = int(re.sub(r"\D", "", str(cls["sinf"])) or 0)
-        rows_try = []
-        # 1) aniq alias moslik; 2) topilmasa — qisqa/uzun (LIKE) moslik
-        for attempt in ("aniq", "yumshoq"):
-            if attempt == "aniq":
-                cond = "BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g'))=ANY(%s)"; cond_params = [keys]
-            else:
-                cond = "(BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g')) LIKE %s OR %s LIKE '%%' || BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g')) || '%%')"
-                cond_params = [fan_key + "%", fan_key]
-            cur.execute(f"""SELECT MIN(topic_code) AS topic_code, MAX(qisqa_izoh) AS qisqa_izoh, MIN(subject_name) AS dts_fan,
-                                   COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) AS mavzu
-                            FROM dts_tree
-                            WHERE NULLIF(REGEXP_REPLACE(COALESCE(grade,''),'\\D','','g'),'')::int=%s
-                              AND is_deleted=FALSE
-                              AND COALESCE(NULLIF(REGEXP_REPLACE(COALESCE(quarter,''),'\\D','','g'),'')::int,1)=%s
-                              AND {cond}
-                            GROUP BY COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name)
-                            HAVING COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) IS NOT NULL
-                            ORDER BY MIN(topic_code)""", [grade_int, int(chorak), *cond_params])
-            rows_try = cur.fetchall()
-            if rows_try:
-                break
+        rows_try = _v2268_dts_rows(cur, cls["sinf"], fan, chorak)
         rows = rows_try
         topics = [{"mavzu": row["mavzu"], "soat": 1, "turi": "mavzu", "topic_code": row["topic_code"], "manba": "dts", "qisqa_izoh": row.get("qisqa_izoh")} for row in rows]
         mavjud = []
@@ -6562,7 +6729,7 @@ def _v1852_topic_sequence(plan_rows, available_count, load_row):
     base = []
     for row in plan_rows:
         for _ in range(max(1, int(row.get("soat") or 1))):
-            base.append({"mavzu": row["mavzu"], "turi": row["turi"], "topic_code": row.get("topic_code"), "qisqa_izoh": row.get("qisqa_izoh")})
+            base.append({"mavzu": _v2268_sarlavha(row["mavzu"]), "turi": row["turi"], "topic_code": row.get("topic_code"), "qisqa_izoh": row.get("qisqa_izoh")})
     if available_count <= len(base):
         return base[:available_count], [], base[available_count:]
     extra_count = available_count - len(base)
@@ -6665,7 +6832,7 @@ def _v1852_distribute_topics_one(cur, maktab_id: int, sinf_id: int, fan: str, ch
                    AND LOWER(fan_nomi)=LOWER(%s)""", (maktab_id, sinf_id, fan))
     load = cur.fetchone() or {}
     cur.execute("""SELECT * FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=%s
-                   AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s AND qulflangan=TRUE""",
+                   AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s AND (qulflangan=TRUE OR COALESCE(tasdiqlangan,FALSE)=TRUE)""",
                 (maktab_id, sinf_id, fan, chorak))
     locked = cur.fetchall()
     occupied = {(r["sana"], int(r["smena"]), int(r["dars_raqami"])) for r in locked}
@@ -6678,7 +6845,7 @@ def _v1852_distribute_topics_one(cur, maktab_id: int, sinf_id: int, fan: str, ch
     free_occurrences = [o for o in occurrences if (o["sana"], int(o["smena"]), int(o["dars_raqami"])) not in occupied]
     sequence, added, overflow = _v1852_topic_sequence(plan, len(free_occurrences), load)
     cur.execute("""DELETE FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=%s
-                   AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s AND qulflangan=FALSE""",
+                   AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s AND qulflangan=FALSE AND COALESCE(tasdiqlangan,FALSE)=FALSE""",
                 (maktab_id, sinf_id, fan, chorak))
     rows = []
     for order, (occurrence, topic) in enumerate(zip(free_occurrences, sequence), 1):
@@ -15893,6 +16060,41 @@ def _v2266_dts_subject_keys(fan: str):
             keys |= alias_keys | {ck}
     return sorted(k for k in keys if k)
 
+
+
+def _v2268_sarlavha(text):
+    """Mavzu nomi: bosh harf katta, ortiqcha bo'shliqlar olib tashlanadi (DTS'da kichik harfdan boshlanganlar tuzatiladi)."""
+    t = re.sub(r"\s+", " ", str(text or "")).strip()
+    return (t[0].upper() + t[1:]) if t and t[0].isalpha() and t[0].islower() else t
+
+
+def _v2268_dts_rows(cur, sinf, fan: str, chorak: int):
+    """DTS'dan sinf-fan-chorak mavzulari (alias va yumshoq moslik bilan)."""
+    fan_key = _v1874_subject_key(fan)
+    keys = _v2266_dts_subject_keys(fan)
+    grade_int = int(re.sub(r"\D", "", str(sinf)) or 0)
+    key_expr = "BTRIM(REGEXP_REPLACE(REGEXP_REPLACE(LOWER(subject_name),'[''‘’`ʼʻ]','','g'),'[^a-z0-9а-яёқғҳў]+',' ','g'))"
+    for attempt in ("aniq", "yumshoq"):
+        if attempt == "aniq":
+            cond = f"{key_expr}=ANY(%s)"; cond_params = [keys]
+        else:
+            cond = f"({key_expr} LIKE %s OR %s LIKE '%%' || {key_expr} || '%%')"; cond_params = [fan_key + "%", fan_key]
+        cur.execute(f"""SELECT MIN(topic_code) AS topic_code, MAX(qisqa_izoh) AS qisqa_izoh, MIN(subject_name) AS dts_fan,
+                               COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) AS mavzu
+                        FROM dts_tree
+                        WHERE NULLIF(REGEXP_REPLACE(COALESCE(grade,''),'\\D','','g'),'')::int=%s
+                          AND is_deleted=FALSE
+                          AND COALESCE(NULLIF(REGEXP_REPLACE(COALESCE(quarter,''),'\\D','','g'),'')::int,1)=%s
+                          AND {cond}
+                        GROUP BY COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name)
+                        HAVING COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) IS NOT NULL
+                        ORDER BY MIN(topic_code)""", [grade_int, int(chorak), *cond_params])
+        rows = [dict(r) for r in cur.fetchall()]
+        if rows:
+            for r in rows:
+                r["mavzu"] = _v2268_sarlavha(r["mavzu"])
+            return rows
+    return []
 
 _V242_CANONICAL_SUBJECT_BY_KEY = {
     _v1874_subject_key(localized_name): canonical_name
