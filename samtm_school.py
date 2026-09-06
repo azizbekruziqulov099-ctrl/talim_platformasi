@@ -473,7 +473,8 @@ def _v2262_kalendar_darslar(cur, maktab_id: int, dan, gacha, sinf_id=None, teach
     if (cur.fetchone() or {}).get("t"):
         where = ["maktab_id=%s", "sana BETWEEN %s AND %s"]; params = [maktab_id, dan, gacha]
         if sinf_id: where.append("sinf_id=%s"); params.append(sinf_id)
-        cur.execute(f"SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qulflangan FROM aqlli_mavzu_taqvimi_v2 WHERE {' AND '.join(where)}", params)
+        cur.execute("ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
+        cur.execute(f"SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qulflangan, qisqa_izoh FROM aqlli_mavzu_taqvimi_v2 WHERE {' AND '.join(where)}", params)
         for r in cur.fetchall():
             mavzular[(int(r["sinf_id"]), _v1874_subject_key(r["fan_nomi"]), r["sana"], int(r["dars_raqami"]), int(r["smena"]))] = dict(r)
 
@@ -497,7 +498,7 @@ def _v2262_kalendar_darslar(cur, maktab_id: int, dan, gacha, sinf_id=None, teach
                 m = mavzular.get((int(x["sinf_id"]), _v1874_subject_key(x["fan"]), d, int(x["dars_raqami"]), int(x["smena"])))
                 metodda = int(x["oqituvchi_user_id"] or 0) in metod and wd in metod[int(x["oqituvchi_user_id"])]
                 darslar.append({**x, "sana": d.isoformat(), "chorak": chorak, "hafta_turi_sana": ht,
-                                "mavzu": (m or {}).get("mavzu"), "mavzu_tartib": (m or {}).get("tartib"), "mavzu_manba": (m or {}).get("manba"),
+                                "mavzu": (m or {}).get("mavzu"), "mavzu_tartib": (m or {}).get("tartib"), "mavzu_manba": (m or {}).get("manba"), "mavzu_turi": (m or {}).get("turi"), "qisqa_izoh": (m or {}).get("qisqa_izoh"),
                                 "ogohlantirish": "o'qituvchining metod kuni" if metodda else None,
                                 "holat": "otildi" if d < bugun else "bugun" if d == bugun else "kutilmoqda"})
             darslar.sort(key=lambda z: (int(z["smena"]), int(z["dars_raqami"]), z["sinf_nomi"]))
@@ -506,6 +507,102 @@ def _v2262_kalendar_darslar(cur, maktab_id: int, dan, gacha, sinf_id=None, teach
     return {"oquv_yili": ({**yil, "boshlanish": yil["boshlanish"].isoformat(), "tugash": yil["tugash"].isoformat()} if yil else None),
             "choraklar": [{**c, "boshlanish": c["boshlanish"].isoformat(), "tugash": c["tugash"].isoformat()} for c in choraklar],
             "jadval_tasdiqlangan": bool(run), "kunlar": kunlar}
+
+
+# ---------- Kalendar tasdiqlash (V2263): jadval kalendarga qaysi sanadan, qancha muddat, qaysi sinflarga
+# yoyilishini rahbariyat tasdiqlaydi. Tasdiqlanmagan kunlar o'qituvchi/o'quvchi/ota-onaga ko'rinmaydi.
+def _v2263_tasdiq_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_kalendar_tasdiqlari_v2263(
+        id BIGSERIAL PRIMARY KEY,
+        maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
+        dan DATE NOT NULL, gacha DATE NOT NULL,
+        sinf_ids INTEGER[],
+        izoh TEXT,
+        tasdiqlagan_user_id BIGINT,
+        yaratilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        CHECK (gacha >= dan)
+    )""")
+
+
+def _v2263_tasdiqlar(cur, maktab_id: int):
+    _v2263_tasdiq_jadvali(cur)
+    cur.execute("""SELECT t.id, t.dan, t.gacha, t.sinf_ids, t.izoh, t.yaratilgan_at, u.full_name AS tasdiqlagan
+                   FROM aqlli_kalendar_tasdiqlari_v2263 t LEFT JOIN users u ON u.user_id=t.tasdiqlagan_user_id
+                   WHERE t.maktab_id=%s ORDER BY t.dan""", (maktab_id,))
+    return [dict(r) for r in cur.fetchall()]
+
+
+def _v2263_tasdiqlanganmi(tasdiqlar, sana, sinf_id) -> bool:
+    for t in tasdiqlar:
+        if t["dan"] <= sana <= t["gacha"] and (not t["sinf_ids"] or int(sinf_id) in [int(x) for x in t["sinf_ids"]]):
+            return True
+    return False
+
+
+class V2263KalendarTasdiq(BaseModel):
+    maktab_id: int
+    dan: str
+    gacha: str
+    sinf_ids: Optional[list[int]] = None   # None/bo'sh = barcha sinflar
+    izoh: Optional[str] = None
+
+
+@app.get("/api/maktab/kalendar_tasdiqlari")
+def v2263_kalendar_tasdiqlari(token: str, maktab_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        cur.execute("SELECT 1 FROM users WHERE user_id=%s AND maktab_id=%s", (user_id, maktab_id))
+        if not cur.fetchone() and not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Ruxsat yo'q")
+        rows = _v2263_tasdiqlar(cur, maktab_id)
+        for r in rows:
+            r["dan"] = r["dan"].isoformat(); r["gacha"] = r["gacha"].isoformat(); r["yaratilgan_at"] = r["yaratilgan_at"].isoformat()
+        return {"tasdiqlar": rows}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/maktab/kalendar_tasdiqlash")
+def v2263_kalendar_tasdiqlash(sorov: V2263KalendarTasdiq, token: str):
+    """Rahbariyat: 'shu sanadan shu sanagacha, shu sinflar uchun jadval kalendarda amalda'."""
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _maktab_boshqaruvchi_mi(cur, user_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati tasdiqlaydi")
+        _v2263_tasdiq_jadvali(cur)
+        d0 = date.fromisoformat(sorov.dan); d1 = date.fromisoformat(sorov.gacha)
+        if d1 < d0: raise HTTPException(status_code=400, detail="Tugash sanasi boshlanishdan oldin")
+        if (d1 - d0).days > 300: raise HTTPException(status_code=400, detail="Bir tasdiq 300 kundan oshmasin")
+        cur.execute("SELECT id FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s AND holat='tasdiqlangan' LIMIT 1", (sorov.maktab_id,))
+        cur.execute("SELECT to_regclass('public.dars_jadvali') AS t")
+        sinf_ids = [int(x) for x in (sorov.sinf_ids or []) if x] or None
+        cur.execute("""INSERT INTO aqlli_kalendar_tasdiqlari_v2263(maktab_id,dan,gacha,sinf_ids,izoh,tasdiqlagan_user_id)
+                       VALUES(%s,%s,%s,%s,%s,%s) RETURNING id""", (sorov.maktab_id, d0, d1, sinf_ids, (sorov.izoh or "").strip()[:200] or None, user_id))
+        new_id = int(cur.fetchone()["id"])
+        conn.commit()
+        return {"holat": "tasdiqlandi", "id": new_id, "dan": d0.isoformat(), "gacha": d1.isoformat(), "sinf_ids": sinf_ids}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
+
+
+@app.delete("/api/maktab/kalendar_tasdiqlash")
+def v2263_kalendar_tasdiq_bekor(token: str, maktab_id: int, tasdiq_id: int):
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati")
+        _v2263_tasdiq_jadvali(cur)
+        cur.execute("DELETE FROM aqlli_kalendar_tasdiqlari_v2263 WHERE id=%s AND maktab_id=%s", (tasdiq_id, maktab_id))
+        conn.commit(); return {"holat": "bekor_qilindi", "ochirildi": cur.rowcount}
+    except Exception:
+        conn.rollback(); raise
+    finally:
+        cur.close(); conn.close()
 
 
 @app.get("/api/maktab/kalendar_jurnal")
@@ -548,6 +645,17 @@ def v2262_kalendar_jurnal(token: str, maktab_id: int, dan: Optional[str] = None,
         if (d1 - d0).days > 200:
             raise HTTPException(status_code=400, detail="Oraliq 200 kundan oshmasin")
         natija = _v2262_kalendar_darslar(cur, maktab_id, d0, d1, sinf_id=sinf_id, teacher_id=oqituvchi_user_id)
+        # Tasdiqlash qatlami: har dars "tasdiqlangan" bayrog'i; rahbar bo'lmasa — tasdiqlanmaganlar chiqmaydi
+        tasdiqlar = _v2263_tasdiqlar(cur, maktab_id)
+        for k in natija["kunlar"]:
+            sana = date.fromisoformat(k["sana"])
+            for dz in k["darslar"]:
+                dz["tasdiqlangan"] = _v2263_tasdiqlanganmi(tasdiqlar, sana, dz["sinf_id"])
+            if not rahbar:
+                k["darslar"] = [dz for dz in k["darslar"] if dz["tasdiqlangan"]]
+            k["tasdiqlangan"] = bool(k["darslar"]) and all(dz["tasdiqlangan"] for dz in k["darslar"])
+        natija["tasdiqlar"] = [{**t, "dan": t["dan"].isoformat(), "gacha": t["gacha"].isoformat(), "yaratilgan_at": t["yaratilgan_at"].isoformat()} for t in tasdiqlar]
+        natija["rahbar"] = bool(rahbar)
         cur.execute("SELECT id, sinf, harf, smena FROM maktab_sinflari WHERE maktab_id=%s ORDER BY sinf::int, harf", (maktab_id,))
         natija["sinflar"] = [{**dict(r), "nomi": f"{r['sinf']}-{r['harf']}"} for r in cur.fetchall()]
         natija["dan"] = d0.isoformat(); natija["gacha"] = d1.isoformat(); natija["davr"] = davr
@@ -737,7 +845,8 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
         mavzu_by_key = {}
         if taq_bor and hafta:
             sinf_ids = sorted({int(h["sinf_id"]) for h in hafta})
-            cur.execute("""SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba
+            cur.execute("ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
+            cur.execute("""SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba, qisqa_izoh
                            FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=ANY(%s) AND sana IN (%s,%s)""",
                         (mid, sinf_ids, bugun, ertaga))
             for r in cur.fetchall():
@@ -754,11 +863,16 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
             out = []
             for h in rows:
                 m = mavzu_by_key.get((int(h["sinf_id"]), _v1874_subject_key(h["fan"]), d, int(h["dars_raqami"]), int(h["smena"])))
-                out.append({**h, "sana": d.isoformat(), "mavzu": (m or {}).get("mavzu"), "mavzu_turi": (m or {}).get("turi"), "mavzu_manba": (m or {}).get("manba"), "mavzu_tartib": (m or {}).get("tartib")})
+                out.append({**h, "sana": d.isoformat(), "mavzu": (m or {}).get("mavzu"), "mavzu_turi": (m or {}).get("turi"), "mavzu_manba": (m or {}).get("manba"), "mavzu_tartib": (m or {}).get("tartib"), "qisqa_izoh": (m or {}).get("qisqa_izoh")})
             return out
 
         bugun_darslar = kun_darslari(bugun) if oquv_kunimi(bugun) else []
         ertaga_darslar = kun_darslari(ertaga)
+        # Kalendar tasdiqlanmagan bo'lsa o'qituvchiga bugun/ertaga darslar chiqmaydi (haftalik jadval ko'rinaveradi)
+        _tasdiqlar = _v2263_tasdiqlar(cur, mid)
+        kalendar_tasdiqlangan_bugun = any(_v2263_tasdiqlanganmi(_tasdiqlar, bugun, d["sinf_id"]) for d in bugun_darslar) if bugun_darslar else bool(_tasdiqlar) and any(t["dan"] <= bugun <= t["gacha"] for t in _tasdiqlar)
+        bugun_darslar = [d for d in bugun_darslar if _v2263_tasdiqlanganmi(_tasdiqlar, bugun, d["sinf_id"])]
+        ertaga_darslar = [d for d in ertaga_darslar if _v2263_tasdiqlanganmi(_tasdiqlar, ertaga, d["sinf_id"])]
 
         # --- hozirgi / keyingi dars
         def vaqt_min(t):
@@ -791,6 +905,7 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
             "oqituvchi": {"user_id": int(teacher["user_id"]), "full_name": teacher["full_name"], "lavozim": teacher.get("lavozim"), "fanlari": teacher.get("fanlari")},
             "maktab": {"id": mid, "nomi": maktab["nomi"] if maktab else ""},
             "jadval_tasdiqlangan": bool(run),
+            "kalendar_tasdiqlangan": kalendar_tasdiqlangan_bugun,
             "hafta": hafta, "haftalik_soat": len({(h["hafta_kuni"], h["dars_raqami"], h["smena"]) for h in hafta if (h.get("amal_turi") or "haftalik") == "haftalik"}),
             "bugun": {"oquv_kuni": oquv_kunimi(bugun), "kalendar": bugun_kal, "metod_kuni": bugun.isoweekday() in metod_kunlari,
                       "darslar": bugun_darslar, "hozirgi": hozirgi, "keyingi": keyingi},
@@ -1819,6 +1934,9 @@ def _v1852_create_tables(cur):
         manba TEXT NOT NULL DEFAULT 'qolda' CHECK(manba IN ('qolda','dts')),
         UNIQUE(maktab_id,sinf_id,fan_nomi,chorak,tartib)
     )""")
+    cur.execute("ALTER TABLE aqlli_mavzu_rejalari_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
+    cur.execute("ALTER TABLE aqlli_mavzu_taqvimi_v2 ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
     cur.execute("""CREATE TABLE IF NOT EXISTS aqlli_mavzu_taqvimi_v2(
         id BIGSERIAL PRIMARY KEY,
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id) ON DELETE CASCADE,
@@ -6122,7 +6240,8 @@ def v1852_import_dts_topics(token: str, maktab_id: int, sinf_id: int, fan: str, 
         cls = cur.fetchone()
         if not cls:
             raise HTTPException(status_code=404, detail="Sinf topilmadi")
-        cur.execute("""SELECT MIN(topic_code) AS topic_code,
+        cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS qisqa_izoh TEXT")
+        cur.execute("""SELECT MIN(topic_code) AS topic_code, MAX(qisqa_izoh) AS qisqa_izoh,
                               COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) AS mavzu
                        FROM dts_tree
                        WHERE grade=%s AND UPPER(TRIM(subject_name))=UPPER(TRIM(%s))
@@ -6130,7 +6249,7 @@ def v1852_import_dts_topics(token: str, maktab_id: int, sinf_id: int, fan: str, 
                        GROUP BY COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name)
                        HAVING COALESCE(NULLIF(mavzu_name,''),NULLIF(kichik_name,''),NULLIF(bolim_name,''),bob_name) IS NOT NULL
                        ORDER BY MIN(topic_code)""", (str(cls["sinf"]), fan, str(chorak)))
-        topics = [{"mavzu": row["mavzu"], "soat": 1, "turi": "mavzu", "topic_code": row["topic_code"], "manba": "dts"} for row in cur.fetchall()]
+        topics = [{"mavzu": row["mavzu"], "soat": 1, "turi": "mavzu", "topic_code": row["topic_code"], "manba": "dts", "qisqa_izoh": row.get("qisqa_izoh")} for row in cur.fetchall()]
         return {"mavzular": topics, "sinf": cls["sinf"], "fan": fan, "chorak": chorak}
     finally:
         cur.close(); conn.close()
@@ -6142,6 +6261,7 @@ class V1852TopicItem(BaseModel):
     turi: str = "mavzu"
     topic_code: Optional[str] = None
     manba: str = "qolda"
+    qisqa_izoh: Optional[str] = None   # ota-ona uchun: bugun nima o'rganadi, qanday misollar
 
 
 class V1852TopicPlan(BaseModel):
@@ -6169,12 +6289,13 @@ def v1852_topic_plan_save(sorov: V1852TopicPlan, token: str):
             if item.turi not in {"mavzu", "nazorat", "xato_tahlil", "mustahkamlash", "masala"}:
                 raise HTTPException(status_code=400, detail=f"{index}-mavzu turi noto'g'ri")
             rows.append((sorov.maktab_id, sorov.sinf_id, sorov.fan_nomi.strip(), sorov.chorak,
-                         index, title, item.soat, item.turi, item.topic_code, item.manba if item.manba in {"qolda", "dts"} else "qolda"))
+                         index, title, item.soat, item.turi, item.topic_code, item.manba if item.manba in {"qolda", "dts"} else "qolda",
+                         (item.qisqa_izoh or "").strip()[:400] or None))
         cur.execute("DELETE FROM aqlli_mavzu_rejalari_v2 WHERE maktab_id=%s AND sinf_id=%s AND LOWER(fan_nomi)=LOWER(%s) AND chorak=%s",
                     (sorov.maktab_id, sorov.sinf_id, sorov.fan_nomi, sorov.chorak))
         if rows:
             psycopg2.extras.execute_values(cur, """INSERT INTO aqlli_mavzu_rejalari_v2(
-                maktab_id,sinf_id,fan_nomi,chorak,tartib,mavzu,soat,turi,topic_code,manba) VALUES %s""", rows)
+                maktab_id,sinf_id,fan_nomi,chorak,tartib,mavzu,soat,turi,topic_code,manba,qisqa_izoh) VALUES %s""", rows)
         conn.commit(); return {"holat": "saqlandi", "mavzu_soni": len(rows), "jami_soat": sum(int(r[6]) for r in rows)}
     except Exception:
         conn.rollback(); raise
@@ -6186,7 +6307,7 @@ def _v1852_topic_sequence(plan_rows, available_count, load_row):
     base = []
     for row in plan_rows:
         for _ in range(max(1, int(row.get("soat") or 1))):
-            base.append({"mavzu": row["mavzu"], "turi": row["turi"], "topic_code": row.get("topic_code")})
+            base.append({"mavzu": row["mavzu"], "turi": row["turi"], "topic_code": row.get("topic_code"), "qisqa_izoh": row.get("qisqa_izoh")})
     if available_count <= len(base):
         return base[:available_count], [], base[available_count:]
     extra_count = available_count - len(base)
@@ -6197,17 +6318,18 @@ def _v1852_topic_sequence(plan_rows, available_count, load_row):
         analyses = controls if bool(load_row.get("nazoratdan_keyin_tahlil")) else 0
     reserve = []
     for number in range(1, controls + 1):
-        reserve.append({"mavzu": f"Nazorat ishi {number}", "turi": "nazorat", "topic_code": None})
+        reserve.append({"mavzu": f"Nazorat ishi {number}", "turi": "nazorat", "topic_code": None, "qisqa_izoh": "Bugun nazorat ishi: o'tilgan mavzular bo'yicha yozma ish. Farzandingiz avvalgi mavzularni takrorlab kelsin."})
         if analyses:
-            reserve.append({"mavzu": f"Nazorat ishi {number} xatolarini tahlil qilish", "turi": "xato_tahlil", "topic_code": None})
+            reserve.append({"mavzu": f"Nazorat ishi {number} xatolarini tahlil qilish", "turi": "xato_tahlil", "topic_code": None, "qisqa_izoh": "Nazorat ishidagi xatolar birga ko'rib chiqiladi, tushunilmagan joylar qayta tushuntiriladi."})
     reinforcement = min(int(load_row.get("mustahkamlash_soni") or 0), extra_count - len(reserve))
     for _ in range(reinforcement):
-        reserve.append({"mavzu": "Mavzularni mustahkamlash", "turi": "mustahkamlash", "topic_code": None})
+        reserve.append({"mavzu": "Mavzularni mustahkamlash", "turi": "mustahkamlash", "topic_code": None, "qisqa_izoh": "O'tilgan mavzular mashqlar orqali mustahkamlanadi."})
     toggle = 0
     while len(reserve) < extra_count:
         reserve.append({
             "mavzu": "Masalalar yechish va amaliy mashqlar" if toggle % 2 == 0 else "Chorak mavzularini mustahkamlash",
             "turi": "masala" if toggle % 2 == 0 else "mustahkamlash", "topic_code": None,
+            "qisqa_izoh": "Amaliy masalalar yechiladi — o'rganilgan qoidalar hayotiy misollarda qo'llanadi." if toggle % 2 == 0 else "Chorak davomida o'tilgan mavzular umumlashtiriladi.",
         })
         toggle += 1
     # Nazoratlarni chorak bo'ylab tarqatamiz, hammasini oxiriga tiqmaymiz.
@@ -6308,11 +6430,11 @@ def _v1852_distribute_topics_one(cur, maktab_id: int, sinf_id: int, fan: str, ch
         rows.append((maktab_id, run["id"], occurrence["id"], sinf_id, fan, chorak,
                      occurrence["sana"], occurrence["hafta_kuni"], occurrence["smena"],
                      occurrence["dars_raqami"], order, topic["mavzu"], topic["turi"],
-                     "avto", False, occurrence.get("oqituvchi_user_id")))
+                     "avto", False, occurrence.get("oqituvchi_user_id"), topic.get("qisqa_izoh")))
     if rows:
         psycopg2.extras.execute_values(cur, """INSERT INTO aqlli_mavzu_taqvimi_v2(
             maktab_id,urinish_id,slot_id,sinf_id,fan_nomi,chorak,sana,hafta_kuni,smena,
-            dars_raqami,tartib,mavzu,turi,manba,qulflangan,oqituvchi_user_id) VALUES %s""", rows)
+            dars_raqami,tartib,mavzu,turi,manba,qulflangan,oqituvchi_user_id,qisqa_izoh) VALUES %s""", rows)
     if overflow:
         warnings.append(f"{fan}: {len(overflow)} soatlik mavzu chorakdagi darslarga sig'madi")
     return {"taqsimlandi": len(rows), "avto_qoshildi": added, "sigmagan": overflow, "ogohlantirishlar": warnings}
