@@ -390,6 +390,94 @@ def v1845_oqituvchi_bugun(token: str):
 # O'QITUVCHI BOSH EKRANI (V2260) — bitta so'rovda: haftalik jadval, bugun, ertaga,
 # mavzular (taqvimdan), metod kuni / band vaqtlar, sinf rahbarligi, kalendar.
 # =============================================================================
+# =============================================================================
+# DIREKTOR / RAHBARIYAT BOSH EKRANI (V2261) — "Bugun maktab": bitta so'rov.
+# =============================================================================
+@app.get("/api/maktab/rahbariyat_bosh_ekran")
+def v2261_rahbariyat_bosh_ekran(token: str, maktab_id: int):
+    user_id = _jwt_tekshir(token)
+    from zoneinfo import ZoneInfo
+    hozir = datetime.now(ZoneInfo("Asia/Tashkent")); bugun = hozir.date(); wd = bugun.isoweekday()
+    conn = _db(); cur = conn.cursor()
+    try:
+        if not _maktab_boshqaruvchi_mi(cur, user_id, maktab_id):
+            raise HTTPException(status_code=403, detail="Faqat maktab rahbariyati")
+        _v1845_smart_school_tables(cur); _xodim_davomati_jadvali(cur)
+        cur.execute("SELECT id, nomi FROM maktablar WHERE id=%s", (maktab_id,)); maktab = dict(cur.fetchone() or {})
+        cur.execute("SELECT user_id, full_name, lavozim FROM users WHERE user_id=%s", (user_id,)); me = dict(cur.fetchone() or {})
+
+        # Xodimlar
+        cur.execute("SELECT user_id, full_name, lavozim, fanlari FROM users WHERE maktab_id=%s AND lavozim IS NOT NULL ORDER BY full_name", (maktab_id,))
+        staff = [dict(r) for r in cur.fetchall()]
+        # Metod kuni bugun
+        cur.execute("SELECT DISTINCT user_id FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s AND turi='metod_kuni' AND hafta_kuni=%s", (maktab_id, wd))
+        metod_ids = {int(r["user_id"]) for r in cur.fetchall()}
+        # Davomat bugun
+        cur.execute("SELECT user_id, holat, izoh FROM xodim_davomati WHERE maktab_id=%s AND sana=%s", (maktab_id, bugun))
+        dav = {int(r["user_id"]): dict(r) for r in cur.fetchall()}
+        # Tasdiqlangan jadval bugungi darslar
+        cur.execute("SELECT id FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s AND holat='tasdiqlangan' ORDER BY id DESC LIMIT 1", (maktab_id,))
+        run = cur.fetchone()
+        bugun_darslar = []
+        if run:
+            ht = "toq" if int(bugun.isocalendar().week) % 2 else "juft"
+            cur.execute("""SELECT e.oqituvchi_user_id, e.dars_raqami, e.smena, e.fan_nomi, e.boshlanish_vaqti, e.tugash_vaqti, s.sinf, s.harf, s.id AS sinf_id
+                           FROM aqlli_jadval_slotlari_v2 e JOIN maktab_sinflari s ON s.id=e.sinf_id
+                           WHERE e.urinish_id=%s AND e.hafta_kuni=%s AND e.hafta_turi IN ('har_hafta', %s)""", (run["id"], wd, ht))
+            for r in cur.fetchall():
+                d = dict(r)
+                for k in ("boshlanish_vaqti", "tugash_vaqti"):
+                    if d.get(k) is not None and not isinstance(d[k], str): d[k] = d[k].strftime("%H:%M")
+                d["sinf_nomi"] = f"{d['sinf']}-{d['harf']}"; bugun_darslar.append(d)
+        dars_bor_ids = {int(d["oqituvchi_user_id"]) for d in bugun_darslar if d.get("oqituvchi_user_id")}
+        kelmagan_ids = {uid for uid, v in dav.items() if v["holat"] in ("kelmadi", "kasal", "sababli", "sababsiz")}
+        # Qoplanmagan darslar: o'qituvchi kelmagan yoki metod kunida bo'lsa-yu darsi bo'lsa
+        qoplanmagan = [d for d in bugun_darslar if d.get("oqituvchi_user_id") and (int(d["oqituvchi_user_id"]) in kelmagan_ids)]
+        name_of = {int(x["user_id"]): x["full_name"] for x in staff}
+        for d in qoplanmagan: d["oqituvchi"] = name_of.get(int(d["oqituvchi_user_id"]), "")
+
+        xodimlar = []
+        for x in staff:
+            uid = int(x["user_id"]); v = dav.get(uid)
+            holat = "metod_kuni" if uid in metod_ids else (v["holat"] if v else ("dars_bor" if uid in dars_bor_ids else "belgilanmagan"))
+            xodimlar.append({**x, "bugun": holat, "izoh": (v or {}).get("izoh"), "bugungi_dars": sum(1 for d in bugun_darslar if int(d.get("oqituvchi_user_id") or 0) == uid)})
+
+        # Tasdiq kutayotganlar
+        cur.execute("SELECT to_regclass('public.aqlli_jadval_ozgartirish_sorovlari_v2') AS t")
+        sorovlar = 0
+        if (cur.fetchone() or {}).get("t"):
+            cur.execute("SELECT COUNT(*) AS n FROM aqlli_jadval_ozgartirish_sorovlari_v2 WHERE maktab_id=%s AND holat='kutilmoqda'", (maktab_id,))
+            sorovlar = int((cur.fetchone() or {}).get("n") or 0)
+        cur.execute("SELECT COUNT(*) AS n FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s AND holat IN ('tayyor','qoralama')", (maktab_id,))
+        qoralamalar = int((cur.fetchone() or {}).get("n") or 0)
+        cur.execute("SELECT to_regclass('public.aqlli_holatlar') AS t")
+        holatlar = 0
+        if (cur.fetchone() or {}).get("t"):
+            cur.execute("SELECT COUNT(*) AS n FROM aqlli_holatlar WHERE maktab_id=%s AND COALESCE(holat,'ochiq')='ochiq'", (maktab_id,))
+            holatlar = int((cur.fetchone() or {}).get("n") or 0)
+        # Sinflar / o'quvchilar
+        cur.execute("SELECT COUNT(*) AS sinflar FROM maktab_sinflari WHERE maktab_id=%s", (maktab_id,)); sinflar = int(cur.fetchone()["sinflar"])
+        cur.execute("SELECT COUNT(DISTINCT a.user_id) AS n FROM maktab_sinf_azolari a JOIN maktab_sinflari s ON s.id=a.sinf_id WHERE s.maktab_id=%s", (maktab_id,)); oquvchilar = int(cur.fetchone()["n"])
+        cur.execute("SELECT COUNT(*) AS n FROM maktab_sinflari WHERE maktab_id=%s AND rahbar_user_id IS NULL", (maktab_id,)); rahbarsiz = int(cur.fetchone()["n"])
+        # Kabutar o'qilmagan
+        cur.execute("""SELECT COUNT(*) AS n FROM chat_xabarlari x LEFT JOIN chat_oxirgi_korish k ON k.user_id=%s AND k.boshqa_user_id=x.yuboruvchi_user_id AND k.guruh_id IS NULL
+                       WHERE x.qabul_qiluvchi_user_id=%s AND x.guruh_id IS NULL AND COALESCE(x.ochirilgan,FALSE)=FALSE AND (k.oxirgi_xabar_id IS NULL OR x.id>k.oxirgi_xabar_id)""", (user_id, user_id))
+        oqilmagan = int((cur.fetchone() or {}).get("n") or 0)
+        kun_nomlari = ["", "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"]
+        return {
+            "sana": bugun.isoformat(), "kun_nomi": kun_nomlari[wd], "hozir": hozir.strftime("%H:%M"),
+            "maktab": maktab, "men": me,
+            "xulosa": {"xodimlar": len(staff), "kelgan": sum(1 for x in xodimlar if x["bugun"] == "keldi"), "kelmagan": sum(1 for x in xodimlar if x["bugun"] in ("kelmadi", "kasal", "sababli", "sababsiz")),
+                       "metod_kuni": sum(1 for x in xodimlar if x["bugun"] == "metod_kuni"), "belgilanmagan": sum(1 for x in xodimlar if x["bugun"] in ("belgilanmagan", "dars_bor")),
+                       "sinflar": sinflar, "oquvchilar": oquvchilar, "rahbarsiz_sinflar": rahbarsiz, "bugungi_darslar": len(bugun_darslar),
+                       "qoplanmagan_darslar": len(qoplanmagan), "ozgartirish_sorovlari": sorovlar, "qoralama_jadvallar": qoralamalar, "ochiq_holatlar": holatlar, "kabutar_oqilmagan": oqilmagan},
+            "jadval_tasdiqlangan": bool(run),
+            "xodimlar": xodimlar, "qoplanmagan": qoplanmagan,
+        }
+    finally:
+        cur.close(); conn.close()
+
+
 @app.get("/api/oqituvchi/bosh_ekran")
 def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
     teacher_id = _jwt_tekshir(token)
