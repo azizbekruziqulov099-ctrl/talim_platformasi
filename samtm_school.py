@@ -449,6 +449,33 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
                 d["sinf_nomi"] = f"{d['sinf']}-{d['harf']}"
                 hafta.append(d)
 
+        # Admin qo'lda belgilagan Kundalik-uslubidagi jadval mavjud bo'lsa,
+        # o'qituvchi bosh ekranida aynan shu jadval ustun turadi.
+        _rejalashtirish_jadvallari(cur)
+        cur.execute("SELECT to_regclass('public.dars_jadvali') AS t")
+        if (cur.fetchone() or {}).get("t"):
+            cur.execute("""SELECT j.id AS slot_id,j.kun AS hafta_kuni,j.dars_raqami,
+                                  COALESCE(s.smena,1) AS smena,j.fan,j.guruh_kaliti,
+                                  'har_hafta' AS hafta_turi,j.xona,j.boshlanish_vaqti,j.tugash_vaqti,
+                                  s.id AS sinf_id,s.sinf,s.harf,j.amal_turi,j.amal_sana,j.chorak
+                           FROM dars_jadvali j JOIN maktab_sinflari s ON s.id=j.sinf_id
+                           WHERE s.maktab_id=%s AND j.oqituvchi_user_id=%s
+                           ORDER BY j.kun,s.smena,j.dars_raqami""", (mid, teacher_id))
+            admin_hafta = []
+            for r in cur.fetchall():
+                d = dict(r)
+                for k in ("boshlanish_vaqti", "tugash_vaqti", "amal_sana"):
+                    if d.get(k) is not None and not isinstance(d[k], str):
+                        d[k] = d[k].strftime("%H:%M") if "vaqti" in k else d[k].isoformat()
+                d["sinf_nomi"] = f"{d['sinf']}-{d['harf']}"
+                admin_hafta.append(d)
+            if admin_hafta:
+                # Admin qo'shgan darslar aqlli jadval USTIGA qo'shiladi (bosib qo'ymaydi):
+                # bir xil kun/dars/sinf bo'lsa admin varianti ustun, qolgani saqlanadi.
+                admin_keys = {(int(a["hafta_kuni"]), int(a["dars_raqami"]), int(a["sinf_id"])) for a in admin_hafta if (a.get("amal_turi") or "haftalik") == "haftalik"}
+                hafta = [h for h in hafta if (int(h["hafta_kuni"]), int(h["dars_raqami"]), int(h["sinf_id"])) not in admin_keys] + admin_hafta
+                hafta.sort(key=lambda h: (int(h["hafta_kuni"]), int(h.get("smena") or 1), int(h["dars_raqami"])))
+
         # --- mavzular: bugun va ertaga (taqvimdan), yo'q bo'lsa reja tartibidan
         cur.execute("SELECT to_regclass('public.aqlli_mavzu_taqvimi_v2') AS t")
         taq_bor = bool((cur.fetchone() or {}).get("t"))
@@ -463,7 +490,12 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
 
         def kun_darslari(d):
             wd = d.isoweekday(); ht = hafta_turi(d)
-            rows = [h for h in hafta if int(h["hafta_kuni"]) == wd and h["hafta_turi"] in ("har_hafta", ht)]
+            def davr_mos(h):
+                turi = h.get("amal_turi") or "haftalik"
+                if turi == "kunlik": return h.get("amal_sana") == d.isoformat()
+                if turi == "choraklik": return int(h.get("chorak") or 0) == int(_v1845_joriy_chorak(d)[2] or 0)
+                return True
+            rows = [h for h in hafta if int(h["hafta_kuni"]) == wd and h["hafta_turi"] in ("har_hafta", ht) and davr_mos(h)]
             out = []
             for h in rows:
                 m = mavzu_by_key.get((int(h["sinf_id"]), _v1874_subject_key(h["fan"]), d, int(h["dars_raqami"]), int(h["smena"])))
@@ -504,7 +536,7 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
             "oqituvchi": {"user_id": int(teacher["user_id"]), "full_name": teacher["full_name"], "lavozim": teacher.get("lavozim"), "fanlari": teacher.get("fanlari")},
             "maktab": {"id": mid, "nomi": maktab["nomi"] if maktab else ""},
             "jadval_tasdiqlangan": bool(run),
-            "hafta": hafta, "haftalik_soat": len({(h["hafta_kuni"], h["dars_raqami"], h["smena"]) for h in hafta}),
+            "hafta": hafta, "haftalik_soat": len({(h["hafta_kuni"], h["dars_raqami"], h["smena"]) for h in hafta if (h.get("amal_turi") or "haftalik") == "haftalik"}),
             "bugun": {"oquv_kuni": oquv_kunimi(bugun), "kalendar": bugun_kal, "metod_kuni": bugun.isoweekday() in metod_kunlari,
                       "darslar": bugun_darslar, "hozirgi": hozirgi, "keyingi": keyingi},
             "ertaga": {"sana": ertaga.isoformat(), "kun_nomi": kun_nomlari[ertaga.isoweekday()], "metod_kuni": ertaga.isoweekday() in metod_kunlari, "darslar": ertaga_darslar},
