@@ -957,6 +957,20 @@ def _v2268_run_school(maktab_id: int, choraklar=None, sabab: str = ""):
     return stats
 
 
+_V2268_LAST = {}   # maktab_id -> oxirgi avto ishga tushish vaqti (throttle)
+
+
+def _v2268_spawn_if_needed(maktab_id: int, sabab: str = "jurnal"):
+    """O'z-o'zini tuzatish: mavzusi yo'q darslar bo'lsa avtopilot ishga tushadi (10 daqiqada ko'pi bilan 1 marta)."""
+    now = _samtm_time.time()
+    last = _V2268_LAST.get(int(maktab_id), 0)
+    if now - last < 600 or _v2268_lock_for(maktab_id).locked():
+        return False
+    _V2268_LAST[int(maktab_id)] = now
+    _v2268_spawn([maktab_id], None, sabab)
+    return True
+
+
 def _v2268_spawn(maktab_ids, choraklar=None, sabab: str = ""):
     """Fon threadida ketma-ket (bir vaqtning o'zida faqat bitta maktab ishlanadi)."""
     ids = [int(x) for x in maktab_ids]
@@ -1065,6 +1079,11 @@ def v2262_kalendar_jurnal(token: str, maktab_id: int, dan: Optional[str] = None,
             k["tasdiqlangan"] = bool(k["darslar"]) and all(dz["tasdiqlangan"] for dz in k["darslar"])
         natija["tasdiqlar"] = [{**t, "dan": t["dan"].isoformat(), "gacha": t["gacha"].isoformat(), "yaratilgan_at": t["yaratilgan_at"].isoformat()} for t in tasdiqlar]
         natija["rahbar"] = bool(rahbar)
+        # Avtopilot: tasdiqlangan, jadvaldan kelgan, lekin mavzusi yo'q darslar bo'lsa — fon rejimida DTS'dan joylash
+        mavzusiz = sum(1 for k in natija["kunlar"] for dz in k["darslar"] if dz.get("tasdiqlangan") and dz.get("manba") == "jadval" and not dz.get("mavzu"))
+        natija["mavzusiz_darslar"] = mavzusiz
+        natija["avtopilot"] = {"ishlayapti": _v2268_lock_for(maktab_id).locked(), "oxirgi": _V2268_LOG.get(int(maktab_id)),
+                               "boshlandi": bool(rahbar and mavzusiz > 0 and _v2268_spawn_if_needed(maktab_id, "jurnal_mavzusiz"))}
         cur.execute("SELECT id, sinf, harf, smena FROM maktab_sinflari WHERE maktab_id=%s ORDER BY sinf::int, harf", (maktab_id,))
         natija["sinflar"] = [{**dict(r), "nomi": f"{r['sinf']}-{r['harf']}"} for r in cur.fetchall()]
         natija["dan"] = d0.isoformat(); natija["gacha"] = d1.isoformat(); natija["davr"] = davr
