@@ -386,6 +386,137 @@ def v1845_oqituvchi_bugun(token: str):
     }
 
 
+# =============================================================================
+# O'QITUVCHI BOSH EKRANI (V2260) — bitta so'rovda: haftalik jadval, bugun, ertaga,
+# mavzular (taqvimdan), metod kuni / band vaqtlar, sinf rahbarligi, kalendar.
+# =============================================================================
+@app.get("/api/oqituvchi/bosh_ekran")
+def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
+    teacher_id = _jwt_tekshir(token)
+    from zoneinfo import ZoneInfo
+    hozir = datetime.now(ZoneInfo("Asia/Tashkent"))
+    bugun = hozir.date()
+    conn = _db(); cur = conn.cursor()
+    try:
+        _v1845_smart_school_tables(cur)
+        cur.execute("SELECT user_id, full_name, maktab_id, lavozim, fanlari, haftalik_dars_soati, kundalik_baho_eslatmasi FROM users WHERE user_id=%s", (teacher_id,))
+        teacher = cur.fetchone()
+        if not teacher:
+            raise HTTPException(status_code=404, detail="O'qituvchi topilmadi")
+        teacher = dict(teacher)
+        mid = int(maktab_id or teacher.get("maktab_id") or 0)
+        if not mid:
+            raise HTTPException(status_code=400, detail="Maktab aniqlanmadi")
+        cur.execute("SELECT id, nomi FROM maktablar WHERE id=%s", (mid,))
+        maktab = cur.fetchone()
+
+        # --- kalendar: bugun/ertaga o'quv kunimi, keyingi o'quv kuni
+        cur.execute("SELECT sana, turi, nomi FROM aqlli_kalendar_kunlari_v2 WHERE maktab_id=%s AND sana BETWEEN %s AND %s",
+                    (mid, bugun - timedelta(days=7), bugun + timedelta(days=14)))
+        kal = {r["sana"]: dict(r) for r in cur.fetchall()}
+        def oquv_kunimi(d):
+            k = kal.get(d)
+            if k:
+                return k["turi"] in ("oqish", "qoshimcha_oqish")
+            return d.isoweekday() <= 6
+        def keyingi_oquv_kuni(d):
+            for i in range(1, 15):
+                nd = d + timedelta(days=i)
+                if oquv_kunimi(nd):
+                    return nd
+            return d + timedelta(days=1)
+        ertaga = keyingi_oquv_kuni(bugun)
+        hafta_turi = lambda d: "toq" if int(d.isocalendar().week) % 2 else "juft"
+
+        # --- tasdiqlangan jadval
+        cur.execute("SELECT id FROM aqlli_jadval_urinishlari_v2 WHERE maktab_id=%s AND holat='tasdiqlangan' ORDER BY id DESC LIMIT 1", (mid,))
+        run = cur.fetchone()
+        hafta = []
+        if run:
+            cur.execute("""SELECT e.id AS slot_id, e.hafta_kuni, e.dars_raqami, e.smena, e.fan_nomi AS fan, e.guruh_kaliti, e.hafta_turi,
+                                  COALESCE(r.nomi, e.xona_matni) AS xona, e.boshlanish_vaqti, e.tugash_vaqti,
+                                  s.id AS sinf_id, s.sinf, s.harf
+                           FROM aqlli_jadval_slotlari_v2 e
+                           JOIN maktab_sinflari s ON s.id=e.sinf_id
+                           LEFT JOIN aqlli_xonalar_v2 r ON r.id=e.xona_id
+                           WHERE e.urinish_id=%s AND e.oqituvchi_user_id=%s
+                           ORDER BY e.hafta_kuni, e.smena, e.dars_raqami""", (run["id"], teacher_id))
+            for r in cur.fetchall():
+                d = dict(r)
+                for k in ("boshlanish_vaqti", "tugash_vaqti"):
+                    if d.get(k) is not None and not isinstance(d[k], str):
+                        d[k] = d[k].strftime("%H:%M")
+                d["sinf_nomi"] = f"{d['sinf']}-{d['harf']}"
+                hafta.append(d)
+
+        # --- mavzular: bugun va ertaga (taqvimdan), yo'q bo'lsa reja tartibidan
+        cur.execute("SELECT to_regclass('public.aqlli_mavzu_taqvimi_v2') AS t")
+        taq_bor = bool((cur.fetchone() or {}).get("t"))
+        mavzu_by_key = {}
+        if taq_bor and hafta:
+            sinf_ids = sorted({int(h["sinf_id"]) for h in hafta})
+            cur.execute("""SELECT sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, tartib, manba
+                           FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=ANY(%s) AND sana IN (%s,%s)""",
+                        (mid, sinf_ids, bugun, ertaga))
+            for r in cur.fetchall():
+                mavzu_by_key[(int(r["sinf_id"]), _v1874_subject_key(r["fan_nomi"]), r["sana"], int(r["dars_raqami"]), int(r["smena"]))] = dict(r)
+
+        def kun_darslari(d):
+            wd = d.isoweekday(); ht = hafta_turi(d)
+            rows = [h for h in hafta if int(h["hafta_kuni"]) == wd and h["hafta_turi"] in ("har_hafta", ht)]
+            out = []
+            for h in rows:
+                m = mavzu_by_key.get((int(h["sinf_id"]), _v1874_subject_key(h["fan"]), d, int(h["dars_raqami"]), int(h["smena"])))
+                out.append({**h, "sana": d.isoformat(), "mavzu": (m or {}).get("mavzu"), "mavzu_turi": (m or {}).get("turi"), "mavzu_manba": (m or {}).get("manba"), "mavzu_tartib": (m or {}).get("tartib")})
+            return out
+
+        bugun_darslar = kun_darslari(bugun) if oquv_kunimi(bugun) else []
+        ertaga_darslar = kun_darslari(ertaga)
+
+        # --- hozirgi / keyingi dars
+        def vaqt_min(t):
+            if not t: return None
+            hh, mm = str(t).split(":")[:2]; return int(hh) * 60 + int(mm)
+        now_min = hozir.hour * 60 + hozir.minute
+        hozirgi = None; keyingi = None
+        for dz in bugun_darslar:
+            b, e = vaqt_min(dz.get("boshlanish_vaqti")), vaqt_min(dz.get("tugash_vaqti"))
+            if b is not None and e is not None and b <= now_min <= e: hozirgi = dz
+            elif b is not None and b > now_min and (keyingi is None or b < vaqt_min(keyingi.get("boshlanish_vaqti"))): keyingi = dz
+
+        # --- metod kuni va band vaqtlar
+        cur.execute("SELECT hafta_kuni, smena, dars_raqami, turi FROM aqlli_oqituvchi_vaqti_v2 WHERE maktab_id=%s AND user_id=%s", (mid, teacher_id))
+        vaqtlar = [dict(r) for r in cur.fetchall()]
+        metod_kunlari = sorted({int(v["hafta_kuni"]) for v in vaqtlar if v["turi"] == "metod_kuni"})
+
+        # --- sinf rahbarligi
+        cur.execute("""SELECT s.id, s.sinf, s.harf, s.smena, COUNT(a.id) AS oquvchilar
+                       FROM maktab_sinflari s LEFT JOIN maktab_sinf_azolari a ON a.sinf_id=s.id
+                       WHERE s.maktab_id=%s AND s.rahbar_user_id=%s GROUP BY s.id ORDER BY s.sinf::int, s.harf""", (mid, teacher_id))
+        rahbar_sinflar = [{**dict(r), "sinf_nomi": f"{r['sinf']}-{r['harf']}"} for r in cur.fetchall()]
+
+        # --- bugungi bayram/dam
+        bugun_kal = kal.get(bugun)
+        kun_nomlari = ["", "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"]
+        return {
+            "sana": bugun.isoformat(), "kun": bugun.isoweekday(), "kun_nomi": kun_nomlari[bugun.isoweekday()],
+            "hafta_turi": hafta_turi(bugun), "hozir": hozir.strftime("%H:%M"),
+            "oqituvchi": {"user_id": int(teacher["user_id"]), "full_name": teacher["full_name"], "lavozim": teacher.get("lavozim"), "fanlari": teacher.get("fanlari")},
+            "maktab": {"id": mid, "nomi": maktab["nomi"] if maktab else ""},
+            "jadval_tasdiqlangan": bool(run),
+            "hafta": hafta, "haftalik_soat": len({(h["hafta_kuni"], h["dars_raqami"], h["smena"]) for h in hafta}),
+            "bugun": {"oquv_kuni": oquv_kunimi(bugun), "kalendar": bugun_kal, "metod_kuni": bugun.isoweekday() in metod_kunlari,
+                      "darslar": bugun_darslar, "hozirgi": hozirgi, "keyingi": keyingi},
+            "ertaga": {"sana": ertaga.isoformat(), "kun_nomi": kun_nomlari[ertaga.isoweekday()], "metod_kuni": ertaga.isoweekday() in metod_kunlari, "darslar": ertaga_darslar},
+            "metod_kunlari": metod_kunlari, "vaqtlar": vaqtlar,
+            "rahbar_sinflar": rahbar_sinflar,
+            "kundalik_eslatma_yoqilgan": bool(teacher.get("kundalik_baho_eslatmasi")),
+            "kundalik_eslatma": bool(teacher.get("kundalik_baho_eslatmasi") and bugun_darslar and hozir.hour >= 15),
+        }
+    finally:
+        cur.close(); conn.close()
+
+
 class V1846KundalikEslatmaSozlama(BaseModel):
     yoqilgan: bool
 
