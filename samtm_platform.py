@@ -12611,6 +12611,9 @@ def _rejalashtirish_jadvallari(cur):
     cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS guruh_kaliti TEXT DEFAULT 'whole'")
     cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS boshlanish_vaqti TEXT")
     cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS tugash_vaqti TEXT")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS amal_turi TEXT DEFAULT 'haftalik'")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS amal_sana DATE")
+    cur.execute("ALTER TABLE dars_jadvali ADD COLUMN IF NOT EXISTS chorak INTEGER")
     cur.execute("""CREATE TABLE IF NOT EXISTS tadbirlar(
         id SERIAL PRIMARY KEY,
         maktab_id INTEGER NOT NULL REFERENCES maktablar(id),
@@ -12636,6 +12639,9 @@ class DarsJadvaliSlot(BaseModel):
     guruh_kaliti: Optional[str] = "whole"
     boshlanish_vaqti: Optional[str] = None
     tugash_vaqti: Optional[str] = None
+    amal_turi: str = "haftalik"  # kunlik | haftalik | choraklik
+    amal_sana: Optional[str] = None
+    chorak: Optional[int] = None
 
 
 @app.put("/api/maktab/dars_jadvali_belgila")
@@ -12660,6 +12666,15 @@ def dars_jadvali_belgila(sorov: DarsJadvaliSlot):
     if not sorov.fan.strip():
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Fan nomini kiriting")
+    if sorov.amal_turi not in {"kunlik", "haftalik", "choraklik"}:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Dars davri: kunlik, haftalik yoki choraklik bo‘lishi kerak")
+    if sorov.amal_turi == "kunlik" and not sorov.amal_sana:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Kunlik dars uchun sanani tanlang")
+    if sorov.amal_turi == "choraklik" and sorov.chorak not in {1, 2, 3, 4}:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Choraklik dars uchun 1–4 chorakdan birini tanlang")
     oqituvchi_user_id = sorov.oqituvchi_user_id
     if oqituvchi_user_id is None:
         _xodim_sinf_birikmalari_jadvali(cur)
@@ -12674,17 +12689,23 @@ def dars_jadvali_belgila(sorov: DarsJadvaliSlot):
     cur.execute("""
         INSERT INTO dars_jadvali(
             sinf_id, kun, dars_raqami, fan, xona, oqituvchi_user_id,
-            guruh_kaliti, boshlanish_vaqti, tugash_vaqti
-        ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            guruh_kaliti, boshlanish_vaqti, tugash_vaqti,
+            amal_turi, amal_sana, chorak
+        ) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
         ON CONFLICT (sinf_id, kun, dars_raqami) DO UPDATE SET
             fan=EXCLUDED.fan, xona=EXCLUDED.xona,
             oqituvchi_user_id=EXCLUDED.oqituvchi_user_id,
             guruh_kaliti=EXCLUDED.guruh_kaliti,
             boshlanish_vaqti=EXCLUDED.boshlanish_vaqti,
-            tugash_vaqti=EXCLUDED.tugash_vaqti
+            tugash_vaqti=EXCLUDED.tugash_vaqti,
+            amal_turi=EXCLUDED.amal_turi,
+            amal_sana=EXCLUDED.amal_sana,
+            chorak=EXCLUDED.chorak
     """, (
         sorov.sinf_id, sorov.kun, sorov.dars_raqami, sorov.fan.strip(), sorov.xona,
         oqituvchi_user_id, sorov.guruh_kaliti or "whole", sorov.boshlanish_vaqti, sorov.tugash_vaqti,
+        sorov.amal_turi, sorov.amal_sana if sorov.amal_turi == "kunlik" else None,
+        sorov.chorak if sorov.amal_turi == "choraklik" else None,
     ))
     conn.commit()
     cur.close()
@@ -12733,6 +12754,7 @@ def dars_jadvali_royxati(token: str, sinf_id: int):
     cur.execute("""
         SELECT j.kun, j.dars_raqami, j.fan, j.xona, j.oqituvchi_user_id,
                j.guruh_kaliti, j.boshlanish_vaqti, j.tugash_vaqti,
+               j.amal_turi, j.amal_sana, j.chorak,
                u.full_name AS oqituvchi_ismi
         FROM dars_jadvali j
         LEFT JOIN users u ON u.user_id=j.oqituvchi_user_id
