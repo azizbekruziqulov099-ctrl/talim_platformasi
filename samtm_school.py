@@ -1297,6 +1297,21 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
                             "mavzu_tasdiqlangan": bool((m or {}).get("tasdiqlangan")) if m else None})
             return out
 
+        # Shu hafta (Du..Sha) haqiqiy sanalar: haftalik jadval kataklariga mavzu yozish uchun
+        hafta_boshi = bugun - timedelta(days=bugun.isoweekday() - 1)
+        hafta_sanalari = {wd_: hafta_boshi + timedelta(days=wd_ - 1) for wd_ in range(1, 8)}
+        if taq_bor and hafta:
+            sinf_ids = sorted({int(h["sinf_id"]) for h in hafta})
+            cur.execute("""SELECT id AS taqvim_id, sinf_id, fan_nomi, sana, dars_raqami, smena, mavzu, turi, qisqa_izoh, tasdiqlangan, ochiq_dars
+                           FROM aqlli_mavzu_taqvimi_v2 WHERE maktab_id=%s AND sinf_id=ANY(%s) AND sana BETWEEN %s AND %s""",
+                        (mid, sinf_ids, hafta_boshi, hafta_boshi + timedelta(days=6)))
+            hafta_mavzu = {(int(r["sinf_id"]), _v1874_subject_key(r["fan_nomi"]), r["sana"], int(r["dars_raqami"]), int(r["smena"])): dict(r) for r in cur.fetchall()}
+            for h in hafta:
+                sana_ = hafta_sanalari.get(int(h["hafta_kuni"]))
+                m = hafta_mavzu.get((int(h["sinf_id"]), _v1874_subject_key(h["fan"]), sana_, int(h["dars_raqami"]), int(h["smena"])))
+                h["shu_hafta_sana"] = sana_.isoformat() if sana_ else None
+                h["mavzu"] = (m or {}).get("mavzu"); h["mavzu_turi"] = (m or {}).get("turi"); h["mavzu_tasdiqlangan"] = bool((m or {}).get("tasdiqlangan")) if m else None
+                h["qisqa_izoh"] = (m or {}).get("qisqa_izoh"); h["ochiq_dars"] = bool((m or {}).get("ochiq_dars")); h["taqvim_id"] = (m or {}).get("taqvim_id")
         bugun_darslar = kun_darslari(bugun) if oquv_kunimi(bugun) else []
         ertaga_darslar = kun_darslari(ertaga)
         # Kalendar tasdiqlanmagan bo'lsa o'qituvchiga bugun/ertaga darslar chiqmaydi (haftalik jadval ko'rinaveradi)
@@ -1337,7 +1352,9 @@ def v2260_oqituvchi_bosh_ekran(token: str, maktab_id: Optional[int] = None):
             "maktab": {"id": mid, "nomi": maktab["nomi"] if maktab else ""},
             "jadval_tasdiqlangan": bool(run),
             "kalendar_tasdiqlangan": kalendar_tasdiqlangan_bugun,
-            "hafta": hafta, "haftalik_soat": len({(h["hafta_kuni"], h["dars_raqami"], h["smena"]) for h in hafta if (h.get("amal_turi") or "haftalik") == "haftalik"}),
+            "hafta": hafta, "hafta_boshi": hafta_boshi.isoformat(), "hafta_oxiri": (hafta_boshi + timedelta(days=6)).isoformat(),
+            "hafta_mavzu_soni": sum(1 for h in hafta if h.get("mavzu")), "hafta_tasdiqlanmagan": sum(1 for h in hafta if h.get("mavzu") and not h.get("mavzu_tasdiqlangan")),
+            "haftalik_soat": len({(h["hafta_kuni"], h["dars_raqami"], h["smena"]) for h in hafta if (h.get("amal_turi") or "haftalik") == "haftalik"}),
             "bugun": {"oquv_kuni": oquv_kunimi(bugun), "kalendar": bugun_kal, "metod_kuni": bugun.isoweekday() in metod_kunlari,
                       "darslar": bugun_darslar, "hozirgi": hozirgi, "keyingi": keyingi},
             "ertaga": {"sana": ertaga.isoformat(), "kun_nomi": kun_nomlari[ertaga.isoweekday()], "metod_kuni": ertaga.isoweekday() in metod_kunlari, "darslar": ertaga_darslar},
@@ -22521,6 +22538,7 @@ _KABUTAR_LAVOZIM_NOMI = {
 _KABUTAR_FAYL_TURLARI = {
     "audio": ({"audio/webm", "audio/ogg", "audio/mpeg", "audio/mp4", "audio/wav", "audio/x-m4a", "audio/aac"}, 15),
     "video": ({"video/webm", "video/mp4", "video/quicktime"}, 40),
+    "video_doira": ({"video/webm", "video/mp4", "video/quicktime"}, 40),
     "hujjat": ({"application/pdf", "image/jpeg", "image/png", "image/webp",
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                 "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}, 15),
@@ -22977,7 +22995,7 @@ async def v2257_kabutar_yubor(
     data = None; content_type = None; filename = None; size_kb = None
     if fayl is not None:
         if fayl_turi not in _KABUTAR_FAYL_TURLARI:
-            raise HTTPException(status_code=400, detail="Fayl turi: audio, video yoki hujjat")
+            raise HTTPException(status_code=400, detail="Fayl turi: audio, video, video_doira yoki hujjat")
         allowed, max_mb = _KABUTAR_FAYL_TURLARI[fayl_turi]
         content_type = (fayl.content_type or "").split(";")[0].strip().lower()
         if content_type not in allowed:
