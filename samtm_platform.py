@@ -2964,8 +2964,9 @@ def sayt_kod_yarat(token: str):
 # ═══════════════════════════════════════════════════════════
 
 TOGARAK_MAX_TALABA = 25
-ODDIY_OQITUVCHI_BEPUL_TOGARAK_LIMIT = 1
-IKKINCHI_TOGARAK_NARXI_UZS = 50_000
+SAMTM_PAYMENTS_ENABLED = False
+ODDIY_OQITUVCHI_BEPUL_TOGARAK_LIMIT = 1_000_000
+IKKINCHI_TOGARAK_NARXI_UZS = 0
 
 
 def _togarak_sigimi(max_talaba):
@@ -3858,7 +3859,7 @@ def togarak_yarat(sorov: TogarakYaratish):
         foydalanuvchini_qulflash=True,
         shaxsiy_guruh=shaxsiy_guruh,
     )
-    if not kvota["bepul_yarata_oladi"]:
+    if SAMTM_PAYMENTS_ENABLED and not kvota["bepul_yarata_oladi"]:
         cur.close(); conn.close()
         raise HTTPException(
             status_code=402,
@@ -5512,13 +5513,16 @@ def chat_guruhlarim(token: str):
     conn.commit()
 
     cur.execute("""
-        SELECT g.id, g.nomi, g.turi,
+        SELECT g.id, g.nomi, g.turi, g.manba_turi, g.manba_id, g.egasi_user_id,
+               CASE WHEN g.manba_turi='sinf' THEN 'maktab' ELSE g.manba_turi END AS scope_turi,
+               CASE WHEN g.manba_turi='sinf' THEN ms.maktab_id ELSE g.manba_id END AS scope_id,
                (SELECT matn FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_matn,
                (SELECT fayl_turi FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_fayl_turi,
                (SELECT yaratilgan_at FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_vaqt,
                (SELECT COUNT(*) FROM chat_xabarlari cx WHERE cx.guruh_id=g.id AND cx.ochirilgan=FALSE AND cx.yuboruvchi_user_id != %s
                     AND cx.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND guruh_id=g.id), 0)) AS okilmagan_soni
         FROM chat_azolari ca JOIN chat_guruhlari g ON g.id = ca.guruh_id
+        LEFT JOIN maktab_sinflari ms ON g.manba_turi='sinf' AND ms.id=g.manba_id
         WHERE ca.user_id=%s
         ORDER BY oxirgi_vaqt DESC NULLS LAST, g.nomi
     """, (user_id, user_id, user_id))
@@ -5651,6 +5655,9 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
                 yozuv["meniki"] = True
         for x in xabarlar:
             x["reaksiyalar"] = list(reaksiyalar_map.get(x["id"], {}).values())
+
+    for x in xabarlar:
+        x["meniki"] = int(x["yuboruvchi_user_id"]) == int(user_id)
 
     boshqa_tomon_korgan_id = None
     if boshqa_user_id:
@@ -5863,9 +5870,14 @@ def chat_xabar_forward(token: str, xabar_id: int, guruh_id: Optional[int] = None
     cur = conn.cursor()
     _chat_jadvallari(cur)
     cur.execute("""
-        SELECT matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb, ochirilgan
-        FROM chat_xabarlari WHERE id=%s
-    """, (xabar_id,))
+        SELECT x.matn, x.fayl_turi, x.fayl_malumot, x.fayl_nomi,
+               x.fayl_content_turi, x.fayl_hajmi_kb, x.ochirilgan
+        FROM chat_xabarlari x
+        WHERE x.id=%s AND (
+          x.yuboruvchi_user_id=%s OR x.qabul_qiluvchi_user_id=%s OR
+          EXISTS(SELECT 1 FROM chat_azolari ca WHERE ca.guruh_id=x.guruh_id AND ca.user_id=%s)
+        )
+    """, (xabar_id, user_id, user_id, user_id))
     asl = cur.fetchone()
     if not asl or asl["ochirilgan"]:
         cur.close(); conn.close()
@@ -5875,6 +5887,21 @@ def chat_xabar_forward(token: str, xabar_id: int, guruh_id: Optional[int] = None
         if not cur.fetchone():
             cur.close(); conn.close()
             raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
+    elif qabul_qiluvchi_user_id:
+        cur.execute("""SELECT 1 FROM users a JOIN users b ON b.user_id=%s
+            WHERE a.user_id=%s AND (
+              (a.maktab_id IS NOT NULL AND a.maktab_id=b.maktab_id) OR
+              (a.markaz_id IS NOT NULL AND a.markaz_id=b.markaz_id) OR
+              (a.bogcha_id IS NOT NULL AND a.bogcha_id=b.bogcha_id) OR
+              (a.universitet_id IS NOT NULL AND a.universitet_id=b.universitet_id) OR
+              EXISTS(SELECT 1 FROM chat_xabarlari old WHERE old.guruh_id IS NULL AND
+                ((old.yuboruvchi_user_id=%s AND old.qabul_qiluvchi_user_id=%s) OR
+                 (old.yuboruvchi_user_id=%s AND old.qabul_qiluvchi_user_id=%s)))
+            )""", (qabul_qiluvchi_user_id, user_id, user_id, qabul_qiluvchi_user_id,
+                    qabul_qiluvchi_user_id, user_id))
+        if not cur.fetchone():
+            cur.close(); conn.close()
+            raise HTTPException(status_code=403, detail="Bu odamga xabar uzatish ruxsati yo‘q")
     cur.execute("""
         INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
         VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
@@ -5915,6 +5942,16 @@ def chat_reaksiya_qoy(token: str, xabar_id: int, emoji: str):
     conn = _db()
     cur = conn.cursor()
     _reaksiya_jadvali(cur)
+    if emoji not in {"❤️", "👍", "👎", "🔥", "🥰", "👏", "😁", "🤔"}:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=400, detail="Bu reaksiya qo‘llab-quvvatlanmaydi")
+    cur.execute("""SELECT 1 FROM chat_xabarlari x WHERE x.id=%s AND COALESCE(x.ochirilgan,FALSE)=FALSE AND (
+        x.yuboruvchi_user_id=%s OR x.qabul_qiluvchi_user_id=%s OR
+        EXISTS(SELECT 1 FROM chat_azolari ca WHERE ca.guruh_id=x.guruh_id AND ca.user_id=%s))""",
+        (xabar_id, user_id, user_id, user_id))
+    if not cur.fetchone():
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Bu xabarga kirish ruxsati yo‘q")
     cur.execute("""
         INSERT INTO chat_reaksiyalar(xabar_id, user_id, emoji) VALUES(%s,%s,%s)
         ON CONFLICT (xabar_id, user_id) DO UPDATE SET emoji=EXCLUDED.emoji
