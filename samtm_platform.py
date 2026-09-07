@@ -24112,6 +24112,7 @@ def _oquvchi_jadval_jadvali(cur):
             updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
         )
     """)
+    cur.execute("ALTER TABLE oquvchi_shaxsiy_jadval_v1 ADD COLUMN IF NOT EXISTS generation_version INTEGER NOT NULL DEFAULT 1")
 
 
 def _oquvchi_jadval_ruxsati(cur, actor_id, child_id):
@@ -24131,30 +24132,79 @@ def _jadval_sinf_raqami(value):
     return int(match.group(1)) if match else 5
 
 
-def _taxminiy_oquvchi_jadvali(grade, shift):
+def _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade):
+    """Avval maktabning tasdiqlangan rejasi, topilmasa faol markaziy andoza."""
+    school_id = user.get("maktab_id")
+    if school_id:
+        cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_qatorlari_v19_3') AS t")
+        plan_exists = bool((cur.fetchone() or {}).get("t"))
+        if plan_exists:
+            cur.execute("SELECT holat FROM aqlli_oquv_reja_holati_v19_3 WHERE maktab_id=%s", (school_id,))
+            state = cur.fetchone()
+            if state and state.get("holat") == "tasdiqlangan":
+                cur.execute("SELECT id,sinf FROM maktab_sinflari WHERE maktab_id=%s", (school_id,))
+                classes = cur.fetchall()
+                exact = str(user.get("class") or "").strip().lower()
+                class_row = next((row for row in classes if str(row.get("sinf") or "").strip().lower() == exact), None)
+                class_row = class_row or next((row for row in classes if _jadval_sinf_raqami(row.get("sinf")) == grade), None)
+                if class_row:
+                    cur.execute("""SELECT fan_nomi,haftalik_soat FROM aqlli_oquv_reja_qatorlari_v19_3
+                                    WHERE maktab_id=%s AND sinf_id=%s AND haftalik_soat>0
+                                    ORDER BY id""", (school_id, class_row["id"]))
+                    rows = cur.fetchall()
+                    if rows:
+                        return [(row["fan_nomi"], float(row["haftalik_soat"])) for row in rows]
+    cur.execute("SELECT to_regclass('public.admin_maktab_andoza_fanlari_v20_1') AS t")
+    if (cur.fetchone() or {}).get("t"):
+        cur.execute("""SELECT f.fan_nomi,f.haftalik_soat
+                         FROM admin_maktab_andoza_fanlari_v20_1 f
+                         JOIN admin_maktab_andoza_versiyalari_v20_1 v ON v.id=f.versiya_id
+                        WHERE v.faol=TRUE AND f.faol=TRUE AND f.talim_tili='uz'
+                          AND f.sinf_darajasi=%s AND f.haftalik_soat>0
+                        ORDER BY f.tartib,f.id""", (grade,))
+        rows = cur.fetchall()
+        if rows:
+            return [(row["fan_nomi"], float(row["haftalik_soat"])) for row in rows]
+    return []
+
+
+def _taxminiy_oquvchi_jadvali(grade, shift, curriculum=None):
     junior = ["Ona tili", "O'qish savodxonligi", "Matematika", "Tarbiya", "Tabiiy fan", "Jismoniy tarbiya", "Tasviriy san'at", "Musiqa"]
     middle = ["Ona tili", "Adabiyot", "Matematika", "Ingliz tili", "Rus tili", "Tarix", "Geografiya", "Biologiya", "Informatika", "Texnologiya", "Jismoniy tarbiya"]
     senior = ["Ona tili", "Adabiyot", "Algebra", "Geometriya", "Ingliz tili", "Rus tili", "O'zbekiston tarixi", "Jahon tarixi", "Fizika", "Kimyo", "Biologiya", "Informatika", "Tarbiya", "Jismoniy tarbiya"]
-    subjects = junior if grade <= 4 else middle if grade <= 9 else senior
-    lesson_count = 5 if grade <= 4 else 6
+    fallback = junior if grade <= 4 else middle if grade <= 9 else senior
+    curriculum = [(str(name).strip(), float(hours)) for name, hours in (curriculum or []) if str(name).strip() and float(hours) > 0]
+    if not curriculum:
+        curriculum = [(name, 1) for name in fallback]
+    if not any("kelajak" in name.lower() or "sinf soati" in name.lower() for name, _ in curriculum):
+        curriculum.append(("Kelajak soati", 1))
+    whole = [(name, int(math.floor(hours)), hours - math.floor(hours)) for name, hours in curriculum]
+    target = int(round(sum(hours for _, hours in curriculum)))
+    counts = {name: count for name, count, _ in whole}
+    for name, _, _ in sorted(whole, key=lambda item: item[2], reverse=True)[:max(0, target - sum(counts.values()))]:
+        counts[name] += 1
+    lesson_pool = []
+    for name, hours in sorted(counts.items(), key=lambda item: (-item[1], item[0])):
+        lesson_pool.extend([name] * hours)
+    day_count = 5 if grade <= 4 else 6
     start = 13 * 60 + 30 if shift == 2 else 8 * 60
     times = []
     for index in range(7):
         begin = start + index * 50
         end = begin + 45
         times.append(f"{begin // 60:02d}:{begin % 60:02d}–{end // 60:02d}:{end % 60:02d}")
-    days = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"]
-    return [{
-        "day": day,
-        "lessons": [{
-            "id": f"{day_index}-{lesson_index}",
-            "order": lesson_index + 1,
-            "time": times[lesson_index],
-            "subject": subjects[(day_index * lesson_count + lesson_index * 3) % len(subjects)],
-            "topic": "",
-            "split_group": None,
-        } for lesson_index in range(lesson_count)],
-    } for day_index, day in enumerate(days)]
+    days = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"][:day_count]
+    placed = [[] for _ in days]
+    for subject in lesson_pool:
+        candidates = [i for i in range(day_count) if subject not in placed[i] and len(placed[i]) < 8]
+        if not candidates:
+            candidates = [i for i in range(day_count) if len(placed[i]) < 8]
+        chosen = min(candidates, key=lambda i: (len(placed[i]), i))
+        placed[chosen].append(subject)
+    return [{"day": day, "lessons": [{
+        "id": f"{day_index}-{lesson_index}", "order": lesson_index + 1,
+        "time": times[lesson_index], "subject": subject, "topic": "", "split_group": None,
+    } for lesson_index, subject in enumerate(placed[day_index])]} for day_index, day in enumerate(days)]
 
 
 def _jadvalni_tekshir(schedule):
@@ -24185,18 +24235,22 @@ def oquvchi_haftalik_jadval(token: str, bola_id: Optional[int] = None):
     try:
         _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
         _oquvchi_jadval_jadvali(cur)
-        cur.execute("SELECT class FROM users WHERE user_id=%s", (child_id,))
+        cur.execute("SELECT class,maktab_id FROM users WHERE user_id=%s", (child_id,))
         user = cur.fetchone()
         if not user:
             raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
         grade = _jadval_sinf_raqami(user.get("class"))
-        cur.execute("SELECT shift,schedule FROM oquvchi_shaxsiy_jadval_v1 WHERE bola_user_id=%s", (child_id,))
+        cur.execute("SELECT shift,schedule,generation_version FROM oquvchi_shaxsiy_jadval_v1 WHERE bola_user_id=%s", (child_id,))
         saved = cur.fetchone()
         conn.commit()
-        if saved:
+        if saved and int(saved.get("generation_version") or 1) >= 2:
             return {"bola_id": child_id, "grade": grade, "shift": saved["shift"], "schedule": saved["schedule"], "source": "saved"}
         shift = 2 if grade in (1, 3, 5, 6, 7) else 1
-        return {"bola_id": child_id, "grade": grade, "shift": shift, "schedule": _taxminiy_oquvchi_jadvali(grade, shift), "source": "estimated"}
+        curriculum = _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade)
+        return {"bola_id": child_id, "grade": grade, "shift": shift,
+                "schedule": _taxminiy_oquvchi_jadvali(grade, shift, curriculum),
+                "weekly_hours": int(round(sum(hours for _, hours in curriculum))) + (0 if any("kelajak" in name.lower() or "sinf soati" in name.lower() for name, _ in curriculum) else 1),
+                "source": "approved_curriculum" if curriculum else "estimated"}
     finally:
         cur.close()
         conn.close()
@@ -24215,11 +24269,11 @@ def oquvchi_haftalik_jadval_saqla(payload: OquvchiHaftalikJadvalSorov, token: st
         _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
         _oquvchi_jadval_jadvali(cur)
         cur.execute("""
-            INSERT INTO oquvchi_shaxsiy_jadval_v1(bola_user_id,shift,schedule,updated_by)
-            VALUES(%s,%s,%s,%s)
+            INSERT INTO oquvchi_shaxsiy_jadval_v1(bola_user_id,shift,schedule,updated_by,generation_version)
+            VALUES(%s,%s,%s,%s,2)
             ON CONFLICT(bola_user_id) DO UPDATE SET
               shift=EXCLUDED.shift,schedule=EXCLUDED.schedule,
-              updated_by=EXCLUDED.updated_by,updated_at=NOW()
+              updated_by=EXCLUDED.updated_by,generation_version=2,updated_at=NOW()
         """, (child_id, payload.shift, psycopg2.extras.Json(schedule), actor_id))
         conn.commit()
         return {"ok": True, "bola_id": child_id, "shift": payload.shift, "schedule": schedule}
