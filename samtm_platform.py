@@ -2013,6 +2013,140 @@ class AralashTestSorovi(BaseModel):
     yozuvli: Optional[bool] = None
 
 
+class MustahkamlashTestSorovi(BaseModel):
+    token: str
+    topic_code: str
+    togarak_id: Optional[int] = None
+    asosiy_limit: int = 20
+    spiral_limit: int = 5
+    erkin_limit: int = 3
+
+
+def _mustahkamlash_savollarini_ol(cur, kodlar, limit, chiqarilgan_idlar=None):
+    """Bitta test ichida savol takrorlanmasdan tasodifiy savollarni oladi."""
+    kodlar = sorted({str(k or "").strip() for k in kodlar if str(k or "").strip()})
+    limit = max(0, min(int(limit or 0), 100))
+    if not kodlar or not limit:
+        return []
+    chiqarilgan_idlar = list(chiqarilgan_idlar or [])
+    cur.execute(
+        """SELECT id,topic_code,question,option_a,option_b,option_c,option_d,
+                  question_type,is_latex,time_limit,difficulty,
+                  CASE WHEN rasm_malumot IS NOT NULL
+                       THEN '/api/test_rasmi/' || id::text
+                       ELSE COALESCE(NULLIF(image_url,''),NULLIF(image_file_id,'')) END AS rasm_id
+           FROM generated_tests
+           WHERE topic_code=ANY(%s) AND NOT (id=ANY(%s))
+           ORDER BY RANDOM() LIMIT %s""",
+        (kodlar, chiqarilgan_idlar, limit),
+    )
+    return list(cur.fetchall())
+
+
+@app.post("/api/oquvchi/mustahkamlash-test")
+def oquvchi_mustahkamlash_test(sorov: MustahkamlashTestSorovi):
+    """Bugungi mavzu + 5 spiral + 3 erkin takrorlashni serverda yig'adi.
+
+    Asosiy mavzuda 20 tadan kam savol bo'lsa mavjud savollarning barchasi
+    olinadi. Uch bo'lim orasida bitta savol qayta chiqmaydi. O'quvchi klub
+    mavzusini ishlasa a'zolik ham serverda tekshiriladi.
+    """
+    user_id = _jwt_tekshir(sorov.token)
+    topic_code = str(sorov.topic_code or "").strip()
+    if not topic_code:
+        raise HTTPException(status_code=400, detail="Mavzuni tanlang")
+    if not 1 <= sorov.asosiy_limit <= 20 or not 0 <= sorov.spiral_limit <= 5 or not 0 <= sorov.erkin_limit <= 3:
+        raise HTTPException(status_code=400, detail="Mustahkamlash testi limitlari noto'g'ri")
+
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        if sorov.togarak_id is not None and not _togarak_kontent_ruxsat_bormi(
+            cur, user_id, sorov.togarak_id
+        ):
+            raise HTTPException(status_code=403, detail="Siz bu to'garak a'zosi emassiz")
+        cur.execute(
+            """SELECT grade,subject_code,subject_name,quarter,topic_code
+               FROM dts_tree WHERE topic_code=%s AND is_deleted=FALSE LIMIT 1""",
+            (topic_code,),
+        )
+        mavzu = cur.fetchone()
+        if not mavzu:
+            raise HTTPException(status_code=404, detail="Mavzu DTS ro'yxatidan topilmadi")
+
+        # Shu mavzuning barcha kichik kodlari asosiy bo'limga kiradi.
+        cur.execute(
+            """SELECT DISTINCT topic_code FROM dts_tree
+               WHERE grade=%s AND subject_code=%s AND is_deleted=FALSE
+                 AND COALESCE(mavzu_name,bolim_name,bob_name)=(
+                   SELECT COALESCE(mavzu_name,bolim_name,bob_name)
+                   FROM dts_tree WHERE topic_code=%s AND is_deleted=FALSE LIMIT 1
+                 )""",
+            (mavzu["grade"], mavzu["subject_code"], topic_code),
+        )
+        asosiy_kodlar = [r["topic_code"] for r in cur.fetchall()]
+
+        # Spiral: joriy fan bo'yicha kod tartibida oldingi 5 ta mavzu.
+        cur.execute(
+            """SELECT topic_code FROM (
+                 SELECT DISTINCT topic_code FROM dts_tree
+                 WHERE grade=%s AND subject_code=%s AND is_deleted=FALSE
+                   AND topic_code < %s AND NOT (topic_code=ANY(%s))
+                 ORDER BY topic_code DESC LIMIT 5
+               ) old_topics ORDER BY topic_code""",
+            (mavzu["grade"], mavzu["subject_code"], topic_code, asosiy_kodlar),
+        )
+        spiral_kodlar = [r["topic_code"] for r in cur.fetchall()]
+
+        # Erkin: shu sinfdagi boshqa mavzulardan; asosiy va spiral chiqariladi.
+        chiqarilgan_kodlar = asosiy_kodlar + spiral_kodlar
+        cur.execute(
+            """SELECT DISTINCT topic_code FROM dts_tree
+               WHERE grade=%s AND is_deleted=FALSE AND NOT (topic_code=ANY(%s))""",
+            (mavzu["grade"], chiqarilgan_kodlar),
+        )
+        erkin_kodlar = [r["topic_code"] for r in cur.fetchall()]
+
+        asosiy = _mustahkamlash_savollarini_ol(cur, asosiy_kodlar, sorov.asosiy_limit)
+        ishlatilgan = {r["id"] for r in asosiy}
+        spiral = _mustahkamlash_savollarini_ol(cur, spiral_kodlar, sorov.spiral_limit, ishlatilgan)
+        ishlatilgan.update(r["id"] for r in spiral)
+        erkin = _mustahkamlash_savollarini_ol(cur, erkin_kodlar, sorov.erkin_limit, ishlatilgan)
+        savollar = []
+        for bolim, rows in (("asosiy", asosiy), ("spiral", spiral), ("erkin", erkin)):
+            for row in rows:
+                row["bolim"] = bolim
+                row["question"] = _yozma_savolga_format_korsatmasi(
+                    _raqam_artefaktini_tozala(row["question"]), None, row.get("question_type")
+                )
+                for maydon in ("option_a", "option_b", "option_c", "option_d"):
+                    row[maydon] = _raqam_artefaktini_tozala(row[maydon])
+                savollar.append(row)
+        if not asosiy:
+            raise HTTPException(status_code=404, detail="Bu mavzuda hali test savollari yo'q")
+        barcha_kodlar = sorted({r["topic_code"] for r in savollar})
+        attempt_id = _standard_urinish_yarat(cur, user_id, barcha_kodlar, savollar)
+        conn.commit()
+        return {
+            "mode": "mustahkamlash",
+            "topic_code": topic_code,
+            "topic_codes": barcha_kodlar,
+            "subject": mavzu["subject_name"],
+            "savollar": savollar,
+            "attempt_id": attempt_id,
+            "tarkib": {
+                "asosiy": len(asosiy), "spiral": len(spiral),
+                "erkin": len(erkin), "jami": len(savollar),
+            },
+        }
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
 @app.post("/api/test_aralash")
 def aralash_test_savollari(sorov: AralashTestSorovi):
     """Bir nechta TANLANGAN mavzudan aralashtirib savollar oladi —
@@ -7867,7 +8001,6 @@ def v2253_admin_sinov_rol_tokeni(
     fakultet_id: Optional[int] = None,
     kafedra_id: Optional[int] = None,
     yozish: int = 0,
-    sinf_id: Optional[int] = None,
 ):
     """Rol bo'yicha ko'rish: shu rolda odam bo'lsa — o'sha bilan, bo'lmasa
     “SINOV · <Rol>” nomli sinov xodimi yaratilib, u bilan faqat-o'qish token beriladi.
@@ -7881,40 +8014,7 @@ def v2253_admin_sinov_rol_tokeni(
     try:
         created = False
         target_id = None
-        if turi == "maktab" and rol in ("oquvchi", "ota_ona"):
-            # Sinf tanlangan bo'lishi kerak; o'quvchi yo'q bo'lsa SINOV o'quvchi (va ota-ona) yaratiladi
-            cur.execute("SELECT id, sinf, harf FROM maktab_sinflari WHERE maktab_id=%s AND (%s::int IS NULL OR id=%s) ORDER BY sinf::int, harf LIMIT 1", (muassasa_id, sinf_id, sinf_id))
-            cls = cur.fetchone()
-            if not cls:
-                raise HTTPException(status_code=404, detail="Sinf topilmadi")
-            sinf_id = int(cls["id"]); sinf_nomi = f"{cls['sinf']}-{cls['harf']}"
-            cur.execute("""SELECT u.user_id, u.full_name FROM maktab_sinf_azolari a JOIN users u ON u.user_id=a.user_id
-                           WHERE a.sinf_id=%s ORDER BY (u.full_name LIKE 'SINOV ·%%') ASC, u.full_name LIMIT 1""", (sinf_id,))
-            pupil = cur.fetchone()
-            if not pupil:
-                pupil_id = _sinov_yangi_user_id(cur)
-                cur.execute("INSERT INTO users(user_id,full_name,role,maktab_id) VALUES(%s,%s,'oquvchi',%s)", (pupil_id, f"SINOV · O'quvchi {sinf_nomi}", muassasa_id))
-                cur.execute("INSERT INTO maktab_sinf_azolari(sinf_id,user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING", (sinf_id, pupil_id))
-                created = True
-            else:
-                pupil_id = int(pupil["user_id"])
-            if rol == "oquvchi":
-                target_id = pupil_id
-                cur.execute("SELECT full_name FROM users WHERE user_id=%s", (target_id,)); full_name = cur.fetchone()["full_name"]
-            else:
-                cur.execute("""SELECT u.user_id, u.full_name FROM parent_child pc JOIN users u ON u.user_id=pc.parent_id
-                               WHERE pc.child_id=%s ORDER BY (u.full_name LIKE 'SINOV ·%%') ASC LIMIT 1""", (pupil_id,))
-                parent = cur.fetchone()
-                if parent:
-                    target_id = int(parent["user_id"]); full_name = parent["full_name"]
-                else:
-                    target_id = _sinov_yangi_user_id(cur)
-                    cur.execute("SELECT full_name FROM users WHERE user_id=%s", (pupil_id,)); pn = cur.fetchone()["full_name"]
-                    full_name = f"SINOV · Ota-ona ({pn})"
-                    cur.execute("INSERT INTO users(user_id,full_name,role) VALUES(%s,%s,'ota_ona')", (target_id, full_name))
-                    cur.execute("INSERT INTO parent_child(parent_id,child_id) VALUES(%s,%s)", (target_id, pupil_id))
-                    created = True
-        elif turi == "maktab":
+        if turi == "maktab":
             if rol not in LAVOZIMLAR:
                 raise HTTPException(status_code=400, detail="Maktab lavozimi noto'g'ri")
             cur.execute("SELECT id FROM maktablar WHERE id=%s", (muassasa_id,))
@@ -8023,10 +8123,7 @@ def v2259_sinov_izlarini_tozalash(token: str, turi: str, muassasa_id: int):
     cur = conn.cursor()
     try:
         if turi == "maktab":
-            cur.execute("""SELECT DISTINCT u.user_id FROM users u
-                           LEFT JOIN maktab_sinf_azolari a ON a.user_id=u.user_id LEFT JOIN maktab_sinflari s ON s.id=a.sinf_id
-                           LEFT JOIN parent_child pc ON pc.parent_id=u.user_id LEFT JOIN maktab_sinf_azolari a2 ON a2.user_id=pc.child_id LEFT JOIN maktab_sinflari s2 ON s2.id=a2.sinf_id
-                           WHERE u.full_name LIKE 'SINOV ·%%' AND u.user_id<0 AND (u.maktab_id=%s OR s.maktab_id=%s OR s2.maktab_id=%s)""", (muassasa_id, muassasa_id, muassasa_id))
+            cur.execute("SELECT user_id FROM users WHERE maktab_id=%s AND full_name LIKE 'SINOV ·%%' AND user_id<0", (muassasa_id,))
         elif turi == "institut":
             cur.execute("SELECT to_regclass('public.universitet_xodim_rollari') AS r")
             if not (cur.fetchone() or {}).get("r"):
@@ -8049,9 +8146,6 @@ def v2259_sinov_izlarini_tozalash(token: str, turi: str, muassasa_id: int):
                 cur.execute("RELEASE SAVEPOINT sp")
             except Exception:
                 cur.execute("ROLLBACK TO SAVEPOINT sp")
-        run("DELETE FROM parent_child WHERE parent_id=ANY(%s) OR child_id=ANY(%s)", (ids, ids), "ota_ona_boglanishlari")
-        run("DELETE FROM maktab_sinf_azolari WHERE user_id=ANY(%s)", (ids,), "sinf_azoliklari")
-        run("DELETE FROM dars_monitoring_baholari WHERE oquvchi_user_id=ANY(%s)", (ids,), "oquvchi_baholari")
         run("DELETE FROM chat_xabarlari WHERE yuboruvchi_user_id=ANY(%s) OR qabul_qiluvchi_user_id=ANY(%s)", (ids, ids), "xabarlar")
         run("DELETE FROM chat_oxirgi_korish WHERE user_id=ANY(%s) OR boshqa_user_id=ANY(%s)", (ids, ids), "korishlar")
         run("DELETE FROM chat_azolari WHERE user_id=ANY(%s)", (ids,), "guruh_azoliklari")
