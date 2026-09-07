@@ -24093,3 +24093,136 @@ def _modular_resurslarni_yopish():
 
 # Export private helpers too: school_os preserves monolith global semantics.
 __all__ = [name for name in globals() if not name.startswith("__")]
+# Student schedule API is intentionally self-contained so older school schemas
+# can deploy it safely. The school-approved timetable can replace `estimated`
+# later without changing the saved personal copy contract.
+class OquvchiHaftalikJadvalSorov(BaseModel):
+    bola_id: Optional[int] = None
+    shift: int
+    schedule: list
+
+
+def _oquvchi_jadval_jadvali(cur):
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS oquvchi_shaxsiy_jadval_v1(
+            bola_user_id BIGINT PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE,
+            shift SMALLINT NOT NULL CHECK(shift IN (1,2)),
+            schedule JSONB NOT NULL,
+            updated_by BIGINT NOT NULL,
+            updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )
+    """)
+
+
+def _oquvchi_jadval_ruxsati(cur, actor_id, child_id):
+    if actor_id == child_id:
+        return
+    _ota_ona_jadvallari(cur)
+    cur.execute(
+        "SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1",
+        (actor_id, child_id),
+    )
+    if not cur.fetchone():
+        raise HTTPException(status_code=403, detail="Bu o'quvchining jadvaliga ruxsat yo'q")
+
+
+def _jadval_sinf_raqami(value):
+    match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(value or ""))
+    return int(match.group(1)) if match else 5
+
+
+def _taxminiy_oquvchi_jadvali(grade, shift):
+    junior = ["Ona tili", "O'qish savodxonligi", "Matematika", "Tarbiya", "Tabiiy fan", "Jismoniy tarbiya", "Tasviriy san'at", "Musiqa"]
+    middle = ["Ona tili", "Adabiyot", "Matematika", "Ingliz tili", "Rus tili", "Tarix", "Geografiya", "Biologiya", "Informatika", "Texnologiya", "Jismoniy tarbiya"]
+    senior = ["Ona tili", "Adabiyot", "Algebra", "Geometriya", "Ingliz tili", "Rus tili", "O'zbekiston tarixi", "Jahon tarixi", "Fizika", "Kimyo", "Biologiya", "Informatika", "Tarbiya", "Jismoniy tarbiya"]
+    subjects = junior if grade <= 4 else middle if grade <= 9 else senior
+    lesson_count = 5 if grade <= 4 else 6
+    start = 13 * 60 + 30 if shift == 2 else 8 * 60
+    times = []
+    for index in range(7):
+        begin = start + index * 50
+        end = begin + 45
+        times.append(f"{begin // 60:02d}:{begin % 60:02d}–{end // 60:02d}:{end % 60:02d}")
+    days = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"]
+    return [{
+        "day": day,
+        "lessons": [{
+            "id": f"{day_index}-{lesson_index}",
+            "order": lesson_index + 1,
+            "time": times[lesson_index],
+            "subject": subjects[(day_index * lesson_count + lesson_index * 3) % len(subjects)],
+            "topic": "",
+            "split_group": None,
+        } for lesson_index in range(lesson_count)],
+    } for day_index, day in enumerate(days)]
+
+
+def _jadvalni_tekshir(schedule):
+    if not isinstance(schedule, list) or not 5 <= len(schedule) <= 6:
+        raise HTTPException(status_code=422, detail="Jadval 5 yoki 6 kundan iborat bo'lishi kerak")
+    cleaned = []
+    for day in schedule:
+        lessons = day.get("lessons", []) if isinstance(day, dict) else []
+        if len(lessons) > 8:
+            raise HTTPException(status_code=422, detail="Bir kunda 8 tadan ortiq dars bo'lmaydi")
+        clean_lessons = []
+        for index, lesson in enumerate(lessons):
+            subject = str(lesson.get("subject", "")).strip()[:120]
+            timing = str(lesson.get("time", "")).strip()[:20]
+            if not subject or not re.fullmatch(r"\d{2}:\d{2}–\d{2}:\d{2}", timing):
+                raise HTTPException(status_code=422, detail="Fan nomi yoki dars vaqti noto'g'ri")
+            clean_lessons.append({"id": str(lesson.get("id", f"{len(cleaned)}-{index}"))[:40], "order": index + 1, "time": timing, "subject": subject, "topic": str(lesson.get("topic", "")).strip()[:240], "split_group": lesson.get("split_group")})
+        cleaned.append({"day": str(day.get("day", ""))[:30], "lessons": clean_lessons})
+    return cleaned
+
+
+@app.get("/api/oquvchi/haftalik-jadval")
+def oquvchi_haftalik_jadval(token: str, bola_id: Optional[int] = None):
+    actor_id = _jwt_tekshir(token)
+    child_id = int(bola_id or actor_id)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
+        _oquvchi_jadval_jadvali(cur)
+        cur.execute("SELECT class FROM users WHERE user_id=%s", (child_id,))
+        user = cur.fetchone()
+        if not user:
+            raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
+        grade = _jadval_sinf_raqami(user.get("class"))
+        cur.execute("SELECT shift,schedule FROM oquvchi_shaxsiy_jadval_v1 WHERE bola_user_id=%s", (child_id,))
+        saved = cur.fetchone()
+        conn.commit()
+        if saved:
+            return {"bola_id": child_id, "grade": grade, "shift": saved["shift"], "schedule": saved["schedule"], "source": "saved"}
+        shift = 2 if grade in (1, 3, 5, 6, 7) else 1
+        return {"bola_id": child_id, "grade": grade, "shift": shift, "schedule": _taxminiy_oquvchi_jadvali(grade, shift), "source": "estimated"}
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.put("/api/oquvchi/haftalik-jadval")
+def oquvchi_haftalik_jadval_saqla(payload: OquvchiHaftalikJadvalSorov, token: str):
+    actor_id = _jwt_tekshir(token)
+    child_id = int(payload.bola_id or actor_id)
+    if payload.shift not in (1, 2):
+        raise HTTPException(status_code=422, detail="Smena 1 yoki 2 bo'lishi kerak")
+    schedule = _jadvalni_tekshir(payload.schedule)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
+        _oquvchi_jadval_jadvali(cur)
+        cur.execute("""
+            INSERT INTO oquvchi_shaxsiy_jadval_v1(bola_user_id,shift,schedule,updated_by)
+            VALUES(%s,%s,%s,%s)
+            ON CONFLICT(bola_user_id) DO UPDATE SET
+              shift=EXCLUDED.shift,schedule=EXCLUDED.schedule,
+              updated_by=EXCLUDED.updated_by,updated_at=NOW()
+        """, (child_id, payload.shift, psycopg2.extras.Json(schedule), actor_id))
+        conn.commit()
+        return {"ok": True, "bola_id": child_id, "shift": payload.shift, "schedule": schedule}
+    finally:
+        cur.close()
+        conn.close()
