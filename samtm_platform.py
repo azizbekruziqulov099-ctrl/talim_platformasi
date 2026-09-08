@@ -28,7 +28,7 @@ from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse, RedirectResponse, Response, StreamingResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 DATABASE_URL = os.getenv("DATABASE_URL", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
@@ -24102,6 +24102,7 @@ class OquvchiHaftalikJadvalSorov(BaseModel):
     bola_id: Optional[int] = None
     shift: int
     schedule: list
+    extracurriculars: list = Field(default_factory=list)
 
 
 def _oquvchi_jadval_jadvali(cur):
@@ -24115,6 +24116,8 @@ def _oquvchi_jadval_jadvali(cur):
         )
     """)
     cur.execute("ALTER TABLE oquvchi_shaxsiy_jadval_v1 ADD COLUMN IF NOT EXISTS generation_version INTEGER NOT NULL DEFAULT 1")
+    cur.execute("ALTER TABLE oquvchi_shaxsiy_jadval_v1 ADD COLUMN IF NOT EXISTS curriculum_signature TEXT")
+    cur.execute("ALTER TABLE oquvchi_shaxsiy_jadval_v1 ADD COLUMN IF NOT EXISTS extracurriculars JSONB NOT NULL DEFAULT '[]'::jsonb")
 
 
 def _oquvchi_jadval_ruxsati(cur, actor_id, child_id):
@@ -24141,21 +24144,33 @@ def _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade):
         cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_qatorlari_v19_3') AS t")
         plan_exists = bool((cur.fetchone() or {}).get("t"))
         if plan_exists:
-            cur.execute("SELECT holat FROM aqlli_oquv_reja_holati_v19_3 WHERE maktab_id=%s", (school_id,))
-            state = cur.fetchone()
-            if state and state.get("holat") == "tasdiqlangan":
-                cur.execute("SELECT id,sinf FROM maktab_sinflari WHERE maktab_id=%s", (school_id,))
-                classes = cur.fetchall()
-                exact = str(user.get("class") or "").strip().lower()
-                class_row = next((row for row in classes if str(row.get("sinf") or "").strip().lower() == exact), None)
-                class_row = class_row or next((row for row in classes if _jadval_sinf_raqami(row.get("sinf")) == grade), None)
-                if class_row:
+            cur.execute("SELECT id,sinf,harf,talim_tili FROM maktab_sinflari WHERE maktab_id=%s", (school_id,))
+            classes = cur.fetchall()
+            exact = str(user.get("class") or "").strip().lower()
+            letter = str(user.get("class_letter") or "").strip().lower()
+            class_row = next((row for row in classes if _jadval_sinf_raqami(row.get("sinf")) == grade and (not letter or str(row.get("harf") or "").strip().lower() == letter)), None)
+            class_row = class_row or next((row for row in classes if _jadval_sinf_raqami(row.get("sinf")) == grade), None)
+            approved = False
+            if class_row:
+                cur.execute("SELECT to_regclass('public.aqlli_oquv_reja_til_holati_v238') AS t")
+                language_state_exists = bool((cur.fetchone() or {}).get("t"))
+                if language_state_exists:
+                    language = str(class_row.get("talim_tili") or "uz").strip().lower()
+                    cur.execute("SELECT holat FROM aqlli_oquv_reja_til_holati_v238 WHERE maktab_id=%s AND talim_tili=%s", (school_id, language))
+                    approved = (cur.fetchone() or {}).get("holat") == "tasdiqlangan"
+                else:
+                    cur.execute("SELECT holat FROM aqlli_oquv_reja_holati_v19_3 WHERE maktab_id=%s", (school_id,))
+                    approved = (cur.fetchone() or {}).get("holat") == "tasdiqlangan"
+                if approved:
                     cur.execute("""SELECT fan_nomi,haftalik_soat FROM aqlli_oquv_reja_qatorlari_v19_3
                                     WHERE maktab_id=%s AND sinf_id=%s AND haftalik_soat>0
                                     ORDER BY id""", (school_id, class_row["id"]))
                     rows = cur.fetchall()
                     if rows:
-                        return [(row["fan_nomi"], float(row["haftalik_soat"])) for row in rows]
+                        return [(row["fan_nomi"], float(row["haftalik_soat"])) for row in rows], "approved_curriculum"
+        # Rasmiy maktabga ulangan bola uchun tasdiqlanmagan rejani markaziy
+        # andoza bilan yashirmaymiz: admin tasdiqlashi kerakligi aniq ko'rinadi.
+        return [], "no_approved_curriculum"
     cur.execute("SELECT to_regclass('public.admin_maktab_andoza_fanlari_v20_1') AS t")
     if (cur.fetchone() or {}).get("t"):
         cur.execute("""SELECT f.fan_nomi,f.haftalik_soat
@@ -24166,8 +24181,8 @@ def _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade):
                         ORDER BY f.tartib,f.id""", (grade,))
         rows = cur.fetchall()
         if rows:
-            return [(row["fan_nomi"], float(row["haftalik_soat"])) for row in rows]
-    return []
+            return [(row["fan_nomi"], float(row["haftalik_soat"])) for row in rows], "estimated"
+    return [], "estimated"
 
 
 def _taxminiy_oquvchi_jadvali(grade, shift, curriculum=None):
@@ -24205,7 +24220,8 @@ def _taxminiy_oquvchi_jadvali(grade, shift, curriculum=None):
         placed[chosen].append(subject)
     return [{"day": day, "lessons": [{
         "id": f"{day_index}-{lesson_index}", "order": lesson_index + 1,
-        "time": times[lesson_index], "subject": subject, "topic": "", "split_group": None,
+        "time": times[lesson_index], "subject": subject, "topic": "", "topic_code": "",
+        "activity_type": "lesson", "split_group": None,
     } for lesson_index, subject in enumerate(placed[day_index])]} for day_index, day in enumerate(days)]
 
 
@@ -24223,9 +24239,68 @@ def _jadvalni_tekshir(schedule):
             timing = str(lesson.get("time", "")).strip()[:20]
             if not subject or not re.fullmatch(r"\d{2}:\d{2}–\d{2}:\d{2}", timing):
                 raise HTTPException(status_code=422, detail="Fan nomi yoki dars vaqti noto'g'ri")
-            clean_lessons.append({"id": str(lesson.get("id", f"{len(cleaned)}-{index}"))[:40], "order": index + 1, "time": timing, "subject": subject, "topic": str(lesson.get("topic", "")).strip()[:240], "split_group": lesson.get("split_group")})
+            activity_type = str(lesson.get("activity_type") or "lesson")
+            if activity_type not in {"lesson", "review", "problem", "control", "project", "oral"}:
+                activity_type = "lesson"
+            clean_lessons.append({"id": str(lesson.get("id", f"{len(cleaned)}-{index}"))[:40], "order": index + 1, "time": timing, "subject": subject, "topic": str(lesson.get("topic", "")).strip()[:240], "topic_code": str(lesson.get("topic_code", "")).strip()[:160], "activity_type": activity_type, "split_group": lesson.get("split_group")})
         cleaned.append({"day": str(day.get("day", ""))[:30], "lessons": clean_lessons})
     return cleaned
+
+
+def _qoshimcha_mashgulotlarni_tekshir(items):
+    if not isinstance(items, list) or len(items) > 20:
+        raise HTTPException(status_code=422, detail="Ko'pi bilan 20 ta qo'shimcha mashg'ulot saqlanadi")
+    allowed = {"chess", "football", "robotics", "coding", "art", "music", "dance", "swimming", "craft", "reading", "language", "other"}
+    cleaned = []
+    for index, item in enumerate(items):
+        if not isinstance(item, dict):
+            continue
+        name = str(item.get("name") or "").strip()[:100]
+        day = str(item.get("day") or "").strip()
+        timing = str(item.get("time") or "").strip()
+        if not name or day not in ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"] or not re.fullmatch(r"\d{2}:\d{2}", timing):
+            continue
+        club_type = str(item.get("club_type") or "other")
+        cleaned.append({"id": str(item.get("id") or f"extra-{index}")[:60], "club_type": club_type if club_type in allowed else "other", "name": name, "day": day, "time": timing, "note": str(item.get("note") or "").strip()[:160]})
+    return cleaned
+
+
+def _oquv_reja_imzosi(curriculum):
+    normalized = [[str(name).strip().lower(), round(float(hours), 2)] for name, hours in curriculum]
+    return hashlib.sha256(json.dumps(normalized, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+@app.get("/api/oquvchi/jadval-mavzular")
+def oquvchi_jadval_mavzular(token: str, fan: str, bola_id: Optional[int] = None):
+    actor_id = _jwt_tekshir(token)
+    child_id = int(bola_id or actor_id)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
+        cur.execute("SELECT class FROM users WHERE user_id=%s", (child_id,))
+        user = cur.fetchone()
+        if not user:
+            raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
+        grade = _jadval_sinf_raqami(user.get("class"))
+        # Fan nomlari o'quv rejada va DTSda biroz farq qilishi mumkin.
+        needle = re.sub(r"\s+", " ", str(fan or "").strip())
+        aliases = {"matematika": ["matematika", "algebra", "geometriya"], "tarix": ["tarix", "o'zbekiston tarixi", "jahon tarixi"], "chet tili": ["ingliz tili", "rus tili", "chet tili"]}
+        names = aliases.get(needle.lower(), [needle])
+        cur.execute("""SELECT MIN(topic_code) AS topic_code,quarter,
+                              COALESCE(kichik_name,mavzu_name,bolim_name,bob_name) AS nomi,
+                              bob_name AS bob_nomi
+                         FROM dts_tree
+                        WHERE is_deleted=FALSE AND grade::text=%s
+                          AND LOWER(subject_name)=ANY(%s)
+                          AND COALESCE(kichik_name,mavzu_name,bolim_name,bob_name) IS NOT NULL
+                        GROUP BY quarter,bob_name,COALESCE(kichik_name,mavzu_name,bolim_name,bob_name)
+                        ORDER BY quarter,bob_name,MIN(topic_code) LIMIT 500""",
+                    (str(grade), [name.lower() for name in names]))
+        return {"grade": grade, "fan": fan, "mavzular": [{"topic_code": row["topic_code"], "nomi": row["nomi"], "bob_nomi": row["bob_nomi"], "chorak": row["quarter"]} for row in cur.fetchall()]}
+    finally:
+        cur.close()
+        conn.close()
 
 
 @app.get("/api/oquvchi/haftalik-jadval")
@@ -24237,22 +24312,27 @@ def oquvchi_haftalik_jadval(token: str, bola_id: Optional[int] = None):
     try:
         _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
         _oquvchi_jadval_jadvali(cur)
-        cur.execute("SELECT class,maktab_id FROM users WHERE user_id=%s", (child_id,))
+        cur.execute("SELECT class,class_letter,maktab_id FROM users WHERE user_id=%s", (child_id,))
         user = cur.fetchone()
         if not user:
             raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
         grade = _jadval_sinf_raqami(user.get("class"))
-        cur.execute("SELECT shift,schedule,generation_version FROM oquvchi_shaxsiy_jadval_v1 WHERE bola_user_id=%s", (child_id,))
+        curriculum, curriculum_source = _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade)
+        signature = _oquv_reja_imzosi(curriculum)
+        cur.execute("SELECT shift,schedule,generation_version,curriculum_signature,extracurriculars FROM oquvchi_shaxsiy_jadval_v1 WHERE bola_user_id=%s", (child_id,))
         saved = cur.fetchone()
         conn.commit()
-        if saved and int(saved.get("generation_version") or 1) >= 2:
-            return {"bola_id": child_id, "grade": grade, "shift": saved["shift"], "schedule": saved["schedule"], "source": "saved"}
+        if saved and int(saved.get("generation_version") or 1) >= 3 and saved.get("curriculum_signature") == signature:
+            return {"bola_id": child_id, "grade": grade, "shift": saved["shift"], "schedule": saved["schedule"], "extracurriculars": saved.get("extracurriculars") or [], "weekly_hours": int(round(sum(hours for _, hours in curriculum))) + (0 if any("kelajak" in name.lower() or "sinf soati" in name.lower() for name, _ in curriculum) else 1), "source": "saved"}
         shift = 2 if grade in (1, 3, 5, 6, 7) else 1
-        curriculum = _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade)
+        if curriculum_source == "no_approved_curriculum":
+            return {"bola_id": child_id, "grade": grade, "shift": shift, "schedule": [], "extracurriculars": saved.get("extracurriculars") if saved else [], "weekly_hours": 0, "source": curriculum_source}
+        generated = _taxminiy_oquvchi_jadvali(grade, shift, curriculum)
         return {"bola_id": child_id, "grade": grade, "shift": shift,
-                "schedule": _taxminiy_oquvchi_jadvali(grade, shift, curriculum),
-                "weekly_hours": int(round(sum(hours for _, hours in curriculum))) + (0 if any("kelajak" in name.lower() or "sinf soati" in name.lower() for name, _ in curriculum) else 1),
-                "source": "approved_curriculum" if curriculum else "estimated"}
+                "schedule": generated,
+                "extracurriculars": saved.get("extracurriculars") if saved else [],
+                "weekly_hours": sum(len(day["lessons"]) for day in generated),
+                "source": curriculum_source}
     finally:
         cur.close()
         conn.close()
@@ -24265,20 +24345,40 @@ def oquvchi_haftalik_jadval_saqla(payload: OquvchiHaftalikJadvalSorov, token: st
     if payload.shift not in (1, 2):
         raise HTTPException(status_code=422, detail="Smena 1 yoki 2 bo'lishi kerak")
     schedule = _jadvalni_tekshir(payload.schedule)
+    extracurriculars = _qoshimcha_mashgulotlarni_tekshir(payload.extracurriculars)
     conn = _db()
     cur = conn.cursor()
     try:
         _oquvchi_jadval_ruxsati(cur, actor_id, child_id)
         _oquvchi_jadval_jadvali(cur)
+        cur.execute("SELECT class,class_letter,maktab_id FROM users WHERE user_id=%s", (child_id,))
+        user = cur.fetchone()
+        if not user:
+            raise HTTPException(status_code=404, detail="O'quvchi topilmadi")
+        curriculum, curriculum_source = _tasdiqlangan_oquv_reja_yuklamasi(cur, user, _jadval_sinf_raqami(user.get("class")))
+        if curriculum_source == "no_approved_curriculum":
+            raise HTTPException(status_code=409, detail="Maktab o'quv rejasi hali tasdiqlanmagan")
+        expected_schedule = _taxminiy_oquvchi_jadvali(_jadval_sinf_raqami(user.get("class")), payload.shift, curriculum)
+        def subject_counts(days):
+            result = {}
+            for day in days:
+                for lesson in day.get("lessons", []):
+                    key = str(lesson.get("subject") or "").strip().casefold()
+                    result[key] = result.get(key, 0) + 1
+            return result
+        if subject_counts(schedule) != subject_counts(expected_schedule):
+            raise HTTPException(status_code=422, detail="Fanlar soni maktab tasdiqlagan haftalik o'quv rejaga mos emas")
+        signature = _oquv_reja_imzosi(curriculum)
         cur.execute("""
-            INSERT INTO oquvchi_shaxsiy_jadval_v1(bola_user_id,shift,schedule,updated_by,generation_version)
-            VALUES(%s,%s,%s,%s,2)
+            INSERT INTO oquvchi_shaxsiy_jadval_v1(bola_user_id,shift,schedule,updated_by,generation_version,curriculum_signature,extracurriculars)
+            VALUES(%s,%s,%s,%s,3,%s,%s)
             ON CONFLICT(bola_user_id) DO UPDATE SET
               shift=EXCLUDED.shift,schedule=EXCLUDED.schedule,
-              updated_by=EXCLUDED.updated_by,generation_version=2,updated_at=NOW()
-        """, (child_id, payload.shift, psycopg2.extras.Json(schedule), actor_id))
+              updated_by=EXCLUDED.updated_by,generation_version=3,curriculum_signature=EXCLUDED.curriculum_signature,
+              extracurriculars=EXCLUDED.extracurriculars,updated_at=NOW()
+        """, (child_id, payload.shift, psycopg2.extras.Json(schedule), actor_id, signature, psycopg2.extras.Json(extracurriculars)))
         conn.commit()
-        return {"ok": True, "bola_id": child_id, "shift": payload.shift, "schedule": schedule}
+        return {"ok": True, "bola_id": child_id, "shift": payload.shift, "schedule": schedule, "extracurriculars": extracurriculars}
     finally:
         cur.close()
         conn.close()
