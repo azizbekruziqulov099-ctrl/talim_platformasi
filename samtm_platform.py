@@ -24055,6 +24055,7 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 # ═══════════════════════════════════════════════════════════
 from modules.kindergarten import create_kindergarten_router
 from modules.institute import create_institute_router
+from modules.institute_library import create_institute_library_router
 from modules.admin_institution_security_v18_24 import (
     create_institution_archive_router,
     ensure_institution_archive_columns,
@@ -24074,6 +24075,7 @@ app.include_router(create_kindergarten_router(_jwt_tekshir))
 app.include_router(create_school_router(_jwt_tekshir))
 app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
+app.include_router(create_institute_library_router(_jwt_tekshir, _db))
 app.include_router(create_organization_trial_router(_jwt_tekshir))
 app.include_router(create_institution_archive_router(_admin_tekshir, _db))
 app.include_router(create_admin_school_wizard_router(_admin_tekshir, _db))
