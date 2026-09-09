@@ -11290,7 +11290,7 @@ def maktab_qidir(nomi: str):
     _maktab_jadvali(cur)
     cur.execute("""
         SELECT id, nomi, viloyat, tuman FROM maktablar
-        WHERE nomi ILIKE %s ORDER BY nomi LIMIT 10
+        WHERE archived_at IS NULL AND nomi ILIKE %s ORDER BY nomi LIMIT 10
     """, (f"%{nomi.strip()}%",))
     natija = cur.fetchall()
     cur.close()
@@ -15291,20 +15291,22 @@ def universitetlar_royxati(token: str):
         to_regclass('public.learning_contexts') AS contexts""")
     source_tables = cur.fetchone() or {}
     source_join = ""
-    source_filter = ""
+    # Profil arxivi legacy yozuvning archived_at ustunini belgilaydi.
+    # Workspace xaritasi yo'q eski institutlar ham bu filtrdan o'tishi shart.
+    source_filter = "WHERE u.archived_at IS NULL"
     if all(source_tables.get(key) for key in ("workspace_map", "trials", "contexts")):
         source_join = """
         LEFT JOIN universitet_workspace_map uwm ON uwm.universitet_id=u.id
         LEFT JOIN organization_trials ot ON ot.context_id=uwm.context_id
         LEFT JOIN learning_contexts lc ON lc.id=uwm.context_id
         """
-        source_filter = """WHERE uwm.context_id IS NULL OR (
+        source_filter += """ AND (uwm.context_id IS NULL OR (
             ot.organization_type='institute'
             AND lc.context_type='university'
             AND lc.active=TRUE
             AND LOWER(COALESCE(ot.lifecycle_status,''))
                 IN ('trial','read_only','active')
-        )"""
+        ))"""
     cur.execute(f"""
         SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
                (SELECT COUNT(*) FROM fakultetlar fk WHERE fk.universitet_id=u.id

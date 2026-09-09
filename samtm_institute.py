@@ -1741,13 +1741,14 @@ def super_admin_institutes(token: Optional[str] = Query(None, include_in_schema=
                   LEFT JOIN universitet_workspace_map uwm ON uwm.universitet_id=u.id
                   LEFT JOIN organization_trials o ON o.context_id=uwm.context_id
                   LEFT JOIN learning_contexts c ON c.id=uwm.context_id
-                 WHERE uwm.context_id IS NULL OR (
+                 WHERE u.archived_at IS NULL
+                   AND (uwm.context_id IS NULL OR (
                        o.organization_type='institute'
                        AND c.context_type='university'
                        AND c.active=TRUE
                        AND LOWER(COALESCE(o.lifecycle_status,''))
                            IN ('trial','read_only','active')
-                 )
+                 ))
                  ORDER BY u.nomi""")
         rows = cur.fetchall()
         conn.commit()
