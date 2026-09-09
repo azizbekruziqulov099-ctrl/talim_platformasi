@@ -485,27 +485,31 @@ def oquvchi_ota_onalarim(token: str):
 # GOOGLE ORQALI KIRISH (OAuth)
 # ═══════════════════════════════════════════════════════════
 
+_kabutar_auth_service = None
+
+
 def _jwt_yarat(user_id: int) -> str:
-    """30 kun amal qiladigan sessiya tokeni yaratadi."""
-    payload = {
-        "user_id": user_id,
-        "exp": datetime.now(timezone.utc) + timedelta(days=30),
-    }
-    return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
+    """Create a 30-day revocable session; shared wrappers retain module compatibility."""
+    if _kabutar_auth_service is None:
+        raise HTTPException(status_code=503, detail="Kirish xizmati hali tayyor emas")
+    return _kabutar_auth_service.issue_session(user_id, "google")
 
 
 import contextvars as _contextvars
 # Joriy HTTP metodi (middleware yozadi). Admin "ko'rish rejimi" tokeni bilan
 # faqat o'qish (GET/HEAD/OPTIONS) so'rovlariga ruxsat beriladi.
 _JORIY_HTTP_METOD = _contextvars.ContextVar("samtm_joriy_http_metod", default="GET")
+_KABUTAR_AUTH_REQUEST_CACHE = _contextvars.ContextVar("kabutar_auth_request_cache", default=None)
 
 
 @app.middleware("http")
 async def _v2252_http_metodni_yoz(request, call_next):
     token_ctx = _JORIY_HTTP_METOD.set(str(request.method or "GET").upper())
+    auth_cache_ctx = _KABUTAR_AUTH_REQUEST_CACHE.set({})
     try:
         return await call_next(request)
     finally:
+        _KABUTAR_AUTH_REQUEST_CACHE.reset(auth_cache_ctx)
         _JORIY_HTTP_METOD.reset(token_ctx)
 
 
@@ -524,17 +528,34 @@ def _jwt_korish_tokeni_yarat(admin_id: int, target_user_id: int, yozish: bool = 
 
 
 def _jwt_tekshir(token: str) -> int:
-    """Tokenni tekshiradi, user_id qaytaradi. Noto'g'ri bo'lsa xato beradi."""
+    """Validate purpose and revocable session once per HTTP request."""
+    if not isinstance(token, str) or not token:
+        raise HTTPException(status_code=401, detail="Kirish tokeni yuborilmadi")
+    cache = _KABUTAR_AUTH_REQUEST_CACHE.get()
+    cache_key = (token, _JORIY_HTTP_METOD.get())
+    if cache is not None and cache_key in cache:
+        return cache[cache_key]
     try:
-        payload = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
-    except JWTError:
+        payload = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"], options={"require_exp": True})
+    except (JWTError, TypeError, ValueError):
         raise HTTPException(status_code=401, detail="Sessiya eskirgan, qaytadan kiring")
+    if payload.get("purpose") not in (None, "access"):
+        raise HTTPException(status_code=401, detail="Bu token kirish sessiyasi emas")
+    if not isinstance(payload.get("user_id"), int) or isinstance(payload.get("user_id"), bool):
+        raise HTTPException(status_code=401, detail="Kirish tokeni noto'g'ri")
+    if payload.get("admin_korish") and set(payload) - {"user_id", "exp", "admin_korish", "yozish"}:
+        raise HTTPException(status_code=401, detail="Ko'rish tokeni noto'g'ri")
     if payload.get("admin_korish") and not payload.get("yozish") and _JORIY_HTTP_METOD.get() not in ("GET", "HEAD", "OPTIONS"):
         raise HTTPException(
             status_code=403,
             detail="Admin ko'rish rejimi: bu oynada hech narsa o'zgartirilmaydi (faqat ko'rish).",
         )
-    return payload["user_id"]
+    if _kabutar_auth_service is None:
+        raise HTTPException(status_code=503, detail="Kirish xizmati hali tayyor emas")
+    user_id = _kabutar_auth_service.verify_session(token, payload)
+    if cache is not None:
+        cache[cache_key] = user_id
+    return user_id
 
 
 def _jwt_header_yoki_query(
@@ -644,7 +665,7 @@ def _oauth_frontend_redirect(xato: Optional[str] = None, ticket: Optional[str] =
 
 
 @app.get("/auth/google/login")
-def google_login():
+def google_login(intent: Optional[str] = None):
     """Google'ga state va PKCE S256 bilan xavfsiz yo'naltiradi."""
     if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
         raise HTTPException(status_code=503, detail="Google kirish hali sozlanmagan")
@@ -659,6 +680,7 @@ def google_login():
         OAUTH_STATE_SECONDS,
         state=state,
         verifier=verifier,
+        intent="link" if intent == "link" else "login",
     )
     url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlencode({
         "client_id": GOOGLE_CLIENT_ID,
@@ -745,7 +767,7 @@ async def google_callback(
         cur.close()
         conn.close()
 
-    if r:
+    if r and state_payload.get("intent") != "link":
         ticket = _oauth_imzolangan_token(
             "google_login_ticket",
             OAUTH_TICKET_SECONDS,
@@ -759,6 +781,7 @@ async def google_callback(
             outcome="registration",
             email=email,
             name=ism,
+            intent="link" if state_payload.get("intent") == "link" else "login",
         )
     return _oauth_frontend_redirect(ticket=ticket)
 
@@ -783,22 +806,26 @@ def google_ticket_exchange(sorov: GoogleTicketExchange, request: Request):
     if not payload:
         response = JSONResponse(status_code=401, content={"detail": "Kirish chiptasi eskirgan"})
     elif payload.get("outcome") == "login" and isinstance(payload.get("user_id"), int):
+        _auth_ticket_consume(payload)
         response = JSONResponse({
             "holat": "kirdi",
             "token": _jwt_yarat(payload["user_id"]),
         })
     elif payload.get("outcome") == "registration" and payload.get("email"):
+        _auth_ticket_consume(payload)
         registration_grant = _oauth_imzolangan_token(
             "google_registration_grant",
             OAUTH_REGISTRATION_GRANT_SECONDS,
             outcome="registration",
             email=payload["email"],
+            intent=payload.get("intent", "login"),
         )
         response = JSONResponse({
             "holat": "ulash",
             "email": payload["email"],
             "ism": payload.get("name", ""),
             "oauth_grant": registration_grant,
+            "intent": payload.get("intent", "login"),
         })
     else:
         response = JSONResponse(status_code=401, content={"detail": "Kirish chiptasi noto'g'ri"})
@@ -816,7 +843,7 @@ class UlashSorov(BaseModel):
 class RoyxatSorov(BaseModel):
     email: str
     ism: str
-    rol: str          # 'oquvchi' | 'ota-ona' | 'oqituvchi'
+    rol: str = "kabutar"  # General chat first; education is selected later.
     oauth_grant: Optional[str] = None
     sinf: Optional[str] = None  # faqat rol='oquvchi' bo'lsa
     region: Optional[str] = None
@@ -824,7 +851,7 @@ class RoyxatSorov(BaseModel):
     tugilgan_sana: Optional[str] = None
     maktab_raqami: Optional[str] = None
 
-RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi"}
+RUXSAT_ETILGAN_ROLLAR = {"oquvchi", "ota-ona", "oqituvchi", "kabutar", "mustaqil"}
 
 
 @app.get("/auth/ism_tekshir")
@@ -853,46 +880,33 @@ def ism_tekshir(ism: str):
 
 @app.post("/auth/royxat")
 def yangi_royxat(sorov: RoyxatSorov):
-    """Botsiz, to'g'ridan saytdan YANGI foydalanuvchi yaratadi.
-    Telegram ID bilan TO'QNASHMASLIGI uchun MANFIY user_id beriladi
-    (haqiqiy Telegram ID doim musbat bo'ladi)."""
+    """Verified Google creates one general Kabutar account; never merges by name."""
     registration = _google_registration_tekshir(sorov.oauth_grant, sorov.email)
     email = registration["email"]
     if sorov.rol not in RUXSAT_ETILGAN_ROLLAR:
-        raise HTTPException(status_code=400, detail=f"Noto'g'ri rol: {sorov.rol}")
-    if not sorov.ism.strip():
-        raise HTTPException(status_code=400, detail="Ism kiritilmagan")
-
-    conn = _db()
-    cur = conn.cursor()
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-
-    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
-    if cur.fetchone():
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Bu email allaqachon ulangan — kirish orqali davom eting")
-
-    cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
-    r = cur.fetchone()
-    yangi_id = (r["eng_kichik"] - 1) if r and r["eng_kichik"] is not None else -1
-
-    cur.execute(
-        """INSERT INTO users(user_id, full_name, role, class, region, district, tugilgan_sana, maktab_raqami)
-           VALUES(%s,%s,%s,%s,%s,%s,%s,%s)""",
-        (yangi_id, sorov.ism.strip(), sorov.rol, sorov.sinf if sorov.rol == "oquvchi" else None,
-         sorov.region, sorov.district, sorov.tugilgan_sana, sorov.maktab_raqami),
-    )
-    cur.execute(
-        "INSERT INTO google_hisob(google_email, user_id) VALUES(%s,%s)",
-        (email, yangi_id),
-    )
-    conn.commit()
-    cur.close()
-    conn.close()
-
-    token = _jwt_yarat(yangi_id)
-    return {"token": token, "user_id": yangi_id, "holat": "royxatdan otdi"}
+        raise HTTPException(status_code=400, detail="Noto'g'ri rol")
+    name = sorov.ism.strip()
+    if not name or len(name) > 200:
+        raise HTTPException(status_code=400, detail="Ism 1–200 belgidan iborat bo'lsin")
+    with _kabutar_auth_service.transaction() as cur:
+        # All legacy negative-ID registrations share this lock. It also ensures
+        # consumed grants and unique-email ownership commit in one transaction.
+        cur.execute("SELECT pg_advisory_xact_lock(%s)", (31091001,))
+        cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
+        if cur.fetchone():
+            raise HTTPException(status_code=409, detail="Bu email allaqachon ulangan — kirish orqali davom eting")
+        _auth_ticket_consume_cur(cur, registration)
+        cur.execute("SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0")
+        row=cur.fetchone()
+        new_id=(row["eng_kichik"]-1) if row and row["eng_kichik"] is not None else -1
+        cur.execute("""INSERT INTO users(user_id,full_name,role,class,region,district,tugilgan_sana,maktab_raqami,kabutar_education_ready)
+            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+            (new_id,name,sorov.rol,sorov.sinf if sorov.rol=="oquvchi" else None,sorov.region,sorov.district,
+             sorov.tugilgan_sana,sorov.maktab_raqami,sorov.rol not in ("kabutar","mustaqil")))
+        cur.execute("INSERT INTO google_hisob(google_email,user_id) VALUES(%s,%s)",(email,new_id))
+        token=_kabutar_auth_service._issue_cur(cur,new_id,"google")
+    _kabutar_auth_service.record_login(new_id,"google")
+    return {"token":token,"user_id":new_id,"holat":"royxatdan otdi"}
 
 
 # ═══════════════════════════════════════════════════════════
@@ -995,6 +1009,7 @@ class TelefonKodSorash(BaseModel):
 
 @app.post("/api/auth/telefon_kod_sorash")
 def telefon_kod_sorash(sorov: TelefonKodSorash):
+    raise HTTPException(status_code=410, detail="Telefon orqali eski kod kirishi yopilgan. Telegram orqali kirish tugmasidan foydalaning")
     """Tasdiqlash kodini yuboradi — AVVAL Telegram bot orqali (bepul,
     agar telefon allaqachon botga ulangan bo'lsa), bo'lmasa Eskiz.uz
     orqali SMS (pullik, sozlangan bo'lsa)."""
@@ -1037,6 +1052,7 @@ class TelefonKodTasdiqlash(BaseModel):
 
 @app.post("/api/auth/telefon_kod_tasdiqla")
 def telefon_kod_tasdiqla(sorov: TelefonKodTasdiqlash):
+    raise HTTPException(status_code=410, detail="Telefon orqali eski kod kirishi yopilgan. Telegram orqali kirish tugmasidan foydalaning")
     """Kodni tekshiradi. Telefon avvaldan ulangan bo'lsa — token beradi
     (kirish). Ulanmagan (yangi) bo'lsa — "royxat_kerak" qaytaradi,
     frontend keyin /api/auth/telefon_royxat orqali ism/rol so'raydi."""
@@ -1091,6 +1107,7 @@ class TelefonRoyxatSorov(BaseModel):
 
 @app.post("/api/auth/telefon_royxat")
 def telefon_royxat(sorov: TelefonRoyxatSorov):
+    raise HTTPException(status_code=410, detail="Telefon orqali eski kod kirishi yopilgan. Telegram orqali kirish tugmasidan foydalaning")
     """Telefon orqali YANGI hisob yaratadi — kodni QAYTA tekshiradi
     (xavfsizlik: kim bo'lsa ham to'g'ridan-to'g'ri shu endpoint'ga
     kod'siz murojaat qilib hisob ochib qo'ymasin)."""
@@ -1136,6 +1153,7 @@ def telefon_royxat(sorov: TelefonRoyxatSorov):
 
 @app.post("/auth/ulash")
 def hisob_ulash(sorov: UlashSorov):
+    raise HTTPException(status_code=410, detail="Eski akkaunt ko‘chirish kodi yopilgan. Profil → Kirish va xavfsizlik bo‘limida Telegram yoki Google hisobini ulang")
     """Google hisobini bot user_id'siga kod orqali bog'laydi. Ikki xil
     kod manbasini tekshiradi: botdagi veb_ulash_kod (15 daqiqa amal
     qiladi) VA xodimlar uchun xodim_kod (2 oy amal qiladi,
@@ -1199,9 +1217,16 @@ def hisob_ulash(sorov: UlashSorov):
         conn.close()
         raise HTTPException(status_code=400, detail=f"Kod muddati tugagan ({muddat_matni}) — qaytadan so'rang")
 
+    cur.execute("SELECT pg_advisory_xact_lock(hashtextextended(%s,31))", ("google:"+email,))
+    cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
+    existing_google = cur.fetchone()
+    if existing_google and existing_google["user_id"] != r["user_id"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=409, detail="Bu Google hisobi boshqa akkauntga ulangan; avtomatik birlashtirilmaydi")
+    _auth_ticket_consume_cur(cur, registration)
     cur.execute("""
         INSERT INTO google_hisob (google_email, user_id) VALUES (%s,%s)
-        ON CONFLICT (google_email) DO UPDATE SET user_id=EXCLUDED.user_id
+        ON CONFLICT (google_email) DO NOTHING
     """, (email, r["user_id"]))
     cur.execute(
         f"UPDATE {jadval_nomi} SET ishlatildi=TRUE WHERE kod=%s",
@@ -1217,10 +1242,12 @@ def hisob_ulash(sorov: UlashSorov):
 
 
 @app.get("/auth/men")
-def joriy_foydalanuvchi(token: str):
+def joriy_foydalanuvchi(token: Optional[str] = None, request: Request = None):
     """Token orqali 'bu kim' ekanini tasdiqlaydi — frontend sahifa yuklanganda
     ishlatadi. Admin bo'lsa, is_admin=true qaytadi — frontend shunga qarab
     sinf-cheklovini olib tashlaydi (admin barcha sinflarni ko'rishi kerak)."""
+    if request is not None:
+        token = _jwt_header_yoki_query(token, request.headers.get("authorization"))
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
@@ -1267,6 +1294,8 @@ def joriy_foydalanuvchi(token: str):
     r["is_admin"] = cur.fetchone() is not None
     cur.close()
     conn.close()
+    if _kabutar_auth_service is not None:
+        r.update(_kabutar_auth_service.profile_status(user_id))
     return r
 
 
@@ -3076,6 +3105,7 @@ def test_natijasini_saqla(sorov: TestNatijaSorov):
 
 @app.post("/auth/sayt_kod_yarat")
 def sayt_kod_yarat(token: str):
+    raise HTTPException(status_code=410, detail="Eski akkaunt ko‘chirish kodi yopilgan. Profil → Kirish va xavfsizlik bo‘limida Telegram yoki Google hisobini ulang")
     """Saytda kirgan foydalanuvchi uchun BOTGA ulash kodi yaratadi.
     Bot bu kodni ko'rib, shu web_user_id'dagi ma'lumotni haqiqiy
     Telegram user_id'ga ko'chiradi."""
@@ -3536,7 +3566,7 @@ class ProfilYangilash(BaseModel):
     oqituvchi_fani: Optional[str] = None  # o'qituvchining o'zi o'qitadigan fan — dizayn uchun
     asosiy_til: Optional[str] = None    # uz | en | ru — tegsiz matn shu tilda o'qiladi
     ovoz_jinsi: Optional[str] = None    # ogil | qiz — ovoz erkak/ayol tanlovi
-    maktab_id: Optional[int] = None     # ro'yxatdagi (tizimga qo'shilgan) maktabga ANIQ bog'lanish
+    maktab_id: Optional[int] = None     # eski mijoz mosligi: faqat joriy tasdiqlangan a'zolik IDsi
 
 
 MAKTAB_TURLARI = {
@@ -3659,14 +3689,23 @@ def profil_yangila(sorov: ProfilYangilash):
         maydonlar.append("ovoz_jinsi=%s")
         qiymatlar.append(sorov.ovoz_jinsi)
     if sorov.maktab_id is not None:
-        _maktab_jadvali(cur)
-        cur.execute("SELECT 1 FROM maktablar WHERE id=%s", (sorov.maktab_id,))
-        if not cur.fetchone():
+        # users.maktab_id + lavozim maktab vakolatlarini belgilaydi. Profil
+        # formasidan bu IDni almashtirish rahbarning vakolatini boshqa
+        # muassasaga ko'chirib yuborishi mumkin. A'zolik faqat muassasaning
+        # tasdiqlangan qo'shilish/biriktirish oqimi orqali o'zgartiriladi.
+        cur.execute("SELECT maktab_id FROM users WHERE user_id=%s FOR UPDATE", (user_id,))
+        joriy_profil = cur.fetchone()
+        if not joriy_profil:
             cur.close(); conn.close()
-            raise HTTPException(status_code=400, detail="Ko'rsatilgan maktab topilmadi")
-        pass  # V19: DDL moved to startup migration.
-        maydonlar.append("maktab_id=%s")
-        qiymatlar.append(sorov.maktab_id)
+            raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+        if joriy_profil.get("maktab_id") != sorov.maktab_id:
+            cur.close(); conn.close()
+            raise HTTPException(
+                status_code=403,
+                detail="Maktabga biriktirish profil orqali o'zgartirilmaydi. Muassasaga qo'shilish yoki rahbar tasdig'idan foydalaning.",
+            )
+        # Bir xil ID yuborgan eski profil formasiga ruxsat bor, lekin
+        # membership ustunini qayta yozmaymiz.
 
     if not maydonlar:
         cur.close()
@@ -5703,6 +5742,18 @@ def chat_foydalanuvchi_qidir(token: str, ism: str):
     return {"natijalar": natija}
 
 
+def _chat_suhbat_ruxsat(cur, user_id, guruh_id=None, boshqa_user_id=None):
+    """One canonical chat target and the existing Kabutar contact policy."""
+    if bool(guruh_id) == bool(boshqa_user_id):
+        raise HTTPException(status_code=400, detail="Bitta guruh yoki bitta suhbatdoshni tanlang")
+    if guruh_id:
+        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
+        if not cur.fetchone():
+            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
+    elif not _kabutar_ruxsat(cur, user_id, None, boshqa_user_id):
+        raise HTTPException(status_code=403, detail="Bu odam bilan aloqa ruxsati yo'q — avval Kabutar ID orqali toping")
+
+
 @app.post("/api/chat/korildi_belgila")
 def chat_korildi_belgila(token: str, oxirgi_xabar_id: int, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
     """Foydalanuvchi shu suhbatni ochganda (yoki oxirigacha aylantirganda)
@@ -5712,11 +5763,25 @@ def chat_korildi_belgila(token: str, oxirgi_xabar_id: int, guruh_id: Optional[in
     orqaga hech qachon qaytmaydi (masalan ikkita oyna ochiq bo'lsa,
     eski so'rov yangisini bosib qolmasin)."""
     user_id = _jwt_tekshir(token)
-    if not guruh_id and not boshqa_user_id:
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
+    if oxirgi_xabar_id <= 0:
+        raise HTTPException(status_code=400, detail="Xabar raqami noto'g'ri")
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa_user_id)
+        if guruh_id:
+            cur.execute("SELECT id FROM chat_xabarlari WHERE id=%s AND guruh_id=%s", (oxirgi_xabar_id, guruh_id))
+        else:
+            cur.execute("""SELECT id FROM chat_xabarlari WHERE id=%s AND guruh_id IS NULL AND
+                           ((yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s) OR
+                            (yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s))""",
+                        (oxirgi_xabar_id, user_id, boshqa_user_id, boshqa_user_id, user_id))
+        if not cur.fetchone():
+            raise HTTPException(status_code=400, detail="Oxirgi xabar shu suhbatga tegishli emas")
+    except Exception:
+        cur.close(); conn.close()
+        raise
     if guruh_id:
         cur.execute("""
             INSERT INTO chat_oxirgi_korish(user_id, guruh_id, oxirgi_xabar_id) VALUES(%s,%s,%s)
@@ -5735,31 +5800,42 @@ def chat_korildi_belgila(token: str, oxirgi_xabar_id: int, guruh_id: Optional[in
 
 
 @app.get("/api/chat/xabarlar")
-def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None, oxirgidan: Optional[int] = None):
+def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None, oxirgidan: Optional[int] = None, keyingidan: Optional[int] = None):
     """Bitta suhbatning (guruh YOKI shaxsiy) xabarlarini qaytaradi —
     eng oxirgi 50 tasi (yoki 'oxirgidan' ID'dan OLDINGI 50 tasi,
     yuqoriga aylantirilganda ko'proq yuklash uchun)."""
     user_id = _jwt_tekshir(token)
+    if oxirgidan is not None and keyingidan is not None:
+        raise HTTPException(status_code=400, detail="Bitta sahifalash yo'nalishini tanlang")
+    if any(value is not None and value < 0 for value in (oxirgidan, keyingidan)):
+        raise HTTPException(status_code=400, detail="Xabar raqami noto'g'ri")
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa_user_id)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
         shart = "cx.guruh_id=%s"
         params = [guruh_id]
     elif boshqa_user_id:
-        shart = "cx.qabul_qiluvchi_user_id IS NOT NULL AND ((cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s) OR (cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s))"
+        shart = "cx.guruh_id IS NULL AND cx.qabul_qiluvchi_user_id IS NOT NULL AND ((cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s) OR (cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s))"
         params = [user_id, boshqa_user_id, boshqa_user_id, user_id]
     else:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
 
-    if oxirgidan:
+    if oxirgidan is not None:
         shart += " AND cx.id < %s"
         params.append(oxirgidan)
+    if keyingidan is not None:
+        shart += " AND cx.id > %s"
+        params.append(keyingidan)
+    # Incremental pages begin at the earliest unseen message; selecting the
+    # newest 50 would permanently skip messages during a burst of >50.
+    tartib = "ASC" if keyingidan is not None else "DESC"
 
     cur.execute(f"""
         SELECT cx.id, cx.yuboruvchi_user_id, u.full_name AS yuboruvchi_ismi, cx.matn, cx.fayl_turi,
@@ -5768,10 +5844,10 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
                LEFT(jx.matn, 100) AS javob_matn_qisqa, jx.fayl_turi AS javob_fayl_turi
         FROM chat_xabarlari cx
         JOIN users u ON u.user_id = cx.yuboruvchi_user_id
-        LEFT JOIN chat_xabarlari jx ON jx.id = cx.javob_xabar_id
+        LEFT JOIN chat_xabarlari jx ON jx.id = cx.javob_xabar_id AND COALESCE(jx.ochirilgan,FALSE)=FALSE
         LEFT JOIN users ju ON ju.user_id = jx.yuboruvchi_user_id
         WHERE {shart}
-        ORDER BY cx.id DESC LIMIT 50
+        ORDER BY cx.id {tartib} LIMIT 50
     """, params)
     xabarlar = cur.fetchall()
 
@@ -5792,6 +5868,9 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
 
     for x in xabarlar:
         x["meniki"] = int(x["yuboruvchi_user_id"]) == int(user_id)
+        if x.get("ochirilgan"):
+            x.update(matn=None, fayl_turi=None, fayl_nomi=None, fayl_hajmi_kb=None,
+                     javob_xabar_id=None, javob_matn_qisqa=None, javob_fayl_turi=None)
 
     boshqa_tomon_korgan_id = None
     if boshqa_user_id:
@@ -5803,7 +5882,9 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
         boshqa_tomon_korgan_id = r["oxirgi_xabar_id"] if r else None
 
     cur.close(); conn.close()
-    return {"xabarlar": list(reversed(xabarlar)), "boshqa_tomon_korgan_id": boshqa_tomon_korgan_id}
+    rows = xabarlar if keyingidan is not None else list(reversed(xabarlar))
+    return {"xabarlar": rows, "boshqa_tomon_korgan_id": boshqa_tomon_korgan_id,
+            "yana_bormi": len(rows) == 50, "keyingi_id": max((x["id"] for x in rows), default=keyingidan)}
 
 
 @app.post("/api/chat/xabar_yubor")
@@ -5828,6 +5909,11 @@ async def chat_xabar_yubor(
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     _moderatsiya_jadvallari(cur)
 
     matn_toza = (matn or "").strip()
@@ -5844,15 +5930,34 @@ async def chat_xabar_yubor(
             _xavfli_royxatga_yoz(cur, user_id, matn_toza)
             conn.commit()
 
-    if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
-
     fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb = None, None, None, None
     if fayl:
-        tarkib = await fayl.read()
+        try:
+            from .kabutar_uploads import read_bounded_upload, UploadTooLarge, KABUTAR_UPLOAD_LIMITS_MB
+        except ImportError:
+            from kabutar_uploads import read_bounded_upload, UploadTooLarge, KABUTAR_UPLOAD_LIMITS_MB
+        try:
+            max_mb = KABUTAR_UPLOAD_LIMITS_MB.get(fayl_turi or "hujjat")
+            if max_mb is None:
+                await fayl.close()
+                raise HTTPException(status_code=400, detail="Fayl turi: audio, video, video_doira yoki hujjat")
+            try:
+                tarkib = await read_bounded_upload(fayl, max_mb * 1024 * 1024)
+            except UploadTooLarge as exc:
+                raise HTTPException(status_code=413, detail=f"Fayl {max_mb} MB dan katta") from exc
+            if not tarkib:
+                raise HTTPException(status_code=400, detail="Fayl bo'sh")
+        except BaseException:
+            # The legacy route opens a database connection before reading the
+            # upload. A size/read/cancellation rejection must return it too.
+            try:
+                conn.rollback()
+            finally:
+                try:
+                    cur.close()
+                finally:
+                    conn.close()
+            raise
 
         # Ovozli/video (dumaloq video ham) xabarlar — ilovaning O'ZI
         # yaratgan yozuvlar, shuning uchun kengaytma ro'yxatidan
@@ -5876,7 +5981,7 @@ async def chat_xabar_yubor(
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
 
-        fayl_hajmi_kb = len(tarkib) // 1024
+        fayl_hajmi_kb = max(1, (len(tarkib) + 1023) // 1024)
         cur.execute("""
             SELECT COALESCE(SUM(fayl_hajmi_kb), 0) AS jami FROM chat_xabarlari
             WHERE yuboruvchi_user_id=%s AND yaratilgan_at::date = CURRENT_DATE
@@ -6234,24 +6339,34 @@ def chat_fayl_korish(xabar_id: int, token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    cur.execute(
-        "SELECT guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, fayl_malumot, fayl_content_turi FROM chat_xabarlari WHERE id=%s",
-        (xabar_id,),
-    )
-    x = cur.fetchone()
-    if not x or not x["fayl_malumot"]:
+    try:
+        # Authorize small metadata before reading potentially large BYTEA.
+        cur.execute("""SELECT guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id
+                       FROM chat_xabarlari WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
+        metadata = cur.fetchone()
+        if not metadata:
+            raise HTTPException(status_code=404, detail="Fayl topilmadi")
+        if metadata["guruh_id"]:
+            cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (metadata["guruh_id"], user_id))
+            ruxsat = cur.fetchone() is not None
+        else:
+            ruxsat = user_id in (metadata["yuboruvchi_user_id"], metadata["qabul_qiluvchi_user_id"])
+        if not ruxsat:
+            raise HTTPException(status_code=403, detail="Ruxsat yo'q")
+        # Repeat deletion/membership predicates in the data query to cover a
+        # deletion or group-membership change between the two statements.
+        cur.execute("""SELECT x.fayl_malumot, x.fayl_content_turi FROM chat_xabarlari x
+                       WHERE x.id=%s AND COALESCE(x.ochirilgan,FALSE)=FALSE AND (
+                         (x.guruh_id IS NULL AND (x.yuboruvchi_user_id=%s OR x.qabul_qiluvchi_user_id=%s)) OR
+                         EXISTS(SELECT 1 FROM chat_azolari a WHERE a.guruh_id=x.guruh_id AND a.user_id=%s)
+                       )""", (xabar_id, user_id, user_id, user_id))
+        x = cur.fetchone()
+        if not x or not x["fayl_malumot"]:
+            raise HTTPException(status_code=404, detail="Fayl topilmadi")
+        return Response(content=bytes(x["fayl_malumot"]), media_type=x["fayl_content_turi"] or "application/octet-stream",
+                        headers={"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"})
+    finally:
         cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Fayl topilmadi")
-    ruxsat = False
-    if x["guruh_id"]:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (x["guruh_id"], user_id))
-        ruxsat = cur.fetchone() is not None
-    else:
-        ruxsat = user_id in (x["yuboruvchi_user_id"], x["qabul_qiluvchi_user_id"])
-    cur.close(); conn.close()
-    if not ruxsat:
-        raise HTTPException(status_code=403, detail="Ruxsat yo'q")
-    return Response(content=bytes(x["fayl_malumot"]), media_type=x["fayl_content_turi"] or "application/octet-stream")
 
 
 # ═══════════════════════════════════════════════════════════
@@ -15492,11 +15607,10 @@ def universitet_guruh_bilimi(token: str, guruh_id: int):
 # ═══════════════════════════════════════════════════════════
 
 def _sinov_jwt_yarat(user_id: int) -> str:
-    """Admin uchun — 'sifatida kirish' tokeni. Uzoq muddatli, chuqur
-    sinov (darslar qo'yish, baholash, kontent yuklash) uchun oddiy
-    foydalanuvchi seansi bilan BIR XIL — 30 kun amal qiladi."""
-    payload = {"user_id": user_id, "exp": datetime.now(timezone.utc) + timedelta(days=30)}
-    return jwt.encode(payload, JWT_MAXFIY_KALIT, algorithm="HS256")
+    """Admin-issued test sessions remain revocable and cannot link credentials."""
+    if _kabutar_auth_service is None:
+        raise HTTPException(status_code=503, detail="Kirish xizmati hali tayyor emas")
+    return _kabutar_auth_service.issue_session(user_id, "admin-test")
 
 
 def _keyingi_manfiy_id(cur):

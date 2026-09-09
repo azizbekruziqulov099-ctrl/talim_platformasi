@@ -22677,6 +22677,13 @@ def _kabutar_ruxsat(cur, user_id: int, maktab_id, other_id: int) -> bool:
     yoki (3) ilgari shu ikki kishi orasida xabar bo'lgan (ID orqali topib yozilgan)."""
     if int(user_id) == int(other_id):
         return False
+    # Mavjud shaxsiy suhbat uchun har poll'da butun muassasa katalogini
+    # qayta qurmaymiz. Avvalgi ruxsatning aynan shu OR sharti saqlangan.
+    cur.execute("""SELECT 1 FROM chat_xabarlari WHERE guruh_id IS NULL
+                   AND ((yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s) OR (yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s)) LIMIT 1""",
+                (user_id, other_id, other_id, user_id))
+    if cur.fetchone() is not None:
+        return True
     if maktab_id:
         try:
             _, groups = _kabutar_aloqalar(cur, user_id, int(maktab_id))
@@ -22687,39 +22694,86 @@ def _kabutar_ruxsat(cur, user_id: int, maktab_id, other_id: int) -> bool:
     groups = _kabutar_universal_aloqalar(cur, user_id)
     if any(int(item["user_id"]) == int(other_id) for g in groups for item in g["azolar"]):
         return True
-    cur.execute("""SELECT 1 FROM chat_xabarlari WHERE guruh_id IS NULL
-                   AND ((yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s) OR (yuboruvchi_user_id=%s AND qabul_qiluvchi_user_id=%s)) LIMIT 1""",
-                (user_id, other_id, other_id, user_id))
-    return cur.fetchone() is not None
+    return False
 
 
 # ---------- Universal identifikator va aloqalar ----------
+_KABUTAR_SCHEMA_READY = False
+_KABUTAR_SCHEMA_LOCK = _samtm_threading.Lock()
+
+
+@app.on_event("startup")
+def _kabutar_schema_startup():
+    """Commit schema before setting the process flag; failed setup may retry.
+
+    A separate transaction prevents a later failed message/profile request
+    from rolling back a schema change that was already marked as ready.
+    PostgreSQL advisory locking also serializes simultaneous worker startups.
+    """
+    global _KABUTAR_SCHEMA_READY
+    if _KABUTAR_SCHEMA_READY:
+        return
+    with _KABUTAR_SCHEMA_LOCK:
+        if _KABUTAR_SCHEMA_READY:
+            return
+        conn = _db(); schema_cur = conn.cursor()
+        try:
+            schema_cur.execute("SELECT pg_advisory_xact_lock(%s)", (31003101,))
+            schema_cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_id TEXT")
+            schema_cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS users_kabutar_id_uq ON users(kabutar_id) WHERE kabutar_id IS NOT NULL")
+            schema_cur.execute("SELECT to_regclass('public.chat_xabarlari') AS table_name")
+            if (schema_cur.fetchone() or {}).get("table_name"):
+                schema_cur.execute("CREATE INDEX IF NOT EXISTS chat_direct_sender_peer_id_rev31 ON chat_xabarlari(yuboruvchi_user_id, qabul_qiluvchi_user_id, id DESC) WHERE guruh_id IS NULL")
+                schema_cur.execute("CREATE INDEX IF NOT EXISTS chat_direct_recipient_peer_id_rev31 ON chat_xabarlari(qabul_qiluvchi_user_id, yuboruvchi_user_id, id DESC) WHERE guruh_id IS NULL")
+            conn.commit()
+            _KABUTAR_SCHEMA_READY = True
+        except Exception:
+            conn.rollback()
+            raise
+        finally:
+            schema_cur.close(); conn.close()
+
+
 def _kabutar_jadval(cur):
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_id TEXT")
-    cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS users_kabutar_id_uq ON users(kabutar_id) WHERE kabutar_id IS NOT NULL")
+    # Normal requests only read this in-memory flag. `cur` is retained for
+    # backward compatibility; schema DDL never joins its business transaction.
+    if not _KABUTAR_SCHEMA_READY:
+        _kabutar_schema_startup()
 
 
 def _kabutar_id_ber(cur, user_id: int) -> str:
     """Har akkauntga bir marta Kabutar ID. 8 xonali (90 mln sig'im); to'lib borsa o'zi 9-10 xonaga o'tadi.
     Eski 6 xonali IDlar o'zgarmaydi va ishlayveradi."""
     _kabutar_jadval(cur)
-    cur.execute("SELECT kabutar_id FROM users WHERE user_id=%s", (user_id,))
+    # Two tabs/login requests for one new account must receive the same ID.
+    cur.execute("SELECT kabutar_id FROM users WHERE user_id=%s FOR UPDATE", (user_id,))
     row = cur.fetchone()
-    if row and row.get("kabutar_id"):
+    if not row:
+        raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+    if row.get("kabutar_id"):
         return row["kabutar_id"]
     import secrets as _secrets
-    cur.execute("SELECT COUNT(*) AS n FROM users WHERE kabutar_id IS NOT NULL")
-    band = int((cur.fetchone() or {}).get("n") or 0)
-    # 8 xona: 10^7..10^8 (90 mln). 60% to'lsa keyingi xonaga o'tiladi — to'qnashuv ehtimoli pasayadi.
-    xona = 8
-    while band > 0.6 * 9 * 10 ** (xona - 1) and xona < 10:
-        xona += 1
-    for _ in range(40):
-        candidate = f"KB-{_secrets.randbelow(9 * 10 ** (xona - 1)) + 10 ** (xona - 1)}"
-        cur.execute("UPDATE users SET kabutar_id=%s WHERE user_id=%s AND kabutar_id IS NULL AND NOT EXISTS (SELECT 1 FROM users WHERE kabutar_id=%s)",
-                    (candidate, user_id, candidate))
-        if cur.rowcount:
-            return candidate
+    # No COUNT(*) over all accounts at every signup. Try 8 digits, then widen
+    # on collisions. Existing 6..10 digit IDs are returned unchanged above.
+    for xona in (8, 9, 10):
+        for _ in range(16):
+            candidate = f"KB-{_secrets.randbelow(9 * 10 ** (xona - 1)) + 10 ** (xona - 1)}"
+            cur.execute("SAVEPOINT kabutar_id_candidate")
+            try:
+                cur.execute("UPDATE users SET kabutar_id=%s WHERE user_id=%s AND kabutar_id IS NULL AND NOT EXISTS (SELECT 1 FROM users WHERE kabutar_id=%s)",
+                            (candidate, user_id, candidate))
+                assigned = bool(cur.rowcount)
+            except psycopg2.IntegrityError as exc:
+                cur.execute("ROLLBACK TO SAVEPOINT kabutar_id_candidate")
+                cur.execute("RELEASE SAVEPOINT kabutar_id_candidate")
+                # A simultaneous different account may win the same candidate.
+                # Other constraint failures remain visible to the caller.
+                if getattr(exc, "pgcode", None) == "23505":
+                    continue
+                raise
+            cur.execute("RELEASE SAVEPOINT kabutar_id_candidate")
+            if assigned:
+                return candidate
     raise HTTPException(status_code=500, detail="Kabutar ID yaratilmadi, qayta urinib ko'ring")
 
 
@@ -22898,23 +22952,30 @@ def v2258_kabutar_aloqalar_umumiy(token: str):
                          AND (k.oxirgi_xabar_id IS NULL OR x.id>k.oxirgi_xabar_id)
                        GROUP BY x.yuboruvchi_user_id""", (user_id, user_id))
         unread = {int(r["uid"]): int(r["n"]) for r in cur.fetchall()}
-        cur.execute("""SELECT CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS uid,
-                              MAX(id) AS oxirgi_id, MAX(yaratilgan_at) AS oxirgi
-                       FROM chat_xabarlari WHERE guruh_id IS NULL AND COALESCE(ochirilgan,FALSE)=FALSE AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s)
-                       GROUP BY 1 ORDER BY 3 DESC LIMIT 60""", (user_id, user_id, user_id))
+        # Fetch the 60 latest contacts, names and last-message previews in one
+        # query. Full institution/role cards are fetched only when opened.
+        cur.execute("""WITH recent AS (
+                           SELECT CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS uid,
+                                  MAX(id) AS oxirgi_id, MAX(yaratilgan_at) AS oxirgi
+                           FROM chat_xabarlari WHERE guruh_id IS NULL AND COALESCE(ochirilgan,FALSE)=FALSE
+                             AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s)
+                           GROUP BY 1 ORDER BY 3 DESC LIMIT 60
+                       )
+                       SELECT r.uid, r.oxirgi_id, r.oxirgi, u.full_name, u.role, u.lavozim,
+                              u.kabutar_id, m.matn, m.fayl_turi, m.yuboruvchi_user_id
+                       FROM recent r LEFT JOIN users u ON u.user_id=r.uid
+                       LEFT JOIN chat_xabarlari m ON m.id=r.oxirgi_id
+                       ORDER BY r.oxirgi DESC""", (user_id, user_id, user_id))
         recent_rows = [dict(r) for r in cur.fetchall()]
         known = {int(a["user_id"]) for m in muassasalar for a in m["azolar"]}
         suhbatlar = []
         for r in recent_rows:
             uid_ = int(r["uid"])
-            cur.execute("SELECT matn, fayl_turi, yuboruvchi_user_id FROM chat_xabarlari WHERE id=%s", (r["oxirgi_id"],))
-            lastm = cur.fetchone() or {}
-            card = _kabutar_shaxs(cur, uid_) if uid_ not in known else None
-            cur.execute("SELECT full_name FROM users WHERE user_id=%s", (uid_,))
-            nm = cur.fetchone()
-            suhbatlar.append({"user_id": uid_, "full_name": (nm or {}).get("full_name") or "", "izoh": card["qisqa"] if card else "",
-                              "oxirgi_matn": (lastm.get("matn") or {"audio": "🎙 ovozli xabar", "video": "🎬 video", "hujjat": "📎 hujjat"}.get(lastm.get("fayl_turi"), "")),
-                              "oxirgi_meniki": int(lastm.get("yuboruvchi_user_id") or 0) == int(user_id),
+            basic_role = {"oqituvchi": "O'qituvchi", "oquvchi": "O'quvchi", "ota-ona": "Ota-ona", "ota_ona": "Ota-ona"}.get(r.get("role"), "Foydalanuvchi")
+            preview_role = _KABUTAR_LAVOZIM_NOMI.get(r.get("lavozim"), basic_role)
+            suhbatlar.append({"user_id": uid_, "full_name": r.get("full_name") or "", "kabutar_id": r.get("kabutar_id"), "izoh": preview_role if uid_ not in known else "",
+                              "oxirgi_matn": (r.get("matn") or {"audio": "🎙 ovozli xabar", "video": "🎬 video", "video_doira": "🎬 video", "rasm": "🖼 rasm", "hujjat": "📎 hujjat"}.get(r.get("fayl_turi"), "")),
+                              "oxirgi_meniki": int(r.get("yuboruvchi_user_id") or 0) == int(user_id),
                               "oxirgi_xabar_at": r["oxirgi"].isoformat() if r["oxirgi"] else None, "oqilmagan": unread.get(uid_, 0), "tashqi": uid_ not in known})
         for m in muassasalar:
             for a in m["azolar"]:
@@ -23000,9 +23061,14 @@ async def v2257_kabutar_yubor(
         content_type = (fayl.content_type or "").split(";")[0].strip().lower()
         if content_type not in allowed:
             raise HTTPException(status_code=400, detail=f"Bu fayl formati qabul qilinmaydi ({content_type or 'noma’lum'})")
-        data = await fayl.read()
-        if len(data) > max_mb * 1024 * 1024:
-            raise HTTPException(status_code=413, detail=f"Fayl {max_mb} MB dan katta")
+        try:
+            from .kabutar_uploads import read_bounded_upload, UploadTooLarge
+        except ImportError:
+            from kabutar_uploads import read_bounded_upload, UploadTooLarge
+        try:
+            data = await read_bounded_upload(fayl, max_mb * 1024 * 1024)
+        except UploadTooLarge as exc:
+            raise HTTPException(status_code=413, detail=f"Fayl {max_mb} MB dan katta") from exc
         if not data:
             raise HTTPException(status_code=400, detail="Fayl bo'sh")
         filename = (fayl.filename or f"{fayl_turi}.bin")[:120]
@@ -23036,6 +23102,10 @@ async def v2257_kabutar_yubor(
 def v2257_kabutar_xabarlar(token: str, boshqa_user_id: int, maktab_id: Optional[int] = None, oxirgidan: Optional[int] = None, keyingidan: Optional[int] = None):
     """Ikki kishi orasidagi suhbat. keyingidan=ID — faqat yangi xabarlar (yengil so'rov, 5-10 soniyada bir)."""
     user_id = _jwt_tekshir(token)
+    if oxirgidan is not None and keyingidan is not None:
+        raise HTTPException(status_code=400, detail="Bitta sahifalash yo'nalishini tanlang")
+    if any(value is not None and value < 0 for value in (oxirgidan, keyingidan)):
+        raise HTTPException(status_code=400, detail="Xabar raqami noto'g'ri")
     conn = _db(); cur = conn.cursor()
     try:
         _chat_jadvallari(cur)
@@ -23044,15 +23114,18 @@ def v2257_kabutar_xabarlar(token: str, boshqa_user_id: int, maktab_id: Optional[
         where = ["x.guruh_id IS NULL", "COALESCE(x.ochirilgan,FALSE)=FALSE",
                  "((x.yuboruvchi_user_id=%s AND x.qabul_qiluvchi_user_id=%s) OR (x.yuboruvchi_user_id=%s AND x.qabul_qiluvchi_user_id=%s))"]
         params = [user_id, boshqa_user_id, boshqa_user_id, user_id]
-        if keyingidan:
+        if keyingidan is not None:
             where.append("x.id>%s"); params.append(keyingidan)
-        if oxirgidan:
+        if oxirgidan is not None:
             where.append("x.id<%s"); params.append(oxirgidan)
+        tartib = "ASC" if keyingidan is not None else "DESC"
         cur.execute(f"""SELECT x.id, x.yuboruvchi_user_id, x.qabul_qiluvchi_user_id, x.matn, x.fayl_turi, x.fayl_nomi, x.fayl_hajmi_kb, x.yaratilgan_at,
                                COALESCE(x.tahrirlangan,FALSE) AS tahrirlangan
                         FROM chat_xabarlari x WHERE {" AND ".join(where)}
-                        ORDER BY x.id DESC LIMIT 60""", params)
-        rows = [dict(r) for r in cur.fetchall()][::-1]
+                        ORDER BY x.id {tartib} LIMIT 60""", params)
+        rows = [dict(r) for r in cur.fetchall()]
+        if keyingidan is None:
+            rows.reverse()
         for r in rows:
             r["yaratilgan_at"] = r["yaratilgan_at"].isoformat() if r["yaratilgan_at"] else None
             r["meniki"] = int(r["yuboruvchi_user_id"]) == int(user_id)
@@ -23060,7 +23133,8 @@ def v2257_kabutar_xabarlar(token: str, boshqa_user_id: int, maktab_id: Optional[
         cur.execute("SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND boshqa_user_id=%s AND guruh_id IS NULL",
                     (boshqa_user_id, user_id))
         seen = cur.fetchone()
-        return {"xabarlar": rows, "qarshi_tomon_korgan_id": int(seen["oxirgi_xabar_id"]) if seen and seen.get("oxirgi_xabar_id") else None}
+        return {"xabarlar": rows, "qarshi_tomon_korgan_id": int(seen["oxirgi_xabar_id"]) if seen and seen.get("oxirgi_xabar_id") else None,
+                "yana_bormi": len(rows) == 60, "keyingi_id": max((x["id"] for x in rows), default=keyingidan)}
     finally:
         cur.close(); conn.close()
 

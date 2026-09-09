@@ -75,3 +75,21 @@ app.state.samtm_release = SAMTM_PLATFORM_RELEASE
 app.state.teacher_first_load_enabled = True
 app.state.smart_swap_enabled = True
 app.state.v17_school_workspace_link_enabled = True
+
+# Revocable authentication is installed through stable platform wrappers, so
+# helpers already imported by school/institute also enforce session revocation.
+try:
+    from .kabutar_auth import register_auth
+    from .modules.kabutar_audience import register_audience
+except ImportError:
+    from kabutar_auth import register_auth
+    from modules.kabutar_audience import register_audience
+register_auth(app, samtm_platform)
+register_audience(app, samtm_platform)
+
+# Exact nickname/KB lookup and opt-in verified-phone discovery.
+try:
+    from .kabutar_discovery import register_discovery
+except ImportError:
+    from kabutar_discovery import register_discovery
+register_discovery(app, samtm_platform, samtm_platform._kabutar_auth_service)
