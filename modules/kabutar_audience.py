@@ -264,7 +264,7 @@ def register_audience(app: Any, platform: Any) -> AudienceService:
     service = AudienceService(platform)
     app.state.kabutar_audience = service
     platform._kabutar_record_login = service.record_login
-    app.add_event_handler("startup", service.initialize)
+    app.router.add_event_handler("startup", service.initialize)
 
     @app.post("/api/presence", tags=["Kabutar"])
     def presence(authorization: str | None = Header(default=None)):
