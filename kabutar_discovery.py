@@ -158,7 +158,7 @@ class DiscoveryService:
 
 def register_discovery(app, platform, auth_service):
     service = DiscoveryService(platform, auth_service)
-    app.add_event_handler('startup', service.migrate)
+    app.router.add_event_handler('startup', service.migrate)
 
     def response(data):
         return JSONResponse(data, headers={'Cache-Control': 'no-store', 'Referrer-Policy': 'no-referrer'})

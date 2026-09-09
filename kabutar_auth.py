@@ -423,7 +423,7 @@ def register_auth(app, platform):
     platform._kabutar_auth_service=service
     platform._auth_ticket_consume=service.consume
     platform._auth_ticket_consume_cur=service.consume_cur
-    app.add_event_handler('startup',service.migrate)
+    app.router.add_event_handler('startup',service.migrate)
 
     @app.middleware('http')
     async def auth_response_headers(request, call_next):
