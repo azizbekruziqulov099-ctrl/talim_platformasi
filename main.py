@@ -93,3 +93,16 @@ try:
 except ImportError:
     from kabutar_discovery import register_discovery
 register_discovery(app, samtm_platform, samtm_platform._kabutar_auth_service)
+
+# REV42: private curriculum plans and the database-grounded assistant.
+# Use the router startup API, as with the existing authentication migration.
+if __package__:
+    from .modules.personal_schedule import register_personal_schedule
+    from .modules.kabutar_assistant import register_assistant
+else:
+    from modules.personal_schedule import register_personal_schedule
+    from modules.kabutar_assistant import register_assistant
+
+register_personal_schedule(app, samtm_platform, samtm_school)
+assistant_service = register_assistant(app, samtm_platform)
+app.router.add_event_handler("startup", assistant_service.migrate)

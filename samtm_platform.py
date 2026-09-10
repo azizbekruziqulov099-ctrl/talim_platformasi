@@ -24364,7 +24364,9 @@ def _oquvchi_jadval_ruxsati(cur, actor_id, child_id):
 
 def _jadval_sinf_raqami(value):
     match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(value or ""))
-    return int(match.group(1)) if match else 5
+    if not match:
+        raise HTTPException(status_code=422, detail="Jadval uchun profilingizda sinfni tanlang; sinf taxmin qilinmaydi")
+    return int(match.group(1))
 
 
 def _tasdiqlangan_oquv_reja_yuklamasi(cur, user, grade):
@@ -24388,8 +24390,9 @@ def _taxminiy_oquvchi_jadvali(grade, shift, curriculum=None):
     curriculum = [(str(name).strip(), float(hours)) for name, hours in (curriculum or []) if str(name).strip() and math.isfinite(float(hours)) and float(hours) > 0]
     if not curriculum:
         raise HTTPException(status_code=422, detail=f"{grade}-sinf uchun fanlar va haftalik soatlar andozasi topilmadi. Sinf andozasini bazaga kiriting; shaxsiy jadval uchun maktab tasdig'i kerak emas.")
-    if not any("kelajak" in name.lower() or "sinf soati" in name.lower() for name, _ in curriculum):
-        curriculum.append(("Kelajak soati", 1))
+    # Faqat admin kiritgan fanlar saqlanadi; Kelajak soati andozada yo'q
+    # bo'lsa, soatlar ustiga yashirincha qo'shilmaydi. Yangi haftaga xos
+    # aniq reja /api/shaxsiy-jadval orqali tuziladi.
     whole = [(name, int(math.floor(hours)), hours - math.floor(hours)) for name, hours in curriculum]
     target = int(round(sum(hours for _, hours in curriculum)))
     counts = {}

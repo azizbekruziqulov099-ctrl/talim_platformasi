@@ -52,7 +52,11 @@ MAX_HEAVY = max(1, int(os.getenv("MAX_HEAVY_REQUESTS", "2")))
 HEAVY_PATH_PARTS = (
     "/yaratish", "/xodim_import", "/shablon_import", "/import",
     "/oqituvchi_yuklamasi", "/oqituvchi_qoshish", "/almashtirish",
+    "/api/assistant/plan", "/api/assistant/create", "/api/assistant/export",
 )
+# These responses contain owner-specific plans, drafts or examination results.
+# Never cache them even when MICROCACHE_PATHS is configured broadly.
+PRIVATE_WORKSPACE_PREFIXES = ("/api/assistant/", "/api/shaxsiy-jadval")
 
 class _LocalCache:
     def __init__(self):
@@ -105,7 +109,9 @@ class RuntimeMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         request_id = request.headers.get("x-request-id") or secrets.token_hex(8)
         started = time.perf_counter()
-        heavy = any(part in request.url.path for part in HEAVY_PATH_PARTS)
+        heavy = (any(part in request.url.path for part in HEAVY_PATH_PARTS)
+                 or (request.url.path.startswith("/api/assistant/attempt/")
+                     and request.url.path.endswith("/export")))
         sem = self.heavy if heavy else self.normal
         try:
             await asyncio.wait_for(sem.acquire(), timeout=0.15)
@@ -113,7 +119,9 @@ class RuntimeMiddleware(BaseHTTPMiddleware):
             return JSONResponse(status_code=503, content={"detail":"Server band. Bir necha soniyadan keyin qayta urinib ko'ring.","request_id":request_id}, headers={"Retry-After":"2","X-Request-ID":request_id})
         try:
             cache_key = None
-            if request.method == "GET" and CACHE_TTL and request.url.path.startswith(CACHEABLE_PREFIXES):
+            if (request.method == "GET" and CACHE_TTL
+                    and not request.url.path.startswith(PRIVATE_WORKSPACE_PREFIXES)
+                    and request.url.path.startswith(CACHEABLE_PREFIXES)):
                 digest = hashlib.sha256(str(request.url).encode()).hexdigest()
                 cache_key = f"samtm:v19:http:{digest}"
                 cached = await _cache_get(cache_key)
@@ -123,6 +131,9 @@ class RuntimeMiddleware(BaseHTTPMiddleware):
                     headers.update({"X-Cache":"HIT","X-Request-ID":request_id})
                     return Response(content=bytes.fromhex(payload["body"]), status_code=payload["status"], media_type=payload.get("media_type"), headers=headers)
             response = await call_next(request)
+            if request.url.path.startswith(PRIVATE_WORKSPACE_PREFIXES):
+                response.headers["Cache-Control"] = "no-store, private"
+                response.headers["Referrer-Policy"] = "no-referrer"
             response.headers["X-Request-ID"] = request_id
             response.headers["X-Process-Time-Ms"] = f"{(time.perf_counter()-started)*1000:.1f}"
             response.headers.setdefault("X-Content-Type-Options", "nosniff")
