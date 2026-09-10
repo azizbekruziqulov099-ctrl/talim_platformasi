@@ -14,18 +14,23 @@ class HTTPError(Exception):
         self.status_code, self.detail = status_code, detail
 
 
+class FakeRouter:
+    def __init__(self, startup): self.startup = startup
+    def add_event_handler(self, event, fn):
+        self.startup.append((event, fn))
+
+
 class FakeApp:
     def __init__(self):
         self.state = types.SimpleNamespace()
         self.routes, self.startup = {}, []
+        self.router = FakeRouter(self.startup)
     def route(self, path, **kwargs):
         def save(fn):
             self.routes[path] = fn
             return fn
         return save
     post = get = route
-    def add_event_handler(self, event, fn):
-        self.startup.append((event, fn))
 
 
 FAKE_API = types.SimpleNamespace(Header=lambda default=None, **kw: default,
