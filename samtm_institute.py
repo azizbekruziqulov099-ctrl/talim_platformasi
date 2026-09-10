@@ -3705,23 +3705,40 @@ def admission_students_xlsx(
     qabul_turi: Optional[str] = None,
     token: Optional[str] = Query(None, include_in_schema=False),
     authorization: Optional[str] = Header(None),
+    holat: str = "all",
+    kafedra_id: Optional[int] = None,
+    region: Optional[str] = None,
+    sort: str = "structure",
 ):
-    """Talabalar ro'yxati Excel: 1-varaq hujjat topshirganlar, 2-varaq topshirmaganlar (izoh bilan), 3-varaq xulosa."""
+    """Hujjat holati bo'yicha alohida ro'yxat yoki barcha ro'yxatlarni XLSX'da beradi."""
     user_id = _uid(token, authorization); p = _p(); conn = p._db(); cur = conn.cursor()
     try:
         _ensure_schema(cur); roles = _require_member(cur, user_id, universitet_id); names = _role_names(roles)
         if not (names & MARK_DOCUMENT_ROLES):
             raise HTTPException(status_code=403, detail="Talabalar ro'yxatini eksport qilish huquqi yo'q")
+        selected_status = {
+            "all": "all", "barchasi": "all", "jami": "all",
+            "hujjat": "hujjat", "hujjattopshirgan": "hujjat",
+            "topshirmagan": "topshirmagan", "hujjattopshirmagan": "topshirmagan",
+            "qolgan": "topshirmagan", "hujjatqolgan": "topshirmagan",
+        }.get(_key(holat or "all"))
+        if selected_status is None:
+            raise HTTPException(status_code=400, detail="Eksport holati all, hujjat yoki topshirmagan bo'lishi kerak")
         scope_sql, scope_params = _student_scope_clause(cur, universitet_id, user_id, roles)
         where = ["qt.universitet_id=%s", "y.faol=TRUE", "f.faol=TRUE", "k.faol=TRUE", scope_sql]; params: list[Any] = [universitet_id, *scope_params]
+        if selected_status == "hujjat": where.append("qt.hujjat_topshirgan_at IS NOT NULL")
+        elif selected_status == "topshirmagan": where.append("qt.hujjat_topshirgan_at IS NULL")
         if fakultet_id: where.append("y.fakultet_id=%s"); params.append(fakultet_id)
+        if kafedra_id: where.append("y.kafedra_id=%s"); params.append(kafedra_id)
         if yonalish_ids:
             try: ids = sorted({int(v.strip()) for v in yonalish_ids.split(",") if v.strip()})
             except ValueError: raise HTTPException(status_code=400, detail="Yo‘nalish identifikatorlari noto‘g‘ri")
-            if ids: where.append("qt.yonalish_id=ANY(%s)"); params.append(ids)
+            if not ids: raise HTTPException(status_code=400, detail="Yo‘nalish tanlanmagan")
+            where.append("qt.yonalish_id=ANY(%s)"); params.append(ids)
         elif yonalish_id: where.append("qt.yonalish_id=%s"); params.append(yonalish_id)
         if talim_shakli: where.append("qt.talim_shakli=%s"); params.append(talim_shakli)
         if talim_tili: where.append("qt.talim_tili=%s"); params.append(talim_tili)
+        if region: where.append("qt.doimiy_region=%s"); params.append(region)
         kind = _key(qabul_turi)
         if kind in {"grant", "budjet", "budjetgrant"}: where.append("(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)"); params += ["%grant%", "%budjet%"]
         elif kind in {"kontrakt", "shartnoma", "tolovkontrakt"}: where.append("(qt.tavsiya_turi ILIKE %s OR qt.tavsiya_turi ILIKE %s)"); params += ["%kontrakt%", "%shartnoma%"]
@@ -3729,15 +3746,23 @@ def admission_students_xlsx(
             term = "%" + _norm(q) + "%"
             where.append("(qt.familiya ILIKE %s OR qt.ism ILIKE %s OR qt.ota_ism ILIKE %s OR CONCAT_WS(' ',qt.familiya,qt.ism,qt.ota_ism) ILIKE %s OR qt.abitur_id ILIKE %s OR qt.telefon ILIKE %s)")
             params += [term] * 6
+        orders = {
+            "structure": ("f.nomi,k.nomi,y.nomi,qt.familiya,qt.ism", "Fakultet → kafedra → yo'nalish → familiya tartibida"),
+            "ball_desc": ("qt.ball DESC NULLS LAST,qt.familiya", "Ball bo'yicha yuqoridan pastga"),
+            "ball_asc": ("qt.ball ASC NULLS LAST,qt.familiya", "Ball bo'yicha pastdan yuqoriga"),
+            "name": ("qt.familiya,qt.ism", "F.I.Sh. bo'yicha alifbo tartibida"),
+            "newest": ("qt.id DESC", "Yangi import qilinganlar oldinda"),
+        }
+        order_sql, order_label = orders.get(sort, orders["structure"])
         cur.execute(f"""SELECT qt.familiya,qt.ism,qt.ota_ism,qt.abitur_id,qt.ball,qt.talim_shakli,qt.talim_tili,qt.tavsiya_turi,
                 qt.doimiy_region,qt.doimiy_tuman,qt.telefon,qt.hujjat_topshirgan_at,qt.bazaga_kiritilgan_at,
                 qt.aloqa_izohi,qt.aloqa_izohi_at,y.nomi yonalish_nomi,k.nomi kafedra_nomi,f.nomi fakultet_nomi
             FROM universitet_qabul_talabalari qt JOIN universitet_yonalishlari y ON y.id=qt.yonalish_id
             JOIN fakultetlar f ON f.id=y.fakultet_id JOIN kafedralar k ON k.id=y.kafedra_id
             WHERE {" AND ".join(where)}
-            ORDER BY f.nomi,k.nomi,y.nomi,qt.familiya,qt.ism""", params)
+            ORDER BY {order_sql}""", params)
         rows = [dict(r) for r in cur.fetchall()]
-        _audit(cur, universitet_id, user_id, "talabalar_royxati_xlsx", "universitet", universitet_id, {"soni": len(rows)})
+        _audit(cur, universitet_id, user_id, "talabalar_royxati_xlsx", "universitet", universitet_id, {"soni": len(rows), "holat": selected_status})
         conn.commit()
 
         def fish(r): return " ".join(x for x in [r["familiya"], r["ism"], r["ota_ism"]] if x)
@@ -3761,8 +3786,8 @@ def admission_students_xlsx(
             if r["bazaga_kiritilgan_at"]: item["hemis"] += 1
         summary_rows = [[i, k[0], k[1], k[2], v["jami"], v["hujjat"], v["qolgan"], v["izoh"], v["hemis"]] for i, (k, v) in enumerate(sorted(summary.items()), 1)]
         summary_rows.append([None, None, None, "Jami", len(rows), len(submitted), len(pending), with_note, sum(1 for r in rows if r["bazaga_kiritilgan_at"])])
-        content = _admission_students_xlsx_multi([
-            {"title": "Hujjat topshirgan", "heading": f"HUJJAT TOPSHIRGANLAR — {len(submitted)} ta", "subtitle": "Fakultet → kafedra → yo'nalish → familiya tartibida", "color": "8A5A1C",
+        sheets = [
+            {"title": "Hujjat topshirgan", "heading": f"HUJJAT TOPSHIRGANLAR — {len(submitted)} ta", "subtitle": order_label, "color": "8A5A1C",
              "headers": ["№", "AbiturID", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Topshirgan sana", "HEMIS", "Izoh"],
              "widths": [6, 18, 34, 28, 22, 12, 12, 16, 8, 16, 26, 14, 8, 36], "text_columns": [2], "rows": submitted_rows},
             {"title": "Hujjat topshirmagan", "heading": f"HUJJAT TOPSHIRMAGANLAR — {len(pending)} ta (izohli: {with_note})", "subtitle": "Telefon suhbati izohi bilan: nega topshirmadi, qachon keladi", "color": "A84444",
@@ -3771,8 +3796,16 @@ def admission_students_xlsx(
             {"title": "Xulosa", "heading": "YO'NALISHLAR KESIMIDA XULOSA", "subtitle": "Filtrlangan natija", "color": "0D7A77",
              "headers": ["№", "Fakultet", "Kafedra", "Yo'nalish", "Jami", "Hujjat topshirgan", "Topshirmagan", "Izohli (suhbat)", "HEMIS"],
              "widths": [6, 26, 26, 36, 10, 16, 14, 14, 10], "rows": summary_rows},
-        ])
-        return _xlsx_download(content, "qabul_talabalar_royxati.xlsx")
+        ]
+        filename = "qabul_talabalar_royxati.xlsx"
+        if selected_status == "hujjat":
+            sheets = [sheets[0]]
+            filename = "qabul_hujjat_topshirganlar.xlsx"
+        elif selected_status == "topshirmagan":
+            sheets = [sheets[1]]
+            filename = "qabul_hujjat_topshirmaganlar.xlsx"
+        content = _admission_students_xlsx_multi(sheets)
+        return _xlsx_download(content, filename)
     except Exception:
         conn.rollback(); raise
     finally:
