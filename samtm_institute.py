@@ -3681,9 +3681,15 @@ def _admission_students_xlsx_multi(sheets: list[dict[str, Any]]) -> bytes:
         ws.freeze_panes = "A4"
         ws.auto_filter.ref = f"A3:{get_column_letter(n)}{max(3, ws.max_row)}"
         ws.sheet_view.showGridLines = False
+        text_columns = set(sheet.get("text_columns", []))
         for row in ws.iter_rows(min_row=4):
             for cell in row:
                 cell.alignment = Alignment(vertical="top", wrap_text=True)
+                if cell.column in text_columns:
+                    cell.number_format = "@"
+                    if cell.value is not None:
+                        cell.value = str(cell.value)
+                        cell.data_type = "s"
     stream = io.BytesIO(); wb.save(stream); wb.close(); return stream.getvalue()
 
 
@@ -3740,8 +3746,8 @@ def admission_students_xlsx(
         submitted = [r for r in rows if r["hujjat_topshirgan_at"] is not None]
         pending = [r for r in rows if r["hujjat_topshirgan_at"] is None]
         with_note = sum(1 for r in pending if (r["aloqa_izohi"] or "").strip())
-        submitted_rows = [[i, fish(r), r["yonalish_nomi"], r["kafedra_nomi"], r["talim_shakli"], r["talim_tili"], r["tavsiya_turi"], r["ball"], r["telefon"], region(r), dt(r["hujjat_topshirgan_at"]), "Ha" if r["bazaga_kiritilgan_at"] else "Yo'q", r["aloqa_izohi"]] for i, r in enumerate(submitted, 1)]
-        pending_rows = [[i, fish(r), r["yonalish_nomi"], r["kafedra_nomi"], r["talim_shakli"], r["talim_tili"], r["tavsiya_turi"], r["ball"], r["telefon"], region(r), r["aloqa_izohi"], dt(r["aloqa_izohi_at"])] for i, r in enumerate(pending, 1)]
+        submitted_rows = [[i, r["abitur_id"], fish(r), r["yonalish_nomi"], r["kafedra_nomi"], r["talim_shakli"], r["talim_tili"], r["tavsiya_turi"], r["ball"], r["telefon"], region(r), dt(r["hujjat_topshirgan_at"]), "Ha" if r["bazaga_kiritilgan_at"] else "Yo'q", r["aloqa_izohi"]] for i, r in enumerate(submitted, 1)]
+        pending_rows = [[i, r["abitur_id"], fish(r), r["yonalish_nomi"], r["kafedra_nomi"], r["talim_shakli"], r["talim_tili"], r["tavsiya_turi"], r["ball"], r["telefon"], region(r), r["aloqa_izohi"], dt(r["aloqa_izohi_at"])] for i, r in enumerate(pending, 1)]
         # Xulosa: yo'nalish kesimida
         summary: dict[str, dict[str, Any]] = {}
         for r in rows:
@@ -3757,11 +3763,11 @@ def admission_students_xlsx(
         summary_rows.append([None, None, None, "Jami", len(rows), len(submitted), len(pending), with_note, sum(1 for r in rows if r["bazaga_kiritilgan_at"])])
         content = _admission_students_xlsx_multi([
             {"title": "Hujjat topshirgan", "heading": f"HUJJAT TOPSHIRGANLAR — {len(submitted)} ta", "subtitle": "Fakultet → kafedra → yo'nalish → familiya tartibida", "color": "8A5A1C",
-             "headers": ["№", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Topshirgan sana", "HEMIS", "Izoh"],
-             "widths": [6, 34, 28, 22, 12, 12, 16, 8, 16, 26, 14, 8, 36], "rows": submitted_rows},
+             "headers": ["№", "AbiturID", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Topshirgan sana", "HEMIS", "Izoh"],
+             "widths": [6, 18, 34, 28, 22, 12, 12, 16, 8, 16, 26, 14, 8, 36], "text_columns": [2], "rows": submitted_rows},
             {"title": "Hujjat topshirmagan", "heading": f"HUJJAT TOPSHIRMAGANLAR — {len(pending)} ta (izohli: {with_note})", "subtitle": "Telefon suhbati izohi bilan: nega topshirmadi, qachon keladi", "color": "A84444",
-             "headers": ["№", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Suhbat izohi", "Izoh sanasi"],
-             "widths": [6, 34, 28, 22, 12, 12, 16, 8, 16, 26, 44, 12], "rows": pending_rows},
+             "headers": ["№", "AbiturID", "F.I.Sh.", "Yo'nalish", "Kafedra", "Ta'lim shakli", "Ta'lim tili", "Qabul turi", "Ball", "Telefon", "Hudud", "Suhbat izohi", "Izoh sanasi"],
+             "widths": [6, 18, 34, 28, 22, 12, 12, 16, 8, 16, 26, 44, 12], "text_columns": [2], "rows": pending_rows},
             {"title": "Xulosa", "heading": "YO'NALISHLAR KESIMIDA XULOSA", "subtitle": "Filtrlangan natija", "color": "0D7A77",
              "headers": ["№", "Fakultet", "Kafedra", "Yo'nalish", "Jami", "Hujjat topshirgan", "Topshirmagan", "Izohli (suhbat)", "HEMIS"],
              "widths": [6, 26, 26, 36, 10, 16, 14, 14, 10], "rows": summary_rows},
