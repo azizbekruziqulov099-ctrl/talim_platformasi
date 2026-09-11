@@ -5613,145 +5613,132 @@ def _chat_azo_qosh(cur, guruh_id, user_id):
 
 
 def _foydalanuvchi_guruhlarini_sinxronlash(cur, user_id):
-    """Foydalanuvchi tegishli bo'lishi kerak bo'lgan BARCHA guruhlarni
-    (global, to'garak, muassasa xodimlari, sinf) tekshirib — mavjud
-    bo'lmaganini yaratib, a'zo qilib qo'yadi. HAR SAFAR 'Suhbatlarim'
-    ochilganda chaqiriladi, shu orqali qo'lda hech narsa boshqarish
-    shart emas — yangi to'garakka qo'shilgan/xodim bo'lgan zahoti,
-    keyingi safar shu ekran ochilganda avtomatik aks etadi."""
+    """Current verified roster creates institutional groups; old rows give no access."""
     _chat_jadvallari(cur)
-
-    global_id = _chat_guruh_topish_yoki_yarat(cur, "global", "global", 0, "🌍 Umumiy")
-    _chat_azo_qosh(cur, global_id, user_id)
-
-    _togarak_azolar_tasdiq_ustuni(cur)
-    cur.execute("SELECT id, nomi FROM togaraklar WHERE teacher_id=%s AND aktiv=TRUE", (user_id,))
-    for t in cur.fetchall():
-        gid = _chat_guruh_topish_yoki_yarat(cur, "togarak", "togarak", t["id"], f"👥 {t['nomi']}", egasi_user_id=user_id)
-        _chat_azo_qosh(cur, gid, user_id)
-    cur.execute("""
-        SELECT tg.id, tg.nomi FROM togarak_azolar ta JOIN togaraklar tg ON tg.id=ta.togarak_id
-        WHERE ta.user_id=%s AND ta.aktiv=TRUE AND ta.tasdiqlangan=TRUE
-    """, (user_id,))
-    for t in cur.fetchall():
-        gid = _chat_guruh_topish_yoki_yarat(cur, "togarak", "togarak", t["id"], f"👥 {t['nomi']}")
-        _chat_azo_qosh(cur, gid, user_id)
-
-    cur.execute("SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s", (user_id,))
-    u = cur.fetchone()
-    muassasalar = set()
-    if u:
-        for turi, mid in [("maktab", u["maktab_id"]), ("markaz", u["markaz_id"]), ("bogcha", u["bogcha_id"]), ("universitet", u["universitet_id"])]:
-            if mid and u["lavozim"]:
-                muassasalar.add((turi, mid))
-    _muassasa_jadvali(cur)
-    cur.execute("SELECT muassasa_turi, muassasa_id FROM foydalanuvchi_muassasalari WHERE user_id=%s", (user_id,))
-    for r in cur.fetchall():
-        muassasalar.add((r["muassasa_turi"], r["muassasa_id"]))
-
-    jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}
-    ikon = {"maktab": "🏫", "markaz": "🏢", "bogcha": "🧸", "universitet": "🎓"}
-    for turi, mid in muassasalar:
-        cur.execute(f"SELECT nomi FROM {jadval_nomi[turi]} WHERE id=%s", (mid,))
-        m = cur.fetchone()
-        if not m:
+    relations = _chat_policy().memberships(cur,user_id)
+    seen = set()
+    for row in relations:
+        source = row['kind']
+        if row['role']=='staff':
+            key = ('xodimlar',source,int(row['inst_id']))
+            name = str(row['inst_name']) + ' — xodimlar'
+        elif row['role'] in ('student','teacher') and row.get('cohort'):
+            source, _, value = row['cohort'].partition(':')
+            if source not in ('sinf','universitet_guruh','togarak','course') or not value.isdigit():
+                continue
+            key = ('sinf' if source=='sinf' else 'togarak',source,int(value))
+            name = str(row.get('label') or row['cohort']) + ' — ' + str(row['inst_name'])
+        else:
             continue
-        gid = _chat_guruh_topish_yoki_yarat(cur, "xodimlar", turi, mid, f"{ikon[turi]} {m['nomi']} — xodimlar")
-        _chat_azo_qosh(cur, gid, user_id)
-
-    _sinf_azolari_jadvali(cur)
-    cur.execute("""
-        SELECT ms.id, ms.sinf, ms.harf, ms.rahbar_user_id
-        FROM maktab_sinf_azolari msa JOIN maktab_sinflari ms ON ms.id = msa.sinf_id
-        WHERE msa.user_id=%s
-    """, (user_id,))
-    for s in cur.fetchall():
-        gid = _chat_guruh_topish_yoki_yarat(cur, "sinf", "sinf", s["id"], f"🎒 {s['sinf']}-{s['harf']}-sinf", egasi_user_id=s["rahbar_user_id"])
-        _chat_azo_qosh(cur, gid, user_id)
-    cur.execute("SELECT id, sinf, harf FROM maktab_sinflari WHERE rahbar_user_id=%s", (user_id,))
-    for s in cur.fetchall():
-        gid = _chat_guruh_topish_yoki_yarat(cur, "sinf", "sinf", s["id"], f"🎒 {s['sinf']}-{s['harf']}-sinf", egasi_user_id=user_id)
-        _chat_azo_qosh(cur, gid, user_id)
+        if key in seen:
+            continue
+        seen.add(key)
+        gid = _chat_guruh_topish_yoki_yarat(cur,*key,name)
+        _chat_azo_qosh(cur,gid,user_id)
 
 
 @app.get("/api/chat/guruhlarim")
 def chat_guruhlarim(token: str):
     """Foydalanuvchining BARCHA suhbatlari (guruh + shaxsiy) — avval
     avtomatik sinxronlanadi, keyin oxirgi xabar bilan qaytariladi."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
-    _foydalanuvchi_guruhlarini_sinxronlash(cur, user_id)
-    _chat_eski_xabarlarni_tozalash(cur)
-    conn.commit()
+    try:
+        _foydalanuvchi_guruhlarini_sinxronlash(cur, user_id)
+        _chat_eski_xabarlarni_tozalash(cur)
+        conn.commit()
 
-    cur.execute("""
-        SELECT g.id, g.nomi, g.turi, g.manba_turi, g.manba_id, g.egasi_user_id,
-               CASE WHEN g.manba_turi='sinf' THEN 'maktab' ELSE g.manba_turi END AS scope_turi,
-               CASE WHEN g.manba_turi='sinf' THEN ms.maktab_id ELSE g.manba_id END AS scope_id,
-               (SELECT matn FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_matn,
-               (SELECT fayl_turi FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_fayl_turi,
-               (SELECT yaratilgan_at FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_vaqt,
-               (SELECT COUNT(*) FROM chat_xabarlari cx WHERE cx.guruh_id=g.id AND cx.ochirilgan=FALSE AND cx.yuboruvchi_user_id != %s
-                    AND cx.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND guruh_id=g.id), 0)) AS okilmagan_soni
-        FROM chat_azolari ca JOIN chat_guruhlari g ON g.id = ca.guruh_id
-        LEFT JOIN maktab_sinflari ms ON g.manba_turi='sinf' AND ms.id=g.manba_id
-        WHERE ca.user_id=%s
-        ORDER BY oxirgi_vaqt DESC NULLS LAST, g.nomi
-    """, (user_id, user_id, user_id))
-    guruhlar = cur.fetchall()
+        cur.execute("""
+            SELECT g.id, g.nomi, g.turi, g.manba_turi, g.manba_id, g.egasi_user_id,
+                   CASE WHEN g.manba_turi='sinf' THEN 'maktab' ELSE g.manba_turi END AS scope_turi,
+                   CASE WHEN g.manba_turi='sinf' THEN ms.maktab_id ELSE g.manba_id END AS scope_id,
+                   (SELECT matn FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_matn,
+                   (SELECT fayl_turi FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_fayl_turi,
+                   (SELECT yaratilgan_at FROM chat_xabarlari WHERE guruh_id=g.id AND ochirilgan=FALSE ORDER BY id DESC LIMIT 1) AS oxirgi_vaqt,
+                   (SELECT COUNT(*) FROM chat_xabarlari cx WHERE cx.guruh_id=g.id AND cx.ochirilgan=FALSE AND cx.yuboruvchi_user_id != %s
+                        AND cx.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND guruh_id=g.id), 0)) AS okilmagan_soni
+            FROM chat_azolari ca JOIN chat_guruhlari g ON g.id = ca.guruh_id
+            LEFT JOIN maktab_sinflari ms ON g.manba_turi='sinf' AND ms.id=g.manba_id
+            WHERE ca.user_id=%s
+            ORDER BY oxirgi_vaqt DESC NULLS LAST, g.nomi
+        """, (user_id, user_id, user_id))
+        guruhlar = [g for g in cur.fetchall() if _chat_policy().allow_group(cur, user_id, g["id"])]
+        allowed_ids = sorted(_chat_policy().allowed_contact_ids(cur, user_id))
 
-    cur.execute("""
-        SELECT sub.boshqa_user_id, u.full_name, sub.matn, sub.fayl_turi, sub.yaratilgan_at,
-               (SELECT COUNT(*) FROM chat_xabarlari cx2
-                WHERE cx2.qabul_qiluvchi_user_id=%s AND cx2.yuboruvchi_user_id=sub.boshqa_user_id AND cx2.ochirilgan=FALSE
-                  AND cx2.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND boshqa_user_id=sub.boshqa_user_id), 0)
-               ) AS okilmagan_soni
-        FROM (
-            SELECT DISTINCT ON (boshqa_user_id)
-                CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS boshqa_user_id,
-                matn, fayl_turi, yaratilgan_at
-            FROM chat_xabarlari
-            WHERE qabul_qiluvchi_user_id IS NOT NULL AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s) AND ochirilgan=FALSE
-            ORDER BY boshqa_user_id, id DESC
-        ) sub
-        JOIN users u ON u.user_id = sub.boshqa_user_id
-        ORDER BY sub.yaratilgan_at DESC
-    """, (user_id, user_id, user_id, user_id, user_id))
-    shaxsiylar = cur.fetchall()
+        cur.execute("""
+            SELECT sub.boshqa_user_id, u.full_name, sub.matn, sub.fayl_turi, sub.yaratilgan_at,
+                   (SELECT COUNT(*) FROM chat_xabarlari cx2
+                    WHERE cx2.guruh_id IS NULL AND cx2.qabul_qiluvchi_user_id=%s AND cx2.yuboruvchi_user_id=sub.boshqa_user_id AND cx2.ochirilgan=FALSE
+                      AND cx2.id > COALESCE((SELECT oxirgi_xabar_id FROM chat_oxirgi_korish WHERE user_id=%s AND boshqa_user_id=sub.boshqa_user_id), 0)
+                   ) AS okilmagan_soni
+            FROM (
+                SELECT DISTINCT ON (boshqa_user_id)
+                    CASE WHEN yuboruvchi_user_id=%s THEN qabul_qiluvchi_user_id ELSE yuboruvchi_user_id END AS boshqa_user_id,
+                    matn, fayl_turi, yaratilgan_at
+                FROM chat_xabarlari
+                WHERE guruh_id IS NULL AND qabul_qiluvchi_user_id IS NOT NULL AND (yuboruvchi_user_id=%s OR qabul_qiluvchi_user_id=%s) AND ochirilgan=FALSE
+                ORDER BY boshqa_user_id, id DESC
+            ) sub
+            JOIN users u ON u.user_id = sub.boshqa_user_id
+            WHERE sub.boshqa_user_id = ANY(%s)
+            ORDER BY sub.yaratilgan_at DESC
+        """, (user_id, user_id, user_id, user_id, user_id, allowed_ids))
+        shaxsiylar = cur.fetchall()
 
-    cur.close(); conn.close()
-    return {"guruhlar": guruhlar, "shaxsiylar": shaxsiylar}
+        return {"guruhlar": guruhlar, "shaxsiylar": shaxsiylar}
+    finally:
+        cur.close(); conn.close()
 
 
 @app.get("/api/chat/foydalanuvchi_qidir")
 def chat_foydalanuvchi_qidir(token: str, ism: str):
-    """Shaxsiy xabar boshlash uchun — ism bo'yicha foydalanuvchi
-    qidiradi (o'zini chiqarib tashlab)."""
-    user_id = _jwt_tekshir(token)
+    """Faqat amaldagi muassasa/sinf aloqasi bor suhbatdoshlarni qidiradi."""
+    user_id = _chat_actor(token)
     if len((ism or "").strip()) < 2:
         return {"natijalar": []}
     conn = _db()
     cur = conn.cursor()
-    cur.execute(
-        "SELECT user_id, full_name, role FROM users WHERE full_name ILIKE %s AND user_id != %s ORDER BY full_name LIMIT 15",
-        (f"%{ism.strip()}%", user_id),
-    )
-    natija = cur.fetchall()
-    cur.close(); conn.close()
-    return {"natijalar": natija}
+    try:
+        allowed_ids = sorted(_chat_policy().allowed_contact_ids(cur, user_id))
+        if not allowed_ids:
+            return {"natijalar": []}
+        cur.execute(
+            "SELECT user_id, full_name, role FROM users WHERE full_name ILIKE %s AND user_id = ANY(%s) AND user_id != %s ORDER BY full_name LIMIT 15",
+            (f"%{ism.strip()}%", allowed_ids, user_id),
+        )
+        return {"natijalar": cur.fetchall()}
+    finally:
+        cur.close(); conn.close()
 
 
-def _chat_suhbat_ruxsat(cur, user_id, guruh_id=None, boshqa_user_id=None):
-    """One canonical chat target and the existing Kabutar contact policy."""
+def _chat_actor(token):
+    if __package__:
+        from . import samtm_platform as platform
+    else:
+        import samtm_platform as platform
+    return _chat_policy().authenticate(platform,token)
+
+
+def _chat_policy():
+    # Lazy import: samtm_platform is also imported by the application bootstrap.
+    if __package__:
+        from . import kabutar_policy
+    else:
+        import kabutar_policy
+    return kabutar_policy
+
+
+def _chat_suhbat_ruxsat(cur, user_id, guruh_id=None, boshqa_user_id=None, write=False):
+    """One chat target; current institutional relations are authoritative."""
     if bool(guruh_id) == bool(boshqa_user_id):
         raise HTTPException(status_code=400, detail="Bitta guruh yoki bitta suhbatdoshni tanlang")
+    if write and not guruh_id:
+        _chat_policy().ensure_terms_accepted(cur,user_id)
     if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
-    elif not _kabutar_ruxsat(cur, user_id, None, boshqa_user_id):
-        raise HTTPException(status_code=403, detail="Bu odam bilan aloqa ruxsati yo'q — avval Kabutar ID orqali toping")
+        _chat_policy().require_group(cur, user_id, guruh_id, write=write)
+    else:
+        _chat_policy().require_direct(cur, user_id, boshqa_user_id)
 
 
 @app.post("/api/chat/korildi_belgila")
@@ -5762,7 +5749,7 @@ def chat_korildi_belgila(token: str, oxirgi_xabar_id: int, guruh_id: Optional[in
     suhbatlarda "o'qildi" belgisi ko'rsatiladi. Faqat OLDINGA suradi —
     orqaga hech qachon qaytmaydi (masalan ikkita oyna ochiq bo'lsa,
     eski so'rov yangisini bosib qolmasin)."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     if oxirgi_xabar_id <= 0:
         raise HTTPException(status_code=400, detail="Xabar raqami noto'g'ri")
     conn = _db()
@@ -5804,7 +5791,7 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
     """Bitta suhbatning (guruh YOKI shaxsiy) xabarlarini qaytaradi —
     eng oxirgi 50 tasi (yoki 'oxirgidan' ID'dan OLDINGI 50 tasi,
     yuqoriga aylantirilganda ko'proq yuklash uchun)."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     if oxirgidan is not None and keyingidan is not None:
         raise HTTPException(status_code=400, detail="Bitta sahifalash yo'nalishini tanlang")
     if any(value is not None and value < 0 for value in (oxirgidan, keyingidan)):
@@ -5841,10 +5828,20 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
         SELECT cx.id, cx.yuboruvchi_user_id, u.full_name AS yuboruvchi_ismi, cx.matn, cx.fayl_turi,
                cx.fayl_nomi, cx.fayl_hajmi_kb, cx.yaratilgan_at, cx.tahrirlangan, cx.ochirilgan,
                cx.javob_xabar_id, ju.full_name AS javob_yuboruvchi_ismi,
-               LEFT(jx.matn, 100) AS javob_matn_qisqa, jx.fayl_turi AS javob_fayl_turi
+               LEFT(jx.matn, 100) AS javob_matn_qisqa, jx.fayl_turi AS javob_fayl_turi,
+               (SELECT COUNT(*) FROM chat_xabarlari child
+                WHERE child.javob_xabar_id=cx.id AND NOT COALESCE(child.ochirilgan,FALSE)
+                  AND ((cx.guruh_id IS NOT NULL AND child.guruh_id=cx.guruh_id)
+                    OR (cx.guruh_id IS NULL AND child.guruh_id IS NULL AND
+                      ((child.yuboruvchi_user_id=cx.yuboruvchi_user_id AND child.qabul_qiluvchi_user_id=cx.qabul_qiluvchi_user_id)
+                        OR (child.yuboruvchi_user_id=cx.qabul_qiluvchi_user_id AND child.qabul_qiluvchi_user_id=cx.yuboruvchi_user_id))))) AS reply_count
         FROM chat_xabarlari cx
         JOIN users u ON u.user_id = cx.yuboruvchi_user_id
         LEFT JOIN chat_xabarlari jx ON jx.id = cx.javob_xabar_id AND COALESCE(jx.ochirilgan,FALSE)=FALSE
+          AND ((cx.guruh_id IS NOT NULL AND jx.guruh_id=cx.guruh_id)
+            OR (cx.guruh_id IS NULL AND jx.guruh_id IS NULL AND
+              ((jx.yuboruvchi_user_id=cx.yuboruvchi_user_id AND jx.qabul_qiluvchi_user_id=cx.qabul_qiluvchi_user_id)
+               OR (jx.yuboruvchi_user_id=cx.qabul_qiluvchi_user_id AND jx.qabul_qiluvchi_user_id=cx.yuboruvchi_user_id))))
         LEFT JOIN users ju ON ju.user_id = jx.yuboruvchi_user_id
         WHERE {shart}
         ORDER BY cx.id {tartib} LIMIT 50
@@ -5900,17 +5897,21 @@ async def chat_xabar_yubor(
     """Guruhga YOKI shaxsga xabar yuboradi — matn, va/yoki fayl
     (audio/video/doira-video/hujjat). Fayllar uchun — kuniga 100 MB
     chegara (matn xabarlarga taalluqli emas)."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     if not guruh_id and not qabul_qiluvchi_user_id:
         raise HTTPException(status_code=400, detail="guruh_id yoki qabul_qiluvchi_user_id kerak")
     if not (matn or "").strip() and not fayl:
         raise HTTPException(status_code=400, detail="Xabar matni yoki fayl kerak")
+    if len((matn or "").strip()) > 4000:
+        raise HTTPException(status_code=400, detail="Xabar matni 4000 belgidan oshmasin")
+    if javob_xabar_id is not None and not 0 < javob_xabar_id <= 2147483647:
+        raise HTTPException(status_code=400, detail="Javob beriladigan xabar raqami noto‘g‘ri")
 
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
     try:
-        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id)
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
     except Exception:
         cur.close(); conn.close()
         raise
@@ -5994,16 +5995,41 @@ async def chat_xabar_yubor(
         fayl_nomi = fayl.filename
         fayl_content_turi = fayl.content_type
 
+    # Upload reading may await for seconds; recheck current access before writing.
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     javob_id_tekshirilgan = None
-    if javob_xabar_id:
-        cur.execute("SELECT guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, ochirilgan FROM chat_xabarlari WHERE id=%s", (javob_xabar_id,))
-        j = cur.fetchone()
-        if j and not j.get("ochirilgan"):
-            shu_suhbatdami = (guruh_id and j["guruh_id"] == guruh_id) or (
-                qabul_qiluvchi_user_id and {j["yuboruvchi_user_id"], j["qabul_qiluvchi_user_id"]} == {user_id, qabul_qiluvchi_user_id}
-            )
-            if shu_suhbatdami:
-                javob_id_tekshirilgan = javob_xabar_id
+    if javob_xabar_id is not None:
+        try:
+            cur.execute("SELECT id,guruh_id,qabul_qiluvchi_user_id,yuboruvchi_user_id,ochirilgan,javob_xabar_id FROM chat_xabarlari WHERE id=%s FOR SHARE", (javob_xabar_id,))
+            j = cur.fetchone()
+            shu_suhbatdami = j and ((guruh_id and j["guruh_id"] == guruh_id) or (
+                qabul_qiluvchi_user_id and j["guruh_id"] is None
+                and {j["yuboruvchi_user_id"], j["qabul_qiluvchi_user_id"]} == {user_id, qabul_qiluvchi_user_id}
+            ))
+            if not shu_suhbatdami:
+                raise HTTPException(status_code=409, detail="Javob beriladigan xabar shu suhbatda topilmadi. Asosiy xabarni qayta tanlang.")
+            # Deleted original posts remain a tombstone; their discussion may
+            # continue. No deleted contents are read or restored here.
+            if __package__:
+                from .modules.kabutar_threads import normalise_group_reply
+            else:
+                from modules.kabutar_threads import normalise_group_reply
+            if guruh_id and j.get("javob_xabar_id"):
+                # The bounded recursive SQL belongs in a worker thread. The
+                # Starlette/AnyIO helper waits for the worker on cancellation,
+                # so the cursor cannot return to the pool while still in use.
+                from starlette.concurrency import run_in_threadpool
+                javob_id_tekshirilgan = await run_in_threadpool(normalise_group_reply, cur, j)
+                _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+            else:
+                javob_id_tekshirilgan = normalise_group_reply(cur, j)
+        except Exception:
+            cur.close(); conn.close()
+            raise
 
     cur.execute("""
         INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb, javob_xabar_id)
@@ -6027,14 +6053,22 @@ def chat_xabar_tahrirla(sorov: XabarTahrirlash):
     """Faqat matnli (fayl EMAS) o'z xabarini tahrirlaydi — faqat
     yuboruvchining o'zi. Tahrirlangandan keyin "(tahrirlangan)"
     belgisi bilan ko'rsatiladi (Telegram uslubida)."""
-    user_id = _jwt_tekshir(sorov.token)
+    user_id = _chat_actor(sorov.token)
     yangi_matn = sorov.yangi_matn.strip()
     if not yangi_matn:
         raise HTTPException(status_code=400, detail="Xabar matni bo'sh bo'lishi mumkin emas")
+    if len(yangi_matn) > 4000:
+        raise HTTPException(status_code=400, detail="Xabar matni 4000 belgidan oshmasin")
 
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    try:
+        _chat_policy().ensure_terms_accepted(cur,user_id)
+        _chat_policy().require_message(cur, user_id, sorov.xabar_id)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     _moderatsiya_jadvallari(cur)
     if _matnda_royxat_sozi_bormi(yangi_matn, _SOKINISH_SOZLARI_BOSHLANGICH):
         _qora_royxatga_yoz(cur, user_id, "sokinish", yangi_matn)
@@ -6071,10 +6105,15 @@ def chat_xabar_ochir(token: str, xabar_id: int):
     """O'z xabarini (matn yoki fayl — ikkalasi ham) o'chiradi.
     Yumshoq o'chirish — o'rniga "Xabar o'chirildi" ko'rsatiladi,
     fayl ma'lumoti butunlay tozalanadi (xotira bo'shatish uchun)."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    try:
+        _chat_policy().require_message(cur, user_id, xabar_id)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     cur.execute("SELECT yuboruvchi_user_id FROM chat_xabarlari WHERE id=%s", (xabar_id,))
     x = cur.fetchone()
     if not x:
@@ -6098,58 +6137,32 @@ def chat_xabar_ochir(token: str, xabar_id: int):
 
 @app.post("/api/chat/xabar_forward")
 def chat_xabar_forward(token: str, xabar_id: int, guruh_id: Optional[int] = None, qabul_qiluvchi_user_id: Optional[int] = None):
-    """Mavjud xabarni BOSHQA suhbatga (guruh yoki shaxsga) nusxa
-    ko'chiradi — matni va fayli (agar bor bo'lsa) bilan birga.
-    Yuboruvchi — FORWARD qilayotgan kishining o'zi bo'ladi (asl
-    yuboruvchi emas), Telegram'da ham shunday)."""
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not qabul_qiluvchi_user_id:
-        raise HTTPException(status_code=400, detail="Qayerga yuborishni tanlang")
+    """Manba xabar va yangi suhbatning amaldagi ruxsatini alohida tekshiradi."""
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
-    _chat_jadvallari(cur)
-    cur.execute("""
-        SELECT x.matn, x.fayl_turi, x.fayl_malumot, x.fayl_nomi,
-               x.fayl_content_turi, x.fayl_hajmi_kb, x.ochirilgan
-        FROM chat_xabarlari x
-        WHERE x.id=%s AND (
-          x.yuboruvchi_user_id=%s OR x.qabul_qiluvchi_user_id=%s OR
-          EXISTS(SELECT 1 FROM chat_azolari ca WHERE ca.guruh_id=x.guruh_id AND ca.user_id=%s)
-        )
-    """, (xabar_id, user_id, user_id, user_id))
-    asl = cur.fetchone()
-    if not asl or asl["ochirilgan"]:
+    try:
+        _chat_jadvallari(cur)
+        _chat_policy().require_message(cur, user_id, xabar_id)
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+        cur.execute("""
+            SELECT matn, fayl_turi, fayl_malumot, fayl_nomi,
+                   fayl_content_turi, fayl_hajmi_kb, ochirilgan
+            FROM chat_xabarlari WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE
+        """, (xabar_id,))
+        asl = cur.fetchone()
+        if not asl:
+            raise HTTPException(status_code=404, detail="Xabar topilmadi")
+        cur.execute("""
+            INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
+            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
+        """, (guruh_id, qabul_qiluvchi_user_id, user_id, asl["matn"], asl["fayl_turi"],
+              asl["fayl_malumot"], asl["fayl_nomi"], asl["fayl_content_turi"], asl["fayl_hajmi_kb"]))
+        yangi_id = cur.fetchone()["id"]
+        conn.commit()
+        return {"holat": "yuborildi", "id": yangi_id}
+    finally:
         cur.close(); conn.close()
-        raise HTTPException(status_code=404, detail="Xabar topilmadi")
-    if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
-    elif qabul_qiluvchi_user_id:
-        cur.execute("""SELECT 1 FROM users a JOIN users b ON b.user_id=%s
-            WHERE a.user_id=%s AND (
-              (a.maktab_id IS NOT NULL AND a.maktab_id=b.maktab_id) OR
-              (a.markaz_id IS NOT NULL AND a.markaz_id=b.markaz_id) OR
-              (a.bogcha_id IS NOT NULL AND a.bogcha_id=b.bogcha_id) OR
-              (a.universitet_id IS NOT NULL AND a.universitet_id=b.universitet_id) OR
-              EXISTS(SELECT 1 FROM chat_xabarlari old WHERE old.guruh_id IS NULL AND
-                ((old.yuboruvchi_user_id=%s AND old.qabul_qiluvchi_user_id=%s) OR
-                 (old.yuboruvchi_user_id=%s AND old.qabul_qiluvchi_user_id=%s)))
-            )""", (qabul_qiluvchi_user_id, user_id, user_id, qabul_qiluvchi_user_id,
-                    qabul_qiluvchi_user_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Bu odamga xabar uzatish ruxsati yo‘q")
-    cur.execute("""
-        INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
-        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
-    """, (guruh_id, qabul_qiluvchi_user_id, user_id, asl["matn"], asl["fayl_turi"],
-          asl["fayl_malumot"], asl["fayl_nomi"], asl["fayl_content_turi"], asl["fayl_hajmi_kb"]))
-    yangi_id = cur.fetchone()["id"]
-    conn.commit()
-    cur.close(); conn.close()
-    return {"holat": "yuborildi", "id": yangi_id}
 
 
 _REAKSIYA_JADVALI_TAYYOR = False
@@ -6177,20 +6190,19 @@ def _reaksiya_jadvali(cur):
 def chat_reaksiya_qoy(token: str, xabar_id: int, emoji: str):
     """Xabarga reaksiya (emoji) qo'yadi — bir kishi bitta xabarga
     faqat BITTA reaksiya qo'ya oladi (qayta bossa, eskisi almashadi)."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
     _reaksiya_jadvali(cur)
     if emoji not in {"❤️", "👍", "👎", "🔥", "🥰", "👏", "😁", "🤔"}:
         cur.close(); conn.close()
         raise HTTPException(status_code=400, detail="Bu reaksiya qo‘llab-quvvatlanmaydi")
-    cur.execute("""SELECT 1 FROM chat_xabarlari x WHERE x.id=%s AND COALESCE(x.ochirilgan,FALSE)=FALSE AND (
-        x.yuboruvchi_user_id=%s OR x.qabul_qiluvchi_user_id=%s OR
-        EXISTS(SELECT 1 FROM chat_azolari ca WHERE ca.guruh_id=x.guruh_id AND ca.user_id=%s))""",
-        (xabar_id, user_id, user_id, user_id))
-    if not cur.fetchone():
+    try:
+        _chat_policy().ensure_terms_accepted(cur,user_id)
+        _chat_policy().require_message(cur, user_id, xabar_id)
+    except Exception:
         cur.close(); conn.close()
-        raise HTTPException(status_code=403, detail="Bu xabarga kirish ruxsati yo‘q")
+        raise
     cur.execute("""
         INSERT INTO chat_reaksiyalar(xabar_id, user_id, emoji) VALUES(%s,%s,%s)
         ON CONFLICT (xabar_id, user_id) DO UPDATE SET emoji=EXCLUDED.emoji
@@ -6202,10 +6214,15 @@ def chat_reaksiya_qoy(token: str, xabar_id: int, emoji: str):
 
 @app.delete("/api/chat/reaksiya_olib_tashla")
 def chat_reaksiya_olib_tashla(token: str, xabar_id: int):
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
     _reaksiya_jadvali(cur)
+    try:
+        _chat_policy().require_message(cur, user_id, xabar_id)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     cur.execute("DELETE FROM chat_reaksiyalar WHERE xabar_id=%s AND user_id=%s", (xabar_id, user_id))
     conn.commit()
     cur.close(); conn.close()
@@ -6216,21 +6233,22 @@ def chat_reaksiya_olib_tashla(token: str, xabar_id: int):
 def chat_qidir(token: str, matn: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
     """Bitta suhbat ichida matn bo'yicha qidiradi — eng so'nggi 30 ta
     moslikni qaytaradi."""
-    user_id = _jwt_tekshir(token)
+    user_id = _chat_actor(token)
     if len((matn or "").strip()) < 2:
         return {"natijalar": []}
     conn = _db()
     cur = conn.cursor()
     _chat_jadvallari(cur)
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa_user_id)
+    except Exception:
+        cur.close(); conn.close()
+        raise
     if guruh_id:
-        cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (guruh_id, user_id))
-        if not cur.fetchone():
-            cur.close(); conn.close()
-            raise HTTPException(status_code=403, detail="Siz bu guruh a'zosi emassiz")
         shart = "cx.guruh_id=%s"
         params = [guruh_id]
     elif boshqa_user_id:
-        shart = "cx.qabul_qiluvchi_user_id IS NOT NULL AND ((cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s) OR (cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s))"
+        shart = "cx.guruh_id IS NULL AND cx.qabul_qiluvchi_user_id IS NOT NULL AND ((cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s) OR (cx.yuboruvchi_user_id=%s AND cx.qabul_qiluvchi_user_id=%s))"
         params = [user_id, boshqa_user_id, boshqa_user_id, user_id]
     else:
         cur.close(); conn.close()
@@ -6263,34 +6281,51 @@ def _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id):
 
 @app.post("/api/chat/yozmoqda")
 def chat_yozmoqda_belgila(token: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not boshqa_user_id:
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
+    user_id = _chat_actor(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa_user_id, write=True)
+    finally:
+        cur.close(); conn.close()
     kalit = _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id)
-    _YOZMOQDA_HOLATI.setdefault(kalit, {})[user_id] = datetime.now()
+    hozir = datetime.now()
+    # Sweep expired room entries only when the bounded ephemeral store is full.
+    if len(_YOZMOQDA_HOLATI) >= 1024:
+        for room, members in list(_YOZMOQDA_HOLATI.items()):
+            live = {uid: stamp for uid, stamp in members.items()
+                    if (hozir - stamp).total_seconds() < _YOZMOQDA_TTL_SONIYA}
+            if live:
+                _YOZMOQDA_HOLATI[room] = live
+            else:
+                _YOZMOQDA_HOLATI.pop(room, None)
+        if kalit not in _YOZMOQDA_HOLATI and len(_YOZMOQDA_HOLATI) >= 1024:
+            return {"holat": "belgilandi"}
+    _YOZMOQDA_HOLATI.setdefault(kalit, {})[user_id] = hozir
     return {"holat": "belgilandi"}
 
 
 @app.get("/api/chat/kim_yozmoqda")
 def chat_kim_yozmoqda(token: str, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
-    user_id = _jwt_tekshir(token)
-    if not guruh_id and not boshqa_user_id:
-        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
-    kalit = _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id)
-    hozir = datetime.now()
-    faol = _YOZMOQDA_HOLATI.get(kalit, {})
-    yozayotganlar = [
-        uid for uid, vaqt in faol.items()
-        if uid != user_id and (hozir - vaqt).total_seconds() < _YOZMOQDA_TTL_SONIYA
-    ]
-    if not yozayotganlar:
-        return {"ismlar": []}
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
-    cur.execute("SELECT full_name FROM users WHERE user_id = ANY(%s)", (yozayotganlar,))
-    ismlar = [r["full_name"] for r in cur.fetchall()]
-    cur.close(); conn.close()
-    return {"ismlar": ismlar}
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa_user_id)
+        kalit = _yozmoqda_kalit(guruh_id, user_id, boshqa_user_id)
+        hozir = datetime.now()
+        faol = _YOZMOQDA_HOLATI.get(kalit, {})
+        yozayotganlar = [
+            uid for uid, vaqt in list(faol.items())
+            if uid != user_id and (hozir - vaqt).total_seconds() < _YOZMOQDA_TTL_SONIYA
+            and (not guruh_id or _chat_policy().allow_group(cur, uid, guruh_id))
+        ]
+        if not yozayotganlar:
+            return {"ismlar": []}
+        cur.execute("SELECT full_name FROM users WHERE user_id = ANY(%s)", (yozayotganlar,))
+        return {"ismlar": [r["full_name"] for r in cur.fetchall()]}
+    finally:
+        cur.close(); conn.close()
 
 
 @app.get("/api/admin/qora_royxat")
@@ -6335,31 +6370,14 @@ def xavfli_xabarlar_korish(token: str):
 
 @app.get("/api/chat/fayl/{xabar_id}")
 def chat_fayl_korish(xabar_id: int, token: str):
-    """Xabarga biriktirilgan faylni striming qiladi (audio/video/hujjat)."""
-    user_id = _jwt_tekshir(token)
+    """Fayl baytlarini o'qishdan oldin amaldagi suhbat ruxsatini tekshiradi."""
+    user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
     try:
-        # Authorize small metadata before reading potentially large BYTEA.
-        cur.execute("""SELECT guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id
-                       FROM chat_xabarlari WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
-        metadata = cur.fetchone()
-        if not metadata:
-            raise HTTPException(status_code=404, detail="Fayl topilmadi")
-        if metadata["guruh_id"]:
-            cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s", (metadata["guruh_id"], user_id))
-            ruxsat = cur.fetchone() is not None
-        else:
-            ruxsat = user_id in (metadata["yuboruvchi_user_id"], metadata["qabul_qiluvchi_user_id"])
-        if not ruxsat:
-            raise HTTPException(status_code=403, detail="Ruxsat yo'q")
-        # Repeat deletion/membership predicates in the data query to cover a
-        # deletion or group-membership change between the two statements.
-        cur.execute("""SELECT x.fayl_malumot, x.fayl_content_turi FROM chat_xabarlari x
-                       WHERE x.id=%s AND COALESCE(x.ochirilgan,FALSE)=FALSE AND (
-                         (x.guruh_id IS NULL AND (x.yuboruvchi_user_id=%s OR x.qabul_qiluvchi_user_id=%s)) OR
-                         EXISTS(SELECT 1 FROM chat_azolari a WHERE a.guruh_id=x.guruh_id AND a.user_id=%s)
-                       )""", (xabar_id, user_id, user_id, user_id))
+        _chat_policy().require_message(cur, user_id, xabar_id)
+        cur.execute("""SELECT fayl_malumot, fayl_content_turi FROM chat_xabarlari
+                       WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
         x = cur.fetchone()
         if not x or not x["fayl_malumot"]:
             raise HTTPException(status_code=404, detail="Fayl topilmadi")

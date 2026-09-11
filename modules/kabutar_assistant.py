@@ -1,4 +1,4 @@
-"""Database-grounded Kabutar assistant, REV42.
+"""Database-grounded Kabutar assistant with conversation and PDF papers, REV45.
 
 No generated questions, arbitrary SQL, or browser-held answer keys. An intent
 model can suggest search phrases; typed values and all topic IDs are checked
@@ -120,7 +120,7 @@ def parse_local(message):
     patterns = {
         "grade": r"\b(\d{1,2})\s*[- ]?\s*(?:sinf|sinif|sinp)\b",
         "quarter": r"\b([1-4])\s*[- ]?\s*(?:chorak|horak)\b",
-        "minutes": r"\b(\d{1,3})\s*(?:daqiqa|dakika|minut|min|daq)\b",
+        "minutes": r"\b(\d{1,3})\s*(?:daqiqa|taqiqa|dakika|minut|min|daq)\b",
         "question_count": r"\b(\d{1,3})\s*(?:ta(?:lik)?|talik)?\s*(?:savol|test|tist)\b",
     }
     for key, pattern in patterns.items():
@@ -147,20 +147,88 @@ def parse_local(message):
         ambiguous = True
     # Quoted names and lists carry topic intent without treating every greeting
     # or a request to change the duration as a new topic name.
+    conflicts = ambiguous
     quotes = re.findall(r'["“](.{2,120}?)["”]', str(message))
     if quotes:
         queries = quotes[:10]
-    elif re.search(r"mavzu|mavzu|topik|topic", text):
+    elif re.search(r"mavzu|topik|topic", text):
         stripped = text
         for pattern in patterns.values():
             stripped = re.sub(pattern, " ", stripped)
-        stripped = re.sub(r"\b(?:mavzularidan|mavzulardan|mavzular|mavzudan|mavzusi|mavzu|bo‘yicha|boyicha|test|tist|savol|tuz|tuzib|ber|bering|ta|oson|orta|qiyin|aralash|imtihon|mashq|nazorat)\b", " ", stripped)
+        stripped = re.sub(r"\b(?:mavzularidan|mavzulardan|mavzular|mavzudan|mavzusidan|mavzusi|mavzu|mavzuni|mavzularini|topik|topic|boyicha|test|tist|savol|tuz|tuzib|ber|bering|ta|oson|orta|qiyin|aralash|imtihon|mashq|nazorat|menga|mos|unga|shu|shunga|uchun|bilan|birga|kerak|yordam|topish|topishga|topishni|toping|qiling|qil|tayyorlash|tayyorlamoqchiman)\b", " ", stripped)
         queries = [part.strip() for part in re.split(r",|;|\bva\b", stripped) if len(part.strip()) > 2][:10]
-    if text and not fields and not queries and text not in ("ha", "xa", "tasdiq", "tasdiqlayman", "rejani tayyorla", "reja", "tayyor", "salom", "assalomu alaykum"):
+    # Common subject spellings help when no remote intent model is configured.
+    # These names are only search hints, never topic IDs or invented bank rows.
+    if not queries:
+        aliases = {
+            "matematika": ("matematika", "matematikadan", "matimatikadan", "matimatikani"),
+            "algebra": ("algebra", "algebraдан", "algebradan", "algibra", "algibradan"),
+            "geometriya": ("geometriya", "geometriyadan", "gemometriya"),
+            "fizika": ("fizika", "fizikadan", "fizikani"), "kimyo": ("kimyo", "kimyodan"),
+            "biologiya": ("biologiya", "bialogiya", "biologiyadan", "bialogiyadan"),
+            "tarix": ("tarix", "tarixdan"), "informatika": ("informatika", "informatikadan"),
+            "ingliz tili": ("ingliz", "ingilis", "ingiliz", "inglizdan", "english"),
+            "rus tili": ("rus", "ruscha", "russian"), "ona tili": ("ona tili", "onatili"),
+            "adabiyot": ("adabiyot", "atabiyot", "adabiyotdan"), "geografiya": ("geografiya", "geografiyadan"),
+        }
+        for canonical, forms in aliases.items():
+            if any(re.search(r"\b" + re.escape(form) + r"\b", text) for form in forms):
+                queries.append(canonical)
+    kind = conversation_kind(message)
+    if text and not fields and not queries and kind == "test_plan" and text not in ("ha", "xa", "tasdiq", "tasdiqlayman", "rejani tayyorla", "reja", "tayyor"):
         # With no model configured, do not silently reuse an old complete plan
         # when the user's new sentence wasn't understood.
         ambiguous = True
-    return {"fields": fields, "topic_queries": queries, "ambiguous": ambiguous}
+    return {"fields": fields, "topic_queries": queries, "ambiguous": ambiguous,
+            "conflicts": conflicts, "conversation_kind": kind}
+
+
+def conversation_kind(message):
+    text = norm(message)
+    if re.fullmatch(r"(?:salom|salom alaykum|ass?alomu alaykum|assalom|qalaysan|yaxshimisan)[\s!?.]*", text):
+        return "greeting"
+    if re.fullmatch(r"(?:rahmat|raxmat|katta rahmat|tashakkur|zor|yaxshi|tushunarli)[\s!?.]*", text):
+        return "thanks"
+    if re.search(r"nima qila ol|qanday ishlay|yordam ber|test bilan sinab|bilimimni|pdf test|chop etish", text):
+        return "help"
+    if re.search(r"tushuntir|nazariy|nima degani|nima ozi|nima u|\bnima\b|\bkim\b", text) and not re.search(r"test|tist|savol|imtihon|mavzu top", text):
+        return "knowledge_unavailable"
+    return "test_plan"
+
+
+def clean_context(raw):
+    """Small typed conversation memory; never accept roles, history or SQL."""
+    if not isinstance(raw, dict):
+        raise HTTPException(422, "Suhbat holati noto‘g‘ri")
+    queries = raw.get("topic_queries", [])
+    if not isinstance(queries, list) or len(queries) > 10 or any(not isinstance(q, str) or len(q) > 120 for q in queries):
+        raise HTTPException(422, "Mavzu qidiruvini qisqaroq yozing")
+    awaiting = raw.get("awaiting")
+    return {"topic_queries": [q.strip() for q in queries if q.strip()],
+            "awaiting": awaiting if awaiting in REQUIRED else None}
+
+
+def next_question(field, grade=None):
+    questions = {
+        "grade": "Qaysi sinf uchun ishlaymiz? Masalan, 5-sinf deb yozing.",
+        "topic_codes": f"{str(grade) + '-sinf uchun ' if grade else ''}qaysi fan yoki mavzu kerak? Nomini yozing, bazadan moslarini topaman.",
+        "question_count": "Nechta savol bo‘lsin? 10 tadan 100 tagacha tanlashingiz mumkin.",
+        "difficulty": "Savollar oson, o‘rtacha, qiyin yoki aralash bo‘lsinmi?",
+        "minutes": "Butun testga necha daqiqa ajratamiz?",
+        "mode": "Mashq qilib bilimni sinaymizmi yoki vaqt chegaralangan imtihon bo‘lsinmi?",
+    }
+    return questions.get(field, "Rejadagi shartlarni ko‘rib chiqamizmi?")
+
+
+def next_suggestions(field):
+    choices = {
+        "grade": [(f"{n}-sinf", f"{n}-sinf") for n in (5, 8, 10)],
+        "question_count": [(f"{n} ta", f"{n} ta test") for n in (10, 20, 30)],
+        "difficulty": [("Oson", "oson"), ("O‘rtacha", "o‘rtacha"), ("Aralash", "aralash")],
+        "minutes": [(f"{n} daqiqa", f"{n} daqiqa") for n in (15, 30, 45)],
+        "mode": [("Bilimimni sinash", "mashq"), ("Imtihon", "imtihon")],
+    }
+    return [{"label": label, "message": message} for label, message in choices.get(field, [])]
 
 
 def topic_score(query, topic):
@@ -199,6 +267,7 @@ class PlanBody(BaseModel):
     model_config = ConfigDict(extra="forbid")
     message: str = Field(default="", max_length=2000)
     draft: dict = Field(default_factory=dict)
+    context: dict = Field(default_factory=dict)
 
 
 class CreateBody(BaseModel):
@@ -275,7 +344,8 @@ class AssistantService:
         return {"keys_allowed": bool(row["admin"] or row["role"] == "oqituvchi"),
                 "question_limit": 100, "topic_limit": MAX_TOPICS,
                 "engine": "assisted" if getattr(self.platform, "GROQ_API_KALIT", "") else "guided",
-                "source": "dts_tree + generated_tests"}
+                "source": "dts_tree + generated_tests", "export_formats": ["pdf", "docx", "xlsx"],
+                "knowledge_sources": [], "theory_available": False}
 
     def catalog(self, grade, query="", quarter=None, subject_code=None, codes=None, difficulty="mixed", cursor=None, limit=100):
         """Only real school grades; bounded results. IDs cannot cross grades."""
@@ -339,7 +409,7 @@ class AssistantService:
     def intent(self, message):
         local = parse_local(message)
         key = getattr(self.platform, "GROQ_API_KALIT", "")
-        if not key or not message.strip():
+        if not key or not message.strip() or local["conversation_kind"] in ("greeting", "thanks", "knowledge_unavailable"):
             return local
         # This optional parser receives only the current request text, never
         # passwords, profile data, answer keys, database rows or chat history.
@@ -372,33 +442,52 @@ class AssistantService:
             queries = extracted.get("topic_queries", [])
             if not isinstance(queries, list):
                 queries = []
-            return {"fields": validated, "topic_queries": [str(q)[:120] for q in queries[:10] if isinstance(q, str)],
-                    "ambiguous": extracted.get("ambiguous") is True or local["ambiguous"], "engine": "assisted"}
+            return {"fields": validated, "topic_queries": [str(q)[:120] for q in queries[:10] if isinstance(q, str)] or local["topic_queries"],
+                    "ambiguous": extracted.get("ambiguous") is True or local["conflicts"], "engine": "assisted",
+                    "conversation_kind": local["conversation_kind"], "conflicts": local["conflicts"]}
         except Exception:
             return {**local, "engine": "guided", "model_unavailable": True}
 
-    def plan(self, uid, message, raw):
+    def plan(self, uid, message, raw, context=None):
         draft = clean_draft(raw)
+        context = clean_context(context or {})
         intent = self.intent(message)
-        old_grade = draft.get("grade")
+        kind = intent.get("conversation_kind", "test_plan")
+        # Short replies answer only the last explicit typed question. Numbers
+        # never pick topic IDs, switch a complete plan or create an attempt.
+        awaiting = context["awaiting"]
+        short = re.fullmatch(r"(\d{1,3})(?:\s*(?:ta|talik|daqiqa|sinf))?", norm(message))
+        if short and awaiting in ("grade", "question_count", "minutes") and not intent.get("conflicts"):
+            intent["fields"][awaiting] = int(short[1])
+            intent["ambiguous"] = False
+        # A plain short topic reply is a search hint only when the assistant
+        # explicitly asked for one. Database matches still require selection.
+        if (awaiting == "topic_codes" and kind == "test_plan" and not short
+                and not intent.get("fields") and not intent.get("topic_queries")
+                and not intent.get("conflicts") and 2 <= len(message.strip()) <= 120):
+            intent["topic_queries"] = [message.strip()]
+            intent["ambiguous"] = False
+        old_grade, old_quarter = draft.get("grade"), draft.get("quarter")
         draft.update(intent["fields"])
         draft = clean_draft(draft)
-        if old_grade and draft.get("grade") != old_grade:
+        if (old_grade and draft.get("grade") != old_grade) or draft.get("quarter") != old_quarter:
             draft["topic_codes"], draft["subject_points"] = [], {}
         choices, notices = [], []
+        fresh_queries = intent.get("topic_queries", [])
+        pending_queries = fresh_queries or (context["topic_queries"] if not draft["topic_codes"] else [])
         if intent.get("ambiguous"):
-            notices.append("So'rovingizning bir qismi aniq emas. Quyidagi shartlarni tekshirib, tushunarsiz qismini boshqacha yozing")
+            notices.append("Bu gapni aniq tushunmadim. " + ("Bir nechta turli qiymat aytildi; keraklisini tanlang." if intent.get("conflicts") else "Qisqaroq qilib fan, mavzu yoki o‘zgartirmoqchi bo‘lgan shartni yozing."))
         if draft.get("grade"):
-            candidates = self.catalog(draft["grade"], quarter=draft.get("quarter"), limit=2000)["topics"] if intent.get("topic_queries") else []
-            for phrase in intent.get("topic_queries", []):
+            candidates = self.catalog(draft["grade"], quarter=draft.get("quarter"), limit=2000)["topics"] if pending_queries else []
+            for phrase in pending_queries:
                 scored = [(topic_score(phrase, row), row) for row in candidates]
                 found = [row for score, row in sorted(scored, key=lambda pair: (-pair[0], pair[1]["topic_code"])) if score >= .45][:8]
                 for row in found:
                     if row["topic_code"] not in {c["topic_code"] for c in choices}:
                         choices.append({**row, "match_query": phrase})
-            if intent.get("topic_queries"):
-                notices.append("Mos mavzularni topdim. Aynan kerakli mavzularni belgilang" if choices else
-                               "Bu nom bilan mos mavzu topilmadi. Sinf, fan yoki mavzu nomini aniqlashtiring")
+            if pending_queries:
+                notices.append("Bazadan mos mavzularni topdim. Keraklilarini belgilang; bir nechtasini aralashtirib test tuzamiz." if choices else
+                               "Bu nomga mos mavzu topilmadi. Sinf yoki chorakni tekshiramizmi? Fan yoki mavzuni boshqacha yozishingiz ham mumkin.")
         topics = []
         if draft.get("grade") and draft["topic_codes"]:
             topics = self.catalog(draft["grade"], quarter=draft.get("quarter"), codes=draft["topic_codes"], difficulty=draft.get("difficulty", "mixed"))["topics"]
@@ -423,20 +512,31 @@ class AssistantService:
                 ready = False
                 notices.append(exc.detail)
         # Any name-only suggestion must be explicitly selected and resubmitted.
-        if intent.get("topic_queries") or intent.get("ambiguous"):
+        if pending_queries or intent.get("ambiguous") or kind in ("greeting", "thanks", "knowledge_unavailable"):
             ready = False
-        labels = {"grade": "sinf", "topic_codes": "mavzular", "question_count": "savollar soni",
-                  "difficulty": "qiyinlik", "minutes": "umumiy vaqt", "mode": "mashq yoki imtihon"}
-        if missing:
-            notices.append("Aniqlashtiring: " + ", ".join(labels[k] for k in missing))
+        if kind == "help" and not intent["fields"] and not fresh_queries:
+            ready = False
+        next_field = "topic_codes" if choices else missing[0] if missing else None
+        if missing and not choices:
+            notices.append(next_question(next_field, draft.get("grade")))
         if ready:
-            notices.append("Reja tayyor. Mavzular, savollar soni, vaqt va ballarni tekshirib, tasdiqlang")
+            notices.append(f"Reja tayyor: {draft['grade']}-sinf, {len(topics)} ta mavzu, {draft['question_count']} ta savol, {draft['minutes']} daqiqa. Shartlar ma’qul bo‘lsa, tasdiqlang. Keyin shu yerda ishlash yoki savollarni PDF qilib olish mumkin.")
         elif not notices:
-            notices.append("Mavzu va test shartlarini tanlang; faqat bazadagi tayyor savollardan foydalanaman")
+            notices.append("Rejadagi shartlarni tekshirib davom etamizmi? Testni boshlashdan oldin tasdiqlaysiz.")
+        introductions = {
+            "greeting": "Assalomu alaykum! Birga bilimni sinash, kerakli mavzuni topish yoki PDF test tayyorlashimiz mumkin.",
+            "thanks": "Marhamat! Istasangiz, keyingi mavzuni tanlaymiz yoki test shartlarini o‘zgartiramiz.",
+            "help": "Yordam beraman. Bazadagi mavzularni topib, siz tanlaganlaridan test tuzamiz. Bilimingizni shu yerda sinashingiz yoki savollarni PDF qilib olishingiz mumkin.",
+            "knowledge_unavailable": "Bu savolga ishonchli nazariy manba hali ulanmagan. Taxminiy javob bermayman. Hozir fan va mavzularni bazadan topib, ulardan bilimni tekshiradigan test tayyorlay olaman.",
+        }
+        if kind in introductions:
+            notices.insert(0, introductions[kind])
         token = self.platform._oauth_imzolangan_token(PURPOSE, 900, owner=uid, version=VERSION, draft=draft) if ready else None
-        return {"message": ". ".join(notices), "draft": draft, "missing": missing,
+        return {"message": " ".join(str(n).strip() for n in notices), "draft": draft, "missing": missing,
                 "choices": choices, "ready": ready, "plan_token": token, "summary": summary,
-                "engine": intent.get("engine", "guided")}
+                "engine": intent.get("engine", "guided"), "conversation_kind": kind if kind != "test_plan" else "test_plan" if ready else "clarify",
+                "next_field": next_field, "suggestions": next_suggestions(next_field),
+                "context": {"topic_queries": pending_queries[:10], "awaiting": next_field}}
 
     def public_attempt(self, row):
         questions = json_value(row["questions"])
@@ -648,7 +748,7 @@ def register_assistant(app, platform):
         uid = service.uid(authorization)
         service.budget(uid, "plan", 12)
         response.headers["Cache-Control"] = "private, no-store"
-        return service.plan(uid, body.message, body.draft)
+        return service.plan(uid, body.message, body.draft, body.context)
 
     @app.post("/api/assistant/create", tags=["Kabutar AI"])
     def create(body: CreateBody, response: Response, authorization: str | None = Header(default=None)):
@@ -686,7 +786,7 @@ def register_assistant(app, platform):
         return service.save_or_submit(uid, attempt_id, body.answers, submit=True)
 
     @app.get("/api/assistant/attempt/{attempt_id}/export", tags=["Kabutar AI"])
-    def export(attempt_id: str, format: str = Query(default="docx", pattern="^(docx|xlsx)$"), answer_key: bool = False,
+    def export(attempt_id: str, format: str = Query(default="pdf", pattern="^(pdf|docx|xlsx)$"), answer_key: bool = False,
                authorization: str | None = Header(default=None)):
         uid = service.uid(authorization)
         service.budget(uid, "export", 8)

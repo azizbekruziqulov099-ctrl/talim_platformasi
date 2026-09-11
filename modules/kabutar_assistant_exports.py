@@ -16,11 +16,13 @@ from typing import Any
 _LANG_TAG = re.compile(r"\[\s*/?\s*(?:uz|ru|en)\s*\]", re.IGNORECASE)
 _INVALID_XML = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]")
 _MEDIA = {
+    "pdf": "application/pdf",
     "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 }
 _LABELS = {
     "easy": "Oson", "medium": "O‘rtacha", "hard": "Qiyin", "mixed": "Aralash",
+    "advanced": "Murakkab", "practice": "Mashq testi",
     "test": "Mashq testi", "exam": "Imtihon", "monitoring": "Monitoring",
     "single_choice": "Bitta javob", "write_answer": "Yozma javob",
 }
@@ -323,7 +325,7 @@ def export_attempt(attempt: dict, format: str, answer_key: bool = False) -> tupl
     loaded directly from the database. Answer keys do not require images.
     """
     if format not in _MEDIA:
-        raise ValueError("Format docx yoki xlsx bo‘lishi kerak.")
+        raise ValueError("Format pdf, docx yoki xlsx bo‘lishi kerak.")
     if not isinstance(attempt, dict) or not isinstance(attempt.get("plan", {}), dict):
         raise ValueError("Test ma’lumotlari noto‘g‘ri.")
     questions = attempt.get("questions")
@@ -332,5 +334,9 @@ def export_attempt(attempt: dict, format: str, answer_key: bool = False) -> tupl
     ident = re.sub(r"[^a-zA-Z0-9_-]", "", _text(attempt.get("attempt_id")))[:64] or "test"
     filename = f"kabutar_{ident}_{'javoblar' if answer_key else 'savollar'}.{format}"
     images = {} if answer_key else _prepare_images(questions)
-    data = _docx(attempt, questions, answer_key, images) if format == "docx" else _xlsx(attempt, questions, answer_key, images)
+    if format == "pdf":
+        from .kabutar_assistant_pdf import render_pdf
+        data = render_pdf(attempt, questions, answer_key, images)
+    else:
+        data = _docx(attempt, questions, answer_key, images) if format == "docx" else _xlsx(attempt, questions, answer_key, images)
     return data, _MEDIA[format], filename

@@ -92,8 +92,8 @@ class DiscoveryService:
             raise HTTPException(401, 'Hisobingizga kiring')
         token = token.strip()
         user_id = self.platform._jwt_tekshir(token)
-        if mutate and self.auth.claims(token).get('admin_korish'):
-            raise HTTPException(403, 'Ko‘rish rejimida profil o‘zgartirilmaydi')
+        if self.auth.claims(token).get('admin_korish'):
+            raise HTTPException(403, 'Ko‘rish rejimida Kabutar kontaktlari ochilmaydi')
         return user_id
 
     def profile(self, cur, user_id):
@@ -153,6 +153,12 @@ class DiscoveryService:
                 raise HTTPException(404, 'Foydalanuvchi topilmadi yoki bu usulda topishga ruxsat bermagan')
             if int(row['user_id']) == user_id:
                 raise HTTPException(400, 'Bu sizning o‘z profilingiz')
+            if __package__:
+                from .kabutar_policy import allow_direct
+            else:
+                from kabutar_policy import allow_direct
+            if not allow_direct(cur,user_id,int(row['user_id'])):
+                raise HTTPException(404, 'Foydalanuvchi topilmadi yoki bu usulda topishga ruxsat bermagan')
             return public_card(row)
 
 

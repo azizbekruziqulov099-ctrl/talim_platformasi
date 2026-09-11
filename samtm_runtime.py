@@ -56,7 +56,12 @@ HEAVY_PATH_PARTS = (
 )
 # These responses contain owner-specific plans, drafts or examination results.
 # Never cache them even when MICROCACHE_PATHS is configured broadly.
-PRIVATE_WORKSPACE_PREFIXES = ("/api/assistant/", "/api/shaxsiy-jadval")
+PRIVATE_WORKSPACE_PREFIXES = (
+    "/api/assistant/", "/api/shaxsiy-jadval",
+    "/api/kabutar/", "/api/chat/", "/api/harbiy-maktab/",
+    "/api/maktab/kun-tartibi", "/api/maktab/harbiy-amaliyot",
+    "/api/admin/kabutar/", "/api/legal/",
+)
 
 class _LocalCache:
     def __init__(self):

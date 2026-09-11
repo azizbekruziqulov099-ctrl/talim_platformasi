@@ -106,3 +106,36 @@ else:
 register_personal_schedule(app, samtm_platform, samtm_school)
 assistant_service = register_assistant(app, samtm_platform)
 app.router.add_event_handler("startup", assistant_service.migrate)
+
+# REV45: participant-authorized signaling; media uses the configured TURN/SFU.
+if __package__:
+    from .modules.kabutar_calls import register_calls
+else:
+    from modules.kabutar_calls import register_calls
+call_service = register_calls(app, samtm_platform)
+app.router.add_event_handler("startup", call_service.migrate)
+
+if __package__:
+    from .kabutar_safety import register_safety
+    from .kabutar_terms import register_terms
+    from .modules.military_school import register_military_school
+    from .modules.military_operations import register_military_operations
+else:
+    from kabutar_safety import register_safety
+    from kabutar_terms import register_terms
+    from modules.military_school import register_military_school
+    from modules.military_operations import register_military_operations
+register_safety(app, samtm_platform, samtm_platform._kabutar_auth_service)
+register_terms(app, samtm_platform, samtm_platform._kabutar_auth_service)
+military_service = register_military_school(app, samtm_platform)
+app.router.add_event_handler("startup", military_service.migrate)
+military_operations_service = register_military_operations(app, samtm_platform)
+app.router.add_event_handler("startup", military_operations_service.migrate)
+
+# REV46: comments stay attached to the original post across history pages.
+if __package__:
+    from .modules.kabutar_threads import register_threads
+else:
+    from modules.kabutar_threads import register_threads
+thread_service = register_threads(app, samtm_platform)
+app.router.add_event_handler("startup", thread_service.migrate)
