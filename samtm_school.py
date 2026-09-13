@@ -2493,6 +2493,45 @@ def _v1852_manager(cur, user_id: int, maktab_id: int) -> bool:
     return _maktab_boshqaruvchi_mi(cur, user_id, maktab_id)
 
 
+def _v48_teacher_time_manager(cur, user_id: int, maktab_id: int) -> bool:
+    """Vaqtni faqat haqiqiy admin yoki shu maktabning o'quv o'rinbosari sozlaydi.
+
+    Umumiy rahbariyat vakolati bu sozlama uchun yetarli emas. Lavozim
+    brauzerdagi ko'rinishdan emas, aynan shu maktabdagi yozuvdan olinadi.
+    """
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    role = str(_muassasadagi_lavozim(cur, user_id, "maktab", maktab_id) or "").strip().lower()
+    return role in {
+        "zam_direktor_uquv", "academic_deputy", "zavuch", "zauh",
+        "admin", "administrator", "maktab_admin", "school_admin",
+    }
+
+
+def _v48_require_teacher_time_manager(cur, user_id: int, maktab_id: int):
+    if not _v48_teacher_time_manager(cur, user_id, maktab_id):
+        raise HTTPException(
+            status_code=403,
+            detail="O‘qituvchi vaqtini faqat administrator yoki shu maktabning o‘quv ishlari bo‘yicha direktor o‘rinbosari sozlaydi",
+        )
+
+
+@app.get("/api/maktab/aqlli_jadval/v2/vaqt_ruxsati")
+def v48_teacher_time_capability(token: str, maktab_id: int):
+    user_id = _jwt_tekshir(token)
+    if maktab_id < 1:
+        raise HTTPException(status_code=422, detail="Maktab raqami noto‘g‘ri")
+    conn = _db(); cur = conn.cursor()
+    try:
+        return {
+            "maktab_id": maktab_id,
+            "can_manage_teacher_availability": _v48_teacher_time_manager(cur, user_id, maktab_id),
+        }
+    finally:
+        cur.close(); conn.close()
+
+
 def _v240_lock_teacher_time_scope(
     cur,
     maktab_id,
@@ -2516,7 +2555,7 @@ def _v240_lock_teacher_time_scope(
             user_id = int(value)
         except (TypeError, ValueError):
             continue
-        if user_id > 0:
+        if user_id != 0:
             normalized_values.add(user_id)
     normalized = sorted(normalized_values)
     if not normalized:
@@ -2570,7 +2609,7 @@ def _v242_mark_manual_method_override(
     cur, maktab_id: int, user_ids, actor_id: Optional[int] = None
 ):
     _v242_method_manual_override_tables(cur)
-    values = sorted({int(value) for value in (user_ids or []) if int(value) > 0})
+    values = sorted({int(value) for value in (user_ids or []) if int(value) != 0})
     if not values:
         return
     cur.execute(
@@ -3047,8 +3086,7 @@ def v1852_teacher_availability_save(sorov: V1852TeacherAvailability, token: str)
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        if actor_id != sorov.user_id and not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="Faqat o'qituvchining o'zi yoki rahbariyat o'zgartira oladi")
+        _v48_require_teacher_time_manager(cur, actor_id, sorov.maktab_id)
         _v240_lock_teacher_time_scope(
             cur,
             sorov.maktab_id,
@@ -3466,7 +3504,8 @@ def _v1852_setup_payload(cur, maktab_id: int):
             class_hour_counts[int(row["rahbar_user_id"])] += int(row.get("haftalik_soat") or 1)
     plan = _v193_plan_payload(cur, maktab_id, classes)
     _v2249_ensure_teacher_numbers(cur, maktab_id)
-    teachers = _v1859_effective_teachers(cur, maktab_id)
+    # Admin vaqtlarni fan/sinf biriktirishdan oldin ham belgilay oladi.
+    teachers = _v1859_effective_teachers(cur, maktab_id, include_numbered=True)
     for teacher in teachers:
         extra = int(class_hour_counts.get(int(teacher["user_id"]), 0))
         teacher["sinf_soati_soni"] = extra
@@ -3643,6 +3682,7 @@ def v1852_setup(token: str, maktab_id: int):
         if not _v1852_staff(cur, user_id, maktab_id):
             raise HTTPException(status_code=403, detail="Bu maktab jadvalini ko'rishga ruxsat yo'q")
         manager = _v1852_manager(cur, user_id, maktab_id)
+        time_manager = _v48_teacher_time_manager(cur, user_id, maktab_id)
         if manager:
             # Yangi yoki eski maktabdan qat'i nazar barcha faol sinfga bir
             # martadan SINF SOATI avtomatik mavjud bo'ladi. Qo'lda tanlangan
@@ -3651,7 +3691,8 @@ def v1852_setup(token: str, maktab_id: int):
         payload = _v1852_setup_payload(cur, maktab_id)
         payload["joriy_user_id"] = user_id
         payload["boshqaruvchi"] = manager
-        if not manager:
+        payload["can_manage_teacher_availability"] = time_manager
+        if not (manager or time_manager):
             own_assignments = [row for row in payload["birikmalar"] if int(row["user_id"]) == int(user_id)]
             allowed_pairs = {(int(row["sinf_id"]), str(row["fan_nomi"]).strip().casefold()) for row in own_assignments}
             allowed_class_ids = {pair[0] for pair in allowed_pairs}
@@ -7053,8 +7094,8 @@ def v1854_teacher_availability_bulk(sorov: V1854BulkTeacherAvailability, token: 
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="Ommaviy sozlamani faqat maktab rahbariyati qo'llaydi")
+        if not _v48_teacher_time_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Ommaviy sozlamani faqat administrator yoki shu maktabning o‘quv ishlari o‘rinbosari qo'llaydi")
         user_ids = list(dict.fromkeys(int(x) for x in sorov.user_ids if int(x)))
         if not user_ids:
             raise HTTPException(status_code=400, detail="Kamida bitta o'qituvchini tanlang")
@@ -7126,8 +7167,8 @@ def _v240_normalize_bulk_method_days(user_ids, hafta_kunlari, rejim):
             user_id = int(raw)
         except (TypeError, ValueError) as exc:
             raise ValueError("O‘qituvchi ID raqam bo‘lishi kerak.") from exc
-        if user_id <= 0:
-            raise ValueError("O‘qituvchi ID musbat bo‘lishi kerak.")
+        if user_id == 0 or not -(2 ** 63) <= user_id < 2 ** 63:
+            raise ValueError("O‘qituvchi ID nolga teng bo‘lmagan haqiqiy hisob raqami bo‘lishi kerak.")
         if user_id in seen_users:
             raise ValueError(f"O‘qituvchi ID {user_id} ikki marta yuborilgan.")
         seen_users.add(user_id)
@@ -7180,10 +7221,10 @@ def v240_bulk_teacher_method_days(
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+        if not _v48_teacher_time_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(
                 status_code=403,
-                detail="Metod kunini faqat maktab rahbariyati saqlaydi",
+                detail="Metod kunini faqat administrator yoki shu maktabning o‘quv ishlari o‘rinbosari saqlaydi",
             )
         active_year = _v1852_active_year(cur, sorov.maktab_id)
         active_weekdays = int((active_year or {}).get("hafta_kunlari") or 6)
@@ -7290,8 +7331,8 @@ def v1854_method_day_suggest(sorov: V1854MethodSuggestion, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="Kasbiy rivojlanish kunini faqat maktab rahbariyati tavsiya qiladi")
+        if not _v48_teacher_time_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Kasbiy rivojlanish kunini faqat administrator yoki shu maktabning o‘quv ishlari o‘rinbosari tavsiya qiladi")
         year = _v1852_active_year(cur, sorov.maktab_id)
         weekdays = int((year or {}).get("hafta_kunlari") or 6)
         ids = list(dict.fromkeys(int(x) for x in sorov.user_ids if int(x)))
@@ -7777,8 +7818,8 @@ def v1866_method_days_clear(sorov: V1866MethodDayClear, token: str):
     conn = _db(); cur = conn.cursor()
     try:
         _v1852_tables(cur)
-        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="Metod kunlarini faqat maktab rahbariyati ommaviy tozalaydi")
+        if not _v48_teacher_time_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Metod kunlarini faqat administrator yoki shu maktabning o‘quv ishlari o‘rinbosari ommaviy tozalaydi")
         ids = list(dict.fromkeys(int(x) for x in sorov.user_ids if int(x)))
         if not ids:
             raise HTTPException(status_code=400, detail="Kamida bitta o‘qituvchini tanlang")
@@ -8183,6 +8224,7 @@ def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
     actor_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
+        _v48_require_teacher_time_manager(cur, actor_id, sorov.maktab_id)
         _v1852_tables(cur)
         items_by_user = {}
         for item in sorov.oqituvchilar:
@@ -8194,12 +8236,6 @@ def v1868_teacher_time_matrix_save(sorov: V1868TeacherMatrixSave, token: str):
         if len(items_by_user) > 300:
             raise HTTPException(status_code=400, detail="Bir so'rovda 300 tadan ortiq xodim saqlanmaydi")
 
-        manager = _v1852_manager(cur, actor_id, sorov.maktab_id)
-        if not manager and (len(items_by_user) != 1 or actor_id not in items_by_user):
-            raise HTTPException(
-                status_code=403,
-                detail="O'qituvchi faqat o'z vaqtini, rahbariyat esa barcha o'qituvchilarni o'zgartira oladi",
-            )
 
         user_ids = list(items_by_user)
         _v240_lock_teacher_time_scope(
@@ -8452,10 +8488,10 @@ def v1871_auto_method_save(sorov: V1871AutoMethodSettings, token: str):
     try:
         _v1852_tables(cur)
         _v1871_auto_method_tables(cur)
-        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
+        if not _v48_teacher_time_manager(cur, actor_id, sorov.maktab_id):
             raise HTTPException(
                 status_code=403,
-                detail="Avto metod kunini faqat maktab rahbariyati boshqaradi",
+                detail="Avto metod kunini faqat administrator yoki shu maktabning o‘quv ishlari o‘rinbosari boshqaradi",
             )
 
         year = _v1852_active_year(cur, sorov.maktab_id)
@@ -9214,8 +9250,8 @@ def v1873_official_method_save(sorov: V1873OfficialMethodSettings, token: str):
     try:
         _v1852_tables(cur)
         _v1873_tables(cur)
-        if not _v1852_manager(cur, actor_id, sorov.maktab_id):
-            raise HTTPException(status_code=403, detail="Rasmiy metod kunlarini faqat maktab rahbariyati boshqaradi")
+        if not _v48_teacher_time_manager(cur, actor_id, sorov.maktab_id):
+            raise HTTPException(status_code=403, detail="Rasmiy metod kunlarini faqat administrator yoki shu maktabning o‘quv ishlari o‘rinbosari boshqaradi")
         # Rasmiy metod sozlamasi o'qituvchi bo'yicha global qo'llanadi. Shuning
         # uchun maktabdagi barcha ta'lim tillarida markaziy metod override deb
         # belgilanadi; faqat UZni belgilash RU/ENni keyin bosib ketishi mumkin.

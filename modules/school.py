@@ -51,6 +51,8 @@ MANAGER_ROLES = {
     "spiritual_deputy", "administrator",
 }
 ACADEMIC_ROLES = MANAGER_ROLES | {"methodist"}
+# Only these school roles can manage teacher scheduling preferences.
+TEACHER_AVAILABILITY_MANAGER_ROLES = {"administrator", "academic_deputy"}
 TEACHING_ROLES = ACADEMIC_ROLES | {"teacher", "homeroom_teacher"}
 ATTENDANCE_ROLES = TEACHING_ROLES | {"psychologist", "social_pedagogue", "nurse"}
 FINANCE_ROLES = MANAGER_ROLES | {"accountant"}
@@ -906,19 +908,29 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
                         teacher_user_id=user_id,
                     )
                 invite_meta = dict(invitation["metadata"] or {})
-                if invitation["role_key"] in {"teacher", "homeroom_teacher"}:
+                apply_teacher_settings = False
+                if (
+                    invitation["role_key"] in {"teacher", "homeroom_teacher"}
+                    and invite_meta
+                ):
+                    inviter_id = int(invitation["created_by_user_id"])
+                    inviter_roles = (
+                        {"system_admin"} if system_admin(cur, inviter_id)
+                        else active_roles(cur, int(invitation["context_id"]), inviter_id)
+                    )
+                    apply_teacher_settings = bool(
+                        inviter_roles & TEACHER_AVAILABILITY_MANAGER_ROLES
+                        or "system_admin" in inviter_roles
+                    )
+                if apply_teacher_settings:
+                    # Redeeming an invitation must preserve an existing teacher's schedule.
                     allowed_shifts = invite_meta.get("allowed_shifts") or [1, 2]
                     cur.execute(
                         """INSERT INTO school_teacher_settings(
                              context_id,user_id,method_day,max_daily_periods,
                              preferences
                            ) VALUES(%s,%s,%s,%s,%s::jsonb)
-                           ON CONFLICT(context_id,user_id) DO UPDATE SET
-                             method_day=EXCLUDED.method_day,
-                             max_daily_periods=EXCLUDED.max_daily_periods,
-                             preferences=school_teacher_settings.preferences
-                               ||EXCLUDED.preferences,
-                             updated_at=NOW()""",
+                           ON CONFLICT(context_id,user_id) DO NOTHING""",
                         (
                             invitation["context_id"], user_id,
                             invite_meta.get("method_day"),
@@ -2245,6 +2257,21 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
             caller_roles = require_roles(
                 cur, request.context_id, user_id, MANAGER_ROLES
             )
+            can_set_teacher_availability = bool(
+                caller_roles & TEACHER_AVAILABILITY_MANAGER_ROLES
+                or "system_admin" in caller_roles
+            )
+            if (
+                request.role_key in {"teacher", "homeroom_teacher"}
+                and not can_set_teacher_availability
+                and request.model_fields_set & {
+                    "method_day", "available_shift", "max_daily_lessons"
+                }
+            ):
+                require_roles(
+                    cur, request.context_id, user_id,
+                    TEACHER_AVAILABILITY_MANAGER_ROLES,
+                )
             cur.execute(
                 "SELECT ownership_type FROM school_profiles WHERE context_id=%s",
                 (request.context_id,),
@@ -2289,7 +2316,7 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
                     if request.available_shift in {"1", "2"} else [1, 2]
                 ),
                 "max_daily_lessons": request.max_daily_lessons,
-            }
+            } if can_set_teacher_availability else {}
             cur.execute(
                 """INSERT INTO school_invitations(
                      context_id,group_id,role_key,invited_name,invited_contact,
@@ -2345,23 +2372,20 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
     ) -> dict[str, Any]:
         with database() as (_, cur):
             ensure_schema(cur)
-            roles = active_roles(cur, request.context_id, user_id)
-            manager = bool(roles & ACADEMIC_ROLES) or system_admin(cur, user_id)
-            if teacher_user_id != user_id and not manager:
-                raise HTTPException(status_code=403, detail="Boshqa o'qituvchi vaqtini o'zgartira olmaysiz")
+            require_roles(
+                cur, request.context_id, user_id,
+                TEACHER_AVAILABILITY_MANAGER_ROLES,
+            )
             cur.execute(
                 """SELECT 1 FROM school_role_assignments
                    WHERE context_id=%s AND user_id=%s AND status='active'
-                     AND role_key=ANY(%s)""",
+                     AND role_key=ANY(%s) AND starts_at<=NOW()
+                     AND (ends_at IS NULL OR ends_at>NOW())""",
                 (request.context_id, teacher_user_id, ["teacher", "homeroom_teacher"]),
             )
             if not cur.fetchone():
                 raise HTTPException(status_code=404, detail="O'qituvchi bu maktabda topilmadi")
             supplied_fields = request.model_fields_set
-            if not manager and supplied_fields & {
-                "max_daily_periods", "max_weekly_periods", "method_day"
-            }:
-                raise HTTPException(status_code=403, detail="Yuklama va metod kunini rahbar belgilaydi")
             if (
                 "max_daily_periods" in supplied_fields
                 and request.max_daily_periods is None
@@ -2455,12 +2479,12 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
         with database(readonly=True) as (_, cur):
             ensure_schema(cur)
             if teacher_user_id == user_id:
-                require_roles(
+                roles = require_roles(
                     cur, context_id, user_id,
                     {"teacher", "homeroom_teacher", *ACADEMIC_ROLES},
                 )
             else:
-                require_roles(cur, context_id, user_id, ACADEMIC_ROLES)
+                roles = require_roles(cur, context_id, user_id, ACADEMIC_ROLES)
             cur.execute(
                 "SELECT * FROM school_teacher_settings WHERE context_id=%s AND user_id=%s",
                 (context_id, teacher_user_id),
@@ -2473,7 +2497,14 @@ def create_school_router(jwt_check: Callable[[str], int]) -> APIRouter:
                 (context_id, teacher_user_id),
             )
             rows = cur.fetchall()
-        return {"settings": settings, "rows": rows}
+        return {
+            "settings": settings,
+            "rows": rows,
+            "can_manage_teacher_availability": bool(
+                roles & TEACHER_AVAILABILITY_MANAGER_ROLES
+                or "system_admin" in roles
+            ),
+        }
 
     @router.post("/calendar")
     def create_calendar_event(

@@ -139,3 +139,20 @@ else:
     from modules.kabutar_threads import register_threads
 thread_service = register_threads(app, samtm_platform)
 app.router.add_event_handler("startup", thread_service.migrate)
+
+# REV47: self-paced courses, free YouTube embeds and manual course-fee records.
+# Separate from live institution groups; no third-party paid service activation.
+if __package__:
+    from .modules.academy import register_courses
+    from .modules.academy_media import register_media
+    from .modules.academy_payments import register_payments
+else:
+    from modules.academy import register_courses
+    from modules.academy_media import register_media
+    from modules.academy_payments import register_payments
+academy_service = register_courses(app, samtm_platform)
+academy_media_service = register_media(app, academy_service)
+academy_payment_service = register_payments(app, academy_service)
+app.router.add_event_handler("startup", academy_service.migrate)
+app.router.add_event_handler("startup", academy_media_service.migrate)
+app.router.add_event_handler("startup", academy_payment_service.migrate)

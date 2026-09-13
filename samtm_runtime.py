@@ -60,7 +60,8 @@ PRIVATE_WORKSPACE_PREFIXES = (
     "/api/assistant/", "/api/shaxsiy-jadval",
     "/api/kabutar/", "/api/chat/", "/api/harbiy-maktab/",
     "/api/maktab/kun-tartibi", "/api/maktab/harbiy-amaliyot",
-    "/api/admin/kabutar/", "/api/legal/",
+    "/api/admin/kabutar/", "/api/legal/", "/api/kurslar/",
+    "/api/maktab/aqlli_jadval/", "/api/maktab-v2/",
 )
 
 class _LocalCache:

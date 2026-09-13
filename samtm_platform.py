@@ -7514,13 +7514,15 @@ def togarak_azo_mavzularim(token: str, togarak_id: int):
                   AND q.reja_id = (SELECT reja_id FROM togaraklar WHERE id=%s)
             WHERE tm.togarak_id=%s AND d.is_deleted=FALSE
         )
-        SELECT MIN(topic_code) AS topic_code, bob_name, mavzu_name AS nomi, SUM(kontent_soni) AS kontent_soni,
+        SELECT topic_code, bob_name, mavzu_name AS nomi, MAX(kontent_soni) AS kontent_soni,
                MIN(tartib_raqami) AS tartib_raqami
         FROM mk
-        GROUP BY bob_name, mavzu_name
+        GROUP BY topic_code, bob_name, mavzu_name
         ORDER BY (MIN(tartib_raqami) IS NULL), MIN(tartib_raqami), bob_name, mavzu_name
     """, (togarak_id, togarak_id))
-    natija = [r for r in cur.fetchall() if r["kontent_soni"] > 0]
+    # REV47: a tests-only/book-only/exercise-only topic is a valid lesson too.
+    # Keep its own topic code; equal titles never merge distinct resources.
+    natija = cur.fetchall()
     cur.close()
     conn.close()
     return {"mavzular": natija}
