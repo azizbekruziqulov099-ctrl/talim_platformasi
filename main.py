@@ -156,3 +156,11 @@ academy_payment_service = register_payments(app, academy_service)
 app.router.add_event_handler("startup", academy_service.migrate)
 app.router.add_event_handler("startup", academy_media_service.migrate)
 app.router.add_event_handler("startup", academy_payment_service.migrate)
+
+# REV49: private presentation projects and a configurable slide designer.
+if __package__:
+    from .modules.presentations import register_presentations
+else:
+    from modules.presentations import register_presentations
+presentation_service = register_presentations(app, samtm_platform)
+app.router.add_event_handler("startup", presentation_service.migrate)
