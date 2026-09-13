@@ -1,4 +1,4 @@
-"""REV49 private presentation projects and offline import/export.
+"""REV50 private presentation projects and offline import/export.
 
 Only authenticated real accounts may enter this module. Eligibility is re-read
 from server tables for every operation; neither the document nor JWT role-like
@@ -36,8 +36,12 @@ MAX_PROJECTS = 50
 DEFAULT_GRADES = [8, 9, 10, 11]
 NO_STORE = {"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"}
 INVALID_XML = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]")
-DESIGN_FIELDS = {"background", "color", "image", "overlay", "panel", "accent", "text", "font", "size", "radius"}
-SLIDE_FIELDS = {"id", "title", "section", "body", "formula", "example", "image", "layout", "design"}
+LEGACY_DESIGN_FIELDS = {"background", "color", "image", "overlay", "panel", "accent", "text", "font", "size", "radius"}
+DESIGN_FIELDS = LEGACY_DESIGN_FIELDS | {"template", "transition"}
+LEGACY_SLIDE_FIELDS = {"id", "title", "section", "body", "formula", "example", "image", "layout", "design"}
+SLIDE_FIELDS = LEGACY_SLIDE_FIELDS | {"body2", "body3", "image2", "image_prompt", "image2_prompt", "image_caption", "image2_caption"}
+TEMPLATES = {"glass", "ribbon", "split", "gallery", "steps"}
+LAYOUTS = {"text", "formula", "image", "cover", "two_columns", "two_images", "three_cards", "steps"}
 DOCUMENT_FIELDS = {"schema", "title", "subject", "lesson_type", "design", "slides"}
 
 SCHEMA = """
@@ -137,8 +141,10 @@ def image_value(value):
 
 
 def validate_design(raw):
-    fields(raw, DESIGN_FIELDS)
+    fields(raw, DESIGN_FIELDS, LEGACY_DESIGN_FIELDS)
     out = {
+        "template": choice(raw.get("template", "glass"), "Shablon", TEMPLATES),
+        "transition": choice(raw.get("transition", "fade"), "Slayd almashinuvi", {"none", "fade", "push", "wipe"}),
         "background": choice(raw["background"], "Orqa fon", {"aurora", "paper", "midnight", "solid", "image"}),
         "color": string(raw["color"], "Fon rangi", 7, True),
         "image": image_value(raw["image"]),
@@ -161,9 +167,9 @@ def validate_document(raw):
     fields(raw, DOCUMENT_FIELDS)
     if json_size(raw) > MAX_DOCUMENT_BYTES:
         fail("Taqdimotning jami hajmi 8 MB dan oshmasin", 413)
-    integer(raw["schema"], "Hujjat formati", 1, 1)
+    integer(raw["schema"], "Hujjat formati", 1, 2)
     out = {
-        "schema": 1,
+        "schema": 2,
         "title": string(raw["title"], "Taqdimot nomi", 160, True),
         "subject": string(raw["subject"], "Fan", 100),
         "lesson_type": choice(raw["lesson_type"], "Dars turi", {"lecture", "practice", "seminar", "lab", "project"}),
@@ -173,7 +179,7 @@ def validate_document(raw):
         fail("Taqdimotda 1–40 ta slayd bo‘lishi kerak")
     seen = set()
     for item in raw["slides"]:
-        fields(item, SLIDE_FIELDS)
+        fields(item, SLIDE_FIELDS, LEGACY_SLIDE_FIELDS)
         slide_id = string(item["id"], "Slayd raqami", 96, True)
         if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}", slide_id) or slide_id in seen:
             fail("Slayd raqamlari to‘g‘ri va takrorlanmagan bo‘lishi kerak")
@@ -183,8 +189,13 @@ def validate_document(raw):
                                       ("body", "Slayd matni", 600), ("formula", "Formula", 400),
                                       ("example", "Misol", 250)):
             slide[name] = string(item[name], label, maximum)
+        for name, label, maximum in (("body2", "Ikkinchi matn", 400), ("body3", "Uchinchi matn", 400),
+                                     ("image_prompt", "Birinchi rasm tavsifi", 240), ("image2_prompt", "Ikkinchi rasm tavsifi", 240),
+                                     ("image_caption", "Birinchi rasm izohi", 100), ("image2_caption", "Ikkinchi rasm izohi", 100)):
+            slide[name] = string(item.get(name, ""), label, maximum)
         slide["image"] = image_value(item["image"])
-        slide["layout"] = choice(item["layout"], "Slayd turi", {"text", "formula", "image"})
+        slide["image2"] = image_value(item.get("image2"))
+        slide["layout"] = choice(item["layout"], "Slayd turi", LAYOUTS)
         slide["design"] = None if item["design"] is None else validate_design(item["design"])
         out["slides"].append(slide)
     return out
@@ -431,6 +442,9 @@ class PresentationService:
         document = row["document"]
         if isinstance(document, str):
             document = json.loads(document)
+        # Upgrade legacy stored projects on read without changing owner/version
+        # or writing a migration back over a concurrent editor's document.
+        document = validate_document(document)
         updated = row["updated_at"]
         return {"id": row["id"], "version": row["version"], "document": document,
                 "updated_at": updated.isoformat() if isinstance(updated, datetime) else updated}
@@ -522,6 +536,24 @@ class PresentationService:
         with self.db() as cur:
             self.require(cur, uid)
         return docx_text(raw)
+
+    def template_docx(self, uid, body):
+        with self.db() as cur:
+            self.require(cur, uid)
+        if not self._export_slots.acquire(blocking=False):
+            fail("Taqdimot eksporti hozir band. Birozdan keyin qayta urinib ko‘ring", 503)
+        try:
+            fields(body, {"document"})
+            document = validate_document(body["document"])
+            from .presentation_docx import build_template_docx
+            try:
+                data = build_template_docx(document)
+            except ValueError as exc:
+                fail(str(exc) or "Word shabloni uchun mazmunni tekshiring")
+            return Response(data, media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                            headers=NO_STORE | {"Content-Disposition": 'attachment; filename="taqdimot-shabloni.docx"'})
+        finally:
+            self._export_slots.release()
 
 
 async def bounded_body(request, limit):
@@ -646,5 +678,10 @@ def register_presentations(app, platform):
         raw = await bounded_body(request, MAX_DOCX_BYTES + 8192)
         data = await run_in_threadpool(multipart_docx, request.headers.get("content-type"), raw)
         return await run_in_threadpool(service.import_docx, uid, data)
+
+    @app.post(PREFIX + "/template-docx")
+    async def template_file(request: Request, authorization: str | None = Header(None)):
+        uid = await run_in_threadpool(service.actor, authorization)
+        return await run_in_threadpool(service.template_docx, uid, await json_body(request))
 
     return service

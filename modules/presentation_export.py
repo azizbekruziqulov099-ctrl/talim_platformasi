@@ -40,8 +40,9 @@ MAX_DOCUMENT_BYTES = 8 * 1024 * 1024
 MAX_IMAGE_PIXELS = 16_000_000
 _MATH_LOCK = threading.RLock()
 ACCENTS = {"cyan": "06b6d4", "blue": "3b82f6", "violet": "8b5cf6", "green": "10b981", "amber": "f59e0b"}
-DEFAULT_DESIGN = {"background": "aurora", "color": "#17394b", "image": None, "overlay": 25,
+DEFAULT_DESIGN = {"template": "glass", "transition": "fade", "background": "aurora", "color": "#17394b", "image": None, "overlay": 25,
                   "panel": "glass", "accent": "cyan", "text": "auto", "font": "sans", "size": "normal", "radius": "round"}
+LAYOUTS = ("text", "formula", "image", "cover", "two_columns", "two_images", "three_cards", "steps")
 
 
 def q(tag):
@@ -79,8 +80,11 @@ def _design(value):
     if not isinstance(value, dict):
         raise ValueError("Dizayn ma’lumoti noto‘g‘ri.")
     result = dict(DEFAULT_DESIGN)
+    if value.get("template") in TEMPLATE_DEFAULTS:
+        result.update(TEMPLATE_DEFAULTS[value["template"]])
     result.update(value)
-    choices = {"background": ("aurora", "paper", "midnight", "solid", "image"),
+    choices = {"template": ("glass", "ribbon", "split", "gallery", "steps"), "transition": ("none", "fade", "push", "wipe"),
+               "background": ("aurora", "paper", "midnight", "solid", "image"),
                "panel": ("glass", "solid", "none"), "accent": tuple(ACCENTS),
                "text": ("auto", "light", "dark"), "font": ("sans", "serif"),
                "size": ("normal", "large"), "radius": ("round", "square")}
@@ -98,7 +102,7 @@ def _design(value):
 
 
 def _validate(document):
-    if not isinstance(document, dict) or document.get("schema") != 1:
+    if not isinstance(document, dict) or isinstance(document.get("schema"), bool) or document.get("schema") not in (1, 2):
         raise ValueError("Taqdimot formati noto‘g‘ri.")
     try:
         encoded_size = len(json.dumps(document, ensure_ascii=False).encode("utf-8"))
@@ -114,16 +118,156 @@ def _validate(document):
     global_design = _design(document.get("design"))
     out = []
     for index, slide in enumerate(slides, 1):
-        if not isinstance(slide, dict) or slide.get("layout", "text") not in ("text", "formula", "image"):
+        if not isinstance(slide, dict) or slide.get("layout", "text") not in LAYOUTS:
             raise ValueError(f"{index}-slayd: tuzilma noto‘g‘ri.")
         item = dict(slide)
         for name, maximum, label in [("title", 100, "sarlavha"), ("section", 60, "bo‘lim"), ("body", 600, "matn"),
-                                     ("formula", 400, "formula"), ("example", 250, "misol")]:
+                                     ("body2", 400, "2-matn"), ("body3", 400, "3-matn"),
+                                     ("formula", 400, "formula"), ("example", 250, "misol"),
+                                     ("image_prompt", 240, "1-rasm tavsifi"), ("image2_prompt", 240, "2-rasm tavsifi"),
+                                     ("image_caption", 100, "1-rasm izohi"), ("image2_caption", 100, "2-rasm izohi")]:
             item[name] = _check_text(slide.get(name, ""), maximum, f"{index}-slayd {label}")
         item["design"] = _design(slide.get("design") or global_design)
         item["layout"] = item.get("layout", "text")
         out.append(item)
     return out
+
+
+# Pixel geometry mirrors src/presentations/layouts.js. Cross-runtime fixtures guard
+# every template/layout, optional slot and font-size combination against drift.
+SECTION_COLORS = ('#176b59', '#275fa5', '#7850a0', '#a64b3c', '#765b22')
+TEMPLATE_DEFAULTS = {
+    'glass': {'background': 'aurora', 'overlay': 25, 'panel': 'glass', 'accent': 'cyan', 'text': 'auto'},
+    'ribbon': {'background': 'midnight', 'overlay': 0, 'panel': 'solid', 'accent': 'blue', 'text': 'light'},
+    'split': {'background': 'paper', 'overlay': 0, 'panel': 'none', 'accent': 'violet', 'text': 'dark'},
+    'gallery': {'background': 'paper', 'overlay': 0, 'panel': 'solid', 'accent': 'blue', 'text': 'dark'},
+    'steps': {'background': 'midnight', 'overlay': 10, 'panel': 'glass', 'accent': 'green', 'text': 'light'},
+}
+
+
+def _box(x, y, w, h, **more):
+    return {'x': x, 'y': y, 'w': w, 'h': h, **more}
+
+
+def _coords(box):
+    return tuple(box[key] for key in ('x', 'y', 'w', 'h'))
+
+
+def get_layout_spec(slide=None, design=None, index=0, sections=None):
+    slide, design, sections = slide or {}, design or {}, sections or []
+    template_id = design.get('template') if design.get('template') in TEMPLATE_DEFAULTS else 'glass'
+    layout_id = slide.get('layout') if slide.get('layout') in LAYOUTS else 'text'
+    text_count = 3 if layout_id in ('three_cards', 'steps') else 2 if layout_id in ('two_columns', 'two_images') else 1
+    image_count = 2 if layout_id == 'two_images' else 1 if layout_id in ('image', 'cover') else 0
+    large = design.get('size') == 'large'
+    sizes = {'title': 48 if large else 42, 'body': 28 if large else 24, 'formula': 60 if large else 52,
+             'example': 23 if large else 20, 'caption': 16, 'nav': 16}
+    items = [({'label': item, 'firstIndex': at} if isinstance(item, str) else
+              {'label': item.get('label', item.get('section', 'Taqdimot')), 'firstIndex': item.get('firstIndex', at)})
+             for at, item in enumerate(sections)] if sections else [{'label': slide.get('section') or 'Taqdimot', 'firstIndex': 0}]
+    section_at = next((at for at, item in enumerate(items) if item['label'] == (slide.get('section') or 'Taqdimot')), 0)
+    section_color = SECTION_COLORS[section_at % len(SECTION_COLORS)]
+    start = section_at // 5 * 5
+    shown = items[start:start + 5]
+    tx, ty, tw, th = (64, 28, 1152, 84) if template_id == 'ribbon' else (112, 34, 1104, 42) if template_id == 'split' else (64, 32, 1152, 46) if template_id == 'gallery' else (64, 30, 1152, 62)
+    tabs = [_box(tx + at * tw / len(shown), ty, tw / len(shown), th, label=item['label'], firstIndex=item['firstIndex'],
+                 index=item['firstIndex'], active=start + at == section_at, color=SECTION_COLORS[(start + at) % len(SECTION_COLORS)], fontSize=sizes['nav'])
+            for at, item in enumerate(shown)]
+    spec = {'width': 1280, 'height': 720, 'template': template_id, 'layout': layout_id, 'sectionColor': section_color, 'fontSizes': sizes,
+            'navigation': _box(64, 30, 1152, 62, radius=0 if design.get('radius') == 'square' else 18) if template_id == 'glass' else None,
+            'panel': _box(64, 108 if template_id == 'ribbon' else 116, 1152, 530 if template_id == 'ribbon' else 522, radius=0 if design.get('radius') == 'square' else 16 if template_id == 'ribbon' else 24),
+            'title': _box(96, 146, 1088, 96, fontSize=sizes['title']), 'section': None,
+            'footer': _box(96, 665, 960, 24, fontSize=14), 'page': _box(1110, 665, 74, 24, fontSize=14),
+            'bodySlots': [], 'imageSlots': [], 'formula': None, 'example': None, 'tabs': tabs, 'decorations': []}
+    if template_id == 'ribbon':
+        spec['panel']['fill'] = 'sectionColor'
+    content = _box(96, 254, 1088, 346)
+    if template_id == 'split':
+        spec['panel'] = _box(112, 114, 1104, 524)
+        spec['title'] = _box(144, 144, 1016, 100, fontSize=sizes['title'])
+        content = _box(144, 264, 1016, 336)
+        spec['decorations'].append(_box(48, 114, 28, 524, kind='rect', fill='accent', opacity=1, radius=0))
+    elif template_id == 'gallery':
+        spec['panel'] = _box(48, 98, 1184, 540)
+        spec['title'] = _box(80, 118, 1120, 92, fontSize=44 if large else 38)
+        content = _box(80, 226, 1120, 382)
+        spec['decorations'].append(_box(80, 211, 84, 4, kind='rect', fill='accent', opacity=1, radius=0))
+    elif template_id == 'steps':
+        spec['title'] = _box(116, 145, 1068, 96, fontSize=sizes['title'])
+        content = _box(116, 272, 1068, 328)
+        spec['decorations'].append(_box(88, 154, 8, 66, kind='rect', fill='accent', opacity=1, radius=4))
+    def add_body(field, rect, **extra):
+        spec['bodySlots'].append({**rect, 'field': field, 'fontSize': sizes['body'], **extra})
+    def add_image(field, rect):
+        caption_field = 'image_caption' if field == 'image' else 'image2_caption'
+        has_caption = bool(slide.get(field)) and bool(slide.get(caption_field, '').strip())
+        caption = _box(rect['x'], rect['y'] + rect['h'] - 30, rect['w'], 30, fontSize=sizes['caption']) if has_caption else None
+        spec['imageSlots'].append({**rect, 'h': rect['h'] - (38 if has_caption else 0), 'field': field,
+                                  'promptField': 'image_prompt' if field == 'image' else 'image2_prompt', 'captionField': caption_field, 'caption': caption})
+    if template_id == 'glass' and layout_id in ('text', 'formula', 'image'):
+        is_image, is_formula = layout_id == 'image', layout_id == 'formula'
+        bx, bw = (628, 556) if is_image else (96, 1088)
+        height = (132 if slide.get('formula') else 252) if is_image else 92 if is_formula else 154 if slide.get('formula') else 250 if slide.get('example') else 346
+        add_body('body', _box(bx, 254, bw, height))
+        if is_image:
+            add_image('image', _box(96, 254, 496, 346))
+        if slide.get('formula'):
+            spec['formula'] = _box(640 if is_image else 120, 400 if is_image else 356 if is_formula else 420,
+                                   532 if is_image else 1040, 104 if is_image else 140 if is_formula else 92, fontSize=sizes['formula'])
+        if slide.get('example'):
+            spec['example'] = _box(bx, 550 if is_image else 542 if is_formula else 548, bw, 66 if is_formula else 58 if is_image else 60,
+                                   fontSize=sizes['example'], label=_box(bx, 522 if is_image else 514 if is_formula else 520, bw, 20, fontSize=14))
+    else:
+        has_image = image_count > 0 and (layout_id != 'cover' or bool(slide.get('image')) or bool(slide.get('image_prompt')))
+        main = dict(content)
+        if layout_id in ('image', 'cover') and has_image:
+            gap = 32
+            image_width = math.floor(content['w'] * (.58 if template_id == 'gallery' else .46) + .5)
+            image_right = template_id == 'ribbon' or layout_id == 'cover'
+            main['w'] = content['w'] - image_width - gap
+            if not image_right:
+                main['x'] = content['x'] + image_width + gap
+            image_rect = _box(content['x'] + main['w'] + gap if image_right else content['x'], content['y'], image_width, content['h'])
+            if template_id == 'ribbon':
+                spec['title']['w'] = main['w']
+                image_rect = _box(image_rect['x'], 146, image_rect['w'], 454)
+            add_image('image', image_rect)
+        bottom = main['y'] + main['h']
+        if slide.get('example'):
+            spec['example'] = _box(main['x'], bottom - 62, main['w'], 62, fontSize=sizes['example'], label=_box(main['x'], bottom - 88, main['w'], 20, fontSize=14))
+            bottom -= 104
+        if slide.get('formula'):
+            height = 132 if layout_id == 'formula' else 96
+            spec['formula'] = _box(main['x'] + 8, bottom - height, main['w'] - 16, height, fontSize=sizes['formula'])
+            bottom -= height + 16
+        main['h'] = max(48, bottom - main['y'])
+        if layout_id == 'two_images':
+            gap, column = 32, (main['w'] - 32) / 2
+            image_height = max(64, math.floor(main['h'] * .57 + .5))
+            for at, field in enumerate(('body', 'body2')):
+                x = main['x'] + at * (column + gap)
+                add_image('image2' if at else 'image', _box(x, main['y'], column, image_height))
+                add_body(field, _box(x, main['y'] + image_height + 16, column, max(40, main['h'] - image_height - 16)), fontSize=26 if large else 22)
+        elif text_count > 1:
+            gap = 28 if text_count == 3 else 36
+            column = (main['w'] - gap * (text_count - 1)) / text_count
+            for at in range(text_count):
+                x = main['x'] + at * (column + gap)
+                numbered = layout_id == 'steps' or template_id == 'steps'
+                inset = 20 if text_count == 3 or numbered else 0
+                if text_count == 3 or numbered:
+                    spec['decorations'].append(_box(x, main['y'], column, main['h'], kind='rect', fill='accent', opacity=.08, radius=0 if design.get('radius') == 'square' else 16))
+                if numbered:
+                    spec['decorations'].append(_box(x + 20, main['y'] + 14, 36, 36, kind='circle', fill='accent', opacity=1, radius=18, text=str(at + 1), fontSize=20))
+                add_body(f'body{at + 1}' if at else 'body', _box(x + inset, main['y'] + (68 if numbered else inset), column - inset * 2, max(32, main['h'] - (84 if numbered else inset * 2))), fontSize=(26 if large else 22) if text_count == 3 else sizes['body'])
+        else:
+            if layout_id == 'cover' and not has_image:
+                spec['title'] = _box(main['x'], 168, main['w'], 126, fontSize=60 if large else 54)
+                main['y'] = 320
+                main['h'] = max(48, bottom - main['y'])
+            add_body('body', main)
+    spec['bodies'], spec['images'] = spec['bodySlots'], spec['imageSlots']
+    return spec
 
 
 def _luminance(color):
@@ -303,7 +447,7 @@ class _Deck:
         rels.append(el("rel:Relationship", Id=rid, Type=NS["r"] + "/" + kind, Target=path))
         return rid
 
-    def shape(self, name, box, fill=None, alpha=1, radius=0, border=None, border_alpha=1):
+    def shape(self, name, box, fill=None, alpha=1, radius=0, border=None, border_alpha=1, kind="rect"):
         shape = deepcopy(self.prototypes["!!NAV_GLASS"])
         self.serial += 1
         nv = shape.find("p:nvSpPr/p:cNvPr", NS)
@@ -315,8 +459,8 @@ class _Deck:
             shape.remove(body)
         sppr = shape.find("p:spPr", NS)
         sppr.clear()
-        geometry = el("a:prstGeom", el("a:avLst"), prst="roundRect" if radius else "rect")
-        if radius:
+        geometry = el("a:prstGeom", el("a:avLst"), prst="ellipse" if kind == "circle" else "roundRect" if radius else "rect")
+        if radius and kind != "circle":
             # OOXML rounded rectangle adj is half radius as percentage of shorter side.
             geometry[0].append(el("a:gd", name="adj", fmla=f"val {round(min(.5, radius / min(box[2:])) * 100000)}"))
         sppr.extend([_transform(box), geometry, _fill(fill, alpha) if fill else el("a:noFill")])
@@ -482,95 +626,110 @@ class _Deck:
 
 
 def export_pptx(document):
-    """Return a complete editable .pptx, or an actionable Uzbek ValueError.
+    """Return 1–40 editable slides; reject invalid assets or measured overflow.
 
-    Exactly 1–40 slides are exported. No field is shortened to force it to fit.
-    Text wrapping uses measured local fonts and formulas use measured mathtext.
-    Inputs are bounded and all caches except 16 font paths live for this call.
+    Text and formulas remain native DrawingML/OMML. The same finite geometry is
+    used by the browser, including both image slots and optional captions. Every
+    supplied image is validated even if the selected layout does not display it.
     """
     slides = _validate(document)
     deck = _Deck()
-    sections = []
-    first = {}
-    for index, slide in enumerate(slides, 1):
-        section = slide["section"] or "Taqdimot"
+    sections, first = [], {}
+    for index, slide in enumerate(slides):
+        section = slide['section'] or 'Taqdimot'
         if section not in first:
             first[section] = index
-            sections.append(section)
-    # Validate every supplied asset, even when an inactive layout hides it.
+            sections.append({'label': section, 'firstIndex': index})
     for index, slide in enumerate(slides, 1):
-        for src in (slide.get("image"), slide["design"].get("image")):
-            if src:
-                deck.picture_data(src, f"{index}-slayd rasmi")
+        for src in (slide.get('image'), slide.get('image2'), slide['design'].get('image')):
+            if src is not None:
+                deck.picture_data(src, f'{index}-slayd rasmi')
     aurora = None
     for index, slide in enumerate(slides, 1):
-        design = slide["design"]
+        design = slide['design']
         tokens = _tokens(design)
-        large = design["size"] == "large"
-        round_corners = design["radius"] == "round"
+        round_corners = design['radius'] == 'round'
+        spec = get_layout_spec(slide, design, index - 1, sections)
+        sizes = spec['fontSizes']
+        def paint(value):
+            return tokens['accent'] if value == 'accent' else spec['sectionColor'][1:] if value == 'sectionColor' else tokens['panel'] if value == 'panel' else value.lstrip('#')
         root, tree, rels = deck.fresh_slide()
-        tree.append(deck.shape("Orqa fon", (0, 0, 1280, 720), fill=tokens["bg"]))
-        if design["background"] == "aurora":
+        tree.append(deck.shape('Orqa fon', (0, 0, 1280, 720), fill=tokens['bg']))
+        if design['background'] == 'aurora':
             if aurora is None:
                 try:
-                    data = (ASSETS / "aurora.png").read_bytes()
+                    data = (ASSETS / 'aurora.png').read_bytes()
                     with Image.open(BytesIO(data)) as image:
                         aurora = (data, image.size)
                 except (OSError, ValueError):
-                    raise ValueError("Aurora fon rasmi topilmadi. Administratorga murojaat qiling.") from None
-            deck.picture(tree, rels, *aurora, (0, 0, 1280, 720), "Aurora", cover=True)
-        elif design["background"] == "image":
-            deck.picture(tree, rels, *deck.picture_data(design["image"], f"{index}-slayd foni"), (0, 0, 1280, 720), "Orqa fon rasmi", cover=True)
-        if design["overlay"]:
-            tree.append(deck.shape("Fon xiraligi", (0, 0, 1280, 720), fill="000000", alpha=design["overlay"] / 100))
-        panel_alpha = 1 if design["panel"] == "solid" else tokens["panel_alpha"]
-        if design["panel"] != "none":
-            for name, box, radius in [("Bo‘limlar foni", (64, 30, 1152, 62), 18), ("Slayd ichki foni", (64, 116, 1152, 522), 24)]:
-                tree.append(deck.shape(name, box, fill=tokens["panel"], alpha=panel_alpha, radius=radius if round_corners else 0,
-                                       border=tokens["border"], border_alpha=tokens["border_alpha"]))
-        section = slide["section"] or "Taqdimot"
-        current = sections.index(section)
-        start = (current // 5) * 5
-        shown = sections[start:start + 5]
-        tab_width = 1152 / len(shown)
-        for offset, item in enumerate(shown):
-            x = 64 + offset * tab_width
-            active = item == section
+                    raise ValueError('Aurora fon rasmi topilmadi. Administratorga murojaat qiling.') from None
+            deck.picture(tree, rels, *aurora, (0, 0, 1280, 720), 'Aurora', cover=True)
+        elif design['background'] == 'image':
+            deck.picture(tree, rels, *deck.picture_data(design['image'], f'{index}-slayd foni'), (0, 0, 1280, 720), 'Orqa fon rasmi', cover=True)
+        if design['overlay']:
+            tree.append(deck.shape('Fon xiraligi', (0, 0, 1280, 720), fill='000000', alpha=design['overlay'] / 100))
+        if design['panel'] != 'none':
+            for key, name in (('navigation', 'Bo‘limlar foni'), ('panel', 'Slayd ichki foni')):
+                rect = spec.get(key)
+                if rect:
+                    tree.append(deck.shape(name, _coords(rect), fill=paint(rect.get('fill', 'panel')),
+                                           alpha=1 if design['panel'] == 'solid' else tokens['panel_alpha'],
+                                           radius=rect.get('radius', 20) if round_corners else 0,
+                                           border=tokens['border'], border_alpha=tokens['border_alpha']))
+        for at, item in enumerate(spec['decorations']):
+            tree.append(deck.shape(f'Bezak {at + 1}', _coords(item), fill=paint(item['fill']), alpha=item.get('opacity', 1),
+                                   radius=item.get('radius', 0) if round_corners else 0, kind=item['kind']))
+            if item.get('text'):
+                rect = _box(item['x'], item['y'] + (item['h'] - item['fontSize'] * 1.28) / 2, item['w'], item['fontSize'] * 1.28 + 1)
+                number_color = '071b24' if design['accent'] in ('cyan', 'green', 'amber') else 'ffffff'
+                deck.text(tree, item['text'], _coords(rect), item['fontSize'], number_color, tokens['font'],
+                          f'{index}-slayd bosqich raqami', bold=True, align='ctr', name='Bosqich raqami')
+        for tab in spec['tabs']:
+            active, ribbon = tab['active'], spec['template'] == 'ribbon'
+            tab_box = _coords(tab)
             if active:
-                tree.append(deck.shape("Faol bo‘lim", (x + 5, 35, tab_width - 10, 52), fill=tokens["accent"], alpha=.23,
-                                       radius=12 if round_corners else 0, border=tokens["accent"], border_alpha=.55))
-            rid = deck.relation(rels, f"slide{first[item]}.xml", "slide")
-            deck.text(tree, item, (x + 12, 39, tab_width - 24, 46), 16, tokens["fg"] if active else tokens["muted"],
-                      tokens["font"], f"{index}-slayd bo‘lim nomi", bold=active, align="ctr", line_height=1.28, name="Bo‘lim: " + item, hyperlink=rid)
-        title_size, body_size, example_size = ((48, 28, 23) if large else (42, 24, 20))
-        formula_size = 60 if large else 52
-        deck.text(tree, slide["title"], (96, 146, 1088, 96), title_size, tokens["fg"], tokens["font"],
-                  f"{index}-slayd sarlavhasi", bold=True, line_height=1.12, name="Sarlavha")
-        formula, example = bool(slide["formula"].strip()), bool(slide["example"].strip())
-        layout = slide["layout"]
-        if layout == "formula":
-            body_box, formula_box = (96, 254, 1088, 92), (120, 356, 1040, 140)
-            label_box, example_box = (96, 514, 1088, 20), (96, 542, 1088, 66)
-        elif layout == "image":
-            body_box, formula_box = (628, 254, 556, 132 if formula else 252), (640, 400, 532, 104)
-            label_box, example_box = (628, 522, 556, 20), (628, 550, 556, 58)
-            if slide.get("image"):
-                deck.picture(tree, rels, *deck.picture_data(slide["image"], f"{index}-slayd rasmi"), (96, 254, 496, 346), "Slayd rasmi", radius=12 if round_corners else 0)
-        else:
-            body_box = (96, 254, 1088, 154 if formula else 250 if example else 346)
-            formula_box, label_box, example_box = (120, 420, 1040, 92), (96, 520, 1088, 20), (96, 548, 1088, 60)
-        deck.text(tree, slide["body"], body_box, body_size, tokens["fg"], tokens["font"], f"{index}-slayd matni", name="Asosiy matn")
-        if formula:
-            deck.formula(tree, rels, slide["formula"], formula_box, formula_size, tokens["fg"], f"{index}-slayd formulasi")
-        if example:
-            deck.text(tree, "MISOL", label_box, 14, tokens["accent"], tokens["font"], f"{index}-slayd misol belgisi", bold=True, name="Misol belgisi")
-            deck.text(tree, slide["example"], example_box, example_size, tokens["fg"], tokens["font"], f"{index}-slayd misoli", line_height=1.25, name="Misol")
-        deck.text(tree, document.get("subject") or document.get("title", ""), (96, 665, 960, 24), 14, tokens["muted"], tokens["font"], "Fan nomi", name="Fan")
-        deck.text(tree, f"{index:02d} / {len(slides):02d}", (1110, 665, 74, 24), 14, tokens["muted"], tokens["font"], "Slayd raqami", align="r", name="Slayd raqami")
-        deck.blobs[f"ppt/slides/slide{index}.xml"] = xml(root)
-        deck.blobs[f"ppt/slides/_rels/slide{index}.xml.rels"] = xml(rels)
-        deck.ct.append(el("ct:Override", PartName=f"/ppt/slides/slide{index}.xml", ContentType="application/vnd.openxmlformats-officedocument.presentationml.slide+xml"))
+                if not ribbon:
+                    tab_box = (tab['x'] + 5, tab['y'] + 5, tab['w'] - 10, tab['h'] - 10)
+                tree.append(deck.shape('Faol bo‘lim', tab_box, fill=spec['sectionColor'][1:] if ribbon else tokens['accent'],
+                                       alpha=1 if ribbon else .23, radius=(16 if ribbon else 12) if round_corners else 0,
+                                       border=None if ribbon else tokens['accent'], border_alpha=.55))
+                if ribbon:
+                    # The active section tab joins the section panel with no gap.
+                    tree.append(deck.shape('Tutash bo‘lim', (tab['x'], tab['y'] + 30, tab['w'], tab['h'] - 30), fill=spec['sectionColor'][1:]))
+            rid = deck.relation(rels, f"slide{tab['firstIndex'] + 1}.xml", 'slide')
+            text_box = (tab['x'] + 12, tab['y'] + 9, tab['w'] - 24, tab['h'] - 16)
+            deck.text(tree, tab['label'], text_box, sizes['nav'], tokens['fg'] if active else tokens['muted'], tokens['font'],
+                      f'{index}-slayd bo‘lim nomi', bold=active, align='ctr', name='Bo‘lim: ' + tab['label'], hyperlink=rid)
+        if spec['section']:
+            deck.text(tree, slide['section'], _coords(spec['section']), spec['section']['fontSize'], tokens['accent'], tokens['font'], f'{index}-slayd bo‘limi', bold=True, name='Bo‘lim')
+        deck.text(tree, slide['title'], _coords(spec['title']), spec['title']['fontSize'], tokens['fg'], tokens['font'],
+                  f'{index}-slayd sarlavhasi', bold=True, line_height=1.12, name='Sarlavha')
+        for at, slot in enumerate(spec['imageSlots'], 1):
+            if slide.get(slot['field']):
+                deck.picture(tree, rels, *deck.picture_data(slide[slot['field']], f'{index}-slayd {at}-rasmi'),
+                             _coords(slot), 'Slayd rasmi' if at == 1 else 'Slayd 2-rasmi', cover=slot.get('fit') == 'cover', radius=12 if round_corners else 0)
+                if slot['caption']:
+                    deck.text(tree, slide[slot['captionField']], _coords(slot['caption']), sizes['caption'], tokens['muted'], tokens['font'],
+                              f'{index}-slayd {at}-rasm izohi', name=f'{at}-rasm izohi')
+        for at, slot in enumerate(spec['bodySlots'], 1):
+            deck.text(tree, slide[slot['field']], _coords(slot), slot['fontSize'], tokens['fg'], tokens['font'],
+                      f'{index}-slayd {at}-matni', name='Asosiy matn' if at == 1 else f'{at}-matn')
+        if slide['formula'].strip() and spec['formula']:
+            deck.formula(tree, rels, slide['formula'], _coords(spec['formula']), spec['formula']['fontSize'], tokens['fg'], f'{index}-slayd formulasi')
+        if slide['example'].strip() and spec['example']:
+            label_color = tokens['fg'] if spec['template'] == 'ribbon' and design['panel'] != 'none' else tokens['accent']
+            deck.text(tree, 'MISOL', _coords(spec['example']['label']), 14, label_color, tokens['font'], f'{index}-slayd misol belgisi', bold=True, name='Misol belgisi')
+            deck.text(tree, slide['example'], _coords(spec['example']), spec['example']['fontSize'], tokens['fg'], tokens['font'], f'{index}-slayd misoli', line_height=1.25, name='Misol')
+        deck.text(tree, document.get('subject') or document.get('title', ''), _coords(spec['footer']), 14, tokens['muted'], tokens['font'], 'Fan nomi', name='Fan')
+        deck.text(tree, f'{index:02d} / {len(slides):02d}', _coords(spec['page']), 14, tokens['muted'], tokens['font'], 'Slayd raqami', align='r', name='Slayd raqami')
+        if design['transition'] != 'none':
+            effect = el('p:' + design['transition'], **({'dir': 'l'} if design['transition'] in ('push', 'wipe') else {}))
+            root.append(el('p:transition', effect, spd='med', advClick='1'))
+        deck.blobs[f'ppt/slides/slide{index}.xml'] = xml(root)
+        deck.blobs[f'ppt/slides/_rels/slide{index}.xml.rels'] = xml(rels)
+        deck.ct.append(el('ct:Override', PartName=f'/ppt/slides/slide{index}.xml', ContentType='application/vnd.openxmlformats-officedocument.presentationml.slide+xml'))
     return deck.finish(document, len(slides))
+
 
 # Restricted TeX parser and dual OMML/mathtext serializer are below.  Kept in this
 # module so deployments only need this file and the two bundled template assets.
