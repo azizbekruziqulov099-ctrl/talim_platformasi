@@ -1,4 +1,4 @@
-"""REV50 private presentation projects and offline import/export.
+"""REV51 private presentation projects, optional AI, and editable import/export.
 
 Only authenticated real accounts may enter this module. Eligibility is re-read
 from server tables for every operation; neither the document nor JWT role-like
@@ -39,10 +39,11 @@ INVALID_XML = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\ud800-\udfff\ufffe\uffff]
 LEGACY_DESIGN_FIELDS = {"background", "color", "image", "overlay", "panel", "accent", "text", "font", "size", "radius"}
 DESIGN_FIELDS = LEGACY_DESIGN_FIELDS | {"template", "transition"}
 LEGACY_SLIDE_FIELDS = {"id", "title", "section", "body", "formula", "example", "image", "layout", "design"}
-SLIDE_FIELDS = LEGACY_SLIDE_FIELDS | {"body2", "body3", "image2", "image_prompt", "image2_prompt", "image_caption", "image2_caption"}
-TEMPLATES = {"glass", "ribbon", "split", "gallery", "steps"}
+SLIDE_FIELDS = LEGACY_SLIDE_FIELDS | {"body2", "body3", "image2", "image_prompt", "image2_prompt", "image_caption", "image2_caption", "placements", "elements"}
+TEMPLATES = {"glass", "ribbon", "split", "gallery", "steps", "pencil", "arc", "spiral", "bands"}
 LAYOUTS = {"text", "formula", "image", "cover", "two_columns", "two_images", "three_cards", "steps"}
-DOCUMENT_FIELDS = {"schema", "title", "subject", "lesson_type", "design", "slides"}
+LEGACY_DOCUMENT_FIELDS = {"schema", "title", "subject", "lesson_type", "design", "slides"}
+DOCUMENT_FIELDS = LEGACY_DOCUMENT_FIELDS | {"audience"}
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS presentation_settings (
@@ -164,7 +165,7 @@ def validate_design(raw):
 
 
 def validate_document(raw):
-    fields(raw, DOCUMENT_FIELDS)
+    fields(raw, DOCUMENT_FIELDS, LEGACY_DOCUMENT_FIELDS)
     if json_size(raw) > MAX_DOCUMENT_BYTES:
         fail("Taqdimotning jami hajmi 8 MB dan oshmasin", 413)
     integer(raw["schema"], "Hujjat formati", 1, 2)
@@ -172,6 +173,7 @@ def validate_document(raw):
         "schema": 2,
         "title": string(raw["title"], "Taqdimot nomi", 160, True),
         "subject": string(raw["subject"], "Fan", 100),
+        "audience": string(raw.get("audience", ""), "Kim uchun", 120),
         "lesson_type": choice(raw["lesson_type"], "Dars turi", {"lecture", "practice", "seminar", "lab", "project"}),
         "design": validate_design(raw["design"]), "slides": [],
     }
@@ -197,6 +199,11 @@ def validate_document(raw):
         slide["image2"] = image_value(item.get("image2"))
         slide["layout"] = choice(item["layout"], "Slayd turi", LAYOUTS)
         slide["design"] = None if item["design"] is None else validate_design(item["design"])
+        from .presentation_layout_validation import validate_slide_geometry
+        try:
+            slide.update(validate_slide_geometry(item, image_validator=image_value))
+        except ValueError as exc:
+            fail(str(exc))
         out["slides"].append(slide)
     return out
 
@@ -335,6 +342,8 @@ class PresentationService:
                 with self.db() as cur:
                     cur.execute("SELECT pg_advisory_xact_lock(49091301)")
                     cur.execute(SCHEMA)
+                    from .presentation_ai_jobs import AI_JOBS_SCHEMA
+                    cur.execute(AI_JOBS_SCHEMA)
                 self._ready = True
 
     def actor(self, authorization):
@@ -420,7 +429,28 @@ class PresentationService:
 
     def capabilities(self, uid):
         with self.db() as cur:
-            return self._capabilities(cur, uid)
+            capabilities = self._capabilities(cur, uid)
+        from .presentation_ai import get_ai_capabilities
+        capabilities["ai"] = get_ai_capabilities()
+        return capabilities
+
+    def generate_ai(self, uid, body):
+        # Eligibility comes from the authenticated real account, never a role
+        # or an audience string sent by the browser.
+        with self.db() as cur:
+            self.require(cur, uid)
+        fields(body, {"document", "brief", "slide_ids"}, {"document", "brief"})
+        document = validate_document(body["document"])
+        from .presentation_ai import PresentationAIError, validate_generation_request
+        from .presentation_ai_jobs import PresentationAIJobs
+        try:
+            validated = validate_generation_request(document, body["brief"], body.get("slide_ids"))
+            result = PresentationAIJobs(self.db, self.require).generate(
+                uid, document, validated["brief"], validated["slide_ids"])
+            result["document"] = validate_document(result["document"])
+            return result
+        except PresentationAIError as exc:
+            fail(exc.message, exc.status_code)
 
     def require(self, cur, uid, admin=False):
         capabilities = self._capabilities(cur, uid)
@@ -670,6 +700,12 @@ def register_presentations(app, platform):
     async def export(request: Request, authorization: str | None = Header(None)):
         uid = await run_in_threadpool(service.actor, authorization)
         return await run_in_threadpool(service.export, uid, await json_body(request))
+
+    @app.post(PREFIX + "/ai/generate")
+    async def generate_content(request: Request, response: Response, authorization: str | None = Header(None)):
+        response.headers.update(NO_STORE)
+        uid = await run_in_threadpool(service.actor, authorization)
+        return await run_in_threadpool(service.generate_ai, uid, await json_body(request))
 
     @app.post(PREFIX + "/import-docx")
     async def import_file(request: Request, response: Response, authorization: str | None = Header(None)):

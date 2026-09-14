@@ -22,6 +22,18 @@ from typing import Any, Callable, Optional
 from fastapi import APIRouter, File, HTTPException, UploadFile
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
+from .institution_membership import has_login_identity
+
+
+def _issue_import_person_code(cur, person_id, name, role):
+    """Issue only for unclaimed imported people, including negative Google IDs."""
+    if person_id >= 0 or has_login_identity(cur, person_id):
+        return None
+    plain = "".join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(12))
+    stored = "sha256:" + hashlib.sha256(plain.encode("utf-8")).hexdigest()
+    cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE user_id=%s AND ishlatildi=FALSE", (person_id,))
+    cur.execute("INSERT INTO xodim_kod(kod,user_id) VALUES(%s,%s)", (stored, person_id))
+    return {"name": name, "code": plain, "role": role}
 
 
 ROLE_LABELS = {
@@ -976,6 +988,7 @@ def create_school_institution_v23_router(
                 raise HTTPException(status_code=409, detail="Avval Excel xatolarini tuzating")
             created_students = created_parents = linked = 0
             access_codes = []
+            coded_people = set()
             next_user_id = _next_negative_user_id(cur)
             parent_by_row: dict[int, int] = {}
             for row in rows:
@@ -1078,6 +1091,18 @@ def create_school_institution_v23_router(
                 )
                 if not already_in_class:
                     cur.execute("INSERT INTO maktab_sinf_azolari(sinf_id,user_id) VALUES(%s,%s)", (row["class_id"], student_id))
+                # Imported people used to have no code at all: the result always
+                # returned access_codes=[]. Codes identify one person, not the
+                # whole class. Repeated parents in this import receive one code.
+                for person_id, name, person_role in (
+                    (student_id, row["student_name"], "oquvchi"),
+                    (parent_id, row["parent_name"], "ota-ona"),
+                ):
+                    if person_id not in coded_people:
+                        credential = _issue_import_person_code(cur, person_id, name, person_role)
+                        if credential:
+                            access_codes.append(credential)
+                        coded_people.add(person_id)
             result = {"created_students": created_students, "created_parents": created_parents, "parent_child_links": linked, "access_codes": access_codes}
             cur.execute("UPDATE school_import_jobs SET status='committed',decisions=%s::jsonb,result=%s::jsonb,committed_at=NOW() WHERE id=%s", (
                 json.dumps(payload.decisions, ensure_ascii=False), json.dumps(result, ensure_ascii=False), job_id,

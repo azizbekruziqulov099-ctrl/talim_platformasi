@@ -1,0 +1,115 @@
+{
+  "release": "REV52",
+  "component": "BACKEND",
+  "baseline_archive": "talim_platformasi-main (3).zip",
+  "files": [
+    {
+      "path": ".env.example",
+      "sha256": "fcf29490590e4676db8583b2a836c86aacf2ca5323cba5c78033a14a96fdf6aa",
+      "bytes": 1358,
+      "previous_sha256": "aefdecae65bfd0adccc458d4f3a9025cf1a9291509bb7911e472d9b6e69cb2bd"
+    },
+    {
+      "path": ".env.production.example",
+      "sha256": "0fa4d8c989a9734a0de6d9a63f4a1fb1a8097fbd30a148179f8d87c4f6d4e571",
+      "bytes": 1030,
+      "previous_sha256": "f14ae9daeaad1a1ae1b50692caecc33ae46b2aebd244484066588b1ec2f5d9b8"
+    },
+    {
+      "path": "kabutar_auth.py",
+      "sha256": "6207437bcac655c0c82a986757dc052a27b2899c1c9fca44720426c3084befe1",
+      "bytes": 42109,
+      "previous_sha256": "257309f24b4cafad3a929dcc2fe1787b63abf50ad6a207752ce1b7cd49e6ee58"
+    },
+    {
+      "path": "modules/institution_membership.py",
+      "sha256": "223c393083c1b18b96247e5ddb188a691da59d49d2002a24df378c2166ecc883",
+      "bytes": 27094,
+      "previous_sha256": null
+    },
+    {
+      "path": "modules/presentation_ai.py",
+      "sha256": "dd5a54336be3852a5581e620044b18f24ba8b649f25ecbb9745e64eb77fd9ec6",
+      "bytes": 22432,
+      "previous_sha256": null
+    },
+    {
+      "path": "modules/presentation_ai_jobs.py",
+      "sha256": "95d4c2d860968c211417ec7e0537851d61256e1c1844db4ed4849adb6606e40b",
+      "bytes": 8406,
+      "previous_sha256": null
+    },
+    {
+      "path": "modules/presentation_export.py",
+      "sha256": "eb67100ef5fba8cf82a721bf33206a7249cf50230a9e2606a3b7ae8740d6d9f1",
+      "bytes": 80082,
+      "previous_sha256": "b07a14315d93cce4a87a3bf70ff14c4ba5d122df50cf92d16430c1b67d018e45"
+    },
+    {
+      "path": "modules/presentation_layout_validation.py",
+      "sha256": "9b8d62eb6fa018e9d0e084d0170f3786c5bf2a6a61fe10e81953ff5022024ac7",
+      "bytes": 6130,
+      "previous_sha256": null
+    },
+    {
+      "path": "modules/presentations.py",
+      "sha256": "3b320c442269b5e130c31c98731a48922570bdc84e247c5d826107f4da2ff340",
+      "bytes": 35447,
+      "previous_sha256": "647a83a8c8d1ae7273cd0345942a52f2832fa328cb53d804872de1b7e91a91aa"
+    },
+    {
+      "path": "modules/school_institution_v23.py",
+      "sha256": "1da087f04e0b577bcbdfd09d4ed10123b8a1637a875fb76c3c5672f508cb1585",
+      "bytes": 67781,
+      "previous_sha256": "7bd229b05742cded63395acd58648ffc2a6731b931c534ef6c34a081c0f1d816"
+    },
+    {
+      "path": "samtm_institute.py",
+      "sha256": "b5340ec312cfa8bb704b0de9479cf581be49feb2389d084fe17d87ded7a69552",
+      "bytes": 258864,
+      "previous_sha256": "f3a38143a57ca0637127ab75bdeba9469230381c0b7eaceaa4e8b6d1f251fba1"
+    },
+    {
+      "path": "samtm_platform.py",
+      "sha256": "d9c17c4e485cdd51f1a9c5975dd7649d864ae556af65cdd4680a5d6aba6c83f0",
+      "bytes": 1067026,
+      "previous_sha256": "7beb7d5103babb8329d3e8f464f5853d1e1ad7e982855668c5a81761846455da"
+    },
+    {
+      "path": "tests/test_institution_membership_rev52.py",
+      "sha256": "ffeb749280959fd36c313812a7da8547018d572c14c25b19a3714685a7f95583",
+      "bytes": 29638,
+      "previous_sha256": null
+    },
+    {
+      "path": "tests/test_kabutar_auth_rev31.py",
+      "sha256": "848ba14501991bd72d2d3021f8b0105afce4f7f26edc7a435e1613f0793c718b",
+      "bytes": 25299,
+      "previous_sha256": "00ab325d7da93c8b42955bddbbec15e7cced0e7e60dfe218a30ad028ae48a2f2"
+    },
+    {
+      "path": "tests/test_kabutar_auth_rev52.py",
+      "sha256": "c73c12211c95ec4ee681069c3ef561df140d4b73581f473d89e79312ca757319",
+      "bytes": 8366,
+      "previous_sha256": null
+    },
+    {
+      "path": "tests/test_presentation_ai.py",
+      "sha256": "45d5e6e37a173563b97cbe155bd4853b6e48501ddcaeaa029a5215d44a46f39d",
+      "bytes": 18941,
+      "previous_sha256": null
+    },
+    {
+      "path": "tests/test_presentation_geometry_rev51.py",
+      "sha256": "5dd216dfd96b353de49352169e57c4e571ab1a0b1d926f97453ce492968fdbeb",
+      "bytes": 20366,
+      "previous_sha256": null
+    },
+    {
+      "path": "tests/test_presentations_rev51.py",
+      "sha256": "4e9a6f5ded00c4a965f838408a9315dba6107cae317a8581b2ee00cd8dc9a896",
+      "bytes": 7002,
+      "previous_sha256": null
+    }
+  ]
+}

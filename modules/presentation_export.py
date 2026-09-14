@@ -23,6 +23,8 @@ import zipfile
 from lxml import etree as E
 from PIL import Image, ImageFont, ImageOps, UnidentifiedImageError
 
+from .presentation_layout_validation import validate_slide_geometry
+
 NS = {
     "a": "http://schemas.openxmlformats.org/drawingml/2006/main",
     "p": "http://schemas.openxmlformats.org/presentationml/2006/main",
@@ -80,10 +82,10 @@ def _design(value):
     if not isinstance(value, dict):
         raise ValueError("Dizayn ma’lumoti noto‘g‘ri.")
     result = dict(DEFAULT_DESIGN)
-    if value.get("template") in TEMPLATE_DEFAULTS:
+    if isinstance(value.get("template"), str) and value["template"] in TEMPLATE_DEFAULTS:
         result.update(TEMPLATE_DEFAULTS[value["template"]])
     result.update(value)
-    choices = {"template": ("glass", "ribbon", "split", "gallery", "steps"), "transition": ("none", "fade", "push", "wipe"),
+    choices = {"template": tuple(TEMPLATE_DEFAULTS), "transition": ("none", "fade", "push", "wipe"),
                "background": ("aurora", "paper", "midnight", "solid", "image"),
                "panel": ("glass", "solid", "none"), "accent": tuple(ACCENTS),
                "text": ("auto", "light", "dark"), "font": ("sans", "serif"),
@@ -115,6 +117,7 @@ def _validate(document):
         raise ValueError("Taqdimot 1–40 slayddan iborat bo‘lishi kerak.")
     _check_text(document.get("title", ""), 160, "Taqdimot nomi")
     _check_text(document.get("subject", ""), 100, "Fan nomi")
+    _check_text(document.get("audience", ""), 120, "Auditoriya")
     global_design = _design(document.get("design"))
     out = []
     for index, slide in enumerate(slides, 1):
@@ -129,6 +132,10 @@ def _validate(document):
             item[name] = _check_text(slide.get(name, ""), maximum, f"{index}-slayd {label}")
         item["design"] = _design(slide.get("design") or global_design)
         item["layout"] = item.get("layout", "text")
+        edits = validate_slide_geometry(item)
+        for field in ("placements", "elements"):
+            if field in slide:
+                item[field] = edits[field]
         out.append(item)
     return out
 
@@ -137,12 +144,18 @@ def _validate(document):
 # every template/layout, optional slot and font-size combination against drift.
 SECTION_COLORS = ('#176b59', '#275fa5', '#7850a0', '#a64b3c', '#765b22')
 TEMPLATE_DEFAULTS = {
+    'pencil': {'background': 'paper', 'overlay': 0, 'panel': 'none', 'accent': 'green', 'text': 'dark'},
+    'arc': {'background': 'paper', 'overlay': 0, 'panel': 'none', 'accent': 'green', 'text': 'dark'},
+    'spiral': {'background': 'paper', 'overlay': 0, 'panel': 'none', 'accent': 'amber', 'text': 'dark'},
+    'bands': {'background': 'paper', 'overlay': 0, 'panel': 'none', 'accent': 'violet', 'text': 'dark'},
     'glass': {'background': 'aurora', 'overlay': 25, 'panel': 'glass', 'accent': 'cyan', 'text': 'auto'},
     'ribbon': {'background': 'midnight', 'overlay': 0, 'panel': 'solid', 'accent': 'blue', 'text': 'light'},
     'split': {'background': 'paper', 'overlay': 0, 'panel': 'none', 'accent': 'violet', 'text': 'dark'},
     'gallery': {'background': 'paper', 'overlay': 0, 'panel': 'solid', 'accent': 'blue', 'text': 'dark'},
     'steps': {'background': 'midnight', 'overlay': 10, 'panel': 'glass', 'accent': 'green', 'text': 'light'},
 }
+NEW_FAMILIES = frozenset(('pencil', 'arc', 'spiral', 'bands'))
+MOTIF_COLORS = ('#98b879', '#63a99d', '#d9b36c', '#9b8fb8')
 
 
 def _box(x, y, w, h, **more):
@@ -153,15 +166,221 @@ def _coords(box):
     return tuple(box[key] for key in ('x', 'y', 'w', 'h'))
 
 
+def _polygon(points, fill, opacity=1):
+    x, y = min(point[0] for point in points), min(point[1] for point in points)
+    w, h = max(point[0] for point in points) - x, max(point[1] for point in points) - y
+    return _box(x, y, w, h, kind='polygon', points=[[round(px - x, 3), round(py - y, 3)] for px, py in points], fill=fill, opacity=opacity)
+
+
+def _family_decorations(identity):
+    shapes = []
+    def rect(x, y, w, h, fill, radius=0, opacity=1):
+        shapes.append(_box(x, y, w, h, kind='rect', fill=fill, radius=radius, opacity=opacity))
+    def poly(points, fill, opacity=1):
+        shapes.append(_polygon(points, fill, opacity))
+    if identity == 'pencil':
+        rect(64, 122, 176, 506, '#dfe8da', 32, .36)
+        rect(116, 164, 70, 50, '#a28ca9', 15)
+        rect(116, 202, 70, 20, '#c4cccf')
+        rect(116, 222, 70, 322, '#90ad66')
+        rect(127, 222, 13, 322, '#bed59c')
+        rect(173, 222, 13, 322, '#66884f')
+        poly([[116, 544], [186, 544], [151, 622]], '#d9bea1')
+        poly([[140, 598], [162, 598], [151, 622]], '#344b50')
+        for at, color in enumerate(MOTIF_COLORS):
+            y = 250 + at * 66
+            poly([[151, y], [219, y], [231, y + 10], [231, y + 35], [151, y + 35]], color)
+            poly([[219, y], [231, y + 10], [219, y + 10]], '#314c46', .25)
+            rect(151, y + 7, 55, 2, '#ffffff', 0, .5)
+    elif identity == 'arc':
+        for at, radius in enumerate((248, 204, 160, 116)):
+            cx, cy, thickness = 284, 594, 34
+            outer, inner = [], []
+            for step in range(25):
+                angle = math.pi + step / 24 * math.pi / 2
+                outer.append([cx + radius * math.cos(angle), cy + radius * math.sin(angle)])
+            for step in range(24, -1, -1):
+                angle = math.pi + step / 24 * math.pi / 2
+                inner.append([cx + (radius - thickness) * math.cos(angle), cy + (radius - thickness) * math.sin(angle)])
+            poly(outer + [[320, cy - radius], [320, cy - radius + thickness]] + inner, MOTIF_COLORS[at])
+            rect(286, cy - radius + 7, 25, 3, '#ffffff', 1, .55)
+            poly([[320, cy - radius], [328, cy - radius + 8], [320, cy - radius + 16]], '#314c46', .22)
+        rect(82, 181, 98, 6, '#98b879', 3)
+        rect(82, 202, 148, 3, '#b5c6b6', 1, .75)
+        rect(82, 218, 116, 3, '#b5c6b6', 1, .55)
+    elif identity == 'spiral':
+        rect(84, 568, 1112, 12, '#a8b1b3', 6)
+        rect(84, 568, 1112, 4, '#dbe0df', 2)
+        for turn in range(5):
+            x = 108 + turn * 216
+            for half in (0, 1):
+                upper, lower = [], []
+                for step in range(19):
+                    t = half / 2 + step / 36
+                    px, py = x + t * 216, 574 - 51 * math.sin(t * math.pi * 2)
+                    upper.append([px, py - 14])
+                    lower.insert(0, [px, py + 14])
+                poly(upper + lower, '#ac684c' if half else '#ce9672')
+            rect(x + 80, 550, 46, 3, '#f4d6b4', 1, .8)
+    elif identity == 'bands':
+        rect(980, 170, 192, 448, '#dfe4e2', 26)
+        rect(993, 176, 170, 435, '#f6f7f3', 18)
+        for at, color in enumerate(('#9d86b7', '#d28f7e', '#93b77b', '#75a8af')):
+            y = 218 + at * 90
+            rect(954, y - 11, 26, 72, color, 7)
+            poly([[954, y - 11], [982, y + 2], [982, y + 58], [954, y + 48]], '#314c46', .24)
+            rect(976, y, 212, 66, color, 5)
+            rect(990, y + 8, 182, 3, '#ffffff', 1, .38)
+            poly([[1188, y], [1207, y + 15], [1207, y + 77], [1188, y + 66]], color)
+            poly([[1188, y], [1207, y + 15], [1188, y + 15]], '#314c46', .3)
+            rect(1003, y + 25, 38, 4, '#ffffff', 2, .72)
+            rect(1003, y + 39, 132, 3, '#ffffff', 1, .45)
+    return shapes
+
+
+def _apply_placements(spec, slide):
+    placements = slide.get('placements') or {}
+    def placed(field):
+        return {key: placements[field][key] for key in ('x', 'y', 'w', 'h')}
+    for field in ('title', 'formula', 'example'):
+        if spec.get(field) is not None and field in placements:
+            spec[field].update(placed(field))
+            if field == 'example':
+                spec[field]['label'].update(x=spec[field]['x'], y=spec[field]['y'] - 28, w=spec[field]['w'])
+    for slot in spec['bodySlots']:
+        if slot['field'] in placements:
+            slot.update(placed(slot['field']))
+    for slot in spec['imageSlots']:
+        if slot['field'] in placements:
+            slot.update(placed(slot['field']))
+            if slot.get('caption'):
+                slot['caption'].update(x=slot['x'], y=slot['y'] + slot['h'] + 8, w=slot['w'])
+    spec['elements'] = deepcopy(slide.get('elements') or [])
+    spec['bodies'], spec['images'] = spec['bodySlots'], spec['imageSlots']
+    return spec
+
+
+def _apply_infographic(spec, design):
+    """Reference compositions with body text inside or around the vector motif."""
+    identity, large = spec['template'], design.get('size') == 'large'
+    spec['title'] = _box(96, 126, 1088, 84, fontSize=44 if large else 38)
+    spec['panel'] = _box(64, 110, 1152, 530, radius=0 if design.get('radius') == 'square' else 24)
+    for at, tab in enumerate(spec['tabs']):
+        tab.update(x=96 + at * 1088 / len(spec['tabs']), y=36, w=1088 / len(spec['tabs']), h=42)
+    spec['decorations'], spec['bodySlots'] = [], []
+    def rect(x, y, w, h, fill, radius=0, opacity=1):
+        spec['decorations'].append(_box(x, y, w, h, kind='rect', fill=fill, radius=radius, opacity=opacity))
+    def poly(points, fill, opacity=1):
+        spec['decorations'].append(_polygon(points, fill, opacity))
+    def body(at, x, y, w, h):
+        spec['bodySlots'].append(_box(x, y, w, h, field=f'body{at + 1}' if at else 'body', fontSize=24 if large else 22))
+    def number(at, x, y, color):
+        spec['decorations'].append(_box(x, y, 36, 36, kind='circle', fill=color, opacity=1, radius=18, text=str(at + 1), fontSize=18))
+    if identity == 'pencil':
+        rect(608, 226, 64, 42, '#a28ca9', 13)
+        rect(608, 258, 64, 17, '#c4cccf')
+        rect(608, 275, 64, 286, '#90ad66')
+        rect(618, 275, 12, 286, '#bed59c')
+        rect(660, 275, 12, 286, '#66884f')
+        poly([[608, 561], [672, 561], [640, 625]], '#d9bea1')
+        poly([[630, 606], [650, 606], [640, 625]], '#344b50')
+        for at, (x, y, w, h) in enumerate(((96, 266, 424, 124), (760, 358, 424, 124), (96, 468, 424, 124))):
+            color = MOTIF_COLORS[at]
+            body(at, x, y + 16, w, h - 16)
+            rect(x, y, w, 4, color, 2)
+            left, dot_x, dot_y = at != 1, 553 if at != 1 else 691, y + 12
+            rect(x + w if left else 672, dot_y + 17, 88 if left else x - 672, 2, color)
+            number(at, dot_x, dot_y, color)
+    elif identity == 'arc':
+        for at, radius in enumerate((360, 240, 120)):
+            cx, cy, thickness, outer, inner = 380, 596, 112, [], []
+            for step in range(33):
+                angle = math.pi + step / 32 * math.pi / 2
+                outer.append([cx + radius * math.cos(angle), cy + radius * math.sin(angle)])
+            for step in range(32, -1, -1):
+                angle = math.pi + step / 32 * math.pi / 2
+                inner.append([cx + (radius - thickness) * math.cos(angle), cy + (radius - thickness) * math.sin(angle)])
+            y, color = cy - radius, ('#c7dbac', '#aed7cd', '#ead5ac')[at]
+            poly(outer + [[1170, y], [1184, y + 12], [1184, y + thickness - 12], [1170, y + thickness]] + inner, color)
+            rect(414, y + 4, 714, 2, '#ffffff', 1, .5)
+            number(at, 352, y + 38, MOTIF_COLORS[at])
+            body(at, 414, y + 8, 714, 96)
+    elif identity == 'spiral':
+        rect(92, 408, 1096, 12, '#a8b1b3', 6)
+        rect(92, 408, 1096, 4, '#dbe0df', 2)
+        for turn in range(3):
+            x = 176 + turn * 336
+            for half in (0, 1):
+                upper, lower = [], []
+                for step in range(25):
+                    t = half / 2 + step / 48
+                    px, py = x + t * 216, 414 - 64 * math.sin(t * math.pi * 2)
+                    upper.append([px, py - 18])
+                    lower.insert(0, [px, py + 18])
+                poly(upper + lower, '#ac684c' if half else '#ce9672')
+            above, bx = turn != 1, 96 + turn * 384
+            body(turn, bx, 230 if above else 526, 320, 96)
+            rect(bx, 224 if above else 512, 320, 4, '#ce9672', 2)
+            number(turn, bx, 336 if above else 462, '#ac684c')
+    elif identity == 'bands':
+        rect(274, 216, 748, 400, '#dfe4e2', 28)
+        rect(286, 224, 724, 384, '#f6f7f3', 20)
+        for at, color in enumerate(('#d9c9e6', '#e9c8b9', '#c7ddbb')):
+            y = 236 + at * 120
+            rect(244, y - 10, 40, 104, color, 6)
+            poly([[244, y - 10], [294, y + 4], [294, y + 104], [244, y + 94]], '#314c46', .2)
+            rect(282, y, 780, 112, color, 6)
+            poly([[1062, y], [1100, y + 18], [1100, y + 126], [1062, y + 112]], color)
+            poly([[1062, y], [1100, y + 18], [1062, y + 18]], '#314c46', .24)
+            rect(308, y + 3, 724, 3, '#ffffff', 1, .44)
+            number(at, 300, y + 38, ('#9d86b7', '#bd7d69', '#799e60')[at])
+            body(at, 354, y + 8, 670, 96)
+
+
+def _apply_motif_palette(spec, design):
+    """Recolor the principal motif while retaining its secondary color bands."""
+    accent = design.get('accent')
+    if not accent or accent == TEMPLATE_DEFAULTS[spec['template']]['accent']:
+        return
+    palettes = {
+        'cyan': {'light': '#c2e2e8', 'medium': '#76adb7', 'dark': '#3e7986'},
+        'blue': {'light': '#c7d8ed', 'medium': '#799abf', 'dark': '#45658e'},
+        'violet': {'light': '#dccfeb', 'medium': '#a68abd', 'dark': '#72578d'},
+        'green': {'light': '#c9dfbf', 'medium': '#8db57b', 'dark': '#5e834f'},
+        'amber': {'light': '#ebdab3', 'medium': '#c4a16d', 'dark': '#956f3b'},
+    }
+    sources = {
+        'pencil': {'#90ad66': 'medium', '#bed59c': 'light', '#66884f': 'dark', '#98b879': 'medium'},
+        'arc': {'#98b879': 'medium', '#c7dbac': 'light'},
+        'spiral': {'#ce9672': 'medium', '#ac684c': 'dark'},
+        'bands': {'#9d86b7': 'medium', '#d9c9e6': 'light'},
+    }
+    palette, source = palettes.get(accent), sources.get(spec['template'])
+    if not palette or not source:
+        return
+    for shape in spec['decorations']:
+        if shape.get('fill') in source:
+            shape['fill'] = palette[source[shape['fill']]]
+
+
 def get_layout_spec(slide=None, design=None, index=0, sections=None):
     slide, design, sections = slide or {}, design or {}, sections or []
     template_id = design.get('template') if design.get('template') in TEMPLATE_DEFAULTS else 'glass'
+    is_new_family = template_id in NEW_FAMILIES
     layout_id = slide.get('layout') if slide.get('layout') in LAYOUTS else 'text'
     text_count = 3 if layout_id in ('three_cards', 'steps') else 2 if layout_id in ('two_columns', 'two_images') else 1
     image_count = 2 if layout_id == 'two_images' else 1 if layout_id in ('image', 'cover') else 0
+    if is_new_family:
+        nonempty = lambda value: isinstance(value, str) and bool(value.strip())
+        text_count = max(text_count, 3 if nonempty(slide.get('body3')) else 2 if nonempty(slide.get('body2')) else 1)
+        image_count = max(image_count if layout_id != 'cover' else 0,
+                          2 if slide.get('image2') or nonempty(slide.get('image2_prompt')) else 1 if slide.get('image') or nonempty(slide.get('image_prompt')) else 0)
     large = design.get('size') == 'large'
     sizes = {'title': 48 if large else 42, 'body': 28 if large else 24, 'formula': 60 if large else 52,
              'example': 23 if large else 20, 'caption': 16, 'nav': 16}
+    if is_new_family:
+        sizes = {'title': 44 if large else 38, 'body': 26 if large else 22, 'formula': 46 if large else 40,
+                 'example': 21 if large else 18, 'caption': 16, 'nav': 16}
     items = [({'label': item, 'firstIndex': at} if isinstance(item, str) else
               {'label': item.get('label', item.get('section', 'Taqdimot')), 'firstIndex': item.get('firstIndex', at)})
              for at, item in enumerate(sections)] if sections else [{'label': slide.get('section') or 'Taqdimot', 'firstIndex': 0}]
@@ -170,6 +389,8 @@ def get_layout_spec(slide=None, design=None, index=0, sections=None):
     start = section_at // 5 * 5
     shown = items[start:start + 5]
     tx, ty, tw, th = (64, 28, 1152, 84) if template_id == 'ribbon' else (112, 34, 1104, 42) if template_id == 'split' else (64, 32, 1152, 46) if template_id == 'gallery' else (64, 30, 1152, 62)
+    if is_new_family:
+        tx, ty, tw, th = {'pencil': (280, 36, 896, 42), 'arc': (352, 36, 832, 42), 'spiral': (96, 36, 1088, 42), 'bands': (80, 36, 1104, 42)}[template_id]
     tabs = [_box(tx + at * tw / len(shown), ty, tw / len(shown), th, label=item['label'], firstIndex=item['firstIndex'],
                  index=item['firstIndex'], active=start + at == section_at, color=SECTION_COLORS[(start + at) % len(SECTION_COLORS)], fontSize=sizes['nav'])
             for at, item in enumerate(shown)]
@@ -196,6 +417,11 @@ def get_layout_spec(slide=None, design=None, index=0, sections=None):
         spec['title'] = _box(116, 145, 1068, 96, fontSize=sizes['title'])
         content = _box(116, 272, 1068, 328)
         spec['decorations'].append(_box(88, 154, 8, 66, kind='rect', fill='accent', opacity=1, radius=4))
+    elif is_new_family:
+        content = _box(*{'pencil': (280, 246, 896, 354), 'arc': (352, 246, 824, 354), 'spiral': (96, 224, 1088, 288), 'bands': (80, 246, 824, 354)}[template_id])
+        spec['title'] = _box(content['x'], 118 if template_id == 'spiral' else 132, content['w'], 94, fontSize=44 if large else 38)
+        spec['panel'] = _box(content['x'] - 24, 106, content['w'] + 48, 416 if template_id == 'spiral' else 526, radius=0 if design.get('radius') == 'square' else 24)
+        spec['decorations'].extend(_family_decorations(template_id))
     def add_body(field, rect, **extra):
         spec['bodySlots'].append({**rect, 'field': field, 'fontSize': sizes['body'], **extra})
     def add_image(field, rect):
@@ -220,7 +446,14 @@ def get_layout_spec(slide=None, design=None, index=0, sections=None):
     else:
         has_image = image_count > 0 and (layout_id != 'cover' or bool(slide.get('image')) or bool(slide.get('image_prompt')))
         main = dict(content)
-        if layout_id in ('image', 'cover') and has_image:
+        image_rail = is_new_family and image_count > 1 and bool(slide.get('formula') or slide.get('example'))
+        if image_rail:
+            rail_width, gap = math.floor(content['w'] * .35 + .5), 24
+            main['w'] = content['w'] - rail_width - gap
+            image_height = (content['h'] - 16) / 2
+            for at, field in enumerate(('image', 'image2')):
+                add_image(field, _box(content['x'] + main['w'] + gap, content['y'] + at * (image_height + 16), rail_width, image_height))
+        if (image_count == 1 if is_new_family else layout_id in ('image', 'cover')) and has_image:
             gap = 32
             image_width = math.floor(content['w'] * (.58 if template_id == 'gallery' else .46) + .5)
             image_right = template_id == 'ribbon' or layout_id == 'cover'
@@ -234,40 +467,48 @@ def get_layout_spec(slide=None, design=None, index=0, sections=None):
             add_image('image', image_rect)
         bottom = main['y'] + main['h']
         if slide.get('example'):
-            spec['example'] = _box(main['x'], bottom - 62, main['w'], 62, fontSize=sizes['example'], label=_box(main['x'], bottom - 88, main['w'], 20, fontSize=14))
-            bottom -= 104
+            spec['example'] = _box(main['x'], bottom - (44 if is_new_family else 62), main['w'], 44 if is_new_family else 62, fontSize=sizes['example'], label=_box(main['x'], bottom - (72 if is_new_family else 88), main['w'], 18 if is_new_family else 20, fontSize=14))
+            bottom -= 80 if is_new_family else 104
         if slide.get('formula'):
-            height = 132 if layout_id == 'formula' else 96
+            height = (112 if layout_id == 'formula' else 104) if is_new_family else 132 if layout_id == 'formula' else 96
             spec['formula'] = _box(main['x'] + 8, bottom - height, main['w'] - 16, height, fontSize=sizes['formula'])
-            bottom -= height + 16
+            bottom -= height + (12 if is_new_family else 16)
         main['h'] = max(48, bottom - main['y'])
-        if layout_id == 'two_images':
+        if (image_count > 1 and not image_rail) if is_new_family else layout_id == 'two_images':
             gap, column = 32, (main['w'] - 32) / 2
             image_height = max(64, math.floor(main['h'] * .57 + .5))
             for at, field in enumerate(('body', 'body2')):
                 x = main['x'] + at * (column + gap)
                 add_image('image2' if at else 'image', _box(x, main['y'], column, image_height))
-                add_body(field, _box(x, main['y'] + image_height + 16, column, max(40, main['h'] - image_height - 16)), fontSize=26 if large else 22)
+                if not is_new_family or text_count <= 2:
+                    add_body(field, _box(x, main['y'] + image_height + 16, column, max(40, main['h'] - image_height - 16)), fontSize=26 if large else 22)
+            if is_new_family and text_count > 2:
+                text_width = (main['w'] - gap * 2) / 3
+                for at, field in enumerate(('body', 'body2', 'body3')):
+                    add_body(field, _box(main['x'] + at * (text_width + gap), main['y'] + image_height + 16, text_width, max(40, main['h'] - image_height - 16)), fontSize=24 if large else 20)
         elif text_count > 1:
             gap = 28 if text_count == 3 else 36
             column = (main['w'] - gap * (text_count - 1)) / text_count
             for at in range(text_count):
                 x = main['x'] + at * (column + gap)
-                numbered = layout_id == 'steps' or template_id == 'steps'
-                inset = 20 if text_count == 3 or numbered else 0
+                numbered = (layout_id == 'steps' or template_id == 'steps') and (not is_new_family or main['h'] >= 130)
+                inset = (10 if is_new_family and main['h'] < 130 else 20) if text_count == 3 or numbered else 0
                 if text_count == 3 or numbered:
                     spec['decorations'].append(_box(x, main['y'], column, main['h'], kind='rect', fill='accent', opacity=.08, radius=0 if design.get('radius') == 'square' else 16))
                 if numbered:
                     spec['decorations'].append(_box(x + 20, main['y'] + 14, 36, 36, kind='circle', fill='accent', opacity=1, radius=18, text=str(at + 1), fontSize=20))
                 add_body(f'body{at + 1}' if at else 'body', _box(x + inset, main['y'] + (68 if numbered else inset), column - inset * 2, max(32, main['h'] - (84 if numbered else inset * 2))), fontSize=(26 if large else 22) if text_count == 3 else sizes['body'])
         else:
-            if layout_id == 'cover' and not has_image:
-                spec['title'] = _box(main['x'], 168, main['w'], 126, fontSize=60 if large else 54)
-                main['y'] = 320
+            if layout_id == 'cover' and not has_image and (not is_new_family or not (slide.get('formula') or slide.get('example'))):
+                spec['title'] = _box(main['x'], 148 if is_new_family else 168, main['w'], 108 if is_new_family else 126, fontSize=60 if large else 54)
+                main['y'] = 284 if is_new_family else 320
                 main['h'] = max(48, bottom - main['y'])
             add_body('body', main)
-    spec['bodies'], spec['images'] = spec['bodySlots'], spec['imageSlots']
-    return spec
+    if is_new_family and layout_id in ('three_cards', 'steps') and not any(nonempty(slide.get(key)) for key in ('formula', 'example', 'image', 'image2', 'image_prompt', 'image2_prompt')):
+        _apply_infographic(spec, design)
+    if is_new_family:
+        _apply_motif_palette(spec, design)
+    return _apply_placements(spec, slide)
 
 
 def _luminance(color):
@@ -324,6 +565,8 @@ def _wrap(text, width, height, size, family, bold, line_height, label):
         return []
     font = ImageFont.truetype(_font_path(family, bold), round(size * 4))
     available = (width - 6) * 4  # small cross-viewer metric allowance
+    if available <= 0 or any(font.getlength(char) > available for char in text if not char.isspace()):
+        raise ValueError(f"{label} slaydga sig‘madi. Elementni kengaytiring yoki matn o‘lchamini kamaytiring.")
     lines = []
     for para in text.split("\n"):
         if not para:
@@ -447,7 +690,7 @@ class _Deck:
         rels.append(el("rel:Relationship", Id=rid, Type=NS["r"] + "/" + kind, Target=path))
         return rid
 
-    def shape(self, name, box, fill=None, alpha=1, radius=0, border=None, border_alpha=1, kind="rect"):
+    def shape(self, name, box, fill=None, alpha=1, radius=0, border=None, border_alpha=1, kind="rect", points=None):
         shape = deepcopy(self.prototypes["!!NAV_GLASS"])
         self.serial += 1
         nv = shape.find("p:nvSpPr/p:cNvPr", NS)
@@ -460,17 +703,26 @@ class _Deck:
         sppr = shape.find("p:spPr", NS)
         sppr.clear()
         geometry = el("a:prstGeom", el("a:avLst"), prst="ellipse" if kind == "circle" else "roundRect" if radius else "rect")
-        if radius and kind != "circle":
+        if kind == "polygon":
+            if not isinstance(points, (list, tuple)) or len(points) < 3:
+                raise ValueError("Bezak ko‘pburchagi noto‘g‘ri.")
+            path = el("a:path", w=round(box[2] * EMU), h=round(box[3] * EMU), stroke="false", extrusionOk="false")
+            for at, point in enumerate(points):
+                path.append(el("a:moveTo" if at == 0 else "a:lnTo", el("a:pt", x=round(point[0] * EMU), y=round(point[1] * EMU))))
+            path.append(el("a:close"))
+            geometry = el("a:custGeom", el("a:avLst"), el("a:gdLst"), el("a:ahLst"), el("a:cxnLst"),
+                          el("a:rect", l="0", t="0", r="r", b="b"), el("a:pathLst", path))
+        elif radius and kind != "circle":
             # OOXML rounded rectangle adj is half radius as percentage of shorter side.
             geometry[0].append(el("a:gd", name="adj", fmla=f"val {round(min(.5, radius / min(box[2:])) * 100000)}"))
         sppr.extend([_transform(box), geometry, _fill(fill, alpha) if fill else el("a:noFill")])
         sppr.append(el("a:ln", _fill(border, border_alpha) if border else el("a:noFill"), w="9525" if border else "0"))
         return shape
 
-    def text(self, tree, text, box, size, color, font, label, bold=False, align="l", line_height=1.28, name="Matn", hyperlink=None):
-        if not text:
+    def text(self, tree, text, box, size, color, font, label, bold=False, align="l", line_height=1.28, name="Matn", hyperlink=None, keep_empty=False):
+        if not text and not keep_empty:
             return None
-        lines = _wrap(text, box[2], box[3], size, font, bold, line_height, label)
+        lines = _wrap(text, box[2], box[3], size, font, bold, line_height, label) or [""]
         shape = self.shape(name, box)
         props = shape.find("p:nvSpPr/p:cNvPr", NS)
         props.set("descr", text)
@@ -644,6 +896,9 @@ def export_pptx(document):
         for src in (slide.get('image'), slide.get('image2'), slide['design'].get('image')):
             if src is not None:
                 deck.picture_data(src, f'{index}-slayd rasmi')
+        for item in slide.get('elements', []):
+            if item['kind'] == 'image':
+                deck.picture_data(item['image'], f'{index}-slayd qo‘shimcha rasmi')
     aurora = None
     for index, slide in enumerate(slides, 1):
         design = slide['design']
@@ -678,7 +933,7 @@ def export_pptx(document):
                                            border=tokens['border'], border_alpha=tokens['border_alpha']))
         for at, item in enumerate(spec['decorations']):
             tree.append(deck.shape(f'Bezak {at + 1}', _coords(item), fill=paint(item['fill']), alpha=item.get('opacity', 1),
-                                   radius=item.get('radius', 0) if round_corners else 0, kind=item['kind']))
+                                   radius=item.get('radius', 0) if round_corners else 0, kind=item['kind'], points=item.get('points')))
             if item.get('text'):
                 rect = _box(item['x'], item['y'] + (item['h'] - item['fontSize'] * 1.28) / 2, item['w'], item['fontSize'] * 1.28 + 1)
                 number_color = '071b24' if design['accent'] in ('cyan', 'green', 'amber') else 'ffffff'
@@ -720,6 +975,16 @@ def export_pptx(document):
             label_color = tokens['fg'] if spec['template'] == 'ribbon' and design['panel'] != 'none' else tokens['accent']
             deck.text(tree, 'MISOL', _coords(spec['example']['label']), 14, label_color, tokens['font'], f'{index}-slayd misol belgisi', bold=True, name='Misol belgisi')
             deck.text(tree, slide['example'], _coords(spec['example']), spec['example']['fontSize'], tokens['fg'], tokens['font'], f'{index}-slayd misoli', line_height=1.25, name='Misol')
+        for item in spec.get('elements', []):
+            name = 'Qo‘shimcha element: ' + item['id']
+            if item['kind'] == 'text':
+                deck.text(tree, item['text'], _coords(item), item['fontSize'], item['color'][1:], tokens['font'],
+                          f'{index}-slayd qo‘shimcha matni', name=name, keep_empty=True)
+            elif item['kind'] == 'image':
+                deck.picture(tree, rels, *deck.picture_data(item['image'], f'{index}-slayd qo‘shimcha rasmi'),
+                             _coords(item), name)
+            else:
+                tree.append(deck.shape(name, _coords(item), fill=item['fill'][1:]))
         deck.text(tree, document.get('subject') or document.get('title', ''), _coords(spec['footer']), 14, tokens['muted'], tokens['font'], 'Fan nomi', name='Fan')
         deck.text(tree, f'{index:02d} / {len(slides):02d}', _coords(spec['page']), 14, tokens['muted'], tokens['font'], 'Slayd raqami', align='r', name='Slayd raqami')
         if design['transition'] != 'none':
@@ -732,7 +997,7 @@ def export_pptx(document):
 
 
 # Restricted TeX parser and dual OMML/mathtext serializer are below.  Kept in this
-# module so deployments only need this file and the two bundled template assets.
+# module; canvas input validation lives in presentation_layout_validation.py.
 
 """Bounded, in-process TeX subset shared by native Office Math and mathtext.
 

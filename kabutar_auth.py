@@ -14,6 +14,7 @@ import threading
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 from typing import Optional
+from urllib.parse import urlsplit
 
 from fastapi import Header, HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS kabutar_auth_challenges (
  cancelled_at TIMESTAMPTZ
 );
 ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS link_session_hash TEXT;
+ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS site_origin TEXT;
 CREATE INDEX IF NOT EXISTS kabutar_auth_challenges_expiry ON kabutar_auth_challenges(expires_at);
 CREATE TABLE IF NOT EXISTS kabutar_auth_consumed (
  token_hash TEXT PRIMARY KEY, expires_at TIMESTAMPTZ NOT NULL
@@ -73,6 +75,40 @@ CREATE UNIQUE INDEX IF NOT EXISTS users_kabutar_nickname_uq ON users(LOWER(kabut
 
 def digest(value: str) -> str:
     return hashlib.sha256(value.encode('utf-8')).hexdigest()
+
+
+def normalize_bot_username(value: str) -> str:
+    """Accept the same public bot name whether copied as @name or its t.me link."""
+    value = (value or '').strip()
+    if value.startswith(('https://', 'http://')):
+        try:
+            parsed = urlsplit(value)
+            if parsed.scheme != 'https' or parsed.netloc.lower() != 't.me' or parsed.query or parsed.fragment:
+                return ''
+            value = parsed.path.strip('/')
+        except ValueError:
+            return ''
+    value = value.lstrip('@')
+    return value if re.fullmatch(r'[A-Za-z0-9_]{5,32}', value) else ''
+
+
+def public_site_origin(value: str) -> str:
+    """Return only a configured HTTP(S) origin, never credentials or URL paths."""
+    try:
+        parsed = urlsplit((value or '').strip())
+        if parsed.scheme not in ('http', 'https') or not parsed.hostname or parsed.username or parsed.password:
+            return ''
+        if parsed.path not in ('', '/') or parsed.query or parsed.fragment:
+            return ''
+        port = parsed.port
+        host = parsed.hostname.lower()
+        if ':' in host:
+            host = '[' + host + ']'
+        if port and (parsed.scheme, port) not in (('https', 443), ('http', 80)):
+            host += ':' + str(port)
+        return parsed.scheme + '://' + host
+    except (ValueError, TypeError):
+        return ''
 
 
 def normalize_phone(value: str) -> str:
@@ -163,8 +199,8 @@ class AuthService:
     def __init__(self, platform):
         self.p = platform
         self.key = platform.JWT_MAXFIY_KALIT
-        self.bot_secret = os.getenv('KABUTAR_BOT_AUTH_SECRET', '')
-        self.bot_username = os.getenv('KABUTAR_BOT_USERNAME', '').strip().lstrip('@')
+        self.bot_secret = os.getenv('KABUTAR_BOT_AUTH_SECRET', '').strip()
+        self.bot_username = normalize_bot_username(os.getenv('KABUTAR_BOT_USERNAME', ''))
         self.dummy_password = password_hash('not-a-real-account-password')
 
     @contextmanager
@@ -199,6 +235,25 @@ class AuthService:
         origin = (request.headers.get('origin') or '').rstrip('/')
         if origin and origin not in self.p.FRONTEND_ORIGINS:
             raise HTTPException(403, 'So‘rov manbasi ruxsat etilmagan')
+
+    def challenge_site(self, request):
+        # The browser is already restricted to FRONTEND_ORIGINS. Remember its
+        # actual site rather than returning a stale deployment domain to the bot.
+        # Never accept a client-supplied body URL or a forwarded Host header.
+        self.origin(request)
+        site = public_site_origin(request.headers.get('origin') or self.p.FRONTEND_URL)
+        if not site:
+            raise HTTPException(503, 'Sayt manzili sozlanmagan. Administrator FRONTEND_URL va FRONTEND_URLS ni tekshirsin')
+        return site
+
+    def telegram_config(self):
+        reason = None
+        if len(self.bot_secret) < 32:
+            reason = 'Telegram kirishi uchun backend va botda bir xil KABUTAR_BOT_AUTH_SECRET sozlanishi kerak'
+        elif not self.bot_username:
+            reason = 'Backendda KABUTAR_BOT_USERNAME sozlanishi kerak'
+        return {'enabled':reason is None, 'bot_username':self.bot_username,
+                'reason':reason, 'protocol_version':1}
 
     def token(self, request, body_token=None):
         return self.p._jwt_header_yoki_query(body_token, request.headers.get('authorization'))
@@ -383,7 +438,8 @@ class AuthService:
         cur.execute('SELECT user_id FROM telefon_hisob WHERE telefon=%s', (phone,))
         phone_owner = cur.fetchone()
         if phone_owner and phone_owner['user_id'] is not None and int(phone_owner['user_id']) != user_id:
-            raise HTTPException(409, 'Bu telefon boshqa akkauntga ulangan. Avval o‘sha akkauntga kiring')
+            if not self._release_imported_phone(cur, phone, int(phone_owner['user_id'])):
+                raise HTTPException(409, 'Bu telefon boshqa akkauntga ulangan. Avval o‘sha akkauntga kiring')
         cur.execute('SELECT telegram_id,user_id FROM kabutar_telegram_identity WHERE phone=%s OR user_id=%s', (phone,user_id))
         for other in cur.fetchall():
             if int(other['telegram_id']) != telegram_id or int(other['user_id']) != user_id:
@@ -400,6 +456,36 @@ class AuthService:
             ON CONFLICT(telegram_id) DO UPDATE SET phone=EXCLUDED.phone,verified_at=NOW()''', (telegram_id,user_id,phone))
         cur.execute('INSERT INTO telefon_hisob(telefon,user_id) VALUES(%s,%s) ON CONFLICT(telefon) DO NOTHING', (phone,user_id))
         return user_id
+
+    def _release_imported_phone(self, cur, phone, old_user_id):
+        """Release an old administrator reservation, never another real identity.
+
+        Earlier institute imports wrote unverified contact numbers into the
+        authentication table. Their invitation records are explicit evidence of
+        an imported placeholder; a negative ID alone is not sufficient because
+        real Google registrations also have negative IDs. The person still signs
+        in as their own Telegram account and must redeem an institution code.
+        """
+        if old_user_id >= 0:
+            return False
+        self.user_lock(cur, old_user_id)
+        cur.execute('SELECT user_id FROM users WHERE user_id=%s FOR UPDATE', (old_user_id,))
+        if not cur.fetchone():
+            return False
+        try:
+            from .modules.institution_membership import has_login_identity
+        except ImportError:
+            from modules.institution_membership import has_login_identity
+        if has_login_identity(cur, old_user_id):
+            return False
+        cur.execute("SELECT to_regclass('public.universitet_taklif_kodlari') AS t")
+        if not cur.fetchone()['t']:
+            return False
+        cur.execute('SELECT 1 FROM universitet_taklif_kodlari WHERE placeholder_user_id=%s LIMIT 1', (old_user_id,))
+        if not cur.fetchone():
+            return False
+        cur.execute('DELETE FROM telefon_hisob WHERE telefon=%s AND user_id=%s', (phone, old_user_id))
+        return True
 
     def profile_status(self, user_id):
         with self.transaction() as cur:
@@ -435,7 +521,7 @@ def register_auth(app, platform):
 
     @app.get('/auth/config')
     def config():
-        return {'telegram':{'enabled':len(service.bot_secret)>=32 and bool(re.fullmatch(r'[A-Za-z0-9_]{5,32}',service.bot_username)), 'bot_username':service.bot_username},
+        return {'telegram':service.telegram_config(),
             'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True}}
 
     @app.post('/auth/telegram/start')
@@ -445,6 +531,7 @@ def register_auth(app, platform):
             raise HTTPException(503,'Telegram orqali kirish hali sozlanmagan')
         if body.mode not in ('login','link'):
             raise HTTPException(422,'Kirish turi noto‘g‘ri')
+        site = service.challenge_site(request)
         target=None
         sid_hash=None
         token=None
@@ -458,8 +545,8 @@ def register_auth(app, platform):
         with service.transaction() as cur:
             if body.mode=='link':
                 sid_hash=service.recent_session(cur,token,target)
-            cur.execute('''INSERT INTO kabutar_auth_challenges(challenge_hash,browser_hash,verification_code,mode,target_user_id,link_session_hash,expires_at)
-                VALUES(%s,%s,%s,%s,%s,%s,NOW()+INTERVAL '5 minutes')''',(digest(challenge),digest(browser_secret),code,body.mode,target,sid_hash))
+            cur.execute('''INSERT INTO kabutar_auth_challenges(challenge_hash,browser_hash,verification_code,mode,target_user_id,link_session_hash,site_origin,expires_at)
+                VALUES(%s,%s,%s,%s,%s,%s,%s,NOW()+INTERVAL '5 minutes')''',(digest(challenge),digest(browser_secret),code,body.mode,target,sid_hash,site))
         return {'challenge':challenge,'browser_secret':browser_secret,'verification_code':code,
             'bot_url':f'https://t.me/{service.bot_username}?start=kb_{challenge}','expires_in':CHALLENGE_SECONDS}
 
@@ -473,7 +560,7 @@ def register_auth(app, platform):
             return {'status':'confirmed' if row['confirmed_at'] else 'pending','mode':row['mode'],
                 'verification_code':row['verification_code'],
                 'expires_in':max(0,int((row['expires_at']-datetime.now(timezone.utc)).total_seconds())),
-                'site':platform.FRONTEND_URL.rstrip('/')}
+                'site':row.get('site_origin') or public_site_origin(platform.FRONTEND_URL)}
 
     @app.post('/auth/telegram/confirm')
     def confirm(body:Confirm,x_kabutar_bot_secret:Optional[str]=Header(None)):
@@ -670,50 +757,11 @@ def register_auth(app, platform):
     @app.post('/auth/invite/claim')
     def invite_claim(body:InviteClaim,request:Request):
         service.origin(request)
-        grant=platform._google_registration_tekshir(body.oauth_grant,body.email)
-        code=body.kod.strip().upper()
-        if not re.fullmatch(r'[A-Z0-9]{12,128}',code):
-            raise HTTPException(422,'Muassasa taklif kodi kamida 12 ta harf/raqamdan iborat bo‘lsin')
-        service.rate('invite-email',grant['email'],10,900)
-        service.rate('invite-ip',service.ip(request),120)
-        plain,hashed=platform._xodim_kod_variantlari(code)
-        with service.transaction() as cur:
-            cur.execute("""SELECT kod AS stored_code,user_id,ishlatildi,
-                yaratildi>NOW()-INTERVAL '2 months' AS live FROM xodim_kod
-                WHERE kod IN (%s,%s) AND (kod LIKE 'sha256:%%' OR LENGTH(kod)>=12)
-                ORDER BY CASE WHEN kod=%s THEN 0 ELSE 1 END LIMIT 1 FOR UPDATE""",(hashed,plain,hashed))
-            invite=cur.fetchone()
-            if not invite or invite['ishlatildi'] or not invite['live']:
-                raise HTTPException(400,'Taklif kodi noto‘g‘ri, ishlatilgan yoki muddati tugagan')
-            uid=invite['user_id']
-            service.user_lock(cur,uid)
-            cur.execute('SELECT pg_advisory_xact_lock(hashtextextended(%s,31))',('google:'+grant['email'],))
-            cur.execute('SELECT user_id FROM google_hisob WHERE google_email=%s',(grant['email'],))
-            if cur.fetchone():
-                raise HTTPException(409,'Bu email allaqachon akkauntga ulangan. Google orqali kiring')
-            cur.execute('SELECT user_id FROM users WHERE user_id=%s FOR UPDATE',(uid,))
-            if not cur.fetchone():
-                raise HTTPException(409,'Taklif qilingan xodim profili topilmadi')
-            cur.execute("""SELECT 1 FROM google_hisob WHERE user_id=%s
-                UNION ALL SELECT 1 FROM kabutar_telegram_identity WHERE user_id=%s
-                UNION ALL SELECT 1 FROM kabutar_auth_password WHERE user_id=%s
-                UNION ALL SELECT 1 FROM kabutar_auth_sessions WHERE user_id=%s
-                UNION ALL SELECT 1 FROM telefon_hisob WHERE user_id=%s
-                UNION ALL SELECT 1 FROM kabutar_auth_security WHERE user_id=%s LIMIT 1""",(uid,uid,uid,uid,uid,uid))
-            if cur.fetchone():
-                raise HTTPException(409,'Xodim profili allaqachon egasiga ulangan. Mavjud kirish usulidan foydalaning')
-            cur.execute("SELECT to_regclass('public.user_accounts') AS t")
-            if cur.fetchone()['t']:
-                cur.execute('SELECT 1 FROM user_accounts WHERE uid=%s LIMIT 1',(uid,))
-                if cur.fetchone():
-                    raise HTTPException(409,'Bu xodim profili Telegram botga ulangan. Mavjud akkauntga kiring')
-            service.consume_cur(cur,grant)
-            cur.execute('INSERT INTO google_hisob(google_email,user_id) VALUES(%s,%s)',(grant['email'],uid))
-            cur.execute('UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s',(invite['stored_code'],))
-            cur.execute('UPDATE users SET kabutar_education_ready=TRUE WHERE user_id=%s',(uid,))
-            token=service._issue_cur(cur,uid,'google')
-        service.record_login(uid,'google')
-        return {'status':'complete','token':token,'user_id':uid}
+        # REV52: all institution claims use the same authenticated transaction.
+        # Binding Google directly to a placeholder bypassed university invitation
+        # checks and consumed only half of the institution's invitation records.
+        # A stale frontend must not consume its Google grant on this retired path.
+        raise HTTPException(410, 'Kirish oynasini yangilang. Avval Google orqali ro‘yxatdan o‘ting, keyin muassasa kodini kiriting')
 
     @app.post('/auth/google/link')
     def google_link(body:GoogleLink,request:Request):

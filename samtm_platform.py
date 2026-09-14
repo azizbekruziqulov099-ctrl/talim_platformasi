@@ -36,7 +36,7 @@ GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID", "")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET", "")
 JWT_MAXFIY_KALIT = os.getenv("JWT_MAXFIY_KALIT", "")
 BAZA_URL = os.getenv("BAZA_URL", "https://talimplatformasi-production.up.railway.app")
-FRONTEND_URL = os.getenv("FRONTEND_URL", "https://talimplatformasi-production.up.railway.app")
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://talimkabutar.uz")
 REDIRECT_URI = f"{BAZA_URL}/auth/google/callback"
 SAMTM_RELEASE = "samtm-teacher-first-smart-timetable-v19.2"
 SAMTM_PACKAGE_REVISION = "all-14-sections-updated"
@@ -8513,7 +8513,7 @@ def _xodim_kod_yarat():
 
 
 def _xodim_kod_variantlari(code):
-    normalized = str(code or "").strip().upper()
+    normalized = re.sub(r"[\s\-–—\u200b\ufeff]+", "", str(code or "")).upper()
     hashed = "sha256:" + hashlib.sha256(
         normalized.encode("utf-8")
     ).hexdigest()
@@ -13992,6 +13992,48 @@ class XodimKodniQabulQilish(BaseModel):
     kirish_kodi: str
 
 
+class MaktabShaxsKirishKodi(BaseModel):
+    token: str
+    maktab_id: int
+    user_id: int
+
+
+@app.get("/api/admin/maktab_shaxs_qidir")
+def maktab_shaxs_qidir(maktab_id: int, ism: str, authorization: Optional[str] = Header(default=None)):
+    token = _jwt_header_yoki_query(None, authorization)
+    actor_id = _jwt_tekshir(token)
+    claims = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
+    if claims.get("admin_korish"):
+        raise HTTPException(status_code=403, detail="Shaxsni qidirish uchun o'z administrator akkauntingizga qayting")
+    import sys
+    if __package__:
+        from .modules.institution_membership import MembershipError, search_school_people
+    else:
+        from modules.institution_membership import MembershipError, search_school_people
+    try:
+        return search_school_people(sys.modules[__name__], actor_id, maktab_id, ism)
+    except MembershipError as error:
+        raise HTTPException(status_code=error.status_code, detail=str(error)) from None
+
+
+@app.post("/api/admin/maktab_shaxs_kirish_kodi")
+def maktab_shaxs_kirish_kodi(sorov: MaktabShaxsKirishKodi):
+    """Bitta shaxsning kodini yangilaydi; dars va yuklamalar o'zgarmaydi."""
+    actor_id = _jwt_tekshir(sorov.token)
+    claims = jwt.decode(sorov.token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
+    if claims.get("admin_korish"):
+        raise HTTPException(status_code=403, detail="Kodni yangilash uchun o'z administrator akkauntingizga qayting")
+    import sys
+    if __package__:
+        from .modules.institution_membership import MembershipError, reissue_school_code
+    else:
+        from modules.institution_membership import MembershipError, reissue_school_code
+    try:
+        return reissue_school_code(sys.modules[__name__], actor_id, sorov.maktab_id, sorov.user_id)
+    except MembershipError as error:
+        raise HTTPException(status_code=error.status_code, detail=str(error)) from None
+
+
 @app.post("/api/oqituvchi/kirish_kodi_orqali_qoshil")
 def kirish_kodi_orqali_qoshil(
     sorov: Optional[XodimKodniQabulQilish] = None,
@@ -13999,138 +14041,29 @@ def kirish_kodi_orqali_qoshil(
     kirish_kodi: Optional[str] = Query(default=None, include_in_schema=False),
     authorization: Optional[str] = Header(default=None),
 ):
-    """token — chaqiruvchining O'Z (allaqachon mavjud) hisobi.
-    kirish_kodi — Excel import paytida SHU KISHI uchun mo'ljallab
-    yaratilgan kod (xodim_kod jadvali). Kod to'g'ri bo'lsa —
-    chaqiruvchining hisobiga shu muassasa+lavozim QO'SHILADI (agar
-    bu uning BIRINCHI muassasasi bo'lsa — eski, yagona ustunlarga
-    ham yoziladi, orqaga moslik uchun; ikkinchi/uchinchi muassasa
-    bo'lsa — faqat YANGI, ko'p-muassasali jadvalga qo'shiladi, birinchisi
-    O'CHIRILMAYDI). Kod "ishlatildi" deb belgilanadi (qayta ishlatib
-    bo'lmaydi)."""
-    user_id = _jwt_tekshir(_jwt_header_yoki_query(token, authorization))
-    kod_matni = (
-        sorov.kirish_kodi if sorov is not None else (kirish_kodi or "")
-    ).strip()
-    if not kod_matni:
-        raise HTTPException(status_code=400, detail="Kirish kodini kiriting")
-    conn = _db()
-    cur = conn.cursor()
-    _xodim_kod_jadvali(cur)
-    subject_hash = _xodim_kod_subject("user", user_id)
-    if _xodim_kod_bloklanganmi(cur, subject_hash):
-        cur.close()
-        conn.close()
-        raise HTTPException(
-            status_code=429,
-            detail="Ko'p noto'g'ri urinish. 30 daqiqadan keyin qayta urinib ko'ring.",
-        )
-    plain_code, hashed_code = _xodim_kod_variantlari(kod_matni)
-    cur.execute("""
-        SELECT xk.kod AS stored_code,xk.user_id AS placeholder_id,
-               xk.ishlatildi,
-               (xk.yaratildi > NOW() - INTERVAL '2 months') AS hali_yangi
-        FROM xodim_kod xk
-        WHERE xk.kod IN (%s,%s)
-          AND (xk.kod LIKE 'sha256:%%' OR LENGTH(xk.kod)>=12)
-        ORDER BY CASE WHEN xk.kod=%s THEN 0 ELSE 1 END
-        LIMIT 1
-        FOR UPDATE
-    """, (hashed_code, plain_code, hashed_code))
-    kod = cur.fetchone()
-    if not kod:
-        _xodim_kod_xato_urinish(cur, subject_hash)
-        conn.commit()
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=400, detail="Kod noto'g'ri")
-    if kod["ishlatildi"]:
-        _xodim_kod_xato_urinish(cur, subject_hash)
-        conn.commit()
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=400, detail="Kod allaqachon ishlatilgan")
-    if not kod["hali_yangi"]:
-        _xodim_kod_xato_urinish(cur, subject_hash)
-        conn.commit()
-        cur.close()
-        conn.close()
-        raise HTTPException(
-            status_code=400,
-            detail="Kod muddati tugagan (2 oy) — admindan yangisini so'rang",
-        )
+    """Bir martalik admin kodi bilan mavjud akkauntni muassasaga ulash."""
+    session_token = _jwt_header_yoki_query(token, authorization)
+    user_id = _jwt_tekshir(session_token)
+    payload = jwt.decode(session_token, JWT_MAXFIY_KALIT, algorithms=["HS256"])
+    if payload.get("admin_korish"):
+        raise HTTPException(status_code=403, detail="Muassasaga faqat o'z akkauntingizdan qo'shiling")
+    return _institution_code_redeem(user_id, sorov.kirish_kodi if sorov is not None else kirish_kodi)
 
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    pass  # V19: DDL moved to startup migration.
-    cur.execute(
-        "SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
-        (kod["placeholder_id"],),
-    )
-    p = cur.fetchone()
-    turlar = [("maktab", p["maktab_id"]), ("markaz", p["markaz_id"]), ("bogcha", p["bogcha_id"]), ("universitet", p["universitet_id"])]
-    turlar = [(t, mid) for t, mid in turlar if mid]
-    if not p or not turlar:
-        cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Bu kodga tegishli muassasa topilmadi")
-    turi, muassasa_id = turlar[0]  # amalda har doim aynan bittasi to'ldirilgan bo'ladi
-    if turi == "bogcha" and not _bogcha_legacy_faol_holat(cur, muassasa_id):
-        cur.close()
-        conn.close()
-        raise HTTPException(
-            status_code=403,
-            detail="Bu bog'cha faol emas; xodim kodini qabul qilib bo'lmaydi.",
-        )
 
-    # Chaqiruvchining hozirgi (eski, yagona ustun) muassasalari bo'shmi?
-    cur.execute("SELECT maktab_id, markaz_id, bogcha_id, universitet_id FROM users WHERE user_id=%s", (user_id,))
-    joriy = cur.fetchone()
-    birinchi_muassasa_mi = joriy and not any([joriy["maktab_id"], joriy["markaz_id"], joriy["bogcha_id"], joriy["universitet_id"]])
+def _institution_code_redeem(user_id, code):
+    import importlib
+    import sys
+    if __package__:
+        from .modules.institution_membership import MembershipError, redeem_code
+    else:
+        from modules.institution_membership import MembershipError, redeem_code
+    module_name = (__package__ + "." if __package__ else "") + "samtm_institute"
+    institute = importlib.import_module(module_name)
+    try:
+        return redeem_code(sys.modules[__name__], user_id, code, institute=institute)
+    except MembershipError as error:
+        raise HTTPException(status_code=error.status_code, detail=str(error)) from None
 
-    if birinchi_muassasa_mi:
-        cur.execute(
-            "UPDATE users SET maktab_id=%s, markaz_id=%s, bogcha_id=%s, universitet_id=%s, lavozim=%s WHERE user_id=%s",
-            (p["maktab_id"], p["markaz_id"], p["bogcha_id"], p["universitet_id"], p["lavozim"], user_id),
-        )
-
-    _muassasa_jadvali(cur)
-    cur.execute("""
-        INSERT INTO foydalanuvchi_muassasalari(user_id, muassasa_turi, muassasa_id, lavozim)
-        VALUES(%s,%s,%s,%s) ON CONFLICT (user_id, muassasa_turi, muassasa_id) DO UPDATE SET lavozim=EXCLUDED.lavozim
-    """, (user_id, turi, muassasa_id, p["lavozim"]))
-
-    if turi == "bogcha":
-        _bogcha_v2_xodimni_koddan_otkaz(
-            cur,
-            muassasa_id,
-            kod["placeholder_id"],
-            user_id,
-            p["lavozim"],
-        )
-
-    if p["maktab_id"] and p["lavozim"] == "direktor":
-        cur.execute("UPDATE maktablar SET direktor_user_id=%s WHERE id=%s", (user_id, p["maktab_id"]))
-    if p["markaz_id"] and p["lavozim"] == "markaz_direktor":
-        cur.execute("UPDATE oquv_markazlari SET direktor_user_id=%s WHERE id=%s", (user_id, p["markaz_id"]))
-    if p["bogcha_id"] and p["lavozim"] == "bogcha_direktor":
-        cur.execute("UPDATE bogchalar SET direktor_user_id=%s WHERE id=%s", (user_id, p["bogcha_id"]))
-    if p["universitet_id"] and p["lavozim"] == "rektor":
-        cur.execute("UPDATE universitetlar SET rektor_user_id=%s WHERE id=%s", (user_id, p["universitet_id"]))
-    cur.execute(
-        "UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s",
-        (kod["stored_code"],),
-    )
-    _xodim_kod_urinishni_tozalash(cur, subject_hash)
-    conn.commit()
-
-    jadval_nomi = {"maktab": "maktablar", "markaz": "oquv_markazlari", "bogcha": "bogchalar", "universitet": "universitetlar"}[turi]
-    cur.execute(f"SELECT nomi FROM {jadval_nomi} WHERE id=%s", (muassasa_id,))
-    m = cur.fetchone()
-    cur.close()
-    conn.close()
-    return {"holat": "qoshildi", "lavozim": p["lavozim"], "joy_nomi": m["nomi"] if m else None, "muassasa_turi": turi}
 
 
 # ═══════════════════════════════════════════════════════════

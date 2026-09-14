@@ -29,6 +29,10 @@ from fastapi import APIRouter, File, Header, HTTPException, Query, UploadFile
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
+if __package__:
+    from .modules.institution_membership import has_login_identity
+else:
+    from modules.institution_membership import has_login_identity
 
 
 SAMTM_INSTITUTE_RELEASE = "institute-workspace-isolation-hierarchy-reports-v24-rev87"
@@ -410,6 +414,7 @@ def _institut_v20_jadvallari(cur):
         mutaxassislik TEXT, qisqa_izoh TEXT,
         yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
     )""")
+    cur.execute("ALTER TABLE universitet_xodim_profili ADD COLUMN IF NOT EXISTS contact_phone TEXT")
     # REV57: eski Admin → Muassasalar ekranidagi rahbar ustunlari va yangi
     # rol jadvali ikki tomonga sinxron bo'lsin. Shu ko'prik bo'lmasa xodim
     # import qilingan bo'lsa ham eski ekranda "belgilanmagan" qizil chiqadi.
@@ -1019,6 +1024,8 @@ def _new_placeholder(cur, full_name: str, university_id: int, role: str, phone: 
     existing = cur.fetchone()
     if existing:
         user_id, role_id = int(existing["user_id"]), int(existing["role_id"])
+        if user_id >= 0 or has_login_identity(cur, user_id):
+            raise HTTPException(status_code=409, detail="Bu xodim haqiqiy akkauntga ulangan. Uning mavjud yozuvini tahrirlang; yangi kirish kodi berilmaydi")
         cur.execute("UPDATE users SET full_name=%s,universitet_id=%s,lavozim=%s WHERE user_id=%s", (full_name, university_id, role, user_id))
         _sync_legacy_leader(cur, university_id, user_id, role, faculty_id, department_id)
         cur.execute("""UPDATE xodim_kod SET ishlatildi=TRUE WHERE ishlatildi=FALSE AND kod IN(
@@ -1031,8 +1038,11 @@ def _new_placeholder(cur, full_name: str, university_id: int, role: str, phone: 
         cur.execute("INSERT INTO users(user_id,full_name,role,universitet_id,lavozim) VALUES(%s,%s,'oqituvchi',%s,%s)", (user_id, full_name, university_id, role))
         role_id = _assign_role(cur, university_id, user_id, role, faculty_id, department_id, program_id, created_by)
     if phone:
-        p._telefon_jadvallari(cur)
-        cur.execute("INSERT INTO telefon_hisob(telefon,user_id) VALUES(%s,%s) ON CONFLICT(telefon) DO UPDATE SET user_id=EXCLUDED.user_id", (phone, user_id))
+        # An admin-entered contact is not phone ownership. Reserving it in the
+        # authentication table prevented the real person's Telegram sign-in.
+        cur.execute("""INSERT INTO universitet_xodim_profili(xodim_rol_id,contact_phone)
+                       VALUES(%s,%s) ON CONFLICT(xodim_rol_id)
+                       DO UPDATE SET contact_phone=EXCLUDED.contact_phone""", (role_id, phone))
     while True:
         plain, stored = p._xodim_kod_yarat()
         cur.execute("SELECT 1 FROM xodim_kod WHERE kod=%s", (stored,))
@@ -1071,7 +1081,7 @@ def _open_invite_code(ciphertext: Optional[str]) -> Optional[str]:
 def _create_student_invite(cur, row: dict[str, Any], actor_id: int) -> str:
     p = _p()
     current_user_id = int(row["user_id"]) if row.get("user_id") is not None else None
-    if current_user_id is not None and current_user_id >= 0:
+    if current_user_id is not None and (current_user_id >= 0 or has_login_identity(cur, current_user_id)):
         raise HTTPException(status_code=409, detail="Talaba sayt akkauntiga allaqachon ulangan")
     # REV59: birinchi kirishgacha aynan o'sha kodni istalgancha ko'rish va
     # qayta yuborish mumkin. Hash tekshiruv uchun, shifr esa vakolatli admin
@@ -1097,9 +1107,8 @@ def _create_student_invite(cur, row: dict[str, Any], actor_id: int) -> str:
         user_id = int(r["min_id"] - 1) if r and r["min_id"] is not None else -1
         full_name = " ".join(x for x in [row["familiya"], row["ism"], row.get("ota_ism")] if x)
         cur.execute("INSERT INTO users(user_id,full_name,role,universitet_id,lavozim) VALUES(%s,%s,'oquvchi',%s,'talaba')", (user_id, full_name, row["universitet_id"]))
-        if row.get("telefon"):
-            p._telefon_jadvallari(cur)
-            cur.execute("INSERT INTO telefon_hisob(telefon,user_id) VALUES(%s,%s) ON CONFLICT(telefon) DO NOTHING", (row["telefon"], user_id))
+        # The contact number remains in universitet_qabul_talabalari.telefon;
+        # only a verified authentication flow may populate telefon_hisob.
     p._xodim_kod_jadvali(cur)
     while True:
         plain, stored = p._xodim_kod_yarat()
@@ -2638,7 +2647,7 @@ def staff_invite_code(role_id: int, req: InstituteToken):
         roles = _require_member(cur, actor, row["universitet_id"])
         if not _has_any(roles, MANAGE_STAFF_ROLES):
             raise HTTPException(status_code=403, detail="Kirish kodini boshqarish huquqi yo'q")
-        if row["user_id"] is None or int(row["user_id"]) >= 0:
+        if row["user_id"] is None or int(row["user_id"]) >= 0 or has_login_identity(cur, int(row["user_id"])):
             raise HTTPException(
                 status_code=409,
                 detail="Xodim haqiqiy akkauntga ulangan; unga yangi kirish kodi yaratib yoki ko'rsatib bo'lmaydi",
@@ -4165,42 +4174,13 @@ def reveal_student_password(student_id: int, token: Optional[str] = Query(None, 
 
 @router.post("/kirish_kodi_qabul")
 def redeem_code(req: RedeemCode):
-    p = _p(); user_id = p._jwt_tekshir(req.token); plain, stored = p._xodim_kod_variantlari(req.kirish_kodi)
-    conn = p._db(); cur = conn.cursor()
-    try:
-        _ensure_schema(cur); p._xodim_kod_jadvali(cur)
-        cur.execute("""SELECT tk.*,xk.ishlatildi,(xk.yaratildi>NOW()-INTERVAL '2 months') hali_yangi
-            FROM universitet_taklif_kodlari tk JOIN xodim_kod xk ON xk.kod=tk.kod_hash
-            WHERE tk.kod_hash IN (%s,%s) FOR UPDATE""", (stored, plain)); invite = cur.fetchone()
-        if not invite: raise HTTPException(status_code=400, detail="Kirish kodi noto'g'ri")
-        if invite["ishlatildi"]: raise HTTPException(status_code=409, detail="Kirish kodi ishlatilgan")
-        if not invite["hali_yangi"]: raise HTTPException(status_code=410, detail="Kirish kodi muddati tugagan")
-        placeholder = invite["placeholder_user_id"]
-        cur.execute("SELECT universitet_id FROM users WHERE user_id=%s FOR UPDATE", (user_id,))
-        account = cur.fetchone()
-        if not account: raise HTTPException(status_code=404, detail="Foydalanuvchi akkaunti topilmadi")
-        if invite["xodim_rol_id"]:
-            cur.execute("UPDATE universitet_xodim_rollari SET user_id=%s WHERE id=%s", (user_id, invite["xodim_rol_id"]))
-        if invite["qabul_talaba_id"]:
-            cur.execute("""UPDATE universitet_qabul_talabalari SET user_id=%s,
-                bazaga_kiritilgan_at=COALESCE(bazaga_kiritilgan_at,NOW()),
-                saytga_kiritilgan_at=NOW(),birinchi_kirish_at=NOW(),qabul_bosqichi=4,
-                yangilangan_at=NOW() WHERE id=%s""", (user_id, invite["qabul_talaba_id"]))
-        p._telefon_jadvallari(cur)
-        cur.execute("UPDATE telefon_hisob SET user_id=%s WHERE user_id=%s", (user_id, placeholder))
-        cur.execute("""UPDATE users SET
-            universitet_id=COALESCE(universitet_id,%s),
-            lavozim=COALESCE(lavozim,%s)
-            WHERE user_id=%s""",
-            (invite["universitet_id"], "talaba" if invite["turi"] == "talaba" else "institut_xodimi", user_id))
-        cur.execute("UPDATE xodim_kod SET ishlatildi=TRUE WHERE kod=%s", (invite["kod_hash"],))
-        cur.execute("UPDATE universitet_taklif_kodlari SET ishlatildi_at=NOW(),kod_shifr=NULL WHERE id=%s", (invite["id"],))
-        _audit(cur, invite["universitet_id"], user_id, "kirish_kodi_qabul", invite["turi"], invite["qabul_talaba_id"] or invite["xodim_rol_id"])
-        conn.commit(); return {"holat": "ulandi", "universitet_id": invite["universitet_id"], "turi": invite["turi"]}
-    except Exception:
-        conn.rollback(); raise
-    finally:
-        cur.close(); conn.close()
+    p = _p()
+    user_id = p._jwt_tekshir(req.token)
+    claims = p.jwt.decode(req.token, p.JWT_MAXFIY_KALIT, algorithms=["HS256"])
+    if claims.get("admin_korish"):
+        raise HTTPException(status_code=403, detail="Muassasaga faqat o'z akkauntingizdan qo'shiling")
+    result = p._institution_code_redeem(user_id, req.kirish_kodi)
+    return {**result, "holat": "ulandi", "turi": "talaba" if result["lavozim"] == "talaba" else "xodim"}
 
 
 def _structure_archive_summary(cur, universitet_id: int, kind: str, object_id: int) -> dict[str, Any]:

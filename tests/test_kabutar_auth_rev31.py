@@ -37,7 +37,7 @@ class FakeJWT:
 class FakeModel:
     pass
 class FakeApp:
-    def __init__(self):self.routes={}
+    def __init__(self):self.routes={};self.router=self
     def get(self,path):return self.post(path)
     def post(self,path):
         def add(fn):self.routes[path]=fn;return fn
@@ -48,7 +48,7 @@ class FakeApp:
 def load_auth():
     tree=ast.parse((ROOT/'kabutar_auth.py').read_text())
     tree.body=[n for n in tree.body if not isinstance(n,ast.ImportFrom) or n.module not in ('fastapi','fastapi.responses','jose','pydantic')]
-    ns={'__name__':'auth_regression','HTTPException':HTTPException,'Request':object,'Header':lambda x:x,
+    ns={'__name__':'auth_regression','__package__':'','HTTPException':HTTPException,'Request':object,'Header':lambda x:x,
         'JSONResponse':dict,'jwt':FakeJWT,'JWTError':ValueError,'BaseModel':FakeModel,'Field':lambda *a,**kw:None}
     exec(compile(tree,str(ROOT/'kabutar_auth.py'),'exec'),ns)
     return types.SimpleNamespace(**ns)
@@ -56,7 +56,7 @@ A=load_auth()
 
 class MemoryDB:
     def __init__(self):
-        self.state={'users':{111:{'user_id':111},222:{'user_id':222}},'identities':{},'phones':{},'sessions':{},'challenges':{},'consumed':{},'rates':{},'accounts':None,'security':{},'passwords':{},'google':{'person@example.com':111},'invites':{}}
+        self.state={'users':{111:{'user_id':111},222:{'user_id':222}},'identities':{},'phones':{},'sessions':{},'challenges':{},'consumed':{},'rates':{},'accounts':None,'security':{},'passwords':{},'google':{'person@example.com':111},'invites':{},'university_invites':[]}
     def connect(self):return Connection(self)
 class Connection:
     def __init__(self,db):self.db=db;self.snapshot=copy.deepcopy(db.state)
@@ -72,6 +72,21 @@ class Cursor:
     def execute(self,sql,args=()):
         q=' '.join(sql.lower().split());s=self.db.state;self.rows=[];now=datetime.now(timezone.utc)
         if q.startswith('select pg_advisory'):return
+        if q.startswith('select table_name,column_name from information_schema.columns'):
+            fields={'google_hisob':'user_id','kabutar_telegram_identity':'user_id',
+                'kabutar_auth_password':'user_id','kabutar_auth_sessions':'user_id',
+                'kabutar_auth_security':'user_id','user_accounts':'uid'}
+            self.rows=[{'table_name':table,'column_name':column} for table,column in fields.items()
+                if table in args[0] and (table!='user_accounts' or s['accounts'] is not None)]
+            return
+        if q.startswith('select 1 from "google_hisob" where "user_id"='):
+            uid=args[0]
+            claimed=uid in s['google'].values() or any(r['user_id']==uid for r in s['identities'].values()) or uid in s['passwords'] or any(r['user_id']==uid for r in s['sessions'].values()) or uid in s['security'] or any(r['uid']==uid for r in (s['accounts'] or []))
+            self.rows=[{'exists':1}] if claimed else [];return
+        if q.startswith("select to_regclass('public.universitet_taklif_kodlari')"):
+            self.rows=[{'t':'universitet_taklif_kodlari'}];return
+        if q.startswith('select 1 from universitet_taklif_kodlari where placeholder_user_id='):
+            self.rows=[{'exists':1}] if args[0] in s['university_invites'] else [];return
         if q.startswith('select kod as stored_code,user_id,ishlatildi'):
             rows=[r.copy() for code,r in s['invites'].items() if code in args[:2]];self.rows=rows[:1];return
         if q.startswith('select 1 from google_hisob where user_id='):
@@ -100,6 +115,13 @@ class Cursor:
             return
         if q.startswith('select target_user_id from kabutar_auth_challenges'):
             row=s['challenges'].get(args[0]);self.rows=[{'target_user_id':row.get('target_user_id')}] if row else [];return
+        if q.startswith('insert into kabutar_auth_challenges'):
+            key,browser,code,mode,target,link_session,site=args
+            s['challenges'][key]={'browser_hash':browser,'verification_code':code,'mode':mode,
+                'target_user_id':target,'link_session_hash':link_session,'site_origin':site,
+                'user_id':None,'telegram_id':None,'phone':None,'confirmed_at':None,
+                'consumed_at':None,'cancelled_at':None,'expires_at':now+timedelta(minutes=5)}
+            return
         if q.startswith('insert into kabutar_auth_rate'):
             b=args[0];s['rates'][b]=s['rates'].get(b,0)+1;self.rows=[{'hits':s['rates'][b]}];return
         if q.startswith('insert into kabutar_auth_sessions'):
@@ -301,36 +323,14 @@ class AuthTests(unittest.TestCase):
         self.db.state['passwords'][111]=A.password_hash('correct-password-12345')
         result=self.app.routes['/auth/password/login'](types.SimpleNamespace(identifier='person@example.com',password='correct-password-12345'),self.request)
         self.assertEqual(result['status'],'complete');self.assertEqual(self.p._jwt_tekshir(result['token']),111)
-    def invite_body(self,**kwargs):
-        code='ABCD1234WXYZ';key='sha256:'+A.digest(code)
-        self.db.state['invites'].setdefault(key,{'stored_code':key,'user_id':222,'ishlatildi':False,'live':True})
-        return types.SimpleNamespace(kod=kwargs.get('kod',code),email=kwargs.get('email','new@example.com'),oauth_grant=kwargs.get('grant','valid-grant'))
-    def test_imported_employee_claims_one_strong_invite_preserves_id(self):
-        body=self.invite_body()
-        result=self.app.routes['/auth/invite/claim'](body,self.request)
-        self.assertEqual(result['user_id'],222);self.assertEqual(self.p._jwt_tekshir(result['token']),222)
-        self.assertEqual(self.db.state['google']['new@example.com'],222)
-        self.assertEqual(set(self.db.state['users']),{111,222})
-        self.assert_http(400,self.app.routes['/auth/invite/claim'],body,self.request)
-        self.assertEqual(len(self.db.state['sessions']),1)
-    def test_employee_invite_does_not_reassign_existing_google(self):
-        body=self.invite_body(email='person@example.com')
-        self.assert_http(409,self.app.routes['/auth/invite/claim'],body,self.request)
-        self.assertEqual(self.db.state['google']['person@example.com'],111)
-        self.assertFalse(self.db.state['consumed'])
-    def test_employee_invite_does_not_claim_password_owned_account(self):
-        body=self.invite_body();self.db.state['passwords'][222]=A.password_hash('existing-password-123')
-        self.assert_http(409,self.app.routes['/auth/invite/claim'],body,self.request)
-        self.assertNotIn('new@example.com',self.db.state['google'])
-    def test_invite_rejects_legacy_six_character_codes(self):
-        self.assert_http(422,self.app.routes['/auth/invite/claim'],self.invite_body(kod='ABC123'),self.request)
-        self.assertFalse(self.db.state['consumed'])
-    def test_invite_rejects_expired_and_unverified_grant(self):
-        body=self.invite_body(grant='invalid')
-        self.assert_http(401,self.app.routes['/auth/invite/claim'],body,self.request)
-        body=self.invite_body()
-        self.db.state['invites']['sha256:'+A.digest(body.kod)]['live']=False
-        self.assert_http(400,self.app.routes['/auth/invite/claim'],body,self.request)
+    def test_legacy_google_placeholder_claim_does_not_consume_or_bind(self):
+        before=copy.deepcopy(self.db.state)
+        for code,email,grant in [('ABCD1234WXYZ','new@example.com','valid-grant'),
+                                 ('ABC123','person@example.com','valid-grant'),
+                                 ('ABCD1234WXYZ','new@example.com','invalid')]:
+            body=types.SimpleNamespace(kod=code,email=email,oauth_grant=grant)
+            self.assert_http(410,self.app.routes['/auth/invite/claim'],body,self.request)
+            self.assertEqual(self.db.state,before)
     def test_phone_change_resets_search_permission(self):
         self.app.routes['/auth/telegram/confirm'](self.confirm_body(),'s'*32)
         self.db.state['users'][111]['phone_discoverable']=True
