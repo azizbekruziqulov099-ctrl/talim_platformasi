@@ -4,6 +4,7 @@ No production database or optional deployment dependencies are needed.
 """
 
 import ast
+import re
 from pathlib import Path
 from types import SimpleNamespace
 import unittest
@@ -53,8 +54,19 @@ class ProfileMembershipSecurityTests(unittest.TestCase):
         source = Path(__file__).resolve().parents[1] / "samtm_platform.py"
         tree = ast.parse(source.read_text(encoding="utf-8"))
         handler = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "profil_yangila")
+        # Talaba (oliy ta'lim) Sinf qiymatlari — "2 kurs", "1 kurs magistr" —
+        # handler shu sof yordamchilar orqali tekshiriladi; ular ham manbadan olinadi.
+        yordamchilar = {
+            "_TALABA_SINF_REGEX", "_talaba_sinf_matni", "_talaba_sinfini_ochish",
+            "_sinf_talaba_mi", "_sinf_qiymati_togri_mi", "_sinf_qiymatini_normallashtir",
+        }
+        helper_nodes = [
+            n for n in tree.body
+            if (isinstance(n, ast.FunctionDef) and n.name in yordamchilar)
+            or (isinstance(n, ast.Assign) and any(isinstance(t, ast.Name) and t.id in yordamchilar for t in n.targets))
+        ]
         handler.decorator_list = []
-        cls.handler_code = compile(ast.Module(body=[handler], type_ignores=[]), str(source), "exec")
+        cls.handler_code = compile(ast.Module(body=helper_nodes + [handler], type_ignores=[]), str(source), "exec")
 
     def invoke(self, membership, **changes):
         self.db = Connection(membership)
@@ -67,6 +79,7 @@ class ProfileMembershipSecurityTests(unittest.TestCase):
         }
         fields.update(token="test-session", **changes)
         namespace = {
+            "re": re,
             "ProfilYangilash": SimpleNamespace,
             "HTTPException": HTTPException,
             "MAKTAB_TURLARI": {"oddiy": "Oddiy"},
@@ -113,6 +126,19 @@ class ProfileMembershipSecurityTests(unittest.TestCase):
             self.invoke(None, maktab_id=20)
         self.assertEqual(error.exception.status_code, 404)
         self.assert_no_update()
+
+    def test_talaba_kurs_value_is_accepted_and_canonicalised(self):
+        # 1–11 sinfdan tashqari o'quvchi: "2-kurs" → bazaga kanonik "2 kurs" yoziladi
+        self.assertEqual(self.invoke({"maktab_id": None}, sinf="2-kurs"), {"holat": "saqlandi"})
+        self.assertEqual(self.db.cur.calls, [("UPDATE users SET class=%s WHERE user_id=%s", ["2 kurs", 101])])
+        self.assertEqual(self.invoke({"maktab_id": None}, sinf="1 kurs magistr"), {"holat": "saqlandi"})
+        self.assertEqual(self.db.cur.calls[-1][1], ["1 kurs magistr", 101])
+
+    def test_unknown_class_values_are_still_rejected(self):
+        for yomon in ("12", "0", "2-sinf", "7 kurs", "abituriyent"):
+            with self.assertRaises(HTTPException, msg=yomon) as error:
+                self.invoke({"maktab_id": None}, sinf=yomon)
+            self.assertEqual(error.exception.status_code, 400)
 
 
 if __name__ == "__main__":

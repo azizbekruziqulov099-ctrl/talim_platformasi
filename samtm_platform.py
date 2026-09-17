@@ -1320,6 +1320,14 @@ def joriy_foydalanuvchi(token: Optional[str] = None, request: Request = None):
 
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     r["is_admin"] = cur.fetchone() is not None
+    # Talaba (1–11 sinfdan tashqari) bo'lsa — frontend shu maydon bo'yicha
+    # talaba ishchi stoli, paralar jadvali va kurs testlarini ko'rsatadi.
+    try:
+        r["talaba_profili"] = _talaba_profilini_ol(cur, user_id)
+    except Exception:
+        conn.rollback()
+        r["talaba_profili"] = None
+    r["talaba_mi"] = r["talaba_profili"] is not None or _sinf_talaba_mi(r.get("class"))
     cur.close()
     conn.close()
     if _kabutar_auth_service is not None:
@@ -1384,6 +1392,14 @@ def muassasalarim(token: str):
                 topilganlar[key] = r["rol"]
     if _inst.get("r2"):
         cur.execute("SELECT universitet_id FROM universitet_qabul_talabalari WHERE user_id=%s", (user_id,))
+        for r in cur.fetchall():
+            rol_manbai.add(("universitet", int(r["universitet_id"])))
+            topilganlar.setdefault(("universitet", int(r["universitet_id"])), "talaba")
+    # Parol bilan o'zi qo'shilgan talabalar (talaba_profillari) — qabul ro'yxati
+    # kabi ishonchli manba: v17 workspace filtri ularni yashirmasin.
+    cur.execute("SELECT to_regclass('public.talaba_profillari') AS r3")
+    if (cur.fetchone() or {}).get("r3"):
+        cur.execute("SELECT universitet_id FROM talaba_profillari WHERE user_id=%s", (user_id,))
         for r in cur.fetchall():
             rol_manbai.add(("universitet", int(r["universitet_id"])))
             topilganlar.setdefault(("universitet", int(r["universitet_id"])), "talaba")
@@ -3660,8 +3676,8 @@ def profil_yangila(sorov: ProfilYangilash):
         raise HTTPException(status_code=400, detail="Ism bo'sh bo'lishi mumkin emas")
     if sorov.maktab_turi is not None and sorov.maktab_turi not in MAKTAB_TURLARI:
         raise HTTPException(status_code=400, detail="Noto'g'ri maktab turi")
-    if sorov.sinf is not None and sorov.sinf not in [str(i) for i in range(1, 12)]:
-        raise HTTPException(status_code=400, detail="Sinf 1 dan 11 gacha bo'lishi kerak")
+    if sorov.sinf is not None and not _sinf_qiymati_togri_mi(sorov.sinf):
+        raise HTTPException(status_code=400, detail="Sinf 1 dan 11 gacha (yoki talaba uchun \"2 kurs\" ko'rinishida) bo'lishi kerak")
     if sorov.jins is not None and sorov.jins not in ("ogil", "qiz"):
         raise HTTPException(status_code=400, detail="Noto'g'ri jins qiymati")
     if sorov.asosiy_til is not None and sorov.asosiy_til not in ("uz", "en", "ru"):
@@ -3700,7 +3716,7 @@ def profil_yangila(sorov: ProfilYangilash):
         qiymatlar.append(MAKTAB_TURLARI[sorov.maktab_turi])
     if sorov.sinf is not None:
         maydonlar.append("class=%s")
-        qiymatlar.append(sorov.sinf)
+        qiymatlar.append(_sinf_qiymatini_normallashtir(sorov.sinf) or sorov.sinf)
     if sorov.sinf_harfi is not None:
         maydonlar.append("class_letter=%s")
         qiymatlar.append(sorov.sinf_harfi.strip().upper())
@@ -15173,6 +15189,7 @@ def _universitet_jadvali(cur):
     )""")
     cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
     ensure_institution_archive_columns(cur, "universitetlar")
+    _talaba_jadvallari(cur)  # talaba_paroli ustuni + talaba_profillari + haftalik jadval
 
 
 def _universitet_boshqaruvchi_mi(cur, user_id, universitet_id):
@@ -15292,6 +15309,8 @@ def universitetlar_royxati(token: str):
         SELECT u.id, u.nomi, u.viloyat, u.tuman, u.rektor_user_id, us.full_name AS rektor_ismi,
                (SELECT COUNT(*) FROM fakultetlar fk WHERE fk.universitet_id=u.id
                   AND COALESCE(to_jsonb(fk)->>'faol','true')<>'false') AS fakultet_soni,
+               u.talaba_paroli,
+               (SELECT COUNT(*) FROM talaba_profillari tp WHERE tp.universitet_id=u.id) AS talaba_soni,
                FALSE AS eski_yozuv
         FROM universitetlar u
         LEFT JOIN users us ON us.user_id = u.rektor_user_id
@@ -15577,6 +15596,623 @@ def universitet_guruh_bilimi(token: str, guruh_id: int):
     cur.close()
     conn.close()
     return {"guruh_nomi": g["nomi"], "talaba_soni": len(talabalar), "kurslar": natija_kurslar}
+
+
+# ═══════════════════════════════════════════════════════════
+# TALABA (OLIY TA'LIM) — 1–11 sinfdan TASHQARI o'quvchilar
+#
+# O'quvchi "Men 1–11 sinf emasman" deb, admin (SUPER admin — faqat
+# admin_akkaunt) muassasaga qo'ygan 4 belgili parol bilan institutga
+# qo'shiladi: yo'nalish → kurs (bosqichga qarab avtomatik: bakalavr 1–4,
+# magistr 1–2) → guruh (bir marta yoziladi: 401, 412...) → ta'lim shakli
+# (kunduzgi/kechki/sirtqi/masofaviy) → ta'lim tili (uz/ru/tj/en/kk).
+#
+# MUHIM: users.class ga KANONIK "Sinf" matni yoziladi — "2 kurs" yoki
+# "1 kurs magistr". dts_tree.grade ham shu matn bo'lgani uchun admin
+# "Topik shablon"da aynan shu Sinf'ni tanlab yaratgan mavzu/testlar
+# talabaga o'z-o'zidan chiqadi (aralashmaydi: maktab "2" ≠ "2 kurs").
+# ═══════════════════════════════════════════════════════════
+
+TALABA_BOSQICHLARI = {"bakalavr": "Bakalavr", "magistr": "Magistr"}
+TALABA_KURS_CHEGARASI = {"bakalavr": 4, "magistr": 2}
+TALABA_TALIM_SHAKLLARI = {
+    "kunduzgi": "Kunduzgi", "kechki": "Kechki", "sirtqi": "Sirtqi", "masofaviy": "Masofaviy",
+}
+TALABA_TALIM_TILLARI = {
+    "uz": "O'zbek", "ru": "Rus", "tj": "Tojik", "en": "Ingliz", "kk": "Qoraqalpoq", "kz": "Qozoq",
+}
+_TALABA_TIL_SINONIMLARI = {
+    "o'zbek": "uz", "ozbek": "uz", "uzbek": "uz", "o‘zbek": "uz", "oʻzbek": "uz", "uzb": "uz",
+    "rus": "ru", "russian": "ru", "русский": "ru", "рус": "ru", "rus tili": "ru",
+    "ўзбек": "uz", "узбекский": "uz", "тожик": "tj", "таджикский": "tj",
+    "tojik": "tj", "tajik": "tj", "тоҷикӣ": "tj", "tg": "tj",
+    "ingliz": "en", "english": "en", "eng": "en",
+    "qoraqalpoq": "kk", "karakalpak": "kk",
+    "qozoq": "kz", "kazakh": "kz",
+}
+_TALABA_SHAKL_SINONIMLARI = {
+    "kunduzgi": "kunduzgi", "kunduz": "kunduzgi", "ochnoe": "kunduzgi", "очное": "kunduzgi", "full-time": "kunduzgi",
+    "kechki": "kechki", "vecher": "kechki", "вечернее": "kechki",
+    "sirtqi": "sirtqi", "zaochnoe": "sirtqi", "заочное": "sirtqi", "part-time": "sirtqi",
+    "masofaviy": "masofaviy", "distant": "masofaviy", "дистанционное": "masofaviy", "online": "masofaviy",
+}
+TALABA_KUN_TURLARI = {"dars": "Dars kuni", "amaliyot": "Amaliyot kuni", "dam": "Dam olish"}
+TALABA_PARA_TURLARI = {
+    "maruza": "Ma'ruza", "amaliyot": "Amaliyot", "seminar": "Seminar",
+    "laboratoriya": "Laboratoriya", "mustaqil": "Mustaqil ta'lim", "boshqa": "Boshqa",
+}
+TALABA_HAFTA_KUNLARI = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"]
+_TALABA_SINF_REGEX = re.compile(r"^\s*([1-6])\s*-?\s*kurs(?:\s+(magistr))?\s*$", re.IGNORECASE)
+
+
+def _talaba_sinf_matni(bosqich: str, kurs: int) -> str:
+    """Kanonik Sinf matni: bakalavr → "2 kurs", magistr → "1 kurs magistr"."""
+    return f"{int(kurs)} kurs" + (" magistr" if bosqich == "magistr" else "")
+
+
+def _talaba_sinfini_ochish(qiymat):
+    """"2 kurs" / "1-kurs magistr" → {"bosqich","kurs","sinf"}; talaba emas → None."""
+    mos = _TALABA_SINF_REGEX.match(str(qiymat or ""))
+    if not mos:
+        return None
+    bosqich = "magistr" if mos.group(2) else "bakalavr"
+    kurs = int(mos.group(1))
+    return {"bosqich": bosqich, "kurs": kurs, "sinf": _talaba_sinf_matni(bosqich, kurs)}
+
+
+def _sinf_talaba_mi(qiymat) -> bool:
+    return _talaba_sinfini_ochish(qiymat) is not None
+
+
+def _sinf_qiymati_togri_mi(qiymat) -> bool:
+    """Profilga yozish mumkin bo'lgan Sinf: "1".."11" yoki kanonik kurs matni."""
+    matn = str(qiymat or "").strip()
+    return matn in [str(i) for i in range(1, 12)] or _sinf_talaba_mi(matn)
+
+
+def _sinf_qiymatini_normallashtir(qiymat):
+    """Barcha "sinf" parserlari uchun YAGONA kirish nuqtasi:
+    talaba matni bo'lsa kanonik "2 kurs" qaytadi (raqamini "2-sinf" deb
+    o'qib yubormasin), aks holda 1–11 raqami, bo'lmasa xom matn."""
+    if qiymat is None:
+        return None
+    talaba = _talaba_sinfini_ochish(qiymat)
+    if talaba:
+        return talaba["sinf"]
+    matn = str(qiymat).strip()
+    mos = re.search(r"(?<!\d)(1[01]|[1-9])(?!\d)", matn)
+    return mos.group(1) if mos else (matn or None)
+
+
+def _talaba_tilini_normallashtir(qiymat):
+    matn = str(qiymat or "").strip().lower()
+    if matn in TALABA_TALIM_TILLARI:
+        return matn
+    return _TALABA_TIL_SINONIMLARI.get(matn)
+
+
+def _talaba_shaklini_normallashtir(qiymat):
+    matn = str(qiymat or "").strip().lower()
+    return _TALABA_SHAKL_SINONIMLARI.get(matn)
+
+
+def _talaba_darajani_bosqichga(daraja):
+    matn = str(daraja or "").lower()
+    return "magistr" if "magistr" in matn else "bakalavr"
+
+
+def _talaba_jadvallari(cur):
+    """Talaba sxemasi — universitet jadvallaridan keyin chaqiriladi."""
+    cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS talaba_paroli TEXT")
+    cur.execute("""CREATE TABLE IF NOT EXISTS talaba_profillari(
+        user_id BIGINT PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE,
+        universitet_id INTEGER NOT NULL REFERENCES universitetlar(id) ON DELETE CASCADE,
+        yonalish_id BIGINT,
+        yonalish_nomi TEXT NOT NULL,
+        talim_bosqichi TEXT NOT NULL CHECK(talim_bosqichi IN ('bakalavr','magistr')),
+        kurs SMALLINT NOT NULL CHECK(kurs BETWEEN 1 AND 6),
+        guruh TEXT NOT NULL,
+        talim_shakli TEXT NOT NULL,
+        talim_tili TEXT NOT NULL,
+        qoshilgan_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+    cur.execute("CREATE INDEX IF NOT EXISTS ix_talaba_profillari_universitet ON talaba_profillari(universitet_id, kurs, guruh)")
+    cur.execute("""CREATE TABLE IF NOT EXISTS talaba_haftalik_jadvali(
+        user_id BIGINT PRIMARY KEY REFERENCES users(user_id) ON DELETE CASCADE,
+        sozlamalar JSONB NOT NULL DEFAULT '{}'::jsonb,
+        kunlar JSONB NOT NULL DEFAULT '[]'::jsonb,
+        yangilangan_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+
+
+def _talaba_parolini_tekshir(parol: str) -> str:
+    """4 belgi, faqat lotin harf + raqam, ikkalasi ham bo'lishi shart.
+    Katta harfga keltirilgan holda qaytaradi."""
+    matn = str(parol or "").strip().upper()
+    if len(matn) != 4 or not re.fullmatch(r"[A-Z0-9]{4}", matn):
+        raise HTTPException(status_code=400, detail="Parol 4 belgidan iborat, faqat lotin harf va raqam bo'lsin (masalan: A7K2)")
+    if not re.search(r"[A-Z]", matn) or not re.search(r"[0-9]", matn):
+        raise HTTPException(status_code=400, detail="Parolda harf ham, raqam ham bo'lishi kerak (masalan: A7K2)")
+    return matn
+
+
+def _talaba_paroli_yarat() -> str:
+    """Bir-biriga o'xshash belgilarsiz (0/O, 1/I) 4 belgili parol: 2 harf + 2 raqam aralash."""
+    harflar, raqamlar = "ABCDEFGHJKLMNPQRSTUVWXYZ", "23456789"
+    belgilar = [secrets.choice(harflar), secrets.choice(harflar), secrets.choice(raqamlar), secrets.choice(raqamlar)]
+    secrets.SystemRandom().shuffle(belgilar)
+    return "".join(belgilar)
+
+
+def _talaba_universitetini_tekshir(cur, universitet_id: int, parol: str):
+    """Institut faol va paroli mos bo'lsa qatorni qaytaradi, aks holda 400/404."""
+    cur.execute(
+        """SELECT id, nomi, talaba_paroli FROM universitetlar
+           WHERE id=%s AND NULLIF(to_jsonb(universitetlar)->>'archived_at','') IS NULL""",
+        (universitet_id,),
+    )
+    u = cur.fetchone()
+    if not u:
+        raise HTTPException(status_code=404, detail="Muassasa topilmadi")
+    if not u["talaba_paroli"]:
+        raise HTTPException(status_code=400, detail="Bu muassasada talabalar uchun parol hali qo'yilmagan — admin bilan bog'laning")
+    if str(parol or "").strip().upper() != u["talaba_paroli"]:
+        raise HTTPException(status_code=400, detail="Parol noto'g'ri")
+    return u
+
+
+def _talaba_yonalishlari(cur, universitet_id: int):
+    """V20 yo'nalishlari (bo'lsa) — daraja va shakl/til variantlari bilan."""
+    cur.execute("SELECT to_regclass('public.universitet_yonalishlari') AS y, to_regclass('public.universitet_yonalish_variantlari') AS v")
+    borligi = cur.fetchone() or {}
+    if not borligi.get("y"):
+        return []
+    variant_join = """
+        LEFT JOIN universitet_yonalish_variantlari v ON v.yonalish_id=y.id AND v.faol=TRUE""" if borligi.get("v") else ""
+    variant_ustunlar = """
+               ARRAY_REMOVE(ARRAY_AGG(DISTINCT v.talim_shakli), NULL) AS shakllar,
+               ARRAY_REMOVE(ARRAY_AGG(DISTINCT v.talim_tili), NULL) AS tillar""" if borligi.get("v") else """
+               ARRAY[]::TEXT[] AS shakllar, ARRAY[]::TEXT[] AS tillar"""
+    cur.execute(f"""
+        SELECT y.id, y.nomi, y.kodi, y.daraja, f.nomi AS fakultet,{variant_ustunlar}
+        FROM universitet_yonalishlari y
+        LEFT JOIN fakultetlar f ON f.id=y.fakultet_id
+        {variant_join}
+        WHERE y.universitet_id=%s AND COALESCE(y.faol, TRUE)=TRUE
+          AND NULLIF(to_jsonb(y)->>'arxiv_at','') IS NULL
+        GROUP BY y.id, y.nomi, y.kodi, y.daraja, f.nomi
+        ORDER BY y.daraja, f.nomi NULLS LAST, y.nomi
+    """, (universitet_id,))
+    natija = []
+    for r in cur.fetchall():
+        shakllar = sorted({s for s in (_talaba_shaklini_normallashtir(x) for x in (r["shakllar"] or [])) if s})
+        tillar = sorted({t for t in (_talaba_tilini_normallashtir(x) for x in (r["tillar"] or [])) if t})
+        natija.append({
+            "id": r["id"], "nomi": r["nomi"], "kodi": r["kodi"], "fakultet": r["fakultet"],
+            "daraja": r["daraja"], "bosqich": _talaba_darajani_bosqichga(r["daraja"]),
+            "shakllar": shakllar, "tillar": tillar,
+        })
+    return natija
+
+
+def _talaba_profilini_ol(cur, user_id: int):
+    cur.execute("SELECT to_regclass('public.talaba_profillari') AS t")
+    if not (cur.fetchone() or {}).get("t"):
+        return None
+    cur.execute("""
+        SELECT p.*, u.nomi AS universitet_nomi
+        FROM talaba_profillari p JOIN universitetlar u ON u.id=p.universitet_id
+        WHERE p.user_id=%s
+    """, (user_id,))
+    p = cur.fetchone()
+    if not p:
+        return None
+    p["sinf"] = _talaba_sinf_matni(p["talim_bosqichi"], p["kurs"])
+    p["bosqich_nomi"] = TALABA_BOSQICHLARI.get(p["talim_bosqichi"], p["talim_bosqichi"])
+    p["talim_shakli_nomi"] = TALABA_TALIM_SHAKLLARI.get(p["talim_shakli"], p["talim_shakli"])
+    p["talim_tili_nomi"] = TALABA_TALIM_TILLARI.get(p["talim_tili"], p["talim_tili"])
+    return p
+
+
+def _talaba_lugatlari():
+    return {
+        "bosqichlar": TALABA_BOSQICHLARI,
+        "kurs_chegarasi": TALABA_KURS_CHEGARASI,
+        "talim_shakllari": TALABA_TALIM_SHAKLLARI,
+        "talim_tillari": TALABA_TALIM_TILLARI,
+    }
+
+
+# ── ADMIN: muassasaga talaba paroli (faqat SUPER admin — admin_akkaunt) ──
+
+class UniversitetTalabaParoli(BaseModel):
+    token: str
+    universitet_id: int
+    parol: Optional[str] = None     # berilmasa avtomatik yaratiladi
+    ochirish: bool = False          # True — parol olib tashlanadi (qo'shilish yopiladi)
+
+
+@app.put("/api/admin/universitet_talaba_paroli")
+def universitet_talaba_paroli_qoy(sorov: UniversitetTalabaParoli):
+    """Talabalar shu parol bilan muassasaga qo'shiladi. Rektor/institut
+    admini qo'yolmaydi — _admin_tekshir faqat admin_akkaunt'ni o'tkazadi."""
+    _admin_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        cur.execute("SELECT id, nomi FROM universitetlar WHERE id=%s", (sorov.universitet_id,))
+        u = cur.fetchone()
+        if not u:
+            raise HTTPException(status_code=404, detail="Muassasa topilmadi")
+        if sorov.ochirish:
+            cur.execute("UPDATE universitetlar SET talaba_paroli=NULL WHERE id=%s", (sorov.universitet_id,))
+            conn.commit()
+            return {"holat": "ochirildi", "universitet_id": u["id"], "talaba_paroli": None}
+        if sorov.parol and sorov.parol.strip():
+            parol = _talaba_parolini_tekshir(sorov.parol)
+        else:
+            parol = _talaba_paroli_yarat()
+            for _ in range(20):  # boshqa muassasa bilan to'qnashmasin
+                cur.execute("SELECT 1 FROM universitetlar WHERE talaba_paroli=%s AND id<>%s", (parol, sorov.universitet_id))
+                if not cur.fetchone():
+                    break
+                parol = _talaba_paroli_yarat()
+        cur.execute("SELECT nomi FROM universitetlar WHERE talaba_paroli=%s AND id<>%s LIMIT 1", (parol, sorov.universitet_id))
+        band = cur.fetchone()
+        if band:
+            raise HTTPException(status_code=400, detail=f"Bu parol allaqachon \"{band['nomi']}\" muassasasida ishlatilgan — boshqasini tanlang")
+        cur.execute("UPDATE universitetlar SET talaba_paroli=%s WHERE id=%s", (parol, sorov.universitet_id))
+        conn.commit()
+        return {"holat": "saqlandi", "universitet_id": u["id"], "universitet_nomi": u["nomi"], "talaba_paroli": parol}
+    except HTTPException:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/admin/talaba_sinflari")
+def admin_talaba_sinflari(token: str):
+    """Shablonlardagi "aqlli Sinf tanlash" uchun kanonik ro'yxat — admin
+    qo'lda yozmaydi, aralashib ketmaydi."""
+    _admin_tekshir(token)
+    return {
+        "maktab": [str(i) for i in range(1, 12)],
+        "bakalavr": [_talaba_sinf_matni("bakalavr", k) for k in range(1, TALABA_KURS_CHEGARASI["bakalavr"] + 1)],
+        "magistr": [_talaba_sinf_matni("magistr", k) for k in range(1, TALABA_KURS_CHEGARASI["magistr"] + 1)],
+    }
+
+
+# ── TALABA: muassasaga parol bilan qo'shilish ──
+
+@app.get("/api/talaba/muassasalar")
+def talaba_muassasalar(token: str):
+    """Talaba qo'shilishi MUMKIN bo'lgan (paroli qo'yilgan, arxivlanmagan)
+    institutlar — nomi va hududi. Parol o'zi qaytarilmaydi."""
+    _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        cur.execute("""
+            SELECT u.id, u.nomi, u.viloyat, u.tuman
+            FROM universitetlar u
+            WHERE u.talaba_paroli IS NOT NULL
+              AND NULLIF(to_jsonb(u)->>'archived_at','') IS NULL
+            ORDER BY u.nomi
+        """)
+        return {"muassasalar": cur.fetchall(), **_talaba_lugatlari()}
+    finally:
+        cur.close()
+        conn.close()
+
+
+class TalabaMuassasaTekshirish(BaseModel):
+    token: str
+    universitet_id: int
+    parol: str
+
+
+@app.post("/api/talaba/muassasa_tekshir")
+def talaba_muassasa_tekshir(sorov: TalabaMuassasaTekshirish):
+    """Parol to'g'ri bo'lsa — shu institutning yo'nalishlari (bo'lsa),
+    shakl/til variantlari va kurs chegaralari qaytadi. Bazaga yozmaydi."""
+    _jwt_tekshir(sorov.token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        u = _talaba_universitetini_tekshir(cur, sorov.universitet_id, sorov.parol)
+        yonalishlar = _talaba_yonalishlari(cur, u["id"])
+        return {
+            "holat": "togri",
+            "universitet": {"id": u["id"], "nomi": u["nomi"]},
+            "yonalishlar": yonalishlar,
+            "yonalish_qolda": len(yonalishlar) == 0,   # ro'yxat bo'sh — talaba o'zi yozadi
+            **_talaba_lugatlari(),
+        }
+    finally:
+        cur.close()
+        conn.close()
+
+
+class TalabaProfilSaqlash(BaseModel):
+    token: str
+    universitet_id: int
+    parol: str
+    yonalish_id: Optional[int] = None
+    yonalish_nomi: str
+    talim_bosqichi: str
+    kurs: int
+    guruh: str
+    talim_shakli: str
+    talim_tili: str
+
+
+@app.post("/api/talaba/profil_saqla")
+def talaba_profil_saqla(sorov: TalabaProfilSaqlash):
+    """Talaba profilini saqlaydi VA users.class ga kanonik Sinf'ni yozadi —
+    shu zahoti o'sha kurs uchun yaratilgan mavzu/testlar, AI ustoz ishlaydi."""
+    user_id = _jwt_tekshir(sorov.token)
+    bosqich = str(sorov.talim_bosqichi or "").strip().lower()
+    if bosqich not in TALABA_BOSQICHLARI:
+        raise HTTPException(status_code=400, detail="Ta'lim bosqichi: bakalavr yoki magistr")
+    if not (1 <= int(sorov.kurs) <= TALABA_KURS_CHEGARASI[bosqich]):
+        raise HTTPException(status_code=400, detail=f"{TALABA_BOSQICHLARI[bosqich]} uchun kurs 1–{TALABA_KURS_CHEGARASI[bosqich]} oralig'ida bo'ladi")
+    guruh = re.sub(r"\s+", " ", str(sorov.guruh or "").strip()).upper()
+    if not guruh or len(guruh) > 16 or not re.fullmatch(r"[0-9A-ZА-ЯЁ' ‘’ʻʼ.\-/]+", guruh):
+        raise HTTPException(status_code=400, detail="Guruhni qisqa yozing — masalan 401 yoki MAT-21")
+    shakl = _talaba_shaklini_normallashtir(sorov.talim_shakli)
+    if not shakl:
+        raise HTTPException(status_code=400, detail="Ta'lim shakli: kunduzgi, kechki, sirtqi yoki masofaviy")
+    til = _talaba_tilini_normallashtir(sorov.talim_tili)
+    if not til:
+        raise HTTPException(status_code=400, detail="Ta'lim tili noto'g'ri")
+    yonalish_nomi = re.sub(r"\s+", " ", str(sorov.yonalish_nomi or "").strip())[:160]
+    if sorov.yonalish_id is None and len(yonalish_nomi) < 2:
+        # ro'yxatdan tanlanganda nom bazadan olinadi; qo'lda yozilganda bo'sh bo'lmasin
+        raise HTTPException(status_code=400, detail="Yo'nalishni tanlang yoki yozing")
+
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        u = _talaba_universitetini_tekshir(cur, sorov.universitet_id, sorov.parol)
+        cur.execute("SELECT role FROM users WHERE user_id=%s FOR UPDATE", (user_id,))
+        foydalanuvchi = cur.fetchone()
+        if not foydalanuvchi:
+            raise HTTPException(status_code=404, detail="Foydalanuvchi topilmadi")
+        if foydalanuvchi["role"] not in (None, "", "kabutar", "mustaqil", "oquvchi"):
+            raise HTTPException(status_code=403, detail="Talaba sifatida qo'shilish faqat o'quvchi rolida mumkin — Profil → Rol bo'limidan o'zgartiring")
+
+        yonalish_id = None
+        if sorov.yonalish_id is not None:
+            cur.execute("SELECT to_regclass('public.universitet_yonalishlari') AS y")
+            if (cur.fetchone() or {}).get("y"):
+                cur.execute("SELECT id, nomi, daraja FROM universitet_yonalishlari WHERE id=%s AND universitet_id=%s",
+                            (sorov.yonalish_id, u["id"]))
+                y = cur.fetchone()
+                if not y:
+                    raise HTTPException(status_code=400, detail="Yo'nalish bu muassasaga tegishli emas")
+                yonalish_id, yonalish_nomi = y["id"], y["nomi"]
+                if _talaba_darajani_bosqichga(y["daraja"]) != bosqich:
+                    bosqich = _talaba_darajani_bosqichga(y["daraja"])
+                    if int(sorov.kurs) > TALABA_KURS_CHEGARASI[bosqich]:
+                        raise HTTPException(status_code=400, detail=f"Bu yo'nalish {TALABA_BOSQICHLARI[bosqich]} — kurs 1–{TALABA_KURS_CHEGARASI[bosqich]}")
+
+        sinf = _talaba_sinf_matni(bosqich, int(sorov.kurs))
+        cur.execute("""
+            INSERT INTO talaba_profillari(user_id, universitet_id, yonalish_id, yonalish_nomi, talim_bosqichi, kurs, guruh, talim_shakli, talim_tili)
+            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s)
+            ON CONFLICT(user_id) DO UPDATE SET
+              universitet_id=EXCLUDED.universitet_id, yonalish_id=EXCLUDED.yonalish_id,
+              yonalish_nomi=EXCLUDED.yonalish_nomi, talim_bosqichi=EXCLUDED.talim_bosqichi,
+              kurs=EXCLUDED.kurs, guruh=EXCLUDED.guruh, talim_shakli=EXCLUDED.talim_shakli,
+              talim_tili=EXCLUDED.talim_tili, yangilangan_at=NOW()
+        """, (user_id, u["id"], yonalish_id, yonalish_nomi, bosqich, int(sorov.kurs), guruh, shakl, til))
+
+        # Sinf = kanonik kurs matni; maktab harfi/turi talabaga tegishli emas.
+        cur.execute("SELECT 1 FROM information_schema.columns WHERE table_name='users' AND column_name='kabutar_education_ready'")
+        ready_ustuni = cur.fetchone() is not None
+        cur.execute(f"""
+            UPDATE users SET role='oquvchi', class=%s, class_letter=NULL, universitet_id=%s,
+                             asosiy_til=CASE WHEN %s IN ('uz','ru','en') THEN %s ELSE asosiy_til END
+                             {", kabutar_education_ready=TRUE" if ready_ustuni else ""}
+            WHERE user_id=%s
+        """, (sinf, u["id"], til, til, user_id))
+        _muassasa_jadvali(cur)
+        cur.execute("""
+            INSERT INTO foydalanuvchi_muassasalari(user_id, muassasa_turi, muassasa_id, lavozim)
+            VALUES(%s,'universitet',%s,'talaba') ON CONFLICT (user_id, muassasa_turi, muassasa_id) DO NOTHING
+        """, (user_id, u["id"]))
+        conn.commit()
+        profil = _talaba_profilini_ol(cur, user_id)
+        return {"holat": "saqlandi", "sinf": sinf, "talaba_profili": profil}
+    except HTTPException:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/talaba/profil")
+def talaba_profil(token: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        profil = _talaba_profilini_ol(cur, user_id)
+        return {"mavjud": profil is not None, "talaba_profili": profil, **_talaba_lugatlari()}
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.delete("/api/talaba/profil")
+def talaba_profil_ochir(token: str):
+    """Muassasadan chiqish — profil o'chadi, Sinf bo'shaydi (1–11 ga qaytish
+    uchun o'quvchi profildan sinfini qayta tanlaydi). Jadval saqlanib qoladi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        profil = _talaba_profilini_ol(cur, user_id)
+        if not profil:
+            return {"holat": "yoq"}
+        cur.execute("DELETE FROM talaba_profillari WHERE user_id=%s", (user_id,))
+        cur.execute("""UPDATE users SET class=NULL,
+                          universitet_id=CASE WHEN universitet_id=%s THEN NULL ELSE universitet_id END
+                       WHERE user_id=%s""", (profil["universitet_id"], user_id))
+        _muassasa_jadvali(cur)
+        cur.execute("""DELETE FROM foydalanuvchi_muassasalari
+                       WHERE user_id=%s AND muassasa_turi='universitet' AND muassasa_id=%s AND lavozim='talaba'""",
+                    (user_id, profil["universitet_id"]))
+        conn.commit()
+        return {"holat": "chiqildi"}
+    finally:
+        cur.close()
+        conn.close()
+
+
+# ── TALABA: o'zi boshqaradigan haftalik jadval (paralar) ──
+
+def _talaba_bosh_jadval():
+    """Standart: dushanba–shanba dars kuni, para yo'q; yakshanba dam."""
+    return [{"kun": i, "turi": "dam" if i == 7 else "dars", "paralar": []} for i in range(1, 8)]
+
+
+def _talaba_jadval_sozlamalarini_tekshir(sozlamalar):
+    s = sozlamalar if isinstance(sozlamalar, dict) else {}
+    def daqiqa(qiymat, standart, past, yuqori):
+        try:
+            v = int(qiymat)
+        except (TypeError, ValueError):
+            return standart
+        return v if past <= v <= yuqori else standart
+    boshlanish = str(s.get("boshlanish") or "08:30").strip()
+    if not re.fullmatch(r"\d{2}:\d{2}", boshlanish):
+        boshlanish = "08:30"
+    return {
+        "boshlanish": boshlanish,                                   # 1-para boshlanishi
+        "para_daqiqa": daqiqa(s.get("para_daqiqa"), 80, 30, 180),   # para davomiyligi
+        "tanaffus_daqiqa": daqiqa(s.get("tanaffus_daqiqa"), 10, 0, 60),
+        "kunlar_soni": daqiqa(s.get("kunlar_soni"), 6, 5, 7),        # ko'rinadigan kunlar (5/6/7)
+        "nol_para": bool(s.get("nol_para", False)),                 # 0-para ko'rsatilsinmi
+    }
+
+
+def _talaba_jadval_kunlarini_tekshir(kunlar):
+    if not isinstance(kunlar, list) or len(kunlar) > 7:
+        raise HTTPException(status_code=422, detail="Jadval 7 kundan ko'p bo'lmaydi")
+    natija = {}
+    for kun in kunlar:
+        if not isinstance(kun, dict):
+            continue
+        try:
+            raqam = int(kun.get("kun"))
+        except (TypeError, ValueError):
+            continue
+        if not 1 <= raqam <= 7:
+            continue
+        turi = str(kun.get("turi") or "dars")
+        if turi not in TALABA_KUN_TURLARI:
+            turi = "dars"
+        paralar = []
+        for para in (kun.get("paralar") or [])[:10]:
+            if not isinstance(para, dict):
+                continue
+            fan = re.sub(r"\s+", " ", str(para.get("fan") or "").strip())[:120]
+            if not fan:
+                continue
+            try:
+                para_raqami = int(para.get("raqam"))
+            except (TypeError, ValueError):
+                para_raqami = len(paralar) + 1
+            para_raqami = min(9, max(0, para_raqami))
+            para_turi = str(para.get("turi") or "maruza")
+            vaqt = {}
+            for kalit in ("boshlanish", "tugash"):
+                q = str(para.get(kalit) or "").strip()
+                vaqt[kalit] = q if re.fullmatch(r"\d{2}:\d{2}", q) else ""
+            paralar.append({
+                "raqam": para_raqami, "fan": fan,
+                "oqituvchi": str(para.get("oqituvchi") or "").strip()[:120],
+                "xona": str(para.get("xona") or "").strip()[:40],
+                "turi": para_turi if para_turi in TALABA_PARA_TURLARI else "boshqa",
+                "boshlanish": vaqt["boshlanish"], "tugash": vaqt["tugash"],
+                "izoh": str(para.get("izoh") or "").strip()[:200],
+            })
+        paralar.sort(key=lambda p: p["raqam"])
+        natija[raqam] = {"kun": raqam, "turi": turi, "paralar": paralar}
+    for i in range(1, 8):
+        natija.setdefault(i, {"kun": i, "turi": "dam" if i == 7 else "dars", "paralar": []})
+    return [natija[i] for i in range(1, 8)]
+
+
+def _talaba_jadval_javobi(sozlamalar, kunlar, manba):
+    bugun = datetime.now(timezone(timedelta(hours=5)))  # Toshkent vaqti
+    return {
+        "sozlamalar": sozlamalar, "kunlar": kunlar, "manba": manba,
+        "kun_nomlari": TALABA_HAFTA_KUNLARI,
+        "kun_turlari": TALABA_KUN_TURLARI, "para_turlari": TALABA_PARA_TURLARI,
+        "bugun": {"kun": bugun.isoweekday(), "sana": bugun.date().isoformat()},
+    }
+
+
+@app.get("/api/talaba/haftalik_jadval")
+def talaba_haftalik_jadval(token: str):
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        cur.execute("SELECT sozlamalar, kunlar FROM talaba_haftalik_jadvali WHERE user_id=%s", (user_id,))
+        saqlangan = cur.fetchone()
+        if saqlangan:
+            return _talaba_jadval_javobi(
+                _talaba_jadval_sozlamalarini_tekshir(saqlangan["sozlamalar"]),
+                _talaba_jadval_kunlarini_tekshir(saqlangan["kunlar"]),
+                "saqlangan",
+            )
+        return _talaba_jadval_javobi(_talaba_jadval_sozlamalarini_tekshir({}), _talaba_bosh_jadval(), "bosh")
+    finally:
+        cur.close()
+        conn.close()
+
+
+class TalabaHaftalikJadvalSorov(BaseModel):
+    token: str
+    sozlamalar: dict = Field(default_factory=dict)
+    kunlar: list = Field(default_factory=list)
+
+
+@app.put("/api/talaba/haftalik_jadval")
+def talaba_haftalik_jadval_saqla(sorov: TalabaHaftalikJadvalSorov):
+    """Talaba jadvalini TO'LIQ o'zi boshqaradi — maktab o'quv rejasi
+    tekshiruvi yo'q. Kun turi (dars/amaliyot/dam) va paralar erkin."""
+    user_id = _jwt_tekshir(sorov.token)
+    sozlamalar = _talaba_jadval_sozlamalarini_tekshir(sorov.sozlamalar)
+    kunlar = _talaba_jadval_kunlarini_tekshir(sorov.kunlar)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _universitet_jadvali(cur)
+        cur.execute("""
+            INSERT INTO talaba_haftalik_jadvali(user_id, sozlamalar, kunlar)
+            VALUES(%s,%s,%s)
+            ON CONFLICT(user_id) DO UPDATE SET sozlamalar=EXCLUDED.sozlamalar, kunlar=EXCLUDED.kunlar, yangilangan_at=NOW()
+        """, (user_id, psycopg2.extras.Json(sozlamalar), psycopg2.extras.Json(kunlar)))
+        conn.commit()
+        return _talaba_jadval_javobi(sozlamalar, kunlar, "saqlangan")
+    finally:
+        cur.close()
+        conn.close()
 
 
 # ═══════════════════════════════════════════════════════════
@@ -15924,8 +16560,12 @@ def topik_sinflar(token: str):
     cur.close()
     conn.close()
     oddiy = sorted([g for g in hammasi if g.isdigit()], key=int)
-    togarak = sorted([g for g in hammasi if not g.isdigit()])
-    return {"oddiy": oddiy, "togarak": togarak}
+    # Talaba kurslari ("2 kurs", "1 kurs magistr") to'garak bilan ARALASHMASIN —
+    # alohida ro'yxat; frontend "aqlli tanlash"da uchta guruhni ajratib ko'rsatadi.
+    talaba = sorted([g for g in hammasi if _sinf_talaba_mi(g)],
+                    key=lambda g: (_talaba_sinfini_ochish(g)["bosqich"] == "magistr", _talaba_sinfini_ochish(g)["kurs"]))
+    togarak = sorted([g for g in hammasi if not g.isdigit() and not _sinf_talaba_mi(g)])
+    return {"oddiy": oddiy, "talaba": talaba, "togarak": togarak}
 
 
 @app.get("/api/admin/topik_fanlar")
@@ -18833,8 +19473,8 @@ def _ai_pedagogik_jadvallar(cur):
 
 
 def _ai_sinf_tozala(qiymat) -> str:
-    topildi = re.search(r"\d+", str(qiymat or ""))
-    return topildi.group(0) if topildi else str(qiymat or "").strip()
+    # "2 kurs" talaba matni kanonik holda qaytadi (2-sinf deb o'qilmaydi)
+    return _sinf_qiymatini_normallashtir(qiymat) or ""
 
 
 def _ai_yosh_hisobla(tugilgan_sana, sinf=None) -> int:
@@ -18843,6 +19483,9 @@ def _ai_yosh_hisobla(tugilgan_sana, sinf=None) -> int:
         return bugun.year - tugilgan_sana.year - (
             (bugun.month, bugun.day) < (tugilgan_sana.month, tugilgan_sana.day)
         )
+    talaba = _talaba_sinfini_ochish(sinf)
+    if talaba:  # bakalavr 1-kurs ≈ 18, magistr 1-kurs ≈ 22
+        return (22 if talaba["bosqich"] == "magistr" else 18) + talaba["kurs"] - 1
     sinf_soni = _ai_sinf_tozala(sinf)
     return int(sinf_soni) + 6 if sinf_soni.isdigit() else 12
 
@@ -21514,11 +22157,7 @@ TALIM_YOLI_BILIM_HOLATLARI = (
 
 def _talim_yoli_sinfni_tozala(qiymat):
     """Profil va guruhdagi turli sinf yozuvlarini yagona qiymatga keltiradi."""
-    if qiymat is None:
-        return None
-    matn = str(qiymat).strip()
-    mos = re.search(r"(?<!\d)(1[01]|[1-9])(?!\d)", matn)
-    return mos.group(1) if mos else (matn or None)
+    return _sinf_qiymatini_normallashtir(qiymat)
 
 
 def _talim_yoli_akademik_yil(bugun=None):
@@ -24345,6 +24984,8 @@ def _oquvchi_jadval_ruxsati(cur, actor_id, child_id):
 
 
 def _jadval_sinf_raqami(value):
+    if _sinf_talaba_mi(value):
+        raise HTTPException(status_code=422, detail="Talaba uchun maktab jadvali tuzilmaydi — \"Haftalik paralar\" bo'limidan o'z jadvalingizni kiriting")
     match = re.search(r"(?:^|\D)(1[01]|[1-9])(?:\D|$)", str(value or ""))
     if not match:
         raise HTTPException(status_code=422, detail="Jadval uchun profilingizda sinfni tanlang; sinf taxmin qilinmaydi")
