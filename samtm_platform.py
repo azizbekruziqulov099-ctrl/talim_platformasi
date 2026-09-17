@@ -319,6 +319,34 @@ class _DbUlanish:
             pass
 
 
+def _yuklab_olish_sarlavhasi(fayl_nomi, inline=False):
+    """Content-Disposition sarlavhasini XAVFSIZ yasaydi.
+
+    HTTP sarlavhalari faqat latin-1 belgilarni qabul qiladi. Fan nomi yoki
+    yuklangan fayl nomida ‘ ʻ ʼ kabi o'zbekcha apostrof, kirill harflari
+    bo'lsa Starlette UnicodeEncodeError beradi va so'rov 500 bilan
+    yiqiladi (masalan "Boshlang‘ich matematika..." fani uchun shablon
+    yuklab olish umuman ishlamas edi). Shuning uchun:
+      * filename=  — faqat ASCII (apostroflar olib tashlanadi, qolgan
+        begona belgilar '_' ga almashadi);
+      * filename*= — RFC 5987 bo'yicha UTF-8 percent-encoded to'liq nom,
+        zamonaviy brauzerlar asl nomni shundan oladi.
+    """
+    from urllib.parse import quote
+
+    fayl_nomi = str(fayl_nomi or "fayl").strip() or "fayl"
+    ascii_nom = unicodedata.normalize("NFKD", fayl_nomi)
+    ascii_nom = ascii_nom.replace("‘", "").replace("’", "").replace("ʻ", "").replace("ʼ", "").replace("'", "")
+    ascii_nom = ascii_nom.encode("ascii", "ignore").decode("ascii")
+    ascii_nom = re.sub(r"[^A-Za-z0-9._-]+", "_", ascii_nom).strip("._-") or "fayl"
+    turi = "inline" if inline else "attachment"
+    return {
+        "Content-Disposition": (
+            f"{turi}; filename=\"{ascii_nom}\"; filename*=UTF-8''{quote(fayl_nomi, safe='')}"
+        )
+    }
+
+
 def _db():
     """Cheklangan kutishli ulanish: baza band bo'lsa sayt osilib qolmaydi."""
     try:
@@ -7485,7 +7513,7 @@ def togarak_kontent_fayl(token: str, biriktirma_id: int):
     conn.close()
     return StreamingResponse(
         _io.BytesIO(fayl_bytes), media_type=b["fayl_turi"] or "application/octet-stream",
-        headers={"Content-Disposition": f'inline; filename="{b["fayl_nomi"] or "fayl"}"'},
+        headers=_yuklab_olish_sarlavhasi(b["fayl_nomi"] or "fayl", inline=True),
     )
 
 
@@ -12863,7 +12891,7 @@ def hujjat_yukleb_olish(token: str, hujjat_id: int):
     return Response(
         content=bytes(h["fayl_malumot"]),
         media_type=h["fayl_turi"] or "application/octet-stream",
-        headers={"Content-Disposition": f'attachment; filename="{h["fayl_nomi"] or "hujjat"}"'},
+        headers=_yuklab_olish_sarlavhasi(h["fayl_nomi"] or "hujjat"),
     )
 
 
@@ -17432,7 +17460,8 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     return StreamingResponse(
         buf,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": f"attachment; filename={fname}"},
+        # fan nomida ‘ (U+2018) bo'lsa xom f-string sarlavha 500 berardi
+        headers=_yuklab_olish_sarlavhasi(fname),
     )
 
 
