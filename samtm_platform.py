@@ -16528,7 +16528,23 @@ def admin_sifatida_kirish(token: str, user_id: int):
 class TestShablonGuruh(BaseModel):
     diff: str    # oson | o'rta | qiyin | murakkab
     turi: str    # single_choice | write_answer
-    soni: int    # 0, 5, 10, 15, 20 ...
+    soni: int    # 0, 5, 10, 15, 20 ... yoki qo'lda yozilgan istalgan son
+    vaqt: Optional[int] = None  # har savolga soniya; None — qiyinlikka qarab AVTO
+
+
+# Har savolga vaqt (soniya) — admin sozlamada o'zi yozmasa, qiyinlik bo'yicha
+TEST_AVTO_VAQT = {"oson": 60, "o'rta": 80, "qiyin": 100, "murakkab": 120}
+
+
+def _test_vaqti(guruh) -> int:
+    """Guruh uchun time_limit: qo'lda berilgan bo'lsa 10–900 s oralig'ida, aks holda avto."""
+    vaqt = getattr(guruh, "vaqt", None)
+    if vaqt is not None:
+        try:
+            return max(10, min(900, int(vaqt)))
+        except (TypeError, ValueError):
+            pass
+    return TEST_AVTO_VAQT.get(str(guruh.diff).lower(), 60)
 
 
 class TestShablonSorov(BaseModel):
@@ -16997,6 +17013,8 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     guruhlar = [g for g in sorov.guruhlar if g.soni > 0]
     if not guruhlar:
         raise HTTPException(status_code=400, detail="Kamida bitta qiyinlik darajasidan son tanlang")
+    if any(g.soni > 200 for g in guruhlar):
+        raise HTTPException(status_code=400, detail="Bir qiyinlik darajasi uchun ko'pi bilan 200 ta savol")
 
     conn = _db()
     cur = conn.cursor()
@@ -17056,7 +17074,8 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
         for kod in fan_kodlari:
             info = tc_map.get(kod)
             grade = str(info["grade"]) if info else ""
-            age_group = _YOSH_GURUHI.get(grade, "")
+            talaba = _talaba_sinfini_ochish(grade)
+            age_group = ("22-25" if talaba["bosqich"] == "magistr" else "18-22") if talaba else _YOSH_GURUHI.get(grade, "")
             for g in guruhlar:
                 color = diff_colors.get(g.diff, "F2F2F2")
                 for i in range(1, g.soni + 1):
@@ -17070,7 +17089,7 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
                     ws.cell(row_num, 15, "uz")
                     ws.cell(row_num, 16, 1)
                     ws.cell(row_num, 17, age_group)
-                    ws.cell(row_num, 18, 60 if g.turi == "write_answer" else 55)
+                    ws.cell(row_num, 18, _test_vaqti(g))  # qiyinlikka qarab avto yoki admin yozgan vaqt
                     ws.cell(row_num, 19, sorov.maqsad)
                     for col in range(1, len(testlar_ustunlari) + 1):
                         ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)

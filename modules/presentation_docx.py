@@ -91,6 +91,36 @@ def build_tagged_template(document):
     return "\n".join(paragraphs)
 
 
+LESSON_TYPES = {"lecture": "Ma‘ruza", "practice": "Amaliy mashg‘ulot", "seminar": "Seminar", "lab": "Laboratoriya", "project": "Loyiha himoyasi"}
+
+
+def lesson_context(document):
+    """"Dars haqida" satrlari — AI kimga, qanday dars uchun yozishini bilsin.
+    Kvadrat qavs bilan boshlanmaydi: importda oddiy muqaddima sifatida o‘tkaziladi."""
+    return [
+        f"Mavzu: {document.get('title', '')}",
+        f"Fan: {document.get('subject') or 'ko‘rsatilmagan'}",
+        f"Kimga (sinf yoki kurs): {document.get('audience') or 'ko‘rsatilmagan'}",
+        f"Dars turi: {LESSON_TYPES.get(document.get('lesson_type'), document.get('lesson_type') or 'ma‘ruza')}",
+        f"Slaydlar soni: {len(document.get('slides', []))}",
+    ]
+
+
+def ai_prompt(document):
+    """Tayyor so‘rov — foydalanuvchi shu faylni istalgan AI’ga bersa, AI qanday
+    to‘ldirishni biladi. Slayd tegi bilan boshlanmaydigan bitta xatboshi."""
+    audience = document.get("audience") or "ko‘rsatilgan auditoriya"
+    return (
+        f"AI uchun so‘rov (nusxalab bering): Quyidagi {len(document.get('slides', []))} slaydlik rejani "
+        f"“{document.get('title', '')}” mavzusida, {audience} uchun, {document.get('subject') or 'fan'} fani bo‘yicha to‘ldiring. "
+        "Har bir slayd bloki ichida faqat SARLAVHA, MATN1, MATN2, MATN3, FORMULA, MISOL, RASM1, RASM2 va RASM izohlariga matn yozing; "
+        "ID, MAKET, BOLIM qiymatlarini, slaydlar soni va tartibini o‘zgartirmang; teglarni qo‘shmang va takrorlamang. "
+        "Sarlavha 100, MATN1 600, MATN2 va MATN3 400, FORMULA 400 (LaTeX), MISOL 250, rasm tavsifi 240, rasm izohi 100 belgidan oshmasin. "
+        "Auditoriya darajasiga mos sodda, aniq jumlalar; manbasiz fakt to‘qimang; Yordam satrlarini olib tashlang. "
+        "Natijani xuddi shu ko‘rinishda — to‘ldirilgan bloklar bilan — qaytaring."
+    )
+
+
 def _add_field(doc, tag, value):
     paragraph = doc.add_paragraph()
     paragraph.paragraph_format.space_after = Pt(3)
@@ -141,10 +171,15 @@ def build_template_docx(document):
     doc.core_properties.author = ""
     doc.core_properties.last_modified_by = ""
     doc.add_paragraph("Taqdimot mazmunini to‘ldirish shakli", "Title")
-    doc.add_paragraph(f"Taqdimot: {document.get('title', '')}")
-    doc.add_paragraph(f"Slaydlar soni: {len(planned)}")
+    doc.add_paragraph("Dars haqida", "Heading 1")
+    for line in lesson_context(document):
+        doc.add_paragraph(line)
+    doc.add_paragraph("Qanday to‘ldiriladi", "Heading 1")
     for instruction in INSTRUCTIONS:
         doc.add_paragraph(instruction)
+    prompt = doc.add_paragraph(ai_prompt(document))
+    for run in prompt.runs:
+        run.bold = True
     for index, entries in enumerate(planned, 1):
         heading = doc.add_paragraph(f"Slayd {index}", "Heading 1")
         heading.paragraph_format.page_break_before = True
