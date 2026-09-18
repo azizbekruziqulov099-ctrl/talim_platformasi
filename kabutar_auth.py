@@ -527,8 +527,10 @@ def register_auth(app, platform):
     @app.post('/auth/telegram/start')
     def start(body:Start,request:Request):
         service.origin(request)
-        if not config()['telegram']['enabled']:
-            raise HTTPException(503,'Telegram orqali kirish hali sozlanmagan')
+        telegram=config()['telegram']
+        if not telegram['enabled']:
+            # Sabab aniq ko'rinsin — admin qaysi Variable yetishmasligini darhol biladi.
+            raise HTTPException(503,f"Telegram orqali kirish hali sozlanmagan. {telegram.get('reason') or ''}".strip())
         if body.mode not in ('login','link'):
             raise HTTPException(422,'Kirish turi noto‘g‘ri')
         site = service.challenge_site(request)

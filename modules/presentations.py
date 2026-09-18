@@ -380,7 +380,8 @@ class PresentationService:
         cur.execute("""SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname='public'
             AND tablename=ANY(%s)""", (["universitetlar", "universitet_xodim_rollari", "universitet_qabul_talabalari",
                                        "universitet_guruh_azolari", "universitet_guruhlari", "kafedralar", "fakultetlar",
-                                       "universitet_workspace_map", "organization_trials", "learning_contexts"],))
+                                       "universitet_workspace_map", "organization_trials", "learning_contexts",
+                                       "talaba_profillari"],))
         tables = {r["tablename"] for r in cur.fetchall()}
         if "universitetlar" not in tables:
             return False
@@ -390,6 +391,9 @@ class PresentationService:
             params.append(uid)
         if "universitet_qabul_talabalari" in tables:
             candidates.append("SELECT universitet_id FROM universitet_qabul_talabalari WHERE user_id=%s")
+            params.append(uid)
+        if "talaba_profillari" in tables:  # parol bilan o'zi qo'shilgan talabalar
+            candidates.append("SELECT universitet_id FROM talaba_profillari WHERE user_id=%s")
             params.append(uid)
         if {"universitet_guruh_azolari", "universitet_guruhlari", "kafedralar", "fakultetlar"} <= tables:
             candidates.append("""SELECT f.universitet_id FROM universitet_guruh_azolari a

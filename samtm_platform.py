@@ -1611,6 +1611,12 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
 
     togarak_mi = turi == "togarak"
     grade_shart = "d.grade !~ '^[0-9]+$'" if togarak_mi else "d.grade ~ '^[0-9]+$'"
+    if sinf and _sinf_talaba_mi(sinf):
+        # Talaba kursi ("2 kurs", "1 kurs magistr") — raqamli sinf ham, to'garak
+        # oralig'i ham emas; aniq grade sharti yetarli, aks holda talaba testlarni
+        # umuman ko'rmaydi.
+        sinf = _talaba_sinfini_ochish(sinf)["sinf"]
+        grade_shart = "TRUE"
 
     conn = _db()
     cur = conn.cursor()
@@ -7170,6 +7176,9 @@ def togarak_yaratish_mavzulari(token: str, sinf: str, fan: str, turi: str = "odd
     _jwt_tekshir(token)
     togarak_mi = turi == "togarak"
     grade_shart = "d.grade !~ '^[0-9]+$'" if togarak_mi else "d.grade ~ '^[0-9]+$'"
+    if _sinf_talaba_mi(sinf):  # kurs mavzulari to'garak/kurs yaratishda ham tanlansin
+        sinf = _talaba_sinfini_ochish(sinf)["sinf"]
+        grade_shart = "TRUE"
     conn = _db()
     cur = conn.cursor()
     cur.execute(f"""
