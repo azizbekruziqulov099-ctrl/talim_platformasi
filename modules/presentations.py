@@ -429,6 +429,16 @@ class PresentationService:
         if not allowed and row["role"] == "oquvchi":
             allowed = parse_grade(row["class"]) in settings["grades"]
         reason = "" if allowed else "Taqdimotlar o‘qituvchilar, institut a’zolari va ruxsat berilgan yuqori sinf o‘quvchilari uchun ochiq."
+        # Admin "kim nima yarata oladi" kalitlari — rol bo'yicha yopilgan bo'lsa,
+        # foydalanuvchi admin yozgan izohni ko'radi (admin o'zi doim ochiq).
+        ruxsat_fn = getattr(self.platform, "_xususiyat_ruxsati", None)
+        if allowed and not admin and callable(ruxsat_fn):
+            try:
+                ruxsat = ruxsat_fn(cur, uid, "taqdimot")
+            except Exception:
+                ruxsat = {"ruxsat": True, "izoh": ""}
+            if not ruxsat.get("ruxsat", True):
+                allowed, reason = False, ruxsat.get("izoh") or reason
         return {"allowed": bool(allowed), "admin": admin, "reason": reason, "settings": settings, "max_slides": MAX_SLIDES}
 
     def capabilities(self, uid):

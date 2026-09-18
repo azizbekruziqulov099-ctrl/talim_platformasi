@@ -4038,6 +4038,10 @@ def togarak_yarat(sorov: TogarakYaratish):
     pass  # V19: DDL moved to startup migration.
     pass  # V19: DDL moved to startup migration.
     _togaraklar_reja_id_ustuni(cur)
+    ruxsat = _xususiyat_ruxsati(cur, teacher_id, "togarak")  # admin rollar bo'yicha ochgan/yopgan
+    if not ruxsat["ruxsat"]:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail=ruxsat["izoh"])
     pass  # V19: DDL moved to startup migration.
     _reja_jadvallari(cur)
     # Agar o'qituvchi biror o'quv markaziga tegishli bo'lsa (xodim
@@ -15605,6 +15609,169 @@ def universitet_guruh_bilimi(token: str, guruh_id: int):
     cur.close()
     conn.close()
     return {"guruh_nomi": g["nomi"], "talaba_soni": len(talabalar), "kurslar": natija_kurslar}
+
+
+# ═══════════════════════════════════════════════════════════
+# XUSUSIYAT RUXSATLARI — admin "kim nima yarata oladi"ni rollarga qarab
+# ochadi/yopadi: taqdimot yaratish, to'garak (kurs) yaratish. Yopilgan
+# bo'lsa foydalanuvchi tugmani bosganda ADMIN YOZGAN izohni ko'radi —
+# "nega ishlamayapti" degan savol qolmaydi. Admin o'zi doim ochiq.
+# ═══════════════════════════════════════════════════════════
+
+XUSUSIYAT_TAVSIFLARI = {
+    "taqdimot": {
+        "nomi": "Taqdimot yaratish",
+        "tavsif": "Taqdimot ustaxonasi (PowerPoint). Maktab o'quvchilari uchun qo'shimcha cheklov — ustaxona ichidagi «Administrator: sinflar» ro'yxati.",
+        "standart": {"oqituvchi": True, "talaba": True, "oquvchi": True, "ota_ona": False},
+    },
+    "togarak": {
+        "nomi": "To'garak / kurs yaratish",
+        "tavsif": "Yangi to'garak yoki repetitor guruhi ochish, unga o'quvchi qabul qilish.",
+        "standart": {"oqituvchi": True, "talaba": False, "oquvchi": False, "ota_ona": False},
+    },
+}
+XUSUSIYAT_ROL_NOMLARI = {
+    "oqituvchi": "O'qituvchilar", "talaba": "Talabalar (OTM)",
+    "oquvchi": "Maktab o'quvchilari", "ota_ona": "Ota-onalar",
+}
+
+
+def _xususiyat_jadvali(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS xususiyat_ruxsatlari(
+        xususiyat TEXT PRIMARY KEY,
+        rollar JSONB NOT NULL DEFAULT '{}'::jsonb,
+        izoh TEXT NOT NULL DEFAULT '',
+        updated_by BIGINT,
+        updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )""")
+
+
+def _xususiyat_sozlamalari(cur):
+    """Standart qiymatlar ustiga admin saqlagan qiymatlar qo'yiladi."""
+    _xususiyat_jadvali(cur)
+    cur.execute("SELECT xususiyat, rollar, izoh FROM xususiyat_ruxsatlari")
+    saqlangan = {r["xususiyat"]: r for r in cur.fetchall()}
+    natija = {}
+    for kod, meta in XUSUSIYAT_TAVSIFLARI.items():
+        rollar = dict(meta["standart"])
+        qator = saqlangan.get(kod)
+        if qator:
+            for rol, qiymat in (qator["rollar"] or {}).items():
+                if rol in rollar:
+                    rollar[rol] = bool(qiymat)
+        natija[kod] = {"rollar": rollar, "izoh": (qator["izoh"] if qator else "") or ""}
+    return natija
+
+
+def _foydalanuvchi_xususiyat_roli(cur, user_id):
+    """('admin'|'oqituvchi'|'talaba'|'oquvchi'|'ota_ona', admin_mi)."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return "admin", True
+    cur.execute("SELECT role, class FROM users WHERE user_id=%s", (user_id,))
+    u = cur.fetchone() or {}
+    rol = (u.get("role") or "").strip().lower()
+    if rol == "oqituvchi":
+        return "oqituvchi", False
+    if rol in ("ota-ona", "ota_ona", "otaona"):
+        return "ota_ona", False
+    if _sinf_talaba_mi(u.get("class")):
+        return "talaba", False
+    cur.execute("SELECT to_regclass('public.talaba_profillari') AS t")
+    if (cur.fetchone() or {}).get("t"):
+        cur.execute("SELECT 1 FROM talaba_profillari WHERE user_id=%s", (user_id,))
+        if cur.fetchone():
+            return "talaba", False
+    return "oquvchi", False
+
+
+def _xususiyat_ruxsati(cur, user_id, kod):
+    """{"ruxsat": bool, "rol": ..., "izoh": foydalanuvchiga ko'rsatiladigan matn}."""
+    meta = XUSUSIYAT_TAVSIFLARI.get(kod)
+    if not meta:
+        return {"ruxsat": True, "rol": None, "izoh": "", "admin": False}
+    rol, admin = _foydalanuvchi_xususiyat_roli(cur, user_id)
+    if admin:
+        return {"ruxsat": True, "rol": rol, "izoh": "", "admin": True}
+    sozlama = _xususiyat_sozlamalari(cur)[kod]
+    ruxsat = bool(sozlama["rollar"].get(rol, False))
+    izoh = ""
+    if not ruxsat:
+        izoh = sozlama["izoh"].strip() or (
+            f"{meta['nomi']} hozircha {XUSUSIYAT_ROL_NOMLARI.get(rol, rol)} uchun yopiq. "
+            "Kerak bo'lsa administrator bilan bog'laning."
+        )
+    return {"ruxsat": ruxsat, "rol": rol, "izoh": izoh, "admin": False}
+
+
+@app.get("/api/admin/xususiyat_ruxsatlari")
+def admin_xususiyat_ruxsatlari(token: str):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        sozlamalar = _xususiyat_sozlamalari(cur)
+        conn.commit()
+        return {
+            "rol_nomlari": XUSUSIYAT_ROL_NOMLARI,
+            "xususiyatlar": [
+                {"kod": kod, "nomi": meta["nomi"], "tavsif": meta["tavsif"],
+                 "rollar": sozlamalar[kod]["rollar"], "izoh": sozlamalar[kod]["izoh"],
+                 "standart": meta["standart"]}
+                for kod, meta in XUSUSIYAT_TAVSIFLARI.items()
+            ],
+        }
+    finally:
+        cur.close()
+        conn.close()
+
+
+class XususiyatRuxsatiSorov(BaseModel):
+    token: str
+    xususiyat: str
+    rollar: dict = Field(default_factory=dict)
+    izoh: Optional[str] = ""
+
+
+@app.put("/api/admin/xususiyat_ruxsatlari")
+def admin_xususiyat_ruxsatini_saqla(sorov: XususiyatRuxsatiSorov):
+    admin_id = _admin_tekshir(sorov.token)
+    meta = XUSUSIYAT_TAVSIFLARI.get(sorov.xususiyat)
+    if not meta:
+        raise HTTPException(status_code=400, detail="Noma'lum xususiyat")
+    rollar = {rol: bool(sorov.rollar.get(rol, meta["standart"][rol])) for rol in meta["standart"]}
+    izoh = re.sub(r"\s+", " ", str(sorov.izoh or "").strip())[:300]
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _xususiyat_jadvali(cur)
+        cur.execute("""
+            INSERT INTO xususiyat_ruxsatlari(xususiyat, rollar, izoh, updated_by)
+            VALUES(%s, %s, %s, %s)
+            ON CONFLICT(xususiyat) DO UPDATE SET rollar=EXCLUDED.rollar, izoh=EXCLUDED.izoh,
+                updated_by=EXCLUDED.updated_by, updated_at=NOW()
+        """, (sorov.xususiyat, psycopg2.extras.Json(rollar), izoh, admin_id if isinstance(admin_id, int) else None))
+        conn.commit()
+        return {"holat": "saqlandi", "xususiyat": sorov.xususiyat, "rollar": rollar, "izoh": izoh}
+    finally:
+        cur.close()
+        conn.close()
+
+
+@app.get("/api/xususiyat_ruxsatlarim")
+def xususiyat_ruxsatlarim(token: str):
+    """Foydalanuvchining o'z roli uchun: qaysi tugma ochiq, yopiq bo'lsa izohi."""
+    user_id = _jwt_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        natija = {kod: _xususiyat_ruxsati(cur, user_id, kod) for kod in XUSUSIYAT_TAVSIFLARI}
+        conn.commit()
+        rol = next(iter(natija.values()))["rol"] if natija else None
+        return {"rol": rol, "ruxsatlar": {kod: {"ruxsat": r["ruxsat"], "izoh": r["izoh"]} for kod, r in natija.items()}}
+    finally:
+        cur.close()
+        conn.close()
 
 
 # ═══════════════════════════════════════════════════════════
