@@ -560,12 +560,36 @@ def _font_path(family, bold):
     raise ValueError("Eksport uchun mahalliy shrift topilmadi.")
 
 
-def _wrap(text, width, height, size, family, bold, line_height, label):
+# Ko'rinish (SlidePreview.FitText) bilan bir xil: sig'masa 6% qadam bilan
+# kichrayadi, eng kami 55%. Shunda ekran va .pptx bir xil o'lchamni oladi.
+FIT_MIN_SCALE = 0.55
+FIT_STEP = 0.94
+
+
+def _fit_size(text, box, size, family, bold, line_height, label):
+    """Sig'adigan eng katta o'lchamni topadi: (size, lines). Eng kichigida ham
+    sig'masa — avvalgidek aniq xato (juda uzun matn uchun)."""
+    current = float(size)
+    smallest = size * FIT_MIN_SCALE
+    while True:
+        lines = _wrap(text, box[2], box[3], current, family, bold, line_height, label, strict=False)
+        if lines is not None:
+            return current, lines
+        if current * FIT_STEP < smallest - 1e-6:
+            break
+        current *= FIT_STEP
+    _wrap(text, box[2], box[3], max(current, smallest), family, bold, line_height, label)  # xato matni bilan ko'taradi
+    return current, []
+
+
+def _wrap(text, width, height, size, family, bold, line_height, label, strict=True):
     if not text:
         return []
     font = ImageFont.truetype(_font_path(family, bold), round(size * 4))
     available = (width - 6) * 4  # small cross-viewer metric allowance
     if available <= 0 or any(font.getlength(char) > available for char in text if not char.isspace()):
+        if not strict:
+            return None
         raise ValueError(f"{label} slaydga sig‘madi. Elementni kengaytiring yoki matn o‘lchamini kamaytiring.")
     lines = []
     for para in text.split("\n"):
@@ -595,6 +619,8 @@ def _wrap(text, width, height, size, family, bold, line_height, label):
                     current += char
         lines.append(current.rstrip())
     if len(lines) * size * line_height > height + .5:
+        if not strict:
+            return None
         raise ValueError(f"{label} slaydga sig‘madi. Matnni qisqartiring, oddiy matn o‘lchamini yoki boshqa tuzilmani tanlang.")
     return lines
 
@@ -722,7 +748,11 @@ class _Deck:
     def text(self, tree, text, box, size, color, font, label, bold=False, align="l", line_height=1.28, name="Matn", hyperlink=None, keep_empty=False):
         if not text and not keep_empty:
             return None
-        lines = _wrap(text, box[2], box[3], size, font, bold, line_height, label) or [""]
+        if text:
+            size, lines = _fit_size(text, box, size, font, bold, line_height, label)  # avto-kichrayish
+            lines = lines or [""]
+        else:
+            lines = [""]
         shape = self.shape(name, box)
         props = shape.find("p:nvSpPr/p:cNvPr", NS)
         props.set("descr", text)

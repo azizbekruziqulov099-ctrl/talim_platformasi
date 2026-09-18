@@ -15611,6 +15611,21 @@ def universitet_guruh_bilimi(token: str, guruh_id: int):
     return {"guruh_nomi": g["nomi"], "talaba_soni": len(talabalar), "kurslar": natija_kurslar}
 
 
+@app.get("/api/kabutar_holati")
+def kabutar_holati_public(token: Optional[str] = None):
+    """Kabutar (suhbatlar) yoqilganmi — admin o'chirsa barcha uchun "Tez kunda".
+    Ochiq endpoint: kirish sahifasi ham, kabinet ham shu bilan tekshiradi."""
+    from modules.admin_institution_security_v18_24 import kabutar_holati as _kabutar_holati
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        holat = _kabutar_holati(cur)
+        return {"yoqilgan": holat["yoqilgan"], "xabar": holat["xabar"]}
+    finally:
+        cur.close()
+        conn.close()
+
+
 # ═══════════════════════════════════════════════════════════
 # XUSUSIYAT RUXSATLARI — admin "kim nima yarata oladi"ni rollarga qarab
 # ochadi/yopadi: taqdimot yaratish, to'garak (kurs) yaratish. Yopilgan

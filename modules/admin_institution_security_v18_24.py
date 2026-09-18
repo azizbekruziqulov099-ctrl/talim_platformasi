@@ -194,6 +194,37 @@ def _ensure_schema(cur) -> None:
     )
     for table_name in INSTITUTION_TABLES.values():
         ensure_institution_archive_columns(cur, table_name)
+    # Platforma kalitlari — masalan Kabutar (suhbatlar) yoqilgan/o'chirilgan.
+    # O'chirish ham arxiv paroli bilan himoyalanadi (bitta parol, bitta odat).
+    cur.execute(
+        """CREATE TABLE IF NOT EXISTS platform_kalitlari(
+            kalit TEXT PRIMARY KEY,
+            yoqilgan BOOLEAN NOT NULL DEFAULT TRUE,
+            xabar TEXT NOT NULL DEFAULT '',
+            updated_by BIGINT,
+            updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )"""
+    )
+
+
+KABUTAR_STANDART_XABAR = "Kabutar — suhbatlar bo'limi tez kunda ishga tushadi."
+
+
+def kabutar_holati(cur) -> dict:
+    """Kabutar yoqilganmi. Jadval hali yo'q bo'lsa — yoqilgan deb hisoblanadi."""
+    cur.execute("SELECT to_regclass('public.platform_kalitlari') AS t")
+    row = cur.fetchone()
+    if not (row and row["t"]):
+        return {"yoqilgan": True, "xabar": KABUTAR_STANDART_XABAR, "updated_at": None}
+    cur.execute("SELECT yoqilgan,xabar,updated_at FROM platform_kalitlari WHERE kalit='kabutar'")
+    row = cur.fetchone()
+    if not row:
+        return {"yoqilgan": True, "xabar": KABUTAR_STANDART_XABAR, "updated_at": None}
+    return {
+        "yoqilgan": bool(row["yoqilgan"]),
+        "xabar": (row["xabar"] or "").strip() or KABUTAR_STANDART_XABAR,
+        "updated_at": row["updated_at"],
+    }
 
 
 def _security_status(cur) -> dict:
@@ -556,6 +587,13 @@ class ArchiveRequest(BaseModel):
     sabab: Optional[str] = None
 
 
+class KabutarHolatiRequest(BaseModel):
+    token: str
+    yoqilgan: bool
+    ochirish_paroli: str
+    xabar: Optional[str] = None  # o'chirilganda foydalanuvchilar ko'radigan "Tez kunda" matni
+
+
 class RestoreRequest(BaseModel):
     token: str
     archive_id: int
@@ -634,6 +672,48 @@ def create_institution_archive_router(
                 conn.rollback()
             raise
         except Exception:
+            conn.rollback()
+            raise
+        finally:
+            cur.close()
+            conn.close()
+
+    @router.get("/kabutar")
+    def kabutar_status(token: str):
+        admin_checker(token)
+        conn = db_factory()
+        cur = conn.cursor()
+        try:
+            _ensure_schema(cur)
+            conn.commit()
+            return kabutar_holati(cur)
+        finally:
+            cur.close()
+            conn.close()
+
+    @router.put("/kabutar")
+    def kabutar_switch(request: KabutarHolatiRequest):
+        """Kabutarni butun platforma uchun yoqish/o'chirish — faqat arxiv
+        (o'chirish) paroli bilan; noto'g'ri parollar arxivdagi kabi sanaladi."""
+        admin_user_id = admin_checker(request.token)
+        conn = db_factory()
+        cur = conn.cursor()
+        try:
+            _ensure_schema(cur)
+            _verify_deletion_password(conn, cur, admin_user_id, request.ochirish_paroli)
+            xabar = " ".join(str(request.xabar or "").split())[:200] or KABUTAR_STANDART_XABAR
+            cur.execute(
+                """INSERT INTO platform_kalitlari(kalit,yoqilgan,xabar,updated_by)
+                   VALUES('kabutar',%s,%s,%s)
+                   ON CONFLICT(kalit) DO UPDATE SET yoqilgan=EXCLUDED.yoqilgan,
+                       xabar=EXCLUDED.xabar, updated_by=EXCLUDED.updated_by, updated_at=NOW()""",
+                (request.yoqilgan, xabar, admin_user_id),
+            )
+            _audit(cur, admin_user_id, "kabutar_yoqildi" if request.yoqilgan else "kabutar_ochirildi",
+                   details={"xabar": xabar})
+            conn.commit()
+            return {"holat": "saqlandi", **kabutar_holati(cur)}
+        except HTTPException:
             conn.rollback()
             raise
         finally:
