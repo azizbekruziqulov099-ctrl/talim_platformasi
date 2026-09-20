@@ -298,10 +298,10 @@ class AuthService:
             raise HTTPException(403, 'Ko‘rish rejimida akkaunt ulanmaydi')
         key = digest(claims['sid']) if claims.get('sid') else digest(token)
         cur.execute("""SELECT 1 FROM kabutar_auth_sessions WHERE session_hash=%s AND user_id=%s
-            AND revoked_at IS NULL AND expires_at>NOW() AND created_at>NOW()-INTERVAL '10 minutes'
+            AND revoked_at IS NULL AND expires_at>NOW()
             AND method IN ('google','telegram','password') FOR UPDATE""", (key,user_id))
         if not cur.fetchone():
-            raise HTTPException(403, 'Akkaunt ulash uchun avval qaytadan kiring')
+            raise HTTPException(403, 'Faol kirish sessiyasi topilmadi. Hisobdan chiqib qayta kiring')
         return key
 
     def check_link_session(self, cur, row):

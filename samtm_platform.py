@@ -16783,10 +16783,12 @@ def topik_fanlar(sinf: str, token: str):
     conn = _db()
     cur = conn.cursor()
     cur.execute("""
-        SELECT DISTINCT subject_name, COUNT(*) OVER (PARTITION BY subject_name) AS mavzu_soni
+        SELECT subject_name, COALESCE(dars_turi, '') AS dars_turi, COUNT(*) AS mavzu_soni
         FROM dts_tree WHERE grade=%s AND is_deleted=FALSE
+        GROUP BY subject_name, COALESCE(dars_turi, '')
+        ORDER BY subject_name, dars_turi
     """, (sinf,))
-    fanlar = [{"nom": r["subject_name"], "mavzu_soni": r["mavzu_soni"]} for r in cur.fetchall()]
+    fanlar = [{"nom": r["subject_name"], "dars_turi": r.get("dars_turi") or "", "mavzu_soni": r["mavzu_soni"]} for r in cur.fetchall()]
     cur.close()
     conn.close()
     return {"fanlar": fanlar}
@@ -16960,7 +16962,7 @@ async def tushuntirish_import(token: str, fayl: UploadFile = File(...)):
 
 
 @app.get("/api/admin/topik_royxat")
-def topik_royxat(sinf: str, fan: str, token: str):
+def topik_royxat(sinf: str, fan: str, token: str, dars_turi: str = ""):
     """Berilgan sinf+fan uchun MAVZU darajasidagi (kichik mavzular
     birlashtirilgan) to'liq ro'yxat — har biriga chorak/bob/bo'lim,
     nechta kichik mavzu borligi, va ENG MUHIMI — shu mavzuga TEST
@@ -16977,10 +16979,10 @@ def topik_royxat(sinf: str, fan: str, token: str):
                COUNT(DISTINCT gt.topic_code) AS test_bor_soni
         FROM dts_tree d
         LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
-        WHERE d.grade=%s AND UPPER(d.subject_name)=UPPER(%s) AND d.is_deleted=FALSE
+        WHERE d.grade=%s AND UPPER(d.subject_name)=UPPER(%s) AND COALESCE(d.dars_turi, '')=%s AND d.is_deleted=FALSE
         GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
         ORDER BY MIN(d.topic_code)
-    """, (sinf, fan))
+    """, (sinf, fan, dars_turi or ""))
     qatorlar = cur.fetchall()
     cur.close()
     conn.close()
@@ -17761,7 +17763,7 @@ async def shablon_import(
                         ),
                         None,
                     )
-                    fan_kodi = topic_code_subject_code(raw_code, kutilgan_sinf)
+                    fan_kodi = topic_code_subject_code(raw_code)
                     if (
                         exact_qator
                         and fan_kodi
@@ -18176,6 +18178,7 @@ def test_rasmi_korish(savol_id: int):
 class TopikShablonSorov(BaseModel):
     sinf: str
     fan: str
+    dars_turi: Optional[str] = None
     mavzular: str  # ko'p qatorli matn: "1 / Colours\n1 / Numbers\n2 / Animals"
 
 
@@ -18220,7 +18223,7 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
 
     for chorak, mavzu in mavzular:
         try:
-            topic_code, holat = _dts_qator_kiritish(cur, sinf, fan, chorak, "", "", mavzu, "")
+            topic_code, holat = _dts_qator_kiritish(cur, sinf, fan, chorak, "", "", mavzu, "", sorov.dars_turi or "")
             conn.commit()
             if holat == "yaratildi":
                 yaratildi += 1
@@ -18263,7 +18266,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     ws = wb.active
     ws.title = "DTS_SHABLON"
 
-    headers = ["Sinf", "Fan", "Chorak", "Bob", "Bo'lim", "Mavzu"]
+    headers = ["Sinf", "Fan", "Dars turi", "Chorak", "Bob", "Bo'lim", "Mavzu"]
     for col, h in enumerate(headers, 1):
         cell = ws.cell(1, col, value=h)
         cell.font = Font(bold=True, color="FFFFFF")
@@ -18276,16 +18279,19 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
         color = chorak_colors.get(str(chorak), "F2F2F2")
         ws.cell(row_num, 1, value=sinf)
         ws.cell(row_num, 2, value=fan)
-        ws.cell(row_num, 3, value=chorak)
+        ws.cell(row_num, 3, value=sorov.dars_turi or "")
+        ws.cell(row_num, 4, value=chorak)
         # Bob / Bo'lim ATAYLAB BO'SH — haqiqiy darslik tuzilishiga
         # qarab qo'lda to'ldiriladi
-        ws.cell(row_num, 6, value=mavzu)
-        for col in range(1, 7):
+        ws.cell(row_num, 5, value="")
+        ws.cell(row_num, 6, value="")
+        ws.cell(row_num, 7, value=mavzu)
+        for col in range(1, 8):
             ws.cell(row_num, col).fill = PatternFill("solid", fgColor=color)
             ws.cell(row_num, col).alignment = Alignment(horizontal="left", wrap_text=True)
         row_num += 1
 
-    for col, width in zip(range(1, 7), [6, 16, 8, 32, 32, 32]):
+    for col, width in zip(range(1, 8), [14, 24, 16, 10, 32, 32, 36]):
         ws.column_dimensions[ws.cell(1, col).column_letter].width = width
 
     ws2 = wb.create_sheet("IZOH")
@@ -18342,9 +18348,9 @@ def _dts_chorak_normalize(quarter):
     return quarter.zfill(2) if quarter.isdigit() else quarter
 
 
-def _dts_fan_kodi_ol(cur, grade, subject_name):
+def _dts_fan_kodi_ol(cur, grade, subject_name, dars_turi=""):
     subject_name_n = _dts_matn_normalize(subject_name).upper()
-    cur.execute("SELECT subject_code FROM dts_tree WHERE grade=%s AND subject_name=%s LIMIT 1", (grade, subject_name_n))
+    cur.execute("SELECT subject_code FROM dts_tree WHERE grade=%s AND subject_name=%s AND COALESCE(dars_turi, '')=%s LIMIT 1", (grade, subject_name_n, dars_turi or ""))
     row = cur.fetchone()
     if row and row["subject_code"]:
         return row["subject_code"], subject_name_n
@@ -18432,9 +18438,10 @@ def _dts_kod_ustunlarini_tayyorla(cur):
     cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS bolim_code TEXT")
     cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS mavzu_code TEXT")
     cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS kichik_code TEXT")
+    cur.execute("ALTER TABLE dts_tree ADD COLUMN IF NOT EXISTS dars_turi TEXT NOT NULL DEFAULT ''")
 
 
-def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
+def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik, dars_turi=""):
     """Botning insert_row funksiyasi bilan AYNAN bir xil — har bosqich
     (fan/bob/bolim/mavzu/kichik) uchun ALOHIDA, ICHMA-ICH kod
     hisoblanadi (avval xuddi shu nom mavjud bo'lsa — o'sha kod qayta
@@ -18451,7 +18458,7 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
     if not quarter_code:
         raise ValueError("Noto'g'ri chorak")
 
-    subject_code, subject_name_n = _dts_fan_kodi_ol(cur, grade, fan)
+    subject_code, subject_name_n = _dts_fan_kodi_ol(cur, grade, fan, dars_turi)
     bob_code, bob_name_n = _dts_bob_kodi_ol(cur, grade, subject_code, quarter_code, bob)
     bolim_code, bolim_name_n = _dts_bolim_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim)
     mavzu_code, mavzu_name_n = _dts_mavzu_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim_code, mavzu)
@@ -18477,12 +18484,12 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik):
 
     cur.execute("""
         INSERT INTO dts_tree
-        (topic_code, grade, subject_code, subject_name, quarter,
+        (topic_code, grade, subject_code, subject_name, dars_turi, quarter,
          bob_code, bob_name, bolim_code, bolim_name,
          mavzu_code, mavzu_name, kichik_code, kichik_name, is_deleted)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
     """, (
-        topic_code, grade, subject_code, subject_name_n, quarter_code,
+        topic_code, grade, subject_code, subject_name_n, dars_turi or "", quarter_code,
         bob_code, bob_name_n, bolim_code, bolim_name_n,
         mavzu_code, mavzu_name_n, kichik_code, kichik_name_n,
     ))
@@ -18531,12 +18538,23 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
 
         varoq_qoshildi = 0
         for r in range(2, ws.max_row + 1):
-            if eski_format:
-                berilgan_kod = None
-                sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(1, 8))
-            else:
-                berilgan_kod = ws.cell(r, 2).value
-                sinf, fan, chorak, bob, bolim, mavzu, kichik = (ws.cell(r, c).value for c in range(3, 10))
+            # Ustunlarni NOMI bo'yicha o'qiymiz: eski va yangi shablonlar birga ishlaydi.
+            hmap = {str(h).strip().casefold(): i + 1 for i, h in enumerate(headers) if h}
+            def hv(*names):
+                for name in names:
+                    c = hmap.get(name.casefold())
+                    if c:
+                        return ws.cell(r, c).value
+                return None
+            berilgan_kod = hv("Topic code", "topic_code")
+            sinf = hv("Sinf", "grade")
+            fan = hv("Fan", "subject")
+            dars_turi = hv("Dars turi", "dars_turi", "Mashg'ulot turi") or ""
+            chorak = hv("Chorak", "quarter")
+            bob = hv("Bob")
+            bolim = hv("Bo'lim", "Bolim")
+            mavzu = hv("Mavzu")
+            kichik = hv("Kichik mavzu", "Kichik")
 
             if not sinf or not mavzu:
                 continue
@@ -18572,7 +18590,7 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
                 # Kod berilmagan — botning O'ZI ishlatadigan, ICHMA-ICH
                 # kod hisoblash mantig'i orqali AVTOMATIK yaratiladi.
                 try:
-                    _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "")
+                    _dts_qator_kiritish(cur, sinf, fan, chorak or "1", bob or "", bolim or "", mavzu, kichik or "", dars_turi)
                     conn.commit()
                     added += 1
                     varoq_qoshildi += 1
