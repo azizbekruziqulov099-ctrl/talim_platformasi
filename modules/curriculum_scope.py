@@ -13,7 +13,88 @@ FIELDS = ('institution_type','institution_id','talim_bosqichi','yonalish_id','yo
           'talim_shakli','talim_tili','kurs','semestr','guruh','dars_turi')
 FORMS = ('kunduzgi','kechki','sirtqi','masofaviy')
 LESSONS = ('maruza','amaliy','seminar','laboratoriya')
+LESSON_LABELS = {'maruza':'Ma’ruza','amaliy':'Amaliyot','seminar':'Seminar','laboratoriya':'Laboratoriya'}
 INSTITUTIONS = {'maktab':'maktablar','universitet':'universitetlar','bogcha':'bogchalar','markaz':'oquv_markazlari'}
+
+def teacher_institutions(cur, user_id, user):
+    """Resolve existing staff memberships; never accept workplace IDs from a request."""
+    targets = {kind:set() for kind in INSTITUTIONS}
+    if user.get('role') != 'oqituvchi':return targets
+    for kind,key in [('maktab','maktab_id'),('universitet','universitet_id'),('bogcha','bogcha_id'),('markaz','markaz_id')]:
+        if user.get(key):targets[kind].add(int(user[key]))
+    cur.execute("SELECT to_regclass('public.foydalanuvchi_muassasalari') AS memberships, to_regclass('public.universitet_xodim_rollari') AS staff")
+    tables=cur.fetchone() or {}
+    if tables.get('memberships'):
+        cur.execute("SELECT muassasa_turi,muassasa_id,lavozim FROM foydalanuvchi_muassasalari WHERE user_id=%s",(user_id,))
+        for row in cur.fetchall():
+            if row['muassasa_turi'] in targets and row.get('lavozim') not in ('talaba','oquvchi','ota-ona',''):
+                targets[row['muassasa_turi']].add(int(row['muassasa_id']))
+    if tables.get('staff'):
+        cur.execute('SELECT universitet_id FROM universitet_xodim_rollari WHERE user_id=%s AND faol=TRUE',(user_id,))
+        targets['universitet'].update(int(row['universitet_id']) for row in cur.fetchall())
+    for kind,ids in targets.items():
+        if ids:
+            cur.execute(f"SELECT id FROM {INSTITUTIONS[kind]} x WHERE id=ANY(%s) AND NULLIF(to_jsonb(x)->>'archived_at','') IS NULL",(sorted(ids),))
+            targets[kind]={row['id'] for row in cur.fetchall()}
+    return targets
+
+def catalog_context(cur, user_id=None):
+    """The server decides which institution sections the current viewer may see."""
+    if user_id is None:
+        return {'admin':False,'types':['maktab'],'preferred_type':'maktab','grade':'','profile':None}
+    cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s',(user_id,))
+    user=(cur.fetchone() or {}).get('profile') or {}
+    cur.execute('SELECT 1 AS ok FROM admin_akkaunt WHERE uid=%s',(user_id,))
+    admin=bool(cur.fetchone())
+    cur.execute('SELECT to_jsonb(p) AS profile FROM talaba_profillari p WHERE user_id=%s',(user_id,))
+    profile=(cur.fetchone() or {}).get('profile') or None
+    grade=canonical_grade(user.get('class'))
+    teacher = user.get('role') == 'oqituvchi'
+    if teacher:
+        workplaces=teacher_institutions(cur,user_id,user)
+        types=[kind for kind,ids in workplaces.items() if ids]
+        grade=''
+    elif profile or 'kurs' in grade:
+        types=['universitet']
+    else:
+        types=[t for t,k in [('maktab','maktab_id'),('bogcha','bogcha_id'),('markaz','markaz_id')] if user.get(k)]
+        if grade.isdigit() and 'maktab' not in types:types.insert(0,'maktab')
+        if not types:types=['maktab']
+    preferred=types[0] if types else 'maktab'
+    if admin:types=['maktab','bogcha','markaz','universitet']
+    return {'admin':admin,'teacher':teacher,'types':types,'preferred_type':preferred,'grade':grade,'profile':None if teacher else profile}
+
+def catalog_filter(institution_type, dars_turi=None, alias='d'):
+    if not re.fullmatch(r'[a-z_]+',alias):raise ValueError('Invalid SQL alias')
+    if institution_type not in INSTITUTIONS:raise ValueError('Muassasa turi noto‘g‘ri')
+    clause=f'{alias}.curriculum_scope_id IN (SELECT id FROM curriculum_scopes WHERE institution_type=%s)'
+    params=[institution_type]
+    if dars_turi:
+        kind=lesson(dars_turi)
+        if institution_type!='universitet' or kind not in LESSONS:raise ValueError('Mashg‘ulot turini institut bo‘limidan tanlang')
+        clause+=f' AND {alias}.dars_turi=%s';params.append(kind)
+    return clause,params
+
+def group_catalog_rows(rows, only_tested=True):
+    """Keep identical topic/subject names separate across programs and lessons."""
+    subjects={}
+    for r in rows:
+        codes=r['testli_kodlar'] if only_tested else r['barcha_kodlar']
+        if not codes:continue
+        key=(r['curriculum_scope_id'],r['grade'],r['subject_code'],r['subject_name'],r['dars_turi'])
+        label=r['subject_name'] or 'Boshqa'
+        kind=r['dars_turi'] or ''
+        subject=subjects.setdefault(key,{'nom':label,'qisqa':r['subject_code'],
+            'kalit':json.dumps(key,ensure_ascii=False),'dars_turi':kind,
+            'dars_turi_nomi':LESSON_LABELS.get(kind,''),'scope_id':r['curriculum_scope_id'],
+            'institution_type':r.get('institution_type','maktab'),
+            'institution_name':r.get('institution_name',''),'sinflar':{}})
+        group=subject['sinflar'].setdefault(r['grade'],{'sinf':r['grade'],'mavzular':[]})
+        group['mavzular'].append({'topic_codes':codes,'nomi':r['nomi'],'savol_soni':r['savol_soni'],
+            'dars_turi':kind,'scope_id':r['curriculum_scope_id'],'institution_type':r.get('institution_type','maktab')})
+    for subject in subjects.values():
+        subject['sinflar']=list(subject['sinflar'].values())
+    return list(subjects.values())
 
 def text_key(value):
     return re.sub(r'\s+', ' ', str(value or '').translate(str.maketrans({'‘':"'",'’':"'",'ʻ':"'",'ʼ':"'",'`':"'"}))).strip().casefold()
@@ -116,6 +197,16 @@ def allowed_predicate(cur,user_id=None,alias='d'):
     if not user: return 'FALSE',[]
     cur.execute('SELECT 1 AS ok FROM admin_akkaunt WHERE uid=%s',(user_id,))
     if cur.fetchone(): return 'TRUE',[]
+    if user.get('role')=='oqituvchi':
+        targets=teacher_institutions(cur,user_id,user)
+        clauses=[];params=[]
+        for kind,ids in targets.items():
+            if ids:
+                clauses.append('(cs.institution_type=%s AND cs.institution_id=ANY(%s))')
+                params.extend([kind,sorted(ids)])
+        if targets['maktab']:clauses.append("cs.scope_key='school-common'")
+        if not clauses:return 'FALSE',[]
+        return f"EXISTS (SELECT 1 FROM curriculum_scopes cs WHERE cs.id={alias}.curriculum_scope_id AND ({' OR '.join(clauses)}))",params
     cur.execute('SELECT to_jsonb(p) AS profile FROM talaba_profillari p WHERE user_id=%s',(user_id,))
     p=(cur.fetchone() or {}).get('profile') or {}
     if p:
@@ -134,14 +225,18 @@ def allowed_predicate(cur,user_id=None,alias='d'):
               p['kurs'],p['semestr'],p['talim_shakli'],p['talim_tili'],str(p['guruh']).strip().upper()]
     # A course without an enrolled student profile must not open other colleges.
     if re.search(r'kurs',str(user.get('class') or ''),re.I): return 'FALSE',[]
+    school_grade = canonical_grade(user.get('class'))
+    school_clause = ''
+    school_params = []
+    if user.get('role') in ('oquvchi','talaba'):
+        school_clause = f' AND {alias}.grade=%s'
+        school_params = [school_grade if school_grade.isdigit() else '__not_school__']
     return f"""EXISTS (SELECT 1 FROM curriculum_scopes cs
         WHERE cs.id={alias}.curriculum_scope_id AND cs.guruh='' AND (
-          cs.scope_key='school-common' OR
-          (cs.institution_id>0 AND (
-            (cs.institution_type='maktab' AND cs.institution_id=%s) OR
-            (cs.institution_type='markaz' AND cs.institution_id=%s) OR
-            (cs.institution_type='bogcha' AND cs.institution_id=%s)
-          ))))""",[int(user.get(k) or 0) for k in ('maktab_id','markaz_id','bogcha_id')]
+          (cs.institution_type='maktab' AND (cs.scope_key='school-common' OR (cs.institution_id>0 AND cs.institution_id=%s)){school_clause}) OR
+          (cs.institution_type='markaz' AND cs.institution_id>0 AND cs.institution_id=%s) OR
+          (cs.institution_type='bogcha' AND cs.institution_id>0 AND cs.institution_id=%s)
+          ))""",[int(user.get('maktab_id') or 0),*school_params,int(user.get('markaz_id') or 0),int(user.get('bogcha_id') or 0)]
 
 def authorized_codes(cur,user_id,codes,strict=True):
     codes=list(dict.fromkeys(str(c).strip() for c in codes if str(c or '').strip()))

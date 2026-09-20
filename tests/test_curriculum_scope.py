@@ -20,8 +20,17 @@ class DB:
   self.sql.executescript('''
   CREATE TABLE curriculum_scopes(id INTEGER PRIMARY KEY,scope_key TEXT UNIQUE,institution_type TEXT,institution_id INTEGER,institution_name TEXT,talim_bosqichi TEXT,yonalish_id INTEGER,yonalish_key TEXT,yonalish_nomi TEXT,talim_shakli TEXT,talim_tili TEXT,kurs INTEGER,semestr INTEGER,guruh TEXT,dars_turi TEXT);
   CREATE TABLE dts_tree(topic_code TEXT PRIMARY KEY,curriculum_scope_id INTEGER,grade TEXT,subject_code TEXT,subject_name TEXT,dars_turi TEXT,quarter TEXT,bob_code TEXT,bob_name TEXT,bolim_code TEXT,bolim_name TEXT,mavzu_code TEXT,mavzu_name TEXT,kichik_code TEXT,kichik_name TEXT,is_deleted BOOLEAN DEFAULT FALSE);
-  CREATE TABLE universitetlar(id INTEGER PRIMARY KEY,archived_at TEXT);
-  INSERT INTO universitetlar VALUES(11,NULL),(12,NULL);
+  CREATE TABLE universitetlar(id INTEGER PRIMARY KEY,archived_at TEXT,nomi TEXT);
+  INSERT INTO universitetlar VALUES(11,NULL,'Institut A'),(12,NULL,'Institut B');
+  CREATE TABLE maktablar(id INTEGER PRIMARY KEY,archived_at TEXT,nomi TEXT);
+  INSERT INTO maktablar VALUES(11,NULL,'Maktab A'),(12,NULL,'Maktab B');
+  CREATE TABLE bogchalar(id INTEGER PRIMARY KEY,archived_at TEXT,nomi TEXT);
+  INSERT INTO bogchalar VALUES(11,NULL,'Bogcha A'),(12,NULL,'Bogcha B');
+  CREATE TABLE oquv_markazlari(id INTEGER PRIMARY KEY,archived_at TEXT,nomi TEXT);
+  INSERT INTO oquv_markazlari VALUES(11,NULL,'Markaz A'),(12,NULL,'Markaz B');
+  CREATE TABLE foydalanuvchi_muassasalari(user_id INTEGER,muassasa_turi TEXT,muassasa_id INTEGER,lavozim TEXT);
+  CREATE TABLE universitet_xodim_rollari(user_id INTEGER,universitet_id INTEGER,faol BOOLEAN);
+  CREATE TABLE generated_tests(id INTEGER PRIMARY KEY,topic_code TEXT);
   CREATE TABLE togarak_mavzu_kontenti(topic_code TEXT,togarak_id INTEGER);
   CREATE TABLE togaraklar(id INTEGER,teacher_id INTEGER);
   CREATE TABLE togarak_azolar(togarak_id INTEGER,user_id INTEGER,aktiv BOOLEAN,tasdiqlangan BOOLEAN);
@@ -35,7 +44,8 @@ class DB:
   self.sql.execute(f"INSERT INTO curriculum_scopes({','.join(d)}) VALUES({','.join('?' for _ in d)})",list(d.values()));return d
  def add_topic(self,id,grade='1 kurs'):
   code=f'{grade}-{id:02d}-01-01-01-01-01'
-  self.sql.execute('INSERT INTO dts_tree(topic_code,curriculum_scope_id,grade,subject_code,subject_name,dars_turi,quarter,mavzu_name) VALUES(?,?,?,?,?,?,?,?)',(code,id,grade,f'{id:02d}','MATEMATIKA','maruza','01','To‘plamlar'));return code
+  lesson=self.sql.execute('SELECT dars_turi FROM curriculum_scopes WHERE id=?',(id,)).fetchone()[0]
+  self.sql.execute('INSERT INTO dts_tree(topic_code,curriculum_scope_id,grade,subject_code,subject_name,dars_turi,quarter,mavzu_name) VALUES(?,?,?,?,?,?,?,?)',(code,id,grade,f'{id:02d}','MATEMATIKA',lesson or None,'01','To‘plamlar'));return code
  def visible(self,uid=5):
   clause,args=scope.allowed_predicate(self.cursor(),uid);cur=self.cursor()
   cur.execute(f'SELECT d.topic_code FROM dts_tree d WHERE d.is_deleted=FALSE AND ({clause})',args)
@@ -47,11 +57,17 @@ class Cursor:
   if 'SELECT to_jsonb(p) AS profile FROM talaba_profillari' in sql:self.rows=[{'profile':self.db.profile}];return
   if 'FROM admin_akkaunt' in sql:self.rows=[{'ok':1}] if self.db.admin else [];return
   if 'pg_advisory_xact_lock' in sql:self.rows=[];return
+  if "to_regclass('public.foydalanuvchi_muassasalari')" in sql:self.rows=[{'memberships':True,'staff':True}];return
   sql=sql.replace(' FOR UPDATE','').replace("NULLIF(to_jsonb(u)->>'archived_at','')","NULLIF(u.archived_at,'')")
+  sql=sql.replace("NULLIF(to_jsonb(x)->>'archived_at','')","NULLIF(x.archived_at,'')")
+  sql=sql.replace('ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code)','json_group_array(DISTINCT d.topic_code)')
   sql=re.sub(r'=\s*ANY\(%s\)',' IN (SELECT value FROM json_each(%s))',sql)
   sql=re.sub(r"(\w+) ~ ('[^']+')",r'REGEXP(\2,\1)',sql).replace('%s','?').replace('NOW()','CURRENT_TIMESTAMP')
   args=[json.dumps(a) if isinstance(a,(list,tuple)) else a for a in args]
   c=self.db.sql.execute(sql,args);self.rowcount=c.rowcount;self.rows=[dict(r) for r in c.fetchall()] if c.description else []
+  for row in self.rows:
+   for key in ('barcha_kodlar','testli_kodlar'):
+    if key in row:row[key]=json.loads(row[key] or '[]')
  def fetchone(self):return self.rows.pop(0) if self.rows else None
  def fetchall(self):r=self.rows;self.rows=[];return r
  def close(self):pass

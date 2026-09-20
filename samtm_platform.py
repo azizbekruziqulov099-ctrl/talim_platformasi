@@ -1591,46 +1591,51 @@ def muassasalarim(token: str):
 # ═══════════════════════════════════════════════════════════
 
 @app.get("/api/mavzular")
-def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool = True, token: Optional[str] = None):
+def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool = True,
+                    token: Optional[str] = None, institution_type: Optional[str] = None,
+                    dars_turi: Optional[str] = None, scope_id: Optional[int] = None):
     user_id = _jwt_tekshir(token) if token else None
     conn = _db(); cur = conn.cursor()
     try:
-        clause, params = _curriculum.allowed_predicate(cur, user_id)
+        viewer = _curriculum.catalog_context(cur,user_id)
+        selected_type = institution_type or viewer['preferred_type']
+        type_clause, type_params = _curriculum.catalog_filter(selected_type,dars_turi)
+        clause, params = _curriculum.allowed_predicate(cur,user_id)
+        incomplete = clause == 'FALSE'
         if turi == 'togarak':
-            club_clause, club_params = _curriculum.club_predicate(user_id)
-            if clause == 'TRUE':
-                clause, params = 'd.curriculum_scope_id IS NULL', []
-            else:
-                clause, params = club_clause, club_params
+            clause, params = _curriculum.club_predicate(user_id)
+            if viewer['admin']:clause,params='d.curriculum_scope_id IS NULL',[]
+        else:
+            clause = f'({clause}) AND ({type_clause})'
+            params.extend(type_params)
+            if not viewer['admin'] and selected_type not in viewer['types']:
+                clause = 'FALSE'
+                params = []
         if sinf:
             clause += " AND d.grade=%s"
             params.append(_curriculum.canonical_grade(sinf))
-        elif turi == 'togarak':
-            clause += " AND d.grade !~ '^[0-9]+$'"
+        if scope_id is not None:
+            clause += " AND d.curriculum_scope_id=%s"
+            params.append(scope_id)
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
+                COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
                 COUNT(gt.id) AS savol_soni
-            FROM dts_tree d LEFT JOIN generated_tests gt ON gt.topic_code=d.topic_code
+            FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
+            LEFT JOIN generated_tests gt ON gt.topic_code=d.topic_code
             WHERE d.is_deleted=FALSE AND ({clause})
             GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
+                cs.institution_type,cs.institution_name,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
             ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",params)
-        fanlar={}
-        for r in cur.fetchall():
-            codes=r['testli_kodlar'] if faqat_testli else r['barcha_kodlar']
-            if not codes: continue
-            key=(r['grade'],r['subject_code'],r['subject_name'],r['curriculum_scope_id'],r['dars_turi'])
-            label=(r['subject_name'] or 'Boshqa') + (" · " + {'maruza':'Ma’ruza','amaliy':'Amaliy','seminar':'Seminar','laboratoriya':'Laboratoriya'}.get(r['dars_turi'],r['dars_turi']) if r['dars_turi'] else '')
-            f=fanlar.setdefault(key,{'nom':label,'qisqa':r['subject_code'],'kalit':f"{r['curriculum_scope_id']}:{r['grade']}:{r['subject_code']}:{r['subject_name']}",'dars_turi':r['dars_turi'],'sinflar':{}})
-            g=f['sinflar'].setdefault(r['grade'],{'sinf':r['grade'],'mavzular':[]})
-            g['mavzular'].append({'topic_codes':codes,'nomi':r['nomi'],'savol_soni':r['savol_soni']})
-        result=[]
-        for f in fanlar.values():
-            f['sinflar']=sorted(f['sinflar'].values(),key=lambda g:(0,int(g['sinf'])) if g['sinf'].isdigit() else (1,g['sinf']))
-            result.append(f)
-        return {'fanlar':result,'profil_sozlanmagan':clause.startswith('FALSE')}
+        result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
+        return {'fanlar':result,'profil_sozlanmagan':incomplete,'viewer':viewer,
+                'institution_type':selected_type,'dars_turi':_curriculum.lesson(dars_turi),
+                'lesson_types':[{'key':k,'label':v} for k,v in _curriculum.LESSON_LABELS.items()]}
+    except ValueError as exc:
+        raise HTTPException(status_code=400,detail=str(exc)) from exc
     finally:
         cur.close(); conn.close()
 
@@ -20149,55 +20154,32 @@ class AiUstozSorovi(BaseModel):
 
 
 @app.get("/api/ai/ustoz/fan_mavzular")
-def ai_ustoz_fan_mavzular(token: str, grade: Optional[str] = None):
-    """O'quvchining faqat O'Z sinfiga tegishli fan va mavzulari."""
+def ai_ustoz_fan_mavzular(token: str, grade: Optional[str] = None,
+                         institution_type: Optional[str] = None, dars_turi: Optional[str] = None):
+    """The topic browser uses the same audience and lesson groups as the test browser."""
     user_id = _jwt_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    profil = _ai_foydalanuvchi_profili(cur, user_id)
-    if not profil["sinf"]:
-        cur.close()
-        conn.close()
-        return {"sinf_sozlanmagan": True, "fanlar": []}
-    current_grade = profil["sinf"]
-    cur.execute("SELECT to_regclass('public.learning_grade_progressions') AS progression")
-    if cur.fetchone()["progression"]:
-        current_grade = _talim_yoli_auto_sinf(cur, user_id, profil["sinf"])["effective_grade"]
-    selected_grade = _talim_yoli_sinfni_tozala(grade) or current_grade
-    if (
-        selected_grade and selected_grade.isdigit()
-        and current_grade and current_grade.isdigit()
-        and int(selected_grade) > int(current_grade)
-    ):
-        cur.close()
-        conn.close()
-        raise HTTPException(status_code=400, detail="Kelajak sinfi mavzusini ochib bo'lmaydi")
-    predicate, audience_params = _curriculum.allowed_predicate(cur,user_id)
-    cur.execute(
-        f"""SELECT subject_name AS fan,
-                  MIN(topic_code) AS topic_code,
-                  COALESCE(mavzu_name, kichik_name, bolim_name, bob_name) AS mavzu
-           FROM dts_tree
-           WHERE grade=%s AND is_deleted=FALSE AND topic_code IN (SELECT d.topic_code FROM dts_tree d WHERE {predicate})
-           GROUP BY subject_name, COALESCE(mavzu_name, kichik_name, bolim_name, bob_name)
-           ORDER BY subject_name, MIN(topic_code)""",
-        [selected_grade,*audience_params],
-    )
-    qatorlar = cur.fetchall()
-    fanlar = {}
-    for r in qatorlar:
-        fanlar.setdefault(r["fan"], []).append(
-            {"topic_code": r["topic_code"], "mavzu": r["mavzu"]}
-        )
-    cur.close()
-    conn.close()
-    return {
-        "sinf_sozlanmagan": False,
-        "sinf": selected_grade,
-        "yosh": profil["yosh"],
-        "fanlar": [{"fan": fan, "mavzular": mavzular} for fan, mavzular in fanlar.items()],
-        "rejimlar": [{"kalit": k, "nom": v} for k, v in AI_REJIM_NOMLARI.items()],
-    }
+    conn = _db(); cur = conn.cursor()
+    try:
+        profil = _ai_foydalanuvchi_profili(cur,user_id)
+    finally:
+        cur.close(); conn.close()
+    catalog = mavzular_royxati(sinf=grade,faqat_testli=False,token=token,
+                               institution_type=institution_type,dars_turi=dars_turi)
+    subjects=[]
+    for item in catalog['fanlar']:
+        topics=[]
+        for group in item['sinflar']:
+            topics.extend({'topic_code':m['topic_codes'][0],'topic_codes':m['topic_codes'],
+                'mavzu':m['nomi'],'grade':group['sinf'],'dars_turi':item['dars_turi'],
+                'scope_id':item['scope_id'],'institution_type':item['institution_type']}
+                for m in group['mavzular'])
+        subjects.append({'fan':item['nom'],'kalit':item['kalit'],'mavzular':topics,
+            'dars_turi':item['dars_turi'],'scope_id':item['scope_id'],
+            'institution_type':item['institution_type'],'institution_name':item['institution_name']})
+    return {'sinf_sozlanmagan':catalog['profil_sozlanmagan'],
+            'sinf':catalog['viewer']['grade'],'yosh':profil['yosh'],'fanlar':subjects,
+            'viewer':catalog['viewer'],'institution_type':catalog['institution_type'],
+            'rejimlar':[{'kalit':k,'nom':v} for k,v in AI_REJIM_NOMLARI.items()]}
 
 
 @app.get("/api/ai/pedagog/katalog")

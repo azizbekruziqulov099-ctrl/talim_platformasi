@@ -34,39 +34,64 @@ def create_router(platform):
             return {'institutions':rows,'programs':programs}
         finally:cur.close();conn.close()
 
+    def save_scope(cur, payload):
+        data=dict(payload)
+        data['institution_type'] = {'institut':'universitet','institute':'universitet'}.get(scope.text_key(data.get('institution_type')),scope.text_key(data.get('institution_type')))
+        if data.get('institution_type')=='universitet':
+            programs=platform._talaba_yonalishlari(cur,int(data.get('institution_id') or 0))
+            if programs and not data.get('yonalish_id'):raise ValueError('Yo‘nalishni institutning rasmiy ro‘yxatidan tanlang')
+        if data.get('institution_type')=='universitet' and data.get('yonalish_id'):
+            program=next((p for p in programs if p['id']==int(data['yonalish_id'])),None)
+            if not program:raise ValueError('Yo‘nalish tanlangan institutga tegishli emas yoki faol emas')
+            if data.get('talim_bosqichi')!=program['bosqich']:raise ValueError('Bosqich yo‘nalishga mos emas')
+            data['yonalish_nomi']=program['nomi']
+            if program['shakllar'] and data.get('talim_shakli') not in (*program['shakllar'],'umumiy'):raise ValueError('Bu yo‘nalishda tanlangan ta’lim shakli mavjud emas')
+            if program['tillar'] and data.get('talim_tili') not in program['tillar']:raise ValueError('Bu yo‘nalishda tanlangan til mavjud emas')
+            pairs=program.get('variantlar') or []
+            if pairs and data.get('talim_shakli')!='umumiy' and {'shakl':data.get('talim_shakli'),'til':data.get('talim_tili')} not in pairs:raise ValueError('Ta’lim shakli va til kombinatsiyasi mavjud emas')
+        s=scope.normalize_scope(data)
+        if s['institution_id']:
+            table=scope.INSTITUTIONS[s['institution_type']]
+            cur.execute(f"SELECT nomi FROM {table} x WHERE id=%s AND NULLIF(to_jsonb(x)->>'archived_at','') IS NULL",(s['institution_id'],))
+            inst=cur.fetchone()
+            if not inst:raise ValueError('Muassasa topilmadi yoki arxivlangan')
+            s['institution_name']=inst['nomi']
+        else:s['institution_name']='Maktab — umumiy katalog'
+        cols=(*scope.FIELDS,'scope_key','institution_name','yonalish_nomi')
+        cur.execute(f"INSERT INTO curriculum_scopes({','.join(cols)}) VALUES ({','.join(['%s']*len(cols))}) ON CONFLICT(scope_key) DO UPDATE SET institution_name=EXCLUDED.institution_name RETURNING *",[s[k] for k in cols])
+        result=dict(cur.fetchone())
+        result.update(label=scope.scope_label(result),grade=scope.grade_for_scope(result))
+        return result
+
     @router.post('/scopes')
     def create_scope(payload:dict,token:str):
         platform._admin_tekshir(token)
         conn=platform._db();cur=conn.cursor()
         try:
-            data=dict(payload)
-            data['institution_type'] = {'institut':'universitet','institute':'universitet'}.get(scope.text_key(data.get('institution_type')),scope.text_key(data.get('institution_type')))
-            if data.get('institution_type')=='universitet':
-                programs=platform._talaba_yonalishlari(cur,int(data.get('institution_id') or 0))
-                if programs and not data.get('yonalish_id'):raise ValueError('Yo‘nalishni institutning rasmiy ro‘yxatidan tanlang')
-            if data.get('institution_type')=='universitet' and data.get('yonalish_id'):
-                program=next((p for p in programs if p['id']==int(data['yonalish_id'])),None)
-                if not program:raise ValueError('Yo‘nalish tanlangan institutga tegishli emas yoki faol emas')
-                if data.get('talim_bosqichi')!=program['bosqich']:raise ValueError('Bosqich yo‘nalishga mos emas')
-                data['yonalish_nomi']=program['nomi']
-                if program['shakllar'] and data.get('talim_shakli') not in (*program['shakllar'],'umumiy'):raise ValueError('Bu yo‘nalishda tanlangan ta’lim shakli mavjud emas')
-                if program['tillar'] and data.get('talim_tili') not in program['tillar']:raise ValueError('Bu yo‘nalishda tanlangan til mavjud emas')
-                pairs=program.get('variantlar') or []
-                if pairs and data.get('talim_shakli')!='umumiy' and {'shakl':data.get('talim_shakli'),'til':data.get('talim_tili')} not in pairs:raise ValueError('Ta’lim shakli va til kombinatsiyasi mavjud emas')
-            s=scope.normalize_scope(data)
-            if s['institution_id']:
-                table=scope.INSTITUTIONS[s['institution_type']]
-                cur.execute(f"SELECT nomi FROM {table} x WHERE id=%s AND NULLIF(to_jsonb(x)->>'archived_at','') IS NULL",(s['institution_id'],))
-                inst=cur.fetchone()
-                if not inst:raise ValueError('Muassasa topilmadi yoki arxivlangan')
-                s['institution_name']=inst['nomi']
-            else:s['institution_name']='Maktab — umumiy katalog'
-            cols=(*scope.FIELDS,'scope_key','institution_name','yonalish_nomi')
-            cur.execute(f"INSERT INTO curriculum_scopes({','.join(cols)}) VALUES ({','.join(['%s']*len(cols))}) ON CONFLICT(scope_key) DO UPDATE SET institution_name=EXCLUDED.institution_name RETURNING *",[s[k] for k in cols])
-            result=dict(cur.fetchone());conn.commit()
-            result.update(label=scope.scope_label(result),grade=scope.grade_for_scope(result))
+            result=save_scope(cur,payload)
+            conn.commit()
             return {'scope':result}
-        except ValueError as exc:conn.rollback();raise error(exc)
+        except (ValueError,TypeError) as exc:
+            conn.rollback();raise error(exc)
+        except Exception:
+            conn.rollback();raise
+        finally:cur.close();conn.close()
+
+    @router.post('/programs')
+    def create_program(payload:dict,token:str):
+        """One institute program opens four distinct lesson sections atomically."""
+        platform._admin_tekshir(token)
+        conn=platform._db();cur=conn.cursor()
+        try:
+            kind=scope.text_key(payload.get('institution_type'))
+            lessons=scope.LESSONS if kind in ('universitet','institut','institute') else ('',)
+            results=[save_scope(cur,{**payload,'dars_turi':lesson}) for lesson in lessons]
+            conn.commit()
+            return {'scopes':results,'scope':results[0]}
+        except (ValueError,TypeError) as exc:
+            conn.rollback();raise error(exc)
+        except Exception:
+            conn.rollback();raise
         finally:cur.close();conn.close()
 
     @router.get('/unassigned')

@@ -174,3 +174,9 @@ else:
     from modules.curriculum_scope import migrate as migrate_curriculum
 app.include_router(create_curriculum_router(samtm_platform))
 app.router.add_event_handler("startup", lambda: migrate_curriculum(samtm_platform._db))
+
+if __package__:
+    from .modules.admin_speech import create_router as create_admin_speech_router
+else:
+    from modules.admin_speech import create_router as create_admin_speech_router
+app.include_router(create_admin_speech_router(samtm_platform))
