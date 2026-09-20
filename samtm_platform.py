@@ -16782,6 +16782,10 @@ def topik_fanlar(sinf: str, token: str):
     _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
+    # Eski bazalarda dars_turi hali bo'lmasligi mumkin. UI bu ustunni
+    # o'qishidan OLDIN migratsiyani bir marta kafolatli yakunlaymiz.
+    _dts_kod_ustunlarini_tayyorla(cur)
+    conn.commit()
     cur.execute("""
         SELECT subject_name, COALESCE(dars_turi, '') AS dars_turi, COUNT(*) AS mavzu_soni
         FROM dts_tree WHERE grade=%s AND is_deleted=FALSE
@@ -16970,6 +16974,8 @@ def topik_royxat(sinf: str, fan: str, token: str, dars_turi: str = ""):
     _admin_tekshir(token)
     conn = _db()
     cur = conn.cursor()
+    _dts_kod_ustunlarini_tayyorla(cur)
+    conn.commit()
     cur.execute("""
         SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
                MIN(d.topic_code) AS topic_code,
@@ -18218,6 +18224,11 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
     sinf, fan = sorov.sinf.strip(), sorov.fan.strip()
     conn = _db()
     cur = conn.cursor()
+    # MUHIM: schema migratsiyasini mavzu insertidan alohida COMMIT qilamiz.
+    # Aks holda bitta mavzu xatosidagi rollback yangi dars_turi ustunini ham
+    # qaytarib yuborishi va keyingi 20 qatorning hammasi yiqilishi mumkin.
+    _dts_kod_ustunlarini_tayyorla(cur)
+    conn.commit()
     yaratildi, tiklandi, mavjud, xato_soni = 0, 0, 0, 0
     xato_namunalari = []
 
@@ -18522,6 +18533,8 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
 
     conn = _db()
     cur = conn.cursor()
+    _dts_kod_ustunlarini_tayyorla(cur)
+    conn.commit()
     added, updated, skipped = 0, 0, 0
     xato_namunalari = []  # ["Fizika varag'i, 3-qator (Mavzu nomi): xato matni", ...] — ko'pi bilan 10 ta
     tekshirilgan_varoqlar = []  # qaysi varaqlardan mavzu topilgani (diagnostika uchun)
@@ -18566,14 +18579,18 @@ async def topik_import(token: str, fayl: UploadFile = File(...)):
                 try:
                     cur.execute("""
                         INSERT INTO dts_tree
-                        (topic_code, grade, subject_name, quarter,
+                        (topic_code, grade, subject_name, dars_turi, quarter,
                          bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
+                        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,FALSE)
                         ON CONFLICT (topic_code) DO UPDATE SET
+                            subject_name = EXCLUDED.subject_name,
+                            dars_turi = EXCLUDED.dars_turi,
+                            quarter = EXCLUDED.quarter,
                             bob_name = EXCLUDED.bob_name, bolim_name = EXCLUDED.bolim_name,
-                            kichik_name = EXCLUDED.kichik_name
+                            mavzu_name = EXCLUDED.mavzu_name,
+                            kichik_name = EXCLUDED.kichik_name, is_deleted=FALSE
                     """, (
-                        topic_code, str(sinf), str(fan) if fan else "",
+                        topic_code, str(sinf), str(fan) if fan else "", str(dars_turi or ""),
                         str(chorak) if chorak else "1", str(bob) if bob else "",
                         str(bolim) if bolim else "", str(mavzu) if mavzu else "",
                         str(kichik) if kichik else "",
