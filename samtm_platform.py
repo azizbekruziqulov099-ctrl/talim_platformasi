@@ -17761,7 +17761,7 @@ async def shablon_import(
                         ),
                         None,
                     )
-                    fan_kodi = topic_code_subject_code(raw_code)
+                    fan_kodi = topic_code_subject_code(raw_code, kutilgan_sinf)
                     if (
                         exact_qator
                         and fan_kodi

@@ -313,15 +313,24 @@ def authoritative_topic_scope(
     for raw_code, raw_info in sorted(workbook_metadata.items()):
         code = str(raw_code or "").strip()
         info = {key: str(value or "").strip() for key, value in (raw_info or {}).items()}
-        parts = code.split("-")
-        if len(parts) < 3 or not parts[0] or not parts[1]:
+        # Grade nomi raqamgina emas, masalan ``2-kurs`` ham bo'lishi mumkin.
+        # Eski kod ``split('-')[0]`` qilgani uchun ``2-kurs-01-...`` ni
+        # grade=2, subject_code=kurs deb noto'g'ri o'qirdi va MALUMOT importi
+        # "birorta mos mavzu topilmadi" bilan to'xtardi. Kutilgan grade
+        # topic_code boshida to'liq prefiks sifatida turishi shart.
+        grade_prefix = f"{grade}-"
+        if not grade or not code.casefold().startswith(grade_prefix.casefold()):
+            continue
+        remainder = code[len(grade_prefix):]
+        remainder_parts = remainder.split("-")
+        if len(remainder_parts) < 2 or not remainder_parts[0]:
             errors.append(f"{code or '<bo‘sh kod>'}: topic_code formati noto'g'ri")
             continue
 
-        code_grade, subject_code = parts[0].strip(), parts[1].strip()
+        code_grade, subject_code = grade, remainder_parts[0].strip()
         metadata_grade = info.get("grade") or code_grade
         metadata_subject = info.get("subject_name", "")
-        if code_grade.casefold() != grade.casefold() or metadata_grade.casefold() != grade.casefold():
+        if metadata_grade.casefold() != grade.casefold():
             continue
         if not metadata_subject:
             errors.append(f"{code}: MALUMOTda Fan bo'sh")
@@ -365,9 +374,19 @@ def _quarter_match_text(value: Any) -> str:
     return str(int(text)) if text.isdigit() else _topic_match_text(text)
 
 
-def topic_code_subject_code(value: Any) -> str | None:
-    """To'liq topic_code ichidan fan kodini oladi (``6-02-...`` → ``02``)."""
-    parts = str(value or "").strip().split("-")
+def topic_code_subject_code(value: Any, grade: Any = None) -> str | None:
+    """To'liq topic_code ichidan fan kodini oladi.
+
+    ``grade`` berilsa ``2-kurs-01-...`` kabi tireli kurs nomlari ham to'g'ri
+    o'qiladi. Legacy chaqiruvlar uchun ``6-02-...`` ko'rinishi saqlanadi.
+    """
+    text = str(value or "").strip()
+    grade_text = str(grade or "").strip()
+    if grade_text and text.casefold().startswith((grade_text + "-").casefold()):
+        remainder = text[len(grade_text) + 1:]
+        parts = remainder.split("-")
+        return parts[0].strip() if len(parts) >= 2 and parts[0].strip() else None
+    parts = text.split("-")
     return parts[1].strip() if len(parts) >= 3 and parts[1].strip() else None
 
 

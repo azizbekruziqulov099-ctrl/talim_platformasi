@@ -254,6 +254,21 @@ class TestTemplateImportHelpers(unittest.TestCase):
         self.assertEqual(scope["7-02-01-01-01-01-001"]["subject_code"], "02")
         self.assertEqual(scope["7-02-01-01-01-01-001"]["subject_name"], "GEOMETRIYA")
 
+    def test_hyphenated_course_grade_is_supported(self):
+        metadata = {
+            "2-kurs-01-03-01-01-01-001": {
+                "grade": "2-kurs",
+                "subject_name": "BOSHLANG'ICH MATEMATIKA KURS NAZARIYASI",
+                "mavzu_name": "Ratsional sonlar",
+            },
+        }
+        scope, errors = authoritative_topic_scope(
+            metadata, "2-kurs", "BOSHLANG'ICH MATEMATIKA KURS NAZARIYASI"
+        )
+        self.assertEqual(errors, [])
+        self.assertIn("2-kurs-01-03-01-01-01-001", scope)
+        self.assertEqual(scope["2-kurs-01-03-01-01-01-001"]["subject_code"], "01")
+
     def test_one_subject_code_cannot_point_to_two_subjects(self):
         metadata = {
             "7-02-01-01-01-01-001": {"grade": "7", "subject_name": "GEOMETRIYA"},
