@@ -1073,6 +1073,11 @@ def create_test_games_router(
         cur = conn.cursor()
         try:
             _require_game_tables(cur)
+            from .curriculum_scope import authorized_codes
+            try:
+                authorized_codes(cur,user_id,topic_codes)
+            except PermissionError as exc:
+                raise HTTPException(403,str(exc)) from exc
             cur.execute(
                 """SELECT topic_code,grade,subject_code FROM dts_tree
                    WHERE topic_code=ANY(%s) AND is_deleted=FALSE""",
@@ -1152,6 +1157,11 @@ def create_test_games_router(
         cur = conn.cursor()
         try:
             _require_game_tables(cur)
+            from .curriculum_scope import authorized_codes
+            try:
+                authorized_codes(cur,user_id,topic_codes)
+            except PermissionError as exc:
+                raise HTTPException(403,str(exc)) from exc
             _ensure_profile(cur, user_id)
             cur.execute(
                 """SELECT topic_code,grade,subject_code FROM dts_tree

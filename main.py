@@ -164,3 +164,13 @@ else:
     from modules.presentations import register_presentations
 presentation_service = register_presentations(app, samtm_platform)
 app.router.add_event_handler("startup", presentation_service.migrate)
+
+# Curriculum audience migration runs after the legacy/runtime schema migrations.
+if __package__:
+    from .modules.curriculum_api import create_router as create_curriculum_router
+    from .modules.curriculum_scope import migrate as migrate_curriculum
+else:
+    from modules.curriculum_api import create_router as create_curriculum_router
+    from modules.curriculum_scope import migrate as migrate_curriculum
+app.include_router(create_curriculum_router(samtm_platform))
+app.router.add_event_handler("startup", lambda: migrate_curriculum(samtm_platform._db))

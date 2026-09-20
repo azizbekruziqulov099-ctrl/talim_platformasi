@@ -16,6 +16,32 @@ import zipfile
 REQUIRED_TEST_HEADERS = ("topic_code", "question", "correct_answer")
 
 
+def populated_test_codes(test_sheets):
+    """Only populated, valid question rows authorize replacement of old tests.
+
+    Blank template placeholders must never erase a topic's existing questions.
+    Validate the whole workbook before the caller opens a write transaction.
+    """
+    all_codes, by_sheet = set(), {}
+    for sheet in test_sheets:
+        codes = set()
+        for row in sheet.worksheet.iter_rows(min_row=2):
+            values = row_values_by_header(sheet.headers, row)
+            question = values.get('question')
+            if question is None or not str(question).strip():
+                continue
+            for field in ('topic_code', 'correct_answer'):
+                value = values.get(field)
+                if value is None or not str(value).strip():
+                    raise ValueError(f"{sheet.name}, {row[0].row}-qator: {field} to‘ldirilmagan")
+            codes.add(str(values['topic_code']).strip())
+        by_sheet[sheet.name] = codes
+        all_codes.update(codes)
+    if not all_codes:
+        raise ValueError('Faylda to‘ldirilgan test savoli yo‘q; mavjud testlar o‘zgarmadi')
+    return all_codes, by_sheet
+
+
 def grade_subject_key(grade: Any, subject_code: Any) -> tuple[str, str]:
     """Fan guruhining sinflar orasida to'qnashmaydigan kalitini qaytaradi.
 
