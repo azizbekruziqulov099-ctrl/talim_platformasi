@@ -17237,11 +17237,12 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     kop_fanli = len(fan_guruhlari) > 1
 
     rasm_qatorlari = []  # (image_id, topic_code) — RASM_MALUMOTI uchun, BARCHA fanlar bo'ylab umumiy
+    varaq_fanlari = {}
     ishlatilgan_varoq_nomlari = set()
     for fan_nomi, fan_kodlari in fan_guruhlari.items():
         if kop_fanli:
             xom_nom = f"TESTLAR_{re.sub(r'[^0-9A-Za-zА-Яа-яЎўҚқҒғҲҳ ]', '', fan_nomi)}".strip()
-            varoq_nomi = xom_nom[:31] or "TESTLAR"
+            varoq_nomi = xom_nom[:31].rstrip() or "TESTLAR"
             # Excel'da bir xil nomli varaq bo'lishi mumkin emas — takrorlansa, raqam qo'shamiz
             asl_varoq_nomi, sanoq = varoq_nomi, 1
             while varoq_nomi in ishlatilgan_varoq_nomlari:
@@ -17251,6 +17252,7 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
             varoq_nomi = "TESTLAR"
         ishlatilgan_varoq_nomlari.add(varoq_nomi)
         ws = wb.create_sheet(varoq_nomi)
+        varaq_fanlari[ws.title] = fan_nomi
 
         for col, h in enumerate(testlar_ustunlari, 1):
             cell = ws.cell(1, col, h)
@@ -17264,17 +17266,19 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
             grade = str(info["grade"]) if info else ""
             talaba = _talaba_sinfini_ochish(grade)
             age_group = ("22-25" if talaba["bosqich"] == "magistr" else "18-22") if talaba else _YOSH_GURUHI.get(grade, "")
+            question_index = 0
             for g in guruhlar:
                 color = diff_colors.get(g.diff, "F2F2F2")
                 for i in range(1, g.soni + 1):
-                    image_id = f"{kod}-{i}"
+                    question_index += 1
+                    image_id = f"{kod}-{question_index}"
                     ws.cell(row_num, 1, kod)
                     ws.cell(row_num, 2, g.diff)
                     ws.cell(row_num, 3, "oddiy")
                     ws.cell(row_num, 11, g.turi)
                     ws.cell(row_num, 12, False)
                     ws.cell(row_num, 13, image_id)
-                    ws.cell(row_num, 15, "uz")
+                    ws.cell(row_num, 15, scope.get('talim_tili') or "uz")
                     ws.cell(row_num, 16, 1)
                     ws.cell(row_num, 17, age_group)
                     ws.cell(row_num, 18, _test_vaqti(g))  # qiyinlikka qarab avto yoki admin yozgan vaqt
@@ -17362,6 +17366,12 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     audience.append(["scope_id", "O‘quv dasturi"])
     audience.append([scope['id'], _curriculum.scope_label(scope)])
     audience.column_dimensions['B'].width = 100
+    sheet_map = wb.create_sheet('VARAQ_XARITA')
+    sheet_map.append(['sheet_name','subject_name'])
+    for sheet_name,subject_name in varaq_fanlari.items():
+        sheet_map.append([sheet_name,subject_name])
+    sheet_map.column_dimensions['A'].width = 34
+    sheet_map.column_dimensions['B'].width = 70
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
@@ -17403,7 +17413,8 @@ async def shablon_import(
         subject_matches,
         topic_code_subject_code,
         workbook_topic_metadata,
-        worksheet_subject_hint,
+        workbook_subject_sheets,
+        worksheet_subject_hint as worksheet_name_subject_hint,
     )
 
     kutilgan_sinf = (kutilgan_sinf or "").strip() or None
@@ -17468,6 +17479,13 @@ async def shablon_import(
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
 
     test_varaqlar, buzuq_test_varaqlar = discover_test_worksheets(wb)
+    try:
+        sheet_subjects = workbook_subject_sheets(wb)
+    except ValueError as exc:
+        wb.close(); temp_excel.close()
+        raise HTTPException(400,str(exc)) from exc
+    def worksheet_subject_hint(name):
+        return sheet_subjects.get(name) or worksheet_name_subject_hint(name)
     shablon_mavzu_meta = workbook_topic_metadata(wb)
     authoritative_scope = {}
     if shablon_mavzu_meta:
@@ -18017,7 +18035,7 @@ async def shablon_import(
                 d = row_values_by_header(headers, row)
                 tc = d.get("topic_code")
                 q = d.get("question")
-                if not q or str(q).strip() == "":
+                if q is None or str(q).strip() == "":
                     continue
 
                 korilgan_savollar_soni += 1
@@ -18030,10 +18048,10 @@ async def shablon_import(
                 raw_tc_s = str(tc).strip()
                 tc_s = varaq_kod_almashtirish[test_varaq.name][raw_tc_s]
                 q_s = str(q).strip()
-                opt_a = str(d.get("option_a") or "").strip()
-                opt_b = str(d.get("option_b") or "").strip()
-                opt_c = str(d.get("option_c") or "").strip()
-                opt_d = str(d.get("option_d") or "").strip()
+                opt_a = str(d.get("option_a") if d.get("option_a") is not None else "").strip()
+                opt_b = str(d.get("option_b") if d.get("option_b") is not None else "").strip()
+                opt_c = str(d.get("option_c") if d.get("option_c") is not None else "").strip()
+                opt_d = str(d.get("option_d") if d.get("option_d") is not None else "").strip()
                 correct = str(d.get("correct_answer") if d.get("correct_answer") is not None else "").strip()
                 question_type = str(d.get("question_type") or "single_choice").strip().lower()
                 qator_raqami = row[0].row

@@ -318,6 +318,28 @@ def workbook_topic_metadata(workbook: Any) -> dict[str, dict[str, str]]:
     return {}
 
 
+def workbook_subject_sheets(workbook: Any) -> dict[str, str]:
+    """Excel sheet titles are limited to 31 characters; keep full subject names."""
+    if 'VARAQ_XARITA' not in workbook.sheetnames:
+        return {}
+    ws=workbook['VARAQ_XARITA']
+    headers=worksheet_headers(ws)
+    if 'sheet_name' not in headers or 'subject_name' not in headers:
+        raise ValueError('VARAQ_XARITA ustunlari o‘zgartirilgan')
+    mapping={}
+    for row in ws.iter_rows(min_row=2):
+        values=row_values_by_header(headers,row)
+        name=str(values.get('sheet_name') or '')
+        subject=str(values.get('subject_name') or '').strip()
+        if not name and not subject:continue
+        if not name or not subject or name not in workbook.sheetnames:
+            raise ValueError('VARAQ_XARITA varaq nomi yoki fan nomi noto‘g‘ri')
+        if name in mapping and not subject_matches(mapping[name],subject):
+            raise ValueError('Bitta test varag‘i ikki fanga bog‘langan')
+        mapping[name]=subject
+    return mapping
+
+
 def authoritative_topic_scope(
     workbook_metadata: dict[str, dict[str, str]],
     expected_grade: Any,
