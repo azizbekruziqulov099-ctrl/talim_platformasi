@@ -74,7 +74,7 @@ class Cursor:
 class AudienceTests(unittest.TestCase):
  def setUp(self):self.db=DB();self.db.add_scope(1);self.code=self.db.add_topic(1)
  def test_all_dimensions_exclude_other_audiences(self):
-  cases=[{'institution_id':12},{'yonalish_id':8},{'talim_bosqichi':'magistr'},{'talim_shakli':'kunduzgi'},{'talim_shakli':'sirtqi'},{'talim_tili':'ru'},{'kurs':2,'semestr':3},{'semestr':2},{'guruh':'102'},{'institution_type':'maktab','institution_id':0},{'institution_type':'bogcha','institution_id':11},{'institution_type':'markaz','institution_id':11}]
+  cases=[{'institution_id':12},{'yonalish_id':8},{'talim_bosqichi':'magistr'},{'talim_shakli':'kunduzgi'},{'talim_shakli':'sirtqi'},{'talim_tili':'ru'},{'kurs':2,'semestr':3},{'guruh':'102'},{'institution_type':'maktab','institution_id':0},{'institution_type':'bogcha','institution_id':11},{'institution_type':'markaz','institution_id':11}]
   for i,c in enumerate(cases,2):self.db.add_scope(i,**c);self.db.add_topic(i)
   self.assertEqual(self.db.visible(),{self.code})
  def test_shared_form_still_checks_institute(self):

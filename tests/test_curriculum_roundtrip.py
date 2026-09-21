@@ -27,7 +27,7 @@ class WorkbookRoundTripTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   path=Path(__file__).resolve().parents[1]/'samtm_platform.py'
-  names={'topik_shablon','topik_import','shablon_yukla','shablon_import','_mavzularni_parse','_yuklab_olish_sarlavhasi','_curriculum_scope','_curriculum_admin_guard','_dts_matn_normalize','_dts_sinf_normalize','_dts_chorak_normalize','_dts_fan_kodi_ol','_dts_bob_kodi_ol','_dts_bolim_kodi_ol','_dts_mavzu_kodi_ol','_dts_kichik_kodi_ol','_dts_qator_kiritish','_talaba_sinfini_ochish','_talaba_sinf_matni','_sinf_talaba_mi','_test_vaqti'}
+  names={'tushuntirish_import','mavzu_tushuntirish_ol','topik_royxat','topik_fanlar','topik_toliq_yarat','topik_shablon','topik_import','shablon_yukla','shablon_import','_mavzularni_parse','_yuklab_olish_sarlavhasi','_curriculum_scope','_curriculum_admin_guard','_dts_matn_normalize','_dts_sinf_normalize','_dts_chorak_normalize','_dts_fan_kodi_ol','_dts_bob_kodi_ol','_dts_bolim_kodi_ol','_dts_mavzu_kodi_ol','_dts_kichik_kodi_ol','_dts_qator_kiritish','_talaba_sinfini_ochish','_talaba_sinf_matni','_sinf_talaba_mi','_test_vaqti'}
   constants={'_TALABA_SINF_REGEX','_YOSH_GURUHI','TEST_AVTO_VAQT'}
   nodes=[]
   for node in ast.parse(path.read_text()).body:
@@ -51,7 +51,7 @@ class WorkbookRoundTripTests(unittest.TestCase):
     cursor=self.db.sql.execute(statement,row)
     cur.rows.extend(dict(result) for result in cursor.fetchall())
    cur.rowcount=len(rows)
-  ns={'re':re,'io':io,'unicodedata':unicodedata,'Optional':Optional,'_curriculum':scope,'HTTPException':HTTPException,'_db':lambda:self.db,'_admin_tekshir':lambda token:99,'TopikShablonSorov':SimpleNamespace,'TestShablonSorov':SimpleNamespace,'UploadFile':object,'File':lambda *a,**k:None,'psycopg2':SimpleNamespace(Binary=lambda data:data,Error=sqlite3.Error,extras=SimpleNamespace(execute_values=execute_values))}
+  ns={'re':re,'io':io,'unicodedata':unicodedata,'Optional':Optional,'_curriculum':scope,'HTTPException':HTTPException,'_db':lambda:self.db,'_admin_tekshir':lambda token:99,'_jwt_tekshir':lambda token:5,'TopikShablonSorov':SimpleNamespace,'TestShablonSorov':SimpleNamespace,'UploadFile':object,'File':lambda *a,**k:None,'psycopg2':SimpleNamespace(Binary=lambda data:data,Error=sqlite3.Error,extras=SimpleNamespace(execute_values=execute_values))}
   exec(self.code,ns);self.ns=ns
  def scope(self,id=1,**changes):
   result=self.db.add_scope(id,**changes);self.db.commit();return result
@@ -148,5 +148,93 @@ class WorkbookRoundTripTests(unittest.TestCase):
  def test_template_uses_selected_program_language(self):
   audience=self.scope(talim_tili='ru');wb=self.build_test_template(self.create_topics(audience))
   self.assertEqual(wb['TESTLAR'].cell(2,15).value,'ru')
+
+
+ def test_visible_parent_template_has_15_or_60_blocks_not_double(self):
+  for count in (15,60):
+   with self.subTest(count=count):
+    self.reset();audience=self.scope();cur=self.db.cursor();codes=[]
+    for i in range(count):
+     for leaf in ('Birinchi','Ikkinchi'):
+      code,_=self.ns['_dts_qator_kiritish'](cur,'1 kurs','Matematika','1','','',f'Mavzu {i+1}',leaf,'maruza',1);codes.append(code)
+    self.db.commit()
+    visible=self.ns['topik_royxat']('1 kurs','Matematika','admin',scope_id=1)
+    self.assertEqual(len(visible['mavzular']),count)
+    wb=self.build_test_template(codes+codes)
+    self.assertEqual(wb['TESTLAR'].max_row-1,count)
+    self.assertEqual(wb['MALUMOT'].max_row-1,count)
+    self.assertEqual(self.import_tests(self.fill(wb))['saved'],count)
+    self.assertEqual(len(self.rows()),count)
+    self.import_tests(wb);self.assertEqual(len(self.rows()),count)
+ def test_question_count_is_per_parent_per_selected_group(self):
+  audience=self.scope();codes=[];cur=self.db.cursor()
+  for i in range(15):
+   for leaf in ('A','B'):
+    code,_=self.ns['_dts_qator_kiritish'](cur,'1 kurs','Matematika','1','','',f'Mavzu {i}',leaf,'maruza',1);codes.append(code)
+  self.db.commit();groups=[SimpleNamespace(diff='oson',turi='single_choice',soni=4)]
+  wb=self.build_test_template(codes,groups=groups);self.assertEqual(wb['TESTLAR'].max_row-1,60)
+ def test_repeat_topic_lines_create_one_row(self):
+  audience=self.scope();wb=self.topic_template(audience,topics='1 / Kirish\n1 / Kirish\n2 / Kirish\n2 / Kirish')
+  self.assertEqual(wb['DTS_SHABLON'].max_row-1,2)
+  self.assertEqual(self.import_topics(wb)['added'],2)
+  self.assertEqual(self.import_topics(wb)['added'],0)
+ def test_later_chapter_completion_reuses_topic_code_and_tests(self):
+  audience=self.scope();wb=self.topic_template(audience,topics='1 / Kirish');self.import_topics(wb)
+  code=self.db.sql.execute('SELECT topic_code FROM dts_tree').fetchone()[0]
+  self.db.sql.execute("INSERT INTO generated_tests(topic_code,question) VALUES(?,'Old question')",(code,));self.db.commit()
+  wb['DTS_SHABLON'].cell(2,5,'1-bob');wb['DTS_SHABLON'].cell(2,6,'1-bo‘lim')
+  self.assertEqual(self.import_topics(wb)['added'],0)
+  rows=list(self.db.sql.execute('SELECT topic_code,bob_name,bolim_name FROM dts_tree'))
+  self.assertEqual(len(rows),1);self.assertEqual(rows[0][0],code);self.assertTrue(rows[0][1]);self.assertEqual(len(self.rows()),1)
+ def test_all_four_year_pairs_round_trip_without_merging_same_title(self):
+  for course in range(1,5):
+   with self.subTest(course=course):
+    self.reset();first,second=scope.semester_pair(course);audience=self.scope(kurs=course,semestr=first);grade=f'{course} kurs'
+    wb=self.topic_template(audience,grade,topics=f'{first} / Kirish\n{second} / Kirish')
+    self.assertEqual(wb['DTS_SHABLON'].cell(1,4).value,'Semestr')
+    self.assertEqual(self.import_topics(wb)['added'],2)
+    codes=[r[0] for r in self.db.sql.execute('SELECT topic_code FROM dts_tree')]
+    tests=self.fill(self.build_test_template(codes));self.assertEqual(tests['TESTLAR'].max_row-1,2)
+    self.assertEqual({r[10] for r in tests['MALUMOT'].iter_rows(min_row=2,values_only=True)},{first,second})
+    self.assertEqual(self.import_tests(tests,grade)['saved'],2);self.import_tests(tests,grade);self.assertEqual(len(self.rows()),2)
+    self.assertEqual(self.import_topics(wb)['added'],0)
+ def test_foreign_period_rolls_back_entire_topic_workbook(self):
+  audience=self.scope();wb=self.topic_template(audience);wb['DTS_SHABLON'].cell(3,4,3)
+  with self.assertRaises(HTTPException):self.import_topics(wb)
+  self.assertEqual(self.db.sql.execute('SELECT COUNT(*) FROM dts_tree').fetchone()[0],0)
+ def test_test_replacement_clears_parent_aliases_only_in_same_semester(self):
+  audience=self.scope();second=self.scope(2,semestr=2);cur=self.db.cursor();codes=[]
+  for id in (1,2):
+   for leaf in ('A','B'):
+    code,_=self.ns['_dts_qator_kiritish'](cur,'1 kurs','Matematika',str(id),'','','Kirish',leaf,'maruza',id);codes.append(code)
+    self.db.sql.execute("INSERT INTO generated_tests(topic_code,question) VALUES(?,?)",(code,f'Original {id}'))
+  self.db.commit();wb=self.fill(self.build_test_template(codes[:2]));self.import_tests(wb)
+  self.assertEqual(len(self.rows()),3)
+  self.assertEqual(sum(r['question']=='Original 2' for r in self.rows()),2)
+  self.assertFalse(any(r['question']=='Original 1' for r in self.rows()))
+ def test_legacy_chorak_import_preserves_explicit_semester(self):
+  audience=self.scope();self.scope(2,semestr=2)
+  wb=openpyxl.Workbook();ws=wb.active;ws.append(['Sinf','Fan','Dars turi','Chorak','Bob','Bolim','Mavzu','Kichik mavzu','scope_id']);ws.append(['1 kurs','Matematika','maruza',1,'','','Kirish','',2])
+  self.import_topics(wb)
+  self.assertEqual(self.db.sql.execute('SELECT curriculum_scope_id FROM dts_tree').fetchone()[0],2)
+ def test_official_program_renaming_does_not_fork_topic(self):
+  audience=self.scope();self.import_topics(self.topic_template(audience,topics='1 / Kirish'))
+  self.db.sql.execute("UPDATE curriculum_scopes SET yonalish_nomi='Renamed',yonalish_key='renamed' WHERE id=1");self.db.commit()
+  self.assertEqual(self.import_topics(self.topic_template(audience,topics='1 / Kirish'))['added'],0)
+
+
+ def test_explanations_with_same_title_require_semester_and_remain_separate(self):
+  audience=self.scope();self.import_topics(self.topic_template(audience,topics='1 / Kirish\n2 / Kirish'))
+  self.db.sql.execute("CREATE TABLE curriculum_explanations(curriculum_scope_id INTEGER,sinf TEXT,fan TEXT,mavzu_nomi TEXT,tushuntirish TEXT,yaratilgan_at TEXT,UNIQUE(curriculum_scope_id,sinf,fan,mavzu_nomi))");self.db.commit()
+  wb=openpyxl.Workbook();ws=wb.active;ws.append(['Sinf','Fan','Mavzu','Tushuntirish']);ws.append(['1 kurs','Matematika','Kirish','First'])
+  with self.assertRaises(HTTPException):asyncio.run(self.ns['tushuntirish_import']('admin',Upload(wb),1))
+  self.assertEqual(self.db.sql.execute('SELECT COUNT(*) FROM curriculum_explanations').fetchone()[0],0)
+  ws.cell(1,5,'Semestr');ws.cell(2,5,1);ws.append(['1 kurs','Matematika','Kirish','Second',2])
+  result=asyncio.run(self.ns['tushuntirish_import']('admin',Upload(wb),1));self.assertEqual(result['saqlandi'],2)
+  codes=list(self.db.sql.execute('SELECT d.topic_code,cs.semestr FROM dts_tree d JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id'))
+  for code,semester in codes:
+   result=self.ns['mavzu_tushuntirish_ol']('1 kurs','Matematika','kirish','student',code)
+   self.assertEqual(result['tushuntirish'],'First' if semester==1 else 'Second')
+  self.assertFalse(self.ns['mavzu_tushuntirish_ol']('1 kurs','Matematika','kirish','student')['topildi'])
 
 if __name__=='__main__':unittest.main()

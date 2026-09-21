@@ -101,6 +101,17 @@ class CatalogTests(unittest.TestCase):
   self.assertEqual(self.catalog(token='teacher')['viewer']['types'],[])
   self.assertEqual(self.codes(self.catalog(token='teacher')),set())
 
+ def test_student_sees_both_semesters_as_one_subject_with_distinct_topics(self):
+  for course in range(1,5):
+   with self.subTest(course=course):
+    self.setUp();a,b=scope.semester_pair(course);self.db.profile.update(kurs=course,semestr=a);self.db.user['class']=f'{course} kurs'
+    own={self.topic(1,kurs=course,semestr=a,grade=f'{course} kurs'),self.topic(2,kurs=course,semestr=b,grade=f'{course} kurs')}
+    self.topic(3,kurs=course,semestr=b,talim_shakli='sirtqi',grade=f'{course} kurs')
+    result=self.catalog(token='student');self.assertEqual(self.codes(result),own)
+    self.assertEqual(len(result['fanlar']),1);subject=result['fanlar'][0];self.assertEqual(subject['semestrlar'],[a,b]);self.assertEqual(self.codes(self.catalog(token='student',scope_id=1)),own)
+    self.assertEqual({t['semestr'] for t in subject['sinflar'][0]['mavzular']},{a,b})
+    self.db.profile['semestr']=b;self.assertEqual(self.codes(self.catalog(token='student')),own)
+
 class ProgramTests(unittest.TestCase):
  def setUp(self):
   self.db=DB()
@@ -111,12 +122,12 @@ class ProgramTests(unittest.TestCase):
   platform=SimpleNamespace(_db=lambda:self.db,_admin_tekshir=admin,_talaba_yonalishlari=lambda cur,id:[program] if id==11 else [])
   create=load_function(ROOT/'modules/curriculum_api.py','create_router',{'APIRouter':Router,'HTTPException':HTTPException,'scope':scope})
   self.create=create(platform).routes['/programs']
- def test_program_creation_opens_four_lessons_and_is_idempotent(self):
+ def test_program_creation_opens_two_semesters_four_lessons_and_is_idempotent(self):
   first=self.create(BASE,'admin')['scopes'];second=self.create(BASE,'admin')['scopes']
-  self.assertEqual([s['dars_turi'] for s in first],list(scope.LESSONS))
+  self.assertEqual([s['dars_turi'] for s in first],list(scope.LESSONS)*2)
   self.assertEqual([s['id'] for s in first],[s['id'] for s in second])
-  self.assertEqual(len({s['scope_key'] for s in first}),4)
-  self.assertEqual(self.db.sql.execute('SELECT COUNT(*) FROM curriculum_scopes').fetchone()[0],4)
+  self.assertEqual(len({s['scope_key'] for s in first}),8)
+  self.assertEqual(self.db.sql.execute('SELECT COUNT(*) FROM curriculum_scopes').fetchone()[0],8)
  def test_non_institute_has_no_institute_lessons(self):
   for kind in ('maktab','bogcha','markaz'):
    rows=self.create({'institution_type':kind,'institution_id':11},'admin')['scopes']

@@ -57,6 +57,12 @@ def create_router(platform):
             if not inst:raise ValueError('Muassasa topilmadi yoki arxivlangan')
             s['institution_name']=inst['nomi']
         else:s['institution_name']='Maktab — umumiy katalog'
+        if s['institution_type']=='universitet':
+            cur.execute('SELECT pg_advisory_xact_lock(hashtext(%s))',(repr(scope.scope_identity(s)),))
+            existing=next((r for r in scope.year_family(cur,s) if r['semestr']==s['semestr']),None)
+            if existing:
+                cur.execute('UPDATE curriculum_scopes SET institution_name=%s,yonalish_nomi=%s,yonalish_key=%s WHERE id=%s RETURNING *',(s['institution_name'],s['yonalish_nomi'],s['yonalish_key'],existing['id']))
+                result=dict(cur.fetchone());result.update(label=scope.scope_label(result),grade=scope.grade_for_scope(result));return result
         cols=(*scope.FIELDS,'scope_key','institution_name','yonalish_nomi')
         cur.execute(f"INSERT INTO curriculum_scopes({','.join(cols)}) VALUES ({','.join(['%s']*len(cols))}) ON CONFLICT(scope_key) DO UPDATE SET institution_name=EXCLUDED.institution_name RETURNING *",[s[k] for k in cols])
         result=dict(cur.fetchone())
@@ -79,13 +85,14 @@ def create_router(platform):
 
     @router.post('/programs')
     def create_program(payload:dict,token:str):
-        """One institute program opens four distinct lesson sections atomically."""
+        """Both semesters open their four lesson sections atomically."""
         platform._admin_tekshir(token)
         conn=platform._db();cur=conn.cursor()
         try:
             kind=scope.text_key(payload.get('institution_type'))
             lessons=scope.LESSONS if kind in ('universitet','institut','institute') else ('',)
-            results=[save_scope(cur,{**payload,'dars_turi':lesson}) for lesson in lessons]
+            periods=scope.semester_pair(payload.get('kurs')) if kind in ('universitet','institut','institute') else (0,)
+            results=[save_scope(cur,{**payload,'semestr':semester,'dars_turi':lesson}) for semester in periods for lesson in lessons]
             conn.commit()
             return {'scopes':results,'scope':results[0]}
         except (ValueError,TypeError) as exc:

@@ -180,3 +180,10 @@ if __package__:
 else:
     from modules.admin_speech import create_router as create_admin_speech_router
 app.include_router(create_admin_speech_router(samtm_platform))
+
+# Display-only translations; server credentials never reach the frontend.
+if __package__:
+    from .modules.translation_api import create_router as create_translation_router
+else:
+    from modules.translation_api import create_router as create_translation_router
+app.include_router(create_translation_router(samtm_platform))

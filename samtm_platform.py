@@ -194,16 +194,16 @@ def mavzu_kod_moslik(token: str, sinf: str, fan: str, scope_id: int = 0):
     sinf = _curriculum.canonical_grade(sinf)
     cur.execute("""
         SELECT topic_code, bob_name, bolim_name, mavzu_name, kichik_name
-        FROM dts_tree WHERE curriculum_scope_id=%s AND grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE
+        FROM dts_tree WHERE curriculum_scope_id=ANY(%s) AND grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE
         ORDER BY topic_code
-    """, (scope['id'], sinf, fan))
+    """, (_curriculum.scope_ids(scope), sinf, fan))
     dts_qatorlar = cur.fetchall()
     dts_kodlari = {r["topic_code"] for r in dts_qatorlar}
 
     # generated_tests'da shu sinf+fan PREFIKSI bilan boshlanadigan
     # (masalan "5-03-") barcha topic_code'lar — dts_tree'da bormi-yo'qmi,
     # ikkalasi ham.
-    cur.execute("SELECT subject_code FROM dts_tree WHERE curriculum_scope_id=%s AND grade=%s AND UPPER(subject_name)=UPPER(%s) LIMIT 1", (scope['id'], sinf, fan))
+    cur.execute("SELECT subject_code FROM dts_tree WHERE curriculum_scope_id=ANY(%s) AND grade=%s AND UPPER(subject_name)=UPPER(%s) LIMIT 1", (_curriculum.scope_ids(scope), sinf, fan))
     r = cur.fetchone()
     prefiks = f"{sinf}-{r['subject_code']}-" if r else None
 
@@ -1615,10 +1615,12 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             clause += " AND d.grade=%s"
             params.append(_curriculum.canonical_grade(sinf))
         if scope_id is not None:
-            clause += " AND d.curriculum_scope_id=%s"
-            params.append(scope_id)
+            selected_scope=_curriculum.get_scope(cur,scope_id)
+            clause += " AND d.curriculum_scope_id=ANY(%s)"
+            params.append(_curriculum.scope_ids(selected_scope))
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
+                cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
@@ -1627,7 +1629,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             LEFT JOIN generated_tests gt ON gt.topic_code=d.topic_code
             WHERE d.is_deleted=FALSE AND ({clause})
             GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
-                cs.institution_type,cs.institution_name,
+                cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
             ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",params)
         result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
@@ -16760,7 +16762,7 @@ def topik_sinflar(token: str, scope_id: int = 0):
     conn = _db()
     cur = conn.cursor()
     scope = _curriculum_scope(cur, scope_id)
-    cur.execute("SELECT DISTINCT grade FROM dts_tree WHERE is_deleted=FALSE AND curriculum_scope_id=%s", (scope["id"],))
+    cur.execute("SELECT DISTINCT grade FROM dts_tree WHERE is_deleted=FALSE AND curriculum_scope_id=ANY(%s)", (_curriculum.scope_ids(scope),))
     hammasi = [r["grade"] for r in cur.fetchall() if r["grade"]]
     cur.close()
     conn.close()
@@ -16775,26 +16777,16 @@ def topik_sinflar(token: str, scope_id: int = 0):
 
 @app.get("/api/admin/topik_fanlar")
 def topik_fanlar(sinf: str, token: str, scope_id: int = 0):
-    """Berilgan sinfda mavzusi yaratilgan fanlar ro'yxati (test bor-yo'qligidan
-    qat'i nazar — bu TEST bilan cheklanmagan, TO'LIQ kontent auditi)."""
-    _admin_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    scope = _curriculum_scope(cur, scope_id)
-    # Eski bazalarda dars_turi hali bo'lmasligi mumkin. UI bu ustunni
-    # o'qishidan OLDIN migratsiyani bir marta kafolatli yakunlaymiz.
-    _dts_kod_ustunlarini_tayyorla(cur)
-    conn.commit()
-    cur.execute("""
-        SELECT subject_name, COALESCE(dars_turi, '') AS dars_turi, COUNT(*) AS mavzu_soni
-        FROM dts_tree WHERE grade=%s AND is_deleted=FALSE AND curriculum_scope_id=%s
-        GROUP BY subject_name, COALESCE(dars_turi, '')
-        ORDER BY subject_name, dars_turi
-    """, (_curriculum.canonical_grade(sinf), scope["id"]))
-    fanlar = [{"nom": r["subject_name"], "dars_turi": r.get("dars_turi") or "", "mavzu_soni": r["mavzu_soni"]} for r in cur.fetchall()]
-    cur.close()
-    conn.close()
-    return {"fanlar": fanlar}
+    _admin_tekshir(token);conn=_db();cur=conn.cursor()
+    try:
+        scope=_curriculum_scope(cur,scope_id)
+        cur.execute("SELECT * FROM dts_tree WHERE grade=%s AND is_deleted=FALSE AND curriculum_scope_id=ANY(%s) ORDER BY subject_name,topic_code",(_curriculum.canonical_grade(sinf),_curriculum.scope_ids(scope)))
+        rows=[dict(r) for r in cur.fetchall()];topics=_curriculum.topic_groups(rows,_curriculum.topic_scope_map(cur,rows));fans={}
+        for row in topics:
+            key=(_curriculum.text_key(row['subject_name']),row.get('dars_turi') or '')
+            value=fans.setdefault(key,{'nom':row['subject_name'],'dars_turi':key[1],'mavzu_soni':0});value['mavzu_soni']+=1
+        return {'fanlar':list(fans.values())}
+    finally:cur.close();conn.close()
 
 
 @app.put("/api/admin/topik_fan_nomini_tahrirla")
@@ -16813,9 +16805,9 @@ def topik_fan_nomini_tahrirla(token: str, sinf: str, eski_fan: str, yangi_fan: s
     try:
         cur.execute(
             """UPDATE dts_tree SET subject_name=%s
-               WHERE grade=%s AND UPPER(TRIM(subject_name))=UPPER(%s) AND curriculum_scope_id=%s
+               WHERE grade=%s AND UPPER(TRIM(subject_name))=UPPER(%s) AND curriculum_scope_id=ANY(%s)
                  AND is_deleted=FALSE""",
-            (yangi, sinf, eski, scope['id']),
+            (yangi, sinf, eski, _curriculum.scope_ids(scope)),
         )
         yangilangan = cur.rowcount
         if not yangilangan:
@@ -16823,8 +16815,8 @@ def topik_fan_nomini_tahrirla(token: str, sinf: str, eski_fan: str, yangi_fan: s
         _tushuntirish_jadvali(cur)
         cur.execute(
             """UPDATE curriculum_explanations SET fan=%s
-               WHERE sinf=%s AND UPPER(TRIM(fan))=UPPER(%s) AND curriculum_scope_id=%s""",
-            (yangi, sinf, eski, scope['id']),
+               WHERE sinf=%s AND UPPER(TRIM(fan))=UPPER(%s) AND curriculum_scope_id=ANY(%s)""",
+            (yangi, sinf, eski, _curriculum.scope_ids(scope)),
         )
         conn.commit()
     except HTTPException:
@@ -16841,45 +16833,20 @@ def topik_fan_nomini_tahrirla(token: str, sinf: str, eski_fan: str, yangi_fan: s
 
 @app.get("/api/admin/topik_umumiy_korinish")
 def topik_umumiy_korinish(token: str, scope_id: int = 0):
-    """BARCHA sinf va fanlar bo'yicha bir zumda umumiy ko'rinish — har
-    sinfga alohida kirmasdan, qaysi fanda nechta mavzu va shundan
-    nechtasida test borligini BITTA so'rov bilan qaytaradi (admin
-    "Umumiy ko'rinish" tugmasi uchun)."""
-    _admin_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    scope = _curriculum_scope(cur, scope_id)
-    cur.execute("""
-        WITH mavzu_guruhlari AS (
-            SELECT d.grade, d.subject_name,
-                   COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS mavzu_nomi,
-                   COUNT(DISTINCT gt.topic_code) > 0 AS test_bormi
-            FROM dts_tree d
-            LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
-            WHERE d.is_deleted = FALSE AND d.curriculum_scope_id=%s
-            GROUP BY d.grade, d.subject_name, COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
-        )
-        SELECT grade, subject_name,
-               COUNT(*) AS jami_mavzu,
-               COUNT(*) FILTER (WHERE test_bormi) AS testli_mavzu
-        FROM mavzu_guruhlari
-        GROUP BY grade, subject_name
-        ORDER BY grade, subject_name
-    """, (scope["id"],))
-    qatorlar = cur.fetchall()
-    cur.close()
-    conn.close()
-
-    sinflar = {}
-    for r in qatorlar:
-        g = r["grade"]
-        sinflar.setdefault(g, {"sinf": g, "fanlar": []})
-        sinflar[g]["fanlar"].append({
-            "nom": r["subject_name"], "jami_mavzu": r["jami_mavzu"], "testli_mavzu": r["testli_mavzu"],
-        })
-    natija = list(sinflar.values())
-    natija.sort(key=lambda s: (0, int(s["sinf"])) if s["sinf"].isdigit() else (1, s["sinf"]))
-    return {"sinflar": natija}
+    _admin_tekshir(token);conn=_db();cur=conn.cursor()
+    try:
+        scope=_curriculum_scope(cur,scope_id)
+        cur.execute("""SELECT d.*, EXISTS(SELECT 1 FROM generated_tests gt WHERE gt.topic_code=d.topic_code) AS test_bormi
+            FROM dts_tree d WHERE d.is_deleted=FALSE AND d.curriculum_scope_id=ANY(%s) ORDER BY d.grade,d.subject_name,d.topic_code""",(_curriculum.scope_ids(scope),))
+        rows=[dict(r) for r in cur.fetchall()];grouped=_curriculum.topic_groups(rows,_curriculum.topic_scope_map(cur,rows));grades={}
+        for row in grouped:
+            fans=grades.setdefault(row['grade'],{});key=_curriculum.text_key(row['subject_name'])
+            value=fans.setdefault(key,{'nom':row['subject_name'],'jami_mavzu':0,'testli_mavzu':0})
+            value['jami_mavzu']+=1;value['testli_mavzu']+=int(row['test_bormi'])
+        result=[{'sinf':g,'fanlar':list(f.values())} for g,f in grades.items()]
+        result.sort(key=lambda s:(0,int(s['sinf'])) if s['sinf'].isdigit() else (1,s['sinf']))
+        return {'sinflar':result}
+    finally:cur.close();conn.close()
 
 
 # ═══════════════════════════════════════════════════════════
@@ -16934,11 +16901,20 @@ async def tushuntirish_import(token: str, fayl: UploadFile = File(...), scope_id
             grade,fan,topic,body=[str(row[headers[k]] or '').strip() for k in ('Sinf','Fan','Mavzu','Tushuntirish')]
             if not all((grade,fan,topic,body)):raise HTTPException(400,f'{number}-qator to‘liq emas')
             grade=_curriculum.canonical_grade(grade)
-            cur.execute("SELECT 1 FROM dts_tree WHERE curriculum_scope_id=%s AND grade=%s AND UPPER(subject_name)=UPPER(%s) AND COALESCE(NULLIF(mavzu_name,''),bolim_name,bob_name)=%s AND is_deleted=FALSE",(scope['id'],grade,fan,topic))
-            if not cur.fetchone():raise HTTPException(400,f'{number}-qatordagi mavzu tanlangan dasturda yo‘q')
-            cur.execute("""INSERT INTO curriculum_explanations(curriculum_scope_id,sinf,fan,mavzu_nomi,tushuntirish)
-                VALUES(%s,%s,%s,%s,%s) ON CONFLICT(curriculum_scope_id,sinf,fan,mavzu_nomi)
-                DO UPDATE SET tushuntirish=EXCLUDED.tushuntirish,yaratilgan_at=NOW()""",(scope['id'],grade,fan,topic,body))
+            selected_ids=_curriculum.scope_ids(scope)
+            if scope['institution_type']=='universitet' and 'Semestr' in headers:
+                try:semester_scope=_curriculum.scope_for_period(cur,scope,row[headers['Semestr']])
+                except ValueError as exc:raise HTTPException(400,f'{number}-qator: {exc}')
+                selected_ids=[r['id'] for r in _curriculum.year_family(cur,scope) if r['semestr']==semester_scope['semestr']] if semester_scope else []
+            cur.execute("SELECT DISTINCT curriculum_scope_id,COALESCE(NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS canonical_topic FROM dts_tree WHERE curriculum_scope_id=ANY(%s) AND grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE",(selected_ids,grade,fan))
+            matches={r['curriculum_scope_id']:r['canonical_topic'] for r in cur.fetchall() if _curriculum.text_key(r['canonical_topic'])==_curriculum.text_key(topic)}
+            if not matches:raise HTTPException(400,f'{number}-qatordagi mavzu tanlangan dasturda yo‘q')
+            family={r['id']:r for r in _curriculum.year_family(cur,scope)}
+            if len({family[id].get('semestr') for id in matches})>1:raise HTTPException(400,f'{number}-qator: mavzu ikki semestrda bor. Semestr ustunini to‘ldiring')
+            for target_id in matches:
+                cur.execute("""INSERT INTO curriculum_explanations(curriculum_scope_id,sinf,fan,mavzu_nomi,tushuntirish)
+                    VALUES(%s,%s,%s,%s,%s) ON CONFLICT(curriculum_scope_id,sinf,fan,mavzu_nomi)
+                    DO UPDATE SET tushuntirish=EXCLUDED.tushuntirish,yaratilgan_at=NOW()""",(target_id,grade,fan,matches[target_id],body))
             count+=1
         conn.commit();return {'saqlandi':count,'xato':0}
     except Exception:conn.rollback();raise
@@ -16946,38 +16922,17 @@ async def tushuntirish_import(token: str, fayl: UploadFile = File(...), scope_id
 
 @app.get("/api/admin/topik_royxat")
 def topik_royxat(sinf: str, fan: str, token: str, dars_turi: str = "", scope_id: int = 0):
-    """Berilgan sinf+fan uchun MAVZU darajasidagi (kichik mavzular
-    birlashtirilgan) to'liq ro'yxat — har biriga chorak/bob/bo'lim,
-    nechta kichik mavzu borligi, va ENG MUHIMI — shu mavzuga TEST
-    borligi yoki YO'QLIGI (test_bormi) qo'shib qaytariladi."""
-    _admin_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    scope = _curriculum_scope(cur, scope_id)
-    _dts_kod_ustunlarini_tayyorla(cur)
-    conn.commit()
-    cur.execute("""
-        SELECT COALESCE(d.mavzu_name, d.bolim_name, d.bob_name) AS nomi,
-               MIN(d.topic_code) AS topic_code,
-               array_agg(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
-               MIN(d.quarter) AS chorak, MIN(d.bob_name) AS bob, MIN(d.bolim_name) AS bolim,
-               COUNT(*) AS kichik_soni,
-               COUNT(DISTINCT gt.topic_code) AS test_bor_soni
-        FROM dts_tree d
-        LEFT JOIN generated_tests gt ON gt.topic_code = d.topic_code
-        WHERE d.grade=%s AND UPPER(d.subject_name)=UPPER(%s) AND COALESCE(d.dars_turi, '')=%s AND d.is_deleted=FALSE AND d.curriculum_scope_id=%s
-        GROUP BY COALESCE(d.mavzu_name, d.bolim_name, d.bob_name)
-        ORDER BY MIN(d.topic_code)
-    """, (_curriculum.canonical_grade(sinf), fan, scope["dars_turi"], scope["id"]))
-    qatorlar = cur.fetchall()
-    cur.close()
-    conn.close()
-    mavzular = [{
-        "nomi": r["nomi"], "topic_code": r["topic_code"], "topic_codes": r["barcha_kodlar"], "chorak": r["chorak"],
-        "bob": r["bob"], "bolim": r["bolim"], "kichik_soni": r["kichik_soni"],
-        "test_bormi": r["test_bor_soni"] > 0,
-    } for r in qatorlar]
-    return {"sinf": sinf, "fan": fan, "mavzular": mavzular}
+    _admin_tekshir(token);conn=_db();cur=conn.cursor()
+    try:
+        scope=_curriculum_scope(cur,scope_id)
+        cur.execute("""SELECT d.*, EXISTS(SELECT 1 FROM generated_tests gt WHERE gt.topic_code=d.topic_code) AS test_bormi
+            FROM dts_tree d WHERE d.grade=%s AND UPPER(d.subject_name)=UPPER(%s)
+            AND d.is_deleted=FALSE AND d.curriculum_scope_id=ANY(%s) ORDER BY d.topic_code""",
+            (_curriculum.canonical_grade(sinf),fan,_curriculum.scope_ids(scope)))
+        rows=[dict(r) for r in cur.fetchall()];grouped=_curriculum.topic_groups(rows,_curriculum.topic_scope_map(cur,rows))
+        topics=[{**r,'barcha_kodlar':r['topic_codes'],'chorak':r.get('semestr') or r.get('quarter'),'bob':r.get('bob_name'),'bolim':r.get('bolim_name'),'kichik_soni':len(r['topic_codes'])} for r in grouped]
+        return {'sinf':sinf,'fan':fan,'mavzular':topics}
+    finally:cur.close();conn.close()
 
 
 @app.put("/api/admin/topik_mavzu_nomini_tahrirla")
@@ -17098,8 +17053,8 @@ def bosh_kodli_mavzularni_tozalash(token: str, scope_id: int = 0):
     scope = _curriculum_scope(cur, scope_id)
     cur.execute("""
         UPDATE dts_tree SET is_deleted=TRUE
-        WHERE is_deleted=FALSE AND curriculum_scope_id=%s AND (topic_code IS NULL OR TRIM(topic_code) = '')
-    """, (scope["id"],))
+        WHERE is_deleted=FALSE AND curriculum_scope_id=ANY(%s) AND (topic_code IS NULL OR TRIM(topic_code) = '')
+    """, (_curriculum.scope_ids(scope),))
     tozalangan = cur.rowcount
     conn.commit()
     cur.close()
@@ -17118,9 +17073,9 @@ def fan_testlarini_ochir(token: str, sinf: str, fan: str, scope_id: int = 0):
     scope = _curriculum_scope(cur, scope_id)
     cur.execute("""
         DELETE FROM generated_tests WHERE topic_code IN (
-            SELECT topic_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE AND curriculum_scope_id=%s
+            SELECT topic_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE AND curriculum_scope_id=ANY(%s)
         )
-    """, (sinf, fan, scope["id"]))
+    """, (sinf, fan, _curriculum.scope_ids(scope)))
     ochirilgan = cur.rowcount
     conn.commit()
     cur.close()
@@ -17138,7 +17093,7 @@ def fan_mavzularini_butunlay_ochir(token: str, sinf: str, fan: str, scope_id: in
     conn = _db()
     cur = conn.cursor()
     scope = _curriculum_scope(cur, scope_id)
-    cur.execute("SELECT topic_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE AND curriculum_scope_id=%s", (sinf, fan, scope["id"]))
+    cur.execute("SELECT topic_code FROM dts_tree WHERE grade=%s AND UPPER(subject_name)=UPPER(%s) AND is_deleted=FALSE AND curriculum_scope_id=ANY(%s)", (sinf, fan, _curriculum.scope_ids(scope)))
     kodlar = [r["topic_code"] for r in cur.fetchall()]
     if kodlar:
         cur.execute("DELETE FROM generated_tests WHERE topic_code = ANY(%s)", (kodlar,))
@@ -17194,7 +17149,7 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     import io
     from fastapi.responses import StreamingResponse
 
-    kodlar = [k.strip() for k in sorov.topic_codes if k.strip()]
+    kodlar = list(dict.fromkeys(k.strip() for k in sorov.topic_codes if k.strip()))
     if not kodlar:
         raise HTTPException(status_code=400, detail="Kamida bitta mavzu tanlang")
     guruhlar = [g for g in sorov.guruhlar if g.soni > 0]
@@ -17207,11 +17162,14 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     cur = conn.cursor()
     scope = _curriculum_admin_guard(cur, conn, kodlar, sorov.scope_id)
     cur.execute("""
-        SELECT topic_code, grade, subject_name, quarter, bob_name, bolim_name,
+        SELECT topic_code, curriculum_scope_id, grade, subject_name, quarter, bob_name, bolim_name,
                mavzu_name, kichik_name
         FROM dts_tree WHERE topic_code = ANY(%s) AND is_deleted=FALSE
     """, (kodlar,))
-    tc_map = {r["topic_code"]: r for r in cur.fetchall()}
+    rows=[dict(r) for r in cur.fetchall()];topic_scopes=_curriculum.topic_scope_map(cur,rows)
+    grouped=_curriculum.topic_groups(rows,topic_scopes)
+    representatives={code:r['template_code'] for r in grouped for code in r['topic_codes']}
+    kodlar=list(dict.fromkeys(representatives[k] for k in kodlar));tc_map={r['template_code']:r for r in grouped}
     cur.close()
     conn.close()
 
@@ -17313,6 +17271,10 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
     for col, w in zip(range(1, 11), [5, 22, 6, 16, 8, 30, 30, 22, 30, 10]):
         ws2.column_dimensions[ws2.cell(1, col).column_letter].width = w
 
+    ws2.cell(1,11,'Semestr');ws2.cell(1,12,'scope_id')
+    for idx,kod in enumerate(kodlar,2):
+        ws2.cell(idx,11,tc_map[kod]['semestr']);ws2.cell(idx,12,tc_map[kod]['curriculum_scope_id'])
+
     # ═══ 3) RASM_MALUMOTI — har savol-rasm juftligi uchun tavsif ═══
     ws3 = wb.create_sheet("RASM_MALUMOTI")
     for col, h in enumerate(["image_id", "topic_code", "image_description"], 1):
@@ -17364,7 +17326,7 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
 
     audience = wb.create_sheet("OQUV_DASTURI")
     audience.append(["scope_id", "O‘quv dasturi"])
-    audience.append([scope['id'], _curriculum.scope_label(scope)])
+    for member in topic_scopes.values():audience.append([member['id'],_curriculum.scope_label(member)])
     audience.column_dimensions['B'].width = 100
     sheet_map = wb.create_sheet('VARAQ_XARITA')
     sheet_map.append(['sheet_name','subject_name'])
@@ -17630,8 +17592,8 @@ async def shablon_import(
     try:
         scope = _curriculum_scope(cur, scope_id)
         if "OQUV_DASTURI" in wb.sheetnames:
-            workbook_scope = wb['OQUV_DASTURI'].cell(2,1).value
-            if str(workbook_scope) != str(scope['id']):
+            workbook_scopes={str(row[0]) for row in wb['OQUV_DASTURI'].iter_rows(min_row=2,values_only=True) if row and row[0] is not None}
+            if not workbook_scopes or not workbook_scopes.issubset({str(i) for i in _curriculum.scope_ids(scope)}):
                 raise HTTPException(400, "Excel boshqa o‘quv dasturiga tegishli. Dastur tanlovini tekshiring.")
         # V18.11: topic_code bazadagi boshqa fanga to'qnashgan bo'lsa ham
         # TESTLAR_<fan> nomi va MALUMOT varag'idagi mavzu nomlaridan to'g'ri
@@ -17639,15 +17601,15 @@ async def shablon_import(
         # noaniq kod hech qachon boshqa fanga yozilmaydi.
         cur.execute(
             """
-            SELECT topic_code, grade, subject_name, quarter, subject_code,
+            SELECT topic_code, curriculum_scope_id, grade, subject_name, quarter, subject_code,
                    bob_name, bolim_name, mavzu_name, kichik_name
             FROM dts_tree
-            WHERE grade=%s AND is_deleted=FALSE AND curriculum_scope_id=%s
+            WHERE grade=%s AND is_deleted=FALSE AND curriculum_scope_id=ANY(%s)
             """,
-            (_curriculum.canonical_grade(kutilgan_sinf), scope["id"]),
+            (_curriculum.canonical_grade(kutilgan_sinf), _curriculum.scope_ids(scope)),
         )
         sinf_mavzulari = list(cur.fetchall())
-        cur.execute("SELECT topic_code FROM dts_tree WHERE topic_code=ANY(%s) AND curriculum_scope_id IS DISTINCT FROM %s", (list(fayldagi_kodlar), scope['id']))
+        cur.execute("SELECT topic_code FROM dts_tree WHERE topic_code=ANY(%s) AND (curriculum_scope_id IS NULL OR NOT (curriculum_scope_id=ANY(%s)))", (list(fayldagi_kodlar), _curriculum.scope_ids(scope)))
         if cur.fetchone():
             raise HTTPException(400, "Excelda boshqa o‘quv dasturining mavzu kodi bor. Hech bir test o‘zgarmadi.")
 
@@ -17698,7 +17660,7 @@ async def shablon_import(
                         f"{test_varaq.name}: tanlangan fan {kutilgan_fan}, varaq esa {hint}"
                     )
                     continue
-            elif len(noyob_metadata_fanlar) == 1 and len(metadata_fan_kodlari) == 1 and metadata_fanlar:
+            elif len(noyob_metadata_fanlar) == 1 and metadata_fanlar:
                 # "Barcha fanlar" rejimida fan varaq tartibidan ham,
                 # dropdown tartibidan ham olinmaydi. MALUMOTdagi aniq
                 # topic_code prefiksi (6-02, 7-02, ...) + fan nomi yagona
@@ -17838,14 +17800,14 @@ async def shablon_import(
         cur.execute("""
             UPDATE generated_tests
             SET question_type='single_choice'
-            WHERE (question_type IS NULL OR BTRIM(question_type)='') AND topic_code IN (SELECT topic_code FROM dts_tree WHERE curriculum_scope_id=%s)
-        """, (scope['id'],))
+            WHERE (question_type IS NULL OR BTRIM(question_type)='') AND topic_code IN (SELECT topic_code FROM dts_tree WHERE curriculum_scope_id=ANY(%s))
+        """, (_curriculum.scope_ids(scope),))
         pass  # V19: DDL moved to startup migration.
         pass  # V19: DDL moved to startup migration.
         pass  # V19: DDL moved to startup migration.
         # Eski NULL variantlarni duplikat fingerprint bilan barqaror
         # solishtirish uchun bo'sh matnga tenglashtiramiz.
-        cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL AND topic_code IN (SELECT topic_code FROM dts_tree WHERE curriculum_scope_id=%s)", (scope["id"],))
+        cur.execute("UPDATE generated_tests SET option_a='' WHERE option_a IS NULL AND topic_code IN (SELECT topic_code FROM dts_tree WHERE curriculum_scope_id=ANY(%s))", (_curriculum.scope_ids(scope),))
 
         # V18.15: import endi qo'shib borish emas, ATOMAR ALMASHTIRISH.
         # Oldingi xato importdagi savollar bazada qolsa, to'g'ri Excel qayta
@@ -17866,7 +17828,11 @@ async def shablon_import(
             )
         # Replace only the topic IDs actually present and validated in this upload.
         # A multi-subject workbook must not erase an absent subject or another form.
-        cur.execute("DELETE FROM generated_tests WHERE topic_code=ANY(%s)", (import_scope_topic_codes,))
+        groups=_curriculum.topic_groups(sinf_mavzulari,_curriculum.topic_scope_map(cur,sinf_mavzulari))
+        selected=set(import_scope_topic_codes);replacement_codes=set(selected)
+        for topic in groups:
+            if selected.intersection(topic['topic_codes']):replacement_codes.update(topic['topic_codes'])
+        cur.execute("DELETE FROM generated_tests WHERE topic_code=ANY(%s)", (sorted(replacement_codes),))
         almashtirishda_ochirilgan_eski_test_soni = cur.rowcount
 
         def import_fingerprint(row):
@@ -18191,7 +18157,8 @@ def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
     try:
         scope = _curriculum_scope(cur, sorov.scope_id)
         for quarter, topic in topics:
-            _, status = _dts_qator_kiritish(cur,sorov.sinf,sorov.fan,quarter,'','',topic,'',sorov.dars_turi or '',scope['id'])
+            target=_curriculum.scope_for_period(cur,scope,quarter,create=True)
+            _, status = _dts_qator_kiritish(cur,sorov.sinf,sorov.fan,quarter,'','',topic,'',sorov.dars_turi or '',target['id'])
             counts[status] += 1
         conn.commit()
         return counts
@@ -18229,6 +18196,10 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
             raise HTTPException(400, "Kurs o‘quv dasturiga mos emas")
     finally:
         cur.close(); conn.close()
+    if scope['institution_type']=='universitet':
+        for period,_ in mavzular:
+            if int(period) not in _curriculum.semester_pair(scope['kurs']):raise HTTPException(400,'Mavzu semestri tanlangan kurs juftligiga mos emas')
+    mavzular=list({(period,_curriculum.text_key(title)):(period,title) for period,title in mavzular}.values())
     wb = openpyxl.Workbook()
     ws = wb.active
     ws.title = "DTS_SHABLON"
@@ -18240,6 +18211,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
         cell.fill = PatternFill("solid", fgColor="70AD47")
         cell.alignment = Alignment(horizontal="center")
 
+    if scope['institution_type']=='universitet':ws.cell(1,4,value='Semestr')
     chorak_colors = {"1": "DEEAF1", "2": "E2EFDA", "3": "FFF2CC", "4": "FCE4D6"}
     row_num = 2
     for chorak, mavzu in mavzular:
@@ -18281,7 +18253,7 @@ def topik_shablon(sorov: TopikShablonSorov, token: str):
     for row in range(2, ws.max_row + 1):
         ws.cell(row, 3, value=scope['dars_turi'])
         ws.cell(row, 8, value=scope['id'])
-        ws.cell(row, 9, value=_curriculum.scope_label(scope))
+        ws.cell(row,9,value=_curriculum.scope_label({**scope,'semestr':int(ws.cell(row,4).value)}) if scope['institution_type']=='universitet' else _curriculum.scope_label(scope))
     ws.column_dimensions['I'].width = 70
     ws.freeze_panes = 'A2'
     buf = io.BytesIO()
@@ -18434,6 +18406,8 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik, dars_
         raise ValueError("Noto'g'ri chorak")
 
     cur.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", ("curriculum-grade:" + grade,))
+    existing=_curriculum.existing_topic(cur,scope,grade,fan,quarter_code,bob,bolim,mavzu,kichik)
+    if existing:return existing
     subject_code, subject_name_n = _dts_fan_kodi_ol(cur, grade, fan, dars_turi, scope["id"])
     bob_code, bob_name_n = _dts_bob_kodi_ol(cur, grade, subject_code, quarter_code, bob)
     bolim_code, bolim_name_n = _dts_bolim_kodi_ol(cur, grade, subject_code, quarter_code, bob_code, bolim)
@@ -18505,8 +18479,11 @@ async def topik_import(token: str, fayl: UploadFile = File(...), scope_id: int =
                 if not any(v is not None and str(v).strip() for v in row): continue
                 try:
                     raw_scope = value('scope_id')
-                    if raw_scope is not None and str(raw_scope) != str(scope['id']):
+                    if raw_scope is not None and str(raw_scope) not in {str(r['id']) for r in _curriculum.year_family(cur,scope)}:
                         raise ValueError('Excel qatori boshqa o‘quv dasturiga tegishli')
+                    target=_curriculum.get_scope(cur,int(raw_scope)) if raw_scope else scope
+                    semester=value('Semestr')
+                    if semester is not None and scope['institution_type']=='universitet':target=_curriculum.scope_for_period(cur,scope,semester,create=True)
                     grade = _dts_sinf_normalize(value('Sinf','grade'))
                     fan = str(value('Fan') or '').strip()
                     mavzu = str(value('Mavzu') or '').strip()
@@ -18518,16 +18495,16 @@ async def topik_import(token: str, fayl: UploadFile = File(...), scope_id: int =
                     if scope['institution_type']=='maktab' and _sinf_talaba_mi(grade): raise ValueError('Institut dasturini tanlang')
                     code = str(value('Topic code','topic_code') or '').strip()
                     bob,bolim,kichik = [str(value(k) or '') for k in ('Bob',"Bo'lim",'Kichik mavzu')]
-                    quarter = _dts_chorak_normalize(value('Chorak') or '1')
+                    quarter = _dts_chorak_normalize(value('Semestr','Chorak') or '1')
                     if code:
                         cur.execute('SELECT grade,curriculum_scope_id FROM dts_tree WHERE topic_code=%s FOR UPDATE',(code,))
                         old = cur.fetchone()
                         if not old: raise ValueError('Yangi mavzu uchun topic_code katagini bo‘sh qoldiring')
-                        if old['curriculum_scope_id'] != scope['id'] or old['grade'] != grade: raise ValueError('Mavzu kodi boshqa dastur/kursga tegishli')
+                        if old['curriculum_scope_id'] != target['id'] or old['grade'] != grade: raise ValueError('Mavzu kodi boshqa dastur/kursga tegishli')
                         cur.execute("UPDATE dts_tree SET subject_name=%s,bob_name=%s,bolim_name=%s,mavzu_name=%s,kichik_name=%s,quarter=%s,is_deleted=FALSE WHERE topic_code=%s",(_dts_matn_normalize(fan).upper(),bob,bolim,mavzu,kichik,quarter,code))
                         updated += 1
                     else:
-                        _,status = _dts_qator_kiritish(cur,grade,fan,quarter,bob,bolim,mavzu,kichik,scope['dars_turi'],scope['id'])
+                        _,status = _dts_qator_kiritish(cur,grade,fan,quarter,bob,bolim,mavzu,kichik,scope['dars_turi'],target['id'])
                         if status=='mavjud': existing += 1
                         elif status=='tiklandi': updated += 1
                         else: added += 1
