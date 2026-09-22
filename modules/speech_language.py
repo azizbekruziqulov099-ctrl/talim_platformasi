@@ -27,15 +27,18 @@ def detect_language(value, fallback='uz'):
     if en > uz: return 'en'
     return fallback if fallback in SPEAKERS else 'uz'
 
-def split_speech_text(value):
+def split_speech_text(value, language='auto'):
     text = str(value or '')
     result = []
     def untagged(part):
-        language = detect_language(part)
+        if language in SPEAKERS:
+            if part.strip():result.append((language,part))
+            return
+        current = language if language in SPEAKERS else detect_language(part)
         for sentence in re.split(r'(?<=[.!?;\n])\s+', part):
             if sentence.strip():
-                language = detect_language(sentence, language)
-                result.append((language, sentence))
+                current = language if language in SPEAKERS else detect_language(sentence, current)
+                result.append((current, sentence))
     previous = 0
     for match in re.finditer(r'\[(uz|en|ru)\](.*?)\[/\1\]', text, re.S | re.I):
         untagged(text[previous:match.start()])
