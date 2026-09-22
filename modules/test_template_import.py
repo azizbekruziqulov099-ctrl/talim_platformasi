@@ -16,6 +16,17 @@ import zipfile
 REQUIRED_TEST_HEADERS = ("topic_code", "question", "correct_answer")
 
 
+def comparison_text(value: Any) -> str:
+    """Ignore reading-language markup only when comparing metadata names.
+
+    The returned value is never written back into questions, answers or
+    explanations. Adding [ru] to an existing template changes pronunciation,
+    not the identity of its subject or topic.
+    """
+    text = unicodedata.normalize("NFKC", str(value or ""))
+    return re.sub(r"\[/?(?:uz|ru|en)\]", "", text, flags=re.I)
+
+
 def populated_test_codes(test_sheets):
     """Only populated, valid question rows authorize replacement of old tests.
 
@@ -62,7 +73,7 @@ def canonical_subject_name(value: Any) -> str:
     mumkin (masalan ``O'zbek tili`` -> ``Ozbek tili``). Bu yordamchi faqat
     solishtirish uchun ishlaydi; bazadagi asl fan nomini o'zgartirmaydi.
     """
-    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    text = comparison_text(value).casefold()
     text = text.replace("ё", "е")
     text = re.sub(r"[ʻʼ‘’`´'\u2010-\u2015_-]+", "", text)
     text = re.sub(r"[^0-9a-zа-яёўқғҳ]+", "", text)
@@ -405,12 +416,13 @@ def authoritative_topic_scope(
         }
 
     if workbook_metadata and subject and not selected:
-        errors.append(f"{grade}-sinf / {subject}: MALUMOTda birorta mos mavzu topilmadi")
+        grade_label = f"{grade}-sinf" if grade.isdigit() else grade
+        errors.append(f"{grade_label} / {subject}: MALUMOTda birorta mos mavzu topilmadi; mavjud testlar o‘zgarmadi")
     return selected, errors
 
 
 def _topic_match_text(value: Any) -> str:
-    text = unicodedata.normalize("NFKC", str(value or "")).casefold()
+    text = comparison_text(value).casefold()
     text = text.replace("ё", "е")
     text = re.sub(r"[ʻʼ‘’`´']+", "'", text)
     text = re.sub(r"[^0-9a-zа-яёўқғҳ']+", " ", text)
