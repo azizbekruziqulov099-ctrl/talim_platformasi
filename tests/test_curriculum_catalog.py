@@ -98,7 +98,7 @@ class CatalogTests(unittest.TestCase):
   self.db.sql.execute('INSERT INTO universitet_xodim_rollari VALUES(5,11,TRUE),(5,12,FALSE)')
   self.assertEqual(len(self.codes(self.catalog(token='teacher'))),1)
   self.db.sql.execute("UPDATE universitetlar SET archived_at='2026' WHERE id=11")
-  self.assertEqual(self.catalog(token='teacher')['viewer']['types'],[])
+  self.assertEqual(self.catalog(token='teacher')['viewer']['types'],['maktab','universitet'])
   self.assertEqual(self.codes(self.catalog(token='teacher')),set())
 
  def test_student_sees_both_semesters_as_one_subject_with_distinct_topics(self):

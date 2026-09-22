@@ -67,7 +67,8 @@ class Cursor:
   c=self.db.sql.execute(sql,args);self.rowcount=c.rowcount;self.rows=[dict(r) for r in c.fetchall()] if c.description else []
   for row in self.rows:
    for key in ('barcha_kodlar','testli_kodlar'):
-    if key in row:row[key]=json.loads(row[key] or '[]')
+    # PostgreSQL's filtered ARRAY_AGG is NULL for no matches (SQLite uses []).
+    if key in row:row[key]=json.loads(row[key] or '[]') or None
  def fetchone(self):return self.rows.pop(0) if self.rows else None
  def fetchall(self):r=self.rows;self.rows=[];return r
  def close(self):pass

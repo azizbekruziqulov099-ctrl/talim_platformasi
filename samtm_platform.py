@@ -1341,6 +1341,11 @@ def joriy_foydalanuvchi(token: Optional[str] = None, request: Request = None):
     conn.close()
     if _kabutar_auth_service is not None:
         r.update(_kabutar_auth_service.profile_status(user_id))
+    if r.get('role') == 'oquvchi' and (r.get('talaba_mi') or (not r.get('class') and (r.get('learning_profile') or {}).get('role') == 'talaba')):
+        r['education_role'] = 'talaba'
+        r['talaba_mi'] = True
+    else:
+        r['education_role'] = r.get('role')
     return r
 
 
@@ -2733,25 +2738,9 @@ def _ovoz_uchun_tayyorla_til(matn: str, til: str) -> str:
 
 
 def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
-    """Matnni [en]...[/en] / [ru]...[/ru] teglariga qarab bo'laklarga
-    ajratadi — har bo'lak (til, matn). Tegdan tashqaridagi matn HAR DOIM
-    o'zbekcha o'qiladi; faqat aniq til tegi ichidagi qism tilini almashtiradi.
-    ``asosiy_til`` eski frontendlar bilan API mosligi uchun saqlangan."""
-    asosiy_til = "uz"
-    qismlar = []
-    oxiri = 0
-    for m in _TIL_TEG_NAQSHI.finditer(matn):
-        oldingi = matn[oxiri:m.start()]
-        if oldingi.strip():
-            qismlar.append((asosiy_til, oldingi))
-        til, ichi = m.group(1).lower(), m.group(2)
-        if ichi.strip():
-            qismlar.append((_ovoz_tilini_tuzat(til), ichi))
-        oxiri = m.end()
-    qolgan = matn[oxiri:]
-    if qolgan.strip():
-        qismlar.append((asosiy_til, qolgan))
-    return qismlar or [(asosiy_til, matn)]
+    # Keep the old argument for API compatibility; content determines reading language.
+    from modules.speech_language import split_speech_text
+    return split_speech_text(matn)
 
 
 @app.get("/api/ovoz")
@@ -2771,11 +2760,10 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
 
     matn = matn[:1500]
     jins = _ovoz_jinsini_tuzat(jins)
-    # Tegsiz matnning qat'iy asosiy tili — o'zbekcha. URL'dan tasodifan
-    # asosiy_til=en kelishi butun testni inglizcha o'qitmasligi kerak.
+    # Til matndan aniqlanadi; profil tili yoki eski URL parametri uni almashtirmaydi.
     asosiy_til = "uz"
     kesh_kaliti = hashlib.sha256(
-        f"v18.22\0{jins}\0{matn}".encode("utf-8")
+        f"v54-auto\0{jins}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
@@ -16285,7 +16273,7 @@ def _talaba_jadval_sozlamalarini_tekshir(sozlamalar):
             return standart
         return v if past <= v <= yuqori else standart
     boshlanish = str(s.get("boshlanish") or "08:30").strip()
-    if not re.fullmatch(r"\d{2}:\d{2}", boshlanish):
+    if not re.fullmatch(r"(?:[01]\d|2[0-3]):[0-5]\d", boshlanish):
         boshlanish = "08:30"
     return {
         "boshlanish": boshlanish,                                   # 1-para boshlanishi
@@ -16325,16 +16313,13 @@ def _talaba_jadval_kunlarini_tekshir(kunlar):
                 para_raqami = len(paralar) + 1
             para_raqami = min(9, max(0, para_raqami))
             para_turi = str(para.get("turi") or "maruza")
-            vaqt = {}
-            for kalit in ("boshlanish", "tugash"):
-                q = str(para.get(kalit) or "").strip()
-                vaqt[kalit] = q if re.fullmatch(r"\d{2}:\d{2}", q) else ""
             paralar.append({
                 "raqam": para_raqami, "fan": fan,
                 "oqituvchi": str(para.get("oqituvchi") or "").strip()[:120],
                 "xona": str(para.get("xona") or "").strip()[:40],
                 "turi": para_turi if para_turi in TALABA_PARA_TURLARI else "boshqa",
-                "boshlanish": vaqt["boshlanish"], "tugash": vaqt["tugash"],
+                # Legacy per-lesson overrides no longer supersede weekly settings.
+                "boshlanish": "", "tugash": "",
                 "izoh": str(para.get("izoh") or "").strip()[:200],
             })
         paralar.sort(key=lambda p: p["raqam"])

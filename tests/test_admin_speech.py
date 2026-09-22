@@ -9,7 +9,7 @@ class SpeechTests(unittest.TestCase):
  def setUp(self):
   path=Path(__file__).resolve().parents[1]/'modules/admin_speech.py'
   nodes=[n for n in ast.parse(path.read_text()).body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))]
-  self.ns={'asyncio':asyncio,'hashlib':hashlib,'math':math,'re':re,'importlib':importlib,'APIRouter':Router,'HTTPException':HTTPException,'Response':lambda **kwargs:SimpleNamespace(**kwargs)}
+  self.ns={'asyncio':asyncio,'hashlib':hashlib,'math':math,'re':re,'importlib':importlib,'APIRouter':Router,'HTTPException':HTTPException,'Request':object,'Response':lambda **kwargs:SimpleNamespace(**kwargs)}
   exec(compile(ast.Module(body=nodes,type_ignores=[]),str(path),'exec'),self.ns)
   self.calls=[];self.cache={}
   async def synth(*args):self.calls.append(args);return b'mp3'
@@ -18,6 +18,7 @@ class SpeechTests(unittest.TestCase):
    if token!='admin':raise HTTPException(403,'Faqat admin')
   platform=SimpleNamespace(_admin_tekshir=admin,_ovoz_keshdan_ol=self.cache.get,_ovoz_keshga_qoy=lambda k,v:self.cache.update({k:v}))
   self.routes=self.ns['create_router'](platform).routes
+  self.platform=platform
  def read(self,payload,token='admin'):return asyncio.run(self.routes['/read'](payload,token))
  def test_read_preserves_uzbek_punctuation_and_paragraphs(self):
   text='Salom, dunyo!\n\nBugun o‘zbekcha dars.'

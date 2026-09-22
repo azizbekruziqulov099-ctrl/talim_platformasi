@@ -7,6 +7,7 @@ of a secret which is never sent to Telegram. Existing user IDs are never moved.
 from __future__ import annotations
 import hashlib
 import hmac
+import json
 import os
 import re
 import secrets
@@ -49,6 +50,10 @@ CREATE TABLE IF NOT EXISTS kabutar_auth_challenges (
 );
 ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS link_session_hash TEXT;
 ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS site_origin TEXT;
+ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS delivery TEXT NOT NULL DEFAULT 'approval';
+ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS code_hash TEXT;
+ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS code_attempts INTEGER NOT NULL DEFAULT 0;
+ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS selected_role TEXT;
 CREATE INDEX IF NOT EXISTS kabutar_auth_challenges_expiry ON kabutar_auth_challenges(expires_at);
 CREATE TABLE IF NOT EXISTS kabutar_auth_consumed (
  token_hash TEXT PRIMARY KEY, expires_at TIMESTAMPTZ NOT NULL
@@ -65,6 +70,7 @@ CREATE TABLE IF NOT EXISTS kabutar_auth_password (
  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_education_ready BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_learning_profile JSONB NOT NULL DEFAULT '{}'::jsonb;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_nickname TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS phone_discoverable BOOLEAN NOT NULL DEFAULT FALSE;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS kabutar_id TEXT;
@@ -149,10 +155,14 @@ def password_matches(password: str, stored: str) -> bool:
 class Start(BaseModel):
     mode: str = 'login'
     token: Optional[str] = None
+    delivery: str = 'approval'  # Older clients can finish their pending requests.
 
 class BrowserChallenge(BaseModel):
     challenge: str = Field(min_length=32, max_length=64)
     browser_secret: str = Field(min_length=32, max_length=128)
+
+class CodeExchange(BrowserChallenge):
+    code: str = Field(pattern=r'^\d{6}$')
 
 class Inspect(BaseModel):
     challenge: str = Field(min_length=32, max_length=64)
@@ -162,6 +172,7 @@ class Confirm(Inspect):
     contact_user_id: int = Field(gt=0)
     phone: str = Field(min_length=6, max_length=32)
     full_name: str = Field(default='', max_length=200)
+    role: Optional[str] = None
 
 class TokenBody(BaseModel):
     token: Optional[str] = None
@@ -184,6 +195,9 @@ class Education(TokenBody):
     class_: Optional[int] = Field(default=None, alias='class', ge=1, le=11)
     language: str = 'uz'
     subject: Optional[str] = Field(default=None, max_length=100)
+    course: Optional[int] = Field(default=None, ge=1, le=6)
+    study_form: str = 'kunduzgi'
+    degree: str = 'bakalavr'
 
 class GoogleLink(TokenBody):
     oauth_grant: str
@@ -253,7 +267,32 @@ class AuthService:
         elif not self.bot_username:
             reason = 'Backendda KABUTAR_BOT_USERNAME sozlanishi kerak'
         return {'enabled':reason is None, 'bot_username':self.bot_username,
-                'reason':reason, 'protocol_version':1}
+                'reason':reason, 'protocol_version':2}
+
+    def login_code(self, challenge, telegram_id):
+        value = hmac.new(self.key.encode(), f'login-code:{challenge}:{telegram_id}'.encode(), hashlib.sha256).digest()
+        return f'{int.from_bytes(value[:8], "big") % 1000000:06d}'
+
+    def select_learning_role(self, cur, uid, role):
+        if role not in ('oquvchi', 'talaba', 'oqituvchi', 'ota-ona'):
+            raise HTTPException(422, 'Botda o‘quvchi, talaba, o‘qituvchi yoki ota-ona rolini tanlang')
+        cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s FOR UPDATE', (uid,))
+        user = (cur.fetchone() or {}).get('profile') or {}
+        cur.execute('SELECT 1 FROM admin_akkaunt WHERE uid=%s', (uid,))
+        if cur.fetchone():
+            return 'admin'
+        existing = user.get('role')
+        learning = user.get('kabutar_learning_profile') or {}
+        if existing == 'oquvchi':
+            existing = 'talaba' if 'kurs' in str(user.get('class') or '') or learning.get('role') == 'talaba' else 'oquvchi'
+        if existing not in (None, '', 'kabutar', 'mustaqil', role):
+            labels = {'oquvchi':'O‘quvchi', 'talaba':'Talaba', 'oqituvchi':'O‘qituvchi', 'ota-ona':'Ota-ona'}
+            raise HTTPException(409, f'Mavjud profilingiz: {labels.get(existing, existing)}. Botda shu rolni tanlang')
+        if existing in (None, '', 'kabutar', 'mustaqil'):
+            cur.execute('''UPDATE users SET role=%s,kabutar_learning_profile=%s::jsonb,
+                kabutar_education_ready=%s WHERE user_id=%s''',
+                ('oquvchi' if role == 'talaba' else role, json.dumps({'role':role}), role in ('oqituvchi','ota-ona'), uid))
+        return role
 
     def token(self, request, body_token=None):
         return self.p._jwt_header_yoki_query(body_token, request.headers.get('authorization'))
@@ -489,7 +528,7 @@ class AuthService:
 
     def profile_status(self, user_id):
         with self.transaction() as cur:
-            cur.execute('SELECT role,kabutar_education_ready FROM users WHERE user_id=%s', (user_id,))
+            cur.execute('SELECT role,kabutar_education_ready,kabutar_learning_profile FROM users WHERE user_id=%s', (user_id,))
             user=cur.fetchone()
             if not user:
                 raise HTTPException(401, 'Akkaunt topilmadi')
@@ -499,7 +538,9 @@ class AuthService:
             google=cur.fetchone() is not None
             cur.execute('SELECT 1 FROM kabutar_auth_password WHERE user_id=%s', (user_id,))
             has_password=cur.fetchone() is not None
+        learning = user.get('kabutar_learning_profile') or {}
         return {'education_ready':bool(user['kabutar_education_ready']), 'has_password':has_password,
+            'learning_profile':learning, 'education_role':learning.get('role') or user['role'],
             'identities':{'google':google,'telegram':bool(phone),'phone':bool(phone)},
             'phone_masked':phone[:4]+'•••••'+phone[-4:] if phone else None}
 
@@ -533,6 +574,10 @@ def register_auth(app, platform):
             raise HTTPException(503,f"Telegram orqali kirish hali sozlanmagan. {telegram.get('reason') or ''}".strip())
         if body.mode not in ('login','link'):
             raise HTTPException(422,'Kirish turi noto‘g‘ri')
+        delivery = getattr(body, 'delivery', 'approval')
+        if delivery not in ('approval', 'code'):
+            raise HTTPException(422, 'Kirish usuli noto‘g‘ri')
+        if body.mode == 'link': delivery = 'approval'
         site = service.challenge_site(request)
         target=None
         sid_hash=None
@@ -549,8 +594,10 @@ def register_auth(app, platform):
                 sid_hash=service.recent_session(cur,token,target)
             cur.execute('''INSERT INTO kabutar_auth_challenges(challenge_hash,browser_hash,verification_code,mode,target_user_id,link_session_hash,site_origin,expires_at)
                 VALUES(%s,%s,%s,%s,%s,%s,%s,NOW()+INTERVAL '5 minutes')''',(digest(challenge),digest(browser_secret),code,body.mode,target,sid_hash,site))
+            if delivery == 'code':
+                cur.execute("UPDATE kabutar_auth_challenges SET delivery='code' WHERE challenge_hash=%s", (digest(challenge),))
         return {'challenge':challenge,'browser_secret':browser_secret,'verification_code':code,
-            'bot_url':f'https://t.me/{service.bot_username}?start=kb_{challenge}','expires_in':CHALLENGE_SECONDS}
+            'bot_url':f'https://t.me/{service.bot_username}?start=kb_{challenge}','expires_in':CHALLENGE_SECONDS, 'delivery':delivery}
 
     @app.post('/auth/telegram/inspect')
     def inspect(body:Inspect,x_kabutar_bot_secret:Optional[str]=Header(None)):
@@ -560,6 +607,7 @@ def register_auth(app, platform):
             if row['cancelled_at'] or not row['live']:
                 raise HTTPException(410,'Kirish so‘rovi tugagan yoki bekor qilingan')
             return {'status':'confirmed' if row['confirmed_at'] else 'pending','mode':row['mode'],
+                'delivery':row.get('delivery', 'approval'),
                 'verification_code':row['verification_code'],
                 'expires_in':max(0,int((row['expires_at']-datetime.now(timezone.utc)).total_seconds())),
                 'site':row.get('site_origin') or public_site_origin(platform.FRONTEND_URL)}
@@ -577,16 +625,23 @@ def register_auth(app, platform):
                 raise HTTPException(410,'Kirish so‘rovi tugagan yoki bekor qilingan')
             if row['confirmed_at']:
                 if row['telegram_id']==body.telegram_user_id and row['phone']==phone:
+                    if row.get('delivery') == 'code' and not row['consumed_at']:
+                        return {'status':'confirmed', 'code':service.login_code(body.challenge, body.telegram_user_id), 'role':row.get('selected_role')}
                     return {'status':'confirmed'}
                 raise HTTPException(409,'Bu so‘rov boshqa foydalanuvchi tomonidan tasdiqlangan')
             service.check_link_session(cur,row)
             uid=service._resolve_telegram(cur,body.telegram_user_id,phone,body.full_name,row['target_user_id'])
+            selected_role = None
+            if row.get('delivery') == 'code':
+                selected_role = service.select_learning_role(cur, uid, getattr(body, 'role', None))
+                login_code = service.login_code(body.challenge, body.telegram_user_id)
+                cur.execute('UPDATE kabutar_auth_challenges SET code_hash=%s,selected_role=%s WHERE challenge_hash=%s',
+                    (digest(login_code), selected_role, digest(body.challenge)))
             cur.execute('UPDATE kabutar_auth_challenges SET user_id=%s,telegram_id=%s,phone=%s,confirmed_at=NOW() WHERE challenge_hash=%s',
                 (uid,body.telegram_user_id,phone,digest(body.challenge)))
-        return {'status':'confirmed'}
+        return {'status':'confirmed', **({'code':login_code, 'role':selected_role} if row.get('delivery') == 'code' else {})}
 
-    @app.post('/auth/telegram/poll')
-    def poll(body:BrowserChallenge,request:Request):
+    def complete_challenge(body, request, code=None):
         service.origin(request)
         just_completed=False
         with service.transaction() as cur:
@@ -600,6 +655,16 @@ def register_auth(app, platform):
                 return {'status':'expired'}
             if not row['confirmed_at']:
                 return {'status':'pending'}
+            if row.get('delivery') == 'code':
+                if code is None:
+                    return {'status':'code_required'}
+                if not secrets.compare_digest(row.get('code_hash') or '', digest(code)):
+                    attempts = int(row.get('code_attempts') or 0) + 1
+                    cur.execute('''UPDATE kabutar_auth_challenges SET code_attempts=%s,
+                        cancelled_at=CASE WHEN %s>=5 THEN NOW() ELSE cancelled_at END WHERE challenge_hash=%s''',
+                        (attempts, attempts, digest(body.challenge)))
+                    # Return inside the transaction so failed attempts are committed.
+                    return {'status':'cancelled' if attempts >= 5 else 'invalid_code', 'attempts_left':max(0, 5-attempts)}
             if not row['consumed_at']:
                 service.check_link_session(cur,row)
             sid=hmac.new(service.key.encode(),('telegram:'+body.challenge+':'+body.browser_secret).encode(),hashlib.sha256).hexdigest()
@@ -616,6 +681,16 @@ def register_auth(app, platform):
         if just_completed:
             service.record_login(row['user_id'],'telegram')
         return {'status':'complete','token':token,'user_id':row['user_id']}
+
+    @app.post('/auth/telegram/poll')
+    def poll(body:BrowserChallenge,request:Request):
+        return complete_challenge(body, request)
+
+    @app.post('/auth/telegram/verify')
+    def verify(body:CodeExchange,request:Request):
+        service.origin(request)
+        service.rate('telegram-code-ip',service.ip(request),30)
+        return complete_challenge(body, request, body.code)
 
     @app.post('/auth/telegram/cancel')
     def cancel(body:BrowserChallenge,request:Request):
@@ -740,20 +815,41 @@ def register_auth(app, platform):
         uid=platform._jwt_tekshir(token)
         if service.claims(token).get('admin_korish'):
             raise HTTPException(403,'Ko‘rish rejimida profil o‘zgartirilmaydi')
-        if body.role not in ('oquvchi','oqituvchi','ota-ona','mustaqil') or body.language not in ('uz','ru','en'):
+        if body.role not in ('oquvchi','talaba','oqituvchi','ota-ona','mustaqil') or body.language not in ('uz','ru','en','tj','kk','kz'):
             raise HTTPException(422,'Rol yoki ta’lim tili noto‘g‘ri')
         grade=body.class_ or body.grade
         if body.role=='oquvchi' and not grade:
             raise HTTPException(422,'Sinfni tanlang')
+        if body.role == 'talaba':
+            if body.degree not in ('bakalavr','magistr') or not body.course or body.course > (2 if body.degree == 'magistr' else 6):
+                raise HTTPException(422,'Talaba bo‘lsangiz, bosqich va kursingizni tanlang')
+            if body.study_form not in ('kunduzgi','kechki','sirtqi','masofaviy'):
+                raise HTTPException(422,'Ta’lim shaklini tanlang')
+        learning = {'role':body.role, 'talim_tili':body.language}
+        if body.role == 'talaba':
+            learning.update(kurs=body.course, talim_bosqichi=body.degree, talim_shakli=body.study_form,
+                semestr=2*body.course-1, standalone=True)
+        elif body.role == 'oquvchi':
+            learning['grade'] = grade
+        base_role = 'oquvchi' if body.role == 'talaba' else body.role
+        class_value = (f'{body.course} kurs' + (' magistr' if body.degree == 'magistr' else '')) if body.role == 'talaba' else str(grade) if body.role == 'oquvchi' else None
         with service.transaction() as cur:
-            cur.execute('SELECT role FROM users WHERE user_id=%s FOR UPDATE',(uid,))
-            user=cur.fetchone()
+            cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s FOR UPDATE',(uid,))
+            user=(cur.fetchone() or {}).get('profile')
             if not user:
                 raise HTTPException(401,'Akkaunt topilmadi')
-            if user['role'] not in (None,'','kabutar','mustaqil',body.role):
+            cur.execute('SELECT 1 FROM talaba_profillari WHERE user_id=%s', (uid,))
+            enrolled_student = bool(cur.fetchone())
+            cur.execute('SELECT 1 FROM foydalanuvchi_muassasalari WHERE user_id=%s LIMIT 1', (uid,))
+            linked = bool(cur.fetchone()) or enrolled_student or any(user.get(k) for k in ('maktab_id','universitet_id','bogcha_id','markaz_id'))
+            cur.execute('SELECT 1 FROM admin_akkaunt WHERE uid=%s', (uid,))
+            if cur.fetchone() or (linked and (user.get('role') != base_role or enrolled_student or user.get('class') != class_value)):
+                raise HTTPException(409,'Muassasaga ulangan profilingizni Profil bo‘limida yangilang')
+            if user.get('role') not in (None,'','kabutar','mustaqil','oquvchi','oqituvchi','ota-ona','talaba'):
                 raise HTTPException(409,'Mavjud ta’lim rolingizni bu oynada almashtirib bo‘lmaydi')
-            cur.execute('''UPDATE users SET role=%s,class=%s,asosiy_til=%s,oqituvchi_fani=%s,kabutar_education_ready=TRUE
-                WHERE user_id=%s''',(body.role,str(grade) if body.role=='oquvchi' else None,body.language,body.subject if body.role=='oqituvchi' else None,uid))
+            cur.execute('''UPDATE users SET role=%s,class=%s,asosiy_til=%s,oqituvchi_fani=%s,
+                kabutar_learning_profile=%s::jsonb,kabutar_education_ready=TRUE WHERE user_id=%s''',
+                (base_role,class_value,body.language,body.subject if body.role=='oqituvchi' else None,json.dumps(learning),uid))
         return {'ok':True,'profile':platform.joriy_foydalanuvchi(token)}
 
     @app.post('/auth/invite/claim')

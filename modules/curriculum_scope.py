@@ -48,11 +48,14 @@ def catalog_context(cur, user_id=None):
     admin=bool(cur.fetchone())
     cur.execute('SELECT to_jsonb(p) AS profile FROM talaba_profillari p WHERE user_id=%s',(user_id,))
     profile=(cur.fetchone() or {}).get('profile') or None
+    if not profile and (user.get('kabutar_learning_profile') or {}).get('role') == 'talaba':
+        profile=user['kabutar_learning_profile']
     grade=canonical_grade(user.get('class'))
     teacher = user.get('role') == 'oqituvchi'
     if teacher:
         workplaces=teacher_institutions(cur,user_id,user)
         types=[kind for kind,ids in workplaces.items() if ids]
+        if not types: types=['maktab','universitet']
         grade=''
     elif profile or 'kurs' in grade:
         types=['universitet']
@@ -78,9 +81,12 @@ def catalog_filter(institution_type, dars_turi=None, alias='d'):
 def group_catalog_rows(rows, only_tested=True):
     subjects={}
     for r in rows:
-        codes=list(dict.fromkeys(r['testli_kodlar'] if only_tested else r['barcha_kodlar']))
+        # PostgreSQL ARRAY_AGG ... FILTER returns NULL when a topic has no tests.
+        # Such a topic must not break the rest of the school's catalog.
+        raw_codes = r.get('testli_kodlar') if only_tested else r.get('barcha_kodlar')
+        codes=list(dict.fromkeys(code for code in (raw_codes or []) if code))
         if not codes:continue
-        annual=scope_identity(r,False) if r.get('kurs') and r.get('institution_id') else r['curriculum_scope_id']
+        annual=scope_identity(r,False) if r.get('kurs') else r['curriculum_scope_id']
         key=(annual,r['grade'],text_key(r['subject_name']),r['dars_turi']);kind=r['dars_turi'] or ''
         subject=subjects.setdefault(key,{'nom':r['subject_name'] or 'Boshqa','qisqa':r['subject_code'],
             'kalit':json.dumps(key,ensure_ascii=False),'dars_turi':kind,'dars_turi_nomi':LESSON_LABELS.get(kind,''),
@@ -130,7 +136,10 @@ def normalize_scope(data):
     if len(s['guruh'])>32: raise ValueError('Guruh nomi juda uzun')
     s['dars_turi']=lesson(s['dars_turi'])
     if s['institution_type']=='universitet':
-        if not s['institution_id']: raise ValueError('Institutni tanlang')
+        if not s['institution_id']:
+            if s['guruh'] or s['yonalish_id']: raise ValueError('Umumiy katalogda muassasa guruhi tanlanmaydi')
+            s['yonalish_nomi']=s['yonalish_nomi'] or 'Umumiy fanlar'
+            s['yonalish_key']=text_key(s['yonalish_nomi'])
         if s['talim_bosqichi'] not in ('bakalavr','magistr'): raise ValueError('Bakalavr yoki magistrni tanlang')
         if not s['yonalish_key']: raise ValueError("Yo'nalishni tanlang")
         if s['talim_shakli'] not in (*FORMS,'umumiy'): raise ValueError("Ta'lim shaklini tanlang")
@@ -163,6 +172,7 @@ def migrate(db):
     try:
         with conn.cursor() as cur:
             cur.execute(Path(__file__).resolve().parents[1].joinpath('migrations/20260920_curriculum_scope.sql').read_text())
+            cur.execute(Path(__file__).resolve().parents[1].joinpath('migrations/20260922_public_learning.sql').read_text())
         conn.commit()
     except Exception:
         conn.rollback(); raise
@@ -206,7 +216,7 @@ def allowed_predicate(cur,user_id=None,alias='d'):
     if cur.fetchone(): return 'TRUE',[]
     if user.get('role')=='oqituvchi':
         targets=teacher_institutions(cur,user_id,user)
-        clauses=[];params=[]
+        clauses=["(cs.institution_id=0 AND cs.institution_type IN ('maktab','universitet') AND cs.guruh='')"];params=[]
         for kind,ids in targets.items():
             if ids:
                 clauses.append('(cs.institution_type=%s AND cs.institution_id=ANY(%s))')
@@ -230,7 +240,22 @@ def allowed_predicate(cur,user_id=None,alias='d'):
               AND NULLIF(to_jsonb(u)->>'archived_at','') IS NULL))""",[
               p['universitet_id'],p['talim_bosqichi'],p.get('yonalish_id') or 0,text_key(p['yonalish_nomi']),
               p['kurs'],list(semester_pair(p['kurs'])),p['talim_shakli'],p['talim_tili'],str(p['guruh']).strip().upper()]
-    # A course without an enrolled student profile must not open other colleges.
+    # Independent students use only the explicit common university catalog.
+    # Saving a course never grants enrollment or access to an institution's rows.
+    learning = user.get('kabutar_learning_profile') or {}
+    if learning.get('role') == 'talaba':
+        course = learning.get('kurs')
+        if (not isinstance(course,int) or not 1 <= course <= (2 if learning.get('talim_bosqichi') == 'magistr' else 6)
+                or learning.get('talim_bosqichi') not in ('bakalavr','magistr')
+                or learning.get('talim_shakli') not in FORMS
+                or learning.get('talim_tili') not in ('uz','ru','tj','en','kk','kz')):
+            return 'FALSE',[]
+        return f"""EXISTS (SELECT 1 FROM curriculum_scopes cs WHERE cs.id={alias}.curriculum_scope_id
+            AND cs.institution_type='universitet' AND cs.institution_id=0 AND cs.guruh=''
+            AND cs.talim_bosqichi=%s AND cs.kurs=%s AND cs.semestr=ANY(%s)
+            AND cs.talim_shakli IN (%s,'umumiy') AND cs.talim_tili=%s)""",[
+                learning['talim_bosqichi'],course,list(semester_pair(course)),learning['talim_shakli'],learning['talim_tili']]
+    # A course without a valid learner profile must not open other colleges.
     if re.search(r'kurs',str(user.get('class') or ''),re.I): return 'FALSE',[]
     school_grade = canonical_grade(user.get('class'))
     school_clause = ''

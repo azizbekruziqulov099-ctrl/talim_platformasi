@@ -38,7 +38,7 @@ def create_router(platform):
         data=dict(payload)
         data['institution_type'] = {'institut':'universitet','institute':'universitet'}.get(scope.text_key(data.get('institution_type')),scope.text_key(data.get('institution_type')))
         if data.get('institution_type')=='universitet':
-            programs=platform._talaba_yonalishlari(cur,int(data.get('institution_id') or 0))
+            programs=platform._talaba_yonalishlari(cur,int(data['institution_id'])) if data.get('institution_id') else []
             if programs and not data.get('yonalish_id'):raise ValueError('Yo‘nalishni institutning rasmiy ro‘yxatidan tanlang')
         if data.get('institution_type')=='universitet' and data.get('yonalish_id'):
             program=next((p for p in programs if p['id']==int(data['yonalish_id'])),None)
@@ -56,7 +56,7 @@ def create_router(platform):
             inst=cur.fetchone()
             if not inst:raise ValueError('Muassasa topilmadi yoki arxivlangan')
             s['institution_name']=inst['nomi']
-        else:s['institution_name']='Maktab — umumiy katalog'
+        else:s['institution_name']='Institut — umumiy testlar' if s['institution_type']=='universitet' else 'Maktab — umumiy katalog'
         if s['institution_type']=='universitet':
             cur.execute('SELECT pg_advisory_xact_lock(hashtext(%s))',(repr(scope.scope_identity(s)),))
             existing=next((r for r in scope.year_family(cur,s) if r['semestr']==s['semestr']),None)

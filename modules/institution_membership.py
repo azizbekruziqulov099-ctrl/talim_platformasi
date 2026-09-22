@@ -408,6 +408,8 @@ def redeem_code(platform, user_id, value, *, institute=None):
             values.append(role)
         if "kabutar_education_ready" in columns.get("users", set()):
             updates.append("kabutar_education_ready=TRUE")
+        if "kabutar_learning_profile" in columns.get("users", set()):
+            updates.append("kabutar_learning_profile='{}'::jsonb")
         if updates:
             cur.execute("UPDATE users SET " + ",".join(updates) + " WHERE user_id=%s", (*values, user_id))
         cur.execute("""INSERT INTO foydalanuvchi_muassasalari(user_id,muassasa_turi,muassasa_id,lavozim)
