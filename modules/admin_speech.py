@@ -27,9 +27,11 @@ def selected_language(value='auto'):
 async def synthesize(text,voice,rate,language='auto'):
     import edge_tts
     from modules.speech_language import split_speech_text, SPEAKERS
+    from modules.speech_math import speak_math_tags
     audio=bytearray()
     for part_language,part in split_speech_text(text,language):
-        async for chunk in edge_tts.Communicate(part,SPEAKERS[part_language][voice],rate=rate).stream():
+        spoken=speak_math_tags(part,part_language)
+        async for chunk in edge_tts.Communicate(spoken,SPEAKERS[part_language][voice],rate=rate).stream():
             if chunk['type']=='audio':audio.extend(chunk['data'])
     if not audio:raise RuntimeError('Empty speech response')
     return bytes(audio)
@@ -81,7 +83,7 @@ def create_router(platform):
             text,voice,rate=speech_input(payload)
             language=selected_language(payload.get('language','auto'))
         except ValueError as exc:raise HTTPException(400,str(exc)) from exc
-        key=hashlib.sha256(f'admin-speech-v56\0{language}\0{voice}\0{rate}\0{text}'.encode()).hexdigest()
+        key=hashlib.sha256(f'admin-speech-v62\0{language}\0{voice}\0{rate}\0{text}'.encode()).hexdigest()
         audio=platform._ovoz_keshdan_ol(key)
         if audio is None:
             try:

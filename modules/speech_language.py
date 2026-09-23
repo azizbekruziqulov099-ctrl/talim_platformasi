@@ -2,6 +2,7 @@
 import json
 import re
 from pathlib import Path
+from modules.speech_math import protect_math
 
 WORDS = json.loads(Path(__file__).with_name('speech_words.json').read_text(encoding='utf-8'))
 ENGLISH = set(WORDS['en'])
@@ -35,10 +36,11 @@ def split_speech_text(value, language='auto'):
             if part.strip():result.append((language,part))
             return
         current = language if language in SPEAKERS else detect_language(part)
-        for sentence in re.split(r'(?<=[.!?;\n])\s+', part):
+        protected, restore = protect_math(part)
+        for sentence in re.split(r'(?<=[.!?;\n])\s+', protected):
             if sentence.strip():
                 current = language if language in SPEAKERS else detect_language(sentence, current)
-                result.append((current, sentence))
+                result.append((current, restore(sentence)))
     previous = 0
     for match in re.finditer(r'\[(uz|en|ru)\](.*?)\[/\1\]', text, re.S | re.I):
         untagged(text[previous:match.start()])

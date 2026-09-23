@@ -2736,6 +2736,8 @@ def _xorijiy_ovoz_uchun_tayyorla(matn: str, til: str) -> str:
 
 def _ovoz_uchun_tayyorla_til(matn: str, til: str) -> str:
     til = _ovoz_tilini_tuzat(til)
+    from modules.speech_math import speak_math_tags
+    matn = speak_math_tags(matn, til)
     return _ovoz_uchun_tayyorla(matn) if til == "uz" else _xorijiy_ovoz_uchun_tayyorla(matn, til)
 
 
@@ -2765,7 +2767,7 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
     # Til matndan aniqlanadi; profil tili yoki eski URL parametri uni almashtirmaydi.
     asosiy_til = "uz"
     kesh_kaliti = hashlib.sha256(
-        f"v54-auto\0{jins}\0{matn}".encode("utf-8")
+        f"v62-math\0{jins}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
