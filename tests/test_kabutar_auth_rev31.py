@@ -238,6 +238,7 @@ class AuthTests(unittest.TestCase):
         self.assertEqual(self.db.state['phones']['+998901234567'],222)
         self.assertFalse(self.db.state['identities'])
     def test_link_other_existing_account_is_denied(self):
+        self.db.state['identities'][111]={'telegram_id':111,'user_id':111,'phone':'+998901234567'}
         token=self.service.issue_session(222,'google')
         sid=self.service.claims(token)['sid']
         row=self.db.state['challenges'][A.digest(self.challenge)];row.update(mode='link',target_user_id=222,link_session_hash=A.digest(sid))

@@ -46,7 +46,23 @@ async def transcribe_audio(audio, content_type, extension, api_key, language='au
             data=fields)
         response.raise_for_status()
         data=response.json()
-    return {'text':str(data.get('text') or '').strip(),'language':str(data.get('language') or '')}
+    if not isinstance(data,dict) or not isinstance(data.get('text'),str):
+        raise ValueError('stt_invalid_response')
+    return {'text':data['text'].strip(),'language':str(data.get('language') or '')}
+
+def transcription_error(exc):
+    """Return an actionable error without exposing provider bodies or credentials."""
+    status=getattr(getattr(exc,'response',None),'status_code',None)
+    if status==401:return HTTPException(503,'STT_PROVIDER_KEY: Groq kaliti qabul qilinmadi. Backenddagi GROQ_API_KEY qiymatini yangilang.')
+    if status==403:return HTTPException(503,'STT_PROVIDER_ACCESS: Groq ovoz modeliga ruxsat bermadi. Groq loyihasidagi model ruxsatlarini tekshiring.')
+    if status==429:return HTTPException(429,'STT_LIMIT: Ovoz tanish xizmati limiti tugadi. Birozdan so‘ng shu yozuvni qayta yuboring yoki Groq limitingizni tekshiring.')
+    if status==413:return HTTPException(413,'STT_TOO_LARGE: Ovoz yozuvi xizmat uchun juda katta. Qisqaroq yozuv yuboring.')
+    if status in (400,415,422):return HTTPException(422,'STT_AUDIO_REJECTED: Ovoz xizmati yozuvni qabul qilmadi. Yozuvni tinglab tekshiring yoki MP3, WAV, M4A faylini yuboring.')
+    if status==404:return HTTPException(503,'STT_MODEL: Ovoz tanish modeli yoki xizmat manzili topilmadi.')
+    if isinstance(exc,TimeoutError) or 'timeout' in type(exc).__name__.lower():
+        return HTTPException(504,'STT_TIMEOUT: Ovoz tanish xizmati vaqtida javob bermadi. Shu yozuvni qayta yuboring.')
+    if isinstance(exc,ValueError):return HTTPException(502,'STT_RESPONSE: Ovoz xizmati matnli javob qaytarmadi. Shu yozuvni qayta yuboring.')
+    return HTTPException(503,'STT_CONNECTION: Backend ovoz tanish xizmatidan javob ololmadi. Ulanishni tekshirib, shu yozuvni qayta yuboring.')
 
 def create_router(platform):
     router=APIRouter(prefix='/api/admin/speech',tags=['admin-speech'])
@@ -55,7 +71,7 @@ def create_router(platform):
     def status(token:str):
         platform._admin_tekshir(token)
         return {'admin':True,'reading_available':importlib.util.find_spec('edge_tts') is not None,
-                'language':'auto','languages':['uz','ru','en'],'revision':56,
+                'language':'auto','languages':['uz','ru','en'],'revision':57,
                 'dictation_available':bool(str(getattr(platform,'GROQ_API_KALIT','') or '').strip())}
 
     @router.post('/read')
@@ -82,9 +98,11 @@ def create_router(platform):
         try:language=selected_language(language)
         except ValueError as exc:raise HTTPException(400,str(exc)) from exc
         api_key=str(getattr(platform,'GROQ_API_KALIT','') or '').strip()
-        if not api_key:raise HTTPException(503,'Avtomatik ovoz tanish xizmati ulanmagan')
+        if not api_key:raise HTTPException(503,'STT_NOT_CONFIGURED: Ovoz tanish xizmati ulanmagan. Backendda GROQ_API_KEY sozlanishi kerak.')
         content_type=request.headers.get('content-type','').split(';',1)[0].strip().lower()
-        extensions={'audio/webm':'webm','audio/ogg':'ogg','audio/mp4':'mp4','audio/wav':'wav','audio/mpeg':'mp3','audio/x-m4a':'m4a'}
+        extensions={'audio/webm':'webm','video/webm':'webm','audio/ogg':'ogg','audio/mp4':'mp4','video/mp4':'mp4',
+                    'audio/wav':'wav','audio/x-wav':'wav','audio/mpeg':'mp3','audio/mp3':'mp3',
+                    'audio/m4a':'m4a','audio/x-m4a':'m4a','audio/flac':'flac','audio/x-flac':'flac'}
         if content_type not in extensions:raise HTTPException(415,'Bu ovoz fayli turi qo‘llanmaydi')
         audio=bytearray()
         async for chunk in request.stream():
@@ -94,8 +112,10 @@ def create_router(platform):
         try:
             args=(bytes(audio),content_type,extensions[content_type],api_key)
             result=await transcribe_audio(*args) if language=='auto' else await transcribe_audio(*args,language)
-        except Exception as exc:raise HTTPException(503,'Ovozni matnga aylantirib bo‘lmadi. Qayta urinib ko‘ring.') from exc
-        if not result['text']:raise HTTPException(422,'Yozuvda nutq topilmadi. Qayta gapirib ko‘ring.')
+        except Exception as exc:raise transcription_error(exc) from exc
+        if not isinstance(result,dict) or not isinstance(result.get('text'),str):
+            raise HTTPException(502,'STT_RESPONSE: Ovoz xizmati noto‘g‘ri javob qaytardi. Shu yozuvni qayta yuboring.')
+        if not result['text'].strip():raise HTTPException(422,'STT_NO_SPEECH: Yozuvda nutq topilmadi. Saqlangan yozuvni tinglab tekshiring.')
         return result
 
     return router

@@ -717,7 +717,7 @@ def google_login(intent: Optional[str] = None):
         OAUTH_STATE_SECONDS,
         state=state,
         verifier=verifier,
-        intent="link" if intent == "link" else "login",
+        intent=intent if intent in ("link", "telegram") else "login",
     )
     url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlencode({
         "client_id": GOOGLE_CLIENT_ID,
@@ -810,6 +810,7 @@ async def google_callback(
             OAUTH_TICKET_SECONDS,
             outcome="login",
             user_id=r["user_id"],
+            intent="telegram" if state_payload.get("intent") == "telegram" else "login",
         )
     else:
         ticket = _oauth_imzolangan_token(
@@ -818,7 +819,7 @@ async def google_callback(
             outcome="registration",
             email=email,
             name=ism,
-            intent="link" if state_payload.get("intent") == "link" else "login",
+            intent=state_payload.get("intent") if state_payload.get("intent") in ("link", "telegram") else "login",
         )
     return _oauth_frontend_redirect(ticket=ticket)
 
@@ -847,6 +848,7 @@ def google_ticket_exchange(sorov: GoogleTicketExchange, request: Request):
         response = JSONResponse({
             "holat": "kirdi",
             "token": _jwt_yarat(payload["user_id"]),
+            "intent": "telegram" if payload.get("intent") == "telegram" else "login",
         })
     elif payload.get("outcome") == "registration" and payload.get("email"):
         _auth_ticket_consume(payload)

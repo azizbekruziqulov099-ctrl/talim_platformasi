@@ -1,8 +1,9 @@
-"""Kabutar authentication v31: database-backed one-use login and revocable sessions.
+"""Kabutar authentication: database-backed one-use login and revocable sessions.
 
 No SMS gateway is used. The Telegram bot alone confirms an own-contact event,
-using a separate server credential. Every browser exchange also proves knowledge
-of a secret which is never sent to Telegram. Existing user IDs are never moved.
+using a separate server credential. REV58 phone-bound codes also work when a
+Telegram link loses its payload. A redeemed code is bound to its first browser;
+retries in that browser recover the same session. Existing user IDs never move.
 """
 from __future__ import annotations
 import hashlib
@@ -55,6 +56,14 @@ ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS code_hash TEXT;
 ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS code_attempts INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE kabutar_auth_challenges ADD COLUMN IF NOT EXISTS selected_role TEXT;
 CREATE INDEX IF NOT EXISTS kabutar_auth_challenges_expiry ON kabutar_auth_challenges(expires_at);
+CREATE TABLE IF NOT EXISTS kabutar_telegram_codes (
+ phone TEXT PRIMARY KEY, telegram_id BIGINT NOT NULL, request_hash TEXT NOT NULL,
+ code_hash TEXT NOT NULL, full_name TEXT NOT NULL, role TEXT NOT NULL,
+ expires_at TIMESTAMPTZ NOT NULL, attempts INTEGER NOT NULL DEFAULT 0,
+ consumed_at TIMESTAMPTZ, redeemer_hash TEXT, user_id BIGINT REFERENCES users(user_id)
+);
+CREATE INDEX IF NOT EXISTS kabutar_telegram_codes_expiry ON kabutar_telegram_codes(expires_at);
+ALTER TABLE kabutar_telegram_codes ADD COLUMN IF NOT EXISTS purpose TEXT NOT NULL DEFAULT 'login';
 CREATE TABLE IF NOT EXISTS kabutar_auth_consumed (
  token_hash TEXT PRIMARY KEY, expires_at TIMESTAMPTZ NOT NULL
 );
@@ -174,6 +183,17 @@ class Confirm(Inspect):
     full_name: str = Field(default='', max_length=200)
     role: Optional[str] = None
 
+class BotCode(Confirm):
+    """The bot creates the request; no browser deep link is needed."""
+    purpose: str = 'login'
+
+class RedeemCode(BaseModel):
+    phone: str = Field(min_length=6, max_length=32)
+    code: str = Field(pattern=r'^\d{6}$')
+    browser_secret: str = Field(min_length=32, max_length=128)
+    mode: str = 'login'
+    token: Optional[str] = None
+
 class TokenBody(BaseModel):
     token: Optional[str] = None
 
@@ -241,6 +261,7 @@ class AuthService:
             if cur.fetchone():
                 cur.execute("UPDATE users SET kabutar_education_ready=TRUE WHERE role IS NOT NULL AND role NOT IN ('kabutar','mustaqil') AND NOT kabutar_education_ready")
             cur.execute("DELETE FROM kabutar_auth_challenges WHERE expires_at < NOW()-INTERVAL '1 day'")
+            cur.execute("DELETE FROM kabutar_telegram_codes WHERE expires_at < NOW()-INTERVAL '1 day'")
             cur.execute('DELETE FROM kabutar_auth_consumed WHERE expires_at < NOW()')
             cur.execute("DELETE FROM kabutar_auth_rate WHERE window_at < NOW()-INTERVAL '1 day'")
             cur.execute("DELETE FROM kabutar_auth_sessions WHERE expires_at < NOW()-INTERVAL '1 day'")
@@ -267,11 +288,26 @@ class AuthService:
         elif not self.bot_username:
             reason = 'Backendda KABUTAR_BOT_USERNAME sozlanishi kerak'
         return {'enabled':reason is None, 'bot_username':self.bot_username,
-                'reason':reason, 'protocol_version':2}
+                'reason':reason, 'protocol_version':3, 'revision':59,
+                'bot_url':f'https://t.me/{self.bot_username}?start=kb_login' if self.bot_username else None}
 
     def login_code(self, challenge, telegram_id):
         value = hmac.new(self.key.encode(), f'login-code:{challenge}:{telegram_id}'.encode(), hashlib.sha256).digest()
         return f'{int.from_bytes(value[:8], "big") % 1000000:06d}'
+
+    def portable_code_hash(self, phone, code):
+        return hmac.new(self.key.encode(), f'phone-code:{phone}:{code}'.encode(), hashlib.sha256).hexdigest()
+
+    def existing_learning_role(self, cur, uid):
+        cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s FOR UPDATE', (uid,))
+        user = (cur.fetchone() or {}).get('profile') or {}
+        cur.execute('SELECT 1 FROM admin_akkaunt WHERE uid=%s', (uid,))
+        if cur.fetchone():
+            return 'admin'
+        role = user.get('role')
+        if role == 'oquvchi' and ('kurs' in str(user.get('class') or '') or (user.get('kabutar_learning_profile') or {}).get('role') == 'talaba'):
+            return 'talaba'
+        return role if role not in (None, '', 'kabutar', 'mustaqil') else None
 
     def select_learning_role(self, cur, uid, role):
         if role not in ('oquvchi', 'talaba', 'oqituvchi', 'ota-ona'):
@@ -471,13 +507,19 @@ class AuthService:
                 cur.execute('SELECT user_id FROM users WHERE user_id=%s', (telegram_id,))
                 user = cur.fetchone()
                 owned = int(user['user_id']) if user else None
-        if target is not None and owned is not None and owned != int(target):
+        # A legacy bot profile is not a verified web identity. A signed-in Google
+        # user proving ownership of Telegram may link it without moving either
+        # profile's lessons, grades or role. Explicit web identities stay protected.
+        legacy_owner = owned if identity is None else None
+        if target is not None and owned is not None and owned != int(target) and identity is not None:
             raise HTTPException(409, 'Telegram boshqa Kabutar akkauntiga tegishli. Akkauntlar avtomatik birlashtirilmaydi')
         user_id = int(target) if target is not None else (owned if owned is not None else telegram_id)
         cur.execute('SELECT user_id FROM telefon_hisob WHERE telefon=%s', (phone,))
         phone_owner = cur.fetchone()
         if phone_owner and phone_owner['user_id'] is not None and int(phone_owner['user_id']) != user_id:
-            if not self._release_imported_phone(cur, phone, int(phone_owner['user_id'])):
+            if target is not None and legacy_owner is not None and int(phone_owner['user_id']) == legacy_owner:
+                cur.execute('DELETE FROM telefon_hisob WHERE telefon=%s AND user_id=%s', (phone, legacy_owner))
+            elif not self._release_imported_phone(cur, phone, int(phone_owner['user_id'])):
                 raise HTTPException(409, 'Bu telefon boshqa akkauntga ulangan. Avval o‘sha akkauntga kiring')
         cur.execute('SELECT telegram_id,user_id FROM kabutar_telegram_identity WHERE phone=%s OR user_id=%s', (phone,user_id))
         for other in cur.fetchall():
@@ -564,6 +606,98 @@ def register_auth(app, platform):
     def config():
         return {'telegram':service.telegram_config(),
             'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True}}
+
+    @app.post('/auth/telegram/code/issue')
+    def issue_bot_code(body:BotCode,x_kabutar_bot_secret:Optional[str]=Header(None)):
+        service.bot_auth(x_kabutar_bot_secret)
+        if body.telegram_user_id != body.contact_user_id:
+            raise HTTPException(403, 'Faqat o‘zingizning telefoningizni ulashing')
+        if body.role not in ('oquvchi', 'talaba', 'oqituvchi', 'ota-ona'):
+            raise HTTPException(422, 'Botda rolingizni tanlang')
+        purpose = getattr(body, 'purpose', 'login')
+        if purpose not in ('login', 'link'):
+            raise HTTPException(422, 'Kirish turi noto‘g‘ri')
+        phone = normalize_phone(body.phone)
+        service.rate('telegram-code-issue', str(body.telegram_user_id), 12, 600)
+        request_hash = digest(body.challenge)
+        code = service.login_code('portable:' + phone + ':' + body.challenge, body.telegram_user_id)
+        with service.transaction() as cur:
+            cur.execute('SELECT pg_advisory_xact_lock(hashtextextended(%s,31))', ('portable-code:' + phone,))
+            cur.execute('SELECT *, expires_at>NOW() AS live FROM kabutar_telegram_codes WHERE phone=%s FOR UPDATE', (phone,))
+            previous = cur.fetchone()
+            if previous and previous['request_hash'] == request_hash and previous['telegram_id'] == body.telegram_user_id:
+                if previous.get('purpose', 'login') != purpose or previous['role'] != body.role:
+                    raise HTTPException(409, 'Bu tanlov uchun kod berilgan. Boshqa rol yoki kirish turi uchun botda /sayt bilan yangi kod oling')
+                if not previous['live'] or previous['consumed_at'] or previous['attempts'] >= 5:
+                    raise HTTPException(410, 'Kod ishlatilgan yoki muddati tugagan. Botda /sayt orqali yangi kod oling')
+                ttl = max(0, int((previous['expires_at']-datetime.now(timezone.utc)).total_seconds()))
+            else:
+                cur.execute('''INSERT INTO kabutar_telegram_codes
+                    (phone,telegram_id,request_hash,code_hash,full_name,role,purpose,expires_at)
+                    VALUES(%s,%s,%s,%s,%s,%s,%s,NOW()+INTERVAL '5 minutes')
+                    ON CONFLICT(phone) DO UPDATE SET telegram_id=EXCLUDED.telegram_id,
+                    request_hash=EXCLUDED.request_hash,code_hash=EXCLUDED.code_hash,
+                    full_name=EXCLUDED.full_name,role=EXCLUDED.role,purpose=EXCLUDED.purpose,expires_at=EXCLUDED.expires_at,
+                    attempts=0,consumed_at=NULL,redeemer_hash=NULL,user_id=NULL''',
+                    (phone,body.telegram_user_id,request_hash,service.portable_code_hash(phone,code),body.full_name,body.role,purpose))
+                ttl = CHALLENGE_SECONDS
+        return {'status':'confirmed','code':code,'phone':phone,'role':body.role,'purpose':purpose,'expires_in':ttl,'revision':59}
+
+    @app.post('/auth/telegram/code/redeem')
+    def redeem_bot_code(body:RedeemCode,request:Request):
+        service.origin(request)
+        if body.mode not in ('login', 'link'):
+            raise HTTPException(422, 'Kirish turi noto‘g‘ri')
+        phone = normalize_phone(body.phone)
+        target = None
+        if body.mode == 'link':
+            token = service.token(request,body.token)
+            target = platform._jwt_tekshir(token)
+        service.rate('telegram-code-phone', phone, 15, 600)
+        service.rate('telegram-code-redeem-ip', service.ip(request), 60, 60)
+        redeemer = digest(body.browser_secret + ':' + body.mode + ':' + str(target))
+        just_completed = False
+        with service.transaction() as cur:
+            cur.execute('SELECT pg_advisory_xact_lock(hashtextextended(%s,31))', ('portable-code:' + phone,))
+            if target is not None:
+                service.recent_session(cur,token,target)
+            cur.execute('SELECT *, expires_at>NOW() AS live FROM kabutar_telegram_codes WHERE phone=%s FOR UPDATE', (phone,))
+            row = cur.fetchone()
+            if not row or row['attempts'] >= 5:
+                return {'status':'invalid_code','detail':'Telefon yoki kod noto‘g‘ri, yoxud kod tugagan. Botda /sayt orqali yangi kod oling.'}
+            if row['consumed_at']:
+                if not secrets.compare_digest(row.get('redeemer_hash') or '', redeemer) or (datetime.now(timezone.utc)-row['consumed_at']).total_seconds() > RESULT_SECONDS:
+                    return {'status':'used','detail':'Kod ishlatilgan. Botda /sayt orqali yangi kod oling.'}
+            elif not row['live']:
+                return {'status':'expired','detail':'Kodning 5 daqiqalik muddati tugadi. Botda /sayt orqali yangi kod oling.'}
+            if not secrets.compare_digest(row['code_hash'], service.portable_code_hash(phone,body.code)):
+                cur.execute('UPDATE kabutar_telegram_codes SET attempts=attempts+1 WHERE phone=%s', (phone,))
+                return {'status':'invalid_code','detail':'Telefon yoki kod noto‘g‘ri. Botdagi eng oxirgi kodni kiriting.'}
+            if row.get('purpose', 'login') == 'link' and target is None:
+                # The explicit Gmail choice must never create a second profile,
+                # even when the old Gmail profile has no verified phone yet.
+                return {'status':'link_required','detail':'Avval mavjud Gmail hisobingizga kiring. Shu kod bilan Telegram o‘sha hisobga ulanadi.'}
+            sid = hmac.new(service.key.encode(), ('portable-session:' + row['request_hash'] + ':' + redeemer).encode(), hashlib.sha256).hexdigest()
+            created = row['consumed_at'] or datetime.now(timezone.utc)
+            if row['consumed_at']:
+                cur.execute('SELECT 1 FROM kabutar_auth_sessions WHERE session_hash=%s AND revoked_at IS NULL AND expires_at>NOW()', (digest(sid),))
+                if not cur.fetchone():
+                    return {'status':'expired','detail':'Sessiya yopilgan. Botdan yangi kod oling.'}
+                uid = row['user_id']
+                access = service._session_token(uid,sid,created,created+timedelta(days=SESSION_DAYS))
+            else:
+                uid = service._resolve_telegram(cur,row['telegram_id'],phone,row['full_name'],target)
+                # Existing Gmail/Telegram/admin profiles keep their real role.
+                # Only a genuinely new education profile uses the bot selection.
+                if service.existing_learning_role(cur,uid) is None and target is None:
+                    service.select_learning_role(cur,uid,row['role'])
+                access = service._issue_cur(cur,uid,'telegram',sid,created)
+                cur.execute('''UPDATE kabutar_telegram_codes SET consumed_at=%s,redeemer_hash=%s,user_id=%s
+                    WHERE phone=%s''', (created,redeemer,uid,phone))
+                just_completed = True
+        if just_completed:
+            service.record_login(uid,'telegram')
+        return {'status':'complete','token':access,'user_id':uid,'linked':body.mode=='link'}
 
     @app.post('/auth/telegram/start')
     def start(body:Start,request:Request):
