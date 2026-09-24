@@ -80,7 +80,9 @@ def _math_image(source):
     from matplotlib.font_manager import FontProperties
     from matplotlib.mathtext import math_to_image
 
-    source = source.replace(r"\dfrac", r"\frac").replace(r"\tfrac", r"\frac")
+    source = re.sub(r'\\(?:dfrac|tfrac|cfrac)\b',r'\\frac',source)
+    source = re.sub(r'\\(?:displaystyle|textstyle)\b','',source)
+    source = re.sub(r'(?<=\d)\{,\}(?=\d)',',',source)
     if not source or len(source) > 2000 or source.count("{") > 120:
         raise ValueError("Formula bo‘sh yoki juda uzun; savoldagi formulani tekshiring.")
 
@@ -103,7 +105,7 @@ def _math_image(source):
     # A matrix/cases expression is laid out as real rows/columns. Nested TeX
     # environments deliberately fail; a wrong mathematical rendering is worse
     # than a clear error and a corrected bank entry.
-    env = re.fullmatch(r"(.*?)\\begin\{(matrix|pmatrix|bmatrix|vmatrix|Vmatrix|cases)\}([\s\S]*?)\\end\{\2\}(.*)", source)
+    env = re.fullmatch(r"([\s\S]*?)\\begin\{(matrix|pmatrix|bmatrix|vmatrix|Vmatrix|cases|aligned|gathered)\}([\s\S]*?)\\end\{\2\}([\s\S]*)", source)
     if env:
         prefix, kind, body, suffix = env.groups()
         if r"\begin" in body or r"\end" in body:
@@ -119,7 +121,8 @@ def _math_image(source):
         content_w = sum(widths) + gap_x * (len(widths) - 1)
         content_h = sum(heights) + gap_y * (len(heights) - 1)
         left, right = {"matrix": ("", ""), "pmatrix": ("(", ")"), "bmatrix": ("[", "]"),
-                       "vmatrix": ("|", "|"), "Vmatrix": ("‖", "‖"), "cases": ("{", "")}[kind]
+                       "vmatrix": ("|", "|"), "Vmatrix": ("‖", "‖"), "cases": ("{", ""),
+                       "aligned": ("", ""), "gathered": ("", "")}[kind]
         font = ImageFont.truetype(str(FONT_ROOT / "DejaVuSans.ttf"), max(30, content_h))
         pre, post = basic(prefix) if prefix.strip() else None, basic(suffix) if suffix.strip() else None
         bracket_w = max(20, int(content_h * .36)) if left else 0

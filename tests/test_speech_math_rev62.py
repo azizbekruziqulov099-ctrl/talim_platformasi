@@ -56,7 +56,7 @@ class MathSpeechTests(unittest.TestCase):
         self.assertIn('одна вторая',speak_math_tags(pieces[0][1],pieces[0][0]))
         self.assertIn('x squared',speak_math_tags(pieces[1][1],pieces[1][0]))
         formula='[lat]x^2\n+1[/lat]'
-        self.assertEqual(split_speech_text('Найдите значение. '+formula)[-1],('ru',formula))
+        self.assertEqual(split_speech_text('Найдите значение. '+formula)[-1],('uz',formula))
 
     def test_real_synthesize_function_passes_spoken_math_to_the_matching_voice(self):
         source=Path(__file__).resolve().parents[1]/'modules/admin_speech.py'

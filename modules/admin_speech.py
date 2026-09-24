@@ -27,10 +27,10 @@ def selected_language(value='auto'):
 async def synthesize(text,voice,rate,language='auto'):
     import edge_tts
     from modules.speech_language import split_speech_text, SPEAKERS
-    from modules.speech_math import speak_math_tags
+    from modules.speech_pronunciation import prepare_speech
     audio=bytearray()
     for part_language,part in split_speech_text(text,language):
-        spoken=speak_math_tags(part,part_language)
+        spoken=prepare_speech(part,part_language)
         async for chunk in edge_tts.Communicate(spoken,SPEAKERS[part_language][voice],rate=rate).stream():
             if chunk['type']=='audio':audio.extend(chunk['data'])
     if not audio:raise RuntimeError('Empty speech response')
@@ -73,7 +73,7 @@ def create_router(platform):
     def status(token:str):
         platform._admin_tekshir(token)
         return {'admin':True,'reading_available':importlib.util.find_spec('edge_tts') is not None,
-                'language':'auto','languages':['uz','ru','en'],'revision':57,
+                'language':'uz','languages':['uz','ru','en'],'revision':64,
                 'dictation_available':bool(str(getattr(platform,'GROQ_API_KALIT','') or '').strip())}
 
     @router.post('/read')
@@ -83,12 +83,13 @@ def create_router(platform):
             text,voice,rate=speech_input(payload)
             language=selected_language(payload.get('language','auto'))
         except ValueError as exc:raise HTTPException(400,str(exc)) from exc
-        key=hashlib.sha256(f'admin-speech-v62\0{language}\0{voice}\0{rate}\0{text}'.encode()).hexdigest()
+        key=hashlib.sha256(f'admin-speech-v64\0{language}\0{voice}\0{rate}\0{text}'.encode()).hexdigest()
         audio=platform._ovoz_keshdan_ol(key)
         if audio is None:
             try:
                 args=(text,voice,rate) if language=='auto' else (text,voice,rate,language)
                 audio=await asyncio.wait_for(synthesize(*args),timeout=45)
+            except ValueError as exc:raise HTTPException(400,str(exc)) from exc
             except ImportError as exc:raise HTTPException(503,'Serverda ovoz xizmati o‘rnatilmagan') from exc
             except Exception as exc:raise HTTPException(503,'Ovoz xizmati javob bermadi. Qayta urinib ko‘ring.') from exc
             platform._ovoz_keshga_qoy(key,audio)

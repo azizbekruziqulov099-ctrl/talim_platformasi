@@ -35,11 +35,10 @@ def split_speech_text(value, language='auto'):
         if language in SPEAKERS:
             if part.strip():result.append((language,part))
             return
-        current = language if language in SPEAKERS else detect_language(part)
+        current = 'uz'
         protected, restore = protect_math(part)
         for sentence in re.split(r'(?<=[.!?;\n])\s+', protected):
             if sentence.strip():
-                current = language if language in SPEAKERS else detect_language(sentence, current)
                 result.append((current, restore(sentence)))
     previous = 0
     for match in re.finditer(r'\[(uz|en|ru)\](.*?)\[/\1\]', text, re.S | re.I):

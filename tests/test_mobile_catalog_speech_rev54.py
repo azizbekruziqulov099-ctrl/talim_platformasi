@@ -63,7 +63,7 @@ class LanguageTests(unittest.TestCase):
             with self.subTest(text=text):self.assertEqual(detect_language(text),language)
     def test_mixed_sentences_tags_and_formulas(self):
         parts=split_speech_text('Salom. Hello world! Привет, мир. [uz]apple[/uz]')
-        self.assertEqual([language for language,text in parts],['uz','en','ru','uz'])
+        self.assertEqual([language for language,text in parts],['uz','uz','uz','uz'])
         self.assertEqual(split_speech_text('[en]2 + 3 = 5[/en]'),[('en','2 + 3 = 5')])
         self.assertEqual(detect_language('[lat]x + y[/lat]'),'uz')
 

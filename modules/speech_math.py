@@ -29,9 +29,11 @@ def _russian_genitive(words):
 def integer_words(n, language):
     if n < 0:return {'uz':'minus ', 'en':'minus ', 'ru':'минус '}[language] + integer_words(-n, language)
     if n < len(SMALL[language]):return SMALL[language][n]
-    if n >= 10**12:return str(n)  # Let the selected TTS voice pronounce very large numbers.
+    if n >= 10**18:return ' '.join(SMALL[language][int(digit)] for digit in str(n))
     parts = []
-    for scale, uz, en, ru in [(10**9,'milliard','billion',('миллиард','миллиарда','миллиардов')),
+    for scale, uz, en, ru in [(10**15,'kvadrillion','quadrillion',('квадриллион','квадриллиона','квадриллионов')),
+                              (10**12,'trillion','trillion',('триллион','триллиона','триллионов')),
+                              (10**9,'milliard','billion',('миллиард','миллиарда','миллиардов')),
                               (10**6,'million','million',('миллион','миллиона','миллионов')),
                               (1000,'ming','thousand',('тысяча','тысячи','тысяч'))]:
         if n >= scale:
@@ -52,11 +54,12 @@ def integer_words(n, language):
     return ' '.join(parts)
 
 def number_words(value, language):
+    if value.startswith('-'):return {'uz':'minus ','ru':'минус ','en':'minus '}[language]+number_words(value[1:],language)
     pieces = re.split(r'[.,]', value, maxsplit=1)
     whole = integer_words(int(pieces[0]), language)
     if len(pieces) == 1:return whole
     fraction = pieces[1]
-    if language == 'uz' and len(fraction) <= 6:
+    if language == 'uz' and len(fraction) <= 15:
         return f'{whole} butun {integer_words(10**len(fraction), language)}dan {integer_words(int(fraction), language)}'
     separator = ' point ' if language == 'en' else ' запятая ' if language == 'ru' else ' vergul '
     return whole + separator + ' '.join(SMALL[language][int(digit)] for digit in fraction)
@@ -119,14 +122,17 @@ LETTERS = {
  'en': ['ay','bee','see','dee','ee','eff','gee','aitch','eye','jay','kay','el','em','en','oh','pee','cue','are','ess','tee','you','vee','double you','x','why','zee'],
 }
 # Keep multiword letter names in one slot.
-LETTERS['uz'] = ['a','be','se','de','e','ef','ge','ash','i','jot','ka','el','em','en','o','pe','ku','er','es','te','u','ve','dubl ve','iks','igrik','zet']
+LETTERS['uz'] = ['a','be','si','de','e','ef','ge','ash','i','jot','ka','el','em','en','o','pe','ku','er','es','te','u','ve','dubl ve','iks','igrik','zet']
 TOKENS = re.compile(r'\\[A-Za-z]+|\\.|\d+(?:[.,]\d+)?|[A-Za-z]+|[А-Яа-яЁё]+|[^\s]')
 
 class MathReader:
     def __init__(self, value, language):
+        if len(value)>6000:raise ValueError('Formula juda uzun; uni qismlarga ajrating.')
         value = value.replace('−','-').replace('²','^{2}').replace('³','^{3}')
+        value = re.sub(r'(?<=\d)\{([.,])\}(?=\d)',r'\1',value)
         value = re.sub(r'\\(?:left|right|displaystyle|textstyle|scriptstyle|limits)\b', '', value)
-        self.tokens = TOKENS.findall(value);self.pos = 0;self.language = language;self.words = WORDS[language]
+        self.source=value;self.matches=list(TOKENS.finditer(value))
+        self.tokens = [m[0] for m in self.matches];self.pos = 0;self.language = language;self.words = WORDS[language]
 
     def peek(self):return self.tokens[self.pos] if self.pos < len(self.tokens) else ''
     def take(self):
@@ -176,13 +182,13 @@ class MathReader:
         if command in ('vec','overline','bar','dot'):return ({'vec':'vector','bar':'overline'}.get(command,command), self.argument(depth))
         if command in ('mathrm','mathbf','mathit','mathbb','mathcal','operatorname'):return self.argument(depth)
         if command in ('text','textrm','mbox') and self.peek() == '{':
-            self.take();text=[];nested=1
+            self.take();start=self.matches[self.pos-1].end();nested=1
             while self.peek() and nested:
                 part=self.take()
                 if part=='{':nested+=1
                 elif part=='}':nested-=1
-                if nested:text.append(part)
-            return ('text',' '.join(text))
+            if nested:raise ValueError('Formuladagi matn qavsi yopilmagan.')
+            return ('text',self.source[start:self.matches[self.pos-1].start()])
         if re.fullmatch(r'\d+(?:[.,]\d+)?', token):return ('number',token)
         return ('symbol', command)
 
@@ -204,6 +210,7 @@ class MathReader:
         if kind == 'number':return number_words(node[1],lang)
         if kind == 'symbol':
             value=node[1]
+            if value in ("'",'′','prime'):return {'uz':'shtrix','ru':'штрих','en':'prime'}[lang]
             if value in (',',';',':'):return ','
             if value in ('!','quad','qquad','enspace','thinspace',' ') :return ''
             if value == '\\':return w['row']

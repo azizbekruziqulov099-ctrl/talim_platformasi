@@ -91,7 +91,10 @@ def group_catalog_rows(rows, only_tested=True):
         subject=subjects.setdefault(key,{'nom':r['subject_name'] or 'Boshqa','qisqa':r['subject_code'],
             'kalit':json.dumps(key,ensure_ascii=False),'dars_turi':kind,'dars_turi_nomi':LESSON_LABELS.get(kind,''),
             'scope_id':r['curriculum_scope_id'],'scope_ids':[],'institution_type':r.get('institution_type','maktab'),
-            'institution_name':r.get('institution_name',''),'kurs':r.get('kurs'),
+            'institution_name':r.get('institution_name',''),'institution_id':r.get('institution_id'),
+            'yonalish_nomi':r.get('yonalish_nomi',''),'yonalish_id':r.get('yonalish_id'),
+            'talim_bosqichi':r.get('talim_bosqichi',''),'talim_shakli':r.get('talim_shakli',''),
+            'talim_tili':r.get('talim_tili',''),'guruh':r.get('guruh',''),'kurs':r.get('kurs'),
             'semestrlar':list(semester_pair(r['kurs'])) if r.get('kurs') else [],'sinflar':{}})
         if r['curriculum_scope_id'] not in subject['scope_ids']:subject['scope_ids'].append(r['curriculum_scope_id'])
         group=subject['sinflar'].setdefault(r['grade'],{'sinf':r['grade'],'mavzular':[]});semester=r.get('semestr') or 0
@@ -106,6 +109,32 @@ def group_catalog_rows(rows, only_tested=True):
         subject['sinflar']=list(subject['sinflar'].values())
         for group in subject['sinflar']:group['mavzular'].sort(key=lambda topic:topic.get('semestr',0))
     return list(subjects.values())
+
+def catalog_dimension_filter(filters):
+    """Only narrow a read catalog. Authorization is still applied independently.
+
+    Unlike an import's scope_id, this includes all lessons, groups and semesters
+    of the selected course. Zero institution/program IDs mean explicit common /
+    manually named catalogs, never a wildcard.
+    """
+    clauses=[];params=[]
+    allowed={
+        'talim_bosqichi':('bakalavr','magistr'),
+        'talim_shakli':FORMS,
+        'talim_tili':('uz','ru','tj','en','kk','kz'),
+    }
+    for field in ('institution_id','yonalish_id','talim_bosqichi','yonalish_key','talim_shakli','talim_tili','kurs'):
+        value=filters.get(field)
+        if value is None:continue
+        if field in ('institution_id','yonalish_id','kurs'):
+            value=int(value)
+            if value<0 or (field=='kurs' and not 1<=value<=6):raise ValueError('Institut yoki kurs tanlovi noto‘g‘ri')
+        elif field=='yonalish_key':
+            value=text_key(value)
+            if not value:raise ValueError('Yo‘nalish tanlanmagan')
+        elif value not in allowed[field]:raise ValueError('Ta’lim dasturi tanlovi noto‘g‘ri')
+        clauses.append(f'cs.{field}=%s');params.append(value)
+    return ' AND '.join(clauses) or 'TRUE',params
 
 def text_key(value):
     return re.sub(r'\s+', ' ', str(value or '').translate(str.maketrans({'‘':"'",'’':"'",'ʻ':"'",'ʼ':"'",'`':"'"}))).strip().casefold()

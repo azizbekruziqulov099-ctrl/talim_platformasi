@@ -1600,7 +1600,11 @@ def muassasalarim(token: str):
 @app.get("/api/mavzular")
 def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool = True,
                     token: Optional[str] = None, institution_type: Optional[str] = None,
-                    dars_turi: Optional[str] = None, scope_id: Optional[int] = None):
+                    dars_turi: Optional[str] = None, scope_id: Optional[int] = None,
+                    institution_id: Optional[int] = None, yonalish_id: Optional[int] = None,
+                    talim_bosqichi: Optional[str] = None, yonalish_key: Optional[str] = None,
+                    talim_shakli: Optional[str] = None, talim_tili: Optional[str] = None,
+                    kurs: Optional[int] = None):
     user_id = _jwt_tekshir(token) if token else None
     conn = _db(); cur = conn.cursor()
     try:
@@ -1625,9 +1629,14 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             selected_scope=_curriculum.get_scope(cur,scope_id)
             clause += " AND d.curriculum_scope_id=ANY(%s)"
             params.append(_curriculum.scope_ids(selected_scope))
+        dimensions, dimension_params = _curriculum.catalog_dimension_filter({
+            'institution_id':institution_id,'yonalish_id':yonalish_id,'talim_bosqichi':talim_bosqichi,
+            'yonalish_key':yonalish_key,'talim_shakli':talim_shakli,'talim_tili':talim_tili,'kurs':kurs})
+        clause += f' AND ({dimensions})'
+        params.extend(dimension_params)
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
-                cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
+                cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
@@ -1636,7 +1645,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             LEFT JOIN generated_tests gt ON gt.topic_code=d.topic_code
             WHERE d.is_deleted=FALSE AND ({clause})
             GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
-                cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
+                cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
             ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",params)
         result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
@@ -2736,9 +2745,8 @@ def _xorijiy_ovoz_uchun_tayyorla(matn: str, til: str) -> str:
 
 def _ovoz_uchun_tayyorla_til(matn: str, til: str) -> str:
     til = _ovoz_tilini_tuzat(til)
-    from modules.speech_math import speak_math_tags
-    matn = speak_math_tags(matn, til)
-    return _ovoz_uchun_tayyorla(matn) if til == "uz" else _xorijiy_ovoz_uchun_tayyorla(matn, til)
+    from modules.speech_pronunciation import prepare_speech
+    return prepare_speech(matn, til)
 
 
 def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
@@ -2767,7 +2775,7 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
     # Til matndan aniqlanadi; profil tili yoki eski URL parametri uni almashtirmaydi.
     asosiy_til = "uz"
     kesh_kaliti = hashlib.sha256(
-        f"v62-math\0{jins}\0{matn}".encode("utf-8")
+        f"v64-pronunciation\0{jins}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
