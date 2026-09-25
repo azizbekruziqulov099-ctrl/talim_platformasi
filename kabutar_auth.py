@@ -107,6 +107,35 @@ def normalize_bot_username(value: str) -> str:
     return value if re.fullmatch(r'[A-Za-z0-9_]{5,32}', value) else ''
 
 
+def derived_bot_secret(bot_token: str) -> str:
+    """Shared bot<->backend secret when KABUTAR_BOT_AUTH_SECRET is not set.
+
+    Both Railway services already carry the same BOT_TOKEN, so an HMAC of it
+    gives an identical 64-character secret on each side without a new variable.
+    The bot computes exactly the same value (kabutar_web_auth.derived_bot_secret).
+    """
+    token = (bot_token or '').strip()
+    if not re.fullmatch(r'\d{5,}:[A-Za-z0-9_-]{30,}', token):
+        return ''
+    return hmac.new(token.encode('utf-8'), b'kabutar-bot-auth-v1', hashlib.sha256).hexdigest()
+
+
+def bot_username_from_token(bot_token: str) -> str:
+    """Ask Telegram for the bot's public @username (used when KABUTAR_BOT_USERNAME is unset)."""
+    token = (bot_token or '').strip()
+    if not token:
+        return ''
+    try:
+        import httpx
+        response = httpx.get(f'https://api.telegram.org/bot{token}/getMe', timeout=6)
+        data = response.json()
+        if data.get('ok'):
+            return normalize_bot_username(str((data.get('result') or {}).get('username') or ''))
+    except Exception:
+        pass
+    return ''
+
+
 def public_site_origin(value: str) -> str:
     """Return only a configured HTTP(S) origin, never credentials or URL paths."""
     try:
@@ -233,8 +262,11 @@ class AuthService:
     def __init__(self, platform):
         self.p = platform
         self.key = platform.JWT_MAXFIY_KALIT
-        self.bot_secret = os.getenv('KABUTAR_BOT_AUTH_SECRET', '').strip()
+        bot_token = os.getenv('BOT_TOKEN', '').strip()
+        self.bot_secret = os.getenv('KABUTAR_BOT_AUTH_SECRET', '').strip() or derived_bot_secret(bot_token)
         self.bot_username = normalize_bot_username(os.getenv('KABUTAR_BOT_USERNAME', ''))
+        self._bot_token = bot_token
+        self._username_checked_at = None
         self.dummy_password = password_hash('not-a-real-account-password')
 
     @contextmanager
@@ -281,12 +313,21 @@ class AuthService:
             raise HTTPException(503, 'Sayt manzili sozlanmagan. Administrator FRONTEND_URL va FRONTEND_URLS ni tekshirsin')
         return site
 
+    def _ensure_bot_username(self):
+        # Without KABUTAR_BOT_USERNAME, learn it once from BOT_TOKEN (retry at most every 5 min).
+        import time
+        if self.bot_username or not self._bot_token or (self._username_checked_at is not None and time.monotonic() - self._username_checked_at < 300):
+            return
+        self._username_checked_at = time.monotonic()
+        self.bot_username = bot_username_from_token(self._bot_token)
+
     def telegram_config(self):
+        self._ensure_bot_username()
         reason = None
         if len(self.bot_secret) < 32:
-            reason = 'Telegram kirishi uchun backend va botda bir xil KABUTAR_BOT_AUTH_SECRET sozlanishi kerak'
+            reason = 'Telegram kirishi uchun backendda BOT_TOKEN (botdagi bilan bir xil) yoki KABUTAR_BOT_AUTH_SECRET sozlanishi kerak'
         elif not self.bot_username:
-            reason = 'Backendda KABUTAR_BOT_USERNAME sozlanishi kerak'
+            reason = 'Backendda KABUTAR_BOT_USERNAME (botning @nomi) sozlanishi kerak'
         return {'enabled':reason is None, 'bot_username':self.bot_username,
                 'reason':reason, 'protocol_version':3, 'revision':59,
                 'bot_url':f'https://t.me/{self.bot_username}?start=kb_login' if self.bot_username else None}
