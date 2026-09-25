@@ -324,9 +324,7 @@ class AuthService:
     def telegram_config(self):
         self._ensure_bot_username()
         reason = None
-        if len(self.bot_secret) < 32:
-            reason = 'Telegram kirishi uchun backendda BOT_TOKEN (botdagi bilan bir xil) yoki KABUTAR_BOT_AUTH_SECRET sozlanishi kerak'
-        elif not self.bot_username:
+        if not self.bot_username:
             reason = 'Backendda KABUTAR_BOT_USERNAME (botning @nomi) sozlanishi kerak'
         return {'enabled':reason is None, 'bot_username':self.bot_username,
                 'reason':reason, 'protocol_version':3, 'revision':59,
@@ -394,11 +392,46 @@ class AuthService:
                 return value[:100]
         return request.client.host if request.client else 'unknown'
 
-    def bot_auth(self, supplied):
-        if len(self.bot_secret) < 32:
+    def bot_auth(self, supplied, bot_token=None, secondary=None):
+        """Accept the bot by any one proof; a mismatched env variable must not block login.
+
+        1) the shared secret (KABUTAR_BOT_AUTH_SECRET or the BOT_TOKEN-derived value);
+        2) the bot's own BOT_TOKEN, verified with Telegram getMe: it must belong to
+           the same bot whose @username the site advertises. Only that bot's owner
+           has this token, so no extra shared variable is needed.
+        """
+        candidates = [c for c in {self.bot_secret, derived_bot_secret(self._bot_token)} if c and len(c) >= 32]
+        for value in (supplied, secondary):
+            if value and any(secrets.compare_digest(value.encode('utf-8'), c.encode('utf-8')) for c in candidates):
+                return
+        if bot_token and self.verify_bot_token(bot_token):
+            return
+        if not candidates and not bot_token:
             raise HTTPException(503, 'Telegram orqali kirish hali sozlanmagan')
-        if not supplied or not secrets.compare_digest(supplied.encode('utf-8'), self.bot_secret.encode('utf-8')):
-            raise HTTPException(401, 'Bot tasdig‘i noto‘g‘ri')
+        raise HTTPException(401, 'Bot tasdig‘i noto‘g‘ri')
+
+    def verify_bot_token(self, bot_token):
+        import time
+        token = (bot_token or '').strip()
+        if not re.fullmatch(r'\d{5,}:[A-Za-z0-9_-]{30,}', token):
+            return False
+        self._ensure_bot_username()
+        key = digest('bot-token:' + token)
+        cache = self.__dict__.setdefault('_bot_token_cache', {})
+        hit = cache.get(key)
+        if hit and time.monotonic() - hit[1] < 3600:
+            username = hit[0]
+        else:
+            username = bot_username_from_token(token)
+            if not username:
+                return False
+            cache[key] = (username, time.monotonic())
+            if len(cache) > 50:
+                cache.pop(next(iter(cache)))
+        if not self.bot_username:
+            # Backendda bot nomi yo'q bo'lsa — haqiqiy tasdiqlangan botning nomini olamiz.
+            self.bot_username = username
+        return username.lower() == self.bot_username.lower()
 
     def user_lock(self, cur, user_id):
         cur.execute('SELECT pg_advisory_xact_lock(hashtextextended(%s,31))',(f'auth-user:{user_id}',))
@@ -649,8 +682,8 @@ def register_auth(app, platform):
             'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True}}
 
     @app.post('/auth/telegram/code/issue')
-    def issue_bot_code(body:BotCode,x_kabutar_bot_secret:Optional[str]=Header(None)):
-        service.bot_auth(x_kabutar_bot_secret)
+    def issue_bot_code(body:BotCode,x_kabutar_bot_secret:Optional[str]=Header(None),x_kabutar_bot_token:Optional[str]=Header(None),x_kabutar_bot_proof:Optional[str]=Header(None)):
+        service.bot_auth(x_kabutar_bot_secret,x_kabutar_bot_token,x_kabutar_bot_proof)
         if body.telegram_user_id != body.contact_user_id:
             raise HTTPException(403, 'Faqat o‘zingizning telefoningizni ulashing')
         if body.role not in ('oquvchi', 'talaba', 'oqituvchi', 'ota-ona'):
@@ -775,8 +808,8 @@ def register_auth(app, platform):
             'bot_url':f'https://t.me/{service.bot_username}?start=kb_{challenge}','expires_in':CHALLENGE_SECONDS, 'delivery':delivery}
 
     @app.post('/auth/telegram/inspect')
-    def inspect(body:Inspect,x_kabutar_bot_secret:Optional[str]=Header(None)):
-        service.bot_auth(x_kabutar_bot_secret)
+    def inspect(body:Inspect,x_kabutar_bot_secret:Optional[str]=Header(None),x_kabutar_bot_token:Optional[str]=Header(None),x_kabutar_bot_proof:Optional[str]=Header(None)):
+        service.bot_auth(x_kabutar_bot_secret,x_kabutar_bot_token,x_kabutar_bot_proof)
         with service.transaction() as cur:
             row=service._challenge(cur,body.challenge)
             if row['cancelled_at'] or not row['live']:
@@ -788,8 +821,8 @@ def register_auth(app, platform):
                 'site':row.get('site_origin') or public_site_origin(platform.FRONTEND_URL)}
 
     @app.post('/auth/telegram/confirm')
-    def confirm(body:Confirm,x_kabutar_bot_secret:Optional[str]=Header(None)):
-        service.bot_auth(x_kabutar_bot_secret)
+    def confirm(body:Confirm,x_kabutar_bot_secret:Optional[str]=Header(None),x_kabutar_bot_token:Optional[str]=Header(None),x_kabutar_bot_proof:Optional[str]=Header(None)):
+        service.bot_auth(x_kabutar_bot_secret,x_kabutar_bot_token,x_kabutar_bot_proof)
         if body.contact_user_id!=body.telegram_user_id:
             raise HTTPException(403,'Faqat o‘zingizning telefoningizni ulashing')
         phone=normalize_phone(body.phone)

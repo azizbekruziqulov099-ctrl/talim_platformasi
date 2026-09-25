@@ -10779,5 +10779,6 @@
   "{v0}: tanlangan yo'nalish bu fakultetga tegishli emas",
   "{v0}: {v1} bu fanga mos o'qituvchi emas",
   "{v0}: {v1} tilidagi sinf o'quv rejasida bu fan yo'q",
-  "Interfeys brauzer orqali bepul tarjima qilinadi. Bazadagi matnlarni tarjima qilish uchun backendda GOOGLE_TRANSLATE_API_KEY kerak."
+  "Interfeys brauzer orqali bepul tarjima qilinadi. Bazadagi matnlarni tarjima qilish uchun backendda GOOGLE_TRANSLATE_API_KEY kerak.",
+  "Groq ovoz xizmati ulanmagan: backendda GROQ_API_KEY yo'q. Groq kaliti bepul olinadi (console.groq.com → API Keys), keyin Railway'dagi backend xizmatiga GROQ_API_KEY qo'shib, qayta Deploy qiling."
 ]

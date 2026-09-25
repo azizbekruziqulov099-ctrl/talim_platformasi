@@ -81,8 +81,9 @@ class TelegramSiteTests(unittest.TestCase):
     def test_config_diagnostics_never_return_secrets(self):
         self.service.bot_secret = ''
         config = self.app.routes['/auth/config']()['telegram']
-        self.assertFalse(config['enabled'])
-        self.assertIn('KABUTAR_BOT_AUTH_SECRET', config['reason'])
+        # REV-fix: the bot can also prove itself with its BOT_TOKEN, so a missing
+        # shared secret no longer disables Telegram sign-in.
+        self.assertTrue(config['enabled'])
         self.service.bot_secret = 'only-a-test-secret-' + 'x' * 32
         self.service.bot_username = ''
         config = self.app.routes['/auth/config']()['telegram']
@@ -157,3 +158,25 @@ class TelegramSiteTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class BotProofRev72Tests(unittest.TestCase):
+    def make(self, env):
+        platform = type('P', (), {'JWT_MAXFIY_KALIT': 'k' * 40})()
+        with patch.dict(os.environ, env, clear=True):
+            return A.AuthService(platform)
+
+    def test_secret_set_only_on_backend_still_accepts_bot_token_proof(self):
+        token = '123456789:' + 'A' * 35
+        service = self.make({'KABUTAR_BOT_AUTH_SECRET': 'z' * 40, 'BOT_TOKEN': token, 'KABUTAR_BOT_USERNAME': 'my_kabutar_bot'})
+        service.bot_auth('wrong-secret-' + 'x' * 30, None, A.derived_bot_secret(token))  # derived proof accepted
+
+    def test_bot_token_is_verified_against_advertised_username(self):
+        service = self.make({'KABUTAR_BOT_USERNAME': 'my_kabutar_bot'})
+        token = '987654321:' + 'B' * 35
+        with patch.dict(A.AuthService.verify_bot_token.__globals__, {'bot_username_from_token': lambda t: 'my_kabutar_bot'}):
+            service.bot_auth(None, token)
+        with patch.dict(A.AuthService.verify_bot_token.__globals__, {'bot_username_from_token': lambda t: 'other_bot'}):
+            with self.assertRaises(A.HTTPException) as ctx:
+                service.bot_auth(None, '987654321:' + 'C' * 35)
+        self.assertEqual(ctx.exception.status_code, 401)
