@@ -99,12 +99,16 @@ def group_catalog_rows(rows, only_tested=True):
         if r['curriculum_scope_id'] not in subject['scope_ids']:subject['scope_ids'].append(r['curriculum_scope_id'])
         group=subject['sinflar'].setdefault(r['grade'],{'sinf':r['grade'],'mavzular':[]});semester=r.get('semestr') or 0
         topic=next((t for t in group['mavzular'] if t.get('semestr')==semester and text_key(t['nomi'])==text_key(r['nomi'])),None)
+        lesson_codes=[code for code in (r.get('darsli_kodlar') or []) if code]
         if topic:
             topic['topic_codes']=list(dict.fromkeys(topic['topic_codes']+codes));topic['savol_soni']+=r['savol_soni']
+            topic['darsli_kodlar']=list(dict.fromkeys(topic.get('darsli_kodlar',[])+lesson_codes))
+            topic['dars_bor']=bool(topic['darsli_kodlar'])
         else:
             group['mavzular'].append({'topic_codes':codes,'nomi':r['nomi'],'semestr':semester,
                 'savol_soni':r['savol_soni'],'dars_turi':kind,'scope_id':r['curriculum_scope_id'],
-                'institution_type':r.get('institution_type','maktab')})
+                'institution_type':r.get('institution_type','maktab'),
+                'darsli_kodlar':lesson_codes,'dars_bor':bool(lesson_codes)})
     for subject in subjects.values():
         subject['sinflar']=list(subject['sinflar'].values())
         for group in subject['sinflar']:group['mavzular'].sort(key=lambda topic:topic.get('semestr',0))

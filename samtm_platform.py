@@ -1634,7 +1634,15 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             'yonalish_key':yonalish_key,'talim_shakli':talim_shakli,'talim_tili':talim_tili,'kurs':kurs})
         clause += f' AND ({dimensions})'
         params.extend(dimension_params)
+        # Kitob darsi (AI miya → dars xonasi) bor mavzular: o'quvchi «Darsni boshlash» ni ko'radi.
+        # Jadvallar ishga tushishda (REV72 migratsiyasi) tayyorlanadi; bayroq shuni bildiradi.
+        lesson_table = bool(globals().get("_AI_DARS_SCHEMA_READY"))
+        lesson_codes_sql = ("""ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE EXISTS(
+                    SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code
+                      AND au.status='published' AND au.unit_kind IN ('lesson_step','knowledge','explanation','example')))"""
+                            if lesson_table else "NULL")
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
+                {lesson_codes_sql} AS darsli_kodlar,
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
                 cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
@@ -18588,7 +18596,28 @@ AI_BRAIN_SHEET_HEADERS = {
         "tarif_yoki_tavsif", "url_yoki_fayl", "alt_matn", "manba", "sahifa",
         "status", "import_qilinsin",
     ],
+    # Dars xonasi: doskada qadamma-qadam yuradigan dars ssenariysi.
+    "11_DARS_SSENARIY": [
+        "step_id", "topic_code", "tartib", "qadam_turi", "sahna", "sarlavha",
+        "doska_matni", "ovoz_matni", "media_id", "oquvchi_savoli",
+        "kutilgan_javob", "javob_izohi", "daraja_1_30", "source_id", "sahifa",
+        "status", "import_qilinsin",
+    ],
+    # «Tushunmadim» bosilganda shu qadam uchun chiqadigan variantlar.
+    "12_TUSHUNMADIM": [
+        "variant_id", "topic_code", "step_id", "variant_turi", "tugma_nomi",
+        "doska_matni", "ovoz_matni", "media_id", "takrorlash_topic_code",
+        "status", "import_qilinsin",
+    ],
 }
+
+# Eski (10 varaqli) fayllar ham qabul qilinadi: bu varaqlar bo'lmasa xato emas.
+AI_BRAIN_OPTIONAL_SHEETS = {"11_DARS_SSENARIY", "12_TUSHUNMADIM"}
+# Mavjud varaqlarga qo'shilgan, lekin eski fayllarda bo'lmasligi mumkin bo'lgan ustunlar.
+AI_BRAIN_OPTIONAL_HEADERS = {"02_DTS_XARITA": ["daraja_1_30"]}
+AI_LESSON_STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa")
+AI_VARIANT_TYPES = ("sodda", "hikoya", "rasm", "boshqa_usul", "takrorlash")
+AI_MEDIA_EXTENSIONS = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp"}
 
 AI_BRAIN_ID_COLUMNS = {
     "03_BILIM": "content_id",
@@ -18599,6 +18628,8 @@ AI_BRAIN_ID_COLUMNS = {
     "08_METODIKA": "method_id",
     "09_TOGARAK": "club_unit_id",
     "10_LUGAT_MEDIA": "resource_id",
+    "11_DARS_SSENARIY": "step_id",
+    "12_TUSHUNMADIM": "variant_id",
 }
 
 AI_BRAIN_KIND_BY_SHEET = {
@@ -18610,6 +18641,8 @@ AI_BRAIN_KIND_BY_SHEET = {
     "08_METODIKA": "method",
     "09_TOGARAK": "club",
     "10_LUGAT_MEDIA": "resource",
+    "11_DARS_SSENARIY": "lesson_step",
+    "12_TUSHUNMADIM": "variant",
 }
 
 AI_BRAIN_REQUIRED_VALUES = {
@@ -18623,6 +18656,8 @@ AI_BRAIN_REQUIRED_VALUES = {
     "08_METODIKA": ["method_id", "topic_code", "metod_kodi", "metod_nomi", "oqituvchi_harakati"],
     "09_TOGARAK": ["club_unit_id", "topic_code", "yonalish", "mavzu_nomi", "faoliyat_qadamlar"],
     "10_LUGAT_MEDIA": ["resource_id", "topic_code", "resource_type", "atama_yoki_nomi"],
+    "11_DARS_SSENARIY": ["step_id", "topic_code", "tartib", "qadam_turi"],
+    "12_TUSHUNMADIM": ["variant_id", "topic_code", "step_id", "variant_turi", "ovoz_matni"],
 }
 
 
@@ -18746,6 +18781,54 @@ def _ai_brain_jadvallari(cur):
         WHERE u.status='published' AND (s.id IS NULL OR s.status='published')""")
 
 
+_AI_DARS_SCHEMA_READY = False
+
+
+def _ai_brain_dars_jadvallari(cur):
+    """Dars xonasi uchun qo'shimcha sxema (REV72).
+
+    samtm_runtime faqat bir marta ishlatadigan SCHEMA_HELPERS ro'yxatiga kirmaydi:
+    ishga tushishda (main.py startup) bir marta bajariladi, so'ng so'rovlarda
+    hech narsa qilmaydi — issiq jadvallarda ALTER qulfi olinmaydi.
+    """
+    global _AI_DARS_SCHEMA_READY
+    if _AI_DARS_SCHEMA_READY:
+        return
+    cur.execute("SELECT pg_advisory_xact_lock(%s)", (19001972,))
+    cur.execute("ALTER TABLE ai_brain_topic_maps ADD COLUMN IF NOT EXISTS level_no INTEGER")
+    cur.execute("""CREATE TABLE IF NOT EXISTS ai_brain_media(
+        id BIGSERIAL PRIMARY KEY,
+        batch_id BIGINT NOT NULL REFERENCES ai_brain_import_batches(id) ON DELETE CASCADE,
+        file_name TEXT NOT NULL,
+        content_type TEXT NOT NULL,
+        byte_size INTEGER NOT NULL,
+        sha256 TEXT NOT NULL,
+        data BYTEA NOT NULL,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        UNIQUE(batch_id, file_name)
+    )""")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_ai_brain_media_name ON ai_brain_media(lower(file_name))")
+    cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS ai_brain_unit_code TEXT")
+    cur.execute("CREATE INDEX IF NOT EXISTS idx_gen_tests_ai_unit ON generated_tests(ai_brain_unit_code)")
+
+
+def _ai_brain_dars_migratsiya():
+    global _AI_DARS_SCHEMA_READY
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        _ai_brain_jadvallari(cur)
+        _ai_brain_dars_jadvallari(cur)
+        conn.commit()
+        _AI_DARS_SCHEMA_READY = True
+    except Exception as exc:
+        conn.rollback()
+        print(f"[REV72 dars xonasi sxemasi] {exc}", flush=True)
+    finally:
+        cur.close()
+        conn.close()
+
+
 def _ai_brain_text(value):
     if value is None:
         return ""
@@ -18784,8 +18867,11 @@ def _ai_brain_xato(errors, sheet, row, column, message, severity="error"):
     })
 
 
-def _ai_brain_excel_parse(content):
-    """Excelni faqat xotirada o'qiydi; bu funksiya bazaga yozmaydi."""
+def _ai_brain_excel_parse(content, media_names=None):
+    """Excelni faqat xotirada o'qiydi; bu funksiya bazaga yozmaydi.
+
+    media_names — ZIP ichida kelgan rasm fayllari nomlari (media_id tekshiruvi uchun).
+    """
     import openpyxl
 
     if len(content) > 30 * 1024 * 1024:
@@ -18795,10 +18881,16 @@ def _ai_brain_excel_parse(content):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
 
+    from modules.ai_miya_oddiy import is_simple_workbook, parse_simple
+    if is_simple_workbook(wb):
+        # Oddiy 2 varaqli shablon (KITOB + DARSLAR) — tartib bo'yicha bog'lanadi.
+        return parse_simple(wb, media_names)
+
     errors, warnings, payload, previews = [], [], {}, {}
     for sheet_name, required_headers in AI_BRAIN_SHEET_HEADERS.items():
         if sheet_name not in wb.sheetnames:
-            _ai_brain_xato(errors, sheet_name, 1, "", "Majburiy varaq topilmadi")
+            if sheet_name not in AI_BRAIN_OPTIONAL_SHEETS:
+                _ai_brain_xato(errors, sheet_name, 1, "", "Majburiy varaq topilmadi")
             payload[sheet_name] = []
             continue
         ws = wb[sheet_name]
@@ -18812,10 +18904,13 @@ def _ai_brain_excel_parse(content):
             continue
 
         rows = []
+        read_headers = list(required_headers) + [
+            h for h in AI_BRAIN_OPTIONAL_HEADERS.get(sheet_name, []) if h in header_index
+        ]
         for row_no in range(2, ws.max_row + 1):
             data = {
                 h: _ai_brain_text(ws.cell(row_no, header_index[h] + 1).value)
-                for h in required_headers
+                for h in read_headers
             }
             if not any(data.values()) or not _ai_brain_importmi(data.get("import_qilinsin")):
                 continue
@@ -18892,6 +18987,8 @@ def _ai_brain_excel_parse(content):
                 "warning",
             )
 
+    _ai_brain_dars_tekshir(payload, errors, warnings, media_names)
+
     for r in payload.get("08_METODIKA", []):
         duration = _ai_brain_int(r.get("davomiylik_daq"))
         if duration is not None and not 1 <= duration <= 120:
@@ -18961,6 +19058,93 @@ def _ai_brain_excel_parse(content):
     }
 
 
+def _ai_brain_norm(value):
+    return re.sub(r"[\s_'‘’ʻʼ-]+", "", _ai_brain_text(value).lower())
+
+
+def _ai_brain_dars_tekshir(payload, errors, warnings, media_names=None):
+    """11_DARS_SSENARIY va 12_TUSHUNMADIM qoidalari (dars xonasi to'g'ri ishlashi uchun)."""
+    media_names = {m.lower() for m in (media_names or set())}
+    resource_ids = {
+        r.get("resource_id"): r for r in payload.get("10_LUGAT_MEDIA", []) if r.get("resource_id")
+    }
+    step_types = {_ai_brain_norm(t): t for t in AI_LESSON_STEP_TYPES}
+    variant_types = {_ai_brain_norm(t): t for t in AI_VARIANT_TYPES}
+
+    def check_media(sheet, r):
+        media = r.get("media_id")
+        if not media:
+            return
+        if media in resource_ids or media.lower() in media_names or re.match(r"^https://", media):
+            return
+        _ai_brain_xato(
+            warnings, sheet, r["_excel_row"], "media_id",
+            "Rasm topilmadi: 10_LUGAT_MEDIA'dagi resource_id, ZIP ichidagi fayl nomi yoki https:// manzil bo'lishi kerak",
+            "warning",
+        )
+
+    for topic_row in payload.get("02_DTS_XARITA", []):
+        level = topic_row.get("daraja_1_30")
+        if level and not (_ai_brain_int(level) and 1 <= _ai_brain_int(level) <= 30):
+            _ai_brain_xato(errors, "02_DTS_XARITA", topic_row["_excel_row"], "daraja_1_30",
+                           "Daraja 1 dan 30 gacha butun son bo'lishi kerak")
+
+    steps_by_topic, step_ids = {}, {}
+    for r in payload.get("11_DARS_SSENARIY", []):
+        row_no = r["_excel_row"]
+        order = _ai_brain_int(r.get("tartib"))
+        if order is None or order < 1:
+            _ai_brain_xato(errors, "11_DARS_SSENARIY", row_no, "tartib", "Tartib 1, 2, 3 ... ko'rinishida butun son bo'lishi kerak")
+        kind = step_types.get(_ai_brain_norm(r.get("qadam_turi")))
+        if not kind:
+            _ai_brain_xato(errors, "11_DARS_SSENARIY", row_no, "qadam_turi",
+                           "Qadam turi quyidagilardan biri bo'lsin: " + ", ".join(AI_LESSON_STEP_TYPES))
+        else:
+            r["qadam_turi"] = kind
+        if not r.get("doska_matni") and not r.get("ovoz_matni"):
+            _ai_brain_xato(errors, "11_DARS_SSENARIY", row_no, "doska_matni", "Doska matni yoki ovoz matnidan kamida bittasi to'ldirilsin")
+        if kind == "birga" and not r.get("kutilgan_javob"):
+            _ai_brain_xato(errors, "11_DARS_SSENARIY", row_no, "kutilgan_javob", "«birga» qadamida o'quvchi javobi tekshiriladi — kutilgan_javob kerak")
+        level = r.get("daraja_1_30")
+        if level and not (_ai_brain_int(level) and 1 <= _ai_brain_int(level) <= 30):
+            _ai_brain_xato(errors, "11_DARS_SSENARIY", row_no, "daraja_1_30", "Daraja 1 dan 30 gacha butun son bo'lishi kerak")
+        if len(r.get("ovoz_matni") or "") > 1500:
+            _ai_brain_xato(errors, "11_DARS_SSENARIY", row_no, "ovoz_matni", "Ovoz matni 1500 belgidan oshmasin — qadamni ikkiga bo'ling")
+        check_media("11_DARS_SSENARIY", r)
+        key = (r.get("topic_code"), order)
+        if order is not None and key in steps_by_topic:
+            _ai_brain_xato(warnings, "11_DARS_SSENARIY", row_no, "tartib",
+                           f"Shu mavzuda {order}-tartib takrorlangan ({steps_by_topic[key]}-qator bilan)", "warning")
+        steps_by_topic[key] = row_no
+        if r.get("step_id"):
+            step_ids[r["step_id"]] = r.get("topic_code")
+
+    for r in payload.get("12_TUSHUNMADIM", []):
+        row_no = r["_excel_row"]
+        if r.get("step_id") and r["step_id"] not in step_ids:
+            _ai_brain_xato(errors, "12_TUSHUNMADIM", row_no, "step_id", "step_id shu fayldagi 11_DARS_SSENARIY varag'ida topilmadi")
+        elif r.get("step_id") and step_ids[r["step_id"]] != r.get("topic_code"):
+            _ai_brain_xato(errors, "12_TUSHUNMADIM", row_no, "topic_code", "Variant boshqa mavzudagi qadamga bog'langan")
+        kind = variant_types.get(_ai_brain_norm(r.get("variant_turi")))
+        if not kind:
+            _ai_brain_xato(errors, "12_TUSHUNMADIM", row_no, "variant_turi",
+                           "Variant turi quyidagilardan biri bo'lsin: " + ", ".join(AI_VARIANT_TYPES))
+        else:
+            r["variant_turi"] = kind
+        if len(r.get("ovoz_matni") or "") > 1500:
+            _ai_brain_xato(errors, "12_TUSHUNMADIM", row_no, "ovoz_matni", "Ovoz matni 1500 belgidan oshmasin")
+        check_media("12_TUSHUNMADIM", r)
+
+    topics_with_steps = {r.get("topic_code") for r in payload.get("11_DARS_SSENARIY", [])}
+    for topic_row in payload.get("02_DTS_XARITA", []):
+        if topic_row.get("topic_code") not in topics_with_steps:
+            _ai_brain_xato(
+                warnings, "02_DTS_XARITA", topic_row["_excel_row"], "topic_code",
+                "Tavsiya: 11_DARS_SSENARIY to'ldirilmagan — dars xonasi bilim va misollardan avtomatik yig'iladi",
+                "warning",
+            )
+
+
 def _ai_brain_db_topic_tekshir(cur, parsed):
     topic_rows = parsed["payload"].get("02_DTS_XARITA", [])
     topic_codes = sorted({r["topic_code"] for r in topic_rows if r.get("topic_code")})
@@ -18973,10 +19157,30 @@ def _ai_brain_db_topic_tekshir(cur, parsed):
     mavjud = {r["topic_code"] for r in cur.fetchall()}
     for r in topic_rows:
         if r.get("topic_code") not in mavjud:
+            simple = r.get("_sheet") == "MAVZULAR"
             _ai_brain_xato(
-                parsed["errors"], "02_DTS_XARITA", r["_excel_row"], "topic_code",
-                "Bu topic_code Mavzular (dts_tree) bazasida topilmadi",
+                parsed["errors"], r.get("_sheet") or "02_DTS_XARITA", r["_excel_row"],
+                "Mavzu kodi (DTS)" if simple else "topic_code",
+                f"«{r.get('topic_code')}» kodi Mavzular bazasida topilmadi — admin paneldagi Mavzular bo'limidan aniq kodni ko'chiring",
             )
+    # Har mavzu qaysi o'quvchilarga chiqishini adminga oldindan ko'rsatamiz.
+    from modules.dars_xonasi import topic_placements
+    places = topic_placements(cur, [c for c in topic_codes if c in mavjud])
+    parsed["summary"]["joylashuv"] = [
+        {"topic_code": code, "mavzu": places[code]["nom"], "joy": places[code]["joy"], "korinadi": places[code]["korinadi"]}
+        for code in topic_codes if code in places
+    ]
+    for r in topic_rows:
+        place = places.get(r.get("topic_code"))
+        if place and not place["korinadi"]:
+            simple = r.get("_sheet") == "MAVZULAR"
+            _ai_brain_xato(
+                parsed["warnings"], r.get("_sheet") or "02_DTS_XARITA", r["_excel_row"],
+                "Mavzu kodi (DTS)" if simple else "topic_code",
+                f"«{r.get('topic_code')}» mavzusi hech bir katalogga (maktab/institut/bog'cha/markaz) biriktirilmagan — dars o'quvchilarga ko'rinmaydi. Mavzular bo'limida biriktiring.",
+                "warning",
+            )
+    parsed["summary"]["ogohlantirishlar"] = len(parsed["warnings"])
     parsed["summary"]["xatolar"] = sum(
         1 for e in parsed["errors"] if e.get("severity") == "error"
     )
@@ -19005,6 +19209,10 @@ def _ai_brain_template_workbook():
         ("4", "Namuna qatorlarini import qilmang; yangi qatorlarda import_qilinsin = ha yozing."),
         ("5", "Admin panelda avval Tekshirish, keyin Qoralama import, so'ng Nashr qilishni bosing."),
         ("6", "Faqat nashr qilingan bilim o'quvchi, o'qituvchi va to'garakka chiqadi."),
+        ("7", "DARS XONASI: 11_DARS_SSENARIY — doskadagi qadamlar (doska_matni — yoziladi, ovoz_matni — o'qituvchi aytadi). Bir xil «sahna» qiymatli qadamlar bitta doskada ketma-ket yoziladi."),
+        ("8", "12_TUSHUNMADIM — o'quvchi «Tushunmadim» bosganda chiqadigan variantlar: sodda, hikoya, rasm, boshqa_usul, takrorlash. step_id orqali qadamga bog'lanadi."),
+        ("9", "Formulalarni $...$ ichida yozing: $\\frac{3}{8}$. Rasm: media_id ga fayl nomini yozing (kasr_8.png) va Excel + rasmlarni bitta ZIP qilib yuklang."),
+        ("10", "daraja_1_30 — mavzuning qiyinlik darajasi (1 — eng oson, 30 — eng qiyin). 06_MASHQLAR'dagi single_choice va write_answer savollar nashrdan keyin Test bo'limiga ham tushadi."),
     ]
     guide["A4"] = "QADAM"
     guide["B4"] = "NIMA QILINADI"
@@ -19029,10 +19237,26 @@ def _ai_brain_template_workbook():
         "08_METODIKA": ["METOD-KASR-001", "5-01-01-01-01-01-001", "M05", "Think–Pair–Share", "mustahkamlash", "10", "12", "juftlik", "7", "Kasrli rasmni ko'rsatib savol beradi, juftlik javobini tinglaydi.", "Avval o'zi o'ylaydi, keyin juftiga tushuntiradi.", "Kasr kartochkalari", "Izohning aniqligi bo'yicha tezkor mezon", "Qiynalayotganga bo'lakli model bering.", "Yangi tushuncha umuman berilmagan paytda", "namuna", "yoq"],
         "09_TOGARAK": ["TOGARAK-KASR-001", "5-01-01-01-01-01-001", "Qiziqarli matematika", "rivojlantiruvchi", "Kasrlar oshxonasi", "Kasrni real o'lchovda qo'llash", "Retseptni 2 baravar kamaytirsak nima bo'ladi?", "1) Retsept tanlash. 2) Miqdorlarni kasrga aylantirish. 3) Model yasash.", "Kasrli retsept posteri", "Oddiy kasr va o'lchov", "45", "1", "Uyda bitta retseptdagi kasrlarni topish", "To'g'ri hisob, tushuntirish, hamkorlik", "namuna", "yoq"],
         "10_LUGAT_MEDIA": ["RES-KASR-001", "5-01-01-01-01-01-001", "lugat", "maxraj", "Butun nechta teng qismga bo'linganini ko'rsatadigan pastki son.", "", "Kasr chizig'i ostidagi son", "Matematika 5-sinf", "43", "namuna", "yoq"],
+        "11_DARS_SSENARIY": [
+            ["DARS-KASR-01", "5-01-01-01-01-01-001", "1", "kirish", "A", "Pitsa 8 bo'lakka bo'lindi", "🍕 8 ta teng bo'lak", "Tasavvur qil: pitsani sakkizta teng bo'lakka bo'ldik. Sen uch bo'lagini yeding. Pitsaning qancha qismini yeding? Bugun shuni kasr bilan yozishni o'rganamiz.", "pitsa_8.png", "", "", "", "5", "KITOB-MAT-5-2025", "42", "namuna", "yoq"],
+            ["DARS-KASR-02", "5-01-01-01-01-01-001", "2", "qoida", "B", "Oddiy kasr", "$\\frac{\\text{olingan}}{\\text{jami}}$", "Kasrning pastidagi son — maxraj: butun nechta teng bo'lakka bo'linganini bildiradi. Tepadagi son — surat: nechta bo'lak olinganini bildiradi.", "", "", "", "", "5", "KITOB-MAT-5-2025", "43", "namuna", "yoq"],
+            ["DARS-KASR-03", "5-01-01-01-01-01-001", "3", "misol", "C", "Misol", "Jami: 8,  olingan: 3", "Doskaga qara. Pitsa sakkiz bo'lakka bo'lingan — maxrajga sakkiz yozamiz.", "", "", "", "", "5", "KITOB-MAT-5-2025", "44", "namuna", "yoq"],
+            ["DARS-KASR-04", "5-01-01-01-01-01-001", "4", "misol", "C", "", "$=\\frac{3}{8}$", "Sen uch bo'lak olding — suratga uch yozamiz. Javob: uch sakkizdan.", "", "", "", "", "5", "KITOB-MAT-5-2025", "44", "namuna", "yoq"],
+            ["DARS-KASR-05", "5-01-01-01-01-01-001", "5", "birga", "D", "Endi sen yoz", "6 bo'lakdan 2 tasi bo'yalgan", "Endi sen yoz: olti bo'lakdan ikkitasi bo'yalgan. Bu qaysi kasr?", "", "Kasrni yozing (masalan 1/4)", "2/6|1/3", "Surat — bo'yalgan 2 ta, maxraj — jami 6 ta: 2/6.", "5", "KITOB-MAT-5-2025", "45", "namuna", "yoq"],
+            ["DARS-KASR-06", "5-01-01-01-01-01-001", "6", "xulosa", "E", "Esda tut", "Surat — olingan, maxraj — jami", "Barakalla! Esda tut: pastda jami bo'laklar, tepada olingan bo'laklar. Endi bilimingni test bilan tekshiramiz.", "", "", "", "", "5", "KITOB-MAT-5-2025", "", "namuna", "yoq"],
+        ],
+        "12_TUSHUNMADIM": [
+            ["TUSH-VAR-01", "5-01-01-01-01-01-001", "DARS-KASR-02", "sodda", "Soddaroq", "Nonni 4 ga kessang — maxraj 4", "Nonni nechta bo'lakka kessang, o'sha son maxraj bo'ladi. To'rtga kessang — maxraj to'rt. Ulardan bittasini olsang — surat bir.", "", "", "namuna", "yoq"],
+            ["TUSH-VAR-02", "5-01-01-01-01-01-001", "DARS-KASR-02", "hikoya", "Hikoya orqali", "Oyim va 8 bo'lak olma", "Oyim olmani sakkiz bo'lakka bo'ldi. Men uch bo'lagini oldim. Olmaning uch sakkizdan qismini oldim: sakkiz — jami bo'lak, uch — meniki.", "", "", "namuna", "yoq"],
+            ["TUSH-VAR-03", "5-01-01-01-01-01-001", "DARS-KASR-02", "rasm", "Rasm bilan", "8 ta katakdan 3 tasi bo'yalgan", "Rasmga qara: sakkizta katak — bu maxraj. Bo'yalgan uchtasi — surat.", "kataklar_3_8.png", "", "namuna", "yoq"],
+            ["TUSH-VAR-04", "5-01-01-01-01-01-001", "DARS-KASR-02", "takrorlash", "Oldingi mavzu", "Teng bo'lish nima?", "Keling, avval narsani teng bo'laklarga bo'lishni eslab olamiz.", "", "5-01-01-01-01-00-001", "namuna", "yoq"],
+        ],
     }
+    sample["02_DTS_XARITA"] = sample["02_DTS_XARITA"] + ["5"]
 
     thin = Side(style="thin", color=line)
-    for sheet_name, headers in AI_BRAIN_SHEET_HEADERS.items():
+    for sheet_name, required_headers in AI_BRAIN_SHEET_HEADERS.items():
+        headers = list(required_headers) + AI_BRAIN_OPTIONAL_HEADERS.get(sheet_name, [])
         ws = wb.create_sheet(sheet_name)
         ws.sheet_view.showGridLines = False
         ws.freeze_panes = "A2"
@@ -19042,25 +19266,43 @@ def _ai_brain_template_workbook():
             c.fill = PatternFill("solid", fgColor=navy)
             c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
             c.border = Border(bottom=thin)
-        for col, value in enumerate(sample[sheet_name], 1):
-            c = ws.cell(2, col, value)
-            c.fill = PatternFill("solid", fgColor=cream)
-            c.alignment = Alignment(vertical="top", wrap_text=True)
-        for row in range(3, 53):
+        sample_rows = sample[sheet_name]
+        if sample_rows and not isinstance(sample_rows[0], list):
+            sample_rows = [sample_rows]
+        for row_offset, sample_row in enumerate(sample_rows):
+            for col, value in enumerate(sample_row, 1):
+                c = ws.cell(2 + row_offset, col, value)
+                c.fill = PatternFill("solid", fgColor=cream)
+                c.alignment = Alignment(vertical="top", wrap_text=True)
+        for row in range(2 + len(sample_rows), 53):
             for col in range(1, len(headers) + 1):
                 ws.cell(row, col).alignment = Alignment(vertical="top", wrap_text=True)
         ws.auto_filter.ref = f"A1:{openpyxl.utils.get_column_letter(len(headers))}52"
         for col in range(1, len(headers) + 1):
             header = headers[col - 1]
             width = 16
-            if any(k in header for k in ("mazmun", "tushuntirish", "qadam", "harakati", "faoliyat", "savol", "maqsad", "mezon", "izoh", "tavsif")):
+            if any(k in header for k in ("mazmun", "tushuntirish", "qadam", "harakati", "faoliyat", "savol", "maqsad", "mezon", "izoh", "tavsif", "doska", "ovoz")) and header != "qadam_turi":
                 width = 38
-            elif header in {"topic_code", "source_id", "content_id", "explanation_id", "example_id", "task_id", "support_id", "method_id", "club_unit_id", "resource_id"}:
+            elif header in {"topic_code", "source_id", "content_id", "explanation_id", "example_id", "task_id", "support_id", "method_id", "club_unit_id", "resource_id", "step_id", "variant_id", "takrorlash_topic_code"}:
                 width = 24
+            elif header in {"tartib", "sahna", "daraja_1_30"}:
+                width = 9
             ws.column_dimensions[openpyxl.utils.get_column_letter(col)].width = width
         if "import_qilinsin" in headers:
             idx = headers.index("import_qilinsin") + 1
             dv = DataValidation(type="list", formula1='"ha,yoq"', allow_blank=False)
+            ws.add_data_validation(dv)
+            dv.add(f"{openpyxl.utils.get_column_letter(idx)}2:{openpyxl.utils.get_column_letter(idx)}5000")
+        for list_header, values in (("qadam_turi", AI_LESSON_STEP_TYPES), ("variant_turi", AI_VARIANT_TYPES)):
+            if list_header in headers:
+                idx = headers.index(list_header) + 1
+                dv = DataValidation(type="list", formula1='"' + ",".join(values) + '"', allow_blank=False)
+                ws.add_data_validation(dv)
+                dv.add(f"{openpyxl.utils.get_column_letter(idx)}2:{openpyxl.utils.get_column_letter(idx)}5000")
+        if "daraja_1_30" in headers:
+            idx = headers.index("daraja_1_30") + 1
+            dv = DataValidation(type="whole", operator="between", formula1="1", formula2="30", allow_blank=True)
+            dv.error = "Daraja 1 dan 30 gacha butun son"
             ws.add_data_validation(dv)
             dv.add(f"{openpyxl.utils.get_column_letter(idx)}2:{openpyxl.utils.get_column_letter(idx)}5000")
         if "status" in headers:
@@ -19069,7 +19311,7 @@ def _ai_brain_template_workbook():
             ws.add_data_validation(dv)
             dv.add(f"{openpyxl.utils.get_column_letter(idx)}2:{openpyxl.utils.get_column_letter(idx)}5000")
 
-    check = wb.create_sheet("11_TEKSHIRUV")
+    check = wb.create_sheet("13_TEKSHIRUV")
     check.sheet_view.showGridLines = False
     check["A1"] = "IMPORT OLDIDAN TEKSHIRUV"
     check["A1"].font = Font(size=18, bold=True, color="FFFFFF")
@@ -19099,14 +19341,16 @@ def ai_miya_shablon(token: str):
     _admin_tekshir(token)
     from fastapi.responses import StreamingResponse
 
-    wb = _ai_brain_template_workbook()
+    from modules.ai_miya_oddiy import template_workbook
+    # Oddiy 2 varaqli shablon. Eski 12 varaqli fayllar ham qabul qilinaveradi.
+    wb = template_workbook()
     buf = io.BytesIO()
     wb.save(buf)
     buf.seek(0)
     return StreamingResponse(
         buf,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-        headers={"Content-Disposition": "attachment; filename=AI_miya_kitob_import_shabloni.xlsx"},
+        headers={"Content-Disposition": "attachment; filename=AI_miya_kitob_shabloni.xlsx"},
     )
 
 
@@ -19115,12 +19359,18 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
     _admin_tekshir(token)
     user_id = _jwt_tekshir(token)
     content = await fayl.read()
-    parsed = _ai_brain_excel_parse(content)
+    media_files = {}
+    if (fayl.filename or "").lower().endswith(".zip") or content[:4] == b"PK\x03\x04" and not _ai_brain_xlsx_mi(content):
+        content, media_files = _ai_brain_zip_och(content)
+    parsed = _ai_brain_excel_parse(content, set(media_files))
+    for name, item in (parsed.pop("media", None) or {}).items():
+        media_files.setdefault(name, item)
 
     conn = _db()
     cur = conn.cursor()
     try:
         _ai_brain_jadvallari(cur)
+        _ai_brain_dars_jadvallari(cur)
         _ai_brain_db_topic_tekshir(cur, parsed)
         cur.execute(
             """INSERT INTO ai_brain_import_batches
@@ -19138,6 +19388,13 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
             ),
         )
         batch_id = cur.fetchone()["id"]
+        for name, (ctype, data) in media_files.items():
+            cur.execute(
+                """INSERT INTO ai_brain_media(batch_id,file_name,content_type,byte_size,sha256,data)
+                   VALUES(%s,%s,%s,%s,%s,%s) ON CONFLICT(batch_id,file_name) DO NOTHING""",
+                (batch_id, name, ctype, len(data), hashlib.sha256(data).hexdigest(), psycopg2.Binary(data)),
+            )
+        parsed["summary"]["rasmlar"] = len(media_files)
         conn.commit()
     finally:
         cur.close()
@@ -19150,6 +19407,113 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
         "warnings": parsed["warnings"][:200],
         "preview": parsed["preview"],
     }
+
+
+def _ai_brain_xlsx_mi(content):
+    import zipfile
+    try:
+        with zipfile.ZipFile(io.BytesIO(content)) as z:
+            return "[Content_Types].xml" in z.namelist() and any(n.startswith("xl/") for n in z.namelist())
+    except zipfile.BadZipFile:
+        return False
+
+
+def _ai_brain_zip_och(content):
+    """ZIP: bitta .xlsx + rasmlar (png/jpg/gif/webp). Rasmlar nomi bo'yicha qaytadi."""
+    import zipfile
+    if len(content) > 80 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="ZIP fayl 80 MB dan katta bo'lmasligi kerak")
+    try:
+        z = zipfile.ZipFile(io.BytesIO(content))
+    except zipfile.BadZipFile:
+        raise HTTPException(status_code=400, detail="ZIP faylni ochib bo'lmadi")
+    xlsx, media, total = [], {}, 0
+    with z:
+        for info in z.infolist():
+            if info.is_dir():
+                continue
+            name = info.filename.replace("\\", "/").split("/")[-1]
+            if not name or name.startswith((".", "~$")) or "__MACOSX" in info.filename:
+                continue
+            ext = os.path.splitext(name)[1].lower()
+            if ext == ".xlsx":
+                xlsx.append(info)
+                continue
+            if ext not in AI_MEDIA_EXTENSIONS:
+                continue
+            if info.file_size > 5 * 1024 * 1024:
+                raise HTTPException(status_code=413, detail=f"{name}: rasm 5 MB dan katta bo'lmasligi kerak")
+            total += info.file_size
+            if total > 60 * 1024 * 1024 or len(media) >= 500:
+                raise HTTPException(status_code=413, detail="ZIP ichidagi rasmlar juda ko'p (60 MB yoki 500 ta dan oshmasin)")
+            if name.lower() in {k.lower() for k in media}:
+                raise HTTPException(status_code=400, detail=f"{name}: bir xil nomli rasm ikki marta bor")
+            data = z.read(info)
+            media[name] = (AI_MEDIA_EXTENSIONS[ext], data)
+        if len(xlsx) != 1:
+            raise HTTPException(status_code=400, detail="ZIP ichida aynan bitta .xlsx fayl bo'lishi kerak")
+        if xlsx[0].file_size > 30 * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="Excel fayl 30 MB dan katta bo'lmasligi kerak")
+        return z.read(xlsx[0]), media
+
+
+def _ai_brain_testlarga_otkaz(cur, batch_id):
+    """06_MASHQLAR'dagi test/yozma savollarni Test bo'limi (generated_tests) ga yozadi.
+
+    Har bir savol unit_code bo'yicha bog'lanadi: qayta nashr qilinsa yangi qator
+    qo'shilmaydi — mavjud savol yangilanadi.
+    """
+    _ai_brain_dars_jadvallari(cur)
+    cur.execute(
+        """SELECT unit_code,topic_code,payload FROM ai_brain_units
+           WHERE batch_id=%s AND unit_kind='task'""",
+        (batch_id,),
+    )
+    added = updated = 0
+    for row in cur.fetchall():
+        p = row["payload"] or {}
+        kind = _ai_brain_norm(p.get("vazifa_turi"))
+        if kind in {"singlechoice", "test", "tanlov", "multiplechoice"}:
+            qtype = "single_choice"
+        elif kind in {"writeanswer", "yozma", "ochiq", "open", "qisqajavob"}:
+            qtype = "write_answer"
+        else:
+            continue
+        options = [p.get(f"variant_{x}") or None for x in "abcd"]
+        answer = _ai_brain_text(p.get("togri_javob"))
+        if qtype == "single_choice":
+            letter = answer.strip().upper()[:1]
+            if letter not in "ABCD" or not letter or not all(options):
+                continue
+            answer = letter
+        level = _ai_brain_norm(p.get("daraja"))
+        difficulty = {"oson": "oson", "orta": "o'rta", "qiyin": "qiyin"}.get(level, "o'rta")
+        time_limit = _ai_brain_int(p.get("vaqt_soniya"), 60) or 60
+        values = (
+            row["topic_code"], difficulty, p.get("savol"), options[0], options[1], options[2], options[3],
+            answer, p.get("izoh") or p.get("javob_mezoni"), qtype,
+            "$" in (p.get("savol") or "") or any("$" in (o or "") for o in options), time_limit,
+        )
+        cur.execute("SELECT id FROM generated_tests WHERE ai_brain_unit_code=%s ORDER BY id LIMIT 1", (row["unit_code"],))
+        existing = cur.fetchone()
+        if existing:
+            cur.execute(
+                """UPDATE generated_tests SET topic_code=%s,difficulty=%s,question=%s,option_a=%s,option_b=%s,
+                   option_c=%s,option_d=%s,correct_answer=%s,explanation=%s,question_type=%s,is_latex=%s,
+                   time_limit=%s WHERE id=%s""",
+                values + (existing["id"],),
+            )
+            updated += 1
+        else:
+            cur.execute(
+                """INSERT INTO generated_tests
+                   (topic_code,difficulty,question,option_a,option_b,option_c,option_d,correct_answer,
+                    explanation,question_type,is_latex,time_limit,situation,language,life_level,ai_brain_unit_code)
+                   VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'oddiy','uz',1,%s)""",
+                values + (row["unit_code"],),
+            )
+            added += 1
+    return {"qoshildi": added, "yangilandi": updated}
 
 
 def _ai_brain_source_payload(row):
@@ -19184,6 +19548,8 @@ def _ai_brain_unit_shape(sheet_name, row):
         "08_METODIKA": row.get("metod_nomi"),
         "09_TOGARAK": row.get("mavzu_nomi"),
         "10_LUGAT_MEDIA": row.get("atama_yoki_nomi"),
+        "11_DARS_SSENARIY": row.get("sarlavha") or row.get("qadam_turi"),
+        "12_TUSHUNMADIM": row.get("tugma_nomi") or row.get("variant_turi"),
     }
     body_by_sheet = {
         "03_BILIM": row.get("mazmun"),
@@ -19194,6 +19560,8 @@ def _ai_brain_unit_shape(sheet_name, row):
         "08_METODIKA": row.get("oqituvchi_harakati"),
         "09_TOGARAK": row.get("faoliyat_qadamlar"),
         "10_LUGAT_MEDIA": row.get("tarif_yoki_tavsif"),
+        "11_DARS_SSENARIY": row.get("ovoz_matni") or row.get("doska_matni"),
+        "12_TUSHUNMADIM": row.get("ovoz_matni"),
     }
     purposes = []
     if sheet_name == "03_BILIM" and row.get("content_type"):
@@ -19208,6 +19576,8 @@ def _ai_brain_unit_shape(sheet_name, row):
             "08_METODIKA": ["dars", "ochiq_dars"],
             "09_TOGARAK": ["togarak"],
             "10_LUGAT_MEDIA": ["orgatish", "manba"],
+            "11_DARS_SSENARIY": ["dars_xonasi"],
+            "12_TUSHUNMADIM": ["dars_xonasi", "qayta_tushuntirish"],
         }.get(sheet_name, [])
     audience = ["teacher"] if kind == "method" else ["student", "teacher"]
     return {
@@ -19216,7 +19586,7 @@ def _ai_brain_unit_shape(sheet_name, row):
         "unit_kind": kind,
         "title": title_by_sheet.get(sheet_name) or "",
         "body": body_by_sheet.get(sheet_name) or "",
-        "difficulty": row.get("daraja") or row.get("muhimlik") or "",
+        "difficulty": row.get("daraja") or row.get("daraja_1_30") or row.get("muhimlik") or "",
         "audience_roles": audience,
         "purposes": purposes,
         "age_min": _ai_brain_int(row.get("yosh_min")),
@@ -19235,6 +19605,7 @@ def ai_miya_import(batch_id: int, token: str):
     counts = {"sources": 0, "topics": 0, "units": 0, "duplicates": 0}
     try:
         _ai_brain_jadvallari(cur)
+        _ai_brain_dars_jadvallari(cur)
         cur.execute(
             """SELECT status,validation_errors,staged_payload
                FROM ai_brain_import_batches WHERE id=%s FOR UPDATE""",
@@ -19294,8 +19665,8 @@ def ai_miya_import(batch_id: int, token: str):
                    (batch_id,source_id,topic_code,subject_name,grade,quarter,
                     chapter_name,section_name,topic_name,subtopic_name,page_start,
                     page_end,learning_objective,prerequisite_text,success_criteria,
-                    row_checksum,status)
-                   VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'draft')
+                    row_checksum,status,level_no)
+                   VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'draft',%s)
                    ON CONFLICT(source_id,topic_code,row_checksum) DO NOTHING
                    RETURNING id""",
                 (
@@ -19306,6 +19677,7 @@ def ai_miya_import(batch_id: int, token: str):
                     _ai_brain_int(row.get("sahifa_tugash")),
                     row.get("oquv_maqsadi"), row.get("tayanch_bilimlar"),
                     row.get("natija_mezoni"), checksum,
+                    _ai_brain_int(row.get("daraja_1_30")),
                 ),
             )
             if cur.fetchone():
@@ -19412,6 +19784,7 @@ def ai_miya_nashr(batch_id: int, token: str):
                WHERE id=%s""",
             (user_id, batch_id),
         )
+        test_sync = _ai_brain_testlarga_otkaz(cur, batch_id)
         conn.commit()
     except HTTPException:
         conn.rollback()
@@ -19422,7 +19795,7 @@ def ai_miya_nashr(batch_id: int, token: str):
     finally:
         cur.close()
         conn.close()
-    return {"batch_id": batch_id, "status": "published", "message": "Bilimlar AI miyaga nashr qilindi"}
+    return {"batch_id": batch_id, "status": "published", "message": "Bilimlar AI miyaga nashr qilindi", "testlar": test_sync}
 
 
 @app.get("/api/admin/ai_miya_importlar")
@@ -22923,7 +23296,7 @@ def _talim_yoli_xulosasi(
                 """SELECT topic_code,COUNT(*) AS soni
                    FROM ai_brain_published_units
                    WHERE topic_code=ANY(%s)
-                     AND unit_kind IN ('knowledge','explanation','example','task','club')
+                     AND unit_kind IN ('knowledge','explanation','example','task','club','lesson_step')
                    GROUP BY topic_code""",
                 (codes,),
             )
