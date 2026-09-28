@@ -41,6 +41,11 @@ CREATE TABLE IF NOT EXISTS kabutar_telegram_identity (
  phone TEXT NOT NULL UNIQUE, verified_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 CREATE UNIQUE INDEX IF NOT EXISTS kabutar_telegram_identity_user ON kabutar_telegram_identity(user_id);
+CREATE TABLE IF NOT EXISTS kabutar_telegram_tickets (
+ ticket_hash TEXT PRIMARY KEY, user_id BIGINT NOT NULL REFERENCES users(user_id),
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), expires_at TIMESTAMPTZ NOT NULL, used_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS kabutar_telegram_tickets_expiry ON kabutar_telegram_tickets(expires_at);
 CREATE TABLE IF NOT EXISTS kabutar_auth_challenges (
  challenge_hash TEXT PRIMARY KEY, browser_hash TEXT NOT NULL,
  verification_code TEXT NOT NULL, mode TEXT NOT NULL CHECK(mode IN ('login','link')),
@@ -222,6 +227,13 @@ class RedeemCode(BaseModel):
     browser_secret: str = Field(min_length=32, max_length=128)
     mode: str = 'login'
     token: Optional[str] = None
+
+class TelegramTicket(BaseModel):
+    """Bot Telegram'i ulangan foydalanuvchi uchun bir martalik «saytga kirish» havolasi so'raydi."""
+    telegram_user_id: int = Field(gt=0)
+
+class TicketRedeem(BaseModel):
+    ticket: str = Field(min_length=24, max_length=80, pattern=r'^[A-Za-z0-9_-]+$')
 
 class TokenBody(BaseModel):
     token: Optional[str] = None
@@ -716,6 +728,37 @@ def register_auth(app, platform):
                     (phone,body.telegram_user_id,request_hash,service.portable_code_hash(phone,code),body.full_name,body.role,purpose))
                 ttl = CHALLENGE_SECONDS
         return {'status':'confirmed','code':code,'phone':phone,'role':body.role,'purpose':purpose,'expires_in':ttl,'revision':59}
+
+    @app.post('/auth/telegram/ticket')
+    def telegram_ticket(body:TelegramTicket,x_kabutar_bot_secret:Optional[str]=Header(None),x_kabutar_bot_token:Optional[str]=Header(None),x_kabutar_bot_proof:Optional[str]=Header(None)):
+        """REV76: botdagi «Test ishlash / Mavzu o'rganish» tugmasi saytni kod so'ramasdan ochadi.
+        Chipta 15 daqiqa amal qiladi va faqat bir marta ishlatiladi; faqat Telegram'i ulangan hisob uchun."""
+        service.bot_auth(x_kabutar_bot_secret,x_kabutar_bot_token,x_kabutar_bot_proof)
+        service.rate('telegram-ticket', str(body.telegram_user_id), 40, 600)
+        with service.transaction() as cur:
+            cur.execute('SELECT user_id FROM kabutar_telegram_identity WHERE telegram_id=%s', (body.telegram_user_id,))
+            row = cur.fetchone()
+            if not row:
+                raise HTTPException(404, 'Telegram hali Kabutar hisobiga ulanmagan. Botda /sayt orqali bir marta kiring.')
+            raw = secrets.token_urlsafe(24)
+            cur.execute("DELETE FROM kabutar_telegram_tickets WHERE expires_at < NOW() - INTERVAL '1 day'")
+            cur.execute("""INSERT INTO kabutar_telegram_tickets(ticket_hash,user_id,expires_at)
+                VALUES(%s,%s,NOW()+INTERVAL '15 minutes')""", (digest(raw), row['user_id']))
+        return {'ticket':raw,'expires_in':900,'user_id':row['user_id']}
+
+    @app.post('/auth/telegram/ticket/redeem')
+    def redeem_telegram_ticket(body:TicketRedeem,request:Request):
+        service.origin(request)
+        service.rate('telegram-ticket-ip', service.ip(request), 30, 60)
+        with service.transaction() as cur:
+            cur.execute("""UPDATE kabutar_telegram_tickets SET used_at=NOW()
+                WHERE ticket_hash=%s AND used_at IS NULL AND expires_at>NOW() RETURNING user_id""", (digest(body.ticket),))
+            row = cur.fetchone()
+            if not row:
+                raise HTTPException(410, 'Havola eskirgan yoki ishlatilgan. Botda /kabinet bosib yangisini oling.')
+            access = service._issue_cur(cur, row['user_id'], 'telegram')
+        service.record_login(row['user_id'], 'telegram')
+        return {'status':'complete','token':access,'user_id':row['user_id']}
 
     @app.post('/auth/telegram/code/redeem')
     def redeem_bot_code(body:RedeemCode,request:Request):

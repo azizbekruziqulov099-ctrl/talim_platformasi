@@ -11,7 +11,7 @@ import json
 import os
 import uuid
 
-from .presentation_ai import PresentationAIError, generate_content, get_ai_capabilities
+from .presentation_ai import PresentationAIError, generate_content, generate_tagged_text, get_ai_capabilities
 
 AI_JOBS_SCHEMA = """
 CREATE TABLE IF NOT EXISTS presentation_ai_jobs (
@@ -121,20 +121,20 @@ class PresentationAIJobs:
             running = cur.fetchone()
             if running['own']:
                 self._busy('Oldingi taqdimotingiz hali tayyorlanmoqda. Tugashini kuting.')
-            if running['total'] >= 2:
+            if running['total'] >= _limit('PRESENTATION_AI_PARALLEL', 4, 20):
                 self._busy('AI hozir boshqa taqdimotlarni tayyorlamoqda. Birozdan keyin qayta urinib ko‘ring.', 503)
             cur.execute("""SELECT COUNT(*) AS total,
                 COUNT(*) FILTER (WHERE owner_id=%s) AS own
                 FROM presentation_ai_jobs
                 WHERE created_at >= (date_trunc('day',now() AT TIME ZONE 'UTC') AT TIME ZONE 'UTC')""", (uid,))
             counts = cur.fetchone()
-            if counts['own'] >= _limit('PRESENTATION_AI_USER_DAILY', 5, 100):
+            if counts['own'] >= _limit('PRESENTATION_AI_USER_DAILY', 20, 200):
                 self._busy('Bugungi AI yaratish chegarangizga yetdingiz. Qo‘lda tahrirlashdan foydalanishingiz mumkin.')
-            if counts['total'] >= _limit('PRESENTATION_AI_GLOBAL_DAILY', 20, 1000):
+            if counts['total'] >= _limit('PRESENTATION_AI_GLOBAL_DAILY', 300, 5000):
                 self._busy('Bugungi umumiy AI yaratish chegarasiga yetildi. Qo‘lda tahrirlash ochiq.')
             # Prevent several short jobs in one minute from flooding the free API.
             cur.execute("SELECT COUNT(*) AS total FROM presentation_ai_jobs WHERE created_at>now()-interval '1 minute'")
-            if cur.fetchone()['total'] >= 2:
+            if cur.fetchone()['total'] >= _limit('PRESENTATION_AI_PER_MINUTE', 6, 60):
                 self._busy('AI navbati band. Bir daqiqadan keyin qayta urinib ko‘ring.')
             job_id = str(uuid.uuid4())
             cur.execute("""INSERT INTO presentation_ai_jobs(id,owner_id,request_hash,status)
@@ -168,4 +168,30 @@ class PresentationAIJobs:
                         WHERE id=%s AND owner_id=%s AND status='running'""", (job_id, uid))
             except Exception:
                 pass  # The lease releases the slot if the database is offline.
+            raise
+
+    def generate_word(self, uid, document, brief):
+        """AI Word matnini yozadi (tegli shablon) — saytdagi Word import bilan qo'llanadi."""
+        capabilities = get_ai_capabilities()
+        if not capabilities.get('available', capabilities['enabled']):
+            self._busy(capabilities.get('reason') or 'AI hali ulanmagan. Qo‘lda tahrirlashingiz mumkin.', 503)
+        key = cache_key(document, brief, ['word'], 'word:' + str(capabilities['model']))
+        job_id, cached = self._reserve(uid, key)
+        if cached is not None and isinstance(cached, dict) and cached.get('text'):
+            return dict(cached, cached=True)
+        try:
+            result = generate_tagged_text(document, brief)
+            stored = json.dumps({'text': result['text'], 'generated_count': result['generated_count'],
+                                 'warnings': result['warnings']}, ensure_ascii=False)
+            with self.db() as cur:
+                cur.execute("""UPDATE presentation_ai_jobs SET status='complete',result=%s::jsonb,finished_at=now()
+                    WHERE id=%s AND owner_id=%s AND status='running' AND lease_until>now()""", (stored, job_id, uid))
+            return dict(result, cached=False)
+        except Exception:
+            try:
+                with self.db() as cur:
+                    cur.execute("""UPDATE presentation_ai_jobs SET status='failed',finished_at=now()
+                        WHERE id=%s AND owner_id=%s AND status='running'""", (job_id, uid))
+            except Exception:
+                pass
             raise

@@ -115,7 +115,8 @@ class SharedGate(unittest.TestCase):
             [None,{'total':0,'own':0},{'total':20,'own':0}],
             [None,{'total':0,'own':0},{'total':0,'own':0},{'total':2}],
         ]
-        with patch.dict('os.environ',{'PRESENTATION_AI_USER_DAILY':'5','PRESENTATION_AI_GLOBAL_DAILY':'20'}):
+        with patch.dict('os.environ',{'PRESENTATION_AI_USER_DAILY':'5','PRESENTATION_AI_GLOBAL_DAILY':'20',
+                                      'PRESENTATION_AI_PARALLEL':'2','PRESENTATION_AI_PER_MINUTE':'2'}):
             for responses in attempts:
                 gate=self.setup_gate(responses)
                 with self.assertRaises(PresentationAIError):gate._reserve(7,'k'*64)

@@ -81,8 +81,8 @@ class DictationTests(unittest.TestCase):
     def run_request(self,request,token='admin'):
         return asyncio.run(self.fixture.routes['/dictate'](request,token))
     def test_audio_is_transcribed_with_detected_language(self):
-        self.assertEqual(self.run_request(self.request()),{'text':'Hello world.','language':'english'})
-        self.assertEqual(self.calls,[(b'audio','audio/webm','webm','test-key')])
+        self.assertEqual(self.run_request(self.request()),{'text':'Hello world.','language':'english','provider':'groq'})
+        self.assertEqual(self.calls,[(b'audio','audio/webm','webm','test-key','auto','groq')])
     def test_admin_authorization_precedes_reading_audio(self):
         with self.assertRaises(HTTPException) as exc:self.run_request(self.request(),token='student')
         self.assertEqual(exc.exception.status_code,403);self.assertEqual(self.reads,0);self.assertEqual(self.calls,[])
@@ -104,8 +104,8 @@ class DictationTests(unittest.TestCase):
                 return SimpleNamespace(raise_for_status=lambda:None,json=lambda:{'text':'Salom.','language':'uzbek'})
         path=catalog_fixtures.ROOT/'modules/admin_speech.py'
         import ast
-        node=next(n for n in ast.parse(path.read_text()).body if isinstance(n,ast.AsyncFunctionDef) and n.name=='transcribe_audio')
-        ns={};exec(compile(ast.Module(body=[node],type_ignores=[]),str(path),'exec'),ns)
+        nodes=[n for n in ast.parse(path.read_text()).body if isinstance(n,ast.AsyncFunctionDef) and n.name in ('transcribe_audio','_whisper_compatible')]
+        ns={};exec(compile(ast.Module(body=nodes,type_ignores=[]),str(path),'exec'),ns)
         with patch.dict(sys.modules,{'httpx':SimpleNamespace(AsyncClient=Client)}):
             result=asyncio.run(ns['transcribe_audio'](b'blob','audio/mp4','mp4','key'))
         self.assertEqual(result['text'],'Salom.')

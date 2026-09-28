@@ -52,7 +52,8 @@ class Stub:
 class PresentationAITests(unittest.TestCase):
     def setUp(self):
         self.env = patch.dict(os.environ, {"PRESENTATION_AI_ENABLED": "true", "GROQ_API_KEY": "test-key",
-                                         "PRESENTATION_AI_MODEL": ai.DEFAULT_MODEL}, clear=False)
+                                         "PRESENTATION_AI_MODEL": ai.DEFAULT_MODEL, "OPENAI_API_KEY": "",
+                                         "GEMINI_API_KEY": "", "GOOGLE_AI_API_KEY": "", "PRESENTATION_AI_PROVIDERS": ""}, clear=False)
         self.env.start()
         self.addCleanup(self.env.stop)
 
@@ -311,7 +312,7 @@ class PresentationAITests(unittest.TestCase):
 
     def test_deadline_stops_additional_batches(self):
         stub = Stub()
-        with patch.object(ai.time, "monotonic", side_effect=[0, 1, 181]):
+        with patch.object(ai.time, "monotonic", side_effect=[0, 1, 1, 181, 181, 181]):
             with self.assertRaises(ai.PresentationAIError) as caught:
                 self.generate(document(8), stub)
         self.assertEqual(caught.exception.code, "timeout")
@@ -345,3 +346,53 @@ class PresentationAITests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ProviderFallbackAndWordTests(PresentationAITests):
+    """Gemini/OpenAI kalitlari bilan ishlash va AI Word yo'li."""
+
+    def test_enabled_by_default_when_any_key_exists(self):
+        with patch.dict(os.environ, {"PRESENTATION_AI_ENABLED": "", "GROQ_API_KEY": "", "OPENAI_API_KEY": "sk-test-openai-key"}):
+            caps = ai.get_ai_capabilities()
+        self.assertTrue(caps["available"])
+        self.assertEqual(caps["provider"], "openai")
+        self.assertNotIn("sk-test", json.dumps(caps))
+
+    def test_next_provider_used_after_auth_failure(self):
+        seen = []
+        good = Stub()
+        def transport(payload, *, api_key, timeout):
+            seen.append(api_key)
+            if api_key == "gem-key":
+                raise error.HTTPError(ai.ENDPOINT, 401, "bad", {}, io.BytesIO(b""))
+            return good(payload, api_key=api_key, timeout=timeout)
+        with patch.dict(os.environ, {"GEMINI_API_KEY": "gem-key", "OPENAI_API_KEY": "oa-key", "GROQ_API_KEY": ""}):
+            result = self.generate(stub=transport)
+        self.assertEqual(seen[:2], ["gem-key", "oa-key"])
+        self.assertEqual(result["generated_count"], 2)
+        # Gemini uchun JSON rejimi, OpenAI uchun Groq'ga xos maydonlar olib tashlanadi
+        self.assertNotIn("reasoning_effort", good.calls[0][0])
+
+    def test_word_text_is_filled_trimmed_and_keeps_structure(self):
+        long_body = "Kasr butunning qismi. " * 60
+        def transport(payload, *, api_key, timeout):
+            plans = json.loads(payload["messages"][1]["content"])["slides"]
+            slides = [{"n": p["n"], "title": f"Yangi sarlavha {p['n']}", "body": long_body} for p in plans]
+            return {"choices": [{"finish_reason": "length", "message": {"content": "```json\n" + json.dumps({"slides": slides}) + "\n```"}}]}
+        result = ai.generate_tagged_text(document(3), {"audience": "8-sinf", "instructions": ""}, transport=transport)
+        text = result["text"]
+        self.assertEqual(result["generated_count"], 3)
+        self.assertIn("[SLAYD:3]", text)
+        self.assertIn("[ID] s2", text)
+        self.assertIn("[SARLAVHA] Yangi sarlavha 1", text)
+        body = [line for line in text.split("\n") if line.startswith("[MATN1]")][0]
+        self.assertLessEqual(len(body) - len("[MATN1] "), 600)
+        self.assertTrue(body.rstrip().endswith("."))
+
+    def test_word_missing_slides_keep_existing_text(self):
+        def transport(payload, *, api_key, timeout):
+            return {"choices": [{"message": {"content": json.dumps({"slides": [{"n": 1, "body": "Faqat birinchi"}]})}}]}
+        result = ai.generate_tagged_text(document(2), {"audience": "8-sinf", "instructions": ""}, transport=transport)
+        self.assertIn("[MATN1] Faqat birinchi", result["text"])
+        self.assertIn("[MATN1] Oldingi tushuntirish", result["text"])
+

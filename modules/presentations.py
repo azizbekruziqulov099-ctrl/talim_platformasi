@@ -466,6 +466,20 @@ class PresentationService:
         except PresentationAIError as exc:
             fail(exc.message, exc.status_code)
 
+    def generate_word(self, uid, body):
+        """AI Word matnini yozadi: foydalanuvchi mavzu va ma'lumotlarni to'ldiradi, AI slaydlarni to'ldiradi."""
+        with self.db() as cur:
+            self.require(cur, uid)
+        fields(body, {"document", "brief"}, {"document", "brief"})
+        document = validate_document(body["document"])
+        from .presentation_ai import PresentationAIError, validate_generation_request
+        from .presentation_ai_jobs import PresentationAIJobs
+        try:
+            validated = validate_generation_request(document, body["brief"], None)
+            return PresentationAIJobs(self.db, self.require).generate_word(uid, document, validated["brief"])
+        except PresentationAIError as exc:
+            fail(exc.message, exc.status_code)
+
     def require(self, cur, uid, admin=False):
         capabilities = self._capabilities(cur, uid)
         if not capabilities["admin" if admin else "allowed"]:
@@ -720,6 +734,12 @@ def register_presentations(app, platform):
         response.headers.update(NO_STORE)
         uid = await run_in_threadpool(service.actor, authorization)
         return await run_in_threadpool(service.generate_ai, uid, await json_body(request))
+
+    @app.post(PREFIX + "/ai/word")
+    async def generate_word(request: Request, response: Response, authorization: str | None = Header(None)):
+        response.headers.update(NO_STORE)
+        uid = await run_in_threadpool(service.actor, authorization)
+        return await run_in_threadpool(service.generate_word, uid, await json_body(request))
 
     @app.post(PREFIX + "/import-docx")
     async def import_file(request: Request, response: Response, authorization: str | None = Header(None)):

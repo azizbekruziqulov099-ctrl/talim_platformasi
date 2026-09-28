@@ -58,7 +58,7 @@ class SpeechLanguageTests(unittest.TestCase):
         self.fixture.ns['transcribe_audio']=transcribe
         result=asyncio.run(self.fixture.routes['/dictate'](self.request(),'admin','ru'))
         self.assertEqual(result['text'],'Привет.')
-        self.assertEqual(calls,[(b'audio','audio/webm','webm','test-key','ru')])
+        self.assertEqual(calls,[(b'audio','audio/webm','webm','test-key','ru','groq')])
 
     def test_invalid_or_unauthorized_dictation_does_not_consume_audio(self):
         self.fixture.platform.GROQ_API_KALIT='test-key'

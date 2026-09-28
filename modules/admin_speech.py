@@ -36,28 +36,95 @@ async def synthesize(text,voice,rate,language='auto'):
     if not audio:raise RuntimeError('Empty speech response')
     return bytes(audio)
 
-async def transcribe_audio(audio, content_type, extension, api_key, language='auto'):
+def stt_keys(platform=None):
+    """Kalitlar har chaqiruvda o'qiladi: Railway'da kalit qo'shilsa qayta deploy shart emas."""
+    import os
+    attr=getattr(platform,'GROQ_API_KALIT',None)
+    groq=str(attr if attr is not None else os.getenv('GROQ_API_KEY','') or '').strip()
+    return {'groq':groq,'openai':str(os.getenv('OPENAI_API_KEY','') or '').strip(),
+            'gemini':str(os.getenv('GEMINI_API_KEY','') or os.getenv('GOOGLE_AI_API_KEY','') or '').strip()}
+
+
+def stt_providers(platform=None):
+    """Kaliti bor xizmatlar tartibi. STT_PROVIDERS=openai,gemini,groq bilan o'zgartirish mumkin."""
+    import os
+    keys=stt_keys(platform)
+    order=[x.strip().lower() for x in (os.getenv('STT_PROVIDERS') or 'groq,openai,gemini').split(',') if x.strip()]
+    order+=[x for x in ('groq','openai','gemini') if x not in order]
+    return [(name,keys[name]) for name in order if name in keys and keys[name]]
+
+
+async def _whisper_compatible(url, model, audio, content_type, extension, api_key, language, verbose):
     import httpx
-    fields={'model':'whisper-large-v3','response_format':'verbose_json','temperature':'0'}
-    if language != 'auto':fields['language']=language
+    fields={'model':model,'response_format':'verbose_json' if verbose else 'json','temperature':'0'}
+    if language!='auto':fields['language']=language
     async with httpx.AsyncClient(timeout=60) as client:
-        response=await client.post('https://api.groq.com/openai/v1/audio/transcriptions',
-            headers={'Authorization':f'Bearer {api_key}'},
-            files={'file':(f'dictation.{extension}',audio,content_type)},
-            # A chosen language is authoritative; auto omits the hint. Never translate.
-            data=fields)
+        response=await client.post(url,headers={'Authorization':f'Bearer {api_key}'},
+            files={'file':(f'dictation.{extension}',audio,content_type)},data=fields)
         response.raise_for_status()
         data=response.json()
     if not isinstance(data,dict) or not isinstance(data.get('text'),str):
         raise ValueError('stt_invalid_response')
-    return {'text':data['text'].strip(),'language':str(data.get('language') or '')}
+    return {'text':data['text'].strip(),'language':str(data.get('language') or (language if language!='auto' else ''))}
+
+
+async def _gemini(audio, content_type, api_key, language):
+    import base64
+    import os
+    import httpx
+    model=os.getenv('GEMINI_STT_MODEL','gemini-2.5-flash')
+    # Gemini webm/mp4 ni ham qabul qiladi; mime aniq yuboriladi.
+    mime={'video/webm':'audio/webm','video/mp4':'audio/mp4','audio/x-wav':'audio/wav','audio/mp3':'audio/mpeg',
+          'audio/x-m4a':'audio/mp4','audio/m4a':'audio/mp4','audio/x-flac':'audio/flac'}.get(content_type,content_type)
+    prompt=("Transcribe this audio exactly as spoken, in the original language (Uzbek Latin script for Uzbek). "
+            "Do not translate, do not summarise, do not add anything. Return only the spoken text.")
+    hint={'uz':' The speech is in Uzbek.','ru':' The speech is in Russian.','en':' The speech is in English.'}.get(language,'')
+    body={'contents':[{'parts':[{'text':prompt+hint},{'inline_data':{'mime_type':mime,'data':base64.b64encode(audio).decode()}}]}],
+          'generationConfig':{'temperature':0}}
+    async with httpx.AsyncClient(timeout=60) as client:
+        response=await client.post(f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent',
+            headers={'x-goog-api-key':api_key},json=body)
+        response.raise_for_status()
+        data=response.json()
+    try:
+        text=''.join(p.get('text','') for p in data['candidates'][0]['content']['parts'])
+    except (KeyError,IndexError,TypeError) as exc:
+        raise ValueError('stt_invalid_response') from exc
+    return {'text':text.strip(),'language':language if language!='auto' else ''}
+
+
+async def transcribe_audio(audio, content_type, extension, api_key, language='auto', provider='groq'):
+    import os
+    if provider=='openai':
+        return await _whisper_compatible('https://api.openai.com/v1/audio/transcriptions',
+            os.getenv('OPENAI_STT_MODEL','whisper-1'),audio,content_type,extension,api_key,language,
+            os.getenv('OPENAI_STT_MODEL','whisper-1')=='whisper-1')
+    if provider=='gemini':
+        return await _gemini(audio,content_type,api_key,language)
+    return await _whisper_compatible('https://api.groq.com/openai/v1/audio/transcriptions',
+        os.getenv('GROQ_STT_MODEL','whisper-large-v3'),audio,content_type,extension,api_key,language,True)
+
+
+async def transcribe_any(audio, content_type, extension, providers, language='auto'):
+    """Birinchi ishlagan xizmat natijasi. Kalit/limit/ulanish xatosida keyingisiga o'tiladi."""
+    last=None
+    for name,key in providers:
+        try:
+            result=await transcribe_audio(audio,content_type,extension,key,language,name)
+            result['provider']=name
+            return result
+        except Exception as exc:
+            last=exc
+            continue
+    raise last or RuntimeError('no_provider')
+
 
 def transcription_error(exc):
     """Return an actionable error without exposing provider bodies or credentials."""
     status=getattr(getattr(exc,'response',None),'status_code',None)
-    if status==401:return HTTPException(503,'STT_PROVIDER_KEY: Groq kaliti qabul qilinmadi. Backenddagi GROQ_API_KEY qiymatini yangilang.')
-    if status==403:return HTTPException(503,'STT_PROVIDER_ACCESS: Groq ovoz modeliga ruxsat bermadi. Groq loyihasidagi model ruxsatlarini tekshiring.')
-    if status==429:return HTTPException(429,'STT_LIMIT: Ovoz tanish xizmati limiti tugadi. Birozdan so‘ng shu yozuvni qayta yuboring yoki Groq limitingizni tekshiring.')
+    if status==401:return HTTPException(503,'STT_PROVIDER_KEY: Ovoz tanish kaliti qabul qilinmadi. Backenddagi OPENAI_API_KEY / GEMINI_API_KEY / GROQ_API_KEY qiymatini tekshiring.')
+    if status==403:return HTTPException(503,'STT_PROVIDER_ACCESS: Ovoz tanish xizmati bu kalitga ruxsat bermadi. Kalit ruxsatlarini tekshiring.')
+    if status==429:return HTTPException(429,'STT_LIMIT: Ovoz tanish xizmati limiti tugadi. Birozdan so‘ng shu yozuvni qayta yuboring.')
     if status==413:return HTTPException(413,'STT_TOO_LARGE: Ovoz yozuvi xizmat uchun juda katta. Qisqaroq yozuv yuboring.')
     if status in (400,415,422):return HTTPException(422,'STT_AUDIO_REJECTED: Ovoz xizmati yozuvni qabul qilmadi. Yozuvni tinglab tekshiring yoki MP3, WAV, M4A faylini yuboring.')
     if status==404:return HTTPException(503,'STT_MODEL: Ovoz tanish modeli yoki xizmat manzili topilmadi.')
@@ -74,7 +141,8 @@ def create_router(platform):
         platform._admin_tekshir(token)
         return {'admin':True,'reading_available':importlib.util.find_spec('edge_tts') is not None,
                 'language':'uz','languages':['uz','ru','en'],'revision':64,
-                'dictation_available':bool(str(getattr(platform,'GROQ_API_KALIT','') or '').strip())}
+                'dictation_available':bool(stt_providers(platform)),
+                'providers':[name for name,_ in stt_providers(platform)]}
 
     @router.post('/read')
     async def read(payload:dict,token:str):
@@ -100,8 +168,8 @@ def create_router(platform):
         platform._admin_tekshir(token)
         try:language=selected_language(language)
         except ValueError as exc:raise HTTPException(400,str(exc)) from exc
-        api_key=str(getattr(platform,'GROQ_API_KALIT','') or '').strip()
-        if not api_key:raise HTTPException(503,'STT_NOT_CONFIGURED: Ovoz tanish xizmati ulanmagan. Backendda GROQ_API_KEY sozlanishi kerak.')
+        providers=stt_providers(platform)
+        if not providers:raise HTTPException(503,'STT_NOT_CONFIGURED: Ovoz tanish xizmati ulanmagan. Backendda OPENAI_API_KEY, GEMINI_API_KEY yoki GROQ_API_KEY dan kamida bittasini qo‘shing.')
         content_type=request.headers.get('content-type','').split(';',1)[0].strip().lower()
         extensions={'audio/webm':'webm','video/webm':'webm','audio/ogg':'ogg','audio/mp4':'mp4','video/mp4':'mp4',
                     'audio/wav':'wav','audio/x-wav':'wav','audio/mpeg':'mp3','audio/mp3':'mp3',
@@ -113,8 +181,7 @@ def create_router(platform):
             audio.extend(chunk)
         if not audio:raise HTTPException(400,'Ovoz yozuvi bo‘sh')
         try:
-            args=(bytes(audio),content_type,extensions[content_type],api_key)
-            result=await transcribe_audio(*args) if language=='auto' else await transcribe_audio(*args,language)
+            result=await transcribe_any(bytes(audio),content_type,extensions[content_type],providers,language)
         except Exception as exc:raise transcription_error(exc) from exc
         if not isinstance(result,dict) or not isinstance(result.get('text'),str):
             raise HTTPException(502,'STT_RESPONSE: Ovoz xizmati noto‘g‘ri javob qaytardi. Shu yozuvni qayta yuboring.')

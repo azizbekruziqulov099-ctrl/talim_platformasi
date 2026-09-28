@@ -1,4 +1,4 @@
-"""Optional, bounded Groq text generation for private presentation drafts.
+"""Optional, bounded AI text generation (Gemini / OpenAI / Groq) for private presentation drafts.
 
 This module neither authenticates users nor persists documents. The API caller
 must validate the full document and reserve shared database quotas first. Every
@@ -82,28 +82,75 @@ def _fail(message, status_code=422, code="invalid_request"):
     raise PresentationAIError(message, status_code, code)
 
 
+PROVIDER_ENDPOINTS = {
+    "groq": ENDPOINT,
+    "openai": "https://api.openai.com/v1/chat/completions",
+    # Gemini'ning OpenAI bilan mos manzili: bir xil chat-completions formati.
+    "gemini": "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+}
+PROVIDER_NAMES = {"groq": "Groq", "openai": "OpenAI", "gemini": "Gemini"}
+
+
+def _valid_key(key):
+    return bool(key) and len(key) <= 512 and not re.search(r"[\x00-\x20\x7f]", key)
+
+
+def _providers():
+    """Kaliti bor AI xizmatlari tartib bilan: [(nom, kalit, model)].
+
+    PRESENTATION_AI_PROVIDERS=gemini,openai,groq bilan tartibni o'zgartirish mumkin.
+    Groq faqat ruxsat etilgan modellar bilan ishlaydi; OpenAI/Gemini modeli env'dan olinadi."""
+    keys = {
+        "groq": os.getenv("GROQ_API_KEY", "").strip(),
+        "openai": os.getenv("OPENAI_API_KEY", "").strip(),
+        "gemini": (os.getenv("GEMINI_API_KEY", "") or os.getenv("GOOGLE_AI_API_KEY", "")).strip(),
+    }
+    models = {
+        "groq": os.getenv("PRESENTATION_AI_MODEL", DEFAULT_MODEL).strip(),
+        "openai": os.getenv("PRESENTATION_OPENAI_MODEL", "gpt-4o-mini").strip(),
+        "gemini": os.getenv("PRESENTATION_GEMINI_MODEL", "gemini-2.5-flash").strip(),
+    }
+    order = [x.strip().lower() for x in (os.getenv("PRESENTATION_AI_PROVIDERS") or "gemini,openai,groq").split(",") if x.strip()]
+    order += [x for x in ("gemini", "openai", "groq") if x not in order]
+    result = []
+    for name in order:
+        if name not in keys or not _valid_key(keys[name]):
+            continue
+        if name == "groq" and models["groq"] not in ALLOWED_MODELS:
+            continue
+        if not re.fullmatch(r"[A-Za-z0-9._:/-]{1,80}", models[name]):
+            continue
+        result.append((name, keys[name], models[name]))
+    return result
+
+
 def _configuration():
-    enabled = os.getenv("PRESENTATION_AI_ENABLED", "false").strip().lower() in {"1", "true", "yes", "on"}
-    key = os.getenv("GROQ_API_KEY", "").strip()
-    model = os.getenv("PRESENTATION_AI_MODEL", DEFAULT_MODEL).strip()
-    valid_key = bool(key) and len(key) <= 512 and not re.search(r"[\x00-\x20\x7f]", key)
+    raw = os.getenv("PRESENTATION_AI_ENABLED")
+    # Kalit qo'shilgan bo'lsa AI o'zi yoqiladi; faqat aniq "false" o'chiradi.
+    enabled = True if raw is None or not raw.strip() else raw.strip().lower() in {"1", "true", "yes", "on"}
+    providers = _providers()
+    model = providers[0][2] if providers else DEFAULT_MODEL
+    groq_model_bad = os.getenv("GROQ_API_KEY", "").strip() and os.getenv("PRESENTATION_AI_MODEL", DEFAULT_MODEL).strip() not in ALLOWED_MODELS
     if not enabled:
         reason = "AI yordamchisi administrator tomonidan yoqilmagan."
-    elif not valid_key:
-        reason = "AI xizmatining server kaliti sozlanmagan. Administratorga murojaat qiling."
-    elif model not in ALLOWED_MODELS:
+    elif not providers and groq_model_bad and _valid_key(os.getenv("GROQ_API_KEY", "").strip()):
         reason = "AI modeli serverda noto‘g‘ri sozlangan. Administratorga murojaat qiling."
+    elif not providers:
+        reason = "AI xizmatining server kaliti sozlanmagan (OPENAI_API_KEY, GEMINI_API_KEY yoki GROQ_API_KEY). Administratorga murojaat qiling."
     else:
         reason = ""
-    return enabled, key, model, reason
+    return enabled, providers, model, reason
 
 
 def get_ai_capabilities():
     """No network request, API key, account data, or environment values exposed."""
-    enabled, _key, model, reason = _configuration()
-    return {"enabled": enabled, "available": not bool(reason), "provider": "groq",
-            "model": model if model in ALLOWED_MODELS else DEFAULT_MODEL,
-            "reason": reason, "max_slides": MAX_SLIDES, "batch_size": BATCH_SIZE}
+    enabled, providers, _model, reason = _configuration()
+    first = providers[0] if providers else ("groq", "", DEFAULT_MODEL)
+    safe_model = first[2] if first[0] != "groq" or first[2] in ALLOWED_MODELS else DEFAULT_MODEL
+    return {"enabled": enabled, "available": not bool(reason), "provider": first[0],
+            "providers": [PROVIDER_NAMES[name] for name, _key, _m in providers],
+            "model": safe_model, "reason": reason, "max_slides": MAX_SLIDES, "batch_size": BATCH_SIZE,
+            "word": not bool(reason)}
 
 
 def _input_text(value, maximum, label):
@@ -242,11 +289,13 @@ class _NoRedirect(request.HTTPRedirectHandler):
         return None
 
 
-def _groq_transport(payload, *, api_key, timeout):
+def _groq_transport(payload, *, api_key, timeout, endpoint=ENDPOINT):
     body = json.dumps(payload, ensure_ascii=False, allow_nan=False, separators=(",", ":")).encode("utf-8")
     if len(body) > MAX_REQUEST_BYTES:
         _fail("AI topshirig‘i juda katta. Kamroq slayd tanlang.")
-    req = request.Request(ENDPOINT, data=body, method="POST", headers={
+    if endpoint not in PROVIDER_ENDPOINTS.values():
+        _fail("AI xizmati manzili noto‘g‘ri.", 503, "not_configured")
+    req = request.Request(endpoint, data=body, method="POST", headers={
         "Authorization": f"Bearer {api_key}", "Content-Type": "application/json", "Accept": "application/json"})
     opener = request.build_opener(request.ProxyHandler({}), _NoRedirect())
     deadline = time.monotonic() + timeout
@@ -380,32 +429,86 @@ def _check_appearance(document, slide, index, updated_fields):
         _fail("AI matni yoki formulasi slaydga mos kelmadi. Joyni kengaytiring yoki topshiriqni qisqartiring.", 502, "content_does_not_fit")
 
 
+def _provider_payload(name, payload):
+    """Groq uchun tuzilgan so'rovni tanlangan xizmat formatiga moslaydi."""
+    if name == "groq":
+        return payload
+    shaped = {k: v for k, v in payload.items() if k not in {"reasoning_effort", "include_reasoning", "max_completion_tokens"}}
+    if name == "openai":
+        shaped["max_completion_tokens"] = payload.get("max_completion_tokens", MAX_COMPLETION_TOKENS)
+        return shaped
+    # Gemini: fikrlash tokenlari ham hisoblanadi — ko'proq joy; qat'iy sxema o'rniga JSON rejimi va sxema matnda.
+    shaped["max_tokens"] = 8192
+    fmt = payload.get("response_format") or {}
+    if fmt.get("type") == "json_schema":
+        schema = fmt["json_schema"]["schema"]
+        messages = [dict(m) for m in shaped["messages"]]
+        messages[0]["content"] += "\nJavob faqat shu JSON sxemasiga mos bitta JSON obyekt bo‘lsin: " + json.dumps(schema, ensure_ascii=False, separators=(",", ":"))
+        shaped["messages"] = messages
+        shaped["response_format"] = {"type": "json_object"}
+    return shaped
+
+
+RETRY_CODES = {"provider_auth", "provider_request", "provider_unavailable", "rate_limited", "timeout",
+               "invalid_response", "incomplete_response"}
+
+
+def _call_with_fallback(providers, payload, transport, deadline, state, parse=None):
+    """Birinchi ishlagan xizmatdan javob; kalit/limit/ulanish/format xatosida keyingisiga o'tadi.
+    state["start"] — oldingi so'rovda ishlagan xizmat (keyingi to'plam shundan boshlanadi)."""
+    last = None
+    count = len(providers)
+    for step in range(count):
+        index = (state.get("start", 0) + step) % count
+        name, key, model = providers[index]
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            _fail("AI uchun ajratilgan vaqt tugadi. Kamroq slayd tanlab qayta urinib ko‘ring.", 504, "timeout")
+        shaped = _provider_payload(name, dict(payload, model=model))
+        timeout = min(REQUEST_TIMEOUT_SECONDS if name == "groq" else 60, remaining)
+        try:
+            if transport is not None:
+                envelope = _provider_call(transport, shaped, key, timeout)
+            else:
+                endpoint = PROVIDER_ENDPOINTS[name]
+                envelope = _provider_call(lambda body, *, api_key, timeout: _groq_transport(body, api_key=api_key, timeout=timeout, endpoint=endpoint),
+                                          shaped, key, timeout)
+            result = parse(envelope) if parse else envelope
+            state["start"] = index
+            return result
+        except PresentationAIError as exc:
+            last = exc
+            if exc.code not in RETRY_CODES:
+                raise
+    raise last or PresentationAIError("AI xizmati javob bermadi.", 502, "provider_unavailable")
+
+
 def generate_content(document, brief, slide_ids=None, transport=None):
-    """Return a complete draft or fail atomically, with at most 10 API requests.
+    """Return a complete draft or fail atomically, with at most 10 API requests per provider.
 
     ``transport(payload, *, api_key, timeout)`` is injectable for offline tests
-    and returns a parsed Groq chat-completions envelope. Invoke this synchronous
-    function in the web framework's worker thread. No retry, tool, image request,
-    model fallback, hidden-field erasure, or document persistence is performed.
+    and returns a parsed chat-completions envelope. Kaliti bor xizmatlar
+    (Gemini, OpenAI, Groq) navbat bilan sinaladi — bittasi ishlamasa keyingisi.
     """
     validated = validate_generation_request(document, brief, slide_ids)
-    _enabled, key, model, reason = _configuration()
+    _enabled, providers, _model, reason = _configuration()
     if reason:
         _fail(reason, 503, "not_configured")
     deadline = time.monotonic() + JOB_TIMEOUT_SECONDS
     wanted = set(validated["slide_ids"])
     plans = [_content_plan(document, slide, index)[0] for index, slide in enumerate(document["slides"]) if slide["id"] in wanted]
-    updates = {}
+    updates, state = {}, {}
     for offset in range(0, len(plans), BATCH_SIZE):
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             _fail("AI uchun ajratilgan vaqt tugadi. Kamroq slayd tanlab qayta urinib ko‘ring.", 504, "timeout")
         batch = plans[offset:offset + BATCH_SIZE]
-        payload = _payload(document, validated["brief"], batch, model)
-        envelope = _provider_call(transport or _groq_transport, payload, key, min(REQUEST_TIMEOUT_SECONDS, remaining))
+        payload = _payload(document, validated["brief"], batch, providers[0][2])
+        batch_updates = _call_with_fallback(providers, payload, transport, deadline, state,
+                                            parse=lambda envelope, batch=batch: _response_updates(envelope, batch))
         if time.monotonic() >= deadline:
             _fail("AI uchun ajratilgan vaqt tugadi. Qayta urinib ko‘ring.", 504, "timeout")
-        updates.update(_response_updates(envelope, batch))
+        updates.update(batch_updates)
     result = deepcopy(document)
     for index, slide in enumerate(result["slides"]):
         if slide["id"] in updates:
@@ -415,3 +518,134 @@ def generate_content(document, brief, slide_ids=None, transport=None):
         _fail("AI uchun ajratilgan vaqt tugadi. Kamroq slayd bilan qayta urinib ko‘ring.", 504, "timeout")
     return {"document": result, "generated_count": len(updates),
             "warnings": ["AI yaratgan mazmunni qo‘llashdan oldin tekshiring."]}
+
+
+# ─────────── AI Word yozadi → slaydlar (bardoshli yo'l) ───────────
+WORD_BATCH = 6
+TAG_FIELDS = (("SARLAVHA", "title"), ("MATN1", "body"), ("MATN2", "body2"), ("MATN3", "body3"),
+              ("FORMULA", "formula"), ("MISOL", "example"), ("RASM1", "image_prompt"), ("RASM1_IZOH", "image_caption"),
+              ("RASM2", "image2_prompt"), ("RASM2_IZOH", "image2_caption"))
+_WORD_SYSTEM = """Siz o‘zbek tilidagi ta’lim taqdimotlari muallifisiz. Berilgan reja bo‘yicha har bir slayd
+uchun mazmun yozasiz. Faqat bitta JSON obyekt qaytaring: {"slides":[{"n":1,"title":"...","body":"...",...}]}.
+Har bir slaydda faqat "fields" ro‘yxatidagi maydonlarni yozing; har maydon uzunligi "limits" dagi belgidan
+oshmasin. body — asosiy tushuntirish (qisqa, aniq jumlalar), body2/body3 — qo‘shimcha ustun yoki bosqich,
+formula — faqat LaTeX (dollarsiz, kerak bo‘lmasa bo‘sh), example — qisqa misol yoki savol,
+image_prompt — rasm tavsifi, image_caption — rasm izohi. Auditoriya darajasiga mos sodda o‘zbek tilida
+yozing. Takrorlamang: har slayd o‘z vazifasini bajarsin (muqova — mavzu va maqsad, oxirgi slayd — xulosa).
+Manbasiz fakt, statistika yoki iqtibos to‘qimang. HTML, Markdown, havola yozmang. Kvadrat qavs bilan satr boshlamang."""
+
+
+def _trim(value, limit):
+    value = _HTML.sub("", str(value or ""))
+    value = _LINK_OR_DATA.sub("", value)
+    value = _INVALID_TEXT.sub("", value).replace("```", "").replace("\r", "")
+    lines = [re.sub(r"^\s*[\[<]+", "", line).rstrip() for line in value.split("\n")]
+    value = "\n".join(line for line in lines if line.strip()).strip()
+    if len(value) <= limit:
+        return value
+    cut = value[:limit]
+    sentence = max(cut.rfind(". "), cut.rfind("! "), cut.rfind("? "), cut.rfind(".\n"))
+    if sentence >= limit * .55:
+        return cut[:sentence + 1].strip()
+    space = cut.rfind(" ")
+    return (cut[:space] if space > limit * .5 else cut[:limit - 1]).rstrip(" ,;:") + "…"
+
+
+def _word_limits(document, slide, index):
+    try:
+        plan = _content_plan(document, slide, index)[0]
+        limits = {field: plan["limits"][field]["max_chars"] for field in plan["limits"] if field in dict((f, 1) for _t, f in TAG_FIELDS)}
+    except PresentationAIError:
+        limits = {}
+    from .presentation_docx import LAYOUT_FIELDS
+    text_count, image_count = LAYOUT_FIELDS.get(slide.get("layout"), (1, 0))
+    fields = ["title", "body"] + ["body2", "body3"][:max(0, text_count - 1)]
+    if slide.get("layout") == "formula":
+        fields += ["formula", "example"]
+    for number, prefix in ((1, "image"), (2, "image2")):
+        if image_count >= number and not slide.get(prefix):
+            fields += [f"{prefix}_prompt", f"{prefix}_caption"]
+    return {field: min(TEXT_LIMITS[field], limits.get(field, TEXT_LIMITS[field])) for field in fields}
+
+
+def _parse_word(envelope):
+    try:
+        choice = envelope["choices"][0]
+        raw = choice["message"]["content"]
+        if not isinstance(raw, str):
+            raise ValueError()
+        raw = raw.strip()
+        if raw.startswith("```"):
+            raw = re.sub(r"^```[a-z]*\s*|\s*```$", "", raw)
+        start, end = raw.find("{"), raw.rfind("}")
+        data = json.loads(raw[start:end + 1])
+        slides = data.get("slides") if isinstance(data, dict) else None
+        if not isinstance(slides, list) or not slides:
+            raise ValueError()
+        return slides
+    except Exception:
+        _fail("AI javobini o‘qib bo‘lmadi. Qayta urinib ko‘ring.", 502, "invalid_response")
+
+
+def generate_tagged_text(document, brief, transport=None):
+    """AI slaydlar rejasini to'ldiradi va Word shablonidagi tegli matn qaytadi.
+
+    Qat'iy emas: uzun matn gap chegarasida qisqartiriladi, yetishmagan maydon eski
+    qiymatda qoladi. ID/MAKET/BOLIM har doim asl rejadan olinadi — shu sabab natija
+    saytdagi «Word import» bilan xatosiz qo'llanadi."""
+    validated = validate_generation_request(document, brief, None)
+    _enabled, providers, _model, reason = _configuration()
+    if reason:
+        _fail(reason, 503, "not_configured")
+    deadline = time.monotonic() + JOB_TIMEOUT_SECONDS
+    slides = document["slides"]
+    outline = [[_sanitize_text(s.get("title", "")), _sanitize_text(s.get("section", ""))] for s in slides]
+    filled = deepcopy(document)
+    state, done = {}, 0
+    for offset in range(0, len(slides), WORD_BATCH):
+        batch = []
+        for index in range(offset, min(len(slides), offset + WORD_BATCH)):
+            slide = slides[index]
+            limits = _word_limits(document, slide, index)
+            batch.append({"n": index + 1, "layout": slide["layout"], "section": _sanitize_text(slide.get("section", "")),
+                          "fields": list(limits), "limits": limits,
+                          "current": {f: _sanitize_text(slide.get(f, "")) for f in limits if slide.get(f)}})
+        content = {"title": _sanitize_text(document.get("title", "")), "subject": _sanitize_text(document.get("subject", "")),
+                   "lesson_type": document.get("lesson_type", ""), "audience": validated["brief"]["audience"],
+                   "instructions": _sanitize_text(validated["brief"]["instructions"]), "total_slides": len(slides),
+                   "outline": outline, "slides": batch}
+        payload = {"model": providers[0][2], "stream": False, "temperature": .5,
+                   "messages": [{"role": "system", "content": _WORD_SYSTEM},
+                                {"role": "user", "content": json.dumps(content, ensure_ascii=False, separators=(",", ":"))}],
+                   "max_completion_tokens": 6000, "response_format": {"type": "json_object"}}
+        answer = _call_with_fallback(providers, payload, transport, deadline, state, parse=_parse_word)
+        by_n = {}
+        for position, item in enumerate(answer):
+            if isinstance(item, dict):
+                n = item.get("n") if isinstance(item.get("n"), int) else offset + position + 1
+                by_n.setdefault(n, item)
+        for plan in batch:
+            item = by_n.get(plan["n"]) or {}
+            slide = filled["slides"][plan["n"] - 1]
+            changed = False
+            for field, limit in plan["limits"].items():
+                value = _trim(item.get(field, ""), limit)
+                if field == "formula":
+                    value = value.replace("$", "").replace("\\(", "").replace("\\)", "").strip()
+                if value:
+                    slide[field] = value
+                    changed = True
+            done += changed
+    if not done:
+        _fail("AI birorta slayd uchun mazmun yozmadi. Mavzuni aniqroq yozib qayta urinib ko‘ring.", 502, "invalid_response")
+    from .presentation_docx import build_tagged_template
+    try:
+        text = build_tagged_template(filled)
+    except ValueError:
+        for slide in filled["slides"]:
+            for _tag, field in TAG_FIELDS:
+                if slide.get(field):
+                    slide[field] = "\n".join(re.sub(r"^\s*[\[(]+", "", line) for line in slide[field].split("\n"))
+        text = build_tagged_template(filled)
+    return {"text": text, "generated_count": done, "provider": PROVIDER_NAMES[providers[state.get("start", 0)][0]],
+            "warnings": ["AI yozgan mazmunni darsdan oldin tekshiring."]}
