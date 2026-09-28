@@ -18615,7 +18615,7 @@ AI_BRAIN_SHEET_HEADERS = {
 AI_BRAIN_OPTIONAL_SHEETS = {"11_DARS_SSENARIY", "12_TUSHUNMADIM"}
 # Mavjud varaqlarga qo'shilgan, lekin eski fayllarda bo'lmasligi mumkin bo'lgan ustunlar.
 AI_BRAIN_OPTIONAL_HEADERS = {"02_DTS_XARITA": ["daraja_1_30"]}
-AI_LESSON_STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa")
+AI_LESSON_STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa", "amaliy")
 AI_VARIANT_TYPES = ("sodda", "hikoya", "rasm", "boshqa_usul", "takrorlash")
 AI_MEDIA_EXTENSIONS = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp"}
 
@@ -18810,6 +18810,10 @@ def _ai_brain_dars_jadvallari(cur):
     cur.execute("CREATE INDEX IF NOT EXISTS idx_ai_brain_media_name ON ai_brain_media(lower(file_name))")
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS ai_brain_unit_code TEXT")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_gen_tests_ai_unit ON generated_tests(ai_brain_unit_code)")
+    # Kitob kodi (XB-03-A01) bo'yicha tez qidiruv: o'quvchi kodni kiritsa yechim chiqadi.
+    cur.execute("""CREATE INDEX IF NOT EXISTS idx_ai_brain_units_kitob_kodi
+                   ON ai_brain_units((regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g')))
+                   WHERE payload ? 'kitob_kodi'""")
 
 
 def _ai_brain_dars_migratsiya():
@@ -18881,6 +18885,10 @@ def _ai_brain_excel_parse(content, media_names=None):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Excel o'qib bo'lmadi: {e}")
 
+    from modules.ai_miya_varoq import is_sheet_workbook, parse_sheets
+    if is_sheet_workbook(wb):
+        # Mavzu varaqli shablon: bir varaq = bir mavzu, amaliy qismda kitob kodlari.
+        return parse_sheets(wb, media_names)
     from modules.ai_miya_oddiy import is_simple_workbook, parse_simple
     if is_simple_workbook(wb):
         # Oddiy 2 varaqli shablon (KITOB + DARSLAR) — tartib bo'yicha bog'lanadi.
@@ -19145,7 +19153,81 @@ def _ai_brain_dars_tekshir(payload, errors, warnings, media_names=None):
             )
 
 
+def _ai_brain_mavzu_nomi_norm(value):
+    t = _ai_brain_text(value).lower()
+    for ch in "‘’ʻʼ`'":
+        t = t.replace(ch, "")
+    t = re.sub(r"^\s*(?:\d+\s*[-–]?\s*(?:mavzu|dars)|§\s*\d+)\s*[.:)\-–]?\s*", "", t)
+    return re.sub(r"[^0-9a-zа-яёқғҳў]+", "", t)
+
+
+def _ai_brain_nom_boyicha_kod(cur, parsed):
+    """Mavzu kodi yozilmagan varaqlar: mavzu nomi bo'yicha Mavzular bazasidan kod topiladi.
+
+    Avval shu fan ichidan, topilmasa — butun bazadan (faqat bitta mos kelsa)."""
+    pending = parsed.pop("nom_boyicha", None) or {}
+    if not pending:
+        return
+    book = (parsed["payload"].get("01_KITOB") or [{}])[0]
+    fan = _ai_brain_mavzu_nomi_norm(book.get("fan"))
+    cur.execute(
+        """SELECT topic_code,subject_name,grade,
+                  COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS nom
+           FROM dts_tree WHERE COALESCE(is_deleted,FALSE)=FALSE"""
+    )
+    index = {}
+    for r in cur.fetchall():
+        index.setdefault(_ai_brain_mavzu_nomi_norm(r["nom"]), []).append(r)
+    replace = {}
+    for placeholder, info in pending.items():
+        rows = index.get(_ai_brain_mavzu_nomi_norm(info["nom"]), [])
+        same_fan = [r for r in rows if fan and _ai_brain_mavzu_nomi_norm(r["subject_name"]) == fan]
+        pick = same_fan if same_fan else rows
+        codes = sorted({r["topic_code"] for r in pick})
+        if len(codes) == 1:
+            replace[placeholder] = codes[0]
+            continue
+        message = (f"«{info['nom']}» mavzusi Mavzular bazasida topilmadi — avval Fanlar va mavzular bo'limida shu nom bilan qo'shing yoki varaqqa mavzu kodini yozing"
+                   if not codes else
+                   f"«{info['nom']}» nomli {len(codes)} ta mavzu bor ({', '.join(codes[:4])}) — varaqqa aniq mavzu kodini yozing")
+        _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)", message)
+    text = json.dumps(parsed["payload"], ensure_ascii=False)
+    for placeholder, code in replace.items():
+        text = text.replace(placeholder, code.replace("\\", "\\\\").replace('"', '\\"'))
+    parsed["payload"] = json.loads(text)
+    # Hal qilinmagan mavzular payloaddan chiqariladi (xato allaqachon yozilgan).
+    left = [p for p in pending if p not in replace]
+    if left:
+        for sheet, rows in parsed["payload"].items():
+            parsed["payload"][sheet] = [r for r in rows if not any(p in str(r.get("topic_code", "")) for p in left)]
+
+
+def _ai_brain_kitob_kod_tekshir(cur, parsed):
+    """Kitob kodlari boshqa kitobning nashr qilingan kodlari bilan to'qnashmasin."""
+    codes = parsed.get("kodlar") or []
+    if not codes:
+        return
+    source = ((parsed["payload"].get("01_KITOB") or [{}])[0]).get("source_id") or ""
+    keys = sorted({re.sub(r"[^A-Z0-9]", "", str(c["kod"]).upper()) for c in codes})
+    cur.execute(
+        """SELECT DISTINCT regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g') AS k, source_code, book_title
+           FROM ai_brain_published_units
+           WHERE payload ? 'kitob_kodi'
+             AND regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g')=ANY(%s)
+             AND COALESCE(source_code,'')<>%s""",
+        (keys, source),
+    )
+    busy = {r["k"]: r.get("book_title") or r.get("source_code") for r in cur.fetchall()}
+    for c in codes:
+        k = re.sub(r"[^A-Z0-9]", "", str(c["kod"]).upper())
+        if k in busy:
+            _ai_brain_xato(parsed["errors"], c.get("sheet") or "", c.get("row") or 0, "Kitob kodi",
+                           f"«{c['kod']}» kodi «{busy[k]}» kitobida band — KITOB varag'idagi «Kod prefiksi»ni o'zgartiring")
+
+
 def _ai_brain_db_topic_tekshir(cur, parsed):
+    _ai_brain_nom_boyicha_kod(cur, parsed)
+    _ai_brain_kitob_kod_tekshir(cur, parsed)
     topic_rows = parsed["payload"].get("02_DTS_XARITA", [])
     topic_codes = sorted({r["topic_code"] for r in topic_rows if r.get("topic_code")})
     if not topic_codes:
@@ -19157,7 +19239,7 @@ def _ai_brain_db_topic_tekshir(cur, parsed):
     mavjud = {r["topic_code"] for r in cur.fetchall()}
     for r in topic_rows:
         if r.get("topic_code") not in mavjud:
-            simple = r.get("_sheet") == "MAVZULAR"
+            simple = r.get("_sheet") not in (None, "02_DTS_XARITA")
             _ai_brain_xato(
                 parsed["errors"], r.get("_sheet") or "02_DTS_XARITA", r["_excel_row"],
                 "Mavzu kodi (DTS)" if simple else "topic_code",
@@ -19173,7 +19255,7 @@ def _ai_brain_db_topic_tekshir(cur, parsed):
     for r in topic_rows:
         place = places.get(r.get("topic_code"))
         if place and not place["korinadi"]:
-            simple = r.get("_sheet") == "MAVZULAR"
+            simple = r.get("_sheet") not in (None, "02_DTS_XARITA")
             _ai_brain_xato(
                 parsed["warnings"], r.get("_sheet") or "02_DTS_XARITA", r["_excel_row"],
                 "Mavzu kodi (DTS)" if simple else "topic_code",
@@ -19341,8 +19423,8 @@ def ai_miya_shablon(token: str):
     _admin_tekshir(token)
     from fastapi.responses import StreamingResponse
 
-    from modules.ai_miya_oddiy import template_workbook
-    # Oddiy 2 varaqli shablon. Eski 12 varaqli fayllar ham qabul qilinaveradi.
+    from modules.ai_miya_varoq import template_workbook
+    # Bir varaq = bir mavzu. Eski (MAVZULAR / 12 varaqli) fayllar ham qabul qilinaveradi.
     wb = template_workbook()
     buf = io.BytesIO()
     wb.save(buf)
@@ -19351,6 +19433,49 @@ def ai_miya_shablon(token: str):
         buf,
         media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         headers={"Content-Disposition": "attachment; filename=AI_miya_kitob_shabloni.xlsx"},
+    )
+
+
+@app.get("/api/admin/ai_miya_shablon_fan")
+def ai_miya_shablon_fan(sinf: str, fan: str, token: str, dars_turi: str = "", scope_id: int = 0):
+    """Tanlangan sinf/kurs va fan mavzulari oldindan yozilgan AI miya shabloni.
+
+    Har mavzu alohida varaq: admin tushunchalar va amaliy qismni (kitob kodlari bilan)
+    to'ldiradi — mavzu kodi va nomi bazadagi Mavzular (test katalogi) bilan aynan bir xil bo'ladi.
+    """
+    from fastapi.responses import StreamingResponse
+    from urllib.parse import quote
+    from modules.ai_miya_varoq import template_workbook
+    royxat = topik_royxat(sinf=sinf, fan=fan, token=token, dars_turi=dars_turi, scope_id=scope_id)
+    mavzular = royxat.get("mavzular") or []
+    if not mavzular:
+        raise HTTPException(status_code=404, detail="Bu sinf va fanda mavzu topilmadi")
+    codes = [m.get("template_code") or (m.get("topic_codes") or [None])[0] for m in mavzular]
+    darsli = set()
+    conn = _db(); cur = conn.cursor()
+    try:
+        _ai_brain_jadvallari(cur)
+        cur.execute(
+            "SELECT DISTINCT topic_code FROM ai_brain_units WHERE status='published' AND unit_kind='lesson_step' AND topic_code=ANY(%s)",
+            ([c for c in codes if c],),
+        )
+        darsli = {r["topic_code"] for r in cur.fetchall()}
+        conn.commit()
+    finally:
+        cur.close(); conn.close()
+    prefill = [{"mavzu_kodi": code, "mavzu_nomi": m.get("nomi") or "", "dars_bor": code in darsli}
+               for m, code in zip(mavzular, codes) if code]
+    grade = str(sinf).strip()
+    book = {"fan": fan, "sinf": grade, "kitob_nomi": f"{fan} {grade}-sinf" if grade.isdigit() else f"{fan} {grade}"}
+    wb = template_workbook(prefill, book)
+    buf = io.BytesIO()
+    wb.save(buf)
+    buf.seek(0)
+    safe = re.sub(r"[^A-Za-z0-9_-]+", "_", f"{fan}_{grade}").strip("_")[:60] or "fan"
+    return StreamingResponse(
+        buf,
+        media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        headers={"Content-Disposition": f"attachment; filename=AI_miya_{safe}.xlsx; filename*=UTF-8''{quote(f'AI_miya_{fan}_{grade}.xlsx')}"},
     )
 
 

@@ -192,7 +192,7 @@ def parse_simple(wb, media_names=None, max_images=500):
         col = header.get(key)
         return _t(ws.cell(row, col).value) if col else ""
 
-    topics, order = {}, []
+    topics, order, empty_topics = {}, [], []
     code = name = ""
     for row in range(first_data, ws.max_row + 1):
         c = {key: cell_value(row, key) for key in header}
@@ -206,6 +206,11 @@ def parse_simple(wb, media_names=None, max_images=500):
             continue
         if not code:
             err(row, label_of["mavzu_kodi"], "Mavzu kodi yozilmagan")
+            continue
+        content_keys = [k for k in c if k not in ("mavzu_kodi", "mavzu_nomi", "daraja", "sahifa")]
+        if not any(c.get(k) for k in content_keys) and not any(r == row for r, _ in embedded):
+            # Fan shablonidagi hali to'ldirilmagan mavzu — xato emas, keyinroq to'ldiriladi.
+            empty_topics.append(row)
             continue
         topic = topics.get(code)
         if topic is None:
@@ -306,8 +311,10 @@ def parse_simple(wb, media_names=None, max_images=500):
         if c.get("xulosa"):
             add_step("xulosa", c["xulosa"], "Esda tut: " + c["xulosa"], "Esda tut")
 
+    if empty_topics:
+        err(empty_topics[0], "", f"{len(empty_topics)} ta qatorda faqat mavzu kodi/nomi bor — ular hozircha o'tkazib yuborildi (to'ldirilgach qayta yuklang)", "warning")
     if not order:
-        err(first_data, "", "Birorta tushuncha topilmadi. NAMUNA qatoridan keyin o'z mavzuingizni yozing (kod NAMUNA bilan boshlanmasin).")
+        err(first_data, "", "Birorta tushuncha topilmadi. Kamida bitta mavzuning tushuntirishini yozing (NAMUNA qatorlari hisobga olinmaydi).")
     for code in order:
         topic = topics[code]
         if not topic["name"]:
@@ -374,7 +381,8 @@ SAMPLE_ROWS = [
 ]
 
 
-def template_workbook():
+def template_workbook(prefill=None, book=None):
+    """prefill — [{mavzu_kodi, mavzu_nomi, dars_bor}] (tanlangan fan mavzulari), book — KITOB qiymatlari."""
     import openpyxl
     from openpyxl.comments import Comment
     from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
@@ -396,9 +404,11 @@ def template_workbook():
     ws["A1"].fill = PatternFill("solid", fgColor=navy)
     ws.merge_cells("A1:C1")
     ws.row_dimensions[1].height = 30
-    for i, (_, label, hint) in enumerate(BOOK_FIELDS, 3):
+    for i, (key, label, hint) in enumerate(BOOK_FIELDS, 3):
         ws.cell(i, 1, label).font = Font(bold=True)
         value = ws.cell(i, 2)
+        if book and book.get(key):
+            value.value = book[key]
         value.fill = PatternFill("solid", fgColor=input_fill)
         value.border = border
         ws.cell(i, 3, hint).font = Font(color="6B7785", italic=True)
@@ -460,7 +470,18 @@ def template_workbook():
             c.border = border
         ws.row_dimensions[r].height = 150
     first_input = len(SAMPLE_ROWS) + 3
-    for r in range(first_input, first_input + 200):
+    code_col, name_col = keys.index("mavzu_kodi") + 1, keys.index("mavzu_nomi") + 1
+    for i, topic in enumerate(prefill or []):
+        r = first_input + i
+        ws.cell(r, code_col, topic.get("mavzu_kodi"))
+        ws.cell(r, name_col, topic.get("mavzu_nomi"))
+        for ci in (code_col, name_col):
+            ws.cell(r, ci).fill = PatternFill("solid", fgColor="E6F2EC")
+            ws.cell(r, ci).font = Font(bold=True, color="1E3A32")
+        if topic.get("dars_bor"):
+            ws.cell(r, code_col).comment = Comment("Bu mavzuda nashr qilingan dars bor. Qayta yuklasangiz, yangi versiya bo'lib almashadi.", "Kabutar")
+        ws.row_dimensions[r].height = 60
+    for r in range(first_input, first_input + max(200, len(prefill or []) + 50)):
         for ci in range(1, len(COLUMNS) + 1):
             c = ws.cell(r, ci)
             c.alignment = Alignment(vertical="top", wrap_text=True)

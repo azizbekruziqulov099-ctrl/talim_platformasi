@@ -54,6 +54,18 @@ class OddiyShablonTests(unittest.TestCase):
         parsed = parse_simple(filled([]))
         self.assertTrue(any("Birorta tushuncha" in e["message"] for e in parsed["errors"]))
 
+    def test_prefilled_subject_template_skips_unfilled_topics(self):
+        wb = template_workbook([{"mavzu_kodi": "T1", "mavzu_nomi": "Kasr"}, {"mavzu_kodi": "T2", "mavzu_nomi": "Nisbat"}], {"fan": "Matematika", "sinf": "5", "kitob_nomi": "Matematika 5"})
+        ws = wb["MAVZULAR"]
+        start = len(SAMPLE_ROWS) + 3
+        self.assertEqual(ws.cell(start, 1).value, "T1")
+        ws.cell(start, KEYS.index("tushuntirish") + 1, "Kasr — butunning qismi.")
+        buf = io.BytesIO(); wb.save(buf)
+        parsed = parse_simple(openpyxl.load_workbook(io.BytesIO(buf.getvalue())))
+        self.assertEqual(parsed["errors"], [])
+        self.assertEqual([t["topic_code"] for t in parsed["payload"]["02_DTS_XARITA"]], ["T1"])
+        self.assertTrue(any("o'tkazib yuborildi" in w["message"] for w in parsed["warnings"]))
+
     def test_each_row_becomes_its_own_concept_with_variants_examples_and_task(self):
         parsed = parse_simple(filled(own(), image_at=(0, "rasm")), {"kataklar_3_8.png"})
         self.assertEqual(parsed["errors"], [])

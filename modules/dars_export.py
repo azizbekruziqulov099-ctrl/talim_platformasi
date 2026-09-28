@@ -9,7 +9,23 @@ _LOCK = threading.Lock()
 STEP_LABELS = {
     "kirish": "Kirish (motivatsiya)", "tushuntirish": "Yangi mavzu tushuntirilishi", "qoida": "Qoida",
     "misol": "Misol yechish", "birga": "Birgalikda ishlash", "mashq": "Mashq", "xulosa": "Xulosa",
+    "amaliy": "Amaliy qism",
 }
+
+
+def practice_lines(step):
+    """Amaliy qadam uchun o'qituvchi hujjatidagi qatorlar: kod, variantlar, javob, yechim."""
+    lines = []
+    if step.get("kod"):
+        lines.append(("Kitob kodi: ", step["kod"]))
+    if step.get("variantlar"):
+        lines.append(("Variantlar: ", "   ".join(f"{'ABCDE'[i]}) {plain(o)}" for i, o in enumerate(step["variantlar"][:5]))))
+    if step.get("javob"):
+        lines.append(("Javob: ", step["javob"].replace("|", " yoki ")))
+    solution = [plain(x.get("doska")) for x in step.get("yechim") or [] if x.get("doska")]
+    if solution:
+        lines.append(("Yechim: ", "  →  ".join(solution)))
+    return lines
 VARIANT_LABELS = {"sodda": "Soddaroq", "hikoya": "Hikoya orqali", "rasm": "Rasm bilan",
                   "boshqa_usul": "Boshqa usulda", "takrorlash": "Oldingi mavzuni takrorlash"}
 
@@ -115,6 +131,11 @@ def lesson_docx(lesson, images):
             converted = _png(picture) if picture else None
             if converted:
                 doc.add_picture(BytesIO(converted[0]), width=Cm(min(9, converted[1] / 40)))
+            if step.get("turi") == "amaliy":
+                for label, text in practice_lines(step):
+                    p = doc.add_paragraph()
+                    p.add_run(label).bold = True
+                    p.add_run(text)
             if step.get("turi") == "birga" and step.get("javob"):
                 p = doc.add_paragraph()
                 p.add_run("O'quvchilar mustaqil bajaradi. To'g'ri javob: ").italic = True
@@ -216,6 +237,9 @@ def lesson_pdf(lesson, images):
             img = picture(images.get(step.get("rasm") or ""))
             if img:
                 story.append(img)
+            if step.get("turi") == "amaliy":
+                for label, text in practice_lines(step):
+                    story.append(para(label, text))
             if step.get("turi") == "birga" and step.get("javob"):
                 story.append(para("To'g'ri javob: ", step["javob"].replace("|", " yoki ") + (f". {step['javob_izohi']}" if step.get("javob_izohi") else "")))
             variants = lesson.get("variants", {}).get(step.get("id")) or []

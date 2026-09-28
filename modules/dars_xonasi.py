@@ -12,7 +12,8 @@ import re
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import Response
 
-STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa")
+STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa", "amaliy")
+PRACTICE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
 VARIANT_NAMES = {
     "sodda": "Soddaroq",
     "hikoya": "Hikoya orqali",
@@ -44,6 +45,49 @@ def _split_solution(text):
     if len(parts) <= 1:
         parts = [p.strip() for p in re.split(r"\n+", text) if p.strip()]
     return parts[:8]
+
+
+def solution_steps(text, limit=40):
+    """Yechim matni → doskadagi qadamlar. «doska || ovoz» bo'lsa, o'qituvchi o'ng tomonini aytadi."""
+    lines = [x.strip() for x in re.split(r"\n+", _t(text)) if x.strip()]
+    result = []
+    for line in lines[:limit]:
+        board, _, voice = line.partition("||")
+        board, voice = board.strip(), voice.strip()
+        result.append({"doska": board, "ovoz": voice or board})
+    return result
+
+
+def option_list(text):
+    """«A) ...\nB) ...» → ['...', '...']"""
+    parts = re.split(r"(?:^|\s)([A-Ea-e])\)\s*", "\n" + _t(text))
+    return [parts[i + 1].strip() for i in range(1, len(parts) - 1, 2)]
+
+
+def practice_item(unit, media_url):
+    """Kitob kodi bilan belgilangan amaliy qadam yoki test → kod oynasi/doska uchun yagona ko'rinish."""
+    p = unit.get("payload") or {}
+    if unit["unit_kind"] == "task":
+        options = [_t(p.get(f"variant_{x}")) for x in "abcd"]
+        letter = _t(p.get("togri_javob")).upper()[:1]
+        togri = "ABCD".index(letter) if letter and letter in "ABCD" else None
+        solution = solution_steps(p.get("izoh") or p.get("javob_mezoni"))
+        if togri is not None:
+            solution.insert(0, {"doska": f"Javob: {letter}) {options[togri]}", "ovoz": f"To'g'ri javob — {letter} variant."})
+        return {"kod": _t(p.get("kitob_kodi")), "turi": "test", "turi_nomi": "Test", "sarlavha": _t(p.get("sarlavha")),
+                "shart": _t(p.get("savol")), "rasm": media_url(_t(p.get("media_id"))), "variantlar": options,
+                "togri": togri, "javob": letter, "yechim": solution}
+    kind = _t(p.get("amaliy_turi")) or "topshiriq"
+    options = option_list(p.get("variantlar"))
+    answer = _t(p.get("togri_javob")) or _t(p.get("kutilgan_javob"))
+    letter = answer.upper().rstrip(").")[:1] if options else ""
+    togri = "ABCDE".index(letter) if letter and letter in "ABCDE"[:len(options)] else None
+    title = _t(p.get("sarlavha"))
+    prefix = PRACTICE_NAMES.get(kind, "") + " · "
+    return {"kod": _t(p.get("kitob_kodi")), "turi": kind, "turi_nomi": PRACTICE_NAMES.get(kind, "Topshiriq"),
+            "sarlavha": title[len(prefix):] if title.startswith(prefix) else title,
+            "shart": _t(p.get("doska_matni")), "rasm": media_url(_t(p.get("media_id"))), "variantlar": options,
+            "togri": togri, "javob": answer, "yechim": solution_steps(p.get("yechim"))}
 
 
 def _first_sentence(text, limit=90):
@@ -83,6 +127,10 @@ def build_lesson(topic, units, media_url, extra_questions=()):
                 "javob_izohi": _t(p.get("javob_izohi")),
                 "sahifa": _t(p.get("sahifa")),
             })
+            if steps[-1]["turi"] == "amaliy":
+                item = practice_item(u, media_url)
+                steps[-1].update(kod=item["kod"], amaliy_turi=item["turi"], turi_nomi=item["turi_nomi"],
+                                 variantlar=item["variantlar"], togri=item["togri"], yechim=item["yechim"])
         for u in by_kind.get("variant", []):
             p = payload(u)
             kind = _t(p.get("variant_turi")).lower()
@@ -177,7 +225,8 @@ def build_lesson(topic, units, media_url, extra_questions=()):
         letter = _t(p.get("togri_javob")).upper()[:1]
         if kind in {"singlechoice", "test", "tanlov"} and all(options) and letter in ("A", "B", "C", "D"):
             questions.append({"id": u["unit_code"], "savol": _t(p.get("savol")), "variantlar": options,
-                              "togri": "ABCD".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni"))})
+                              "togri": "ABCD".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni")),
+                              "kod": _t(p.get("kitob_kodi"))})
     seen = {q["savol"] for q in questions}
     for q in extra_questions:
         if len(questions) >= MAX_QUESTIONS:
@@ -193,6 +242,44 @@ def build_lesson(topic, units, media_url, extra_questions=()):
         "variants": variants,
         "savollar": questions[:MAX_QUESTIONS],
     }
+
+
+def media_resolver(cur, units):
+    """Birliklardagi media_id → /api/ai_miya_media/<id> (faqat nashr qilingan paketlardan)."""
+    wanted = set()
+    resources = {}
+    for u in units:
+        p = u.get("payload") or {}
+        if u["unit_kind"] == "resource" and p.get("resource_id"):
+            resources[p["resource_id"]] = _t(p.get("url_yoki_fayl"))
+        if p.get("media_id"):
+            wanted.add(_t(p["media_id"]))
+    names = set()
+    for m in wanted:
+        target = resources.get(m, m)
+        if target and not target.startswith("https://"):
+            names.add(target.lower())
+    by_name = {}
+    if names:
+        cur.execute(
+            """SELECT DISTINCT ON (lower(m.file_name)) m.id, lower(m.file_name) AS name
+               FROM ai_brain_media m JOIN ai_brain_import_batches b ON b.id=m.batch_id
+               WHERE b.status='published' AND lower(m.file_name)=ANY(%s)
+               ORDER BY lower(m.file_name), m.id DESC""",
+            (sorted(names),),
+        )
+        by_name = {r["name"]: r["id"] for r in cur.fetchall()}
+
+    def media_url(media_id):
+        if not media_id:
+            return None
+        target = resources.get(media_id, media_id)
+        if target.startswith("https://"):
+            return target
+        found = by_name.get(target.lower())
+        return f"/api/ai_miya_media/{found}" if found else None
+
+    return media_url
 
 
 INSTITUTION_NAMES = {"maktab": "Maktab", "universitet": "Institut", "bogcha": "Bog'cha", "markaz": "Markaz"}
@@ -318,38 +405,7 @@ def create_router(platform):
                 seen.add(r["unit_code"])
                 units.append(dict(r))
 
-            wanted = set()
-            resources = {}
-            for u in units:
-                p = u.get("payload") or {}
-                if u["unit_kind"] == "resource" and p.get("resource_id"):
-                    resources[p["resource_id"]] = _t(p.get("url_yoki_fayl"))
-                if p.get("media_id"):
-                    wanted.add(_t(p["media_id"]))
-            names = set()
-            for m in wanted:
-                target = resources.get(m, m)
-                if target and not target.startswith("https://"):
-                    names.add(target.lower())
-            by_name = {}
-            if names:
-                cur.execute(
-                    """SELECT DISTINCT ON (lower(m.file_name)) m.id, lower(m.file_name) AS name
-                       FROM ai_brain_media m JOIN ai_brain_import_batches b ON b.id=m.batch_id
-                       WHERE b.status='published' AND lower(m.file_name)=ANY(%s)
-                       ORDER BY lower(m.file_name), m.id DESC""",
-                    (sorted(names),),
-                )
-                by_name = {r["name"]: r["id"] for r in cur.fetchall()}
-
-            def media_url(media_id):
-                if not media_id:
-                    return None
-                target = resources.get(media_id, media_id)
-                if target.startswith("https://"):
-                    return target
-                found = by_name.get(target.lower())
-                return f"/api/ai_miya_media/{found}" if found else None
+            media_url = media_resolver(cur, units)
 
             extra = []
             cur.execute(
@@ -391,6 +447,61 @@ def create_router(platform):
         if not lesson["steps"]:
             raise HTTPException(status_code=404, detail="Bu mavzu uchun dars hali nashr qilinmagan")
         return lesson
+
+    @router.get("/api/kitob_kod/{kod}")
+    def kitob_kod(kod: str, token: str):
+        """Kitobdagi misol/masala/topshiriq/test kodi → sharti va yechimi (AI doskada ko'rsatish uchun)."""
+        platform._jwt_tekshir(token)
+        key = re.sub(r"[^A-Z0-9]", "", _t(kod).upper())
+        if not 3 <= len(key) <= 24:
+            raise HTTPException(status_code=400, detail="Kodni kitobdagidek yozing, masalan: XB-03-A01")
+        conn = platform._db()
+        cur = conn.cursor()
+        try:
+            platform._ai_brain_jadvallari(cur)
+            platform._ai_brain_dars_jadvallari(cur)
+            cur.execute(
+                """SELECT unit_code,unit_kind,topic_code,title,payload,book_title,subject_name,grade
+                   FROM ai_brain_published_units
+                   WHERE payload ? 'kitob_kodi'
+                     AND regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g')=%s
+                     AND unit_kind IN ('lesson_step','task')
+                   ORDER BY published_at DESC NULLS LAST, version_no DESC LIMIT 1""",
+                (key,),
+            )
+            row = cur.fetchone()
+            if not row:
+                raise HTTPException(status_code=404, detail="Bu kod topilmadi. Kodni kitobdagidek tekshirib yozing.")
+            unit = dict(row)
+            item = practice_item(unit, media_resolver(cur, [unit]))
+            topic_code = unit["topic_code"]
+            cur.execute(
+                """SELECT COALESCE(NULLIF(subtopic_name,''),topic_name) AS nom,subject_name,grade
+                   FROM ai_brain_topic_maps WHERE topic_code=%s AND status='published' ORDER BY id DESC LIMIT 1""",
+                (topic_code,),
+            )
+            tm = cur.fetchone()
+            if not tm:
+                cur.execute(
+                    """SELECT COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS nom,
+                              subject_name,grade FROM dts_tree WHERE topic_code=%s LIMIT 1""",
+                    (topic_code,),
+                )
+                tm = cur.fetchone()
+            cur.execute(
+                "SELECT 1 FROM ai_brain_published_units WHERE topic_code=%s AND unit_kind='lesson_step' LIMIT 1",
+                (topic_code,),
+            )
+            has_lesson = bool(cur.fetchone())
+            conn.commit()
+        finally:
+            cur.close()
+            conn.close()
+        item["mavzu"] = {"topic_code": topic_code, "nomi": _t((tm or {}).get("nom")),
+                         "fan": _t((tm or {}).get("subject_name")) or _t(unit.get("subject_name")),
+                         "sinf": _t((tm or {}).get("grade")) or _t(unit.get("grade")), "dars_bor": has_lesson}
+        item["kitob"] = _t(unit.get("book_title"))
+        return item
 
     @router.get("/api/dars_xonasi/{topic_code}")
     def dars_xonasi(topic_code: str, token: str):
