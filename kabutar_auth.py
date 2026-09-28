@@ -241,6 +241,12 @@ class TokenBody(BaseModel):
 class Logout(TokenBody):
     all_devices: bool = False
 
+class QuickStart(BaseModel):
+    role: str = Field(min_length=3, max_length=20)
+    name: Optional[str] = Field(default=None, max_length=80)
+
+QUICK_ROLE_NAMES = {'oquvchi': 'O‘quvchi', 'talaba': 'Talaba', 'oqituvchi': 'O‘qituvchi', 'ota-ona': 'Ota-ona'}
+
 class PasswordLogin(BaseModel):
     identifier: str = Field(min_length=1, max_length=254)
     password: str = Field(min_length=1, max_length=128)
@@ -691,7 +697,41 @@ def register_auth(app, platform):
     @app.get('/auth/config')
     def config():
         return {'telegram':service.telegram_config(),
-            'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True}}
+            'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True},
+            'quick':{'enabled':True}}
+
+    # REV79: rol tanlab darhol kirish. Shu qurilmada yangi akkaunt ochiladi; Telegram/Gmail
+    # ulanmaguncha sayt tepada «ulang, aks holda yo'qolishi mumkin» deb ogohlantiradi.
+    @app.post('/auth/quick/start')
+    def quick_start(body:QuickStart,request:Request):
+        service.origin(request)
+        if body.role not in QUICK_ROLE_NAMES:
+            raise HTTPException(422,'Rolni tanlang')
+        service.rate('quick-ip',service.ip(request),8,3600)
+        name=re.sub(r'\s+',' ',str(body.name or '')).strip()[:80] or (QUICK_ROLE_NAMES[body.role]+' '+str(secrets.randbelow(9000)+1000))
+        base_role='oquvchi' if body.role=='talaba' else body.role
+        learning={'role':body.role,'quick':True}
+        if body.role=='talaba':
+            learning['standalone']=True
+        with service.transaction() as cur:
+            cur.execute('SELECT pg_advisory_xact_lock(%s)',(31091001,))
+            cur.execute('SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0')
+            row=cur.fetchone()
+            new_id=(row['eng_kichik']-1) if row and row['eng_kichik'] is not None else -1
+            # O'quvchi sinfini kirgandan keyin tanlaydi; talaba/o'qituvchi/ota-ona darhol ishlaydi.
+            cur.execute("""INSERT INTO users(user_id,full_name,role,kabutar_learning_profile,kabutar_education_ready)
+                VALUES(%s,%s,%s,%s::jsonb,%s)""",(new_id,name,base_role,json.dumps(learning),body.role!='oquvchi'))
+            give_id=getattr(platform,'_kabutar_id_ber',None)
+            if give_id:
+                try:
+                    cur.execute('SAVEPOINT quick_kb_id')
+                    give_id(cur,new_id)
+                    cur.execute('RELEASE SAVEPOINT quick_kb_id')
+                except Exception:
+                    cur.execute('ROLLBACK TO SAVEPOINT quick_kb_id')
+            token=service._issue_cur(cur,new_id,'quick')
+        service.record_login(new_id,'quick')
+        return {'status':'complete','token':token,'user_id':new_id,'role':body.role}
 
     @app.post('/auth/telegram/code/issue')
     def issue_bot_code(body:BotCode,x_kabutar_bot_secret:Optional[str]=Header(None),x_kabutar_bot_token:Optional[str]=Header(None),x_kabutar_bot_proof:Optional[str]=Header(None)):

@@ -195,3 +195,10 @@ if __package__:
 else:
     from modules.translation_api import create_router as create_translation_router
 app.include_router(create_translation_router(samtm_platform))
+
+# REV79: institut hayoti — admin uchun kurs → guruh → talaba, muhim sanalar; talaba uchun «Mening institutim».
+if __package__:
+    from .modules.institut_hayoti import create_router as create_institut_hayoti_router
+else:
+    from modules.institut_hayoti import create_router as create_institut_hayoti_router
+app.include_router(create_institut_hayoti_router(samtm_platform))
