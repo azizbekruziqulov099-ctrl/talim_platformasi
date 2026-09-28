@@ -1613,6 +1613,11 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
         type_clause, type_params = _curriculum.catalog_filter(selected_type,dars_turi)
         clause, params = _curriculum.allowed_predicate(cur,user_id)
         incomplete = clause == 'FALSE'
+        # REV77: institut talabasi hamma testlarni ko'radi; o'z yo'nalishiga mos fanlar «mine» bilan birinchi.
+        own_clause, own_params = _curriculum.own_predicate(cur,user_id) if user_id is not None else ('FALSE',[])
+        talaba_viewer = user_id is not None and not viewer.get('admin') and _curriculum.is_university_learner(cur,user_id)
+        mine_sql, mine_params = (own_clause, list(own_params)) if talaba_viewer and own_clause not in ('TRUE','FALSE') else ('FALSE', [])
+        viewer = {**viewer, 'barcha_institutlar': bool(talaba_viewer), 'profil_toliq': bool(talaba_viewer and own_clause != 'FALSE')}
         if turi == 'togarak':
             clause, params = _curriculum.club_predicate(user_id)
             if viewer['admin']:clause,params='d.curriculum_scope_id IS NULL',[]
@@ -1642,7 +1647,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
                       AND au.status='published' AND au.unit_kind IN ('lesson_step','knowledge','explanation','example')))"""
                             if lesson_table else "NULL")
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
-                {lesson_codes_sql} AS darsli_kodlar,
+                {lesson_codes_sql} AS darsli_kodlar, MAX(CASE WHEN {mine_sql} THEN 1 ELSE 0 END) AS mine,
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
                 cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
@@ -1655,8 +1660,10 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
-            ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",params)
+            ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",[*mine_params,*params])
         result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
+        if talaba_viewer:
+            result.sort(key=lambda subject: not subject.get('mine'))
         return {'fanlar':result,'profil_sozlanmagan':incomplete,'viewer':viewer,
                 'institution_type':selected_type,'dars_turi':_curriculum.lesson(dars_turi),
                 'lesson_types':[{'key':k,'label':v} for k,v in _curriculum.LESSON_LABELS.items()]}

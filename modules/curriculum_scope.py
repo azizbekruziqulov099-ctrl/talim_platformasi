@@ -88,7 +88,7 @@ def group_catalog_rows(rows, only_tested=True):
         if not codes:continue
         annual=scope_identity(r,False) if r.get('kurs') else r['curriculum_scope_id']
         key=(annual,r['grade'],text_key(r['subject_name']),r['dars_turi']);kind=r['dars_turi'] or ''
-        subject=subjects.setdefault(key,{'nom':r['subject_name'] or 'Boshqa','qisqa':r['subject_code'],
+        subject=subjects.setdefault(key,{'mine':False,'nom':r['subject_name'] or 'Boshqa','qisqa':r['subject_code'],
             'kalit':json.dumps(key,ensure_ascii=False),'dars_turi':kind,'dars_turi_nomi':LESSON_LABELS.get(kind,''),
             'scope_id':r['curriculum_scope_id'],'scope_ids':[],'institution_type':r.get('institution_type','maktab'),
             'institution_name':r.get('institution_name',''),'institution_id':r.get('institution_id'),
@@ -96,6 +96,7 @@ def group_catalog_rows(rows, only_tested=True):
             'talim_bosqichi':r.get('talim_bosqichi',''),'talim_shakli':r.get('talim_shakli',''),
             'talim_tili':r.get('talim_tili',''),'guruh':r.get('guruh',''),'kurs':r.get('kurs'),
             'semestrlar':list(semester_pair(r['kurs'])) if r.get('kurs') else [],'sinflar':{}})
+        if r.get('mine'):subject['mine']=True
         if r['curriculum_scope_id'] not in subject['scope_ids']:subject['scope_ids'].append(r['curriculum_scope_id'])
         group=subject['sinflar'].setdefault(r['grade'],{'sinf':r['grade'],'mavzular':[]});semester=r.get('semestr') or 0
         topic=next((t for t in group['mavzular'] if t.get('semestr')==semester and text_key(t['nomi'])==text_key(r['nomi'])),None)
@@ -237,8 +238,39 @@ def club_predicate(user_id, alias='d'):
             SELECT 1 FROM togarak_azolar a WHERE a.togarak_id=t.id AND a.user_id=%s
             AND a.aktiv=TRUE AND a.tasdiqlangan=TRUE)))""",[user_id,user_id]
 
+def is_university_learner(cur,user_id):
+    """Institut talabasi: talaba_profillari yozuvi, «talaba» ta'lim profili yoki kurs yozilgan sinf.
+    O'qituvchi va admin bu yerga kirmaydi (ularning o'z qoidalari bor)."""
+    if user_id is None:return False
+    cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s',(user_id,))
+    user=(cur.fetchone() or {}).get('profile') or {}
+    if not user or user.get('role')=='oqituvchi':return False
+    if (user.get('kabutar_learning_profile') or {}).get('role')=='talaba':return True
+    if re.search(r'kurs',str(user.get('class') or ''),re.I):return True
+    cur.execute('SELECT to_jsonb(p) AS profile FROM talaba_profillari p WHERE user_id=%s',(user_id,))
+    return bool((cur.fetchone() or {}).get('profile'))
+
+def university_browse_predicate(alias='d'):
+    """REV77: institut talabasi admin kabi BARCHA institut fanlari, mavzulari va testlarini ko'radi
+    (umumiy katalog va har bir institutning o'z dasturi, guruhlilari ham). Arxivlangan institut chiqmaydi.
+    O'z yo'nalishi «mine» belgisi bilan birinchi turadi (own_predicate)."""
+    if not re.fullmatch(r'[a-z_]+',alias): raise ValueError('Invalid SQL alias')
+    return f"""EXISTS (SELECT 1 FROM curriculum_scopes cs WHERE cs.id={alias}.curriculum_scope_id
+        AND cs.institution_type='universitet' AND (cs.institution_id=0 OR EXISTS(SELECT 1 FROM universitetlar u
+          WHERE u.id=cs.institution_id AND NULLIF(to_jsonb(u)->>'archived_at','') IS NULL)))"""
+
 def allowed_predicate(cur,user_id=None,alias='d'):
-    """No client supplied university/form/course can expand a learner's audience."""
+    """Kim nimani ko'radi. Institut talabasi uchun: o'z dasturi + butun institut katalogi."""
+    clause,params=own_predicate(cur,user_id,alias)
+    if clause=='TRUE' or user_id is None or not is_university_learner(cur,user_id):
+        return clause,params
+    browse=university_browse_predicate(alias)
+    if clause=='FALSE':return browse,[]
+    return f'(({clause}) OR {browse})',params
+
+def own_predicate(cur,user_id=None,alias='d'):
+    """Foydalanuvchining O'Z dasturi (profilga aynan mos). No client supplied university/form/course
+    can expand this; talabalar uchun katalogda «mening yo'nalishim» shu bilan belgilanadi."""
     if not re.fullmatch(r'[a-z_]+',alias): raise ValueError('Invalid SQL alias')
     if user_id is None:
         return f"{alias}.curriculum_scope_id IN (SELECT id FROM curriculum_scopes WHERE scope_key='school-common')",[]

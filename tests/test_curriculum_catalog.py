@@ -33,6 +33,7 @@ class CatalogTests(unittest.TestCase):
   self.db.sql.execute('INSERT INTO generated_tests(topic_code) VALUES(?)',(code,))
   return code
  def codes(self,result):return {code for subject in result['fanlar'] for group in subject['sinflar'] for topic in group['mavzular'] for code in topic['topic_codes']}
+ def mine(self,result):return {code for subject in result['fanlar'] if subject.get('mine') for group in subject['sinflar'] for topic in group['mavzular'] for code in topic['topic_codes']}
  def test_admin_can_open_all_four_sections(self):
   self.db.admin=True
   for id,kind in enumerate(('maktab','bogcha','markaz','universitet'),1):
@@ -42,11 +43,14 @@ class CatalogTests(unittest.TestCase):
  def test_student_gets_only_own_program_and_four_separate_lessons(self):
   own={}
   for id,kind in enumerate(scope.LESSONS,1):own[kind]=self.topic(id,dars_turi=kind)
-  self.topic(5,talim_shakli='sirtqi');self.topic(6,institution_id=12);self.topic(7,institution_type='maktab',grade='1')
+  sirtqi=self.topic(5,talim_shakli='sirtqi');other=self.topic(6,institution_id=12);self.topic(7,institution_type='maktab',grade='1')
   result=self.catalog(token='student')
-  self.assertEqual(self.codes(result),set(own.values()));self.assertEqual(result['viewer']['types'],['universitet'])
-  self.assertEqual(len(result['fanlar']),4)
-  for kind,code in own.items():self.assertEqual(self.codes(self.catalog(token='student',dars_turi=kind)),{code})
+  # REV77: hamma institut testlari ko'rinadi, o'z dasturi «mine» bilan birinchi turadi.
+  self.assertEqual(self.codes(result),set(own.values())|{sirtqi,other});self.assertEqual(result['viewer']['types'],['universitet'])
+  self.assertEqual(self.mine(result),set(own.values()))
+  self.assertTrue(all(subject['mine'] for subject in result['fanlar'][:4]));self.assertFalse(result['fanlar'][-1]['mine'])
+  self.assertTrue(result['viewer']['barcha_institutlar']);self.assertTrue(result['viewer']['profil_toliq'])
+  for kind,code in own.items():self.assertEqual(self.mine(self.catalog(token='student',dars_turi=kind)),{code})
   self.assertEqual(self.codes(self.catalog(token='student',institution_type='maktab')),set())
  def test_lesson_and_scope_do_not_merge_identical_names(self):
   self.db.admin=True
@@ -56,6 +60,8 @@ class CatalogTests(unittest.TestCase):
   self.assertEqual(len(rows),3);self.assertEqual(len({row['kalit'] for row in rows}),3)
  def test_explicit_scope_narrows_admin_catalog_and_cannot_expand_student_access(self):
   self.topic(1);foreign=self.topic(2,institution_id=12)
+  self.assertEqual(self.codes(self.catalog(token='student',scope_id=2)),{foreign})
+  self.db.sql.execute("UPDATE universitetlar SET archived_at='2026-09-20' WHERE id=12")
   self.assertEqual(self.codes(self.catalog(token='student',scope_id=2)),set())
   self.db.admin=True
   self.assertEqual(self.codes(self.catalog(token='admin',institution_type='universitet',scope_id=2)),{foreign})
@@ -107,10 +113,10 @@ class CatalogTests(unittest.TestCase):
     self.setUp();a,b=scope.semester_pair(course);self.db.profile.update(kurs=course,semestr=a);self.db.user['class']=f'{course} kurs'
     own={self.topic(1,kurs=course,semestr=a,grade=f'{course} kurs'),self.topic(2,kurs=course,semestr=b,grade=f'{course} kurs')}
     self.topic(3,kurs=course,semestr=b,talim_shakli='sirtqi',grade=f'{course} kurs')
-    result=self.catalog(token='student');self.assertEqual(self.codes(result),own)
-    self.assertEqual(len(result['fanlar']),1);subject=result['fanlar'][0];self.assertEqual(subject['semestrlar'],[a,b]);self.assertEqual(self.codes(self.catalog(token='student',scope_id=1)),own)
+    result=self.catalog(token='student');self.assertEqual(self.mine(result),own)
+    subject=result['fanlar'][0];self.assertTrue(subject['mine']);self.assertEqual(subject['semestrlar'],[a,b]);self.assertEqual(self.codes(self.catalog(token='student',scope_id=1)),own)
     self.assertEqual({t['semestr'] for t in subject['sinflar'][0]['mavzular']},{a,b})
-    self.db.profile['semestr']=b;self.assertEqual(self.codes(self.catalog(token='student')),own)
+    self.db.profile['semestr']=b;self.assertEqual(self.mine(self.catalog(token='student')),own)
 
 class ProgramTests(unittest.TestCase):
  def setUp(self):

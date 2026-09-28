@@ -13,13 +13,15 @@ class PublicLearningTests(unittest.TestCase):
   self.db.user={'class':'2 kurs','role':'oquvchi','kabutar_learning_profile':self.learning}
  def public_topic(self,id,**values):
   return self.topic(id,institution_id=0,yonalish_id=0,yonalish_nomi='Umumiy fanlar',kurs=2,semestr=3,grade='2 kurs',**values)
- def test_independent_student_sees_only_matching_public_program(self):
+ def test_independent_student_sees_all_and_own_program_is_first(self):
   own=self.public_topic(1)
-  self.public_topic(2,talim_shakli='kunduzgi');self.public_topic(3,talim_tili='ru')
+  a=self.public_topic(2,talim_shakli='kunduzgi');b=self.public_topic(3,talim_tili='ru')
   private=self.topic(4,kurs=2,semestr=3,grade='2 kurs')
-  self.assertEqual(self.codes(self.catalog(token='learner')),{own})
-  with self.assertRaises(PermissionError):scope.authorized_codes(self.db.cursor(),5,[private])
-  self.assertEqual(scope.authorized_codes(self.db.cursor(),5,[own]),[own])
+  result=self.catalog(token='learner')
+  self.assertEqual(self.codes(result),{own,a,b,private})
+  mine={code for subject in result['fanlar'] if subject['mine'] for g in subject['sinflar'] for t in g['mavzular'] for code in t['topic_codes']}
+  self.assertEqual(mine,{own});self.assertTrue(result['fanlar'][0]['mine'])
+  self.assertEqual(scope.authorized_codes(self.db.cursor(),5,[private,own]),[private,own])
  def test_profile_preselects_institute_without_enrollment(self):
   result=self.catalog(token='learner')
   self.assertEqual(result['viewer']['types'],['universitet'])
@@ -30,13 +32,15 @@ class PublicLearningTests(unittest.TestCase):
   school=self.topic(2,institution_type='maktab',institution_id=0,grade='2')
   self.assertEqual(self.codes(self.catalog(token='learner',institution_type='maktab')),set())
   with self.assertRaises(PermissionError):scope.authorized_codes(self.db.cursor(),5,[school])
- def test_incomplete_standalone_profile_is_not_a_wildcard(self):
+ def test_incomplete_standalone_profile_browses_everything(self):
   self.public_topic(1)
   for field in ('kurs','talim_shakli','talim_tili','talim_bosqichi'):
    with self.subTest(field=field):
     saved=self.learning.pop(field)
-    self.assertEqual(self.codes(self.catalog(token='learner')),set())
-    self.assertTrue(self.catalog(token='learner')['profil_sozlanmagan'])
+    # REV77: to'liq sozlanmagan talaba bloklanmaydi — hammasini ko'radi, «o'ziniki» belgisi yo'q.
+    result=self.catalog(token='learner')
+    self.assertEqual(len(self.codes(result)),1);self.assertFalse(result['fanlar'][0]['mine'])
+    self.assertFalse(result['viewer']['profil_toliq'])
     self.learning[field]=saved
  def test_common_program_has_no_membership_or_group(self):
   for data in ({'guruh':'201'},{'yonalish_id':7}):

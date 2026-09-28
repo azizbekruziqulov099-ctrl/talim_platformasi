@@ -31,3 +31,28 @@ class AssistantPdfTests(unittest.TestCase):
         self.assertIn('Javoblar kaliti',text);self.assertEqual(attempt['questions'][0]['question'],original)
 
 if __name__=='__main__':unittest.main()
+
+
+def test_rev78_formula_normalization_and_text_fallback():
+    from modules.kabutar_assistant_pdf import _math_image, normalize_tex, tex_to_text
+    for source in (r"x\le 5", r"\frac12+\sqrt2", "50%", r"\tg x", r"\big( a \big)", r"\text{agar} x \ge 2"):
+        assert _math_image(source)
+    assert normalize_tex(r"\frac12") == r"\frac{1}{2}"
+    assert tex_to_text(r"\frac12+\sqrt2") == "1/2+√(2)"
+    assert tex_to_text(r"x\le 5") == "x≤ 5"
+    assert "\\" not in tex_to_text(r"\hspace{1cm}\big( a \big)")
+
+
+def test_rev78_messy_formulas_never_break_pdf_export():
+    attempt = sample_attempt()
+    messy = [r"x\le 5 \hspace{2mm}", r"\frac12 \cdot 50%", r"\tg\alpha + \ctg\beta", r"\big(a+b\big)^2",
+             r"\unknowncmd{x}+1", r"\frac{1}{2", r"a \\ b", r"\color{red}{x}+\boxed{y}"]
+    for i, formula in enumerate(messy):
+        attempt["questions"].append({"id": 100 + i, "question": f"Hisoblang: [lat]{formula}[/lat]",
+                                     "option_a": "1", "option_b": "2", "option_c": "3", "option_d": "4",
+                                     "correct_answer": "A", "points": 1, "topic_code": "sample"})
+    for key in (False, True):
+        data, kind, _ = export_attempt(attempt, "pdf", key)
+        assert data.startswith(b"%PDF-")
+        text = " ".join(page.extract_text() for page in PdfReader(BytesIO(data)).pages)
+        assert "[lat]" not in text and "\\unknowncmd" not in text

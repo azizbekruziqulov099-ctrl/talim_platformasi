@@ -1071,19 +1071,24 @@ def register_auth(app, platform):
         grade=body.class_ or body.grade
         if body.role=='oquvchi' and not grade:
             raise HTTPException(422,'Sinfni tanlang')
-        if body.role == 'talaba':
-            if body.degree not in ('bakalavr','magistr') or not body.course or body.course > (2 if body.degree == 'magistr' else 6):
+        # REV77: talaba kursini keyin tanlashi mumkin — kurssiz ham barcha institut testlari ochiq,
+        # kurs/shakl tanlansa o'ziga mos fanlar birinchi chiqadi.
+        talaba_full = body.role == 'talaba' and bool(body.course)
+        if talaba_full:
+            if body.degree not in ('bakalavr','magistr') or body.course > (2 if body.degree == 'magistr' else 6):
                 raise HTTPException(422,'Talaba bo‘lsangiz, bosqich va kursingizni tanlang')
             if body.study_form not in ('kunduzgi','kechki','sirtqi','masofaviy'):
                 raise HTTPException(422,'Ta’lim shaklini tanlang')
         learning = {'role':body.role, 'talim_tili':body.language}
-        if body.role == 'talaba':
+        if body.role == 'talaba' and not talaba_full:
+            learning.update(standalone=True)
+        elif body.role == 'talaba':
             learning.update(kurs=body.course, talim_bosqichi=body.degree, talim_shakli=body.study_form,
                 semestr=2*body.course-1, standalone=True)
         elif body.role == 'oquvchi':
             learning['grade'] = grade
         base_role = 'oquvchi' if body.role == 'talaba' else body.role
-        class_value = (f'{body.course} kurs' + (' magistr' if body.degree == 'magistr' else '')) if body.role == 'talaba' else str(grade) if body.role == 'oquvchi' else None
+        class_value = (f'{body.course} kurs' + (' magistr' if body.degree == 'magistr' else '')) if talaba_full else str(grade) if body.role == 'oquvchi' else None
         with service.transaction() as cur:
             cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s FOR UPDATE',(uid,))
             user=(cur.fetchone() or {}).get('profile')

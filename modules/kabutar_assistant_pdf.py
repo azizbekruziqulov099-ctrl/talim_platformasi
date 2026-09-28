@@ -73,6 +73,121 @@ def _raw_math_segments(text):
     if cursor < len(text): yield False, text[cursor:]
 
 
+_FUNCS = {"sin", "cos", "tan", "cot", "sec", "csc", "log", "ln", "lg", "exp", "lim", "max", "min", "sup", "inf",
+          "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh", "det", "gcd", "deg", "arg", "dim", "ker", "mod"}
+
+
+def _brace_single(source, command, count):
+    """\frac12, \frac{1}2, \sqrt2 → \frac{1}{2}, \sqrt{2} (mathtext qavssiz argumentni o'qimaydi)."""
+    out, i = [], 0
+    pattern = re.compile(r"\\" + command + r"(?![A-Za-z])")
+    while True:
+        m = pattern.search(source, i)
+        if not m:
+            out.append(source[i:])
+            return "".join(out)
+        out.append(source[i:m.end()])
+        pos = m.end()
+        if command == "sqrt" and pos < len(source) and source[pos] == "[":
+            close = source.find("]", pos)
+            if close > 0:
+                out.append(source[pos:close + 1]); pos = close + 1
+        for _ in range(count):
+            while pos < len(source) and source[pos] == " ":
+                pos += 1
+            if pos >= len(source):
+                break
+            if source[pos] == "{":
+                depth, end = 0, pos
+                while end < len(source):
+                    depth += source[end] == "{"
+                    depth -= source[end] == "}"
+                    end += 1
+                    if depth == 0:
+                        break
+                out.append(source[pos:end]); pos = end
+            elif source[pos] == "\\":
+                cmd = re.match(r"\\[A-Za-z]+", source[pos:])
+                token = cmd.group(0) if cmd else source[pos:pos + 2]
+                out.append("{" + token + "}"); pos += len(token)
+            else:
+                out.append("{" + source[pos] + "}"); pos += 1
+        i = pos
+
+
+def normalize_tex(source):
+    """Bankdagi LaTeX'ni Matplotlib mathtext tushunadigan ko'rinishga keltiradi (ma'no o'zgarmaydi)."""
+    value = str(source or "")
+    value = re.sub(r"\\(?:dfrac|tfrac|cfrac)(?![A-Za-z])", r"\\frac", value)
+    value = re.sub(r"\\(?:displaystyle|textstyle|scriptstyle|limits|nolimits)(?![A-Za-z])", "", value)
+    value = re.sub(r"(?<=\d)\{,\}(?=\d)", ",", value)
+    for old, new in ((r"\le", r"\leq"), (r"\ge", r"\geq"), (r"\lt", "<"), (r"\gt", ">"), (r"\iff", r"\Leftrightarrow"),
+                     (r"\implies", r"\Rightarrow"), (r"\lvert", "|"), (r"\rvert", "|"), (r"\lVert", r"\Vert"),
+                     (r"\rVert", r"\Vert"), (r"\square", r"\Box"), (r"\dots", r"\ldots"), (r"\N", r"\mathbb{N}"),
+                     (r"\R", r"\mathbb{R}"), (r"\Z", r"\mathbb{Z}"), (r"\Q", r"\mathbb{Q}")):
+        value = re.sub(re.escape(old) + r"(?![A-Za-z])", lambda _m, new=new: new, value)
+    for name in ("tg", "ctg", "arctg", "arcctg", "cosec", "sh", "ch", "th", "cth"):
+        value = re.sub(r"\\" + name + r"(?![A-Za-z])", r"\\operatorname{" + name + "}", value)
+    value = re.sub(r"\\(?:big|Big|bigg|Bigg)[lrm]?(?![A-Za-z])", "", value)
+    value = re.sub(r"\\(?:hspace|vspace|phantom|hphantom|vphantom)\*?\{[^{}]*\}", " ", value)
+    value = re.sub(r"\\(?:textbf|boldsymbol|bm)(?![A-Za-z])", r"\\mathbf", value)
+    value = re.sub(r"\\(?:textit|emph)(?![A-Za-z])", r"\\mathit", value)
+    value = re.sub(r"\\(?:underline|boxed|fbox)(?![A-Za-z])", "", value)
+    value = re.sub(r"\\color\{[^{}]*\}", "", value)
+    value = re.sub(r"\\stackrel\{([^{}]*)\}\{([^{}]*)\}", r"\\overset{\1}{\2}", value)
+    value = re.sub(r"(?<!\\)%", r"\\%", value)
+    value = re.sub(r"\\\\\s*", r"\;\;", value)  # yolg'iz qator uzilishi — oraliq
+    value = re.sub(r"\\(?:hline|cline\{[^{}]*\})", "", value)
+    value = _brace_single(value, "frac", 2)
+    value = _brace_single(value, "sqrt", 1)
+    value = _brace_single(value, "binom", 2)
+
+    # Formula ichidagi so'zlar (masalan «x ga teng») bo'shliqlari bilan oddiy matn bo'lib chiqsin.
+    def words(match):
+        word = match.group(2)
+        if word.lower() in _FUNCS:
+            return match.group(0)
+        return r"\text{" + match.group(1).replace("\n", " ") + word + match.group(3).replace("\n", " ") + "}"
+    parts = re.split(r"(\\[A-Za-z]+(?:\{[^{}]*\})?)", value)
+    value = "".join(part if part.startswith("\\") else re.sub(r"(\s*)(?<![A-Za-z])([A-Za-zʻʼ‘’'Ѐ-ӿ]{3,})(?![A-Za-z])(\s*)", words, part) for part in parts)
+    for _ in range(20):
+        merged = re.sub(r"\\text\{([^{}]*)\}\\text\{", r"\\text{\1", value)
+        if merged == value:
+            break
+        value = merged
+    return value.strip()
+
+
+_SUPERSCRIPT = str.maketrans("0123456789+-=()n", "⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾ⁿ")
+_SUBSCRIPT = str.maketrans("0123456789+-=()", "₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎")
+
+
+def tex_to_text(source):
+    """Formula rasmga chizilmasa — o'qiladigan oddiy matn (hech qachon PDF'ni to'xtatmaydi)."""
+    t = str(source or "")
+    try:
+        t = normalize_tex(t)
+    except Exception:
+        pass
+    t = re.sub(r"\\(?:text|mathrm|mathbf|mathit|operatorname|mathbb)\{([^{}]*)\}", r"\1", t)
+    for _ in range(4):
+        t = re.sub(r"\\[dtc]?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}", lambda m: (m[1] if len(m[1]) < 2 else f"({m[1]})") + "/" + (m[2] if len(m[2]) < 2 else f"({m[2]})"), t)
+        t = re.sub(r"\\sqrt\s*\[([^\]]*)\]\s*\{([^{}]*)\}", r"\1√(\2)", t)
+        t = re.sub(r"\\sqrt\s*\{([^{}]*)\}", r"√(\1)", t)
+    t = re.sub(r"\^\{([0-9+\-=()n]{1,4})\}|\^([0-9n])", lambda m: (m[1] or m[2]).translate(_SUPERSCRIPT), t)
+    t = re.sub(r"_\{([0-9+\-=()]{1,4})\}|_([0-9])", lambda m: (m[1] or m[2]).translate(_SUBSCRIPT), t)
+    for src, dst in (("\\cdot", "·"), ("\\times", "×"), ("\\div", ":"), ("\\leq", "≤"), ("\\le", "≤"), ("\\geq", "≥"),
+                     ("\\ge", "≥"), ("\\neq", "≠"), ("\\ne", "≠"), ("\\approx", "≈"), ("\\pm", "±"), ("\\infty", "∞"),
+                     ("\\pi", "π"), ("\\alpha", "α"), ("\\beta", "β"), ("\\gamma", "γ"), ("\\delta", "δ"), ("\\Delta", "Δ"),
+                     ("\\theta", "θ"), ("\\lambda", "λ"), ("\\mu", "μ"), ("\\sigma", "σ"), ("\\omega", "ω"), ("\\circ", "°"),
+                     ("\\angle", "∠"), ("\\perp", "⊥"), ("\\parallel", "∥"), ("\\in", "∈"), ("\\cup", "∪"), ("\\cap", "∩"),
+                     ("\\Rightarrow", "⇒"), ("\\rightarrow", "→"), ("\\to", "→"), ("\\sum", "Σ"), ("\\int", "∫"),
+                     ("\\left", ""), ("\\right", ""), ("\\,", " "), ("\;", " "), ("\\quad", " "), ("\\%", "%")):
+        t = t.replace(src, dst)
+    t = re.sub(r"\\([A-Za-z]+)", r"\1", t).replace("{", "").replace("}", "").replace("\\", "")
+    return re.sub(r"[ \t]+", " ", t).strip()
+
+
 def _math_image(source):
     """Return PNG bytes at 180 dpi; keep dimensions and parser work bounded."""
     from PIL import Image, ImageDraw, ImageFont
@@ -80,9 +195,9 @@ def _math_image(source):
     from matplotlib.font_manager import FontProperties
     from matplotlib.mathtext import math_to_image
 
-    source = re.sub(r'\\(?:dfrac|tfrac|cfrac)\b',r'\\frac',source)
-    source = re.sub(r'\\(?:displaystyle|textstyle)\b','',source)
-    source = re.sub(r'(?<=\d)\{,\}(?=\d)',',',source)
+    source = normalize_tex(source)
+    if not source.strip(" ~\\,;:!"):
+        raise ValueError("Formula faqat bo'shliqdan iborat")
     if not source or len(source) > 2000 or source.count("{") > 120:
         raise ValueError("Formula bo‘sh yoki juda uzun; savoldagi formulani tekshiring.")
 
@@ -200,7 +315,11 @@ def render_pdf(attempt, questions, answer_key, images):
                 if _SEGMENTS.fullmatch(part):
                     segments.append((True, _formula(part)))
                 elif re.search(r"\\[A-Za-z]+", part):
-                    segments.extend(_raw_math_segments(part))
+                    try:
+                        segments.extend(list(_raw_math_segments(part)))
+                    except ValueError:
+                        # Belgisiz murakkab formula: butun bo'lakni formula sifatida sinab ko'ramiz.
+                        segments.append((True, part.strip()))
                 else:
                     segments.append((False, part))
             for is_formula, segment in segments:
@@ -208,21 +327,28 @@ def render_pdf(attempt, questions, answer_key, images):
                 if is_formula:
                     source = segment
                     if source not in formula_files:
-                        payload, width, height = _math_image(source)
-                        if len(formula_files) >= 500:
-                            raise ValueError("PDFda formulalar juda ko‘p; testni qismlarga ajrating.")
-                        file = Path(tmp) / (str(len(formula_files)) + ".png")
-                        file.write_bytes(payload)
-                        formula_files[source] = (str(file), width, height)
-                    file, width, height = formula_files[source]
-                    scale = min(1, (usable - 28) / max(width, 1))
-                    if scale < .65 or height * scale > 210:
-                        raise ValueError("Formula o‘qiladigan o‘lchamda sahifaga sig‘maydi; uni qismlarga ajrating.")
+                        # REV78: formula chizilmasa PDF to'xtamaydi — o'qiladigan matn (½ → 1/2, x² ...) bo'lib chiqadi.
+                        try:
+                            payload, width, height = _math_image(source)
+                        except ValueError:
+                            payload = None
+                        if payload is None or len(formula_files) >= 500:
+                            formula_files[source] = None
+                        else:
+                            file = Path(tmp) / (str(len(formula_files)) + ".png")
+                            file.write_bytes(payload)
+                            formula_files[source] = (str(file), width, height)
+                    entry = formula_files[source]
+                    scale = min(1, (usable - 28) / max(entry[1], 1)) if entry else 0
+                    if not entry or scale < .65 or entry[2] * scale > 210:
+                        markup.append(escape(tex_to_text(source)).replace("\n", "<br/>"))
+                        continue
+                    file, width, height = entry
                     tallest_formula = max(tallest_formula, height * scale)
                     markup.append(f'<img src="{file}" width="{width*scale:.2f}" height="{height*scale:.2f}" valign="middle"/>')
                 else:
                     if re.search(r"\[/?lat\]|\\[A-Za-z]+|\\[\[\](){}]", segment, re.I):
-                        raise ValueError("Formula belgilanishi tugallanmagan. Administrator [lat] formula [/lat] yozuvini tekshirsin.")
+                        segment = tex_to_text(re.sub(r"\[/?lat\]", "", segment, flags=re.I))
                     markup.append(escape(segment).replace("\n", "<br/>"))
             paragraph_style = styles[style]
             if tallest_formula > paragraph_style.leading:

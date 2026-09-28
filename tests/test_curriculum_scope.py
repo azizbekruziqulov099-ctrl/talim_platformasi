@@ -47,6 +47,11 @@ class DB:
   lesson=self.sql.execute('SELECT dars_turi FROM curriculum_scopes WHERE id=?',(id,)).fetchone()[0]
   self.sql.execute('INSERT INTO dts_tree(topic_code,curriculum_scope_id,grade,subject_code,subject_name,dars_turi,quarter,mavzu_name) VALUES(?,?,?,?,?,?,?,?)',(code,id,grade,f'{id:02d}','MATEMATIKA',lesson or None,'01','To‘plamlar'));return code
  def visible(self,uid=5):
+  # REV77: talabaning O'Z dasturi (katalogda «mine»); ko'rish huquqi browse() da.
+  clause,args=scope.own_predicate(self.cursor(),uid);cur=self.cursor()
+  cur.execute(f'SELECT d.topic_code FROM dts_tree d WHERE d.is_deleted=FALSE AND ({clause})',args)
+  return {r['topic_code'] for r in cur.fetchall()}
+ def browse(self,uid=5):
   clause,args=scope.allowed_predicate(self.cursor(),uid);cur=self.cursor()
   cur.execute(f'SELECT d.topic_code FROM dts_tree d WHERE d.is_deleted=FALSE AND ({clause})',args)
   return {r['topic_code'] for r in cur.fetchall()}
@@ -98,6 +103,7 @@ class AudienceTests(unittest.TestCase):
   self.assertNotIn(other,self.db.visible());self.db.admin=True;self.assertIn(other,self.db.visible())
  def test_direct_or_mixed_foreign_codes_denied(self):
   self.db.add_scope(2,institution_id=12);other=self.db.add_topic(2)
+  self.db.sql.execute("UPDATE universitetlar SET archived_at='2026-09-20' WHERE id=12")
   with self.assertRaises(PermissionError):scope.authorized_codes(self.db.cursor(),5,[self.code,other])
   self.assertEqual(scope.authorized_codes(self.db.cursor(),5,[self.code,other],strict=False),[self.code])
  def test_deleted_codes_denied(self):
@@ -117,6 +123,28 @@ class AudienceTests(unittest.TestCase):
   self.db.sql.execute('UPDATE togarak_azolar SET tasdiqlangan=TRUE')
   self.assertEqual(scope.authorized_codes(self.db.cursor(),5,[self.code]),[self.code])
   self.assertEqual(scope.authorized_codes(self.db.cursor(),20,[self.code]),[self.code])
+class TalabaBrowseTests(unittest.TestCase):
+ """REV77: institut talabasi admin kabi barcha faol institut testlarini ko'radi."""
+ def setUp(self):
+  self.db=DB();self.db.add_scope(1);self.own=self.db.add_topic(1)
+  self.db.add_scope(2,institution_id=12,guruh='201');self.other=self.db.add_topic(2)
+  self.db.add_scope(3,institution_type='maktab',institution_id=0);self.school=self.db.add_topic(3,grade='7')
+ def test_configured_student_sees_all_institutes_but_own_is_mine(self):
+  self.assertEqual(self.db.browse(),{self.own,self.other})
+  self.assertEqual(self.db.visible(),{self.own})
+  self.assertEqual(scope.authorized_codes(self.db.cursor(),5,[self.own,self.other]),[self.own,self.other])
+  with self.assertRaises(PermissionError):scope.authorized_codes(self.db.cursor(),5,[self.school])
+ def test_unconfigured_student_is_not_blocked(self):
+  self.db.profile=None
+  self.assertEqual(self.db.browse(),{self.own,self.other});self.assertEqual(self.db.visible(),set())
+ def test_archived_institute_hidden(self):
+  self.db.sql.execute("UPDATE universitetlar SET archived_at='2026-09-20' WHERE id=12")
+  self.assertEqual(self.db.browse(),{self.own})
+ def test_school_pupil_and_teacher_unchanged(self):
+  self.db.profile=None;self.db.user={'role':'oquvchi','class':'7'}
+  self.assertEqual(self.db.browse(),{self.school})
+  self.db.user={'role':'oqituvchi','class':''}
+  self.assertNotIn(self.other,self.db.browse())
 class NormalizationTests(unittest.TestCase):
  def test_course_not_school(self):
   for raw in ('1kurs','1 kurs','1-kurs',' 1 KURS '):self.assertEqual(scope.canonical_grade(raw),'1 kurs')
@@ -181,12 +209,12 @@ class EndpointTests(unittest.TestCase):
   with self.assertRaises(HTTPException):self.upload([['Sinf','Fan','Mavzu','scope_id'],['1 kurs','Matematika','First',1],['1 kurs','Matematika','Second',2]])
   self.assertEqual(self.db.sql.execute('SELECT COUNT(*) FROM dts_tree').fetchone()[0],0);self.assertGreater(self.db.rollbacks,0)
  def test_direct_count_and_question_routes_reject_foreign_code(self):
-  code=self.db.add_topic(2)
+  code=self.db.add_topic(2);self.db.sql.execute("UPDATE universitetlar SET archived_at='2026-09-20' WHERE id=12")
   for name in ('test_savollari','test_savollari_soni'):
    with self.subTest(name=name),self.assertRaises(HTTPException) as e:self.ns[name](code,token='student')
    self.assertEqual(e.exception.status_code,403)
  def test_mixed_count_and_question_routes_reject_foreign_code(self):
-  code=self.db.add_topic(2)
+  code=self.db.add_topic(2);self.db.sql.execute("UPDATE universitetlar SET archived_at='2026-09-20' WHERE id=12")
   for name in ('aralash_test_savollari','aralash_savollari_soni'):
    with self.subTest(name=name),self.assertRaises(HTTPException) as e:self.ns[name](SimpleNamespace(token='student',topic_codes=[code]))
    self.assertEqual(e.exception.status_code,403)

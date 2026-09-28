@@ -74,13 +74,14 @@ class AdminCatalogTests(unittest.TestCase):
         self.db.sql.execute('UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code=?', (deleted,))
         self.assertEqual(self.codes(self.catalog(token='admin', institution_type='universitet')), {own})
 
-    def test_general_or_forged_filters_never_expand_student_access(self):
+    def test_student_browses_all_institutes_and_filters_only_narrow(self):
+        # REV77: talaba admin kabi barcha institut testlarini ko'radi; filtrlar faqat toraytiradi.
         own = self.topic(1)
-        self.topic(2, institution_id=12)
-        self.topic(3, talim_tili='ru')
-        self.assertEqual(self.codes(self.catalog(token='student', institution_type='universitet')), {own})
-        for changes in ({'institution_id': 12}, {'talim_tili': 'ru'}, {'yonalish_id': 99}):
-            self.assertEqual(self.codes(self.filtered(token='student', **changes)), set())
+        other = self.topic(2, institution_id=12)
+        russian = self.topic(3, talim_tili='ru')
+        self.assertEqual(self.codes(self.catalog(token='student', institution_type='universitet')), {own, other, russian})
+        for changes, expected in (({'institution_id': 12}, {other}), ({'talim_tili': 'ru'}, {russian}), ({'yonalish_id': 99}, set())):
+            self.assertEqual(self.codes(self.filtered(token='student', **changes)), expected)
 
     def test_invalid_filters_fail_and_manual_name_is_parameterized(self):
         self.db.admin = True

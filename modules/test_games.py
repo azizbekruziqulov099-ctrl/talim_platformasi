@@ -21,7 +21,9 @@ from pydantic import BaseModel, Field
 
 
 GAME_MODES = {"bridge", "millionaire", "space", "detective", "city"}
-GAME_QUESTION_COUNTS = {5, 10, 15, 20, 25}
+# REV78: kichik (5–10), o'rta (15–30), katta (40–60) va marafon (80–100) o'yinlar.
+GAME_QUESTION_COUNTS = {5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100}
+GAME_MAX_ROUNDS = 20
 MAX_TOPIC_CODES = 50
 MAX_GAME_LIVES = 3
 GAME_LEVEL_SIZE = 5
@@ -40,6 +42,9 @@ DIFFICULTY_TIME_DEFAULTS = {
 def grade_band_for_value(value: object) -> str:
     """DTS sinfi yoki maxsus guruh nomini to'rtta yosh bosqichiga ajratadi."""
     text = str(value or "").strip().lower().replace("-sinf", "")
+    # REV78: «2 kurs» — talaba. Raqami bo'yicha 1–4-sinf bosqichiga tushib qolmasin.
+    if "kurs" in text:
+        return "applicant"
     match = re.search(r"(?:^|\D)(\d{1,2})(?:\D|$)", text)
     if not match:
         return "applicant"
@@ -291,12 +296,38 @@ def _game_tables_ready(cur) -> bool:
     return bool(row and row["table_name"])
 
 
+_GAME_COUNT_LIMITS_RELAXED = False
+
+
+def _relax_game_count_limits(cur) -> None:
+    """REV78: 015 migratsiyasidagi eski «ko'pi bilan 25 savol / 5 raund» cheklovlari bo'lsa,
+    ular 100 tagacha savolga moslanadi. Bir marta, xavfsiz (SAVEPOINT) bajariladi."""
+    global _GAME_COUNT_LIMITS_RELAXED
+    if _GAME_COUNT_LIMITS_RELAXED:
+        return
+    cur.execute("SAVEPOINT rev78_game_counts")
+    try:
+        cur.execute(
+            """SELECT c.conname, t.relname FROM pg_constraint c JOIN pg_class t ON t.oid=c.conrelid
+               WHERE t.relname IN ('game_sessions','game_session_questions') AND c.contype='c'
+                 AND pg_get_constraintdef(c.oid) ~* '(requested_questions|total_questions|current_position|position)'
+                 AND pg_get_constraintdef(c.oid) ~ '(25|26|5\\))'"""
+        )
+        for row in cur.fetchall():
+            cur.execute(f'ALTER TABLE {row["relname"]} DROP CONSTRAINT "{row["conname"]}"')
+        cur.execute("RELEASE SAVEPOINT rev78_game_counts")
+        _GAME_COUNT_LIMITS_RELAXED = True
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT rev78_game_counts")
+
+
 def _require_game_tables(cur) -> None:
     if not _game_tables_ready(cur):
         raise HTTPException(
             status_code=503,
             detail="O'yinli testlar bazasi o'rnatilmagan. Avval 015 migratsiyasini bajaring.",
         )
+    _relax_game_count_limits(cur)
     cur.execute(
         """SELECT EXISTS(
                SELECT 1 FROM information_schema.columns
@@ -1120,7 +1151,7 @@ def create_test_games_router(
                 if all(normalized) and len(set(normalized)) == 4 and correct_letter in {"A", "B", "C", "D"}:
                     source_choice_count += 1
             choice_count = source_choice_count + numeric_write_choice_count
-            available_rounds = min(5, choice_count // GAME_LEVEL_SIZE)
+            available_rounds = min(GAME_MAX_ROUNDS, choice_count // GAME_LEVEL_SIZE)
             availability_band = next(iter(bands))
             cur.execute('SELECT class FROM users WHERE user_id=%s', (user_id,))
             user_row = cur.fetchone()
@@ -1129,7 +1160,7 @@ def create_test_games_router(
             conn.commit()
             return {
                 "available_count": available_rounds * 5,
-                "options": [count for count in (5, 10, 15, 20, 25) if count <= available_rounds * 5],
+                "options": [count for count in sorted(GAME_QUESTION_COUNTS) if count <= available_rounds * 5],
                 "choice_count": choice_count,
                 "source_choice_count": source_choice_count,
                 "numeric_write_choice_count": numeric_write_choice_count,
@@ -1151,7 +1182,7 @@ def create_test_games_router(
         if request.game_mode not in GAME_MODES:
             raise HTTPException(status_code=400, detail="O'yin turi noto'g'ri")
         if request.question_count not in GAME_QUESTION_COUNTS:
-            raise HTTPException(status_code=400, detail="O'yin savollari 5, 10, 15, 20 yoki 25 ta bo'ladi")
+            raise HTTPException(status_code=400, detail="O'yin savollari soni: 5, 10, 15, 20, 25, 30, 40, 50, 60, 80 yoki 100")
         topic_codes = _clean_topic_codes(request.topic_codes)
         conn = db_factory()
         cur = conn.cursor()
@@ -1233,8 +1264,8 @@ def create_test_games_router(
             random.shuffle(choices)
             rounds = request.question_count // 5
             if len(choices) < request.question_count:
-                available_rounds = min(5, len(choices) // GAME_LEVEL_SIZE)
-                available_count = min(25, available_rounds * 5)
+                available_rounds = min(GAME_MAX_ROUNDS, len(choices) // GAME_LEVEL_SIZE)
+                available_count = max([c for c in GAME_QUESTION_COUNTS if c <= available_rounds * 5] or [0])
                 raise HTTPException(
                     status_code=400,
                     detail=(
