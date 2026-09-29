@@ -1,0 +1,1343 @@
+{
+ "subject": "Rus tili",
+ "lang": "ru",
+ "age": "5-6 yosh",
+ "book_title": "Привет, друг! 5–6 yosh",
+ "prefix": "RU",
+ "units": [
+  {
+   "name": "Oila va do'stlar",
+   "emoji": "👨‍👩‍👧‍👦",
+   "lessons": [
+    {
+     "name": "Это моя семья",
+     "goal": "Bola «Это моя семья / мама / мой папа» iboralari bilan oilasini tanishtiradi",
+     "intro": "Gu-gu! Salom, do'stlarim! Kabutar bugun oilaviy albom olib keldi. Keling, oilamizni ruscha tanishtirishni o'rganamiz! Diqqat: onaga — [ru]моя[/ru], otaga — [ru]мой[/ru] deymiz.",
+     "items": [
+      {
+       "say": "Это моя семья.",
+       "uz": "bu mening oilam",
+       "emoji": "👨‍👩‍👧‍👦",
+       "image": "ru56-u1-moya-semya.png",
+       "image_prompt": "A cute cartoon illustration of a happy family of four in a photo frame, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Это моя мама.",
+       "uz": "bu mening oyim",
+       "emoji": "👩",
+       "image": "ru56-u1-moya-mama.png",
+       "image_prompt": "A cute cartoon illustration of a smiling young mother, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Это мой папа.",
+       "uz": "bu mening dadam",
+       "emoji": "👨",
+       "image": "ru56-u1-moy-papa.png",
+       "image_prompt": "A cute cartoon illustration of a smiling father, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Oilaviy albom",
+       "matn": "Xayoliy albomni oching. Birinchi surat: [ru]Это моя семья.[/ru] Ikkinchisi: [ru]Это моя мама.[/ru] Uchinchisi: [ru]Это мой папа.[/ru] Endi o'zingiz ko'rsatib ayting! Barakalla!",
+       "doska": "📖 Это моя семья.\nЭто моя мама.\nЭто мой папа."
+      }
+     ]
+    },
+    {
+     "name": "Брат и сестра",
+     "goal": "Bola aka-uka, opa-singil, buvi-bobosini ruscha tanishtiradi",
+     "intro": "Gu-gu! Albomda yana kimlar bor ekan? Aka, opa, buvijon, bobojon! Qani, ularni ham tanishtiramiz.",
+     "items": [
+      {
+       "say": "Это мой брат.",
+       "uz": "bu mening akam / ukam",
+       "emoji": "👦",
+       "image": "ru56-u1-moy-brat.png",
+       "image_prompt": "A cute cartoon illustration of a cheerful boy, an older brother, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Это моя сестра.",
+       "uz": "bu mening opam / singlim",
+       "emoji": "👧",
+       "image": "ru56-u1-moya-sestra.png",
+       "image_prompt": "A cute cartoon illustration of a cheerful girl, a sister, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Это моя бабушка.",
+       "uz": "bu mening buvim",
+       "emoji": "👵",
+       "image": "ru56-u1-moya-babushka.png",
+       "image_prompt": "A cute cartoon illustration of a kind smiling grandmother, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Это мой дедушка.",
+       "uz": "bu mening bobom",
+       "emoji": "👴",
+       "image": "ru56-u1-moy-dedushka.png",
+       "image_prompt": "A cute cartoon illustration of a kind smiling grandfather, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "Мой yoki моя?",
+       "matn": "Erkaklar uchun — [ru]мой[/ru]: [ru]мой папа, мой брат, мой дедушка[/ru]. Ayollar uchun — [ru]моя[/ru]: [ru]моя мама, моя сестра, моя бабушка[/ru]. Qani, takrorlang!",
+       "doska": "мой: папа, брат, дедушка\nмоя: мама, сестра, бабушка"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bobongizni qanday tanishtirasiz?",
+       "options": [
+        "👴 Это мой дедушка.",
+        "👵 Это моя бабушка.",
+        "👦 Это мой брат."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ru]Это мой дедушка.[/ru] — bu mening bobom."
+      }
+     ]
+    },
+    {
+     "name": "Мой друг",
+     "goal": "Bola do'stini «Это мой друг / моя подруга» deb tanishtiradi, «Мы дружим» deydi",
+     "intro": "Gu-gu! Kabutarning eng yaqin do'sti — chumchuq! Sizning do'stingiz kim? O'g'il bola do'st — [ru]друг[/ru], qiz bola do'st — [ru]подруга[/ru].",
+     "items": [
+      {
+       "say": "Это мой друг.",
+       "uz": "bu mening do'stim (o'g'il bola)",
+       "emoji": "🧑‍🤝‍🧑",
+       "image": "ru56-u1-moy-drug.png",
+       "image_prompt": "A cute cartoon illustration of two little boys hugging as friends, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Это моя подруга.",
+       "uz": "bu mening dugonam (qiz bola)",
+       "emoji": "👭",
+       "image": "ru56-u1-moya-podruga.png",
+       "image_prompt": "A cute cartoon illustration of two little girls holding hands, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Мы дружим.",
+       "uz": "biz do'stmiz",
+       "emoji": "🤝",
+       "image": "ru56-u1-my-druzhim.png",
+       "image_prompt": "A cute cartoon illustration of a group of children holding hands in a circle, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Do'stlik doirasi",
+       "matn": "Qo'l ushlashib doira bo'lamiz! Aylanib aytamiz: [ru]Мы дружим, мы дружим![/ru] Yoningizdagini ko'rsating: [ru]Это мой друг![/ru] yoki [ru]Это моя подруга![/ru]",
+       "doska": "🤝 Мы дружим!"
+      }
+     ]
+    },
+    {
+     "name": "Давай играть!",
+     "goal": "Bola do'stini o'yinga chaqiradi va minnatdorchilik bildiradi",
+     "intro": "Gu-gu! Tanaffus! Do'stimizni o'yinga qanday chaqiramiz? Ruscha buning ajoyib iborasi bor: [ru]Давай![/ru] — ya'ni «qani, kel!».",
+     "items": [
+      {
+       "say": "Давай играть!",
+       "uz": "keling, o'ynaymiz!",
+       "emoji": "🎲",
+       "image": "ru56-u1-davay-igrat.png",
+       "image_prompt": "A cute cartoon illustration of children playing a board game with a big die, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Давай дружить!",
+       "uz": "keling, do'st bo'lamiz!",
+       "emoji": "🤗",
+       "image": "ru56-u1-davay-druzhit.png",
+       "image_prompt": "A cute cartoon illustration of two children smiling and hugging, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Спасибо, друг!",
+       "uz": "rahmat, do'stim!",
+       "emoji": "🙏",
+       "image": "ru56-u1-spasibo-drug.png",
+       "image_prompt": "A cute cartoon illustration of a child thanking a friend who shared a toy, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Rolli o'yin: Yangi do'st",
+       "matn": "Kabutar yangi bolaga yaqinlashdi: [ru]Привет! Давай дружить![/ru] Bola: [ru]Давай![/ru] Kabutar: [ru]Давай играть![/ru] Endi siz yoningizdagiga ayting!",
+       "doska": "🕊️ Привет! Давай дружить!\n🧒 Давай!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Do'stingiz sizga o'yinchog'ini berdi. Nima deysiz?",
+       "options": [
+        "🙏 Спасибо, друг!",
+        "🎲 Давай играть!",
+        "🤗 Давай дружить!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ru]Спасибо, друг![/ru] — rahmat, do'stim!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Taomlar",
+   "emoji": "🍽️",
+   "lessons": [
+    {
+     "name": "Завтрак",
+     "goal": "Bola nonushta taomlarini ruscha aytadi",
+     "intro": "Gu-gu! Ertalab nonushtada nima yeysiz? Kabutar don yeydi. Siz-chi? Bugun nonushta — [ru]завтрак[/ru] so'zlarini o'rganamiz.",
+     "items": [
+      {
+       "say": "каша",
+       "uz": "bo'tqa",
+       "emoji": "🥣",
+       "image": "ru56-u2-kasha.png",
+       "image_prompt": "A cute cartoon illustration of a bowl of warm porridge with a spoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "хлеб",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "ru56-u2-khleb.png",
+       "image_prompt": "A cute cartoon illustration of a round warm loaf of bread, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "масло",
+       "uz": "sariyog'",
+       "emoji": "🧈",
+       "image": "ru56-u2-maslo.png",
+       "image_prompt": "A cute cartoon illustration of a piece of butter on a plate, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "чай",
+       "uz": "choy",
+       "emoji": "🍵",
+       "image": "ru56-u2-chay.png",
+       "image_prompt": "A cute cartoon illustration of a cup of warm tea, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Nonushta tayyorlaymiz",
+       "matn": "Stolga qo'yamiz: [ru]каша[/ru], [ru]хлеб[/ru], [ru]масло[/ru], [ru]чай[/ru]. Nonga sariyog' surtamiz... Mm! Hammaga: [ru]Приятного аппетита![/ru] — yoqimli ishtaha!",
+       "doska": "🥣 каша 🍞 хлеб\n🧈 масло 🍵 чай"
+      }
+     ]
+    },
+    {
+     "name": "Обед",
+     "goal": "Bola tushlik taomlarini ruscha aytadi",
+     "intro": "Gu-gu! Tush bo'ldi, qorinlar ochdi! Tushlikka nima bor ekan? Qozonni ochamiz...",
+     "items": [
+      {
+       "say": "суп",
+       "uz": "sho'rva",
+       "emoji": "🍲",
+       "image": "ru56-u2-sup.png",
+       "image_prompt": "A cute cartoon illustration of a warm bowl of vegetable soup, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "мясо",
+       "uz": "go'sht",
+       "emoji": "🍖",
+       "image": "ru56-u2-myaso.png",
+       "image_prompt": "A cute cartoon illustration of a piece of cooked meat on a bone, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "рыба",
+       "uz": "baliq",
+       "emoji": "🐟",
+       "image": "ru56-u2-ryba.png",
+       "image_prompt": "A cute cartoon illustration of a cooked fish on a plate, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "рис",
+       "uz": "guruch",
+       "emoji": "🍚",
+       "image": "ru56-u2-ris.png",
+       "image_prompt": "A cute cartoon illustration of a bowl of white rice, soft flat colors, white background, no text, square"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ru]рыба[/ru]?",
+       "options": [
+        "🐟 рыба",
+        "🍖 мясо",
+        "🍚 рис"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ru]Рыба[/ru] — baliq."
+      }
+     ]
+    },
+    {
+     "name": "Сладкое",
+     "goal": "Bola shirinliklar nomini ruscha aytadi",
+     "intro": "Gu-gu! Bugun Kabutarning tug'ilgan kuni! Stolda qanday shirinliklar bor? Ko'z yumib, taxmin qiling!",
+     "items": [
+      {
+       "say": "торт",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "ru56-u2-tort.png",
+       "image_prompt": "A cute cartoon illustration of a birthday cake with candles, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "конфета",
+       "uz": "konfet",
+       "emoji": "🍬",
+       "image": "ru56-u2-konfeta.png",
+       "image_prompt": "A cute cartoon illustration of a wrapped candy, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "мороженое",
+       "uz": "muzqaymoq",
+       "emoji": "🍦",
+       "image": "ru56-u2-morozhenoe.png",
+       "image_prompt": "A cute cartoon illustration of a vanilla ice cream cone, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Tug'ilgan kun",
+       "matn": "Shamlarni sanaymiz: [ru]один, два, три, четыре, пять![/ru] Puflang: puf-f! Endi tort kesamiz: [ru]торт![/ru] Kimga [ru]мороженое[/ru]? Kimga [ru]конфета[/ru]? Hammaga!",
+       "doska": "🎂 торт\n🍦 мороженое\n🍬 конфета"
+      }
+     ]
+    },
+    {
+     "name": "Я хочу есть",
+     "goal": "Bola «Я хочу есть / пить» deb istagini aytadi va «Приятного аппетита!» deydi",
+     "intro": "Gu-gu! Qorningiz ochsa, oyingizga ruscha qanday aytasiz? Chanqasangiz-chi? Bugun kerakli iboralarni o'rganamiz!",
+     "items": [
+      {
+       "say": "Я хочу есть.",
+       "uz": "men ovqat yegim keldi",
+       "emoji": "🍽️",
+       "image": "ru56-u2-khochu-est.png",
+       "image_prompt": "A cute cartoon illustration of a hungry child holding a spoon and fork at an empty plate, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я хочу пить.",
+       "uz": "men suv ichgim keldi",
+       "emoji": "🥤",
+       "image": "ru56-u2-khochu-pit.png",
+       "image_prompt": "A cute cartoon illustration of a thirsty child holding a glass, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Приятного аппетита!",
+       "uz": "yoqimli ishtaha!",
+       "emoji": "😋",
+       "image": "ru56-u2-priyatnogo-appetita.png",
+       "image_prompt": "A cute cartoon illustration of a family smiling at a dinner table, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Rolli o'yin: Oshxona",
+       "matn": "Siz — oshpaz, men — mehmon. Men: [ru]Я хочу есть.[/ru] Siz sho'rva berasiz: [ru]Суп, пожалуйста![/ru] Men: [ru]Спасибо![/ru] Siz: [ru]Приятного аппетита![/ru] Men: [ru]Я хочу пить.[/ru] Siz choy berasiz!",
+       "doska": "🍽️ Я хочу есть.\n🥤 Я хочу пить.\n😋 Приятного аппетита!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Chanqadingiz. Nima deysiz?",
+       "options": [
+        "🥤 Я хочу пить.",
+        "🍽️ Я хочу есть.",
+        "😋 Приятного аппетита!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ru]Я хочу пить.[/ru] — men suv ichgim keldi."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uy",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Мой дом",
+     "goal": "Bola дом, дверь, окно so'zlarini aytadi",
+     "intro": "Gu-gu! Kabutarning uyasi daraxtda. Sizning uyingiz qanday? Uyning eshigi, derazasi bor. Ruscha aytamiz!",
+     "items": [
+      {
+       "say": "дом",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "ru56-u3-dom.png",
+       "image_prompt": "A cute cartoon illustration of a cozy little house with a red roof, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "дверь",
+       "uz": "eshik",
+       "emoji": "🚪",
+       "image": "ru56-u3-dver.png",
+       "image_prompt": "A cute cartoon illustration of a wooden front door, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "окно",
+       "uz": "deraza",
+       "emoji": "🪟",
+       "image": "ru56-u3-okno.png",
+       "image_prompt": "A cute cartoon illustration of a window with curtains, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Uy quramiz",
+       "matn": "Qo'llaringiz bilan tom yasang: [ru]дом![/ru] Eshikni oching: g'ichir! [ru]Дверь![/ru] Derazadan qarang: [ru]окно![/ru] Uy tayyor!",
+       "doska": "🏠 дом\n🚪 дверь\n🪟 окно"
+      }
+     ]
+    },
+    {
+     "name": "Комнаты",
+     "goal": "Bola кухня, спальня, ванная so'zlarini aytadi",
+     "intro": "Gu-gu! Uyga kirdik. Qayerda ovqat pishiramiz? Qayerda uxlaymiz? Qayerda cho'milamiz? Xonalarni aylanamiz!",
+     "items": [
+      {
+       "say": "кухня",
+       "uz": "oshxona",
+       "emoji": "🍳",
+       "image": "ru56-u3-kukhnya.png",
+       "image_prompt": "A cute cartoon illustration of a cozy kitchen with a stove, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "спальня",
+       "uz": "yotoqxona",
+       "emoji": "🛏️",
+       "image": "ru56-u3-spalnya.png",
+       "image_prompt": "A cute cartoon illustration of a bedroom with a cozy bed, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "ванная",
+       "uz": "vannaxona",
+       "emoji": "🛁",
+       "image": "ru56-u3-vannaya.png",
+       "image_prompt": "A cute cartoon illustration of a bathroom with a bathtub full of bubbles, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "Qayerda?",
+       "matn": "Ovqat pishiramiz — [ru]кухня[/ru]. Uxlaymiz — [ru]спальня[/ru]. Cho'milamiz — [ru]ванная[/ru]. Ko'zni yumib, har xonaga «kirib» ko'ring!",
+       "doska": "🍳 кухня\n🛏️ спальня\n🛁 ванная"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ спальня",
+        "🍳 кухня",
+        "🛁 ванная"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yotoqxonada uxlaymiz — [ru]спальня[/ru]."
+      }
+     ]
+    },
+    {
+     "name": "Мебель",
+     "goal": "Bola стул, диван, шкаф, лампа so'zlarini aytadi",
+     "intro": "Gu-gu! Xonada nimalar bor? O'tiradigan, yotadigan, kiyim saqlaydigan narsalar! Ular kim ekan?",
+     "items": [
+      {
+       "say": "стул",
+       "uz": "stul",
+       "emoji": "🪑",
+       "image": "ru56-u3-stul.png",
+       "image_prompt": "A cute cartoon illustration of a small wooden chair, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "диван",
+       "uz": "divan",
+       "emoji": "🛋️",
+       "image": "ru56-u3-divan.png",
+       "image_prompt": "A cute cartoon illustration of a soft cozy sofa, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "шкаф",
+       "uz": "shkaf",
+       "emoji": "🗄️",
+       "image": "ru56-u3-shkaf.png",
+       "image_prompt": "A cute cartoon illustration of a wooden wardrobe, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "лампа",
+       "uz": "chiroq",
+       "emoji": "💡",
+       "image": "ru56-u3-lampa.png",
+       "image_prompt": "A cute cartoon illustration of a glowing desk lamp, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "O'tir, tur!",
+       "matn": "[ru]Стул[/ru] desam — o'tiring! [ru]Диван[/ru] desam — cho'zilgandek qiling! [ru]Лампа[/ru] desam — qo'llaringizni yoying, nur sochamiz! [ru]Стул! Лампа! Диван![/ru]",
+       "doska": "🪑 стул\n🛋️ диван\n💡 лампа"
+      }
+     ]
+    },
+    {
+     "name": "Часы и телефон",
+     "goal": "Bola телевизор, телефон, часы so'zlarini aytadi",
+     "intro": "Gu-gu! Uyda kim «tik-tak» deydi? Kim «jiring-jiring» deydi? Topishmoq! Javobini ruscha aytamiz.",
+     "items": [
+      {
+       "say": "часы",
+       "uz": "soat",
+       "emoji": "⏰",
+       "image": "ru56-u3-chasy.png",
+       "image_prompt": "A cute cartoon illustration of an alarm clock, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "телефон",
+       "uz": "telefon",
+       "emoji": "📱",
+       "image": "ru56-u3-telefon.png",
+       "image_prompt": "A cute cartoon illustration of a smartphone ringing, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "телевизор",
+       "uz": "televizor",
+       "emoji": "📺",
+       "image": "ru56-u3-televizor.png",
+       "image_prompt": "A cute cartoon illustration of a television showing cartoons, soft flat colors, white background, no text, square"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim «tik-tak» deydi?",
+       "options": [
+        "⏰ часы",
+        "📱 телефон",
+        "📺 телевизор"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ru]Часы[/ru] — soat, u tik-tak deydi."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo va fasllar",
+   "emoji": "🌦️",
+   "lessons": [
+    {
+     "name": "Сегодня солнечно",
+     "goal": "Bola «Сегодня солнечно / Идёт дождь / Сегодня ветрено» deb ob-havoni aytadi",
+     "intro": "Gu-gu! Derazaga qarang! Bugun havo qanday? Kabutar har kuni ertalab ob-havoni aytadi. Bugun siz ham o'rganasiz!",
+     "items": [
+      {
+       "say": "Сегодня солнечно.",
+       "uz": "bugun quyoshli",
+       "emoji": "☀️",
+       "image": "ru56-u4-solnechno.png",
+       "image_prompt": "A cute cartoon illustration of a bright smiling sun over a meadow, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Идёт дождь.",
+       "uz": "yomg'ir yog'yapti",
+       "emoji": "🌧️",
+       "image": "ru56-u4-idyot-dozhd.png",
+       "image_prompt": "A cute cartoon illustration of a rain cloud with raindrops, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Сегодня ветрено.",
+       "uz": "bugun shamol esyapti",
+       "emoji": "💨",
+       "image": "ru56-u4-vetreno.png",
+       "image_prompt": "A cute cartoon illustration of trees bending in the wind and a flying kite, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Ob-havo o'yini",
+       "matn": "Quyosh — qo'llarni yoyib jilmaying: [ru]Сегодня солнечно![/ru] Yomg'ir — barmoqlar bilan tomchi: [ru]Идёт дождь![/ru] Shamol — chayqaling: [ru]Сегодня ветрено![/ru]",
+       "doska": "☀️ Сегодня солнечно.\n🌧️ Идёт дождь.\n💨 Сегодня ветрено."
+      }
+     ]
+    },
+    {
+     "name": "Холодно и тепло",
+     "goal": "Bola «холодно / тепло / Идёт снег» iboralarini aytadi",
+     "intro": "Gu-gu! Qishda qanday bo'ladi? Br-r-r! Bahorda-chi? Bugun issiq-sovuqni ruscha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "Сегодня холодно.",
+       "uz": "bugun sovuq",
+       "emoji": "🥶",
+       "image": "ru56-u4-kholodno.png",
+       "image_prompt": "A cute cartoon illustration of a shivering child in a winter hat, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Сегодня тепло.",
+       "uz": "bugun iliq",
+       "emoji": "🌤️",
+       "image": "ru56-u4-teplo.png",
+       "image_prompt": "A cute cartoon illustration of a child in a t-shirt under a warm sun with light clouds, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Идёт снег.",
+       "uz": "qor yog'yapti",
+       "emoji": "❄️",
+       "image": "ru56-u4-idyot-sneg.png",
+       "image_prompt": "A cute cartoon illustration of snowflakes falling on a happy child, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Br-r yoki uf!",
+       "matn": "[ru]Холодно[/ru] desam — titrang: br-r-r! [ru]Тепло[/ru] desam — jilmayib quyoshga qarang! [ru]Идёт снег[/ru] desam — qor parchalarini tuting! Boshladik!",
+       "doska": "🥶 холодно\n🌤️ тепло\n❄️ Идёт снег."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tashqarida qor yog'yapti. Qaysi ibora to'g'ri?",
+       "options": [
+        "❄️ Идёт снег.",
+        "☀️ Сегодня солнечно.",
+        "🌤️ Сегодня тепло."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ru]Идёт снег.[/ru] — qor yog'yapti."
+      }
+     ]
+    },
+    {
+     "name": "Времена года",
+     "goal": "Bola to'rt faslni ruscha aytadi",
+     "intro": "Gu-gu! Yilda to'rtta fasl bor. Qor o'ynaymiz, gul teramiz, cho'milamiz, barg yig'amiz! Ular ruscha qanday ataladi?",
+     "items": [
+      {
+       "say": "зима",
+       "uz": "qish",
+       "emoji": "⛄",
+       "image": "ru56-u4-zima.png",
+       "image_prompt": "A cute cartoon illustration of a snowman in a winter park, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "весна",
+       "uz": "bahor",
+       "emoji": "🌷",
+       "image": "ru56-u4-vesna.png",
+       "image_prompt": "A cute cartoon illustration of spring flowers blooming, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "лето",
+       "uz": "yoz",
+       "emoji": "🏖️",
+       "image": "ru56-u4-leto.png",
+       "image_prompt": "A cute cartoon illustration of a sunny beach in summer, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "осень",
+       "uz": "kuz",
+       "emoji": "🍂",
+       "image": "ru56-u4-osen.png",
+       "image_prompt": "A cute cartoon illustration of falling autumn leaves, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Fasllar qo'shig'i",
+       "matn": "Aylanib kuylaymiz: [ru]Зима, весна, лето, осень![/ru] Qishda — qorbobo yasaymiz. Bahorda — gul hidlaymiz. Yozda — suzamiz. Kuzda — barg yig'amiz!",
+       "doska": "⛄ зима 🌷 весна\n🏖️ лето 🍂 осень"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi faslda qor yog'adi?",
+       "options": [
+        "⛄ зима",
+        "🏖️ лето",
+        "🌷 весна"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qishda qor yog'adi — [ru]зима[/ru]."
+      }
+     ]
+    },
+    {
+     "name": "Какая погода?",
+     "goal": "Bola «Какая сегодня погода?» deb so'raydi, радуга va облако so'zlarini aytadi",
+     "intro": "Gu-gu! Yomg'irdan keyin osmonda nima paydo bo'ladi? Rang-barang ko'prik! Bugun ob-havo haqida so'rashni ham o'rganamiz.",
+     "items": [
+      {
+       "say": "Какая сегодня погода?",
+       "uz": "bugun havo qanday?",
+       "emoji": "🌦️",
+       "image": "ru56-u4-kakaya-pogoda.png",
+       "image_prompt": "A cute cartoon illustration of a pigeon looking out of a window at the sky, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "радуга",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "ru56-u4-raduga.png",
+       "image_prompt": "A cute cartoon illustration of a bright rainbow after rain, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "облако",
+       "uz": "bulut",
+       "emoji": "☁️",
+       "image": "ru56-u4-oblako.png",
+       "image_prompt": "A cute cartoon illustration of a fluffy white cloud, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Ob-havo diktori",
+       "matn": "Siz — televizordagi ob-havo boshlovchisi! Men so'rayman: [ru]Какая сегодня погода?[/ru] Siz derazaga qarab javob bering: [ru]Сегодня солнечно![/ru] yoki [ru]Идёт дождь![/ru] Qoyil!",
+       "doska": "🌦️ Какая сегодня погода?\n☀️ Сегодня солнечно!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Katta va kichik",
+   "emoji": "🐘",
+   "lessons": [
+    {
+     "name": "Большой и маленький",
+     "goal": "Bola большой, маленький, высокий so'zlarini aytadi",
+     "intro": "Gu-gu! Fil katta, sichqoncha kichkina. Jirafa esa juda baland! Bugun narsalarni ruscha tasvirlashni o'rganamiz.",
+     "items": [
+      {
+       "say": "большой",
+       "uz": "katta",
+       "emoji": "🐘",
+       "image": "ru56-u5-bolshoy.png",
+       "image_prompt": "A cute cartoon illustration of a big elephant next to a tiny mouse, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "маленький",
+       "uz": "kichkina",
+       "emoji": "🐭",
+       "image": "ru56-u5-malenkiy.png",
+       "image_prompt": "A cute cartoon illustration of a tiny cute mouse, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "высокий",
+       "uz": "baland",
+       "emoji": "🦒",
+       "image": "ru56-u5-vysokiy.png",
+       "image_prompt": "A cute cartoon illustration of a very tall giraffe, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Katta-kichik",
+       "matn": "[ru]Большой[/ru] desam — qo'llarni keng yoyib, katta bo'ling! [ru]Маленький[/ru] desam — cho'nqayib, kichkina bo'ling! [ru]Высокий[/ru] desam — oyoq uchida cho'ziling!",
+       "doska": "🐘 большой\n🐭 маленький\n🦒 высокий"
+      }
+     ]
+    },
+    {
+     "name": "Весёлый и грустный",
+     "goal": "Bola весёлый, грустный, добрый so'zlari bilan kayfiyatni aytadi",
+     "intro": "Gu-gu! Kabutar bugun juda xursand! Siz-chi? Kayfiyatingiz qanday? Keling, his-tuyg'ularni ruscha aytamiz.",
+     "items": [
+      {
+       "say": "весёлый",
+       "uz": "xursand, quvnoq",
+       "emoji": "😄",
+       "image": "ru56-u5-vesyoliy.png",
+       "image_prompt": "A cute cartoon illustration of a laughing happy child, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "грустный",
+       "uz": "xafa",
+       "emoji": "😢",
+       "image": "ru56-u5-grustniy.png",
+       "image_prompt": "A cute cartoon illustration of a sad child with a small tear, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "добрый",
+       "uz": "mehribon",
+       "emoji": "🥰",
+       "image": "ru56-u5-dobriy.png",
+       "image_prompt": "A cute cartoon illustration of a kind child sharing a toy, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Yuz ifodalari",
+       "matn": "Yuzingizni o'zgartiring! [ru]Весёлый[/ru] — kuling! [ru]Грустный[/ru] — xafa bo'ling. Endi yana [ru]весёлый![/ru] Xafa bo'lmaymiz! Do'stingizni quchoqlang — siz [ru]добрый![/ru]",
+       "doska": "😄 весёлый\n😢 грустный\n🥰 добрый"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola yig'layapti. U qanday?",
+       "options": [
+        "😢 грустный",
+        "😄 весёлый",
+        "🥰 добрый"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ru]Грустный[/ru] — xafa. Keling, uni xursand qilamiz!"
+      }
+     ]
+    },
+    {
+     "name": "Горячий и холодный",
+     "goal": "Bola горячий, холодный, вкусный so'zlarini aytadi",
+     "intro": "Gu-gu! Choy issiq, muzqaymoq sovuq! Ehtiyot bo'ling! Bugun ta'm va haroratni ruscha aytamiz.",
+     "items": [
+      {
+       "say": "горячий",
+       "uz": "issiq (qaynoq)",
+       "emoji": "♨️",
+       "image": "ru56-u5-goryachiy.png",
+       "image_prompt": "A cute cartoon illustration of a steaming hot cup of tea, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "холодный",
+       "uz": "sovuq",
+       "emoji": "🧊",
+       "image": "ru56-u5-kholodniy.png",
+       "image_prompt": "A cute cartoon illustration of cold ice cubes, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "вкусный",
+       "uz": "mazali",
+       "emoji": "🤤",
+       "image": "ru56-u5-vkusniy.png",
+       "image_prompt": "A cute cartoon illustration of a child happily tasting a delicious pie, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "Qanday?",
+       "matn": "[ru]Чай горячий.[/ru] — choy issiq, puflab ichamiz: fu-fu! [ru]Мороженое холодное.[/ru] — muzqaymoq sovuq. [ru]Торт вкусный![/ru] — tort mazali!",
+       "doska": "♨️ Чай горячий.\n🧊 Мороженое холодное.\n🤤 Торт вкусный!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Я люблю / не люблю",
+   "emoji": "❤️",
+   "lessons": [
+    {
+     "name": "Я люблю яблоки",
+     "goal": "Bola «Я люблю …» iborasi bilan yoqtirgan narsasini aytadi",
+     "intro": "Gu-gu! Kabutar donni juda yaxshi ko'radi! Siz nimani yaxshi ko'rasiz? Ruscha «men yaxshi ko'raman» — [ru]Я люблю[/ru].",
+     "items": [
+      {
+       "say": "Я люблю яблоки.",
+       "uz": "men olmani yaxshi ko'raman",
+       "emoji": "❤️🍎",
+       "image": "ru56-u6-lyublyu-yabloki.png",
+       "image_prompt": "A cute cartoon illustration of a child hugging a basket of red apples, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я люблю мороженое.",
+       "uz": "men muzqaymoqni yaxshi ko'raman",
+       "emoji": "❤️🍦",
+       "image": "ru56-u6-lyublyu-morozhenoe.png",
+       "image_prompt": "A cute cartoon illustration of a happy child licking an ice cream cone, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я люблю играть.",
+       "uz": "men o'ynashni yaxshi ko'raman",
+       "emoji": "❤️🧸",
+       "image": "ru56-u6-lyublyu-igrat.png",
+       "image_prompt": "A cute cartoon illustration of a child happily playing with toys, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Yurakcha o'yini",
+       "matn": "Qo'llaringiz bilan yurak yasang! Men aytaman, siz takrorlaysiz: [ru]Я люблю яблоки![/ru] ... [ru]Я люблю играть![/ru] ... Endi o'zingiz ayting: nimani yaxshi ko'rasiz?",
+       "doska": "❤️ Я люблю…"
+      }
+     ]
+    },
+    {
+     "name": "Я не люблю",
+     "goal": "Bola «Я не люблю …» iborasi bilan yoqtirmagan narsasini aytadi",
+     "intro": "Gu-gu! Kabutar yomg'irni yoqtirmaydi — patlari ho'l bo'ladi! Siz nimani yoqtirmaysiz? Ruscha — [ru]Я не люблю[/ru].",
+     "items": [
+      {
+       "say": "Я не люблю лук.",
+       "uz": "men piyozni yoqtirmayman",
+       "emoji": "🙅🧅",
+       "image": "ru56-u6-ne-lyublyu-luk.png",
+       "image_prompt": "A cute cartoon illustration of a child making a funny face at an onion, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я не люблю дождь.",
+       "uz": "men yomg'irni yoqtirmayman",
+       "emoji": "🙅🌧️",
+       "image": "ru56-u6-ne-lyublyu-dozhd.png",
+       "image_prompt": "A cute cartoon illustration of a grumpy wet pigeon under the rain, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я не люблю холод.",
+       "uz": "men sovuqni yoqtirmayman",
+       "emoji": "🙅❄️",
+       "image": "ru56-u6-ne-lyublyu-kholod.png",
+       "image_prompt": "A cute cartoon illustration of a child shivering in the snow, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Yoqadi — yoqmaydi",
+       "matn": "Men narsa aytaman. Yoqsa — qarsak chalib [ru]Я люблю![/ru] deysiz. Yoqmasa — boshni chayqab [ru]Я не люблю![/ru] deysiz. Muzqaymoq! ... Piyoz! ... Tort! ...",
+       "doska": "👏 Я люблю!\n🙅 Я не люблю!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kabutar yomg'irni yoqtirmaydi. U nima deydi?",
+       "options": [
+        "🙅🌧️ Я не люблю дождь.",
+        "❤️🍎 Я люблю яблоки.",
+        "🙅🧅 Я не люблю лук."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ru]Я не люблю дождь.[/ru]"
+      }
+     ]
+    },
+    {
+     "name": "Ты любишь…?",
+     "goal": "Bola «Ты любишь …?» deb so'raydi va «Да, люблю / Нет, не люблю» deb javob beradi",
+     "intro": "Gu-gu! Do'stingiz nimani yaxshi ko'radi? Ruscha so'raymiz: [ru]Ты любишь?[/ru] Javobi — ha yoki yo'q!",
+     "items": [
+      {
+       "say": "Ты любишь торт?",
+       "uz": "sen tortni yaxshi ko'rasanmi?",
+       "emoji": "❓🎂",
+       "image": "ru56-u6-ty-lyubish-tort.png",
+       "image_prompt": "A cute cartoon illustration of a child offering a slice of cake to a friend, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Да, люблю!",
+       "uz": "ha, yaxshi ko'raman!",
+       "emoji": "👍",
+       "image": "ru56-u6-da-lyublyu.png",
+       "image_prompt": "A cute cartoon illustration of a smiling child nodding with a thumbs up, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Нет, не люблю.",
+       "uz": "yo'q, yoqtirmayman",
+       "emoji": "👎",
+       "image": "ru56-u6-net-ne-lyublyu.png",
+       "image_prompt": "A cute cartoon illustration of a child shaking head politely with a thumbs down, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Dialog: Savol-javob",
+       "matn": "Kabutar so'raydi: [ru]Ты любишь торт?[/ru] Siz: [ru]Да, люблю![/ru] Kabutar: [ru]Ты любишь лук?[/ru] Siz: [ru]Нет, не люблю.[/ru] Endi siz do'stingizdan so'rang!",
+       "doska": "❓ Ты любишь торт?\n👍 Да, люблю!\n👎 Нет, не люблю."
+      }
+     ]
+    },
+    {
+     "name": "Я люблю лето",
+     "goal": "Bola sevimli fasli, mashg'uloti va yaqinlari haqida «Я люблю …» deydi",
+     "intro": "Gu-gu! Yaxshi ko'radigan narsalarimiz juda ko'p: fasllar, o'yinlar va, albatta, oyijonimiz! Kabutar o'zinikini aytadi, siz ham ayting!",
+     "items": [
+      {
+       "say": "Я люблю лето.",
+       "uz": "men yozni yaxshi ko'raman",
+       "emoji": "❤️🏖️",
+       "image": "ru56-u6-lyublyu-leto.png",
+       "image_prompt": "A cute cartoon illustration of a happy child on a summer beach, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я люблю рисовать.",
+       "uz": "men rasm chizishni yaxshi ko'raman",
+       "emoji": "❤️🎨",
+       "image": "ru56-u6-lyublyu-risovat.png",
+       "image_prompt": "A cute cartoon illustration of a child painting a colorful picture, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я люблю маму.",
+       "uz": "men oyimni yaxshi ko'raman",
+       "emoji": "❤️👩",
+       "image": "ru56-u6-lyublyu-mamu.png",
+       "image_prompt": "A cute cartoon illustration of a child hugging their mother, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "Mening yuragim",
+       "matn": "Kabutar aytadi: [ru]Я люблю лето. Я люблю зёрнышки. Я люблю маму![/ru] Endi siz uchta gap ayting: [ru]Я люблю…[/ru] Juda chiroyli!",
+       "doska": "❤️ Я люблю лето.\n❤️ Я люблю рисовать.\n❤️ Я люблю маму."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "У меня есть",
+   "emoji": "🎒",
+   "lessons": [
+    {
+     "name": "У меня есть мяч",
+     "goal": "Bola «У меня есть …» iborasi bilan o'yinchoqlarini aytadi",
+     "intro": "Gu-gu! Kabutarning bitta pati bor, sizda-chi? Nima bor? Ruscha «menda bor» — [ru]У меня есть[/ru]. O'yinchoqlaringizni aytamiz!",
+     "items": [
+      {
+       "say": "У меня есть мяч.",
+       "uz": "mening to'pim bor",
+       "emoji": "⚽",
+       "image": "ru56-u7-est-myach.png",
+       "image_prompt": "A cute cartoon illustration of a child holding a colorful ball, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "У меня есть кукла.",
+       "uz": "mening qo'g'irchog'im bor",
+       "emoji": "🪆",
+       "image": "ru56-u7-est-kukla.png",
+       "image_prompt": "A cute cartoon illustration of a girl holding a doll, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "У меня есть машина.",
+       "uz": "mening mashinam bor",
+       "emoji": "🚗",
+       "image": "ru56-u7-est-mashina.png",
+       "image_prompt": "A cute cartoon illustration of a boy holding a toy car, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "O'yinchoq ko'rgazmasi",
+       "matn": "Sevimli o'yinchog'ingizni ko'rsating va ayting: [ru]У меня есть мяч![/ru] yoki [ru]У меня есть кукла![/ru] Kabutar ham ko'rsatadi: [ru]У меня есть пёрышко![/ru] — pat!",
+       "doska": "🎒 У меня есть…"
+      }
+     ]
+    },
+    {
+     "name": "У меня есть кошка",
+     "goal": "Bola «У меня есть …» bilan uy hayvoni va oila a'zolarini aytadi",
+     "intro": "Gu-gu! Uyingizda mushuk yoki kuchukcha bormi? Aka-ukangiz-chi? Keling, ruscha aytib beramiz!",
+     "items": [
+      {
+       "say": "У меня есть кошка.",
+       "uz": "mening mushugim bor",
+       "emoji": "🐱",
+       "image": "ru56-u7-est-koshka.png",
+       "image_prompt": "A cute cartoon illustration of a child hugging a grey kitten, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "У меня есть собака.",
+       "uz": "mening kuchugim bor",
+       "emoji": "🐶",
+       "image": "ru56-u7-est-sobaka.png",
+       "image_prompt": "A cute cartoon illustration of a child playing with a puppy, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "У меня есть брат.",
+       "uz": "mening akam (ukam) bor",
+       "emoji": "👬",
+       "image": "ru56-u7-est-brat.png",
+       "image_prompt": "A cute cartoon illustration of two brothers standing together, soft flat colors, white background, no text, square"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Uyda kuchukchangiz bor. Nima deysiz?",
+       "options": [
+        "🐶 У меня есть собака.",
+        "🐱 У меня есть кошка.",
+        "👬 У меня есть брат."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ru]У меня есть собака.[/ru]"
+      }
+     ]
+    },
+    {
+     "name": "У тебя есть?",
+     "goal": "Bola «У тебя есть …?» deb so'raydi va «Да, есть / Нет» deb javob beradi",
+     "intro": "Gu-gu! Kabutar do'stidan so'ramoqchi: senda to'p bormi? Ruscha qanday so'raymiz? Bugun o'rganamiz!",
+     "items": [
+      {
+       "say": "У тебя есть мяч?",
+       "uz": "sening to'ping bormi?",
+       "emoji": "❓⚽",
+       "image": "ru56-u7-u-tebya-est.png",
+       "image_prompt": "A cute cartoon illustration of a child asking a friend about a ball, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Да, есть!",
+       "uz": "ha, bor!",
+       "emoji": "✔️",
+       "image": "ru56-u7-da-est.png",
+       "image_prompt": "A cute cartoon illustration of a child happily showing a ball, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Нет, у меня нет.",
+       "uz": "yo'q, menda yo'q",
+       "emoji": "✖️",
+       "image": "ru56-u7-net-u-menya-net.png",
+       "image_prompt": "A cute cartoon illustration of a child showing empty hands with a shrug, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Dialog: Senda bormi?",
+       "matn": "Men so'rayman: [ru]У тебя есть мяч?[/ru] Siz: [ru]Да, есть![/ru] [ru]У тебя есть слон?[/ru] Siz kulib: [ru]Нет, у меня нет.[/ru] Endi do'stingizdan so'rang!",
+       "doska": "❓ У тебя есть мяч?\n✔️ Да, есть!\n✖️ Нет, у меня нет."
+      }
+     ]
+    },
+    {
+     "name": "Сколько у тебя?",
+     "goal": "Bola «У меня два яблока / три карандаша / пять пальцев» deb sanab aytadi",
+     "intro": "Gu-gu! Kabutar sanashni yaxshi ko'radi! Menda ikkita qanot bor. Sizda nechta barmoq bor? Sanab, ruscha aytamiz!",
+     "items": [
+      {
+       "say": "У меня два яблока.",
+       "uz": "menda ikkita olma bor",
+       "emoji": "🍎🍎",
+       "image": "ru56-u7-dva-yabloka.png",
+       "image_prompt": "A cute cartoon illustration of two red apples in a child's hands, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "У меня три карандаша.",
+       "uz": "menda uchta qalam bor",
+       "emoji": "✏️✏️✏️",
+       "image": "ru56-u7-tri-karandasha.png",
+       "image_prompt": "A cute cartoon illustration of three colorful pencils, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "У меня пять пальцев.",
+       "uz": "menda beshta barmoq bor",
+       "emoji": "🖐️",
+       "image": "ru56-u7-pyat-paltsev.png",
+       "image_prompt": "A cute cartoon illustration of an open child's hand with five fingers, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Sanab ko'rsat",
+       "matn": "Qalamlaringizni sanang: [ru]один, два, три![/ru] Ayting: [ru]У меня три карандаша.[/ru] Barmoqlarni oching: [ru]У меня пять пальцев![/ru] Qoyil!",
+       "doska": "✏️✏️✏️ три карандаша\n🖐️ пять пальцев"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Savatda 🍎🍎 bor. Qaysi gap to'g'ri?",
+       "options": [
+        "🍎🍎 У меня два яблока.",
+        "✏️✏️✏️ У меня три карандаша.",
+        "🖐️ У меня пять пальцев."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ru]У меня два яблока.[/ru] — ikkita olma."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Я умею",
+   "emoji": "💪",
+   "lessons": [
+    {
+     "name": "Я умею бегать",
+     "goal": "Bola «Я умею бегать / прыгать / плавать» deb nimani uddalashini aytadi",
+     "intro": "Gu-gu! Kabutar ucha oladi! Siz nima qila olasiz? Ruscha «men qila olaman» — [ru]Я умею[/ru]. O'rningizdan turing, harakat qilamiz!",
+     "items": [
+      {
+       "say": "Я умею бегать.",
+       "uz": "men yugura olaman",
+       "emoji": "🏃",
+       "image": "ru56-u8-umeyu-begat.png",
+       "image_prompt": "A cute cartoon illustration of a child running happily, soft flat colors, white background, no text, square",
+       "action": "Joyda yuguring!"
+      },
+      {
+       "say": "Я умею прыгать.",
+       "uz": "men sakray olaman",
+       "emoji": "🤸",
+       "image": "ru56-u8-umeyu-prygat.png",
+       "image_prompt": "A cute cartoon illustration of a child jumping high with joy, soft flat colors, white background, no text, square",
+       "action": "Sakrang!"
+      },
+      {
+       "say": "Я умею плавать.",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "ru56-u8-umeyu-plavat.png",
+       "image_prompt": "A cute cartoon illustration of a child swimming in a pool, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringiz bilan suzing!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Harakatli o'yin",
+       "matn": "Men aytaman, siz bajarasiz! [ru]Я умею бегать![/ru] — yuguring! [ru]Я умею прыгать![/ru] — sakrang! [ru]Я умею плавать![/ru] — suzing! Juda zo'r!",
+       "doska": "🏃 бегать\n🤸 прыгать\n🏊 плавать"
+      }
+     ]
+    },
+    {
+     "name": "Я умею петь",
+     "goal": "Bola «Я умею петь / танцевать / рисовать» deb qobiliyatini aytadi",
+     "intro": "Gu-gu! Bugun bog'chada konsert! Kim qo'shiq aytadi? Kim raqs tushadi? Kim rasm chizadi? Ruscha aytamiz!",
+     "items": [
+      {
+       "say": "Я умею петь.",
+       "uz": "men qo'shiq ayta olaman",
+       "emoji": "🎤",
+       "image": "ru56-u8-umeyu-pet.png",
+       "image_prompt": "A cute cartoon illustration of a child singing into a toy microphone, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я умею танцевать.",
+       "uz": "men raqs tusha olaman",
+       "emoji": "💃",
+       "image": "ru56-u8-umeyu-tantsevat.png",
+       "image_prompt": "A cute cartoon illustration of a child dancing happily, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я умею рисовать.",
+       "uz": "men rasm chiza olaman",
+       "emoji": "🖍️",
+       "image": "ru56-u8-umeyu-risovat.png",
+       "image_prompt": "A cute cartoon illustration of a child drawing with crayons, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Konsert",
+       "matn": "Mikrofonni oling: [ru]Я умею петь![/ru] La-la-la! Endi aylanib raqs tushing: [ru]Я умею танцевать![/ru] Havoda quyosh chizing: [ru]Я умею рисовать![/ru] Olqishlar!",
+       "doska": "🎤 петь\n💃 танцевать\n🖍️ рисовать"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qizcha raqs tushyapti. U nima deydi?",
+       "options": [
+        "💃 Я умею танцевать.",
+        "🎤 Я умею петь.",
+        "🏊 Я умею плавать."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ru]Я умею танцевать.[/ru] — men raqs tusha olaman."
+      }
+     ]
+    },
+    {
+     "name": "Я умею считать",
+     "goal": "Bola «Я умею считать / одеваться / помогать» deb aytadi",
+     "intro": "Gu-gu! Siz endi katta bo'lib qoldingiz! O'zingiz kiyinasiz, sanaysiz, oyijonga yordam berasiz. Buni ruscha aytamiz!",
+     "items": [
+      {
+       "say": "Я умею считать.",
+       "uz": "men sanay olaman",
+       "emoji": "🔢",
+       "image": "ru56-u8-umeyu-schitat.png",
+       "image_prompt": "A cute cartoon illustration of a child counting colorful blocks, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я умею одеваться.",
+       "uz": "men o'zim kiyina olaman",
+       "emoji": "👕",
+       "image": "ru56-u8-umeyu-odevatsya.png",
+       "image_prompt": "A cute cartoon illustration of a child putting on a t-shirt by themselves, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Я умею помогать.",
+       "uz": "men yordam bera olaman",
+       "emoji": "🧹",
+       "image": "ru56-u8-umeyu-pomogat.png",
+       "image_prompt": "A cute cartoon illustration of a child helping mom sweep the floor, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "Men kattaman!",
+       "matn": "Sanaymiz: [ru]один, два, три, четыре, пять![/ru] Ha, [ru]Я умею считать![/ru] Kiyimimni o'zim kiyaman: [ru]Я умею одеваться![/ru] Oyijonga yordam beraman: [ru]Я умею помогать![/ru]",
+       "doska": "🔢 считать\n👕 одеваться\n🧹 помогать"
+      }
+     ]
+    },
+    {
+     "name": "Смотри, я умею!",
+     "goal": "Bola «Смотри!», «Молодец!», «Давай вместе!» iboralarini ishlatadi",
+     "intro": "Gu-gu! Kabutar yangi narsa o'rgandi va do'stiga ko'rsatmoqchi: «Qara!» Do'sti esa maqtaydi: «Barakalla!» Ruscha qanday?",
+     "items": [
+      {
+       "say": "Смотри!",
+       "uz": "qara!",
+       "emoji": "👁️",
+       "image": "ru56-u8-smotri.png",
+       "image_prompt": "A cute cartoon illustration of a proud child showing a drawing to a friend, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Молодец!",
+       "uz": "barakalla!",
+       "emoji": "🌟",
+       "image": "ru56-u8-molodets.png",
+       "image_prompt": "A cute cartoon illustration of a child giving a gold star to a friend, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "Давай вместе!",
+       "uz": "keling, birga!",
+       "emoji": "🙌",
+       "image": "ru56-u8-davay-vmeste.png",
+       "image_prompt": "A cute cartoon illustration of two children building a tower together, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "Rolli o'yin: Maqtov",
+       "matn": "Do'stingizga ko'rsating: [ru]Смотри! Я умею прыгать![/ru] Do'stingiz: [ru]Молодец![/ru] Endi birga: [ru]Давай вместе![/ru] Ikkalangiz sakraysiz! Qoyil!",
+       "doska": "👁️ Смотри! Я умею…\n🌟 Молодец!\n🙌 Давай вместе!"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
