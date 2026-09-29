@@ -387,6 +387,19 @@ class AuthService:
                 ('oquvchi' if role == 'talaba' else role, json.dumps({'role':role}), role in ('oqituvchi','ota-ona'), uid))
         return role
 
+    def is_quick(self, cur, uid):
+        """REV79: rol bosib ochilgan, hali Telegram/Gmail/parol ulanmagan akkaunt."""
+        cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s FOR UPDATE', (uid,))
+        learning = ((cur.fetchone() or {}).get('profile') or {}).get('kabutar_learning_profile') or {}
+        if not (isinstance(learning, dict) and learning.get('quick') is True):
+            return False
+        for sql in ('SELECT 1 FROM kabutar_telegram_identity WHERE user_id=%s', 'SELECT 1 FROM google_hisob WHERE user_id=%s',
+                    'SELECT 1 FROM kabutar_auth_password WHERE user_id=%s'):
+            cur.execute(sql, (uid,))
+            if cur.fetchone():
+                return False
+        return True
+
     def token(self, request, body_token=None):
         return self.p._jwt_header_yoki_query(body_token, request.headers.get('authorization'))
 
@@ -466,7 +479,7 @@ class AuthService:
         key = digest(claims['sid']) if claims.get('sid') else digest(token)
         cur.execute("""SELECT 1 FROM kabutar_auth_sessions WHERE session_hash=%s AND user_id=%s
             AND revoked_at IS NULL AND expires_at>NOW()
-            AND method IN ('google','telegram','password') FOR UPDATE""", (key,user_id))
+            AND method IN ('google','telegram','password','quick') FOR UPDATE""", (key,user_id))
         if not cur.fetchone():
             raise HTTPException(403, 'Faol kirish sessiyasi topilmadi. Hisobdan chiqib qayta kiring')
         return key
@@ -672,11 +685,35 @@ class AuthService:
             google=cur.fetchone() is not None
             cur.execute('SELECT 1 FROM kabutar_auth_password WHERE user_id=%s', (user_id,))
             has_password=cur.fetchone() is not None
+            role_lock=self.role_lock(cur,user_id)
         learning = user.get('kabutar_learning_profile') or {}
         return {'education_ready':bool(user['kabutar_education_ready']), 'has_password':has_password,
             'learning_profile':learning, 'education_role':learning.get('role') or user['role'],
             'identities':{'google':google,'telegram':bool(phone),'phone':bool(phone)},
-            'phone_masked':phone[:4]+'•••••'+phone[-4:] if phone else None}
+            'phone_masked':phone[:4]+'•••••'+phone[-4:] if phone else None,
+            'role_locked':bool(role_lock), 'role_lock_reason':role_lock}
+
+    def role_lock(self, cur, user_id):
+        """REV79: rolni o'zi almashtira olmaydigan akkaunt — sababi bilan (bo'lmasa '').
+        /auth/profile/education dagi 409 tekshiruvi bilan bir xil qoida."""
+        cur.execute('SELECT 1 FROM admin_akkaunt WHERE uid=%s', (user_id,))
+        if cur.fetchone():
+            return 'admin'
+        cur.execute("""SELECT to_regclass('public.talaba_profillari') AS tp, to_regclass('public.foydalanuvchi_muassasalari') AS fm""")
+        tables = cur.fetchone() or {}
+        if tables.get('tp'):
+            cur.execute('SELECT 1 FROM talaba_profillari WHERE user_id=%s', (user_id,))
+            if cur.fetchone():
+                return 'institut'
+        if tables.get('fm'):
+            cur.execute('SELECT 1 FROM foydalanuvchi_muassasalari WHERE user_id=%s LIMIT 1', (user_id,))
+            if cur.fetchone():
+                return 'muassasa'
+        cur.execute('SELECT to_jsonb(u) AS p FROM users u WHERE user_id=%s', (user_id,))
+        profile = (cur.fetchone() or {}).get('p') or {}
+        if any(profile.get(k) for k in ('maktab_id','universitet_id','bogcha_id','markaz_id')):
+            return 'muassasa'
+        return ''
 
 
 def register_auth(app, platform):
@@ -707,7 +744,7 @@ def register_auth(app, platform):
         service.origin(request)
         if body.role not in QUICK_ROLE_NAMES:
             raise HTTPException(422,'Rolni tanlang')
-        service.rate('quick-ip',service.ip(request),8,3600)
+        service.rate('quick-ip',service.ip(request),60,3600)  # maktab sinfi bitta Wi-Fi dan kiradi
         name=re.sub(r'\s+',' ',str(body.name or '')).strip()[:80] or (QUICK_ROLE_NAMES[body.role]+' '+str(secrets.randbelow(9000)+1000))
         base_role='oquvchi' if body.role=='talaba' else body.role
         learning={'role':body.role,'quick':True}
@@ -814,6 +851,7 @@ def register_auth(app, platform):
         service.rate('telegram-code-redeem-ip', service.ip(request), 60, 60)
         redeemer = digest(body.browser_secret + ':' + body.mode + ':' + str(target))
         just_completed = False
+        switched = False
         with service.transaction() as cur:
             cur.execute('SELECT pg_advisory_xact_lock(hashtextextended(%s,31))', ('portable-code:' + phone,))
             if target is not None:
@@ -843,7 +881,21 @@ def register_auth(app, platform):
                 uid = row['user_id']
                 access = service._session_token(uid,sid,created,created+timedelta(days=SESSION_DAYS))
             else:
-                uid = service._resolve_telegram(cur,row['telegram_id'],phone,row['full_name'],target)
+                if target is not None and service.is_quick(cur,target):
+                    # REV79: tez ochilgan bo'sh akkauntdan Telegram ulanganda, Telegram eski akkauntga
+                    # tegishli bo'lsa — xato emas, o'sha eski akkauntga (testlari bilan) o'tkaziladi.
+                    cur.execute('SAVEPOINT quick_link')
+                    try:
+                        uid = service._resolve_telegram(cur,row['telegram_id'],phone,row['full_name'],target)
+                        cur.execute('RELEASE SAVEPOINT quick_link')
+                    except HTTPException as exc:
+                        if exc.status_code != 409:
+                            raise
+                        cur.execute('ROLLBACK TO SAVEPOINT quick_link')
+                        uid = service._resolve_telegram(cur,row['telegram_id'],phone,row['full_name'],None)
+                        switched = uid != target
+                else:
+                    uid = service._resolve_telegram(cur,row['telegram_id'],phone,row['full_name'],target)
                 # Existing Gmail/Telegram/admin profiles keep their real role.
                 # Only a genuinely new education profile uses the bot selection.
                 if service.existing_learning_role(cur,uid) is None and target is None:
@@ -854,7 +906,7 @@ def register_auth(app, platform):
                 just_completed = True
         if just_completed:
             service.record_login(uid,'telegram')
-        return {'status':'complete','token':access,'user_id':uid,'linked':body.mode=='link'}
+        return {'status':'complete','token':access,'user_id':uid,'linked':body.mode=='link' and not switched,'switched':bool(switched)}
 
     @app.post('/auth/telegram/start')
     def start(body:Start,request:Request):
@@ -1171,8 +1223,21 @@ def register_auth(app, platform):
             cur.execute('SELECT user_id FROM google_hisob WHERE google_email=%s',(grant['email'],))
             previous=cur.fetchone()
             if previous and previous['user_id']!=uid:
-                raise HTTPException(409,'Bu Google hisobi boshqa Kabutar akkauntiga ulangan')
-            service.consume_cur(cur,grant)
-            cur.execute('INSERT INTO google_hisob(google_email,user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING',(grant['email'],uid))
+                if service.is_quick(cur,uid):
+                    # REV79: bo'sh tez akkauntdan eski Gmail akkauntiga o'tish (Gmail egaligi tasdiqlangan).
+                    service.consume_cur(cur,grant)
+                    owner=previous['user_id']
+                    access=service._issue_cur(cur,owner,'google')
+                    switched_to=owner
+                else:
+                    raise HTTPException(409,'Bu Google hisobi boshqa Kabutar akkauntiga ulangan')
+            else:
+                switched_to=None
+            if switched_to is None:
+                service.consume_cur(cur,grant)
+                cur.execute('INSERT INTO google_hisob(google_email,user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING',(grant['email'],uid))
+        if switched_to is not None:
+            service.record_login(switched_to,'google')
+            return {'ok':True,'switched':True,'token':access,'user_id':switched_to}
         return {'ok':True}
     return service

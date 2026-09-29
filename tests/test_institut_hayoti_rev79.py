@@ -39,7 +39,18 @@ def test_quick_start_is_rate_limited_role_checked_and_registered():
     source = Path(__file__).resolve().parents[1].joinpath("kabutar_auth.py").read_text(encoding="utf-8")
     block = source[source.index("def quick_start"):source.index("@app.post('/auth/telegram/code/issue')")]
     assert "service.rate('quick-ip'" in block
+    assert "'quick') FOR UPDATE" in source  # tez akkaunt Telegram/Gmail ulay oladi
     assert "QUICK_ROLE_NAMES" in block and "'admin'" not in block
     assert "_issue_cur(cur,new_id,'quick')" in block
     main = Path(__file__).resolve().parents[1].joinpath("main.py").read_text(encoding="utf-8")
     assert "create_institut_hayoti_router" in main
+
+
+def test_quick_account_switches_to_existing_owner_instead_of_conflict():
+    source = Path(__file__).resolve().parents[1].joinpath("kabutar_auth.py").read_text(encoding="utf-8")
+    redeem = source[source.index("def redeem_bot_code"):source.index("@app.post('/auth/telegram/start')")]
+    assert "service.is_quick(cur,target)" in redeem and "'switched':bool(switched)" in redeem
+    link = source[source.index("def google_link"):]
+    assert "service.is_quick(cur,uid)" in link and "'switched':True" in link
+    status = source[source.index("def profile_status(self"):source.index("def register_auth")]
+    assert "'role_locked'" in status and "def role_lock" in status
