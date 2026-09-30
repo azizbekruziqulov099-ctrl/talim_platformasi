@@ -2778,7 +2778,7 @@ def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
 
 
 @app.get("/api/ovoz")
-async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
+async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = ""):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
     Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi;
@@ -2796,8 +2796,10 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
     jins = _ovoz_jinsini_tuzat(jins)
     # Til matndan aniqlanadi; profil tili yoki eski URL parametri uni almashtirmaydi.
     asosiy_til = "uz"
+    # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
+    tezlik = tezlik if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)%", str(tezlik or "")) else "+0%"
     kesh_kaliti = hashlib.sha256(
-        f"v64-pronunciation\0{jins}\0{matn}".encode("utf-8")
+        f"v93-joined\0{jins}\0{tezlik}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
@@ -2821,10 +2823,26 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz"):
             tayyor = _ovoz_uchun_tayyorla_til(bolak, til)
             if not tayyor.strip():
                 continue
-            com = edge_tts.Communicate(tayyor, voice)
+            # REV93: bo'lak to'liq yig'iladi va boshi/oxiridagi ortiqcha jimlik kesiladi — o'zbekcha va inglizcha
+            # bo'laklar orasida uzilish qolmaydi, gap bir tekis eshitiladi.
+            try:
+                com = edge_tts.Communicate(tayyor, voice, rate=tezlik, boundary="WordBoundary")
+            except TypeError:   # eski edge-tts
+                com = edge_tts.Communicate(tayyor, voice)
+            audio, events = bytearray(), []
             async for chunk in com.stream():
                 if chunk["type"] == "audio" and chunk.get("data"):
-                    yield bytes(chunk["data"])
+                    audio.extend(chunk["data"])
+                elif chunk["type"] in ("WordBoundary", "SentenceBoundary"):
+                    events.append(chunk)
+            if not audio:
+                continue
+            try:
+                from modules.speech_audio import speech_window, trim_segment
+                boshi, oxiri = speech_window(events)
+                yield trim_segment(bytes(audio), boshi, oxiri)
+            except Exception:
+                yield bytes(audio)
 
     # HTTP sarlavhalari yuborilishidan avval birinchi audio bo'lagi borligini
     # tekshiramiz. Shunda bo'sh 200 javob o'rniga tushunarli xato qaytadi.
