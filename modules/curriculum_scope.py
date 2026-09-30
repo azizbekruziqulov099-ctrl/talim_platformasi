@@ -164,7 +164,8 @@ def catalog_dimension_filter(filters):
     return ' AND '.join(clauses) or 'TRUE',params
 
 def text_key(value):
-    return re.sub(r'\s+', ' ', str(value or '').translate(str.maketrans({'‘':"'",'’':"'",'ʻ':"'",'ʼ':"'",'`':"'"}))).strip().casefold()
+    # REV92: uzun chiziq (–, —) ham oddiy «-» — bazada nomlar shunday saqlanadi; aks holda qayta importda nusxa ochilardi.
+    return re.sub(r'\s+', ' ', str(value or '').translate(str.maketrans({'‘':"'",'’':"'",'ʻ':"'",'ʼ':"'",'`':"'",'–':'-','—':'-'}))).strip().casefold()
 
 def canonical_grade(value):
     group = preschool_group(value) if re.search(r'yosh|bog|лет|год', str(value or ''), re.I) else ''

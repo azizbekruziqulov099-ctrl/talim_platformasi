@@ -228,6 +228,8 @@ def parse_sheets(wb, media_names=None, max_images=500):
             code = f"@@NOM{len(by_name) + 1}@@"
             by_name[code] = {"nom": topic_name, "sheet": name, "row": meta_rows.get("mavzu_nomi", 2)}
         number = _int(meta.get("mavzu_raqami")) or topic_sheets
+        if code in by_name:
+            by_name[code]["raqam"] = number   # REV92: bir xil nomli mavzular orasidan to'g'risini tanlashga yordam
         level = _int(meta.get("daraja"))
         if meta.get("daraja") and (level is None or not 1 <= level <= 30):
             err(name, meta_rows.get("daraja", 4), "Daraja", "Daraja 1 dan 30 gacha butun son bo'lishi kerak")

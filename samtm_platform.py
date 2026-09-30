@@ -19187,6 +19187,52 @@ def _ai_brain_mavzu_nomi_norm(value):
     return re.sub(r"[^0-9a-zа-яёқғҳў]+", "", t)
 
 
+def _ai_brain_kod_qismlari(code):
+    """«3-4 yosh-01-01-01-01-29-001» → («3-4 yosh-01-01-01-01», 29): mavzugacha bo'lgan joy va mavzu raqami."""
+    head, mavzu, _ = (str(code).rsplit("-", 2) + ["", ""])[:3] if str(code).count("-") >= 2 else (str(code), "", "")
+    try:
+        return head, int(mavzu)
+    except ValueError:
+        return head, None
+
+
+def _ai_brain_nusxadan_tanla(cur, ambiguous, pending, resolved):
+    """Bir xil nomli mavzular orasidan ball bilan tanlash. Qaytaradi: {placeholder: (kod, sabab)} — faqat aniq g'olib bo'lsa."""
+    from collections import Counter
+    homes = Counter(_ai_brain_kod_qismlari(c)[0] for c in resolved.values())
+    home = homes.most_common(1)[0][0] if homes else ""
+    all_codes = sorted({c for codes in ambiguous.values() for c in codes})
+    linked = Counter()
+    for sql in ("SELECT topic_code, COUNT(*) AS n FROM ai_brain_units WHERE topic_code=ANY(%s) GROUP BY topic_code",
+                "SELECT topic_code, COUNT(*) AS n FROM generated_tests WHERE topic_code=ANY(%s) GROUP BY topic_code"):
+        try:
+            cur.execute("SAVEPOINT ai_nusxa")
+            cur.execute(sql, (all_codes,))
+            for r in cur.fetchall():
+                linked[r["topic_code"]] += int(r["n"] or 0)
+            cur.execute("RELEASE SAVEPOINT ai_nusxa")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT ai_nusxa")
+    out = {}
+    for placeholder, codes in ambiguous.items():
+        number = pending[placeholder].get("raqam")
+        scored = []
+        for code in codes:
+            head, mavzu_no = _ai_brain_kod_qismlari(code)
+            score, why = 0, []
+            if home and head == home:
+                score += 3; why.append("kitobning boshqa mavzulari bilan bir bobda")
+            if number and mavzu_no == number:
+                score += 2; why.append(f"tartib raqami {number} mos")
+            if linked[code]:
+                score += 2; why.append("unga avval dars/test bog'langan")
+            scored.append((score, code, why))
+        scored.sort(key=lambda x: (-x[0], x[1]))
+        if scored[0][0] > 0 and (len(scored) == 1 or scored[0][0] > scored[1][0]):
+            out[placeholder] = (scored[0][1], ", ".join(scored[0][2]))
+    return out
+
+
 def _ai_brain_nom_boyicha_kod(cur, parsed):
     """Mavzu kodi yozilmagan varaqlar: mavzu nomi bo'yicha Mavzular bazasidan kod topiladi.
 
@@ -19204,7 +19250,7 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
     index = {}
     for r in cur.fetchall():
         index.setdefault(_ai_brain_mavzu_nomi_norm(r["nom"]), []).append(r)
-    replace = {}
+    replace, ambiguous = {}, {}
     for placeholder, info in pending.items():
         rows = index.get(_ai_brain_mavzu_nomi_norm(info["nom"]), [])
         same_fan = [r for r in rows if fan and _ai_brain_mavzu_nomi_norm(r["subject_name"]) == fan]
@@ -19215,11 +19261,27 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
         codes = sorted({r["topic_code"] for r in pick})
         if len(codes) == 1:
             replace[placeholder] = codes[0]
-            continue
-        message = (f"«{info['nom']}» mavzusi Mavzular bazasida topilmadi — avval Fanlar va mavzular bo'limida shu nom bilan qo'shing yoki varaqqa mavzu kodini yozing"
-                   if not codes else
-                   f"«{info['nom']}» nomli {len(codes)} ta mavzu bor ({', '.join(codes[:4])}) — varaqqa aniq mavzu kodini yozing")
-        _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)", message)
+        elif codes:
+            ambiguous[placeholder] = codes
+        else:
+            _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
+                           f"«{info['nom']}» mavzusi Mavzular bazasida topilmadi — avval Fanlar va mavzular bo'limida shu nom bilan qo'shing yoki varaqqa mavzu kodini yozing")
+    # REV92: bir xil nomli bir nechta mavzu (masalan, qayta importda tasodifan nusxa ochilgan) — miya o'zi to'g'risini
+    # tanlaydi: kitobdagi boshqa mavzular turgan bob/bo'limda, raqami mos, avval dars/test bog'langan mavzu.
+    if ambiguous:
+        chosen = _ai_brain_nusxadan_tanla(cur, ambiguous, pending, replace)
+        for placeholder, codes in ambiguous.items():
+            info = pending[placeholder]
+            code, reason = chosen.get(placeholder, (None, ""))
+            if code:
+                replace[placeholder] = code
+                extra = [c for c in codes if c != code]
+                _ai_brain_xato(parsed["warnings"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
+                               f"«{info['nom']}» nomli {len(codes)} ta mavzu bor — {code} tanlandi ({reason}). "
+                               f"Ortiqcha nusxa: {', '.join(extra[:4])} — Mavzular bo'limidan o'chirib qo'ysangiz bo'ladi.", "warning")
+            else:
+                _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
+                               f"«{info['nom']}» nomli {len(codes)} ta mavzu bor ({', '.join(codes[:4])}) va qaysi biri to'g'riligini aniqlab bo'lmadi — varaqqa aniq mavzu kodini yozing")
     text = json.dumps(parsed["payload"], ensure_ascii=False)
     for placeholder, code in replace.items():
         text = text.replace(placeholder, code.replace("\\", "\\\\").replace('"', '\\"'))
@@ -19896,6 +19958,8 @@ def ai_miya_import(batch_id: int, token: str):
                 counts["duplicates"] += 1
 
         all_codes = []
+        skipped = []   # REV92: saqlanmagan qatorlar — import to'xtamaydi, qolgani saqlanadi
+        _ai_brain_eski_cheklovlarni_tuzat(cur)
         for sheet_name in AI_BRAIN_ID_COLUMNS:
             for row in payload.get(sheet_name, []):
                 unit = _ai_brain_unit_shape(sheet_name, row)
@@ -19916,7 +19980,9 @@ def ai_miya_import(batch_id: int, token: str):
                     counts["duplicates"] += 1
                     continue
                 version_no = (old["version_no"] + 1) if old else 1
-                cur.execute(
+                cur.execute("SAVEPOINT ai_unit")
+                try:
+                  cur.execute(
                     """INSERT INTO ai_brain_units
                        (batch_id,source_id,unit_code,version_no,topic_code,unit_kind,
                         title,body,difficulty,audience_roles,purposes,age_min,age_max,
@@ -19930,14 +19996,21 @@ def ai_miya_import(batch_id: int, token: str):
                         unit["age_min"], unit["age_max"], unit["source_page"],
                         json.dumps(unit["payload"], ensure_ascii=False), checksum, user_id,
                     ),
-                )
+                  )
+                  cur.execute("RELEASE SAVEPOINT ai_unit")
+                except Exception as exc:
+                    cur.execute("ROLLBACK TO SAVEPOINT ai_unit")
+                    reason = str(getattr(exc, "pgerror", None) or exc).strip().splitlines()[0][:220]
+                    skipped.append({"varaq": row.get("_sheet") or sheet_name, "qator": row.get("_excel_row"),
+                                    "kod": unit["unit_code"], "sabab": reason})
+                    continue
                 counts["units"] += 1
 
         cur.execute(
             """UPDATE ai_brain_import_batches
                SET status='draft_imported', imported_counts=%s::jsonb, imported_at=NOW()
                WHERE id=%s""",
-            (json.dumps({**counts, "kitob_kodlari": all_codes}, ensure_ascii=False), batch_id),
+            (json.dumps({**counts, "otkazildi": len(skipped), "kitob_kodlari": all_codes}, ensure_ascii=False), batch_id),
         )
         conn.commit()
     except HTTPException:
@@ -19949,7 +20022,37 @@ def ai_miya_import(batch_id: int, token: str):
     finally:
         cur.close()
         conn.close()
-    return {"batch_id": batch_id, "status": "draft_imported", "counts": counts}
+    counts["otkazildi"] = len(skipped)
+    return {"batch_id": batch_id, "status": "draft_imported", "counts": counts, "otkazilganlar": skipped[:200]}
+
+
+def _ai_brain_eski_cheklovlarni_tuzat(cur):
+    """REV92: eski bazada ai_brain_units ustida qolib ketgan CHECK cheklovlari (masalan, unit_kind ro'yxatida
+    «lesson_step»/«variant» yo'q) importni butunlay to'xtatmasin — hozirgi turlar bilan yangilanadi. Idempotent."""
+    kinds = sorted(set(AI_BRAIN_KIND_BY_SHEET.values()))
+    statuses = ["archived", "draft", "published"]
+    try:
+        cur.execute("SAVEPOINT ai_cheklov")
+        cur.execute("""SELECT conname, pg_get_constraintdef(oid) AS def FROM pg_constraint
+                       WHERE conrelid='ai_brain_units'::regclass AND contype='c'""")
+        fixed = []
+        for r in cur.fetchall():
+            d = r["def"] or ""
+            if ("unit_kind" in d and any(f"'{k}'" not in d for k in kinds)) or \
+               ("status" in d and "unit_kind" not in d and any(f"'{x}'" not in d for x in statuses)):
+                cur.execute(f'ALTER TABLE ai_brain_units DROP CONSTRAINT "{r["conname"]}"')
+                fixed.append(r["conname"])
+        cur.execute("""SELECT 1 FROM pg_constraint WHERE conrelid='ai_brain_units'::regclass AND contype='c'
+                       AND pg_get_constraintdef(oid) LIKE '%%unit_kind%%'""")
+        if not cur.fetchone():
+            cur.execute("ALTER TABLE ai_brain_units ADD CONSTRAINT ai_brain_units_unit_kind_check CHECK (unit_kind = ANY(%s::text[])) NOT VALID",
+                        (kinds,))
+        cur.execute("RELEASE SAVEPOINT ai_cheklov")
+        if fixed:
+            print(f"[AI miya] eski cheklovlar yangilandi: {fixed}", flush=True)
+    except Exception as exc:
+        cur.execute("ROLLBACK TO SAVEPOINT ai_cheklov")
+        print(f"[AI miya] cheklovni tekshirib bo'lmadi: {exc}", flush=True)
 
 
 @app.post("/api/admin/ai_miya_nashr/{batch_id}")
