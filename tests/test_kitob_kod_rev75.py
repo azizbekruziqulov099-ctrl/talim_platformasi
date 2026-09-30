@@ -62,10 +62,11 @@ class VaroqliShablonTests(unittest.TestCase):
         rows = [{"turi": "tushuncha", "sarlavha": "A", "matn": "Matn."},
                 {"turi": "masala", "kod": "A01", "matn": "1-shart", "yechim": "x"},
                 {"turi": "topshiriq", "kod": "a01", "matn": "2-shart", "yechim": "y"},
-                {"turi": "test", "matn": "Savol?", "variantlar": "A) 1 B) 2 C) 3", "javob": "A"}]
+                {"turi": "test", "matn": "Savol?", "variantlar": "A) 1", "javob": "A"}]
         parsed = parse_sheets(filled([({"mavzu_kodi": "K", "mavzu_nomi": "M"}, rows)]))
         self.assertTrue(any("takrorlangan" in e["message"] for e in parsed["errors"]))
-        self.assertTrue(any("aynan 4 ta variant" in w["message"] for w in parsed["warnings"]))
+        # REV80: 2–4 variant qabul qilinadi (bog'cha testlari 2–3 ta); 1 ta variant — masala bo'lib qoladi.
+        self.assertTrue(any("2–4 ta variant" in w["message"] for w in parsed["warnings"]))
         self.assertEqual(parsed["payload"]["06_MASHQLAR"], [])
 
     def test_topic_without_code_waits_for_name_lookup(self):
