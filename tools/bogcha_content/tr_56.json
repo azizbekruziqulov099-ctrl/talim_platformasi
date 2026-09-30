@@ -1,0 +1,2938 @@
+{
+ "subject": "Turk tili",
+ "lang": "tr",
+ "age": "5-6 yosh",
+ "book_title": "Merhaba, arkadaşım! 5–6 yosh",
+ "prefix": "TR",
+ "units": [
+  {
+   "name": "Salom va sanoq 1–10",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Salom, do'stim!",
+     "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
+     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "items": [
+      {
+       "say": "Merhaba!",
+       "uz": "salom",
+       "emoji": "👋",
+       "image": "en56-u1-hello.png",
+       "image_prompt": "A smiling child waving hello, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni silkiting!",
+       "sentence": "Merhaba! Ben Kabutar.",
+       "action_en": "Elini salla!"
+      },
+      {
+       "say": "Adın ne?",
+       "uz": "isming nima?",
+       "emoji": "❓",
+       "image": "en56-u1-whats-your-name.png",
+       "image_prompt": "A curious child asking a friend a question with a big question mark, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Merhaba! Adın ne?"
+      },
+      {
+       "say": "Benim adım Anvar.",
+       "uz": "mening ismim Anvar",
+       "emoji": "🧒",
+       "image": "en56-u1-my-name-is.png",
+       "image_prompt": "A happy boy pointing to himself with a name badge, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ko'kragingizga qo'lingizni qo'ying!",
+       "sentence": "Merhaba! Benim adım Anvar.",
+       "action_en": "Kendini göster!"
+      },
+      {
+       "say": "Hoşça kal!",
+       "uz": "xayr",
+       "emoji": "🙋",
+       "image": "en56-u1-goodbye.png",
+       "image_prompt": "A child raising a hand to say goodbye at a door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni ko'taring!",
+       "sentence": "Hoşça kal, Kabutar! Hoşça kal, anne!",
+       "action_en": "El sallayarak hoşça kal de!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: tanishamiz",
+       "matn": "Qani, Kabutar qushcha bilan gaplashamiz. Men so'rayman: [tr]Merhaba! Adın ne?[/tr] Siz javob bering: [tr]Merhaba! Benim adım…[/tr] va ismingizni ayting. Oxirida: [tr]Hoşça kal![/tr]",
+       "doska": "— Merhaba! Adın ne?\n— Merhaba! Benim adım …\n— Hoşça kal!",
+       "sodda": "Sekin: [tr]Merhaba![/tr] — salom. [tr]Benim adım…[/tr] — mening ismim… Keyin ismingizni ayting.",
+       "boshqa_usul": "Oynaga qarab o'zingiz bilan tanishing: [tr]Merhaba! Benim adım…[/tr] Keyin onangiz bilan ham shunday gaplashing!",
+       "matn_en": "Hadi kuş Kabutar ile konuşalım. Kabutar: Merhaba! Adın ne? Çocuk: Merhaba! Benim adım… (adını söyle). Kabutar: Hoşça kal! Çocuk: Hoşça kal!",
+       "sarlavha_en": "🎭 Diyalog: Hadi tanışalım"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Do'stingiz [tr]Adın ne?[/tr] deb so'radi. Nima deysiz?",
+       "options": [
+        "🧒 Benim adım Ali.",
+        "🙋 Hoşça kal!",
+        "1️⃣ bir"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ismni so'rasa: [tr]Benim adım…[/tr] deymiz.",
+       "q_en": "Arkadaşın soruyor: \"Adın ne?\" Ne dersin?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Ben kuş Kabutar. Sizi özledim! Hadi merhaba diyelim ve adlarımızı söyleyelim."
+    },
+    {
+     "name": "Sanaymiz: bir–to'rt",
+     "goal": "Bola 1 dan 4 gacha turkcha sanaydi",
+     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin turkcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "items": [
+      {
+       "say": "bir",
+       "uz": "bir",
+       "emoji": "1️⃣",
+       "image": "en56-u1-one.png",
+       "image_prompt": "One red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bitta barmoq ko'rsating!",
+       "sentence": "Bir burnum var.",
+       "action_en": "Bir parmak göster!"
+      },
+      {
+       "say": "iki",
+       "uz": "ikki",
+       "emoji": "2️⃣",
+       "image": "en56-u1-two.png",
+       "image_prompt": "Two yellow ducks, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ikkita barmoq ko'rsating!",
+       "sentence": "İki gözüm var.",
+       "action_en": "İki parmak göster!"
+      },
+      {
+       "say": "üç",
+       "uz": "uch",
+       "emoji": "3️⃣",
+       "image": "en56-u1-three.png",
+       "image_prompt": "Three blue balls, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uchta barmoq ko'rsating!",
+       "sentence": "Üç kedi görüyorum.",
+       "action_en": "Üç kez el çırp!"
+      },
+      {
+       "say": "dört",
+       "uz": "to'rt",
+       "emoji": "4️⃣",
+       "image": "en56-u1-four.png",
+       "image_prompt": "Four green frogs, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "To'rtta barmoq ko'rsating!",
+       "sentence": "Köpeğin dört bacağı var.",
+       "action_en": "Dört kez zıpla!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak sanog'i",
+       "matn": "Men sanayman, siz qarsak chalasiz: [tr]bir[/tr] — bir qarsak, [tr]iki[/tr] — ikki qarsak, [tr]üç[/tr] — uch qarsak, [tr]dört[/tr] — to'rt qarsak! Endi o'zingiz sanang!",
+       "doska": "1 bir 👏\n2 iki 👏👏\n3 üç 👏👏👏\n4 dört 👏👏👏👏",
+       "sodda": "Sekin sanaymiz: [tr]bir, iki, üç, dört[/tr].",
+       "boshqa_usul": "Qarsak o'rniga sakrab sanang: [tr]bir, iki, üç, dört![/tr]",
+       "matn_en": "Ben sayarım, sen el çırp! Bir — bir kez. İki — iki kez. Üç — üç kez. Dört — dört kez! Şimdi sen say!",
+       "sarlavha_en": "👏 El çırp ve say"
+      }
+     ],
+     "intro_en": "Merhaba! Hadi Kabutar ile sayalım. Bir, iki, üç, dört! Benimle say!"
+    },
+    {
+     "name": "Sanaymiz: besh–yetti",
+     "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
+     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "items": [
+      {
+       "say": "beş",
+       "uz": "besh",
+       "emoji": "5️⃣",
+       "image": "en56-u1-five.png",
+       "image_prompt": "Five orange stars, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bir qo'lingizni ochib ko'rsating!",
+       "sentence": "Beş parmağım var.",
+       "action_en": "Beş parmak göster!"
+      },
+      {
+       "say": "altı",
+       "uz": "olti",
+       "emoji": "6️⃣",
+       "image": "en56-u1-six.png",
+       "image_prompt": "Six pink flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Altı kırmızı top görüyorum.",
+       "action_en": "Altı kez el çırp!"
+      },
+      {
+       "say": "yedi",
+       "uz": "yetti",
+       "emoji": "7️⃣",
+       "image": "en56-u1-seven.png",
+       "image_prompt": "Seven small fish, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Yedi elmam var.",
+       "action_en": "Yedi kez zıpla!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Sanoq qo'shig'i",
+       "matn": "Qo'shiq aytamiz: [tr]Bir, iki, üç, dört, beş, altı, yedi![/tr] Sekin boshlaymiz, keyin tezroq! Har songa bitta barmoq oching.",
+       "doska": "bir iki üç dört beş altı yedi\n1 2 3 4 5 6 7",
+       "sodda": "Faqat beshgacha: [tr]bir, iki, üç, dört, beş[/tr]. Keyin qo'shamiz: [tr]altı, yedi[/tr].",
+       "boshqa_usul": "Zinapoyada yurib sanang: har qadamda bitta son — [tr]bir… yedi![/tr]",
+       "matn_en": "Hadi şarkı söyleyelim: Bir, iki, üç, dört, beş, altı, yedi! Önce yavaş, sonra hızlı söyle! Her sayı için bir parmak göster.",
+       "sarlavha_en": "🎵 Sayma şarkısı"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🖐️ Bir qo'lda nechta barmoq bor?",
+       "options": [
+        "5️⃣ beş",
+        "3️⃣ üç",
+        "7️⃣ yedi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bir qo'lda besh barmoq — [tr]beş[/tr].",
+       "q_en": "Bir elde kaç parmak var?"
+      }
+     ],
+     "intro_en": "Selam, arkadaşlar! Birden dörde kadar biliyoruz. Şimdi beş, altı, yedi sayalım!"
+    },
+    {
+     "name": "Sanaymiz: sakkiz–o'n",
+     "goal": "Bola 8, 9, 10 ni aytadi va «Kaç tane?» savoliga javob beradi",
+     "intro": "Gu-gu! Bugun bizda katta sir bor: o'ngacha sanashni o'rgansak, Kabutar qushcha sizga o'nta yulduzcha sovg'a qiladi! Tayyormisiz?",
+     "items": [
+      {
+       "say": "sekiz",
+       "uz": "sakkiz",
+       "emoji": "8️⃣",
+       "image": "en56-u1-eight.png",
+       "image_prompt": "Eight colorful balloons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Sekiz kuş görüyorum.",
+       "action_en": "Sekiz kez el çırp!"
+      },
+      {
+       "say": "dokuz",
+       "uz": "to'qqiz",
+       "emoji": "9️⃣",
+       "image": "en56-u1-nine.png",
+       "image_prompt": "Nine little ladybugs, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Dokuz balonum var."
+      },
+      {
+       "say": "on",
+       "uz": "o'n",
+       "emoji": "🔟",
+       "image": "en56-u1-ten.png",
+       "image_prompt": "Ten fingers of two open hands, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ikki qo'lingizni ochib ko'rsating!",
+       "sentence": "On parmağım var.",
+       "action_en": "On parmak göster!"
+      },
+      {
+       "say": "Kaç tane?",
+       "uz": "nechta?",
+       "emoji": "🔢",
+       "image": "en56-u1-how-many.png",
+       "image_prompt": "A pigeon looking at a group of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Kaç elma? Üç elma!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚀 Raketa uchadi!",
+       "matn": "Raketa uchishiga tayyor! Pastga sanaymiz: [tr]on, dokuz, sekiz, yedi, altı, beş, dört, üç, iki, bir![/tr] Endi baland sakrang — uchdik!",
+       "doska": "10 9 8 7 6 5 4 3 2 1 🚀",
+       "sodda": "Avval oldinga sanaymiz: [tr]bir… on[/tr]. Keyin orqaga.",
+       "boshqa_usul": "Cho'kkalab o'tirib sanang, [tr]bir[/tr] deganda sakrang!",
+       "matn_en": "Roket hazır! Hadi geri sayalım: on, dokuz, sekiz, yedi, altı, beş, dört, üç, iki, bir! Şimdi yükseğe zıpla — uçuyoruz!",
+       "sarlavha_en": "🚀 Roket yükseliyor!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Kaç tane?[/tr] 🍎🍎🍎 — nechta olma?",
+       "options": [
+        "3️⃣ üç",
+        "8️⃣ sekiz",
+        "🔟 on"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Uchta olma — [tr]üç[/tr].",
+       "q_en": "Kaç elma?"
+      },
+      {
+       "q": "🙌 Ikki qo'lda nechta barmoq?",
+       "options": [
+        "🔟 on",
+        "6️⃣ altı",
+        "9️⃣ dokuz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ikki qo'lda o'n barmoq — [tr]on[/tr].",
+       "q_en": "İki elde kaç parmak var?"
+      }
+     ],
+     "intro_en": "Yine merhaba! Hadi ona kadar sayalım. Sekiz, dokuz, on! Kaça kadar sayabilirsin?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 1,
+     "name": "Bog'chada yangi do'st",
+     "name_en": "Anaokulunda yeni arkadaş",
+     "emoji": "🏫",
+     "goal": "Bola bog'chada yangi do'st bilan salomlashadi, ismini so'raydi va o'yinchoqlarni sanaydi",
+     "intro": "Bog'chaga yangi bola keldi. Keling, u bilan tanishamiz va birga sanaymiz!",
+     "intro_en": "Anaokuluna yeni bir arkadaş geliyor. Hadi merhaba diyelim ve oyuncakları birlikte sayalım!",
+     "roles": [
+      "Yangi do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "Yeni arkadaş",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s1-new-friend.png",
+      "image_prompt": "Two smiling children meeting in a bright kindergarten playroom with toy blocks on the floor, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Merhaba! Adın ne?",
+       "uz": "salom! isming nima?",
+       "emoji": "👋"
+      },
+      {
+       "who": 0,
+       "say": "Merhaba! Benim adım Malika.",
+       "uz": "salom! mening ismim Malika",
+       "emoji": "👧"
+      },
+      {
+       "who": 1,
+       "say": "Benim adım Anvar. Hadi oynayalım!",
+       "uz": "mening ismim Anvar. keling, o'ynaymiz!",
+       "emoji": "🧒"
+      },
+      {
+       "who": 0,
+       "say": "Kaç blok?",
+       "uz": "nechta kubik?",
+       "emoji": "🧱"
+      },
+      {
+       "who": 1,
+       "say": "Bir, iki, üç... on blok!",
+       "uz": "bir, ikki, uch... o'nta kubik!",
+       "emoji": "🔟"
+      },
+      {
+       "who": 0,
+       "say": "Evet! Hoşça kal, Anvar!",
+       "uz": "ha! xayr, Anvar!",
+       "emoji": "👋"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yangi do'stning ismini bilmoqchisiz. Nima deysiz?",
+       "q_en": "Yeni arkadaşının adını öğrenmek istiyorsun. Ne dersin?",
+       "options": [
+        "❓ Adın ne?",
+        "🔟 on",
+        "👋 Güle güle!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Adın ne?[/tr]",
+       "why_en": "Evet! Adın ne?"
+      },
+      {
+       "q": "Do'stingiz ketyapti. Nima deysiz?",
+       "q_en": "Arkadaşın eve gidiyor. Ne dersin?",
+       "options": [
+        "👋 Güle güle!",
+        "🧱 Kaç tane?",
+        "3️⃣ üç"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Hoşça kal![/tr]",
+       "why_en": "Evet! Hoşça kal!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oilam va do'stlarim",
+   "emoji": "👨‍👩‍👧",
+   "lessons": [
+    {
+     "name": "Bu mening onam",
+     "goal": "Bola «Bu benim…» bilan oila a'zolarini tanishtiradi",
+     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni turkcha tanishtirishni o'rganing.",
+     "items": [
+      {
+       "say": "Bu benim annem.",
+       "uz": "bu mening onam",
+       "emoji": "👩",
+       "image": "en56-u2-my-mum.png",
+       "image_prompt": "A smiling mother hugging a child, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Onangizni ko'rsating!",
+       "sentence": "Bak! Bu benim annem.",
+       "action_en": "Resmi göster!"
+      },
+      {
+       "say": "Bu benim babam.",
+       "uz": "bu mening dadam",
+       "emoji": "👨",
+       "image": "en56-u2-my-dad.png",
+       "image_prompt": "A smiling father holding a child's hand, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Merhaba! Bu benim babam."
+      },
+      {
+       "say": "Bu benim kız kardeşim.",
+       "uz": "bu mening opam yoki singlim",
+       "emoji": "👧",
+       "image": "en56-u2-my-sister.png",
+       "image_prompt": "A little girl with pigtails smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bu benim kız kardeşim. Onun adı Laylo."
+      },
+      {
+       "say": "Bu benim erkek kardeşim.",
+       "uz": "bu mening akam yoki ukam",
+       "emoji": "👦",
+       "image": "en56-u2-my-brother.png",
+       "image_prompt": "A little boy smiling with a ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bu benim ağabeyim. O büyük."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖼️ Oilaviy surat",
+       "matn": "Oilangiz rasmini chizing yoki suratini oling. Har birini ko'rsatib ayting: [tr]Bu benim annem. Bu benim babam.[/tr] Juda chiroyli!",
+       "doska": "Bu benim annem. 👩\nBu benim babam. 👨\nBu benim kız kardeşim. 👧\nBu benim erkek kardeşim. 👦",
+       "sodda": "Qisqa ayting: [tr]annem[/tr], [tr]babam[/tr].",
+       "boshqa_usul": "Barmoqlaringizga oila a'zolarini chizing — barmoq teatri! Har barmoq aytadi: [tr]Bu benim…[/tr]",
+       "matn_en": "Aileni çiz ya da bir fotoğraf göster. Göster ve söyle: Bu benim annem. Bu benim babam. Bu benim erkek kardeşim. Çok güzel!",
+       "sarlavha_en": "🖼️ Aile resmi"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Dadangizni ko'rsatib nima deysiz?",
+       "options": [
+        "👨 Bu benim babam.",
+        "👩 Bu benim annem.",
+        "👦 Bu benim erkek kardeşim."
+       ],
+       "answer": 0,
+       "why": "Barakalla! Dada — [tr]baba[/tr]: [tr]Bu benim babam.[/tr]",
+       "q_en": "Babanı göster. Ne dersin?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Ailemi seviyorum. Bakın! Bu benim annem. Hadi sizin ailenizle de tanışalım!"
+    },
+    {
+     "name": "Buvim va bobom",
+     "goal": "Bola babaanne, dede, bebek, aile so'zlarini biladi",
+     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "items": [
+      {
+       "say": "babaanne",
+       "uz": "buvi",
+       "emoji": "👵",
+       "image": "en56-u2-grandma.png",
+       "image_prompt": "A kind grandmother with glasses smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ninem ekmek yapar."
+      },
+      {
+       "say": "dede",
+       "uz": "bobo",
+       "emoji": "👴",
+       "image": "en56-u2-grandpa.png",
+       "image_prompt": "A kind grandfather with a walking stick smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Dedemin büyük bir bahçesi var."
+      },
+      {
+       "say": "bebek",
+       "uz": "chaqaloq",
+       "emoji": "👶",
+       "image": "en56-u2-baby.png",
+       "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chaqaloqni allalagandek tebratining!",
+       "sentence": "Bebek küçük.",
+       "action_en": "Bebeği salla!"
+      },
+      {
+       "say": "aile",
+       "uz": "oila",
+       "emoji": "👨‍👩‍👧‍👦",
+       "image": "en56-u2-family.png",
+       "image_prompt": "A happy family of four holding hands, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ailemi seviyorum.",
+       "action_en": "Kendine sarıl!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Barmoq oilasi qo'shig'i",
+       "matn": "Barmoqlaringizni ko'rsatib kuylang: [tr]Baba parmak, anne parmak, abi parmak, abla parmak, bebek parmak — aile![/tr] Oxirida hamma barmoqni quchoqlang!",
+       "doska": "👍 baba  ☝️ anne  🖕 abi\n💍 abla  🤙 bebek\n👨‍👩‍👧‍👦 aile!",
+       "sodda": "Faqat uchta: [tr]baba, anne, bebek[/tr].",
+       "boshqa_usul": "Har barmoqni qimirlatib, ovozini o'zgartirib ayting: bobo — yo'g'on, chaqaloq — ingichka ovoz!",
+       "matn_en": "Parmaklarını göster ve şarkı söyle: Baba parmak, anne parmak, abi parmak, abla parmak, bebek parmak — aile! Sonunda bütün parmaklarına sarıl!",
+       "sarlavha_en": "🎵 Parmak ailesi şarkısı"
+      }
+     ],
+     "intro_en": "Selam! Bugün nineyi ve dedeyi ziyaret ediyoruz. Bizi çok seviyorlar!"
+    },
+    {
+     "name": "Qalaysan, do'stim?",
+     "goal": "Bola «Nasılsın?» deb so'raydi va «İyiyim, teşekkürler» deb javob beradi",
+     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "items": [
+      {
+       "say": "arkadaş",
+       "uz": "do'st",
+       "emoji": "🧑‍🤝‍🧑",
+       "image": "en56-u2-friend.png",
+       "image_prompt": "Two children holding hands as friends, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yoningizdagi do'stingizning qo'lini ushlang!",
+       "sentence": "Anvar benim arkadaşım.",
+       "action_en": "Bir arkadaşınla tokalaş!"
+      },
+      {
+       "say": "Nasılsın?",
+       "uz": "qalaysan?",
+       "emoji": "🤗",
+       "image": "en56-u2-how-are-you.png",
+       "image_prompt": "A child greeting a friend with open arms, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Merhaba, Laylo! Nasılsın?"
+      },
+      {
+       "say": "İyiyim, teşekkür ederim.",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊",
+       "image": "en56-u2-im-fine.png",
+       "image_prompt": "A smiling child with a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "İyiyim, teşekkür ederim. Ya sen?"
+      },
+      {
+       "say": "Günaydın!",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en56-u2-good-morning.png",
+       "image_prompt": "A child stretching by a window at sunrise, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kerishib, uyg'onganday bo'ling!",
+       "sentence": "Günaydın, anne!",
+       "action_en": "Kollarını uzat!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: ertalab hovlida",
+       "matn": "Men — Kabutar, siz — do'stim. [tr]Günaydın! Nasılsın?[/tr] Siz javob bering: [tr]İyiyim, teşekkür ederim![/tr] Keyin rollarni almashamiz!",
+       "doska": "— Günaydın! Nasılsın?\n— İyiyim, teşekkür ederim!",
+       "sodda": "Qisqa javob: [tr]İyiyim, teşekkürler![/tr]",
+       "boshqa_usul": "Qo'g'irchoq yoki ayiqcha bilan gaplashing: [tr]Günaydın, Ayıcık! Nasılsın?[/tr]",
+       "matn_en": "Kabutar: Günaydın! Nasılsın? Çocuk: İyiyim, teşekkür ederim! Şimdi değiştirin: sen sor, Kabutar cevap versin!",
+       "sarlavha_en": "🎭 Diyalog: Günaydın"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Nasılsın?[/tr] — nima deb javob beramiz?",
+       "options": [
+        "😊 İyiyim, teşekkür ederim.",
+        "👋 Merhaba!",
+        "5️⃣ beş"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [tr]İyiyim, teşekkür ederim.[/tr] — yaxshiman, rahmat.",
+       "q_en": "Arkadaşın soruyor: \"Nasılsın?\" Ne dersin?"
+      }
+     ],
+     "intro_en": "Günaydın, arkadaşlar! Nasılsınız? İyiyim, teşekkür ederim! Hadi arkadaşlarımızla konuşalım."
+    },
+    {
+     "name": "Katta va kichik",
+     "goal": "Bola büyük, küçük, mutlu, üzgün so'zlari bilan odamni tasvirlaydi",
+     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "items": [
+      {
+       "say": "büyük",
+       "uz": "katta",
+       "emoji": "🐘",
+       "image": "en56-u2-big.png",
+       "image_prompt": "A big friendly elephant, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni keng oching!",
+       "sentence": "Fil büyük.",
+       "action_en": "Kocaman ol!"
+      },
+      {
+       "say": "küçük",
+       "uz": "kichik",
+       "emoji": "🐭",
+       "image": "en56-u2-small.png",
+       "image_prompt": "A tiny cute mouse, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Cho'kkalab, kichkina bo'ling!",
+       "sentence": "Fare küçük.",
+       "action_en": "Küçücük ol!"
+      },
+      {
+       "say": "mutlu",
+       "uz": "xursand",
+       "emoji": "😄",
+       "image": "en56-u2-happy.png",
+       "image_prompt": "A child laughing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Keng jilmaying!",
+       "sentence": "Bugün çok mutluyum!",
+       "action_en": "Gülümse!"
+      },
+      {
+       "say": "üzgün",
+       "uz": "xafa",
+       "emoji": "😢",
+       "image": "en56-u2-sad.png",
+       "image_prompt": "A little child with a tear, looking sad, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Xafa yuz qiling!",
+       "sentence": "Küçük kedi üzgün.",
+       "action_en": "Üzgün bir yüz yap!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "👨‍👩‍👧 Oilam haqida gapiraman",
+       "matn": "Endi gap tuzamiz: [tr]Babam büyük.[/tr] — dadam katta. [tr]Küçük erkek kardeşim küçük.[/tr] — ukam kichkina. [tr]Annem mutlu.[/tr] — onam xursand.",
+       "doska": "Babam büyük. 👨🐘\nKardeşim küçük. 👦🐭\nAnnem mutlu. 👩😄",
+       "sodda": "[tr]büyük[/tr] — katta, [tr]küçük[/tr] — kichik.",
+       "boshqa_usul": "Men aytaman — siz ko'rsatasiz: [tr]büyük![/tr] — qo'l keng; [tr]küçük![/tr] — qo'l tor; [tr]mutlu![/tr] — kulamiz!",
+       "matn_en": "Hadi söyleyelim: Babam büyük. Küçük kardeşim küçük. Annem mutlu. Şimdi sen aileni anlat!",
+       "sarlavha_en": "👨‍👩‍👧 Ailem"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐘 Fil qanday?",
+       "options": [
+        "🐘 büyük",
+        "🐭 küçük",
+        "😢 üzgün"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Fil katta — [tr]büyük[/tr].",
+       "q_en": "File bak. Büyük mü, küçük mü?"
+      },
+      {
+       "q": "Tug'ilgan kuningizda sizga sovg'a berishdi. Siz qandaysiz?",
+       "options": [
+        "😄 mutlu",
+        "😢 üzgün",
+        "🐭 küçük"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Xursand — [tr]mutlu[/tr].",
+       "q_en": "Bugün senin doğum günün. Bir hediye alıyorsun. Nasıl hissedersin?"
+      }
+     ],
+     "intro_en": "Merhaba! File bak. O büyük! Fareye bak. O küçük!"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 2,
+     "name": "Buvimnikiga mehmonga",
+     "name_en": "Nineye misafirlik",
+     "emoji": "👵",
+     "goal": "Bola buvisi bilan salomlashadi, hol-ahvol so'raydi va oilasini tanishtiradi",
+     "intro": "Biz buvimnikiga mehmonga keldik. Buvimiz bilan salomlashamiz va hol so'raymiz.",
+     "intro_en": "Bugün nineye gidiyoruz. Hadi merhaba diyelim ve nasıl olduğunu soralım!",
+     "roles": [
+      "Buvi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Babaanne",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s2-visiting-grandma.png",
+      "image_prompt": "A child with mum at the door of a cozy house, a kind grandma opening the door with open arms, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Günaydın, nine!",
+       "uz": "xayrli tong, buvijon!",
+       "emoji": "🌞"
+      },
+      {
+       "who": 0,
+       "say": "Günaydın! Nasılsın?",
+       "uz": "xayrli tong! qalaysan?",
+       "emoji": "👵"
+      },
+      {
+       "who": 1,
+       "say": "İyiyim, teşekkür ederim.",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊"
+      },
+      {
+       "who": 1,
+       "say": "Nine, bu benim arkadaşım Ali.",
+       "uz": "buvijon, bu mening do'stim Ali",
+       "emoji": "🧒"
+      },
+      {
+       "who": 0,
+       "say": "Merhaba, Ali! Buyur, gel.",
+       "uz": "salom, Ali! kiringlar",
+       "emoji": "🚪"
+      },
+      {
+       "who": 1,
+       "say": "Teşekkürler, nine! Çok mutluyum!",
+       "uz": "rahmat, buvijon! men xursandman!",
+       "emoji": "😄"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvingiz [tr]Nasılsın?[/tr] deb so'radi. Nima deysiz?",
+       "q_en": "Nine soruyor: \"Nasılsın?\" Ne dersin?",
+       "options": [
+        "😊 İyiyim, teşekkür ederim.",
+        "👶 bebek",
+        "7️⃣ yedi"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]İyiyim, teşekkür ederim.[/tr]",
+       "why_en": "Evet! İyiyim, teşekkür ederim."
+      },
+      {
+       "q": "Do'stingizni buviga tanishtiring. Nima deysiz?",
+       "q_en": "Arkadaşını nineye göster. Ne dersin?",
+       "options": [
+        "🧒 Bu benim arkadaşım Ali.",
+        "👋 Güle güle!",
+        "😢 üzgün"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Bu benim arkadaşım Ali.[/tr]",
+       "why_en": "Evet! Bu benim arkadaşım Ali."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kiyimlar",
+   "emoji": "👕",
+   "lessons": [
+    {
+     "name": "Futbolka va shim",
+     "goal": "Bola tişört, pantolon, elbise, şort so'zlarini biladi",
+     "intro": "Gu-gu! Men bugun sayrga chiqmoqchiman, ammo javonimda kiyimlar aralashib ketibdi. Keling, ularni turkcha nomlab, joy-joyiga qo'yamiz!",
+     "items": [
+      {
+       "say": "tişört",
+       "uz": "futbolka",
+       "emoji": "👕",
+       "image": "en56-u3-t-shirt.png",
+       "image_prompt": "A bright blue kids T-shirt, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Tişörtüm sarı.",
+       "action_en": "Tişörtüne dokun!"
+      },
+      {
+       "say": "pantolon",
+       "uz": "shim",
+       "emoji": "👖",
+       "image": "en56-u3-trousers.png",
+       "image_prompt": "A pair of kids trousers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Babanın mavi pantolonu var."
+      },
+      {
+       "say": "elbise",
+       "uz": "ko'ylak",
+       "emoji": "👗",
+       "image": "en56-u3-dress.png",
+       "image_prompt": "A pretty pink girl's dress, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Kız kardeşimin pembe bir elbisesi var."
+      },
+      {
+       "say": "şort",
+       "uz": "kalta shim",
+       "emoji": "🩳",
+       "image": "en56-u3-shorts.png",
+       "image_prompt": "A pair of summer shorts, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Yazın şort giyerim."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Kir yoyamiz",
+       "matn": "Kabutar qushcha kir yoyyapti. Men aytgan kiyimni ko'rsating: [tr]Tişört![/tr] … [tr]elbise![/tr] … [tr]pantolon![/tr] … [tr]şort![/tr] Barakalla!",
+       "doska": "👕 tişört  👖 pantolon\n👗 elbise  🩳 şort",
+       "sodda": "Ikkitadan: [tr]tişört[/tr] va [tr]elbise[/tr].",
+       "boshqa_usul": "O'zingizdagi kiyimni ushlab ayting: [tr]tişört[/tr] yoki [tr]elbise[/tr]!",
+       "matn_en": "Kabutar çamaşırları kurutmak için asıyor. Söylediğim giysiyi göster: Tişört! Elbise! Pantolon! Şort! Aferin!",
+       "sarlavha_en": "🧺 Çamaşır günü"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Hadi giyinelim. Giysilerime bakın! Bugün ne giyiyorsun?"
+    },
+    {
+     "name": "Poyabzal va paypoq",
+     "goal": "Bola ayakkabı, çorap, bot so'zlarini biladi va «Giy!» buyrug'ini bajaradi",
+     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni turkcha o'rganamiz.",
+     "items": [
+      {
+       "say": "ayakkabı",
+       "uz": "tufli, oyoq kiyim",
+       "emoji": "👟",
+       "image": "en56-u3-shoes.png",
+       "image_prompt": "A pair of colorful kids sneakers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ayakkabılarım siyah.",
+       "action_en": "Ayakkabılarına dokun!"
+      },
+      {
+       "say": "çorap",
+       "uz": "paypoq",
+       "emoji": "🧦",
+       "image": "en56-u3-socks.png",
+       "image_prompt": "A pair of striped socks, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "İki beyaz çorabım var."
+      },
+      {
+       "say": "bot",
+       "uz": "etik",
+       "emoji": "👢",
+       "image": "en56-u3-boots.png",
+       "image_prompt": "A pair of rain boots, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Botlarını giy, lütfen."
+      },
+      {
+       "say": "Giy!",
+       "uz": "kiy!",
+       "emoji": "🙆",
+       "image": "en56-u3-put-on.png",
+       "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kiyim kiyayotgandek harakat qiling!",
+       "sentence": "Çoraplarını giy!",
+       "action_en": "Ayakkabılarını giy!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Kiyinish o'yini",
+       "matn": "Men buyuraman, siz kiyinganday qilasiz: [tr]Çoraplarını giy![/tr] … [tr]Ayakkabılarını giy![/tr] … [tr]Botlarını giy![/tr] Kim tezroq?",
+       "doska": "Çoraplarını giy! 🧦\nAyakkabılarını giy! 👟\nBotlarını giy! 👢",
+       "sodda": "Sekin: [tr]…giy: çorap[/tr]. Paypoq kiyamiz!",
+       "boshqa_usul": "Rostdan kiyinib ko'ring va har birida ayting: [tr]çorap, ayakkabı![/tr]",
+       "matn_en": "Dinle ve yap: Çoraplarını giy! Ayakkabılarını giy! Botlarını giy! Kim hızlı?",
+       "sarlavha_en": "🏃 Giyinme oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Oyog'imizga birinchi nima kiyamiz?",
+       "options": [
+        "🧦 çoraplar",
+        "👕 tişört",
+        "👗 elbise"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Avval paypoq — [tr]çorap[/tr], keyin [tr]ayakkabı[/tr].",
+       "q_en": "Ayaklarına önce ne giyersin?"
+      }
+     ],
+     "intro_en": "Selam! Dışarı çıkıyoruz. Önce çoraplar, sonra ayakkabılar! Ayakkabılarını giy, lütfen."
+    },
+    {
+     "name": "Issiq kiyimlar",
+     "goal": "Bola şapka, mont, atkı, eldiven so'zlarini biladi",
+     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "items": [
+      {
+       "say": "şapka",
+       "uz": "shapka",
+       "emoji": "👒",
+       "image": "en56-u3-hat.png",
+       "image_prompt": "A cozy hat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Benim kırmızı bir şapkam var.",
+       "action_en": "Başına dokun!"
+      },
+      {
+       "say": "mont",
+       "uz": "palto",
+       "emoji": "🧥",
+       "image": "en56-u3-coat.png",
+       "image_prompt": "A warm winter coat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Montunu giy, lütfen."
+      },
+      {
+       "say": "atkı",
+       "uz": "sharf",
+       "emoji": "🧣",
+       "image": "en56-u3-scarf.png",
+       "image_prompt": "A striped woolly scarf, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bo'yningizga sharf o'raganday qiling!",
+       "sentence": "Atkım uzun ve yeşil."
+      },
+      {
+       "say": "eldiven",
+       "uz": "qo'lqop",
+       "emoji": "🧤",
+       "image": "en56-u3-gloves.png",
+       "image_prompt": "A pair of warm gloves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni ishqalang!",
+       "sentence": "Eldivenlerim ellerimde.",
+       "action_en": "Ellerini göster!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "❄️ Qishga tayyorlanamiz",
+       "matn": "Kabutar qushchani kiyintiramiz! Men aytaman, siz ko'rsatasiz: [tr]şapka[/tr] — boshga, [tr]atkı[/tr] — bo'yinga, [tr]eldiven[/tr] — qo'lga, [tr]mont[/tr] — ustiga!",
+       "doska": "👒 şapka — bosh\n🧣 atkı — bo'yin\n🧤 eldiven — qo'l\n🧥 mont — ust",
+       "sodda": "Ikkitasi: [tr]şapka[/tr] va [tr]mont[/tr].",
+       "boshqa_usul": "Rostdan shapka va sharf taqib, ko'zguga qarab ayting: [tr]şapka, atkı![/tr]",
+       "matn_en": "Hadi Kabutar'ı giydirelim! Ben söylerim, sen göster: şapka — başına. Atkı — boynuna. Eldiven — ellerine. Mont — üstüne!",
+       "sarlavha_en": "❄️ Kışa hazırız"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'limiz sovqotdi. Nima kiyamiz?",
+       "options": [
+        "🧤 eldivenler",
+        "🩳 şort",
+        "👒 şapka"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qo'lga — [tr]eldiven[/tr].",
+       "q_en": "Ellerin üşüyor. Ne giyersin?"
+      }
+     ],
+     "intro_en": "Brr! Dışarısı soğuk. Hadi kalın giysiler giyelim: şapka, mont ve eldiven!"
+    },
+    {
+     "name": "Mening kiyimim",
+     "goal": "Bola kiyimini rangi bilan aytadi: «Tişörtüm kırmızı.»",
+     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida turkcha gapiramiz.",
+     "items": [
+      {
+       "say": "Tişörtüm kırmızı.",
+       "uz": "futbolkam qizil",
+       "emoji": "👕🔴",
+       "image": "en56-u3-tshirt-red.png",
+       "image_prompt": "A red T-shirt on a hanger, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bak! Tişörtüm kırmızı."
+      },
+      {
+       "say": "Ayakkabılarım mavi.",
+       "uz": "tuflim ko'k",
+       "emoji": "👟🔵",
+       "image": "en56-u3-shoes-blue.png",
+       "image_prompt": "A pair of blue sneakers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ayakkabılarım mavi ve küçük."
+      },
+      {
+       "say": "Şapkanı giy!",
+       "uz": "shapkangni kiy!",
+       "emoji": "👒🙂",
+       "image": "en56-u3-put-on-hat.png",
+       "image_prompt": "A smiling child putting on a hat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizga shapka kiyganday qiling!",
+       "sentence": "Hava soğuk. Şapkanı giy!",
+       "action_en": "Şapkanı giy!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎨 Rangli kiyim o'yini",
+       "matn": "Kiyimingizga qarang! Qani, ayting: [tr]Tişörtüm…[/tr] va rangini qo'shing: [tr]kırmızı, mavi, yeşil, sarı[/tr]. Keyin do'stingizning kiyimini ham ayting!",
+       "doska": "Tişörtüm kırmızı. 🔴\nElbisem pembe. 🩷\nAyakkabılarım mavi. 🔵",
+       "sodda": "Faqat rangni ayting: [tr]kırmızı![/tr] [tr]mavi![/tr]",
+       "boshqa_usul": "Kim [tr]kırmızı[/tr] kiyim kiygan bo'lsa — o'rnidan tursin! Kim [tr]mavi[/tr] kiygan bo'lsa — sakrasin!",
+       "matn_en": "Giysilerine bak! Söyle: Tişörtüm kırmızı. Ya da mavi, yeşil, sarı. Şimdi arkadaşının giysilerini anlat!",
+       "sarlavha_en": "🎨 Renkli giysi oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Ayakkabılarım mavi.[/tr] — qaysi rasm?",
+       "options": [
+        "👟🔵 ko'k tufli",
+        "👕🔴 qizil futbolka",
+        "🧥 palto"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]mavi[/tr] — ko'k, [tr]ayakkabı[/tr] — tufli.",
+       "q_en": "\"Ayakkabılarım mavi.\" Hangi resim?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Bana bakın! Tişörtüm kırmızı. Sizin giysileriniz ne renk?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 3,
+     "name": "Sayrga kiyinamiz",
+     "name_en": "Yürüyüş için giyiniyoruz",
+     "emoji": "🧥",
+     "goal": "Bola havoga qarab kiyinadi va kiyimlarini turkcha aytadi",
+     "intro": "Onamiz bilan sayrga chiqamiz. Tashqarida sovuq, issiq kiyinamiz!",
+     "intro_en": "Annemle yürüyüşe çıkıyoruz. Hava soğuk, hadi kalın giysiler giyelim!",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "Anne",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s3-getting-dressed.png",
+      "image_prompt": "A mother helping a child put on a coat, hat and scarf in a cozy hallway by the door, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "Hadi yürüyüşe çıkalım!",
+       "uz": "keling, sayrga chiqamiz!",
+       "emoji": "🚶"
+      },
+      {
+       "who": 1,
+       "say": "Tamam! Montumu giyerim.",
+       "uz": "xo'p! paltomni kiyaman",
+       "emoji": "🧥"
+      },
+      {
+       "who": 0,
+       "say": "Evet. Hava soğuk. Şapkanı giy!",
+       "uz": "ha. sovuq. shapkangni kiy!",
+       "emoji": "🧢"
+      },
+      {
+       "who": 1,
+       "say": "Şapkam kırmızı!",
+       "uz": "shapkam qizil!",
+       "emoji": "🔴"
+      },
+      {
+       "who": 0,
+       "say": "Eldivenlerini ve botlarını da giy.",
+       "uz": "qo'lqop va etigingni ham kiy",
+       "emoji": "🧤"
+      },
+      {
+       "who": 1,
+       "say": "Tamam, anne! Hazırım!",
+       "uz": "xo'p, onajon! tayyorman!",
+       "emoji": "😊"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tashqarida sovuq. Boshingizga nima kiyasiz?",
+       "q_en": "Hava soğuk. Başına ne takarsın?",
+       "options": [
+        "🧢 şapka",
+        "🩳 şort",
+        "🧦 çoraplar"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]şapka[/tr]",
+       "why_en": "Evet! Bir şapka."
+      },
+      {
+       "q": "Qo'lingizga nima kiyasiz?",
+       "q_en": "Ellerine ne giyersin?",
+       "options": [
+        "🧤 eldivenler",
+        "👢 bot",
+        "👗 elbise"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]eldiven[/tr]",
+       "why_en": "Evet! Eldiven."
+      },
+      {
+       "q": "Onangiz [tr]Şapkanı giy![/tr] dedi. U nima demoqchi?",
+       "q_en": "Annem diyor ki: \"Şapkanı giy!\" Ne yaparsın?",
+       "options": [
+        "🧢 Şapkamı giyerim.",
+        "👟 Ayakkabılarımı giyerim.",
+        "🧥 Montumu giyerim."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Shapkani kiyamiz.",
+       "why_en": "Evet! Şapkamı giyerim."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ovqat va ichimliklar",
+   "emoji": "🍽️",
+   "lessons": [
+    {
+     "name": "Nonushta",
+     "goal": "Bola ekmek, süt, yumurta, peynir so'zlarini biladi",
+     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, turkcha aytamiz.",
+     "items": [
+      {
+       "say": "ekmek",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "en56-u4-bread.png",
+       "image_prompt": "A loaf of fresh bread, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ekmek ve peynir severim."
+      },
+      {
+       "say": "süt",
+       "uz": "sut",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Sabahları süt içerim.",
+       "action_en": "Sütünü iç!"
+      },
+      {
+       "say": "yumurta",
+       "uz": "tuxum",
+       "emoji": "🥚",
+       "image": "en56-u4-egg.png",
+       "image_prompt": "A white egg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bir yumurtam var."
+      },
+      {
+       "say": "peynir",
+       "uz": "pishloq",
+       "emoji": "🧀",
+       "image": "en56-u4-cheese.png",
+       "image_prompt": "A wedge of yellow cheese, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Fare peynir sever."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🍳 Nonushta tayyorlaymiz",
+       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qiling va ayting: [tr]ekmek[/tr] … [tr]süt[/tr] … [tr]yumurta[/tr] … [tr]peynir[/tr]. Yoqimli ishtaha!",
+       "doska": "🍞 ekmek  🥛 süt\n🥚 yumurta  🧀 peynir",
+       "sodda": "Ikkitasi: [tr]ekmek[/tr] va [tr]süt[/tr].",
+       "boshqa_usul": "Uyda nonushtada har ovqatni turkcha nomlang!",
+       "matn_en": "Hadi bebeklere kahvaltı verelim! Masaya koy ve söyle: ekmek, süt, yumurta, peynir. Nefis!",
+       "sarlavha_en": "🍳 Hadi kahvaltı hazırlayalım"
+      }
+     ],
+     "intro_en": "Günaydın! Kahvaltı zamanı. Hadi ekmek, yumurta ve peynir yiyelim. Nefis!"
+    },
+    {
+     "name": "Ichimliklar",
+     "goal": "Bola su, meyve suyu, çay so'zlarini va «Susadım» iborasini biladi",
+     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "items": [
+      {
+       "say": "su",
+       "uz": "suv",
+       "emoji": "💧",
+       "image": "en56-u4-water.png",
+       "image_prompt": "A clear glass of water with a drop, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Her gün su içerim.",
+       "action_en": "Biraz su iç!"
+      },
+      {
+       "say": "meyve suyu",
+       "uz": "sharbat",
+       "emoji": "🧃",
+       "image": "en56-u4-juice.png",
+       "image_prompt": "A kids juice box with a straw, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Elma suyunu severim."
+      },
+      {
+       "say": "çay",
+       "uz": "choy",
+       "emoji": "🍵",
+       "image": "en56-u4-tea.png",
+       "image_prompt": "A cup of green tea, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Nine çay içiyor."
+      },
+      {
+       "say": "Susadım.",
+       "uz": "chanqadim",
+       "emoji": "🥤",
+       "image": "en56-u4-im-thirsty.png",
+       "image_prompt": "A child holding a cup, looking thirsty, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tomog'ingizni ushlang!",
+       "sentence": "Susadım. Su, lütfen."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: choyxonada",
+       "matn": "Kabutar so'raydi: [tr]Su mu, meyve suyu mu?[/tr] Siz tanlang: [tr]Meyve suyu, lütfen![/tr] Kabutar beradi. Siz: [tr]Teşekkürler![/tr] Endi siz so'rang!",
+       "doska": "— Su mu, meyve suyu mu?\n— Meyve suyu, lütfen!\n— Teşekkürler!",
+       "sodda": "Faqat tanlang: [tr]su[/tr] yoki [tr]meyve suyu[/tr].",
+       "boshqa_usul": "Ikki stakan qo'ying — biriga suv, biriga sharbat. Kattalarga taklif qiling: [tr]Su mu, meyve suyu mu?[/tr]",
+       "matn_en": "Kabutar: Su mu, meyve suyu mu? Çocuk: Meyve suyu, lütfen! Kabutar: Buyurun. Çocuk: Teşekkürler! Şimdi sen sor!",
+       "sarlavha_en": "🎭 Diyalog: Kafede"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvimiz ertalab piyolada nima ichadi?",
+       "options": [
+        "🍵 çay",
+        "🧀 peynir",
+        "🥚 yumurta"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Choy — [tr]çay[/tr].",
+       "q_en": "Nine sabahları ne içer?"
+      }
+     ],
+     "intro_en": "Selam, arkadaşlar! Susadım. Hadi bir şey içelim. Su mu, meyve suyu mu, çay mı?"
+    },
+    {
+     "name": "Tushlik",
+     "goal": "Bola çorba, pilav, tavuk so'zlarini va «Acıktım» iborasini biladi",
+     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "items": [
+      {
+       "say": "çorba",
+       "uz": "sho'rva",
+       "emoji": "🍲",
+       "image": "en56-u4-soup.png",
+       "image_prompt": "A bowl of warm soup, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Annem sıcak çorba yapıyor."
+      },
+      {
+       "say": "pilav",
+       "uz": "guruch, palov",
+       "emoji": "🍚",
+       "image": "en56-u4-rice.png",
+       "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Tavuklu pilav severim."
+      },
+      {
+       "say": "tavuk eti",
+       "uz": "tovuq go'shti",
+       "emoji": "🍗",
+       "image": "en56-u4-chicken.png",
+       "image_prompt": "A roasted chicken leg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Tavuk çok lezzetli!"
+      },
+      {
+       "say": "Acıktım.",
+       "uz": "qornim och",
+       "emoji": "🍽️",
+       "image": "en56-u4-im-hungry.png",
+       "image_prompt": "A child with an empty plate and a spoon, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silang!",
+       "sentence": "Acıktım. Çorba, lütfen!",
+       "action_en": "Karnını ovala!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥄 Oshpaz o'yini",
+       "matn": "Siz — oshpazsiz! Qozonga soling: [tr]pilav[/tr], [tr]tavuk eti[/tr]… aralashtiring! Kabutar keladi: [tr]Acıktım![/tr] Siz berasiz: [tr]İşte çorba![/tr]",
+       "doska": "🍚 pilav + 🍗 tavuk\n🍲 çorba\nAcıktım! 🍽️",
+       "sodda": "Qozonga bittadan soling va ayting: [tr]pilav[/tr]!",
+       "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
+       "matn_en": "Aşçı sensin! Tencereye pilav ve tavuk koy. Karıştır, karıştır! Kabutar: Acıktım! Aşçı: İşte çorba!",
+       "sarlavha_en": "🥄 Aşçı oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Acıktım.[/tr] — bu nima degani?",
+       "options": [
+        "🍽️ qornim och",
+        "🥤 chanqadim",
+        "😊 yaxshiman"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Acıktım[/tr] — qornim och.",
+       "q_en": "\"Acıktım\" ne demek?"
+      }
+     ],
+     "intro_en": "Merhaba! Öğle yemeği zamanı. Acıktım! Hadi çorba ve pilav yiyelim."
+    },
+    {
+     "name": "Shirinliklar",
+     "goal": "Bola pasta, dondurma, şeker so'zlarini va «Nefis!» iborasini biladi",
+     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni turkcha nomlaymiz.",
+     "items": [
+      {
+       "say": "pasta",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "en56-u4-cake.png",
+       "image_prompt": "A birthday cake with candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Doğum günü pastası büyük."
+      },
+      {
+       "say": "dondurma",
+       "uz": "muzqaymoq",
+       "emoji": "🍦",
+       "image": "en56-u4-ice-cream.png",
+       "image_prompt": "A soft ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Yazın dondurma severim."
+      },
+      {
+       "say": "şekerler",
+       "uz": "konfetlar",
+       "emoji": "🍬",
+       "image": "en56-u4-sweets.png",
+       "image_prompt": "Colorful wrapped candies, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ninemin bana şekerleri var."
+      },
+      {
+       "say": "Nefis!",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en56-u4-yummy.png",
+       "image_prompt": "A child licking lips happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silab, «mm» deng!",
+       "sentence": "Nefis! Pasta çok güzel!",
+       "action_en": "Karnını ovala!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎂 Tug'ilgan kun o'yini",
+       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [tr]bir, iki, üç, dört, beş![/tr] Puflang! Endi tortdan tatib ko'ramiz — [tr]Nefis![/tr]",
+       "doska": "🎂 bir iki üç dört beş\nNefis! 😋",
+       "sodda": "Birgina so'z: [tr]pasta[/tr]… [tr]Nefis![/tr]",
+       "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, turkcha sanang!",
+       "matn_en": "Pastaya mumları koy ve say: bir, iki, üç, dört, beş! Üfle! Şimdi pastayı ye — Nefis!",
+       "sarlavha_en": "🎂 Doğum günü oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tug'ilgan kunda sham qo'yiladigan shirinlik qaysi?",
+       "options": [
+        "🎂 pasta",
+        "🍦 dondurma",
+        "🍞 ekmek"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tort — [tr]pasta[/tr].",
+       "q_en": "Doğum gününde üstüne mum koyarız. Bu ne?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Tatlı şeyleri çok severim. Pasta, dondurma, şeker. Nefis!"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 4,
+     "name": "Uyda nonushta",
+     "name_en": "Evde kahvaltı",
+     "emoji": "🍳",
+     "goal": "Bola nonushtada ovqat va ichimlik so'raydi, rahmat aytadi",
+     "intro": "Ertalab oila bilan nonushta qilamiz. Nima yeymiz, nima ichamiz?",
+     "intro_en": "Günaydın! Aileyle kahvaltı zamanı. Ne istersin?",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "Anne",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s4-breakfast.png",
+      "image_prompt": "A family breakfast table with bread, eggs, cheese, tea and milk, a mother and a child smiling in a bright kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "Günaydın! Acıktın mı?",
+       "uz": "xayrli tong! qorning ochmi?",
+       "emoji": "🌞"
+      },
+      {
+       "who": 1,
+       "say": "Evet, acıktım.",
+       "uz": "ha, qornim och",
+       "emoji": "🍽️"
+      },
+      {
+       "who": 0,
+       "say": "Al bakalım. Ekmek ve yumurta.",
+       "uz": "mana, ol. non va tuxum",
+       "emoji": "🍞🥚"
+      },
+      {
+       "who": 1,
+       "say": "Teşekkürler! Süt, lütfen.",
+       "uz": "rahmat! sut bering, iltimos",
+       "emoji": "🥛"
+      },
+      {
+       "who": 0,
+       "say": "İşte sütün.",
+       "uz": "mana suting",
+       "emoji": "🫴"
+      },
+      {
+       "who": 1,
+       "say": "Nefis! Teşekkürler, anne!",
+       "uz": "mazali! rahmat, onajon!",
+       "emoji": "😋"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sut ichmoqchisiz. Nima deysiz?",
+       "q_en": "Biraz süt istiyorsun. Ne dersin?",
+       "options": [
+        "🥛 Süt, lütfen.",
+        "🧀 peynir",
+        "👋 Güle güle!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Süt, lütfen.[/tr]",
+       "why_en": "Evet! Süt, lütfen."
+      },
+      {
+       "q": "Nonushta juda mazali. Nima deysiz?",
+       "q_en": "Kahvaltı çok güzel. Ne dersin?",
+       "options": [
+        "😋 Nefis!",
+        "🥤 Susadım.",
+        "😢 üzgün"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Nefis![/tr]",
+       "why_en": "Evet! Nefis!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uyim va xonalar",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Mening uyim",
+     "goal": "Bola ev, kapı, pencere, bahçe so'zlarini biladi",
+     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni turkcha o'rganamiz.",
+     "items": [
+      {
+       "say": "ev",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bu benim evim.",
+       "action_en": "Havada bir ev çiz!"
+      },
+      {
+       "say": "kapı",
+       "uz": "eshik",
+       "emoji": "🚪",
+       "image": "en56-u5-door.png",
+       "image_prompt": "A wooden front door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Eshikni taqillatganday qiling: tuk-tuk!",
+       "sentence": "Kapıyı aç, lütfen.",
+       "action_en": "Kapıyı aç!"
+      },
+      {
+       "say": "pencere",
+       "uz": "deraza",
+       "emoji": "🪟",
+       "image": "en56-u5-window.png",
+       "image_prompt": "A window with curtains, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Pencereden dışarı bak!",
+       "action_en": "Pencereden dışarı bak!"
+      },
+      {
+       "say": "bahçe",
+       "uz": "bog', hovli",
+       "emoji": "🏡",
+       "image": "en56-u5-garden.png",
+       "image_prompt": "A house with a green garden and flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Büyük bir bahçemiz var."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏠 Uy chizamiz",
+       "matn": "Qog'oz va qalam oling! Avval [tr]ev[/tr] chizing, keyin [tr]kapı[/tr], ikkita [tr]pencere[/tr], atrofiga [tr]bahçe[/tr]. Chizib bo'lgach, har birini ko'rsatib ayting!",
+       "doska": "🏠 ev\n🚪 kapı  🪟 pencere\n🏡 bahçe",
+       "sodda": "Faqat [tr]ev[/tr] va [tr]kapı[/tr] chizing.",
+       "boshqa_usul": "Uyingizda yurib, eshik va derazani topib ayting: [tr]kapı! pencere![/tr]",
+       "matn_en": "Kâğıt ve kalem al! Bir ev, bir kapı, iki pencere ve bir bahçe çiz. Sonra göster ve her kelimeyi söyle!",
+       "sarlavha_en": "🏠 Bir ev çiz"
+      }
+     ],
+     "intro_en": "Merhaba! Evime hoş geldin! Bak, işte kapı. Buyur, gel!"
+    },
+    {
+     "name": "Uydagi xonalar",
+     "goal": "Bola mutfak, yatak odası, banyo, oturma odası so'zlarini biladi",
+     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni turkcha aytamiz!",
+     "items": [
+      {
+       "say": "mutfak",
+       "uz": "oshxona",
+       "emoji": "🍳",
+       "image": "en56-u5-kitchen.png",
+       "image_prompt": "A bright kitchen with a stove and a frying pan, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Annem mutfakta."
+      },
+      {
+       "say": "yatak odası",
+       "uz": "yotoqxona",
+       "emoji": "🛏️",
+       "image": "en56-u5-bedroom.png",
+       "image_prompt": "A cozy bedroom with a bed and a teddy bear, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uxlaganday ko'zingizni yuming!",
+       "sentence": "Yatak odamda uyurum.",
+       "action_en": "Uyu!"
+      },
+      {
+       "say": "banyo",
+       "uz": "hammom",
+       "emoji": "🛁",
+       "image": "en56-u5-bathroom.png",
+       "image_prompt": "A bathroom with a bathtub and bubbles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni yuvganday qiling!",
+       "sentence": "Ellerimi banyoda yıkarım.",
+       "action_en": "Ellerini yıka!"
+      },
+      {
+       "say": "oturma odası",
+       "uz": "mehmonxona",
+       "emoji": "🛋️",
+       "image": "en56-u5-living-room.png",
+       "image_prompt": "A living room with a sofa, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Oturma odasında televizyon izleriz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Qaysi xonadamiz?",
+       "matn": "Men ish aytaman, siz xonani toping! Uxlaymiz — [tr]yatak odası[/tr]. Ovqat pishiramiz — [tr]mutfak[/tr]. Cho'milamiz — [tr]banyo[/tr]. Divanda o'tiramiz — [tr]oturma odası[/tr].",
+       "doska": "😴 → yatak odası\n🍳 → mutfak\n🛁 → banyo\n🛋️ → oturma odası",
+       "sodda": "Ikkitasi: [tr]mutfak[/tr] va [tr]yatak odası[/tr].",
+       "boshqa_usul": "Uyingizda har xonaga kirib, uning nomini turkcha ayting!",
+       "matn_en": "Ben söylerim, sen odayı bul! Uyuruz — yatak odası. Yemek yaparız — mutfak. Yıkanırız — banyo. Kanepede otururuz — oturma odası.",
+       "sarlavha_en": "🔍 Hangi oda?"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ yatak odası",
+        "🍳 mutfak",
+        "🛁 banyo"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yotoqxona — [tr]yatak odası[/tr].",
+       "q_en": "Nerede uyuruz?"
+      }
+     ],
+     "intro_en": "Selam, arkadaşlar! Evimde birçok oda var. Hadi dolaşalım ve her odaya bakalım!"
+    },
+    {
+     "name": "Xonadagi narsalar",
+     "goal": "Bola sandalye, lamba, televizyon, saat so'zlarini biladi",
+     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "items": [
+      {
+       "say": "sandalye",
+       "uz": "stul",
+       "emoji": "🪑",
+       "image": "en56-u5-chair.png",
+       "image_prompt": "A small wooden chair, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Sandalyeye otur, lütfen.",
+       "action_en": "Otur!"
+      },
+      {
+       "say": "lamba",
+       "uz": "chiroq",
+       "emoji": "💡",
+       "image": "en56-u5-lamp.png",
+       "image_prompt": "A glowing light bulb lamp, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chiroqni yoqganday qiling: chirt!",
+       "sentence": "Lamba masanın üstünde."
+      },
+      {
+       "say": "televizyon",
+       "uz": "televizor",
+       "emoji": "📺",
+       "image": "en56-u5-tv.png",
+       "image_prompt": "A retro television set, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Dede televizyon izliyor."
+      },
+      {
+       "say": "saat",
+       "uz": "soat",
+       "emoji": "🕰️",
+       "image": "en56-u5-clock.png",
+       "image_prompt": "A mantel clock, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tik-tak deb boshingizni chayqating!",
+       "sentence": "Saat büyük ve beyaz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, qayerda?",
+       "matn": "Atrofingizga qarang! Xonangizda [tr]sandalye[/tr] bormi? Ko'rsating! [tr]lamba[/tr]? [tr]televizyon[/tr]? [tr]saat[/tr]? Topgan har narsa uchun — bitta qarsak!",
+       "doska": "🪑 sandalye  💡 lamba\n📺 televizyon  🕰️ saat",
+       "sodda": "Faqat [tr]sandalye[/tr] ni toping va ustiga o'tiring!",
+       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; siz ko'rsatib ayting.",
+       "matn_en": "Odana bak! Sandalye var mı? Bana göster! Lamba? Televizyon? Saat? Bulduğun her şey için el çırp!",
+       "sarlavha_en": "👀 Bul bakalım!"
+      }
+     ],
+     "intro_en": "Merhaba! Odama bak. Bir sandalye, bir lamba ve bir saat görüyorum. Sen ne görüyorsun?"
+    },
+    {
+     "name": "Mushuk qayerda?",
+     "goal": "Bola «…nerede?» deb so'raydi, içinde, üstünde, altında so'zlarini tushunadi",
+     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "items": [
+      {
+       "say": "Kedi nerede?",
+       "uz": "mushuk qayerda?",
+       "emoji": "🐈❓",
+       "image": "en56-u5-where-cat.png",
+       "image_prompt": "A pigeon looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Kedi nerede? Bilmiyorum!",
+       "action_en": "Etrafına bak!"
+      },
+      {
+       "say": "kutunun içinde",
+       "uz": "qutining ichida",
+       "emoji": "📦🐱",
+       "image": "en56-u5-in-box.png",
+       "image_prompt": "A kitten sitting inside a cardboard box, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Kedi kutunun içinde."
+      },
+      {
+       "say": "masanın üstünde",
+       "uz": "stolning ustida",
+       "emoji": "🐱⬆️",
+       "image": "en56-u5-on-table.png",
+       "image_prompt": "A kitten sitting on top of a table, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Top masanın üstünde."
+      },
+      {
+       "say": "yatağın altında",
+       "uz": "karavotning ostida",
+       "emoji": "🛏️🐱",
+       "image": "en56-u5-under-bed.png",
+       "image_prompt": "A kitten peeking out from under a bed, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ayakkabılarım yatağın altında."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧸 Yashirinmachoq",
+       "matn": "Ayiqchani yashiring! Kattalar so'raydi: [tr]Ayıcık nerede?[/tr] Siz javob bering: [tr]kutunun içinde[/tr], [tr]sandalyenin üstünde[/tr] yoki [tr]yatağın altında[/tr].",
+       "doska": "Ayıcık nerede?\niçinde 📦  üstünde ⬆️  altında ⬇️",
+       "sodda": "Qo'l bilan ko'rsating: [tr]içinde[/tr] — ichiga, [tr]üstünde[/tr] — ustiga, [tr]altında[/tr] — ostiga.",
+       "boshqa_usul": "Qalamni qutiga soling va ayting: [tr]içinde![/tr] Qutining ustiga qo'ying: [tr]üstünde![/tr] Ostiga: [tr]altında![/tr]",
+       "matn_en": "Ayıcığı sakla! Büyük: Ayıcık nerede? Çocuk: Kutunun içinde! Sandalyenin üstünde! Yatağın altında!",
+       "sarlavha_en": "🧸 Saklambaç"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱 mushukcha qutining ichida. Qanday aytamiz?",
+       "options": [
+        "📦🐱 kutunun içinde",
+        "🐱⬆️ masanın üstünde",
+        "🛏️🐱 yatağın altında"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ichida — [tr]kutunun içinde[/tr].",
+       "q_en": "Kedi yavrusu kutunun içinde. Bunu nasıl söyleriz?"
+      }
+     ],
+     "intro_en": "Eyvah! Kedi nerede? Hadi birlikte arayalım. Kutunun içinde mi?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 5,
+     "name": "Mushukchani qidiramiz",
+     "name_en": "Kedi yavrusunu arıyoruz",
+     "emoji": "🐱",
+     "goal": "Bola uyda mushukchani qidiradi va xona hamda joy nomlarini aytadi",
+     "intro": "Uyimizdagi mushukcha yo'qolib qoldi! Dadamiz bilan xonalarda qidiramiz.",
+     "intro_en": "Eyvah! Kedi yavrumuz nerede? Hadi babamla her odada arayalım!",
+     "roles": [
+      "Dada",
+      "Bola"
+     ],
+     "roles_en": [
+      "Baba",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s5-find-the-kitten.png",
+      "image_prompt": "A father and a child looking for a kitten in a cozy bedroom, the kitten peeking from under the bed, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Baba, kedi nerede?",
+       "uz": "dada, mushuk qayerda?",
+       "emoji": "❓"
+      },
+      {
+       "who": 0,
+       "say": "Mutfakta mı?",
+       "uz": "oshxonadami?",
+       "emoji": "🍳"
+      },
+      {
+       "who": 1,
+       "say": "Hayır. Mutfakta değil.",
+       "uz": "yo'q. oshxonada emas",
+       "emoji": "🙅"
+      },
+      {
+       "who": 0,
+       "say": "Hadi yatak odasına bakalım.",
+       "uz": "keling, yotoqxonaga qaraymiz",
+       "emoji": "🛏️"
+      },
+      {
+       "who": 1,
+       "say": "Bakın! Yatağın altında!",
+       "uz": "qarang! karavotning ostida!",
+       "emoji": "🐱"
+      },
+      {
+       "who": 0,
+       "say": "Aferin! Çok mutluyum!",
+       "uz": "barakalla! men xursandman!",
+       "emoji": "👏"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Mushukcha qayerda edi?",
+       "q_en": "Kedi yavrusu nerede?",
+       "options": [
+        "🛏️🐱 yatağın altında",
+        "📦🐱 kutunun içinde",
+        "🐱⬆️ masanın üstünde"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]yatağın altında[/tr]",
+       "why_en": "Evet! Yatağın altında."
+      },
+      {
+       "q": "Mushukni qidiryapsiz. Nima deb so'raysiz?",
+       "q_en": "Kediyi bulamıyorsun. Ne sorarsın?",
+       "options": [
+        "❓ Kedi nerede?",
+        "🐱 Benim bir kedim var.",
+        "😊 Nasılsın?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Kedi nerede?[/tr]",
+       "why_en": "Evet! Kedi nerede?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo va fasllar",
+   "emoji": "🌦️",
+   "lessons": [
+    {
+     "name": "Bugun havo qanday?",
+     "goal": "Bola «Hava nasıl?» savoliga güneşli, yağmurlu, rüzgârlı bilan javob beradi",
+     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni turkcha aytamiz!",
+     "items": [
+      {
+       "say": "Hava nasıl?",
+       "uz": "havo qanday?",
+       "emoji": "🌦️",
+       "image": "en56-u6-weather.png",
+       "image_prompt": "A child looking out of a window at the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Anne, hava nasıl?"
+      },
+      {
+       "say": "Hava güneşli.",
+       "uz": "quyoshli",
+       "emoji": "☀️",
+       "image": "en56-u6-sunny.png",
+       "image_prompt": "A bright smiling sun, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni quyoshday keng oching!",
+       "sentence": "Hava güneşli. Hadi parka gidelim!",
+       "action_en": "Güneş gözlüğünü tak!"
+      },
+      {
+       "say": "Hava yağmurlu.",
+       "uz": "yomg'irli",
+       "emoji": "🌧️",
+       "image": "en56-u6-rainy.png",
+       "image_prompt": "A cloud with raindrops, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaringiz bilan yomg'ir tomchilarini ko'rsating!",
+       "sentence": "Hava yağmurlu. Şemsiye al!"
+      },
+      {
+       "say": "Hava rüzgârlı.",
+       "uz": "shamolli",
+       "emoji": "🌬️",
+       "image": "en56-u6-windy.png",
+       "image_prompt": "Wind blowing leaves and a kite, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Daraxtday chayqaling!",
+       "sentence": "Hava rüzgârlı. Hadi uçurtma uçuralım!",
+       "action_en": "Ağaç gibi sallan!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ob-havo qo'shig'i",
+       "matn": "Kuylaymiz: [tr]Bugün hava nasıl? Güneşli, güneşli, yaşasın![/tr] Keyin [tr]yağmurlu[/tr] va [tr]rüzgârlı[/tr] bilan ham kuylang!",
+       "doska": "Hava nasıl?\nHava güneşli! ☀️ Hava yağmurlu! 🌧️ Hava rüzgârlı! 🌬️",
+       "sodda": "Faqat javob: [tr]güneşli![/tr] [tr]yağmurlu![/tr]",
+       "boshqa_usul": "Har tong derazadan qarab, havoni turkcha ayting va taqvimga rasm chizing.",
+       "matn_en": "Hadi şarkı söyleyelim: Bugün hava nasıl? Güneşli, güneşli, yaşasın! Şimdi yağmurlu ve rüzgârlı ile söyle!",
+       "sarlavha_en": "🎵 Hava durumu şarkısı"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda quyosh charaqlayapti. Havo qanday?",
+       "options": [
+        "☀️ Hava güneşli.",
+        "🌧️ Hava yağmurlu.",
+        "🌬️ Hava rüzgârlı."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Hava güneşli.[/tr] — quyoshli.",
+       "q_en": "Güneş gökyüzünde parlıyor. Hava nasıl?"
+      }
+     ],
+     "intro_en": "Günaydın, arkadaşlar! Hadi pencereden bakalım. Bugün hava nasıl?"
+    },
+    {
+     "name": "Issiq va sovuq",
+     "goal": "Bola karlı, bulutlu, sıcak, soğuk so'zlari bilan havoni tasvirlaydi",
+     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "items": [
+      {
+       "say": "Hava karlı.",
+       "uz": "qorli",
+       "emoji": "🌨️",
+       "image": "en56-u6-snowy.png",
+       "image_prompt": "Snow falling from a cloud, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Hava karlı. Hadi kardan adam yapalım!"
+      },
+      {
+       "say": "Hava bulutlu.",
+       "uz": "bulutli",
+       "emoji": "☁️",
+       "image": "en56-u6-cloudy.png",
+       "image_prompt": "Fluffy grey clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Hava bulutlu. Güneşi göremiyorum."
+      },
+      {
+       "say": "Hava sıcak.",
+       "uz": "issiq",
+       "emoji": "🥵",
+       "image": "en56-u6-hot.png",
+       "image_prompt": "A child fanning themselves in the heat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yelpinganday qiling!",
+       "sentence": "Hava sıcak. Dondurma istiyorum!",
+       "action_en": "Yüzünü yelpazele!"
+      },
+      {
+       "say": "Hava soğuk.",
+       "uz": "sovuq",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Titraganday qiling: brr!",
+       "sentence": "Hava soğuk. Montunu giy!",
+       "action_en": "Böyle titre!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Issiq-sovuq o'yini",
+       "matn": "Men aytaman, siz harakat qilasiz: [tr]Hava sıcak![/tr] — yelpining! [tr]Hava soğuk![/tr] — titrang! [tr]Hava karlı![/tr] — qor to'plang! [tr]Hava bulutlu![/tr] — bulutday suzing!",
+       "doska": "🥵 sıcak — yelpinamiz\n🥶 soğuk — titraymiz\n🌨️ karlı — qor\n☁️ bulutlu — bulut",
+       "sodda": "Ikkitasi: [tr]sıcak[/tr] va [tr]soğuk[/tr].",
+       "boshqa_usul": "Muzlatkichdan muz oling va ushlang: [tr]Hava soğuk![/tr] Iliq suvga qo'l tekkizing: [tr]sıcak![/tr]",
+       "matn_en": "Dinle ve hareket et! Hava sıcak — yüzünü yelpazele! Hava soğuk — titre! Hava karlı — kartopu yap! Hava bulutlu — bulut gibi süzül!",
+       "sarlavha_en": "🏃 Sıcak ve soğuk oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tashqarida qor yog'yapti. Nima deymiz?",
+       "options": [
+        "🌨️ Hava karlı.",
+        "🥵 Hava sıcak.",
+        "☀️ Hava güneşli."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [tr]Hava karlı.[/tr] — qorli.",
+       "q_en": "Dışarıda kar yağıyor. Ne deriz?"
+      }
+     ],
+     "intro_en": "Selam! Bazı günler sıcak, bazı günler soğuk. Hadi hava durumunu konuşalım!"
+    },
+    {
+     "name": "To'rt fasl",
+     "goal": "Bola ilkbahar, yaz, sonbahar, kış fasllarini biladi",
+     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "items": [
+      {
+       "say": "ilkbahar",
+       "uz": "bahor",
+       "emoji": "🌷",
+       "image": "en56-u6-spring.png",
+       "image_prompt": "Spring tulips blooming, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "İlkbaharda çiçekler pembedir."
+      },
+      {
+       "say": "yaz",
+       "uz": "yoz",
+       "emoji": "🏖️",
+       "image": "en56-u6-summer.png",
+       "image_prompt": "A sunny beach with a bucket and spade, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Yazın hava sıcak ve güneşlidir.",
+       "action_en": "Balık gibi yüz!"
+      },
+      {
+       "say": "sonbahar",
+       "uz": "kuz",
+       "emoji": "🍂",
+       "image": "en56-u6-autumn.png",
+       "image_prompt": "Falling orange autumn leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barg kabi aylanib tushing!",
+       "sentence": "Sonbaharda yapraklar sarıdır.",
+       "action_en": "Yaprak gibi düş!"
+      },
+      {
+       "say": "kış",
+       "uz": "qish",
+       "emoji": "❄️",
+       "image": "en56-u6-winter.png",
+       "image_prompt": "A big snowflake, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Kışın hava karlıdır.",
+       "action_en": "Böyle titre!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "🔄 Fasllar aylanasi",
+       "matn": "Fasllar aylanib keladi: [tr]ilkbahar, yaz, sonbahar, kış[/tr] — va yana [tr]ilkbahar[/tr]! Bahorda — gul, yozda — dengiz, kuzda — barg, qishda — qor.",
+       "doska": "🌷 ilkbahar → 🏖️ yaz\n↑            ↓\n❄️ kış ← 🍂 sonbahar",
+       "sodda": "[tr]yaz[/tr] — yoz, [tr]kış[/tr] — qish.",
+       "boshqa_usul": "Doira bo'lib aylaning va har burilishda bitta faslni ayting!",
+       "matn_en": "Mevsimler döner: ilkbahar, yaz, sonbahar, kış — ve yine ilkbahar! İlkbahar — çiçekler. Yaz — deniz. Sonbahar — yapraklar. Kış — kar.",
+       "sarlavha_en": "🔄 Mevsimler çemberi"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Barglar sarg'ayib to'kilyapti. Bu qaysi fasl?",
+       "options": [
+        "🍂 sonbahar",
+        "🌷 ilkbahar",
+        "🏖️ yaz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kuz — [tr]sonbahar[/tr].",
+       "q_en": "Yapraklar sarı ve düşüyor. Hangi mevsim?"
+      },
+      {
+       "q": "Qorbobo va qor — qaysi faslda?",
+       "options": [
+        "❄️ kış",
+        "🏖️ yaz",
+        "🌷 ilkbahar"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qish — [tr]kış[/tr].",
+       "q_en": "Kar ve kardan adam. Hangi mevsim?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Bir yılda dört mevsim var: ilkbahar, yaz, sonbahar ve kış. Hangisini seversin?"
+    },
+    {
+     "name": "Soyabon va kamalak",
+     "goal": "Bola şemsiye, gökkuşağı, kardan adam so'zlarini biladi",
+     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "items": [
+      {
+       "say": "şemsiye",
+       "uz": "soyabon",
+       "emoji": "☂️",
+       "image": "en56-u6-umbrella.png",
+       "image_prompt": "A colorful open umbrella, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Soyabonni ochganday qiling!",
+       "sentence": "Şemsiyeni al, lütfen.",
+       "action_en": "Şemsiyeni aç!"
+      },
+      {
+       "say": "gökkuşağı",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en56-u6-rainbow.png",
+       "image_prompt": "A bright rainbow over clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bak! Kocaman bir gökkuşağı!",
+       "action_en": "Havada bir gökkuşağı çiz!"
+      },
+      {
+       "say": "kardan adam",
+       "uz": "qorbobo, qor odam",
+       "emoji": "⛄",
+       "image": "en56-u6-snowman.png",
+       "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Büyük bir kardan adam yapıyoruz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: sayrga chiqamiz",
+       "matn": "Kabutar so'raydi: [tr]Hava nasıl?[/tr] Siz: [tr]Hava yağmurlu.[/tr] Kabutar: [tr]Şemsiyeni al![/tr] Keyin: [tr]Bak! Bir gökkuşağı![/tr]",
+       "doska": "— Hava nasıl?\n— Hava yağmurlu. 🌧️\n— Şemsiyeni al! ☂️\n— Bak! Bir gökkuşağı! 🌈",
+       "sodda": "Qisqa: [tr]yağmurlu[/tr] — [tr]şemsiye[/tr].",
+       "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'ling!) va ayting: [tr]şemsiye![/tr]",
+       "matn_en": "Kabutar: Hava nasıl? Çocuk: Hava yağmurlu. Kabutar: Şemsiyeni al! Çocuk: Bak! Bir gökkuşağı!",
+       "sarlavha_en": "🎭 Diyalog: Hadi dışarı çıkalım"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Yomg'ir yog'yapti. O'zimiz bilan nima olamiz?",
+       "options": [
+        "☂️ şemsiye",
+        "🍦 dondurma",
+        "🩳 şort"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Soyabon — [tr]şemsiye[/tr].",
+       "q_en": "Hava yağmurlu. Yanımıza ne alırız?"
+      }
+     ],
+     "intro_en": "Selam! Bugün hava yağmurlu, bu yüzden şemsiyem var. Bak! Yağmurdan sonra bir gökkuşağı görüyorum!"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 6,
+     "name": "Bog'ga chiqamizmi?",
+     "name_en": "Parka gidebilir miyiz?",
+     "emoji": "🌦️",
+     "goal": "Bola ob-havoni so'raydi va unga qarab kiyinadi yoki soyabon oladi",
+     "intro": "Biz bog'ga sayrga chiqmoqchimiz. Avval havo qandayligini bilib olamiz!",
+     "intro_en": "Parka gitmek istiyoruz. Bugün hava nasıl?",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "Anne",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s6-park-weather.png",
+      "image_prompt": "A child and a mother looking out of a window at light rain and a rainbow over a green park, holding an umbrella, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Anne, parka gidebilir miyiz?",
+       "uz": "onajon, bog'ga boramizmi?",
+       "emoji": "🌳"
+      },
+      {
+       "who": 0,
+       "say": "Bak! Hava nasıl?",
+       "uz": "qara! havo qanday?",
+       "emoji": "🪟"
+      },
+      {
+       "who": 1,
+       "say": "Hava yağmurlu ve bulutlu.",
+       "uz": "yomg'irli va bulutli",
+       "emoji": "🌧️"
+      },
+      {
+       "who": 0,
+       "say": "Şemsiyeni al, lütfen.",
+       "uz": "soyaboningni ol, iltimos",
+       "emoji": "☂️"
+      },
+      {
+       "who": 1,
+       "say": "Tamam! Bak, anne! Bir gökkuşağı!",
+       "uz": "xo'p! qarang, onajon! kamalak!",
+       "emoji": "🌈"
+      },
+      {
+       "who": 0,
+       "say": "Evet! Hadi parka gidelim!",
+       "uz": "ha! qani, bog'ga ketdik!",
+       "emoji": "😊"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yomg'ir yog'yapti. Havo qanday?",
+       "q_en": "Yağmur yağıyor. Hava nasıl?",
+       "options": [
+        "🌧️ Hava yağmurlu.",
+        "☀️ Hava güneşli.",
+        "🌨️ Hava karlı."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Hava yağmurlu.[/tr]",
+       "why_en": "Evet! Hava yağmurlu."
+      },
+      {
+       "q": "Yomg'irda nima olamiz?",
+       "q_en": "Yağmurda yanımıza ne alırız?",
+       "options": [
+        "☂️ şemsiye",
+        "🍦 dondurma",
+        "⛄ kardan adam"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]şemsiye[/tr]",
+       "why_en": "Evet! Bir şemsiye."
+      },
+      {
+       "q": "Osmonda yetti rangli yoy paydo bo'ldi. Bu nima?",
+       "q_en": "Gökyüzünde birçok renk görüyorsun. Bu ne?",
+       "options": [
+        "🌈 gökkuşağı",
+        "☁️ Hava bulutlu.",
+        "🍂 sonbahar"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]gökkuşağı[/tr]",
+       "why_en": "Evet! Bir gökkuşağı."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Menga yoqadi, yoqmaydi",
+   "emoji": "❤️",
+   "lessons": [
+    {
+     "name": "Menga yoqadi",
+     "goal": "Bola «…ı severim» bilan yoqtirgan narsasini aytadi",
+     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni turkcha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "Elma severim.",
+       "uz": "men olmani yaxshi ko'raman",
+       "emoji": "🍎❤️",
+       "image": "en56-u7-like-apples.png",
+       "image_prompt": "A happy child hugging a big red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingiz bilan yurakcha yasang!",
+       "sentence": "Elma severim. Onlar kırmızı!"
+      },
+      {
+       "say": "Kedileri severim.",
+       "uz": "men mushuklarni yaxshi ko'raman",
+       "emoji": "🐱❤️",
+       "image": "en56-u7-like-cats.png",
+       "image_prompt": "A child cuddling a fluffy cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Kedileri severim. Onlar küçük."
+      },
+      {
+       "say": "Dondurma severim.",
+       "uz": "men muzqaymoqni yaxshi ko'raman",
+       "emoji": "🍦❤️",
+       "image": "en56-u7-like-ice-cream.png",
+       "image_prompt": "A child happily holding an ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Dondurma severim. Nefis!",
+       "action_en": "Karnını ovala!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "❤️ Yurakcha o'yini",
+       "matn": "Men narsa aytaman. Yoqsa — yurakcha yasang va ayting: [tr]…severim![/tr] [tr]muz mu?[/tr] [tr]köpekler mi?[/tr] [tr]pasta mı?[/tr] [tr]süt mü?[/tr]",
+       "doska": "… severim ❤️\n🍌 muz  🐶 köpekler  🎂 pasta",
+       "sodda": "Faqat [tr]Severim[/tr] va so'z: [tr]Pasta severim![/tr]",
+       "boshqa_usul": "Yoqtirgan narsalaringiz rasmini chizing va har biriga ayting: [tr]…severim.[/tr]",
+       "matn_en": "Ben bir şey söylerim. Seversen, ellerinle kalp yap ve söyle: Severim! Muz? Köpekler? Pasta? Süt?",
+       "sarlavha_en": "❤️ Kalp oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Kedileri severim.[/tr] — bu nima degani?",
+       "options": [
+        "🐱❤️ mushuklarni yaxshi ko'raman",
+        "🍎❤️ olmani yaxshi ko'raman",
+        "🐈❓ mushuk qayerda?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]kediler[/tr] — mushuklar, [tr]Severim[/tr] — yaxshi ko'raman.",
+       "q_en": "\"Kedileri severim\" ne demek?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Elma severim. Arkadaşlarımı da severim! Sen ne seversin?"
+    },
+    {
+     "name": "Menga yoqmaydi",
+     "goal": "Bola «…ı sevmem» bilan yoqtirmagan narsasini aytadi",
+     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "items": [
+      {
+       "say": "Soğan sevmem.",
+       "uz": "men piyozni yoqtirmayman",
+       "emoji": "🧅👎",
+       "image": "en56-u7-dislike-onions.png",
+       "image_prompt": "A child making a funny face at an onion, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Burningizni jiyiring!",
+       "sentence": "Hayır, teşekkürler. Soğan sevmem.",
+       "action_en": "Başını iki yana salla!"
+      },
+      {
+       "say": "Yağmuru sevmem.",
+       "uz": "men yomg'irni yoqtirmayman",
+       "emoji": "🌧️👎",
+       "image": "en56-u7-dislike-rain.png",
+       "image_prompt": "A wet grumpy pigeon under the rain, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Yağmuru sevmem. Hava soğuk."
+      },
+      {
+       "say": "Örümcekleri sevmem.",
+       "uz": "men o'rgimchaklarni yoqtirmayman",
+       "emoji": "🕷️👎",
+       "image": "en56-u7-dislike-spiders.png",
+       "image_prompt": "A child hiding from a small cartoon spider, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Örümcekleri sevmem. Onlar korkunç!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👍👎 Barmoq o'yini",
+       "matn": "Men aytaman — siz barmoq ko'rsatasiz! Yoqsa 👍: [tr]…severim.[/tr]. Yoqmasa 👎: [tr]…sevmem[/tr]. [tr]Pasta?[/tr] [tr]Soğan?[/tr] [tr]Yağmur mu?[/tr] [tr]Şeker?[/tr]",
+       "doska": "👍 … severim\n👎 … sevmem",
+       "sodda": "Faqat barmoq va [tr]evet[/tr] yoki [tr]hayır[/tr].",
+       "boshqa_usul": "Oila bilan o'ynang: har kim bitta narsa aytadi, qolganlar 👍 yoki 👎 ko'rsatadi.",
+       "matn_en": "Ben bir şey söylerim, sen başparmağını göster! Başparmak yukarı: Severim. Başparmak aşağı: Sevmem. Pasta? Soğan? Yağmur? Şeker?",
+       "sarlavha_en": "👍👎 Başparmak oyunu"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola piyozni ko'rib burnini jiyirdi. U nima deydi?",
+       "options": [
+        "🧅👎 Soğan sevmem.",
+        "🍎❤️ Elma severim.",
+        "😋 Nefis!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Yoqmasa: [tr]…sevmem[/tr]",
+       "q_en": "Bir çocuk soğanı görüyor ve yüzünü buruşturuyor. Ne der?"
+      }
+     ],
+     "intro_en": "Selam! Birçok şeyi severiz. Ama bazı şeyleri sevmeyiz. Ben yağmuru sevmem!"
+    },
+    {
+     "name": "Senga yoqadimi?",
+     "goal": "Bola «…sever misin?» deb so'raydi va «Evet, severim / Hayır, sevmem» deb javob beradi",
+     "intro": "Gu-gu! Men do'stlarimdan so'rashni yaxshi ko'raman: senga muzqaymoq yoqadimi? Bugun turkcha so'rash va javob berishni o'rganamiz!",
+     "items": [
+      {
+       "say": "…sever misin?",
+       "uz": "senga … yoqadimi?",
+       "emoji": "🤔",
+       "image": "en56-u7-do-you-like.png",
+       "image_prompt": "A curious child asking a friend with a thinking face, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Muz sever misin?"
+      },
+      {
+       "say": "Evet, severim.",
+       "uz": "ha, yoqadi",
+       "emoji": "👍",
+       "image": "en56-u7-yes-i-do.png",
+       "image_prompt": "A child smiling and giving a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizni «ha» deb qimirlating!",
+       "sentence": "Pasta sever misin? Evet, severim.",
+       "action_en": "Başını salla!"
+      },
+      {
+       "say": "Hayır, sevmem.",
+       "uz": "yo'q, yoqmaydi",
+       "emoji": "👎",
+       "image": "en56-u7-no-i-dont.png",
+       "image_prompt": "A child shaking head and giving a thumbs down, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizni «yo'q» deb chayqating!",
+       "sentence": "Örümcek sever misin? Hayır, sevmem.",
+       "action_en": "Başını iki yana salla!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: do'stimdan so'rayman",
+       "matn": "Kabutar: [tr]Süt sever misin?[/tr] Siz: [tr]Evet, severim.[/tr] Kabutar: [tr]Örümcek sever misin?[/tr] Siz: [tr]Hayır, sevmem![/tr] Endi siz Kabutardan so'rang!",
+       "doska": "— Süt sever misin?\n— Evet, severim. 👍\n— Örümcek sever misin?\n— Hayır, sevmem. 👎",
+       "sodda": "Faqat [tr]Evet[/tr] 👍 yoki [tr]Hayır[/tr] 👎 deb javob bering.",
+       "boshqa_usul": "Oila a'zolaringizdan so'rang: [tr]Çay sever misin?[/tr] Javoblarini sanang!",
+       "matn_en": "Kabutar: Süt sever misin? Çocuk: Evet, severim. Kabutar: Örümcek sever misin? Çocuk: Hayır, sevmem! Şimdi sen Kabutar'a sor!",
+       "sarlavha_en": "🎭 Diyalog: Arkadaşına sor"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Dondurma sever misin?[/tr] Sizga yoqsa, nima deysiz?",
+       "options": [
+        "👍 Evet, severim.",
+        "👎 Hayır, sevmem.",
+        "🙋 Hoşça kal!"
+       ],
+       "answer": 0,
+       "why": "Ajoyib! Yoqsa — [tr]Evet, severim.[/tr]",
+       "q_en": "\"Dondurma sever misin?\" Sen seviyorsun. Ne dersin?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Hadi arkadaşlarımıza soralım. Pasta sever misin? Evet, severim!"
+    },
+    {
+     "name": "Eng sevimli narsam",
+     "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
+     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida turkcha gapiramiz.",
+     "items": [
+      {
+       "say": "En sevdiğim renk mavi.",
+       "uz": "sevimli rangim — ko'k",
+       "emoji": "💙",
+       "image": "en56-u7-favourite-colour.png",
+       "image_prompt": "A big blue heart and blue paint splash, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "En sevdiğim renk mavi."
+      },
+      {
+       "say": "En sevdiğim oyuncak top.",
+       "uz": "sevimli o'yinchog'im — to'p",
+       "emoji": "⚽",
+       "image": "en56-u7-favourite-toy.png",
+       "image_prompt": "A colorful soccer ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "En sevdiğim oyuncak top.",
+       "action_en": "Top at!"
+      },
+      {
+       "say": "Annemi seviyorum.",
+       "uz": "men onamni yaxshi ko'raman",
+       "emoji": "🥰",
+       "image": "en56-u7-love-mum.png",
+       "image_prompt": "A child hugging mother with hearts around, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Onangizni quchoqlang!",
+       "sentence": "Annemi çok seviyorum.",
+       "action_en": "Kocaman sarıl!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎁 Sevimli narsam ko'rgazmasi",
+       "matn": "Eng sevimli o'yinchog'ingizni olib keling! Uni ko'rsatib ayting: [tr]En sevdiğim oyuncak…[/tr] Keyin rangini ayting: [tr]En sevdiğim renk…[/tr]",
+       "doska": "En sevdiğim oyuncak … 🧸\nEn sevdiğim renk … 🎨",
+       "sodda": "Faqat nomini ayting: [tr]top![/tr] [tr]mavi![/tr]",
+       "boshqa_usul": "Sevimli rangingizdagi qalam bilan rasm chizing va onangizga sovg'a qiling: [tr]Seni seviyorum, anne![/tr]",
+       "matn_en": "En sevdiğin oyuncağı getir! Göster ve söyle: En sevdiğim oyuncak… Sonra söyle: En sevdiğim renk…",
+       "sarlavha_en": "🎁 En sevdiğim oyuncak gösterisi"
+      }
+     ],
+     "intro_en": "Selam, arkadaşlar! En sevdiğim renk gökyüzü gibi mavi. Senin en sevdiğin oyuncak ne?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 7,
+     "name": "Bozorda meva tanlaymiz",
+     "name_en": "Pazarda",
+     "emoji": "🧺",
+     "goal": "Bola bozorda nima yoqishi va yoqmasligini aytadi, odob bilan meva so'raydi",
+     "intro": "Buvimiz bilan bozorga keldik. Qaysi mevani yaxshi ko'ramiz?",
+     "intro_en": "Nineyle pazardayız. Hangi meyveyi seversin?",
+     "roles": [
+      "Buvi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Babaanne",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s7-market.png",
+      "image_prompt": "A grandmother and a child at a colourful fruit and vegetable market stall with apples, bananas, grapes and onions, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "Elma sever misin?",
+       "uz": "senga olma yoqadimi?",
+       "emoji": "🍎"
+      },
+      {
+       "who": 1,
+       "say": "Evet, severim. Elma severim.",
+       "uz": "ha, yoqadi. men olmani yaxshi ko'raman",
+       "emoji": "👍"
+      },
+      {
+       "who": 0,
+       "say": "Soğan sever misin?",
+       "uz": "senga piyoz yoqadimi?",
+       "emoji": "🧅"
+      },
+      {
+       "who": 1,
+       "say": "Hayır, sevmem. Soğan sevmem.",
+       "uz": "yo'q, yoqmaydi. piyozni yoqtirmayman",
+       "emoji": "👎"
+      },
+      {
+       "who": 1,
+       "say": "Nine, üzüm alalım, lütfen!",
+       "uz": "buvijon, uzum oling, iltimos!",
+       "emoji": "🍇"
+      },
+      {
+       "who": 0,
+       "say": "Tamam! Al bakalım.",
+       "uz": "xo'p! mana, ol",
+       "emoji": "🫴"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvingiz [tr]Elma sever misin?[/tr] deb so'radi. Sizga yoqadi. Nima deysiz?",
+       "q_en": "Nine soruyor: \"Elma sever misin?\" Sen seviyorsun. Ne dersin?",
+       "options": [
+        "👍 Evet, severim.",
+        "👎 Hayır, sevmem.",
+        "🙋 Hoşça kal!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Evet, severim.[/tr]",
+       "why_en": "Evet! Evet, severim."
+      },
+      {
+       "q": "Sizga piyoz yoqmaydi. Nima deysiz?",
+       "q_en": "Soğan sevmiyorsun. Ne dersin?",
+       "options": [
+        "🧅👎 Soğan sevmem.",
+        "🍎❤️ Elma severim.",
+        "😋 Nefis!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Soğan sevmem.[/tr]",
+       "why_en": "Evet! Soğan sevmem."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Menda bor, qila olaman",
+   "emoji": "💪",
+   "lessons": [
+    {
+     "name": "Menda bor",
+     "goal": "Bola «Benim bir… var» bilan o'zida bor narsani aytadi",
+     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, turkcha aytamiz!",
+     "items": [
+      {
+       "say": "Benim bir kedim var.",
+       "uz": "menda mushuk bor",
+       "emoji": "🐈",
+       "image": "en56-u8-have-cat.png",
+       "image_prompt": "A child holding a fluffy cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Benim bir kedim var. O beyaz."
+      },
+      {
+       "say": "Benim bir köpeğim var.",
+       "uz": "menda it bor",
+       "emoji": "🐕",
+       "image": "en56-u8-have-dog.png",
+       "image_prompt": "A child walking a happy dog, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Benim bir köpeğim var. O büyük."
+      },
+      {
+       "say": "Benim bir oyuncak bebeğim var.",
+       "uz": "menda qo'g'irchoq bor",
+       "emoji": "🪆",
+       "image": "en56-u8-have-doll.png",
+       "image_prompt": "A child holding a colorful doll, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Pembe elbiseli bir oyuncak bebeğim var."
+      },
+      {
+       "say": "Benim bir topum var.",
+       "uz": "menda to'p bor",
+       "emoji": "🏀",
+       "image": "en56-u8-have-ball.png",
+       "image_prompt": "A child holding a bouncy ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Benim kırmızı bir topum var.",
+       "action_en": "Topu sektir!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎒 Sehrli sumka",
+       "matn": "Sumkaga o'yinchoqlarni soling. Kattalar birini chiqaradi — siz ayting: [tr]Benim bir topum var![/tr] [tr]Benim bir oyuncak bebeğim var![/tr] Qani, sumkada yana nima bor?",
+       "doska": "🎒 Benim bir … var\n🏀 top  🪆 oyuncak bebek  🧸 oyuncak ayı",
+       "sodda": "Faqat nomini ayting: [tr]top![/tr] [tr]oyuncak bebek![/tr]",
+       "boshqa_usul": "Uy hayvoningiz yoki o'yinchog'ingiz rasmini ko'rsatib ayting: [tr]Benim bir… var[/tr]",
+       "matn_en": "Oyuncakları çantaya koy. Bir büyük birini çıkarır, sen söylersin: Benim bir topum var! Benim bir oyuncak bebeğim var! Çantada başka ne var?",
+       "sarlavha_en": "🎒 Sihirli çanta"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola itini ko'rsatib nima deydi?",
+       "options": [
+        "🐕 Benim bir köpeğim var.",
+        "🐈 Benim bir kedim var.",
+        "🪆 Benim bir oyuncak bebeğim var."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! It — [tr]köpek[/tr]: [tr]Benim bir köpeğim var.[/tr]",
+       "q_en": "Bir kız köpeğini gösteriyor. Ne der?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Benim bir yuvam ve küçük bir arkadaşım var. Sizin neyiniz var? Hadi anlatalım!"
+    },
+    {
+     "name": "Men qila olaman",
+     "goal": "Bola «…abilirim» bilan qila oladigan harakatini aytadi",
+     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni turkcha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "Zıplayabilirim.",
+       "uz": "men sakray olaman",
+       "emoji": "🤸",
+       "image": "en56-u8-can-jump.png",
+       "image_prompt": "A child jumping high, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sakrang!",
+       "sentence": "Bak! Yükseğe zıplayabilirim.",
+       "action_en": "Zıpla!"
+      },
+      {
+       "say": "Koşabilirim.",
+       "uz": "men yugura olaman",
+       "emoji": "🏃",
+       "image": "en56-u8-can-run.png",
+       "image_prompt": "A child running fast, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Joyingizda yuguring!",
+       "sentence": "Hızlı koşabilirim.",
+       "action_en": "Yerinde koş!"
+      },
+      {
+       "say": "Yüzebilirim.",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "en56-u8-can-swim.png",
+       "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringiz bilan suzganday qiling!",
+       "sentence": "Yazın yüzebilirim.",
+       "action_en": "Balık gibi yüz!"
+      },
+      {
+       "say": "Şarkı söyleyebilirim.",
+       "uz": "men qo'shiq ayta olaman",
+       "emoji": "🎤",
+       "image": "en56-u8-can-sing.png",
+       "image_prompt": "A child singing into a microphone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "La-la-la deb kuylang!",
+       "sentence": "Şarkı söyleyebilirim.",
+       "action_en": "La-la-la diye şarkı söyle!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Qani, ko'rsat!",
+       "matn": "Men aytaman, siz bajarasiz va takrorlaysiz! [tr]Zıplayabilirim![/tr] — sakrang! [tr]Koşabilirim![/tr] — yuguring! [tr]Yüzebilirim![/tr] — suzing! [tr]Şarkı söyleyebilirim![/tr] — kuylang!",
+       "doska": "🤸 Zıplayabilirim!\n🏃 Koşabilirim!\n🏊 Yüzebilirim!\n🎤 Şarkı söyleyebilirim!",
+       "sodda": "Faqat harakat so'zi: [tr]zıpla![/tr] [tr]koş![/tr]",
+       "boshqa_usul": "Do'stingiz bilan navbatma-navbat buyruq bering: [tr]Zıpla![/tr] [tr]Koş![/tr]",
+       "matn_en": "Ben söylerim, sen yap ve söyle! Zıplayabilirim! — zıpla! Koşabilirim! — koş! Yüzebilirim! — yüz! Şarkı söyleyebilirim! — şarkı söyle!",
+       "sarlavha_en": "🏃 Göster bakalım!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[tr]Yüzebilirim.[/tr] — qaysi rasm?",
+       "options": [
+        "🏊 suzaman",
+        "🏃 yuguraman",
+        "🎤 kuylayman"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [tr]yüzmek[/tr] — suzmoq.",
+       "q_en": "\"Yüzebilirim.\" Hangi resim?"
+      }
+     ],
+     "intro_en": "Selam! Ben uçabilirim! Sen ne yapabilirsin? Hadi birlikte zıplayalım, koşalım ve şarkı söyleyelim!"
+    },
+    {
+     "name": "Qila olaman, qila olmayman",
+     "goal": "Bola yangi harakatlarni va «…amıyorum» ni aytadi",
+     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "items": [
+      {
+       "say": "Dans edebilirim.",
+       "uz": "men raqs tusha olaman",
+       "emoji": "💃",
+       "image": "en56-u8-can-dance.png",
+       "image_prompt": "A child dancing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Raqs tushing!",
+       "sentence": "Arkadaşlarımla dans edebilirim.",
+       "action_en": "Dans et!"
+      },
+      {
+       "say": "Resim yapabilirim.",
+       "uz": "men rasm chiza olaman",
+       "emoji": "🎨",
+       "image": "en56-u8-can-draw.png",
+       "image_prompt": "A child painting a picture, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Havoda rasm chizing!",
+       "sentence": "Büyük bir ev çizebilirim.",
+       "action_en": "Havada bir daire çiz!"
+      },
+      {
+       "say": "El çırpabilirim.",
+       "uz": "men qarsak chala olaman",
+       "emoji": "👏",
+       "image": "en56-u8-can-clap.png",
+       "image_prompt": "Two hands clapping, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qarsak chaling!",
+       "sentence": "Ellerimi çırpabilirim.",
+       "action_en": "Ellerini çırp!"
+      },
+      {
+       "say": "Uçamam.",
+       "uz": "men ucha olmayman",
+       "emoji": "🐦🚫",
+       "image": "en56-u8-cant-fly.png",
+       "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qanot qoqib ko'ring — uchmaysiz!",
+       "sentence": "Ben bir çocuğum. Uçamam.",
+       "action_en": "Kollarını çırp!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 «Yapabilirim» qo'shig'i",
+       "matn": "Kuylab harakat qilamiz: [tr]El çırpabilirim, şak, şak, şak! Dans edebilirim, dans, dans, dans! Zıplayabilirim, hop, hop, hop![/tr] Oxirida qo'l qoqib: [tr]Uçamam![/tr]",
+       "doska": "El çırpabilirim! 👏\nDans edebilirim! 💃\nZıplayabilirim! 🤸\nUçamam! 🐦🚫",
+       "sodda": "Faqat qarsak bilan: [tr]şak, şak, şak![/tr]",
+       "boshqa_usul": "Kattalarga savol bering: siz nima qila olasiz? Ular turkcha javob bersin!",
+       "matn_en": "Şarkı söyle ve hareket et: El çırpabilirim, şak, şak, şak! Dans edebilirim, dans, dans, dans! Zıplayabilirim, hop, hop, hop! Sonunda kollarını çırp: Uçamam!",
+       "sarlavha_en": "🎵 «Yapabilirim» şarkısı"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola qanot qoqib ko'rdi, lekin ucholmadi. U nima deydi?",
+       "options": [
+        "🐦🚫 Ben uçamam.",
+        "💃 Dans edebilirim.",
+        "👏 El çırpabilirim."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Uçamam.[/tr] — men ucha olmayman.",
+       "q_en": "Bir çocuk kollarını çırpıyor ama uçamıyor. Ne der?"
+      }
+     ],
+     "intro_en": "Merhaba, arkadaşlar! Ben uçabilirim ama yüzemem. Siz dans edebilir ve resim yapabilirsiniz! Hadi görelim."
+    },
+    {
+     "name": "Men endi kattaman!",
+     "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
+     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda turkcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "items": [
+      {
+       "say": "Beş yaşındayım.",
+       "uz": "men besh yoshdaman",
+       "emoji": "🖐️🎂",
+       "image": "en56-u8-i-am-five.png",
+       "image_prompt": "A child next to a birthday cake with five candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Besh barmoq ko'rsating!",
+       "sentence": "Benim adım Ali. Beş yaşındayım.",
+       "action_en": "Beş parmak göster!"
+      },
+      {
+       "say": "Ben büyüğüm.",
+       "uz": "men kattaman",
+       "emoji": "💪",
+       "image": "en56-u8-i-am-big.png",
+       "image_prompt": "A proud child showing strong arms, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kuchingizni ko'rsating!",
+       "sentence": "Ben büyüğüm. Hızlı koşabilirim.",
+       "action_en": "Dimdik dur!"
+      },
+      {
+       "say": "Çok mutluyum!",
+       "uz": "men xursandman!",
+       "emoji": "🥳",
+       "image": "en56-u8-i-am-happy.png",
+       "image_prompt": "A child celebrating with confetti, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Çok mutluyum! Türkçeyi seviyorum!",
+       "action_en": "Zıpla ve gülümse!"
+      },
+      {
+       "say": "Yakında görüşürüz!",
+       "uz": "tez orada ko'rishguncha!",
+       "emoji": "🤝",
+       "image": "en56-u8-see-you-soon.png",
+       "image_prompt": "Two friends shaking hands goodbye, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Hoşça kal, Kabutar! Yakında görüşürüz!",
+       "action_en": "El sallayarak hoşça kal de!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎤 Men haqimda",
+       "matn": "Mikrofon oling va sahnaga chiqing! Ayting: [tr]Merhaba! Benim adım…[/tr] [tr]Beş yaşındayım.[/tr] [tr]Benim bir kedim var.[/tr] [tr]Dans edebilirim.[/tr] [tr]Elma severim.[/tr] Oxirida: [tr]Yakında görüşürüz![/tr]",
+       "doska": "Merhaba! Benim adım …\nBeş yaşındayım. Benim bir … var.\n… yapabilirim. … severim.\nYakında görüşürüz!",
+       "sodda": "Faqat ikki gap: [tr]Benim adım…[/tr] va [tr]Beş yaşındayım.[/tr]",
+       "boshqa_usul": "Hikoyangizni telefonga yozib oling va oilangizga ko'rsating!",
+       "matn_en": "Mikrofonu al ve sahneye çık! Söyle: Merhaba! Benim adım… Beş yaşındayım. Benim bir kedim var. Dans edebilirim. Elma severim. Yakında görüşürüz!",
+       "sarlavha_en": "🎤 Benim hakkımda her şey"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nechi yoshdasiz? Besh yosh bo'lsa, nima deysiz?",
+       "options": [
+        "🖐️🎂 Ben beş yaşındayım.",
+        "💪 Ben büyüğüm.",
+        "🔟 on"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [tr]Beş yaşındayım.[/tr] — men besh yoshdaman.",
+       "q_en": "Kaç yaşındasın? Sen beş yaşındasın. Ne dersin?"
+      }
+     ],
+     "intro_en": "Merhaba, büyük arkadaşlarım! Beş yaşındasınız ve birçok Türkçe kelime biliyorsunuz. Çok mutluyum!"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 8,
+     "name": "Tug'ilgan kun bayrami",
+     "name_en": "Doğum günü partisi",
+     "emoji": "🎂",
+     "goal": "Bola tug'ilgan kunida yoshini aytadi, nima qila olishini ko'rsatadi va mehmonlar bilan xayrlashadi",
+     "intro": "Bugun do'stimizning tug'ilgan kuni! Tabriklaymiz, o'ynaymiz va raqs tushamiz.",
+     "intro_en": "Bugün arkadaşımın doğum günü! Hadi birlikte oynayalım, şarkı söyleyelim ve dans edelim!",
+     "roles": [
+      "Do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "Arkadaş",
+      "Çocuk"
+     ],
+     "scene": {
+      "image": "en56-s8-birthday-party.png",
+      "image_prompt": "Happy children at a birthday party with balloons and a cake with five candles, dancing and clapping, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "İyi ki doğdun! Kaç yaşındasın?",
+       "uz": "tug'ilgan kuning muborak! necha yoshdasan?",
+       "emoji": "🎉"
+      },
+      {
+       "who": 0,
+       "say": "Beş yaşındayım! Teşekkürler!",
+       "uz": "besh yoshdaman! rahmat!",
+       "emoji": "🖐️"
+      },
+      {
+       "who": 1,
+       "say": "Sana bir topum var.",
+       "uz": "menda senga to'p bor",
+       "emoji": "⚽"
+      },
+      {
+       "who": 0,
+       "say": "Teşekkürler! Dans edebilirim. Hadi dans edelim!",
+       "uz": "rahmat! men raqs tusha olaman. keling, raqs tushamiz!",
+       "emoji": "💃"
+      },
+      {
+       "who": 1,
+       "say": "Şarkı söyleyip el çırpabilirim!",
+       "uz": "men qo'shiq aytib, qarsak chala olaman!",
+       "emoji": "👏"
+      },
+      {
+       "who": 0,
+       "say": "Nefis pasta! Yakında görüşürüz!",
+       "uz": "mazali tort! tez orada ko'rishguncha!",
+       "emoji": "🎂"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Do'stingiz besh yoshda. U nima deydi?",
+       "q_en": "Arkadaşın beş yaşında. O ne der?",
+       "options": [
+        "🖐️🎂 Ben beş yaşındayım.",
+        "🔟 on",
+        "💪 Ben büyüğüm."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Beş yaşındayım.[/tr]",
+       "why_en": "Evet! Beş yaşındayım."
+      },
+      {
+       "q": "Sovg'angiz — to'p. Nima deysiz?",
+       "q_en": "Hediyen bir top. Ne dersin?",
+       "options": [
+        "⚽ Sana bir topum var.",
+        "🐕 Benim bir köpeğim var.",
+        "🚫 Ben uçamam."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Sana bir topum var.[/tr]",
+       "why_en": "Evet! Sana bir topum var."
+      },
+      {
+       "q": "Bayram tugadi. Xayrlashganda nima deysiz?",
+       "q_en": "Parti bitti. Ne dersin?",
+       "options": [
+        "👋 Yakında görüşürüz!",
+        "🍽️ Acıktım.",
+        "❓ Adın ne?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [tr]Yakında görüşürüz![/tr]",
+       "why_en": "Evet! Yakında görüşürüz!"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "Bak!",
+  "listen": "Dinle ve tekrar et:",
+  "again": "Bir daha!",
+  "good": [
+   "Aferin!",
+   "Aferin!",
+   "Harika!",
+   "Süper!",
+   "Mükemmel!"
+  ],
+  "remember": "Hatırlıyor musun?",
+  "together": "Hep birlikte söyleyelim!",
+  "your_turn": "Sıra sende!",
+  "game": "Oyun zamanı!",
+  "ready": "Hazır mısın? Başla!",
+  "found": "Çok güzel! Hepsini buldun!",
+  "today": "Bugün öğrendiklerimiz:",
+  "bye": "Yarın görüşürüz!",
+  "which": "Hangisi: {w}?",
+  "find": "Resmi bul: {w}",
+  "where": "Nerede: {w}?",
+  "what": "Resme bak. Bu ne?",
+  "yes": "Evet! {w}",
+  "old": "🔁 Eski soru",
+  "play": "Hadi oynayalım!",
+  "roleplay": "Hadi canlandıralım!",
+  "says": "{r} diyor ki:",
+  "now_you": "Şimdi sen söyle:",
+  "hello_friends": "Merhaba, arkadaşlar!",
+  "listen_short": "Dinle:",
+  "listen_bang": "Dinle!",
+  "repeat_me": "Benden sonra tekrar et:",
+  "now_you_short": "Şimdi sen:",
+  "say": "Söyle:",
+  "one_more": "Bir kez daha:",
+  "look_listen": "Bak ve dinle:",
+  "point_game": "Ben söylüyorum, sen resmi göster: {names}.",
+  "t_point": "🎲 Göster bakalım!",
+  "t_today": "🌟 Bugün öğrendiklerimiz",
+  "t_remember": "Hatırla:",
+  "t_last_year": "Geçen yıl",
+  "welcome_back": "Merhaba, arkadaşlar! Tekrar hoş geldiniz! Geçen yıl öğrendiğimiz kelimeleri hatırlayalım.",
+  "t_review": "tekrar",
+  "review_intro": "Tekrar günü! Bu bölümdeki her şeyi hatırlayalım. Her doğru cevap bir yıldız!",
+  "say_with_me": "Benimle söyle!",
+  "t_jump": "Zıpla ya da otur!",
+  "jump": "Bir kelime söylüyorum. Resmi görürsen — zıpla! Görmezsen — otur! Hazır mısın? Başla!",
+  "played_great": "Aferin! Çok güzel oynadın!",
+  "t_review_q": "Tekrar sorusu",
+  "t_unit_done": "Bölüm tamamlandı!",
+  "unit_done": "Harika! Bu bölümü bitirdin. Hadi yeni bir maceraya başlayalım!",
+  "t_party": "Büyük parti!",
+  "party": "Büyük parti",
+  "party_intro": "Yaşasın! Bugün büyük bir parti var! Bütün kitabı bitirdin. Hadi en sevdiğimiz kelimeleri hatırlayalım ve yıldız kazanalım!",
+  "know_all": "Hepsini biliyorsun!",
+  "t_party_q": "Parti sorusu",
+  "t_champion": "Sen bir şampiyonsun!",
+  "champion": "Sen bir şampiyonsun! Artık hepsini biliyorsun. İstediğin dersi tekrar aç ve oyna!",
+  "t_roleplay": "Rol oyunu",
+  "roles_line": "Ben {a}, sen {b}.",
+  "change_roles": "Şimdi rolleri değiştiriyoruz!",
+  "great_role": "Harika bir {r} oldun!",
+  "t_well_done": "🌟 Aferin!",
+  "scenario_done": "Artık bunu yapabilirsin: {name}! Evde ailenle tekrar oyna."
+ }
+}

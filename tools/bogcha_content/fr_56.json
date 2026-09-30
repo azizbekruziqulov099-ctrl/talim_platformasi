@@ -1,0 +1,2938 @@
+{
+ "subject": "Fransuz tili",
+ "lang": "fr",
+ "age": "5-6 yosh",
+ "book_title": "Bonjour, mon ami ! 5–6 yosh",
+ "prefix": "FR",
+ "units": [
+  {
+   "name": "Salom va sanoq 1–10",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Salom, do'stim!",
+     "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
+     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "items": [
+      {
+       "say": "Bonjour !",
+       "uz": "salom",
+       "emoji": "👋",
+       "image": "en56-u1-hello.png",
+       "image_prompt": "A smiling child waving hello, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni silkiting!",
+       "sentence": "Bonjour ! Je suis Kabutar.",
+       "action_en": "Fais coucou de la main !"
+      },
+      {
+       "say": "Comment tu t'appelles ?",
+       "uz": "isming nima?",
+       "emoji": "❓",
+       "image": "en56-u1-whats-your-name.png",
+       "image_prompt": "A curious child asking a friend a question with a big question mark, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bonjour ! Comment tu t'appelles ?"
+      },
+      {
+       "say": "Je m'appelle Anvar.",
+       "uz": "mening ismim Anvar",
+       "emoji": "🧒",
+       "image": "en56-u1-my-name-is.png",
+       "image_prompt": "A happy boy pointing to himself with a name badge, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ko'kragingizga qo'lingizni qo'ying!",
+       "sentence": "Bonjour ! Je m'appelle Anvar.",
+       "action_en": "Montre-toi du doigt !"
+      },
+      {
+       "say": "Au revoir !",
+       "uz": "xayr",
+       "emoji": "🙋",
+       "image": "en56-u1-goodbye.png",
+       "image_prompt": "A child raising a hand to say goodbye at a door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni ko'taring!",
+       "sentence": "Au revoir, Kabutar ! Au revoir, maman !",
+       "action_en": "Fais au revoir de la main !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: tanishamiz",
+       "matn": "Qani, Kabutar qushcha bilan gaplashamiz. Men so'rayman: [fr]Bonjour ! Comment tu t'appelles ?[/fr] Siz javob bering: [fr]Bonjour ! Je m'appelle…[/fr] va ismingizni ayting. Oxirida: [fr]Au revoir ![/fr]",
+       "doska": "— Bonjour ! Comment tu t'appelles ?\n— Bonjour ! Je m'appelle …\n— Au revoir !",
+       "sodda": "Sekin: [fr]Bonjour ![/fr] — salom. [fr]Je m'appelle…[/fr] — mening ismim… Keyin ismingizni ayting.",
+       "boshqa_usul": "Oynaga qarab o'zingiz bilan tanishing: [fr]Bonjour ! Je m'appelle…[/fr] Keyin onangiz bilan ham shunday gaplashing!",
+       "matn_en": "Parlons avec Kabutar, le petit oiseau. Kabutar : Bonjour ! Comment tu t'appelles ? L'enfant : Bonjour ! Je m'appelle… (dis ton prénom). Kabutar : Au revoir ! L'enfant : Au revoir !",
+       "sarlavha_en": "🎭 Dialogue : On fait connaissance"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Do'stingiz [fr]Comment tu t'appelles ?[/fr] deb so'radi. Nima deysiz?",
+       "options": [
+        "🧒 Je m'appelle Ali.",
+        "🙋 Au revoir !",
+        "1️⃣ un"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ismni so'rasa: [fr]Je m'appelle…[/fr] deymiz.",
+       "q_en": "Ton ami demande : « Comment tu t'appelles ? » Qu'est-ce que tu dis ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Je suis Kabutar, le petit oiseau. Vous m'avez manqué ! Disons bonjour et disons nos prénoms."
+    },
+    {
+     "name": "Sanaymiz: bir–to'rt",
+     "goal": "Bola 1 dan 4 gacha fransuzcha sanaydi",
+     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin fransuzcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "items": [
+      {
+       "say": "un",
+       "uz": "bir",
+       "emoji": "1️⃣",
+       "image": "en56-u1-one.png",
+       "image_prompt": "One red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bitta barmoq ko'rsating!",
+       "sentence": "J'ai un nez.",
+       "action_en": "Montre un doigt !"
+      },
+      {
+       "say": "deux",
+       "uz": "ikki",
+       "emoji": "2️⃣",
+       "image": "en56-u1-two.png",
+       "image_prompt": "Two yellow ducks, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ikkita barmoq ko'rsating!",
+       "sentence": "J'ai deux yeux.",
+       "action_en": "Montre deux doigts !"
+      },
+      {
+       "say": "trois",
+       "uz": "uch",
+       "emoji": "3️⃣",
+       "image": "en56-u1-three.png",
+       "image_prompt": "Three blue balls, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uchta barmoq ko'rsating!",
+       "sentence": "Je vois trois chats.",
+       "action_en": "Tape trois fois dans tes mains !"
+      },
+      {
+       "say": "quatre",
+       "uz": "to'rt",
+       "emoji": "4️⃣",
+       "image": "en56-u1-four.png",
+       "image_prompt": "Four green frogs, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "To'rtta barmoq ko'rsating!",
+       "sentence": "Le chien a quatre pattes.",
+       "action_en": "Saute quatre fois !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak sanog'i",
+       "matn": "Men sanayman, siz qarsak chalasiz: [fr]un[/fr] — bir qarsak, [fr]deux[/fr] — ikki qarsak, [fr]trois[/fr] — uch qarsak, [fr]quatre[/fr] — to'rt qarsak! Endi o'zingiz sanang!",
+       "doska": "1 un 👏\n2 deux 👏👏\n3 trois 👏👏👏\n4 quatre 👏👏👏👏",
+       "sodda": "Sekin sanaymiz: [fr]un, deux, trois, quatre[/fr].",
+       "boshqa_usul": "Qarsak o'rniga sakrab sanang: [fr]un, deux, trois, quatre ![/fr]",
+       "matn_en": "Je compte, tu tapes dans tes mains ! Un : un clap. Deux : deux claps. Trois : trois claps. Quatre : quatre claps ! Maintenant, à toi de compter !",
+       "sarlavha_en": "👏 Tape et compte"
+      }
+     ],
+     "intro_en": "Bonjour ! Comptons avec Kabutar. Un, deux, trois, quatre ! Compte avec moi !"
+    },
+    {
+     "name": "Sanaymiz: besh–yetti",
+     "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
+     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "items": [
+      {
+       "say": "cinq",
+       "uz": "besh",
+       "emoji": "5️⃣",
+       "image": "en56-u1-five.png",
+       "image_prompt": "Five orange stars, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bir qo'lingizni ochib ko'rsating!",
+       "sentence": "J'ai cinq doigts.",
+       "action_en": "Montre cinq doigts !"
+      },
+      {
+       "say": "six",
+       "uz": "olti",
+       "emoji": "6️⃣",
+       "image": "en56-u1-six.png",
+       "image_prompt": "Six pink flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je vois six ballons rouges.",
+       "action_en": "Tape six fois dans tes mains !"
+      },
+      {
+       "say": "sept",
+       "uz": "yetti",
+       "emoji": "7️⃣",
+       "image": "en56-u1-seven.png",
+       "image_prompt": "Seven small fish, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai sept pommes.",
+       "action_en": "Saute sept fois !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Sanoq qo'shig'i",
+       "matn": "Qo'shiq aytamiz: [fr]Un, deux, trois, quatre, cinq, six, sept ![/fr] Sekin boshlaymiz, keyin tezroq! Har songa bitta barmoq oching.",
+       "doska": "un deux trois quatre cinq six sept\n1 2 3 4 5 6 7",
+       "sodda": "Faqat beshgacha: [fr]un, deux, trois, quatre, cinq[/fr]. Keyin qo'shamiz: [fr]six, sept[/fr].",
+       "boshqa_usul": "Zinapoyada yurib sanang: har qadamda bitta son — [fr]un… sept ![/fr]",
+       "matn_en": "Chantons : un, deux, trois, quatre, cinq, six, sept ! Chante doucement, puis vite ! Montre un doigt pour chaque nombre.",
+       "sarlavha_en": "🎵 La chanson pour compter"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🖐️ Bir qo'lda nechta barmoq bor?",
+       "options": [
+        "5️⃣ cinq",
+        "3️⃣ trois",
+        "7️⃣ sept"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bir qo'lda besh barmoq — [fr]cinq[/fr].",
+       "q_en": "Il y a combien de doigts sur une main ?"
+      }
+     ],
+     "intro_en": "Salut, les amis ! On sait compter de un à quatre. Maintenant, comptons cinq, six, sept !"
+    },
+    {
+     "name": "Sanaymiz: sakkiz–o'n",
+     "goal": "Bola 8, 9, 10 ni aytadi va «Combien ?» savoliga javob beradi",
+     "intro": "Gu-gu! Bugun bizda katta sir bor: o'ngacha sanashni o'rgansak, Kabutar qushcha sizga o'nta yulduzcha sovg'a qiladi! Tayyormisiz?",
+     "items": [
+      {
+       "say": "huit",
+       "uz": "sakkiz",
+       "emoji": "8️⃣",
+       "image": "en56-u1-eight.png",
+       "image_prompt": "Eight colorful balloons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je vois huit oiseaux.",
+       "action_en": "Tape huit fois dans tes mains !"
+      },
+      {
+       "say": "neuf",
+       "uz": "to'qqiz",
+       "emoji": "9️⃣",
+       "image": "en56-u1-nine.png",
+       "image_prompt": "Nine little ladybugs, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai neuf ballons de baudruche."
+      },
+      {
+       "say": "dix",
+       "uz": "o'n",
+       "emoji": "🔟",
+       "image": "en56-u1-ten.png",
+       "image_prompt": "Ten fingers of two open hands, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ikki qo'lingizni ochib ko'rsating!",
+       "sentence": "J'ai dix doigts.",
+       "action_en": "Montre dix doigts !"
+      },
+      {
+       "say": "Combien ?",
+       "uz": "nechta?",
+       "emoji": "🔢",
+       "image": "en56-u1-how-many.png",
+       "image_prompt": "A pigeon looking at a group of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Combien de pommes ? Trois pommes !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚀 Raketa uchadi!",
+       "matn": "Raketa uchishiga tayyor! Pastga sanaymiz: [fr]dix, neuf, huit, sept, six, cinq, quatre, trois, deux, un ![/fr] Endi baland sakrang — uchdik!",
+       "doska": "10 9 8 7 6 5 4 3 2 1 🚀",
+       "sodda": "Avval oldinga sanaymiz: [fr]un… dix[/fr]. Keyin orqaga.",
+       "boshqa_usul": "Cho'kkalab o'tirib sanang, [fr]un[/fr] deganda sakrang!",
+       "matn_en": "La fusée est prête ! Comptons à rebours : dix, neuf, huit, sept, six, cinq, quatre, trois, deux, un ! Maintenant, saute très haut : on s'envole !",
+       "sarlavha_en": "🚀 La fusée décolle !"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]Combien ?[/fr] 🍎🍎🍎 — nechta olma?",
+       "options": [
+        "3️⃣ trois",
+        "8️⃣ huit",
+        "🔟 dix"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Uchta olma — [fr]trois[/fr].",
+       "q_en": "Combien de pommes ?"
+      },
+      {
+       "q": "🙌 Ikki qo'lda nechta barmoq?",
+       "options": [
+        "🔟 dix",
+        "6️⃣ six",
+        "9️⃣ neuf"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ikki qo'lda o'n barmoq — [fr]dix[/fr].",
+       "q_en": "Il y a combien de doigts sur deux mains ?"
+      }
+     ],
+     "intro_en": "Rebonjour ! Comptons jusqu'à dix. Huit, neuf, dix ! Jusqu'où tu sais compter ?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 1,
+     "name": "Bog'chada yangi do'st",
+     "name_en": "Un nouvel ami à la maternelle",
+     "emoji": "🏫",
+     "goal": "Bola bog'chada yangi do'st bilan salomlashadi, ismini so'raydi va o'yinchoqlarni sanaydi",
+     "intro": "Bog'chaga yangi bola keldi. Keling, u bilan tanishamiz va birga sanaymiz!",
+     "intro_en": "Un nouvel ami arrive à la maternelle. Disons bonjour et comptons les jouets ensemble !",
+     "roles": [
+      "Yangi do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "Un nouvel ami",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s1-new-friend.png",
+      "image_prompt": "Two smiling children meeting in a bright kindergarten playroom with toy blocks on the floor, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Bonjour ! Comment tu t'appelles ?",
+       "uz": "salom! isming nima?",
+       "emoji": "👋"
+      },
+      {
+       "who": 0,
+       "say": "Bonjour ! Je m'appelle Malika.",
+       "uz": "salom! mening ismim Malika",
+       "emoji": "👧"
+      },
+      {
+       "who": 1,
+       "say": "Je m'appelle Anvar. On joue !",
+       "uz": "mening ismim Anvar. keling, o'ynaymiz!",
+       "emoji": "🧒"
+      },
+      {
+       "who": 0,
+       "say": "Combien de cubes ?",
+       "uz": "nechta kubik?",
+       "emoji": "🧱"
+      },
+      {
+       "who": 1,
+       "say": "Un, deux, trois... dix cubes !",
+       "uz": "bir, ikki, uch... o'nta kubik!",
+       "emoji": "🔟"
+      },
+      {
+       "who": 0,
+       "say": "Oui ! Au revoir, Anvar !",
+       "uz": "ha! xayr, Anvar!",
+       "emoji": "👋"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yangi do'stning ismini bilmoqchisiz. Nima deysiz?",
+       "q_en": "Tu veux savoir le prénom de ton nouvel ami. Qu'est-ce que tu dis ?",
+       "options": [
+        "❓ Comment tu t'appelles ?",
+        "🔟 dix",
+        "👋 Au revoir !"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Comment tu t'appelles ?[/fr]",
+       "why_en": "Oui ! Comment tu t'appelles ?"
+      },
+      {
+       "q": "Do'stingiz ketyapti. Nima deysiz?",
+       "q_en": "Ton ami rentre à la maison. Qu'est-ce que tu dis ?",
+       "options": [
+        "👋 Au revoir !",
+        "🧱 Combien ?",
+        "3️⃣ trois"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Au revoir ![/fr]",
+       "why_en": "Oui ! Au revoir !"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oilam va do'stlarim",
+   "emoji": "👨‍👩‍👧",
+   "lessons": [
+    {
+     "name": "Bu mening onam",
+     "goal": "Bola «C'est mon/ma…» bilan oila a'zolarini tanishtiradi",
+     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni fransuzcha tanishtirishni o'rganing.",
+     "items": [
+      {
+       "say": "C'est ma maman.",
+       "uz": "bu mening onam",
+       "emoji": "👩",
+       "image": "en56-u2-my-mum.png",
+       "image_prompt": "A smiling mother hugging a child, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Onangizni ko'rsating!",
+       "sentence": "Regarde ! C'est ma maman.",
+       "action_en": "Montre l'image !"
+      },
+      {
+       "say": "C'est mon papa.",
+       "uz": "bu mening dadam",
+       "emoji": "👨",
+       "image": "en56-u2-my-dad.png",
+       "image_prompt": "A smiling father holding a child's hand, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bonjour ! C'est mon papa."
+      },
+      {
+       "say": "C'est ma sœur.",
+       "uz": "bu mening opam yoki singlim",
+       "emoji": "👧",
+       "image": "en56-u2-my-sister.png",
+       "image_prompt": "A little girl with pigtails smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "C'est ma sœur. Elle s'appelle Laylo."
+      },
+      {
+       "say": "C'est mon frère.",
+       "uz": "bu mening akam yoki ukam",
+       "emoji": "👦",
+       "image": "en56-u2-my-brother.png",
+       "image_prompt": "A little boy smiling with a ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "C'est mon frère. Il est grand."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖼️ Oilaviy surat",
+       "matn": "Oilangiz rasmini chizing yoki suratini oling. Har birini ko'rsatib ayting: [fr]C'est ma maman. C'est mon papa.[/fr] Juda chiroyli!",
+       "doska": "C'est ma maman. 👩\nC'est mon papa. 👨\nC'est ma sœur. 👧\nC'est mon frère. 👦",
+       "sodda": "Qisqa ayting: [fr]ma maman[/fr], [fr]mon papa[/fr].",
+       "boshqa_usul": "Barmoqlaringizga oila a'zolarini chizing — barmoq teatri! Har barmoq aytadi: [fr]C'est mon/ma…[/fr]",
+       "matn_en": "Dessine ta famille ou montre une photo. Montre du doigt et dis : C'est ma maman. C'est mon papa. C'est mon frère. Très bien !",
+       "sarlavha_en": "🖼️ Photo de famille"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Dadangizni ko'rsatib nima deysiz?",
+       "options": [
+        "👨 C'est mon papa.",
+        "👩 C'est ma maman.",
+        "👦 C'est mon frère."
+       ],
+       "answer": 0,
+       "why": "Barakalla! Dada — [fr]papa[/fr]: [fr]C'est mon papa.[/fr]",
+       "q_en": "Montre ton papa. Qu'est-ce que tu dis ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! J'aime ma famille. Regarde ! C'est ma maman. Découvrons aussi ta famille !"
+    },
+    {
+     "name": "Buvim va bobom",
+     "goal": "Bola mamie, papi, bébé, famille so'zlarini biladi",
+     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "items": [
+      {
+       "say": "mamie",
+       "uz": "buvi",
+       "emoji": "👵",
+       "image": "en56-u2-grandma.png",
+       "image_prompt": "A kind grandmother with glasses smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ma mamie fait du pain."
+      },
+      {
+       "say": "papi",
+       "uz": "bobo",
+       "emoji": "👴",
+       "image": "en56-u2-grandpa.png",
+       "image_prompt": "A kind grandfather with a walking stick smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mon papi a un grand jardin."
+      },
+      {
+       "say": "le bébé",
+       "uz": "chaqaloq",
+       "emoji": "👶",
+       "image": "en56-u2-baby.png",
+       "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chaqaloqni allalagandek tebratining!",
+       "sentence": "Le bébé est petit.",
+       "action_en": "Berce le bébé !"
+      },
+      {
+       "say": "la famille",
+       "uz": "oila",
+       "emoji": "👨‍👩‍👧‍👦",
+       "image": "en56-u2-family.png",
+       "image_prompt": "A happy family of four holding hands, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime ma famille.",
+       "action_en": "Fais-toi un câlin !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Barmoq oilasi qo'shig'i",
+       "matn": "Barmoqlaringizni ko'rsatib kuylang: [fr]Papa doigt, maman doigt, frère doigt, sœur doigt, bébé doigt — la famille ![/fr] Oxirida hamma barmoqni quchoqlang!",
+       "doska": "👍 papa  ☝️ maman  🖕 frère\n💍 sœur  🤙 bébé\n👨‍👩‍👧‍👦 la famille !",
+       "sodda": "Faqat uchta: [fr]papa, maman, bébé[/fr].",
+       "boshqa_usul": "Har barmoqni qimirlatib, ovozini o'zgartirib ayting: bobo — yo'g'on, chaqaloq — ingichka ovoz!",
+       "matn_en": "Montre tes doigts et chante : Papa doigt, maman doigt, frère doigt, sœur doigt, bébé doigt — la famille ! À la fin, fais un câlin à tous tes doigts !",
+       "sarlavha_en": "🎵 La chanson de la famille des doigts"
+      }
+     ],
+     "intro_en": "Salut ! Aujourd'hui, on rend visite à mamie et papi. Ils nous aiment très fort !"
+    },
+    {
+     "name": "Qalaysan, do'stim?",
+     "goal": "Bola «Comment ça va ?» deb so'raydi va «Ça va bien, merci» deb javob beradi",
+     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "items": [
+      {
+       "say": "l'ami",
+       "uz": "do'st",
+       "emoji": "🧑‍🤝‍🧑",
+       "image": "en56-u2-friend.png",
+       "image_prompt": "Two children holding hands as friends, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yoningizdagi do'stingizning qo'lini ushlang!",
+       "sentence": "Anvar est mon ami.",
+       "action_en": "Serre la main d'un ami !"
+      },
+      {
+       "say": "Comment ça va ?",
+       "uz": "qalaysan?",
+       "emoji": "🤗",
+       "image": "en56-u2-how-are-you.png",
+       "image_prompt": "A child greeting a friend with open arms, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Bonjour, Laylo ! Comment ça va ?"
+      },
+      {
+       "say": "Ça va bien, merci.",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊",
+       "image": "en56-u2-im-fine.png",
+       "image_prompt": "A smiling child with a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ça va bien, merci. Et toi ?"
+      },
+      {
+       "say": "Bonjour !",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en56-u2-good-morning.png",
+       "image_prompt": "A child stretching by a window at sunrise, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kerishib, uyg'onganday bo'ling!",
+       "sentence": "Bonjour, maman !",
+       "action_en": "Étire tes bras !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: ertalab hovlida",
+       "matn": "Men — Kabutar, siz — do'stim. [fr]Bonjour ! Comment ça va ?[/fr] Siz javob bering: [fr]Ça va bien, merci ![/fr] Keyin rollarni almashamiz!",
+       "doska": "— Bonjour ! Comment ça va ?\n— Ça va bien, merci !",
+       "sodda": "Qisqa javob: [fr]Ça va bien, merci ![/fr]",
+       "boshqa_usul": "Qo'g'irchoq yoki ayiqcha bilan gaplashing: [fr]Bonjour, Nounours ! Comment ça va ?[/fr]",
+       "matn_en": "Kabutar : Bonjour ! Comment ça va ? L'enfant : Ça va bien, merci ! On change : tu demandes, Kabutar répond !",
+       "sarlavha_en": "🎭 Dialogue : Bonjour"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]Comment ça va ?[/fr] — nima deb javob beramiz?",
+       "options": [
+        "😊 Ça va bien, merci.",
+        "👋 Bonjour !",
+        "5️⃣ cinq"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [fr]Ça va bien, merci.[/fr] — yaxshiman, rahmat.",
+       "q_en": "Ton ami demande : « Comment ça va ? » Qu'est-ce que tu dis ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Comment ça va ? Ça va bien, merci ! Parlons avec nos amis."
+    },
+    {
+     "name": "Katta va kichik",
+     "goal": "Bola grand, petit, content, triste so'zlari bilan odamni tasvirlaydi",
+     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "items": [
+      {
+       "say": "grand",
+       "uz": "katta",
+       "emoji": "🐘",
+       "image": "en56-u2-big.png",
+       "image_prompt": "A big friendly elephant, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni keng oching!",
+       "sentence": "L'éléphant est grand.",
+       "action_en": "Fais-toi tout grand !"
+      },
+      {
+       "say": "petit",
+       "uz": "kichik",
+       "emoji": "🐭",
+       "image": "en56-u2-small.png",
+       "image_prompt": "A tiny cute mouse, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Cho'kkalab, kichkina bo'ling!",
+       "sentence": "La souris est petite.",
+       "action_en": "Fais-toi tout petit !"
+      },
+      {
+       "say": "content",
+       "uz": "xursand",
+       "emoji": "😄",
+       "image": "en56-u2-happy.png",
+       "image_prompt": "A child laughing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Keng jilmaying!",
+       "sentence": "Je suis content aujourd'hui !",
+       "action_en": "Souris !"
+      },
+      {
+       "say": "triste",
+       "uz": "xafa",
+       "emoji": "😢",
+       "image": "en56-u2-sad.png",
+       "image_prompt": "A little child with a tear, looking sad, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Xafa yuz qiling!",
+       "sentence": "Le petit chat est triste.",
+       "action_en": "Fais une tête triste !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "👨‍👩‍👧 Oilam haqida gapiraman",
+       "matn": "Endi gap tuzamiz: [fr]Mon papa est grand.[/fr] — dadam katta. [fr]Mon petit frère est petit.[/fr] — ukam kichkina. [fr]Ma maman est contente.[/fr] — onam xursand.",
+       "doska": "Mon papa est grand. 👨🐘\nMon frère est petit. 👦🐭\nMa maman est contente. 👩😄",
+       "sodda": "[fr]grand[/fr] — katta, [fr]petit[/fr] — kichik.",
+       "boshqa_usul": "Men aytaman — siz ko'rsatasiz: [fr]grand ![/fr] — qo'l keng; [fr]petit ![/fr] — qo'l tor; [fr]content ![/fr] — kulamiz!",
+       "matn_en": "Disons-le : Mon papa est grand. Mon petit frère est petit. Ma maman est contente. Maintenant, parle de ta famille !",
+       "sarlavha_en": "👨‍👩‍👧 Ma famille"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐘 Fil qanday?",
+       "options": [
+        "🐘 grand",
+        "🐭 petit",
+        "😢 triste"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Fil katta — [fr]grand[/fr].",
+       "q_en": "Regarde l'éléphant. Il est grand ou petit ?"
+      },
+      {
+       "q": "Tug'ilgan kuningizda sizga sovg'a berishdi. Siz qandaysiz?",
+       "options": [
+        "😄 content",
+        "😢 triste",
+        "🐭 petit"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Xursand — [fr]content[/fr].",
+       "q_en": "C'est ton anniversaire. Tu reçois un cadeau. Comment tu te sens ?"
+      }
+     ],
+     "intro_en": "Bonjour ! Regarde l'éléphant. Il est grand ! Regarde la souris. Elle est petite !"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 2,
+     "name": "Buvimnikiga mehmonga",
+     "name_en": "Chez mamie",
+     "emoji": "👵",
+     "goal": "Bola buvisi bilan salomlashadi, hol-ahvol so'raydi va oilasini tanishtiradi",
+     "intro": "Biz buvimnikiga mehmonga keldik. Buvimiz bilan salomlashamiz va hol so'raymiz.",
+     "intro_en": "Aujourd'hui, on rend visite à mamie. Disons bonjour et demandons comment elle va !",
+     "roles": [
+      "Buvi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Mamie",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s2-visiting-grandma.png",
+      "image_prompt": "A child with mum at the door of a cozy house, a kind grandma opening the door with open arms, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Bonjour, mamie !",
+       "uz": "xayrli tong, buvijon!",
+       "emoji": "🌞"
+      },
+      {
+       "who": 0,
+       "say": "Bonjour ! Comment ça va ?",
+       "uz": "xayrli tong! qalaysan?",
+       "emoji": "👵"
+      },
+      {
+       "who": 1,
+       "say": "Ça va bien, merci.",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊"
+      },
+      {
+       "who": 1,
+       "say": "Mamie, c'est mon ami Ali.",
+       "uz": "buvijon, bu mening do'stim Ali",
+       "emoji": "🧒"
+      },
+      {
+       "who": 0,
+       "say": "Bonjour, Ali ! Entre, s'il te plaît.",
+       "uz": "salom, Ali! kiringlar",
+       "emoji": "🚪"
+      },
+      {
+       "who": 1,
+       "say": "Merci, mamie ! Je suis content !",
+       "uz": "rahmat, buvijon! men xursandman!",
+       "emoji": "😄"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvingiz [fr]Comment ça va ?[/fr] deb so'radi. Nima deysiz?",
+       "q_en": "Mamie demande : « Comment ça va ? » Qu'est-ce que tu dis ?",
+       "options": [
+        "😊 Ça va bien, merci.",
+        "👶 le bébé",
+        "7️⃣ sept"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Ça va bien, merci.[/fr]",
+       "why_en": "Oui ! Ça va bien, merci."
+      },
+      {
+       "q": "Do'stingizni buviga tanishtiring. Nima deysiz?",
+       "q_en": "Montre ton ami à mamie. Qu'est-ce que tu dis ?",
+       "options": [
+        "🧒 C'est mon ami Ali.",
+        "👋 Au revoir !",
+        "😢 triste"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]C'est mon ami Ali.[/fr]",
+       "why_en": "Oui ! C'est mon ami Ali."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kiyimlar",
+   "emoji": "👕",
+   "lessons": [
+    {
+     "name": "Futbolka va shim",
+     "goal": "Bola tee-shirt, pantalon, robe, short so'zlarini biladi",
+     "intro": "Gu-gu! Men bugun sayrga chiqmoqchiman, ammo javonimda kiyimlar aralashib ketibdi. Keling, ularni fransuzcha nomlab, joy-joyiga qo'yamiz!",
+     "items": [
+      {
+       "say": "le tee-shirt",
+       "uz": "futbolka",
+       "emoji": "👕",
+       "image": "en56-u3-t-shirt.png",
+       "image_prompt": "A bright blue kids T-shirt, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mon tee-shirt est jaune.",
+       "action_en": "Touche ton tee-shirt !"
+      },
+      {
+       "say": "le pantalon",
+       "uz": "shim",
+       "emoji": "👖",
+       "image": "en56-u3-trousers.png",
+       "image_prompt": "A pair of kids trousers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Papa a un pantalon bleu."
+      },
+      {
+       "say": "la robe",
+       "uz": "ko'ylak",
+       "emoji": "👗",
+       "image": "en56-u3-dress.png",
+       "image_prompt": "A pretty pink girl's dress, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ma sœur a une robe rose."
+      },
+      {
+       "say": "le short",
+       "uz": "kalta shim",
+       "emoji": "🩳",
+       "image": "en56-u3-shorts.png",
+       "image_prompt": "A pair of summer shorts, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je porte un short en été."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Kir yoyamiz",
+       "matn": "Kabutar qushcha kir yoyyapti. Men aytgan kiyimni ko'rsating: [fr]Le tee-shirt ![/fr] … [fr]la robe ![/fr] … [fr]le pantalon ![/fr] … [fr]le short ![/fr] Barakalla!",
+       "doska": "👕 le tee-shirt  👖 le pantalon\n👗 la robe  🩳 le short",
+       "sodda": "Ikkitadan: [fr]le tee-shirt[/fr] va [fr]la robe[/fr].",
+       "boshqa_usul": "O'zingizdagi kiyimni ushlab ayting: [fr]le tee-shirt[/fr] yoki [fr]la robe[/fr]!",
+       "matn_en": "Kabutar étend le linge. Montre les vêtements que je dis : Le tee-shirt ! La robe ! Le pantalon ! Le short ! Bravo !",
+       "sarlavha_en": "🧺 Jour de lessive"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! On s'habille. Regarde mes vêtements ! Qu'est-ce que tu mets aujourd'hui ?"
+    },
+    {
+     "name": "Poyabzal va paypoq",
+     "goal": "Bola chaussures, chaussettes, bottes so'zlarini biladi va «Mets !» buyrug'ini bajaradi",
+     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni fransuzcha o'rganamiz.",
+     "items": [
+      {
+       "say": "les chaussures",
+       "uz": "tufli, oyoq kiyim",
+       "emoji": "👟",
+       "image": "en56-u3-shoes.png",
+       "image_prompt": "A pair of colorful kids sneakers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mes chaussures sont noires.",
+       "action_en": "Touche tes chaussures !"
+      },
+      {
+       "say": "les chaussettes",
+       "uz": "paypoq",
+       "emoji": "🧦",
+       "image": "en56-u3-socks.png",
+       "image_prompt": "A pair of striped socks, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai deux chaussettes blanches."
+      },
+      {
+       "say": "les bottes",
+       "uz": "etik",
+       "emoji": "👢",
+       "image": "en56-u3-boots.png",
+       "image_prompt": "A pair of rain boots, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mets tes bottes, s'il te plaît."
+      },
+      {
+       "say": "Mets !",
+       "uz": "kiy!",
+       "emoji": "🙆",
+       "image": "en56-u3-put-on.png",
+       "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kiyim kiyayotgandek harakat qiling!",
+       "sentence": "Mets tes chaussettes !",
+       "action_en": "Mets tes chaussures !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Kiyinish o'yini",
+       "matn": "Men buyuraman, siz kiyinganday qilasiz: [fr]Mets tes chaussettes ![/fr] … [fr]Mets tes chaussures ![/fr] … [fr]Mets tes bottes ![/fr] Kim tezroq?",
+       "doska": "Mets tes chaussettes ! 🧦\nMets tes chaussures ! 👟\nMets tes bottes ! 👢",
+       "sodda": "Sekin: [fr]Mets… tes chaussettes[/fr]. Paypoq kiyamiz!",
+       "boshqa_usul": "Rostdan kiyinib ko'ring va har birida ayting: [fr]les chaussettes, les chaussures ![/fr]",
+       "matn_en": "Écoute et fais : Mets tes chaussettes ! Mets tes chaussures ! Mets tes bottes ! Qui est le plus rapide ?",
+       "sarlavha_en": "🏃 Le jeu pour s'habiller"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Oyog'imizga birinchi nima kiyamiz?",
+       "options": [
+        "🧦 les chaussettes",
+        "👕 le tee-shirt",
+        "👗 la robe"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Avval paypoq — [fr]les chaussettes[/fr], keyin [fr]les chaussures[/fr].",
+       "q_en": "Qu'est-ce que tu mets d'abord sur tes pieds ?"
+      }
+     ],
+     "intro_en": "Salut ! On sort. D'abord les chaussettes, puis les chaussures ! Mets tes chaussures, s'il te plaît."
+    },
+    {
+     "name": "Issiq kiyimlar",
+     "goal": "Bola bonnet, manteau, écharpe, gants so'zlarini biladi",
+     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "items": [
+      {
+       "say": "le bonnet",
+       "uz": "shapka",
+       "emoji": "👒",
+       "image": "en56-u3-hat.png",
+       "image_prompt": "A cozy hat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai un bonnet rouge.",
+       "action_en": "Touche ta tête !"
+      },
+      {
+       "say": "le manteau",
+       "uz": "palto",
+       "emoji": "🧥",
+       "image": "en56-u3-coat.png",
+       "image_prompt": "A warm winter coat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mets ton manteau, s'il te plaît."
+      },
+      {
+       "say": "l'écharpe",
+       "uz": "sharf",
+       "emoji": "🧣",
+       "image": "en56-u3-scarf.png",
+       "image_prompt": "A striped woolly scarf, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bo'yningizga sharf o'raganday qiling!",
+       "sentence": "Mon écharpe est longue et verte."
+      },
+      {
+       "say": "les gants",
+       "uz": "qo'lqop",
+       "emoji": "🧤",
+       "image": "en56-u3-gloves.png",
+       "image_prompt": "A pair of warm gloves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni ishqalang!",
+       "sentence": "Mes gants sont sur mes mains.",
+       "action_en": "Montre tes mains !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "❄️ Qishga tayyorlanamiz",
+       "matn": "Kabutar qushchani kiyintiramiz! Men aytaman, siz ko'rsatasiz: [fr]le bonnet[/fr] — boshga, [fr]l'écharpe[/fr] — bo'yinga, [fr]les gants[/fr] — qo'lga, [fr]le manteau[/fr] — ustiga!",
+       "doska": "👒 le bonnet — bosh\n🧣 l'écharpe — bo'yin\n🧤 les gants — qo'l\n🧥 le manteau — ust",
+       "sodda": "Ikkitasi: [fr]le bonnet[/fr] va [fr]le manteau[/fr].",
+       "boshqa_usul": "Rostdan shapka va sharf taqib, ko'zguga qarab ayting: [fr]le bonnet, l'écharpe ![/fr]",
+       "matn_en": "Habillons Kabutar ! Je dis, tu montres : le bonnet, sur la tête. L'écharpe, autour du cou. Les gants, sur les mains. Le manteau, sur toi !",
+       "sarlavha_en": "❄️ Prêts pour l'hiver"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'limiz sovqotdi. Nima kiyamiz?",
+       "options": [
+        "🧤 les gants",
+        "🩳 le short",
+        "👒 le bonnet"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qo'lga — [fr]les gants[/fr].",
+       "q_en": "Tu as froid aux mains. Qu'est-ce que tu mets ?"
+      }
+     ],
+     "intro_en": "Brr ! Il fait froid dehors. Mettons des vêtements chauds : un bonnet, un manteau et des gants !"
+    },
+    {
+     "name": "Mening kiyimim",
+     "goal": "Bola kiyimini rangi bilan aytadi: «Mon tee-shirt est rouge.»",
+     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida fransuzcha gapiramiz.",
+     "items": [
+      {
+       "say": "Mon tee-shirt est rouge.",
+       "uz": "futbolkam qizil",
+       "emoji": "👕🔴",
+       "image": "en56-u3-tshirt-red.png",
+       "image_prompt": "A red T-shirt on a hanger, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Regarde ! Mon tee-shirt est rouge."
+      },
+      {
+       "say": "Mes chaussures sont bleues.",
+       "uz": "tuflim ko'k",
+       "emoji": "👟🔵",
+       "image": "en56-u3-shoes-blue.png",
+       "image_prompt": "A pair of blue sneakers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mes chaussures sont bleues et petites."
+      },
+      {
+       "say": "Mets ton bonnet !",
+       "uz": "shapkangni kiy!",
+       "emoji": "👒🙂",
+       "image": "en56-u3-put-on-hat.png",
+       "image_prompt": "A smiling child putting on a hat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizga shapka kiyganday qiling!",
+       "sentence": "Il fait froid. Mets ton bonnet !",
+       "action_en": "Mets ton bonnet !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎨 Rangli kiyim o'yini",
+       "matn": "Kiyimingizga qarang! Qani, ayting: [fr]Mon tee-shirt est…[/fr] va rangini qo'shing: [fr]rouge, bleu, vert, jaune[/fr]. Keyin do'stingizning kiyimini ham ayting!",
+       "doska": "Mon tee-shirt est rouge. 🔴\nMa robe est rose. 🩷\nMes chaussures sont bleues. 🔵",
+       "sodda": "Faqat rangni ayting: [fr]rouge ![/fr] [fr]bleu ![/fr]",
+       "boshqa_usul": "Kim [fr]rouge[/fr] kiyim kiygan bo'lsa — o'rnidan tursin! Kim [fr]bleu[/fr] kiygan bo'lsa — sakrasin!",
+       "matn_en": "Regarde tes vêtements ! Dis : Mon tee-shirt est rouge. Ou bleu, vert, jaune. Maintenant, parle des vêtements de ton ami !",
+       "sarlavha_en": "🎨 Le jeu des vêtements en couleurs"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]Mes chaussures sont bleues.[/fr] — qaysi rasm?",
+       "options": [
+        "👟🔵 ko'k tufli",
+        "👕🔴 qizil futbolka",
+        "🧥 palto"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]bleu[/fr] — ko'k, [fr]les chaussures[/fr] — tufli.",
+       "q_en": "« Mes chaussures sont bleues. » C'est quelle image ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Regardez-moi ! Mon tee-shirt est rouge. De quelle couleur sont tes vêtements ?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 3,
+     "name": "Sayrga kiyinamiz",
+     "name_en": "On s'habille pour se promener",
+     "emoji": "🧥",
+     "goal": "Bola havoga qarab kiyinadi va kiyimlarini fransuzcha aytadi",
+     "intro": "Onamiz bilan sayrga chiqamiz. Tashqarida sovuq, issiq kiyinamiz!",
+     "intro_en": "On va se promener avec maman. Il fait froid, alors mettons des vêtements chauds !",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "Maman",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s3-getting-dressed.png",
+      "image_prompt": "A mother helping a child put on a coat, hat and scarf in a cozy hallway by the door, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "On va se promener !",
+       "uz": "keling, sayrga chiqamiz!",
+       "emoji": "🚶"
+      },
+      {
+       "who": 1,
+       "say": "D'accord ! Je mets mon manteau.",
+       "uz": "xo'p! paltomni kiyaman",
+       "emoji": "🧥"
+      },
+      {
+       "who": 0,
+       "say": "Oui. Il fait froid. Mets ton bonnet !",
+       "uz": "ha. sovuq. shapkangni kiy!",
+       "emoji": "🧢"
+      },
+      {
+       "who": 1,
+       "say": "Mon bonnet est rouge !",
+       "uz": "shapkam qizil!",
+       "emoji": "🔴"
+      },
+      {
+       "who": 0,
+       "say": "Mets aussi tes gants et tes bottes.",
+       "uz": "qo'lqop va etigingni ham kiy",
+       "emoji": "🧤"
+      },
+      {
+       "who": 1,
+       "say": "D'accord, maman ! Je suis prêt !",
+       "uz": "xo'p, onajon! tayyorman!",
+       "emoji": "😊"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tashqarida sovuq. Boshingizga nima kiyasiz?",
+       "q_en": "Il fait froid. Qu'est-ce que tu mets sur ta tête ?",
+       "options": [
+        "🧢 le bonnet",
+        "🩳 le short",
+        "🧦 les chaussettes"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]le bonnet[/fr]",
+       "why_en": "Oui ! Un bonnet."
+      },
+      {
+       "q": "Qo'lingizga nima kiyasiz?",
+       "q_en": "Qu'est-ce que tu mets sur tes mains ?",
+       "options": [
+        "🧤 les gants",
+        "👢 les bottes",
+        "👗 la robe"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]les gants[/fr]",
+       "why_en": "Oui ! Des gants."
+      },
+      {
+       "q": "Onangiz [fr]Mets ton bonnet ![/fr] dedi. U nima demoqchi?",
+       "q_en": "Maman dit : « Mets ton bonnet ! » Qu'est-ce que tu fais ?",
+       "options": [
+        "🧢 Je mets mon bonnet.",
+        "👟 Je mets mes chaussures.",
+        "🧥 Je mets mon manteau."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Shapkani kiyamiz.",
+       "why_en": "Oui ! Je mets mon bonnet."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ovqat va ichimliklar",
+   "emoji": "🍽️",
+   "lessons": [
+    {
+     "name": "Nonushta",
+     "goal": "Bola pain, lait, œuf, fromage so'zlarini biladi",
+     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, fransuzcha aytamiz.",
+     "items": [
+      {
+       "say": "le pain",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "en56-u4-bread.png",
+       "image_prompt": "A loaf of fresh bread, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime le pain et le fromage."
+      },
+      {
+       "say": "le lait",
+       "uz": "sut",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je bois du lait le matin.",
+       "action_en": "Bois ton lait !"
+      },
+      {
+       "say": "l'œuf",
+       "uz": "tuxum",
+       "emoji": "🥚",
+       "image": "en56-u4-egg.png",
+       "image_prompt": "A white egg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai un œuf."
+      },
+      {
+       "say": "le fromage",
+       "uz": "pishloq",
+       "emoji": "🧀",
+       "image": "en56-u4-cheese.png",
+       "image_prompt": "A wedge of yellow cheese, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "La souris aime le fromage."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🍳 Nonushta tayyorlaymiz",
+       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qiling va ayting: [fr]le pain[/fr] … [fr]le lait[/fr] … [fr]l'œuf[/fr] … [fr]le fromage[/fr]. Yoqimli ishtaha!",
+       "doska": "🍞 le pain  🥛 le lait\n🥚 l'œuf  🧀 le fromage",
+       "sodda": "Ikkitasi: [fr]le pain[/fr] va [fr]le lait[/fr].",
+       "boshqa_usul": "Uyda nonushtada har ovqatni fransuzcha nomlang!",
+       "matn_en": "Donnons le petit-déjeuner aux poupées ! Pose-le sur la table et dis : le pain, le lait, l'œuf, le fromage. Miam !",
+       "sarlavha_en": "🍳 Préparons le petit-déjeuner"
+      }
+     ],
+     "intro_en": "Bonjour ! C'est l'heure du petit-déjeuner. Mangeons du pain, des œufs et du fromage. Miam !"
+    },
+    {
+     "name": "Ichimliklar",
+     "goal": "Bola eau, jus, thé so'zlarini va «J'ai soif» iborasini biladi",
+     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "items": [
+      {
+       "say": "l'eau",
+       "uz": "suv",
+       "emoji": "💧",
+       "image": "en56-u4-water.png",
+       "image_prompt": "A clear glass of water with a drop, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je bois de l'eau tous les jours.",
+       "action_en": "Bois un peu d'eau !"
+      },
+      {
+       "say": "le jus",
+       "uz": "sharbat",
+       "emoji": "🧃",
+       "image": "en56-u4-juice.png",
+       "image_prompt": "A kids juice box with a straw, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime le jus de pomme."
+      },
+      {
+       "say": "le thé",
+       "uz": "choy",
+       "emoji": "🍵",
+       "image": "en56-u4-tea.png",
+       "image_prompt": "A cup of green tea, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mamie boit du thé."
+      },
+      {
+       "say": "J'ai soif.",
+       "uz": "chanqadim",
+       "emoji": "🥤",
+       "image": "en56-u4-im-thirsty.png",
+       "image_prompt": "A child holding a cup, looking thirsty, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tomog'ingizni ushlang!",
+       "sentence": "J'ai soif. De l'eau, s'il te plaît."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: choyxonada",
+       "matn": "Kabutar so'raydi: [fr]De l'eau ou du jus ?[/fr] Siz tanlang: [fr]Du jus, s'il te plaît ![/fr] Kabutar beradi. Siz: [fr]Merci ![/fr] Endi siz so'rang!",
+       "doska": "— De l'eau ou du jus ?\n— Du jus, s'il te plaît !\n— Merci !",
+       "sodda": "Faqat tanlang: [fr]l'eau[/fr] yoki [fr]le jus[/fr].",
+       "boshqa_usul": "Ikki stakan qo'ying — biriga suv, biriga sharbat. Kattalarga taklif qiling: [fr]De l'eau ou du jus ?[/fr]",
+       "matn_en": "Kabutar : De l'eau ou du jus ? L'enfant : Du jus, s'il te plaît ! Kabutar : Tiens. L'enfant : Merci ! Maintenant, à toi de demander !",
+       "sarlavha_en": "🎭 Dialogue : Au café"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvimiz ertalab piyolada nima ichadi?",
+       "options": [
+        "🍵 le thé",
+        "🧀 le fromage",
+        "🥚 l'œuf"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Choy — [fr]le thé[/fr].",
+       "q_en": "Qu'est-ce que mamie boit le matin ?"
+      }
+     ],
+     "intro_en": "Salut, les amis ! J'ai soif. Buvons quelque chose. De l'eau, du jus ou du thé ?"
+    },
+    {
+     "name": "Tushlik",
+     "goal": "Bola soupe, riz, poulet so'zlarini va «J'ai faim» iborasini biladi",
+     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "items": [
+      {
+       "say": "la soupe",
+       "uz": "sho'rva",
+       "emoji": "🍲",
+       "image": "en56-u4-soup.png",
+       "image_prompt": "A bowl of warm soup, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Maman fait une soupe chaude."
+      },
+      {
+       "say": "le riz",
+       "uz": "guruch, palov",
+       "emoji": "🍚",
+       "image": "en56-u4-rice.png",
+       "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime le riz avec du poulet."
+      },
+      {
+       "say": "le poulet",
+       "uz": "tovuq go'shti",
+       "emoji": "🍗",
+       "image": "en56-u4-chicken.png",
+       "image_prompt": "A roasted chicken leg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Le poulet est délicieux !"
+      },
+      {
+       "say": "J'ai faim.",
+       "uz": "qornim och",
+       "emoji": "🍽️",
+       "image": "en56-u4-im-hungry.png",
+       "image_prompt": "A child with an empty plate and a spoon, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silang!",
+       "sentence": "J'ai faim. De la soupe, s'il te plaît !",
+       "action_en": "Frotte ton ventre !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥄 Oshpaz o'yini",
+       "matn": "Siz — oshpazsiz! Qozonga soling: [fr]le riz[/fr], [fr]le poulet[/fr]… aralashtiring! Kabutar keladi: [fr]J'ai faim ![/fr] Siz berasiz: [fr]Voici la soupe ![/fr]",
+       "doska": "🍚 le riz + 🍗 le poulet\n🍲 la soupe\nJ'ai faim ! 🍽️",
+       "sodda": "Qozonga bittadan soling va ayting: [fr]le riz[/fr]!",
+       "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
+       "matn_en": "C'est toi le cuisinier ! Mets le riz et le poulet dans la marmite. Mélange, mélange ! Kabutar : J'ai faim ! Le cuisinier : Voici la soupe !",
+       "sarlavha_en": "🥄 Le jeu du cuisinier"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]J'ai faim.[/fr] — bu nima degani?",
+       "options": [
+        "🍽️ qornim och",
+        "🥤 chanqadim",
+        "😊 yaxshiman"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]J'ai faim[/fr] — qornim och.",
+       "q_en": "Qu'est-ce que « J'ai faim » veut dire ?"
+      }
+     ],
+     "intro_en": "Bonjour ! C'est l'heure du déjeuner. J'ai faim ! Mangeons de la soupe et du riz."
+    },
+    {
+     "name": "Shirinliklar",
+     "goal": "Bola gâteau, glace, bonbons so'zlarini va «Miam !» iborasini biladi",
+     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni fransuzcha nomlaymiz.",
+     "items": [
+      {
+       "say": "le gâteau",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "en56-u4-cake.png",
+       "image_prompt": "A birthday cake with candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Le gâteau d'anniversaire est grand."
+      },
+      {
+       "say": "la glace",
+       "uz": "muzqaymoq",
+       "emoji": "🍦",
+       "image": "en56-u4-ice-cream.png",
+       "image_prompt": "A soft ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime la glace en été."
+      },
+      {
+       "say": "les bonbons",
+       "uz": "konfetlar",
+       "emoji": "🍬",
+       "image": "en56-u4-sweets.png",
+       "image_prompt": "Colorful wrapped candies, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mamie a des bonbons pour moi."
+      },
+      {
+       "say": "Miam !",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en56-u4-yummy.png",
+       "image_prompt": "A child licking lips happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silab, «mm» deng!",
+       "sentence": "Miam ! Le gâteau est bon !",
+       "action_en": "Frotte ton ventre !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎂 Tug'ilgan kun o'yini",
+       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [fr]un, deux, trois, quatre, cinq ![/fr] Puflang! Endi tortdan tatib ko'ramiz — [fr]Miam ![/fr]",
+       "doska": "🎂 un deux trois quatre cinq\nMiam ! 😋",
+       "sodda": "Birgina so'z: [fr]le gâteau[/fr]… [fr]Miam ![/fr]",
+       "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, fransuzcha sanang!",
+       "matn_en": "Mets des bougies sur le gâteau et compte : un, deux, trois, quatre, cinq ! Souffle ! Maintenant, mange le gâteau : Miam !",
+       "sarlavha_en": "🎂 Le jeu de l'anniversaire"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tug'ilgan kunda sham qo'yiladigan shirinlik qaysi?",
+       "options": [
+        "🎂 le gâteau",
+        "🍦 la glace",
+        "🍞 le pain"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tort — [fr]le gâteau[/fr].",
+       "q_en": "Pour un anniversaire, on met des bougies dessus. Qu'est-ce que c'est ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! J'adore les choses sucrées. Le gâteau, la glace, les bonbons. Miam !"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 4,
+     "name": "Uyda nonushta",
+     "name_en": "Le petit-déjeuner à la maison",
+     "emoji": "🍳",
+     "goal": "Bola nonushtada ovqat va ichimlik so'raydi, rahmat aytadi",
+     "intro": "Ertalab oila bilan nonushta qilamiz. Nima yeymiz, nima ichamiz?",
+     "intro_en": "Bonjour ! C'est le petit-déjeuner en famille. Qu'est-ce que tu veux ?",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "Maman",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s4-breakfast.png",
+      "image_prompt": "A family breakfast table with bread, eggs, cheese, tea and milk, a mother and a child smiling in a bright kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "Bonjour ! Tu as faim ?",
+       "uz": "xayrli tong! qorning ochmi?",
+       "emoji": "🌞"
+      },
+      {
+       "who": 1,
+       "say": "Oui, j'ai faim.",
+       "uz": "ha, qornim och",
+       "emoji": "🍽️"
+      },
+      {
+       "who": 0,
+       "say": "Tiens. Du pain et un œuf.",
+       "uz": "mana, ol. non va tuxum",
+       "emoji": "🍞🥚"
+      },
+      {
+       "who": 1,
+       "say": "Merci ! Du lait, s'il te plaît.",
+       "uz": "rahmat! sut bering, iltimos",
+       "emoji": "🥛"
+      },
+      {
+       "who": 0,
+       "say": "Voici ton lait.",
+       "uz": "mana suting",
+       "emoji": "🫴"
+      },
+      {
+       "who": 1,
+       "say": "Miam ! Merci, maman !",
+       "uz": "mazali! rahmat, onajon!",
+       "emoji": "😋"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sut ichmoqchisiz. Nima deysiz?",
+       "q_en": "Tu veux un peu de lait. Qu'est-ce que tu dis ?",
+       "options": [
+        "🥛 Du lait, s'il te plaît.",
+        "🧀 le fromage",
+        "👋 Au revoir !"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Du lait, s'il te plaît.[/fr]",
+       "why_en": "Oui ! Du lait, s'il te plaît."
+      },
+      {
+       "q": "Nonushta juda mazali. Nima deysiz?",
+       "q_en": "Le petit-déjeuner est très bon. Qu'est-ce que tu dis ?",
+       "options": [
+        "😋 Miam !",
+        "🥤 J'ai soif.",
+        "😢 triste"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Miam ![/fr]",
+       "why_en": "Oui ! Miam !"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uyim va xonalar",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Mening uyim",
+     "goal": "Bola maison, porte, fenêtre, jardin so'zlarini biladi",
+     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni fransuzcha o'rganamiz.",
+     "items": [
+      {
+       "say": "la maison",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "C'est ma maison.",
+       "action_en": "Dessine une maison dans l'air !"
+      },
+      {
+       "say": "la porte",
+       "uz": "eshik",
+       "emoji": "🚪",
+       "image": "en56-u5-door.png",
+       "image_prompt": "A wooden front door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Eshikni taqillatganday qiling: tuk-tuk!",
+       "sentence": "Ouvre la porte, s'il te plaît.",
+       "action_en": "Ouvre la porte !"
+      },
+      {
+       "say": "la fenêtre",
+       "uz": "deraza",
+       "emoji": "🪟",
+       "image": "en56-u5-window.png",
+       "image_prompt": "A window with curtains, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Regarde par la fenêtre !",
+       "action_en": "Regarde par la fenêtre !"
+      },
+      {
+       "say": "le jardin",
+       "uz": "bog', hovli",
+       "emoji": "🏡",
+       "image": "en56-u5-garden.png",
+       "image_prompt": "A house with a green garden and flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Nous avons un grand jardin."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏠 Uy chizamiz",
+       "matn": "Qog'oz va qalam oling! Avval [fr]la maison[/fr] chizing, keyin [fr]la porte[/fr], ikkita [fr]la fenêtre[/fr], atrofiga [fr]le jardin[/fr]. Chizib bo'lgach, har birini ko'rsatib ayting!",
+       "doska": "🏠 la maison\n🚪 la porte  🪟 la fenêtre\n🏡 le jardin",
+       "sodda": "Faqat [fr]la maison[/fr] va [fr]la porte[/fr] chizing.",
+       "boshqa_usul": "Uyingizda yurib, eshik va derazani topib ayting: [fr]la porte ! la fenêtre ![/fr]",
+       "matn_en": "Prends du papier et un crayon ! Dessine une maison, une porte, deux fenêtres et un jardin. Puis montre et dis chaque mot !",
+       "sarlavha_en": "🏠 Dessine une maison"
+      }
+     ],
+     "intro_en": "Bonjour ! Bienvenue chez moi ! Regarde, voici la porte. Entre, s'il te plaît !"
+    },
+    {
+     "name": "Uydagi xonalar",
+     "goal": "Bola cuisine, chambre, salle de bain, salon so'zlarini biladi",
+     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni fransuzcha aytamiz!",
+     "items": [
+      {
+       "say": "la cuisine",
+       "uz": "oshxona",
+       "emoji": "🍳",
+       "image": "en56-u5-kitchen.png",
+       "image_prompt": "A bright kitchen with a stove and a frying pan, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Maman est dans la cuisine."
+      },
+      {
+       "say": "la chambre",
+       "uz": "yotoqxona",
+       "emoji": "🛏️",
+       "image": "en56-u5-bedroom.png",
+       "image_prompt": "A cozy bedroom with a bed and a teddy bear, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uxlaganday ko'zingizni yuming!",
+       "sentence": "Je dors dans ma chambre.",
+       "action_en": "Va dormir !"
+      },
+      {
+       "say": "la salle de bain",
+       "uz": "hammom",
+       "emoji": "🛁",
+       "image": "en56-u5-bathroom.png",
+       "image_prompt": "A bathroom with a bathtub and bubbles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni yuvganday qiling!",
+       "sentence": "Je me lave les mains dans la salle de bain.",
+       "action_en": "Lave-toi les mains !"
+      },
+      {
+       "say": "le salon",
+       "uz": "mehmonxona",
+       "emoji": "🛋️",
+       "image": "en56-u5-living-room.png",
+       "image_prompt": "A living room with a sofa, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "On regarde la télé dans le salon."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Qaysi xonadamiz?",
+       "matn": "Men ish aytaman, siz xonani toping! Uxlaymiz — [fr]la chambre[/fr]. Ovqat pishiramiz — [fr]la cuisine[/fr]. Cho'milamiz — [fr]la salle de bain[/fr]. Divanda o'tiramiz — [fr]le salon[/fr].",
+       "doska": "😴 → la chambre\n🍳 → la cuisine\n🛁 → la salle de bain\n🛋️ → le salon",
+       "sodda": "Ikkitasi: [fr]la cuisine[/fr] va [fr]la chambre[/fr].",
+       "boshqa_usul": "Uyingizda har xonaga kirib, uning nomini fransuzcha ayting!",
+       "matn_en": "Je dis, tu trouves la pièce ! On dort : la chambre. On cuisine : la cuisine. On se lave : la salle de bain. On s'assoit sur le canapé : le salon.",
+       "sarlavha_en": "🔍 Quelle pièce ?"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ la chambre",
+        "🍳 la cuisine",
+        "🛁 la salle de bain"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yotoqxona — [fr]la chambre[/fr].",
+       "q_en": "Où est-ce qu'on dort ?"
+      }
+     ],
+     "intro_en": "Salut, les amis ! Ma maison a beaucoup de pièces. Promenons-nous et regardons chaque pièce !"
+    },
+    {
+     "name": "Xonadagi narsalar",
+     "goal": "Bola chaise, lampe, télé, horloge so'zlarini biladi",
+     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "items": [
+      {
+       "say": "la chaise",
+       "uz": "stul",
+       "emoji": "🪑",
+       "image": "en56-u5-chair.png",
+       "image_prompt": "A small wooden chair, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Assieds-toi sur la chaise, s'il te plaît.",
+       "action_en": "Assieds-toi !"
+      },
+      {
+       "say": "la lampe",
+       "uz": "chiroq",
+       "emoji": "💡",
+       "image": "en56-u5-lamp.png",
+       "image_prompt": "A glowing light bulb lamp, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chiroqni yoqganday qiling: chirt!",
+       "sentence": "La lampe est sur la table."
+      },
+      {
+       "say": "la télé",
+       "uz": "televizor",
+       "emoji": "📺",
+       "image": "en56-u5-tv.png",
+       "image_prompt": "A retro television set, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Papi regarde la télé."
+      },
+      {
+       "say": "l'horloge",
+       "uz": "soat",
+       "emoji": "🕰️",
+       "image": "en56-u5-clock.png",
+       "image_prompt": "A mantel clock, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tik-tak deb boshingizni chayqating!",
+       "sentence": "L'horloge est grande et blanche."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, qayerda?",
+       "matn": "Atrofingizga qarang! Xonangizda [fr]la chaise[/fr] bormi? Ko'rsating! [fr]la lampe[/fr]? [fr]la télé[/fr]? [fr]l'horloge[/fr]? Topgan har narsa uchun — bitta qarsak!",
+       "doska": "🪑 la chaise  💡 la lampe\n📺 la télé  🕰️ l'horloge",
+       "sodda": "Faqat [fr]la chaise[/fr] ni toping va ustiga o'tiring!",
+       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; siz ko'rsatib ayting.",
+       "matn_en": "Regarde autour de toi dans ta chambre ! Il y a une chaise ? Montre-moi ! Une lampe ? Une télé ? Une horloge ? Tape dans tes mains pour chaque chose trouvée !",
+       "sarlavha_en": "👀 Trouve-le !"
+      }
+     ],
+     "intro_en": "Bonjour ! Regarde ma chambre. Je vois une chaise, une lampe et une horloge. Et toi, qu'est-ce que tu vois ?"
+    },
+    {
+     "name": "Mushuk qayerda?",
+     "goal": "Bola «Où est…?» deb so'raydi, dans, sur, sous so'zlarini tushunadi",
+     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "items": [
+      {
+       "say": "Où est le chat ?",
+       "uz": "mushuk qayerda?",
+       "emoji": "🐈❓",
+       "image": "en56-u5-where-cat.png",
+       "image_prompt": "A pigeon looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Où est le chat ? Je ne sais pas !",
+       "action_en": "Regarde autour de toi !"
+      },
+      {
+       "say": "dans la boîte",
+       "uz": "qutining ichida",
+       "emoji": "📦🐱",
+       "image": "en56-u5-in-box.png",
+       "image_prompt": "A kitten sitting inside a cardboard box, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Le chat est dans la boîte."
+      },
+      {
+       "say": "sur la table",
+       "uz": "stolning ustida",
+       "emoji": "🐱⬆️",
+       "image": "en56-u5-on-table.png",
+       "image_prompt": "A kitten sitting on top of a table, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Le ballon est sur la table."
+      },
+      {
+       "say": "sous le lit",
+       "uz": "karavotning ostida",
+       "emoji": "🛏️🐱",
+       "image": "en56-u5-under-bed.png",
+       "image_prompt": "A kitten peeking out from under a bed, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mes chaussures sont sous le lit."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧸 Yashirinmachoq",
+       "matn": "Ayiqchani yashiring! Kattalar so'raydi: [fr]Où est Nounours ?[/fr] Siz javob bering: [fr]dans la boîte[/fr], [fr]sur la chaise[/fr] yoki [fr]sous le lit[/fr].",
+       "doska": "Où est Nounours ?\ndans 📦  sur ⬆️  sous ⬇️",
+       "sodda": "Qo'l bilan ko'rsating: [fr]dans[/fr] — ichiga, [fr]sur[/fr] — ustiga, [fr]sous[/fr] — ostiga.",
+       "boshqa_usul": "Qalamni qutiga soling va ayting: [fr]dans ![/fr] Qutining ustiga qo'ying: [fr]sur ![/fr] Ostiga: [fr]sous ![/fr]",
+       "matn_en": "Cache Nounours ! L'adulte : Où est Nounours ? L'enfant : Dans la boîte ! Sur la chaise ! Sous le lit !",
+       "sarlavha_en": "🧸 Cache-cache"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱 mushukcha qutining ichida. Qanday aytamiz?",
+       "options": [
+        "📦🐱 dans la boîte",
+        "🐱⬆️ sur la table",
+        "🛏️🐱 sous le lit"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ichida — [fr]dans la boîte[/fr].",
+       "q_en": "Le chaton est dans la boîte. Comment on le dit ?"
+      }
+     ],
+     "intro_en": "Oh non ! Où est le chat ? Cherchons-le ensemble. Il est dans la boîte ?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 5,
+     "name": "Mushukchani qidiramiz",
+     "name_en": "On cherche le chaton",
+     "emoji": "🐱",
+     "goal": "Bola uyda mushukchani qidiradi va xona hamda joy nomlarini aytadi",
+     "intro": "Uyimizdagi mushukcha yo'qolib qoldi! Dadamiz bilan xonalarda qidiramiz.",
+     "intro_en": "Oh non ! Où est notre chaton ? Cherchons-le dans chaque pièce avec papa !",
+     "roles": [
+      "Dada",
+      "Bola"
+     ],
+     "roles_en": [
+      "Papa",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s5-find-the-kitten.png",
+      "image_prompt": "A father and a child looking for a kitten in a cozy bedroom, the kitten peeking from under the bed, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Papa, où est le chat ?",
+       "uz": "dada, mushuk qayerda?",
+       "emoji": "❓"
+      },
+      {
+       "who": 0,
+       "say": "Il est dans la cuisine ?",
+       "uz": "oshxonadami?",
+       "emoji": "🍳"
+      },
+      {
+       "who": 1,
+       "say": "Non. Il n'est pas dans la cuisine.",
+       "uz": "yo'q. oshxonada emas",
+       "emoji": "🙅"
+      },
+      {
+       "who": 0,
+       "say": "Regardons dans la chambre.",
+       "uz": "keling, yotoqxonaga qaraymiz",
+       "emoji": "🛏️"
+      },
+      {
+       "who": 1,
+       "say": "Regarde ! Il est sous le lit !",
+       "uz": "qarang! karavotning ostida!",
+       "emoji": "🐱"
+      },
+      {
+       "who": 0,
+       "say": "Bravo ! Je suis content !",
+       "uz": "barakalla! men xursandman!",
+       "emoji": "👏"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Mushukcha qayerda edi?",
+       "q_en": "Où est le chaton ?",
+       "options": [
+        "🛏️🐱 sous le lit",
+        "📦🐱 dans la boîte",
+        "🐱⬆️ sur la table"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]sous le lit[/fr]",
+       "why_en": "Oui ! Sous le lit."
+      },
+      {
+       "q": "Mushukni qidiryapsiz. Nima deb so'raysiz?",
+       "q_en": "Tu ne trouves pas le chat. Qu'est-ce que tu demandes ?",
+       "options": [
+        "❓ Où est le chat ?",
+        "🐱 J'ai un chat.",
+        "😊 Comment ça va ?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Où est le chat ?[/fr]",
+       "why_en": "Oui ! Où est le chat ?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo va fasllar",
+   "emoji": "🌦️",
+   "lessons": [
+    {
+     "name": "Bugun havo qanday?",
+     "goal": "Bola «Quel temps fait-il ?» savoliga il y a du soleil, il pleut, il y a du vent bilan javob beradi",
+     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni fransuzcha aytamiz!",
+     "items": [
+      {
+       "say": "Quel temps fait-il ?",
+       "uz": "havo qanday?",
+       "emoji": "🌦️",
+       "image": "en56-u6-weather.png",
+       "image_prompt": "A child looking out of a window at the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Maman, quel temps fait-il ?"
+      },
+      {
+       "say": "Il y a du soleil.",
+       "uz": "quyoshli",
+       "emoji": "☀️",
+       "image": "en56-u6-sunny.png",
+       "image_prompt": "A bright smiling sun, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni quyoshday keng oching!",
+       "sentence": "Il y a du soleil. Allons au parc !",
+       "action_en": "Mets tes lunettes de soleil !"
+      },
+      {
+       "say": "Il pleut.",
+       "uz": "yomg'irli",
+       "emoji": "🌧️",
+       "image": "en56-u6-rainy.png",
+       "image_prompt": "A cloud with raindrops, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaringiz bilan yomg'ir tomchilarini ko'rsating!",
+       "sentence": "Il pleut. Prends un parapluie !"
+      },
+      {
+       "say": "Il y a du vent.",
+       "uz": "shamolli",
+       "emoji": "🌬️",
+       "image": "en56-u6-windy.png",
+       "image_prompt": "Wind blowing leaves and a kite, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Daraxtday chayqaling!",
+       "sentence": "Il y a du vent. Faisons voler un cerf-volant !",
+       "action_en": "Balance-toi comme un arbre !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ob-havo qo'shig'i",
+       "matn": "Kuylaymiz: [fr]Quel temps fait-il aujourd'hui ? Il y a du soleil, du soleil, hourra ![/fr] Keyin [fr]il pleut[/fr] va [fr]il y a du vent[/fr] bilan ham kuylang!",
+       "doska": "Quel temps fait-il ?\nIl y a du soleil ! ☀️ Il pleut ! 🌧️ Il y a du vent ! 🌬️",
+       "sodda": "Faqat javob: [fr]il y a du soleil ![/fr] [fr]il pleut ![/fr]",
+       "boshqa_usul": "Har tong derazadan qarab, havoni fransuzcha ayting va taqvimga rasm chizing.",
+       "matn_en": "Chantons : Quel temps fait-il aujourd'hui ? Il y a du soleil, du soleil, hourra ! Maintenant, chante avec « il pleut » et « il y a du vent » !",
+       "sarlavha_en": "🎵 La chanson de la météo"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda quyosh charaqlayapti. Havo qanday?",
+       "options": [
+        "☀️ Il y a du soleil.",
+        "🌧️ Il pleut.",
+        "🌬️ Il y a du vent."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Il y a du soleil.[/fr] — quyoshli.",
+       "q_en": "Le soleil brille dans le ciel. Quel temps fait-il ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Regardons par la fenêtre. Quel temps fait-il aujourd'hui ?"
+    },
+    {
+     "name": "Issiq va sovuq",
+     "goal": "Bola il neige, nuageux, chaud, froid so'zlari bilan havoni tasvirlaydi",
+     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "items": [
+      {
+       "say": "Il neige.",
+       "uz": "qorli",
+       "emoji": "🌨️",
+       "image": "en56-u6-snowy.png",
+       "image_prompt": "Snow falling from a cloud, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Il neige. Faisons un bonhomme de neige !"
+      },
+      {
+       "say": "C'est nuageux.",
+       "uz": "bulutli",
+       "emoji": "☁️",
+       "image": "en56-u6-cloudy.png",
+       "image_prompt": "Fluffy grey clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "C'est nuageux. Je ne vois pas le soleil."
+      },
+      {
+       "say": "Il fait chaud.",
+       "uz": "issiq",
+       "emoji": "🥵",
+       "image": "en56-u6-hot.png",
+       "image_prompt": "A child fanning themselves in the heat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yelpinganday qiling!",
+       "sentence": "Il fait chaud. Je veux une glace !",
+       "action_en": "Évente-toi le visage !"
+      },
+      {
+       "say": "Il fait froid.",
+       "uz": "sovuq",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Titraganday qiling: brr!",
+       "sentence": "Il fait froid. Mets ton manteau !",
+       "action_en": "Tremble comme ça !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Issiq-sovuq o'yini",
+       "matn": "Men aytaman, siz harakat qilasiz: [fr]Il fait chaud ![/fr] — yelpining! [fr]Il fait froid ![/fr] — titrang! [fr]Il neige ![/fr] — qor to'plang! [fr]C'est nuageux ![/fr] — bulutday suzing!",
+       "doska": "🥵 il fait chaud — yelpinamiz\n🥶 il fait froid — titraymiz\n🌨️ il neige — qor\n☁️ nuageux — bulut",
+       "sodda": "Ikkitasi: [fr]chaud[/fr] va [fr]froid[/fr].",
+       "boshqa_usul": "Muzlatkichdan muz oling va ushlang: [fr]Il fait froid ![/fr] Iliq suvga qo'l tekkizing: [fr]chaud ![/fr]",
+       "matn_en": "Écoute et bouge ! Il fait chaud : évente-toi ! Il fait froid : tremble ! Il neige : fais une boule de neige ! C'est nuageux : flotte comme un nuage !",
+       "sarlavha_en": "🏃 Le jeu du chaud et du froid"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tashqarida qor yog'yapti. Nima deymiz?",
+       "options": [
+        "🌨️ Il neige.",
+        "🥵 Il fait chaud.",
+        "☀️ Il y a du soleil."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [fr]Il neige.[/fr] — qorli.",
+       "q_en": "Il neige dehors. Qu'est-ce qu'on dit ?"
+      }
+     ],
+     "intro_en": "Salut ! Certains jours, il fait chaud, et d'autres jours, il fait froid. Parlons du temps !"
+    },
+    {
+     "name": "To'rt fasl",
+     "goal": "Bola printemps, été, automne, hiver fasllarini biladi",
+     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "items": [
+      {
+       "say": "le printemps",
+       "uz": "bahor",
+       "emoji": "🌷",
+       "image": "en56-u6-spring.png",
+       "image_prompt": "Spring tulips blooming, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Au printemps, les fleurs sont roses."
+      },
+      {
+       "say": "l'été",
+       "uz": "yoz",
+       "emoji": "🏖️",
+       "image": "en56-u6-summer.png",
+       "image_prompt": "A sunny beach with a bucket and spade, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "En été, il fait chaud et il y a du soleil.",
+       "action_en": "Nage comme un poisson !"
+      },
+      {
+       "say": "l'automne",
+       "uz": "kuz",
+       "emoji": "🍂",
+       "image": "en56-u6-autumn.png",
+       "image_prompt": "Falling orange autumn leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barg kabi aylanib tushing!",
+       "sentence": "En automne, les feuilles sont jaunes.",
+       "action_en": "Tombe comme une feuille !"
+      },
+      {
+       "say": "l'hiver",
+       "uz": "qish",
+       "emoji": "❄️",
+       "image": "en56-u6-winter.png",
+       "image_prompt": "A big snowflake, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "En hiver, il neige.",
+       "action_en": "Tremble comme ça !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "🔄 Fasllar aylanasi",
+       "matn": "Fasllar aylanib keladi: [fr]le printemps, l'été, l'automne, l'hiver[/fr] — va yana [fr]le printemps[/fr]! Bahorda — gul, yozda — dengiz, kuzda — barg, qishda — qor.",
+       "doska": "🌷 le printemps → 🏖️ l'été\n↑            ↓\n❄️ l'hiver ← 🍂 l'automne",
+       "sodda": "[fr]l'été[/fr] — yoz, [fr]l'hiver[/fr] — qish.",
+       "boshqa_usul": "Doira bo'lib aylaning va har burilishda bitta faslni ayting!",
+       "matn_en": "Les saisons tournent : le printemps, l'été, l'automne, l'hiver… et encore le printemps ! Le printemps : les fleurs. L'été : la mer. L'automne : les feuilles. L'hiver : la neige.",
+       "sarlavha_en": "🔄 La ronde des saisons"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Barglar sarg'ayib to'kilyapti. Bu qaysi fasl?",
+       "options": [
+        "🍂 l'automne",
+        "🌷 le printemps",
+        "🏖️ l'été"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kuz — [fr]l'automne[/fr].",
+       "q_en": "Les feuilles sont jaunes et tombent. C'est quelle saison ?"
+      },
+      {
+       "q": "Qorbobo va qor — qaysi faslda?",
+       "options": [
+        "❄️ l'hiver",
+        "🏖️ l'été",
+        "🌷 le printemps"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qish — [fr]l'hiver[/fr].",
+       "q_en": "La neige et un bonhomme de neige. C'est quelle saison ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Une année a quatre saisons : le printemps, l'été, l'automne et l'hiver. Laquelle tu préfères ?"
+    },
+    {
+     "name": "Soyabon va kamalak",
+     "goal": "Bola parapluie, arc-en-ciel, bonhomme de neige so'zlarini biladi",
+     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "items": [
+      {
+       "say": "le parapluie",
+       "uz": "soyabon",
+       "emoji": "☂️",
+       "image": "en56-u6-umbrella.png",
+       "image_prompt": "A colorful open umbrella, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Soyabonni ochganday qiling!",
+       "sentence": "Prends ton parapluie, s'il te plaît.",
+       "action_en": "Ouvre ton parapluie !"
+      },
+      {
+       "say": "l'arc-en-ciel",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en56-u6-rainbow.png",
+       "image_prompt": "A bright rainbow over clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Regarde ! Un grand arc-en-ciel !",
+       "action_en": "Dessine un arc-en-ciel dans l'air !"
+      },
+      {
+       "say": "le bonhomme de neige",
+       "uz": "qorbobo, qor odam",
+       "emoji": "⛄",
+       "image": "en56-u6-snowman.png",
+       "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "On fait un grand bonhomme de neige."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: sayrga chiqamiz",
+       "matn": "Kabutar so'raydi: [fr]Quel temps fait-il ?[/fr] Siz: [fr]Il pleut.[/fr] Kabutar: [fr]Prends ton parapluie ![/fr] Keyin: [fr]Regarde ! Un arc-en-ciel ![/fr]",
+       "doska": "— Quel temps fait-il ?\n— Il pleut. 🌧️\n— Prends ton parapluie ! ☂️\n— Regarde ! Un arc-en-ciel ! 🌈",
+       "sodda": "Qisqa: [fr]il pleut[/fr] — [fr]le parapluie[/fr].",
+       "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'ling!) va ayting: [fr]le parapluie ![/fr]",
+       "matn_en": "Kabutar : Quel temps fait-il ? L'enfant : Il pleut. Kabutar : Prends ton parapluie ! L'enfant : Regarde ! Un arc-en-ciel !",
+       "sarlavha_en": "🎭 Dialogue : On sort"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Yomg'ir yog'yapti. O'zimiz bilan nima olamiz?",
+       "options": [
+        "☂️ le parapluie",
+        "🍦 la glace",
+        "🩳 le short"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Soyabon — [fr]le parapluie[/fr].",
+       "q_en": "Il pleut. Qu'est-ce qu'on prend avec nous ?"
+      }
+     ],
+     "intro_en": "Salut ! Il pleut aujourd'hui, alors j'ai un parapluie. Regarde ! Après la pluie, je vois un arc-en-ciel !"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 6,
+     "name": "Bog'ga chiqamizmi?",
+     "name_en": "On peut aller au parc ?",
+     "emoji": "🌦️",
+     "goal": "Bola ob-havoni so'raydi va unga qarab kiyinadi yoki soyabon oladi",
+     "intro": "Biz bog'ga sayrga chiqmoqchimiz. Avval havo qandayligini bilib olamiz!",
+     "intro_en": "On veut aller au parc. Quel temps fait-il aujourd'hui ?",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "Maman",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s6-park-weather.png",
+      "image_prompt": "A child and a mother looking out of a window at light rain and a rainbow over a green park, holding an umbrella, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Maman, on peut aller au parc ?",
+       "uz": "onajon, bog'ga boramizmi?",
+       "emoji": "🌳"
+      },
+      {
+       "who": 0,
+       "say": "Regarde ! Quel temps fait-il ?",
+       "uz": "qara! havo qanday?",
+       "emoji": "🪟"
+      },
+      {
+       "who": 1,
+       "say": "Il pleut et c'est nuageux.",
+       "uz": "yomg'irli va bulutli",
+       "emoji": "🌧️"
+      },
+      {
+       "who": 0,
+       "say": "Prends ton parapluie, s'il te plaît.",
+       "uz": "soyaboningni ol, iltimos",
+       "emoji": "☂️"
+      },
+      {
+       "who": 1,
+       "say": "D'accord ! Regarde, maman ! Un arc-en-ciel !",
+       "uz": "xo'p! qarang, onajon! kamalak!",
+       "emoji": "🌈"
+      },
+      {
+       "who": 0,
+       "say": "Oui ! Allons au parc !",
+       "uz": "ha! qani, bog'ga ketdik!",
+       "emoji": "😊"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yomg'ir yog'yapti. Havo qanday?",
+       "q_en": "Il pleut. Quel temps fait-il ?",
+       "options": [
+        "🌧️ Il pleut.",
+        "☀️ Il y a du soleil.",
+        "🌨️ Il neige."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Il pleut.[/fr]",
+       "why_en": "Oui ! Il pleut."
+      },
+      {
+       "q": "Yomg'irda nima olamiz?",
+       "q_en": "Qu'est-ce qu'on prend quand il pleut ?",
+       "options": [
+        "☂️ le parapluie",
+        "🍦 la glace",
+        "⛄ le bonhomme de neige"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]le parapluie[/fr]",
+       "why_en": "Oui ! Un parapluie."
+      },
+      {
+       "q": "Osmonda yetti rangli yoy paydo bo'ldi. Bu nima?",
+       "q_en": "Tu vois beaucoup de couleurs dans le ciel. Qu'est-ce que c'est ?",
+       "options": [
+        "🌈 l'arc-en-ciel",
+        "☁️ C'est nuageux.",
+        "🍂 l'automne"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]l'arc-en-ciel[/fr]",
+       "why_en": "Oui ! Un arc-en-ciel."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Menga yoqadi, yoqmaydi",
+   "emoji": "❤️",
+   "lessons": [
+    {
+     "name": "Menga yoqadi",
+     "goal": "Bola «J'aime…» bilan yoqtirgan narsasini aytadi",
+     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni fransuzcha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "J'aime les pommes.",
+       "uz": "men olmani yaxshi ko'raman",
+       "emoji": "🍎❤️",
+       "image": "en56-u7-like-apples.png",
+       "image_prompt": "A happy child hugging a big red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingiz bilan yurakcha yasang!",
+       "sentence": "J'aime les pommes. Elles sont rouges !"
+      },
+      {
+       "say": "J'aime les chats.",
+       "uz": "men mushuklarni yaxshi ko'raman",
+       "emoji": "🐱❤️",
+       "image": "en56-u7-like-cats.png",
+       "image_prompt": "A child cuddling a fluffy cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime les chats. Ils sont petits."
+      },
+      {
+       "say": "J'aime la glace.",
+       "uz": "men muzqaymoqni yaxshi ko'raman",
+       "emoji": "🍦❤️",
+       "image": "en56-u7-like-ice-cream.png",
+       "image_prompt": "A child happily holding an ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime la glace. Miam !",
+       "action_en": "Frotte ton ventre !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "❤️ Yurakcha o'yini",
+       "matn": "Men narsa aytaman. Yoqsa — yurakcha yasang va ayting: [fr]J'aime… ![/fr] [fr]des bananes ?[/fr] [fr]des chiens ?[/fr] [fr]du gâteau ?[/fr] [fr]du lait ?[/fr]",
+       "doska": "J'aime … ❤️\n🍌 les bananes  🐶 les chiens  🎂 le gâteau",
+       "sodda": "Faqat [fr]J'aime[/fr] va so'z: [fr]J'aime le gâteau ![/fr]",
+       "boshqa_usul": "Yoqtirgan narsalaringiz rasmini chizing va har biriga ayting: [fr]J'aime…[/fr]",
+       "matn_en": "Je dis une chose. Si tu aimes, fais un cœur avec tes mains et dis : J'aime ! Les bananes ? Les chiens ? Le gâteau ? Le lait ?",
+       "sarlavha_en": "❤️ Le jeu du cœur"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]J'aime les chats.[/fr] — bu nima degani?",
+       "options": [
+        "🐱❤️ mushuklarni yaxshi ko'raman",
+        "🍎❤️ olmani yaxshi ko'raman",
+        "🐈❓ mushuk qayerda?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]les chats[/fr] — mushuklar, [fr]J'aime[/fr] — yaxshi ko'raman.",
+       "q_en": "Qu'est-ce que « J'aime les chats » veut dire ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! J'aime les pommes. J'aime aussi mes amis ! Et toi, qu'est-ce que tu aimes ?"
+    },
+    {
+     "name": "Menga yoqmaydi",
+     "goal": "Bola «Je n'aime pas…» bilan yoqtirmagan narsasini aytadi",
+     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "items": [
+      {
+       "say": "Je n'aime pas les oignons.",
+       "uz": "men piyozni yoqtirmayman",
+       "emoji": "🧅👎",
+       "image": "en56-u7-dislike-onions.png",
+       "image_prompt": "A child making a funny face at an onion, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Burningizni jiyiring!",
+       "sentence": "Non, merci. Je n'aime pas les oignons.",
+       "action_en": "Fais non de la tête !"
+      },
+      {
+       "say": "Je n'aime pas la pluie.",
+       "uz": "men yomg'irni yoqtirmayman",
+       "emoji": "🌧️👎",
+       "image": "en56-u7-dislike-rain.png",
+       "image_prompt": "A wet grumpy pigeon under the rain, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je n'aime pas la pluie. Il fait froid."
+      },
+      {
+       "say": "Je n'aime pas les araignées.",
+       "uz": "men o'rgimchaklarni yoqtirmayman",
+       "emoji": "🕷️👎",
+       "image": "en56-u7-dislike-spiders.png",
+       "image_prompt": "A child hiding from a small cartoon spider, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je n'aime pas les araignées. Elles font peur !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👍👎 Barmoq o'yini",
+       "matn": "Men aytaman — siz barmoq ko'rsatasiz! Yoqsa 👍: [fr]J'aime…[/fr]. Yoqmasa 👎: [fr]Je n'aime pas…[/fr]. [fr]Du gâteau ?[/fr] [fr]Des oignons ?[/fr] [fr]De la pluie ?[/fr] [fr]Des bonbons ?[/fr]",
+       "doska": "👍 J'aime …\n👎 Je n'aime pas …",
+       "sodda": "Faqat barmoq va [fr]oui[/fr] yoki [fr]non[/fr].",
+       "boshqa_usul": "Oila bilan o'ynang: har kim bitta narsa aytadi, qolganlar 👍 yoki 👎 ko'rsatadi.",
+       "matn_en": "Je dis une chose, tu montres ton pouce ! Pouce en haut : j'aime. Pouce en bas : je n'aime pas. Le gâteau ? Les oignons ? La pluie ? Les bonbons ?",
+       "sarlavha_en": "👍👎 Le jeu des pouces"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola piyozni ko'rib burnini jiyirdi. U nima deydi?",
+       "options": [
+        "🧅👎 Je n'aime pas les oignons.",
+        "🍎❤️ J'aime les pommes.",
+        "😋 Miam !"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Yoqmasa: [fr]Je n'aime pas…[/fr]",
+       "q_en": "Un garçon voit un oignon et fait la grimace. Qu'est-ce qu'il dit ?"
+      }
+     ],
+     "intro_en": "Salut ! On aime beaucoup de choses. Mais il y a des choses qu'on n'aime pas. Moi, je n'aime pas la pluie !"
+    },
+    {
+     "name": "Senga yoqadimi?",
+     "goal": "Bola «Tu aimes…?» deb so'raydi va «Oui, j'aime / Non, je n'aime pas» deb javob beradi",
+     "intro": "Gu-gu! Men do'stlarimdan so'rashni yaxshi ko'raman: senga muzqaymoq yoqadimi? Bugun fransuzcha so'rash va javob berishni o'rganamiz!",
+     "items": [
+      {
+       "say": "Tu aimes… ?",
+       "uz": "senga … yoqadimi?",
+       "emoji": "🤔",
+       "image": "en56-u7-do-you-like.png",
+       "image_prompt": "A curious child asking a friend with a thinking face, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Tu aimes les bananes ?"
+      },
+      {
+       "say": "Oui, j'aime.",
+       "uz": "ha, yoqadi",
+       "emoji": "👍",
+       "image": "en56-u7-yes-i-do.png",
+       "image_prompt": "A child smiling and giving a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizni «ha» deb qimirlating!",
+       "sentence": "Tu aimes le gâteau ? Oui, j'aime.",
+       "action_en": "Fais oui de la tête !"
+      },
+      {
+       "say": "Non, je n'aime pas.",
+       "uz": "yo'q, yoqmaydi",
+       "emoji": "👎",
+       "image": "en56-u7-no-i-dont.png",
+       "image_prompt": "A child shaking head and giving a thumbs down, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizni «yo'q» deb chayqating!",
+       "sentence": "Tu aimes les araignées ? Non, je n'aime pas.",
+       "action_en": "Fais non de la tête !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: do'stimdan so'rayman",
+       "matn": "Kabutar: [fr]Tu aimes le lait ?[/fr] Siz: [fr]Oui, j'aime.[/fr] Kabutar: [fr]Tu aimes les araignées ?[/fr] Siz: [fr]Non, je n'aime pas ![/fr] Endi siz Kabutardan so'rang!",
+       "doska": "— Tu aimes le lait ?\n— Oui, j'aime. 👍\n— Tu aimes les araignées ?\n— Non, je n'aime pas. 👎",
+       "sodda": "Faqat [fr]Oui[/fr] 👍 yoki [fr]Non[/fr] 👎 deb javob bering.",
+       "boshqa_usul": "Oila a'zolaringizdan so'rang: [fr]Tu aimes le thé ?[/fr] Javoblarini sanang!",
+       "matn_en": "Kabutar : Tu aimes le lait ? L'enfant : Oui, j'aime. Kabutar : Tu aimes les araignées ? L'enfant : Non, je n'aime pas ! Maintenant, pose la question à Kabutar !",
+       "sarlavha_en": "🎭 Dialogue : Demande à ton ami"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]Tu aimes la glace ?[/fr] Sizga yoqsa, nima deysiz?",
+       "options": [
+        "👍 Oui, j'aime.",
+        "👎 Non, je n'aime pas.",
+        "🙋 Au revoir !"
+       ],
+       "answer": 0,
+       "why": "Ajoyib! Yoqsa — [fr]Oui, j'aime.[/fr]",
+       "q_en": "« Tu aimes la glace ? » Tu aimes ça. Qu'est-ce que tu dis ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Posons des questions à nos amis. Tu aimes le gâteau ? Oui, j'aime !"
+    },
+    {
+     "name": "Eng sevimli narsam",
+     "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
+     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida fransuzcha gapiramiz.",
+     "items": [
+      {
+       "say": "Ma couleur préférée, c'est le bleu.",
+       "uz": "sevimli rangim — ko'k",
+       "emoji": "💙",
+       "image": "en56-u7-favourite-colour.png",
+       "image_prompt": "A big blue heart and blue paint splash, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ma couleur préférée, c'est le bleu."
+      },
+      {
+       "say": "Mon jouet préféré, c'est le ballon.",
+       "uz": "sevimli o'yinchog'im — to'p",
+       "emoji": "⚽",
+       "image": "en56-u7-favourite-toy.png",
+       "image_prompt": "A colorful soccer ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Mon jouet préféré, c'est le ballon.",
+       "action_en": "Lance un ballon !"
+      },
+      {
+       "say": "J'aime ma maman.",
+       "uz": "men onamni yaxshi ko'raman",
+       "emoji": "🥰",
+       "image": "en56-u7-love-mum.png",
+       "image_prompt": "A child hugging mother with hearts around, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Onangizni quchoqlang!",
+       "sentence": "J'aime très fort ma maman.",
+       "action_en": "Fais un gros câlin !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎁 Sevimli narsam ko'rgazmasi",
+       "matn": "Eng sevimli o'yinchog'ingizni olib keling! Uni ko'rsatib ayting: [fr]Mon jouet préféré, c'est…[/fr] Keyin rangini ayting: [fr]Ma couleur préférée, c'est…[/fr]",
+       "doska": "Mon jouet préféré, c'est … 🧸\nMa couleur préférée, c'est … 🎨",
+       "sodda": "Faqat nomini ayting: [fr]le ballon ![/fr] [fr]bleu ![/fr]",
+       "boshqa_usul": "Sevimli rangingizdagi qalam bilan rasm chizing va onangizga sovg'a qiling: [fr]Je t'aime, maman ![/fr]",
+       "matn_en": "Apporte ton jouet préféré ! Montre-le et dis : Mon jouet préféré, c'est… Puis dis : Ma couleur préférée, c'est…",
+       "sarlavha_en": "🎁 L'expo de mon jouet préféré"
+      }
+     ],
+     "intro_en": "Salut, les amis ! Ma couleur préférée, c'est le bleu, comme le ciel. C'est quoi, ton jouet préféré ?"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 7,
+     "name": "Bozorda meva tanlaymiz",
+     "name_en": "Au marché",
+     "emoji": "🧺",
+     "goal": "Bola bozorda nima yoqishi va yoqmasligini aytadi, odob bilan meva so'raydi",
+     "intro": "Buvimiz bilan bozorga keldik. Qaysi mevani yaxshi ko'ramiz?",
+     "intro_en": "On est au marché avec mamie. Quel fruit tu aimes ?",
+     "roles": [
+      "Buvi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Mamie",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s7-market.png",
+      "image_prompt": "A grandmother and a child at a colourful fruit and vegetable market stall with apples, bananas, grapes and onions, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "Tu aimes les pommes ?",
+       "uz": "senga olma yoqadimi?",
+       "emoji": "🍎"
+      },
+      {
+       "who": 1,
+       "say": "Oui, j'aime. J'aime les pommes.",
+       "uz": "ha, yoqadi. men olmani yaxshi ko'raman",
+       "emoji": "👍"
+      },
+      {
+       "who": 0,
+       "say": "Tu aimes les oignons ?",
+       "uz": "senga piyoz yoqadimi?",
+       "emoji": "🧅"
+      },
+      {
+       "who": 1,
+       "say": "Non, je n'aime pas. Je n'aime pas les oignons.",
+       "uz": "yo'q, yoqmaydi. piyozni yoqtirmayman",
+       "emoji": "👎"
+      },
+      {
+       "who": 1,
+       "say": "Mamie, du raisin, s'il te plaît !",
+       "uz": "buvijon, uzum oling, iltimos!",
+       "emoji": "🍇"
+      },
+      {
+       "who": 0,
+       "say": "D'accord ! Tiens.",
+       "uz": "xo'p! mana, ol",
+       "emoji": "🫴"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvingiz [fr]Tu aimes les pommes ?[/fr] deb so'radi. Sizga yoqadi. Nima deysiz?",
+       "q_en": "Mamie demande : « Tu aimes les pommes ? » Tu les aimes. Qu'est-ce que tu dis ?",
+       "options": [
+        "👍 Oui, j'aime.",
+        "👎 Non, je n'aime pas.",
+        "🙋 Au revoir !"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Oui, j'aime.[/fr]",
+       "why_en": "Oui ! Oui, j'aime."
+      },
+      {
+       "q": "Sizga piyoz yoqmaydi. Nima deysiz?",
+       "q_en": "Tu n'aimes pas les oignons. Qu'est-ce que tu dis ?",
+       "options": [
+        "🧅👎 Je n'aime pas les oignons.",
+        "🍎❤️ J'aime les pommes.",
+        "😋 Miam !"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Je n'aime pas les oignons.[/fr]",
+       "why_en": "Oui ! Je n'aime pas les oignons."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Menda bor, qila olaman",
+   "emoji": "💪",
+   "lessons": [
+    {
+     "name": "Menda bor",
+     "goal": "Bola «J'ai un/une…» bilan o'zida bor narsani aytadi",
+     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, fransuzcha aytamiz!",
+     "items": [
+      {
+       "say": "J'ai un chat.",
+       "uz": "menda mushuk bor",
+       "emoji": "🐈",
+       "image": "en56-u8-have-cat.png",
+       "image_prompt": "A child holding a fluffy cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai un chat. Il est blanc."
+      },
+      {
+       "say": "J'ai un chien.",
+       "uz": "menda it bor",
+       "emoji": "🐕",
+       "image": "en56-u8-have-dog.png",
+       "image_prompt": "A child walking a happy dog, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai un chien. Il est grand."
+      },
+      {
+       "say": "J'ai une poupée.",
+       "uz": "menda qo'g'irchoq bor",
+       "emoji": "🪆",
+       "image": "en56-u8-have-doll.png",
+       "image_prompt": "A child holding a colorful doll, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai une poupée avec une robe rose."
+      },
+      {
+       "say": "J'ai un ballon.",
+       "uz": "menda to'p bor",
+       "emoji": "🏀",
+       "image": "en56-u8-have-ball.png",
+       "image_prompt": "A child holding a bouncy ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'ai un ballon rouge.",
+       "action_en": "Fais rebondir un ballon !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎒 Sehrli sumka",
+       "matn": "Sumkaga o'yinchoqlarni soling. Kattalar birini chiqaradi — siz ayting: [fr]J'ai un ballon ![/fr] [fr]J'ai une poupée ![/fr] Qani, sumkada yana nima bor?",
+       "doska": "🎒 J'ai un/une …\n🏀 le ballon  🪆 la poupée  🧸 le nounours",
+       "sodda": "Faqat nomini ayting: [fr]le ballon ![/fr] [fr]la poupée ![/fr]",
+       "boshqa_usul": "Uy hayvoningiz yoki o'yinchog'ingiz rasmini ko'rsatib ayting: [fr]J'ai un/une…[/fr]",
+       "matn_en": "Mets des jouets dans le sac. Un adulte en sort un, tu dis : J'ai un ballon ! J'ai une poupée ! Qu'est-ce qu'il y a encore dans le sac ?",
+       "sarlavha_en": "🎒 Le sac magique"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola itini ko'rsatib nima deydi?",
+       "options": [
+        "🐕 J'ai un chien.",
+        "🐈 J'ai un chat.",
+        "🪆 J'ai une poupée."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! It — [fr]le chien[/fr]: [fr]J'ai un chien.[/fr]",
+       "q_en": "Une fille montre son chien. Qu'est-ce qu'elle dit ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! J'ai un nid et un petit ami. Et toi, qu'est-ce que tu as ? Racontons !"
+    },
+    {
+     "name": "Men qila olaman",
+     "goal": "Bola «Je sais…» bilan qila oladigan harakatini aytadi",
+     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni fransuzcha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "Je sais sauter.",
+       "uz": "men sakray olaman",
+       "emoji": "🤸",
+       "image": "en56-u8-can-jump.png",
+       "image_prompt": "A child jumping high, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sakrang!",
+       "sentence": "Regarde ! Je sais sauter très haut.",
+       "action_en": "Saute !"
+      },
+      {
+       "say": "Je sais courir.",
+       "uz": "men yugura olaman",
+       "emoji": "🏃",
+       "image": "en56-u8-can-run.png",
+       "image_prompt": "A child running fast, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Joyingizda yuguring!",
+       "sentence": "Je sais courir vite.",
+       "action_en": "Cours sur place !"
+      },
+      {
+       "say": "Je sais nager.",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "en56-u8-can-swim.png",
+       "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringiz bilan suzganday qiling!",
+       "sentence": "Je sais nager en été.",
+       "action_en": "Nage comme un poisson !"
+      },
+      {
+       "say": "Je sais chanter.",
+       "uz": "men qo'shiq ayta olaman",
+       "emoji": "🎤",
+       "image": "en56-u8-can-sing.png",
+       "image_prompt": "A child singing into a microphone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "La-la-la deb kuylang!",
+       "sentence": "Je sais chanter une chanson.",
+       "action_en": "Chante la-la-la !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Qani, ko'rsat!",
+       "matn": "Men aytaman, siz bajarasiz va takrorlaysiz! [fr]Je sais sauter ![/fr] — sakrang! [fr]Je sais courir ![/fr] — yuguring! [fr]Je sais nager ![/fr] — suzing! [fr]Je sais chanter ![/fr] — kuylang!",
+       "doska": "🤸 Je sais sauter !\n🏃 Je sais courir !\n🏊 Je sais nager !\n🎤 Je sais chanter !",
+       "sodda": "Faqat harakat so'zi: [fr]saute ![/fr] [fr]cours ![/fr]",
+       "boshqa_usul": "Do'stingiz bilan navbatma-navbat buyruq bering: [fr]Saute ![/fr] [fr]Cours ![/fr]",
+       "matn_en": "Je dis, tu fais et tu dis ! Je sais sauter ! : saute ! Je sais courir ! : cours ! Je sais nager ! : nage ! Je sais chanter ! : chante !",
+       "sarlavha_en": "🏃 Montre-moi !"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[fr]Je sais nager.[/fr] — qaysi rasm?",
+       "options": [
+        "🏊 suzaman",
+        "🏃 yuguraman",
+        "🎤 kuylayman"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [fr]nager[/fr] — suzmoq.",
+       "q_en": "« Je sais nager. » C'est quelle image ?"
+      }
+     ],
+     "intro_en": "Salut ! Je sais voler ! Et toi, qu'est-ce que tu sais faire ? Sautons, courons et chantons ensemble !"
+    },
+    {
+     "name": "Qila olaman, qila olmayman",
+     "goal": "Bola yangi harakatlarni va «Je ne sais pas…» ni aytadi",
+     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "items": [
+      {
+       "say": "Je sais danser.",
+       "uz": "men raqs tusha olaman",
+       "emoji": "💃",
+       "image": "en56-u8-can-dance.png",
+       "image_prompt": "A child dancing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Raqs tushing!",
+       "sentence": "Je sais danser avec mes amis.",
+       "action_en": "Danse !"
+      },
+      {
+       "say": "Je sais dessiner.",
+       "uz": "men rasm chiza olaman",
+       "emoji": "🎨",
+       "image": "en56-u8-can-draw.png",
+       "image_prompt": "A child painting a picture, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Havoda rasm chizing!",
+       "sentence": "Je sais dessiner une grande maison.",
+       "action_en": "Dessine un rond dans l'air !"
+      },
+      {
+       "say": "Je sais taper dans mes mains.",
+       "uz": "men qarsak chala olaman",
+       "emoji": "👏",
+       "image": "en56-u8-can-clap.png",
+       "image_prompt": "Two hands clapping, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qarsak chaling!",
+       "sentence": "Je sais taper dans mes mains.",
+       "action_en": "Tape dans tes mains !"
+      },
+      {
+       "say": "Je ne sais pas voler.",
+       "uz": "men ucha olmayman",
+       "emoji": "🐦🚫",
+       "image": "en56-u8-cant-fly.png",
+       "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qanot qoqib ko'ring — uchmaysiz!",
+       "sentence": "Je suis un garçon. Je ne sais pas voler.",
+       "action_en": "Bats des bras !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 «Je sais» qo'shig'i",
+       "matn": "Kuylab harakat qilamiz: [fr]Je sais taper, taper, taper ! Je sais danser, danser, danser ! Je sais sauter, sauter, sauter ![/fr] Oxirida qo'l qoqib: [fr]Je ne sais pas voler ![/fr]",
+       "doska": "Je sais taper dans mes mains ! 👏\nJe sais danser ! 💃\nJe sais sauter ! 🤸\nJe ne sais pas voler ! 🐦🚫",
+       "sodda": "Faqat qarsak bilan: [fr]clap, clap, clap ![/fr]",
+       "boshqa_usul": "Kattalarga savol bering: siz nima qila olasiz? Ular fransuzcha javob bersin!",
+       "matn_en": "Chante et bouge : Je sais taper, taper, taper ! Je sais danser, danser, danser ! Je sais sauter, sauter, sauter ! À la fin, bats des bras : Je ne sais pas voler !",
+       "sarlavha_en": "🎵 La chanson « Je sais »"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola qanot qoqib ko'rdi, lekin ucholmadi. U nima deydi?",
+       "options": [
+        "🐦🚫 Je ne sais pas voler.",
+        "💃 Je sais danser.",
+        "👏 Je sais taper dans mes mains."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]Je ne sais pas voler.[/fr] — men ucha olmayman.",
+       "q_en": "Un garçon bat des bras, mais il ne sait pas voler. Qu'est-ce qu'il dit ?"
+      }
+     ],
+     "intro_en": "Bonjour, les amis ! Je sais voler, mais je ne sais pas nager. Vous, vous savez danser et dessiner ! Regardons."
+    },
+    {
+     "name": "Men endi kattaman!",
+     "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
+     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda fransuzcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "items": [
+      {
+       "say": "J'ai cinq ans.",
+       "uz": "men besh yoshdaman",
+       "emoji": "🖐️🎂",
+       "image": "en56-u8-i-am-five.png",
+       "image_prompt": "A child next to a birthday cake with five candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Besh barmoq ko'rsating!",
+       "sentence": "Je m'appelle Ali. J'ai cinq ans.",
+       "action_en": "Montre cinq doigts !"
+      },
+      {
+       "say": "Je suis grand.",
+       "uz": "men kattaman",
+       "emoji": "💪",
+       "image": "en56-u8-i-am-big.png",
+       "image_prompt": "A proud child showing strong arms, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kuchingizni ko'rsating!",
+       "sentence": "Je suis grand. Je sais courir vite.",
+       "action_en": "Tiens-toi bien droit !"
+      },
+      {
+       "say": "Je suis content !",
+       "uz": "men xursandman!",
+       "emoji": "🥳",
+       "image": "en56-u8-i-am-happy.png",
+       "image_prompt": "A child celebrating with confetti, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je suis content ! J'aime le français !",
+       "action_en": "Saute et souris !"
+      },
+      {
+       "say": "À bientôt !",
+       "uz": "tez orada ko'rishguncha!",
+       "emoji": "🤝",
+       "image": "en56-u8-see-you-soon.png",
+       "image_prompt": "Two friends shaking hands goodbye, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Au revoir, Kabutar ! À bientôt !",
+       "action_en": "Fais au revoir de la main !"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎤 Men haqimda",
+       "matn": "Mikrofon oling va sahnaga chiqing! Ayting: [fr]Bonjour ! Je m'appelle…[/fr] [fr]J'ai cinq ans.[/fr] [fr]J'ai un chat.[/fr] [fr]Je sais danser.[/fr] [fr]J'aime les pommes.[/fr] Oxirida: [fr]À bientôt ![/fr]",
+       "doska": "Bonjour ! Je m'appelle …\nJ'ai cinq ans. J'ai un/une …\nJe sais … J'aime …\nÀ bientôt !",
+       "sodda": "Faqat ikki gap: [fr]Je m'appelle…[/fr] va [fr]J'ai cinq ans.[/fr]",
+       "boshqa_usul": "Hikoyangizni telefonga yozib oling va oilangizga ko'rsating!",
+       "matn_en": "Prends le micro et monte sur scène ! Dis : Bonjour ! Je m'appelle… J'ai cinq ans. J'ai un chat. Je sais danser. J'aime les pommes. À bientôt !",
+       "sarlavha_en": "🎤 Tout sur moi"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nechi yoshdasiz? Besh yosh bo'lsa, nima deysiz?",
+       "options": [
+        "🖐️🎂 J'ai cinq ans.",
+        "💪 Je suis grand.",
+        "🔟 dix"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [fr]J'ai cinq ans.[/fr] — men besh yoshdaman.",
+       "q_en": "Tu as quel âge ? Tu as cinq ans. Qu'est-ce que tu dis ?"
+      }
+     ],
+     "intro_en": "Bonjour, mes grands amis ! Vous avez cinq ans et vous connaissez beaucoup de mots en français. Je suis si content !"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 8,
+     "name": "Tug'ilgan kun bayrami",
+     "name_en": "Une fête d'anniversaire",
+     "emoji": "🎂",
+     "goal": "Bola tug'ilgan kunida yoshini aytadi, nima qila olishini ko'rsatadi va mehmonlar bilan xayrlashadi",
+     "intro": "Bugun do'stimizning tug'ilgan kuni! Tabriklaymiz, o'ynaymiz va raqs tushamiz.",
+     "intro_en": "Aujourd'hui, c'est l'anniversaire de mon ami ! Jouons, chantons et dansons ensemble !",
+     "roles": [
+      "Do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "L'ami",
+      "L'enfant"
+     ],
+     "scene": {
+      "image": "en56-s8-birthday-party.png",
+      "image_prompt": "Happy children at a birthday party with balloons and a cake with five candles, dancing and clapping, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Joyeux anniversaire ! Tu as quel âge ?",
+       "uz": "tug'ilgan kuning muborak! necha yoshdasan?",
+       "emoji": "🎉"
+      },
+      {
+       "who": 0,
+       "say": "J'ai cinq ans ! Merci !",
+       "uz": "besh yoshdaman! rahmat!",
+       "emoji": "🖐️"
+      },
+      {
+       "who": 1,
+       "say": "J'ai un ballon pour toi.",
+       "uz": "menda senga to'p bor",
+       "emoji": "⚽"
+      },
+      {
+       "who": 0,
+       "say": "Merci ! Je sais danser. On danse !",
+       "uz": "rahmat! men raqs tusha olaman. keling, raqs tushamiz!",
+       "emoji": "💃"
+      },
+      {
+       "who": 1,
+       "say": "Je sais chanter et taper dans mes mains !",
+       "uz": "men qo'shiq aytib, qarsak chala olaman!",
+       "emoji": "👏"
+      },
+      {
+       "who": 0,
+       "say": "Il est bon, ce gâteau ! À bientôt !",
+       "uz": "mazali tort! tez orada ko'rishguncha!",
+       "emoji": "🎂"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Do'stingiz besh yoshda. U nima deydi?",
+       "q_en": "Ton ami a cinq ans. Qu'est-ce qu'il dit ?",
+       "options": [
+        "🖐️🎂 J'ai cinq ans.",
+        "🔟 dix",
+        "💪 Je suis grand."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]J'ai cinq ans.[/fr]",
+       "why_en": "Oui ! J'ai cinq ans."
+      },
+      {
+       "q": "Sovg'angiz — to'p. Nima deysiz?",
+       "q_en": "Ton cadeau, c'est un ballon. Qu'est-ce que tu dis ?",
+       "options": [
+        "⚽ J'ai un ballon pour toi.",
+        "🐕 J'ai un chien.",
+        "🚫 Je ne sais pas voler."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]J'ai un ballon pour toi.[/fr]",
+       "why_en": "Oui ! J'ai un ballon pour toi."
+      },
+      {
+       "q": "Bayram tugadi. Xayrlashganda nima deysiz?",
+       "q_en": "La fête est finie. Qu'est-ce que tu dis ?",
+       "options": [
+        "👋 À bientôt !",
+        "🍽️ J'ai faim.",
+        "❓ Comment tu t'appelles ?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [fr]À bientôt ![/fr]",
+       "why_en": "Oui ! À bientôt !"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "Regarde !",
+  "listen": "Écoute et répète :",
+  "again": "Encore !",
+  "good": [
+   "Bravo !",
+   "Bravo !",
+   "Génial !",
+   "Super !",
+   "Excellent !"
+  ],
+  "remember": "Tu te souviens ?",
+  "together": "Disons-le ensemble !",
+  "your_turn": "À toi !",
+  "game": "C'est l'heure du jeu !",
+  "ready": "Prêt ? Partez !",
+  "found": "Super ! Tu les as tous trouvés !",
+  "today": "Aujourd'hui, on a appris :",
+  "bye": "À demain !",
+  "which": "Lequel est : {w} ?",
+  "find": "Trouve l'image : {w}",
+  "where": "Où est : {w} ?",
+  "what": "Regarde l'image. Qu'est-ce que c'est ?",
+  "yes": "Oui ! {w}",
+  "old": "🔁 Ancienne question",
+  "play": "On joue !",
+  "roleplay": "On joue la scène !",
+  "says": "{r} dit :",
+  "now_you": "Maintenant, à toi de le dire :",
+  "hello_friends": "Bonjour, les amis !",
+  "listen_short": "Écoute :",
+  "listen_bang": "Écoute !",
+  "repeat_me": "Répète après moi :",
+  "now_you_short": "À toi :",
+  "say": "Dis :",
+  "one_more": "Encore une fois :",
+  "look_listen": "Regarde et écoute :",
+  "point_game": "Je dis le mot, tu montres l'image : {names}.",
+  "t_point": "🎲 Montre-le !",
+  "t_today": "🌟 Aujourd'hui, on a appris",
+  "t_remember": "Souviens-toi :",
+  "t_last_year": "L'année dernière",
+  "welcome_back": "Bonjour, les amis ! Bon retour ! Rappelons-nous les mots appris l'année dernière.",
+  "t_review": "révision",
+  "review_intro": "Jour de révision ! Rappelons-nous tout ce qu'on a appris dans cette partie. Chaque bonne réponse est une étoile !",
+  "say_with_me": "Dis-le avec moi !",
+  "t_jump": "Saute ou assieds-toi !",
+  "jump": "Je dis un mot. Si tu vois l'image, saute ! Sinon, assieds-toi ! Prêt ? Partez !",
+  "played_great": "Bravo ! Tu as super bien joué !",
+  "t_review_q": "Question de révision",
+  "t_unit_done": "Partie terminée !",
+  "unit_done": "Fantastique ! Tu as fini cette partie. Partons pour une nouvelle aventure !",
+  "t_party": "Grande fête !",
+  "party": "Grande fête",
+  "party_intro": "Hourra ! Aujourd'hui, c'est la grande fête ! Tu as fini tout le livre. Rappelons-nous nos mots préférés et gagnons des étoiles !",
+  "know_all": "Tu les connais tous !",
+  "t_party_q": "Question de la fête",
+  "t_champion": "Tu es un champion !",
+  "champion": "Tu es un champion ! Maintenant, tu sais tout. Ouvre une leçon et rejoue !",
+  "t_roleplay": "Jeu de rôle",
+  "roles_line": "Je suis le {a}, tu es le {b}.",
+  "change_roles": "Maintenant, on change de rôle !",
+  "great_role": "Tu es un super {r} !",
+  "t_well_done": "🌟 Bravo !",
+  "scenario_done": "Maintenant, tu sais le faire : {name} ! Rejoue à la maison avec ta famille."
+ }
+}

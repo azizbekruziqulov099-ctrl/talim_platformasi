@@ -1,0 +1,1588 @@
+{
+ "lessons": {
+  "Salom, do'stim!": {
+   "intro_en": "Hello, friends! I am Kabutar the bird. I missed you! Let's say hello and tell our names.",
+   "items": {
+    "Hello!": {
+     "sentence": "Hello! I am Kabutar.",
+     "action_en": "Wave your hand!"
+    },
+    "What's your name?": {
+     "sentence": "Hello! What's your name?"
+    },
+    "My name is Anvar.": {
+     "sentence": "Hello! My name is Anvar.",
+     "action_en": "Point to yourself!"
+    },
+    "Goodbye!": {
+     "sentence": "Goodbye, Kabutar! Goodbye, mum!",
+     "action_en": "Wave goodbye!"
+    }
+   },
+   "tests_en": [
+    "Your friend asks, \"What's your name?\" What do you say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Dialog: Let's meet",
+     "matn_en": "Let's talk to Kabutar the bird. Kabutar: Hello! What's your name? Child: Hello! My name is… (say your name). Kabutar: Goodbye! Child: Goodbye!"
+    }
+   ]
+  },
+  "Sanaymiz: bir–to'rt": {
+   "intro_en": "Hello! Let's count with Kabutar. One, two, three, four! Count with me!",
+   "items": {
+    "one": {
+     "sentence": "I have one nose.",
+     "action_en": "Show one finger!"
+    },
+    "two": {
+     "sentence": "I have two eyes.",
+     "action_en": "Show two fingers!"
+    },
+    "three": {
+     "sentence": "I see three cats.",
+     "action_en": "Clap three times!"
+    },
+    "four": {
+     "sentence": "The dog has four legs.",
+     "action_en": "Jump four times!"
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "👏 Clap and count",
+     "matn_en": "I count, you clap! One — one clap. Two — two claps. Three — three claps. Four — four claps! Now you count!"
+    }
+   ]
+  },
+  "Sanaymiz: besh–yetti": {
+   "intro_en": "Hi, friends! We know one to four. Now let's count five, six, seven!",
+   "items": {
+    "five": {
+     "sentence": "I have five fingers.",
+     "action_en": "Show five fingers!"
+    },
+    "six": {
+     "sentence": "I see six red balls.",
+     "action_en": "Clap six times!"
+    },
+    "seven": {
+     "sentence": "I have seven apples.",
+     "action_en": "Jump seven times!"
+    }
+   },
+   "tests_en": [
+    "How many fingers are on one hand?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎵 Counting song",
+     "matn_en": "Let's sing: One, two, three, four, five, six, seven! Sing it slow, then fast! Show one finger for every number."
+    }
+   ]
+  },
+  "Sanaymiz: sakkiz–o'n": {
+   "intro_en": "Hello again! Let's count to ten. Eight, nine, ten! How many can you count?",
+   "items": {
+    "eight": {
+     "sentence": "I see eight birds.",
+     "action_en": "Clap eight times!"
+    },
+    "nine": {
+     "sentence": "I have nine balloons."
+    },
+    "ten": {
+     "sentence": "I have ten fingers.",
+     "action_en": "Show ten fingers!"
+    },
+    "How many?": {
+     "sentence": "How many apples? Three apples!"
+    }
+   },
+   "tests_en": [
+    "How many apples?",
+    "How many fingers are on two hands?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🚀 The rocket goes up!",
+     "matn_en": "The rocket is ready! Let's count down: ten, nine, eight, seven, six, five, four, three, two, one! Now jump up high — we fly!"
+    }
+   ]
+  },
+  "Bu mening onam": {
+   "intro_en": "Hello, friends! I love my family. Look! This is my mum. Let's meet your family too!",
+   "items": {
+    "This is my mum.": {
+     "sentence": "Look! This is my mum.",
+     "action_en": "Point to the picture!"
+    },
+    "This is my dad.": {
+     "sentence": "Hello! This is my dad."
+    },
+    "This is my sister.": {
+     "sentence": "This is my sister. Her name is Laylo."
+    },
+    "This is my brother.": {
+     "sentence": "This is my brother. He is big."
+    }
+   },
+   "tests_en": [
+    "Show your dad. What do you say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🖼️ Family picture",
+     "matn_en": "Draw your family or show a photo. Point and say: This is my mum. This is my dad. This is my brother. Very nice!"
+    }
+   ]
+  },
+  "Buvim va bobom": {
+   "intro_en": "Hi! Today we visit grandma and grandpa. They love us very much!",
+   "items": {
+    "grandma": {
+     "sentence": "My grandma makes bread."
+    },
+    "grandpa": {
+     "sentence": "My grandpa has a big garden."
+    },
+    "baby": {
+     "sentence": "The baby is small.",
+     "action_en": "Rock the baby!"
+    },
+    "family": {
+     "sentence": "I love my family.",
+     "action_en": "Hug yourself!"
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎵 Finger family song",
+     "matn_en": "Show your fingers and sing: Daddy finger, mummy finger, brother finger, sister finger, baby finger — family! At the end, hug all your fingers!"
+    }
+   ]
+  },
+  "Qalaysan, do'stim?": {
+   "intro_en": "Good morning, friends! How are you? I'm fine, thank you! Let's talk with our friends.",
+   "items": {
+    "friend": {
+     "sentence": "Anvar is my friend.",
+     "action_en": "Shake hands with a friend!"
+    },
+    "How are you?": {
+     "sentence": "Hello, Laylo! How are you?"
+    },
+    "I'm fine, thank you.": {
+     "sentence": "I'm fine, thank you. And you?"
+    },
+    "Good morning!": {
+     "sentence": "Good morning, mum!",
+     "action_en": "Stretch your arms!"
+    }
+   },
+   "tests_en": [
+    "Your friend asks, \"How are you?\" What do you say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Dialog: Good morning",
+     "matn_en": "Kabutar: Good morning! How are you? Child: I'm fine, thank you! Now change: you ask, Kabutar answers!"
+    }
+   ]
+  },
+  "Katta va kichik": {
+   "intro_en": "Hello! Look at the elephant. It is big! Look at the mouse. It is small!",
+   "items": {
+    "big": {
+     "sentence": "The elephant is big.",
+     "action_en": "Make yourself big!"
+    },
+    "small": {
+     "sentence": "The mouse is small.",
+     "action_en": "Make yourself small!"
+    },
+    "happy": {
+     "sentence": "I am happy today!",
+     "action_en": "Smile!"
+    },
+    "sad": {
+     "sentence": "The little cat is sad.",
+     "action_en": "Make a sad face!"
+    }
+   },
+   "tests_en": [
+    "Look at the elephant. Is it big or small?",
+    "It is your birthday. You get a present. How do you feel?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "👨‍👩‍👧 My family",
+     "matn_en": "Let's say it: My dad is big. My baby brother is small. My mum is happy. Now talk about your family!"
+    }
+   ]
+  },
+  "Futbolka va shim": {
+   "intro_en": "Hello, friends! Let's get dressed. Look at my clothes! What do you wear today?",
+   "items": {
+    "T-shirt": {
+     "sentence": "My T-shirt is yellow.",
+     "action_en": "Touch your T-shirt!"
+    },
+    "trousers": {
+     "sentence": "Dad has blue trousers."
+    },
+    "dress": {
+     "sentence": "My sister has a pink dress."
+    },
+    "shorts": {
+     "sentence": "I wear shorts in summer."
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "🧺 Washing day",
+     "matn_en": "Kabutar is putting clothes out to dry. Point to the clothes I say: T-shirt! Dress! Trousers! Shorts! Well done!"
+    }
+   ]
+  },
+  "Poyabzal va paypoq": {
+   "intro_en": "Hi! We go outside. First socks, then shoes! Put on your shoes, please.",
+   "items": {
+    "shoes": {
+     "sentence": "My shoes are black.",
+     "action_en": "Touch your shoes!"
+    },
+    "socks": {
+     "sentence": "I have two white socks."
+    },
+    "boots": {
+     "sentence": "Put on your boots, please."
+    },
+    "Put on!": {
+     "sentence": "Put on your socks!",
+     "action_en": "Put on your shoes!"
+    }
+   },
+   "tests_en": [
+    "What do you put on your feet first?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🏃 Dress-up game",
+     "matn_en": "Listen and act: Put on your socks! Put on your shoes! Put on your boots! Who is fast?"
+    }
+   ]
+  },
+  "Issiq kiyimlar": {
+   "intro_en": "Brr! It is cold outside. Let's put on warm clothes: a hat, a coat and gloves!",
+   "items": {
+    "hat": {
+     "sentence": "I have a red hat.",
+     "action_en": "Touch your head!"
+    },
+    "coat": {
+     "sentence": "Put on your coat, please."
+    },
+    "scarf": {
+     "sentence": "My scarf is long and green."
+    },
+    "gloves": {
+     "sentence": "My gloves are on my hands.",
+     "action_en": "Show your hands!"
+    }
+   },
+   "tests_en": [
+    "Your hands are cold. What do you put on?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "❄️ Ready for winter",
+     "matn_en": "Let's dress Kabutar! I say, you show: hat — on your head. Scarf — on your neck. Gloves — on your hands. Coat — on you!"
+    }
+   ]
+  },
+  "Mening kiyimim": {
+   "intro_en": "Hello, friends! Look at me! My T-shirt is red. What colour are your clothes?",
+   "items": {
+    "My T-shirt is red.": {
+     "sentence": "Look! My T-shirt is red."
+    },
+    "My shoes are blue.": {
+     "sentence": "My shoes are blue and small."
+    },
+    "Put on your hat!": {
+     "sentence": "It's cold. Put on your hat!",
+     "action_en": "Put on your hat!"
+    }
+   },
+   "tests_en": [
+    "\"My shoes are blue.\" Which picture is it?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎨 Colour clothes game",
+     "matn_en": "Look at your clothes! Say: My T-shirt is red. Or blue, green, yellow. Now talk about your friend's clothes!"
+    }
+   ]
+  },
+  "Nonushta": {
+   "intro_en": "Good morning! It is time for breakfast. Let's eat bread, eggs and cheese. Yummy!",
+   "items": {
+    "bread": {
+     "sentence": "I like bread and cheese."
+    },
+    "milk": {
+     "sentence": "I drink milk in the morning.",
+     "action_en": "Drink your milk!"
+    },
+    "egg": {
+     "sentence": "I have one egg."
+    },
+    "cheese": {
+     "sentence": "The mouse likes cheese."
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "🍳 Let's make breakfast",
+     "matn_en": "Let's give the dolls breakfast! Put it on the table and say: bread, milk, egg, cheese. Yummy!"
+    }
+   ]
+  },
+  "Ichimliklar": {
+   "intro_en": "Hi, friends! I'm thirsty. Let's drink something. Water, juice or tea?",
+   "items": {
+    "water": {
+     "sentence": "I drink water every day.",
+     "action_en": "Drink some water!"
+    },
+    "juice": {
+     "sentence": "I like apple juice."
+    },
+    "tea": {
+     "sentence": "Grandma drinks tea."
+    },
+    "I'm thirsty.": {
+     "sentence": "I'm thirsty. Water, please."
+    }
+   },
+   "tests_en": [
+    "What does grandma drink in the morning?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Dialog: At the café",
+     "matn_en": "Kabutar: Water or juice? Child: Juice, please! Kabutar: Here you are. Child: Thank you! Now you ask!"
+    }
+   ]
+  },
+  "Tushlik": {
+   "intro_en": "Hello! It's lunch time. I'm hungry! Let's eat soup and rice.",
+   "items": {
+    "soup": {
+     "sentence": "Mum makes hot soup."
+    },
+    "rice": {
+     "sentence": "I like rice with chicken."
+    },
+    "chicken": {
+     "sentence": "The chicken is yummy!"
+    },
+    "I'm hungry.": {
+     "sentence": "I'm hungry. Soup, please!",
+     "action_en": "Rub your tummy!"
+    }
+   },
+   "tests_en": [
+    "What does \"I'm hungry\" mean?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🥄 Cook game",
+     "matn_en": "You are the cook! Put rice and chicken in the pot. Mix, mix! Kabutar: I'm hungry! Cook: Here is soup!"
+    }
+   ]
+  },
+  "Shirinliklar": {
+   "intro_en": "Hello, friends! I love sweet things. Cake, ice cream, sweets. Yummy!",
+   "items": {
+    "cake": {
+     "sentence": "The birthday cake is big."
+    },
+    "ice cream": {
+     "sentence": "I like ice cream in summer."
+    },
+    "sweets": {
+     "sentence": "Grandma has sweets for me."
+    },
+    "Yummy!": {
+     "sentence": "Yummy! The cake is good!",
+     "action_en": "Rub your tummy!"
+    }
+   },
+   "tests_en": [
+    "We put candles on it on a birthday. What is it?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎂 Birthday game",
+     "matn_en": "Put candles on the cake and count: one, two, three, four, five! Blow! Now eat the cake — Yummy!"
+    }
+   ]
+  },
+  "Mening uyim": {
+   "intro_en": "Hello! Welcome to my house! Look, here is the door. Come in, please!",
+   "items": {
+    "house": {
+     "sentence": "This is my house.",
+     "action_en": "Draw a house in the air!"
+    },
+    "door": {
+     "sentence": "Open the door, please.",
+     "action_en": "Open the door!"
+    },
+    "window": {
+     "sentence": "Look out of the window!",
+     "action_en": "Look out of the window!"
+    },
+    "garden": {
+     "sentence": "We have a big garden."
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "🏠 Draw a house",
+     "matn_en": "Take paper and a pencil! Draw a house, a door, two windows and a garden. Then point and say each word!"
+    }
+   ]
+  },
+  "Uydagi xonalar": {
+   "intro_en": "Hi, friends! My house has many rooms. Let's walk and look at every room!",
+   "items": {
+    "kitchen": {
+     "sentence": "Mum is in the kitchen."
+    },
+    "bedroom": {
+     "sentence": "I sleep in my bedroom.",
+     "action_en": "Go to sleep!"
+    },
+    "bathroom": {
+     "sentence": "I wash my hands in the bathroom.",
+     "action_en": "Wash your hands!"
+    },
+    "living room": {
+     "sentence": "We watch TV in the living room."
+    }
+   },
+   "tests_en": [
+    "Where do we sleep?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🔍 Which room?",
+     "matn_en": "I say, you find the room! We sleep — bedroom. We cook — kitchen. We wash — bathroom. We sit on the sofa — living room."
+    }
+   ]
+  },
+  "Xonadagi narsalar": {
+   "intro_en": "Hello! Look at my room. I see a chair, a lamp and a clock. What do you see?",
+   "items": {
+    "chair": {
+     "sentence": "Sit on the chair, please.",
+     "action_en": "Sit down!"
+    },
+    "lamp": {
+     "sentence": "The lamp is on the table."
+    },
+    "TV": {
+     "sentence": "Grandpa is watching TV."
+    },
+    "clock": {
+     "sentence": "The clock is big and white."
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "👀 Find it!",
+     "matn_en": "Look around your room! Is there a chair? Show me! A lamp? A TV? A clock? Clap for every thing you find!"
+    }
+   ]
+  },
+  "Mushuk qayerda?": {
+   "intro_en": "Oh no! Where is the cat? Let's look for it together. Is it in the box?",
+   "items": {
+    "Where is the cat?": {
+     "sentence": "Where is the cat? I don't know!",
+     "action_en": "Look around!"
+    },
+    "in the box": {
+     "sentence": "The cat is in the box."
+    },
+    "on the table": {
+     "sentence": "The ball is on the table."
+    },
+    "under the bed": {
+     "sentence": "My shoes are under the bed."
+    }
+   },
+   "tests_en": [
+    "The kitten is in the box. How do we say it?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🧸 Hide and seek",
+     "matn_en": "Hide Teddy! Grown-up: Where is Teddy? Child: In the box! On the chair! Under the bed!"
+    }
+   ]
+  },
+  "Bugun havo qanday?": {
+   "intro_en": "Good morning, friends! Let's look out of the window. What's the weather like today?",
+   "items": {
+    "What's the weather like?": {
+     "sentence": "Mum, what's the weather like?"
+    },
+    "It's sunny.": {
+     "sentence": "It's sunny. Let's go to the park!",
+     "action_en": "Put on your sunglasses!"
+    },
+    "It's rainy.": {
+     "sentence": "It's rainy. Take an umbrella!"
+    },
+    "It's windy.": {
+     "sentence": "It's windy. Let's fly a kite!",
+     "action_en": "Sway like a tree!"
+    }
+   },
+   "tests_en": [
+    "The sun is shining in the sky. What's the weather like?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎵 Weather song",
+     "matn_en": "Let's sing: What's the weather like today? It's sunny, it's sunny, hooray! Now sing it with rainy and windy!"
+    }
+   ]
+  },
+  "Issiq va sovuq": {
+   "intro_en": "Hi! Some days are hot and some days are cold. Let's talk about the weather!",
+   "items": {
+    "It's snowy.": {
+     "sentence": "It's snowy. Let's make a snowman!"
+    },
+    "It's cloudy.": {
+     "sentence": "It's cloudy. I can't see the sun."
+    },
+    "It's hot.": {
+     "sentence": "It's hot. I want ice cream!",
+     "action_en": "Fan your face!"
+    },
+    "It's cold.": {
+     "sentence": "It's cold. Put on your coat!",
+     "action_en": "Shiver like this!"
+    }
+   },
+   "tests_en": [
+    "It is snowing outside. What do we say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🏃 Hot and cold game",
+     "matn_en": "Listen and move! It's hot — fan your face! It's cold — shake! It's snowy — make a snowball! It's cloudy — float like a cloud!"
+    }
+   ]
+  },
+  "To'rt fasl": {
+   "intro_en": "Hello, friends! A year has four seasons: spring, summer, autumn and winter. Which one do you like?",
+   "items": {
+    "spring": {
+     "sentence": "In spring, flowers are pink."
+    },
+    "summer": {
+     "sentence": "In summer, it's hot and sunny.",
+     "action_en": "Swim like a fish!"
+    },
+    "autumn": {
+     "sentence": "In autumn, leaves are yellow.",
+     "action_en": "Fall like a leaf!"
+    },
+    "winter": {
+     "sentence": "In winter, it's snowy.",
+     "action_en": "Shiver like this!"
+    }
+   },
+   "tests_en": [
+    "The leaves are yellow and falling. What season is it?",
+    "Snow and a snowman. What season is it?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🔄 The seasons circle",
+     "matn_en": "The seasons go round: spring, summer, autumn, winter — and spring again! Spring — flowers. Summer — sea. Autumn — leaves. Winter — snow."
+    }
+   ]
+  },
+  "Soyabon va kamalak": {
+   "intro_en": "Hi! It's rainy today, so I have an umbrella. Look! After the rain, I see a rainbow!",
+   "items": {
+    "umbrella": {
+     "sentence": "Take your umbrella, please.",
+     "action_en": "Open your umbrella!"
+    },
+    "rainbow": {
+     "sentence": "Look! A big rainbow!",
+     "action_en": "Draw a rainbow in the air!"
+    },
+    "snowman": {
+     "sentence": "We make a big snowman."
+    }
+   },
+   "tests_en": [
+    "It's rainy. What do we take with us?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Dialog: Let's go out",
+     "matn_en": "Kabutar: What's the weather like? Child: It's rainy. Kabutar: Take your umbrella! Child: Look! A rainbow!"
+    }
+   ]
+  },
+  "Menga yoqadi": {
+   "intro_en": "Hello, friends! I like apples. I like my friends too! What do you like?",
+   "items": {
+    "I like apples.": {
+     "sentence": "I like apples. They are red!"
+    },
+    "I like cats.": {
+     "sentence": "I like cats. They are small."
+    },
+    "I like ice cream.": {
+     "sentence": "I like ice cream. Yummy!",
+     "action_en": "Rub your tummy!"
+    }
+   },
+   "tests_en": [
+    "What does \"I like cats\" mean?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "❤️ Heart game",
+     "matn_en": "I say a thing. If you like it, make a heart with your hands and say: I like it! Bananas? Dogs? Cake? Milk?"
+    }
+   ]
+  },
+  "Menga yoqmaydi": {
+   "intro_en": "Hi! We like many things. But some things we don't like. I don't like rain!",
+   "items": {
+    "I don't like onions.": {
+     "sentence": "No, thank you. I don't like onions.",
+     "action_en": "Shake your head!"
+    },
+    "I don't like rain.": {
+     "sentence": "I don't like rain. It's cold."
+    },
+    "I don't like spiders.": {
+     "sentence": "I don't like spiders. They are scary!"
+    }
+   },
+   "tests_en": [
+    "A boy sees an onion and makes a face. What does he say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "👍👎 Thumbs game",
+     "matn_en": "I say a thing, you show your thumb! Thumb up: I like it. Thumb down: I don't like it. Cake? Onions? Rain? Sweets?"
+    }
+   ]
+  },
+  "Senga yoqadimi?": {
+   "intro_en": "Hello, friends! Let's ask our friends. Do you like cake? Yes, I do!",
+   "items": {
+    "Do you like…?": {
+     "sentence": "Do you like bananas?"
+    },
+    "Yes, I do.": {
+     "sentence": "Do you like cake? Yes, I do.",
+     "action_en": "Nod your head!"
+    },
+    "No, I don't.": {
+     "sentence": "Do you like spiders? No, I don't.",
+     "action_en": "Shake your head!"
+    }
+   },
+   "tests_en": [
+    "\"Do you like ice cream?\" You like it. What do you say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Dialog: Ask your friend",
+     "matn_en": "Kabutar: Do you like milk? Child: Yes, I do. Kabutar: Do you like spiders? Child: No, I don't! Now you ask Kabutar!"
+    }
+   ]
+  },
+  "Eng sevimli narsam": {
+   "intro_en": "Hi, friends! My favourite colour is blue, like the sky. What is your favourite toy?",
+   "items": {
+    "My favourite colour is blue.": {
+     "sentence": "My favourite colour is blue."
+    },
+    "My favourite toy is a ball.": {
+     "sentence": "My favourite toy is a ball.",
+     "action_en": "Throw a ball!"
+    },
+    "I love my mum.": {
+     "sentence": "I love my mum very much.",
+     "action_en": "Give a big hug!"
+    }
+   },
+   "tests_en": [],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎁 My favourite toy show",
+     "matn_en": "Bring your favourite toy! Show it and say: My favourite toy is… Then say: My favourite colour is…"
+    }
+   ]
+  },
+  "Menda bor": {
+   "intro_en": "Hello, friends! I have a nest and a little friend. What do you have? Let's tell!",
+   "items": {
+    "I have a cat.": {
+     "sentence": "I have a cat. It is white."
+    },
+    "I have a dog.": {
+     "sentence": "I have a dog. It is big."
+    },
+    "I have a doll.": {
+     "sentence": "I have a doll with a pink dress."
+    },
+    "I have a ball.": {
+     "sentence": "I have a red ball.",
+     "action_en": "Bounce a ball!"
+    }
+   },
+   "tests_en": [
+    "A girl shows her dog. What does she say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎒 Magic bag",
+     "matn_en": "Put toys in the bag. A grown-up takes one out, you say: I have a ball! I have a doll! What else is in the bag?"
+    }
+   ]
+  },
+  "Men qila olaman": {
+   "intro_en": "Hi! I can fly! What can you do? Let's jump, run and sing together!",
+   "items": {
+    "I can jump.": {
+     "sentence": "Look! I can jump high.",
+     "action_en": "Jump!"
+    },
+    "I can run.": {
+     "sentence": "I can run fast.",
+     "action_en": "Run on the spot!"
+    },
+    "I can swim.": {
+     "sentence": "I can swim in summer.",
+     "action_en": "Swim like a fish!"
+    },
+    "I can sing.": {
+     "sentence": "I can sing a song.",
+     "action_en": "Sing la-la-la!"
+    }
+   },
+   "tests_en": [
+    "\"I can swim.\" Which picture is it?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🏃 Show me!",
+     "matn_en": "I say, you do it and say it! I can jump! — jump! I can run! — run! I can swim! — swim! I can sing! — sing!"
+    }
+   ]
+  },
+  "Qila olaman, qila olmayman": {
+   "intro_en": "Hello, friends! I can fly, but I can't swim. You can dance and draw! Let's see.",
+   "items": {
+    "I can dance.": {
+     "sentence": "I can dance with my friends.",
+     "action_en": "Dance!"
+    },
+    "I can draw.": {
+     "sentence": "I can draw a big house.",
+     "action_en": "Draw a circle in the air!"
+    },
+    "I can clap.": {
+     "sentence": "I can clap my hands.",
+     "action_en": "Clap your hands!"
+    },
+    "I can't fly.": {
+     "sentence": "I'm a boy. I can't fly.",
+     "action_en": "Flap your arms!"
+    }
+   },
+   "tests_en": [
+    "A boy flaps his arms, but he can't fly. What does he say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎵 «I can» song",
+     "matn_en": "Sing and move: I can clap, clap, clap! I can dance, dance, dance! I can jump, jump, jump! At the end, flap your arms: I can't fly!"
+    }
+   ]
+  },
+  "Men endi kattaman!": {
+   "intro_en": "Hello, my big friends! You are five, and you know many English words. I am so happy!",
+   "items": {
+    "I am five.": {
+     "sentence": "My name is Ali. I am five.",
+     "action_en": "Show five fingers!"
+    },
+    "I am big.": {
+     "sentence": "I am big. I can run fast.",
+     "action_en": "Stand up tall!"
+    },
+    "I am happy!": {
+     "sentence": "I am happy! I like English!",
+     "action_en": "Jump and smile!"
+    },
+    "See you soon!": {
+     "sentence": "Goodbye, Kabutar! See you soon!",
+     "action_en": "Wave goodbye!"
+    }
+   },
+   "tests_en": [
+    "How old are you? You are five. What do you say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎤 All about me",
+     "matn_en": "Take the microphone and go on stage! Say: Hello! My name is… I am five. I have a cat. I can dance. I like apples. See you soon!"
+    }
+   ]
+  }
+ },
+ "scenarios": [
+  {
+   "unit": 1,
+   "name": "Bog'chada yangi do'st",
+   "name_en": "A new friend at kindergarten",
+   "emoji": "🏫",
+   "goal": "Bola bog'chada yangi do'st bilan salomlashadi, ismini so'raydi va o'yinchoqlarni sanaydi",
+   "intro": "Bog'chaga yangi bola keldi. Keling, u bilan tanishamiz va birga sanaymiz!",
+   "intro_en": "A new friend comes to kindergarten. Let's say hello and count toys together!",
+   "roles": [
+    "Yangi do'st",
+    "Bola"
+   ],
+   "roles_en": [
+    "New friend",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s1-new-friend.png",
+    "image_prompt": "Two smiling children meeting in a bright kindergarten playroom with toy blocks on the floor, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 1,
+     "say": "Hello! What's your name?",
+     "uz": "salom! isming nima?",
+     "emoji": "👋"
+    },
+    {
+     "who": 0,
+     "say": "Hello! My name is Malika.",
+     "uz": "salom! mening ismim Malika",
+     "emoji": "👧"
+    },
+    {
+     "who": 1,
+     "say": "My name is Anvar. Let's play!",
+     "uz": "mening ismim Anvar. keling, o'ynaymiz!",
+     "emoji": "🧒"
+    },
+    {
+     "who": 0,
+     "say": "How many blocks?",
+     "uz": "nechta kubik?",
+     "emoji": "🧱"
+    },
+    {
+     "who": 1,
+     "say": "One, two, three... ten blocks!",
+     "uz": "bir, ikki, uch... o'nta kubik!",
+     "emoji": "🔟"
+    },
+    {
+     "who": 0,
+     "say": "Yes! Goodbye, Anvar!",
+     "uz": "ha! xayr, Anvar!",
+     "emoji": "👋"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Yangi do'stning ismini bilmoqchisiz. Nima deysiz?",
+     "q_en": "You want to know your new friend's name. What do you say?",
+     "options": [
+      "❓ What's your name?",
+      "🔟 ten",
+      "👋 Goodbye!"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]What's your name?[/en]",
+     "why_en": "Yes! What's your name?"
+    },
+    {
+     "q": "Do'stingiz ketyapti. Nima deysiz?",
+     "q_en": "Your friend is going home. What do you say?",
+     "options": [
+      "👋 Goodbye!",
+      "🧱 How many?",
+      "3️⃣ three"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]Goodbye![/en]",
+     "why_en": "Yes! Goodbye!"
+    }
+   ]
+  },
+  {
+   "unit": 2,
+   "name": "Buvimnikiga mehmonga",
+   "name_en": "Visiting grandma",
+   "emoji": "👵",
+   "goal": "Bola buvisi bilan salomlashadi, hol-ahvol so'raydi va oilasini tanishtiradi",
+   "intro": "Biz buvimnikiga mehmonga keldik. Buvimiz bilan salomlashamiz va hol so'raymiz.",
+   "intro_en": "We are visiting grandma today. Let's say hello and ask how she is!",
+   "roles": [
+    "Buvi",
+    "Bola"
+   ],
+   "roles_en": [
+    "Grandma",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s2-visiting-grandma.png",
+    "image_prompt": "A child with mum at the door of a cozy house, a kind grandma opening the door with open arms, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 1,
+     "say": "Good morning, grandma!",
+     "uz": "xayrli tong, buvijon!",
+     "emoji": "🌞"
+    },
+    {
+     "who": 0,
+     "say": "Good morning! How are you?",
+     "uz": "xayrli tong! qalaysan?",
+     "emoji": "👵"
+    },
+    {
+     "who": 1,
+     "say": "I'm fine, thank you.",
+     "uz": "yaxshiman, rahmat",
+     "emoji": "😊"
+    },
+    {
+     "who": 1,
+     "say": "Grandma, this is my friend Ali.",
+     "uz": "buvijon, bu mening do'stim Ali",
+     "emoji": "🧒"
+    },
+    {
+     "who": 0,
+     "say": "Hello, Ali! Come in, please.",
+     "uz": "salom, Ali! kiringlar",
+     "emoji": "🚪"
+    },
+    {
+     "who": 1,
+     "say": "Thank you, grandma! I am happy!",
+     "uz": "rahmat, buvijon! men xursandman!",
+     "emoji": "😄"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Buvingiz [en]How are you?[/en] deb so'radi. Nima deysiz?",
+     "q_en": "Grandma asks, \"How are you?\" What do you say?",
+     "options": [
+      "😊 I'm fine, thank you.",
+      "👶 baby",
+      "7️⃣ seven"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]I'm fine, thank you.[/en]",
+     "why_en": "Yes! I'm fine, thank you."
+    },
+    {
+     "q": "Do'stingizni buviga tanishtiring. Nima deysiz?",
+     "q_en": "Show your friend to grandma. What do you say?",
+     "options": [
+      "🧒 This is my friend Ali.",
+      "👋 Goodbye!",
+      "😢 sad"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]This is my friend Ali.[/en]",
+     "why_en": "Yes! This is my friend Ali."
+    }
+   ]
+  },
+  {
+   "unit": 3,
+   "name": "Sayrga kiyinamiz",
+   "name_en": "Getting dressed for a walk",
+   "emoji": "🧥",
+   "goal": "Bola havoga qarab kiyinadi va kiyimlarini inglizcha aytadi",
+   "intro": "Onamiz bilan sayrga chiqamiz. Tashqarida sovuq, issiq kiyinamiz!",
+   "intro_en": "We are going for a walk with mum. It's cold, so let's put on warm clothes!",
+   "roles": [
+    "Ona",
+    "Bola"
+   ],
+   "roles_en": [
+    "Mum",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s3-getting-dressed.png",
+    "image_prompt": "A mother helping a child put on a coat, hat and scarf in a cozy hallway by the door, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 0,
+     "say": "Let's go for a walk!",
+     "uz": "keling, sayrga chiqamiz!",
+     "emoji": "🚶"
+    },
+    {
+     "who": 1,
+     "say": "OK! I put on my coat.",
+     "uz": "xo'p! paltomni kiyaman",
+     "emoji": "🧥"
+    },
+    {
+     "who": 0,
+     "say": "Yes. It's cold. Put on your hat!",
+     "uz": "ha. sovuq. shapkangni kiy!",
+     "emoji": "🧢"
+    },
+    {
+     "who": 1,
+     "say": "My hat is red!",
+     "uz": "shapkam qizil!",
+     "emoji": "🔴"
+    },
+    {
+     "who": 0,
+     "say": "Put on your gloves and boots too.",
+     "uz": "qo'lqop va etigingni ham kiy",
+     "emoji": "🧤"
+    },
+    {
+     "who": 1,
+     "say": "OK, mum! I'm ready!",
+     "uz": "xo'p, onajon! tayyorman!",
+     "emoji": "😊"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Tashqarida sovuq. Boshingizga nima kiyasiz?",
+     "q_en": "It's cold. What do you put on your head?",
+     "options": [
+      "🧢 hat",
+      "🩳 shorts",
+      "🧦 socks"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]hat[/en]",
+     "why_en": "Yes! A hat."
+    },
+    {
+     "q": "Qo'lingizga nima kiyasiz?",
+     "q_en": "What do you put on your hands?",
+     "options": [
+      "🧤 gloves",
+      "👢 boots",
+      "👗 dress"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]gloves[/en]",
+     "why_en": "Yes! Gloves."
+    },
+    {
+     "q": "Onangiz [en]Put on your hat![/en] dedi. U nima demoqchi?",
+     "q_en": "Mum says, \"Put on your hat!\" What do you do?",
+     "options": [
+      "🧢 I put on my hat.",
+      "👟 I put on my shoes.",
+      "🧥 I put on my coat."
+     ],
+     "answer": 0,
+     "why": "To'g'ri! Shapkani kiyamiz.",
+     "why_en": "Yes! I put on my hat."
+    }
+   ]
+  },
+  {
+   "unit": 4,
+   "name": "Uyda nonushta",
+   "name_en": "Breakfast at home",
+   "emoji": "🍳",
+   "goal": "Bola nonushtada ovqat va ichimlik so'raydi, rahmat aytadi",
+   "intro": "Ertalab oila bilan nonushta qilamiz. Nima yeymiz, nima ichamiz?",
+   "intro_en": "Good morning! It's breakfast time with the family. What do you want?",
+   "roles": [
+    "Ona",
+    "Bola"
+   ],
+   "roles_en": [
+    "Mum",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s4-breakfast.png",
+    "image_prompt": "A family breakfast table with bread, eggs, cheese, tea and milk, a mother and a child smiling in a bright kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 0,
+     "say": "Good morning! Are you hungry?",
+     "uz": "xayrli tong! qorning ochmi?",
+     "emoji": "🌞"
+    },
+    {
+     "who": 1,
+     "say": "Yes, I'm hungry.",
+     "uz": "ha, qornim och",
+     "emoji": "🍽️"
+    },
+    {
+     "who": 0,
+     "say": "Here you are. Bread and an egg.",
+     "uz": "mana, ol. non va tuxum",
+     "emoji": "🍞🥚"
+    },
+    {
+     "who": 1,
+     "say": "Thank you! Milk, please.",
+     "uz": "rahmat! sut bering, iltimos",
+     "emoji": "🥛"
+    },
+    {
+     "who": 0,
+     "say": "Here is your milk.",
+     "uz": "mana suting",
+     "emoji": "🫴"
+    },
+    {
+     "who": 1,
+     "say": "Yummy! Thank you, mum!",
+     "uz": "mazali! rahmat, onajon!",
+     "emoji": "😋"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Sut ichmoqchisiz. Nima deysiz?",
+     "q_en": "You want some milk. What do you say?",
+     "options": [
+      "🥛 Milk, please.",
+      "🧀 cheese",
+      "👋 Goodbye!"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]Milk, please.[/en]",
+     "why_en": "Yes! Milk, please."
+    },
+    {
+     "q": "Nonushta juda mazali. Nima deysiz?",
+     "q_en": "Breakfast is very good. What do you say?",
+     "options": [
+      "😋 Yummy!",
+      "🥤 I'm thirsty.",
+      "😢 sad"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]Yummy![/en]",
+     "why_en": "Yes! Yummy!"
+    }
+   ]
+  },
+  {
+   "unit": 5,
+   "name": "Mushukchani qidiramiz",
+   "name_en": "Looking for the kitten",
+   "emoji": "🐱",
+   "goal": "Bola uyda mushukchani qidiradi va xona hamda joy nomlarini aytadi",
+   "intro": "Uyimizdagi mushukcha yo'qolib qoldi! Dadamiz bilan xonalarda qidiramiz.",
+   "intro_en": "Oh no! Where is our kitten? Let's look for it in every room with dad!",
+   "roles": [
+    "Dada",
+    "Bola"
+   ],
+   "roles_en": [
+    "Dad",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s5-find-the-kitten.png",
+    "image_prompt": "A father and a child looking for a kitten in a cozy bedroom, the kitten peeking from under the bed, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 1,
+     "say": "Dad, where is the cat?",
+     "uz": "dada, mushuk qayerda?",
+     "emoji": "❓"
+    },
+    {
+     "who": 0,
+     "say": "Is it in the kitchen?",
+     "uz": "oshxonadami?",
+     "emoji": "🍳"
+    },
+    {
+     "who": 1,
+     "say": "No. It's not in the kitchen.",
+     "uz": "yo'q. oshxonada emas",
+     "emoji": "🙅"
+    },
+    {
+     "who": 0,
+     "say": "Let's look in the bedroom.",
+     "uz": "keling, yotoqxonaga qaraymiz",
+     "emoji": "🛏️"
+    },
+    {
+     "who": 1,
+     "say": "Look! It's under the bed!",
+     "uz": "qarang! karavotning ostida!",
+     "emoji": "🐱"
+    },
+    {
+     "who": 0,
+     "say": "Good job! I am happy!",
+     "uz": "barakalla! men xursandman!",
+     "emoji": "👏"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Mushukcha qayerda edi?",
+     "q_en": "Where is the kitten?",
+     "options": [
+      "🛏️🐱 under the bed",
+      "📦🐱 in the box",
+      "🐱⬆️ on the table"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]under the bed[/en]",
+     "why_en": "Yes! Under the bed."
+    },
+    {
+     "q": "Mushukni qidiryapsiz. Nima deb so'raysiz?",
+     "q_en": "You can't find the cat. What do you ask?",
+     "options": [
+      "❓ Where is the cat?",
+      "🐱 I have a cat.",
+      "😊 How are you?"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]Where is the cat?[/en]",
+     "why_en": "Yes! Where is the cat?"
+    }
+   ]
+  },
+  {
+   "unit": 6,
+   "name": "Bog'ga chiqamizmi?",
+   "name_en": "Can we go to the park?",
+   "emoji": "🌦️",
+   "goal": "Bola ob-havoni so'raydi va unga qarab kiyinadi yoki soyabon oladi",
+   "intro": "Biz bog'ga sayrga chiqmoqchimiz. Avval havo qandayligini bilib olamiz!",
+   "intro_en": "We want to go to the park. What's the weather like today?",
+   "roles": [
+    "Ona",
+    "Bola"
+   ],
+   "roles_en": [
+    "Mum",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s6-park-weather.png",
+    "image_prompt": "A child and a mother looking out of a window at light rain and a rainbow over a green park, holding an umbrella, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 1,
+     "say": "Mum, can we go to the park?",
+     "uz": "onajon, bog'ga boramizmi?",
+     "emoji": "🌳"
+    },
+    {
+     "who": 0,
+     "say": "Look! What's the weather like?",
+     "uz": "qara! havo qanday?",
+     "emoji": "🪟"
+    },
+    {
+     "who": 1,
+     "say": "It's rainy and cloudy.",
+     "uz": "yomg'irli va bulutli",
+     "emoji": "🌧️"
+    },
+    {
+     "who": 0,
+     "say": "Take your umbrella, please.",
+     "uz": "soyaboningni ol, iltimos",
+     "emoji": "☂️"
+    },
+    {
+     "who": 1,
+     "say": "OK! Look, mum! A rainbow!",
+     "uz": "xo'p! qarang, onajon! kamalak!",
+     "emoji": "🌈"
+    },
+    {
+     "who": 0,
+     "say": "Yes! Let's go to the park!",
+     "uz": "ha! qani, bog'ga ketdik!",
+     "emoji": "😊"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Yomg'ir yog'yapti. Havo qanday?",
+     "q_en": "It's raining. What's the weather like?",
+     "options": [
+      "🌧️ It's rainy.",
+      "☀️ It's sunny.",
+      "🌨️ It's snowy."
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]It's rainy.[/en]",
+     "why_en": "Yes! It's rainy."
+    },
+    {
+     "q": "Yomg'irda nima olamiz?",
+     "q_en": "What do we take in the rain?",
+     "options": [
+      "☂️ umbrella",
+      "🍦 ice cream",
+      "⛄ snowman"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]umbrella[/en]",
+     "why_en": "Yes! An umbrella."
+    },
+    {
+     "q": "Osmonda yetti rangli yoy paydo bo'ldi. Bu nima?",
+     "q_en": "You see many colours in the sky. What is it?",
+     "options": [
+      "🌈 rainbow",
+      "☁️ It's cloudy.",
+      "🍂 autumn"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]rainbow[/en]",
+     "why_en": "Yes! A rainbow."
+    }
+   ]
+  },
+  {
+   "unit": 7,
+   "name": "Bozorda meva tanlaymiz",
+   "name_en": "At the market",
+   "emoji": "🧺",
+   "goal": "Bola bozorda nima yoqishi va yoqmasligini aytadi, odob bilan meva so'raydi",
+   "intro": "Buvimiz bilan bozorga keldik. Qaysi mevani yaxshi ko'ramiz?",
+   "intro_en": "We are at the market with grandma. What fruit do you like?",
+   "roles": [
+    "Buvi",
+    "Bola"
+   ],
+   "roles_en": [
+    "Grandma",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s7-market.png",
+    "image_prompt": "A grandmother and a child at a colourful fruit and vegetable market stall with apples, bananas, grapes and onions, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 0,
+     "say": "Do you like apples?",
+     "uz": "senga olma yoqadimi?",
+     "emoji": "🍎"
+    },
+    {
+     "who": 1,
+     "say": "Yes, I do. I like apples.",
+     "uz": "ha, yoqadi. men olmani yaxshi ko'raman",
+     "emoji": "👍"
+    },
+    {
+     "who": 0,
+     "say": "Do you like onions?",
+     "uz": "senga piyoz yoqadimi?",
+     "emoji": "🧅"
+    },
+    {
+     "who": 1,
+     "say": "No, I don't. I don't like onions.",
+     "uz": "yo'q, yoqmaydi. piyozni yoqtirmayman",
+     "emoji": "👎"
+    },
+    {
+     "who": 1,
+     "say": "Grandma, grapes, please!",
+     "uz": "buvijon, uzum oling, iltimos!",
+     "emoji": "🍇"
+    },
+    {
+     "who": 0,
+     "say": "OK! Here you are.",
+     "uz": "xo'p! mana, ol",
+     "emoji": "🫴"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Buvingiz [en]Do you like apples?[/en] deb so'radi. Sizga yoqadi. Nima deysiz?",
+     "q_en": "Grandma asks, \"Do you like apples?\" You like them. What do you say?",
+     "options": [
+      "👍 Yes, I do.",
+      "👎 No, I don't.",
+      "🙋 Goodbye!"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]Yes, I do.[/en]",
+     "why_en": "Yes! Yes, I do."
+    },
+    {
+     "q": "Sizga piyoz yoqmaydi. Nima deysiz?",
+     "q_en": "You don't like onions. What do you say?",
+     "options": [
+      "🧅👎 I don't like onions.",
+      "🍎❤️ I like apples.",
+      "😋 Yummy!"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]I don't like onions.[/en]",
+     "why_en": "Yes! I don't like onions."
+    }
+   ]
+  },
+  {
+   "unit": 8,
+   "name": "Tug'ilgan kun bayrami",
+   "name_en": "A birthday party",
+   "emoji": "🎂",
+   "goal": "Bola tug'ilgan kunida yoshini aytadi, nima qila olishini ko'rsatadi va mehmonlar bilan xayrlashadi",
+   "intro": "Bugun do'stimizning tug'ilgan kuni! Tabriklaymiz, o'ynaymiz va raqs tushamiz.",
+   "intro_en": "It's my friend's birthday today! Let's play, sing and dance together!",
+   "roles": [
+    "Do'st",
+    "Bola"
+   ],
+   "roles_en": [
+    "Friend",
+    "Child"
+   ],
+   "scene": {
+    "image": "en56-s8-birthday-party.png",
+    "image_prompt": "Happy children at a birthday party with balloons and a cake with five candles, dancing and clapping, cute cartoon scene for kids, soft flat colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 1,
+     "say": "Happy birthday! How old are you?",
+     "uz": "tug'ilgan kuning muborak! necha yoshdasan?",
+     "emoji": "🎉"
+    },
+    {
+     "who": 0,
+     "say": "I am five! Thank you!",
+     "uz": "besh yoshdaman! rahmat!",
+     "emoji": "🖐️"
+    },
+    {
+     "who": 1,
+     "say": "I have a ball for you.",
+     "uz": "menda senga to'p bor",
+     "emoji": "⚽"
+    },
+    {
+     "who": 0,
+     "say": "Thank you! I can dance. Let's dance!",
+     "uz": "rahmat! men raqs tusha olaman. keling, raqs tushamiz!",
+     "emoji": "💃"
+    },
+    {
+     "who": 1,
+     "say": "I can sing and clap!",
+     "uz": "men qo'shiq aytib, qarsak chala olaman!",
+     "emoji": "👏"
+    },
+    {
+     "who": 0,
+     "say": "Yummy cake! See you soon!",
+     "uz": "mazali tort! tez orada ko'rishguncha!",
+     "emoji": "🎂"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Do'stingiz besh yoshda. U nima deydi?",
+     "q_en": "Your friend is five. What does he say?",
+     "options": [
+      "🖐️🎂 I am five.",
+      "🔟 ten",
+      "💪 I am big."
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]I am five.[/en]",
+     "why_en": "Yes! I am five."
+    },
+    {
+     "q": "Sovg'angiz — to'p. Nima deysiz?",
+     "q_en": "Your present is a ball. What do you say?",
+     "options": [
+      "⚽ I have a ball for you.",
+      "🐕 I have a dog.",
+      "🚫 I can't fly."
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]I have a ball for you.[/en]",
+     "why_en": "Yes! I have a ball for you."
+    },
+    {
+     "q": "Bayram tugadi. Xayrlashganda nima deysiz?",
+     "q_en": "The party is over. What do you say?",
+     "options": [
+      "👋 See you soon!",
+      "🍽️ I'm hungry.",
+      "❓ What's your name?"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]See you soon![/en]",
+     "why_en": "Yes! See you soon!"
+    }
+   ]
+  }
+ ]
+}

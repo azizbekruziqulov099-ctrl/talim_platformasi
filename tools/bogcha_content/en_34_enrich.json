@@ -1,0 +1,236 @@
+{
+  "lessons": {},
+  "scenarios": [
+    {
+      "unit": 1,
+      "name": "Bog'chada xayrli tong",
+      "name_en": "Morning at kindergarten",
+      "emoji": "🏫",
+      "goal": "Bola ertalab bog'chaga kelganda tarbiyachi bilan inglizcha salomlashadi",
+      "intro": "Gu-gu! Men — Kabutar qushcha. Ertalab bog'chaga kelsak, tarbiyachimizga [en]Good morning![/en] deymiz. Keling, birga salomlashamiz!",
+      "intro_en": "Hello! It is morning. Let's say hello to our teacher!",
+      "roles": ["Tarbiyachi", "Bola"],
+      "roles_en": ["Teacher", "Child"],
+      "scene": {
+        "image": "en34-s1-kindergarten-morning.png",
+        "image_prompt": "A smiling kindergarten teacher greeting a small child at the classroom door in the morning, sunny window, toys on shelves, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 1, "say": "Good morning!", "uz": "xayrli tong", "emoji": "☀️"},
+        {"who": 0, "say": "Hello! Good morning!", "uz": "salom! xayrli tong", "emoji": "👩‍🏫"},
+        {"who": 1, "say": "Hi!", "uz": "salom", "emoji": "🙋"}
+      ],
+      "questions": [
+        {"q": "Ertalab bog'chaga keldingiz. Nima deysiz?", "q_en": "It is morning. What do you say?",
+         "options": ["☀️ Good morning!", "🌙 Good night!"], "answer": 0,
+         "why": "To'g'ri! Ertalab [en]Good morning![/en] deymiz.", "why_en": "Yes! In the morning we say: Good morning!"},
+        {"q": "Tarbiyachi sizga [en]Hello![/en] dedi. Nima deysiz?", "q_en": "Your teacher says: Hello! What do you say?",
+         "options": ["🙅 No!", "🙋 Hi!"], "answer": 1,
+         "why": "Barakalla! Salomga [en]Hi![/en] deb javob beramiz.", "why_en": "Good job! We say: Hi!"}
+      ]
+    },
+    {
+      "unit": 2,
+      "name": "Ertalab oilam bilan",
+      "name_en": "Morning with my family",
+      "emoji": "🏠",
+      "goal": "Bola uyda ertalab onasi va dadasi bilan inglizcha salomlashadi",
+      "intro": "Gu-gu! Kabutar qushcha uyingizga uchib keldi. Ertalab uyg'ondik — onajon va dadajonga [en]Good morning![/en] deymiz!",
+      "intro_en": "Good morning! Let's say hello to Mum and Dad!",
+      "roles": ["Onam", "Dadam", "Bola"],
+      "roles_en": ["Mum", "Dad", "Child"],
+      "scene": {
+        "image": "en34-s2-family-morning.png",
+        "image_prompt": "A small child in pajamas greeting mum and dad at a cozy breakfast table in the morning, sunlight through the window, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 2, "say": "Good morning, Mum!", "uz": "xayrli tong, oyijon", "emoji": "👩"},
+        {"who": 0, "say": "Good morning!", "uz": "xayrli tong", "emoji": "☀️"},
+        {"who": 2, "say": "Hi, Dad!", "uz": "salom, dadajon", "emoji": "👨"},
+        {"who": 1, "say": "Hi! Good morning!", "uz": "salom! xayrli tong", "emoji": "🤗"}
+      ],
+      "questions": [
+        {"q": "Ertalab onangizni ko'rdingiz. Nima deysiz?", "q_en": "It is morning. You see Mum. What do you say?",
+         "options": ["☀️ Good morning, Mum!", "🌙 Good night, Mum!"], "answer": 0,
+         "why": "To'g'ri! [en]Good morning, Mum![/en]", "why_en": "Yes! Good morning, Mum!"},
+        {"q": "Dadangizga salom bering!", "q_en": "Say hello to Dad!",
+         "options": ["👋 Bye, Dad!", "🙋 Hi, Dad!"], "answer": 1,
+         "why": "Barakalla! [en]Hi, Dad![/en] — salom, dadajon.", "why_en": "Good job! Hi, Dad!"}
+      ]
+    },
+    {
+      "unit": 3,
+      "name": "Rasm darsida bo'yoq so'raymiz",
+      "name_en": "Painting in class",
+      "emoji": "🎨",
+      "goal": "Bola rasm darsida kerakli rangni so'raydi va rahmat aytadi",
+      "intro": "Gu-gu! Bugun Kabutar qushcha bilan rasm chizamiz. Kerakli bo'yoqni so'rash uchun [en]Red, please.[/en] deymiz — sehrli so'z [en]please[/en] — «iltimos».",
+      "intro_en": "Let's paint! Say: Red, please.",
+      "roles": ["Tarbiyachi", "Bola"],
+      "roles_en": ["Teacher", "Child"],
+      "scene": {
+        "image": "en34-s3-painting-class.png",
+        "image_prompt": "A teacher handing a jar of red paint to a small child at a painting table with colorful paint pots and paper, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Blue?", "uz": "ko'kmi?", "emoji": "🔵"},
+        {"who": 1, "say": "No. Red, please.", "uz": "yo'q. qizil, iltimos", "emoji": "🔴"},
+        {"who": 0, "say": "Here you are!", "uz": "mana, ol", "emoji": "🫴"},
+        {"who": 1, "say": "Thank you!", "uz": "rahmat", "emoji": "🙏"}
+      ],
+      "questions": [
+        {"q": "Sizga qizil bo'yoq kerak. Nima deysiz?", "q_en": "You want red paint. What do you say?",
+         "options": ["🔴 Red, please.", "🔵 Blue, please."], "answer": 0,
+         "why": "To'g'ri! [en]Red[/en] — qizil. [en]Red, please.[/en]", "why_en": "Yes! Red, please."},
+        {"q": "Tarbiyachi bo'yoq berdi. Nima deysiz?", "q_en": "The teacher gives you paint. What do you say?",
+         "options": ["🌙 Good night!", "🙏 Thank you!"], "answer": 1,
+         "why": "Barakalla! [en]Thank you![/en] — rahmat.", "why_en": "Good job! Thank you!"}
+      ]
+    },
+    {
+      "unit": 4,
+      "name": "Mushukchamni boqaman",
+      "name_en": "Feeding my cat",
+      "emoji": "🐱",
+      "goal": "Bola uy hayvoni bilan inglizcha salomlashadi va unga ovqat beradi",
+      "intro": "Gu-gu! Kabutar qushchaning do'sti — mushukcha qorni och! Keling, unga [en]Hi, cat![/en] deb ovqat beramiz.",
+      "intro_en": "Look! A hungry cat! Let's say hello and feed the cat.",
+      "roles": ["Mushukcha", "Bola"],
+      "roles_en": ["Cat", "Child"],
+      "scene": {
+        "image": "en34-s4-feeding-cat.png",
+        "image_prompt": "A small child putting a bowl of food in front of a fluffy happy kitten in a cozy kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 1, "say": "Hi, cat!", "uz": "salom, mushukcha", "emoji": "👋"},
+        {"who": 0, "say": "Meow!", "uz": "miyov!", "emoji": "🐱"},
+        {"who": 1, "say": "Here you are!", "uz": "mana, ol", "emoji": "🥣"},
+        {"who": 0, "say": "Meow! Meow!", "uz": "miyov! miyov!", "emoji": "😻"}
+      ],
+      "questions": [
+        {"q": "Mushukchaga salom bering!", "q_en": "Say hello to the cat!",
+         "options": ["🐱 Hi, cat!", "🐶 Hi, dog!"], "answer": 0,
+         "why": "To'g'ri! [en]Cat[/en] — mushuk. [en]Hi, cat![/en]", "why_en": "Yes! Hi, cat!"},
+        {"q": "Mushuk qanday ovoz chiqaradi?", "q_en": "What does the cat say?",
+         "options": ["🐮 Moo!", "🐱 Meow!"], "answer": 1,
+         "why": "Barakalla! Mushuk [en]Meow![/en] deydi.", "why_en": "Good job! The cat says: Meow!"}
+      ]
+    },
+    {
+      "unit": 5,
+      "name": "Do'stimning tug'ilgan kuni",
+      "name_en": "My friend's birthday party",
+      "emoji": "🎉",
+      "goal": "Bola do'stini tug'ilgan kuni bilan tabriklaydi va shamlarni sanaydi",
+      "intro": "Gu-gu! Bugun do'stimizning tug'ilgan kuni! Kabutar qushcha bilan [en]Happy birthday![/en] deymiz va shamlarni sanaymiz.",
+      "intro_en": "It is a birthday party! Let's say: Happy birthday! Let's count!",
+      "roles": ["Do'stim", "Bola"],
+      "roles_en": ["Friend", "Child"],
+      "scene": {
+        "image": "en34-s5-birthday-party.png",
+        "image_prompt": "Two small children at a birthday party, one smiling in a party hat next to a table with three candles glowing, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 1, "say": "Happy birthday!", "uz": "tug'ilgan kuning bilan", "emoji": "🎉"},
+        {"who": 0, "say": "Thank you!", "uz": "rahmat", "emoji": "🙏"},
+        {"who": 1, "say": "One, two, three!", "uz": "bir, ikki, uch", "emoji": "🕯️🕯️🕯️"},
+        {"who": 0, "say": "Yes! Three!", "uz": "ha! uchta", "emoji": "3️⃣"}
+      ],
+      "questions": [
+        {"q": "Do'stingizning tug'ilgan kuni. Nima deysiz?", "q_en": "It is your friend's birthday. What do you say?",
+         "options": ["🎉 Happy birthday!", "🌙 Good night!"], "answer": 0,
+         "why": "To'g'ri! [en]Happy birthday![/en] — tug'ilgan kuning bilan!", "why_en": "Yes! Happy birthday!"},
+        {"q": "Uchta shamni sanang!", "q_en": "Count three candles!",
+         "options": ["🕯️ One, two!", "🕯️ One, two, three!"], "answer": 1,
+         "why": "Barakalla! [en]One, two, three![/en] — uchta!", "why_en": "Good job! One, two, three!"}
+      ]
+    },
+    {
+      "unit": 6,
+      "name": "Do'stim bilan koptok o'ynaymiz",
+      "name_en": "Playing with a friend",
+      "emoji": "⚽",
+      "goal": "Bola do'stidan o'yinchoqni odob bilan oladi va rahmat aytadi",
+      "intro": "Gu-gu! Kabutar qushcha o'yinni yaxshi ko'radi. Do'stimiz koptok beryapti — [en]Yes, please![/en] va [en]Thank you![/en] deymiz.",
+      "intro_en": "Let's play with a friend! Say: Yes, please! Thank you!",
+      "roles": ["Do'stim", "Bola"],
+      "roles_en": ["Friend", "Child"],
+      "scene": {
+        "image": "en34-s6-playing-ball.png",
+        "image_prompt": "Two small children playing on a playroom rug, one handing a colorful ball to the other, toy car and teddy nearby, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Hi! A ball?", "uz": "salom! koptokmi?", "emoji": "⚽"},
+        {"who": 1, "say": "Yes, please!", "uz": "ha, iltimos", "emoji": "🙂"},
+        {"who": 0, "say": "Here you are!", "uz": "mana, ol", "emoji": "🫴"},
+        {"who": 1, "say": "Thank you!", "uz": "rahmat", "emoji": "🙏"}
+      ],
+      "questions": [
+        {"q": "Sizga ayiqcha kerak. Nima deysiz?", "q_en": "You want the teddy. What do you say?",
+         "options": ["🧸 A teddy, please.", "🚗 A car, please."], "answer": 0,
+         "why": "To'g'ri! [en]Teddy[/en] — ayiqcha. [en]A teddy, please.[/en]", "why_en": "Yes! A teddy, please."},
+        {"q": "Do'stingiz koptok berdi. Nima deysiz?", "q_en": "Your friend gives you a ball. What do you say?",
+         "options": ["👋 Bye!", "🙏 Thank you!"], "answer": 1,
+         "why": "Barakalla! [en]Thank you![/en] — rahmat.", "why_en": "Good job! Thank you!"}
+      ]
+    },
+    {
+      "unit": 7,
+      "name": "Cho'milish vaqti",
+      "name_en": "Bath time",
+      "emoji": "🛁",
+      "goal": "Bola cho'milishda tana a'zolarini inglizcha aytadi va onasining so'zini tushunadi",
+      "intro": "Gu-gu! Kabutar qushcha ham suvda cho'milishni yaxshi ko'radi. Onajon [en]Bath time![/en] dedi — qo'llarimizni yuvamiz!",
+      "intro_en": "Bath time! Let's wash our hands!",
+      "roles": ["Onam", "Bola"],
+      "roles_en": ["Mum", "Child"],
+      "scene": {
+        "image": "en34-s7-bath-time.png",
+        "image_prompt": "A happy small child in a bubble bath washing hands, mum smiling next to the tub, rubber duck floating, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Bath time!", "uz": "cho'milish vaqti", "emoji": "🛁"},
+        {"who": 1, "say": "Yes, Mum!", "uz": "xo'p, oyijon", "emoji": "🙂"},
+        {"who": 0, "say": "Wash your hands!", "uz": "qo'llaringni yuv", "emoji": "🙌"},
+        {"who": 1, "say": "Wash, wash, wash!", "uz": "yuvaman, yuvaman", "emoji": "🧼"}
+      ],
+      "questions": [
+        {"q": "Onam: [en]Wash your hands![/en] Nimani yuvamiz?", "q_en": "Mum says: Wash your hands! What do you wash?",
+         "options": ["👂 Ears!", "🙌 Hands!"], "answer": 1,
+         "why": "To'g'ri! [en]Hands[/en] — qo'llar.", "why_en": "Yes! Hands!"},
+        {"q": "Onam: [en]Bath time![/en] Nima deysiz?", "q_en": "Mum says: Bath time! What do you say?",
+         "options": ["🙂 Yes, Mum!", "🌙 Good night!"], "answer": 0,
+         "why": "Barakalla! [en]Yes, Mum![/en] — xo'p, oyijon.", "why_en": "Good job! Yes, Mum!"}
+      ]
+    },
+    {
+      "unit": 8,
+      "name": "Bog'chada tamaddi vaqti",
+      "name_en": "Snack time",
+      "emoji": "🍎",
+      "goal": "Bola tamaddi vaqtida meva yoki ichimlikni odob bilan so'raydi",
+      "intro": "Gu-gu! Kabutar qushchaning qorni och! Tamaddi vaqti keldi — [en]An apple, please.[/en] deb so'raymiz.",
+      "intro_en": "It is snack time! Say: An apple, please.",
+      "roles": ["Tarbiyachi", "Bola"],
+      "roles_en": ["Teacher", "Child"],
+      "scene": {
+        "image": "en34-s8-snack-time.png",
+        "image_prompt": "A kindergarten teacher offering a plate with apples and bananas to a small child at a little table with a cup of milk, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Apple? Banana?", "uz": "olmami? bananmi?", "emoji": "🍎🍌"},
+        {"who": 1, "say": "An apple, please.", "uz": "olma, iltimos", "emoji": "🍎"},
+        {"who": 0, "say": "Here you are!", "uz": "mana, ol", "emoji": "🫴"},
+        {"who": 1, "say": "Thank you! Yummy!", "uz": "rahmat! mazali", "emoji": "😋"}
+      ],
+      "questions": [
+        {"q": "Sizga olma kerak. Nima deysiz?", "q_en": "You want an apple. What do you say?",
+         "options": ["🍎 An apple, please.", "🍌 A banana, please."], "answer": 0,
+         "why": "To'g'ri! [en]Apple[/en] — olma. [en]An apple, please.[/en]", "why_en": "Yes! An apple, please."},
+        {"q": "Sut ichgingiz keldi. Nima deysiz?", "q_en": "You want milk. What do you say?",
+         "options": ["💧 Water, please.", "🥛 Milk, please."], "answer": 1,
+         "why": "Barakalla! [en]Milk[/en] — sut. [en]Milk, please.[/en]", "why_en": "Good job! Milk, please."}
+      ]
+    }
+  ]
+}

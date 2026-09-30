@@ -1,0 +1,249 @@
+{
+  "lessons": {},
+  "scenarios": [
+    {
+      "unit": 1,
+      "name": "Bog'chada yangi do'st",
+      "name_en": "A new friend at kindergarten",
+      "emoji": "🧒",
+      "goal": "Bola yangi do'sti bilan tanishadi: ismini so'raydi, o'z ismini aytadi va hol so'raydi",
+      "intro": "Gu-gu! Kabutar qushcha bog'chada yangi do'st ko'rdi. Keling, [en]What's your name?[/en] deb tanishamiz!",
+      "intro_en": "Look! A new friend! Let's say hello and ask: What's your name?",
+      "roles": ["Yangi do'st", "Bola"],
+      "roles_en": ["New friend", "Child"],
+      "scene": {
+        "image": "en45-s1-new-friend.png",
+        "image_prompt": "Two small children meeting in a bright kindergarten classroom, one waving hello to the other, toys and a rug around them, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 1, "say": "Hello! What's your name?", "uz": "salom! isming nima?", "emoji": "👋"},
+        {"who": 0, "say": "My name is Ali.", "uz": "mening ismim Ali", "emoji": "🧒"},
+        {"who": 1, "say": "How are you, Ali?", "uz": "qalaysan, Ali?", "emoji": "🙂"},
+        {"who": 0, "say": "I'm fine, thank you!", "uz": "yaxshiman, rahmat", "emoji": "😊"}
+      ],
+      "questions": [
+        {"q": "Do'stingizning ismini bilmoqchisiz. Nima deysiz?", "q_en": "You want to know your friend's name. What do you say?",
+         "options": ["❓ What's your name?", "👋 Goodbye!"], "answer": 0,
+         "why": "To'g'ri! [en]What's your name?[/en] — isming nima?", "why_en": "Yes! What's your name?"},
+        {"q": "Do'stingiz [en]How are you?[/en] dedi. Nima deysiz?", "q_en": "Your friend asks: How are you? What do you say?",
+         "options": ["🔴 Red!", "😊 I'm fine, thank you!"], "answer": 1,
+         "why": "Barakalla! [en]I'm fine, thank you![/en] — yaxshiman, rahmat.", "why_en": "Good job! I'm fine, thank you!"},
+        {"q": "Ismingizni ayting!", "q_en": "Say your name!",
+         "options": ["🧒 My name is Ali.", "☀️ Good morning!"], "answer": 0,
+         "why": "Zo'r! [en]My name is...[/en] — mening ismim...", "why_en": "Great! My name is Ali."}
+      ]
+    },
+    {
+      "unit": 2,
+      "name": "Rasm darsida kamalak chizamiz",
+      "name_en": "Painting a rainbow in class",
+      "emoji": "🎨",
+      "goal": "Bola rasm darsida ranglarni inglizcha aytadi va «What colour is it?» savoliga javob beradi",
+      "intro": "Gu-gu! Kabutar qushcha kamalakni juda yaxshi ko'radi. Tarbiyachi so'raydi: [en]What colour is it?[/en] Keling, javob beramiz!",
+      "intro_en": "Let's paint a rainbow! What colour is it?",
+      "roles": ["Tarbiyachi", "Bola"],
+      "roles_en": ["Teacher", "Child"],
+      "scene": {
+        "image": "en45-s2-painting-rainbow.png",
+        "image_prompt": "A small child painting a big rainbow on paper at a classroom easel while a smiling teacher points at the colors, paint pots around, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Look! What colour is it?", "uz": "qara! bu qanday rang?", "emoji": "🟣"},
+        {"who": 1, "say": "It's purple!", "uz": "bu binafsha", "emoji": "💜"},
+        {"who": 0, "say": "Good job! And this?", "uz": "barakalla! bunisi-chi?", "emoji": "🟢"},
+        {"who": 1, "say": "It's green!", "uz": "bu yashil", "emoji": "💚"}
+      ],
+      "questions": [
+        {"q": "Tarbiyachi pushti bo'yoqni ko'rsatdi: [en]What colour is it?[/en]", "q_en": "The teacher shows pink paint. What colour is it?",
+         "options": ["🩷 It's pink!", "🟤 It's brown!"], "answer": 0,
+         "why": "To'g'ri! [en]Pink[/en] — pushti.", "why_en": "Yes! It's pink!"},
+        {"q": "Rangni so'rash uchun nima deysiz?", "q_en": "How do you ask about a colour?",
+         "options": ["🔢 How many?", "🎨 What colour is it?"], "answer": 1,
+         "why": "Barakalla! [en]What colour is it?[/en] — bu qanday rang?", "why_en": "Good job! What colour is it?"}
+      ]
+    },
+    {
+      "unit": 3,
+      "name": "Parkda o'rdaklarni sanaymiz",
+      "name_en": "Counting ducks at the park",
+      "emoji": "🦆",
+      "goal": "Bola parkda o'rdaklarni sanaydi va «How many?» savoliga javob beradi",
+      "intro": "Gu-gu! Kabutar qushcha bilan parkka boramiz. Ko'lda o'rdaklar suzyapti — [en]How many?[/en] Keling, sanaymiz!",
+      "intro_en": "We are at the park. Look at the ducks! How many ducks?",
+      "roles": ["Dadam", "Bola"],
+      "roles_en": ["Dad", "Child"],
+      "scene": {
+        "image": "en45-s3-park-ducks.png",
+        "image_prompt": "A dad and a small child standing by a pond in a green park, counting six little ducks swimming, trees and flowers, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Look! How many ducks?", "uz": "qara! nechta o'rdak?", "emoji": "🦆"},
+        {"who": 1, "say": "One, two, three... six!", "uz": "bir, ikki, uch... olti", "emoji": "☝️"},
+        {"who": 0, "say": "Good job! Six ducks!", "uz": "barakalla! oltita o'rdak", "emoji": "6️⃣"},
+        {"who": 1, "say": "Hello, ducks!", "uz": "salom, o'rdaklar", "emoji": "👋"}
+      ],
+      "questions": [
+        {"q": "Nechta ekanini so'rash uchun nima deysiz?", "q_en": "How do you ask about a number?",
+         "options": ["🔢 How many?", "❓ What's your name?"], "answer": 0,
+         "why": "To'g'ri! [en]How many?[/en] — nechta?", "why_en": "Yes! How many?"},
+        {"q": "Ko'lda oltita o'rdak bor. Nechta?", "q_en": "There are six ducks. How many?",
+         "options": ["8️⃣ Eight!", "6️⃣ Six!"], "answer": 1,
+         "why": "Barakalla! [en]Six[/en] — olti.", "why_en": "Good job! Six!"},
+        {"q": "O'n barmoqni sanang!", "q_en": "Count ten fingers!",
+         "options": ["🔟 ...nine, ten!", "5️⃣ ...four, five!"], "answer": 0,
+         "why": "Zo'r! [en]Ten[/en] — o'n.", "why_en": "Great! Ten!"}
+      ]
+    },
+    {
+      "unit": 4,
+      "name": "Buvijon bilan hayvonot bog'ida",
+      "name_en": "At the zoo with Granny",
+      "emoji": "🦁",
+      "goal": "Bola hayvonot bog'ida yovvoyi hayvonlarni ko'rib, ularni inglizcha nomlaydi",
+      "intro": "Gu-gu! Kabutar qushcha buvijon bilan hayvonot bog'iga keldi. U yerda [en]lion[/en] va [en]monkey[/en] bor. Keling, ko'ramiz!",
+      "intro_en": "We are at the zoo with Granny. Look! A lion and a monkey!",
+      "roles": ["Buvijon", "Bola"],
+      "roles_en": ["Granny", "Child"],
+      "scene": {
+        "image": "en45-s4-zoo-granny.png",
+        "image_prompt": "A grandmother holding hands with a small child at a friendly zoo, a big smiling lion and a playful monkey in a tree nearby, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 1, "say": "Look, Granny! A lion!", "uz": "qarang, buvijon! sher", "emoji": "🦁"},
+        {"who": 0, "say": "Yes! A big lion!", "uz": "ha! katta sher", "emoji": "👵"},
+        {"who": 1, "say": "And a monkey!", "uz": "maymun ham bor", "emoji": "🐒"},
+        {"who": 0, "say": "Hello, monkey!", "uz": "salom, maymun", "emoji": "👋"}
+      ],
+      "questions": [
+        {"q": "Siz sherni ko'rdingiz. Nima deysiz?", "q_en": "You see a lion. What do you say?",
+         "options": ["🦁 A lion!", "🐯 A tiger!"], "answer": 0,
+         "why": "To'g'ri! [en]Lion[/en] — sher.", "why_en": "Yes! A lion!"},
+        {"q": "Daraxtda maymun o'tiribdi. Nima deysiz?", "q_en": "A monkey is in the tree. What do you say?",
+         "options": ["🐘 An elephant!", "🐒 A monkey!"], "answer": 1,
+         "why": "Barakalla! [en]Monkey[/en] — maymun.", "why_en": "Good job! A monkey!"}
+      ]
+    },
+    {
+      "unit": 5,
+      "name": "Buvijonnikiga mehmonga boramiz",
+      "name_en": "Visiting Grandma",
+      "emoji": "👵",
+      "goal": "Bola buvisi bilan salomlashadi va o'z oila a'zosini tanishtiradi",
+      "intro": "Gu-gu! Kabutar qushcha bilan buvijonnikiga mehmonga boramiz. Singlimizni [en]This is my sister.[/en] deb tanishtiramiz!",
+      "intro_en": "We are visiting Grandma! Let's say hello: This is my sister.",
+      "roles": ["Buvijon", "Bola"],
+      "roles_en": ["Grandma", "Child"],
+      "scene": {
+        "image": "en45-s5-visiting-grandma.png",
+        "image_prompt": "A small boy and his little sister arriving at grandma's cozy house, grandma smiling and opening her arms at the door, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 1, "say": "Hello, Grandma!", "uz": "assalomu alaykum, buvijon", "emoji": "👋"},
+        {"who": 0, "say": "Hello! How are you?", "uz": "salom! qalaysan?", "emoji": "👵"},
+        {"who": 1, "say": "I'm fine! This is my sister.", "uz": "yaxshiman! bu mening singlim", "emoji": "👧"},
+        {"who": 0, "say": "Hello! What's your name?", "uz": "salom! isming nima?", "emoji": "🤗"}
+      ],
+      "questions": [
+        {"q": "Buvijonni ko'rdingiz. Nima deysiz?", "q_en": "You see Grandma. What do you say?",
+         "options": ["👋 Hello, Grandma!", "🌙 Good night, Grandma!"], "answer": 0,
+         "why": "To'g'ri! [en]Hello, Grandma![/en]", "why_en": "Yes! Hello, Grandma!"},
+        {"q": "Akangizni tanishtiring!", "q_en": "Show your brother to Grandma!",
+         "options": ["👧 This is my sister.", "👦 This is my brother."], "answer": 1,
+         "why": "Barakalla! [en]Brother[/en] — aka yoki uka.", "why_en": "Good job! This is my brother."},
+        {"q": "Buvijon: [en]How are you?[/en] Nima deysiz?", "q_en": "Grandma asks: How are you? What do you say?",
+         "options": ["😊 I'm fine!", "🔢 How many?"], "answer": 0,
+         "why": "Zo'r! [en]I'm fine![/en] — yaxshiman.", "why_en": "Great! I'm fine!"}
+      ]
+    },
+    {
+      "unit": 6,
+      "name": "Bog'chada ertalabki badantarbiya",
+      "name_en": "Morning exercises at kindergarten",
+      "emoji": "🤸",
+      "goal": "Bola tarbiyachining inglizcha buyruqlarini bajaradi va tana a'zolarini ko'rsatadi",
+      "intro": "Gu-gu! Kabutar qushcha ertalab badantarbiya qiladi. Tarbiyachi aytadi: [en]Clap your hands![/en] Tayyormisiz?",
+      "intro_en": "Good morning! Let's do morning exercises. Clap your hands!",
+      "roles": ["Tarbiyachi", "Bola"],
+      "roles_en": ["Teacher", "Child"],
+      "scene": {
+        "image": "en45-s6-morning-exercises.png",
+        "image_prompt": "Happy kindergarten children doing morning exercises on a mat, clapping hands and touching their noses, a smiling teacher showing the moves, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Clap your hands!", "uz": "qarsak chal", "emoji": "👏"},
+        {"who": 1, "say": "Clap, clap, clap!", "uz": "qars, qars, qars", "emoji": "👏"},
+        {"who": 0, "say": "Touch your nose!", "uz": "burningni ushla", "emoji": "👃"},
+        {"who": 1, "say": "My nose! Here!", "uz": "burnim! mana", "emoji": "☝️"}
+      ],
+      "questions": [
+        {"q": "Tarbiyachi: [en]Stamp your feet![/en] Nima qilasiz?", "q_en": "The teacher says: Stamp your feet! What do you do?",
+         "options": ["🦶 Stamp, stamp!", "👏 Clap, clap!"], "answer": 0,
+         "why": "To'g'ri! [en]Stamp your feet![/en] — oyog'ingni tap-tap qil.", "why_en": "Yes! Stamp, stamp!"},
+        {"q": "Burningizni ushlang! Bu nima?", "q_en": "Touch your nose! What is it?",
+         "options": ["👂 Ears", "👃 Nose"], "answer": 1,
+         "why": "Barakalla! [en]Nose[/en] — burun.", "why_en": "Good job! Nose!"}
+      ]
+    },
+    {
+      "unit": 7,
+      "name": "Bozorda meva olamiz",
+      "name_en": "At the fruit market",
+      "emoji": "🧺",
+      "goal": "Bola bozorda kerakli mevani sonini aytib odob bilan so'raydi",
+      "intro": "Gu-gu! Kabutar qushcha onajon bilan bozorga keldi. Sotuvchidan [en]Five apples, please.[/en] deb so'raymiz!",
+      "intro_en": "We are at the market. Let's ask: Five apples, please.",
+      "roles": ["Sotuvchi", "Bola"],
+      "roles_en": ["Seller", "Child"],
+      "scene": {
+        "image": "en45-s7-fruit-market.png",
+        "image_prompt": "A friendly seller at a colorful market stall with apples, bananas, oranges and carrots, handing a bag of apples to a small child, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Hello! How many apples?", "uz": "salom! nechta olma?", "emoji": "🍎"},
+        {"who": 1, "say": "Five apples, please.", "uz": "beshta olma, iltimos", "emoji": "5️⃣"},
+        {"who": 0, "say": "Here you are!", "uz": "mana, oling", "emoji": "🫴"},
+        {"who": 1, "say": "Thank you! Goodbye!", "uz": "rahmat! xayr", "emoji": "🙏"}
+      ],
+      "questions": [
+        {"q": "Sizga uchta banan kerak. Nima deysiz?", "q_en": "You want three bananas. What do you say?",
+         "options": ["🍌 Three bananas, please.", "🥕 Three carrots, please."], "answer": 0,
+         "why": "To'g'ri! [en]Banana[/en] — banan.", "why_en": "Yes! Three bananas, please."},
+        {"q": "Sotuvchi mevani berdi. Nima deysiz?", "q_en": "The seller gives you the fruit. What do you say?",
+         "options": ["🙅 No!", "🙏 Thank you!"], "answer": 1,
+         "why": "Barakalla! [en]Thank you![/en] — rahmat.", "why_en": "Good job! Thank you!"},
+        {"q": "Siz olmani yaxshi ko'rasiz. Nima deysiz?", "q_en": "You like apples. What do you say?",
+         "options": ["🍎 I like apples!", "🍋 I like lemons!"], "answer": 0,
+         "why": "Zo'r! [en]I like apples![/en] — men olmani yaxshi ko'raman.", "why_en": "Great! I like apples!"}
+      ]
+    },
+    {
+      "unit": 8,
+      "name": "Parkka borishga kiyinamiz",
+      "name_en": "Getting dressed for the park",
+      "emoji": "🧢",
+      "goal": "Bola parkka chiqishdan oldin kiyimlarini inglizcha aytib kiyinadi",
+      "intro": "Gu-gu! Kabutar qushcha bilan parkka boramiz. Avval kiyinamiz: [en]hat[/en], [en]shoes[/en] — va varrakni olamiz!",
+      "intro_en": "Let's go to the park! Put on your hat and shoes!",
+      "roles": ["Onam", "Bola"],
+      "roles_en": ["Mum", "Child"],
+      "scene": {
+        "image": "en45-s8-dressing-for-park.png",
+        "image_prompt": "A mum helping a small child put on a red hat and shoes by the front door, a colorful kite leaning on the wall, cute cartoon scene for kids, soft flat colors, no text, square"
+      },
+      "dialog": [
+        {"who": 0, "say": "Put on your hat!", "uz": "shapkangni kiy", "emoji": "🧢"},
+        {"who": 1, "say": "My red hat? OK!", "uz": "qizil shapkammi? xo'p", "emoji": "🔴"},
+        {"who": 0, "say": "And your shoes!", "uz": "tuflingni ham", "emoji": "👟"},
+        {"who": 1, "say": "Yes! And my kite!", "uz": "ha! varragimni ham olaman", "emoji": "🪁"}
+      ],
+      "questions": [
+        {"q": "Onam: [en]Put on your hat![/en] Nimani kiyasiz?", "q_en": "Mum says: Put on your hat! What do you put on?",
+         "options": ["🧦 Socks", "🧢 Hat"], "answer": 1,
+         "why": "To'g'ri! [en]Hat[/en] — shapka.", "why_en": "Yes! Hat!"},
+        {"q": "Parkka nimani olasiz? Varrakni ko'rsating!", "q_en": "What do you take to the park? Show the kite!",
+         "options": ["🪁 It's a kite.", "🤖 It's a robot."], "answer": 0,
+         "why": "Barakalla! [en]Kite[/en] — varrak.", "why_en": "Good job! It's a kite."}
+      ]
+    }
+  ]
+}
