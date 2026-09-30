@@ -376,7 +376,8 @@ def parse_sheets(wb, media_names=None, max_images=500):
             intro = {"misol": "Endi misolni ko'ramiz", "masala": "Endi masala", "topshiriq": "Endi amaliy topshiriq"}[kind]
             voice = f"{intro}: {title}. " if title else f"{intro}. "
             voice += (text + " ") if len(text) <= 600 else "Shartni doskadan diqqat bilan o'qing. "
-            voice += "Avval o'zingiz bajarib ko'ring, yechimni keyin ochasiz."
+            if "yosh" not in str(book.get("sinf", "")).lower():   # REV95: bog'cha bolasiga «yechimni ochasiz» demaymiz
+                voice += "Avval o'zingiz bajarib ko'ring, yechimni keyin ochasiz."
             add_step(row, "amaliy", text, voice[:MAX_VOICE], f"{TYPE_NAMES[kind]} · {title}" if title else TYPE_NAMES[kind],
                      pic, answer=c.get("javob", "") if not options else "", extra={
                          "kitob_kodi": kod, "amaliy_turi": kind, "yechim": c.get("yechim", ""),
