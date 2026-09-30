@@ -1343,6 +1343,13 @@ def joriy_foydalanuvchi(token: Optional[str] = None, request: Request = None):
     conn.close()
     if _kabutar_auth_service is not None:
         r.update(_kabutar_auth_service.profile_status(user_id))
+    if r.get('role') == 'oquvchi' and (r.get('learning_profile') or {}).get('role') == 'bogcha' and not r.get('talaba_profili'):
+        # REV80: bog'cha bolasi — yosh guruhi «sinf» o'rnida ("3-4 yosh").
+        r['education_role'] = 'bogcha'
+        r['bogcha_mi'] = True
+        r['talaba_mi'] = False
+        r['yosh_guruhi'] = _curriculum.preschool_group((r.get('learning_profile') or {}).get('age_group') or r.get('class'))
+        return r
     if r.get('role') == 'oquvchi' and (r.get('talaba_mi') or (not r.get('class') and (r.get('learning_profile') or {}).get('role') == 'talaba')):
         r['education_role'] = 'talaba'
         r['talaba_mi'] = True
@@ -15863,6 +15870,11 @@ def _sinf_qiymatini_normallashtir(qiymat):
     talaba = _talaba_sinfini_ochish(qiymat)
     if talaba:
         return talaba["sinf"]
+    # REV80: bog'cha yosh guruhi ("3-4 yosh") 3-sinf deb o'qilmasin.
+    if re.search(r"yosh|bog", str(qiymat), re.I):
+        guruh = _curriculum.preschool_group(qiymat)
+        if guruh:
+            return guruh
     matn = str(qiymat).strip()
     mos = re.search(r"(?<!\d)(1[01]|[1-9])(?!\d)", matn)
     return mos.group(1) if mos else (matn or None)
@@ -16757,7 +16769,8 @@ class TestShablonSorov(BaseModel):
     # "oddiy"dan alohida belgilanadi, keyinchalik alohida ishlatish uchun
 
 
-_YOSH_GURUHI = {"1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
+_YOSH_GURUHI = {"2-3 yosh": "2-3", "3-4 yosh": "3-4", "4-5 yosh": "4-5", "5-6 yosh": "5-6", "6-7 yosh": "6-7",
+                "1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
                 "6": "11-12", "7": "12-13", "8": "13-14", "9": "14-15", "10": "15-16", "11": "16-17"}
 
 
@@ -16783,8 +16796,9 @@ def topik_sinflar(token: str, scope_id: int = 0):
     # alohida ro'yxat; frontend "aqlli tanlash"da uchta guruhni ajratib ko'rsatadi.
     talaba = sorted([g for g in hammasi if _sinf_talaba_mi(g)],
                     key=lambda g: (_talaba_sinfini_ochish(g)["bosqich"] == "magistr", _talaba_sinfini_ochish(g)["kurs"]))
-    togarak = sorted([g for g in hammasi if not g.isdigit() and not _sinf_talaba_mi(g)])
-    return {"oddiy": oddiy, "talaba": talaba, "togarak": togarak}
+    bogcha = [g for g in _curriculum.PRESCHOOL_GROUPS if g in hammasi]
+    togarak = sorted([g for g in hammasi if not g.isdigit() and not _sinf_talaba_mi(g) and g not in bogcha])
+    return {"oddiy": oddiy, "talaba": talaba, "togarak": togarak, "bogcha": bogcha}
 
 
 @app.get("/api/admin/topik_fanlar")
@@ -18411,6 +18425,11 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik, dars_
     if not str(fan or '').strip() or not str(mavzu or '').strip():
         raise ValueError("Fan va mavzu bo‘sh bo‘lmasin")
     grade = _dts_sinf_normalize(sinf)
+    if scope['institution_type'] == 'bogcha':
+        # REV80: bog'cha dasturida «sinf» — yosh guruhi: 2-3, 3-4, 4-5, 5-6, 6-7 yosh.
+        grade = _curriculum.preschool_group(sinf)
+        if not grade:
+            raise ValueError("Bog‘cha uchun yosh guruhini yozing: 2-3, 3-4, 4-5, 5-6 yoki 6-7 yosh")
     if not grade:
         raise ValueError("Noto'g'ri sinf")
     quarter_code = _dts_chorak_normalize(chorak)
@@ -19189,7 +19208,10 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
     for placeholder, info in pending.items():
         rows = index.get(_ai_brain_mavzu_nomi_norm(info["nom"]), [])
         same_fan = [r for r in rows if fan and _ai_brain_mavzu_nomi_norm(r["subject_name"]) == fan]
-        pick = same_fan if same_fan else rows
+        # REV80: bir xil nomli mavzu turli sinf/yosh guruhida bo'lsa — kitobning Sinf qiymati hal qiladi.
+        book_grade = _curriculum.canonical_grade(book.get("sinf")) if book.get("sinf") else ""
+        same_grade = [r for r in same_fan if book_grade and _curriculum.canonical_grade(r.get("grade")) == book_grade]
+        pick = same_grade if same_grade else same_fan if same_fan else rows
         codes = sorted({r["topic_code"] for r in pick})
         if len(codes) == 1:
             replace[placeholder] = codes[0]
@@ -19589,18 +19611,71 @@ def _ai_brain_zip_och(content):
         return z.read(xlsx[0]), media
 
 
-def _ai_brain_testlarga_otkaz(cur, batch_id):
+def _ai_brain_eski_nashrni_arxivla(cur, batch_id):
+    """Shu batch manbalarining boshqa batchlardagi, yangi nashrda qolmagan birliklarini arxivlaydi."""
+    cur.execute("SELECT staged_payload FROM ai_brain_import_batches WHERE id=%s", (batch_id,))
+    staged = (cur.fetchone() or {}).get("staged_payload") or {}
+    codes = [r.get("source_id") for r in staged.get("01_KITOB", []) if r.get("source_id")]
+    sources = []
+    if codes:
+        cur.execute("SELECT id FROM ai_brain_sources WHERE source_code=ANY(%s)", (codes,))
+        sources = [r["id"] for r in cur.fetchall()]
+    cur.execute("SELECT DISTINCT source_id FROM ai_brain_units WHERE batch_id=%s AND source_id IS NOT NULL", (batch_id,))
+    sources = sorted(set(sources) | {r["source_id"] for r in cur.fetchall()})
+    if not sources:
+        return 0
+    # Kitobning yangi nashridagi HAMMA birlik kodlari (o'zgarmagan, qayta yozilmagan birliklar ham) —
+    # ular arxivlanmaydi. Eski paketlarda ro'yxat yo'q bo'lsa — shu paketdagi birliklar.
+    cur.execute("SELECT imported_counts FROM ai_brain_import_batches WHERE id=%s", (batch_id,))
+    row = cur.fetchone() or {}
+    keep = list((row.get("imported_counts") or {}).get("kitob_kodlari") or [])
+    cur.execute("SELECT unit_code FROM ai_brain_units WHERE batch_id=%s", (batch_id,))
+    keep += [r["unit_code"] for r in cur.fetchall()]
+    cur.execute(
+        """UPDATE ai_brain_units u SET status='archived'
+           WHERE u.source_id=ANY(%s) AND u.batch_id<>%s AND u.status='published'
+             AND NOT (u.unit_code = ANY(%s))
+           RETURNING u.unit_code""",
+        (sources, batch_id, keep),
+    )
+    stale = [r["unit_code"] for r in cur.fetchall()]
+    if stale:
+        cur.execute("DELETE FROM generated_tests WHERE ai_brain_unit_code=ANY(%s)", (stale,))
+    # REV89: avvalgi (REV87) nashrda o'zgarmagan birliklar xato arxivlangan bo'lishi mumkin — kitobda hali bor
+    # birlikning oxirgi versiyasi arxivda qolgan bo'lsa, u qayta faollashtiriladi va testi tiklanadi.
+    cur.execute(
+        """UPDATE ai_brain_units u SET status='published'
+           WHERE u.source_id=ANY(%s) AND u.status='archived' AND u.unit_code=ANY(%s)
+             AND u.version_no=(SELECT MAX(v.version_no) FROM ai_brain_units v WHERE v.unit_code=u.unit_code)
+             AND NOT EXISTS (SELECT 1 FROM ai_brain_units p WHERE p.unit_code=u.unit_code AND p.status='published')
+           RETURNING u.unit_code""",
+        (sources, keep),
+    )
+    restored = [r["unit_code"] for r in cur.fetchall()]
+    if restored:
+        _ai_brain_testlarga_otkaz(cur, batch_id, restored)
+    return len(stale)
+
+
+def _ai_brain_testlarga_otkaz(cur, batch_id, unit_codes=None):
     """06_MASHQLAR'dagi test/yozma savollarni Test bo'limi (generated_tests) ga yozadi.
 
     Har bir savol unit_code bo'yicha bog'lanadi: qayta nashr qilinsa yangi qator
     qo'shilmaydi — mavjud savol yangilanadi.
     """
     _ai_brain_dars_jadvallari(cur)
-    cur.execute(
-        """SELECT unit_code,topic_code,payload FROM ai_brain_units
-           WHERE batch_id=%s AND unit_kind='task'""",
-        (batch_id,),
-    )
+    if unit_codes is not None:
+        cur.execute(
+            """SELECT unit_code,topic_code,payload FROM ai_brain_units
+               WHERE unit_code=ANY(%s) AND unit_kind='task' AND status='published'""",
+            (list(unit_codes),),
+        )
+    else:
+        cur.execute(
+            """SELECT unit_code,topic_code,payload FROM ai_brain_units
+               WHERE batch_id=%s AND unit_kind='task'""",
+            (batch_id,),
+        )
     added = updated = 0
     for row in cur.fetchall():
         p = row["payload"] or {}
@@ -19615,7 +19690,10 @@ def _ai_brain_testlarga_otkaz(cur, batch_id):
         answer = _ai_brain_text(p.get("togri_javob"))
         if qtype == "single_choice":
             letter = answer.strip().upper()[:1]
-            if letter not in "ABCD" or not letter or not all(options):
+            # REV80: 2–4 variant (bog'cha testlari 2–3 ta); bo'sh variantlar oxirida bo'lsin.
+            filled = [bool(o) for o in options]
+            count = sum(filled)
+            if not letter or letter not in "ABCD" or count < 2 or filled[:count] != [True] * count or "ABCD".index(letter) >= count:
                 continue
             answer = letter
         level = _ai_brain_norm(p.get("daraja"))
@@ -19817,6 +19895,7 @@ def ai_miya_import(batch_id: int, token: str):
             else:
                 counts["duplicates"] += 1
 
+        all_codes = []
         for sheet_name in AI_BRAIN_ID_COLUMNS:
             for row in payload.get(sheet_name, []):
                 unit = _ai_brain_unit_shape(sheet_name, row)
@@ -19826,6 +19905,7 @@ def ai_miya_import(batch_id: int, token: str):
                     else topic_source.get(unit["topic_code"])
                 )
                 checksum = _ai_brain_checksum(unit)
+                all_codes.append(unit["unit_code"])   # REV89: kitobdagi HAMMA birlik (o'zgarmaganlari ham)
                 cur.execute(
                     """SELECT version_no,row_checksum,status FROM ai_brain_units
                        WHERE unit_code=%s ORDER BY version_no DESC LIMIT 1""",
@@ -19857,7 +19937,7 @@ def ai_miya_import(batch_id: int, token: str):
             """UPDATE ai_brain_import_batches
                SET status='draft_imported', imported_counts=%s::jsonb, imported_at=NOW()
                WHERE id=%s""",
-            (json.dumps(counts, ensure_ascii=False), batch_id),
+            (json.dumps({**counts, "kitob_kodlari": all_codes}, ensure_ascii=False), batch_id),
         )
         conn.commit()
     except HTTPException:
@@ -19917,6 +19997,10 @@ def ai_miya_nashr(batch_id: int, token: str):
             (user_id, batch_id),
         )
         test_sync = _ai_brain_testlarga_otkaz(cur, batch_id)
+        # REV87: kitobning YANGI NASHRI eskisini to'liq almashtiradi — shu manbadagi (kitobdagi) avvalgi
+        # batchlarning yangi nashrda yo'q bo'lgan birliklari arxivlanadi, ulardan yaratilgan testlar o'chiriladi.
+        # Aks holda qayta yuklangan kitobda eski va yangi dars qadamlari/testlari aralashib qoladi.
+        test_sync["eskirgan"] = _ai_brain_eski_nashrni_arxivla(cur, batch_id)
         conn.commit()
     except HTTPException:
         conn.rollback()
@@ -20125,6 +20209,9 @@ def _ai_yosh_hisobla(tugilgan_sana, sinf=None) -> int:
     talaba = _talaba_sinfini_ochish(sinf)
     if talaba:  # bakalavr 1-kurs ≈ 18, magistr 1-kurs ≈ 22
         return (22 if talaba["bosqich"] == "magistr" else 18) + talaba["kurs"] - 1
+    guruh = _curriculum.preschool_group(sinf) if re.search(r"yosh|bog", str(sinf or ""), re.I) else ""
+    if guruh:  # "3-4 yosh" → 3 yoshli bola
+        return int(guruh.split("-")[0])
     sinf_soni = _ai_sinf_tozala(sinf)
     return int(sinf_soni) + 6 if sinf_soni.isdigit() else 12
 

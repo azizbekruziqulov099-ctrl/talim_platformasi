@@ -202,3 +202,34 @@ if __package__:
 else:
     from modules.institut_hayoti import create_router as create_institut_hayoti_router
 app.include_router(create_institut_hayoti_router(samtm_platform))
+
+# REV82: onlayn bellashuv — o'quvchi va talabalar o'zaro test bellashuvi.
+if __package__:
+    from .modules.bellashuv import create_router as create_bellashuv_router
+else:
+    from modules.bellashuv import create_router as create_bellashuv_router
+app.include_router(create_bellashuv_router(samtm_platform))
+# REV83: shashka — bot (4 daraja), onlayn raqib izlash, do'st bilan kod orqali.
+if __package__:
+    from .modules.shashka import create_router as create_shashka_router
+else:
+    from modules.shashka import create_router as create_shashka_router
+app.include_router(create_shashka_router(samtm_platform))
+# REV86: shaxmat maktabi (o'rgatish) — /api/shaxmat/maktab shaxmat o'yin yo'lidan (/api/shaxmat/{kod}) OLDIN ulanadi.
+if __package__:
+    from .modules.shaxmat_maktab import create_router as create_shaxmat_maktab_router
+else:
+    from modules.shaxmat_maktab import create_router as create_shaxmat_maktab_router
+app.include_router(create_shaxmat_maktab_router(samtm_platform))
+# REV85: shaxmat — to'liq qoidalar, 4 darajali bot, onlayn reyting, do'st bilan.
+if __package__:
+    from .modules.shaxmat import create_router as create_shaxmat_router
+else:
+    from modules.shaxmat import create_router as create_shaxmat_router
+app.include_router(create_shaxmat_router(samtm_platform))
+# REV91: bog'cha — kunlik dars rejasi (2 ta, dam olish kuni 3 ta) va ota-onaga jonli hisobot.
+if __package__:
+    from .modules.bola_kuzatuv import create_router as create_bola_kuzatuv_router
+else:
+    from modules.bola_kuzatuv import create_router as create_bola_kuzatuv_router
+app.include_router(create_bola_kuzatuv_router(samtm_platform))

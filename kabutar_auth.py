@@ -244,8 +244,17 @@ class Logout(TokenBody):
 class QuickStart(BaseModel):
     role: str = Field(min_length=3, max_length=20)
     name: Optional[str] = Field(default=None, max_length=80)
+    age_group: Optional[str] = Field(default=None, max_length=20)
 
-QUICK_ROLE_NAMES = {'oquvchi': 'O‘quvchi', 'talaba': 'Talaba', 'oqituvchi': 'O‘qituvchi', 'ota-ona': 'Ota-ona'}
+QUICK_ROLE_NAMES = {'oquvchi': 'O‘quvchi', 'talaba': 'Talaba', 'oqituvchi': 'O‘qituvchi', 'ota-ona': 'Ota-ona', 'bogcha': 'Bog‘cha bolasi'}
+
+
+def preschool_group(value):
+    try:
+        from .modules.curriculum_scope import preschool_group as _group
+    except ImportError:
+        from modules.curriculum_scope import preschool_group as _group
+    return _group(value)
 
 class PasswordLogin(BaseModel):
     identifier: str = Field(min_length=1, max_length=254)
@@ -263,6 +272,7 @@ class Education(TokenBody):
     language: str = 'uz'
     subject: Optional[str] = Field(default=None, max_length=100)
     course: Optional[int] = Field(default=None, ge=1, le=6)
+    age_group: Optional[str] = Field(default=None, max_length=20)
     study_form: str = 'kunduzgi'
     degree: str = 'bakalavr'
 
@@ -746,18 +756,23 @@ def register_auth(app, platform):
             raise HTTPException(422,'Rolni tanlang')
         service.rate('quick-ip',service.ip(request),60,3600)  # maktab sinfi bitta Wi-Fi dan kiradi
         name=re.sub(r'\s+',' ',str(body.name or '')).strip()[:80] or (QUICK_ROLE_NAMES[body.role]+' '+str(secrets.randbelow(9000)+1000))
-        base_role='oquvchi' if body.role=='talaba' else body.role
+        base_role='oquvchi' if body.role in ('talaba','bogcha') else body.role
         learning={'role':body.role,'quick':True}
         if body.role=='talaba':
             learning['standalone']=True
+        group=preschool_group(body.age_group) if body.role=='bogcha' else ''
+        if group:
+            learning['age_group']=group
         with service.transaction() as cur:
             cur.execute('SELECT pg_advisory_xact_lock(%s)',(31091001,))
             cur.execute('SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0')
             row=cur.fetchone()
             new_id=(row['eng_kichik']-1) if row and row['eng_kichik'] is not None else -1
             # O'quvchi sinfini kirgandan keyin tanlaydi; talaba/o'qituvchi/ota-ona darhol ishlaydi.
-            cur.execute("""INSERT INTO users(user_id,full_name,role,kabutar_learning_profile,kabutar_education_ready)
-                VALUES(%s,%s,%s,%s::jsonb,%s)""",(new_id,name,base_role,json.dumps(learning),body.role!='oquvchi'))
+            # O'quvchi sinfini, bog'cha bolasi yoshini kirgandan keyin tanlaydi (bog'chada yosh berilsa — darhol tayyor).
+            ready = body.role not in ('oquvchi','bogcha') or bool(group)
+            cur.execute("""INSERT INTO users(user_id,full_name,role,class,kabutar_learning_profile,kabutar_education_ready)
+                VALUES(%s,%s,%s,%s,%s::jsonb,%s)""",(new_id,name,base_role,group or None,json.dumps(learning),ready))
             give_id=getattr(platform,'_kabutar_id_ber',None)
             if give_id:
                 try:
@@ -1158,11 +1173,14 @@ def register_auth(app, platform):
         uid=platform._jwt_tekshir(token)
         if service.claims(token).get('admin_korish'):
             raise HTTPException(403,'Ko‘rish rejimida profil o‘zgartirilmaydi')
-        if body.role not in ('oquvchi','talaba','oqituvchi','ota-ona','mustaqil') or body.language not in ('uz','ru','en','tj','kk','kz'):
+        if body.role not in ('oquvchi','talaba','oqituvchi','ota-ona','mustaqil','bogcha') or body.language not in ('uz','ru','en','tj','kk','kz'):
             raise HTTPException(422,'Rol yoki ta’lim tili noto‘g‘ri')
         grade=body.class_ or body.grade
         if body.role=='oquvchi' and not grade:
             raise HTTPException(422,'Sinfni tanlang')
+        group = preschool_group(body.age_group) if body.role=='bogcha' else ''
+        if body.role=='bogcha' and not group:
+            raise HTTPException(422,'Bolaning yosh guruhini tanlang')
         # REV77: talaba kursini keyin tanlashi mumkin — kurssiz ham barcha institut testlari ochiq,
         # kurs/shakl tanlansa o'ziga mos fanlar birinchi chiqadi.
         talaba_full = body.role == 'talaba' and bool(body.course)
@@ -1179,8 +1197,10 @@ def register_auth(app, platform):
                 semestr=2*body.course-1, standalone=True)
         elif body.role == 'oquvchi':
             learning['grade'] = grade
-        base_role = 'oquvchi' if body.role == 'talaba' else body.role
-        class_value = (f'{body.course} kurs' + (' magistr' if body.degree == 'magistr' else '')) if talaba_full else str(grade) if body.role == 'oquvchi' else None
+        elif body.role == 'bogcha':
+            learning['age_group'] = group
+        base_role = 'oquvchi' if body.role in ('talaba','bogcha') else body.role
+        class_value = (f'{body.course} kurs' + (' magistr' if body.degree == 'magistr' else '')) if talaba_full else str(grade) if body.role == 'oquvchi' else group if body.role == 'bogcha' else None
         with service.transaction() as cur:
             cur.execute('SELECT to_jsonb(u) AS profile FROM users u WHERE user_id=%s FOR UPDATE',(uid,))
             user=(cur.fetchone() or {}).get('profile')
@@ -1193,7 +1213,7 @@ def register_auth(app, platform):
             cur.execute('SELECT 1 FROM admin_akkaunt WHERE uid=%s', (uid,))
             if cur.fetchone() or (linked and (user.get('role') != base_role or enrolled_student or user.get('class') != class_value)):
                 raise HTTPException(409,'Muassasaga ulangan profilingizni Profil bo‘limida yangilang')
-            if user.get('role') not in (None,'','kabutar','mustaqil','oquvchi','oqituvchi','ota-ona','talaba'):
+            if user.get('role') not in (None,'','kabutar','mustaqil','oquvchi','oqituvchi','ota-ona','talaba','bogcha'):
                 raise HTTPException(409,'Mavjud ta’lim rolingizni bu oynada almashtirib bo‘lmaydi')
             cur.execute('''UPDATE users SET role=%s,class=%s,asosiy_til=%s,oqituvchi_fani=%s,
                 kabutar_learning_profile=%s::jsonb,kabutar_education_ready=TRUE WHERE user_id=%s''',
