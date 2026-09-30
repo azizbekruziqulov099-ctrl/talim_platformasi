@@ -29,6 +29,14 @@ def _t(value):
     return str(value or "").strip()
 
 
+def filled_options(options):
+    """REV80: 2–4 variant (bog'cha testida 2–3 ta). Bo'sh variantlar faqat oxirida bo'lishi mumkin."""
+    count = sum(1 for o in options if o)
+    if count < 2 or any(not o for o in options[:count]):
+        return []
+    return options[:count]
+
+
 def _int(value, default=None):
     try:
         return int(float(_t(value)))
@@ -221,9 +229,9 @@ def build_lesson(topic, units, media_url, extra_questions=()):
     for u in by_kind.get("task", []):
         p = payload(u)
         kind = re.sub(r"[\s_-]+", "", _t(p.get("vazifa_turi")).lower())
-        options = [_t(p.get(f"variant_{x}")) for x in "abcd"]
+        options = filled_options([_t(p.get(f"variant_{x}")) for x in "abcd"])
         letter = _t(p.get("togri_javob")).upper()[:1]
-        if kind in {"singlechoice", "test", "tanlov"} and all(options) and letter in ("A", "B", "C", "D"):
+        if kind in {"singlechoice", "test", "tanlov"} and options and letter in "ABCD"[:len(options)] and letter:
             questions.append({"id": u["unit_code"], "savol": _t(p.get("savol")), "variantlar": options,
                               "togri": "ABCD".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni")),
                               "kod": _t(p.get("kitob_kodi"))})
@@ -416,9 +424,9 @@ def create_router(platform):
                 (topic_code,),
             )
             for r in cur.fetchall():
-                options = [_t(r[k]) for k in ("option_a", "option_b", "option_c", "option_d")]
+                options = filled_options([_t(r[k]) for k in ("option_a", "option_b", "option_c", "option_d")])
                 letter = _t(r["correct_answer"]).upper()[:1]
-                if all(options) and letter in ("A", "B", "C", "D"):
+                if options and letter and letter in "ABCD"[:len(options)]:
                     extra.append({"id": f"test-{r['id']}", "savol": _t(r["question"]), "variantlar": options,
                                   "togri": "ABCD".index(letter), "izoh": _t(r["explanation"])})
 

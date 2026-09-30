@@ -15,6 +15,25 @@ FORMS = ('kunduzgi','kechki','sirtqi','masofaviy')
 LESSONS = ('maruza','amaliy','seminar','laboratoriya')
 LESSON_LABELS = {'maruza':'Ma’ruza','amaliy':'Amaliyot','seminar':'Seminar','laboratoriya':'Laboratoriya'}
 INSTITUTIONS = {'maktab':'maktablar','universitet':'universitetlar','bogcha':'bogchalar','markaz':'oquv_markazlari'}
+# REV80: bog'cha yosh guruhlari — «sinf» o'rnida saqlanadi (dts_tree.grade, users.class).
+PRESCHOOL_GROUPS = ('2-3 yosh','3-4 yosh','4-5 yosh','5-6 yosh','6-7 yosh')
+
+def preschool_group(value):
+    """'3-4', '3–4 yosh', 'bogcha-3-4', '3-4 yoshlilar' → '3-4 yosh'; boshqa qiymat → ''."""
+    text = str(value or '').replace('–','-').replace('—','-').casefold()
+    match = re.search(r'(?<!\d)([2-6])\s*-\s*([3-7])(?!\d)', text)
+    if not match or int(match[2]) != int(match[1]) + 1:
+        return ''
+    if not re.search(r'yosh|bog|age|лет|год', text) and not re.fullmatch(r'\s*[2-6]\s*-\s*[3-7]\s*', text):
+        return ''
+    return f'{match[1]}-{match[2]} yosh'
+
+def preschool_learner(user):
+    """Bog'cha bolasi: ta'lim profili «bogcha» + yosh guruhi (users.class)."""
+    learning = (user or {}).get('kabutar_learning_profile') or {}
+    if learning.get('role') != 'bogcha':
+        return ''
+    return preschool_group(learning.get('age_group') or (user or {}).get('class')) or ''
 
 def teacher_institutions(cur, user_id, user):
     """Resolve existing staff memberships; never accept workplace IDs from a request."""
@@ -52,11 +71,14 @@ def catalog_context(cur, user_id=None):
         profile=user['kabutar_learning_profile']
     grade=canonical_grade(user.get('class'))
     teacher = user.get('role') == 'oqituvchi'
+    preschool = preschool_learner(user)
     if teacher:
         workplaces=teacher_institutions(cur,user_id,user)
         types=[kind for kind,ids in workplaces.items() if ids]
         if not types: types=['maktab','universitet']
         grade=''
+    elif preschool:
+        types=['bogcha'];grade=preschool
     elif profile or 'kurs' in grade:
         types=['universitet']
     else:
@@ -145,6 +167,9 @@ def text_key(value):
     return re.sub(r'\s+', ' ', str(value or '').translate(str.maketrans({'‘':"'",'’':"'",'ʻ':"'",'ʼ':"'",'`':"'"}))).strip().casefold()
 
 def canonical_grade(value):
+    group = preschool_group(value) if re.search(r'yosh|bog|лет|год', str(value or ''), re.I) else ''
+    if group:
+        return group
     value = text_key(value)
     match = re.fullmatch(r'([1-6])\s*-?\s*kurs\s*(magistr)?', value)
     if match:
@@ -184,9 +209,11 @@ def normalize_scope(data):
     else:
         for k in ('talim_bosqichi','yonalish_nomi','yonalish_key','talim_shakli','talim_tili','dars_turi'): s[k]=''
         for k in ('yonalish_id','kurs','semestr'): s[k]=0
-        if s['institution_type']!='maktab' and not s['institution_id']: raise ValueError('Aniq muassasani tanlang')
+        if s['institution_type'] not in ('maktab','bogcha') and not s['institution_id']: raise ValueError('Aniq muassasani tanlang')
+        if s['institution_type']=='bogcha' and not s['institution_id'] and s['guruh']: raise ValueError('Umumiy bog‘cha katalogida guruh tanlanmaydi')
     s['scope_key']=hashlib.sha256(json.dumps([s[k] for k in FIELDS],ensure_ascii=False).encode()).hexdigest()
     if s['institution_type']=='maktab' and not s['institution_id'] and not s['guruh']: s['scope_key']='school-common'
+    if s['institution_type']=='bogcha' and not s['institution_id']: s['scope_key']='kindergarten-common'
     return s
 
 def grade_for_scope(scope):
@@ -207,6 +234,7 @@ def migrate(db):
         with conn.cursor() as cur:
             cur.execute(Path(__file__).resolve().parents[1].joinpath('migrations/20260920_curriculum_scope.sql').read_text())
             cur.execute(Path(__file__).resolve().parents[1].joinpath('migrations/20260922_public_learning.sql').read_text())
+            cur.execute(Path(__file__).resolve().parents[1].joinpath('migrations/20260929_preschool.sql').read_text())
         conn.commit()
     except Exception:
         conn.rollback(); raise
@@ -320,6 +348,12 @@ def own_predicate(cur,user_id=None,alias='d'):
             AND cs.talim_bosqichi=%s AND cs.kurs=%s AND cs.semestr=ANY(%s)
             AND cs.talim_shakli IN (%s,'umumiy') AND cs.talim_tili=%s)""",[
                 learning['talim_bosqichi'],course,list(semester_pair(course)),learning['talim_shakli'],learning['talim_tili']]
+    # REV80: bog'cha bolasi — umumiy bog'cha katalogi (va o'z bog'chasi), faqat o'z yosh guruhi.
+    preschool = preschool_learner(user)
+    if preschool:
+        return f"""EXISTS (SELECT 1 FROM curriculum_scopes cs WHERE cs.id={alias}.curriculum_scope_id AND cs.guruh=''
+            AND cs.institution_type='bogcha' AND (cs.institution_id=0 OR (cs.institution_id>0 AND cs.institution_id=%s)))
+            AND {alias}.grade=%s""",[int(user.get('bogcha_id') or 0),preschool]
     # A course without a valid learner profile must not open other colleges.
     if re.search(r'kurs',str(user.get('class') or ''),re.I): return 'FALSE',[]
     school_grade = canonical_grade(user.get('class'))

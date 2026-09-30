@@ -56,7 +56,7 @@ def create_router(platform):
             inst=cur.fetchone()
             if not inst:raise ValueError('Muassasa topilmadi yoki arxivlangan')
             s['institution_name']=inst['nomi']
-        else:s['institution_name']='Institut — umumiy testlar' if s['institution_type']=='universitet' else 'Maktab — umumiy katalog'
+        else:s['institution_name']={'universitet':'Institut — umumiy testlar','bogcha':'Bog‘cha — umumiy katalog (2–7 yosh)'}.get(s['institution_type'],'Maktab — umumiy katalog')
         if s['institution_type']=='universitet':
             cur.execute('SELECT pg_advisory_xact_lock(hashtext(%s))',(repr(scope.scope_identity(s)),))
             existing=next((r for r in scope.year_family(cur,s) if r['semestr']==s['semestr']),None)

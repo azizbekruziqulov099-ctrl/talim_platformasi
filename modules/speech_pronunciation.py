@@ -69,7 +69,15 @@ def _prose(value,language):
     text=re.sub(r'_{2,}',{'uz':' bo‘sh joy ','ru':' пропуск ','en':' blank '}[language],text)
     return text
 
+PLAIN_LANGUAGES={'ru','de','fr','es','ar','tr','zh','ja','ko'}
+
 def prepare_speech(value,language='uz'):
+    if language in PLAIN_LANGUAGES and language not in WORDS:
+        # REV88: chet tilidagi bo'lak o'z ovozida o'qiladi — o'zbekcha qoidalar (tutuq belgisi, tartib sonlar) qo'llanmaydi.
+        text=re.sub(r'<(?:/?[A-Za-z][^>]*|!--[\s\S]*?--)>',' ',str(value or ''))
+        text=re.sub(r'\[/?(?:'+'|'.join(sorted(PLAIN_LANGUAGES|{'uz','en'}))+r')\]','',text,flags=re.I)
+        text=re.sub(r'https?://\S+|www\.\S+',' ',text)
+        return re.sub(r'\s+',' ',text).strip()
     language=language if language in WORDS else 'uz'
     value=tag_raw_math(str(value or ''))
     # Expand formulas separately so mathematical minus/cases cannot be mistaken

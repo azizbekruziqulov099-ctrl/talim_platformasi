@@ -246,7 +246,8 @@ def parse_sheets(wb, media_names=None, max_images=500):
                 value = value or f"{prefix}_{re.sub(r'[^A-Za-z0-9]+', '_', name)}_{row}_{col}.{ext}"
                 if len(media) < max_images:
                     media[value] = (IMAGE_TYPES[ext], data)
-            elif value and value.lower() not in media_names and not value.startswith("https://"):
+            elif value and value.lower() not in media_names and value not in media and not value.startswith("https://"):
+                # REV88: bir kitobda bir rasm bir marta joylanadi — keyingi qatorlar shu nom bilan unga murojaat qiladi
                 err(name, row, label_of[key], f"«{value}» rasmi topilmadi: rasmni katakka qo'ying yoki shu nomli faylni ZIP ichiga qo'shing", "warning")
             return value
 
@@ -344,13 +345,16 @@ def parse_sheets(wb, media_names=None, max_images=500):
                 continue
             options = parse_options(c.get("variantlar"))
             letter = _t(c.get("javob")).upper().rstrip(").")[:1] if kind == "test" else ""
-            if kind == "test" and (len(options) != 4 or letter not in ("A", "B", "C", "D")):
-                if len(options) != 4:
-                    err(name, row, label_of["variantlar"], f"Testda aynan 4 ta variant (A–D) bo'lsin — {len(options)} ta topildi. Test bo'limiga tushmaydi, «masala» sifatida saqlanadi", "warning")
+            # REV80: bog'cha testlari 2–3 variantli ham bo'ladi (A–B, A–C); maktabda odatda 4 ta.
+            if kind == "test" and (not 2 <= len(options) <= 4 or letter not in "ABCD"[:len(options)] or not letter):
+                if not 2 <= len(options) <= 4:
+                    err(name, row, label_of["variantlar"], f"Testda 2–4 ta variant (A–D) bo'lsin — {len(options)} ta topildi. Test bo'limiga tushmaydi, «masala» sifatida saqlanadi", "warning")
                 else:
-                    err(name, row, label_of["javob"], "Test javobi A, B, C yoki D harfi bo'lsin")
+                    err(name, row, label_of["javob"], "Test javobi mavjud variant harfi bo'lsin (A, B, C yoki D)")
                     continue
                 kind = "masala"
+            if kind == "test":
+                options = (options + ["", "", ""])[:4]
             kod = book_code(row, kind)
             if not kod:
                 continue
@@ -480,7 +484,7 @@ def template_workbook(prefill=None, book=None, blank_topics=3):
         "5. KITOB KODI: har misol/masala/topshiriq/testga kod beriladi (XB-03-A01). Kodni kitobda topshiriq yonida bosing — o'quvchi kodni ilovaga kiritsa, yechim AI doskada chiqadi. Bo'sh qolsa kod avtomatik yaratiladi.",
         "6. Doska: har yangi satr (Alt+Enter) — alohida qator. Tushuntirishda [1], [2] qo'ysangiz — o'qituvchi shu joyga yetganda o'sha qator yoziladi.",
         "7. Yechim: har satr — bitta qadam. «doskaga || o'qituvchi aytadi» deb yozish mumkin.",
-        "8. Test: 4 ta variant (A–D) va to'g'ri javob harfi. Testlar Test bo'limiga ham tushadi.",
+        "8. Test: 2–4 ta variant (A–D; bog'chada 2–3 ta) va to'g'ri javob harfi. Testlar Test bo'limiga ham tushadi.",
         "9. «NAMUNA» varag'i import qilinmaydi — ko'rib, xuddi shunday to'ldiring. Saytda: Tekshirish → Qoralama import → Nashr.",
     ]
     for i, text in enumerate(steps, help_row + 1):
