@@ -192,6 +192,12 @@ if __package__:
 else:
     from modules.togarak_jurnal import create_router as create_togarak_jurnal_router
 app.include_router(create_togarak_jurnal_router(samtm_platform))
+# REV97: bog'cha yosh guruhlari 2-3/4-5/6-7 — bir martalik tozalash va admin «Miya tarkibi».
+if __package__:
+    from .modules.miya_tarkibi import create_router as create_miya_tarkibi_router
+else:
+    from modules.miya_tarkibi import create_router as create_miya_tarkibi_router
+app.include_router(create_miya_tarkibi_router(samtm_platform))
 
 # Dars xonasi: nashr qilingan AI miya kontentidan doskadagi dars.
 if __package__:

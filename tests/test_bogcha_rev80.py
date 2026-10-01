@@ -7,14 +7,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_preschool_groups_are_recognized_without_touching_school_grades():
-    assert preschool_group("3-4") == "3-4 yosh"
-    assert preschool_group("3–4 yosh") == "3-4 yosh"
+    # REV97: faqat 2-3, 4-5, 6-7 yosh; eski 3-4/5-6 import qilinmaydi, eski profil esa yangisiga o'qiladi.
+    assert preschool_group("4-5") == "4-5 yosh"
+    assert preschool_group("2–3 yosh") == "2-3 yosh"
+    assert preschool_group("3-4 yosh") == ""
+    assert preschool_group("3-4 yosh", legacy=True) == "2-3 yosh"
     assert preschool_group("bogcha-6-7") == "6-7 yosh"
     assert preschool_group("4-6 yosh") == ""
     assert canonical_grade("5-6 yosh") == "5-6 yosh"
     assert canonical_grade("5-6") == "5-6"  # maktab qiymati o'zgarmaydi
     assert canonical_grade("2 kurs") == "2 kurs"
-    assert preschool_learner({"kabutar_learning_profile": {"role": "bogcha", "age_group": "3-4 yosh"}}) == "3-4 yosh"
+    assert preschool_learner({"kabutar_learning_profile": {"role": "bogcha", "age_group": "3-4 yosh"}}) == "2-3 yosh"
+    assert preschool_learner({"kabutar_learning_profile": {"role": "bogcha", "age_group": "6-7 yosh"}}) == "6-7 yosh"
     assert preschool_learner({"kabutar_learning_profile": {"role": "oquvchi"}, "class": "3-4 yosh"}) == ""
 
 

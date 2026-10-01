@@ -254,7 +254,7 @@ def preschool_group(value):
         from .modules.curriculum_scope import preschool_group as _group
     except ImportError:
         from modules.curriculum_scope import preschool_group as _group
-    return _group(value)
+    return _group(value, legacy=True)   # REV97: eski ilova keshidan «3-4» kelsa ham yangi guruhga
 
 class PasswordLogin(BaseModel):
     identifier: str = Field(min_length=1, max_length=254)

@@ -1348,7 +1348,7 @@ def joriy_foydalanuvchi(token: Optional[str] = None, request: Request = None):
         r['education_role'] = 'bogcha'
         r['bogcha_mi'] = True
         r['talaba_mi'] = False
-        r['yosh_guruhi'] = _curriculum.preschool_group((r.get('learning_profile') or {}).get('age_group') or r.get('class'))
+        r['yosh_guruhi'] = _curriculum.preschool_group((r.get('learning_profile') or {}).get('age_group') or r.get('class'), legacy=True)
         return r
     if r.get('role') == 'oquvchi' and (r.get('talaba_mi') or (not r.get('class') and (r.get('learning_profile') or {}).get('role') == 'talaba')):
         r['education_role'] = 'talaba'
@@ -15916,7 +15916,7 @@ def _sinf_qiymatini_normallashtir(qiymat):
         return talaba["sinf"]
     # REV80: bog'cha yosh guruhi ("3-4 yosh") 3-sinf deb o'qilmasin.
     if re.search(r"yosh|bog", str(qiymat), re.I):
-        guruh = _curriculum.preschool_group(qiymat)
+        guruh = _curriculum.preschool_group(qiymat, legacy=True)
         if guruh:
             return guruh
     matn = str(qiymat).strip()
@@ -16813,7 +16813,7 @@ class TestShablonSorov(BaseModel):
     # "oddiy"dan alohida belgilanadi, keyinchalik alohida ishlatish uchun
 
 
-_YOSH_GURUHI = {"2-3 yosh": "2-3", "3-4 yosh": "3-4", "4-5 yosh": "4-5", "5-6 yosh": "5-6", "6-7 yosh": "6-7",
+_YOSH_GURUHI = {"2-3 yosh": "2-3", "4-5 yosh": "4-5", "6-7 yosh": "6-7",
                 "1": "6-7", "2": "7-8", "3": "8-9", "4": "9-10", "5": "10-11",
                 "6": "11-12", "7": "12-13", "8": "13-14", "9": "14-15", "10": "15-16", "11": "16-17"}
 
@@ -18470,10 +18470,10 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik, dars_
         raise ValueError("Fan va mavzu bo‘sh bo‘lmasin")
     grade = _dts_sinf_normalize(sinf)
     if scope['institution_type'] == 'bogcha':
-        # REV80: bog'cha dasturida «sinf» — yosh guruhi: 2-3, 3-4, 4-5, 5-6, 6-7 yosh.
+        # REV97: bog'cha dasturida «sinf» — yosh guruhi: faqat 2-3, 4-5 yoki 6-7 yosh.
         grade = _curriculum.preschool_group(sinf)
         if not grade:
-            raise ValueError("Bog‘cha uchun yosh guruhini yozing: 2-3, 3-4, 4-5, 5-6 yoki 6-7 yosh")
+            raise ValueError("Bog‘cha uchun yosh guruhi faqat: 2-3, 4-5 yoki 6-7 yosh (3-4 va 5-6 endi yo‘q)")
     if not grade:
         raise ValueError("Noto'g'ri sinf")
     quarter_code = _dts_chorak_normalize(chorak)
@@ -19360,12 +19360,33 @@ def _ai_brain_kitob_kod_tekshir(cur, parsed):
                            f"«{c['kod']}» kodi «{busy[k]}» kitobida band — KITOB varag'idagi «Kod prefiksi»ni o'zgartiring")
 
 
+def _ai_brain_yosh_guruhi_tekshir(parsed):
+    """REV97: bog'cha guruhlari faqat 2-3, 4-5, 6-7 yosh. Eski «3-4»/«5-6» yozilgan qatorlar miyaga kirmaydi."""
+    seen = set()
+    for sheet, rows in (parsed.get("payload") or {}).items():
+        for r in rows if isinstance(rows, list) else []:
+            if not isinstance(r, dict):
+                continue
+            for field in ("sinf", "topic_code", "grade"):
+                raw = _curriculum._raw_preschool_group(str(r.get(field) or "").split("-0")[0])
+                if raw in _curriculum.LEGACY_PRESCHOOL_GROUPS:
+                    key = (r.get("_sheet") or sheet, r.get("_excel_row"), field)
+                    if key in seen:
+                        continue
+                    seen.add(key)
+                    _ai_brain_xato(parsed["errors"], key[0], r.get("_excel_row") or 0, field,
+                                   f"«{raw}» yosh guruhi endi yo‘q — faqat 2-3, 4-5 yoki 6-7 yosh yozing")
+                    break
+
+
 def _ai_brain_db_topic_tekshir(cur, parsed):
     _ai_brain_nom_boyicha_kod(cur, parsed)
     _ai_brain_kitob_kod_tekshir(cur, parsed)
     topic_rows = parsed["payload"].get("02_DTS_XARITA", [])
     topic_codes = sorted({r["topic_code"] for r in topic_rows if r.get("topic_code")})
     if not topic_codes:
+        _ai_brain_yosh_guruhi_tekshir(parsed)
+        parsed["summary"]["xatolar"] = sum(1 for e in parsed["errors"] if e.get("severity") == "error")
         return
     cur.execute(
         "SELECT topic_code FROM dts_tree WHERE topic_code=ANY(%s) AND is_deleted=FALSE",
@@ -19397,6 +19418,7 @@ def _ai_brain_db_topic_tekshir(cur, parsed):
                 f"«{r.get('topic_code')}» mavzusi hech bir katalogga (maktab/institut/bog'cha/markaz) biriktirilmagan — dars o'quvchilarga ko'rinmaydi. Mavzular bo'limida biriktiring.",
                 "warning",
             )
+    _ai_brain_yosh_guruhi_tekshir(parsed)
     parsed["summary"]["ogohlantirishlar"] = len(parsed["warnings"])
     parsed["summary"]["xatolar"] = sum(
         1 for e in parsed["errors"] if e.get("severity") == "error"
@@ -20356,8 +20378,8 @@ def _ai_yosh_hisobla(tugilgan_sana, sinf=None) -> int:
     talaba = _talaba_sinfini_ochish(sinf)
     if talaba:  # bakalavr 1-kurs ≈ 18, magistr 1-kurs ≈ 22
         return (22 if talaba["bosqich"] == "magistr" else 18) + talaba["kurs"] - 1
-    guruh = _curriculum.preschool_group(sinf) if re.search(r"yosh|bog", str(sinf or ""), re.I) else ""
-    if guruh:  # "3-4 yosh" → 3 yoshli bola
+    guruh = _curriculum.preschool_group(sinf, legacy=True) if re.search(r"yosh|bog", str(sinf or ""), re.I) else ""
+    if guruh:  # "4-5 yosh" → 4 yoshli bola
         return int(guruh.split("-")[0])
     sinf_soni = _ai_sinf_tozala(sinf)
     return int(sinf_soni) + 6 if sinf_soni.isdigit() else 12

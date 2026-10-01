@@ -16,10 +16,12 @@ LESSONS = ('maruza','amaliy','seminar','laboratoriya')
 LESSON_LABELS = {'maruza':'Ma’ruza','amaliy':'Amaliyot','seminar':'Seminar','laboratoriya':'Laboratoriya'}
 INSTITUTIONS = {'maktab':'maktablar','universitet':'universitetlar','bogcha':'bogchalar','markaz':'oquv_markazlari'}
 # REV80: bog'cha yosh guruhlari — «sinf» o'rnida saqlanadi (dts_tree.grade, users.class).
-PRESCHOOL_GROUPS = ('2-3 yosh','3-4 yosh','4-5 yosh','5-6 yosh','6-7 yosh')
+# REV97: faqat uchta guruh: 2-3, 4-5, 6-7 yosh. Eski «3-4» va «5-6» endi yo'q — eski profillar
+# yaqin kichik guruhga o'tkaziladi (legacy=True), import esa ularni qabul qilmaydi.
+PRESCHOOL_GROUPS = ('2-3 yosh','4-5 yosh','6-7 yosh')
+LEGACY_PRESCHOOL_GROUPS = {'3-4 yosh':'2-3 yosh','5-6 yosh':'4-5 yosh'}
 
-def preschool_group(value):
-    """'3-4', '3–4 yosh', 'bogcha-3-4', '3-4 yoshlilar' → '3-4 yosh'; boshqa qiymat → ''."""
+def _raw_preschool_group(value):
     text = str(value or '').replace('–','-').replace('—','-').casefold()
     match = re.search(r'(?<!\d)([2-6])\s*-\s*([3-7])(?!\d)', text)
     if not match or int(match[2]) != int(match[1]) + 1:
@@ -28,12 +30,29 @@ def preschool_group(value):
         return ''
     return f'{match[1]}-{match[2]} yosh'
 
+def preschool_group(value, legacy=False):
+    """'2-3', '4–5 yosh', 'bogcha-6-7' → '… yosh'. Eski '3-4'/'5-6': legacy=True bo'lsa yangi guruhga, aks holda ''."""
+    group = _raw_preschool_group(value)
+    if group in LEGACY_PRESCHOOL_GROUPS:
+        return LEGACY_PRESCHOOL_GROUPS[group] if legacy else ''
+    return group if group in PRESCHOOL_GROUPS else ''
+
+def preschool_group_for_age(age):
+    """Bolaning yoshi → guruh: 3 yoshgacha 2-3, 4-5 → 4-5, 6+ → 6-7."""
+    try:
+        age = int(age)
+    except (TypeError, ValueError):
+        return ''
+    if age < 2 or age > 8:
+        return ''
+    return '2-3 yosh' if age <= 3 else '4-5 yosh' if age <= 5 else '6-7 yosh'
+
 def preschool_learner(user):
     """Bog'cha bolasi: ta'lim profili «bogcha» + yosh guruhi (users.class)."""
     learning = (user or {}).get('kabutar_learning_profile') or {}
     if learning.get('role') != 'bogcha':
         return ''
-    return preschool_group(learning.get('age_group') or (user or {}).get('class')) or ''
+    return preschool_group(learning.get('age_group') or (user or {}).get('class'), legacy=True) or ''
 
 def teacher_institutions(cur, user_id, user):
     """Resolve existing staff memberships; never accept workplace IDs from a request."""
