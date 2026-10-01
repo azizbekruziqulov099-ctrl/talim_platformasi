@@ -180,6 +180,18 @@ if __package__:
 else:
     from modules.admin_speech import create_router as create_admin_speech_router
 app.include_router(create_admin_speech_router(samtm_platform))
+# REV96: o'qituvchilar uchun ham ovoz ⇄ matn (/api/speech/...).
+if __package__:
+    from .modules.admin_speech import create_teacher_router as create_teacher_speech_router
+else:
+    from modules.admin_speech import create_teacher_router as create_teacher_speech_router
+app.include_router(create_teacher_speech_router(samtm_platform))
+# REV96: to'garak/repetitor jurnali — davomat va to'lovlar (bot bilan bir xil jadvallar).
+if __package__:
+    from .modules.togarak_jurnal import create_router as create_togarak_jurnal_router
+else:
+    from modules.togarak_jurnal import create_router as create_togarak_jurnal_router
+app.include_router(create_togarak_jurnal_router(samtm_platform))
 
 # Dars xonasi: nashr qilingan AI miya kontentidan doskadagi dars.
 if __package__:

@@ -45,13 +45,68 @@ def stt_keys(platform=None):
             'gemini':str(os.getenv('GEMINI_API_KEY','') or os.getenv('GOOGLE_AI_API_KEY','') or '').strip()}
 
 
+def stt_key_list(name, first):
+    """REV96: bir xizmatga bir nechta kalit — GROQ_API_KEYS=k1,k2 (yoki GROQ_API_KEY ichida vergul bilan).
+    Bepul limit tugasa keyingi kalitga o'tiladi; kunlik limit shu bilan ko'payadi."""
+    import os
+    raw=','.join([first or '',os.getenv(f'{name.upper()}_API_KEYS','') or ''])
+    out=[]
+    for key in raw.split(','):
+        key=key.strip()
+        if key and key not in out:out.append(key)
+    return out
+
+
 def stt_providers(platform=None):
-    """Kaliti bor xizmatlar tartibi. STT_PROVIDERS=openai,gemini,groq bilan o'zgartirish mumkin."""
+    """Kaliti bor xizmatlar tartibi. STT_PROVIDERS=openai,gemini,groq bilan o'zgartirish mumkin.
+    Limiti tugagan / kaliti qabul qilinmagan xizmat bir muddat oxiriga suriladi (qayta-qayta urilmaydi)."""
     import os
     keys=stt_keys(platform)
     order=[x.strip().lower() for x in (os.getenv('STT_PROVIDERS') or 'groq,openai,gemini').split(',') if x.strip()]
     order+=[x for x in ('groq','openai','gemini') if x not in order]
-    return [(name,keys[name]) for name in order if name in keys and keys[name]]
+    result=[(name,key) for name in order if name in keys for key in stt_key_list(name,keys[name])]
+    cooling=stt_cooldowns()
+    import time
+    now=time.time()
+    ready=[p for p in result if cooling.get(stt_slot(*p),{}).get('until',0)<=now]
+    resting=sorted([p for p in result if p not in ready],key=lambda p:cooling[stt_slot(*p)]['until'])
+    return ready+resting
+
+
+def stt_cooldowns(_store={}):
+    """Jarayon ichidagi holat: {slot: {'until': vaqt, 'reason': matn, 'at': vaqt}}."""
+    return _store
+
+
+def stt_slot(name, key):
+    return f'{name}:{hashlib.sha256(str(key).encode()).hexdigest()[:10]}'
+
+
+def stt_rest(name, key, exc):
+    """Xato turiga qarab xizmatni dam oldirish: limit — 2 daq (yoki Retry-After), kalit xatosi — 30 daq."""
+    import time
+    response=getattr(exc,'response',None)
+    status=getattr(response,'status_code',None)
+    seconds={429:120,401:1800,403:1800,404:900}.get(status,0)
+    if status==429:
+        try:seconds=max(20,min(3600,int(float((response.headers or {}).get('retry-after') or 120))))
+        except (TypeError,ValueError,AttributeError):seconds=120
+    reason={429:'limit',401:'kalit',403:'ruxsat',404:'model'}.get(status,type(exc).__name__)
+    entry={'until':time.time()+seconds,'reason':reason,'at':time.time()}
+    stt_cooldowns()[stt_slot(name,key)]=entry
+    return entry
+
+
+def stt_health(platform=None):
+    """Adminga: qaysi xizmat ishlayapti, qaysi biri dam olmoqda va nega."""
+    import time
+    now=time.time()
+    out=[]
+    for name,key in stt_providers(platform):
+        c=stt_cooldowns().get(stt_slot(name,key)) or {}
+        out.append({'xizmat':name,'kalit':'…'+str(key)[-4:],'holat':'dam' if c.get('until',0)>now else 'tayyor',
+                    'sabab':c.get('reason',''),'qolgan_soniya':max(0,int(c.get('until',0)-now))})
+    return out
 
 
 async def _whisper_compatible(url, model, audio, content_type, extension, api_key, language, verbose):
@@ -93,7 +148,7 @@ async def _gemini(audio, content_type, api_key, language):
     return {'text':text.strip(),'language':language if language!='auto' else ''}
 
 
-async def transcribe_audio(audio, content_type, extension, api_key, language='auto', provider='groq'):
+async def transcribe_audio(audio, content_type, extension, api_key, language='auto', provider='groq', model=None):
     import os
     if provider=='openai':
         return await _whisper_compatible('https://api.openai.com/v1/audio/transcriptions',
@@ -102,7 +157,7 @@ async def transcribe_audio(audio, content_type, extension, api_key, language='au
     if provider=='gemini':
         return await _gemini(audio,content_type,api_key,language)
     return await _whisper_compatible('https://api.groq.com/openai/v1/audio/transcriptions',
-        os.getenv('GROQ_STT_MODEL','whisper-large-v3'),audio,content_type,extension,api_key,language,True)
+        model or os.getenv('GROQ_STT_MODEL','whisper-large-v3'),audio,content_type,extension,api_key,language,True)
 
 
 async def transcribe_any(audio, content_type, extension, providers, language='auto'):
@@ -112,9 +167,21 @@ async def transcribe_any(audio, content_type, extension, providers, language='au
         try:
             result=await transcribe_audio(audio,content_type,extension,key,language,name)
             result['provider']=name
+            stt_cooldowns().pop(stt_slot(name,key),None)
             return result
         except Exception as exc:
             last=exc
+            status=getattr(getattr(exc,'response',None),'status_code',None)
+            if name=='groq' and status==429:
+                # REV96: Groq'da har modelning limiti alohida — «turbo» model bilan shu kalitda yana urinamiz.
+                try:
+                    result=await transcribe_audio(audio,content_type,extension,key,language,name,model='whisper-large-v3-turbo')
+                    result['provider']='groq-turbo'
+                    return result
+                except Exception as exc2:
+                    if getattr(exc2,'response',None) is not None:last=exc2   # aks holda asl limit xatosi aytiladi
+            try:stt_rest(name,key,last)
+            except Exception:pass
             continue
     raise last or RuntimeError('no_provider')
 
@@ -134,19 +201,46 @@ def transcription_error(exc):
     return HTTPException(503,'STT_CONNECTION: Backend ovoz tanish xizmatidan javob ololmadi. Ulanishni tekshirib, shu yozuvni qayta yuboring.')
 
 def create_router(platform):
-    router=APIRouter(prefix='/api/admin/speech',tags=['admin-speech'])
+    return speech_router(platform,'/api/admin/speech',platform._admin_tekshir)
+
+
+def teacher_check(platform):
+    """REV96: o'qituvchi (va admin) uchun ham — matnni ovozga, ovozni matnga."""
+    def check(token):
+        uid=platform._jwt_tekshir(token)
+        conn=platform._db();cur=conn.cursor()
+        try:
+            cur.execute('SELECT role FROM users WHERE user_id=%s',(uid,))
+            row=cur.fetchone() or {}
+            if row.get('role') in ('oqituvchi','admin'):return uid
+            cur.execute('SELECT 1 FROM admin_akkaunt WHERE uid=%s',(uid,))
+            if cur.fetchone():return uid
+        finally:
+            cur.close();conn.close()
+        raise HTTPException(403,'Ovozli matn faqat o‘qituvchilar uchun')
+    return check
+
+
+def create_teacher_router(platform):
+    return speech_router(platform,'/api/speech',teacher_check(platform),'oqituvchi')
+
+
+def speech_router(platform, prefix, check, rol='admin'):
+    router=APIRouter(prefix=prefix,tags=['speech'])
 
     @router.get('/status')
     def status(token:str):
-        platform._admin_tekshir(token)
-        return {'admin':True,'reading_available':importlib.util.find_spec('edge_tts') is not None,
-                'language':'uz','languages':['uz','ru','en'],'revision':64,
-                'dictation_available':bool(stt_providers(platform)),
-                'providers':[name for name,_ in stt_providers(platform)]}
+        check(token)
+        providers=stt_providers(platform)
+        return {'admin':True,'allowed':True,'reading_available':importlib.util.find_spec('edge_tts') is not None,
+                'language':'uz','languages':['uz','ru','en'],'revision':96,
+                'dictation_available':bool(providers),
+                'providers':list(dict.fromkeys(name for name,_ in providers)),
+                'rol':rol,'holat':stt_health(platform) if rol=='admin' else []}
 
     @router.post('/read')
     async def read(payload:dict,token:str):
-        platform._admin_tekshir(token)
+        check(token)
         try:
             text,voice,rate=speech_input(payload)
             language=selected_language(payload.get('language','auto'))
@@ -165,7 +259,7 @@ def create_router(platform):
 
     @router.post('/dictate')
     async def dictate(request:Request,token:str,language:str='auto'):
-        platform._admin_tekshir(token)
+        check(token)
         try:language=selected_language(language)
         except ValueError as exc:raise HTTPException(400,str(exc)) from exc
         providers=stt_providers(platform)

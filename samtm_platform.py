@@ -3187,14 +3187,14 @@ def sayt_kod_yarat(token: str):
 # O'QITUVCHI — baholash
 # ═══════════════════════════════════════════════════════════
 
-TOGARAK_MAX_TALABA = 25
+TOGARAK_MAX_TALABA = 50   # REV96: to'garak va repetitor guruhida 50 tagacha bola
 SAMTM_PAYMENTS_ENABLED = False
 ODDIY_OQITUVCHI_BEPUL_TOGARAK_LIMIT = 1_000_000
 IKKINCHI_TOGARAK_NARXI_UZS = 0
 
 
 def _togarak_sigimi(max_talaba):
-    """Eski NULL yoki noto'g'ri qiymatlarni ham qat'iy 25 o'ringa keltiradi."""
+    """Eski NULL yoki noto'g'ri qiymatlarni ham qat'iy TOGARAK_MAX_TALABA o'ringa keltiradi."""
     try:
         qiymat = int(max_talaba)
     except (TypeError, ValueError):
@@ -3202,6 +3202,31 @@ def _togarak_sigimi(max_talaba):
     if qiymat < 1:
         return TOGARAK_MAX_TALABA
     return min(qiymat, TOGARAK_MAX_TALABA)
+
+
+_TOGARAK_SIGIM_TAYYOR = {"ok": False}
+
+
+def _togarak_sigimini_yangila(cur):
+    """REV96: eski bazada qolgan «25 o'rin» cheklovlarini 50 ga moslaydi (bir marta, xavfsiz).
+    Sig'im endi kodda FOR UPDATE bilan tekshiriladi (sayt ham, bot ham max_talaba ustunini o'qiydi)."""
+    if _TOGARAK_SIGIM_TAYYOR["ok"]:
+        return
+    try:
+        cur.execute("SAVEPOINT togarak_sigim")
+        cur.execute("""SELECT conname, pg_get_constraintdef(oid) AS def FROM pg_constraint
+                       WHERE conrelid='togaraklar'::regclass AND contype='c'""")
+        for r in cur.fetchall():
+            d = r["def"] or ""
+            if "max_talaba" in d and str(TOGARAK_MAX_TALABA) not in d:
+                cur.execute(f'ALTER TABLE togaraklar DROP CONSTRAINT "{r["conname"]}"')
+        cur.execute("DROP TRIGGER IF EXISTS samtm_togarak_25_orin_himoyasi ON togarak_azolar")
+        cur.execute("UPDATE togaraklar SET max_talaba=%s WHERE max_talaba IS NULL OR max_talaba=25", (TOGARAK_MAX_TALABA,))
+        cur.execute("RELEASE SAVEPOINT togarak_sigim")
+        _TOGARAK_SIGIM_TAYYOR["ok"] = True
+    except Exception as exc:
+        cur.execute("ROLLBACK TO SAVEPOINT togarak_sigim")
+        print(f"[To'garak sig'imi] yangilab bo'lmadi: {exc}", flush=True)
 
 
 def _togarak_yaratish_kvotasi(
@@ -3227,6 +3252,7 @@ def _togarak_yaratish_kvotasi(
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS guruh_turi TEXT DEFAULT 'togarak'")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
     cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
+    _togarak_sigimini_yangila(cur)
     cur.execute(
         """SELECT COUNT(*) AS soni FROM togaraklar
            WHERE teacher_id=%s AND aktiv=TRUE
@@ -25636,6 +25662,7 @@ def analitika_progress_saqla(sorov: AnalitikaProgressSorov):
 from modules.kindergarten import create_kindergarten_router
 from modules.institute import create_institute_router
 from modules.institute_library import create_institute_library_router
+from modules.teacher_library import create_teacher_library_router
 # KABUTAR_REV32_LEGAL_INLINE: required privacy router bundled for one-file deployment.
 from typing import Optional
 
@@ -25769,6 +25796,7 @@ app.include_router(create_school_router(_jwt_tekshir))
 app.include_router(create_learning_center_router(_jwt_tekshir))
 app.include_router(create_institute_router(_jwt_tekshir))
 app.include_router(create_institute_library_router(_jwt_tekshir, _db))
+app.include_router(create_teacher_library_router(_jwt_tekshir, _db))  # REV96: Kutubxonam
 app.include_router(create_legal_privacy_router(_jwt_tekshir, _db))
 app.include_router(create_organization_trial_router(_jwt_tekshir))
 app.include_router(create_institution_archive_router(_admin_tekshir, _db))
