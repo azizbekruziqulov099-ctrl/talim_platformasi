@@ -1,0 +1,3107 @@
+{
+ "subject": "Yapon tili",
+ "lang": "ja",
+ "age": "5-6 yosh",
+ "book_title": "こんにちは、ともだち！ 5–6 yosh",
+ "prefix": "JA",
+ "units": [
+  {
+   "name": "Salom va sanoq 1–10",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Salom, do'stim!",
+     "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
+     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "items": [
+      {
+       "say": "こんにちは！",
+       "uz": "salom",
+       "emoji": "👋",
+       "image": "en56-u1-hello.png",
+       "image_prompt": "A smiling child waving hello, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni silkiting!",
+       "sentence": "こんにちは！ぼくは カブタル。",
+       "action_en": "てを ふって！",
+       "rom": "Konnichiwa!"
+      },
+      {
+       "say": "おなまえは？",
+       "uz": "isming nima?",
+       "emoji": "❓",
+       "image": "en56-u1-whats-your-name.png",
+       "image_prompt": "A curious child asking a friend a question with a big question mark, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "こんにちは！おなまえは？",
+       "rom": "Onamae wa?"
+      },
+      {
+       "say": "ぼくの なまえは アンヴァル。",
+       "uz": "mening ismim Anvar",
+       "emoji": "🧒",
+       "image": "en56-u1-my-name-is.png",
+       "image_prompt": "A happy boy pointing to himself with a name badge, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ko'kragingizga qo'lingizni qo'ying!",
+       "sentence": "こんにちは！ぼくの なまえは アンヴァル。",
+       "action_en": "じぶんを ゆびさして！",
+       "rom": "Boku no namae wa Anvar."
+      },
+      {
+       "say": "さようなら！",
+       "uz": "xayr",
+       "emoji": "🙋",
+       "image": "en56-u1-goodbye.png",
+       "image_prompt": "A child raising a hand to say goodbye at a door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni ko'taring!",
+       "sentence": "さようなら、カブタル！さようなら、ママ！",
+       "action_en": "てを ふって バイバイ！",
+       "rom": "Sayōnara!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: tanishamiz",
+       "matn": "Qani, Kabutar qushcha bilan gaplashamiz. Men so'rayman: [ja]こんにちは！おなまえは？[/ja] Siz javob bering: [ja]こんにちは！わたしの なまえは…[/ja] va ismingizni ayting. Oxirida: [ja]さようなら！[/ja]",
+       "doska": "— こんにちは！おなまえは？\n— こんにちは！わたしの なまえは …\n— さようなら！",
+       "sodda": "Sekin: [ja]こんにちは！[/ja] — salom. [ja]わたしの なまえは…[/ja] — mening ismim… Keyin ismingizni ayting.",
+       "boshqa_usul": "Oynaga qarab o'zingiz bilan tanishing: [ja]こんにちは！わたしの なまえは…[/ja] Keyin onangiz bilan ham shunday gaplashing!",
+       "matn_en": "とりの カブタルと おはなし しよう。カブタル：こんにちは！おなまえは？こども：こんにちは！わたしの なまえは…（なまえを いってね）。カブタル：さようなら！こども：さようなら！",
+       "sarlavha_en": "🎭 かいわ：なかよく なろう"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Do'stingiz [ja]おなまえは？[/ja] deb so'radi. Nima deysiz?",
+       "options": [
+        "🧒 ぼくの なまえは アリ。",
+        "🙋 さようなら！",
+        "1️⃣ いち"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ismni so'rasa: [ja]わたしの なまえは…[/ja] deymiz.",
+       "q_en": "ともだちが「おなまえは？」と きいたよ。なんて いう？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくは とりの カブタル。あいたかったよ！あいさつして なまえを いおう。"
+    },
+    {
+     "name": "Sanaymiz: bir–to'rt",
+     "goal": "Bola 1 dan 4 gacha yaponcha sanaydi",
+     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin yaponcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "items": [
+      {
+       "say": "いち",
+       "uz": "bir",
+       "emoji": "1️⃣",
+       "image": "en56-u1-one.png",
+       "image_prompt": "One red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bitta barmoq ko'rsating!",
+       "sentence": "はなが ひとつ あるよ。",
+       "action_en": "ゆびを いっぽん みせて！",
+       "rom": "ichi"
+      },
+      {
+       "say": "に",
+       "uz": "ikki",
+       "emoji": "2️⃣",
+       "image": "en56-u1-two.png",
+       "image_prompt": "Two yellow ducks, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ikkita barmoq ko'rsating!",
+       "sentence": "めが ふたつ あるよ。",
+       "action_en": "ゆびを にほん みせて！",
+       "rom": "ni"
+      },
+      {
+       "say": "さん",
+       "uz": "uch",
+       "emoji": "3️⃣",
+       "image": "en56-u1-three.png",
+       "image_prompt": "Three blue balls, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uchta barmoq ko'rsating!",
+       "sentence": "ねこが さんびき みえるよ。",
+       "action_en": "さんかい てを たたいて！",
+       "rom": "san"
+      },
+      {
+       "say": "よん",
+       "uz": "to'rt",
+       "emoji": "4️⃣",
+       "image": "en56-u1-four.png",
+       "image_prompt": "Four green frogs, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "To'rtta barmoq ko'rsating!",
+       "sentence": "いぬは あしが よんほん あるよ。",
+       "action_en": "よんかい ジャンプ！",
+       "rom": "yon"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak sanog'i",
+       "matn": "Men sanayman, siz qarsak chalasiz: [ja]いち[/ja] — bir qarsak, [ja]に[/ja] — ikki qarsak, [ja]さん[/ja] — uch qarsak, [ja]よん[/ja] — to'rt qarsak! Endi o'zingiz sanang!",
+       "doska": "1 いち 👏\n2 に 👏👏\n3 さん 👏👏👏\n4 よん 👏👏👏👏",
+       "sodda": "Sekin sanaymiz: [ja]いち、に、さん、よん[/ja].",
+       "boshqa_usul": "Qarsak o'rniga sakrab sanang: [ja]いち、に、さん、よん！[/ja]",
+       "matn_en": "わたしが かぞえて、きみが てを たたく！いち — いっかい。に — にかい。さん — さんかい。よん — よんかい！こんどは きみが かぞえて！",
+       "sarlavha_en": "👏 てを たたいて かぞえよう"
+      }
+     ],
+     "intro_en": "こんにちは！カブタルと かぞえよう。いち、に、さん、よん！いっしょに かぞえて！"
+    },
+    {
+     "name": "Sanaymiz: besh–yetti",
+     "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
+     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "items": [
+      {
+       "say": "ご",
+       "uz": "besh",
+       "emoji": "5️⃣",
+       "image": "en56-u1-five.png",
+       "image_prompt": "Five orange stars, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bir qo'lingizni ochib ko'rsating!",
+       "sentence": "ゆびが ごほん あるよ。",
+       "action_en": "ゆびを ごほん みせて！",
+       "rom": "go"
+      },
+      {
+       "say": "ろく",
+       "uz": "olti",
+       "emoji": "6️⃣",
+       "image": "en56-u1-six.png",
+       "image_prompt": "Six pink flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "あかい ボールが むっつ みえるよ。",
+       "action_en": "ろっかい てを たたいて！",
+       "rom": "roku"
+      },
+      {
+       "say": "なな",
+       "uz": "yetti",
+       "emoji": "7️⃣",
+       "image": "en56-u1-seven.png",
+       "image_prompt": "Seven small fish, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "りんごを ななこ もっているよ。",
+       "action_en": "ななかい ジャンプ！",
+       "rom": "nana"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Sanoq qo'shig'i",
+       "matn": "Qo'shiq aytamiz: [ja]いち、に、さん、よん、ご、ろく、なな！[/ja] Sekin boshlaymiz, keyin tezroq! Har songa bitta barmoq oching.",
+       "doska": "いち に さん よん ご ろく なな\n1 2 3 4 5 6 7",
+       "sodda": "Faqat beshgacha: [ja]いち、に、さん、よん、ご[/ja]. Keyin qo'shamiz: [ja]ろく、なな[/ja].",
+       "boshqa_usul": "Zinapoyada yurib sanang: har qadamda bitta son — [ja]いち… なな！[/ja]",
+       "matn_en": "うたおう：いち、に、さん、よん、ご、ろく、なな！ゆっくり うたって、それから はやく！かずごとに ゆびを いっぽん だしてね。",
+       "sarlavha_en": "🎵 かぞえうた"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🖐️ Bir qo'lda nechta barmoq bor?",
+       "options": [
+        "5️⃣ ご",
+        "3️⃣ さん",
+        "7️⃣ なな"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bir qo'lda besh barmoq — [ja]ご[/ja].",
+       "q_en": "かたてに ゆびは なんぼん？"
+      }
+     ],
+     "intro_en": "やあ、みんな！いちから よんまで しっているね。こんどは ご、ろく、ななを かぞえよう！"
+    },
+    {
+     "name": "Sanaymiz: sakkiz–o'n",
+     "goal": "Bola 8, 9, 10 ni aytadi va «いくつ？» savoliga javob beradi",
+     "intro": "Gu-gu! Bugun bizda katta sir bor: o'ngacha sanashni o'rgansak, Kabutar qushcha sizga o'nta yulduzcha sovg'a qiladi! Tayyormisiz?",
+     "items": [
+      {
+       "say": "はち",
+       "uz": "sakkiz",
+       "emoji": "8️⃣",
+       "image": "en56-u1-eight.png",
+       "image_prompt": "Eight colorful balloons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "とりが はちわ みえるよ。",
+       "action_en": "はっかい てを たたいて！",
+       "rom": "hachi"
+      },
+      {
+       "say": "きゅう",
+       "uz": "to'qqiz",
+       "emoji": "9️⃣",
+       "image": "en56-u1-nine.png",
+       "image_prompt": "Nine little ladybugs, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ふうせんを きゅうこ もっているよ。",
+       "rom": "kyū"
+      },
+      {
+       "say": "じゅう",
+       "uz": "o'n",
+       "emoji": "🔟",
+       "image": "en56-u1-ten.png",
+       "image_prompt": "Ten fingers of two open hands, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Ikki qo'lingizni ochib ko'rsating!",
+       "sentence": "ゆびが じゅっぽん あるよ。",
+       "action_en": "ゆびを じゅっぽん みせて！",
+       "rom": "jū"
+      },
+      {
+       "say": "いくつ？",
+       "uz": "nechta?",
+       "emoji": "🔢",
+       "image": "en56-u1-how-many.png",
+       "image_prompt": "A pigeon looking at a group of apples with a question mark, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "りんごは いくつ？みっつ！",
+       "rom": "Ikutsu?"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚀 Raketa uchadi!",
+       "matn": "Raketa uchishiga tayyor! Pastga sanaymiz: [ja]じゅう、きゅう、はち、なな、ろく、ご、よん、さん、に、いち！[/ja] Endi baland sakrang — uchdik!",
+       "doska": "10 9 8 7 6 5 4 3 2 1 🚀",
+       "sodda": "Avval oldinga sanaymiz: [ja]いち… じゅう[/ja]. Keyin orqaga.",
+       "boshqa_usul": "Cho'kkalab o'tirib sanang, [ja]いち[/ja] deganda sakrang!",
+       "matn_en": "ロケットの じゅんび OK！カウントダウン：じゅう、きゅう、はち、なな、ろく、ご、よん、さん、に、いち！たかく ジャンプ — とんでいけ！",
+       "sarlavha_en": "🚀 ロケット はっしゃ！"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]いくつ？[/ja] 🍎🍎🍎 — nechta olma?",
+       "options": [
+        "3️⃣ さん",
+        "8️⃣ はち",
+        "🔟 じゅう"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Uchta olma — [ja]さん[/ja].",
+       "q_en": "りんごは いくつ？"
+      },
+      {
+       "q": "🙌 Ikki qo'lda nechta barmoq?",
+       "options": [
+        "🔟 じゅう",
+        "6️⃣ ろく",
+        "9️⃣ きゅう"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ikki qo'lda o'n barmoq — [ja]じゅう[/ja].",
+       "q_en": "りょうてに ゆびは なんぼん？"
+      }
+     ],
+     "intro_en": "また あったね！じゅうまで かぞえよう。はち、きゅう、じゅう！いくつまで かぞえられる？"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 1,
+     "name": "Bog'chada yangi do'st",
+     "name_en": "ようちえんの あたらしい ともだち",
+     "emoji": "🏫",
+     "goal": "Bola bog'chada yangi do'st bilan salomlashadi, ismini so'raydi va o'yinchoqlarni sanaydi",
+     "intro": "Bog'chaga yangi bola keldi. Keling, u bilan tanishamiz va birga sanaymiz!",
+     "intro_en": "あたらしい ともだちが ようちえんに きたよ。あいさつして、いっしょに おもちゃを かぞえよう！",
+     "roles": [
+      "Yangi do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "あたらしい ともだち",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s1-new-friend.png",
+      "image_prompt": "Two smiling children meeting in a bright kindergarten playroom with toy blocks on the floor, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "こんにちは！おなまえは？",
+       "uz": "salom! isming nima?",
+       "emoji": "👋",
+       "rom": "Konnichiwa! Onamae wa?"
+      },
+      {
+       "who": 0,
+       "say": "こんにちは！わたしの なまえは マリカです。",
+       "uz": "salom! mening ismim Malika",
+       "emoji": "👧",
+       "rom": "Konnichiwa! Watashi no namae wa Malika desu."
+      },
+      {
+       "who": 1,
+       "say": "ぼくの なまえは アンヴァル。あそぼう！",
+       "uz": "mening ismim Anvar. keling, o'ynaymiz!",
+       "emoji": "🧒",
+       "rom": "Boku no namae wa Anvar. Asobō!"
+      },
+      {
+       "who": 0,
+       "say": "つみきは いくつ？",
+       "uz": "nechta kubik?",
+       "emoji": "🧱",
+       "rom": "Tsumiki wa ikutsu?"
+      },
+      {
+       "who": 1,
+       "say": "いち、に、さん… つみき じゅっこ！",
+       "uz": "bir, ikki, uch... o'nta kubik!",
+       "emoji": "🔟",
+       "rom": "Ichi, ni, san… tsumiki jukko!"
+      },
+      {
+       "who": 0,
+       "say": "うん！さようなら、アンヴァル！",
+       "uz": "ha! xayr, Anvar!",
+       "emoji": "👋",
+       "rom": "Un! Sayōnara, Anvar!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yangi do'stning ismini bilmoqchisiz. Nima deysiz?",
+       "q_en": "あたらしい ともだちの なまえを しりたい。なんて いう？",
+       "options": [
+        "❓ おなまえは？",
+        "🔟 じゅう",
+        "👋 さようなら！"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]おなまえは？[/ja]",
+       "why_en": "そう！おなまえは？"
+      },
+      {
+       "q": "Do'stingiz ketyapti. Nima deysiz?",
+       "q_en": "ともだちが おうちに かえるよ。なんて いう？",
+       "options": [
+        "👋 さようなら！",
+        "🧱 いくつ？",
+        "3️⃣ さん"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]さようなら！[/ja]",
+       "why_en": "そう！さようなら！"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oilam va do'stlarim",
+   "emoji": "👨‍👩‍👧",
+   "lessons": [
+    {
+     "name": "Bu mening onam",
+     "goal": "Bola «これは わたしの…» bilan oila a'zolarini tanishtiradi",
+     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni yaponcha tanishtirishni o'rganing.",
+     "items": [
+      {
+       "say": "これは ママ。",
+       "uz": "bu mening onam",
+       "emoji": "👩",
+       "image": "en56-u2-my-mum.png",
+       "image_prompt": "A smiling mother hugging a child, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Onangizni ko'rsating!",
+       "sentence": "みて！これは ママ。",
+       "action_en": "えを ゆびさして！",
+       "rom": "Kore wa Mama."
+      },
+      {
+       "say": "これは パパ。",
+       "uz": "bu mening dadam",
+       "emoji": "👨",
+       "image": "en56-u2-my-dad.png",
+       "image_prompt": "A smiling father holding a child's hand, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "こんにちは！これは パパ。",
+       "rom": "Kore wa Papa."
+      },
+      {
+       "say": "これは おねえちゃん。",
+       "uz": "bu mening opam yoki singlim",
+       "emoji": "👧",
+       "image": "en56-u2-my-sister.png",
+       "image_prompt": "A little girl with pigtails smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "これは おねえちゃん。なまえは ライロ。",
+       "rom": "Kore wa onēchan."
+      },
+      {
+       "say": "これは おにいちゃん。",
+       "uz": "bu mening akam yoki ukam",
+       "emoji": "👦",
+       "image": "en56-u2-my-brother.png",
+       "image_prompt": "A little boy smiling with a ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "これは おにいちゃん。おおきいよ。",
+       "rom": "Kore wa onīchan."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖼️ Oilaviy surat",
+       "matn": "Oilangiz rasmini chizing yoki suratini oling. Har birini ko'rsatib ayting: [ja]これは ママ。これは パパ。[/ja] Juda chiroyli!",
+       "doska": "これは ママ。👩\nこれは パパ。👨\nこれは おねえちゃん。👧\nこれは おにいちゃん。👦",
+       "sodda": "Qisqa ayting: [ja]ぼくの ママ[/ja], [ja]ぼくの パパ[/ja].",
+       "boshqa_usul": "Barmoqlaringizga oila a'zolarini chizing — barmoq teatri! Har barmoq aytadi: [ja]これは わたしの…[/ja]",
+       "matn_en": "かぞくの えを かくか、しゃしんを みせてね。ゆびさして いおう：これは ママ。これは パパ。これは おにいちゃん。とても すてき！",
+       "sarlavha_en": "🖼️ かぞくの しゃしん"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Dadangizni ko'rsatib nima deysiz?",
+       "options": [
+        "👨 これは パパ。",
+        "👩 これは ママ。",
+        "👦 これは おにいちゃん。"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Dada — [ja]パパ[/ja]: [ja]これは パパ。[/ja]",
+       "q_en": "パパを しょうかい して。なんて いう？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくは かぞくが だいすき。みて！これは ママ。きみの かぞくにも あいたいな！"
+    },
+    {
+     "name": "Buvim va bobom",
+     "goal": "Bola おばあちゃん, おじいちゃん, あかちゃん, かぞく so'zlarini biladi",
+     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "items": [
+      {
+       "say": "おばあちゃん",
+       "uz": "buvi",
+       "emoji": "👵",
+       "image": "en56-u2-grandma.png",
+       "image_prompt": "A kind grandmother with glasses smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おばあちゃんは パンを つくるよ。",
+       "rom": "obāchan"
+      },
+      {
+       "say": "おじいちゃん",
+       "uz": "bobo",
+       "emoji": "👴",
+       "image": "en56-u2-grandpa.png",
+       "image_prompt": "A kind grandfather with a walking stick smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おじいちゃんには おおきな にわが あるよ。",
+       "rom": "ojīchan"
+      },
+      {
+       "say": "あかちゃん",
+       "uz": "chaqaloq",
+       "emoji": "👶",
+       "image": "en56-u2-baby.png",
+       "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chaqaloqni allalagandek tebratining!",
+       "sentence": "あかちゃんは ちいさい。",
+       "action_en": "あかちゃんを ゆらして！",
+       "rom": "akachan"
+      },
+      {
+       "say": "かぞく",
+       "uz": "oila",
+       "emoji": "👨‍👩‍👧‍👦",
+       "image": "en56-u2-family.png",
+       "image_prompt": "A happy family of four holding hands, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "かぞくが だいすき。",
+       "action_en": "じぶんを ぎゅっと して！",
+       "rom": "kazoku"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Barmoq oilasi qo'shig'i",
+       "matn": "Barmoqlaringizni ko'rsatib kuylang: [ja]パパゆび、ママゆび、おにいちゃんゆび、おねえちゃんゆび、あかちゃんゆび — かぞく！[/ja] Oxirida hamma barmoqni quchoqlang!",
+       "doska": "👍 パパ  ☝️ ママ  🖕 おにいちゃん\n💍 おねえちゃん  🤙 あかちゃん\n👨‍👩‍👧‍👦 かぞく！",
+       "sodda": "Faqat uchta: [ja]パパ、ママ、あかちゃん[/ja].",
+       "boshqa_usul": "Har barmoqni qimirlatib, ovozini o'zgartirib ayting: bobo — yo'g'on, chaqaloq — ingichka ovoz!",
+       "matn_en": "ゆびを みせて うたおう：パパゆび、ママゆび、おにいちゃんゆび、おねえちゃんゆび、あかちゃんゆび — かぞく！さいごに ゆびを ぜんぶ ぎゅっ！",
+       "sarlavha_en": "🎵 ゆびの かぞくの うた"
+      }
+     ],
+     "intro_en": "やあ！きょうは おばあちゃんと おじいちゃんの いえに いくよ。ぼくたちが だいすきなんだ！"
+    },
+    {
+     "name": "Qalaysan, do'stim?",
+     "goal": "Bola «げんき？» deb so'raydi va «げんきです、ありがとう» deb javob beradi",
+     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "items": [
+      {
+       "say": "ともだち",
+       "uz": "do'st",
+       "emoji": "🧑‍🤝‍🧑",
+       "image": "en56-u2-friend.png",
+       "image_prompt": "Two children holding hands as friends, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yoningizdagi do'stingizning qo'lini ushlang!",
+       "sentence": "アンヴァルは ぼくの ともだち。",
+       "action_en": "ともだちと あくしゅ して！",
+       "rom": "tomodachi"
+      },
+      {
+       "say": "げんき？",
+       "uz": "qalaysan?",
+       "emoji": "🤗",
+       "image": "en56-u2-how-are-you.png",
+       "image_prompt": "A child greeting a friend with open arms, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "こんにちは、ライロ！げんき？",
+       "rom": "Genki?"
+      },
+      {
+       "say": "げんきです、ありがとう。",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊",
+       "image": "en56-u2-im-fine.png",
+       "image_prompt": "A smiling child with a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "げんきだよ、ありがとう。きみは？",
+       "rom": "Genki desu, arigatō."
+      },
+      {
+       "say": "おはよう！",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en56-u2-good-morning.png",
+       "image_prompt": "A child stretching by a window at sunrise, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kerishib, uyg'onganday bo'ling!",
+       "sentence": "おはよう、ママ！",
+       "action_en": "うでを のばして！",
+       "rom": "Ohayō!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: ertalab hovlida",
+       "matn": "Men — Kabutar, siz — do'stim. [ja]おはよう！げんき？[/ja] Siz javob bering: [ja]げんきだよ、ありがとう！[/ja] Keyin rollarni almashamiz!",
+       "doska": "— おはよう！げんき？\n— げんきだよ、ありがとう！",
+       "sodda": "Qisqa javob: [ja]げんきだよ、ありがとう！[/ja]",
+       "boshqa_usul": "Qo'g'irchoq yoki ayiqcha bilan gaplashing: [ja]おはよう、くまちゃん！げんき？[/ja]",
+       "matn_en": "カブタル：おはよう！げんき？こども：げんきだよ、ありがとう！こうたい しよう：きみが きいて、カブタルが こたえるよ！",
+       "sarlavha_en": "🎭 かいわ：おはよう"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]げんき？[/ja] — nima deb javob beramiz?",
+       "options": [
+        "😊 げんきです、ありがとう。",
+        "👋 こんにちは！",
+        "5️⃣ ご"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ja]げんきです、ありがとう。[/ja] — yaxshiman, rahmat.",
+       "q_en": "ともだちが「げんき？」と きいたよ。なんて いう？"
+      }
+     ],
+     "intro_en": "おはよう、みんな！げんき？げんきだよ、ありがとう！ともだちと おはなし しよう。"
+    },
+    {
+     "name": "Katta va kichik",
+     "goal": "Bola おおきい, ちいさい, うれしい, かなしい so'zlari bilan odamni tasvirlaydi",
+     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "items": [
+      {
+       "say": "おおきい",
+       "uz": "katta",
+       "emoji": "🐘",
+       "image": "en56-u2-big.png",
+       "image_prompt": "A big friendly elephant, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni keng oching!",
+       "sentence": "ぞうは おおきい。",
+       "action_en": "からだを おおきく して！",
+       "rom": "ōkii"
+      },
+      {
+       "say": "ちいさい",
+       "uz": "kichik",
+       "emoji": "🐭",
+       "image": "en56-u2-small.png",
+       "image_prompt": "A tiny cute mouse, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Cho'kkalab, kichkina bo'ling!",
+       "sentence": "ねずみは ちいさい。",
+       "action_en": "からだを ちいさく して！",
+       "rom": "chiisai"
+      },
+      {
+       "say": "うれしい",
+       "uz": "xursand",
+       "emoji": "😄",
+       "image": "en56-u2-happy.png",
+       "image_prompt": "A child laughing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Keng jilmaying!",
+       "sentence": "きょうは うれしいな！",
+       "action_en": "にっこり！",
+       "rom": "ureshii"
+      },
+      {
+       "say": "かなしい",
+       "uz": "xafa",
+       "emoji": "😢",
+       "image": "en56-u2-sad.png",
+       "image_prompt": "A little child with a tear, looking sad, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Xafa yuz qiling!",
+       "sentence": "こねこは かなしい。",
+       "action_en": "かなしい かおを して！",
+       "rom": "kanashii"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "👨‍👩‍👧 Oilam haqida gapiraman",
+       "matn": "Endi gap tuzamiz: [ja]パパは おおきい。[/ja] — dadam katta. [ja]おとうとは ちいさい。[/ja] — ukam kichkina. [ja]ママは うれしい。[/ja] — onam xursand.",
+       "doska": "パパは おおきい。👨🐘\nおとうとは ちいさい。👦🐭\nママは うれしい。👩😄",
+       "sodda": "[ja]おおきい[/ja] — katta, [ja]ちいさい[/ja] — kichik.",
+       "boshqa_usul": "Men aytaman — siz ko'rsatasiz: [ja]おおきい！[/ja] — qo'l keng; [ja]ちいさい！[/ja] — qo'l tor; [ja]うれしい！[/ja] — kulamiz!",
+       "matn_en": "いって みよう：パパは おおきい。おとうとは ちいさい。ママは うれしい。こんどは きみの かぞくの ことを はなしてね！",
+       "sarlavha_en": "👨‍👩‍👧 わたしの かぞく"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐘 Fil qanday?",
+       "options": [
+        "🐘 おおきい",
+        "🐭 ちいさい",
+        "😢 かなしい"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Fil katta — [ja]おおきい[/ja].",
+       "q_en": "ぞうを みて。おおきい？ちいさい？"
+      },
+      {
+       "q": "Tug'ilgan kuningizda sizga sovg'a berishdi. Siz qandaysiz?",
+       "options": [
+        "😄 うれしい",
+        "😢 かなしい",
+        "🐭 ちいさい"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Xursand — [ja]うれしい[/ja].",
+       "q_en": "きみの おたんじょうび。プレゼントを もらったよ。どんな きもち？"
+      }
+     ],
+     "intro_en": "こんにちは！ぞうを みて。おおきいね！ねずみを みて。ちいさいね！"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 2,
+     "name": "Buvimnikiga mehmonga",
+     "name_en": "おばあちゃんの いえへ",
+     "emoji": "👵",
+     "goal": "Bola buvisi bilan salomlashadi, hol-ahvol so'raydi va oilasini tanishtiradi",
+     "intro": "Biz buvimnikiga mehmonga keldik. Buvimiz bilan salomlashamiz va hol so'raymiz.",
+     "intro_en": "きょうは おばあちゃんの いえに いくよ。あいさつして げんきか きこう！",
+     "roles": [
+      "Buvi",
+      "Bola"
+     ],
+     "roles_en": [
+      "おばあちゃん",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s2-visiting-grandma.png",
+      "image_prompt": "A child with mum at the door of a cozy house, a kind grandma opening the door with open arms, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "おはよう、おばあちゃん！",
+       "uz": "xayrli tong, buvijon!",
+       "emoji": "🌞",
+       "rom": "Ohayō, obāchan!"
+      },
+      {
+       "who": 0,
+       "say": "おはよう！げんき？",
+       "uz": "xayrli tong! qalaysan?",
+       "emoji": "👵",
+       "rom": "Ohayō! Genki?"
+      },
+      {
+       "who": 1,
+       "say": "げんきです、ありがとう。",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊",
+       "rom": "Genki desu, arigatō."
+      },
+      {
+       "who": 1,
+       "say": "おばあちゃん、これは ともだちの アリだよ。",
+       "uz": "buvijon, bu mening do'stim Ali",
+       "emoji": "🧒",
+       "rom": "Obāchan, kore wa tomodachi no Ali da yo."
+      },
+      {
+       "who": 0,
+       "say": "こんにちは、アリ！どうぞ、はいって。",
+       "uz": "salom, Ali! kiringlar",
+       "emoji": "🚪",
+       "rom": "Konnichiwa, Ali! Dōzo, haitte."
+      },
+      {
+       "who": 1,
+       "say": "ありがとう、おばあちゃん！うれしいな！",
+       "uz": "rahmat, buvijon! men xursandman!",
+       "emoji": "😄",
+       "rom": "Arigatō, obāchan! Ureshii na!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvingiz [ja]げんき？[/ja] deb so'radi. Nima deysiz?",
+       "q_en": "おばあちゃんが きくよ。「げんき？」なんて いう？",
+       "options": [
+        "😊 げんきです、ありがとう。",
+        "👶 あかちゃん",
+        "7️⃣ なな"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]げんきです、ありがとう。[/ja]",
+       "why_en": "そう！げんきです、ありがとう。"
+      },
+      {
+       "q": "Do'stingizni buviga tanishtiring. Nima deysiz?",
+       "q_en": "おばあちゃんに ともだちを しょうかい して。なんて いう？",
+       "options": [
+        "🧒 これは ともだちの アリだよ。",
+        "👋 さようなら！",
+        "😢 かなしい"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]これは ともだちの アリだよ。[/ja]",
+       "why_en": "そう！これは ともだちの アリだよ。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kiyimlar",
+   "emoji": "👕",
+   "lessons": [
+    {
+     "name": "Futbolka va shim",
+     "goal": "Bola Tシャツ, ズボン, ワンピース, はんズボン so'zlarini biladi",
+     "intro": "Gu-gu! Men bugun sayrga chiqmoqchiman, ammo javonimda kiyimlar aralashib ketibdi. Keling, ularni yaponcha nomlab, joy-joyiga qo'yamiz!",
+     "items": [
+      {
+       "say": "Tシャツ",
+       "uz": "futbolka",
+       "emoji": "👕",
+       "image": "en56-u3-t-shirt.png",
+       "image_prompt": "A bright blue kids T-shirt, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ぼくの Tシャツは きいろ。",
+       "action_en": "Tシャツを さわって！",
+       "rom": "tīshatsu"
+      },
+      {
+       "say": "ズボン",
+       "uz": "shim",
+       "emoji": "👖",
+       "image": "en56-u3-trousers.png",
+       "image_prompt": "A pair of kids trousers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "パパは あおい ズボンを はいているよ。",
+       "rom": "zubon"
+      },
+      {
+       "say": "ワンピース",
+       "uz": "ko'ylak",
+       "emoji": "👗",
+       "image": "en56-u3-dress.png",
+       "image_prompt": "A pretty pink girl's dress, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おねえちゃんは ピンクの ワンピースを もっているよ。",
+       "rom": "wanpīsu"
+      },
+      {
+       "say": "はんズボン",
+       "uz": "kalta shim",
+       "emoji": "🩳",
+       "image": "en56-u3-shorts.png",
+       "image_prompt": "A pair of summer shorts, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "なつは はんズボンを はくよ。",
+       "rom": "han-zubon"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Kir yoyamiz",
+       "matn": "Kabutar qushcha kir yoyyapti. Men aytgan kiyimni ko'rsating: [ja]Tシャツ！[/ja] … [ja]ワンピース！[/ja] … [ja]ズボン！[/ja] … [ja]はんズボン！[/ja] Barakalla!",
+       "doska": "👕 Tシャツ  👖 ズボン\n👗 ワンピース  🩳 はんズボン",
+       "sodda": "Ikkitadan: [ja]Tシャツ[/ja] va [ja]ワンピース[/ja].",
+       "boshqa_usul": "O'zingizdagi kiyimni ushlab ayting: [ja]Tシャツ[/ja] yoki [ja]ワンピース[/ja]!",
+       "matn_en": "カブタルが せんたくものを ほしているよ。わたしが いう ふくを ゆびさしてね：Tシャツ！ワンピース！ズボン！はんズボン！よく できました！",
+       "sarlavha_en": "🧺 せんたくの ひ"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ふくを きよう。ぼくの ふくを みて！きょうは なにを きている？"
+    },
+    {
+     "name": "Poyabzal va paypoq",
+     "goal": "Bola くつ, くつした, ブーツ so'zlarini biladi va «みに つけて！» buyrug'ini bajaradi",
+     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni yaponcha o'rganamiz.",
+     "items": [
+      {
+       "say": "くつ",
+       "uz": "tufli, oyoq kiyim",
+       "emoji": "👟",
+       "image": "en56-u3-shoes.png",
+       "image_prompt": "A pair of colorful kids sneakers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ぼくの くつは くろ。",
+       "action_en": "くつを さわって！",
+       "rom": "kutsu"
+      },
+      {
+       "say": "くつした",
+       "uz": "paypoq",
+       "emoji": "🧦",
+       "image": "en56-u3-socks.png",
+       "image_prompt": "A pair of striped socks, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "しろい くつしたが にそく あるよ。",
+       "rom": "kutsushita"
+      },
+      {
+       "say": "ブーツ",
+       "uz": "etik",
+       "emoji": "👢",
+       "image": "en56-u3-boots.png",
+       "image_prompt": "A pair of rain boots, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ブーツを はいてね。",
+       "rom": "būtsu"
+      },
+      {
+       "say": "みに つけて！",
+       "uz": "kiy!",
+       "emoji": "🙆",
+       "image": "en56-u3-put-on.png",
+       "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kiyim kiyayotgandek harakat qiling!",
+       "sentence": "くつしたを はいて！",
+       "action_en": "くつを はいて！",
+       "rom": "Mi ni tsukete!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Kiyinish o'yini",
+       "matn": "Men buyuraman, siz kiyinganday qilasiz: [ja]くつしたを はいて！[/ja] … [ja]くつを はいて！[/ja] … [ja]ブーツを はいて！[/ja] Kim tezroq?",
+       "doska": "くつしたを はいて！🧦\nくつを はいて！👟\nブーツを はいて！👢",
+       "sodda": "Sekin: [ja]はいて… くつした[/ja]. Paypoq kiyamiz!",
+       "boshqa_usul": "Rostdan kiyinib ko'ring va har birida ayting: [ja]くつした、くつ！[/ja]",
+       "matn_en": "きいて うごこう：くつしたを はいて！くつを はいて！ブーツを はいて！だれが はやいかな？",
+       "sarlavha_en": "🏃 きがえ ゲーム"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Oyog'imizga birinchi nima kiyamiz?",
+       "options": [
+        "🧦 くつした",
+        "👕 Tシャツ",
+        "👗 ワンピース"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Avval paypoq — [ja]くつした[/ja], keyin [ja]くつ[/ja].",
+       "q_en": "あしに さいしょに はく ものは なに？"
+      }
+     ],
+     "intro_en": "やあ！そとに いくよ。さいしょに くつした、それから くつ！くつを はいてね。"
+    },
+    {
+     "name": "Issiq kiyimlar",
+     "goal": "Bola ぼうし, コート, マフラー, てぶくろ so'zlarini biladi",
+     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "items": [
+      {
+       "say": "ぼうし",
+       "uz": "shapka",
+       "emoji": "👒",
+       "image": "en56-u3-hat.png",
+       "image_prompt": "A cozy hat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "あかい ぼうしを もっているよ。",
+       "action_en": "あたまを さわって！",
+       "rom": "bōshi"
+      },
+      {
+       "say": "コート",
+       "uz": "palto",
+       "emoji": "🧥",
+       "image": "en56-u3-coat.png",
+       "image_prompt": "A warm winter coat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "コートを きてね。",
+       "rom": "kōto"
+      },
+      {
+       "say": "マフラー",
+       "uz": "sharf",
+       "emoji": "🧣",
+       "image": "en56-u3-scarf.png",
+       "image_prompt": "A striped woolly scarf, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Bo'yningizga sharf o'raganday qiling!",
+       "sentence": "ぼくの マフラーは ながくて みどり。",
+       "rom": "mafurā"
+      },
+      {
+       "say": "てぶくろ",
+       "uz": "qo'lqop",
+       "emoji": "🧤",
+       "image": "en56-u3-gloves.png",
+       "image_prompt": "A pair of warm gloves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni ishqalang!",
+       "sentence": "てぶくろは てに はめているよ。",
+       "action_en": "てを みせて！",
+       "rom": "tebukuro"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "❄️ Qishga tayyorlanamiz",
+       "matn": "Kabutar qushchani kiyintiramiz! Men aytaman, siz ko'rsatasiz: [ja]ぼうし[/ja] — boshga, [ja]マフラー[/ja] — bo'yinga, [ja]てぶくろ[/ja] — qo'lga, [ja]コート[/ja] — ustiga!",
+       "doska": "👒 ぼうし — bosh\n🧣 マフラー — bo'yin\n🧤 てぶくろ — qo'l\n🧥 コート — ust",
+       "sodda": "Ikkitasi: [ja]ぼうし[/ja] va [ja]コート[/ja].",
+       "boshqa_usul": "Rostdan shapka va sharf taqib, ko'zguga qarab ayting: [ja]ぼうし、マフラー！[/ja]",
+       "matn_en": "カブタルに ふくを きせよう！わたしが いうから、みせてね：ぼうし — あたまに。マフラー — くびに。てぶくろ — てに。コート — からだに！",
+       "sarlavha_en": "❄️ ふゆの じゅんび"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'limiz sovqotdi. Nima kiyamiz?",
+       "options": [
+        "🧤 てぶくろ",
+        "🩳 はんズボン",
+        "👒 ぼうし"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qo'lga — [ja]てぶくろ[/ja].",
+       "q_en": "てが つめたい。なにを はめる？"
+      }
+     ],
+     "intro_en": "ブルル！そとは さむいね。あたたかい ふくを きよう：ぼうし、コート、てぶくろ！"
+    },
+    {
+     "name": "Mening kiyimim",
+     "goal": "Bola kiyimini rangi bilan aytadi: «ぼくの Tシャツは あか。»",
+     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida yaponcha gapiramiz.",
+     "items": [
+      {
+       "say": "ぼくの Tシャツは あか。",
+       "uz": "futbolkam qizil",
+       "emoji": "👕🔴",
+       "image": "en56-u3-tshirt-red.png",
+       "image_prompt": "A red T-shirt on a hanger, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "みて！ぼくの Tシャツは あか。",
+       "rom": "Boku no tīshatsu wa aka."
+      },
+      {
+       "say": "ぼくの くつは あお。",
+       "uz": "tuflim ko'k",
+       "emoji": "👟🔵",
+       "image": "en56-u3-shoes-blue.png",
+       "image_prompt": "A pair of blue sneakers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ぼくの くつは あおくて ちいさい。",
+       "rom": "Boku no kutsu wa ao."
+      },
+      {
+       "say": "ぼうしを かぶって！",
+       "uz": "shapkangni kiy!",
+       "emoji": "👒🙂",
+       "image": "en56-u3-put-on-hat.png",
+       "image_prompt": "A smiling child putting on a hat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizga shapka kiyganday qiling!",
+       "sentence": "さむいね。ぼうしを かぶって！",
+       "action_en": "ぼうしを かぶって！",
+       "rom": "Bōshi o kabutte!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎨 Rangli kiyim o'yini",
+       "matn": "Kiyimingizga qarang! Qani, ayting: [ja]ぼくの Tシャツは…[/ja] va rangini qo'shing: [ja]あか、あお、みどり、きいろ[/ja]. Keyin do'stingizning kiyimini ham ayting!",
+       "doska": "ぼくの Tシャツは あか。🔴\nわたしの ワンピースは ピンク。🩷\nぼくの くつは あお。🔵",
+       "sodda": "Faqat rangni ayting: [ja]あか！[/ja] [ja]あお！[/ja]",
+       "boshqa_usul": "Kim [ja]あか[/ja] kiyim kiygan bo'lsa — o'rnidan tursin! Kim [ja]あお[/ja] kiygan bo'lsa — sakrasin!",
+       "matn_en": "じぶんの ふくを みて！いってね：ぼくの Tシャツは あか。あお、みどり、きいろでも いいよ。こんどは ともだちの ふくの ことを はなそう！",
+       "sarlavha_en": "🎨 いろと ふくの ゲーム"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]ぼくの くつは あお。[/ja] — qaysi rasm?",
+       "options": [
+        "👟🔵 ko'k tufli",
+        "👕🔴 qizil futbolka",
+        "🧥 palto"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]あお[/ja] — ko'k, [ja]くつ[/ja] — tufli.",
+       "q_en": "「ぼくの くつは あお。」どの えかな？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくを みて！ぼくの Tシャツは あか。きみの ふくは なにいろ？"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 3,
+     "name": "Sayrga kiyinamiz",
+     "name_en": "さんぽの ために ふくを きよう",
+     "emoji": "🧥",
+     "goal": "Bola havoga qarab kiyinadi va kiyimlarini yaponcha aytadi",
+     "intro": "Onamiz bilan sayrga chiqamiz. Tashqarida sovuq, issiq kiyinamiz!",
+     "intro_en": "ママと さんぽに いくよ。さむいから あたたかい ふくを きよう！",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "ママ",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s3-getting-dressed.png",
+      "image_prompt": "A mother helping a child put on a coat, hat and scarf in a cozy hallway by the door, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "さんぽに いこう！",
+       "uz": "keling, sayrga chiqamiz!",
+       "emoji": "🚶",
+       "rom": "Sanpo ni ikō!"
+      },
+      {
+       "who": 1,
+       "say": "はーい！コートを きるよ。",
+       "uz": "xo'p! paltomni kiyaman",
+       "emoji": "🧥",
+       "rom": "Hāi! Kōto o kiru yo."
+      },
+      {
+       "who": 0,
+       "say": "うん。さむいね。ぼうしを かぶって！",
+       "uz": "ha. sovuq. shapkangni kiy!",
+       "emoji": "🧢",
+       "rom": "Un. Samui ne. Bōshi o kabutte!"
+      },
+      {
+       "who": 1,
+       "say": "ぼくの ぼうしは あか！",
+       "uz": "shapkam qizil!",
+       "emoji": "🔴",
+       "rom": "Boku no bōshi wa aka!"
+      },
+      {
+       "who": 0,
+       "say": "てぶくろと ブーツも はいてね。",
+       "uz": "qo'lqop va etigingni ham kiy",
+       "emoji": "🧤",
+       "rom": "Tebukuro to būtsu mo haite ne."
+      },
+      {
+       "who": 1,
+       "say": "はーい、ママ！じゅんび できたよ！",
+       "uz": "xo'p, onajon! tayyorman!",
+       "emoji": "😊",
+       "rom": "Hāi, Mama! Junbi dekita yo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tashqarida sovuq. Boshingizga nima kiyasiz?",
+       "q_en": "さむいね。あたまに なにを かぶる？",
+       "options": [
+        "🧢 ぼうし",
+        "🩳 はんズボン",
+        "🧦 くつした"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]ぼうし[/ja]",
+       "why_en": "そう！ぼうし。"
+      },
+      {
+       "q": "Qo'lingizga nima kiyasiz?",
+       "q_en": "てに はめる ものは なに？",
+       "options": [
+        "🧤 てぶくろ",
+        "👢 ブーツ",
+        "👗 ワンピース"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]てぶくろ[/ja]",
+       "why_en": "そう！てぶくろ。"
+      },
+      {
+       "q": "Onangiz [ja]ぼうしを かぶって！[/ja] dedi. U nima demoqchi?",
+       "q_en": "ママが「ぼうしを かぶって！」と いったよ。どうする？",
+       "options": [
+        "🧢 ぼうしを かぶるよ。",
+        "👟 くつを はくよ。",
+        "🧥 コートを きるよ。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Shapkani kiyamiz.",
+       "why_en": "そう！ぼうしを かぶるよ。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ovqat va ichimliklar",
+   "emoji": "🍽️",
+   "lessons": [
+    {
+     "name": "Nonushta",
+     "goal": "Bola パン, ミルク, たまご, チーズ so'zlarini biladi",
+     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, yaponcha aytamiz.",
+     "items": [
+      {
+       "say": "パン",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "en56-u4-bread.png",
+       "image_prompt": "A loaf of fresh bread, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "パンと チーズが すき。",
+       "rom": "pan"
+      },
+      {
+       "say": "ミルク",
+       "uz": "sut",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "あさは ミルクを のむよ。",
+       "action_en": "ミルクを のんで！",
+       "rom": "miruku"
+      },
+      {
+       "say": "たまご",
+       "uz": "tuxum",
+       "emoji": "🥚",
+       "image": "en56-u4-egg.png",
+       "image_prompt": "A white egg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "たまごが ひとつ あるよ。",
+       "rom": "tamago"
+      },
+      {
+       "say": "チーズ",
+       "uz": "pishloq",
+       "emoji": "🧀",
+       "image": "en56-u4-cheese.png",
+       "image_prompt": "A wedge of yellow cheese, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ねずみは チーズが すき。",
+       "rom": "chīzu"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🍳 Nonushta tayyorlaymiz",
+       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qiling va ayting: [ja]パン[/ja] … [ja]ミルク[/ja] … [ja]たまご[/ja] … [ja]チーズ[/ja]. Yoqimli ishtaha!",
+       "doska": "🍞 パン  🥛 ミルク\n🥚 たまご  🧀 チーズ",
+       "sodda": "Ikkitasi: [ja]パン[/ja] va [ja]ミルク[/ja].",
+       "boshqa_usul": "Uyda nonushtada har ovqatni yaponcha nomlang!",
+       "matn_en": "にんぎょうに あさごはんを あげよう！テーブルに おいて いおう：パン、ミルク、たまご、チーズ。おいしい！",
+       "sarlavha_en": "🍳 あさごはんを つくろう"
+      }
+     ],
+     "intro_en": "おはよう！あさごはんの じかんだよ。パン、たまご、チーズを たべよう。おいしい！"
+    },
+    {
+     "name": "Ichimliklar",
+     "goal": "Bola みず, ジュース, おちゃ so'zlarini va «のど かわいた» iborasini biladi",
+     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "items": [
+      {
+       "say": "みず",
+       "uz": "suv",
+       "emoji": "💧",
+       "image": "en56-u4-water.png",
+       "image_prompt": "A clear glass of water with a drop, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "まいにち おみずを のむよ。",
+       "action_en": "おみずを のんで！",
+       "rom": "mizu"
+      },
+      {
+       "say": "ジュース",
+       "uz": "sharbat",
+       "emoji": "🧃",
+       "image": "en56-u4-juice.png",
+       "image_prompt": "A kids juice box with a straw, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "りんごジュースが すき。",
+       "rom": "jūsu"
+      },
+      {
+       "say": "おちゃ",
+       "uz": "choy",
+       "emoji": "🍵",
+       "image": "en56-u4-tea.png",
+       "image_prompt": "A cup of green tea, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おばあちゃんは おちゃを のむよ。",
+       "rom": "ocha"
+      },
+      {
+       "say": "のど かわいた。",
+       "uz": "chanqadim",
+       "emoji": "🥤",
+       "image": "en56-u4-im-thirsty.png",
+       "image_prompt": "A child holding a cup, looking thirsty, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tomog'ingizni ushlang!",
+       "sentence": "のど かわいた。おみずを ください。",
+       "rom": "Nodo kawaita."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: choyxonada",
+       "matn": "Kabutar so'raydi: [ja]みず？それとも ジュース？[/ja] Siz tanlang: [ja]ジュースを ください！[/ja] Kabutar beradi. Siz: [ja]ありがとう！[/ja] Endi siz so'rang!",
+       "doska": "— みず？それとも ジュース？\n— ジュースを ください！\n— ありがとう！",
+       "sodda": "Faqat tanlang: [ja]みず[/ja] yoki [ja]ジュース[/ja].",
+       "boshqa_usul": "Ikki stakan qo'ying — biriga suv, biriga sharbat. Kattalarga taklif qiling: [ja]みず？それとも ジュース？[/ja]",
+       "matn_en": "カブタル：みず？それとも ジュース？こども：ジュースを ください！カブタル：はい、どうぞ。こども：ありがとう！こんどは きみが きいてね！",
+       "sarlavha_en": "🎭 かいわ：カフェで"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvimiz ertalab piyolada nima ichadi?",
+       "options": [
+        "🍵 おちゃ",
+        "🧀 チーズ",
+        "🥚 たまご"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Choy — [ja]おちゃ[/ja].",
+       "q_en": "おばあちゃんは あさ なにを のむ？"
+      }
+     ],
+     "intro_en": "やあ、みんな！のど かわいた。なにか のもう。みず？ジュース？おちゃ？"
+    },
+    {
+     "name": "Tushlik",
+     "goal": "Bola スープ, ごはん, とりにく so'zlarini va «おなか すいた» iborasini biladi",
+     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "items": [
+      {
+       "say": "スープ",
+       "uz": "sho'rva",
+       "emoji": "🍲",
+       "image": "en56-u4-soup.png",
+       "image_prompt": "A bowl of warm soup, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ママは あたたかい スープを つくるよ。",
+       "rom": "sūpu"
+      },
+      {
+       "say": "ごはん",
+       "uz": "guruch, palov",
+       "emoji": "🍚",
+       "image": "en56-u4-rice.png",
+       "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "とりにくと ごはんが すき。",
+       "rom": "gohan"
+      },
+      {
+       "say": "とりにく",
+       "uz": "tovuq go'shti",
+       "emoji": "🍗",
+       "image": "en56-u4-chicken.png",
+       "image_prompt": "A roasted chicken leg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "とりにくは おいしい！",
+       "rom": "toriniku"
+      },
+      {
+       "say": "おなか すいた。",
+       "uz": "qornim och",
+       "emoji": "🍽️",
+       "image": "en56-u4-im-hungry.png",
+       "image_prompt": "A child with an empty plate and a spoon, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silang!",
+       "sentence": "おなか すいた。スープを ください！",
+       "action_en": "おなかを さすって！",
+       "rom": "Onaka suita."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥄 Oshpaz o'yini",
+       "matn": "Siz — oshpazsiz! Qozonga soling: [ja]ごはん[/ja], [ja]とりにく[/ja]… aralashtiring! Kabutar keladi: [ja]おなか すいた！[/ja] Siz berasiz: [ja]スープだよ！[/ja]",
+       "doska": "🍚 ごはん + 🍗 とりにく\n🍲 スープ\nおなか すいた！🍽️",
+       "sodda": "Qozonga bittadan soling va ayting: [ja]ごはん[/ja]!",
+       "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
+       "matn_en": "きみは コックさん！なべに ごはんと とりにくを いれて。まぜ まぜ！カブタル：おなか すいた！コックさん：はい、スープだよ！",
+       "sarlavha_en": "🥄 コックさんごっこ"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]おなか すいた。[/ja] — bu nima degani?",
+       "options": [
+        "🍽️ qornim och",
+        "🥤 chanqadim",
+        "😊 yaxshiman"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]おなか すいた[/ja] — qornim och.",
+       "q_en": "「おなか すいた」は どういう いみ？"
+      }
+     ],
+     "intro_en": "こんにちは！おひるごはんの じかん。おなか すいた！スープと ごはんを たべよう。"
+    },
+    {
+     "name": "Shirinliklar",
+     "goal": "Bola ケーキ, アイスクリーム, おかし so'zlarini va «おいしい！» iborasini biladi",
+     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni yaponcha nomlaymiz.",
+     "items": [
+      {
+       "say": "ケーキ",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "en56-u4-cake.png",
+       "image_prompt": "A birthday cake with candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おたんじょうびの ケーキは おおきい。",
+       "rom": "kēki"
+      },
+      {
+       "say": "アイスクリーム",
+       "uz": "muzqaymoq",
+       "emoji": "🍦",
+       "image": "en56-u4-ice-cream.png",
+       "image_prompt": "A soft ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "なつは アイスクリームが すき。",
+       "rom": "aisukurīmu"
+      },
+      {
+       "say": "おかし",
+       "uz": "konfetlar",
+       "emoji": "🍬",
+       "image": "en56-u4-sweets.png",
+       "image_prompt": "Colorful wrapped candies, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おばあちゃんは ぼくに おかしを もっているよ。",
+       "rom": "okashi"
+      },
+      {
+       "say": "おいしい！",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en56-u4-yummy.png",
+       "image_prompt": "A child licking lips happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silab, «mm» deng!",
+       "sentence": "おいしい！この ケーキ、おいしいね！",
+       "action_en": "おなかを さすって！",
+       "rom": "Oishii!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎂 Tug'ilgan kun o'yini",
+       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ja]いち、に、さん、よん、ご！[/ja] Puflang! Endi tortdan tatib ko'ramiz — [ja]おいしい！[/ja]",
+       "doska": "🎂 いち に さん よん ご\nおいしい！😋",
+       "sodda": "Birgina so'z: [ja]ケーキ[/ja]… [ja]おいしい！[/ja]",
+       "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, yaponcha sanang!",
+       "matn_en": "ケーキに ろうそくを たてて かぞえよう：いち、に、さん、よん、ご！ふーっ！さあ、ケーキを たべよう — おいしい！",
+       "sarlavha_en": "🎂 おたんじょうびの ゲーム"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tug'ilgan kunda sham qo'yiladigan shirinlik qaysi?",
+       "options": [
+        "🎂 ケーキ",
+        "🍦 アイスクリーム",
+        "🍞 パン"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tort — [ja]ケーキ[/ja].",
+       "q_en": "おたんじょうびに ろうそくを たてる ものは なに？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくは あまい ものが だいすき。ケーキ、アイスクリーム、おかし。おいしい！"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 4,
+     "name": "Uyda nonushta",
+     "name_en": "おうちで あさごはん",
+     "emoji": "🍳",
+     "goal": "Bola nonushtada ovqat va ichimlik so'raydi, rahmat aytadi",
+     "intro": "Ertalab oila bilan nonushta qilamiz. Nima yeymiz, nima ichamiz?",
+     "intro_en": "おはよう！かぞくと あさごはんの じかん。なにが ほしい？",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "ママ",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s4-breakfast.png",
+      "image_prompt": "A family breakfast table with bread, eggs, cheese, tea and milk, a mother and a child smiling in a bright kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "おはよう！おなか すいた？",
+       "uz": "xayrli tong! qorning ochmi?",
+       "emoji": "🌞",
+       "rom": "Ohayō! Onaka suita?"
+      },
+      {
+       "who": 1,
+       "say": "うん、おなか すいた。",
+       "uz": "ha, qornim och",
+       "emoji": "🍽️",
+       "rom": "Un, onaka suita."
+      },
+      {
+       "who": 0,
+       "say": "はい、どうぞ。パンと たまご。",
+       "uz": "mana, ol. non va tuxum",
+       "emoji": "🍞🥚",
+       "rom": "Hai, dōzo. Pan to tamago."
+      },
+      {
+       "who": 1,
+       "say": "ありがとう！ミルクを ください。",
+       "uz": "rahmat! sut bering, iltimos",
+       "emoji": "🥛",
+       "rom": "Arigatō! Miruku o kudasai."
+      },
+      {
+       "who": 0,
+       "say": "はい、ミルクだよ。",
+       "uz": "mana suting",
+       "emoji": "🫴",
+       "rom": "Hai, miruku da yo."
+      },
+      {
+       "who": 1,
+       "say": "おいしい！ありがとう、ママ！",
+       "uz": "mazali! rahmat, onajon!",
+       "emoji": "😋",
+       "rom": "Oishii! Arigatō, Mama!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sut ichmoqchisiz. Nima deysiz?",
+       "q_en": "ミルクが すこし ほしい。なんて いう？",
+       "options": [
+        "🥛 ミルクを ください。",
+        "🧀 チーズ",
+        "👋 さようなら！"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]ミルクを ください。[/ja]",
+       "why_en": "そう！ミルクを ください。"
+      },
+      {
+       "q": "Nonushta juda mazali. Nima deysiz?",
+       "q_en": "あさごはんが とても おいしい。なんて いう？",
+       "options": [
+        "😋 おいしい！",
+        "🥤 のど かわいた。",
+        "😢 かなしい"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]おいしい！[/ja]",
+       "why_en": "そう！おいしい！"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uyim va xonalar",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Mening uyim",
+     "goal": "Bola いえ, ドア, まど, にわ so'zlarini biladi",
+     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni yaponcha o'rganamiz.",
+     "items": [
+      {
+       "say": "いえ",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "これは ぼくの いえ。",
+       "action_en": "くうちゅうに おうちを かいて！",
+       "rom": "ie"
+      },
+      {
+       "say": "ドア",
+       "uz": "eshik",
+       "emoji": "🚪",
+       "image": "en56-u5-door.png",
+       "image_prompt": "A wooden front door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Eshikni taqillatganday qiling: tuk-tuk!",
+       "sentence": "ドアを あけてね。",
+       "action_en": "ドアを あけて！",
+       "rom": "doa"
+      },
+      {
+       "say": "まど",
+       "uz": "deraza",
+       "emoji": "🪟",
+       "image": "en56-u5-window.png",
+       "image_prompt": "A window with curtains, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "まどの そとを みて！",
+       "action_en": "まどの そとを みて！",
+       "rom": "mado"
+      },
+      {
+       "say": "にわ",
+       "uz": "bog', hovli",
+       "emoji": "🏡",
+       "image": "en56-u5-garden.png",
+       "image_prompt": "A house with a green garden and flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "うちには おおきな にわが あるよ。",
+       "rom": "niwa"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏠 Uy chizamiz",
+       "matn": "Qog'oz va qalam oling! Avval [ja]いえ[/ja] chizing, keyin [ja]ドア[/ja], ikkita [ja]まど[/ja], atrofiga [ja]にわ[/ja]. Chizib bo'lgach, har birini ko'rsatib ayting!",
+       "doska": "🏠 いえ\n🚪 ドア  🪟 まど\n🏡 にわ",
+       "sodda": "Faqat [ja]いえ[/ja] va [ja]ドア[/ja] chizing.",
+       "boshqa_usul": "Uyingizda yurib, eshik va derazani topib ayting: [ja]ドア！まど！[/ja]",
+       "matn_en": "かみと えんぴつを もってね！いえ、ドア、まど ふたつ、にわを かこう。それから ゆびさして ことばを いおう！",
+       "sarlavha_en": "🏠 いえを かこう"
+      }
+     ],
+     "intro_en": "こんにちは！ぼくの いえに ようこそ！みて、ここが ドアだよ。どうぞ、はいって！"
+    },
+    {
+     "name": "Uydagi xonalar",
+     "goal": "Bola だいどころ, しんしつ, おふろば, リビング so'zlarini biladi",
+     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni yaponcha aytamiz!",
+     "items": [
+      {
+       "say": "だいどころ",
+       "uz": "oshxona",
+       "emoji": "🍳",
+       "image": "en56-u5-kitchen.png",
+       "image_prompt": "A bright kitchen with a stove and a frying pan, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ママは だいどころに いるよ。",
+       "rom": "daidokoro"
+      },
+      {
+       "say": "しんしつ",
+       "uz": "yotoqxona",
+       "emoji": "🛏️",
+       "image": "en56-u5-bedroom.png",
+       "image_prompt": "A cozy bedroom with a bed and a teddy bear, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uxlaganday ko'zingizni yuming!",
+       "sentence": "しんしつで ねるよ。",
+       "action_en": "ねんね して！",
+       "rom": "shinshitsu"
+      },
+      {
+       "say": "おふろば",
+       "uz": "hammom",
+       "emoji": "🛁",
+       "image": "en56-u5-bathroom.png",
+       "image_prompt": "A bathroom with a bathtub and bubbles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni yuvganday qiling!",
+       "sentence": "おふろばで てを あらうよ。",
+       "action_en": "てを あらって！",
+       "rom": "ofuroba"
+      },
+      {
+       "say": "リビング",
+       "uz": "mehmonxona",
+       "emoji": "🛋️",
+       "image": "en56-u5-living-room.png",
+       "image_prompt": "A living room with a sofa, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "リビングで テレビを みるよ。",
+       "rom": "ribingu"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Qaysi xonadamiz?",
+       "matn": "Men ish aytaman, siz xonani toping! Uxlaymiz — [ja]しんしつ[/ja]. Ovqat pishiramiz — [ja]だいどころ[/ja]. Cho'milamiz — [ja]おふろば[/ja]. Divanda o'tiramiz — [ja]リビング[/ja].",
+       "doska": "😴 → しんしつ\n🍳 → だいどころ\n🛁 → おふろば\n🛋️ → リビング",
+       "sodda": "Ikkitasi: [ja]だいどころ[/ja] va [ja]しんしつ[/ja].",
+       "boshqa_usul": "Uyingizda har xonaga kirib, uning nomini yaponcha ayting!",
+       "matn_en": "わたしが いうから、へやを みつけて！ねる — しんしつ。りょうりする — だいどころ。あらう — おふろば。ソファに すわる — リビング。",
+       "sarlavha_en": "🔍 どの へや？"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ しんしつ",
+        "🍳 だいどころ",
+        "🛁 おふろば"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yotoqxona — [ja]しんしつ[/ja].",
+       "q_en": "どこで ねる？"
+      }
+     ],
+     "intro_en": "やあ、みんな！ぼくの いえには へやが たくさん あるよ。あるいて ぜんぶの へやを みて みよう！"
+    },
+    {
+     "name": "Xonadagi narsalar",
+     "goal": "Bola いす, ランプ, テレビ, とけい so'zlarini biladi",
+     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "items": [
+      {
+       "say": "いす",
+       "uz": "stul",
+       "emoji": "🪑",
+       "image": "en56-u5-chair.png",
+       "image_prompt": "A small wooden chair, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "いすに すわってね。",
+       "action_en": "すわって！",
+       "rom": "isu"
+      },
+      {
+       "say": "ランプ",
+       "uz": "chiroq",
+       "emoji": "💡",
+       "image": "en56-u5-lamp.png",
+       "image_prompt": "A glowing light bulb lamp, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chiroqni yoqganday qiling: chirt!",
+       "sentence": "ランプは テーブルの うえに あるよ。",
+       "rom": "ranpu"
+      },
+      {
+       "say": "テレビ",
+       "uz": "televizor",
+       "emoji": "📺",
+       "image": "en56-u5-tv.png",
+       "image_prompt": "A retro television set, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おじいちゃんは テレビを みているよ。",
+       "rom": "terebi"
+      },
+      {
+       "say": "とけい",
+       "uz": "soat",
+       "emoji": "🕰️",
+       "image": "en56-u5-clock.png",
+       "image_prompt": "A mantel clock, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tik-tak deb boshingizni chayqating!",
+       "sentence": "とけいは おおきくて しろい。",
+       "rom": "tokei"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, qayerda?",
+       "matn": "Atrofingizga qarang! Xonangizda [ja]いす[/ja] bormi? Ko'rsating! [ja]ランプ[/ja]? [ja]テレビ[/ja]? [ja]とけい[/ja]? Topgan har narsa uchun — bitta qarsak!",
+       "doska": "🪑 いす  💡 ランプ\n📺 テレビ  🕰️ とけい",
+       "sodda": "Faqat [ja]いす[/ja] ni toping va ustiga o'tiring!",
+       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; siz ko'rsatib ayting.",
+       "matn_en": "へやを みまわして！いすは ある？みせて！ランプは？テレビは？とけいは？みつけたら てを たたこう！",
+       "sarlavha_en": "👀 みつけて！"
+      }
+     ],
+     "intro_en": "こんにちは！ぼくの へやを みて。いすと ランプと とけいが あるよ。なにが みえる？"
+    },
+    {
+     "name": "Mushuk qayerda?",
+     "goal": "Bola «…は どこ？» deb so'raydi, なか, うえ, した so'zlarini tushunadi",
+     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "items": [
+      {
+       "say": "ねこは どこ？",
+       "uz": "mushuk qayerda?",
+       "emoji": "🐈❓",
+       "image": "en56-u5-where-cat.png",
+       "image_prompt": "A pigeon looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ねこは どこ？わからない！",
+       "action_en": "まわりを みて！",
+       "rom": "Neko wa doko?"
+      },
+      {
+       "say": "はこの なか",
+       "uz": "qutining ichida",
+       "emoji": "📦🐱",
+       "image": "en56-u5-in-box.png",
+       "image_prompt": "A kitten sitting inside a cardboard box, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ねこは はこの なかに いるよ。",
+       "rom": "hako no naka"
+      },
+      {
+       "say": "テーブルの うえ",
+       "uz": "stolning ustida",
+       "emoji": "🐱⬆️",
+       "image": "en56-u5-on-table.png",
+       "image_prompt": "A kitten sitting on top of a table, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ボールは テーブルの うえに あるよ。",
+       "rom": "tēburu no ue"
+      },
+      {
+       "say": "ベッドの した",
+       "uz": "karavotning ostida",
+       "emoji": "🛏️🐱",
+       "image": "en56-u5-under-bed.png",
+       "image_prompt": "A kitten peeking out from under a bed, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ぼくの くつは ベッドの したに あるよ。",
+       "rom": "beddo no shita"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧸 Yashirinmachoq",
+       "matn": "Ayiqchani yashiring! Kattalar so'raydi: [ja]くまちゃんは どこ？[/ja] Siz javob bering: [ja]はこの なか[/ja], [ja]いすの うえ[/ja] yoki [ja]ベッドの した[/ja].",
+       "doska": "くまちゃんは どこ？\nなか 📦  うえ ⬆️  した ⬇️",
+       "sodda": "Qo'l bilan ko'rsating: [ja]なか[/ja] — ichiga, [ja]うえ[/ja] — ustiga, [ja]した[/ja] — ostiga.",
+       "boshqa_usul": "Qalamni qutiga soling va ayting: [ja]なか！[/ja] Qutining ustiga qo'ying: [ja]うえ！[/ja] Ostiga: [ja]した！[/ja]",
+       "matn_en": "くまちゃんを かくして！おとな：くまちゃんは どこ？こども：はこの なか！いすの うえ！ベッドの した！",
+       "sarlavha_en": "🧸 かくれんぼ"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱 mushukcha qutining ichida. Qanday aytamiz?",
+       "options": [
+        "📦🐱 はこの なか",
+        "🐱⬆️ テーブルの うえ",
+        "🛏️🐱 ベッドの した"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ichida — [ja]はこの なか[/ja].",
+       "q_en": "こねこは はこの なかに いるよ。なんて いう？"
+      }
+     ],
+     "intro_en": "あれっ！ねこは どこ？いっしょに さがそう。はこの なかかな？"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 5,
+     "name": "Mushukchani qidiramiz",
+     "name_en": "こねこを さがそう",
+     "emoji": "🐱",
+     "goal": "Bola uyda mushukchani qidiradi va xona hamda joy nomlarini aytadi",
+     "intro": "Uyimizdagi mushukcha yo'qolib qoldi! Dadamiz bilan xonalarda qidiramiz.",
+     "intro_en": "あれっ！こねこは どこ？パパと いっしょに ぜんぶの へやを さがそう！",
+     "roles": [
+      "Dada",
+      "Bola"
+     ],
+     "roles_en": [
+      "パパ",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s5-find-the-kitten.png",
+      "image_prompt": "A father and a child looking for a kitten in a cozy bedroom, the kitten peeking from under the bed, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "パパ、ねこは どこ？",
+       "uz": "dada, mushuk qayerda?",
+       "emoji": "❓",
+       "rom": "Papa, neko wa doko?"
+      },
+      {
+       "who": 0,
+       "say": "だいどころに ある？",
+       "uz": "oshxonadami?",
+       "emoji": "🍳",
+       "rom": "Daidokoro ni aru?"
+      },
+      {
+       "who": 1,
+       "say": "ううん。だいどころには ないよ。",
+       "uz": "yo'q. oshxonada emas",
+       "emoji": "🙅",
+       "rom": "Uun. Daidokoro ni wa nai yo."
+      },
+      {
+       "who": 0,
+       "say": "しんしつを みて みよう。",
+       "uz": "keling, yotoqxonaga qaraymiz",
+       "emoji": "🛏️",
+       "rom": "Shinshitsu o mite miyō."
+      },
+      {
+       "who": 1,
+       "say": "みて！ベッドの したに いるよ！",
+       "uz": "qarang! karavotning ostida!",
+       "emoji": "🐱",
+       "rom": "Mite! Beddo no shita ni iru yo!"
+      },
+      {
+       "who": 0,
+       "say": "よく できたね！うれしいな！",
+       "uz": "barakalla! men xursandman!",
+       "emoji": "👏",
+       "rom": "Yoku dekita ne! Ureshii na!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Mushukcha qayerda edi?",
+       "q_en": "こねこは どこ？",
+       "options": [
+        "🛏️🐱 ベッドの した",
+        "📦🐱 はこの なか",
+        "🐱⬆️ テーブルの うえ"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]ベッドの した[/ja]",
+       "why_en": "そう！ベッドの した。"
+      },
+      {
+       "q": "Mushukni qidiryapsiz. Nima deb so'raysiz?",
+       "q_en": "ねこが みつからない。なんて きく？",
+       "options": [
+        "❓ ねこは どこ？",
+        "🐱 ねこを かってるよ。",
+        "😊 げんき？"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]ねこは どこ？[/ja]",
+       "why_en": "そう！ねこは どこ？"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo va fasllar",
+   "emoji": "🌦️",
+   "lessons": [
+    {
+     "name": "Bugun havo qanday?",
+     "goal": "Bola «どんな おてんき？» savoliga はれ, あめ, かぜ bilan javob beradi",
+     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni yaponcha aytamiz!",
+     "items": [
+      {
+       "say": "どんな おてんき？",
+       "uz": "havo qanday?",
+       "emoji": "🌦️",
+       "image": "en56-u6-weather.png",
+       "image_prompt": "A child looking out of a window at the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ママ、どんな おてんき？",
+       "rom": "Donna otenki?"
+      },
+      {
+       "say": "はれだよ。",
+       "uz": "quyoshli",
+       "emoji": "☀️",
+       "image": "en56-u6-sunny.png",
+       "image_prompt": "A bright smiling sun, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni quyoshday keng oching!",
+       "sentence": "はれだよ。こうえんに いこう！",
+       "action_en": "サングラスを かけて！",
+       "rom": "Hare da yo."
+      },
+      {
+       "say": "あめだよ。",
+       "uz": "yomg'irli",
+       "emoji": "🌧️",
+       "image": "en56-u6-rainy.png",
+       "image_prompt": "A cloud with raindrops, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaringiz bilan yomg'ir tomchilarini ko'rsating!",
+       "sentence": "あめだよ。かさを もっていって！",
+       "rom": "Ame da yo."
+      },
+      {
+       "say": "かぜが つよいよ。",
+       "uz": "shamolli",
+       "emoji": "🌬️",
+       "image": "en56-u6-windy.png",
+       "image_prompt": "Wind blowing leaves and a kite, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Daraxtday chayqaling!",
+       "sentence": "かぜが つよいよ。たこを あげよう！",
+       "action_en": "きみたいに ゆらゆら！",
+       "rom": "Kaze ga tsuyoi yo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ob-havo qo'shig'i",
+       "matn": "Kuylaymiz: [ja]きょうの おてんきは？はれ、はれ、やったー！[/ja] Keyin [ja]あめ[/ja] va [ja]かぜ[/ja] bilan ham kuylang!",
+       "doska": "どんな おてんき？\nはれだよ！☀️ あめだよ！🌧️ かぜが つよいよ！🌬️",
+       "sodda": "Faqat javob: [ja]はれ！[/ja] [ja]あめ！[/ja]",
+       "boshqa_usul": "Har tong derazadan qarab, havoni yaponcha ayting va taqvimga rasm chizing.",
+       "matn_en": "うたおう：きょうの おてんきは？はれ、はれ、やったー！こんどは あめと かぜで うたおう！",
+       "sarlavha_en": "🎵 おてんきの うた"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda quyosh charaqlayapti. Havo qanday?",
+       "options": [
+        "☀️ はれだよ。",
+        "🌧️ あめだよ。",
+        "🌬️ かぜが つよいよ。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]はれだよ。[/ja] — quyoshli.",
+       "q_en": "おひさまが そらで かがやいているよ。どんな おてんき？"
+      }
+     ],
+     "intro_en": "おはよう、みんな！まどの そとを みて みよう。きょうは どんな おてんき？"
+    },
+    {
+     "name": "Issiq va sovuq",
+     "goal": "Bola ゆき, くもり, あつい, さむい so'zlari bilan havoni tasvirlaydi",
+     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "items": [
+      {
+       "say": "ゆきだよ。",
+       "uz": "qorli",
+       "emoji": "🌨️",
+       "image": "en56-u6-snowy.png",
+       "image_prompt": "Snow falling from a cloud, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ゆきだよ。ゆきだるまを つくろう！",
+       "rom": "Yuki da yo."
+      },
+      {
+       "say": "くもりだよ。",
+       "uz": "bulutli",
+       "emoji": "☁️",
+       "image": "en56-u6-cloudy.png",
+       "image_prompt": "Fluffy grey clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "くもりだよ。おひさまが みえない。",
+       "rom": "Kumori da yo."
+      },
+      {
+       "say": "あついよ。",
+       "uz": "issiq",
+       "emoji": "🥵",
+       "image": "en56-u6-hot.png",
+       "image_prompt": "A child fanning themselves in the heat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yelpinganday qiling!",
+       "sentence": "あついね。アイスクリームが たべたい！",
+       "action_en": "かおを あおいで！",
+       "rom": "Atsui yo."
+      },
+      {
+       "say": "さむいよ。",
+       "uz": "sovuq",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Titraganday qiling: brr!",
+       "sentence": "さむいね。コートを きて！",
+       "action_en": "こんなふうに ぶるぶる ふるえて！",
+       "rom": "Samui yo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Issiq-sovuq o'yini",
+       "matn": "Men aytaman, siz harakat qilasiz: [ja]あついよ！[/ja] — yelpining! [ja]さむいよ！[/ja] — titrang! [ja]ゆきだよ！[/ja] — qor to'plang! [ja]くもりだよ！[/ja] — bulutday suzing!",
+       "doska": "🥵 あつい — yelpinamiz\n🥶 さむい — titraymiz\n🌨️ ゆき — qor\n☁️ くもり — bulut",
+       "sodda": "Ikkitasi: [ja]あつい[/ja] va [ja]さむい[/ja].",
+       "boshqa_usul": "Muzlatkichdan muz oling va ushlang: [ja]さむいよ！[/ja] Iliq suvga qo'l tekkizing: [ja]あつい！[/ja]",
+       "matn_en": "きいて うごこう！あつい — かおを あおいで！さむい — ぶるぶる！ゆき — ゆきだまを つくって！くもり — くもみたいに ふわふわ！",
+       "sarlavha_en": "🏃 あつい・さむい ゲーム"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tashqarida qor yog'yapti. Nima deymiz?",
+       "options": [
+        "🌨️ ゆきだよ。",
+        "🥵 あついよ。",
+        "☀️ はれだよ。"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ja]ゆきだよ。[/ja] — qorli.",
+       "q_en": "そとは ゆきが ふっているよ。なんて いう？"
+      }
+     ],
+     "intro_en": "やあ！あつい ひも あるし、さむい ひも あるね。おてんきの おはなしを しよう！"
+    },
+    {
+     "name": "To'rt fasl",
+     "goal": "Bola はる, なつ, あき, ふゆ fasllarini biladi",
+     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "items": [
+      {
+       "say": "はる",
+       "uz": "bahor",
+       "emoji": "🌷",
+       "image": "en56-u6-spring.png",
+       "image_prompt": "Spring tulips blooming, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "はるは はなが ピンク。",
+       "rom": "haru"
+      },
+      {
+       "say": "なつ",
+       "uz": "yoz",
+       "emoji": "🏖️",
+       "image": "en56-u6-summer.png",
+       "image_prompt": "A sunny beach with a bucket and spade, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "なつは あつくて はれ。",
+       "action_en": "さかなみたいに およいで！",
+       "rom": "natsu"
+      },
+      {
+       "say": "あき",
+       "uz": "kuz",
+       "emoji": "🍂",
+       "image": "en56-u6-autumn.png",
+       "image_prompt": "Falling orange autumn leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barg kabi aylanib tushing!",
+       "sentence": "あきは はっぱが きいろ。",
+       "action_en": "はっぱみたいに ひらひら おちて！",
+       "rom": "aki"
+      },
+      {
+       "say": "ふゆ",
+       "uz": "qish",
+       "emoji": "❄️",
+       "image": "en56-u6-winter.png",
+       "image_prompt": "A big snowflake, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ふゆは ゆきが ふるよ。",
+       "action_en": "こんなふうに ぶるぶる ふるえて！",
+       "rom": "fuyu"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "🔄 Fasllar aylanasi",
+       "matn": "Fasllar aylanib keladi: [ja]はる、なつ、あき、ふゆ[/ja] — va yana [ja]はる[/ja]! Bahorda — gul, yozda — dengiz, kuzda — barg, qishda — qor.",
+       "doska": "🌷 はる → 🏖️ なつ\n↑            ↓\n❄️ ふゆ ← 🍂 あき",
+       "sodda": "[ja]なつ[/ja] — yoz, [ja]ふゆ[/ja] — qish.",
+       "boshqa_usul": "Doira bo'lib aylaning va har burilishda bitta faslni ayting!",
+       "matn_en": "きせつは まわるよ：はる、なつ、あき、ふゆ — そして また はる！はる — はな。なつ — うみ。あき — はっぱ。ふゆ — ゆき。",
+       "sarlavha_en": "🔄 きせつの わ"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Barglar sarg'ayib to'kilyapti. Bu qaysi fasl?",
+       "options": [
+        "🍂 あき",
+        "🌷 はる",
+        "🏖️ なつ"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kuz — [ja]あき[/ja].",
+       "q_en": "はっぱが きいろく なって おちているよ。どの きせつ？"
+      },
+      {
+       "q": "Qorbobo va qor — qaysi faslda?",
+       "options": [
+        "❄️ ふゆ",
+        "🏖️ なつ",
+        "🌷 はる"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qish — [ja]ふゆ[/ja].",
+       "q_en": "ゆきと ゆきだるま。どの きせつ？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！いちねんには きせつが よっつ あるよ：はる、なつ、あき、ふゆ。どれが すき？"
+    },
+    {
+     "name": "Soyabon va kamalak",
+     "goal": "Bola かさ, にじ, ゆきだるま so'zlarini biladi",
+     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "items": [
+      {
+       "say": "かさ",
+       "uz": "soyabon",
+       "emoji": "☂️",
+       "image": "en56-u6-umbrella.png",
+       "image_prompt": "A colorful open umbrella, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Soyabonni ochganday qiling!",
+       "sentence": "かさを もっていってね。",
+       "action_en": "かさを ひらいて！",
+       "rom": "kasa"
+      },
+      {
+       "say": "にじ",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en56-u6-rainbow.png",
+       "image_prompt": "A bright rainbow over clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "みて！おおきな にじ！",
+       "action_en": "くうちゅうに にじを かいて！",
+       "rom": "niji"
+      },
+      {
+       "say": "ゆきだるま",
+       "uz": "qorbobo, qor odam",
+       "emoji": "⛄",
+       "image": "en56-u6-snowman.png",
+       "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おおきな ゆきだるまを つくるよ。",
+       "rom": "yukidaruma"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: sayrga chiqamiz",
+       "matn": "Kabutar so'raydi: [ja]どんな おてんき？[/ja] Siz: [ja]あめだよ。[/ja] Kabutar: [ja]かさを もっていってね！[/ja] Keyin: [ja]みて！にじだ！[/ja]",
+       "doska": "— どんな おてんき？\n— あめだよ。🌧️\n— かさを もっていってね！☂️\n— みて！にじだ！🌈",
+       "sodda": "Qisqa: [ja]あめ[/ja] — [ja]かさ[/ja].",
+       "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'ling!) va ayting: [ja]かさ！[/ja]",
+       "matn_en": "カブタル：どんな おてんき？こども：あめだよ。カブタル：かさを もっていってね！こども：みて！にじだ！",
+       "sarlavha_en": "🎭 かいわ：そとに いこう"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Yomg'ir yog'yapti. O'zimiz bilan nima olamiz?",
+       "options": [
+        "☂️ かさ",
+        "🍦 アイスクリーム",
+        "🩳 はんズボン"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Soyabon — [ja]かさ[/ja].",
+       "q_en": "あめだよ。なにを もっていく？"
+      }
+     ],
+     "intro_en": "やあ！きょうは あめだから かさを もっているよ。みて！あめの あとに にじが みえるよ！"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 6,
+     "name": "Bog'ga chiqamizmi?",
+     "name_en": "こうえんに いって いい？",
+     "emoji": "🌦️",
+     "goal": "Bola ob-havoni so'raydi va unga qarab kiyinadi yoki soyabon oladi",
+     "intro": "Biz bog'ga sayrga chiqmoqchimiz. Avval havo qandayligini bilib olamiz!",
+     "intro_en": "こうえんに いきたいな。きょうは どんな おてんき？",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "ママ",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s6-park-weather.png",
+      "image_prompt": "A child and a mother looking out of a window at light rain and a rainbow over a green park, holding an umbrella, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "ママ、こうえんに いって いい？",
+       "uz": "onajon, bog'ga boramizmi?",
+       "emoji": "🌳",
+       "rom": "Mama, kōen ni itte ii?"
+      },
+      {
+       "who": 0,
+       "say": "みて！どんな おてんき？",
+       "uz": "qara! havo qanday?",
+       "emoji": "🪟",
+       "rom": "Mite! Donna otenki?"
+      },
+      {
+       "who": 1,
+       "say": "あめで くもりだよ。",
+       "uz": "yomg'irli va bulutli",
+       "emoji": "🌧️",
+       "rom": "Ame de kumori da yo."
+      },
+      {
+       "who": 0,
+       "say": "かさを もっていってね。",
+       "uz": "soyaboningni ol, iltimos",
+       "emoji": "☂️",
+       "rom": "Kasa o motte itte ne."
+      },
+      {
+       "who": 1,
+       "say": "はーい！みて、ママ！にじだ！",
+       "uz": "xo'p! qarang, onajon! kamalak!",
+       "emoji": "🌈",
+       "rom": "Hāi! Mite, Mama! Niji da!"
+      },
+      {
+       "who": 0,
+       "say": "うん！こうえんに いこう！",
+       "uz": "ha! qani, bog'ga ketdik!",
+       "emoji": "😊",
+       "rom": "Un! Kōen ni ikō!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yomg'ir yog'yapti. Havo qanday?",
+       "q_en": "あめが ふっているよ。どんな おてんき？",
+       "options": [
+        "🌧️ あめだよ。",
+        "☀️ はれだよ。",
+        "🌨️ ゆきだよ。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]あめだよ。[/ja]",
+       "why_en": "そう！あめだよ。"
+      },
+      {
+       "q": "Yomg'irda nima olamiz?",
+       "q_en": "あめの ひは なにを もっていく？",
+       "options": [
+        "☂️ かさ",
+        "🍦 アイスクリーム",
+        "⛄ ゆきだるま"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]かさ[/ja]",
+       "why_en": "そう！かさ。"
+      },
+      {
+       "q": "Osmonda yetti rangli yoy paydo bo'ldi. Bu nima?",
+       "q_en": "そらに いろが たくさん みえるよ。これは なに？",
+       "options": [
+        "🌈 にじ",
+        "☁️ くもりだよ。",
+        "🍂 あき"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]にじ[/ja]",
+       "why_en": "そう！にじ。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Menga yoqadi, yoqmaydi",
+   "emoji": "❤️",
+   "lessons": [
+    {
+     "name": "Menga yoqadi",
+     "goal": "Bola «…が すき» bilan yoqtirgan narsasini aytadi",
+     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni yaponcha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "りんごが すき。",
+       "uz": "men olmani yaxshi ko'raman",
+       "emoji": "🍎❤️",
+       "image": "en56-u7-like-apples.png",
+       "image_prompt": "A happy child hugging a big red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingiz bilan yurakcha yasang!",
+       "sentence": "りんごが すき。あかいんだよ！",
+       "rom": "Ringo ga suki."
+      },
+      {
+       "say": "ねこが すき。",
+       "uz": "men mushuklarni yaxshi ko'raman",
+       "emoji": "🐱❤️",
+       "image": "en56-u7-like-cats.png",
+       "image_prompt": "A child cuddling a fluffy cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ねこが すき。ちいさいんだよ。",
+       "rom": "Neko ga suki."
+      },
+      {
+       "say": "アイスクリームが すき。",
+       "uz": "men muzqaymoqni yaxshi ko'raman",
+       "emoji": "🍦❤️",
+       "image": "en56-u7-like-ice-cream.png",
+       "image_prompt": "A child happily holding an ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "アイスクリームが すき。おいしい！",
+       "action_en": "おなかを さすって！",
+       "rom": "Aisukurīmu ga suki."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "❤️ Yurakcha o'yini",
+       "matn": "Men narsa aytaman. Yoqsa — yurakcha yasang va ayting: [ja]…が すき！[/ja] [ja]バナナ？[/ja] [ja]いぬ？[/ja] [ja]ケーキ？[/ja] [ja]ミルク？[/ja]",
+       "doska": "…が すき ❤️\n🍌 バナナ  🐶 いぬ  🎂 ケーキ",
+       "sodda": "Faqat [ja]すき[/ja] va so'z: [ja]ケーキが すき！[/ja]",
+       "boshqa_usul": "Yoqtirgan narsalaringiz rasmini chizing va har biriga ayting: [ja]…が すき。[/ja]",
+       "matn_en": "ものを いうよ。すきなら てで ハートを つくって いおう：すき！バナナ？いぬ？ケーキ？ミルク？",
+       "sarlavha_en": "❤️ ハートの ゲーム"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]ねこが すき。[/ja] — bu nima degani?",
+       "options": [
+        "🐱❤️ mushuklarni yaxshi ko'raman",
+        "🍎❤️ olmani yaxshi ko'raman",
+        "🐈❓ mushuk qayerda?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]ねこ[/ja] — mushuklar, [ja]すき[/ja] — yaxshi ko'raman.",
+       "q_en": "「ねこが すき」は どういう いみ？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくは りんごが すき。ともだちも だいすき！きみは なにが すき？"
+    },
+    {
+     "name": "Menga yoqmaydi",
+     "goal": "Bola «…は すきじゃない» bilan yoqtirmagan narsasini aytadi",
+     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "items": [
+      {
+       "say": "たまねぎは すきじゃない。",
+       "uz": "men piyozni yoqtirmayman",
+       "emoji": "🧅👎",
+       "image": "en56-u7-dislike-onions.png",
+       "image_prompt": "A child making a funny face at an onion, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Burningizni jiyiring!",
+       "sentence": "いいえ、けっこうです。たまねぎは すきじゃない。",
+       "action_en": "くびを よこに ふって！",
+       "rom": "Tamanegi wa suki ja nai."
+      },
+      {
+       "say": "あめは すきじゃない。",
+       "uz": "men yomg'irni yoqtirmayman",
+       "emoji": "🌧️👎",
+       "image": "en56-u7-dislike-rain.png",
+       "image_prompt": "A wet grumpy pigeon under the rain, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "あめは すきじゃない。さむいから。",
+       "rom": "Ame wa suki ja nai."
+      },
+      {
+       "say": "くもは すきじゃない。",
+       "uz": "men o'rgimchaklarni yoqtirmayman",
+       "emoji": "🕷️👎",
+       "image": "en56-u7-dislike-spiders.png",
+       "image_prompt": "A child hiding from a small cartoon spider, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "くもは すきじゃない。こわいもん！",
+       "rom": "Kumo wa suki ja nai."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👍👎 Barmoq o'yini",
+       "matn": "Men aytaman — siz barmoq ko'rsatasiz! Yoqsa 👍: [ja]…が すき。[/ja]. Yoqmasa 👎: [ja]…は すきじゃない[/ja]. [ja]ケーキ？[/ja] [ja]たまねぎ？[/ja] [ja]あめ？[/ja] [ja]おかし？[/ja]",
+       "doska": "👍 …が すき\n👎 …は すきじゃない",
+       "sodda": "Faqat barmoq va [ja]はい[/ja] yoki [ja]いいえ[/ja].",
+       "boshqa_usul": "Oila bilan o'ynang: har kim bitta narsa aytadi, qolganlar 👍 yoki 👎 ko'rsatadi.",
+       "matn_en": "ものを いうから、おやゆびで みせてね！うえ：すき。した：すきじゃない。ケーキ？たまねぎ？あめ？おかし？",
+       "sarlavha_en": "👍👎 おやゆび ゲーム"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola piyozni ko'rib burnini jiyirdi. U nima deydi?",
+       "options": [
+        "🧅👎 たまねぎは すきじゃない。",
+        "🍎❤️ りんごが すき。",
+        "😋 おいしい！"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Yoqmasa: [ja]…は すきじゃない[/ja]",
+       "q_en": "おとこのこが たまねぎを みて いやな かお。なんて いう？"
+      }
+     ],
+     "intro_en": "やあ！すきな ものは たくさん あるね。でも すきじゃない ものも あるよ。ぼくは あめが すきじゃない！"
+    },
+    {
+     "name": "Senga yoqadimi?",
+     "goal": "Bola «…は すき？» deb so'raydi va «うん、すき / ううん、すきじゃない» deb javob beradi",
+     "intro": "Gu-gu! Men do'stlarimdan so'rashni yaxshi ko'raman: senga muzqaymoq yoqadimi? Bugun yaponcha so'rash va javob berishni o'rganamiz!",
+     "items": [
+      {
+       "say": "…は すき？",
+       "uz": "senga … yoqadimi?",
+       "emoji": "🤔",
+       "image": "en56-u7-do-you-like.png",
+       "image_prompt": "A curious child asking a friend with a thinking face, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "バナナは すき？",
+       "rom": "… wa suki?"
+      },
+      {
+       "say": "うん、すき。",
+       "uz": "ha, yoqadi",
+       "emoji": "👍",
+       "image": "en56-u7-yes-i-do.png",
+       "image_prompt": "A child smiling and giving a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizni «ha» deb qimirlating!",
+       "sentence": "ケーキは すき？うん、すき。",
+       "action_en": "うなずいて！",
+       "rom": "Un, suki."
+      },
+      {
+       "say": "ううん、すきじゃない。",
+       "uz": "yo'q, yoqmaydi",
+       "emoji": "👎",
+       "image": "en56-u7-no-i-dont.png",
+       "image_prompt": "A child shaking head and giving a thumbs down, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Boshingizni «yo'q» deb chayqating!",
+       "sentence": "くもは すき？ううん、すきじゃない。",
+       "action_en": "くびを よこに ふって！",
+       "rom": "Uun, suki ja nai."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: do'stimdan so'rayman",
+       "matn": "Kabutar: [ja]ミルクは すき？[/ja] Siz: [ja]うん、すき。[/ja] Kabutar: [ja]くもは すき？[/ja] Siz: [ja]ううん、すきじゃない！[/ja] Endi siz Kabutardan so'rang!",
+       "doska": "— ミルクは すき？\n— うん、すき。👍\n— くもは すき？\n— ううん、すきじゃない。👎",
+       "sodda": "Faqat [ja]はい[/ja] 👍 yoki [ja]いいえ[/ja] 👎 deb javob bering.",
+       "boshqa_usul": "Oila a'zolaringizdan so'rang: [ja]おちゃは すき？[/ja] Javoblarini sanang!",
+       "matn_en": "カブタル：ミルクは すき？こども：うん、すき。カブタル：くもは すき？こども：ううん、すきじゃない！こんどは きみが カブタルに きいてね！",
+       "sarlavha_en": "🎭 かいわ：ともだちに きこう"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]アイスクリームは すき？[/ja] Sizga yoqsa, nima deysiz?",
+       "options": [
+        "👍 うん、すき。",
+        "👎 ううん、すきじゃない。",
+        "🙋 さようなら！"
+       ],
+       "answer": 0,
+       "why": "Ajoyib! Yoqsa — [ja]うん、すき。[/ja]",
+       "q_en": "「アイスクリームは すき？」きみは すきです。なんて いう？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ともだちに きいて みよう。ケーキは すき？うん、すき！"
+    },
+    {
+     "name": "Eng sevimli narsam",
+     "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
+     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida yaponcha gapiramiz.",
+     "items": [
+      {
+       "say": "すきな いろは あお。",
+       "uz": "sevimli rangim — ko'k",
+       "emoji": "💙",
+       "image": "en56-u7-favourite-colour.png",
+       "image_prompt": "A big blue heart and blue paint splash, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "すきな いろは あお。",
+       "rom": "Suki na iro wa ao."
+      },
+      {
+       "say": "すきな おもちゃは ボール。",
+       "uz": "sevimli o'yinchog'im — to'p",
+       "emoji": "⚽",
+       "image": "en56-u7-favourite-toy.png",
+       "image_prompt": "A colorful soccer ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "すきな おもちゃは ボール。",
+       "action_en": "ボールを なげて！",
+       "rom": "Suki na omocha wa bōru."
+      },
+      {
+       "say": "ママが だいすき。",
+       "uz": "men onamni yaxshi ko'raman",
+       "emoji": "🥰",
+       "image": "en56-u7-love-mum.png",
+       "image_prompt": "A child hugging mother with hearts around, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Onangizni quchoqlang!",
+       "sentence": "ママが だいだいすき。",
+       "action_en": "ぎゅっと だきしめて！",
+       "rom": "Mama ga daisuki."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎁 Sevimli narsam ko'rgazmasi",
+       "matn": "Eng sevimli o'yinchog'ingizni olib keling! Uni ko'rsatib ayting: [ja]すきな おもちゃは…[/ja] Keyin rangini ayting: [ja]すきな いろは…[/ja]",
+       "doska": "すきな おもちゃは … 🧸\nすきな いろは … 🎨",
+       "sodda": "Faqat nomini ayting: [ja]ボール！[/ja] [ja]あお！[/ja]",
+       "boshqa_usul": "Sevimli rangingizdagi qalam bilan rasm chizing va onangizga sovg'a qiling: [ja]ママ、だいすき！[/ja]",
+       "matn_en": "すきな おもちゃを もってきてね！みせて いおう：すきな おもちゃは… それから いおう：すきな いろは…",
+       "sarlavha_en": "🎁 すきな おもちゃの はっぴょうかい"
+      }
+     ],
+     "intro_en": "やあ、みんな！ぼくの すきな いろは あお、そらみたいな いろ。きみの すきな おもちゃは なに？"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 7,
+     "name": "Bozorda meva tanlaymiz",
+     "name_en": "いちばで",
+     "emoji": "🧺",
+     "goal": "Bola bozorda nima yoqishi va yoqmasligini aytadi, odob bilan meva so'raydi",
+     "intro": "Buvimiz bilan bozorga keldik. Qaysi mevani yaxshi ko'ramiz?",
+     "intro_en": "おばあちゃんと いちばに いるよ。どの くだものが すき？",
+     "roles": [
+      "Buvi",
+      "Bola"
+     ],
+     "roles_en": [
+      "おばあちゃん",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s7-market.png",
+      "image_prompt": "A grandmother and a child at a colourful fruit and vegetable market stall with apples, bananas, grapes and onions, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "りんごは すき？",
+       "uz": "senga olma yoqadimi?",
+       "emoji": "🍎",
+       "rom": "Ringo wa suki?"
+      },
+      {
+       "who": 1,
+       "say": "うん、すき。りんごが すき。",
+       "uz": "ha, yoqadi. men olmani yaxshi ko'raman",
+       "emoji": "👍",
+       "rom": "Un, suki. Ringo ga suki."
+      },
+      {
+       "who": 0,
+       "say": "たまねぎは すき？",
+       "uz": "senga piyoz yoqadimi?",
+       "emoji": "🧅",
+       "rom": "Tamanegi wa suki?"
+      },
+      {
+       "who": 1,
+       "say": "ううん、すきじゃない。たまねぎは すきじゃない。",
+       "uz": "yo'q, yoqmaydi. piyozni yoqtirmayman",
+       "emoji": "👎",
+       "rom": "Uun, suki ja nai. Tamanegi wa suki ja nai."
+      },
+      {
+       "who": 1,
+       "say": "おばあちゃん、ぶどう ちょうだい！",
+       "uz": "buvijon, uzum oling, iltimos!",
+       "emoji": "🍇",
+       "rom": "Obāchan, budō chōdai!"
+      },
+      {
+       "who": 0,
+       "say": "いいよ！はい、どうぞ。",
+       "uz": "xo'p! mana, ol",
+       "emoji": "🫴",
+       "rom": "Ii yo! Hai, dōzo."
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvingiz [ja]りんごは すき？[/ja] deb so'radi. Sizga yoqadi. Nima deysiz?",
+       "q_en": "おばあちゃんが きくよ。「りんごは すき？」きみは すきです。なんて いう？",
+       "options": [
+        "👍 うん、すき。",
+        "👎 ううん、すきじゃない。",
+        "🙋 さようなら！"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]うん、すき。[/ja]",
+       "why_en": "そう！うん、すき。"
+      },
+      {
+       "q": "Sizga piyoz yoqmaydi. Nima deysiz?",
+       "q_en": "たまねぎが すきじゃない。なんて いう？",
+       "options": [
+        "🧅👎 たまねぎは すきじゃない。",
+        "🍎❤️ りんごが すき。",
+        "😋 おいしい！"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]たまねぎは すきじゃない。[/ja]",
+       "why_en": "そう！たまねぎは すきじゃない。"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Menda bor, qila olaman",
+   "emoji": "💪",
+   "lessons": [
+    {
+     "name": "Menda bor",
+     "goal": "Bola «…を もってるよ» bilan o'zida bor narsani aytadi",
+     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, yaponcha aytamiz!",
+     "items": [
+      {
+       "say": "ねこを かってるよ。",
+       "uz": "menda mushuk bor",
+       "emoji": "🐈",
+       "image": "en56-u8-have-cat.png",
+       "image_prompt": "A child holding a fluffy cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ねこを かっているよ。しろい ねこだよ。",
+       "rom": "Neko o katteru yo."
+      },
+      {
+       "say": "いぬを かってるよ。",
+       "uz": "menda it bor",
+       "emoji": "🐕",
+       "image": "en56-u8-have-dog.png",
+       "image_prompt": "A child walking a happy dog, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "いぬを かっているよ。おおきい いぬだよ。",
+       "rom": "Inu o katteru yo."
+      },
+      {
+       "say": "にんぎょうを もってるよ。",
+       "uz": "menda qo'g'irchoq bor",
+       "emoji": "🪆",
+       "image": "en56-u8-have-doll.png",
+       "image_prompt": "A child holding a colorful doll, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "ピンクの ワンピースの にんぎょうを もっているよ。",
+       "rom": "Ningyō o motteru yo."
+      },
+      {
+       "say": "ボールを もってるよ。",
+       "uz": "menda to'p bor",
+       "emoji": "🏀",
+       "image": "en56-u8-have-ball.png",
+       "image_prompt": "A child holding a bouncy ball, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "あかい ボールを もっているよ。",
+       "action_en": "ボールを ついて！",
+       "rom": "Bōru o motteru yo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎒 Sehrli sumka",
+       "matn": "Sumkaga o'yinchoqlarni soling. Kattalar birini chiqaradi — siz ayting: [ja]ボールを もってるよ！[/ja] [ja]にんぎょうを もってるよ！[/ja] Qani, sumkada yana nima bor?",
+       "doska": "🎒 …を もってるよ\n🏀 ボール  🪆 にんぎょう  🧸 くまちゃん",
+       "sodda": "Faqat nomini ayting: [ja]ボール！[/ja] [ja]にんぎょう！[/ja]",
+       "boshqa_usul": "Uy hayvoningiz yoki o'yinchog'ingiz rasmini ko'rsatib ayting: [ja]…を もってるよ[/ja]",
+       "matn_en": "おもちゃを ふくろに いれよう。おとなが ひとつ だしたら いってね：ボールを もってるよ！にんぎょうを もってるよ！ふくろには ほかに なにが ある？",
+       "sarlavha_en": "🎒 まほうの かばん"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola itini ko'rsatib nima deydi?",
+       "options": [
+        "🐕 いぬを かってるよ。",
+        "🐈 ねこを かってるよ。",
+        "🪆 にんぎょうを もってるよ。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! It — [ja]いぬ[/ja]: [ja]いぬを かってるよ。[/ja]",
+       "q_en": "おんなのこが いぬを みせているよ。なんて いう？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくには すと ちいさな ともだちが いるよ。きみには なにが ある？おしえて！"
+    },
+    {
+     "name": "Men qila olaman",
+     "goal": "Bola «…できるよ» bilan qila oladigan harakatini aytadi",
+     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni yaponcha aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "ジャンプ できるよ。",
+       "uz": "men sakray olaman",
+       "emoji": "🤸",
+       "image": "en56-u8-can-jump.png",
+       "image_prompt": "A child jumping high, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sakrang!",
+       "sentence": "みて！たかく ジャンプ できるよ。",
+       "action_en": "ジャンプ！",
+       "rom": "Janpu dekiru yo."
+      },
+      {
+       "say": "はしれるよ。",
+       "uz": "men yugura olaman",
+       "emoji": "🏃",
+       "image": "en56-u8-can-run.png",
+       "image_prompt": "A child running fast, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Joyingizda yuguring!",
+       "sentence": "はやく はしれるよ。",
+       "action_en": "その ばで はしって！",
+       "rom": "Hashireru yo."
+      },
+      {
+       "say": "およげるよ。",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "en56-u8-can-swim.png",
+       "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringiz bilan suzganday qiling!",
+       "sentence": "なつは およげるよ。",
+       "action_en": "さかなみたいに およいで！",
+       "rom": "Oyogeru yo."
+      },
+      {
+       "say": "うたえるよ。",
+       "uz": "men qo'shiq ayta olaman",
+       "emoji": "🎤",
+       "image": "en56-u8-can-sing.png",
+       "image_prompt": "A child singing into a microphone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "La-la-la deb kuylang!",
+       "sentence": "うたが うたえるよ。",
+       "action_en": "ラララと うたって！",
+       "rom": "Utaeru yo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Qani, ko'rsat!",
+       "matn": "Men aytaman, siz bajarasiz va takrorlaysiz! [ja]ジャンプ できるよ！[/ja] — sakrang! [ja]はしれるよ！[/ja] — yuguring! [ja]およげるよ！[/ja] — suzing! [ja]うたえるよ！[/ja] — kuylang!",
+       "doska": "🤸 ジャンプ できるよ！\n🏃 はしれるよ！\n🏊 およげるよ！\n🎤 うたえるよ！",
+       "sodda": "Faqat harakat so'zi: [ja]ジャンプ！[/ja] [ja]はしれ！[/ja]",
+       "boshqa_usul": "Do'stingiz bilan navbatma-navbat buyruq bering: [ja]ジャンプ！[/ja] [ja]はしれ！[/ja]",
+       "matn_en": "わたしが いうから、やって いってね！ジャンプ できるよ！— ジャンプ！はしれるよ！— はしって！およげるよ！— およいで！うたえるよ！— うたって！",
+       "sarlavha_en": "🏃 みせて！"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ja]およげるよ。[/ja] — qaysi rasm?",
+       "options": [
+        "🏊 suzaman",
+        "🏃 yuguraman",
+        "🎤 kuylayman"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ja]およぐ[/ja] — suzmoq.",
+       "q_en": "「およげるよ。」どの えかな？"
+      }
+     ],
+     "intro_en": "やあ！ぼくは とべるよ！きみは なにが できる？いっしょに ジャンプして、はしって、うたおう！"
+    },
+    {
+     "name": "Qila olaman, qila olmayman",
+     "goal": "Bola yangi harakatlarni va «…できない» ni aytadi",
+     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "items": [
+      {
+       "say": "おどれるよ。",
+       "uz": "men raqs tusha olaman",
+       "emoji": "💃",
+       "image": "en56-u8-can-dance.png",
+       "image_prompt": "A child dancing happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Raqs tushing!",
+       "sentence": "ともだちと おどれるよ。",
+       "action_en": "おどって！",
+       "rom": "Odoreru yo."
+      },
+      {
+       "say": "えが かけるよ。",
+       "uz": "men rasm chiza olaman",
+       "emoji": "🎨",
+       "image": "en56-u8-can-draw.png",
+       "image_prompt": "A child painting a picture, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Havoda rasm chizing!",
+       "sentence": "おおきな おうちの えが かけるよ。",
+       "action_en": "くうちゅうに まるを かいて！",
+       "rom": "E ga kakeru yo."
+      },
+      {
+       "say": "てを たたけるよ。",
+       "uz": "men qarsak chala olaman",
+       "emoji": "👏",
+       "image": "en56-u8-can-clap.png",
+       "image_prompt": "Two hands clapping, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qarsak chaling!",
+       "sentence": "てを たたけるよ。",
+       "action_en": "てを たたいて！",
+       "rom": "Te o tatakeru yo."
+      },
+      {
+       "say": "とべないよ。",
+       "uz": "men ucha olmayman",
+       "emoji": "🐦🚫",
+       "image": "en56-u8-cant-fly.png",
+       "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qanot qoqib ko'ring — uchmaysiz!",
+       "sentence": "ぼくは おとこのこ。とべないよ。",
+       "action_en": "うでを パタパタ して！",
+       "rom": "Tobenai yo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 «できる» qo'shig'i",
+       "matn": "Kuylab harakat qilamiz: [ja]てを たたける、パチ、パチ、パチ！おどれる、おどれる、おどれる！ジャンプ できる、ジャンプ、ジャンプ、ジャンプ！[/ja] Oxirida qo'l qoqib: [ja]とべないよ！[/ja]",
+       "doska": "てを たたけるよ！👏\nおどれるよ！💃\nジャンプ できるよ！🤸\nとべないよ！🐦🚫",
+       "sodda": "Faqat qarsak bilan: [ja]パチ、パチ、パチ！[/ja]",
+       "boshqa_usul": "Kattalarga savol bering: siz nima qila olasiz? Ular yaponcha javob bersin!",
+       "matn_en": "うたって うごこう：てを たたける、パチ、パチ、パチ！おどれる、おどれる、おどれる！ジャンプ できる、ジャンプ、ジャンプ、ジャンプ！さいごに うでを パタパタ：とべないよ！",
+       "sarlavha_en": "🎵 「できるよ」の うた"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bola qanot qoqib ko'rdi, lekin ucholmadi. U nima deydi?",
+       "options": [
+        "🐦🚫 とべないよ。",
+        "💃 おどれるよ。",
+        "👏 てを たたけるよ。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]とべないよ。[/ja] — men ucha olmayman.",
+       "q_en": "おとこのこが うでを パタパタ。でも とべない。なんて いう？"
+      }
+     ],
+     "intro_en": "こんにちは、みんな！ぼくは とべるけど、およげない。きみたちは おどれるし、えも かけるね！みて みよう。"
+    },
+    {
+     "name": "Men endi kattaman!",
+     "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
+     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda yaponcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "items": [
+      {
+       "say": "ごさいです。",
+       "uz": "men besh yoshdaman",
+       "emoji": "🖐️🎂",
+       "image": "en56-u8-i-am-five.png",
+       "image_prompt": "A child next to a birthday cake with five candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Besh barmoq ko'rsating!",
+       "sentence": "ぼくの なまえは アリ。ごさいだよ。",
+       "action_en": "ゆびを ごほん みせて！",
+       "rom": "Go-sai desu."
+      },
+      {
+       "say": "ぼくは おおきい。",
+       "uz": "men kattaman",
+       "emoji": "💪",
+       "image": "en56-u8-i-am-big.png",
+       "image_prompt": "A proud child showing strong arms, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Kuchingizni ko'rsating!",
+       "sentence": "ぼくは おおきい。はやく はしれるよ。",
+       "action_en": "せを のばして たって！",
+       "rom": "Boku wa ōkii."
+      },
+      {
+       "say": "うれしいな！",
+       "uz": "men xursandman!",
+       "emoji": "🥳",
+       "image": "en56-u8-i-am-happy.png",
+       "image_prompt": "A child celebrating with confetti, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "うれしいな！にほんごが すき！",
+       "action_en": "ジャンプして にっこり！",
+       "rom": "Ureshii na!"
+      },
+      {
+       "say": "また すぐ あおうね！",
+       "uz": "tez orada ko'rishguncha!",
+       "emoji": "🤝",
+       "image": "en56-u8-see-you-soon.png",
+       "image_prompt": "Two friends shaking hands goodbye, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "さようなら、カブタル！また すぐ あおうね！",
+       "action_en": "てを ふって バイバイ！",
+       "rom": "Mata sugu aō ne!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎤 Men haqimda",
+       "matn": "Mikrofon oling va sahnaga chiqing! Ayting: [ja]こんにちは！わたしの なまえは…[/ja] [ja]ごさいです。[/ja] [ja]ねこを かってるよ。[/ja] [ja]おどれるよ。[/ja] [ja]りんごが すき。[/ja] Oxirida: [ja]また すぐ あおうね！[/ja]",
+       "doska": "こんにちは！わたしの なまえは …\nごさいです。…を もっています。\n…できます。…が すきです。\nまた すぐ あおうね！",
+       "sodda": "Faqat ikki gap: [ja]わたしの なまえは…[/ja] va [ja]ごさいです。[/ja]",
+       "boshqa_usul": "Hikoyangizni telefonga yozib oling va oilangizga ko'rsating!",
+       "matn_en": "マイクを もって ステージへ！いってね：こんにちは！わたしの なまえは… ごさいです。ねこを かっています。おどれます。りんごが すきです。また すぐ あおうね！",
+       "sarlavha_en": "🎤 わたしの こと"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nechi yoshdasiz? Besh yosh bo'lsa, nima deysiz?",
+       "options": [
+        "🖐️🎂 ごさいです。",
+        "💪 ぼくは おおきい。",
+        "🔟 じゅう"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ja]ごさいです。[/ja] — men besh yoshdaman.",
+       "q_en": "なんさい？きみは ごさい。なんて いう？"
+      }
+     ],
+     "intro_en": "こんにちは、おおきく なった ともだち！きみたちは ごさい。にほんごの ことばを たくさん しっているね。とても うれしいよ！"
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 8,
+     "name": "Tug'ilgan kun bayrami",
+     "name_en": "おたんじょうび パーティー",
+     "emoji": "🎂",
+     "goal": "Bola tug'ilgan kunida yoshini aytadi, nima qila olishini ko'rsatadi va mehmonlar bilan xayrlashadi",
+     "intro": "Bugun do'stimizning tug'ilgan kuni! Tabriklaymiz, o'ynaymiz va raqs tushamiz.",
+     "intro_en": "きょうは ともだちの おたんじょうび！いっしょに あそんで、うたって、おどろう！",
+     "roles": [
+      "Do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "ともだち",
+      "こども"
+     ],
+     "scene": {
+      "image": "en56-s8-birthday-party.png",
+      "image_prompt": "Happy children at a birthday party with balloons and a cake with five candles, dancing and clapping, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "おたんじょうび おめでとう！なんさい？",
+       "uz": "tug'ilgan kuning muborak! necha yoshdasan?",
+       "emoji": "🎉",
+       "rom": "Otanjōbi omedetō! Nan-sai?"
+      },
+      {
+       "who": 0,
+       "say": "ごさいだよ！ありがとう！",
+       "uz": "besh yoshdaman! rahmat!",
+       "emoji": "🖐️",
+       "rom": "Go-sai da yo! Arigatō!"
+      },
+      {
+       "who": 1,
+       "say": "きみに ボールが あるよ。",
+       "uz": "menda senga to'p bor",
+       "emoji": "⚽",
+       "rom": "Kimi ni bōru ga aru yo."
+      },
+      {
+       "who": 0,
+       "say": "ありがとう！おどれるよ。いっしょに おどろう！",
+       "uz": "rahmat! men raqs tusha olaman. keling, raqs tushamiz!",
+       "emoji": "💃",
+       "rom": "Arigatō! Odoreru yo. Issho ni odorō!"
+      },
+      {
+       "who": 1,
+       "say": "うたって てを たたけるよ！",
+       "uz": "men qo'shiq aytib, qarsak chala olaman!",
+       "emoji": "👏",
+       "rom": "Utatte te o tatakeru yo!"
+      },
+      {
+       "who": 0,
+       "say": "おいしい ケーキ！また すぐ あおうね！",
+       "uz": "mazali tort! tez orada ko'rishguncha!",
+       "emoji": "🎂",
+       "rom": "Oishii kēki! Mata sugu aō ne!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Do'stingiz besh yoshda. U nima deydi?",
+       "q_en": "ともだちは ごさい。なんて いう？",
+       "options": [
+        "🖐️🎂 ごさいです。",
+        "🔟 じゅう",
+        "💪 ぼくは おおきい。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]ごさいです。[/ja]",
+       "why_en": "そう！ごさいです。"
+      },
+      {
+       "q": "Sovg'angiz — to'p. Nima deysiz?",
+       "q_en": "プレゼントは ボールだよ。なんて いう？",
+       "options": [
+        "⚽ きみに ボールが あるよ。",
+        "🐕 いぬを かってるよ。",
+        "🚫 とべないよ。"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]きみに ボールが あるよ。[/ja]",
+       "why_en": "そう！きみに ボールが あるよ。"
+      },
+      {
+       "q": "Bayram tugadi. Xayrlashganda nima deysiz?",
+       "q_en": "パーティーが おわったよ。なんて いう？",
+       "options": [
+        "👋 また すぐ あおうね！",
+        "🍽️ おなか すいた。",
+        "❓ おなまえは？"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ja]また すぐ あおうね！[/ja]",
+       "why_en": "そう！また すぐ あおうね！"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "みて！",
+  "listen": "きいて、くりかえしてね：",
+  "again": "もう いちど！",
+  "good": [
+   "よく できました！",
+   "よく できました！",
+   "いいね！",
+   "すごい！",
+   "すばらしい！"
+  ],
+  "remember": "おぼえて いるかな？",
+  "together": "いっしょに いおう！",
+  "your_turn": "きみの ばん！",
+  "game": "ゲームの じかん！",
+  "ready": "じゅんびは いい？スタート！",
+  "found": "すごい！ぜんぶ みつけたね！",
+  "today": "きょう ならった こと：",
+  "bye": "また あしたね！",
+  "which": "どれかな：{w}？",
+  "find": "えを さがしてね：{w}",
+  "where": "どこかな：{w}？",
+  "what": "えを みて。これは なに？",
+  "yes": "そう！{w}",
+  "old": "🔁 まえの しつもん",
+  "play": "あそぼう！",
+  "roleplay": "やって みよう！",
+  "says": "{r}が いいます：",
+  "now_you": "こんどは きみが いってね：",
+  "hello_friends": "こんにちは、みんな！",
+  "listen_short": "きいてね：",
+  "listen_bang": "きいて！",
+  "repeat_me": "まねして いってね：",
+  "now_you_short": "こんどは きみ：",
+  "say": "いってね：",
+  "one_more": "もう いっかい：",
+  "look_listen": "みて、きいてね：",
+  "point_game": "ことばを いうから、えを ゆびさしてね：{names}。",
+  "t_point": "🎲 ゆびさしてね！",
+  "t_today": "🌟 きょう ならった こと",
+  "t_remember": "おぼえてね：",
+  "t_last_year": "きょねん",
+  "welcome_back": "こんにちは、みんな！おかえり！きょねん ならった ことばを おもいだそう。",
+  "t_review": "ふくしゅう",
+  "review_intro": "ふくしゅうの ひ！この ユニットを ぜんぶ おもいだそう。せいかいする たびに ほしが ひとつ！",
+  "say_with_me": "わたしと いっしょに いってね！",
+  "t_jump": "ジャンプか すわるか！",
+  "jump": "ことばを いうよ。えが あったら ジャンプ！なかったら すわってね！じゅんびは いい？スタート！",
+  "played_great": "よく できました！じょうずに あそべたね！",
+  "t_review_q": "ふくしゅうの しつもん",
+  "t_unit_done": "ユニット クリア！",
+  "unit_done": "すごい！この ユニットは おわり！あたらしい ぼうけんを はじめよう！",
+  "t_party": "おおきな パーティー！",
+  "party": "おおきな パーティー",
+  "party_intro": "やったー！きょうは おおきな パーティー！この ほんを ぜんぶ おわったね。すきな ことばを おもいだして、ほしを もらおう！",
+  "know_all": "ぜんぶ わかるね！",
+  "t_party_q": "パーティーの しつもん",
+  "t_champion": "きみは チャンピオン！",
+  "champion": "きみは チャンピオン！もう ぜんぶ わかるね。すきな レッスンを ひらいて また あそんでね！",
+  "t_roleplay": "ごっこあそび",
+  "roles_line": "わたしは {a}、あなたは {b}。",
+  "change_roles": "こんどは やくを こうたい！",
+  "great_role": "きみは すてきな {r}だね！",
+  "t_well_done": "🌟 よく できました！",
+  "scenario_done": "もう できるね：{name}！おうちで かぞくと また やって みてね。"
+ }
+}
