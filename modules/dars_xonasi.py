@@ -252,6 +252,26 @@ def build_lesson(topic, units, media_url, extra_questions=()):
     }
 
 
+def emoji_key(text):
+    """«🐱 cat» → «🐱» (variatsiya belgisisiz). Birinchi so'z faqat emoji bo'lsa."""
+    first = str(text or "").strip().split(None, 1)[0] if str(text or "").strip() else ""
+    if not first or (any(ch.isalnum() for ch in first) and "\u20e3" not in first):   # 5️⃣ — raqam belgisi ham emoji
+        return ""
+    return first.replace("\ufe0f", "")
+
+
+def emoji_pictures(units, media_url):
+    """Kitob qadamlaridan emoji → rasm manzili (birinchi topilgani)."""
+    out = {}
+    for u in units:
+        p = u.get("payload") or {}
+        key = emoji_key(p.get("doska_matni"))
+        url = media_url(_t(p.get("media_id"))) if key else None
+        if key and url and key not in out:
+            out[key] = url
+    return out
+
+
 def _svg_name(name):
     """«rasm.png» → «rasm.svg» (Excel'da png yozilgan, ZIP'da jonli svg kelgan bo'lishi mumkin)."""
     base, dot, _ext = str(name or "").rpartition(".")
@@ -439,6 +459,17 @@ def create_router(platform):
 
             lesson = build_lesson(topic, units, media_url, extra)
             books = [u for u in units if u.get("book_title")]
+            # REV99: bog'cha testida variant emoji o'rniga kitobdagi jonli rasm (butun kitob bo'yicha emoji → rasm)
+            if books and "yosh" in str(topic.get("sinf") or "").lower():
+                cur.execute(
+                    """SELECT DISTINCT ON (payload->>'doska_matni') unit_code,unit_kind,payload
+                       FROM ai_brain_published_units
+                       WHERE book_title=%s AND unit_kind='lesson_step' AND COALESCE(payload->>'media_id','')<>''
+                       LIMIT 400""",
+                    (books[0]["book_title"],),
+                )
+                pic_units = [dict(r) for r in cur.fetchall()]
+                lesson["rasmlar"] = emoji_pictures(pic_units, media_resolver(cur, pic_units))
             lesson["manba"] = {"kitob": books[0]["book_title"]} if books else None
             codes = [
                 v["takrorlash_topic_code"] for items in lesson["variants"].values() for v in items
