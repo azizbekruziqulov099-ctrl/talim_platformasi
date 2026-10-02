@@ -2778,7 +2778,7 @@ def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
 
 
 @app.get("/api/ovoz")
-async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = ""):
+async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = ""):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
     Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi;
@@ -2798,8 +2798,10 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
     asosiy_til = "uz"
     # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
     tezlik = tezlik if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)%", str(tezlik or "")) else "+0%"
+    # REV98: bog'cha — robot Kabu ovozi biroz yuqoriroq, iliqroq (faqat -20…+20 Hz).
+    ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|1[0-9]|20)Hz", str(ohang or "")) else "+0Hz"
     kesh_kaliti = hashlib.sha256(
-        f"v93-joined\0{jins}\0{tezlik}\0{matn}".encode("utf-8")
+        f"v93-joined\0{jins}\0{tezlik}\0{ohang}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
@@ -2826,7 +2828,7 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
             # REV93: bo'lak to'liq yig'iladi va boshi/oxiridagi ortiqcha jimlik kesiladi — o'zbekcha va inglizcha
             # bo'laklar orasida uzilish qolmaydi, gap bir tekis eshitiladi.
             try:
-                com = edge_tts.Communicate(tayyor, voice, rate=tezlik, boundary="WordBoundary")
+                com = edge_tts.Communicate(tayyor, voice, rate=tezlik, pitch=ohang, boundary="WordBoundary")
             except TypeError:   # eski edge-tts
                 com = edge_tts.Communicate(tayyor, voice)
             audio, events = bytearray(), []
@@ -18687,7 +18689,29 @@ AI_BRAIN_OPTIONAL_SHEETS = {"11_DARS_SSENARIY", "12_TUSHUNMADIM"}
 AI_BRAIN_OPTIONAL_HEADERS = {"02_DTS_XARITA": ["daraja_1_30"]}
 AI_LESSON_STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa", "amaliy")
 AI_VARIANT_TYPES = ("sodda", "hikoya", "rasm", "boshqa_usul", "takrorlash")
-AI_MEDIA_EXTENSIONS = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp"}
+AI_MEDIA_EXTENSIONS = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".gif": "image/gif", ".webp": "image/webp",
+                       ".svg": "image/svg+xml"}   # REV98: jonli (animatsiyali) SVG rasmlar
+
+
+def _ai_media_svg_xavfsizmi(data):
+    """REV98: SVG faqat rasm bo'lsin — skript, hodisa, tashqi havola, foreignObject bo'lmasin."""
+    try:
+        text = data.decode("utf-8", "ignore").lower()
+    except Exception:
+        return False
+    if "<svg" not in text:
+        return False
+    return not re.search(r"<script|\bon[a-z]+\s*=|javascript:|<foreignobject|<iframe|<embed|<object|(?:href|src)\s*=\s*[\"']?\s*(?:https?:|//|data:text)|@import", text)
+
+
+def _ai_media_nom_variantlari(names):
+    """REV98: Excel'da «x.png», ZIP'da «x.svg» bo'lsa ham mos — SVG nomi png/jpg/webp/gif nomlarini ham qoplaydi."""
+    out = set(names)
+    for name in names:
+        stem, ext = os.path.splitext(name)
+        if ext.lower() == ".svg":
+            out.update(stem + e for e in (".png", ".jpg", ".jpeg", ".webp", ".gif", ".PNG", ".JPG"))
+    return out
 
 AI_BRAIN_ID_COLUMNS = {
     "03_BILIM": "content_id",
@@ -19644,7 +19668,7 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
     media_files = {}
     if (fayl.filename or "").lower().endswith(".zip") or content[:4] == b"PK\x03\x04" and not _ai_brain_xlsx_mi(content):
         content, media_files = _ai_brain_zip_och(content)
-    parsed = _ai_brain_excel_parse(content, set(media_files))
+    parsed = _ai_brain_excel_parse(content, _ai_media_nom_variantlari(set(media_files)))
     for name, item in (parsed.pop("media", None) or {}).items():
         media_files.setdefault(name, item)
 
@@ -19731,6 +19755,8 @@ def _ai_brain_zip_och(content):
             if name.lower() in {k.lower() for k in media}:
                 raise HTTPException(status_code=400, detail=f"{name}: bir xil nomli rasm ikki marta bor")
             data = z.read(info)
+            if ext == ".svg" and not _ai_media_svg_xavfsizmi(data):
+                raise HTTPException(status_code=400, detail=f"{name}: SVG ichida skript yoki tashqi havola bor — bunday rasm qabul qilinmaydi")
             media[name] = (AI_MEDIA_EXTENSIONS[ext], data)
         if len(xlsx) != 1:
             raise HTTPException(status_code=400, detail="ZIP ichida aynan bitta .xlsx fayl bo'lishi kerak")

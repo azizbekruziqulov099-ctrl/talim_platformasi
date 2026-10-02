@@ -252,6 +252,12 @@ def build_lesson(topic, units, media_url, extra_questions=()):
     }
 
 
+def _svg_name(name):
+    """«rasm.png» → «rasm.svg» (Excel'da png yozilgan, ZIP'da jonli svg kelgan bo'lishi mumkin)."""
+    base, dot, _ext = str(name or "").rpartition(".")
+    return f"{base}.svg" if dot and base else str(name or "")
+
+
 def media_resolver(cur, units):
     """Birliklardagi media_id → /api/ai_miya_media/<id> (faqat nashr qilingan paketlardan)."""
     wanted = set()
@@ -267,6 +273,7 @@ def media_resolver(cur, units):
         target = resources.get(m, m)
         if target and not target.startswith("https://"):
             names.add(target.lower())
+            names.add(_svg_name(target).lower())   # REV98: jonli SVG bo'lsa — u birinchi
     by_name = {}
     if names:
         cur.execute(
@@ -284,7 +291,7 @@ def media_resolver(cur, units):
         target = resources.get(media_id, media_id)
         if target.startswith("https://"):
             return target
-        found = by_name.get(target.lower())
+        found = by_name.get(_svg_name(target).lower()) or by_name.get(target.lower())
         return f"/api/ai_miya_media/{found}" if found else None
 
     return media_url
