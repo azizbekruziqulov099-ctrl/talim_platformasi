@@ -1,0 +1,3480 @@
+{
+ "subject": "Arab tili",
+ "lang": "ar",
+ "age": "4-5 yosh",
+ "book_title": "مرحبًا يا صديقي! 4–5 yosh",
+ "prefix": "AR",
+ "units": [
+  {
+   "name": "Salom, yana!",
+   "emoji": "👋",
+   "lessons": [
+    {
+     "name": "Salom va rahmat",
+     "goal": "Bola tanish salomlashish iboralarini eslaydi va مع السلامة! iborasini o'rganadi",
+     "intro": "Salom, bolajonlar! Men — robot Kabu. Bip-bip! Yozda sen o'sding, men ham o'sdim! Qani, avval eski do'stlarimiz — sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
+     "items": [
+      {
+       "say": "مَرْحَبًا!",
+       "uz": "salom",
+       "emoji": "👋",
+       "image": "en45-u1-hello.png",
+       "image_prompt": "A cute child waving hello with a big smile, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni silkit!",
+       "rom": "marhaban!"
+      },
+      {
+       "say": "مَعَ السَّلَامَة!",
+       "uz": "xayr",
+       "emoji": "🚪",
+       "image": "en45-u1-goodbye.png",
+       "image_prompt": "A child waving goodbye at an open door, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Xayrlashib qo'l silkit!",
+       "rom": "ma'a as-salama!"
+      },
+      {
+       "say": "شُكْرًا!",
+       "uz": "rahmat",
+       "emoji": "🙏",
+       "image": "en45-u1-thank-you.png",
+       "image_prompt": "A smiling child holding a gift and saying thank you, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "shukran!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Mehmon o'yini",
+       "matn": "Ayiqcha mehmonga keldi. Uni kutib ol: [ar]مَرْحَبًا![/ar] U senga olma berdi: [ar]شُكْرًا![/ar] Ayiqcha uyiga ketyapti: [ar]مَعَ السَّلَامَة![/ar] Barakalla, sen juda odobli bolasan!",
+       "doska": "👋 مَرْحَبًا!\n🙏 شُكْرًا!\n🚪 مَعَ السَّلَامَة!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Do'sting uyiga ketyapti. Nima deysan?",
+       "options": [
+        "🚪 مَعَ السَّلَامَة!",
+        "👋 مَرْحَبًا!"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ketayotganda [ar]مَعَ السَّلَامَة![/ar] — xayr deymiz."
+      }
+     ]
+    },
+    {
+     "name": "Mening ismim",
+     "goal": "Bola ما اسمك؟ savoliga اسمي… deb javob beradi",
+     "intro": "Bip-bip! Mening ismim — robot Kabu. Sening isming-chi? Arab bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
+     "items": [
+      {
+       "say": "مَا اسْمُك؟",
+       "uz": "isming nima?",
+       "emoji": "❓",
+       "image": "en45-u1-whats-your-name.png",
+       "image_prompt": "A curious child with a question mark bubble asking a friend, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ma ismuk?"
+      },
+      {
+       "say": "اِسْمِي…",
+       "uz": "mening ismim…",
+       "emoji": "🙋",
+       "image": "en45-u1-my-name-is.png",
+       "image_prompt": "A proud child pointing to self with a name tag without letters, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'y!",
+       "rom": "ismi…"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎤 Tanishuv o'yini",
+       "matn": "Men so'rayman: [ar]مَا اسْمُك؟[/ar] Sen ko'ksingga qo'l qo'yib javob ber: [ar]اِسْمِي…[/ar] va ismingni ayt! Masalan: [ar]اِسْمِي عَلِي.[/ar] Barakalla!",
+       "doska": "❓ مَا اسْمُك؟\n🙋 اِسْمِي…",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kimdir [ar]مَا اسْمُك؟[/ar] dedi. U nimani so'rayapti?",
+       "options": [
+        "❓ ismimni",
+        "🍎 olmani"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]مَا اسْمُك؟[/ar] — isming nima? degani."
+      }
+     ]
+    },
+    {
+     "name": "Qalaysan?",
+     "goal": "Bola كيف حالك؟ savoliga أنا بخير! deb javob beradi",
+     "intro": "Bip-bip! Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Arabcha qanday so'raymiz? Tingla!",
+     "items": [
+      {
+       "say": "كَيْفَ حَالُك؟",
+       "uz": "qalaysan?",
+       "emoji": "🤗",
+       "image": "en45-u1-how-are-you.png",
+       "image_prompt": "A friendly child hugging a friend and asking how are you, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "kayfa haluk?"
+      },
+      {
+       "say": "أَنَا بِخَيْر!",
+       "uz": "yaxshiman!",
+       "emoji": "👍",
+       "image": "en45-u1-im-fine.png",
+       "image_prompt": "A happy child giving a thumbs up, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bosh barmog'ingni ko'tar!",
+       "rom": "ana bi-khayr!"
+      },
+      {
+       "say": "صَبَاحُ الْخَيْر!",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en45-u1-good-morning.png",
+       "image_prompt": "A sunny morning, a child stretching happily at sunrise, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "sabahu al-khayr!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "💬 Kichik dialog",
+       "matn": "robot Kabu: [ar]صَبَاحُ الْخَيْر! كَيْفَ حَالُك؟[/ar] Sen: [ar]أَنَا بِخَيْر! شُكْرًا![/ar] Endi o'rtog'ing bilan navbatma-navbat ayt!",
+       "doska": "🕊️ كَيْفَ حَالُك؟\n👍 أَنَا بِخَيْر! شُكْرًا!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sizdan [ar]كَيْفَ حَالُك؟[/ar] deb so'rashdi. Nima deysan?",
+       "options": [
+        "👍 أَنَا بِخَيْر!",
+        "🚪 مَعَ السَّلَامَة!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]أَنَا بِخَيْر![/ar] — yaxshiman."
+      }
+     ]
+    },
+    {
+     "name": "To'rt rangni eslaymiz",
+     "goal": "Bola أحمر، أزرق، أصفر، أخضر ranglarini eslaydi va ajratadi",
+     "intro": "Bip-bip! Mening sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysanmi? Qani, bir-bir chiqaramiz!",
+     "items": [
+      {
+       "say": "أَحْمَر",
+       "uz": "qizil",
+       "emoji": "🔴",
+       "image": "en45-u1-red.png",
+       "image_prompt": "A big shiny red circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ahmar"
+      },
+      {
+       "say": "أَزْرَق",
+       "uz": "ko'k",
+       "emoji": "🔵",
+       "image": "en45-u1-blue.png",
+       "image_prompt": "A big shiny blue circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "azraq"
+      },
+      {
+       "say": "أَصْفَر",
+       "uz": "sariq",
+       "emoji": "🟡",
+       "image": "en45-u1-yellow.png",
+       "image_prompt": "A big shiny yellow circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "asfar"
+      },
+      {
+       "say": "أَخْضَر",
+       "uz": "yashil",
+       "emoji": "🟢",
+       "image": "en45-u1-green.png",
+       "image_prompt": "A big shiny green circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "akhdar"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚦 Svetofor o'yini",
+       "matn": "[ar]أَخْضَر![/ar] — joyingda yugur! [ar]أَحْمَر![/ar] — to'xta! [ar]أَصْفَر![/ar] — chapak chal! [ar]أَزْرَق![/ar] — qo'lingni osmonga ko'tar! Boshladik!",
+       "doska": "🟢 yuguramiz\n🔴 to'xtaymiz\n🟡 chapak\n🔵 qo'l yuqoriga",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmon qanday rangda?",
+       "options": [
+        "🔵 أَزْرَق",
+        "🔴 أَحْمَر"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Osmon — [ar]أَزْرَق[/ar], ko'k."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'chada yangi do'st",
+     "name_en": "صديق جديد في الروضة",
+     "emoji": "🧒",
+     "goal": "Bola yangi do'sti bilan tanishadi: ismini so'raydi, o'z ismini aytadi va hol so'raydi",
+     "intro": "Bip-bip! robot Kabu bog'chada yangi do'st ko'rdi. Qani, [ar]مَا اسْمُك؟[/ar] deb tanishamiz!",
+     "intro_en": "انظر! صديق جديد! هيا نقول مرحبًا ونسأل: ما اسمك؟",
+     "roles": [
+      "Yangi do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "صديق جديد",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s1-new-friend.png",
+      "image_prompt": "Two small children meeting in a bright kindergarten classroom, one waving hello to the other, toys and a rug around them, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "مَرْحَبًا! مَا اسْمُك؟",
+       "uz": "salom! isming nima?",
+       "emoji": "👋",
+       "rom": "marhaban! ma ismuk?"
+      },
+      {
+       "who": 0,
+       "say": "اِسْمِي عَلِي.",
+       "uz": "mening ismim Ali",
+       "emoji": "🧒",
+       "rom": "ismī ‘Alī."
+      },
+      {
+       "who": 1,
+       "say": "كَيْفَ حَالُكَ يَا عَلِي؟",
+       "uz": "qalaysan, Ali?",
+       "emoji": "🙂",
+       "rom": "kayfa haluka ya Ali?"
+      },
+      {
+       "who": 0,
+       "say": "أَنَا بِخَيْر، شُكْرًا!",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊",
+       "rom": "ana bi-khayr, shukran!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Do'stingning ismini bilmoqchisan. Nima deysan?",
+       "q_en": "تريد أن تعرف اسم صديقك. ماذا تقول؟",
+       "options": [
+        "❓ مَا اسْمُك؟",
+        "👋 مَعَ السَّلَامَة!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]مَا اسْمُك؟[/ar] — isming nima?",
+       "why_en": "نعم! ما اسمك؟"
+      },
+      {
+       "q": "Do'sting [ar]كَيْفَ حَالُك؟[/ar] dedi. Nima deysan?",
+       "q_en": "صديقك يسأل: كيف حالك؟ ماذا تقول؟",
+       "options": [
+        "🔴 أَحْمَر!",
+        "😊 أَنَا بِخَيْر، شُكْرًا!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]أَنَا بِخَيْر، شُكْرًا![/ar] — yaxshiman, rahmat.",
+       "why_en": "أحسنت! أنا بخير، شكرًا!"
+      },
+      {
+       "q": "Ismingni ayt!",
+       "q_en": "قل اسمك!",
+       "options": [
+        "🧒 اِسْمِي عَلِي.",
+        "☀️ صَبَاحُ الْخَيْر!"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ar]اِسْمِي...[/ar] — mening ismim...",
+       "why_en": "رائع! اسمي علي."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ranglar kamalagi",
+   "emoji": "🌈",
+   "lessons": [
+    {
+     "name": "Pushti, to'q sariq, binafsha",
+     "goal": "Bola ورديّ، برتقاليّ، بنفسجيّ ranglarini ajratadi",
+     "intro": "Bip-bip! Bo'yoq qutimda yana uchta rang yashiringan: gulning rangi, apelsinning rangi va uzumning rangi. Topamizmi?",
+     "items": [
+      {
+       "say": "وَرْدِيّ",
+       "uz": "pushti",
+       "emoji": "🩷",
+       "image": "en45-u2-pink.png",
+       "image_prompt": "A big soft pink heart, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "wardiyy"
+      },
+      {
+       "say": "بُرْتُقَالِيّ",
+       "uz": "to'q sariq",
+       "emoji": "🟠",
+       "image": "en45-u2-orange-color.png",
+       "image_prompt": "A big shiny orange circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "burtuqaliyy"
+      },
+      {
+       "say": "بَنَفْسَجِيّ",
+       "uz": "binafsha",
+       "emoji": "🟣",
+       "image": "en45-u2-purple.png",
+       "image_prompt": "A big shiny purple circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "banafsajiyy"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Rang ovi",
+       "matn": "Xonaga qara! Pushti narsa topsang — [ar]وَرْدِيّ![/ar] To'q sariq — [ar]بُرْتُقَالِيّ![/ar] Binafsha — [ar]بَنَفْسَجِيّ![/ar] deb ayt. Kim ko'p topadi?",
+       "doska": "🩷 وَرْدِيّ\n🟠 بُرْتُقَالِيّ\n🟣 بَنَفْسَجِيّ",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]بَنَفْسَجِيّ[/ar]?",
+       "options": [
+        "🟣 بَنَفْسَجِيّ",
+        "🩷 وَرْدِيّ"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]بَنَفْسَجِيّ[/ar] — binafsha rang."
+      }
+     ]
+    },
+    {
+     "name": "Jigarrang, qora, oq",
+     "goal": "Bola بنّي، أسود، أبيض ranglarini ajratadi",
+     "intro": "Bip-bip! Ayiqcha qanday rangda? Tun-chi? Qor-chi? Bugun uchta yangi rangni o'rganamiz!",
+     "items": [
+      {
+       "say": "بُنِّيّ",
+       "uz": "jigarrang",
+       "emoji": "🟤",
+       "image": "en45-u2-brown.png",
+       "image_prompt": "A big shiny brown circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "bunniyy"
+      },
+      {
+       "say": "أَسْوَد",
+       "uz": "qora",
+       "emoji": "⚫",
+       "image": "en45-u2-black.png",
+       "image_prompt": "A big shiny black circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "aswad"
+      },
+      {
+       "say": "أَبْيَض",
+       "uz": "oq",
+       "emoji": "⚪",
+       "image": "en45-u2-white.png",
+       "image_prompt": "A big white circle with a soft grey outline, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "abyad"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐼 Panda topishmoq",
+       "matn": "Topishmoq: men oq va qoraman, bambuk yeyman. Men kimman? Panda! Pandaning ranglari: [ar]أَسْوَد وَأَبْيَض![/ar] Ayiqcha esa — [ar]بُنِّيّ![/ar]",
+       "doska": "🐼 أَسْوَد وَأَبْيَض\n🧸 بُنِّيّ",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qor qanday rangda?",
+       "options": [
+        "⚪ أَبْيَض",
+        "⚫ أَسْوَد"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qor — [ar]أَبْيَض[/ar], oq."
+      }
+     ]
+    },
+    {
+     "name": "Kulrang va kamalak",
+     "goal": "Bola رماديّ so'zini va ما لونه؟ savolini o'rganadi, 11 rangni takrorlaydi",
+     "intro": "Bip-bip! Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni o'rganamiz va rang haqida so'rashni bilib olamiz.",
+     "items": [
+      {
+       "say": "رَمَادِيّ",
+       "uz": "kulrang",
+       "emoji": "🩶",
+       "image": "en45-u2-grey.png",
+       "image_prompt": "A big soft grey heart, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ramadiyy"
+      },
+      {
+       "say": "قَوْسُ قُزَح",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en45-u2-rainbow.png",
+       "image_prompt": "A bright rainbow over soft clouds, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "qawsu quzah"
+      },
+      {
+       "say": "مَا لَوْنُه؟",
+       "uz": "bu qanday rangda?",
+       "emoji": "🎨",
+       "image": "en45-u2-what-colour.png",
+       "image_prompt": "A painter's palette with many colors, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ma lawnuh?"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ranglar qo'shig'i",
+       "matn": "Kuylaymiz: [ar]أَحْمَر وَأَصْفَر، وَرْدِيّ وَأَخْضَر، بَنَفْسَجِيّ، بُرْتُقَالِيّ، أَزْرَق![/ar] [ar]أَسْوَد وَأَبْيَض، بُنِّيّ وَرَمَادِيّ[/ar] — hammasini bilamiz! Barakalla!",
+       "doska": "🔴🟡🩷🟢🟣🟠🔵\n⚫⚪🟤🩶",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Fil qanday rangda? 🐘",
+       "options": [
+        "🩶 رَمَادِيّ",
+        "🟣 بَنَفْسَجِيّ"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Fil — [ar]رَمَادِيّ[/ar], kulrang."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Rasm darsida kamalak chizamiz",
+     "name_en": "نرسم قوس قزح في الصف",
+     "emoji": "🎨",
+     "goal": "Bola rasm darsida ranglarni arabcha aytadi va «ما لونه؟» savoliga javob beradi",
+     "intro": "Bip-bip! robot Kabu kamalakni juda yaxshi ko'radi. Tarbiyachi so'raydi: [ar]مَا لَوْنُه؟[/ar] Qani, javob beramiz!",
+     "intro_en": "هيا نرسم قوس قزح! ما لونه؟",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "المعلم",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s2-painting-rainbow.png",
+      "image_prompt": "A small child painting a big rainbow on paper at a classroom easel while a smiling teacher points at the colors, paint pots around, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "اُنْظُرْ! مَا لَوْنُه؟",
+       "uz": "qara! bu qanday rang?",
+       "emoji": "🟣",
+       "rom": "unzur! ma lawnuh?"
+      },
+      {
+       "who": 1,
+       "say": "إِنَّهُ بَنَفْسَجِيّ!",
+       "uz": "bu binafsha",
+       "emoji": "💜",
+       "rom": "innahu banafsajiyy!"
+      },
+      {
+       "who": 0,
+       "say": "أَحْسَنْت! وَهٰذَا؟",
+       "uz": "barakalla! bunisi-chi?",
+       "emoji": "🟢",
+       "rom": "ahsant! wa hadha?"
+      },
+      {
+       "who": 1,
+       "say": "إِنَّهُ أَخْضَر!",
+       "uz": "bu yashil",
+       "emoji": "💚",
+       "rom": "innahu akhdar!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tarbiyachi pushti bo'yoqni ko'rsatdi: [ar]مَا لَوْنُه؟[/ar]",
+       "q_en": "المعلمة تُري طلاءً ورديًا. ما لونه؟",
+       "options": [
+        "🩷 إِنَّهُ وَرْدِيّ!",
+        "🟤 إِنَّهُ بُنِّيّ!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]وَرْدِيّ[/ar] — pushti.",
+       "why_en": "نعم! إنه وردي!"
+      },
+      {
+       "q": "Rangni so'rash uchun nima deysan?",
+       "q_en": "كيف تسأل عن اللون؟",
+       "options": [
+        "🔢 كَمْ؟",
+        "🎨 مَا لَوْنُه؟"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]مَا لَوْنُه؟[/ar] — bu qanday rang?",
+       "why_en": "أحسنت! ما لونه؟"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Sonlar 1–10",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Bir, ikki, uch",
+     "goal": "Bola واحد، اثنان، ثلاثة sonlarini aytadi va sanaydi",
+     "intro": "Bip-bip! Men don yig'yapman. Yordam berasanmi? Donlarni arabcha sanaymiz. Barmoqlaringni tayyorla!",
+     "items": [
+      {
+       "say": "وَاحِد",
+       "uz": "bir",
+       "emoji": "1️⃣",
+       "image": "en45-u3-one.png",
+       "image_prompt": "One red apple and a big number one, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bitta barmoq ko'rsat!",
+       "rom": "wahid"
+      },
+      {
+       "say": "اِثْنَان",
+       "uz": "ikki",
+       "emoji": "2️⃣",
+       "image": "en45-u3-two.png",
+       "image_prompt": "Two yellow ducks and a big number two, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ikkita barmoq ko'rsat!",
+       "rom": "ithnan"
+      },
+      {
+       "say": "ثَلَاثَة",
+       "uz": "uch",
+       "emoji": "3️⃣",
+       "image": "en45-u3-three.png",
+       "image_prompt": "Three blue balls and a big number three, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Uchta barmoq ko'rsat!",
+       "rom": "thalatha"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Chapak sanash",
+       "matn": "Chapak chalib sanaymiz: [ar]وَاحِد[/ar] — chap! [ar]اِثْنَان[/ar] — chap, chap! [ar]ثَلَاثَة[/ar] — chap, chap, chap! Endi sakrab sanaymiz!",
+       "doska": "1️⃣ 👏\n2️⃣ 👏👏\n3️⃣ 👏👏👏",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nechta yulduz? ⭐⭐⭐",
+       "options": [
+        "3️⃣ ثَلَاثَة",
+        "2️⃣ اِثْنَان"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]وَاحِد، اِثْنَان، ثَلَاثَة[/ar] — uchta yulduz."
+      }
+     ]
+    },
+    {
+     "name": "To'rt, besh, olti",
+     "goal": "Bola أربعة، خمسة، ستّة sonlarini aytadi va oltigacha sanaydi",
+     "intro": "Bip-bip! Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak-chi? Olti! Qani, sanashni davom ettiramiz.",
+     "items": [
+      {
+       "say": "أَرْبَعَة",
+       "uz": "to'rt",
+       "emoji": "4️⃣",
+       "image": "en45-u3-four.png",
+       "image_prompt": "Four green frogs and a big number four, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "arba'a"
+      },
+      {
+       "say": "خَمْسَة",
+       "uz": "besh",
+       "emoji": "5️⃣",
+       "image": "en45-u3-five.png",
+       "image_prompt": "An open hand with five fingers and a big number five, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kaftingni och!",
+       "rom": "khamsa"
+      },
+      {
+       "say": "سِتَّة",
+       "uz": "olti",
+       "emoji": "6️⃣",
+       "image": "en45-u3-six.png",
+       "image_prompt": "Six colorful balloons and a big number six, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "sitta"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐸 Qurbaqa sakrashi",
+       "matn": "Qurbaqaday sakrab sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة، سِتَّة![/ar] Endi orqaga: [ar]سِتَّة، خَمْسَة، أَرْبَعَة، ثَلَاثَة، اِثْنَان، وَاحِد![/ar] Ofarin!",
+       "doska": "🐸 1 2 3 4 5 6",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'limda nechta barmoq? 🖐",
+       "options": [
+        "5️⃣ خَمْسَة",
+        "6️⃣ سِتَّة"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]خَمْسَة[/ar] — beshta barmoq."
+      }
+     ]
+    },
+    {
+     "name": "Yetti va sakkiz",
+     "goal": "Bola سبعة، ثمانية sonlarini aytadi va sakkizgacha sanaydi",
+     "intro": "Bip-bip! Kamalakda nechta rang bor? Yettita! Sakkizoyoqda nechta oyoq bor? Sakkizta! Qiziq-a?",
+     "items": [
+      {
+       "say": "سَبْعَة",
+       "uz": "yetti",
+       "emoji": "7️⃣",
+       "image": "en45-u3-seven.png",
+       "image_prompt": "Seven colorful stars and a big number seven, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "sab'a"
+      },
+      {
+       "say": "ثَمَانِيَة",
+       "uz": "sakkiz",
+       "emoji": "8️⃣",
+       "image": "en45-u3-eight.png",
+       "image_prompt": "A cute octopus with eight arms and a big number eight, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "thamaniya"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐙 Sakkizoyoq",
+       "matn": "Sakkizoyoqning oyoqlarini sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة، سِتَّة، سَبْعَة، ثَمَانِيَة![/ar] [ar]ثَمَانِيَة![/ar] Qo'llaringni to'lqinday silkit!",
+       "doska": "🐙 8 — ثَمَانِيَة",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]سَبْعَة[/ar]?",
+       "options": [
+        "7️⃣ سَبْعَة",
+        "8️⃣ ثَمَانِيَة"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]سَبْعَة[/ar] — yetti."
+      }
+     ]
+    },
+    {
+     "name": "To'qqiz, o'n. Nechta?",
+     "goal": "Bola تسعة، عشرة sonlarini va كم؟ savolini o'rganadi, o'ngacha sanaydi",
+     "intro": "Bip-bip! Ikki qo'limizda nechta barmoq bor? Qani, o'ngacha sanaymiz! Yana bir yangi savol ham o'rganamiz: nechta?",
+     "items": [
+      {
+       "say": "تِسْعَة",
+       "uz": "to'qqiz",
+       "emoji": "9️⃣",
+       "image": "en45-u3-nine.png",
+       "image_prompt": "Nine red ladybugs and a big number nine, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "tis'a"
+      },
+      {
+       "say": "عَشَرَة",
+       "uz": "o'n",
+       "emoji": "🔟",
+       "image": "en45-u3-ten.png",
+       "image_prompt": "Two open hands with ten fingers and a big number ten, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ikki kaftingni och!",
+       "rom": "'ashara"
+      },
+      {
+       "say": "كَمْ؟",
+       "uz": "nechta?",
+       "emoji": "🤔",
+       "image": "en45-u3-how-many.png",
+       "image_prompt": "A curious child counting apples on fingers, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "kam?"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚀 Raketa uchirish",
+       "matn": "Raketani uchiramiz! Cho'nqayib o'tir va sana: [ar]عَشَرَة، تِسْعَة، ثَمَانِيَة، سَبْعَة، سِتَّة، خَمْسَة، أَرْبَعَة، ثَلَاثَة، اِثْنَان، وَاحِد![/ar] Uchdik! Sakra!",
+       "doska": "🚀 10 → 1",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ar]كَمْ؟[/ar] 🍎🍎🍎🍎",
+       "options": [
+        "4️⃣ أَرْبَعَة",
+        "🔟 عَشَرَة"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة[/ar] — to'rtta olma."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Parkda o'rdaklarni sanaymiz",
+     "name_en": "نعد البط في الحديقة",
+     "emoji": "🦆",
+     "goal": "Bola parkda o'rdaklarni sanaydi va «كم؟» savoliga javob beradi",
+     "intro": "Bip-bip! robot Kabu bilan parkka boramiz. Ko'lda o'rdaklar suzyapti — [ar]كَمْ؟[/ar] Qani, sanaymiz!",
+     "intro_en": "نحن في الحديقة. انظر إلى البط! كم بطة؟",
+     "roles": [
+      "Dadam",
+      "Bola"
+     ],
+     "roles_en": [
+      "بَابَا",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s3-park-ducks.png",
+      "image_prompt": "A dad and a small child standing by a pond in a green park, counting six little ducks swimming, trees and flowers, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "اُنْظُرْ! كَمْ بَطَّة؟",
+       "uz": "qara! nechta o'rdak?",
+       "emoji": "🦆",
+       "rom": "unzur! kam batta?"
+      },
+      {
+       "who": 1,
+       "say": "وَاحِد، اِثْنَان، ثَلَاثَة... سِتَّة!",
+       "uz": "bir, ikki, uch... olti",
+       "emoji": "☝️",
+       "rom": "wahid, ithnan, thalatha... sitta!"
+      },
+      {
+       "who": 0,
+       "say": "أَحْسَنْت! سِتُّ بَطَّات!",
+       "uz": "barakalla! oltita o'rdak",
+       "emoji": "6️⃣",
+       "rom": "ahsant! sittu battat!"
+      },
+      {
+       "who": 1,
+       "say": "مَرْحَبًا يَا بَطَّات!",
+       "uz": "salom, o'rdaklar",
+       "emoji": "👋",
+       "rom": "marhaban ya battat!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Nechta ekanini so'rash uchun nima deysan?",
+       "q_en": "كيف تسأل عن العدد؟",
+       "options": [
+        "🔢 كَمْ؟",
+        "❓ مَا اسْمُك؟"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]كَمْ؟[/ar] — nechta?",
+       "why_en": "نعم! كم؟"
+      },
+      {
+       "q": "Ko'lda oltita o'rdak bor. Nechta?",
+       "q_en": "هناك ست بطات. كم عددها؟",
+       "options": [
+        "8️⃣ ثَمَانِيَة!",
+        "6️⃣ سِتَّة!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]سِتَّة[/ar] — olti.",
+       "why_en": "أحسنت! ستة!"
+      },
+      {
+       "q": "O'n barmoqni sana!",
+       "q_en": "عدّ عشرة أصابع!",
+       "options": [
+        "🔟 ...تِسْعَة، عَشَرَة!",
+        "5️⃣ ...أَرْبَعَة، خَمْسَة!"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ar]عَشَرَة[/ar] — o'n.",
+       "why_en": "رائع! عشرة!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Yovvoyi hayvonlar",
+   "emoji": "🦁",
+   "lessons": [
+    {
+     "name": "Sher, yo'lbars, ayiq",
+     "goal": "Bola أسد، نمر، دبّ so'zlarini aytadi",
+     "intro": "Bip-bip! Bugun hayvonot bog'iga sayohat! Diqqat: kimdir «rrr!» deb bo'kiryapti. Kim ekan? Sekin boramiz…",
+     "items": [
+      {
+       "say": "أَسَد",
+       "uz": "sher",
+       "emoji": "🦁",
+       "image": "en45-u4-lion.png",
+       "image_prompt": "A friendly lion with a big mane, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Sherday «rrr» deng!",
+       "rom": "asad"
+      },
+      {
+       "say": "نَمِر",
+       "uz": "yo'lbars",
+       "emoji": "🐯",
+       "image": "en45-u4-tiger.png",
+       "image_prompt": "A cute striped tiger, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "namir"
+      },
+      {
+       "say": "دُبّ",
+       "uz": "ayiq",
+       "emoji": "🐻",
+       "image": "en45-u4-bear.png",
+       "image_prompt": "A friendly brown bear, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ayiqday og'ir-og'ir yur!",
+       "rom": "dubb"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐾 Hayvonday yuramiz",
+       "matn": "Men aytaman, sen o'sha hayvonday yurasan! [ar]أَسَد![/ar] — rrr! [ar]دُبّ![/ar] — og'ir-og'ir! [ar]نَمِر![/ar] — sekin, mushukday! Zo'r!",
+       "doska": "🦁 أَسَد\n🐯 نَمِر\n🐻 دُبّ",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]نَمِر[/ar]?",
+       "options": [
+        "🐯 نَمِر",
+        "🐻 دُبّ"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]نَمِر[/ar] — yo'lbars."
+      }
+     ]
+    },
+    {
+     "name": "Maymun, fil, jirafa",
+     "goal": "Bola قرد، فيل، زرافة so'zlarini aytadi",
+     "intro": "Bip-bip! Daraxtda kim banan yeyapti? Kimning burni uzun? Kimning bo'yni osmonga yetadi? Qani, topamiz!",
+     "items": [
+      {
+       "say": "قِرْد",
+       "uz": "maymun",
+       "emoji": "🐵",
+       "image": "en45-u4-monkey.png",
+       "image_prompt": "A playful monkey holding a banana, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Maymunday qichish!",
+       "rom": "qird"
+      },
+      {
+       "say": "فِيل",
+       "uz": "fil",
+       "emoji": "🐘",
+       "image": "en45-u4-elephant.png",
+       "image_prompt": "A friendly grey elephant raising its trunk, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni xartumday silkit!",
+       "rom": "fil"
+      },
+      {
+       "say": "زَرَافَة",
+       "uz": "jirafa",
+       "emoji": "🦒",
+       "image": "en45-u4-giraffe.png",
+       "image_prompt": "A tall friendly giraffe, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bo'yningni cho'z!",
+       "rom": "zarafa"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kimning bo'yni juda uzun?",
+       "options": [
+        "🦒 زَرَافَة",
+        "🐵 قِرْد"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]زَرَافَة[/ar] — jirafaning bo'yni uzun."
+      }
+     ],
+     "extra": []
+    },
+    {
+     "name": "Zebra, timsoh, ilon",
+     "goal": "Bola حمار وحشي، تمساح، ثعبان so'zlarini aytadi",
+     "intro": "Bip-bip! Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan? Kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
+     "items": [
+      {
+       "say": "حِمَارٌ وَحْشِيّ",
+       "uz": "zebra",
+       "emoji": "🦓",
+       "image": "en45-u4-zebra.png",
+       "image_prompt": "A cute striped zebra, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "himarun wahshiyy"
+      },
+      {
+       "say": "تِمْسَاح",
+       "uz": "timsoh",
+       "emoji": "🐊",
+       "image": "en45-u4-crocodile.png",
+       "image_prompt": "A friendly green crocodile smiling, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni timsoh jag'iday oching-yum!",
+       "rom": "timsah"
+      },
+      {
+       "say": "ثُعْبَان",
+       "uz": "ilon",
+       "emoji": "🐍",
+       "image": "en45-u4-snake.png",
+       "image_prompt": "A friendly green snake, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "«Ssss» deb qo'lingni to'lqinlantir!",
+       "rom": "thu'ban"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐊 Timsoh o'yini",
+       "matn": "Qo'llaring — timsoh og'zi! Men so'z aytaman: agar hayvon bo'lsa — «qars!» qilib yum. [ar]حِمَارٌ وَحْشِيّ![/ar] … [ar]أَحْمَر![/ar] … [ar]ثُعْبَان![/ar] …",
+       "doska": "🐊 qars!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim «ssss» deydi?",
+       "options": [
+        "🐍 ثُعْبَان",
+        "🦓 حِمَارٌ وَحْشِيّ"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]ثُعْبَان[/ar] — ilon «ssss» deydi."
+      }
+     ]
+    },
+    {
+     "name": "Tulki, bo'ri, boyo'g'li",
+     "goal": "Bola ثعلب، ذئب، بومة so'zlarini aytadi",
+     "intro": "Bip-bip! O'rmonga kirdik. Kechasi kim «uhu» deydi? Kim oyga qarab uvlaydi? Kim ayyor? Sekin tingla!",
+     "items": [
+      {
+       "say": "ثَعْلَب",
+       "uz": "tulki",
+       "emoji": "🦊",
+       "image": "en45-u4-fox.png",
+       "image_prompt": "A clever orange fox with a fluffy tail, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "tha'lab"
+      },
+      {
+       "say": "ذِئْب",
+       "uz": "bo'ri",
+       "emoji": "🐺",
+       "image": "en45-u4-wolf.png",
+       "image_prompt": "A grey wolf howling at the moon, friendly style, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bo'riday «uu-uu» deng!",
+       "rom": "dhi'b"
+      },
+      {
+       "say": "بُومَة",
+       "uz": "boyo'g'li",
+       "emoji": "🦉",
+       "image": "en45-u4-owl.png",
+       "image_prompt": "A cute owl with big round eyes on a branch, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boyo'g'liday «uhu» deng!",
+       "rom": "buma"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🌲 O'rmon topishmoqlari",
+       "matn": "Tingla va top: «Uhu, uhu!» — [ar]بُومَة![/ar] «Uu-uu!» — [ar]ذِئْب![/ar] Dumim to'q sariq, men ayyorman — [ar]ثَعْلَب![/ar] Barakalla!",
+       "doska": "🦉 بُومَة\n🐺 ذِئْب\n🦊 ثَعْلَب",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kechasi «uhu» deydigan kim?",
+       "options": [
+        "🦉 بُومَة",
+        "🦊 ثَعْلَب"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]بُومَة[/ar] — boyo'g'li."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Buvijon bilan hayvonot bog'ida",
+     "name_en": "في حديقة الحيوانات مع الجدة",
+     "emoji": "🦁",
+     "goal": "Bola hayvonot bog'ida yovvoyi hayvonlarni ko'rib, ularni arabcha nomlaydi",
+     "intro": "Bip-bip! robot Kabu buvijon bilan hayvonot bog'iga keldi. U yerda [ar]أَسَد[/ar] va [ar]قِرْد[/ar] bor. Qani, ko'ramiz!",
+     "intro_en": "نحن في حديقة الحيوانات مع الجدة. انظر! أسد وقرد!",
+     "roles": [
+      "Buvijon",
+      "Bola"
+     ],
+     "roles_en": [
+      "الجدة",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s4-zoo-granny.png",
+      "image_prompt": "A grandmother holding hands with a small child at a friendly zoo, a big smiling lion and a playful monkey in a tree nearby, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "اُنْظُرِي يَا جَدَّتِي! أَسَد!",
+       "uz": "qarang, buvijon! sher",
+       "emoji": "🦁",
+       "rom": "unzuri ya jaddati! asad!"
+      },
+      {
+       "who": 0,
+       "say": "نَعَم! أَسَدٌ كَبِير!",
+       "uz": "ha! katta sher",
+       "emoji": "👵",
+       "rom": "na'am! asadun kabir!"
+      },
+      {
+       "who": 1,
+       "say": "وَقِرْد!",
+       "uz": "maymun ham bor",
+       "emoji": "🐒",
+       "rom": "wa qird!"
+      },
+      {
+       "who": 0,
+       "say": "مَرْحَبًا يَا قِرْد!",
+       "uz": "salom, maymun",
+       "emoji": "👋",
+       "rom": "marhaban ya qird!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sen sherni ko'rding. Nima deysan?",
+       "q_en": "ترى أسدًا. ماذا تقول؟",
+       "options": [
+        "🦁 أَسَد!",
+        "🐯 نَمِر!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]أَسَد[/ar] — sher.",
+       "why_en": "نعم! أسد!"
+      },
+      {
+       "q": "Daraxtda maymun o'tiribdi. Nima deysan?",
+       "q_en": "قرد على الشجرة. ماذا تقول؟",
+       "options": [
+        "🐘 فِيل!",
+        "🐒 قِرْد!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]قِرْد[/ar] — maymun.",
+       "why_en": "أحسنت! قرد!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oilam",
+   "emoji": "👨‍👩‍👧‍👦",
+   "lessons": [
+    {
+     "name": "Ona, ota, oila",
+     "goal": "Bola أمّ، أب، عائلة so'zlarini aytadi",
+     "intro": "Bip-bip! Men uyamdagi oilamning suratini olib keldim. Sening oilangda kim bor? Bugun oilamiz haqida gapiramiz!",
+     "items": [
+      {
+       "say": "أُمّ",
+       "uz": "ona",
+       "emoji": "👩",
+       "image": "en45-u5-mother.png",
+       "image_prompt": "A kind smiling mother with open arms, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "umm"
+      },
+      {
+       "say": "أَب",
+       "uz": "ota",
+       "emoji": "👨",
+       "image": "en45-u5-father.png",
+       "image_prompt": "A kind smiling father waving, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ab"
+      },
+      {
+       "say": "عَائِلَة",
+       "uz": "oila",
+       "emoji": "👪",
+       "image": "en45-u5-family.png",
+       "image_prompt": "A happy family of mother, father and child together, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "'a'ila"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Barmoq oilasi",
+       "matn": "Barmoqlaringni ko'rsat: bu — [ar]أُمّ[/ar], bu — [ar]أَب[/ar]! Hammasi birga — [ar]عَائِلَة![/ar] Barmoqlar ta'zim qiladi: [ar]مَرْحَبًا يَا عَائِلَتِي![/ar]",
+       "doska": "👩 أُمّ\n👨 أَب\n👪 عَائِلَة",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]أُمّ[/ar]?",
+       "options": [
+        "👩 أُمّ",
+        "👨 أَب"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]أُمّ[/ar] — ona."
+      }
+     ]
+    },
+    {
+     "name": "Opa-singil, aka-uka",
+     "goal": "Bola sister, brother, baby so'zlarini aytadi",
+     "intro": "Bip-bip! Sening akang yoki opang bormi? Balki kichkina ukang bordir? Arabcha qanday aytamiz?",
+     "items": [
+      {
+       "say": "أُخْت",
+       "uz": "opa, singil",
+       "emoji": "👧",
+       "image": "en45-u5-sister.png",
+       "image_prompt": "A cheerful little girl, a big sister, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ukht"
+      },
+      {
+       "say": "أَخ",
+       "uz": "aka, uka",
+       "emoji": "👦",
+       "image": "en45-u5-brother.png",
+       "image_prompt": "A cheerful little boy, a big brother, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "akh"
+      },
+      {
+       "say": "طِفْلٌ رَضِيع",
+       "uz": "chaqaloq",
+       "emoji": "👶",
+       "image": "en45-u5-baby.png",
+       "image_prompt": "A cute baby smiling in a blanket, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Chaqaloqni allala!",
+       "rom": "tiflun radi'"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]أَخ[/ar]?",
+       "options": [
+        "👦 أَخ",
+        "👧 أُخْت"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]أَخ[/ar] — aka yoki uka."
+      }
+     ],
+     "extra": []
+    },
+    {
+     "name": "Buvi, bobo. Bu mening…",
+     "goal": "Bola جدّة، جدّ so'zlarini va هذا… iborasini o'rganadi",
+     "intro": "Bip-bip! Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz? Tingla!",
+     "items": [
+      {
+       "say": "جَدَّة",
+       "uz": "buvi",
+       "emoji": "👵",
+       "image": "en45-u5-grandma.png",
+       "image_prompt": "A sweet smiling grandmother with glasses, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "jadda"
+      },
+      {
+       "say": "جَدِّي",
+       "uz": "bobo",
+       "emoji": "👴",
+       "image": "en45-u5-grandpa.png",
+       "image_prompt": "A kind smiling grandfather with a cane, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "jaddi"
+      },
+      {
+       "say": "هٰذَا…",
+       "uz": "bu mening…",
+       "emoji": "👉",
+       "image": "en45-u5-this-is-my.png",
+       "image_prompt": "A child proudly pointing to their family photo, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "hadha…"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖼 Oila surati",
+       "matn": "Oilangni rasmda ko'rsatib tanishtir: [ar]هٰذِهِ أُمِّي.[/ar] [ar]هٰذَا أَبِي.[/ar] [ar]هٰذِهِ جَدَّتِي.[/ar] Barakalla!",
+       "doska": "👉 هٰذِهِ أُمِّي.\n👉 هٰذَا جَدِّي.",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]جَدَّة[/ar]?",
+       "options": [
+        "👵 جَدَّة",
+        "👴 جَدِّي"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]جَدَّة[/ar] — buvi."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Buvijonnikiga mehmonga boramiz",
+     "name_en": "زيارة الجدة",
+     "emoji": "👵",
+     "goal": "Bola buvisi bilan salomlashadi va o'z oila a'zosini tanishtiradi",
+     "intro": "Bip-bip! robot Kabu bilan buvijonnikiga mehmonga boramiz. Singlimizni [ar]هٰذِهِ أُخْتِي.[/ar] deb tanishtiramiz!",
+     "intro_en": "نحن نزور الجدة! هيا نسلم: هذه أختي.",
+     "roles": [
+      "Buvijon",
+      "Bola"
+     ],
+     "roles_en": [
+      "جَدَّة",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s5-visiting-grandma.png",
+      "image_prompt": "A small boy and his little sister arriving at grandma's cozy house, grandma smiling and opening her arms at the door, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "مَرْحَبًا يَا جَدَّتِي!",
+       "uz": "assalomu alaykum, buvijon",
+       "emoji": "👋",
+       "rom": "marhaban ya jaddati!"
+      },
+      {
+       "who": 0,
+       "say": "مَرْحَبًا! كَيْفَ حَالُك؟",
+       "uz": "salom! qalaysan?",
+       "emoji": "👵",
+       "rom": "marhaban! kayfa haluk?"
+      },
+      {
+       "who": 1,
+       "say": "أَنَا بِخَيْر! هٰذِهِ أُخْتِي.",
+       "uz": "yaxshiman! bu mening singlim",
+       "emoji": "👧",
+       "rom": "ana bi-khayr! hadhihi ukhti."
+      },
+      {
+       "who": 0,
+       "say": "مَرْحَبًا! مَا اسْمُك؟",
+       "uz": "salom! isming nima?",
+       "emoji": "🤗",
+       "rom": "marhaban! ma ismuk?"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvijonni ko'rding. Nima deysan?",
+       "q_en": "ترى الجدة. ماذا تقول؟",
+       "options": [
+        "👋 مَرْحَبًا يَا جَدَّتِي!",
+        "🌙 تُصْبِحِينَ عَلَى خَيْرٍ يَا جَدَّتِي!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]مَرْحَبًا يَا جَدَّتِي![/ar]",
+       "why_en": "نعم! مرحبًا يا جدتي!"
+      },
+      {
+       "q": "Akangni tanishtir!",
+       "q_en": "عرّف جدتك على أخيك!",
+       "options": [
+        "👧 هٰذِهِ أُخْتِي.",
+        "👦 هٰذَا أَخِي."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]أَخ[/ar] — aka yoki uka.",
+       "why_en": "أحسنت! هذا أخي."
+      },
+      {
+       "q": "Buvijon: [ar]كَيْفَ حَالُك؟[/ar] Nima deysan?",
+       "q_en": "الجدة تسأل: كيف حالك؟ ماذا تقول؟",
+       "options": [
+        "😊 أَنَا بِخَيْر!",
+        "🔢 كَمْ؟"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ar]أَنَا بِخَيْر![/ar] — yaxshiman.",
+       "why_en": "رائع! أنا بخير!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Tanam",
+   "emoji": "🧍",
+   "lessons": [
+    {
+     "name": "Bosh, yelka, tizza",
+     "goal": "Bola رأس، كتفان، ركبتان، أصابع القدمين so'zlarini qo'shiq bilan o'rganadi",
+     "intro": "Bip-bip! Arab bolalarining eng mashhur qo'shig'ini bilasanmi? Unda bosh, yelka, tizza va oyoq barmoqlari bor. Qani, tur!",
+     "items": [
+      {
+       "say": "رَأْس",
+       "uz": "bosh",
+       "emoji": "🙆",
+       "image": "en45-u6-head.png",
+       "image_prompt": "A smiling child touching the top of their head, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boshingni ushla!",
+       "rom": "ra's"
+      },
+      {
+       "say": "كَتِفَان",
+       "uz": "yelkalar",
+       "emoji": "🤷",
+       "image": "en45-u6-shoulders.png",
+       "image_prompt": "A child shrugging shoulders happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Yelkangni ushla!",
+       "rom": "katifan"
+      },
+      {
+       "say": "رُكْبَتَان",
+       "uz": "tizzalar",
+       "emoji": "🧎",
+       "image": "en45-u6-knees.png",
+       "image_prompt": "A child kneeling and pointing to their knees, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Tizzangni ushla!",
+       "rom": "rukbatan"
+      },
+      {
+       "say": "أَصَابِعُ الْقَدَمَيْن",
+       "uz": "oyoq barmoqlari",
+       "emoji": "🦶",
+       "image": "en45-u6-toes.png",
+       "image_prompt": "Two cute bare feet with wiggling toes, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyoq barmoqlaringga teg!",
+       "rom": "asabi'u al-qadamayn"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 رأس، كتفان…",
+       "matn": "Qo'shiq bilan ushlaymiz: [ar]رَأْس، كَتِفَان، رُكْبَتَان، أَصَابِعُ الْقَدَمَيْن، رُكْبَتَان، أَصَابِعُ الْقَدَمَيْن![/ar] Yana tezroq! Endi juda sekin! Barakalla!",
+       "doska": "🙆 رَأْس\n🤷 كَتِفَان\n🧎 رُكْبَتَان\n🦶 أَصَابِعُ الْقَدَمَيْن",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]رُكْبَتَان[/ar]?",
+       "options": [
+        "🧎 رُكْبَتَان",
+        "🙆 رَأْس"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]رُكْبَتَان[/ar] — tizzalar."
+      }
+     ]
+    },
+    {
+     "name": "Ko'z, quloq, og'iz, burun",
+     "goal": "Bola عينان، أذنان، فم، أنف so'zlarini aytadi",
+     "intro": "Bip-bip! Qo'shiqning ikkinchi qismi yuzimiz haqida! Ko'zlar, quloqlar, og'iz va burun. Barmog'ingni tayyorla!",
+     "items": [
+      {
+       "say": "عَيْنَان",
+       "uz": "ko'zlar",
+       "emoji": "👀",
+       "image": "en45-u6-eyes.png",
+       "image_prompt": "Two big friendly cartoon eyes, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "'aynan"
+      },
+      {
+       "say": "أُذُنَان",
+       "uz": "quloqlar",
+       "emoji": "👂",
+       "image": "en45-u6-ears.png",
+       "image_prompt": "A cute cartoon ear listening, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "udhunan"
+      },
+      {
+       "say": "فَم",
+       "uz": "og'iz",
+       "emoji": "👄",
+       "image": "en45-u6-mouth.png",
+       "image_prompt": "A cute smiling cartoon mouth, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "fam"
+      },
+      {
+       "say": "أَنْف",
+       "uz": "burun",
+       "emoji": "👃",
+       "image": "en45-u6-nose.png",
+       "image_prompt": "A cute cartoon nose smelling a flower, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "anf"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Qo'shiq davomi",
+       "matn": "[ar]وَعَيْنَان وَأُذُنَان وَفَمٌ وَأَنْف![/ar] Ko'z, quloq, og'iz, burunni navbat bilan ushla. Endi butun qo'shiqni boshidan aytamiz!",
+       "doska": "👀 👂 👄 👃",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz nima bilan eshitamiz?",
+       "options": [
+        "👂 أُذُنَان",
+        "👀 عَيْنَان"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]أُذُنَان[/ar] — quloqlar bilan eshitamiz."
+      }
+     ]
+    },
+    {
+     "name": "Qo'l, barmoq, oyoq",
+     "goal": "Bola يدان، أصابع، رجلان so'zlarini aytadi",
+     "intro": "Bip-bip! Qo'llarimiz bilan chizamiz, barmoqlarimiz bilan sanaymiz, oyoqlarimiz bilan yuguramiz. Hammasini arabcha aytamiz!",
+     "items": [
+      {
+       "say": "يَدَان",
+       "uz": "qo'llar",
+       "emoji": "🙌",
+       "image": "en45-u6-hands.png",
+       "image_prompt": "Two little child hands raised up happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni ko'tar!",
+       "rom": "yadan"
+      },
+      {
+       "say": "أَصَابِع",
+       "uz": "barmoqlar",
+       "emoji": "🖐",
+       "image": "en45-u6-fingers.png",
+       "image_prompt": "An open child hand with five fingers spread, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaringni qimirlat!",
+       "rom": "asabi'"
+      },
+      {
+       "say": "رِجْلَان",
+       "uz": "oyoqlar",
+       "emoji": "🦵",
+       "image": "en45-u6-legs.png",
+       "image_prompt": "A cartoon child's leg kicking happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyog'ingni ko'tar!",
+       "rom": "rijlan"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖐 Barmoq sanash",
+       "matn": "Barmoqlaringni sana: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة![/ar] Bir qo'lda beshta [ar]أَصَابِع[/ar]! Ikki qo'lda-chi? [ar]عَشَرَة![/ar] Barakalla!",
+       "doska": "🖐 5 أَصَابِع\n🙌 10 أَصَابِع",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bir qo'limizda beshta nima bor?",
+       "options": [
+        "🖐 أَصَابِع",
+        "🦵 رِجْلَان"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Beshta [ar]أَصَابِع[/ar] — barmoqlar."
+      }
+     ]
+    },
+    {
+     "name": "المس أنفك!",
+     "goal": "Bola المس…، صفّق بيديك!، اضرب الأرض بقدميك! buyruqlarini tushunib bajaradi",
+     "intro": "Bip-bip! Bugun «Kabu aytdi» o'yinini o'ynaymiz! Men arabcha buyruq beraman, sen bajarasan. Diqqat bilan tingla!",
+     "items": [
+      {
+       "say": "المس أنفك!",
+       "uz": "burningga teg!",
+       "emoji": "☝️",
+       "image": "en45-u6-touch-your-nose.png",
+       "image_prompt": "A child touching their nose with one finger, playful, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Burningga teg!",
+       "rom": "ilmis anfak!"
+      },
+      {
+       "say": "صَفِّقْ بِيَدَيْك!",
+       "uz": "qarsak chal!",
+       "emoji": "👏",
+       "image": "en45-u6-clap-your-hands.png",
+       "image_prompt": "A happy child clapping hands, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qarsak chal!",
+       "rom": "saffiq bi-yadayk!"
+      },
+      {
+       "say": "اُضْرِبِ الْأَرْضَ بِقَدَمَيْك!",
+       "uz": "oyog'ingni tapillat!",
+       "emoji": "🥾",
+       "image": "en45-u6-stamp-your-feet.png",
+       "image_prompt": "A happy child stamping feet in little boots, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyog'ingni tapillat!",
+       "rom": "udribi al-arda bi-qadamayk!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🕊️ Kabutar aytdi",
+       "matn": "Bajar: [ar]اِلْمَسْ رَأْسَك![/ar] [ar]اِلْمَسْ أُذُنَيْك![/ar] [ar]اِلْمَسْ رُكْبَتَيْك![/ar] [ar]صَفِّقْ بِيَدَيْك![/ar] [ar]اُضْرِبِ الْأَرْضَ بِقَدَمَيْك![/ar] Ofarin, hammasini tushunding!",
+       "doska": "☝️ اِلْمَسْ…\n👏 صَفِّق!\n🥾 دُقَّ بِقَدَمَيْك!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ar]صَفِّقْ بِيَدَيْك![/ar] Nima qilamiz?",
+       "options": [
+        "👏 qarsak chalamiz",
+        "🥾 tapillatamiz"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]صَفِّقْ بِيَدَيْك![/ar] — qarsak chal."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'chada ertalabki badantarbiya",
+     "name_en": "تمارين الصباح في الروضة",
+     "emoji": "🤸",
+     "goal": "Bola tarbiyachining arabcha buyruqlarini bajaradi va tana a'zolarini ko'rsatadi",
+     "intro": "Bip-bip! robot Kabu ertalab badantarbiya qiladi. Tarbiyachi aytadi: [ar]صَفِّقْ بِيَدَيْك![/ar] Tayyormisan?",
+     "intro_en": "صباح الخير! هيا نمارس تمارين الصباح. صفّقوا بأيديكم!",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "المعلم",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s6-morning-exercises.png",
+      "image_prompt": "Happy kindergarten children doing morning exercises on a mat, clapping hands and touching their noses, a smiling teacher showing the moves, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "صَفِّقْ بِيَدَيْك!",
+       "uz": "qarsak chal",
+       "emoji": "👏",
+       "rom": "saffiq bi-yadayk!"
+      },
+      {
+       "who": 1,
+       "say": "صَفِّق، صَفِّق، صَفِّق!",
+       "uz": "qars, qars, qars",
+       "emoji": "👏",
+       "rom": "saffiq, saffiq, saffiq!"
+      },
+      {
+       "who": 0,
+       "say": "المس أنفك!",
+       "uz": "burningni ushla",
+       "emoji": "👃",
+       "rom": "ilmis anfak!"
+      },
+      {
+       "who": 1,
+       "say": "أَنْفِي! هُنَا!",
+       "uz": "burnim! mana",
+       "emoji": "☝️",
+       "rom": "anfi! huna!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tarbiyachi: [ar]اُضْرِبِ الْأَرْضَ بِقَدَمَيْك![/ar] Nima qilasan?",
+       "q_en": "المعلم يقول: اضرب الأرض بقدميك! ماذا تفعل؟",
+       "options": [
+        "🦶 دَبْ، دَبْ!",
+        "👏 صَفِّق، صَفِّق!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]اُضْرِبِ الْأَرْضَ بِقَدَمَيْك![/ar] — oyog'ingni tap-tap qil.",
+       "why_en": "نعم! دب، دب!"
+      },
+      {
+       "q": "Burningni ushla! Bu nima?",
+       "q_en": "المس أنفك! ما هذا؟",
+       "options": [
+        "👂 أُذُنَان",
+        "👃 أَنْف"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]أَنْف[/ar] — burun.",
+       "why_en": "أحسنت! أنف!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Meva va sabzavotlar",
+   "emoji": "🍎",
+   "lessons": [
+    {
+     "name": "Olma, banan, apelsin",
+     "goal": "Bola تفّاحة، موزة، برتقالة so'zlarini aytadi",
+     "intro": "Bip-bip! Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz. Qiziq: bitta meva rangning nomi bilan atalar ekan!",
+     "items": [
+      {
+       "say": "تُفَّاحَة",
+       "uz": "olma",
+       "emoji": "🍎",
+       "image": "en45-u7-apple.png",
+       "image_prompt": "A shiny red apple with a green leaf, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "tuffaha"
+      },
+      {
+       "say": "مَوْز",
+       "uz": "banan",
+       "emoji": "🍌",
+       "image": "en45-u7-banana.png",
+       "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "mawz"
+      },
+      {
+       "say": "بُرْتُقَالِيّ",
+       "uz": "apelsin",
+       "emoji": "🍊",
+       "image": "en45-u7-orange-fruit.png",
+       "image_prompt": "A juicy orange fruit with a leaf, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "burtuqaliyy"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Bozor o'yini",
+       "matn": "Sotuvchi bo'lamiz! Xaridor: [ar]تُفَّاحَة، مِنْ فَضْلِك![/ar] Sotuvchi olma beradi. Xaridor: [ar]شُكْرًا![/ar] Endi apelsin va banan so'ra!",
+       "doska": "🍎 تُفَّاحَة، مِنْ فَضْلِك!\n🙏 شُكْرًا!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]بُرْتُقَالِيّ[/ar] mevasi?",
+       "options": [
+        "🍊 بُرْتُقَالَة",
+        "🍌 مَوْز"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]بُرْتُقَالَة[/ar] — apelsin. Rangi ham [ar]بُرْتُقَالِيّ[/ar]!"
+      }
+     ]
+    },
+    {
+     "name": "Uzum, limon, qulupnay",
+     "goal": "Bola عنب، ليمون، فراولة so'zlarini aytadi",
+     "intro": "Bip-bip! Bog'da nima pishibdi? Shingil-shingil uzum, nordon limon va shirin qulupnay! Qaysi biri nordon ekan?",
+     "items": [
+      {
+       "say": "عِنَب",
+       "uz": "uzum",
+       "emoji": "🍇",
+       "image": "en45-u7-grapes.png",
+       "image_prompt": "A bunch of purple grapes, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "'inab"
+      },
+      {
+       "say": "لَيْمُون",
+       "uz": "limon",
+       "emoji": "🍋",
+       "image": "en45-u7-lemon.png",
+       "image_prompt": "A bright yellow lemon, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Nordon yuz qil!",
+       "rom": "laymun"
+      },
+      {
+       "say": "فَرَاوْلَة",
+       "uz": "qulupnay",
+       "emoji": "🍓",
+       "image": "en45-u7-strawberry.png",
+       "image_prompt": "A sweet red strawberry, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "farawla"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "😝 Nordon-shirin",
+       "matn": "Men meva aytaman: nordon bo'lsa — yuzingni burishtir, shirin bo'lsa — jilmay! [ar]لَيْمُون![/ar] … [ar]فَرَاوْلَة![/ar] … [ar]عِنَب![/ar]",
+       "doska": "🍋 nordon\n🍓 shirin",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi meva nordon?",
+       "options": [
+        "🍋 لَيْمُون",
+        "🍓 فَرَاوْلَة"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]لَيْمُون[/ar] — limon nordon."
+      }
+     ]
+    },
+    {
+     "name": "Sabzi, pomidor, kartoshka",
+     "goal": "Bola جزرة، طماطم، بطاطا so'zlarini aytadi",
+     "intro": "Bip-bip! Endi polizga boramiz! Quyon sevadigan sabzi, qip-qizil pomidor va yer ostida yashiringan kartoshka bor!",
+     "items": [
+      {
+       "say": "جَزَرَة",
+       "uz": "sabzi",
+       "emoji": "🥕",
+       "image": "en45-u7-carrot.png",
+       "image_prompt": "A fresh orange carrot with green leaves, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "jazara"
+      },
+      {
+       "say": "طَمَاطِم",
+       "uz": "pomidor",
+       "emoji": "🍅",
+       "image": "en45-u7-tomato.png",
+       "image_prompt": "A shiny red tomato, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "tamatim"
+      },
+      {
+       "say": "بَطَاطَا",
+       "uz": "kartoshka",
+       "emoji": "🥔",
+       "image": "en45-u7-potato.png",
+       "image_prompt": "A brown potato, cute style, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "batata"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥕 Sabzi tortish",
+       "matn": "Yerdan sabzini tortamiz: bir, ikki, uch — uh-h! [ar]جَزَرَة![/ar] Kartoshkani qazib olamiz: [ar]بَطَاطَا![/ar] Pomidorni uzamiz: [ar]طَمَاطِم![/ar]",
+       "doska": "🥕 🍅 🥔",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyon nimani yaxshi ko'radi?",
+       "options": [
+        "🥕 جَزَرَة",
+        "🍅 طَمَاطِم"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]جَزَرَة[/ar] — sabzi."
+      }
+     ]
+    },
+    {
+     "name": "Men olmani yaxshi ko'raman",
+     "goal": "Bola خيار so'zini va أنا أحبّ… iborasini o'rganadi",
+     "intro": "Bip-bip! Men batareykamni yaxshi ko'raman. Sen nimani yaxshi ko'rasan? Bugun buni arabcha aytishni o'rganamiz!",
+     "items": [
+      {
+       "say": "خِيَار",
+       "uz": "bodring",
+       "emoji": "🥒",
+       "image": "en45-u7-cucumber.png",
+       "image_prompt": "A fresh green cucumber, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "khiyar"
+      },
+      {
+       "say": "أَنَا أُحِبُّ…",
+       "uz": "men … yaxshi ko'raman",
+       "emoji": "😍",
+       "image": "en45-u7-i-like.png",
+       "image_prompt": "A happy child with heart eyes holding a fruit, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ana uhibbu…"
+      },
+      {
+       "say": "لَذِيذ!",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en45-u7-yummy.png",
+       "image_prompt": "A happy child licking lips after tasty food, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qorningni sila!",
+       "rom": "ladhidh!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "😋 Nimani yoqtirasiz?",
+       "matn": "robot Kabu: [ar]أَنَا أُحِبُّ التُّفَّاح![/ar] Endi sen ayt: [ar]أَنَا أُحِبُّ الْمَوْز![/ar] [ar]أَنَا أُحِبُّ الْعِنَب![/ar] [ar]لَذِيذ![/ar] Barakalla!",
+       "doska": "😍 أَنَا أُحِبُّ التُّفَّاح!\n😋 لَذِيذ!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]خِيَار[/ar]?",
+       "options": [
+        "🥒 خِيَار",
+        "🥕 جَزَرَة"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]خِيَار[/ar] — bodring."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bozorda meva olamiz",
+     "name_en": "في سوق الفواكه",
+     "emoji": "🧺",
+     "goal": "Bola bozorda kerakli mevani sonini aytib odob bilan so'raydi",
+     "intro": "Bip-bip! robot Kabu onajon bilan bozorga keldi. Sotuvchidan [ar]خَمْسُ تُفَّاحَات، مِنْ فَضْلِك.[/ar] deb so'raymiz!",
+     "intro_en": "نحن في السوق. هيا نطلب: خمس تفاحات، من فضلك.",
+     "roles": [
+      "Sotuvchi",
+      "Bola"
+     ],
+     "roles_en": [
+      "البائع",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s7-fruit-market.png",
+      "image_prompt": "A friendly seller at a colorful market stall with apples, bananas, oranges and carrots, handing a bag of apples to a small child, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "مَرْحَبًا! كَمْ تُفَّاحَة؟",
+       "uz": "salom! nechta olma?",
+       "emoji": "🍎",
+       "rom": "marhaban! kam tuffaha?"
+      },
+      {
+       "who": 1,
+       "say": "خَمْسُ تُفَّاحَات، مِنْ فَضْلِك.",
+       "uz": "beshta olma, iltimos",
+       "emoji": "5️⃣",
+       "rom": "khamsu tuffāhāt, min faḍlik."
+      },
+      {
+       "who": 0,
+       "say": "تَفَضَّل!",
+       "uz": "mana, oling",
+       "emoji": "🫴",
+       "rom": "tafaddal!"
+      },
+      {
+       "who": 1,
+       "say": "شُكْرًا! مَعَ السَّلَامَة!",
+       "uz": "rahmat! xayr",
+       "emoji": "🙏",
+       "rom": "shukran! ma'a as-salama!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Senga uchta banan kerak. Nima deysan?",
+       "q_en": "تريد ثلاث موزات. ماذا تقول؟",
+       "options": [
+        "🍌 ثَلَاثُ مَوْزَات، مِنْ فَضْلِك.",
+        "🥕 ثَلَاثُ جَزَرَات، مِنْ فَضْلِك."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]مَوْزَة[/ar] — banan.",
+       "why_en": "نعم! ثلاث موزات، من فضلك."
+      },
+      {
+       "q": "Sotuvchi mevani berdi. Nima deysan?",
+       "q_en": "البائع يعطيك الفاكهة. ماذا تقول؟",
+       "options": [
+        "🙅 لَا!",
+        "🙏 شُكْرًا!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ar]شُكْرًا![/ar] — rahmat.",
+       "why_en": "أحسنت! شكرًا!"
+      },
+      {
+       "q": "Sen olmani yaxshi ko'rasan. Nima deysan?",
+       "q_en": "أنت تحب التفاح. ماذا تقول؟",
+       "options": [
+        "🍎 أَنَا أُحِبُّ التُّفَّاح!",
+        "🍋 أَنَا أُحِبُّ اللَّيْمُون!"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ar]أَنَا أُحِبُّ التُّفَّاح![/ar] — men olmani yaxshi ko'raman.",
+       "why_en": "رائع! أنا أحب التفاح!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kiyim va o'yinchoqlar",
+   "emoji": "🧸",
+   "lessons": [
+    {
+     "name": "Futbolka, ko'ylak, shim",
+     "goal": "Bola قميص، فستان، بنطال so'zlarini aytadi",
+     "intro": "Bip-bip! Ertalab turib nima kiyamiz? robot Kabuning shkafini ochamiz. Voy, qancha kiyim!",
+     "items": [
+      {
+       "say": "قَمِيص",
+       "uz": "futbolka",
+       "emoji": "👕",
+       "image": "en45-u8-t-shirt.png",
+       "image_prompt": "A blue kids T-shirt, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "qamis"
+      },
+      {
+       "say": "فُسْتَان",
+       "uz": "ko'ylak",
+       "emoji": "👗",
+       "image": "en45-u8-dress.png",
+       "image_prompt": "A pretty pink girls dress, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "fustan"
+      },
+      {
+       "say": "بِنْطَال",
+       "uz": "shim",
+       "emoji": "👖",
+       "image": "en45-u8-trousers.png",
+       "image_prompt": "A pair of blue kids trousers, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "bintal"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👕 Kiyinamiz",
+       "matn": "Kiyinganday qil: futbolka — [ar]قَمِيص![/ar] Shim — [ar]بِنْطَال![/ar] Qizlar ko'ylak — [ar]فُسْتَان![/ar] Qanday rangda? [ar]أَحْمَر؟ أَزْرَق؟[/ar]",
+       "doska": "👕 قَمِيص\n👖 بِنْطَال\n👗 فُسْتَان",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ar]فُسْتَان[/ar]?",
+       "options": [
+        "👗 فُسْتَان",
+        "👖 بِنْطَال"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]فُسْتَان[/ar] — ko'ylak."
+      }
+     ]
+    },
+    {
+     "name": "Shapka, tufli, paypoq",
+     "goal": "Bola قبّعة، حذاء، جوارب so'zlarini aytadi",
+     "intro": "Bip-bip! Tashqariga sayrga chiqamiz! Boshga nima kiyamiz? Oyoqqa-chi? Avval paypoq, keyin tufli!",
+     "items": [
+      {
+       "say": "قُبَّعَة",
+       "uz": "shapka",
+       "emoji": "👒",
+       "image": "en45-u8-hat.png",
+       "image_prompt": "A cute sun hat for kids, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "qubba'a"
+      },
+      {
+       "say": "حِذَاء",
+       "uz": "tufli",
+       "emoji": "👟",
+       "image": "en45-u8-shoes.png",
+       "image_prompt": "A pair of colorful kids sneakers, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "hidha'"
+      },
+      {
+       "say": "جَوَارِب",
+       "uz": "paypoq",
+       "emoji": "🧦",
+       "image": "en45-u8-socks.png",
+       "image_prompt": "A pair of striped kids socks, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "jawarib"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚶 Sayrga tayyorlanamiz",
+       "matn": "Tartib bilan kiyamiz: avval [ar]جَوَارِب[/ar], keyin [ar]حِذَاء[/ar], boshga — [ar]قُبَّعَة[/ar]! Tayyormiz! Endi o'rtog'ingga ayt: [ar]مَعَ السَّلَامَة![/ar]",
+       "doska": "🧦 → 👟 → 👒",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Boshga nima kiyamiz?",
+       "options": [
+        "👒 قُبَّعَة",
+        "🧦 جَوَارِب"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Boshga [ar]قُبَّعَة[/ar] — shapka kiyamiz."
+      }
+     ]
+    },
+    {
+     "name": "Robot, varrak, qo'g'irchoq",
+     "goal": "Bola روبوت، طائرة ورقيّة، دمية so'zlarini aytadi",
+     "intro": "Bip-bip! O'yinchoq do'koniga kirdik! Mana yurib ketayotgan robot, osmonda uchayotgan varrak va chiroyli qo'g'irchoq!",
+     "items": [
+      {
+       "say": "رُوبُوت",
+       "uz": "robot",
+       "emoji": "🤖",
+       "image": "en45-u8-robot.png",
+       "image_prompt": "A friendly toy robot, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Robotday yur: tik-tik!",
+       "rom": "rubut"
+      },
+      {
+       "say": "طَائِرَةٌ وَرَقِيَّة",
+       "uz": "varrak",
+       "emoji": "🪁",
+       "image": "en45-u8-kite.png",
+       "image_prompt": "A colorful kite flying in the sky, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ta'iratun waraqiyya"
+      },
+      {
+       "say": "دُمْيَة",
+       "uz": "qo'g'irchoq",
+       "emoji": "🪆",
+       "image": "en45-u8-doll.png",
+       "image_prompt": "A cute doll in a pretty dress, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "dumya"
+      },
+      {
+       "say": "كُرَة",
+       "uz": "koptok",
+       "emoji": "⚽",
+       "image": "en45-u8-ball.png",
+       "image_prompt": "A colorful bouncing ball, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "kura"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🤖 Robot o'yini",
+       "matn": "Robot bo'lamiz! Qo'l va oyoqni to'g'ri tutib yur: tik-tik! [ar]أَنَا رُوبُوت![/ar] Endi varrakday qo'lni yoyib uch: [ar]طَائِرَةٌ وَرَقِيَّة![/ar]",
+       "doska": "🤖 رُوبُوت\n🪁 طَائِرَةٌ وَرَقِيَّة",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda nima uchadi?",
+       "options": [
+        "🪁 طَائِرَةٌ وَرَقِيَّة",
+        "🤖 رُوبُوت"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ar]طَائِرَةٌ وَرَقِيَّة[/ar] — varrak osmonda uchadi."
+      }
+     ]
+    },
+    {
+     "name": "Bu nima? Bu — koptok",
+     "goal": "Bola ما هذا؟ savoliga إنّها… deb javob beradi, أنا أحبّ… deydi",
+     "intro": "Bip-bip! Men sehrli qopcha olib keldim! Ichida bitta narsa yashiringan. Bu nima ekan? Arabcha so'raymiz va javob beramiz!",
+     "items": [
+      {
+       "say": "مَا هٰذَا؟",
+       "uz": "bu nima?",
+       "emoji": "🎁",
+       "image": "en45-u8-what-is-it.png",
+       "image_prompt": "A wrapped mystery gift box with a question mark, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ma hadha?"
+      },
+      {
+       "say": "إِنَّهَا كُرَة.",
+       "uz": "bu — koptok.",
+       "emoji": "🏀",
+       "image": "en45-u8-its-a-ball.png",
+       "image_prompt": "A child happily holding up a basketball, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "innaha kura."
+      },
+      {
+       "say": "أَنَا أُحِبُّ دُبْدُوبِي.",
+       "uz": "men ayiqchamni yaxshi ko'raman.",
+       "emoji": "🧸",
+       "image": "en45-u8-i-like-my-teddy.png",
+       "image_prompt": "A child hugging a soft brown teddy bear, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "ana uhibbu dubdubi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎁 Sehrli qopcha",
+       "matn": "Qopchadan chiqaramiz. [ar]مَا هٰذَا؟[/ar] — [ar]إِنَّهَا سَيَّارَة![/ar] [ar]مَا هٰذَا؟[/ar] — [ar]إِنَّهَا قُبَّعَة![/ar] Endi eng sevimli o'yinchog'ingni ayt: [ar]أَنَا أُحِبُّ…[/ar]",
+       "doska": "🎁 مَا هٰذَا؟\n🚗 إِنَّهَا سَيَّارَة!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ar]مَا هٰذَا؟[/ar] 🧦",
+       "options": [
+        "🧦 إِنَّهُ جَوْرَب.",
+        "🍎 إِنَّهَا تُفَّاحَة."
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bu — paypoq: [ar]إِنَّهُ جَوْرَب.[/ar]"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Parkka borishga kiyinamiz",
+     "name_en": "نلبس للذهاب إلى الحديقة",
+     "emoji": "🧢",
+     "goal": "Bola parkka chiqishdan oldin kiyimlarini arabcha aytib kiyinadi",
+     "intro": "Bip-bip! robot Kabu bilan parkka boramiz. Avval kiyinamiz: [ar]قُبَّعَة[/ar], [ar]حِذَاء[/ar] — va varrakni olamiz!",
+     "intro_en": "هيا نذهب إلى الحديقة! البس قبعتك وحذاءك!",
+     "roles": [
+      "Onam",
+      "Bola"
+     ],
+     "roles_en": [
+      "مَامَا",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en45-s8-dressing-for-park.png",
+      "image_prompt": "A mum helping a small child put on a red hat and shoes by the front door, a colorful kite leaning on the wall, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "اِلْبَسْ قُبَّعَتَك!",
+       "uz": "shapkangni kiy",
+       "emoji": "🧢",
+       "rom": "ilbas qubba'atak!"
+      },
+      {
+       "who": 1,
+       "say": "قُبَّعَتِي الْحَمْرَاء؟ حَسَنًا!",
+       "uz": "qizil shapkammi? xo'p",
+       "emoji": "🔴",
+       "rom": "qubba'ati al-hamra'? hasanan!"
+      },
+      {
+       "who": 0,
+       "say": "وَحِذَاءَك!",
+       "uz": "tuflingni ham",
+       "emoji": "👟",
+       "rom": "wa hidha'ak!"
+      },
+      {
+       "who": 1,
+       "say": "نَعَم! وَطَائِرَتِي الْوَرَقِيَّة!",
+       "uz": "ha! varragimni ham olaman",
+       "emoji": "🪁",
+       "rom": "na'am! wa ta'irati al-waraqiyya!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Onam: [ar]اِلْبَسْ قُبَّعَتَك![/ar] Nimani kiyasan?",
+       "q_en": "أمي تقول: البس قبعتك! ماذا تلبس؟",
+       "options": [
+        "🧦 جَوَارِب",
+        "🧢 قُبَّعَة"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [ar]قُبَّعَة[/ar] — shapka.",
+       "why_en": "نعم! قبعة!"
+      },
+      {
+       "q": "Parkka nimani olasan? Varrakni ko'rsat!",
+       "q_en": "ماذا تأخذ إلى الحديقة؟ أظهر الطائرة الورقية!",
+       "options": [
+        "🪁 إِنَّهَا طَائِرَةٌ وَرَقِيَّة.",
+        "🤖 إِنَّهُ رُوبُوت."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]طَائِرَةٌ وَرَقِيَّة[/ar] — varrak.",
+       "why_en": "أحسنت! إنها طائرة ورقية."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ovqat va ichimliklar",
+   "emoji": "🍽️",
+   "lessons": [
+    {
+     "name": "Nonushta",
+     "goal": "Bola خبز، حليب، بيضة، جبن so'zlarini biladi",
+     "intro": "Bip-bip! Xayrli tong! robot Kabu och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Qani, arabcha aytamiz.",
+     "items": [
+      {
+       "say": "خُبْز",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "en56-u4-bread.png",
+       "image_prompt": "A loaf of fresh bread, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أحب الخبز والجبن.",
+       "rom": "khubz"
+      },
+      {
+       "say": "حَلِيب",
+       "uz": "sut",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أشرب الحليب في الصباح.",
+       "action_en": "اشرب حليبك!",
+       "rom": "halib"
+      },
+      {
+       "say": "بَيْضَة",
+       "uz": "tuxum",
+       "emoji": "🥚",
+       "image": "en56-u4-egg.png",
+       "image_prompt": "A white egg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "عندي بيضة واحدة.",
+       "rom": "bayda"
+      },
+      {
+       "say": "جُبْن",
+       "uz": "pishloq",
+       "emoji": "🧀",
+       "image": "en56-u4-cheese.png",
+       "image_prompt": "A wedge of yellow cheese, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الفأر يحب الجبن.",
+       "rom": "jubn"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🍳 Nonushta tayyorlaymiz",
+       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qil va ayt: [ar]خُبْز[/ar] … [ar]حَلِيب[/ar] … [ar]بَيْضَة[/ar] … [ar]جُبْن[/ar]. Yoqimli ishtaha!",
+       "doska": "🍞 خُبْز  🥛 حَلِيب\n🥚 بَيْضَة  🧀 جُبْن",
+       "sodda": "Ikkitasi: [ar]خُبْز[/ar] va [ar]حَلِيب[/ar].",
+       "boshqa_usul": "Uyda nonushtada har ovqatni arabcha nomla!",
+       "matn_en": "هيا نقدم الفطور للدمى! ضعه على الطاولة وقل: خبز، حليب، بيضة، جبن. لذيذ!",
+       "sarlavha_en": "🍳 هيا نحضّر الفطور"
+      }
+     ],
+     "intro_en": "صباح الخير! حان وقت الفطور. هيا نأكل الخبز والبيض والجبن. لذيذ!"
+    },
+    {
+     "name": "Ichimliklar",
+     "goal": "Bola ماء، عصير، شاي so'zlarini va «أنا عطشان» iborasini biladi",
+     "intro": "Bip-bip! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz.",
+     "items": [
+      {
+       "say": "مَاء",
+       "uz": "suv",
+       "emoji": "💧",
+       "image": "en56-u4-water.png",
+       "image_prompt": "A clear glass of water with a drop, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أشرب الماء كل يوم.",
+       "action_en": "اشرب بعض الماء!",
+       "rom": "ma'"
+      },
+      {
+       "say": "عَصِير",
+       "uz": "sharbat",
+       "emoji": "🧃",
+       "image": "en56-u4-juice.png",
+       "image_prompt": "A kids juice box with a straw, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أحب عصير التفاح.",
+       "rom": "'asir"
+      },
+      {
+       "say": "شَاي",
+       "uz": "choy",
+       "emoji": "🍵",
+       "image": "en56-u4-tea.png",
+       "image_prompt": "A cup of green tea, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الجدة تشرب الشاي.",
+       "rom": "shay"
+      },
+      {
+       "say": "أَنَا عَطْشَان.",
+       "uz": "chanqadim",
+       "emoji": "🥤",
+       "image": "en56-u4-im-thirsty.png",
+       "image_prompt": "A child holding a cup, looking thirsty, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tomog'ingni ushla!",
+       "sentence": "أنا عطشان. ماء، من فضلك.",
+       "rom": "ana 'atshan."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: choyxonada",
+       "matn": "Kabu so'raydi: [ar]مَاء أَمْ عَصِير؟[/ar] Sen tanla: [ar]عَصِير، مِنْ فَضْلِك![/ar] Kabu beradi. Sen: [ar]شُكْرًا![/ar] Endi sen so'ra!",
+       "doska": "— مَاء أَمْ عَصِير؟\n— عَصِير، مِنْ فَضْلِك!\n— شُكْرًا!",
+       "sodda": "Faqat tanla: [ar]مَاء[/ar] yoki [ar]عَصِير[/ar].",
+       "boshqa_usul": "Ikki stakan qo'y — biriga suv, biriga sharbat. Kattalarga taklif qil: [ar]مَاء أَمْ عَصِير؟[/ar]",
+       "matn_en": "كبوتر: ماء أم عصير؟ الطفل: عصير، من فضلك! كبوتر: تفضل. الطفل: شكرًا! والآن اسأل أنت!",
+       "sarlavha_en": "🎭 حوار: في المقهى"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvimiz ertalab piyolada nima ichadi?",
+       "options": [
+        "🍵 شَاي",
+        "🧀 جُبْن"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Choy — [ar]شَاي[/ar].",
+       "q_en": "ماذا تشرب الجدة في الصباح؟"
+      }
+     ],
+     "intro_en": "أهلًا يا أصدقاء! أنا عطشان. هيا نشرب شيئًا. ماء أم عصير أم شاي؟"
+    },
+    {
+     "name": "Tushlik",
+     "goal": "Bola حساء، أرزّ، دجاج so'zlarini va «أنا جائع» iborasini biladi",
+     "intro": "Bip-bip! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "حَسَاء",
+       "uz": "sho'rva",
+       "emoji": "🍲",
+       "image": "en56-u4-soup.png",
+       "image_prompt": "A bowl of warm soup, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أمي تطبخ حساءً ساخنًا.",
+       "rom": "hasa'"
+      },
+      {
+       "say": "أَرُزّ",
+       "uz": "guruch, palov",
+       "emoji": "🍚",
+       "image": "en56-u4-rice.png",
+       "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أحب الأرز مع الدجاج.",
+       "rom": "aruzz"
+      },
+      {
+       "say": "دَجَاج",
+       "uz": "tovuq go'shti",
+       "emoji": "🍗",
+       "image": "en56-u4-chicken.png",
+       "image_prompt": "A roasted chicken leg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الدجاج لذيذ!",
+       "rom": "dajaj"
+      },
+      {
+       "say": "أَنَا جَائِع.",
+       "uz": "qornim och",
+       "emoji": "🍽️",
+       "image": "en56-u4-im-hungry.png",
+       "image_prompt": "A child with an empty plate and a spoon, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningni sila!",
+       "sentence": "أنا جائع. حساء، من فضلك!",
+       "action_en": "افرك بطنك!",
+       "rom": "ana ja'i'."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥄 Oshpaz o'yini",
+       "matn": "Sen — oshpazsan! Qozonga sol: [ar]أَرُزّ[/ar], [ar]دَجَاج[/ar]… aralashtir! Kabu keladi: [ar]أَنَا جَائِع![/ar] Sen berasan: [ar]هٰذَا حَسَاء![/ar]",
+       "doska": "🍚 أَرُزّ + 🍗 دَجَاج\n🍲 حَسَاء\nأَنَا جَائِع! 🍽️",
+       "sodda": "Qozonga bittadan sol va ayt: [ar]أَرُزّ[/ar]!",
+       "boshqa_usul": "Qog'ozdan likopcha yasa, ichiga rasm chiz va nomini ayt.",
+       "matn_en": "أنت الطباخ! ضع الأرز والدجاج في القدر. حرّك، حرّك! كبوتر: أنا جائع! الطباخ: هذا حساء!",
+       "sarlavha_en": "🥄 لعبة الطباخ"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ar]أَنَا جَائِع.[/ar] — bu nima degani?",
+       "options": [
+        "🍽️ qornim och",
+        "🥤 chanqadim"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]أَنَا جَائِع[/ar] — qornim och.",
+       "q_en": "ماذا تعني «أنا جائع»؟"
+      }
+     ],
+     "intro_en": "مرحبًا! حان وقت الغداء. أنا جائع! هيا نأكل الحساء والأرز."
+    },
+    {
+     "name": "Shirinliklar",
+     "goal": "Bola كعكة، بوظة، حلوى so'zlarini va «لذيذ!» iborasini biladi",
+     "intro": "Bip-bip! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Qani, ularni arabcha nomlaymiz.",
+     "items": [
+      {
+       "say": "كَعْكَة",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "en56-u4-cake.png",
+       "image_prompt": "A birthday cake with candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "كعكة عيد الميلاد كبيرة.",
+       "rom": "ka'ka"
+      },
+      {
+       "say": "بُوظَة",
+       "uz": "muzqaymoq",
+       "emoji": "🍦",
+       "image": "en56-u4-ice-cream.png",
+       "image_prompt": "A soft ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أحب البوظة في الصيف.",
+       "rom": "buza"
+      },
+      {
+       "say": "حَلْوَى",
+       "uz": "konfetlar",
+       "emoji": "🍬",
+       "image": "en56-u4-sweets.png",
+       "image_prompt": "Colorful wrapped candies, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "عند جدتي حلوى لي.",
+       "rom": "halwa"
+      },
+      {
+       "say": "لَذِيذ!",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en56-u4-yummy.png",
+       "image_prompt": "A child licking lips happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningni silab, «mm» deng!",
+       "sentence": "لذيذ! الكعكة طيبة!",
+       "action_en": "افرك بطنك!",
+       "rom": "ladhidh!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎂 Tug'ilgan kun o'yini",
+       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة![/ar] Pufla! Endi tortdan tatib ko'ramiz — [ar]لَذِيذ![/ar]",
+       "doska": "🎂 وَاحِد اِثْنَان ثَلَاثَة أَرْبَعَة خَمْسَة\nلَذِيذ! 😋",
+       "sodda": "Birgina so'z: [ar]كَعْكَة[/ar]… [ar]لَذِيذ![/ar]",
+       "boshqa_usul": "Loy yoki plastilindan tort yasa va unga sham qo'yib, arabcha sana!",
+       "matn_en": "ضع الشموع على الكعكة وعدّ: واحد، اثنان، ثلاثة، أربعة، خمسة! انفخ! والآن كل الكعكة — لذيذ!",
+       "sarlavha_en": "🎂 لعبة عيد الميلاد"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tug'ilgan kunda sham qo'yiladigan shirinlik qaysi?",
+       "options": [
+        "🎂 كَعْكَة",
+        "🍦 بُوظَة"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tort — [ar]كَعْكَة[/ar].",
+       "q_en": "نضع عليها الشموع في عيد الميلاد. ما هي؟"
+      }
+     ],
+     "intro_en": "مرحبًا يا أصدقاء! أحب الأشياء الحلوة. الكعك، البوظة، الحلوى. لذيذ!"
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Uyda nonushta",
+     "name_en": "الفطور في البيت",
+     "emoji": "🍳",
+     "goal": "Bola nonushtada ovqat va ichimlik so'raydi, rahmat aytadi",
+     "intro": "Ertalab oila bilan nonushta qilamiz. Nima yeymiz, nima ichamiz?",
+     "intro_en": "صباح الخير! حان وقت الفطور مع العائلة. ماذا تريد؟",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "مَامَا",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en56-s4-breakfast.png",
+      "image_prompt": "A family breakfast table with bread, eggs, cheese, tea and milk, a mother and a child smiling in a bright kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "صَبَاحُ الْخَيْر! هَلْ أَنْتَ جَائِع؟",
+       "uz": "xayrli tong! qorning ochmi?",
+       "emoji": "🌞",
+       "rom": "sabahu al-khayr! hal anta ja'i'?"
+      },
+      {
+       "who": 1,
+       "say": "نَعَم، أَنَا جَائِع.",
+       "uz": "ha, qornim och",
+       "emoji": "🍽️",
+       "rom": "na'am, ana ja'i'."
+      },
+      {
+       "who": 0,
+       "say": "تَفَضَّل. خُبْزٌ وَبَيْضَة.",
+       "uz": "mana, ol. non va tuxum",
+       "emoji": "🍞🥚",
+       "rom": "tafaddal. khubzun wa bayda."
+      },
+      {
+       "who": 1,
+       "say": "شُكْرًا! حَلِيب، مِنْ فَضْلِك.",
+       "uz": "rahmat! sut bering, iltimos",
+       "emoji": "🥛",
+       "rom": "shukran! halib, min fadlik."
+      },
+      {
+       "who": 0,
+       "say": "هٰذَا حَلِيبُك.",
+       "uz": "mana suting",
+       "emoji": "🫴",
+       "rom": "hadha halibuk."
+      },
+      {
+       "who": 1,
+       "say": "لَذِيذ! شُكْرًا يَا أُمِّي!",
+       "uz": "mazali! rahmat, onajon!",
+       "emoji": "😋",
+       "rom": "ladhidh! shukran ya ummi!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sut ichmoqchisan. Nima deysan?",
+       "q_en": "تريد بعض الحليب. ماذا تقول؟",
+       "options": [
+        "🥛 حَلِيب، مِنْ فَضْلِك.",
+        "🧀 جُبْن"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]حَلِيب، مِنْ فَضْلِك.[/ar]",
+       "why_en": "نعم! حليب، من فضلك."
+      },
+      {
+       "q": "Nonushta juda mazali. Nima deysan?",
+       "q_en": "الفطور لذيذ جدًا. ماذا تقول؟",
+       "options": [
+        "😋 لَذِيذ!",
+        "🥤 أَنَا عَطْشَان."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]لَذِيذ![/ar]",
+       "why_en": "نعم! لذيذ!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uyim va xonalar",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Mening uyim",
+     "goal": "Bola بيت، باب، نافذة، حديقة so'zlarini biladi",
+     "intro": "Bip-bip! Mening temir uycham bor, sening esa chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni arabcha o'rganamiz.",
+     "items": [
+      {
+       "say": "بَيْت",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "هذا بيتي.",
+       "action_en": "ارسم بيتًا في الهواء!",
+       "rom": "bayt"
+      },
+      {
+       "say": "بَاب",
+       "uz": "eshik",
+       "emoji": "🚪",
+       "image": "en56-u5-door.png",
+       "image_prompt": "A wooden front door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Eshikni taqillatganday qil: tuk-tuk!",
+       "sentence": "افتح الباب، من فضلك.",
+       "action_en": "افتح الباب!",
+       "rom": "bab"
+      },
+      {
+       "say": "نَافِذَة",
+       "uz": "deraza",
+       "emoji": "🪟",
+       "image": "en56-u5-window.png",
+       "image_prompt": "A window with curtains, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "انظر من النافذة!",
+       "action_en": "انظر من النافذة!",
+       "rom": "nafidha"
+      },
+      {
+       "say": "حَدِيقَة",
+       "uz": "bog', hovli",
+       "emoji": "🏡",
+       "image": "en56-u5-garden.png",
+       "image_prompt": "A house with a green garden and flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "عندنا حديقة كبيرة.",
+       "rom": "hadiqa"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏠 Uy chizamiz",
+       "matn": "Qog'oz va qalam ol! Avval [ar]بَيْت[/ar] chiz, keyin [ar]بَاب[/ar], ikkita [ar]نَافِذَة[/ar], atrofiga [ar]حَدِيقَة[/ar]. Chizib bo'lgach, har birini ko'rsatib ayt!",
+       "doska": "🏠 بَيْت\n🚪 بَاب  🪟 نَافِذَة\n🏡 حَدِيقَة",
+       "sodda": "Faqat [ar]بَيْت[/ar] va [ar]بَاب[/ar] chiz.",
+       "boshqa_usul": "Uyingda yurib, eshik va derazani topib ayt: [ar]بَاب! نَافِذَة![/ar]",
+       "matn_en": "خذ ورقة وقلم رصاص! ارسم بيتًا وبابًا ونافذتين وحديقة. ثم أشر وقل كل كلمة!",
+       "sarlavha_en": "🏠 ارسم بيتًا"
+      }
+     ],
+     "intro_en": "مرحبًا! أهلًا بك في بيتي! انظر، هذا هو الباب. تفضل بالدخول!"
+    },
+    {
+     "name": "Uydagi xonalar",
+     "goal": "Bola المطبخ، غرفة النوم، الحمّام، غرفة الجلوس so'zlarini biladi",
+     "intro": "Bip-bip! Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysan? Qani, xonalarni arabcha aytamiz!",
+     "items": [
+      {
+       "say": "الْمَطْبَخ",
+       "uz": "oshxona",
+       "emoji": "🍳",
+       "image": "en56-u5-kitchen.png",
+       "image_prompt": "A bright kitchen with a stove and a frying pan, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أمي في المطبخ.",
+       "rom": "al-matbakh"
+      },
+      {
+       "say": "غُرْفَةُ النَّوْم",
+       "uz": "yotoqxona",
+       "emoji": "🛏️",
+       "image": "en56-u5-bedroom.png",
+       "image_prompt": "A cozy bedroom with a bed and a teddy bear, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uxlaganday ko'zingni yum!",
+       "sentence": "أنام في غرفة نومي.",
+       "action_en": "اذهب إلى النوم!",
+       "rom": "ghurfatu an-nawm"
+      },
+      {
+       "say": "الْحَمَّام",
+       "uz": "hammom",
+       "emoji": "🛁",
+       "image": "en56-u5-bathroom.png",
+       "image_prompt": "A bathroom with a bathtub and bubbles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni yuvganday qil!",
+       "sentence": "أغسل يدي في الحمام.",
+       "action_en": "اِغْسِلْ يَدَيْك!",
+       "rom": "al-hammam"
+      },
+      {
+       "say": "غُرْفَةُ الْجُلُوس",
+       "uz": "mehmonxona",
+       "emoji": "🛋️",
+       "image": "en56-u5-living-room.png",
+       "image_prompt": "A living room with a sofa, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "نشاهد التلفاز في غرفة الجلوس.",
+       "rom": "ghurfatu al-julus"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Qaysi xonadamiz?",
+       "matn": "Men ish aytaman, sen xonani top! Uxlaymiz — [ar]غُرْفَةُ النَّوْم[/ar]. Ovqat pishiramiz — [ar]الْمَطْبَخ[/ar]. Cho'milamiz — [ar]الْحَمَّام[/ar]. Divanda o'tiramiz — [ar]غُرْفَةُ الْجُلُوس[/ar].",
+       "doska": "😴 → غُرْفَةُ النَّوْم\n🍳 → الْمَطْبَخ\n🛁 → الْحَمَّام\n🛋️ → غُرْفَةُ الْجُلُوس",
+       "sodda": "Ikkitasi: [ar]الْمَطْبَخ[/ar] va [ar]غُرْفَةُ النَّوْم[/ar].",
+       "boshqa_usul": "Uyingda har xonaga kirib, uning nomini arabcha ayt!",
+       "matn_en": "أقول، وأنت تجد الغرفة! ننام — غرفة النوم. نطبخ — المطبخ. نغتسل — الحمام. نجلس على الأريكة — غرفة الجلوس.",
+       "sarlavha_en": "🔍 أي غرفة؟"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ غُرْفَةُ النَّوْم",
+        "🍳 الْمَطْبَخ"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yotoqxona — [ar]غُرْفَةُ النَّوْم[/ar].",
+       "q_en": "أين ننام؟"
+      }
+     ],
+     "intro_en": "أهلًا يا أصدقاء! في بيتي غرف كثيرة. هيا نمشي وننظر إلى كل غرفة!"
+    },
+    {
+     "name": "Xonadagi narsalar",
+     "goal": "Bola كرسيّ، مصباح، تلفاز، ساعة so'zlarini biladi",
+     "intro": "Bip-bip! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Qani, xonadagi narsalarni o'rganamiz.",
+     "items": [
+      {
+       "say": "كُرْسِيّ",
+       "uz": "stul",
+       "emoji": "🪑",
+       "image": "en56-u5-chair.png",
+       "image_prompt": "A small wooden chair, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "اجلس على الكرسي، من فضلك.",
+       "action_en": "اجلس!",
+       "rom": "kursiyy"
+      },
+      {
+       "say": "مِصْبَاح",
+       "uz": "chiroq",
+       "emoji": "💡",
+       "image": "en56-u5-lamp.png",
+       "image_prompt": "A glowing light bulb lamp, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chiroqni yoqganday qil: chirt!",
+       "sentence": "المصباح على الطاولة.",
+       "rom": "misbah"
+      },
+      {
+       "say": "تِلْفَاز",
+       "uz": "televizor",
+       "emoji": "📺",
+       "image": "en56-u5-tv.png",
+       "image_prompt": "A retro television set, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الجد يشاهد التلفاز.",
+       "rom": "tilfaz"
+      },
+      {
+       "say": "سَاعَة",
+       "uz": "soat",
+       "emoji": "🕰️",
+       "image": "en56-u5-clock.png",
+       "image_prompt": "A mantel clock, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tik-tak deb boshingni chayqat!",
+       "sentence": "الساعة كبيرة وبيضاء.",
+       "rom": "sa'a"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, qayerda?",
+       "matn": "Atrofingga qara! Xonangda [ar]كُرْسِيّ[/ar] bormi? Ko'rsat! [ar]مِصْبَاح[/ar]? [ar]تِلْفَاز[/ar]? [ar]سَاعَة[/ar]? Topgan har narsa uchun — bitta qarsak!",
+       "doska": "🪑 كُرْسِيّ  💡 مِصْبَاح\n📺 تِلْفَاز  🕰️ سَاعَة",
+       "sodda": "Faqat [ar]كُرْسِيّ[/ar] ni top va ustiga o'tir!",
+       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; sen ko'rsatib ayt.",
+       "matn_en": "انظر حول غرفتك! هل يوجد كرسي؟ أرني! مصباح؟ تلفاز؟ ساعة؟ صفّق لكل شيء تجده!",
+       "sarlavha_en": "👀 ابحث عنه!"
+      }
+     ],
+     "intro_en": "مرحبًا! انظر إلى غرفتي. أرى كرسيًا ومصباحًا وساعة. ماذا ترى أنت؟"
+    },
+    {
+     "name": "Mushuk qayerda?",
+     "goal": "Bola «أين…؟» deb so'raydi, في، على، تحت so'zlarini tushunadi",
+     "intro": "Bip-bip! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Qani, birga qidiramiz!",
+     "items": [
+      {
+       "say": "أَيْنَ الْقِطَّة؟",
+       "uz": "mushuk qayerda?",
+       "emoji": "🐈❓",
+       "image": "en56-u5-where-cat.png",
+       "image_prompt": "A pigeon looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أين القطة؟ لا أعرف!",
+       "action_en": "انظر حولك!",
+       "rom": "ayna al-qitta?"
+      },
+      {
+       "say": "فِي الصُّنْدُوق",
+       "uz": "qutining ichida",
+       "emoji": "📦🐱",
+       "image": "en56-u5-in-box.png",
+       "image_prompt": "A kitten sitting inside a cardboard box, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "القطة في الصندوق.",
+       "rom": "fi as-sunduq"
+      },
+      {
+       "say": "عَلَى الطَّاوِلَة",
+       "uz": "stolning ustida",
+       "emoji": "🐱⬆️",
+       "image": "en56-u5-on-table.png",
+       "image_prompt": "A kitten sitting on top of a table, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الكرة على الطاولة.",
+       "rom": "'ala at-tawila"
+      },
+      {
+       "say": "تَحْتَ السَّرِير",
+       "uz": "karavotning ostida",
+       "emoji": "🛏️🐱",
+       "image": "en56-u5-under-bed.png",
+       "image_prompt": "A kitten peeking out from under a bed, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "حذائي تحت السرير.",
+       "rom": "tahta as-sarir"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧸 Yashirinmachoq",
+       "matn": "Ayiqchani yashir! Kattalar so'raydi: [ar]أَيْنَ دُبْدُوب؟[/ar] Sen javob ber: [ar]فِي الصُّنْدُوق[/ar], [ar]عَلَى الْكُرْسِيّ[/ar] yoki [ar]تَحْتَ السَّرِير[/ar].",
+       "doska": "أَيْنَ دُبْدُوب؟\nفِي 📦  عَلَى ⬆️  تَحْتَ ⬇️",
+       "sodda": "Qo'l bilan ko'rsat: [ar]فِي[/ar] — ichiga, [ar]عَلَى[/ar] — ustiga, [ar]تَحْتَ[/ar] — ostiga.",
+       "boshqa_usul": "Qalamni qutiga sol va ayt: [ar]فِي![/ar] Qutining ustiga qo'y: [ar]عَلَى![/ar] Ostiga: [ar]تَحْتَ![/ar]",
+       "matn_en": "خبّئ دبدوب! الكبير: أين دبدوب؟ الطفل: في الصندوق! على الكرسي! تحت السرير!",
+       "sarlavha_en": "🧸 الغميضة"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱 mushukcha qutining ichida. Qanday aytamiz?",
+       "options": [
+        "📦🐱 فِي الصُّنْدُوق",
+        "🐱⬆️ عَلَى الطَّاوِلَة"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ichida — [ar]فِي الصُّنْدُوق[/ar].",
+       "q_en": "القطة الصغيرة في الصندوق. كيف نقول ذلك؟"
+      }
+     ],
+     "intro_en": "يا إلهي! أين القطة؟ هيا نبحث عنها معًا. هل هي في الصندوق؟"
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Mushukchani qidiramiz",
+     "name_en": "نبحث عن القطة الصغيرة",
+     "emoji": "🐱",
+     "goal": "Bola uyda mushukchani qidiradi va xona hamda joy nomlarini aytadi",
+     "intro": "Uyimizdagi mushukcha yo'qolib qoldi! Dadamiz bilan xonalarda qidiramiz.",
+     "intro_en": "يا إلهي! أين قطتنا الصغيرة؟ هيا نبحث عنها في كل غرفة مع بابا!",
+     "roles": [
+      "Dada",
+      "Bola"
+     ],
+     "roles_en": [
+      "بَابَا",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en56-s5-find-the-kitten.png",
+      "image_prompt": "A father and a child looking for a kitten in a cozy bedroom, the kitten peeking from under the bed, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "يَا بَابَا، أَيْنَ الْقِطَّة؟",
+       "uz": "dada, mushuk qayerda?",
+       "emoji": "❓",
+       "rom": "ya baba, ayna al-qitta?"
+      },
+      {
+       "who": 0,
+       "say": "هَلْ هِيَ فِي الْمَطْبَخ؟",
+       "uz": "oshxonadami?",
+       "emoji": "🍳",
+       "rom": "hal hiya fi al-matbakh?"
+      },
+      {
+       "who": 1,
+       "say": "لَا. لَيْسَتْ فِي الْمَطْبَخ.",
+       "uz": "yo'q. oshxonada emas",
+       "emoji": "🙅",
+       "rom": "la. laysat fi al-matbakh."
+      },
+      {
+       "who": 0,
+       "say": "هَيَّا نَنْظُرْ فِي غُرْفَةِ النَّوْم.",
+       "uz": "keling, yotoqxonaga qaraymiz",
+       "emoji": "🛏️",
+       "rom": "hayya nanzur fi ghurfati an-nawm."
+      },
+      {
+       "who": 1,
+       "say": "اُنْظُرْ! إِنَّهَا تَحْتَ السَّرِير!",
+       "uz": "qarang! karavotning ostida!",
+       "emoji": "🐱",
+       "rom": "unzur! innaha tahta as-sarir!"
+      },
+      {
+       "who": 0,
+       "say": "أَحْسَنْت! أَنَا سَعِيد!",
+       "uz": "barakalla! men xursandman!",
+       "emoji": "👏",
+       "rom": "ahsant! ana sa'id!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Mushukcha qayerda edi?",
+       "q_en": "أين القطة الصغيرة؟",
+       "options": [
+        "🛏️🐱 تَحْتَ السَّرِير",
+        "📦🐱 فِي الصُّنْدُوق"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]تَحْتَ السَّرِير[/ar]",
+       "why_en": "نعم! تحت السرير."
+      },
+      {
+       "q": "Mushukni qidiryapsan. Nima deb so'raysan?",
+       "q_en": "لا تجد القطة. ماذا تسأل؟",
+       "options": [
+        "❓ أَيْنَ الْقِطَّة؟",
+        "🐱 عِنْدِي قِطَّة."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]أَيْنَ الْقِطَّة؟[/ar]",
+       "why_en": "نعم! أين القطة؟"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo va fasllar",
+   "emoji": "🌦️",
+   "lessons": [
+    {
+     "name": "Bugun havo qanday?",
+     "goal": "Bola «كيف الجوّ؟» savoliga مشمس، ممطر، عاصف bilan javob beradi",
+     "intro": "Bip-bip! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni arabcha aytamiz!",
+     "items": [
+      {
+       "say": "كَيْفَ الْجَوّ؟",
+       "uz": "havo qanday?",
+       "emoji": "🌦️",
+       "image": "en56-u6-weather.png",
+       "image_prompt": "A child looking out of a window at the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "يا أمي، كيف الجو؟",
+       "rom": "kayfa al-jaww?"
+      },
+      {
+       "say": "الْجَوُّ مُشْمِس.",
+       "uz": "quyoshli",
+       "emoji": "☀️",
+       "image": "en56-u6-sunny.png",
+       "image_prompt": "A bright smiling sun, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni quyoshday keng och!",
+       "sentence": "الجو مشمس. هيا نذهب إلى الحديقة!",
+       "action_en": "البس نظارتك الشمسية!",
+       "rom": "al-jawwu mushmis."
+      },
+      {
+       "say": "الْجَوُّ مُمْطِر.",
+       "uz": "yomg'irli",
+       "emoji": "🌧️",
+       "image": "en56-u6-rainy.png",
+       "image_prompt": "A cloud with raindrops, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaring bilan yomg'ir tomchilarini ko'rsat!",
+       "sentence": "الجو ممطر. خذ مظلة!",
+       "rom": "al-jawwu mumtir."
+      },
+      {
+       "say": "الْجَوُّ عَاصِف.",
+       "uz": "shamolli",
+       "emoji": "🌬️",
+       "image": "en56-u6-windy.png",
+       "image_prompt": "Wind blowing leaves and a kite, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Daraxtday chayqal!",
+       "sentence": "الجو عاصف. هيا نطيّر طائرة ورقية!",
+       "action_en": "تمايل مثل الشجرة!",
+       "rom": "al-jawwu 'asif."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ob-havo qo'shig'i",
+       "matn": "Kuylaymiz: [ar]كَيْفَ الْجَوُّ الْيَوْم؟ مُشْمِس، مُشْمِس، هَيْه![/ar] Keyin [ar]مُمْطِر[/ar] va [ar]عَاصِف[/ar] bilan ham kuyla!",
+       "doska": "كَيْفَ الْجَوّ؟\nمُشْمِس! ☀️ مُمْطِر! 🌧️ عَاصِف! 🌬️",
+       "sodda": "Faqat javob: [ar]مُشْمِس![/ar] [ar]مُمْطِر![/ar]",
+       "boshqa_usul": "Har tong derazadan qarab, havoni arabcha ayt va taqvimga rasm chiz.",
+       "matn_en": "هيا نغني: كيف الجو اليوم؟ مشمس، مشمس، هيه! والآن غنِّها بكلمتي ممطر وعاصف!",
+       "sarlavha_en": "🎵 أغنية الطقس"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda quyosh charaqlayapti. Havo qanday?",
+       "options": [
+        "☀️ الْجَوُّ مُشْمِس.",
+        "🌧️ الْجَوُّ مُمْطِر."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]الْجَوُّ مُشْمِس.[/ar] — quyoshli.",
+       "q_en": "الشمس تشرق في السماء. كيف الجو؟"
+      }
+     ],
+     "intro_en": "صباح الخير يا أصدقاء! هيا ننظر من النافذة. كيف الجو اليوم؟"
+    },
+    {
+     "name": "Issiq va sovuq",
+     "goal": "Bola ثلجيّ، غائم، حارّ، بارد so'zlari bilan havoni tasvirlaydi",
+     "intro": "Bip-bip! Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq bo'ladi, sovuq bo'ladi. Qani, o'rganamiz!",
+     "items": [
+      {
+       "say": "الثَّلْجُ يَتَسَاقَط.",
+       "uz": "qorli",
+       "emoji": "🌨️",
+       "image": "en56-u6-snowy.png",
+       "image_prompt": "Snow falling from a cloud, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الثلج يتساقط. هيا نصنع رجل ثلج!",
+       "rom": "ath-thalju yatasaqat."
+      },
+      {
+       "say": "الْجَوُّ غَائِم.",
+       "uz": "bulutli",
+       "emoji": "☁️",
+       "image": "en56-u6-cloudy.png",
+       "image_prompt": "Fluffy grey clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "الجو غائم. لا أستطيع أن أرى الشمس.",
+       "rom": "al-jawwu gha'im."
+      },
+      {
+       "say": "الْجَوُّ حَارّ.",
+       "uz": "issiq",
+       "emoji": "🥵",
+       "image": "en56-u6-hot.png",
+       "image_prompt": "A child fanning themselves in the heat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yelpinganday qil!",
+       "sentence": "الجو حار. أريد بوظة!",
+       "action_en": "هوّ على وجهك بيدك!",
+       "rom": "al-jawwu harr."
+      },
+      {
+       "say": "الْجَوُّ بَارِد.",
+       "uz": "sovuq",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Titraganday qil: brr!",
+       "sentence": "الجو بارد. البس معطفك!",
+       "action_en": "ارتجف هكذا!",
+       "rom": "al-jawwu barid."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Issiq-sovuq o'yini",
+       "matn": "Men aytaman, sen harakat qilasan: [ar]الْجَوُّ حَارّ![/ar] — yelpining! [ar]الْجَوُّ بَارِد![/ar] — titra! [ar]الثَّلْجُ يَتَسَاقَط![/ar] — qor to'pla! [ar]الْجَوُّ غَائِم![/ar] — bulutday suz!",
+       "doska": "🥵 حَارّ — yelpinamiz\n🥶 بَارِد — titraymiz\n🌨️ ثَلْجِيّ — qor\n☁️ غَائِم — bulut",
+       "sodda": "Ikkitasi: [ar]حَارّ[/ar] va [ar]بَارِد[/ar].",
+       "boshqa_usul": "Muzlatkichdan muz ol va ushla: [ar]الْجَوُّ بَارِد![/ar] Iliq suvga qo'l tekkiz: [ar]حَارّ![/ar]",
+       "matn_en": "استمع وتحرك! الجو حار — هوّ على وجهك! الجو بارد — ارتجف! الثلج يتساقط — اصنع كرة ثلج! الجو غائم — اطفُ مثل الغيمة!",
+       "sarlavha_en": "🏃 لعبة الحار والبارد"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tashqarida qor yog'yapti. Nima deymiz?",
+       "options": [
+        "🌨️ الثَّلْجُ يَتَسَاقَط.",
+        "🥵 الْجَوُّ حَارّ."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ar]الثَّلْجُ يَتَسَاقَط.[/ar] — qorli.",
+       "q_en": "الثلج يتساقط في الخارج. ماذا نقول؟"
+      }
+     ],
+     "intro_en": "أهلًا! بعض الأيام حارة وبعضها باردة. هيا نتحدث عن الطقس!"
+    },
+    {
+     "name": "To'rt fasl",
+     "goal": "Bola الربيع، الصيف، الخريف، الشتاء fasllarini biladi",
+     "intro": "Bip-bip! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?",
+     "items": [
+      {
+       "say": "الرَّبِيع",
+       "uz": "bahor",
+       "emoji": "🌷",
+       "image": "en56-u6-spring.png",
+       "image_prompt": "Spring tulips blooming, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "في الربيع تكون الزهور وردية.",
+       "rom": "ar-rabi'"
+      },
+      {
+       "say": "الصَّيْف",
+       "uz": "yoz",
+       "emoji": "🏖️",
+       "image": "en56-u6-summer.png",
+       "image_prompt": "A sunny beach with a bucket and spade, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "في الصيف يكون الجو حارًا ومشمسًا.",
+       "action_en": "اسبح مثل السمكة!",
+       "rom": "as-sayf"
+      },
+      {
+       "say": "الْخَرِيف",
+       "uz": "kuz",
+       "emoji": "🍂",
+       "image": "en56-u6-autumn.png",
+       "image_prompt": "Falling orange autumn leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barg kabi aylanib tush!",
+       "sentence": "في الخريف تكون الأوراق صفراء.",
+       "action_en": "اسقط مثل ورقة الشجر!",
+       "rom": "al-kharif"
+      },
+      {
+       "say": "الشِّتَاء",
+       "uz": "qish",
+       "emoji": "❄️",
+       "image": "en56-u6-winter.png",
+       "image_prompt": "A big snowflake, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "في الشتاء يتساقط الثلج.",
+       "action_en": "ارتجف هكذا!",
+       "rom": "ash-shita'"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "🔄 Fasllar aylanasi",
+       "matn": "Fasllar aylanib keladi: [ar]الرَّبِيع، الصَّيْف، الْخَرِيف، الشِّتَاء[/ar] — va yana [ar]الرَّبِيع[/ar]! Bahorda — gul, yozda — dengiz, kuzda — barg, qishda — qor.",
+       "doska": "🌷 الرَّبِيع → 🏖️ الصَّيْف\n↑            ↓\n❄️ الشِّتَاء ← 🍂 الْخَرِيف",
+       "sodda": "[ar]الصَّيْف[/ar] — yoz, [ar]الشِّتَاء[/ar] — qish.",
+       "boshqa_usul": "Doira bo'lib aylaning va har burilishda bitta faslni ayt!",
+       "matn_en": "الفصول تدور: الربيع، الصيف، الخريف، الشتاء — ثم الربيع من جديد! الربيع — زهور. الصيف — بحر. الخريف — أوراق. الشتاء — ثلج.",
+       "sarlavha_en": "🔄 دائرة الفصول"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Barglar sarg'ayib to'kilyapti. Bu qaysi fasl?",
+       "options": [
+        "🍂 الْخَرِيف",
+        "🌷 الرَّبِيع"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kuz — [ar]الْخَرِيف[/ar].",
+       "q_en": "الأوراق صفراء وتتساقط. ما هذا الفصل؟"
+      },
+      {
+       "q": "Qorbobo va qor — qaysi faslda?",
+       "options": [
+        "❄️ الشِّتَاء",
+        "🏖️ الصَّيْف"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qish — [ar]الشِّتَاء[/ar].",
+       "q_en": "ثلج ورجل ثلج. ما هذا الفصل؟"
+      }
+     ],
+     "intro_en": "مرحبًا يا أصدقاء! في السنة أربعة فصول: الربيع والصيف والخريف والشتاء. أيها تحب؟"
+    },
+    {
+     "name": "Soyabon va kamalak",
+     "goal": "Bola مظلّة، قوس قزح، رجل الثلج so'zlarini biladi",
+     "intro": "Bip-bip! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "items": [
+      {
+       "say": "مِظَلَّة",
+       "uz": "soyabon",
+       "emoji": "☂️",
+       "image": "en56-u6-umbrella.png",
+       "image_prompt": "A colorful open umbrella, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Soyabonni ochganday qil!",
+       "sentence": "خذ مظلتك، من فضلك.",
+       "action_en": "افتح مظلتك!",
+       "rom": "mizalla"
+      },
+      {
+       "say": "قَوْسُ قُزَح",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en56-u6-rainbow.png",
+       "image_prompt": "A bright rainbow over clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "انظر! قوس قزح كبير!",
+       "action_en": "ارسم قوس قزح في الهواء!",
+       "rom": "qawsu quzah"
+      },
+      {
+       "say": "رَجُلُ الثَّلْج",
+       "uz": "qorbobo, qor odam",
+       "emoji": "⛄",
+       "image": "en56-u6-snowman.png",
+       "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "نصنع رجل ثلج كبيرًا.",
+       "rom": "rajulu ath-thalj"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: sayrga chiqamiz",
+       "matn": "Kabu so'raydi: [ar]كَيْفَ الْجَوّ؟[/ar] Sen: [ar]الْجَوُّ مُمْطِر.[/ar] Kabu: [ar]خُذْ مِظَلَّتَك![/ar] Keyin: [ar]اُنْظُرْ! قَوْسُ قُزَح![/ar]",
+       "doska": "— كَيْفَ الْجَوّ؟\n— الْجَوُّ مُمْطِر. 🌧️\n— خُذْ مِظَلَّتَك! ☂️\n— اُنْظُرْ! قَوْسُ قُزَح! 🌈",
+       "sodda": "Qisqa: [ar]مُمْطِر[/ar] — [ar]مِظَلَّة[/ar].",
+       "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'l!) va ayt: [ar]مِظَلَّة![/ar]",
+       "matn_en": "كبوتر: كيف الجو؟ الطفل: الجو ممطر. كبوتر: خذ مظلتك! الطفل: انظر! قوس قزح!",
+       "sarlavha_en": "🎭 حوار: هيا نخرج"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Yomg'ir yog'yapti. O'zimiz bilan nima olamiz?",
+       "options": [
+        "☂️ مِظَلَّة",
+        "🍦 بُوظَة"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Soyabon — [ar]مِظَلَّة[/ar].",
+       "q_en": "الجو ممطر. ماذا نأخذ معنا؟"
+      }
+     ],
+     "intro_en": "أهلًا! الجو ممطر اليوم، لذلك معي مظلة. انظر! بعد المطر أرى قوس قزح!"
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'ga chiqamizmi?",
+     "name_en": "هل نذهب إلى الحديقة؟",
+     "emoji": "🌦️",
+     "goal": "Bola ob-havoni so'raydi va unga qarab kiyinadi yoki soyabon oladi",
+     "intro": "Biz bog'ga sayrga chiqmoqchimiz. Avval havo qandayligini bilib olamiz!",
+     "intro_en": "نريد أن نذهب إلى الحديقة. كيف الجو اليوم؟",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "مَامَا",
+      "الطفل"
+     ],
+     "scene": {
+      "image": "en56-s6-park-weather.png",
+      "image_prompt": "A child and a mother looking out of a window at light rain and a rainbow over a green park, holding an umbrella, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "يَا أُمِّي، هَلْ نَذْهَبُ إِلَى الْحَدِيقَة؟",
+       "uz": "onajon, bog'ga boramizmi?",
+       "emoji": "🌳",
+       "rom": "ya ummi, hal nadhhabu ila al-hadiqa?"
+      },
+      {
+       "who": 0,
+       "say": "اُنْظُرْ! كَيْفَ الْجَوّ؟",
+       "uz": "qara! havo qanday?",
+       "emoji": "🪟",
+       "rom": "unzur! kayfa al-jaww?"
+      },
+      {
+       "who": 1,
+       "say": "الْجَوُّ مُمْطِرٌ وَغَائِم.",
+       "uz": "yomg'irli va bulutli",
+       "emoji": "🌧️",
+       "rom": "al-jawwu mumtirun wa gha'im."
+      },
+      {
+       "who": 0,
+       "say": "خذ مظلتك، من فضلك.",
+       "uz": "soyaboningni ol, iltimos",
+       "emoji": "☂️",
+       "rom": "khudh miẓallatak, min faḍlik."
+      },
+      {
+       "who": 1,
+       "say": "حَسَنًا! اُنْظُرِي يَا أُمِّي! قَوْسُ قُزَح!",
+       "uz": "xo'p! qarang, onajon! kamalak!",
+       "emoji": "🌈",
+       "rom": "hasanan! unzuri ya ummi! qawsu quzah!"
+      },
+      {
+       "who": 0,
+       "say": "نَعَم! هَيَّا نَذْهَبْ إِلَى الْحَدِيقَة!",
+       "uz": "ha! qani, bog'ga ketdik!",
+       "emoji": "😊",
+       "rom": "na'am! hayya nadhhab ila al-hadiqa!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yomg'ir yog'yapti. Havo qanday?",
+       "q_en": "المطر ينزل. كيف الجو؟",
+       "options": [
+        "🌧️ الْجَوُّ مُمْطِر.",
+        "☀️ الْجَوُّ مُشْمِس."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]الْجَوُّ مُمْطِر.[/ar]",
+       "why_en": "نعم! الجو ممطر."
+      },
+      {
+       "q": "Yomg'irda nima olamiz?",
+       "q_en": "ماذا نأخذ معنا في المطر؟",
+       "options": [
+        "☂️ مِظَلَّة",
+        "🍦 بُوظَة"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]مِظَلَّة[/ar]",
+       "why_en": "نعم! مظلة."
+      },
+      {
+       "q": "Osmonda yetti rangli yoy paydo bo'ldi. Bu nima?",
+       "q_en": "ترى ألوانًا كثيرة في السماء. ما هذا؟",
+       "options": [
+        "🌈 قَوْسُ قُزَح",
+        "☁️ الْجَوُّ غَائِم."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ar]قَوْسُ قُزَح[/ar]",
+       "why_en": "نعم! قوس قزح."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "اُنْظُرْ!",
+  "listen": "اِسْتَمِعْ وَكَرِّرْ:",
+  "again": "مَرَّةً أُخْرَى!",
+  "good": [
+   "أَحْسَنْت!",
+   "أَحْسَنْت!",
+   "رَائِع!",
+   "رَائِع!",
+   "مُمْتَاز!"
+  ],
+  "remember": "هَلْ تَتَذَكَّر؟",
+  "together": "قُولُوهَا مَعًا!",
+  "your_turn": "دَوْرُك!",
+  "game": "وَقْتُ اللَّعِب!",
+  "ready": "مُسْتَعِدّ؟ اِنْطَلِقْ!",
+  "found": "عَمَلٌ رَائِع! وَجَدْتَهَا كُلَّهَا!",
+  "today": "الْيَوْمَ تَعَلَّمْنَا:",
+  "bye": "أَرَاكُمْ غَدًا!",
+  "which": "أَيُّهَا: {w}؟",
+  "find": "اِبْحَثْ عَنِ الصُّورَة: {w}",
+  "where": "أَيْنَ هُوَ: {w}؟",
+  "what": "اُنْظُرْ إِلَى الصُّورَة. مَا هٰذَا؟",
+  "yes": "نَعَم! {w}",
+  "old": "🔁 سُؤَالٌ قَدِيم",
+  "play": "هَيَّا نَلْعَب!",
+  "roleplay": "هَيَّا نُمَثِّلْهَا!",
+  "says": "{r} يَقُول:",
+  "now_you": "الْآنَ قُلْهَا أَنْت:",
+  "hello_friends": "مَرْحَبًا يَا أَصْدِقَاء!",
+  "listen_short": "اِسْتَمِعْ:",
+  "listen_bang": "اِسْتَمِعْ!",
+  "repeat_me": "كَرِّرْ بَعْدِي:",
+  "now_you_short": "الْآنَ أَنْت:",
+  "say": "قُلْ:",
+  "one_more": "مَرَّةً أُخْرَى:",
+  "look_listen": "اُنْظُرْ وَاسْتَمِعْ:",
+  "point_game": "أَنَا أَقُول، وَأَنْتَ تُشِيرُ إِلَى الصُّورَة: {names}.",
+  "t_point": "🎲 أَشِرْ إِلَيْهِ!",
+  "t_today": "🌟 الْيَوْمَ تَعَلَّمْنَا",
+  "t_remember": "تَذَكَّرْ:",
+  "t_last_year": "السَّنَةُ الْمَاضِيَة",
+  "welcome_back": "مَرْحَبًا يَا أَصْدِقَاء! أَهْلًا بِعَوْدَتِكُم! هَيَّا نَتَذَكَّرِ الْكَلِمَاتِ الَّتِي تَعَلَّمْنَاهَا فِي السَّنَةِ الْمَاضِيَة.",
+  "t_review": "مُرَاجَعَة",
+  "review_intro": "يَوْمُ الْمُرَاجَعَة! هَيَّا نَتَذَكَّرْ كُلَّ شَيْءٍ مِنْ هٰذِهِ الْوَحْدَة. كُلُّ إِجَابَةٍ صَحِيحَةٍ نَجْمَة!",
+  "say_with_me": "قُلْهَا مَعِي!",
+  "t_jump": "اِقْفِزْ أَوِ اجْلِسْ!",
+  "jump": "أَقُولُ كَلِمَة. إِذَا رَأَيْتَ الصُّورَة — اِقْفِزْ! وَإِذَا لَمْ تَرَهَا — اِجْلِسْ! مُسْتَعِدّ؟ اِنْطَلِقْ!",
+  "played_great": "أَحْسَنْت! لَعِبْتَ بِشَكْلٍ رَائِع!",
+  "t_review_q": "سُؤَالُ مُرَاجَعَة",
+  "t_unit_done": "اِنْتَهَتِ الْوَحْدَة!",
+  "unit_done": "رَائِع جِدًّا! أَنْهَيْتَ هٰذِهِ الْوَحْدَة. هَيَّا نَبْدَأْ مُغَامَرَةً جَدِيدَة!",
+  "t_party": "حَفْلَةٌ كَبِيرَة!",
+  "party": "حَفْلَةٌ كَبِيرَة",
+  "party_intro": "هَيْه! الْيَوْمَ حَفْلَةٌ كَبِيرَة! أَنْهَيْتَ الْكِتَابَ كُلَّه. هَيَّا نَتَذَكَّرْ كَلِمَاتِنَا الْمُفَضَّلَةَ وَنَرْبَحِ النُّجُوم!",
+  "know_all": "أَنْتَ تَعْرِفُهَا كُلَّهَا!",
+  "t_party_q": "سُؤَالُ الْحَفْلَة",
+  "t_champion": "أَنْتَ بَطَل!",
+  "champion": "أَنْتَ بَطَل! الْآنَ تَعْرِفُ كُلَّ شَيْء. اِفْتَحْ أَيَّ دَرْسٍ مَرَّةً أُخْرَى وَالْعَبْ!",
+  "t_roleplay": "لَعِبُ الْأَدْوَار",
+  "roles_line": "أَنَا {a}، وَأَنْتَ {b}.",
+  "change_roles": "الْآنَ نَتَبَادَلُ الْأَدْوَار!",
+  "great_role": "أَنْتَ {r} رَائِع!",
+  "t_well_done": "🌟 أَحْسَنْت!",
+  "scenario_done": "الْآنَ تَسْتَطِيعُ أَنْ تَفْعَلَهَا: {name}! اِلْعَبْهَا مَرَّةً أُخْرَى فِي الْبَيْتِ مَعَ عَائِلَتِك."
+ }
+}
