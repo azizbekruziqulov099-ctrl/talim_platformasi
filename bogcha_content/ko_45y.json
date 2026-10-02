@@ -1,0 +1,3480 @@
+{
+ "subject": "Koreys tili",
+ "lang": "ko",
+ "age": "4-5 yosh",
+ "book_title": "안녕, 친구야! 4–5 yosh",
+ "prefix": "KO",
+ "units": [
+  {
+   "name": "Salom, yana!",
+   "emoji": "👋",
+   "lessons": [
+    {
+     "name": "Salom va rahmat",
+     "goal": "Bola tanish salomlashish iboralarini eslaydi va 안녕히 가세요! iborasini o'rganadi",
+     "intro": "Salom, bolajonlar! Men — robot Kabu. Bip-bip! Yozda sen o'sding, men ham o'sdim! Qani, avval eski do'stlarimiz — sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
+     "items": [
+      {
+       "say": "안녕하세요!",
+       "uz": "salom",
+       "emoji": "👋",
+       "image": "en45-u1-hello.png",
+       "image_prompt": "A cute child waving hello with a big smile, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni silkit!",
+       "rom": "Annyeonghaseyo!"
+      },
+      {
+       "say": "안녕히 가세요!",
+       "uz": "xayr",
+       "emoji": "🚪",
+       "image": "en45-u1-goodbye.png",
+       "image_prompt": "A child waving goodbye at an open door, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Xayrlashib qo'l silkit!",
+       "rom": "Annyeonghi gaseyo!"
+      },
+      {
+       "say": "고마워요!",
+       "uz": "rahmat",
+       "emoji": "🙏",
+       "image": "en45-u1-thank-you.png",
+       "image_prompt": "A smiling child holding a gift and saying thank you, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Gomawoyo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Mehmon o'yini",
+       "matn": "Ayiqcha mehmonga keldi. Uni kutib ol: [ko]안녕하세요![/ko] U senga olma berdi: [ko]고마워요![/ko] Ayiqcha uyiga ketyapti: [ko]안녕히 가세요![/ko] Barakalla, sen juda odobli bolasan!",
+       "doska": "👋 안녕하세요!\n🙏 고마워요!\n🚪 안녕히 가세요!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Do'sting uyiga ketyapti. Nima deysan?",
+       "options": [
+        "🚪 안녕히 가세요!",
+        "👋 안녕하세요!"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ketayotganda [ko]안녕히 가세요![/ko] — xayr deymiz."
+      }
+     ]
+    },
+    {
+     "name": "Mening ismim",
+     "goal": "Bola 이름이 뭐야? savoliga 내 이름은… deb javob beradi",
+     "intro": "Bip-bip! Mening ismim — robot Kabu. Sening isming-chi? Koreys bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
+     "items": [
+      {
+       "say": "이름이 뭐야?",
+       "uz": "isming nima?",
+       "emoji": "❓",
+       "image": "en45-u1-whats-your-name.png",
+       "image_prompt": "A curious child with a question mark bubble asking a friend, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ireumi mwoya?"
+      },
+      {
+       "say": "내 이름은…",
+       "uz": "mening ismim…",
+       "emoji": "🙋",
+       "image": "en45-u1-my-name-is.png",
+       "image_prompt": "A proud child pointing to self with a name tag without letters, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'y!",
+       "rom": "Nae ireumeun…"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎤 Tanishuv o'yini",
+       "matn": "Men so'rayman: [ko]이름이 뭐야?[/ko] Sen ko'ksingga qo'l qo'yib javob ber: [ko]내 이름은…[/ko] va ismingni ayt! Masalan: [ko]내 이름은 알리예요.[/ko] Barakalla!",
+       "doska": "❓ 이름이 뭐야?\n🙋 내 이름은…",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kimdir [ko]이름이 뭐야?[/ko] dedi. U nimani so'rayapti?",
+       "options": [
+        "❓ ismimni",
+        "🍎 olmani"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]이름이 뭐야?[/ko] — isming nima? degani."
+      }
+     ]
+    },
+    {
+     "name": "Qalaysan?",
+     "goal": "Bola 잘 지내? savoliga 잘 지내요! deb javob beradi",
+     "intro": "Bip-bip! Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Koreyscha qanday so'raymiz? Tingla!",
+     "items": [
+      {
+       "say": "잘 지내?",
+       "uz": "qalaysan?",
+       "emoji": "🤗",
+       "image": "en45-u1-how-are-you.png",
+       "image_prompt": "A friendly child hugging a friend and asking how are you, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Jal jinae?"
+      },
+      {
+       "say": "잘 지내요!",
+       "uz": "yaxshiman!",
+       "emoji": "👍",
+       "image": "en45-u1-im-fine.png",
+       "image_prompt": "A happy child giving a thumbs up, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bosh barmog'ingni ko'tar!",
+       "rom": "Jal jinaeyo!"
+      },
+      {
+       "say": "좋은 아침이에요!",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en45-u1-good-morning.png",
+       "image_prompt": "A sunny morning, a child stretching happily at sunrise, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Joeun achimieyo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "💬 Kichik dialog",
+       "matn": "robot Kabu: [ko]좋은 아침이에요! 잘 지냈어요?[/ko] Sen: [ko]잘 지내요! 고마워요![/ko] Endi o'rtog'ing bilan navbatma-navbat ayt!",
+       "doska": "🕊️ 잘 지내?\n👍 잘 지내요! 고마워요!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sizdan [ko]잘 지내?[/ko] deb so'rashdi. Nima deysan?",
+       "options": [
+        "👍 잘 지내요!",
+        "🚪 안녕히 가세요!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]잘 지내요![/ko] — yaxshiman."
+      }
+     ]
+    },
+    {
+     "name": "To'rt rangni eslaymiz",
+     "goal": "Bola 빨간색, 파란색, 노란색, 초록색 ranglarini eslaydi va ajratadi",
+     "intro": "Bip-bip! Mening sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysanmi? Qani, bir-bir chiqaramiz!",
+     "items": [
+      {
+       "say": "빨간색",
+       "uz": "qizil",
+       "emoji": "🔴",
+       "image": "en45-u1-red.png",
+       "image_prompt": "A big shiny red circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ppalgansaek"
+      },
+      {
+       "say": "파란색",
+       "uz": "ko'k",
+       "emoji": "🔵",
+       "image": "en45-u1-blue.png",
+       "image_prompt": "A big shiny blue circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Paransaek"
+      },
+      {
+       "say": "노란색",
+       "uz": "sariq",
+       "emoji": "🟡",
+       "image": "en45-u1-yellow.png",
+       "image_prompt": "A big shiny yellow circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Noransaek"
+      },
+      {
+       "say": "초록색",
+       "uz": "yashil",
+       "emoji": "🟢",
+       "image": "en45-u1-green.png",
+       "image_prompt": "A big shiny green circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Choroksaek"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚦 Svetofor o'yini",
+       "matn": "[ko]초록색![/ko] — joyingda yugur! [ko]빨간색![/ko] — to'xta! [ko]노란색![/ko] — chapak chal! [ko]파란색![/ko] — qo'lingni osmonga ko'tar! Boshladik!",
+       "doska": "🟢 yuguramiz\n🔴 to'xtaymiz\n🟡 chapak\n🔵 qo'l yuqoriga",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmon qanday rangda?",
+       "options": [
+        "🔵 파란색",
+        "🔴 빨간색"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Osmon — [ko]파란색[/ko], ko'k."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'chada yangi do'st",
+     "name_en": "유치원의 새 친구",
+     "emoji": "🧒",
+     "goal": "Bola yangi do'sti bilan tanishadi: ismini so'raydi, o'z ismini aytadi va hol so'raydi",
+     "intro": "Bip-bip! robot Kabu bog'chada yangi do'st ko'rdi. Qani, [ko]이름이 뭐야?[/ko] deb tanishamiz!",
+     "intro_en": "봐요! 새 친구예요! 인사하고 물어봐요: 이름이 뭐야?",
+     "roles": [
+      "Yangi do'st",
+      "Bola"
+     ],
+     "roles_en": [
+      "새 친구",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s1-new-friend.png",
+      "image_prompt": "Two small children meeting in a bright kindergarten classroom, one waving hello to the other, toys and a rug around them, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "안녕! 이름이 뭐야?",
+       "uz": "salom! isming nima?",
+       "emoji": "👋",
+       "rom": "Annyeong! Ireumi mwoya?"
+      },
+      {
+       "who": 0,
+       "say": "내 이름은 알리예요.",
+       "uz": "mening ismim Ali",
+       "emoji": "🧒",
+       "rom": "Nae ireumeun Alliyeyo."
+      },
+      {
+       "who": 1,
+       "say": "잘 지내, 알리?",
+       "uz": "qalaysan, Ali?",
+       "emoji": "🙂",
+       "rom": "Jal jinae, alli?"
+      },
+      {
+       "who": 0,
+       "say": "잘 지내요, 고마워요!",
+       "uz": "yaxshiman, rahmat",
+       "emoji": "😊",
+       "rom": "Jal jinaeyo, gomawoyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Do'stingning ismini bilmoqchisan. Nima deysan?",
+       "q_en": "친구 이름을 알고 싶어요. 뭐라고 말할까요?",
+       "options": [
+        "❓ 이름이 뭐야?",
+        "👋 안녕히 가세요!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]이름이 뭐야?[/ko] — isming nima?",
+       "why_en": "맞아요! 이름이 뭐야?"
+      },
+      {
+       "q": "Do'sting [ko]잘 지내?[/ko] dedi. Nima deysan?",
+       "q_en": "친구가 물어요: 잘 지내? 뭐라고 말할까요?",
+       "options": [
+        "🔴 빨간색!",
+        "😊 잘 지내요, 고마워요!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]잘 지내요, 고마워요![/ko] — yaxshiman, rahmat.",
+       "why_en": "잘했어요! 잘 지내요, 고마워요!"
+      },
+      {
+       "q": "Ismingni ayt!",
+       "q_en": "이름을 말해요!",
+       "options": [
+        "🧒 내 이름은 알리예요.",
+        "☀️ 좋은 아침이에요!"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ko]내 이름은...[/ko] — mening ismim...",
+       "why_en": "좋아요! 내 이름은 알리예요."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ranglar kamalagi",
+   "emoji": "🌈",
+   "lessons": [
+    {
+     "name": "Pushti, to'q sariq, binafsha",
+     "goal": "Bola 분홍색, 주황색, 보라색 ranglarini ajratadi",
+     "intro": "Bip-bip! Bo'yoq qutimda yana uchta rang yashiringan: gulning rangi, apelsinning rangi va uzumning rangi. Topamizmi?",
+     "items": [
+      {
+       "say": "분홍색",
+       "uz": "pushti",
+       "emoji": "🩷",
+       "image": "en45-u2-pink.png",
+       "image_prompt": "A big soft pink heart, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Bunhongsaek"
+      },
+      {
+       "say": "주황색",
+       "uz": "to'q sariq",
+       "emoji": "🟠",
+       "image": "en45-u2-orange-color.png",
+       "image_prompt": "A big shiny orange circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Juhwangsaek"
+      },
+      {
+       "say": "보라색",
+       "uz": "binafsha",
+       "emoji": "🟣",
+       "image": "en45-u2-purple.png",
+       "image_prompt": "A big shiny purple circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Borasaek"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Rang ovi",
+       "matn": "Xonaga qara! Pushti narsa topsang — [ko]분홍색![/ko] To'q sariq — [ko]주황색![/ko] Binafsha — [ko]보라색![/ko] deb ayt. Kim ko'p topadi?",
+       "doska": "🩷 분홍색\n🟠 주황색\n🟣 보라색",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]보라색[/ko]?",
+       "options": [
+        "🟣 보라색",
+        "🩷 분홍색"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]보라색[/ko] — binafsha rang."
+      }
+     ]
+    },
+    {
+     "name": "Jigarrang, qora, oq",
+     "goal": "Bola 갈색, 검은색, 흰색 ranglarini ajratadi",
+     "intro": "Bip-bip! Ayiqcha qanday rangda? Tun-chi? Qor-chi? Bugun uchta yangi rangni o'rganamiz!",
+     "items": [
+      {
+       "say": "갈색",
+       "uz": "jigarrang",
+       "emoji": "🟤",
+       "image": "en45-u2-brown.png",
+       "image_prompt": "A big shiny brown circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Galsaek"
+      },
+      {
+       "say": "검은색",
+       "uz": "qora",
+       "emoji": "⚫",
+       "image": "en45-u2-black.png",
+       "image_prompt": "A big shiny black circle, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Geomeunsaek"
+      },
+      {
+       "say": "흰색",
+       "uz": "oq",
+       "emoji": "⚪",
+       "image": "en45-u2-white.png",
+       "image_prompt": "A big white circle with a soft grey outline, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Huinsaek"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐼 Panda topishmoq",
+       "matn": "Topishmoq: men oq va qoraman, bambuk yeyman. Men kimman? Panda! Pandaning ranglari: [ko]검은색과 흰색![/ko] Ayiqcha esa — [ko]갈색![/ko]",
+       "doska": "🐼 검은색과 흰색\n🧸 갈색",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qor qanday rangda?",
+       "options": [
+        "⚪ 흰색",
+        "⚫ 검은색"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qor — [ko]흰색[/ko], oq."
+      }
+     ]
+    },
+    {
+     "name": "Kulrang va kamalak",
+     "goal": "Bola 회색 so'zini va 무슨 색이에요? savolini o'rganadi, 11 rangni takrorlaydi",
+     "intro": "Bip-bip! Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni o'rganamiz va rang haqida so'rashni bilib olamiz.",
+     "items": [
+      {
+       "say": "회색",
+       "uz": "kulrang",
+       "emoji": "🩶",
+       "image": "en45-u2-grey.png",
+       "image_prompt": "A big soft grey heart, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Hoesaek"
+      },
+      {
+       "say": "무지개",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en45-u2-rainbow.png",
+       "image_prompt": "A bright rainbow over soft clouds, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Mujigae"
+      },
+      {
+       "say": "무슨 색이에요?",
+       "uz": "bu qanday rangda?",
+       "emoji": "🎨",
+       "image": "en45-u2-what-colour.png",
+       "image_prompt": "A painter's palette with many colors, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Museun saegieyo?"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ranglar qo'shig'i",
+       "matn": "Kuylaymiz: [ko]빨간색과 노란색, 분홍색과 초록색, 보라색, 주황색, 파란색![/ko] [ko]검은색과 흰색, 갈색과 회색[/ko] — hammasini bilamiz! Barakalla!",
+       "doska": "🔴🟡🩷🟢🟣🟠🔵\n⚫⚪🟤🩶",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Fil qanday rangda? 🐘",
+       "options": [
+        "🩶 회색",
+        "🟣 보라색"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Fil — [ko]회색[/ko], kulrang."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Rasm darsida kamalak chizamiz",
+     "name_en": "교실에서 무지개 그리기",
+     "emoji": "🎨",
+     "goal": "Bola rasm darsida ranglarni koreyscha aytadi va «무슨 색이에요?» savoliga javob beradi",
+     "intro": "Bip-bip! robot Kabu kamalakni juda yaxshi ko'radi. Tarbiyachi so'raydi: [ko]무슨 색이에요?[/ko] Qani, javob beramiz!",
+     "intro_en": "무지개를 칠해요! 무슨 색이에요?",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "선생님",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s2-painting-rainbow.png",
+      "image_prompt": "A small child painting a big rainbow on paper at a classroom easel while a smiling teacher points at the colors, paint pots around, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "봐! 무슨 색이야?",
+       "uz": "qara! bu qanday rang?",
+       "emoji": "🟣",
+       "rom": "Bwa! Museun saegiya?"
+      },
+      {
+       "who": 1,
+       "say": "보라색이에요!",
+       "uz": "bu binafsha",
+       "emoji": "💜",
+       "rom": "Borasaegieyo!"
+      },
+      {
+       "who": 0,
+       "say": "잘했어요! 이건요?",
+       "uz": "barakalla! bunisi-chi?",
+       "emoji": "🟢",
+       "rom": "Jalhaesseoyo! Igeonyo?"
+      },
+      {
+       "who": 1,
+       "say": "초록색이에요!",
+       "uz": "bu yashil",
+       "emoji": "💚",
+       "rom": "Choroksaegieyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tarbiyachi pushti bo'yoqni ko'rsatdi: [ko]무슨 색이에요?[/ko]",
+       "q_en": "선생님이 분홍색 물감을 보여 줘요. 무슨 색이에요?",
+       "options": [
+        "🩷 분홍색이에요!",
+        "🟤 갈색이에요!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]분홍색[/ko] — pushti.",
+       "why_en": "맞아요! 분홍색이에요!"
+      },
+      {
+       "q": "Rangni so'rash uchun nima deysan?",
+       "q_en": "색을 어떻게 물어볼까요?",
+       "options": [
+        "🔢 몇 개?",
+        "🎨 무슨 색이에요?"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]무슨 색이에요?[/ko] — bu qanday rang?",
+       "why_en": "잘했어요! 무슨 색이에요?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Sonlar 1–10",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Bir, ikki, uch",
+     "goal": "Bola 하나, 둘, 셋 sonlarini aytadi va sanaydi",
+     "intro": "Bip-bip! Men don yig'yapman. Yordam berasanmi? Donlarni koreyscha sanaymiz. Barmoqlaringni tayyorla!",
+     "items": [
+      {
+       "say": "하나",
+       "uz": "bir",
+       "emoji": "1️⃣",
+       "image": "en45-u3-one.png",
+       "image_prompt": "One red apple and a big number one, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bitta barmoq ko'rsat!",
+       "rom": "Hana"
+      },
+      {
+       "say": "둘",
+       "uz": "ikki",
+       "emoji": "2️⃣",
+       "image": "en45-u3-two.png",
+       "image_prompt": "Two yellow ducks and a big number two, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ikkita barmoq ko'rsat!",
+       "rom": "Dul"
+      },
+      {
+       "say": "셋",
+       "uz": "uch",
+       "emoji": "3️⃣",
+       "image": "en45-u3-three.png",
+       "image_prompt": "Three blue balls and a big number three, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Uchta barmoq ko'rsat!",
+       "rom": "Set"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Chapak sanash",
+       "matn": "Chapak chalib sanaymiz: [ko]하나[/ko] — chap! [ko]둘[/ko] — chap, chap! [ko]셋[/ko] — chap, chap, chap! Endi sakrab sanaymiz!",
+       "doska": "1️⃣ 👏\n2️⃣ 👏👏\n3️⃣ 👏👏👏",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nechta yulduz? ⭐⭐⭐",
+       "options": [
+        "3️⃣ 셋",
+        "2️⃣ 둘"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]하나, 둘, 셋[/ko] — uchta yulduz."
+      }
+     ]
+    },
+    {
+     "name": "To'rt, besh, olti",
+     "goal": "Bola 넷, 다섯, 여섯 sonlarini aytadi va oltigacha sanaydi",
+     "intro": "Bip-bip! Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak-chi? Olti! Qani, sanashni davom ettiramiz.",
+     "items": [
+      {
+       "say": "넷",
+       "uz": "to'rt",
+       "emoji": "4️⃣",
+       "image": "en45-u3-four.png",
+       "image_prompt": "Four green frogs and a big number four, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Net"
+      },
+      {
+       "say": "다섯",
+       "uz": "besh",
+       "emoji": "5️⃣",
+       "image": "en45-u3-five.png",
+       "image_prompt": "An open hand with five fingers and a big number five, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kaftingni och!",
+       "rom": "Daseot"
+      },
+      {
+       "say": "여섯",
+       "uz": "olti",
+       "emoji": "6️⃣",
+       "image": "en45-u3-six.png",
+       "image_prompt": "Six colorful balloons and a big number six, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Yeoseot"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐸 Qurbaqa sakrashi",
+       "matn": "Qurbaqaday sakrab sanaymiz: [ko]하나, 둘, 셋, 넷, 다섯, 여섯![/ko] Endi orqaga: [ko]여섯, 다섯, 넷, 셋, 둘, 하나![/ko] Ofarin!",
+       "doska": "🐸 1 2 3 4 5 6",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'limda nechta barmoq? 🖐",
+       "options": [
+        "5️⃣ 다섯",
+        "6️⃣ 여섯"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]다섯[/ko] — beshta barmoq."
+      }
+     ]
+    },
+    {
+     "name": "Yetti va sakkiz",
+     "goal": "Bola 일곱, 여덟 sonlarini aytadi va sakkizgacha sanaydi",
+     "intro": "Bip-bip! Kamalakda nechta rang bor? Yettita! Sakkizoyoqda nechta oyoq bor? Sakkizta! Qiziq-a?",
+     "items": [
+      {
+       "say": "일곱",
+       "uz": "yetti",
+       "emoji": "7️⃣",
+       "image": "en45-u3-seven.png",
+       "image_prompt": "Seven colorful stars and a big number seven, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ilgop"
+      },
+      {
+       "say": "여덟",
+       "uz": "sakkiz",
+       "emoji": "8️⃣",
+       "image": "en45-u3-eight.png",
+       "image_prompt": "A cute octopus with eight arms and a big number eight, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Yeodeol"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐙 Sakkizoyoq",
+       "matn": "Sakkizoyoqning oyoqlarini sanaymiz: [ko]하나, 둘, 셋, 넷, 다섯, 여섯, 일곱, 여덟![/ko] [ko]여덟![/ko] Qo'llaringni to'lqinday silkit!",
+       "doska": "🐙 8 — 여덟",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]일곱[/ko]?",
+       "options": [
+        "7️⃣ 일곱",
+        "8️⃣ 여덟"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]일곱[/ko] — yetti."
+      }
+     ]
+    },
+    {
+     "name": "To'qqiz, o'n. Nechta?",
+     "goal": "Bola 아홉, 열 sonlarini va 몇 개? savolini o'rganadi, o'ngacha sanaydi",
+     "intro": "Bip-bip! Ikki qo'limizda nechta barmoq bor? Qani, o'ngacha sanaymiz! Yana bir yangi savol ham o'rganamiz: nechta?",
+     "items": [
+      {
+       "say": "아홉",
+       "uz": "to'qqiz",
+       "emoji": "9️⃣",
+       "image": "en45-u3-nine.png",
+       "image_prompt": "Nine red ladybugs and a big number nine, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ahop"
+      },
+      {
+       "say": "열",
+       "uz": "o'n",
+       "emoji": "🔟",
+       "image": "en45-u3-ten.png",
+       "image_prompt": "Two open hands with ten fingers and a big number ten, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ikki kaftingni och!",
+       "rom": "Yeol"
+      },
+      {
+       "say": "몇 개?",
+       "uz": "nechta?",
+       "emoji": "🤔",
+       "image": "en45-u3-how-many.png",
+       "image_prompt": "A curious child counting apples on fingers, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Myeot gae?"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚀 Raketa uchirish",
+       "matn": "Raketani uchiramiz! Cho'nqayib o'tir va sana: [ko]열, 아홉, 여덟, 일곱, 여섯, 다섯, 넷, 셋, 둘, 하나![/ko] Uchdik! Sakra!",
+       "doska": "🚀 10 → 1",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ko]몇 개?[/ko] 🍎🍎🍎🍎",
+       "options": [
+        "4️⃣ 넷",
+        "🔟 열"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]하나, 둘, 셋, 넷[/ko] — to'rtta olma."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Parkda o'rdaklarni sanaymiz",
+     "name_en": "공원에서 오리 세기",
+     "emoji": "🦆",
+     "goal": "Bola parkda o'rdaklarni sanaydi va «몇 마리?» savoliga javob beradi",
+     "intro": "Bip-bip! robot Kabu bilan parkka boramiz. Ko'lda o'rdaklar suzyapti — [ko]몇 개?[/ko] Qani, sanaymiz!",
+     "intro_en": "공원에 왔어요. 오리를 봐요! 오리가 몇 마리예요?",
+     "roles": [
+      "Dadam",
+      "Bola"
+     ],
+     "roles_en": [
+      "아빠",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s3-park-ducks.png",
+      "image_prompt": "A dad and a small child standing by a pond in a green park, counting six little ducks swimming, trees and flowers, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "봐! 오리가 몇 마리야?",
+       "uz": "qara! nechta o'rdak?",
+       "emoji": "🦆",
+       "rom": "Bwa! Origa myeot mariya?"
+      },
+      {
+       "who": 1,
+       "say": "하나, 둘, 셋... 여섯!",
+       "uz": "bir, ikki, uch... olti",
+       "emoji": "☝️",
+       "rom": "Hana, dul, set... Yeoseot!"
+      },
+      {
+       "who": 0,
+       "say": "잘했어요! 오리 여섯 마리!",
+       "uz": "barakalla! oltita o'rdak",
+       "emoji": "6️⃣",
+       "rom": "Jalhaesseoyo! Ori yeoseot mari!"
+      },
+      {
+       "who": 1,
+       "say": "안녕, 오리들아!",
+       "uz": "salom, o'rdaklar",
+       "emoji": "👋",
+       "rom": "Annyeong, orideura!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Nechta ekanini so'rash uchun nima deysan?",
+       "q_en": "개수를 어떻게 물어볼까요?",
+       "options": [
+        "🔢 몇 개?",
+        "❓ 이름이 뭐야?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]몇 개?[/ko] — nechta?",
+       "why_en": "맞아요! 몇 개?"
+      },
+      {
+       "q": "Ko'lda oltita o'rdak bor. Nechta?",
+       "q_en": "오리가 여섯 마리 있어요. 몇 마리예요?",
+       "options": [
+        "8️⃣ 여덟!",
+        "6️⃣ 여섯!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]여섯[/ko] — olti.",
+       "why_en": "잘했어요! 여섯!"
+      },
+      {
+       "q": "O'n barmoqni sana!",
+       "q_en": "손가락 열 개를 세어요!",
+       "options": [
+        "🔟 ...아홉, 열!",
+        "5️⃣ ...넷, 다섯!"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ko]열[/ko] — o'n.",
+       "why_en": "좋아요! 열!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Yovvoyi hayvonlar",
+   "emoji": "🦁",
+   "lessons": [
+    {
+     "name": "Sher, yo'lbars, ayiq",
+     "goal": "Bola 사자, 호랑이, 곰 so'zlarini aytadi",
+     "intro": "Bip-bip! Bugun hayvonot bog'iga sayohat! Diqqat: kimdir «rrr!» deb bo'kiryapti. Kim ekan? Sekin boramiz…",
+     "items": [
+      {
+       "say": "사자",
+       "uz": "sher",
+       "emoji": "🦁",
+       "image": "en45-u4-lion.png",
+       "image_prompt": "A friendly lion with a big mane, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Sherday «rrr» deng!",
+       "rom": "Saja"
+      },
+      {
+       "say": "호랑이",
+       "uz": "yo'lbars",
+       "emoji": "🐯",
+       "image": "en45-u4-tiger.png",
+       "image_prompt": "A cute striped tiger, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Horangi"
+      },
+      {
+       "say": "곰",
+       "uz": "ayiq",
+       "emoji": "🐻",
+       "image": "en45-u4-bear.png",
+       "image_prompt": "A friendly brown bear, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ayiqday og'ir-og'ir yur!",
+       "rom": "Gom"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐾 Hayvonday yuramiz",
+       "matn": "Men aytaman, sen o'sha hayvonday yurasan! [ko]사자![/ko] — rrr! [ko]곰![/ko] — og'ir-og'ir! [ko]호랑이![/ko] — sekin, mushukday! Zo'r!",
+       "doska": "🦁 사자\n🐯 호랑이\n🐻 곰",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]호랑이[/ko]?",
+       "options": [
+        "🐯 호랑이",
+        "🐻 곰"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]호랑이[/ko] — yo'lbars."
+      }
+     ]
+    },
+    {
+     "name": "Maymun, fil, jirafa",
+     "goal": "Bola 원숭이, 코끼리, 기린 so'zlarini aytadi",
+     "intro": "Bip-bip! Daraxtda kim banan yeyapti? Kimning burni uzun? Kimning bo'yni osmonga yetadi? Qani, topamiz!",
+     "items": [
+      {
+       "say": "원숭이",
+       "uz": "maymun",
+       "emoji": "🐵",
+       "image": "en45-u4-monkey.png",
+       "image_prompt": "A playful monkey holding a banana, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Maymunday qichish!",
+       "rom": "Wonsungi"
+      },
+      {
+       "say": "코끼리",
+       "uz": "fil",
+       "emoji": "🐘",
+       "image": "en45-u4-elephant.png",
+       "image_prompt": "A friendly grey elephant raising its trunk, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni xartumday silkit!",
+       "rom": "Kokkiri"
+      },
+      {
+       "say": "기린",
+       "uz": "jirafa",
+       "emoji": "🦒",
+       "image": "en45-u4-giraffe.png",
+       "image_prompt": "A tall friendly giraffe, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bo'yningni cho'z!",
+       "rom": "Girin"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kimning bo'yni juda uzun?",
+       "options": [
+        "🦒 기린",
+        "🐵 원숭이"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]기린[/ko] — jirafaning bo'yni uzun."
+      }
+     ],
+     "extra": []
+    },
+    {
+     "name": "Zebra, timsoh, ilon",
+     "goal": "Bola 얼룩말, 악어, 뱀 so'zlarini aytadi",
+     "intro": "Bip-bip! Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan? Kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
+     "items": [
+      {
+       "say": "얼룩말",
+       "uz": "zebra",
+       "emoji": "🦓",
+       "image": "en45-u4-zebra.png",
+       "image_prompt": "A cute striped zebra, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Eollungmal"
+      },
+      {
+       "say": "악어",
+       "uz": "timsoh",
+       "emoji": "🐊",
+       "image": "en45-u4-crocodile.png",
+       "image_prompt": "A friendly green crocodile smiling, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni timsoh jag'iday oching-yum!",
+       "rom": "Ageo"
+      },
+      {
+       "say": "뱀",
+       "uz": "ilon",
+       "emoji": "🐍",
+       "image": "en45-u4-snake.png",
+       "image_prompt": "A friendly green snake, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "«Ssss» deb qo'lingni to'lqinlantir!",
+       "rom": "Baem"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐊 Timsoh o'yini",
+       "matn": "Qo'llaring — timsoh og'zi! Men so'z aytaman: agar hayvon bo'lsa — «qars!» qilib yum. [ko]얼룩말![/ko] … [ko]빨간색![/ko] … [ko]뱀![/ko] …",
+       "doska": "🐊 qars!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim «ssss» deydi?",
+       "options": [
+        "🐍 뱀",
+        "🦓 얼룩말"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]뱀[/ko] — ilon «ssss» deydi."
+      }
+     ]
+    },
+    {
+     "name": "Tulki, bo'ri, boyo'g'li",
+     "goal": "Bola 여우, 늑대, 부엉이 so'zlarini aytadi",
+     "intro": "Bip-bip! O'rmonga kirdik. Kechasi kim «uhu» deydi? Kim oyga qarab uvlaydi? Kim ayyor? Sekin tingla!",
+     "items": [
+      {
+       "say": "여우",
+       "uz": "tulki",
+       "emoji": "🦊",
+       "image": "en45-u4-fox.png",
+       "image_prompt": "A clever orange fox with a fluffy tail, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Yeou"
+      },
+      {
+       "say": "늑대",
+       "uz": "bo'ri",
+       "emoji": "🐺",
+       "image": "en45-u4-wolf.png",
+       "image_prompt": "A grey wolf howling at the moon, friendly style, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bo'riday «uu-uu» deng!",
+       "rom": "Neukdae"
+      },
+      {
+       "say": "부엉이",
+       "uz": "boyo'g'li",
+       "emoji": "🦉",
+       "image": "en45-u4-owl.png",
+       "image_prompt": "A cute owl with big round eyes on a branch, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boyo'g'liday «uhu» deng!",
+       "rom": "Bueongi"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🌲 O'rmon topishmoqlari",
+       "matn": "Tingla va top: «Uhu, uhu!» — [ko]부엉이![/ko] «Uu-uu!» — [ko]늑대![/ko] Dumim to'q sariq, men ayyorman — [ko]여우![/ko] Barakalla!",
+       "doska": "🦉 부엉이\n🐺 늑대\n🦊 여우",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kechasi «uhu» deydigan kim?",
+       "options": [
+        "🦉 부엉이",
+        "🦊 여우"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]부엉이[/ko] — boyo'g'li."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Buvijon bilan hayvonot bog'ida",
+     "name_en": "할머니와 동물원에서",
+     "emoji": "🦁",
+     "goal": "Bola hayvonot bog'ida yovvoyi hayvonlarni ko'rib, ularni koreyscha nomlaydi",
+     "intro": "Bip-bip! robot Kabu buvijon bilan hayvonot bog'iga keldi. U yerda [ko]사자[/ko] va [ko]원숭이[/ko] bor. Qani, ko'ramiz!",
+     "intro_en": "할머니와 동물원에 왔어요. 봐요! 사자랑 원숭이예요!",
+     "roles": [
+      "Buvijon",
+      "Bola"
+     ],
+     "roles_en": [
+      "할머니",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s4-zoo-granny.png",
+      "image_prompt": "A grandmother holding hands with a small child at a friendly zoo, a big smiling lion and a playful monkey in a tree nearby, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "할머니, 보세요! 사자예요!",
+       "uz": "qarang, buvijon! sher",
+       "emoji": "🦁",
+       "rom": "Halmeoni, boseyo! Sajayeyo!"
+      },
+      {
+       "who": 0,
+       "say": "네! 큰 사자예요!",
+       "uz": "ha! katta sher",
+       "emoji": "👵",
+       "rom": "Ne! Keun sajayeyo!"
+      },
+      {
+       "who": 1,
+       "say": "원숭이도 있어!",
+       "uz": "maymun ham bor",
+       "emoji": "🐒",
+       "rom": "Wonsungido isseo!"
+      },
+      {
+       "who": 0,
+       "say": "안녕, 원숭이야!",
+       "uz": "salom, maymun",
+       "emoji": "👋",
+       "rom": "Annyeong, wonsungiya!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sen sherni ko'rding. Nima deysan?",
+       "q_en": "사자를 봤어요. 뭐라고 말할까요?",
+       "options": [
+        "🦁 사자예요!",
+        "🐯 호랑이예요!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]사자[/ko] — sher.",
+       "why_en": "맞아요! 사자예요!"
+      },
+      {
+       "q": "Daraxtda maymun o'tiribdi. Nima deysan?",
+       "q_en": "원숭이가 나무 위에 있어요. 뭐라고 말할까요?",
+       "options": [
+        "🐘 코끼리예요!",
+        "🐒 원숭이예요!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]원숭이[/ko] — maymun.",
+       "why_en": "잘했어요! 원숭이예요!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oilam",
+   "emoji": "👨‍👩‍👧‍👦",
+   "lessons": [
+    {
+     "name": "Ona, ota, oila",
+     "goal": "Bola 어머니, 아버지, 가족 so'zlarini aytadi",
+     "intro": "Bip-bip! Men uyamdagi oilamning suratini olib keldim. Sening oilangda kim bor? Bugun oilamiz haqida gapiramiz!",
+     "items": [
+      {
+       "say": "어머니",
+       "uz": "ona",
+       "emoji": "👩",
+       "image": "en45-u5-mother.png",
+       "image_prompt": "A kind smiling mother with open arms, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Eomeoni"
+      },
+      {
+       "say": "아버지",
+       "uz": "ota",
+       "emoji": "👨",
+       "image": "en45-u5-father.png",
+       "image_prompt": "A kind smiling father waving, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Abeoji"
+      },
+      {
+       "say": "가족",
+       "uz": "oila",
+       "emoji": "👪",
+       "image": "en45-u5-family.png",
+       "image_prompt": "A happy family of mother, father and child together, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Gajok"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Barmoq oilasi",
+       "matn": "Barmoqlaringni ko'rsat: bu — [ko]어머니[/ko], bu — [ko]아버지[/ko]! Hammasi birga — [ko]가족![/ko] Barmoqlar ta'zim qiladi: [ko]안녕, 가족 여러분![/ko]",
+       "doska": "👩 어머니\n👨 아버지\n👪 가족",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]어머니[/ko]?",
+       "options": [
+        "👩 어머니",
+        "👨 아버지"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]어머니[/ko] — ona."
+      }
+     ]
+    },
+    {
+     "name": "Opa-singil, aka-uka",
+     "goal": "Bola 누나·언니·여동생, 형·오빠·남동생, 아기 so'zlarini aytadi",
+     "intro": "Bip-bip! Sening akang yoki opang bormi? Balki kichkina ukang bordir? Koreyscha qanday aytamiz?",
+     "items": [
+      {
+       "say": "누나, 언니, 여동생",
+       "uz": "opa, singil",
+       "emoji": "👧",
+       "image": "en45-u5-sister.png",
+       "image_prompt": "A cheerful little girl, a big sister, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Nuna, eonni, yeodongsaeng"
+      },
+      {
+       "say": "형, 오빠, 남동생",
+       "uz": "aka, uka",
+       "emoji": "👦",
+       "image": "en45-u5-brother.png",
+       "image_prompt": "A cheerful little boy, a big brother, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Hyeong, oppa, namdongsaeng"
+      },
+      {
+       "say": "아기",
+       "uz": "chaqaloq",
+       "emoji": "👶",
+       "image": "en45-u5-baby.png",
+       "image_prompt": "A cute baby smiling in a blanket, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Chaqaloqni allala!",
+       "rom": "Agi"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]형, 오빠, 남동생[/ko]?",
+       "options": [
+        "👦 형, 오빠, 남동생",
+        "👧 누나, 언니, 여동생"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]형제[/ko] — aka yoki uka."
+      }
+     ],
+     "extra": []
+    },
+    {
+     "name": "Buvi, bobo. Bu mening…",
+     "goal": "Bola 할머니, 할아버지 so'zlarini va 이분은 우리… iborasini o'rganadi",
+     "intro": "Bip-bip! Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz? Tingla!",
+     "items": [
+      {
+       "say": "할머니",
+       "uz": "buvi",
+       "emoji": "👵",
+       "image": "en45-u5-grandma.png",
+       "image_prompt": "A sweet smiling grandmother with glasses, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Halmeoni"
+      },
+      {
+       "say": "할아버지",
+       "uz": "bobo",
+       "emoji": "👴",
+       "image": "en45-u5-grandpa.png",
+       "image_prompt": "A kind smiling grandfather with a cane, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Harabeoji"
+      },
+      {
+       "say": "이건 내…",
+       "uz": "bu mening…",
+       "emoji": "👉",
+       "image": "en45-u5-this-is-my.png",
+       "image_prompt": "A child proudly pointing to their family photo, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Igeon nae…"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖼 Oila surati",
+       "matn": "Oilangni rasmda ko'rsatib tanishtir: [ko]이분은 우리 어머니예요.[/ko] [ko]이분은 우리 아버지예요.[/ko] [ko]이분은 우리 할머니예요.[/ko] Barakalla!",
+       "doska": "👉 이분은 우리 어머니예요.\n👉 이분은 우리 할아버지예요.",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]할머니[/ko]?",
+       "options": [
+        "👵 할머니",
+        "👴 할아버지"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]할머니[/ko] — buvi."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Buvijonnikiga mehmonga boramiz",
+     "name_en": "할머니 댁에 가기",
+     "emoji": "👵",
+     "goal": "Bola buvisi bilan salomlashadi va o'z oila a'zosini tanishtiradi",
+     "intro": "Bip-bip! robot Kabu bilan buvijonnikiga mehmonga boramiz. Singlimizni [ko]이 아이는 내 여동생이에요.[/ko] deb tanishtiramiz!",
+     "intro_en": "할머니 댁에 가요! 인사해요: 이 아이는 내 여동생이에요.",
+     "roles": [
+      "Buvijon",
+      "Bola"
+     ],
+     "roles_en": [
+      "할머니",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s5-visiting-grandma.png",
+      "image_prompt": "A small boy and his little sister arriving at grandma's cozy house, grandma smiling and opening her arms at the door, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "할머니, 안녕하세요!",
+       "uz": "assalomu alaykum, buvijon",
+       "emoji": "👋",
+       "rom": "Halmeoni, annyeonghaseyo!"
+      },
+      {
+       "who": 0,
+       "say": "안녕! 잘 지내?",
+       "uz": "salom! qalaysan?",
+       "emoji": "👵",
+       "rom": "Annyeong! Jal jinae?"
+      },
+      {
+       "who": 1,
+       "say": "잘 지내! 얘는 내 여동생이야.",
+       "uz": "yaxshiman! bu mening singlim",
+       "emoji": "👧",
+       "rom": "Jal jinae! Yaeneun nae yeodongsaengiya."
+      },
+      {
+       "who": 0,
+       "say": "안녕! 이름이 뭐야?",
+       "uz": "salom! isming nima?",
+       "emoji": "🤗",
+       "rom": "Annyeong! Ireumi mwoya?"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Buvijonni ko'rding. Nima deysan?",
+       "q_en": "할머니를 봤어요. 뭐라고 말할까요?",
+       "options": [
+        "👋 할머니, 안녕하세요!",
+        "🌙 할머니, 안녕히 주무세요!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]할머니, 안녕하세요![/ko]",
+       "why_en": "맞아요! 할머니, 안녕하세요!"
+      },
+      {
+       "q": "Akangni tanishtir!",
+       "q_en": "할머니께 동생을 소개해요!",
+       "options": [
+        "👧 이 아이는 내 여동생이에요.",
+        "👦 이 아이는 내 동생이에요."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]형제[/ko] — aka yoki uka.",
+       "why_en": "잘했어요! 이 아이는 내 동생이에요."
+      },
+      {
+       "q": "Buvijon: [ko]잘 지내?[/ko] Nima deysan?",
+       "q_en": "할머니가 물어요: 잘 지내니? 뭐라고 말할까요?",
+       "options": [
+        "😊 잘 지내요!",
+        "🔢 몇 개?"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ko]잘 지내요![/ko] — yaxshiman.",
+       "why_en": "좋아요! 잘 지내요!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Tanam",
+   "emoji": "🧍",
+   "lessons": [
+    {
+     "name": "Bosh, yelka, tizza",
+     "goal": "Bola 머리, 어깨, 무릎, 발가락 so'zlarini qo'shiq bilan o'rganadi",
+     "intro": "Bip-bip! Koreys bolalarining eng mashhur qo'shig'ini bilasanmi? Unda bosh, yelka, tizza va oyoq barmoqlari bor. Qani, tur!",
+     "items": [
+      {
+       "say": "머리",
+       "uz": "bosh",
+       "emoji": "🙆",
+       "image": "en45-u6-head.png",
+       "image_prompt": "A smiling child touching the top of their head, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boshingni ushla!",
+       "rom": "Meori"
+      },
+      {
+       "say": "어깨",
+       "uz": "yelkalar",
+       "emoji": "🤷",
+       "image": "en45-u6-shoulders.png",
+       "image_prompt": "A child shrugging shoulders happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Yelkangni ushla!",
+       "rom": "Eokkae"
+      },
+      {
+       "say": "무릎",
+       "uz": "tizzalar",
+       "emoji": "🧎",
+       "image": "en45-u6-knees.png",
+       "image_prompt": "A child kneeling and pointing to their knees, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Tizzangni ushla!",
+       "rom": "Mureup"
+      },
+      {
+       "say": "발가락",
+       "uz": "oyoq barmoqlari",
+       "emoji": "🦶",
+       "image": "en45-u6-toes.png",
+       "image_prompt": "Two cute bare feet with wiggling toes, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyoq barmoqlaringga teg!",
+       "rom": "Balgarak"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 머리, 어깨…",
+       "matn": "Qo'shiq bilan ushlaymiz: [ko]머리, 어깨, 무릎, 발가락, 무릎, 발가락![/ko] Yana tezroq! Endi juda sekin! Barakalla!",
+       "doska": "🙆 머리\n🤷 어깨\n🧎 무릎\n🦶 발가락",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]무릎[/ko]?",
+       "options": [
+        "🧎 무릎",
+        "🙆 머리"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]무릎[/ko] — tizzalar."
+      }
+     ]
+    },
+    {
+     "name": "Ko'z, quloq, og'iz, burun",
+     "goal": "Bola 눈, 귀, 입, 코 so'zlarini aytadi",
+     "intro": "Bip-bip! Qo'shiqning ikkinchi qismi yuzimiz haqida! Ko'zlar, quloqlar, og'iz va burun. Barmog'ingni tayyorla!",
+     "items": [
+      {
+       "say": "눈",
+       "uz": "ko'zlar",
+       "emoji": "👀",
+       "image": "en45-u6-eyes.png",
+       "image_prompt": "Two big friendly cartoon eyes, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Nun"
+      },
+      {
+       "say": "귀",
+       "uz": "quloqlar",
+       "emoji": "👂",
+       "image": "en45-u6-ears.png",
+       "image_prompt": "A cute cartoon ear listening, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Gwi"
+      },
+      {
+       "say": "입",
+       "uz": "og'iz",
+       "emoji": "👄",
+       "image": "en45-u6-mouth.png",
+       "image_prompt": "A cute smiling cartoon mouth, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ip"
+      },
+      {
+       "say": "코",
+       "uz": "burun",
+       "emoji": "👃",
+       "image": "en45-u6-nose.png",
+       "image_prompt": "A cute cartoon nose smelling a flower, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ko"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Qo'shiq davomi",
+       "matn": "[ko]눈이랑 귀랑 입이랑 코![/ko] Ko'z, quloq, og'iz, burunni navbat bilan ushla. Endi butun qo'shiqni boshidan aytamiz!",
+       "doska": "👀 👂 👄 👃",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz nima bilan eshitamiz?",
+       "options": [
+        "👂 귀",
+        "👀 눈"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]귀[/ko] — quloqlar bilan eshitamiz."
+      }
+     ]
+    },
+    {
+     "name": "Qo'l, barmoq, oyoq",
+     "goal": "Bola 손, 손가락, 다리 so'zlarini aytadi",
+     "intro": "Bip-bip! Qo'llarimiz bilan chizamiz, barmoqlarimiz bilan sanaymiz, oyoqlarimiz bilan yuguramiz. Hammasini koreyscha aytamiz!",
+     "items": [
+      {
+       "say": "손",
+       "uz": "qo'llar",
+       "emoji": "🙌",
+       "image": "en45-u6-hands.png",
+       "image_prompt": "Two little child hands raised up happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni ko'tar!",
+       "rom": "Son"
+      },
+      {
+       "say": "손가락",
+       "uz": "barmoqlar",
+       "emoji": "🖐",
+       "image": "en45-u6-fingers.png",
+       "image_prompt": "An open child hand with five fingers spread, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaringni qimirlat!",
+       "rom": "Songarak"
+      },
+      {
+       "say": "다리",
+       "uz": "oyoqlar",
+       "emoji": "🦵",
+       "image": "en45-u6-legs.png",
+       "image_prompt": "A cartoon child's leg kicking happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyog'ingni ko'tar!",
+       "rom": "Dari"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖐 Barmoq sanash",
+       "matn": "Barmoqlaringni sana: [ko]하나, 둘, 셋, 넷, 다섯![/ko] Bir qo'lda beshta [ko]손가락[/ko]! Ikki qo'lda-chi? [ko]열![/ko] Barakalla!",
+       "doska": "🖐 손가락 5개\n🙌 손가락 10개",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bir qo'limizda beshta nima bor?",
+       "options": [
+        "🖐 손가락",
+        "🦵 다리"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Beshta [ko]손가락[/ko] — barmoqlar."
+      }
+     ]
+    },
+    {
+     "name": "코를 만져요!",
+     "goal": "Bola …를 만져요, 손뼉을 쳐요!, 발을 쿵쿵 굴러요! buyruqlarini tushunib bajaradi",
+     "intro": "Bip-bip! Bugun «Kabu aytdi» o'yinini o'ynaymiz! Men koreyscha buyruq beraman, sen bajarasan. Diqqat bilan tingla!",
+     "items": [
+      {
+       "say": "코를 만져요!",
+       "uz": "burningga teg!",
+       "emoji": "☝️",
+       "image": "en45-u6-touch-your-nose.png",
+       "image_prompt": "A child touching their nose with one finger, playful, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Burningga teg!",
+       "rom": "Koreul manjyeoyo!"
+      },
+      {
+       "say": "손뼉을 쳐요!",
+       "uz": "qarsak chal!",
+       "emoji": "👏",
+       "image": "en45-u6-clap-your-hands.png",
+       "image_prompt": "A happy child clapping hands, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qarsak chal!",
+       "rom": "Sonppyeogeul chyeoyo!"
+      },
+      {
+       "say": "발을 쿵쿵 굴러요!",
+       "uz": "oyog'ingni tapillat!",
+       "emoji": "🥾",
+       "image": "en45-u6-stamp-your-feet.png",
+       "image_prompt": "A happy child stamping feet in little boots, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyog'ingni tapillat!",
+       "rom": "Bareul kungkung gulleoyo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🕊️ Kabutar aytdi",
+       "matn": "Bajar: [ko]머리를 만져요![/ko] [ko]귀를 만져요![/ko] [ko]무릎을 만져요![/ko] [ko]손뼉을 쳐요![/ko] [ko]발을 쿵쿵 굴러요![/ko] Ofarin, hammasini tushunding!",
+       "doska": "☝️ …를 만져요\n👏 짝짝!\n🥾 쿵쿵!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ko]손뼉을 쳐요![/ko] Nima qilamiz?",
+       "options": [
+        "👏 qarsak chalamiz",
+        "🥾 tapillatamiz"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]손뼉을 쳐요![/ko] — qarsak chal."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'chada ertalabki badantarbiya",
+     "name_en": "유치원 아침 체조",
+     "emoji": "🤸",
+     "goal": "Bola tarbiyachining koreyscha buyruqlarini bajaradi va tana a'zolarini ko'rsatadi",
+     "intro": "Bip-bip! robot Kabu ertalab badantarbiya qiladi. Tarbiyachi aytadi: [ko]손뼉을 쳐요![/ko] Tayyormisan?",
+     "intro_en": "좋은 아침이에요! 아침 체조를 해요. 손뼉을 쳐요!",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "선생님",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s6-morning-exercises.png",
+      "image_prompt": "Happy kindergarten children doing morning exercises on a mat, clapping hands and touching their noses, a smiling teacher showing the moves, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "손뼉을 쳐요!",
+       "uz": "qarsak chal",
+       "emoji": "👏",
+       "rom": "Sonppyeogeul chyeoyo!"
+      },
+      {
+       "who": 1,
+       "say": "짝, 짝, 짝!",
+       "uz": "qars, qars, qars",
+       "emoji": "👏",
+       "rom": "Jjak, jjak, jjak!"
+      },
+      {
+       "who": 0,
+       "say": "코를 만져요!",
+       "uz": "burningni ushla",
+       "emoji": "👃",
+       "rom": "Koreul manjyeoyo!"
+      },
+      {
+       "who": 1,
+       "say": "내 코! 여기요!",
+       "uz": "burnim! mana",
+       "emoji": "☝️",
+       "rom": "Nae ko! Yeogiyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tarbiyachi: [ko]발을 쿵쿵 굴러요![/ko] Nima qilasan?",
+       "q_en": "선생님이 말해요: 발을 쿵쿵 굴러요! 여러분은 뭘 해요?",
+       "options": [
+        "🦶 쿵, 쿵!",
+        "👏 짝, 짝!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]발을 쿵쿵 굴러요![/ko] — oyog'ingni tap-tap qil.",
+       "why_en": "맞아요! 쿵, 쿵!"
+      },
+      {
+       "q": "Burningni ushla! Bu nima?",
+       "q_en": "코를 만져요! 이게 뭐예요?",
+       "options": [
+        "👂 귀",
+        "👃 코"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]코[/ko] — burun.",
+       "why_en": "잘했어요! 코!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Meva va sabzavotlar",
+   "emoji": "🍎",
+   "lessons": [
+    {
+     "name": "Olma, banan, apelsin",
+     "goal": "Bola 사과, 바나나, 오렌지 so'zlarini aytadi",
+     "intro": "Bip-bip! Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz. Qiziq: bitta meva rangning nomi bilan atalar ekan!",
+     "items": [
+      {
+       "say": "사과",
+       "uz": "olma",
+       "emoji": "🍎",
+       "image": "en45-u7-apple.png",
+       "image_prompt": "A shiny red apple with a green leaf, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Sagwa"
+      },
+      {
+       "say": "바나나",
+       "uz": "banan",
+       "emoji": "🍌",
+       "image": "en45-u7-banana.png",
+       "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Banana"
+      },
+      {
+       "say": "주황색",
+       "uz": "apelsin",
+       "emoji": "🍊",
+       "image": "en45-u7-orange-fruit.png",
+       "image_prompt": "A juicy orange fruit with a leaf, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Juhwangsaek"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Bozor o'yini",
+       "matn": "Sotuvchi bo'lamiz! Xaridor: [ko]사과 주세요![/ko] Sotuvchi olma beradi. Xaridor: [ko]고마워요![/ko] Endi apelsin va banan so'ra!",
+       "doska": "🍎 사과 주세요!\n🙏 고마워요!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]주황색[/ko] mevasi?",
+       "options": [
+        "🍊 오렌지",
+        "🍌 바나나"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]주황색[/ko] — apelsin. Rangi ham [ko]주황색[/ko]!"
+      }
+     ]
+    },
+    {
+     "name": "Uzum, limon, qulupnay",
+     "goal": "Bola 포도, 레몬, 딸기 so'zlarini aytadi",
+     "intro": "Bip-bip! Bog'da nima pishibdi? Shingil-shingil uzum, nordon limon va shirin qulupnay! Qaysi biri nordon ekan?",
+     "items": [
+      {
+       "say": "포도",
+       "uz": "uzum",
+       "emoji": "🍇",
+       "image": "en45-u7-grapes.png",
+       "image_prompt": "A bunch of purple grapes, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Podo"
+      },
+      {
+       "say": "레몬",
+       "uz": "limon",
+       "emoji": "🍋",
+       "image": "en45-u7-lemon.png",
+       "image_prompt": "A bright yellow lemon, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Nordon yuz qil!",
+       "rom": "Remon"
+      },
+      {
+       "say": "딸기",
+       "uz": "qulupnay",
+       "emoji": "🍓",
+       "image": "en45-u7-strawberry.png",
+       "image_prompt": "A sweet red strawberry, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ttalgi"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "😝 Nordon-shirin",
+       "matn": "Men meva aytaman: nordon bo'lsa — yuzingni burishtir, shirin bo'lsa — jilmay! [ko]레몬![/ko] … [ko]딸기![/ko] … [ko]포도![/ko]",
+       "doska": "🍋 nordon\n🍓 shirin",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi meva nordon?",
+       "options": [
+        "🍋 레몬",
+        "🍓 딸기"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]레몬[/ko] — limon nordon."
+      }
+     ]
+    },
+    {
+     "name": "Sabzi, pomidor, kartoshka",
+     "goal": "Bola 당근, 토마토, 감자 so'zlarini aytadi",
+     "intro": "Bip-bip! Endi polizga boramiz! Quyon sevadigan sabzi, qip-qizil pomidor va yer ostida yashiringan kartoshka bor!",
+     "items": [
+      {
+       "say": "당근",
+       "uz": "sabzi",
+       "emoji": "🥕",
+       "image": "en45-u7-carrot.png",
+       "image_prompt": "A fresh orange carrot with green leaves, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Danggeun"
+      },
+      {
+       "say": "토마토",
+       "uz": "pomidor",
+       "emoji": "🍅",
+       "image": "en45-u7-tomato.png",
+       "image_prompt": "A shiny red tomato, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Tomato"
+      },
+      {
+       "say": "감자",
+       "uz": "kartoshka",
+       "emoji": "🥔",
+       "image": "en45-u7-potato.png",
+       "image_prompt": "A brown potato, cute style, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Gamja"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥕 Sabzi tortish",
+       "matn": "Yerdan sabzini tortamiz: bir, ikki, uch — uh-h! [ko]당근![/ko] Kartoshkani qazib olamiz: [ko]감자![/ko] Pomidorni uzamiz: [ko]토마토![/ko]",
+       "doska": "🥕 🍅 🥔",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyon nimani yaxshi ko'radi?",
+       "options": [
+        "🥕 당근",
+        "🍅 토마토"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]당근[/ko] — sabzi."
+      }
+     ]
+    },
+    {
+     "name": "Men olmani yaxshi ko'raman",
+     "goal": "Bola 오이 so'zini va 나는 …좋아해요 iborasini o'rganadi",
+     "intro": "Bip-bip! Men batareykamni yaxshi ko'raman. Sen nimani yaxshi ko'rasan? Bugun buni koreyscha aytishni o'rganamiz!",
+     "items": [
+      {
+       "say": "오이",
+       "uz": "bodring",
+       "emoji": "🥒",
+       "image": "en45-u7-cucumber.png",
+       "image_prompt": "A fresh green cucumber, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Oi"
+      },
+      {
+       "say": "나는 …좋아해요",
+       "uz": "men … yaxshi ko'raman",
+       "emoji": "😍",
+       "image": "en45-u7-i-like.png",
+       "image_prompt": "A happy child with heart eyes holding a fruit, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Naneun …joahaeyo"
+      },
+      {
+       "say": "맛있어요!",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en45-u7-yummy.png",
+       "image_prompt": "A happy child licking lips after tasty food, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qorningni sila!",
+       "rom": "Masisseoyo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "😋 Nimani yoqtirasiz?",
+       "matn": "robot Kabu: [ko]나는 사과를 좋아해요![/ko] Endi sen ayt: [ko]나는 바나나를 좋아해요![/ko] [ko]나는 포도를 좋아해요![/ko] [ko]맛있어요![/ko] Barakalla!",
+       "doska": "😍 나는 사과를 좋아해요!\n😋 맛있어요!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]오이[/ko]?",
+       "options": [
+        "🥒 오이",
+        "🥕 당근"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]오이[/ko] — bodring."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bozorda meva olamiz",
+     "name_en": "과일 시장에서",
+     "emoji": "🧺",
+     "goal": "Bola bozorda kerakli mevani sonini aytib odob bilan so'raydi",
+     "intro": "Bip-bip! robot Kabu onajon bilan bozorga keldi. Sotuvchidan [ko]사과 다섯 개 주세요.[/ko] deb so'raymiz!",
+     "intro_en": "시장에 왔어요. 말해 봐요: 사과 다섯 개 주세요.",
+     "roles": [
+      "Sotuvchi",
+      "Bola"
+     ],
+     "roles_en": [
+      "가게 주인",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s7-fruit-market.png",
+      "image_prompt": "A friendly seller at a colorful market stall with apples, bananas, oranges and carrots, handing a bag of apples to a small child, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "안녕하세요! 사과 몇 개요?",
+       "uz": "salom! nechta olma?",
+       "emoji": "🍎",
+       "rom": "Annyeonghaseyo! Sagwa myeot gaeyo?"
+      },
+      {
+       "who": 1,
+       "say": "사과 다섯 개 주세요.",
+       "uz": "beshta olma, iltimos",
+       "emoji": "5️⃣",
+       "rom": "Sagwa daseot gae juseyo."
+      },
+      {
+       "who": 0,
+       "say": "여기 있어!",
+       "uz": "mana, oling",
+       "emoji": "🫴",
+       "rom": "Yeogi isseo!"
+      },
+      {
+       "who": 1,
+       "say": "고마워요! 안녕히 계세요!",
+       "uz": "rahmat! xayr",
+       "emoji": "🙏",
+       "rom": "Gomawoyo! Annyeonghi gyeseyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Senga uchta banan kerak. Nima deysan?",
+       "q_en": "바나나 세 개를 사고 싶어요. 뭐라고 말할까요?",
+       "options": [
+        "🍌 바나나 세 개 주세요.",
+        "🥕 당근 세 개 주세요."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]바나나[/ko] — banan.",
+       "why_en": "맞아요! 바나나 세 개 주세요."
+      },
+      {
+       "q": "Sotuvchi mevani berdi. Nima deysan?",
+       "q_en": "가게 주인이 과일을 줘요. 뭐라고 말할까요?",
+       "options": [
+        "🙅 안 돼!",
+        "🙏 고마워요!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]고마워요![/ko] — rahmat.",
+       "why_en": "잘했어요! 고마워요!"
+      },
+      {
+       "q": "Sen olmani yaxshi ko'rasan. Nima deysan?",
+       "q_en": "여러분은 사과를 좋아해요. 뭐라고 말할까요?",
+       "options": [
+        "🍎 나는 사과를 좋아해요!",
+        "🍋 나는 레몬을 좋아해요!"
+       ],
+       "answer": 0,
+       "why": "Zo'r! [ko]나는 사과를 좋아해요![/ko] — men olmani yaxshi ko'raman.",
+       "why_en": "좋아요! 나는 사과를 좋아해요!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kiyim va o'yinchoqlar",
+   "emoji": "🧸",
+   "lessons": [
+    {
+     "name": "Futbolka, ko'ylak, shim",
+     "goal": "Bola 티셔츠, 원피스, 바지 so'zlarini aytadi",
+     "intro": "Bip-bip! Ertalab turib nima kiyamiz? robot Kabuning shkafini ochamiz. Voy, qancha kiyim!",
+     "items": [
+      {
+       "say": "티셔츠",
+       "uz": "futbolka",
+       "emoji": "👕",
+       "image": "en45-u8-t-shirt.png",
+       "image_prompt": "A blue kids T-shirt, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Tisyeocheu"
+      },
+      {
+       "say": "원피스",
+       "uz": "ko'ylak",
+       "emoji": "👗",
+       "image": "en45-u8-dress.png",
+       "image_prompt": "A pretty pink girls dress, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Wonpiseu"
+      },
+      {
+       "say": "바지",
+       "uz": "shim",
+       "emoji": "👖",
+       "image": "en45-u8-trousers.png",
+       "image_prompt": "A pair of blue kids trousers, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Baji"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👕 Kiyinamiz",
+       "matn": "Kiyinganday qil: futbolka — [ko]티셔츠![/ko] Shim — [ko]바지![/ko] Qizlar ko'ylak — [ko]원피스![/ko] Qanday rangda? [ko]빨간색? 파란색?[/ko]",
+       "doska": "👕 티셔츠\n👖 바지\n👗 원피스",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [ko]원피스[/ko]?",
+       "options": [
+        "👗 원피스",
+        "👖 바지"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]원피스[/ko] — ko'ylak."
+      }
+     ]
+    },
+    {
+     "name": "Shapka, tufli, paypoq",
+     "goal": "Bola 모자, 신발, 양말 so'zlarini aytadi",
+     "intro": "Bip-bip! Tashqariga sayrga chiqamiz! Boshga nima kiyamiz? Oyoqqa-chi? Avval paypoq, keyin tufli!",
+     "items": [
+      {
+       "say": "모자",
+       "uz": "shapka",
+       "emoji": "👒",
+       "image": "en45-u8-hat.png",
+       "image_prompt": "A cute sun hat for kids, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Moja"
+      },
+      {
+       "say": "신발",
+       "uz": "tufli",
+       "emoji": "👟",
+       "image": "en45-u8-shoes.png",
+       "image_prompt": "A pair of colorful kids sneakers, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Sinbal"
+      },
+      {
+       "say": "양말",
+       "uz": "paypoq",
+       "emoji": "🧦",
+       "image": "en45-u8-socks.png",
+       "image_prompt": "A pair of striped kids socks, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Yangmal"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚶 Sayrga tayyorlanamiz",
+       "matn": "Tartib bilan kiyamiz: avval [ko]양말[/ko], keyin [ko]신발[/ko], boshga — [ko]모자[/ko]! Tayyormiz! Endi o'rtog'ingga ayt: [ko]안녕히 가세요![/ko]",
+       "doska": "🧦 → 👟 → 👒",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Boshga nima kiyamiz?",
+       "options": [
+        "👒 모자",
+        "🧦 양말"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Boshga [ko]모자[/ko] — shapka kiyamiz."
+      }
+     ]
+    },
+    {
+     "name": "Robot, varrak, qo'g'irchoq",
+     "goal": "Bola 로봇, 연, 인형 so'zlarini aytadi",
+     "intro": "Bip-bip! O'yinchoq do'koniga kirdik! Mana yurib ketayotgan robot, osmonda uchayotgan varrak va chiroyli qo'g'irchoq!",
+     "items": [
+      {
+       "say": "로봇",
+       "uz": "robot",
+       "emoji": "🤖",
+       "image": "en45-u8-robot.png",
+       "image_prompt": "A friendly toy robot, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Robotday yur: tik-tik!",
+       "rom": "Robot"
+      },
+      {
+       "say": "연",
+       "uz": "varrak",
+       "emoji": "🪁",
+       "image": "en45-u8-kite.png",
+       "image_prompt": "A colorful kite flying in the sky, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Yeon"
+      },
+      {
+       "say": "인형",
+       "uz": "qo'g'irchoq",
+       "emoji": "🪆",
+       "image": "en45-u8-doll.png",
+       "image_prompt": "A cute doll in a pretty dress, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Inhyeong"
+      },
+      {
+       "say": "공",
+       "uz": "koptok",
+       "emoji": "⚽",
+       "image": "en45-u8-ball.png",
+       "image_prompt": "A colorful bouncing ball, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Gong"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🤖 Robot o'yini",
+       "matn": "Robot bo'lamiz! Qo'l va oyoqni to'g'ri tutib yur: tik-tik! [ko]나는 로봇이다![/ko] Endi varrakday qo'lni yoyib uch: [ko]연![/ko]",
+       "doska": "🤖 로봇\n🪁 연",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda nima uchadi?",
+       "options": [
+        "🪁 연",
+        "🤖 로봇"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [ko]연[/ko] — varrak osmonda uchadi."
+      }
+     ]
+    },
+    {
+     "name": "Bu nima? Bu — koptok",
+     "goal": "Bola 이게 뭐예요? savoliga …예요 deb javob beradi, 나는 내 …좋아해요 deydi",
+     "intro": "Bip-bip! Men sehrli qopcha olib keldim! Ichida bitta narsa yashiringan. Bu nima ekan? Koreyscha so'raymiz va javob beramiz!",
+     "items": [
+      {
+       "say": "이게 뭐예요?",
+       "uz": "bu nima?",
+       "emoji": "🎁",
+       "image": "en45-u8-what-is-it.png",
+       "image_prompt": "A wrapped mystery gift box with a question mark, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Ige mwoyeyo?"
+      },
+      {
+       "say": "공이에요.",
+       "uz": "bu — koptok.",
+       "emoji": "🏀",
+       "image": "en45-u8-its-a-ball.png",
+       "image_prompt": "A child happily holding up a basketball, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Gongieyo."
+      },
+      {
+       "say": "나는 곰 인형을 좋아해요.",
+       "uz": "men ayiqchamni yaxshi ko'raman.",
+       "emoji": "🧸",
+       "image": "en45-u8-i-like-my-teddy.png",
+       "image_prompt": "A child hugging a soft brown teddy bear, cute cartoon, soft flat colors, white background, no text, square",
+       "rom": "Naneun gom inhyeongeul joahaeyo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎁 Sehrli qopcha",
+       "matn": "Qopchadan chiqaramiz. [ko]이게 뭐예요?[/ko] — [ko]자동차예요![/ko] [ko]이게 뭐예요?[/ko] — [ko]모자예요![/ko] Endi eng sevimli o'yinchog'ingni ayt: [ko]나는 내 …좋아해요[/ko]",
+       "doska": "🎁 이게 뭐예요?\n🚗 자동차예요!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ko]이게 뭐예요?[/ko] 🧦",
+       "options": [
+        "🧦 양말이에요.",
+        "🍎 사과예요."
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bu — paypoq: [ko]양말이에요.[/ko]"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Parkka borishga kiyinamiz",
+     "name_en": "공원에 가려고 옷 입기",
+     "emoji": "🧢",
+     "goal": "Bola parkka chiqishdan oldin kiyimlarini koreyscha aytib kiyinadi",
+     "intro": "Bip-bip! robot Kabu bilan parkka boramiz. Avval kiyinamiz: [ko]모자[/ko], [ko]신발[/ko] — va varrakni olamiz!",
+     "intro_en": "공원에 가요! 모자 쓰고 신발 신어요!",
+     "roles": [
+      "Onam",
+      "Bola"
+     ],
+     "roles_en": [
+      "엄마",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s8-dressing-for-park.png",
+      "image_prompt": "A mum helping a small child put on a red hat and shoes by the front door, a colorful kite leaning on the wall, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "모자 써!",
+       "uz": "shapkangni kiy",
+       "emoji": "🧢",
+       "rom": "Moja sseo!"
+      },
+      {
+       "who": 1,
+       "say": "내 빨간 모자? 알았어요!",
+       "uz": "qizil shapkammi? xo'p",
+       "emoji": "🔴",
+       "rom": "Nae ppalgan moja? Arasseoyo!"
+      },
+      {
+       "who": 0,
+       "say": "신발도 신어!",
+       "uz": "tuflingni ham",
+       "emoji": "👟",
+       "rom": "Sinbaldo sineo!"
+      },
+      {
+       "who": 1,
+       "say": "응! 내 연도 가져갈래!",
+       "uz": "ha! varragimni ham olaman",
+       "emoji": "🪁",
+       "rom": "Eung! Nae yeondo gajyeogallae!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Onam: [ko]모자 써![/ko] Nimani kiyasan?",
+       "q_en": "엄마가 말해요: 모자 써! 뭘 쓸까요?",
+       "options": [
+        "🧦 양말",
+        "🧢 모자"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [ko]모자[/ko] — shapka.",
+       "why_en": "맞아요! 모자!"
+      },
+      {
+       "q": "Parkka nimani olasan? Varrakni ko'rsat!",
+       "q_en": "공원에 뭘 가져갈까요? 연을 보여 줘요!",
+       "options": [
+        "🪁 연이에요.",
+        "🤖 로봇이에요."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]연[/ko] — varrak.",
+       "why_en": "잘했어요! 연이에요."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ovqat va ichimliklar",
+   "emoji": "🍽️",
+   "lessons": [
+    {
+     "name": "Nonushta",
+     "goal": "Bola 빵, 우유, 달걀, 치즈 so'zlarini biladi",
+     "intro": "Bip-bip! Xayrli tong! robot Kabu och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Qani, koreyscha aytamiz.",
+     "items": [
+      {
+       "say": "빵",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "en56-u4-bread.png",
+       "image_prompt": "A loaf of fresh bread, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 빵과 치즈를 좋아해요.",
+       "rom": "Ppang"
+      },
+      {
+       "say": "우유",
+       "uz": "sut",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 아침에 우유를 마셔요.",
+       "action_en": "우유 마셔!",
+       "rom": "Uyu"
+      },
+      {
+       "say": "달걀",
+       "uz": "tuxum",
+       "emoji": "🥚",
+       "image": "en56-u4-egg.png",
+       "image_prompt": "A white egg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 달걀이 한 개 있어요.",
+       "rom": "Dalgyal"
+      },
+      {
+       "say": "치즈",
+       "uz": "pishloq",
+       "emoji": "🧀",
+       "image": "en56-u4-cheese.png",
+       "image_prompt": "A wedge of yellow cheese, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "생쥐는 치즈를 좋아해요.",
+       "rom": "Chijeu"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🍳 Nonushta tayyorlaymiz",
+       "matn": "Qo'g'irchoqlarga nonushta beramiz! Stolga qo'yganday qil va ayt: [ko]빵[/ko] … [ko]우유[/ko] … [ko]달걀[/ko] … [ko]치즈[/ko]. Yoqimli ishtaha!",
+       "doska": "🍞 빵  🥛 우유\n🥚 달걀  🧀 치즈",
+       "sodda": "Ikkitasi: [ko]빵[/ko] va [ko]우유[/ko].",
+       "boshqa_usul": "Uyda nonushtada har ovqatni koreyscha nomla!",
+       "matn_en": "인형들에게 아침밥을 줘요! 탁자 위에 놓고 말해요: 빵, 우유, 달걀, 치즈. 맛있어요!",
+       "sarlavha_en": "🍳 아침밥을 만들어요"
+      }
+     ],
+     "intro_en": "좋은 아침이에요! 아침 먹을 시간이에요. 빵, 달걀, 치즈를 먹어요. 맛있어요!"
+    },
+    {
+     "name": "Ichimliklar",
+     "goal": "Bola 물, 주스, 차 so'zlarini va «목말라요» iborasini biladi",
+     "intro": "Bip-bip! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz.",
+     "items": [
+      {
+       "say": "물",
+       "uz": "suv",
+       "emoji": "💧",
+       "image": "en56-u4-water.png",
+       "image_prompt": "A clear glass of water with a drop, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 매일 물을 마셔요.",
+       "action_en": "물을 마셔요!",
+       "rom": "Mul"
+      },
+      {
+       "say": "주스",
+       "uz": "sharbat",
+       "emoji": "🧃",
+       "image": "en56-u4-juice.png",
+       "image_prompt": "A kids juice box with a straw, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 사과 주스를 좋아해요.",
+       "rom": "Juseu"
+      },
+      {
+       "say": "차",
+       "uz": "choy",
+       "emoji": "🍵",
+       "image": "en56-u4-tea.png",
+       "image_prompt": "A cup of green tea, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "할머니는 차를 마셔요.",
+       "rom": "Cha"
+      },
+      {
+       "say": "목말라요.",
+       "uz": "chanqadim",
+       "emoji": "🥤",
+       "image": "en56-u4-im-thirsty.png",
+       "image_prompt": "A child holding a cup, looking thirsty, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tomog'ingni ushla!",
+       "sentence": "목말라요. 물 주세요.",
+       "rom": "Mongmallayo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: choyxonada",
+       "matn": "Kabu so'raydi: [ko]물? 아니면 주스?[/ko] Sen tanla: [ko]주스 주세요![/ko] Kabu beradi. Sen: [ko]고마워요![/ko] Endi sen so'ra!",
+       "doska": "— 물? 아니면 주스?\n— 주스 주세요!\n— 고마워요!",
+       "sodda": "Faqat tanla: [ko]물[/ko] yoki [ko]주스[/ko].",
+       "boshqa_usul": "Ikki stakan qo'y — biriga suv, biriga sharbat. Kattalarga taklif qil: [ko]물? 아니면 주스?[/ko]",
+       "matn_en": "카부타르: 물? 아니면 주스? 아이: 주스 주세요! 카부타르: 여기 있어. 아이: 고마워! 이제 여러분이 물어봐요!",
+       "sarlavha_en": "🎭 대화: 카페에서"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvimiz ertalab piyolada nima ichadi?",
+       "options": [
+        "🍵 차",
+        "🧀 치즈"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Choy — [ko]차[/ko].",
+       "q_en": "할머니는 아침에 뭘 마셔요?"
+      }
+     ],
+     "intro_en": "안녕, 친구들! 목말라요. 뭘 마실까요? 물, 주스, 아니면 차?"
+    },
+    {
+     "name": "Tushlik",
+     "goal": "Bola 수프, 밥, 닭고기 so'zlarini va «배고파요» iborasini biladi",
+     "intro": "Bip-bip! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "수프",
+       "uz": "sho'rva",
+       "emoji": "🍲",
+       "image": "en56-u4-soup.png",
+       "image_prompt": "A bowl of warm soup, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "엄마는 따뜻한 수프를 만들어요.",
+       "rom": "Supeu"
+      },
+      {
+       "say": "밥",
+       "uz": "guruch, palov",
+       "emoji": "🍚",
+       "image": "en56-u4-rice.png",
+       "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 닭고기랑 밥을 좋아해요.",
+       "rom": "Bap"
+      },
+      {
+       "say": "닭고기",
+       "uz": "tovuq go'shti",
+       "emoji": "🍗",
+       "image": "en56-u4-chicken.png",
+       "image_prompt": "A roasted chicken leg, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "닭고기가 맛있어요!",
+       "rom": "Dakgogi"
+      },
+      {
+       "say": "배고파요.",
+       "uz": "qornim och",
+       "emoji": "🍽️",
+       "image": "en56-u4-im-hungry.png",
+       "image_prompt": "A child with an empty plate and a spoon, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningni sila!",
+       "sentence": "배고파요. 수프 주세요!",
+       "action_en": "배를 문질러요!",
+       "rom": "Baegopayo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥄 Oshpaz o'yini",
+       "matn": "Sen — oshpazsan! Qozonga sol: [ko]밥[/ko], [ko]닭고기[/ko]… aralashtir! Kabu keladi: [ko]배고파요![/ko] Sen berasan: [ko]수프 여기 있어요![/ko]",
+       "doska": "🍚 밥 + 🍗 닭고기\n🍲 수프\n배고파요! 🍽️",
+       "sodda": "Qozonga bittadan sol va ayt: [ko]밥[/ko]!",
+       "boshqa_usul": "Qog'ozdan likopcha yasa, ichiga rasm chiz va nomini ayt.",
+       "matn_en": "여러분은 요리사예요! 냄비에 밥과 닭고기를 넣어요. 휘휘 저어요! 카부타르: 배고파요! 요리사: 수프 여기 있어요!",
+       "sarlavha_en": "🥄 요리 놀이"
+      }
+     ],
+     "tests": [
+      {
+       "q": "[ko]배고파요.[/ko] — bu nima degani?",
+       "options": [
+        "🍽️ qornim och",
+        "🥤 chanqadim"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]배고파요[/ko] — qornim och.",
+       "q_en": "\"배고파요\"는 무슨 뜻일까요?"
+      }
+     ],
+     "intro_en": "안녕하세요! 점심시간이에요. 배고파요! 수프랑 밥을 먹어요."
+    },
+    {
+     "name": "Shirinliklar",
+     "goal": "Bola 케이크, 아이스크림, 사탕 so'zlarini va «맛있어요!» iborasini biladi",
+     "intro": "Bip-bip! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Qani, ularni koreyscha nomlaymiz.",
+     "items": [
+      {
+       "say": "케이크",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "en56-u4-cake.png",
+       "image_prompt": "A birthday cake with candles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "생일 케이크가 커요.",
+       "rom": "Keikeu"
+      },
+      {
+       "say": "아이스크림",
+       "uz": "muzqaymoq",
+       "emoji": "🍦",
+       "image": "en56-u4-ice-cream.png",
+       "image_prompt": "A soft ice cream cone, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "나는 여름에 아이스크림을 좋아해요.",
+       "rom": "Aiseukeurim"
+      },
+      {
+       "say": "사탕",
+       "uz": "konfetlar",
+       "emoji": "🍬",
+       "image": "en56-u4-sweets.png",
+       "image_prompt": "Colorful wrapped candies, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "할머니가 나에게 줄 사탕이 있어요.",
+       "rom": "Satang"
+      },
+      {
+       "say": "맛있어요!",
+       "uz": "mazali!",
+       "emoji": "😋",
+       "image": "en56-u4-yummy.png",
+       "image_prompt": "A child licking lips happily, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qorningni silab, «mm» deng!",
+       "sentence": "맛있어요! 케이크가 맛있어요!",
+       "action_en": "배를 문질러요!",
+       "rom": "Masisseoyo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎂 Tug'ilgan kun o'yini",
+       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ko]하나, 둘, 셋, 넷, 다섯![/ko] Pufla! Endi tortdan tatib ko'ramiz — [ko]맛있어요![/ko]",
+       "doska": "🎂 하나 둘 셋 넷 다섯\n맛있어요! 😋",
+       "sodda": "Birgina so'z: [ko]케이크[/ko]… [ko]맛있어요![/ko]",
+       "boshqa_usul": "Loy yoki plastilindan tort yasa va unga sham qo'yib, koreyscha sana!",
+       "matn_en": "케이크에 초를 꽂고 세어요: 하나, 둘, 셋, 넷, 다섯! 후! 이제 케이크를 먹어요 — 맛있어요!",
+       "sarlavha_en": "🎂 생일 게임"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tug'ilgan kunda sham qo'yiladigan shirinlik qaysi?",
+       "options": [
+        "🎂 케이크",
+        "🍦 아이스크림"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tort — [ko]케이크[/ko].",
+       "q_en": "생일에 이 위에 초를 꽂아요. 이게 뭘까요?"
+      }
+     ],
+     "intro_en": "안녕, 친구들! 나는 달콤한 게 정말 좋아요. 케이크, 아이스크림, 사탕. 맛있어요!"
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Uyda nonushta",
+     "name_en": "집에서 아침 먹기",
+     "emoji": "🍳",
+     "goal": "Bola nonushtada ovqat va ichimlik so'raydi, rahmat aytadi",
+     "intro": "Ertalab oila bilan nonushta qilamiz. Nima yeymiz, nima ichamiz?",
+     "intro_en": "좋은 아침이에요! 가족과 함께 아침 먹는 시간이에요. 뭘 먹고 싶어요?",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "엄마",
+      "아이"
+     ],
+     "scene": {
+      "image": "en56-s4-breakfast.png",
+      "image_prompt": "A family breakfast table with bread, eggs, cheese, tea and milk, a mother and a child smiling in a bright kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "좋은 아침! 배고프니?",
+       "uz": "xayrli tong! qorning ochmi?",
+       "emoji": "🌞",
+       "rom": "Joeun achim! Baegopeuni?"
+      },
+      {
+       "who": 1,
+       "say": "네, 배고파요.",
+       "uz": "ha, qornim och",
+       "emoji": "🍽️",
+       "rom": "Ne, baegopayo."
+      },
+      {
+       "who": 0,
+       "say": "여기 있어. 빵이랑 달걀.",
+       "uz": "mana, ol. non va tuxum",
+       "emoji": "🍞🥚",
+       "rom": "Yeogi isseo. Ppangirang dalgyal."
+      },
+      {
+       "who": 1,
+       "say": "고마워요! 우유 주세요.",
+       "uz": "rahmat! sut bering, iltimos",
+       "emoji": "🥛",
+       "rom": "Gomawoyo! Uyu juseyo."
+      },
+      {
+       "who": 0,
+       "say": "여기 우유 있어요.",
+       "uz": "mana suting",
+       "emoji": "🫴",
+       "rom": "Yeogi uyu isseoyo."
+      },
+      {
+       "who": 1,
+       "say": "맛있어요! 엄마, 고마워요!",
+       "uz": "mazali! rahmat, onajon!",
+       "emoji": "😋",
+       "rom": "Masisseoyo! Eomma, gomawoyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sut ichmoqchisan. Nima deysan?",
+       "q_en": "우유를 좀 마시고 싶어요. 뭐라고 말할까요?",
+       "options": [
+        "🥛 우유 주세요.",
+        "🧀 치즈"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]우유 주세요.[/ko]",
+       "why_en": "맞아요! 우유 주세요."
+      },
+      {
+       "q": "Nonushta juda mazali. Nima deysan?",
+       "q_en": "아침밥이 아주 맛있어요. 뭐라고 말할까요?",
+       "options": [
+        "😋 맛있어요!",
+        "🥤 목말라요."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]맛있어요![/ko]",
+       "why_en": "맞아요! 맛있어요!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uyim va xonalar",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Mening uyim",
+     "goal": "Bola 집, 문, 창문, 정원 so'zlarini biladi",
+     "intro": "Bip-bip! Mening temir uycham bor, sening esa chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni koreyscha o'rganamiz.",
+     "items": [
+      {
+       "say": "집",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "이건 우리 집이에요.",
+       "action_en": "공중에 집을 그려요!",
+       "rom": "Jip"
+      },
+      {
+       "say": "문",
+       "uz": "eshik",
+       "emoji": "🚪",
+       "image": "en56-u5-door.png",
+       "image_prompt": "A wooden front door, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Eshikni taqillatganday qil: tuk-tuk!",
+       "sentence": "문을 열어 주세요.",
+       "action_en": "문을 열어요!",
+       "rom": "Mun"
+      },
+      {
+       "say": "창문",
+       "uz": "deraza",
+       "emoji": "🪟",
+       "image": "en56-u5-window.png",
+       "image_prompt": "A window with curtains, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "창밖을 봐요!",
+       "action_en": "창밖을 봐요!",
+       "rom": "Changmun"
+      },
+      {
+       "say": "정원",
+       "uz": "bog', hovli",
+       "emoji": "🏡",
+       "image": "en56-u5-garden.png",
+       "image_prompt": "A house with a green garden and flowers, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "우리는 큰 정원이 있어요.",
+       "rom": "Jeongwon"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏠 Uy chizamiz",
+       "matn": "Qog'oz va qalam ol! Avval [ko]집[/ko] chiz, keyin [ko]문[/ko], ikkita [ko]창문[/ko], atrofiga [ko]정원[/ko]. Chizib bo'lgach, har birini ko'rsatib ayt!",
+       "doska": "🏠 집\n🚪 문  🪟 창문\n🏡 정원",
+       "sodda": "Faqat [ko]집[/ko] va [ko]문[/ko] chiz.",
+       "boshqa_usul": "Uyingda yurib, eshik va derazani topib ayt: [ko]문! 창문![/ko]",
+       "matn_en": "종이와 연필을 가져와요! 집, 문, 창문 두 개, 정원을 그려요. 그다음 가리키며 단어를 하나씩 말해요!",
+       "sarlavha_en": "🏠 집 그리기"
+      }
+     ],
+     "intro_en": "안녕하세요! 우리 집에 온 걸 환영해요! 봐요, 여기가 문이에요. 들어오세요!"
+    },
+    {
+     "name": "Uydagi xonalar",
+     "goal": "Bola 부엌, 침실, 욕실, 거실 so'zlarini biladi",
+     "intro": "Bip-bip! Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysan? Qani, xonalarni koreyscha aytamiz!",
+     "items": [
+      {
+       "say": "부엌",
+       "uz": "oshxona",
+       "emoji": "🍳",
+       "image": "en56-u5-kitchen.png",
+       "image_prompt": "A bright kitchen with a stove and a frying pan, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "엄마는 부엌에 있어요.",
+       "rom": "Bueok"
+      },
+      {
+       "say": "침실",
+       "uz": "yotoqxona",
+       "emoji": "🛏️",
+       "image": "en56-u5-bedroom.png",
+       "image_prompt": "A cozy bedroom with a bed and a teddy bear, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Uxlaganday ko'zingni yum!",
+       "sentence": "나는 침실에서 자요.",
+       "action_en": "자러 가요!",
+       "rom": "Chimsil"
+      },
+      {
+       "say": "욕실",
+       "uz": "hammom",
+       "emoji": "🛁",
+       "image": "en56-u5-bathroom.png",
+       "image_prompt": "A bathroom with a bathtub and bubbles, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'lingni yuvganday qil!",
+       "sentence": "나는 욕실에서 손을 씻어요.",
+       "action_en": "손 씻어요!",
+       "rom": "Yoksil"
+      },
+      {
+       "say": "거실",
+       "uz": "mehmonxona",
+       "emoji": "🛋️",
+       "image": "en56-u5-living-room.png",
+       "image_prompt": "A living room with a sofa, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "우리는 거실에서 텔레비전을 봐요.",
+       "rom": "Geosil"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Qaysi xonadamiz?",
+       "matn": "Men ish aytaman, sen xonani top! Uxlaymiz — [ko]침실[/ko]. Ovqat pishiramiz — [ko]부엌[/ko]. Cho'milamiz — [ko]욕실[/ko]. Divanda o'tiramiz — [ko]거실[/ko].",
+       "doska": "😴 → 침실\n🍳 → 부엌\n🛁 → 욕실\n🛋️ → 거실",
+       "sodda": "Ikkitasi: [ko]부엌[/ko] va [ko]침실[/ko].",
+       "boshqa_usul": "Uyingda har xonaga kirib, uning nomini koreyscha ayt!",
+       "matn_en": "내가 말하면, 여러분은 방을 찾아요! 잠을 자요 — 침실. 요리해요 — 부엌. 씻어요 — 욕실. 소파에 앉아요 — 거실.",
+       "sarlavha_en": "🔍 어느 방일까?"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ 침실",
+        "🍳 부엌"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yotoqxona — [ko]침실[/ko].",
+       "q_en": "우리는 어디에서 자요?"
+      }
+     ],
+     "intro_en": "안녕, 친구들! 우리 집에는 방이 많아요. 걸어 다니며 방마다 봐요!"
+    },
+    {
+     "name": "Xonadagi narsalar",
+     "goal": "Bola 의자, 전등, 텔레비전, 시계 so'zlarini biladi",
+     "intro": "Bip-bip! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Qani, xonadagi narsalarni o'rganamiz.",
+     "items": [
+      {
+       "say": "의자",
+       "uz": "stul",
+       "emoji": "🪑",
+       "image": "en56-u5-chair.png",
+       "image_prompt": "A small wooden chair, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "의자에 앉으세요.",
+       "action_en": "앉아요!",
+       "rom": "Uija"
+      },
+      {
+       "say": "전등",
+       "uz": "chiroq",
+       "emoji": "💡",
+       "image": "en56-u5-lamp.png",
+       "image_prompt": "A glowing light bulb lamp, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Chiroqni yoqganday qil: chirt!",
+       "sentence": "전등은 탁자 위에 있어요.",
+       "rom": "Jeondeung"
+      },
+      {
+       "say": "텔레비전",
+       "uz": "televizor",
+       "emoji": "📺",
+       "image": "en56-u5-tv.png",
+       "image_prompt": "A retro television set, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "할아버지는 텔레비전을 보고 있어요.",
+       "rom": "Tellebijeon"
+      },
+      {
+       "say": "시계",
+       "uz": "soat",
+       "emoji": "🕰️",
+       "image": "en56-u5-clock.png",
+       "image_prompt": "A mantel clock, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Tik-tak deb boshingni chayqat!",
+       "sentence": "시계는 크고 하얘요.",
+       "rom": "Sigye"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, qayerda?",
+       "matn": "Atrofingga qara! Xonangda [ko]의자[/ko] bormi? Ko'rsat! [ko]전등[/ko]? [ko]텔레비전[/ko]? [ko]시계[/ko]? Topgan har narsa uchun — bitta qarsak!",
+       "doska": "🪑 의자  💡 전등\n📺 텔레비전  🕰️ 시계",
+       "sodda": "Faqat [ko]의자[/ko] ni top va ustiga o'tir!",
+       "boshqa_usul": "Kattalar narsalarga qog'oz yopishtirib, nomini yozsin; sen ko'rsatib ayt.",
+       "matn_en": "방을 둘러봐요! 의자가 있어요? 보여 줘요! 전등은? 텔레비전은? 시계는? 찾을 때마다 손뼉을 쳐요!",
+       "sarlavha_en": "👀 찾아봐요!"
+      }
+     ],
+     "intro_en": "안녕! 내 방을 봐요. 의자, 전등, 시계가 보여요. 여러분은 뭐가 보여요?"
+    },
+    {
+     "name": "Mushuk qayerda?",
+     "goal": "Bola «… 어디 있어?» deb so'raydi, 안에, 위에, 밑에 so'zlarini tushunadi",
+     "intro": "Bip-bip! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Qani, birga qidiramiz!",
+     "items": [
+      {
+       "say": "고양이 어디 있어?",
+       "uz": "mushuk qayerda?",
+       "emoji": "🐈❓",
+       "image": "en56-u5-where-cat.png",
+       "image_prompt": "A pigeon looking around searching for a hidden cat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "고양이 어디 있어? 모르겠어!",
+       "action_en": "둘러봐요!",
+       "rom": "Goyangi eodi isseo?"
+      },
+      {
+       "say": "상자 안에",
+       "uz": "qutining ichida",
+       "emoji": "📦🐱",
+       "image": "en56-u5-in-box.png",
+       "image_prompt": "A kitten sitting inside a cardboard box, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "고양이는 상자 안에 있어요.",
+       "rom": "Sangja ane"
+      },
+      {
+       "say": "탁자 위에",
+       "uz": "stolning ustida",
+       "emoji": "🐱⬆️",
+       "image": "en56-u5-on-table.png",
+       "image_prompt": "A kitten sitting on top of a table, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "공은 탁자 위에 있어요.",
+       "rom": "Takja wie"
+      },
+      {
+       "say": "침대 밑에",
+       "uz": "karavotning ostida",
+       "emoji": "🛏️🐱",
+       "image": "en56-u5-under-bed.png",
+       "image_prompt": "A kitten peeking out from under a bed, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "내 신발은 침대 밑에 있어요.",
+       "rom": "Chimdae mite"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧸 Yashirinmachoq",
+       "matn": "Ayiqchani yashir! Kattalar so'raydi: [ko]곰 인형은 어디 있어?[/ko] Sen javob ber: [ko]상자 안에[/ko], [ko]의자 위에[/ko] yoki [ko]침대 밑에[/ko].",
+       "doska": "곰 인형은 어디 있어?\n안에 📦  위에 ⬆️  밑에 ⬇️",
+       "sodda": "Qo'l bilan ko'rsat: [ko]안에[/ko] — ichiga, [ko]위에[/ko] — ustiga, [ko]밑에[/ko] — ostiga.",
+       "boshqa_usul": "Qalamni qutiga sol va ayt: [ko]안에![/ko] Qutining ustiga qo'y: [ko]위에![/ko] Ostiga: [ko]밑에![/ko]",
+       "matn_en": "곰 인형을 숨겨요! 어른: 곰 인형은 어디 있어? 아이: 상자 안에! 의자 위에! 침대 밑에!",
+       "sarlavha_en": "🧸 숨바꼭질"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱 mushukcha qutining ichida. Qanday aytamiz?",
+       "options": [
+        "📦🐱 상자 안에",
+        "🐱⬆️ 탁자 위에"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ichida — [ko]상자 안에[/ko].",
+       "q_en": "아기 고양이가 상자 안에 있어요. 어떻게 말할까요?"
+      }
+     ],
+     "intro_en": "어머나! 고양이는 어디 있지? 같이 찾아봐요. 상자 안에 있을까요?"
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Mushukchani qidiramiz",
+     "name_en": "아기 고양이 찾기",
+     "emoji": "🐱",
+     "goal": "Bola uyda mushukchani qidiradi va xona hamda joy nomlarini aytadi",
+     "intro": "Uyimizdagi mushukcha yo'qolib qoldi! Dadamiz bilan xonalarda qidiramiz.",
+     "intro_en": "어머나! 우리 아기 고양이는 어디 있지? 아빠와 함께 방마다 찾아봐요!",
+     "roles": [
+      "Dada",
+      "Bola"
+     ],
+     "roles_en": [
+      "아빠",
+      "아이"
+     ],
+     "scene": {
+      "image": "en56-s5-find-the-kitten.png",
+      "image_prompt": "A father and a child looking for a kitten in a cozy bedroom, the kitten peeking from under the bed, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "아빠, 고양이 어디 있어요?",
+       "uz": "dada, mushuk qayerda?",
+       "emoji": "❓",
+       "rom": "Appa, goyangi eodi isseoyo?"
+      },
+      {
+       "who": 0,
+       "say": "부엌에 있어요?",
+       "uz": "oshxonadami?",
+       "emoji": "🍳",
+       "rom": "Bueoke isseoyo?"
+      },
+      {
+       "who": 1,
+       "say": "아니요. 부엌에 없어요.",
+       "uz": "yo'q. oshxonada emas",
+       "emoji": "🙅",
+       "rom": "Aniyo. Bueoke eopseoyo."
+      },
+      {
+       "who": 0,
+       "say": "침실을 봐요.",
+       "uz": "keling, yotoqxonaga qaraymiz",
+       "emoji": "🛏️",
+       "rom": "Chimsireul bwayo."
+      },
+      {
+       "who": 1,
+       "say": "보세요! 침대 밑에 있어요!",
+       "uz": "qarang! karavotning ostida!",
+       "emoji": "🐱",
+       "rom": "Boseyo! Chimdae mite isseoyo!"
+      },
+      {
+       "who": 0,
+       "say": "잘했어요! 나는 기뻐요!",
+       "uz": "barakalla! men xursandman!",
+       "emoji": "👏",
+       "rom": "Jalhaesseoyo! Naneun gippeoyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Mushukcha qayerda edi?",
+       "q_en": "아기 고양이는 어디 있어?",
+       "options": [
+        "🛏️🐱 침대 밑에",
+        "📦🐱 상자 안에"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]침대 밑에[/ko]",
+       "why_en": "맞아요! 침대 밑에."
+      },
+      {
+       "q": "Mushukni qidiryapsan. Nima deb so'raysan?",
+       "q_en": "고양이를 찾을 수 없어요. 뭐라고 물어볼까요?",
+       "options": [
+        "❓ 고양이 어디 있어?",
+        "🐱 나는 고양이가 있어요."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]고양이 어디 있어?[/ko]",
+       "why_en": "맞아요! 고양이 어디 있어?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo va fasllar",
+   "emoji": "🌦️",
+   "lessons": [
+    {
+     "name": "Bugun havo qanday?",
+     "goal": "Bola «날씨가 어때요?» savoliga 해가 쨍쨍해요, 비가 와요, 바람이 불어요 bilan javob beradi",
+     "intro": "Bip-bip! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni koreyscha aytamiz!",
+     "items": [
+      {
+       "say": "날씨가 어때요?",
+       "uz": "havo qanday?",
+       "emoji": "🌦️",
+       "image": "en56-u6-weather.png",
+       "image_prompt": "A child looking out of a window at the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "엄마, 날씨가 어때요?",
+       "rom": "Nalssiga eottaeyo?"
+      },
+      {
+       "say": "해가 쨍쨍해요.",
+       "uz": "quyoshli",
+       "emoji": "☀️",
+       "image": "en56-u6-sunny.png",
+       "image_prompt": "A bright smiling sun, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni quyoshday keng och!",
+       "sentence": "해가 쨍쨍해요. 공원에 가요!",
+       "action_en": "선글라스를 써요!",
+       "rom": "Haega jjaengjjaenghaeyo."
+      },
+      {
+       "say": "비가 와요.",
+       "uz": "yomg'irli",
+       "emoji": "🌧️",
+       "image": "en56-u6-rainy.png",
+       "image_prompt": "A cloud with raindrops, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barmoqlaring bilan yomg'ir tomchilarini ko'rsat!",
+       "sentence": "비가 와요. 우산을 챙겨요!",
+       "rom": "Biga wayo."
+      },
+      {
+       "say": "바람이 불어요.",
+       "uz": "shamolli",
+       "emoji": "🌬️",
+       "image": "en56-u6-windy.png",
+       "image_prompt": "Wind blowing leaves and a kite, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Daraxtday chayqal!",
+       "sentence": "바람이 불어요. 연을 날려요!",
+       "action_en": "나무처럼 흔들흔들해요!",
+       "rom": "Barami bureoyo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ob-havo qo'shig'i",
+       "matn": "Kuylaymiz: [ko]오늘 날씨는 어때요? 해가 쨍쨍, 해가 쨍쨍, 만세![/ko] Keyin [ko]비가 와요[/ko] va [ko]바람이 불어요[/ko] bilan ham kuyla!",
+       "doska": "날씨가 어때요?\n해가 쨍쨍해요! ☀️ 비가 와요! 🌧️ 바람이 불어요! 🌬️",
+       "sodda": "Faqat javob: [ko]해가 쨍쨍해요![/ko] [ko]비가 와요![/ko]",
+       "boshqa_usul": "Har tong derazadan qarab, havoni koreyscha ayt va taqvimga rasm chiz.",
+       "matn_en": "노래해요: 오늘 날씨는 어때요? 해가 쨍쨍, 해가 쨍쨍, 만세! 이제 비 오는 날, 바람 부는 날로 불러요!",
+       "sarlavha_en": "🎵 날씨 노래"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmonda quyosh charaqlayapti. Havo qanday?",
+       "options": [
+        "☀️ 해가 쨍쨍해요.",
+        "🌧️ 비가 와요."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]해가 쨍쨍해요.[/ko] — quyoshli.",
+       "q_en": "하늘에 해가 빛나요. 날씨가 어때요?"
+      }
+     ],
+     "intro_en": "좋은 아침이에요, 친구들! 창밖을 봐요. 오늘 날씨는 어때요?"
+    },
+    {
+     "name": "Issiq va sovuq",
+     "goal": "Bola 눈이 와요, 흐려요, 더워요, 추워요 so'zlari bilan havoni tasvirlaydi",
+     "intro": "Bip-bip! Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq bo'ladi, sovuq bo'ladi. Qani, o'rganamiz!",
+     "items": [
+      {
+       "say": "눈이 와요.",
+       "uz": "qorli",
+       "emoji": "🌨️",
+       "image": "en56-u6-snowy.png",
+       "image_prompt": "Snow falling from a cloud, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "눈이 와요. 눈사람을 만들어요!",
+       "rom": "Nuni wayo."
+      },
+      {
+       "say": "흐려요.",
+       "uz": "bulutli",
+       "emoji": "☁️",
+       "image": "en56-u6-cloudy.png",
+       "image_prompt": "Fluffy grey clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "흐려요. 해가 안 보여요.",
+       "rom": "Heuryeoyo."
+      },
+      {
+       "say": "더워요.",
+       "uz": "issiq",
+       "emoji": "🥵",
+       "image": "en56-u6-hot.png",
+       "image_prompt": "A child fanning themselves in the heat, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Yelpinganday qil!",
+       "sentence": "더워요. 아이스크림 먹고 싶어요!",
+       "action_en": "얼굴에 부채질해요!",
+       "rom": "Deowoyo."
+      },
+      {
+       "say": "추워요.",
+       "uz": "sovuq",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Titraganday qil: brr!",
+       "sentence": "추워요. 코트 입어!",
+       "action_en": "이렇게 덜덜 떨어요!",
+       "rom": "Chuwoyo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Issiq-sovuq o'yini",
+       "matn": "Men aytaman, sen harakat qilasan: [ko]더워요![/ko] — yelpining! [ko]추워요![/ko] — titra! [ko]눈이 와요![/ko] — qor to'pla! [ko]흐려요![/ko] — bulutday suz!",
+       "doska": "🥵 더워요 — yelpinamiz\n🥶 추워요 — titraymiz\n🌨️ 눈이 와요 — qor\n☁️ 흐려요 — bulut",
+       "sodda": "Ikkitasi: [ko]더워요[/ko] va [ko]추워요[/ko].",
+       "boshqa_usul": "Muzlatkichdan muz ol va ushla: [ko]추워요![/ko] Iliq suvga qo'l tekkiz: [ko]더워요![/ko]",
+       "matn_en": "듣고 움직여요! 더워요 — 얼굴에 부채질! 추워요 — 덜덜! 눈이 와요 — 눈뭉치를 만들어요! 흐려요 — 구름처럼 둥실둥실!",
+       "sarlavha_en": "🏃 더워요 추워요 게임"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tashqarida qor yog'yapti. Nima deymiz?",
+       "options": [
+        "🌨️ 눈이 와요.",
+        "🥵 더워요."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]눈이 와요.[/ko] — qorli.",
+       "q_en": "밖에 눈이 와요. 우리는 뭐라고 말할까요?"
+      }
+     ],
+     "intro_en": "안녕! 어떤 날은 덥고 어떤 날은 추워요. 날씨 이야기를 해 봐요!"
+    },
+    {
+     "name": "To'rt fasl",
+     "goal": "Bola 봄, 여름, 가을, 겨울 fasllarini biladi",
+     "intro": "Bip-bip! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?",
+     "items": [
+      {
+       "say": "봄",
+       "uz": "bahor",
+       "emoji": "🌷",
+       "image": "en56-u6-spring.png",
+       "image_prompt": "Spring tulips blooming, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "봄에는 꽃이 분홍색이에요.",
+       "rom": "Bom"
+      },
+      {
+       "say": "여름",
+       "uz": "yoz",
+       "emoji": "🏖️",
+       "image": "en56-u6-summer.png",
+       "image_prompt": "A sunny beach with a bucket and spade, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "여름에는 덥고 해가 쨍쨍해요.",
+       "action_en": "물고기처럼 헤엄쳐요!",
+       "rom": "Yeoreum"
+      },
+      {
+       "say": "가을",
+       "uz": "kuz",
+       "emoji": "🍂",
+       "image": "en56-u6-autumn.png",
+       "image_prompt": "Falling orange autumn leaves, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Barg kabi aylanib tush!",
+       "sentence": "가을에는 나뭇잎이 노래요.",
+       "action_en": "나뭇잎처럼 떨어져요!",
+       "rom": "Gaeul"
+      },
+      {
+       "say": "겨울",
+       "uz": "qish",
+       "emoji": "❄️",
+       "image": "en56-u6-winter.png",
+       "image_prompt": "A big snowflake, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "겨울에는 눈이 와요.",
+       "action_en": "이렇게 덜덜 떨어요!",
+       "rom": "Gyeoul"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "🔄 Fasllar aylanasi",
+       "matn": "Fasllar aylanib keladi: [ko]봄, 여름, 가을, 겨울[/ko] — va yana [ko]봄[/ko]! Bahorda — gul, yozda — dengiz, kuzda — barg, qishda — qor.",
+       "doska": "🌷 봄 → 🏖️ 여름\n↑            ↓\n❄️ 겨울 ← 🍂 가을",
+       "sodda": "[ko]여름[/ko] — yoz, [ko]겨울[/ko] — qish.",
+       "boshqa_usul": "Doira bo'lib aylaning va har burilishda bitta faslni ayt!",
+       "matn_en": "계절은 돌고 돌아요: 봄, 여름, 가을, 겨울 — 그리고 다시 봄! 봄 — 꽃. 여름 — 바다. 가을 — 나뭇잎. 겨울 — 눈.",
+       "sarlavha_en": "🔄 계절 동그라미"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Barglar sarg'ayib to'kilyapti. Bu qaysi fasl?",
+       "options": [
+        "🍂 가을",
+        "🌷 봄"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kuz — [ko]가을[/ko].",
+       "q_en": "나뭇잎이 노랗게 물들어 떨어져요. 무슨 계절일까요?"
+      },
+      {
+       "q": "Qorbobo va qor — qaysi faslda?",
+       "options": [
+        "❄️ 겨울",
+        "🏖️ 여름"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qish — [ko]겨울[/ko].",
+       "q_en": "눈과 눈사람. 무슨 계절일까요?"
+      }
+     ],
+     "intro_en": "안녕, 친구들! 일 년에는 계절이 네 개 있어요: 봄, 여름, 가을, 겨울. 어느 계절이 좋아요?"
+    },
+    {
+     "name": "Soyabon va kamalak",
+     "goal": "Bola 우산, 무지개, 눈사람 so'zlarini biladi",
+     "intro": "Bip-bip! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "items": [
+      {
+       "say": "우산",
+       "uz": "soyabon",
+       "emoji": "☂️",
+       "image": "en56-u6-umbrella.png",
+       "image_prompt": "A colorful open umbrella, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Soyabonni ochganday qil!",
+       "sentence": "우산을 챙기세요.",
+       "action_en": "우산을 펴요!",
+       "rom": "Usan"
+      },
+      {
+       "say": "무지개",
+       "uz": "kamalak",
+       "emoji": "🌈",
+       "image": "en56-u6-rainbow.png",
+       "image_prompt": "A bright rainbow over clouds, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "봐요! 큰 무지개예요!",
+       "action_en": "공중에 무지개를 그려요!",
+       "rom": "Mujigae"
+      },
+      {
+       "say": "눈사람",
+       "uz": "qorbobo, qor odam",
+       "emoji": "⛄",
+       "image": "en56-u6-snowman.png",
+       "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "우리는 큰 눈사람을 만들어요.",
+       "rom": "Nunsaram"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: sayrga chiqamiz",
+       "matn": "Kabu so'raydi: [ko]날씨가 어때요?[/ko] Sen: [ko]비가 와요.[/ko] Kabu: [ko]우산 챙겨![/ko] Keyin: [ko]봐! 무지개야![/ko]",
+       "doska": "— 날씨가 어때?\n— 비가 와. 🌧️\n— 우산 챙겨! ☂️\n— 봐! 무지개야! 🌈",
+       "sodda": "Qisqa: [ko]비가 와요[/ko] — [ko]우산[/ko].",
+       "boshqa_usul": "Rostdan soyabonni oching (xonada ehtiyot bo'l!) va ayt: [ko]우산![/ko]",
+       "matn_en": "카부타르: 날씨가 어때? 아이: 비가 와. 카부타르: 우산 챙겨! 아이: 봐! 무지개야!",
+       "sarlavha_en": "🎭 대화: 밖에 나가요"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Yomg'ir yog'yapti. O'zimiz bilan nima olamiz?",
+       "options": [
+        "☂️ 우산",
+        "🍦 아이스크림"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Soyabon — [ko]우산[/ko].",
+       "q_en": "비가 와요. 우리는 뭘 챙겨 갈까요?"
+      }
+     ],
+     "intro_en": "안녕! 오늘은 비가 와서 우산이 있어요. 봐요! 비가 그친 뒤에 무지개가 보여요!"
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'ga chiqamizmi?",
+     "name_en": "우리 공원에 가도 돼요?",
+     "emoji": "🌦️",
+     "goal": "Bola ob-havoni so'raydi va unga qarab kiyinadi yoki soyabon oladi",
+     "intro": "Biz bog'ga sayrga chiqmoqchimiz. Avval havo qandayligini bilib olamiz!",
+     "intro_en": "우리는 공원에 가고 싶어요. 오늘 날씨는 어때요?",
+     "roles": [
+      "Ona",
+      "Bola"
+     ],
+     "roles_en": [
+      "엄마",
+      "아이"
+     ],
+     "scene": {
+      "image": "en56-s6-park-weather.png",
+      "image_prompt": "A child and a mother looking out of a window at light rain and a rainbow over a green park, holding an umbrella, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "엄마, 우리 공원에 가도 돼요?",
+       "uz": "onajon, bog'ga boramizmi?",
+       "emoji": "🌳",
+       "rom": "Eomma, uri gongwone gado dwaeyo?"
+      },
+      {
+       "who": 0,
+       "say": "봐! 날씨가 어때?",
+       "uz": "qara! havo qanday?",
+       "emoji": "🪟",
+       "rom": "Bwa! Nalssiga eottae?"
+      },
+      {
+       "who": 1,
+       "say": "비가 오고 흐려요.",
+       "uz": "yomg'irli va bulutli",
+       "emoji": "🌧️",
+       "rom": "Biga ogo heuryeoyo."
+      },
+      {
+       "who": 0,
+       "say": "우산을 챙기세요.",
+       "uz": "soyaboningni ol, iltimos",
+       "emoji": "☂️",
+       "rom": "Usaneul chaengiseyo."
+      },
+      {
+       "who": 1,
+       "say": "네! 엄마, 보세요! 무지개예요!",
+       "uz": "xo'p! qarang, onajon! kamalak!",
+       "emoji": "🌈",
+       "rom": "Ne! Eomma, boseyo! Mujigaeyeyo!"
+      },
+      {
+       "who": 0,
+       "say": "응! 공원에 가자!",
+       "uz": "ha! qani, bog'ga ketdik!",
+       "emoji": "😊",
+       "rom": "Eung! Gongwone gaja!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Yomg'ir yog'yapti. Havo qanday?",
+       "q_en": "비가 와요. 날씨가 어때요?",
+       "options": [
+        "🌧️ 비가 와요.",
+        "☀️ 해가 쨍쨍해요."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]비가 와요.[/ko]",
+       "why_en": "맞아요! 비가 와요."
+      },
+      {
+       "q": "Yomg'irda nima olamiz?",
+       "q_en": "비 올 때 뭘 챙길까요?",
+       "options": [
+        "☂️ 우산",
+        "🍦 아이스크림"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]우산[/ko]",
+       "why_en": "맞아요! 우산."
+      },
+      {
+       "q": "Osmonda yetti rangli yoy paydo bo'ldi. Bu nima?",
+       "q_en": "하늘에 여러 가지 색이 보여요. 이게 뭘까요?",
+       "options": [
+        "🌈 무지개",
+        "☁️ 흐려요."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]무지개[/ko]",
+       "why_en": "맞아요! 무지개."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "봐!",
+  "listen": "듣고 따라 해요:",
+  "again": "한 번 더!",
+  "good": [
+   "잘했어요!",
+   "잘했어요!",
+   "좋아요!",
+   "최고예요!",
+   "훌륭해요!"
+  ],
+  "remember": "기억나요?",
+  "together": "다 같이 말해요!",
+  "your_turn": "여러분 차례예요!",
+  "game": "게임 시간!",
+  "ready": "준비됐나요? 시작!",
+  "found": "정말 잘했어요! 다 찾았어요!",
+  "today": "오늘 배운 것:",
+  "bye": "내일 만나요!",
+  "which": "어느 것일까요: {w}?",
+  "find": "그림을 찾아요: {w}",
+  "where": "어디 있을까요: {w}?",
+  "what": "그림을 봐요. 이게 뭐예요?",
+  "yes": "맞아요! {w}",
+  "old": "🔁 지난 질문",
+  "play": "놀자!",
+  "roleplay": "역할극을 해 봐요!",
+  "says": "{r}의 말:",
+  "now_you": "이제 여러분이 말해요:",
+  "hello_friends": "안녕, 친구들!",
+  "listen_short": "들어 봐요:",
+  "listen_bang": "들어 봐요!",
+  "repeat_me": "따라 해요:",
+  "now_you_short": "이제 여러분 차례:",
+  "say": "말해요:",
+  "one_more": "한 번 더:",
+  "look_listen": "보고 들어요:",
+  "point_game": "내가 말하면, 여러분은 그림을 가리켜요: {names}.",
+  "t_point": "🎲 가리켜 봐요!",
+  "t_today": "🌟 오늘 배운 것",
+  "t_remember": "기억해요:",
+  "t_last_year": "작년",
+  "welcome_back": "안녕, 친구들! 다시 만나서 반가워요! 작년에 배운 단어를 떠올려 봐요.",
+  "t_review": "복습",
+  "review_intro": "복습하는 날! 이 단원에서 배운 것을 모두 떠올려 봐요. 맞히면 별 하나!",
+  "say_with_me": "나랑 같이 말해요!",
+  "t_jump": "점프할까, 앉을까!",
+  "jump": "내가 단어를 말해요. 그림이 보이면 — 점프! 안 보이면 — 앉아요! 준비됐나요? 시작!",
+  "played_great": "잘했어요! 정말 잘 놀았어요!",
+  "t_review_q": "복습 질문",
+  "t_unit_done": "단원 끝!",
+  "unit_done": "멋져요! 이 단원을 다 끝냈어요. 새로운 모험을 시작해요!",
+  "t_party": "큰 파티!",
+  "party": "큰 파티",
+  "party_intro": "만세! 오늘은 큰 파티예요! 책 한 권을 다 끝냈어요. 좋아하는 단어를 떠올리고 별을 모아요!",
+  "know_all": "다 알고 있네요!",
+  "t_party_q": "파티 질문",
+  "t_champion": "여러분은 챔피언이에요!",
+  "champion": "여러분은 챔피언이에요! 이제 다 알아요. 아무 수업이나 다시 열고 놀아요!",
+  "t_roleplay": "역할극",
+  "roles_line": "나는 {a}, 너는 {b}.",
+  "change_roles": "이제 역할을 바꿔요!",
+  "great_role": "{r} 역할을 정말 잘했어요!",
+  "t_well_done": "🌟 잘했어요!",
+  "scenario_done": "이제 할 수 있어요: {name}! 집에서 가족과 함께 또 해 봐요."
+ }
+}
