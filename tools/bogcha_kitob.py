@@ -57,7 +57,7 @@ def ai_workbook(book, fan, prefix):
                 "turi": row.get("turi", ""), "sarlavha": row.get("sarlavha", ""), "matn": row.get("matn", ""),
                 "doska": row.get("doska", ""), "rasm": row.get("rasm") or "", "variantlar": row.get("variantlar", ""),
                 "javob": row.get("javob", ""),
-                "yechim": row.get("yechim") or ("Barakalla! Juda yaxshi bajardingiz! 🌟" if row.get("turi") == "topshiriq" else ""),
+                "yechim": row.get("yechim") or ("Barakalla! Juda yaxshi bajarding! 🌟" if row.get("turi") == "topshiriq" else ""),
                 "sodda": row.get("sodda", ""), "boshqa_usul": row.get("boshqa_usul", ""),
             })
         prefill.append({"mavzu_kodi": "", "mavzu_nomi": topic["name"], "mavzu_raqami": topic["no"], "daraja": 1, "rows": rows})
@@ -72,7 +72,8 @@ def embed_images(wb, image_dir):
     from openpyxl.drawing.image import Image as XLImage
     from PIL import Image as PILImage
     image_dir = Path(image_dir) if image_dir else None
-    placed, missing, cache = 0, set(), {}
+    placed, missing, cache, used = 0, set(), {}, set()
+    embed_images.used = used
     for ws in wb.worksheets:
         if ws.title in ("KITOB", "NAMUNA"):
             continue
@@ -88,7 +89,16 @@ def embed_images(wb, image_dir):
             if not name:
                 continue
             path = image_dir / name if image_dir else None
-            if not path or not path.is_file():
+            svg = image_dir / (Path(name).stem + ".svg") if image_dir else None
+            if (not path or not path.is_file()) and svg and svg.is_file():
+                # REV99: jonli SVG rasm — katakda .svg nomi qoladi (ZIP ichida yuboriladi), Excel'da ko'rinishi uchun
+                # png_preview/<nom>.png bo'lsa o'sha joylanadi.
+                ws.cell(r, col).value = svg.name
+                used.add(svg.name)
+                name, path = svg.name, image_dir.parent / "png_preview" / (svg.stem + ".png")
+                if not path.is_file():
+                    continue
+            elif not path or not path.is_file():
                 missing.add(name)
                 ws.cell(r, col).value = None
                 continue
@@ -135,7 +145,7 @@ def images_workbook(books, fan, image_dir=None):
                 prompt = word.get("image_prompt") or f"{word.get('en')}, {STYLE}"
                 rows.append([book["age"], topic["name"], word.get("image", ""), f"{word.get('en', '')} — {word.get('uz', '')}",
                              word.get("emoji", ""), prompt])
-    have = lambda name: bool(image_dir and (image_dir / name).is_file())  # noqa: E731
+    have = lambda name: bool(image_dir and ((image_dir / name).is_file() or (image_dir / (Path(name).stem + ".svg")).is_file()))  # noqa: E731
     rows.sort(key=lambda r: have(r[2]))   # kerak bo'lganlari tepada
     missing = 0
     for r in rows:

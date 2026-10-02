@@ -232,16 +232,16 @@ class Builder:
                      f"{C['listen_short']} {say} {sent} {C['repeat_me']} {say} {act_en} {self.good()}"]
             return self.t(f"{self.E(forms[n % len(forms)])} O'zbekcha — {it['uz']}.{act if not act_en else ''}")
         if self.level == 2:
-            forms = [f"{self.E(C['look'])} Qarang, bu — {w} O'zbekcha — {it['uz']}. {self.E(C['listen'])} {w} {self.E(C['again'])} {w}{act} {self.E(self.good())}",
-                     f"Yangi so'z: {w} Bu — {it['uz']} degani. {self.E(C['your_turn'])} Baland ovozda: {w} {self.E(C['again'])} {w}{act}",
+            forms = [f"{self.E(C['look'])} Qara, bu — {w} O'zbekcha — {it['uz']}. {self.E(C['listen'])} {w} {self.E(C['again'])} {w}{act} {self.E(self.good())}",
+                     f"Yangi so'z: {w} Bu — {it['uz']} degani. {self.E(C['your_turn'])} Baland ovozda ayt: {w} {self.E(C['again'])} {w}{act}",
                      f"{self.E(C['listen_bang'])} {w} Bu — {it['uz']}. {self.E(C['repeat_me'])} {w}{act} {self.E(self.good())}"]
             return self.t(forms[n % len(forms)])
         if it.get("explain"):
             return self.t(f"{it['explain']} Men bilan takrorla: {w} Yana bir marta: {w}{act}")
         patterns = [
-            f"Qarang, bu — {w} O'zbekcha — {it['uz']}. Men bilan takrorla: {w} Yana bir marta: {w}{act} Barakalla!",
-            f"Yangi so'z: {w} Bu — {it['uz']} degani. Qani, baland ovozda ayting: {w} Endi sekin, shivirlab: {w}{act}",
-            f"Diqqat bilan tinglang: {w} Bu — {it['uz']}. Men aytaman, siz takrorlaysiz: {w} Yana: {w}{act} Zo'r!",
+            f"Qara, bu — {w} O'zbekcha — {it['uz']}. Men bilan ayt: {w} Yana bir marta: {w}{act} Barakalla!",
+            f"Yangi so'z: {w} Bu — {it['uz']} degani. Qani, baland ovozda ayt: {w} Endi shivirlab: {w}{act} Zo'r!",
+            f"Qulog'ingni ding qil: {w} Bu — {it['uz']}. Men aytaman, sen qaytar: {w} Yana: {w}{act} Ofarin!",
         ]
         return self.t(patterns[n % len(patterns)])
 
@@ -251,14 +251,14 @@ class Builder:
             return self.t(f"Keling, sekinroq: {it['emoji']} bu — {it['uz'] or it['say']}. {it['explain'].split('.')[0]}.")
         if self.level >= 3:
             ex = f" Misol: {self.E(it['sentence'])}" if it.get("sentence") else ""
-            return self.t(f"O'zbekcha tushuntiraman: {it['emoji']} {w} — bu «{it['uz']}» degani.{ex} Sekin ayting: {w}")
-        return self.t(f"{it['uz'].capitalize()} — {w} Sekin ayting: {w}")
+            return self.t(f"O'zbekcha tushuntiraman: {it['emoji']} {w} — bu «{it['uz']}» degani.{ex} Sekin ayt: {w}")
+        return self.t(f"{it['uz'].capitalize()} — {w} Sekin ayt: {w}")
 
     def item_other(self, it):
         w = _tagp(self.lang, it["say"])
         if not self.lang:
-            return self.t(f"Atrofingizga qarang: {it['uz'] or it['say']} qayerda bor? Barmog'ingiz bilan ko'rsating va ayting!")
-        return self.t(f"Keling, o'yin! Men {it['uz']} desam, siz {w} deysiz. {it['uz'].capitalize()}! … {w} Barakalla!")
+            return self.t(f"Atrofingga qara: {it['uz'] or it['say']} qayerda bor? Barmog'ing bilan ko'rsat va ayt!")
+        return self.t(f"Qani, o'yin! Men {it['uz']} desam, sen {w} deysan. {it['uz'].capitalize()}! … {w} Barakalla!")
 
     def board(self, it):
         show_uz = self.lang and it.get("uz") and self.level <= 3
@@ -364,12 +364,12 @@ class Builder:
                         text += f" ({it['uz']})"
                     title = f"🔁 {self.C['t_remember']} {it['emoji']} {it['say']}"
                 elif self.lang:
-                    pre = f"{self.E(self.C['remember'])} " if self.level == 2 else "Esingizdami? "
-                    text = f"{pre}{it['emoji']} Bu — {_tag(self.lang, it['say'])}, ya'ni {_sentence(it['uz'])} Qani, birga ayting!"
+                    pre = f"{self.E(self.C['remember'])} " if self.level == 2 else "Esingdami? "
+                    text = f"{pre}{it['emoji']} Bu — {_tag(self.lang, it['say'])}, ya'ni {_sentence(it['uz'])} Qani, birga aytamiz!"
                     title = f"🔁 Eslaymiz: {it['emoji']} {it['say']}"
                 else:
                     uz = _clean(it.get("uz"))
-                    text = f"Esingizdami? {it['emoji']} {_sentence(it['say'])} {_sentence(uz[:1].upper() + uz[1:])} Qani, birga ayting!"
+                    text = f"Esingdami? {it['emoji']} {_sentence(it['say'])} {_sentence(uz[:1].upper() + uz[1:])} Qani, birga aytamiz!"
                     title = f"🔁 Eslaymiz: {it['emoji']} {it['say']}"
                 rows.append({"turi": "tushuncha", "sarlavha": title, "matn": self.t(text), "rasm": it.get("image", ""),
                              "doska": self.board(it), "sodda": self.item_simple(it), "boshqa_usul": self.item_other(it)})
@@ -391,8 +391,8 @@ class Builder:
         names = ", ".join(_name(self.lang, x) for x in game_items)
         pre = f"{self.E(self.C['game'])} " if self.lang and self.level == 2 else "O'yin vaqti! "
         return {"turi": "topshiriq", "sarlavha": "🎲 Top-chi o'yini",
-                "matn": self.t(f"{pre}Men aytaman, siz ekrandagi rasmni barmog'ingiz bilan ko'rsatasiz: {names}. Tayyor bo'lsangiz — qarsak chaling!"),
-                "doska": "  ".join(x["emoji"] for x in game_items), "yechim": "Barakalla! Hammasini topdingiz! 🌟"}
+                "matn": self.t(f"{pre}Men aytaman, sen rasmni barmog'ing bilan bos: {names}. Topsang — qarsak chal!"),
+                "doska": "  ".join(x["emoji"] for x in game_items), "yechim": "Barakalla! Hammasini topding! 🌟"}
 
     def summary_row(self, items):
         if self.lang and self.level >= 3:
@@ -421,7 +421,7 @@ class Builder:
         index = len(self.lesson_items)
         items = [dict(it, _unit=unit_no) for it in lesson["items"]]
         rows = [{"turi": "kirish", "sarlavha": f"{unit.get('emoji', '🕊️')} {lesson['name']}",
-                 "matn": self.intro_text(lesson, f"Salom, do'stim! Men — Kabutar qushcha. Gu-gu! Bugun «{lesson['name']}» mavzusini o'rganamiz."),
+                 "matn": self.intro_text(lesson, f"Salom, do'stim! Men — robot Kabu. Bip-bip! Bugun «{lesson['name']}» mavzusini o'rganamiz."),
                  "doska": f"🕊️ {lesson['name']}", "rasm": lesson.get("image_scene", "")}]
         rows += self.review_rows(index)
         for n, it in enumerate(items):
@@ -467,7 +467,7 @@ class Builder:
         title_place = sc.get("name_en") if self.level >= 3 else sc["name"]
         rows = [{"turi": "kirish", "sarlavha": f"🎭 {title_place}", "rasm": scene.get("image", ""),
                  "matn": self.intro_text({"intro": sc.get("intro"), "intro_en": sc.get("intro_en")},
-                                         f"Gu-gu! Bugun hayotiy vaziyat: {sc['name']}. Qani, tinglaymiz va o'ynaymiz!"),
+                                         f"Bip-bip! Bugun hayotiy vaziyat: {sc['name']}. Qani, tinglaymiz va o'ynaymiz!"),
                  "doska": f"{sc.get('emoji', '🎭')} {sc.get('name_en') or sc['name']}"}]
         for n, d in enumerate(lines):
             role, role_en = roles[d["who"]], roles_en[d["who"]]
@@ -482,18 +482,18 @@ class Builder:
                          "matn": self.t(voice), "rasm": d.get("image", ""),
                          "doska": f"{d.get('emoji', '')} {d['say']}" + (f"\n{d['rom']}" if d.get("rom") else "") + (f"\n{d['uz']}" if self.level <= 3 else ""),
                          "sodda": self.t(f"{role} aytadi: {_tagp(self.lang, d['say'])} O'zbekcha: {d['uz']}."),
-                         "boshqa_usul": self.t(f"Oyna oldida {role.lower()} bo'lib ayting: {_tagp(self.lang, d['say'])}")})
+                         "boshqa_usul": self.t(f"Oyna oldida {role.lower()} bo'lib ayt: {_tagp(self.lang, d['say'])}")})
         script = "\n".join(f"— {roles_en[d['who']] if self.level >= 3 else roles[d['who']]}: {d['say']}" for d in lines)
         me = roles_en[-1] if self.level >= 3 else roles[-1]
         if self.level >= 3:
             play = self.E(f"{self.C['roleplay']} {self.C['roles_line'].format(a=roles_en[0].lower(), b=roles_en[-1].lower())} " + " ".join(_sentence(d["say"]) for d in lines)
                           + f" {self.C['change_roles']}")
         else:
-            play = self.t(f"Keling, rol o'ynaymiz! Men — {roles[0].lower()}, siz — {roles[-1].lower()}. "
+            play = self.t(f"Keling, rol o'ynaymiz! Men — {roles[0].lower()}, sen — {roles[-1].lower()}. "
                           + " ".join(_tagp(self.lang, d["say"]) for d in lines) + " Endi rollarni almashamiz!")
         rows.append({"turi": "topshiriq", "sarlavha": "🎭 " + (self.C["t_roleplay"] if self.level >= 3 else "Rol o'ynaymiz"),
                      "matn": play, "doska": script,
-                     "yechim": self.E(f"{self.good()} {self.C['great_role'].format(r=me.lower())}") if self.level >= 3 else "Ofarin! Siz zo'r o'ynadingiz! 🌟"})
+                     "yechim": self.E(f"{self.good()} {self.C['great_role'].format(r=me.lower())}") if self.level >= 3 else "Ofarin! Sen zo'r o'ynading! 🌟"})
         new_tests = [self.author_test(q | {"q": q["q"], "q_en": q.get("q_en"), "why_en": q.get("why_en")}) for q in sc.get("questions") or []]
         new_tests = [t for t in new_tests if t]
         tests = self.spiral_tests(index, new_tests)
@@ -505,7 +505,7 @@ class Builder:
         else:
             pre = f"{self.E(self.good())} " if self.level == 2 else f"{self.rng.choice(PRAISE)} "
             rows.append({"turi": "xulosa", "sarlavha": "🌟 Bugun o'ynadik",
-                         "matn": self.t(f"{pre}Bugun «{sc['name']}» vaziyatini o'ynadik. Endi buni hayotda ham ayta olasiz! Uyda oilangiz bilan yana o'ynang."),
+                         "matn": self.t(f"{pre}Bugun «{sc['name']}» vaziyatini o'ynadik. Endi buni hayotda ham ayta olasan! Uyda oilang bilan yana o'yna."),
                          "doska": f"{sc.get('emoji', '🎭')} {sc['name']} ✅"})
         self.pool.extend(lines)
         self.lesson_items.append(lines)
@@ -525,7 +525,7 @@ class Builder:
         if not items:
             return
         rows = [{"turi": "kirish", "sarlavha": "🔁 " + (self.C["t_last_year"] if self.level >= 3 else "O'tgan yilni eslaymiz"),
-                 "matn": self.mix("Gu-gu! Salom, do'stim! Yangi kitobni boshlashdan oldin o'tgan yili o'rgangan so'zlarimizni eslaymiz.",
+                 "matn": self.mix("Bip-bip! Salom, do'stim! Yangi kitobni boshlashdan oldin o'tgan yili o'rgangan so'zlarimizni eslaymiz.",
                                   self.C["welcome_back"]),
                  "doska": "🔁 " + "  ".join(x["emoji"] for x in items)}]
         for i in range(0, len(items), 2):
@@ -533,7 +533,7 @@ class Builder:
             if self.level >= 3:
                 voice = self.E(" ".join(f"{self.C['remember']} {_sentence(x['say'])}" for x in chunk) + f" {self.C['together']}")
             else:
-                voice = self.t(" ".join(f"{x['emoji']} {_tagp(self.lang, x['say'])} — {_sentence(x['uz'])}" for x in chunk) + " Qani, birga ayting!")
+                voice = self.t(" ".join(f"{x['emoji']} {_tagp(self.lang, x['say'])} — {_sentence(x['uz'])}" for x in chunk) + " Qani, birga aytamiz!")
             rows.append({"turi": "tushuncha", "sarlavha": "🔁 " + " ".join(f"{x['emoji']} {x['say']}" for x in chunk),
                          "matn": voice, "rasm": chunk[0].get("image", ""), "doska": "\n".join(self.board(x) for x in chunk),
                          "sodda": self.t("O'zbekcha: " + "; ".join(f"{_tag(self.lang, x['say'])} — {x['uz']}" for x in chunk)),
@@ -552,7 +552,7 @@ class Builder:
             return
         en = self.lang and self.level >= 3
         rows = [{"turi": "kirish", "sarlavha": f"🔁 {unit['name']}: " + (self.C["t_review"] if en else "takrorlaymiz"),
-                 "matn": self.mix(f"Gu-gu! Bugun katta takrorlash kuni! «{unit['name']}» bo'limida o'rgangan hamma narsani eslaymiz. Har to'g'ri javob — bitta yulduzcha!",
+                 "matn": self.mix(f"Bip-bip! Bugun katta takrorlash kuni! «{unit['name']}» bo'limida o'rgangan hamma narsani eslaymiz. Har to'g'ri javob — bitta yulduzcha!",
                                   self.C["review_intro"]),
                  "doska": "🔁 " + "  ".join(x["emoji"] for x in items[:12])}]
         for i in range(0, len(items), 3):
@@ -567,17 +567,17 @@ class Builder:
             rows.append({"turi": "tushuncha", "sarlavha": (f"{self.C['t_remember']} " if en else "Eslaymiz: ") + " ".join(x["emoji"] for x in chunk),
                          "matn": voice, "rasm": chunk[0].get("image", ""),
                          "doska": "\n".join(self.board(x).replace("\n", " — ") for x in chunk),
-                         "sodda": self.t("Sekin-sekin: " + plain), "boshqa_usul": self.t("Har birini ko'rsatib, qarsak chalib ayting: " + plain)})
+                         "sodda": self.t("Sekin-sekin: " + plain), "boshqa_usul": self.t("Har birini ko'rsatib, qarsak chalib ayt: " + plain)})
         rows.append({"turi": "topshiriq", "sarlavha": "🏃 " + (self.C["t_jump"] if en else "Harakatli o'yin"),
-                     "matn": self.mix("Men so'z aytaman: agar rasm ekranda bo'lsa — sakrang, bo'lmasa — o'tiring! Tayyormisiz? Boshladik!",
+                     "matn": self.mix("Men so'z aytaman: rasm ekranda bo'lsa — sakra, bo'lmasa — o'tir! Tayyormisan? Boshladik!",
                                       self.C["jump"]),
-                     "doska": "  ".join(x["emoji"] for x in items[:12]), "yechim": self.E(self.C["played_great"]) + " 🌟" if en else "Ofarin! Siz zo'r o'ynadingiz! 🌟"})
+                     "doska": "  ".join(x["emoji"] for x in items[:12]), "yechim": self.E(self.C["played_great"]) + " 🌟" if en else "Ofarin! Sen zo'r o'ynading! 🌟"})
         pool_tests = [t for ts in self.lesson_tests[start:] for t in ts]
         self.rng.shuffle(pool_tests)
         count = 5 if self.age in ("2-3 yosh", "3-4 yosh", "4-5 yosh") else 7
         rows += [dict({k: v for k, v in t.items() if not k.startswith("_")}, sarlavha="⭐ " + (self.C["t_review_q"] if en else "Takror savoli")) for t in pool_tests[:count]]
         rows.append({"turi": "xulosa", "sarlavha": "🏅 " + (self.C["t_unit_done"] if en else "Bo'lim tugadi!"),
-                     "matn": self.mix(f"Qoyil! «{unit['name']}» bo'limini tugatdingiz. Endi yangi sarguzashtga o'tamiz!",
+                     "matn": self.mix(f"Qoyil! «{unit['name']}» bo'limini tugatding. Endi yangi sarguzashtga o'tamiz!",
                                       self.C["unit_done"]),
                      "doska": f"🏅 {unit['name']}"})
         self.topics.append(self.topic(f"{unit_no}-bo'lim takrori: {unit['name']}", f"«{unit['name']}» bo'limini mustahkamlash", rows, items[:6]))
@@ -585,7 +585,7 @@ class Builder:
     def final_review(self):
         en = self.lang and self.level >= 3
         rows = [{"turi": "kirish", "sarlavha": "🎉 " + (self.C["t_party"] if en else "Katta bayram!"),
-                 "matn": self.mix("Gu-gu! Bugun katta bayram! Butun kitobni tugatdingiz. Keling, eng qiziq so'zlarni eslaymiz va o'yinda yulduzcha yig'amiz!",
+                 "matn": self.mix("Bip-bip! Bugun katta bayram! Butun kitobni tugatding. Keling, eng qiziq so'zlarni eslaymiz va o'yinda yulduzcha yig'amiz!",
                                   self.C["party_intro"]),
                  "doska": "🎉 " + (self.C["party"] if en else "Katta bayram")}]
         sample = self.pool[:]
@@ -593,14 +593,14 @@ class Builder:
         for i in range(0, min(len(sample), 16), 4):
             chunk = sample[i:i + 4]
             voice = self.E(" ".join(_sentence(x["say"]) for x in chunk) + f" {self.C['know_all']}") if en else \
-                self.t(" ".join(f"{x['emoji']} {_sentence(_name(self.lang, x))}" for x in chunk) + " Ajoyib, hammasini bilasiz!")
+                self.t(" ".join(f"{x['emoji']} {_sentence(_name(self.lang, x))}" for x in chunk) + " Ajoyib, hammasini bilasan!")
             rows.append({"turi": "tushuncha", "sarlavha": (f"{self.C['t_remember']} " if en else "Eslaymiz: ") + " ".join(x["emoji"] for x in chunk),
                          "matn": voice, "rasm": chunk[0].get("image", ""), "doska": "\n".join(self.board(x).replace("\n", " — ") for x in chunk)})
         all_tests = [t for ts in self.lesson_tests for t in ts]
         self.rng.shuffle(all_tests)
         rows += [dict({k: v for k, v in t.items() if not k.startswith("_")}, sarlavha="🎉 " + (self.C["t_party_q"] if en else "Bayram savoli")) for t in all_tests[:12]]
-        rows.append({"turi": "xulosa", "sarlavha": "🏆 " + (self.C["t_champion"] if en else "Siz chempionsiz!"),
-                     "matn": self.mix("Siz chempionsiz! Endi hammasini bilasiz. Istalgan darsni qayta ochib, takrorlab o'ynashingiz mumkin.",
+        rows.append({"turi": "xulosa", "sarlavha": "🏆 " + (self.C["t_champion"] if en else "Sen chempionsan!"),
+                     "matn": self.mix("Sen chempionsan! Endi hammasini bilasan. Istalgan darsni qayta ochib, yana o'ynashing mumkin.",
                                       self.C["champion"]),
                      "doska": "🏆"})
         self.topics.append(self.topic("Katta bayram: hammasini takrorlaymiz", "Butun kitobni mustahkamlash", rows, sample[:6]))
