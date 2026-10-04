@@ -18219,19 +18219,49 @@ def _mavzularni_parse(text: str):
         result.append((str(int(period)),topic.strip()))
     return result
 
+def _boshqa_blokdagi_nomlar(cur, scope, sinf):
+    """REV101: shu dastur + sinf/yosh guruhidagi (o'chirilmagan) mavzular: (fan, mavzu nomi) → bloklar to'plami."""
+    if scope['institution_type'] == 'universitet':
+        return {}
+    grade = _curriculum.preschool_group(sinf) if scope['institution_type'] == 'bogcha' else _dts_sinf_normalize(sinf)
+    if not grade:
+        return {}
+    cur.execute("SELECT subject_name, mavzu_name, kichik_name, quarter FROM dts_tree "
+                "WHERE curriculum_scope_id=ANY(%s) AND grade=%s AND is_deleted=FALSE",
+                (_curriculum.scope_ids(scope), grade))
+    out = {}
+    for r in cur.fetchall():
+        if _curriculum.text_key(r.get('kichik_name')):
+            continue
+        quarter = str(r.get('quarter') or '').strip()
+        quarter = str(int(quarter)) if quarter.isdigit() else quarter
+        if quarter:
+            out.setdefault((_curriculum.text_key(r.get('subject_name')), _curriculum.text_key(r.get('mavzu_name'))), set()).add(quarter)
+    return out
+
+
 @app.post("/api/admin/topik_toliq_yarat")
 def topik_toliq_yarat(sorov: TopikShablonSorov, token: str):
     _admin_tekshir(token)
     topics = _mavzularni_parse(sorov.mavzular)
     if not topics: raise HTTPException(400, "Mavzularni '1 / mavzu' shaklida yozing")
     conn = _db(); cur = conn.cursor()
-    counts = {'yaratildi':0,'tiklandi':0,'mavjud':0,'xato':0,'xato_namunalari':[]}
+    counts = {'yaratildi':0,'tiklandi':0,'mavjud':0,'xato':0,'xato_namunalari':[],
+              'boshqa_blokda':0,'boshqa_blok_namunalari':[]}
     try:
         scope = _curriculum_scope(cur, sorov.scope_id)
+        # REV101: shu nom shu fan va guruhda BOSHQA blokda allaqachon bo'lsa — nusxa ochilganini aytamiz
+        # (ikki nusxa bo'lsa, kitob darslari qaysi biriga ulanishini bilmaydi).
+        oldingi = _boshqa_blokdagi_nomlar(cur, scope, sorov.sinf)
         for quarter, topic in topics:
             target=_curriculum.scope_for_period(cur,scope,quarter,create=True)
             _, status = _dts_qator_kiritish(cur,sorov.sinf,sorov.fan,quarter,'','',topic,'',sorov.dars_turi or '',target['id'])
             counts[status] += 1
+            boshqa = oldingi.get((_curriculum.text_key(sorov.fan), _curriculum.text_key(topic)), set()) - {str(int(quarter))}
+            if status == 'yaratildi' and boshqa:
+                counts['boshqa_blokda'] += 1
+                if len(counts['boshqa_blok_namunalari']) < 5:
+                    counts['boshqa_blok_namunalari'].append(f"«{topic}» — {', '.join(sorted(boshqa, key=lambda q: (not q.isdigit(), int(q) if q.isdigit() else 0, q)))}-blokda ham bor")
         conn.commit()
         return counts
     except ValueError as exc:
@@ -19248,27 +19278,22 @@ def _ai_brain_dars_tekshir(payload, errors, warnings, media_names=None):
 
 
 def _ai_brain_mavzu_nomi_norm(value):
-    t = _ai_brain_text(value).lower()
-    for ch in "‘’ʻʼ`'":
-        t = t.replace(ch, "")
-    t = re.sub(r"^\s*(?:\d+\s*[-–]?\s*(?:mavzu|dars)|§\s*\d+)\s*[.:)\-–]?\s*", "", t)
-    return re.sub(r"[^0-9a-zа-яёқғҳў]+", "", t)
+    from modules.mavzu_nomi import nom_norm
+    return nom_norm(_ai_brain_text(value))
 
 
 def _ai_brain_kod_qismlari(code):
     """«3-4 yosh-01-01-01-01-29-001» → («3-4 yosh-01-01-01-01», 29): mavzugacha bo'lgan joy va mavzu raqami."""
-    head, mavzu, _ = (str(code).rsplit("-", 2) + ["", ""])[:3] if str(code).count("-") >= 2 else (str(code), "", "")
-    try:
-        return head, int(mavzu)
-    except ValueError:
-        return head, None
+    from modules.mavzu_nomi import kod_qismlari
+    return kod_qismlari(code)
 
 
-def _ai_brain_nusxadan_tanla(cur, ambiguous, pending, resolved):
-    """Bir xil nomli mavzular orasidan ball bilan tanlash. Qaytaradi: {placeholder: (kod, sabab)} — faqat aniq g'olib bo'lsa."""
+def _ai_brain_nusxadan_tanla(cur, ambiguous, pending, resolved, meta=None):
+    """Bir xil nomli mavzular orasidan ball bilan tanlash. Qaytaradi: {placeholder: (kod, sabab)} — faqat aniq g'olib bo'lsa.
+
+    Ball qoidalari modules/mavzu_nomi.py da; bu yerda faqat «avval dars/test bog'langanmi» bazadan olinadi."""
     from collections import Counter
-    homes = Counter(_ai_brain_kod_qismlari(c)[0] for c in resolved.values())
-    home = homes.most_common(1)[0][0] if homes else ""
+    from modules.mavzu_nomi import nusxadan_tanla
     all_codes = sorted({c for codes in ambiguous.values() for c in codes})
     linked = Counter()
     for sql in ("SELECT topic_code, COUNT(*) AS n FROM ai_brain_units WHERE topic_code=ANY(%s) GROUP BY topic_code",
@@ -19281,63 +19306,48 @@ def _ai_brain_nusxadan_tanla(cur, ambiguous, pending, resolved):
             cur.execute("RELEASE SAVEPOINT ai_nusxa")
         except Exception:
             cur.execute("ROLLBACK TO SAVEPOINT ai_nusxa")
-    out = {}
-    for placeholder, codes in ambiguous.items():
-        number = pending[placeholder].get("raqam")
-        scored = []
-        for code in codes:
-            head, mavzu_no = _ai_brain_kod_qismlari(code)
-            score, why = 0, []
-            if home and head == home:
-                score += 3; why.append("kitobning boshqa mavzulari bilan bir bobda")
-            if number and mavzu_no == number:
-                score += 2; why.append(f"tartib raqami {number} mos")
-            if linked[code]:
-                score += 2; why.append("unga avval dars/test bog'langan")
-            scored.append((score, code, why))
-        scored.sort(key=lambda x: (-x[0], x[1]))
-        if scored[0][0] > 0 and (len(scored) == 1 or scored[0][0] > scored[1][0]):
-            out[placeholder] = (scored[0][1], ", ".join(scored[0][2]))
-    return out
+    return nusxadan_tanla(ambiguous, pending, resolved, linked, meta)
 
 
 def _ai_brain_nom_boyicha_kod(cur, parsed):
     """Mavzu kodi yozilmagan varaqlar: mavzu nomi bo'yicha Mavzular bazasidan kod topiladi.
 
-    Avval shu fan ichidan, topilmasa — butun bazadan (faqat bitta mos kelsa)."""
+    REV101: faqat kitobning o'z sinfi / yosh guruhi va fani ichidan (qoidalar — modules/mavzu_nomi.py).
+    Oldin topilmasa butun bazadan qidirilardi: 6-7 yosh kitobi 4-5 yosh yoki boshqa til mavzusiga ulanib ketardi."""
+    from modules import mavzu_nomi
     pending = parsed.pop("nom_boyicha", None) or {}
     if not pending:
         return
     book = (parsed["payload"].get("01_KITOB") or [{}])[0]
-    fan = _ai_brain_mavzu_nomi_norm(book.get("fan"))
+    fan = mavzu_nomi.nom_norm(book.get("fan"))
+    group = mavzu_nomi.kitob_guruhi(book.get("sinf"))
+    place = mavzu_nomi.joy_nomi(group, book.get("fan"))
     cur.execute(
-        """SELECT topic_code,subject_name,grade,
+        """SELECT topic_code,subject_name,grade,curriculum_scope_id,
                   COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS nom
            FROM dts_tree WHERE COALESCE(is_deleted,FALSE)=FALSE"""
     )
-    index = {}
-    for r in cur.fetchall():
-        index.setdefault(_ai_brain_mavzu_nomi_norm(r["nom"]), []).append(r)
-    replace, ambiguous = {}, {}
+    baza = mavzu_nomi.baza_indeksi(cur.fetchall())
+    replace, ambiguous, meta = {}, {}, {}
     for placeholder, info in pending.items():
-        rows = index.get(_ai_brain_mavzu_nomi_norm(info["nom"]), [])
-        same_fan = [r for r in rows if fan and _ai_brain_mavzu_nomi_norm(r["subject_name"]) == fan]
-        # REV80: bir xil nomli mavzu turli sinf/yosh guruhida bo'lsa — kitobning Sinf qiymati hal qiladi.
-        book_grade = _curriculum.canonical_grade(book.get("sinf")) if book.get("sinf") else ""
-        same_grade = [r for r in same_fan if book_grade and _curriculum.canonical_grade(r.get("grade")) == book_grade]
-        pick = same_grade if same_grade else same_fan if same_fan else rows
+        pick, elsewhere = mavzu_nomi.nomzodlar(baza, info["nom"], fan, group)
+        for r in pick:
+            meta[r["topic_code"]] = r
         codes = sorted({r["topic_code"] for r in pick})
         if len(codes) == 1:
             replace[placeholder] = codes[0]
         elif codes:
             ambiguous[placeholder] = codes
         else:
+            where = f" {place} uchun" if place else ""
+            hint = f" (bu nom boshqa joyda bor: {mavzu_nomi.boshqa_joylar(elsewhere)})" if elsewhere else ""
             _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
-                           f"«{info['nom']}» mavzusi Mavzular bazasida topilmadi — avval Fanlar va mavzular bo'limida shu nom bilan qo'shing yoki varaqqa mavzu kodini yozing")
-    # REV92: bir xil nomli bir nechta mavzu (masalan, qayta importda tasodifan nusxa ochilgan) — miya o'zi to'g'risini
-    # tanlaydi: kitobdagi boshqa mavzular turgan bob/bo'limda, raqami mos, avval dars/test bog'langan mavzu.
+                           f"«{info['nom']}» mavzusi{where} Mavzular bazasida topilmadi{hint} — avval «Mavzu yaratish»da"
+                           f"{where} shu nom bilan qo'shing yoki varaqqa mavzu kodini yozing")
+    # REV92/REV101: bir xil nomli bir nechta mavzu (masalan, ikki blokda tasodifan nusxa ochilgan) — miya o'zi to'g'risini
+    # tanlaydi: kitobdagi boshqa mavzular turgan bob/blokda, raqami mos, avval dars/test bog'langan mavzu.
     if ambiguous:
-        chosen = _ai_brain_nusxadan_tanla(cur, ambiguous, pending, replace)
+        chosen = _ai_brain_nusxadan_tanla(cur, ambiguous, pending, replace, meta)
         for placeholder, codes in ambiguous.items():
             info = pending[placeholder]
             code, reason = chosen.get(placeholder, (None, ""))
@@ -19349,7 +19359,8 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
                                f"Ortiqcha nusxa: {', '.join(extra[:4])} — Mavzular bo'limidan o'chirib qo'ysangiz bo'ladi.", "warning")
             else:
                 _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
-                               f"«{info['nom']}» nomli {len(codes)} ta mavzu bor ({', '.join(codes[:4])}) va qaysi biri to'g'riligini aniqlab bo'lmadi — varaqqa aniq mavzu kodini yozing")
+                               f"«{info['nom']}» nomli {len(codes)} ta mavzu bor ({', '.join(codes[:4])}) va qaysi biri to'g'riligini aniqlab bo'lmadi — "
+                               f"ortiqchasini Mavzular bo'limidan o'chiring yoki varaqqa aniq mavzu kodini yozing")
     text = json.dumps(parsed["payload"], ensure_ascii=False)
     for placeholder, code in replace.items():
         text = text.replace(placeholder, code.replace("\\", "\\\\").replace('"', '\\"'))
