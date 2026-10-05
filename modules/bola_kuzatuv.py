@@ -12,6 +12,13 @@ Ota-onaga (parent_child orqali ulangan bo'lsa) xabar boradi — sayt bildirishno
     ilovadan chiqqani va qancha vaqt yo'qligini biladi.
 Bola ilovasi har 30 soniyada «signal» yuboradi (ko'rinib turibdimi, dars ketyaptimi). Kuzatuvchi har daqiqada
 bir marta ishlaydi; bir nechta server nusxasida ham xabar bir marta ketadi (SKIP LOCKED).
+
+REV103 — kunlik vaqt (faqat bog'cha bolasi):
+  • 2-3 va 4-5 yosh: 1 soat dars + 1 soat erkin (o'yin) = 2 soat; 6-7 yosh: 2 soat dars + 1 soat erkin = 3 soat;
+  • dars vaqti tugasa — darslar yopiladi (o'yin ochiq), o'yin vaqti tugasa — o'yinlar yopiladi, ikkalasi tugasa —
+    «Bugun vaqting tugadi, ertaga uchrashamiz»; o'yinlar har kuni ochiq, faqat bolaning vaqtiga qarab;
+  • butun platformada 5 daqiqa yo'q bo'lsa (boshqa ilova, ekran o'chgan) — ota-onaga «Bilasizmi?» xabari;
+  • ota-ona: bugun nima qildi, qancha (dars / o'yin nomlari bilan) va o'rganish ko'rsatkichlari + reyting.
 """
 import json
 import threading
@@ -22,12 +29,18 @@ from typing import Optional
 from fastapi import APIRouter, Header, HTTPException, Request
 from pydantic import BaseModel, Field
 
+try:
+    from .curriculum_scope import preschool_learner
+except ImportError:   # pragma: no cover — modules/ bevosita yo'lda
+    from modules.curriculum_scope import preschool_learner
+
 TASHKENT = timezone(timedelta(hours=5))
 WEEKDAY_LIMIT = 2
 WEEKEND_LIMIT = 3
 IDLE_MINUTES = 5
 MAX_IDLE_ALERTS = 2           # bitta dars uchun ko'pi bilan 2 marta «mashq qilmayapti»
 SIGNAL_CAP_SECONDS = 45       # ikki signal orasidagi faol vaqt shundan oshmaydi
+INFO_CACHE_SECONDS = 300      # REV103: bola ismi/guruhi keshi (vaqt signali tez-tez keladi)
 WATCH_EVERY_SECONDS = 60
 WEEKDAYS_UZ = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"]
 
@@ -111,6 +124,148 @@ def stars_text(n):
     return "⭐" * n + "☆" * (3 - n)
 
 
+# ── REV103: kunlik vaqt (sof mantiq) ─────────────────────────────
+TIME_LIMITS = {"2-3 yosh": (60, 60), "4-5 yosh": (60, 60), "6-7 yosh": (120, 60)}   # (dars, erkin) daqiqa
+DEFAULT_TIME_LIMIT = (60, 60)
+WARN_LEFT_MINUTES = 5
+SESSION_IDLE_ALERTS_PER_DAY = 3
+GAME_NAMES = {"oyinlar": "O'yinlar", "shaxmat": "Shaxmat", "shashka": "Shashka", "bellashuv": "Bellashuv", "mavzular": "Darslar",
+              "ai_ustoz": "Dars", "test": "Test"}
+
+
+def time_category(turi):
+    """dars (dars, test, mavzular) yoki oyin (erkin vaqt: o'yinlar va qolgan hamma ekran)."""
+    return "dars" if str(turi or "") == "dars" else "oyin"
+
+
+def time_status(used, group=""):
+    """used — {"dars": soniya, "oyin": soniya}. Qaytaradi: daqiqalar, limitlar, qolgan vaqt va nimasi tugagani."""
+    dars_limit, oyin_limit = TIME_LIMITS.get(group, DEFAULT_TIME_LIMIT)
+    dars = int(used.get("dars") or 0) // 60
+    oyin = int(used.get("oyin") or 0) // 60
+    total_limit = dars_limit + oyin_limit
+    out = {
+        "guruh": group or "",
+        "dars": {"daqiqa": dars, "limit": dars_limit, "qoldi": max(0, dars_limit - dars)},
+        "oyin": {"daqiqa": oyin, "limit": oyin_limit, "qoldi": max(0, oyin_limit - oyin)},
+        "jami": {"daqiqa": dars + oyin, "limit": total_limit, "qoldi": max(0, total_limit - dars - oyin)},
+    }
+    out["tugadi"] = {"dars": dars >= dars_limit, "oyin": oyin >= oyin_limit}
+    out["tugadi"]["jami"] = out["tugadi"]["dars"] and out["tugadi"]["oyin"]
+    return out
+
+
+def hours_text(minutes):
+    h, m = divmod(int(minutes or 0), 60)
+    return f"{h} soat" + (f" {m} daqiqa" if m else "") if h else f"{m} daqiqa"
+
+
+def time_message(status, turi):
+    """Bolaga (robot ovozida) aytiladigan gap: nimasi tugagan bo'lsa yoki 5 daqiqa qolgan bo'lsa."""
+    cat = time_category(turi)
+    done = status["tugadi"]
+    if done["jami"]:
+        return {"kod": "jami", "matn": f"Bugun vaqting tugadi! Bugun {hours_text(status['jami']['limit'])} o'qib-o'ynading. "
+                                        "Ko'zlaring dam olsin. Ertaga uchrashamiz!"}
+    if done[cat]:
+        if cat == "dars":
+            return {"kod": "dars", "matn": "Bugungi dars vaqti tugadi. Barakalla! Endi biroz o'ynasang bo'ladi."}
+        return {"kod": "oyin", "matn": "O'yin vaqti tugadi. Endi dars qilamiz!"}
+    left = status[cat]["qoldi"]
+    if 0 < left <= WARN_LEFT_MINUTES:
+        return {"kod": "oz_qoldi", "matn": f"{'Dars' if cat == 'dars' else 'O`yin'} vaqtidan {left} daqiqa qoldi.".replace("`", "'")}
+    return None
+
+
+def _level(score):
+    """0..1 → 1..5 yulduzli daraja."""
+    return max(1, min(5, int(round(1 + 4 * max(0.0, min(1.0, score))))))
+
+
+def _percentile(value, values, higher_is_better=True):
+    """Tengdoshlarning (bolaning o'zidan tashqari) qanchasidan yaxshiroq: 0..1. Taqqoslash uchun kamida 3 bola kerak."""
+    vals = [v for v in values if v is not None]
+    if value is None or len(vals) < 3:
+        return None
+    better = sum(1 for v in vals if (v < value if higher_is_better else v > value))
+    return better / len(vals)
+
+
+def _peer_text(pct, better_word, worse_word):
+    """«— tengdoshlarining 85 foizidan tezroq» (taqqoslash uchun yetarli bola bo'lmasa — bo'sh)."""
+    if pct is None:
+        return ""
+    if pct >= 0.995:
+        return f" — shu yoshdagi tengdoshlarining hammasidan {better_word}"
+    if pct <= 0.005:
+        return f" — hozircha tengdoshlaridan {worse_word}"
+    return f" — tengdoshlarining {round(pct * 100)} foizidan {better_word}"
+
+
+def insights(child_id, lessons, answers, reaction_ms, days_active, peers):
+    """Ota-ona uchun o'rganish ko'rsatkichlari (tibbiy/psixologik tashxis EMAS — faqat platformadagi natijalar).
+
+    lessons — [{faol_soniya, chalgish_soni, togri, jami, yulduz, tugadi, javob_ms}] (oxirgi 14 kun),
+    answers — [bool] test javoblari, reaction_ms — reaksiya o'yini o'rtachasi yoki None, days_active — oxirgi 7 kundagi faol
+    kunlar, peers — {child_id: {"yulduz": n, "javob_ms": ms|None, "aniqlik": 0..1|None}} (shu yosh guruhi, 7 kun)."""
+    done = [l for l in lessons if l.get("tugadi")]
+    right = sum(int(l.get("togri") or 0) for l in done) + sum(1 for a in answers if a)
+    total = sum(int(l.get("jami") or 0) for l in done) + len(answers)
+    accuracy = right / total if total else None
+    times = [int(l["javob_ms"]) for l in done if l.get("javob_ms")]
+    answer_ms = round(sum(times) / len(times)) if times else None
+    focus_min = round(sum(int(l.get("faol_soniya") or 0) for l in done) / 60 / len(done), 1) if done else None
+    distract = round(sum(int(l.get("chalgish_soni") or 0) for l in lessons) / len(lessons), 1) if lessons else None
+    stars = round(sum(int(l.get("yulduz") or 0) for l in done) / len(done), 1) if done else None
+    finish_rate = len(done) / len(lessons) if lessons else None
+    peer_ms = [p.get("javob_ms") for k, p in peers.items() if k != child_id]
+    peer_acc = [p.get("aniqlik") for k, p in peers.items() if k != child_id]
+    # tengdoshlar bilan bir xil davr (7 kun) va bir xil o'lchov bo'yicha taqqoslanadi
+    own = peers.get(child_id) or {}
+    own_ms = own.get("javob_ms") or answer_ms
+    own_acc = own.get("aniqlik") if own.get("aniqlik") is not None else accuracy
+    items = []
+
+    speed_pct = _percentile(own_ms, peer_ms, higher_is_better=False)
+    if answer_ms:
+        text = f"Savolga o'rtacha {answer_ms / 1000:.1f} soniyada javob beradi"
+        text += _peer_text(speed_pct, "tezroq", "sekinroq")
+        if reaction_ms:
+            text += f". Reaksiya o'yinida o'rtacha {int(reaction_ms)} ms"
+        items.append({"kalit": "tezlik", "nom": "Tezlik", "emoji": "⚡", "daraja": _level(speed_pct if speed_pct is not None else 0.6),
+                      "matn": text + "."})
+    elif reaction_ms:
+        items.append({"kalit": "tezlik", "nom": "Tezlik", "emoji": "⚡", "daraja": _level(max(0.0, min(1.0, (900 - reaction_ms) / 600))),
+                      "matn": f"Reaksiya o'yinida o'rtacha {int(reaction_ms)} ms."})
+    if accuracy is not None:
+        pct = _percentile(own_acc, peer_acc)
+        text = f"Savollarning {round(accuracy * 100)} foiziga to'g'ri javob berdi (o'tgan darslardan takror savollar ham shu ichida)"
+        text += _peer_text(pct, "yaxshiroq", "pastroq")
+        items.append({"kalit": "xotira", "nom": "Eslab qolish", "emoji": "🧠", "daraja": _level(accuracy), "matn": text + "."})
+    if focus_min is not None:
+        text = f"Bir darsda o'rtacha {focus_min:g} daqiqa diqqat bilan o'tiradi"
+        if distract:
+            text += f", darsdan o'rtacha {distract:g} marta chalg'iydi"
+        items.append({"kalit": "diqqat", "nom": "Diqqat", "emoji": "🎯",
+                      "daraja": _level(max(0.0, min(1.0, (finish_rate or 0) - 0.15 * (distract or 0) + 0.1))), "matn": text + "."})
+    items.append({"kalit": "muntazam", "nom": "Muntazamlik", "emoji": "📅", "daraja": _level(days_active / 7),
+                  "matn": f"Oxirgi 7 kunda {days_active} kun shug'ullandi."})
+    if stars is not None:
+        items.append({"kalit": "natija", "nom": "Natija", "emoji": "⭐", "daraja": _level((stars - 1) / 2),
+                      "matn": f"Tugatgan darslarida o'rtacha {stars:g} yulduz oldi."})
+
+    ranking = None
+    if child_id in peers and len(peers) >= 2:
+        mine = int(peers[child_id].get("yulduz") or 0)
+        place = 1 + sum(1 for p in peers.values() if int(p.get("yulduz") or 0) > mine)   # teng yulduz — bir xil o'rin
+        ranking = {"orin": place, "jami": len(peers), "yulduz": mine}
+    best = sorted([i for i in items if i["daraja"] >= 4], key=lambda i: -i["daraja"])
+    summary = ("Kuchli tomoni: " + ", ".join(i["nom"].lower() for i in best[:2]) + ".") if best else \
+        ("Hali ma'lumot kam — bir necha kun dars qilgach ko'rsatkichlar aniqlashadi." if not done else "Muntazam dars qilsa, ko'rsatkichlar tez o'sadi.")
+    return {"korsatkichlar": items, "reyting": ranking, "xulosa": summary,
+            "izoh": "Bu tibbiy yoki psixologik tashxis emas — faqat platformadagi dars va o'yin natijalari."}
+
+
 class StartLesson(BaseModel):
     token: Optional[str] = None
     dars_kod: str = Field(min_length=1, max_length=120)
@@ -124,6 +279,7 @@ class FinishLesson(BaseModel):
     dars_kod: str = Field(min_length=1, max_length=120)
     togri: int = Field(default=0, ge=0, le=500)
     jami: int = Field(default=0, ge=0, le=500)
+    ortacha_ms: int = Field(default=0, ge=0, le=120000)   # REV103: savolga o'rtacha javob vaqti (tezlik ko'rsatkichi)
 
 
 def migrate(cur):
@@ -166,6 +322,31 @@ def migrate(cur):
     cur.execute("CREATE INDEX IF NOT EXISTS bola_dars_faollik_kun ON bola_dars_faollik(child_id, sana)")
     cur.execute("""CREATE INDEX IF NOT EXISTS bola_dars_faollik_ochiq ON bola_dars_faollik(oxirgi_signal_at)
                    WHERE tugadi_at IS NULL""")
+    cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS javob_ms INT")
+    # REV103: kunlik vaqt — nima qildi va qancha (dars / o'yin nomi bilan) hamda butun platformadagi seans
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS bola_vaqt (
+            child_id BIGINT NOT NULL,
+            sana DATE NOT NULL,
+            turi TEXT NOT NULL,
+            nom TEXT NOT NULL DEFAULT '',
+            soniya INT NOT NULL DEFAULT 0,
+            oxirgi_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            PRIMARY KEY (child_id, sana, turi, nom)
+        )""")
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS bola_sessiya (
+            child_id BIGINT PRIMARY KEY,
+            sana DATE NOT NULL,
+            oxirgi_signal_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            korinadi BOOLEAN NOT NULL DEFAULT TRUE,
+            yashirildi_at TIMESTAMPTZ,
+            turi TEXT NOT NULL DEFAULT 'oyin',
+            nom TEXT NOT NULL DEFAULT '',
+            ogohlantirildi_at TIMESTAMPTZ,
+            ogohlantirish_soni INT NOT NULL DEFAULT 0,
+            tugadi_xabar_sana DATE
+        )""")
     # Sayt bildirishnomalari (to'lov modulidagi jadval bilan bir xil tuzilish).
     cur.execute("""CREATE TABLE IF NOT EXISTS bildirishnomalar(
         id SERIAL PRIMARY KEY,
@@ -204,12 +385,42 @@ def create_router(platform):
             cur.close()
             conn.close()
 
-    def child_card(cur, user_id):
-        cur.execute("""SELECT full_name, role, to_jsonb(u)->'kabutar_learning_profile'->>'role' AS lrole
-                       FROM users u WHERE user_id=%s""", (user_id,))
-        row = cur.fetchone() or {}
+    # REV103: bola ma'lumoti (ism, bog'cha bolasimi, yosh guruhi) — vaqt signali har 30 soniyada keladi, shuning uchun
+    # qisqa keshda saqlanadi va users qatori to'liq JSON qilinmaydi (unda profil rasmi bor).
+    info_cache = {}
+
+    def child_info(cur, user_id):
+        now = time.monotonic()
+        hit = info_cache.get(user_id)
+        if hit and hit[0] > now:
+            return hit[1]
+        try:
+            cur.execute("SAVEPOINT bola_info")
+            cur.execute("SELECT full_name, role, class, kabutar_learning_profile AS lp FROM users WHERE user_id=%s", (user_id,))
+            row = dict(cur.fetchone() or {})
+            cur.execute("RELEASE SAVEPOINT bola_info")
+        except Exception:   # eski baza: ta'lim profili ustuni hali yo'q
+            cur.execute("ROLLBACK TO SAVEPOINT bola_info")
+            cur.execute("SELECT full_name, role, class FROM users WHERE user_id=%s", (user_id,))
+            row = dict(cur.fetchone() or {})
+        lp = row.get("lp") or {}
+        if isinstance(lp, str):
+            try:
+                lp = json.loads(lp)
+            except ValueError:
+                lp = {}
         name = (str(row.get("full_name") or "Farzandingiz").strip() or "Farzandingiz")[:60]
-        return name, row.get("role") == "oquvchi" and row.get("lrole") == "bogcha"
+        kid = row.get("role") == "oquvchi" and lp.get("role") == "bogcha"
+        group = preschool_learner({"kabutar_learning_profile": lp, "class": row.get("class")}) or ""
+        out = (name, kid, group)
+        if len(info_cache) > 20000:
+            info_cache.clear()
+        info_cache[user_id] = (now + INFO_CACHE_SECONDS, out)
+        return out
+
+    def child_card(cur, user_id):
+        name, kid, _ = child_info(cur, user_id)
+        return name, kid
 
     def parents_of(cur, child_id):
         try:
@@ -258,6 +469,21 @@ def create_router(platform):
         return {"sana": day.isoformat(), "kun": WEEKDAYS_UZ[day.weekday()], "dam_olish": day.weekday() >= 5,
                 "limit": limit, "fanlar": fans, "darslar": lessons}
 
+    # ── REV103: kunlik vaqt ──
+    def child_group(cur, user_id):
+        return child_info(cur, user_id)[2]
+
+    def today_usage(cur, child_id, day):
+        cur.execute("SELECT turi, COALESCE(SUM(soniya),0) AS s FROM bola_vaqt WHERE child_id=%s AND sana=%s GROUP BY turi",
+                    (child_id, day))
+        used = {"dars": 0, "oyin": 0}
+        for r in cur.fetchall():
+            used[time_category(r["turi"])] += int(r["s"] or 0)
+        return used
+
+    def time_state(cur, child_id, day):
+        return time_status(today_usage(cur, child_id, day), child_group(cur, child_id))
+
     # ── Bola ──
     @router.get("/api/bola/kun_rejasi")
     def day_plan(token: str = None, authorization: str = Header(None)):
@@ -283,6 +509,11 @@ def create_router(platform):
                 conn.commit()
                 return {"ok": True, "kuzatilmaydi": True}
             cur.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", (f"bola-reja:{user_id}",))
+            vaqt = time_state(cur, user_id, day)
+            if vaqt["tugadi"]["dars"]:   # REV103: bugungi dars vaqti tugagan — dars ochilmaydi (o'yin vaqti bo'lsa, o'yin ochiq)
+                conn.rollback()
+                msg = time_message(vaqt, "dars")
+                raise HTTPException(409, {"kod": "vaqt", "xabar": msg["matn"] if msg else "Bugungi dars vaqti tugadi."})
             cur.execute("SELECT ochilgan_sana FROM bola_dars_holat WHERE child_id=%s AND dars_kod=%s", (user_id, body.dars_kod))
             known = cur.fetchone()
             limit = daily_limit(day)
@@ -372,11 +603,11 @@ def create_router(platform):
             cur.execute("""UPDATE bola_dars_holat SET yulduz=GREATEST(yulduz,%s), tugatilgan_at=COALESCE(tugatilgan_at, %s)
                            WHERE child_id=%s AND dars_kod=%s RETURNING fan, mavzu""", (stars, now, user_id, body.dars_kod))
             lesson = cur.fetchone()
-            cur.execute("""UPDATE bola_dars_faollik SET tugadi_at=%s, togri=%s, jami=%s, yulduz=%s,
+            cur.execute("""UPDATE bola_dars_faollik SET tugadi_at=%s, togri=%s, jami=%s, yulduz=%s, javob_ms=NULLIF(%s, 0),
                              faol_soniya=faol_soniya + CASE WHEN korinadi AND faol THEN LEAST(%s, GREATEST(0, EXTRACT(EPOCH FROM (%s - oxirgi_signal_at))::int)) ELSE 0 END
                            WHERE child_id=%s AND dars_kod=%s AND sana=%s AND tugadi_at IS NULL
                            RETURNING faol_soniya, mavzu, fan""",
-                        (now, body.togri, body.jami, stars, SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
+                        (now, body.togri, body.jami, stars, body.ortacha_ms, SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
             done = cur.fetchone()
             out = plan(cur, user_id, now)
             fan = (lesson or done or {}).get("fan") or ""
@@ -392,6 +623,76 @@ def create_router(platform):
                 notify(cur, user_id, text, "bola_dars")
             conn.commit()
             return {"ok": True, "yulduz": stars, "bugun_tugadi": all_done, "qoldi": state["qoldi"], "reja": out}
+        return run_db(run)
+
+    @router.get("/api/bola/vaqt")
+    def time_now(token: str = None, authorization: str = Header(None)):
+        user_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            _, kid = child_card(cur, user_id)
+            if not kid:
+                conn.commit()
+                return {"kuzatilmaydi": True}
+            out = time_state(cur, user_id, day)
+            conn.commit()
+            return {**out, "xabar": time_message(out, "oyin") if out["tugadi"]["jami"] else None}
+        return run_db(run)
+
+    @router.post("/api/bola/vaqt/signal")
+    async def time_signal(request: Request, authorization: str = Header(None)):
+        """REV103: har 30 soniyada, ilova yashirilganda va qaytganda. turi: dars | oyin; nom — dars mavzusi yoki o'yin nomi.
+        Oldingi signaldan beri o'tgan faol vaqt (ko'pi bilan 45 s) oldingi ekran hisobiga yoziladi."""
+        try:
+            data = json.loads((await request.body() or b"{}").decode("utf-8") or "{}")
+        except Exception:
+            raise HTTPException(400, "Noto'g'ri signal")
+        turi = "dars" if data.get("turi") == "dars" else "oyin"
+        nom = str(data.get("nom") or "").strip()[:120]
+        visible = bool(data.get("korinadi", True))
+        from starlette.concurrency import run_in_threadpool
+        return await run_in_threadpool(_time_signal, data.get("token"), authorization, turi, nom, visible)
+
+    def _time_signal(token, authorization, turi, nom, visible):
+        user_id = uid_of(token, authorization)
+        now = datetime.now(timezone.utc)
+        day = tashkent_day(now)
+
+        def run(conn, cur):
+            name, kid = child_card(cur, user_id)
+            if not kid:
+                conn.commit()
+                return {"kuzatilmaydi": True}
+            group = child_group(cur, user_id)
+            cur.execute("SELECT * FROM bola_sessiya WHERE child_id=%s FOR UPDATE", (user_id,))
+            prev = cur.fetchone()
+            used = today_usage(cur, user_id, day)
+            status = time_status(used, group)
+            if prev and prev["sana"] == day:
+                add = active_seconds(prev["oxirgi_signal_at"], now, prev["korinadi"], True)
+                cat = time_category(prev["turi"])
+                if add and not status["tugadi"][cat]:   # tugagan vaqt hisobiga yozilmaydi (bola u yerda bloklangan)
+                    cur.execute("""INSERT INTO bola_vaqt(child_id, sana, turi, nom, soniya, oxirgi_at) VALUES(%s,%s,%s,%s,%s,%s)
+                                   ON CONFLICT (child_id, sana, turi, nom) DO UPDATE SET soniya=bola_vaqt.soniya+EXCLUDED.soniya,
+                                     oxirgi_at=EXCLUDED.oxirgi_at""",
+                                (user_id, day, cat, prev["nom"] or GAME_NAMES.get(cat, ""), add, now))
+                    used[cat] += add
+                    status = time_status(used, group)
+            new_day = not prev or prev["sana"] != day
+            cur.execute("""INSERT INTO bola_sessiya(child_id, sana, oxirgi_signal_at, korinadi, yashirildi_at, turi, nom, ogohlantirish_soni)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,0)
+                           ON CONFLICT (child_id) DO UPDATE SET sana=EXCLUDED.sana, oxirgi_signal_at=EXCLUDED.oxirgi_signal_at,
+                             korinadi=EXCLUDED.korinadi, turi=EXCLUDED.turi, nom=EXCLUDED.nom,
+                             yashirildi_at=CASE WHEN EXCLUDED.korinadi THEN NULL ELSE COALESCE(bola_sessiya.yashirildi_at, EXCLUDED.oxirgi_signal_at) END,
+                             ogohlantirish_soni=CASE WHEN %s THEN 0 ELSE bola_sessiya.ogohlantirish_soni END""",
+                        (user_id, day, now, visible, None if visible else now, turi, nom, new_day))
+            if status["tugadi"]["jami"] and (not prev or prev.get("tugadi_xabar_sana") != day):
+                cur.execute("UPDATE bola_sessiya SET tugadi_xabar_sana=%s WHERE child_id=%s", (day, user_id))
+                notify(cur, user_id, f"🌙 {name} bugungi vaqtini to'liq ishlatdi: dars {status['dars']['daqiqa']} daqiqa, "
+                                     f"o'yin {status['oyin']['daqiqa']} daqiqa. Platforma ertagacha yopildi.", "bola_vaqt")
+            conn.commit()
+            return {**status, "xabar": time_message(status, turi)}
         return run_db(run)
 
     # ── Ota-ona ──
@@ -416,6 +717,18 @@ def create_router(platform):
             week = [{"sana": r["sana"].isoformat(), "kun": WEEKDAYS_UZ[r["sana"].weekday()], "darslar": r["darslar"],
                      "tugatilgan": r["tugatilgan"], "daqiqa": round(r["soniya"] / 60), "chalgish": r["chalgish"]} for r in cur.fetchall()]
             out_plan = plan(cur, bola_id, now)
+            vaqt = time_state(cur, bola_id, day) if kid else None
+            cur.execute("""SELECT turi, nom, soniya FROM bola_vaqt WHERE child_id=%s AND sana=%s ORDER BY soniya DESC LIMIT 20""",
+                        (bola_id, day))
+            nima = [{"turi": r["turi"], "nom": r["nom"], "daqiqa": max(1, round((r["soniya"] or 0) / 60))} for r in cur.fetchall() if r["soniya"]]
+            cur.execute("""SELECT sana, turi, COALESCE(SUM(soniya),0) AS s FROM bola_vaqt WHERE child_id=%s AND sana > %s
+                           GROUP BY sana, turi ORDER BY sana""", (bola_id, day - timedelta(days=7)))
+            kunlar = {}
+            for r in cur.fetchall():
+                d = kunlar.setdefault(r["sana"].isoformat(), {"sana": r["sana"].isoformat(), "kun": WEEKDAYS_UZ[r["sana"].weekday()], "dars": 0, "oyin": 0})
+                d[time_category(r["turi"])] += round(int(r["s"] or 0) / 60)
+            cur.execute("SELECT * FROM bola_sessiya WHERE child_id=%s", (bola_id,))
+            sess = cur.fetchone()
             conn.commit()
             status = live_status(live_row, now)
             if live_row:
@@ -429,7 +742,77 @@ def create_router(platform):
                            "chalgish": r["chalgish_soni"], "qadam": r["qadam"], "jami_qadam": r["jami_qadam"]} for r in today],
                 "hafta": week,
                 "reja": {k: out_plan[k] for k in ("sana", "kun", "dam_olish", "limit", "fanlar")},
+                # REV103: bugun qancha va nima (dars / o'yin) — hamda platformada hozir bormi
+                "vaqt": {**(vaqt or {}), "nima": nima, "hafta": list(kunlar.values()),
+                         "hozir": ({"nom": sess["nom"], "turi": sess["turi"],
+                                    "platformada": bool(sess["korinadi"]) and minutes_between(sess["oxirgi_signal_at"], now) < 2,
+                                    "daqiqa": minutes_between(sess["yashirildi_at"] or sess["oxirgi_signal_at"], now)}
+                                   if sess and sess["sana"] == day else None)} if kid else None,
             }
+        return run_db(run)
+
+    @router.get("/api/ota/bola_tahlil")
+    def child_insights(bola_id: int, token: str = None, authorization: str = Header(None)):
+        """REV103: o'rganish ko'rsatkichlari (tezlik, eslab qolish, diqqat, muntazamlik, natija) va yosh guruhi reytingi."""
+        parent_id = uid_of(token, authorization)
+        now = datetime.now(timezone.utc)
+        day = tashkent_day(now)
+
+        def run(conn, cur):
+            cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (parent_id, bola_id))
+            if not cur.fetchone():
+                raise HTTPException(403, "Bu farzand sizga ulanmagan")
+            group = child_group(cur, bola_id)
+            cur.execute("""SELECT faol_soniya, chalgish_soni, togri, jami, yulduz, (tugadi_at IS NOT NULL) AS tugadi, javob_ms
+                           FROM bola_dars_faollik WHERE child_id=%s AND sana > %s""", (bola_id, day - timedelta(days=14)))
+            lessons = [dict(r) for r in cur.fetchall()]
+            answers, reaction = [], None
+            for sql, key in (("SELECT togri_mi FROM savol_javob_tarixi WHERE user_id=%s AND yaratilgan_at > NOW() - INTERVAL '14 days'", "a"),
+                             ("SELECT AVG(millisekund) AS m FROM reaksiya_natijalari WHERE user_id=%s AND yaratilgan_at > NOW() - INTERVAL '14 days'", "r")):
+                try:
+                    cur.execute("SAVEPOINT bola_tahlil")
+                    cur.execute(sql, (bola_id,))
+                    if key == "a":
+                        answers = [bool(r["togri_mi"]) for r in cur.fetchall()]
+                    else:
+                        reaction = (cur.fetchone() or {}).get("m")
+                    cur.execute("RELEASE SAVEPOINT bola_tahlil")
+                except Exception:   # jadval hali yo'q
+                    cur.execute("ROLLBACK TO SAVEPOINT bola_tahlil")
+            cur.execute("""SELECT COUNT(DISTINCT sana) AS n FROM (
+                             SELECT sana FROM bola_dars_faollik WHERE child_id=%s AND sana > %s
+                             UNION SELECT sana FROM bola_vaqt WHERE child_id=%s AND sana > %s) x""",
+                        (bola_id, day - timedelta(days=7), bola_id, day - timedelta(days=7)))
+            days_active = int((cur.fetchone() or {}).get("n") or 0)
+            # Tengdoshlar: shu yosh guruhidagi bog'cha bolalari, oxirgi 7 kun (ismsiz — faqat o'rin)
+            peer_sql = """SELECT f.child_id, MAX(u.class) AS class, {lp} AS lp,
+                                  COALESCE(SUM(f.yulduz),0) AS yulduz,
+                                  AVG(f.javob_ms) FILTER (WHERE f.javob_ms IS NOT NULL) AS javob_ms,
+                                  SUM(f.togri) FILTER (WHERE f.tugadi_at IS NOT NULL) AS togri,
+                                  SUM(f.jami) FILTER (WHERE f.tugadi_at IS NOT NULL) AS jami
+                           FROM bola_dars_faollik f JOIN users u ON u.user_id=f.child_id
+                           WHERE f.sana > %s GROUP BY f.child_id LIMIT 5000"""
+            try:
+                cur.execute("SAVEPOINT bola_tengdosh")
+                cur.execute(peer_sql.format(lp="(ARRAY_AGG(u.kabutar_learning_profile))[1]"), (day - timedelta(days=7),))
+                peer_rows = cur.fetchall()
+                cur.execute("RELEASE SAVEPOINT bola_tengdosh")
+            except Exception:   # eski baza: ta'lim profili ustuni yo'q — guruhsiz taqqoslanadi
+                cur.execute("ROLLBACK TO SAVEPOINT bola_tengdosh")
+                cur.execute(peer_sql.format(lp="NULL::jsonb"), (day - timedelta(days=7),))
+                peer_rows, group = cur.fetchall(), ""
+            peers = {}
+            for r in peer_rows:
+                lp = r["lp"] if isinstance(r["lp"], dict) else {}
+                if group and preschool_learner({"kabutar_learning_profile": lp, "class": r["class"]}) != group:
+                    continue
+                peers[int(r["child_id"])] = {"yulduz": int(r["yulduz"] or 0),
+                                             "javob_ms": float(r["javob_ms"]) if r["javob_ms"] is not None else None,
+                                             "aniqlik": (int(r["togri"] or 0) / int(r["jami"])) if r["jami"] else None}
+            conn.commit()
+            name, _ = child_card(cur, bola_id)
+            return {"bola": {"user_id": bola_id, "ism": name, "guruh": group},
+                    **insights(bola_id, lessons, answers, float(reaction) if reaction else None, days_active, peers)}
         return run_db(run)
 
     # ── Kuzatuvchi: 5 daqiqa mashq qilmasa — ota-onaga bir marta ──
@@ -453,6 +836,10 @@ def create_router(platform):
                 reason = idle_reason(row, now)
                 if not reason:
                     continue
+                if time_state(cur, row["child_id"], row["sana"])["tugadi"]["dars"]:
+                    # REV103: dars vaqti tugagani uchun to'xtadi — bu «mashq qilmayapti» emas, ota-onaga yozilmaydi
+                    cur.execute("UPDATE bola_dars_faollik SET ogohlantirish_soni=%s WHERE id=%s", (MAX_IDLE_ALERTS, row["id"]))
+                    continue
                 name, _ = child_card(cur, row["child_id"])
                 title = row["mavzu"] or "dars"
                 step = f" ({row['qadam']}/{row['jami_qadam']}-qadamda)" if row["jami_qadam"] else ""
@@ -470,13 +857,65 @@ def create_router(platform):
             return sent
         return run_db(run)
 
+    # ── REV103: butun platformada 5 daqiqa yo'q (boshqa ilova, ekran o'chgan) — ota-onaga «Bilasizmi?» ──
+    def check_session_idle(now=None):
+        now = now or datetime.now(timezone.utc)
+        day = tashkent_day(now)
+        sent = 0
+
+        def run(conn, cur):
+            nonlocal sent
+            cur.execute("SELECT pg_try_advisory_xact_lock(%s) AS ok", (91039103,))
+            if not cur.fetchone()["ok"]:
+                conn.rollback()
+                return 0
+            limit = now - timedelta(minutes=IDLE_MINUTES)
+            # shu yo'qlik haqida aytilganlar SQL'da chiqarib tashlanadi — ko'p bola bo'lsa ham hech kim navbatda qolib ketmaydi
+            cur.execute("""SELECT * FROM bola_sessiya
+                           WHERE sana=%s AND ogohlantirish_soni < %s AND oxirgi_signal_at > %s
+                             AND ((NOT korinadi AND yashirildi_at <= %s) OR oxirgi_signal_at <= %s)
+                             AND (ogohlantirildi_at IS NULL OR ogohlantirildi_at <
+                                  CASE WHEN NOT korinadi AND yashirildi_at IS NOT NULL THEN yashirildi_at ELSE oxirgi_signal_at END)
+                           ORDER BY oxirgi_signal_at LIMIT 300 FOR UPDATE SKIP LOCKED""",
+                        (day, SESSION_IDLE_ALERTS_PER_DAY, now - timedelta(hours=3), limit, limit))
+            for row in [dict(r) for r in cur.fetchall()]:
+                state = time_state(cur, row["child_id"], day)
+                if state["tugadi"]["jami"]:   # bugungi vaqti tugagan — chiqib ketishi kutilgan, bugun boshqa tekshirilmaydi
+                    cur.execute("UPDATE bola_sessiya SET ogohlantirish_soni=%s WHERE child_id=%s", (SESSION_IDLE_ALERTS_PER_DAY, row["child_id"]))
+                    continue
+                cur.execute("""SELECT * FROM bola_dars_faollik WHERE child_id=%s AND sana=%s AND tugadi_at IS NULL
+                                 AND ogohlantirish_soni < %s AND oxirgi_signal_at > %s""",
+                            (row["child_id"], day, MAX_IDLE_ALERTS, now - timedelta(hours=3)))
+                lessons = [dict(r) for r in cur.fetchall()]
+                start = row["yashirildi_at"] if not row["korinadi"] and row["yashirildi_at"] else row["oxirgi_signal_at"]
+                if any(l.get("ogohlantirildi_at") and l["ogohlantirildi_at"] >= start for l in lessons):
+                    # shu yo'qlik haqida «darsi yarim qoldi» xabari ketgan — ikkinchi marta yozilmaydi
+                    cur.execute("UPDATE bola_sessiya SET ogohlantirildi_at=%s WHERE child_id=%s", (now, row["child_id"]))
+                    continue
+                if not state["tugadi"]["dars"] and any(idle_reason(l, now) for l in lessons):
+                    continue   # yarim qolgan dars haqida dars kuzatuvchisi aytadi
+                name, kid = child_card(cur, row["child_id"])
+                if not kid:
+                    continue
+                where = f" Oxirgi marta: «{row['nom']}»." if row.get("nom") else ""
+                notify(cur, row["child_id"],
+                       f"⏸ Bilasizmi? {name} {IDLE_MINUTES} daqiqadan beri platformada emas — boshqa ilovaga o'tgan, "
+                       f"telefon ekrani o'chgan yoki boshqa ish bilan band bo'lishi mumkin.{where}", "bola_vaqt")
+                cur.execute("UPDATE bola_sessiya SET ogohlantirildi_at=%s, ogohlantirish_soni=ogohlantirish_soni+1 WHERE child_id=%s",
+                            (now, row["child_id"]))
+                sent += 1
+            conn.commit()
+            return sent
+        return run_db(run)
+
     def watcher():
         time.sleep(15)
         while True:
-            try:
-                check_idle()
-            except Exception as exc:   # pragma: no cover — kuzatuvchi hech qachon to'xtamaydi
-                print(f"[bola_kuzatuv watcher] {exc}", flush=True)
+            for job in (check_idle, check_session_idle):
+                try:
+                    job()
+                except Exception as exc:   # pragma: no cover — kuzatuvchi hech qachon to'xtamaydi
+                    print(f"[bola_kuzatuv watcher] {exc}", flush=True)
             time.sleep(WATCH_EVERY_SECONDS)
 
     started = {"ok": False}
@@ -488,4 +927,5 @@ def create_router(platform):
             threading.Thread(target=watcher, name="bola-kuzatuv", daemon=True).start()
 
     router.check_idle = check_idle   # sinov uchun
+    router.check_session_idle = check_session_idle
     return router

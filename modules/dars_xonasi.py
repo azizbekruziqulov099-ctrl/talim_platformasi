@@ -260,6 +260,30 @@ def emoji_key(text):
     return first.replace("\ufe0f", "")
 
 
+def soz_kaliti(text):
+    """REV102: «🐱 cat!» → «🐱|cat»: rasmni emoji VA so'z bo'yicha topish uchun (bir emoji ikki so'zda bo'lsa adashmaslik)."""
+    line = str(text or "").strip().split("\n", 1)[0].strip()
+    emoji = emoji_key(line)
+    parts = line.split(None, 1)
+    if not emoji or len(parts) < 2:
+        return ""
+    word = re.sub(r"[‘’ʻʼ`´']", "", parts[1].lower())
+    word = re.sub(r"\s+", " ", re.sub(r"[^\w\s]", " ", word)).strip()
+    return f"{emoji}|{word}" if word else ""
+
+
+def word_pictures(units, media_url):
+    """Kitob qadamlaridan «emoji|so'z» → rasm (dars rasmi shu so'zniki ekani aniq)."""
+    out = {}
+    for u in units:
+        p = u.get("payload") or {}
+        key = soz_kaliti(p.get("doska_matni"))
+        url = media_url(_t(p.get("media_id"))) if key else None
+        if key and url and key not in out:
+            out[key] = url
+    return out
+
+
 def emoji_pictures(units, media_url):
     """Kitob qadamlaridan emoji → rasm manzili (birinchi topilgani)."""
     out = {}
@@ -465,11 +489,15 @@ def create_router(platform):
                     """SELECT DISTINCT ON (payload->>'doska_matni') unit_code,unit_kind,payload
                        FROM ai_brain_published_units
                        WHERE book_title=%s AND unit_kind='lesson_step' AND COALESCE(payload->>'media_id','')<>''
-                       LIMIT 400""",
+                       ORDER BY payload->>'doska_matni', unit_code
+                       LIMIT 2000""",
                     (books[0]["book_title"],),
                 )
                 pic_units = [dict(r) for r in cur.fetchall()]
-                lesson["rasmlar"] = emoji_pictures(pic_units, media_resolver(cur, pic_units))
+                resolve = media_resolver(cur, pic_units)
+                lesson["rasmlar"] = emoji_pictures(pic_units, resolve)
+                # REV102: so'z bo'yicha rasm — bir emoji ikki so'zda bo'lsa (masalan 👋 Hello / 👋 Bye) noto'g'ri rasm chiqmasin
+                lesson["rasm_sozlar"] = word_pictures(pic_units, resolve)
             lesson["manba"] = {"kitob": books[0]["book_title"]} if books else None
             codes = [
                 v["takrorlash_topic_code"] for items in lesson["variants"].values() for v in items

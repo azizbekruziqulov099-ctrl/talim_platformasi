@@ -353,26 +353,39 @@ class Builder:
 
     # ── darslar ──
     def review_rows(self, index):
+        """REV102: oldingi darslardan 2 tadan bilim (1 va 3 dars oldingi) — bitta qadamda ikkita rasm, har so'zdan
+        keyin «Men bilan ayt» / «Say:» (dars xonasi shu joyda bolaga qaytarish uchun pauza qiladi)."""
         rows = []
         for back in (1, 3):
-            if index - back >= 0 and self.lesson_items[index - back]:
-                it = self.rng.choice(self.lesson_items[index - back])
-                if self.lang and self.level >= 3:
+            if index - back < 0 or not self.lesson_items[index - back]:
+                continue
+            pool = list(self.lesson_items[index - back])
+            picks = self.rng.sample(pool, min(2, len(pool)))
+            names = " ".join(f"{it['emoji']} {it['say']}" for it in picks)
+            if self.lang and self.level >= 3:
+                parts = []
+                for it in picks:
                     sent = f" {_sentence(it['sentence'])}" if it.get("sentence") else ""
-                    text = self.E(f"{self.C['remember']} {it['emoji']} {_sentence(it['say'])}{sent} {self.C['together']}")
-                    if self.level == 3:
-                        text += f" ({it['uz']})"
-                    title = f"🔁 {self.C['t_remember']} {it['emoji']} {it['say']}"
-                elif self.lang:
-                    pre = f"{self.E(self.C['remember'])} " if self.level == 2 else "Esingdami? "
-                    text = f"{pre}{it['emoji']} Bu — {_tag(self.lang, it['say'])}, ya'ni {_sentence(it['uz'])} Qani, birga aytamiz!"
-                    title = f"🔁 Eslaymiz: {it['emoji']} {it['say']}"
-                else:
+                    parts.append(f"{it['emoji']} {_sentence(it['say'])}{sent} {self.C['say']} {_sentence(it['say'])}")
+                text = self.E(f"{self.C['remember']} " + " ".join(parts))
+                if self.level == 3:
+                    text += " (" + "; ".join(it["uz"] for it in picks) + ")"
+                title = f"🔁 {self.C['t_remember']} {names}"
+            elif self.lang:
+                pre = f"{self.E(self.C['remember'])} " if self.level == 2 else "Esingdami? "
+                text = pre + " ".join(f"{it['emoji']} Bu — {_tag(self.lang, it['say'])}, ya'ni {_sentence(it['uz'])} "
+                                      f"Men bilan ayt: {_tagp(self.lang, it['say'])}" for it in picks)
+                title = f"🔁 Eslaymiz: {names}"
+            else:
+                said = []
+                for it in picks:
                     uz = _clean(it.get("uz"))
-                    text = f"Esingdami? {it['emoji']} {_sentence(it['say'])} {_sentence(uz[:1].upper() + uz[1:])} Qani, birga aytamiz!"
-                    title = f"🔁 Eslaymiz: {it['emoji']} {it['say']}"
-                rows.append({"turi": "tushuncha", "sarlavha": title, "matn": self.t(text), "rasm": it.get("image", ""),
-                             "doska": self.board(it), "sodda": self.item_simple(it), "boshqa_usul": self.item_other(it)})
+                    said.append(f"{it['emoji']} {_sentence(it['say'])}" + (f" {_sentence(uz[:1].upper() + uz[1:])}" if uz else ""))
+                text = "Esingdami? " + " ".join(said) + " Qani, birga aytamiz!"
+                title = f"🔁 Eslaymiz: {names}"
+            rows.append({"turi": "tushuncha", "sarlavha": title, "matn": self.t(text), "rasm": picks[0].get("image", ""),
+                         "doska": "\n".join(self.board(it) for it in picks), "sodda": self.item_simple(picks[0]),
+                         "boshqa_usul": self.item_other(picks[0])})
         return rows
 
     def intro_text(self, lesson, default_uz):

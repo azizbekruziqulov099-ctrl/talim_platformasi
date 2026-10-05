@@ -2777,31 +2777,138 @@ def _ovoz_qismlarga_bol(matn: str, asosiy_til: str = "uz"):
     return split_speech_text(matn)
 
 
+# REV102: tayyor ovoz bazada ham saqlanadi — bir marta yaratilgan dars ovozi qayta ishga tushganda ham,
+# boshqa worker'da ham darhol o'ynaydi (edge-tts'ga qayta murojaat yo'q). Eng uzoq ishlatilmaganlari o'chadi.
+_OVOZ_BAZA_TAYYOR = False
+_OVOZ_BAZA_MAX = max(500, int(os.getenv("OVOZ_KESH_MAX", "5000") or 5000))
+
+
+def _ovoz_baza_jadvali(cur):
+    global _OVOZ_BAZA_TAYYOR
+    if _OVOZ_BAZA_TAYYOR:
+        return
+    cur.execute("""CREATE TABLE IF NOT EXISTS ovoz_kesh(
+                     kalit TEXT PRIMARY KEY, audio BYTEA NOT NULL, hajm INTEGER NOT NULL,
+                     yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), ishlatildi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    cur.execute("CREATE INDEX IF NOT EXISTS ovoz_kesh_ishlatildi_idx ON ovoz_kesh(ishlatildi)")
+    _OVOZ_BAZA_TAYYOR = True
+
+
+def _ovoz_bazadan_ol(kalit: str):
+    conn = None
+    try:
+        conn = _db()
+        cur = conn.cursor()
+        _ovoz_baza_jadvali(cur)
+        cur.execute("SELECT audio FROM ovoz_kesh WHERE kalit=%s", (kalit,))
+        row = cur.fetchone()
+        if row:
+            cur.execute("UPDATE ovoz_kesh SET ishlatildi=NOW() WHERE kalit=%s AND ishlatildi < NOW() - INTERVAL '1 day'", (kalit,))
+        conn.commit()
+        return bytes(row["audio"]) if row else None
+    except Exception as exc:   # kesh — yordamchi: baza band bo'lsa ovoz baribir yaratiladi
+        print(f"[ovoz kesh] o'qib bo'lmadi: {type(exc).__name__}", flush=True)
+        if conn is not None:
+            try:
+                conn.rollback()
+            except Exception:
+                pass
+        return None
+    finally:
+        if conn is not None:
+            conn.close()
+
+
+def _ovoz_bazaga_qoy(kalit: str, audio: bytes):
+    conn = None
+    try:
+        conn = _db()
+        cur = conn.cursor()
+        _ovoz_baza_jadvali(cur)
+        cur.execute("""INSERT INTO ovoz_kesh(kalit, audio, hajm) VALUES(%s, %s, %s)
+                       ON CONFLICT(kalit) DO UPDATE SET audio=EXCLUDED.audio, hajm=EXCLUDED.hajm, ishlatildi=NOW()""",
+                    (kalit, psycopg2.Binary(audio), len(audio)))
+        if int(hashlib.sha256(kalit.encode()).hexdigest()[:2], 16) < 8:   # ~3% yozuvda tozalash
+            cur.execute("DELETE FROM ovoz_kesh WHERE ishlatildi < NOW() - INTERVAL '60 days'")
+            cur.execute("""DELETE FROM ovoz_kesh WHERE kalit IN (
+                             SELECT kalit FROM ovoz_kesh ORDER BY ishlatildi DESC OFFSET %s)""", (_OVOZ_BAZA_MAX,))
+        conn.commit()
+    except Exception as exc:
+        print(f"[ovoz kesh] yozib bo'lmadi: {type(exc).__name__}", flush=True)
+        if conn is not None:
+            try:
+                conn.rollback()
+            except Exception:
+                pass
+    finally:
+        if conn is not None:
+            conn.close()
+
+
+async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish: int = 3):
+    """Bitta bo'lak ovozi. Uzilsa qayta urinadi (Microsoft ovoz xizmati ba'zan so'rovni uzib qo'yadi).
+    Qaytaradi: MP3 baytlari yoki None (hamma urinish behuda)."""
+    import edge_tts
+
+    async def bir_marta():
+        try:
+            com = edge_tts.Communicate(tayyor, voice, rate=tezlik, pitch=ohang, boundary="WordBoundary")
+        except TypeError:   # eski edge-tts
+            com = edge_tts.Communicate(tayyor, voice)
+        audio, events = bytearray(), []
+        async for chunk in com.stream():
+            if chunk["type"] == "audio" and chunk.get("data"):
+                audio.extend(chunk["data"])
+            elif chunk["type"] in ("WordBoundary", "SentenceBoundary"):
+                events.append(chunk)
+        if not audio:
+            return None
+        try:
+            from modules.speech_audio import speech_window, trim_segment
+            boshi, oxiri = speech_window(events)
+            return trim_segment(bytes(audio), boshi, oxiri)
+        except Exception:
+            return bytes(audio)
+
+    for n in range(urinish):
+        try:
+            audio = await asyncio.wait_for(bir_marta(), timeout=15)
+            if audio:
+                return audio
+        except Exception as exc:
+            print(f"[ovoz] {voice} {n + 1}-urinish: {type(exc).__name__}", flush=True)
+        if n < urinish - 1:
+            await asyncio.sleep(0.3 * (n + 1) ** 2)
+    return None
+
+
 @app.get("/api/ovoz")
-async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = ""):
+async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
-    Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi;
-    to'liq MP3 tugashini kutmaydi. Tayyor bo'lgan to'liq audio keyingi
-    bosishlar uchun xotira va brauzer keshida saqlanadi.
+    Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi; to'liq MP3 tugashini kutmaydi.
+    REV102: bo'laklar kamaytirildi va har biri uzilsa qayta yaratiladi (oldin bitta bo'lak uzilsa qolgan gap
+    eshitilmasdi); takror=1 — bog'cha darsida «Men bilan ayt: Green» dan keyin bolaga 1.5–3 soniya vaqt;
+    to'liq tayyor ovoz xotira va bazada saqlanadi.
     """
     if not matn or not matn.strip():
         raise HTTPException(status_code=400, detail="Matn berilmagan")
     try:
-        import edge_tts
+        import edge_tts  # noqa: F401
     except ImportError:
         raise HTTPException(status_code=500, detail="edge-tts o'rnatilmagan")
+    from starlette.concurrency import run_in_threadpool
+    from modules import ovoz_reja
 
     matn = matn[:1500]
     jins = _ovoz_jinsini_tuzat(jins)
-    # Til matndan aniqlanadi; profil tili yoki eski URL parametri uni almashtirmaydi.
-    asosiy_til = "uz"
     # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
     tezlik = tezlik if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)%", str(tezlik or "")) else "+0%"
     # REV98: bog'cha — robot Kabu ovozi biroz yuqoriroq, iliqroq (faqat -20…+20 Hz).
     ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|1[0-9]|20)Hz", str(ohang or "")) else "+0Hz"
+    takror = 1 if takror else 0
     kesh_kaliti = hashlib.sha256(
-        f"v93-joined\0{jins}\0{tezlik}\0{ohang}\0{matn}".encode("utf-8")
+        f"v102\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
@@ -2809,6 +2916,10 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
         "X-Content-Type-Options": "nosniff",
     }
     keshdagi_audio = _ovoz_keshdan_ol(kesh_kaliti)
+    if keshdagi_audio is None:
+        keshdagi_audio = await run_in_threadpool(_ovoz_bazadan_ol, kesh_kaliti)
+        if keshdagi_audio:
+            _ovoz_keshga_qoy(kesh_kaliti, keshdagi_audio)
     if keshdagi_audio is not None:
         return Response(
             content=keshdagi_audio,
@@ -2816,35 +2927,28 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
             headers={**kesh_sarlavhalari, "X-SamTM-Voice": "cache-hit"},
         )
 
+    reja = ovoz_reja.reja(matn, takror=bool(takror))
+    holat = {"chala": False}
+
     async def audio_bolaklari():
-        for til, bolak in _ovoz_qismlarga_bol(matn, asosiy_til):
+        for bolak in reja:
+            til = bolak["til"]
             if til in _TIL_OVOZLARI:
                 voice = _TIL_OVOZLARI[til].get(jins, _TIL_OVOZLARI[til]["qiz"])
             else:
                 voice = EDGE_OVOZ.get(jins, EDGE_OVOZ["qiz"])
-            tayyor = _ovoz_uchun_tayyorla_til(bolak, til)
+            tayyor = _ovoz_uchun_tayyorla_til(bolak["matn"], til)
             if not tayyor.strip():
                 continue
-            # REV93: bo'lak to'liq yig'iladi va boshi/oxiridagi ortiqcha jimlik kesiladi — o'zbekcha va inglizcha
-            # bo'laklar orasida uzilish qolmaydi, gap bir tekis eshitiladi.
-            try:
-                com = edge_tts.Communicate(tayyor, voice, rate=tezlik, pitch=ohang, boundary="WordBoundary")
-            except TypeError:   # eski edge-tts
-                com = edge_tts.Communicate(tayyor, voice)
-            audio, events = bytearray(), []
-            async for chunk in com.stream():
-                if chunk["type"] == "audio" and chunk.get("data"):
-                    audio.extend(chunk["data"])
-                elif chunk["type"] in ("WordBoundary", "SentenceBoundary"):
-                    events.append(chunk)
+            audio = await _edge_bolak(tayyor, voice, tezlik, ohang)
             if not audio:
+                holat["chala"] = True   # bu bo'lak tashlab o'tiladi — qolgan gap baribir o'qiladi, lekin keshlanmaydi
                 continue
-            try:
-                from modules.speech_audio import speech_window, trim_segment
-                boshi, oxiri = speech_window(events)
-                yield trim_segment(bytes(audio), boshi, oxiri)
-            except Exception:
-                yield bytes(audio)
+            yield audio
+            if bolak.get("pauza"):
+                jim = ovoz_reja.jimlik(audio, bolak["pauza"])
+                if jim:
+                    yield jim
 
     # HTTP sarlavhalari yuborilishidan avval birinchi audio bo'lagi borligini
     # tekshiramiz. Shunda bo'sh 200 javob o'rniga tushunarli xato qaytadi.
@@ -2852,7 +2956,7 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
     try:
         birinchi_bolak = await audio_iterator.__anext__()
     except StopAsyncIteration:
-        raise HTTPException(status_code=500, detail="Ovoz yaratilmadi")
+        raise HTTPException(status_code=503, detail="Ovoz xizmati vaqtincha javob bermadi")
     except Exception as exc:
         raise HTTPException(
             status_code=503,
@@ -2865,7 +2969,12 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
         async for audio_bolagi in audio_iterator:
             yigildi.extend(audio_bolagi)
             yield audio_bolagi
-        _ovoz_keshga_qoy(kesh_kaliti, bytes(yigildi))
+        if not holat["chala"]:
+            _ovoz_keshga_qoy(kesh_kaliti, bytes(yigildi))
+            try:
+                await run_in_threadpool(_ovoz_bazaga_qoy, kesh_kaliti, bytes(yigildi))
+            except Exception:
+                pass
 
     return StreamingResponse(
         oqim_va_kesh(),
