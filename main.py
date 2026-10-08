@@ -86,6 +86,12 @@ except ImportError:
     from modules.kabutar_audience import register_audience
 register_auth(app, samtm_platform)
 register_audience(app, samtm_platform)
+# REV104: bitta akkauntdan 10 tagacha aralash profil (bog'cha bolalari, o'quvchilar, talaba; admin sinov profillari).
+if __package__:
+    from .kabutar_profiles import register_profiles
+else:
+    from kabutar_profiles import register_profiles
+register_profiles(app, samtm_platform, samtm_platform._kabutar_auth_service)
 
 # Exact nickname/KB lookup and opt-in verified-phone discovery.
 try:

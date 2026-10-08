@@ -3923,6 +3923,19 @@ class RolOzgartirish(BaseModel):
     tasdiqlayman: bool = False
 
 
+def _oila_profili_egasi(cur, user_id):
+    """REV104: user_id bitta akkaunt ichidagi profil bo'lsa — egasining IDsi, aks holda None."""
+    try:
+        cur.execute("SELECT to_regclass('public.kabutar_family_profiles') AS t")
+        if not (cur.fetchone() or {}).get("t"):
+            return None
+        cur.execute("SELECT owner_user_id FROM kabutar_family_profiles WHERE profile_user_id=%s AND removed_at IS NULL", (user_id,))
+        row = cur.fetchone()
+        return int(row["owner_user_id"]) if row else None
+    except Exception:
+        return None
+
+
 RUXSAT_ETILGAN_ROLLAR2 = {"oquvchi", "ota-ona", "oqituvchi"}
 ROL_BEPUL_LIMIT = 2          # necha marta ERKIN (kod so'ramasdan) rol almashtirish mumkin
 ROL_KOD_AMAL_MUDDATI = 10    # daqiqa
@@ -3989,6 +4002,11 @@ def rol_ozgartir(sorov: RolOzgartirish):
 
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
     admin_mi = cur.fetchone() is not None
+
+    # REV104: oila/sinov profili (bitta akkaunt ichidagi bola) o'qituvchi yoki ota-onaga aylanmaydi.
+    if sorov.yangi_rol != "oquvchi" and _oila_profili_egasi(cur, user_id) is not None:
+        cur.close(); conn.close()
+        raise HTTPException(status_code=403, detail="Bu profil asosiy akkaunt ichida. Rolni asosiy akkauntdagi «Profillar» bo'limida sozlang")
 
     hozirgi_rol = r["role"]
     if hozirgi_rol == sorov.yangi_rol:

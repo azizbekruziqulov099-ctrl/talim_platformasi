@@ -1215,6 +1215,18 @@ def register_auth(app, platform):
                 raise HTTPException(409,'Muassasaga ulangan profilingizni Profil bo‘limida yangilang')
             if user.get('role') not in (None,'','kabutar','mustaqil','oquvchi','oqituvchi','ota-ona','talaba','bogcha'):
                 raise HTTPException(409,'Mavjud ta’lim rolingizni bu oynada almashtirib bo‘lmaydi')
+            # REV104: bitta akkaunt ichidagi profil — faqat bog'cha/o'quvchi/talaba; egasi bog'lanishi saqlanadi.
+            cur.execute("SELECT to_regclass('public.kabutar_family_profiles') AS t")
+            if (cur.fetchone() or {}).get('t'):
+                cur.execute('SELECT owner_user_id FROM kabutar_family_profiles WHERE profile_user_id=%s AND removed_at IS NULL',(uid,))
+                family=cur.fetchone()
+                if family:
+                    if body.role not in ('bogcha','oquvchi','talaba'):
+                        raise HTTPException(403,'Bu profil bog‘cha bolasi, o‘quvchi yoki talaba bo‘lishi mumkin')
+                    old_learning=user.get('kabutar_learning_profile') or {}
+                    learning['family_owner']=int(family['owner_user_id'])
+                    if body.role==old_learning.get('role') and old_learning.get('age') is not None and body.role!='bogcha':
+                        learning['age']=old_learning.get('age')
             cur.execute('''UPDATE users SET role=%s,class=%s,asosiy_til=%s,oqituvchi_fani=%s,
                 kabutar_learning_profile=%s::jsonb,kabutar_education_ready=TRUE WHERE user_id=%s''',
                 (base_role,class_value,body.language,body.subject if body.role=='oqituvchi' else None,json.dumps(learning),uid))
