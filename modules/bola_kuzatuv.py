@@ -280,6 +280,8 @@ class FinishLesson(BaseModel):
     togri: int = Field(default=0, ge=0, le=500)
     jami: int = Field(default=0, ge=0, le=500)
     ortacha_ms: int = Field(default=0, ge=0, le=120000)   # REV103: savolga o'rtacha javob vaqti (tezlik ko'rsatkichi)
+    ovoz_togri: int = Field(default=0, ge=0, le=50)       # REV105: dars oxiridagi ovozli tekshiruv — to'g'ri aytilgan iboralar
+    ovoz_jami: int = Field(default=0, ge=0, le=50)
 
 
 def migrate(cur):
@@ -323,6 +325,8 @@ def migrate(cur):
     cur.execute("""CREATE INDEX IF NOT EXISTS bola_dars_faollik_ochiq ON bola_dars_faollik(oxirgi_signal_at)
                    WHERE tugadi_at IS NULL""")
     cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS javob_ms INT")
+    cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS ovoz_togri INT")   # REV105
+    cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS ovoz_jami INT")
     # REV103: kunlik vaqt — nima qildi va qancha (dars / o'yin nomi bilan) hamda butun platformadagi seans
     cur.execute("""
         CREATE TABLE IF NOT EXISTS bola_vaqt (
@@ -604,10 +608,11 @@ def create_router(platform):
                            WHERE child_id=%s AND dars_kod=%s RETURNING fan, mavzu""", (stars, now, user_id, body.dars_kod))
             lesson = cur.fetchone()
             cur.execute("""UPDATE bola_dars_faollik SET tugadi_at=%s, togri=%s, jami=%s, yulduz=%s, javob_ms=NULLIF(%s, 0),
+                             ovoz_togri=%s, ovoz_jami=%s,
                              faol_soniya=faol_soniya + CASE WHEN korinadi AND faol THEN LEAST(%s, GREATEST(0, EXTRACT(EPOCH FROM (%s - oxirgi_signal_at))::int)) ELSE 0 END
                            WHERE child_id=%s AND dars_kod=%s AND sana=%s AND tugadi_at IS NULL
                            RETURNING faol_soniya, mavzu, fan""",
-                        (now, body.togri, body.jami, stars, body.ortacha_ms, SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
+                        (now, body.togri, body.jami, stars, body.ortacha_ms, (min(body.ovoz_togri, body.ovoz_jami) if body.ovoz_jami else None), (body.ovoz_jami or None), SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
             done = cur.fetchone()
             out = plan(cur, user_id, now)
             fan = (lesson or done or {}).get("fan") or ""
@@ -617,6 +622,8 @@ def create_router(platform):
                 title = done["mavzu"] or (lesson or {}).get("mavzu") or "dars"
                 minutes = max(1, round((done["faol_soniya"] or 0) / 60))
                 result = f"{body.togri}/{body.jami} to'g'ri, " if body.jami else ""
+                if body.ovoz_jami:
+                    result += f"🎤 ovozli takror {min(body.ovoz_togri, body.ovoz_jami)}/{body.ovoz_jami}, "
                 text = f"✅ {name} «{title}» darsini tugatdi: {result}{stars_text(stars)}, {minutes} daqiqa."
                 if all_done:
                     text += f"\n🎉 Bugungi {fan + ' ' if fan else ''}darslari tugadi ({state['tugadi']}/{out['limit']}). Yangi darslar ertaga ochiladi."
