@@ -257,3 +257,34 @@ if __package__:
 else:
     from modules.bola_kuzatuv import create_router as create_bola_kuzatuv_router
 app.include_router(create_bola_kuzatuv_router(samtm_platform))
+# REV106: o'qituvchi kirishda o'z fanlarini tanlaydi — faqat shu fanlar mavzulari, AI darslari va testlari.
+if __package__:
+    from .modules.teacher_subjects import create_router as create_teacher_subjects_router
+else:
+    from modules.teacher_subjects import create_router as create_teacher_subjects_router
+app.include_router(create_teacher_subjects_router(samtm_platform))
+
+# REV107: kutilmagan server xatosi ham JSON bo'lib, CORS sarlavhasi bilan qaytadi. Ilgari bunday javobda
+# brauzer CORS sababli javobni o'qiy olmasdi va foydalanuvchi «Serverga ulanib bo'lmadi» degan noto'g'ri
+# xabarni ko'rardi. Endi xato kodi chiqadi va Railway logida shu kod bilan to'liq sabab yoziladi.
+import secrets as _rev107_secrets
+import traceback as _rev107_traceback
+from fastapi.responses import JSONResponse as _Rev107Json
+
+
+@app.middleware("http")
+async def _rev107_kutilmagan_xato(request, call_next):
+    try:
+        return await call_next(request)
+    except Exception:
+        error_id = _rev107_secrets.token_hex(4)
+        print(f"[SERVER-XATO {error_id}] {request.method} {request.url.path}\n{_rev107_traceback.format_exc()}", flush=True)
+        response = _Rev107Json(status_code=500, content={"detail": (
+            f"Serverda kutilmagan xato (kod {error_id}). Bir daqiqadan keyin qayta urinib ko‘ring; "
+            f"takrorlansa shu kodni administratorga yuboring.")})
+        origin = (request.headers.get("origin") or "").rstrip("/")
+        if origin and origin in samtm_platform.FRONTEND_ORIGINS:
+            response.headers["Access-Control-Allow-Origin"] = origin
+            response.headers["Access-Control-Allow-Credentials"] = "true"
+            response.headers["Vary"] = "Origin"
+        return response

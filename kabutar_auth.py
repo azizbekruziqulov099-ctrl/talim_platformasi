@@ -431,6 +431,12 @@ class AuthService:
             value = request.headers.get('x-forwarded-for', '').split(',')[0].strip()
             if value:
                 return value[:100]
+        # REV107: Railway'da hamma so'rov bitta ichki proksi IP'sidan keladi — tez kirish limiti
+        # (soatiga 60) butun sayt uchun bitta bo'lib qolardi. Railway chekka proksisi X-Real-IP ni o'zi qo'yadi.
+        if os.getenv('RAILWAY_ENVIRONMENT') or os.getenv('RAILWAY_PROJECT_ID'):
+            value = (request.headers.get('x-real-ip') or '').strip()
+            if value:
+                return value[:100]
         return request.client.host if request.client else 'unknown'
 
     def bot_auth(self, supplied, bot_token=None, secondary=None):
@@ -1227,6 +1233,10 @@ def register_auth(app, platform):
                     learning['family_owner']=int(family['owner_user_id'])
                     if body.role==old_learning.get('role') and old_learning.get('age') is not None and body.role!='bogcha':
                         learning['age']=old_learning.get('age')
+            # REV106: o'qituvchi tanlagan fanlar profil yangilanganda yo'qolmasin.
+            old_fanlar=(user.get('kabutar_learning_profile') or {}).get('fanlar')
+            if body.role=='oqituvchi' and old_fanlar:
+                learning['fanlar']=old_fanlar
             cur.execute('''UPDATE users SET role=%s,class=%s,asosiy_til=%s,oqituvchi_fani=%s,
                 kabutar_learning_profile=%s::jsonb,kabutar_education_ready=TRUE WHERE user_id=%s''',
                 (base_role,class_value,body.language,body.subject if body.role=='oqituvchi' else None,json.dumps(learning),uid))

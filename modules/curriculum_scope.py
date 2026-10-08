@@ -307,16 +307,28 @@ def university_browse_predicate(alias='d'):
         AND cs.institution_type='universitet' AND (cs.institution_id=0 OR EXISTS(SELECT 1 FROM universitetlar u
           WHERE u.id=cs.institution_id AND NULLIF(to_jsonb(u)->>'archived_at','') IS NULL)))"""
 
-def allowed_predicate(cur,user_id=None,alias='d'):
+def teacher_subjects(user):
+    """REV106: o'qituvchi kirishda tanlagan fanlari (kichik harfda). Bo'sh ro'yxat — hali tanlamagan."""
+    learning = (user or {}).get('kabutar_learning_profile') or {}
+    if isinstance(learning, str):
+        try: learning = json.loads(learning)
+        except ValueError: learning = {}
+    out = []
+    for name in learning.get('fanlar') or []:
+        key = re.sub(r'\s+', ' ', str(name or '')).strip().casefold()
+        if key and key not in out: out.append(key)
+    return out
+
+def allowed_predicate(cur,user_id=None,alias='d',subjects=True):
     """Kim nimani ko'radi. Institut talabasi uchun: o'z dasturi + butun institut katalogi."""
-    clause,params=own_predicate(cur,user_id,alias)
+    clause,params=own_predicate(cur,user_id,alias,subjects=subjects)
     if clause=='TRUE' or user_id is None or not is_university_learner(cur,user_id):
         return clause,params
     browse=university_browse_predicate(alias)
     if clause=='FALSE':return browse,[]
     return f'(({clause}) OR {browse})',params
 
-def own_predicate(cur,user_id=None,alias='d'):
+def own_predicate(cur,user_id=None,alias='d',subjects=True):
     """Foydalanuvchining O'Z dasturi (profilga aynan mos). No client supplied university/form/course
     can expand this; talabalar uchun katalogda «mening yo'nalishim» shu bilan belgilanadi."""
     if not re.fullmatch(r'[a-z_]+',alias): raise ValueError('Invalid SQL alias')
@@ -336,7 +348,13 @@ def own_predicate(cur,user_id=None,alias='d'):
                 params.extend([kind,sorted(ids)])
         if targets['maktab']:clauses.append("cs.scope_key='school-common'")
         if not clauses:return 'FALSE',[]
-        return f"EXISTS (SELECT 1 FROM curriculum_scopes cs WHERE cs.id={alias}.curriculum_scope_id AND ({' OR '.join(clauses)}))",params
+        clause=f"EXISTS (SELECT 1 FROM curriculum_scopes cs WHERE cs.id={alias}.curriculum_scope_id AND ({' OR '.join(clauses)}))"
+        # REV106: o'qituvchi faqat o'zi tanlagan fanlarning mavzulari, AI darslari va testlarini ko'radi.
+        chosen=teacher_subjects(user) if subjects else []
+        if chosen:
+            clause=f"({clause} AND LOWER(REGEXP_REPLACE(TRIM(COALESCE({alias}.subject_name,'')),'\\s+',' ','g'))=ANY(%s))"
+            params=[*params,chosen]
+        return clause,params
     cur.execute('SELECT to_jsonb(p) AS profile FROM talaba_profillari p WHERE user_id=%s',(user_id,))
     p=(cur.fetchone() or {}).get('profile') or {}
     if p:

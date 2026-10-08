@@ -794,4 +794,36 @@ def register_assistant(app, platform):
         return Response(content=data, media_type=media_type, headers={
             "Content-Disposition": f'attachment; filename="{filename}"', "Cache-Control": "private, no-store"})
 
+    # REV106: telefon/Telegram ichidagi brauzerda blob yuklab olish ishlamaydi — 5 daqiqalik bir martalik
+    # yuklab olish havolasi beriladi. Havolada asosiy sessiya tokeni YO'Q: faqat shu fayl uchun imzo.
+    from jose import jwt as _jwt, JWTError as _JWTError
+
+    def _link_key():
+        return hashlib.sha256(("assistant-export:" + str(platform.JWT_MAXFIY_KALIT)).encode()).hexdigest()
+
+    @app.post("/api/assistant/attempt/{attempt_id}/export-link", tags=["Kabutar AI"])
+    def export_link(attempt_id: str, format: str = Query(default="pdf", pattern="^(pdf|docx|xlsx)$"), answer_key: bool = False,
+                    authorization: str | None = Header(default=None)):
+        uid = service.uid(authorization)
+        service.budget(uid, "export", 8)
+        # Fayl shu yerning o'zida tayyorlab tekshiriladi: xato bo'lsa havola emas, aniq sabab qaytadi.
+        service.export(uid, attempt_id, format, answer_key)
+        claims = {"purpose": "assistant-export", "uid": int(uid), "attempt": str(attempt_id)[:80], "format": format,
+                  "key": bool(answer_key), "exp": datetime.now(timezone.utc) + timedelta(minutes=5)}
+        link = _jwt.encode(claims, _link_key(), algorithm="HS256")
+        return {"path": f"/api/assistant/download/{link}", "expires_in": 300}
+
+    @app.get("/api/assistant/download/{link}", tags=["Kabutar AI"])
+    def export_download(link: str):
+        try:
+            claims = _jwt.decode(link, _link_key(), algorithms=["HS256"], options={"require_exp": True})
+        except (_JWTError, ValueError, TypeError):
+            raise HTTPException(410, "Yuklab olish havolasi eskirgan. Ilovada PDF tugmasini qayta bosing.")
+        if claims.get("purpose") != "assistant-export" or claims.get("format") not in ("pdf", "docx", "xlsx"):
+            raise HTTPException(400, "Havola noto'g'ri")
+        data, media_type, filename = service.export(int(claims["uid"]), claims["attempt"], claims["format"], bool(claims.get("key")))
+        return Response(content=data, media_type=media_type, headers={
+            "Content-Disposition": f'inline; filename="{filename}"', "Cache-Control": "private, no-store",
+            "X-Content-Type-Options": "nosniff", "Referrer-Policy": "no-referrer"})
+
     return service
