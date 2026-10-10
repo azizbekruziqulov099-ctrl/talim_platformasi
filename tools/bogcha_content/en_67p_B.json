@@ -1,0 +1,705 @@
+{
+ "subject": "Ingliz tili",
+ "lang": "en",
+ "age": "6-7 yosh",
+ "book_title": "Hello, friend! 6–7 yosh",
+ "prefix": "EN",
+ "units": [
+  {
+   "name": "Hozir nima qilyapsan?",
+   "emoji": "🤹",
+   "lessons": [
+    {
+     "name": "Men o'ynayapman",
+     "goal": "Bola hozirgi harakatini aytadi",
+     "intro": "Bip-bip! Oyi Alining xonasiga qaradi va so'radi: [en]What are you doing?[/en] Ali nima deb javob berdi ekan? Bugun «hozir nima qilyapman» deb inglizcha aytishni o'rganamiz!",
+     "items": [
+      {
+       "say": "What are you doing?",
+       "uz": "nima qilyapsan?",
+       "emoji": "🤔❓",
+       "image": "en67-u15-what-are-you-doing.png",
+       "image_prompt": "mum looking into the room asking ALI, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Yelkangni qisib so'ra!"
+      },
+      {
+       "say": "I'm playing.",
+       "uz": "o'ynayapman",
+       "emoji": "🧸",
+       "image": "en67-u15-im-playing.png",
+       "image_prompt": "ALI playing with blocks, soft 3D cartoon for kids, white background, no text, square",
+       "action": "O'yinchoq bilan o'ynaganday qil!"
+      },
+      {
+       "say": "I'm reading.",
+       "uz": "o'qiyapman",
+       "emoji": "📖",
+       "image": "en67-u11-im-reading.png",
+       "image_prompt": "A child sitting and reading a picture book, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kitob ochganday qil!"
+      },
+      {
+       "say": "I'm eating.",
+       "uz": "ovqatlanyapman",
+       "emoji": "🍽️",
+       "image": "en23-u9-eat.png",
+       "image_prompt": "A child eating a meal at the table with a spoon, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiqda ovqat yeganday qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Oyi va Ali",
+       "matn": "Kattalar oyi bo'ladi, sen Ali bo'lasan. Oyi so'raydi: [en]What are you doing?[/en] Sen harakat qilib javob ber: [en]I'm playing.[/en] [en]I'm reading.[/en] [en]I'm eating.[/en] Endi rollarni almashtiramiz: sen so'ra — [en]What are you doing?[/en]",
+       "doska": "❓ What are you doing?\n🧸 I'm playing.\n📖 I'm reading.\n🍽️ I'm eating.",
+       "sodda": "Harakatni ko'rsatib, bitta so'z ayt: [en]playing![/en] [en]reading![/en] [en]eating![/en]",
+       "boshqa_usul": "Kechqurun oilangdagilardan navbatma-navbat so'ra: [en]What are you doing?[/en] Ular nima qilayotganini sen inglizcha ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali kitob o'qiyapti. Oyi so'radi: [en]What are you doing?[/en] Ali nima deydi?",
+       "options": [
+        "🧸 I'm playing.",
+        "📖 I'm reading.",
+        "🍽️ I'm eating."
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kitob o'qiyapti — [en]I'm reading.[/en]"
+      },
+      {
+       "q": "Laylo Alidan hozir nima qilayotganini so'ramoqchi. U qanday so'raydi?",
+       "options": [
+        "👋 Goodbye!",
+        "🍽️ I'm eating.",
+        "❓ What are you doing?"
+       ],
+       "answer": 2,
+       "why": "To'g'ri! Savol shunday: [en]What are you doing?[/en]"
+      }
+     ]
+    },
+    {
+     "name": "U nima qilyapti?",
+     "goal": "Bola boshqalarning harakatini aytadi",
+     "intro": "Bip-bip! Uyda hamma band! Bobojon divanda ko'zini yumdi, Laylo qo'shiq aytyapti, bolalar hovlida yugurishyapti. O'g'il bola — [en]he[/en], qiz bola — [en]she[/en], ko'pchilik — [en]they[/en]. Ular nima qilyapti? Qani, aytamiz!",
+     "items": [
+      {
+       "say": "He's sleeping.",
+       "uz": "u uxlayapti",
+       "emoji": "😴",
+       "image": "en23-u9-sleep.png",
+       "image_prompt": "A boy sleeping peacefully in bed, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Boshingni qo'lingga qo'yib, uxlaganday qil!"
+      },
+      {
+       "say": "She's singing.",
+       "uz": "u kuylayapti",
+       "emoji": "🎤",
+       "image": "en67-u11-shes-singing.png",
+       "image_prompt": "A girl singing happily with a microphone, soft 3D cartoon for kids, white background, no text, square",
+       "action": "La-la-la deb kuyla!"
+      },
+      {
+       "say": "They're running.",
+       "uz": "ular yugurishyapti",
+       "emoji": "🏃🏃",
+       "image": "en67-u15-theyre-running.png",
+       "image_prompt": "ALI and LAYLO running together in a park, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda yugur!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Kim nima qilyapti?",
+       "matn": "Kattalar harakat qiladi: ko'zini yumadi, kuylaydi yoki yuguradi. Sen topib ayt: [en]He's sleeping.[/en] [en]She's singing.[/en] [en]They're running.[/en] Keyin sen harakat qil, kattalar so'rasin: [en]What are you doing?[/en] Sen javob ber: [en]I'm singing![/en]",
+       "doska": "😴 He's sleeping.\n🎤 She's singing.\n🏃🏃 They're running.",
+       "sodda": "Faqat harakatni ayt: [en]sleeping[/en], [en]singing[/en], [en]running[/en].",
+       "boshqa_usul": "Oilaviy suratlarni ko'rib, har birida kim nima qilyapti — inglizcha ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo qo'shiq aytyapti. Nima deymiz?",
+       "options": [
+        "😴 He's sleeping.",
+        "🏃🏃 They're running.",
+        "🎤 She's singing."
+       ],
+       "answer": 2,
+       "why": "Barakalla! Laylo — qiz bola, shuning uchun [en]She's singing.[/en]"
+      },
+      {
+       "q": "Ali va Laylo bog'da yugurishyapti. Qaysi gap to'g'ri?",
+       "options": [
+        "🏃🏃 They're running.",
+        "📖 I'm reading.",
+        "😴 He's sleeping."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ikki bola — [en]They're running.[/en]"
+      }
+     ]
+    },
+    {
+     "name": "Hayvonlar nima qilyapti?",
+     "goal": "Bola hayvonlar harakatini aytadi",
+     "intro": "Bip-bip! Buvijonning hovlisiga keldik. Qara: mushuk quyoshda yotibdi, kuchukcha yuguryapti, daraxtda qushlar sayrayapti, hovuzda baliq bor. Ular nima qilyapti? Bilib olamiz!",
+     "items": [
+      {
+       "say": "The cat is sleeping.",
+       "uz": "mushuk uxlayapti",
+       "emoji": "🐈😴",
+       "image": "en67-u15-the-cat-is-sleeping.png",
+       "image_prompt": "a cat curled up asleep, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Mushukday g'ujanak bo'lib yot!"
+      },
+      {
+       "say": "The dog is running.",
+       "uz": "kuchuk yuguryapti",
+       "emoji": "🐕💨",
+       "image": "en67-u15-the-dog-is-running.png",
+       "image_prompt": "a puppy running, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kuchukday tez yugur!"
+      },
+      {
+       "say": "The birds are singing.",
+       "uz": "qushlar sayrayapti",
+       "emoji": "🐦🎶",
+       "image": "en67-u15-the-birds-are-singing.png",
+       "image_prompt": "two birds singing on a branch, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qushday chiq-chiq de!"
+      },
+      {
+       "say": "The fish is swimming.",
+       "uz": "baliq suzyapti",
+       "emoji": "🐟",
+       "image": "en67-u11-the-fish-is-swimming.png",
+       "image_prompt": "A little orange fish swimming in blue water, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaring bilan suzganday qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Hovlida kim bor?",
+       "matn": "Ko'zingni yum, men ovoz chiqaraman. «Chiq-chiq!» Kim bu? Ayt: [en]The birds are singing.[/en] «Shalop!» — [en]The fish is swimming.[/en] Endi ko'zingni och. Men so'rayman: [en]What is the cat doing?[/en] Sen to'liq gap bilan javob ber!",
+       "doska": "🐈😴 The cat is sleeping.\n🐕💨 The dog is running.\n🐦🎶 The birds are singing.\n🐟 The fish is swimming.",
+       "sodda": "Hayvonni ko'rsatib ayt: [en]cat — sleeping![/en] [en]fish — swimming![/en]",
+       "boshqa_usul": "Ko'chada hayvon ko'rsang, kattalarga inglizcha ayt: u nima qilyapti?"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Hovuzda baliq suzyapti. Qaysi gap to'g'ri?",
+       "options": [
+        "🐈😴 The cat is sleeping.",
+        "🐟 The fish is swimming.",
+        "🐕💨 The dog is running."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Baliq suzyapti — [en]The fish is swimming.[/en]"
+      },
+      {
+       "q": "Kabu so'radi: [en]What is the dog doing?[/en] Kuchuk yuguryapti. Javob qaysi?",
+       "options": [
+        "🐦🎶 The birds are singing.",
+        "😴 He's sleeping.",
+        "🐕💨 The dog is running."
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]The dog is running.[/en] — kuchuk yuguryapti."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kecha nima qilding?",
+   "emoji": "📅",
+   "lessons": [
+    {
+     "name": "Kecha",
+     "goal": "Bola o'tgan kun haqida aytadi",
+     "intro": "Bip-bip! Ertalab Laylo bog'cha hovlisida Alidan so'radi: [en]What did you do yesterday?[/en] Kecha — bugundan oldingi kun. Kecha haqida gapirganda [en]play[/en] so'zi [en]played[/en] bo'ladi. Qani, aytamiz!",
+     "items": [
+      {
+       "say": "What did you do yesterday?",
+       "uz": "kecha nima qilding?",
+       "emoji": "📅❓",
+       "image": "en67-u16-what-did-you-do-yesterday.png",
+       "image_prompt": "LAYLO asking ALI a question in the kindergarten yard, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Barmog'ing bilan orqaga ko'rsat!"
+      },
+      {
+       "say": "I played football.",
+       "uz": "futbol o'ynadim",
+       "emoji": "⚽",
+       "image": "en67-u6-play-football.png",
+       "image_prompt": "Children playing football on green grass, soft 3D cartoon for kids, white background, no text, square",
+       "action": "To'pni tepganday qil!"
+      },
+      {
+       "say": "I went to the park.",
+       "uz": "bog'ga bordim",
+       "emoji": "🌳🚶",
+       "image": "en67-u16-i-went-to-the-park.png",
+       "image_prompt": "ALI walking in a park with his dad, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda qadam tashla!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 «Yesterday» qo'shig'i",
+       "matn": "Kuylab harakat qilamiz: [en]Yesterday, yesterday, what did you do? I played football! I went to the park![/en] Endi men so'rayman, sen o'zing haqingda javob ber: [en]What did you do yesterday?[/en]",
+       "doska": "📅 What did you do yesterday?\n⚽ I played football.\n🌳 I went to the park.",
+       "sodda": "Faqat ayt: [en]I played![/en] yoki [en]park![/en]",
+       "boshqa_usul": "Kechki ovqatda oilangdan so'ra: [en]What did you do yesterday?[/en] O'zing ham javob ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali kecha do'stlari bilan to'p tepdi. U nima deydi?",
+       "options": [
+        "🌳 I went to the park.",
+        "⚽ I played football.",
+        "📖 I'm reading."
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kecha bo'lgan ish: [en]I played football.[/en]"
+      },
+      {
+       "q": "Laylo kecha haqida so'ramoqchi. Qaysi savol to'g'ri?",
+       "options": [
+        "❓ What are you doing?",
+        "🤝 Nice to meet you!",
+        "📅 What did you do yesterday?"
+       ],
+       "answer": 2,
+       "why": "To'g'ri! Kecha haqida: [en]What did you do yesterday?[/en]"
+      }
+     ]
+    },
+    {
+     "name": "Ko'rdim",
+     "goal": "Bola ko'rgan narsasini aytadi",
+     "intro": "Bip-bip! Kecha yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Laylo uni ko'rdi. Sen kecha nimani ko'rding, nima yeding? Qani, inglizcha aytamiz!",
+     "items": [
+      {
+       "say": "I saw a rainbow.",
+       "uz": "kamalak ko'rdim",
+       "emoji": "🌈",
+       "image": "en67-u16-i-saw-a-rainbow.png",
+       "image_prompt": "LAYLO pointing at a rainbow in the sky, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Havoda qo'ling bilan kamalak chiz!"
+      },
+      {
+       "say": "I saw a big dog.",
+       "uz": "katta it ko'rdim",
+       "emoji": "🐕",
+       "image": "en67-u16-i-saw-a-big-dog.png",
+       "image_prompt": "ALI looking at a big friendly dog, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni keng ochib, katta ko'rsat!"
+      },
+      {
+       "say": "I ate ice cream.",
+       "uz": "muzqaymoq yedim",
+       "emoji": "🍦",
+       "image": "en67-u16-i-ate-ice-cream.png",
+       "image_prompt": "LAYLO eating an ice cream cone, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Muzqaymoq yalaganday qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Ali va Laylo suhbati",
+       "matn": "Laylo so'raydi: [en]What did you do yesterday?[/en] Ali javob beradi: [en]I saw a big dog![/en] Laylo aytadi: [en]I saw a rainbow! I ate ice cream![/en] Endi sen Ali bo'l. Kecha nimani ko'rding? To'liq gap bilan ayt!",
+       "doska": "🌈 I saw a rainbow.\n🐕 I saw a big dog.\n🍦 I ate ice cream.",
+       "sodda": "Rasmni ko'rsatib ayt: [en]I saw…[/en]",
+       "boshqa_usul": "Kechagi kuningni rasm qilib chiz va kattalarga ko'rsatib ayt: [en]I saw…[/en]"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo kecha osmonda yetti rangli ko'prik ko'rdi. U nima deydi?",
+       "options": [
+        "🌈 I saw a rainbow.",
+        "🍦 I ate ice cream.",
+        "🐕 I saw a big dog."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]I saw a rainbow.[/en] — kamalak ko'rdim."
+      },
+      {
+       "q": "Ali kecha muzqaymoq yedi. Qaysi gap to'g'ri?",
+       "options": [
+        "⚽ I played football.",
+        "🍦 I ate ice cream.",
+        "🍽️ I'm eating."
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kecha yedi — [en]I ate ice cream.[/en] Hozir yesa — [en]I'm eating.[/en]"
+      }
+     ]
+    },
+    {
+     "name": "Dam olish kuni",
+     "goal": "Bola dam olish kunini hikoya qiladi",
+     "intro": "Bip-bip! Dushanba kuni Ali bog'chaga juda xursand keldi. Dam olish kunida u buvijonnikiga bordi, keyin oilasi bilan hayvonot bog'iga! Sen ham dam olish kuningni gapirib berasanmi?",
+     "items": [
+      {
+       "say": "I visited my granny.",
+       "uz": "buvimnikiga bordim",
+       "emoji": "👵🏠",
+       "image": "en67-u16-i-visited-my-granny.png",
+       "image_prompt": "ALI hugging his granny at her door, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Buvijonni quchoqlaganday qil!"
+      },
+      {
+       "say": "We went to the zoo.",
+       "uz": "hayvonot bog'iga bordik",
+       "emoji": "🦒",
+       "image": "en67-u16-we-went-to-the-zoo.png",
+       "image_prompt": "a family looking at a giraffe in a zoo, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Jirafaday bo'yningni cho'z!"
+      },
+      {
+       "say": "It was fun!",
+       "uz": "juda qiziq bo'ldi",
+       "emoji": "😄🎉",
+       "image": "en67-u16-it-was-fun.png",
+       "image_prompt": "ALI and LAYLO laughing together, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qarsak chalib kul!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Hikoya kartalari",
+       "matn": "Uchta kartaga rasm chiz: buvijon, jirafa, kulayotgan yuz. Kartani tanla va gapni ayt: [en]I visited my granny.[/en] [en]We went to the zoo.[/en] [en]It was fun![/en] Endi uchala gapni ketma-ket aytib, dam olish kuningni hikoya qil!",
+       "doska": "👵 I visited my granny.\n🦒 We went to the zoo.\n😄 It was fun!",
+       "sodda": "Faqat quvnoq ovozda ayt: [en]It was fun![/en]",
+       "boshqa_usul": "Dushanba kuni kattalarga dam olish kuningni uchta gap bilan inglizcha gapirib ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali shanba kuni buvijonnikiga bordi. U nima deydi?",
+       "options": [
+        "🦒 We went to the zoo.",
+        "😄 It was fun!",
+        "👵 I visited my granny."
+       ],
+       "answer": 2,
+       "why": "To'g'ri! [en]I visited my granny.[/en] — buvimnikiga bordim."
+      },
+      {
+       "q": "Hayvonot bog'i juda qiziq bo'ldi! Buni qanday aytamiz?",
+       "options": [
+        "😄 It was fun!",
+        "😴 He's sleeping.",
+        "❓ What are you doing?"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]It was fun![/en] — juda qiziq bo'ldi!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ertaklar va bitiruv",
+   "emoji": "🎓",
+   "lessons": [
+    {
+     "name": "Katta sholg'om",
+     "goal": "Bola ertakni tinglab qaytaradi",
+     "intro": "Bip-bip! Bobojon bog'ga sholg'om ekdi. Sholg'om shunday katta bo'ldiki, bobojon uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!",
+     "items": [
+      {
+       "say": "turnip",
+       "uz": "sholg'om",
+       "emoji": "🥬",
+       "image": "en67-u17-turnip.png",
+       "image_prompt": "a giant turnip in a garden, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni keng ochib, katta sholg'omni ko'rsat!"
+      },
+      {
+       "say": "Pull, pull, pull!",
+       "uz": "tort, tort, tort",
+       "emoji": "💪",
+       "image": "en67-u17-pull-pull-pull.png",
+       "image_prompt": "grandpa, grandma, a girl, a dog, a cat and a mouse pulling a giant turnip in a line, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Arqonni tortganday qil!"
+      },
+      {
+       "say": "mouse",
+       "uz": "sichqon",
+       "emoji": "🐭",
+       "image": "en67-u17-mouse.png",
+       "image_prompt": "a tiny cute mouse, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Sichqonday chiy-chiy de!"
+      },
+      {
+       "say": "Hooray!",
+       "uz": "hurro",
+       "emoji": "🎉",
+       "image": "en67-u17-hooray.png",
+       "image_prompt": "the whole family cheering with the giant turnip pulled out, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ko'tarib sakra!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Sholg'om qo'shig'i",
+       "matn": "Qator turib, kuylab tortamiz: [en]Pull, pull, pull! The turnip is big![/en] Kuchuk keldi, mushuk keldi — chiqmadi! Sichqon keldi: [en]Pull, pull, pull! Hooray![/en] Endi ertakni o'zing gapirib ber: oxirida kim keldi? Ayt: [en]The mouse![/en]",
+       "doska": "🥬 turnip\n💪 Pull, pull, pull!\n🐭 mouse\n🎉 Hooray!",
+       "sodda": "Faqat tortib ayt: [en]Pull, pull, pull![/en]",
+       "boshqa_usul": "Kattalar bilan qo'l ushlashib tortishing, sholg'om «chiqqanda» birga [en]Hooray![/en] deb qichqir."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sholg'omni sug'urishga oxirida kim yordam berdi?",
+       "options": [
+        "🐈 cat",
+        "🐭 mouse",
+        "🐕 dog"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Kichkina [en]mouse[/en] keldi va sholg'om chiqdi!"
+      },
+      {
+       "q": "Sholg'om chiqdi! Hamma nima deb qichqirdi?",
+       "options": [
+        "🛑 Stop!",
+        "👋 Goodbye!",
+        "🎉 Hooray!"
+       ],
+       "answer": 2,
+       "why": "Barakalla! Hamma xursand: [en]Hooray![/en]"
+      }
+     ]
+    },
+    {
+     "name": "Zumrad va Qimmat",
+     "goal": "Bola mehnatsevarlik haqidagi ertakni tinglaydi",
+     "intro": "Bip-bip! Bir qishloqda ikki qiz yashardi: mehnatkash, mehribon Zumrad va dangasa, qo'pol Qimmat. Zumrad o'rmonda bir qariyaga yordam berdi va sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
+     "items": [
+      {
+       "say": "She is kind.",
+       "uz": "u mehribon",
+       "emoji": "😊💝",
+       "image": "en67-u17-she-is-kind.png",
+       "image_prompt": "a kind girl in Uzbek dress helping an old man carry wood in a forest, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni yuragingga qo'y!"
+      },
+      {
+       "say": "She is lazy.",
+       "uz": "u dangasa",
+       "emoji": "🥱🛋️",
+       "image": "en67-u17-she-is-lazy.png",
+       "image_prompt": "a girl in Uzbek dress lazily lying down refusing to help, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Esnab, dangasaday cho'zil!"
+      },
+      {
+       "say": "forest",
+       "uz": "o'rmon",
+       "emoji": "🌲",
+       "image": "en67-u17-forest.png",
+       "image_prompt": "a magical green forest, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ko'tarib, baland daraxt bo'l!"
+      },
+      {
+       "say": "chest",
+       "uz": "sandiq",
+       "emoji": "📦✨",
+       "image": "en67-u17-chest.png",
+       "image_prompt": "an old decorated wooden chest, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Sandiqni ochganday qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Kim mehribon?",
+       "matn": "Men ish aytaman, sen top! Qariyaga o'tin tashishga yordam berdi — kim? Ayt: [en]Zumrad. She is kind.[/en] Yordam bermay yotdi — kim? [en]Qimmat. She is lazy.[/en] Zumradning sandig'idan oltin chiqdi! Sen-chi, qanday bolasan? Ayt: [en]I am kind![/en]",
+       "doska": "😊 Zumrad — She is kind.\n🥱 Qimmat — She is lazy.\n🌲 forest\n📦 chest",
+       "sodda": "Rasmni ko'rsatib ayt: [en]kind[/en] yoki [en]lazy[/en].",
+       "boshqa_usul": "Bugun uyda bitta ishda yordam ber va kattalarga ayt: [en]I am kind![/en]"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Zumrad o'rmonda qariyaga yordam berdi. U qanday qiz?",
+       "options": [
+        "🥱 She is lazy.",
+        "😊 She is kind.",
+        "🎤 She's singing."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Zumrad yordam beradi — [en]She is kind.[/en]"
+      },
+      {
+       "q": "Zumrad qariyani qayerda uchratdi?",
+       "options": [
+        "🏫 school",
+        "🏥 hospital",
+        "🌲 forest"
+       ],
+       "answer": 2,
+       "why": "Barakalla! O'rmonda — [en]in the forest[/en]."
+      }
+     ]
+    },
+    {
+     "name": "Sher va sichqon",
+     "goal": "Bola ertak iboralarini aytadi",
+     "intro": "Bip-bip! Katta sher uxlab yotgan edi. Kichkina sichqon uni uyg'otib yubordi, lekin sher uni qo'yib yubordi. Bir kuni sher ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!",
+     "items": [
+      {
+       "say": "lion",
+       "uz": "sher",
+       "emoji": "🦁",
+       "image": "en45-u4-lion.png",
+       "image_prompt": "A big friendly lion with a golden mane, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Sherday o'kir: r-r-r!"
+      },
+      {
+       "say": "net",
+       "uz": "to'r",
+       "emoji": "🕸️",
+       "image": "en67-u17-net.png",
+       "image_prompt": "a lion caught in a hunter's rope net, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni bog'langanday qilib ushla!"
+      },
+      {
+       "say": "Help me!",
+       "uz": "menga yordam ber",
+       "emoji": "🆘",
+       "image": "en67-u17-help-me.png",
+       "image_prompt": "a lion in a net calling for help, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni silkitib chaqir!"
+      },
+      {
+       "say": "Thank you, little mouse!",
+       "uz": "rahmat, kichkina sichqon",
+       "emoji": "🦁🙏🐭",
+       "image": "en67-u17-thank-you-little-mouse.png",
+       "image_prompt": "a happy lion smiling at a little mouse who chewed the net, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kichkina sichqonga ta'zim qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Sen sichqonsan!",
+       "matn": "Kattalar sher bo'ladi, sen sichqon bo'lasan. Sher to'rda qichqiradi: [en]Help me! Help me![/en] Sen yugurib kelib, to'rni kemirganday qil va ayt: [en]I can help you![/en] Sher aytadi: [en]Thank you, little mouse![/en] Endi rollarni almashtiramiz: sen sher bo'lasan!",
+       "doska": "🦁 lion\n🕸️ net\n🆘 Help me!\n🐭 Thank you, little mouse!",
+       "sodda": "Faqat ayt: [en]Help me![/en] va [en]Thank you![/en]",
+       "boshqa_usul": "Ertakni kattalarga qisqa gapirib ber: [en]The lion is in a net. The mouse can help.[/en]"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sher to'rga tushib qoldi. U nima deb qichqirdi?",
+       "options": [
+        "🎉 Hooray!",
+        "🆘 Help me!",
+        "👋 Goodbye!"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Yordam so'raydi: [en]Help me![/en]"
+      },
+      {
+       "q": "Sichqon to'rni kemirib, sherni qutqardi. Sher unga nima dedi?",
+       "options": [
+        "🦁🙏🐭 Thank you, little mouse!",
+        "🥱 She is lazy.",
+        "🛑 Stop!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]Thank you, little mouse![/en] Kichkina do'st ham katta yordam beradi!"
+      }
+     ]
+    },
+    {
+     "name": "Maktabga tayyorman!",
+     "goal": "Bola o'zini tanishtiradi va bitiruvni bayram qiladi",
+     "intro": "Bip-bip! Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham shuncha ko'p inglizcha so'z o'rganding! Qani, sahnaga chiqib, o'zingni tanishtir!",
+     "items": [
+      {
+       "say": "graduation",
+       "uz": "bitiruv",
+       "emoji": "🎓",
+       "image": "en67-u17-graduation.png",
+       "image_prompt": "kids in graduation caps celebrating at a kindergarten, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Boshingga bitiruv shapkasini kiyganday qil!"
+      },
+      {
+       "say": "diploma",
+       "uz": "diplom",
+       "emoji": "📜",
+       "image": "en67-u17-diploma.png",
+       "image_prompt": "a rolled diploma with a ribbon, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Diplomni ikki qo'llab ol!"
+      },
+      {
+       "say": "I'm ready for school!",
+       "uz": "maktabga tayyorman",
+       "emoji": "🎒🏫",
+       "image": "en67-u17-im-ready-for-school.png",
+       "image_prompt": "ALI with a new backpack standing proudly in front of a school, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ryukzakni yelkangga ol!"
+      },
+      {
+       "say": "We did it!",
+       "uz": "biz uddaladik",
+       "emoji": "🙌",
+       "image": "en67-u17-we-did-it.png",
+       "image_prompt": "ALI and LAYLO jumping with joy, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ko'tarib sakra!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎤 Bitiruv sahnasi",
+       "matn": "Sahnaga chiq va hammaga o'zingni tanishtir: [en]Hello! My name is…[/en] [en]I am six.[/en] [en]I live in…[/en] [en]I like…[/en] Oxirida baland ovozda ayt: [en]I'm ready for school![/en] Hamma qarsak chalib qichqiradi: [en]We did it![/en]",
+       "doska": "👋 Hello! My name is …\n🎂 I am six.\n🏠 I live in …\n❤️ I like …\n🎒 I'm ready for school!",
+       "sodda": "Faqat ikki gap ayt: [en]My name is…[/en] va [en]I'm ready for school![/en]",
+       "boshqa_usul": "Oilang oldida kichik bitiruv konserti qil: o'zingni inglizcha tanishtir va diplom rasmini chiz."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali yangi ryukzakini oldi. U maktabga borishga tayyor. U nima deydi?",
+       "options": [
+        "🥱 She is lazy.",
+        "🆘 Help me!",
+        "🎒 I'm ready for school!"
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]I'm ready for school![/en] — maktabga tayyorman!"
+      },
+      {
+       "q": "Bitiruvda o'zingni tanishtirganda avval nima deysan?",
+       "options": [
+        "👋 Hello! My name is Ali.",
+        "📅 What did you do yesterday?",
+        "🐟 The fish is swimming."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Avval salom berib, ismingni aytasan: [en]Hello! My name is…[/en]"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

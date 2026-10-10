@@ -1,0 +1,627 @@
+{
+ "lessons": {
+  "Men o'ynayapman": {
+   "intro_en": "Beep-beep! Hello, friends! I am Kabu the robot. What are you doing now? Let's say it!",
+   "items": {
+    "What are you doing?": {
+     "sentence": "Ali, what are you doing?",
+     "action_en": "Shrug and ask!"
+    },
+    "I'm playing.": {
+     "sentence": "I'm playing with my ball.",
+     "action_en": "Play with a toy!"
+    },
+    "I'm reading.": {
+     "sentence": "I'm reading a book.",
+     "action_en": "Open your book!"
+    },
+    "I'm eating.": {
+     "sentence": "I'm eating plov with Mum.",
+     "action_en": "Eat with a spoon!"
+    }
+   },
+   "tests_en": [
+    "Ali has a book. Mum asks: What are you doing? What does Ali say?",
+    "Laylo wants to know what Ali is doing now. What does she ask?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Mum and Ali",
+     "matn_en": "A grown-up is Mum, and you are Ali. Mum asks: What are you doing? Act and answer: I'm playing. I'm reading. I'm eating. Now change roles. You ask: What are you doing?"
+    }
+   ]
+  },
+  "U nima qilyapti?": {
+   "intro_en": "Beep-beep! Look at the family! Who is sleeping? Who is singing? Let's see!",
+   "items": {
+    "He's sleeping.": {
+     "sentence": "Grandpa is tired. He's sleeping.",
+     "action_en": "Close your eyes!"
+    },
+    "She's singing.": {
+     "sentence": "Look! She's singing a song.",
+     "action_en": "Sing la-la-la!"
+    },
+    "They're running.": {
+     "sentence": "They're running in the park.",
+     "action_en": "Run on the spot!"
+    }
+   },
+   "tests_en": [
+    "Laylo is singing. What do we say?",
+    "Ali and Laylo are in the park. They run fast. Which sentence is right?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎲 Who is doing what?",
+     "matn_en": "A grown-up acts: sleeps, sings or runs. You guess and say: He's sleeping. She's singing. They're running. Then you act, and the grown-up asks: What are you doing? You answer: I'm singing!"
+    }
+   ]
+  },
+  "Hayvonlar nima qilyapti?": {
+   "intro_en": "Beep-beep! We are in Granny's garden. Look at the animals! What are they doing?",
+   "items": {
+    "The cat is sleeping.": {
+     "sentence": "Shh! The cat is sleeping.",
+     "action_en": "Say shh!"
+    },
+    "The dog is running.": {
+     "sentence": "The dog is running to Ali.",
+     "action_en": "Run like a dog!"
+    },
+    "The birds are singing.": {
+     "sentence": "The birds are singing in the tree.",
+     "action_en": "Tweet like a bird!"
+    },
+    "The fish is swimming.": {
+     "sentence": "The fish is swimming in the water.",
+     "action_en": "Swim like a fish!"
+    }
+   },
+   "tests_en": [
+    "Look at the pond. Which sentence is right?",
+    "What is the dog doing?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "👀 Who is in the garden?",
+     "matn_en": "Close your eyes. Listen! Tweet-tweet! Who is it? Say: The birds are singing. Splash! The fish is swimming. Now open your eyes. I ask: What is the cat doing? Answer with a full sentence!"
+    }
+   ]
+  },
+  "Kecha": {
+   "intro_en": "Beep-beep! Hello, friends! Yesterday I went to the park. What did you do yesterday?",
+   "items": {
+    "What did you do yesterday?": {
+     "sentence": "Laylo, what did you do yesterday?",
+     "action_en": "Point behind you!"
+    },
+    "I played football.": {
+     "sentence": "I played football with Dad.",
+     "action_en": "Kick a ball!"
+    },
+    "I went to the park.": {
+     "sentence": "Yesterday I went to the park.",
+     "action_en": "Walk on the spot!"
+    }
+   },
+   "tests_en": [
+    "Yesterday Ali kicked a ball with his friends. What does he say?",
+    "Laylo wants to ask about yesterday. Which question is right?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎵 «Yesterday» song",
+     "matn_en": "Sing and move: Yesterday, yesterday, what did you do? I played football! I went to the park! Now I ask, and you tell me about you: What did you do yesterday?"
+    }
+   ]
+  },
+  "Ko'rdim": {
+   "intro_en": "Beep-beep! Yesterday I saw a rainbow in the sky! What did you see?",
+   "items": {
+    "I saw a rainbow.": {
+     "sentence": "I saw a rainbow after the rain.",
+     "action_en": "Draw a rainbow in the air!"
+    },
+    "I saw a big dog.": {
+     "sentence": "I saw a big dog. Woof!",
+     "action_en": "Show me big!"
+    },
+    "I ate ice cream.": {
+     "sentence": "I ate ice cream. Yummy!",
+     "action_en": "Lick your ice cream!"
+    }
+   },
+   "tests_en": [
+    "Yesterday Laylo saw seven colours in the sky. What does she say?",
+    "Yesterday Ali ate ice cream. Which sentence is right?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 Ali and Laylo talk",
+     "matn_en": "Laylo asks: What did you do yesterday? Ali answers: I saw a big dog! Laylo says: I saw a rainbow! I ate ice cream! Now you are Ali. What did you see yesterday? Say a full sentence!"
+    }
+   ]
+  },
+  "Dam olish kuni": {
+   "intro_en": "Beep-beep! It's Monday. Ali has a story about his weekend. Let's listen!",
+   "items": {
+    "I visited my granny.": {
+     "sentence": "On Saturday I visited my granny.",
+     "action_en": "Give a big hug!"
+    },
+    "We went to the zoo.": {
+     "sentence": "On Sunday we went to the zoo.",
+     "action_en": "Stretch up like a giraffe!"
+    },
+    "It was fun!": {
+     "sentence": "We saw a giraffe. It was fun!",
+     "action_en": "Clap your hands!"
+    }
+   },
+   "tests_en": [
+    "On Saturday Ali went to his granny's house. What does he say?",
+    "The zoo was great! What do we say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎲 Story cards",
+     "matn_en": "Draw three cards: Granny, a giraffe and a happy face. Pick a card and say: I visited my granny. We went to the zoo. It was fun! Now say all three and tell me about your weekend!"
+    }
+   ]
+  },
+  "Katta sholg'om": {
+   "intro_en": "Beep-beep! Grandpa has a giant turnip. He pulls and pulls. Who can help him?",
+   "items": {
+    "turnip": {
+     "sentence": "Grandpa has a big turnip.",
+     "action_en": "Show me a big turnip!"
+    },
+    "Pull, pull, pull!": {
+     "sentence": "We pull, pull, pull together!",
+     "action_en": "Pull, pull, pull!"
+    },
+    "mouse": {
+     "sentence": "The little mouse can help.",
+     "action_en": "Squeak like a mouse!"
+    },
+    "Hooray!": {
+     "sentence": "Hooray! The turnip is out!",
+     "action_en": "Jump and shout hooray!"
+    }
+   },
+   "tests_en": [
+    "Who came last and helped to pull the turnip?",
+    "The turnip is out! What does everyone shout?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎵 Turnip song",
+     "matn_en": "Stand in a line and pull as you sing: Pull, pull, pull! The turnip is big! The dog comes, the cat comes, but no! The mouse comes: Pull, pull, pull! Hooray! Now tell the story. Who came last? Say: The mouse!"
+    }
+   ]
+  },
+  "Zumrad va Qimmat": {
+   "intro_en": "Beep-beep! This is an Uzbek fairy tale. Zumrad is kind. Qimmat is lazy. Let's listen!",
+   "items": {
+    "She is kind.": {
+     "sentence": "Zumrad helps. She is kind.",
+     "action_en": "Put your hand on your heart!"
+    },
+    "She is lazy.": {
+     "sentence": "Qimmat doesn't help. She is lazy.",
+     "action_en": "Yawn and stretch!"
+    },
+    "forest": {
+     "sentence": "Zumrad goes to the forest.",
+     "action_en": "Be a tall tree!"
+    },
+    "chest": {
+     "sentence": "The chest is full of gold!",
+     "action_en": "Open the chest!"
+    }
+   },
+   "tests_en": [
+    "Zumrad helps an old man. What is she like?",
+    "Where does Zumrad meet the old man?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "👀 Who is kind?",
+     "matn_en": "I tell, you guess! Who helps the old man carry the wood? Say: Zumrad. She is kind. Who lies down and doesn't help? Qimmat. She is lazy. Zumrad gets gold in her chest! And you? Say: I am kind!"
+    }
+   ]
+  },
+  "Sher va sichqon": {
+   "intro_en": "Beep-beep! A big lion and a little mouse. Can a little mouse help a big lion? Let's listen!",
+   "items": {
+    "lion": {
+     "sentence": "The lion is big and strong.",
+     "action_en": "Roar like a lion!"
+    },
+    "net": {
+     "sentence": "The lion is in a net.",
+     "action_en": "Pretend you are stuck!"
+    },
+    "Help me!": {
+     "sentence": "Help me, please! Help me!",
+     "action_en": "Wave and call for help!"
+    },
+    "Thank you, little mouse!": {
+     "sentence": "The lion says, Thank you, little mouse!",
+     "action_en": "Bow and say thank you!"
+    }
+   },
+   "tests_en": [
+    "The lion is in a net. What does he shout?",
+    "The mouse bites the net and the lion is free. What does the lion say?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎭 You are the mouse!",
+     "matn_en": "A grown-up is the lion, you are the mouse. The lion is in a net and shouts: Help me! Help me! Run to him, bite the net and say: I can help you! The lion says: Thank you, little mouse! Now change roles: you are the lion!"
+    }
+   ]
+  },
+  "Maktabga tayyorman!": {
+   "intro_en": "Beep-beep! Today is our graduation! You can speak English now. I am so proud of you!",
+   "items": {
+    "graduation": {
+     "sentence": "Today is our graduation day!",
+     "action_en": "Put on your cap!"
+    },
+    "diploma": {
+     "sentence": "Here is your diploma. Well done!",
+     "action_en": "Take your diploma!"
+    },
+    "I'm ready for school!": {
+     "sentence": "I'm six. I'm ready for school!",
+     "action_en": "Put on your school bag!"
+    },
+    "We did it!": {
+     "sentence": "Ali, Laylo, we did it!",
+     "action_en": "Jump and give a high five!"
+    }
+   },
+   "tests_en": [
+    "Ali has a new school bag. What does he say?",
+    "You are on the stage. What do you say first?"
+   ],
+   "extras_en": [
+    {
+     "sarlavha_en": "🎤 Graduation stage",
+     "matn_en": "Go on the stage and tell everyone about you: Hello! My name is… I am six. I live in… I like… At the end say loudly: I'm ready for school! Everyone claps and shouts: We did it!"
+    }
+   ]
+  }
+ },
+ "scenarios": [
+  {
+   "unit": 5,
+   "name": "Telefonda: hozir nima qilyapsan?",
+   "name_en": "On the phone: What are you doing?",
+   "emoji": "📱",
+   "goal": "Bola telefonda do'stiga hozir nima qilayotganini aytadi va undan so'raydi",
+   "intro": "Laylo Aliga qo'ng'iroq qildi. Ular hozir nima qilyapti? Sen Ali bo'lasan — javob ber va o'zing ham so'ra!",
+   "intro_en": "Laylo calls Ali on the phone. What are they doing now? You are Ali!",
+   "roles": [
+    "Laylo",
+    "Ali (sen)"
+   ],
+   "roles_en": [
+    "Laylo",
+    "Ali (you)"
+   ],
+   "scene": {
+    "image": "en67-s22-phone-call-now.png",
+    "image_prompt": "Ali at home talking on a phone with a toy car in his hand and a cat sleeping on the sofa, Laylo on the phone in her room with a book, split view, soft 3D cartoon scene for kids, warm colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 0,
+     "say": "Hello, Ali! It's Laylo.",
+     "uz": "salom, Ali! bu Laylo",
+     "emoji": "📱"
+    },
+    {
+     "who": 1,
+     "say": "Hi, Laylo! What are you doing?",
+     "uz": "salom, Laylo! nima qilyapsan?",
+     "emoji": "👋"
+    },
+    {
+     "who": 0,
+     "say": "I'm reading a book. And you?",
+     "uz": "kitob o'qiyapman. sen-chi?",
+     "emoji": "📖"
+    },
+    {
+     "who": 1,
+     "say": "I'm playing with my car.",
+     "uz": "mashinam bilan o'ynayapman",
+     "emoji": "🚗"
+    },
+    {
+     "who": 0,
+     "say": "Where is your cat?",
+     "uz": "mushuging qayerda?",
+     "emoji": "🐈"
+    },
+    {
+     "who": 1,
+     "say": "The cat is sleeping on the sofa.",
+     "uz": "mushuk divanda uxlayapti",
+     "emoji": "🐈😴"
+    },
+    {
+     "who": 0,
+     "say": "Let's play in the park!",
+     "uz": "bog'da o'ynaymiz!",
+     "emoji": "🌳"
+    },
+    {
+     "who": 1,
+     "say": "OK! See you soon!",
+     "uz": "xo'p! tez orada ko'rishamiz!",
+     "emoji": "👋"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Laylo hozir nima qilyapti?",
+     "q_en": "What is Laylo doing?",
+     "options": [
+      "📖 She's reading.",
+      "🎤 She's singing.",
+      "😴 She's sleeping."
+     ],
+     "answer": 0,
+     "why": "To'g'ri! Laylo kitob o'qiyapti: [en]I'm reading a book.[/en]",
+     "why_en": "Yes! She's reading a book."
+    },
+    {
+     "q": "Alining mushugi nima qilyapti?",
+     "q_en": "What is Ali's cat doing?",
+     "options": [
+      "🐕💨 The dog is running.",
+      "🐈😴 The cat is sleeping.",
+      "🐟 The fish is swimming."
+     ],
+     "answer": 1,
+     "why": "Barakalla! [en]The cat is sleeping.[/en]",
+     "why_en": "Well done! The cat is sleeping."
+    },
+    {
+     "q": "Laylo so'radi: [en]And you?[/en] Ali nima deydi?",
+     "q_en": "Laylo asks: And you? What does Ali say?",
+     "options": [
+      "🍽️ I'm eating.",
+      "😴 He's sleeping.",
+      "🚗 I'm playing with my car."
+     ],
+     "answer": 2,
+     "why": "To'g'ri! Ali o'ynayapti: [en]I'm playing with my car.[/en]",
+     "why_en": "Yes! I'm playing with my car."
+    }
+   ]
+  },
+  {
+   "unit": 6,
+   "name": "Dushanba ertalab bog'chada",
+   "name_en": "Monday morning at kindergarten",
+   "emoji": "🌞",
+   "goal": "Bola do'stiga dam olish kunida nima qilganini gapirib beradi va undan so'raydi",
+   "intro": "Dushanba ertalab Ali va Laylo bog'chada uchrashdi. Dam olish kunida ular nima qilishdi? Sen Laylo bo'lasan — so'ra va gapirib ber!",
+   "intro_en": "It's Monday morning. Ali and Laylo talk about the weekend. You are Laylo!",
+   "roles": [
+    "Ali",
+    "Laylo (sen)"
+   ],
+   "roles_en": [
+    "Ali",
+    "Laylo (you)"
+   ],
+   "scene": {
+    "image": "en67-s23-monday-morning.png",
+    "image_prompt": "Ali and Laylo meeting happily in a sunny kindergarten yard in the morning, Laylo showing Ali her drawing of a giraffe, soft 3D cartoon scene for kids, warm colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 0,
+     "say": "Good morning, Laylo!",
+     "uz": "xayrli tong, Laylo!",
+     "emoji": "🌞"
+    },
+    {
+     "who": 1,
+     "say": "Good morning, Ali! What did you do at the weekend?",
+     "uz": "xayrli tong, Ali! dam olish kunida nima qilding?",
+     "emoji": "❓"
+    },
+    {
+     "who": 0,
+     "say": "I visited my granny. We ate plov.",
+     "uz": "buvimnikiga bordim. palov yedik",
+     "emoji": "👵🍚"
+    },
+    {
+     "who": 1,
+     "say": "Yummy! I went to the zoo with Mum and Dad.",
+     "uz": "mazali! oyim va dadam bilan hayvonot bog'iga bordim",
+     "emoji": "🦒"
+    },
+    {
+     "who": 0,
+     "say": "Wow! What did you see?",
+     "uz": "voy! nimani ko'rding?",
+     "emoji": "👀"
+    },
+    {
+     "who": 1,
+     "say": "I saw a big giraffe!",
+     "uz": "katta jirafani ko'rdim!",
+     "emoji": "🦒"
+    },
+    {
+     "who": 0,
+     "say": "Did you eat ice cream?",
+     "uz": "muzqaymoq yedingmi?",
+     "emoji": "🍦"
+    },
+    {
+     "who": 1,
+     "say": "Yes, I did! It was fun!",
+     "uz": "ha, yedim! juda qiziq bo'ldi!",
+     "emoji": "😄"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Ali dam olish kunida qayerga bordi?",
+     "q_en": "Where did Ali go at the weekend?",
+     "options": [
+      "🦒 He went to the zoo.",
+      "👵 He visited his granny.",
+      "⚽ He played football."
+     ],
+     "answer": 1,
+     "why": "To'g'ri! Ali buvijonnikiga bordi: [en]I visited my granny.[/en]",
+     "why_en": "Yes! He visited his granny."
+    },
+    {
+     "q": "Laylo hayvonot bog'ida nimani ko'rdi?",
+     "q_en": "What did Laylo see at the zoo?",
+     "options": [
+      "🌈 A rainbow.",
+      "🐕 A big dog.",
+      "🦒 A big giraffe."
+     ],
+     "answer": 2,
+     "why": "Barakalla! [en]I saw a big giraffe![/en]",
+     "why_en": "Well done! She saw a big giraffe."
+    },
+    {
+     "q": "Oxirida Laylo nima dedi?",
+     "q_en": "What did Laylo say at the end?",
+     "options": [
+      "😄 It was fun!",
+      "❓ What are you doing?",
+      "🛑 Stop!"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]It was fun![/en] — juda qiziq bo'ldi!",
+     "why_en": "Yes! It was fun!"
+    }
+   ]
+  },
+  {
+   "unit": 7,
+   "name": "Yangi ustoz bilan tanishuv",
+   "name_en": "Meeting my new teacher",
+   "emoji": "🏫",
+   "goal": "Bola maktabdagi yangi ustozga o'zini tanishtiradi va sevimli ertagini qisqa gapirib beradi",
+   "intro": "Ali maktabga keldi. Yangi ustoz u bilan tanishmoqchi. Sen Ali bo'lasan — o'zingni tanishtir va ertak aytib ber!",
+   "intro_en": "Ali is at school. He meets his new teacher. You are Ali. Tell her about you!",
+   "roles": [
+    "Ustoz",
+    "Ali (sen)"
+   ],
+   "roles_en": [
+    "Teacher",
+    "Ali (you)"
+   ],
+   "scene": {
+    "image": "en67-s24-new-teacher.png",
+    "image_prompt": "Ali with a new backpack shaking hands with a smiling teacher at the school door, Laylo waving nearby, soft 3D cartoon scene for kids, warm colors, no text, square"
+   },
+   "dialog": [
+    {
+     "who": 0,
+     "say": "Hello! What's your name?",
+     "uz": "salom! isming nima?",
+     "emoji": "👩‍🏫"
+    },
+    {
+     "who": 1,
+     "say": "Hello! My name is Ali. I am six.",
+     "uz": "salom! ismim Ali. olti yoshdaman",
+     "emoji": "👦"
+    },
+    {
+     "who": 0,
+     "say": "Nice to meet you, Ali! What do you like?",
+     "uz": "tanishganimdan xursandman, Ali! nimani yaxshi ko'rasan?",
+     "emoji": "🤝"
+    },
+    {
+     "who": 1,
+     "say": "I like fairy tales!",
+     "uz": "ertaklarni yaxshi ko'raman!",
+     "emoji": "📚"
+    },
+    {
+     "who": 0,
+     "say": "Me too! Tell me a fairy tale, please.",
+     "uz": "men ham! menga bir ertak aytib ber, iltimos",
+     "emoji": "😊"
+    },
+    {
+     "who": 1,
+     "say": "The lion is in a net. The little mouse helps him.",
+     "uz": "sher to'rda. kichkina sichqon unga yordam beradi",
+     "emoji": "🦁🐭"
+    },
+    {
+     "who": 0,
+     "say": "Very good, Ali! Are you ready for school?",
+     "uz": "juda yaxshi, Ali! maktabga tayyormisan?",
+     "emoji": "🏫"
+    },
+    {
+     "who": 1,
+     "say": "Yes! I'm ready for school!",
+     "uz": "ha! maktabga tayyorman!",
+     "emoji": "🎒"
+    }
+   ],
+   "questions": [
+    {
+     "q": "Ali necha yoshda?",
+     "q_en": "How old is Ali?",
+     "options": [
+      "5️⃣ I am five.",
+      "6️⃣ I am six.",
+      "7️⃣ I am seven."
+     ],
+     "answer": 1,
+     "why": "To'g'ri! [en]I am six.[/en] — olti yoshdaman.",
+     "why_en": "Yes! He is six."
+    },
+    {
+     "q": "Ali qaysi ertakni gapirib berdi?",
+     "q_en": "Which fairy tale did Ali tell?",
+     "options": [
+      "🥬 The Giant Turnip",
+      "📦 Zumrad and Qimmat",
+      "🦁🐭 The Lion and the Mouse"
+     ],
+     "answer": 2,
+     "why": "Barakalla! Sher va sichqon — [en]The Lion and the Mouse[/en].",
+     "why_en": "Well done! The Lion and the Mouse."
+    },
+    {
+     "q": "Ustoz so'radi: [en]Are you ready for school?[/en] Ali nima dedi?",
+     "q_en": "The teacher asks: Are you ready for school? What does Ali say?",
+     "options": [
+      "🎒 Yes! I'm ready for school!",
+      "🥱 She is lazy.",
+      "🆘 Help me!"
+     ],
+     "answer": 0,
+     "why": "To'g'ri! [en]Yes! I'm ready for school![/en]",
+     "why_en": "Yes! I'm ready for school!"
+    }
+   ]
+  }
+ ]
+}

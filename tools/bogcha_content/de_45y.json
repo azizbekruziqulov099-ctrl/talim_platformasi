@@ -3220,6 +3220,760 @@
      ]
     }
    ]
+  },
+  {
+   "name": "Odob va muloqot",
+   "emoji": "🙏",
+   "lessons": [
+    {
+     "name": "Iltimos va rahmat",
+     "goal": "Bola odob so'zlarini o'rnida ishlatadi",
+     "intro": "Bip-bip! Men — robot Kabu. Bilasanmi, ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz. Tayyormisan?",
+     "items": [
+      {
+       "say": "Bitte!",
+       "uz": "iltimos",
+       "emoji": "🤲",
+       "image": "en23-u11-please.png",
+       "image_prompt": "A cute child with palms pressed together politely asking for something, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftlaringni birlashtir!"
+      },
+      {
+       "say": "Danke!",
+       "uz": "rahmat",
+       "emoji": "🙏",
+       "image": "en34-u1-thank-you.png",
+       "image_prompt": "A smiling child holding a small gift with a hand on the heart, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'y!"
+      },
+      {
+       "say": "Bitte schön.",
+       "uz": "arzimaydi",
+       "emoji": "😊",
+       "image": "en67-u7-youre-welcome.png",
+       "image_prompt": "A friendly child smiling warmly after handing a toy to a friend, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Jilmayib bosh irg'a!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dasturxonda non",
+       "matn": "Laylo dasturxonda non so'rayapti: [de]Brot, bitte![/de] Ali nonni uzatdi. Laylo: [de]Danke![/de] Ali jilmaydi: [de]Bitte schön.[/de] Endi sen Alisan. Men aytaman: [de]Danke![/de] Sen nima deysan?",
+       "doska": "🍞 Brot, bitte!\n🙏 Danke!\n😊 Gern geschehen.",
+       "sodda": "Kabu senga olma beryapti. Sen faqat ayt: [de]Danke![/de]",
+       "boshqa_usul": "Kechki ovqatda oilang bilan non va choy uzatib, [de]Bitte![/de], [de]Danke![/de] va [de]Bitte schön.[/de] deb o'ynanglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali senga rahmat aytdi: [de]Danke![/de] Sen nima deysan?",
+       "options": [
+        "👋 Hallo!",
+        "😊 Bitte schön."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [de]Bitte schön.[/de] — arzimaydi, degani. Sen juda odobli bolasan!"
+      },
+      {
+       "q": "Sen sharbat so'rayapsan. Qaysi sehrli so'zni qo'shasan?",
+       "options": [
+        "🤲 Bitte!",
+        "🚪 Auf Wiedersehen!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Saft, bitte![/de] Iltimos deb so'rasang, hamma xursand bo'ladi."
+      }
+     ]
+    },
+    {
+     "name": "Kechirasiz",
+     "goal": "Bola kechirim so'raydi va kechiradi",
+     "intro": "Bip-bip! Voy, Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi Ali nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
+     "items": [
+      {
+       "say": "Entschuldigung!",
+       "uz": "kechirasiz (murojaat)",
+       "emoji": "✋",
+       "image": "en45-u12-excuse-me.png",
+       "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'tar!"
+      },
+      {
+       "say": "Tut mir leid!",
+       "uz": "kechir",
+       "emoji": "😔",
+       "image": "en23-u11-sorry.png",
+       "image_prompt": "A child looking sorry with a hand on the chest next to a fallen tower of toy blocks, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'yib, boshingni egib ol!"
+      },
+      {
+       "say": "Das macht nichts.",
+       "uz": "hechqisi yo'q",
+       "emoji": "👌",
+       "image": "en45-u12-thats-ok.png",
+       "image_prompt": "LAYLO smiling and forgiving ALI, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Jilmayib, bosh barmog'ingni ko'rsat!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Yur-to'xta o'yini",
+       "matn": "Xonada sekin yur. Kabu «Bip!» desa — do'stingga tegib ketding! Ayt: [de]Tut mir leid![/de] Do'sting javob beradi: [de]Das macht nichts.[/de] Tarbiyachini chaqirsang, qo'lingni ko'tar: [de]Entschuldigung![/de] Endi sen ayt: [de]Tut mir leid![/de]",
+       "doska": "✋ Entschuldigung!\n😔 Tut mir leid!\n👌 Das macht nichts.",
+       "sodda": "Kabu aytadi: [de]Tut mir leid![/de] Sen jilmayib ayt: [de]Das macht nichts.[/de]",
+       "boshqa_usul": "Uyda oyingning qo'liga sekin tegib [de]Tut mir leid![/de] deb ayt, oying esa [de]Das macht nichts.[/de] deb javob bersin."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sen bilmasdan Laylo qurgan minorani buzib qo'yding. Nima deysan?",
+       "options": [
+        "😔 Tut mir leid!",
+        "🙏 Danke!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [de]Tut mir leid![/de] — kechir, degani. Xato qilsak, kechirim so'raymiz."
+      },
+      {
+       "q": "Ali senga [de]Tut mir leid![/de] dedi. Sen uni kechirding. Nima deysan?",
+       "options": [
+        "🍎 Apfel!",
+        "👌 Das macht nichts."
+       ],
+       "answer": 1,
+       "why": "Zo'r! [de]Das macht nichts.[/de] — hechqisi yo'q. Do'stlar bir-birini kechiradi."
+      }
+     ]
+    },
+    {
+     "name": "Menga berasanmi?",
+     "goal": "Bola odob bilan narsa so'raydi va javob beradi",
+     "intro": "Bip-bip! Bog'chada sayr vaqti. Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz? Bugun bilib olamiz!",
+     "items": [
+      {
+       "say": "Kann ich bitte einen Ball haben?",
+       "uz": "koptokni bera olasanmi?",
+       "emoji": "⚽",
+       "image": "en45-u12-can-i-have-a-ball-please.png",
+       "image_prompt": "ALI politely asking a teacher for a ball, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni oldinga uzat!"
+      },
+      {
+       "say": "Hier, bitte.",
+       "uz": "marhamat",
+       "emoji": "🫴",
+       "image": "en67-u7-here-you-are.png",
+       "image_prompt": "A smiling child handing an apple to a friend with an open palm, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Narsani do'stingga uzat!"
+      },
+      {
+       "say": "Ja, bitte.",
+       "uz": "ha, iltimos",
+       "emoji": "👍",
+       "image": "en45-u12-yes-please.png",
+       "image_prompt": "LAYLO nodding happily as she is offered an apple, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Bosh irg'a!"
+      },
+      {
+       "say": "Nein, danke.",
+       "uz": "yo'q, rahmat",
+       "emoji": "🙅",
+       "image": "en45-u12-no-thank-you.png",
+       "image_prompt": "LAYLO politely refusing a sweet with a smile, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Boshingni sekin chayqa!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Odob qo'shig'i",
+       "matn": "Kabu bilan kuylaymiz: [de]Kann ich bitte einen Ball haben? Bitte schön! Bitte schön![/de] Endi buvijon senga olma taklif qilyapti. Xohlasang: [de]Ja, bitte.[/de] Xohlamasang: [de]Nein, danke.[/de] Sen nima deysan?",
+       "doska": "⚽ Kann ich bitte einen Ball haben?\n🫴 Bitte schön.\n👍 Ja, bitte.\n🙅 Nein, danke.",
+       "sodda": "Kabu senga olma uzatyapti: [de]Hier, bitte.[/de] Sen ayt: [de]Danke![/de]",
+       "boshqa_usul": "Uyda o'yinchoqlarni bir-biringizga uzatib, [de]Kann ich bitte einen Ball haben?[/de] va [de]Hier, bitte.[/de] deb o'ynanglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvijon senga shirinlik taklif qildi, lekin sen to'qsan. Nima deysan?",
+       "options": [
+        "👍 Ja, bitte.",
+        "🙅 Nein, danke."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [de]Nein, danke.[/de] — yo'q, rahmat. Olmasak ham rahmat aytamiz."
+      },
+      {
+       "q": "Laylo senga koptok uzatyapti. U nima deydi?",
+       "options": [
+        "🫴 Bitte schön.",
+        "😔 Tut mir leid!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Hier, bitte.[/de] — marhamat, degani. Sen esa [de]Danke![/de] deysan."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Bog'chada tushlik: non so'raymiz",
+     "name_en": "Mittagessen im Kindergarten",
+     "emoji": "🍲",
+     "goal": "Bola tushlikda odob bilan non so'raydi, taklifga javob beradi va rahmat aytadi",
+     "intro": "Bip-bip! Bog'chada tushlik vaqti! Stolda issiq sho'rva, non va piyolada choy. Ali non so'ramoqchi. Qani, sen Alining o'rnida odob bilan so'ra!",
+     "intro_en": "Piep-piep! Im Kindergarten gibt es Mittagessen. Bitte höflich um Brot!",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Lehrerin",
+      "Kind"
+     ],
+     "scene": {
+      "image": "en45-s15-kindergarten-lunch.png",
+      "image_prompt": "ALI at a kindergarten lunch table politely raising his hand while a kind teacher hands him bread, a piyola of tea and bowls of soup on the table, LAYLO smiling beside him, soft 3D cartoon scene for kids, warm colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Entschuldigung! Kann ich bitte Brot haben?",
+       "uz": "kechirasiz! iltimos, non bering",
+       "emoji": "✋"
+      },
+      {
+       "who": 0,
+       "say": "Bitte schön. Möchtest du Tee?",
+       "uz": "marhamat. choy ham beraymi?",
+       "emoji": "🫴"
+      },
+      {
+       "who": 1,
+       "say": "Ja, bitte. Danke!",
+       "uz": "ha, iltimos. rahmat!",
+       "emoji": "🍵"
+      },
+      {
+       "who": 0,
+       "say": "Bitte schön!",
+       "uz": "arzimaydi!",
+       "emoji": "😊"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tarbiyachi senga non uzatdi: [de]Hier, bitte.[/de] Sen nima deysan?",
+       "q_en": "Die Erzieherin gibt dir Brot: Bitte schön. Was sagst du?",
+       "options": [
+        "🙏 Danke!",
+        "👋 Auf Wiedersehen!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [de]Danke![/de] — rahmat. Sen juda odoblisan!",
+       "why_en": "Super! Danke!"
+      },
+      {
+       "q": "Tarbiyachi so'raydi: [de]Möchtest du Tee?[/de] Sen choy xohlaysan. Nima deysan?",
+       "q_en": "Die Erzieherin fragt: Möchtest du Tee? Du möchtest Tee. Was sagst du?",
+       "options": [
+        "🙅 Nein, danke.",
+        "👍 Ja, bitte."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [de]Ja, bitte.[/de] — ha, iltimos.",
+       "why_en": "Ja! Ja, bitte."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mening kunim",
+   "emoji": "🌞",
+   "lessons": [
+    {
+     "name": "Ertalab",
+     "goal": "Bola ertalabki ishlarni aytadi",
+     "intro": "Bip-bip! Tong otdi, quyosh derazadan mo'ralayapti. Ali esa hali ham uxlayapti! Uni qanday uyg'otamiz? Qani, birga bilib olamiz.",
+     "items": [
+      {
+       "say": "aufwachen",
+       "uz": "uyg'on",
+       "emoji": "⏰",
+       "image": "en45-u13-wake-up.png",
+       "image_prompt": "ALI waking up and stretching in bed, morning sun in the window, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kerishib, qo'llaringni yuqoriga cho'z!"
+      },
+      {
+       "say": "Guten Morgen!",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en34-u1-good-morning.png",
+       "image_prompt": "A cheerful child greeting the morning sun by an open window, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni quyoshdek keng och!"
+      },
+      {
+       "say": "das Frühstück",
+       "uz": "nonushta",
+       "emoji": "🍳",
+       "image": "en45-u13-breakfast.png",
+       "image_prompt": "a breakfast table with bread, eggs, tea and milk, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiqda ovqat yeyotgandek qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Tonggi suhbat",
+       "matn": "Oyi Alini uyg'otyapti: [de]Wach auf, Ali![/de] Ali kerishadi: [de]Guten Morgen, Mama![/de] Oyi chaqiradi: [de]Frühstück![/de] Stolda non, tuxum, choy. Ali: [de]Lecker![/de] Endi sen ayt: [de]Guten Morgen![/de]",
+       "doska": "⏰ Wach auf!\n🌅 Guten Morgen!\n🍳 das Frühstück",
+       "sodda": "Kabu aytadi: [de]Wach auf![/de] Sen kerishib ayt: [de]Guten Morgen![/de]",
+       "boshqa_usul": "Ertaga ertalab oyingga birinchi bo'lib [de]Guten Morgen![/de] deb ayt, nonushtada esa [de]das Frühstück[/de] so'zini eslang."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ertalab uyg'onding, oying xonaga kirdi. Nima deysan?",
+       "options": [
+        "🚪 Auf Wiedersehen!",
+        "🌅 Guten Morgen!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Ertalab [de]Guten Morgen![/de] — xayrli tong deymiz."
+      },
+      {
+       "q": "Ertalab non, tuxum va choy yeymiz. Bu nima?",
+       "options": [
+        "🍳 das Frühstück",
+        "⚽ der Ball"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Frühstück[/de] — nonushta. Yoqimli ishtaha!"
+      }
+     ]
+    },
+    {
+     "name": "Bog'chaga boraman",
+     "goal": "Bola kun haqida qisqa gap aytadi",
+     "intro": "Bip-bip! Nonushta tugadi. Laylo sumkasini oldi va oyisining qo'lidan ushladi. U qayerga ketyapti? Topdingmi? Bog'chaga!",
+     "items": [
+      {
+       "say": "Ich gehe in den Kindergarten.",
+       "uz": "bog'chaga boraman",
+       "emoji": "🏫",
+       "image": "en45-u13-i-go-to-kindergarten.png",
+       "image_prompt": "LAYLO walking to kindergarten holding her mum's hand, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda yurib ket!"
+      },
+      {
+       "say": "die Tasche",
+       "uz": "sumka",
+       "emoji": "🎒",
+       "image": "en45-u13-bag.png",
+       "image_prompt": "a small kids' backpack, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Sumkani yelkangga taqqandek qil!"
+      },
+      {
+       "say": "Los geht's!",
+       "uz": "ketdik",
+       "emoji": "🚶",
+       "image": "en45-u13-lets-go.png",
+       "image_prompt": "ALI and LAYLO marching happily, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qadam tashlab yur!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Bog'chaga yo'l o'yini",
+       "matn": "Sumkangni yelkangga taq: [de]Meine Tasche![/de] Endi joyingda qadam tashla va ayt: [de]Los geht's! Los geht's![/de] Kabu so'raydi: qayerga ketyapsan? Sen javob ber: [de]Ich gehe in den Kindergarten.[/de]",
+       "doska": "🎒 die Tasche\n🚶 Los geht's!\n🏫 Ich gehe in den Kindergarten.",
+       "sodda": "Sumkangni ol va ayt: [de]Los geht's![/de]",
+       "boshqa_usul": "Ertalab eshik oldida birga [de]Los geht's![/de] deb, yo'lda [de]Ich gehe in den Kindergarten.[/de] gapini aytinglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo bog'chaga narsalarini nimaga soladi?",
+       "options": [
+        "🎂 der Kuchen",
+        "🎒 die Tasche"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [de]Tasche[/de] — sumka. Laylo sumkasini o'zi ko'taradi!"
+      },
+      {
+       "q": "Hamma tayyor, yo'lga chiqamiz! Ali do'stlariga nima deydi?",
+       "options": [
+        "🚶 Los geht's!",
+        "😔 Tut mir leid!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [de]Los geht's![/de] — ketdik, degani."
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun",
+     "goal": "Bola kechki ishlar va uyqu iboralarini aytadi",
+     "intro": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda nima qiladi? Kechki ovqat, cho'milish va shirin uyqu! Mening batareyam ham dam olmoqchi.",
+     "items": [
+      {
+       "say": "das Abendessen",
+       "uz": "kechki ovqat",
+       "emoji": "🍽️",
+       "image": "en45-u13-dinner.png",
+       "image_prompt": "a family dinner table with plov and salad, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiqda palov yeyotgandek qil!"
+      },
+      {
+       "say": "das Bad",
+       "uz": "cho'milish",
+       "emoji": "🛁",
+       "image": "en45-u13-bath.png",
+       "image_prompt": "ALI having a bath with bubbles and a rubber duck, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ishqalab, yuvingandek qil!"
+      },
+      {
+       "say": "ins Bett gehen",
+       "uz": "uxlashga yot",
+       "emoji": "🛏️",
+       "image": "en45-u13-go-to-bed.png",
+       "image_prompt": "LAYLO going to bed, mum tucking her in, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftlaringni yonog'ingga qo'yib, ko'zingni yum!"
+      },
+      {
+       "say": "Gute Nacht!",
+       "uz": "xayrli tun",
+       "emoji": "🌙",
+       "image": "en34-u1-good-night.png",
+       "image_prompt": "A sleepy child in pajamas waving good night under a crescent moon, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Esnab, qo'l silkit!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, nima qilyapman?",
+       "matn": "Kabu ishora qiladi, sen top! Qoshiqda palov yeyapti — bu [de]das Abendessen[/de]! Ko'pikli suvda yuvinyapti — bu [de]das Bad[/de]! Esnadi — [de]ins Bett gehen[/de]! Endi sen menga ayt: [de]Gute Nacht, Kabu![/de]",
+       "doska": "🍽️ das Abendessen\n🛁 das Bad\n🛏️ ins Bett gehen\n🌙 Gute Nacht!",
+       "sodda": "Ko'zingni yum va ayt: [de]Gute Nacht![/de]",
+       "boshqa_usul": "Bugun uxlashdan oldin oilangdagi har bir kishiga [de]Gute Nacht![/de] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Uxlashga yotyapsan. Oyingga nima deysan?",
+       "options": [
+        "🌅 Guten Morgen!",
+        "🌙 Gute Nacht!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kechqurun [de]Gute Nacht![/de] — xayrli tun deymiz."
+      },
+      {
+       "q": "Ali ko'pikli suvda o'rdakcha bilan yuvinyapti. Bu nima?",
+       "options": [
+        "🛁 das Bad",
+        "🍽️ das Abendessen"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Bad[/de] — cho'milish. Toza bo'lish zo'r!"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Ertalab bog'chaga tayyorlanamiz",
+     "name_en": "Morgens fertig machen",
+     "emoji": "🌅",
+     "goal": "Bola ertalab oyisi bilan salomlashadi, sumkasini oladi va yo'lga chiqadi",
+     "intro": "Bip-bip! Tong otdi! Oyi Alini uyg'otyapti. Keyin nonushta, sumka — va bog'chaga! Qani, sen Alining o'rnida gapir.",
+     "intro_en": "Piep-piep! Guten Morgen! Wach auf und mach dich für den Kindergarten fertig!",
+     "roles": [
+      "Oyi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Mama",
+      "Kind"
+     ],
+     "scene": {
+      "image": "en45-s16-morning-ready.png",
+      "image_prompt": "ALI stretching by his bed in the morning while his smiling mum stands at the door holding his small backpack, bread and a piyola of tea on a little table, morning sun through the window, soft 3D cartoon scene for kids, warm colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "Wach auf, Ali! Guten Morgen!",
+       "uz": "uyg'on, Ali! xayrli tong!",
+       "emoji": "⏰"
+      },
+      {
+       "who": 1,
+       "say": "Guten Morgen, Mama!",
+       "uz": "xayrli tong, oyijon!",
+       "emoji": "🌅"
+      },
+      {
+       "who": 0,
+       "say": "Das Frühstück ist fertig. Hier ist deine Tasche.",
+       "uz": "nonushta tayyor. mana sumkang",
+       "emoji": "🎒"
+      },
+      {
+       "who": 1,
+       "say": "Danke, Mama! Los geht's!",
+       "uz": "rahmat, oyijon! ketdik!",
+       "emoji": "🚶"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Oying seni uyg'otdi: [de]Guten Morgen![/de] Sen nima deysan?",
+       "q_en": "Mama weckt dich: Guten Morgen! Was sagst du?",
+       "options": [
+        "🌙 Gute Nacht!",
+        "🌅 Guten Morgen, Mama!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Ertalab [de]Guten Morgen, Mama![/de] deymiz.",
+       "why_en": "Super! Guten Morgen, Mama!"
+      },
+      {
+       "q": "Sumkang tayyor, eshik oldidasan. Oyingga nima deysan?",
+       "q_en": "Deine Tasche ist fertig. Du stehst an der Tür. Was sagst du?",
+       "options": [
+        "🚶 Los geht's!",
+        "🛁 das Bad"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Los geht's![/de] — ketdik. Bog'chaga yo'l oldik!",
+       "why_en": "Ja! Los geht's!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Hissiyot va do'stlik",
+   "emoji": "💛",
+   "lessons": [
+    {
+     "name": "Qanday his qilyapsan?",
+     "goal": "Bola o'z his-tuyg'usini aytadi",
+     "intro": "Bip-bip! Robotlar ham his qiladi! Batareyam to'la bo'lsa, men xursandman. Bugun Laylo biroz xomush ko'rinyapti. Undan qanday so'raymiz?",
+     "items": [
+      {
+       "say": "Wie fühlst du dich?",
+       "uz": "o'zingni qanday his qilyapsan?",
+       "emoji": "🤔",
+       "image": "en45-u14-how-do-you-feel.png",
+       "image_prompt": "a kind teacher kneeling and gently asking LAYLO something, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftlaringni ochib, savol bergandek qil!"
+      },
+      {
+       "say": "Ich bin fröhlich.",
+       "uz": "men xursandman",
+       "emoji": "😄",
+       "image": "en56-u8-i-am-happy.png",
+       "image_prompt": "A cheerful child smiling broadly and jumping with joy, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Keng jilmayib, sakra!"
+      },
+      {
+       "say": "Ich bin traurig.",
+       "uz": "men xafaman",
+       "emoji": "😢",
+       "image": "en23-u11-sad.png",
+       "image_prompt": "A sad child with a small tear sitting quietly and hugging a teddy, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Labingni osiltirib, xafa yuz qil!"
+      },
+      {
+       "say": "wütend",
+       "uz": "jahli chiqqan",
+       "emoji": "😠",
+       "image": "en45-u14-angry.png",
+       "image_prompt": "ALI looking angry with crossed arms and red cheeks, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni qovushtirib, qoshingni chimir!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Yuzlar o'yini",
+       "matn": "Kabu so'raydi: [de]Wie fühlst du dich?[/de] Ali sovg'a oldi: [de]Ich bin fröhlich![/de] Laylo varragi uchib ketdi: [de]Ich bin traurig.[/de] Yuzingni ko'rsat-chi: xursand, xafa, jahldor! Endi Kabu sendan so'raydi: [de]Wie fühlst du dich?[/de]",
+       "doska": "🤔 Wie fühlst du dich?\n😄 Ich bin fröhlich.\n😢 Ich bin traurig.\n😠 wütend",
+       "sodda": "Jilmay va ayt: [de]Ich bin fröhlich.[/de]",
+       "boshqa_usul": "Kechqurun ota-onang sendan [de]Wie fühlst du dich?[/de] deb so'rasin, sen esa yuzing bilan ko'rsatib javob ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali tug'ilgan kunida sovg'a oldi va kulyapti. U nima deydi?",
+       "options": [
+        "😢 Ich bin traurig.",
+        "😄 Ich bin fröhlich."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [de]Ich bin fröhlich.[/de] — men xursandman."
+      },
+      {
+       "q": "Laylo qoshini chimirib, qo'llarini qovushtirdi. U qanday?",
+       "options": [
+        "😠 wütend",
+        "😄 fröhlich"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Wütend[/de] — jahli chiqqan. Chuqur nafas olsa, tinchlanadi."
+      }
+     ]
+    },
+    {
+     "name": "Do'stim bo'l!",
+     "goal": "Bola do'stlik va navbat iboralarini ishlatadi",
+     "intro": "Bip-bip! Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz? Bugun do'stlik so'zlarini o'rganamiz!",
+     "items": [
+      {
+       "say": "Sei mein Freund!",
+       "uz": "do'stim bo'l",
+       "emoji": "🤝",
+       "image": "en45-u14-be-my-friend.png",
+       "image_prompt": "LAYLO holding out her hand to a new girl, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Do'stingga qo'lingni uzat!"
+      },
+      {
+       "say": "Komm, wir spielen zusammen!",
+       "uz": "birga o'ynaymiz",
+       "emoji": "🧸",
+       "image": "en45-u14-lets-play-together.png",
+       "image_prompt": "ALI, LAYLO and two other kids playing with a ball together, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni yoyib, hammani chaqir!"
+      },
+      {
+       "say": "Ich bin dran!",
+       "uz": "mening navbatim",
+       "emoji": "🙋‍♂️",
+       "image": "en45-u14-my-turn.png",
+       "image_prompt": "ALI pointing to himself happily at the slide, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Barmog'ing bilan o'zingni ko'rsat!"
+      },
+      {
+       "say": "Du bist dran!",
+       "uz": "sening navbating",
+       "emoji": "👉",
+       "image": "en45-u14-your-turn.png",
+       "image_prompt": "ALI kindly giving the ball to LAYLO, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'ling bilan do'stingni ko'rsat!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Navbat o'yini",
+       "matn": "Ali va Laylo sirpanchiqda uchyapti. Ali: [de]Ich bin dran![/de] Vush! Endi Ali Layloga: [de]Du bist dran![/de] Navbat bilan o'ynasak, hamma xursand! Endi sen do'stingga koptok uzat va ayt: [de]Du bist dran![/de]",
+       "doska": "🤝 Sei mein Freund!\n🧸 Komm, wir spielen zusammen!\n🙋‍♂️ Ich bin dran!\n👉 Du bist dran!",
+       "sodda": "Do'stingga koptokni uzat va ayt: [de]Du bist dran![/de]",
+       "boshqa_usul": "Uyda aka-ukang yoki ota-onang bilan koptok o'ynab, navbat bilan [de]Ich bin dran![/de] va [de]Du bist dran![/de] deb aytinglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bog'chaga yangi bola keldi. Sen u bilan do'st bo'lmoqchisan. Nima deysan?",
+       "options": [
+        "😠 wütend",
+        "🤝 Sei mein Freund!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [de]Sei mein Freund![/de] — do'stim bo'l. Sen mehribon do'stsan!"
+      },
+      {
+       "q": "Sen sirpanchiqdan tushding. Endi Laylo navbati. Unga nima deysan?",
+       "options": [
+        "👉 Du bist dran!",
+        "🌙 Gute Nacht!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [de]Du bist dran![/de] — sening navbating. Navbat bilan o'ynash — zo'r!"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "name": "Sirpanchiqda navbat bilan",
+     "name_en": "Abwechselnd rutschen",
+     "emoji": "🛝",
+     "goal": "Bola maydonchada do'st orttiradi, birga o'ynashni taklif qiladi va navbat beradi",
+     "intro": "Bip-bip! Bog'cha maydonchasida rangli sirpanchiq bor. Laylo yolg'iz turibdi. Sen unga yaqinlash, do'st bo'l va navbat bilan o'yna!",
+     "intro_en": "Piep-piep! Schau, eine Rutsche! Finde einen Freund und rutscht abwechselnd.",
+     "roles": [
+      "Laylo",
+      "Bola"
+     ],
+     "roles_en": [
+      "Laylo",
+      "Kind"
+     ],
+     "scene": {
+      "image": "en45-s17-slide-turns.png",
+      "image_prompt": "ALI at the bottom of a colorful playground slide kindly waving LAYLO to go next, LAYLO smiling at the top of the slide, sunny kindergarten playground with trees, soft 3D cartoon scene for kids, warm colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "Hallo, Laylo! Sei meine Freundin!",
+       "uz": "salom, Laylo! do'stim bo'l!",
+       "emoji": "🤝"
+      },
+      {
+       "who": 0,
+       "say": "Ja! Komm, wir spielen zusammen!",
+       "uz": "ha! birga o'ynaymiz!",
+       "emoji": "🧸"
+      },
+      {
+       "who": 1,
+       "say": "Ich bin dran! Juhuu! Du bist dran, Laylo!",
+       "uz": "mening navbatim! vush! sening navbating, Laylo!",
+       "emoji": "👉"
+      },
+      {
+       "who": 0,
+       "say": "Danke! Ich bin fröhlich!",
+       "uz": "rahmat! men xursandman!",
+       "emoji": "😄"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sen sirpanchiqdan tushding. Laylo kutib turibdi. Nima deysan?",
+       "q_en": "Du bist gerutscht. Laylo wartet. Was sagst du?",
+       "options": [
+        "👉 Du bist dran!",
+        "😠 wütend"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [de]Du bist dran![/de] — sening navbating. Sen yaxshi do'stsan!",
+       "why_en": "Super! Du bist dran!"
+      },
+      {
+       "q": "Laylo kulyapti va sakrayapti. U o'zini qanday his qilyapti?",
+       "q_en": "Laylo lächelt und springt. Wie fühlt sie sich?",
+       "options": [
+        "😢 Ich bin traurig.",
+        "😄 Ich bin fröhlich."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [de]Ich bin fröhlich.[/de] — men xursandman. Do'st bilan o'ynash quvonchli!",
+       "why_en": "Ja! Sie ist fröhlich."
+      }
+     ]
+    }
+   ]
   }
  ],
  "class": {

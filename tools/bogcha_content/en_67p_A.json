@@ -1,0 +1,1003 @@
+{
+ "subject": "Ingliz tili",
+ "lang": "en",
+ "age": "6-7 yosh",
+ "book_title": "Hello, friend! 6–7 yosh",
+ "prefix": "EN",
+ "units": [
+  {
+   "name": "Mening kunim",
+   "emoji": "☀️",
+   "lessons": [
+    {
+     "name": "Ertalab",
+     "goal": "Bola ertalabki ishlarini gap bilan aytadi",
+     "intro": "Bip-bip! Ertalab quyosh chiqdi, lekin Ali hali uxlayapti. Uyg'on, Ali! Bugun sen ham ertalabki ishlaringni inglizcha aytishni o'rganasan.",
+     "items": [
+      {
+       "say": "I get up.",
+       "uz": "men turaman",
+       "emoji": "⏰🛏️",
+       "image": "en67-u11-i-get-up.png",
+       "image_prompt": "ALI getting out of bed in the morning, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kerishib, o'rningdan tur!"
+      },
+      {
+       "say": "I wash my face.",
+       "uz": "yuzimni yuvaman",
+       "emoji": "🧼",
+       "image": "en67-u11-i-wash-my-face.png",
+       "image_prompt": "LAYLO washing her face at the sink, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Yuzingni yuvganday qil!"
+      },
+      {
+       "say": "I have breakfast.",
+       "uz": "nonushta qilaman",
+       "emoji": "🍳",
+       "image": "en67-u11-i-have-breakfast.png",
+       "image_prompt": "ALI having breakfast with his family, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I get dressed.",
+       "uz": "kiyinaman",
+       "emoji": "👕",
+       "image": "en67-u11-i-get-dressed.png",
+       "image_prompt": "LAYLO putting on her dress, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ko'ylak kiyganday qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ertalabki qo'shiq",
+       "matn": "Kuyla va harakat qil: [en]I get up, I get up![/en] Kerishamiz! [en]I wash my face![/en] Yuzni yuvamiz! [en]I have breakfast![/en] Mazza! [en]I get dressed![/en] Tayyor! Endi sen ayt: ertalab birinchi nima qilasan?",
+       "doska": "⏰ I get up.\n🧼 I wash my face.\n🍳 I have breakfast.\n👕 I get dressed.",
+       "sodda": "Faqat ikkitasini ayt: [en]I get up.[/en] [en]I wash my face.[/en]",
+       "boshqa_usul": "Ertaga ertalab har ishni qilayotganda oyingga inglizcha aytib ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali yuzini yuvyapti. U nima deydi?",
+       "options": [
+        "🧼 I wash my face.",
+        "🍳 I have breakfast.",
+        "🛏️ I get up."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]I wash my face.[/en] — yuzimni yuvaman."
+      },
+      {
+       "q": "Laylo ko'ylagini kiyyapti. Qaysi gap mos?",
+       "options": [
+        "⏰ I get up.",
+        "🍳 I have breakfast.",
+        "👕 I get dressed."
+       ],
+       "answer": 2,
+       "why": "Zo'r! [en]I get dressed.[/en] — kiyinaman."
+      }
+     ]
+    },
+    {
+     "name": "Kunduzi",
+     "goal": "Bola kunduzgi ishlarini aytadi",
+     "intro": "Bip-bip! Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni inglizcha aytamiz.",
+     "items": [
+      {
+       "say": "I go to school.",
+       "uz": "maktabga boraman",
+       "emoji": "🏫🎒",
+       "image": "en67-u11-i-go-to-school.png",
+       "image_prompt": "ALI walking to school with a backpack, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda yur!"
+      },
+      {
+       "say": "I have lunch.",
+       "uz": "tushlik qilaman",
+       "emoji": "🍲",
+       "image": "en67-u11-i-have-lunch.png",
+       "image_prompt": "LAYLO eating lunch at a kindergarten table, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiqda ovqat yeganday qil!"
+      },
+      {
+       "say": "I play with friends.",
+       "uz": "do'stlarim bilan o'ynayman",
+       "emoji": "👫",
+       "image": "en67-u11-i-play-with-friends.png",
+       "image_prompt": "ALI and LAYLO playing tag in the yard, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Do'stingga qo'l silkit!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: Har kuni nima qilasan?",
+       "matn": "Ali so'raydi: [en]What do you do every day?[/en] Laylo javob beradi: [en]I go to school. I have lunch. I play with friends![/en] Endi Ali senga savol beryapti. Sen nima deysan? Ayt: [en]I go to school![/en]",
+       "doska": "❓ What do you do every day?\n🏫 I go to school.\n🍲 I have lunch.\n👫 I play with friends.",
+       "sodda": "Bitta gap ayt: [en]I play with friends.[/en]",
+       "boshqa_usul": "Kechqurun dadangga kunduzi nima qilganingni inglizcha bitta gap bilan aytib ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tushlik vaqti bo'ldi. Ali nima deydi?",
+       "options": [
+        "🏫 I go to school.",
+        "🍲 I have lunch.",
+        "👕 I get dressed."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [en]I have lunch.[/en] — tushlik qilaman."
+      },
+      {
+       "q": "Ali va Laylo hovlida quvlashmachoq o'ynayapti. Ali nima deydi?",
+       "options": [
+        "🧼 I wash my face.",
+        "🍲 I have lunch.",
+        "👫 I play with friends."
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]I play with friends.[/en] — do'stlarim bilan o'ynayman."
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun",
+     "goal": "Bola kechki ishlarini aytadi",
+     "intro": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Kechqurun uyda nima qilamiz? Mening batareyam ham zaryad olishi kerak!",
+     "items": [
+      {
+       "say": "I do my homework.",
+       "uz": "uy vazifamni qilaman",
+       "emoji": "✏️📓",
+       "image": "en67-u11-i-do-my-homework.png",
+       "image_prompt": "ALI drawing in a notebook at a desk, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Daftarga yozganday qil!"
+      },
+      {
+       "say": "I have dinner.",
+       "uz": "kechki ovqat qilaman",
+       "emoji": "🍽️",
+       "image": "en45-u13-dinner.png",
+       "image_prompt": "A family having dinner together at a table with plov and bread, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I watch TV.",
+       "uz": "televizor ko'raman",
+       "emoji": "📺",
+       "image": "en67-u11-i-watch-tv.png",
+       "image_prompt": "LAYLO watching cartoons on TV on the sofa, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Divanga o'tirganday qil!"
+      },
+      {
+       "say": "I go to bed.",
+       "uz": "uxlashga yotaman",
+       "emoji": "🛏️😴",
+       "image": "en45-u13-go-to-bed.png",
+       "image_prompt": "A child in pajamas going to bed with a teddy bear, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ko'zingni yum, uxlaganday qil!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Kabu adashdi!",
+       "matn": "O'yin: Kabu adashib qoldi! Men aytaman: [en]I go to bed. I have dinner.[/en] Yo'q-yo'q, avval ovqat, keyin uyqu! To'g'ri tartibda ayt: [en]I have dinner.[/en] Keyin-chi? Endi sen ayt: kechqurun eng oxirida nima qilasan?",
+       "doska": "✏️ I do my homework.\n🍽️ I have dinner.\n📺 I watch TV.\n🛏️ I go to bed.",
+       "sodda": "Faqat oxirgisini ayt: [en]I go to bed.[/en]",
+       "boshqa_usul": "Yotishdan oldin buvijoningga [en]I go to bed. Good night![/en] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali stol yonida daftarga chizyapti. U nima deydi?",
+       "options": [
+        "📺 I watch TV.",
+        "🛏️ I go to bed.",
+        "✏️ I do my homework."
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]I do my homework.[/en] — uy vazifamni qilaman."
+      },
+      {
+       "q": "Kech bo'ldi, osmonda yulduzlar. Endi nima qilamiz?",
+       "options": [
+        "🛏️ I go to bed.",
+        "🏫 I go to school.",
+        "🍳 I have breakfast."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]I go to bed.[/en] Yaxshi tush ko'r!"
+      }
+     ]
+    },
+    {
+     "name": "Soat necha?",
+     "goal": "Bola soatni aytadi",
+     "intro": "Bip-bip! Mening ichimda soat bor — tik-tak, tik-tak! Ali maktabga kechikmasligi kerak. Qani, soatni inglizcha so'rash va aytishni o'rganamiz.",
+     "items": [
+      {
+       "say": "What time is it?",
+       "uz": "soat necha?",
+       "emoji": "🕰️❓",
+       "image": "en67-u11-what-time-is-it.png",
+       "image_prompt": "ALI looking up at a wall clock curiously, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "It's seven o'clock.",
+       "uz": "soat yetti",
+       "emoji": "🕖",
+       "image": "en67-u11-its-seven-oclock.png",
+       "image_prompt": "a round wall clock showing seven o'clock (numerals allowed on the clock face only), soft 3D cartoon for kids, white background, no text, square",
+       "action": "Yettita barmog'ingni ko'rsat!"
+      },
+      {
+       "say": "It's half past seven.",
+       "uz": "soat yetti yarim",
+       "emoji": "🕢",
+       "image": "en67-u11-its-half-past-seven.png",
+       "image_prompt": "a round wall clock showing half past seven (numerals allowed on the clock face only), soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "watch",
+       "uz": "qo'l soat",
+       "emoji": "⌚",
+       "image": "en67-u11-watch.png",
+       "image_prompt": "a kids' wristwatch, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Bilagingdagi soatga qara!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Soatni top-chi!",
+       "matn": "Top-chi! Ali so'raydi: [en]What time is it?[/en] Soatda katta mil o'n ikkida, kichik mil yettida. Demak: [en]It's seven o'clock![/en] Endi katta mil pastga, oltiga tushdi. Soat necha bo'ldi? Sen javob ber!",
+       "doska": "❓ What time is it?\n🕖 It's seven o'clock.\n🕢 It's half past seven.\n⌚ watch",
+       "sodda": "Bitta gap: [en]It's seven o'clock.[/en]",
+       "boshqa_usul": "Uyda soat oldida dadangdan [en]What time is it?[/en] deb so'ra, keyin o'zing javob ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali soat necha ekanini bilmoqchi. U nima deb so'raydi?",
+       "options": [
+        "⌚ I have a watch.",
+        "❓ What time is it?",
+        "🛏️ I go to bed."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [en]What time is it?[/en] — soat necha?"
+      },
+      {
+       "q": "Soatga qara: 🕢. Soat necha?",
+       "options": [
+        "🕖 It's seven o'clock.",
+        "🕗 It's eight o'clock.",
+        "🕢 It's half past seven."
+       ],
+       "answer": 2,
+       "why": "To'g'ri! [en]It's half past seven.[/en] — soat yetti yarim."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Salomatlik",
+   "emoji": "🩺",
+   "lessons": [
+    {
+     "name": "Nima bo'ldi?",
+     "goal": "Bola o'zini qanday his qilishini aytadi",
+     "intro": "Bip-bip! Bugun Ali bog'chaga kelmadi. Nega ekan? U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?",
+     "items": [
+      {
+       "say": "What's the matter?",
+       "uz": "nima bo'ldi?",
+       "emoji": "🤔❓",
+       "image": "en67-u12-whats-the-matter.png",
+       "image_prompt": "a caring mum kneeling and asking a sad ALI, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I'm sick.",
+       "uz": "men kasalman",
+       "emoji": "🤒",
+       "image": "en67-u12-im-sick.png",
+       "image_prompt": "ALI in bed with a thermometer and a blanket, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Peshonangni ushla!"
+      },
+      {
+       "say": "I have a headache.",
+       "uz": "boshim og'riyapti",
+       "emoji": "🤕",
+       "image": "en67-u12-i-have-a-headache.png",
+       "image_prompt": "ALI holding his head with a pained face, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Boshingni ushla!"
+      },
+      {
+       "say": "I have a stomachache.",
+       "uz": "qornim og'riyapti",
+       "emoji": "🤢",
+       "image": "en67-u12-i-have-a-stomachache.png",
+       "image_prompt": "LAYLO holding her tummy, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qorningni ushla!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Voy-voy qo'shig'i",
+       "matn": "Kuyla va ko'rsat! [en]What's the matter? What's the matter?[/en] Boshingni ushla: [en]I have a headache![/en] Qorningni ushla: [en]I have a stomachache![/en] Endi men so'rayman: [en]What's the matter?[/en] Sen javob ber!",
+       "doska": "❓ What's the matter?\n🤒 I'm sick.\n🤕 I have a headache.\n🤢 I have a stomachache.",
+       "sodda": "Faqat ayt: [en]I'm sick.[/en]",
+       "boshqa_usul": "Onang bilan o'yna: biri [en]What's the matter?[/en] deb so'rasin, ikkinchisi og'riyotgan joyni ushlab javob bersin."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo qornini ushlab turibdi. U nima deydi?",
+       "options": [
+        "🤢 I have a stomachache.",
+        "🤕 I have a headache.",
+        "👫 I play with friends."
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]I have a stomachache.[/en] — qornim og'riyapti."
+      },
+      {
+       "q": "Do'sting xafa ko'rinyapti. Sen nima deb so'raysan?",
+       "options": [
+        "🛏️ I go to bed.",
+        "❓ What's the matter?",
+        "🕖 It's seven o'clock."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [en]What's the matter?[/en] — nima bo'ldi? Sen mehribon do'stsan!"
+      }
+     ]
+    },
+    {
+     "name": "Shifokorda",
+     "goal": "Bola shifoxona so'zlarini aytadi",
+     "intro": "Bip-bip! Ali shifoxonaga keldi. U yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!",
+     "items": [
+      {
+       "say": "nurse",
+       "uz": "hamshira",
+       "emoji": "👩‍⚕️",
+       "image": "en67-u12-nurse.png",
+       "image_prompt": "a friendly nurse in a white uniform, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "medicine",
+       "uz": "dori",
+       "emoji": "💊",
+       "image": "en67-u12-medicine.png",
+       "image_prompt": "a medicine bottle and a spoon, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "thermometer",
+       "uz": "termometr",
+       "emoji": "🌡️",
+       "image": "en67-u12-thermometer.png",
+       "image_prompt": "a digital thermometer, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Termometrni qo'ltig'ingga qo'yganday qil!"
+      },
+      {
+       "say": "Get well soon!",
+       "uz": "tezroq tuzal",
+       "emoji": "💌",
+       "image": "en67-u12-get-well-soon.png",
+       "image_prompt": "LAYLO giving a get-well card with a heart to ALI in bed, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Havoda yurakcha chiz!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: Hamshira bilan",
+       "matn": "Hamshira: [en]Hello! What's the matter?[/en] Ali: [en]I'm sick. I have a headache.[/en] Hamshira termometr qo'ydi: [en]Here is your medicine.[/en] Laylo keldi: [en]Get well soon, Ali![/en] Endi sen Ali bo'l! Hamshira so'rayapti: [en]What's the matter?[/en] Javob ber!",
+       "doska": "👩‍⚕️ What's the matter?\n🤕 I have a headache.\n💊 Here is your medicine.\n💌 Get well soon!",
+       "sodda": "Faqat ayt: [en]Get well soon![/en]",
+       "boshqa_usul": "Ayiqchangni kasal qilib, sen hamshira bo'l va unga [en]Get well soon![/en] de."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Shifoxonada oq kiyimda bemorlarga kim yordam beradi?",
+       "options": [
+        "🧑‍🏫 teacher",
+        "🧑‍🚒 firefighter",
+        "👩‍⚕️ nurse"
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]nurse[/en] — hamshira."
+      },
+      {
+       "q": "Do'sting kasal. Unga nima deysan?",
+       "options": [
+        "💌 Get well soon!",
+        "🌙 Good night!",
+        "👋 Goodbye, see you!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]Get well soon![/en] — tezroq tuzal!"
+      }
+     ]
+    },
+    {
+     "name": "Sog'lom bo'lamiz",
+     "goal": "Bola sog'lom odatlarni aytadi",
+     "intro": "Bip-bip! Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!",
+     "items": [
+      {
+       "say": "Eat fruit!",
+       "uz": "meva ye",
+       "emoji": "🍎🍌",
+       "image": "en67-u12-eat-fruit.png",
+       "image_prompt": "a bowl of fresh fruit, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Olma yeganday qil!"
+      },
+      {
+       "say": "Drink water!",
+       "uz": "suv ich",
+       "emoji": "💧",
+       "image": "en67-u12-drink-water.png",
+       "image_prompt": "LAYLO drinking a glass of water, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Suv ichganday qil!"
+      },
+      {
+       "say": "Sleep well!",
+       "uz": "yaxshi uxla",
+       "emoji": "😴",
+       "image": "en67-u12-sleep-well.png",
+       "image_prompt": "ALI sleeping peacefully under a starry window, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftingni yonog'ingga qo'y!"
+      },
+      {
+       "say": "Wash your hands!",
+       "uz": "qo'lingni yuv",
+       "emoji": "🧼👐",
+       "image": "en23-u9-wash-your-hands.png",
+       "image_prompt": "A child washing hands with soap bubbles at a sink, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ishqalab yuv!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Ha yoki yo'q?",
+       "matn": "O'yin: men aytaman, sog'lom bo'lsa — chapak chal, bo'lmasa — boshingni chayqa! [en]Eat fruit![/en] — chapak! [en]Drink water![/en] — chapak! Kechasi uxlamay televizor ko'rish-chi? Yo'q! Endi sen ayt: sog'lom bo'lish uchun nima qilasan?",
+       "doska": "🍎 Eat fruit!\n💧 Drink water!\n😴 Sleep well!\n🧼 Wash your hands!",
+       "sodda": "Bitta maslahat ayt: [en]Drink water![/en]",
+       "boshqa_usul": "Ovqatdan oldin ukangga [en]Wash your hands![/en] deb eslat."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ovqatdan oldin nima qilamiz?",
+       "options": [
+        "📺 I watch TV.",
+        "🧼 Wash your hands!",
+        "🛏️ I go to bed."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [en]Wash your hands![/en] — qo'lingni yuv!"
+      },
+      {
+       "q": "Ali futbol o'ynab, chanqadi. Kabu nima deydi?",
+       "options": [
+        "🍎 Eat fruit!",
+        "😴 Sleep well!",
+        "💧 Drink water!"
+       ],
+       "answer": 2,
+       "why": "To'g'ri! [en]Drink water![/en] — suv ich!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Shaharda",
+   "emoji": "🏙️",
+   "lessons": [
+    {
+     "name": "Shahar joylari",
+     "goal": "Bola shahar joylarini aytadi",
+     "intro": "Bip-bip! Bugun Toshkent bo'ylab sayr qilamiz! Ali va Laylo bilan avtobusga o'tir. Derazadan qara — qanday joylarni ko'ryapsan?",
+     "items": [
+      {
+       "say": "park",
+       "uz": "bog'",
+       "emoji": "🌳",
+       "image": "en67-u13-park.png",
+       "image_prompt": "a green city park with trees and benches, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "library",
+       "uz": "kutubxona",
+       "emoji": "📚",
+       "image": "en67-u13-library.png",
+       "image_prompt": "a cozy library with bookshelves, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kitob varaqlaganday qil!"
+      },
+      {
+       "say": "zoo",
+       "uz": "hayvonot bog'i",
+       "emoji": "🦁",
+       "image": "en67-u13-zoo.png",
+       "image_prompt": "a zoo gate with animals behind it (no sign text), soft 3D cartoon for kids, white background, no text, square",
+       "action": "Sherday o'kir!"
+      },
+      {
+       "say": "bakery",
+       "uz": "novvoyxona",
+       "emoji": "🫓",
+       "image": "en67-u13-bakery.png",
+       "image_prompt": "an Uzbek bakery with round non bread and a tandir oven, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi: qayerga boramiz?",
+       "matn": "Top-chi! Ali kitob o'qimoqchi. U qayerga boradi? To'g'ri, [en]library[/en]! Laylo sherni ko'rmoqchi — [en]zoo[/en]! Buvijon issiq non so'radi. Qayerga borasan? Sen javob ber!",
+       "doska": "🌳 park\n📚 library\n🦁 zoo\n🫓 bakery",
+       "sodda": "Bitta joyni ayt: [en]park[/en]",
+       "boshqa_usul": "Ko'chada sayr qilganda ota-onangga joylarni ko'rsatib, inglizcha nomini ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvijon issiq non olmoqchi. U qayerga boradi?",
+       "options": [
+        "📚 library",
+        "🫓 bakery",
+        "🌳 park"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [en]bakery[/en] — novvoyxona. U yerda issiq non bor!"
+      },
+      {
+       "q": "Laylo maymun va sherni ko'rmoqchi. Qayerga boradi?",
+       "options": [
+        "🦁 zoo",
+        "🫓 bakery",
+        "🏥 hospital"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]zoo[/en] — hayvonot bog'i."
+      }
+     ]
+    },
+    {
+     "name": "Qayerda?",
+     "goal": "Bola joy so'zlarini ishlatadi",
+     "intro": "Bip-bip! Layloning mushugi Mosh yana yashirindi! U qutining yonidami, orqasidami yoki oldidami? Joy so'zlarini o'rgansang, uni darrov topasan.",
+     "items": [
+      {
+       "say": "Where is the park?",
+       "uz": "bog' qayerda?",
+       "emoji": "🗺️❓",
+       "image": "en67-u13-where-is-the-park.png",
+       "image_prompt": "ALI holding a map, looking around curiously, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "next to",
+       "uz": "yonida",
+       "emoji": "🐱📦",
+       "image": "en67-u13-next-to.png",
+       "image_prompt": "a cat sitting next to a box, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Stulning yonida tur!"
+      },
+      {
+       "say": "behind",
+       "uz": "orqasida",
+       "emoji": "🫣📦",
+       "image": "en67-u13-behind.png",
+       "image_prompt": "a cat hiding behind a box, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Stul orqasiga yashirin!"
+      },
+      {
+       "say": "in front of",
+       "uz": "oldida",
+       "emoji": "🧍📦",
+       "image": "en67-u13-in-front-of.png",
+       "image_prompt": "a cat sitting in front of a box, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Stul oldida tur!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Mosh qayerda?",
+       "matn": "Kuyla: [en]Where is the cat? Where is the cat?[/en] Qutining yonida — [en]next to the box[/en]! Orqasida — [en]behind the box[/en]! Oldida — [en]in front of the box[/en]! Mosh yana yashirindi. Men so'rayman: [en]Where is the cat?[/en] Sen javob ber!",
+       "doska": "🗺️ Where is the cat?\n🐱📦 next to the box\n🫣📦 behind the box\n🧍📦 in front of the box",
+       "sodda": "Bitta so'z: [en]behind[/en]",
+       "boshqa_usul": "Uyda o'yinchoqni yashir. Onang [en]Where is the ball?[/en] deb so'rasin, sen [en]behind the door[/en] kabi javob ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Mosh qutining orqasiga yashirindi. Qanday aytamiz?",
+       "options": [
+        "🧍 in front of the box",
+        "🐱 next to the box",
+        "🫣 behind the box"
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]behind[/en] — orqasida."
+      },
+      {
+       "q": "Ali bog'ni topa olmayapti. U nima deb so'raydi?",
+       "options": [
+        "❓ Where is the park?",
+        "❓ What time is it?",
+        "❓ What's the matter?"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]Where is the park?[/en] — bog' qayerda?"
+      }
+     ]
+    },
+    {
+     "name": "Yo'l ko'rsatamiz",
+     "goal": "Bola yo'nalishni aytadi",
+     "intro": "Bip-bip! Bir bola adashib qoldi. U [en]Where is the zoo?[/en] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!",
+     "items": [
+      {
+       "say": "Turn left!",
+       "uz": "chapga buril",
+       "emoji": "⬅️",
+       "image": "en67-u13-turn-left.png",
+       "image_prompt": "ALI on a bike turning left, a big arrow pointing left, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Chapga buril!"
+      },
+      {
+       "say": "Turn right!",
+       "uz": "o'ngga buril",
+       "emoji": "➡️",
+       "image": "en67-u13-turn-right.png",
+       "image_prompt": "LAYLO on a scooter turning right, a big arrow pointing right, soft 3D cartoon for kids, white background, no text, square",
+       "action": "O'ngga buril!"
+      },
+      {
+       "say": "Go straight!",
+       "uz": "to'g'riga yur",
+       "emoji": "⬆️",
+       "image": "en67-u13-go-straight.png",
+       "image_prompt": "a straight road with an arrow pointing forward, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Oldinga uch qadam yur!"
+      },
+      {
+       "say": "crossing",
+       "uz": "piyodalar o'tish joyi",
+       "emoji": "🚸",
+       "image": "en67-u13-crossing.png",
+       "image_prompt": "a zebra crossing on a street, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: Yo'l so'raymiz",
+       "matn": "Bola: [en]Excuse me, where is the zoo?[/en] Laylo: [en]Go straight. Turn left at the bakery. The zoo is next to the park.[/en] Bola: [en]Thank you![/en] Endi sen yo'l ko'rsat! Bola so'rayapti: [en]Where is the library?[/en] Sen nima deysan?",
+       "doska": "❓ Where is the zoo?\n⬆️ Go straight!\n⬅️ Turn left!\n➡️ Turn right!",
+       "sodda": "Ikkita ibora: [en]Turn left![/en] [en]Turn right![/en]",
+       "boshqa_usul": "Uyda dadangga yo'l ko'rsat: [en]Go straight! Turn left![/en] — u oshxonagacha borsin."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Strelka chapga qarab turibdi ⬅️. Nima deymiz?",
+       "options": [
+        "➡️ Turn right!",
+        "⬅️ Turn left!",
+        "⬆️ Go straight!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [en]Turn left![/en] — chapga buril."
+      },
+      {
+       "q": "Ko'chani qayerdan kesib o'tish xavfsiz?",
+       "options": [
+        "🚸 crossing",
+        "🌳 park",
+        "🫓 bakery"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]crossing[/en] — piyodalar o'tish joyi. Ko'chadan faqat shu yerdan o't!"
+      }
+     ]
+    },
+    {
+     "name": "Yo'l qoidalari",
+     "goal": "Bola yo'l qoidalarini aytadi",
+     "intro": "Bip-bip! Ko'chada mashinalar ko'p, shuning uchun ehtiyot bo'lamiz! Svetoforning uchta ko'zi bor: qizil, sariq va yashil. Yo'l qoidalarini inglizcha o'rganamiz.",
+     "items": [
+      {
+       "say": "traffic light",
+       "uz": "svetofor",
+       "emoji": "🚦",
+       "image": "en67-u11-traffic-light.png",
+       "image_prompt": "A traffic light with red, yellow and green lights, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Wait!",
+       "uz": "kut",
+       "emoji": "✋",
+       "image": "en67-u13-wait.png",
+       "image_prompt": "ALI waiting at a red traffic light holding his dad's hand, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftingni oldinga chiqarib, to'xta!"
+      },
+      {
+       "say": "Look left and right!",
+       "uz": "chapga va o'ngga qara",
+       "emoji": "👀↔️",
+       "image": "en67-u13-look-left-and-right.png",
+       "image_prompt": "LAYLO looking left and right before crossing, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Chapga, keyin o'ngga qara!"
+      },
+      {
+       "say": "bus stop",
+       "uz": "bekat",
+       "emoji": "🚏",
+       "image": "en67-u13-bus-stop.png",
+       "image_prompt": "a bus stop with a bench, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Svetofor o'yini",
+       "matn": "O'yin! Men rang aytaman. Qizil — [en]Wait![/en] deb joyingda tur. Yashil — avval [en]Look left and right![/en] deb qara, keyin joyingda yur! Qizil! Yashil! Endi sen ayt: chiroq qizil bo'lsa, nima deymiz?",
+       "doska": "🚦 traffic light\n🔴 Wait!\n👀 Look left and right!\n🚏 bus stop",
+       "sodda": "Bitta so'z: [en]Wait![/en]",
+       "boshqa_usul": "Ko'chada ota-onang bilan svetofor oldida to'xtab, [en]Wait! Look left and right![/en] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Svetoforda qizil chiroq yondi 🔴. Nima deymiz?",
+       "options": [
+        "✋ Wait!",
+        "⬆️ Go straight!",
+        "➡️ Turn right!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]Wait![/en] — kut. Qizilda hech qachon o'tmaymiz!"
+      },
+      {
+       "q": "Ali avtobus kutyapti. U qayerda turibdi?",
+       "options": [
+        "🦁 zoo",
+        "📚 library",
+        "🚏 bus stop"
+       ],
+       "answer": 2,
+       "why": "To'g'ri! [en]bus stop[/en] — bekat."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oshxona va mehmon",
+   "emoji": "🍵",
+   "lessons": [
+    {
+     "name": "Salat tayyorlaymiz",
+     "goal": "Bola oshxona fe'llarini aytadi",
+     "intro": "Bip-bip! Bugun oyijon bilan oshxonada yordam beramiz. Pomidor va bodring bor. Qani, mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi.",
+     "items": [
+      {
+       "say": "Let's make a salad!",
+       "uz": "salat qilamiz",
+       "emoji": "🥗",
+       "image": "en67-u14-lets-make-a-salad.png",
+       "image_prompt": "ALI and LAYLO with mum making a salad, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Yengingni shimarib, tayyor bo'l!"
+      },
+      {
+       "say": "cut",
+       "uz": "to'gra",
+       "emoji": "🔪🥒",
+       "image": "en67-u14-cut.png",
+       "image_prompt": "a grown-up cutting a cucumber on a board, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kesganday qil — chak-chak!"
+      },
+      {
+       "say": "mix",
+       "uz": "aralashtir",
+       "emoji": "🥄",
+       "image": "en67-u14-mix.png",
+       "image_prompt": "LAYLO mixing salad in a bowl with a wooden spoon, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni aylantirib aralashtir!"
+      },
+      {
+       "say": "bowl",
+       "uz": "kosa",
+       "emoji": "🥣",
+       "image": "en67-u14-bowl.png",
+       "image_prompt": "an Uzbek blue-patterned bowl, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi: keyin nima?",
+       "matn": "Top-chi! Salat qilish navbatini ayt. Avval: [en]Let's make a salad![/en] Keyin oyijon pomidorni nima qiladi? [en]Cut![/en] Keyin kosaga solamiz va… nima qilamiz? Sen javob ber!",
+       "doska": "🥗 Let's make a salad!\n🔪 cut\n🥄 mix\n🥣 bowl",
+       "sodda": "Bitta so'z: [en]mix[/en]",
+       "boshqa_usul": "Onang bilan salat qilganda kosada aralashtirib, [en]I mix the salad![/en] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo qoshiq bilan salatni aylantiryapti. U nima qilyapti?",
+       "options": [
+        "🔪 cut",
+        "🥄 mix",
+        "🥣 bowl"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [en]mix[/en] — aralashtir."
+      },
+      {
+       "q": "Salatni nimaga solamiz?",
+       "options": [
+        "⌚ watch",
+        "🚏 bus stop",
+        "🥣 bowl"
+       ],
+       "answer": 2,
+       "why": "To'g'ri! [en]bowl[/en] — kosa."
+      }
+     ]
+    },
+    {
+     "name": "Dasturxon",
+     "goal": "Bola idishlarni aytadi",
+     "intro": "Bip-bip! Tez orada mehmonlar keladi! Dasturxonga nima qo'yamiz? Likopcha, qoshiq, sanchqi va piyola. Qani, inglizcha nomlarini o'rgan!",
+     "items": [
+      {
+       "say": "plate",
+       "uz": "likopcha",
+       "emoji": "🍽️",
+       "image": "en67-u14-plate.png",
+       "image_prompt": "a white plate, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Likopchani stolga qo'yganday qil!"
+      },
+      {
+       "say": "spoon",
+       "uz": "qoshiq",
+       "emoji": "🥄",
+       "image": "en67-u14-spoon.png",
+       "image_prompt": "a spoon, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "fork",
+       "uz": "sanchqi",
+       "emoji": "🍴",
+       "image": "en67-u14-fork.png",
+       "image_prompt": "a fork, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "cup",
+       "uz": "piyola",
+       "emoji": "🍵",
+       "image": "en67-u14-cup.png",
+       "image_prompt": "an Uzbek blue-patterned tea cup (piyola), soft 3D cartoon for kids, white background, no text, square",
+       "action": "Piyolani ikki qo'llab uzat!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Dasturxon qo'shig'i",
+       "matn": "Kuyla va qo'y! [en]A plate, a plate, on the table![/en] [en]A spoon, a fork, on the table![/en] [en]A cup of tea, on the table![/en] Dasturxon tayyor! Endi men sanchqini ko'rsatib so'rayman: [en]What's this?[/en] Sen javob ber!",
+       "doska": "🍽️ plate\n🥄 spoon\n🍴 fork\n🍵 cup",
+       "sodda": "Ikkita so'z: [en]plate[/en], [en]cup[/en]",
+       "boshqa_usul": "Kechki ovqatda dasturxon yozishga yordam ber va har idishni inglizcha ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvijonga choy quyamiz. Choyni nimaga quyamiz?",
+       "options": [
+        "🍵 cup",
+        "🍴 fork",
+        "🍽️ plate"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [en]cup[/en] — piyola. Choy piyolada ichiladi!"
+      },
+      {
+       "q": "Ali palov yeyapti. U qo'liga nima oladi?",
+       "options": [
+        "🔪 cut",
+        "🥄 spoon",
+        "🚦 traffic light"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [en]spoon[/en] — qoshiq. Palovni qoshiq bilan yeymiz!"
+      }
+     ]
+    },
+    {
+     "name": "Mehmon kutamiz",
+     "goal": "Bola mehmonga taklif iboralarini aytadi",
+     "intro": "Bip-bip! Taq-taq! Eshikni kim taqillatdi? Buvijonning dugonasi mehmonga keldi! Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
+     "items": [
+      {
+       "say": "Would you like some tea?",
+       "uz": "choy ichasizmi?",
+       "emoji": "🫖",
+       "image": "en67-u14-would-you-like-some-tea.png",
+       "image_prompt": "LAYLO offering tea in a piyola to a guest, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Piyolani ikki qo'llab uzatganday qil!"
+      },
+      {
+       "say": "Yes, please.",
+       "uz": "ha, iltimos",
+       "emoji": "👍",
+       "image": "en45-u12-yes-please.png",
+       "image_prompt": "A smiling guest nodding yes and holding out a tea cup, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Boshingni qimirlatib «ha» de!"
+      },
+      {
+       "say": "No, thank you.",
+       "uz": "yo'q, rahmat",
+       "emoji": "🙏",
+       "image": "en45-u12-no-thank-you.png",
+       "image_prompt": "A polite child smiling and gently raising a hand to say no thank you, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'y!"
+      },
+      {
+       "say": "It's delicious!",
+       "uz": "juda mazali",
+       "emoji": "😋",
+       "image": "en67-u14-its-delicious.png",
+       "image_prompt": "ALI tasting food with a delighted face, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qorningni silab, jilmay!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dialog: Mehmon keldi",
+       "matn": "Laylo: [en]Would you like some tea?[/en] Mehmon: [en]Yes, please.[/en] Ali: [en]Would you like some plov?[/en] Mehmon: [en]Yes, please! Mmm, it's delicious![/en] Endi sen mezbon bo'l! Men mehmonman. Menga nima deysan? Choy taklif qil!",
+       "doska": "🫖 Would you like some tea?\n👍 Yes, please.\n🙏 No, thank you.\n😋 It's delicious!",
+       "sodda": "Bitta ibora: [en]Yes, please.[/en]",
+       "boshqa_usul": "Uyga mehmon kelganda piyolada choy uzatib, [en]Would you like some tea?[/en] deb so'ra."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Mehmon choy ichmoqchi emas. U odob bilan nima deydi?",
+       "options": [
+        "👍 Yes, please.",
+        "😋 It's delicious!",
+        "🙏 No, thank you."
+       ],
+       "answer": 2,
+       "why": "Barakalla! [en]No, thank you.[/en] — yo'q, rahmat. Bu odobli javob!"
+      },
+      {
+       "q": "Buvijonning palovi juda mazali bo'libdi! Sen nima deysan?",
+       "options": [
+        "😋 It's delicious!",
+        "🤢 I have a stomachache.",
+        "✋ Wait!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [en]It's delicious![/en] — juda mazali!"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
