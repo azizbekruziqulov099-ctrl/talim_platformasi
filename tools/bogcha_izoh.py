@@ -14,7 +14,8 @@ ovoz (o'qituvchi ovozi matni bo'laklari), uz (qisqa ma'nolar, o'zbekcha test var
 Ishlatish:
   python tools/bogcha_izoh.py extract                       # manba.json ni yangilaydi
   python tools/bogcha_izoh.py check ru                      # tarjima to'liqligi / {…} / [xx] teglari
-  python tools/bogcha_izoh.py build ru [en ru …] [--out PAPKA] [--rasmlar PAPKA] [--qoralama]
+  python tools/bogcha_izoh.py tozala [ru en]                # eskirgan tarjimalarni olib tashlash
+  python tools/bogcha_izoh.py build ru [en ru … am mt mn] [--out PAPKA] [--rasmlar PAPKA] [--qoralama]
         → PAPKA/ingliz_tili_izoh_ru/ingliz_tili_izoh_ru_4-5_yosh_2_ai_miya.xlsx …
         (--qoralama: lug'atda yo'q matn o'zbekcha qoladi — faqat sinov uchun)
 """
@@ -33,6 +34,13 @@ ROOT = Path(__file__).resolve().parent / "bogcha_content"
 IZOH_DIR = ROOT / "izoh"
 LANGS = ("en", "ru", "ar", "tr", "de", "fr", "es", "ko", "ja", "zh")
 KEYS = ("23y", "45y", "67y")
+# REV121: fan kitoblari (lang null) — atrof-muhit, matematika, mantiq. Ularda hamma matn o'zbekcha; lug'atga faqat
+# dvigatel yozib olgan bo'laklar kiradi (record_run).
+FANLAR = ("am", "mt", "mn")
+
+
+def fanlar_bor():
+    return [f for f in FANLAR if all((ROOT / f"{f}_{k}.json").is_file() for k in KEYS)]
 KIND_ORDER = ("shablon", "nom", "ovoz", "uz", "doska")
 
 # Kitobdagi chet tilidagi / texnik maydonlar — tarjima qilinmaydi
@@ -169,7 +177,7 @@ def record_run():
     rec = []
     sp.IZOH_RECORDER = lambda kind, text, ctx: rec.append((kind, text, ctx))
     try:
-        for lang in LANGS:
+        for lang in LANGS + tuple(fanlar_bor()):
             build_books(book_paths(lang))
     finally:
         sp.IZOH_RECORDER = None
@@ -247,7 +255,7 @@ def check(code):
 
 def build(izoh, langs=None, out="bogcha_izoh_chiqish", image_dir=None, draft=False):
     from tools.bogcha_kitob import build_books, write_groups
-    langs = langs or LANGS
+    langs = langs or (LANGS + tuple(fanlar_bor()))
     sp.IZOH_ALLOW_MISSING = draft
     report = []
     for lang in langs:
@@ -262,6 +270,15 @@ def main(argv):
     cmd = argv[0] if argv else ""
     if cmd == "extract":
         extract()
+    elif cmd == "tozala":   # REV121: lug'atdan manbada yo'q (eskirgan) tarjimalarni olib tashlaydi
+        manba = json.loads((IZOH_DIR / "manba.json").read_text(encoding="utf-8"))["matnlar"]
+        for code in argv[1:] or ("ru", "en"):
+            path = IZOH_DIR / f"{code}.json"
+            data = json.loads(path.read_text(encoding="utf-8"))
+            old = len(data["t"])
+            data["t"] = {k: v for k, v in data["t"].items() if k in manba}
+            path.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+            print(code, "olib tashlandi:", old - len(data["t"]))
     elif cmd == "check":
         probs = check(argv[1])
         print("\n".join(probs[:80]) or "ok", f"\n{len(probs)} muammo")

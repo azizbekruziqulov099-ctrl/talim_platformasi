@@ -1,0 +1,2785 @@
+{
+ "subject": "Matematika",
+ "lang": null,
+ "age": "4-5 yosh",
+ "book_title": "Sonlar mamlakati 4–5 yosh",
+ "prefix": "MT",
+ "units": [
+  {
+   "name": "Uzun, qisqa, baland, past",
+   "emoji": "📏",
+   "lessons": [
+    {
+     "name": "Uzun va qisqa",
+     "goal": "Bola uzun va qisqani farqlaydi",
+     "intro": "Bip-bip! Bog'da ilon va qurtcha uchrashdi. Ilon: «Men uzunman!» dedi. Qurtcha-chi? Qani, qaraymiz!",
+     "items": [
+      {
+       "say": "Uzun",
+       "uz": "cho'zilgan",
+       "emoji": "🐍",
+       "image_prompt": "A long friendly snake stretched out, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ilon uzun! Qo'llaringni yon tomonga keng cho'z: uzun!",
+       "action": "Qo'llaringni keng cho'z!",
+       "image": "mt34-u5-uzun.png"
+      },
+      {
+       "say": "Qisqa",
+       "uz": "kalta",
+       "emoji": "🐛",
+       "image_prompt": "A short little caterpillar, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qurtcha qisqa. Qo'llaringni yaqin qil: qisqa!",
+       "action": "Kaftlaringni yaqinlashtir!",
+       "image": "mt34-u5-qisqa.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim uzun?",
+       "options": [
+        "🐍 ilon",
+        "🐛 qurtcha"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ilon uzun."
+      },
+      {
+       "q": "Kim qisqa?",
+       "options": [
+        "🐍 ilon",
+        "🐛 qurtcha"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Qurtcha qisqa."
+      },
+      {
+       "q": "Qaysi poyezd uzun?",
+       "options": [
+        "🚂🚃🚃🚃🚃 uzun",
+        "🚂🚃 qisqa"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Vagonlari ko'p — uzun."
+      }
+     ]
+    },
+    {
+     "name": "Baland va past",
+     "goal": "Bola baland va pastni farqlaydi",
+     "intro": "Bip-bip! Men uchib yuribman. Pastda jirafa va toshbaqa. Kim baland, kim past? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "Baland",
+       "uz": "yuqoriga cho'zilgan",
+       "emoji": "🦒",
+       "image_prompt": "A tall giraffe, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Jirafa baland! U daraxt tepasiga yetadi. Oyoq uchida turib, qo'llarni tepaga cho'z: baland!",
+       "action": "Oyoq uchida tur!",
+       "image": "mt34-u5-baland.png"
+      },
+      {
+       "say": "Past",
+       "uz": "yerga yaqin",
+       "emoji": "🐢",
+       "image_prompt": "A small low turtle on the ground, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Toshbaqa past. U yerga yaqin yuradi. Cho'kkalab o'tir: past!",
+       "action": "Cho'kkalab o'tir!",
+       "image": "mt34-u5-past.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim baland?",
+       "options": [
+        "🦒 jirafa",
+        "🐢 toshbaqa"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Jirafa baland."
+      },
+      {
+       "q": "Kim past?",
+       "options": [
+        "🦒 jirafa",
+        "🐢 toshbaqa"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Toshbaqa past."
+      },
+      {
+       "q": "Qaysi bino baland?",
+       "options": [
+        "🏢 ko'p qavatli uy",
+        "🏠 kichik uy"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ko'p qavatli uy baland."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Baland-past o'yini",
+       "matn": "«Baland» desam — oyoq uchida tur. «Past» desam — cho'kkalab o'tir. Baland! Past! Baland!",
+       "doska": "🙆 baland\n🧎 past",
+       "sodda": "Baland — turamiz, past — o'tiramiz.",
+       "boshqa_usul": "Kubiklardan baland va past minora qur."
+      }
+     ]
+    },
+    {
+     "name": "Qaysi biri uzunroq?",
+     "goal": "Bola ikki narsani yonma-yon qo'yib uzunligini solishtiradi",
+     "intro": "Bip-bip! Ikkita lentam bor. Qaysi biri uzunroq? Qanday bilamiz? Sir: ularni yonma-yon qo'yamiz!",
+     "items": [
+      {
+       "say": "Uzunroq",
+       "uz": "boshqasidan uzun",
+       "emoji": "➖➖➖➖",
+       "image_prompt": "Two ribbons side by side, the top one longer, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikki lentani boshini bir joyga qo'yamiz. Qara, bittasi uzoqroqqa ketdi. U uzunroq!",
+       "image": "mt34-u5-uzunroq.png"
+      },
+      {
+       "say": "Qisqaroq",
+       "uz": "boshqasidan qisqa",
+       "emoji": "➖➖",
+       "image_prompt": "Two ribbons side by side, the bottom one shorter, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikkinchi lenta tezroq tugadi. U qisqaroq. Solishtirish uchun boshlarini tekislaymiz.",
+       "image": "mt34-u5-qisqaroq.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi lenta uzunroq?",
+       "options": [
+        "➖➖➖➖ uzunroq",
+        "➖➖ qisqaroq"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bu lenta uzunroq."
+      },
+      {
+       "q": "Qaysi qalam qisqaroq?",
+       "options": [
+        "✏️➖➖➖ uzun",
+        "✏️➖ qisqa"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Bu qalam qisqaroq."
+      },
+      {
+       "q": "Uzunlikni solishtirish uchun nima qilamiz?",
+       "options": [
+        "📏 boshini tekislaymiz",
+        "🙈 ko'zni yumamiz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Boshlarini bir joyga qo'yamiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧪 Oddiy tajriba",
+       "matn": "Ikkita qalam ol. Boshlarini stolning chetiga tekisla. Qaysi biri uzunroq? Endi qoshiq va vilkani solishtir!",
+       "doska": "✏️➖➖➖\n✏️➖",
+       "sodda": "Ikki qalamni yonma-yon qo'y.",
+       "boshqa_usul": "Onang bilan qo'llaringni solishtir: kimniki uzunroq?"
+      }
+     ]
+    },
+    {
+     "name": "Qaysi biri balandroq?",
+     "goal": "Bola ikki narsaning balandligini solishtiradi",
+     "intro": "Bip-bip! Ikki minora qurdik. Qaysi biri balandroq? Pastdan boshlab ko'ramiz!",
+     "items": [
+      {
+       "say": "Balandroq",
+       "uz": "boshqasidan baland",
+       "emoji": "🧱🧱🧱🧱",
+       "image_prompt": "A tall tower of four toy blocks, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikkala minora yerda turibdi. Bittasi tepaga ko'proq chiqdi. U balandroq!",
+       "image": "mt34-u5-balandroq.png"
+      },
+      {
+       "say": "Pastroq",
+       "uz": "boshqasidan past",
+       "emoji": "🧱🧱",
+       "image_prompt": "A short tower of two toy blocks, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu minora kamroq ko'tarildi. U pastroq. Kubiklarini sanaymiz: bir, ikki.",
+       "image": "mt34-u5-pastroq.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi minora balandroq?",
+       "options": [
+        "🧱🧱🧱🧱 to'rtta",
+        "🧱🧱 ikkita"
+       ],
+       "answer": 0,
+       "why": "Barakalla! To'rtta kubik — balandroq."
+      },
+      {
+       "q": "Kim pastroq?",
+       "options": [
+        "🦒 jirafa",
+        "🐕 kuchuk"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Kuchuk jirafadan past."
+      },
+      {
+       "q": "Kim uzun?",
+       "options": [
+        "🐍 ilon",
+        "🐛 qurtcha"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ilon uzun."
+      },
+      {
+       "q": "🧱🧱🧱 nechta kubik?",
+       "options": [
+        "3️⃣ uch",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Uchta kubik."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ertalab va kechqurun",
+   "emoji": "🌅",
+   "lessons": [
+    {
+     "name": "Ertalab",
+     "goal": "Bola ertalabni va ertalabki ishlarni biladi",
+     "intro": "Bip-bip! Quyosh chiqdi, xo'roz qichqirdi: qu-qu-qu! Men uyg'ondim. Sen ham uyg'ondingmi? Bu qaysi vaqt?",
+     "items": [
+      {
+       "say": "Ertalab",
+       "uz": "quyosh chiqadi, uyg'onamiz",
+       "emoji": "🌅",
+       "image_prompt": "Sunrise over hills with a rooster, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ertalab quyosh chiqadi, osmon yorishadi. Biz uyg'onamiz va kerishamiz!",
+       "action": "Kerishib qo'y!",
+       "image": "mt34-u6-ertalab.png"
+      },
+      {
+       "say": "Nonushta",
+       "uz": "ertalabki ovqat",
+       "emoji": "🥣",
+       "image_prompt": "A bowl of porridge on a breakfast table, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ertalab yuzimizni yuvamiz va nonushta qilamiz. Bo'tqa, non, choy — mazza!",
+       "image": "mt34-u6-nonushta.png"
+      },
+      {
+       "say": "Bog'chaga boramiz",
+       "uz": "ertalab bog'chaga ketamiz",
+       "emoji": "🎒🏫",
+       "image_prompt": "A child with a small backpack walking to kindergarten, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Nonushtadan keyin bog'chaga boramiz. Do'stlarimiz bizni kutyapti!",
+       "image": "mt34-u6-bogchaga.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ertalab nima bo'ladi?",
+       "options": [
+        "🌅 quyosh chiqadi",
+        "🔺 uchburchak chiqadi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ertalab quyosh chiqadi."
+      },
+      {
+       "q": "Ertalab nima qilamiz?",
+       "options": [
+        "🥣 nonushta",
+        "🛏️ uxlashga yotamiz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ertalab nonushta qilamiz."
+      },
+      {
+       "q": "Qaysi biri uchburchak?",
+       "options": [
+        "🔺 uchburchak",
+        "⚪ doira"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Uchta burchak."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ertalab qo'shig'i",
+       "matn": "Quyosh chiqdi, charaqladi! Uyg'on, uyg'on, bolajon! Yuzni yuvib, nonushta — bog'chaga boramiz biz!",
+       "doska": "🌅 🧼 🥣 🎒",
+       "sodda": "Uyg'onib kerish, yuzni yuvgandek qil.",
+       "boshqa_usul": "Ertalab nima qilganingni ketma-ket ko'rsat."
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun",
+     "goal": "Bola kechqurunni va kechki ishlarni biladi",
+     "intro": "Bip-bip! Quyosh uxlashga ketyapti. Osmon qizarib, qorong'i bo'lyapti. Bu qaysi vaqt ekan?",
+     "items": [
+      {
+       "say": "Kechqurun",
+       "uz": "quyosh botadi",
+       "emoji": "🌇",
+       "image_prompt": "Sunset over a city with orange sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kechqurun quyosh botadi, osmon qizaradi. Hamma uyiga qaytadi.",
+       "image": "mt34-u6-kechqurun.png"
+      },
+      {
+       "say": "Kechki ovqat",
+       "uz": "oila bilan kechqurun ovqatlanamiz",
+       "emoji": "🍲",
+       "image_prompt": "A family bowl of soup on the dinner table, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kechqurun oila bilan dasturxon atrofida o'tiramiz. Kechki ovqat qilamiz, gaplashamiz.",
+       "image": "mt34-u6-kechki-ovqat.png"
+      },
+      {
+       "say": "Uxlashga yotamiz",
+       "uz": "kechqurun yotamiz",
+       "emoji": "🛏️",
+       "image_prompt": "A small child tucked into bed with a teddy bear, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kechqurun tishni yuvamiz, ertak eshitamiz va uxlashga yotamiz. Xayrli tun!",
+       "action": "Uxlagandek ko'zni yum!",
+       "image": "mt34-u6-uxlash.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kechqurun nima bo'ladi?",
+       "options": [
+        "🌇 quyosh botadi",
+        "🌅 quyosh chiqadi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Kechqurun quyosh botadi."
+      },
+      {
+       "q": "Kechqurun nima qilamiz?",
+       "options": [
+        "🛏️ uxlashga yotamiz",
+        "🎒 bog'chaga boramiz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kechqurun uxlashga yotamiz."
+      },
+      {
+       "q": "Nonushta qachon bo'ladi?",
+       "options": [
+        "🌅 ertalab",
+        "🌇 kechqurun"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Nonushta — ertalab."
+      }
+     ]
+    },
+    {
+     "name": "Kun va tun",
+     "goal": "Bola kun va tunni, ertalab va kechqurunni farqlaydi",
+     "intro": "Bip-bip! Kunduzi men uchaman, tunda uxlayman. Tunda kim uxlamaydi? Boyqush! Qani, kun va tunni bilamiz.",
+     "items": [
+      {
+       "say": "Kunduzi",
+       "uz": "yorug', quyosh bor",
+       "emoji": "☀️",
+       "image_prompt": "A bright sun in a blue sky over a playground, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kunduzi quyosh charaqlaydi, hamma yoq yorug'. Biz o'ynaymiz, sayr qilamiz.",
+       "image": "mt34-u6-kunduzi.png"
+      },
+      {
+       "say": "Tunda",
+       "uz": "qorong'i, oy va yulduzlar",
+       "emoji": "🌙⭐",
+       "image_prompt": "A crescent moon and stars in a dark night sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Tunda qorong'i bo'ladi. Osmonda oy va yulduzlar chiqadi. Hamma uxlaydi.",
+       "image": "mt34-u6-tunda.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qachon oy chiqadi?",
+       "options": [
+        "🌙 tunda",
+        "☀️ kunduzi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Oy tunda chiqadi."
+      },
+      {
+       "q": "Qachon yorug' bo'ladi?",
+       "options": [
+        "☀️ kunduzi",
+        "🌙 tunda"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kunduzi yorug'."
+      },
+      {
+       "q": "Avval nima bo'ladi?",
+       "options": [
+        "🌅 ertalab",
+        "🌇 kechqurun"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kun ertalab boshlanadi."
+      },
+      {
+       "q": "⭐⭐⭐⭐ nechta yulduz?",
+       "options": [
+        "4️⃣ to'rt",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Qoyil! To'rtta yulduz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Kun-tun o'yini",
+       "matn": "«Kun!» desam — yugurib o'yna. «Tun!» desam — yotib, uxlagandek qil. Kun! Tun! Kun!",
+       "doska": "☀️🏃  🌙😴",
+       "sodda": "Kun — turamiz, tun — yotamiz.",
+       "boshqa_usul": "Chiroqni yoqib-o'chirib kun va tun o'yna."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Oldida, orqasida, o'ngda, chapda",
+   "emoji": "🧭",
+   "lessons": [
+    {
+     "name": "Oldida va orqasida",
+     "goal": "Bola oldida va orqasida joylashuvini farqlaydi",
+     "intro": "Bip-bip! Kuchukcha bola bilan sayrga chiqdi. Bir qarasa — oldinda, bir qarasa — orqada! Qayerda ekan?",
+     "items": [
+      {
+       "say": "Oldida",
+       "uz": "yuzimiz tomonda",
+       "emoji": "🐶🧒",
+       "image_prompt": "A puppy walking in front of a child, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kuchukcha bolaning oldida yuribdi. Biz uni ko'rib turibmiz. Oldinga qo'lni cho'z: oldida!",
+       "action": "Qo'lingni oldinga cho'z!",
+       "image": "mt34-u7-oldida.png"
+      },
+      {
+       "say": "Orqasida",
+       "uz": "orqa tomonda",
+       "emoji": "🧒🐶",
+       "image_prompt": "A puppy following behind a child, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Endi kuchukcha bolaning orqasida. Uni ko'rish uchun orqaga o'giriladi. Orqani ko'rsat!",
+       "action": "Orqangni ko'rsat!",
+       "image": "mt34-u7-orqasida.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Mushuk qutining oldida. Qaysi rasm?",
+       "options": [
+        "🐱📦 oldida",
+        "📦🐱 orqasida"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Mushuk oldida."
+      },
+      {
+       "q": "Poyezdda vagon qayerda?",
+       "options": [
+        "🚃 orqasida",
+        "🚃 oldida"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Vagon parovozning orqasida."
+      },
+      {
+       "q": "Tunda osmonda nima bo'ladi?",
+       "options": [
+        "🌙 oy",
+        "☀️ quyosh"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Tunda oy chiqadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Poyezd bo'lamiz",
+       "matn": "Oila bilan qatorga tur. Kim oldinda? Kim orqada? Endi almash! Chuh-chuh!",
+       "doska": "🧒👧👦 🚂",
+       "sodda": "Onangning oldiga, keyin orqasiga tur.",
+       "boshqa_usul": "O'yinchoqni stulning oldiga, keyin orqasiga qo'y."
+      }
+     ]
+    },
+    {
+     "name": "O'ng qo'l va chap qo'l",
+     "goal": "Bola o'ng va chap qo'lini ajratadi",
+     "intro": "Bip-bip! Bizda ikkita qo'l bor. Ularning ismi ham bor! Bittasi o'ng, bittasi chap. Qaysi biri qaysi?",
+     "items": [
+      {
+       "say": "O'ng qo'l",
+       "uz": "qoshiq ushlaydigan qo'l",
+       "emoji": "🥄✋",
+       "image_prompt": "A child holding a spoon in the right hand, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ko'pchilik qoshiqni o'ng qo'lda ushlaydi. O'ng qo'lingni ko'tar! Salomlashganda ham o'ng qo'l beramiz.",
+       "action": "O'ng qo'lingni ko'tar!",
+       "image": "mt34-u7-ong-qol.png"
+      },
+      {
+       "say": "Chap qo'l",
+       "uz": "ikkinchi qo'l",
+       "emoji": "🤚",
+       "image_prompt": "A child raising the left hand, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikkinchi qo'limiz — chap qo'l. Chap qo'lingni ko'tar! Endi o'ngini, endi chapini!",
+       "action": "Chap qo'lingni ko'tar!",
+       "image": "mt34-u7-chap-qol.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qoshiqni qaysi qo'lda ushlaymiz?",
+       "options": [
+        "✋ o'ng qo'l",
+        "🤚 chap qo'l"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qoshiq — o'ng qo'lda."
+      },
+      {
+       "q": "Salomlashganda qaysi qo'lni beramiz?",
+       "options": [
+        "✋ o'ng qo'l",
+        "🤚 chap qo'l"
+       ],
+       "answer": 0,
+       "why": "Ofarin! O'ng qo'lni beramiz."
+      },
+      {
+       "q": "Bizda nechta qo'l bor?",
+       "options": [
+        "2️⃣ ikki",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! O'ng va chap — ikkita qo'l."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 O'ng-chap qo'shig'i",
+       "matn": "O'ng qo'l — salom, salom! Chap qo'l — salom, salom! Ikkalasi — qarsak, qarsak! Qani, birga!",
+       "doska": "✋ o'ng  🤚 chap  👏",
+       "sodda": "O'ng qo'lni silkit.",
+       "boshqa_usul": "O'ng qo'lingga lenta bog'lab o'yna."
+      }
+     ]
+    },
+    {
+     "name": "O'ngda va chapda",
+     "goal": "Bola narsaning o'ngda yoki chapda turganini aytadi",
+     "intro": "Bip-bip! Mening tarelkamda olma va nok bor. Olma bir tomonda, nok boshqa tomonda. Qaysi tomonda ekan?",
+     "items": [
+      {
+       "say": "O'ngda",
+       "uz": "o'ng qo'l tomonda",
+       "emoji": "➡️🍎",
+       "image_prompt": "A red apple on the right side of a plate, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Olma o'ng qo'limiz tomonida. Olma o'ngda! O'ng qo'ling bilan ko'rsat.",
+       "image": "mt34-u7-ongda.png"
+      },
+      {
+       "say": "Chapda",
+       "uz": "chap qo'l tomonda",
+       "emoji": "🍐⬅️",
+       "image_prompt": "A green pear on the left side of a plate, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Nok chap qo'limiz tomonida. Nok chapda! Chap qo'ling bilan ko'rsat.",
+       "image": "mt34-u7-chapda.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi strelka o'ngga?",
+       "options": [
+        "➡️ o'ngga",
+        "⬅️ chapga"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bu o'ngga ko'rsatyapti."
+      },
+      {
+       "q": "Qaysi strelka chapga?",
+       "options": [
+        "➡️ o'ngga",
+        "⬅️ chapga"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Bu chapga ko'rsatyapti."
+      },
+      {
+       "q": "Olma o'ng qo'l tomonda. U qayerda?",
+       "options": [
+        "🍎 o'ngda",
+        "🍎 chapda"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Olma o'ngda."
+      },
+      {
+       "q": "Kuchuk bolaning orqasida. Qaysi rasm?",
+       "options": [
+        "🧒🐶 orqasida",
+        "🐶🧒 oldida"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Kuchuk orqada."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Naqshni davom ettir",
+   "emoji": "🔴🔵",
+   "lessons": [
+    {
+     "name": "Naqsh nima?",
+     "goal": "Bola ikki rang takrorlanadigan naqshni ko'radi",
+     "intro": "Bip-bip! Men munchoq teryapman: qizil, ko'k, qizil, ko'k… Keyin qaysi biri keladi? Bu — naqsh sirli o'yini!",
+     "items": [
+      {
+       "say": "Naqsh",
+       "uz": "bir xil tartib takrorlanadi",
+       "emoji": "🔴🔵🔴🔵",
+       "image_prompt": "A string of beads alternating red and blue, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qizil, ko'k, qizil, ko'k. Tartib qaytib kelyapti! Bu — naqsh. Birga aytamiz: qizil, ko'k!",
+       "image": "mt34-u8-naqsh.png"
+      },
+      {
+       "say": "Keyingisi",
+       "uz": "naqshda navbatdagi",
+       "emoji": "🔴🔵🔴❓",
+       "image_prompt": "Red blue red beads and an empty spot, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qizil, ko'k, qizil… Keyingisi? Ko'k! Chunki qizildan keyin har doim ko'k keladi.",
+       "image": "mt34-u8-keyingisi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🔴🔵🔴🔵🔴 — keyingisi qaysi?",
+       "options": [
+        "🔵 ko'k",
+        "🔴 qizil"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qizildan keyin ko'k."
+      },
+      {
+       "q": "🔵🔴🔵🔴🔵 — keyingisi qaysi?",
+       "options": [
+        "🔴 qizil",
+        "🔵 ko'k"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ko'kdan keyin qizil."
+      },
+      {
+       "q": "Qaysi biri naqsh?",
+       "options": [
+        "🔴🔵🔴🔵 naqsh",
+        "🔴🔴🔵🟢 aralash"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qizil, ko'k takrorlanyapti."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak naqshi",
+       "matn": "Qarsak, tizza, qarsak, tizza! Bu ham naqsh! Qani, men bilan davom ettir: qarsak, tizza…",
+       "doska": "👏🦵👏🦵",
+       "sodda": "Qarsak, tizza — ikki marta.",
+       "boshqa_usul": "Sakrash, o'tirish, sakrash, o'tirish — naqsh bilan harakat qil."
+      }
+     ]
+    },
+    {
+     "name": "Rangli munchoqlar",
+     "goal": "Bola ikki rangli naqshni davom ettiradi",
+     "intro": "Bip-bip! Oyimga munchoq sovg'a qilmoqchiman. Menga yordam ber: naqshni buzmasdan davom ettiramiz!",
+     "items": [
+      {
+       "say": "Qizil-sariq naqsh",
+       "uz": "qizil, sariq takrorlanadi",
+       "emoji": "🔴🟡🔴🟡",
+       "image_prompt": "Beads alternating red and yellow, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qizil, sariq, qizil, sariq. Davom ettiramiz: qizil, sariq! Chiroyli munchoq bo'ldi.",
+       "image": "mt34-u8-qizil-sariq.png"
+      },
+      {
+       "say": "Yashil-ko'k naqsh",
+       "uz": "yashil, ko'k takrorlanadi",
+       "emoji": "🟢🔵🟢🔵",
+       "image_prompt": "Beads alternating green and blue, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Yashil, ko'k, yashil, ko'k. Keyingisi — yashil! Qani, barmoq bilan ko'rsatib ayt.",
+       "image": "mt34-u8-yashil-kok.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🔴🟡🔴🟡🔴 — keyingisi qaysi?",
+       "options": [
+        "🟡 sariq",
+        "🟢 yashil"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Qizildan keyin sariq."
+      },
+      {
+       "q": "🟢🔵🟢🔵 — keyingisi qaysi?",
+       "options": [
+        "🟢 yashil",
+        "🔵 ko'k"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ko'kdan keyin yashil."
+      },
+      {
+       "q": "🟡🔴🟡🔴🟡 — keyingisi qaysi?",
+       "options": [
+        "🔴 qizil",
+        "🟡 sariq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sariqdan keyin qizil."
+      },
+      {
+       "q": "Munchoqda nechta 🔴 bor: 🔴🟡🔴🟡🔴",
+       "options": [
+        "3️⃣ uch",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Uchta qizil munchoq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎨 Munchoq yasaymiz",
+       "matn": "Ikki rangdagi makaron yoki tugmalarni ipga ter: qizil, sariq, qizil, sariq. Naqsh buzilmasin!",
+       "doska": "🔴🟡🔴🟡🔴🟡",
+       "sodda": "To'rtta munchoq ter: qizil, sariq, qizil, sariq.",
+       "boshqa_usul": "Ikki rangli qog'oz bo'laklarini qatorga yopishtir."
+      }
+     ]
+    },
+    {
+     "name": "Shakl naqshi",
+     "goal": "Bola shakl naqshini davom ettiradi va xatoni topadi",
+     "intro": "Bip-bip! Naqsh faqat rangdan emas, shakldan ham bo'ladi! Lekin bir joyda xato bor. Uni topa olasanmi?",
+     "items": [
+      {
+       "say": "Doira-kvadrat naqsh",
+       "uz": "doira, kvadrat takrorlanadi",
+       "emoji": "⚪🟦⚪🟦",
+       "image_prompt": "Alternating circle and square shapes in a row, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Doira, kvadrat, doira, kvadrat. Keyingisi — doira! Shakllar ham naqsh bo'ladi.",
+       "image": "mt34-u8-doira-kvadrat.png"
+      },
+      {
+       "say": "Naqshdagi xato",
+       "uz": "tartib buzilgan joy",
+       "emoji": "🔴🔵🔴🔴",
+       "image_prompt": "A bead string where one bead breaks the red blue pattern, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qizil, ko'k, qizil, qizil… To'xta! Bu yerda ko'k bo'lishi kerak edi. Xatoni topdik!",
+       "image": "mt34-u8-naqsh-xato.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "⚪🟦⚪🟦⚪ — keyingisi qaysi?",
+       "options": [
+        "🟦 kvadrat",
+        "🔺 uchburchak"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Doiradan keyin kvadrat."
+      },
+      {
+       "q": "Qaysi naqshda xato bor?",
+       "options": [
+        "🔴🔵🔴🔴 xato",
+        "🔴🔵🔴🔵 to'g'ri"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ko'k bo'lishi kerak edi."
+      },
+      {
+       "q": "🔺⚪🔺⚪ — keyingisi qaysi?",
+       "options": [
+        "🔺 uchburchak",
+        "⚪ doira"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Doiradan keyin uchburchak."
+      },
+      {
+       "q": "Tepadagi quyosh o'ng qo'l tomonda. U qayerda?",
+       "options": [
+        "☀️ o'ngda",
+        "☀️ chapda"
+       ],
+       "answer": 0,
+       "why": "Qoyil! O'ng tomonda — o'ngda."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Naqsh ustasi",
+       "matn": "Qoshiq va vilkalardan naqsh qil: qoshiq, vilka, qoshiq, vilka. Oilangdan biri xato qilsin — sen top!",
+       "doska": "🥄🍴🥄🍴",
+       "sodda": "Ikki xil o'yinchoq bilan naqsh qil.",
+       "boshqa_usul": "Oyoq kiyimlarni naqsh bilan qatorga ter."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "1 dan 5 gacha",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Beshgacha sanaymiz",
+     "goal": "Bola 1 dan 5 gacha to'g'ri sanaydi, oxirgi son nechtaligini aytadi",
+     "intro": "Bip-bip! Salom, bolajonlar! Men — robot Kabu. Sonlar mamlakatida katta bayram! Lekin avval eski do'stlarimiz — birdan beshgacha sonlarni chaqiramiz. Tayyormisan?",
+     "items": [
+      {
+       "say": "Birdan beshgacha",
+       "uz": "1, 2, 3, 4, 5",
+       "emoji": "1️⃣2️⃣3️⃣4️⃣5️⃣",
+       "image_prompt": "Numbers one to five holding hands in a row, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Sonlar navbat bilan turadi: bir, ikki, uch, to'rt, besh. Barmoqlarni bittadan ochib, birga sanaymiz!",
+       "action": "Barmoqlarni bittadan och!",
+       "image": "mt45-u1-birdan-beshgacha.png"
+      },
+      {
+       "say": "Har biriga bitta tegamiz",
+       "uz": "sanaganda hech birini tashlab ketmaymiz",
+       "emoji": "👉🐥🐥🐥🐥",
+       "image_prompt": "A finger touching chicks one by one, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Sanaganda har bir jo'jaga bir marta tegamiz. Birini ham tashlab ketmaymiz, ikki marta ham sanamaymiz.",
+       "image": "mt45-u1-bitta-tegamiz.png"
+      },
+      {
+       "say": "Oxirgi son — nechta",
+       "uz": "oxirgi aytilgan son nechtaligini bildiradi",
+       "emoji": "🐥🐥🐥🐥=4️⃣",
+       "image_prompt": "Four chicks with a big number four above them, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bir, ikki, uch, to'rt. Oxirgi son — to'rt. Demak, jo'jalar to'rtta! Oxirgi son doim nechtaligini aytadi.",
+       "image": "mt45-u1-oxirgi-son.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐥🐥🐥🐥 sana. Nechta jo'ja?",
+       "options": [
+        "4️⃣ to'rt",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bir, ikki, uch, to'rt — to'rtta."
+      },
+      {
+       "q": "🍎🍎🍎🍎🍎 sana. Nechta olma?",
+       "options": [
+        "5️⃣ besh",
+        "4️⃣ to'rt"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Beshta olma."
+      },
+      {
+       "q": "🐟🐟 nechta baliq?",
+       "options": [
+        "2️⃣ ikki",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Bir, ikki — ikkita."
+      },
+      {
+       "q": "Bir qo'lda nechta barmoq?",
+       "options": [
+        "🖐️ besh",
+        "✌️ ikki"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Bir qo'lda beshta barmoq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Sanoq qo'shig'i",
+       "matn": "Bir, ikki — qo'l ko'tar! Uch, to'rt — qarsak chal! Besh — sakrab, qo'l silta! Yana boshidan, bolajon!",
+       "doska": "1️⃣2️⃣ 🙌\n3️⃣4️⃣ 👏\n5️⃣ 🦘",
+       "sodda": "Beshgacha sanab, besh marta qarsak chal.",
+       "boshqa_usul": "Beshta zinadan sanab chiq."
+      }
+     ]
+    },
+    {
+     "name": "Son va rasm",
+     "goal": "Bola raqamni taniydi va unga mos miqdorni topadi",
+     "intro": "Bip-bip! Men sonlarga xat yozdim, lekin konvertlar aralashib ketdi. Har bir songa mos rasmni topib berasanmi?",
+     "items": [
+      {
+       "say": "Raqamni taniymiz",
+       "uz": "raqam — sonning rasmi",
+       "emoji": "3️⃣",
+       "image_prompt": "A big number three drawn on a card, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu belgi — uch raqami. Raqam sonni yozib ko'rsatadi. Uchni ko'rsak, uchta narsani o'ylaymiz.",
+       "image": "mt45-u1-raqam.png"
+      },
+      {
+       "say": "Songa mos narsalar",
+       "uz": "raqam nechta bo'lsa, shuncha narsa",
+       "emoji": "5️⃣=⭐⭐⭐⭐⭐",
+       "image_prompt": "Number five card next to five stars, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Besh raqamiga beshta yulduz mos keladi. Sanaymiz: bir, ikki, uch, to'rt, besh. Mos keldi!",
+       "image": "mt45-u1-songa-mos.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "4️⃣ to'rt raqamiga qaysi rasm mos?",
+       "options": [
+        "🍓🍓🍓🍓 to'rtta",
+        "🍓🍓 ikkita"
+       ],
+       "answer": 0,
+       "why": "Barakalla! To'rtta qulupnay."
+      },
+      {
+       "q": "🎈🎈🎈 rasmiga qaysi raqam mos?",
+       "options": [
+        "3️⃣ uch",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Uchta shar — uch."
+      },
+      {
+       "q": "1️⃣ bir raqamiga qaysi rasm mos?",
+       "options": [
+        "🌙 bitta",
+        "🌙🌙🌙 uchta"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Bitta oy."
+      }
+     ]
+    },
+    {
+     "name": "Oldingi va keyingi son",
+     "goal": "Bola 1–5 ichida sonning oldingi va keyingi qo'shnisini aytadi",
+     "intro": "Bip-bip! Sonlar uyida har bir sonning ikki qo'shnisi bor: biri oldida, biri keyinida. Kim kimning qo'shnisi ekan?",
+     "items": [
+      {
+       "say": "Keyingi son",
+       "uz": "bittaga ko'p son",
+       "emoji": "3️⃣➡️4️⃣",
+       "image_prompt": "Number three with an arrow to number four, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Uchdan keyin to'rt keladi. Keyingi son har doim bittaga ko'p. Uchta olmaga bitta qo'shsak — to'rtta.",
+       "image": "mt45-u1-keyingi.png"
+      },
+      {
+       "say": "Oldingi son",
+       "uz": "bittaga kam son",
+       "emoji": "2️⃣⬅️3️⃣",
+       "image_prompt": "Number two with an arrow from number three, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Uchdan oldin ikki turadi. Oldingi son bittaga kam. Uchta olmadan bittasini olsak — ikkita.",
+       "image": "mt45-u1-oldingi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "To'rtdan keyin qaysi son?",
+       "options": [
+        "5️⃣ besh",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Barakalla! To'rtdan keyin besh."
+      },
+      {
+       "q": "Ikkidan oldin qaysi son?",
+       "options": [
+        "1️⃣ bir",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ikkidan oldin bir."
+      },
+      {
+       "q": "Uchning keyingi qo'shnisi kim?",
+       "options": [
+        "4️⃣ to'rt",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Uchdan keyin to'rt."
+      },
+      {
+       "q": "Beshdan oldin qaysi son?",
+       "options": [
+        "4️⃣ to'rt",
+        "1️⃣ bir"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Beshdan oldin to'rt."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Qo'shni sonlar o'yini",
+       "matn": "Men son aytaman, sen keyingisini aytib sakraysan! Ikki — … uch! To'rt — … besh! Endi oldingisini ayt: uch — … ikki!",
+       "doska": "2️⃣➡️3️⃣  4️⃣➡️5️⃣",
+       "sodda": "Faqat keyingi sonni ayt.",
+       "boshqa_usul": "Zinada turib: keyingi son — bir pog'ona yuqoriga, oldingi — pastga."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "6 dan 10 gacha",
+   "emoji": "🔟",
+   "lessons": [
+    {
+     "name": "Olti soni",
+     "goal": "Bola olti sonini taniydi, oltitagacha sanaydi",
+     "intro": "Bip-bip! Beshdan keyin kim keladi? Sonlar mamlakatiga yangi mehmon keldi — u beshdan bittaga ko'p. Kutib olamiz!",
+     "items": [
+      {
+       "say": "Olti",
+       "uz": "6 soni",
+       "emoji": "6️⃣",
+       "image_prompt": "A friendly number six character, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — olti soni. Beshtaga yana bitta qo'shsak — olti bo'ladi. Bir qo'lda besh barmoq, ikkinchisidan bitta: olti!",
+       "action": "Olti barmoqni ko'rsat!",
+       "image": "mt45-u2-olti.png"
+      },
+      {
+       "say": "Oltita",
+       "uz": "oltita narsa",
+       "emoji": "🍩🍩🍩🍩🍩🍩",
+       "image_prompt": "Six colorful donuts in a row, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Pishiriqlarni sanaymiz: bir, ikki, uch, to'rt, besh, olti. Oltita pishiriq!",
+       "image": "mt45-u2-oltita.png"
+      },
+      {
+       "say": "Chumolining olti oyog'i",
+       "uz": "chumolida 6 oyoq bor",
+       "emoji": "🐜",
+       "image_prompt": "A cute ant showing its six legs, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Chumolini ko'r. Uning oyoqlarini sanaymiz: bir, ikki, uch, to'rt, besh, olti. Chumoli oltita oyoqda yuradi!",
+       "image": "mt45-u2-chumoli.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍩🍩🍩🍩🍩🍩 nechta?",
+       "options": [
+        "6️⃣ olti",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Oltita pishiriq."
+      },
+      {
+       "q": "Beshdan keyin qaysi son?",
+       "options": [
+        "6️⃣ olti",
+        "4️⃣ to'rt"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Beshdan keyin olti."
+      },
+      {
+       "q": "Chumolining nechta oyog'i bor?",
+       "options": [
+        "6️⃣ olti",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Chumolida oltita oyoq."
+      }
+     ]
+    },
+    {
+     "name": "Yetti va sakkiz",
+     "goal": "Bola yetti va sakkiz sonlarini taniydi",
+     "intro": "Bip-bip! Yomg'irdan keyin osmonda kamalak chiqdi. Uning ranglarini sanaymizmi? Keyin dengizdagi do'stimizning oyoqlarini ham sanaymiz!",
+     "items": [
+      {
+       "say": "Yetti",
+       "uz": "7 soni",
+       "emoji": "7️⃣",
+       "image_prompt": "A friendly number seven character, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — yetti soni. Oltiga bitta qo'shsak — yetti. Kamalakning yettita rangi bor, haftada yetti kun bor.",
+       "image": "mt45-u2-yetti.png"
+      },
+      {
+       "say": "Kamalak — yetti rang",
+       "uz": "kamalakda 7 rang",
+       "emoji": "🌈",
+       "image_prompt": "A bright rainbow with seven colors, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kamalak ranglarini sanaymiz: qizil, to'q sariq, sariq, yashil, havora, ko'k, binafsha. Yettita!",
+       "image": "mt45-u2-kamalak.png"
+      },
+      {
+       "say": "Sakkiz",
+       "uz": "8 soni",
+       "emoji": "8️⃣🐙",
+       "image_prompt": "A friendly octopus next to number eight, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — sakkiz soni. Yettiga bitta qo'shsak — sakkiz. Sakkizoyoqning sakkizta oyog'i bor!",
+       "image": "mt45-u2-sakkiz.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Oltidan keyin qaysi son?",
+       "options": [
+        "7️⃣ yetti",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Oltidan keyin yetti."
+      },
+      {
+       "q": "Sakkizoyoqning nechta oyog'i bor?",
+       "options": [
+        "8️⃣ sakkiz",
+        "6️⃣ olti"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Sakkizta oyoq."
+      },
+      {
+       "q": "Kamalakda nechta rang?",
+       "options": [
+        "7️⃣ yetti",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kamalakda yettita rang."
+      },
+      {
+       "q": "Yettidan keyin qaysi son?",
+       "options": [
+        "8️⃣ sakkiz",
+        "6️⃣ olti"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Yettidan keyin sakkiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Kamalak qo'shig'i",
+       "matn": "Qizil, to'q sariq, sariq, yashil, havora, ko'k va binafsha — yettita rang, kamalak bo'ldi! Har rangda bitta barmoq och!",
+       "doska": "🌈 = 7",
+       "sodda": "Kamalak ranglarini barmoq bilan sana.",
+       "boshqa_usul": "Rangli qalamlarni kamalak tartibida ter."
+      }
+     ]
+    },
+    {
+     "name": "To'qqiz va o'n",
+     "goal": "Bola to'qqiz va o'n sonlarini taniydi, o'n barmoqni sanaydi",
+     "intro": "Bip-bip! Men bir sir aytaman: sening ikki qo'lingda katta son yashiringan. Barcha barmoqlarni sanasak, qaysi son chiqadi?",
+     "items": [
+      {
+       "say": "To'qqiz",
+       "uz": "9 soni",
+       "emoji": "9️⃣",
+       "image_prompt": "A friendly number nine character, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — to'qqiz soni. Sakkizga bitta qo'shsak — to'qqiz. To'qqiz barmoq ko'rsat: bitta barmoq bukilib qoldi!",
+       "image": "mt45-u2-toqqiz.png"
+      },
+      {
+       "say": "O'n",
+       "uz": "10 soni",
+       "emoji": "🔟",
+       "image_prompt": "A friendly number ten character, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — o'n soni. To'qqizga bitta qo'shsak — o'n! O'n — bir va nol bilan yoziladi.",
+       "image": "mt45-u2-on.png"
+      },
+      {
+       "say": "O'n barmoq",
+       "uz": "ikki qo'lda 10 barmoq",
+       "emoji": "🙌",
+       "image_prompt": "Two open hands showing ten fingers, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikki qo'lni och. Bir qo'lda besh, ikkinchisida besh. Hammasi — o'n barmoq!",
+       "action": "Ikkala kaftingni och!",
+       "image": "mt45-u2-on-barmoq.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "To'qqizdan keyin qaysi son?",
+       "options": [
+        "🔟 o'n",
+        "8️⃣ sakkiz"
+       ],
+       "answer": 0,
+       "why": "Barakalla! To'qqizdan keyin o'n."
+      },
+      {
+       "q": "Ikki qo'lda nechta barmoq?",
+       "options": [
+        "🔟 o'n",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ikki qo'lda o'nta barmoq."
+      },
+      {
+       "q": "Sakkizdan keyin qaysi son?",
+       "options": [
+        "9️⃣ to'qqiz",
+        "7️⃣ yetti"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sakkizdan keyin to'qqiz."
+      }
+     ]
+    },
+    {
+     "name": "O'ngacha sanaymiz",
+     "goal": "Bola 1 dan 10 gacha va teskari sanaydi",
+     "intro": "Bip-bip! Raketa uchishga tayyor! Lekin u faqat o'ndan birgacha teskari sanasak uchadi. Avval oldinga sanashni mashq qilamiz!",
+     "items": [
+      {
+       "say": "Birdan o'ngacha",
+       "uz": "1 dan 10 gacha tartib",
+       "emoji": "1️⃣2️⃣3️⃣4️⃣5️⃣6️⃣7️⃣8️⃣9️⃣🔟",
+       "image_prompt": "Numbers one to ten standing on a long staircase, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bir, ikki, uch, to'rt, besh, olti, yetti, sakkiz, to'qqiz, o'n! Har qadamda son bittaga ko'payadi.",
+       "image": "mt45-u2-birdan-ongacha.png"
+      },
+      {
+       "say": "Teskari sanash",
+       "uz": "o'ndan birgacha",
+       "emoji": "🔟➡️1️⃣🚀",
+       "image_prompt": "A rocket ready to launch with a countdown, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Endi orqaga sanaymiz: o'n, to'qqiz, sakkiz, yetti, olti, besh, to'rt, uch, ikki, bir — uch! Raketa uchdi!",
+       "action": "Qo'llarni tepaga otib sakra!",
+       "image": "mt45-u2-teskari.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Oltidan oldin qaysi son?",
+       "options": [
+        "5️⃣ besh",
+        "7️⃣ yetti"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Oltidan oldin besh."
+      },
+      {
+       "q": "To'qqizdan oldin qaysi son?",
+       "options": [
+        "8️⃣ sakkiz",
+        "🔟 o'n"
+       ],
+       "answer": 0,
+       "why": "Ofarin! To'qqizdan oldin sakkiz."
+      },
+      {
+       "q": "🐞🐞🐞🐞🐞🐞🐞 nechta?",
+       "options": [
+        "7️⃣ yetti",
+        "6️⃣ olti"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yettita xonqizi."
+      },
+      {
+       "q": "Yettidan keyin qaysi son?",
+       "options": [
+        "8️⃣ sakkiz",
+        "6️⃣ olti"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Yettidan keyin sakkiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚀 Raketa o'yini",
+       "matn": "Cho'kkalab o'tir. O'ndan birgacha birga sanaymiz: o'n, to'qqiz, sakkiz… bir! Uchdik — baland sakra!",
+       "doska": "🔟 9️⃣ 8️⃣ … 1️⃣ 🚀",
+       "sodda": "Beshdan birgacha sanab sakra.",
+       "boshqa_usul": "O'nta qadam tashlab sana, keyin orqaga qaytib teskari sana."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ko'p, kam, teng",
+   "emoji": "⚖️",
+   "lessons": [
+    {
+     "name": "Ko'proq va kamroq",
+     "goal": "Bola juftlab solishtirib, qaysi guruh ko'p, qaysi kam ekanini aytadi",
+     "intro": "Bip-bip! Qushlar ovqatga kelishdi, men donlarni teraman. Hamma qushga don yetarmikan? Qani, juftlab ko'ramiz!",
+     "items": [
+      {
+       "say": "Ko'proq",
+       "uz": "juftsiz ortib qolgani bor",
+       "emoji": "🐦🐦🐦🐦 🌾🌾🌾",
+       "image_prompt": "Four birds and three grains, one bird left without grain, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Har qushga bitta don qo'yamiz. Bitta qushga yetmadi — qushlar ko'proq! Ortib qolgan tomon — ko'proq.",
+       "image": "mt45-u3-koproq.png"
+      },
+      {
+       "say": "Kamroq",
+       "uz": "yetmay qolgan tomon",
+       "emoji": "🌾🌾🌾",
+       "image_prompt": "Three grains of wheat, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Donlar yetmadi — donlar kamroq. To'rtta qush, uchta don. Uch to'rtdan kam.",
+       "image": "mt45-u3-kamroq.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱🐱🐱 🐟🐟 — nima ko'proq?",
+       "options": [
+        "🐱 mushuklar",
+        "🐟 baliqlar"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bitta mushukka baliq yetmadi."
+      },
+      {
+       "q": "🐰🐰 🥕🥕🥕🥕 — nima kamroq?",
+       "options": [
+        "🐰 quyonlar",
+        "🥕 sabzilar"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Quyonlar kamroq."
+      },
+      {
+       "q": "Qaysi savatda olma ko'proq?",
+       "options": [
+        "🧺🍎🍎🍎🍎🍎 besh",
+        "🧺🍎🍎 ikki"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Besh — ko'proq."
+      }
+     ]
+    },
+    {
+     "name": "Teng",
+     "goal": "Bola ikki guruh tengligini juftlab tekshiradi",
+     "intro": "Bip-bip! Bog'chada har bolaga bitta stul kerak. Stullar yetadimi? Ortib qolmaydimi? Qani, tekshiramiz!",
+     "items": [
+      {
+       "say": "Teng",
+       "uz": "ortmadi ham, yetmadi ham",
+       "emoji": "🧒🧒🧒 🪑🪑🪑",
+       "image_prompt": "Three children and three small chairs, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Har bolaga bitta stul. Hammaga yetdi, ortiqcha ham qolmadi. Bolalar va stullar teng!",
+       "image": "mt45-u3-teng.png"
+      },
+      {
+       "say": "Juftlab tekshiramiz",
+       "uz": "bir qator ostiga ikkinchisini qo'yamiz",
+       "emoji": "🐝🐝🐝\n🌼🌼🌼",
+       "image_prompt": "Bees lined up above flowers, one bee per flower, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Arilarni bir qatorga, gullarni ostiga qo'yamiz. Har ari tagida bitta gul. Juft chiqdi — teng!",
+       "image": "mt45-u3-juftlab.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi rasmda teng?",
+       "options": [
+        "🐝🐝🐝 🌼🌼🌼 teng",
+        "🐝🐝🐝 🌼🌼 teng emas"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Uchta ari, uchta gul."
+      },
+      {
+       "q": "🧒🧒 🪑🪑🪑 — teng mi?",
+       "options": [
+        "🪑 yo'q, stul ko'p",
+        "🧒 ha, teng"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bitta stul ortib qoldi."
+      },
+      {
+       "q": "Qaysi rasmda teng?",
+       "options": [
+        "🐶🐶🐶🐶 🦴🦴🦴🦴 teng",
+        "🐶🐶🐶🐶 🦴🦴 kam"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! To'rtta kuchuk, to'rtta suyak."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Dasturxon o'yini",
+       "matn": "Oilang a'zolariga bittadan likopcha qo'y. Endi har likopchaga bitta qoshiq. Likopcha va qoshiq tengmi? Ko'pmi, kammi?",
+       "doska": "🍽️🥄 🍽️🥄 🍽️🥄",
+       "sodda": "Ikkita likopcha va ikkita qoshiq bilan boshla.",
+       "boshqa_usul": "O'yinchoqlarga bittadan qalpoqcha yoki kubik ber."
+      }
+     ]
+    },
+    {
+     "name": "Sanab solishtiramiz",
+     "goal": "Bola sanab, katta son ko'proq, kichik son kamroq ekanini biladi",
+     "intro": "Bip-bip! Juftlash uzoq davom etsa-chi? Sirli usul bor: sanaymiz! Qaysi son katta bo'lsa, o'sha ko'p. Sinab ko'ramiz!",
+     "items": [
+      {
+       "say": "Katta son — ko'p",
+       "uz": "sanoqda keyinroq kelgan son ko'p",
+       "emoji": "5️⃣ > 3️⃣",
+       "image_prompt": "Five balloons next to three balloons, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Beshta shar va uchta shar. Besh sanoqda uchdan keyin keladi. Demak, besh ko'proq!",
+       "image": "mt45-u3-katta-son.png"
+      },
+      {
+       "say": "Kichik son — kam",
+       "uz": "sanoqda oldinroq kelgan son kam",
+       "emoji": "2️⃣ < 6️⃣",
+       "image_prompt": "Two apples next to six apples, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikkita olma va oltita olma. Ikki oltidan oldin keladi. Demak, ikki kamroq.",
+       "image": "mt45-u3-kichik-son.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi son katta: 7 yoki 4?",
+       "options": [
+        "7️⃣ yetti",
+        "4️⃣ to'rt"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Yetti to'rtdan ko'p."
+      },
+      {
+       "q": "Qaysi son kichik: 3 yoki 8?",
+       "options": [
+        "3️⃣ uch",
+        "8️⃣ sakkiz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Uch sakkizdan kam."
+      },
+      {
+       "q": "Kimda qalam ko'p: Alida 6 ta, Zeboda 9 ta?",
+       "options": [
+        "👧 Zebo, 9",
+        "🧒 Ali, 6"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! To'qqiz oltidan ko'p."
+      },
+      {
+       "q": "🍬🍬🍬🍬 va 🍬🍬 — qaysi kam?",
+       "options": [
+        "🍬🍬 ikkita",
+        "🍬🍬🍬🍬 to'rtta"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Ikki to'rtdan kam."
+      }
+     ]
+    },
+    {
+     "name": "Teng qilamiz",
+     "goal": "Bola bittasini qo'shib yoki olib guruhlarni tenglaydi",
+     "intro": "Bip-bip! Ikki sincap yong'oq bo'lishdi. Birida ko'p, birida kam — xafa bo'lishdi! Ularni yarashtirib, teng qilamizmi?",
+     "items": [
+      {
+       "say": "Qo'shib tenglash",
+       "uz": "kamiga bitta qo'shamiz",
+       "emoji": "🌰🌰🌰 | 🌰🌰➕🌰",
+       "image_prompt": "Two squirrels, one gets an extra acorn to make them equal, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Birinchi sincapda uchta, ikkinchisida ikkita yong'oq. Ikkinchisiga bitta qo'shamiz — ikkalasida uchta. Teng!",
+       "image": "mt45-u3-qoshib-tenglash.png"
+      },
+      {
+       "say": "Olib tenglash",
+       "uz": "ko'pidan bittasini olamiz",
+       "emoji": "🌰🌰🌰➖🌰 | 🌰🌰",
+       "image_prompt": "A squirrel putting away one extra acorn, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Yoki ko'pidan bittasini olib qo'yamiz: ikki va ikki. Bu ham teng! Tenglashning ikki yo'li bor.",
+       "image": "mt45-u3-olib-tenglash.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍎🍎🍎🍎 va 🍎🍎🍎. Teng qilish uchun?",
+       "options": [
+        "➕ kamiga bitta qo'shamiz",
+        "➕ ko'piga bitta qo'shamiz"
+       ],
+       "answer": 0,
+       "why": "Barakalla! To'rt va to'rt — teng."
+      },
+      {
+       "q": "🐻 🍯🍯. Teng qilish uchun?",
+       "options": [
+        "➖ bitta asal olamiz",
+        "➕ bitta asal qo'shamiz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bitta ayiq, bitta asal."
+      },
+      {
+       "q": "Qaysi son katta: 5 yoki 10?",
+       "options": [
+        "🔟 o'n",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! O'n beshdan ko'p."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Adolatli bo'lish o'yini",
+       "matn": "Ikki o'yinchoq ol. Biriga uchta, biriga bitta kubik ber. Xafa bo'lishdi! Endi teng qil — qanday qilding?",
+       "doska": "🧸🧱🧱🧱  🐶🧱",
+       "sodda": "Ikkalasiga bittadan ber.",
+       "boshqa_usul": "Konfet yoki mevalarni oilang bilan teng bo'lish."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Tartib sanoq, o'ng va chap",
+   "emoji": "🥇",
+   "lessons": [
+    {
+     "name": "Birinchi, ikkinchi, uchinchi",
+     "goal": "Bola navbatda birinchi, ikkinchi, uchinchini aytadi",
+     "intro": "Bip-bip! Hayvonlar yugurish musobaqasiga chiqdi! Kim birinchi keladi? Kim ikkinchi? Qani, marra yonida kutamiz!",
+     "items": [
+      {
+       "say": "Birinchi",
+       "uz": "navbatda eng oldinda",
+       "emoji": "🥇",
+       "image_prompt": "A gold medal on a ribbon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Quyon marraga hammadan oldin yetdi. U — birinchi! Birinchi — eng oldingi.",
+       "image": "mt45-u4-birinchi.png"
+      },
+      {
+       "say": "Ikkinchi",
+       "uz": "birinchidan keyin",
+       "emoji": "🥈",
+       "image_prompt": "A silver medal on a ribbon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Quyondan keyin tulki keldi. Tulki — ikkinchi. Ikkinchi birinchining orqasida turadi.",
+       "image": "mt45-u4-ikkinchi.png"
+      },
+      {
+       "say": "Uchinchi",
+       "uz": "ikkinchidan keyin",
+       "emoji": "🥉",
+       "image_prompt": "A bronze medal on a ribbon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Keyin toshbaqa keldi. Toshbaqa — uchinchi. Birinchi, ikkinchi, uchinchi!",
+       "image": "mt45-u4-uchinchi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐰🦊🐢 — kim birinchi?",
+       "options": [
+        "🐰 quyon",
+        "🐢 toshbaqa"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Quyon birinchi."
+      },
+      {
+       "q": "🐰🦊🐢 — kim ikkinchi?",
+       "options": [
+        "🦊 tulki",
+        "🐰 quyon"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Tulki ikkinchi."
+      },
+      {
+       "q": "🐰🦊🐢 — kim uchinchi?",
+       "options": [
+        "🐢 toshbaqa",
+        "🦊 tulki"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Toshbaqa uchinchi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Navbat o'yini",
+       "matn": "Uch o'yinchoqni qatorga qo'y. Birinchisini ko'rsat! Ikkinchisini! Uchinchisini! Endi almashtir — kim birinchi bo'ldi?",
+       "doska": "🧸🪆🐶\n1-2-3",
+       "sodda": "Birinchi va ikkinchini ko'rsat.",
+       "boshqa_usul": "Oila bilan navbatga tur va kim nechanchi ekanini ayt."
+      }
+     ]
+    },
+    {
+     "name": "To'rtinchi va beshinchi",
+     "goal": "Bola beshinchigacha tartib sanaydi, oxirgisini topadi",
+     "intro": "Bip-bip! Poyezdda beshta vagon bor. Mushukcha qaysi vagonda? Tartib bilan sanasak, topamiz!",
+     "items": [
+      {
+       "say": "To'rtinchi",
+       "uz": "uchinchidan keyin",
+       "emoji": "🚃4️⃣",
+       "image_prompt": "A train wagon with number four on it, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Birinchi, ikkinchi, uchinchi, to'rtinchi! To'rtinchi vagonda mushukcha o'tiribdi.",
+       "image": "mt45-u4-tortinchi.png"
+      },
+      {
+       "say": "Beshinchi",
+       "uz": "to'rtinchidan keyin",
+       "emoji": "🚃5️⃣",
+       "image_prompt": "A train wagon with number five on it, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "To'rtinchidan keyin beshinchi keladi. Beshinchi vagonda kuchukcha bor.",
+       "image": "mt45-u4-beshinchi.png"
+      },
+      {
+       "say": "Oxirgi",
+       "uz": "eng orqada turgan",
+       "emoji": "🚩",
+       "image_prompt": "A small flag at the end of a line, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Beshinchi vagondan keyin vagon yo'q. U — oxirgi. Oxirgi — eng orqadagi.",
+       "image": "mt45-u4-oxirgi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Birinchi, ikkinchi, uchinchi… keyin?",
+       "options": [
+        "4️⃣ to'rtinchi",
+        "2️⃣ ikkinchi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Uchinchidan keyin to'rtinchi."
+      },
+      {
+       "q": "🍎🍐🍌🍇🍓 — beshinchisi qaysi?",
+       "options": [
+        "🍓 qulupnay",
+        "🍎 olma"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Beshinchisi — qulupnay."
+      },
+      {
+       "q": "🍎🍐🍌🍇🍓 — to'rtinchisi qaysi?",
+       "options": [
+        "🍇 uzum",
+        "🍌 banan"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! To'rtinchisi — uzum."
+      },
+      {
+       "q": "🐰🦊🐢 — kim oxirgi?",
+       "options": [
+        "🐢 toshbaqa",
+        "🐰 quyon"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Toshbaqa oxirgi."
+      }
+     ]
+    },
+    {
+     "name": "O'ng va chap",
+     "goal": "Bola o'ng va chap qo'lini, o'ngda va chapda joylashuvini biladi",
+     "intro": "Bip-bip! Qo'llarimiz egizak, lekin ismi har xil! Bittasi o'ng, bittasi chap. Bugun ularni hech qachon adashtirmaymiz!",
+     "items": [
+      {
+       "say": "O'ng qo'l",
+       "uz": "qoshiq ushlaydigan, salom beradigan qo'l",
+       "emoji": "✋",
+       "image_prompt": "A child raising the right hand to say hello, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Salomlashganda o'ng qo'limizni beramiz. Ko'pchilik qoshiqni ham o'ng qo'lda ushlaydi. O'ng qo'lni ko'tar!",
+       "action": "O'ng qo'lingni ko'tar!",
+       "image": "mt45-u4-ong-qol.png"
+      },
+      {
+       "say": "Chap qo'l",
+       "uz": "ikkinchi qo'limiz",
+       "emoji": "🤚",
+       "image_prompt": "A child raising the left hand, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikkinchi qo'limiz — chap. Yuragimiz ham chap tomonda uradi. Chap qo'lni ko'kragingga qo'y!",
+       "action": "Chap qo'lingni ko'kragingga qo'y!",
+       "image": "mt45-u4-chap-qol.png"
+      },
+      {
+       "say": "O'ngda va chapda",
+       "uz": "qaysi qo'l tomonda turibdi",
+       "emoji": "🍐⬅️ ➡️🍎",
+       "image_prompt": "A pear on the left and an apple on the right of a child, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Olma o'ng qo'lim tomonida — olma o'ngda. Nok chap qo'lim tomonida — nok chapda.",
+       "image": "mt45-u4-ongda-chapda.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Salomlashganda qaysi qo'lni beramiz?",
+       "options": [
+        "✋ o'ng qo'l",
+        "🤚 chap qo'l"
+       ],
+       "answer": 0,
+       "why": "Barakalla! O'ng qo'lni beramiz."
+      },
+      {
+       "q": "Qaysi strelka o'ngga ko'rsatyapti?",
+       "options": [
+        "➡️ o'ngga",
+        "⬅️ chapga"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bu — o'ngga."
+      },
+      {
+       "q": "Qaysi strelka chapga ko'rsatyapti?",
+       "options": [
+        "⬅️ chapga",
+        "➡️ o'ngga"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Bu — chapga."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 O'ng-chap raqsi",
+       "matn": "O'ng qo'l — oldinga, o'ng qo'l — orqaga! Chap qo'l — oldinga, chap qo'l — orqaga! Aylanib, qarsak chalamiz!",
+       "doska": "✋ o'ng  🤚 chap",
+       "sodda": "Faqat o'ng qo'lni silkit.",
+       "boshqa_usul": "O'ng oyoq bilan sakra, keyin chap oyoq bilan."
+      }
+     ]
+    },
+    {
+     "name": "Chapdan boshlab sanaymiz",
+     "goal": "Bola qatorni chapdan o'ngga tartib bilan sanaydi, nechanchi va nechtani farqlaydi",
+     "intro": "Bip-bip! Kitobni qaysi tomondan boshlab o'qiymiz? Chapdan! Qatordagi narsalarni ham chapdan sanaymiz. Qani, sinab ko'ramiz!",
+     "items": [
+      {
+       "say": "Chapdan o'ngga",
+       "uz": "qatorni chap tomondan sanaymiz",
+       "emoji": "⬅️🐤🐤🐤➡️",
+       "image_prompt": "A row of chicks with an arrow from left to right, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qatorni chap tomondan boshlaymiz: birinchi, ikkinchi, uchinchi… O'ngga qarab boramiz.",
+       "image": "mt45-u4-chapdan-ongga.png"
+      },
+      {
+       "say": "Nechanchi va nechta",
+       "uz": "nechanchi — o'rni, nechta — hammasi",
+       "emoji": "🐤🐤🐥🐤",
+       "image_prompt": "Four chicks in a row, the third one looks different, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Jo'jalar nechta? To'rtta! Kichik jo'ja nechanchi? Chapdan sanaymiz: birinchi, ikkinchi, uchinchi. U — uchinchi!",
+       "image": "mt45-u4-nechanchi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Chapdan sana: 🍎🍌🍐 — ikkinchisi qaysi?",
+       "options": [
+        "🍌 banan",
+        "🍐 nok"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Chapdan ikkinchisi — banan."
+      },
+      {
+       "q": "🐤🐤🐥🐤 — nechta jo'ja?",
+       "options": [
+        "4️⃣ to'rtta",
+        "3️⃣ uchta"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Jami to'rtta jo'ja."
+      },
+      {
+       "q": "Chapdan sana: 🐤🐤🐥🐤 — kichik jo'ja nechanchi?",
+       "options": [
+        "🥉 uchinchi",
+        "🥇 birinchi"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! U — uchinchi."
+      },
+      {
+       "q": "Chapdan sana: 🚗🚌🚲 — birinchisi qaysi?",
+       "options": [
+        "🚗 mashina",
+        "🚲 velosiped"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Chapdan birinchisi — mashina."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Shakllar va naqsh",
+   "emoji": "🔷",
+   "lessons": [
+    {
+     "name": "To'rtburchak",
+     "goal": "Bola to'rtburchakni taniydi va kvadratdan farqlaydi",
+     "intro": "Bip-bip! Kvadratning bir qarindoshi bor. Uning ham to'rtta burchagi bor, lekin u cho'zinchoq! Kim ekan? Eshikka qara!",
+     "items": [
+      {
+       "say": "To'rtburchak",
+       "uz": "to'rt burchakli, cho'zinchoq shakl",
+       "emoji": "🚪",
+       "image_prompt": "A simple rectangular wooden door, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Eshik — to'rtburchak. Burchaklarini sanaymiz: bir, ikki, uch, to'rt. Ikkita tomoni uzun, ikkitasi qisqa.",
+       "image": "mt45-u5-tortburchak.png"
+      },
+      {
+       "say": "Kvadrat va to'rtburchak",
+       "uz": "kvadratning tomonlari teng, to'rtburchak cho'zinchoq",
+       "emoji": "🟦 🚪",
+       "image_prompt": "A square next to a rectangle, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kvadratning hamma tomoni bir xil. To'rtburchak esa cho'zinchoq: bir tomoni uzun, bir tomoni qisqa.",
+       "image": "mt45-u5-kvadrat-tortburchak.png"
+      },
+      {
+       "say": "To'rtburchak narsalar",
+       "uz": "atrofimizdagi to'rtburchaklar",
+       "emoji": "📱📘",
+       "image_prompt": "A phone and a book, both rectangular, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kitob, telefon, deraza, stol usti — hammasi to'rtburchak. Uyingda yana qaysi to'rtburchakni topasan?",
+       "image": "mt45-u5-tortburchak-narsalar.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri to'rtburchak?",
+       "options": [
+        "🚪 eshik",
+        "🥚 tuxum"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Eshik — to'rtburchak."
+      },
+      {
+       "q": "Qaysi shaklning hamma tomoni bir xil?",
+       "options": [
+        "🟦 kvadrat",
+        "🚪 to'rtburchak"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kvadratning tomonlari teng."
+      },
+      {
+       "q": "Kitob qaysi shaklga o'xshaydi?",
+       "options": [
+        "📘 to'rtburchak",
+        "🔺 uchburchak"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kitob to'rtburchak."
+      },
+      {
+       "q": "To'rtburchakda nechta burchak?",
+       "options": [
+        "4️⃣ to'rt",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Qoyil! To'rtta burchak."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Shakl ovchisi",
+       "matn": "Uyingni aylanib, to'rtburchak narsalarni top: eshik, deraza, kitob… Nechtasini topding? Barmoq bilan sana!",
+       "doska": "🚪 🪟 📘 📱",
+       "sodda": "Ikkita to'rtburchak narsa top.",
+       "boshqa_usul": "Qog'ozga to'rtburchak chizib, uni eshikka aylantir."
+      }
+     ]
+    },
+    {
+     "name": "Oval",
+     "goal": "Bola ovalni taniydi va doiradan farqlaydi",
+     "intro": "Bip-bip! Mening uyamda bir narsa bor. U doiraga o'xshaydi, lekin cho'zinchoq. Nima ekan? Tuxum! Uning shakli — oval.",
+     "items": [
+      {
+       "say": "Oval",
+       "uz": "cho'zinchoq dumaloq shakl",
+       "emoji": "🥚",
+       "image_prompt": "A white egg showing an oval shape, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Tuxumga qara. U dumaloq, burchagi yo'q, lekin cho'zinchoq. Bu shakl — oval.",
+       "image": "mt45-u5-oval.png"
+      },
+      {
+       "say": "Doira va oval",
+       "uz": "doira tekis dumaloq, oval cho'zinchoq",
+       "emoji": "⚪ 🥚",
+       "image_prompt": "A circle next to an oval, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Doira hamma tomondan bir xil dumaloq. Oval esa cho'zilgan doiraga o'xshaydi. Ikkalasida ham burchak yo'q.",
+       "image": "mt45-u5-doira-oval.png"
+      },
+      {
+       "say": "Oval narsalar",
+       "uz": "ovalga o'xshash narsalar",
+       "emoji": "🏉🥔",
+       "image_prompt": "A rugby ball and a potato, both oval, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Regbi to'pi, kartoshka, tarvuz — hammasi ovalga o'xshaydi. Qani, yana oval narsani top!",
+       "image": "mt45-u5-oval-narsalar.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri oval?",
+       "options": [
+        "🥚 tuxum",
+        "🟦 kvadrat"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tuxum — oval."
+      },
+      {
+       "q": "Qaysi biri doira?",
+       "options": [
+        "⚪ doira",
+        "🥚 oval"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Doira tekis dumaloq."
+      },
+      {
+       "q": "Ovalda nechta burchak bor?",
+       "options": [
+        "⚪ burchak yo'q",
+        "4️⃣ to'rtta"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ovalda burchak yo'q."
+      }
+     ]
+    },
+    {
+     "name": "Uch rangli naqsh",
+     "goal": "Bola uch elementli naqshni ko'radi va davom ettiradi",
+     "intro": "Bip-bip! Men svetoforga qaradim: qizil, sariq, yashil. Munchoqni ham shunday tersak-chi? Uch rangli naqsh — yangi sir!",
+     "items": [
+      {
+       "say": "Uch elementli naqsh",
+       "uz": "uchta narsa navbat bilan takrorlanadi",
+       "emoji": "🔴🟡🟢🔴🟡🟢",
+       "image_prompt": "Beads in a repeating red yellow green pattern, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qizil, sariq, yashil — keyin yana qizil, sariq, yashil. Uchtasi navbat bilan qaytadi. Bu — uch rangli naqsh.",
+       "image": "mt45-u5-uch-naqsh.png"
+      },
+      {
+       "say": "Naqsh bo'lagi",
+       "uz": "takrorlanadigan qism",
+       "emoji": "[🔴🟡🟢]",
+       "image_prompt": "A highlighted group of three beads red yellow green, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Naqshda bitta bo'lak qayta-qayta keladi: qizil-sariq-yashil. Bo'lakni topsak, keyingisini oson aytamiz!",
+       "image": "mt45-u5-naqsh-bolagi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🔴🟡🟢🔴🟡 — keyingisi qaysi?",
+       "options": [
+        "🟢 yashil",
+        "🔴 qizil"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Sariqdan keyin yashil."
+      },
+      {
+       "q": "🔵🔴🟡🔵🔴 — keyingisi qaysi?",
+       "options": [
+        "🟡 sariq",
+        "🔵 ko'k"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qizildan keyin sariq."
+      },
+      {
+       "q": "🟢🔵🔴🟢 — keyingisi qaysi?",
+       "options": [
+        "🔵 ko'k",
+        "🔴 qizil"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yashildan keyin ko'k."
+      },
+      {
+       "q": "🔴🟡🟢🔴🟡🟢 — naqsh bo'lagida nechta rang?",
+       "options": [
+        "3️⃣ uch",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Qizil, sariq, yashil — uchta."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Uch harakatli naqsh",
+       "matn": "Qarsak, tizza, sakrash! Qarsak, tizza, sakrash! Uch harakat — naqsh bo'lagi. Uch marta takrorlaymiz!",
+       "doska": "👏🦵🦘 👏🦵🦘",
+       "sodda": "Qarsak, tizza, sakrash — bir marta.",
+       "boshqa_usul": "Ovoz bilan naqsh qil: mo', miyov, vov!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "O'lchami bo'yicha tartiblash",
+   "emoji": "🪆",
+   "lessons": [
+    {
+     "name": "Kattadan kichikka",
+     "goal": "Bola 3–4 narsani kattadan kichikka tartiblaydi",
+     "intro": "Bip-bip! Qo'g'irchoq ichidan qo'g'irchoq, uning ichidan yana qo'g'irchoq chiqdi! Ularni qanday qatorga teramiz?",
+     "items": [
+      {
+       "say": "Eng katta",
+       "uz": "hammasidan katta",
+       "emoji": "🪆",
+       "image_prompt": "The biggest nesting doll in a set, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Mana eng katta qo'g'irchoq. U hammasidan katta. Qatorda birinchi turadi.",
+       "image": "mt45-u6-eng-katta.png"
+      },
+      {
+       "say": "Eng kichik",
+       "uz": "hammasidan kichik",
+       "emoji": "🪆🔍",
+       "image_prompt": "The smallest tiny nesting doll, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Mana eng kichik qo'g'irchoq. U hammasidan kichik, kaftga sig'adi. Qatorda oxirgi turadi.",
+       "image": "mt45-u6-eng-kichik.png"
+      },
+      {
+       "say": "Kattadan kichikka",
+       "uz": "har biri oldingisidan kichik",
+       "emoji": "🐘🐕🐭",
+       "image_prompt": "An elephant, a dog and a mouse in a row by size, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Fil, kuchuk, sichqoncha. Eng kattasidan boshlaymiz, har keyingisi kichikroq. Mana, tartib bo'ldi!",
+       "image": "mt45-u6-kattadan-kichikka.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐘🐕🐭 — eng kattasi kim?",
+       "options": [
+        "🐘 fil",
+        "🐭 sichqoncha"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Fil eng katta."
+      },
+      {
+       "q": "🐘🐕🐭 — eng kichigi kim?",
+       "options": [
+        "🐭 sichqoncha",
+        "🐕 kuchuk"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Sichqoncha eng kichik."
+      },
+      {
+       "q": "Qaysi qator kattadan kichikka?",
+       "options": [
+        "🐘🐕🐭 to'g'ri",
+        "🐭🐘🐕 aralash"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Fil, kuchuk, sichqoncha."
+      },
+      {
+       "q": "🐘🐕🐭 — o'rtadagisi nechanchi?",
+       "options": [
+        "🥈 ikkinchi",
+        "🥇 birinchi"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Kuchuk ikkinchi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Qo'g'irchoq oilasi",
+       "matn": "Uydagi idishlar yoki qutichalarni ol. Eng kattasini birinchi qo'y, keyin kichikroqni, keyin eng kichigini. Tartib bo'ldimi?",
+       "doska": "🟫🟫🟫 → 🟫🟫 → 🟫",
+       "sodda": "Ikki narsani solishtir: qaysi katta?",
+       "boshqa_usul": "Eng kichigidan boshlab kattasiga qarab ter."
+      }
+     ]
+    },
+    {
+     "name": "Uzundan qisqaga",
+     "goal": "Bola 3–5 narsani uzunligi bo'yicha tartiblaydi",
+     "intro": "Bip-bip! Qalamlarim sochilib ketdi: biri uzun, biri qisqa. Ularni zinapoya qilib tersak, chiroyli bo'ladi. Yordam berasanmi?",
+     "items": [
+      {
+       "say": "Eng uzun",
+       "uz": "hammasidan uzun",
+       "emoji": "➖➖➖➖➖",
+       "image_prompt": "The longest pencil among several, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Qalamlarning boshini tekislaymiz. Eng uzoqqa ketgani — eng uzun. Uni birinchi qo'yamiz.",
+       "image": "mt45-u6-eng-uzun.png"
+      },
+      {
+       "say": "Eng qisqa",
+       "uz": "hammasidan qisqa",
+       "emoji": "➖",
+       "image_prompt": "The shortest little pencil stub, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Eng tez tugagan qalam — eng qisqa. U qatorning oxirida turadi.",
+       "image": "mt45-u6-eng-qisqa.png"
+      },
+      {
+       "say": "Zinapoya tartibi",
+       "uz": "har biri oldingisidan qisqaroq",
+       "emoji": "➖➖➖➖\n➖➖➖\n➖➖\n➖",
+       "image_prompt": "Pencils arranged from longest to shortest like stairs, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Uzun, qisqaroq, yana qisqaroq, eng qisqa. Qalamlar zinapoyaga o'xshab qoldi!",
+       "image": "mt45-u6-zinapoya.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi lenta eng uzun?",
+       "options": [
+        "➖➖➖➖➖ beshta",
+        "➖➖ ikkita"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bu lenta eng uzun."
+      },
+      {
+       "q": "Qaysi lenta eng qisqa?",
+       "options": [
+        "➖ bitta",
+        "➖➖➖ uchta"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bu lenta eng qisqa."
+      },
+      {
+       "q": "Uzunlikni solishtirishda nima qilamiz?",
+       "options": [
+        "📏 boshlarini tekislaymiz",
+        "🙈 ko'zni yumamiz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Boshlarini bir joyga qo'yamiz."
+      }
+     ]
+    },
+    {
+     "name": "Beshta minora",
+     "goal": "Bola beshta narsani pastdan balandga tartiblaydi, o'rtadagisini topadi",
+     "intro": "Bip-bip! Kubikchalardan beshta minora qurdik. Ularni pastidan balandigacha tersak, zinapoya chiqadi. Sanab ko'ramiz!",
+     "items": [
+      {
+       "say": "Pastdan balandga",
+       "uz": "har biri oldingisidan baland",
+       "emoji": "▁▂▃▄▅",
+       "image_prompt": "Five toy block towers arranged from short to tall, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Eng past minorada bitta kubik, keyingisida ikkita, keyin uchta, to'rtta, beshta. Har biri bittaga baland!",
+       "image": "mt45-u6-pastdan-balandga.png"
+      },
+      {
+       "say": "O'rtadagisi",
+       "uz": "ikki chetidan bir xil uzoqlikda",
+       "emoji": "▁▂🟨▄▅",
+       "image_prompt": "Five towers with the middle one highlighted, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Beshta minoraning o'rtasida uchinchisi turadi. Undan chapda ikkita, o'ngda ham ikkita.",
+       "image": "mt45-u6-ortadagisi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Minoralar pastdan balandga: 1, 2, 3, 4… keyingisida nechta kubik?",
+       "options": [
+        "5️⃣ besh",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Keyingisida beshta kubik."
+      },
+      {
+       "q": "Beshta minoraning o'rtadagisi nechanchi?",
+       "options": [
+        "🥉 uchinchi",
+        "🥇 birinchi"
+       ],
+       "answer": 0,
+       "why": "Ofarin! O'rtada — uchinchi."
+      },
+      {
+       "q": "Qaysi minora baland: 🧱🧱🧱🧱 yoki 🧱🧱?",
+       "options": [
+        "🧱🧱🧱🧱 to'rtta",
+        "🧱🧱 ikkita"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! To'rtta kubik balandroq."
+      },
+      {
+       "q": "🦒🐕🐢 — kim eng past?",
+       "options": [
+        "🐢 toshbaqa",
+        "🦒 jirafa"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Toshbaqa eng past."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧱 Minora quramiz",
+       "matn": "Kubiklardan beshta minora qur: birinchisida bitta, ikkinchisida ikkita… beshinchisida beshta. Zinapoya bo'ldimi? Qo'g'irchoqni zinadan chiqar!",
+       "doska": "🧱\n🧱🧱\n🧱🧱🧱\n🧱🧱🧱🧱\n🧱🧱🧱🧱🧱",
+       "sodda": "Uchta minora qur: bitta, ikkita, uchta.",
+       "boshqa_usul": "Oila a'zolarini bo'yiga qarab qatorga turg'iz."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kun qismlari",
+   "emoji": "🌅",
+   "lessons": [
+    {
+     "name": "Ertalab va kunduzi",
+     "goal": "Bola ertalab va kunduzni, ulardagi ishlarni farqlaydi",
+     "intro": "Bip-bip! Xo'roz qichqirdi: qu-qu-qu! Quyosh chiqdi. Men uyg'onib, kerishdim. Kun qanday boshlanadi? Qani, bilib olamiz!",
+     "items": [
+      {
+       "say": "Ertalab",
+       "uz": "quyosh chiqadi, uyg'onamiz",
+       "emoji": "🌅",
+       "image_prompt": "Sunrise over hills with a rooster crowing, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ertalab quyosh chiqadi. Biz uyg'onamiz, yuvinamiz, nonushta qilib bog'chaga boramiz.",
+       "action": "Kerishib, uyg'ongandek qil!",
+       "image": "mt45-u7-ertalab.png"
+      },
+      {
+       "say": "Kunduzi",
+       "uz": "quyosh tepada, yorug'",
+       "emoji": "☀️",
+       "image_prompt": "A bright sun high over a playground, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kunduzi quyosh osmonning tepasida. Hamma yoq yorug'. Biz o'ynaymiz, tushlik qilamiz, sayrga chiqamiz.",
+       "image": "mt45-u7-kunduzi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qachon uyg'onamiz?",
+       "options": [
+        "🌅 ertalab",
+        "☀️ kunduzi"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ertalab uyg'onamiz."
+      },
+      {
+       "q": "Quyosh osmonning tepasida. Bu qachon?",
+       "options": [
+        "☀️ kunduzi",
+        "🌅 ertalab"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bu — kunduzi."
+      },
+      {
+       "q": "Nonushta qachon bo'ladi?",
+       "options": [
+        "🥣 ertalab",
+        "🍝 kunduzi"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Nonushta — ertalab."
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun va tun",
+     "goal": "Bola kechqurun va tunni, ulardagi ishlarni farqlaydi",
+     "intro": "Bip-bip! Quyosh botyapti, osmon qip-qizil. Keyin qorong'i tushadi, yulduzlar chiqadi. Bu vaqtlar qanday ataladi?",
+     "items": [
+      {
+       "say": "Kechqurun",
+       "uz": "quyosh botadi, uyga qaytamiz",
+       "emoji": "🌇",
+       "image_prompt": "Sunset over a small town with an orange sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Kechqurun quyosh botadi. Oilamiz uyga yig'iladi, kechki ovqat qilamiz, ertak o'qiymiz.",
+       "image": "mt45-u7-kechqurun.png"
+      },
+      {
+       "say": "Tunda",
+       "uz": "qorong'i, uxlaymiz",
+       "emoji": "🌙",
+       "image_prompt": "A crescent moon and stars over a sleeping house, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Tunda qorong'i bo'ladi, oy va yulduzlar chiqadi. Hamma uxlaydi, kuch yig'adi.",
+       "action": "Uxlagandek ko'zni yum!",
+       "image": "mt45-u7-tunda.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyosh botyapti. Bu qachon?",
+       "options": [
+        "🌇 kechqurun",
+        "🌅 ertalab"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Bu — kechqurun."
+      },
+      {
+       "q": "Qachon oy va yulduzlar chiqadi?",
+       "options": [
+        "🌙 tunda",
+        "☀️ kunduzi"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Tunda."
+      },
+      {
+       "q": "Tunda nima qilamiz?",
+       "options": [
+        "😴 uxlaymiz",
+        "🎒 bog'chaga boramiz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Tunda uxlaymiz."
+      },
+      {
+       "q": "⭐⭐⭐⭐⭐⭐⭐⭐ nechta yulduz?",
+       "options": [
+        "8️⃣ sakkiz",
+        "6️⃣ olti"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Sakkizta yulduz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Kun qismlari qo'shig'i",
+       "matn": "Ertalab quyosh chiqar, kunduzi charaqlar, kechqurun botib ketar, tunda oy chiqar! Har birida harakat qil!",
+       "doska": "🌅 ☀️ 🌇 🌙",
+       "sodda": "Ertalab — keril, tunda — yot.",
+       "boshqa_usul": "Chiroqni yoqib-o'chirib kun va tunni o'yna."
+      }
+     ]
+    },
+    {
+     "name": "Kun tartibi",
+     "goal": "Bola kun qismlarini tartib bilan aytadi, avval va keyinni farqlaydi",
+     "intro": "Bip-bip! Kun qismlari navbatga turishdi, lekin adashib qolishdi. Kim birinchi, kim oxirgi? Qani, tartibga keltiramiz!",
+     "items": [
+      {
+       "say": "Kun qismlari tartibi",
+       "uz": "ertalab, kunduzi, kechqurun, tun",
+       "emoji": "🌅☀️🌇🌙",
+       "image_prompt": "Four pictures in a row: sunrise, noon sun, sunset, night moon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Avval ertalab, keyin kunduzi, keyin kechqurun, oxirida tun. Keyin yana ertalab keladi. Kun aylanib turadi!",
+       "image": "mt45-u7-kun-tartibi.png"
+      },
+      {
+       "say": "Avval va keyin",
+       "uz": "qaysi biri oldin bo'ladi",
+       "emoji": "🥣➡️🎒",
+       "image_prompt": "A child eating breakfast then going out with a backpack, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Avval nonushta qilamiz, keyin bog'chaga boramiz. Avval tishni yuvamiz, keyin uxlaymiz. Tartib muhim!",
+       "image": "mt45-u7-avval-keyin.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ertalabdan keyin nima keladi?",
+       "options": [
+        "☀️ kunduzi",
+        "🌙 tun"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ertalabdan keyin kunduzi."
+      },
+      {
+       "q": "Kechqurundan keyin nima keladi?",
+       "options": [
+        "🌙 tun",
+        "🌅 ertalab"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kechqurundan keyin tun."
+      },
+      {
+       "q": "Avval nima qilamiz?",
+       "options": [
+        "🪥 tishni yuvamiz",
+        "😴 uxlaymiz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Avval tish, keyin uyqu."
+      },
+      {
+       "q": "🌅☀️🌇🌙 — kun qismlari nechta?",
+       "options": [
+        "4️⃣ to'rtta",
+        "3️⃣ uchta"
+       ],
+       "answer": 0,
+       "why": "Qoyil! To'rtta kun qismi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Mening kunim",
+       "matn": "Kuningni ko'rsat: uyg'onish, nonushta, o'yin, kechki ovqat, uyqu! Oilang qaysi vaqt ekanini topsin!",
+       "doska": "🌅🥣 ☀️⚽ 🌇🍲 🌙😴",
+       "sodda": "Faqat ertalab va tunni ko'rsat.",
+       "boshqa_usul": "Kun rasmlarini qog'ozga chizib, tartib bilan ter."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Qo'shildi va ketdi",
+   "emoji": "➕",
+   "lessons": [
+    {
+     "name": "Qo'shildi — ko'paydi",
+     "goal": "Bola «qo'shildi» hikoyasida narsa ko'payishini tushunadi (5 ichida)",
+     "intro": "Bip-bip! Shoxda ikkita qushcha o'tirgan edi. Keyin yana bittasi uchib keldi — bu men edim! Endi nechta bo'ldik?",
+     "items": [
+      {
+       "say": "Qo'shildi",
+       "uz": "yana keldi — ko'paydi",
+       "emoji": "🐦🐦➕🐦",
+       "image_prompt": "Two birds on a branch and one more flying in, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ikkita qushcha bor edi. Yana bitta qo'shildi. Qo'shilsa — ko'payadi! Endi sanaymiz: bir, ikki, uch.",
+       "image": "mt45-u8-qoshildi.png"
+      },
+      {
+       "say": "Birga nechta",
+       "uz": "hammasini birga sanaymiz",
+       "emoji": "🐦🐦🐦=3️⃣",
+       "image_prompt": "Three birds sitting together on a branch, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Eskilari va yangi kelganini birga sanaymiz: bir, ikki, uch. Birga uchta qushcha!",
+       "image": "mt45-u8-birga-nechta.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐟🐟 bor edi, 🐟 qo'shildi. Nechta bo'ldi?",
+       "options": [
+        "3️⃣ uch",
+        "1️⃣ bir"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ikki va bir — uch."
+      },
+      {
+       "q": "🍎🍎🍎 bor edi, yana 🍎 qo'shildi. Nechta?",
+       "options": [
+        "4️⃣ to'rt",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Uch va bir — to'rt."
+      },
+      {
+       "q": "Qo'shilsa, narsalar nima bo'ladi?",
+       "options": [
+        "➕ ko'payadi",
+        "➖ kamayadi"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qo'shilsa, ko'payadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Qo'shildi o'yini",
+       "matn": "Qo'lingga ikkita kubik ol. Onang yana bittasini bersin. Endi nechta? Sana! Yana birini qo'sh — nechta bo'ldi?",
+       "doska": "🧱🧱 ➕ 🧱 = 🧱🧱🧱",
+       "sodda": "Bitta kubikka bitta qo'sh.",
+       "boshqa_usul": "Barmoqlar bilan: ikki barmoq, yana bitta — nechta?"
+      }
+     ]
+    },
+    {
+     "name": "Ketdi — kamaydi",
+     "goal": "Bola «ketdi» hikoyasida narsa kamayishini tushunadi (5 ichida)",
+     "intro": "Bip-bip! Ko'lda uchta qurbaqa o'tirgan edi. Bittasi sakrab suvga tushib ketdi — shalop! Endi nechtasi qoldi?",
+     "items": [
+      {
+       "say": "Ketdi",
+       "uz": "ketib qoldi — kamaydi",
+       "emoji": "🐸🐸🐸➖🐸",
+       "image_prompt": "Three frogs on a log and one jumping into the pond, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Uchta qurbaqa bor edi. Bittasi ketdi. Ketsa — kamayadi! Endi qolganlarini sanaymiz.",
+       "image": "mt45-u8-ketdi.png"
+      },
+      {
+       "say": "Nechta qoldi",
+       "uz": "ketgandan keyin qolganini sanaymiz",
+       "emoji": "🐸🐸=2️⃣",
+       "image_prompt": "Two frogs sitting on a log, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Ketganini sanamaymiz, faqat qolganlarini: bir, ikki. Ikkita qurbaqa qoldi!",
+       "image": "mt45-u8-nechta-qoldi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐸🐸🐸 bor edi, bittasi ketdi. Nechta qoldi?",
+       "options": [
+        "2️⃣ ikki",
+        "4️⃣ to'rt"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Uchtadan bitta ketdi — ikkita."
+      },
+      {
+       "q": "🎈🎈🎈🎈🎈 bor edi, bittasi uchib ketdi. Nechta qoldi?",
+       "options": [
+        "4️⃣ to'rt",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Beshtadan bitta ketdi — to'rtta."
+      },
+      {
+       "q": "Ketsa, narsalar nima bo'ladi?",
+       "options": [
+        "➖ kamayadi",
+        "➕ ko'payadi"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ketsa, kamayadi."
+      },
+      {
+       "q": "🐦🐦 bor edi, yana 🐦🐦 qo'shildi. Nechta?",
+       "options": [
+        "4️⃣ to'rt",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Ikki va ikki — to'rt."
+      }
+     ]
+    },
+    {
+     "name": "Hikoyali masalalar",
+     "goal": "Bola qisqa hikoyani tinglab, qo'shildi yoki ketdi ekanini aniqlaydi va javobni topadi",
+     "intro": "Bip-bip! Men senga kichkina hikoyalar aytaman. Diqqat bilan tingla: kimdir keldimi yoki ketdimi? Keyin sanaymiz!",
+     "items": [
+      {
+       "say": "Hikoyani tinglaymiz",
+       "uz": "keldimi yoki ketdimi — bilib olamiz",
+       "emoji": "👂📖",
+       "image_prompt": "A child listening carefully to a story book, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Hikoyada «keldi, berdi, qo'shildi» desa — ko'payadi. «Ketdi, yedi, uchib ketdi» desa — kamayadi. So'zga quloq solamiz!",
+       "image": "mt45-u8-hikoya.png"
+      },
+      {
+       "say": "Barmoqda hisoblaymiz",
+       "uz": "barmoqlar bilan ko'rsatib topamiz",
+       "emoji": "🖐️",
+       "image_prompt": "A child counting on fingers, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Uchta olma bor edi — uch barmoq ochamiz. Ikkitasini yedik — ikkita barmoqni bukamiz. Bitta qoldi!",
+       "action": "Uch barmoqni och, ikkitasini buk!",
+       "image": "mt45-u8-barmoqda-hisob.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Alida 2 ta mashina bor edi. Dadasi yana 2 ta berdi. Nechta bo'ldi?",
+       "options": [
+        "4️⃣ to'rt",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ikki va ikki — to'rt."
+      },
+      {
+       "q": "Tarelkada 4 ta pechenye bor edi. Zebo bittasini yedi. Nechta qoldi?",
+       "options": [
+        "3️⃣ uch",
+        "5️⃣ besh"
+       ],
+       "answer": 0,
+       "why": "Ofarin! To'rtdan bitta — uch."
+      },
+      {
+       "q": "«Kuchukcha yugurib keldi». Kuchuklar nima bo'ldi?",
+       "options": [
+        "➕ ko'paydi",
+        "➖ kamaydi"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Keldi — ko'paydi."
+      },
+      {
+       "q": "Uyada 5 ta jo'ja bor edi. 2 tasi yugurib ketdi. Nechta qoldi?",
+       "options": [
+        "3️⃣ uch",
+        "2️⃣ ikki"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Beshtadan ikkitasi ketdi — uchta."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Hikoya o'ynaymiz",
+       "matn": "O'yinchoqlar bilan hikoya qil: «Uchta ayiqcha o'ynayotgan edi. Bittasi uyiga ketdi.» Nechta qoldi? Endi sen hikoya o'ylab top!",
+       "doska": "🧸🧸🧸 ➖ 🧸 = 🧸🧸",
+       "sodda": "Ikkita o'yinchoq, bittasi keldi — nechta?",
+       "boshqa_usul": "Oilangga hikoyali masala aytib ber, ular topsin."
+      }
+     ]
+    },
+    {
+     "name": "Beshtagacha hisoblaymiz",
+     "goal": "Bola 5 ni ikki qismga ajratadi, hammasi ketsa hech narsa qolmasligini biladi",
+     "intro": "Bip-bip! Mening beshta olmam bor. Ikki savatga solaman. Har xil usulda solsa bo'ladimi? Qani, sinab ko'ramiz!",
+     "items": [
+      {
+       "say": "Besh — ikki va uch",
+       "uz": "beshni ikki qismga bo'lamiz",
+       "emoji": "🍎🍎 | 🍎🍎🍎",
+       "image_prompt": "Five apples split into two baskets, two and three, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Beshta olmani ikki savatga soldik: birida ikkita, birida uchta. Birga sanasak — yana besh! Bir va to'rt ham besh bo'ladi.",
+       "image": "mt45-u8-besh-ikki-uch.png"
+      },
+      {
+       "say": "Hammasi ketdi",
+       "uz": "hech narsa qolmadi",
+       "emoji": "🧺",
+       "image_prompt": "An empty basket after all apples are taken, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Savatda ikkita olma bor edi. Ikkalasini ham yedik. Hammasi ketdi — savat bo'sh, hech narsa qolmadi!",
+       "image": "mt45-u8-hammasi-ketdi.png"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍎🍎 va 🍎🍎🍎 — birga nechta?",
+       "options": [
+        "5️⃣ besh",
+        "4️⃣ to'rt"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ikki va uch — besh."
+      },
+      {
+       "q": "🍬🍬🍬 bor edi, hammasini yedik. Nima qoldi?",
+       "options": [
+        "🧺 hech narsa",
+        "🍬 bitta"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Hammasi ketdi — hech narsa qolmadi."
+      },
+      {
+       "q": "🐞 va 🐞🐞🐞🐞 — birga nechta?",
+       "options": [
+        "5️⃣ besh",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Bir va to'rt — besh."
+      },
+      {
+       "q": "Qaysi son katta: 5 yoki 3?",
+       "options": [
+        "5️⃣ besh",
+        "3️⃣ uch"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Besh uchdan ko'p."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🖐️ Barmoq sehri",
+       "matn": "Besh barmoqni och. Ikkitasini buk — nechta ochiq qoldi? Uchta! Endi hammasini buk — hech narsa qolmadi! Musht bo'ldi!",
+       "doska": "🖐️ ➖ ✌️ = 3\n✊ = hech narsa",
+       "sodda": "Besh barmoqdan bittasini buk.",
+       "boshqa_usul": "Beshta kubikni ikki qo'lga har xil bo'lib ol va sana."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

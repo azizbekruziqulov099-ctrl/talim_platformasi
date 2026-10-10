@@ -262,6 +262,15 @@ class Builder:
         self.lesson_tests = []  # har dars bo'yicha test savollari (tayyor qator)
         self.topics = []
         self.previous = previous
+        if not self.lang:
+            # REV121: fan kitobi (atrof-muhit, matematika, mantiq) — «say» ham o'zbekcha nom: izoh tiliga o'giriladi
+            # (doska, sarlavha, test varianti hammasi shu nomdan olinadi).
+            import copy
+            cur = self.cur = copy.deepcopy(cur)
+            for unit in cur.get("units") or []:
+                for les in unit.get("lessons") or []:
+                    for it in les.get("items") or []:
+                        it["say"] = self.UZ(it["say"], "nom")
         self.base_level = int(cur.get("immersion") or IMMERSION.get(self.age, 1)) if self.lang else 0
         self.level = self.base_level
         # Sinf tili iboralari: kitobning o'z tarjimasi (cur["class"]) → til lug'ati → ingliz tili.
@@ -336,6 +345,8 @@ class Builder:
     def title(self):
         title = self.cur.get("book_title") or f"{self.cur['subject']} {self.age}"
         m = TITLE_AGE.match(title)
+        if m and not self.lang:     # REV121: fan kitobining nomi ham izoh tilida («Kichik tadqiqotchi»)
+            return self.UZ(m.group(1), "nom") + " " + self.UZ(m.group(2), "nom")
         return title[:m.start(2)] + self.UZ(m.group(2), "nom") if m else title
 
     def praise(self):
@@ -615,7 +626,11 @@ class Builder:
         out["sarlavha"] = self.TX(out["sarlavha"], "nom")
         for k in ("matn", "sodda", "boshqa_usul"):
             out[k] = self.TX(out[k])
-        out["doska"] = self.DOSKA(out["doska"])
+        if self.lang:
+            out["doska"] = self.DOSKA(out["doska"])
+        else:   # REV121: fan kitobida doskadagi har qator o'zbekcha — izoh tiliga o'giriladi
+            out["doska"] = "\n".join(self.TX(line, "doska") if _has_letters(line) else line
+                                     for line in str(out["doska"] or "").split("\n"))
         return out
 
     def lesson(self, unit_no, unit, lesson):

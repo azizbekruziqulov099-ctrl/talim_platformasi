@@ -56,6 +56,14 @@ TYPE_ALIASES = {
     "amaliymashgulot": "topshiriq", "vazifa": "topshiriq", "test": "test", "xulosa": "xulosa",
 }
 PRACTICE = ("misol", "masala", "topshiriq", "test")
+PRACTICE_INTRO = {
+    "uz": {"misol": "Endi misolni ko'ramiz", "masala": "Endi masala", "topshiriq": "Endi amaliy topshiriq",
+           "read": "Shartni doskadan diqqat bilan o'qing.", "try": "Avval o'zingiz bajarib ko'ring, yechimni keyin ochasiz."},
+    "ru": {"misol": "Теперь разберём пример", "masala": "Теперь задача", "topshiriq": "Теперь практическое задание",
+           "read": "Внимательно прочитайте условие на доске.", "try": "Сначала попробуйте сами, решение откроется потом."},
+    "en": {"misol": "Now let's look at an example", "masala": "Now a problem", "topshiriq": "Now a practice task",
+           "read": "Read the task on the board carefully.", "try": "Try it yourself first; the solution opens later."},
+}
 TYPE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
 AUTO_LETTER = {"misol": "M", "masala": "S", "topshiriq": "A", "test": "T"}
 MAX_VOICE = 1500
@@ -373,11 +381,15 @@ def parse_sheets(wb, media_names=None, max_images=500):
                     "kitob_kodi": kod, "sarlavha": title, "media_id": pic,
                 })
                 continue
-            intro = {"misol": "Endi misolni ko'ramiz", "masala": "Endi masala", "topshiriq": "Endi amaliy topshiriq"}[kind]
-            voice = f"{intro}: {title}. " if title else f"{intro}. "
-            voice += (text + " ") if len(text) <= 600 else "Shartni doskadan diqqat bilan o'qing. "
+            # REV121: kirish so'zi kitob tilida (izoh ru/en miyalarida o'zbekcha «Endi amaliy topshiriq» aralashmasin)
+            til = (_t(book.get("til")) or "uz").lower()
+            words = PRACTICE_INTRO.get(til, PRACTICE_INTRO["uz"])
+            intro = words[kind]
+            lead = f"{intro}: {title}." if title else f"{intro}."
+            voice = (f"[{til}]{lead}[/{til}] " if til in ("ru", "en") else lead + " ")
+            voice += (text + " ") if len(text) <= 600 else words["read"] + " "
             if "yosh" not in str(book.get("sinf", "")).lower():   # REV95: bog'cha bolasiga «yechimni ochasiz» demaymiz
-                voice += "Avval o'zingiz bajarib ko'ring, yechimni keyin ochasiz."
+                voice += f"[{til}]{words['try']}[/{til}]" if til in ("ru", "en") else words["try"]
             add_step(row, "amaliy", text, voice[:MAX_VOICE], f"{TYPE_NAMES[kind]} · {title}" if title else TYPE_NAMES[kind],
                      pic, answer=c.get("javob", "") if not options else "", extra={
                          "kitob_kodi": kod, "amaliy_turi": kind, "yechim": c.get("yechim", ""),

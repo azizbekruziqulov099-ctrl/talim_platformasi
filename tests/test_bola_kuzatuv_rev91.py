@@ -15,7 +15,7 @@ class PlanTests(unittest.TestCase):
         self.assertEqual(daily_limit(tashkent_day(NOW + timedelta(days=3))), 3)   # yakshanba
 
     def test_stars(self):
-        self.assertEqual([stars_for(0, 0), stars_for(4, 5), stars_for(1, 5), stars_for(0, 5)], [1, 3, 2, 1])
+        self.assertEqual([stars_for(0, 0), stars_for(4, 5), stars_for(3, 5), stars_for(1, 5), stars_for(0, 5)], [1, 3, 2, 1, 0])
 
     def test_active_time_is_capped_and_needs_visible_playing_lesson(self):
         self.assertEqual(active_seconds(NOW - timedelta(seconds=30), NOW, True, True), 30)

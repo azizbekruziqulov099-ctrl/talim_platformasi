@@ -55,13 +55,15 @@ def daily_limit(day):
 
 
 def stars_for(togri, jami):
-    """Dars natijasi: testsiz dars — 1 yulduz; 70%+ — 3; bittasi ham to'g'ri — 2; aks holda 1."""
+    """Dars natijasi (test + «Top-chi» o'yini): testsiz dars — 1 yulduz; 80%+ — 3; 50%+ — 2; bittasi to'g'ri — 1;
+    REV121: hech biri to'g'ri bo'lmasa — 0 (bosmasa yoki xato bossa yulduz berilmaydi)."""
     togri, jami = max(0, int(togri or 0)), max(0, int(jami or 0))
     if not jami:
         return 1
-    if togri / jami >= 0.7:
-        return 3
-    return 2 if togri else 1
+    if not togri:
+        return 0
+    r = min(1.0, togri / jami)
+    return 3 if r >= 0.8 else 2 if r >= 0.5 else 1
 
 
 def active_seconds(prev_signal, now, was_visible, was_active):

@@ -154,6 +154,8 @@ def compose(lang, key):
         other = load(lang, src)
         book["units"] += [copy.deepcopy(other["units"][i]) for i in idx]
     book["age"] = age
+    if key == "45y":   # REV121: 4–5 yosh — bola ko'p tushunsin: gaplar chet tilida, ma'nosi qavsda (3-pog'ona)
+        book["immersion"] = 3
     book["book_title"] = re.sub(r"\d\s*[–-]\s*\d\s*yosh$", label, book.get("book_title", "")).strip()
     for unit in book["units"]:
         for sc in unit.get("scenarios") or []:

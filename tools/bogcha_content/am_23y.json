@@ -1,0 +1,2755 @@
+{
+ "subject": "Atrof-muhit",
+ "lang": null,
+ "age": "2-3 yosh",
+ "book_title": "Kichik tadqiqotchi 2–3 yosh",
+ "prefix": "AM",
+ "units": [
+  {
+   "name": "Uy hayvonlari va ovozlari",
+   "emoji": "🐄",
+   "lessons": [
+    {
+     "name": "Mushuk va it",
+     "goal": "Bola mushuk va itni taniydi, ularning ovozini qaytaradi",
+     "intro": "Bip-bip! Salom, bolajonlar! Men — robot Kabu. Eshik oldida kimdir «miyov» dedi, kimdir «vov» dedi. Kim ekan? Qani, bilib olamiz!",
+     "items": [
+      {
+       "say": "Mushuk",
+       "uz": "miyov deydi, sut ichadi",
+       "emoji": "🐈",
+       "image": "am23-u1-mushuk.png",
+       "image_prompt": "A fluffy little cat drinking milk from a bowl, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — mushuk. U «miyov-miyov» deydi va sut ichishni yaxshi ko'radi. Mushukning mo'ylovlari bor, u sekin-sekin yuradi.",
+       "action": "Qani, «miyov» de!"
+      },
+      {
+       "say": "It",
+       "uz": "vov-vov deydi, uyni qo'riqlaydi",
+       "emoji": "🐕",
+       "image": "am23-u1-it.png",
+       "image_prompt": "A friendly dog wagging its tail near a small house, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — it. U «vov-vov» deydi va uyimizni qo'riqlaydi. Xursand bo'lsa, dumini likillatadi.",
+       "action": "Qani, «vov-vov» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim «miyov» deydi?",
+       "options": [
+        "🐈 mushuk",
+        "🐕 it"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Mushuk «miyov» deydi."
+      },
+      {
+       "q": "Kim «vov-vov» deydi?",
+       "options": [
+        "🐈 mushuk",
+        "🐕 it"
+       ],
+       "answer": 1,
+       "why": "Barakalla! It «vov-vov» deydi."
+      },
+      {
+       "q": "Mushuk nima ichadi?",
+       "options": [
+        "🥛 sut",
+        "🍬 konfet"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Mushuk sut ichadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ovoz qo'shig'i",
+       "matn": "Qo'shiq aytamiz! Mushukcha — miyov, miyov! Kuchukcha — vov, vov, vov! Qo'llarni chapak-chapak, hammamiz birga — bip-bip!",
+       "doska": "🐈 miyov\n🐕 vov-vov"
+      }
+     ]
+    },
+    {
+     "name": "Sigir va qo'y",
+     "goal": "Bola sigir va qo'yni, ularning ovozini taniydi",
+     "intro": "Bip-bip! Bugun qishloqqa boramiz. U yerda katta hayvon «mo'o» deydi, yumshoq hayvon «ba-a» deydi. Topa olasanmi?",
+     "items": [
+      {
+       "say": "Sigir",
+       "uz": "mo'o deydi, sut beradi",
+       "emoji": "🐄",
+       "image": "am23-u1-sigir.png",
+       "image_prompt": "A gentle cow standing on green grass, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — sigir. U «mo'o-mo'o» deydi. Biz ichadigan mazali sutni sigir beradi. Sigir yashil o't yeydi.",
+       "action": "Qani, «mo'o» de!"
+      },
+      {
+       "say": "Qo'y",
+       "uz": "ba-a deydi, yungi yumshoq",
+       "emoji": "🐑",
+       "image": "am23-u1-qoy.png",
+       "image_prompt": "A fluffy white sheep with soft wool, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qo'y. U «ba-a-a» deydi. Qo'yning yungi yumshoq, xuddi bulutdek. Yungdan issiq paypoq to'qiladi.",
+       "action": "Qani, «ba-a» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim «mo'o» deydi?",
+       "options": [
+        "🐄 sigir",
+        "🐑 qo'y"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sigir «mo'o» deydi."
+      },
+      {
+       "q": "Kimning yungi yumshoq?",
+       "options": [
+        "🐕 it",
+        "🐑 qo'y"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Qo'yning yungi yumshoq."
+      },
+      {
+       "q": "Bizga sutni kim beradi?",
+       "options": [
+        "🐄 sigir",
+        "🐈 mushuk"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Sutni sigir beradi."
+      }
+     ]
+    },
+    {
+     "name": "Ot va echki",
+     "goal": "Bola ot va echkini taniydi, ovozlarini qaytaradi",
+     "intro": "Bip-bip! Taq-tuq, taq-tuq… Bu qanday ovoz? Kimdir tez chopib kelyapti! Qani, qaraymiz.",
+     "items": [
+      {
+       "say": "Ot",
+       "uz": "ig-go-go deydi, tez chopadi",
+       "emoji": "🐎",
+       "image": "am23-u1-ot.png",
+       "image_prompt": "A brown horse galloping happily, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — ot. U «ig-go-go» deydi va juda tez chopadi. Otning tuyog'i «taq-tuq» qilib yuradi.",
+       "action": "Ot bo'lib chopamiz: taq-tuq!"
+      },
+      {
+       "say": "Echki",
+       "uz": "me-e deydi, soqoli bor",
+       "emoji": "🐐",
+       "image": "am23-u1-echki.png",
+       "image_prompt": "A cute goat with small horns and a little beard, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — echki. U «me-e-e» deydi. Echkining kichkina shoxlari va soqolchasi bor. U ham sut beradi.",
+       "action": "Qani, «me-e» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim tez chopadi?",
+       "options": [
+        "🐎 ot",
+        "🐑 qo'y"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ot tez chopadi."
+      },
+      {
+       "q": "Kim «me-e» deydi?",
+       "options": [
+        "🐄 sigir",
+        "🐐 echki"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Echki «me-e» deydi."
+      },
+      {
+       "q": "Kimning soqolchasi bor?",
+       "options": [
+        "🐐 echki",
+        "🐈 mushuk"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Echkining soqolchasi bor."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Hayvon bo'lamiz",
+       "matn": "O'yin! Men hayvon nomini aytaman, sen o'sha hayvondek harakat qilasan. Ot — chopamiz! Mushuk — sekin yuramiz! Qo'y — «ba-a» deymiz!",
+       "doska": "🐎 🐈 🐑"
+      }
+     ]
+    },
+    {
+     "name": "Quyon va baliqcha",
+     "goal": "Bola quyon va baliqchani taniydi, ular nima qilishini aytadi",
+     "intro": "Bip-bip! Ba'zi hayvonlar ovoz chiqarmaydi, lekin juda yoqimli. Biri sakraydi, biri suvda suzadi. Kim ekan?",
+     "items": [
+      {
+       "say": "Quyon",
+       "uz": "sakraydi, sabzi yeydi",
+       "emoji": "🐇",
+       "image": "am23-u1-quyon.png",
+       "image_prompt": "A white bunny hopping with a carrot, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — quyon. Uning quloqlari uzun-uzun! Quyon «hop-hop» sakraydi va sabzi kemirishni yaxshi ko'radi.",
+       "action": "Quyondek sakra: hop-hop!"
+      },
+      {
+       "say": "Baliqcha",
+       "uz": "suvda suzadi",
+       "emoji": "🐠",
+       "image": "am23-u1-baliqcha.png",
+       "image_prompt": "A small colorful fish swimming in a round aquarium, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — baliqcha. U akvariumda, suv ichida yashaydi. Baliqcha dumini likillatib suzadi, lekin ovoz chiqarmaydi.",
+       "action": "Qo'ling bilan suz!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kimning quloqlari uzun?",
+       "options": [
+        "🐇 quyon",
+        "🐠 baliqcha"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Quyonning quloqlari uzun."
+      },
+      {
+       "q": "Kim suvda suzadi?",
+       "options": [
+        "🐎 ot",
+        "🐠 baliqcha"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Baliqcha suvda suzadi."
+      },
+      {
+       "q": "Quyon nima yeydi?",
+       "options": [
+        "🥕 sabzi",
+        "🥛 sut"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Quyon sabzi yeydi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Kuzatamiz",
+       "matn": "Uyda yoki hovlida mushuk, it yoki baliqcha bormi? Onang bilan birga qara: u nima yeydi, qanday yuradi? Ertaga robot Kabuga aytib ber!",
+       "doska": "👀 🐈 🐕 🐠"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Parrandalar",
+   "emoji": "🐔",
+   "lessons": [
+    {
+     "name": "Tovuq va xo'roz",
+     "goal": "Bola tovuq va xo'rozni, ularning ovozini taniydi",
+     "intro": "Bip-bip! Tong otdi. Hovlida kimdir baland ovozda qichqirib, hammani uyg'otdi. Kim ekan?",
+     "items": [
+      {
+       "say": "Tovuq",
+       "uz": "qaq-qaq deydi, tuxum qo'yadi",
+       "emoji": "🐔",
+       "image": "am23-u2-tovuq.png",
+       "image_prompt": "A plump hen in a farmyard, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tovuq. U «qaq-qaq-qaq» deydi va don cho'qiydi. Tovuq bizga tuxum qo'yib beradi.",
+       "action": "Qo'llaring bilan qanot qoq!"
+      },
+      {
+       "say": "Xo'roz",
+       "uz": "qu-qu-qu deydi, ertalab uyg'otadi",
+       "emoji": "🐓",
+       "image": "am23-u2-xoroz.png",
+       "image_prompt": "A proud colorful rooster crowing at sunrise, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — xo'roz. Uning boshida qizil toji bor. Xo'roz ertalab «qu-qu-qu-quu!» deb hammani uyg'otadi.",
+       "action": "Qani, «qu-qu-quu» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim ertalab hammani uyg'otadi?",
+       "options": [
+        "🐓 xo'roz",
+        "🐇 quyon"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Xo'roz ertalab qichqiradi."
+      },
+      {
+       "q": "Kim tuxum qo'yadi?",
+       "options": [
+        "🐔 tovuq",
+        "🐕 it"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Tovuq tuxum qo'yadi."
+      },
+      {
+       "q": "Kim «qaq-qaq» deydi?",
+       "options": [
+        "🐄 sigir",
+        "🐔 tovuq"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Tovuq «qaq-qaq» deydi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Xo'roz qo'shig'i",
+       "matn": "Xo'rozim, xo'rozim, boshida toji bor! Qu-qu-quu deydi, hammani uyg'otar! Qani, birga kuylaymiz va qanot qoqamiz!",
+       "doska": "🐓 qu-qu-quu!"
+      }
+     ]
+    },
+    {
+     "name": "Jo'ja va tuxum",
+     "goal": "Bola jo'ja tuxumdan chiqishini biladi",
+     "intro": "Bip-bip! Men senga sir aytaman: tuxum ichida kimdir yashirinib o'tiribdi. Chiq-chiq-chiq… Kim chiqdi?",
+     "items": [
+      {
+       "say": "Tuxum",
+       "uz": "tovuq qo'yadi, oppoq va dumaloq",
+       "emoji": "🥚",
+       "image": "am23-u2-tuxum.png",
+       "image_prompt": "A white egg in a straw nest, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tuxum. U oppoq va dumaloq. Tovuq tuxum ustida o'tirib, uni issiq qiladi."
+      },
+      {
+       "say": "Jo'ja",
+       "uz": "chiy-chiy deydi, tovuqning bolasi",
+       "emoji": "🐤",
+       "image": "am23-u2-joja.png",
+       "image_prompt": "A tiny yellow chick next to a cracked eggshell, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — jo'ja. U tuxumdan chiqadi! Jo'ja sap-sariq, mayin va «chiy-chiy» deydi. U onasi tovuqning ortidan yuguradi.",
+       "action": "Qani, «chiy-chiy» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tuxumdan kim chiqadi?",
+       "options": [
+        "🐤 jo'ja",
+        "🐈 mushuk"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Tuxumdan jo'ja chiqadi."
+      },
+      {
+       "q": "Kim «chiy-chiy» deydi?",
+       "options": [
+        "🐤 jo'ja",
+        "🐐 echki"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Jo'ja «chiy-chiy» deydi."
+      },
+      {
+       "q": "Jo'janing onasi kim?",
+       "options": [
+        "🐄 sigir",
+        "🐔 tovuq"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Jo'janing onasi — tovuq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐣 Jo'ja bo'lamiz",
+       "matn": "O'yin! Cho'nqayib, tizzangni quchoqla — sen tuxumsan. Men «chiq!» desam, sekin turib, «chiy-chiy» deysan. Sen jo'jasan!",
+       "doska": "🥚 ➡️ 🐤"
+      }
+     ]
+    },
+    {
+     "name": "O'rdak va kurka",
+     "goal": "Bola o'rdak va kurkani taniydi",
+     "intro": "Bip-bip! Hovuz bo'yida kimdir «g'aq-g'aq» deyapti. Uning yonida esa dumini yelpig'ichdek yoygan katta qush turibdi. Qaraylikmi?",
+     "items": [
+      {
+       "say": "O'rdak",
+       "uz": "g'aq-g'aq deydi, suvda suzadi",
+       "emoji": "🦆",
+       "image": "am23-u2-ordak.png",
+       "image_prompt": "A duck swimming in a small pond, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — o'rdak. U «g'aq-g'aq» deydi va suvda suzishni yaxshi ko'radi. O'rdakning oyoqlari eshkakka o'xshaydi.",
+       "action": "O'rdakdek lapanglab yur!"
+      },
+      {
+       "say": "Kurka",
+       "uz": "g'ulq-g'ulq deydi, dumi katta",
+       "emoji": "🦃",
+       "image": "am23-u2-kurka.png",
+       "image_prompt": "A turkey spreading its big colorful tail, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kurka. U katta parranda, «g'ulq-g'ulq» deydi. Kurka dumini yelpig'ichdek yoyib, maqtanib yuradi."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim suvda suzadi va «g'aq-g'aq» deydi?",
+       "options": [
+        "🦆 o'rdak",
+        "🐓 xo'roz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! O'rdak suzadi."
+      },
+      {
+       "q": "Kimning dumi yelpig'ichdek katta?",
+       "options": [
+        "🐤 jo'ja",
+        "🦃 kurka"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kurkaning dumi katta."
+      },
+      {
+       "q": "Parrandani top!",
+       "options": [
+        "🦆 o'rdak",
+        "🐎 ot"
+       ],
+       "answer": 0,
+       "why": "Ofarin! O'rdak — parranda."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "🔢 Sanaymiz",
+       "matn": "Hovuzda o'rdaklar suzyapti: bitta, ikkita, uchta! Qani, barmoqlarimiz bilan sanaymiz: bir, ikki, uch! Uchta o'rdak — g'aq-g'aq-g'aq!",
+       "doska": "🦆🦆🦆"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mevalar",
+   "emoji": "🍎",
+   "lessons": [
+    {
+     "name": "Olma va nok",
+     "goal": "Bola olma va nokni taniydi",
+     "intro": "Bip-bip! Bog'da daraxtlar bor, shoxlarida esa mazali narsalar osilib turibdi. Qizil va yashil… Nima ekan?",
+     "items": [
+      {
+       "say": "Olma",
+       "uz": "qizil, dumaloq, shirin",
+       "emoji": "🍎",
+       "image": "am23-u3-olma.png",
+       "image_prompt": "A shiny red apple, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — olma. U dumaloq va qizil. Olmani tishlasak, «qirs» etadi, juda shirin! Olma daraxtda o'sadi.",
+       "action": "Qani, «qirs» de!"
+      },
+      {
+       "say": "Nok",
+       "uz": "yashil-sariq, shirador",
+       "emoji": "🍐",
+       "image": "am23-u3-nok.png",
+       "image_prompt": "A juicy green-yellow pear, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — nok. U olmaga o'xshaydi, lekin pasti kattaroq, tepasi ingichka. Nok juda shirador, sharbati oqib ketadi."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri olma?",
+       "options": [
+        "🍎 olma",
+        "🍐 nok"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Bu — qizil olma."
+      },
+      {
+       "q": "Qaysi biri nok?",
+       "options": [
+        "🍎 olma",
+        "🍐 nok"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bu — nok."
+      },
+      {
+       "q": "Olma qayerda o'sadi?",
+       "options": [
+        "🌳 daraxtda",
+        "🌊 suvda"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Olma daraxtda o'sadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👅 Tatib ko'ramiz",
+       "matn": "Onang bilan olma va nokni yuvib, bir bo'lakdan tatib ko'r. Qaysi biri qirs-qirs etadi? Qaysi biri shiraliroq? Ikkalasi ham shirin!",
+       "doska": "🍎 qirs-qirs\n🍐 shirador"
+      }
+     ]
+    },
+    {
+     "name": "Banan va uzum",
+     "goal": "Bola banan va uzumni taniydi",
+     "intro": "Bip-bip! Maymunchaning sevimli mevasi qaysi? U uzun va sariq! Qani, bilib olamiz.",
+     "items": [
+      {
+       "say": "Banan",
+       "uz": "sariq, uzun, po'stini archamiz",
+       "emoji": "🍌",
+       "image": "am23-u3-banan.png",
+       "image_prompt": "A yellow banana partly peeled, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — banan. U uzun va sap-sariq. Bananni yeyishdan oldin po'stini archamiz. Ichi yumshoq va shirin.",
+       "action": "Bananni archiymiz — qo'llarimiz bilan!"
+      },
+      {
+       "say": "Uzum",
+       "uz": "shingil-shingil, mayda donachali",
+       "emoji": "🍇",
+       "image": "am23-u3-uzum.png",
+       "image_prompt": "A bunch of purple grapes, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — uzum. Uning donachalari mayda-mayda bo'lib, bitta shingilda turadi. Uzum yashil ham, qora ham bo'ladi."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi meva uzun va sariq?",
+       "options": [
+        "🍌 banan",
+        "🍇 uzum"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Banan uzun va sariq."
+      },
+      {
+       "q": "Qaysi mevaning donachalari ko'p?",
+       "options": [
+        "🍐 nok",
+        "🍇 uzum"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Uzumning donachalari ko'p."
+      },
+      {
+       "q": "Qaysi mevaning po'stini archamiz?",
+       "options": [
+        "🍌 banan",
+        "🍇 uzum"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bananning po'stini archamiz."
+      }
+     ]
+    },
+    {
+     "name": "Tarvuz va qovun",
+     "goal": "Bola tarvuz va qovunni taniydi",
+     "intro": "Bip-bip! Yozda polizda ikkita katta, og'ir meva pishadi. Biri ichi qizil, biri xushbo'y. Qani, top!",
+     "items": [
+      {
+       "say": "Tarvuz",
+       "uz": "katta, ichi qizil, urug'i qora",
+       "emoji": "🍉",
+       "image": "am23-u3-tarvuz.png",
+       "image_prompt": "A slice of red watermelon with black seeds, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tarvuz. Usti yashil, ichi esa qip-qizil va qora urug'lari bor. Tarvuz shirin va suvli, yozda chanqoqni bosadi."
+      },
+      {
+       "say": "Qovun",
+       "uz": "sariq, xushbo'y",
+       "emoji": "🍈",
+       "image": "am23-u3-qovun.png",
+       "image_prompt": "A round yellow melon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qovun. U sariq va juda xushbo'y. Burnimizga yaqinlashtirsak, mazali hid keladi. Qovun ham yozda pishadi.",
+       "action": "Qovunni hidlagandek: mmm!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi mevaning ichi qizil?",
+       "options": [
+        "🍉 tarvuz",
+        "🍌 banan"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Tarvuzning ichi qizil."
+      },
+      {
+       "q": "Qaysi meva xushbo'y va sariq?",
+       "options": [
+        "🍎 olma",
+        "🍈 qovun"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Qovun xushbo'y."
+      },
+      {
+       "q": "Tarvuzning urug'i qanday rangda?",
+       "options": [
+        "⚫ qora",
+        "🟢 yashil"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Tarvuzning urug'i qora."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "tushuncha",
+       "sarlavha": "⚖️ Katta va kichik",
+       "matn": "Tarvuz katta, uzum donachasi esa kichkina. Katta — qo'llarimizni keng ochamiz! Kichik — barmoqlarimizni yaqinlashtiramiz. Qani, ko'rsat!",
+       "doska": "🍉 katta\n🍇 kichik"
+      }
+     ]
+    },
+    {
+     "name": "Shaftoli, gilos, limon",
+     "goal": "Bola shaftoli, gilos va limonni taniydi, nordon ta'mni biladi",
+     "intro": "Bip-bip! Bitta meva shunaqa nordonki, yesak ko'zimiz qisilib ketadi! Qaysi ekan? Qani, topamiz.",
+     "items": [
+      {
+       "say": "Shaftoli",
+       "uz": "mayin, shirin",
+       "emoji": "🍑",
+       "image": "am23-u3-shaftoli.png",
+       "image_prompt": "A soft pink peach, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — shaftoli. Uning po'sti mayin, xuddi baxmaldek. Ichida katta danagi bor. Shaftoli shirin va xushbo'y.",
+       "action": "Shaftolini silagandek qil!"
+      },
+      {
+       "say": "Gilos",
+       "uz": "qip-qizil, juft-juft",
+       "emoji": "🍒",
+       "image": "am23-u3-gilos.png",
+       "image_prompt": "Two red cherries on a stem, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — gilos. U kichkina, qip-qizil va ko'pincha juft-juft osilib turadi. Gilos bahor oxirida birinchi pishadi."
+      },
+      {
+       "say": "Limon",
+       "uz": "sariq, nordon",
+       "emoji": "🍋",
+       "image": "am23-u3-limon.png",
+       "image_prompt": "A bright yellow lemon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — limon. U sariq, lekin shirin emas — nordon! Limon yesak, yuzimiz burishib ketadi. Choyga limon qo'shamiz.",
+       "action": "Nordon yuz qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi meva nordon?",
+       "options": [
+        "🍋 limon",
+        "🍉 tarvuz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Limon nordon."
+      },
+      {
+       "q": "Qaysi meva juft-juft osiladi?",
+       "options": [
+        "🍑 shaftoli",
+        "🍒 gilos"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Gilos juft-juft osiladi."
+      },
+      {
+       "q": "Qaysi mevaning po'sti mayin?",
+       "options": [
+        "🍑 shaftoli",
+        "🍋 limon"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Shaftolining po'sti mayin."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧼 Mevani yuvamiz",
+       "matn": "Esda tut: mevani yeyishdan oldin albatta suvda yuvamiz! Shildir-shildir, meva toza bo'ldi. Endi yesak bo'ladi!",
+       "doska": "💧🍑 ➡️ 😋"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Sabzavotlar",
+   "emoji": "🥕",
+   "lessons": [
+    {
+     "name": "Sabzi va kartoshka",
+     "goal": "Bola sabzi va kartoshkani taniydi, ular yer ostida o'sishini biladi",
+     "intro": "Bip-bip! Ba'zi sabzavotlar yer ostida yashirinib o'sadi. Tortsak — chiqadi! Kim ekan?",
+     "items": [
+      {
+       "say": "Sabzi",
+       "uz": "to'q sariq, uzun, yer ostida o'sadi",
+       "emoji": "🥕",
+       "image": "am23-u4-sabzi.png",
+       "image_prompt": "An orange carrot with green leaves, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — sabzi. U to'q sariq va uzun, yer ostida o'sadi. Tepasida yashil bargi bor. Quyon ham, biz ham sabzini yaxshi ko'ramiz!",
+       "action": "Sabzini tortib chiqaramiz: uh!"
+      },
+      {
+       "say": "Kartoshka",
+       "uz": "yer ostida o'sadi, pishirib yeymiz",
+       "emoji": "🥔",
+       "image": "am23-u4-kartoshka.png",
+       "image_prompt": "A brown potato, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kartoshka. U ham yer ostida o'sadi. Kartoshkani xom yemaymiz — pishirib yeymiz. Qovurilgan kartoshka juda mazali!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri sabzi?",
+       "options": [
+        "🥕 sabzi",
+        "🥔 kartoshka"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Bu — sabzi."
+      },
+      {
+       "q": "Qaysi biri kartoshka?",
+       "options": [
+        "🍌 banan",
+        "🥔 kartoshka"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bu — kartoshka."
+      },
+      {
+       "q": "Sabzi qayerda o'sadi?",
+       "options": [
+        "🟫 yer ostida",
+        "🌳 daraxtda"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Sabzi yer ostida o'sadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Sholg'om o'yini",
+       "matn": "O'yin! Katta sabzi yerga yopishib qolibdi. Hammamiz birga tortamiz: bir, ikki, uch — uh! Chiqdi! Qarsak chalamiz!",
+       "doska": "🥕 bir, ikki, uch — uh!"
+      }
+     ]
+    },
+    {
+     "name": "Pomidor va bodring",
+     "goal": "Bola pomidor va bodringni taniydi",
+     "intro": "Bip-bip! Salatga ikkita sabzavot kerak: biri qizil, biri yashil. Qaysilari ekan? Qani, topamiz!",
+     "items": [
+      {
+       "say": "Pomidor",
+       "uz": "qizil, dumaloq, sersuv",
+       "emoji": "🍅",
+       "image": "am23-u4-pomidor.png",
+       "image_prompt": "A red round tomato, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — pomidor. U qip-qizil va dumaloq. Pomidor sersuv, tishlasak, sharbati chiqadi. Undan salat qilamiz."
+      },
+      {
+       "say": "Bodring",
+       "uz": "yashil, uzun, qirs-qirs",
+       "emoji": "🥒",
+       "image": "am23-u4-bodring.png",
+       "image_prompt": "A green cucumber, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — bodring. U yashil va uzunchoq. Bodringni tishlasak, «qirs-qirs» etadi. Salatga bodring qo'shamiz.",
+       "action": "Qani, «qirs-qirs» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi sabzavot qizil?",
+       "options": [
+        "🍅 pomidor",
+        "🥒 bodring"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Pomidor qizil."
+      },
+      {
+       "q": "Qaysi sabzavot yashil?",
+       "options": [
+        "🥕 sabzi",
+        "🥒 bodring"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bodring yashil."
+      },
+      {
+       "q": "Salatga nima solamiz?",
+       "options": [
+        "🍅 pomidor",
+        "🍬 konfet"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Salatga pomidor solamiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥗 Salat tayyorlaymiz",
+       "matn": "Rolli o'yin: sen oshpazsan! Pomidorni solamiz — bir! Bodringni solamiz — ikki! Aralashtiramiz — shaq-shaq! Salat tayyor, yoqimli ishtaha!",
+       "doska": "🍅 + 🥒 = 🥗"
+      }
+     ]
+    },
+    {
+     "name": "Piyoz va karam",
+     "goal": "Bola piyoz va karamni taniydi",
+     "intro": "Bip-bip! Bitta sabzavotni to'g'rasak, ko'zimizdan yosh chiqadi! Boshqasining barglari qat-qat. Kim ekan?",
+     "items": [
+      {
+       "say": "Piyoz",
+       "uz": "achchiq, qat-qat po'stli",
+       "emoji": "🧅",
+       "image": "am23-u4-piyoz.png",
+       "image_prompt": "A brown onion, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — piyoz. Uni to'g'rasak, ko'zimiz achishadi. Piyoz achchiq, lekin ovqatga qo'shsak, juda mazali bo'ladi."
+      },
+      {
+       "say": "Karam",
+       "uz": "katta, yashil, barglari qat-qat",
+       "emoji": "🥬",
+       "image": "am23-u4-karam.png",
+       "image_prompt": "A green leafy cabbage, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — karam. U katta va dumaloq, barglari qat-qat o'ralgan. Karamdan sho'rva va salat qilamiz.",
+       "action": "Barglarni ochgandek qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi sabzavot ko'zni achishtiradi?",
+       "options": [
+        "🧅 piyoz",
+        "🥒 bodring"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Piyoz ko'zni achishtiradi."
+      },
+      {
+       "q": "Qaysi sabzavot katta va yashil barglari qat-qat?",
+       "options": [
+        "🥔 kartoshka",
+        "🥬 karam"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bu — karam."
+      },
+      {
+       "q": "Qaysi biri sabzavot?",
+       "options": [
+        "🥕 sabzi",
+        "🍌 banan"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Sabzi — sabzavot."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ranglar atrofimizda",
+   "emoji": "🌈",
+   "lessons": [
+    {
+     "name": "Qizil va sariq",
+     "goal": "Bola qizil va sariq rangni atrofidagi narsalarda topadi",
+     "intro": "Bip-bip! Qara, atrofimiz rang-barang! Bugun ikkita quvnoq rangni o'rganamiz. Olma qanday rangda edi?",
+     "items": [
+      {
+       "say": "Qizil",
+       "uz": "olma, pomidor, gilos rangi",
+       "emoji": "🔴",
+       "image": "am23-u5-qizil.png",
+       "image_prompt": "A red circle with a red apple and red tomato, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qizil rang. Olma qizil, pomidor qizil, gilos ham qizil! Atrofingda yana qizil narsa bormi?",
+       "action": "Qizil narsani ko'rsat!"
+      },
+      {
+       "say": "Sariq",
+       "uz": "banan, limon, jo'ja rangi",
+       "emoji": "🟡",
+       "image": "am23-u5-sariq.png",
+       "image_prompt": "A yellow circle with a banana and a lemon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — sariq rang. Banan sariq, limon sariq, jo'ja ham sap-sariq! Quyosh ham sariq nur sochadi.",
+       "action": "Sariq narsani ko'rsat!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Olma qanday rangda?",
+       "options": [
+        "🔴 qizil",
+        "🟡 sariq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Olma qizil."
+      },
+      {
+       "q": "Banan qanday rangda?",
+       "options": [
+        "🔴 qizil",
+        "🟡 sariq"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Banan sariq."
+      },
+      {
+       "q": "Qaysi biri sariq?",
+       "options": [
+        "🐤 jo'ja",
+        "🍅 pomidor"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Jo'ja sariq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🔍 Rang ovi",
+       "matn": "O'yin! Xonadan bitta qizil narsa topib kel. Endi bitta sariq narsa! Topdingmi? robot Kabuga ko'rsat — bip-bip, barakalla!",
+       "doska": "🔴 ? 🟡 ?"
+      }
+     ]
+    },
+    {
+     "name": "Yashil va ko'k",
+     "goal": "Bola yashil va ko'k rangni taniydi",
+     "intro": "Bip-bip! Men osmonda uchaman — osmon qanday rangda? Pastda o'tlar bor — ular qanday rangda? Qani, bilib olamiz!",
+     "items": [
+      {
+       "say": "Yashil",
+       "uz": "o't, barg, bodring rangi",
+       "emoji": "🟢",
+       "image": "am23-u5-yashil.png",
+       "image_prompt": "A green circle with green grass and a leaf, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — yashil rang. O'tlar yashil, barglar yashil, bodring ham yashil! Bahorda hamma yoq yam-yashil bo'ladi.",
+       "action": "Yashil narsani ko'rsat!"
+      },
+      {
+       "say": "Ko'k",
+       "uz": "osmon va dengiz rangi",
+       "emoji": "🔵",
+       "image": "am23-u5-kok.png",
+       "image_prompt": "A blue circle with blue sky and sea, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — ko'k rang. Musaffo osmon ko'k, dengiz ham ko'k. Men ko'k osmonga qarashni yaxshi ko'raman, bip-bip!",
+       "action": "Tepaga — osmonga qara!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "O't qanday rangda?",
+       "options": [
+        "🟢 yashil",
+        "🔵 ko'k"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! O't yashil."
+      },
+      {
+       "q": "Osmon qanday rangda?",
+       "options": [
+        "🟢 yashil",
+        "🔵 ko'k"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Osmon ko'k."
+      },
+      {
+       "q": "Qaysi biri yashil?",
+       "options": [
+        "🥒 bodring",
+        "🍋 limon"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bodring yashil."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎨 Tajriba: rang aralashtiramiz",
+       "matn": "Kattalar bilan qil: sariq bo'yoqqa ko'k bo'yoqni qo'shib aralashtir. Voy, nima bo'ldi? Yashil rang chiqdi! Mo'jiza!",
+       "doska": "🟡 + 🔵 = 🟢"
+      }
+     ]
+    },
+    {
+     "name": "Oq va qora",
+     "goal": "Bola oq va qora rangni taniydi",
+     "intro": "Bip-bip! Qor qanday rangda? Tun-chi? Bugun ikkita bir-biriga teskari rangni o'rganamiz.",
+     "items": [
+      {
+       "say": "Oq",
+       "uz": "qor, sut, tuxum rangi",
+       "emoji": "⚪",
+       "image": "am23-u5-oq.png",
+       "image_prompt": "A white circle with milk and snow, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — oq rang. Sut oq, tuxum oq, qor ham oppoq! Qo'yning yungi ham oq bo'ladi.",
+       "action": "Oq narsani ko'rsat!"
+      },
+      {
+       "say": "Qora",
+       "uz": "tun va tarvuz urug'i rangi",
+       "emoji": "⚫",
+       "image": "am23-u5-qora.png",
+       "image_prompt": "A black circle with a night sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qora rang. Tunda osmon qop-qora bo'ladi. Tarvuzning urug'i ham qora. Qora mushuk ham bor!",
+       "action": "Ko'zingni yum — qop-qorong'i!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sut qanday rangda?",
+       "options": [
+        "⚪ oq",
+        "⚫ qora"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sut oq."
+      },
+      {
+       "q": "Tunda osmon qanday bo'ladi?",
+       "options": [
+        "⚪ oq",
+        "⚫ qora"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Tunda osmon qora."
+      },
+      {
+       "q": "Qaysi biri oq?",
+       "options": [
+        "🥚 tuxum",
+        "🍅 pomidor"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Tuxum oq."
+      }
+     ]
+    },
+    {
+     "name": "Kamalak",
+     "goal": "Bola kamalakni va to'q sariq rangni taniydi",
+     "intro": "Bip-bip! Yomg'irdan keyin osmonda rang-barang ko'prik paydo bo'ladi. Uning nomi nima? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "To'q sariq",
+       "uz": "apelsin va sabzi rangi",
+       "emoji": "🟠",
+       "image": "am23-u5-toq-sariq.png",
+       "image_prompt": "An orange circle with an orange fruit and a carrot, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — to'q sariq rang. Sabzi to'q sariq, apelsin ham to'q sariq! Bu rang qizil va sariqning o'rtasida."
+      },
+      {
+       "say": "Kamalak",
+       "uz": "osmondagi rang-barang ko'prik",
+       "emoji": "🌈",
+       "image": "am23-u5-kamalak.png",
+       "image_prompt": "A bright rainbow over green hills, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kamalak. U yomg'irdan keyin, quyosh chiqqanda osmonda ko'rinadi. Kamalakda qizil, sariq, yashil, ko'k — ko'p rang bor!",
+       "action": "Qo'ling bilan kamalak chiz!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sabzi qanday rangda?",
+       "options": [
+        "🟠 to'q sariq",
+        "🔵 ko'k"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sabzi to'q sariq."
+      },
+      {
+       "q": "Osmondagi rang-barang ko'prik nima?",
+       "options": [
+        "⚪ oq",
+        "🌈 kamalak"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bu — kamalak."
+      },
+      {
+       "q": "Kamalak qachon chiqadi?",
+       "options": [
+        "🌈 yomg'irdan keyin",
+        "⚫ tunda"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kamalak yomg'irdan keyin chiqadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ranglar qo'shig'i",
+       "matn": "Qizil — olma, sariq — banan, yashil — o'tlar, ko'k — osmon! Hammasi birga — kamalak! Qarsak chalib kuylaymiz!",
+       "doska": "🔴🟡🟢🔵 = 🌈"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Quyosh, yomg'ir, qor",
+   "emoji": "☀️",
+   "lessons": [
+    {
+     "name": "Quyosh va oy",
+     "goal": "Bola kunduzi quyosh, kechasi oy chiqishini biladi",
+     "intro": "Bip-bip! Kunduzi osmonda kim bizni isitadi? Kechasi-chi, kim yorug' qilib turadi? Qani, bilib olamiz!",
+     "items": [
+      {
+       "say": "Quyosh",
+       "uz": "kunduzi chiqadi, issiq va yorug'",
+       "emoji": "☀️",
+       "image": "am23-u6-quyosh.png",
+       "image_prompt": "A smiling warm sun, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — quyosh. U kunduzi chiqadi va hammani isitadi. Quyosh chiqsa, atrof yorug' bo'ladi. Quyoshga to'g'ri qaramaymiz — ko'zni qamashtiradi!",
+       "action": "Quyoshdek qo'llarni keng och!"
+      },
+      {
+       "say": "Oy",
+       "uz": "kechasi chiqadi",
+       "emoji": "🌙",
+       "image": "am23-u6-oy.png",
+       "image_prompt": "A crescent moon in a dark night sky with stars, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — oy. U kechasi osmonda chiqadi. Oy chiqsa, uxlash vaqti bo'ladi. Oy ba'zan dumaloq, ba'zan o'roqdek ingichka.",
+       "action": "Uxlagandek ko'zni yum!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kunduzi osmonda nima bor?",
+       "options": [
+        "☀️ quyosh",
+        "🌙 oy"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kunduzi quyosh chiqadi."
+      },
+      {
+       "q": "Kechasi osmonda nima chiqadi?",
+       "options": [
+        "☀️ quyosh",
+        "🌙 oy"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kechasi oy chiqadi."
+      },
+      {
+       "q": "Kim bizni isitadi?",
+       "options": [
+        "☀️ quyosh",
+        "⚫ tun"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Quyosh bizni isitadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Kun va tun o'yini",
+       "matn": "O'yin! Men «Quyosh!» desam — sakrab o'ynaysan. «Oy!» desam — cho'kkalab, uxlagandek bo'lasan. Tayyormisan? Quyosh! … Oy!",
+       "doska": "☀️ sakraymiz\n🌙 uxlaymiz"
+      }
+     ]
+    },
+    {
+     "name": "Bulut va yomg'ir",
+     "goal": "Bola bulut va yomg'irni taniydi, soyabon kerakligini biladi",
+     "intro": "Bip-bip! Osmonga kulrang paxtalar suzib keldi. Tip-tip-tip… Tomchilar tushyapti! Nima bo'lyapti?",
+     "items": [
+      {
+       "say": "Bulut",
+       "uz": "osmonda suzadi, paxtaga o'xshaydi",
+       "emoji": "☁️",
+       "image": "am23-u6-bulut.png",
+       "image_prompt": "A fluffy white cloud in a blue sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — bulut. U osmonda suzadi va oq paxtaga o'xshaydi. Bulut qorayib kelsa — yomg'ir yog'adi."
+      },
+      {
+       "say": "Yomg'ir",
+       "uz": "tip-tip deb yog'adi",
+       "emoji": "🌧️",
+       "image": "am23-u6-yomgir.png",
+       "image_prompt": "A grey cloud with raindrops falling, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — yomg'ir. U bulutdan tomchi-tomchi bo'lib tushadi: tip-tip-tip! Yomg'ir gullar va daraxtlarga suv beradi.",
+       "action": "Barmoqlaring bilan stolni tiqillat: tip-tip!"
+      },
+      {
+       "say": "Soyabon",
+       "uz": "yomg'irda ushlaymiz",
+       "emoji": "☂️",
+       "image": "am23-u6-soyabon.png",
+       "image_prompt": "A colorful open umbrella with raindrops, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — soyabon. Yomg'ir yog'sa, soyabonni ochamiz va ho'l bo'lmaymiz. Soyabon — kichkina uyimizday tom!",
+       "action": "Soyabonni ochgandek qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Yomg'ir qayerdan yog'adi?",
+       "options": [
+        "☁️ bulutdan",
+        "☀️ quyoshdan"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Yomg'ir bulutdan yog'adi."
+      },
+      {
+       "q": "Yomg'irda nima ushlaymiz?",
+       "options": [
+        "🥕 sabzi",
+        "☂️ soyabon"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Soyabon ushlaymiz."
+      },
+      {
+       "q": "Yomg'ir qanday tovush chiqaradi?",
+       "options": [
+        "🌧️ tip-tip",
+        "🐕 vov-vov"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Yomg'ir «tip-tip» qiladi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Kuzatamiz",
+       "matn": "Yomg'ir yog'sa, derazadan qara: tomchilar oynada qanday oqyapti? Yomg'irdan keyin osmonga qara — balki kamalak chiqar!",
+       "doska": "🌧️ ➡️ 🌈"
+      }
+     ]
+    },
+    {
+     "name": "Qor va qordan odam",
+     "goal": "Bola qor sovuq va oq ekanini, qordan odam yasashni biladi",
+     "intro": "Bip-bip! Qishda osmondan oppoq, yengil parchalar uchib tushadi. Ular qo'lingda erib ketadi. Nima ekan?",
+     "items": [
+      {
+       "say": "Qor",
+       "uz": "oppoq, sovuq, qishda yog'adi",
+       "emoji": "❄️",
+       "image": "am23-u6-qor.png",
+       "image_prompt": "White snowflakes falling softly, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qor. U qishda yog'adi, oppoq va juda sovuq. Qor ustida yursak, «g'irch-g'irch» qiladi. Qo'lda esa erib, suvga aylanadi.",
+       "action": "Qani, «g'irch-g'irch» de!"
+      },
+      {
+       "say": "Qordan odam",
+       "uz": "qordan yasaymiz",
+       "emoji": "⛄",
+       "image": "am23-u6-qordan-odam.png",
+       "image_prompt": "A happy snowman with a carrot nose, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qordan odam. Biz qordan katta va kichik dumaloq yasab, ustma-ust qo'yamiz. Burniga sabzi qo'yamiz — tayyor!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qor qanday rangda?",
+       "options": [
+        "⚪ oq",
+        "🔴 qizil"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qor oppoq."
+      },
+      {
+       "q": "Qordan odamning burni nima?",
+       "options": [
+        "🍌 banan",
+        "🥕 sabzi"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Burni — sabzi."
+      },
+      {
+       "q": "Qor issiqmi yoki sovuqmi?",
+       "options": [
+        "❄️ sovuq",
+        "☀️ issiq"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qor sovuq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧪 Tajriba: qor eriydi",
+       "matn": "Kattalar bilan: likopchaga ozgina qor yoki muz sol va uyda qoldir. Keyin qara — nima bo'ldi? Qor erib, suvga aylandi!",
+       "doska": "❄️ ➡️ 💧"
+      }
+     ]
+    },
+    {
+     "name": "Shamol",
+     "goal": "Bola shamolni sezadi, varrak shamolda uchishini biladi",
+     "intro": "Bip-bip! Daraxtlarning barglari shitirlayapti, men esa uchib ketay deyapman! Kimdir esyapti, lekin ko'rinmaydi. Kim?",
+     "items": [
+      {
+       "say": "Shamol",
+       "uz": "vu-vu deb esadi",
+       "emoji": "🌬️",
+       "image": "am23-u6-shamol.png",
+       "image_prompt": "Wind blowing leaves across the sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — shamol. Uni ko'rmaymiz, lekin sezamiz! Shamol «vu-vu» deb esadi, barglarni uchiradi, sochimizni to'zg'itadi.",
+       "action": "Kaftingga «puf» deb shamol qil!"
+      },
+      {
+       "say": "Varrak",
+       "uz": "shamolda uchadi",
+       "emoji": "🪁",
+       "image": "am23-u6-varrak.png",
+       "image_prompt": "A colorful kite flying high in the sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — varrak. Shamol esganda varrak osmonga ko'tariladi va uchadi. Varrakni ipidan ushlab turamiz."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri «vu-vu» deb esadi?",
+       "options": [
+        "🌬️ shamol",
+        "☁️ bulut"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Shamol «vu-vu» deydi."
+      },
+      {
+       "q": "Shamolda nima uchadi?",
+       "options": [
+        "🥔 kartoshka",
+        "🪁 varrak"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Varrak shamolda uchadi."
+      },
+      {
+       "q": "Yomg'irda nima kerak?",
+       "options": [
+        "☂️ soyabon",
+        "🪁 varrak"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Yomg'irda soyabon kerak."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧪 Tajriba: puf-puf",
+       "matn": "Stolga kichkina qog'oz bo'lagini qo'y. Endi «puf» deb pufla! Qog'oz uchib ketdi — sen shamol qilding! Yana sekin pufla, keyin kuchli!",
+       "doska": "💨 puf → 📄"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mening uyim va narsalar",
+   "emoji": "🏠",
+   "lessons": [
+    {
+     "name": "Mening uyim",
+     "goal": "Bola uy, eshik va derazani taniydi",
+     "intro": "Bip-bip! Mening uyam daraxtda. Sening uying-chi? Uyning ichiga qayerdan kiramiz? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "Uy",
+       "uz": "biz yashaydigan joy",
+       "emoji": "🏠",
+       "image": "am23-u7-uy.png",
+       "image_prompt": "A cozy little house with a red roof, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — uy. Biz oilamiz bilan uyda yashaymiz. Uyda issiq va xavfsiz. Uyning tomi yomg'irdan asraydi.",
+       "action": "Qo'llaring bilan tom yasa!"
+      },
+      {
+       "say": "Eshik",
+       "uz": "ochamiz, yopamiz, kiramiz",
+       "emoji": "🚪",
+       "image": "am23-u7-eshik.png",
+       "image_prompt": "A wooden front door, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — eshik. Uyga eshikdan kiramiz. Eshikni «taq-taq» qoqamiz, keyin ochamiz. Chiqqanda esa yopib qo'yamiz.",
+       "action": "Qani, «taq-taq» qoq!"
+      },
+      {
+       "say": "Deraza",
+       "uz": "undan tashqariga qaraymiz",
+       "emoji": "🪟",
+       "image": "am23-u7-deraza.png",
+       "image_prompt": "A window with curtains and sunlight, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — deraza. Derazadan quyosh nuri kiradi. Derazadan qarab, tashqarida yomg'ir yoki qor yog'ayotganini ko'ramiz."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz qayerda yashaymiz?",
+       "options": [
+        "🏠 uyda",
+        "🌊 suvda"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Biz uyda yashaymiz."
+      },
+      {
+       "q": "Uyga nimadan kiramiz?",
+       "options": [
+        "🪟 derazadan",
+        "🚪 eshikdan"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Eshikdan kiramiz."
+      },
+      {
+       "q": "Quyosh nuri nimadan kiradi?",
+       "options": [
+        "🪟 derazadan",
+        "🚪 eshikdan"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Derazadan quyosh nuri kiradi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Taq-taq o'yini",
+       "matn": "Rolli o'yin: taq-taq! — Kim u? — Men, robot Kabu! — Kir, marhamat! Endi sen eshik qoq, men ochaman!",
+       "doska": "🚪 taq-taq!"
+      }
+     ]
+    },
+    {
+     "name": "Karavot va stul",
+     "goal": "Bola karavot va stulni, ular nima uchun kerakligini biladi",
+     "intro": "Bip-bip! Kechasi qayerda uxlaymiz? Ovqat yeganda nimaga o'tiramiz? Uyimizdagi narsalarni tanishamiz!",
+     "items": [
+      {
+       "say": "Karavot",
+       "uz": "unda uxlaymiz",
+       "emoji": "🛏️",
+       "image": "am23-u7-karavot.png",
+       "image_prompt": "A cozy bed with a pillow and blanket, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — karavot. Kechasi karavotda yostiqqa boshimizni qo'yib uxlaymiz. Ustimizga yumshoq ko'rpa yopamiz.",
+       "action": "Yostiqqa bosh qo'ygandek qil!"
+      },
+      {
+       "say": "Stul",
+       "uz": "unga o'tiramiz",
+       "emoji": "🪑",
+       "image": "am23-u7-stul.png",
+       "image_prompt": "A small wooden chair, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — stul. Unga o'tiramiz. Stulning to'rtta oyog'i bor, lekin u yurmaydi! Ovqatlanganda stulda tinch o'tiramiz."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qayerda uxlaymiz?",
+       "options": [
+        "🛏️ karavotda",
+        "🪑 stulda"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Karavotda uxlaymiz."
+      },
+      {
+       "q": "Nimaga o'tiramiz?",
+       "options": [
+        "🛏️ karavot",
+        "🪑 stul"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Stulga o'tiramiz."
+      },
+      {
+       "q": "Kechasi osmonda nima chiqadi?",
+       "options": [
+        "🌙 oy",
+        "☀️ quyosh"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kechasi oy chiqadi, uxlaymiz."
+      }
+     ]
+    },
+    {
+     "name": "Oshxonada",
+     "goal": "Bola qoshiq, piyola, choynakni taniydi",
+     "intro": "Bip-bip! Oshxonadan mazali hid kelyapti! Ovqat yeyish uchun nimalar kerak? Qani, stolga qaraymiz.",
+     "items": [
+      {
+       "say": "Qoshiq",
+       "uz": "u bilan ovqat yeymiz",
+       "emoji": "🥄",
+       "image": "am23-u7-qoshiq.png",
+       "image_prompt": "A shiny spoon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qoshiq. Qoshiq bilan sho'rva va bo'tqa yeymiz. Qoshiqni o'ng qo'limizda ushlaymiz.",
+       "action": "Qoshiq bilan yegandek qil!"
+      },
+      {
+       "say": "Piyola",
+       "uz": "undan choy ichamiz",
+       "emoji": "🍵",
+       "image": "am23-u7-piyola.png",
+       "image_prompt": "A traditional Uzbek tea bowl with tea, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — piyola. Piyoladan choy ichamiz. Mehmon kelsa, piyolaga choy quyib, ikki qo'llab uzatamiz."
+      },
+      {
+       "say": "Choynak",
+       "uz": "unda choy damlaymiz",
+       "emoji": "🫖",
+       "image": "am23-u7-choynak.png",
+       "image_prompt": "A traditional teapot, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — choynak. Kattalar choynakda choy damlaydi. Choynak issiq bo'ladi, unga tegmaymiz!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sho'rvani nima bilan yeymiz?",
+       "options": [
+        "🥄 qoshiq",
+        "🍵 piyola"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qoshiq bilan yeymiz."
+      },
+      {
+       "q": "Choyni qayerdan ichamiz?",
+       "options": [
+        "🥄 qoshiq",
+        "🍵 piyola"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Piyoladan ichamiz."
+      },
+      {
+       "q": "Choynak issiq bo'ladi. Unga tegamizmi?",
+       "options": [
+        "🙅 yo'q",
+        "👍 ha"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Issiq choynakka tegmaymiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🍵 Choy ichamiz",
+       "matn": "Rolli o'yin: qo'g'irchoq mehmonga keldi! Choynakdan piyolaga choy quyamiz — shildir! Ikki qo'llab uzatamiz: «Marhamat!» Barakalla!",
+       "doska": "🫖 ➡️ 🍵"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Tanam va tozalik",
+   "emoji": "🧼",
+   "lessons": [
+    {
+     "name": "Mening tanam",
+     "goal": "Bola qo'l, oyoq, ko'z, quloqni ko'rsatadi",
+     "intro": "Bip-bip! Mening temir qo'llarim va oyoqlarim bor. Senda-chi? Qani, tanamizni tanishamiz!",
+     "items": [
+      {
+       "say": "Qo'l",
+       "uz": "ushlaymiz, qarsak chalamiz",
+       "emoji": "✋",
+       "image": "am23-u8-qol.png",
+       "image_prompt": "A small child's open hand, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qo'l. Qo'limiz bilan ushlaymiz, chizamiz va qarsak chalamiz. Qo'limizda beshta barmoq bor!",
+       "action": "Qarsak chal!"
+      },
+      {
+       "say": "Oyoq",
+       "uz": "yuramiz, sakraymiz",
+       "emoji": "🦶",
+       "image": "am23-u8-oyoq.png",
+       "image_prompt": "A child's foot, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — oyoq. Oyoqlarimiz bilan yuramiz, chopamiz va sakraymiz. Oyoqda ham beshta barmoq bor!",
+       "action": "Oyog'ingni do'pillat!"
+      },
+      {
+       "say": "Ko'z",
+       "uz": "ko'ramiz",
+       "emoji": "👀",
+       "image": "am23-u8-koz.png",
+       "image_prompt": "Two big friendly eyes, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — ko'z. Ko'zimiz bilan ko'ramiz: ranglarni, quyoshni, onamizni! Ko'zni ishqalamaymiz.",
+       "action": "Ko'zingni yumib, och!"
+      },
+      {
+       "say": "Quloq",
+       "uz": "eshitamiz",
+       "emoji": "👂",
+       "image": "am23-u8-quloq.png",
+       "image_prompt": "A child's ear, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — quloq. Quloq bilan eshitamiz: mushukning «miyov»ini, yomg'irning «tip-tip»ini! Quloqqa hech narsa tiqmaymiz.",
+       "action": "Qulog'ingni ushla!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nima bilan ko'ramiz?",
+       "options": [
+        "👀 ko'z",
+        "👂 quloq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ko'z bilan ko'ramiz."
+      },
+      {
+       "q": "Nima bilan eshitamiz?",
+       "options": [
+        "✋ qo'l",
+        "👂 quloq"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Quloq bilan eshitamiz."
+      },
+      {
+       "q": "Nima bilan sakraymiz?",
+       "options": [
+        "🦶 oyoq",
+        "👀 ko'z"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Oyoq bilan sakraymiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Bosh, yelka qo'shig'i",
+       "matn": "Qo'shiq va harakat! Ko'zim — mana, qulog'im — mana! Qo'llarim — chapak-chapak! Oyoqlarim — do'p-do'p! Yana bir marta, tezroq!",
+       "doska": "👀 👂 ✋ 🦶"
+      }
+     ]
+    },
+    {
+     "name": "Qo'l yuvamiz",
+     "goal": "Bola sovun bilan qo'l yuvish tartibini biladi",
+     "intro": "Bip-bip! Ko'chada o'ynadik, qo'llarimiz iflos bo'ldi. Ovqatdan oldin nima qilamiz? Qani, o'rganamiz!",
+     "items": [
+      {
+       "say": "Sovun",
+       "uz": "ko'pik qiladi, kirni ketkazadi",
+       "emoji": "🧼",
+       "image": "am23-u8-sovun.png",
+       "image_prompt": "A bar of soap with bubbles, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — sovun. Qo'limizni sovun bilan ishqalasak, oppoq ko'pik chiqadi. Ko'pik kir va mikroblarni ketkazadi.",
+       "action": "Qo'llarni ishqala: ishq-ishq!"
+      },
+      {
+       "say": "Jo'mrak suvi",
+       "uz": "qo'lni chayamiz",
+       "emoji": "🚰",
+       "image": "am23-u8-jomrak.png",
+       "image_prompt": "A water tap with running water, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — jo'mrak. Jo'mrakni ochsak, suv oqadi — shildir-shildir! Ko'pikni suv bilan chayamiz, keyin jo'mrakni yopamiz."
+      },
+      {
+       "say": "Toza qo'llar",
+       "uz": "ovqatdan oldin yuvamiz",
+       "emoji": "🙌",
+       "image": "am23-u8-toza-qollar.png",
+       "image_prompt": "Two clean happy hands with sparkles, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Mana, toza qo'llar! Ovqatdan oldin, ko'chadan kelganda va hojatxonadan keyin qo'limizni albatta yuvamiz.",
+       "action": "Toza qo'llarni ko'rsat!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'lni nima bilan yuvamiz?",
+       "options": [
+        "🧼 sovun",
+        "🍬 konfet"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sovun bilan yuvamiz."
+      },
+      {
+       "q": "Qachon qo'l yuvamiz?",
+       "options": [
+        "🍽️ ovqatdan oldin",
+        "🛏️ uyquda"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ovqatdan oldin yuvamiz."
+      },
+      {
+       "q": "Suv qayerdan oqadi?",
+       "options": [
+        "🪑 stuldan",
+        "🚰 jo'mrakdan"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Suv jo'mrakdan oqadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Qo'l yuvish qo'shig'i",
+       "matn": "Jo'mrakni ochamiz — shildir! Sovun olamiz — ishq-ishq! Ko'pik-ko'pik, bir, ikki, uch! Chayamiz, yopamiz — qo'llar toza, bip-bip!",
+       "doska": "🚰 ➡️ 🧼 ➡️ 🙌"
+      }
+     ]
+    },
+    {
+     "name": "Tish va cho'milish",
+     "goal": "Bola tish tozalash va cho'milish kerakligini biladi",
+     "intro": "Bip-bip! Kulganimizda oppoq narsalar yaltiraydi. Nima ekan? Ularni qanday toza saqlaymiz? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "Tish",
+       "uz": "ovqatni chaynaymiz",
+       "emoji": "🦷",
+       "image": "am23-u8-tish.png",
+       "image_prompt": "A happy shiny white tooth, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tish. Tishlarimiz bilan olmani «qirs» etib tishlaymiz va ovqatni chaynaymiz. Tishni asrash kerak!",
+       "action": "Tishlaringni ko'rsatib kul!"
+      },
+      {
+       "say": "Tish cho'tkasi",
+       "uz": "ertalab va kechqurun tish yuvamiz",
+       "emoji": "🪥",
+       "image": "am23-u8-tish-chotkasi.png",
+       "image_prompt": "A small toothbrush with toothpaste, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tish cho'tkasi. Ertalab va kechqurun tishimizni cho'tka bilan yuvamiz: yuqoriga-pastga, shiq-shiq!",
+       "action": "Tish yuvgandek qil: shiq-shiq!"
+      },
+      {
+       "say": "Vanna",
+       "uz": "cho'milamiz",
+       "emoji": "🛁",
+       "image": "am23-u8-vanna.png",
+       "image_prompt": "A bathtub full of bubbles and a rubber duck, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — vanna. Unda iliq suvda cho'milamiz. Cho'milsak, tanamiz toza va xushbo'y bo'ladi. Ko'pikli suvda o'ynash qiziq!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tishni nima bilan yuvamiz?",
+       "options": [
+        "🪥 tish cho'tkasi",
+        "🥄 qoshiq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Tish cho'tkasi bilan."
+      },
+      {
+       "q": "Qayerda cho'milamiz?",
+       "options": [
+        "🛏️ karavotda",
+        "🛁 vannada"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Vannada cho'milamiz."
+      },
+      {
+       "q": "Tish bilan nima qilamiz?",
+       "options": [
+        "🦷 chaynaymiz",
+        "👂 eshitamiz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Tish bilan chaynaymiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🌟 Tozalik kuni",
+       "matn": "Bugun kechqurun onang bilan: tishni yuvamiz, qo'lni yuvamiz, cho'milamiz! Toza bola — sog'lom bola! Ertaga robot Kabuga aytib ber, bip-bip!",
+       "doska": "🪥 🧼 🛁 = 🌟"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uy va yovvoyi hayvonlar",
+   "emoji": "🐾",
+   "lessons": [
+    {
+     "name": "Uy hayvoni va yovvoyi hayvon",
+     "goal": "Bola uy hayvoni va yovvoyi hayvonni farqlaydi",
+     "intro": "Bip-bip! Ba'zi hayvonlar odam bilan birga yashaydi, ba'zilari esa o'rmonda o'zi yashaydi. Qaysi biri qayerda? Qani, bilamiz!",
+     "items": [
+      {
+       "say": "Uy hayvoni",
+       "uz": "odam boqadi, uy yonida yashaydi",
+       "emoji": "🏡🐄",
+       "image": "am34-u1-uy-hayvoni.png",
+       "image_prompt": "A cow and a dog next to a farmhouse, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Uy hayvonlari odam yonida yashaydi. Odam ularga ovqat beradi, ular esa bizga yordam beradi: sigir sut beradi, it uyni qo'riqlaydi."
+      },
+      {
+       "say": "Yovvoyi hayvon",
+       "uz": "o'rmonda, dalada o'zi yashaydi",
+       "emoji": "🌲🐾",
+       "image": "am34-u1-yovvoyi-hayvon.png",
+       "image_prompt": "Wild animal paw prints leading into a forest, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Yovvoyi hayvonlar o'rmonda, tog'da yoki dalada o'zi yashaydi. Ular ovqatini o'zi topadi. Ularga yaqin bormaymiz!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sigir qayerda yashaydi?",
+       "options": [
+        "🏡 odam yonida",
+        "🌲 o'rmonda"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sigir — uy hayvoni."
+      },
+      {
+       "q": "Kim ovqatini o'zi topadi?",
+       "options": [
+        "🏡🐄 uy hayvoni",
+        "🌲🐾 yovvoyi hayvon"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Yovvoyi hayvon o'zi topadi."
+      },
+      {
+       "q": "Uyni kim qo'riqlaydi?",
+       "options": [
+        "🐕 it",
+        "🐄 sigir"
+       ],
+       "answer": 0,
+       "why": "Ofarin! It uyni qo'riqlaydi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Uyga yoki o'rmonga",
+       "matn": "O'yin! Men hayvon aytaman. Uy hayvoni bo'lsa — qo'llaring bilan tom yasa. Yovvoyi bo'lsa — daraxtdek qo'lni ko'tar! It… Sigir…",
+       "doska": "🏡 yoki 🌲"
+      }
+     ]
+    },
+    {
+     "name": "O'rmonda kim yashaydi",
+     "goal": "Bola ayiq, bo'ri, tulkini taniydi",
+     "intro": "Bip-bip! Men o'rmon ustidan uchib o'tdim va uchta yovvoyi hayvonni ko'rdim. Biri katta, biri kulrang, biri ayyor. Kimlar ekan?",
+     "items": [
+      {
+       "say": "Ayiq",
+       "uz": "katta, asalni yaxshi ko'radi",
+       "emoji": "🐻",
+       "image": "am34-u1-ayiq.png",
+       "image_prompt": "A big brown bear in the forest, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — ayiq. U katta va kuchli, «o'-o'» deb o'kiradi. Ayiq asal va rezavorlarni yaxshi ko'radi.",
+       "action": "Ayiqdek og'ir-og'ir yur!"
+      },
+      {
+       "say": "Bo'ri",
+       "uz": "kulrang, uv-uv deb uvillaydi",
+       "emoji": "🐺",
+       "image": "am34-u1-bori.png",
+       "image_prompt": "A grey wolf howling at the moon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — bo'ri. U kulrang, dumi uzun. Kechasi oyga qarab «uv-uv-uuu» deb uvillaydi. Bo'rilar to'da bo'lib yuradi.",
+       "action": "Qani, «uv-uuu» de!"
+      },
+      {
+       "say": "Tulki",
+       "uz": "qizg'ish, dumi paxmoq, ayyor",
+       "emoji": "🦊",
+       "image": "am34-u1-tulki.png",
+       "image_prompt": "A red fox with a fluffy tail, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tulki. U qizg'ish rangda, dumi paxmoq va chiroyli. Ertaklarda tulki ayyor bo'ladi!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim asalni yaxshi ko'radi?",
+       "options": [
+        "🐻 ayiq",
+        "🦊 tulki"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ayiq asalni yaxshi ko'radi."
+      },
+      {
+       "q": "Kim oyga qarab uvillaydi?",
+       "options": [
+        "🐻 ayiq",
+        "🐺 bo'ri"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bo'ri uvillaydi."
+      },
+      {
+       "q": "Kimning dumi paxmoq va qizg'ish?",
+       "options": [
+        "🦊 tulki",
+        "🐺 bo'ri"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Bu — tulki."
+      }
+     ]
+    },
+    {
+     "name": "Uy hayvonlarining bolalari",
+     "goal": "Bola buzoq, qo'zichoq, kuchukcha, toychoqni taniydi",
+     "intro": "Bip-bip! Hamma hayvonlarning ham bolalari bor. Sigirning bolasini nima deymiz? Qani, topamiz!",
+     "items": [
+      {
+       "say": "Buzoq",
+       "uz": "sigirning bolasi",
+       "emoji": "🐮",
+       "image": "am34-u1-buzoq.png",
+       "image_prompt": "A cute baby calf, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — buzoq, sigirning bolasi. U onasining sutini ichadi va «mo'o» deb chaqiradi. Buzoq katta bo'lsa, sigir bo'ladi."
+      },
+      {
+       "say": "Qo'zichoq",
+       "uz": "qo'yning bolasi",
+       "emoji": "🐑",
+       "image": "am34-u1-qozichoq.png",
+       "image_prompt": "A little fluffy lamb, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qo'zichoq, qo'yning bolasi. U juda kichkina va yumshoq, ingichka ovozda «ba-a» deydi.",
+       "action": "Ingichka ovozda «ba-a» de!"
+      },
+      {
+       "say": "Kuchukcha",
+       "uz": "itning bolasi",
+       "emoji": "🐶",
+       "image": "am34-u1-kuchukcha.png",
+       "image_prompt": "A playful puppy, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kuchukcha, itning bolasi. U o'ynoqi, «vov» deb vovillaydi va to'p quvib o'ynaydi."
+      },
+      {
+       "say": "Toychoq",
+       "uz": "otning bolasi",
+       "emoji": "🐴",
+       "image": "am34-u1-toychoq.png",
+       "image_prompt": "A young foal with long legs, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — toychoq, otning bolasi. Uning oyoqlari uzun-uzun. Toychoq tug'ilgach, tezda turib yura boshlaydi!",
+       "action": "Toychoqdek sakra!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sigirning bolasi kim?",
+       "options": [
+        "🐮 buzoq",
+        "🐶 kuchukcha"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sigirning bolasi — buzoq."
+      },
+      {
+       "q": "Itning bolasi kim?",
+       "options": [
+        "🐴 toychoq",
+        "🐶 kuchukcha"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Itning bolasi — kuchukcha."
+      },
+      {
+       "q": "Otning bolasi kim?",
+       "options": [
+        "🐴 toychoq",
+        "🐑 qo'zichoq"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Otning bolasi — toychoq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Onasini top",
+       "matn": "O'yin! Men bolani aytaman, sen onasini aytasan. Buzoq — … sigir! Kuchukcha — … it! Qo'zichoq — … qo'y! Toychoq — … ot! Barakalla!",
+       "doska": "🐮➡️🐄  🐶➡️🐕"
+      }
+     ]
+    },
+    {
+     "name": "Hayvonot bog'ida",
+     "goal": "Bola sher, fil, maymunni taniydi",
+     "intro": "Bip-bip! Bugun hayvonot bog'iga sayohatga boramiz. U yerda issiq o'lkalardan kelgan hayvonlar bor. Kimni ko'ramiz?",
+     "items": [
+      {
+       "say": "Sher",
+       "uz": "o'kiradi, hayvonlar shohi",
+       "emoji": "🦁",
+       "image": "am34-u1-sher.png",
+       "image_prompt": "A lion with a big golden mane, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — sher. Uni «hayvonlar shohi» deymiz. Sherning boshida qalin yoli bor va u «r-r-r» deb o'kiradi.",
+       "action": "Sherdek o'kir: r-r-r!"
+      },
+      {
+       "say": "Fil",
+       "uz": "xartumi uzun, juda katta",
+       "emoji": "🐘",
+       "image": "am34-u1-fil.png",
+       "image_prompt": "A big grey elephant with a long trunk, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — fil. U eng katta quruqlik hayvoni! Filning uzun xartumi bor, u bilan suv ichadi va o'zini cho'miltiradi.",
+       "action": "Qo'ling bilan xartum qil!"
+      },
+      {
+       "say": "Maymun",
+       "uz": "daraxtda sakraydi, banan yeydi",
+       "emoji": "🐒",
+       "image": "am34-u1-maymun.png",
+       "image_prompt": "A playful monkey hanging from a branch, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — maymun. U daraxtdan daraxtga sakraydi va quvnoq «u-u-a-a» deydi. Maymun banan yeyishni yaxshi ko'radi."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kimning xartumi uzun?",
+       "options": [
+        "🐘 fil",
+        "🦁 sher"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Filning xartumi uzun."
+      },
+      {
+       "q": "Hayvonlar shohi kim?",
+       "options": [
+        "🐒 maymun",
+        "🦁 sher"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Sher — hayvonlar shohi."
+      },
+      {
+       "q": "Maymun nima yeydi?",
+       "options": [
+        "🍌 banan",
+        "🥔 kartoshka"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Maymun banan yeydi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Hayvonot bog'i o'yini",
+       "matn": "Harakatli o'yin: fil bo'lamiz — og'ir qadam, xartum silkitamiz! Maymun bo'lamiz — sakraymiz! Sher bo'lamiz — r-r-r! Zo'r!",
+       "doska": "🐘 🐒 🦁"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Qushlar va baliqlar",
+   "emoji": "🐦",
+   "lessons": [
+    {
+     "name": "Qushlar",
+     "goal": "Bola chumchuq, kabutar, boyqushni taniydi, qushning qanoti borligini biladi",
+     "intro": "Bip-bip! Qushlarning qanoti va pati bor, ular uchadi. Bugun do'stlarim bilan tanishtiraman!",
+     "items": [
+      {
+       "say": "Chumchuq",
+       "uz": "kichkina, chirq-chirq deydi",
+       "emoji": "🐦",
+       "image": "am34-u2-chumchuq.png",
+       "image_prompt": "A small brown sparrow on a branch, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — chumchuq. U kichkina va kulrang-jigarrang. «Chirq-chirq» deb sakrab yuradi va don teradi.",
+       "action": "Qani, «chirq-chirq» de!"
+      },
+      {
+       "say": "Kabutar",
+       "uz": "gu-gu deydi",
+       "emoji": "🕊️",
+       "image": "am34-u2-kabutar.png",
+       "image_prompt": "A friendly grey pigeon, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kabutar. U «gu-gu» deydi. Biz uyimizga yo'lni hech qachon adashtirmaymiz.",
+       "action": "Qanot qoqib «gu-gu» de!"
+      },
+      {
+       "say": "Boyqush",
+       "uz": "kechasi uchadi, hu-hu deydi",
+       "emoji": "🦉",
+       "image": "am34-u2-boyqush.png",
+       "image_prompt": "An owl with big round eyes at night, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — boyqush. Uning ko'zlari katta-katta. Boyqush kunduzi uxlaydi, kechasi esa uchib, «hu-hu» deydi."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim «gu-gu» deydi?",
+       "options": [
+        "🕊️ kabutar",
+        "🐦 chumchuq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kabutar «gu-gu» deydi."
+      },
+      {
+       "q": "Kim kechasi uchadi?",
+       "options": [
+        "🐦 chumchuq",
+        "🦉 boyqush"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Boyqush kechasi uchadi."
+      },
+      {
+       "q": "Qush nima bilan uchadi?",
+       "options": [
+        "🐦 qanot",
+        "🦶 oyoq"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qush qanoti bilan uchadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Qushcha qo'shig'i",
+       "matn": "Qanotlarim — lip-lip, uchaman osmonga! Chirq-chirq — chumchuq, gu-gu — kabutar, hu-hu — boyqush! Qo'llarni qanotdek qoqib kuylaymiz!",
+       "doska": "🐦 chirq\n🕊️ gu-gu\n🦉 hu-hu"
+      }
+     ]
+    },
+    {
+     "name": "Qush uyasi",
+     "goal": "Bola qush uya qurishini va tuxum qo'yishini biladi",
+     "intro": "Bip-bip! Bahorda qushlar shoxlardan, o'tlardan kichkina uy quradi. Ichida sir bor! Qanday sir ekan?",
+     "items": [
+      {
+       "say": "Uya",
+       "uz": "qushning uyi",
+       "emoji": "🪺",
+       "image": "am34-u2-uya.png",
+       "image_prompt": "A bird's nest with eggs on a tree branch, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — uya, qushning uyi. Qush uni cho'plar, o'tlar va patlardan tumshug'i bilan quradi. Uya daraxt shoxida turadi."
+      },
+      {
+       "say": "Tuxum",
+       "uz": "ichidan qush bolasi chiqadi",
+       "emoji": "🥚",
+       "image": "am34-u2-tuxum.png",
+       "image_prompt": "Small speckled bird eggs, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — tuxum. Qush uyaga tuxum qo'yib, ustida o'tiradi va isitadi. Keyin tuxumdan kichkina qushcha — polapon chiqadi!"
+      },
+      {
+       "say": "Pat",
+       "uz": "qushni isitadi",
+       "emoji": "🪶",
+       "image": "am34-u2-pat.png",
+       "image_prompt": "A soft feather floating, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — pat. Qushning tanasi patlar bilan qoplangan. Patlar yengil va yumshoq, qushni sovuqdan asraydi.",
+       "action": "Pat kabi sekin tush!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qush uyasi qayerda?",
+       "options": [
+        "🌳 daraxt shoxida",
+        "🌊 suv ichida"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Uya daraxt shoxida."
+      },
+      {
+       "q": "Tuxumdan kim chiqadi?",
+       "options": [
+        "🐶 kuchukcha",
+        "🐦 qushcha"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Tuxumdan qushcha chiqadi."
+      },
+      {
+       "q": "Qushni nima isitadi?",
+       "options": [
+        "🪶 pat",
+        "🥚 tuxum"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Patlar qushni isitadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Kuzatamiz",
+       "matn": "Sayrda daraxtlarga qara: uya ko'rinyaptimi? Uyaga tegmaymiz va qushlarni cho'chitmaymiz — faqat uzoqdan qaraymiz!",
+       "doska": "👀 🌳 🪺"
+      }
+     ]
+    },
+    {
+     "name": "Suvda yashaydiganlar",
+     "goal": "Bola baliq, kit, delfinni taniydi",
+     "intro": "Bip-bip! Men suvga kira olmayman, lekin suv ichida ham hayot bor! Kimlar suvda yashaydi? Qani, sho'ng'iymiz!",
+     "items": [
+      {
+       "say": "Baliq",
+       "uz": "suvda suzadi, suzgichlari bor",
+       "emoji": "🐟",
+       "image": "am34-u2-baliq.png",
+       "image_prompt": "A fish swimming in a river, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — baliq. U daryo va ko'lda yashaydi. Baliq suzgichlari va dumi bilan suzadi. Suvdan tashqarida yashay olmaydi.",
+       "action": "Qo'llaring bilan suz!"
+      },
+      {
+       "say": "Kit",
+       "uz": "dengizdagi eng katta hayvon",
+       "emoji": "🐳",
+       "image": "am34-u2-kit.png",
+       "image_prompt": "A big blue whale spouting water, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kit. U dengizda yashaydi va juda-juda katta, fildan ham katta! Kit tepasidan suv favvora qilib chiqaradi."
+      },
+      {
+       "say": "Delfin",
+       "uz": "aqlli, sakrab o'ynaydi",
+       "emoji": "🐬",
+       "image": "am34-u2-delfin.png",
+       "image_prompt": "A happy dolphin jumping out of the sea, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — delfin. U dengizda yashaydi, juda aqlli va quvnoq. Delfin suvdan sakrab chiqib o'ynaydi va chiyillaydi.",
+       "action": "Delfindek sakra!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Baliq qayerda yashaydi?",
+       "options": [
+        "🌊 suvda",
+        "🌳 daraxtda"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Baliq suvda yashaydi."
+      },
+      {
+       "q": "Dengizdagi eng katta hayvon kim?",
+       "options": [
+        "🐟 baliq",
+        "🐳 kit"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Eng kattasi — kit."
+      },
+      {
+       "q": "Kim suvdan sakrab o'ynaydi?",
+       "options": [
+        "🐬 delfin",
+        "🦉 boyqush"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Delfin sakrab o'ynaydi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Qush yoki baliq?",
+       "matn": "O'yin! Men aytaman: qush bo'lsa — qanot qoq, suvda yashasa — suzgandek qo'l siljit. Chumchuq! Kit! Boyqush! Delfin!",
+       "doska": "🐦 = qanot\n🐟 = suzish"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Meva yoki sabzavot",
+   "emoji": "🧺",
+   "lessons": [
+    {
+     "name": "Meva nima?",
+     "goal": "Bola meva daraxtda o'sishini, shirin ekanini biladi",
+     "intro": "Bip-bip! Bog'bon amaki savatga daraxtdan terilgan narsalarni yig'yapti. Ular shirin va xushbo'y. Nima ekan?",
+     "items": [
+      {
+       "say": "Meva",
+       "uz": "daraxt va butada o'sadi, shirin",
+       "emoji": "🍎",
+       "image": "am34-u3-meva.png",
+       "image_prompt": "Apples growing on a tree branch, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Mevalar daraxtda yoki butada o'sadi. Ular ko'pincha shirin bo'ladi. Olma, nok, o'rik — hammasi meva!"
+      },
+      {
+       "say": "Apelsin",
+       "uz": "to'q sariq, po'sti qalin",
+       "emoji": "🍊",
+       "image": "am34-u3-apelsin.png",
+       "image_prompt": "A juicy orange fruit, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — apelsin. U to'q sariq, po'sti qalin. Ichi bo'lak-bo'lak va sersuv. Apelsin issiq o'lkada daraxtda o'sadi.",
+       "action": "Apelsin archigandek qil!"
+      },
+      {
+       "say": "Uzum",
+       "uz": "tokda shingil bo'lib o'sadi",
+       "emoji": "🍇",
+       "image": "am34-u3-uzum.png",
+       "image_prompt": "A bunch of grapes on a vine, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — uzum. U tokda shingil-shingil bo'lib o'sadi. Uzumni quritsak, mayiz bo'ladi!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Meva qayerda o'sadi?",
+       "options": [
+        "🌳 daraxtda",
+        "🟫 yer ostida"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Meva daraxtda o'sadi."
+      },
+      {
+       "q": "Uzumni quritsak nima bo'ladi?",
+       "options": [
+        "🍊 apelsin",
+        "🍇 mayiz"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Mayiz bo'ladi."
+      },
+      {
+       "q": "Qaysi biri meva?",
+       "options": [
+        "🍊 apelsin",
+        "🐟 baliq"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Apelsin — meva."
+      }
+     ]
+    },
+    {
+     "name": "Sabzavot nima?",
+     "goal": "Bola sabzavot polizda, yerda o'sishini biladi",
+     "intro": "Bip-bip! Endi polizga boramiz. U yerda narsalar yerda yoki yer ostida o'sadi. Ulardan sho'rva qilamiz. Nima ekan?",
+     "items": [
+      {
+       "say": "Sabzavot",
+       "uz": "polizda, yerda o'sadi",
+       "emoji": "🥕",
+       "image": "am34-u3-sabzavot.png",
+       "image_prompt": "Carrots growing in garden soil, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Sabzavotlar polizda, yerda yoki yer ostida o'sadi. Ulardan sho'rva, salat va palov qilamiz. Sabzi — sabzavot!"
+      },
+      {
+       "say": "Kartoshka",
+       "uz": "yer ostida o'sadi",
+       "emoji": "🥔",
+       "image": "am34-u3-kartoshka.png",
+       "image_prompt": "Potatoes being dug from soil, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kartoshka. U yer ostida yashirinib o'sadi. Kartoshkani qazib olamiz va pishirib yeymiz.",
+       "action": "Yerni qazigandek qil!"
+      },
+      {
+       "say": "Pomidor",
+       "uz": "poyada qizarib pishadi",
+       "emoji": "🍅",
+       "image": "am34-u3-pomidor.png",
+       "image_prompt": "Red tomatoes on a green plant, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — pomidor. U kichik poyada o'sadi. Avval yashil bo'ladi, keyin quyoshda qizarib pishadi."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kartoshka qayerda o'sadi?",
+       "options": [
+        "🌳 daraxtda",
+        "🟫 yer ostida"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Kartoshka yer ostida."
+      },
+      {
+       "q": "Qaysi biri sabzavot?",
+       "options": [
+        "🥕 sabzi",
+        "🍇 uzum"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Sabzi — sabzavot."
+      },
+      {
+       "q": "Pomidor pishsa qanday rangda bo'ladi?",
+       "options": [
+        "🔴 qizil",
+        "🔵 ko'k"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Pishgan pomidor qizil."
+      }
+     ]
+    },
+    {
+     "name": "Savatlarga ajratamiz",
+     "goal": "Bola meva va sabzavotni ajratadi",
+     "intro": "Bip-bip! Voy, mevalar va sabzavotlar aralashib ketibdi! Ikkita savat bor. Menga ajratishga yordam berasanmi?",
+     "items": [
+      {
+       "say": "Qulupnay",
+       "uz": "qizil, shirin meva",
+       "emoji": "🍓",
+       "image": "am34-u3-qulupnay.png",
+       "image_prompt": "A red strawberry, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qulupnay. U yerga yaqin, pastda o'sadi, lekin shirin — shuning uchun meva deymiz! Bahorda pishadi."
+      },
+      {
+       "say": "Bodring",
+       "uz": "yashil sabzavot",
+       "emoji": "🥒",
+       "image": "am34-u3-bodring.png",
+       "image_prompt": "A green cucumber on a vine, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — bodring. U polizda o'sadi, yashil va qirs-qirs. Bodring — sabzavot, uni salatga solamiz.",
+       "action": "Qani, «qirs-qirs» de!"
+      },
+      {
+       "say": "Bulg'or qalampiri",
+       "uz": "shirin, qizil yoki yashil sabzavot",
+       "emoji": "🫑",
+       "image": "am34-u3-qalampir.png",
+       "image_prompt": "A green bell pepper, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — bulg'or qalampiri. U yashil, qizil yoki sariq bo'ladi. Ichi bo'sh, urug'lari bor. Bu — sabzavot."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qulupnay meva yoki sabzavotmi?",
+       "options": [
+        "🍎 meva",
+        "🥕 sabzavot"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qulupnay — meva."
+      },
+      {
+       "q": "Bodring meva yoki sabzavotmi?",
+       "options": [
+        "🍎 meva",
+        "🥕 sabzavot"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bodring — sabzavot."
+      },
+      {
+       "q": "Qaysi biri meva?",
+       "options": [
+        "🍓 qulupnay",
+        "🫑 qalampir"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qulupnay — meva."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Ikki savat o'yini",
+       "matn": "O'yin! Chap qo'l — meva savati, o'ng qo'l — sabzavot savati. Men aytaman, sen qo'lni ko'tarasan: olma! kartoshka! uzum! bodring! apelsin!",
+       "doska": "🍎🍊🍇 | 🥕🥔🥒"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ob-havo: issiq va sovuq",
+   "emoji": "🌡️",
+   "lessons": [
+    {
+     "name": "Issiq va sovuq",
+     "goal": "Bola issiq va sovuqni farqlaydi",
+     "intro": "Bip-bip! Bir kun terlab ketamiz, bir kun titraymiz. Nega shunday? Qani, issiq va sovuqni bilib olamiz!",
+     "items": [
+      {
+       "say": "Issiq",
+       "uz": "quyosh qizitadi, terlaymiz",
+       "emoji": "🥵",
+       "image": "am34-u4-issiq.png",
+       "image_prompt": "A child fanning themselves on a hot sunny day, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Issiq kunda quyosh qattiq qizitadi, biz terlaymiz va suv ichgimiz keladi. Issiq choy va sho'rva ham issiq!",
+       "action": "Yelpigandek qil: uf, issiq!"
+      },
+      {
+       "say": "Sovuq",
+       "uz": "titraymiz, issiq kiyinamiz",
+       "emoji": "🥶",
+       "image": "am34-u4-sovuq.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Sovuq kunda qo'llarimiz muzlaydi, biz titraymiz: dir-dir-dir! Muzqaymoq va qor ham sovuq.",
+       "action": "Titra: dir-dir-dir!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyosh qizitsa, qanday bo'ladi?",
+       "options": [
+        "🥵 issiq",
+        "🥶 sovuq"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Quyosh qizitsa — issiq."
+      },
+      {
+       "q": "Qor issiqmi yoki sovuq?",
+       "options": [
+        "🥵 issiq",
+        "🥶 sovuq"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Qor sovuq."
+      },
+      {
+       "q": "Issiqda nima qilamiz?",
+       "options": [
+        "💧 suv ichamiz",
+        "🥶 titraymiz"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Issiqda suv ichamiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧪 Tajriba: issiq-sovuq suv",
+       "matn": "Kattalar bilan: bir stakanga iliq suv, boshqasiga sovuq suv quy. Barmog'ingni tekkiz: qaysi biri iliq, qaysi biri sovuq? Juda qaynoq suvga tegmaymiz!",
+       "doska": "🥵 iliq  🥶 sovuq"
+      }
+     ]
+    },
+    {
+     "name": "Quyoshli va bulutli kun",
+     "goal": "Bola quyoshli va bulutli kunni farqlaydi",
+     "intro": "Bip-bip! Ertalab derazadan qaraymiz: osmon qanday? Bugun qanday kun ekan? Qani, ob-havoni bilamiz!",
+     "items": [
+      {
+       "say": "Quyoshli kun",
+       "uz": "osmon ochiq, yorug'",
+       "emoji": "☀️",
+       "image": "am34-u4-quyoshli.png",
+       "image_prompt": "A bright sunny day with a clear blue sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Quyoshli kunda osmon ochiq va ko'm-ko'k. Atrof yorug' va iliq. Sayr qilish uchun ajoyib kun!"
+      },
+      {
+       "say": "Bulutli kun",
+       "uz": "osmonda bulut ko'p, quyosh yashiringan",
+       "emoji": "☁️",
+       "image": "am34-u4-bulutli.png",
+       "image_prompt": "A cloudy grey sky, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bulutli kunda quyosh bulutlar ortiga yashirinadi. Osmon kulrang, havo salqinroq bo'ladi. Balki yomg'ir yog'ar!",
+       "action": "Quyoshdek yashir!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Osmon ochiq va yorug' — qanday kun?",
+       "options": [
+        "☀️ quyoshli",
+        "☁️ bulutli"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Quyoshli kun."
+      },
+      {
+       "q": "Quyosh bulut ortida — qanday kun?",
+       "options": [
+        "☀️ quyoshli",
+        "☁️ bulutli"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Bulutli kun."
+      },
+      {
+       "q": "Quyoshli kun issiqroqmi?",
+       "options": [
+        "🥵 issiqroq",
+        "🥶 sovuqroq"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Quyoshli kun issiqroq."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "📅 Ob-havo taqvimi",
+       "matn": "Har kuni ertalab osmonga qara. Quyoshli bo'lsa — ☀️ rasm chiz, bulutli bo'lsa — ☁️ chiz. Hafta oxirida sanaymiz: qaysi kunlar ko'p bo'ldi?",
+       "doska": "Du ☀️ Se ☁️ Ch ☀️ …"
+      }
+     ]
+    },
+    {
+     "name": "Yomg'ir, qor va ko'lmak",
+     "goal": "Bola yomg'ir, qor va ko'lmakni taniydi",
+     "intro": "Bip-bip! Bulutdan ba'zan suv tomchisi, ba'zan oppoq parcha tushadi. Keyin yerda suv yig'iladi. Bular nima?",
+     "items": [
+      {
+       "say": "Yomg'ir",
+       "uz": "bulutdan suv tomchilari tushadi",
+       "emoji": "🌧️",
+       "image": "am34-u4-yomgir.png",
+       "image_prompt": "Raindrops falling from a grey cloud, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Yomg'ir — bulutdan tushadigan suv tomchilari: tip-tip-tip! Yomg'ir yerga, gullarga va daraxtlarga suv beradi.",
+       "action": "Barmoqlar bilan yomg'ir qil!"
+      },
+      {
+       "say": "Qor",
+       "uz": "sovuqda yog'adi, oppoq",
+       "emoji": "❄️",
+       "image": "am34-u4-qor.png",
+       "image_prompt": "Snowflakes falling on a winter day, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Havo juda sovuq bo'lsa, bulutdan yomg'ir emas, qor yog'adi. Har bir qor parchasi yulduzchaga o'xshaydi!"
+      },
+      {
+       "say": "Ko'lmak",
+       "uz": "yomg'irdan keyingi suv",
+       "emoji": "💦",
+       "image": "am34-u4-kolmak.png",
+       "image_prompt": "A child in rain boots near a puddle, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Yomg'irdan keyin yerda suv yig'iladi — bu ko'lmak. Etik kiysak, ko'lmakdan «shalop» o'tamiz. Oyoq ho'l bo'lmasin!",
+       "action": "Qani, «shalop» de!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Juda sovuqda bulutdan nima yog'adi?",
+       "options": [
+        "❄️ qor",
+        "🌧️ yomg'ir"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sovuqda qor yog'adi."
+      },
+      {
+       "q": "Yomg'irdan keyin yerda nima bo'ladi?",
+       "options": [
+        "❄️ qor",
+        "💦 ko'lmak"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Ko'lmak paydo bo'ladi."
+      },
+      {
+       "q": "Yomg'ir kimga suv beradi?",
+       "options": [
+        "🌸 gullarga",
+        "🪑 stulga"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Yomg'ir gullarga suv beradi."
+      }
+     ]
+    },
+    {
+     "name": "Ob-havoga kiyinamiz",
+     "goal": "Bola ob-havoga qarab kiyinishni biladi",
+     "intro": "Bip-bip! Qishda yupqa futbolkada chiqsak nima bo'ladi? Yozda qalin kurtka kiysak-chi? Qani, to'g'ri kiyinamiz!",
+     "items": [
+      {
+       "say": "Kurtka",
+       "uz": "sovuqda kiyamiz",
+       "emoji": "🧥",
+       "image": "am34-u4-kurtka.png",
+       "image_prompt": "A warm winter jacket, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — kurtka. Sovuq kunda kurtka kiyamiz, u bizni isitadi. Kurtkaning tugmasini yoki zamogini oxirigacha yopamiz.",
+       "action": "Kurtka kiygandek qil!"
+      },
+      {
+       "say": "Qo'lqop",
+       "uz": "qo'lni sovuqdan asraydi",
+       "emoji": "🧤",
+       "image": "am34-u4-qolqop.png",
+       "image_prompt": "A pair of warm mittens, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — qo'lqop. Qishda qo'lqop kiyamiz, qo'llarimiz muzlamaydi. Qo'lqop bilan qor o'ynash ham qiziq!"
+      },
+      {
+       "say": "Panama",
+       "uz": "issiqda boshni asraydi",
+       "emoji": "👒",
+       "image": "am34-u4-panama.png",
+       "image_prompt": "A summer sun hat, cute cartoon, soft flat colors, white background, no text, square",
+       "explain": "Bu — panama. Yozda quyosh boshni qizdirib yubormasin deb panama kiyamiz. Issiqda panamasan chiqmaymiz!",
+       "action": "Boshingga panama qo'y!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sovuqda nima kiyamiz?",
+       "options": [
+        "🧥 kurtka",
+        "👒 panama"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sovuqda kurtka kiyamiz."
+      },
+      {
+       "q": "Issiqda boshga nima kiyamiz?",
+       "options": [
+        "🧤 qo'lqop",
+        "👒 panama"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Issiqda panama kiyamiz."
+      },
+      {
+       "q": "Qo'lqop qachon kerak?",
+       "options": [
+        "🥶 sovuqda",
+        "🥵 issiqda"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Qo'lqop sovuqda kerak."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👗 Qo'g'irchoqni kiyintiramiz",
+       "matn": "Rolli o'yin: tashqarida qor yog'yapti! Qo'g'irchoqqa nima kiydiramiz? Kurtka, qo'lqop! Endi quyosh qizitdi — panama kiydiramiz!",
+       "doska": "❄️ 🧥🧤  |  ☀️ 👒"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

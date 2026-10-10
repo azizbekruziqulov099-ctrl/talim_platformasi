@@ -1,0 +1,1191 @@
+{
+ "subject": "Mantiq",
+ "lang": null,
+ "age": "2-3 yosh",
+ "prefix": "MN",
+ "book_title": "Aqlli o'yinlar 2–3 yosh",
+ "units": [
+  {
+   "name": "Bir xilini top",
+   "emoji": "🔍",
+   "lessons": [
+    {
+     "name": "Bir xil hayvonchalar",
+     "goal": "Bola bir xil rasmlarni topadi, «bir xil» va «har xil» so'zlarini tushunadi",
+     "intro": "Bip-bip! Bugun ko'zlarimiz sehrli! Qara: 🐱🐶🐱🐰. Ba'zi rasmlar egizakdek bir xil. Qani, ularni topamiz!",
+     "items": [
+      {
+       "say": "Bir xil",
+       "uz": "egizakdek o'xshash",
+       "emoji": "🐱🐱",
+       "explain": "Qara: 🐱 mushuk va yana 🐱 mushuk. Ikkalasi bir xil — rangi ham, shakli ham bir xil! Bir xil narsalar xuddi egizaklardek.",
+       "action": "Ikki kaftingni birlashtir — ular ham bir xil!"
+      },
+      {
+       "say": "Har xil",
+       "uz": "bir-biriga o'xshamaydi",
+       "emoji": "🐱🐶",
+       "explain": "Endi qara: 🐱 mushuk va 🐶 kuchuk. Ular har xil! Biri boshqasiga o'xshamaydi.",
+       "action": "Boshingni chayqa: «Yo'q, bir xil emas!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱 Xuddi shunday rasmni top!",
+       "options": [
+        "🐶 kuchuk",
+        "🐱 mushuk"
+       ],
+       "answer": 1,
+       "why": "Barakalla! 🐱 va 🐱 — bir xil."
+      },
+      {
+       "q": "🐶 Xuddi shunday rasmni top!",
+       "options": [
+        "🐶 kuchuk",
+        "🐰 quyon"
+       ],
+       "answer": 0,
+       "why": "Ofarin! 🐶 va 🐶 — bir xil."
+      },
+      {
+       "q": "🐰 Xuddi shunday rasmni top!",
+       "options": [
+        "🐰 quyon",
+        "🐻 ayiq"
+       ],
+       "answer": 0,
+       "why": "Ofarin! 🐰 va 🐰 — bir xil."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Egizaklarni top",
+       "matn": "O'yin! Uyda ikkita bir xil narsa top: ikki qoshiq yoki ikki paypoq. Topsang — onangga ko'rsat!",
+       "doska": "🐱🐶🐱🐰"
+      }
+     ]
+    },
+    {
+     "name": "Bir xil mevalar",
+     "goal": "Bola bir xil rasmlarni topadi, «bir xil» va «har xil» so'zlarini tushunadi",
+     "intro": "Bip-bip! Bugun ko'zlarimiz sehrli! Qara: 🍎🍌🍎🍐. Ba'zi rasmlar egizakdek bir xil. Qani, ularni topamiz!",
+     "items": [
+      {
+       "say": "Bir xil",
+       "uz": "egizakdek o'xshash",
+       "emoji": "🍎🍎",
+       "explain": "Qara: 🍎 olma va yana 🍎 olma. Ikkalasi bir xil — rangi ham, shakli ham bir xil! Bir xil narsalar xuddi egizaklardek.",
+       "action": "Ikki kaftingni birlashtir — ular ham bir xil!"
+      },
+      {
+       "say": "Har xil",
+       "uz": "bir-biriga o'xshamaydi",
+       "emoji": "🍎🍌",
+       "explain": "Endi qara: 🍎 olma va 🍌 banan. Ular har xil! Biri boshqasiga o'xshamaydi.",
+       "action": "Boshingni chayqa: «Yo'q, bir xil emas!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍎 Xuddi shunday rasmni top!",
+       "options": [
+        "🍌 banan",
+        "🍎 olma"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! 🍎 va 🍎 — bir xil."
+      },
+      {
+       "q": "🍌 Xuddi shunday rasmni top!",
+       "options": [
+        "🍌 banan",
+        "🍐 nok"
+       ],
+       "answer": 0,
+       "why": "Zo'r! 🍌 va 🍌 — bir xil."
+      },
+      {
+       "q": "🍐 Xuddi shunday rasmni top!",
+       "options": [
+        "🍐 nok",
+        "🍇 uzum"
+       ],
+       "answer": 0,
+       "why": "Ofarin! 🍐 va 🍐 — bir xil."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Egizaklarni top",
+       "matn": "O'yin! Kiyimingga qara: ikki yengi bir xilmi? Ikki oyog'ingdagi paypoq bir xilmi? Barmog'ing bilan ko'rsat!",
+       "doska": "🍎🍌🍎🍐"
+      }
+     ]
+    },
+    {
+     "name": "Bir xil o'yinchoqlar",
+     "goal": "Bola bir xil rasmlarni topadi, «bir xil» va «har xil» so'zlarini tushunadi",
+     "intro": "Bip-bip! Bugun ko'zlarimiz sehrli! Qara: ⚽🧸⚽🎈. Ba'zi rasmlar egizakdek bir xil. Qani, ularni topamiz!",
+     "items": [
+      {
+       "say": "Bir xil",
+       "uz": "egizakdek o'xshash",
+       "emoji": "⚽⚽",
+       "explain": "Qara: ⚽ to'p va yana ⚽ to'p. Ikkalasi bir xil — rangi ham, shakli ham bir xil! Bir xil narsalar xuddi egizaklardek.",
+       "action": "Ikki kaftingni birlashtir — ular ham bir xil!"
+      },
+      {
+       "say": "Har xil",
+       "uz": "bir-biriga o'xshamaydi",
+       "emoji": "⚽🧸",
+       "explain": "Endi qara: ⚽ to'p va 🧸 ayiqcha. Ular har xil! Biri boshqasiga o'xshamaydi.",
+       "action": "Boshingni chayqa: «Yo'q, bir xil emas!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "⚽ Xuddi shunday rasmni top!",
+       "options": [
+        "⚽ to'p",
+        "🧸 ayiqcha"
+       ],
+       "answer": 0,
+       "why": "Qoyil! ⚽ va ⚽ — bir xil."
+      },
+      {
+       "q": "🧸 Xuddi shunday rasmni top!",
+       "options": [
+        "🎈 shar",
+        "🧸 ayiqcha"
+       ],
+       "answer": 1,
+       "why": "Zo'r! 🧸 va 🧸 — bir xil."
+      },
+      {
+       "q": "🎈 Xuddi shunday rasmni top!",
+       "options": [
+        "🚗 mashina",
+        "🎈 shar"
+       ],
+       "answer": 1,
+       "why": "Qoyil! 🎈 va 🎈 — bir xil."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Egizaklarni top",
+       "matn": "O'yin! O'yinchoqlaringni yig'ib, bir xillarini yonma-yon qo'y. Qaysilarining jufti bor ekan?",
+       "doska": "⚽🧸⚽🎈"
+      }
+     ]
+    },
+    {
+     "name": "Bir xil shakllar",
+     "goal": "Bola bir xil rasmlarni topadi, «bir xil» va «har xil» so'zlarini tushunadi",
+     "intro": "Bip-bip! Bugun ko'zlarimiz sehrli! Qara: 🔴🟦🔴🔺. Ba'zi rasmlar egizakdek bir xil. Qani, ularni topamiz!",
+     "items": [
+      {
+       "say": "Bir xil",
+       "uz": "egizakdek o'xshash",
+       "emoji": "🔴🔴",
+       "explain": "Qara: 🔴 qizil doira va yana 🔴 qizil doira. Ikkalasi bir xil — rangi ham, shakli ham bir xil! Bir xil narsalar xuddi egizaklardek.",
+       "action": "Ikki kaftingni birlashtir — ular ham bir xil!"
+      },
+      {
+       "say": "Har xil",
+       "uz": "bir-biriga o'xshamaydi",
+       "emoji": "🔴🟦",
+       "explain": "Endi qara: 🔴 qizil doira va 🟦 ko'k kvadrat. Ular har xil! Biri boshqasiga o'xshamaydi.",
+       "action": "Boshingni chayqa: «Yo'q, bir xil emas!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🔴 Xuddi shunday rasmni top!",
+       "options": [
+        "🔴 qizil doira",
+        "🟦 ko'k kvadrat"
+       ],
+       "answer": 0,
+       "why": "Barakalla! 🔴 va 🔴 — bir xil."
+      },
+      {
+       "q": "🟦 Xuddi shunday rasmni top!",
+       "options": [
+        "🔺 uchburchak",
+        "🟦 ko'k kvadrat"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! 🟦 va 🟦 — bir xil."
+      },
+      {
+       "q": "🔺 Xuddi shunday rasmni top!",
+       "options": [
+        "⭐ yulduz",
+        "🔺 uchburchak"
+       ],
+       "answer": 1,
+       "why": "Ofarin! 🔺 va 🔺 — bir xil."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Egizaklarni top",
+       "matn": "O'yin! Qo'llaringni ko'tar — ikkalasi bir xil! Endi oyoqlaringga qara — ular ham bir xil!",
+       "doska": "🔴🟦🔴🔺"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Nima bilan nima?",
+   "emoji": "🧦",
+   "lessons": [
+    {
+     "name": "Kim nima yeydi?",
+     "goal": "Bola bir-biriga mos narsalarni topadi va nima uchun mosligini aytadi",
+     "intro": "Bip-bip! Har narsaning o'z do'sti bor. 🐰 kimni qidiryapti ekan? Qani, juftini topamiz!",
+     "items": [
+      {
+       "say": "Quyon va sabzi",
+       "uz": "quyon sabzi yeydi",
+       "emoji": "🐰🥕",
+       "explain": "Quyon sabzini juda yaxshi ko'radi: qirs-qirs! Shuning uchun quyon va sabzi — juftlik."
+      },
+      {
+       "say": "Kuchuk va suyak",
+       "uz": "kuchuk suyak g'ajiydi",
+       "emoji": "🐶🦴",
+       "explain": "Kuchukcha suyakni g'ajishni yaxshi ko'radi. Kuchuk va suyak — juftlik!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐰 + ❓ Nima mos keladi?",
+       "options": [
+        "🥕 sabzi",
+        "🧸 ayiqcha"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Quyon sabzi yeydi."
+      },
+      {
+       "q": "🐶 + ❓ Nima mos keladi?",
+       "options": [
+        "🎈 shar",
+        "🦴 suyak"
+       ],
+       "answer": 1,
+       "why": "Zo'r! Kuchuk suyak g'ajiydi."
+      },
+      {
+       "q": "🐒 + ❓ Nima mos keladi?",
+       "options": [
+        "⚽ to'p",
+        "🍌 banan"
+       ],
+       "answer": 1,
+       "why": "Qoyil! Maymun banan yeydi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Juftini top",
+       "matn": "O'yin! Men bir narsani aytaman, sen uning juftini ko'rsat: 🐰 — ? 🐶 — ? Topding! Qarsak chal!",
+       "doska": "🐰 ➡️ 🥕\n🐶 ➡️ 🦴"
+      }
+     ]
+    },
+    {
+     "name": "Narsalar jufti",
+     "goal": "Bola bir-biriga mos narsalarni topadi va nima uchun mosligini aytadi",
+     "intro": "Bip-bip! Har narsaning o'z do'sti bor. 🧦 kimni qidiryapti ekan? Qani, juftini topamiz!",
+     "items": [
+      {
+       "say": "Paypoq va krossovka",
+       "uz": "paypoqdan keyin krossovka kiyamiz",
+       "emoji": "🧦👟",
+       "explain": "Avval paypoq kiyamiz, keyin krossovka. Ular doim birga — juftlik!"
+      },
+      {
+       "say": "Qoshiq va likopcha",
+       "uz": "qoshiq bilan likopchadan yeymiz",
+       "emoji": "🥄🍽️",
+       "explain": "Likopchada osh bor, qoshiq bilan yeymiz. Qoshiq va likopcha — juftlik!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🧦 + ❓ Nima mos keladi?",
+       "options": [
+        "🍎 olma",
+        "👟 krossovka"
+       ],
+       "answer": 1,
+       "why": "Zo'r! Paypoqdan keyin krossovka kiyamiz."
+      },
+      {
+       "q": "🥄 + ❓ Nima mos keladi?",
+       "options": [
+        "🚗 mashina",
+        "🍽️ likopcha"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Qoshiq bilan likopchadan yeymiz."
+      },
+      {
+       "q": "🔑 + ❓ Nima mos keladi?",
+       "options": [
+        "🍌 banan",
+        "🔒 qulf"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Kalit qulfni ochadi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Juftini top",
+       "matn": "O'yin! Men bir narsani aytaman, sen uning juftini ko'rsat: 🧦 — ? 🥄 — ? Topding! Qarsak chal!",
+       "doska": "🧦 ➡️ 👟\n🥄 ➡️ 🍽️"
+      }
+     ]
+    },
+    {
+     "name": "Kim qayerda yashaydi?",
+     "goal": "Bola bir-biriga mos narsalarni topadi va nima uchun mosligini aytadi",
+     "intro": "Bip-bip! Har narsaning o'z do'sti bor. 🐟 kimni qidiryapti ekan? Qani, juftini topamiz!",
+     "items": [
+      {
+       "say": "Baliq va dengiz",
+       "uz": "baliq suvda suzadi",
+       "emoji": "🐟🌊",
+       "explain": "Baliqcha suvda yashaydi va suzadi. Suvsiz baliq yashay olmaydi. Baliq va dengiz — juftlik!"
+      },
+      {
+       "say": "Qushcha va uya",
+       "uz": "qushcha uyada yashaydi",
+       "emoji": "🐦🪺",
+       "explain": "Qushcha daraxtda uya quradi va unda yashaydi. Qush va uya — juftlik!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐟 + ❓ Nima mos keladi?",
+       "options": [
+        "🏠 uy",
+        "🌊 dengiz"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Baliq suvda suzadi."
+      },
+      {
+       "q": "🐦 + ❓ Nima mos keladi?",
+       "options": [
+        "🌊 dengiz",
+        "🪺 uya"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Qushcha uyada yashaydi."
+      },
+      {
+       "q": "🐝 + ❓ Nima mos keladi?",
+       "options": [
+        "🧊 muz",
+        "🌸 gul"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Ari guldan shira oladi."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Juftini top",
+       "matn": "O'yin! Men bir narsani aytaman, sen uning juftini ko'rsat: 🐟 — ? 🐦 — ? Topding! Qarsak chal!",
+       "doska": "🐟 ➡️ 🌊\n🐦 ➡️ 🪺"
+      }
+     ]
+    },
+    {
+     "name": "Nima bilan nima qilamiz?",
+     "goal": "Bola bir-biriga mos narsalarni topadi va nima uchun mosligini aytadi",
+     "intro": "Bip-bip! Har narsaning o'z do'sti bor. ✏️ kimni qidiryapti ekan? Qani, juftini topamiz!",
+     "items": [
+      {
+       "say": "Qalam va daftar",
+       "uz": "qalam bilan daftarga chizamiz",
+       "emoji": "✏️📒",
+       "explain": "Qalamni olib, daftarga chiroyli rasm chizamiz. Qalam va daftar — juftlik!"
+      },
+      {
+       "say": "Tish cho'tkasi va tish",
+       "uz": "cho'tka bilan tish yuvamiz",
+       "emoji": "🪥🦷",
+       "explain": "Ertalab va kechqurun tish cho'tkasi bilan tishlarimizni yuvamiz. Cho'tka va tish — juftlik!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "✏️ + ❓ Nima mos keladi?",
+       "options": [
+        "🍉 tarvuz",
+        "📒 daftar"
+       ],
+       "answer": 1,
+       "why": "Zo'r! Qalam bilan daftarga chizamiz."
+      },
+      {
+       "q": "🪥 + ❓ Nima mos keladi?",
+       "options": [
+        "🎈 shar",
+        "🦷 tish"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Cho'tka bilan tish yuvamiz."
+      },
+      {
+       "q": "☂️ + ❓ Nima mos keladi?",
+       "options": [
+        "🔥 olov",
+        "🌧️ yomg'ir"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Yomg'irda soyabon ochamiz."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧩 Juftini top",
+       "matn": "O'yin! Men bir narsani aytaman, sen uning juftini ko'rsat: ✏️ — ? 🪥 — ? Topding! Qarsak chal!",
+       "doska": "✏️ ➡️ 📒\n🪥 ➡️ 🦷"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Kattami, kichikmi?",
+   "emoji": "🐘",
+   "lessons": [
+    {
+     "name": "Kim katta?",
+     "goal": "Bola narsalarni katta-kichik va og'ir-yengil bo'yicha solishtiradi",
+     "intro": "Bip-bip! Qara: 🐘 va 🐭. Ular bir xil emas! Qani, solishtiramiz!",
+     "items": [
+      {
+       "say": "Katta",
+       "uz": "ko'p joy egallaydi",
+       "emoji": "🐘",
+       "explain": "🐘 fil — katta! Qo'llaringni keng och: mana shunday kat-ta!",
+       "action": "Qo'llaringni keng ochib ko'rsat: kat-ta!"
+      },
+      {
+       "say": "Kichik",
+       "uz": "kaftga sig'adi",
+       "emoji": "🐭",
+       "explain": "🐭 sichqon — kichkina. Kaftingga sig'adigan darajada kichkina!",
+       "action": "Barmoqlaring bilan ko'rsat: mitti!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐘 🐭 Qaysi biri katta?",
+       "options": [
+        "🐘 fil",
+        "🐭 sichqon"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Fil — katta!"
+      },
+      {
+       "q": "🐻 🐰 Qaysi biri katta?",
+       "options": [
+        "🐻 ayiq",
+        "🐰 quyon"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Ayiq — katta!"
+      },
+      {
+       "q": "🦒 🐥 Qaysi biri katta?",
+       "options": [
+        "🐥 jo'ja",
+        "🦒 jirafa"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Jirafa — katta!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Katta-kichik o'yini",
+       "matn": "O'yin! Men «katta» desam — qo'llaringni yuqoriga ko'tarib, katta bo'l. «Kichik» desam — cho'kkalab, kichkina bo'l! Katta! Kichik! Katta!",
+       "doska": "🐘 ⬆️\n🐭 ⬇️"
+      }
+     ]
+    },
+    {
+     "name": "Kim kichik?",
+     "goal": "Bola narsalarni katta-kichik va og'ir-yengil bo'yicha solishtiradi",
+     "intro": "Bip-bip! Qara: 🐭 va 🐘. Ular bir xil emas! Qani, solishtiramiz!",
+     "items": [
+      {
+       "say": "Katta",
+       "uz": "ko'p joy egallaydi",
+       "emoji": "🐘",
+       "explain": "🐘 fil — katta! Qo'llaringni keng och: mana shunday kat-ta!",
+       "action": "Qo'llaringni keng ochib ko'rsat: kat-ta!"
+      },
+      {
+       "say": "Kichik",
+       "uz": "kaftga sig'adi",
+       "emoji": "🐭",
+       "explain": "🐭 sichqon — kichkina. Kaftingga sig'adigan darajada kichkina!",
+       "action": "Barmoqlaring bilan ko'rsat: mitti!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐭 🐘 Qaysi biri kichik?",
+       "options": [
+        "🐭 sichqon",
+        "🐘 fil"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Sichqon — kichkina!"
+      },
+      {
+       "q": "🐥 🐔 Qaysi biri kichik?",
+       "options": [
+        "🐔 tovuq",
+        "🐥 jo'ja"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Jo'ja — kichkina!"
+      },
+      {
+       "q": "🍒 🍉 Qaysi biri kichik?",
+       "options": [
+        "🍒 gilos",
+        "🍉 tarvuz"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Gilos — kichkina!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Katta-kichik o'yini",
+       "matn": "O'yin! Men «katta» desam — qo'llaringni yuqoriga ko'tarib, katta bo'l. «Kichik» desam — cho'kkalab, kichkina bo'l! Katta! Kichik! Katta!",
+       "doska": "🐭 ⬆️\n🐘 ⬇️"
+      }
+     ]
+    },
+    {
+     "name": "Og'ir va yengil",
+     "goal": "Bola narsalarni katta-kichik va og'ir-yengil bo'yicha solishtiradi",
+     "intro": "Bip-bip! Qara: 🍉 va 🪶. Ular bir xil emas! Qani, solishtiramiz!",
+     "items": [
+      {
+       "say": "Og'ir",
+       "uz": "ko'tarish qiyin",
+       "emoji": "🍉",
+       "explain": "🍉 tarvuz — og'ir. Uni ko'tarish qiyin: uh-uh! Ikki qo'l bilan zo'rg'a ko'taramiz.",
+       "action": "Og'ir narsani ko'targandek qil: uh!"
+      },
+      {
+       "say": "Yengil",
+       "uz": "bir barmoq bilan ko'tarsa bo'ladi",
+       "emoji": "🪶",
+       "explain": "🪶 pat — yengil. Uni bir barmoq bilan ko'tarsa bo'ladi, puflasang — uchib ketadi!",
+       "action": "Puflab ko'r: puf-f!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍉 🪶 Qaysi biri og'ir?",
+       "options": [
+        "🪶 pat",
+        "🍉 tarvuz"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Tarvuz — og'ir!"
+      },
+      {
+       "q": "🪨 🎈 Qaysi biri og'ir?",
+       "options": [
+        "🪨 tosh",
+        "🎈 shar"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Tosh — og'ir!"
+      },
+      {
+       "q": "🐘 🦋 Qaysi biri og'ir?",
+       "options": [
+        "🦋 kapalak",
+        "🐘 fil"
+       ],
+       "answer": 1,
+       "why": "Qoyil! Fil — og'ir!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Katta-kichik o'yini",
+       "matn": "O'yin! Men «katta» desam — qo'llaringni yuqoriga ko'tarib, katta bo'l. «Kichik» desam — cho'kkalab, kichkina bo'l! Katta! Kichik! Katta!",
+       "doska": "🍉 ⬆️\n🪶 ⬇️"
+      }
+     ]
+    },
+    {
+     "name": "Katta-kichik oila",
+     "goal": "Bola narsalarni katta-kichik va og'ir-yengil bo'yicha solishtiradi",
+     "intro": "Bip-bip! Qara: 🐔 va 🐥. Ular bir xil emas! Qani, solishtiramiz!",
+     "items": [
+      {
+       "say": "Katta",
+       "uz": "ko'p joy egallaydi",
+       "emoji": "🐔",
+       "explain": "🐔 tovuq — katta! Qo'llaringni keng och: mana shunday kat-ta!",
+       "action": "Qo'llaringni keng ochib ko'rsat: kat-ta!"
+      },
+      {
+       "say": "Kichik",
+       "uz": "kaftga sig'adi",
+       "emoji": "🐥",
+       "explain": "🐥 jo'ja — kichkina. Kaftingga sig'adigan darajada kichkina!",
+       "action": "Barmoqlaring bilan ko'rsat: mitti!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐔 🐥 Qaysi biri katta?",
+       "options": [
+        "🐔 tovuq",
+        "🐥 jo'ja"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Tovuq — katta!"
+      },
+      {
+       "q": "🌳 🌱 Qaysi biri katta?",
+       "options": [
+        "🌳 daraxt",
+        "🌱 nihol"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Daraxt — katta!"
+      },
+      {
+       "q": "🚌 🚲 Qaysi biri katta?",
+       "options": [
+        "🚌 avtobus",
+        "🚲 velosiped"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Avtobus — katta!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Katta-kichik o'yini",
+       "matn": "O'yin! Men «katta» desam — qo'llaringni yuqoriga ko'tarib, katta bo'l. «Kichik» desam — cho'kkalab, kichkina bo'l! Katta! Kichik! Katta!",
+       "doska": "🐔 ⬆️\n🐥 ⬇️"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Naqshni davom ettir",
+   "emoji": "🔴",
+   "lessons": [
+    {
+     "name": "Qizil va ko'k naqsh",
+     "goal": "Bola ikki rasm navbatlashadigan naqshni ko'radi va keyingisini topadi",
+     "intro": "Bip-bip! Qara, qanday chiroyli qator: 🔴🔵🔴🔵. Rasmlar navbat bilan turibdi. Keyingisi kim ekan?",
+     "items": [
+      {
+       "say": "Naqsh",
+       "uz": "takrorlanib turadigan qator",
+       "emoji": "🔴🔵🔴🔵",
+       "explain": "Qara: qizil doira, ko'k doira, qizil doira, ko'k doira. Bu — naqsh! Naqshda rasmlar navbat bilan takrorlanadi.",
+       "action": "Men bilan ayt: qizil doira, ko'k doira, qizil doira, ko'k doira!"
+      },
+      {
+       "say": "Navbat",
+       "uz": "biri, keyin boshqasi",
+       "emoji": "🔴➡️🔵",
+       "explain": "qizil doiradan keyin doim ko'k doira keladi. ko'k doiradan keyin esa — yana qizil doira. Ular navbat bilan turadi!",
+       "action": "Qarsak, dupur, qarsak, dupur — sen ham navbat bilan qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🔴🔵🔴🔵❓ Keyingisi qaysi?",
+       "options": [
+        "🔵 ko'k doira",
+        "🔴 qizil doira"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Keyingisi — qizil doira."
+      },
+      {
+       "q": "🔵🔴🔵🔴❓ Keyingisi qaysi?",
+       "options": [
+        "🔴 qizil doira",
+        "🔵 ko'k doira"
+       ],
+       "answer": 1,
+       "why": "Qoyil! Keyingisi — ko'k doira."
+      },
+      {
+       "q": "🔴🔵🔴❓ Keyingisi qaysi?",
+       "options": [
+        "🔵 ko'k doira",
+        "🔴 qizil doira"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Keyingisi — ko'k doira."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak naqshi",
+       "matn": "O'yin! Qarsak, dupur, qarsak, dupur! Endi sen davom ettir: qarsak... nima? Dupur! Barakalla!",
+       "doska": "👏🦶👏🦶❓"
+      }
+     ]
+    },
+    {
+     "name": "Mevali naqsh",
+     "goal": "Bola ikki rasm navbatlashadigan naqshni ko'radi va keyingisini topadi",
+     "intro": "Bip-bip! Qara, qanday chiroyli qator: 🍎🍌🍎🍌. Rasmlar navbat bilan turibdi. Keyingisi kim ekan?",
+     "items": [
+      {
+       "say": "Naqsh",
+       "uz": "takrorlanib turadigan qator",
+       "emoji": "🍎🍌🍎🍌",
+       "explain": "Qara: olma, banan, olma, banan. Bu — naqsh! Naqshda rasmlar navbat bilan takrorlanadi.",
+       "action": "Men bilan ayt: olma, banan, olma, banan!"
+      },
+      {
+       "say": "Navbat",
+       "uz": "biri, keyin boshqasi",
+       "emoji": "🍎➡️🍌",
+       "explain": "olmadan keyin doim banan keladi. banandan keyin esa — yana olma. Ular navbat bilan turadi!",
+       "action": "Qarsak, dupur, qarsak, dupur — sen ham navbat bilan qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍎🍌🍎🍌❓ Keyingisi qaysi?",
+       "options": [
+        "🍎 olma",
+        "🍌 banan"
+       ],
+       "answer": 0,
+       "why": "Zo'r! Keyingisi — olma."
+      },
+      {
+       "q": "🍌🍎🍌🍎❓ Keyingisi qaysi?",
+       "options": [
+        "🍌 banan",
+        "🍎 olma"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Keyingisi — banan."
+      },
+      {
+       "q": "🍎🍌🍎❓ Keyingisi qaysi?",
+       "options": [
+        "🍎 olma",
+        "🍌 banan"
+       ],
+       "answer": 1,
+       "why": "Qoyil! Keyingisi — banan."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak naqshi",
+       "matn": "O'yin! Qarsak, dupur, qarsak, dupur! Endi sen davom ettir: qarsak... nima? Dupur! Barakalla!",
+       "doska": "👏🦶👏🦶❓"
+      }
+     ]
+    },
+    {
+     "name": "Hayvonli naqsh",
+     "goal": "Bola ikki rasm navbatlashadigan naqshni ko'radi va keyingisini topadi",
+     "intro": "Bip-bip! Qara, qanday chiroyli qator: 🐱🐶🐱🐶. Rasmlar navbat bilan turibdi. Keyingisi kim ekan?",
+     "items": [
+      {
+       "say": "Naqsh",
+       "uz": "takrorlanib turadigan qator",
+       "emoji": "🐱🐶🐱🐶",
+       "explain": "Qara: mushuk, kuchuk, mushuk, kuchuk. Bu — naqsh! Naqshda rasmlar navbat bilan takrorlanadi.",
+       "action": "Men bilan ayt: mushuk, kuchuk, mushuk, kuchuk!"
+      },
+      {
+       "say": "Navbat",
+       "uz": "biri, keyin boshqasi",
+       "emoji": "🐱➡️🐶",
+       "explain": "mushukdan keyin doim kuchuk keladi. kuchukdan keyin esa — yana mushuk. Ular navbat bilan turadi!",
+       "action": "Qarsak, dupur, qarsak, dupur — sen ham navbat bilan qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱🐶🐱🐶❓ Keyingisi qaysi?",
+       "options": [
+        "🐶 kuchuk",
+        "🐱 mushuk"
+       ],
+       "answer": 1,
+       "why": "Qoyil! Keyingisi — mushuk."
+      },
+      {
+       "q": "🐶🐱🐶🐱❓ Keyingisi qaysi?",
+       "options": [
+        "🐶 kuchuk",
+        "🐱 mushuk"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Keyingisi — kuchuk."
+      },
+      {
+       "q": "🐱🐶🐱❓ Keyingisi qaysi?",
+       "options": [
+        "🐶 kuchuk",
+        "🐱 mushuk"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Keyingisi — kuchuk."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak naqshi",
+       "matn": "O'yin! Qarsak, dupur, qarsak, dupur! Endi sen davom ettir: qarsak... nima? Dupur! Barakalla!",
+       "doska": "👏🦶👏🦶❓"
+      }
+     ]
+    },
+    {
+     "name": "Kun va tun naqshi",
+     "goal": "Bola ikki rasm navbatlashadigan naqshni ko'radi va keyingisini topadi",
+     "intro": "Bip-bip! Qara, qanday chiroyli qator: ☀️🌙☀️🌙. Rasmlar navbat bilan turibdi. Keyingisi kim ekan?",
+     "items": [
+      {
+       "say": "Naqsh",
+       "uz": "takrorlanib turadigan qator",
+       "emoji": "☀️🌙☀️🌙",
+       "explain": "Qara: quyosh, oy, quyosh, oy. Bu — naqsh! Naqshda rasmlar navbat bilan takrorlanadi.",
+       "action": "Men bilan ayt: quyosh, oy, quyosh, oy!"
+      },
+      {
+       "say": "Navbat",
+       "uz": "biri, keyin boshqasi",
+       "emoji": "☀️➡️🌙",
+       "explain": "quyoshdan keyin doim oy keladi. oydan keyin esa — yana quyosh. Ular navbat bilan turadi!",
+       "action": "Qarsak, dupur, qarsak, dupur — sen ham navbat bilan qil!"
+      }
+     ],
+     "tests": [
+      {
+       "q": "☀️🌙☀️🌙❓ Keyingisi qaysi?",
+       "options": [
+        "☀️ quyosh",
+        "🌙 oy"
+       ],
+       "answer": 0,
+       "why": "Zo'r! Keyingisi — quyosh."
+      },
+      {
+       "q": "🌙☀️🌙☀️❓ Keyingisi qaysi?",
+       "options": [
+        "☀️ quyosh",
+        "🌙 oy"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Keyingisi — oy."
+      },
+      {
+       "q": "☀️🌙☀️❓ Keyingisi qaysi?",
+       "options": [
+        "🌙 oy",
+        "☀️ quyosh"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Keyingisi — oy."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak naqshi",
+       "matn": "O'yin! Qarsak, dupur, qarsak, dupur! Endi sen davom ettir: qarsak... nima? Dupur! Barakalla!",
+       "doska": "👏🦶👏🦶❓"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ortiqchasini top",
+   "emoji": "🙅",
+   "lessons": [
+    {
+     "name": "Mevalar va bitta begona",
+     "goal": "Bola uchta rasm ichidan boshqalarga o'xshamaydiganini topadi",
+     "intro": "Bip-bip! Qara: 🍎🍐🚗. Bittasi adashib qolibdi! Qaysi biri boshqalarga o'xshamaydi?",
+     "items": [
+      {
+       "say": "Guruh",
+       "uz": "bir turdagi narsalar",
+       "emoji": "🍎🍐",
+       "explain": "Olma va nok — ikkalasi ham meva. Ular bitta guruh, bitta oila!",
+       "action": "Qo'llaringni bir-biriga qo'shib, «oila» de!"
+      },
+      {
+       "say": "Ortiqcha",
+       "uz": "guruhga kirmaydi",
+       "emoji": "🚗",
+       "explain": "🚗 mashina esa meva emas. U bu guruhga kirmaydi. Demak, mashina — ortiqcha!",
+       "action": "Barmog'ingni silkit: «Sen bizdan emassan!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🍎🚗🍐 Qaysi biri ortiqcha?",
+       "options": [
+        "🚗 mashina",
+        "🍎 olma"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Mashina — meva emas."
+      },
+      {
+       "q": "🍌⚽🍇 Qaysi biri ortiqcha?",
+       "options": [
+        "⚽ to'p",
+        "🍌 banan"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! To'p — meva emas."
+      },
+      {
+       "q": "🍒🐶🍎 Qaysi biri ortiqcha?",
+       "options": [
+        "🍒 gilos",
+        "🐶 kuchuk"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kuchuk — meva emas."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Savatga yig'amiz",
+       "matn": "O'yin! Savatga faqat meva solamiz. Men aytaman, sen «ha» yoki «yo'q» de: 🍎 — ha! 🚗 — yo'q! 🍐 — ha!",
+       "doska": "🧺 🍎🍐\n🙅 🚗"
+      }
+     ]
+    },
+    {
+     "name": "Hayvonlar va bitta begona",
+     "goal": "Bola uchta rasm ichidan boshqalarga o'xshamaydiganini topadi",
+     "intro": "Bip-bip! Qara: 🐱🐶🎈. Bittasi adashib qolibdi! Qaysi biri boshqalarga o'xshamaydi?",
+     "items": [
+      {
+       "say": "Guruh",
+       "uz": "bir turdagi narsalar",
+       "emoji": "🐱🐶",
+       "explain": "Mushuk va kuchuk — ikkalasi ham hayvon. Ular bitta guruh, bitta oila!",
+       "action": "Qo'llaringni bir-biriga qo'shib, «oila» de!"
+      },
+      {
+       "say": "Ortiqcha",
+       "uz": "guruhga kirmaydi",
+       "emoji": "🎈",
+       "explain": "🎈 shar esa hayvon emas. U bu guruhga kirmaydi. Demak, shar — ortiqcha!",
+       "action": "Barmog'ingni silkit: «Sen bizdan emassan!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🐱🎈🐶 Qaysi biri ortiqcha?",
+       "options": [
+        "🐱 mushuk",
+        "🎈 shar"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Shar — hayvon emas."
+      },
+      {
+       "q": "🐰🍎🐻 Qaysi biri ortiqcha?",
+       "options": [
+        "🐰 quyon",
+        "🍎 olma"
+       ],
+       "answer": 1,
+       "why": "Qoyil! Olma — hayvon emas."
+      },
+      {
+       "q": "🐘🚌🐭 Qaysi biri ortiqcha?",
+       "options": [
+        "🐘 fil",
+        "🚌 avtobus"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Avtobus — hayvon emas."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Savatga yig'amiz",
+       "matn": "O'yin! Savatga faqat hayvon solamiz. Men aytaman, sen «ha» yoki «yo'q» de: 🐱 — ha! 🎈 — yo'q! 🐶 — ha!",
+       "doska": "🧺 🐱🐶\n🙅 🎈"
+      }
+     ]
+    },
+    {
+     "name": "Transport va bitta begona",
+     "goal": "Bola uchta rasm ichidan boshqalarga o'xshamaydiganini topadi",
+     "intro": "Bip-bip! Qara: 🚗🚌🍌. Bittasi adashib qolibdi! Qaysi biri boshqalarga o'xshamaydi?",
+     "items": [
+      {
+       "say": "Guruh",
+       "uz": "bir turdagi narsalar",
+       "emoji": "🚗🚌",
+       "explain": "Mashina va avtobus — ikkalasi ham transport. Ular bitta guruh, bitta oila!",
+       "action": "Qo'llaringni bir-biriga qo'shib, «oila» de!"
+      },
+      {
+       "say": "Ortiqcha",
+       "uz": "guruhga kirmaydi",
+       "emoji": "🍌",
+       "explain": "🍌 banan esa transport emas. U bu guruhga kirmaydi. Demak, banan — ortiqcha!",
+       "action": "Barmog'ingni silkit: «Sen bizdan emassan!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "🚗🍌🚌 Qaysi biri ortiqcha?",
+       "options": [
+        "🚗 mashina",
+        "🍌 banan"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Banan — transport emas."
+      },
+      {
+       "q": "🚂🐱✈️ Qaysi biri ortiqcha?",
+       "options": [
+        "🐱 mushuk",
+        "🚂 poyezd"
+       ],
+       "answer": 0,
+       "why": "Qoyil! Mushuk — transport emas."
+      },
+      {
+       "q": "🚲🧸⛵ Qaysi biri ortiqcha?",
+       "options": [
+        "🧸 ayiqcha",
+        "🚲 velosiped"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Ayiqcha — transport emas."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Savatga yig'amiz",
+       "matn": "O'yin! Savatga faqat transport solamiz. Men aytaman, sen «ha» yoki «yo'q» de: 🚗 — ha! 🍌 — yo'q! 🚌 — ha!",
+       "doska": "🧺 🚗🚌\n🙅 🍌"
+      }
+     ]
+    },
+    {
+     "name": "Kiyimlar va bitta begona",
+     "goal": "Bola uchta rasm ichidan boshqalarga o'xshamaydiganini topadi",
+     "intro": "Bip-bip! Qara: 👕👖🐟. Bittasi adashib qolibdi! Qaysi biri boshqalarga o'xshamaydi?",
+     "items": [
+      {
+       "say": "Guruh",
+       "uz": "bir turdagi narsalar",
+       "emoji": "👕👖",
+       "explain": "Ko'ylak va shim — ikkalasi ham kiyim. Ular bitta guruh, bitta oila!",
+       "action": "Qo'llaringni bir-biriga qo'shib, «oila» de!"
+      },
+      {
+       "say": "Ortiqcha",
+       "uz": "guruhga kirmaydi",
+       "emoji": "🐟",
+       "explain": "🐟 baliq esa kiyim emas. U bu guruhga kirmaydi. Demak, baliq — ortiqcha!",
+       "action": "Barmog'ingni silkit: «Sen bizdan emassan!»"
+      }
+     ],
+     "tests": [
+      {
+       "q": "👕🐟👖 Qaysi biri ortiqcha?",
+       "options": [
+        "👕 ko'ylak",
+        "🐟 baliq"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Baliq — kiyim emas."
+      },
+      {
+       "q": "🧦🍎🧢 Qaysi biri ortiqcha?",
+       "options": [
+        "🧦 paypoq",
+        "🍎 olma"
+       ],
+       "answer": 1,
+       "why": "Zo'r! Olma — kiyim emas."
+      },
+      {
+       "q": "🧥🚗🧣 Qaysi biri ortiqcha?",
+       "options": [
+        "🧥 kurtka",
+        "🚗 mashina"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! Mashina — kiyim emas."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Savatga yig'amiz",
+       "matn": "O'yin! Savatga faqat kiyim solamiz. Men aytaman, sen «ha» yoki «yo'q» de: 👕 — ha! 🐟 — yo'q! 👖 — ha!",
+       "doska": "🧺 👕👖\n🙅 🐟"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
