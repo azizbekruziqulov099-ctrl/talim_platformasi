@@ -1,0 +1,478 @@
+{
+ "subject": "Rus tili",
+ "lang": "ru",
+ "age": "2-3 yosh",
+ "book_title": "Привет, друг! 2–3 yosh",
+ "prefix": "RU",
+ "units": [
+  {
+   "name": "Kun tartibi",
+   "emoji": "⏰",
+   "lessons": [
+    {
+     "name": "Yuvinamiz",
+     "goal": "Bola qo'l va tish yuvish iboralarini tushunadi",
+     "intro": "Bip-bip! Ali hovlida o'ynadi. Voy, qo'llari kir! Laylo shirinlik yedi. Endi nima qilamiz? Yuvinamiz!",
+     "items": [
+      {
+       "say": "Помой руки!",
+       "uz": "qo'lingni yuv",
+       "emoji": "🧼",
+       "image": "en23-u9-wash-your-hands.png",
+       "image_prompt": "ALI washing his hands with soap bubbles at a small sink, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ishqala — shir-shir-shir!",
+       "rom": "Pomoy ruki!"
+      },
+      {
+       "say": "Почисти зубы!",
+       "uz": "tishingni yuv",
+       "emoji": "🪥",
+       "image": "en23-u9-brush-your-teeth.png",
+       "image_prompt": "LAYLO brushing her teeth with a big smile, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Barmog'ing bilan tishingni «yuv» — chik-chik-chik!",
+       "rom": "Pochisti zuby!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Yuvinish qo'shig'i",
+       "matn": "Qani, kuylaymiz! [ru]Моем, моем, моем руки![/ru] Shir-shir! [ru]Чистим, чистим, чистим зубы![/ru] Chik-chik! Endi sen ayt: [ru]Помой руки![/ru]",
+       "doska": "🧼 Моем, моем, моем руки!\n🪥 Чистим, чистим, чистим зубы!",
+       "sodda": "Qo'llaringni ishqala va ayt: [ru]Моем![/ru]",
+       "boshqa_usul": "Ovqatdan oldin qo'l yuvayotganda onang bilan birga [ru]Помой руки![/ru] deb kuyla."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali qo'llari kir. U nima qiladi?",
+       "options": [
+        "🧼 Помой руки!",
+        "🪥 Почисти зубы!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Kir qo'lni yuvamiz: [ru]Помой руки![/ru] Shir-shir!"
+      },
+      {
+       "q": "Laylo shirinlik yedi. Endi tishini yuvadi. Nima deymiz?",
+       "options": [
+        "🧼 Помой руки!",
+        "🪥 Почисти зубы!"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Tishni yuvamiz: [ru]Почисти зубы![/ru] Chik-chik!"
+      }
+     ]
+    },
+    {
+     "name": "Ovqatlanamiz",
+     "goal": "Bola есть va пить so'zlarini farqlaydi",
+     "intro": "Bip-bip! Qo'llar toza! Endi dasturxonga o'tiramiz. Ali non yeydi, Laylo sut ichadi. Mazali!",
+     "items": [
+      {
+       "say": "есть",
+       "uz": "ye",
+       "emoji": "🍽️",
+       "image": "en23-u9-eat.png",
+       "image_prompt": "ALI eating soup with a spoon at a little table, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiq bilan yegandek qil — am-am-am!",
+       "rom": "est"
+      },
+      {
+       "say": "пить",
+       "uz": "ich",
+       "emoji": "🥛",
+       "image": "en23-u9-drink.png",
+       "image_prompt": "LAYLO drinking water from a cup, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Piyoladan ichgandek qil — g'ult-g'ult!",
+       "rom": "pit"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Yeymizmi, ichamizmi?",
+       "matn": "Men aytaman, sen top! [ru]Хлеб[/ru] — non. [ru]Ешь![/ru] Am-am! [ru]Молоко[/ru] — sut. [ru]Пей![/ru] G'ult-g'ult! [ru]Вода[/ru]-chi? Endi sen ayt: [ru]Пей![/ru]",
+       "doska": "🍞 хлеб — есть\n🥛 молоко — пить\n💧 вода — пить",
+       "sodda": "Am-am — [ru]есть[/ru]! G'ult-g'ult — [ru]пить[/ru]!",
+       "boshqa_usul": "Kechki ovqatda dadang bilan har luqmada [ru]есть[/ru], har qultumda [ru]пить[/ru] deb o'yna."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali nonni nima qiladi?",
+       "options": [
+        "🥛 пить",
+        "🍞 есть"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Nonni yeymiz: [ru]есть[/ru]. Am-am!"
+      },
+      {
+       "q": "Laylo suvni nima qiladi?",
+       "options": [
+        "💧 пить",
+        "🍞 есть"
+       ],
+       "answer": 0,
+       "why": "Zo'r! Suvni ichamiz: [ru]пить[/ru]. G'ult-g'ult!"
+      }
+     ]
+    },
+    {
+     "name": "Uxlaymiz",
+     "goal": "Bola спать va кровать so'zlarini aytadi",
+     "intro": "Bip-bip! Kun tugadi, osmonda oy chiqdi. Ali esnayapti. Ayiqcha ham charchadi. Qayerga boramiz?",
+     "items": [
+      {
+       "say": "спать",
+       "uz": "uxla",
+       "emoji": "😴",
+       "image": "en23-u9-sleep.png",
+       "image_prompt": "ALI sleeping peacefully, hugging a teddy bear, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni yonog'ingga qo'y, ko'zingni yum — xrr-xrr!",
+       "rom": "spat"
+      },
+      {
+       "say": "кровать",
+       "uz": "karavot",
+       "emoji": "🛏️",
+       "image": "en23-u9-bed.png",
+       "image_prompt": "a cozy small bed with a pillow and a blanket, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Polga yot, xuddi karavotda yotgandek!",
+       "rom": "krovat"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🌙 Alla qo'shig'i",
+       "matn": "Sekin kuylaymiz. [ru]Кровать, кровать, кровать[/ru] — ayiqcha karavotga yotdi. [ru]Спать, спать, спать[/ru] — xrr-xrr. [ru]Спокойной ночи![/ru] Endi sen ayt: [ru]Спи![/ru]",
+       "doska": "🛏️ Кровать, кровать, кровать\n😴 Спать, спать, спать\n🌙 Спокойной ночи!",
+       "sodda": "Ko'zingni yum va ayt: [ru]Спи![/ru]",
+       "boshqa_usul": "Yotishdan oldin ayiqchani karavotga yotqizib, onang bilan [ru]Спи, мишка! Спокойной ночи![/ru] de."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali charchadi, esnayapti. U nima qiladi?",
+       "options": [
+        "😴 спать",
+        "🥛 пить"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Charchasak uxlaymiz: [ru]спать[/ru]. Xrr-xrr!"
+      },
+      {
+       "q": "Ayiqcha qayerda uxlaydi?",
+       "options": [
+        "🍞 хлеб",
+        "🛏️ кровать"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Ayiqcha karavotda uxlaydi: [ru]кровать[/ru]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Harakat qilamiz",
+   "emoji": "🤸",
+   "lessons": [
+    {
+     "name": "Sakra va yugur",
+     "goal": "Bola buyruqni eshitib harakat qiladi",
+     "intro": "Bip-bip! Tong otdi, uyg'on! Kabuning batareykasi to'la. Sen ham tayyormisan? O'rningdan tur!",
+     "items": [
+      {
+       "say": "прыгать",
+       "uz": "sakra",
+       "emoji": "🦘",
+       "image": "en23-u10-jump.png",
+       "image_prompt": "ALI jumping high with both feet off the ground, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ikki oyoqlab joyingda sakra — hop-hop!",
+       "rom": "prygat"
+      },
+      {
+       "say": "бегать",
+       "uz": "yugur",
+       "emoji": "🏃",
+       "image": "en23-u10-run.png",
+       "image_prompt": "LAYLO running happily, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda tez-tez yugur — tap-tap-tap!",
+       "rom": "begat"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Kabu buyuradi",
+       "matn": "Quloq sol, bajar! [ru]Прыгай![/ru] Hop! [ru]Беги![/ru] Tap-tap! [ru]Прыг, прыг, прыг![/ru] Uf, charchadik! [ru]Спи![/ru] Xrr... Bip-bip, tur! Endi sen buyur: [ru]Прыгай![/ru]",
+       "doska": "🦘 Прыгай!\n🏃 Беги!\n😴 Спи!",
+       "sodda": "Kabu bilan birga sakra: [ru]Прыгай![/ru] Hop!",
+       "boshqa_usul": "Hovlida dadang [ru]Прыгай![/ru] yoki [ru]Беги![/ru] desin, sen bajar, keyin sen buyur."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyoncha hop-hop qilyapti. Bu nima?",
+       "options": [
+        "🦘 прыгать",
+        "🏃 бегать"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Hop-hop — [ru]прыгать[/ru]. Sakrayapti!"
+      },
+      {
+       "q": "Ali to'pga qarab tez-tez boryapti. Tap-tap-tap!",
+       "options": [
+        "🦘 прыгать",
+        "🏃 бегать"
+       ],
+       "answer": 1,
+       "why": "Zo'r! Tez-tez boramiz — [ru]бегать[/ru]. Yuguryapti!"
+      }
+     ]
+    },
+    {
+     "name": "Qarsak va raqs",
+     "goal": "Bola хлопать va танцевать ni bajaradi",
+     "intro": "Bip-bip! Musiqa chalyapti! Laylo qarsak chalyapti, Ali aylanib raqs tushyapti. Sen ham qo'shil!",
+     "items": [
+      {
+       "say": "хлопать",
+       "uz": "qarsak chal",
+       "emoji": "👏",
+       "image": "en23-u10-clap.png",
+       "image_prompt": "LAYLO clapping her hands, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qarsak chal — chap-chap-chap!",
+       "rom": "khlopat"
+      },
+      {
+       "say": "танцевать",
+       "uz": "raqs tush",
+       "emoji": "💃",
+       "image": "en23-u10-dance.png",
+       "image_prompt": "ALI dancing joyfully, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ko'tarib aylan, raqs tush!",
+       "rom": "tantsevat"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Bayram qo'shig'i",
+       "matn": "Kuylaymiz, o'ynaymiz! [ru]Хлоп, хлоп, хлоп![/ru] Chap-chap! [ru]Прыг, прыг, прыг![/ru] Hop-hop! [ru]Танцуем, танцуем, танцуем![/ru] Barakalla! Endi sen ayt va qil: [ru]Хлопай![/ru]",
+       "doska": "👏 Хлоп, хлоп, хлоп!\n🦘 Прыг, прыг, прыг!\n💃 Танцуем, танцуем, танцуем!",
+       "sodda": "Qarsak chal va ayt: [ru]Хлопай![/ru]",
+       "boshqa_usul": "Uyda qo'shiq qo'yib, buvijon bilan [ru]Хлопай![/ru] va [ru]Танцуй![/ru] deb o'yna."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Chap-chap-chap! Laylo nima qilyapti?",
+       "options": [
+        "💃 танцевать",
+        "👏 хлопать"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Chap-chap — [ru]хлопать[/ru]. Qarsak chalyapti!"
+      },
+      {
+       "q": "Ali musiqaga aylanib o'ynayapti. Bu nima?",
+       "options": [
+        "💃 танцевать",
+        "😴 спать"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Musiqaga o'ynaymiz — [ru]танцевать[/ru]!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Hissiyot va odob",
+   "emoji": "😊",
+   "lessons": [
+    {
+     "name": "Xursand va xafa",
+     "goal": "Bola весёлый va грустный ni yuzdan taniydi",
+     "intro": "Bip-bip! Qara, Laylo kulyapti. Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
+     "items": [
+      {
+       "say": "весёлый",
+       "uz": "xursand",
+       "emoji": "😊",
+       "image": "en23-u11-happy.png",
+       "image_prompt": "LAYLO with a big happy smile, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Katta-katta jilmay!",
+       "rom": "vesyolyy"
+      },
+      {
+       "say": "грустный",
+       "uz": "xafa",
+       "emoji": "😢",
+       "image": "en23-u11-sad.png",
+       "image_prompt": "ALI looking sad with a small tear, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Lablaringni pastga qil, xafa bo'lgandek qil.",
+       "rom": "grustnyy"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Yuzni top",
+       "matn": "Kabu yuz ko'rsatadi, sen top! 😊 — [ru]весёлый[/ru]! 😢 — [ru]грустный[/ru]. Voy, Ali to'pini topdi! Endi u qanday? Endi sen ayt: [ru]Весёлый![/ru]",
+       "doska": "😊 весёлый\n😢 грустный\n⚽ Али — весёлый!",
+       "sodda": "Jilmay va ayt: [ru]Весёлый![/ru]",
+       "boshqa_usul": "Ko'zguga qarab onang bilan jilmayib [ru]весёлый[/ru], xafa bo'lib [ru]грустный[/ru] deb o'yna."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali yig'layapti. U qanday?",
+       "options": [
+        "😊 весёлый",
+        "😢 грустный"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Yig'lasak xafamiz — [ru]грустный[/ru]. Alini quchoqlaymiz!"
+      },
+      {
+       "q": "Laylo raqs tushib kulyapti. U qanday?",
+       "options": [
+        "😊 весёлый",
+        "😢 грустный"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kulsak xursandmiz — [ru]весёлый[/ru]!"
+      }
+     ]
+    },
+    {
+     "name": "Iltimos va kechirasan",
+     "goal": "Bola odob so'zlarini aytadi",
+     "intro": "Bip-bip! Sehrli so'z esingdami? [ru]Спасибо![/ru] — rahmat. Bugun yana ikkita sehrli so'z o'rganamiz!",
+     "items": [
+      {
+       "say": "Пожалуйста!",
+       "uz": "iltimos",
+       "emoji": "🤲",
+       "image": "en23-u11-please.png",
+       "image_prompt": "LAYLO politely holding out her hands, asking for a cookie, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ikki qo'lingni oldinga cho'z, chiroyli so'ra.",
+       "rom": "Pozhaluysta!"
+      },
+      {
+       "say": "Прости!",
+       "uz": "kechirasan",
+       "emoji": "🙇",
+       "image": "en23-u11-sorry.png",
+       "image_prompt": "ALI saying sorry to LAYLO after bumping into her, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'yib, boshingni egib ol.",
+       "rom": "Prosti!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Ali va Laylo",
+       "matn": "Laylo so'raydi: [ru]Торт, пожалуйста![/ru] Buvijon beradi. Laylo: [ru]Спасибо![/ru] Ali Layloga urilib ketdi. Ali: [ru]Прости![/ru] Hamma xursand! Endi sen ayt: [ru]Пожалуйста![/ru]",
+       "doska": "🍰 Торт, пожалуйста!\n🙏 Спасибо!\n🙇 Прости!",
+       "sodda": "Qo'lingni cho'z va ayt: [ru]Пожалуйста![/ru]",
+       "boshqa_usul": "Bugun uyda nimadir so'rasang [ru]пожалуйста[/ru], xato qilsang [ru]прости[/ru] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo olma so'rayapti. Nima deydi?",
+       "options": [
+        "🤲 Пожалуйста!",
+        "🙇 Прости!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! So'raganda [ru]Пожалуйста![/ru] deymiz — iltimos."
+      },
+      {
+       "q": "Ali Layloning qo'g'irchog'ini tushirib yubordi. Nima deydi?",
+       "options": [
+        "🤲 Пожалуйста!",
+        "🙇 Прости!"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Xato qilsak [ru]Прости![/ru] deymiz — kechirasan."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "Смотри!",
+  "listen": "Послушай и повтори:",
+  "again": "Ещё раз!",
+  "good": [
+   "Молодец!",
+   "Молодец!",
+   "Здорово!",
+   "Супер!",
+   "Отлично!"
+  ],
+  "remember": "Помнишь?",
+  "together": "Скажем вместе!",
+  "your_turn": "Твоя очередь!",
+  "game": "Время игры!",
+  "ready": "Готовы? Начали!",
+  "found": "Отлично! Ты всё нашёл!",
+  "today": "Сегодня мы выучили:",
+  "bye": "До завтра!",
+  "which": "Где здесь: {w}?",
+  "find": "Найди картинку: {w}",
+  "where": "Где это: {w}?",
+  "what": "Посмотри на картинку. Что это?",
+  "yes": "Да! {w}",
+  "old": "🔁 Старый вопрос",
+  "play": "Давай играть!",
+  "roleplay": "Давай разыграем сценку!",
+  "says": "{r} говорит:",
+  "now_you": "А теперь скажи ты:",
+  "hello_friends": "Привет, друзья!",
+  "listen_short": "Послушай:",
+  "listen_bang": "Слушай!",
+  "repeat_me": "Повторяй за мной:",
+  "now_you_short": "Теперь ты:",
+  "say": "Скажи:",
+  "one_more": "Ещё разок:",
+  "look_listen": "Смотри и слушай:",
+  "point_game": "Я говорю, а ты показываешь на картинку: {names}.",
+  "t_point": "🎲 Покажи!",
+  "t_today": "🌟 Сегодня мы выучили",
+  "t_remember": "Запомни:",
+  "t_last_year": "В прошлом году",
+  "welcome_back": "Привет, друзья! С возвращением! Давайте вспомним слова, которые мы выучили в прошлом году.",
+  "t_review": "повторение",
+  "review_intro": "День повторения! Давай вспомним всё из этого раздела. Каждый правильный ответ — звёздочка!",
+  "say_with_me": "Скажи вместе со мной!",
+  "t_jump": "Прыгни или сядь!",
+  "jump": "Я говорю слово. Если видишь картинку — прыгай! Если нет — садись! Готовы? Начали!",
+  "played_great": "Молодец! Ты отлично играл!",
+  "t_review_q": "Вопрос на повторение",
+  "t_unit_done": "Раздел пройден!",
+  "unit_done": "Замечательно! Ты прошёл этот раздел. Начинаем новое приключение!",
+  "t_party": "Большой праздник!",
+  "party": "Большой праздник",
+  "party_intro": "Ура! Сегодня большой праздник! Ты прошёл всю книгу. Давай вспомним любимые слова и соберём звёздочки!",
+  "know_all": "Ты всё знаешь!",
+  "t_party_q": "Праздничный вопрос",
+  "t_champion": "Ты чемпион!",
+  "champion": "Ты чемпион! Теперь ты знаешь всё. Открой любой урок снова и играй!",
+  "t_roleplay": "Ролевая игра",
+  "roles_line": "Я — {a}, а ты — {b}.",
+  "change_roles": "А теперь меняемся ролями!",
+  "great_role": "Ты отличный {r}!",
+  "t_well_done": "🌟 Молодец!",
+  "scenario_done": "Теперь ты умеешь: {name}! Поиграй в это ещё раз дома с семьёй."
+ }
+}

@@ -1,0 +1,478 @@
+{
+ "subject": "Yapon tili",
+ "lang": "ja",
+ "age": "2-3 yosh",
+ "book_title": "こんにちは、ともだち！ 2–3 yosh",
+ "prefix": "JA",
+ "units": [
+  {
+   "name": "Kun tartibi",
+   "emoji": "⏰",
+   "lessons": [
+    {
+     "name": "Yuvinamiz",
+     "goal": "Bola qo'l va tish yuvish iboralarini tushunadi",
+     "intro": "Bip-bip! Ali hovlida o'ynadi. Voy, qo'llari kir! Laylo shirinlik yedi. Endi nima qilamiz? Yuvinamiz!",
+     "items": [
+      {
+       "say": "てを あらって！",
+       "uz": "qo'lingni yuv",
+       "emoji": "🧼",
+       "image": "en23-u9-wash-your-hands.png",
+       "image_prompt": "ALI washing his hands with soap bubbles at a small sink, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ishqala — shir-shir-shir!",
+       "rom": "Te o aratte!"
+      },
+      {
+       "say": "はを みがいて！",
+       "uz": "tishingni yuv",
+       "emoji": "🪥",
+       "image": "en23-u9-brush-your-teeth.png",
+       "image_prompt": "LAYLO brushing her teeth with a big smile, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Barmog'ing bilan tishingni «yuv» — chik-chik-chik!",
+       "rom": "Ha o migaite!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Yuvinish qo'shig'i",
+       "matn": "Qani, kuylaymiz! [ja]あらって、あらって、てを あらおう！[/ja] Shir-shir! [ja]ごしごし、ごしごし、はを みがこう！[/ja] Chik-chik! Endi sen ayt: [ja]てを あらって！[/ja]",
+       "doska": "🧼 あらって、あらって、てを あらおう！\n🪥 ごしごし、ごしごし、はを みがこう！",
+       "sodda": "Qo'llaringni ishqala va ayt: [ja]あらって！[/ja]",
+       "boshqa_usul": "Ovqatdan oldin qo'l yuvayotganda onang bilan birga [ja]てを あらって！[/ja] deb kuyla."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali qo'llari kir. U nima qiladi?",
+       "options": [
+        "🧼 てを あらって！",
+        "🪥 はを みがいて！"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Kir qo'lni yuvamiz: [ja]てを あらって！[/ja] Shir-shir!"
+      },
+      {
+       "q": "Laylo shirinlik yedi. Endi tishini yuvadi. Nima deymiz?",
+       "options": [
+        "🧼 てを あらって！",
+        "🪥 はを みがいて！"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Tishni yuvamiz: [ja]はを みがいて！[/ja] Chik-chik!"
+      }
+     ]
+    },
+    {
+     "name": "Ovqatlanamiz",
+     "goal": "Bola たべる va のむ so'zlarini farqlaydi",
+     "intro": "Bip-bip! Qo'llar toza! Endi dasturxonga o'tiramiz. Ali non yeydi, Laylo sut ichadi. Mazali!",
+     "items": [
+      {
+       "say": "たべる",
+       "uz": "ye",
+       "emoji": "🍽️",
+       "image": "en23-u9-eat.png",
+       "image_prompt": "ALI eating soup with a spoon at a little table, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiq bilan yegandek qil — am-am-am!",
+       "rom": "taberu"
+      },
+      {
+       "say": "のむ",
+       "uz": "ich",
+       "emoji": "🥛",
+       "image": "en23-u9-drink.png",
+       "image_prompt": "LAYLO drinking water from a cup, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Piyoladan ichgandek qil — g'ult-g'ult!",
+       "rom": "nomu"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Yeymizmi, ichamizmi?",
+       "matn": "Men aytaman, sen top! [ja]パン[/ja] — non. [ja]たべて！[/ja] Am-am! [ja]ミルク[/ja] — sut. [ja]のんで！[/ja] G'ult-g'ult! [ja]みず[/ja]-chi? Endi sen ayt: [ja]のんで！[/ja]",
+       "doska": "🍞 パン — たべる\n🥛 ぎゅうにゅう — のむ\n💧 みず — のむ",
+       "sodda": "Am-am — [ja]たべる[/ja]! G'ult-g'ult — [ja]のむ[/ja]!",
+       "boshqa_usul": "Kechki ovqatda dadang bilan har luqmada [ja]たべる[/ja], har qultumda [ja]のむ[/ja] deb o'yna."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali nonni nima qiladi?",
+       "options": [
+        "🥛 のむ",
+        "🍞 たべる"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Nonni yeymiz: [ja]たべる[/ja]. Am-am!"
+      },
+      {
+       "q": "Laylo suvni nima qiladi?",
+       "options": [
+        "💧 のむ",
+        "🍞 たべる"
+       ],
+       "answer": 0,
+       "why": "Zo'r! Suvni ichamiz: [ja]のむ[/ja]. G'ult-g'ult!"
+      }
+     ]
+    },
+    {
+     "name": "Uxlaymiz",
+     "goal": "Bola ねる va ベッド so'zlarini aytadi",
+     "intro": "Bip-bip! Kun tugadi, osmonda oy chiqdi. Ali esnayapti. Ayiqcha ham charchadi. Qayerga boramiz?",
+     "items": [
+      {
+       "say": "ねる",
+       "uz": "uxla",
+       "emoji": "😴",
+       "image": "en23-u9-sleep.png",
+       "image_prompt": "ALI sleeping peacefully, hugging a teddy bear, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni yonog'ingga qo'y, ko'zingni yum — xrr-xrr!",
+       "rom": "neru"
+      },
+      {
+       "say": "ベッド",
+       "uz": "karavot",
+       "emoji": "🛏️",
+       "image": "en23-u9-bed.png",
+       "image_prompt": "a cozy small bed with a pillow and a blanket, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Polga yot, xuddi karavotda yotgandek!",
+       "rom": "beddo"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🌙 Alla qo'shig'i",
+       "matn": "Sekin kuylaymiz. [ja]ベッド、ベッド、ベッド[/ja] — ayiqcha karavotga yotdi. [ja]ねんね、ねんね、ねんね[/ja] — xrr-xrr. [ja]おやすみ！[/ja] Endi sen ayt: [ja]ねんね！[/ja]",
+       "doska": "🛏️ ベッド、ベッド、ベッド\n😴 ねんね、ねんね、ねんね\n🌙 おやすみ！",
+       "sodda": "Ko'zingni yum va ayt: [ja]ねんね！[/ja]",
+       "boshqa_usul": "Yotishdan oldin ayiqchani karavotga yotqizib, onang bilan [ja]ねんね、くまちゃん！おやすみ！[/ja] de."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali charchadi, esnayapti. U nima qiladi?",
+       "options": [
+        "😴 ねる",
+        "🥛 のむ"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Charchasak uxlaymiz: [ja]ねる[/ja]. Xrr-xrr!"
+      },
+      {
+       "q": "Ayiqcha qayerda uxlaydi?",
+       "options": [
+        "🍞 パン",
+        "🛏️ ベッド"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Ayiqcha karavotda uxlaydi: [ja]ベッド[/ja]."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Harakat qilamiz",
+   "emoji": "🤸",
+   "lessons": [
+    {
+     "name": "Sakra va yugur",
+     "goal": "Bola buyruqni eshitib harakat qiladi",
+     "intro": "Bip-bip! Tong otdi, uyg'on! Kabuning batareykasi to'la. Sen ham tayyormisan? O'rningdan tur!",
+     "items": [
+      {
+       "say": "ジャンプ",
+       "uz": "sakra",
+       "emoji": "🦘",
+       "image": "en23-u10-jump.png",
+       "image_prompt": "ALI jumping high with both feet off the ground, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ikki oyoqlab joyingda sakra — hop-hop!",
+       "rom": "janpu"
+      },
+      {
+       "say": "はしる",
+       "uz": "yugur",
+       "emoji": "🏃",
+       "image": "en23-u10-run.png",
+       "image_prompt": "LAYLO running happily, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda tez-tez yugur — tap-tap-tap!",
+       "rom": "hashiru"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Kabu buyuradi",
+       "matn": "Quloq sol, bajar! [ja]ジャンプ！[/ja] Hop! [ja]はしれ！[/ja] Tap-tap! [ja]ジャンプ、ジャンプ、ジャンプ！[/ja] Uf, charchadik! [ja]ねんね！[/ja] Xrr... Bip-bip, tur! Endi sen buyur: [ja]ジャンプ！[/ja]",
+       "doska": "🦘 ジャンプ！\n🏃 はしって！\n😴 ねんね！",
+       "sodda": "Kabu bilan birga sakra: [ja]ジャンプ！[/ja] Hop!",
+       "boshqa_usul": "Hovlida dadang [ja]ジャンプ！[/ja] yoki [ja]はしれ！[/ja] desin, sen bajar, keyin sen buyur."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyoncha hop-hop qilyapti. Bu nima?",
+       "options": [
+        "🦘 ジャンプ",
+        "🏃 はしる"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Hop-hop — [ja]ジャンプ[/ja]. Sakrayapti!"
+      },
+      {
+       "q": "Ali to'pga qarab tez-tez boryapti. Tap-tap-tap!",
+       "options": [
+        "🦘 ジャンプ",
+        "🏃 はしる"
+       ],
+       "answer": 1,
+       "why": "Zo'r! Tez-tez boramiz — [ja]はしる[/ja]. Yuguryapti!"
+      }
+     ]
+    },
+    {
+     "name": "Qarsak va raqs",
+     "goal": "Bola てを たたく va おどる ni bajaradi",
+     "intro": "Bip-bip! Musiqa chalyapti! Laylo qarsak chalyapti, Ali aylanib raqs tushyapti. Sen ham qo'shil!",
+     "items": [
+      {
+       "say": "てを たたく",
+       "uz": "qarsak chal",
+       "emoji": "👏",
+       "image": "en23-u10-clap.png",
+       "image_prompt": "LAYLO clapping her hands, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qarsak chal — chap-chap-chap!",
+       "rom": "te o tataku"
+      },
+      {
+       "say": "おどる",
+       "uz": "raqs tush",
+       "emoji": "💃",
+       "image": "en23-u10-dance.png",
+       "image_prompt": "ALI dancing joyfully, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ko'tarib aylan, raqs tush!",
+       "rom": "odoru"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Bayram qo'shig'i",
+       "matn": "Kuylaymiz, o'ynaymiz! [ja]パチ、パチ、パチ！[/ja] Chap-chap! [ja]ジャンプ、ジャンプ、ジャンプ！[/ja] Hop-hop! [ja]おどろう、おどろう、おどろう！[/ja] Barakalla! Endi sen ayt va qil: [ja]パチパチ！[/ja]",
+       "doska": "👏 パチ、パチ、パチ！\n🦘 ジャンプ、ジャンプ、ジャンプ！\n💃 おどろう、おどろう、おどろう！",
+       "sodda": "Qarsak chal va ayt: [ja]パチパチ！[/ja]",
+       "boshqa_usul": "Uyda qo'shiq qo'yib, buvijon bilan [ja]パチパチ！[/ja] va [ja]おどって！[/ja] deb o'yna."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Chap-chap-chap! Laylo nima qilyapti?",
+       "options": [
+        "💃 おどる",
+        "👏 てを たたく"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Chap-chap — [ja]てを たたく[/ja]. Qarsak chalyapti!"
+      },
+      {
+       "q": "Ali musiqaga aylanib o'ynayapti. Bu nima?",
+       "options": [
+        "💃 おどる",
+        "😴 ねる"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Musiqaga o'ynaymiz — [ja]おどる[/ja]!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Hissiyot va odob",
+   "emoji": "😊",
+   "lessons": [
+    {
+     "name": "Xursand va xafa",
+     "goal": "Bola うれしい va かなしい ni yuzdan taniydi",
+     "intro": "Bip-bip! Qara, Laylo kulyapti. Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
+     "items": [
+      {
+       "say": "うれしい",
+       "uz": "xursand",
+       "emoji": "😊",
+       "image": "en23-u11-happy.png",
+       "image_prompt": "LAYLO with a big happy smile, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Katta-katta jilmay!",
+       "rom": "ureshii"
+      },
+      {
+       "say": "かなしい",
+       "uz": "xafa",
+       "emoji": "😢",
+       "image": "en23-u11-sad.png",
+       "image_prompt": "ALI looking sad with a small tear, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Lablaringni pastga qil, xafa bo'lgandek qil.",
+       "rom": "kanashii"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Yuzni top",
+       "matn": "Kabu yuz ko'rsatadi, sen top! 😊 — [ja]うれしい[/ja]! 😢 — [ja]かなしい[/ja]. Voy, Ali to'pini topdi! Endi u qanday? Endi sen ayt: [ja]うれしい！[/ja]",
+       "doska": "😊 うれしい\n😢 かなしい\n⚽ アリ — うれしい！",
+       "sodda": "Jilmay va ayt: [ja]うれしい！[/ja]",
+       "boshqa_usul": "Ko'zguga qarab onang bilan jilmayib [ja]うれしい[/ja], xafa bo'lib [ja]かなしい[/ja] deb o'yna."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali yig'layapti. U qanday?",
+       "options": [
+        "😊 うれしい",
+        "😢 かなしい"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Yig'lasak xafamiz — [ja]かなしい[/ja]. Alini quchoqlaymiz!"
+      },
+      {
+       "q": "Laylo raqs tushib kulyapti. U qanday?",
+       "options": [
+        "😊 うれしい",
+        "😢 かなしい"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Kulsak xursandmiz — [ja]うれしい[/ja]!"
+      }
+     ]
+    },
+    {
+     "name": "Iltimos va kechirasan",
+     "goal": "Bola odob so'zlarini aytadi",
+     "intro": "Bip-bip! Sehrli so'z esingdami? [ja]ありがとう！[/ja] — rahmat. Bugun yana ikkita sehrli so'z o'rganamiz!",
+     "items": [
+      {
+       "say": "おねがい！",
+       "uz": "iltimos",
+       "emoji": "🤲",
+       "image": "en23-u11-please.png",
+       "image_prompt": "LAYLO politely holding out her hands, asking for a cookie, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Ikki qo'lingni oldinga cho'z, chiroyli so'ra.",
+       "rom": "Onegai!"
+      },
+      {
+       "say": "ごめんね！",
+       "uz": "kechirasan",
+       "emoji": "🙇",
+       "image": "en23-u11-sorry.png",
+       "image_prompt": "ALI saying sorry to LAYLO after bumping into her, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'yib, boshingni egib ol.",
+       "rom": "Gomen ne!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Ali va Laylo",
+       "matn": "Laylo so'raydi: [ja]ケーキ、ください！[/ja] Buvijon beradi. Laylo: [ja]ありがとう！[/ja] Ali Layloga urilib ketdi. Ali: [ja]ごめんね！[/ja] Hamma xursand! Endi sen ayt: [ja]おねがい！[/ja]",
+       "doska": "🍰 ケーキ、ください！\n🙏 ありがとう！\n🙇 ごめんね！",
+       "sodda": "Qo'lingni cho'z va ayt: [ja]おねがい！[/ja]",
+       "boshqa_usul": "Bugun uyda nimadir so'rasang [ja]ください[/ja], xato qilsang [ja]ごめんね[/ja] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo olma so'rayapti. Nima deydi?",
+       "options": [
+        "🤲 おねがい！",
+        "🙇 ごめんね！"
+       ],
+       "answer": 0,
+       "why": "Barakalla! So'raganda [ja]おねがい！[/ja] deymiz — iltimos."
+      },
+      {
+       "q": "Ali Layloning qo'g'irchog'ini tushirib yubordi. Nima deydi?",
+       "options": [
+        "🤲 おねがい！",
+        "🙇 ごめんね！"
+       ],
+       "answer": 1,
+       "why": "Ofarin! Xato qilsak [ja]ごめんね！[/ja] deymiz — kechirasan."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "みて！",
+  "listen": "きいて、くりかえしてね：",
+  "again": "もう いちど！",
+  "good": [
+   "よく できました！",
+   "よく できました！",
+   "いいね！",
+   "すごい！",
+   "すばらしい！"
+  ],
+  "remember": "おぼえて いるかな？",
+  "together": "いっしょに いおう！",
+  "your_turn": "きみの ばん！",
+  "game": "ゲームの じかん！",
+  "ready": "じゅんびは いい？スタート！",
+  "found": "すごい！ぜんぶ みつけたね！",
+  "today": "きょう ならった こと：",
+  "bye": "また あしたね！",
+  "which": "どれかな：{w}？",
+  "find": "えを さがしてね：{w}",
+  "where": "どこかな：{w}？",
+  "what": "えを みて。これは なに？",
+  "yes": "そう！{w}",
+  "old": "🔁 まえの しつもん",
+  "play": "あそぼう！",
+  "roleplay": "やって みよう！",
+  "says": "{r}が いいます：",
+  "now_you": "こんどは きみが いってね：",
+  "hello_friends": "こんにちは、みんな！",
+  "listen_short": "きいてね：",
+  "listen_bang": "きいて！",
+  "repeat_me": "まねして いってね：",
+  "now_you_short": "こんどは きみ：",
+  "say": "いってね：",
+  "one_more": "もう いっかい：",
+  "look_listen": "みて、きいてね：",
+  "point_game": "ことばを いうから、えを ゆびさしてね：{names}。",
+  "t_point": "🎲 ゆびさしてね！",
+  "t_today": "🌟 きょう ならった こと",
+  "t_remember": "おぼえてね：",
+  "t_last_year": "きょねん",
+  "welcome_back": "こんにちは、みんな！おかえり！きょねん ならった ことばを おもいだそう。",
+  "t_review": "ふくしゅう",
+  "review_intro": "ふくしゅうの ひ！この ユニットを ぜんぶ おもいだそう。せいかいする たびに ほしが ひとつ！",
+  "say_with_me": "わたしと いっしょに いってね！",
+  "t_jump": "ジャンプか すわるか！",
+  "jump": "ことばを いうよ。えが あったら ジャンプ！なかったら すわってね！じゅんびは いい？スタート！",
+  "played_great": "よく できました！じょうずに あそべたね！",
+  "t_review_q": "ふくしゅうの しつもん",
+  "t_unit_done": "ユニット クリア！",
+  "unit_done": "すごい！この ユニットは おわり！あたらしい ぼうけんを はじめよう！",
+  "t_party": "おおきな パーティー！",
+  "party": "おおきな パーティー",
+  "party_intro": "やったー！きょうは おおきな パーティー！この ほんを ぜんぶ おわったね。すきな ことばを おもいだして、ほしを もらおう！",
+  "know_all": "ぜんぶ わかるね！",
+  "t_party_q": "パーティーの しつもん",
+  "t_champion": "きみは チャンピオン！",
+  "champion": "きみは チャンピオン！もう ぜんぶ わかるね。すきな レッスンを ひらいて また あそんでね！",
+  "t_roleplay": "ごっこあそび",
+  "roles_line": "わたしは {a}、あなたは {b}。",
+  "change_roles": "こんどは やくを こうたい！",
+  "great_role": "きみは すてきな {r}だね！",
+  "t_well_done": "🌟 よく できました！",
+  "scenario_done": "もう できるね：{name}！おうちで かぞくと また やって みてね。"
+ }
+}

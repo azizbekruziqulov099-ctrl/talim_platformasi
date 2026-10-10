@@ -1,0 +1,1131 @@
+{
+ "2-3": [
+  {
+   "unit_no_in_book": null,
+   "name": "Kun tartibi",
+   "image_unit": 9,
+   "lessons": [
+    {
+     "name": "Yuvinamiz",
+     "goal": "Bola qo'l va tish yuvish iboralarini tushunadi",
+     "items": [
+      {
+       "say": "Wash your hands!",
+       "uz": "qo'lingni yuv",
+       "image": "en23-u9-wash-your-hands.png",
+       "image_prompt": "ALI washing his hands with soap bubbles at a small sink, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Brush your teeth!",
+       "uz": "tishingni yuv",
+       "image": "en23-u9-brush-your-teeth.png",
+       "image_prompt": "LAYLO brushing her teeth with a big smile, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Ovqatlanamiz",
+     "goal": "Bola eat va drink so'zlarini farqlaydi",
+     "items": [
+      {
+       "say": "eat",
+       "uz": "ye",
+       "image": "en23-u9-eat.png",
+       "image_prompt": "ALI eating soup with a spoon at a little table, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "drink",
+       "uz": "ich",
+       "image": "en23-u9-drink.png",
+       "image_prompt": "LAYLO drinking water from a cup, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Uxlaymiz",
+     "goal": "Bola sleep va bed so'zlarini aytadi",
+     "items": [
+      {
+       "say": "sleep",
+       "uz": "uxla",
+       "image": "en23-u9-sleep.png",
+       "image_prompt": "ALI sleeping peacefully, hugging a teddy bear, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "bed",
+       "uz": "karavot",
+       "image": "en23-u9-bed.png",
+       "image_prompt": "a cozy small bed with a pillow and a blanket, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Harakat qilamiz",
+   "image_unit": 10,
+   "lessons": [
+    {
+     "name": "Sakra va yugur",
+     "goal": "Bola buyruqni eshitib harakat qiladi",
+     "items": [
+      {
+       "say": "jump",
+       "uz": "sakra",
+       "image": "en23-u10-jump.png",
+       "image_prompt": "ALI jumping high with both feet off the ground, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "run",
+       "uz": "yugur",
+       "image": "en23-u10-run.png",
+       "image_prompt": "LAYLO running happily, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Qarsak va raqs",
+     "goal": "Bola clap va dance ni bajaradi",
+     "items": [
+      {
+       "say": "clap",
+       "uz": "qarsak chal",
+       "image": "en23-u10-clap.png",
+       "image_prompt": "LAYLO clapping her hands, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "dance",
+       "uz": "raqs tush",
+       "image": "en23-u10-dance.png",
+       "image_prompt": "ALI dancing joyfully, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Hissiyot va odob",
+   "image_unit": 11,
+   "lessons": [
+    {
+     "name": "Xursand va xafa",
+     "goal": "Bola happy va sad ni yuzdan taniydi",
+     "items": [
+      {
+       "say": "happy",
+       "uz": "xursand",
+       "image": "en23-u11-happy.png",
+       "image_prompt": "LAYLO with a big happy smile, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "sad",
+       "uz": "xafa",
+       "image": "en23-u11-sad.png",
+       "image_prompt": "ALI looking sad with a small tear, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Iltimos va kechirasan",
+     "goal": "Bola odob so'zlarini aytadi",
+     "items": [
+      {
+       "say": "Please!",
+       "uz": "iltimos",
+       "image": "en23-u11-please.png",
+       "image_prompt": "LAYLO politely holding out her hands, asking for a cookie, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Sorry!",
+       "uz": "kechirasan",
+       "image": "en23-u11-sorry.png",
+       "image_prompt": "ALI saying sorry to LAYLO after bumping into her, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "4-5": [
+  {
+   "unit_no_in_book": null,
+   "name": "Odob va muloqot",
+   "image_unit": 12,
+   "lessons": [
+    {
+     "name": "Iltimos va rahmat",
+     "goal": "Bola odob so'zlarini o'rnida ishlatadi",
+     "items": [
+      {
+       "say": "Please!",
+       "uz": "iltimos",
+       "image": "en23-u11-please.png",
+       "image_prompt": null
+      },
+      {
+       "say": "Thank you!",
+       "uz": "rahmat",
+       "image": "en34-u1-thank-you.png",
+       "image_prompt": null
+      },
+      {
+       "say": "You're welcome.",
+       "uz": "arzimaydi",
+       "image": "en67-u7-youre-welcome.png",
+       "image_prompt": null
+      }
+     ]
+    },
+    {
+     "name": "Kechirasiz",
+     "goal": "Bola kechirim so'raydi va kechiradi",
+     "items": [
+      {
+       "say": "Excuse me!",
+       "uz": "kechirasiz (murojaat)",
+       "image": "en45-u12-excuse-me.png",
+       "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Sorry!",
+       "uz": "kechir",
+       "image": "en23-u11-sorry.png",
+       "image_prompt": null
+      },
+      {
+       "say": "That's OK.",
+       "uz": "hechqisi yo'q",
+       "image": "en45-u12-thats-ok.png",
+       "image_prompt": "LAYLO smiling and forgiving ALI, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Menga berasanmi?",
+     "goal": "Bola odob bilan narsa so'raydi va javob beradi",
+     "items": [
+      {
+       "say": "Can I have a ball, please?",
+       "uz": "koptokni bera olasanmi?",
+       "image": "en45-u12-can-i-have-a-ball-please.png",
+       "image_prompt": "ALI politely asking a teacher for a ball, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Here you are.",
+       "uz": "marhamat",
+       "image": "en67-u7-here-you-are.png",
+       "image_prompt": null
+      },
+      {
+       "say": "Yes, please.",
+       "uz": "ha, iltimos",
+       "image": "en45-u12-yes-please.png",
+       "image_prompt": "LAYLO nodding happily as she is offered an apple, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "No, thank you.",
+       "uz": "yo'q, rahmat",
+       "image": "en45-u12-no-thank-you.png",
+       "image_prompt": "LAYLO politely refusing a sweet with a smile, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Mening kunim",
+   "image_unit": 13,
+   "lessons": [
+    {
+     "name": "Ertalab",
+     "goal": "Bola ertalabki ishlarni aytadi",
+     "items": [
+      {
+       "say": "wake up",
+       "uz": "uyg'on",
+       "image": "en45-u13-wake-up.png",
+       "image_prompt": "ALI waking up and stretching in bed, morning sun in the window, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Good morning!",
+       "uz": "xayrli tong",
+       "image": "en34-u1-good-morning.png",
+       "image_prompt": null
+      },
+      {
+       "say": "breakfast",
+       "uz": "nonushta",
+       "image": "en45-u13-breakfast.png",
+       "image_prompt": "a breakfast table with bread, eggs, tea and milk, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Bog'chaga boraman",
+     "goal": "Bola kun haqida qisqa gap aytadi",
+     "items": [
+      {
+       "say": "I go to kindergarten.",
+       "uz": "bog'chaga boraman",
+       "image": "en45-u13-i-go-to-kindergarten.png",
+       "image_prompt": "LAYLO walking to kindergarten holding her mum's hand, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "bag",
+       "uz": "sumka",
+       "image": "en45-u13-bag.png",
+       "image_prompt": "a small kids' backpack, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Let's go!",
+       "uz": "ketdik",
+       "image": "en45-u13-lets-go.png",
+       "image_prompt": "ALI and LAYLO marching happily, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun",
+     "goal": "Bola kechki ishlar va uyqu iboralarini aytadi",
+     "items": [
+      {
+       "say": "dinner",
+       "uz": "kechki ovqat",
+       "image": "en45-u13-dinner.png",
+       "image_prompt": "a family dinner table with plov and salad, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "bath",
+       "uz": "cho'milish",
+       "image": "en45-u13-bath.png",
+       "image_prompt": "ALI having a bath with bubbles and a rubber duck, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "go to bed",
+       "uz": "uxlashga yot",
+       "image": "en45-u13-go-to-bed.png",
+       "image_prompt": "LAYLO going to bed, mum tucking her in, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Good night!",
+       "uz": "xayrli tun",
+       "image": "en34-u1-good-night.png",
+       "image_prompt": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Hissiyot va do'stlik",
+   "image_unit": 14,
+   "lessons": [
+    {
+     "name": "Qanday his qilyapsan?",
+     "goal": "Bola o'z his-tuyg'usini aytadi",
+     "items": [
+      {
+       "say": "How do you feel?",
+       "uz": "o'zingni qanday his qilyapsan?",
+       "image": "en45-u14-how-do-you-feel.png",
+       "image_prompt": "a kind teacher kneeling and gently asking LAYLO something, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I'm happy.",
+       "uz": "men xursandman",
+       "image": "en56-u8-i-am-happy.png",
+       "image_prompt": null
+      },
+      {
+       "say": "I'm sad.",
+       "uz": "men xafaman",
+       "image": "en23-u11-sad.png",
+       "image_prompt": null
+      },
+      {
+       "say": "angry",
+       "uz": "jahli chiqqan",
+       "image": "en45-u14-angry.png",
+       "image_prompt": "ALI looking angry with crossed arms and red cheeks, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Do'stim bo'l!",
+     "goal": "Bola do'stlik va navbat iboralarini ishlatadi",
+     "items": [
+      {
+       "say": "Be my friend!",
+       "uz": "do'stim bo'l",
+       "image": "en45-u14-be-my-friend.png",
+       "image_prompt": "LAYLO holding out her hand to a new girl, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Let's play together!",
+       "uz": "birga o'ynaymiz",
+       "image": "en45-u14-lets-play-together.png",
+       "image_prompt": "ALI, LAYLO and two other kids playing with a ball together, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "My turn!",
+       "uz": "mening navbatim",
+       "image": "en45-u14-my-turn.png",
+       "image_prompt": "ALI pointing to himself happily at the slide, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Your turn!",
+       "uz": "sening navbating",
+       "image": "en45-u14-your-turn.png",
+       "image_prompt": "ALI kindly giving the ball to LAYLO, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "6-7": [
+  {
+   "unit_no_in_book": null,
+   "name": "Mening kunim",
+   "image_unit": 11,
+   "lessons": [
+    {
+     "name": "Ertalab",
+     "goal": "Bola ertalabki ishlarini gap bilan aytadi",
+     "items": [
+      {
+       "say": "I get up.",
+       "uz": "men turaman",
+       "image": "en67-u11-i-get-up.png",
+       "image_prompt": "ALI getting out of bed in the morning, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I wash my face.",
+       "uz": "yuzimni yuvaman",
+       "image": "en67-u11-i-wash-my-face.png",
+       "image_prompt": "LAYLO washing her face at the sink, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I have breakfast.",
+       "uz": "nonushta qilaman",
+       "image": "en67-u11-i-have-breakfast.png",
+       "image_prompt": "ALI having breakfast with his family, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I get dressed.",
+       "uz": "kiyinaman",
+       "image": "en67-u11-i-get-dressed.png",
+       "image_prompt": "LAYLO putting on her dress, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Kunduzi",
+     "goal": "Bola kunduzgi ishlarini aytadi",
+     "items": [
+      {
+       "say": "I go to school.",
+       "uz": "maktabga boraman",
+       "image": "en67-u11-i-go-to-school.png",
+       "image_prompt": "ALI walking to school with a backpack, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I have lunch.",
+       "uz": "tushlik qilaman",
+       "image": "en67-u11-i-have-lunch.png",
+       "image_prompt": "LAYLO eating lunch at a kindergarten table, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I play with friends.",
+       "uz": "do'stlarim bilan o'ynayman",
+       "image": "en67-u11-i-play-with-friends.png",
+       "image_prompt": "ALI and LAYLO playing tag in the yard, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun",
+     "goal": "Bola kechki ishlarini aytadi",
+     "items": [
+      {
+       "say": "I do my homework.",
+       "uz": "uy vazifamni qilaman",
+       "image": "en67-u11-i-do-my-homework.png",
+       "image_prompt": "ALI drawing in a notebook at a desk, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I have dinner.",
+       "uz": "kechki ovqat qilaman",
+       "image": "en45-u13-dinner.png",
+       "image_prompt": null
+      },
+      {
+       "say": "I watch TV.",
+       "uz": "televizor ko'raman",
+       "image": "en67-u11-i-watch-tv.png",
+       "image_prompt": "LAYLO watching cartoons on TV on the sofa, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I go to bed.",
+       "uz": "uxlashga yotaman",
+       "image": "en45-u13-go-to-bed.png",
+       "image_prompt": null
+      }
+     ]
+    },
+    {
+     "name": "Soat necha?",
+     "goal": "Bola soatni aytadi",
+     "items": [
+      {
+       "say": "What time is it?",
+       "uz": "soat necha?",
+       "image": "en67-u11-what-time-is-it.png",
+       "image_prompt": "ALI looking up at a wall clock curiously, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "It's seven o'clock.",
+       "uz": "soat yetti",
+       "image": "en67-u11-its-seven-oclock.png",
+       "image_prompt": "a round wall clock showing seven o'clock (numerals allowed on the clock face only), soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "It's half past seven.",
+       "uz": "soat yetti yarim",
+       "image": "en67-u11-its-half-past-seven.png",
+       "image_prompt": "a round wall clock showing half past seven (numerals allowed on the clock face only), soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "watch",
+       "uz": "qo'l soat",
+       "image": "en67-u11-watch.png",
+       "image_prompt": "a kids' wristwatch, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Salomatlik",
+   "image_unit": 12,
+   "lessons": [
+    {
+     "name": "Nima bo'ldi?",
+     "goal": "Bola o'zini qanday his qilishini aytadi",
+     "items": [
+      {
+       "say": "What's the matter?",
+       "uz": "nima bo'ldi?",
+       "image": "en67-u12-whats-the-matter.png",
+       "image_prompt": "a caring mum kneeling and asking a sad ALI, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I'm sick.",
+       "uz": "men kasalman",
+       "image": "en67-u12-im-sick.png",
+       "image_prompt": "ALI in bed with a thermometer and a blanket, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I have a headache.",
+       "uz": "boshim og'riyapti",
+       "image": "en67-u12-i-have-a-headache.png",
+       "image_prompt": "ALI holding his head with a pained face, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I have a stomachache.",
+       "uz": "qornim og'riyapti",
+       "image": "en67-u12-i-have-a-stomachache.png",
+       "image_prompt": "LAYLO holding her tummy, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Shifokorda",
+     "goal": "Bola shifoxona so'zlarini aytadi",
+     "items": [
+      {
+       "say": "nurse",
+       "uz": "hamshira",
+       "image": "en67-u12-nurse.png",
+       "image_prompt": "a friendly nurse in a white uniform, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "medicine",
+       "uz": "dori",
+       "image": "en67-u12-medicine.png",
+       "image_prompt": "a medicine bottle and a spoon, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "thermometer",
+       "uz": "termometr",
+       "image": "en67-u12-thermometer.png",
+       "image_prompt": "a digital thermometer, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Get well soon!",
+       "uz": "tezroq tuzal",
+       "image": "en67-u12-get-well-soon.png",
+       "image_prompt": "LAYLO giving a get-well card with a heart to ALI in bed, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Sog'lom bo'lamiz",
+     "goal": "Bola sog'lom odatlarni aytadi",
+     "items": [
+      {
+       "say": "Eat fruit!",
+       "uz": "meva ye",
+       "image": "en67-u12-eat-fruit.png",
+       "image_prompt": "a bowl of fresh fruit, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Drink water!",
+       "uz": "suv ich",
+       "image": "en67-u12-drink-water.png",
+       "image_prompt": "LAYLO drinking a glass of water, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Sleep well!",
+       "uz": "yaxshi uxla",
+       "image": "en67-u12-sleep-well.png",
+       "image_prompt": "ALI sleeping peacefully under a starry window, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Wash your hands!",
+       "uz": "qo'lingni yuv",
+       "image": "en23-u9-wash-your-hands.png",
+       "image_prompt": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Shaharda",
+   "image_unit": 13,
+   "lessons": [
+    {
+     "name": "Shahar joylari",
+     "goal": "Bola shahar joylarini aytadi",
+     "items": [
+      {
+       "say": "park",
+       "uz": "bog'",
+       "image": "en67-u13-park.png",
+       "image_prompt": "a green city park with trees and benches, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "library",
+       "uz": "kutubxona",
+       "image": "en67-u13-library.png",
+       "image_prompt": "a cozy library with bookshelves, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "zoo",
+       "uz": "hayvonot bog'i",
+       "image": "en67-u13-zoo.png",
+       "image_prompt": "a zoo gate with animals behind it (no sign text), soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "bakery",
+       "uz": "novvoyxona",
+       "image": "en67-u13-bakery.png",
+       "image_prompt": "an Uzbek bakery with round non bread and a tandir oven, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Qayerda?",
+     "goal": "Bola joy so'zlarini ishlatadi",
+     "items": [
+      {
+       "say": "Where is the park?",
+       "uz": "bog' qayerda?",
+       "image": "en67-u13-where-is-the-park.png",
+       "image_prompt": "ALI holding a map, looking around curiously, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "next to",
+       "uz": "yonida",
+       "image": "en67-u13-next-to.png",
+       "image_prompt": "a cat sitting next to a box, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "behind",
+       "uz": "orqasida",
+       "image": "en67-u13-behind.png",
+       "image_prompt": "a cat hiding behind a box, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "in front of",
+       "uz": "oldida",
+       "image": "en67-u13-in-front-of.png",
+       "image_prompt": "a cat sitting in front of a box, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Yo'l ko'rsatamiz",
+     "goal": "Bola yo'nalishni aytadi",
+     "items": [
+      {
+       "say": "Turn left!",
+       "uz": "chapga buril",
+       "image": "en67-u13-turn-left.png",
+       "image_prompt": "ALI on a bike turning left, a big arrow pointing left, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Turn right!",
+       "uz": "o'ngga buril",
+       "image": "en67-u13-turn-right.png",
+       "image_prompt": "LAYLO on a scooter turning right, a big arrow pointing right, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Go straight!",
+       "uz": "to'g'riga yur",
+       "image": "en67-u13-go-straight.png",
+       "image_prompt": "a straight road with an arrow pointing forward, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "crossing",
+       "uz": "piyodalar o'tish joyi",
+       "image": "en67-u13-crossing.png",
+       "image_prompt": "a zebra crossing on a street, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Yo'l qoidalari",
+     "goal": "Bola yo'l qoidalarini aytadi",
+     "items": [
+      {
+       "say": "traffic light",
+       "uz": "svetofor",
+       "image": "en67-u11-traffic-light.png",
+       "image_prompt": null
+      },
+      {
+       "say": "Wait!",
+       "uz": "kut",
+       "image": "en67-u13-wait.png",
+       "image_prompt": "ALI waiting at a red traffic light holding his dad's hand, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Look left and right!",
+       "uz": "chapga va o'ngga qara",
+       "image": "en67-u13-look-left-and-right.png",
+       "image_prompt": "LAYLO looking left and right before crossing, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "bus stop",
+       "uz": "bekat",
+       "image": "en67-u13-bus-stop.png",
+       "image_prompt": "a bus stop with a bench, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Oshxona va mehmon",
+   "image_unit": 14,
+   "lessons": [
+    {
+     "name": "Salat tayyorlaymiz",
+     "goal": "Bola oshxona fe'llarini aytadi",
+     "items": [
+      {
+       "say": "Let's make a salad!",
+       "uz": "salat qilamiz",
+       "image": "en67-u14-lets-make-a-salad.png",
+       "image_prompt": "ALI and LAYLO with mum making a salad, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "cut",
+       "uz": "to'gra",
+       "image": "en67-u14-cut.png",
+       "image_prompt": "a grown-up cutting a cucumber on a board, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "mix",
+       "uz": "aralashtir",
+       "image": "en67-u14-mix.png",
+       "image_prompt": "LAYLO mixing salad in a bowl with a wooden spoon, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "bowl",
+       "uz": "kosa",
+       "image": "en67-u14-bowl.png",
+       "image_prompt": "an Uzbek blue-patterned bowl, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Dasturxon",
+     "goal": "Bola idishlarni aytadi",
+     "items": [
+      {
+       "say": "plate",
+       "uz": "likopcha",
+       "image": "en67-u14-plate.png",
+       "image_prompt": "a white plate, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "spoon",
+       "uz": "qoshiq",
+       "image": "en67-u14-spoon.png",
+       "image_prompt": "a spoon, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "fork",
+       "uz": "sanchqi",
+       "image": "en67-u14-fork.png",
+       "image_prompt": "a fork, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "cup",
+       "uz": "piyola",
+       "image": "en67-u14-cup.png",
+       "image_prompt": "an Uzbek blue-patterned tea cup (piyola), soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Mehmon kutamiz",
+     "goal": "Bola mehmonga taklif iboralarini aytadi",
+     "items": [
+      {
+       "say": "Would you like some tea?",
+       "uz": "choy ichasizmi?",
+       "image": "en67-u14-would-you-like-some-tea.png",
+       "image_prompt": "LAYLO offering tea in a piyola to a guest, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Yes, please.",
+       "uz": "ha, iltimos",
+       "image": "en45-u12-yes-please.png",
+       "image_prompt": null
+      },
+      {
+       "say": "No, thank you.",
+       "uz": "yo'q, rahmat",
+       "image": "en45-u12-no-thank-you.png",
+       "image_prompt": null
+      },
+      {
+       "say": "It's delicious!",
+       "uz": "juda mazali",
+       "image": "en67-u14-its-delicious.png",
+       "image_prompt": "ALI tasting food with a delighted face, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Hozir nima qilyapsan?",
+   "image_unit": 15,
+   "lessons": [
+    {
+     "name": "Men o'ynayapman",
+     "goal": "Bola hozirgi harakatini aytadi",
+     "items": [
+      {
+       "say": "What are you doing?",
+       "uz": "nima qilyapsan?",
+       "image": "en67-u15-what-are-you-doing.png",
+       "image_prompt": "mum looking into the room asking ALI, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I'm playing.",
+       "uz": "o'ynayapman",
+       "image": "en67-u15-im-playing.png",
+       "image_prompt": "ALI playing with blocks, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I'm reading.",
+       "uz": "o'qiyapman",
+       "image": "en67-u11-im-reading.png",
+       "image_prompt": null
+      },
+      {
+       "say": "I'm eating.",
+       "uz": "ovqatlanyapman",
+       "image": "en23-u9-eat.png",
+       "image_prompt": null
+      }
+     ]
+    },
+    {
+     "name": "U nima qilyapti?",
+     "goal": "Bola boshqalarning harakatini aytadi",
+     "items": [
+      {
+       "say": "He's sleeping.",
+       "uz": "u uxlayapti",
+       "image": "en23-u9-sleep.png",
+       "image_prompt": null
+      },
+      {
+       "say": "She's singing.",
+       "uz": "u kuylayapti",
+       "image": "en67-u11-shes-singing.png",
+       "image_prompt": null
+      },
+      {
+       "say": "They're running.",
+       "uz": "ular yugurishyapti",
+       "image": "en67-u15-theyre-running.png",
+       "image_prompt": "ALI and LAYLO running together in a park, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Hayvonlar nima qilyapti?",
+     "goal": "Bola hayvonlar harakatini aytadi",
+     "items": [
+      {
+       "say": "The cat is sleeping.",
+       "uz": "mushuk uxlayapti",
+       "image": "en67-u15-the-cat-is-sleeping.png",
+       "image_prompt": "a cat curled up asleep, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "The dog is running.",
+       "uz": "kuchuk yuguryapti",
+       "image": "en67-u15-the-dog-is-running.png",
+       "image_prompt": "a puppy running, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "The birds are singing.",
+       "uz": "qushlar sayrayapti",
+       "image": "en67-u15-the-birds-are-singing.png",
+       "image_prompt": "two birds singing on a branch, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "The fish is swimming.",
+       "uz": "baliq suzyapti",
+       "image": "en67-u11-the-fish-is-swimming.png",
+       "image_prompt": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Kecha nima qilding?",
+   "image_unit": 16,
+   "lessons": [
+    {
+     "name": "Kecha",
+     "goal": "Bola o'tgan kun haqida aytadi",
+     "items": [
+      {
+       "say": "What did you do yesterday?",
+       "uz": "kecha nima qilding?",
+       "image": "en67-u16-what-did-you-do-yesterday.png",
+       "image_prompt": "LAYLO asking ALI a question in the kindergarten yard, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I played football.",
+       "uz": "futbol o'ynadim",
+       "image": "en67-u6-play-football.png",
+       "image_prompt": null
+      },
+      {
+       "say": "I went to the park.",
+       "uz": "bog'ga bordim",
+       "image": "en67-u16-i-went-to-the-park.png",
+       "image_prompt": "ALI walking in a park with his dad, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Ko'rdim",
+     "goal": "Bola ko'rgan narsasini aytadi",
+     "items": [
+      {
+       "say": "I saw a rainbow.",
+       "uz": "kamalak ko'rdim",
+       "image": "en67-u16-i-saw-a-rainbow.png",
+       "image_prompt": "LAYLO pointing at a rainbow in the sky, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I saw a big dog.",
+       "uz": "katta it ko'rdim",
+       "image": "en67-u16-i-saw-a-big-dog.png",
+       "image_prompt": "ALI looking at a big friendly dog, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I ate ice cream.",
+       "uz": "muzqaymoq yedim",
+       "image": "en67-u16-i-ate-ice-cream.png",
+       "image_prompt": "LAYLO eating an ice cream cone, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Dam olish kuni",
+     "goal": "Bola dam olish kunini hikoya qiladi",
+     "items": [
+      {
+       "say": "I visited my granny.",
+       "uz": "buvimnikiga bordim",
+       "image": "en67-u16-i-visited-my-granny.png",
+       "image_prompt": "ALI hugging his granny at her door, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "We went to the zoo.",
+       "uz": "hayvonot bog'iga bordik",
+       "image": "en67-u16-we-went-to-the-zoo.png",
+       "image_prompt": "a family looking at a giraffe in a zoo, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "It was fun!",
+       "uz": "juda qiziq bo'ldi",
+       "image": "en67-u16-it-was-fun.png",
+       "image_prompt": "ALI and LAYLO laughing together, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "unit_no_in_book": null,
+   "name": "Ertaklar va bitiruv",
+   "image_unit": 17,
+   "lessons": [
+    {
+     "name": "Katta sholg'om",
+     "goal": "Bola ertakni tinglab qaytaradi",
+     "items": [
+      {
+       "say": "turnip",
+       "uz": "sholg'om",
+       "image": "en67-u17-turnip.png",
+       "image_prompt": "a giant turnip in a garden, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Pull, pull, pull!",
+       "uz": "tort, tort, tort",
+       "image": "en67-u17-pull-pull-pull.png",
+       "image_prompt": "grandpa, grandma, a girl, a dog, a cat and a mouse pulling a giant turnip in a line, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "mouse",
+       "uz": "sichqon",
+       "image": "en67-u17-mouse.png",
+       "image_prompt": "a tiny cute mouse, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Hooray!",
+       "uz": "hurro",
+       "image": "en67-u17-hooray.png",
+       "image_prompt": "the whole family cheering with the giant turnip pulled out, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Zumrad va Qimmat",
+     "goal": "Bola mehnatsevarlik haqidagi ertakni tinglaydi",
+     "items": [
+      {
+       "say": "She is kind.",
+       "uz": "u mehribon",
+       "image": "en67-u17-she-is-kind.png",
+       "image_prompt": "a kind girl in Uzbek dress helping an old man carry wood in a forest, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "She is lazy.",
+       "uz": "u dangasa",
+       "image": "en67-u17-she-is-lazy.png",
+       "image_prompt": "a girl in Uzbek dress lazily lying down refusing to help, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "forest",
+       "uz": "o'rmon",
+       "image": "en67-u17-forest.png",
+       "image_prompt": "a magical green forest, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "chest",
+       "uz": "sandiq",
+       "image": "en67-u17-chest.png",
+       "image_prompt": "an old decorated wooden chest, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Sher va sichqon",
+     "goal": "Bola ertak iboralarini aytadi",
+     "items": [
+      {
+       "say": "lion",
+       "uz": "sher",
+       "image": "en45-u4-lion.png",
+       "image_prompt": null
+      },
+      {
+       "say": "net",
+       "uz": "to'r",
+       "image": "en67-u17-net.png",
+       "image_prompt": "a lion caught in a hunter's rope net, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Help me!",
+       "uz": "menga yordam ber",
+       "image": "en67-u17-help-me.png",
+       "image_prompt": "a lion in a net calling for help, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "Thank you, little mouse!",
+       "uz": "rahmat, kichkina sichqon",
+       "image": "en67-u17-thank-you-little-mouse.png",
+       "image_prompt": "a happy lion smiling at a little mouse who chewed the net, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    },
+    {
+     "name": "Maktabga tayyorman!",
+     "goal": "Bola o'zini tanishtiradi va bitiruvni bayram qiladi",
+     "items": [
+      {
+       "say": "graduation",
+       "uz": "bitiruv",
+       "image": "en67-u17-graduation.png",
+       "image_prompt": "kids in graduation caps celebrating at a kindergarten, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "diploma",
+       "uz": "diplom",
+       "image": "en67-u17-diploma.png",
+       "image_prompt": "a rolled diploma with a ribbon, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "I'm ready for school!",
+       "uz": "maktabga tayyorman",
+       "image": "en67-u17-im-ready-for-school.png",
+       "image_prompt": "ALI with a new backpack standing proudly in front of a school, soft 3D cartoon for kids, white background, no text, square"
+      },
+      {
+       "say": "We did it!",
+       "uz": "biz uddaladik",
+       "image": "en67-u17-we-did-it.png",
+       "image_prompt": "ALI and LAYLO jumping with joy, soft 3D cartoon for kids, white background, no text, square"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

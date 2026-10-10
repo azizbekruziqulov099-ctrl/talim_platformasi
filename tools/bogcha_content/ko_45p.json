@@ -1,0 +1,872 @@
+{
+ "subject": "Koreys tili",
+ "lang": "ko",
+ "age": "4-5 yosh",
+ "book_title": "안녕, 친구야! 4–5 yosh",
+ "prefix": "KO",
+ "units": [
+  {
+   "name": "Odob va muloqot",
+   "emoji": "🙏",
+   "lessons": [
+    {
+     "name": "Iltimos va rahmat",
+     "goal": "Bola odob so'zlarini o'rnida ishlatadi",
+     "intro": "Bip-bip! Men — robot Kabu. Bilasanmi, ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz. Tayyormisan?",
+     "items": [
+      {
+       "say": "부탁해요!",
+       "uz": "iltimos",
+       "emoji": "🤲",
+       "image": "en23-u11-please.png",
+       "image_prompt": "A cute child with palms pressed together politely asking for something, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftlaringni birlashtir!",
+       "rom": "Butakaeyo!"
+      },
+      {
+       "say": "고마워요!",
+       "uz": "rahmat",
+       "emoji": "🙏",
+       "image": "en34-u1-thank-you.png",
+       "image_prompt": "A smiling child holding a small gift with a hand on the heart, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'y!",
+       "rom": "Gomawoyo!"
+      },
+      {
+       "say": "천만에요.",
+       "uz": "arzimaydi",
+       "emoji": "😊",
+       "image": "en67-u7-youre-welcome.png",
+       "image_prompt": "A friendly child smiling warmly after handing a toy to a friend, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Jilmayib bosh irg'a!",
+       "rom": "Cheonmaneyo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Dasturxonda non",
+       "matn": "Laylo dasturxonda non so'rayapti: [ko]빵 주세요![/ko] Ali nonni uzatdi. Laylo: [ko]고마워요![/ko] Ali jilmaydi: [ko]천만에요.[/ko] Endi sen Alisan. Men aytaman: [ko]고마워요![/ko] Sen nima deysan?",
+       "doska": "🍞 빵 주세요!\n🙏 고마워요!\n😊 천만에요.",
+       "sodda": "Kabu senga olma beryapti. Sen faqat ayt: [ko]고마워요![/ko]",
+       "boshqa_usul": "Kechki ovqatda oilang bilan non va choy uzatib, [ko]부탁해요![/ko], [ko]고마워요![/ko] va [ko]천만에요.[/ko] deb o'ynanglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali senga rahmat aytdi: [ko]고마워요![/ko] Sen nima deysan?",
+       "options": [
+        "👋 안녕하세요!",
+        "😊 천만에요."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]천만에요.[/ko] — arzimaydi, degani. Sen juda odobli bolasan!"
+      },
+      {
+       "q": "Sen sharbat so'rayapsan. Qaysi sehrli so'zni qo'shasan?",
+       "options": [
+        "🤲 부탁해요!",
+        "🚪 안녕히 가세요!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]주스 주세요![/ko] Iltimos deb so'rasang, hamma xursand bo'ladi."
+      }
+     ]
+    },
+    {
+     "name": "Kechirasiz",
+     "goal": "Bola kechirim so'raydi va kechiradi",
+     "intro": "Bip-bip! Voy, Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi Ali nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
+     "items": [
+      {
+       "say": "저기요!",
+       "uz": "kechirasiz (murojaat)",
+       "emoji": "✋",
+       "image": "en45-u12-excuse-me.png",
+       "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'tar!",
+       "rom": "Jeogiyo!"
+      },
+      {
+       "say": "미안해!",
+       "uz": "kechir",
+       "emoji": "😔",
+       "image": "en23-u11-sorry.png",
+       "image_prompt": "A child looking sorry with a hand on the chest next to a fallen tower of toy blocks, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni ko'ksingga qo'yib, boshingni egib ol!",
+       "rom": "Mianhae!"
+      },
+      {
+       "say": "괜찮아.",
+       "uz": "hechqisi yo'q",
+       "emoji": "👌",
+       "image": "en45-u12-thats-ok.png",
+       "image_prompt": "LAYLO smiling and forgiving ALI, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Jilmayib, bosh barmog'ingni ko'rsat!",
+       "rom": "Gwaenchana."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Yur-to'xta o'yini",
+       "matn": "Xonada sekin yur. Kabu «Bip!» desa — do'stingga tegib ketding! Ayt: [ko]미안해![/ko] Do'sting javob beradi: [ko]괜찮아.[/ko] Tarbiyachini chaqirsang, qo'lingni ko'tar: [ko]저기요![/ko] Endi sen ayt: [ko]미안해![/ko]",
+       "doska": "✋ 저기요!\n😔 미안해!\n👌 괜찮아.",
+       "sodda": "Kabu aytadi: [ko]미안해![/ko] Sen jilmayib ayt: [ko]괜찮아.[/ko]",
+       "boshqa_usul": "Uyda oyingning qo'liga sekin tegib [ko]미안해![/ko] deb ayt, oying esa [ko]괜찮아.[/ko] deb javob bersin."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sen bilmasdan Laylo qurgan minorani buzib qo'yding. Nima deysan?",
+       "options": [
+        "😔 미안해!",
+        "🙏 고마워요!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]미안해![/ko] — kechir, degani. Xato qilsak, kechirim so'raymiz."
+      },
+      {
+       "q": "Ali senga [ko]미안해![/ko] dedi. Sen uni kechirding. Nima deysan?",
+       "options": [
+        "🍎 사과요!",
+        "👌 괜찮아."
+       ],
+       "answer": 1,
+       "why": "Zo'r! [ko]괜찮아.[/ko] — hechqisi yo'q. Do'stlar bir-birini kechiradi."
+      }
+     ]
+    },
+    {
+     "name": "Menga berasanmi?",
+     "goal": "Bola odob bilan narsa so'raydi va javob beradi",
+     "intro": "Bip-bip! Bog'chada sayr vaqti. Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz? Bugun bilib olamiz!",
+     "items": [
+      {
+       "say": "공 좀 줄래?",
+       "uz": "koptokni bera olasanmi?",
+       "emoji": "⚽",
+       "image": "en45-u12-can-i-have-a-ball-please.png",
+       "image_prompt": "ALI politely asking a teacher for a ball, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'lingni oldinga uzat!",
+       "rom": "Gong jom jullae?"
+      },
+      {
+       "say": "여기 있어요.",
+       "uz": "marhamat",
+       "emoji": "🫴",
+       "image": "en67-u7-here-you-are.png",
+       "image_prompt": "A smiling child handing an apple to a friend with an open palm, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Narsani do'stingga uzat!",
+       "rom": "Yeogi isseoyo."
+      },
+      {
+       "say": "네, 주세요.",
+       "uz": "ha, iltimos",
+       "emoji": "👍",
+       "image": "en45-u12-yes-please.png",
+       "image_prompt": "LAYLO nodding happily as she is offered an apple, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Bosh irg'a!",
+       "rom": "Ne, juseyo."
+      },
+      {
+       "say": "아니요, 괜찮아요.",
+       "uz": "yo'q, rahmat",
+       "emoji": "🙅",
+       "image": "en45-u12-no-thank-you.png",
+       "image_prompt": "LAYLO politely refusing a sweet with a smile, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Boshingni sekin chayqa!",
+       "rom": "Aniyo, gwaenchanayo."
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Odob qo'shig'i",
+       "matn": "Kabu bilan kuylaymiz: [ko]공 좀 줄래? 여기 있어! 여기 있어![/ko] Endi buvijon senga olma taklif qilyapti. Xohlasang: [ko]네, 주세요.[/ko] Xohlamasang: [ko]아니요, 괜찮아요.[/ko] Sen nima deysan?",
+       "doska": "⚽ 공 좀 줄래?\n🫴 여기 있어요.\n👍 네, 주세요.\n🙅 아니요, 괜찮아요.",
+       "sodda": "Kabu senga olma uzatyapti: [ko]여기 있어요.[/ko] Sen ayt: [ko]고마워요![/ko]",
+       "boshqa_usul": "Uyda o'yinchoqlarni bir-biringizga uzatib, [ko]공 좀 줄래?[/ko] va [ko]여기 있어요.[/ko] deb o'ynanglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Buvijon senga shirinlik taklif qildi, lekin sen to'qsan. Nima deysan?",
+       "options": [
+        "👍 네, 주세요.",
+        "🙅 아니요, 괜찮아요."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]아니요, 괜찮아요.[/ko] — yo'q, rahmat. Olmasak ham rahmat aytamiz."
+      },
+      {
+       "q": "Laylo senga koptok uzatyapti. U nima deydi?",
+       "options": [
+        "🫴 여기 있어요.",
+        "😔 미안해!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]여기 있어요.[/ko] — marhamat, degani. Sen esa [ko]고마워요![/ko] deysan."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 1,
+     "name": "Bog'chada tushlik: non so'raymiz",
+     "name_en": "유치원 점심시간",
+     "emoji": "🍲",
+     "goal": "Bola tushlikda odob bilan non so'raydi, taklifga javob beradi va rahmat aytadi",
+     "intro": "Bip-bip! Bog'chada tushlik vaqti! Stolda issiq sho'rva, non va piyolada choy. Ali non so'ramoqchi. Qani, sen Alining o'rnida odob bilan so'ra!",
+     "intro_en": "삐빅! 유치원 점심시간이에요. 예의 바르게 빵을 달라고 해요!",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "선생님",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s15-kindergarten-lunch.png",
+      "image_prompt": "ALI at a kindergarten lunch table politely raising his hand while a kind teacher hands him bread, a piyola of tea and bowls of soup on the table, LAYLO smiling beside him, soft 3D cartoon scene for kids, warm colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "저기요! 빵 좀 주세요.",
+       "uz": "kechirasiz! iltimos, non bering",
+       "emoji": "✋",
+       "rom": "Jeogiyo! Ppang jom juseyo."
+      },
+      {
+       "who": 0,
+       "say": "여기 있어요. 차도 드릴까요?",
+       "uz": "marhamat. choy ham beraymi?",
+       "emoji": "🫴",
+       "rom": "Yeogi isseoyo. Chado deurilkkayo?"
+      },
+      {
+       "who": 1,
+       "say": "네, 주세요. 고마워요!",
+       "uz": "ha, iltimos. rahmat!",
+       "emoji": "🍵",
+       "rom": "Ne, juseyo. Gomawoyo!"
+      },
+      {
+       "who": 0,
+       "say": "천만에요!",
+       "uz": "arzimaydi!",
+       "emoji": "😊",
+       "rom": "Cheonmaneyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Tarbiyachi senga non uzatdi: [ko]여기 있어요.[/ko] Sen nima deysan?",
+       "q_en": "선생님이 빵을 줘요: 여기 있어. 뭐라고 말할까요?",
+       "options": [
+        "🙏 고마워요!",
+        "👋 안녕히 가세요!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]고마워요![/ko] — rahmat. Sen juda odoblisan!",
+       "why_en": "잘했어요! 고마워요!"
+      },
+      {
+       "q": "Tarbiyachi so'raydi: [ko]차 줄까?[/ko] Sen choy xohlaysan. Nima deysan?",
+       "q_en": "선생님이 물어요: 차 줄까? 여러분은 차를 마시고 싶어요. 뭐라고 말할까요?",
+       "options": [
+        "🙅 아니요, 괜찮아요.",
+        "👍 네, 주세요."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [ko]네, 주세요.[/ko] — ha, iltimos.",
+       "why_en": "맞아요! 네, 주세요."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mening kunim",
+   "emoji": "🌞",
+   "lessons": [
+    {
+     "name": "Ertalab",
+     "goal": "Bola ertalabki ishlarni aytadi",
+     "intro": "Bip-bip! Tong otdi, quyosh derazadan mo'ralayapti. Ali esa hali ham uxlayapti! Uni qanday uyg'otamiz? Qani, birga bilib olamiz.",
+     "items": [
+      {
+       "say": "일어나요",
+       "uz": "uyg'on",
+       "emoji": "⏰",
+       "image": "en45-u13-wake-up.png",
+       "image_prompt": "ALI waking up and stretching in bed, morning sun in the window, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kerishib, qo'llaringni yuqoriga cho'z!",
+       "rom": "Ireonayo"
+      },
+      {
+       "say": "좋은 아침이에요!",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en34-u1-good-morning.png",
+       "image_prompt": "A cheerful child greeting the morning sun by an open window, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni quyoshdek keng och!",
+       "rom": "Joeun achimieyo!"
+      },
+      {
+       "say": "아침밥",
+       "uz": "nonushta",
+       "emoji": "🍳",
+       "image": "en45-u13-breakfast.png",
+       "image_prompt": "a breakfast table with bread, eggs, tea and milk, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiqda ovqat yeyotgandek qil!",
+       "rom": "Achimbap"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Tonggi suhbat",
+       "matn": "Oyi Alini uyg'otyapti: [ko]일어나, 알리![/ko] Ali kerishadi: [ko]엄마, 좋은 아침이에요![/ko] Oyi chaqiradi: [ko]아침밥![/ko] Stolda non, tuxum, choy. Ali: [ko]맛있어요![/ko] Endi sen ayt: [ko]좋은 아침이에요![/ko]",
+       "doska": "⏰ 일어나요!\n🌅 좋은 아침이에요!\n🍳 아침밥",
+       "sodda": "Kabu aytadi: [ko]일어나요![/ko] Sen kerishib ayt: [ko]좋은 아침이에요![/ko]",
+       "boshqa_usul": "Ertaga ertalab oyingga birinchi bo'lib [ko]좋은 아침이에요![/ko] deb ayt, nonushtada esa [ko]아침밥[/ko] so'zini eslang."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ertalab uyg'onding, oying xonaga kirdi. Nima deysan?",
+       "options": [
+        "🚪 안녕히 가세요!",
+        "🌅 좋은 아침이에요!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Ertalab [ko]좋은 아침이에요![/ko] — xayrli tong deymiz."
+      },
+      {
+       "q": "Ertalab non, tuxum va choy yeymiz. Bu nima?",
+       "options": [
+        "🍳 아침밥",
+        "⚽ 공"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]아침밥[/ko] — nonushta. Yoqimli ishtaha!"
+      }
+     ]
+    },
+    {
+     "name": "Bog'chaga boraman",
+     "goal": "Bola kun haqida qisqa gap aytadi",
+     "intro": "Bip-bip! Nonushta tugadi. Laylo sumkasini oldi va oyisining qo'lidan ushladi. U qayerga ketyapti? Topdingmi? Bog'chaga!",
+     "items": [
+      {
+       "say": "유치원에 가요.",
+       "uz": "bog'chaga boraman",
+       "emoji": "🏫",
+       "image": "en45-u13-i-go-to-kindergarten.png",
+       "image_prompt": "LAYLO walking to kindergarten holding her mum's hand, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Joyingda yurib ket!",
+       "rom": "Yuchiwone gayo."
+      },
+      {
+       "say": "가방",
+       "uz": "sumka",
+       "emoji": "🎒",
+       "image": "en45-u13-bag.png",
+       "image_prompt": "a small kids' backpack, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Sumkani yelkangga taqqandek qil!",
+       "rom": "Gabang"
+      },
+      {
+       "say": "가자!",
+       "uz": "ketdik",
+       "emoji": "🚶",
+       "image": "en45-u13-lets-go.png",
+       "image_prompt": "ALI and LAYLO marching happily, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qadam tashlab yur!",
+       "rom": "Gaja!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Bog'chaga yo'l o'yini",
+       "matn": "Sumkangni yelkangga taq: [ko]내 가방![/ko] Endi joyingda qadam tashla va ayt: [ko]가자! 가자![/ko] Kabu so'raydi: qayerga ketyapsan? Sen javob ber: [ko]유치원에 가요.[/ko]",
+       "doska": "🎒 가방\n🚶 가자!\n🏫 유치원에 가요.",
+       "sodda": "Sumkangni ol va ayt: [ko]가자![/ko]",
+       "boshqa_usul": "Ertalab eshik oldida birga [ko]가자![/ko] deb, yo'lda [ko]유치원에 가요.[/ko] gapini aytinglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Laylo bog'chaga narsalarini nimaga soladi?",
+       "options": [
+        "🎂 케이크",
+        "🎒 가방"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [ko]가방[/ko] — sumka. Laylo sumkasini o'zi ko'taradi!"
+      },
+      {
+       "q": "Hamma tayyor, yo'lga chiqamiz! Ali do'stlariga nima deydi?",
+       "options": [
+        "🚶 가자!",
+        "😔 미안해!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]가자![/ko] — ketdik, degani."
+      }
+     ]
+    },
+    {
+     "name": "Kechqurun",
+     "goal": "Bola kechki ishlar va uyqu iboralarini aytadi",
+     "intro": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda nima qiladi? Kechki ovqat, cho'milish va shirin uyqu! Mening batareyam ham dam olmoqchi.",
+     "items": [
+      {
+       "say": "저녁밥",
+       "uz": "kechki ovqat",
+       "emoji": "🍽️",
+       "image": "en45-u13-dinner.png",
+       "image_prompt": "a family dinner table with plov and salad, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qoshiqda palov yeyotgandek qil!",
+       "rom": "Jeonyeokbap"
+      },
+      {
+       "say": "목욕",
+       "uz": "cho'milish",
+       "emoji": "🛁",
+       "image": "en45-u13-bath.png",
+       "image_prompt": "ALI having a bath with bubbles and a rubber duck, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni ishqalab, yuvingandek qil!",
+       "rom": "Mogyok"
+      },
+      {
+       "say": "자러 가요",
+       "uz": "uxlashga yot",
+       "emoji": "🛏️",
+       "image": "en45-u13-go-to-bed.png",
+       "image_prompt": "LAYLO going to bed, mum tucking her in, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftlaringni yonog'ingga qo'yib, ko'zingni yum!",
+       "rom": "Jareo gayo"
+      },
+      {
+       "say": "잘 자요!",
+       "uz": "xayrli tun",
+       "emoji": "🌙",
+       "image": "en34-u1-good-night.png",
+       "image_prompt": "A sleepy child in pajamas waving good night under a crescent moon, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Esnab, qo'l silkit!",
+       "rom": "Jal jayo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Top-chi, nima qilyapman?",
+       "matn": "Kabu ishora qiladi, sen top! Qoshiqda palov yeyapti — bu [ko]저녁밥[/ko]! Ko'pikli suvda yuvinyapti — bu [ko]목욕[/ko]! Esnadi — [ko]자러 가요[/ko]! Endi sen menga ayt: [ko]잘 자, 카부![/ko]",
+       "doska": "🍽️ 저녁밥\n🛁 목욕\n🛏️ 자러 가요\n🌙 잘 자요!",
+       "sodda": "Ko'zingni yum va ayt: [ko]잘 자요![/ko]",
+       "boshqa_usul": "Bugun uxlashdan oldin oilangdagi har bir kishiga [ko]잘 자요![/ko] deb ayt."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Uxlashga yotyapsan. Oyingga nima deysan?",
+       "options": [
+        "🌅 좋은 아침이에요!",
+        "🌙 잘 자요!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Kechqurun [ko]잘 자요![/ko] — xayrli tun deymiz."
+      },
+      {
+       "q": "Ali ko'pikli suvda o'rdakcha bilan yuvinyapti. Bu nima?",
+       "options": [
+        "🛁 목욕",
+        "🍽️ 저녁밥"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]목욕[/ko] — cho'milish. Toza bo'lish zo'r!"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 2,
+     "name": "Ertalab bog'chaga tayyorlanamiz",
+     "name_en": "아침 준비하기",
+     "emoji": "🌅",
+     "goal": "Bola ertalab oyisi bilan salomlashadi, sumkasini oladi va yo'lga chiqadi",
+     "intro": "Bip-bip! Tong otdi! Oyi Alini uyg'otyapti. Keyin nonushta, sumka — va bog'chaga! Qani, sen Alining o'rnida gapir.",
+     "intro_en": "삐빅! 좋은 아침! 일어나서 유치원 갈 준비를 해요!",
+     "roles": [
+      "Oyi",
+      "Bola"
+     ],
+     "roles_en": [
+      "엄마",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s16-morning-ready.png",
+      "image_prompt": "ALI stretching by his bed in the morning while his smiling mum stands at the door holding his small backpack, bread and a piyola of tea on a little table, morning sun through the window, soft 3D cartoon scene for kids, warm colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "일어나, 알리! 좋은 아침!",
+       "uz": "uyg'on, Ali! xayrli tong!",
+       "emoji": "⏰",
+       "rom": "Ireona, Alli! Joeun achim!"
+      },
+      {
+       "who": 1,
+       "say": "엄마, 좋은 아침이에요!",
+       "uz": "xayrli tong, oyijon!",
+       "emoji": "🌅",
+       "rom": "Eomma, joeun achimieyo!"
+      },
+      {
+       "who": 0,
+       "say": "아침밥 다 됐어. 여기 네 가방.",
+       "uz": "nonushta tayyor. mana sumkang",
+       "emoji": "🎒",
+       "rom": "Achimbap da dwaesseo. Yeogi ne gabang."
+      },
+      {
+       "who": 1,
+       "say": "고마워요, 엄마! 가요!",
+       "uz": "rahmat, oyijon! ketdik!",
+       "emoji": "🚶",
+       "rom": "Gomawoyo, eomma! Gayo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Oying seni uyg'otdi: [ko]좋은 아침이에요![/ko] Sen nima deysan?",
+       "q_en": "엄마가 깨워요: 좋은 아침! 뭐라고 대답할까요?",
+       "options": [
+        "🌙 잘 자요!",
+        "🌅 좋은 아침이에요, 엄마!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Ertalab [ko]엄마, 좋은 아침이에요![/ko] deymiz.",
+       "why_en": "잘했어요! 좋은 아침이에요, 엄마!"
+      },
+      {
+       "q": "Sumkang tayyor, eshik oldidasan. Oyingga nima deysan?",
+       "q_en": "가방이 준비됐어요. 문 앞에 있어요. 뭐라고 말할까요?",
+       "options": [
+        "🚶 가자!",
+        "🛁 목욕"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]가자![/ko] — ketdik. Bog'chaga yo'l oldik!",
+       "why_en": "응! 가자!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Hissiyot va do'stlik",
+   "emoji": "💛",
+   "lessons": [
+    {
+     "name": "Qanday his qilyapsan?",
+     "goal": "Bola o'z his-tuyg'usini aytadi",
+     "intro": "Bip-bip! Robotlar ham his qiladi! Batareyam to'la bo'lsa, men xursandman. Bugun Laylo biroz xomush ko'rinyapti. Undan qanday so'raymiz?",
+     "items": [
+      {
+       "say": "기분이 어때?",
+       "uz": "o'zingni qanday his qilyapsan?",
+       "emoji": "🤔",
+       "image": "en45-u14-how-do-you-feel.png",
+       "image_prompt": "a kind teacher kneeling and gently asking LAYLO something, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Kaftlaringni ochib, savol bergandek qil!",
+       "rom": "Gibuni eottae?"
+      },
+      {
+       "say": "기뻐요.",
+       "uz": "men xursandman",
+       "emoji": "😄",
+       "image": "en56-u8-i-am-happy.png",
+       "image_prompt": "A cheerful child smiling broadly and jumping with joy, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Keng jilmayib, sakra!",
+       "rom": "Gippeoyo."
+      },
+      {
+       "say": "슬퍼요.",
+       "uz": "men xafaman",
+       "emoji": "😢",
+       "image": "en23-u11-sad.png",
+       "image_prompt": "A sad child with a small tear sitting quietly and hugging a teddy, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Labingni osiltirib, xafa yuz qil!",
+       "rom": "Seulpeoyo."
+      },
+      {
+       "say": "화나요",
+       "uz": "jahli chiqqan",
+       "emoji": "😠",
+       "image": "en45-u14-angry.png",
+       "image_prompt": "ALI looking angry with crossed arms and red cheeks, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni qovushtirib, qoshingni chimir!",
+       "rom": "Hwanayo"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Yuzlar o'yini",
+       "matn": "Kabu so'raydi: [ko]기분이 어때?[/ko] Ali sovg'a oldi: [ko]기뻐요![/ko] Laylo varragi uchib ketdi: [ko]슬퍼요.[/ko] Yuzingni ko'rsat-chi: xursand, xafa, jahldor! Endi Kabu sendan so'raydi: [ko]기분이 어때?[/ko]",
+       "doska": "🤔 기분이 어때?\n😄 기뻐요.\n😢 슬퍼요.\n😠 화나요",
+       "sodda": "Jilmay va ayt: [ko]기뻐요.[/ko]",
+       "boshqa_usul": "Kechqurun ota-onang sendan [ko]기분이 어때?[/ko] deb so'rasin, sen esa yuzing bilan ko'rsatib javob ber."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ali tug'ilgan kunida sovg'a oldi va kulyapti. U nima deydi?",
+       "options": [
+        "😢 슬퍼요.",
+        "😄 기뻐요."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]기뻐요.[/ko] — men xursandman."
+      },
+      {
+       "q": "Laylo qoshini chimirib, qo'llarini qovushtirdi. U qanday?",
+       "options": [
+        "😠 화나요",
+        "😄 기뻐요"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]화나요[/ko] — jahli chiqqan. Chuqur nafas olsa, tinchlanadi."
+      }
+     ]
+    },
+    {
+     "name": "Do'stim bo'l!",
+     "goal": "Bola do'stlik va navbat iboralarini ishlatadi",
+     "intro": "Bip-bip! Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz? Bugun do'stlik so'zlarini o'rganamiz!",
+     "items": [
+      {
+       "say": "내 친구가 되어 줘!",
+       "uz": "do'stim bo'l",
+       "emoji": "🤝",
+       "image": "en45-u14-be-my-friend.png",
+       "image_prompt": "LAYLO holding out her hand to a new girl, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Do'stingga qo'lingni uzat!",
+       "rom": "Nae chinguga doeeo jwo!"
+      },
+      {
+       "say": "같이 놀자!",
+       "uz": "birga o'ynaymiz",
+       "emoji": "🧸",
+       "image": "en45-u14-lets-play-together.png",
+       "image_prompt": "ALI, LAYLO and two other kids playing with a ball together, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'llaringni yoyib, hammani chaqir!",
+       "rom": "Gachi nolja!"
+      },
+      {
+       "say": "내 차례!",
+       "uz": "mening navbatim",
+       "emoji": "🙋‍♂️",
+       "image": "en45-u14-my-turn.png",
+       "image_prompt": "ALI pointing to himself happily at the slide, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Barmog'ing bilan o'zingni ko'rsat!",
+       "rom": "Nae charye!"
+      },
+      {
+       "say": "여러분 차례예요!",
+       "uz": "sening navbating",
+       "emoji": "👉",
+       "image": "en45-u14-your-turn.png",
+       "image_prompt": "ALI kindly giving the ball to LAYLO, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Qo'ling bilan do'stingni ko'rsat!",
+       "rom": "Yeoreobun charyeyeyo!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Navbat o'yini",
+       "matn": "Ali va Laylo sirpanchiqda uchyapti. Ali: [ko]내 차례![/ko] Vush! Endi Ali Layloga: [ko]여러분 차례예요![/ko] Navbat bilan o'ynasak, hamma xursand! Endi sen do'stingga koptok uzat va ayt: [ko]여러분 차례예요![/ko]",
+       "doska": "🤝 내 친구가 되어 줘!\n🧸 같이 놀자!\n🙋‍♂️ 내 차례!\n👉 네 차례야!",
+       "sodda": "Do'stingga koptokni uzat va ayt: [ko]여러분 차례예요![/ko]",
+       "boshqa_usul": "Uyda aka-ukang yoki ota-onang bilan koptok o'ynab, navbat bilan [ko]내 차례![/ko] va [ko]여러분 차례예요![/ko] deb aytinglar."
+      }
+     ],
+     "tests": [
+      {
+       "q": "Bog'chaga yangi bola keldi. Sen u bilan do'st bo'lmoqchisan. Nima deysan?",
+       "options": [
+        "😠 화나요",
+        "🤝 내 친구가 되어 줘!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [ko]내 친구가 되어 줘![/ko] — do'stim bo'l. Sen mehribon do'stsan!"
+      },
+      {
+       "q": "Sen sirpanchiqdan tushding. Endi Laylo navbati. Unga nima deysan?",
+       "options": [
+        "👉 네 차례야!",
+        "🌙 잘 자요!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [ko]여러분 차례예요![/ko] — sening navbating. Navbat bilan o'ynash — zo'r!"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 3,
+     "name": "Sirpanchiqda navbat bilan",
+     "name_en": "미끄럼틀 차례 지키기",
+     "emoji": "🛝",
+     "goal": "Bola maydonchada do'st orttiradi, birga o'ynashni taklif qiladi va navbat beradi",
+     "intro": "Bip-bip! Bog'cha maydonchasida rangli sirpanchiq bor. Laylo yolg'iz turibdi. Sen unga yaqinlash, do'st bo'l va navbat bilan o'yna!",
+     "intro_en": "삐빅! 봐요, 미끄럼틀이에요! 친구를 사귀고 차례대로 타요.",
+     "roles": [
+      "Laylo",
+      "Bola"
+     ],
+     "roles_en": [
+      "라일로",
+      "아이"
+     ],
+     "scene": {
+      "image": "en45-s17-slide-turns.png",
+      "image_prompt": "ALI at the bottom of a colorful playground slide kindly waving LAYLO to go next, LAYLO smiling at the top of the slide, sunny kindergarten playground with trees, soft 3D cartoon scene for kids, warm colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "안녕, 라일로! 내 친구가 되어 줘!",
+       "uz": "salom, Laylo! do'stim bo'l!",
+       "emoji": "🤝",
+       "rom": "Annyeong, Raillo! Nae chinguga doeeo jwo!"
+      },
+      {
+       "who": 0,
+       "say": "응! 같이 놀자!",
+       "uz": "ha! birga o'ynaymiz!",
+       "emoji": "🧸",
+       "rom": "Eung! Gachi nolja!"
+      },
+      {
+       "who": 1,
+       "say": "내 차례! 슝! 이제 네 차례야, 라일로!",
+       "uz": "mening navbatim! vush! sening navbating, Laylo!",
+       "emoji": "👉",
+       "rom": "Nae charye! Syung! Ije ne charyeya, Raillo!"
+      },
+      {
+       "who": 0,
+       "say": "고마워요! 기뻐요!",
+       "uz": "rahmat! men xursandman!",
+       "emoji": "😄",
+       "rom": "Gomawoyo! Gippeoyo!"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sen sirpanchiqdan tushding. Laylo kutib turibdi. Nima deysan?",
+       "q_en": "미끄럼틀을 타고 내려왔어요. 라일로가 기다리고 있어요. 뭐라고 말할까요?",
+       "options": [
+        "👉 네 차례야!",
+        "😠 화나요"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [ko]여러분 차례예요![/ko] — sening navbating. Sen yaxshi do'stsan!",
+       "why_en": "잘했어! 네 차례야!"
+      },
+      {
+       "q": "Laylo kulyapti va sakrayapti. U o'zini qanday his qilyapti?",
+       "q_en": "라일로가 웃으면서 뛰고 있어요. 기분이 어때요?",
+       "options": [
+        "😢 슬퍼요.",
+        "😄 기뻐요."
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [ko]기뻐요.[/ko] — men xursandman. Do'st bilan o'ynash quvonchli!",
+       "why_en": "맞아요! 라일로는 기뻐요."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "봐!",
+  "listen": "듣고 따라 해요:",
+  "again": "한 번 더!",
+  "good": [
+   "잘했어요!",
+   "잘했어요!",
+   "좋아요!",
+   "최고예요!",
+   "훌륭해요!"
+  ],
+  "remember": "기억나요?",
+  "together": "다 같이 말해요!",
+  "your_turn": "여러분 차례예요!",
+  "game": "게임 시간!",
+  "ready": "준비됐나요? 시작!",
+  "found": "정말 잘했어요! 다 찾았어요!",
+  "today": "오늘 배운 것:",
+  "bye": "내일 만나요!",
+  "which": "어느 것일까요: {w}?",
+  "find": "그림을 찾아요: {w}",
+  "where": "어디 있을까요: {w}?",
+  "what": "그림을 봐요. 이게 뭐예요?",
+  "yes": "맞아요! {w}",
+  "old": "🔁 지난 질문",
+  "play": "놀자!",
+  "roleplay": "역할극을 해 봐요!",
+  "says": "{r}의 말:",
+  "now_you": "이제 여러분이 말해요:",
+  "hello_friends": "안녕, 친구들!",
+  "listen_short": "들어 봐요:",
+  "listen_bang": "들어 봐요!",
+  "repeat_me": "따라 해요:",
+  "now_you_short": "이제 여러분 차례:",
+  "say": "말해요:",
+  "one_more": "한 번 더:",
+  "look_listen": "보고 들어요:",
+  "point_game": "내가 말하면, 여러분은 그림을 가리켜요: {names}.",
+  "t_point": "🎲 가리켜 봐요!",
+  "t_today": "🌟 오늘 배운 것",
+  "t_remember": "기억해요:",
+  "t_last_year": "작년",
+  "welcome_back": "안녕, 친구들! 다시 만나서 반가워요! 작년에 배운 단어를 떠올려 봐요.",
+  "t_review": "복습",
+  "review_intro": "복습하는 날! 이 단원에서 배운 것을 모두 떠올려 봐요. 맞히면 별 하나!",
+  "say_with_me": "나랑 같이 말해요!",
+  "t_jump": "점프할까, 앉을까!",
+  "jump": "내가 단어를 말해요. 그림이 보이면 — 점프! 안 보이면 — 앉아요! 준비됐나요? 시작!",
+  "played_great": "잘했어요! 정말 잘 놀았어요!",
+  "t_review_q": "복습 질문",
+  "t_unit_done": "단원 끝!",
+  "unit_done": "멋져요! 이 단원을 다 끝냈어요. 새로운 모험을 시작해요!",
+  "t_party": "큰 파티!",
+  "party": "큰 파티",
+  "party_intro": "만세! 오늘은 큰 파티예요! 책 한 권을 다 끝냈어요. 좋아하는 단어를 떠올리고 별을 모아요!",
+  "know_all": "다 알고 있네요!",
+  "t_party_q": "파티 질문",
+  "t_champion": "여러분은 챔피언이에요!",
+  "champion": "여러분은 챔피언이에요! 이제 다 알아요. 아무 수업이나 다시 열고 놀아요!",
+  "t_roleplay": "역할극",
+  "roles_line": "나는 {a}, 너는 {b}.",
+  "change_roles": "이제 역할을 바꿔요!",
+  "great_role": "{r} 역할을 정말 잘했어요!",
+  "t_well_done": "🌟 잘했어요!",
+  "scenario_done": "이제 할 수 있어요: {name}! 집에서 가족과 함께 또 해 봐요."
+ }
+}
