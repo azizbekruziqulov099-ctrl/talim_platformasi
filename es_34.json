@@ -1,0 +1,2042 @@
+{
+ "subject": "Ispan tili",
+ "lang": "es",
+ "age": "3-4 yosh",
+ "book_title": "¡Hola, amigo! 3–4 yosh",
+ "prefix": "ES",
+ "units": [
+  {
+   "name": "Salomlashamiz",
+   "emoji": "👋",
+   "lessons": [
+    {
+     "name": "Hola va Buenas",
+     "goal": "Bola Hola va Buenas so'zlarini eshitib qaytaradi, salomga javob beradi",
+     "intro": "Salom, bolajonlar! Men — Kabutar qushcha. Gu-gu! Men uzoq Ispaniyadan uchib keldim. U yerda bolalar qanday salomlashadi? Keling, bilib olamiz!",
+     "items": [
+      {
+       "say": "¡Hola!",
+       "uz": "salom",
+       "emoji": "👋",
+       "image": "en34-u1-hello.png",
+       "image_prompt": "A cute child waving hello with a big smile, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni silkiting!"
+      },
+      {
+       "say": "¡Buenas!",
+       "uz": "salom",
+       "emoji": "🙋",
+       "image": "en34-u1-hi.png",
+       "image_prompt": "A happy little girl raising one hand to say hi, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni baland ko'taring!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Salom qo'shig'i",
+       "matn": "Qani, qo'shiq aytamiz! [es]¡Hola, hola, hola![/es] Qo'l silkitamiz. [es]¡Hola, hola, hola![/es] Qo'l ko'taramiz. Yana bir marta, baland ovozda!",
+       "doska": "👋 ¡Hola, hola!\n🙋 ¡Hola, hola, hola!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kabutar qushcha keldi. Unga nima deymiz?",
+       "options": [
+        "👋 ¡Hola!",
+        "😴 uxlaymiz"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Do'stimizni ko'rsak [es]¡Hola![/es] deymiz."
+      }
+     ]
+    },
+    {
+     "name": "Chao va Gracias",
+     "goal": "Bola Bye va Thank you iboralarini eshitib qaytaradi",
+     "intro": "Gu-gu! Mehmonlar ketayotganda nima deymiz? Sovg'a olganda-chi? Bugun ikkita sehrli so'z o'rganamiz!",
+     "items": [
+      {
+       "say": "¡Chao!",
+       "uz": "xayr",
+       "emoji": "🚪",
+       "image": "en34-u1-bye.png",
+       "image_prompt": "A little boy waving bye-bye at an open door, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni silkitib xayrlashing!"
+      },
+      {
+       "say": "¡Gracias!",
+       "uz": "rahmat",
+       "emoji": "🙏",
+       "image": "en34-u1-thank-you.png",
+       "image_prompt": "A smiling child holding a gift and saying thank you, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni ko'ksingizga qo'ying!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Rolli o'yin: sovg'a",
+       "matn": "Ayiqcha sizga olma berdi. Nima deysiz? [es]¡Gracias![/es] Endi ayiqcha uyiga ketyapti. Unga qo'l silkiting: [es]¡Chao![/es]",
+       "doska": "🧸🍎 ¡Gracias!\n🧸🚪 ¡Chao!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sizga sovg'a berishdi. Nima deysiz?",
+       "options": [
+        "🙏 ¡Gracias!",
+        "🚪 ¡Chao!"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Sovg'a olganda [es]¡Gracias![/es] — rahmat deymiz."
+      }
+     ]
+    },
+    {
+     "name": "Xayrli tong, xayrli tun",
+     "goal": "Bola ¡Buenos días! va ¡Buenas noches! iboralarini ajratadi",
+     "intro": "Gu-gu! Ertalab quyosh chiqadi, kechasi oy chiqadi. Ispan bolalari ertalab va kechasi nima deydi? Tinglang!",
+     "items": [
+      {
+       "say": "¡Buenos días!",
+       "uz": "xayrli tong",
+       "emoji": "🌅",
+       "image": "en34-u1-good-morning.png",
+       "image_prompt": "A sunny morning, a child stretching happily in bed at sunrise, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kerishib, uyg'onganday qiling!"
+      },
+      {
+       "say": "¡Buenas noches!",
+       "uz": "xayrli tun",
+       "emoji": "🌙",
+       "image": "en34-u1-good-night.png",
+       "image_prompt": "A sleepy child in pajamas with a moon and stars, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizni yostiqday qilib, uxlaganday qiling!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Tong-tun o'yini",
+       "matn": "Men [es]¡Buenos días![/es] desam — sakrang! Men [es]¡Buenas noches![/es] desam — ko'zingizni yuming. Tayyormisiz? [es]¡Buenos días![/es] … [es]¡Buenas noches![/es]",
+       "doska": "🌅 sakraymiz\n🌙 uxlaymiz",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kechasi, oy chiqdi. Nima deymiz?",
+       "options": [
+        "🌙 ¡Buenas noches!",
+        "🌅 ¡Buenos días!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Kechasi [es]¡Buenas noches![/es] deymiz."
+      }
+     ]
+    },
+    {
+     "name": "Ha va yo'q",
+     "goal": "Bola Sí va No so'zlarini eshitib, bosh irg'ab javob beradi",
+     "intro": "Gu-gu! Kabutar qushcha savol beradi, siz javob berasiz. Ha deyish uchun ham, yo'q deyish uchun ham ispancha so'z bor!",
+     "items": [
+      {
+       "say": "Sí",
+       "uz": "ha",
+       "emoji": "✅",
+       "image": "en34-u1-yes.png",
+       "image_prompt": "A smiling child nodding yes with a green check mark, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boshingizni irg'ating!"
+      },
+      {
+       "say": "No",
+       "uz": "yo'q",
+       "emoji": "❌",
+       "image": "en34-u1-no.png",
+       "image_prompt": "A child shaking head no with a red cross, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boshingizni chayqang!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎲 Ha-yo'q o'yini",
+       "matn": "Kabutar qushcha mushukmi? Yo'q! [es]¡No![/es] Siz bolamisiz? Ha! [es]¡Sí![/es] Muzqaymoq yaxshi ko'rasizmi? [es]¡Sí![/es]",
+       "doska": "✅ Sí\n❌ No",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kabutar qushcha — mushukmi?",
+       "options": [
+        "❌ No",
+        "✅ Sí"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Yo'q — [es]¡No![/es] Kabutar qushcha mushuk emas."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 1,
+     "name": "Bog'chada xayrli tong",
+     "name_en": "La mañana en la guardería",
+     "emoji": "🏫",
+     "goal": "Bola ertalab bog'chaga kelganda tarbiyachi bilan ispancha salomlashadi",
+     "intro": "Gu-gu! Men — Kabutar qushcha. Ertalab bog'chaga kelsak, tarbiyachimizga [es]¡Buenos días![/es] deymiz. Keling, birga salomlashamiz!",
+     "intro_en": "¡Hola! Es por la mañana. ¡Vamos a saludar a nuestra maestra!",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Maestra",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s1-kindergarten-morning.png",
+      "image_prompt": "A smiling kindergarten teacher greeting a small child at the classroom door in the morning, sunny window, toys on shelves, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "¡Buenos días!",
+       "uz": "xayrli tong",
+       "emoji": "☀️"
+      },
+      {
+       "who": 0,
+       "say": "¡Hola! ¡Buenos días!",
+       "uz": "salom! xayrli tong",
+       "emoji": "👩‍🏫"
+      },
+      {
+       "who": 1,
+       "say": "¡Buenas!",
+       "uz": "salom",
+       "emoji": "🙋"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Ertalab bog'chaga keldingiz. Nima deysiz?",
+       "q_en": "Es por la mañana. ¿Qué dices?",
+       "options": [
+        "☀️ ¡Buenos días!",
+        "🌙 ¡Buenas noches!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Ertalab [es]¡Buenos días![/es] deymiz.",
+       "why_en": "¡Sí! Por la mañana decimos: ¡Buenos días!"
+      },
+      {
+       "q": "Tarbiyachi sizga [es]¡Hola![/es] dedi. Nima deysiz?",
+       "q_en": "Tu maestra dice: ¡Hola! ¿Qué dices?",
+       "options": [
+        "🙅 ¡No!",
+        "🙋 ¡Buenas!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Salomga [es]¡Buenas![/es] deb javob beramiz.",
+       "why_en": "¡Buen trabajo! Decimos: ¡Buenas!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Men va oilam",
+   "emoji": "👨‍👩‍👧",
+   "lessons": [
+    {
+     "name": "O'g'il bola va qiz bola",
+     "goal": "Bola niño va niña so'zlarini ajratadi",
+     "intro": "Gu-gu! Mening bog'chamda o'g'il bolalar ham, qiz bolalar ham bor. Siz kimsiz? Ispanchasini bilib olamiz!",
+     "items": [
+      {
+       "say": "niño",
+       "uz": "o'g'il bola",
+       "emoji": "👦",
+       "image": "en34-u2-boy.png",
+       "image_prompt": "A cheerful little boy smiling, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "niña",
+       "uz": "qiz bola",
+       "emoji": "👧",
+       "image": "en34-u2-girl.png",
+       "image_prompt": "A cheerful little girl with pigtails smiling, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🙋 Men kimman?",
+       "matn": "O'g'il bolalar, turib ayting: [es]¡Niño![/es] Qiz bolalar, turib ayting: [es]¡Niña![/es] Endi hammamiz birga: [es]¡Niño y niña![/es]",
+       "doska": "👦 niño\n👧 niña",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]niña[/es]?",
+       "options": [
+        "👧 niña",
+        "👦 niño"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Niña[/es] — qiz bola."
+      }
+     ]
+    },
+    {
+     "name": "Onam va dadam",
+     "goal": "Bola mamá va papá so'zlarini aytadi",
+     "intro": "Gu-gu! Uyda sizni kim eng ko'p yaxshi ko'radi? To'g'ri, onangiz va dadangiz! Ularni ispancha qanday chaqiramiz?",
+     "items": [
+      {
+       "say": "mamá",
+       "uz": "onam",
+       "emoji": "👩",
+       "image": "en34-u2-mum.png",
+       "image_prompt": "A kind smiling mother with open arms, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "papá",
+       "uz": "dadam",
+       "emoji": "👨",
+       "image": "en34-u2-dad.png",
+       "image_prompt": "A kind smiling father waving, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Oila barmoqchalari",
+       "matn": "Barmog'ingizni ko'rsating. Bu — [es]Mamá[/es]! Bu — [es]Papá[/es]! [es]¡Hola, mamá! ¡Hola, papá![/es] Barmoqlar ta'zim qiladi!",
+       "doska": "👩 Mamá\n👨 Papá",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]papá[/es]?",
+       "options": [
+        "👨 papá",
+        "👩 mamá"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Papá[/es] — dadam."
+      }
+     ]
+    },
+    {
+     "name": "Chaqaloq va buvijon",
+     "goal": "Bola bebé va abuelita so'zlarini aytadi",
+     "intro": "Gu-gu! Sss… jim! Beshikda kim uxlayapti? Kichkintoy! Uning yonida esa mehribon buvijon o'tiribdi.",
+     "items": [
+      {
+       "say": "bebé",
+       "uz": "chaqaloq",
+       "emoji": "👶",
+       "image": "en34-u2-baby.png",
+       "image_prompt": "A cute baby smiling in a blanket, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'lingizda chaqaloqni allalang!"
+      },
+      {
+       "say": "abuelita",
+       "uz": "buvijon",
+       "emoji": "👵",
+       "image": "en34-u2-granny.png",
+       "image_prompt": "A sweet smiling grandmother with glasses, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Allalash o'yini",
+       "matn": "Qo'g'irchoqni qo'lingizga oling. Bu — [es]bebé[/es]. Sekin allalang va shivirlang: [es]¡Buenas noches, bebé![/es]",
+       "doska": "👶 bebé\n🌙 ¡Buenas noches!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Beshikda kim uxlayapti?",
+       "options": [
+        "👶 bebé",
+        "👵 abuelita"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Bebé[/es] — chaqaloq."
+      }
+     ]
+    },
+    {
+     "name": "Bobojon va oila",
+     "goal": "Bola abuelo va familia so'zlarini aytadi",
+     "intro": "Gu-gu! Bugun katta oilani yig'amiz! Bobojon ham keldi. Hammamiz birga bo'lsak — bu oila!",
+     "items": [
+      {
+       "say": "abuelo",
+       "uz": "bobojon",
+       "emoji": "👴",
+       "image": "en34-u2-grandpa.png",
+       "image_prompt": "A kind smiling grandfather with a cane, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "familia",
+       "uz": "oila",
+       "emoji": "👨‍👩‍👧",
+       "image": "en34-u2-family.png",
+       "image_prompt": "A happy family of mum, dad and child hugging, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🤗 Oila quchog'i",
+       "matn": "Qo'llaringizni keng oching va hammani quchoqlang: [es]Mamá, papá, bebé, abuelita, abuelo[/es] — bu [es]familia[/es]!",
+       "doska": "👨‍👩‍👧 familia",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]abuelo[/es]?",
+       "options": [
+        "👴 abuelo",
+        "👶 bebé"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Abuelo[/es] — bobojon."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 2,
+     "name": "Ertalab oilam bilan",
+     "name_en": "La mañana con mi familia",
+     "emoji": "🏠",
+     "goal": "Bola uyda ertalab onasi va dadasi bilan ispancha salomlashadi",
+     "intro": "Gu-gu! Kabutar qushcha uyingizga uchib keldi. Ertalab uyg'ondik — onajon va dadajonga [es]¡Buenos días![/es] deymiz!",
+     "intro_en": "¡Buenos días! ¡Vamos a saludar a mamá y a papá!",
+     "roles": [
+      "Onam",
+      "Dadam",
+      "Bola"
+     ],
+     "roles_en": [
+      "Mamá",
+      "Papá",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s2-family-morning.png",
+      "image_prompt": "A small child in pajamas greeting mum and dad at a cozy breakfast table in the morning, sunlight through the window, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 2,
+       "say": "¡Buenos días, mamá!",
+       "uz": "xayrli tong, oyijon",
+       "emoji": "👩"
+      },
+      {
+       "who": 0,
+       "say": "¡Buenos días!",
+       "uz": "xayrli tong",
+       "emoji": "☀️"
+      },
+      {
+       "who": 2,
+       "say": "¡Hola, papá!",
+       "uz": "salom, dadajon",
+       "emoji": "👨"
+      },
+      {
+       "who": 1,
+       "say": "¡Hola! ¡Buenos días!",
+       "uz": "salom! xayrli tong",
+       "emoji": "🤗"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Ertalab onangizni ko'rdingiz. Nima deysiz?",
+       "q_en": "Es por la mañana. Ves a mamá. ¿Qué dices?",
+       "options": [
+        "☀️ ¡Buenos días, mamá!",
+        "🌙 ¡Buenas noches, mamá!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]¡Buenos días, mamá![/es]",
+       "why_en": "¡Sí! ¡Buenos días, mamá!"
+      },
+      {
+       "q": "Dadangizga salom bering!",
+       "q_en": "¡Saluda a papá!",
+       "options": [
+        "👋 ¡Chao, papá!",
+        "🙋 ¡Hola, papá!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [es]¡Hola, papá![/es] — salom, dadajon.",
+       "why_en": "¡Buen trabajo! ¡Hola, papá!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Ranglar",
+   "emoji": "🎨",
+   "lessons": [
+    {
+     "name": "Qizil va ko'k",
+     "goal": "Bola rojo va azul ranglarini ajratadi",
+     "intro": "Gu-gu! Men sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qip-qizil va moviy ko'k. Qani, ochamiz!",
+     "items": [
+      {
+       "say": "rojo",
+       "uz": "qizil",
+       "emoji": "🔴",
+       "image": "en34-u3-red.png",
+       "image_prompt": "A big shiny red circle, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "azul",
+       "uz": "ko'k",
+       "emoji": "🔵",
+       "image": "en34-u3-blue.png",
+       "image_prompt": "A big shiny blue circle, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👀 Rang ovi",
+       "matn": "Atrofingizga qarang! Qizil narsa topsangiz — ayting: [es]¡Rojo![/es] Ko'k narsa topsangiz — ayting: [es]¡Azul![/es]",
+       "doska": "🔴 rojo\n🔵 azul",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]rojo[/es]?",
+       "options": [
+        "🔴 rojo",
+        "🔵 azul"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Rojo[/es] — qizil."
+      }
+     ]
+    },
+    {
+     "name": "Sariq va yashil",
+     "goal": "Bola amarillo va verde ranglarini ajratadi",
+     "intro": "Gu-gu! Quyosh qanday rangda? Maysa-chi? Bo'yoq qutisidan yana ikki rang chiqdi!",
+     "items": [
+      {
+       "say": "amarillo",
+       "uz": "sariq",
+       "emoji": "🟡",
+       "image": "en34-u3-yellow.png",
+       "image_prompt": "A big shiny yellow circle like the sun, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "verde",
+       "uz": "yashil",
+       "emoji": "🟢",
+       "image": "en34-u3-green.png",
+       "image_prompt": "A big shiny green circle like fresh grass, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚦 Svetofor o'yini",
+       "matn": "[es]¡Verde![/es] — joyingizda yuguring! [es]¡Rojo![/es] — to'xtang! [es]¡Amarillo![/es] — qo'l chapak! Boshladik!",
+       "doska": "🟢 yuguramiz\n🔴 to'xtaymiz\n🟡 chapak",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Quyosh qanday rangda?",
+       "options": [
+        "🟡 amarillo",
+        "🟢 verde"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Quyosh — [es]amarillo[/es], sariq."
+      }
+     ]
+    },
+    {
+     "name": "Pushti va to'q sariq",
+     "goal": "Bola rosa va naranja ranglarini ajratadi",
+     "intro": "Gu-gu! Gulchalar pushti, apelsin esa to'q sariq. Bugun shu ikki chiroyli rangni o'rganamiz!",
+     "items": [
+      {
+       "say": "rosa",
+       "uz": "pushti",
+       "emoji": "🩷",
+       "image": "en34-u3-pink.png",
+       "image_prompt": "A big soft pink heart, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "naranja",
+       "uz": "to'q sariq",
+       "emoji": "🟠",
+       "image": "en34-u3-orange.png",
+       "image_prompt": "A big shiny orange circle, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]rosa[/es]?",
+       "options": [
+        "🩷 rosa",
+        "🟠 naranja"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Rosa[/es] — pushti."
+      }
+     ],
+     "extra": []
+    },
+    {
+     "name": "Oq va qora",
+     "goal": "Bola blanco va negro ranglarini ajratadi",
+     "intro": "Gu-gu! Qor qanday rangda? Tun-chi? Bugun oq va qora ranglar bilan tanishamiz!",
+     "items": [
+      {
+       "say": "blanco",
+       "uz": "oq",
+       "emoji": "⚪",
+       "image": "en34-u3-white.png",
+       "image_prompt": "A big white circle with a soft grey outline, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "negro",
+       "uz": "qora",
+       "emoji": "⚫",
+       "image": "en34-u3-black.png",
+       "image_prompt": "A big shiny black circle, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Ranglar qo'shig'i",
+       "matn": "Qani, kuylaymiz: [es]Rojo y azul, amarillo, verde[/es]! [es]Rosa, naranja, blanco y negro[/es]! Barakalla, hamma rangni bilasiz!",
+       "doska": "🔴🔵🟡🟢\n🩷🟠⚪⚫",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qor qanday rangda?",
+       "options": [
+        "⚪ blanco",
+        "⚫ negro"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Qor — [es]blanco[/es], oq."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 3,
+     "name": "Rasm darsida bo'yoq so'raymiz",
+     "name_en": "Pintamos en clase",
+     "emoji": "🎨",
+     "goal": "Bola rasm darsida kerakli rangni so'raydi va rahmat aytadi",
+     "intro": "Gu-gu! Bugun Kabutar qushcha bilan rasm chizamiz. Kerakli bo'yoqni so'rash uchun [es]Rojo, por favor.[/es] deymiz — sehrli so'z [es]por favor[/es] — «iltimos».",
+     "intro_en": "¡Vamos a pintar! Di: Rojo, por favor.",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Maestra",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s3-painting-class.png",
+      "image_prompt": "A teacher handing a jar of red paint to a small child at a painting table with colorful paint pots and paper, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "¿Azul?",
+       "uz": "ko'kmi?",
+       "emoji": "🔵"
+      },
+      {
+       "who": 1,
+       "say": "No. Rojo, por favor.",
+       "uz": "yo'q. qizil, iltimos",
+       "emoji": "🔴"
+      },
+      {
+       "who": 0,
+       "say": "¡Aquí tienes!",
+       "uz": "mana, ol",
+       "emoji": "🫴"
+      },
+      {
+       "who": 1,
+       "say": "¡Gracias!",
+       "uz": "rahmat",
+       "emoji": "🙏"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sizga qizil bo'yoq kerak. Nima deysiz?",
+       "q_en": "Quieres pintura roja. ¿Qué dices?",
+       "options": [
+        "🔴 Rojo, por favor.",
+        "🔵 Azul, por favor."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Rojo[/es] — qizil. [es]Rojo, por favor.[/es]",
+       "why_en": "¡Sí! Rojo, por favor."
+      },
+      {
+       "q": "Tarbiyachi bo'yoq berdi. Nima deysiz?",
+       "q_en": "La maestra te da pintura. ¿Qué dices?",
+       "options": [
+        "🌙 ¡Buenas noches!",
+        "🙏 ¡Gracias!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [es]¡Gracias![/es] — rahmat.",
+       "why_en": "¡Buen trabajo! ¡Gracias!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Uy hayvonlari",
+   "emoji": "🐾",
+   "lessons": [
+    {
+     "name": "Mushuk va kuchuk",
+     "goal": "Bola gato va perro so'zlarini aytadi",
+     "intro": "Gu-gu! Hovlida kim «miyov» deyapti? Kim «vov-vov» deyapti? Keling, yangi do'stlarimiz bilan tanishamiz!",
+     "items": [
+      {
+       "say": "gato",
+       "uz": "mushuk",
+       "emoji": "🐱",
+       "image": "en34-u4-cat.png",
+       "image_prompt": "A cute fluffy kitten sitting, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Mushukday «miyov» deng!"
+      },
+      {
+       "say": "perro",
+       "uz": "kuchuk",
+       "emoji": "🐶",
+       "image": "en34-u4-dog.png",
+       "image_prompt": "A cute happy puppy wagging its tail, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kuchukday «vov-vov» deng!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐾 Ovozni top",
+       "matn": "Men ovoz chiqaraman, siz nomini ayting! «Miyov!» — [es]¡Gato![/es] «Vov-vov!» — [es]¡Perro![/es] Barakalla!",
+       "doska": "🐱 miyov — gato\n🐶 vov — perro",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "«Miyov» deydigan kim?",
+       "options": [
+        "🐱 gato",
+        "🐶 perro"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Gato[/es] — mushuk «miyov» deydi."
+      }
+     ]
+    },
+    {
+     "name": "Sigir va ot",
+     "goal": "Bola vaca va caballo so'zlarini aytadi",
+     "intro": "Gu-gu! Bugun ferma sayohatiga boramiz! Kim sut beradi? Kim tez chopadi? Qani, ketdik!",
+     "items": [
+      {
+       "say": "vaca",
+       "uz": "sigir",
+       "emoji": "🐮",
+       "image": "en34-u4-cow.png",
+       "image_prompt": "A friendly spotted cow on grass, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Sigirday «mu-u» deng!"
+      },
+      {
+       "say": "caballo",
+       "uz": "ot",
+       "emoji": "🐴",
+       "image": "en34-u4-horse.png",
+       "image_prompt": "A friendly brown horse, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Otday chopib, «du-dup» qiling!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏇 Ot minish",
+       "matn": "Joyingizda otday chopamiz: du-dup, du-dup! [es]¡Caballo, caballo![/es] Endi to'xtab, sigirday: «mu-u!» [es]¡Vaca![/es]",
+       "doska": "🐴 caballo\n🐮 vaca",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim bizga sut beradi?",
+       "options": [
+        "🐮 vaca",
+        "🐴 caballo"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Vaca[/es] — sigir sut beradi."
+      }
+     ]
+    },
+    {
+     "name": "Tovuq va o'rdak",
+     "goal": "Bola gallina va pato so'zlarini aytadi",
+     "intro": "Gu-gu! Hovlida kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bu mening qanotli do'stlarim!",
+     "items": [
+      {
+       "say": "gallina",
+       "uz": "tovuq",
+       "emoji": "🐔",
+       "image": "en34-u4-hen.png",
+       "image_prompt": "A cute hen with a red comb, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Tovuqday «qo-qo» deng!"
+      },
+      {
+       "say": "pato",
+       "uz": "o'rdak",
+       "emoji": "🦆",
+       "image": "en34-u4-duck.png",
+       "image_prompt": "A cute yellow duck swimming, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "O'rdakday lapanglab yuring!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🦆 O'rdakcha yurishi",
+       "matn": "Qo'llaringizni qanot qiling va o'rdakday lapanglab yuring: [es]¡Pato, pato, pato![/es] Endi tovuqday don cho'qing: [es]¡Gallina, gallina![/es]",
+       "doska": "🦆 pato\n🐔 gallina",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Suvda kim suzadi?",
+       "options": [
+        "🦆 pato",
+        "🐔 gallina"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Pato[/es] — o'rdak suvda suzadi."
+      }
+     ]
+    },
+    {
+     "name": "Qo'zichoq va quyon",
+     "goal": "Bola oveja va conejo so'zlarini aytadi",
+     "intro": "Gu-gu! Kimning juni paxtaday yumshoq? Kim sakrab-sakrab sabzi yeydi? Topdingizmi?",
+     "items": [
+      {
+       "say": "oveja",
+       "uz": "qo'y",
+       "emoji": "🐑",
+       "image": "en34-u4-sheep.png",
+       "image_prompt": "A fluffy white sheep, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'yday «ba-a» deng!"
+      },
+      {
+       "say": "conejo",
+       "uz": "quyon",
+       "emoji": "🐰",
+       "image": "en34-u4-rabbit.png",
+       "image_prompt": "A cute white bunny with long ears, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Quyonday sakrang!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🐰 Quyon sakrashi",
+       "matn": "Qo'llaringiz quloq bo'lsin. Sakraymiz: bir, ikki, uch! [es]¡Conejo, conejo, salta![/es] Barakalla!",
+       "doska": "🐰 ¡hop, hop!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Kim sakrab yuradi?",
+       "options": [
+        "🐰 conejo",
+        "🐑 oveja"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Conejo[/es] — quyon sakraydi."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 4,
+     "name": "Mushukchamni boqaman",
+     "name_en": "Doy de comer a mi gato",
+     "emoji": "🐱",
+     "goal": "Bola uy hayvoni bilan ispancha salomlashadi va unga ovqat beradi",
+     "intro": "Gu-gu! Kabutar qushchaning do'sti — mushukcha qorni och! Keling, unga [es]¡Hola, gato![/es] deb ovqat beramiz.",
+     "intro_en": "¡Mira! ¡Un gato con hambre! Vamos a saludarlo y a darle de comer.",
+     "roles": [
+      "Mushukcha",
+      "Bola"
+     ],
+     "roles_en": [
+      "Gato",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s4-feeding-cat.png",
+      "image_prompt": "A small child putting a bowl of food in front of a fluffy happy kitten in a cozy kitchen, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "¡Hola, gato!",
+       "uz": "salom, mushukcha",
+       "emoji": "👋"
+      },
+      {
+       "who": 0,
+       "say": "¡Miau!",
+       "uz": "miyov!",
+       "emoji": "🐱"
+      },
+      {
+       "who": 1,
+       "say": "¡Aquí tienes!",
+       "uz": "mana, ol",
+       "emoji": "🥣"
+      },
+      {
+       "who": 0,
+       "say": "¡Miau! ¡Miau!",
+       "uz": "miyov! miyov!",
+       "emoji": "😻"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Mushukchaga salom bering!",
+       "q_en": "¡Saluda al gato!",
+       "options": [
+        "🐱 ¡Hola, gato!",
+        "🐶 ¡Hola, perro!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Gato[/es] — mushuk. [es]¡Hola, gato![/es]",
+       "why_en": "¡Sí! ¡Hola, gato!"
+      },
+      {
+       "q": "Mushuk qanday ovoz chiqaradi?",
+       "q_en": "¿Qué dice el gato?",
+       "options": [
+        "🐮 ¡Muu!",
+        "🐱 ¡Miau!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! Mushuk [es]¡Miau![/es] deydi.",
+       "why_en": "¡Buen trabajo! El gato dice: ¡Miau!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Sanaymiz 1–5",
+   "emoji": "🔢",
+   "lessons": [
+    {
+     "name": "Bir, ikki, uch",
+     "goal": "Bola uno, dos, tres sonlarini eshitib, barmoq bilan ko'rsatadi",
+     "intro": "Gu-gu! Men uchta don topdim! Ularni ispancha sanaymizmi? Barmoqchalaringizni tayyorlang!",
+     "items": [
+      {
+       "say": "uno",
+       "uz": "bir",
+       "emoji": "1️⃣",
+       "image": "en34-u5-one.png",
+       "image_prompt": "One red apple and a big number one, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Bitta barmoq ko'rsating!"
+      },
+      {
+       "say": "dos",
+       "uz": "ikki",
+       "emoji": "2️⃣",
+       "image": "en34-u5-two.png",
+       "image_prompt": "Two yellow ducks and a big number two, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ikkita barmoq ko'rsating!"
+      },
+      {
+       "say": "tres",
+       "uz": "uch",
+       "emoji": "3️⃣",
+       "image": "en34-u5-three.png",
+       "image_prompt": "Three blue balls and a big number three, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Uchta barmoq ko'rsating!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Chapak sanash",
+       "matn": "Men bilan chapak chaling va sanang: [es]Uno[/es] — chap! [es]Dos[/es] — chap, chap! [es]Tres[/es] — chap, chap, chap!",
+       "doska": "1️⃣ 👏\n2️⃣ 👏👏\n3️⃣ 👏👏👏",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Nechta olma? 🍎🍎",
+       "options": [
+        "2️⃣ dos",
+        "3️⃣ tres"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Uno, dos[/es] — ikkita olma."
+      }
+     ]
+    },
+    {
+     "name": "To'rt va besh",
+     "goal": "Bola cuatro, cinco sonlarini aytadi va beshgacha sanaydi",
+     "intro": "Gu-gu! Qo'lingizga qarang. Nechta barmoq bor? Besh! Bugun beshgacha sanashni o'rganamiz!",
+     "items": [
+      {
+       "say": "cuatro",
+       "uz": "to'rt",
+       "emoji": "4️⃣",
+       "image": "en34-u5-four.png",
+       "image_prompt": "Four green frogs and a big number four, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "To'rtta barmoq ko'rsating!"
+      },
+      {
+       "say": "cinco",
+       "uz": "besh",
+       "emoji": "5️⃣",
+       "image": "en34-u5-five.png",
+       "image_prompt": "An open hand with five fingers and a big number five, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kaftingizni oching!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Barmoq qo'shig'i",
+       "matn": "Barmoqlarni bittadan oching: [es]¡Uno, dos, tres, cuatro, cinco![/es] Endi yuming: [es]¡Cinco, cuatro, tres, dos, uno![/es] Ofarin!",
+       "doska": "🖐 1 2 3 4 5",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qo'limda nechta barmoq bor? 🖐",
+       "options": [
+        "5️⃣ cinco",
+        "4️⃣ cuatro"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Cinco[/es] — beshta barmoq."
+      }
+     ]
+    },
+    {
+     "name": "Katta va kichik",
+     "goal": "Bola grande va pequeño so'zlarini ajratadi",
+     "intro": "Gu-gu! Fil juda katta, sichqoncha esa kichkina! Kabutar qushcha-chi? Bugun katta va kichikni o'rganamiz!",
+     "items": [
+      {
+       "say": "grande",
+       "uz": "katta",
+       "emoji": "🐘",
+       "image": "en34-u5-big.png",
+       "image_prompt": "A big friendly elephant, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni keng yoying!"
+      },
+      {
+       "say": "pequeño",
+       "uz": "kichik",
+       "emoji": "🐭",
+       "image": "en34-u5-small.png",
+       "image_prompt": "A tiny cute mouse, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kichkina bo'lib, cho'nqayib o'tiring!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🏃 Katta-kichik o'yini",
+       "matn": "[es]¡Grande![/es] desam — qo'lni keng yoyib, baland turing! [es]¡Pequeño![/es] desam — cho'nqayib, kichkina bo'ling! [es]¡Grande![/es] … [es]¡Pequeño![/es]",
+       "doska": "🐘 grande\n🐭 pequeño",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]grande[/es]?",
+       "options": [
+        "🐘 grande",
+        "🐭 pequeño"
+       ],
+       "answer": 0,
+       "why": "Ofarin! Fil — [es]grande[/es], katta."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 5,
+     "name": "Do'stimning tug'ilgan kuni",
+     "name_en": "La fiesta de cumpleaños de mi amigo",
+     "emoji": "🎉",
+     "goal": "Bola do'stini tug'ilgan kuni bilan tabriklaydi va shamlarni sanaydi",
+     "intro": "Gu-gu! Bugun do'stimizning tug'ilgan kuni! Kabutar qushcha bilan [es]¡Feliz cumpleaños![/es] deymiz va shamlarni sanaymiz.",
+     "intro_en": "¡Es una fiesta de cumpleaños! Vamos a decir: ¡Feliz cumpleaños! ¡Vamos a contar!",
+     "roles": [
+      "Do'stim",
+      "Bola"
+     ],
+     "roles_en": [
+      "Amigo",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s5-birthday-party.png",
+      "image_prompt": "Two small children at a birthday party, one smiling in a party hat next to a table with three candles glowing, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 1,
+       "say": "¡Feliz cumpleaños!",
+       "uz": "tug'ilgan kuning bilan",
+       "emoji": "🎉"
+      },
+      {
+       "who": 0,
+       "say": "¡Gracias!",
+       "uz": "rahmat",
+       "emoji": "🙏"
+      },
+      {
+       "who": 1,
+       "say": "¡Uno, dos, tres!",
+       "uz": "bir, ikki, uch",
+       "emoji": "🕯️🕯️🕯️"
+      },
+      {
+       "who": 0,
+       "say": "¡Sí! ¡Tres!",
+       "uz": "ha! uchta",
+       "emoji": "3️⃣"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Do'stingizning tug'ilgan kuni. Nima deysiz?",
+       "q_en": "Es el cumpleaños de tu amigo. ¿Qué dices?",
+       "options": [
+        "🎉 ¡Feliz cumpleaños!",
+        "🌙 ¡Buenas noches!"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]¡Feliz cumpleaños![/es] — tug'ilgan kuning bilan!",
+       "why_en": "¡Sí! ¡Feliz cumpleaños!"
+      },
+      {
+       "q": "Uchta shamni sanang!",
+       "q_en": "¡Cuenta tres velas!",
+       "options": [
+        "🕯️ ¡Uno, dos!",
+        "🕯️ ¡Uno, dos, tres!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [es]¡Uno, dos, tres![/es] — uchta!",
+       "why_en": "¡Buen trabajo! ¡Uno, dos, tres!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "O'yinchoqlar",
+   "emoji": "🧸",
+   "lessons": [
+    {
+     "name": "Koptok va qo'g'irchoq",
+     "goal": "Bola pelota va muñeca so'zlarini aytadi",
+     "intro": "Gu-gu! Men o'yinchoq sandiqchasini topdim! Ichida nima bor ekan? Sekin ochamiz…",
+     "items": [
+      {
+       "say": "pelota",
+       "uz": "koptok",
+       "emoji": "⚽",
+       "image": "en34-u6-ball.png",
+       "image_prompt": "A colorful bouncing ball, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Koptokni otganday qiling!"
+      },
+      {
+       "say": "muñeca",
+       "uz": "qo'g'irchoq",
+       "emoji": "🪆",
+       "image": "en34-u6-doll.png",
+       "image_prompt": "A cute doll in a pretty dress, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "⚽ Koptok o'yini",
+       "matn": "Koptokni bir-biringizga dumalating. Olganingizda ayting: [es]¡Pelota![/es] Qo'g'irchoqni quchoqlang: [es]¡Muñeca![/es]",
+       "doska": "⚽ pelota\n🪆 muñeca",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]pelota[/es]?",
+       "options": [
+        "⚽ pelota",
+        "🪆 muñeca"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Pelota[/es] — koptok."
+      }
+     ]
+    },
+    {
+     "name": "Mashina va ayiqcha",
+     "goal": "Bola coche va osito so'zlarini aytadi",
+     "intro": "Gu-gu! Bip-bip! Kim keldi? Mashina! Uning ichida esa yumshoq ayiqcha o'tiribdi!",
+     "items": [
+      {
+       "say": "coche",
+       "uz": "mashina",
+       "emoji": "🚗",
+       "image": "en34-u6-car.png",
+       "image_prompt": "A small red toy car, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Rul burang: bip-bip!"
+      },
+      {
+       "say": "osito",
+       "uz": "ayiqcha",
+       "emoji": "🧸",
+       "image": "en34-u6-teddy.png",
+       "image_prompt": "A soft brown teddy bear, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚗 Mashina haydaymiz",
+       "matn": "Rulni ushlang va yuring: bip-bip! [es]¡Coche, coche![/es] To'xtang! Ayiqchani mashinaga o'tqazing: [es]¡Osito, hola![/es]",
+       "doska": "🚗 coche\n🧸 osito",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "«Bip-bip» qiladigan o'yinchoq qaysi?",
+       "options": [
+        "🚗 coche",
+        "🧸 osito"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Coche[/es] — mashina."
+      }
+     ]
+    },
+    {
+     "name": "Havo shari va baraban",
+     "goal": "Bola globo va tambor so'zlarini aytadi",
+     "intro": "Gu-gu! Bugun bayram! Havoda shar uchyapti, baraban «bum-bum» chalyapti. Qani, bayramga!",
+     "items": [
+      {
+       "say": "globo",
+       "uz": "havo shari",
+       "emoji": "🎈",
+       "image": "en34-u6-balloon.png",
+       "image_prompt": "A red balloon floating up, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "tambor",
+       "uz": "baraban",
+       "emoji": "🥁",
+       "image": "en34-u6-drum.png",
+       "image_prompt": "A colorful toy drum with sticks, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Baraban chaling: bum-bum!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🥁 Baraban sanash",
+       "matn": "Tizzangizga baraban chaling va sanang: [es]¡Uno, dos, tres![/es] Bum-bum-bum! [es]¡Tambor![/es] Endi shardek yengil uching: [es]¡Globo![/es]",
+       "doska": "🥁 bum-bum\n🎈 globo",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Havoda nima uchyapti?",
+       "options": [
+        "🎈 globo",
+        "🥁 tambor"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Globo[/es] — havo shari."
+      }
+     ]
+    },
+    {
+     "name": "Poyezd va kubiklar",
+     "goal": "Bola tren va bloques so'zlarini aytadi",
+     "intro": "Gu-gu! Chu-chu! Poyezd keldi! Vagonlarida rang-barang kubiklar bor. Kubiklardan uy quramiz!",
+     "items": [
+      {
+       "say": "tren",
+       "uz": "poyezd",
+       "emoji": "🚂",
+       "image": "en34-u6-train.png",
+       "image_prompt": "A colorful toy train, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Poyezdday «chu-chu» deng!"
+      },
+      {
+       "say": "bloques",
+       "uz": "kubiklar",
+       "emoji": "🧱",
+       "image": "en34-u6-blocks.png",
+       "image_prompt": "A stack of colorful toy building blocks, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Kubiklarni ustma-ust qo'yganday qiling!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🚂 Poyezd o'yini",
+       "matn": "Bir-biringizning yelkangizdan ushlab poyezd bo'ling: chu-chu! [es]¡Tren, tren![/es] Birinchi bekat — o'yinchoqlar: [es]¡pelota, muñeca, coche, osito![/es]",
+       "doska": "🚂 ¡chu-chu!",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "«Chu-chu» qiladigan kim?",
+       "options": [
+        "🚂 tren",
+        "🧱 bloques"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Tren[/es] — poyezd."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 6,
+     "name": "Do'stim bilan koptok o'ynaymiz",
+     "name_en": "Jugamos con un amigo",
+     "emoji": "⚽",
+     "goal": "Bola do'stidan o'yinchoqni odob bilan oladi va rahmat aytadi",
+     "intro": "Gu-gu! Kabutar qushcha o'yinni yaxshi ko'radi. Do'stimiz koptok beryapti — [es]¡Sí, por favor![/es] va [es]¡Gracias![/es] deymiz.",
+     "intro_en": "¡Vamos a jugar con un amigo! Di: ¡Sí, por favor! ¡Gracias!",
+     "roles": [
+      "Do'stim",
+      "Bola"
+     ],
+     "roles_en": [
+      "Amigo",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s6-playing-ball.png",
+      "image_prompt": "Two small children playing on a playroom rug, one handing a colorful ball to the other, toy car and teddy nearby, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "¡Hola! ¿Una pelota?",
+       "uz": "salom! koptokmi?",
+       "emoji": "⚽"
+      },
+      {
+       "who": 1,
+       "say": "¡Sí, por favor!",
+       "uz": "ha, iltimos",
+       "emoji": "🙂"
+      },
+      {
+       "who": 0,
+       "say": "¡Aquí tienes!",
+       "uz": "mana, ol",
+       "emoji": "🫴"
+      },
+      {
+       "who": 1,
+       "say": "¡Gracias!",
+       "uz": "rahmat",
+       "emoji": "🙏"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sizga ayiqcha kerak. Nima deysiz?",
+       "q_en": "Quieres el osito. ¿Qué dices?",
+       "options": [
+        "🧸 Un osito, por favor.",
+        "🚗 Un coche, por favor."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Osito[/es] — ayiqcha. [es]Un osito, por favor.[/es]",
+       "why_en": "¡Sí! Un osito, por favor."
+      },
+      {
+       "q": "Do'stingiz koptok berdi. Nima deysiz?",
+       "q_en": "Tu amigo te da una pelota. ¿Qué dices?",
+       "options": [
+        "👋 ¡Chao!",
+        "🙏 ¡Gracias!"
+       ],
+       "answer": 1,
+       "why": "Barakalla! [es]¡Gracias![/es] — rahmat.",
+       "why_en": "¡Buen trabajo! ¡Gracias!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Tanam",
+   "emoji": "🙂",
+   "lessons": [
+    {
+     "name": "Bosh va ko'zlar",
+     "goal": "Bola cabeza va ojos so'zlarini aytib, ko'rsatadi",
+     "intro": "Gu-gu! Mening kichkina boshim va munchoqday ko'zlarim bor. Sizniki-chi? Qani, ko'rsating!",
+     "items": [
+      {
+       "say": "cabeza",
+       "uz": "bosh",
+       "emoji": "🙆",
+       "image": "en34-u7-head.png",
+       "image_prompt": "A smiling child touching the top of their head with both hands, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Boshingizni ushlang!"
+      },
+      {
+       "say": "ojos",
+       "uz": "ko'zlar",
+       "emoji": "👀",
+       "image": "en34-u7-eyes.png",
+       "image_prompt": "Two big friendly cartoon eyes, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Ko'zingizni pirpiratib ko'rsating!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🙈 Berkinmachoq",
+       "matn": "Ko'zingizni qo'lingiz bilan yoping… [es]¡Ojos![/es] Endi oching — ku-ku! Boshingizni silang: [es]¡Cabeza![/es]",
+       "doska": "🙆 cabeza\n👀 ojos",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz nima bilan ko'ramiz?",
+       "options": [
+        "👀 ojos",
+        "🙆 cabeza"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Ojos[/es] — ko'zlar bilan ko'ramiz."
+      }
+     ]
+    },
+    {
+     "name": "Quloq va burun",
+     "goal": "Bola orejas va nariz so'zlarini aytib, ko'rsatadi",
+     "intro": "Gu-gu! Tss… eshityapsizmi? Qush sayrayapti! Hidlayapsizmi? Gul hidi! Nima bilan eshitamiz va hidlaymiz?",
+     "items": [
+      {
+       "say": "orejas",
+       "uz": "quloqlar",
+       "emoji": "👂",
+       "image": "en34-u7-ears.png",
+       "image_prompt": "A cute cartoon ear listening, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Quloqlaringizni ushlang!"
+      },
+      {
+       "say": "nariz",
+       "uz": "burun",
+       "emoji": "👃",
+       "image": "en34-u7-nose.png",
+       "image_prompt": "A cute cartoon nose smelling a flower, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Burningizga teging!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👃 Hidla-chi",
+       "matn": "Gulni hidlaganday qiling: mmm! [es]¡Nariz![/es] Endi qulog'ingizni kaftingiz bilan tuting va tinglang: [es]¡Orejas![/es]",
+       "doska": "👃 nariz\n👂 orejas",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz nima bilan hidlaymiz?",
+       "options": [
+        "👃 nariz",
+        "👂 orejas"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Nariz[/es] — burun bilan hidlaymiz."
+      }
+     ]
+    },
+    {
+     "name": "Og'iz va qo'llar",
+     "goal": "Bola boca va manos so'zlarini aytib, ko'rsatadi",
+     "intro": "Gu-gu! Qarsak kim chaladi? Qo'llarimiz! Kim tabassum qiladi? Og'zimiz! Qani, jilmaying!",
+     "items": [
+      {
+       "say": "boca",
+       "uz": "og'iz",
+       "emoji": "👄",
+       "image": "en34-u7-mouth.png",
+       "image_prompt": "A cute smiling cartoon mouth, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Og'zingizni ko'rsating!"
+      },
+      {
+       "say": "manos",
+       "uz": "qo'llar",
+       "emoji": "🙌",
+       "image": "en34-u7-hands.png",
+       "image_prompt": "Two little child hands raised up happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringizni ko'taring!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "👏 Qarsak qo'shig'i",
+       "matn": "Qo'llaringiz bilan chapak chaling: [es]¡Manos, manos![/es] Endi og'zingizni katta oching: «a-a-a!» [es]¡Boca![/es]",
+       "doska": "🙌 manos\n👄 boca",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz nima bilan qarsak chalamiz?",
+       "options": [
+        "🙌 manos",
+        "👄 boca"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Manos[/es] — qo'llar bilan."
+      }
+     ]
+    },
+    {
+     "name": "Oyoqlar",
+     "goal": "Bola piernas va pies so'zlarini aytib, ko'rsatadi",
+     "intro": "Gu-gu! Men uchaman, siz esa yurasiz va sakraysiz! Nima bilan? Oyoqlaringiz bilan! Qani, turing!",
+     "items": [
+      {
+       "say": "piernas",
+       "uz": "oyoqlar",
+       "emoji": "🦵",
+       "image": "en34-u7-legs.png",
+       "image_prompt": "A cartoon child's leg kicking happily, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyog'ingizni ko'taring!"
+      },
+      {
+       "say": "pies",
+       "uz": "oyoq panjalari",
+       "emoji": "🦶",
+       "image": "en34-u7-feet.png",
+       "image_prompt": "Two cute cartoon bare feet, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Oyog'ingizni tapillating!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎵 Bosh, ko'z, quloq",
+       "matn": "Men aytaman, siz ushlaysiz: [es]¡Cabeza![/es] [es]¡Ojos![/es] [es]¡Orejas![/es] [es]¡Nariz![/es] [es]¡Boca![/es] [es]¡Manos![/es] [es]¡Pies![/es] Barakalla!",
+       "doska": "🙆👀👂👃👄🙌🦶",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Biz nima bilan yuramiz?",
+       "options": [
+        "🦵 piernas",
+        "👀 ojos"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Piernas[/es] — oyoqlar bilan yuramiz."
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 7,
+     "name": "Cho'milish vaqti",
+     "name_en": "Hora del baño",
+     "emoji": "🛁",
+     "goal": "Bola cho'milishda tana a'zolarini ispancha aytadi va onasining so'zini tushunadi",
+     "intro": "Gu-gu! Kabutar qushcha ham suvda cho'milishni yaxshi ko'radi. Onajon [es]¡Hora del baño![/es] dedi — qo'llarimizni yuvamiz!",
+     "intro_en": "¡Hora del baño! ¡Vamos a lavarnos las manos!",
+     "roles": [
+      "Onam",
+      "Bola"
+     ],
+     "roles_en": [
+      "Mamá",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s7-bath-time.png",
+      "image_prompt": "A happy small child in a bubble bath washing hands, mum smiling next to the tub, rubber duck floating, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "¡Hora del baño!",
+       "uz": "cho'milish vaqti",
+       "emoji": "🛁"
+      },
+      {
+       "who": 1,
+       "say": "¡Sí, mamá!",
+       "uz": "xo'p, oyijon",
+       "emoji": "🙂"
+      },
+      {
+       "who": 0,
+       "say": "¡Lávate las manos!",
+       "uz": "qo'llaringni yuv",
+       "emoji": "🙌"
+      },
+      {
+       "who": 1,
+       "say": "¡Lava, lava, lava!",
+       "uz": "yuvaman, yuvaman",
+       "emoji": "🧼"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Onam: [es]¡Lávate las manos![/es] Nimani yuvamiz?",
+       "q_en": "Mamá dice: ¡Lávate las manos! ¿Qué te lavas?",
+       "options": [
+        "👂 ¡Orejas!",
+        "🙌 ¡Manos!"
+       ],
+       "answer": 1,
+       "why": "To'g'ri! [es]Manos[/es] — qo'llar.",
+       "why_en": "¡Sí! ¡Manos!"
+      },
+      {
+       "q": "Onam: [es]¡Hora del baño![/es] Nima deysiz?",
+       "q_en": "Mamá dice: ¡Hora del baño! ¿Qué dices?",
+       "options": [
+        "🙂 ¡Sí, mamá!",
+        "🌙 ¡Buenas noches!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]¡Sí, mamá![/es] — xo'p, oyijon.",
+       "why_en": "¡Buen trabajo! ¡Sí, mamá!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mevalar va ovqat",
+   "emoji": "🍎",
+   "lessons": [
+    {
+     "name": "Olma va banan",
+     "goal": "Bola manzana va plátano so'zlarini aytadi",
+     "intro": "Gu-gu! Men savatcha olib keldim. Ichida qizil meva va sariq meva bor. Topdingizmi?",
+     "items": [
+      {
+       "say": "manzana",
+       "uz": "olma",
+       "emoji": "🍎",
+       "image": "en34-u8-apple.png",
+       "image_prompt": "A shiny red apple with a green leaf, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "plátano",
+       "uz": "banan",
+       "emoji": "🍌",
+       "image": "en34-u8-banana.png",
+       "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🧺 Savatcha o'yini",
+       "matn": "Savatchadan olma olganday qiling: [es]¡Manzana![/es] Endi bananni artganday qiling: [es]¡Plátano![/es] Qizil — [es]manzana[/es], sariq — [es]plátano[/es]!",
+       "doska": "🍎 manzana\n🍌 plátano",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Qaysi biri [es]plátano[/es]?",
+       "options": [
+        "🍌 plátano",
+        "🍎 manzana"
+       ],
+       "answer": 0,
+       "why": "Barakalla! [es]Plátano[/es] — banan."
+      }
+     ]
+    },
+    {
+     "name": "Sut va suv",
+     "goal": "Bola leche va agua so'zlarini aytadi",
+     "intro": "Gu-gu! Chanqadingizmi? Menda oq ichimlik va shaffof ichimlik bor. Qaysi birini ichasiz?",
+     "items": [
+      {
+       "say": "leche",
+       "uz": "sut",
+       "emoji": "🥛",
+       "image": "en34-u8-milk.png",
+       "image_prompt": "A glass of white milk, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "agua",
+       "uz": "suv",
+       "emoji": "💧",
+       "image": "en34-u8-water.png",
+       "image_prompt": "A clear glass of fresh water with a water drop, cute cartoon, soft flat colors, white background, no text, square"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎭 Choyxona o'yini",
+       "matn": "Ayiqchaga ichimlik bering: [es]¿Leche?[/es] Ayiqcha: [es]¡Sí![/es] Unga nima deymiz? [es]¡Gracias![/es] Barakalla!",
+       "doska": "🥛 leche\n💧 agua",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Sigir bizga nima beradi?",
+       "options": [
+        "🥛 leche",
+        "💧 agua"
+       ],
+       "answer": 0,
+       "why": "To'g'ri! Sigir — [es]leche[/es], sut beradi."
+      }
+     ]
+    },
+    {
+     "name": "Non va tort",
+     "goal": "Bola pan va pastel so'zlarini aytadi",
+     "intro": "Gu-gu! Bugun kimningdir tug'ilgan kuni! Dasturxonda non ham, shamli tort ham bor. Puflaymizmi?",
+     "items": [
+      {
+       "say": "pan",
+       "uz": "non",
+       "emoji": "🍞",
+       "image": "en34-u8-bread.png",
+       "image_prompt": "A loaf of fresh bread, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "pastel",
+       "uz": "tort",
+       "emoji": "🎂",
+       "image": "en34-u8-cake.png",
+       "image_prompt": "A birthday cake with candles, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Shamni puflang: puf-f!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "🎂 Tug'ilgan kun",
+       "matn": "Shamlarni sanang: [es]¡Uno, dos, tres![/es] Endi puflang: puf-f! [es]¡Pastel, pastel![/es] Hammaga ayting: [es]¡Gracias![/es]",
+       "doska": "🎂 pastel\n🍞 pan",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Tug'ilgan kunda nimani puflaymiz?",
+       "options": [
+        "🎂 pastel",
+        "🍞 pan"
+       ],
+       "answer": 0,
+       "why": "Ofarin! [es]Pastel[/es] — tortdagi shamni puflaymiz."
+      }
+     ]
+    },
+    {
+     "name": "Sharbat va mazali",
+     "goal": "Bola zumo va ¡Qué rico! so'zlarini aytadi",
+     "intro": "Gu-gu! Olmadan shirin sharbat qildik! Ichib ko'ramizmi? Juda mazali bo'lsa, ispanlar bir qiziq so'z aytadi!",
+     "items": [
+      {
+       "say": "zumo",
+       "uz": "sharbat",
+       "emoji": "🧃",
+       "image": "en34-u8-juice.png",
+       "image_prompt": "A cute box of fruit juice with a straw, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "¡Qué rico!",
+       "uz": "mazali",
+       "emoji": "😋",
+       "image": "en34-u8-yummy.png",
+       "image_prompt": "A happy child licking lips after tasty food, cute cartoon, soft flat colors, white background, no text, square",
+       "action": "Qorningizni silang!"
+      }
+     ],
+     "extra": [
+      {
+       "turi": "topshiriq",
+       "sarlavha": "😋 Mazali o'yini",
+       "matn": "Men ovqat aytaman: yoqsa — [es]¡Qué rico![/es] deb qorin silang, yoqmasa — [es]¡No![/es] deng. [es]¿Pastel?[/es] … [es]¿Manzana?[/es] … [es]¿Zumo?[/es]",
+       "doska": "😋 ¡Qué rico!\n❌ No",
+       "sodda": null,
+       "boshqa_usul": null
+      }
+     ],
+     "tests": [
+      {
+       "q": "Ovqat juda mazali! Nima deymiz?",
+       "options": [
+        "😋 ¡Qué rico!",
+        "🌙 ¡Buenas noches!"
+       ],
+       "answer": 0,
+       "why": "Barakalla! Mazali bo'lsa — [es]¡Qué rico![/es]"
+      }
+     ]
+    }
+   ],
+   "scenarios": [
+    {
+     "unit": 8,
+     "name": "Bog'chada tamaddi vaqti",
+     "name_en": "Hora de la merienda",
+     "emoji": "🍎",
+     "goal": "Bola tamaddi vaqtida meva yoki ichimlikni odob bilan so'raydi",
+     "intro": "Gu-gu! Kabutar qushchaning qorni och! Tamaddi vaqti keldi — [es]Una manzana, por favor.[/es] deb so'raymiz.",
+     "intro_en": "¡Es la hora de la merienda! Di: Una manzana, por favor.",
+     "roles": [
+      "Tarbiyachi",
+      "Bola"
+     ],
+     "roles_en": [
+      "Maestra",
+      "Niño"
+     ],
+     "scene": {
+      "image": "en34-s8-snack-time.png",
+      "image_prompt": "A kindergarten teacher offering a plate with apples and bananas to a small child at a little table with a cup of milk, cute cartoon scene for kids, soft flat colors, no text, square"
+     },
+     "dialog": [
+      {
+       "who": 0,
+       "say": "¿Manzana? ¿Plátano?",
+       "uz": "olmami? bananmi?",
+       "emoji": "🍎🍌"
+      },
+      {
+       "who": 1,
+       "say": "Una manzana, por favor.",
+       "uz": "olma, iltimos",
+       "emoji": "🍎"
+      },
+      {
+       "who": 0,
+       "say": "¡Aquí tienes!",
+       "uz": "mana, ol",
+       "emoji": "🫴"
+      },
+      {
+       "who": 1,
+       "say": "¡Gracias! ¡Qué rico!",
+       "uz": "rahmat! mazali",
+       "emoji": "😋"
+      }
+     ],
+     "questions": [
+      {
+       "q": "Sizga olma kerak. Nima deysiz?",
+       "q_en": "Quieres una manzana. ¿Qué dices?",
+       "options": [
+        "🍎 Una manzana, por favor.",
+        "🍌 Un plátano, por favor."
+       ],
+       "answer": 0,
+       "why": "To'g'ri! [es]Manzana[/es] — olma. [es]Una manzana, por favor.[/es]",
+       "why_en": "¡Sí! Una manzana, por favor."
+      },
+      {
+       "q": "Sut ichgingiz keldi. Nima deysiz?",
+       "q_en": "Quieres leche. ¿Qué dices?",
+       "options": [
+        "💧 Agua, por favor.",
+        "🥛 Leche, por favor."
+       ],
+       "answer": 1,
+       "why": "Barakalla! [es]Leche[/es] — sut. [es]Leche, por favor.[/es]",
+       "why_en": "¡Buen trabajo! Leche, por favor."
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "class": {
+  "look": "¡Mira!",
+  "listen": "Escucha y repite:",
+  "again": "¡Otra vez!",
+  "good": [
+   "¡Buen trabajo!",
+   "¡Muy bien!",
+   "¡Genial!",
+   "¡Súper!",
+   "¡Excelente!"
+  ],
+  "remember": "¿Te acuerdas?",
+  "together": "¡Digámoslo todos juntos!",
+  "your_turn": "¡Te toca!",
+  "game": "¡Hora de jugar!",
+  "ready": "¿Listos? ¡Ya!",
+  "found": "¡Buen trabajo! ¡Los has encontrado todos!",
+  "today": "Hoy hemos aprendido:",
+  "bye": "¡Hasta mañana!",
+  "which": "¿Cuál es: {w}?",
+  "find": "Busca el dibujo: {w}",
+  "where": "¿Dónde está: {w}?",
+  "what": "Mira el dibujo. ¿Qué es?",
+  "yes": "¡Sí! {w}",
+  "old": "🔁 Pregunta de repaso",
+  "play": "¡Vamos a jugar!",
+  "roleplay": "¡Vamos a representarlo!",
+  "says": "{r} dice:",
+  "now_you": "Ahora dilo tú:",
+  "hello_friends": "¡Hola, amigos!",
+  "listen_short": "Escucha:",
+  "listen_bang": "¡Escucha!",
+  "repeat_me": "Repite conmigo:",
+  "now_you_short": "Ahora tú:",
+  "say": "Di:",
+  "one_more": "Una vez más:",
+  "look_listen": "Mira y escucha:",
+  "point_game": "Yo lo digo, tú señalas el dibujo: {names}.",
+  "t_point": "🎲 ¡Señálalo!",
+  "t_today": "🌟 Hoy hemos aprendido",
+  "t_remember": "Recuerda:",
+  "t_last_year": "El año pasado",
+  "welcome_back": "¡Hola, amigos! ¡Bienvenidos otra vez! Vamos a recordar las palabras que aprendimos el año pasado.",
+  "t_review": "repaso",
+  "review_intro": "¡Día de repaso! Vamos a recordar todo de esta unidad. ¡Cada respuesta correcta es una estrella!",
+  "say_with_me": "¡Dilo conmigo!",
+  "t_jump": "¡Salta o siéntate!",
+  "jump": "Yo digo una palabra. Si ves el dibujo, ¡salta! Si no, ¡siéntate! ¿Listos? ¡Ya!",
+  "played_great": "¡Muy bien! ¡Has jugado genial!",
+  "t_review_q": "Pregunta de repaso",
+  "t_unit_done": "¡Unidad terminada!",
+  "unit_done": "¡Fantástico! Has terminado esta unidad. ¡Empecemos una nueva aventura!",
+  "t_party": "¡Gran fiesta!",
+  "party": "Gran fiesta",
+  "party_intro": "¡Hurra! ¡Hoy es una gran fiesta! Has terminado todo el libro. ¡Vamos a recordar nuestras palabras favoritas y ganar estrellas!",
+  "know_all": "¡Te los sabes todos!",
+  "t_party_q": "Pregunta de la fiesta",
+  "t_champion": "¡Eres un campeón!",
+  "champion": "¡Eres un campeón! Ahora lo sabes todo. ¡Abre cualquier lección otra vez y juega!",
+  "t_roleplay": "Juego de roles",
+  "roles_line": "Yo soy {a}, tú eres {b}.",
+  "change_roles": "¡Ahora cambiamos los papeles!",
+  "great_role": "¡Eres un gran {r}!",
+  "t_well_done": "🌟 ¡Muy bien!",
+  "scenario_done": "¡Ahora ya sabes hacerlo: {name}! Juega otra vez en casa con tu familia."
+ }
+}
