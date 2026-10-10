@@ -7,10 +7,14 @@ Manba tartibi:
 Savollar: 06_MASHQLAR (single_choice), yetmasa shu mavzuning Test bazasi.
 Faqat status='published' kontent o'qiladi.
 """
+import json
+import os
 import re
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import Response
+
+from modules.tez_kesh import BaytKesh, TTLKesh
 
 STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa", "amaliy")
 PRACTICE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
@@ -390,39 +394,93 @@ def topic_placements(cur, codes):
 def create_router(platform):
     router = APIRouter(tags=["dars-xonasi"])
 
-    @router.get("/api/ai_miya_media/{media_id}")
-    def ai_miya_media(media_id: int):
-        conn = platform._db()
-        cur = conn.cursor()
+    # REV110: 100 ming bola bir vaqtda kirsa ham baza qotmasin — dars va rasm jarayon ichida keshlanadi.
+    # Rasm (ai_brain_media) o'zgarmaydi: yangi miya yuklansa yangi id oladi, shuning uchun brauzer/CDN 1 yil saqlaydi.
+    media_kesh = BaytKesh(max_bytes=int(os.getenv("MEDIA_CACHE_MB", "48")) * 1024 * 1024)
+    dars_kesh = TTLKesh(ttl=float(os.getenv("DARS_CACHE_SEC", "120")), maxsize=3000)
+    MEDIA_HEADERS = {
+        "Cache-Control": "public, max-age=31536000, immutable",
+        "X-Content-Type-Options": "nosniff",
+        "Content-Security-Policy": "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'",
+    }
+
+    # REV110: bog'cha darsi boshida ustoz bugungi ob-havoni aytadi. Har shahar uchun soatiga BITTA so'rov (Open-Meteo,
+    # kalitsiz); 100 ming bola so'rasa ham tashqi xizmatga yuk tushmaydi. Xato bo'lsa — fasl bo'yicha (kod null).
+    havo_kesh = TTLKesh(ttl=1800, maxsize=64)   # 30 daqiqa — kun/tun almashinuvi kechikmasin
+    SHAHARLAR = {
+        "toshkent": (41.31, 69.28), "samarqand": (39.65, 66.96), "buxoro": (39.77, 64.42), "andijon": (40.78, 72.34),
+        "fargona": (40.39, 71.78), "namangan": (41.00, 71.67), "qarshi": (38.86, 65.79), "termiz": (37.22, 67.28),
+        "navoiy": (40.10, 65.37), "jizzax": (40.12, 67.84), "guliston": (40.49, 68.78), "urganch": (41.55, 60.63),
+        "nukus": (42.46, 59.60), "nurafshon": (41.04, 69.36),
+    }
+
+    def _havo_ol(shahar):
+        import json as _json
+        import urllib.request
+        lat, lon = SHAHARLAR[shahar]
+        url = (f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}"
+               "&current=temperature_2m,weather_code,is_day,wind_speed_10m&timezone=auto")
         try:
-            platform._ai_brain_jadvallari(cur)
-            platform._ai_brain_dars_jadvallari(cur)
-            cur.execute(
-                """SELECT m.content_type,m.data,m.sha256 FROM ai_brain_media m
-                   JOIN ai_brain_import_batches b ON b.id=m.batch_id
-                   WHERE m.id=%s AND b.status='published'""",
-                (media_id,),
-            )
-            row = cur.fetchone()
-            conn.commit()
-        finally:
-            cur.close()
-            conn.close()
-        if not row:
-            raise HTTPException(status_code=404, detail="Rasm topilmadi")
-        return Response(
-            content=bytes(row["data"]),
-            media_type=row["content_type"],
-            headers={
-                "Cache-Control": "public, max-age=86400",
-                "ETag": f'"{row["sha256"]}"',
-                "X-Content-Type-Options": "nosniff",
-                "Content-Security-Policy": "default-src 'none'; img-src 'self' data:; style-src 'unsafe-inline'",
-            },
-        )
+            with urllib.request.urlopen(url, timeout=3) as r:   # noqa: S310 — doimiy manzil
+                cur = (_json.loads(r.read().decode("utf-8")) or {}).get("current") or {}
+            return {"shahar": shahar, "kod": cur.get("weather_code"), "harorat": cur.get("temperature_2m"),
+                    "kunduz": cur.get("is_day"), "shamol": cur.get("wind_speed_10m"), "vaqt": cur.get("time")}
+        except Exception:   # noqa: BLE001 — ob-havo bo'lmasa dars baribir boshlanadi
+            return {"shahar": shahar, "kod": None, "harorat": None, "_xato": True}
+
+    @router.get("/api/bogcha/havo")
+    def bogcha_havo(shahar: str = "toshkent"):
+        key = re.sub(r"[^a-z]", "", _t(shahar).lower().replace("'", "").replace("ʻ", ""))
+        key = key if key in SHAHARLAR else "toshkent"
+        data = havo_kesh.get(key)
+        if data is None:
+            data = _havo_ol(key)
+            havo_kesh.set(key, data, ttl=300 if data.get("_xato") else None)   # xato bo'lsa 5 daqiqadan keyin qayta
+        body = {k: v for k, v in data.items() if not k.startswith("_")}
+        return Response(content=json.dumps(body), media_type="application/json",
+                        headers={"Cache-Control": "public, max-age=900"})
+
+    @router.get("/api/ai_miya_media/{media_id}")
+    def ai_miya_media(media_id: int, request: Request):
+        cached = media_kesh.get(media_id)
+        if cached is None:
+            conn = platform._db()
+            cur = conn.cursor()
+            try:
+                platform._ai_brain_jadvallari(cur)
+                platform._ai_brain_dars_jadvallari(cur)
+                cur.execute(
+                    """SELECT m.content_type,m.data,m.sha256 FROM ai_brain_media m
+                       JOIN ai_brain_import_batches b ON b.id=m.batch_id
+                       WHERE m.id=%s AND b.status='published'""",
+                    (media_id,),
+                )
+                row = cur.fetchone()
+                conn.commit()
+            finally:
+                cur.close()
+                conn.close()
+            if not row:
+                raise HTTPException(status_code=404, detail="Rasm topilmadi")
+            cached = (row["content_type"], row["sha256"], bytes(row["data"]))
+            media_kesh.set(media_id, *cached)
+        content_type, sha, data = cached
+        etag = f'"{sha}"'
+        headers = dict(MEDIA_HEADERS, ETag=etag)
+        if etag in (request.headers.get("if-none-match") or ""):
+            return Response(status_code=304, headers=headers)
+        return Response(content=data, media_type=content_type, headers=headers)
 
     def load_lesson(topic_code):
         topic_code = _t(topic_code)[:80]
+        if not topic_code:
+            raise HTTPException(status_code=400, detail="Mavzu kodi kerak")
+        lesson = dars_kesh.olish(topic_code, lambda: _load_lesson_db(topic_code))
+        if not lesson or not lesson["steps"]:
+            raise HTTPException(status_code=404, detail="Bu mavzu uchun dars hali nashr qilinmagan")
+        return lesson
+
+    def _load_lesson_db(topic_code):
         if not topic_code:
             raise HTTPException(status_code=400, detail="Mavzu kodi kerak")
         conn = platform._db()
@@ -518,9 +576,7 @@ def create_router(platform):
         finally:
             cur.close()
             conn.close()
-        if not lesson["steps"]:
-            raise HTTPException(status_code=404, detail="Bu mavzu uchun dars hali nashr qilinmagan")
-        return lesson
+        return lesson if lesson["steps"] else None   # bo'sh dars keshlanmaydi
 
     @router.get("/api/kitob_kod/{kod}")
     def kitob_kod(kod: str, token: str):
