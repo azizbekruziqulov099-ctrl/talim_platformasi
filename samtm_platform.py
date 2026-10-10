@@ -18687,8 +18687,13 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik, dars_
 async def topik_import(token: str, fayl: UploadFile = File(...), scope_id: int = 0):
     """Header-based, atomic import into one explicitly selected audience."""
     _admin_tekshir(token)
-    import openpyxl
     content = await fayl.read(30 * 1024 * 1024 + 1)
+    return _topik_import_content(content, scope_id)
+
+
+def _topik_import_content(content, scope_id=0):
+    """REV121: topik_import yadrosi — ommaviy paket yuklashda ham shu ishlatiladi (bazaga atomar yozadi)."""
+    import openpyxl
     if len(content) > 30 * 1024 * 1024:
         raise HTTPException(413, "Topik Excel fayli 30 MB dan katta")
     try:
@@ -19803,8 +19808,13 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
     _admin_tekshir(token)
     user_id = _jwt_tekshir(token)
     content = await fayl.read()
+    return _ai_miya_tekshir_content(content, fayl.filename or "kitob.xlsx", user_id)
+
+
+def _ai_miya_tekshir_content(content, file_name, user_id):
+    """REV121: ai_miya_tekshir yadrosi — fayl tekshiriladi va «validated» paket yaratiladi (ommaviy yuklashda ham)."""
     media_files = {}
-    if (fayl.filename or "").lower().endswith(".zip") or content[:4] == b"PK\x03\x04" and not _ai_brain_xlsx_mi(content):
+    if (file_name or "").lower().endswith(".zip") or content[:4] == b"PK\x03\x04" and not _ai_brain_xlsx_mi(content):
         content, media_files = _ai_brain_zip_och(content)
     parsed = _ai_brain_excel_parse(content, _ai_media_nom_variantlari(set(media_files)))
     for name, item in (parsed.pop("media", None) or {}).items():
@@ -19823,7 +19833,7 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
                VALUES(%s,%s,%s,%s,'validated',%s::jsonb,%s::jsonb,%s::jsonb,%s::jsonb)
                RETURNING id""",
             (
-                user_id, fayl.filename or "kitob.xlsx", len(content),
+                user_id, file_name or "kitob.xlsx", len(content),
                 hashlib.sha256(content).hexdigest(),
                 json.dumps(parsed["summary"], ensure_ascii=False),
                 json.dumps(parsed["errors"], ensure_ascii=False),
@@ -20345,6 +20355,221 @@ def ai_miya_nashr(batch_id: int, token: str):
         cur.close()
         conn.close()
     return {"batch_id": batch_id, "status": "published", "message": "Bilimlar AI miyaga nashr qilindi", "testlar": test_sync}
+
+
+# ═══════════════════════════════════════════════════════════
+# REV121: OMMAVIY PAKET — mavzular va AI miyalar bitta yuklashda
+#
+# Admin bitta ZIP (papkalari bilan) yoki bir nechta Excel tanlaydi. Server har faylni ICHIDAN aniqlaydi:
+#   mavzu — «Fan» va «Mavzu» ustunli varaq (Mavzular importi);
+#   miya  — KITOB varaqli AI miya kitobi (yoki eski usul: Excel + rasmlar ZIP);
+#   royxat / nomalum — o'tkazib yuboriladi (masalan rasmlar ro'yxati).
+# Tartib: avval hamma mavzular, keyin miyalar (miya mavzusini bazadan topishi uchun). Har miya:
+# tekshirish → qoralama import → nashr. Har fayl alohida so'rovda ishlanadi — katta paket ham uzilmaydi,
+# xato bergan faylni qayta bosish mumkin. ZIP ichidagi fayllar vaqtincha bazada saqlanadi (3 kundan keyin o'chadi).
+# ═══════════════════════════════════════════════════════════
+PAKET_ZIP_MAX = 400 * 1024 * 1024
+PAKET_FAYL_MAX = 30 * 1024 * 1024
+PAKET_SONI_MAX = 400
+PAKET_TURI_TARTIB = {"mavzu": 0, "miya": 1, "royxat": 8, "nomalum": 9}
+PAKET_IZOH_NOMI = {"ru": "izoh rus", "en": "izoh ingliz"}
+
+
+def _paket_jadval(cur):
+    cur.execute("""CREATE TABLE IF NOT EXISTS ai_brain_paket_fayllar(
+        id BIGSERIAL PRIMARY KEY, paket TEXT NOT NULL, tartib INT NOT NULL DEFAULT 0, nomi TEXT NOT NULL,
+        yol TEXT NOT NULL DEFAULT '', turi TEXT NOT NULL, belgi TEXT NOT NULL DEFAULT '', data BYTEA,
+        holat TEXT NOT NULL DEFAULT 'kutmoqda', natija JSONB, yuklagan BIGINT,
+        created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    cur.execute("CREATE INDEX IF NOT EXISTS ai_brain_paket_fayllar_paket ON ai_brain_paket_fayllar(paket, tartib)")
+    cur.execute("DELETE FROM ai_brain_paket_fayllar WHERE created_at < NOW() - INTERVAL '3 days'")
+
+
+def _paket_belgi(name, turi=""):
+    """«ingliz_tili_izoh_ru_4-5_yosh_2_ai_miya.xlsx» → «Ingliz tili · izoh rus · 4-5 yosh · miya»."""
+    stem = os.path.splitext(os.path.basename(name or ""))[0]
+    m = re.match(r"^(?P<fan>.+?)(?:_izoh_(?P<izoh>[a-z]{2}))?_(?P<yosh>\d-\d)_yosh_(?:\d_)?(?P<tur>mavzular|ai_miya)$", stem)
+    if not m:
+        return stem.replace("_", " ")
+    fan = m.group("fan").replace("_", " ").replace("-", "-").strip()
+    parts = [fan[:1].upper() + fan[1:]]
+    if m.group("izoh"):
+        parts.append(PAKET_IZOH_NOMI.get(m.group("izoh"), f"izoh {m.group('izoh')}"))
+    parts += [f"{m.group('yosh')} yosh", "mavzular" if m.group("tur") == "mavzular" else "miya"]
+    return " · ".join(parts)
+
+
+def _paket_turi(content, name=""):
+    """Faylning ICHIGA qarab turi: mavzu | miya | royxat | nomalum."""
+    import openpyxl
+    low = (name or "").lower()
+    if "rasmlar_royxati" in low or "rasmlar royxati" in low:
+        return "royxat"
+    if not _ai_brain_xlsx_mi(content):
+        return "miya" if content[:4] == b"PK\x03\x04" else "nomalum"   # eski usul: Excel + rasmlar ZIP
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), read_only=True, data_only=True)
+    except Exception:
+        return "nomalum"
+    try:
+        names = set(wb.sheetnames)
+        if names & {"KITOB", "01_KITOB"}:
+            return "miya"
+        mavzu_kalit = {_curriculum.text_key("Fan"), _curriculum.text_key("Mavzu")}
+        for ws in wb.worksheets[:3]:
+            row = next(ws.iter_rows(max_row=1, values_only=True), ())
+            if mavzu_kalit <= {_curriculum.text_key(v) for v in row if v}:
+                return "mavzu"
+    finally:
+        wb.close()
+    return "mavzu" if "mavzular" in low else "miya" if "miya" in low else "nomalum"
+
+
+def _paket_tartib(item):
+    return (PAKET_TURI_TARTIB.get(item["turi"], 9), item.get("yol") or "", item["nomi"])
+
+
+def _paket_zip_fayllar(fileobj):
+    """ZIP (papkalari bilan) → [(nomi, yol, baytlar)]. Bitta Excel + rasmlar bo'lsa — bu bitta miya (eski usul)."""
+    import zipfile
+    try:
+        z = zipfile.ZipFile(fileobj)
+    except zipfile.BadZipFile:
+        raise HTTPException(status_code=400, detail="ZIP faylni ochib bo'lmadi")
+    with z:
+        infos = [i for i in z.infolist() if not i.is_dir() and "__MACOSX" not in i.filename
+                 and not os.path.basename(i.filename).startswith((".", "~$"))]
+        xlsx = [i for i in infos if i.filename.lower().endswith(".xlsx")]
+        media = [i for i in infos if os.path.splitext(i.filename)[1].lower() in AI_MEDIA_EXTENSIONS]
+        if len(xlsx) == 1 and media:
+            return None    # eski usuldagi bitta miya ZIP — butunligicha ishlanadi
+        if not xlsx:
+            raise HTTPException(status_code=400, detail="ZIP ichida Excel (.xlsx) fayl topilmadi")
+        if len(xlsx) > PAKET_SONI_MAX:
+            raise HTTPException(status_code=413, detail=f"ZIP ichida {len(xlsx)} ta Excel — bir paketda ko'pi bilan {PAKET_SONI_MAX} ta")
+        out = []
+        for info in xlsx:
+            if info.file_size > PAKET_FAYL_MAX:
+                raise HTTPException(status_code=413, detail=f"{info.filename}: Excel 30 MB dan katta")
+            path = info.filename.replace("\\", "/")
+            out.append((os.path.basename(path), os.path.dirname(path), z.read(info)))
+        return out
+
+
+def _paket_ishla(content, name, turi, scope_id, user_id, token):
+    """Bitta fayl: mavzular → Mavzular importi; miya → tekshirish + import + nashr. Natija — {ok, xabar, ...}."""
+    try:
+        if turi == "mavzu":
+            r = _topik_import_content(content, scope_id)
+            return {"ok": True, "xabar": f"Mavzular: {r['added']} ta yangi, {r['updated']} ta yangilandi, {r['mavjud']} ta oldin bor edi",
+                    "added": r["added"], "updated": r["updated"], "mavjud": r["mavjud"]}
+        if turi == "miya":
+            t = _ai_miya_tekshir_content(content, name, user_id)
+            s = t.get("summary") or {}
+            if not t.get("tayyor"):
+                errs = [f"{e.get('sheet')}, {e.get('row')}-qator: {e.get('message')}" for e in (t.get("errors") or [])[:8]]
+                return {"ok": False, "batch_id": t.get("batch_id"), "xabar": f"Excelda {s.get('xatolar', len(errs))} ta xato — nashr qilinmadi",
+                        "xatolar": errs}
+            ai_miya_import(t["batch_id"], token)
+            ai_miya_nashr(t["batch_id"], token)
+            darslar = s.get("mavzular") or s.get("darslar") or 0
+            return {"ok": True, "batch_id": t["batch_id"], "xabar": f"{darslar} ta dars nashr qilindi"
+                    + (f", rasmlar: {s['rasmlar']}" if s.get("rasmlar") else "")
+                    + (f" ({len(t.get('warnings') or [])} ta ogohlantirish)" if t.get("warnings") else ""),
+                    "darslar": darslar}
+        if turi == "royxat":
+            return {"ok": True, "otkazildi": True, "xabar": "Rasmlar ro'yxati — o'rnatish shart emas, o'tkazib yuborildi"}
+        return {"ok": False, "xabar": "Fayl turi aniqlanmadi: bu Mavzular yoki AI miya Excel emas"}
+    except HTTPException as exc:
+        return {"ok": False, "xabar": str(exc.detail)}
+
+
+@app.post("/api/admin/paket/yukla")
+async def paket_yukla(token: str, fayl: UploadFile = File(...), scope_id: int = 0):
+    """Bitta fayl. .xlsx — turi aniqlanib, darhol o'rnatiladi. .zip (papkalari bilan) — ichidagi hamma Excel navbatga
+    qo'yiladi va tartib bilan qaytariladi (keyin har biri /api/admin/paket/fayl/{id} bilan o'rnatiladi)."""
+    from starlette.concurrency import run_in_threadpool
+    _admin_tekshir(token)
+    user_id = _jwt_tekshir(token)
+    name = os.path.basename(fayl.filename or "fayl.xlsx")
+    fayl.file.seek(0, 2)
+    size = fayl.file.tell()
+    fayl.file.seek(0)
+    if size > PAKET_ZIP_MAX:
+        raise HTTPException(status_code=413, detail="Paket 400 MB dan katta — ikki qismga bo'lib yuklang")
+    head = fayl.file.read(4)
+    fayl.file.seek(0)
+    if name.lower().endswith(".zip") and head == b"PK\x03\x04":
+        files = await run_in_threadpool(_paket_zip_fayllar, fayl.file)
+        if files is not None:
+            import secrets
+            paket = secrets.token_hex(8)
+            items = [{"nomi": n, "yol": d, "data": b, "turi": _paket_turi(b, n)} for n, d, b in files]
+            items.sort(key=_paket_tartib)
+
+            def saqla():
+                conn = _db(); cur = conn.cursor()
+                try:
+                    _paket_jadval(cur)
+                    out = []
+                    for i, it in enumerate(items):
+                        belgi = _paket_belgi(it["nomi"])
+                        cur.execute("""INSERT INTO ai_brain_paket_fayllar(paket,tartib,nomi,yol,turi,belgi,data,yuklagan,holat)
+                                       VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+                                    (paket, i, it["nomi"], it["yol"], it["turi"], belgi,
+                                     psycopg2.Binary(it["data"]) if it["turi"] in ("mavzu", "miya") else None, user_id,
+                                     "kutmoqda" if it["turi"] in ("mavzu", "miya") else "otkazildi"))
+                        out.append({"id": cur.fetchone()["id"], "nomi": it["nomi"], "yol": it["yol"], "turi": it["turi"], "belgi": belgi,
+                                    "holat": "kutmoqda" if it["turi"] in ("mavzu", "miya") else "otkazildi"})
+                    conn.commit()
+                    return out
+                except Exception:
+                    conn.rollback(); raise
+                finally:
+                    cur.close(); conn.close()
+
+            fayllar = await run_in_threadpool(saqla)
+            return {"paket": paket, "fayllar": fayllar,
+                    "jami": {t: sum(1 for f in fayllar if f["turi"] == t) for t in ("mavzu", "miya", "royxat", "nomalum")}}
+    content = fayl.file.read()
+    if len(content) > (80 if name.lower().endswith(".zip") else 30) * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="Fayl juda katta")
+    turi = _paket_turi(content, name)
+    natija = await run_in_threadpool(_paket_ishla, content, name, turi, scope_id, user_id, token)
+    return {"fayllar": [{"nomi": name, "turi": turi, "belgi": _paket_belgi(name), "holat": "tayyor" if natija["ok"] else "xato", **natija}]}
+
+
+@app.post("/api/admin/paket/fayl/{fid}")
+def paket_fayl(fid: int, token: str, scope_id: int = 0):
+    """Paketdagi bitta faylni o'rnatadi (mavzu yoki miya). Muvaffaqiyatli bo'lsa fayl baytlari o'chiriladi."""
+    _admin_tekshir(token)
+    user_id = _jwt_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _paket_jadval(cur)
+        cur.execute("SELECT id,nomi,turi,belgi,data,holat,natija FROM ai_brain_paket_fayllar WHERE id=%s", (fid,))
+        row = cur.fetchone()
+        conn.commit()
+    finally:
+        cur.close(); conn.close()
+    if not row:
+        raise HTTPException(status_code=404, detail="Paket fayli topilmadi (3 kundan eski paketlar o'chiriladi)")
+    if row["holat"] == "tayyor":
+        return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": "tayyor", **(row["natija"] or {})}
+    if row["data"] is None:
+        return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": row["holat"], "ok": row["holat"] != "xato",
+                "xabar": (row["natija"] or {}).get("xabar") or "O'tkazib yuborildi"}
+    natija = _paket_ishla(bytes(row["data"]), row["nomi"], row["turi"], scope_id, user_id, token)
+    holat = "tayyor" if natija["ok"] else "xato"
+    conn = _db(); cur = conn.cursor()
+    try:
+        cur.execute("""UPDATE ai_brain_paket_fayllar SET holat=%s, natija=%s::jsonb, updated_at=NOW(),
+                       data=CASE WHEN %s THEN NULL ELSE data END WHERE id=%s""",
+                    (holat, json.dumps(natija, ensure_ascii=False, default=str), natija["ok"], fid))
+        conn.commit()
+    finally:
+        cur.close(); conn.close()
+    return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": holat, **natija}
 
 
 @app.get("/api/admin/ai_miya_importlar")

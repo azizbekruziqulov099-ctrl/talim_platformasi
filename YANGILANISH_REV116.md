@@ -90,3 +90,18 @@ src/kid/kidStageRules.js, src/curriculum/LearnerTopics.jsx, kidTopics.css.
   - 6-7 yosh — ~88%.
 - **Amaliy qadam kirish so'zi.** `ai_miya_varoq` endi kitob tilida yozadi: rus izohli miyada «Endi amaliy topshiriq» emas, «Теперь практическое задание» bo'ladi.
 - **Yig'ish.** `python tools/bogcha_izoh.py build <uz|ru|en> --out PAPKA --rasmlar tools/bogcha_rasmlar/svg` — 13 fan × 3 yosh. `tozala` buyrug'i eskirgan tarjimalarni olib tashlaydi.
+
+### REV121 (davomi) — ommaviy paket: mavzular va miyalar bitta yuklashda
+- **Qayerda:** Admin → Kitob darslari (AI miya) → «⚡ Paketni birdan o'rnatish».
+- **Nimani tanlash mumkin:** bitta ZIP (papkalari bilan) yoki bir nechta Excel.
+- **Server o'zi qiladi:**
+  - har faylni ichidan taniydi: Mavzular («Fan» va «Mavzu» ustunlari) yoki miya (KITOB varag'i);
+  - rasmlar ro'yxatini o'tkazib yuboradi;
+  - avval hamma mavzularni o'rnatadi, keyin har miyani tekshiradi, import va nashr qiladi.
+- **Natija:** har fayl aniq nom bilan ✅ / ❌ ko'rinadi, masalan «Ingliz tili · izoh rus · 4-5 yosh · miya». Xato chiqqan faylni qayta urinish mumkin.
+- **Yangi API:**
+  - `POST /api/admin/paket/yukla` — ZIP navbatga qo'yiladi yoki Excel darhol o'rnatiladi;
+  - `POST /api/admin/paket/fayl/{id}` — paketdagi bitta faylni o'rnatadi.
+- **Vaqtinchalik saqlash:** `ai_brain_paket_fayllar` jadvali; fayllar 3 kundan keyin o'chiriladi.
+- **Cheklovlar:** ZIP 400 MB gacha, 400 tagacha Excel.
+- **Mavzular qayerga yoziladi:** yuqorida tanlangan dasturga, masalan «Bog'cha — umumiy katalog».
