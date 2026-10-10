@@ -22,10 +22,15 @@ from tools.bogcha_spiral import merge_enrich, validate  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent / "bogcha_content"
 LANGS = ("en", "ru", "ar", "tr", "de", "fr", "es", "ko", "ja", "zh")
+ALL = None   # plus faylning hamma bo'limlari
 PLAN = {
+    "23y": ("23", (), "2-3 yosh", "2–3 yosh"),
     "45y": ("45", (("56", (3, 4, 5)),), "4-5 yosh", "4–5 yosh"),
     "67y": ("67", (("56", (6, 7)),), "6-7 yosh", "6–7 yosh"),
 }
+# REV110: yangi darslar — platformada 2–3 yoshda 50, 4–5 da 80, 6–7 da 100 dars. Ular allaqachon «sen» va robot Kabu
+# uslubida yozilgan, shuning uchun warm() dan keyin qo'shiladi.
+PLUS = {"23y": "23p", "45y": "45p", "67y": "67p"}
 SPLIT = re.compile(r"(\[[a-z]{2}\][\s\S]*?\[/[a-z]{2}\])")
 
 # «siz» → «sen»: aniq so'zlar (birinchi) va qo'shimcha qoidalari (keyin). Faqat o'zbekcha bo'laklarga qo'llanadi.
@@ -153,7 +158,14 @@ def compose(lang, key):
     for unit in book["units"]:
         for sc in unit.get("scenarios") or []:
             sc.pop("unit", None)
-    warm(book)
+    if key != "23y":   # 2–3 kitobi (bogcha_23.py) allaqachon «sen» uslubida — qayta o'girilsa buziladi
+        warm(book)
+    if (ROOT / f"{lang}_{PLUS[key]}.json").is_file():
+        plus = load(lang, PLUS[key])
+        for unit in plus["units"]:
+            for sc in unit.get("scenarios") or []:
+                sc.pop("unit", None)
+        book["units"] += copy.deepcopy(plus["units"])
     if age == "4-5 yosh":   # 5-6 kitobidan kelgan savollarda 3 variant — 4-5 yoshga 2 tasi yetadi
         for unit in book["units"]:
             for q in [q for les in unit["lessons"] for q in les.get("tests") or []] + \

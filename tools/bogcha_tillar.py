@@ -24,8 +24,9 @@ from tools.bogcha_spiral import CLASS, merge_enrich  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent / "bogcha_content"
 TR_DIR = ROOT / "tarjima"
-AGES = ("23", "34", "45", "56", "67")   # REV99: 2–3 yosh (en_23 — tools/bogcha_23.py)
-AGE_LABEL = {"23": "2–3 yosh", "34": "3–4 yosh", "45": "4–5 yosh", "56": "5–6 yosh", "67": "6–7 yosh"}
+AGES = ("23", "34", "45", "56", "67", "23p", "45p", "67p")   # REV99: 2–3 yosh (en_23); REV110: yangi darslar (plus)
+AGE_LABEL = {"23": "2–3 yosh", "34": "3–4 yosh", "45": "4–5 yosh", "56": "5–6 yosh", "67": "6–7 yosh",
+             "23p": "2–3 yosh", "45p": "4–5 yosh", "67p": "6–7 yosh"}
 # til: (o'zbekcha o'zak, fan nomi, kitob kodi prefiksi, til nomi inglizcha — tarjimonga)
 LANGS = {
     "ru": ("rus", "Rus tili", "RU", "Russian"),

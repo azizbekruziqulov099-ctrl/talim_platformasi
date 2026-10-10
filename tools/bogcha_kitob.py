@@ -22,6 +22,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from modules.ai_miya_varoq import template_workbook  # noqa: E402
+from tools.bogcha_teg import fix_book  # noqa: E402
 
 STYLE = "cute cartoon, soft flat colors, white background, no text, square 1024x1024"
 IMAGE_PX = 110
@@ -48,7 +49,7 @@ def topics_workbook(book, fan):
     return wb
 
 
-def ai_workbook(book, fan, prefix):
+def ai_workbook(book, fan, prefix, til="uz"):
     prefill = []
     for topic in book["topics"]:
         rows = []
@@ -62,7 +63,7 @@ def ai_workbook(book, fan, prefix):
             })
         prefill.append({"mavzu_kodi": "", "mavzu_nomi": topic["name"], "mavzu_raqami": topic["no"], "daraja": 1, "rows": rows})
     meta = {"kitob_nomi": book.get("book_title") or f"{fan} {book['age']}", "fan": fan, "sinf": book["age"],
-            "til": "uz", "kod_prefiksi": f"{prefix}{age_short(book['age'])}", "mualliflar": "Kabutar Ta'lim"}
+            "til": til, "kod_prefiksi": f"{prefix}{age_short(book['age'])}", "mualliflar": "Kabutar Ta'lim"}
     return template_workbook(prefill, meta, blank_topics=0)
 
 
@@ -162,8 +163,9 @@ def images_workbook(books, fan, image_dir=None):
     return wb, missing, len(rows)
 
 
-def build_books(paths):
-    """Dastur JSON'lar (yosh tartibida) → kitoblar. Enrich va oldingi yosh avtomatik."""
+def build_books(paths, izoh=None):
+    """Dastur JSON'lar (yosh tartibida) → kitoblar. Enrich va oldingi yosh avtomatik.
+    izoh: tushuntirish tili (uz — asl; ru | en — bogcha_content/izoh/<izoh>.json lug'ati bilan)."""
     from tools.bogcha_spiral import build_book
     books, prev_by_subject = [], {}
     for path in paths:
@@ -175,10 +177,41 @@ def build_books(paths):
         enrich_path = path.with_name(f"{path.stem}_enrich.json")
         enrich = json.loads(enrich_path.read_text(encoding="utf-8")) if enrich_path.is_file() else None
         subject = data.get("subject")
+        if izoh and izoh != "uz":
+            data["izoh"] = izoh
         book = build_book(data, enrich, prev_by_subject.get(subject))
         prev_by_subject[subject] = data
         books.append(book)
     return books
+
+
+IZOH_NOMI = {"ru": "rus", "en": "ingliz"}
+
+
+def write_groups(out, groups, prefix=None, image_dir=None, izoh="uz"):
+    """{fan: [kitoblar]} → papkalar. izoh != uz: papka/fayl nomida «_izoh_<izoh>», meta «til» = izoh,
+    fan nomi «Ingliz tili (izoh: rus)»."""
+    out = Path(out)
+    report = []
+    for subject, items in groups.items():
+        slug = subject.lower().replace(" ", "_").replace("'", "").replace("‘", "")
+        if izoh != "uz":
+            slug = f"{slug}_izoh_{izoh}"
+            subject = f"{subject} (izoh: {IZOH_NOMI.get(izoh, izoh)})"
+        folder = out / slug
+        folder.mkdir(parents=True, exist_ok=True)
+        for book in items:
+            fix_book(book, izoh)   # REV111: har til o'z ovozida o'qilsin (teglar)
+            a = age_short(book["age"])
+            topics_workbook(book, subject).save(folder / f"{slug}_{a[0]}-{a[1]}_yosh_1_mavzular.xlsx")
+            wb = ai_workbook(book, subject, prefix or book.get("prefix") or "BK", til=izoh)
+            placed, missing = embed_images(wb, image_dir)
+            wb.save(folder / f"{slug}_{a[0]}-{a[1]}_yosh_2_ai_miya.xlsx")
+            report.append(f"{subject} {book['age']}: {len(book['topics'])} dars, rasm joylandi {placed}, rasm kerak {len(missing)}")
+        wb, missing, total = images_workbook(items, subject, image_dir)
+        wb.save(folder / f"{slug}_rasmlar_royxati.xlsx")
+        report.append(f"{subject}: rasmlar ro'yxati — jami {total}, chizish kerak {missing}")
+    return report
 
 
 def main(out, *args):
@@ -198,21 +231,7 @@ def main(out, *args):
     for book in books:
         subject = fan or book.get("subject") or "Fan"
         groups.setdefault(subject, []).append(book)
-    report = []
-    for subject, items in groups.items():
-        slug = subject.lower().replace(" ", "_").replace("'", "").replace("‘", "")
-        folder = out / slug
-        folder.mkdir(parents=True, exist_ok=True)
-        for book in items:
-            a = age_short(book["age"])
-            topics_workbook(book, subject).save(folder / f"{slug}_{a[0]}-{a[1]}_yosh_1_mavzular.xlsx")
-            wb = ai_workbook(book, subject, prefix or book.get("prefix") or "BK")
-            placed, missing = embed_images(wb, image_dir)
-            wb.save(folder / f"{slug}_{a[0]}-{a[1]}_yosh_2_ai_miya.xlsx")
-            report.append(f"{subject} {book['age']}: {len(book['topics'])} dars, rasm joylandi {placed}, rasm kerak {len(missing)}")
-        wb, missing, total = images_workbook(items, subject, image_dir)
-        wb.save(folder / f"{slug}_rasmlar_royxati.xlsx")
-        report.append(f"{subject}: rasmlar ro'yxati — jami {total}, chizish kerak {missing}")
+    report = write_groups(out, groups, prefix, image_dir)
     print("\n".join(report))
     return report
 
