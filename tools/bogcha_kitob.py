@@ -49,6 +49,11 @@ def topics_workbook(book, fan):
     return wb
 
 
+# REV121: izoh tiliga qarab kod prefiksi alohida (EN23 — o'zbekcha, EN23R — ruscha, EN23E — inglizcha izoh).
+# Aks holda uchala miyaning topshiriq kodlari bir xil bo'lib, ikkinchisi «kod band» xatosi bilan o'rnatilmasdi.
+IZOH_KOD = {"ru": "R", "en": "E"}
+
+
 def ai_workbook(book, fan, prefix, til="uz"):
     prefill = []
     for topic in book["topics"]:
@@ -63,7 +68,7 @@ def ai_workbook(book, fan, prefix, til="uz"):
             })
         prefill.append({"mavzu_kodi": "", "mavzu_nomi": topic["name"], "mavzu_raqami": topic["no"], "daraja": 1, "rows": rows})
     meta = {"kitob_nomi": book.get("book_title") or f"{fan} {book['age']}", "fan": fan, "sinf": book["age"],
-            "til": til, "kod_prefiksi": f"{prefix}{age_short(book['age'])}", "mualliflar": "Kabutar Ta'lim"}
+            "til": til, "kod_prefiksi": f"{prefix}{age_short(book['age'])}{IZOH_KOD.get(til, '')}", "mualliflar": "Kabutar Ta'lim"}
     return template_workbook(prefill, meta, blank_topics=0)
 
 

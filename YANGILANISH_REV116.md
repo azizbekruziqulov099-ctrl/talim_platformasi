@@ -105,3 +105,24 @@ src/kid/kidStageRules.js, src/curriculum/LearnerTopics.jsx, kidTopics.css.
 - **Vaqtinchalik saqlash:** `ai_brain_paket_fayllar` jadvali; fayllar 3 kundan keyin o'chiriladi.
 - **Cheklovlar:** ZIP 400 MB gacha, 400 tagacha Excel.
 - **Mavzular qayerga yoziladi:** yuqorida tanlangan dasturga, masalan «Bog'cha — umumiy katalog».
+
+### REV121 (davomi) — sayt 3 tilda, tungi rejim
+- **Tillar.** Sozlamalarda faqat 3 til qoldi: O'zbekcha, Русский, English.
+  - Interfeysdagi hamma matnlar (10 600 dan ortiq) rus va ingliz tiliga oldindan tarjima qilindi: `src/interface/locales/ru.js`, `en.js`.
+  - Har bir til paketi faqat o'sha til tanlanganda yuklanadi. Tarjima uchun tarmoq (Google) kerak emas.
+- **Til almashtirish.** Avval til paketi yuklanadi, keyin ilova qayta chiziladi.
+  - Har bir yozuv, jumladan o'zbekchaga qaytganda ham, darhol yangi tilda chiqadi.
+  - Eski tanlov (kirill, turk, qozoq) saqlangan bo'lsa, o'zbekchaga qaytadi.
+- **Tungi rejim.** Butun sahifaga bitta qoida qo'llanadi: ranglar teskari qilinadi, rasm, video va xaritalar asl rangida qoladi.
+  - «To'q fonda to'q yozuv» endi hech qayerda bo'lmaydi; eski qisman qoidalar o'chirildi.
+  - Bolalar sahifalari (bog'cha darsi, bog'cha olami, darslar ro'yxati) tungi rejimda ham yorqin qoladi.
+
+### REV121 (davomi) — paketda miyalar ham o'tadi
+- **Nega miyalar o'tmagan edi.** Rus va ingliz izohli miyalarning topshiriq kodlari o'zbekchasi bilan bir xil edi (EN23-01-A01 …). Shu sababli ular «kod band» xatosi bilan to'xtagan.
+  - Endi har izoh tilining o'z prefiksi bor: o'zbekcha — EN23 (o'zgarmadi), ruscha — EN23R, inglizcha — EN23E.
+  - Rus va ingliz izohli miyalar qayta yig'ildi.
+- **Qayta yuklashda nima bo'ladi:**
+  - aynan shu Excel avval nashr qilingan bo'lsa — «oldin o'rnatilgan» deb bir zumda o'tkaziladi;
+  - o'zgargan bo'lsa — o'sha kitob yangi versiyaga yangilanadi;
+  - mavzular «oldin bor» deb qayta yaratilmaydi.
+- **Paket hajmi:** bitta paketda 400 tagacha Excel bo'lishi mumkin.

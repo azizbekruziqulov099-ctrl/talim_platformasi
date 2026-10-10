@@ -20456,6 +20456,23 @@ def _paket_zip_fayllar(fileobj):
         return out
 
 
+def _paket_oldin_ornatilgan(content):
+    """Aynan shu Excel (sha256) avval nashr qilingan bo'lsa — o'sha paket raqami. Yangilangan fayl — None (qayta o'rnatiladi)."""
+    conn = _db(); cur = conn.cursor()
+    try:
+        _ai_brain_jadvallari(cur)
+        cur.execute("""SELECT id FROM ai_brain_import_batches WHERE file_checksum=%s AND status='published'
+                       ORDER BY id DESC LIMIT 1""", (hashlib.sha256(content).hexdigest(),))
+        row = cur.fetchone()
+        conn.commit()
+        return row["id"] if row else None
+    except Exception:
+        conn.rollback()
+        return None
+    finally:
+        cur.close(); conn.close()
+
+
 def _paket_ishla(content, name, turi, scope_id, user_id, token):
     """Bitta fayl: mavzular → Mavzular importi; miya → tekshirish + import + nashr. Natija — {ok, xabar, ...}."""
     try:
@@ -20464,6 +20481,9 @@ def _paket_ishla(content, name, turi, scope_id, user_id, token):
             return {"ok": True, "xabar": f"Mavzular: {r['added']} ta yangi, {r['updated']} ta yangilandi, {r['mavjud']} ta oldin bor edi",
                     "added": r["added"], "updated": r["updated"], "mavjud": r["mavjud"]}
         if turi == "miya":
+            oldin = _paket_oldin_ornatilgan(content)
+            if oldin:   # aynan shu fayl avval nashr qilingan — qayta ishlash shart emas
+                return {"ok": True, "batch_id": oldin, "oldin": True, "xabar": "Oldin o'rnatilgan, o'zgarmagan — o'tkazildi"}
             t = _ai_miya_tekshir_content(content, name, user_id)
             s = t.get("summary") or {}
             if not t.get("tayyor"):
