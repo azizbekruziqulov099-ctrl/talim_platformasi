@@ -1,2 +1,2 @@
-"""Feature routers kept separate from the legacy monolith."""
+"""Shared platform infrastructure for new modular API routers."""
 

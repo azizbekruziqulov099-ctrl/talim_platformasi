@@ -93,7 +93,7 @@ def create_institute_library_router(check_token, db):
     def require_scope(cur, university_id, user_id, faculty_id=None, department_id=None, permission="korish"):
         rights = access(cur, university_id, user_id, faculty_id, department_id)
         if not rights.get(permission):
-            raise HTTPException(403, "Bu bo‘lim uchun ruxsatingiz yo‘q")
+            raise HTTPException(403, "Bu boвЂlim uchun ruxsatingiz yoвЂq")
         return rights
 
     def cabinet_scope(cur, cabinet_id):
@@ -122,9 +122,9 @@ def create_institute_library_router(check_token, db):
             cur.execute("SELECT COUNT(*) AS soni FROM institut_kutubxona_javonlari WHERE universitet_id=%s AND faol", (universitet_id,))
             if int(cur.fetchone()["soni"] or 0) == 0 and access(cur, universitet_id, user_id)["boshqarish"]:
                 defaults = [
-                    ("Bitiruv ishlari", "BMI, magistrlik va ilmiy ishlar fondi", "#694EA0", "O‘quv yillari", "2025–2026 bitiruv ishlari"),
-                    ("Kafedra hujjatlari", "Bayonnoma, reja, hisobot va me’yoriy hujjatlar", "#175A7A", "Joriy hujjatlar", "Tasdiqlangan hujjatlar"),
-                    ("Metodik fond", "Sillabus, qo‘llanma va dars ishlanmalari", "#0D7A77", "O‘quv-uslubiy materiallar", "Fanlar bo‘yicha"),
+                    ("Bitiruv ishlari", "BMI, magistrlik va ilmiy ishlar fondi", "#694EA0", "OвЂquv yillari", "2025вЂ“2026 bitiruv ishlari"),
+                    ("Kafedra hujjatlari", "Bayonnoma, reja, hisobot va meвЂ™yoriy hujjatlar", "#175A7A", "Joriy hujjatlar", "Tasdiqlangan hujjatlar"),
+                    ("Metodik fond", "Sillabus, qoвЂllanma va dars ishlanmalari", "#0D7A77", "OвЂquv-uslubiy materiallar", "Fanlar boвЂyicha"),
                     ("Elektron kitoblar", "Darslik, monografiya va ilmiy adabiyotlar", "#A86714", "Asosiy adabiyotlar", "Elektron nashrlar"),
                 ]
                 for cabinet_name, cabinet_note, color, shelf_name, folder_name in defaults:
@@ -211,10 +211,10 @@ def create_institute_library_router(check_token, db):
     @router.post("/hujjat")
     async def upload_document(token: str=Form(...), papka_id:int=Form(...), nomi:str=Form(""), izoh:str=Form(""), teglar:str=Form(""), fayl:UploadFile=File(...)):
         user_id=check_token(token); content=await fayl.read(MAX_FILE_BYTES+1)
-        if len(content)>MAX_FILE_BYTES: raise HTTPException(413,"Fayl 30 MB dan katta bo‘lmasin")
-        safe_name=re.sub(r"[^\w.()\- +'‘’]","_",fayl.filename or "hujjat")[:240]
+        if len(content)>MAX_FILE_BYTES: raise HTTPException(413,"Fayl 30 MB dan katta boвЂlmasin")
+        safe_name=re.sub(r"[^\w.()\- +'вЂвЂ™]","_",fayl.filename or "hujjat")[:240]
         ext=("."+safe_name.rsplit(".",1)[-1].lower()) if "." in safe_name else ""
-        if ext not in ALLOWED_EXTENSIONS: raise HTTPException(400,"Bu fayl turi qo‘llab-quvvatlanmaydi")
+        if ext not in ALLOWED_EXTENSIONS: raise HTTPException(400,"Bu fayl turi qoвЂllab-quvvatlanmaydi")
         conn=db(); cur=conn.cursor()
         try:
             ensure(cur); s=folder_scope(cur,papka_id); require_scope(cur,s["universitet_id"],user_id,s["fakultet_id"],s["kafedra_id"],"joylash")
@@ -251,7 +251,7 @@ def create_institute_library_router(check_token, db):
         admin_id=check_token(body.token); conn=db(); cur=conn.cursor()
         try:
             ensure(cur); rights=require_scope(cur,body.universitet_id,admin_id,body.fakultet_id,body.kafedra_id,"boshqarish")
-            if not rights["ruxsat_belgilash"]: raise HTTPException(403,"Ruxsat belgilash vakolati yo‘q")
+            if not rights["ruxsat_belgilash"]: raise HTTPException(403,"Ruxsat belgilash vakolati yoвЂq")
             cur.execute("""INSERT INTO institut_kutubxona_ruxsatlari(universitet_id,user_id,fakultet_id,kafedra_id,korish,yuklash,joylash,boshqarish,bergan_user_id)
                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT(universitet_id,user_id,fakultet_id,kafedra_id)
                 DO UPDATE SET korish=EXCLUDED.korish,yuklash=EXCLUDED.yuklash,joylash=EXCLUDED.joylash,boshqarish=EXCLUDED.boshqarish,bergan_user_id=EXCLUDED.bergan_user_id,yangilangan_at=NOW()""",
@@ -266,7 +266,7 @@ def create_institute_library_router(check_token, db):
             ensure(cur); cur.execute("""SELECT d.yuklovchi_id,j.universitet_id,j.fakultet_id,j.kafedra_id FROM institut_kutubxona_hujjatlari d JOIN institut_kutubxona_papkalari f ON f.id=d.papka_id JOIN institut_kutubxona_polkalari p ON p.id=f.polka_id JOIN institut_kutubxona_javonlari j ON j.id=p.javon_id WHERE d.id=%s AND d.faol""",(document_id,)); d=cur.fetchone()
             if not d: raise HTTPException(404,"Hujjat topilmadi")
             rights=access(cur,d["universitet_id"],user_id,d["fakultet_id"],d["kafedra_id"])
-            if d["yuklovchi_id"]!=user_id and not rights["boshqarish"]: raise HTTPException(403,"Faqat o‘zingiz joylagan hujjatni olib tashlaysiz")
+            if d["yuklovchi_id"]!=user_id and not rights["boshqarish"]: raise HTTPException(403,"Faqat oвЂzingiz joylagan hujjatni olib tashlaysiz")
             cur.execute("UPDATE institut_kutubxona_hujjatlari SET faol=FALSE, yangilangan_at=NOW() WHERE id=%s",(document_id,)); conn.commit(); return {"holat":"arxivlandi"}
         except Exception: conn.rollback(); raise
         finally: cur.close(); conn.close()
