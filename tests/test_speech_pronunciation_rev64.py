@@ -24,7 +24,8 @@ class PronunciationTests(unittest.TestCase):
     def test_formulas_use_outer_language_only_and_preserve_literal_text(self):
         text='Hello. Привет. [ru][lat]x+y[/lat][/ru] [en][lat]x+y[/lat][/en] [lat]x+y+c=0{,}0001[/lat]'
         pieces=split_speech_text(text)
-        self.assertEqual([lang for lang,_ in pieces],['uz','uz','ru','en','uz'])
+        # REV123: tegsiz ruscha gap («Привет.») endi rus ovozida o'qiladi (o'zbek ovozi kirillni buzib o'qirdi)
+        self.assertEqual([lang for lang,_ in pieces],['uz','ru','ru','en','uz'])
         self.assertEqual(prepare_speech(pieces[2][1],pieces[2][0]),'икс плюс игрек')
         self.assertEqual(prepare_speech(pieces[3][1],pieces[3][0]),'x plus why')
         self.assertEqual(prepare_speech(pieces[4][1],pieces[4][0]),'iks plyus igrik plyus si teng nol butun oʻn mingdan bir')

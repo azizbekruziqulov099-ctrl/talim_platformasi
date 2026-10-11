@@ -38,6 +38,25 @@ def detect_language(value, fallback='uz'):
     if en > uz: return 'en'
     return fallback if fallback in SPEAKERS else 'uz'
 
+def untagged_language(sentence):
+    """REV123: tegsiz gap tili. Ruscha (kirill) gap o'zbek ovozida o'qilmasin; aniq inglizcha gap — ingliz ovozida.
+    Shubhali hollarda — o'zbekcha (avvalgi xatti-harakat)."""
+    text = str(sentence or '')
+    low = re.sub(r"[‘’ʻʼ`']", '', text.lower())
+    if re.search('[ўқғҳ]', low):
+        return 'uz'
+    cyr = len(re.findall('[а-яё]', low)); lat = len(re.findall('[a-z]', low))
+    if cyr >= 3 and cyr > lat:
+        return detect_language(text, 'ru')
+    if lat >= 6 and not cyr and not re.search(r"\b\w*(?:o['‘’ʻ]|g['‘’ʻ])\w*", text, re.I):
+        words = re.findall('[a-z]+', low)
+        en = sum(1 for w in words if w in ENGLISH and w not in UZBEK)
+        uz = sum(1 for w in words if w in UZBEK and w not in ENGLISH)
+        if en >= 2 and en >= 2 * uz and en * 3 >= len(words):
+            return 'en'
+    return 'uz'
+
+
 def split_speech_text(value, language='auto'):
     text = str(value or '')
     result = []
@@ -45,11 +64,10 @@ def split_speech_text(value, language='auto'):
         if language in SPEAKERS:
             if part.strip():result.append((language,part))
             return
-        current = 'uz'
         protected, restore = protect_math(part)
         for sentence in re.split(r'(?<=[.!?;\n])\s+', protected):
             if sentence.strip():
-                result.append((current, restore(sentence)))
+                result.append((untagged_language(restore(sentence)), restore(sentence)))
     previous = 0
     for match in re.finditer(r'\[(' + TAG_LANGS + r')\](.*?)\[/\1\]', text, re.S | re.I):
         untagged(text[previous:match.start()])

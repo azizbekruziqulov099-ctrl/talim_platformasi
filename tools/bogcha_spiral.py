@@ -242,6 +242,31 @@ def doska_chunks(text):
 TITLE_AGE = re.compile(r"^(.*?\S)\s+(\d[–-]\d yosh)$")
 
 
+# REV123: til kitoblari o'yin doskasidagi o'zbekcha harakat so'zlari (izoh tiliga)
+DOSKA_SOZ = {
+    "yuguramiz": {"ru": "бежим", "en": "we run"},
+    "to'xtaymiz": {"ru": "стоим", "en": "we stop"},
+    "chapak": {"ru": "хлопаем", "en": "clap"},
+    "sakraymiz": {"ru": "прыгаем", "en": "we jump"},
+    "uxlaymiz": {"ru": "спим", "en": "we sleep"},
+    "qo'l yuqoriga": {"ru": "руки вверх", "en": "hands up"},
+}
+DOSKA_OLD = {"yer:": {"ru": "по земле:", "en": "on land:"}, "osmon:": {"ru": "в небе:", "en": "in the sky:"},
+             "suv:": {"ru": "по воде:", "en": "on water:"}}
+
+
+def _doska_soz(line, izoh):
+    m = re.match(r"^([^\w']*?)(\s*)([\w' ]*?[\w'])(\s*)$", line)
+    if m and m.group(3).lower() in DOSKA_SOZ:
+        return f"{m.group(1)}{m.group(2)}{DOSKA_SOZ[m.group(3).lower()].get(izoh, m.group(3))}{m.group(4)}"
+    for uz, tr in DOSKA_OLD.items():
+        mm = re.search(r"(^|\s)" + re.escape(uz), line)
+        if mm:
+            i = mm.end() - len(uz)
+            return line[:i] + tr.get(izoh, uz) + line[i + len(uz):]
+    return line
+
+
 class Builder:
     def __init__(self, cur, previous=None):
         self.cur = cur
@@ -330,8 +355,12 @@ class Builder:
         return "".join(out)
 
     def DOSKA(self, text):
-        """Muallif doskasi: qatordagi « — » dan o'ng tomoni o'zbekcha bo'lsa (manba «uz_aniq.doska») o'giriladi."""
-        if self.izoh == "uz" or not isinstance(text, str) or " — " not in text:
+        """Muallif doskasi: qatordagi « — » dan o'ng tomoni o'zbekcha bo'lsa (manba «uz_aniq.doska») o'giriladi.
+        REV123: o'yin doskasidagi o'zbekcha harakat so'zlari («🟢 yuguramiz», «🔴 to'xtaymiz») ham izoh tiliga."""
+        if self.izoh == "uz" or not isinstance(text, str):
+            return text
+        text = "\n".join(_doska_soz(line, self.izoh) for line in text.split("\n"))
+        if " — " not in text:
             return text
         lines = []
         for line in text.split("\n"):

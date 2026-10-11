@@ -2908,7 +2908,7 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
     ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|1[0-9]|20)Hz", str(ohang or "")) else "+0Hz"
     takror = 1 if takror else 0
     kesh_kaliti = hashlib.sha256(
-        f"v102\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
+        f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
         "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
