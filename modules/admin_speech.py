@@ -113,6 +113,8 @@ async def _whisper_compatible(url, model, audio, content_type, extension, api_ke
     import httpx
     fields={'model':model,'response_format':'verbose_json' if verbose else 'json','temperature':'0'}
     if language!='auto':fields['language']=language
+    # REV126: Whisper o'zbekchani ko'pincha kirillda yozadi — lotin namunasi bilan yo'naltiramiz
+    if STT_PROMPT.get(language):fields['prompt']=STT_PROMPT[language]
     async with httpx.AsyncClient(timeout=60) as client:
         response=await client.post(url,headers={'Authorization':f'Bearer {api_key}'},
             files={'file':(f'dictation.{extension}',audio,content_type)},data=fields)
@@ -160,8 +162,57 @@ async def transcribe_audio(audio, content_type, extension, api_key, language='au
         model or os.getenv('GROQ_STT_MODEL','whisper-large-v3'),audio,content_type,extension,api_key,language,True)
 
 
+STT_PROMPT={
+    'uz':"Assalomu alaykum. Bugun havo juda yaxshi. Men o‘zbek tilida, lotin yozuvida gapiryapman: o‘qituvchi, g‘isht, shoshilmang.",
+    'ru':'Здравствуйте. Сегодня хорошая погода. Я говорю по-русски.',
+    'en':'Hello. The weather is nice today. I am speaking English.',
+}
+_KIRILL={'а':'a','б':'b','в':'v','г':'g','д':'d','е':'e','ё':'yo','ж':'j','з':'z','и':'i','й':'y','к':'k','л':'l','м':'m',
+    'н':'n','о':'o','п':'p','р':'r','с':'s','т':'t','у':'u','ф':'f','х':'x','ц':'s','ч':'ch','ш':'sh','щ':'sh','ъ':'’','ы':'i',
+    'ь':'','э':'e','ю':'yu','я':'ya','ў':'o‘','қ':'q','ғ':'g‘','ҳ':'h'}
+
+
+def uz_lotin(text):
+    """O'zbekcha kirill matnni lotinga o'giradi (е so'z boshida — «ye»). Lotin harflar o'zgarmaydi."""
+    out=[]
+    prev=' '
+    for ch in str(text or ''):
+        low=ch.lower()
+        if low in _KIRILL:
+            lat=_KIRILL[low]
+            if low=='е' and not prev.isalpha():lat='ye'
+            if ch!=low:lat=lat[:1].upper()+lat[1:]
+            out.append(lat)
+        else:out.append(ch)
+        prev=ch
+    return ''.join(out)
+
+
+def tozala_stt(text, language='auto', detected=''):
+    """REV126: STT natijasini tozalash.
+    1) Whisper «halqasi» (bir bo'lak 3+ marta ketma-ket takrorlansa) — bitta qoldiriladi.
+    2) O'zbekcha (tanlangan yoki aniqlangan) — kirill harflar lotinga o'giriladi, aralash yozuv qolmaydi."""
+    import re
+    t=str(text or '').strip()
+    for _ in range(3):
+        t=re.sub(r'(\b[^\s][^\n]{0,40}?[.!?,]?)(?:\s*\1){2,}',r'\1',t)
+    t=re.sub(r'(\S)\1{6,}',r'\1',t)
+    uzbek=language=='uz' or str(detected or '').lower() in ('uz','uzbek')
+    if uzbek and re.search('[А-Яа-яЁёЎўҚқҒғҲҳ]',t):t=uz_lotin(t)
+    return re.sub(r'\s{2,}',' ',t).strip()
+
+
 async def transcribe_any(audio, content_type, extension, providers, language='auto'):
     """Birinchi ishlagan xizmat natijasi. Kalit/limit/ulanish xatosida keyingisiga o'tiladi."""
+    result=await _transcribe_first(audio,content_type,extension,providers,language)
+    if isinstance(result,dict) and isinstance(result.get('text'),str):
+        result['text']=tozala_stt(result['text'],language,result.get('language',''))
+    return result
+
+
+async def _transcribe_first(audio, content_type, extension, providers, language='auto'):
+    # REV126: o'zbekchani Gemini Whisperdan ancha yaxshi taniydi — kaliti bo'lsa, o'zbekcha uchun birinchi
+    if language=='uz':providers=sorted(providers,key=lambda p:0 if p[0]=='gemini' else 1)
     last=None
     for name,key in providers:
         try:
