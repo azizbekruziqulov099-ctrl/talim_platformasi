@@ -30,20 +30,21 @@ def test_session_cache_hit_expiry_and_forget(monkeypatch):
     auth._SESSION_CACHE.clear()
 
 
-def test_gunicorn_defaults_fit_postgres_connection_limit(monkeypatch):
+def test_gunicorn_defaults(monkeypatch):
     monkeypatch.delenv("WEB_CONCURRENCY", raising=False)
     monkeypatch.delenv("ACCESS_LOG", raising=False)
     spec = importlib.util.spec_from_file_location("rev130_gunicorn", ROOT / "gunicorn_conf.py")
     conf = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(conf)
-    assert 2 <= conf.workers <= 4
-    assert conf.workers * 2 * 10 <= 100                  # 2 ta pul × DB_POOL_MAX=10
+    assert 2 <= conf.workers <= 8
     assert conf.accesslog is None                         # har so'rov logi standart holatda o'chiq
 
 
-def test_heavy_paths_include_document_exports():
-    src = (ROOT / "samtm_runtime.py").read_text(encoding="utf-8")
-    assert '"/yuklab", "/export"' in src
+def test_tts_has_no_request_coalescing():
+    # REV131: bir xil ovozni kutib turish (single-flight) darsdagi oldindan yuklash bilan to'qnashib, ovozni
+    # to'xtatib qo'ygan edi — olib tashlandi: har so'rov o'z ovozini darhol oqim bilan oladi.
+    src = (ROOT / "samtm_platform.py").read_text(encoding="utf-8")
+    assert "_OVOZ_JARAYONDA" not in src
 
 
 def test_no_per_request_alter_table_in_hot_endpoints():

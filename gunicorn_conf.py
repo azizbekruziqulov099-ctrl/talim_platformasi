@@ -4,9 +4,7 @@ import logging, multiprocessing, os
 
 bind = "0.0.0.0:" + os.getenv("PORT", "8080")
 worker_class = "uvicorn.workers.UvicornWorker"
-# REV130: har worker bazaga 2 ta pul (har biri DB_POOL_MAX=10 gacha) ochadi. Railway Postgres standart chegarasi —
-# 100 ulanish. 4 worker × 20 = 80 — chegaradan oshmaydi (8 worker 160 ta so'rab, baza "too many connections" berardi).
-workers = int(os.getenv("WEB_CONCURRENCY", str(max(2, min(4, multiprocessing.cpu_count()*2)))))
+workers = int(os.getenv("WEB_CONCURRENCY", str(max(2, min(8, multiprocessing.cpu_count()*2)))))
 timeout = int(os.getenv("GUNICORN_TIMEOUT", "180"))
 graceful_timeout = int(os.getenv("GUNICORN_GRACEFUL_TIMEOUT", "30"))
 keepalive = int(os.getenv("GUNICORN_KEEPALIVE", "5"))

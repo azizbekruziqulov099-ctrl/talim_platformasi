@@ -2925,10 +2925,6 @@ async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish:
     return None
 
 
-# REV130: bir xil matn uchun bir vaqtda kelgan so'rovlar ovozni bir marta yaratadi (qolganlari tayyor bo'lishini kutadi).
-_OVOZ_JARAYONDA: dict = {}
-
-
 @app.get("/api/ovoz")
 async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
@@ -2966,13 +2962,6 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     if f'"{kesh_kaliti}"' in (request.headers.get("if-none-match") or ""):
         return Response(status_code=304, headers=kesh_sarlavhalari)
     keshdagi_audio = _ovoz_keshdan_ol(kesh_kaliti)
-    if keshdagi_audio is None and kesh_kaliti in _OVOZ_JARAYONDA:
-        # Xuddi shu ovoz hozir boshqa so'rovda yaratilyapti — tayyor bo'lishini kutamiz (edge-tts'ga ikkinchi so'rov yo'q)
-        try:
-            await asyncio.wait_for(_OVOZ_JARAYONDA[kesh_kaliti].wait(), timeout=25)
-        except Exception:
-            pass
-        keshdagi_audio = _ovoz_keshdan_ol(kesh_kaliti)
     if keshdagi_audio is None:
         keshdagi_audio = await run_in_threadpool(_ovoz_bazadan_ol, kesh_kaliti)
         if keshdagi_audio:
@@ -2986,12 +2975,6 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
 
     reja = ovoz_reja.reja(matn, takror=bool(takror))
     holat = {"chala": False}
-    tayyor_signal = _OVOZ_JARAYONDA.setdefault(kesh_kaliti, asyncio.Event())
-
-    def jarayon_tugadi():
-        tayyor_signal.set()
-        if _OVOZ_JARAYONDA.get(kesh_kaliti) is tayyor_signal:
-            _OVOZ_JARAYONDA.pop(kesh_kaliti, None)
 
     async def audio_bolaklari():
         for bolak in reja:
@@ -3019,38 +3002,30 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     try:
         birinchi_bolak = await audio_iterator.__anext__()
     except StopAsyncIteration:
-        jarayon_tugadi()
         raise HTTPException(status_code=503, detail="Ovoz xizmati vaqtincha javob bermadi")
-    except BaseException as exc:
-        jarayon_tugadi()
-        if isinstance(exc, Exception):
-            raise HTTPException(
-                status_code=503,
-                detail="Ovoz xizmati vaqtincha javob bermadi",
-            ) from exc
-        raise
+    except Exception as exc:
+        raise HTTPException(
+            status_code=503,
+            detail="Ovoz xizmati vaqtincha javob bermadi",
+        ) from exc
 
     async def oqim_va_kesh():
-        try:
-            yigildi = bytearray(birinchi_bolak)
-            yield birinchi_bolak
-            async for audio_bolagi in audio_iterator:
-                yigildi.extend(audio_bolagi)
-                yield audio_bolagi
-            if not holat["chala"]:
-                _ovoz_keshga_qoy(kesh_kaliti, bytes(yigildi))
-                jarayon_tugadi()   # kutayotganlar xotiradagi tayyor ovozni oladi
-                try:
-                    await run_in_threadpool(_ovoz_bazaga_qoy, kesh_kaliti, bytes(yigildi))
-                except Exception:
-                    pass
-        finally:
-            jarayon_tugadi()
+        yigildi = bytearray(birinchi_bolak)
+        yield birinchi_bolak
+        async for audio_bolagi in audio_iterator:
+            yigildi.extend(audio_bolagi)
+            yield audio_bolagi
+        if not holat["chala"]:
+            _ovoz_keshga_qoy(kesh_kaliti, bytes(yigildi))
+            try:
+                await run_in_threadpool(_ovoz_bazaga_qoy, kesh_kaliti, bytes(yigildi))
+            except Exception:
+                pass
 
     return StreamingResponse(
         oqim_va_kesh(),
         media_type="audio/mpeg",
-        headers={**kesh_sarlavhalari, "X-SamTM-Voice": "stream-miss"},
+        headers={**kesh_sarlavhalari, "Cache-Control": "private, max-age=86400", "X-SamTM-Voice": "stream-miss"},
     )
 
 
