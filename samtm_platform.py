@@ -14,7 +14,6 @@ import hashlib
 import secrets
 import string
 import threading
-import time
 import unicodedata
 from collections import OrderedDict
 from urllib.parse import urlencode
@@ -93,7 +92,7 @@ async def postgres_xavfsiz_xato_javobi(request: Request, exc: psycopg2.Error):
     print(
         f"[DB-ERROR {error_id}] path={request.url.path} "
         f"pgcode={getattr(exc, 'pgcode', None)} "
-        f"type={type(exc).__name__}",   # REV130: xato matni logga yozilmaydi — unda telefon/email kabi shaxsiy qiymatlar bo'ladi
+        f"type={type(exc).__name__} detail={str(exc).strip()}",
         flush=True,
     )
     return JSONResponse(
@@ -1369,8 +1368,11 @@ def muassasalarim(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    # REV130: ustunlar ishga tushishda yaratiladi (samtm_runtime.MOVED_DDL); har so'rovda ALTER TABLE
-    # butun users jadvalini qulflab, boshqa so'rovlarni kuttirardi.
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
     cur.execute(
         "SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
         (user_id,),
@@ -1602,34 +1604,6 @@ def muassasalarim(token: str):
 # TEST YECHISH (saytdan, botsiz)
 # ═══════════════════════════════════════════════════════════
 
-# REV130: katalog so'rovi og'ir (generated_tests bilan GROUP BY). Bir xil filtr uchun natija 60 soniya xotirada
-# saqlanadi — minglab o'quvchi bir vaqtda kirganda baza har safar qayta hisoblamaydi. Admin har doim yangisini ko'radi.
-_KATALOG_KESH: dict = {}
-_KATALOG_KESH_TTL = max(0.0, float(os.getenv("CATALOG_CACHE_TTL", "60") or 0))
-_KATALOG_KESH_LOCK = threading.Lock()
-
-
-def _katalog_kesh_yoqmi():
-    # testlarda har test o'z soxta bazasi bilan ishlaydi — u yerda kesh o'chiq
-    return _KATALOG_KESH_TTL > 0 and not os.getenv("PYTEST_CURRENT_TEST")
-
-
-def _katalog_kesh_ol(kalit):
-    if not _katalog_kesh_yoqmi():
-        return None
-    hit = _KATALOG_KESH.get(kalit)
-    return hit[1] if hit and hit[0] > time.monotonic() else None
-
-
-def _katalog_kesh_qoy(kalit, qiymat):
-    if not _katalog_kesh_yoqmi():
-        return
-    with _KATALOG_KESH_LOCK:
-        if len(_KATALOG_KESH) >= 500:
-            _KATALOG_KESH.clear()
-        _KATALOG_KESH[kalit] = (time.monotonic() + _KATALOG_KESH_TTL, qiymat)
-
-
 @app.get("/api/mavzular")
 def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool = True,
                     token: Optional[str] = None, institution_type: Optional[str] = None,
@@ -1674,37 +1648,27 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
         params.extend(dimension_params)
         # Kitob darsi (AI miya → dars xonasi) bor mavzular: o'quvchi «Darsni boshlash» ni ko'radi.
         # Jadvallar ishga tushishda (REV72 migratsiyasi) tayyorlanadi; bayroq shuni bildiradi.
-        # REV133: ishga tushishdagi migratsiya biror sabab bilan o'xshamasa ham (masalan, qulf kutish vaqti tugasa),
-        # darslar jadvali bazada bor bo'lsa — «Darsni boshlash» yo'qolmasin.
-        jadval_bormi = globals().get("_ai_dars_jadvali_bormi")
-        lesson_table = jadval_bormi(cur) if jadval_bormi else bool(globals().get("_AI_DARS_SCHEMA_READY"))
+        lesson_table = bool(globals().get("_AI_DARS_SCHEMA_READY"))
         lesson_codes_sql = ("""ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE EXISTS(
                     SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code
                       AND au.status='published' AND au.unit_kind IN ('lesson_step','knowledge','explanation','example')))"""
                             if lesson_table else "NULL")
-        kesh_kaliti = (clause, repr(params), mine_sql, repr(mine_params), bool(faqat_testli), lesson_table)
-        kesh_ol, kesh_qoy = globals().get('_katalog_kesh_ol'), globals().get('_katalog_kesh_qoy')
-        result = None if viewer.get('admin') or not kesh_ol else kesh_ol(kesh_kaliti)
-        if result is None:
-            cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
-                    {lesson_codes_sql} AS darsli_kodlar, MAX(CASE WHEN {mine_sql} THEN 1 ELSE 0 END) AS mine,
-                    COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
-                    cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
-                    COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
-                    ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
-                    ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
-                    COUNT(gt.id) AS savol_soni
-                FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
-                LEFT JOIN generated_tests gt ON gt.topic_code=d.topic_code
-                WHERE d.is_deleted=FALSE AND ({clause})
-                GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
-                    cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
-                    COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
-                ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",[*mine_params,*params])
-            result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
-            if not viewer.get('admin') and kesh_qoy:
-                kesh_qoy(kesh_kaliti, result)
-        result = list(result)   # saralash keshdagi ro'yxatni o'zgartirmasin
+        cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
+                {lesson_codes_sql} AS darsli_kodlar, MAX(CASE WHEN {mine_sql} THEN 1 ELSE 0 END) AS mine,
+                COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
+                cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
+                COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
+                ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
+                ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
+                COUNT(gt.id) AS savol_soni
+            FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
+            LEFT JOIN generated_tests gt ON gt.topic_code=d.topic_code
+            WHERE d.is_deleted=FALSE AND ({clause})
+            GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
+                cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
+                COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
+            ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",[*mine_params,*params])
+        result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
         if talaba_viewer:
             result.sort(key=lambda subject: not subject.get('mine'))
         return {'fanlar':result,'profil_sozlanmagan':incomplete,'viewer':viewer,
@@ -2456,26 +2420,20 @@ async def rasm_proxy(file_id: str):
         # Ba'zi eski yozuvlarda image_url to'g'ridan URL bo'lishi mumkin
         return RedirectResponse(file_id)
 
-    def _qidir():
-        conn = _db()
-        try:
-            cur = conn.cursor()
-            cur.execute("SELECT file_id FROM images WHERE name=%s LIMIT 1", (file_id,))
-            return cur.fetchone()
-        finally:
-            conn.close()
-
     haqiqiy_file_id = file_id
     try:
-        # REV130: bazaga so'rov alohida oqimda — async endpoint butun workerni to'xtatib qo'ymasin
-        from starlette.concurrency import run_in_threadpool
-        r = await run_in_threadpool(_qidir)
+        conn = _db()
+        cur = conn.cursor()
+        cur.execute("SELECT file_id FROM images WHERE name=%s LIMIT 1", (file_id,))
+        r = cur.fetchone()
+        cur.close()
+        conn.close()
         if r and r["file_id"]:
             haqiqiy_file_id = r["file_id"]
     except Exception:
         pass  # images jadvali bo'lmasa ham, file_id'ning o'zi bilan urinib ko'ramiz
 
-    async with httpx.AsyncClient(timeout=httpx.Timeout(15.0, connect=5.0)) as client:
+    async with httpx.AsyncClient() as client:
         meta = await client.get(f"https://api.telegram.org/bot{BOT_TOKEN}/getFile",
                                  params={"file_id": haqiqiy_file_id})
         meta_data = meta.json()
@@ -2483,11 +2441,7 @@ async def rasm_proxy(file_id: str):
             raise HTTPException(status_code=404, detail="Rasm topilmadi")
         file_path = meta_data["result"]["file_path"]
         img = await client.get(f"https://api.telegram.org/file/bot{BOT_TOKEN}/{file_path}")
-        if img.status_code != 200:
-            raise HTTPException(status_code=404, detail="Rasm topilmadi")
-        # REV130: rasm o'zgarmaydi — brauzer va CDN bir hafta keshlaydi (har ko'rishda baza + 2 ta Telegram so'rovi bo'lmaydi)
-        return Response(content=img.content, media_type="image/jpeg",
-                        headers={"Cache-Control": "public, max-age=604800, immutable"})
+        return Response(content=img.content, media_type="image/jpeg")
 
 
 EDGE_OVOZ = {
@@ -3406,7 +3360,9 @@ def _togarak_yaratish_kvotasi(
     if not admin_mi and foydalanuvchi["role"] != "oqituvchi":
         raise HTTPException(status_code=403, detail="To'garakni faqat o'qituvchi yoki administrator yarata oladi")
 
-    # REV130: togaraklar ustunlari ishga tushishda yaratiladi (MOVED_DDL)
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS guruh_turi TEXT DEFAULT 'togarak'")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
+    cur.execute("ALTER TABLE togaraklar ADD COLUMN IF NOT EXISTS universitet_guruh_id INTEGER")
     _togarak_sigimini_yangila(cur)
     cur.execute(
         """SELECT COUNT(*) AS soni FROM togaraklar
@@ -4004,8 +3960,7 @@ def _email_yubor(qabul_qiluvchi: str, mavzu: str, matn: str) -> bool:
     user = os.getenv("SMTP_USER")
     parol = os.getenv("SMTP_PASSWORD")
     if not user or not parol:
-        # REV130: email manzili va xat matni (unda tasdiqlash kodi bor) logga yozilmaydi
-        print(f"[EMAIL YUBORILMADI — SMTP sozlanmagan] {str(qabul_qiluvchi or '')[:2]}***")
+        print(f"[EMAIL YUBORILMADI — SMTP sozlanmagan] {qabul_qiluvchi}: {matn}")
         return False
     try:
         import smtplib
@@ -6234,15 +6189,13 @@ async def chat_xabar_yubor(
                 cur.close(); conn.close()
                 raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
 
-        # REV130: virus (ClamAV, 15 soniyagacha) va rasm tekshiruvi og'ir — alohida oqimda, butun worker to'xtamasin
-        from starlette.concurrency import run_in_threadpool
-        if await run_in_threadpool(_faylda_virus_bormi, tarkib):
+        if _faylda_virus_bormi(tarkib):
             _qora_royxatga_yoz(cur, user_id, "virus", fayl.filename)
             conn.commit()
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
 
-        if (fayl.content_type or "").startswith("image/") and await run_in_threadpool(_rasm_uyatsizmi, tarkib):
+        if (fayl.content_type or "").startswith("image/") and _rasm_uyatsizmi(tarkib):
             _qora_royxatga_yoz(cur, user_id, "nsfw_rasm", fayl.filename)
             conn.commit()
             cur.close(); conn.close()
@@ -19119,24 +19072,7 @@ def _ai_brain_dars_jadvallari(cur):
                    WHERE payload ? 'kitob_kodi'""")
 
 
-_AI_DARS_JADVAL_BOR = False
-
-
-def _ai_dars_jadvali_bormi(cur):
-    """REV133: darslar jadvali (ai_brain_units) bazada bormi — bir marta tekshiriladi va eslab qolinadi."""
-    global _AI_DARS_JADVAL_BOR
-    if _AI_DARS_SCHEMA_READY or _AI_DARS_JADVAL_BOR:
-        return True
-    try:
-        cur.execute("SELECT to_regclass('public.ai_brain_units') IS NOT NULL AS bor")
-        row = cur.fetchone() or {}
-        _AI_DARS_JADVAL_BOR = bool(row.get("bor") if isinstance(row, dict) else row[0])
-    except Exception:
-        return False
-    return _AI_DARS_JADVAL_BOR
-
-
-def _ai_brain_dars_migratsiya(_urinish: int = 1):
+def _ai_brain_dars_migratsiya():
     global _AI_DARS_SCHEMA_READY
     conn = _db()
     cur = conn.cursor()
@@ -19147,12 +19083,7 @@ def _ai_brain_dars_migratsiya(_urinish: int = 1):
         _AI_DARS_SCHEMA_READY = True
     except Exception as exc:
         conn.rollback()
-        print(f"[REV72 dars xonasi sxemasi] {_urinish}-urinish: {type(exc).__name__}: {exc}", flush=True)
-        # REV133: bir martalik xato (qulf, ulanish) — fonda yana urinib ko'riladi, worker darslarsiz qolib ketmasin
-        if _urinish < 10:
-            t = threading.Timer(20.0 * _urinish, _ai_brain_dars_migratsiya, kwargs={"_urinish": _urinish + 1})
-            t.daemon = True
-            t.start()
+        print(f"[REV72 dars xonasi sxemasi] {exc}", flush=True)
     finally:
         cur.close()
         conn.close()
@@ -20864,7 +20795,7 @@ def _ai_yosh_hisobla(tugilgan_sana, sinf=None) -> int:
 
 
 def _ai_foydalanuvchi_profili(cur, user_id):
-    # REV130: tugilgan_sana ustuni ishga tushishda yaratiladi (MOVED_DDL) — har so'rovda ALTER TABLE yo'q
+    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
     cur.execute(
         """SELECT user_id, full_name, role, class, tugilgan_sana, oqituvchi_fani
            FROM users WHERE user_id=%s""",

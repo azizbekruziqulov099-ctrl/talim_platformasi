@@ -11,9 +11,7 @@ keepalive = int(os.getenv("GUNICORN_KEEPALIVE", "5"))
 max_requests = int(os.getenv("GUNICORN_MAX_REQUESTS", "5000"))
 max_requests_jitter = int(os.getenv("GUNICORN_MAX_REQUESTS_JITTER", "500"))
 proc_name = "samtm-v19.2"
-# REV130: har so'rovga bitta log qatori ko'p foydalanuvchida Railway loglarini to'ldirib yuboradi —
-# standart holatda o'chiq; kerak bo'lsa ACCESS_LOG=1 qo'ying.
-accesslog = "-" if os.getenv("ACCESS_LOG", "").strip().lower() in ("1", "true", "yes", "ha") else None
+accesslog = "-"
 # Legacy API clients still pass session tokens in query strings. Never log
 # the request line, query, Referer or Authorization header.
 access_log_format = '%(h)s %(t)s "%(m)s %(U)s %(H)s" %(s)s %(B)s %(D)s'
