@@ -274,6 +274,11 @@ def register_profiles(app, platform, service):
             # Natijalar o'chirilmaydi (bazada qoladi) — faqat ro'yxatdan olinadi va sessiyalari yopiladi.
             cur.execute('UPDATE kabutar_family_profiles SET removed_at=NOW() WHERE profile_user_id=%s', (profile_id,))
             cur.execute('UPDATE kabutar_auth_sessions SET revoked_at=NOW() WHERE user_id=%s AND revoked_at IS NULL', (profile_id,))
+            try:   # REV130: sessiya keshidan ham olib tashlanadi
+                from kabutar_auth import forget_sessions
+                forget_sessions(user_id=profile_id)
+            except Exception:
+                pass
             return payload(cur, uid)
 
     @app.post('/auth/profiles/{profile_id}/enter')

@@ -22,6 +22,45 @@ from fastapi import Header, HTTPException, Request
 from fastapi.responses import JSONResponse
 from jose import jwt, JWTError
 from pydantic import BaseModel, Field
+import time as _time
+
+# REV130: tasdiqlangan sessiyalar qisqa muddat xotirada saqlanadi — har bir so'rovda bazada tranzaksiya
+# ochilmaydi (ko'p foydalanuvchida baza ulanishlari tugab qolmasin). Chiqish/parol almashtirishda shu worker
+# keshi darhol tozalanadi; boshqa workerlarda eski sessiya ko'pi bilan SESSION_CACHE_TTL soniya yashaydi.
+SESSION_CACHE_TTL = max(0.0, float(os.getenv("SESSION_CACHE_TTL", "20") or 0))
+_SESSION_CACHE: dict = {}
+_SESSION_CACHE_MAX = 50000
+_SESSION_CACHE_LOCK = threading.Lock()
+
+
+def session_cache_get(session_hash, user_id):
+    if SESSION_CACHE_TTL <= 0 or os.getenv("PYTEST_CURRENT_TEST"):
+        return False
+    hit = _SESSION_CACHE.get(session_hash)
+    return bool(hit and hit[0] == user_id and hit[1] > _time.monotonic())
+
+
+def session_cache_put(session_hash, user_id):
+    if SESSION_CACHE_TTL <= 0:
+        return
+    with _SESSION_CACHE_LOCK:
+        if len(_SESSION_CACHE) >= _SESSION_CACHE_MAX:
+            now = _time.monotonic()
+            for k in [k for k, v in _SESSION_CACHE.items() if v[1] <= now]:
+                _SESSION_CACHE.pop(k, None)
+            if len(_SESSION_CACHE) >= _SESSION_CACHE_MAX:
+                _SESSION_CACHE.clear()
+        _SESSION_CACHE[session_hash] = (user_id, _time.monotonic() + SESSION_CACHE_TTL)
+
+
+def forget_sessions(user_id=None, session_hash=None):
+    """Sessiya bekor qilinganda keshdan ham olib tashlanadi (shu worker uchun)."""
+    with _SESSION_CACHE_LOCK:
+        if session_hash is not None:
+            _SESSION_CACHE.pop(session_hash, None)
+        if user_id is not None:
+            for k in [k for k, v in _SESSION_CACHE.items() if v[0] == int(user_id)]:
+                _SESSION_CACHE.pop(k, None)
 
 CHALLENGE_SECONDS = 300
 RESULT_SECONDS = 120
@@ -557,6 +596,8 @@ class AuthService:
             session_hash = digest(sid)
         else:
             raise HTTPException(401, 'Bu token kirish sessiyasi emas')
+        if not legacy and session_cache_get(session_hash, user_id):
+            return user_id
         with self.transaction() as cur:
             if legacy:
                 self.user_lock(cur,user_id)
@@ -572,6 +613,8 @@ class AuthService:
             row = cur.fetchone()
         if not row or int(row['user_id']) != user_id:
             raise HTTPException(401, 'Sessiya tugagan yoki bekor qilingan. Qaytadan kiring')
+        if not legacy:
+            session_cache_put(session_hash, user_id)
         return user_id
 
     def claims(self, token):
@@ -1086,9 +1129,11 @@ def register_auth(app, platform):
                 service.disable_legacy(cur,uid)
                 cur.execute('UPDATE kabutar_auth_sessions SET revoked_at=NOW() WHERE user_id=%s AND revoked_at IS NULL',(uid,))
                 cur.execute('UPDATE kabutar_auth_challenges SET cancelled_at=NOW() WHERE target_user_id=%s AND consumed_at IS NULL',(uid,))
+                forget_sessions(user_id=uid)
             else:
                 session_hash=digest(claims['sid']) if claims.get('sid') else digest(token)
                 cur.execute('UPDATE kabutar_auth_sessions SET revoked_at=NOW() WHERE session_hash=%s',(session_hash,))
+                forget_sessions(session_hash=session_hash)
                 cur.execute('UPDATE kabutar_auth_challenges SET cancelled_at=NOW() WHERE link_session_hash=%s AND consumed_at IS NULL',(session_hash,))
         return {'ok':True}
 
@@ -1164,6 +1209,7 @@ def register_auth(app, platform):
                 ON CONFLICT(user_id) DO UPDATE SET password_hash=EXCLUDED.password_hash,updated_at=NOW()''',(uid,new_hash))
             service.disable_legacy(cur,uid)
             cur.execute('UPDATE kabutar_auth_sessions SET revoked_at=NOW() WHERE user_id=%s AND session_hash<>%s AND revoked_at IS NULL',(uid,sid_hash))
+            forget_sessions(user_id=uid)
             cur.execute('UPDATE kabutar_auth_challenges SET cancelled_at=NOW() WHERE target_user_id=%s AND consumed_at IS NULL',(uid,))
         return {'ok':True}
 

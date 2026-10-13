@@ -51,6 +51,7 @@ MAX_INFLIGHT = max(16, int(os.getenv("MAX_INFLIGHT_REQUESTS", "250")))
 MAX_HEAVY = max(1, int(os.getenv("MAX_HEAVY_REQUESTS", "2")))
 HEAVY_PATH_PARTS = (
     "/yaratish", "/xodim_import", "/shablon_import", "/import",
+    "/yuklab", "/export",   # REV130: PDF/DOCX/PPTX yasash ham og'ir ish — bir vaqtda cheklanadi
     "/oqituvchi_yuklamasi", "/oqituvchi_qoshish", "/almashtirish",
     "/api/assistant/plan", "/api/assistant/create", "/api/assistant/export",
 )
