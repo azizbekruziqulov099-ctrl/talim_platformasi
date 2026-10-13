@@ -1674,7 +1674,10 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
         params.extend(dimension_params)
         # Kitob darsi (AI miya → dars xonasi) bor mavzular: o'quvchi «Darsni boshlash» ni ko'radi.
         # Jadvallar ishga tushishda (REV72 migratsiyasi) tayyorlanadi; bayroq shuni bildiradi.
-        lesson_table = bool(globals().get("_AI_DARS_SCHEMA_READY"))
+        # REV133: ishga tushishdagi migratsiya biror sabab bilan o'xshamasa ham (masalan, qulf kutish vaqti tugasa),
+        # darslar jadvali bazada bor bo'lsa — «Darsni boshlash» yo'qolmasin.
+        jadval_bormi = globals().get("_ai_dars_jadvali_bormi")
+        lesson_table = jadval_bormi(cur) if jadval_bormi else bool(globals().get("_AI_DARS_SCHEMA_READY"))
         lesson_codes_sql = ("""ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE EXISTS(
                     SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code
                       AND au.status='published' AND au.unit_kind IN ('lesson_step','knowledge','explanation','example')))"""
@@ -2926,7 +2929,7 @@ async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish:
 
 
 @app.get("/api/ovoz")
-async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
+async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
     Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi; to'liq MP3 tugashini kutmaydi.
@@ -2954,13 +2957,10 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
         f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
     ).hexdigest()
     kesh_sarlavhalari = {
-        # REV130: ovoz faqat matndan yasaladi (shaxsiy ma'lumot yo'q) — brauzer va CDN uzoq saqlaydi
-        "Cache-Control": "public, max-age=2592000, immutable",
+        "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
         "ETag": f'"{kesh_kaliti}"',
         "X-Content-Type-Options": "nosniff",
     }
-    if f'"{kesh_kaliti}"' in (request.headers.get("if-none-match") or ""):
-        return Response(status_code=304, headers=kesh_sarlavhalari)
     keshdagi_audio = _ovoz_keshdan_ol(kesh_kaliti)
     if keshdagi_audio is None:
         keshdagi_audio = await run_in_threadpool(_ovoz_bazadan_ol, kesh_kaliti)
@@ -3025,7 +3025,7 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     return StreamingResponse(
         oqim_va_kesh(),
         media_type="audio/mpeg",
-        headers={**kesh_sarlavhalari, "Cache-Control": "private, max-age=86400", "X-SamTM-Voice": "stream-miss"},
+        headers={**kesh_sarlavhalari, "X-SamTM-Voice": "stream-miss"},
     )
 
 
@@ -19119,7 +19119,24 @@ def _ai_brain_dars_jadvallari(cur):
                    WHERE payload ? 'kitob_kodi'""")
 
 
-def _ai_brain_dars_migratsiya():
+_AI_DARS_JADVAL_BOR = False
+
+
+def _ai_dars_jadvali_bormi(cur):
+    """REV133: darslar jadvali (ai_brain_units) bazada bormi — bir marta tekshiriladi va eslab qolinadi."""
+    global _AI_DARS_JADVAL_BOR
+    if _AI_DARS_SCHEMA_READY or _AI_DARS_JADVAL_BOR:
+        return True
+    try:
+        cur.execute("SELECT to_regclass('public.ai_brain_units') IS NOT NULL AS bor")
+        row = cur.fetchone() or {}
+        _AI_DARS_JADVAL_BOR = bool(row.get("bor") if isinstance(row, dict) else row[0])
+    except Exception:
+        return False
+    return _AI_DARS_JADVAL_BOR
+
+
+def _ai_brain_dars_migratsiya(_urinish: int = 1):
     global _AI_DARS_SCHEMA_READY
     conn = _db()
     cur = conn.cursor()
@@ -19130,7 +19147,12 @@ def _ai_brain_dars_migratsiya():
         _AI_DARS_SCHEMA_READY = True
     except Exception as exc:
         conn.rollback()
-        print(f"[REV72 dars xonasi sxemasi] {exc}", flush=True)
+        print(f"[REV72 dars xonasi sxemasi] {_urinish}-urinish: {type(exc).__name__}: {exc}", flush=True)
+        # REV133: bir martalik xato (qulf, ulanish) — fonda yana urinib ko'riladi, worker darslarsiz qolib ketmasin
+        if _urinish < 10:
+            t = threading.Timer(20.0 * _urinish, _ai_brain_dars_migratsiya, kwargs={"_urinish": _urinish + 1})
+            t.daemon = True
+            t.start()
     finally:
         cur.close()
         conn.close()
