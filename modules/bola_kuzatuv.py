@@ -284,6 +284,39 @@ class FinishLesson(BaseModel):
     ortacha_ms: int = Field(default=0, ge=0, le=120000)   # REV103: savolga o'rtacha javob vaqti (tezlik ko'rsatkichi)
     ovoz_togri: int = Field(default=0, ge=0, le=50)       # REV105: dars oxiridagi ovozli tekshiruv — to'g'ri aytilgan iboralar
     ovoz_jami: int = Field(default=0, ge=0, le=50)
+    # REV145: bugun o'rgangan so'zlar va bola ularni mikrofonga aytdimi — [{soz, emoji, aytdi: true|false|null}]
+    sozlar: list = Field(default_factory=list, max_length=20)   # noto‘g‘ri element dars natijasini yo‘qotmaydi — clean_words tozalaydi
+
+
+def clean_words(items):
+    """REV145: bola yuborgan so'zlar ro'yxati — xavfsiz, qisqa ko'rinishga (ko'pi bilan 12 ta, takrorsiz)."""
+    out, seen = [], set()
+    for w in items or []:
+        if not isinstance(w, dict):
+            continue
+        soz = " ".join(str(w.get("soz") or "").split())[:60]
+        if not soz or soz.lower() in seen:
+            continue
+        seen.add(soz.lower())
+        aytdi = w.get("aytdi")
+        out.append({"soz": soz, "emoji": str(w.get("emoji") or "")[:12],
+                    "aytdi": aytdi if isinstance(aytdi, bool) else None})
+        if len(out) >= 12:
+            break
+    return out
+
+
+def result_level(togri, jami):
+    """REV145: ota-onaga tushunarli baho: «A'lo» (80%+), «Yaxshi» (50%+), «Mashq kerak» — test bo'lmasa None."""
+    if not jami:
+        return None
+    r = (togri or 0) / jami
+    return "alo" if r >= 0.8 else "yaxshi" if r >= 0.5 else "mashq"
+
+
+def words_text(words):
+    """Xabarnoma uchun: «apple ✓, banana ✓, juice» (aytgani — ✓)."""
+    return ", ".join(w["soz"] + (" ✓" if w.get("aytdi") else "") for w in words)
 
 
 def migrate(cur):
@@ -329,6 +362,7 @@ def migrate(cur):
     cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS javob_ms INT")
     cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS ovoz_togri INT")   # REV105
     cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS ovoz_jami INT")
+    cur.execute("ALTER TABLE bola_dars_faollik ADD COLUMN IF NOT EXISTS sozlar JSONB")   # REV145
     # REV103: kunlik vaqt — nima qildi va qancha (dars / o'yin nomi bilan) hamda butun platformadagi seans
     cur.execute("""
         CREATE TABLE IF NOT EXISTS bola_vaqt (
@@ -606,15 +640,16 @@ def create_router(platform):
                 conn.commit()
                 return {"ok": True, "kuzatilmaydi": True, "yulduz": stars_for(body.togri, body.jami)}
             stars = stars_for(body.togri, body.jami)
+            words = clean_words(body.sozlar)
             cur.execute("""UPDATE bola_dars_holat SET yulduz=GREATEST(yulduz,%s), tugatilgan_at=COALESCE(tugatilgan_at, %s)
                            WHERE child_id=%s AND dars_kod=%s RETURNING fan, mavzu""", (stars, now, user_id, body.dars_kod))
             lesson = cur.fetchone()
             cur.execute("""UPDATE bola_dars_faollik SET tugadi_at=%s, togri=%s, jami=%s, yulduz=%s, javob_ms=NULLIF(%s, 0),
-                             ovoz_togri=%s, ovoz_jami=%s,
+                             ovoz_togri=%s, ovoz_jami=%s, sozlar=%s::jsonb,
                              faol_soniya=faol_soniya + CASE WHEN korinadi AND faol THEN LEAST(%s, GREATEST(0, EXTRACT(EPOCH FROM (%s - oxirgi_signal_at))::int)) ELSE 0 END
                            WHERE child_id=%s AND dars_kod=%s AND sana=%s AND tugadi_at IS NULL
                            RETURNING faol_soniya, mavzu, fan""",
-                        (now, body.togri, body.jami, stars, body.ortacha_ms, (min(body.ovoz_togri, body.ovoz_jami) if body.ovoz_jami else None), (body.ovoz_jami or None), SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
+                        (now, body.togri, body.jami, stars, body.ortacha_ms, (min(body.ovoz_togri, body.ovoz_jami) if body.ovoz_jami else None), (body.ovoz_jami or None), (json.dumps(words, ensure_ascii=False) if words else None), SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
             done = cur.fetchone()
             out = plan(cur, user_id, now)
             fan = (lesson or done or {}).get("fan") or ""
@@ -627,6 +662,8 @@ def create_router(platform):
                 if body.ovoz_jami:
                     result += f"🎤 ovozli takror {min(body.ovoz_togri, body.ovoz_jami)}/{body.ovoz_jami}, "
                 text = f"✅ {name} «{title}» darsini tugatdi: {result}{stars_text(stars)}, {minutes} daqiqa."
+                if words:
+                    text += f"\n📝 O'rgangan so'zlari: {words_text(words)}"
                 if all_done:
                     text += f"\n🎉 Bugungi {fan + ' ' if fan else ''}darslari tugadi ({state['tugadi']}/{out['limit']}). Yangi darslar ertaga ochiladi."
                 notify(cur, user_id, text, "bola_dars")
@@ -705,6 +742,21 @@ def create_router(platform):
         return run_db(run)
 
     # ── Ota-ona ──
+    def lesson_row(r):
+        """Bitta dars — ota-ona ko'radigan ko'rinishda (REV145: baho, ovozli takror va o'rgangan so'zlar bilan)."""
+        words = r.get("sozlar")
+        if isinstance(words, str):
+            try:
+                words = json.loads(words)
+            except ValueError:
+                words = []
+        return {"mavzu": r["mavzu"], "fan": r["fan"], "boshlandi": r["boshlandi_at"].astimezone(TASHKENT).strftime("%H:%M"),
+                "tugadi": r["tugadi_at"].astimezone(TASHKENT).strftime("%H:%M") if r["tugadi_at"] else None,
+                "daqiqa": round((r["faol_soniya"] or 0) / 60), "togri": r["togri"], "jami": r["jami"], "yulduz": r["yulduz"],
+                "chalgish": r["chalgish_soni"], "qadam": r["qadam"], "jami_qadam": r["jami_qadam"],
+                "ovoz_togri": r.get("ovoz_togri"), "ovoz_jami": r.get("ovoz_jami"),
+                "baho": result_level(r["togri"], r["jami"]), "sozlar": clean_words(words if isinstance(words, list) else [])}
+
     @router.get("/api/ota/bola_faollik")
     def child_activity(bola_id: int, token: str = None, authorization: str = Header(None)):
         parent_id = uid_of(token, authorization)
@@ -736,6 +788,14 @@ def create_router(platform):
             for r in cur.fetchall():
                 d = kunlar.setdefault(r["sana"].isoformat(), {"sana": r["sana"].isoformat(), "kun": WEEKDAYS_UZ[r["sana"].weekday()], "dars": 0, "oyin": 0})
                 d[time_category(r["turi"])] += round(int(r["s"] or 0) / 60)
+            # REV145: oxirgi 7 kunning har bir darsi — ota-ona kunni bosib, o'sha kun darslarini ko'radi
+            cur.execute("""SELECT * FROM bola_dars_faollik WHERE child_id=%s AND sana > %s AND sana < %s
+                           ORDER BY sana DESC, boshlandi_at LIMIT 120""", (bola_id, day - timedelta(days=7), day))
+            past = {}
+            for r in cur.fetchall():
+                past.setdefault(r["sana"].isoformat(), []).append(lesson_row(dict(r)))
+            for d in week:
+                d["darslar_royxat"] = past.get(d["sana"], [])
             cur.execute("SELECT * FROM bola_sessiya WHERE child_id=%s", (bola_id,))
             sess = cur.fetchone()
             conn.commit()
@@ -745,10 +805,7 @@ def create_router(platform):
             return {
                 "bola": {"user_id": bola_id, "ism": name, "bogcha": kid},
                 "jonli": status,
-                "bugun": [{"mavzu": r["mavzu"], "fan": r["fan"], "boshlandi": r["boshlandi_at"].astimezone(TASHKENT).strftime("%H:%M"),
-                           "tugadi": r["tugadi_at"].astimezone(TASHKENT).strftime("%H:%M") if r["tugadi_at"] else None,
-                           "daqiqa": round((r["faol_soniya"] or 0) / 60), "togri": r["togri"], "jami": r["jami"], "yulduz": r["yulduz"],
-                           "chalgish": r["chalgish_soni"], "qadam": r["qadam"], "jami_qadam": r["jami_qadam"]} for r in today],
+                "bugun": [lesson_row(r) for r in today],
                 "hafta": week,
                 "reja": {k: out_plan[k] for k in ("sana", "kun", "dam_olish", "limit", "fanlar")},
                 # REV103: bugun qancha va nima (dars / o'yin) — hamda platformada hozir bormi

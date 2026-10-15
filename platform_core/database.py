@@ -16,6 +16,8 @@ import psycopg2
 import psycopg2.extras
 from psycopg2.pool import ThreadedConnectionPool
 
+from .ddl_guard import XavfsizCursor
+
 
 class DatabaseBusyError(RuntimeError):
     """Raised when every configured database connection is busy."""
@@ -57,7 +59,7 @@ def _get_pool() -> tuple[ThreadedConnectionPool, threading.BoundedSemaphore]:
                 minimum,
                 maximum,
                 dsn=database_url,
-                cursor_factory=psycopg2.extras.RealDictCursor,
+                cursor_factory=XavfsizCursor,   # REV146: keraksiz DDL qulf so'ramaydi
                 connect_timeout=_int_env("DB_CONNECT_TIMEOUT", 10, 2, 60),
                 application_name="samtm-modular-api",
                 options=(

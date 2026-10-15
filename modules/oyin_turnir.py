@@ -8,6 +8,10 @@
   • G'alaba 1, durang ½. Teng ochkoda: Buxgolts (raqiblar ochkolari yig'indisi), g'alabalar soni, reyting.
   • Turnir o'yini soat bilan va reytingli (odam–odam). Birinchi yurishni 30 soniyada qilmagan o'yinchi
     texnik mag'lubiyat oladi (bu reytingga ta'sir qilmaydi).
+REV143: JAMOAVIY LIGA (faqat admin): jamoa_hajmi > 0 bo'lsa, boshlanishda o'yinchilar reyting bo'yicha «ilon» usulida
+teng kuchli jamoalarga bo'linadi (qancha o'yinchi bo'lsa — shuncha, hajm farqi ≤ 1). Jamoalar har kim har kim bilan
+(doira) uchrashadi; har uchrashuvda 1-doska 1-doska bilan, 2-si 2-si bilan… (ranglar doskalar bo'yicha navbatlanadi).
+Uchrashuv natijasi — doskalar ochkolari yig'indisi: g'alaba 1, durang ½ jamoa ochkosi; dam olgan jamoa — g'alaba.
 Holat mijoz so'raganda «dangasa» yangilanadi (turnir qatori qulflanadi) — alohida fon jarayoni kerak emas.
 """
 import json
@@ -33,6 +37,7 @@ class NewTournament(BaseModel):
     max_ishtirokchi: int = Field(default=64, ge=2, le=256)
     izoh: str = Field(default="", max_length=240)
     qatnashaman: bool = True
+    jamoa_hajmi: int = Field(default=0, ge=0, le=6)   # REV143: 0 — yakka; 2–6 — jamoaviy liga (doskalar soni)
 
 
 class TournamentToken(BaseModel):
@@ -148,6 +153,90 @@ def pair_round(table, rnd):
     return pairs, bye["user_id"] if bye else None
 
 
+JAMOA_KALITLARI = [("sherlar", "🦁"), ("burgutlar", "🦅"), ("delfinlar", "🐬"), ("yolbarslar", "🐯"), ("ayiqlar", "🐻"),
+                   ("tulkilar", "🦊"), ("fillar", "🐘"), ("pandalar", "🐼"), ("pingvinlar", "🐧"), ("boyogli", "🦉"),
+                   ("asalarilar", "🐝"), ("kapalaklar", "🦋"), ("toshbaqalar", "🐢"), ("raketalar", "🚀"), ("yulduzlar", "⭐"),
+                   ("kamalaklar", "🌈"), ("chaqmoqlar", "⚡"), ("kungaboqar", "🌻"), ("jirafalar", "🦒"), ("delfin2", "🐳")]
+
+
+def jamoalarga_bol(players, hajm):
+    """REV143: reyting bo'yicha «ilon» (1→k, k→1, …) — jamoalar kuchi teng. Jamoalar soni = max(2, n // hajm).
+    Qaytaradi: [{id, kalit, emoji, azolar: [user_id — doska tartibida], dam: []}, …] yoki [] (2 tadan kam o'yinchi)."""
+    ps = sorted(players, key=lambda p: (-int(p.get("reyting") or 0), str(p.get("ism") or ""), int(p["user_id"])))
+    if len(ps) < 2 or hajm <= 0:
+        return []
+    k = max(2, len(ps) // hajm)
+    out = [{"id": i + 1, "kalit": JAMOA_KALITLARI[i % len(JAMOA_KALITLARI)][0], "emoji": JAMOA_KALITLARI[i % len(JAMOA_KALITLARI)][1],
+            "azolar": [], "dam": []} for i in range(k)]
+    for i, p in enumerate(ps):
+        r, c = divmod(i, k)
+        out[c if r % 2 == 0 else k - 1 - c]["azolar"].append(int(p["user_id"]))
+    return out
+
+
+def doira(ids):
+    """Har kim har kim bilan bir marta: [[(a, b), …], …]; toq bo'lsa b=None (dam)."""
+    t = list(ids)
+    if len(t) % 2:
+        t.append(None)
+    n, turlar = len(t), []
+    for _ in range(n - 1):
+        juft = []
+        for i in range(n // 2):
+            a, b = t[i], t[n - 1 - i]
+            if a is None:
+                a, b = b, None
+            juft.append((a, b))
+        turlar.append(juft)
+        t = [t[0]] + [t[-1]] + t[1:-1]
+    return turlar
+
+
+def jamoa_turlari(jamoalar):
+    """Jamoalar turlari: doira, keyin ikkinchi davra (oz jamoada ham bir necha tur bo'lsin; ranglar doskalarda almashadi)."""
+    bir = doira([j["id"] for j in jamoalar])
+    return bir + bir
+
+
+def jamoa_jadvali(jamoalar, games):
+    """Jamoalar jadvali: uchrashuv g'alaba 1, durang ½ (dam — g'alaba). Teng bo'lsa: doska ochkolari, keyin id.
+    Uchrashuv hisobga faqat undagi hamma partiya tugaganda olinadi."""
+    team = {u: j["id"] for j in jamoalar for u in j["azolar"]}
+    row = {j["id"]: {"jamoa_id": j["id"], "ochko2": POINT * len(j.get("dam") or []), "doska2": 0, "g": 0, "d": 0, "m": 0,
+                     "natijalar": {str(t): "dam" for t in (j.get("dam") or [])}} for j in jamoalar}
+    match = {}
+    for g in games:
+        a, b = team.get(g.get("oq_id")), team.get(g.get("qora_id"))
+        if a is None or b is None or a == b:
+            continue
+        key = (g.get("tur"), min(a, b), max(a, b))
+        m = match.setdefault(key, {"done": True, a: 0, b: 0})
+        if g.get("holat") != "tugadi" or not g.get("golib"):
+            m["done"] = False
+            continue
+        m[a] += game_points(g["golib"], "w")
+        m[b] += game_points(g["golib"], "b")
+    for (tur, x, y), m in match.items():
+        if not m["done"]:
+            continue
+        for me, op in ((x, y), (y, x)):
+            r = row[me]
+            r["doska2"] += m[me]
+            if m[me] > m[op]:
+                r["ochko2"] += POINT; r["g"] += 1; mark = "1"
+            elif m[me] == m[op]:
+                r["ochko2"] += 1; r["d"] += 1; mark = "½"
+            else:
+                r["m"] += 1; mark = "0"
+            r["natijalar"][str(tur)] = f"{mark}:{m[me] / POINT:g}-{m[op] / POINT:g}"
+    out = sorted(row.values(), key=lambda r: (-r["ochko2"], -r["doska2"], r["jamoa_id"]))
+    for i, r in enumerate(out, 1):
+        r["orin"] = i
+        r["ochko"] = r["ochko2"] / POINT
+        r["doska"] = r["doska2"] / POINT
+    return out
+
+
 def result_mark(game):
     if game.get("holat") != "tugadi" or not game.get("golib"):
         return "…"
@@ -191,6 +280,8 @@ def migrate(cur):
     cur.execute("ALTER TABLE oyin_partiyalar ADD COLUMN IF NOT EXISTS turnir_kod TEXT")
     cur.execute("ALTER TABLE oyin_partiyalar ADD COLUMN IF NOT EXISTS tur INT")
     cur.execute("CREATE INDEX IF NOT EXISTS oyin_partiyalar_turnir ON oyin_partiyalar(turnir_id, tur)")
+    cur.execute("ALTER TABLE oyin_turnirlar ADD COLUMN IF NOT EXISTS jamoa_hajmi INT NOT NULL DEFAULT 0")
+    cur.execute("ALTER TABLE oyin_turnirlar ADD COLUMN IF NOT EXISTS jamoalar JSONB NOT NULL DEFAULT '[]'::jsonb")
 
 
 def attach(router, h):
@@ -239,7 +330,33 @@ def attach(router, h):
         byes = {int(p["user_id"]): list(p.get("dam_turlar") or []) for p in players}
         return standings(players, games, byes)
 
+    def start_team_round(cur, t, players, rnd):
+        """REV143: jamoaviy tur — doira bo'yicha jamoa juftlari, doskama-doska partiyalar."""
+        jam = t["jamoalar"] or []
+        turlar = jamoa_turlari(jam)
+        if rnd > len(turlar):
+            return False
+        by_id = {int(p["user_id"]): p for p in players}
+        by_team = {j["id"]: [u for u in j["azolar"] if u in by_id and not by_id[u]["chiqdi"]] for j in jam}
+        for a, b in turlar[rnd - 1]:
+            if b is None:
+                next(j for j in jam if j["id"] == a)["dam"].append(rnd)
+                continue
+            A, B = by_team[a], by_team[b]
+            for i in range(min(len(A), len(B))):
+                w, bl = (A[i], B[i]) if (i + rnd) % 2 == 0 else (B[i], A[i])
+                cards = []
+                for uid in (w, bl):
+                    p = by_id[uid]
+                    cards.append((uid, p["ism"], p["jins"], rt.get_rating(cur, uid, OYIN)["reyting"]))
+                kod = h.insert_game(cur, "turnir", cards[0], cards[1], nazorat=t["nazorat"], rated=True)
+                cur.execute("UPDATE oyin_partiyalar SET turnir_id=%s, turnir_kod=%s, tur=%s WHERE kod=%s", (t["id"], t["kod"], rnd, kod))
+        t["joriy_tur"] = rnd
+        return True
+
     def start_round(cur, t, players, games, rnd):
+        if t.get("jamoa_hajmi"):
+            return start_team_round(cur, t, players, rnd)
         table = table_of(players, games)
         pairs, bye = pair_round(table, rnd)
         if not pairs:
@@ -265,7 +382,11 @@ def attach(router, h):
         changed = False
         if t["holat"] == "royxat" and at >= t["boshlanish"]:
             players = [p for p in players_of(cur, t) if not p["chiqdi"]]
-            if len(players) < 2:
+            if t.get("jamoa_hajmi"):   # REV143: jamoalar boshlanishda tuziladi
+                t["jamoalar"] = jamoalarga_bol(players, int(t["jamoa_hajmi"]))
+                if t["jamoalar"]:
+                    t["turlar"] = min(int(t["turlar"]), len(jamoa_turlari(t["jamoalar"])))
+            if len(players) < 2 or (t.get("jamoa_hajmi") and len(t["jamoalar"]) < 2):
                 t["holat"] = "bekor"
             else:
                 t["holat"] = "davom"
@@ -292,15 +413,16 @@ def attach(router, h):
 
     def store(cur, t):
         t["versiya"] += 1
-        cur.execute("UPDATE oyin_turnirlar SET holat=%s, joriy_tur=%s, versiya=%s, updated_at=NOW() WHERE id=%s",
-                    (t["holat"], t["joriy_tur"], t["versiya"], t["id"]))
+        cur.execute("""UPDATE oyin_turnirlar SET holat=%s, joriy_tur=%s, turlar=%s, jamoalar=%s::jsonb, versiya=%s, updated_at=NOW()
+                       WHERE id=%s""", (t["holat"], t["joriy_tur"], t["turlar"], json.dumps(t.get("jamoalar") or []), t["versiya"], t["id"]))
 
     def card(t, user_id, count=None, joined=False):
         _, _, _, label = rt.control_of(t["nazorat"])
         return {"kod": t["kod"], "nomi": t["nomi"], "izoh": t["izoh"], "ochiq": t["ochiq"], "holat": t["holat"],
                 "nazorat": t["nazorat"], "nazorat_nomi": label, "turlar": t["turlar"], "joriy_tur": t["joriy_tur"],
                 "boshlanish": h.ms(t["boshlanish"]), "ishtirokchilar": count, "max_ishtirokchi": t["max_ishtirokchi"],
-                "qatnashaman": joined, "yaratuvchi": t["yaratuvchi_id"] is not None and int(t["yaratuvchi_id"]) == user_id}
+                "qatnashaman": joined, "yaratuvchi": t["yaratuvchi_id"] is not None and int(t["yaratuvchi_id"]) == user_id,
+                "jamoa_hajmi": int(t.get("jamoa_hajmi") or 0)}
 
     def detail(cur, t, user_id, at):
         players = players_of(cur, t)
@@ -321,6 +443,23 @@ def attach(router, h):
         out["dam_olaman"] = bool(me and rnd in (me.get("dam_turlar") or []))
         if t["holat"] == "tugadi":
             out["golib"] = [{"orin": r["orin"], "ism": r["ism"], "ochko": r["ochko"]} for r in table[:3]]
+        if t.get("jamoa_hajmi") and t.get("jamoalar"):   # REV143: jamoaviy liga
+            ism = {int(p["user_id"]): p["ism"] for p in players}
+            reyt = {int(r["user_id"]): r["reyting"] for r in table}
+            team = {u: j["id"] for j in t["jamoalar"] for u in j["azolar"]}
+            out["jamoalar"] = [{"id": j["id"], "kalit": j["kalit"], "emoji": j["emoji"],
+                                "azolar": [{"user_id": u, "ism": ism.get(u, "?"), "reyting": reyt.get(u, 0), "men": u == user_id}
+                                           for u in j["azolar"]]} for j in t["jamoalar"]]
+            out["jamoa_jadval"] = [{k: r[k] for k in ("orin", "jamoa_id", "ochko", "doska", "g", "d", "m", "natijalar")}
+                                   for r in jamoa_jadvali(t["jamoalar"], games)]
+            out["mening_jamoam"] = team.get(user_id)
+            for j, g in zip(out["juftlar"], [g for g in games if g["tur"] == rnd]):
+                j["oq_jamoa"], j["qora_jamoa"] = team.get(g["oq_id"]), team.get(g["qora_id"])
+            out["dam_olaman"] = out["dam_olaman"] or any(j["id"] == team.get(user_id) and rnd in (j.get("dam") or []) for j in t["jamoalar"])
+            if t["holat"] == "tugadi":
+                jj = {j["id"]: j for j in out["jamoalar"]}
+                out["golib_jamoalar"] = [{"orin": r["orin"], "jamoa_id": r["jamoa_id"], "kalit": jj[r["jamoa_id"]]["kalit"],
+                                          "emoji": jj[r["jamoa_id"]]["emoji"], "ochko": r["ochko"]} for r in out["jamoa_jadval"][:3]]
         return out
 
     @router.get(TP)
@@ -358,6 +497,8 @@ def attach(router, h):
             control, base, _, _ = rt.control_of(body.nazorat)
             if not base:
                 control = "5+0"   # turnir doim soat bilan — aks holda tur tugamay qolishi mumkin
+            if body.jamoa_hajmi and not is_admin(cur, user_id):
+                raise HTTPException(403, "Jamoaviy ligani faqat admin e'lon qiladi.")
             if body.ochiq and not is_admin(cur, user_id):
                 raise HTTPException(403, "Hammaga ochiq chempionatni faqat admin e'lon qiladi. Sinf yoki to'garak uchun yopiq turnir yarating.")
             cur.execute("""SELECT COUNT(*) AS n FROM oyin_turnirlar WHERE oyin=%s AND yaratuvchi_id=%s AND holat IN ('royxat','davom')""",
@@ -365,10 +506,10 @@ def attach(router, h):
             if cur.fetchone()["n"] >= 5:
                 raise HTTPException(429, "Sizda 5 ta faol turnir bor. Avval ulardan biri tugasin.")
             kod = unique_code(cur)
-            cur.execute("""INSERT INTO oyin_turnirlar(oyin,kod,nomi,izoh,yaratuvchi_id,ochiq,nazorat,turlar,max_ishtirokchi,boshlanish)
-                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
+            cur.execute("""INSERT INTO oyin_turnirlar(oyin,kod,nomi,izoh,yaratuvchi_id,ochiq,nazorat,turlar,max_ishtirokchi,boshlanish,jamoa_hajmi)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
                         (OYIN, kod, body.nomi.strip(), body.izoh.strip(), user_id, body.ochiq, control, body.turlar,
-                         body.max_ishtirokchi, at + timedelta(minutes=body.boshlanish_daqiqa)))
+                         body.max_ishtirokchi, at + timedelta(minutes=body.boshlanish_daqiqa), body.jamoa_hajmi))
             tid = cur.fetchone()["id"]
             if body.qatnashaman:
                 name, jins = h.user_card(cur, user_id)
