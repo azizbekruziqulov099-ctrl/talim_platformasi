@@ -233,6 +233,12 @@ if __package__:
 else:
     from modules.bellashuv import create_router as create_bellashuv_router
 app.include_router(create_bellashuv_router(samtm_platform))
+# REV143: bolalar ligasi — chempionatlar (jamoaviy/yakka, guruh + pley-off, kuboklar).
+if __package__:
+    from .modules.chempionat import create_router as create_chempionat_router
+else:
+    from modules.chempionat import create_router as create_chempionat_router
+app.include_router(create_chempionat_router(samtm_platform))
 # REV83: shashka — bot (4 daraja), onlayn raqib izlash, do'st bilan kod orqali.
 if __package__:
     from .modules.shashka import create_router as create_shashka_router

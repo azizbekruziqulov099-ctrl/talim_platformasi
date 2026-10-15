@@ -2845,9 +2845,115 @@ def _ovoz_bazaga_qoy(kalit: str, audio: bytes):
             conn.close()
 
 
+# REV136: Microsoft'ning bepul edge-tts xizmati 2026-10-10 dan beri serverni rad etmoqda (WSServerHandshakeError/403).
+# Ovoz endi navbat bilan: 1) Azure Speech (AZURE_SPEECH_KEY bo'lsa — aynan o'sha Madina/Sardor ovozlari;
+# bepul tarif oyiga 500 000 harf, oshsa pul yechilmaydi — keyingi oygacha to'xtaydi),
+# 2) OpenAI TTS (faqat OPENAI_TTS_ENABLED=1 bo'lsa), 3) eski bepul edge-tts (qayta ishlab qolsa).
+_AZURE_TTS_KEY = (os.getenv("AZURE_SPEECH_KEY") or os.getenv("AZURE_TTS_KEY") or "").strip()
+_AZURE_TTS_REGION = (os.getenv("AZURE_SPEECH_REGION") or os.getenv("AZURE_TTS_REGION") or "westeurope").strip()
+# OpenAI ovozi pullik — faqat OPENAI_TTS_ENABLED=1 qo'yilganda ishlatiladi (standart holatda o'chiq).
+_OPENAI_TTS_KEY = ((os.getenv("OPENAI_TTS_KEY") or os.getenv("OPENAI_API_KEY") or "").strip()
+                   if (os.getenv("OPENAI_TTS_ENABLED") or "").strip().lower() in ("1", "true", "yes", "ha") else "")
+_OPENAI_TTS_MODEL = (os.getenv("OPENAI_TTS_MODEL") or "gpt-4o-mini-tts").strip()
+_OPENAI_OVOZ = {"qiz": (os.getenv("OPENAI_TTS_VOICE_QIZ") or "nova").strip(),
+                "ogil": (os.getenv("OPENAI_TTS_VOICE_OGIL") or "onyx").strip()}
+_OVOZ_TIL_NOMI = {"uz": "Uzbek (Latin script)", "ru": "Russian", "en": "English", "de": "German", "fr": "French",
+                  "es": "Spanish", "ar": "Arabic", "tr": "Turkish", "zh": "Mandarin Chinese", "ja": "Japanese", "ko": "Korean"}
+_TTS_HTTP = None
+_TTS_OCHIQ = {"azure": 0.0, "openai": 0.0, "edge": 0.0}   # xizmat qayta urinilmaydigan vaqt (monotonic)
+
+
+def _tts_http():
+    global _TTS_HTTP
+    if _TTS_HTTP is None:
+        _TTS_HTTP = httpx.AsyncClient(timeout=httpx.Timeout(30.0, connect=5.0))
+    return _TTS_HTTP
+
+
+def _tts_band(nom: str, soniya: float):
+    import time as _t
+    _TTS_OCHIQ[nom] = _t.monotonic() + soniya
+
+
+def _tts_ochiqmi(nom: str) -> bool:
+    import time as _t
+    return _TTS_OCHIQ.get(nom, 0.0) <= _t.monotonic()
+
+
+def _xml_escape(matn: str) -> str:
+    return (str(matn).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+            .replace('"', "&quot;").replace("'", "&apos;"))
+
+
+async def _azure_bolak(tayyor: str, voice: str, tezlik: str, ohang: str):
+    if not _AZURE_TTS_KEY or not _tts_ochiqmi("azure"):
+        return None
+    til = "-".join(voice.split("-")[:2]) or "uz-UZ"
+    ssml = (f"<speak version='1.0' xml:lang='{til}'><voice name='{voice}'>"
+            f"<prosody rate='{tezlik or '+0%'}' pitch='{ohang or '+0Hz'}'>{_xml_escape(tayyor)}</prosody></voice></speak>")
+    for n in range(3):
+        try:
+            javob = await _tts_http().post(
+                f"https://{_AZURE_TTS_REGION}.tts.speech.microsoft.com/cognitiveservices/v1",
+                content=ssml.encode("utf-8"),
+                headers={"Ocp-Apim-Subscription-Key": _AZURE_TTS_KEY, "Content-Type": "application/ssml+xml",
+                         "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3", "User-Agent": "kabutar-talim"})
+            if javob.status_code == 200 and javob.content:
+                return javob.content
+            print(f"[ovoz azure] {voice} {javob.status_code} {javob.text[:120]}", flush=True)
+            if javob.status_code in (401, 403):
+                _tts_band("azure", 600)   # kalit/region noto'g'ri — 10 daqiqa urinilmaydi
+                return None
+            if javob.status_code != 429:
+                return None
+            # 429: bepul tarifda bir daqiqadagi so'rovlar ko'p yoki oylik limit tugagan — biroz kutib qayta urinamiz
+        except Exception as exc:
+            print(f"[ovoz azure] {voice}: {type(exc).__name__}", flush=True)
+        await asyncio.sleep(1.0 + n * 1.5)
+    return None
+
+
+async def _openai_bolak(tayyor: str, voice: str, tezlik: str, ohang: str):
+    if not _OPENAI_TTS_KEY or not _tts_ochiqmi("openai"):
+        return None
+    til = voice.split("-")[0].lower()
+    jins = "ogil" if any(x in voice for x in ("Sardor", "Guy", "Dmitry", "Conrad", "Henri", "Alvaro", "Shakir",
+                                                   "Ahmet", "Yunxi", "Keita", "InJoon")) else "qiz"
+    try:
+        foiz = int(str(tezlik or "+0%").rstrip("%"))
+    except ValueError:
+        foiz = 0
+    body = {"model": _OPENAI_TTS_MODEL, "voice": _OPENAI_OVOZ[jins], "input": tayyor, "response_format": "mp3"}
+    if _OPENAI_TTS_MODEL.startswith("tts-1"):
+        body["speed"] = max(0.5, min(1.5, 1 + foiz / 100))
+    else:
+        sekin = " Speak a little slowly and very clearly." if foiz < 0 else ""
+        body["instructions"] = (f"The text is in {_OVOZ_TIL_NOMI.get(til, 'Uzbek (Latin script)')}. Pronounce it like a native "
+                                f"speaker. Warm, friendly teacher voice for young learners.{sekin}")
+    try:
+        javob = await _tts_http().post("https://api.openai.com/v1/audio/speech", json=body,
+                                       headers={"Authorization": f"Bearer {_OPENAI_TTS_KEY}"})
+        if javob.status_code == 200 and javob.content:
+            return javob.content
+        print(f"[ovoz openai] {javob.status_code} {javob.text[:160]}", flush=True)
+        if javob.status_code in (401, 403):
+            _tts_band("openai", 600)
+        elif javob.status_code == 429 and "quota" in javob.text:
+            _tts_band("openai", 600)   # hisobda mablag' yo'q
+    except Exception as exc:
+        print(f"[ovoz openai] {type(exc).__name__}", flush=True)
+    return None
+
+
 async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish: int = 3):
-    """Bitta bo'lak ovozi. Uzilsa qayta urinadi (Microsoft ovoz xizmati ba'zan so'rovni uzib qo'yadi).
+    """Bitta bo'lak ovozi: Azure → OpenAI → bepul edge-tts (REV136).
     Qaytaradi: MP3 baytlari yoki None (hamma urinish behuda)."""
+    for xizmat in (_azure_bolak, _openai_bolak):
+        audio = await xizmat(tayyor, voice, tezlik, ohang)
+        if audio:
+            return audio
+    if not _tts_ochiqmi("edge"):
+        return None
     import edge_tts
 
     async def bir_marta():
@@ -2877,6 +2983,9 @@ async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish:
                 return audio
         except Exception as exc:
             print(f"[ovoz] {voice} {n + 1}-urinish: {type(exc).__name__}", flush=True)
+            if type(exc).__name__ == "WSServerHandshakeError":
+                _tts_band("edge", 300)   # Microsoft rad etyapti — 5 daqiqa qayta urinmaymiz (darslar kutib qolmasin)
+                return None
         if n < urinish - 1:
             await asyncio.sleep(0.3 * (n + 1) ** 2)
     return None
