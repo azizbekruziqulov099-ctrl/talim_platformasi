@@ -241,6 +241,9 @@ _DB_POOL_SLOTS = threading.BoundedSemaphore(_DB_POOL_MAX)
 _DB_STATEMENT_TIMEOUT_MS = max(5_000, int(os.getenv("DB_STATEMENT_TIMEOUT_MS", "60000")))
 
 
+from platform_core.ddl_guard import XavfsizCursor as _XavfsizCursor
+
+
 def _db_pool_ol():
     """Har worker uchun bitta xavfsiz, thread-safe PostgreSQL havuzi."""
     global _DB_POOL
@@ -252,7 +255,8 @@ def _db_pool_ol():
                 1,
                 _DB_POOL_MAX,
                 DATABASE_URL,
-                cursor_factory=psycopg2.extras.RealDictCursor,
+                # REV146: allaqachon bor ustun/indeks uchun DDL qulf so'ramaydi — deploy paytida kirish osilmaydi
+                cursor_factory=_XavfsizCursor,
                 connect_timeout=5,
                 application_name=os.getenv("DB_APPLICATION_NAME", "samtm-v19"),
                 options=(

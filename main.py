@@ -234,11 +234,15 @@ else:
     from modules.bellashuv import create_router as create_bellashuv_router
 app.include_router(create_bellashuv_router(samtm_platform))
 # REV143: bolalar ligasi — chempionatlar (jamoaviy/yakka, guruh + pley-off, kuboklar).
-if __package__:
-    from .modules.chempionat import create_router as create_chempionat_router
-else:
-    from modules.chempionat import create_router as create_chempionat_router
-app.include_router(create_chempionat_router(samtm_platform))
+# REV146: chempionat moduli ishga tushmasa ham butun server to'xtamaydi (faqat chempionat bo'limi o'chadi).
+try:
+    if __package__:
+        from .modules.chempionat import create_router as create_chempionat_router
+    else:
+        from modules.chempionat import create_router as create_chempionat_router
+    app.include_router(create_chempionat_router(samtm_platform))
+except Exception as _chemp_xato:   # pragma: no cover
+    print(f"[STARTUP-WARNING] chempionat yuklanmadi: {_chemp_xato!r}", flush=True)
 # REV83: shashka — bot (4 daraja), onlayn raqib izlash, do'st bilan kod orqali.
 if __package__:
     from .modules.shashka import create_router as create_shashka_router
@@ -294,3 +298,37 @@ async def _rev107_kutilmagan_xato(request, call_next):
             response.headers["Access-Control-Allow-Credentials"] = "true"
             response.headers["Vary"] = "Origin"
         return response
+
+
+# REV146: ishga tushish (startup) bosqichidagi bitta modul xatosi (masalan, deploy paytida jadval qulfi
+# bo'shamadi — LockNotAvailable) butun serverni yiqitmasin: xato logga yoziladi, server ishga tushadi,
+# o'sha modul keyingi so'rovda yoki keyingi deployda o'z jadvalini qayta tekshiradi.
+def _rev146_xavfsiz_startup(handler):
+    import functools
+    import inspect as _inspect
+
+    nom = f"{getattr(handler, '__module__', '?')}.{getattr(handler, '__qualname__', '?')}"
+    if _inspect.iscoroutinefunction(handler):
+        @functools.wraps(handler)
+        async def _async_wrap():
+            try:
+                return await handler()
+            except Exception as exc:   # pragma: no cover — faqat deploy paytidagi kutilmagan holat
+                print(f"[STARTUP-WARNING] {nom} o'tkazib yuborildi: {exc!r}", flush=True)
+        return _async_wrap
+
+    @functools.wraps(handler)
+    def _wrap():
+        try:
+            return handler()
+        except Exception as exc:   # pragma: no cover
+            print(f"[STARTUP-WARNING] {nom} o'tkazib yuborildi: {exc!r}", flush=True)
+    return _wrap
+
+
+try:
+    _rev146_startup = getattr(app.router, "on_startup", None)
+    if isinstance(_rev146_startup, list):
+        _rev146_startup[:] = [_rev146_xavfsiz_startup(h) for h in _rev146_startup]
+except Exception as _rev146_exc:   # pragma: no cover
+    print(f"[STARTUP-WARNING] startup himoyasi o'rnatilmadi: {_rev146_exc!r}", flush=True)
