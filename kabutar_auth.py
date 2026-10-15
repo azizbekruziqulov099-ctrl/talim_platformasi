@@ -343,11 +343,18 @@ class AuthService:
 
     def _ensure_bot_username(self):
         # Without KABUTAR_BOT_USERNAME, learn it once from BOT_TOKEN (retry at most every 5 min).
+        # REV146: Telegram so'rovi FONDA — /auth/config hech qachon tarmoqni kutmaydi (kirish oynasi osilmaydi).
+        import threading
         import time
         if self.bot_username or not self._bot_token or (self._username_checked_at is not None and time.monotonic() - self._username_checked_at < 300):
             return
         self._username_checked_at = time.monotonic()
-        self.bot_username = bot_username_from_token(self._bot_token)
+
+        def learn():
+            name = bot_username_from_token(self._bot_token)
+            if name:
+                self.bot_username = name
+        threading.Thread(target=learn, name="kabutar-bot-nomi", daemon=True).start()
 
     def telegram_config(self):
         self._ensure_bot_username()
@@ -747,8 +754,9 @@ def register_auth(app, platform):
             response.headers['Referrer-Policy']='no-referrer'
         return response
 
+    # REV146: async — server band bo'lsa ham (thread havuzi to'lgan) kirish sozlamasi darhol qaytadi
     @app.get('/auth/config')
-    def config():
+    async def config():
         return {'telegram':service.telegram_config(),
             'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True},
             'quick':{'enabled':True}}

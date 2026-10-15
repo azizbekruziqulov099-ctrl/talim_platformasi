@@ -21,6 +21,11 @@ from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel, Field
 
 try:
+    from platform_core.ddl_guard import LazyMigration as _LazyMigration
+except ImportError:   # pragma: no cover
+    _LazyMigration = None
+
+try:
     from . import oyin_reyting as rt
     from . import oyin_turnir as tn
 except ImportError:  # pragma: no cover
@@ -197,13 +202,19 @@ def create_game_router(platform, adapter):
     def uid_of(token, authorization):
         return int(platform._jwt_tekshir(platform._jwt_header_yoki_query(token, authorization)))
 
+    lazy = _LazyMigration(f"oyin_sessiya:{OYIN}") if _LazyMigration else None
+
     def open_db():
         conn = platform._db()
         cur = conn.cursor()
         if not ready["ok"]:
-            migrate(cur)
-            conn.commit()
-            ready["ok"] = True
+            if lazy is not None:   # REV146: shashka/shaxmat har 0.5 soniyada so'raydi — migratsiya xatosi ularni qotirmasin
+                lazy.run(conn, cur, migrate)
+                ready["ok"] = lazy.ok
+            else:
+                migrate(cur)
+                conn.commit()
+                ready["ok"] = True
         return conn, cur
 
     def user_card(cur, user_id):

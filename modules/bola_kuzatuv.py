@@ -30,6 +30,11 @@ from fastapi import APIRouter, Header, HTTPException, Request
 from pydantic import BaseModel, Field
 
 try:
+    from platform_core.ddl_guard import LazyMigration as _LazyMigration
+except ImportError:   # pragma: no cover
+    _LazyMigration = None
+
+try:
     from .curriculum_scope import preschool_learner
 except ImportError:   # pragma: no cover — modules/ bevosita yo'lda
     from modules.curriculum_scope import preschool_learner
@@ -406,15 +411,21 @@ def create_router(platform):
     def uid_of(token, authorization):
         return int(platform._jwt_tekshir(platform._jwt_header_yoki_query(token, authorization)))
 
+    lazy = _LazyMigration("bola_kuzatuv") if _LazyMigration else None
+
     def open_db():
         conn = platform._db()
         cur = conn.cursor()
         if not ready["ok"]:
-            with lock:
-                if not ready["ok"]:
-                    migrate(cur)
-                    conn.commit()
-                    ready["ok"] = True
+            if _LazyMigration is not None:   # REV146: muvaffaqiyatsiz migratsiya serverni qotirmaydi
+                lazy.run(conn, cur, migrate)
+                ready["ok"] = lazy.ok
+            else:
+                with lock:
+                    if not ready["ok"]:
+                        migrate(cur)
+                        conn.commit()
+                        ready["ok"] = True
         return conn, cur
 
     def run_db(fn):
@@ -644,12 +655,19 @@ def create_router(platform):
             cur.execute("""UPDATE bola_dars_holat SET yulduz=GREATEST(yulduz,%s), tugatilgan_at=COALESCE(tugatilgan_at, %s)
                            WHERE child_id=%s AND dars_kod=%s RETURNING fan, mavzu""", (stars, now, user_id, body.dars_kod))
             lesson = cur.fetchone()
-            cur.execute("""UPDATE bola_dars_faollik SET tugadi_at=%s, togri=%s, jami=%s, yulduz=%s, javob_ms=NULLIF(%s, 0),
+            upd_sql = """UPDATE bola_dars_faollik SET tugadi_at=%s, togri=%s, jami=%s, yulduz=%s, javob_ms=NULLIF(%s, 0),
                              ovoz_togri=%s, ovoz_jami=%s, sozlar=%s::jsonb,
                              faol_soniya=faol_soniya + CASE WHEN korinadi AND faol THEN LEAST(%s, GREATEST(0, EXTRACT(EPOCH FROM (%s - oxirgi_signal_at))::int)) ELSE 0 END
                            WHERE child_id=%s AND dars_kod=%s AND sana=%s AND tugadi_at IS NULL
-                           RETURNING faol_soniya, mavzu, fan""",
-                        (now, body.togri, body.jami, stars, body.ortacha_ms, (min(body.ovoz_togri, body.ovoz_jami) if body.ovoz_jami else None), (body.ovoz_jami or None), (json.dumps(words, ensure_ascii=False) if words else None), SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day))
+                           RETURNING faol_soniya, mavzu, fan"""
+            upd_args = [now, body.togri, body.jami, stars, body.ortacha_ms, (min(body.ovoz_togri, body.ovoz_jami) if body.ovoz_jami else None), (body.ovoz_jami or None), (json.dumps(words, ensure_ascii=False) if words else None), SIGNAL_CAP_SECONDS, now, user_id, body.dars_kod, day]
+            try:
+                cur.execute("SAVEPOINT bola_tugat")
+                cur.execute(upd_sql, upd_args)
+                cur.execute("RELEASE SAVEPOINT bola_tugat")
+            except Exception:   # REV146: «sozlar» ustuni hali qo'shilmagan (migratsiya keyinroq) — natija baribir yoziladi
+                cur.execute("ROLLBACK TO SAVEPOINT bola_tugat")
+                cur.execute(upd_sql.replace(" sozlar=%s::jsonb,", ""), upd_args[:7] + upd_args[8:])
             done = cur.fetchone()
             out = plan(cur, user_id, now)
             fan = (lesson or done or {}).get("fan") or ""

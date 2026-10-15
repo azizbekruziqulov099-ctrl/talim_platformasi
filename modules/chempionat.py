@@ -26,6 +26,11 @@ from typing import Optional
 from fastapi import APIRouter, Header, HTTPException
 from pydantic import BaseModel, Field
 
+try:
+    from platform_core.ddl_guard import LazyMigration as _LazyMigration
+except ImportError:   # pragma: no cover
+    _LazyMigration = None
+
 P = "/api/chempionat"
 KOD_ALIFBO = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 DARAJALAR = ("2-3 yosh", "4-5 yosh", "6-7 yosh")
@@ -520,13 +525,19 @@ def create_router(platform):
     def uid_of(token, authorization):
         return platform._jwt_tekshir(platform._jwt_header_yoki_query(token, authorization))
 
+    lazy = _LazyMigration("chempionat") if _LazyMigration else None
+
     def open_db():
         conn = platform._db()
         cur = conn.cursor()
         if not ready["ok"]:
-            migrate(cur)
-            conn.commit()
-            ready["ok"] = True
+            if lazy is not None:   # REV146: muvaffaqiyatsiz migratsiya har so'rovda qayta urinmaydi
+                lazy.run(conn, cur, migrate)
+                ready["ok"] = lazy.ok
+            else:
+                migrate(cur)
+                conn.commit()
+                ready["ok"] = True
         return conn, cur
 
     def begin(cur, conn, fn):

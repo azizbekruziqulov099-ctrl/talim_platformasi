@@ -13,8 +13,13 @@ umuman yuborilmaydi. Yangi ustun haqiqatan kerak bo'lgandagina ALTER bajariladi 
 from __future__ import annotations
 
 import re
+import threading
+import time
 
 import psycopg2.extras
+
+# Haqiqatan yangi ustun/indeks qo'shilganda qulf ko'pi bilan shuncha kutiladi (jonli so'rovlar navbatda qolmasin).
+DDL_LOCK_TIMEOUT = "3s"
 
 _ADD_COL = re.compile(r'ADD\s+COLUMN\s+IF\s+NOT\s+EXISTS\s+"?([A-Za-z_][A-Za-z0-9_]*)"?', re.I)
 _ALTER_HEAD = re.compile(r'^\s*ALTER\s+TABLE\s+(?:IF\s+EXISTS\s+)?(?:ONLY\s+)?((?:"?[A-Za-z_][A-Za-z0-9_]*"?\.)?"?[A-Za-z_][A-Za-z0-9_]*"?)\s+(.*)$', re.I | re.S)
@@ -124,4 +129,39 @@ class XavfsizCursor(psycopg2.extras.RealDictCursor):
                 if not keep:
                     return None
                 query = ";\n".join(keep)
+            if keep and any(_INDEX.match(_strip_comments(p)) or _ALTER_HEAD.match(_strip_comments(p)) for p in keep):
+                # yangi ustun/indeks: qulf uzoq kutilmaydi — band bo'lsa tez xato beradi va keyinroq qayta uriniladi
+                super().execute(f"SET LOCAL lock_timeout = '{DDL_LOCK_TIMEOUT}'")
         return super().execute(query, vars)
+
+
+class LazyMigration:
+    """Modul jadvallari birinchi so'rovda yaratiladi. REV146: muvaffaqiyatsiz bo'lsa — har so'rovda qayta urinib
+    serverni qotirmaydi (60 soniya kutadi), so'rov esa davom etadi (jadvallar odatda allaqachon bor)."""
+
+    def __init__(self, name: str, backoff: float = 60.0):
+        self.name, self.backoff = name, backoff
+        self.ok = False
+        self._next = 0.0
+        self._lock = threading.Lock()
+
+    def run(self, conn, cur, fn) -> None:
+        if self.ok or time.monotonic() < self._next:
+            return
+        if not self._lock.acquire(blocking=False):   # boshqa so'rov hozir migratsiya qilyapti — kutmaymiz
+            return
+        try:
+            if self.ok:
+                return
+            fn(cur)
+            conn.commit()
+            self.ok = True
+        except Exception as exc:   # qulf band / vaqtincha xato — keyinroq
+            try:
+                conn.rollback()
+            except Exception:
+                pass
+            self._next = time.monotonic() + self.backoff
+            print(f"[MIGRATSIYA-KEYINROQ] {self.name}: {type(exc).__name__}: {str(exc)[:160]}", flush=True)
+        finally:
+            self._lock.release()
