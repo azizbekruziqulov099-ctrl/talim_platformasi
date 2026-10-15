@@ -1,0 +1,160 @@
+/* REV127: O'yin xonalari */
+.xo-root { display: flex; flex-direction: column; gap: 10px; min-width: 0; font-family: inherit; }
+.xo-bar { display: flex; align-items: center; gap: 10px; }
+.xo-back { border: 0; background: #fff; border-radius: 14px; padding: 8px 14px; font-size: 20px; box-shadow: 0 2px 6px rgba(0,0,0,.12); cursor: pointer; }
+.xo-title { font-size: 20px; font-weight: 800; color: #1F3B57; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.xo-stars { font-size: 18px; font-weight: 800; color: #8A5A00; background: #FFF4CC; padding: 6px 12px; border-radius: 999px; }
+
+.xo-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.xo-card { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px 10px; border-radius: 22px; border: 3px solid transparent;
+  cursor: pointer; color: #1F3B57; box-shadow: 0 6px 16px rgba(0,0,0,.08); transition: transform .15s, border-color .15s; }
+.xo-card:hover, .xo-card:focus-visible { transform: translateY(-3px) scale(1.02); border-color: #1F3B57; outline: none; }
+.xo-card b { font-size: 18px; }
+.xo-card small { font-size: 13px; color: #4B5563; font-weight: 700; }
+.xo-card-emoji { font-size: 56px; line-height: 1; animation: xo-bob 2.4s ease-in-out infinite; }
+.xo-card--oshxona { background: linear-gradient(160deg, #FFF1E0, #FFD9B3); }
+.xo-card--bolalar { background: linear-gradient(160deg, #F3E8FF, #DCC7FF); }
+.xo-card--hovli { background: linear-gradient(160deg, #E3F7E8, #B9E8C4); }
+.xo-card--shahar { background: linear-gradient(160deg, #E4F1FF, #BBD9FA); }
+.xo-card--sinf { background: linear-gradient(160deg, #FFF8D6, #FBE7A1); }
+
+.xo-modes { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.xo-modes::-webkit-scrollbar { display: none; }
+.xo-mode { flex-shrink: 0; border: 2px solid #CBD5E1; background: #fff; color: #1F3B57; border-radius: 999px; padding: 8px 14px; font-size: 15px; font-weight: 800; cursor: pointer; }
+.xo-mode.is-on { background: #1F3B57; border-color: #1F3B57; color: #fff; }
+
+/* Sahna 16:10 — telefonda gorizontal suriladi (narsalar juda kichrayib ketmasin) */
+.xo-scroll { overflow-x: auto; border-radius: 22px; -webkit-overflow-scrolling: touch; }
+.xo-sahna { position: relative; width: 100%; min-width: 620px; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden;
+  box-shadow: inset 0 0 0 3px rgba(0,0,0,.06); user-select: none; container-type: inline-size; -webkit-user-select: none; }
+.xo-sahna--oshxona { background: linear-gradient(#FFF6E9 0 62%, #E9C9A0 62% 100%);
+  background-image: linear-gradient(90deg, rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(rgba(255,255,255,.55) 1px, transparent 1px), linear-gradient(#FCE7CF 0 62%, #D9B286 62% 100%);
+  background-size: 6% 9.6%, 6% 9.6%, 100% 100%; }
+.xo-sahna--bolalar { background: linear-gradient(#EFE4FF 0 64%, #D7C2A8 64% 100%); }
+.xo-sahna--hovli { background: #B9E3F7; }
+.xo-sahna--shahar { background: #CFE7FB; }
+.xo-sahna--sinf { background: linear-gradient(#FFF9E3 0 72%, #E3C9A4 72% 100%); }
+
+.xb { position: absolute; display: block; pointer-events: none; }
+.xb-tokcha { left: 17%; width: 66%; height: 2.4%; background: #A8713E; border-radius: 6px; box-shadow: 0 6px 0 rgba(0,0,0,.08); }
+.xb-stol { left: 22%; width: 56%; top: 73%; height: 5%; background: #B98150; border-radius: 10px; box-shadow: 0 10px 0 #8E5B30; }
+.xb-ilgich { left: 10%; width: 80%; top: 5%; height: 1.6%; background: #7C5A3A; border-radius: 6px; }
+.xb-javon { left: 20%; width: 60%; top: 52%; height: 2.4%; background: #A8713E; border-radius: 6px; box-shadow: 0 6px 0 rgba(0,0,0,.08); }
+.xb-gilam { left: 18%; width: 64%; top: 60%; height: 24%; background: radial-gradient(ellipse, #FFB4C8 0 40%, #FF8FAE 41% 60%, #FFD1DD 61%); border-radius: 50%; }
+.xb-osmon { inset: 0 0 auto 0; height: 60%; background: linear-gradient(#8FD0F2, #D7F0FB); }
+.xb-maysa { inset: 52% 0 0 0; background: linear-gradient(#7FD08F, #4FAE63); border-radius: 50% 50% 0 0 / 12% 12% 0 0; }
+.xb-sokmoq { left: 40%; width: 20%; top: 52%; height: 48%; background: #E8D3A6; clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%); opacity: .8; }
+.xb-trotuar { inset: 47% 0 auto 0; height: 16%; background: #D9D4CC; border-top: 4px solid #BDB6AC; }
+.xb-yol { inset: 63% 0 auto 0; height: 22%; background: #5B6270 repeating-linear-gradient(90deg, transparent 0 4%, #F7F7F7 4% 8%) center / 100% 4% no-repeat; }
+.xb-suv { inset: 85% 0 0 0; background: linear-gradient(#7CC5F0, #3B97D6); }
+.xb-doska { left: 32%; width: 36%; top: 5%; height: 37%; background: #2F5D50; border: 10px solid #A8713E; border-radius: 10px; }
+.xb-parta { left: 26%; width: 60%; height: 4%; background: #C99561; border-radius: 8px; box-shadow: 0 8px 0 #9A6B3C; }
+
+.xo-item { position: absolute; transform: translate(-50%, -50%); aspect-ratio: 1; border: 0; padding: 0; background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; border-radius: 18%; transition: transform .18s; -webkit-tap-highlight-color: transparent; }
+.xo-item:hover, .xo-item:focus-visible { transform: translate(-50%, -50%) scale(1.12); outline: none; z-index: 3; }
+.xo-pic { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 3px 2px rgba(0,0,0,.22)); pointer-events: none; }
+.xo-pic.is-emoji { display: flex; align-items: center; justify-content: center; font-size: calc(var(--s, 8) * .78cqw); line-height: 1; }
+.xo-cmd .xo-pic.is-emoji { font-size: 12cqw; }
+.xo-rang { display: block; width: 86%; height: 86%; margin: 7%; border-radius: 46% 54% 50% 50% / 52% 44% 56% 48%; background: var(--rang);
+  box-shadow: inset -6px -8px 0 rgba(0,0,0,.14), inset 5px 6px 0 rgba(255,255,255,.35), 0 0 0 3px rgba(255,255,255,.9), 0 3px 6px rgba(0,0,0,.25); }
+.xo-item.is-faol { z-index: 4; animation: xo-faol 1s ease-in-out infinite; }
+.xo-item.is-faol::after { content: ""; position: absolute; inset: -12%; border-radius: 50%; border: 4px solid #FFB800; box-shadow: 0 0 18px #FFD54A; pointer-events: none; }
+.xo-item.is-gapir { animation: xo-gapir .5s ease-in-out infinite alternate; z-index: 4; }
+.xo-item.is-xato { animation: xo-shake .45s; }
+.xo-item.is-bor::before { content: "✓"; position: absolute; right: -4%; top: -4%; width: 26%; aspect-ratio: 1; border-radius: 50%; background: #22A06B;
+  color: #fff; font-size: clamp(9px, 1.2vw, 14px); font-weight: 900; display: flex; align-items: center; justify-content: center; z-index: 2; }
+.xo-bubble { position: absolute; top: -18%; right: -10%; font-size: clamp(16px, 2.4vw, 30px); animation: xo-bob 1s ease-in-out infinite; }
+
+.xo-cards { position: absolute; inset: auto 6% 6% 6%; display: flex; justify-content: center; gap: 4%; z-index: 6; }
+.xo-cmd { width: 24%; aspect-ratio: 1; border-radius: 20px; border: 4px solid #fff; background: #FFFDF5; box-shadow: 0 8px 20px rgba(0,0,0,.18); cursor: pointer; padding: 6%; }
+.xo-cmd:hover, .xo-cmd:focus-visible { transform: scale(1.05); border-color: #FFB800; outline: none; }
+.xo-cmd.is-xato { animation: xo-shake .45s; border-color: #F87171; }
+
+.xo-tamom { position: absolute; inset: 0; z-index: 8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  background: rgba(255,255,255,.82); backdrop-filter: blur(3px); }
+.xo-tamom > span { font-size: 72px; animation: xo-bob 1.2s ease-in-out infinite; }
+.xo-tamom b { font-size: 34px; color: #8A5A00; }
+.xo-tamom button { border: 0; border-radius: 999px; padding: 10px 20px; font-size: 18px; font-weight: 800; background: #1F3B57; color: #fff; cursor: pointer; }
+
+.xo-panel { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 18px; padding: 10px 12px; box-shadow: 0 4px 14px rgba(0,0,0,.08); min-height: 64px; }
+.xo-step { font-size: 13px; font-weight: 800; color: #64748B; background: #F1F5F9; border-radius: 999px; padding: 4px 10px; flex-shrink: 0; }
+.xo-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.xo-text b { font-size: 22px; color: #1F3B57; line-height: 1.25; overflow-wrap: anywhere; }
+.xo-text b.is-hint { font-size: 16px; color: #475569; font-weight: 700; }
+.xo-text small { font-size: 15px; color: #64748B; font-weight: 600; }
+.xo-again, .xo-said, .xo-mic { flex-shrink: 0; border: 0; border-radius: 999px; font-size: 22px; padding: 8px 14px; cursor: pointer; background: #EAF1F7; }
+.xo-said { background: #22A06B; color: #fff; font-size: 17px; font-weight: 800; }
+.xo-mic.is-on { background: #FDE2E2; animation: xo-faol .9s ease-in-out infinite; }
+
+@keyframes xo-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes xo-faol { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.14); } }
+.xo-mic.is-on { animation-name: xo-mic; }
+@keyframes xo-mic { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+@keyframes xo-gapir { from { transform: translate(-50%, -50%) rotate(-2deg); } to { transform: translate(-50%, -52%) rotate(2deg); } }
+@keyframes xo-shake { 0%, 100% { transform: translate(-50%, -50%); } 25% { transform: translate(-58%, -50%); } 75% { transform: translate(-42%, -50%); } }
+.xo-cmd.is-xato { animation-name: xo-shake-c; }
+@keyframes xo-shake-c { 0%, 100% { transform: none; } 25% { transform: translateX(-8%); } 75% { transform: translateX(8%); } }
+@media (prefers-reduced-motion: reduce) { .xo-item, .xo-card-emoji, .xo-bubble, .xo-tamom > span { animation: none !important; } }
+@media (max-width: 520px) { .xo-text b { font-size: 18px; } .xo-title { font-size: 17px; } }
+
+/* REV128: rassom fonlari, fondagi narsalar, yangi o'yinlar, vaqt */
+.xo-fon { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; user-select: none; }
+.xo-hs { position: absolute; border: 0; background: transparent; border-radius: 14px; cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
+.xo-hs:hover, .xo-hs:focus-visible { outline: 3px dashed rgba(255,255,255,.9); outline-offset: -3px; background: rgba(255,255,255,.12); }
+.xo-hs.is-faol { outline: 4px solid #FFB800; outline-offset: -4px; background: rgba(255,214,74,.25); animation: xo-hs 1s ease-in-out infinite; z-index: 1; }
+.xo-hs.is-gapir { outline: 3px solid #fff; outline-offset: -3px; background: rgba(255,255,255,.18); animation: xo-hs 1s ease-in-out infinite; }
+.xo-hs.is-xato { animation: xo-shake-c .45s; background: rgba(248,113,113,.25); }
+@keyframes xo-hs { 0%, 100% { background: rgba(255,214,74,.15); } 50% { background: rgba(255,214,74,.38); } }
+.xo-item.is-tanlandi { filter: drop-shadow(0 0 8px #22A06B); }
+.xo-item.is-tanlandi::after { content: "✓"; position: absolute; left: 50%; top: -14%; transform: translateX(-50%); background: #22A06B; color: #fff;
+  border-radius: 999px; padding: 0 6px; font-size: clamp(10px, 1.3vw, 16px); font-weight: 900; }
+.xo-tray { position: absolute; inset: 0; z-index: 6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3%;
+  background: rgba(255,255,255,.55); backdrop-filter: blur(2px); padding: 3%; }
+.xo-tray--buyruq { background: transparent; backdrop-filter: none; justify-content: flex-end; }
+.xo-memo { display: grid; gap: 2.2cqw; grid-template-columns: repeat(3, 1fr); width: min(70%, 520px); }
+.xo-memo.n8 { grid-template-columns: repeat(4, 1fr); width: min(72%, 600px); }
+.xo-memo.n12 { grid-template-columns: repeat(4, 1fr); width: min(66%, 560px); }
+.xo-memo-card { aspect-ratio: 1; border-radius: 18px; border: 4px solid #fff; background: linear-gradient(145deg, #2B6CB0, #1F3B57); cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,.2); padding: 10%; transition: transform .25s; }
+.xo-memo-card.is-open { background: #FFFDF5; transform: rotateY(0) scale(1.03); }
+.xo-memo-card.is-done { border-color: #22A06B; opacity: .85; }
+.xo-memo-back { font-size: 5cqw; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+.xo-show { display: flex; gap: 2.5%; justify-content: center; width: 92%; }
+.xo-show-card { width: 16%; aspect-ratio: 1; border-radius: 18px; background: #FFFDF5; border: 4px solid #fff; box-shadow: 0 6px 14px rgba(0,0,0,.18);
+  display: flex; align-items: center; justify-content: center; padding: 2%; }
+.xo-show-card.is-closed { background: linear-gradient(145deg, #2B6CB0, #1F3B57); }
+.xo-show-card.is-faol { border-color: #FFB800; transform: scale(1.08); }
+.xo-q { font-size: 6cqw; }
+.xo-tray .xo-cards { position: static; width: 100%; }
+.xo-tray--ortiqcha .xo-cmd, .xo-tray--yoqoldi .xo-cmd { width: 19%; }
+.xo-cmd.is-faol { border-color: #22A06B; transform: scale(1.06); }
+.xo-vaqt { position: absolute; inset: 0; z-index: 20; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: rgba(31,59,87,.92); color: #fff; text-align: center; padding: 6%; border-radius: inherit; }
+.xo-root > .xo-vaqt { position: relative; border-radius: 22px; min-height: 260px; }
+.xo-vaqt > span { font-size: 64px; animation: xo-bob 2s ease-in-out infinite; }
+.xo-vaqt b { font-size: 22px; line-height: 1.35; max-width: 520px; }
+.xo-vaqt small { font-size: 18px; font-weight: 700; color: #FFE08A; }
+.xo-time { font-size: 15px; font-weight: 800; color: #1F3B57; background: #E6F0FA; padding: 6px 10px; border-radius: 999px; }
+.xo-card { position: relative; overflow: hidden; }
+.xo-card-fon { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 14px; box-shadow: 0 3px 8px rgba(0,0,0,.15); }
+.xo-progress { position: absolute; left: 10px; right: 10px; bottom: 6px; height: 5px; border-radius: 9px; background: rgba(0,0,0,.08); }
+.xo-progress::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p); border-radius: 9px; background: #22A06B; }
+.xo-card:disabled { opacity: .5; cursor: not-allowed; }
+.xo-mode:disabled { opacity: .5; }
+.xo-card--men { background: linear-gradient(160deg, #FFE9EC, #FFC7D1); }
+.xo-card--havo { background: linear-gradient(160deg, #E0F4FF, #BDE6FB); }
+.xo-sahna--men { background: linear-gradient(#FFF0F3 0 80%, #E9C9A0 80% 100%); }
+.xo-sahna--havo { background: #CDEBFA; }
+.xb-devor-men { inset: 0; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.7) 0 8%, transparent 9%), radial-gradient(circle at 80% 30%, rgba(255,255,255,.6) 0 6%, transparent 7%); }
+.xo-sahna.has-fon .xo-pic { filter: drop-shadow(0 3px 3px rgba(0,0,0,.35)); }
+
+/* REV144: xona telefonda butun ekranda — sahna balandlikka moslanadi (rasmlar katta), kerak bo'lsa yonga suriladi */
+.xo-ekran { position: fixed; top: var(--samtm-portal-top, 0px); left: 0; right: 0; bottom: 0; z-index: 2147483000; overflow-y: auto; overscroll-behavior: contain;
+  padding: 8px 10px max(12px, env(safe-area-inset-bottom)); background: linear-gradient(180deg, #fbf7ff, #f3f8ff); box-sizing: border-box; }
+.xo-ekran > * { max-width: 1400px; margin-left: auto; margin-right: auto; width: 100%; }
+.xo-ekran .xo-scroll { display: flex; overscroll-behavior-x: contain; }
+.xo-ekran .xo-sahna { --xh: max(300px, min(calc(100dvh - var(--samtm-portal-top, 0px) - 190px), calc((min(100vw, 1400px) - 20px) / var(--nisbat, 1.3) * 1.6))); flex: none;
+  min-width: 0; height: var(--xh); width: calc(var(--xh) * var(--nisbat, 1.3)); aspect-ratio: auto !important; margin: 0 auto; }
+.xo-ekran.xo-fit .xo-sahna { --xh: min(calc(100dvh - var(--samtm-portal-top, 0px) - 190px), calc((min(100vw, 1400px) - 20px) / var(--nisbat, 1.3))); }
+@media (max-width: 700px) { .xo-ekran .xo-item { width: calc(var(--s) * 1.3%) !important; } }

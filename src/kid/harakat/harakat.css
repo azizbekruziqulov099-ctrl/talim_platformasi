@@ -1,0 +1,159 @@
+/* REV141: Harakat o'yinlari — yo'l xaritasi, sahna va panel. Bolalar uchun: katta tugmalar, yorqin ranglar. */
+.hy-yol{box-sizing:border-box;width:100%;display:grid;gap:18px;padding:12px 12px 28px;max-width:860px;margin:0 auto}
+.hy-bolim{position:relative;border-radius:22px;padding:14px 12px 16px;background:linear-gradient(160deg,#fff7e6,#ffeefa);box-shadow:0 6px 18px #0000000f}
+.hy-bolim--hovli{background:linear-gradient(160deg,#eaffe3,#e3f6ff)}
+.hy-bolim--yol{background:linear-gradient(160deg,#e6f1ff,#f0f0f5)}
+.hy-bolim--bayram{background:linear-gradient(160deg,#ffe6f3,#efe6ff)}
+.hy-bolim--oshxona{background:linear-gradient(160deg,#e3faf4,#fff6e0)}
+.hy-bolim--oxir{background:linear-gradient(160deg,#fff4cc,#ffe2d6)}
+.hy-bolim h3{margin:0 0 10px;font-size:clamp(18px,4.4vw,24px);font-weight:900;color:#2b2140;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px}
+.hy-bolim h3 small{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;font-weight:700;color:#6b5f86;letter-spacing:.2px}
+.hy-tugunlar{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.hy-tugun{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 140px;min-width:120px;max-width:220px;display:grid;justify-items:center;gap:4px;padding:12px 8px 10px;
+  border-radius:20px;background:#fff;box-shadow:0 4px 0 #00000014,0 8px 18px #0000000d;text-align:center;transition:transform .15s;animation:hy-kel .4s both;animation-delay:calc(var(--i,0) * .06s)}
+.hy-tugun:active{transform:scale(.96)}
+.hy-tugun:focus-visible{outline:4px solid #ffb703;outline-offset:3px}
+.hy-tugun b{font-size:15px;font-weight:900;color:#2b2140;line-height:1.15}
+.hy-tugun small{font-size:14px;color:#7a6c94;min-height:18px}
+.hy-tugun-doira{display:grid;place-items:center;width:62px;height:62px;border-radius:50%;font-size:32px;background:#f1edf8;box-shadow:inset 0 -4px 0 #0000000f}
+.hy-tugun.is-ochiq{box-shadow:0 0 0 4px #ffb703,0 8px 22px #ffb70366}
+.hy-tugun.is-ochiq .hy-tugun-doira{background:#ffd166;animation:hy-puls 1.4s ease-in-out infinite}
+.hy-tugun.is-tugadi .hy-tugun-doira{background:#c9f2df}
+.hy-tugun.is-qulf{opacity:.55;filter:saturate(.4)}
+.hy-tugun--cheksiz.is-ochiq .hy-tugun-doira,.hy-tugun--cheksiz.is-tugadi .hy-tugun-doira{background:linear-gradient(135deg,#ffd166,#ff8fab)}
+@keyframes hy-puls{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes hy-kel{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hy-bugun{all:unset;box-sizing:border-box;cursor:pointer;justify-self:center;padding:12px 22px;border-radius:999px;background:#4cc6a1;color:#fff;font-weight:900;font-size:17px;box-shadow:0 4px 0 #2f9a7a}
+.hy-bugun small{opacity:.85}
+.hy-natija{display:grid;justify-items:center;gap:10px;padding:18px;border-radius:24px;background:#fff;box-shadow:0 10px 30px #0000001a;text-align:center;animation:hy-kel .35s both}
+.hy-natija>span{font-size:54px;animation:hy-puls 1s ease-in-out 2}
+.hy-natija b{font-size:22px;color:#2b2140}
+.hy-natija-btn{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.hy-natija-btn button{all:unset;cursor:pointer;padding:12px 18px;border-radius:16px;background:#f1edf8;font-weight:800;color:#2b2140;font-size:16px}
+.hy-natija-btn button.is-asosiy{background:#ffb703;color:#2b1d00;box-shadow:0 4px 0 #d18f00}
+.hy-natija-btn button:focus-visible,.hy-bugun:focus-visible,.hy-karta:focus-visible{outline:4px solid #5b8def;outline-offset:3px}
+
+/* ── bosqich ichida ── */
+.hy-ish{scroll-margin-top:96px;box-sizing:border-box;width:100%;grid-template-columns:minmax(0,1fr);display:grid;gap:10px;padding:8px 10px 14px;max-width:860px;margin:0 auto}
+.hy-bar{display:flex;align-items:center;gap:10px;font-size:17px}
+.hy-bar b{flex:1;min-width:0;font-weight:900;color:#2b2140}
+.hy-back,.hy-again{all:unset;cursor:pointer;display:grid;place-items:center;width:46px;height:46px;border-radius:14px;background:#fff;font-size:22px;box-shadow:0 3px 0 #0000001a}
+.hy-hisob{font-weight:900;font-size:16px;color:#2b2140;white-space:nowrap}
+.hy-nuqtalar{display:flex;gap:6px}
+.hy-nuqtalar i{width:14px;height:14px;border-radius:50%;background:#e0d9ee}
+.hy-nuqtalar i.is-bor{background:#4cc6a1}
+.hy-nuqtalar i.is-hozir{background:#ffb703;transform:scale(1.25)}
+.hy-vaqt{display:block;height:8px;border-radius:99px;background:linear-gradient(90deg,#4cc6a1,#ffd166 60%,#ff6b6b);transform-origin:0 50%;animation:hy-vaqt var(--s,10s) linear forwards}
+@keyframes hy-vaqt{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+.hy-panel{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:20px;background:#fff;box-shadow:0 4px 14px #0000000f}
+.hy-matn{flex:1;min-width:0;display:grid;gap:2px}
+.hy-matn b{font-size:clamp(22px,5.6vw,32px);font-weight:900;color:#2b2140;line-height:1.1}
+.hy-matn small{font-size:16px;color:#6b5f86;font-weight:700}
+.hy-matn em{font-style:normal;font-size:14px;color:#8a7da3}
+.hy-ustoz{flex:0 0 auto;width:58px;height:58px;border-radius:50%;overflow:hidden;background:#ffe7f1;display:grid;place-items:start center}
+.hy-ustoz img{width:100%;height:100%;object-fit:contain;object-position:50% 10%}
+.hy-ustoz.is-gapir{box-shadow:0 0 0 3px #ff8fab;animation:hy-gap .5s ease-in-out infinite alternate}
+@keyframes hy-gap{to{transform:scale(1.06)}}
+
+/* tanlash kartalari */
+.hy-kartalar{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+.hy-kartalar.n3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:560px){.hy-kartalar.n3{grid-template-columns:repeat(2,1fr)}.hy-kartalar.n3 .hy-karta:last-child{grid-column:1/-1;justify-self:center;width:calc(50% - 6px)}}
+.hy-karta{all:unset;box-sizing:border-box;cursor:pointer;border-radius:20px;overflow:hidden;background:#fff;box-shadow:0 4px 0 #0000001a,0 8px 18px #0000000f;aspect-ratio:4/3;transition:transform .15s;animation:hy-kel .35s both}
+.hy-karta:active{transform:scale(.96)}
+.hy-karta .hs-mini{display:block;width:100%;height:100%}
+.hy-karta.is-xato{animation:hy-silk .45s}
+.hy-karta.is-korsat{box-shadow:0 0 0 5px #ffd166,0 0 24px 6px #ffd166aa;animation:hy-puls 1s ease-in-out infinite}
+@keyframes hy-silk{0%,100%{transform:translateX(0)}25%,75%{transform:translateX(-6%)}50%{transform:translateX(6%)}}
+
+/* ── harakat sahnasi ── */
+.hs-sahna{position:relative;width:100%;aspect-ratio:4/3;max-height:62vh;margin:0 auto;border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 8px 24px #0000001a;
+  user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;cursor:pointer}
+@supports (aspect-ratio:1){.hs-sahna{max-width:calc(62vh * 4 / 3)}}
+.hs-sahna svg{display:block;width:100%;height:100%}
+.hs-sahna.is-tayyor{box-shadow:0 0 0 5px #4cc6a1,0 8px 24px #4cc6a155}
+.hs-sahna.is-demo{cursor:default}
+/* qo'l: harakatni ko'rsatadi */
+.hs-qol{position:absolute;left:50%;top:55%;font-size:clamp(40px,9vw,64px);pointer-events:none;filter:drop-shadow(0 4px 6px #0005);transform:translate(-50%,-50%)}
+.hs-qol.is-yordam{opacity:.85}
+.hs-qol--bos{animation:hq-bos 1.2s ease-in-out infinite}
+.hs-qol--ikki{animation:hq-ikki 1.3s ease-in-out infinite}
+.hs-qol--tez{animation:hq-bos .32s ease-in-out infinite}
+.hs-qol--ushla{animation:hq-ushla 2.4s ease-in-out infinite}
+.hs-qol--sur-up{animation:hq-up 1.4s ease-in-out infinite}
+.hs-qol--sur-down{top:30%;animation:hq-down 1.4s ease-in-out infinite}
+.hs-qol--sur-side{left:42%;animation:hq-side 1.4s ease-in-out infinite}
+.hs-qol--aylantir{left:var(--mx,50%);top:var(--my,55%);animation:hq-aylana 1.6s linear infinite}
+.hs-qol--ishqala{animation:hq-ishqala .7s ease-in-out infinite}
+.hs-qol--olib{left:var(--bx,25%);top:var(--by,62%);animation:hq-olib 2s ease-in-out infinite}
+@keyframes hq-bos{0%,100%{transform:translate(-50%,-50%) scale(1)}45%{transform:translate(-50%,-38%) scale(.86)}}
+@keyframes hq-ikki{0%,30%,60%,100%{transform:translate(-50%,-50%) scale(1)}15%,45%{transform:translate(-50%,-38%) scale(.86)}}
+@keyframes hq-ushla{0%,100%{transform:translate(-50%,-50%) scale(1)}15%,85%{transform:translate(-50%,-40%) scale(.86)}}
+@keyframes hq-up{0%{transform:translate(-50%,0);opacity:0}15%{opacity:1}85%{opacity:1}100%{transform:translate(-50%,-160%);opacity:0}}
+@keyframes hq-down{0%{transform:translate(-50%,-50%);opacity:0}15%,85%{opacity:1}100%{transform:translate(-50%,110%);opacity:0}}
+@keyframes hq-side{0%{transform:translate(-50%,-50%);opacity:0}15%,85%{opacity:1}100%{transform:translate(90%,-50%);opacity:0}}
+@keyframes hq-aylana{from{transform:translate(-50%,-50%) rotate(0) translateX(clamp(50px,13vw,90px)) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(clamp(50px,13vw,90px)) rotate(-360deg)}}
+@keyframes hq-ishqala{0%,100%{transform:translate(-110%,-50%)}50%{transform:translate(10%,-50%)}}
+@keyframes hq-olib{0%{left:var(--bx,25%);top:var(--by,62%);transform:translate(-50%,-50%);opacity:0}12%{opacity:1}80%{left:var(--nx,72%);top:var(--ny,55%);transform:translate(-50%,-50%);opacity:1}100%{left:var(--nx,72%);top:var(--ny,55%);transform:translate(-50%,-50%);opacity:0}}
+/* ushlab turish halqasi va «tez-tez» chizig'i */
+.hs-halqa{position:absolute;right:12px;top:12px;width:54px;height:54px;border-radius:50%;pointer-events:none;
+  background:conic-gradient(#4cc6a1 calc(var(--p) * 360deg),#ffffffcc 0);box-shadow:0 2px 8px #0003}
+.hs-halqa::after{content:"✋";position:absolute;inset:7px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:22px}
+.hs-chiziq{position:absolute;left:10%;right:10%;bottom:10px;height:12px;border-radius:99px;background:#ffffffaa;pointer-events:none;overflow:hidden}
+.hs-chiziq::after{content:"";position:absolute;inset:0;transform-origin:0 50%;transform:scaleX(var(--p));background:linear-gradient(90deg,#ffd166,#ff6b6b)}
+
+/* sahna ichidagi jonlanishlar (SVG) */
+.hs-sahna .hs-sakra{animation:hs-sakra .6s ease-in-out 3;transform-box:fill-box;transform-origin:50% 100%}
+.hs-sahna .hs-nur{animation:hs-nur 1.6s ease-in-out infinite}
+.hs-sahna .hs-tor{animation:hs-tor .5s ease-in-out 2;transform-box:fill-box;transform-origin:50% 0}
+.hs-sahna .hs-yugur{animation:hs-tebran .28s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.hs-sahna .hs-titra{animation:hs-titra .18s linear infinite}
+.hs-sahna .hs-haydash{animation:hs-haydash 2.6s linear infinite}
+.hs-sahna .hs-uch{animation:hs-uch 1.6s ease-in-out infinite alternate}
+.hs-sahna .hs-portla{animation:hs-portla .5s ease-out both;transform-box:view-box;transform-origin:50% 45%}
+.hs-sahna .hs-disko{animation:hs-nur .8s ease-in-out infinite alternate}
+.hs-sahna .hs-nota{animation:hs-uch .9s ease-in-out infinite alternate}
+.hs-sahna .hs-oqim{animation:hs-oqim .4s linear infinite}
+.hs-sahna .hs-yulduzcha{animation:hs-nur .7s ease-in-out infinite alternate}
+.hs-sahna .hs-chang{animation:hs-nur .4s ease-in-out infinite alternate}
+.hs-sahna .hs-konfetti rect{animation:hs-konfetti 1.6s ease-in var(--d,0s) both;transform-box:fill-box;transform-origin:50% 50%}
+@keyframes hs-sakra{0%,100%{transform:translateY(0)}50%{transform:translateY(-12%)}}
+@keyframes hs-nur{0%,100%{opacity:1}50%{opacity:.6}}
+@keyframes hs-tor{50%{transform:scale(1.04,1.08)}}
+@keyframes hs-tebran{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-4%) rotate(2deg)}}
+@keyframes hs-titra{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}
+@keyframes hs-haydash{from{transform:translateX(-160px)}to{transform:translateX(0)}}
+@keyframes hs-uch{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+@keyframes hs-portla{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes hs-oqim{to{stroke-dashoffset:-14}}
+@keyframes hs-konfetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(320px) rotate(var(--r,180deg));opacity:0}}
+@media (prefers-reduced-motion:reduce){.hs-sahna *,.hs-qol,.hy-tugun,.hy-karta{animation-duration:.01s!important;animation-iteration-count:1!important}}
+
+/* o'yin xonalari ro'yxati — yo'l ostida */
+.xo-hamma{max-width:860px;margin:0 auto;padding:0 12px 24px}
+.xo-hamma>summary{cursor:pointer;font-weight:900;font-size:17px;padding:12px 4px;color:#2b2140}
+/* REV142: kunlik tartib — kuniga 2–3 ta yangi bosqich */
+.hy-tugun.is-ertaga{opacity:.85;box-shadow:0 0 0 3px #a5b4fc}
+.hy-tugun.is-ertaga .hy-tugun-doira{background:linear-gradient(160deg,#c7d2fe,#818cf8)}
+.hy-kunlik{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 auto 12px;padding:8px 14px;border-radius:999px;background:#fff8e1;color:#7a4b00;font-weight:700;width:fit-content;max-width:100%}
+.hy-kunlik.is-tolgan{background:#eef2ff;color:#3730a3}
+.hy-kunlik-nuqta{display:inline-flex;gap:6px}
+.hy-kunlik-nuqta i{width:16px;height:16px;border-radius:50%;border:2px solid currentColor;opacity:.5}
+.hy-kunlik-nuqta i.is-bor{background:#ffb703;border-color:#ffb703;opacity:1}
+.hy-kunlik.is-tolgan .hy-kunlik-nuqta i.is-bor{background:#818cf8;border-color:#818cf8}
+.hy-ertaga-matn{margin:10px 0 0;font-weight:600;color:#3730a3;text-align:center}
+@media (prefers-color-scheme:dark){.hy-kunlik{background:#3b2f12;color:#ffe08a}.hy-kunlik.is-tolgan{background:#1e1b4b;color:#c7d2fe}.hy-ertaga-matn{color:#c7d2fe}}
+/* REV144: chizilgan belgilar */
+.hy-belgi{width:82%;height:82%;object-fit:contain;pointer-events:none}
+.hy-tugun.is-qulf .hy-belgi{filter:grayscale(.3)}
+.hy-bolim-belgi{width:1.9em;height:1.9em;object-fit:contain;vertical-align:-.55em}
+.hy-bolim h3{align-items:center}
+/* REV144: o'yin — telefonda butun ekran: sahna katta (kvadratga yaqin), sarlavha va menyular yashiriladi */
+.hy-ish{position:fixed;inset:0;top:var(--samtm-portal-top,0px);z-index:2147483000;margin:0;max-width:none;overflow-y:auto;overscroll-behavior:contain;
+  background:linear-gradient(180deg,#fbf7ff,#f3f8ff);padding:max(8px,env(safe-area-inset-top)) 10px max(12px,env(safe-area-inset-bottom));
+  align-content:center}
+.hy-ish>*{width:100%;max-width:860px;margin-left:auto;margin-right:auto}
+.hy-ish .hs-sahna{aspect-ratio:auto;max-width:none;max-height:none;height:min(calc(min(100vw - 20px, 860px) * .75), calc(100dvh - 250px - var(--samtm-portal-top,0px)));min-height:220px}
+@media (max-aspect-ratio:4/5){.hy-ish .hs-sahna{height:min(calc(100vw - 20px), calc(100dvh - 250px - var(--samtm-portal-top,0px)))}}
+.hy-ish .hy-kartalar{max-width:620px}
+.hy-ish .hy-bar{font-size:18px}

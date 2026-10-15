@@ -1,0 +1,113 @@
+/* REV91: ota-ona — farzandning bugungi darslari */
+.ff-root{background:#fff;border:1px solid #e5e1d8;border-radius:18px;padding:14px 16px;margin-bottom:12px;display:grid;gap:10px;color:#2b2b2b}
+.ff-head{display:grid;gap:2px}
+.ff-head h3{margin:0;font-size:16px;font-weight:800}
+.ff-head small{color:#8a8578;font-size:12px}
+.ff-live{margin:0;display:flex;gap:8px;align-items:flex-start;border-radius:12px;padding:10px 12px;font-weight:700;font-size:14px;line-height:1.35}
+.ff-live.is-live{background:#e9f7ee;color:#1f6b3a}
+.ff-live.is-pause{background:#fff4e0;color:#8a5200}
+.ff-live.is-away{background:#fdecec;color:#9b2c2c}
+.ff-live.is-done{background:#eef6ff;color:#1b4b7a}
+.ff-live.is-none{background:#f5f3ee;color:#5a5648}
+.ff-plan{display:flex;flex-wrap:wrap;gap:6px}
+.ff-plan span{background:#f7f5f0;border-radius:999px;padding:4px 10px;font-size:12.5px}
+.ff-plan span.is-full{background:#e9f7ee}
+.ff-list{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ff-list li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border-radius:12px;padding:8px 10px;background:#faf9f6}
+.ff-list li.is-open{background:#fffaf0}
+.ff-time{font-variant-numeric:tabular-nums;font-size:12px;color:#5a5648;font-weight:700}
+.ff-main{display:grid;min-width:0}
+.ff-main b{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ff-main small{color:#8a8578;font-size:12px}
+.ff-res{font-size:12.5px;font-weight:700;text-align:right;white-space:nowrap}
+.ff-res em{font-style:normal}
+.ff-half{color:#b0553a}
+.ff-week{display:flex;gap:6px;align-items:flex-end;justify-content:space-between;padding:4px 2px 0}
+.ff-day{flex:1;display:grid;justify-items:center;gap:2px;font-size:11px;color:#8a8578}
+.ff-day i{display:block;width:100%;max-width:26px;border-radius:6px 6px 2px 2px;background:#e5e1d8}
+.ff-day i.is-on{background:#57b86f}
+.ff-day b{color:#2b2b2b;font-size:11px}
+.ff-muted{margin:0;color:#8a8578;font-size:12px;line-height:1.4}
+/* REV103: bugungi vaqt (dars / erkin o'yin) va o'rganish tahlili */
+.ff-sub,.ff-time-box h4,.ff-insight h4{margin:0;font-size:14px;font-weight:800;color:#2b2b2b}
+.ff-time-box,.ff-insight{display:grid;gap:8px;border:1px solid #efece4;border-radius:14px;padding:10px 12px;background:#fdfcf9}
+.ff-bars{display:grid;grid-template-columns:auto minmax(60px,1fr) auto;gap:7px 8px;align-items:center;font-size:12.5px}
+.ff-bar{display:contents}
+.ff-bar-name{font-weight:700;white-space:nowrap}
+.ff-bar-track{position:relative;display:block;height:10px;border-radius:999px;background:#ece8de;overflow:hidden}
+.ff-bar-track i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:#3a74d9;transition:width .4s}
+.ff-bar.is-oyin .ff-bar-track i{background:#e39a12}
+.ff-bar.is-jami .ff-bar-track i{background:#57b86f}
+.ff-bar.is-full .ff-bar-track i{background:#b0553a}
+.ff-bar-num{font-variant-numeric:tabular-nums;color:#5a5648;white-space:nowrap}
+.ff-what{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.ff-what li{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;font-size:13px;background:#fff;border-radius:10px;padding:6px 10px}
+.ff-what b{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ff-what small{color:#8a8578;white-space:nowrap}
+.ff-stack{display:flex;flex-direction:column;justify-content:flex-end;width:100%;max-width:26px;height:58px}
+.ff-stack i{display:block;width:100%}
+.ff-stack i.is-oyin{background:#f2b950;border-radius:6px 6px 0 0}
+.ff-stack i.is-dars{background:#3a74d9;border-radius:0 0 2px 2px}
+.ff-stack i.is-oyin[style*="height: 0px"]+i.is-dars{border-radius:6px 6px 2px 2px}
+.ff-legend{margin:0;font-size:11px;color:#8a8578;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.ff-legend i{display:inline-block;width:10px;height:10px;border-radius:3px}
+.ff-legend i.is-dars{background:#3a74d9}
+.ff-legend i.is-oyin{background:#f2b950}
+.ff-insight ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ff-insight li{display:grid;gap:2px;background:#fff;border-radius:10px;padding:8px 10px}
+.ff-k-head{display:flex;gap:6px;align-items:center;font-size:13.5px}
+.ff-k-head b{flex:1}
+.ff-dots{font-style:normal;letter-spacing:1px;color:#57b86f;font-size:12px}
+.ff-dots.is-1,.ff-dots.is-2{color:#e39a12}
+.ff-insight li small{color:#5a5648;font-size:12.5px;line-height:1.4}
+.ff-rank{margin:0;font-weight:800;font-size:13.5px;color:#1b4b7a;background:#eef6ff;border-radius:10px;padding:8px 10px}
+.ff-sum{margin:0;font-size:13px;font-weight:700;color:#1f6b3a}
+/* REV145: aniq tuzilma — 4 ta asosiy raqam, ichma-ich ochiladigan bo'limlar va darslar */
+.ff-head h3{font-size:17px}
+.ff-head .ff-live{margin-top:6px}
+.ff-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ff-kpi{display:grid;justify-items:start;gap:0;text-align:left;border:1px solid #ece8de;background:#fdfcf9;border-radius:14px;padding:10px 10px 9px;cursor:pointer;color:inherit;font:inherit;min-width:0}
+.ff-kpi:hover,.ff-kpi:focus-visible{border-color:#3a74d9;background:#f4f8ff;outline:none}
+.ff-kpi>span{font-size:18px;line-height:1}
+.ff-kpi b{font-size:24px;font-weight:900;line-height:1.15;font-variant-numeric:tabular-nums;color:#1f2a44}
+.ff-kpi em{font-style:normal;font-size:12px;font-weight:700;color:#5a5648}
+.ff-kpi small{font-size:11px;color:#8a8578;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+@media(max-width:560px){.ff-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.ff-root{padding:12px}}
+.ff-sec{border:1px solid #efece4;border-radius:14px;background:#fdfcf9;overflow:hidden}
+.ff-sec.is-open{background:#fff}
+.ff-sec-head{display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:center;width:100%;border:0;background:none;padding:11px 12px;cursor:pointer;font:inherit;color:inherit;text-align:left}
+.ff-sec-head b{font-size:14.5px;font-weight:800}
+.ff-sec-head small{font-size:12px;color:#5a5648;font-weight:700;white-space:nowrap}
+.ff-sec-head i{font-style:normal;color:#8a8578}
+.ff-sec-body{display:grid;gap:8px;padding:0 12px 12px}
+.ff-lessons{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.ff-lesson{border-radius:12px;background:#faf9f6;border:1px solid transparent}
+.ff-lesson.is-open{border-color:#e5e1d8;background:#fff}
+.ff-lesson-head{display:grid;grid-template-columns:auto 1fr auto auto;gap:10px;align-items:center;width:100%;border:0;background:none;padding:9px 10px;cursor:pointer;font:inherit;color:inherit;text-align:left}
+.ff-lesson-head i{font-style:normal;color:#8a8578}
+.ff-badge{font-size:12px;font-weight:800;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.ff-badge.is-top{background:#e3f6ea;color:#1f6b3a}
+.ff-badge.is-good{background:#eaf2ff;color:#1b4b7a}
+.ff-badge.is-low{background:#fff1df;color:#8a5200}
+.ff-badge.is-half{background:#fdecec;color:#9b2c2c}
+.ff-badge.is-plain{background:#f1efe9;color:#5a5648}
+.ff-lesson-body{display:grid;gap:8px;padding:2px 12px 12px}
+.ff-row{display:grid;grid-template-columns:auto minmax(40px,1fr) auto;gap:8px;align-items:center;font-size:13px}
+.ff-row>span:first-child{color:#5a5648;font-weight:700;white-space:nowrap}
+.ff-row b{font-variant-numeric:tabular-nums;text-align:right}
+.ff-meter{position:relative;height:9px;border-radius:999px;background:#ece8de;overflow:hidden}
+.ff-meter i{position:absolute;inset:0 auto 0 0;border-radius:999px;background:#3a74d9}
+.ff-meter i.is-top{background:#57b86f}.ff-meter i.is-low{background:#e39a12}
+.ff-words-box{display:grid;gap:5px;font-size:13px}
+.ff-words-box>span{color:#5a5648;font-weight:700}
+.ff-words{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.ff-words li{display:inline-flex;gap:4px;align-items:center;border-radius:999px;padding:4px 10px;background:#f1efe9;font-weight:700;font-size:13px}
+.ff-words li.is-ok{background:#e3f6ea;color:#1f6b3a}
+.ff-words li.is-try{background:#fff1df;color:#8a5200}
+.ff-tip{margin:0;font-size:13px;line-height:1.4;background:#fffbea;border-radius:10px;padding:8px 10px;color:#5a4a00}
+.ff-day{border:0;background:none;padding:4px 0;border-radius:10px;cursor:pointer;font:inherit}
+.ff-day.is-sel{background:#eef3ff;box-shadow:inset 0 0 0 2px #3a74d9}
+.ff-daybox{display:grid;gap:8px;border-top:1px dashed #e5e1d8;padding-top:8px}
+.ff-daybox h5{margin:0;font-size:13.5px;font-weight:800}
+.ff-daystats{margin:0;display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
+.ff-daystats span{background:#f7f5f0;border-radius:999px;padding:3px 9px;font-weight:700}
