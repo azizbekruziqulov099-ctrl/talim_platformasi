@@ -759,7 +759,9 @@ def register_auth(app, platform):
     async def config():
         return {'telegram':service.telegram_config(),
             'google':{'enabled':bool(platform.GOOGLE_CLIENT_ID and platform.GOOGLE_CLIENT_SECRET)},'password':{'enabled':True},
-            'quick':{'enabled':True}}
+            'quick':{'enabled':True},
+            # REV147: asosiy sayt manzili — ilova boshqa (ruxsat etilmagan) manzildan ochilsa, o'zi shu yerga o'tadi
+            'site':str(platform.FRONTEND_URL or '').rstrip('/'), 'origins':list(platform.FRONTEND_ORIGINS)}
 
     # REV79: rol tanlab darhol kirish. Shu qurilmada yangi akkaunt ochiladi; Telegram/Gmail
     # ulanmaguncha sayt tepada «ulang, aks holda yo'qolishi mumkin» deb ogohlantiradi.

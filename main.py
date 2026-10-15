@@ -332,3 +332,23 @@ try:
         _rev146_startup[:] = [_rev146_xavfsiz_startup(h) for h in _rev146_startup]
 except Exception as _rev146_exc:   # pragma: no cover
     print(f"[STARTUP-WARNING] startup himoyasi o'rnatilmadi: {_rev146_exc!r}", flush=True)
+
+
+# REV147: asosiy sayt manziliga yo'naltirish. Ilova boshqa (ruxsat etilmagan) manzildan ochilsa, brauzer
+# CORS sababli serverga so'rov yubora olmaydi — sahifa shu manzil orqali to'g'ri saytga o'tadi.
+from fastapi.responses import RedirectResponse as _Rev147Redirect
+
+
+@app.get("/auth/sayt", include_in_schema=False)
+def _rev147_asosiy_sayt():
+    return _Rev147Redirect(str(samtm_platform.FRONTEND_URL).rstrip("/") + "/", status_code=302)
+
+
+# REV147: /auth/config — ochiq ma'lumot (kirish usullari va asosiy sayt manzili). Har qanday manzil o'qiy oladi
+# (cookie'siz), shunda noto'g'ri manzildan ochilgan ilova buni aniqlab, asosiy saytga o'zi o'tadi.
+@app.middleware("http")
+async def _rev147_ochiq_config(request, call_next):
+    response = await call_next(request)
+    if request.url.path == "/auth/config" and "access-control-allow-origin" not in response.headers:
+        response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
