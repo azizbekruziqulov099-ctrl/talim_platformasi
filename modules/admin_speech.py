@@ -1,4 +1,5 @@
 """Admin reading and dictation, keeping the original language."""
+import os
 import asyncio
 import hashlib
 import importlib.util
@@ -283,7 +284,7 @@ def speech_router(platform, prefix, check, rol='admin'):
     def status(token:str):
         check(token)
         providers=stt_providers(platform)
-        return {'admin':True,'allowed':True,'reading_available':importlib.util.find_spec('edge_tts') is not None,
+        return {'admin':True,'allowed':True,'reading_available':False,   # REV152: matnni ovozga — o'chirilgan
                 'language':'uz','languages':['uz','ru','en'],'revision':96,
                 'dictation_available':bool(providers),
                 'providers':list(dict.fromkeys(name for name,_ in providers)),
@@ -292,6 +293,10 @@ def speech_router(platform, prefix, check, rol='admin'):
     @router.post('/read')
     async def read(payload:dict,token:str):
         check(token)
+        # REV152 (xavfsizlik va xarajat): matnni ovozga aylantirish vaqtincha o'chirilgan (Kabutardagi kabi).
+        import os as _os
+        if _os.getenv('SPEECH_READ_ENABLED','').strip()!='1':
+            raise HTTPException(410,'Matnni ovozga aylantirish hozircha o‘chirilgan')
         try:
             text,voice,rate=speech_input(payload)
             language=selected_language(payload.get('language','auto'))
@@ -310,7 +315,13 @@ def speech_router(platform, prefix, check, rol='admin'):
 
     @router.post('/dictate')
     async def dictate(request:Request,token:str,language:str='auto'):
-        check(token)
+        uid=check(token)
+        # REV152: pullik ovoz tanish — foydalanuvchi va IP bo'yicha cheklov (hisob o'sib ketmasin)
+        from platform_core import limitlar
+        kim=str(uid if uid is not None else hashlib.sha256(token.encode()).hexdigest()[:16])
+        await asyncio.to_thread(limitlar.sarfla,'stt:user:min',kim,1,limitlar.son('STT_DAQIQA',8),60,'Juda tez. Bir daqiqadan keyin davom eting.')
+        await asyncio.to_thread(limitlar.sarfla,'stt:user:kun',kim,1,limitlar.son('STT_KUNLIK',200),86400,'Bugungi ovozli yozish limiti tugadi. Ertaga davom eting.')
+        await asyncio.to_thread(limitlar.sarfla,'stt:ip:min',limitlar.ip_of(request),1,limitlar.son('STT_IP_DAQIQA',30),60,'Bu tarmoqdan so‘rovlar juda ko‘p. Birozdan keyin urinib ko‘ring.')
         try:language=selected_language(language)
         except ValueError as exc:raise HTTPException(400,str(exc)) from exc
         providers=stt_providers(platform)

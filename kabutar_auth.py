@@ -482,10 +482,15 @@ class AuthService:
             cache[key] = (username, time.monotonic())
             if len(cache) > 50:
                 cache.pop(next(iter(cache)))
+        # REV152 (xavfsizlik): bot nomi noma'lum bo'lsa — kelgan tokenning nomi HECH QACHON qabul qilinmaydi
+        # (aks holda begona bot o'z tokeni bilan istalgan foydalanuvchi nomidan kira olardi).
+        if self._bot_token and hmac.compare_digest(token, self._bot_token):
+            return True
+        if not self.bot_username and self._bot_token:
+            self.bot_username = bot_username_from_token(self._bot_token)   # o'z tokenimizdan — sinxron
         if not self.bot_username:
-            # Backendda bot nomi yo'q bo'lsa — haqiqiy tasdiqlangan botning nomini olamiz.
-            self.bot_username = username
-        return username.lower() == self.bot_username.lower()
+            return False
+        return hmac.compare_digest(username.lower(), self.bot_username.lower())
 
     def user_lock(self, cur, user_id):
         cur.execute('SELECT pg_advisory_xact_lock(hashtextextended(%s,31))',(f'auth-user:{user_id}',))
@@ -549,7 +554,19 @@ class AuthService:
 
     def verify_session(self, token, payload):
         # Admin view is deliberately short-lived and maintains original checks.
+        # REV152: har so'rovda — beruvchi hali ham admin va uning kamida bitta FAOL sessiyasi bor
+        # (admin chiqib ketsa, «hamma qurilmalardan chiqish» yoki parolni almashtirsa — ko'rish tokeni ham o'ladi).
         if payload.get('admin_korish'):
+            admin_id = payload.get('admin_korish')
+            if not isinstance(admin_id, int) or isinstance(admin_id, bool):
+                raise HTTPException(401, 'Ko‘rish tokeni noto‘g‘ri')
+            with self.transaction() as cur:
+                cur.execute("""SELECT 1 FROM admin_akkaunt a WHERE a.uid=%s AND EXISTS(
+                    SELECT 1 FROM kabutar_auth_sessions s WHERE s.user_id=a.uid AND s.revoked_at IS NULL AND s.expires_at>NOW())""",
+                    (admin_id,))
+                ok = cur.fetchone()
+            if not ok:
+                raise HTTPException(401, 'Ko‘rish rejimi tugagan. Admin panelidan qayta oching')
             return int(payload['user_id'])
         user_id = payload.get('user_id')
         if not isinstance(user_id, int) or isinstance(user_id, bool):
@@ -1131,6 +1148,9 @@ def register_auth(app, platform):
                 uid=found['user_id']
             cur.execute('SELECT password_hash FROM kabutar_auth_password WHERE user_id=%s',(uid,))
             stored=cur.fetchone()
+        if uid:
+            # REV152: bitta akkauntga turli yozilishdagi (KB-…, kb…, telefon) urinishlar ham birga hisoblanadi
+            service.rate('password-user',str(uid),15,900)
         match=password_matches(body.password,stored['password_hash'] if stored else service.dummy_password)
         if not uid or not stored or not match:
             raise HTTPException(401,'Kirish ma’lumoti yoki parol noto‘g‘ri')

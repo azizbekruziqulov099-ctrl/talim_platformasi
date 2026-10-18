@@ -25,8 +25,7 @@ except ImportError:  # pragma: no cover — bitta papkali joylashtirish
 
 MAX_FILE_BYTES = 25 * 1024 * 1024
 QUOTA_BYTES = 500 * 1024 * 1024
-ALLOWED_EXT = {".pdf", ".doc", ".docx", ".rtf", ".odt", ".xls", ".xlsx", ".csv", ".ods", ".ppt", ".pptx", ".odp",
-               ".txt", ".md", ".jpg", ".jpeg", ".png", ".webp", ".gif", ".zip", ".rar", ".mp3", ".m4a", ".mp4"}
+ALLOWED_EXT = {".pdf", ".docx", ".xlsx", ".jpg", ".jpeg", ".png", ".webp"}   # REV152: faqat Word, Excel, PDF, rasm
 SORTED_OUT = "Saralanmagan"
 
 
@@ -345,12 +344,11 @@ def create_teacher_library_router(check_token, db, ai=ai_keywords):
         file_name = re.sub(r"[\\/\x00-\x1f]+", "_", (fayl.filename or "hujjat").strip())[-200:] or "hujjat"
         ext = S.ext_of(file_name)
         if ext not in ALLOWED_EXT:
-            raise HTTPException(400, f"«{ext or 'nomaʼlum'}» turidagi faylni saqlab bo‘lmaydi. Word, PDF, Excel, taqdimot yoki rasm yuklang.")
+            raise HTTPException(400, f"«{ext or 'nomaʼlum'}» turidagi faylni saqlab bo‘lmaydi. Faqat Word (.docx), Excel (.xlsx), PDF yoki rasm yuklang.")
         data = fayl.file.read(MAX_FILE_BYTES + 1)
-        if not data:
-            raise HTTPException(400, "Fayl bo‘sh")
-        if len(data) > MAX_FILE_BYTES:
-            raise HTTPException(413, f"Fayl juda katta — eng ko‘pi {MAX_FILE_BYTES // (1024 * 1024)} MB")
+        # REV152: qattiq tekshiruv — tur ichidan aniqlanadi; makros, skript, zip-bomba, shifrlangan fayl rad etiladi
+        from platform_core import xavfsiz_fayl
+        tekshirilgan = xavfsiz_fayl.tekshir(data, file_name, xavfsiz_fayl.KUTUBXONA, MAX_FILE_BYTES)
         digest = hashlib.sha256(data).hexdigest()
         title = _clean_name(nomi or re.sub(r"\.[A-Za-z0-9]{1,5}$", "", file_name).replace("_", " "), 240)
         tags = [t.strip()[:40] for t in re.split(r"[,;#]+", teglar or "") if t.strip()][:12]
@@ -373,7 +371,7 @@ def create_teacher_library_router(check_token, db, ai=ai_keywords):
                 sid, rid, auto = place(cur, uid, title + S.ext_of(file_name), text, polka_id, qator_id)
             else:
                 sid, rid, auto = None, None, False
-            mime = fayl.content_type or "application/octet-stream"
+            mime = tekshirilgan.mime   # REV152: brauzer yuborgan turga ishonilmaydi
             cur.execute("""INSERT INTO oqituvchi_kutubxona_hujjatlar(user_id,polka_id,qator_id,nomi,fayl_nomi,mime,hajm,sha256,tarkib,matn,teglar)
                            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
                         (uid, sid, rid, title, file_name, mime[:160], len(data), digest, data, text or None, tags))
@@ -398,11 +396,9 @@ def create_teacher_library_router(check_token, db, ai=ai_keywords):
             return row
         row = run(token, fn)
         name = row["fayl_nomi"]
-        ascii_name = re.sub(r"[^A-Za-z0-9._-]+", "_", name) or "hujjat"
-        mode = "attachment" if yuklab or S.kind_of(name) not in ("pdf", "image") else "inline"
-        return Response(bytes(row["tarkib"]), media_type=row["mime"] or "application/octet-stream",
-                        headers={"Content-Disposition": f"{mode}; filename=\"{ascii_name}\"; filename*=UTF-8''{quote(name, safe='')}",
-                                 "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"})
+        # REV152: tur faqat nomdan, xavfsiz sarlavhalar (eski fayllar ham — ilgari saqlangan brauzer turi e'tiborsiz)
+        from platform_core import xavfsiz_fayl
+        return xavfsiz_fayl.javob(bytes(row["tarkib"]), name, yuklab=bool(yuklab))
 
     @router.patch("/hujjat/{did}")
     def edit_doc(did: int, token: str, body: DocPatch):
@@ -517,6 +513,11 @@ def create_teacher_library_router(check_token, db, ai=ai_keywords):
         result = S.assistant_reply(message, docs, can_read_text=opts["matn_oqish"])
         used_ai = False
         if result["turi"] == "savol" and docs and S.parse_query(message)["sozlar"]:
+            # REV152: pullik AI — foydalanuvchiga daqiqalik va kunlik cheklov
+            from platform_core import limitlar
+            kim = hashlib.sha256(token.encode()).hexdigest()[:24]
+            limitlar.sarfla("ai:kutubxona:min", kim, 1, limitlar.son("AI_DAQIQA", 6), 60, "Juda tez. Bir daqiqadan keyin davom eting.")
+            limitlar.sarfla("ai:kutubxona:kun", kim, 1, limitlar.son("AI_KUNLIK", 150), 86400, "Bugungi AI limiti tugadi.")
             words = ai(message, shelves)
             if words:
                 retry = S.assistant_reply(message, docs, can_read_text=opts["matn_oqish"], extra_words=words)

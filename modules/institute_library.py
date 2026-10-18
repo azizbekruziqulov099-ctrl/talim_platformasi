@@ -12,10 +12,7 @@ from pydantic import BaseModel
 MAX_FILE_BYTES = 30 * 1024 * 1024
 MANAGER_ROLES = {"owner", "rektor", "prorektor", "institut_admin"}
 DEPARTMENT_MANAGER_ROLES = {"kafedra_mudiri"}
-ALLOWED_EXTENSIONS = {
-    ".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx",
-    ".txt", ".rtf", ".csv", ".jpg", ".jpeg", ".png", ".webp", ".zip",
-}
+ALLOWED_EXTENSIONS = {".pdf", ".docx", ".xlsx", ".jpg", ".jpeg", ".png", ".webp"}   # REV152: faqat Word, Excel, PDF, rasm
 
 
 def create_institute_library_router(check_token, db):
@@ -213,12 +210,13 @@ def create_institute_library_router(check_token, db):
         user_id=check_token(token); content=await fayl.read(MAX_FILE_BYTES+1)
         if len(content)>MAX_FILE_BYTES: raise HTTPException(413,"Fayl 30 MB dan katta bo‘lmasin")
         safe_name=re.sub(r"[^\w.()\- +'‘’]","_",fayl.filename or "hujjat")[:240]
-        ext=("."+safe_name.rsplit(".",1)[-1].lower()) if "." in safe_name else ""
-        if ext not in ALLOWED_EXTENSIONS: raise HTTPException(400,"Bu fayl turi qo‘llab-quvvatlanmaydi")
+        # REV152: faqat Word/Excel/PDF/rasm; tur ichidan aniqlanadi, makros/skript/zip-bomba rad etiladi
+        from platform_core import xavfsiz_fayl
+        tekshirilgan=xavfsiz_fayl.tekshir(content, safe_name, xavfsiz_fayl.KUTUBXONA, MAX_FILE_BYTES)
         conn=db(); cur=conn.cursor()
         try:
             ensure(cur); s=folder_scope(cur,papka_id); require_scope(cur,s["universitet_id"],user_id,s["fakultet_id"],s["kafedra_id"],"joylash")
-            mime=fayl.content_type or mimetypes.guess_type(safe_name)[0] or "application/octet-stream"
+            mime=tekshirilgan.mime   # REV152: brauzer yuborgan turga ishonilmaydi
             tags=[x.strip()[:40] for x in teglar.split(",") if x.strip()][:12]
             cur.execute("""INSERT INTO institut_kutubxona_hujjatlari(papka_id,nomi,fayl_nomi,mime_type,hajm,tarkib,izoh,teglar,yuklovchi_id)
                            VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",(papka_id,(nomi.strip() or safe_name)[:240],safe_name,mime,len(content),psycopg2.Binary(content),izoh or None,tags,user_id)); new_id=cur.fetchone()["id"]; conn.commit(); return {"id":new_id,"holat":"yuklandi"}
@@ -233,8 +231,9 @@ def create_institute_library_router(check_token, db):
                 JOIN institut_kutubxona_javonlari j ON j.id=p.javon_id WHERE d.id=%s AND d.faol""",(document_id,)); d=cur.fetchone()
             if not d: raise HTTPException(404,"Hujjat topilmadi")
             require_scope(cur,d["universitet_id"],user_id,d["fakultet_id"],d["kafedra_id"],"yuklash")
-            ascii_name=re.sub(r"[^A-Za-z0-9._-]","_",d["fayl_nomi"])
-            return Response(bytes(d["tarkib"]),media_type=d["mime_type"] or "application/octet-stream",headers={"Content-Disposition":f'{disposition}; filename="{ascii_name}"',"X-Content-Type-Options":"nosniff","Cache-Control":"private, max-age=60"})
+            # REV152: tur faqat fayl nomidan (eski yozuvlarda saqlangan brauzer turi e'tiborga olinmaydi), xavfsiz sarlavhalar
+            from platform_core import xavfsiz_fayl
+            return xavfsiz_fayl.javob(bytes(d["tarkib"]), d["fayl_nomi"], yuklab=(disposition!="inline"))
         finally: cur.close(); conn.close()
 
     @router.get("/hujjat/{document_id}/korish")

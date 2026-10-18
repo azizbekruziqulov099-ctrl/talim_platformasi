@@ -384,6 +384,18 @@ def _db():
         raise
 
 
+# REV152: cheklov hisoblagichlari shu bazadan foydalanadi
+from platform_core import limitlar as _limitlar
+_limitlar.ulash(_db)
+
+
+def _ai_limit(user_id, nom: str) -> None:
+    """REV152: pullik AI chaqiruvlari — foydalanuvchiga daqiqalik va kunlik, butun saytga kunlik cheklov."""
+    _limitlar.sarfla(f"ai:{nom}:min", user_id, 1, _limitlar.son("AI_DAQIQA", 6), 60, "Juda tez. Bir daqiqadan keyin davom eting.")
+    _limitlar.sarfla(f"ai:{nom}:kun", user_id, 1, _limitlar.son("AI_KUNLIK", 150), 86400, "Bugungi AI limiti tugadi. Ertaga davom eting.")
+    _limitlar.sarfla("ai:hammasi:kun", "sayt", 1, _limitlar.son("AI_KUNLIK_JAMI", 20000), 86400, "AI yordamchi bugun band. Ertaga urinib ko‘ring.")
+
+
 @app.on_event("shutdown")
 def _db_poolni_yopish():
     global _DB_POOL
@@ -405,7 +417,7 @@ def salomat():
 
 
 @app.get("/api/bola/{bola_id}/bilim")
-def bola_bilimi(bola_id: int, sinf: str = None):
+def bola_bilimi(bola_id: int, request: Request, sinf: str = None):
     """Bolaning fan-mavzu bo'yicha bilim darajasi — FAQAT bolaning O'ZI
     sinfiga tegishli mavzular bo'yicha. sinf berilmasa, avtomatik bola
     profilidagi class ustunidan olinadi. MUHIM: agar bola profilida
@@ -413,6 +425,7 @@ def bola_bilimi(bola_id: int, sinf: str = None):
     ko'rsatish O'RNIGA bo'sh natija qaytariladi (aks holda 1-sinf
     bolasiga Algebra kabi butunlay boshqa sinflarning fanlari chiqib
     ketardi, chunki sinfsiz cheklov qo'yib bo'lmaydi)."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     try:
         conn = _db()
         cur = conn.cursor()
@@ -481,12 +494,23 @@ def bola_bilimi(bola_id: int, sinf: str = None):
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"[XATO-500] {type(e).__name__}: {str(e)[:300]}", flush=True)
+        raise HTTPException(status_code=500, detail="Serverda xato yuz berdi. Birozdan keyin qayta urinib ko'ring.")
 
 
 @app.get("/api/ota/{ota_id}/farzandlar")
-def ota_farzandlari(ota_id: int):
+def ota_farzandlari(ota_id: int, request: Request):
     """Ota-onaning barcha ulangan farzandlari ro'yxati."""
+    _uid = _jwt_tekshir(_sorov_tokeni(request))   # REV152: faqat o'zi yoki admin
+    if _uid != ota_id:
+        _c = _db(); _k = _c.cursor()
+        try:
+            _k.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (_uid,))
+            _adm = _k.fetchone()
+        finally:
+            _k.close(); _c.close()
+        if not _adm:
+            raise HTTPException(status_code=403, detail="Ruxsat yo'q")
     try:
         conn = _db()
         cur = conn.cursor()
@@ -499,7 +523,8 @@ def ota_farzandlari(ota_id: int):
         cur.close(); conn.close()
         return {"farzandlar": r}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        print(f"[XATO-500] {type(e).__name__}: {str(e)[:300]}", flush=True)
+        raise HTTPException(status_code=500, detail="Serverda xato yuz berdi. Birozdan keyin qayta urinib ko'ring.")
 
 
 @app.get("/api/oquvchi/ota_onalarim")
@@ -561,7 +586,7 @@ def _jwt_korish_tokeni_yarat(admin_id: int, target_user_id: int, yozish: bool = 
     payload = {
         "user_id": int(target_user_id),
         "admin_korish": int(admin_id),
-        "exp": datetime.now(timezone.utc) + timedelta(minutes=90 if not yozish else 240),
+        "exp": datetime.now(timezone.utc) + timedelta(minutes=90 if not yozish else 120),   # REV152: yozish rejimi 2 soat
     }
     if yozish:
         payload["yozish"] = 1
@@ -597,6 +622,58 @@ def _jwt_tekshir(token: str) -> int:
     if cache is not None:
         cache[cache_key] = user_id
     return user_id
+
+
+def _sorov_tokeni(request: Request) -> str:
+    """REV152: token — Authorization: Bearer sarlavhasidan yoki ?token= dan."""
+    h = (request.headers.get("authorization") or "").strip()
+    if h.lower().startswith("bearer ") and h[7:].strip():
+        return h[7:].strip()
+    return (request.query_params.get("token") or "").strip()
+
+
+def _bolaga_korish_ruxsati(request: Request, bola_id: int) -> int:
+    """REV152 (xavfsizlik): bola ma'lumotini faqat bolaning o'zi, ota-onasi, sinf rahbari, maktab rahbariyati,
+    to'garak o'qituvchisi, bog'cha guruhi opasi yoki admin ko'radi. Aks holda 401/403."""
+    uid = _jwt_tekshir(_sorov_tokeni(request))
+    if uid == bola_id:
+        return uid
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        tekshiruvlar = (
+            ("SELECT 1 FROM admin_akkaunt WHERE uid=%s LIMIT 1", (uid,)),
+            ("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (uid, bola_id)),
+            ("""SELECT 1 FROM togarak_azolar ta JOIN togaraklar t ON t.id=ta.togarak_id
+                WHERE ta.user_id=%s AND ta.aktiv=TRUE AND t.teacher_id=%s LIMIT 1""", (bola_id, uid)),
+            ("""SELECT 1 FROM bogcha_guruh_bolalari b JOIN bogcha_guruhlari g ON g.id=b.guruh_id
+                WHERE b.bola_user_id=%s AND g.opa_user_id=%s LIMIT 1""", (bola_id, uid)),
+        )
+        # har tekshiruv alohida: biror jadval hali yaratilmagan bo'lsa ham qolganlari ishlaydi
+        for sql, args in tekshiruvlar:
+            cur.execute("SAVEPOINT bola_ruxsat")
+            try:
+                cur.execute(sql, args)
+                ok = cur.fetchone()
+                cur.execute("RELEASE SAVEPOINT bola_ruxsat")
+            except Exception:
+                cur.execute("ROLLBACK TO SAVEPOINT bola_ruxsat")
+                ok = None
+            if ok:
+                return uid
+        cur.execute("SAVEPOINT bola_ruxsat")
+        try:
+            ok = _sogliq_royxatga_ruxsat_bormi(cur, uid, bola_id)   # sinf rahbari, maktab rahbariyati
+            cur.execute("RELEASE SAVEPOINT bola_ruxsat")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT bola_ruxsat")
+            ok = False
+        if ok:
+            return uid
+    finally:
+        cur.close()
+        conn.close()
+    raise HTTPException(status_code=403, detail="Bu bolaning ma'lumotini ko'rishga ruxsatingiz yo'q")
 
 
 def _jwt_header_yoki_query(
@@ -2421,7 +2498,25 @@ async def rasm_proxy(file_id: str):
     if not BOT_TOKEN:
         raise HTTPException(status_code=500, detail="Bot tokeni sozlanmagan")
     if file_id.startswith("http"):
-        # Ba'zi eski yozuvlarda image_url to'g'ridan URL bo'lishi mumkin
+        # Ba'zi eski yozuvlarda image_url to'g'ridan URL bo'lishi mumkin.
+        # REV152 (xavfsizlik): faqat bazadagi testlarda HAQIQATAN bor https manzilga yo'naltiriladi —
+        # aks holda sayt nomidan istalgan begona saytga yo'naltirib bo'lardi (fishing).
+        from urllib.parse import urlsplit
+        _u = urlsplit(file_id)
+        if _u.scheme != "https" or not _u.netloc or "\\" in file_id or "@" in _u.netloc:
+            raise HTTPException(status_code=404, detail="Rasm topilmadi")
+        _bor = None
+        try:
+            _c = _db(); _k = _c.cursor()
+            try:
+                _k.execute("SELECT 1 FROM generated_tests WHERE image_url=%s LIMIT 1", (file_id,))
+                _bor = _k.fetchone()
+            finally:
+                _k.close(); _c.close()
+        except Exception:
+            _bor = None
+        if not _bor:
+            raise HTTPException(status_code=404, detail="Rasm topilmadi")
         return RedirectResponse(file_id)
 
     haqiqiy_file_id = file_id
@@ -2949,10 +3044,11 @@ async def _openai_bolak(tayyor: str, voice: str, tezlik: str, ohang: str):
     return None
 
 
-async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish: int = 3):
+async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish: int = 3, pullik: bool = True):
     """Bitta bo'lak ovozi: Azure → OpenAI → bepul edge-tts (REV136).
+    REV152: pullik=False — kunlik pullik limit tugagan: faqat bepul edge-tts.
     Qaytaradi: MP3 baytlari yoki None (hamma urinish behuda)."""
-    for xizmat in (_azure_bolak, _openai_bolak):
+    for xizmat in ((_azure_bolak, _openai_bolak) if pullik else ()):
         audio = await xizmat(tayyor, voice, tezlik, ohang)
         if audio:
             return audio
@@ -2996,7 +3092,7 @@ async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish:
 
 
 @app.get("/api/ovoz")
-async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
+async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
 
     Birinchi audio bo'lagi tayyor bo'lishi bilan javob brauzerga uzatiladi; to'liq MP3 tugashini kutmaydi.
@@ -3040,6 +3136,17 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
             headers={**kesh_sarlavhalari, "X-SamTM-Voice": "cache-hit"},
         )
 
+    # REV152 (xavfsizlik): keshda yo'q yangi ovoz — pullik xizmatni chaqiradi. Bir IP'dan daqiqasiga va soatiga
+    # cheklov; butun sayt bo'yicha kunlik pullik belgi limiti tugasa — faqat bepul ovoz (hisob o'sib ketmaydi).
+    from platform_core import limitlar
+    _ip = limitlar.ip_of(request)
+    await run_in_threadpool(limitlar.sarfla, "ovoz:ip:min", _ip, 1, limitlar.son("OVOZ_IP_DAQIQA", 60), 60,
+                            "Ovoz so‘rovlari juda ko‘p. Bir daqiqadan keyin davom eting.")
+    await run_in_threadpool(limitlar.sarfla, "ovoz:ip:soat", _ip, len(matn), limitlar.son("OVOZ_IP_SOAT_BELGI", 60000), 3600,
+                            "Bu tarmoqdan bir soatlik ovoz limiti tugadi. Keyinroq urinib ko‘ring.")
+    _kunlik = await run_in_threadpool(limitlar.hisobla, "ovoz:pullik:kun", "hammasi", len(matn), 86400)
+    _pullik = _kunlik <= limitlar.son("OVOZ_KUNLIK_PULLIK_BELGI", 150000)
+
     reja = ovoz_reja.reja(matn, takror=bool(takror))
     holat = {"chala": False}
 
@@ -3053,7 +3160,7 @@ async def ovoz_oqish(matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezli
             tayyor = _ovoz_uchun_tayyorla_til(bolak["matn"], til)
             if not tayyor.strip():
                 continue
-            audio = await _edge_bolak(tayyor, voice, tezlik, ohang)
+            audio = await _edge_bolak(tayyor, voice, tezlik, ohang, pullik=_pullik)
             if not audio:
                 holat["chala"] = True   # bu bo'lak tashlab o'tiladi — qolgan gap baribir o'qiladi, lekin keshlanmaydi
                 continue
@@ -3897,18 +4004,16 @@ async def profil_rasm_yukla(token: str, fayl: UploadFile = File(...)):
     saqlanadi — Railway diskka yozilgan faylni qayta ishga tushganda
     o'chirib yuborishi sababli, diskka yozish ishonchsiz."""
     user_id = _jwt_tekshir(token)
-    tarkib = await fayl.read()
-    if len(tarkib) > 5 * 1024 * 1024:
-        raise HTTPException(status_code=400, detail="Rasm 5 MB dan katta bo'lmasligi kerak")
-    nomi_lower = (fayl.filename or "").lower()
-    if not nomi_lower.endswith((".png", ".jpg", ".jpeg", ".webp")):
-        raise HTTPException(status_code=400, detail="Faqat rasm fayli (png/jpg/webp) qabul qilinadi")
+    tarkib = await fayl.read(5 * 1024 * 1024 + 1)
+    # REV152: haqiqiy rasm ekanligi ichidan tekshiriladi, tur serverda belgilanadi
+    from platform_core import xavfsiz_fayl
+    rasm = xavfsiz_fayl.tekshir(tarkib, fayl.filename or "rasm.jpg", xavfsiz_fayl.RASMLAR, 5 * 1024 * 1024)
     conn = _db()
     cur = conn.cursor()
     _users_profil_rasm_ustunlari(cur)
     cur.execute(
         "UPDATE users SET profil_rasm=%s, profil_rasm_turi=%s WHERE user_id=%s",
-        (psycopg2.Binary(tarkib), fayl.content_type, user_id),
+        (psycopg2.Binary(tarkib), rasm.mime, user_id),
     )
     conn.commit()
     cur.close()
@@ -3931,7 +4036,15 @@ def profil_rasm_korish(user_id: int):
     conn.close()
     if not r or not r["profil_rasm"]:
         raise HTTPException(status_code=404, detail="Rasm topilmadi")
-    return Response(content=bytes(r["profil_rasm"]), media_type=r["profil_rasm_turi"] or "image/jpeg")
+    # REV152: faqat rasm turlari; eski yozuvdagi boshqa tur (masalan text/html) hech qachon qaytarilmaydi
+    from platform_core import xavfsiz_fayl
+    data = bytes(r["profil_rasm"])
+    tur = xavfsiz_fayl._sehrli_tur(data)
+    if tur not in xavfsiz_fayl.RASMLAR:
+        raise HTTPException(status_code=404, detail="Rasm topilmadi")
+    return Response(content=data, media_type=xavfsiz_fayl.MIME[tur], headers={
+        "X-Content-Type-Options": "nosniff", "Content-Security-Policy": "sandbox; default-src 'none'",
+        "Cache-Control": "public, max-age=300", "Cross-Origin-Resource-Policy": "cross-origin"})
 
 
 @app.put("/api/profil")
@@ -5551,6 +5664,9 @@ def oquvchi_mustaqil_ish_topshir(sorov: MustaqilIshTopshirish):
     user_id = _jwt_tekshir(sorov.token)
     if not (sorov.javob_matni or "").strip():
         raise HTTPException(status_code=400, detail="Javobingizni kiriting")
+    if len(sorov.javob_matni) > 6000:
+        raise HTTPException(status_code=400, detail="Javob juda uzun (6000 belgigacha)")
+    _ai_limit(user_id, "mustaqil")
     conn = _db()
     cur = conn.cursor()
     _mustaqil_ish_jadvallari(cur)
@@ -6295,6 +6411,15 @@ async def chat_xabar_yubor(
         # Ovozli/video (dumaloq video ham) xabarlar — ilovaning O'ZI
         # yaratgan yozuvlar, shuning uchun kengaytma ro'yxatidan
         # o'tkazilmaydi, lekin ular ham ClamAV'dan o'tadi.
+        # REV152: ovoz/video ham tekshiriladi — brauzer aytgan tur ruxsat etilgan bo'lishi va fayl ichi unga mos kelishi shart
+        from platform_core import xavfsiz_fayl as _xf
+        _saqlanadigan_tur = None
+        if fayl_turi in ("audio", "video", "video_doira"):
+            try:
+                _saqlanadigan_tur = _xf.media_turi(tarkib, fayl.content_type)
+            except HTTPException:
+                cur.close(); conn.close()
+                raise HTTPException(status_code=400, detail="Bu faylni yuborib bo'lmadi")
         if fayl_turi not in ("audio", "video", "video_doira"):
             if not _fayl_turi_ruxsat_etilganmi(fayl.filename, fayl.content_type):
                 _qora_royxatga_yoz(cur, user_id, "notogri_fayl_turi", fayl.filename)
@@ -6324,8 +6449,8 @@ async def chat_xabar_yubor(
             cur.close(); conn.close()
             raise HTTPException(status_code=400, detail="Kunlik 100 MB fayl yuborish chegarasiga yetdingiz — ertaga qayta urinib ko'ring")
         fayl_malumot = psycopg2.Binary(tarkib)
-        fayl_nomi = fayl.filename
-        fayl_content_turi = fayl.content_type
+        fayl_nomi = _xf.toza_nom(fayl.filename or "fayl")
+        fayl_content_turi = _saqlanadigan_tur or _xf.hujjat_turi(fayl_nomi)   # REV152: brauzer turiga ishonilmaydi
 
     # Upload reading may await for seconds; recheck current access before writing.
     try:
@@ -6708,13 +6833,14 @@ def chat_fayl_korish(xabar_id: int, token: str):
     cur = conn.cursor()
     try:
         _chat_policy().require_message(cur, user_id, xabar_id)
-        cur.execute("""SELECT fayl_malumot, fayl_content_turi FROM chat_xabarlari
+        cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi FROM chat_xabarlari
                        WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
         x = cur.fetchone()
         if not x or not x["fayl_malumot"]:
             raise HTTPException(status_code=404, detail="Fayl topilmadi")
-        return Response(content=bytes(x["fayl_malumot"]), media_type=x["fayl_content_turi"] or "application/octet-stream",
-                        headers={"Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff"})
+        # REV152: tur fayl ichidan tekshiriladi; HTML va boshqalar hech qachon brauzerda ochilmaydi (faqat yuklab olinadi)
+        from platform_core import xavfsiz_fayl
+        return xavfsiz_fayl.chat_javob(bytes(x["fayl_malumot"]), x.get("fayl_nomi") or "fayl", x["fayl_content_turi"])
     finally:
         cur.close(); conn.close()
 
@@ -7706,10 +7832,14 @@ async def togarak_fayl_kontent_qosh(token: str, togarak_id: int, topic_code: str
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat shu to'garak o'qituvchisi, markaz rahbariyati yoki admin yuklay oladi")
 
-    content = await fayl.read()
-    if len(content) > 10 * 1024 * 1024:
+    content = await fayl.read(10 * 1024 * 1024 + 1)
+    # REV152: qattiq tekshiruv — rasm, PDF yoki Word (.docx); tur ichidan aniqlanadi, makros/skript rad etiladi
+    from platform_core import xavfsiz_fayl as _xf
+    try:
+        _tekshirilgan = _xf.tekshir(content, fayl.filename or "fayl", frozenset({"pdf", "docx", "png", "jpeg", "webp"}), 10 * 1024 * 1024)
+    except HTTPException:
         cur.close(); conn.close()
-        raise HTTPException(status_code=400, detail="Fayl 10MB dan katta bo'lmasin")
+        raise
 
     nomi_lower = (fayl.filename or "").lower()
     if nomi_lower.endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
@@ -7736,7 +7866,7 @@ async def togarak_fayl_kontent_qosh(token: str, togarak_id: int, topic_code: str
         INSERT INTO togarak_mavzu_biriktirma(togarak_id, topic_code, kontent_turi, sarlavha, matn, fayl_malumot, fayl_nomi, fayl_turi, yuklagan_user_id)
         VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
     """, (togarak_id, topic_code, kontent_turi, sarlavha, ajratilgan_matn,
-          psycopg2.Binary(content), fayl.filename, fayl.content_type, user_id))
+          psycopg2.Binary(content), _tekshirilgan.nom, _tekshirilgan.mime, user_id))
     yangi_id = cur.fetchone()["id"]
     conn.commit()
     cur.close()
@@ -7818,15 +7948,16 @@ def togarak_kontent_fayl(token: str, biriktirma_id: int):
     if not _togarak_kontent_ruxsat_bormi(cur, user_id, b["togarak_id"]):
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Ruxsat yo'q")
-    from fastapi.responses import StreamingResponse
-    import io as _io
     fayl_bytes = bytes(b["fayl_malumot"])
     cur.close()
     conn.close()
-    return StreamingResponse(
-        _io.BytesIO(fayl_bytes), media_type=b["fayl_turi"] or "application/octet-stream",
-        headers=_yuklab_olish_sarlavhasi(b["fayl_nomi"] or "fayl", inline=True),
-    )
+    # REV152: tur fayl ichidan; faqat haqiqiy PDF/rasm brauzerda ochiladi, qolgani yuklab olinadi (XSS yo'q)
+    from platform_core import xavfsiz_fayl as _xf
+    _tur = _xf._sehrli_tur(fayl_bytes)
+    _nom = b["fayl_nomi"] or "fayl"
+    if _tur in _xf.INLINE and _tur == _xf.tur_nomdan(_nom):
+        return _xf.javob(fayl_bytes, _nom, yuklab=False, tur=_tur)
+    return _xf.javob(fayl_bytes, _nom, yuklab=True, tur=_xf.tur_nomdan(_nom) if _tur == "zip" else "")
 
 
 @app.get("/api/togarak_azo/mavzularim")
@@ -8017,10 +8148,11 @@ def _xavf_darajasi(foiz: int) -> str:
 
 
 @app.get("/api/bola/{bola_id}/bugungi_tavsiya")
-def bugungi_tavsiya(bola_id: int, limit: int = 8):
+def bugungi_tavsiya(bola_id: int, request: Request, limit: int = 8):
     """O'quvchining O'Z SINFI bo'yicha, avval o'rgangan mavzularini
     "unutish xavfi"ga qarab SARALAB, bugun eng birinchi takrorlash
     kerak bo'lganlarini qaytaradi. To'liq AI'siz, sof hisob-kitob."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
     cur.execute("SELECT class FROM users WHERE user_id=%s", (bola_id,))
@@ -8064,12 +8196,13 @@ def bugungi_tavsiya(bola_id: int, limit: int = 8):
 
 
 @app.get("/api/bola/{bola_id}/qiyinlik_tahlili")
-def bola_qiyinlik_tahlili(bola_id: int):
+def bola_qiyinlik_tahlili(bola_id: int, request: Request):
     """O'quvchining javob tarixidan (savol_javob_tarixi) — qiyinlik
     darajasi (oson/o'rta/qiyin/murakkab) va javob turi (tugmali/yozma)
     bo'yicha qanchalik yaxshi ishlayotganini hisoblaydi. Kamida bir
     marta test yechilgan bo'lsa ishlaydi — hali hech narsa yo'q bo'lsa,
     bo'sh ro'yxatlar qaytadi."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
     _savol_javob_tarixi_tayyorla(cur)
@@ -8124,7 +8257,8 @@ def reaksiya_natija_saqla(sorov: ReaksiyaNatijaSorov):
 
 
 @app.get("/api/bola/{bola_id}/reaksiya_tarixi")
-def reaksiya_tarixi(bola_id: int):
+def reaksiya_tarixi(bola_id: int, request: Request):
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
     pass  # V19: DDL moved to startup migration.
@@ -8146,11 +8280,12 @@ def reaksiya_tarixi(bola_id: int):
 
 
 @app.get("/api/bola/{bola_id}/haftalik_xulosa")
-def haftalik_xulosa(bola_id: int):
+def haftalik_xulosa(bola_id: int, request: Request):
     """O'quvchi uchun oxirgi 7 kunlik xulosa — QAYSI mavzular ishlangan,
     o'rtacha ball, nechta YANGI mavzu o'rgangan, qaysilari qiyinlik
     qilgan, va nechta kun KETMA-KET mashq qilingan (streak). To'liq
     mavjud learned_topics ma'lumotidan hisoblanadi — AI shart emas."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
 
@@ -8212,11 +8347,12 @@ def haftalik_xulosa(bola_id: int):
 
 
 @app.get("/api/bola/{bola_id}/yol")
-def talim_yoli_oddiy(bola_id: int, fan: str):
+def talim_yoli_oddiy(bola_id: int, fan: str, request: Request):
     """Oddiy (majburiy) o'quv dasturi bo'yicha — o'quvchining O'Z SINFI
     (avtomatik aniqlanadi) va berilgan fan uchun BARCHA mavzularni
     ketma-ket, har biriga o'quvchining natijasi (score, agar hali
     yechmagan bo'lsa — yo'q) bilan qaytaradi."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
     cur.execute("SELECT class FROM users WHERE user_id=%s", (bola_id,))
@@ -8270,11 +8406,12 @@ def talim_yoli_oddiy(bola_id: int, fan: str):
 
 
 @app.get("/api/bola/{bola_id}/togarak_yoli/{togarak_id}")
-def talim_yoli_togarak(bola_id: int, togarak_id: int):
+def talim_yoli_togarak(bola_id: int, togarak_id: int, request: Request):
     """To'garakning O'ZIGA XOS ta'lim yo'li — faqat shu to'garakka
     biriktirilgan mavzular (togarak_mavzulari) bo'yicha. Bu — o'quvchi
     to'garakka QO'SHILGANDAGINA ko'rinadigan qo'shimcha statistika,
     oddiy sinf statistikasiga ARALASHMAYDI."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
     cur.execute("SELECT nomi, fan, sinf FROM togaraklar WHERE id=%s", (togarak_id,))
@@ -8321,9 +8458,10 @@ def talim_yoli_togarak(bola_id: int, togarak_id: int):
 
 
 @app.get("/api/bola/{bola_id}/togaraklarim")
-def bolaning_togaraklari(bola_id: int):
+def bolaning_togaraklari(bola_id: int, request: Request):
     """O'quvchi a'zo bo'lgan barcha faol to'garaklar ro'yxati — 'ta'lim
     yo'li' ekranida to'garak yo'lini alohida ko'rsatish uchun."""
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152
     conn = _db()
     cur = conn.cursor()
     cur.execute("""
@@ -8580,7 +8718,7 @@ def v2253_admin_sinov_rol_tokeni(
             "token": _jwt_korish_tokeni_yarat(admin_id, target_id, yozish=bool(yozish)),
             "user": {"user_id": target_id, "full_name": full_name, "rol": rol},
             "sinov_yaratildi": created,
-            "amal_muddati_daqiqa": 240 if yozish else 90,
+            "amal_muddati_daqiqa": 120 if yozish else 90,
             "read_only": not bool(yozish),
         }
     except Exception:
@@ -12696,11 +12834,11 @@ def davomat_royxati(token: str, sinf_id: int, sana: str):
 
 
 @app.get("/api/bola/{bola_id}/davomat_xulosa")
-def bola_davomat_xulosa(bola_id: int, token: str):
+def bola_davomat_xulosa(bola_id: int, request: Request, token: str = ""):
     """O'quvchi/ota-ona uchun — oxirgi 30 kunlik davomat xulosasi:
     necha kun keldi/kelmadi/kechikdi, va KETMA-KET necha kun
     kelmagani (ogohlantirish uchun muhim ko'rsatkich)."""
-    _jwt_tekshir(token)
+    _bolaga_korish_ruxsati(request, bola_id)   # REV152: token tekshirilib, bolaga aloqasi ham tekshiriladi
     conn = _db()
     cur = conn.cursor()
     _davomat_jadvali(cur)
@@ -13630,6 +13768,9 @@ def ai_sorash(sorov: AiSorash):
     user_id = _jwt_tekshir(sorov.token)
     if not sorov.savol.strip():
         raise HTTPException(status_code=400, detail="Savolni kiriting")
+    if len(sorov.savol) > 2000:
+        raise HTTPException(status_code=400, detail="Savol juda uzun (2000 belgigacha)")
+    _ai_limit(user_id, "sorash")
     conn = _db()
     cur = conn.cursor()
     _davomat_jadvali(cur)
@@ -13661,7 +13802,8 @@ def ai_sorash(sorov: AiSorash):
         javob.raise_for_status()
         matn = javob.json()["choices"][0]["message"]["content"]
     except Exception as e:
-        raise HTTPException(status_code=502, detail=f"AI javob berolmadi: {e}")
+        print(f"[AI-XATO] {type(e).__name__}: {str(e)[:300]}", flush=True)
+        raise HTTPException(status_code=502, detail="AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
 
     return {"javob": matn, "rol": rol}
 
@@ -17136,7 +17278,8 @@ def topik_fan_nomini_tahrirla(token: str, sinf: str, eski_fan: str, yangi_fan: s
         raise
     except Exception as exc:
         conn.rollback()
-        raise HTTPException(status_code=500, detail=f"Fan nomini saqlab bo'lmadi: {exc}")
+        print(f"[XATO] fan nomi: {exc!r}", flush=True)
+        raise HTTPException(status_code=500, detail="Fan nomini saqlab bo'lmadi")
     finally:
         cur.close()
         conn.close()
@@ -17274,7 +17417,8 @@ def topik_mavzu_nomini_tahrirla(token: str, topic_codes: str, yangi_mavzu: str, 
         raise
     except Exception as exc:
         conn.rollback()
-        raise HTTPException(status_code=500, detail=f"Mavzu nomini saqlab bo'lmadi: {exc}")
+        print(f"[XATO] mavzu nomi: {exc!r}", flush=True)
+        raise HTTPException(status_code=500, detail="Mavzu nomini saqlab bo'lmadi")
     finally:
         cur.close()
         conn.close()
@@ -21198,7 +21342,8 @@ def _ai_groq_json(tizim_promt, foydalanuvchi_promt, max_tokens=1200, temperature
     except HTTPException:
         raise
     except Exception as e:
-        raise HTTPException(status_code=502, detail=f"AI javob berolmadi: {e}")
+        print(f"[AI-XATO] {type(e).__name__}: {str(e)[:300]}", flush=True)
+        raise HTTPException(status_code=502, detail="AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
 
 
 def _ai_javobni_tozala(natija, manba_kodlari):
@@ -21506,6 +21651,7 @@ def ai_ustoz_sorash(sorov: AiUstozSorovi):
         raise HTTPException(status_code=400, detail="Savol yoki javobni yozing")
     if len(savol) > 4000:
         raise HTTPException(status_code=400, detail="Xabar juda uzun")
+    _ai_limit(user_id, "ustoz")
 
     conn = _db()
     cur = conn.cursor()
@@ -21893,6 +22039,7 @@ class AiOchiqDarsSorovi(BaseModel):
 def ai_ochiq_dars_yarat(sorov: AiOchiqDarsSorovi):
     """O'qituvchi uchun bazadagi bilimlardan metodik ochiq dars yaratadi."""
     user_id = _jwt_tekshir(sorov.token)
+    _ai_limit(user_id, "ochiq_dars")
     if not 30 <= sorov.davomiylik_daq <= 120:
         raise HTTPException(status_code=400, detail="Dars davomiyligi 30–120 daqiqa bo'lishi kerak")
     if not (sorov.fan or "").strip() or not (sorov.mavzu or "").strip():

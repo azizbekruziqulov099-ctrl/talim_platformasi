@@ -7,6 +7,9 @@ from test_curriculum_scope import HTTPException
 
 class SpeechTests(unittest.TestCase):
  def setUp(self):
+  import os;os.environ['SPEECH_READ_ENABLED']='1'   # REV152: o'qish standart holatda o'chiq; mantiqni sinash uchun yoqiladi
+  self.addCleanup(os.environ.pop,'SPEECH_READ_ENABLED',None)
+  for k in ('STT_DAQIQA','STT_KUNLIK','STT_IP_DAQIQA'):os.environ[k]='1000000';self.addCleanup(os.environ.pop,k,None)   # sinovda cheklov xalaqit bermasin
   path=Path(__file__).resolve().parents[1]/'modules/admin_speech.py'
   nodes=[n for n in ast.parse(path.read_text()).body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))]
   self.ns={'asyncio':asyncio,'hashlib':hashlib,'math':math,'re':re,'importlib':importlib,'APIRouter':Router,'HTTPException':HTTPException,'Request':object,'Response':lambda **kwargs:SimpleNamespace(**kwargs)}
@@ -50,3 +53,12 @@ class SpeechTests(unittest.TestCase):
   self.assertEqual(error.exception.status_code,503);self.assertEqual(self.cache,{})
 
 if __name__=='__main__':unittest.main()
+
+
+class Rev152ReadOff(unittest.TestCase):
+ def test_read_is_off_by_default(self):
+  import os
+  t=SpeechTests('test_upstream_failure_returns_readable_error');t.setUp();os.environ.pop('SPEECH_READ_ENABLED',None)
+  route=t.routes['/read']
+  with self.assertRaises(HTTPException) as e:asyncio.run(route({'text':'Matn'},'admin'))
+  self.assertEqual(e.exception.status_code,410)

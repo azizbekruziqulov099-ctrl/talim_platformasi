@@ -346,7 +346,8 @@ def extract_text(file_name, data, limit=200000):
                     tag = "si"
                 out = []
                 for n in parts:
-                    out.append(_xml_text(z.read(n).decode("utf-8", "ignore"), tag))
+                    with z.open(n) as qism:   # REV152: ochilgan hajm chegaralangan (zip-bomba)
+                        out.append(_xml_text(qism.read(8 * 1024 * 1024).decode("utf-8", "ignore"), tag))
                     if sum(len(x) for x in out) > limit:
                         break
                 return "\n".join(out)[:limit]

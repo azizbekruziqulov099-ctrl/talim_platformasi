@@ -352,3 +352,68 @@ async def _rev147_ochiq_config(request, call_next):
     if request.url.path == "/auth/config" and "access-control-allow-origin" not in response.headers:
         response.headers["Access-Control-Allow-Origin"] = "*"
     return response
+
+
+# ═══════════════════════════════════════════════════════════════════════════════════════════════════════════
+# REV152 (xavfsizlik): 1) so'rov hajmi chegarasi — katta fayl bilan serverni qotirib bo'lmaydi;
+# 2) qo'shilish kodlari (4 xonali sinf/guruh paroli, farzand kodi, kirish kodi) — taxmin qilib topishga
+#    urinishlar soni cheklanadi; 3) API hujjatlari (/docs) ishlab turgan saytda yopiq.
+# ═══════════════════════════════════════════════════════════════════════════════════════════════════════════
+import hashlib as _rev152_hash
+from fastapi.responses import JSONResponse as _Rev152Json
+from starlette.concurrency import run_in_threadpool as _rev152_thread
+from platform_core import limitlar as _rev152_limit
+
+_REV152_KATTA = ("/api/admin/", "/api/kurslar/")              # admin paketlari va kurs videolari (o'z chegarasi bor)
+_REV152_KOD_YOLLARI = (
+    "/api/oquvchi/sinfga_qoshil", "/api/talaba/guruhga_qoshil", "/api/talaba/muassasa_tekshir",
+    "/api/togarakka_qoshil", "/api/ota/farzand_boglash", "/api/oqituvchi/kirish_kodi_orqali_qoshil",
+    "/kirish_kodi_qabul", "/api/auth/telefon_kod_tasdiqla", "/api/rol_kod_tasdiqla", "/api/bellashuv/qoshil",
+    "/auth/ism_tekshir",
+)
+
+
+def _rev152_kod_yolimi(path: str) -> bool:
+    return any(path == p or path.endswith(p) for p in _REV152_KOD_YOLLARI)
+
+
+@app.middleware("http")
+async def _rev152_himoya(request, call_next):
+    path = request.url.path
+    if request.method in ("POST", "PUT", "PATCH"):
+        try:
+            hajm = int(request.headers.get("content-length") or 0)
+        except ValueError:
+            hajm = 0
+        chegara = (520 if path.startswith(_REV152_KATTA) else _rev152_limit.son("SOROV_MAX_MB", 45)) * 1024 * 1024
+        if hajm > chegara:
+            return _Rev152Json({"detail": f"So‘rov juda katta (eng ko‘pi {chegara // (1024 * 1024)} MB)"}, status_code=413)
+    if _rev152_kod_yolimi(path):
+        ip = _rev152_limit.ip_of(request)
+        tok = request.query_params.get("token") or request.headers.get("authorization") or ""
+        kim = _rev152_hash.sha256(tok.encode()).hexdigest()[:24] if tok else "anon:" + ip
+        try:
+            await _rev152_thread(_rev152_limit.sarfla, "kod:user", f"{path}|{kim}", 1,
+                                 _rev152_limit.son("KOD_URINISH_15DAQ", 10), 900,
+                                 "Juda ko‘p urinish. 15 daqiqadan keyin qayta urinib ko‘ring.")
+            await _rev152_thread(_rev152_limit.sarfla, "kod:ip", ip, 1,
+                                 _rev152_limit.son("KOD_IP_15DAQ", 60), 900,
+                                 "Bu tarmoqdan juda ko‘p urinish. 15 daqiqadan keyin qayta urinib ko‘ring.")
+        except Exception as exc:   # 429
+            status = getattr(exc, "status_code", 429)
+            return _Rev152Json({"detail": getattr(exc, "detail", "Juda ko‘p urinish")}, status_code=status,
+                               headers=getattr(exc, "headers", None) or {})
+    return await call_next(request)
+
+
+# API hujjatlari — faqat ishlab chiqishda (Railway'da yopiq): butun API xaritasi begonalarga ko'rinmasin.
+if (__import__("os").getenv("RAILWAY_ENVIRONMENT") or __import__("os").getenv("RAILWAY_PROJECT_ID")) \
+        and __import__("os").getenv("API_DOCS_OCHIQ", "") != "1":
+    try:
+        app.docs_url = None
+        app.redoc_url = None
+        app.openapi_url = None
+        app.router.routes[:] = [r for r in app.router.routes
+                                if getattr(r, "path", None) not in ("/docs", "/redoc", "/openapi.json", "/docs/oauth2-redirect")]
+    except Exception as _rev152_exc:   # pragma: no cover
+        print(f"[XAVFSIZLIK] /docs yopilmadi: {_rev152_exc!r}", flush=True)
