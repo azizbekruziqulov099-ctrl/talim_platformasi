@@ -108,6 +108,21 @@ def _first_sentence(text, limit=90):
     return cut if len(cut) <= limit else cut[: limit - 1].rstrip() + "…"
 
 
+def eng_yangi_kitob(units, topic_code):
+    """REV158: bir mavzuga kitob (AI miya) qayta yuklanganda eski nashrning ortiqcha qadamlari («…#S9»…«#S12»,
+    eski variant va testlar) yangisi bilan aralashib qolardi — dars boshida yangi, oxirida eski rasm va o'zbekcha gaplar.
+    Mavzu kodli («<topic>#…») birliklardan faqat ENG OXIRGI nashr qilingan kitobniki qoladi."""
+    pref = f"{topic_code}#"
+    own = [u for u in units if str(u.get("unit_code") or "").startswith(pref) and u.get("source_code")]
+    if not own:
+        return units
+    def vaqt(u):
+        v = u.get("published_at")
+        return v.timestamp() if hasattr(v, "timestamp") else 0
+    oxirgi = max(own, key=vaqt).get("source_code")
+    return [u for u in units if not (str(u.get("unit_code") or "").startswith(pref) and u.get("source_code") and u.get("source_code") != oxirgi)]
+
+
 def build_lesson(topic, units, media_url, extra_questions=()):
     """Sof funksiya: bazasiz sinash mumkin. units — nashr qilingan birliklar ro'yxati."""
     by_kind = {}
@@ -510,7 +525,7 @@ def create_router(platform):
                     topic.update(mavzu=_t(d["nom"]), fan=_t(d["subject_name"]), sinf=_t(d["grade"]))
 
             cur.execute(
-                """SELECT unit_code,unit_kind,title,body,payload,source_page,book_title,version_no
+                """SELECT unit_code,unit_kind,title,body,payload,source_page,book_title,version_no,source_code,published_at
                    FROM ai_brain_published_units WHERE topic_code=%s
                    ORDER BY unit_code,version_no DESC""",
                 (topic_code,),
@@ -521,6 +536,7 @@ def create_router(platform):
                     continue
                 seen.add(r["unit_code"])
                 units.append(dict(r))
+            units = eng_yangi_kitob(units, topic_code)
 
             media_url = media_resolver(cur, units)
 
@@ -529,8 +545,9 @@ def create_router(platform):
                 """SELECT id,question,option_a,option_b,option_c,option_d,correct_answer,explanation
                    FROM generated_tests
                    WHERE topic_code=%s AND COALESCE(question_type,'single_choice')='single_choice'
+                     AND (COALESCE(ai_brain_unit_code,'')='' OR ai_brain_unit_code=ANY(%s))
                    ORDER BY id LIMIT 12""",
-                (topic_code,),
+                (topic_code, [u["unit_code"] for u in units]),
             )
             for r in cur.fetchall():
                 options = filled_options([_t(r[k]) for k in ("option_a", "option_b", "option_c", "option_d")])

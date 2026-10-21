@@ -20219,6 +20219,23 @@ def _ai_brain_eski_nashrni_arxivla(cur, batch_id):
     restored = [r["unit_code"] for r in cur.fetchall()]
     if restored:
         _ai_brain_testlarga_otkaz(cur, batch_id, restored)
+    # REV158: kitob nomi/kodi o'zgargan yangi nashr (masalan bog'cha miyalari qayta yaratilgan) — eski kitobning SHU
+    # MAVZULARDAGI («<topic>#…») birliklari ham arxivlanadi. Aks holda eski darsning ortiqcha qadamlari, variantlari va
+    # testlari yangi dars bilan aralashib chiqardi.
+    cur.execute("SELECT DISTINCT topic_code FROM ai_brain_units WHERE batch_id=%s AND COALESCE(topic_code,'')<>''", (batch_id,))
+    topics = [r["topic_code"] for r in cur.fetchall()]
+    if topics:
+        cur.execute(
+            """UPDATE ai_brain_units u SET status='archived'
+               WHERE u.topic_code=ANY(%s) AND u.batch_id<>%s AND u.status='published'
+                 AND u.unit_code LIKE u.topic_code || '#%%' AND NOT (u.unit_code = ANY(%s))
+               RETURNING u.unit_code""",
+            (topics, batch_id, keep),
+        )
+        stale2 = [r["unit_code"] for r in cur.fetchall()]
+        if stale2:
+            cur.execute("DELETE FROM generated_tests WHERE ai_brain_unit_code=ANY(%s)", (stale2,))
+        stale += stale2
     return len(stale)
 
 
@@ -20736,17 +20753,68 @@ def _paket_oldin_ornatilgan(content):
         cur.close(); conn.close()
 
 
+def _paket_bogcha_scope(content, scope_id=0):
+    """REV158: Mavzular faylidagi sinf ustunida «… yosh» bo'lsa va tanlangan dastur bog'cha emas — Bog'cha umumiy katalogi id'si."""
+    import openpyxl
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True, read_only=True)
+        yosh = False
+        for ws in wb.worksheets:
+            rows = ws.iter_rows(values_only=True)
+            head = [_curriculum.text_key(v) if v else "" for v in next(rows, [])]
+            if "sinf" not in head:
+                continue
+            i = head.index("sinf")
+            for k, row in enumerate(rows):
+                if k > 50:
+                    break
+                if i < len(row) and re.search(r"\d\s*[-–]\s*\d\s*yosh", str(row[i] or ""), re.I):
+                    yosh = True
+                    break
+            if yosh:
+                break
+        if not yosh:
+            return scope_id
+        conn = _db(); cur = conn.cursor()
+        try:
+            scope = _curriculum.get_scope(cur, scope_id)
+            if scope.get("institution_type") == "bogcha":
+                return scope_id
+            cur.execute("SELECT id FROM curriculum_scopes WHERE scope_key='kindergarten-common'")
+            row = cur.fetchone()
+            conn.commit()
+            return row["id"] if row else scope_id
+        finally:
+            cur.close(); conn.close()
+    except Exception:
+        return scope_id
+
+
 def _paket_ishla(content, name, turi, scope_id, user_id, token):
     """Bitta fayl: mavzular → Mavzular importi; miya → tekshirish + import + nashr. Natija — {ok, xabar, ...}."""
     try:
         if turi == "mavzu":
+            # REV158: bog'cha Mavzular fayli («2-3 yosh») admin panelda Maktab dasturi tanlangan bo'lsa ham
+            # o'zi Bog'cha umumiy katalogiga yoziladi (oldin «1–11-sinfni tanlang» xatosi bilan hech narsa saqlanmasdi)
+            scope_id = _paket_bogcha_scope(content, scope_id)
             r = _topik_import_content(content, scope_id)
             return {"ok": True, "xabar": f"Mavzular: {r['added']} ta yangi, {r['updated']} ta yangilandi, {r['mavjud']} ta oldin bor edi",
                     "added": r["added"], "updated": r["updated"], "mavjud": r["mavjud"]}
         if turi == "miya":
             oldin = _paket_oldin_ornatilgan(content)
             if oldin:   # aynan shu fayl avval nashr qilingan — qayta ishlash shart emas
-                return {"ok": True, "batch_id": oldin, "oldin": True, "xabar": "Oldin o'rnatilgan, o'zgarmagan — o'tkazildi"}
+                # REV158: lekin eski kitobning shu mavzulardagi ortiqcha birliklari bo'lsa — endi tozalanadi
+                tozalandi = 0
+                conn = _db(); cur = conn.cursor()
+                try:
+                    tozalandi = _ai_brain_eski_nashrni_arxivla(cur, oldin)
+                    conn.commit()
+                except Exception:
+                    conn.rollback()
+                finally:
+                    cur.close(); conn.close()
+                return {"ok": True, "batch_id": oldin, "oldin": True, "xabar": "Oldin o'rnatilgan, o'zgarmagan — o'tkazildi"
+                        + (f"; eski darslardan {tozalandi} ta ortiqcha qism olib tashlandi" if tozalandi else "")}
             t = _ai_miya_tekshir_content(content, name, user_id)
             s = t.get("summary") or {}
             if not t.get("tayyor"):
