@@ -21,7 +21,7 @@ def test_translation_complete(lang):
 @pytest.mark.parametrize("lang", sorted(LANGS))
 def test_language_books_build_like_english(lang):
     books = build_books([ROOT / f"{lang}_{a}.json" for a in ("34", "45", "56", "67")])
-    assert [b["immersion"] for b in books] == [1, 2, 3, 4]
+    assert [b["immersion"] for b in books] == [1, 4, 4, 4]   # REV157: 4 yoshdan dars to'liq shu tilda
     for book in books:
         text = json.dumps(book, ensure_ascii=False)
         assert "[en]" not in text and f"[{lang}]" in text

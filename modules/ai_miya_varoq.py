@@ -312,7 +312,11 @@ def parse_sheets(wb, media_names=None, max_images=500):
             if kind == "xulosa":
                 board = c.get("doska") or text
                 if board:
-                    add_step(row, "xulosa", board, ("Esda tut: " + text)[:MAX_VOICE], title or "Esda tut")
+                    # REV157: xulosa butunlay boshqa tilda («[de]Super! Heute …[/de]») bo'lsa — o'zbekcha «Esda tut:» qo'shilmaydi
+                    # (bog'cha 4–7 yosh darsi to'liq o'rganilayotgan tilda; rus/ingliz izohli kitoblar ham shunday)
+                    tashqi = re.sub(r"\[(\w\w)\][\s\S]*?\[/\1\]", "", text)
+                    toliq_teg = bool(text.strip()) and text.strip() != tashqi.strip() and not re.search(r"[^\W\d_]", tashqi)
+                    add_step(row, "xulosa", board, (text if toliq_teg else "Esda tut: " + text)[:MAX_VOICE], title or "Esda tut")
                 continue
             if kind == "tushuncha":
                 if not text and not c.get("doska"):
@@ -387,6 +391,10 @@ def parse_sheets(wb, media_names=None, max_images=500):
             intro = words[kind]
             lead = f"{intro}: {title}." if title else f"{intro}."
             voice = (f"[{til}]{lead}[/{til}] " if til in ("ru", "en") else lead + " ")
+            if "yosh" in str(book.get("sinf", "")).lower():
+                # REV157: bog'cha — «Endi amaliy topshiriq: <nom>» aytilmaydi: 4–7 yoshda dars to'liq o'rganilayotgan
+                # tilda, izoh tilidagi kirish gapi aralashib qolardi; topshiriq matnining o'zi o'qiladi
+                voice = ""
             voice += (text + " ") if len(text) <= 600 else words["read"] + " "
             if "yosh" not in str(book.get("sinf", "")).lower():   # REV95: bog'cha bolasiga «yechimni ochasiz» demaymiz
                 voice += f"[{til}]{words['try']}[/{til}]" if til in ("ru", "en") else words["try"]

@@ -132,7 +132,11 @@ def validate(cur):
         raise BookError("\n".join(errors[:40]))
 
 
-IMMERSION = {"2-3 yosh": 1, "3-4 yosh": 1, "4-5 yosh": 2, "5-6 yosh": 3, "6-7 yosh": 4}
+# REV157: foydalanuvchi qoidasi — 2–3 / 3–4 yosh: tushuntirish izoh tilida, har chet so'zga tarjima (1-pog'ona);
+# 4–5 / 5–6 yosh: dars TO'LIQ o'rganilayotgan tilda, faqat yangi so'z birinchi chiqqanda bir marta tarjimasi;
+# 6–7 yosh: to'liq o'rganilayotgan tilda (tarjimasiz — rasm va vaziyat orqali). «Tushunmadim» (sodda) — izoh tilida.
+IMMERSION = {"2-3 yosh": 1, "3-4 yosh": 1, "4-5 yosh": 4, "5-6 yosh": 4, "6-7 yosh": 4}
+BIR_TARJIMA = {"4-5 yosh", "5-6 yosh"}
 # Sinf tili (classroom language) — immersiya pog'onalarida ishlatiladi. Boshqa tillar keyin qo'shiladi.
 CLASS = {
     "en": {
@@ -296,7 +300,9 @@ class Builder:
                 for les in unit.get("lessons") or []:
                     for it in les.get("items") or []:
                         it["say"] = self.UZ(it["say"], "nom")
-        self.base_level = int(cur.get("immersion") or IMMERSION.get(self.age, 1)) if self.lang else 0
+        # REV157: kitobdagi eski «immersion» (masalan 45y da 3) yangi qoidadan past bo'lsa — yangi qoida ustun
+        self.base_level = max(int(cur.get("immersion") or 0), IMMERSION.get(self.age, 1)) if self.lang else 0
+        self.bir_tarjima = bool(self.lang) and self.age in BIR_TARJIMA
         self.level = self.base_level
         # Sinf tili iboralari: kitobning o'z tarjimasi (cur["class"]) → til lug'ati → ingliz tili.
         self.C = {**CLASS["en"], **CLASS.get(self.lang or "", {}), **(cur.get("class") or {})}
@@ -402,7 +408,7 @@ class Builder:
 
     @staticmethod
     def bare(text):
-        return re.sub(r"[.!?…。！？؟]+$", "", _clean(text))
+        return re.sub(r"[.!?…。！？؟]+$", "", _clean(text)).strip()
 
     # ── matnlar ──
     def item_voice(self, it, n):
@@ -416,10 +422,16 @@ class Builder:
         sent = _sentence(it.get("sentence") or "")
         act_en = _sentence(it.get("action_en") or "")
         if self.level >= 4:
-            forms = [f"{C['look']} {say} {sent} {C['your_turn']} {C['say']} {say} {C['one_more']} {say} {act_en}",
-                     f"{C['listen_short']} {say} {sent} {C['now_you_short']} {say} {C['again']} {say} {act_en}",
-                     f"{C['look_listen']} {say} {sent} {C['repeat_me']} {say} {act_en} {self.good()}"]
-            return self.E(forms[n % len(forms)])
+            forms = [(f"{C['look']} {say}", f"{sent} {C['your_turn']} {C['say']} {say} {C['one_more']} {say} {act_en}"),
+                     (f"{C['listen_short']} {say}", f"{sent} {C['now_you_short']} {say} {C['again']} {say} {act_en}"),
+                     (f"{C['look_listen']} {say}", f"{sent} {C['repeat_me']} {say} {act_en} {self.good()}")]
+            bosh, oxir = forms[n % len(forms)]
+            if self.bir_tarjima and it.get("uz"):
+                # yangi so'z — tarjimasi faqat shu yerda, bir marta (takror, o'yin va testda tarjima yo'q)
+                uz = str(it["uz"]).strip()
+                nuqta = "" if re.search(r"[.!?…]$", uz) else "."
+                return self.t(f"{self.E(bosh)} — {self.UZ(uz)}{nuqta} {self.E(oxir)}")
+            return self.E(f"{bosh} {oxir}")
         if self.level == 3:
             forms = [f"{C['look']} {say} {sent} {C['listen']} {say} {C['again']} {say} {act_en}",
                      f"{C['listen_short']} {say} {sent} {C['repeat_me']} {say} {act_en} {self.good()}"]
@@ -534,7 +546,13 @@ class Builder:
         return text if self.izoh == "uz" else pic + word
 
     def author_test(self, t):
+        # REV157: 4–7 yosh — savol izoh tilida bo'lib qolmasin: inglizcha/chet tilidagi varianti yo'q muallif testi
+        # tashlanadi (o'rniga o'rganilayotgan tildagi avto testlar bor)
+        if self.lang and self.level >= 4 and not t.get("q_en"):
+            return None
         opts = [self.tag_option(o) for o in t["options"]]
+        if self.lang and self.level >= 4 and any(re.sub(r"[^\w]", "", o) and f"[{self.lang}]" not in o for o in opts):
+            return None   # REV157: variantlardan biri izoh tilida — 4–7 yoshda bunday test yo'q
         correct = opts[t["answer"]]
         others = [o for i, o in enumerate(opts) if i != t["answer"]]
         q = self.TX(t["q"])
@@ -545,9 +563,11 @@ class Builder:
             if t.get("why_en"):
                 why = self.E(t["why_en"])
             elif self.level >= 4:
-                answer = re.sub(r"^[^A-Za-z]+", "", _clean(correct))
-                if answer and re.fullmatch(r"[A-Za-z0-9 ,.'!?’-]+", answer):
+                answer = re.sub(r"^[^\w]+", "", re.sub(r"\[/?[a-z]{2}\]", "", _clean(correct)))
+                if answer:   # REV157: har qanday yozuvda (kirill, arab, xitoy…) — izoh o'rganilayotgan tilda
                     why = self.E(self.C["yes"].format(w=_sentence(answer)))
+                else:
+                    why = self.E(self.good())
         return self.make_test(q, correct, others, why, kind="author")
 
     def reverse_test(self, it):
@@ -606,6 +626,14 @@ class Builder:
         return rows
 
     def intro_text(self, lesson, default_uz):
+        if self.lang and self.level >= 4 and not lesson.get("intro_en"):
+            # REV157: 4–7 yosh — kirish o'rganilayotgan tilda: «Смотри и слушай: Привет, Спасибо…»
+            its = (lesson.get("items") or [])[:5]
+            toliq = [it for it in its if not str(it["say"]).rstrip().endswith(("…", "..."))] or its   # «Ich heiße …» — chala gap sanalmaydi
+            names = ", ".join(self.bare(it["say"]) for it in toliq)
+            if len(toliq) == 1:
+                return self.E(f"{self.C['look_listen']} {_sentence(toliq[0]['say'])}")
+            return self.E(f"{self.C['look_listen']} {names}." if names else self.C["look_listen"])
         intro = self.TX(lesson.get("intro"))
         if self.lang and self.level >= 3 and lesson.get("intro_en"):
             return self.E(lesson["intro_en"])
@@ -683,6 +711,13 @@ class Builder:
                 out["sodda"] = out["sodda"] or out["matn"]
                 out["matn"] = self.E(row["matn_en"])
                 out["sarlavha"] = row.get("sarlavha_en") or out["sarlavha"]
+            elif self.lang and self.level >= 4:
+                # REV157: chet tilidagi varianti yo'q faoliyat — ovozda faqat o'rganilayotgan til (o'yin iborasi +
+                # matndagi chet so'zlari); izoh tilidagi to'liq tushuntirish «Tushunmadim» tugmasida
+                parts = re.findall(r"\[(\w\w)\]([\s\S]*?)\[/\1\]", out.get("matn") or "")
+                said = " ".join(p[1].strip() for p in parts if p[0] == self.lang and p[1].strip())
+                out["sodda"] = out["sodda"] or out["matn"]
+                out["matn"] = self.E(f"{self.C['play']} {said} {self.good()}".strip())
             rows.append(out)
         # O'yin: yangi so'zlar + bitta eski — «top-chi»
         game_items = items + ([self.rng.choice(self.pool)] if self.pool else [])
@@ -879,11 +914,12 @@ class Builder:
 
     def build(self):
         if self.previous and self.lang:
-            self.level = max(1, self.base_level - 1)
+            self.level = self.base_level if self.base_level >= 4 else max(1, self.base_level - 1)
             self.previous_year()
         for unit_no, unit in enumerate(self.cur["units"], 1):
             # birinchi bo'lim — o'tish davri: bir pog'ona yengilroq (bola asta-sekin inglizchaga o'tadi)
-            self.level = max(1, self.base_level - 1) if unit_no == 1 and self.base_level >= 3 else self.base_level
+            # REV157: 4–7 yoshda o'tish davri yo'q — birinchi bo'limdan to'liq o'rganilayotgan tilda
+            self.level = max(1, self.base_level - 1) if unit_no == 1 and self.base_level == 3 else self.base_level
             start = len(self.lesson_items)
             for lesson in unit["lessons"]:
                 self.lesson(unit_no, unit, lesson)

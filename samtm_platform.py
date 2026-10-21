@@ -2564,8 +2564,8 @@ _TIL_OVOZLARI = {
 # edge-tts'ni yangidan kutmaymiz; hajm cheklovi servis xotirasini himoya qiladi.
 _OVOZ_KESH = OrderedDict()
 _OVOZ_KESH_JAMI_BAYT = 0
-_OVOZ_KESH_MAX_ELEMENT = 96
-_OVOZ_KESH_MAX_BAYT = 48 * 1024 * 1024
+_OVOZ_KESH_MAX_ELEMENT = int(os.environ.get("OVOZ_KESH_ELEMENT", "600") or 600)   # REV157: ko'p bola — kattaroq xotira keshi
+_OVOZ_KESH_MAX_BAYT = int(os.environ.get("OVOZ_KESH_MB", "96") or 96) * 1024 * 1024
 
 
 def _ovoz_keshdan_ol(kalit: str):
@@ -3119,11 +3119,17 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     kesh_kaliti = hashlib.sha256(
         f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
     ).hexdigest()
+    # REV157 (100 ming foydalanuvchi): ovoz faqat matn+sozlamaga bog'liq, foydalanuvchiga xos emas — brauzer va
+    # CDN uni uzoq saqlaydi (bir xil dars ovozini 100 ming bola qayta so'rasa ham server qayta yaratmaydi).
+    # Yangi yaratilayotgan (oqim) javob — qisqa muddat: u chala bo'lib qolishi mumkin.
     kesh_sarlavhalari = {
-        "Cache-Control": "private, max-age=86400, stale-while-revalidate=604800",
+        "Cache-Control": "public, max-age=31536000, immutable",
         "ETag": f'"{kesh_kaliti}"',
         "X-Content-Type-Options": "nosniff",
+        "Cross-Origin-Resource-Policy": "cross-origin",
     }
+    if request.headers.get("if-none-match", "").strip() in (f'"{kesh_kaliti}"', f'W/"{kesh_kaliti}"'):
+        return Response(status_code=304, headers=kesh_sarlavhalari)
     keshdagi_audio = _ovoz_keshdan_ol(kesh_kaliti)
     if keshdagi_audio is None:
         keshdagi_audio = await run_in_threadpool(_ovoz_bazadan_ol, kesh_kaliti)
@@ -3199,7 +3205,7 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     return StreamingResponse(
         oqim_va_kesh(),
         media_type="audio/mpeg",
-        headers={**kesh_sarlavhalari, "X-SamTM-Voice": "stream-miss"},
+        headers={**kesh_sarlavhalari, "Cache-Control": "public, max-age=600", "X-SamTM-Voice": "stream-miss"},
     )
 
 

@@ -42,7 +42,8 @@ def test_enrich_files_cover_every_lesson_and_unit():
 
 
 def test_immersion_levels_grow_with_age(books):
-    assert [books[a]["immersion"] for a in AGES] == [1, 2, 3, 4]
+    # REV157: 3–4 yosh — izoh bilan; 4 yoshdan — dars to'liq o'rganilayotgan tilda
+    assert [books[a]["immersion"] for a in AGES] == [1, 4, 4, 4]
     # 3–4 yosh: tushuntirish o'zbekcha
     first = next(t for t in books["34"]["topics"] if t["name"] not in ("O'tgan yilni eslaymiz",))
     concept = next(r for r in first["rows"] if r["turi"] == "tushuncha")
@@ -52,9 +53,9 @@ def test_immersion_levels_grow_with_age(books):
     rows = [r for t in unit2 for r in t["rows"] if r["turi"] == "tushuncha" and not r["sarlavha"].startswith("🔁")]
     assert rows and all(outside_tags(r["matn"]) == "" for r in rows)
     assert all(r["sodda"] for r in rows)  # o'zbekcha yordam «Tushunmadim» tugmasida
-    # 4–5 yosh: o'zbekcha ichida inglizcha sinf buyruqlari
-    concepts45 = [r["matn"] for t in books["45"]["topics"] for r in t["rows"] if r["turi"] == "tushuncha"]
-    assert any("[en]Look![/en]" in m or "[en]Listen" in m for m in concepts45)
+    # 4–5 yosh: tushuntirish ham inglizcha; o'zbekcha faqat yangi so'z birinchi chiqqanda tarjimasi («— salom»)
+    concepts45 = [r for t in books["45"]["topics"][1:] for r in t["rows"] if r["turi"] == "tushuncha" and not r["sarlavha"].startswith("🔁")]
+    assert concepts45 and all(len(outside_tags(r["matn"]).split()) <= 5 for r in concepts45)
 
 
 def test_scenarios_previous_year_and_images(books):
