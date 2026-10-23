@@ -19,6 +19,11 @@ MANUAL_NOTICE = (
     "To‘lov bu sahifada yechilmaydi. To‘lovni ustoz bilan kelishib amalga oshiring; "
     "ustoz tushgan pulni tekshirib tasdiqlagach, kurs 30 kunga ochiladi."
 )
+# REV158: o'qituvchi rekvizitlari — o'quvchi Click havolasi, Paynet yoki karta o'tkazmasi orqali to'g'ridan-to'g'ri
+# o'qituvchining hisobiga to'laydi (sayt pulni ushlamaydi), keyin chek raqamini yuboradi, o'qituvchi tasdiqlaydi.
+METHODS = ("click", "paynet", "karta")
+CLICK_HOSTS = ("click.uz", "my.click.uz", "indoor.click.uz", "business.click.uz")
+PAYNET_HOSTS = ("paynet.uz", "app.paynet.uz", "pay.paynet.uz")
 
 
 def _integer(value, label, minimum=1, maximum=9_223_372_036_854_775_807):
@@ -55,6 +60,66 @@ def _text(value, label, maximum, required=False):
     return value
 
 
+def _luhn(digits):
+    total = 0
+    for i, ch in enumerate(reversed(digits)):
+        d = int(ch)
+        if i % 2:
+            d = d * 2 - 9 if d > 4 else d * 2
+        total += d
+    return total % 10 == 0
+
+
+def _https_link(value, hosts, label):
+    from urllib.parse import urlparse
+    value = (value or "").strip()
+    if not value:
+        return ""
+    if len(value) > 500:
+        raise HTTPException(422, f"{label} havolasi juda uzun")
+    u = urlparse(value)
+    host = (u.hostname or "").lower()
+    if u.scheme != "https" or not any(host == h or host.endswith("." + h) for h in hosts):
+        raise HTTPException(422, f"{label} havolasi https:// bilan va {hosts[0]} saytidan bo‘lishi kerak")
+    return value
+
+
+def payment_details_clean(body):
+    """O'qituvchi kiritgan rekvizitlarni tekshiradi. Karta — 16 raqam (Luhn), Uzcard/Humo/Visa/Mastercard."""
+    if not isinstance(body, dict):
+        raise HTTPException(422, "Ma’lumot noto‘g‘ri")
+    click_url = _https_link(body.get("click_url"), CLICK_HOSTS, "Click")
+    paynet = (body.get("paynet") or "").strip()
+    if paynet.lower().startswith("http"):
+        paynet = _https_link(paynet, PAYNET_HOSTS, "Paynet")
+    elif paynet:
+        if len(paynet) > 120 or any(ord(ch) < 32 for ch in paynet):
+            raise HTTPException(422, "Paynet: telefon yoki hamyon raqamini qisqa yozing (120 belgigacha)")
+    card = re.sub(r"[\s-]", "", str(body.get("card_number") or ""))
+    if card:
+        if not re.fullmatch(r"\d{16}", card) or not _luhn(card):
+            raise HTTPException(422, "Karta raqami noto‘g‘ri: 16 ta raqam bo‘lishi kerak")
+        if not card.startswith(("8600", "5614", "9860", "4", "5", "2")):
+            raise HTTPException(422, "Faqat Uzcard, Humo, Visa yoki Mastercard karta raqami")
+    holder = (body.get("card_holder") or "").strip()
+    if len(holder) > 80 or any(ord(ch) < 32 for ch in holder):
+        raise HTTPException(422, "Karta egasining ismi 80 belgigacha")
+    if card and not holder:
+        raise HTTPException(422, "Karta egasining ism-familiyasini yozing (o‘quvchi to‘g‘ri kartaga o‘tkazsin)")
+    note = (body.get("note") or "").strip()
+    if len(note) > 500 or any(ord(ch) < 32 and ch not in "\n\r\t" for ch in note):
+        raise HTTPException(422, "Izoh 500 belgigacha")
+    return {"click_url": click_url, "paynet": paynet, "card_number": card, "card_holder": holder, "note": note}
+
+
+def details_view(row):
+    if not row:
+        return {"click_url": "", "paynet": "", "card_number": "", "card_holder": "", "note": "", "methods": []}
+    out = {k: row.get(k) or "" for k in ("click_url", "paynet", "card_number", "card_holder", "note")}
+    out["methods"] = [m for m, k in (("click", "click_url"), ("paynet", "paynet"), ("karta", "card_number")) if out[k]]
+    return out
+
+
 def _confirmation(body):
     if not isinstance(body, dict) or body.get("confirmation") is not True:
         raise HTTPException(422, "Pul haqiqatan tushganini tekshirganingizni tasdiqlang")
@@ -65,7 +130,7 @@ def _iso(value):
 
 
 def _request(row):
-    fields = ("id", "course_id", "user_id", "user_name", "amount_uzs", "reference", "note",
+    fields = ("id", "course_id", "user_id", "user_name", "amount_uzs", "reference", "note", "method",
               "status", "decision_note", "confirmed_by", "order_id", "created_at", "decided_at", "expires_at")
     result = {key: _iso(row.get(key)) for key in fields if key in row}
     result["period_days"] = PERIOD_DAYS
@@ -149,6 +214,17 @@ class ManualPaymentService:
                     ON academy_orders(course_id,id DESC)""")
                 cur.execute("""CREATE INDEX IF NOT EXISTS academy_orders_user_course_idx
                     ON academy_orders(user_id,course_id,id DESC)""")
+                # REV158: o'qituvchining to'lov rekvizitlari va o'quvchi tanlagan to'lov usuli
+                cur.execute("""CREATE TABLE IF NOT EXISTS academy_payment_details (
+                    teacher_id BIGINT PRIMARY KEY REFERENCES users(user_id),
+                    click_url TEXT NOT NULL DEFAULT '',
+                    paynet TEXT NOT NULL DEFAULT '',
+                    card_number TEXT NOT NULL DEFAULT '',
+                    card_holder TEXT NOT NULL DEFAULT '',
+                    note TEXT NOT NULL DEFAULT '',
+                    updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+                )""")
+                cur.execute("ALTER TABLE academy_payment_requests ADD COLUMN IF NOT EXISTS method TEXT NOT NULL DEFAULT ''")
             self._ready = True
 
     def _locked_course(self, cur, course_id, uid=None, owner=False):
@@ -183,6 +259,9 @@ class ManualPaymentService:
         key = _key(body.get("request_key"))
         reference = _text(body.get("reference", ""), "Chek raqami yoki izoh", 120, True)
         note = _text(body.get("note", ""), "Qo‘shimcha izoh", 1000)
+        method = body.get("method") or ""
+        if method not in ("",) + METHODS:
+            raise HTTPException(422, "To‘lov usuli noto‘g‘ri")
         with self.service.db() as cur:
             course = self._locked_course(cur, course_id)
             self._expire(cur, course_id)
@@ -207,8 +286,8 @@ class ManualPaymentService:
             if cur.fetchone():
                 raise HTTPException(409, "Bu to‘lov avval hisobga olingan")
             cur.execute("""INSERT INTO academy_payment_requests
-                (course_id,user_id,amount_uzs,reference,note,request_key)
-                VALUES(%s,%s,%s,%s,%s,%s) RETURNING *""", (course_id, uid, amount, reference, note, key))
+                (course_id,user_id,amount_uzs,reference,note,request_key,method)
+                VALUES(%s,%s,%s,%s,%s,%s,%s) RETURNING *""", (course_id, uid, amount, reference, note, key, method))
             return {"payment_request": _request(cur.fetchone()), "notice": MANUAL_NOTICE}
 
     def _grant(self, cur, course, recipient, amount, reference, owner, key, source, request_id=None):
@@ -374,6 +453,54 @@ class ManualPaymentService:
             items = [_order(row) for row in rows[:limit]]
             return {"items": items, "next_cursor": int(items[-1]["id"]) if len(rows) > limit else None}
 
+    def my_details(self, authorization):
+        uid = self.service.actor(authorization)
+        with self.service.db() as cur:
+            cur.execute("SELECT * FROM academy_payment_details WHERE teacher_id=%s", (uid,))
+            return details_view(cur.fetchone())
+
+    def save_details(self, authorization, body):
+        uid = self.service.actor(authorization)
+        data = payment_details_clean(body)
+        with self.service.db() as cur:
+            if not self.service.can_teach(cur, uid):
+                raise HTTPException(403, "To‘lov rekvizitlarini faqat o‘qituvchi kiritadi")
+            cur.execute("""INSERT INTO academy_payment_details(teacher_id,click_url,paynet,card_number,card_holder,note)
+                VALUES(%s,%s,%s,%s,%s,%s)
+                ON CONFLICT(teacher_id) DO UPDATE SET click_url=EXCLUDED.click_url,paynet=EXCLUDED.paynet,
+                  card_number=EXCLUDED.card_number,card_holder=EXCLUDED.card_holder,note=EXCLUDED.note,
+                  updated_at=CURRENT_TIMESTAMP RETURNING *""",
+                        (uid, data["click_url"], data["paynet"], data["card_number"], data["card_holder"], data["note"]))
+            return details_view(cur.fetchone())
+
+    def course_details(self, authorization, course_id):
+        """O'quvchi uchun: kurs narxi va o'qituvchining to'lov usullari (faqat tizimga kirganlarga)."""
+        self.service.actor(authorization)
+        with self.service.db() as cur:
+            course = self.service.course(cur, course_id)
+            price = self._paid_course(course)
+            cur.execute("SELECT * FROM academy_payment_details WHERE teacher_id=%s", (course["teacher_id"],))
+            out = details_view(cur.fetchone())
+            # REV160: sayt administratori kursi va Click kalitlari Railway'da qo'yilgan — Click AVTOMATIK
+            # (to'lov o'tishi bilan kurs o'zi ochiladi, qo'lda tasdiqlash kerak emas)
+            try:
+                from modules.click_tolov import sozlama as _click
+                from modules.payme_tolov import sozlama as _payme
+            except ImportError:   # paket sifatida ishga tushganda
+                from .click_tolov import sozlama as _click
+                from .payme_tolov import sozlama as _payme
+            cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (course["teacher_id"],))
+            admin = bool(cur.fetchone())
+            out["click_avto"] = bool(_click()["yoqilgan"] and admin)
+            out["payme_avto"] = bool(_payme()["yoqilgan"] and admin)   # REV161
+            if out["click_avto"] and "click" not in out["methods"]:
+                out["methods"] = ["click"] + out["methods"]
+            if out["payme_avto"]:
+                out["methods"] = [m for m in out["methods"] if m == "click"] + ["payme"] + [m for m in out["methods"] if m != "click"]
+            out["amount_uzs"] = price
+            out["period_days"] = PERIOD_DAYS
+            return out
+
     def order(self, authorization, order_id):
         uid = self.service.actor(authorization)
         _integer(order_id, "To‘lov qaydi raqami")
@@ -424,6 +551,18 @@ def register_payments(app, service):
     @router.post("/courses/{course_id}/payments")
     def record(course_id: int, body: dict = Body(...), authorization: str = Header(default="")):
         return payments.record(authorization, course_id, body)
+
+    @router.get("/payment-details")
+    def my_details(authorization: str = Header(default="")):
+        return payments.my_details(authorization)
+
+    @router.put("/payment-details")
+    def save_details(body: dict = Body(...), authorization: str = Header(default="")):
+        return payments.save_details(authorization, body)
+
+    @router.get("/courses/{course_id}/payment-details")
+    def course_details(course_id: int, authorization: str = Header(default="")):
+        return payments.course_details(authorization, course_id)
 
     @router.get("/orders/{order_id}")
     def order(order_id: int, authorization: str = Header(default="")):

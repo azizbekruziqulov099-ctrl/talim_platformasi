@@ -162,6 +162,29 @@ academy_payment_service = register_payments(app, academy_service)
 app.router.add_event_handler("startup", academy_service.migrate)
 app.router.add_event_handler("startup", academy_media_service.migrate)
 app.router.add_event_handler("startup", academy_payment_service.migrate)
+# REV160: Click SHOP-API — pulli kursga avtomatik to'lov (kalitlar faqat Railway Variables'da)
+if __package__:
+    from .modules.click_tolov import register_click
+else:
+    from modules.click_tolov import register_click
+click_service = register_click(app, academy_service, academy_payment_service)
+app.router.add_event_handler("startup", click_service.migrate)
+# REV161: Payme Merchant API — o'sha buyurtma kodi bilan (kalitlar faqat Railway Variables'da)
+if __package__:
+    from .modules.payme_tolov import register_payme
+else:
+    from modules.payme_tolov import register_payme
+payme_service = register_payme(app, academy_service, academy_payment_service, click_service)
+app.router.add_event_handler("startup", payme_service.migrate)
+# REV162: bog'cha — aqlli haftalik reja, tariflar (narx qulfi), ota-ona obunasi va rozilik (Click/Payme bilan)
+try:
+    if __package__:
+        from .modules.bogcha_reja import create_router as create_bogcha_reja_router
+    else:
+        from modules.bogcha_reja import create_router as create_bogcha_reja_router
+    app.include_router(create_bogcha_reja_router(samtm_platform, click_service))
+except Exception as _bogcha_xato:   # pragma: no cover — bo'lim ishlamasa ham server to'xtamaydi
+    print(f"[STARTUP-WARNING] bogcha_reja yuklanmadi: {_bogcha_xato!r}", flush=True)
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:

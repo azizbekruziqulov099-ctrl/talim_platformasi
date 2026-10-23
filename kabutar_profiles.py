@@ -28,6 +28,8 @@ MAX_PROFILES = 10
 PROFILE_ROLES = ('bogcha', 'oquvchi', 'talaba')
 ROLE_LABELS = {'bogcha': 'Bog‘cha bolasi', 'oquvchi': 'O‘quvchi', 'talaba': 'Talaba'}
 LANGUAGES = ('uz', 'ru', 'en', 'tj', 'kk', 'kz')
+# REV162: profil kim — ota-ona aniq belgilaydi (ro'yxatda va hisobotlarda shu yoziladi)
+RELATIONS = ('farzandim', 'ikkinchi', 'oquvchim', 'boshqa')
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS kabutar_family_profiles (
@@ -38,7 +40,22 @@ CREATE TABLE IF NOT EXISTS kabutar_family_profiles (
 );
 ALTER TABLE users ADD COLUMN IF NOT EXISTS profil_rasm BYTEA;
 CREATE INDEX IF NOT EXISTS kabutar_family_profiles_owner ON kabutar_family_profiles(owner_user_id) WHERE removed_at IS NULL;
+CREATE TABLE IF NOT EXISTS kabutar_profile_device_codes (
+ code_hash TEXT PRIMARY KEY,
+ profile_user_id BIGINT NOT NULL REFERENCES users(user_id),
+ owner_user_id BIGINT NOT NULL REFERENCES users(user_id),
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ expires_at TIMESTAMPTZ NOT NULL,
+ used_at TIMESTAMPTZ
+);
+CREATE INDEX IF NOT EXISTS kabutar_profile_device_codes_profile ON kabutar_profile_device_codes(profile_user_id);
 """
+DEVICE_CODE_MINUTES = 15
+
+
+def _code_hash(code):
+    import hashlib
+    return hashlib.sha256(('kabutar-bola-kodi:' + str(code)).encode()).hexdigest()
 
 
 def _scope():
@@ -56,6 +73,7 @@ class ProfileCreate(BaseModel):
     age_group: Optional[str] = Field(default=None, max_length=20)
     grade: Optional[int] = Field(default=None, ge=1, le=11)
     language: Optional[str] = Field(default=None, max_length=4)
+    relation: Optional[str] = Field(default=None, max_length=20)
 
 
 class ProfileUpdate(BaseModel):
@@ -65,14 +83,17 @@ class ProfileUpdate(BaseModel):
     age_group: Optional[str] = Field(default=None, max_length=20)
     grade: Optional[int] = Field(default=None, ge=1, le=11)
     language: Optional[str] = Field(default=None, max_length=4)
+    relation: Optional[str] = Field(default=None, max_length=20)
 
 
-def build_learning(role, age=None, age_group=None, grade=None, language='uz', owner_id=None):
+def build_learning(role, age=None, age_group=None, grade=None, language='uz', owner_id=None, relation=None):
     """Profil turi + yosh/sinf → (users.role, users.class, kabutar_learning_profile)."""
     preschool_group, preschool_group_for_age = _scope()
     if role not in PROFILE_ROLES:
         raise HTTPException(422, 'Profil turi: bog‘cha bolasi, o‘quvchi yoki talaba')
     learning = {'role': role, 'talim_tili': language or 'uz', 'family_owner': int(owner_id) if owner_id is not None else None}
+    if relation in RELATIONS:
+        learning['relation'] = relation
     if role == 'bogcha':
         group = preschool_group(age_group, legacy=True) if age_group else ''
         if age is not None:
@@ -97,6 +118,10 @@ def build_learning(role, age=None, age_group=None, grade=None, language='uz', ow
     return 'oquvchi', None, learning
 
 
+class DeviceLogin(BaseModel):
+    code: str = Field(min_length=1, max_length=20)
+
+
 def _clean_name(value):
     return re.sub(r'\s+', ' ', str(value or '')).strip()[:80]
 
@@ -118,6 +143,7 @@ def _profile_view(row):
         'age_group': learning.get('age_group') or (row.get('class') if role == 'bogcha' else None),
         'grade': learning.get('grade'),
         'language': learning.get('talim_tili') or 'uz',
+        'relation': learning.get('relation') or ('farzandim' if role == 'bogcha' else ''),
         'has_photo': bool(row.get('rasm_bormi')),
         'created_at': row['created_at'].isoformat() if row.get('created_at') else None,
     }
@@ -220,7 +246,7 @@ def register_profiles(app, platform, service):
             cur.execute('SELECT COUNT(*) AS n FROM kabutar_family_profiles WHERE owner_user_id=%s AND removed_at IS NULL', (uid,))
             if int(cur.fetchone()['n']) >= MAX_PROFILES:
                 raise HTTPException(409, f'Bitta akkauntda ko‘pi bilan {MAX_PROFILES} ta profil bo‘ladi. Avval keraksizini o‘chiring')
-            base_role, class_value, learning = build_learning(body.role, body.age, body.age_group, body.grade, language, uid)
+            base_role, class_value, learning = build_learning(body.role, body.age, body.age_group, body.grade, language, uid, body.relation)
             cur.execute('SELECT pg_advisory_xact_lock(%s)', (31091001,))   # quick_start bilan bir xil ID qulfi
             cur.execute('SELECT MIN(user_id) AS eng_kichik FROM users WHERE user_id < 0')
             row = cur.fetchone()
@@ -255,7 +281,8 @@ def register_profiles(app, platform, service):
             group = body.age_group if body.age_group else (None if (changed_role or body.age is not None) else current['age_group'])
             grade = body.grade if body.grade is not None else (None if changed_role else current['grade'])
             language = body.language if body.language in LANGUAGES else current['language']
-            base_role, class_value, learning = build_learning(role, age, group, grade, language, uid)
+            relation = body.relation if body.relation in RELATIONS else (current.get('relation') or None)
+            base_role, class_value, learning = build_learning(role, age, group, grade, language, uid, relation)
             name = _clean_name(body.name) if body.name is not None else current['name']
             if not name:
                 raise HTTPException(422, 'Profil ismini yozing')
@@ -274,6 +301,7 @@ def register_profiles(app, platform, service):
             # Natijalar o'chirilmaydi (bazada qoladi) — faqat ro'yxatdan olinadi va sessiyalari yopiladi.
             cur.execute('UPDATE kabutar_family_profiles SET removed_at=NOW() WHERE profile_user_id=%s', (profile_id,))
             cur.execute('UPDATE kabutar_auth_sessions SET revoked_at=NOW() WHERE user_id=%s AND revoked_at IS NULL', (profile_id,))
+            cur.execute('DELETE FROM kabutar_profile_device_codes WHERE profile_user_id=%s', (profile_id,))
             return payload(cur, uid)
 
     @app.post('/auth/profiles/{profile_id}/enter')
@@ -286,6 +314,53 @@ def register_profiles(app, platform, service):
             access = service._issue_cur(cur, profile_id, 'profile')
         service.record_login(profile_id, 'profile')
         return {'status': 'complete', 'token': access, 'user_id': int(profile_id), 'profile': _profile_view(row)}
+
+    # REV163: bola telefoni uchun bir martalik kod — ota-ona o'z akkauntiga bola qurilmasida kirmaydi,
+    # bola qurilmasida faqat shu bola profili ochiladi (ota-ona akkaunti va to'lovlar u yerda ko'rinmaydi).
+    @app.post('/auth/profiles/{profile_id}/device-code')
+    def device_code(profile_id: int, request: Request, token: Optional[str] = None):
+        uid, _ = caller(request, token, write=True)
+        service.rate('family-device-code', str(uid), 20, 3600)
+        with service.transaction() as cur:
+            require_owner(cur, uid)
+            owned_profile(cur, uid, profile_id)
+            cur.execute('DELETE FROM kabutar_profile_device_codes WHERE profile_user_id=%s AND (used_at IS NULL OR expires_at < NOW())',
+                        (profile_id,))
+            for _ in range(5):
+                code = f'{secrets.randbelow(10 ** 8):08d}'
+                cur.execute("""INSERT INTO kabutar_profile_device_codes(code_hash,profile_user_id,owner_user_id,expires_at)
+                    VALUES(%s,%s,%s,NOW() + (%s * INTERVAL '1 minute')) ON CONFLICT DO NOTHING RETURNING expires_at""",
+                            (_code_hash(code), profile_id, uid, DEVICE_CODE_MINUTES))
+                row = cur.fetchone()
+                if row:
+                    return {'code': code, 'expires_at': row['expires_at'].isoformat(), 'minutes': DEVICE_CODE_MINUTES}
+        raise HTTPException(503, 'Kod yaratilmadi. Qayta urinib ko‘ring')
+
+    @app.post('/auth/profiles/device-login')
+    def device_login(body: DeviceLogin, request: Request):
+        service.origin(request)
+        service.rate('family-device-login', service.ip(request), 15, 600)
+        service.rate('family-device-login-all', '*', 600, 600)
+        code = re.sub(r'\D', '', body.code or '')
+        if len(code) != 8:
+            raise HTTPException(422, {'kod': 'kod_format', 'xabar': 'Kod 8 ta raqamdan iborat'})
+        with service.transaction() as cur:
+            cur.execute("""UPDATE kabutar_profile_device_codes SET used_at=NOW()
+                WHERE code_hash=%s AND used_at IS NULL AND expires_at > NOW() RETURNING profile_user_id, owner_user_id""",
+                        (_code_hash(code),))
+            row = cur.fetchone()
+            if not row:
+                raise HTTPException(404, {'kod': 'kod_yoq', 'xabar': 'Kod noto‘g‘ri yoki muddati o‘tgan. Ota-onangizdan yangi kod oling'})
+            pid = int(row['profile_user_id'])
+            cur.execute('''SELECT u.user_id,u.full_name,u.class,u.kabutar_learning_profile,f.created_at,(u.profil_rasm IS NOT NULL) AS rasm_bormi
+                FROM kabutar_family_profiles f JOIN users u ON u.user_id=f.profile_user_id
+                WHERE f.profile_user_id=%s AND f.owner_user_id=%s AND f.removed_at IS NULL''', (pid, int(row['owner_user_id'])))
+            prof = cur.fetchone()
+            if not prof:
+                raise HTTPException(404, {'kod': 'kod_yoq', 'xabar': 'Profil topilmadi'})
+            access = service._issue_cur(cur, pid, 'profile')
+        service.record_login(pid, 'profile')
+        return {'status': 'complete', 'token': access, 'user_id': pid, 'profile': _profile_view(prof)}
 
     platform._kabutar_family_profile_owner = lambda cur, uid: profile_owner(cur, uid)
     return {'max': MAX_PROFILES}
