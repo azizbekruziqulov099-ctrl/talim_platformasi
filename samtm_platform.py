@@ -19718,7 +19718,7 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
     group = mavzu_nomi.kitob_guruhi(book.get("sinf"))
     place = mavzu_nomi.joy_nomi(group, book.get("fan"))
     cur.execute(
-        """SELECT topic_code,subject_name,grade,curriculum_scope_id,
+        """SELECT topic_code,subject_name,grade,curriculum_scope_id,mavzu_name,
                   COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS nom
            FROM dts_tree WHERE COALESCE(is_deleted,FALSE)=FALSE"""
     )

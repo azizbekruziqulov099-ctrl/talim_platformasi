@@ -67,21 +67,41 @@ def joy_nomi(group, fan) -> str:
 
 
 def baza_indeksi(rows):
-    """dts_tree qatorlari (topic_code, subject_name, grade, nom, …) → nom bo'yicha indeks + bazadagi guruh va fanlar."""
-    index, groups, subjects = {}, set(), set()
+    """dts_tree qatorlari (topic_code, subject_name, grade, nom, …) → nom bo'yicha indeks + bazadagi guruh va fanlar.
+
+    REV147: «nom» — kichik mavzu (bo'lsa), aks holda mavzu nomi. Maktab Mavzular Excel'ida «Kichik mavzu»
+    ustuni to'ldirilgan bo'ladi («1. Tanishuv: ingliz tili» → «Let's start English!»), miya varag'ida esa
+    MAVZU nomi yoziladi. Shuning uchun mavzu nomi bo'yicha ham alohida indeks tutiladi (zaxira)."""
+    index, by_mavzu, groups, subjects = {}, {}, set(), set()
     for row in rows:
         group = canonical_grade(row.get("grade"))
-        index.setdefault(nom_norm(row.get("nom")), []).append(row)
+        key = nom_norm(row.get("nom"))
+        index.setdefault(key, []).append(row)
+        mavzu_key = nom_norm(row.get("mavzu_name"))
+        if mavzu_key and mavzu_key != key:
+            by_mavzu.setdefault(mavzu_key, []).append(row)
         groups.add(group)
         subjects.add((group, nom_norm(row.get("subject_name"))))
-    return {"index": index, "guruhlar": groups, "fanlar": subjects}
+    return {"index": index, "mavzu_index": by_mavzu, "guruhlar": groups, "fanlar": subjects}
+
+
+def _mavzu_nomi_boyicha(baza, key):
+    """Kichik mavzu nomida topilmasa — mavzu nomi bo'yicha. Bitta mavzuning bir nechta kichik mavzusi bo'lsa,
+    ular bitta mavzu hisoblanadi va birinchi kichik mavzu (eng kichik kod) olinadi — yolg'on «nusxa» chiqmaydi."""
+    first = {}
+    for row in baza.get("mavzu_index", {}).get(key, []):
+        mavzu_joyi = (row.get("curriculum_scope_id"),) + tuple(kod_qismlari(row.get("topic_code")))
+        if mavzu_joyi not in first or str(row.get("topic_code")) < str(first[mavzu_joyi].get("topic_code")):
+            first[mavzu_joyi] = row
+    return list(first.values())
 
 
 def nomzodlar(baza, nom, fan_n, group):
     """Bir mavzu nomi uchun nomzodlar. Qaytaradi: (tanlanganlar, shu nomdagi boshqa joy qatorlari).
 
     fan_n — kitob fanining nom_norm kaliti, group — kitob_guruhi() natijasi."""
-    rows = baza["index"].get(nom_norm(nom), [])
+    key = nom_norm(nom)
+    rows = baza["index"].get(key) or _mavzu_nomi_boyicha(baza, key)
 
     def fan_mos(row):
         return bool(fan_n) and nom_norm(row.get("subject_name")) == fan_n
