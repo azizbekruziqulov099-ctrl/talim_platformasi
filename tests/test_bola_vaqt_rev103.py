@@ -15,7 +15,7 @@ class VaqtTests(unittest.TestCase):
     def test_categories_and_what_is_closed(self):
         self.assertEqual((time_category("dars"), time_category("oyin"), time_category("profil")), ("dars", "oyin", "oyin"))
         st = time_status({"dars": 3600, "oyin": 600}, "4-5 yosh")
-        self.assertEqual(st["tugadi"], {"dars": True, "oyin": False, "jami": False})
+        self.assertEqual(st["tugadi"], {"dars": True, "oyin": False, "jami": False, "tun": False})
         self.assertEqual(time_message(st, "dars")["kod"], "dars")          # darsda — «endi o'ynasang bo'ladi»
         self.assertIsNone(time_message(st, "oyin"))                         # o'yinda hali 50 daqiqa bor
         st = time_status({"dars": 3600, "oyin": 3600}, "4-5 yosh")
@@ -69,3 +69,13 @@ class TahlilTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TunTests(unittest.TestCase):
+    """REV167: kechki yopilish — uxlash vaqti."""
+    def test_night_closes_everything(self):
+        st = time_status({}, "4-5 yosh", {"yopiq": True, "ochiladi": "06:00", "yopiladi": "22:00"})
+        self.assertTrue(st["tugadi"]["tun"])
+        self.assertEqual(time_message(st, "dars")["kod"], "tun")
+        self.assertIn("soat 6", time_message(st, "oyin")["matn"])
+        self.assertFalse(time_status({}, "4-5 yosh", {"yopiq": False})["tugadi"]["tun"])

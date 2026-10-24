@@ -171,3 +171,30 @@ class Rev166Tests(unittest.TestCase):
         self.assertEqual(b.ertangi_fanlar([["en"], ["ru"], [], [], [], ["mat"], []], 5), [])
         self.assertEqual(b.ertangi_fanlar([["en"], ["ru"], [], [], [], ["mat"], []], 6), ["en"])
         self.assertIsNone(b.ertangi_fanlar(None, 1))
+
+
+class Rev167Tests(unittest.TestCase):
+    def test_night_lock(self):
+        from datetime import datetime as dt
+        t = b.tun_sozlama({})
+        self.assertEqual((t["kun"], t["shanba"], t["ertalab"]), (22, 23, 6))
+        self.assertFalse(b.tun_holati(dt(2026, 10, 19, 21, 59), t)["yopiq"])     # dushanba 21:59
+        self.assertTrue(b.tun_holati(dt(2026, 10, 19, 22, 0), t)["yopiq"])       # dushanba 22:00
+        self.assertFalse(b.tun_holati(dt(2026, 10, 24, 22, 30), t)["yopiq"])     # shanba 22:30 — ochiq
+        self.assertTrue(b.tun_holati(dt(2026, 10, 24, 23, 0), t)["yopiq"])       # shanba 23:00
+        self.assertTrue(b.tun_holati(dt(2026, 10, 25, 2, 0), t)["yopiq"])        # yakshanba tungi 2:00
+        self.assertTrue(b.tun_holati(dt(2026, 10, 20, 5, 59), t)["yopiq"])
+        self.assertFalse(b.tun_holati(dt(2026, 10, 20, 6, 0), t)["yopiq"])
+        self.assertFalse(b.tun_holati(dt(2026, 10, 19, 23, 0), {"yoqilgan": False})["yopiq"])
+        self.assertEqual(b.tun_sozlama({"kun": 99, "ertalab": "x"})["kun"], 24)
+
+    def test_discounts(self):
+        self.assertEqual(b.chegirmali_narx(99000, 0), 99000)
+        self.assertEqual(b.chegirmali_narx(99000, 15), 84200)
+        self.assertEqual(b.chegirmali_narx(99000, 100), 0)
+        self.assertEqual(b.chegirma_tanla(True, [], 1, {})["sabab"], "admin")
+        c = b.chegirma_tanla(False, [{"foiz": 10, "izoh": "x"}], 2, {"2": 20, "3": 30})
+        self.assertEqual((c["foiz"], c["sabab"]), (20, "oila"))              # eng kattasi, qo'shilmaydi
+        self.assertEqual(b.chegirma_tanla(False, [], 4, {"2": 20, "3": 30})["foiz"], 30)
+        self.assertEqual(b.chegirma_tanla(False, [], 1, {"2": 20})["foiz"], 0)
+        self.assertEqual(b.oila_chegirma_sozlama({"2": 150, "3": "a"}), {"2": 100, "3": 0})

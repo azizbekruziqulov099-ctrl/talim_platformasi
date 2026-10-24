@@ -519,6 +519,12 @@ def migrate(cur):
         yuborildi_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (bola_id, tugaydi, turi))""")
     cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_sozlama (kalit TEXT PRIMARY KEY, qiymat JSONB NOT NULL DEFAULT '{}'::jsonb)""")
     cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_kunlik_xabar (bola_id BIGINT NOT NULL, sana DATE NOT NULL, PRIMARY KEY (bola_id, sana))""")
+    # REV167: shaxsiy chegirmalar — admin ota-onaga (barcha farzandlariga) yoki bitta farzandga beradi
+    cur.execute("""CREATE TABLE IF NOT EXISTS bogcha_chegirma (
+        id BIGSERIAL PRIMARY KEY, turi TEXT NOT NULL CHECK (turi IN ('ota','bola')), user_id BIGINT NOT NULL,
+        foiz INT NOT NULL CHECK (foiz BETWEEN 1 AND 100), gacha DATE, izoh TEXT NOT NULL DEFAULT '', admin_id BIGINT,
+        yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), ochirildi TIMESTAMPTZ)""")
+    cur.execute("CREATE INDEX IF NOT EXISTS bogcha_chegirma_user ON bogcha_chegirma(turi, user_id) WHERE ochirildi IS NULL")
     cur.execute("SELECT COUNT(*) AS n FROM bogcha_tarif")
     if int((cur.fetchone() or {}).get("n") or 0) == 0:
         for nom, soni, narx, qulf, tartib in DEFAULT_TARIFLAR:
@@ -540,7 +546,78 @@ def sozlama(cur):
     row = cur.fetchone()
     s = _json(row["qiymat"], {}) if row else {}
     return {"obuna_majburiy": bool(s.get("obuna_majburiy")), "yosh_qoida": s.get("yosh_qoida") or {},
-            "telegram_majburiy": s.get("telegram_majburiy", True) is not False}
+            "telegram_majburiy": s.get("telegram_majburiy", True) is not False,
+            "tun": tun_sozlama(s.get("tun")), "oila_chegirma": oila_chegirma_sozlama(s.get("oila_chegirma"))}
+
+
+# ── REV167: kechki yopilish (bolalar uxlash vaqti) ───────────────
+TUN_DEFAULT = {"yoqilgan": True, "kun": 22, "shanba": 23, "ertalab": 6}
+
+
+def tun_sozlama(v):
+    """Admin sozlamasi → to'g'ri qiymatlar: ish kunlari va yakshanba «kun» soatda, shanba «shanba» soatda yopiladi,
+    ertalab «ertalab» soatda ochiladi."""
+    v = v if isinstance(v, dict) else {}
+    out = dict(TUN_DEFAULT)
+    out["yoqilgan"] = v.get("yoqilgan", True) is not False
+    for k, lo, hi in (("kun", 18, 24), ("shanba", 18, 24), ("ertalab", 4, 10)):
+        try:
+            out[k] = max(lo, min(hi, int(v.get(k, out[k]))))
+        except (TypeError, ValueError):
+            pass
+    return out
+
+
+def tun_holati(local_dt, tun):
+    """local_dt — Toshkent vaqti. Qaytaradi {yopiq, yopiladi «22:00», ochiladi «06:00»}.
+    Shanba kechasi — tun["shanba"] soatgacha, qolgan kunlar — tun["kun"] soatgacha; yarim tundan keyin ertalabgacha yopiq."""
+    tun = tun_sozlama(tun)
+    wd = local_dt.weekday()
+    yopiladi = tun["shanba"] if wd == 5 else tun["kun"]
+    daq = local_dt.hour * 60 + local_dt.minute
+    yopiq = bool(tun["yoqilgan"]) and (daq >= yopiladi * 60 or daq < tun["ertalab"] * 60)
+    return {"yopiq": yopiq, "yopiladi": f"{yopiladi:02d}:00" if yopiladi < 24 else "24:00", "ochiladi": f"{tun['ertalab']:02d}:00",
+            "yoqilgan": bool(tun["yoqilgan"])}
+
+
+# ── REV167: chegirmalar (oila — bir nechta farzand; shaxsiy — admin beradi; admin farzandi — bepul) ──
+OILA_DEFAULT = {"2": 0, "3": 0}
+
+
+def oila_chegirma_sozlama(v):
+    v = v if isinstance(v, dict) else {}
+    out = {}
+    for k in ("2", "3"):
+        try:
+            out[k] = max(0, min(100, int(v.get(k, OILA_DEFAULT[k]))))
+        except (TypeError, ValueError):
+            out[k] = OILA_DEFAULT[k]
+    return out
+
+
+def chegirmali_narx(narx, foiz):
+    """Narxdan foiz chegirma (100 so'mga yaxlitlanadi, 0 dan kam emas)."""
+    narx, foiz = int(narx or 0), max(0, min(100, int(foiz or 0)))
+    if foiz >= 100:
+        return 0
+    return max(0, int(round(narx * (100 - foiz) / 100 / 100.0)) * 100)
+
+
+def chegirma_tanla(admin_farzand, shaxsiy, oila_tartibi, oila):
+    """Bir nechta chegirma bo'lsa — eng kattasi (qo'shilmaydi). oila_tartibi — shu farzand oiladagi nechanchi obunachi (1, 2, 3…)."""
+    variantlar = []
+    if admin_farzand:
+        variantlar.append({"foiz": 100, "sabab": "admin", "izoh": "Administrator farzandi — bepul"})
+    for c in shaxsiy or []:
+        variantlar.append({"foiz": int(c["foiz"]), "sabab": "shaxsiy", "izoh": c.get("izoh") or "Shaxsiy chegirma",
+                           "gacha": c.get("gacha")})
+    if oila_tartibi >= 2:
+        f = int((oila or {}).get("3" if oila_tartibi >= 3 else "2", 0))
+        if f:
+            variantlar.append({"foiz": f, "sabab": "oila", "izoh": f"{oila_tartibi}-farzand uchun oila chegirmasi"})
+    if not variantlar:
+        return {"foiz": 0, "sabab": "", "izoh": ""}
+    return max(variantlar, key=lambda x: x["foiz"])
 
 
 def bola_yoshi(cur, bola_id):
@@ -647,6 +724,62 @@ def _admin_sinov_profili(cur, bola_id):
     ids = [bola_id] + ([int(lp["family_owner"])] if str(lp.get("family_owner") or "").lstrip("-").isdigit() else [])
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid = ANY(%s)", (ids,))
     return cur.fetchone() is not None
+
+
+def _savepoint_query(cur, name, sql, args):
+    """Jadval bo'lmasligi mumkin bo'lgan so'rov — xato tranzaksiyani buzmaydi (None qaytaradi)."""
+    try:
+        cur.execute(f"SAVEPOINT {name}")
+        cur.execute(sql, args)
+        rows = cur.fetchall()
+        cur.execute(f"RELEASE SAVEPOINT {name}")
+        return rows
+    except Exception:
+        cur.execute(f"ROLLBACK TO SAVEPOINT {name}")
+        return None
+
+
+def ota_bolami(cur, ota_id, bola_id):
+    """REV167: ota-ona shu bolani ko'ra oladimi — parent_child bog'lanishi YOKI oila profili egasi (Kim o'rganadi?).
+    Oila profili yaratilganda parent_child yozuvi tushmay qolgan bo'lsa ham ota-ona kundalikni ko'radi."""
+    if not ota_id or not bola_id:
+        return False
+    rows = _savepoint_query(cur, "ota_bola_pc", "SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (ota_id, bola_id))
+    if rows:
+        return True
+    rows = _savepoint_query(cur, "ota_bola_fp", """SELECT 1 FROM kabutar_family_profiles WHERE owner_user_id=%s AND profile_user_id=%s
+                                                  AND removed_at IS NULL LIMIT 1""", (ota_id, bola_id))
+    if rows:
+        return True
+    _, lp = bola_yoshi(cur, bola_id)
+    return str(lp.get("family_owner") or "") == str(ota_id)
+
+
+def adminmi(cur, uid):
+    rows = _savepoint_query(cur, "bogcha_adminmi", "SELECT 1 FROM admin_akkaunt WHERE uid=%s", (uid,))
+    return bool(rows)
+
+
+def admin_farzandimi(cur, bola_id):
+    """Administrator o'z farzandi (oila profili yoki parent_child orqali) — kurslar bepul."""
+    if _admin_sinov_profili(cur, bola_id):
+        return True
+    rows = _savepoint_query(cur, "bogcha_admin_ota", """SELECT 1 FROM parent_child pc JOIN admin_akkaunt a ON a.uid=pc.parent_id
+                                                        WHERE pc.child_id=%s LIMIT 1""", (bola_id,))
+    return bool(rows)
+
+
+def chegirma_ol(cur, ota_id, bola_id, today, s=None):
+    """Shu ota-ona shu farzand uchun qancha chegirma oladi (eng kattasi)."""
+    s = s or sozlama(cur)
+    shaxsiy = _savepoint_query(cur, "bogcha_cheg", """SELECT foiz, izoh, gacha FROM bogcha_chegirma WHERE ochirildi IS NULL
+                                   AND (gacha IS NULL OR gacha >= %s) AND ((turi='bola' AND user_id=%s) OR (turi='ota' AND user_id=%s))""",
+                               (today, bola_id, ota_id)) or []
+    shaxsiy = [{"foiz": int(r["foiz"]), "izoh": r["izoh"], "gacha": r["gacha"].isoformat() if r["gacha"] else None} for r in shaxsiy]
+    rows = _savepoint_query(cur, "bogcha_oila", """SELECT COUNT(DISTINCT bola_id) AS n FROM bogcha_obuna
+                                                  WHERE ota_id=%s AND bola_id<>%s AND tugaydi >= %s""", (ota_id, bola_id, today)) or [{"n": 0}]
+    tartib = int(rows[0]["n"] or 0) + 1
+    return chegirma_tanla(admin_farzandimi(cur, bola_id), shaxsiy, tartib, s["oila_chegirma"])
 
 
 def bola_rejasi(cur, bola_id, today, s=None):
@@ -874,11 +1007,7 @@ def create_router(platform, click=None):
         return datetime.now(TASHKENT).date()
 
     def ota_tekshir(cur, ota_id, bola_id):
-        cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (ota_id, bola_id))
-        if cur.fetchone():
-            return
-        cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (ota_id,))
-        if cur.fetchone():
+        if ota_bolami(cur, ota_id, bola_id) or adminmi(cur, ota_id):   # REV167: oila profili egasi ham
             return
         raise HTTPException(403, {"kod": "ulanmagan", "xabar": "Bu farzand sizga ulanmagan"})
 
@@ -908,11 +1037,13 @@ def create_router(platform, click=None):
             from . import click_tolov as _c, payme_tolov as _p
         return {"click": _c.sozlama()["yoqilgan"], "payme": _p.sozlama()["yoqilgan"]}
 
-    def tarif_view(t, qoida, obuna, d):
+    def tarif_view(t, qoida, obuna, d, cheg=None):
         n = tarif_kurs_soni(t, qoida)
         narx = narx_hisobla(t, obuna, d)
+        foiz = int((cheg or {}).get("foiz") or 0)
         return {"id": t["id"], "nom": t["nom"], "kurs_soni": int(t["kurs_soni"]), "sigadi": n, "kurslar": tarif_kurslari(t),
-                "toliq": int(t["kurs_soni"]) == 0, "narx_uzs": narx["narx"], "joriy_narx": narx["joriy"],
+                "toliq": int(t["kurs_soni"]) == 0, "narx_uzs": chegirmali_narx(narx["narx"], foiz), "joriy_narx": narx["joriy"],
+                "asl_narx": narx["narx"], "chegirma_foiz": foiz if narx["narx"] else 0,
                 "qulf": narx["qulf"], "qulf_gacha": narx["qulf_gacha"], "qulf_yil": int(t["qulf_yil"]),
                 "mumkin": n <= qoida["jami"] or int(t["kurs_soni"]) == 0,
                 "sabab": "" if (n <= qoida["jami"] or int(t["kurs_soni"]) == 0) else
@@ -929,10 +1060,14 @@ def create_router(platform, click=None):
         oldin, bugun = ochilgan_sonlar(cur, bola_id, d)
         cur.execute("SELECT full_name FROM users WHERE user_id=%s", (bola_id,))
         ism = ((cur.fetchone() or {}).get("full_name") or "Farzandingiz")[:60]
+        cheg = chegirma_ol(cur, ota_id, bola_id, d, s)
+        admin_bola = cheg.get("sabab") == "admin"
         return {
+            "chegirma": cheg if cheg.get("foiz") else None,
+            "imtiyoz": {"admin": admin_bola, "bepul_reja": admin_bola or not s["obuna_majburiy"]},
             "bola": {"user_id": bola_id, "ism": ism, "yosh": yosh, "bogcha": lp.get("role") == "bogcha"},
             "qoida": qoida, "kurslar": [dict(KURS[k]) for k in KURS],
-            "tariflar": [tarif_view(t, qoida, obuna, d) for t in tariflar(cur)],
+            "tariflar": [tarif_view(t, qoida, obuna, d, cheg) for t in tariflar(cur)],
             "obuna": ({"tarif_id": obuna["tarif_id"], "fanlar": obuna["fanlar"], "narx_uzs": int(obuna["narx_uzs"]),
                        "narx_qulf_gacha": obuna["narx_qulf_gacha"].isoformat() if obuna["narx_qulf_gacha"] else None,
                        "boshlandi": obuna["boshlandi"].isoformat(), "tugaydi": obuna["tugaydi"].isoformat(),
@@ -940,7 +1075,7 @@ def create_router(platform, click=None):
             "reja": {**reja, "manba": manba, "tanlangan": order, "tugagan": tugagan, "nomlar": {k: KURS[k]["nom"] for k in KURS},
                      "bugun_kuni": d.weekday(), "kvota": bugungi_kvota(reja, d.weekday(), oldin, bugun) if manba else {},
                      "oldin": oldin, "bugun": bugun, "hafta_boshi": hafta_boshi(d).isoformat()},
-            "sozlama": {"obuna_majburiy": s["obuna_majburiy"], "telegram_majburiy": s["telegram_majburiy"]},
+            "sozlama": {"obuna_majburiy": s["obuna_majburiy"], "telegram_majburiy": s["telegram_majburiy"], "tun": s["tun"]},
             "ulanish": identities(cur, ota_id),
             "google_yoqilgan": bool(getattr(platform, "GOOGLE_CLIENT_ID", "") and getattr(platform, "GOOGLE_CLIENT_SECRET", "")),
             "tolov": tolov_tizimlari(),
@@ -973,7 +1108,7 @@ def create_router(platform, click=None):
                 if extra:
                     raise HTTPException(409, {"kod": "obunada_yoq", "xabar": "Obunada yo‘q kurs qo‘shib bo‘lmaydi: "
                                               + ", ".join(KURS[k]["nom"] for k in extra) + ". Tarifni o‘zgartiring yoki kurs almashtiring."})
-            elif s["obuna_majburiy"]:
+            elif s["obuna_majburiy"] and not admin_farzandimi(cur, bola_id):   # REV167: admin farzandi — bepul
                 raise HTTPException(402, {"kod": "obuna_kerak", "xabar": "Avval tarif tanlab, to‘lov qiling."})
             _, tugagan = reja_ol(cur, bola_id)
             cur.execute("""INSERT INTO bogcha_reja(bola_id, ota_id, fanlar, tugagan) VALUES(%s,%s,%s::jsonb,%s::jsonb)
@@ -999,7 +1134,7 @@ def create_router(platform, click=None):
             if obuna_faolmi(obuna, d):
                 if fan not in obuna["fanlar"]:
                     raise HTTPException(409, {"kod": "obunada_yoq", "xabar": "Bu kurs obunada yo‘q."})
-            elif sozlama(cur)["obuna_majburiy"]:
+            elif sozlama(cur)["obuna_majburiy"] and not admin_farzandimi(cur, bola_id):
                 raise HTTPException(402, {"kod": "obuna_kerak", "xabar": "Avval tarif tanlab, to‘lov qiling."})
             order, tugagan = reja_ol(cur, bola_id)
             tugagan = [k for k in tugagan if k != fan] if qaytar else (tugagan + [fan] if fan not in tugagan else tugagan)
@@ -1028,9 +1163,10 @@ def create_router(platform, click=None):
             s = sozlama(cur)
             ids = identities(cur, uid)
             google_on = bool(getattr(platform, "GOOGLE_CLIENT_ID", "") and getattr(platform, "GOOGLE_CLIENT_SECRET", ""))
-            if google_on and not ids["google"]:
+            admin_bola = admin_farzandimi(cur, bola_id)   # REV167: admin farzandi — to'lov yo'q, ulanish talab qilinmaydi
+            if google_on and not ids["google"] and not admin_bola:
                 raise HTTPException(428, {"kod": "google", "xabar": "To‘lovdan oldin Gmail akkauntingizni ulang (Akkaunt → Gmail ulash)."})
-            if s["telegram_majburiy"] and not ids["telegram"]:
+            if s["telegram_majburiy"] and not ids["telegram"] and not admin_bola:
                 raise HTTPException(428, {"kod": "telegram", "xabar": "To‘lovdan oldin Telegram’ni ulang — farzandingiz haqidagi xabarlar shu yerga keladi."})
             cur.execute("SELECT * FROM bogcha_tarif WHERE id=%s AND faol", (tarif_id,))
             t = cur.fetchone()
@@ -1043,19 +1179,23 @@ def create_router(platform, click=None):
             if err:
                 raise HTTPException(422, {"kod": tanlov_kodi(fanlar, t, qoida), "xabar": err})
             obuna = obuna_ol(cur, bola_id)
-            narx = narx_hisobla(t, obuna, d)["narx"]
+            narx = narx_hisobla(t, obuna, d)["narx"]          # asl (qulflangan) narx — obunada shu saqlanadi
+            cheg = chegirma_ol(cur, uid, bola_id, d, s)       # REV167: admin farzandi / shaxsiy / oila chegirmasi
+            tolov = chegirmali_narx(narx, cheg["foiz"])        # ota-ona to'laydigani
             data = {"bola_id": bola_id, "ota_id": uid, "tarif_id": int(t["id"]), "kurs_soni": int(t["kurs_soni"]),
                     "fanlar": fanlar, "narx_uzs": narx, "qulf_yil": int(t["qulf_yil"]), "kun": 30,
-                    "rozilik_at": datetime.now(timezone.utc).isoformat(), "rozilik_versiya": ROZILIK_VERSIYA}
-            if narx <= 0:   # bepul tarif — darhol ochiladi (faqat tugashiga 3 kun qolganda uzaytiriladi, narx qulflanmaydi)
+                    "rozilik_at": datetime.now(timezone.utc).isoformat(), "rozilik_versiya": ROZILIK_VERSIYA,
+                    "chegirma": cheg if cheg["foiz"] else None}
+            if tolov <= 0:   # bepul (tarif yoki 100% chegirma) — darhol ochiladi (faqat tugashiga 3 kun qolganda uzaytiriladi)
                 if obuna_faolmi(obuna, d) and obuna["tugaydi"] > d + timedelta(days=3):
                     data["kun"] = 0   # hali faol — faqat kurslar yangilanadi, muddat qo'shilmaydi
-                data["qulf_yil"] = 0
-                o = obuna_tolandi(cur, data, "", 0, "bepul")
+                if narx <= 0:
+                    data["qulf_yil"] = 0
+                o = obuna_tolandi(cur, data, "", 0, "bepul" if narx <= 0 else f"chegirma:{cheg['sabab']}")
                 return {"tolandi": True, "obuna": {"tugaydi": o["tugaydi"].isoformat()}, "holat": holat_payload(cur, uid, bola_id)}
             if click is None:
                 raise HTTPException(503, {"kod": "tolov_yoq", "xabar": "To‘lov tizimi hali ulanmagan"})
-            return click.obuna_buyurtma(cur, uid, narx, data, str(body.get("return_url") or ""))
+            return click.obuna_buyurtma(cur, uid, tolov, data, str(body.get("return_url") or ""))
         return run(go)
 
     @router.get("/api/bogcha/obuna/holat/{kod}")
@@ -1111,7 +1251,88 @@ def create_router(platform, click=None):
                     "sozlama": s, "yosh_qoida_default": YOSH_QOIDA,
                     "yosh_qoida": {str(a): yosh_qoidasi(a, s["yosh_qoida"]) for a in range(2, 8)},
                     "obunalar": obunalar, "oxirgi_30_kun": {"summa": int(oy.get("s") or 0), "soni": int(oy.get("n") or 0)},
-                    "tarix": tarix, "kurslar": [dict(KURS[k]) for k in KURS], "tolov": tolov_tizimlari()}
+                    "tarix": tarix, "kurslar": [dict(KURS[k]) for k in KURS], "tolov": tolov_tizimlari(),
+                    "chegirmalar": chegirmalar_royxati(cur, d)}
+        return run(go)
+
+    def chegirmalar_royxati(cur, d):
+        rows = _savepoint_query(cur, "bogcha_cheg_list", """SELECT c.*, u.full_name AS ism FROM bogcha_chegirma c
+                                   LEFT JOIN users u ON u.user_id=c.user_id WHERE c.ochirildi IS NULL ORDER BY c.id DESC LIMIT 300""", ()) or []
+        return [{"id": int(r["id"]), "turi": r["turi"], "user_id": int(r["user_id"]), "ism": r["ism"] or "", "foiz": int(r["foiz"]),
+                 "gacha": r["gacha"].isoformat() if r["gacha"] else None, "izoh": r["izoh"] or "",
+                 "faol": not r["gacha"] or r["gacha"] >= d} for r in rows]
+
+    @router.get("/api/admin/bogcha/qidir")
+    def admin_qidir(q: str = "", token: str = None, authorization: str = Header(None)):
+        """REV167: chegirma berish uchun ota-ona yoki bolani topish (ism yoki ID). Ota-onaning farzandlari ham chiqadi."""
+        admin_of(token, authorization)
+        text = " ".join(str(q or "").split())[:60]
+        if len(text) < 2:
+            return {"natija": []}
+
+        def go(cur):
+            args = [f"%{text}%"]
+            sql = "SELECT user_id, full_name, role, kabutar_learning_profile AS lp FROM users WHERE full_name ILIKE %s"
+            if text.lstrip("-").isdigit():
+                sql += " OR user_id=%s"
+                args.append(int(text))
+            rows = _savepoint_query(cur, "bogcha_qidir", sql + " ORDER BY user_id DESC LIMIT 20", tuple(args))
+            if rows is None:
+                rows = _savepoint_query(cur, "bogcha_qidir2", "SELECT user_id, full_name, role, NULL::jsonb AS lp FROM users WHERE full_name ILIKE %s"
+                                        + (" OR user_id=%s" if len(args) > 1 else "") + " ORDER BY user_id DESC LIMIT 20", tuple(args)) or []
+            out = []
+            for r in rows:
+                lp = _json(r["lp"], {}) if r.get("lp") is not None else {}
+                uid = int(r["user_id"])
+                bolalar = _savepoint_query(cur, "bogcha_qidir_b", """SELECT DISTINCT u.user_id, u.full_name FROM users u WHERE u.user_id IN (
+                                               SELECT child_id FROM parent_child WHERE parent_id=%s
+                                               UNION SELECT profile_user_id FROM kabutar_family_profiles WHERE owner_user_id=%s AND removed_at IS NULL)
+                                               LIMIT 12""", (uid, uid)) or []
+                out.append({"user_id": uid, "ism": r["full_name"] or "", "bola": lp.get("role") == "bogcha",
+                            "bolalar": [{"user_id": int(b["user_id"]), "ism": b["full_name"] or ""} for b in bolalar]})
+            return {"natija": out}
+        return run(go)
+
+    @router.post("/api/admin/bogcha/chegirma")
+    def admin_chegirma(body: dict = Body(...), token: str = None, authorization: str = Header(None)):
+        """REV167: shaxsiy chegirma — ota-onaga (barcha farzandlari) yoki bitta bolaga, foiz 1–100, muddat ixtiyoriy."""
+        aid = admin_of(token or body.get("token"), authorization)
+        turi = "ota" if body.get("turi") == "ota" else "bola"
+        try:
+            user_id = int(body.get("user_id"))
+            foiz = int(body.get("foiz"))
+        except (TypeError, ValueError):
+            raise HTTPException(422, "ID va foizni to‘g‘ri yozing")
+        if not 1 <= foiz <= 100:
+            raise HTTPException(422, "Chegirma 1–100 foiz bo‘lishi kerak")
+        gacha = None
+        if body.get("gacha"):
+            try:
+                gacha = date.fromisoformat(str(body["gacha"])[:10])
+            except ValueError:
+                raise HTTPException(422, "Sana noto‘g‘ri")
+        izoh = " ".join(str(body.get("izoh") or "").split())[:200]
+
+        def go(cur):
+            cur.execute("SELECT 1 FROM users WHERE user_id=%s", (user_id,))
+            if not cur.fetchone():
+                raise HTTPException(404, "Foydalanuvchi topilmadi")
+            # shu odamga oldingi chegirma bo'lsa — yangisi uning o'rnini oladi
+            cur.execute("UPDATE bogcha_chegirma SET ochirildi=NOW() WHERE turi=%s AND user_id=%s AND ochirildi IS NULL", (turi, user_id))
+            cur.execute("""INSERT INTO bogcha_chegirma(turi, user_id, foiz, gacha, izoh, admin_id) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id""",
+                        (turi, user_id, foiz, gacha, izoh, aid))
+            return {"ok": True, "id": int(cur.fetchone()["id"])}
+        return run(go)
+
+    @router.delete("/api/admin/bogcha/chegirma/{cid}")
+    def admin_chegirma_ochir(cid: int, token: str = None, authorization: str = Header(None)):
+        admin_of(token, authorization)
+
+        def go(cur):
+            cur.execute("UPDATE bogcha_chegirma SET ochirildi=NOW() WHERE id=%s AND ochirildi IS NULL RETURNING id", (cid,))
+            if not cur.fetchone():
+                raise HTTPException(404, "Chegirma topilmadi")
+            return {"ok": True}
         return run(go)
 
     @router.post("/api/admin/bogcha/tarif")
@@ -1171,6 +1392,10 @@ def create_router(platform, click=None):
                  "yosh_qoida": yq}
 
         def go(cur):
+            old = sozlama(cur)   # REV167: yuborilmagan bo'limlar (tun, oila chegirmasi) o'zgarmaydi
+            value["tun"] = tun_sozlama(body["tun"]) if isinstance(body.get("tun"), dict) else old["tun"]
+            value["oila_chegirma"] = (oila_chegirma_sozlama(body["oila_chegirma"]) if isinstance(body.get("oila_chegirma"), dict)
+                                      else old["oila_chegirma"])
             cur.execute("""INSERT INTO bogcha_sozlama(kalit, qiymat) VALUES('umumiy', %s::jsonb)
                            ON CONFLICT (kalit) DO UPDATE SET qiymat=EXCLUDED.qiymat""", (json.dumps(value),))
             return {"ok": True, "sozlama": sozlama(cur)}

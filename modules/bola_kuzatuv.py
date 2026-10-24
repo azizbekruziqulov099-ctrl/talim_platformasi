@@ -149,8 +149,9 @@ def time_category(turi):
     return "dars" if str(turi or "") == "dars" else "oyin"
 
 
-def time_status(used, group=""):
-    """used — {"dars": soniya, "oyin": soniya}. Qaytaradi: daqiqalar, limitlar, qolgan vaqt va nimasi tugagani."""
+def time_status(used, group="", tun=None):
+    """used — {"dars": soniya, "oyin": soniya}. Qaytaradi: daqiqalar, limitlar, qolgan vaqt va nimasi tugagani.
+    REV167: tun — bogcha_reja.tun_holati() natijasi (kechki yopilish); yopiq bo'lsa tugadi["tun"] = True."""
     dars_limit, oyin_limit = TIME_LIMITS.get(group, DEFAULT_TIME_LIMIT)
     dars = int(used.get("dars") or 0) // 60
     oyin = int(used.get("oyin") or 0) // 60
@@ -163,6 +164,9 @@ def time_status(used, group=""):
     }
     out["tugadi"] = {"dars": dars >= dars_limit, "oyin": oyin >= oyin_limit}
     out["tugadi"]["jami"] = out["tugadi"]["dars"] and out["tugadi"]["oyin"]
+    out["tugadi"]["tun"] = bool(tun and tun.get("yopiq"))
+    if tun:
+        out["tun"] = tun
     return out
 
 
@@ -175,6 +179,9 @@ def time_message(status, turi):
     """Bolaga (robot ovozida) aytiladigan gap: nimasi tugagan bo'lsa yoki 5 daqiqa qolgan bo'lsa."""
     cat = time_category(turi)
     done = status["tugadi"]
+    if done.get("tun"):   # REV167: uxlash vaqti
+        ochiladi = (status.get("tun") or {}).get("ochiladi", "06:00")
+        return {"kod": "tun", "matn": f"Hozir uxlash vaqti. Kabutar ham uxlayapti. Ertalab soat {int(ochiladi[:2])} dan keyin uchrashamiz. Xayrli tun!"}
     if done["jami"]:
         return {"kod": "jami", "matn": f"Bugun vaqting tugadi! Bugun {hours_text(status['jami']['limit'])} o'qib-o'ynading. "
                                         "Ko'zlaring dam olsin. Ertaga uchrashamiz!"}
@@ -484,10 +491,22 @@ def create_router(platform):
             cur.execute("SELECT DISTINCT parent_id FROM parent_child WHERE child_id=%s", (child_id,))
             ids = [int(r["parent_id"]) for r in cur.fetchall()]
             cur.execute("RELEASE SAVEPOINT bola_ota")
-            return ids
         except Exception:   # parent_child hali yaratilmagan muhit
             cur.execute("ROLLBACK TO SAVEPOINT bola_ota")
-            return []
+            ids = []
+        # REV167: oila profili egasi (Kim o'rganadi?) — parent_child yozuvi bo'lmasa ham xabar oladi
+        rows = reja_mod._savepoint_query(cur, "bola_ota_fp", """SELECT owner_user_id FROM kabutar_family_profiles
+                                            WHERE profile_user_id=%s AND removed_at IS NULL""", (child_id,)) or []
+        for r in rows:
+            if int(r["owner_user_id"]) not in ids:
+                ids.append(int(r["owner_user_id"]))
+        return ids
+
+    def ota_huquqi(cur, parent_id, bola_id):
+        """REV167: ota-ona (parent_child yoki oila profili egasi) yoki administrator."""
+        if reja_mod.ota_bolami(cur, parent_id, bola_id) or reja_mod.adminmi(cur, parent_id):
+            return
+        raise HTTPException(403, "Bu farzand sizga ulanmagan")
 
     def notify(cur, child_id, text, kind):
         """Ota-onalarga: sayt bildirishnomasi (shu tranzaksiyada) + Telegram (fon oqimida, javobni ushlamaydi)."""
@@ -553,8 +572,20 @@ def create_router(platform):
             used[time_category(r["turi"])] += int(r["s"] or 0)
         return used
 
+    def tun_of(cur, now=None):
+        """REV167: kechki yopilish holati (admin sozlamasi bo'yicha, Toshkent vaqti)."""
+        now = now or datetime.now(timezone.utc)
+        try:
+            cur.execute("SAVEPOINT bola_tun")
+            t = reja_mod.sozlama(cur)["tun"]
+            cur.execute("RELEASE SAVEPOINT bola_tun")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT bola_tun")
+            t = None
+        return reja_mod.tun_holati(now.astimezone(TASHKENT), t)
+
     def time_state(cur, child_id, day):
-        return time_status(today_usage(cur, child_id, day), child_group(cur, child_id))
+        return time_status(today_usage(cur, child_id, day), child_group(cur, child_id), tun_of(cur))
 
     # ── Bola ──
     @router.get("/api/bola/kun_rejasi")
@@ -582,6 +613,9 @@ def create_router(platform):
                 return {"ok": True, "kuzatilmaydi": True}
             cur.execute("SELECT pg_advisory_xact_lock(hashtext(%s))", (f"bola-reja:{user_id}",))
             vaqt = time_state(cur, user_id, day)
+            if vaqt["tugadi"].get("tun"):   # REV167: uxlash vaqti — yangi dars ochilmaydi
+                conn.rollback()
+                raise HTTPException(409, {"kod": "tun", "xabar": time_message(vaqt, "dars")["matn"]})
             if vaqt["tugadi"]["dars"]:   # REV103: bugungi dars vaqti tugagan — dars ochilmaydi (o'yin vaqti bo'lsa, o'yin ochiq)
                 conn.rollback()
                 msg = time_message(vaqt, "dars")
@@ -790,7 +824,7 @@ def create_router(platform):
                 return {"kuzatilmaydi": True}
             out = time_state(cur, user_id, day)
             conn.commit()
-            return {**out, "xabar": time_message(out, "oyin") if out["tugadi"]["jami"] else None}
+            return {**out, "xabar": time_message(out, "oyin") if (out["tugadi"]["jami"] or out["tugadi"]["tun"]) else None}
         return run_db(run)
 
     @router.post("/api/bola/vaqt/signal")
@@ -821,7 +855,8 @@ def create_router(platform):
             cur.execute("SELECT * FROM bola_sessiya WHERE child_id=%s FOR UPDATE", (user_id,))
             prev = cur.fetchone()
             used = today_usage(cur, user_id, day)
-            status = time_status(used, group)
+            tun = tun_of(cur, now)
+            status = time_status(used, group, tun)
             if prev and prev["sana"] == day:
                 add = active_seconds(prev["oxirgi_signal_at"], now, prev["korinadi"], True)
                 cat = time_category(prev["turi"])
@@ -831,7 +866,7 @@ def create_router(platform):
                                      oxirgi_at=EXCLUDED.oxirgi_at""",
                                 (user_id, day, cat, prev["nom"] or GAME_NAMES.get(cat, ""), add, now))
                     used[cat] += add
-                    status = time_status(used, group)
+                    status = time_status(used, group, tun)
             new_day = not prev or prev["sana"] != day
             cur.execute("""INSERT INTO bola_sessiya(child_id, sana, oxirgi_signal_at, korinadi, yashirildi_at, turi, nom, ogohlantirish_soni)
                            VALUES(%s,%s,%s,%s,%s,%s,%s,0)
@@ -878,9 +913,7 @@ def create_router(platform):
         day = tashkent_day(now)
 
         def run(conn, cur):
-            cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (parent_id, bola_id))
-            if not cur.fetchone():
-                raise HTTPException(403, "Bu farzand sizga ulanmagan")
+            ota_huquqi(cur, parent_id, bola_id)
             name, kid = child_card(cur, bola_id)
             cur.execute("""SELECT * FROM bola_dars_faollik WHERE child_id=%s AND sana=%s ORDER BY boshlandi_at""", (bola_id, day))
             today = [dict(r) for r in cur.fetchall()]
@@ -916,7 +949,15 @@ def create_router(platform):
                 past.setdefault(r["sana"].isoformat(), []).append(lesson_row(dict(r), guruh))
             for d in week:
                 d["darslar_royxat"] = past.get(d["sana"], [])
-            kundalik = kundalik_of(cur, bola_id, day, ikki_hafta, out_plan.get("reja")) if kid else None   # REV166
+            kundalik = None
+            if kid:   # REV166; REV167: kundalikdagi xato butun sahifani bo'sh qoldirmaydi
+                try:
+                    cur.execute("SAVEPOINT bola_kundalik")
+                    kundalik = kundalik_of(cur, bola_id, day, ikki_hafta, out_plan.get("reja"))
+                    cur.execute("RELEASE SAVEPOINT bola_kundalik")
+                except Exception as exc:
+                    cur.execute("ROLLBACK TO SAVEPOINT bola_kundalik")
+                    print(f"[bola_kuzatuv kundalik] {exc!r}", flush=True)
             cur.execute("SELECT * FROM bola_sessiya WHERE child_id=%s", (bola_id,))
             sess = cur.fetchone()
             conn.commit()
@@ -1004,9 +1045,7 @@ def create_router(platform):
         day = tashkent_day(now)
 
         def run(conn, cur):
-            cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (parent_id, bola_id))
-            if not cur.fetchone():
-                raise HTTPException(403, "Bu farzand sizga ulanmagan")
+            ota_huquqi(cur, parent_id, bola_id)
             group, data = tahlil_of(cur, bola_id, day)
             conn.commit()
             name, _ = child_card(cur, bola_id)
@@ -1020,11 +1059,7 @@ def create_router(platform):
         day = tashkent_day(datetime.now(timezone.utc))
 
         def run(conn, cur):
-            cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (parent_id, bola_id))
-            if not cur.fetchone():
-                cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (parent_id,))
-                if not cur.fetchone():
-                    raise HTTPException(403, "Bu farzand sizga ulanmagan")
+            ota_huquqi(cur, parent_id, bola_id)
             cur.execute("""SELECT fan, sana, sozlar FROM bola_dars_faollik WHERE child_id=%s AND sana > %s AND sozlar IS NOT NULL
                            ORDER BY sana DESC, boshlandi_at DESC LIMIT 200""", (bola_id, day - timedelta(days=14)))
             seen, out = set(), []
