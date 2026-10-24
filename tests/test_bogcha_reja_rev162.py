@@ -123,3 +123,51 @@ class Rev163Tests(unittest.TestCase):
         r = b.haftalik_reja(LANGS[:7] + ["mat"], {"kun": 1, "shanba": 1, "jami": 10, "til": 7, "yosh": 5})
         self.assertTrue(all(r["haftalik"][k] >= 1 for k in r["faol"]))
         self.assertEqual(len(r["faol"]) + len(r["navbat"]), 8)
+
+
+class Rev166Tests(unittest.TestCase):
+    def test_levels(self):
+        self.assertEqual(b.yulduz_darajasi(0)["nom"], "Tuxumcha")
+        d = b.yulduz_darajasi(12)
+        self.assertEqual((d["emoji"], d["gacha"], d["qoldi"], d["keyingi"]["nom"]), ("🐣", 15, 3, "Polapon"))
+        self.assertEqual(b.yulduz_darajasi(660)["nom"], "Bilimdon")
+        top = b.yulduz_darajasi(1100)
+        self.assertEqual((top["daraja"], top["dan"], top["gacha"]), (15, 1060, 1260))
+        self.assertTrue(0 <= top["foiz"] <= 100)
+        self.assertEqual(b.yulduz_darajasi(-4)["yulduz"], 0)
+
+    def test_streak(self):
+        sat, sun, mon = date(2026, 10, 24), date(2026, 10, 25), date(2026, 10, 26)
+        fri, thu = date(2026, 10, 23), date(2026, 10, 22)
+        self.assertEqual(b.ketma_ket([thu, fri, sat], mon), 3)          # yakshanba dam — zanjir uzilmaydi, bugun hali dars yo'q
+        self.assertEqual(b.ketma_ket([thu, fri, sat, mon], mon), 4)
+        self.assertEqual(b.ketma_ket([thu, sat], sat), 1)                # juma o'tkazib yuborildi
+        self.assertEqual(b.ketma_ket([], mon), 0)
+
+    def test_diary_weeks(self):
+        today = date(2026, 10, 21)   # chorshanba
+        rows = [{"sana": "2026-10-19", "fan": "Ingliz tili", "mavzu": "Salom", "tugadi": "10:00", "yulduz": 3, "ai_baho": {"baho": 5}},
+                {"sana": "2026-10-21", "fan": "Matematika", "mavzu": "Bir", "tugadi": None, "yulduz": 0},
+                {"sana": "2026-10-13", "fan": "Rus tili", "mavzu": "Привет", "tugadi": "09:00", "yulduz": 2}]
+        hafta = [["en", "mat"], ["ru"], ["en", "mat"], ["ru"], ["en"], ["ru", "mat"], []]
+        w = b.kundalik_haftalari(rows, hafta, today)
+        shu, otgan = w
+        self.assertEqual([k["holat"] for k in shu["kunlar"]][:4], ["otdi", "otdi", "bugun", "keladi"])
+        self.assertEqual(shu["kunlar"][0]["darslar"][0], {"kalit": "en", "fan": "Ingliz tili", "mavzu": "Salom", "tugadi": True, "yulduz": 3, "baho": 5})
+        self.assertEqual(shu["kunlar"][2]["darslar"][0]["yulduz"], 0)
+        self.assertEqual((shu["yulduz"], shu["darslar"], otgan["yulduz"], otgan["darslar"]), (3, 1, 2, 1))
+        self.assertEqual(otgan["kunlar"][1]["rejada"], [])
+        self.assertEqual(b.kundalik_haftalari([], None, today)[0]["kunlar"][0]["rejada"], [])
+
+    def test_day_summary(self):
+        rows = [{"mavzu": "Salom", "tugadi": "10:00", "yulduz": 3, "sozlar": [{"soz": "cat", "aytdi": False}, {"soz": "dog", "aytdi": True}]},
+                {"mavzu": "Ranglar", "tugadi": "11:00", "yulduz": 1, "sozlar": [{"soz": "Cat", "aytdi": True}, {"soz": "red", "aytdi": False}]},
+                {"mavzu": "Bir", "tugadi": None, "sozlar": []}]
+        x = b.kun_xulosasi(rows)
+        self.assertEqual(x["organdi"], ["Salom", "Ranglar"])
+        self.assertEqual(x["takror_soz"], ["red"])                     # cat boshqa darsda to'g'ri aytildi
+        self.assertEqual(x["takror_dars"], ["Ranglar"])
+        self.assertEqual(x["chala"], ["Bir"])
+        self.assertEqual(b.ertangi_fanlar([["en"], ["ru"], [], [], [], ["mat"], []], 5), [])
+        self.assertEqual(b.ertangi_fanlar([["en"], ["ru"], [], [], [], ["mat"], []], 6), ["en"])
+        self.assertIsNone(b.ertangi_fanlar(None, 1))

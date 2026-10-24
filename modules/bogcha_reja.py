@@ -378,6 +378,102 @@ def hafta_boshi(day):
     return day - timedelta(days=day.weekday())
 
 
+# ── REV166: bolaning yutuqlari va kundaligi (sof mantiq) ─────────
+# Umumiy yulduz → daraja (bola o'qiy olmasa ham belgidan taniydi). Oxirgi darajadan keyin har 200 yulduzda yangi «Bilimdon».
+DARAJALAR = [(0, "🥚", "Tuxumcha"), (5, "🐣", "Jo‘ja"), (15, "🐥", "Polapon"), (30, "🐤", "Qushcha"), (50, "🐦", "Chumchuq"),
+             (80, "🦜", "To‘tiqush"), (120, "🦉", "Boyo‘g‘li"), (170, "🕊", "Kabutar"), (230, "🦅", "Burgut"), (300, "🌟", "Yulduz"),
+             (400, "🚀", "Raketa"), (520, "🌈", "Kamalak"), (660, "👑", "Bilimdon")]
+BILIMDON_QADAM = 200
+
+
+def yulduz_darajasi(n):
+    """Umumiy yulduz soni → {daraja, emoji, nom, dan, gacha, qoldi, foiz, keyingi{emoji, nom}}."""
+    n = max(0, int(n or 0))
+    i = max(j for j, (t, _, _) in enumerate(DARAJALAR) if n >= t)
+    t, emoji, nom = DARAJALAR[i]
+    if i + 1 < len(DARAJALAR):
+        dan, (gacha, kemoji, knom), raqam = t, DARAJALAR[i + 1], i + 1
+    else:
+        extra = (n - t) // BILIMDON_QADAM
+        dan = t + extra * BILIMDON_QADAM
+        gacha, kemoji, knom, raqam = dan + BILIMDON_QADAM, emoji, nom, i + 1 + extra
+    return {"daraja": raqam, "emoji": emoji, "nom": nom, "yulduz": n, "dan": dan, "gacha": gacha, "qoldi": gacha - n,
+            "foiz": round(100 * (n - dan) / (gacha - dan)), "keyingi": {"emoji": kemoji, "nom": knom}}
+
+
+def ketma_ket(sanalar, today):
+    """Necha kun ketma-ket dars tugatdi. Bugun hali dars qilinmagan bo'lsa — kechagacha sanaladi (zanjir uzilmagan);
+    yakshanba (takrorlash kuni) dars bo'lmasa zanjirni uzmaydi."""
+    s = set(sanalar or [])
+    d = today if today in s else today - timedelta(days=1)
+    n = 0
+    for _ in range(400):
+        if d in s:
+            n += 1
+        elif d.weekday() != 6:
+            break
+        d -= timedelta(days=1)
+    return n
+
+
+def _uniq(items):
+    seen, out = set(), []
+    for x in items:
+        k = str(x or "").strip()
+        if k and k.lower() not in seen:
+            seen.add(k.lower())
+            out.append(k)
+    return out
+
+
+def kun_xulosasi(darslar):
+    """Ota-onaga oddiy til bilan: bugun nimani o'rgandi, nimani takrorlash kerak.
+    takror_soz — mikrofonga aytolmagan so'zlar (boshqa darsda to'g'ri aytganlari chiqarib tashlanadi);
+    takror_dars — 1 yulduz yoki «Mashq kerak» bahosi bilan tugagan darslar; chala — boshlangan, lekin tugamagan darslar."""
+    done = [d for d in darslar if d.get("tugadi")]
+    said = {str(w.get("soz") or "").lower() for d in darslar for w in (d.get("sozlar") or []) if w.get("aytdi") is True}
+    return {
+        "organdi": _uniq(d.get("mavzu") for d in done),
+        "sozlar": _uniq(w.get("soz") for d in darslar for w in (d.get("sozlar") or [])),
+        "takror_soz": [w for w in _uniq(w.get("soz") for d in darslar for w in (d.get("sozlar") or []) if w.get("aytdi") is False)
+                       if w.lower() not in said],
+        "takror_dars": _uniq(d.get("mavzu") for d in done
+                             if int(d.get("yulduz") or 0) <= 1 or int((d.get("ai_baho") or {}).get("baho") or 5) <= 2),
+        "chala": _uniq(d.get("mavzu") for d in darslar if not d.get("tugadi")),
+    }
+
+
+def ertangi_fanlar(reja_hafta, wd):
+    """Ertaga rejada qaysi fanlar (kalitlar). Yakshanba — takrorlash kuni (bo'sh ro'yxat)."""
+    if not reja_hafta:
+        return None
+    nxt = (wd + 1) % 7
+    return [] if nxt == 6 else list(reja_hafta[nxt] or [])
+
+
+def kundalik_haftalari(darslar, reja_hafta, today):
+    """Bola va ota-ona kundaligi: shu hafta va o'tgan hafta, har kun — rejadagi fanlar va o'tilgan darslar (yulduz, baho).
+    darslar — lesson_row ko'rinishi (sana ISO, fan, mavzu, yulduz, tugadi, ai_baho); reja_hafta — 7 ta kun ro'yxati yoki None."""
+    bosh = hafta_boshi(today)
+    out = []
+    for nom, start in (("shu", bosh), ("otgan", bosh - timedelta(days=7))):
+        kunlar = []
+        for i in range(7):
+            d = start + timedelta(days=i)
+            items = [{"kalit": fan_kaliti(x.get("fan")), "fan": x.get("fan") or "", "mavzu": x.get("mavzu") or "",
+                      "tugadi": bool(x.get("tugadi")), "yulduz": int(x.get("yulduz") or 0) if x.get("tugadi") else 0,
+                      "baho": (x.get("ai_baho") or {}).get("baho")}
+                     for x in darslar if x.get("sana") == d.isoformat()]
+            rejada = list(reja_hafta[i]) if nom == "shu" and reja_hafta and i < len(reja_hafta) else []
+            kunlar.append({"sana": d.isoformat(), "kun": i, "rejada": rejada, "darslar": items,
+                           "yulduz": sum(it["yulduz"] for it in items),
+                           "holat": "bugun" if d == today else "otdi" if d < today else "keladi"})
+        out.append({"hafta": nom, "boshi": start.isoformat(), "kunlar": kunlar,
+                    "yulduz": sum(k["yulduz"] for k in kunlar),
+                    "darslar": sum(1 for k in kunlar for it in k["darslar"] if it["tugadi"])})
+    return out
+
+
 # ── Baza ─────────────────────────────────────────────────────────
 def migrate(cur):
     cur.execute("SELECT pg_advisory_xact_lock(%s)", (91629162,))

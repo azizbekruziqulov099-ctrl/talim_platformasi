@@ -916,6 +916,7 @@ def create_router(platform):
                 past.setdefault(r["sana"].isoformat(), []).append(lesson_row(dict(r), guruh))
             for d in week:
                 d["darslar_royxat"] = past.get(d["sana"], [])
+            kundalik = kundalik_of(cur, bola_id, day, ikki_hafta, out_plan.get("reja")) if kid else None   # REV166
             cur.execute("SELECT * FROM bola_sessiya WHERE child_id=%s", (bola_id,))
             sess = cur.fetchone()
             conn.commit()
@@ -933,6 +934,7 @@ def create_router(platform):
                 "haftalar": {"shu": {**reja_mod.hafta_xulosa(shu), "boshi": dushanba.isoformat()},
                              "otgan": {**reja_mod.hafta_xulosa(otgan), "boshi": (dushanba - timedelta(days=7)).isoformat()}},
                 "hafta": week,
+                "kundalik": kundalik,
                 "reja": {k: out_plan.get(k) for k in ("sana", "kun", "dam_olish", "limit", "fanlar", "reja")},
                 # REV103: bugun qancha va nima (dars / o'yin) — hamda platformada hozir bormi
                 "vaqt": {**(vaqt or {}), "nima": nima, "hafta": list(kunlar.values()),
@@ -942,6 +944,57 @@ def create_router(platform):
                                    if sess and sess["sana"] == day else None)} if kid else None,
             }
         return run_db(run)
+
+    def tahlil_of(cur, bola_id, day):
+        """REV103/166: o'rganish ko'rsatkichlari va yosh guruhidagi o'rin (ota-ona tahlili va bola kundaligi uchun bitta joy)."""
+        group = child_group(cur, bola_id)
+        cur.execute("""SELECT faol_soniya, chalgish_soni, togri, jami, yulduz, (tugadi_at IS NOT NULL) AS tugadi, javob_ms
+                       FROM bola_dars_faollik WHERE child_id=%s AND sana > %s""", (bola_id, day - timedelta(days=14)))
+        lessons = [dict(r) for r in cur.fetchall()]
+        answers, reaction = [], None
+        for sql, key in (("SELECT togri_mi FROM savol_javob_tarixi WHERE user_id=%s AND yaratilgan_at > NOW() - INTERVAL '14 days'", "a"),
+                         ("SELECT AVG(millisekund) AS m FROM reaksiya_natijalari WHERE user_id=%s AND yaratilgan_at > NOW() - INTERVAL '14 days'", "r")):
+            try:
+                cur.execute("SAVEPOINT bola_tahlil")
+                cur.execute(sql, (bola_id,))
+                if key == "a":
+                    answers = [bool(r["togri_mi"]) for r in cur.fetchall()]
+                else:
+                    reaction = (cur.fetchone() or {}).get("m")
+                cur.execute("RELEASE SAVEPOINT bola_tahlil")
+            except Exception:   # jadval hali yo'q
+                cur.execute("ROLLBACK TO SAVEPOINT bola_tahlil")
+        cur.execute("""SELECT COUNT(DISTINCT sana) AS n FROM (
+                         SELECT sana FROM bola_dars_faollik WHERE child_id=%s AND sana > %s
+                         UNION SELECT sana FROM bola_vaqt WHERE child_id=%s AND sana > %s) x""",
+                    (bola_id, day - timedelta(days=7), bola_id, day - timedelta(days=7)))
+        days_active = int((cur.fetchone() or {}).get("n") or 0)
+        # Tengdoshlar: shu yosh guruhidagi bog'cha bolalari, oxirgi 7 kun (ismsiz — faqat o'rin)
+        peer_sql = """SELECT f.child_id, MAX(u.class) AS class, {lp} AS lp,
+                              COALESCE(SUM(f.yulduz),0) AS yulduz,
+                              AVG(f.javob_ms) FILTER (WHERE f.javob_ms IS NOT NULL) AS javob_ms,
+                              SUM(f.togri) FILTER (WHERE f.tugadi_at IS NOT NULL) AS togri,
+                              SUM(f.jami) FILTER (WHERE f.tugadi_at IS NOT NULL) AS jami
+                       FROM bola_dars_faollik f JOIN users u ON u.user_id=f.child_id
+                       WHERE f.sana > %s GROUP BY f.child_id LIMIT 5000"""
+        try:
+            cur.execute("SAVEPOINT bola_tengdosh")
+            cur.execute(peer_sql.format(lp="(ARRAY_AGG(u.kabutar_learning_profile))[1]"), (day - timedelta(days=7),))
+            peer_rows = cur.fetchall()
+            cur.execute("RELEASE SAVEPOINT bola_tengdosh")
+        except Exception:   # eski baza: ta'lim profili ustuni yo'q — guruhsiz taqqoslanadi
+            cur.execute("ROLLBACK TO SAVEPOINT bola_tengdosh")
+            cur.execute(peer_sql.format(lp="NULL::jsonb"), (day - timedelta(days=7),))
+            peer_rows, group = cur.fetchall(), ""
+        peers = {}
+        for r in peer_rows:
+            lp = r["lp"] if isinstance(r["lp"], dict) else {}
+            if group and preschool_learner({"kabutar_learning_profile": lp, "class": r["class"]}) != group:
+                continue
+            peers[int(r["child_id"])] = {"yulduz": int(r["yulduz"] or 0),
+                                         "javob_ms": float(r["javob_ms"]) if r["javob_ms"] is not None else None,
+                                         "aniqlik": (int(r["togri"] or 0) / int(r["jami"])) if r["jami"] else None}
+        return group, insights(bola_id, lessons, answers, float(reaction) if reaction else None, days_active, peers)
 
     @router.get("/api/ota/bola_tahlil")
     def child_insights(bola_id: int, token: str = None, authorization: str = Header(None)):
@@ -954,57 +1007,10 @@ def create_router(platform):
             cur.execute("SELECT 1 FROM parent_child WHERE parent_id=%s AND child_id=%s LIMIT 1", (parent_id, bola_id))
             if not cur.fetchone():
                 raise HTTPException(403, "Bu farzand sizga ulanmagan")
-            group = child_group(cur, bola_id)
-            cur.execute("""SELECT faol_soniya, chalgish_soni, togri, jami, yulduz, (tugadi_at IS NOT NULL) AS tugadi, javob_ms
-                           FROM bola_dars_faollik WHERE child_id=%s AND sana > %s""", (bola_id, day - timedelta(days=14)))
-            lessons = [dict(r) for r in cur.fetchall()]
-            answers, reaction = [], None
-            for sql, key in (("SELECT togri_mi FROM savol_javob_tarixi WHERE user_id=%s AND yaratilgan_at > NOW() - INTERVAL '14 days'", "a"),
-                             ("SELECT AVG(millisekund) AS m FROM reaksiya_natijalari WHERE user_id=%s AND yaratilgan_at > NOW() - INTERVAL '14 days'", "r")):
-                try:
-                    cur.execute("SAVEPOINT bola_tahlil")
-                    cur.execute(sql, (bola_id,))
-                    if key == "a":
-                        answers = [bool(r["togri_mi"]) for r in cur.fetchall()]
-                    else:
-                        reaction = (cur.fetchone() or {}).get("m")
-                    cur.execute("RELEASE SAVEPOINT bola_tahlil")
-                except Exception:   # jadval hali yo'q
-                    cur.execute("ROLLBACK TO SAVEPOINT bola_tahlil")
-            cur.execute("""SELECT COUNT(DISTINCT sana) AS n FROM (
-                             SELECT sana FROM bola_dars_faollik WHERE child_id=%s AND sana > %s
-                             UNION SELECT sana FROM bola_vaqt WHERE child_id=%s AND sana > %s) x""",
-                        (bola_id, day - timedelta(days=7), bola_id, day - timedelta(days=7)))
-            days_active = int((cur.fetchone() or {}).get("n") or 0)
-            # Tengdoshlar: shu yosh guruhidagi bog'cha bolalari, oxirgi 7 kun (ismsiz — faqat o'rin)
-            peer_sql = """SELECT f.child_id, MAX(u.class) AS class, {lp} AS lp,
-                                  COALESCE(SUM(f.yulduz),0) AS yulduz,
-                                  AVG(f.javob_ms) FILTER (WHERE f.javob_ms IS NOT NULL) AS javob_ms,
-                                  SUM(f.togri) FILTER (WHERE f.tugadi_at IS NOT NULL) AS togri,
-                                  SUM(f.jami) FILTER (WHERE f.tugadi_at IS NOT NULL) AS jami
-                           FROM bola_dars_faollik f JOIN users u ON u.user_id=f.child_id
-                           WHERE f.sana > %s GROUP BY f.child_id LIMIT 5000"""
-            try:
-                cur.execute("SAVEPOINT bola_tengdosh")
-                cur.execute(peer_sql.format(lp="(ARRAY_AGG(u.kabutar_learning_profile))[1]"), (day - timedelta(days=7),))
-                peer_rows = cur.fetchall()
-                cur.execute("RELEASE SAVEPOINT bola_tengdosh")
-            except Exception:   # eski baza: ta'lim profili ustuni yo'q — guruhsiz taqqoslanadi
-                cur.execute("ROLLBACK TO SAVEPOINT bola_tengdosh")
-                cur.execute(peer_sql.format(lp="NULL::jsonb"), (day - timedelta(days=7),))
-                peer_rows, group = cur.fetchall(), ""
-            peers = {}
-            for r in peer_rows:
-                lp = r["lp"] if isinstance(r["lp"], dict) else {}
-                if group and preschool_learner({"kabutar_learning_profile": lp, "class": r["class"]}) != group:
-                    continue
-                peers[int(r["child_id"])] = {"yulduz": int(r["yulduz"] or 0),
-                                             "javob_ms": float(r["javob_ms"]) if r["javob_ms"] is not None else None,
-                                             "aniqlik": (int(r["togri"] or 0) / int(r["jami"])) if r["jami"] else None}
+            group, data = tahlil_of(cur, bola_id, day)
             conn.commit()
             name, _ = child_card(cur, bola_id)
-            return {"bola": {"user_id": bola_id, "ism": name, "guruh": group},
-                    **insights(bola_id, lessons, answers, float(reaction) if reaction else None, days_active, peers)}
+            return {"bola": {"user_id": bola_id, "ism": name, "guruh": group}, **data}
         return run_db(run)
 
     @router.get("/api/ota/bola_sinov")
@@ -1041,6 +1047,56 @@ def create_router(platform):
             conn.commit()
             name, _ = child_card(cur, bola_id)
             return {"bola": {"user_id": bola_id, "ism": name}, "sozlar": out[:80]}
+        return run_db(run)
+
+    # ── REV166: yutuqlar (umumiy yulduz, daraja, ketma-ket kunlar) va kundalik — bola ham, ota-ona ham ko'radi ──
+    def yutuqlar(cur, child_id, day):
+        cur.execute("""SELECT COALESCE(SUM(yulduz),0) AS n FROM bola_dars_holat WHERE child_id=%s AND tugatilgan_at IS NOT NULL""",
+                    (child_id,))
+        jami = int((cur.fetchone() or {}).get("n") or 0)
+        cur.execute("""SELECT DISTINCT sana FROM bola_dars_faollik WHERE child_id=%s AND tugadi_at IS NOT NULL AND sana > %s""",
+                    (child_id, day - timedelta(days=120)))
+        sanalar = [r["sana"] for r in cur.fetchall()]
+        return {"jami_yulduz": jami, "daraja": reja_mod.yulduz_darajasi(jami), "ketma_ket": reja_mod.ketma_ket(sanalar, day)}
+
+    def kundalik_of(cur, child_id, day, rows, reja_korinish):
+        """rows — oxirgi 2 hafta darslari (lesson_row ko'rinishi); reja_korinish — reja_korinishi() natijasi yoki None."""
+        hafta = reja_korinish.get("hafta") if reja_korinish and reja_korinish.get("manba") else None
+        return {**yutuqlar(cur, child_id, day), "haftalar": reja_mod.kundalik_haftalari(rows, hafta, day)}
+
+    def kuch_bandlari(tahlil, rows):
+        """Bolaga ko'rsatiladigan «kuchlarim»: faqat belgi va 1–5 daraja (matnni frontend bolaga mos qilib aytadi)."""
+        out = [{"kalit": k["kalit"], "daraja": k["daraja"]} for k in (tahlil or {}).get("korsatkichlar", [])]
+        gap = [r["ai_baho"]["qism"]["gapirish"] for r in rows
+               if r.get("ai_baho") and r["ai_baho"]["qism"].get("gapirish") is not None]
+        if gap:
+            out.append({"kalit": "gapirish", "daraja": _level(sum(gap) / len(gap) / 100)})
+        return out
+
+    @router.get("/api/bola/kundalik")
+    def kid_diary(token: str = None, authorization: str = Header(None)):
+        """REV166: bolaning o'z kundaligi — umumiy yulduzlar va daraja, ketma-ket kunlar, haftalik kundalik
+        (rejadagi fanlar, olgan yulduzlari va baholari), kuchlari (aqlli, tezkor, diqqatli…) va guruhdagi o'rni."""
+        user_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            name, kid, group = child_info(cur, user_id)
+            if not kid:
+                conn.commit()
+                return {"bogcha": False}
+            cur.execute("""SELECT * FROM bola_dars_faollik WHERE child_id=%s AND sana >= %s ORDER BY sana, boshlandi_at LIMIT 400""",
+                        (user_id, reja_mod.hafta_boshi(day) - timedelta(days=7)))
+            rows = [lesson_row(dict(r), group) for r in cur.fetchall()]
+            kr = reja_mod.reja_korinishi(reja_holati(cur, user_id, day), day)
+            data = kundalik_of(cur, user_id, day, rows, kr)
+            _, tahlil = tahlil_of(cur, user_id, day)
+            conn.commit()
+            rey = tahlil.get("reyting")
+            return {"bogcha": True, "bola": {"ism": name, "guruh": group}, "sana": day.isoformat(), "kun": day.weekday(), **data,
+                    "kuch": kuch_bandlari(tahlil, rows),
+                    "reyting": rey if rey and rey.get("jami", 0) >= 3 else None,
+                    "nomlar": (kr or {}).get("nomlar") or {}}
         return run_db(run)
 
     # ── REV162: kun yakuni — har kuni 20:00 da ota-onaga (Telegram + sayt) bugungi AI bahosi ──
@@ -1103,6 +1159,22 @@ def create_router(platform):
                     parts = [f"{lbl} {q[k]}%" for k, lbl in (("aniqlik", "aniqlik"), ("gapirish", "gapirish"), ("tezlik", "tezlik"),
                                                                 ("puxtalik", "puxtalik")) if q.get(k) is not None]
                     text += f"\n🤖 AI bahosi: {kb['baho']} — {kb['matn']} ({kb['ball']}/100" + (": " + ", ".join(parts) if parts else "") + ")."
+                # REV166: oddiy til bilan — nimani o'rgandi, nimani takrorlash kerak, ertaga nima
+                xl = reja_mod.kun_xulosasi(rows)
+                if xl["organdi"]:
+                    text += "\n📚 Bugun o'rgandi: " + ", ".join(f"«{m}»" for m in xl["organdi"][:6]) + "."
+                if xl["takror_soz"] or xl["takror_dars"]:
+                    ts, td = xl["takror_soz"][:8], xl["takror_dars"][:3]
+                    parts = ([", ".join(ts) + (" so'zini" if len(ts) == 1 else " so'zlarini")] if ts else []) + \
+                            ([", ".join(f"«{m}»" for m in td) + (" darsini" if len(td) == 1 else " darslarini")] if td else [])
+                    text += "\n🔁 Takrorlash kerak: " + " va ".join(parts) + " yana bir bor birga takrorlang."
+                kr = reja_mod.reja_korinishi(reja_holati(cur, cid, day), day)
+                ertaga = reja_mod.ertangi_fanlar(kr.get("hafta") if kr and kr.get("manba") else None, day.weekday())
+                if ertaga is not None:
+                    text += ("\n📅 Ertaga: " + ", ".join(reja_mod.KURS[k]["nom"] for k in ertaga if k in reja_mod.KURS) + "."
+                             if ertaga else "\n📅 Ertaga — takrorlash kuni (yangi dars yo'q).")
+                if xl["sozlar"]:
+                    text += "\n🧪 2 daqiqa: panelda «Sinab ko'ring» — rasmni ko'rsatib «Bu nima?» deb so'rang."
                 text += "\nBatafsil — ota-ona panelida «Kundalik»."
                 return text
 
