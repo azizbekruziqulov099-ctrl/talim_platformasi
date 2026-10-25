@@ -290,6 +290,12 @@ if __package__:
 else:
     from modules.bola_kuzatuv import create_router as create_bola_kuzatuv_router
 app.include_router(create_bola_kuzatuv_router(samtm_platform))
+# REV173: maktab (1–11) til o'yinlari — ball, daraja (CEFR) va sinfdoshlar orasida o'rin.
+if __package__:
+    from .modules.maktab_natija import create_router as create_maktab_natija_router
+else:
+    from modules.maktab_natija import create_router as create_maktab_natija_router
+app.include_router(create_maktab_natija_router(samtm_platform))
 # REV106: o'qituvchi kirishda o'z fanlarini tanlaydi — faqat shu fanlar mavzulari, AI darslari va testlari.
 if __package__:
     from .modules.teacher_subjects import create_router as create_teacher_subjects_router
