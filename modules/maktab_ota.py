@@ -9,6 +9,9 @@ Ota-ona (parent_child yoki oila profili egasi; administrator ham):
   • POST /api/ota/maktab/topshiriq — «Mashq ber»: so'zlar ro'yxati, necha marta yozish, izoh, muddat.
   • POST /api/ota/maktab/topshiriq/bekor — topshiriqni bekor qilish.
   • POST /api/ota/maktab/sinov — «O'zim sinayman» natijasi (bildi / bilmadi).
+REV177 — kun rejasi (bolalar bog'chasidagidek):
+  • GET  /api/maktab/reja — o'quvchining rejasi (kuniga necha dars, dam olish kunlari, yakshanba) va bugun bajargani.
+  • POST /api/ota/maktab/reja — ota-ona rejani o'zgartiradi (0 — sinfga qarab avtomatik: 1–2 sinf 3–4 dars …).
 """
 import json
 import re
@@ -32,7 +35,7 @@ WEEKDAYS_UZ = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanb
 TILLAR = {"en", "ru", "de", "fr", "es", "ar", "tr", "zh", "ja", "ko"}
 TIL_NOMI = {"en": "Ingliz tili", "ru": "Rus tili", "de": "Nemis tili", "fr": "Fransuz tili", "es": "Ispan tili",
             "ar": "Arab tili", "tr": "Turk tili", "zh": "Xitoy tili", "ja": "Yapon tili", "ko": "Koreys tili"}
-TURLAR = {"dars", "til", "repetitor", "topshiriq", "imtihon"}   # REV176: imtihon — haftalik, oylik, joylashtirish
+TURLAR = {"dars", "til", "repetitor", "topshiriq", "imtihon", "takror"}   # REV176: imtihon; REV177: takror — darsdan oldingi spiral takror
 SOZ_ID = re.compile(r"^[a-z0-9_-]{1,48}$")
 YOZISH = (0, 5, 10, 20, 30, 40, 50, 100)
 MAX_SOZ = 30            # bitta topshiriqda
@@ -159,6 +162,50 @@ class Bekor(BaseModel):
     id: int
 
 
+class Reja(BaseModel):
+    token: str = ""
+    bola_id: int
+    dars_soni: int = Field(default=0, ge=0, le=8)          # 0 — sinfga qarab avtomatik
+    dam_kunlari: list = Field(default_factory=lambda: [0], max_length=7)   # JS hafta kuni: 0 — yakshanba … 6 — shanba
+    yakshanba: str = Field(default="takror", max_length=12)
+
+
+YAKSHANBA = {"takror", "dam", "dars"}   # yakshanba: yengil takror (yangi dars yo'q) | to'liq dam | odatdagi dars kuni
+REJA_STANDART = {"dars_soni": 0, "dam_kunlari": [0], "yakshanba": "takror"}
+
+
+def reja_toza(dars_soni=0, dam_kunlari=None, yakshanba="takror"):
+    """Ota-ona yuborgan rejani tozalash: dars soni 0–8, dam kunlari 0–6 (ko'pi bilan 3 kun, haftada kamida 4 kun o'qish)."""
+    try:
+        n = max(0, min(8, int(dars_soni)))
+    except (TypeError, ValueError):
+        n = 0
+    kunlar = []
+    for k in dam_kunlari if isinstance(dam_kunlari, (list, tuple)) else []:
+        if isinstance(k, bool):
+            continue
+        try:
+            k = int(k)
+        except (TypeError, ValueError):
+            continue
+        if 0 <= k <= 6 and k not in kunlar:
+            kunlar.append(k)
+    kunlar = sorted(kunlar)[:3]
+    y = yakshanba if yakshanba in YAKSHANBA else "takror"
+    if 0 in kunlar and y == "dars":
+        kunlar.remove(0)
+    return {"dars_soni": n, "dam_kunlari": kunlar, "yakshanba": y}
+
+
+def reja_row_json(r):
+    if not r:
+        return dict(REJA_STANDART)
+    kunlar = r.get("dam_kunlari")
+    if isinstance(kunlar, str):
+        kunlar = json.loads(kunlar or "[]")
+    return {**reja_toza(r.get("dars_soni"), kunlar, r.get("yakshanba")), "ozgartirildi": True}
+
+
 class Sinov(BaseModel):
     token: str = ""
     bola_id: int
@@ -214,6 +261,15 @@ def migrate(cur):
             yaratildi_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
         )""")
     cur.execute("CREATE INDEX IF NOT EXISTS maktab_ota_sinov_bola ON maktab_ota_sinov(bola_id, yaratildi_at DESC)")
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS maktab_reja (
+            user_id BIGINT PRIMARY KEY,
+            dars_soni INT NOT NULL DEFAULT 0,
+            dam_kunlari JSONB NOT NULL DEFAULT '[0]'::jsonb,
+            yakshanba TEXT NOT NULL DEFAULT 'takror',
+            ota_id BIGINT,
+            yangilandi_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )""")
 
 
 def topshiriq_json(r):
@@ -320,6 +376,27 @@ def create_router(platform):
             return {"ok": True}
         return run_db(run)
 
+    def reja_ol(cur, user_id):
+        cur.execute("SELECT dars_soni, dam_kunlari, yakshanba FROM maktab_reja WHERE user_id=%s", (user_id,))
+        r = cur.fetchone()
+        return reja_row_json(dict(r) if r else None)
+
+    def bugun_bajardi(cur, user_id, day):
+        cur.execute("""SELECT turi, COUNT(DISTINCT kod) AS n FROM maktab_faollik WHERE user_id=%s AND sana=%s GROUP BY turi""", (user_id, day))
+        return {r["turi"]: int(r["n"]) for r in cur.fetchall()}
+
+    @router.get("/api/maktab/reja")
+    def my_plan(token: str = None, authorization: str = Header(None)):
+        user_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            reja = reja_ol(cur, user_id)
+            bajardi = bugun_bajardi(cur, user_id, day)
+            conn.commit()
+            return {"reja": reja, "bugun": bajardi, "sana": day.isoformat(), "hafta_kuni": (day.weekday() + 1) % 7}
+        return run_db(run)
+
     @router.get("/api/maktab/topshiriqlar")
     def my_tasks(til: str = Query("", max_length=5), token: str = None, authorization: str = Header(None)):
         user_id = uid_of(token, authorization)
@@ -402,8 +479,9 @@ def create_router(platform):
                         (bola_id,))
             sinovlar = [{"til": r["til"], "togri": r["togri"], "jami": r["jami"], "bilmadi": r["bilmadi"],
                          "sana": r["yaratildi_at"].astimezone(TASHKENT).strftime("%d.%m %H:%M")} for r in cur.fetchall()]
+            reja = reja_ol(cur, bola_id)
             conn.commit()
-            return {"maktab": True, "bola": {"user_id": bola_id, "ism": (row.get("full_name") or "").strip()[:60], "sinf": sinf},
+            return {"maktab": True, "reja": reja, "bola": {"user_id": bola_id, "ism": (row.get("full_name") or "").strip()[:60], "sinf": sinf},
                     "sana": day.isoformat(), "bugun": bugun, "hafta": hafta_jadvali(rows, day), "tillar": tillar,
                     "sozlar": sozlar[:SOZLAR_RO_YXAT], "topshiriqlar": topshiriqlar, "sinovlar": sinovlar}
         return run_db(run)
@@ -451,6 +529,22 @@ def create_router(platform):
             if not ok:
                 raise HTTPException(404, "Topshiriq topilmadi yoki allaqachon bajarilgan")
             return {"ok": True}
+        return run_db(run)
+
+    @router.post("/api/ota/maktab/reja")
+    def set_plan(body: Reja, authorization: str = Header(None)):
+        ota_id = uid_of(body.token, authorization)
+        reja = reja_toza(body.dars_soni, body.dam_kunlari, body.yakshanba)
+
+        def run(conn, cur):
+            ota_huquqi(cur, ota_id, body.bola_id)
+            cur.execute("""INSERT INTO maktab_reja(user_id, dars_soni, dam_kunlari, yakshanba, ota_id, yangilandi_at)
+                           VALUES(%s,%s,%s::jsonb,%s,%s,NOW())
+                           ON CONFLICT (user_id) DO UPDATE SET dars_soni=EXCLUDED.dars_soni, dam_kunlari=EXCLUDED.dam_kunlari,
+                             yakshanba=EXCLUDED.yakshanba, ota_id=EXCLUDED.ota_id, yangilandi_at=NOW()""",
+                        (body.bola_id, reja["dars_soni"], json.dumps(reja["dam_kunlari"]), reja["yakshanba"], ota_id))
+            conn.commit()
+            return {"ok": True, "reja": {**reja, "ozgartirildi": True}}
         return run_db(run)
 
     @router.post("/api/ota/maktab/sinov")
