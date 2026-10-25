@@ -51,3 +51,14 @@ class PronunciationTests(unittest.TestCase):
         self.assertEqual(ns['_ovoz_uchun_tayyorla_til'](text,'uz'),prepare_speech(text))
 
 if __name__=='__main__':unittest.main()
+
+
+class Rev169HayotiyOqish(unittest.TestCase):
+    def test_kasr_soat_kimyo_sana(self):
+        from modules.speech_pronunciation import prepare_speech as p
+        self.assertIn('uchdan ikki', p('2/3 qism', 'uz'))
+        self.assertIn('kilometr soatiga', p('5 km/soat', 'uz'))
+        self.assertIn('soat oʻn oʻttiz', p('10:30 da', 'uz'))
+        self.assertIn('ash ikki o', p('H2O', 'uz'))
+        self.assertIn('yigirma beshinchi oktabr', p('25.10.2026', 'uz'))
+        self.assertIn('iksning kvadrati', p('[lat]x^2[/lat]', 'uz'))

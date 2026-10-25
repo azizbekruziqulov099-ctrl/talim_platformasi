@@ -2985,8 +2985,32 @@ def _xml_escape(matn: str) -> str:
             .replace('"', "&quot;").replace("'", "&apos;"))
 
 
+def _azure_oy_kaliti():
+    return datetime.now().strftime("%Y-%m")
+
+
+def _azure_oylik_sarf(belgi: int = 0) -> int:
+    """REV169: Azure TTS oylik belgilari (bepul tarif — 500 000). belgi>0 — sarfni qo'shadi; 0 — faqat ko'radi."""
+    try:
+        from platform_core import limitlar
+        return limitlar.hisobla("ovoz:azure:oy", _azure_oy_kaliti(), max(1, belgi), 40 * 86400)
+    except Exception:
+        return 0
+
+
+def _azure_oylik_limit() -> int:
+    try:
+        return max(0, int(os.getenv("AZURE_OYLIK_BELGI", "490000") or 490000))
+    except ValueError:
+        return 490000
+
+
 async def _azure_bolak(tayyor: str, voice: str, tezlik: str, ohang: str):
     if not _AZURE_TTS_KEY or not _tts_ochiqmi("azure"):
+        return None
+    # REV169: oylik 500 000 belgi tugasa — Azure chaqirilmaydi (pul yechilmaydi), navbatdagi ovozga o'tiladi
+    from starlette.concurrency import run_in_threadpool
+    if await run_in_threadpool(_azure_oylik_sarf, 0) > _azure_oylik_limit():
         return None
     til = "-".join(voice.split("-")[:2]) or "uz-UZ"
     ssml = (f"<speak version='1.0' xml:lang='{til}'><voice name='{voice}'>"
@@ -2999,8 +3023,12 @@ async def _azure_bolak(tayyor: str, voice: str, tezlik: str, ohang: str):
                 headers={"Ocp-Apim-Subscription-Key": _AZURE_TTS_KEY, "Content-Type": "application/ssml+xml",
                          "X-Microsoft-OutputFormat": "audio-24khz-48kbitrate-mono-mp3", "User-Agent": "kabutar-talim"})
             if javob.status_code == 200 and javob.content:
+                await run_in_threadpool(_azure_oylik_sarf, len(tayyor))
                 return javob.content
             print(f"[ovoz azure] {voice} {javob.status_code} {javob.text[:120]}", flush=True)
+            if javob.status_code == 429 and "quota" in javob.text.lower():
+                _tts_band("azure", 6 * 3600)   # REV169: oylik kvota tugagan — 6 soat urinilmaydi, keyingi ovoz ishlaydi
+                return None
             if javob.status_code in (401, 403):
                 _tts_band("azure", 600)   # kalit/region noto'g'ri — 10 daqiqa urinilmaydi
                 return None

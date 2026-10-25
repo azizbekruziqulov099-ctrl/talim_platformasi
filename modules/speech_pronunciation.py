@@ -39,6 +39,19 @@ def tag_raw_math(value):
         parts.extend((source[previous:start],'[lat]'+source[start:end]+'[/lat]'));previous=end
     parts.append(source[previous:]);return restore(''.join(parts))
 
+_ELEMENT={'H':'ash','O':'o','C':'se','N':'en','S':'es','P':'pe','K':'kaliy','F':'ftor','I':'yod','Na':'natriy','Cl':'xlor',
+          'Fe':'ferrum','Ca':'kalsiy','Mg':'magniy','Cu':'kuprum','Zn':'sink','Al':'alyuminiy','Ag':'argentum','Ba':'bariy','Br':'brom'}
+
+
+def _kimyo(formula):
+    """REV169: kimyoviy formula (H2O, CO2, H2SO4) — o'qituvchi aytganidek: «ash ikki o»."""
+    out=[]
+    for el,n in re.findall(r'([A-Z][a-z]?)(\d*)',formula):
+        if el not in _ELEMENT:return formula
+        out.append(_ELEMENT[el]+(' '+number_words(n,'uz') if n else ''))
+    return ' '+' '.join(out)+' '
+
+
 def _prose(value,language):
     text=str(value)
     text=re.sub(r'<(?:/?[A-Za-z][^>]*|!--[\s\S]*?--)>',' ',text)
@@ -51,6 +64,17 @@ def _prose(value,language):
         # Before math minus: 1-maktab is an ordinal, 1-2 stays subtraction.
         text=re.sub(r'(?<![\w.,])([0-9]{1,9})\s*[-‑–]\s*('+ORDINAL_NOUNS+r')(?=[^\W\d_]*\b)',
                     lambda m:ordinal_uzbek(m[1])+' '+m[2],text,flags=re.I)
+        # REV169: sana 25/10/2026 yoki 25.10.2026 — «ikki ming yigirma oltinchi yil yigirma beshinchi oktabr»
+        _OY=['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr']
+        text=re.sub(r'(?<![\d./])(\d{1,2})[./](\d{1,2})[./](\d{4})(?![\d./])',
+                    lambda m:(' '+ordinal_uzbek(m[3])+' yil '+ordinal_uzbek(str(int(m[1])))+' '+_OY[int(m[2])-1]+' ') if 1<=int(m[2])<=12 and 1<=int(m[1])<=31 else m[0],text)
+        text=re.sub(r'\b('+'|'.join(_OY)+r')\s+yil(?:i|da)?\b',r'\1',text)
+        # REV169: hayotiy o'qish — 2/3 «uchdan ikki», 10:30 «soat o'n o'ttiz», H2O «ash ikki o»
+        text=re.sub(r'(?<![\w/.,])(\d{1,3})\s*/\s*(\d{1,3})(?![\w/.,]|\s*(?:soat|km|kg|m\b|sm|l\b))',
+                    lambda m:' '+number_words(m[2],'uz')+'dan '+number_words(m[1],'uz')+' ',text)
+        text=re.sub(r'(?<![\d:])([01]?\d|2[0-3]):([0-5]\d)(?![\d:])',
+                    lambda m:' soat '+number_words(str(int(m[1])),'uz')+('' if m[2]=='00' else ' '+number_words(str(int(m[2])),'uz'))+' ',text)
+        text=re.sub(r'\b(?:(?:[A-Z][a-z]?)\d*){2,}\b',lambda m:_kimyo(m[0]) if re.search(r'\d',m[0]) else m[0],text)
         text=re.sub(r'(?<![\wʻʼ])c(?![\wʻʼ])','si',text,flags=re.I)
         units={'km/soat':'kilometr soatiga','sm²':'kvadrat santimetr','sm2':'kvadrat santimetr',
                'm²':'kvadrat metr','m2':'kvadrat metr','sm³':'kub santimetr','sm3':'kub santimetr',
