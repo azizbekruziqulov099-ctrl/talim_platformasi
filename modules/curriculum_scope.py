@@ -147,7 +147,9 @@ def group_catalog_rows(rows, only_tested=True):
             topic['darsli_kodlar']=list(dict.fromkeys(topic.get('darsli_kodlar',[])+lesson_codes))
             topic['dars_bor']=bool(topic['darsli_kodlar'])
         else:
-            group['mavzular'].append({'topic_codes':codes,'nomi':r['nomi'],'semestr':semester,
+            # REV168: bob (bo'lim) nomi — maktab mavzulari bob bo'yicha guruhlanib, tushunarli ko'rinadi
+            bob=str(r.get('bob') or '').strip()
+            group['mavzular'].append({'topic_codes':codes,'nomi':r['nomi'],'semestr':semester,'bob':bob if text_key(bob)!=text_key(r['nomi']) else '',
                 'savol_soni':r['savol_soni'],'dars_turi':kind,'scope_id':r['curriculum_scope_id'],
                 'institution_type':r.get('institution_type','maktab'),
                 'darsli_kodlar':lesson_codes,'dars_bor':bool(lesson_codes)})

@@ -153,7 +153,8 @@ class Rev166Tests(unittest.TestCase):
         w = b.kundalik_haftalari(rows, hafta, today)
         shu, otgan = w
         self.assertEqual([k["holat"] for k in shu["kunlar"]][:4], ["otdi", "otdi", "bugun", "keladi"])
-        self.assertEqual(shu["kunlar"][0]["darslar"][0], {"kalit": "en", "fan": "Ingliz tili", "mavzu": "Salom", "tugadi": True, "yulduz": 3, "baho": 5})
+        self.assertEqual(shu["kunlar"][0]["darslar"][0], {"kalit": "en", "fan": "Ingliz tili", "mavzu": "Salom", "tugadi": True, "yulduz": 3, "baho": 5,
+                                                         "sozlar": [], "togri": None, "jami": None})
         self.assertEqual(shu["kunlar"][2]["darslar"][0]["yulduz"], 0)
         self.assertEqual((shu["yulduz"], shu["darslar"], otgan["yulduz"], otgan["darslar"]), (3, 1, 2, 1))
         self.assertEqual(otgan["kunlar"][1]["rejada"], [])
@@ -198,3 +199,20 @@ class Rev167Tests(unittest.TestCase):
         self.assertEqual(b.chegirma_tanla(False, [], 4, {"2": 20, "3": 30})["foiz"], 30)
         self.assertEqual(b.chegirma_tanla(False, [], 1, {"2": 20})["foiz"], 0)
         self.assertEqual(b.oila_chegirma_sozlama({"2": 150, "3": "a"}), {"2": 100, "3": 0})
+
+
+class Rev168Tests(unittest.TestCase):
+    def test_trial_lessons(self):
+        q = b.yosh_qoidasi(3)
+        r = b.haftalik_reja(["en"], q)
+        h = {"obuna_kerak": False, "reja": r, "kvota": b.bugungi_kvota(r, 1, {}, {}), "sinov": {"ru": 2, "ar": 0}}
+        tue, sun = date(2026, 10, 20), date(2026, 10, 25)
+        self.assertEqual(b.boshlash_xatosi(h, "Rus tili", tue), "")             # sinov darsi ochiladi
+        self.assertIsNone(b.boshlash_sababi(h, "Rus tili", tue))
+        self.assertIn("rejasida yo", b.boshlash_xatosi(h, "Arab tili", tue))    # sinov tugagan
+        self.assertIn("yakshanba", b.boshlash_xatosi(h, "Rus tili", sun))       # yakshanba — faqat takror
+        ob = {"obuna_kerak": True, "reja": r, "kvota": {}, "sinov": {"ru": 1}}
+        self.assertEqual(b.boshlash_xatosi(ob, "Rus tili", tue), "")
+        self.assertIn("kurs tanlashi", b.boshlash_xatosi(ob, "Nemis tili", tue))
+        self.assertEqual(b.sinov_dars_soni(None), 4)
+        self.assertEqual(b.sinov_dars_soni(99), 10)

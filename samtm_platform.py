@@ -1739,6 +1739,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
                 cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
                 COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
+                MIN(NULLIF(d.bob_name,'')) AS bob,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
                 COUNT(gt.id) AS savol_soni
@@ -19718,7 +19719,7 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
     group = mavzu_nomi.kitob_guruhi(book.get("sinf"))
     place = mavzu_nomi.joy_nomi(group, book.get("fan"))
     cur.execute(
-        """SELECT topic_code,subject_name,grade,curriculum_scope_id,mavzu_name,
+        """SELECT topic_code,subject_name,grade,curriculum_scope_id,
                   COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS nom
            FROM dts_tree WHERE COALESCE(is_deleted,FALSE)=FALSE"""
     )

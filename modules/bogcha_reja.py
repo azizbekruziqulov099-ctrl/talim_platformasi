@@ -460,9 +460,13 @@ def kundalik_haftalari(darslar, reja_hafta, today):
         kunlar = []
         for i in range(7):
             d = start + timedelta(days=i)
+            # REV168: kundalik kartasi uchun — o'rgangan so'zlar (rasmi bilan), savollar natijasi
             items = [{"kalit": fan_kaliti(x.get("fan")), "fan": x.get("fan") or "", "mavzu": x.get("mavzu") or "",
                       "tugadi": bool(x.get("tugadi")), "yulduz": int(x.get("yulduz") or 0) if x.get("tugadi") else 0,
-                      "baho": (x.get("ai_baho") or {}).get("baho")}
+                      "baho": (x.get("ai_baho") or {}).get("baho"),
+                      "sozlar": [{"soz": w.get("soz"), "emoji": w.get("emoji") or "", "aytdi": w.get("aytdi")}
+                                 for w in (x.get("sozlar") or [])[:6] if isinstance(w, dict) and w.get("soz")],
+                      "togri": x.get("togri"), "jami": x.get("jami")}
                      for x in darslar if x.get("sana") == d.isoformat()]
             rejada = list(reja_hafta[i]) if nom == "shu" and reja_hafta and i < len(reja_hafta) else []
             kunlar.append({"sana": d.isoformat(), "kun": i, "rejada": rejada, "darslar": items,
@@ -547,7 +551,39 @@ def sozlama(cur):
     s = _json(row["qiymat"], {}) if row else {}
     return {"obuna_majburiy": bool(s.get("obuna_majburiy")), "yosh_qoida": s.get("yosh_qoida") or {},
             "telegram_majburiy": s.get("telegram_majburiy", True) is not False,
-            "tun": tun_sozlama(s.get("tun")), "oila_chegirma": oila_chegirma_sozlama(s.get("oila_chegirma"))}
+            "tun": tun_sozlama(s.get("tun")), "oila_chegirma": oila_chegirma_sozlama(s.get("oila_chegirma")),
+            "sinov_dars": sinov_dars_soni(s.get("sinov_dars"))}
+
+
+# ── REV168: sinov (reklama) darslari — bola olmagan kurs/fandan birinchi bir nechta dars bepul ochiladi ──
+SINOV_DARS = 4
+
+
+def sinov_dars_soni(v):
+    try:
+        return max(0, min(10, int(v if v is not None else SINOV_DARS)))
+    except (TypeError, ValueError):
+        return SINOV_DARS
+
+
+def sinov_qoldi(cur, bola_id, faol, n):
+    """Rejada (obunada) yo'q har kurs uchun yana nechta sinov darsi ochish mumkin: {kalit: qoldi}."""
+    if n <= 0:
+        return {}
+    try:
+        cur.execute("SAVEPOINT bogcha_sinov")
+        cur.execute("SELECT fan, COUNT(*) AS n FROM bola_dars_holat WHERE child_id=%s GROUP BY fan", (bola_id,))
+        rows = cur.fetchall()
+        cur.execute("RELEASE SAVEPOINT bogcha_sinov")
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT bogcha_sinov")
+        rows = []
+    ochilgan = {}
+    for r in rows:
+        k = fan_kaliti(r["fan"])
+        if k:
+            ochilgan[k] = ochilgan.get(k, 0) + int(r["n"] or 0)
+    return {k: max(0, n - ochilgan.get(k, 0)) for k in KURS if k not in (faol or [])}
 
 
 # ── REV167: kechki yopilish (bolalar uxlash vaqti) ───────────────
@@ -795,12 +831,14 @@ def bola_rejasi(cur, bola_id, today, s=None):
         if not s["obuna_majburiy"] or _admin_sinov_profili(cur, bola_id):
             return None
         return {"manba": "", "obuna_kerak": True, "qoida": qoida, "kvota": {}, "reja": haftalik_reja([], qoida),
-                "takror_kuni": today.weekday() == 6, "xabar": "Yangi darslar uchun ota-onangiz kurs tanlasin."}
+                "takror_kuni": today.weekday() == 6, "xabar": "Yangi darslar uchun ota-onangiz kurs tanlasin.",
+                "sinov": sinov_qoldi(cur, bola_id, [], s["sinov_dars"])}
     reja = haftalik_reja(fanlar, qoida)
     oldin, bugun = ochilgan_sonlar(cur, bola_id, today)
     kvota = bugungi_kvota(reja, today.weekday(), oldin, bugun)
     return {"manba": manba, "obuna_kerak": False, "qoida": qoida, "reja": reja, "kvota": kvota,
             "oldin": oldin, "bugun": bugun, "takror_kuni": today.weekday() == 6,
+            "sinov": sinov_qoldi(cur, bola_id, reja["faol"], s["sinov_dars"]),
             "obuna": ({"tugaydi": obuna["tugaydi"].isoformat(), "faol": obuna_faolmi(obuna, today)} if obuna else None)}
 
 
@@ -813,7 +851,8 @@ def reja_korinishi(holat, today):
     return {"manba": holat["manba"], "obuna_kerak": holat["obuna_kerak"], "takror_kuni": holat["takror_kuni"],
             "bugun": holat["kvota"], "bugun_rejada": reja["hafta"][today.weekday()] if today.weekday() < 6 else [],
             "hafta": reja["hafta"], "faol": reja["faol"], "navbat": reja["navbat"], "nomlar": nomlar,
-            "keyingi": {k: keyingi_kun(reja, k, today.weekday()) for k in reja["faol"]}, "xabar": holat.get("xabar", "")}
+            "keyingi": {k: keyingi_kun(reja, k, today.weekday()) for k in reja["faol"]}, "xabar": holat.get("xabar", ""),
+            "sinov": holat.get("sinov") or {}}
 
 
 def boshlash_sababi(holat, fan_nomi, today):
@@ -821,6 +860,8 @@ def boshlash_sababi(holat, fan_nomi, today):
     if not holat:
         return None
     k = fan_kaliti(fan_nomi)
+    if today.weekday() != 6 and k and (holat.get("sinov") or {}).get(k, 0) > 0:
+        return None   # REV168: sinov darsi — olinmagan kursdan birinchi darslar bepul
     if holat["obuna_kerak"]:
         return {"sabab": "obuna", "kalit": k}
     if today.weekday() == 6:
@@ -836,9 +877,11 @@ def boshlash_xatosi(holat, fan_nomi, today):
     """Yangi dars ochish mumkinmi? Mumkin bo'lmasa — bolaga/ota-onaga tushunarli xabar, aks holda ''."""
     if not holat:
         return ""
+    k = fan_kaliti(fan_nomi)
+    if today.weekday() != 6 and k and (holat.get("sinov") or {}).get(k, 0) > 0:
+        return ""   # REV168: sinov darsi
     if holat["obuna_kerak"]:
         return "Yangi darslar uchun ota-onangiz kurs tanlashi kerak. O‘tilgan darslarni takrorlash va o‘yinlar ochiq."
-    k = fan_kaliti(fan_nomi)
     if today.weekday() == 6:
         return "Bugun yakshanba — takrorlash kuni. O‘tilgan darslarni takrorlaymiz, yangi dars ertaga ochiladi."
     if not k or k not in holat["kvota"]:
@@ -1396,6 +1439,7 @@ def create_router(platform, click=None):
             value["tun"] = tun_sozlama(body["tun"]) if isinstance(body.get("tun"), dict) else old["tun"]
             value["oila_chegirma"] = (oila_chegirma_sozlama(body["oila_chegirma"]) if isinstance(body.get("oila_chegirma"), dict)
                                       else old["oila_chegirma"])
+            value["sinov_dars"] = sinov_dars_soni(body["sinov_dars"]) if body.get("sinov_dars") is not None else old["sinov_dars"]
             cur.execute("""INSERT INTO bogcha_sozlama(kalit, qiymat) VALUES('umumiy', %s::jsonb)
                            ON CONFLICT (kalit) DO UPDATE SET qiymat=EXCLUDED.qiymat""", (json.dumps(value),))
             return {"ok": True, "sozlama": sozlama(cur)}
