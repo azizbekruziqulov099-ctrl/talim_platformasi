@@ -166,16 +166,17 @@ class Reja(BaseModel):
     token: str = ""
     bola_id: int
     dars_soni: int = Field(default=0, ge=0, le=8)          # 0 — sinfga qarab avtomatik
-    dam_kunlari: list = Field(default_factory=lambda: [0], max_length=7)   # JS hafta kuni: 0 — yakshanba … 6 — shanba
+    dam_kunlari: list = Field(default_factory=list, max_length=7)   # JS hafta kuni: 1 — dushanba … 6 — shanba (yakshanba — «yakshanba» maydoni)
     yakshanba: str = Field(default="takror", max_length=12)
 
 
 YAKSHANBA = {"takror", "dam", "dars"}   # yakshanba: yengil takror (yangi dars yo'q) | to'liq dam | odatdagi dars kuni
-REJA_STANDART = {"dars_soni": 0, "dam_kunlari": [0], "yakshanba": "takror"}
+REJA_STANDART = {"dars_soni": 0, "dam_kunlari": [], "yakshanba": "takror"}   # yakshanba alohida sozlanadi (dam_kunlari — faqat Du–Sh)
 
 
 def reja_toza(dars_soni=0, dam_kunlari=None, yakshanba="takror"):
-    """Ota-ona yuborgan rejani tozalash: dars soni 0–8, dam kunlari 0–6 (ko'pi bilan 3 kun, haftada kamida 4 kun o'qish)."""
+    """Ota-ona yuborgan rejani tozalash: dars soni 0–8, dam kunlari — dushanba–shanba (1–6, ko'pi bilan 3 kun);
+    yakshanba alohida: takror | dam | dars."""
     try:
         n = max(0, min(8, int(dars_soni)))
     except (TypeError, ValueError):
@@ -188,12 +189,10 @@ def reja_toza(dars_soni=0, dam_kunlari=None, yakshanba="takror"):
             k = int(k)
         except (TypeError, ValueError):
             continue
-        if 0 <= k <= 6 and k not in kunlar:
+        if 1 <= k <= 6 and k not in kunlar:
             kunlar.append(k)
     kunlar = sorted(kunlar)[:3]
     y = yakshanba if yakshanba in YAKSHANBA else "takror"
-    if 0 in kunlar and y == "dars":
-        kunlar.remove(0)
     return {"dars_soni": n, "dam_kunlari": kunlar, "yakshanba": y}
 
 
@@ -265,7 +264,7 @@ def migrate(cur):
         CREATE TABLE IF NOT EXISTS maktab_reja (
             user_id BIGINT PRIMARY KEY,
             dars_soni INT NOT NULL DEFAULT 0,
-            dam_kunlari JSONB NOT NULL DEFAULT '[0]'::jsonb,
+            dam_kunlari JSONB NOT NULL DEFAULT '[]'::jsonb,
             yakshanba TEXT NOT NULL DEFAULT 'takror',
             ota_id BIGINT,
             yangilandi_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -393,8 +392,10 @@ def create_router(platform):
         def run(conn, cur):
             reja = reja_ol(cur, user_id)
             bajardi = bugun_bajardi(cur, user_id, day)
+            cur.execute("""SELECT DISTINCT fan FROM maktab_faollik WHERE user_id=%s AND sana=%s AND turi='dars' AND fan <> '' LIMIT 20""", (user_id, day))
+            fanlar = [r["fan"] for r in cur.fetchall()]
             conn.commit()
-            return {"reja": reja, "bugun": bajardi, "sana": day.isoformat(), "hafta_kuni": (day.weekday() + 1) % 7}
+            return {"reja": reja, "bugun": bajardi, "fanlar": fanlar, "sana": day.isoformat(), "hafta_kuni": (day.weekday() + 1) % 7}
         return run_db(run)
 
     @router.get("/api/maktab/topshiriqlar")
