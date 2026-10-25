@@ -292,6 +292,9 @@ class StartLesson(BaseModel):
     jami_qadam: int = Field(default=0, ge=0, le=500)
 
 
+DIQQAT_CHEGARA = 5   # REV171: shuncha marta chiqib ketsa — ota-onaga darhol xabar
+
+
 class FinishLesson(BaseModel):
     token: Optional[str] = None
     dars_kod: str = Field(min_length=1, max_length=120)
@@ -302,6 +305,24 @@ class FinishLesson(BaseModel):
     ovoz_jami: int = Field(default=0, ge=0, le=50)
     # REV145: bugun o'rgangan so'zlar va bola ularni mikrofonga aytdimi — [{soz, emoji, aytdi: true|false|null}]
     sozlar: list = Field(default_factory=list, max_length=20)   # noto‘g‘ri element dars natijasini yo‘qotmaydi — clean_words tozalaydi
+    # REV171: diqqat — darsdan necha marta chiqib ketdi, qisqa «qaytib-chiqish»lar, yo'q bo'lgan soniyalar
+    chiqish: int = Field(default=0, ge=0, le=200)
+    qisqa: int = Field(default=0, ge=0, le=200)
+    yoq_soniya: int = Field(default=0, ge=0, le=86400)
+
+
+def diqqat_text(chiqish=0, qisqa=0, yoq_soniya=0, chalgish=0):
+    """REV171: darsda diqqat — necha marta boshqa ilovaga o'tdi. Qaysi ilovaga — brauzer aytmaydi (shaxsiy ma'lumot)."""
+    n = max(int(chiqish or 0), int(chalgish or 0))
+    if n < 2:
+        return ""
+    t = f"\n👀 Darsda {n} marta boshqa ilovaga chiqib ketdi"
+    if yoq_soniya and yoq_soniya >= 60:
+        t += f" (jami {round(yoq_soniya / 60)} daqiqa yo'q edi)"
+    t += "."
+    if qisqa >= 2:
+        t += f" {qisqa} marta qaytib, darrov yana chiqib ketdi — diqqati boshqa narsada bo'lgan bo'lishi mumkin."
+    return t
 
 
 def clean_words(items):
@@ -696,7 +717,7 @@ def create_router(platform):
         day = tashkent_day(now)
 
         def run(conn, cur):
-            cur.execute("""SELECT id, oxirgi_signal_at, korinadi, faol, bosh_since, tugadi_at FROM bola_dars_faollik
+            cur.execute("""SELECT id, oxirgi_signal_at, korinadi, faol, bosh_since, tugadi_at, chalgish_soni, mavzu FROM bola_dars_faollik
                            WHERE child_id=%s AND dars_kod=%s AND sana=%s FOR UPDATE""", (user_id, kod, day))
             row = cur.fetchone()
             if not row or row["tugadi_at"]:
@@ -711,6 +732,17 @@ def create_router(platform):
                              qadam=GREATEST(qadam, %s)
                            WHERE id=%s""",
                         (now, visible, active, add, 1 if went_away else 0, not visible, now, visible, active, now, step, row["id"]))
+            # REV171: bitta darsda 5-marta chiqib ketsa — ota-onaga darhol bir marta xabar (keyin dars oxirida to'liq hisobot)
+            if went_away and int(row.get("chalgish_soni") or 0) + 1 == DIQQAT_CHEGARA:
+                try:
+                    cur.execute("SAVEPOINT bola_diqqat")
+                    name, kid = child_card(cur, user_id)
+                    if kid:
+                        notify(cur, user_id, f"👀 {name} «{row.get('mavzu') or 'dars'}» darsida {DIQQAT_CHEGARA} marta boshqa ilovaga "
+                                             f"chiqib ketdi. Diqqati boshqa narsada bo'lishi mumkin.", "bola_diqqat")
+                    cur.execute("RELEASE SAVEPOINT bola_diqqat")
+                except Exception:
+                    cur.execute("ROLLBACK TO SAVEPOINT bola_diqqat")
             conn.commit()
             return {"ok": True}
         return run_db(run)
@@ -768,6 +800,7 @@ def create_router(platform):
                         f"🤖 AI bahosi: {ai['baho']} ({reja_mod.BAHO_MATN[ai['baho']]}, {ai['ball']}/100)")
                 if words:
                     text += f"\n📝 O'rgangan so'zlari: {words_text(words)}"
+                text += diqqat_text(body.chiqish, body.qisqa, body.yoq_soniya, done.get("chalgish_soni") or 0)
                 if all_done and rj and rj.get("manba"):
                     text += "\n🎉 Bugungi rejadagi darslar tugadi. Endi o'yin va takrorlash — yangi darslar keyingi kuni ochiladi."
                 elif all_done:
