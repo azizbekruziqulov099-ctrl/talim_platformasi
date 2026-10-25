@@ -32,7 +32,7 @@ WEEKDAYS_UZ = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanb
 TILLAR = {"en", "ru", "de", "fr", "es", "ar", "tr", "zh", "ja", "ko"}
 TIL_NOMI = {"en": "Ingliz tili", "ru": "Rus tili", "de": "Nemis tili", "fr": "Fransuz tili", "es": "Ispan tili",
             "ar": "Arab tili", "tr": "Turk tili", "zh": "Xitoy tili", "ja": "Yapon tili", "ko": "Koreys tili"}
-TURLAR = {"dars", "til", "repetitor", "topshiriq"}
+TURLAR = {"dars", "til", "repetitor", "topshiriq", "imtihon"}   # REV176: imtihon — haftalik, oylik, joylashtirish
 SOZ_ID = re.compile(r"^[a-z0-9_-]{1,48}$")
 YOZISH = (0, 5, 10, 20, 30, 40, 50, 100)
 MAX_SOZ = 30            # bitta topshiriqda
