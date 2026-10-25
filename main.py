@@ -296,6 +296,12 @@ if __package__:
 else:
     from modules.maktab_natija import create_router as create_maktab_natija_router
 app.include_router(create_maktab_natija_router(samtm_platform))
+# REV174: maktab o'quvchisi faolligi va ota-ona: bugun/hafta, «O'zim sinayman», «Mashq ber».
+if __package__:
+    from .modules.maktab_ota import create_router as create_maktab_ota_router
+else:
+    from modules.maktab_ota import create_router as create_maktab_ota_router
+app.include_router(create_maktab_ota_router(samtm_platform))
 # REV106: o'qituvchi kirishda o'z fanlarini tanlaydi — faqat shu fanlar mavzulari, AI darslari va testlari.
 if __package__:
     from .modules.teacher_subjects import create_router as create_teacher_subjects_router

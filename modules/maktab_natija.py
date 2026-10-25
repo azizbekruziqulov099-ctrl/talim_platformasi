@@ -6,6 +6,7 @@
 Keyingi bosqichda ota-ona sahifasi shu jadvaldan farzandining darajasini ko'radi.
 """
 import threading
+from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Header, HTTPException, Query
 from pydantic import BaseModel, Field
@@ -16,7 +17,10 @@ except ImportError:   # pragma: no cover
     _LazyMigration = None
 
 TILLAR = {"en", "ru", "de", "fr", "es", "ar", "tr", "zh", "ja", "ko"}
-CEFR = ["", "Pre-A1", "A1", "A2", "B1", "B2", "C1", "C2"]
+CEFR = ["", "Pre-A1", "A1", "A2", "B1"]   # REV174: dastur faqat B1 gacha — boshqa qiymat qabul qilinmaydi
+KUNLIK_BAL = 10000      # bir kunda ko'pi bilan shuncha ball qo'shiladi (faol o'quvchi ~2–3 ming to'playdi)
+KUNLIK_JAVOB = 3000     # bir kunda ko'pi bilan shuncha javob
+KUNLIK_BOLIM = 12       # bir kunda ko'pi bilan shuncha bo'lim imtihoni
 FAOL_KUN = 60          # reytingda — oxirgi 60 kunda faol bo'lganlar
 REYTING_MIN = 3        # kamida shuncha o'quvchi bo'lsa o'rin ko'rsatiladi
 
@@ -63,6 +67,22 @@ def birlashtir(eski, yangi):
     return out
 
 
+def kunlik_chegara(eski, r, today):
+    """REV174: soxta so'rov bilan reytingni ko'tarib bo'lmasin — bir kunda o'sish chegaralangan (kun boshidagi qiymatdan).
+    → (r — chegaralangan, kun_bosh — {kun, bal, jami, otildi})."""
+    eski = eski or {}
+    if eski.get("kun") == today:
+        bosh = {"kun": today, "bal": int(eski.get("kun_bal") or 0), "jami": int(eski.get("kun_jami") or 0), "otildi": int(eski.get("kun_otildi") or 0)}
+    else:
+        bosh = {"kun": today, "bal": int(eski.get("bal") or 0), "jami": int(eski.get("jami") or 0), "otildi": int(eski.get("otildi") or 0)}
+    out = dict(r)
+    out["bal"] = min(out["bal"], bosh["bal"] + KUNLIK_BAL)
+    out["jami"] = min(out["jami"], bosh["jami"] + KUNLIK_JAVOB)
+    out["togri"] = min(out["togri"], out["jami"])
+    out["otildi"] = min(out["otildi"], bosh["otildi"] + KUNLIK_BOLIM)
+    return out, bosh
+
+
 def orin(ballar, mening):
     """O'rin: mendan ko'p ball to'plaganlar soni + 1."""
     return 1 + sum(1 for b in ballar if b > mening)
@@ -85,6 +105,11 @@ def migrate(cur):
             PRIMARY KEY (user_id, til)
         )""")
     cur.execute("CREATE INDEX IF NOT EXISTS maktab_til_natija_reyting ON maktab_til_natija(til, sinf, bal DESC)")
+    # REV174: kunlik o'sish chegarasi uchun kun boshidagi qiymatlar
+    cur.execute("ALTER TABLE maktab_til_natija ADD COLUMN IF NOT EXISTS kun DATE")
+    cur.execute("ALTER TABLE maktab_til_natija ADD COLUMN IF NOT EXISTS kun_bal BIGINT NOT NULL DEFAULT 0")
+    cur.execute("ALTER TABLE maktab_til_natija ADD COLUMN IF NOT EXISTS kun_jami INT NOT NULL DEFAULT 0")
+    cur.execute("ALTER TABLE maktab_til_natija ADD COLUMN IF NOT EXISTS kun_otildi INT NOT NULL DEFAULT 0")
 
 
 def create_router(platform):
@@ -135,16 +160,25 @@ def create_router(platform):
 
         def run(conn, cur):
             sinf = sinf_of(user_class(cur, user_id), body.sinf)
-            cur.execute("SELECT bal, togri, jami, otildi, daraja, keyingi, foiz FROM maktab_til_natija WHERE user_id=%s AND til=%s FOR UPDATE",
-                        (user_id, til))
+            cur.execute("""SELECT bal, togri, jami, otildi, daraja, keyingi, foiz, kun, kun_bal, kun_jami, kun_otildi
+                           FROM maktab_til_natija WHERE user_id=%s AND til=%s FOR UPDATE""", (user_id, til))
             eski = cur.fetchone()
-            r = birlashtir(dict(eski) if eski else None, body.model_dump() if hasattr(body, "model_dump") else body.dict())
-            cur.execute("""INSERT INTO maktab_til_natija(user_id, til, sinf, bal, togri, jami, daraja, keyingi, foiz, otildi, yangilangan_at)
-                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())
-                           ON CONFLICT (user_id, til) DO UPDATE SET sinf=EXCLUDED.sinf, bal=EXCLUDED.bal, togri=EXCLUDED.togri,
-                             jami=EXCLUDED.jami, daraja=EXCLUDED.daraja, keyingi=EXCLUDED.keyingi, foiz=EXCLUDED.foiz,
-                             otildi=EXCLUDED.otildi, yangilangan_at=NOW()""",
-                        (user_id, til, sinf, r["bal"], r["togri"], r["jami"], r["daraja"], r["keyingi"], r["foiz"], r["otildi"]))
+            eski = dict(eski) if eski else None
+            yangi = body.model_dump() if hasattr(body, "model_dump") else body.dict()
+            if str(yangi.get("daraja") or "") not in CEFR:
+                yangi["daraja"], yangi["foiz"] = "", 0
+            r, bosh = kunlik_chegara(eski, birlashtir(eski, yangi), datetime.now(timezone(timedelta(hours=5))).date())
+            # bir vaqtda kelgan ikki so'rov ham bir-birini kamaytirmaydi (GREATEST)
+            cur.execute("""INSERT INTO maktab_til_natija(user_id, til, sinf, bal, togri, jami, daraja, keyingi, foiz, otildi, yangilangan_at,
+                                                         kun, kun_bal, kun_jami, kun_otildi)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW(),%s,%s,%s,%s)
+                           ON CONFLICT (user_id, til) DO UPDATE SET sinf=EXCLUDED.sinf,
+                             bal=GREATEST(maktab_til_natija.bal, EXCLUDED.bal), togri=GREATEST(maktab_til_natija.togri, EXCLUDED.togri),
+                             jami=GREATEST(maktab_til_natija.jami, EXCLUDED.jami), daraja=EXCLUDED.daraja, keyingi=EXCLUDED.keyingi,
+                             foiz=EXCLUDED.foiz, otildi=GREATEST(maktab_til_natija.otildi, EXCLUDED.otildi), yangilangan_at=NOW(),
+                             kun=EXCLUDED.kun, kun_bal=EXCLUDED.kun_bal, kun_jami=EXCLUDED.kun_jami, kun_otildi=EXCLUDED.kun_otildi""",
+                        (user_id, til, sinf, r["bal"], r["togri"], r["jami"], r["daraja"], r["keyingi"], r["foiz"], r["otildi"],
+                         bosh["kun"], bosh["bal"], bosh["jami"], bosh["otildi"]))
             conn.commit()
             return {"ok": True, "sinf": sinf, **r}
         return run_db(run)

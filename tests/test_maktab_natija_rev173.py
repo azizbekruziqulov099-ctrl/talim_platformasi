@@ -1,7 +1,9 @@
 """REV173: maktab til natijasi — birlashtirish (kamaymaydi), sinf, o'rin."""
 import unittest
 
-from modules.maktab_natija import Natija, birlashtir, daraja_raqami, orin, sinf_of
+from datetime import date
+
+from modules.maktab_natija import KUNLIK_BAL, Natija, birlashtir, daraja_raqami, kunlik_chegara, orin, sinf_of
 
 
 class MaktabNatijaTest(unittest.TestCase):
@@ -27,6 +29,18 @@ class MaktabNatijaTest(unittest.TestCase):
         self.assertEqual(sinf_of("bogcha", 0), 1)
         self.assertEqual(orin([100, 50, 300, 50], 50), 3)
         self.assertEqual(orin([], 0), 1)
+
+    def test_kunlik_osish_chegarasi(self):
+        bugun = date(2026, 10, 25)
+        eski = {"bal": 1000, "togri": 10, "jami": 20, "otildi": 1, "kun": date(2026, 10, 24), "kun_bal": 0}
+        r, bosh = kunlik_chegara(eski, {"bal": 50_000_000, "togri": 10**6, "jami": 10**6, "otildi": 200, "daraja": "", "keyingi": "", "foiz": 0}, bugun)
+        self.assertEqual(r["bal"], 1000 + KUNLIK_BAL)          # kun boshidagi qiymatdan
+        self.assertEqual(bosh["bal"], 1000)
+        self.assertLessEqual(r["togri"], r["jami"])
+        # o'sha kuni ikkinchi so'rov — chegara kun boshidan hisoblanadi (bo'lib-bo'lib yuborib aylanib o'tib bo'lmaydi)
+        eski2 = {**eski, **r, "kun": bugun, "kun_bal": bosh["bal"], "kun_jami": bosh["jami"], "kun_otildi": bosh["otildi"]}
+        r2, _ = kunlik_chegara(eski2, {**r, "bal": 10**7}, bugun)
+        self.assertEqual(r2["bal"], 1000 + KUNLIK_BAL)
 
     def test_model_chegaralari(self):
         n = Natija(til="en", sinf=7, bal=10)
