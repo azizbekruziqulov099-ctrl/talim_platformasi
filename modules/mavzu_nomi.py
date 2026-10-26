@@ -83,11 +83,32 @@ def baza_indeksi(rows):
     return {"index": index, "guruhlar": groups, "fanlar": subjects}
 
 
+def _bir_mavzu_bitta(rows, key):
+    """REV181: «Mavzu» nomi bilan topilganda bitta mavzuning bir nechta kichik mavzusi chiqadi («4. Isming nima?» →
+    «What's your name?», «My name is …»). Ular nusxa emas — bitta mavzu: eng kichik kodli kichik mavzu olinadi.
+    O'z nomi («nom») bilan topilgan qator har doim qoladi."""
+    out, first = [], {}
+    for row in rows:
+        if nom_norm(row.get("nom")) == key:
+            out.append(row)
+            continue
+        joy = (row.get("curriculum_scope_id"),) + tuple(kod_qismlari(row.get("topic_code")))
+        old = first.get(joy)
+        if old is None:
+            first[joy] = row
+            out.append(row)
+        elif str(row.get("topic_code")) < str(old.get("topic_code")):
+            out[out.index(old)] = row
+            first[joy] = row
+    return out
+
+
 def nomzodlar(baza, nom, fan_n, group):
     """Bir mavzu nomi uchun nomzodlar. Qaytaradi: (tanlanganlar, shu nomdagi boshqa joy qatorlari).
 
     fan_n — kitob fanining nom_norm kaliti, group — kitob_guruhi() natijasi."""
-    rows = baza["index"].get(nom_norm(nom), [])
+    key = nom_norm(nom)
+    rows = _bir_mavzu_bitta(baza["index"].get(key, []), key)
 
     def fan_mos(row):
         return bool(fan_n) and nom_norm(row.get("subject_name")) == fan_n

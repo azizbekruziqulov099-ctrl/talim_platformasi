@@ -174,6 +174,11 @@ YAKSHANBA = {"takror", "dam", "dars"}   # yakshanba: yengil takror (yangi dars y
 REJA_STANDART = {"dars_soni": 0, "dam_kunlari": [], "yakshanba": "takror"}   # yakshanba alohida sozlanadi (dam_kunlari — faqat Du–Sh)
 
 
+def fan_kaliti(fan):
+    """«Nemis tili (izoh: rus)» va «Nemis tili» — bitta fan."""
+    return re.sub(r"\s*\(izoh:[^)]*\)\s*", "", str(fan or ""), flags=re.I).strip().lower()
+
+
 def reja_toza(dars_soni=0, dam_kunlari=None, yakshanba="takror"):
     """Ota-ona yuborgan rejani tozalash: dars soni 0–8, dam kunlari — dushanba–shanba (1–6, ko'pi bilan 3 kun);
     yakshanba alohida: takror | dam | dars."""
@@ -396,6 +401,28 @@ def create_router(platform):
             fanlar = [r["fan"] for r in cur.fetchall()]
             conn.commit()
             return {"reja": reja, "bugun": bajardi, "fanlar": fanlar, "sana": day.isoformat(), "hafta_kuni": (day.weekday() + 1) % 7}
+        return run_db(run)
+
+    @router.get("/api/maktab/kundalik")
+    def my_diary(fan: str = Query("", max_length=160), kun: int = Query(60, ge=1, le=365), token: str = None, authorization: str = Header(None)):
+        """REV180: o'quvchining o'z kundaligi — fan bo'yicha: dars, test, takror, mashq, repetitor, imtihon natijalari (har qurilmada bir xil)."""
+        user_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+        fk = fan_kaliti(fan)
+
+        def run(conn, cur):
+            cur.execute("""SELECT sana, turi, kod, fan, til, mavzu, togri, jami, yozdi, soniya, boshlandi_at FROM maktab_faollik
+                           WHERE user_id=%s AND sana > %s ORDER BY sana DESC, boshlandi_at DESC LIMIT 600""", (user_id, day - timedelta(days=kun)))
+            rows = []
+            for r in cur.fetchall():
+                r = dict(r)
+                if fk and fan_kaliti(r["fan"]) != fk:
+                    continue
+                rows.append({"sana": r["sana"].isoformat(), "turi": r["turi"], "kod": r["kod"], "fan": r["fan"], "til": r["til"], "mavzu": r["mavzu"],
+                             "togri": int(r["togri"] or 0), "jami": int(r["jami"] or 0), "yozdi": int(r["yozdi"] or 0), "soniya": int(r["soniya"] or 0),
+                             "vaqt": r["boshlandi_at"].astimezone(TASHKENT).strftime("%H:%M") if r.get("boshlandi_at") else ""})
+            conn.commit()
+            return {"kundalik": rows[:300]}
         return run_db(run)
 
     @router.get("/api/maktab/topshiriqlar")

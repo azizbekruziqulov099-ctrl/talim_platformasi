@@ -22,3 +22,12 @@ class RejaTozaTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class KundalikTest(unittest.TestCase):
+    """REV180: o'quvchi kundaligi — izoh tili farq qilmaydi."""
+
+    def test_fan_kaliti(self):
+        self.assertEqual(mo.fan_kaliti("Nemis tili (izoh: rus)"), "nemis tili")
+        self.assertEqual(mo.fan_kaliti("Nemis tili"), "nemis tili")
+        self.assertEqual(mo.fan_kaliti(None), "")
