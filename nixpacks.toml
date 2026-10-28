@@ -1,0 +1,3 @@
+# REV185: Kabutar TV videolari uchun ffmpeg
+[phases.setup]
+aptPkgs = ["ffmpeg"]

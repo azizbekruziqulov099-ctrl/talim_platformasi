@@ -306,6 +306,9 @@ def allow_group(cur, actor_id, group_id):
     row = dict(row)
     if row.get('turi') == 'global' or row.get('manba_turi') == 'global':
         return False
+    if row.get('manba_turi') == 'kabutar_tv':
+        # REV185: Kabutar TV kanali — a'zolikni sinf/yosh bo'yicha tizim beradi (yuqoridagi JOIN tekshirdi)
+        return True
     mine = memberships(cur,actor_id)
     source = row.get('manba_turi'); source_id = int(row.get('manba_id') or 0)
     if row.get('turi') == 'xodimlar' and source in ('maktab','universitet','markaz','bogcha','context:school','context:university','context:learning_center','context:kindergarten'):
@@ -318,6 +321,10 @@ def allow_group(cur, actor_id, group_id):
 
 def require_group(cur, actor_id, group_id, write=False):
     if write:
+        cur.execute('SELECT manba_turi FROM chat_guruhlari WHERE id=%s', (int(group_id),))
+        g = cur.fetchone()
+        if g and g.get('manba_turi') == 'kabutar_tv':
+            raise HTTPException(403, 'Kabutar TV kanali faqat ko‘rish uchun.')
         ensure_terms_accepted(cur,actor_id)
     if not allow_group(cur,actor_id,group_id):
         raise HTTPException(403, 'Bu guruhdagi amaldagi a’zoligingiz tasdiqlanmagan yoki muassasa arxivlangan.')

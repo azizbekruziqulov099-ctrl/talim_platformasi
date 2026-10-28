@@ -6118,6 +6118,15 @@ def _foydalanuvchi_guruhlarini_sinxronlash(cur, user_id):
         seen.add(key)
         gid = _chat_guruh_topish_yoki_yarat(cur,*key,name)
         _chat_azo_qosh(cur,gid,user_id)
+    # REV185: Kabutar TV kanallari — sinf/yoshga (va farzandlarning sinfiga) qarab avtomatik a'zolik
+    try:
+        cur.execute("SAVEPOINT kabutar_tv_azo")
+        from modules.kabutar_tv.kanal import azolikni_sinxronla as _tv_azolik
+        _tv_azolik(cur, user_id, lambda c, turi, mt, mid, nomi: _chat_guruh_topish_yoki_yarat(c, turi, mt, mid, nomi), _chat_azo_qosh)
+        cur.execute("RELEASE SAVEPOINT kabutar_tv_azo")
+    except Exception as _tv_xato:
+        cur.execute("ROLLBACK TO SAVEPOINT kabutar_tv_azo")
+        print(f"[kabutar_tv azolik] {_tv_xato}", flush=True)
 
 
 @app.get("/api/chat/guruhlarim")
@@ -6861,16 +6870,27 @@ def xavfli_xabarlar_korish(token: str):
 
 
 @app.get("/api/chat/fayl/{xabar_id}")
-def chat_fayl_korish(xabar_id: int, token: str):
+def chat_fayl_korish(xabar_id: int, token: str, range_header: Optional[str] = Header(None, alias="Range")):
     """Fayl baytlarini o'qishdan oldin amaldagi suhbat ruxsatini tekshiradi."""
     user_id = _chat_actor(token)
     conn = _db()
     cur = conn.cursor()
     try:
         _chat_policy().require_message(cur, user_id, xabar_id)
-        cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi FROM chat_xabarlari
-                       WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
-        x = cur.fetchone()
+        try:   # REV185: fayl_yol ustuni Kabutar TV birinchi ishlaganda qo'shiladi — undan oldin eski so'rov
+            cur.execute("SAVEPOINT chat_fayl_yol")
+            cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi, fayl_yol FROM chat_xabarlari
+                           WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
+            x = cur.fetchone()
+            cur.execute("RELEASE SAVEPOINT chat_fayl_yol")
+        except psycopg2.Error:
+            cur.execute("ROLLBACK TO SAVEPOINT chat_fayl_yol")
+            cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi FROM chat_xabarlari
+                           WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
+            x = cur.fetchone()
+        if x and x.get("fayl_yol"):   # REV185: Kabutar TV videosi diskda — oldinga-orqaga surish (Range) bilan
+            from modules.kabutar_tv.kanal import fayl_javob
+            return fayl_javob(x["fayl_yol"], range_header, x.get("fayl_nomi") or "video.mp4")
         if not x or not x["fayl_malumot"]:
             raise HTTPException(status_code=404, detail="Fayl topilmadi")
         # REV152: tur fayl ichidan tekshiriladi; HTML va boshqalar hech qachon brauzerda ochilmaydi (faqat yuklab olinadi)
@@ -19733,7 +19753,50 @@ def _ai_brain_nusxadan_tanla(cur, ambiguous, pending, resolved, meta=None):
     return nusxadan_tanla(ambiguous, pending, resolved, linked, meta)
 
 
-def _ai_brain_nom_boyicha_kod(cur, parsed):
+def _ai_brain_mavzu_yarat(cur, info, qoshni_kod, group, fan):
+    """REV186: kitobdagi mavzu bazada yo'q — kitobning qo'shni mavzusi turgan blok/bobda o'zi yaratiladi (Mavzu yaratish kabi).
+    Qo'shni yo'q bo'lsa — kitob sinfi va fanida alohida kod bilan. Qaytaradi: yangi topic_code."""
+    from modules.mavzu_nomi import kod_qismlari
+    nom = re.sub(r"^\s*\d+[.)]\s*", "", str(info.get("nom") or "")).strip() or str(info.get("nom") or "").strip()
+    raqam = info.get("raqam")
+    if qoshni_kod:
+        cur.execute("SELECT * FROM dts_tree WHERE topic_code=%s LIMIT 1", (qoshni_kod,))
+        row = cur.fetchone()
+    else:
+        row = None
+    if row:
+        row = dict(row)
+        head, _ = kod_qismlari(qoshni_kod)
+        n = int(raqam) if str(raqam or "").isdigit() else 90
+        for v in range(1, 1000):
+            kod = f"{head}-{n:02d}-{v:03d}"
+            cur.execute("SELECT 1 FROM dts_tree WHERE topic_code=%s", (kod,))
+            if not cur.fetchone():
+                break
+        row.pop("id", None)
+        row["topic_code"] = kod
+        if row.get("kichik_name"):
+            row["kichik_name"] = info.get("nom") or nom
+        else:
+            row["mavzu_name"] = info.get("nom") or nom
+        row["is_deleted"] = False
+        cur.execute("""SELECT column_name FROM information_schema.columns
+                       WHERE table_schema='public' AND table_name='dts_tree' AND is_generated='NEVER' AND is_identity='NO'
+                         AND COALESCE(column_default,'') NOT LIKE 'nextval%%'""")
+        yoziladi = {r["column_name"] for r in cur.fetchall()}
+        for k in ("created_at", "updated_at", "yaratilgan_at", "yangilangan_at"):
+            row.pop(k, None)
+        cols = [c for c in row.keys() if c in yoziladi]
+        cur.execute(f"INSERT INTO dts_tree({','.join(cols)}) VALUES({','.join(['%s'] * len(cols))})",
+                    [json.dumps(row[c]) if isinstance(row[c], (dict, list)) else row[c] for c in cols])
+        return kod
+    kod = _keyingi_togarak_topic_code(cur)
+    cur.execute("""INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
+                   VALUES(%s,%s,%s,'1','','',%s,'',FALSE)""", (kod, group or "", fan or "", info.get("nom") or nom))
+    return kod
+
+
+def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
     """Mavzu kodi yozilmagan varaqlar: mavzu nomi bo'yicha Mavzular bazasidan kod topiladi.
 
     REV101: faqat kitobning o'z sinfi / yosh guruhi va fani ichidan (qoidalar — modules/mavzu_nomi.py).
@@ -19752,7 +19815,7 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
            FROM dts_tree WHERE COALESCE(is_deleted,FALSE)=FALSE"""
     )
     baza = mavzu_nomi.baza_indeksi(cur.fetchall())
-    replace, ambiguous, meta = {}, {}, {}
+    replace, ambiguous, meta, topilmadi = {}, {}, {}, {}
     for placeholder, info in pending.items():
         pick, elsewhere = mavzu_nomi.nomzodlar(baza, info["nom"], fan, group)
         for r in pick:
@@ -19762,6 +19825,8 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
             replace[placeholder] = codes[0]
         elif codes:
             ambiguous[placeholder] = codes
+        elif yarat:
+            topilmadi[placeholder] = info
         else:
             where = f" {place} uchun" if place else ""
             hint = f" (bu nom boshqa joyda bor: {mavzu_nomi.boshqa_joylar(elsewhere)})" if elsewhere else ""
@@ -19785,6 +19850,23 @@ def _ai_brain_nom_boyicha_kod(cur, parsed):
                 _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
                                f"«{info['nom']}» nomli {len(codes)} ta mavzu bor ({', '.join(codes[:4])}) va qaysi biri to'g'riligini aniqlab bo'lmadi — "
                                f"ortiqchasini Mavzular bo'limidan o'chiring yoki varaqqa aniq mavzu kodini yozing")
+    # REV186: bazada yo'q mavzular (paket yuklashda) — kitobning eng yaqin raqamli mavzusi turgan joyda o'zi yaratiladi
+    if topilmadi:
+        bor = [(pending[p].get("raqam") or 0, c) for p, c in replace.items()]
+        for placeholder, info in topilmadi.items():
+            r0 = info.get("raqam") or 0
+            qoshni = min(bor, key=lambda x: (abs((x[0] or 0) - r0), x[1]))[1] if bor else None
+            try:
+                cur.execute("SAVEPOINT ai_mavzu_yarat")
+                kod = _ai_brain_mavzu_yarat(cur, info, qoshni, group, book.get("fan"))
+                cur.execute("RELEASE SAVEPOINT ai_mavzu_yarat")
+                replace[placeholder] = kod
+                _ai_brain_xato(parsed["warnings"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
+                               f"«{info['nom']}» mavzusi bazada yo'q edi — {kod} kodi bilan o'zi yaratildi", "warning")
+            except Exception as exc:
+                cur.execute("ROLLBACK TO SAVEPOINT ai_mavzu_yarat")
+                _ai_brain_xato(parsed["errors"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
+                               f"«{info['nom']}» mavzusini yaratib bo'lmadi: {exc}")
     text = json.dumps(parsed["payload"], ensure_ascii=False)
     for placeholder, code in replace.items():
         text = text.replace(placeholder, code.replace("\\", "\\\\").replace('"', '\\"'))
@@ -19838,8 +19920,8 @@ def _ai_brain_yosh_guruhi_tekshir(parsed):
                     break
 
 
-def _ai_brain_db_topic_tekshir(cur, parsed):
-    _ai_brain_nom_boyicha_kod(cur, parsed)
+def _ai_brain_db_topic_tekshir(cur, parsed, yarat=False):
+    _ai_brain_nom_boyicha_kod(cur, parsed, yarat)
     _ai_brain_kitob_kod_tekshir(cur, parsed)
     topic_rows = parsed["payload"].get("02_DTS_XARITA", [])
     topic_codes = sorted({r["topic_code"] for r in topic_rows if r.get("topic_code")})
@@ -20103,7 +20185,7 @@ async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
     return _ai_miya_tekshir_content(content, fayl.filename or "kitob.xlsx", user_id)
 
 
-def _ai_miya_tekshir_content(content, file_name, user_id):
+def _ai_miya_tekshir_content(content, file_name, user_id, yarat=False):
     """REV121: ai_miya_tekshir yadrosi — fayl tekshiriladi va «validated» paket yaratiladi (ommaviy yuklashda ham)."""
     media_files = {}
     if (file_name or "").lower().endswith(".zip") or content[:4] == b"PK\x03\x04" and not _ai_brain_xlsx_mi(content):
@@ -20117,7 +20199,7 @@ def _ai_miya_tekshir_content(content, file_name, user_id):
     try:
         _ai_brain_jadvallari(cur)
         _ai_brain_dars_jadvallari(cur)
-        _ai_brain_db_topic_tekshir(cur, parsed)
+        _ai_brain_db_topic_tekshir(cur, parsed, yarat)
         cur.execute(
             """INSERT INTO ai_brain_import_batches
                (uploaded_by,file_name,file_size,file_checksum,status,
@@ -20722,6 +20804,8 @@ def _paket_turi(content, name=""):
         return "nomalum"
     try:
         names = set(wb.sheetnames)
+        if "LUGAT" in names:   # REV186: «Lug'at miyasi» Excel — Miya bo'limidan yuklansa ham lug'atga tushadi
+            return "lugat"
         if names & {"KITOB", "01_KITOB"}:
             return "miya"
         mavzu_kalit = {_curriculum.text_key("Fan"), _curriculum.text_key("Mavzu")}
@@ -20819,6 +20903,21 @@ def _paket_bogcha_scope(content, scope_id=0):
         return scope_id
 
 
+import threading as _threading
+_PAKET_QULF = _threading.Lock()
+
+
+def _xotirani_qaytar():
+    """REV186: katta Excel o'qilgandan keyin bo'shagan xotirani operatsion tizimga qaytaradi (Python o'zi qaytarmaydi)."""
+    import gc
+    gc.collect()
+    try:
+        import ctypes
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except Exception:
+        pass
+
+
 def _paket_ishla(content, name, turi, scope_id, user_id, token):
     """Bitta fayl: mavzular → Mavzular importi; miya → tekshirish + import + nashr. Natija — {ok, xabar, ...}."""
     try:
@@ -20829,6 +20928,19 @@ def _paket_ishla(content, name, turi, scope_id, user_id, token):
             r = _topik_import_content(content, scope_id)
             return {"ok": True, "xabar": f"Mavzular: {r['added']} ta yangi, {r['updated']} ta yangilandi, {r['mavjud']} ta oldin bor edi",
                     "added": r["added"], "updated": r["updated"], "mavjud": r["mavjud"]}
+        if turi == "lugat":
+            from modules.lugat_miyasi import excel_oqi, saqla as _lugat_saqla
+            qatorlar, xato = excel_oqi(content)
+            conn = _db(); cur = conn.cursor()
+            try:
+                _lugat_saqla(cur, qatorlar)
+                conn.commit()
+            except Exception:
+                conn.rollback(); raise
+            finally:
+                cur.close(); conn.close()
+            return {"ok": True, "xabar": f"Lug'at miyasi: {len(qatorlar)} ta so'z qo'shildi/yangilandi" + (f", {len(xato)} ta qator o'tkazildi" if xato else ""),
+                    "xatolar": xato[:8]}
         if turi == "miya":
             oldin = _paket_oldin_ornatilgan(content)
             if oldin:   # aynan shu fayl avval nashr qilingan — qayta ishlash shart emas
@@ -20844,7 +20956,7 @@ def _paket_ishla(content, name, turi, scope_id, user_id, token):
                     cur.close(); conn.close()
                 return {"ok": True, "batch_id": oldin, "oldin": True, "xabar": "Oldin o'rnatilgan, o'zgarmagan — o'tkazildi"
                         + (f"; eski darslardan {tozalandi} ta ortiqcha qism olib tashlandi" if tozalandi else "")}
-            t = _ai_miya_tekshir_content(content, name, user_id)
+            t = _ai_miya_tekshir_content(content, name, user_id, yarat=True)
             s = t.get("summary") or {}
             if not t.get("tayyor"):
                 errs = [f"{e.get('sheet')}, {e.get('row')}-qator: {e.get('message')}" for e in (t.get("errors") or [])[:8]]
@@ -20897,10 +21009,10 @@ async def paket_yukla(token: str, fayl: UploadFile = File(...), scope_id: int = 
                         cur.execute("""INSERT INTO ai_brain_paket_fayllar(paket,tartib,nomi,yol,turi,belgi,data,yuklagan,holat)
                                        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
                                     (paket, i, it["nomi"], it["yol"], it["turi"], belgi,
-                                     psycopg2.Binary(it["data"]) if it["turi"] in ("mavzu", "miya") else None, user_id,
-                                     "kutmoqda" if it["turi"] in ("mavzu", "miya") else "otkazildi"))
+                                     psycopg2.Binary(it["data"]) if it["turi"] in ("mavzu", "miya", "lugat") else None, user_id,
+                                     "kutmoqda" if it["turi"] in ("mavzu", "miya", "lugat") else "otkazildi"))
                         out.append({"id": cur.fetchone()["id"], "nomi": it["nomi"], "yol": it["yol"], "turi": it["turi"], "belgi": belgi,
-                                    "holat": "kutmoqda" if it["turi"] in ("mavzu", "miya") else "otkazildi"})
+                                    "holat": "kutmoqda" if it["turi"] in ("mavzu", "miya", "lugat") else "otkazildi"})
                     conn.commit()
                     return out
                 except Exception:
@@ -20939,7 +21051,9 @@ def paket_fayl(fid: int, token: str, scope_id: int = 0):
     if row["data"] is None:
         return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": row["holat"], "ok": row["holat"] != "xato",
                 "xabar": (row["natija"] or {}).get("xabar") or "O'tkazib yuborildi"}
-    natija = _paket_ishla(bytes(row["data"]), row["nomi"], row["turi"], scope_id, user_id, token)
+    with _PAKET_QULF:   # REV186: bir workerda bir vaqtda bitta og'ir fayl (Excel + rasmlar) — xotira to'lib server o'chmasin
+        natija = _paket_ishla(bytes(row["data"]), row["nomi"], row["turi"], scope_id, user_id, token)
+    _xotirani_qaytar()
     holat = "tayyor" if natija["ok"] else "xato"
     conn = _db(); cur = conn.cursor()
     try:
@@ -26608,6 +26722,9 @@ app.include_router(
 # REV184: lug'at miyasi — bola tushunmagan so'zni bosganda izoh ustozi tushuntiradi
 from modules.lugat_miyasi import create_lugat_router
 app.include_router(create_lugat_router(_admin_tekshir, _db))
+# REV185: Kabutar TV — kunlik yoshga mos video ko'rsatuvlar Kabutar kanallarida
+from modules.kabutar_tv.kanal import create_kabutar_tv_router
+app.include_router(create_kabutar_tv_router(_admin_tekshir, _db))
 
 @app.on_event("shutdown")
 def _modular_resurslarni_yopish():
