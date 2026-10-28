@@ -26605,6 +26605,10 @@ app.include_router(
     )
 )
 
+# REV184: lug'at miyasi — bola tushunmagan so'zni bosganda izoh ustozi tushuntiradi
+from modules.lugat_miyasi import create_lugat_router
+app.include_router(create_lugat_router(_admin_tekshir, _db))
+
 @app.on_event("shutdown")
 def _modular_resurslarni_yopish():
     _modular_db_poolni_yop()
