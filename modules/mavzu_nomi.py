@@ -162,6 +162,8 @@ def nusxadan_tanla(ambiguous, pending, resolved, linked=None, meta=None):
     # REV101: kitobning nusxali mavzulari qaysi blok/bobda ko'proq turgan bo'lsa — o'sha nusxa.
     cover = Counter(h for codes in ambiguous.values() for h in {kod_qismlari(c)[0] for c in codes})
     names = Counter(nom_norm(info.get("nom")) for info in pending.values())
+    root_cover = Counter(_ildiz(c) for codes in ambiguous.values() for c in set(codes))
+    root_cover.update(_ildiz(c) for c in resolved.values())
     out = {}
     for placeholder, codes in ambiguous.items():
         number = pending[placeholder].get("raqam")
@@ -188,4 +190,29 @@ def nusxadan_tanla(ambiguous, pending, resolved, linked=None, meta=None):
             tied = [code for score, code, _ in scored if score == scored[0][0]]
             best = min(tied, key=lambda c: (-cover[kod_qismlari(c)[0]], kod_qismlari(c)[0], c))
             out[placeholder] = (best, "nusxalar bir xil — kitobning boshqa mavzulari ham shu blokda")
+            continue
+        # REV186: fan katalogi ikki marta yuklangan (masalan 1-01-… va 1-14-…): ikkala nusxa ham bitta sinf va fanda.
+        # Butun kitob BITTA nusxaga ulanadi — kitob mavzulari ko'proq turgan, teng bo'lsa yangiroq (kattaroq raqamli) nusxa.
+        # Shu qoida uz/ru/en fayllarida bir xil ishlaydi, shuning uchun uchala izoh bitta mavzuga tushadi.
+        if names[nom_norm(pending[placeholder].get("nom"))] == 1 and _bir_fanda(codes, meta):
+            tied = [code for score, code, _ in scored if score == scored[0][0]]
+            best = max(tied, key=lambda c: (root_cover[_ildiz(c)], _ildiz(c), c))
+            out[placeholder] = (best, f"fan katalogi ikki nusxada — kitob {_ildiz(best)}… nusxasiga ulandi")
     return out
+
+
+def _ildiz(code):
+    """«1-14-01-01-03-01-001» → «1-14»: sinf va fan katalogi (nusxani ajratadi)."""
+    parts = str(code).split("-")
+    return "-".join(parts[:2]) if len(parts) > 2 else str(code)
+
+
+def _bir_fanda(codes, meta) -> bool:
+    """Hamma nomzod bitta sinf va fanda (dasturi har xil bo'lishi mumkin)."""
+    keys = set()
+    for code in codes:
+        row = meta.get(code)
+        if not row:
+            return False
+        keys.add((canonical_grade(row.get("grade")), nom_norm(row.get("subject_name"))))
+    return len(keys) == 1

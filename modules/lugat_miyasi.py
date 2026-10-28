@@ -27,7 +27,7 @@ ART = {"en": r"(a|an|the)", "de": r"(der|die|das|ein|eine|einen|dem|den)", "fr":
        "es": r"(el|la|los|las|un|una)"}
 _lock = threading.Lock()
 _qoshimcha = {}   # (til, kalit) -> yozuv (DB'dan, admin yuklagan)
-_qoshimcha_tayyor = {"ok": False}
+_qoshimcha_tayyor = {"ok": False, "t": 0.0}
 
 
 def norm(s):
@@ -151,6 +151,21 @@ def excel_oqi(data):
     return out, xato
 
 
+def saqla(cur, qatorlar):
+    """Excel'dan o'qilgan so'zlarni bazaga yozadi va shu jarayon xotirasini yangilaydi (boshqa workerlar — keyingi so'rovda)."""
+    cur.execute("""CREATE TABLE IF NOT EXISTS lugat_miyasi_qoshimcha(
+        til VARCHAR(4) NOT NULL, kalit VARCHAR(120) NOT NULL, yozuv JSONB NOT NULL,
+        yangilangan TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY(til, kalit))""")
+    for q in qatorlar:
+        cur.execute("""INSERT INTO lugat_miyasi_qoshimcha(til,kalit,yozuv) VALUES(%s,%s,%s::jsonb)
+                       ON CONFLICT(til,kalit) DO UPDATE SET yozuv=EXCLUDED.yozuv, yangilangan=NOW()""",
+                    (q["til"], q["kalit"][:120], json.dumps(q, ensure_ascii=False)))
+    with _lock:
+        for q in qatorlar:
+            _qoshimcha[(q["til"], q["kalit"])] = q
+    _qoshimcha_tayyor["ok"] = False   # keyingi so'rovda bazadan qayta o'qiladi
+
+
 def create_lugat_router(check_admin, db):
     router = APIRouter(prefix="/api/lugat", tags=["lugat-miyasi"])
 
@@ -160,10 +175,11 @@ def create_lugat_router(check_admin, db):
             yangilangan TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY(til, kalit))""")
 
     def qoshimcha_yukla():
-        if _qoshimcha_tayyor["ok"]:
+        import time as _t
+        if _qoshimcha_tayyor["ok"] and _t.time() - _qoshimcha_tayyor["t"] < 600:   # 10 daqiqada bir yangilanadi (boshqa workerlar ham)
             return
         with _lock:
-            if _qoshimcha_tayyor["ok"]:
+            if _qoshimcha_tayyor["ok"] and _t.time() - _qoshimcha_tayyor["t"] < 600:
                 return
             try:
                 conn = db()
@@ -181,6 +197,7 @@ def create_lugat_router(check_admin, db):
             except Exception:
                 return   # baza band bo'lsa — JSON lug'at bilan ishlaymiz, keyingi so'rovda qayta urinamiz
             _qoshimcha_tayyor["ok"] = True
+            _qoshimcha_tayyor["t"] = _t.time()
 
     @router.get("/soz")
     def soz(til: str = Query(..., max_length=4), iz: str = Query("uz", max_length=4), soz: str = Query(..., max_length=80)):
@@ -201,11 +218,7 @@ def create_lugat_router(check_admin, db):
         conn = db()
         cur = conn.cursor()
         try:
-            jadval(cur)
-            for q in qatorlar:
-                cur.execute("""INSERT INTO lugat_miyasi_qoshimcha(til,kalit,yozuv) VALUES(%s,%s,%s::jsonb)
-                               ON CONFLICT(til,kalit) DO UPDATE SET yozuv=EXCLUDED.yozuv, yangilangan=NOW()""",
-                            (q["til"], q["kalit"][:120], json.dumps(q, ensure_ascii=False)))
+            saqla(cur, qatorlar)
             conn.commit()
         except Exception:
             conn.rollback()
@@ -213,9 +226,6 @@ def create_lugat_router(check_admin, db):
         finally:
             cur.close()
             conn.close()
-        with _lock:
-            for q in qatorlar:
-                _qoshimcha[(q["til"], q["kalit"])] = q
         return {"qoshildi": len(qatorlar), "xatolar": xato[:50]}
 
     return router
