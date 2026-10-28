@@ -244,11 +244,16 @@ def create_router(platform):
                     src = [r for r in cur.fetchall() if subject_key(r["subject_name"]) == subj]
                     ids = [r["id"] for r in src] or [0]
                     batches = {r["batch_id"] for r in src}
-                    cur.execute("DELETE FROM ai_brain_units WHERE source_id = ANY(%s) OR topic_code = ANY(%s) RETURNING batch_id",
-                                (ids, codes or [""]))
-                    rows = cur.fetchall()
-                    total["darslar"] += len(rows)
-                    batches |= {r["batch_id"] for r in rows}
+                    # REV190: bo'laklab (5000 tadan) — bitta katta DELETE jadvalni uzoq qulflamasin
+                    while True:
+                        cur.execute("""DELETE FROM ai_brain_units WHERE id IN (SELECT id FROM ai_brain_units
+                                       WHERE source_id = ANY(%s) OR topic_code = ANY(%s) LIMIT 5000) RETURNING batch_id""",
+                                    (ids, codes or [""]))
+                        rows = cur.fetchall()
+                        total["darslar"] += len(rows)
+                        batches |= {r["batch_id"] for r in rows}
+                        if len(rows) < 5000:
+                            break
                     cur.execute("DELETE FROM ai_brain_topic_maps WHERE source_id = ANY(%s) OR topic_code = ANY(%s)", (ids, codes or [""]))
                     total["xarita"] += cur.rowcount
                     cur.execute("DELETE FROM ai_brain_sources WHERE id = ANY(%s)", (ids,))
