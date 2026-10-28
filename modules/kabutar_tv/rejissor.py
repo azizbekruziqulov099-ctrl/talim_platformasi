@@ -175,7 +175,7 @@ class Sahna:
         self._karta(im, sahna.get("karta") or {})
         im.alpha_composite(self.logo, (W - self.logo.width - 18, 12))
         d = ImageDraw.Draw(im)
-        sar = f"KABUTAR TV · {TIL_NOMI[self.s['til']]} · {self.s['daraja']}"
+        sar = f"KABUTAR TV · {'Hafta yakuni' if self.s.get('haftalik') else TIL_NOMI[self.s['til']]} · {self.s['daraja']}"
         d.rounded_rectangle((16, 14, 30 + d.textlength(sar, font=F["ism"]), 50), 12, fill=(255, 255, 255, 220))
         _matn_ol(d, (24, 32), sar, F["ism"], (29, 60, 120), anchor="lm")
         if len(self._kesh) > 400:
@@ -192,6 +192,15 @@ class Sahna:
             y1 = 330
         d.rounded_rectangle((x0, y0, x1, y1), 28, fill=(255, 255, 255, 236), outline=(29, 111, 216), width=4)
         cx = (x0 + x1) // 2
+        if k.get("royxat"):   # REV188: ro'yxat (haftalik: mavzular, reyting, kelasi hafta)
+            if k.get("sarlavha"):
+                _matn_ol(d, (cx, y0 + 40), k["sarlavha"], F["orta"], (29, 111, 216))
+            y = y0 + 95
+            for q in k["royxat"][:5]:
+                for qq in _qatorla(q, F["kichik"], x1 - x0 - 60, d)[:1]:
+                    _matn_ol(d, (x0 + 30, y), qq, F["kichik"], (30, 40, 60), anchor="lm")
+                y += 44
+            return
         if k.get("kartalar"):
             chiplar = k["kartalar"]
             kenglik = [d.textlength(c, font=F["orta"]) + 40 for c in chiplar]

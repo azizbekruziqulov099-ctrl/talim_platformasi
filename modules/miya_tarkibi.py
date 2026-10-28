@@ -166,11 +166,19 @@ def create_router(platform):
                                  "mavzular": 0, "testlar": 0, "eski_yosh": bool(legacy_of(key[0]))}
                 return rows[key]
 
+            # REV188: oldin har kitob uchun alohida COUNT (indekssiz) — katta bazada daqiqalab ishlab, sahifa «Yuklanmadi» bo'lardi.
+            # Endi har jadval bir marta o'qiladi; testlar soni og'ir bo'lsa — vaqt chegarasi bilan, sahifa baribir ochiladi.
+            cur.execute("SET LOCAL statement_timeout = '25s'")
             if _table_exists(cur, "ai_brain_sources"):
-                cur.execute("""SELECT s.id, s.grade, s.subject_name, s.book_title, s.status,
-                                      (SELECT COUNT(*) FROM ai_brain_units u WHERE u.source_id=s.id) AS darslar
+                darslar_soni = {}
+                if _table_exists(cur, "ai_brain_units"):
+                    cur.execute("SELECT source_id, COUNT(*) AS n FROM ai_brain_units GROUP BY source_id")
+                    darslar_soni = {r["source_id"]: int(r["n"]) for r in cur.fetchall()}
+                cur.execute("""SELECT s.id, s.grade, s.subject_name, s.book_title, s.status
                                FROM ai_brain_sources s ORDER BY s.grade, s.subject_name, s.id""")
                 for r in cur.fetchall():
+                    r = dict(r)
+                    r["darslar"] = darslar_soni.get(r["id"], 0)
                     sl = slot(r["grade"], r["subject_name"])
                     sl["kitoblar"].append({"id": r["id"], "nomi": r["book_title"], "holat": r["status"], "darslar": int(r["darslar"])})
                     sl["miya_darslar"] += int(r["darslar"])
@@ -178,11 +186,23 @@ def create_router(platform):
                 cur.execute("""SELECT grade, subject_name, COUNT(*) AS n FROM dts_tree WHERE is_deleted=FALSE GROUP BY 1,2""")
                 for r in cur.fetchall():
                     slot(r["grade"], r["subject_name"])["mavzular"] += int(r["n"])
-                cur.execute("""SELECT d.grade, d.subject_name, COUNT(*) AS n FROM generated_tests g
-                               JOIN (SELECT DISTINCT topic_code, grade, subject_name FROM dts_tree WHERE is_deleted=FALSE) d
-                                 ON d.topic_code=g.topic_code GROUP BY 1,2""")
+                cur.execute("SELECT DISTINCT topic_code, grade, subject_name FROM dts_tree WHERE is_deleted=FALSE")
+                joy = {}
                 for r in cur.fetchall():
-                    slot(r["grade"], r["subject_name"])["testlar"] += int(r["n"])
+                    joy.setdefault(r["topic_code"], (r["grade"], r["subject_name"]))
+                try:
+                    cur.execute("SAVEPOINT miya_testlar")
+                    cur.execute("SET LOCAL statement_timeout = '15s'")
+                    cur.execute("SELECT topic_code, COUNT(*) AS n FROM generated_tests GROUP BY topic_code")
+                    for r in cur.fetchall():
+                        j = joy.get(r["topic_code"])
+                        if j:
+                            slot(*j)["testlar"] += int(r["n"])
+                    cur.execute("RELEASE SAVEPOINT miya_testlar")
+                except Exception:   # testlar juda ko'p — soni ko'rsatilmaydi, qolgani baribir chiqadi
+                    cur.execute("ROLLBACK TO SAVEPOINT miya_testlar")
+                    for r in rows.values():
+                        r["testlar"] = None
             done = None
             if _table_exists(cur, "samtm_bir_martalik"):
                 cur.execute("SELECT natija, bajarildi FROM samtm_bir_martalik WHERE kalit=%s", (MARKER,))
@@ -210,6 +230,7 @@ def create_router(platform):
             raise HTTPException(400, "Nimani o‘chirishni belgilang: miya, mavzular yoki testlar")
 
         def fn(cur):
+            cur.execute("SET LOCAL statement_timeout = '240s'")
             total = {"kitoblar": 0, "darslar": 0, "xarita": 0, "rasmlar": 0, "mavzular": 0, "testlar": 0}
             has_dts, has_brain = _table_exists(cur, "dts_tree"), _table_exists(cur, "ai_brain_sources")
             for t in body.tanlanganlar[:200]:
@@ -245,6 +266,35 @@ def create_router(platform):
                     total["mavzular"] += cur.rowcount
             return {"ochirildi": total}
         return db_run(token, fn)
+
+    def indekslar():
+        """REV188: o'chirish va sanash tez bo'lishi uchun indekslar (CONCURRENTLY — sayt ishlashiga xalaqit bermaydi)."""
+        import time
+        time.sleep(30)
+        try:
+            conn = platform._db()
+            conn.autocommit = True
+            cur = conn.cursor()
+            for sql in ("CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_brain_units_source ON ai_brain_units(source_id)",
+                        "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_brain_topic_maps_source ON ai_brain_topic_maps(source_id)",
+                        "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_brain_sources_batch ON ai_brain_sources(batch_id)",
+                        "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_ai_brain_media_batch ON ai_brain_media(batch_id)"):
+                try:
+                    cur.execute("SELECT pg_try_advisory_lock(19700188) AS ok")
+                    if not cur.fetchone()["ok"]:
+                        break   # boshqa worker qilyapti
+                    cur.execute(sql)
+                except Exception as exc:
+                    print(f"[REV188 miya indeks] {exc}", flush=True)
+            cur.close()
+            conn.close()
+        except Exception as exc:
+            print(f"[REV188 miya indeks] {exc}", flush=True)
+
+    @router.on_event("startup")
+    def indeks_boshla():
+        import threading
+        threading.Thread(target=indekslar, name="miya-indeks", daemon=True).start()
 
     @router.on_event("startup")
     def once():
