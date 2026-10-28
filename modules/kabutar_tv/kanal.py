@@ -130,7 +130,20 @@ def jadval_ol(cur):
 def adminmi(cur, user_id):
     cur.execute("SELECT role FROM users WHERE user_id=%s", (user_id,))
     r = cur.fetchone()
-    return bool(r) and str(r.get("role") or "").lower() in ("admin", "superadmin", "super_admin")
+    return (bool(r) and str(r.get("role") or "").lower() in ("admin", "superadmin", "super_admin")) or _admin_akkauntmi(cur, user_id)
+
+
+def _admin_akkauntmi(cur, user_id):
+    """REV191: saytda adminlar admin_akkaunt jadvalida (users.role emas) — shuni ham tekshiramiz."""
+    try:
+        cur.execute("SAVEPOINT tv_admin_tek")
+        cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+        bor = bool(cur.fetchone())
+        cur.execute("RELEASE SAVEPOINT tv_admin_tek")
+        return bor
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT tv_admin_tek")
+        return False
 
 
 def foydalanuvchi_darajalari(cur, user_id):
@@ -138,7 +151,7 @@ def foydalanuvchi_darajalari(cur, user_id):
     r = cur.fetchone()
     if not r:
         return set()
-    if str(r.get("role") or "").lower() in ("admin", "superadmin", "super_admin"):
+    if str(r.get("role") or "").lower() in ("admin", "superadmin", "super_admin") or _admin_akkauntmi(cur, user_id):
         return set(DARAJALAR) | {"__admin__"}
     out = set()
     d = sinfdan_daraja(r.get("class"))
@@ -181,10 +194,20 @@ def yozuvchi(cur):
     env = os.environ.get("KABUTAR_TV_USER_ID")
     if env and env.isdigit():
         return int(env)
-    cur.execute("SELECT user_id FROM users WHERE LOWER(role) IN ('admin','superadmin','super_admin') ORDER BY user_id LIMIT 1")
-    r = cur.fetchone()
+    # REV191: avval admin_akkaunt (saytdagi haqiqiy adminlar), keyin users.role
+    try:
+        cur.execute("SAVEPOINT tv_yozuvchi")
+        cur.execute("""SELECT a.uid AS user_id FROM admin_akkaunt a JOIN users u ON u.user_id=a.uid ORDER BY a.uid LIMIT 1""")
+        r = cur.fetchone()
+        cur.execute("RELEASE SAVEPOINT tv_yozuvchi")
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT tv_yozuvchi")
+        r = None
     if not r:
-        raise RuntimeError("Kanalga yozish uchun admin topilmadi (KABUTAR_TV_USER_ID ni bering)")
+        cur.execute("SELECT user_id FROM users WHERE LOWER(role) IN ('admin','superadmin','super_admin') ORDER BY user_id LIMIT 1")
+        r = cur.fetchone()
+    if not r:
+        raise RuntimeError("Kanalga yozish uchun admin topilmadi — Railway'da KABUTAR_TV_USER_ID ga o'z ID raqamingizni yozing")
     return int(r["user_id"])
 
 
