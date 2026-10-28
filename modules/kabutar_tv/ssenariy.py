@@ -464,7 +464,8 @@ class Ssenariy:
         sinf, yosh = sinf_yosh(self.daraja)
         bor.sort(key=lambda x: len(x["g"]))   # kichiklarga qisqa gaplar
         boshi = 0 if (yosh or sinf <= 4) else len(bor) // 3
-        tanlov = random.Random(f"{self.til}|{self.auditoriya}|{self.sana}").sample(bor[boshi:boshi + 24] or bor, k=min(3, len(bor)))
+        hovuz = bor[boshi:boshi + 24] or bor   # REV191: hovuz kichik bo'lsa ham xato bermasin
+        tanlov = random.Random(f"{self.til}|{self.auditoriya}|{self.sana}").sample(hovuz, k=min(3, len(hovuz)))
         self.sahna("hayot_bosh", {"sarlavha": "🏡 " + nom})
         if self.uzbek:
             self.ayt("I", f"Endi hayotdan: «{nom}». Tinglang va takrorlang!")

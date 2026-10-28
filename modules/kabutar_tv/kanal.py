@@ -26,6 +26,7 @@ from fastapi import APIRouter, Body, Header, HTTPException, Query
 from .ssenariy import AUDITORIYALAR, DARAJALAR, TILLAR, aud_darajalari
 
 TASHKENT = dt.timezone(dt.timedelta(hours=5))
+_bot_kesh = {}
 STANDART_JADVAL = {0: ["en", "de"], 1: ["ru", "fr"], 2: ["en", "es"], 3: ["de", "ru"], 4: ["en", "fr"], 5: ["es", "en"], 6: []}
 HAFTA = ["Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba", "Yakshanba"]
 OYLAR = ["yanvar", "fevral", "mart", "aprel", "may", "iyun", "iyul", "avgust", "sentabr", "oktabr", "noyabr", "dekabr"]
@@ -643,6 +644,28 @@ def create_kabutar_tv_router(check_admin, db):
             cur.close()
             conn.close()
 
+    def bot_nomi():
+        """REV191: qaysi bot yuboradi — admin aynan shu botga /start yozishi kerak."""
+        if "bot" in _bot_kesh:
+            return _bot_kesh["bot"]
+        bot = os.environ.get("BOT_TOKEN", "").strip()
+        nom = ""
+        if bot:
+            try:
+                import requests
+                r = requests.get(f"https://api.telegram.org/bot{bot}/getMe", timeout=10)
+                nom = (r.json().get("result") or {}).get("username", "") if r.ok else ""
+            except Exception:
+                nom = ""
+        if nom:
+            _bot_kesh["bot"] = nom
+        return nom
+
+    @router.get("/bot")
+    def tv_bot(token: str):
+        check_admin(token)
+        return {"bot": bot_nomi(), "bot_bor": bool(os.environ.get("BOT_TOKEN", "").strip())}
+
     @router.post("/tg_sinov")
     def tv_tg_sinov(token: str):
         """Telegram sozlamasini tekshirish: botdan adminga sinov xabari."""
@@ -663,9 +686,13 @@ def create_kabutar_tv_router(check_admin, db):
         import requests
         r = requests.post(f"https://api.telegram.org/bot{bot}/sendMessage",
                           data={"chat_id": soz["tg_chat"], "text": "📺 Kabutar TV: sinov xabari. Videolar shu yerga keladi."}, timeout=20)
+        nom = bot_nomi()
         if not (r.ok and r.json().get("ok")):
-            raise HTTPException(status_code=400, detail=f"Telegram: {r.text[:200]} — botga avval /start yozing va chat ID'ni tekshiring")
-        return {"ok": True}
+            sabab = r.text.lower()
+            if "chat not found" in sabab or "bot was blocked" in sabab or "forbidden" in sabab:
+                raise HTTPException(status_code=400, detail=f"Bot sizga yoza olmadi: Telegram'da @{nom or 'botingiz'} ni oching va /start bosing, keyin qayta «Sinab ko'rish»")
+            raise HTTPException(status_code=400, detail=f"Telegram xatosi: {r.text[:200]} — Chat ID to'g'riligini tekshiring")
+        return {"ok": True, "bot": nom}
 
     @router.get("/jadval")
     def tv_jadval(token: str):
