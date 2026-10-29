@@ -1,0 +1,335 @@
+{
+ "nom": "nilufar",
+ "kanvas": [
+  2000,
+  3000
+ ],
+ "qatlamlar": {
+  "soch_old": {
+   "x": 784,
+   "y": 400,
+   "w": 432,
+   "h": 452
+  },
+  "ogiz_H": {
+   "x": 947,
+   "y": 711,
+   "w": 106,
+   "h": 83
+  },
+  "ogiz_G": {
+   "x": 947,
+   "y": 731,
+   "w": 106,
+   "h": 43
+  },
+  "ogiz_F": {
+   "x": 971,
+   "y": 723,
+   "w": 58,
+   "h": 58
+  },
+  "ogiz_E": {
+   "x": 960,
+   "y": 712,
+   "w": 80,
+   "h": 80
+  },
+  "ogiz_D": {
+   "x": 947,
+   "y": 708,
+   "w": 106,
+   "h": 88
+  },
+  "ogiz_C": {
+   "x": 947,
+   "y": 721,
+   "w": 106,
+   "h": 62
+  },
+  "ogiz_B": {
+   "x": 947,
+   "y": 734,
+   "w": 106,
+   "h": 37
+  },
+  "ogiz_A": {
+   "x": 948,
+   "y": 736,
+   "w": 104,
+   "h": 33
+  },
+  "ogiz_X": {
+   "x": 947,
+   "y": 734,
+   "w": 106,
+   "h": 36
+  },
+  "qovoq_ong": {
+   "x": 883,
+   "y": 626,
+   "w": 100,
+   "h": 22
+  },
+  "koz_chiziq_ong": {
+   "x": 883,
+   "y": 601,
+   "w": 100,
+   "h": 60
+  },
+  "qorachiq_ong": {
+   "x": 913,
+   "y": 613,
+   "w": 40,
+   "h": 40
+  },
+  "koz_oq_ong": {
+   "x": 889,
+   "y": 610,
+   "w": 88,
+   "h": 44
+  },
+  "qovoq_chap": {
+   "x": 1017,
+   "y": 626,
+   "w": 100,
+   "h": 22
+  },
+  "koz_chiziq_chap": {
+   "x": 1017,
+   "y": 601,
+   "w": 100,
+   "h": 60
+  },
+  "qorachiq_chap": {
+   "x": 1047,
+   "y": 613,
+   "w": 40,
+   "h": 40
+  },
+  "koz_oq_chap": {
+   "x": 1023,
+   "y": 610,
+   "w": 88,
+   "h": 44
+  },
+  "qosh_ong": {
+   "x": 883,
+   "y": 570,
+   "w": 100,
+   "h": 30
+  },
+  "qosh_chap": {
+   "x": 1017,
+   "y": 570,
+   "w": 100,
+   "h": 30
+  },
+  "burun": {
+   "x": 965,
+   "y": 652,
+   "w": 70,
+   "h": 73
+  },
+  "yonoq": {
+   "x": 859,
+   "y": 683,
+   "w": 282,
+   "h": 57
+  },
+  "bosh": {
+   "x": 830,
+   "y": 420,
+   "w": 340,
+   "h": 400
+  },
+  "yelka_ong": {
+   "x": 637,
+   "y": 925,
+   "w": 156,
+   "h": 455
+  },
+  "yelka_chap": {
+   "x": 1207,
+   "y": 925,
+   "w": 156,
+   "h": 455
+  },
+  "bilak_ong": {
+   "x": 640,
+   "y": 1250,
+   "w": 150,
+   "h": 445
+  },
+  "bilak_chap": {
+   "x": 1210,
+   "y": 1250,
+   "w": 150,
+   "h": 445
+  },
+  "kaft_ong_korsat": {
+   "x": 655,
+   "y": 1607,
+   "w": 125,
+   "h": 280
+  },
+  "kaft_ong_ochiq": {
+   "x": 620,
+   "y": 1607,
+   "w": 195,
+   "h": 282
+  },
+  "kaft_ong_bosh": {
+   "x": 655,
+   "y": 1607,
+   "w": 120,
+   "h": 280
+  },
+  "kaft_chap_korsat": {
+   "x": 1224,
+   "y": 1607,
+   "w": 125,
+   "h": 280
+  },
+  "kaft_chap_ochiq": {
+   "x": 1179,
+   "y": 1607,
+   "w": 195,
+   "h": 282
+  },
+  "kaft_chap_bosh": {
+   "x": 1224,
+   "y": 1607,
+   "w": 120,
+   "h": 280
+  },
+  "tana": {
+   "x": 530,
+   "y": 850,
+   "w": 940,
+   "h": 2005
+  },
+  "boyin": {
+   "x": 923,
+   "y": 740,
+   "w": 154,
+   "h": 220
+  },
+  "oyoqlar": {
+   "x": 855,
+   "y": 2330,
+   "w": 290,
+   "h": 670
+  },
+  "soch_orqa": {
+   "x": 792,
+   "y": 400,
+   "w": 416,
+   "h": 448
+  }
+ },
+ "tartib": [
+  "soch_old",
+  "ogiz_H",
+  "ogiz_G",
+  "ogiz_F",
+  "ogiz_E",
+  "ogiz_D",
+  "ogiz_C",
+  "ogiz_B",
+  "ogiz_A",
+  "ogiz_X",
+  "qovoq_ong",
+  "koz_chiziq_ong",
+  "qorachiq_ong",
+  "koz_oq_ong",
+  "qovoq_chap",
+  "koz_chiziq_chap",
+  "qorachiq_chap",
+  "koz_oq_chap",
+  "qosh_ong",
+  "qosh_chap",
+  "burun",
+  "yonoq",
+  "bosh",
+  "yelka_ong",
+  "yelka_chap",
+  "bilak_ong",
+  "bilak_chap",
+  "kaft_ong_korsat",
+  "kaft_ong_ochiq",
+  "kaft_ong_bosh",
+  "kaft_chap_korsat",
+  "kaft_chap_ochiq",
+  "kaft_chap_bosh",
+  "tana",
+  "boyin",
+  "oyoqlar",
+  "soch_orqa"
+ ],
+ "suyaklar": {
+  "tana": {
+   "ota": null,
+   "nuqta": [
+    1000.0,
+    1952.75
+   ]
+  },
+  "boyin": {
+   "ota": "tana",
+   "nuqta": [
+    1000.0,
+    927.0
+   ]
+  },
+  "bosh": {
+   "ota": "boyin",
+   "nuqta": [
+    1000.0,
+    800.0
+   ]
+  },
+  "yelka_chap": {
+   "ota": "tana",
+   "nuqta": [
+    1285.0,
+    965.0
+   ]
+  },
+  "bilak_chap": {
+   "ota": "yelka_chap",
+   "nuqta": [
+    1285.0,
+    1315.0
+   ]
+  },
+  "kaft_chap": {
+   "ota": "bilak_chap",
+   "nuqta": [
+    1285.0,
+    1655.0
+   ]
+  },
+  "yelka_ong": {
+   "ota": "tana",
+   "nuqta": [
+    715.0,
+    965.0
+   ]
+  },
+  "bilak_ong": {
+   "ota": "yelka_ong",
+   "nuqta": [
+    715.0,
+    1315.0
+   ]
+  },
+  "kaft_ong": {
+   "ota": "bilak_ong",
+   "nuqta": [
+    715.0,
+    1655.0
+   ]
+  }
+ }
+}
