@@ -86,23 +86,49 @@ async def _edge(matn, voice, rate, pitch):
     return bytes(audio), chegaralar
 
 
+_ZAXIRA_OVOZ = {   # REV211: asosiy ovoz javob bermasa — shu tildagi boshqa ovoz
+    "ru-RU": ["ru-RU-SvetlanaNeural", "ru-RU-DmitryNeural"], "en-US": ["en-US-JennyNeural", "en-US-GuyNeural"],
+    "en-GB": ["en-GB-SoniaNeural", "en-US-JennyNeural"], "de-DE": ["de-DE-KatjaNeural", "de-DE-ConradNeural"],
+    "fr-FR": ["fr-FR-DeniseNeural", "fr-FR-HenriNeural"], "es-ES": ["es-ES-ElviraNeural", "es-ES-AlvaroNeural"],
+    "uz-UZ": ["uz-UZ-MadinaNeural", "uz-UZ-SardorNeural"],
+}
+
+
+def _jimlik(matn):
+    """Ovoz umuman olinmasa — gap uzunligiga mos sukunat (subtitr ko'rinadi, ko'rsatuv to'xtamaydi)."""
+    son = max(0.6, min(6.0, len(matn) / 13.0))
+    return bytes(int(SR * son) * 2), []
+
+
 def edge_tts_ovoz(matn, voice, rate, pitch, kesh):
-    """→ (pcm s16 mono 24 kHz bytes, [(soniya, so'z)]). Kesh — bir xil gap qayta so'ralmaydi."""
+    """→ (pcm s16 mono 24 kHz bytes, [(soniya, so'z)]). Kesh — bir xil gap qayta so'ralmaydi.
+    REV211: bo'sh/belgili gap — sukunat; xizmat band bo'lsa — kutib qayta urinadi, keyin boshqa ovoz, oxiri — sukunat
+    (bitta gap tufayli butun ko'rsatuv «Ovoz olinmadi» bo'lib yiqilmaydi)."""
+    import time as _t
+    toza = re.sub(r"[«»\"'“”„…\.\s]+", " ", matn or "").strip()
+    if not re.search(r"\w", toza):
+        return _jimlik(matn or " ")
     kalit = hashlib.sha1(f"{voice}|{rate}|{pitch}|{matn}".encode()).hexdigest()
     p = os.path.join(kesh, kalit)
     if os.path.exists(p + ".pcm"):
         import json
         return open(p + ".pcm", "rb").read(), [tuple(x) for x in json.load(open(p + ".json"))]
     mp3, cheg = None, []
-    for _ in range(3):
+    locale = "-".join(voice.split("-")[:2])
+    urinishlar = [(voice, rate, pitch, 0), (voice, rate, pitch, 1.5), (voice, rate, pitch, 4), (voice, "+0%", "+0Hz", 2)]
+    urinishlar += [(v, rate, "+0Hz", 1) for v in _ZAXIRA_OVOZ.get(locale, []) if v != voice]
+    for v, r, pt, kut in urinishlar:
+        if kut:
+            _t.sleep(kut)
         try:
-            mp3, cheg = asyncio.run(_edge(matn, voice, rate, pitch))
+            mp3, cheg = asyncio.run(_edge(matn, v, r, pt))
             if mp3:
                 break
         except Exception:
             mp3 = None
     if not mp3:
-        raise RuntimeError(f"Ovoz olinmadi: {matn[:40]}")
+        print(f"[kabutar_tv] ovoz olinmadi (sukunat qo'yildi): {matn[:40]}", flush=True)
+        return _jimlik(matn)
     pcm = subprocess.run(["ffmpeg", "-v", "error", "-i", "pipe:0", "-f", "s16le", "-ac", "1", "-ar", str(SR), "pipe:1"],
                          input=mp3, capture_output=True, check=True).stdout
     import json

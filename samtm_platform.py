@@ -1449,11 +1449,7 @@ def muassasalarim(token: str):
     user_id = _jwt_tekshir(token)
     conn = _db()
     cur = conn.cursor()
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS maktab_id INTEGER")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS markaz_id INTEGER")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS bogcha_id INTEGER")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS universitet_id INTEGER")
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS lavozim TEXT")
+    # REV210: ustunlar ishga tushishda (samtm_runtime MOVED_DDL) yaratiladi — har so'rovda ALTER TABLE qulf olardi
     cur.execute(
         "SELECT maktab_id, markaz_id, bogcha_id, universitet_id, lavozim FROM users WHERE user_id=%s",
         (user_id,),
@@ -6233,6 +6229,38 @@ def _chat_suhbat_ruxsat(cur, user_id, guruh_id=None, boshqa_user_id=None, write=
         _chat_policy().require_direct(cur, user_id, boshqa_user_id)
 
 
+def _tv_kanalmi(cur, guruh_id):
+    if not guruh_id:
+        return False
+    cur.execute("SELECT manba_turi FROM chat_guruhlari WHERE id=%s", (int(guruh_id),))
+    r = cur.fetchone()
+    return bool(r and str(r.get("manba_turi") or "").startswith("kabutar_tv"))
+
+
+def _chat_yozish_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, javob_xabar_id=None, fayl=None, matn=None):
+    """REV212: Kabutar TV kanaliga oddiy xabar yozib bo'lmaydi, lekin ko'rsatuv OSTIGA IZOH yozish mumkin:
+    faqat matn, 500 belgigacha, kanal a'zosi, kanaldagi postga javob sifatida, 10 soniyada bittadan."""
+    if guruh_id and _tv_kanalmi(cur, guruh_id):
+        _chat_policy().require_group(cur, user_id, guruh_id, write=False)   # a'zolik
+        if not javob_xabar_id:
+            raise HTTPException(status_code=403, detail="Kanalga faqat ko‘rsatuv ostiga izoh yozish mumkin.")
+        if fayl is not None:
+            raise HTTPException(status_code=400, detail="Izohga faqat matn yoziladi.")
+        if len((matn or "").strip()) > 500:
+            raise HTTPException(status_code=400, detail="Izoh 500 belgidan oshmasin.")
+        cur.execute("SELECT 1 FROM chat_xabarlari WHERE id=%s AND guruh_id=%s AND NOT COALESCE(ochirilgan,FALSE)", (int(javob_xabar_id), int(guruh_id)))
+        if not cur.fetchone():
+            raise HTTPException(status_code=400, detail="Izoh yoziladigan ko‘rsatuv topilmadi.")
+        cur.execute("""SELECT 1 FROM chat_xabarlari WHERE guruh_id=%s AND yuboruvchi_user_id=%s
+                       AND yaratilgan_at > NOW() - INTERVAL '10 seconds'""", (int(guruh_id), int(user_id)))
+        if cur.fetchone():
+            raise HTTPException(status_code=429, detail="Biroz kuting — izohlar orasida 10 soniya bo‘lsin.")
+        _chat_policy().ensure_terms_accepted(cur, user_id)
+        return True
+    _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+    return False
+
+
 @app.post("/api/chat/korildi_belgila")
 def chat_korildi_belgila(token: str, oxirgi_xabar_id: int, guruh_id: Optional[int] = None, boshqa_user_id: Optional[int] = None):
     """Foydalanuvchi shu suhbatni ochganda (yoki oxirigacha aylantirganda)
@@ -6403,7 +6431,7 @@ async def chat_xabar_yubor(
     cur = conn.cursor()
     _chat_jadvallari(cur)
     try:
-        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+        _chat_yozish_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, javob_xabar_id, fayl, matn)
     except Exception:
         cur.close(); conn.close()
         raise
@@ -6498,7 +6526,7 @@ async def chat_xabar_yubor(
 
     # Upload reading may await for seconds; recheck current access before writing.
     try:
-        _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+        _chat_yozish_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, javob_xabar_id, fayl, matn)
     except Exception:
         cur.close(); conn.close()
         raise
@@ -6525,7 +6553,7 @@ async def chat_xabar_yubor(
                 # so the cursor cannot return to the pool while still in use.
                 from starlette.concurrency import run_in_threadpool
                 javob_id_tekshirilgan = await run_in_threadpool(normalise_group_reply, cur, j)
-                _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+                _chat_yozish_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, javob_xabar_id, fayl, matn)
             else:
                 javob_id_tekshirilgan = normalise_group_reply(cur, j)
         except Exception:
@@ -21344,7 +21372,7 @@ def _ai_yosh_hisobla(tugilgan_sana, sinf=None) -> int:
 
 
 def _ai_foydalanuvchi_profili(cur, user_id):
-    cur.execute("ALTER TABLE users ADD COLUMN IF NOT EXISTS tugilgan_sana DATE")
+    # REV210: tugilgan_sana ustuni ishga tushishda yaratiladi (MOVED_DDL) — bu yerda har so'rovda ALTER yo'q
     cur.execute(
         """SELECT user_id, full_name, role, class, tugilgan_sana, oqituvchi_fani
            FROM users WHERE user_id=%s""",
