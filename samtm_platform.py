@@ -1730,11 +1730,17 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
                     SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code
                       AND au.status='published' AND au.unit_kind IN ('lesson_step','knowledge','explanation','example')))"""
                             if lesson_table else "NULL")
+        # REV216: darsi bor mavzu — o'z nomi bilan alohida (kichik mavzu nomi). Oldin bir bo'limdagi barcha darsli mavzular
+        # bitta umumiy «mavzu» nomi ostida birlashib ketardi: 86 ta darsdan faqat 2–3 tasi ko'rinardi.
+        nom_sql = ("""COALESCE(CASE WHEN EXISTS(SELECT 1 FROM ai_brain_units au2 WHERE au2.topic_code=d.topic_code
+                        AND au2.status='published') THEN NULLIF(d.kichik_name,'') END,
+                      NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)""" if lesson_table
+                   else "COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)")
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 {lesson_codes_sql} AS darsli_kodlar, MAX(CASE WHEN {mine_sql} THEN 1 ELSE 0 END) AS mine,
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
                 cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
-                COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
+                {nom_sql} AS nomi,
                 MIN(NULLIF(d.bob_name,'')) AS bob,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
@@ -1744,7 +1750,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             WHERE d.is_deleted=FALSE AND ({clause})
             GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
-                COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
+                {nom_sql}
             ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",[*mine_params,*params])
         result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
         if talaba_viewer:
@@ -20005,6 +20011,65 @@ def miya_katalog_tuzat_api(token: str):
 def miya_katalog_tuzat_holat(token: str):
     _admin_tekshir(token)
     return dict(_KATALOG_HOLAT)
+
+
+@app.get("/api/admin/miya_diagnoz")
+def miya_diagnoz(token: str, sinf: str, fan: str):
+    """REV218: «Miyada bor, o'quvchida chiqmayapti» — aniq sababini ko'rsatadi (bitta sinf/yosh + fan uchun)."""
+    _admin_tekshir(token)
+    from modules import mavzu_nomi
+    guruh = mavzu_nomi.kitob_guruhi(sinf)
+    fk = lambda x: re.sub(r"\s+", " ", str(x or "").strip().lower())
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        cur.execute("SELECT id, book_title, subject_name, grade, language_code, status FROM ai_brain_sources")
+        manbalar = [r for r in cur.fetchall() if fk(r["subject_name"]) == fk(fan) and mavzu_nomi.kitob_guruhi(r["grade"]) == guruh]
+        ids = [r["id"] for r in manbalar] or [0]
+        cur.execute("""SELECT topic_code, COUNT(*) AS n, MAX(unit_kind) AS tur FROM ai_brain_units
+                       WHERE source_id = ANY(%s) AND status='published' GROUP BY topic_code""", (ids,))
+        birlik = {r["topic_code"]: r["n"] for r in cur.fetchall()}
+        cur.execute("""SELECT d.topic_code, d.grade, d.subject_name, d.is_deleted, cs.institution_type
+                       FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
+                       WHERE d.topic_code = ANY(%s)""", (list(birlik) or [""],))
+        dts = {r["topic_code"]: r for r in cur.fetchall()}
+        kutilgan = "bogcha" if guruh.endswith("yosh") else "maktab" if str(guruh).isdigit() else None
+        hisob = {"mavzu_yoq": 0, "ochirilgan": 0, "katalogsiz": 0, "boshqa_katalog": 0, "boshqa_fan": 0, "boshqa_sinf": 0, "korinadi": 0}
+        for kod in birlik:
+            d = dts.get(kod)
+            if not d:
+                hisob["mavzu_yoq"] += 1
+            elif d["is_deleted"]:
+                hisob["ochirilgan"] += 1
+            elif not d["institution_type"]:
+                hisob["katalogsiz"] += 1
+            elif kutilgan and d["institution_type"] != kutilgan:
+                hisob["boshqa_katalog"] += 1
+            elif fk(d["subject_name"]) != fk(fan):
+                hisob["boshqa_fan"] += 1
+            elif mavzu_nomi.kitob_guruhi(d["grade"]) != guruh:
+                hisob["boshqa_sinf"] += 1
+            else:
+                hisob["korinadi"] += 1
+        sabablar = []
+        if not manbalar:
+            sabablar.append("Bu sinf/yosh va fan uchun nashr qilingan kitob (miya) topilmadi — fayl yuklanmagan yoki fan/sinf nomi boshqacha yozilgan.")
+        elif not birlik:
+            sabablar.append("Kitob bor, lekin nashr qilingan darsi yo'q — «Import va nashr» bosqichini tugating.")
+        nomlar = {"mavzu_yoq": "mavzusi bazada yo'q", "ochirilgan": "mavzusi o'chirilgan", "katalogsiz": "mavzusi katalogga ulanmagan",
+                  "boshqa_katalog": "mavzusi boshqa katalogda (bog'cha/maktab almashgan)", "boshqa_fan": "boshqa fan mavzusiga ulangan",
+                  "boshqa_sinf": "boshqa sinf mavzusiga ulangan"}
+        for k, v in hisob.items():
+            if k != "korinadi" and v:
+                sabablar.append(f"{v} ta mavzuning darsi ko'rinmaydi: {nomlar[k]}. «🔧 Ko'rinmayotgan darslarni katalogga ulash» buni tuzatadi.")
+        if birlik and not sabablar:
+            sabablar.append("Bazada hammasi joyida. Ko'rinmasa: brauzerni yangilang (Ctrl+F5) yoki o'quvchining yoshi/sinfi to'g'ri tanlanganini tekshiring.")
+        return {"sinf": guruh, "fan": fan, "kitoblar": [{"nom": r["book_title"], "til": r["language_code"], "holat": r["status"]} for r in manbalar],
+                "darsli_mavzular": len(birlik), "darslar": sum(birlik.values()), "hisob": hisob, "sabablar": sabablar,
+                "tuzatish_holati": dict(_KATALOG_HOLAT)}
+    finally:
+        cur.close()
+        conn.close()
 
 
 def _katalog_tuzat_avto():

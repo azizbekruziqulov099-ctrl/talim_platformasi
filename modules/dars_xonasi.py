@@ -108,19 +108,40 @@ def _first_sentence(text, limit=90):
     return cut if len(cut) <= limit else cut[: limit - 1].rstrip() + "…"
 
 
-def eng_yangi_kitob(units, topic_code):
-    """REV158: bir mavzuga kitob (AI miya) qayta yuklanganda eski nashrning ortiqcha qadamlari («…#S9»…«#S12»,
-    eski variant va testlar) yangisi bilan aralashib qolardi — dars boshida yangi, oxirida eski rasm va o'zbekcha gaplar.
-    Mavzu kodli («<topic>#…») birliklardan faqat ENG OXIRGI nashr qilingan kitobniki qoladi."""
+TILLAR = {"uz", "ru", "en"}
+
+
+def til_kodi(value):
+    v = str(value or "").strip().lower()[:2]
+    return {"uz": "uz", "ru": "ru", "en": "en", "oz": "uz"}.get(v, "uz")
+
+
+def eng_yangi_kitob(units, topic_code, til="uz"):
+    """REV158: bir mavzuga bir nechta kitob (nashr) ulanganda — faqat BITTASI qoladi (aralashib ketmasin).
+    REV217: tanlov interfeys tiliga qarab: o'quvchi ruscha interfeysda bo'lsa — ruscha izohli kitob, inglizcha bo'lsa —
+    inglizcha, aks holda o'zbekcha. Shu tilda kitob yo'q bo'lsa — o'zbekcha, u ham bo'lmasa — eng oxirgisi."""
     pref = f"{topic_code}#"
     own = [u for u in units if str(u.get("unit_code") or "").startswith(pref) and u.get("source_code")]
     if not own:
         return units
+
     def vaqt(u):
         v = u.get("published_at")
         return v.timestamp() if hasattr(v, "timestamp") else 0
-    oxirgi = max(own, key=vaqt).get("source_code")
-    return [u for u in units if not (str(u.get("unit_code") or "").startswith(pref) and u.get("source_code") and u.get("source_code") != oxirgi)]
+    kitoblar = {}
+    for u in own:
+        k = u.get("source_code")
+        t = til_kodi(u.get("language_code"))
+        old = kitoblar.get(k)
+        if not old or vaqt(u) > old[1]:
+            kitoblar[k] = (t, vaqt(u))
+    til = til_kodi(til)
+    for istak in (til, "uz", None):
+        mos = [(v[1], k) for k, v in kitoblar.items() if istak is None or v[0] == istak]
+        if mos:
+            tanlangan = max(mos)[1]
+            break
+    return [u for u in units if not (str(u.get("unit_code") or "").startswith(pref) and u.get("source_code") and u.get("source_code") != tanlangan)]
 
 
 def build_lesson(topic, units, media_url, extra_questions=()):
@@ -486,16 +507,17 @@ def create_router(platform):
             return Response(status_code=304, headers=headers)
         return Response(content=data, media_type=content_type, headers=headers)
 
-    def load_lesson(topic_code):
+    def load_lesson(topic_code, til="uz"):
         topic_code = _t(topic_code)[:80]
+        til = til_kodi(til)
         if not topic_code:
             raise HTTPException(status_code=400, detail="Mavzu kodi kerak")
-        lesson = dars_kesh.olish(topic_code, lambda: _load_lesson_db(topic_code))
+        lesson = dars_kesh.olish(f"{topic_code}|{til}", lambda: _load_lesson_db(topic_code, til))
         if not lesson or not lesson["steps"]:
             raise HTTPException(status_code=404, detail="Bu mavzu uchun dars hali nashr qilinmagan")
         return lesson
 
-    def _load_lesson_db(topic_code):
+    def _load_lesson_db(topic_code, til="uz"):
         if not topic_code:
             raise HTTPException(status_code=400, detail="Mavzu kodi kerak")
         conn = platform._db()
@@ -525,7 +547,7 @@ def create_router(platform):
                     topic.update(mavzu=_t(d["nom"]), fan=_t(d["subject_name"]), sinf=_t(d["grade"]))
 
             cur.execute(
-                """SELECT unit_code,unit_kind,title,body,payload,source_page,book_title,version_no,source_code,published_at
+                """SELECT unit_code,unit_kind,title,body,payload,source_page,book_title,version_no,source_code,published_at,language_code
                    FROM ai_brain_published_units WHERE topic_code=%s
                    ORDER BY unit_code,version_no DESC""",
                 (topic_code,),
@@ -536,7 +558,7 @@ def create_router(platform):
                     continue
                 seen.add(r["unit_code"])
                 units.append(dict(r))
-            units = eng_yangi_kitob(units, topic_code)
+            units = eng_yangi_kitob(units, topic_code, til)
 
             media_url = media_resolver(cur, units)
 
@@ -651,9 +673,9 @@ def create_router(platform):
         return item
 
     @router.get("/api/dars_xonasi/{topic_code}")
-    def dars_xonasi(topic_code: str, token: str):
+    def dars_xonasi(topic_code: str, token: str, til: str = "uz"):
         platform._jwt_tekshir(token)
-        return load_lesson(topic_code)
+        return load_lesson(topic_code, til)
 
     def media_bytes(urls):
         ids = [int(u.rsplit("/", 1)[1]) for u in urls if u and re.fullmatch(r"/api/ai_miya_media/\d+", u)]
@@ -673,13 +695,13 @@ def create_router(platform):
             conn.close()
 
     @router.get("/api/dars_xonasi/{topic_code}/yuklab")
-    def dars_yuklab(topic_code: str, token: str, format: str = "pdf"):
+    def dars_yuklab(topic_code: str, token: str, format: str = "pdf", til: str = "uz"):
         """Ochiq dars ishlanmasi: shu mavzuning nashr qilingan darsi PDF yoki Word ko'rinishida."""
         platform._jwt_tekshir(token)
         fmt = format.lower()
         if fmt not in ("pdf", "docx"):
             raise HTTPException(status_code=400, detail="Format pdf yoki docx bo'lishi kerak")
-        lesson = load_lesson(topic_code)
+        lesson = load_lesson(topic_code, til)
         urls = [s.get("rasm") for s in lesson["steps"]] + [v.get("rasm") for vs in lesson["variants"].values() for v in vs]
         images = media_bytes(urls)
         from modules.dars_export import lesson_docx, lesson_pdf
