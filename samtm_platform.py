@@ -19753,6 +19753,18 @@ def _ai_brain_nusxadan_tanla(cur, ambiguous, pending, resolved, meta=None):
     return nusxadan_tanla(ambiguous, pending, resolved, linked, meta)
 
 
+def _ai_brain_katalog_scope(cur, group):
+    """REV207: mavzu qaysi katalogga tushadi: bog'cha guruhi → «Bog'cha — umumiy katalog», 1–11 → «Maktab — umumiy katalog».
+    Shu bo'lmasa dars «Katalogga biriktirilmagan» bo'lib, o'quvchilarga ko'rinmay qoladi."""
+    from modules.curriculum_scope import PRESCHOOL_GROUPS
+    kalit = "kindergarten-common" if group in PRESCHOOL_GROUPS else ("school-common" if str(group).isdigit() else None)
+    if not kalit:
+        return None
+    cur.execute("SELECT id FROM curriculum_scopes WHERE scope_key=%s", (kalit,))
+    r = cur.fetchone()
+    return r["id"] if r else None
+
+
 def _ai_brain_mavzu_yarat(cur, info, qoshni_kod, group, fan):
     """REV186: kitobdagi mavzu bazada yo'q — kitobning qo'shni mavzusi turgan blok/bobda o'zi yaratiladi (Mavzu yaratish kabi).
     Qo'shni yo'q bo'lsa — kitob sinfi va fanida alohida kod bilan. Qaytaradi: yangi topic_code."""
@@ -19780,6 +19792,8 @@ def _ai_brain_mavzu_yarat(cur, info, qoshni_kod, group, fan):
         else:
             row["mavzu_name"] = info.get("nom") or nom
         row["is_deleted"] = False
+        if not row.get("curriculum_scope_id"):
+            row["curriculum_scope_id"] = _ai_brain_katalog_scope(cur, group)
         cur.execute("""SELECT column_name FROM information_schema.columns
                        WHERE table_schema='public' AND table_name='dts_tree' AND is_generated='NEVER' AND is_identity='NO'
                          AND COALESCE(column_default,'') NOT LIKE 'nextval%%'""")
@@ -19791,9 +19805,70 @@ def _ai_brain_mavzu_yarat(cur, info, qoshni_kod, group, fan):
                     [json.dumps(row[c]) if isinstance(row[c], (dict, list)) else row[c] for c in cols])
         return kod
     kod = _keyingi_togarak_topic_code(cur)
-    cur.execute("""INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted)
-                   VALUES(%s,%s,%s,'1','','',%s,'',FALSE)""", (kod, group or "", fan or "", info.get("nom") or nom))
+    cur.execute("""INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name, is_deleted,
+                                        curriculum_scope_id)
+                   VALUES(%s,%s,%s,'1','','',%s,'',FALSE,%s)""", (kod, group or "", fan or "", info.get("nom") or nom,
+                                                                  _ai_brain_katalog_scope(cur, group)))
     return kod
+
+
+def miya_katalog_tuzat(cur):
+    """REV207: nashr qilingan, lekin o'quvchilarga ko'rinmayotgan darslarni katalogga ulaydi:
+    mavzu yo'q bo'lsa — yaratadi; o'chirilgan bo'lsa — tiklaydi; katalog (scope) yo'q bo'lsa — sinf/yoshga qarab ulaydi."""
+    from modules import mavzu_nomi
+    cur.execute("""SELECT u.topic_code, MAX(s.grade) AS grade, MAX(s.subject_name) AS fan, MIN(u.title) AS nom
+                   FROM ai_brain_units u LEFT JOIN ai_brain_sources s ON s.id=u.source_id
+                   WHERE u.status='published' GROUP BY u.topic_code""")
+    birliklar = cur.fetchall()
+    cur.execute("""SELECT d.topic_code, d.grade, d.is_deleted, d.curriculum_scope_id, cs.institution_type
+                   FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
+                   WHERE d.topic_code = ANY(%s)""", ([r["topic_code"] for r in birliklar] or [""],))
+    dts = {}
+    for r in cur.fetchall():
+        dts.setdefault(r["topic_code"], r)
+    natija = {"jami": len(birliklar), "yaratildi": 0, "tiklandi": 0, "ulandi": 0, "xato": 0}
+    for b in birliklar:
+        group = mavzu_nomi.kitob_guruhi(b.get("grade"))
+        scope = _ai_brain_katalog_scope(cur, group)
+        d = dts.get(b["topic_code"])
+        try:
+            cur.execute("SAVEPOINT katalog_tuzat")
+            if not d:
+                cur.execute("""INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name, kichik_name,
+                                                    is_deleted, curriculum_scope_id)
+                               VALUES(%s,%s,%s,'1','','',%s,'',FALSE,%s)""",
+                            (b["topic_code"], group or "", b.get("fan") or "", b.get("nom") or b["topic_code"], scope))
+                natija["yaratildi"] += 1
+            else:
+                if d.get("is_deleted"):
+                    cur.execute("UPDATE dts_tree SET is_deleted=FALSE WHERE topic_code=%s", (b["topic_code"],))
+                    natija["tiklandi"] += 1
+                if not d.get("institution_type") and scope:
+                    cur.execute("UPDATE dts_tree SET curriculum_scope_id=%s, grade=%s WHERE topic_code=%s AND curriculum_scope_id IS DISTINCT FROM %s",
+                                (scope, group or d.get("grade"), b["topic_code"], scope))
+                    natija["ulandi"] += 1
+            cur.execute("RELEASE SAVEPOINT katalog_tuzat")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT katalog_tuzat")
+            natija["xato"] += 1
+    return natija
+
+
+@app.post("/api/admin/miya_katalog_tuzat")
+def miya_katalog_tuzat_api(token: str):
+    _admin_tekshir(token)
+    conn = _db()
+    cur = conn.cursor()
+    try:
+        n = miya_katalog_tuzat(cur)
+        conn.commit()
+    except Exception:
+        conn.rollback()
+        raise
+    finally:
+        cur.close()
+        conn.close()
+    return n
 
 
 def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
@@ -26725,6 +26800,10 @@ app.include_router(create_lugat_router(_admin_tekshir, _db))
 # REV185: Kabutar TV — kunlik yoshga mos video ko'rsatuvlar Kabutar kanallarida
 from modules.kabutar_tv.kanal import create_kabutar_tv_router
 app.include_router(create_kabutar_tv_router(_admin_tekshir, _db))
+# REV209: sertifikatga tayyorlov guruhlari (ariza → 30 tadan guruhlash → daraja bo'yicha qayta guruhlash → reyting)
+from modules.sertifikat import create_router as _sertifikat_router
+for _r in _sertifikat_router(_admin_tekshir, _db, _jwt_tekshir):
+    app.include_router(_r)
 
 @app.on_event("shutdown")
 def _modular_resurslarni_yopish():

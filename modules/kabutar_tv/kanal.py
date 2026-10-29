@@ -147,47 +147,155 @@ def _admin_akkauntmi(cur, user_id):
         return False
 
 
-def foydalanuvchi_darajalari(cur, user_id):
+# ───────────── REV206: kanallar TIL × YOSH GURUHI bo'yicha; o'quv markazlari uchun — alohida kanallar ─────────────
+TIL_IDX = {"en": 1, "de": 2, "fr": 3, "es": 4, "ru": 5}
+TIL_RE = [(r"ingliz|english|англ|\ben\b", "en"), (r"nemis|german|deutsch|немец|\bde\b", "de"), (r"fransuz|french|франц|\bfr\b", "fr"),
+          (r"ispan|spanish|испан|\bes\b", "es"), (r"rus tili|russian|русск|\bru\b", "ru")]
+
+
+def matndan_til(x):
+    s_ = str(x or "").lower().strip()
+    if s_ in TIL_IDX:
+        return s_
+    for rx, k in TIL_RE:
+        if re.search(rx, s_):
+            return k
+    return None
+
+
+def darajadan_aud(d):
+    """«3-sinf» → «1-4-sinf», «4-5 yosh» → o'zi."""
+    for a in AUDITORIYALAR:
+        if d in aud_darajalari(a):
+            return a
+    return None
+
+
+def kanal_kodi(til, aud):
+    return 1000 + TIL_IDX[til] * 10 + AUDITORIYALAR.index(aud) + 1
+
+
+def obuna_tillari(cur, user_id):
+    """Foydalanuvchi (bola) qaysi tillarni o'qiydi: bog'cha obunasi (fanlar) + maktab tillari natijasi."""
+    tillar = set()
+    for sql in ("SELECT fanlar FROM bogcha_obuna WHERE bola_id=%s AND tugaydi >= CURRENT_DATE",
+                "SELECT DISTINCT til FROM maktab_til_natija WHERE user_id=%s"):
+        try:
+            cur.execute("SAVEPOINT tv_til")
+            cur.execute(sql, (user_id,))
+            for r in cur.fetchall():
+                v = list(r.values())[0]
+                for x in (v if isinstance(v, list) else json.loads(v) if isinstance(v, str) and v.startswith("[") else [v]):
+                    t = matndan_til(x.get("nom") or x.get("kalit") or "" if isinstance(x, dict) else x)
+                    if t:
+                        tillar.add(t)
+            cur.execute("RELEASE SAVEPOINT tv_til")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT tv_til")
+    return tillar
+
+
+def foydalanuvchi_kanallari(cur, user_id):
+    """{(til, auditoriya)} — o'zi va farzandlari: yoshi/sinfi mos VA shu til obunasida (o'qiyotgan tili) bor bo'lsa."""
     cur.execute("SELECT role, class FROM users WHERE user_id=%s", (user_id,))
     r = cur.fetchone()
     if not r:
         return set()
     if str(r.get("role") or "").lower() in ("admin", "superadmin", "super_admin") or _admin_akkauntmi(cur, user_id):
-        return set(DARAJALAR) | {"__admin__"}
-    out = set()
-    d = sinfdan_daraja(r.get("class"))
-    if d:
-        out.add(d)
+        return {"__admin__"}
+    profillar = [(user_id, r.get("class"))]
     try:
         cur.execute("SAVEPOINT kabutar_tv_fp")
-        cur.execute("""SELECT u.class FROM kabutar_family_profiles f JOIN users u ON u.user_id=f.profile_user_id
+        cur.execute("""SELECT u.user_id, u.class FROM kabutar_family_profiles f JOIN users u ON u.user_id=f.profile_user_id
                        WHERE f.owner_user_id=%s AND f.removed_at IS NULL""", (user_id,))
-        for x in cur.fetchall():
-            d = sinfdan_daraja(x.get("class"))
-            if d:
-                out.add(d)
+        profillar += [(x["user_id"], x.get("class")) for x in cur.fetchall()]
         cur.execute("RELEASE SAVEPOINT kabutar_tv_fp")
     except Exception:
         cur.execute("ROLLBACK TO SAVEPOINT kabutar_tv_fp")
+    out = set()
+    for uid, sinf in profillar:
+        aud = darajadan_aud(sinfdan_daraja(sinf) or "")
+        if not aud:
+            continue
+        for t in obuna_tillari(cur, uid):
+            out.add((t, aud))
     return out
+
+
+def foydalanuvchi_darajalari(cur, user_id):   # moslik uchun (eski chaqiruvlar)
+    k = foydalanuvchi_kanallari(cur, user_id)
+    return set(DARAJALAR) | {"__admin__"} if "__admin__" in k else {a for _, a in k}
+
+
+def kanal_gid(cur, til, aud, topish_yarat=None):
+    tj = topish_yarat or topish_yarat_oddiy
+    return tj(cur, "kanal", "kabutar_tv", kanal_kodi(til, aud), f"📺 {TILLAR[til]} · {aud}")
+
+
+def markaz_guruhlari(cur, til=None, aud=None):
+    """O'quv markazlarining til guruhlari: [{id, nomi, markaz, til, aud, teacher_id, direktor}]."""
+    try:
+        cur.execute("SAVEPOINT tv_markaz")
+        cur.execute("""SELECT t.id, t.nomi, t.fan, t.sinf, t.teacher_id, m.nomi AS markaz, m.direktor_user_id
+                       FROM togaraklar t JOIN oquv_markazlari m ON m.id=t.markaz_id
+                       WHERE t.markaz_id IS NOT NULL AND COALESCE(t.aktiv, TRUE)""")
+        rows = cur.fetchall()
+        cur.execute("RELEASE SAVEPOINT tv_markaz")
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT tv_markaz")
+        return []
+    out = []
+    for r in rows:
+        t = matndan_til(r.get("fan"))
+        a = darajadan_aud(sinfdan_daraja(r.get("sinf")) or "")
+        if not t or not a or (til and t != til) or (aud and a != aud):
+            continue
+        out.append({"id": r["id"], "nomi": r.get("nomi") or "", "markaz": r.get("markaz") or "", "til": t, "aud": a,
+                    "teacher_id": r.get("teacher_id"), "direktor": r.get("direktor_user_id")})
+    return out
+
+
+def markaz_kanal_gid(cur, g):
+    return topish_yarat_oddiy(cur, "kanal", "kabutar_tv_markaz", int(g["id"]), f"📺 {g['markaz']} · {g['nomi']}"[:120])
+
+
+def markaz_azolari(cur, g):
+    ids = {g.get("teacher_id"), g.get("direktor")}
+    try:
+        cur.execute("SAVEPOINT tv_ma")
+        cur.execute("SELECT user_id FROM togarak_azolar WHERE togarak_id=%s AND COALESCE(aktiv, TRUE)", (g["id"],))
+        ids |= {x["user_id"] for x in cur.fetchall()}
+        cur.execute("RELEASE SAVEPOINT tv_ma")
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT tv_ma")
+    return {i for i in ids if i}
+
+
+def azo_qosh_oddiy(cur, gid, uid):
+    cur.execute("INSERT INTO chat_azolari(guruh_id, user_id) VALUES(%s,%s) ON CONFLICT DO NOTHING", (gid, uid))
 
 
 def guruh(cur, daraja, topish_yarat):
     if daraja == "__admin__":   # REV187: adminning katta kanali — barcha ko'rsatuvlar bir joyda
         return topish_yarat(cur, "kanal", "kabutar_tv", ADMIN_KANAL, "📺 Kabutar TV — barcha ko'rsatuvlar (admin)")
-    return topish_yarat(cur, "kanal", "kabutar_tv", daraja_kodi(daraja), f"📺 Kabutar TV — {daraja}")
+    return kanal_gid(cur, daraja[0], daraja[1], topish_yarat)
 
 
 def azolikni_sinxronla(cur, user_id, topish_yarat, azo_qosh):
-    """Foydalanuvchini o'z sinfi/yoshi (va farzandlari) kanallariga qo'shadi, boshqa TV kanallaridan chiqaradi."""
-    darajalar = foydalanuvchi_darajalari(cur, user_id)
+    """Foydalanuvchini o'ziga (va farzandlariga) mos TIL × YOSH kanallariga qo'shadi; o'quv markazi guruhida bo'lsa —
+    markazning alohida kanaliga. Boshqa TV kanallaridan chiqaradi (obuna tugasa yoki sinf o'zgarsa — o'zi chiqadi)."""
     kerak = set()
-    for d in darajalar:
-        gid = guruh(cur, d, topish_yarat)
+    for k in foydalanuvchi_kanallari(cur, user_id):
+        gid = guruh(cur, k, topish_yarat)
         azo_qosh(cur, gid, user_id)
         kerak.add(gid)
+    for g in markaz_guruhlari(cur):
+        if user_id in markaz_azolari(cur, g):
+            gid = markaz_kanal_gid(cur, g)
+            azo_qosh(cur, gid, user_id)
+            kerak.add(gid)
     cur.execute("""DELETE FROM chat_azolari a USING chat_guruhlari g
-                   WHERE a.guruh_id=g.id AND g.manba_turi='kabutar_tv' AND a.user_id=%s AND NOT (g.id = ANY(%s))""",
+                   WHERE a.guruh_id=g.id AND g.manba_turi IN ('kabutar_tv','kabutar_tv_markaz') AND a.user_id=%s AND NOT (g.id = ANY(%s))""",
                 (user_id, list(kerak) or [0]))
 
 
@@ -291,12 +399,12 @@ def tg_yubor(fayl, sarlavha, chat, log=print):
     if os.path.getsize(fayl) > 49 * 1024 * 1024:
         return "katta (50 MB dan ortiq)"
     try:
-        import requests
+        import httpx as requests   # REV193: serverda «requests» yo'q (500 xato shundan edi) — httpx bor
         with open(fayl, "rb") as f:
             r = requests.post(f"https://api.telegram.org/bot{token}/sendVideo",
                               data={"chat_id": chat, "caption": sarlavha[:1000], "supports_streaming": "true"},
-                              files={"video": (os.path.basename(fayl), f, "video/mp4")}, timeout=180)
-        ok = r.ok and r.json().get("ok")
+                              files={"video": (os.path.basename(fayl), f, "video/mp4")}, timeout=180.0)
+        ok = r.is_success and r.json().get("ok")
         return "yuborildi" if ok else f"xato: {r.text[:200]}"
     except Exception as exc:
         log(f"[kabutar_tv] TG: {exc}")
@@ -353,7 +461,14 @@ def _bitta(cur, conn, sana, til, daraja, yasash_fn, kesh, admin_kanal, soz, majb
         eskilar = [eski.get("xabar_id"), eski.get("admin_xabar_id")] + (json.loads(eski["xabarlar"]) if eski.get("xabarlar") else [])
         for x in {x for x in eskilar if x}:   # qayta tayyorlansa — eski xabarlar o'chadi
             cur.execute("UPDATE chat_xabarlari SET ochirilgan=TRUE WHERE id=%s", (x,))
-        ids = [joyla(cur, sana, til, d, fayl, s["mavzu"], soniya) for d in aud_darajalari(daraja)]
+        # REV206: video faqat o'z kanaliga (til × yosh guruhi) va shu tildagi mos o'quv markazi guruhlariga tushadi
+        tillar_k = list(TIL_IDX) if til == HAFTALIK else [til]
+        ids = [joyla(cur, sana, til, daraja, fayl, s["mavzu"], soniya, kanal=kanal_gid(cur, t, daraja)) for t in tillar_k]
+        for g in markaz_guruhlari(cur, None if til == HAFTALIK else til, daraja):
+            gid = markaz_kanal_gid(cur, g)
+            for uid in markaz_azolari(cur, g):
+                azo_qosh_oddiy(cur, gid, uid)
+            ids.append(joyla(cur, sana, til, daraja, fayl, s["mavzu"], soniya, kanal=gid))
         axid = joyla(cur, sana, til, daraja, fayl, s["mavzu"], soniya, kanal=admin_kanal)
         cur.execute("""UPDATE kabutar_tv_korsatuvlar SET holat='joylandi', mavzu=%s, fayl_yol=%s, xabar_id=%s, admin_xabar_id=%s, xabarlar=%s,
                        soniya=%s, yangilangan=NOW() WHERE sana=%s AND til=%s AND daraja=%s""",
@@ -361,7 +476,11 @@ def _bitta(cur, conn, sana, til, daraja, yasash_fn, kesh, admin_kanal, soz, majb
         conn.commit()
         log(f"[kabutar_tv] {sana} {til} {daraja}: {round(soniya)} s, {round(time.time() - t0)} s da tayyor")
         if soz.get("tg_yuborish") and soz.get("tg_chat"):
-            tg = tg_yubor(fayl, sarlavha_yoz(sana, til, daraja, s["mavzu"], soniya) + "\n#KabutarTalim #KabutarTV", str(soz["tg_chat"]), log)
+            havola = f"{os.environ.get('KABUTAR_SAYT', 'https://talimkabutar.uz').rstrip('/')}/?kabutar_tv={til}_{daraja.replace(' ', '')}"
+            teg = "#" + re.sub(r"[^0-9a-zA-Z]+", "_", daraja).strip("_")
+            qayerga = "Barcha til kanallariga" if til == HAFTALIK else f"Telegram: «Kabutar TV · {TILLAR[til]}» kanaliga"
+            tg = tg_yubor(fayl, sarlavha_yoz(sana, til, daraja, s["mavzu"], soniya)
+                          + f"\n\n▶ To'liq darslar: {havola}\n#KabutarTalim #KabutarTV {teg}\n\n📌 (Siz uchun) {qayerga} qo'ying", str(soz["tg_chat"]), log)
             cur.execute("UPDATE kabutar_tv_korsatuvlar SET tg_holat=%s WHERE sana=%s AND til=%s AND daraja=%s", (tg, sana, til, daraja))
             conn.commit()
     except Exception as exc:
@@ -652,9 +771,9 @@ def create_kabutar_tv_router(check_admin, db):
         nom = ""
         if bot:
             try:
-                import requests
+                import httpx as requests   # REV193: serverda «requests» yo'q (500 xato shundan edi) — httpx bor
                 r = requests.get(f"https://api.telegram.org/bot{bot}/getMe", timeout=10)
-                nom = (r.json().get("result") or {}).get("username", "") if r.ok else ""
+                nom = (r.json().get("result") or {}).get("username", "") if r.is_success else ""
             except Exception:
                 nom = ""
         if nom:
@@ -683,16 +802,148 @@ def create_kabutar_tv_router(check_admin, db):
             raise HTTPException(status_code=400, detail="Serverda BOT_TOKEN yo'q")
         if not soz.get("tg_chat"):
             raise HTTPException(status_code=400, detail="Telegram chat ID kiritilmagan")
-        import requests
+        import httpx as requests   # REV193: serverda «requests» yo'q (500 xato shundan edi) — httpx bor
         r = requests.post(f"https://api.telegram.org/bot{bot}/sendMessage",
                           data={"chat_id": soz["tg_chat"], "text": "📺 Kabutar TV: sinov xabari. Videolar shu yerga keladi."}, timeout=20)
         nom = bot_nomi()
-        if not (r.ok and r.json().get("ok")):
+        if not (r.is_success and r.json().get("ok")):
             sabab = r.text.lower()
             if "chat not found" in sabab or "bot was blocked" in sabab or "forbidden" in sabab:
                 raise HTTPException(status_code=400, detail=f"Bot sizga yoza olmadi: Telegram'da @{nom or 'botingiz'} ni oching va /start bosing, keyin qayta «Sinab ko'rish»")
             raise HTTPException(status_code=400, detail=f"Telegram xatosi: {r.text[:200]} — Chat ID to'g'riligini tekshiring")
         return {"ok": True, "bot": nom}
+
+    # ───────────── REV197: 🦴 Personajlar (skeletli rig) — PSD yuklash, bo'g'imlarni sozlash, ko'rib chiqish ─────────────
+    from fastapi import File, UploadFile
+    from fastapi.responses import Response
+
+    USTOZ_NOMLARI = ["nilufar", "emily", "lukas", "camille", "carlos", "anna", "yusuf", "elif", "jiwoo", "kenji", "mei"]
+
+    @router.get("/rig")
+    def rig_royxat(token: str):
+        check_admin(token)
+        from . import rig as R
+        out = []
+        for n in USTOZ_NOMLARI:
+            r = R.rig_ol(n)
+            out.append({"nom": n, "bor": bool(r), "kanvas": r["kanvas"] if r else None,
+                        "qatlamlar": len(r["qatlamlar"]) if r else 0})
+        return {"rigs": out, "papka": R.papkalar()[0]}
+
+    @router.post("/rig/yukla")
+    async def rig_yukla(token: str, nom: str, fayl: UploadFile = File(...)):
+        check_admin(token)
+        from . import rig as R
+        import tempfile as _tf
+        if nom not in USTOZ_NOMLARI:
+            raise HTTPException(status_code=400, detail="Ustoz nomi noto'g'ri")
+        zipmi = (fayl.filename or "").lower().endswith(".zip")
+        with _tf.NamedTemporaryFile(suffix=".zip" if zipmi else ".psd", delete=False) as f:
+            while True:
+                b = await fayl.read(1024 * 1024)
+                if not b:
+                    break
+                f.write(b)
+            yol = f.name
+        bog = None
+        if zipmi:   # REV198: rassom zipi — PSD va bogimlar.json (bo'g'im nuqtalari) birga
+            import zipfile as _zf
+            with _zf.ZipFile(yol) as z:
+                psdlar = [n for n in z.namelist() if n.lower().endswith(".psd")]
+                if not psdlar:
+                    raise HTTPException(status_code=422, detail="Zip ichida PSD topilmadi")
+                with _tf.NamedTemporaryFile(suffix=".psd", delete=False) as f2:
+                    f2.write(z.read(psdlar[0]))
+                    psd_yol = f2.name
+                jl = [n for n in z.namelist() if n.lower().endswith("bogimlar.json")]
+                if jl:
+                    bog = json.loads(z.read(jl[0]).decode("utf-8"))
+            os.remove(yol)
+            yol = psd_yol
+        try:
+            from starlette.concurrency import run_in_threadpool
+            r, ogoh = await run_in_threadpool(R.psd_import, yol, nom, bog)
+        except Exception as exc:
+            raise HTTPException(status_code=422, detail=f"PSD o'qilmadi: {exc}")
+        finally:
+            try:
+                os.remove(yol)
+            except OSError:
+                pass
+        return {"ok": True, "nom": nom, "qatlamlar": len(r["qatlamlar"]), "ogohlantirishlar": ogoh, "suyaklar": r["suyaklar"]}
+
+    @router.get("/rig/{nom}")
+    def rig_bitta(token: str, nom: str):
+        check_admin(token)
+        from . import rig as R
+        r = R.rig_ol(nom)
+        if not r:
+            raise HTTPException(status_code=404, detail="Bu ustozning rig'i hali yuklanmagan")
+        return {"nom": nom, "kanvas": r["kanvas"], "suyaklar": r["suyaklar"], "qatlamlar": sorted(r["qatlamlar"])}
+
+    @router.put("/rig/{nom}")
+    def rig_yoz(token: str, nom: str, body: dict = Body(...)):
+        check_admin(token)
+        from . import rig as R
+        try:
+            r = R.rig_saqla(nom, body.get("suyaklar") or {})
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail="Rig topilmadi")
+        return {"ok": True, "suyaklar": r["suyaklar"]}
+
+    def _poza_ol(imo, t, ogiz, koz, qara):
+        from . import rig as R
+        p = R.poza(t, gapir=ogiz not in ("", "X"), daraja=0.7, ogiz=ogiz or "X", imo=imo or None, imo_t=t, qara=qara, tomon="chap")
+        if koz is not None:
+            p["koz"] = koz
+        return p
+
+    @router.get("/rig/{nom}/rasm")
+    def rig_rasm(token: str, nom: str, h: int = 600, imo: str = "", t: float = 0.8, ogiz: str = "X", koz: float = None,
+                 qara: float = 0.0, nuqtalar: bool = False):
+        check_admin(token)
+        from . import rig as R
+        from PIL import ImageDraw
+        import io
+        if not R.rig_ol(nom):
+            raise HTTPException(status_code=404, detail="Rig topilmadi")
+        h = max(200, min(1200, h))
+        im = R.chiz(nom, h, _poza_ol(imo, t, ogiz, koz, qara))
+        if nuqtalar:   # bo'g'im nuqtalari (muharrir uchun) — standart pozada
+            r = R.rig_ol(nom)
+            s = h / r["kanvas"][1]
+            pad = round(r["kanvas"][0] * s * 0.35)
+            d = ImageDraw.Draw(im)
+            for n, b in r["suyaklar"].items():
+                x, y = b["nuqta"][0] * s + pad, b["nuqta"][1] * s
+                d.ellipse((x - 7, y - 7, x + 7, y + 7), fill=(255, 60, 60, 255), outline=(255, 255, 255, 255), width=2)
+                d.text((x + 9, y - 8), n, fill=(200, 0, 0, 255))
+        buf = io.BytesIO()
+        im.save(buf, "PNG")
+        return Response(buf.getvalue(), media_type="image/png", headers={"Cache-Control": "no-store"})
+
+    @router.get("/rig/{nom}/gif")
+    def rig_gif(token: str, nom: str, imo: str = "", h: int = 420):
+        """Imo-ishorani jonli ko'rish: 2,4 soniyalik GIF (gapirish bilan)."""
+        check_admin(token)
+        from . import rig as R
+        from PIL import Image as _I
+        import io
+        if not R.rig_ol(nom):
+            raise HTTPException(status_code=404, detail="Rig topilmadi")
+        kadrlar = []
+        soz = "Hello children, how are you today"
+        for i in range(24):
+            t = i / 10
+            og = R.visema(soz, (t * 0.4) % 1) if imo == "gapir" else "X"
+            p = R.poza(t + 1, gapir=imo == "gapir", daraja=0.7, ogiz=og, imo=imo if imo not in ("", "gapir") else None, imo_t=t, tomon="chap")
+            fr = R.chiz(nom, max(200, min(700, h)), p)
+            bg = _I.new("RGBA", fr.size, (236, 242, 250, 255))
+            bg.alpha_composite(fr)
+            kadrlar.append(bg.convert("P", palette=_I.ADAPTIVE))
+        buf = io.BytesIO()
+        kadrlar[0].save(buf, "GIF", save_all=True, append_images=kadrlar[1:], duration=100, loop=0)
+        return Response(buf.getvalue(), media_type="image/gif", headers={"Cache-Control": "no-store"})
 
     @router.get("/jadval")
     def tv_jadval(token: str):

@@ -5,7 +5,10 @@ from pathlib import Path
 import unittest
 
 
-MAIN_PATH = Path(__file__).resolve().parents[1] / "main.py"
+# REV210: funksiya main.py'dan samtm_platform.py'ga ko'chgan — ikkalasidan qidiriladi
+_ROOT = Path(__file__).resolve().parents[1]
+MAIN_PATH = next((p for p in (_ROOT / "main.py", _ROOT / "samtm_platform.py")
+                  if "def _analitika_xotira_hisobi" in p.read_text(encoding="utf-8")), _ROOT / "main.py")
 MAIN_SOURCE = MAIN_PATH.read_text(encoding="utf-8")
 
 

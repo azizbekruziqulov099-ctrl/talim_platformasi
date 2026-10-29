@@ -160,3 +160,129 @@ QOSHIQ = {  # {a} {b} — bugungi so'zlar
     "fr": "{a}, {a}, tape, tape, tape ! {b}, {b}, saute, saute, saute !", "es": "¡{a}, {a}, palmas, palmas! ¡{b}, {b}, salta, salta!",
     "ru": "{a}, {a}, хлоп, хлоп, хлоп! {b}, {b}, топ, топ, топ!",
 }
+
+
+# ───────── REV194: «Kabu sayohatda» — o'rganilayotgan til mamlakati an'analari va tarixi + bizning meros ─────────
+# (emoji, kichiklarga gap, kattalarga gap, o'zbekcha izoh, «bizda-chi?» taqqoslash)
+SAYOHAT = {
+    "en": [
+        ("🫖", "In Britain, people love tea.", "In Britain, people drink tea every day, often with milk at five o'clock.",
+         "Britaniyada choyni juda yaxshi ko'rishadi, ko'pincha sut bilan ichishadi.", "Bizda ham choy — mehmonning birinchi hurmati!"),
+        ("🕰️", "This is Big Ben in London.", "Big Ben is the famous bell in the clock tower in London; it is more than 160 years old.",
+         "Big Ben — Londondagi mashhur soat minorasining qo'ng'irog'i.", "Bizda esa Registon — Samarqandning yuragi!"),
+        ("🎃", "In autumn, children make pumpkin lanterns.", "In October, many families carve pumpkins and make lanterns.",
+         "Kuzda bolalar qovoqdan chiroq yasashadi.", "Bizda kuzda qovoqdan somsa pishiriladi!"),
+        ("🏈", "In America, people love football and baseball.", "In the USA, American football and baseball are very popular sports.",
+         "Amerikada amerikacha futbol va beysbol juda mashhur.", "Bizda esa kurash va futbol!"),
+        ("🦃", "In America, families eat turkey in November.", "On Thanksgiving Day in November, American families say thank you and share a big dinner.",
+         "Amerikada noyabrda oilalar yig'ilib, bir-biriga rahmat aytishadi.", "Bizda ham dasturxon atrofida oila yig'ilishi — eng katta baxt!"),
+    ],
+    "de": [
+        ("🥨", "In Deutschland isst man gern Brezeln.", "Die Brezel ist ein typisches deutsches Gebäck mit einer besonderen Form.",
+         "Germaniyada brezel degan o'ziga xos non bor.", "Bizda esa tandir non — dunyodagi eng mazali non!"),
+        ("🏰", "In Deutschland gibt es viele Burgen.", "In Deutschland gibt es über zwanzigtausend Burgen und Schlösser.",
+         "Germaniyada qadimiy qasrlar juda ko'p.", "Bizda ham qadimiy qal'alar bor — Xiva Ichan qal'asi!"),
+        ("🎄", "Im Dezember gibt es Weihnachtsmärkte.", "Im Winter besuchen Familien die Weihnachtsmärkte mit Lichtern und Lebkuchen.",
+         "Qishda Germaniyada chiroqli bayram bozorlari bo'ladi.", "Bizda Navro'zda sayllar bo'ladi!"),
+        ("🚲", "Viele Kinder fahren mit dem Fahrrad zur Schule.", "In vielen deutschen Städten fahren Kinder mit dem Fahrrad zur Schule.",
+         "Germaniyada ko'p bolalar maktabga velosipedda borishadi.", "Velosiped — sog'liq uchun ham foydali!"),
+        ("🎵", "Beethoven war ein großer deutscher Komponist.", "Beethoven komponierte wunderbare Musik, obwohl er später nicht mehr hören konnte.",
+         "Betxoven — buyuk nemis bastakori, eshitmay qolsa ham musiqa yozgan.", "Bizda ham buyuk musiqa bor — Shashmaqom!"),
+    ],
+    "fr": [
+        ("🥐", "En France, on mange des croissants.", "Le matin, beaucoup de Français mangent un croissant au petit-déjeuner.",
+         "Fransiyada ertalab kruassan yeyishadi.", "Bizda nonushtaga non, qaymoq va choy!"),
+        ("🗼", "Voici la tour Eiffel à Paris.", "La tour Eiffel a été construite en 1889 et mesure plus de trois cents mètres.",
+         "Eyfel minorasi Parijda, 1889-yilda qurilgan.", "Bizda esa Kalon minorasi — Buxoroda, 900 yoshdan oshgan!"),
+        ("🧀", "En France, il y a beaucoup de fromages.", "La France produit plus de mille sortes de fromages.",
+         "Fransiyada pishloqning mingdan ortiq turi bor.", "Bizda esa qurt — mazali va foydali!"),
+        ("🎨", "Le Louvre est un grand musée.", "Le Louvre à Paris est le musée le plus visité du monde.",
+         "Luvr — Parijdagi dunyoning eng mashhur muzeyi.", "Bizda Samarqand va Toshkentda ajoyib muzeylar bor!"),
+        ("🚴", "Le Tour de France est une course de vélo.", "Chaque été, des cyclistes traversent la France pendant trois semaines.",
+         "Har yozda Fransiyada mashhur velopoyga bo'ladi.", "Sport — sog'lom tana va kuchli iroda!"),
+    ],
+    "es": [
+        ("💃", "En España, la gente baila flamenco.", "El flamenco es un baile español con música de guitarra y palmas.",
+         "Ispaniyada flamenko degan raqs bor.", "Bizda esa Lazgi va Andijon polkasi!"),
+        ("🥘", "La paella es un plato español.", "La paella es un plato de arroz típico de Valencia.",
+         "Paelya — Ispaniyaning guruchli taomi.", "Bizda esa palov — guruchli taomlarning podshosi!"),
+        ("🍇", "En Año Nuevo, comen doce uvas.", "En Nochevieja, los españoles comen doce uvas, una con cada campanada.",
+         "Ispaniyada Yangi yilda 12 ta uzum yeyishadi.", "Bizda Yangi yilda oila bilan dasturxon!"),
+        ("⚽", "En España, el fútbol es muy popular.", "En España hay equipos de fútbol muy famosos en todo el mundo.",
+         "Ispaniyada futbol juda mashhur.", "Bizda ham futbolni yaxshi ko'rishadi!"),
+        ("🏛️", "La Alhambra es un palacio antiguo.", "La Alhambra de Granada es un palacio con jardines y azulejos preciosos.",
+         "Alhambra — Ispaniyadagi chiroyli qadimiy saroy.", "Bizda ham koshinli saroylar bor — Shahrisabz Oqsaroy!"),
+    ],
+    "ru": [
+        ("🪆", "Это матрёшка.", "Матрёшка — деревянная кукла, внутри которой есть другие куклы.",
+         "Matryoshka — ichida boshqa qo'g'irchoqlar bor yog'och qo'g'irchoq.", "Bizda esa chiroyli sopol o'yinchoqlar — Rishton!"),
+        ("🥞", "Весной пекут блины.", "На праздник Масленица в России пекут блины и провожают зиму.",
+         "Rossiyada bahorda quymoq pishirib, qishni kuzatishadi.", "Bizda bahorda sumalak pishiriladi!"),
+        ("🚂", "Это самая длинная железная дорога.", "Транссибирская магистраль — самая длинная железная дорога в мире.",
+         "Rossiyada dunyodagi eng uzun temir yo'l bor.", "Bizda «Afrosiyob» poyezdi juda tez yuradi!"),
+        ("📚", "Пушкин — великий поэт.", "Александр Пушкин — великий русский поэт, его сказки знают все дети.",
+         "Pushkin — buyuk rus shoiri, ertaklarini hamma biladi.", "Bizda esa Alisher Navoiy — buyuk shoirimiz!"),
+        ("❄️", "Зимой в России много снега.", "Зимой в России бывает очень холодно и много снега.",
+         "Rossiyada qishda qor juda ko'p.", "Bizda qish yumshoqroq, lekin qorbo'ron o'ynash zo'r!"),
+    ],
+}
+SAYOHAT_BOSH = {"en": "Kabu is travelling! Where are we today?", "de": "Kabu reist! Wo sind wir heute?", "fr": "Kabu voyage ! Où sommes-nous aujourd'hui ?",
+                "es": "¡Kabu viaja! ¿Dónde estamos hoy?", "ru": "Кабу путешествует! Где мы сегодня?"}
+
+
+# ───────── REV195: «Mashhur inson» — shu tilda gapiradigan mashhur odamlar (kichiklarga sodda, kattalarga batafsil) ─────────
+MASHHUR = {
+    "en": [("🎭", "William Shakespeare", "Shakespeare wrote plays and poems.", "Shakespeare wrote 39 plays; people still watch Romeo and Juliet today.",
+            "Shekspir — buyuk ingliz yozuvchisi, «Romeo va Julyetta»ni yozgan."),
+           ("🍎", "Isaac Newton", "Newton watched an apple fall.", "Isaac Newton explained gravity: why things fall down to the Earth.",
+            "Nyuton — olma tushganini ko'rib, tortishish kuchini kashf qilgan olim."),
+           ("🧚", "Beatrix Potter", "She wrote stories about a little rabbit.", "Beatrix Potter wrote and drew the stories of Peter Rabbit.",
+            "Beatris Potter — quyoncha Piter haqida ertaklar yozgan va chizgan."),
+           ("✈️", "The Wright brothers", "Two brothers made the first plane.", "In 1903, the Wright brothers flew the first airplane in America.",
+            "Rayt aka-ukalar 1903-yilda birinchi samolyotni uchirishgan.")],
+    "de": [("🎹", "Ludwig van Beethoven", "Beethoven spielte Klavier.", "Beethoven schrieb neun Sinfonien, auch als er nicht mehr hören konnte.",
+            "Betxoven — buyuk bastakor, eshitmay qolsa ham musiqa yozgan."),
+           ("💡", "Albert Einstein", "Einstein war ein großer Wissenschaftler.", "Albert Einstein erklärte, wie Zeit und Licht zusammenhängen.",
+            "Eynshteyn — vaqt va yorug'lik sirlarini ochgan olim."),
+           ("📖", "Die Brüder Grimm", "Die Brüder Grimm schrieben Märchen.", "Die Brüder Grimm sammelten Märchen wie Rotkäppchen und Schneewittchen.",
+            "Aka-uka Grimmlar «Qizil qalpoqcha» kabi ertaklarni to'plashgan."),
+           ("🚗", "Carl Benz", "Carl Benz baute das erste Auto.", "1886 baute Carl Benz das erste Auto mit Motor.",
+            "Karl Bens 1886-yilda birinchi dvigatelli avtomobilni yasagan.")],
+    "fr": [("🚀", "Jules Verne", "Jules Verne écrivait des aventures.", "Jules Verne a imaginé des voyages sur la Lune et sous la mer.",
+            "Jyul Vern — Oyga va dengiz tubiga sayohat haqida yozgan."),
+           ("⚗️", "Marie Curie", "Marie Curie était une grande savante.", "Marie Curie a reçu deux prix Nobel pour ses découvertes.",
+            "Mariya Kyuri — ikki marta Nobel mukofotini olgan olima."),
+           ("🤴", "Antoine de Saint-Exupéry", "Il a écrit Le Petit Prince.", "Saint-Exupéry était pilote et il a écrit Le Petit Prince.",
+            "Sent-Ekzyuperi — uchuvchi, «Kichkina shahzoda»ni yozgan."),
+           ("🦠", "Louis Pasteur", "Pasteur aidait les gens à être en bonne santé.", "Louis Pasteur a créé des vaccins qui ont sauvé beaucoup de vies.",
+            "Lui Paster — ko'p hayotni saqlab qolgan vaksinalar yaratgan.")],
+    "es": [("🐴", "Miguel de Cervantes", "Cervantes escribió Don Quijote.", "Cervantes escribió Don Quijote, una de las novelas más famosas del mundo.",
+            "Servantes — «Don Kixot»ni yozgan buyuk ispan yozuvchisi."),
+           ("🎨", "Pablo Picasso", "Picasso pintaba cuadros.", "Pablo Picasso pintó cuadros con formas y colores muy nuevos.",
+            "Pablo Pikasso — mashhur ispan rassomi."),
+           ("🎸", "Andrés Segovia", "Segovia tocaba la guitarra.", "Andrés Segovia llevó la guitarra española a las grandes salas de concierto.",
+            "Andres Segoviya — ispan gitarasini butun dunyoga tanitgan."),
+           ("🏛️", "Antoni Gaudí", "Gaudí hizo casas muy bonitas.", "Antoni Gaudí construyó la Sagrada Familia en Barcelona.",
+            "Antoni Gaudi — Barselonadagi ajoyib binolar me'mori.")],
+    "ru": [("🚀", "Юрий Гагарин", "Гагарин полетел в космос.", "В 1961 году Юрий Гагарин первым полетел в космос.",
+            "Yuriy Gagarin 1961-yilda koinotga birinchi bo'lib uchgan."),
+           ("📚", "Лев Толстой", "Толстой писал книги.", "Лев Толстой написал большой роман «Война и мир» и сказки для детей.",
+            "Lev Tolstoy — «Urush va tinchlik» va bolalar uchun ertaklar yozgan."),
+           ("🧪", "Дмитрий Менделеев", "Менделеев был учёным.", "Менделеев создал таблицу химических элементов.",
+            "Mendeleyev kimyoviy elementlar jadvalini yaratgan."),
+           ("🎼", "Пётр Чайковский", "Чайковский писал музыку.", "Чайковский написал музыку к балету «Щелкунчик».",
+            "Chaykovskiy — «Shelkunchik» baleti musiqasini yozgan.")],
+}
+MASHHUR_BOSH = {"en": "Famous people!", "de": "Berühmte Menschen!", "fr": "Des gens célèbres !", "es": "¡Gente famosa!", "ru": "Знаменитые люди!"}
+
+# ───────── REV195: Vaziyat (sahnacha) — dialog bo'lmagan mavzular uchun xavfsiz qoliplar (grammatika buzilmasin) ─────────
+# {x}, {y} — bugungi va o'tgan dars so'zlari (bosh kelishikda qoladigan qurilmalar)
+VAZIYAT = {
+    "en": [("Kabu, where is the {x}?", "Hmm… here it is!", "Yes! The {x}! Well done!", "And what is this?", "It's the {y}!", "Great! The {x} and the {y}!")],
+    "de": [("Kabu, wo ist {x}?", "Hmm… hier ist {x}!", "Ja, richtig! Super!", "Und was ist das?", "Das ist {y}!", "Toll! {x} und {y}!")],
+    "fr": [("Kabu, où est {x} ?", "Hmm… voilà {x} !", "Oui, bravo !", "Et ça, qu'est-ce que c'est ?", "C'est {y} !", "Super ! {x} et {y} !")],
+    "es": [("Kabu, ¿dónde está {x}?", "Mmm… ¡aquí está {x}!", "¡Sí! ¡Muy bien!", "¿Y qué es esto?", "¡Es {y}!", "¡Genial! ¡{x} y {y}!")],
+    "ru": [("Кабу, где {x}?", "Хм… вот {x}!", "Да! Молодец!", "А что это?", "Это {y}!", "Отлично! {x} и {y}!")],
+}
+SAHNA_BOSH = {"en": "Scene time!", "de": "Unsere kleine Szene!", "fr": "Notre petite scène !", "es": "¡Nuestra pequeña escena!", "ru": "Маленькая сценка!"}
+KIM_AYTDI = {"en": "Who said: “{g}”?", "de": "Wer hat gesagt: „{g}“?", "fr": "Qui a dit : « {g} » ?", "es": "¿Quién dijo: «{g}»?", "ru": "Кто сказал: «{g}»?"}

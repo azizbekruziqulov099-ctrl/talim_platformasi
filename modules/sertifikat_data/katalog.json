@@ -1,0 +1,257 @@
+{
+  "version": "1.0.0",
+  "sectionTitle": "Guruhlar",
+  "gradeRange": {
+    "min": 1,
+    "max": 11
+  },
+  "groupTypes": [
+    {
+      "id": "subject",
+      "title": "Fan guruhlari",
+      "short": "Fan",
+      "description": "Maktab fanlari va qo‘shimcha mashg‘ulotlar.",
+      "topicLabel": "Fan nomi",
+      "example": "Matematika"
+    },
+    {
+      "id": "language",
+      "title": "Til o‘rganish guruhlari",
+      "short": "Til",
+      "description": "Til poydevori, muloqot va daraja bo‘yicha o‘rganish.",
+      "topicLabel": "Til nomi",
+      "example": "Ingliz tili"
+    },
+    {
+      "id": "programming",
+      "title": "Dasturlash guruhlari",
+      "short": "Dasturlash",
+      "description": "Kodlash, dasturlash tillari va amaliy loyihalar.",
+      "topicLabel": "Yo‘nalish nomi",
+      "example": "Python"
+    },
+    {
+      "id": "exam_prep",
+      "title": "Imtihon va sertifikatga tayyorlov guruhlari",
+      "short": "Tayyorlov",
+      "description": "Bitta aniq imtihon uchun maqsadli tayyorgarlik.",
+      "topicLabel": "Imtihon",
+      "example": "IELTS Academic"
+    }
+  ],
+  "cefrLevels": [
+    "Pre-A1",
+    "A1",
+    "A2",
+    "B1",
+    "B2",
+    "C1",
+    "C2"
+  ],
+  "readinessLevels": [
+    "Poydevor",
+    "Tayanch",
+    "Imtihon mashqlari"
+  ],
+  "weekdays": [
+    {
+      "id": 1,
+      "short": "Du",
+      "title": "Dushanba"
+    },
+    {
+      "id": 2,
+      "short": "Se",
+      "title": "Seshanba"
+    },
+    {
+      "id": 3,
+      "short": "Ch",
+      "title": "Chorshanba"
+    },
+    {
+      "id": 4,
+      "short": "Pa",
+      "title": "Payshanba"
+    },
+    {
+      "id": 5,
+      "short": "Ju",
+      "title": "Juma"
+    },
+    {
+      "id": 6,
+      "short": "Sh",
+      "title": "Shanba"
+    },
+    {
+      "id": 7,
+      "short": "Ya",
+      "title": "Yakshanba"
+    }
+  ],
+  "exams": [
+    {
+      "id": "cambridge_starters",
+      "title": "Cambridge Pre A1 Starters",
+      "shortTitle": "Starters",
+      "family": "Cambridge",
+      "cefr": "Pre-A1",
+      "recommendedGrades": [
+        1,
+        2
+      ],
+      "description": "Bolalar uchun dastlabki ingliz tili ko‘nikmalari.",
+      "source": "https://www.cambridgeenglish.org/qualifications-young-learners/"
+    },
+    {
+      "id": "cambridge_movers",
+      "title": "Cambridge A1 Movers",
+      "shortTitle": "Movers",
+      "family": "Cambridge",
+      "cefr": "A1",
+      "recommendedGrades": [
+        3,
+        4
+      ],
+      "description": "Kundalik savollar va sodda muloqot.",
+      "source": "https://www.cambridgeenglish.org/qualifications-young-learners/"
+    },
+    {
+      "id": "cambridge_flyers",
+      "title": "Cambridge A2 Flyers",
+      "shortTitle": "Flyers",
+      "family": "Cambridge",
+      "cefr": "A2",
+      "recommendedGrades": [
+        5,
+        6
+      ],
+      "description": "Gaplarni bog‘lash va sodda yozma-og‘zaki muloqot.",
+      "source": "https://www.cambridgeenglish.org/qualifications-young-learners/"
+    },
+    {
+      "id": "cambridge_key_schools",
+      "title": "Cambridge A2 Key for Schools (KET)",
+      "shortTitle": "A2 Key / KET",
+      "family": "Cambridge",
+      "cefr": "A2",
+      "recommendedGrades": [
+        5,
+        6
+      ],
+      "description": "Maktab o‘quvchilariga mos A2 imtihoniga tayyorgarlik.",
+      "source": "https://www.cambridgeenglish.org/our-products/"
+    },
+    {
+      "id": "cambridge_preliminary_schools",
+      "title": "Cambridge B1 Preliminary for Schools",
+      "shortTitle": "B1 Preliminary",
+      "family": "Cambridge",
+      "cefr": "B1",
+      "recommendedGrades": [
+        7,
+        8
+      ],
+      "description": "Maktab o‘quvchilariga mos B1 imtihoniga tayyorgarlik.",
+      "source": "https://www.cambridgeenglish.org/our-products/"
+    },
+    {
+      "id": "toefl_junior",
+      "title": "TOEFL Junior",
+      "shortTitle": "TOEFL Junior",
+      "family": "TOEFL",
+      "cefr": null,
+      "recommendedGrades": [
+        7,
+        8
+      ],
+      "description": "Yosh o‘quvchilar uchun ingliz tili ko‘nikmalarini rivojlantirish.",
+      "source": "https://www.ets.org/toefl/junior.html"
+    },
+    {
+      "id": "national_multilevel_en",
+      "title": "Milliy sertifikat — ingliz tili (Multilevel)",
+      "shortTitle": "Milliy sertifikat",
+      "family": "Milliy sertifikat",
+      "cefr": null,
+      "targetLevels": [
+        "B1",
+        "B2",
+        "C1"
+      ],
+      "recommendedGrades": [
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "description": "B1, B2 yoki C1 maqsadli milliy imtihonga tayyorgarlik.",
+      "source": "https://uzbmb.uz/page/test_namunalari"
+    },
+    {
+      "id": "ielts_academic",
+      "title": "IELTS Academic",
+      "shortTitle": "IELTS Academic",
+      "family": "IELTS",
+      "cefr": null,
+      "recommendedGrades": [
+        9,
+        10,
+        11
+      ],
+      "description": "IELTS Academic formatiga yo‘naltirilgan tayyorlov.",
+      "source": "https://ielts.org/take-a-test/test-types/ielts-academic-test"
+    },
+    {
+      "id": "ielts_general",
+      "title": "IELTS General Training",
+      "shortTitle": "IELTS General",
+      "family": "IELTS",
+      "cefr": null,
+      "recommendedGrades": [
+        9,
+        10,
+        11
+      ],
+      "description": "IELTS General Training formatiga yo‘naltirilgan tayyorlov.",
+      "source": "https://ielts.org/take-a-test/test-types/ielts-general-training-test"
+    },
+    {
+      "id": "toefl_ibt",
+      "title": "TOEFL iBT",
+      "shortTitle": "TOEFL iBT",
+      "family": "TOEFL",
+      "cefr": null,
+      "recommendedGrades": [
+        9,
+        10,
+        11
+      ],
+      "description": "TOEFL iBT formatiga yo‘naltirilgan tayyorlov.",
+      "source": "https://www.ets.org/toefl.html"
+    },
+    {
+      "id": "sat",
+      "title": "SAT",
+      "shortTitle": "SAT",
+      "family": "SAT",
+      "cefr": null,
+      "recommendedGrades": [
+        9,
+        10,
+        11
+      ],
+      "description": "Reading and Writing hamda Math bo‘limlariga tayyorgarlik.",
+      "source": "https://satsuite.collegeboard.org/sat/whats-on-the-test"
+    }
+  ],
+  "policy": {
+    "oneExamPerGroup": true,
+    "gradeRecommendationsAreRestrictions": false,
+    "inferLanguageLevelFromGrade": false,
+    "issueOfficialCertificate": false,
+    "note": "Sinf bo‘yicha tavsiyalar — Kabutar uchun loyiha sozlamasi; imtihon tashkilotchisining qabul sharti emas."
+  }
+}

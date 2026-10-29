@@ -306,7 +306,7 @@ def allow_group(cur, actor_id, group_id):
     row = dict(row)
     if row.get('turi') == 'global' or row.get('manba_turi') == 'global':
         return False
-    if row.get('manba_turi') == 'kabutar_tv':
+    if str(row.get('manba_turi') or '').startswith('kabutar_tv'):   # REV206: markaz TV kanallari ham
         # REV185: Kabutar TV kanali — a'zolikni sinf/yosh bo'yicha tizim beradi (yuqoridagi JOIN tekshirdi)
         return True
     mine = memberships(cur,actor_id)
@@ -323,7 +323,7 @@ def require_group(cur, actor_id, group_id, write=False):
     if write:
         cur.execute('SELECT manba_turi FROM chat_guruhlari WHERE id=%s', (int(group_id),))
         g = cur.fetchone()
-        if g and g.get('manba_turi') == 'kabutar_tv':
+        if g and str(g.get('manba_turi') or '').startswith('kabutar_tv'):
             raise HTTPException(403, 'Kabutar TV kanali faqat ko‘rish uchun.')
         ensure_terms_accepted(cur,actor_id)
     if not allow_group(cur,actor_id,group_id):
