@@ -246,15 +246,17 @@ def create_router(platform):
                     batches = {r["batch_id"] for r in src}
                     # REV190: bo'laklab (5000 tadan) — bitta katta DELETE jadvalni uzoq qulflamasin
                     while True:
+                        # REV215: faqat SHU kitoblarning darslari (boshqa fan kitobining darsi tasodifan shu mavzuga
+                        # ulangan bo'lsa ham — o'chmaydi); kitobsiz qolgan eski darslar — mavzu bo'yicha
                         cur.execute("""DELETE FROM ai_brain_units WHERE id IN (SELECT id FROM ai_brain_units
-                                       WHERE source_id = ANY(%s) OR topic_code = ANY(%s) LIMIT 5000) RETURNING batch_id""",
+                                       WHERE source_id = ANY(%s) OR (source_id IS NULL AND topic_code = ANY(%s)) LIMIT 5000) RETURNING batch_id""",
                                     (ids, codes or [""]))
                         rows = cur.fetchall()
                         total["darslar"] += len(rows)
                         batches |= {r["batch_id"] for r in rows}
                         if len(rows) < 5000:
                             break
-                    cur.execute("DELETE FROM ai_brain_topic_maps WHERE source_id = ANY(%s) OR topic_code = ANY(%s)", (ids, codes or [""]))
+                    cur.execute("DELETE FROM ai_brain_topic_maps WHERE source_id = ANY(%s)", (ids,))
                     total["xarita"] += cur.rowcount
                     cur.execute("DELETE FROM ai_brain_sources WHERE id = ANY(%s)", (ids,))
                     total["kitoblar"] += cur.rowcount
@@ -267,8 +269,13 @@ def create_router(platform):
                     cur.execute("DELETE FROM generated_tests WHERE topic_code = ANY(%s)", (codes,))
                     total["testlar"] += cur.rowcount
                 if body.mavzular and codes:
-                    cur.execute("UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code = ANY(%s) AND is_deleted=FALSE", (codes,))
+                    # REV215: darsi bor mavzu o'chirilmaydi (o'chsa — darslar o'quvchiga ko'rinmay qoladi). Avval miyani o'chiring.
+                    cur.execute("""UPDATE dts_tree d SET is_deleted=TRUE WHERE d.topic_code = ANY(%s) AND d.is_deleted=FALSE
+                                   AND NOT EXISTS (SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code)""", (codes,))
                     total["mavzular"] += cur.rowcount
+                    cur.execute("""SELECT COUNT(DISTINCT u.topic_code) AS n FROM ai_brain_units u
+                                   WHERE u.topic_code = ANY(%s)""", (codes,))
+                    total["saqlandi_darsli_mavzu"] = total.get("saqlandi_darsli_mavzu", 0) + int(cur.fetchone()["n"])
             return {"ochirildi": total}
         return db_run(token, fn)
 

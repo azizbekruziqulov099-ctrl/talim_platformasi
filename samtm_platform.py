@@ -20166,6 +20166,29 @@ def _ai_brain_db_topic_tekshir(cur, parsed, yarat=False):
                 "Mavzu kodi (DTS)" if simple else "topic_code",
                 f"«{r.get('topic_code')}» kodi Mavzular bazasida topilmadi — admin paneldagi Mavzular bo'limidan aniq kodni ko'chiring",
             )
+    # REV215: kitob boshqa fan yoki boshqa sinf mavzusiga ulanmasin (ispancha dars fransuzcha mavzuga tushib,
+    # o'quvchiga ko'rinmay qolgan xato shundan edi). Kitob fani/sinfi ↔ mavzu fani/sinfi solishtiriladi.
+    from modules import mavzu_nomi as _mn
+    _kitob = (parsed["payload"].get("01_KITOB") or [{}])[0]
+    _kfan = re.sub(r"\s+", " ", str(_kitob.get("fan") or "").strip().lower())
+    _kguruh = _mn.kitob_guruhi(_kitob.get("sinf"))
+    if _kfan and mavjud:
+        cur.execute("SELECT topic_code, grade, subject_name FROM dts_tree WHERE topic_code=ANY(%s)", (sorted(mavjud),))
+        _tm = {x["topic_code"]: x for x in cur.fetchall()}
+        for r in topic_rows:
+            t = _tm.get(r.get("topic_code"))
+            if not t:
+                continue
+            tfan = re.sub(r"\s+", " ", str(t.get("subject_name") or "").strip().lower())
+            tguruh = _mn.kitob_guruhi(t.get("grade"))
+            if tfan and tfan != _kfan or (_mn.taniqli_guruh(_kguruh) and tguruh and tguruh != _kguruh):
+                simple = r.get("_sheet") not in (None, "02_DTS_XARITA")
+                _ai_brain_xato(
+                    parsed["errors"], r.get("_sheet") or "02_DTS_XARITA", r["_excel_row"],
+                    "Mavzu kodi (DTS)" if simple else "topic_code",
+                    f"«{r.get('topic_code')}» — {t.get('subject_name')} {t.get('grade')} mavzusi, kitob esa {_kitob.get('fan')} "
+                    f"{_kitob.get('sinf')}. Boshqa fanning mavzusiga dars ulanmaydi — kodni o‘chiring (o‘zi topadi) yoki to‘g‘ri kodni yozing",
+                )
     # Har mavzu qaysi o'quvchilarga chiqishini adminga oldindan ko'rsatamiz.
     from modules.dars_xonasi import topic_placements
     places = topic_placements(cur, [c for c in topic_codes if c in mavjud])
