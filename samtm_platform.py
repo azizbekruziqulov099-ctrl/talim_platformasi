@@ -19841,24 +19841,94 @@ def _ai_brain_mavzu_yarat(cur, info, qoshni_kod, group, fan):
 
 
 def miya_katalog_tuzat(cur):
-    """REV207: nashr qilingan, lekin o'quvchilarga ko'rinmayotgan darslarni katalogga ulaydi:
-    mavzu yo'q bo'lsa — yaratadi; o'chirilgan bo'lsa — tiklaydi; katalog (scope) yo'q bo'lsa — sinf/yoshga qarab ulaydi."""
+    """REV207/REV213: nashr qilingan, lekin o'quvchilarga ko'rinmayotgan darslarni to'g'ri katalogga ulaydi.
+    1) Dars BOSHQA fanning (yoki boshqa sinfning) mavzusiga ulanib qolgan bo'lsa (masalan ispancha dars fransuzcha
+       mavzuga — nomlari bir xil bo'lgani uchun) — o'z fani/sinfi uchun mavzu topiladi yoki yaratiladi va dars o'shanga ko'chadi.
+    2) Mavzu yo'q — yaratiladi; o'chirilgan — tiklanadi; katalogga (scope) ulanmagan — sinf/yoshga qarab ulanadi."""
     from modules import mavzu_nomi
+
+    def fan_k(x):
+        t = str(x or "").strip().lower()
+        for ch in "‘’ʻʼ`'":
+            t = t.replace(ch, "")
+        return re.sub(r"\s+", " ", t)
+
+    natija = {"jami": 0, "kochirildi": 0, "yaratildi": 0, "tiklandi": 0, "ulandi": 0, "xato": 0, "misollar": []}
+    # 1) dars manbasi (kitob) fani/sinfi ↔ mavzuning fani/sinfi
+    cur.execute("""SELECT u.topic_code, u.source_id, s.grade, s.subject_name, COUNT(*) AS soni, MIN(u.title) AS nom
+                   FROM ai_brain_units u JOIN ai_brain_sources s ON s.id=u.source_id
+                   WHERE u.status='published' GROUP BY u.topic_code, u.source_id, s.grade, s.subject_name""")
+    guruhlar = cur.fetchall()
+    kodlar = list({g["topic_code"] for g in guruhlar}) or [""]
+    cur.execute("""SELECT topic_code, grade, subject_name, bob_name, bolim_name, mavzu_name, kichik_name, quarter, is_deleted
+                   FROM dts_tree WHERE topic_code = ANY(%s)""", (kodlar,))
+    dts = {}
+    for r in cur.fetchall():
+        dts.setdefault(r["topic_code"], r)
+    yangi_kod = {}   # (eski kod, guruh, fan) → yangi kod
+    for g in guruhlar:
+        d = dts.get(g["topic_code"])
+        group = mavzu_nomi.kitob_guruhi(g.get("grade"))
+        if not d or not g.get("subject_name"):
+            continue
+        dgroup = mavzu_nomi.kitob_guruhi(d.get("grade"))
+        guruh_mos = (not mavzu_nomi.taniqli_guruh(group)) or dgroup == group
+        if fan_k(d.get("subject_name")) == fan_k(g["subject_name"]) and guruh_mos:
+            continue
+        if not mavzu_nomi.taniqli_guruh(group):
+            group = dgroup   # kitob sinfi noaniq — mavzuning o'z sinfida qoladi, faqat fani tuzatiladi
+        kalit = (g["topic_code"], group, fan_k(g["subject_name"]))
+        try:
+            cur.execute("SAVEPOINT katalog_kochir")
+            kod = yangi_kod.get(kalit)
+            if not kod:
+                nom = d.get("kichik_name") or d.get("mavzu_name") or d.get("bolim_name") or d.get("bob_name") or g.get("nom") or ""
+                # shu fan va sinfda shu nomli mavzu bormi
+                cur.execute("""SELECT topic_code FROM dts_tree WHERE grade=%s AND lower(subject_name)=lower(%s)
+                               AND COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name)=%s
+                               AND NOT COALESCE(is_deleted,FALSE) LIMIT 1""", (group, g["subject_name"], nom))
+                r = cur.fetchone()
+                if r:
+                    kod = r["topic_code"]
+                else:
+                    kod = _keyingi_togarak_topic_code(cur)
+                    cur.execute("""INSERT INTO dts_tree(topic_code, grade, subject_name, quarter, bob_name, bolim_name, mavzu_name,
+                                                        kichik_name, is_deleted, curriculum_scope_id)
+                                   VALUES(%s,%s,%s,%s,%s,%s,%s,%s,FALSE,%s)""",
+                                (kod, group, g["subject_name"], d.get("quarter") or "1", d.get("bob_name") or "", d.get("bolim_name") or "",
+                                 d.get("mavzu_name") or nom, d.get("kichik_name") or "", _ai_brain_katalog_scope(cur, group)))
+                    natija["yaratildi"] += 1
+                yangi_kod[kalit] = kod
+            cur.execute("UPDATE ai_brain_units SET topic_code=%s WHERE topic_code=%s AND source_id=%s AND status='published'",
+                        (kod, g["topic_code"], g["source_id"]))
+            natija["kochirildi"] += cur.rowcount
+            if len(natija["misollar"]) < 6:
+                natija["misollar"].append(f"{g['subject_name']} {group}: «{(d.get('mavzu_name') or '')[:40]}» {d.get('subject_name')} mavzusidan ko‘chirildi")
+            cur.execute("RELEASE SAVEPOINT katalog_kochir")
+        except Exception as exc:
+            cur.execute("ROLLBACK TO SAVEPOINT katalog_kochir")
+            natija["xato"] += 1
+            if len(natija["misollar"]) < 6:
+                natija["misollar"].append(f"xato: {str(exc)[:120]}")
+
+    # 2) mavzu bor-yo'qligi, o'chirilganligi, katalog (scope)
     cur.execute("""SELECT u.topic_code, MAX(s.grade) AS grade, MAX(s.subject_name) AS fan, MIN(u.title) AS nom
                    FROM ai_brain_units u LEFT JOIN ai_brain_sources s ON s.id=u.source_id
                    WHERE u.status='published' GROUP BY u.topic_code""")
     birliklar = cur.fetchall()
+    natija["jami"] = len(birliklar)
     cur.execute("""SELECT d.topic_code, d.grade, d.is_deleted, d.curriculum_scope_id, cs.institution_type
                    FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
                    WHERE d.topic_code = ANY(%s)""", ([r["topic_code"] for r in birliklar] or [""],))
     dts = {}
     for r in cur.fetchall():
         dts.setdefault(r["topic_code"], r)
-    natija = {"jami": len(birliklar), "yaratildi": 0, "tiklandi": 0, "ulandi": 0, "xato": 0}
     for b in birliklar:
         group = mavzu_nomi.kitob_guruhi(b.get("grade"))
         scope = _ai_brain_katalog_scope(cur, group)
         d = dts.get(b["topic_code"])
+        if d and not d.get("is_deleted") and (d.get("institution_type") or not scope):
+            continue   # hammasi joyida
         try:
             cur.execute("SAVEPOINT katalog_tuzat")
             if not d:
@@ -19872,8 +19942,8 @@ def miya_katalog_tuzat(cur):
                     cur.execute("UPDATE dts_tree SET is_deleted=FALSE WHERE topic_code=%s", (b["topic_code"],))
                     natija["tiklandi"] += 1
                 if not d.get("institution_type") and scope:
-                    cur.execute("UPDATE dts_tree SET curriculum_scope_id=%s, grade=%s WHERE topic_code=%s AND curriculum_scope_id IS DISTINCT FROM %s",
-                                (scope, group or d.get("grade"), b["topic_code"], scope))
+                    cur.execute("UPDATE dts_tree SET curriculum_scope_id=%s, grade=%s WHERE topic_code=%s",
+                                (scope, group or d.get("grade"), b["topic_code"]))
                     natija["ulandi"] += 1
             cur.execute("RELEASE SAVEPOINT katalog_tuzat")
         except Exception:
@@ -19882,21 +19952,72 @@ def miya_katalog_tuzat(cur):
     return natija
 
 
+_KATALOG_HOLAT = {"ishlayapti": False, "natija": None, "xato": None, "boshlandi": None, "tugadi": None}
+
+
+def _katalog_tuzat_fon():
+    """REV214: tuzatish fon rejimida ishlaydi (ko'p darsda 1–3 daqiqa — brauzer kutib qolmaydi, server to'xtatmaydi).
+    Bir vaqtda faqat bittasi (PostgreSQL advisory lock)."""
+    import datetime as _dtm
+    if _KATALOG_HOLAT["ishlayapti"]:
+        return False
+    _KATALOG_HOLAT.update(ishlayapti=True, xato=None, boshlandi=_dtm.datetime.now().isoformat(timespec="seconds"), tugadi=None)
+
+    def ish():
+        conn = None
+        try:
+            conn = _db()
+            cur = conn.cursor()
+            cur.execute("SELECT pg_try_advisory_lock(72140) AS ok")
+            if not cur.fetchone()["ok"]:
+                _KATALOG_HOLAT["xato"] = "Boshqa nusxada tuzatish ketmoqda — birozdan keyin qayta tekshiring"
+                return
+            try:
+                n = miya_katalog_tuzat(cur)
+                conn.commit()
+                _KATALOG_HOLAT["natija"] = n
+                print(f"[miya_katalog] {n}", flush=True)
+            finally:
+                cur.execute("SELECT pg_advisory_unlock(72140)")
+                conn.commit()
+        except Exception as exc:
+            if conn:
+                conn.rollback()
+            _KATALOG_HOLAT["xato"] = str(exc)[:300]
+            print(f"[miya_katalog] xato: {exc}", flush=True)
+        finally:
+            if conn:
+                conn.close()
+            _KATALOG_HOLAT.update(ishlayapti=False, tugadi=_dtm.datetime.now().isoformat(timespec="seconds"))
+
+    threading.Thread(target=ish, daemon=True, name="miya-katalog-tuzat").start()
+    return True
+
+
 @app.post("/api/admin/miya_katalog_tuzat")
 def miya_katalog_tuzat_api(token: str):
     _admin_tekshir(token)
-    conn = _db()
-    cur = conn.cursor()
-    try:
-        n = miya_katalog_tuzat(cur)
-        conn.commit()
-    except Exception:
-        conn.rollback()
-        raise
-    finally:
-        cur.close()
-        conn.close()
-    return n
+    boshlandi = _katalog_tuzat_fon()
+    return {"boshlandi": boshlandi, **_KATALOG_HOLAT}
+
+
+@app.get("/api/admin/miya_katalog_tuzat/holat")
+def miya_katalog_tuzat_holat(token: str):
+    _admin_tekshir(token)
+    return dict(_KATALOG_HOLAT)
+
+
+def _katalog_tuzat_avto():
+    """REV214: server ishga tushgach 1,5 daqiqadan keyin bir marta o'zi tekshiradi (hech kim tugma bosmasa ham)."""
+    import time as _tm
+    _tm.sleep(90)
+    if os.environ.get("MIYA_KATALOG_AVTO", "1") != "0":
+        _katalog_tuzat_fon()
+
+
+import sys as _sys_k
+if "pytest" not in _sys_k.modules and "unittest" not in _sys_k.modules:   # testlarda ishga tushmaydi
+    threading.Thread(target=_katalog_tuzat_avto, daemon=True, name="miya-katalog-avto").start()
 
 
 def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
