@@ -177,7 +177,7 @@ class EndpointTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   p=Path(__file__).resolve().parents[1]/'samtm_platform.py';t=ast.parse(p.read_text())
-  names={'_dts_matn_normalize','_dts_sinf_normalize','_dts_chorak_normalize','_dts_fan_kodi_ol','_dts_bob_kodi_ol','_dts_bolim_kodi_ol','_dts_mavzu_kodi_ol','_dts_kichik_kodi_ol','_dts_qator_kiritish','_curriculum_scope','_mavzularni_parse','topik_toliq_yarat','topik_import','test_savollari','test_savollari_soni','aralash_savollari_soni','aralash_test_savollari','_curriculum_guard'}
+  names={'_topik_import_content','_dts_matn_normalize','_dts_sinf_normalize','_dts_chorak_normalize','_dts_fan_kodi_ol','_dts_bob_kodi_ol','_dts_bolim_kodi_ol','_dts_mavzu_kodi_ol','_dts_kichik_kodi_ol','_dts_qator_kiritish','_curriculum_scope','_mavzularni_parse','topik_toliq_yarat','topik_import','test_savollari','test_savollari_soni','aralash_savollari_soni','aralash_test_savollari','_curriculum_guard'}
   nodes=[n for n in t.body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef)) and n.name in names]
   for n in nodes:n.decorator_list=[]
   cls.code=compile(ast.Module(body=nodes,type_ignores=[]),str(p),'exec')

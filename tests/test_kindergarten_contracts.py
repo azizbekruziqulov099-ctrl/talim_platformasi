@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
+from _test_yollar import ROOT  # REV210: monorepo yo\'llari shu repoga moslandi
 ROUTER_FILE = ROOT / "backend" / "modules" / "kindergarten.py"
 MIGRATION_FILE = ROOT / "database" / "003_kindergarten_platform.sql"
 HARDENING_FILE = ROOT / "database" / "004_kindergarten_hardening.sql"

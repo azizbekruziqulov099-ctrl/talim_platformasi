@@ -23,6 +23,8 @@ _APOS = "‘’ʻʼ`'"
 def nom_norm(value) -> str:
     """Solishtirish kaliti: kichik harf, tutuq va tinish belgilarisiz, «3-mavzu.» kabi boshlanishsiz."""
     text = ("" if value is None else str(value)).strip().lower()
+    # REV221: yangi alifbo (ö, ğ, ş, ç) — eski yozuv bilan bir xil kalit (yangi alifbodagi fayl eski mavzuga mos tushadi)
+    text = text.replace("ö", "o").replace("ğ", "g").replace("ş", "sh").replace("ç", "ch")
     for ch in _APOS:
         text = text.replace(ch, "")
     text = re.sub(r"^\s*(?:\d+\s*[-–]?\s*(?:mavzu|dars)|§\s*\d+)\s*[.:)\-–]?\s*", "", text)
@@ -208,11 +210,12 @@ def _ildiz(code):
 
 
 def _bir_fanda(codes, meta) -> bool:
-    """Hamma nomzod bitta sinf va fanda (dasturi har xil bo'lishi mumkin)."""
+    """Hamma nomzod bitta sinf, fan VA bitta dasturda (katalogdagi takroriy nusxa). REV210: boshqa dasturdagi
+    (masalan, markaz dasturi va umumiy katalog) bir xil nomli mavzu taxmin qilinmaydi — noto'g'ri joyga tushmasin."""
     keys = set()
     for code in codes:
         row = meta.get(code)
         if not row:
             return False
-        keys.add((canonical_grade(row.get("grade")), nom_norm(row.get("subject_name"))))
+        keys.add((canonical_grade(row.get("grade")), nom_norm(row.get("subject_name")), row.get("curriculum_scope_id")))
     return len(keys) == 1

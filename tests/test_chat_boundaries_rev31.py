@@ -15,6 +15,12 @@ class HTTPException(Exception):
         self.status_code = status_code
 
 
+class _RuxsatSiyosati:
+    """Har tekshiruvdan o'tkazadigan soxta siyosat (chegaralar shu testdagi soxta bazada tekshiriladi)."""
+    def __getattr__(self, name):
+        return lambda *args, **kwargs: True
+
+
 def load_handlers(filename, names, **overrides):
     tree = ast.parse((ROOT / filename).read_text())
     selected = [n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef)) and n.name in names]
@@ -32,6 +38,11 @@ def load_handlers(filename, names, **overrides):
         "_moderatsiya_jadvallari": lambda cur: None,
         "_matnda_royxat_sozi_bormi": lambda *args: False,
         "_SOKINISH_SOZLARI_BOSHLANGICH": [], "_XAVFLI_SOZLAR_BOSHLANGICH": [],
+        # REV210: handlerlar endi markaziy kabutar_policy orqali ishlaydi — sinovda ruxsat beruvchi soxta siyosat
+        "_chat_actor": lambda token: 101,
+        "_kabutar_policy": lambda: _RuxsatSiyosati(),
+        "_chat_policy": lambda: _RuxsatSiyosati(),
+        "Header": lambda default=None, **kwargs: default,
         **overrides,
     }
     exec(compile(ast.Module(body=selected, type_ignores=[]), filename, "exec"), ns)

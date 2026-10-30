@@ -27,7 +27,7 @@ class WorkbookRoundTripTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   path=Path(__file__).resolve().parents[1]/'samtm_platform.py'
-  names={'tushuntirish_import','mavzu_tushuntirish_ol','topik_royxat','topik_fanlar','topik_toliq_yarat','topik_shablon','topik_import','shablon_yukla','shablon_import','_mavzularni_parse','_yuklab_olish_sarlavhasi','_curriculum_scope','_curriculum_admin_guard','_dts_matn_normalize','_dts_sinf_normalize','_dts_chorak_normalize','_dts_fan_kodi_ol','_dts_bob_kodi_ol','_dts_bolim_kodi_ol','_dts_mavzu_kodi_ol','_dts_kichik_kodi_ol','_dts_qator_kiritish','_talaba_sinfini_ochish','_talaba_sinf_matni','_sinf_talaba_mi','_test_vaqti'}
+  names={'_topik_import_content','tushuntirish_import','mavzu_tushuntirish_ol','topik_royxat','topik_fanlar','topik_toliq_yarat','topik_shablon','topik_import','shablon_yukla','shablon_import','_mavzularni_parse','_yuklab_olish_sarlavhasi','_curriculum_scope','_curriculum_admin_guard','_dts_matn_normalize','_dts_sinf_normalize','_dts_chorak_normalize','_dts_fan_kodi_ol','_dts_bob_kodi_ol','_dts_bolim_kodi_ol','_dts_mavzu_kodi_ol','_dts_kichik_kodi_ol','_dts_qator_kiritish','_talaba_sinfini_ochish','_talaba_sinf_matni','_sinf_talaba_mi','_test_vaqti'}
   constants={'_TALABA_SINF_REGEX','_YOSH_GURUHI','TEST_AVTO_VAQT'}
   nodes=[]
   for node in ast.parse(path.read_text()).body:
@@ -77,7 +77,7 @@ class WorkbookRoundTripTests(unittest.TestCase):
   return asyncio.run(self.ns['shablon_import']('admin',Upload(workbook),grade,subject,id))
  def rows(self):return [dict(row) for row in self.db.sql.execute('SELECT * FROM generated_tests ORDER BY id')]
  def test_topic_template_round_trip_all_sections_and_lessons(self):
-  cases=[('maktab','7',''),('bogcha','5-6 yosh',''),('markaz','a1','')]+[('universitet','1 kurs',lesson) for lesson in scope.LESSONS]
+  cases=[('maktab','7',''),('bogcha','4-5 yosh',''),('markaz','a1','')]+[('universitet','1 kurs',lesson) for lesson in scope.LESSONS]
   for kind,grade,lesson in cases:
    with self.subTest(kind=kind,lesson=lesson):
     self.reset();audience=self.scope(institution_type=kind,dars_turi=lesson)
@@ -89,7 +89,7 @@ class WorkbookRoundTripTests(unittest.TestCase):
     self.assertTrue(all(row['curriculum_scope_id']==1 and row['grade']==grade for row in rows))
     self.assertTrue(all((row['dars_turi'] or '')==lesson for row in rows))
  def test_test_template_round_trip_all_sections_and_lessons(self):
-  cases=[('maktab','7',''),('bogcha','5-6 yosh',''),('markaz','a1','')]+[('universitet','1 kurs',lesson) for lesson in scope.LESSONS]
+  cases=[('maktab','7',''),('bogcha','4-5 yosh',''),('markaz','a1','')]+[('universitet','1 kurs',lesson) for lesson in scope.LESSONS]
   for kind,grade,lesson in cases:
    with self.subTest(kind=kind,lesson=lesson):
     self.reset();audience=self.scope(institution_type=kind,dars_turi=lesson)

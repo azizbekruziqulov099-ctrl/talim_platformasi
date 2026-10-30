@@ -63,7 +63,7 @@ class LanguageTests(unittest.TestCase):
             with self.subTest(text=text):self.assertEqual(detect_language(text),language)
     def test_mixed_sentences_tags_and_formulas(self):
         parts=split_speech_text('Salom. Hello world! Привет, мир. [uz]apple[/uz]')
-        self.assertEqual([language for language,text in parts],['uz','uz','uz','uz'])
+        self.assertEqual([language for language,text in parts],['uz','en','ru','uz'])   # REV210: har gap o'z tilida o'qiladi
         self.assertEqual(split_speech_text('[en]2 + 3 = 5[/en]'),[('en','2 + 3 = 5')])
         self.assertEqual(detect_language('[lat]x + y[/lat]'),'uz')
 
@@ -104,7 +104,7 @@ class DictationTests(unittest.TestCase):
                 return SimpleNamespace(raise_for_status=lambda:None,json=lambda:{'text':'Salom.','language':'uzbek'})
         path=catalog_fixtures.ROOT/'modules/admin_speech.py'
         import ast
-        nodes=[n for n in ast.parse(path.read_text()).body if isinstance(n,ast.AsyncFunctionDef) and n.name in ('transcribe_audio','_whisper_compatible')]
+        nodes=[n for n in ast.parse(path.read_text()).body if (isinstance(n,ast.AsyncFunctionDef) and n.name in ('transcribe_audio','_whisper_compatible')) or (isinstance(n,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='STT_PROMPT' for t in n.targets))]   # REV210: STT_PROMPT ham
         ns={};exec(compile(ast.Module(body=nodes,type_ignores=[]),str(path),'exec'),ns)
         with patch.dict(sys.modules,{'httpx':SimpleNamespace(AsyncClient=Client)}):
             result=asyncio.run(ns['transcribe_audio'](b'blob','audio/mp4','mp4','key'))

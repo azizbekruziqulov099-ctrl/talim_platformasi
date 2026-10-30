@@ -80,13 +80,15 @@ class TelegramSiteTests(unittest.TestCase):
 
     def test_config_diagnostics_never_return_secrets(self):
         self.service.bot_secret = ''
-        config = self.app.routes['/auth/config']()['telegram']
+        route = self.app.routes['/auth/config']()   # REV146: endpoint async bo'ldi
+        config = (__import__('asyncio').run(route) if __import__('inspect').iscoroutine(route) else route)['telegram']
         # REV-fix: the bot can also prove itself with its BOT_TOKEN, so a missing
         # shared secret no longer disables Telegram sign-in.
         self.assertTrue(config['enabled'])
         self.service.bot_secret = 'only-a-test-secret-' + 'x' * 32
         self.service.bot_username = ''
-        config = self.app.routes['/auth/config']()['telegram']
+        route = self.app.routes['/auth/config']()   # REV146: endpoint async bo'ldi
+        config = (__import__('asyncio').run(route) if __import__('inspect').iscoroutine(route) else route)['telegram']
         self.assertIn('KABUTAR_BOT_USERNAME', config['reason'])
         self.assertNotIn(self.service.bot_secret, str(config))
 

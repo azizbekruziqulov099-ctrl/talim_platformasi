@@ -13,6 +13,8 @@ def execute(cur, sql, args=()):
     q = ' '.join(sql.lower().split()); s = cur.db.state; cur.rows = []
     if q.startswith('select to_jsonb(u) as profile from users'):
         user = s['users'].get(args[0]); cur.rows = [{'profile':dict(user)}] if user else []; return
+    if q.startswith("select to_regclass('public.kabutar_family_profiles')"):   # REV104: oila profillari jadvali (sinovda yo'q)
+        cur.rows = [{'t': None}]; return
     if q.startswith('select 1 from admin_akkaunt'):
         cur.rows = [{'ok':1}] if args[0] in s.get('admins', set()) else []; return
     if q.startswith('select 1 from talaba_profillari'):

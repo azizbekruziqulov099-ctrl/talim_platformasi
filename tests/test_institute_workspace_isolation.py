@@ -15,14 +15,29 @@ import unittest
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
+from _test_yollar import ROOT  # REV210: monorepo yo\'llari shu repoga moslandi
+
+
+_ALMASH = {   # REV210: eski ish papkalari → joriy repolardagi haqiqiy fayllar
+    "samtm_institute.py": "backend:samtm_institute.py", "samtm_platform.py": "backend:samtm_platform.py",
+    "main.py": "backend:samtm_platform.py", "App.jsx": "frontend:src/App.jsx",
+    "InstituteWorkspace.jsx": "frontend:src/institute/InstituteWorkspace.jsx",
+}
 
 
 def _first_existing(*paths: Path) -> Path:
     for path in paths:
         if path.exists():
             return path
-    raise FileNotFoundError("Deploy source topilmadi: " + ", ".join(map(str, paths)))
+    for path in paths:
+        joy = _ALMASH.get(Path(str(path)).name)
+        if joy:
+            repo, rel = joy.split(":", 1)
+            nomzod = (ROOT / repo) / rel
+            if nomzod.exists():
+                return nomzod
+    import unittest as _ut
+    raise _ut.SkipTest("Deploy source topilmadi: " + ", ".join(map(str, paths)))
 
 
 def _read(*paths: Path) -> str:

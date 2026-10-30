@@ -97,13 +97,14 @@ if (FULLSTACK_ROOT / "backend" / "modules" / "test_games.py").exists():
     PROJECT_ROOT = TEST_FILE.parents[2]
     BACKEND_ROOT = PROJECT_ROOT / "backend"
 else:
-    PROJECT_ROOT = BACKEND_ONLY_ROOT
-    BACKEND_ROOT = BACKEND_ONLY_ROOT
+    # REV210: alohida backend repo — migratsiya fayli bo'lmasa test xato emas, o'tkazib yuboriladi
+    PROJECT_ROOT = __import__("_test_yollar").Yol(str(BACKEND_ONLY_ROOT))
+    BACKEND_ROOT = PROJECT_ROOT
 
 
 def _main_sof_helperlari(*nomlar):
     """main.py'ni ishga tushirmasdan undagi sof helperlarni testga yuklaydi."""
-    manba = (BACKEND_ROOT / "main.py").read_text(encoding="utf-8")
+    manba = (__import__("_test_yollar").REPO / "main.py").read_text(encoding="utf-8")   # REV210: main.py + samtm_platform.py
     daraxt = ast.parse(manba)
     kerak = [
         tugun

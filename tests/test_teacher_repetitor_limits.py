@@ -2,7 +2,7 @@ import unittest
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
+from _test_yollar import ROOT  # REV210: monorepo yo\'llari shu repoga moslandi
 
 
 class TeacherRepetitorLimitsContracts(unittest.TestCase):

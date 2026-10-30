@@ -16,7 +16,7 @@ class FakeModel:
     def __init__(self, **kwargs): self.__dict__.update(kwargs)
 
 class FastAPI:
-    def __init__(self): self.routes = []
+    def __init__(self): self.routes = []; self.router = self   # REV210: kod app.router orqali ham qo'shadi
     def add_event_handler(self, *args): pass
     def _route(self, path, method):
         def add(fn):
@@ -71,6 +71,7 @@ class Cursor:
                     self.row = {**user, 'user_id': uid, 'rasm_bormi': True}
                     break
     def fetchone(self): return copy.deepcopy(self.row)
+    def fetchall(self): return [copy.deepcopy(self.row)] if self.row else []   # REV210: kod endi fetchall ham ishlatadi
 
 
 class Database:
@@ -109,6 +110,10 @@ def request(token=None, method='GET'):
 
 class DiscoveryTests(unittest.TestCase):
     def setUp(self):
+        # REV210: topish endi kabutar_policy.allow_direct bilan ham tekshiriladi — bu test faqat topish maxfiyligini sinaydi
+        from unittest.mock import patch as _patch
+        import kabutar_policy as _kp  # noqa: F401
+        _p = _patch("kabutar_policy.allow_direct", lambda *args: True); _p.start(); self.addCleanup(_p.stop)
         self.db = Database()
         self.auth = Auth(self.db)
         self.platform = NS(_jwt_tekshir=lambda token: 1, _kabutar_id_ber=lambda cur, uid: self.db.users[uid]['kabutar_id'])

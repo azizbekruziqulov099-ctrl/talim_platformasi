@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
+from _test_yollar import ROOT  # REV210: monorepo yo\'llari shu repoga moslandi
 ROUTER_FILE = ROOT / "backend" / "modules" / "school.py"
 SCHEDULER_FILE = ROOT / "backend" / "modules" / "school_scheduler.py"
 MIGRATION_FILE = ROOT / "database" / "005_school_platform.sql"

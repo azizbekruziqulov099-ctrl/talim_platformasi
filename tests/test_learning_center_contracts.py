@@ -12,7 +12,7 @@ import unittest
 from pathlib import Path
 
 
-ROOT = Path(__file__).resolve().parents[2]
+from _test_yollar import ROOT  # REV210: monorepo yo\'llari shu repoga moslandi
 BACKEND = ROOT / "backend"
 ROUTER_FILE = BACKEND / "modules" / "learning_center.py"
 APP_FILE = BACKEND / "main.py"

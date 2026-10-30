@@ -140,8 +140,9 @@ def group_catalog_rows(rows, only_tested=True):
         if r.get('mine'):subject['mine']=True
         if r['curriculum_scope_id'] not in subject['scope_ids']:subject['scope_ids'].append(r['curriculum_scope_id'])
         group=subject['sinflar'].setdefault(r['grade'],{'sinf':r['grade'],'mavzular':[]});semester=r.get('semestr') or 0
-        topic=next((t for t in group['mavzular'] if t.get('semestr')==semester and text_key(t['nomi'])==text_key(r['nomi'])),None)
         lesson_codes=[code for code in (r.get('darsli_kodlar') or []) if code]
+        # REV219: darsli mavzu nomi boshqasiga o'xshasa ham alohida qoladi — har darsi o'quvchiga ko'rinadi
+        topic=None if lesson_codes else next((t for t in group['mavzular'] if t.get('semestr')==semester and not t.get('dars_bor') and text_key(t['nomi'])==text_key(r['nomi'])),None)
         if topic:
             topic['topic_codes']=list(dict.fromkeys(topic['topic_codes']+codes));topic['savol_soni']+=r['savol_soni']
             topic['darsli_kodlar']=list(dict.fromkeys(topic.get('darsli_kodlar',[])+lesson_codes))

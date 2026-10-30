@@ -11,7 +11,9 @@ class SpeechTests(unittest.TestCase):
   self.addCleanup(os.environ.pop,'SPEECH_READ_ENABLED',None)
   for k in ('STT_DAQIQA','STT_KUNLIK','STT_IP_DAQIQA'):os.environ[k]='1000000';self.addCleanup(os.environ.pop,k,None)   # sinovda cheklov xalaqit bermasin
   path=Path(__file__).resolve().parents[1]/'modules/admin_speech.py'
-  nodes=[n for n in ast.parse(path.read_text()).body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))]
+  # REV210: funksiyalar + modul darajasidagi KATTA_HARFLI konstantalar (masalan, STT_PROMPT)
+  nodes=[n for n in ast.parse(path.read_text()).body if isinstance(n,(ast.FunctionDef,ast.AsyncFunctionDef))
+         or (isinstance(n,ast.Assign) and all(isinstance(t,ast.Name) and t.id.isupper() for t in n.targets))]
   self.ns={'asyncio':asyncio,'hashlib':hashlib,'math':math,'re':re,'importlib':importlib,'APIRouter':Router,'HTTPException':HTTPException,'Request':object,'Response':lambda **kwargs:SimpleNamespace(**kwargs)}
   exec(compile(ast.Module(body=nodes,type_ignores=[]),str(path),'exec'),self.ns)
   self.calls=[];self.cache={}

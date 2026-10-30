@@ -284,7 +284,7 @@ class TestTemplateImportHelpers(unittest.TestCase):
 class TestTemplateImportEndpointContract(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        main_path = Path(__file__).resolve().parents[1] / "main.py"
+        main_path = __import__("_test_yollar").REPO / "main.py"
         main_source = main_path.read_text(encoding="utf-8")
         start = main_source.index("async def shablon_import")
         end = main_source.index("\n@app.get(\"/api/test_rasmi/", start)
@@ -403,7 +403,7 @@ class TestTemplateImportEndpointContract(unittest.TestCase):
 
 class TestTopicCatalogEndpointContract(unittest.TestCase):
     def test_subject_buckets_are_keyed_by_grade_and_subject_code(self):
-        main_path = Path(__file__).resolve().parents[1] / "main.py"
+        main_path = __import__("_test_yollar").REPO / "main.py"
         main_source = main_path.read_text(encoding="utf-8")
         start = main_source.index("def mavzular_royxati")
         end = main_source.index("\ndef _qoshimcha_test_shartlari", start)
@@ -416,7 +416,7 @@ class TestTopicCatalogEndpointContract(unittest.TestCase):
 
 class TestRailwaySqliteCopyBlock(unittest.TestCase):
     def test_copy_block_adds_missing_columns_and_is_idempotent(self):
-        guide_path = Path(__file__).resolve().parents[2] / "V18_9_COPY_QILISH.md"
+        guide_path = __import__("_test_yollar").ROOT / "V18_9_COPY_QILISH.md"
         guide = guide_path.read_text(encoding="utf-8")
         start = guide.index("def ensure_questions_import_schema")
         end = guide.index("\n```", start)
