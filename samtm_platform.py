@@ -3128,6 +3128,36 @@ async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish:
     return None
 
 
+_OVOZ_TEG_RE = re.compile(r"(\[([a-z]{2})\][\s\S]*?\[/\2\])")
+_YANGI_ESKI = (("Ö", "Oʻ"), ("ö", "oʻ"), ("Ğ", "Gʻ"), ("ğ", "gʻ"), ("Ş", "Sh"), ("ş", "sh"), ("Ç", "Ch"), ("ç", "ch"))
+
+
+def _ovoz_eski_alifbo(matn: str) -> str:
+    """REV222: ekranda yangi alifbo (Ö, Ğ, Ş, Ç), lekin o'zbek ovozi eski yozuvni to'g'ri o'qiydi — yangi harflarni
+    turkcha talaffuz qilmasligi uchun o'zbekcha qismlar ovozga eski yozuvda beriladi. [tr]…[/tr] kabi chet tili
+    bo'laklari o'zgarmaydi (turk tilidagi ş, ç o'z joyida qoladi)."""
+    if not re.search(r"[ÖöĞğŞşÇç]", matn or ""):
+        return matn
+    qismlar = _OVOZ_TEG_RE.split(matn)
+    natija = []
+    i = 0
+    while i < len(qismlar):
+        q = qismlar[i]
+        if i + 2 < len(qismlar) + 1 and i % 3 == 1:
+            til = qismlar[i + 1]
+            if til == "uz":
+                for a, b in _YANGI_ESKI:
+                    q = q.replace(a, b)
+            natija.append(q)
+            i += 2
+            continue
+        for a, b in _YANGI_ESKI:
+            q = q.replace(a, b)
+        natija.append(q)
+        i += 1
+    return "".join(natija)
+
+
 @app.get("/api/ovoz")
 async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
@@ -3146,7 +3176,7 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     from starlette.concurrency import run_in_threadpool
     from modules import ovoz_reja
 
-    matn = matn[:1500]
+    matn = _ovoz_eski_alifbo(matn[:1500])
     jins = _ovoz_jinsini_tuzat(jins)
     # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
     tezlik = tezlik if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)%", str(tezlik or "")) else "+0%"
