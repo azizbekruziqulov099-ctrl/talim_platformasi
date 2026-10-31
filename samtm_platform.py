@@ -21202,8 +21202,11 @@ def _paket_oldin_ornatilgan(content):
     conn = _db(); cur = conn.cursor()
     try:
         _ai_brain_jadvallari(cur)
-        cur.execute("""SELECT id FROM ai_brain_import_batches WHERE file_checksum=%s AND status='published'
-                       ORDER BY id DESC LIMIT 1""", (hashlib.sha256(content).hexdigest(),))
+        # REV225: faqat darslari hali bazada turgan nashr hisobga olinadi. Oldin Miya tarkibidan o'chirilgan kitob ham
+        # «oldin o'rnatilgan — o'tkazildi» deb qayta yuklanmay qolardi (mantiq va boshqalar shuning uchun chiqmadi).
+        cur.execute("""SELECT b.id FROM ai_brain_import_batches b WHERE b.file_checksum=%s AND b.status='published'
+                       AND EXISTS (SELECT 1 FROM ai_brain_units u WHERE u.batch_id=b.id AND u.status='published')
+                       ORDER BY b.id DESC LIMIT 1""", (hashlib.sha256(content).hexdigest(),))
         row = cur.fetchone()
         conn.commit()
         return row["id"] if row else None
