@@ -3181,7 +3181,8 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
     tezlik = tezlik if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)%", str(tezlik or "")) else "+0%"
     # REV98: bog'cha — robot Kabu ovozi biroz yuqoriroq, iliqroq (faqat -20…+20 Hz).
-    ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|1[0-9]|20)Hz", str(ohang or "")) else "+0Hz"
+    # REV236: Kabu robot ovozi TV dagi kabi +28Hz gacha
+    ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)Hz", str(ohang or "")) else "+0Hz"
     takror = 1 if takror else 0
     asosiy = asosiy_til if asosiy_til in ("en", "ru") else "auto"   # REV233
     kesh_kaliti = hashlib.sha256(
