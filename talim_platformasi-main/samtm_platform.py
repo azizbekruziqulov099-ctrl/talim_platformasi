@@ -1730,11 +1730,20 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
                     SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code
                       AND au.status='published' AND au.unit_kind IN ('lesson_step','knowledge','explanation','example')))"""
                             if lesson_table else "NULL")
+        # REV216: darsi bor mavzu — o'z nomi bilan alohida (kichik mavzu nomi). Oldin bir bo'limdagi barcha darsli mavzular
+        # bitta umumiy «mavzu» nomi ostida birlashib ketardi: 86 ta darsdan faqat 2–3 tasi ko'rinardi.
+        nom_sql = ("""COALESCE(CASE WHEN EXISTS(SELECT 1 FROM ai_brain_units au2 WHERE au2.topic_code=d.topic_code
+                        AND au2.status='published') THEN NULLIF(d.kichik_name,'') END,
+                      NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)""" if lesson_table
+                   else "COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)")
+        # REV219: darsi bor HAR mavzu — alohida qator (nomi boshqasiniki bilan bir xil bo'lsa ham birlashmaydi)
+        dars_kalit_sql = (""",CASE WHEN EXISTS(SELECT 1 FROM ai_brain_units au3 WHERE au3.topic_code=d.topic_code
+                        AND au3.status='published') THEN d.topic_code ELSE '' END""" if lesson_table else "")
         cur.execute(f"""SELECT d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 {lesson_codes_sql} AS darsli_kodlar, MAX(CASE WHEN {mine_sql} THEN 1 ELSE 0 END) AS mine,
                 COALESCE(cs.institution_type,'markaz') AS institution_type,cs.institution_name,
                 cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
-                COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nomi,
+                {nom_sql} AS nomi,
                 MIN(NULLIF(d.bob_name,'')) AS bob,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) AS barcha_kodlar,
                 ARRAY_AGG(DISTINCT d.topic_code ORDER BY d.topic_code) FILTER(WHERE gt.id IS NOT NULL) AS testli_kodlar,
@@ -1744,7 +1753,7 @@ def mavzular_royxati(sinf: str = None, turi: str = "oddiy", faqat_testli: bool =
             WHERE d.is_deleted=FALSE AND ({clause})
             GROUP BY d.subject_code,d.subject_name,d.grade,d.dars_turi,d.curriculum_scope_id,
                 cs.institution_type,cs.institution_name,cs.institution_id,cs.talim_bosqichi,cs.yonalish_id,cs.yonalish_key,cs.yonalish_nomi,cs.talim_shakli,cs.talim_tili,cs.kurs,cs.semestr,cs.guruh,
-                COALESCE(NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name)
+                {nom_sql}{dars_kalit_sql}
             ORDER BY d.subject_name,d.dars_turi,d.grade,MIN(d.topic_code)""",[*mine_params,*params])
         result = _curriculum.group_catalog_rows(cur.fetchall(),faqat_testli)
         if talaba_viewer:
@@ -2417,6 +2426,9 @@ def _yozma_javobni_normallash(matn: str) -> str:
     """Yozma javobni xavfsiz va tilga zarar yetkazmaydigan ko'rinishga keltiradi."""
     tozalangan = _matnni_tozala(matn or "") or ""
     tozalangan = unicodedata.normalize("NFC", tozalangan)
+    # REV221: yangi alifbo (Ö, Ğ, Ş, Ç) va eski yozuv bir xil hisoblanadi
+    for yangi, eski in (("Ö", "O’"), ("ö", "o’"), ("Ğ", "G’"), ("ğ", "g’"), ("Ş", "Sh"), ("ş", "sh"), ("Ç", "Ch"), ("ç", "ch")):
+        tozalangan = tozalangan.replace(yangi, eski)
     tozalangan = re.sub(r"[‘’ʻʼ']", "’", tozalangan)
     tozalangan = re.sub(r"\s+", " ", tozalangan).strip()
     return tozalangan.casefold()
@@ -3116,6 +3128,36 @@ async def _edge_bolak(tayyor: str, voice: str, tezlik: str, ohang: str, urinish:
     return None
 
 
+_OVOZ_TEG_RE = re.compile(r"(\[([a-z]{2})\][\s\S]*?\[/\2\])")
+_YANGI_ESKI = (("Ö", "Oʻ"), ("ö", "oʻ"), ("Ğ", "Gʻ"), ("ğ", "gʻ"), ("Ş", "Sh"), ("ş", "sh"), ("Ç", "Ch"), ("ç", "ch"))
+
+
+def _ovoz_eski_alifbo(matn: str) -> str:
+    """REV222: ekranda yangi alifbo (Ö, Ğ, Ş, Ç), lekin o'zbek ovozi eski yozuvni to'g'ri o'qiydi — yangi harflarni
+    turkcha talaffuz qilmasligi uchun o'zbekcha qismlar ovozga eski yozuvda beriladi. [tr]…[/tr] kabi chet tili
+    bo'laklari o'zgarmaydi (turk tilidagi ş, ç o'z joyida qoladi)."""
+    if not re.search(r"[ÖöĞğŞşÇç]", matn or ""):
+        return matn
+    qismlar = _OVOZ_TEG_RE.split(matn)
+    natija = []
+    i = 0
+    while i < len(qismlar):
+        q = qismlar[i]
+        if i + 2 < len(qismlar) + 1 and i % 3 == 1:
+            til = qismlar[i + 1]
+            if til == "uz":
+                for a, b in _YANGI_ESKI:
+                    q = q.replace(a, b)
+            natija.append(q)
+            i += 2
+            continue
+        for a, b in _YANGI_ESKI:
+            q = q.replace(a, b)
+        natija.append(q)
+        i += 1
+    return "".join(natija)
+
+
 @app.get("/api/ovoz")
 async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til: str = "uz", tezlik: str = "", ohang: str = "", takror: int = 0):
     """Berilgan matnni MP3 oqimi sifatida qaytaradi.
@@ -3134,15 +3176,16 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     from starlette.concurrency import run_in_threadpool
     from modules import ovoz_reja
 
-    matn = matn[:1500]
+    matn = _ovoz_eski_alifbo(matn[:1500])
     jins = _ovoz_jinsini_tuzat(jins)
     # REV93: bog'cha darsi biroz sekinroq o'qiydi (aniq va tabiiyroq). Faqat -30%…+30% oralig'i.
     tezlik = tezlik if re.fullmatch(r"[+-](?:[0-9]|[12][0-9]|30)%", str(tezlik or "")) else "+0%"
     # REV98: bog'cha — robot Kabu ovozi biroz yuqoriroq, iliqroq (faqat -20…+20 Hz).
     ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|1[0-9]|20)Hz", str(ohang or "")) else "+0Hz"
     takror = 1 if takror else 0
+    asosiy = asosiy_til if asosiy_til in ("en", "ru") else "auto"   # REV233
     kesh_kaliti = hashlib.sha256(
-        f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
+        (f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}" + (f"\0{asosiy}" if asosiy != "auto" else "")).encode("utf-8")
     ).hexdigest()
     # REV157 (100 ming foydalanuvchi): ovoz faqat matn+sozlamaga bog'liq, foydalanuvchiga xos emas — brauzer va
     # CDN uni uzoq saqlaydi (bir xil dars ovozini 100 ming bola qayta so'rasa ham server qayta yaratmaydi).
@@ -3178,7 +3221,7 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     _kunlik = await run_in_threadpool(limitlar.hisobla, "ovoz:pullik:kun", "hammasi", len(matn), 86400)
     _pullik = _kunlik <= limitlar.son("OVOZ_KUNLIK_PULLIK_BELGI", 150000)
 
-    reja = ovoz_reja.reja(matn, takror=bool(takror))
+    reja = ovoz_reja.reja(matn, takror=bool(takror), asosiy=asosiy)
     holat = {"chala": False}
 
     async def audio_bolaklari():
@@ -19872,8 +19915,11 @@ def miya_katalog_tuzat(cur):
         if not d or not g.get("subject_name"):
             continue
         dgroup = mavzu_nomi.kitob_guruhi(d.get("grade"))
-        if fan_k(d.get("subject_name")) == fan_k(g["subject_name"]) and (not group or dgroup == group):
+        guruh_mos = (not mavzu_nomi.taniqli_guruh(group)) or dgroup == group
+        if fan_k(d.get("subject_name")) == fan_k(g["subject_name"]) and guruh_mos:
             continue
+        if not mavzu_nomi.taniqli_guruh(group):
+            group = dgroup   # kitob sinfi noaniq — mavzuning o'z sinfida qoladi, faqat fani tuzatiladi
         kalit = (g["topic_code"], group, fan_k(g["subject_name"]))
         try:
             cur.execute("SAVEPOINT katalog_kochir")
@@ -19924,6 +19970,8 @@ def miya_katalog_tuzat(cur):
         group = mavzu_nomi.kitob_guruhi(b.get("grade"))
         scope = _ai_brain_katalog_scope(cur, group)
         d = dts.get(b["topic_code"])
+        if d and not d.get("is_deleted") and (d.get("institution_type") or not scope):
+            continue   # hammasi joyida
         try:
             cur.execute("SAVEPOINT katalog_tuzat")
             if not d:
@@ -19947,21 +19995,131 @@ def miya_katalog_tuzat(cur):
     return natija
 
 
+_KATALOG_HOLAT = {"ishlayapti": False, "natija": None, "xato": None, "boshlandi": None, "tugadi": None}
+
+
+def _katalog_tuzat_fon():
+    """REV214: tuzatish fon rejimida ishlaydi (ko'p darsda 1–3 daqiqa — brauzer kutib qolmaydi, server to'xtatmaydi).
+    Bir vaqtda faqat bittasi (PostgreSQL advisory lock)."""
+    import datetime as _dtm
+    if _KATALOG_HOLAT["ishlayapti"]:
+        return False
+    _KATALOG_HOLAT.update(ishlayapti=True, xato=None, boshlandi=_dtm.datetime.now().isoformat(timespec="seconds"), tugadi=None)
+
+    def ish():
+        conn = None
+        try:
+            conn = _db()
+            cur = conn.cursor()
+            cur.execute("SELECT pg_try_advisory_lock(72140) AS ok")
+            if not cur.fetchone()["ok"]:
+                _KATALOG_HOLAT["xato"] = "Boshqa nusxada tuzatish ketmoqda — birozdan keyin qayta tekshiring"
+                return
+            try:
+                n = miya_katalog_tuzat(cur)
+                conn.commit()
+                _KATALOG_HOLAT["natija"] = n
+                print(f"[miya_katalog] {n}", flush=True)
+            finally:
+                cur.execute("SELECT pg_advisory_unlock(72140)")
+                conn.commit()
+        except Exception as exc:
+            if conn:
+                conn.rollback()
+            _KATALOG_HOLAT["xato"] = str(exc)[:300]
+            print(f"[miya_katalog] xato: {exc}", flush=True)
+        finally:
+            if conn:
+                conn.close()
+            _KATALOG_HOLAT.update(ishlayapti=False, tugadi=_dtm.datetime.now().isoformat(timespec="seconds"))
+
+    threading.Thread(target=ish, daemon=True, name="miya-katalog-tuzat").start()
+    return True
+
+
 @app.post("/api/admin/miya_katalog_tuzat")
 def miya_katalog_tuzat_api(token: str):
     _admin_tekshir(token)
+    boshlandi = _katalog_tuzat_fon()
+    return {"boshlandi": boshlandi, **_KATALOG_HOLAT}
+
+
+@app.get("/api/admin/miya_katalog_tuzat/holat")
+def miya_katalog_tuzat_holat(token: str):
+    _admin_tekshir(token)
+    return dict(_KATALOG_HOLAT)
+
+
+@app.get("/api/admin/miya_diagnoz")
+def miya_diagnoz(token: str, sinf: str, fan: str):
+    """REV218: «Miyada bor, o'quvchida chiqmayapti» — aniq sababini ko'rsatadi (bitta sinf/yosh + fan uchun)."""
+    _admin_tekshir(token)
+    from modules import mavzu_nomi
+    guruh = mavzu_nomi.kitob_guruhi(sinf)
+    fk = lambda x: re.sub(r"\s+", " ", str(x or "").strip().lower())
     conn = _db()
     cur = conn.cursor()
     try:
-        n = miya_katalog_tuzat(cur)
-        conn.commit()
-    except Exception:
-        conn.rollback()
-        raise
+        cur.execute("SELECT id, book_title, subject_name, grade, language_code, status FROM ai_brain_sources")
+        manbalar = [r for r in cur.fetchall() if fk(r["subject_name"]) == fk(fan) and mavzu_nomi.kitob_guruhi(r["grade"]) == guruh]
+        ids = [r["id"] for r in manbalar] or [0]
+        cur.execute("""SELECT topic_code, COUNT(*) AS n, MAX(unit_kind) AS tur FROM ai_brain_units
+                       WHERE source_id = ANY(%s) AND status='published' GROUP BY topic_code""", (ids,))
+        birlik = {r["topic_code"]: r["n"] for r in cur.fetchall()}
+        cur.execute("""SELECT d.topic_code, d.grade, d.subject_name, d.is_deleted, cs.institution_type
+                       FROM dts_tree d LEFT JOIN curriculum_scopes cs ON cs.id=d.curriculum_scope_id
+                       WHERE d.topic_code = ANY(%s)""", (list(birlik) or [""],))
+        dts = {r["topic_code"]: r for r in cur.fetchall()}
+        kutilgan = "bogcha" if guruh.endswith("yosh") else "maktab" if str(guruh).isdigit() else None
+        hisob = {"mavzu_yoq": 0, "ochirilgan": 0, "katalogsiz": 0, "boshqa_katalog": 0, "boshqa_fan": 0, "boshqa_sinf": 0, "korinadi": 0}
+        for kod in birlik:
+            d = dts.get(kod)
+            if not d:
+                hisob["mavzu_yoq"] += 1
+            elif d["is_deleted"]:
+                hisob["ochirilgan"] += 1
+            elif not d["institution_type"]:
+                hisob["katalogsiz"] += 1
+            elif kutilgan and d["institution_type"] != kutilgan:
+                hisob["boshqa_katalog"] += 1
+            elif fk(d["subject_name"]) != fk(fan):
+                hisob["boshqa_fan"] += 1
+            elif mavzu_nomi.kitob_guruhi(d["grade"]) != guruh:
+                hisob["boshqa_sinf"] += 1
+            else:
+                hisob["korinadi"] += 1
+        sabablar = []
+        if not manbalar:
+            sabablar.append("Bu sinf/yosh va fan uchun nashr qilingan kitob (miya) topilmadi — fayl yuklanmagan yoki fan/sinf nomi boshqacha yozilgan.")
+        elif not birlik:
+            sabablar.append("Kitob bor, lekin nashr qilingan darsi yo'q — «Import va nashr» bosqichini tugating.")
+        nomlar = {"mavzu_yoq": "mavzusi bazada yo'q", "ochirilgan": "mavzusi o'chirilgan", "katalogsiz": "mavzusi katalogga ulanmagan",
+                  "boshqa_katalog": "mavzusi boshqa katalogda (bog'cha/maktab almashgan)", "boshqa_fan": "boshqa fan mavzusiga ulangan",
+                  "boshqa_sinf": "boshqa sinf mavzusiga ulangan"}
+        for k, v in hisob.items():
+            if k != "korinadi" and v:
+                sabablar.append(f"{v} ta mavzuning darsi ko'rinmaydi: {nomlar[k]}. «🔧 Ko'rinmayotgan darslarni katalogga ulash» buni tuzatadi.")
+        if birlik and not sabablar:
+            sabablar.append("Bazada hammasi joyida. Ko'rinmasa: brauzerni yangilang (Ctrl+F5) yoki o'quvchining yoshi/sinfi to'g'ri tanlanganini tekshiring.")
+        return {"sinf": guruh, "fan": fan, "kitoblar": [{"nom": r["book_title"], "til": r["language_code"], "holat": r["status"]} for r in manbalar],
+                "darsli_mavzular": len(birlik), "darslar": sum(birlik.values()), "hisob": hisob, "sabablar": sabablar,
+                "tuzatish_holati": dict(_KATALOG_HOLAT)}
     finally:
         cur.close()
         conn.close()
-    return n
+
+
+def _katalog_tuzat_avto():
+    """REV214: server ishga tushgach 1,5 daqiqadan keyin bir marta o'zi tekshiradi (hech kim tugma bosmasa ham)."""
+    import time as _tm
+    _tm.sleep(90)
+    if os.environ.get("MIYA_KATALOG_AVTO", "1") != "0":
+        _katalog_tuzat_fon()
+
+
+import sys as _sys_k
+if "pytest" not in _sys_k.modules and "unittest" not in _sys_k.modules:   # testlarda ishga tushmaydi
+    threading.Thread(target=_katalog_tuzat_avto, daemon=True, name="miya-katalog-avto").start()
 
 
 def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
@@ -20110,6 +20268,29 @@ def _ai_brain_db_topic_tekshir(cur, parsed, yarat=False):
                 "Mavzu kodi (DTS)" if simple else "topic_code",
                 f"«{r.get('topic_code')}» kodi Mavzular bazasida topilmadi — admin paneldagi Mavzular bo'limidan aniq kodni ko'chiring",
             )
+    # REV215: kitob boshqa fan yoki boshqa sinf mavzusiga ulanmasin (ispancha dars fransuzcha mavzuga tushib,
+    # o'quvchiga ko'rinmay qolgan xato shundan edi). Kitob fani/sinfi ↔ mavzu fani/sinfi solishtiriladi.
+    from modules import mavzu_nomi as _mn
+    _kitob = (parsed["payload"].get("01_KITOB") or [{}])[0]
+    _kfan = re.sub(r"\s+", " ", str(_kitob.get("fan") or "").strip().lower())
+    _kguruh = _mn.kitob_guruhi(_kitob.get("sinf"))
+    if _kfan and mavjud:
+        cur.execute("SELECT topic_code, grade, subject_name FROM dts_tree WHERE topic_code=ANY(%s)", (sorted(mavjud),))
+        _tm = {x["topic_code"]: x for x in cur.fetchall()}
+        for r in topic_rows:
+            t = _tm.get(r.get("topic_code"))
+            if not t:
+                continue
+            tfan = re.sub(r"\s+", " ", str(t.get("subject_name") or "").strip().lower())
+            tguruh = _mn.kitob_guruhi(t.get("grade"))
+            if tfan and tfan != _kfan or (_mn.taniqli_guruh(_kguruh) and tguruh and tguruh != _kguruh):
+                simple = r.get("_sheet") not in (None, "02_DTS_XARITA")
+                _ai_brain_xato(
+                    parsed["errors"], r.get("_sheet") or "02_DTS_XARITA", r["_excel_row"],
+                    "Mavzu kodi (DTS)" if simple else "topic_code",
+                    f"«{r.get('topic_code')}» — {t.get('subject_name')} {t.get('grade')} mavzusi, kitob esa {_kitob.get('fan')} "
+                    f"{_kitob.get('sinf')}. Boshqa fanning mavzusiga dars ulanmaydi — kodni o‘chiring (o‘zi topadi) yoki to‘g‘ri kodni yozing",
+                )
     # Har mavzu qaysi o'quvchilarga chiqishini adminga oldindan ko'rsatamiz.
     from modules.dars_xonasi import topic_placements
     places = topic_placements(cur, [c for c in topic_codes if c in mavjud])
@@ -21022,8 +21203,11 @@ def _paket_oldin_ornatilgan(content):
     conn = _db(); cur = conn.cursor()
     try:
         _ai_brain_jadvallari(cur)
-        cur.execute("""SELECT id FROM ai_brain_import_batches WHERE file_checksum=%s AND status='published'
-                       ORDER BY id DESC LIMIT 1""", (hashlib.sha256(content).hexdigest(),))
+        # REV225: faqat darslari hali bazada turgan nashr hisobga olinadi. Oldin Miya tarkibidan o'chirilgan kitob ham
+        # «oldin o'rnatilgan — o'tkazildi» deb qayta yuklanmay qolardi (mantiq va boshqalar shuning uchun chiqmadi).
+        cur.execute("""SELECT b.id FROM ai_brain_import_batches b WHERE b.file_checksum=%s AND b.status='published'
+                       AND EXISTS (SELECT 1 FROM ai_brain_units u WHERE u.batch_id=b.id AND u.status='published')
+                       ORDER BY b.id DESC LIMIT 1""", (hashlib.sha256(content).hexdigest(),))
         row = cur.fetchone()
         conn.commit()
         return row["id"] if row else None
