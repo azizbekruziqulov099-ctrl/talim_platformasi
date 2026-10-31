@@ -76,14 +76,15 @@ def _split_foreign(text, first_target=False):
     return out
 
 
-def reja(text, takror=False):
-    """Matn → [{"til", "matn", "pauza"}]. pauza — shu bo'lakdan keyingi jimlik (soniya)."""
+def reja(text, takror=False, asosiy="auto"):
+    """Matn → [{"til", "matn", "pauza"}]. pauza — shu bo'lakdan keyingi jimlik (soniya).
+    REV233: asosiy — tegsiz qismlar tili (inglizcha/ruscha izohli dars: tegsiz gap o'zbek ovoziga tushmasin)."""
     from modules.speech_language import split_speech_text
 
     items = []
     pieces = str(text or "").split(PAUSE_MARK)
     for n, piece in enumerate(pieces):
-        for til, matn in split_speech_text(piece):
+        for til, matn in (split_speech_text(piece, asosiy) if asosiy in ("en", "ru") else split_speech_text(piece)):
             items.append({"til": til, "matn": matn, "pauza": 0.0, "belgi": False})
         if n < len(pieces) - 1 and items:
             items[-1]["belgi"] = True          # «⏸» — aniq pauza (uzunligi pastda hisoblanadi)

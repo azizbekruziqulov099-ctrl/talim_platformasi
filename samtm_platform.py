@@ -3183,8 +3183,9 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     # REV98: bog'cha — robot Kabu ovozi biroz yuqoriroq, iliqroq (faqat -20…+20 Hz).
     ohang = ohang if re.fullmatch(r"[+-](?:[0-9]|1[0-9]|20)Hz", str(ohang or "")) else "+0Hz"
     takror = 1 if takror else 0
+    asosiy = asosiy_til if asosiy_til in ("en", "ru") else "auto"   # REV233
     kesh_kaliti = hashlib.sha256(
-        f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}".encode("utf-8")
+        (f"v123\0{jins}\0{tezlik}\0{ohang}\0{takror}\0{matn}" + (f"\0{asosiy}" if asosiy != "auto" else "")).encode("utf-8")
     ).hexdigest()
     # REV157 (100 ming foydalanuvchi): ovoz faqat matn+sozlamaga bog'liq, foydalanuvchiga xos emas — brauzer va
     # CDN uni uzoq saqlaydi (bir xil dars ovozini 100 ming bola qayta so'rasa ham server qayta yaratmaydi).
@@ -3220,7 +3221,7 @@ async def ovoz_oqish(request: Request, matn: str, jins: str = "qiz", asosiy_til:
     _kunlik = await run_in_threadpool(limitlar.hisobla, "ovoz:pullik:kun", "hammasi", len(matn), 86400)
     _pullik = _kunlik <= limitlar.son("OVOZ_KUNLIK_PULLIK_BELGI", 150000)
 
-    reja = ovoz_reja.reja(matn, takror=bool(takror))
+    reja = ovoz_reja.reja(matn, takror=bool(takror), asosiy=asosiy)
     holat = {"chala": False}
 
     async def audio_bolaklari():
