@@ -49,6 +49,13 @@ def _get_pool() -> tuple[ThreadedConnectionPool, threading.BoundedSemaphore]:
 
             minimum = _int_env("DB_POOL_MIN", 1, 1, 20)
             maximum = _int_env("DB_POOL_MAX", 10, minimum, 100)
+            # REV248: jami ulanishlar byudjeti (samtm_platform._havza_hajmi bilan bir xil hisob)
+            try:
+                ishchilar = max(1, int(os.getenv("WEB_CONCURRENCY", "0") or 0) or min(8, (os.cpu_count() or 1) * 2))
+                byudjet = max(2, (max(20, int(os.getenv("DB_MAX_CONNECTIONS", "90"))) - 10) // (ishchilar * 2))
+                maximum = max(minimum, min(maximum, byudjet))
+            except (TypeError, ValueError):
+                pass
             statement_timeout = _int_env(
                 "DB_STATEMENT_TIMEOUT_MS", 15_000, 1_000, 120_000
             )

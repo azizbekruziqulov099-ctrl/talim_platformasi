@@ -24,6 +24,7 @@ import psycopg2.pool
 from typing import Optional
 from datetime import date, datetime, timedelta, timezone
 from jose import jwt, JWTError
+from fastapi.encoders import jsonable_encoder
 from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
@@ -147,6 +148,58 @@ def versiya():
     }
 
 
+@app.get("/api/admin/baza_holati")
+def baza_holati(token: str):
+    """REV248: bazaning sog'lig'i — admin uchun. Faqat o'qiydi, hech narsani o'zgartirmaydi.
+    Hajm, eng katta jadvallar, ulanishlar, kesh samarasi, eng sekin so'rovlar, ishlatilmayotgan indekslar."""
+    _admin_tekshir(token)
+    natija = {"vaqt": datetime.now().isoformat(timespec="seconds"), "havza": {"har_havza": _DB_POOL_MAX,
+              "worker": os.getenv("WEB_CONCURRENCY") or "avto", "chegara": os.getenv("DB_MAX_CONNECTIONS", "90")}}
+    conn = _db()
+    cur = conn.cursor()
+    def ol(nom, sql, bitta=False):
+        try:
+            cur.execute("SAVEPOINT bh")
+            cur.execute(sql)
+            natija[nom] = (cur.fetchone() if bitta else cur.fetchall())
+            cur.execute("RELEASE SAVEPOINT bh")
+        except Exception as e:
+            cur.execute("ROLLBACK TO SAVEPOINT bh")
+            natija[nom] = {"xato": str(e)[:200]}
+    try:
+        ol("baza", """SELECT pg_size_pretty(pg_database_size(current_database())) AS hajm,
+                             pg_database_size(current_database()) AS bayt,
+                             (SELECT setting::int FROM pg_settings WHERE name='max_connections') AS max_ulanish,
+                             (SELECT count(*) FROM pg_stat_activity WHERE datname=current_database()) AS ulanish,
+                             (SELECT count(*) FROM pg_stat_activity WHERE datname=current_database() AND state='active') AS faol,
+                             (SELECT count(*) FROM pg_stat_activity WHERE datname=current_database() AND state='idle in transaction') AS osilgan,
+                             version() AS versiya""", bitta=True)
+        ol("kesh", """SELECT round(100.0*sum(blks_hit)/nullif(sum(blks_hit)+sum(blks_read),0),2) AS kesh_foiz
+                      FROM pg_stat_database WHERE datname=current_database()""", bitta=True)
+        ol("jadvallar", """SELECT relname AS jadval, n_live_tup AS qator, pg_size_pretty(pg_total_relation_size(relid)) AS hajm,
+                                  pg_total_relation_size(relid) AS bayt, seq_scan AS toliq_skan, idx_scan AS indeks_skan, n_dead_tup AS olik
+                           FROM pg_stat_user_tables ORDER BY pg_total_relation_size(relid) DESC LIMIT 25""")
+        ol("indekssiz_skan", """SELECT relname AS jadval, seq_scan AS toliq_skan, seq_tup_read AS oqilgan_qator, n_live_tup AS qator
+                                FROM pg_stat_user_tables WHERE seq_scan > 50 AND n_live_tup > 10000
+                                ORDER BY seq_tup_read DESC LIMIT 15""")
+        ol("ishlatilmagan_indeks", """SELECT s.relname AS jadval, s.indexrelname AS indeks, pg_size_pretty(pg_relation_size(s.indexrelid)) AS hajm
+                                      FROM pg_stat_user_indexes s JOIN pg_index i ON i.indexrelid=s.indexrelid
+                                      WHERE s.idx_scan=0 AND NOT i.indisunique AND NOT i.indisprimary
+                                      ORDER BY pg_relation_size(s.indexrelid) DESC LIMIT 15""")
+        ol("sekin_sorovlar", """SELECT round(mean_exec_time::numeric,1) AS ortacha_ms, calls AS marta, round(total_exec_time::numeric/1000,1) AS jami_s,
+                                       left(regexp_replace(query, '\\s+', ' ', 'g'), 160) AS sorov
+                                FROM pg_stat_statements WHERE dbid=(SELECT oid FROM pg_database WHERE datname=current_database())
+                                ORDER BY total_exec_time DESC LIMIT 15""")
+        ol("uzoq_sorovlar", """SELECT pid, state, round(extract(epoch FROM now()-query_start)::numeric,1) AS soniya, left(query,120) AS sorov
+                               FROM pg_stat_activity WHERE datname=current_database() AND state<>'idle' AND pid<>pg_backend_pid()
+                               ORDER BY query_start LIMIT 10""")
+        ol("ovoz_kesh", """SELECT count(*) AS soni, pg_size_pretty(coalesce(sum(length(audio)),0)) AS hajm FROM ovoz_kesh""", bitta=True)
+    finally:
+        cur.close()
+        conn.close()
+    return jsonable_encoder(natija)
+
+
 @app.get("/api/admin/rasm_diagnostika")
 def rasm_diagnostika(token: str):
     """Bazaning HAQIQIY holatini to'g'ridan-to'g'ri ko'rsatadi — import
@@ -235,7 +288,18 @@ def mavzu_kod_moslik(token: str, sinf: str, fan: str, scope_id: int = 0):
 
 _DB_POOL = None
 _DB_POOL_LOCK = threading.Lock()
-_DB_POOL_MAX = max(2, int(os.getenv("DB_POOL_MAX", "10")))
+# REV248: ulanishlar byudjeti. Har worker'da IKKI havza bor (asosiy fayl va modullar). Jami ulanish
+# WEB_CONCURRENCY × 2 × havza_hajmi bazaning chegarasidan (DB_MAX_CONNECTIONS, standart 90) oshmasligi kerak —
+# aks holda odam ko'payganda Postgres «too many connections» deb rad etadi va sayt qotadi.
+def _havza_hajmi(standart=10):
+    try:
+        ishchilar = max(1, int(os.getenv("WEB_CONCURRENCY", "0") or 0) or min(8, (os.cpu_count() or 1) * 2))
+        chegara = max(20, int(os.getenv("DB_MAX_CONNECTIONS", "90")))
+        byudjet = max(2, (chegara - 10) // (ishchilar * 2))
+        return max(2, min(int(os.getenv("DB_POOL_MAX", str(standart))), byudjet))
+    except (TypeError, ValueError):
+        return 4
+_DB_POOL_MAX = _havza_hajmi()
 _DB_POOL_WAIT_SECONDS = max(1.0, float(os.getenv("DB_POOL_WAIT_SECONDS", "2")))
 _DB_POOL_SLOTS = threading.BoundedSemaphore(_DB_POOL_MAX)
 _DB_STATEMENT_TIMEOUT_MS = max(5_000, int(os.getenv("DB_STATEMENT_TIMEOUT_MS", "60000")))
@@ -876,14 +940,18 @@ async def google_callback(
     if userinfo.get("email_verified") is not True:
         return _oauth_frontend_redirect(xato="email_tasdiqlanmagan")
 
-    conn = _db()
-    cur = conn.cursor()
-    try:
-        cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
-        r = cur.fetchone()
-    finally:
-        cur.close()
-        conn.close()
+    # REV248: bazaga murojaat alohida oqimda — kirish paytida worker'ning hodisalar halqasi to'xtamaydi
+    def _google_hisob_top():
+        conn = _db()
+        cur = conn.cursor()
+        try:
+            cur.execute("SELECT user_id FROM google_hisob WHERE google_email=%s", (email,))
+            return cur.fetchone()
+        finally:
+            cur.close()
+            conn.close()
+    from starlette.concurrency import run_in_threadpool
+    r = await run_in_threadpool(_google_hisob_top)
 
     if r and state_payload.get("intent") != "link":
         ticket = _oauth_imzolangan_token(
