@@ -524,6 +524,19 @@ def _yuklab_olish_sarlavhasi(fayl_nomi, inline=False):
     }
 
 
+
+def _ozod_oqim(fn):
+    """REV253: og'ir async endpoint (fayl o'qish + baza + Excel) — butunlay alohida oqimda, o'z hodisalar halqasi bilan.
+    Asosiy halqa bo'sh qoladi: bitta o'qituvchi katta fayl yuklayotganda shu workerdagi boshqa foydalanuvchilar kutib qolmaydi.
+    Imzo functools.wraps orqali saqlanadi — FastAPI parametrlarni avvalgidek o'qiydi."""
+    import functools
+    @functools.wraps(fn)
+    async def _o(*a, **k):
+        from starlette.concurrency import run_in_threadpool
+        return await run_in_threadpool(lambda: asyncio.run(fn(*a, **k)))
+    return _o
+
+
 def _db():
     """Cheklangan kutishli ulanish: baza band bo'lsa sayt osilib qolmaydi."""
     try:
@@ -4244,6 +4257,7 @@ MAKTAB_TURLARI = {
 
 
 @app.post("/api/profil_rasm_yukla")
+@_ozod_oqim
 async def profil_rasm_yukla(token: str, fayl: UploadFile = File(...)):
     """Foydalanuvchi o'z profil rasmini yuklaydi (o'quvchi, ota-ona,
     o'qituvchi — barchasi uchun bir xil). Bazaning o'zida (BYTEA)
@@ -5092,6 +5106,7 @@ def togarak_mavzu_shablon(token: str, togarak_id: int):
 
 
 @app.post("/api/oqituvchi/togarak_mavzu_import")
+@_ozod_oqim
 async def togarak_mavzu_import(token: str, togarak_id: int, fayl: UploadFile = File(...)):
     """1-bosqich (yuklash) — to'ldirilgan Bob|Mavzu shablonni o'qib,
     har bir qator uchun (Mavzu bo'sh bo'lmasa) YANGI, hech qachon
@@ -5331,6 +5346,7 @@ def togarak_test_shablon(sorov: TogarakTestShablonSorov):
 
 
 @app.post("/api/oqituvchi/togarak_test_import")
+@_ozod_oqim
 async def togarak_test_import(token: str, togarak_id: int, fayl: UploadFile = File(...)):
     """2-bosqich (yuklash) — to'ldirilgan TESTLAR shablonni o'qib,
     generated_tests'ga qo'shadi. XAVFSIZLIK: har bir qatordagi
@@ -8118,6 +8134,7 @@ def togarak_matn_kontent_qosh(sorov: TogarakMatnKontentQosh):
 
 
 @app.post("/api/oqituvchi/togarak_fayl_kontent_qosh")
+@_ozod_oqim
 async def togarak_fayl_kontent_qosh(token: str, togarak_id: int, topic_code: str, sarlavha: str = None, fayl: UploadFile = File(...)):
     """Rasm, PDF, yoki Word (.docx) fayl yuklaydi. Word bo'lsa —
     matni serverda AJRATIB olinadi (python-docx bilan), shu matn
@@ -10344,6 +10361,7 @@ def xodim_shablon(token: str, maktab_id: Optional[int] = None):
 
 
 @app.post("/api/admin/xodim_import")
+@_ozod_oqim
 async def xodim_import(token: str, maktab_id: int, fayl: UploadFile = File(...)):
     """To'ldirilgan xodimlar shablonini import qiladi — har biriga
     hisob va 2 oy amal qiladigan 12 belgili KIRISH KODI yaratadi.
@@ -13569,6 +13587,7 @@ def _hujjatlar_jadvali(cur):
 
 
 @app.post("/api/maktab/hujjat_yukla")
+@_ozod_oqim
 async def hujjat_yukla(token: str, maktab_id: int, nomi: str, turi: str, izoh: str = "", fayl: UploadFile = File(...)):
     user_id = _jwt_tekshir(token)
     conn = _db()
@@ -14575,6 +14594,7 @@ def markaz_xodim_shablon(token: str):
 
 
 @app.post("/api/admin/markaz_xodim_import")
+@_ozod_oqim
 async def markaz_xodim_import(token: str, markaz_id: int, fayl: UploadFile = File(...)):
     """Xuddi maktab xodim importi kabi — har biriga hisob va 2 oylik
     kirish kodi yaratadi. "Fan o'qituvchisi" bo'lganlar keyinchalik
@@ -15446,6 +15466,7 @@ def bogcha_xodim_shablon(
 
 
 @app.post("/api/admin/bogcha_xodim_import")
+@_ozod_oqim
 async def bogcha_xodim_import(
     bogcha_id: int,
     fayl: UploadFile = File(...),
@@ -17638,6 +17659,7 @@ def mavzu_tushuntirish_ol(sinf: str, fan: str, mavzu: str, token: Optional[str] 
     finally:cur.close();conn.close()
 
 @app.post("/api/admin/tushuntirish_import")
+@_ozod_oqim
 async def tushuntirish_import(token: str, fayl: UploadFile = File(...), scope_id: int = 0):
     _admin_tekshir(token)
     import openpyxl
@@ -18099,6 +18121,7 @@ def shablon_yukla(sorov: TestShablonSorov, token: str):
 
 
 @app.post("/api/admin/shablon_import")
+@_ozod_oqim
 async def shablon_import(
     token: str,
     fayl: UploadFile = File(...),
@@ -19239,6 +19262,7 @@ def _dts_qator_kiritish(cur, sinf, fan, chorak, bob, bolim, mavzu, kichik, dars_
 
 
 @app.post("/api/admin/topik_import")
+@_ozod_oqim
 async def topik_import(token: str, fayl: UploadFile = File(...), scope_id: int = 0):
     """Header-based, atomic import into one explicitly selected audience."""
     _admin_tekshir(token)
@@ -20758,6 +20782,7 @@ def ai_miya_shablon_fan(sinf: str, fan: str, token: str, dars_turi: str = "", sc
 
 
 @app.post("/api/admin/ai_miya_tekshir")
+@_ozod_oqim
 async def ai_miya_tekshir(token: str, fayl: UploadFile = File(...)):
     _admin_tekshir(token)
     user_id = _jwt_tekshir(token)
