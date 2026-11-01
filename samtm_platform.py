@@ -20302,8 +20302,13 @@ def _rev249_indekslar():
         buyruqlar = [
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_nashr_topic_kind ON ai_brain_units(topic_code, unit_kind) WHERE status='published'",
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_source ON ai_brain_units(source_id)",
-            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_unit_code ON ai_brain_units(unit_code, status)",
+            "DROP INDEX CONCURRENTLY IF EXISTS idx_abu_unit_code",   # REV252: keraksiz — UNIQUE(unit_code, version_no) bor
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abm_nom_id ON ai_brain_media(lower(file_name), id)",   # REV250: takror rasmlar
+            # REV252: «Baza holati» — eng sekin so'rovlar (pg_stat_statements) bo'yicha
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_rasmli_qadam ON ai_brain_units(source_id, (payload->>'doska_matni')) WHERE status='published' AND unit_kind='lesson_step' AND COALESCE(payload->>'media_id','')<>''",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_kitob_kodi ON ai_brain_units((regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g'))) WHERE payload ? 'kitob_kodi'",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_dts_scope_grade_topic ON dts_tree(curriculum_scope_id, grade, topic_code)",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abs_book_title ON ai_brain_sources(book_title)",
         ]
         if not bormi_topic("dts_tree"):
             buyruqlar.append("CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_dts_topic_code ON dts_tree(topic_code)")

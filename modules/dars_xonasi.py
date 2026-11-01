@@ -434,6 +434,7 @@ def create_router(platform):
     # Rasm (ai_brain_media) o'zgarmaydi: yangi miya yuklansa yangi id oladi, shuning uchun brauzer/CDN 1 yil saqlaydi.
     media_kesh = BaytKesh(max_bytes=int(os.getenv("MEDIA_CACHE_MB", "48")) * 1024 * 1024)
     dars_kesh = TTLKesh(ttl=float(os.getenv("DARS_CACHE_SEC", "120")), maxsize=3000)
+    rasm_kesh = TTLKesh(ttl=float(os.getenv("RASM_KESH_SEC", "600")), maxsize=500)   # REV252
     MEDIA_HEADERS = {
         "Cache-Control": "public, max-age=31536000, immutable",
         "X-Content-Type-Options": "nosniff",
@@ -582,19 +583,26 @@ def create_router(platform):
             books = [u for u in units if u.get("book_title")]
             # REV99: bog'cha testida variant emoji o'rniga kitobdagi jonli rasm (butun kitob bo'yicha emoji → rasm)
             if books and "yosh" in str(topic.get("sinf") or "").lower():
-                cur.execute(
-                    """SELECT DISTINCT ON (payload->>'doska_matni') unit_code,unit_kind,payload
-                       FROM ai_brain_published_units
-                       WHERE book_title=%s AND unit_kind='lesson_step' AND COALESCE(payload->>'media_id','')<>''
-                       ORDER BY payload->>'doska_matni', unit_code
-                       LIMIT 2000""",
-                    (books[0]["book_title"],),
-                )
-                pic_units = [dict(r) for r in cur.fetchall()]
-                resolve = media_resolver(cur, pic_units)
-                lesson["rasmlar"] = emoji_pictures(pic_units, resolve)
-                # REV102: so'z bo'yicha rasm — bir emoji ikki so'zda bo'lsa (masalan 👋 Hello / 👋 Bye) noto'g'ri rasm chiqmasin
-                lesson["rasm_sozlar"] = word_pictures(pic_units, resolve)
+              # REV252: kitob bo'yicha rasm ro'yxati — o'rtacha 2,4 s so'rov edi; endi kitob bo'yicha 10 daqiqa keshda
+              _kk = ("rasm", books[0]["book_title"])
+              _kesh = rasm_kesh.get(_kk)
+              if _kesh is not None:
+                lesson["rasmlar"], lesson["rasm_sozlar"] = _kesh
+              else:
+                  cur.execute(
+                      """SELECT DISTINCT ON (payload->>'doska_matni') unit_code,unit_kind,payload
+                         FROM ai_brain_published_units
+                         WHERE book_title=%s AND unit_kind='lesson_step' AND COALESCE(payload->>'media_id','')<>''
+                         ORDER BY payload->>'doska_matni', unit_code
+                         LIMIT 2000""",
+                      (books[0]["book_title"],),
+                  )
+                  pic_units = [dict(r) for r in cur.fetchall()]
+                  resolve = media_resolver(cur, pic_units)
+                  lesson["rasmlar"] = emoji_pictures(pic_units, resolve)
+                  # REV102: so'z bo'yicha rasm — bir emoji ikki so'zda bo'lsa (masalan 👋 Hello / 👋 Bye) noto'g'ri rasm chiqmasin
+                  lesson["rasm_sozlar"] = word_pictures(pic_units, resolve)
+                  rasm_kesh.set(_kk, (lesson["rasmlar"], lesson["rasm_sozlar"]))
             lesson["manba"] = {"kitob": books[0]["book_title"]} if books else None
             codes = [
                 v["takrorlash_topic_code"] for items in lesson["variants"].values() for v in items
