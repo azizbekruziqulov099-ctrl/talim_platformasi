@@ -218,6 +218,35 @@ _TOZALASH = {
 }
 
 
+_SIQISH_HOLAT = {"holat": "yo'q", "jadval": "", "boshlandi": None, "tugadi": None, "xato": ""}
+
+
+@app.get("/api/admin/baza_siqish")
+def baza_siqish(token: str, boshla: int = 0):
+    """REV251: bazaning FAYL hajmini kichraytirish (VACUUM FULL). Har jadval siqilayotganda u bir necha daqiqa qulflanadi —
+    faqat odam yo'q paytda. boshla=0 — holatni ko'rsatadi, boshla=1 — fonda boshlaydi (bir vaqtda faqat bittasi)."""
+    _admin_tekshir(token)
+    if boshla and _SIQISH_HOLAT["holat"] != "ishlamoqda":
+        jadvallar = ["ai_brain_paket_fayllar", "ai_brain_import_batches", "ai_brain_media", "generated_tests", "ovoz_kesh", "ai_brain_units"]
+        def _ish():
+            _SIQISH_HOLAT.update(holat="ishlamoqda", boshlandi=datetime.now().isoformat(timespec="seconds"), tugadi=None, xato="")
+            try:
+                c2 = psycopg2.connect(DATABASE_URL, connect_timeout=10, application_name="samtm-siqish"); c2.autocommit = True
+                k2 = c2.cursor(); k2.execute("SET statement_timeout = 0"); k2.execute("SET lock_timeout = '30s'")
+                for j in jadvallar:
+                    _SIQISH_HOLAT["jadval"] = j
+                    try:
+                        k2.execute(f"VACUUM (FULL, ANALYZE) {j}")
+                    except Exception as e:
+                        _SIQISH_HOLAT["xato"] += f"{j}: {str(e)[:120]}; "
+                c2.close()
+                _SIQISH_HOLAT.update(holat="tugadi", jadval="", tugadi=datetime.now().isoformat(timespec="seconds"))
+            except Exception as e:
+                _SIQISH_HOLAT.update(holat="xato", xato=str(e)[:200])
+        threading.Thread(target=_ish, daemon=True, name="rev251-siqish").start()
+    return dict(_SIQISH_HOLAT)
+
+
 @app.get("/api/admin/baza_tozalash")
 def baza_tozalash(token: str, bajar: int = 0, turlar: str = ""):
     """REV250: bajar=0 — faqat hisoblaydi (nechta qator, qancha joy). bajar=1 — tanlangan turlarni 2000 tadan
