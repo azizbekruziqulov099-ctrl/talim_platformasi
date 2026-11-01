@@ -200,6 +200,80 @@ def baza_holati(token: str):
     return jsonable_encoder(natija)
 
 
+# REV250: bazani yengillatish — faqat ISHLATILMAYDIGAN ma'lumot. Darslar, mavzular, foydalanuvchilar tegilmaydi.
+_TOZALASH = {
+    "paket_xom": ("Yuklangan miya fayllarining xom nusxasi (ishlov berib bo'lingan)", "ai_brain_paket_fayllar", "id", "data",
+                  "data IS NOT NULL AND updated_at < NOW() - INTERVAL '6 hours' AND holat NOT IN ('kutmoqda','navbatda','ishlanmoqda','jarayonda')", "null"),
+    "import_xom": ("Import paytidagi xom ma'lumot (nashr qilingan paketlar)", "ai_brain_import_batches", "id", "staged_payload",
+                   "staged_payload IS NOT NULL AND status <> 'validated' AND created_at < NOW() - INTERVAL '1 day'", "null"),
+    "rasm_takror": ("Takror rasmlar (shu nomdagi yangisi bor — eski nusxa hech qachon ko'rsatilmaydi)", "ai_brain_media", "id", "data",
+                    """EXISTS (SELECT 1 FROM ai_brain_media n JOIN ai_brain_import_batches nb ON nb.id=n.batch_id AND nb.status='published'
+                               WHERE lower(n.file_name)=lower(ai_brain_media.file_name) AND n.id > ai_brain_media.id)""", "delete"),
+    "rasm_yetim": ("Nashr qilinmagan paketlarning rasmlari", "ai_brain_media", "id", "data",
+                   "batch_id IN (SELECT id FROM ai_brain_import_batches WHERE status <> 'published' AND created_at < NOW() - INTERVAL '1 day')", "delete"),
+    "ovoz_eski": ("30 kundan beri eshitilmagan ovozlar (kerak bo'lsa qayta yaratiladi)", "ovoz_kesh", "kalit", "audio",
+                  "ishlatildi < NOW() - INTERVAL '30 days'", "delete"),
+    "test_yetim": ("Mavzusi o'chirilgan testlar", "generated_tests", "id", None,
+                   "NOT EXISTS (SELECT 1 FROM dts_tree d WHERE d.topic_code = generated_tests.topic_code)", "delete"),
+}
+
+
+@app.get("/api/admin/baza_tozalash")
+def baza_tozalash(token: str, bajar: int = 0, turlar: str = ""):
+    """REV250: bajar=0 — faqat hisoblaydi (nechta qator, qancha joy). bajar=1 — tanlangan turlarni 2000 tadan
+    kichik bo'laklarda tozalaydi (har bo'lak alohida tranzaksiya — sayt to'xtamaydi), keyin fonda VACUUM ANALYZE."""
+    _admin_tekshir(token)
+    tanlov = [t for t in (turlar.split(",") if turlar else _TOZALASH) if t in _TOZALASH]
+    conn = _db()
+    cur = conn.cursor()
+    natija = {}
+    try:
+        for kalit in tanlov:
+            nom, jadval, pk, ustun, shart, amal = _TOZALASH[kalit]
+            try:
+                cur.execute("SAVEPOINT bt")
+                hajm = f"COALESCE(SUM(pg_column_size({ustun})),0)" if ustun else f"COALESCE(SUM(pg_column_size({jadval}.*)),0)"
+                cur.execute(f"SELECT COUNT(*) AS soni, {hajm} AS bayt FROM {jadval} WHERE {shart}")
+                r = cur.fetchone()
+                cur.execute("RELEASE SAVEPOINT bt")
+                natija[kalit] = {"nomi": nom, "jadval": jadval, "soni": int(r["soni"]), "bayt": int(r["bayt"]), "tozalandi": 0}
+            except Exception as e:
+                cur.execute("ROLLBACK TO SAVEPOINT bt")
+                natija[kalit] = {"nomi": nom, "jadval": jadval, "xato": str(e)[:200]}
+        conn.commit()
+        if bajar:
+            for kalit in tanlov:
+                if natija[kalit].get("xato") or not natija[kalit].get("soni"):
+                    continue
+                nom, jadval, pk, ustun, shart, amal = _TOZALASH[kalit]
+                jami = 0
+                for _ in range(5000):
+                    if amal == "null":
+                        cur.execute(f"UPDATE {jadval} SET {ustun}=NULL WHERE {pk} IN (SELECT {pk} FROM {jadval} WHERE {shart} LIMIT 2000)")
+                    else:
+                        cur.execute(f"DELETE FROM {jadval} WHERE {pk} IN (SELECT {pk} FROM {jadval} WHERE {shart} LIMIT 2000)")
+                    n = cur.rowcount or 0
+                    conn.commit()
+                    jami += n
+                    if n < 2000:
+                        break
+                natija[kalit]["tozalandi"] = jami
+            jadvallar = sorted({_TOZALASH[k][1] for k in tanlov})
+            def _vacuum():
+                try:
+                    c2 = psycopg2.connect(DATABASE_URL, connect_timeout=10); c2.autocommit = True
+                    k2 = c2.cursor(); k2.execute("SET statement_timeout = 0")
+                    for j in jadvallar: k2.execute(f"VACUUM (ANALYZE) {j}")
+                    c2.close()
+                except Exception as e:
+                    print("REV250 vacuum:", str(e)[:200], flush=True)
+            threading.Thread(target=_vacuum, daemon=True, name="rev250-vacuum").start()
+    finally:
+        cur.close()
+        conn.close()
+    return {"bajarildi": bool(bajar), "turlar": natija}
+
+
 @app.get("/api/admin/rasm_diagnostika")
 def rasm_diagnostika(token: str):
     """Bazaning HAQIQIY holatini to'g'ridan-to'g'ri ko'rsatadi — import
@@ -20200,6 +20274,7 @@ def _rev249_indekslar():
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_nashr_topic_kind ON ai_brain_units(topic_code, unit_kind) WHERE status='published'",
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_source ON ai_brain_units(source_id)",
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_unit_code ON ai_brain_units(unit_code, status)",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abm_nom_id ON ai_brain_media(lower(file_name), id)",   # REV250: takror rasmlar
         ]
         if not bormi_topic("dts_tree"):
             buyruqlar.append("CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_dts_topic_code ON dts_tree(topic_code)")
