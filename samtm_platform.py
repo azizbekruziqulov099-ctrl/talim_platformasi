@@ -20178,6 +20178,57 @@ def miya_diagnoz(token: str, sinf: str, fan: str):
         conn.close()
 
 
+def _rev249_indekslar():
+    """REV249: «Baza holati» ko'rsatdi — ai_brain_units 4657 marta TO'LIQ o'qilgan (1,25 mlrd qator), kesh samarasi 59%.
+    Sabab: katalog so'rovlari «nashr qilingan dars bormi?» ni har mavzu uchun tekshiradi, mos indeks yo'q edi.
+    Indekslar CONCURRENTLY quriladi — sayt ishlab turadi, yozish to'xtamaydi. Bitta worker bajaradi (advisory lock)."""
+    import time as _tm
+    _tm.sleep(30)
+    try:
+        conn = psycopg2.connect(DATABASE_URL, connect_timeout=10, application_name="samtm-indeks")
+        conn.autocommit = True
+        cur = conn.cursor()
+        cur.execute("SET statement_timeout = 0")
+        cur.execute("SELECT pg_try_advisory_lock(249249249)")
+        if not cur.fetchone()[0]:
+            conn.close(); return
+        def bormi_topic(jadval):
+            cur.execute("""SELECT 1 FROM pg_index i JOIN pg_class c ON c.oid=i.indrelid JOIN pg_attribute a ON a.attrelid=c.oid AND a.attnum=i.indkey[0]
+                           WHERE c.relname=%s AND a.attname='topic_code' LIMIT 1""", (jadval,))
+            return cur.fetchone() is not None
+        buyruqlar = [
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_nashr_topic_kind ON ai_brain_units(topic_code, unit_kind) WHERE status='published'",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_source ON ai_brain_units(source_id)",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_unit_code ON ai_brain_units(unit_code, status)",
+        ]
+        if not bormi_topic("dts_tree"):
+            buyruqlar.append("CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_dts_topic_code ON dts_tree(topic_code)")
+        for b in buyruqlar:
+            try:
+                cur.execute(b)
+            except Exception as e:
+                print("REV249 indeks:", str(e)[:200], flush=True)
+                # yarim qurilgan (INVALID) indeks qolsa — o'chirib, keyingi ishga tushishda qayta quriladi
+                try:
+                    nom = b.split(" IF NOT EXISTS ")[1].split(" ")[0]
+                    cur.execute("SELECT 1 FROM pg_class c JOIN pg_index i ON i.indexrelid=c.oid WHERE c.relname=%s AND NOT i.indisvalid", (nom,))
+                    if cur.fetchone(): cur.execute(f"DROP INDEX CONCURRENTLY IF EXISTS {nom}")
+                except Exception:
+                    pass
+        for j in ("ai_brain_units", "dts_tree", "generated_tests", "ai_brain_topic_maps"):
+            try: cur.execute(f"ANALYZE {j}")
+            except Exception: pass
+        try:   # sekin so'rovlar statistikasi («Baza holati» sahifasi uchun); serverda yoqilmagan bo'lsa — jim o'tadi
+            cur.execute("CREATE EXTENSION IF NOT EXISTS pg_stat_statements")
+        except Exception:
+            pass
+        cur.execute("SELECT pg_advisory_unlock(249249249)")
+        conn.close()
+        print("REV249: indekslar tayyor", flush=True)
+    except Exception as e:
+        print("REV249 indekslar xatosi:", str(e)[:200], flush=True)
+
+
 def _katalog_tuzat_avto():
     """REV214: server ishga tushgach 1,5 daqiqadan keyin bir marta o'zi tekshiradi (hech kim tugma bosmasa ham)."""
     import time as _tm
@@ -20189,6 +20240,8 @@ def _katalog_tuzat_avto():
 import sys as _sys_k
 if "pytest" not in _sys_k.modules and "unittest" not in _sys_k.modules:   # testlarda ishga tushmaydi
     threading.Thread(target=_katalog_tuzat_avto, daemon=True, name="miya-katalog-avto").start()
+    if os.environ.get("REV249_INDEKS", "1") != "0":
+        threading.Thread(target=_rev249_indekslar, daemon=True, name="rev249-indeks").start()
 
 
 def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
