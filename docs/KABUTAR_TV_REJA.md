@@ -1,0 +1,21 @@
+# Kabutar TV — yangi reja (to'xtatib turilgan, keyin davom etadi)
+
+Azizjon bilan kelishilgan (2026-11-02). Batafsil kerakli narsalar ro'yxati: `Kabutar_TV_kerakli_narsalar.xlsx`.
+
+## Format
+- Ikki boshlovchining tabiiy suhbati; har ko'rsatuv bitta mavzu atrofida yangi so'zlar bilan (David & Alice, BBC 6 Minute uslubi).
+- Daraja: CEFR (A1–C2) / IELTS; 2–4 yosh Pre-A1 (4–5 so'z, 5 daq) … 1–4-sinf A1 (8 so'z) … 5–7-sinf A2 … 8–9-sinf B1 … 10–11-sinf B1–B2 … sertifikat guruhlari B2–C1.
+- 7-sinfgacha: tushuntiruvchi til + o'rganilayotgan til; 8-sinfdan: ikkalasi o'rganilayotgan tilda (yoki ikki til: en + ru).
+- Ruknlar: ochilish → kirish → asosiy suhbat (yangi so'zda «dzin», karta) → «So'z lupasi» → ob-havo burchagi (5 yoshdan) → o'yin → «Biz bilan qaytaring» (pauza) → mini-test (1-sinfdan) → xayr. Har so'z ≥5 marta.
+- Rukn almashganda jingl va o'tish; yaqin plan, reaksiya kadri, so'zga yaqinlashish.
+
+## Hozirgi TV xatolari (2026-11-02 sinov yasashi, en 3-sinf)
+1. Ustozlar eski rasmlarda — 19 ustozning TV rasmlari (/tv/<ism>: tik, salom, korsat, yaqin, qara + og'iz/ko'z) ulanmagan.
+2. So'z kartalarida emoji — umumiy rasm kutubxonasi (modules/rasm_kutubxona, rasm_top) ishlatilishi kerak.
+3. Kun so'zlari mavzuga bog'lanmagan; rasm o'yinida «Where is ready?» kabi ma'nosiz savollar; mavzusiz sanash.
+4. Ba'zi kadrlarda doska bo'sh; ustozlar joylashuvi (biri kichik, biri ekrandan chiqib ketgan).
+5. Kabu teatrida o'zbekcha Kabuda ham «EN» belgisi.
+
+## Tartib
+1) ustozlar → 2) kartalarda rasm → 3) so'z va o'yin mantiqi → 4) yangi tartib → 5) rejissor → 6) mayda xatolar.
+Sinov: /tmp da espeak-ng bilan yasab, kadrma-kadr tekshiriladi (serverda edge-tts).

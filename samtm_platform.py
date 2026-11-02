@@ -28,7 +28,7 @@ from fastapi.encoders import jsonable_encoder
 from fastapi import FastAPI, Header, HTTPException, Query, Request, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
-from fastapi.responses import JSONResponse, RedirectResponse, Response, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, RedirectResponse, Response, StreamingResponse
 from pydantic import BaseModel, Field
 if __package__:
     from .modules import curriculum_scope as _curriculum
@@ -301,6 +301,31 @@ def baza_tozalash(token: str, bajar: int = 0, turlar: str = ""):
         cur.close()
         conn.close()
     return {"bajarildi": bool(bajar), "turlar": natija}
+
+
+@app.get("/api/rasm_kutubxona/top")
+def rasm_kutubxona_top(soz: str = "", emoji: str = ""):
+    """REV259: umumiy rasm kutubxonasi — so'z yoki emoji bo'yicha aniq rasm (TV, maktab, taqdimot, rasm funksiyasi)."""
+    from modules import rasm_kutubxona as RK
+    r = RK.rasm_top(soz, emoji)
+    return {"topildi": bool(r), **({"id": r["id"], "url": f"/api/rasm_kutubxona/fayl/{r['fayl']}"} if r else {})}
+
+
+@app.get("/api/rasm_kutubxona/qidir")
+def rasm_kutubxona_qidir(q: str, n: int = 12):
+    from modules import rasm_kutubxona as RK
+    return {"natija": [{**x, "url": f"/api/rasm_kutubxona/fayl/{x['fayl']}"} for x in RK.qidir(q, max(1, min(60, n)))]}
+
+
+@app.get("/api/rasm_kutubxona/fayl/{fayl}")
+def rasm_kutubxona_fayl(fayl: str):
+    from modules import rasm_kutubxona as RK
+    if not re.fullmatch(r"[A-Za-z0-9_.\-]+\.webp", fayl or ""):
+        raise HTTPException(400, "Noto'g'ri fayl nomi")
+    yol = os.path.join(RK.RASM_PAPKA, fayl)
+    if not os.path.isfile(yol):
+        raise HTTPException(404, "Rasm topilmadi")
+    return FileResponse(yol, media_type="image/webp", headers={"Cache-Control": "public, max-age=2592000, immutable"})
 
 
 @app.get("/api/admin/rasm_diagnostika")
