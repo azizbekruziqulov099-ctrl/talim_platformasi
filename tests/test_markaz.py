@@ -44,3 +44,13 @@ def test_daraja_testi():
     assert baholash("en", {})["daraja"] == "A0"
     hammasi = {q["id"]: q["javob"] for q in EN}
     assert baholash("en", hammasi)["daraja"] == "C1"
+
+
+def test_mashqlar():
+    from modules.markaz_mashq import mashqlar
+    m = mashqlar("en", "A1", 3, "uz")
+    assert m["nom"] == "Kafeda" and len(m["tinglash"]) == 5 and len(m["diktant"]) == 6
+    for t in m["tinglash"]:
+        assert len(t["variantlar"]) == 3 and 0 <= t["javob"] < 3
+    assert mashqlar("en", "A1", 99) is None and mashqlar("ko", "A1", 1) is None
+    assert mashqlar("en", "A1", 1, "ru")["nom"] == "Знакомство"

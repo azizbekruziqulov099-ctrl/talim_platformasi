@@ -206,6 +206,15 @@ def create_router(platform):
             cur.close(); conn.close()
         return n
 
+    @router.get("/api/markaz/mashq")
+    def mashq(til: str = "en", daraja: str = "A1", dars: int = 1, iz: str = "uz"):
+        """REV275: 4 ko'nikma mashqlari — tinglash, diktant, gapirish (javoblar ochiq: tekshiruv brauzerda, natija /faollik ga)."""
+        from modules.markaz_mashq import mashqlar
+        m = mashqlar(til, daraja, dars, "ru" if iz == "ru" else "uz")
+        if not m:
+            raise HTTPException(404, "Bu kurs uchun mashqlar tez orada")
+        return m
+
     @router.get("/api/markaz/men")
     def men(token: str):
         uid = platform._jwt_tekshir(token)
