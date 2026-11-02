@@ -50,7 +50,7 @@ class VaroqliShablonTests(unittest.TestCase):
         self.assertEqual(parsed["errors"], [])
         p = parsed["payload"]
         kinds = [s["qadam_turi"] for s in p["11_DARS_SSENARIY"]]
-        self.assertEqual(kinds, ["qoida", "qoida", "xulosa", "amaliy", "amaliy", "amaliy"])
+        self.assertEqual(kinds, ["qoida", "birga", "qoida", "xulosa", "amaliy", "amaliy", "amaliy"])   # REV269: namunada tekshiruv savoli bor
         codes = [c["kod"] for c in parsed["kodlar"]]
         self.assertEqual(codes, ["XB-03-M01", "XB-03-S01", "XB-03-A01", "XB-03-T01"])
         test = p["06_MASHQLAR"][0]

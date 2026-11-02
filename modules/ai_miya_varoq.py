@@ -48,6 +48,11 @@ COLUMNS = [
     ("sodda", "Tushunmadim: soddaroq", 30, "Faqat tushuncha qatori uchun."),
     ("boshqa_usul", "Tushunmadim: boshqa usulda", 30, "Faqat tushuncha qatori uchun."),
     ("sahifa", "Sahifa", 8, ""),
+    # REV269: matematika darsi — tushunchadan keyin tekshiruv savoli, amaliyda maslahatlar, testda har xato variantning izohi
+    ("tekshiruv", "Tekshiruv savoli", 30, "Tushuncha uchun: Savol? => javob. Bir nechta to'g'ri javob | bilan: 2/6|1/3"),
+    ("maslahat", "Maslahat", 30, "Misol, masala, topshiriq: har satr — bitta maslahat (1-maslahat, 2-maslahat). Yechimni aytib qo'ymang."),
+    ("xato_izohi", "Xato izohi (test)", 34, "Har satr: B => nega bu javob noto'g'ri (o'quvchi shu variantni tanlasa chiqadi)"),
+    ("qiyinlik", "Qiyinlik", 10, "oson, o'rta yoki qiyin"),
 ]
 TYPE_ALIASES = {
     "tushuncha": "tushuncha", "tushuntirish": "tushuncha", "nazariya": "tushuncha", "qoida": "tushuncha",
@@ -64,6 +69,8 @@ PRACTICE_INTRO = {
     "en": {"misol": "Now let's look at an example", "masala": "Now a problem", "topshiriq": "Now a practice task",
            "read": "Read the task on the board carefully.", "try": "Try it yourself first; the solution opens later."},
 }
+JAVOB_JOYI = {"uz": "Javobingizni yozing", "ru": "Ваш ответ", "en": "Your answer"}
+TEKSHIRUV_NOMI = {"uz": "Tekshiruv savoli", "ru": "Проверь себя", "en": "Quick check"}
 TYPE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
 AUTO_LETTER = {"misol": "M", "masala": "S", "topshiriq": "A", "test": "T"}
 MAX_VOICE = 1500
@@ -146,6 +153,15 @@ def split_voice(text, board_lines):
     if rest:
         result[0][1] = result[0][1] + rest
     return [(v, "\n".join(lines)) for v, lines in result]
+
+
+def tekshiruv_ajrat(text):
+    """REV269: «Savol? => javob» -> (savol, javob). Belgisiz bo'lsa — (matn, "")."""
+    text = _t(text)
+    if " => " in text:
+        q, a = text.rsplit(" => ", 1)
+        return q.strip(), a.strip()
+    return text, ""
 
 
 def parse_options(text):
@@ -336,6 +352,15 @@ def parse_sheets(wb, media_names=None, max_images=500):
                     st = add_step(row, "qoida" if board else "tushuntirish", board, voice, title if i == 0 else "",
                                   pic if i == 0 else "", first["sahna"] if first else None)
                     first = first or st
+                if c.get("tekshiruv"):
+                    savol, javob = tekshiruv_ajrat(c["tekshiruv"])
+                    if not javob:
+                        err(name, row, label_of["tekshiruv"], "Tekshiruv savolini «Savol? => javob» ko'rinishida yozing", "warning")
+                    else:
+                        til = (_t(book.get("til")) or "uz").lower()
+                        add_step(row, "birga", savol, savol[:MAX_VOICE], TEKSHIRUV_NOMI.get(til, TEKSHIRUV_NOMI["uz"]),
+                                 scene=first["sahna"], answer=javob,
+                                 extra={"oquvchi_savoli": JAVOB_JOYI.get(til, JAVOB_JOYI["uz"])})
                 for key, vkind in (("sodda", "sodda"), ("boshqa_usul", "boshqa_usul")):
                     if c.get(key):
                         variants.append({
@@ -383,6 +408,7 @@ def parse_sheets(wb, media_names=None, max_images=500):
                     "vaqt_soniya": "60", "ball": "1", "rol_maqsadi": "test,mashq", "source_id": source_id,
                     "sahifa": c.get("sahifa", ""), "status": "", "import_qilinsin": "ha", "_excel_row": row,
                     "kitob_kodi": kod, "sarlavha": title, "media_id": pic,
+                    "xato_izohi": c.get("xato_izohi", ""), "qiyinlik": c.get("qiyinlik", ""),
                 })
                 continue
             # REV121: kirish so'zi kitob tilida (izoh ru/en miyalarida o'zbekcha «Endi amaliy topshiriq» aralashmasin)
@@ -403,6 +429,7 @@ def parse_sheets(wb, media_names=None, max_images=500):
                          "kitob_kodi": kod, "amaliy_turi": kind, "yechim": c.get("yechim", ""),
                          "variantlar": "\n".join(f"{'ABCDE'[i]}) {o}" for i, o in enumerate(options[:5])),
                          "togri_javob": _t(c.get("javob")),
+                         "maslahat": c.get("maslahat", ""), "qiyinlik": c.get("qiyinlik", ""),
                      })
 
         if not steps and not any(t["topic_code"] == code for t in payload["06_MASHQLAR"]):
@@ -439,7 +466,8 @@ SAMPLE_META = {"mavzu_kodi": "NAMUNA-5-01", "mavzu_nomi": "Oddiy kasr", "mavzu_r
 SAMPLE_ROWS = [
     {"turi": "tushuncha", "sarlavha": "Surat va maxraj",
      "matn": "Butunni teng bo'laklarga bo'lamiz. [1] Pastdagi son — maxraj: butun nechta teng bo'lakka bo'linganini bildiradi. [2] Tepadagi son — surat: nechta bo'lak olinganini bildiradi.",
-     "doska": "Maxraj — jami teng bo'laklar\nSurat — olingan bo'laklar", "rasm": "pitsa_8.png",
+     "doska": "Maxraj — jami teng bo'laklar\nSurat — olingan bo'laklar\nDOIRA_KASR: 3/8", "rasm": "pitsa_8.png",
+     "tekshiruv": "8 bo'lakdan 3 tasi olindi. Kasrni yozing. => 3/8",
      "sodda": "Nonni nechta bo'lakka kessang, o'sha son maxraj. Nechtasini olsang — surat.",
      "boshqa_usul": "Sonlar nurini 0 dan 1 gacha 8 ga bo'lamiz va 3-bo'linmaga boramiz: 3/8.", "sahifa": "43"},
     {"turi": "tushuncha", "sarlavha": "Kasrni o'qish",
@@ -447,13 +475,15 @@ SAMPLE_ROWS = [
      "doska": "$\\frac{3}{8}$ — uch sakkizdan\n$\\frac{5}{7}$ — besh yettidan", "sahifa": "44"},
     {"turi": "xulosa", "sarlavha": "Esda tut", "matn": "Surat — olingan bo'laklar, maxraj — jami bo'laklar.", "doska": "Surat — olingan, maxraj — jami"},
     {"turi": "misol", "kod": "M01", "sarlavha": "Kasrni yozish", "matn": "8 bo'lakdan 3 tasi olindi. Kasrni yozing.",
-     "yechim": "Maxraj = 8 || Jami sakkiz bo'lak — maxrajga sakkiz yozamiz.\nSurat = 3 || Uch bo'lak olindi — suratga uch.\n$\\frac{3}{8}$ || Javob: uch sakkizdan.", "sahifa": "44"},
+     "yechim": "Maxraj = 8 || Jami sakkiz bo'lak — maxrajga sakkiz yozamiz.\nSurat = 3 || Uch bo'lak olindi — suratga uch.\n$\\frac{3}{8}$ || Javob: uch sakkizdan.", "sahifa": "44",
+     "maslahat": "Avval jami nechta bo'lak ekanini sanang.\nPastga jami bo'laklar, tepaga olinganlari yoziladi.", "qiyinlik": "oson"},
     {"turi": "masala", "kod": "S01", "sarlavha": "Bo'yalgan qism", "matn": "6 bo'lakdan 2 tasi bo'yalgan. Kasrni yozing.", "javob": "2/6|1/3",
      "yechim": "Jami 6 bo'lak — maxraj 6\nBo'yalgan 2 — surat 2\n$\\frac{2}{6}=\\frac{1}{3}$"},
     {"turi": "topshiriq", "kod": "A01", "sarlavha": "Kasr izla", "matn": "Uyingizdagi 3 ta narsani teng bo'laklarga bo'ling va olingan qismni kasr bilan yozing.",
      "yechim": "Masalan: olma 4 bo'lak, 1 tasi yeyildi — 1/4\nJavobda jami va olingan bo'lak aniq ko'rsatilsin"},
     {"turi": "test", "kod": "T01", "sarlavha": "Maxraj", "matn": "$\\frac{5}{9}$ kasrning maxraji nechiga teng?",
-     "variantlar": "A) 5\nB) 9\nC) 14\nD) 4", "javob": "B", "yechim": "Maxraj — pastdagi son: 9."},
+     "variantlar": "A) 5\nB) 9\nC) 14\nD) 4", "javob": "B", "yechim": "Maxraj — pastdagi son: 9.",
+     "xato_izohi": "A => 5 — surat, ya'ni tepadagi son.\nC => Surat va maxrajni qo'shib yubordingiz.", "qiyinlik": "oson"},
 ]
 
 
@@ -508,6 +538,8 @@ def template_workbook(prefill=None, book=None, blank_topics=3):
         "6. Doska: har yangi satr (Alt+Enter) — alohida qator. Tushuntirishda [1], [2] qo'ysangiz — o'qituvchi shu joyga yetganda o'sha qator yoziladi.",
         "7. Yechim: har satr — bitta qadam. «doskaga || o'qituvchi aytadi» deb yozish mumkin.",
         "8. Test: 2–4 ta variant (A–D; bog'chada 2–3 ta) va to'g'ri javob harfi. Testlar Test bo'limiga ham tushadi.",
+        "10. MATEMATIKA (REV269): doska va yechim kataklarida buyruqlar — USTUN: 347+258, BOLISH: 744:6, QISQART: 6/8 -> 3/4 (:2), SON_OQI: -3..5; nuqta 2 A, GRAFIK: y=x^2-4x+3; [-1;5], CHIZ: uchburchak A(0;0) B(4;0) C(0;3); balandlik CH, KASR_MODEL: 2/3 · 3/4, DOIRA_KASR: 3/8, BELGILA: <matn> aylana|tag|ramka, QOIDA: <formula> («Esda tut»da qoladi), DAVOM: <oldingi qatorga davomi>, OCHIR. Ustoz gapirayotganda doska qo'lda yozilgandek ochiladi.",
+        "11. Tekshiruv savoli (tushunchadan keyin): «Savol? => javob». Maslahat: har satr bitta. Xato izohi (test): «B => nega noto'g'ri».",
         "9. «NAMUNA» varag'i import qilinmaydi — ko'rib, xuddi shunday to'ldiring. Saytda: Tekshirish → Qoralama import → Nashr.",
     ]
     for i, text in enumerate(steps, help_row + 1):

@@ -88,7 +88,7 @@ def practice_item(unit, media_url):
             solution.insert(0, {"doska": f"Javob: {letter}) {options[togri]}", "ovoz": f"To'g'ri javob — {letter} variant."})
         return {"kod": _t(p.get("kitob_kodi")), "turi": "test", "turi_nomi": "Test", "sarlavha": _t(p.get("sarlavha")),
                 "shart": _t(p.get("savol")), "rasm": media_url(_t(p.get("media_id"))), "variantlar": options,
-                "togri": togri, "javob": letter, "yechim": solution}
+                "togri": togri, "javob": letter, "yechim": solution, "xatolar": xato_izohlari(p.get("xato_izohi"))}
     kind = _t(p.get("amaliy_turi")) or "topshiriq"
     options = option_list(p.get("variantlar"))
     answer = _t(p.get("togri_javob")) or _t(p.get("kutilgan_javob"))
@@ -99,7 +99,23 @@ def practice_item(unit, media_url):
     return {"kod": _t(p.get("kitob_kodi")), "turi": kind, "turi_nomi": PRACTICE_NAMES.get(kind, "Topshiriq"),
             "sarlavha": title[len(prefix):] if title.startswith(prefix) else title,
             "shart": _t(p.get("doska_matni")), "rasm": media_url(_t(p.get("media_id"))), "variantlar": options,
-            "togri": togri, "javob": answer, "yechim": solution_steps(p.get("yechim"))}
+            "togri": togri, "javob": answer, "yechim": solution_steps(p.get("yechim")),
+            "maslahat": maslahatlar(p.get("maslahat"))}
+
+
+def xato_izohlari(text):
+    """REV269: testning har noto'g'ri varianti uchun izoh: «B => …» satrlari -> {1: "…"} (variant indeksi bo'yicha)."""
+    out = {}
+    for line in _t(text).split("\n"):
+        m = re.match(r"^\s*([A-Da-d])\s*(?:\)|=>|:|—|-)\s*(?:=>\s*)?(.+)$", line)
+        if m and m.group(2).strip():
+            out[str("ABCD".index(m.group(1).upper()))] = m.group(2).strip()
+    return out
+
+
+def maslahatlar(text):
+    """REV269: amaliy topshiriq maslahatlari — har satr bitta, ko'pi bilan 3 ta."""
+    return [x.strip() for x in _t(text).split("\n") if x.strip()][:3]
 
 
 def _first_sentence(text, limit=90):
@@ -177,6 +193,7 @@ def build_lesson(topic, units, media_url, extra_questions=()):
             })
             if steps[-1]["turi"] == "amaliy":
                 item = practice_item(u, media_url)
+                steps[-1].update(maslahat=item["maslahat"])
                 steps[-1].update(kod=item["kod"], amaliy_turi=item["turi"], turi_nomi=item["turi_nomi"],
                                  variantlar=item["variantlar"], togri=item["togri"], yechim=item["yechim"])
         for u in by_kind.get("variant", []):
@@ -274,7 +291,7 @@ def build_lesson(topic, units, media_url, extra_questions=()):
         if kind in {"singlechoice", "test", "tanlov"} and options and letter in "ABCD"[:len(options)] and letter:
             questions.append({"id": u["unit_code"], "savol": _t(p.get("savol")), "variantlar": options,
                               "togri": "ABCD".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni")),
-                              "kod": _t(p.get("kitob_kodi"))})
+                              "kod": _t(p.get("kitob_kodi")), "xatolar": xato_izohlari(p.get("xato_izohi"))})
     seen = {q["savol"] for q in questions}
     for q in extra_questions:
         if len(questions) >= MAX_QUESTIONS:
