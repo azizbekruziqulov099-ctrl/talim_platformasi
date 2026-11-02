@@ -48,8 +48,27 @@ def rasm(nom):
     return Image.open(os.path.join(DATA, "rasm", nom)).convert("RGBA")
 
 
+@lru_cache(maxsize=1024)
+def kutubxona_rasm(soz="", e="", size=170):
+    """REV262: rassom chizgan rasm (umumiy kutubxona: 3900+ rasm) — so'z yoki belgi bo'yicha; topilmasa None."""
+    try:
+        from modules import rasm_kutubxona as RK
+        r = RK.rasm_top(soz, e)
+        if not r or not os.path.exists(r["yol"]):
+            return None
+        im = Image.open(r["yol"]).convert("RGBA")
+        k = size / max(im.size)
+        return im.resize((max(1, round(im.width * k)), max(1, round(im.height * k))), Image.LANCZOS)
+    except Exception:
+        return None
+
+
 @lru_cache(maxsize=512)
-def emoji_rasm(e, size=170):
+def emoji_rasm(e, size=170, soz=""):
+    """Avval rassom rasmi (so'z/belgi bo'yicha), bo'lmasa — emoji rasmi."""
+    rr = kutubxona_rasm(str(soz or ""), str(e or ""), size)
+    if rr is not None:
+        return rr
     nom = "-".join(f"{ord(c):x}" for c in e if ord(c) != 0xFE0F)
     p = os.path.join(DATA, "rasm", "emoji", nom + ".webp")
     if not os.path.exists(p):
@@ -358,7 +377,7 @@ class Sahna:
                     y += 44
             return
         if k.get("emoji") or k.get("soz"):
-            e = emoji_rasm(k["emoji"], 140) if k.get("emoji") else None
+            e = emoji_rasm(k["emoji"], 140, str(k.get("soz") or k.get("sarlavha") or "").split("\n")[0]) if k.get("emoji") else None
             y = 84
             if e:
                 im.alpha_composite(e, (cx - e.width // 2, y))
@@ -711,6 +730,9 @@ class Jonli:
             poza = "qara"
         if not yuzmod.bormi(kalit, poza):
             poza = "tik"
+        # REV262: gapirayotganda og'zi qimirlaydigan poza (rassom kadri bor) — imo-ishora pozasida og'iz qotib qolmasin
+        if gapir and poza != "tik" and not yuzmod.variant_bormi(kalit, poza) and yuzmod.variant_bormi(kalit, "tik"):
+            poza = "tik"
         holatlar = self.__dict__.setdefault("_poza", {})
         eski = holatlar.get(kalit)
         if not eski or eski[0] != poza:
@@ -750,7 +772,10 @@ class Jonli:
                 if alfa < 0.999:
                     img = img.copy()
                     img.putalpha(img.getchannel("A").point(lambda a, al=alfa: int(a * al)))
-                im.alpha_composite(img, (round(cx - ox + sway), round(oyoq - img.height + bob)))
+                # REV262: ustoz kadrdan chiqib ketmasin (yangi rasmlar kengroq — qo'l cho'zilganda ham ekranda)
+                x = round(cx - ox + sway)
+                x = max(8, min(x, im.width - img.width - 8)) if img.width < im.width - 16 else x
+                im.alpha_composite(img, (x, round(oyoq - img.height + bob)))
             return
         # REV197: skeletli (rig) personaj bo'lsa — jonli: imo-ishora, nigoh, mimika, tovushga mos og'iz
         if rig.rig_bormi(kalit):

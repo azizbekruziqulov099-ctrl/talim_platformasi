@@ -25,3 +25,10 @@ Sinov: /tmp da espeak-ng bilan yasab, kadrma-kadr tekshiriladi (serverda edge-tt
 - sfx/: 20_yangi_soz_dzin … 37_kamera_shiq (18 ta); musiqa/: 07–09 fon musiqasi + j_* rukn jingllari (6 ta); ochilish/: 04–06 (1–4-sinf, 5–9-sinf, 10–11/sertifikat) ochilish va yopilish; grafika/: rukn_* belgilari, soz_kartasi_ramka, pastki_lenta, obhavo_xarita.
 - Hali ekranlar.json va rejissorga ulanmagan — TV ishida ulanadi.
 - Rasmlar: modules/rasm_kutubxona (3904 ta) — so'z kartalari shu yerdan.
+
+## REV262 (2026-11-02) — bajarildi
+- 19 ustozning TV rasmlari ulandi (data/ustozlar/<ism>): tik/yaqin — rassom og'iz va ko'z yamoqlari (faqat og'iz/ko'z ellipslari);
+  salom/korsat — tik yamoqlari yuz joyiga ko'chirildi (shablon moslik > 0.85); qara — og'izsiz (tinglash pozasi).
+- Gapirayotganda og'zi qimirlaydigan poza tanlanadi; ustoz kadrdan chiqib ketmaydi.
+- So'z kartalarida rassom rasmlari (modules/rasm_kutubxona), topilmasa — emoji.
+## Keyingi: yangi format (suhbat, so'z lupasi, ob-havo sahnasi, jingllar, yangi fonlar), so'zlar mavzudan, ma'nosiz rasm savollarini olib tashlash.

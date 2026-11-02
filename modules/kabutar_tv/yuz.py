@@ -175,20 +175,20 @@ def holat_v(nom, poza, ogiz, yumuq10, balandlik):
     if not m or poza not in m:
         return None
     im = _asl(nom, poza).copy()
-    lm = np.array(m[poza]["lm"], dtype=np.float32)
+    lm = np.array(m[poza]["lm"], dtype=np.float32) if m[poza].get("lm") and not m[poza].get("lm_taxminiy") else None   # REV262: yangi ustozlarda — faqat rassom yamoqlari
     v = OGIZ_VARIANT.get(ogiz)
     if v:
         y = _yamoq(nom, poza, f"ogiz_{v}")
         if y:
             _qoy(im, y, OGIZ_KUCH.get(v, 0.7))
-        else:
+        elif lm is not None:
             im = _ogiz_och(im, lm, 2 if v in ("D", "E") else 1 if v == "B" else 0)
     if yumuq10:
         nomi = "koz_yumuq" if yumuq10 >= 10 else "koz_yarim"
         y = _yamoq(nom, poza, nomi)
         if y:
             _qoy(im, y, KOZ_KUCH[nomi])
-        else:
+        elif lm is not None:
             im = _koz_yum(im, lm, yumuq10 / 10)
     k = balandlik / im.height
     if abs(k - 1) > 0.01:
@@ -203,11 +203,12 @@ def holat(nom, poza, q, yumuq10, balandlik):
     if not m or poza not in m:
         return None
     im = _asl(nom, poza)
-    lm = np.array(m[poza]["lm"], dtype=np.float32)
-    if q:
-        im = _ogiz_och(im, lm, q)
-    if yumuq10:
-        im = _koz_yum(im, lm, yumuq10 / 10)
+    if m[poza].get("lm") and not m[poza].get("lm_taxminiy"):
+        lm = np.array(m[poza]["lm"], dtype=np.float32)
+        if q:
+            im = _ogiz_och(im, lm, q)
+        if yumuq10:
+            im = _koz_yum(im, lm, yumuq10 / 10)
     k = balandlik / im.height
     if abs(k - 1) > 0.01:
         im = im.resize((max(1, round(im.width * k)), balandlik), Image.LANCZOS)
