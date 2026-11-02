@@ -620,10 +620,11 @@ def _yuz_kadr(kalit, poza, gapir, daraja, vis, koz, bal, aniq):
     return yuzmod.holat(kalit, poza, q, koz, bal)
 
 
-def _kabu(h, t, holat, daraja, faza, oyna):
-    """Jonli Kabu; serverda cairo bo'lmasa — oldingi rasmli Kabu (video baribir chiqadi)."""
+def _kabu(h, t, holat, daraja, faza, oyna, tur=None):
+    """Jonli Kabu; serverda cairo bo'lmasa — oldingi rasmli Kabu (video baribir chiqadi).
+    REV257: tur — Kabuning tili (K1 — kanal tili: Pidgi, Taubi…; K2 — o'zbekcha Kabu)."""
     try:
-        return kabu_jonli.kadr(h, t, holat, daraja, faza, oyna)
+        return kabu_jonli.kadr(h, t, holat, daraja, faza, oyna, tur)
     except Exception:
         nom = {"gapir": "gapiradi", "salom": "salom", "hurra": "hurra"}.get(holat, "tingla")
         im = rasm(f"kabu_{nom}.png")
@@ -793,7 +794,7 @@ class Jonli:
             for k, x, oyna in (("K1", 180, False), ("K2", 1100, True)):
                 if k == "K2" and not self.s["uzbek"]:
                     continue
-                kb = _kabu(330, t, holat_k(k), daraja if kim == k else 0, 0.0 if k == "K1" else 1.3, oyna)
+                kb = _kabu(330, t, holat_k(k), daraja if kim == k else 0, 0.0 if k == "K1" else 1.3, oyna, self.s.get("til") if k == "K1" else "uz")
                 im.alpha_composite(kb, (round(x - kb.width / 2), 610 - kb.height))
                 self.belgi(im, k, x + (95 if k == "K1" else -95), 610 - kb.height + 60, 26, teatr=bool(sh.get("teatr")))
         else:

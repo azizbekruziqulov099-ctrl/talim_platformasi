@@ -14,12 +14,27 @@ DATA = os.path.join(os.path.dirname(__file__), "data")
 KW, KH = 320.0, 380.0   # Kabu global koordinatalari (viewBox lar shu tizimda)
 
 
-@lru_cache(maxsize=1)
-def _meta():
-    """REV196: Kabu qatlamlari oldindan PNG qilib qo'yilgan (data/kabu) — serverda cairo kerak emas, har doim jonli."""
+# REV257: har tilning o'z Kabusi (data/kabu_<til>: Kabu, Голу, Pidgi, Taubi, Colo, Palomi, Hamu, Güvi, Gege, Hatto, Bidu).
+# kadr(..., tur="en") — shu tilning qatlamlari; papka bo'lmasa — eski Kabu (data/kabu).
+_TUR = "kabu"
+_YOFS = 0.0   # yangi Kabularda bosh kiyim uchun tepadan joy (koordinata birligida)
+
+
+def _papka(tur=None):
+    t = f"kabu_{str(tur or '')[:2]}"
+    return t if tur and os.path.isdir(os.path.join(DATA, t)) else "kabu"
+
+
+@lru_cache(maxsize=16)
+def _meta_p(papka):
     import json
-    with open(os.path.join(DATA, "kabu", "qatlamlar.json"), encoding="utf-8") as f:
+    with open(os.path.join(DATA, papka, "qatlamlar.json"), encoding="utf-8") as f:
         return json.load(f)
+
+
+def _meta():
+    """REV196: Kabu qatlamlari oldindan PNG qilib qo'yilgan — serverda cairo kerak emas, har doim jonli."""
+    return _meta_p(_TUR)
 
 
 def _markup():
@@ -28,11 +43,15 @@ def _markup():
     return None, {k: (v, None) for k, v in m["vb"].items()}
 
 
-@lru_cache(maxsize=64)
 def _rasm(nom, s100):
+    return _rasm_p(_TUR, nom, s100)
+
+
+@lru_cache(maxsize=512)
+def _rasm_p(papka, nom, s100):
     """Qatlam rasmi kerakli o'lchamda (oldindan tayyorlangan katta PNG'dan kichraytiriladi)."""
-    m = _meta()
-    im = Image.open(os.path.join(DATA, "kabu", f"{nom}.png")).convert("RGBA")
+    m = _meta_p(papka)
+    im = Image.open(os.path.join(DATA, papka, f"{nom}.png")).convert("RGBA")
     vb = m["vb"][nom]
     w, h = max(1, round(vb[2] * s100 / 100)), max(1, round(vb[3] * s100 / 100))
     return im if (im.width, im.height) == (w, h) else im.resize((w, h), Image.LANCZOS)
@@ -46,7 +65,7 @@ def _qoy(kanvas, nom, s, burchak=0.0, ox=0.5, oy=0.5, dx=0.0, dy=0.0, sy=1.0):
     if sy != 1.0:
         im = im.resize((im.width, max(1, round(im.height * sy))), Image.BILINEAR)
         dy += (vb[3] * s) * (1 - sy) * oy
-    x, y = (vb[0] * s) + dx, (vb[1] * s) + dy
+    x, y = (vb[0] * s) + dx, ((vb[1] + _YOFS) * s) + dy
     if burchak:
         px, py = im.width * ox, im.height * oy
         r = max(im.width, im.height) * 2
@@ -67,21 +86,35 @@ def _koz_qisish(t):
     return 1.0
 
 
-def kadr(balandlik, t, holat="tingla", daraja=0.0, faza=0.0, oyna=False):
+def kadr(balandlik, t, holat="tingla", daraja=0.0, faza=0.0, oyna=False, tur=None):
     """Bitta Kabu kadri (RGBA). balandlik — px; t — soniya; holat: tingla | gapir | salom | hurra;
     daraja — ovoz balandligi 0..1 (gapir); faza — ikki Kabu bir xil harakat qilmasin; oyna — ko'zgu (o'ng tomondagi)."""
-    s = balandlik / KH
-    W, H = round(KW * s), round(KH * s) + round(30 * s)
+    global _TUR, _YOFS
+    _TUR = _papka(tur)
+    yangi = _TUR != "kabu"      # 11 tilning Kabusi: olovsiz (magnit maydon), ko'krakda bayroq, bosh kiyimli
+    _YOFS = 54.0 if yangi else 0.0
+    s = balandlik / (KH + _YOFS)   # umumiy balandlik o'zgarmaydi — bosh kiyim ham sig'adi
+    W, H = round(KW * s), round((KH + _YOFS) * s) + round(30 * s)
     k = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     tt = t + faza
-    # alanga (pastda, miltillaydi) va soya
-    fl = 0.8 + 0.2 * math.sin(tt * 2 * math.pi / 0.28)
-    cx, fy = W / 2, 318 * s
-    for rang, kat in (((255, 140, 0, 110), 1.0), ((255, 209, 102, 190), 0.68), ((255, 250, 225, 240), 0.38)):
-        q = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-        rw, rh = 20 * s * kat, 30 * s * kat * fl
-        ImageDraw.Draw(q).ellipse((cx - rw, fy, cx + rw, fy + rh * 2), fill=rang)
-        k.alpha_composite(q.filter(ImageFilter.GaussianBlur(2.5 * s)))
+    cx, fy = W / 2, (318 + _YOFS) * s
+    if yangi:
+        # magnit maydon — pastga tarqaluvchi uchta halqa
+        q = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dq = ImageDraw.Draw(q)
+        for i in range(3):
+            f = ((tt / 1.4) + i / 3) % 1
+            rw, rh = (12 + 60 * f) * s, (5 + 18 * f) * s
+            a = round(230 * (1 - f))
+            dq.ellipse((cx - rw, fy + 14 * s - rh, cx + rw, fy + 14 * s + rh), outline=(127, 211, 255, a), width=max(1, round(3 * s)))
+        k.alpha_composite(q)
+    else:
+        # alanga (pastda, miltillaydi) va soya
+        fl = 0.8 + 0.2 * math.sin(tt * 2 * math.pi / 0.28)
+        for rang, kat in (((255, 140, 0, 110), 1.0), ((255, 209, 102, 190), 0.68), ((255, 250, 225, 240), 0.38)):
+            q = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            rw, rh = 20 * s * kat, 30 * s * kat * fl
+            ImageDraw.Draw(q).ellipse((cx - rw, fy, cx + rw, fy + rh * 2), fill=rang)
+            k.alpha_composite(q.filter(ImageFilter.GaussianBlur(2.5 * s)))
     # uchish: yuqori-past (3,2 s davr) — butun tana
     ucha = -14 * s * (0.5 - 0.5 * math.cos(tt * 2 * math.pi / 3.2))
     if holat == "hurra":
@@ -93,7 +126,8 @@ def kadr(balandlik, t, holat="tingla", daraja=0.0, faza=0.0, oyna=False):
     _qoy(tana, "k-wingL", s, burchak=-(-3.5 + 8.5 * q), ox=0.7869, oy=0.726)
     _qoy(tana, "k-wingR", s, burchak=-(3.5 - 8.5 * q), ox=0.2131, oy=0.726)
     _qoy(tana, "k-body", s)
-    _qoy(tana, "k-cstar" if holat == "hurra" else "k-cbook", s)
+    if not yangi:
+        _qoy(tana, "k-cstar" if holat == "hurra" else "k-cbook", s)
     # qo'llar
     sway = 4 * math.sin(tt * 2 * math.pi / 6.4)
     if holat == "hurra":
@@ -114,7 +148,7 @@ def kadr(balandlik, t, holat="tingla", daraja=0.0, faza=0.0, oyna=False):
         _qoy(bosh, "k-eyes", s, sy=_koz_qisish(tt), oy=0.5)
     if holat == "gapir":
         db = ImageDraw.Draw(bosh)
-        x0, y0, bw, bh = 139 * s, 146 * s, 42 * s, 20 * s
+        x0, y0, bw, bh = 139 * s, (146 + _YOFS) * s, 42 * s, 20 * s
         for i in range(5):
             tebr = 0.55 + 0.45 * math.sin(tt * 2 * math.pi / (0.26 + 0.04 * i) + i)
             h = max(0.22, min(1.0, daraja * 1.25 * tebr)) * bh
@@ -126,10 +160,11 @@ def kadr(balandlik, t, holat="tingla", daraja=0.0, faza=0.0, oyna=False):
     davr = 0.5 if holat == "gapir" else 2.4
     p = 0.5 + 0.5 * math.sin(tt * 2 * math.pi / davr)
     r = 21 * s * (0.75 + 0.45 * p)
-    nur = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    ImageDraw.Draw(nur).ellipse((160 * s - r, 22 * s - r, 160 * s + r, 22 * s + r), fill=(255, 227, 138, round(60 + 120 * p)))
-    nur = nur.filter(ImageFilter.GaussianBlur(4 * s))
-    tana.alpha_composite(nur)
+    if not yangi:   # yangi Kabularda antenna o'rnida bosh kiyim
+        nur = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        ImageDraw.Draw(nur).ellipse((160 * s - r, 22 * s - r, 160 * s + r, 22 * s + r), fill=(255, 227, 138, round(60 + 120 * p)))
+        nur = nur.filter(ImageFilter.GaussianBlur(4 * s))
+        tana.alpha_composite(nur)
     tana.alpha_composite(bosh)
     k.alpha_composite(tana, (0, round(ucha)))
     return k.transpose(Image.FLIP_LEFT_RIGHT) if oyna else k
