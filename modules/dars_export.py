@@ -32,7 +32,7 @@ VARIANT_LABELS = {"sodda": "Soddaroq", "hikoya": "Hikoya orqali", "rasm": "Rasm 
 
 def plain(text):
     """Doskadagi LaTeX'ni oddiy o'qiladigan matnga aylantiradi (hujjat uchun)."""
-    t = str(text or "")
+    t = _tegsiz(text)
     t = re.sub(r"\\(?:text|mathrm|mathbf)\{([^{}]*)\}", r"\1", t)
     for _ in range(4):
         t = re.sub(r"\\[dt]?frac\{([^{}]*)\}\{([^{}]*)\}", r"\1/\2", t)
@@ -44,9 +44,16 @@ def plain(text):
     return re.sub(r"[ \t]+", " ", t).strip()
 
 
+def _tegsiz(text):
+    """REV268: til teglari ([de]…[/de], [uz], [en-GB]) va xizmat belgilari hujjatga chiqmaydi — toza ochiq dars matni."""
+    t = re.sub(r"\[/?[a-z]{2}(?:-[A-Za-z]{2})?\]", "", str(text or ""))
+    t = re.sub(r"\{\{[^{}]*\}\}|<[^>]+>", "", t)
+    return re.sub(r"[ \t]{2,}", " ", t).strip()
+
+
 def _voice(text):
-    """O'qituvchi matnidan doska belgilarini ([1], [2]) olib tashlaydi."""
-    return re.sub(r"\s*\[\d{1,2}\]\s*", " ", str(text or "")).strip()
+    """O'qituvchi matnidan doska belgilarini ([1], [2]) va til teglarini olib tashlaydi."""
+    return re.sub(r"\s*\[\d{1,2}\]\s*", " ", _tegsiz(text)).strip()
 
 
 def _no_emoji(text):
