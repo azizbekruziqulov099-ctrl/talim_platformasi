@@ -19,3 +19,9 @@ Azizjon bilan kelishilgan (2026-11-02). Batafsil kerakli narsalar ro'yxati: `Kab
 ## Tartib
 1) ustozlar → 2) kartalarda rasm → 3) so'z va o'yin mantiqi → 4) yangi tartib → 5) rejissor → 6) mayda xatolar.
 Sinov: /tmp da espeak-ng bilan yasab, kadrma-kadr tekshiriladi (serverda edge-tts).
+
+## Yangi materiallar (2026-11-02, Azizjon yubordi) — data/studiya da
+- Fonlar: obhavo, oyin, sinf, oshxona, dokon, park, shifokor, kocha, vokzal, ishjoyi, imtihon, zoom — har biri _old/_chap/_ong/_yaqin (1920×1080).
+- sfx/: 20_yangi_soz_dzin … 37_kamera_shiq (18 ta); musiqa/: 07–09 fon musiqasi + j_* rukn jingllari (6 ta); ochilish/: 04–06 (1–4-sinf, 5–9-sinf, 10–11/sertifikat) ochilish va yopilish; grafika/: rukn_* belgilari, soz_kartasi_ramka, pastki_lenta, obhavo_xarita.
+- Hali ekranlar.json va rejissorga ulanmagan — TV ishida ulanadi.
+- Rasmlar: modules/rasm_kutubxona (3904 ta) — so'z kartalari shu yerdan.
