@@ -215,6 +215,101 @@ def create_router(platform):
             raise HTTPException(404, "Bu kurs uchun mashqlar tez orada")
         return m
 
+
+    # ───────── REV276: sun'iy intellekt bilan suhbat (rol o'yini) va yozishni baholash ─────────
+    class _Suhbat(BaseModel):
+        token: str
+        yozilish_id: int
+        dars: int = 1
+        iz: str = "uz"
+        xabarlar: list = []
+
+    class _Yozish(BaseModel):
+        token: str
+        yozilish_id: int
+        dars: int = 1
+        iz: str = "uz"
+        matn: str
+
+    def _ai_json(platform_, tizim, xabarlar, max_tokens=400):
+        import httpx
+        kalit = getattr(platform_, "GROQ_API_KALIT", "")
+        if not kalit:
+            raise HTTPException(503, "AI hali sozlanmagan — GROQ_API_KEY kerak")
+        try:
+            with httpx.Client(timeout=25) as c:
+                r = c.post("https://api.groq.com/openai/v1/chat/completions",
+                           headers={"Authorization": f"Bearer {kalit}", "Content-Type": "application/json"},
+                           json={"model": "llama-3.3-70b-versatile", "temperature": 0.4, "max_tokens": max_tokens,
+                                 "response_format": {"type": "json_object"},
+                                 "messages": [{"role": "system", "content": tizim}, *xabarlar]})
+            r.raise_for_status()
+            return json.loads(r.json()["choices"][0]["message"]["content"])
+        except HTTPException:
+            raise
+        except Exception as e:
+            print(f"[MARKAZ-AI] {type(e).__name__}: {str(e)[:200]}", flush=True)
+            raise HTTPException(502, "AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
+
+    def _dars(dars):
+        from modules.markaz_kontent.en_a1 import DARSLAR
+        if not (1 <= int(dars) <= len(DARSLAR)):
+            raise HTTPException(404, "Dars topilmadi")
+        return DARSLAR[int(dars) - 1]
+
+    @router.post("/api/markaz/suhbat")
+    def suhbat(s: _Suhbat):
+        uid = platform._jwt_tekshir(s.token)
+        platform._ai_limit(uid, "markaz_suhbat")
+        d = _dars(s.dars)
+        rol = d["dialog"][0][0]
+        izoh_til = "Russian" if s.iz == "ru" else "Uzbek (Latin script)"
+        tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR A1 learner. Situation: {d['rol'][0]} "
+                 f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b, *_ in d["dialog"]) + ". "
+                 "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); "
+                 "ask one simple question to keep the conversation going; never switch to another language in 'javob'. "
+                 f"Also check the learner's LAST message: if it has a grammar or word mistake, give the corrected sentence and a very short "
+                 f"explanation in {izoh_til}; if it is correct, leave 'tuzatish' empty. "
+                 'Return JSON: {"javob": "your English reply", "tuzatish": "corrected sentence or empty", "izoh": "short explanation or empty", "tugadi": false}. '
+                 "Set tugadi=true after about 6 exchanges or when the situation is naturally finished.")
+        tarix = [{"role": "assistant" if x.get("rol") == "ai" else "user", "content": str(x.get("matn") or "")[:400]} for x in (s.xabarlar or [])[-12:]]
+        if not tarix:
+            tarix = [{"role": "user", "content": "(The learner has just arrived. Start the conversation with a greeting.)"}]
+        j = _ai_json(platform, tizim, tarix)
+        return {"javob": str(j.get("javob") or "")[:400], "tuzatish": str(j.get("tuzatish") or "")[:300],
+                "izoh": str(j.get("izoh") or "")[:300], "tugadi": bool(j.get("tugadi")), "rol": rol}
+
+    @router.post("/api/markaz/yozish")
+    def yozish(s: _Yozish):
+        uid = platform._jwt_tekshir(s.token)
+        platform._ai_limit(uid, "markaz_yozish")
+        d = _dars(s.dars)
+        matn = (s.matn or "").strip()[:1500]
+        if len(matn.split()) < 3:
+            raise HTTPException(400, "Kamida 3 ta so'z yozing")
+        izoh_til = "Russian" if s.iz == "ru" else "Uzbek (Latin script)"
+        tizim = ("You are a careful, encouraging English teacher marking an A1 learner's short writing. "
+                 f"Task: Write 3–5 sentences. {d['rol'][0]} "
+                 f"Mark it like a CEFR-aligned examiner: task achievement, vocabulary, grammar, spelling/punctuation. Explanations in {izoh_til}. "
+                 "Do not invent mistakes; if a sentence is correct, do not list it. "
+                 'Return JSON: {"ball": 0-100, "daraja": "pre-A1|A1|A2|B1", "xatolar": [{"asl": "...", "togri": "...", "izoh": "..."}], '
+                 '"yaxshi": "one sentence of praise", "maslahat": "one concrete tip", "namuna": "a corrected model version of the whole text"}')
+        j = _ai_json(platform, tizim, [{"role": "user", "content": matn}], max_tokens=700)
+        out = {"ball": max(0, min(100, int(j.get("ball") or 0))), "daraja": str(j.get("daraja") or "")[:10],
+               "xatolar": [{k: str(x.get(k) or "")[:300] for k in ("asl", "togri", "izoh")} for x in (j.get("xatolar") or [])[:12] if isinstance(x, dict)],
+               "yaxshi": str(j.get("yaxshi") or "")[:300], "maslahat": str(j.get("maslahat") or "")[:300], "namuna": str(j.get("namuna") or "")[:1500],
+               "topshiriq": d["rol"][0]}
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("SELECT 1 FROM markaz_yozilish WHERE id=%s AND user_id=%s", (s.yozilish_id, uid))
+            if cur.fetchone():
+                cur.execute("INSERT INTO markaz_faollik (yozilish_id, turi, dars_kodi, daqiqa, foiz) VALUES (%s,'yozish',%s,5,%s)", (s.yozilish_id, f"A1-{s.dars}", out["ball"]))
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        return out
+
     @router.get("/api/markaz/men")
     def men(token: str):
         uid = platform._jwt_tekshir(token)
