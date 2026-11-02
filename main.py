@@ -234,6 +234,11 @@ if __package__:
 else:
     from modules.dars_xonasi import create_router as create_dars_xonasi_router
 app.include_router(create_dars_xonasi_router(samtm_platform))
+try:
+    from .modules.markaz import create_router as create_markaz_router
+except ImportError:
+    from modules.markaz import create_router as create_markaz_router
+app.include_router(create_markaz_router(samtm_platform))   # REV269: o'quv markazi — sertifikat va erkin til
 app.router.add_event_handler("startup", samtm_platform._ai_brain_dars_migratsiya)
 
 # Display-only translations; server credentials never reach the frontend.
