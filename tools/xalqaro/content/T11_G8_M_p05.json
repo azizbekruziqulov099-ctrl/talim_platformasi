@@ -1,0 +1,1179 @@
+[
+ {
+  "id": "M032132",
+  "kunikma": "Bitta narsa olinib, joyiga qaytarilmagandan keyin keyingi hodisa ehtimoli qanday o‘zgarishini aniqlash",
+  "usul": "Birinchi olishdan oldingi va keyingi holatda jami narsalar sonini va kerakli rangdagilar sonini yozing, ikkala ehtimolni kasr ko‘rinishida solishtiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Qutida 40 ta shar bor: 10 ta qizil, 10 ta ko‘k, 10 ta sariq va 10 ta yashil. Aziz qutiga qaramasdan bitta shar oldi — u qizil chiqdi. Aziz sharni qutiga qaytarmadi. Endi Malika ham qaramasdan bitta shar oladi.\nMalikaning qizil shar olish ehtimoli haqida qaysi fikr to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "Malika albatta qizil shar oladi.",
+     "Malikaning qizil shar olish ehtimoli Aziznikidan kamroq.",
+     "Malikaning qizil shar olish ehtimoli Aziznikidan ko‘proq.",
+     "Malikaning qizil shar olish ehtimoli Aziznikiga aynan teng."
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Aziz uchun: $P = \\frac{10}{40} = \\frac{1}{4}$",
+      "ovoz": "Aziz shar olganda qutida qirqta shar bo‘lib, ulardan o‘ntasi qizil edi."
+     },
+     {
+      "doska": "Qoldi: $40 - 1 = 39$ ta shar, qizil: $10 - 1 = 9$ ta",
+      "ovoz": "Aziz qizil sharni qaytarmadi, demak qutida bitta shar va bitta qizil shar kamaydi."
+     },
+     {
+      "doska": "Malika uchun: $P = \\frac{9}{39} = \\frac{3}{13}$",
+      "ovoz": "Malika uchun ehtimol to‘qqizning o‘ttiz to‘qqizga nisbati, ya’ni uchning o‘n uchga nisbati."
+     },
+     {
+      "doska": "$\\frac{3}{13} \\approx 0{,}23 < 0{,}25 = \\frac{1}{4}$",
+      "ovoz": "Solishtiramiz: nol butun yigirma uch nol butun yigirma beshdan kichik."
+     },
+     {
+      "doska": "Javob: B) Aziznikidan kamroq",
+      "ovoz": "Demak, Malikaning qizil shar olish ehtimoli Aziznikidan kamroq — B javob."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi qizil sharlar hali ko‘pligini «albatta» deb tushungan; qutida boshqa rangdagi sharlar ham bor, shuning uchun bu muqarrar hodisa emas.",
+     "2": "C ni tanlagan o‘quvchi «qizil bir marta chiqdi, demak yana chiqadi» deb o‘ylagan; aslida qizil sharlar ulushi kamaygan.",
+     "3": "D ni tanlagan o‘quvchi Aziz olgan shar qutiga qaytarilmaganini hisobga olmagan va ehtimolni yana $\\frac{10}{40}$ deb olgan."
+    },
+    "maslahat": "Aziz shar olgandan keyin qutida jami nechta va ulardan nechtasi qizil qolganini hisoblang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Bozordagi savdo avtomatida 60 ta saqich bor: yalpizli, olchali va limonli saqichlar soni teng. Tugma bosilganda avtomat tasodifiy bitta saqich chiqaradi. Nilufar tugmani bosdi va unga olchali saqich tushdi. Keyin tugmani Jasur bosadi.\nJasurga olchali saqich tushish ehtimoli haqida qaysi fikr to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "Nilufarnikidan ko‘proq.",
+     "Nilufarnikiga aynan teng.",
+     "Nilufarnikidan kamroq.",
+     "Jasurga olchali saqich umuman tusha olmaydi."
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Har turdan: $60 : 3 = 20$ ta",
+      "ovoz": "Uch xil saqich soni teng, demak har biridan yigirmatadan bor."
+     },
+     {
+      "doska": "Nilufar uchun: $P = \\frac{20}{60} = \\frac{1}{3}$",
+      "ovoz": "Nilufar bosganda oltmishta saqichdan yigirmatasi olchali edi."
+     },
+     {
+      "doska": "Jasur uchun: $P = \\frac{19}{59}$",
+      "ovoz": "Bitta olchali saqich chiqib ketdi: endi ellik to‘qqizta saqichdan o‘n to‘qqiztasi olchali."
+     },
+     {
+      "doska": "$\\frac{19}{59} \\approx 0{,}32 < 0{,}33 \\approx \\frac{1}{3}$",
+      "ovoz": "O‘n to‘qqizning ellik to‘qqizga nisbati uchdan birdan biroz kichik."
+     },
+     {
+      "doska": "Javob: C) Nilufarnikidan kamroq",
+      "ovoz": "Demak, Jasurga olchali saqich tushish ehtimoli kamaydi — C javob."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi «olchali saqich tusha boshladi, demak yana tushadi» deb o‘ylagan; aslida olchali saqichlar ulushi kamaygan.",
+     "1": "B ni tanlagan o‘quvchi chiqqan saqich avtomatga qaytmasligini hisobga olmay, ehtimolni yana $\\frac{1}{3}$ deb olgan.",
+     "3": "D ni tanlagan o‘quvchi bitta olchali saqich chiqqani uchun boshqasi chiqa olmaydi deb o‘ylagan; avtomatda hali 19 ta olchali saqich bor."
+    },
+    "maslahat": "Nilufardan keyin avtomatda jami nechta saqich va nechta olchali saqich qolganini yozib, ikki kasrni solishtiring."
+   }
+  ]
+ },
+ {
+  "id": "M042041",
+  "kunikma": "Butunning ma’lum kasr qismi berilganda butunni topish",
+  "usul": "Agar $\\frac{1}{n}$ qism ma’lum bo‘lsa, butun shu qismdan $n$ marta katta: berilgan sonni maxrajga ko‘paytiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Malika atlas matosining $\\frac{1}{6}$ qismini qirqib oldi. Qirqib olingan bo‘lakning uzunligi 4 m.\nMatoning dastlabki uzunligi necha metr bo‘lgan?",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{2}{3}$ m",
+     "10 m",
+     "20 m",
+     "24 m"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$\\frac{1}{6}$ qism $= 4$ m",
+      "ovoz": "Matoning oltidan bir qismi to‘rt metrga teng."
+     },
+     {
+      "doska": "Butun mato $= 6$ ta shunday qism",
+      "ovoz": "Butun mato oltita teng bo‘lakdan iborat."
+     },
+     {
+      "doska": "$4 \\cdot 6 = 24$ m",
+      "ovoz": "Har bir bo‘lak to‘rt metr bo‘lsa, butun mato yigirma to‘rt metr."
+     },
+     {
+      "doska": "Tekshiruv: $24 : 6 = 4$ m",
+      "ovoz": "Yigirma to‘rtning oltidan biri haqiqatan to‘rt metr."
+     },
+     {
+      "doska": "Javob: D) 24 m",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi 4 ni 6 ga ko‘paytirish o‘rniga bo‘lib yuborgan.",
+     "1": "B ni tanlagan o‘quvchi kasr ma’nosini tushunmay, shunchaki $4 + 6$ ni hisoblagan.",
+     "2": "C ni tanlagan o‘quvchi qolgan qismni topgan: $5 \\cdot 4 = 20$ m — bu qirqilgandan keyin qolgan mato, dastlabki uzunlik emas."
+    },
+    "maslahat": "Butun mato $\\frac{1}{6}$ qismdan necha marta uzun bo‘lishini o‘ylang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Fermer paxta dalasining $\\frac{1}{8}$ qismiga chigit ekib bo‘ldi. Bu 5 gektar maydon.\nButun dalaning maydoni necha gektar?",
+    "rasm": null,
+    "javoblar": [
+     "13 ga",
+     "35 ga",
+     "40 ga",
+     "45 ga"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$\\frac{1}{8}$ qism $= 5$ ga",
+      "ovoz": "Dalaning sakkizdan bir qismi besh gektarga teng."
+     },
+     {
+      "doska": "Butun dala $= 8$ ta shunday qism",
+      "ovoz": "Butun dala sakkizta teng bo‘lakdan iborat."
+     },
+     {
+      "doska": "$5 \\cdot 8 = 40$ ga",
+      "ovoz": "Demak, butun dala qirq gektar."
+     },
+     {
+      "doska": "Tekshiruv: $40 : 8 = 5$ ga",
+      "ovoz": "Qirqning sakkizdan biri besh — shart bajariladi."
+     },
+     {
+      "doska": "Javob: C) 40 ga",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi sonlarni shunchaki qo‘shgan: $5 + 8 = 13$.",
+     "1": "B ni tanlagan o‘quvchi hali ekilmagan qismni topgan: $7 \\cdot 5 = 35$ ga.",
+     "3": "D ni tanlagan o‘quvchi ekilgan qismdan tashqari yana 8 ta bo‘lak bor deb o‘ylab, $9 \\cdot 5 = 45$ ni hisoblagan."
+    },
+    "maslahat": "Sakkizta teng bo‘lakning har biri 5 gektar bo‘lsa, jami qancha bo‘lishini o‘ylang."
+   }
+  ]
+ },
+ {
+  "id": "M042024",
+  "kunikma": "Son o‘qidagi bo‘linma qiymatini aniqlab, belgilangan nuqtaga mos o‘nli kasrni topish",
+  "usul": "Ikki qo‘shni butun son orasidagi oraliq nechta teng bo‘lakka bo‘linganini sanang, bir bo‘linma qiymatini toping va nuqtagacha bo‘linmalar sonini unga ko‘paytiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Son o‘qida $M$ nuqta qaysi sonni ifodalaydi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 90\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"15\" y1=\"40\" x2=\"405\" y2=\"40\" stroke=\"#222\" stroke-width=\"2\"/><polygon points=\"10,40 20,35 20,45\" fill=\"#222\"/><polygon points=\"410,40 400,35 400,45\" fill=\"#222\"/><line x1=\"40\" y1=\"30\" x2=\"40\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"40\" y=\"70\" text-anchor=\"middle\">3</text><line x1=\"74\" y1=\"34\" x2=\"74\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"108\" y1=\"34\" x2=\"108\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"142\" y1=\"34\" x2=\"142\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"176\" y1=\"34\" x2=\"176\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"210\" y1=\"30\" x2=\"210\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"210\" y=\"70\" text-anchor=\"middle\">4</text><line x1=\"244\" y1=\"34\" x2=\"244\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"278\" y1=\"34\" x2=\"278\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"312\" y1=\"34\" x2=\"312\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"346\" y1=\"34\" x2=\"346\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"380\" y1=\"30\" x2=\"380\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"380\" y=\"70\" text-anchor=\"middle\">5</text><circle cx=\"142\" cy=\"40\" r=\"4.5\" fill=\"#222\"/><text x=\"142\" y=\"24\" text-anchor=\"middle\" font-style=\"italic\" font-weight=\"bold\">M</text></g></svg>",
+    "javoblar": [
+     "$3{,}3$",
+     "$3{,}6$",
+     "$3{,}8$",
+     "$4{,}6$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$3$ dan $4$ gacha: 5 ta teng bo‘linma",
+      "ovoz": "Uch bilan to‘rt orasida beshta teng bo‘linma bor."
+     },
+     {
+      "doska": "Bir bo‘linma: $1 : 5 = 0{,}2$",
+      "ovoz": "Demak, har bir bo‘linma nol butun ikki o‘ndan birga teng."
+     },
+     {
+      "doska": "$M$: $3$ dan o‘ngga 3 ta bo‘linma",
+      "ovoz": "M nuqta uchdan o‘ngga uchinchi chiziqda turibdi."
+     },
+     {
+      "doska": "$3 + 3 \\cdot 0{,}2 = 3{,}6$",
+      "ovoz": "Uchga uch marta nol butun ikkini qo‘shamiz — uch butun oltini olamiz."
+     },
+     {
+      "doska": "Javob: B) $3{,}6$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi har bir bo‘linmani 0,1 deb olgan, holbuki birlik 10 ga emas, 5 ga bo‘lingan.",
+     "2": "C ni tanlagan o‘quvchi 3 ning chizig‘ini ham sanab, nuqtagacha 4 ta bo‘linma bor deb hisoblagan.",
+     "3": "D ni tanlagan o‘quvchi 0,6 ni to‘g‘ri topgan, lekin uni nuqtaning chap tomonidagi 3 ga emas, 4 ga qo‘shgan."
+    },
+    "maslahat": "Avval 3 va 4 orasidagi oraliq nechta bo‘lakka bo‘linganini sanang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Son o‘qida $P$ nuqta qaysi sonni ifodalaydi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 90\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"15\" y1=\"40\" x2=\"405\" y2=\"40\" stroke=\"#222\" stroke-width=\"2\"/><polygon points=\"10,40 20,35 20,45\" fill=\"#222\"/><polygon points=\"410,40 400,35 400,45\" fill=\"#222\"/><line x1=\"40\" y1=\"30\" x2=\"40\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"40\" y=\"70\" text-anchor=\"middle\">7</text><line x1=\"74\" y1=\"34\" x2=\"74\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"108\" y1=\"34\" x2=\"108\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"142\" y1=\"34\" x2=\"142\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"176\" y1=\"34\" x2=\"176\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"210\" y1=\"30\" x2=\"210\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"210\" y=\"70\" text-anchor=\"middle\">8</text><line x1=\"244\" y1=\"34\" x2=\"244\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"278\" y1=\"34\" x2=\"278\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"312\" y1=\"34\" x2=\"312\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"346\" y1=\"34\" x2=\"346\" y2=\"46\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"380\" y1=\"30\" x2=\"380\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"380\" y=\"70\" text-anchor=\"middle\">9</text><circle cx=\"278\" cy=\"40\" r=\"4.5\" fill=\"#222\"/><text x=\"278\" y=\"24\" text-anchor=\"middle\" font-style=\"italic\" font-weight=\"bold\">P</text></g></svg>",
+    "javoblar": [
+     "$8{,}04$",
+     "$8{,}2$",
+     "$8{,}4$",
+     "$8{,}6$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$8$ dan $9$ gacha: 5 ta teng bo‘linma",
+      "ovoz": "Sakkiz bilan to‘qqiz orasida beshta teng bo‘linma bor."
+     },
+     {
+      "doska": "Bir bo‘linma: $1 : 5 = 0{,}2$",
+      "ovoz": "Har bir bo‘linma nol butun ikki o‘ndan birga teng."
+     },
+     {
+      "doska": "$P$: $8$ dan o‘ngga 2 ta bo‘linma",
+      "ovoz": "P nuqta sakkizdan o‘ngga ikkinchi chiziqda."
+     },
+     {
+      "doska": "$8 + 2 \\cdot 0{,}2 = 8{,}4$",
+      "ovoz": "Sakkizga ikki marta nol butun ikkini qo‘shsak, sakkiz butun to‘rt bo‘ladi."
+     },
+     {
+      "doska": "Javob: C) $8{,}4$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi 0,4 ni yozishda xona qiymatini adashtirib, 0,04 deb yozgan.",
+     "1": "B ni tanlagan o‘quvchi har bir bo‘linmani 0,1 deb olgan, holbuki birlik 5 ta bo‘lakka bo‘lingan.",
+     "3": "D ni tanlagan o‘quvchi bo‘linmalarni 8 dan emas, 9 dan chapga qarab sanagan: $9 - 2 \\cdot 0{,}2 = 8{,}6$."
+    },
+    "maslahat": "Bir butun nechta teng bo‘lakka bo‘linganini aniqlab, bitta bo‘linma qiymatini toping."
+   }
+  ]
+ },
+ {
+  "id": "M042016",
+  "kunikma": "Darajalar jadvalidan foydalanib, sonlar ko‘paytmasini bir xil asosli daraja ko‘rinishida ifodalash",
+  "usul": "Jadvaldan har bir ko‘paytuvchini daraja ko‘rinishida yozing, so‘ng asoslari bir xil darajalarni ko‘paytirishda ko‘rsatkichlar qo‘shilishidan foydalaning.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Jadvalga qarang.\nJadvaldan foydalanib, $81 \\cdot 729$ ko‘paytmani 3 ning darajasi ko‘rinishida yozing.",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 344 84\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"10\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"10\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"34\" y=\"32\" text-anchor=\"middle\">3</text><text x=\"39\" y=\"25\" font-size=\"10\" text-anchor=\"start\">1</text><text x=\"37\" y=\"64\" text-anchor=\"middle\">3</text><rect x=\"64\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"64\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"88\" y=\"32\" text-anchor=\"middle\">3</text><text x=\"93\" y=\"25\" font-size=\"10\" text-anchor=\"start\">2</text><text x=\"91\" y=\"64\" text-anchor=\"middle\">9</text><rect x=\"118\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"118\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"142\" y=\"32\" text-anchor=\"middle\">3</text><text x=\"147\" y=\"25\" font-size=\"10\" text-anchor=\"start\">3</text><text x=\"145\" y=\"64\" text-anchor=\"middle\">27</text><rect x=\"172\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"172\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"196\" y=\"32\" text-anchor=\"middle\">3</text><text x=\"201\" y=\"25\" font-size=\"10\" text-anchor=\"start\">4</text><text x=\"199\" y=\"64\" text-anchor=\"middle\">81</text><rect x=\"226\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"226\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"250\" y=\"32\" text-anchor=\"middle\">3</text><text x=\"255\" y=\"25\" font-size=\"10\" text-anchor=\"start\">5</text><text x=\"253\" y=\"64\" text-anchor=\"middle\">243</text><rect x=\"280\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"280\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"304\" y=\"32\" text-anchor=\"middle\">3</text><text x=\"309\" y=\"25\" font-size=\"10\" text-anchor=\"start\">6</text><text x=\"307\" y=\"64\" text-anchor=\"middle\">729</text></g></svg>",
+    "javoblar": [
+     "$3^{2}$",
+     "$3^{10}$",
+     "$3^{24}$",
+     "$9^{10}$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$81 = 3^{4}$,  $729 = 3^{6}$",
+      "ovoz": "Jadvaldan topamiz: sakson bir — uchning to‘rtinchi darajasi, yetti yuz yigirma to‘qqiz — uchning oltinchi darajasi."
+     },
+     {
+      "doska": "$81 \\cdot 729 = 3^{4} \\cdot 3^{6}$",
+      "ovoz": "Ko‘paytmani darajalar orqali yozamiz."
+     },
+     {
+      "doska": "$3^{4} \\cdot 3^{6} = 3^{4+6} = 3^{10}$",
+      "ovoz": "Asoslar bir xil bo‘lsa, ko‘rsatkichlar qo‘shiladi: to‘rt qo‘shuv olti — o‘n."
+     },
+     {
+      "doska": "Javob: B) $3^{10}$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi ko‘rsatkichlarni qo‘shish o‘rniga ayirgan: $6 - 4 = 2$.",
+     "2": "C ni tanlagan o‘quvchi ko‘rsatkichlarni qo‘shish o‘rniga ko‘paytirgan: $4 \\cdot 6 = 24$.",
+     "3": "D ni tanlagan o‘quvchi ko‘rsatkichlarni to‘g‘ri qo‘shgan, lekin asoslarni ham ko‘paytirib, $3 \\cdot 3 = 9$ deb olgan."
+    },
+    "maslahat": "Asoslari bir xil darajalarni ko‘paytirganda ko‘rsatkichlar bilan nima qilinishini eslang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Jadvalga qarang.\nJadvaldan foydalanib, $64 \\cdot 1024$ ko‘paytmani 2 ning darajasi ko‘rinishida yozing.",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 398 84\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"10\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"10\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"34\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"39\" y=\"25\" font-size=\"10\" text-anchor=\"start\">4</text><text x=\"37\" y=\"64\" text-anchor=\"middle\">16</text><rect x=\"64\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"64\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"88\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"93\" y=\"25\" font-size=\"10\" text-anchor=\"start\">5</text><text x=\"91\" y=\"64\" text-anchor=\"middle\">32</text><rect x=\"118\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"118\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"142\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"147\" y=\"25\" font-size=\"10\" text-anchor=\"start\">6</text><text x=\"145\" y=\"64\" text-anchor=\"middle\">64</text><rect x=\"172\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"172\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"196\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"201\" y=\"25\" font-size=\"10\" text-anchor=\"start\">7</text><text x=\"199\" y=\"64\" text-anchor=\"middle\">128</text><rect x=\"226\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"226\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"250\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"255\" y=\"25\" font-size=\"10\" text-anchor=\"start\">8</text><text x=\"253\" y=\"64\" text-anchor=\"middle\">256</text><rect x=\"280\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"280\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"304\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"309\" y=\"25\" font-size=\"10\" text-anchor=\"start\">9</text><text x=\"307\" y=\"64\" text-anchor=\"middle\">512</text><rect x=\"334\" y=\"10\" width=\"54\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"334\" y=\"42\" width=\"54\" height=\"32\" fill=\"none\" stroke=\"#222\"/><text x=\"354\" y=\"32\" text-anchor=\"middle\">2</text><text x=\"359\" y=\"25\" font-size=\"10\" text-anchor=\"start\">10</text><text x=\"361\" y=\"64\" text-anchor=\"middle\">1024</text></g></svg>",
+    "javoblar": [
+     "$2^{4}$",
+     "$4^{16}$",
+     "$2^{60}$",
+     "$2^{16}$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$64 = 2^{6}$,  $1024 = 2^{10}$",
+      "ovoz": "Jadvaldan: oltmish to‘rt — ikkining oltinchi darajasi, ming yigirma to‘rt — ikkining o‘ninchi darajasi."
+     },
+     {
+      "doska": "$64 \\cdot 1024 = 2^{6} \\cdot 2^{10}$",
+      "ovoz": "Ko‘paytmani darajalar orqali yozamiz."
+     },
+     {
+      "doska": "$2^{6} \\cdot 2^{10} = 2^{6+10} = 2^{16}$",
+      "ovoz": "Bir xil asosli darajalarni ko‘paytirganda ko‘rsatkichlarni qo‘shamiz: olti qo‘shuv o‘n — o‘n olti."
+     },
+     {
+      "doska": "Javob: D) $2^{16}$",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi ko‘rsatkichlarni ayirgan: $10 - 6 = 4$.",
+     "1": "B ni tanlagan o‘quvchi ko‘rsatkichlarni to‘g‘ri qo‘shgan, ammo asoslarni ham ko‘paytirib, $2 \\cdot 2 = 4$ deb yozgan.",
+     "2": "C ni tanlagan o‘quvchi ko‘rsatkichlarni ko‘paytirgan: $6 \\cdot 10 = 60$."
+    },
+    "maslahat": "Har bir sonni jadvaldan 2 ning darajasi sifatida toping, keyin ko‘rsatkichlarga qarang."
+   }
+  ]
+ },
+ {
+  "id": "M042002",
+  "kunikma": "Xona qiymatlari haqida mulohaza yuritib, berilgan raqamlardan ko‘paytmasi eng katta bo‘ladigan ikki xonali sonlar juftini tuzish",
+  "usul": "Eng katta ikki raqamni o‘nliklar xonasiga qo‘ying; qolgan ikki raqamdan kattasini o‘nliklar raqami kichikroq bo‘lgan songa birlik qilib qo‘ying va ikki imkoniyatni hisoblab solishtiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "2, 4, 6 va 8 raqamlarining har biridan bir martadan foydalanib, ikkita ikki xonali son tuzildi va ular ko‘paytirildi.\nQaysi holatda ko‘paytma ENG KATTA bo‘ladi?",
+    "rasm": null,
+    "javoblar": [
+     "$86 \\cdot 42$",
+     "$84 \\cdot 62$",
+     "$82 \\cdot 64$",
+     "$46 \\cdot 82$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "O‘nliklarga: 8 va 6",
+      "ovoz": "Ko‘paytmaga eng katta hissani o‘nliklar qo‘shadi, shuning uchun o‘nliklarga eng katta raqamlar — sakkiz va oltini qo‘yamiz."
+     },
+     {
+      "doska": "$84 \\cdot 62 = 5208$",
+      "ovoz": "Birinchi imkoniyat: sakson to‘rtni oltmish ikkiga ko‘paytirsak, besh ming ikki yuz sakkiz."
+     },
+     {
+      "doska": "$82 \\cdot 64 = 5248$",
+      "ovoz": "Ikkinchi imkoniyat: sakson ikkini oltmish to‘rtga ko‘paytirsak, besh ming ikki yuz qirq sakkiz."
+     },
+     {
+      "doska": "$5248 > 5208$",
+      "ovoz": "Kattaroq birlik raqami kichikroq o‘nlikli songa qo‘yilganda ko‘paytma kattaroq — sonlar bir-biriga yaqinlashadi."
+     },
+     {
+      "doska": "Javob: C) $82 \\cdot 64$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi bitta sonni iloji boricha katta (86) qilishga harakat qilgan; lekin $86 \\cdot 42 = 3612$ — ikkinchi son juda kichik bo‘lib qolgan.",
+     "1": "B ni tanlagan o‘quvchi o‘nliklarni to‘g‘ri tanlagan, ammo birliklarni noto‘g‘ri juftlagan: $84 \\cdot 62 = 5208 < 5248$.",
+     "3": "D ni tanlagan o‘quvchi o‘nliklar xonasiga eng katta ikki raqamni qo‘yish kerakligini hisobga olmagan: $46 \\cdot 82 = 3772$."
+    },
+    "maslahat": "O‘nliklar xonasiga qaysi raqamlarni qo‘yish kerakligini aniqlang, so‘ng qolgan ikki imkoniyatni hisoblab ko‘ring."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "1, 4, 6 va 9 raqamlarining har biridan bir martadan foydalanib, ikkita ikki xonali son tuziladi va ular ko‘paytiriladi.\nShunday hosil qilish mumkin bo‘lgan ENG KATTA ko‘paytma nechaga teng?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "5824",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "O‘nliklarga: 9 va 6",
+      "ovoz": "Eng katta ikki raqam — to‘qqiz va oltini o‘nliklar xonasiga qo‘yamiz."
+     },
+     {
+      "doska": "$94 \\cdot 61 = 5734$",
+      "ovoz": "Birinchi imkoniyat: to‘qson to‘rtni oltmish birga ko‘paytirsak, besh ming yetti yuz o‘ttiz to‘rt."
+     },
+     {
+      "doska": "$91 \\cdot 64 = 5824$",
+      "ovoz": "Ikkinchi imkoniyat: to‘qson birni oltmish to‘rtga ko‘paytirsak, besh ming sakkiz yuz yigirma to‘rt."
+     },
+     {
+      "doska": "$5824 > 5734$",
+      "ovoz": "Ikkinchisi kattaroq: kattaroq birlik raqami kichikroq o‘nlikli songa berildi."
+     },
+     {
+      "doska": "Javob: 5824",
+      "ovoz": "Eng katta ko‘paytma — besh ming sakkiz yuz yigirma to‘rt."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p o‘quvchi bitta sonni eng katta qiladi: $96 \\cdot 41 = 3936$. Boshqalari o‘nliklarni to‘g‘ri tanlab, birliklarni noto‘g‘ri juftlaydi: $94 \\cdot 61 = 5734$."
+    },
+    "maslahat": "Eng katta raqamlarni o‘nliklarga qo‘yganingizdan keyin qolgan ikki raqamni ikki xil joylashtirib, natijalarni solishtiring."
+   }
+  ]
+ },
+ {
+  "id": "M042198A",
+  "kunikma": "Kasrlar ketma-ketligidagi qonuniyatni aniqlab, keyingi hadini yozish",
+  "usul": "Suratlar va maxrajlar qanday o‘zgarayotganini alohida kuzating, so‘ng shu qoidani keyingi hadga qo‘llang.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Quyidagi kasrlar ketma-ketligi ma’lum qonuniyat asosida yozilgan:\n$\\frac{1}{3},\\ \\frac{2}{4},\\ \\frac{3}{5},\\ \\frac{4}{6},\\ \\frac{5}{7},\\ \\ldots$\nKetma-ketlikning keyingi (oltinchi) hadini kasr ko‘rinishida yozing.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "6/8|3/4|0,75|0.75",
+    "javob_turi": "kasr",
+    "yechim": [
+     {
+      "doska": "Suratlar: $1, 2, 3, 4, 5$",
+      "ovoz": "Suratlar har safar bittaga ortadi."
+     },
+     {
+      "doska": "Maxrajlar: $3, 4, 5, 6, 7$",
+      "ovoz": "Maxrajlar ham bittaga ortadi va doim suratdan ikkitaga katta."
+     },
+     {
+      "doska": "Surat: $6$, maxraj: $6 + 2 = 8$",
+      "ovoz": "Keyingi hadda surat olti, maxraj sakkiz bo‘ladi."
+     },
+     {
+      "doska": "Javob: $\\frac{6}{8}$",
+      "ovoz": "Oltinchi had — oltining sakkizga nisbati."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar faqat suratni oshirib, maxrajni o‘zgartirmaydi ($\\frac{6}{7}$) yoki maxrajni ikkitaga oshirib yuboradi ($\\frac{6}{9}$)."
+    },
+    "maslahat": "Har bir kasrning maxraji surati bilan qanday bog‘langanini qarang."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Quyidagi kasrlar ketma-ketligi ma’lum qonuniyat asosida yozilgan:\n$\\frac{1}{4},\\ \\frac{2}{5},\\ \\frac{3}{6},\\ \\frac{4}{7},\\ \\frac{5}{8},\\ \\ldots$\nKetma-ketlikning keyingi (oltinchi) hadini kasr ko‘rinishida yozing.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "6/9|2/3",
+    "javob_turi": "kasr",
+    "yechim": [
+     {
+      "doska": "Suratlar: $1, 2, 3, 4, 5$",
+      "ovoz": "Suratlar har safar bittaga ortadi."
+     },
+     {
+      "doska": "Maxrajlar: $4, 5, 6, 7, 8$",
+      "ovoz": "Maxrajlar ham bittaga ortadi va doim suratdan uchtaga katta."
+     },
+     {
+      "doska": "Surat: $6$, maxraj: $6 + 3 = 9$",
+      "ovoz": "Keyingi hadda surat olti, maxraj to‘qqiz bo‘ladi."
+     },
+     {
+      "doska": "Javob: $\\frac{6}{9}$",
+      "ovoz": "Oltinchi had — oltining to‘qqizga nisbati."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar faqat suratni oshiradi ($\\frac{6}{8}$) yoki surat va maxraj o‘rnini almashtirib yuboradi ($\\frac{9}{6}$)."
+    },
+    "maslahat": "Suratlar va maxrajlarni alohida yozib, ular qanday o‘zgarishini kuzating."
+   }
+  ]
+ },
+ {
+  "id": "M042198B",
+  "kunikma": "Kasrlar ketma-ketligining qonuniyatini umumlashtirib, uzoqdagi (100-) hadini topish",
+  "usul": "Had raqami bilan surat va maxraj orasidagi bog‘lanishni toping (masalan, surat = had raqami), so‘ng had raqami o‘rniga 100 ni qo‘ying.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Quyidagi kasrlar ketma-ketligi ma’lum qonuniyat asosida yozilgan:\n$\\frac{1}{3},\\ \\frac{2}{4},\\ \\frac{3}{5},\\ \\frac{4}{6},\\ \\frac{5}{7},\\ \\ldots$\nShu ketma-ketlikning 100-hadini kasr ko‘rinishida yozing.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "100/102|50/51",
+    "javob_turi": "kasr",
+    "yechim": [
+     {
+      "doska": "1-had: $\\frac{1}{3}$, 2-had: $\\frac{2}{4}$, 3-had: $\\frac{3}{5}$",
+      "ovoz": "Har bir hadning surati uning tartib raqamiga teng."
+     },
+     {
+      "doska": "maxraj $=$ surat $+ 2$",
+      "ovoz": "Maxraj esa doim suratdan ikkitaga katta."
+     },
+     {
+      "doska": "100-had: surat $= 100$, maxraj $= 100 + 2 = 102$",
+      "ovoz": "Yuzinchi hadda surat yuz, maxraj yuz ikki bo‘ladi."
+     },
+     {
+      "doska": "Javob: $\\frac{100}{102}$",
+      "ovoz": "Yuzinchi had — yuzning yuz ikkiga nisbati."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — 99-hadni yozib qo‘yish ($\\frac{99}{101}$) yoki maxrajni suratdan bittaga katta deb olish ($\\frac{100}{101}$)."
+    },
+    "maslahat": "Har bir hadning surati uning tartib raqami bilan qanday bog‘langanini aniqlang."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Quyidagi kasrlar ketma-ketligi ma’lum qonuniyat asosida yozilgan:\n$\\frac{1}{4},\\ \\frac{2}{5},\\ \\frac{3}{6},\\ \\frac{4}{7},\\ \\frac{5}{8},\\ \\ldots$\nShu ketma-ketlikning 100-hadini kasr ko‘rinishida yozing.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "100/103",
+    "javob_turi": "kasr",
+    "yechim": [
+     {
+      "doska": "1-had: $\\frac{1}{4}$, 2-had: $\\frac{2}{5}$, 3-had: $\\frac{3}{6}$",
+      "ovoz": "Har bir hadning surati uning tartib raqamiga teng."
+     },
+     {
+      "doska": "maxraj $=$ surat $+ 3$",
+      "ovoz": "Maxraj doim suratdan uchtaga katta."
+     },
+     {
+      "doska": "100-had: surat $= 100$, maxraj $= 100 + 3 = 103$",
+      "ovoz": "Yuzinchi hadda surat yuz, maxraj yuz uch."
+     },
+     {
+      "doska": "Javob: $\\frac{100}{103}$",
+      "ovoz": "Yuzinchi had — yuzning yuz uchga nisbati."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — bittaga siljib, 99-hadni yozish ($\\frac{99}{102}$) yoki surat va maxrajga 100 dan qo‘shib yuborish ($\\frac{101}{104}$)."
+    },
+    "maslahat": "Surat had raqamiga teng bo‘lsa, maxraj had raqamidan qanchaga katta ekanini toping."
+   }
+  ]
+ },
+ {
+  "id": "M042198C",
+  "kunikma": "Kasrlar ketma-ketligining $n$-hadini harfiy ifoda (formula) ko‘rinishida yozish",
+  "usul": "Surat va maxrajni had raqami $n$ orqali ifodalang, so‘ng formulani birinchi bir nechta hadga qo‘yib tekshiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Quyidagi kasrlar ketma-ketligi ma’lum qonuniyat asosida yozilgan:\n$\\frac{1}{3},\\ \\frac{2}{4},\\ \\frac{3}{5},\\ \\frac{4}{6},\\ \\frac{5}{7},\\ \\ldots$\nShu ketma-ketlikning $n$-hadi qaysi ifoda bilan yoziladi?",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{n-1}{n+1}$",
+     "$\\frac{n}{n+1}$",
+     "$\\frac{n}{n+2}$",
+     "$\\frac{n+2}{n}$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Surat $= n$",
+      "ovoz": "Har bir hadning surati uning tartib raqamiga, ya’ni n ga teng."
+     },
+     {
+      "doska": "Maxraj $= n + 2$",
+      "ovoz": "Maxraj suratdan ikkitaga katta, demak n qo‘shuv ikki."
+     },
+     {
+      "doska": "$a_n = \\frac{n}{n+2}$",
+      "ovoz": "n-had: n ning n qo‘shuv ikkiga nisbati."
+     },
+     {
+      "doska": "Tekshiruv: $n = 3$: $\\frac{3}{5}$ ✓",
+      "ovoz": "Uchni qo‘yib ko‘ramiz: uchning beshga nisbati — haqiqatan uchinchi had."
+     },
+     {
+      "doska": "Javob: C) $\\frac{n}{n+2}$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi maxraj suratdan 2 ga kattaligini ko‘rgan, lekin hadlarni bittaga siljitib olgan: $n = 1$ da $\\frac{0}{2}$ chiqadi.",
+     "1": "B ni tanlagan o‘quvchi maxraj suratdan bittaga katta deb o‘ylagan: $n = 1$ da $\\frac{1}{2}$ chiqadi, $\\frac{1}{3}$ emas.",
+     "3": "D ni tanlagan o‘quvchi surat va maxrajni almashtirib yuborgan."
+    },
+    "maslahat": "Har bir variantga $n = 1$ va $n = 2$ ni qo‘yib, ketma-ketlikning dastlabki hadlari chiqishini tekshiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Quyidagi kasrlar ketma-ketligi ma’lum qonuniyat asosida yozilgan:\n$\\frac{1}{4},\\ \\frac{2}{5},\\ \\frac{3}{6},\\ \\frac{4}{7},\\ \\frac{5}{8},\\ \\ldots$\nShu ketma-ketlikning $n$-hadi qaysi ifoda bilan yoziladi?",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{n}{n+3}$",
+     "$\\frac{n-1}{n+2}$",
+     "$\\frac{n+1}{n+4}$",
+     "$\\frac{n}{n+1}$"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Surat $= n$",
+      "ovoz": "Har bir hadning surati uning tartib raqami n ga teng."
+     },
+     {
+      "doska": "Maxraj $= n + 3$",
+      "ovoz": "Maxraj suratdan uchtaga katta."
+     },
+     {
+      "doska": "$a_n = \\frac{n}{n+3}$",
+      "ovoz": "n-had: n ning n qo‘shuv uchga nisbati."
+     },
+     {
+      "doska": "Tekshiruv: $n = 2$: $\\frac{2}{5}$ ✓",
+      "ovoz": "Ikkini qo‘ysak, ikkining beshga nisbati — bu ikkinchi had."
+     },
+     {
+      "doska": "Javob: A) $\\frac{n}{n+3}$",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi hadlarni bittaga siljitib olgan: $n = 1$ da $\\frac{0}{3}$ chiqadi.",
+     "2": "C ni tanlagan o‘quvchi ham siljigan: bu formula $n = 1$ da ikkinchi had $\\frac{2}{5}$ ni beradi.",
+     "3": "D ni tanlagan o‘quvchi maxraj suratdan doim bittaga katta deb o‘ylagan."
+    },
+    "maslahat": "Variantlarga $n = 1$ ni qo‘yib, $\\frac{1}{4}$ chiqishini tekshiring."
+   }
+  ]
+ },
+ {
+  "id": "M042077",
+  "kunikma": "Ko‘paytirishning taqsimot qonunidan foydalanib, qavsli ifodaga teng kuchli ifodani topish",
+  "usul": "Qavs oldidagi sonni qavs ichidagi har bir qo‘shiluvchiga ko‘paytiring; o‘xshash bo‘lmagan hadlarni birlashtirmang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Qaysi ifoda $5(2 + x)$ ifodaga teng kuchli?",
+    "rasm": null,
+    "javoblar": [
+     "$10 + x$",
+     "$10 + 5x$",
+     "$7 + x$",
+     "$15x$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$5(2 + x) = 5 \\cdot 2 + 5 \\cdot x$",
+      "ovoz": "Beshni qavs ichidagi har bir qo‘shiluvchiga ko‘paytiramiz."
+     },
+     {
+      "doska": "$= 10 + 5x$",
+      "ovoz": "Besh karra ikki — o‘n, besh karra iks — besh iks."
+     },
+     {
+      "doska": "$10$ va $5x$ — o‘xshash emas",
+      "ovoz": "O‘n va besh iksni qo‘shib bo‘lmaydi, ifoda shu ko‘rinishda qoladi."
+     },
+     {
+      "doska": "Javob: B) $10 + 5x$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi 5 ni faqat birinchi hadga ko‘paytirib, $x$ ni ko‘paytirmagan.",
+     "2": "C ni tanlagan o‘quvchi ko‘paytirish o‘rniga 5 ni 2 ga qo‘shgan.",
+     "3": "D ni tanlagan o‘quvchi qavsni to‘g‘ri ochgan, lekin o‘xshash bo‘lmagan $10$ va $5x$ hadlarni qo‘shib yuborgan."
+    },
+    "maslahat": "Qavs oldidagi son qavs ichidagi har bir hadga ko‘paytirilishini eslang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Qaysi ifoda $7(x + 2)$ ifodaga teng kuchli?",
+    "rasm": null,
+    "javoblar": [
+     "$7x + 2$",
+     "$x + 14$",
+     "$7x + 14$",
+     "$21x$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$7(x + 2) = 7 \\cdot x + 7 \\cdot 2$",
+      "ovoz": "Yettini qavs ichidagi ikkala qo‘shiluvchiga ko‘paytiramiz."
+     },
+     {
+      "doska": "$= 7x + 14$",
+      "ovoz": "Yetti karra iks — yetti iks, yetti karra ikki — o‘n to‘rt."
+     },
+     {
+      "doska": "$7x$ va $14$ — o‘xshash emas",
+      "ovoz": "Yetti iks bilan o‘n to‘rtni birlashtirib bo‘lmaydi."
+     },
+     {
+      "doska": "Javob: C) $7x + 14$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi 7 ni faqat $x$ ga ko‘paytirib, 2 ni ko‘paytirmagan.",
+     "1": "B ni tanlagan o‘quvchi 7 ni faqat 2 ga ko‘paytirgan, $x$ ni esa o‘zgarishsiz qoldirgan.",
+     "3": "D ni tanlagan o‘quvchi $7x + 14$ ni topib, o‘xshash bo‘lmagan hadlarni qo‘shib yuborgan."
+    },
+    "maslahat": "Qavsni ochganda qavs ichidagi har bir had ko‘paytirilganini tekshiring."
+   }
+  ]
+ },
+ {
+  "id": "M042235",
+  "kunikma": "Berilgan sonlar jufti ikki chiziqli tenglamalar sistemasining yechimi ekanini aniqlash",
+  "usul": "Har bir juftni ikkala tenglamaga qo‘yib tekshiring yoki sistemani o‘rniga qo‘yish usuli bilan yeching; yechim ikkala tenglamani ham qanoatlantirishi kerak.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "$x + y = 10$ va $3x + 2y = 24$.\n$x$ va $y$ ning qiymatlari qanday?",
+    "rasm": null,
+    "javoblar": [
+     "$x = 2$, $y = 8$",
+     "$x = 4$, $y = 6$",
+     "$x = 6$, $y = 4$",
+     "$x = 8$, $y = 2$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$y = 10 - x$",
+      "ovoz": "Birinchi tenglamadan y ni x orqali ifodalaymiz."
+     },
+     {
+      "doska": "$3x + 2(10 - x) = 24$",
+      "ovoz": "Buni ikkinchi tenglamaga qo‘yamiz."
+     },
+     {
+      "doska": "$x + 20 = 24 \\Rightarrow x = 4$",
+      "ovoz": "Qavsni ochib soddalashtirsak, x qo‘shuv yigirma yigirma to‘rtga teng, demak x to‘rt."
+     },
+     {
+      "doska": "$y = 10 - 4 = 6$",
+      "ovoz": "Unda y olti."
+     },
+     {
+      "doska": "Tekshiruv: $3 \\cdot 4 + 2 \\cdot 6 = 24$ ✓",
+      "ovoz": "Ikkinchi tenglamaga qo‘yib tekshiramiz: o‘n ikki qo‘shuv o‘n ikki — yigirma to‘rt."
+     },
+     {
+      "doska": "Javob: B) $x = 4$, $y = 6$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat birinchi tenglamani tekshirgan: $3 \\cdot 2 + 2 \\cdot 8 = 22 \\ne 24$.",
+     "2": "C ni tanlagan o‘quvchi to‘g‘ri sonlarni topgan, lekin $x$ va $y$ ni almashtirib yuborgan: $3 \\cdot 6 + 2 \\cdot 4 = 26$.",
+     "3": "D ni tanlagan o‘quvchi faqat $x + y = 10$ ni tekshirgan: $3 \\cdot 8 + 2 \\cdot 2 = 28 \\ne 24$."
+    },
+    "maslahat": "Barcha variantlar birinchi tenglamani qanoatlantiradi — ularni ikkinchi tenglamaga qo‘yib ko‘ring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "$x - y = 3$ va $4x + y = 27$.\n$x$ va $y$ ning qiymatlari qanday?",
+    "rasm": null,
+    "javoblar": [
+     "$x = 4$, $y = 1$",
+     "$x = 5$, $y = 2$",
+     "$x = 6$, $y = 3$",
+     "$x = 7$, $y = 4$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$(x - y) + (4x + y) = 3 + 27$",
+      "ovoz": "Ikki tenglamani hadma-had qo‘shamiz — y lar qisqarib ketadi."
+     },
+     {
+      "doska": "$5x = 30 \\Rightarrow x = 6$",
+      "ovoz": "Besh iks o‘ttizga teng, demak x olti."
+     },
+     {
+      "doska": "$y = x - 3 = 3$",
+      "ovoz": "Birinchi tenglamadan y uch bo‘ladi."
+     },
+     {
+      "doska": "Tekshiruv: $4 \\cdot 6 + 3 = 27$ ✓",
+      "ovoz": "Ikkinchi tenglamaga qo‘yamiz: yigirma to‘rt qo‘shuv uch — yigirma yetti."
+     },
+     {
+      "doska": "Javob: C) $x = 6$, $y = 3$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat birinchi tenglamani tekshirgan: $4 \\cdot 4 + 1 = 17 \\ne 27$.",
+     "1": "B ni tanlagan o‘quvchi ikkinchi tenglamani tekshirmagan: $4 \\cdot 5 + 2 = 22 \\ne 27$.",
+     "3": "D ni tanlagan o‘quvchi ham faqat $x - y = 3$ ga qaragan: $4 \\cdot 7 + 4 = 32 \\ne 27$."
+    },
+    "maslahat": "Ikki tenglamani qo‘shsangiz, bitta noma’lum yo‘qoladi."
+   }
+  ]
+ },
+ {
+  "id": "M042067",
+  "kunikma": "Tomonlari harfiy ifoda bilan berilgan to‘g‘ri to‘rtburchak yuzini birhadni ko‘phadga ko‘paytirib topish",
+  "usul": "Yuza = bo‘yi × eni; ifodalarni ko‘paytirib, qavsni taqsimot qonuni bo‘yicha oching. Perimetr bilan adashtirmang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "To‘g‘ri to‘rtburchakning tomonlari rasmda ko‘rsatilgan.\nBu to‘g‘ri to‘rtburchakning yuzi qanday ifodalanadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 348 196\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"40\" y=\"15\" width=\"238\" height=\"136\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"40\" y1=\"165\" x2=\"278\" y2=\"165\" stroke=\"#222\"/><line x1=\"40\" y1=\"160\" x2=\"40\" y2=\"170\" stroke=\"#222\"/><line x1=\"278\" y1=\"160\" x2=\"278\" y2=\"170\" stroke=\"#222\"/><rect x=\"129.0\" y=\"155\" width=\"60\" height=\"20\" fill=\"#ffffff\"/><text x=\"159.0\" y=\"170\" text-anchor=\"middle\" font-style=\"italic\">x + 3</text><line x1=\"292\" y1=\"15\" x2=\"292\" y2=\"151\" stroke=\"#222\"/><line x1=\"287\" y1=\"15\" x2=\"297\" y2=\"15\" stroke=\"#222\"/><line x1=\"287\" y1=\"151\" x2=\"297\" y2=\"151\" stroke=\"#222\"/><text x=\"300\" y=\"88.0\" font-style=\"italic\">x</text></g></svg>",
+    "javoblar": [
+     "$x^2 + 3$",
+     "$4x + 6$",
+     "$x^2 + 3x$",
+     "$2x + 3$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$S = x \\cdot (x + 3)$",
+      "ovoz": "To‘g‘ri to‘rtburchak yuzi tomonlari ko‘paytmasiga teng."
+     },
+     {
+      "doska": "$= x \\cdot x + x \\cdot 3$",
+      "ovoz": "Iksni qavs ichidagi har bir hadga ko‘paytiramiz."
+     },
+     {
+      "doska": "$= x^2 + 3x$",
+      "ovoz": "Iks karra iks — iks kvadrat, iks karra uch — uch iks."
+     },
+     {
+      "doska": "Javob: C) $x^2 + 3x$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi $x$ ni faqat qavsdagi birinchi hadga ko‘paytirib, 3 ni ko‘paytirmagan.",
+     "1": "B ni tanlagan o‘quvchi yuza o‘rniga perimetrni topgan: $2(x + x + 3) = 4x + 6$.",
+     "3": "D ni tanlagan o‘quvchi tomonlarni ko‘paytirish o‘rniga qo‘shgan: $x + (x + 3)$."
+    },
+    "maslahat": "Yuza formulasini yozib, $x$ ni qavsdagi ikkala hadga ham ko‘paytiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "To‘g‘ri to‘rtburchakning tomonlari rasmda ko‘rsatilgan.\nBu to‘g‘ri to‘rtburchakning yuzi qanday ifodalanadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 348 162\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"40\" y=\"15\" width=\"238\" height=\"102\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"40\" y1=\"131\" x2=\"278\" y2=\"131\" stroke=\"#222\"/><line x1=\"40\" y1=\"126\" x2=\"40\" y2=\"136\" stroke=\"#222\"/><line x1=\"278\" y1=\"126\" x2=\"278\" y2=\"136\" stroke=\"#222\"/><rect x=\"129.0\" y=\"121\" width=\"60\" height=\"20\" fill=\"#ffffff\"/><text x=\"159.0\" y=\"136\" text-anchor=\"middle\" font-style=\"italic\">2x</text><line x1=\"292\" y1=\"15\" x2=\"292\" y2=\"117\" stroke=\"#222\"/><line x1=\"287\" y1=\"15\" x2=\"297\" y2=\"15\" stroke=\"#222\"/><line x1=\"287\" y1=\"117\" x2=\"297\" y2=\"117\" stroke=\"#222\"/><text x=\"300\" y=\"71.0\" font-style=\"italic\">x − 1</text></g></svg>",
+    "javoblar": [
+     "$2x^2 - 1$",
+     "$2x^2 - 2x$",
+     "$3x - 1$",
+     "$6x - 2$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$S = 2x \\cdot (x - 1)$",
+      "ovoz": "Yuza tomonlar ko‘paytmasiga teng: ikki iks karra iks ayiruv bir."
+     },
+     {
+      "doska": "$= 2x \\cdot x - 2x \\cdot 1$",
+      "ovoz": "Ikki iksni qavsdagi har bir hadga ko‘paytiramiz."
+     },
+     {
+      "doska": "$= 2x^2 - 2x$",
+      "ovoz": "Natijada ikki iks kvadrat ayiruv ikki iks hosil bo‘ladi."
+     },
+     {
+      "doska": "Javob: B) $2x^2 - 2x$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi $2x$ ni faqat $x$ ga ko‘paytirib, $-1$ ni ko‘paytirmasdan qoldirgan.",
+     "2": "C ni tanlagan o‘quvchi tomonlarni ko‘paytirish o‘rniga qo‘shgan: $2x + (x - 1)$.",
+     "3": "D ni tanlagan o‘quvchi yuza o‘rniga perimetrni topgan: $2(2x + x - 1) = 6x - 2$."
+    },
+    "maslahat": "Yuzani topish uchun $2x$ ni qavsdagi ikkala hadga ko‘paytiring, ishoraga e’tibor bering."
+   }
+  ]
+ },
+ {
+  "id": "M042150",
+  "kunikma": "Shakllar orasidan simmetriya o‘qiga ega bo‘lganini aniqlash",
+  "usul": "Har bir shaklni fikran bir to‘g‘ri chiziq bo‘ylab buklang: ikki yarmi ustma-ust tushsa, shu chiziq simmetriya o‘qi. Teng tomonlar belgisi yordam beradi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Rasmdagi to‘rt shakldan qaysi biri simmetriya o‘qiga ega? (Bir xil chiziqcha bilan belgilangan kesmalar teng.)",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 260\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"40,105 75,45 190,45 155,105\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"51.3\" y1=\"73.7\" x2=\"61.7\" y2=\"79.8\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"53.3\" y1=\"70.2\" x2=\"63.7\" y2=\"76.3\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"178.7\" y1=\"76.3\" x2=\"168.3\" y2=\"70.2\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"176.7\" y1=\"79.8\" x2=\"166.3\" y2=\"73.7\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"132.5\" y1=\"39\" x2=\"132.5\" y2=\"51\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"97.5\" y1=\"111\" x2=\"97.5\" y2=\"99\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"12\" y=\"24\" font-weight=\"bold\">A</text><polygon points=\"260,110 260,45 415,110\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><polyline points=\"272,110 272,98 260,98\" fill=\"none\" stroke=\"#222\"/><text x=\"232\" y=\"24\" font-weight=\"bold\">B</text><polygon points=\"30,240 75,175 165,175 210,240\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"47.6\" y1=\"204.1\" x2=\"57.4\" y2=\"210.9\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"192.4\" y1=\"204.1\" x2=\"182.6\" y2=\"210.9\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"12\" y=\"154\" font-weight=\"bold\">C</text><polygon points=\"250,240 275,175 370,175 430,240\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"232\" y=\"154\" font-weight=\"bold\">D</text></g></svg>",
+    "javoblar": [
+     "A shakl",
+     "B shakl",
+     "C shakl",
+     "D shakl"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A — parallelogramm",
+      "ovoz": "Parallelogrammni qaysi chiziq bo‘ylab buklamaylik, ikki yarmi ustma-ust tushmaydi: uning simmetriya markazi bor, o‘qi yo‘q."
+     },
+     {
+      "doska": "B, D — tomonlari har xil",
+      "ovoz": "B uchburchakning barcha tomonlari har xil, D trapetsiyaning yon tomonlari teng emas — ularda simmetriya o‘qi yo‘q."
+     },
+     {
+      "doska": "C — teng yonli trapetsiya",
+      "ovoz": "C trapetsiyaning yon tomonlari teng, demak u teng yonli."
+     },
+     {
+      "doska": "O‘q: asoslar o‘rtalari orqali",
+      "ovoz": "Asoslarning o‘rtalaridan o‘tuvchi to‘g‘ri chiziq bo‘ylab buklasak, ikki yarmi ustma-ust tushadi."
+     },
+     {
+      "doska": "Javob: C shakl",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi parallelogrammning qarama-qarshi tomonlari tengligini ko‘rib, uni simmetrik deb o‘ylagan; parallelogramm faqat markaziy simmetriyaga ega.",
+     "1": "B ni tanlagan o‘quvchi to‘g‘ri burchakli uchburchakni simmetrik deb o‘ylagan; uning katetlari teng emas, shuning uchun o‘qi yo‘q.",
+     "3": "D ni tanlagan o‘quvchi har qanday trapetsiyani simmetrik deb hisoblagan; faqat teng yonli trapetsiya simmetriya o‘qiga ega."
+    },
+    "maslahat": "Teng tomonlar belgilari qaysi shaklning chap va o‘ng yarmi bir xil ekanini ko‘rsatishiga e’tibor bering."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Rasmdagi to‘rt shakldan qaysi biri simmetriya o‘qiga ega? (Bir xil chiziqcha bilan belgilangan kesmalar teng.)",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 260\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"110,40 150,62 110,122 70,62\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"132.9\" y1=\"45.7\" x2=\"127.1\" y2=\"56.3\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"92.9\" y1=\"56.3\" x2=\"87.1\" y2=\"45.7\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"136.1\" y1=\"93.7\" x2=\"126.1\" y2=\"87\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"133.9\" y1=\"97\" x2=\"123.9\" y2=\"90.3\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"93.9\" y1=\"87\" x2=\"83.9\" y2=\"93.7\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"96.1\" y1=\"90.3\" x2=\"86.1\" y2=\"97\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"12\" y=\"24\" font-weight=\"bold\">A</text><polygon points=\"250,110 280,45 420,45 390,110\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"258.7\" y1=\"76.8\" x2=\"269.6\" y2=\"81.8\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"260.4\" y1=\"73.2\" x2=\"271.3\" y2=\"78.2\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"411.3\" y1=\"78.2\" x2=\"400.4\" y2=\"73.2\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"409.6\" y1=\"81.8\" x2=\"398.7\" y2=\"76.8\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"350\" y1=\"39\" x2=\"350\" y2=\"51\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"320\" y1=\"116\" x2=\"320\" y2=\"104\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"232\" y=\"24\" font-weight=\"bold\">B</text><polygon points=\"30,240 150,175 205,240\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"12\" y=\"154\" font-weight=\"bold\">C</text><polygon points=\"260,240 260,175 360,175 425,240\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"2\"/><polyline points=\"272,240 272,228 260,228\" fill=\"none\" stroke=\"#222\"/><polyline points=\"272,175 272,187 260,187\" fill=\"none\" stroke=\"#222\"/><text x=\"232\" y=\"154\" font-weight=\"bold\">D</text></g></svg>",
+    "javoblar": [
+     "A shakl",
+     "B shakl",
+     "C shakl",
+     "D shakl"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A — deltoid: $2$ juft qo‘shni tomonlar teng",
+      "ovoz": "A shaklda yuqoridagi ikki tomon o‘zaro, pastdagi ikki tomon ham o‘zaro teng."
+     },
+     {
+      "doska": "O‘q: yuqori va pastki uchlar orqali",
+      "ovoz": "Yuqori va pastki uchdan o‘tuvchi chiziq bo‘ylab buklasak, chap va o‘ng yarmi ustma-ust tushadi."
+     },
+     {
+      "doska": "B, C, D — o‘q yo‘q",
+      "ovoz": "Parallelogramm, tomonlari har xil uchburchak va to‘g‘ri burchakli trapetsiyani buklaganda yarmlari ustma-ust tushmaydi."
+     },
+     {
+      "doska": "Javob: A shakl",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi parallelogrammning qarama-qarshi tomonlari tengligi uchun uni simmetrik deb o‘ylagan; uning simmetriya o‘qi yo‘q.",
+     "2": "C ni tanlagan o‘quvchi har qanday uchburchakni simmetrik deb hisoblagan; faqat teng yonli uchburchak o‘qqa ega.",
+     "3": "D ni tanlagan o‘quvchi to‘g‘ri burchaklar borligini simmetriya belgisi deb o‘ylagan; yon tomonlari teng bo‘lmagani uchun o‘q yo‘q."
+    },
+    "maslahat": "Shaklni ikki teng yarmga ajratadigan va buklaganda ustma-ust tushiradigan chiziqni izlang."
+   }
+  ]
+ },
+ {
+  "id": "M042300A",
+  "kunikma": "Masofa va burilish burchagi bilan berilgan (qutb) koordinatalar tizimida nuqtaning o‘rnini aniqlash",
+  "usul": "Avval OA nurdan soat mili yo‘nalishiga teskari tomonga kerakli burchakli nurni toping, so‘ng shu nur bo‘ylab O dan kerakli aylanagacha sanang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Rasmda nuqtalarning o‘rnini aniqlash tizimi tasvirlangan. Nuqtaning o‘rni ikki son bilan yoziladi: (O markazdan masofa; OA nurdan soat mili yo‘nalishiga teskari burilish burchagi). Masalan, P nuqtaning koordinatalari (2; 300°).\nRasmdagi qaysi nuqtaning koordinatalari (4; 150°)?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 380\"><g font-family=\"sans-serif\" font-size=\"14\"><circle cx=\"200\" cy=\"190\" r=\"27\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"54\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"81\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"108\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"135\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">30°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">60°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"55\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"40\" text-anchor=\"middle\" font-size=\"12\">90°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">120°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">150°</text><line x1=\"200\" y1=\"190\" x2=\"65\" y2=\"190\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"45\" y=\"195\" text-anchor=\"middle\" font-size=\"12\">180°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">210°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">240°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"325\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"350\" text-anchor=\"middle\" font-size=\"12\">270°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">300°</text><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">330°</text><line x1=\"200\" y1=\"190\" x2=\"372\" y2=\"190\" stroke=\"#222\" stroke-width=\"2.5\"/><text x=\"378\" y=\"195\" font-style=\"italic\">A</text><text x=\"357\" y=\"184\" font-size=\"12\">0°</text><text x=\"230\" y=\"204\" font-size=\"11\" text-anchor=\"start\">1</text><text x=\"257\" y=\"204\" font-size=\"11\" text-anchor=\"start\">2</text><text x=\"284\" y=\"204\" font-size=\"11\" text-anchor=\"start\">3</text><text x=\"311\" y=\"204\" font-size=\"11\" text-anchor=\"start\">4</text><text x=\"338\" y=\"204\" font-size=\"11\" text-anchor=\"start\">5</text><circle cx=\"200\" cy=\"190\" r=\"3\" fill=\"#222\"/><text x=\"186\" y=\"206\" font-style=\"italic\">O</text><circle cx=\"227\" cy=\"236.8\" r=\"4.5\" fill=\"#222\"/><text x=\"234\" y=\"229.8\" font-style=\"italic\" font-weight=\"bold\">P</text><circle cx=\"83.1\" cy=\"122.5\" r=\"4.5\" fill=\"#222\"/><text x=\"90.1\" y=\"115.5\" font-style=\"italic\" font-weight=\"bold\">K</text><circle cx=\"106.5\" cy=\"136\" r=\"4.5\" fill=\"#222\"/><text x=\"113.5\" y=\"129\" font-style=\"italic\" font-weight=\"bold\">L</text><circle cx=\"106.5\" cy=\"244\" r=\"4.5\" fill=\"#222\"/><text x=\"113.5\" y=\"237\" font-style=\"italic\" font-weight=\"bold\">M</text><circle cx=\"293.5\" cy=\"136\" r=\"4.5\" fill=\"#222\"/><text x=\"300.5\" y=\"129\" font-style=\"italic\" font-weight=\"bold\">N</text></g></svg>",
+    "javoblar": [
+     "K nuqta",
+     "L nuqta",
+     "M nuqta",
+     "N nuqta"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Burchak: OA dan teskari yo‘nalishda $150°$",
+      "ovoz": "OA nurdan soat miliga teskari burilib, bir yuz ellik gradusli nurni topamiz."
+     },
+     {
+      "doska": "Bu nurda: K, L",
+      "ovoz": "Shu nurda ikkita nuqta bor: K va L."
+     },
+     {
+      "doska": "L: 4-aylanada, K: 5-aylanada",
+      "ovoz": "Markazdan sanaymiz: L to‘rtinchi aylanada, K beshinchi aylanada."
+     },
+     {
+      "doska": "Javob: B) L nuqta",
+      "ovoz": "Demak, (4; 150°) — bu L nuqta, B javob."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi burchakni to‘g‘ri topgan, lekin aylanalarni sanashda adashib, 5-aylanadagi nuqtani olgan.",
+     "2": "C ni tanlagan o‘quvchi burchakni soat mili yo‘nalishida o‘lchagan: $360° - 150° = 210°$.",
+     "3": "D ni tanlagan o‘quvchi burchakni OA dan emas, qarama-qarshi (180°) nurdan o‘lchagan: $180° - 150° = 30°$."
+    },
+    "maslahat": "Burchakni OA nurdan boshlab, soat mili yo‘nalishiga teskari tomonga sanang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Rasmda nuqtalarning o‘rnini aniqlash tizimi tasvirlangan. Nuqtaning o‘rni ikki son bilan yoziladi: (O markazdan masofa; OA nurdan soat mili yo‘nalishiga teskari burilish burchagi). Masalan, Q nuqtaning koordinatalari (4; 60°).\nRasmdagi T nuqtaning koordinatalari qanday?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 380\"><g font-family=\"sans-serif\" font-size=\"14\"><circle cx=\"200\" cy=\"190\" r=\"27\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"54\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"81\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"108\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"135\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">30°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">60°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"55\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"40\" text-anchor=\"middle\" font-size=\"12\">90°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">120°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">150°</text><line x1=\"200\" y1=\"190\" x2=\"65\" y2=\"190\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"45\" y=\"195\" text-anchor=\"middle\" font-size=\"12\">180°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">210°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">240°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"325\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"350\" text-anchor=\"middle\" font-size=\"12\">270°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">300°</text><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">330°</text><line x1=\"200\" y1=\"190\" x2=\"372\" y2=\"190\" stroke=\"#222\" stroke-width=\"2.5\"/><text x=\"378\" y=\"195\" font-style=\"italic\">A</text><text x=\"357\" y=\"184\" font-size=\"12\">0°</text><text x=\"230\" y=\"204\" font-size=\"11\" text-anchor=\"start\">1</text><text x=\"257\" y=\"204\" font-size=\"11\" text-anchor=\"start\">2</text><text x=\"284\" y=\"204\" font-size=\"11\" text-anchor=\"start\">3</text><text x=\"311\" y=\"204\" font-size=\"11\" text-anchor=\"start\">4</text><text x=\"338\" y=\"204\" font-size=\"11\" text-anchor=\"start\">5</text><circle cx=\"200\" cy=\"190\" r=\"3\" fill=\"#222\"/><text x=\"186\" y=\"206\" font-style=\"italic\">O</text><circle cx=\"254\" cy=\"96.5\" r=\"4.5\" fill=\"#222\"/><text x=\"261\" y=\"89.5\" font-style=\"italic\" font-weight=\"bold\">Q</text><circle cx=\"159.5\" cy=\"260.1\" r=\"4.5\" fill=\"#222\"/><text x=\"166.5\" y=\"253.1\" font-style=\"italic\" font-weight=\"bold\">T</text></g></svg>",
+    "javoblar": [
+     "(3; 120°)",
+     "(4; 240°)",
+     "(3; 240°)",
+     "(3; 60°)"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "T: 3-aylanada",
+      "ovoz": "Markazdan sanaymiz: T nuqta uchinchi aylanada, demak masofa uch."
+     },
+     {
+      "doska": "T nuri: $240°$",
+      "ovoz": "T yotgan nurning yozuvi ikki yuz qirq gradus."
+     },
+     {
+      "doska": "OA dan teskari yo‘nalishda: $180° + 60° = 240°$",
+      "ovoz": "Haqiqatan, OA dan soat miliga teskari yarim aylanadan keyin yana oltmish gradus burilamiz."
+     },
+     {
+      "doska": "Javob: C) (3; 240°)",
+      "ovoz": "Demak, T ning koordinatalari uch va ikki yuz qirq gradus — C javob."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi burchakni soat mili yo‘nalishida o‘lchagan: $360° - 240° = 120°$.",
+     "1": "B ni tanlagan o‘quvchi aylanalarni sanashda adashib, masofani bittaga ortiq olgan.",
+     "3": "D ni tanlagan o‘quvchi burchakni OA dan emas, 180° nurdan o‘lchagan: $240° - 180° = 60°$."
+    },
+    "maslahat": "Avval T qaysi aylanada yotganini, keyin qaysi nurda yotganini aniqlang."
+   }
+  ]
+ },
+ {
+  "id": "M042300B",
+  "kunikma": "Qutb koordinatalari berilgan ikki nuqta va markaz hosil qilgan burchakni topish",
+  "usul": "Markazdagi burchak faqat burilish burchaklariga bog‘liq: kattasidan kichigini ayiring (natija 180° dan oshmasa, shu burchak). Masofalar burchakka ta’sir qilmaydi.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Rasmda nuqtalarning o‘rnini aniqlash tizimi tasvirlangan. Nuqtaning o‘rni ikki son bilan yoziladi: (O markazdan masofa; OA nurdan soat mili yo‘nalishiga teskari burilish burchagi). Masalan, P nuqtaning koordinatalari (2; 300°).\nK (2; 60°) va L (5; 210°) nuqtalar berilgan. $KOL$ burchak necha gradus?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 380\"><g font-family=\"sans-serif\" font-size=\"14\"><circle cx=\"200\" cy=\"190\" r=\"27\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"54\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"81\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"108\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"135\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">30°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">60°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"55\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"40\" text-anchor=\"middle\" font-size=\"12\">90°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">120°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">150°</text><line x1=\"200\" y1=\"190\" x2=\"65\" y2=\"190\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"45\" y=\"195\" text-anchor=\"middle\" font-size=\"12\">180°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">210°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">240°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"325\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"350\" text-anchor=\"middle\" font-size=\"12\">270°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">300°</text><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">330°</text><line x1=\"200\" y1=\"190\" x2=\"372\" y2=\"190\" stroke=\"#222\" stroke-width=\"2.5\"/><text x=\"378\" y=\"195\" font-style=\"italic\">A</text><text x=\"357\" y=\"184\" font-size=\"12\">0°</text><text x=\"230\" y=\"204\" font-size=\"11\" text-anchor=\"start\">1</text><text x=\"257\" y=\"204\" font-size=\"11\" text-anchor=\"start\">2</text><text x=\"284\" y=\"204\" font-size=\"11\" text-anchor=\"start\">3</text><text x=\"311\" y=\"204\" font-size=\"11\" text-anchor=\"start\">4</text><text x=\"338\" y=\"204\" font-size=\"11\" text-anchor=\"start\">5</text><circle cx=\"200\" cy=\"190\" r=\"3\" fill=\"#222\"/><text x=\"186\" y=\"206\" font-style=\"italic\">O</text><circle cx=\"227\" cy=\"236.8\" r=\"4.5\" fill=\"#222\"/><text x=\"234\" y=\"229.8\" font-style=\"italic\" font-weight=\"bold\">P</text></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "150|150°",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$K$: nur $60°$,  $L$: nur $210°$",
+      "ovoz": "K oltmish gradusli nurda, L ikki yuz o‘n gradusli nurda yotadi."
+     },
+     {
+      "doska": "Masofalar (2 va 5) burchakka ta’sir qilmaydi",
+      "ovoz": "Burchak OK va OL nurlar orasida, nuqtalar markazdan qancha uzoqligi muhim emas."
+     },
+     {
+      "doska": "$\\angle KOL = 210° - 60° = 150°$",
+      "ovoz": "Ikki yuz o‘ndan oltmishni ayirsak, bir yuz ellik gradus."
+     },
+     {
+      "doska": "$150° < 180°$",
+      "ovoz": "Natija yoyiq burchakdan kichik, demak shu javob."
+     },
+     {
+      "doska": "Javob: 150°",
+      "ovoz": "KOL burchak bir yuz ellik gradus."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar burchaklarni qo‘shib yuboradi ($60° + 210° = 270°$) yoki nuqtalarni noto‘g‘ri belgilab, boshqa burchakni o‘lchaydi."
+    },
+    "maslahat": "K va L yotgan nurlarning burchaklarini solishtiring; masofalar kerak emas."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Rasmda nuqtalarning o‘rnini aniqlash tizimi tasvirlangan. Nuqtaning o‘rni ikki son bilan yoziladi: (O markazdan masofa; OA nurdan soat mili yo‘nalishiga teskari burilish burchagi). Masalan, Q nuqtaning koordinatalari (4; 60°).\nE (1; 150°) va F (4; 270°) nuqtalar berilgan. $EOF$ burchak necha gradus?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 380\"><g font-family=\"sans-serif\" font-size=\"14\"><circle cx=\"200\" cy=\"190\" r=\"27\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"54\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"81\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"108\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><circle cx=\"200\" cy=\"190\" r=\"135\" fill=\"none\" stroke=\"#222\" stroke-width=\"0.8\"/><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">30°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">60°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"55\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"40\" text-anchor=\"middle\" font-size=\"12\">90°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"73.1\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"60.8\" text-anchor=\"middle\" font-size=\"12\">120°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"122.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"117.5\" text-anchor=\"middle\" font-size=\"12\">150°</text><line x1=\"200\" y1=\"190\" x2=\"65\" y2=\"190\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"45\" y=\"195\" text-anchor=\"middle\" font-size=\"12\">180°</text><line x1=\"200\" y1=\"190\" x2=\"83.1\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"65.8\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">210°</text><line x1=\"200\" y1=\"190\" x2=\"132.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"122.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">240°</text><line x1=\"200\" y1=\"190\" x2=\"200\" y2=\"325\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"200\" y=\"350\" text-anchor=\"middle\" font-size=\"12\">270°</text><line x1=\"200\" y1=\"190\" x2=\"267.5\" y2=\"306.9\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"277.5\" y=\"329.2\" text-anchor=\"middle\" font-size=\"12\">300°</text><line x1=\"200\" y1=\"190\" x2=\"316.9\" y2=\"257.5\" stroke=\"#222\" stroke-width=\"0.8\"/><text x=\"334.2\" y=\"272.5\" text-anchor=\"middle\" font-size=\"12\">330°</text><line x1=\"200\" y1=\"190\" x2=\"372\" y2=\"190\" stroke=\"#222\" stroke-width=\"2.5\"/><text x=\"378\" y=\"195\" font-style=\"italic\">A</text><text x=\"357\" y=\"184\" font-size=\"12\">0°</text><text x=\"230\" y=\"204\" font-size=\"11\" text-anchor=\"start\">1</text><text x=\"257\" y=\"204\" font-size=\"11\" text-anchor=\"start\">2</text><text x=\"284\" y=\"204\" font-size=\"11\" text-anchor=\"start\">3</text><text x=\"311\" y=\"204\" font-size=\"11\" text-anchor=\"start\">4</text><text x=\"338\" y=\"204\" font-size=\"11\" text-anchor=\"start\">5</text><circle cx=\"200\" cy=\"190\" r=\"3\" fill=\"#222\"/><text x=\"186\" y=\"206\" font-style=\"italic\">O</text><circle cx=\"254\" cy=\"96.5\" r=\"4.5\" fill=\"#222\"/><text x=\"261\" y=\"89.5\" font-style=\"italic\" font-weight=\"bold\">Q</text></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "120|120°",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$E$: nur $150°$,  $F$: nur $270°$",
+      "ovoz": "E bir yuz ellik gradusli nurda, F ikki yuz yetmish gradusli nurda."
+     },
+     {
+      "doska": "Masofalar (1 va 4) burchakka ta’sir qilmaydi",
+      "ovoz": "Burchak faqat OE va OF nurlarning yo‘nalishiga bog‘liq."
+     },
+     {
+      "doska": "$\\angle EOF = 270° - 150° = 120°$",
+      "ovoz": "Ikki yuz yetmishdan bir yuz ellikni ayiramiz — bir yuz yigirma gradus."
+     },
+     {
+      "doska": "$120° < 180°$",
+      "ovoz": "Natija yoyiq burchakdan kichik, demak shu javob."
+     },
+     {
+      "doska": "Javob: 120°",
+      "ovoz": "EOF burchak bir yuz yigirma gradus."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: burchaklarni qo‘shish ($150° + 270° = 420°$) yoki burchakni soat mili yo‘nalishida o‘lchab, $240°$ deb yozish."
+    },
+    "maslahat": "E va F yotgan nurlar OA dan qanchaga burilganini solishtiring."
+   }
+  ]
+ }
+]

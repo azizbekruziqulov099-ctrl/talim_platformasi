@@ -1,0 +1,251 @@
+[
+ {
+  "id": "M031088",
+  "kunikma": "Katakli maydonda harflar va raqamlar bilan berilgan joylar orasidagi siljishni aniqlash",
+  "usul": "Avval harflarni solishtirib, o‘ngga yoki chapga necha katak yurishni toping. Keyin raqamlarni solishtirib, yuqoriga yoki pastga necha katak yurishni toping.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Aziz o‘yin taxtasida o‘ynayapti. Uning toshi B6 katakda turibdi.\nQaysi yurish toshni F4 katakka olib boradi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 282\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"40\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"55\" y=\"270\" text-anchor=\"middle\">A</text><text x=\"85\" y=\"270\" text-anchor=\"middle\">B</text><text x=\"115\" y=\"270\" text-anchor=\"middle\">C</text><text x=\"145\" y=\"270\" text-anchor=\"middle\">D</text><text x=\"175\" y=\"270\" text-anchor=\"middle\">E</text><text x=\"205\" y=\"270\" text-anchor=\"middle\">F</text><text x=\"235\" y=\"270\" text-anchor=\"middle\">G</text><text x=\"265\" y=\"270\" text-anchor=\"middle\">H</text><text x=\"28\" y=\"240\" text-anchor=\"middle\">1</text><text x=\"28\" y=\"210\" text-anchor=\"middle\">2</text><text x=\"28\" y=\"180\" text-anchor=\"middle\">3</text><text x=\"28\" y=\"150\" text-anchor=\"middle\">4</text><text x=\"28\" y=\"120\" text-anchor=\"middle\">5</text><text x=\"28\" y=\"90\" text-anchor=\"middle\">6</text><text x=\"28\" y=\"60\" text-anchor=\"middle\">7</text><text x=\"28\" y=\"30\" text-anchor=\"middle\">8</text><circle cx=\"85\" cy=\"85\" r=\"10\" fill=\"#222\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "4 katak o‘ngga va 2 katak pastga",
+     "2 katak o‘ngga va 4 katak pastga",
+     "4 katak o‘ngga va 2 katak yuqoriga",
+     "4 katak chapga va 2 katak pastga"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "B → F: B, C, D, E, F — 4 katak o‘ngga",
+      "ovoz": "B dan F gacha sanaymiz: C, D, E, F — to‘rt katak o‘ngga."
+     },
+     {
+      "doska": "6 → 4: 2 katak pastga",
+      "ovoz": "Oltidan to‘rtga tushamiz — ikki katak pastga."
+     },
+     {
+      "doska": "Javob: A) 4 katak o‘ngga va 2 katak pastga",
+      "ovoz": "Demak, to‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi o‘ngga va pastga yurishlar sonini almashtirib yuborgan.",
+     "2": "C ni tanlagan o‘quvchi raqamlar pastdan yuqoriga oshishini unutgan: 6 dan 4 ga borish — pastga yurish.",
+     "3": "D ni tanlagan o‘quvchi o‘ng va chapni adashtirgan."
+    },
+    "maslahat": "Harflar o‘ngga qarab, raqamlar yuqoriga qarab ortib boradi."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Malika o‘yin taxtasida o‘ynayapti. Uning toshi G2 katakda turibdi.\nQaysi yurish toshni C5 katakka olib boradi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 282\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"40\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"40\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"70\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"100\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"130\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"190\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"220\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"10\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"40\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"70\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"100\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"130\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"160\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"190\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><rect x=\"250\" y=\"220\" width=\"30\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"55\" y=\"270\" text-anchor=\"middle\">A</text><text x=\"85\" y=\"270\" text-anchor=\"middle\">B</text><text x=\"115\" y=\"270\" text-anchor=\"middle\">C</text><text x=\"145\" y=\"270\" text-anchor=\"middle\">D</text><text x=\"175\" y=\"270\" text-anchor=\"middle\">E</text><text x=\"205\" y=\"270\" text-anchor=\"middle\">F</text><text x=\"235\" y=\"270\" text-anchor=\"middle\">G</text><text x=\"265\" y=\"270\" text-anchor=\"middle\">H</text><text x=\"28\" y=\"240\" text-anchor=\"middle\">1</text><text x=\"28\" y=\"210\" text-anchor=\"middle\">2</text><text x=\"28\" y=\"180\" text-anchor=\"middle\">3</text><text x=\"28\" y=\"150\" text-anchor=\"middle\">4</text><text x=\"28\" y=\"120\" text-anchor=\"middle\">5</text><text x=\"28\" y=\"90\" text-anchor=\"middle\">6</text><text x=\"28\" y=\"60\" text-anchor=\"middle\">7</text><text x=\"28\" y=\"30\" text-anchor=\"middle\">8</text><circle cx=\"235\" cy=\"205\" r=\"10\" fill=\"#222\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "3 katak chapga va 4 katak yuqoriga",
+     "4 katak chapga va 3 katak yuqoriga",
+     "4 katak o‘ngga va 3 katak yuqoriga",
+     "4 katak chapga va 3 katak pastga"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "G → C: F, E, D, C — 4 katak chapga",
+      "ovoz": "G dan C gacha sanaymiz: F, E, D, C — to‘rt katak chapga."
+     },
+     {
+      "doska": "2 → 5: 3 katak yuqoriga",
+      "ovoz": "Ikkidan beshga ko‘tarilamiz — uch katak yuqoriga."
+     },
+     {
+      "doska": "Javob: B) 4 katak chapga va 3 katak yuqoriga",
+      "ovoz": "Demak, to‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi chapga va yuqoriga yurishlar sonini almashtirgan.",
+     "2": "C ni tanlagan o‘quvchi chap va o‘ngni adashtirgan.",
+     "3": "D ni tanlagan o‘quvchi yuqori va pastni adashtirgan: 2 dan 5 ga borish — yuqoriga yurish."
+    },
+    "maslahat": "Avval harfni, keyin raqamni solishtiring."
+   }
+  ]
+ },
+ {
+  "id": "M031093",
+  "kunikma": "Shaklning simmetriya o‘qini tanib olish",
+  "usul": "Shaklni shtrix chiziq bo‘ylab fikran buklang. Ikki yarmi bir-birining ustiga roppa-rosa tushsa, bu chiziq simmetriya o‘qi bo‘ladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Qaysi shaklda shtrix chiziq simmetriya o‘qi bo‘ladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 255\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"25\" y=\"70\" text-anchor=\"middle\" font-weight=\"bold\">A)</text><polygon points=\"60,25 160,25 160,95 60,95\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"60\" y1=\"25\" x2=\"160\" y2=\"95\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/><text x=\"255\" y=\"70\" text-anchor=\"middle\" font-weight=\"bold\">B)</text><polygon points=\"340,15 385,105 295,105\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"340\" y1=\"7\" x2=\"340\" y2=\"113\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/><text x=\"25\" y=\"195\" text-anchor=\"middle\" font-weight=\"bold\">C)</text><polygon points=\"75,140 155,140 155,220 75,220\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"95\" y1=\"132\" x2=\"95\" y2=\"228\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/><text x=\"255\" y=\"195\" text-anchor=\"middle\" font-weight=\"bold\">D)</text><polygon points=\"300,230 300,165 395,230\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"300\" y1=\"230\" x2=\"347.5\" y2=\"197.5\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Simmetriya o‘qi: buklaganda ikki yarmi ustma-ust tushadi",
+      "ovoz": "Simmetriya o‘qi bo‘yicha buklasak, ikki yarmi bir-birini roppa-rosa yopadi."
+     },
+     {
+      "doska": "A: to‘rtburchak diagonali — ustma-ust tushmaydi",
+      "ovoz": "To‘g‘ri to‘rtburchakni diagonal bo‘yicha buklasak, burchaklar bir joyga tushmaydi."
+     },
+     {
+      "doska": "C va D: ikki qism har xil",
+      "ovoz": "C da chiziq o‘rtada emas, D da esa ikki bo‘lak har xil shaklda."
+     },
+     {
+      "doska": "B: teng yonli uchburchak — ikki yarmi bir xil",
+      "ovoz": "B da chiziq uchburchakni ikkita bir xil yarmga bo‘ladi."
+     },
+     {
+      "doska": "Javob: B",
+      "ovoz": "Demak, javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi diagonal shaklni ikkita teng qismga bo‘lgani uchun uni simmetriya o‘qi deb o‘ylagan, lekin buklaganda qismlar ustma-ust tushmaydi.",
+     "2": "C ni tanlagan o‘quvchi tik chiziqni ko‘rib tanlagan, lekin u kvadratning o‘rtasidan o‘tmaydi.",
+     "3": "D ni tanlagan o‘quvchi uchidan chiqqan chiziqni simmetriya o‘qi deb o‘ylagan, lekin uchburchakning tomonlari teng emas."
+    },
+    "maslahat": "Shaklni chiziq bo‘ylab fikran buklang: ikki yarmi ustma-ust tushadimi?"
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Nilufar qog‘ozdan to‘rtta shakl qirqdi va ularga shtrix chiziq chizdi. Qaysi shaklda shtrix chiziq simmetriya o‘qi bo‘ladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 255\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"25\" y=\"70\" text-anchor=\"middle\" font-weight=\"bold\">A)</text><polygon points=\"120,20 180,60 120,100 60,60\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"82\" y1=\"27\" x2=\"158\" y2=\"93\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/><text x=\"255\" y=\"70\" text-anchor=\"middle\" font-weight=\"bold\">B)</text><polygon points=\"290,30 400,30 400,90 290,90\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"290\" y1=\"90\" x2=\"400\" y2=\"30\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/><text x=\"25\" y=\"195\" text-anchor=\"middle\" font-weight=\"bold\">C)</text><polygon points=\"85,150 135,150 160,225 60,225\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"110\" y1=\"138\" x2=\"110\" y2=\"237\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/><text x=\"255\" y=\"195\" text-anchor=\"middle\" font-weight=\"bold\">D)</text><polygon points=\"290,225 315,155 405,155 380,225\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"282\" y1=\"190\" x2=\"413\" y2=\"190\" stroke=\"#222\" stroke-dasharray=\"5 4\" stroke-width=\"1.5\"/></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Simmetriya o‘qi: ikki yarmi ustma-ust tushadi",
+      "ovoz": "Har bir shaklni chiziq bo‘ylab fikran buklaymiz."
+     },
+     {
+      "doska": "A: romb, chiziq ikki tomon o‘rtasidan — ustma-ust tushmaydi",
+      "ovoz": "A da buklasak, qiya tomonlar bir-biriga mos kelmaydi."
+     },
+     {
+      "doska": "B: to‘rtburchak diagonali; D: parallelogramm — ustma-ust tushmaydi",
+      "ovoz": "B va D da ham ikki yarmi bir-birini yopmaydi."
+     },
+     {
+      "doska": "C: teng yonli trapetsiya — chap va o‘ng yarmi bir xil",
+      "ovoz": "C da tik chiziq trapetsiyani ikkita bir xil yarmga bo‘ladi."
+     },
+     {
+      "doska": "Javob: C",
+      "ovoz": "Demak, javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi chiziq shaklni teng ikkiga bo‘lgani uchun simmetriya o‘qi deb o‘ylagan.",
+     "1": "B ni tanlagan o‘quvchi diagonalni simmetriya o‘qi deb o‘ylagan.",
+     "3": "D ni tanlagan o‘quvchi parallelogrammning o‘rta chizig‘ini simmetriya o‘qi deb o‘ylagan, lekin buklaganda burchaklar mos kelmaydi."
+    },
+    "maslahat": "Chiziqning bir tomonidagi qism ikkinchi tomondagisining ko‘zgudagi aksimi?"
+   }
+  ]
+ },
+ {
+  "id": "M031155",
+  "kunikma": "Ustunli diagrammadan qiymatlarni o‘qib, ular orasidagi farqni topish",
+  "usul": "Har bir ustun qaysi songacha yetganini shkaladan o‘qing (oraliq chiziqlarga e’tibor bering), keyin kattasidan kichigini ayiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Diagrammada do‘konda bir kunda sotilgan muzqaymoqlar soni ko‘rsatilgan.\nQulupnayli muzqaymoq vanillidan nechta ko‘p sotilgan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 193\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"240\" y=\"20\" text-anchor=\"middle\" font-weight=\"bold\">Sotilgan muzqaymoqlar</text><line x1=\"130\" y1=\"35\" x2=\"130\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"130\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">0</text><line x1=\"155\" y1=\"35\" x2=\"155\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"180\" y1=\"35\" x2=\"180\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"180\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">4</text><line x1=\"205\" y1=\"35\" x2=\"205\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"230\" y1=\"35\" x2=\"230\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"230\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">8</text><line x1=\"255\" y1=\"35\" x2=\"255\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"280\" y1=\"35\" x2=\"280\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"280\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">12</text><line x1=\"305\" y1=\"35\" x2=\"305\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"330\" y1=\"35\" x2=\"330\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"330\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">16</text><line x1=\"355\" y1=\"35\" x2=\"355\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"380\" y1=\"35\" x2=\"380\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"380\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">20</text><line x1=\"405\" y1=\"35\" x2=\"405\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"430\" y1=\"35\" x2=\"430\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"430\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">24</text><rect x=\"130\" y=\"43\" width=\"175\" height=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"122\" y=\"58\" text-anchor=\"end\">shokoladli</text><rect x=\"130\" y=\"77\" width=\"250\" height=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"122\" y=\"92\" text-anchor=\"end\">qulupnayli</text><rect x=\"130\" y=\"111\" width=\"100\" height=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"122\" y=\"126\" text-anchor=\"end\">vanilli</text><line x1=\"130\" y1=\"35\" x2=\"130\" y2=\"147\" stroke=\"#222\"/><line x1=\"130\" y1=\"147\" x2=\"430\" y2=\"147\" stroke=\"#222\"/><text x=\"280\" y=\"183\" text-anchor=\"middle\">Muzqaymoqlar soni</text></g></svg>",
+    "javoblar": [
+     "6 ta ko‘p",
+     "8 ta ko‘p",
+     "20 ta ko‘p",
+     "12 ta ko‘p"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Qulupnayli — 20 ta",
+      "ovoz": "Qulupnayli ustun yigirmagacha yetgan."
+     },
+     {
+      "doska": "Vanilli — 8 ta",
+      "ovoz": "Vanilli ustun sakkizgacha yetgan."
+     },
+     {
+      "doska": "$20 - 8 = 12$",
+      "ovoz": "Yigirmadan sakkizni ayiramiz: o‘n ikki."
+     },
+     {
+      "doska": "Javob: D) 12 ta ko‘p",
+      "ovoz": "Qulupnayli muzqaymoq o‘n ikkita ko‘p sotilgan."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi qulupnayli bilan shokoladlini solishtirgan: $20 - 14 = 6$.",
+     "1": "B ni tanlagan o‘quvchi faqat vanilli muzqaymoq sonini o‘qigan.",
+     "2": "C ni tanlagan o‘quvchi faqat qulupnayli muzqaymoq sonini o‘qigan, ayirmagan."
+    },
+    "maslahat": "Ikkala ustun qaysi songacha yetganini toping va ularni solishtiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Diagrammada sinf kutubxonasidagi kitoblar soni ko‘rsatilgan.\nErtak kitoblari she’r kitoblaridan nechta ko‘p?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 193\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"240\" y=\"20\" text-anchor=\"middle\" font-weight=\"bold\">Sinf kutubxonasi</text><line x1=\"130\" y1=\"35\" x2=\"130\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"130\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">0</text><line x1=\"155\" y1=\"35\" x2=\"155\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"180\" y1=\"35\" x2=\"180\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"180\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">4</text><line x1=\"205\" y1=\"35\" x2=\"205\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"230\" y1=\"35\" x2=\"230\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"230\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">8</text><line x1=\"255\" y1=\"35\" x2=\"255\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"280\" y1=\"35\" x2=\"280\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"280\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">12</text><line x1=\"305\" y1=\"35\" x2=\"305\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"330\" y1=\"35\" x2=\"330\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"330\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">16</text><line x1=\"355\" y1=\"35\" x2=\"355\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"380\" y1=\"35\" x2=\"380\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"380\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">20</text><line x1=\"405\" y1=\"35\" x2=\"405\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"430\" y1=\"35\" x2=\"430\" y2=\"147\" stroke=\"#222\" stroke-width=\"0.9\"/><text x=\"430\" y=\"163\" text-anchor=\"middle\" font-size=\"13\">24</text><rect x=\"130\" y=\"43\" width=\"200\" height=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"122\" y=\"58\" text-anchor=\"end\">ertaklar</text><rect x=\"130\" y=\"77\" width=\"75\" height=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"122\" y=\"92\" text-anchor=\"end\">she’rlar</text><rect x=\"130\" y=\"111\" width=\"150\" height=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"122\" y=\"126\" text-anchor=\"end\">sarguzashtlar</text><line x1=\"130\" y1=\"35\" x2=\"130\" y2=\"147\" stroke=\"#222\"/><line x1=\"130\" y1=\"147\" x2=\"430\" y2=\"147\" stroke=\"#222\"/><text x=\"280\" y=\"183\" text-anchor=\"middle\">Kitoblar soni</text></g></svg>",
+    "javoblar": [
+     "4 ta ko‘p",
+     "6 ta ko‘p",
+     "10 ta ko‘p",
+     "16 ta ko‘p"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Ertaklar — 16 ta",
+      "ovoz": "Ertaklar ustuni o‘n oltigacha yetgan."
+     },
+     {
+      "doska": "She’rlar — 6 ta",
+      "ovoz": "She’rlar ustuni olti chizig‘igacha yetgan."
+     },
+     {
+      "doska": "$16 - 6 = 10$",
+      "ovoz": "O‘n oltidan oltini ayiramiz: o‘n."
+     },
+     {
+      "doska": "Javob: C) 10 ta ko‘p",
+      "ovoz": "Ertak kitoblari o‘nta ko‘p."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi ertaklarni sarguzasht kitoblari bilan solishtirgan: $16 - 12 = 4$.",
+     "1": "B ni tanlagan o‘quvchi faqat she’r kitoblari sonini o‘qigan.",
+     "3": "D ni tanlagan o‘quvchi faqat ertak kitoblari sonini o‘qigan, ayirmagan."
+    },
+    "maslahat": "Har bir ustun uchini pastdagi shkalagacha kuzatib boring."
+   }
+  ]
+ }
+]

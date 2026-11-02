@@ -1,0 +1,1166 @@
+[
+ {
+  "id": "M042260",
+  "kunikma": "Foizlarda berilgan natijalar asosida hodisaning ehtimolini sifat jihatdan (aniq, ehtimoli katta, ehtimoli kam, mumkin emas) baholash",
+  "usul": "Hodisaga mos foizni toping: 100% — aniq, 50% dan ko‘p — ehtimoli katta, 50% dan kam — ehtimoli kam, 0% — mumkin emas.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Dilshod va Sevara maktab o‘quvchilar kengashi raisligiga nomzod bo‘lishdi.\nSaylov natijalari:\nDilshod — 75%\nSevara — 25%\nTasodifan tanlangan bitta o‘quvchi Sevaraga ovoz bergan bo‘lishi qanchalik ehtimolli?",
+    "rasm": null,
+    "javoblar": [
+     "O‘quvchi Sevaraga ovoz bergani aniq.",
+     "O‘quvchi Sevaraga ovoz bermagani aniq.",
+     "O‘quvchi Sevaraga ovoz bergan bo‘lishi ehtimoli katta.",
+     "O‘quvchi Sevaraga ovoz bergan bo‘lishi ehtimoli kam."
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Sevara: 25% = har 4 o‘quvchidan 1 tasi",
+      "ovoz": "Sevaraga o‘quvchilarning yigirma besh foizi, ya’ni har to‘rt kishidan bittasi ovoz bergan."
+     },
+     {
+      "doska": "$0\\% < 25\\% < 50\\%$",
+      "ovoz": "Yigirma besh foiz noldan katta, lekin ellik foizdan kichik."
+     },
+     {
+      "doska": "Mumkin, lekin ehtimoli kam",
+      "ovoz": "Demak, bunday bo‘lishi mumkin, ammo ehtimoli kichik."
+     },
+     {
+      "doska": "Javob: D) ehtimoli kam",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi «ovoz bergan o‘quvchilar bor» degan faktni «aniq» degan ma’no bilan adashtirgan.",
+     "1": "B ni tanlagan o‘quvchi 25% ni juda kichik deb, uni nol bilan tenglashtirgan; aslida Sevaraga ovoz berganlar bor.",
+     "2": "C ni tanlagan o‘quvchi savolni Dilshod haqida deb o‘qib, 75% ga qarab javob bergan."
+    },
+    "maslahat": "Foiz 50% dan katta yoki kichik ekaniga va 0% yoki 100% ga teng emasligiga e’tibor bering."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Bozordagi bir savatda olmalar bor: ularning 85% i qizil, 15% i yashil. Savatdan qaramasdan bitta olma olindi. Olingan olma qizil bo‘lishi qanchalik ehtimolli?",
+    "rasm": null,
+    "javoblar": [
+     "Olma qizil bo‘lmasligi aniq.",
+     "Olma qizil bo‘lishi ehtimoli katta.",
+     "Olma qizil bo‘lishi ehtimoli kam.",
+     "Olma qizil bo‘lishi aniq."
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Qizil: 85%",
+      "ovoz": "Qizil olmalar barcha olmalarning sakson besh foizini tashkil qiladi."
+     },
+     {
+      "doska": "$50\\% < 85\\% < 100\\%$",
+      "ovoz": "Bu ellik foizdan ko‘p, lekin yuz foiz emas, chunki yashil olmalar ham bor."
+     },
+     {
+      "doska": "Qizil bo‘lishi ehtimoli katta, ammo aniq emas",
+      "ovoz": "Demak, olma qizil chiqishi ehtimoli katta, lekin yashil chiqishi ham mumkin."
+     },
+     {
+      "doska": "Javob: B) ehtimoli katta",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi savolni teskari tushungan yoki yashil olmalar foiziga qarab xulosa chiqargan.",
+     "2": "C ni tanlagan o‘quvchi 15% (yashil olmalar) ni qizil olmalarga tegishli deb o‘qigan.",
+     "3": "D ni tanlagan o‘quvchi «ko‘pchilik qizil» ni «hammasi qizil» deb o‘ylagan; 15% yashil olma borligini hisobga olmagan."
+    },
+    "maslahat": "Savatda yashil olma ham borligini unutmang: bu «aniq» degan javobga ta’sir qiladimi?"
+   }
+  ]
+ },
+ {
+  "id": "M042169A",
+  "kunikma": "Berilgan sonlar to‘plamining o‘rta arifmetigini hisoblash",
+  "usul": "Barcha sonlarni qo‘shing va yig‘indini sonlar soniga bo‘ling.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "«Lazzat» choyxonalar tarmog‘ining 5 ta filiali bor. Filiallarda ishlaydigan oshpazlar soni: 6, 9, 13, 17 va 25 kishi.\nBir filialga o‘rtacha nechta oshpaz to‘g‘ri keladi (o‘rta arifmetigini toping)?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "14|14 ta|14 kishi",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$6 + 9 + 13 + 17 + 25 = 70$",
+      "ovoz": "Avval barcha filiallardagi oshpazlarni qo‘shamiz: jami yetmish kishi."
+     },
+     {
+      "doska": "Sonlar soni: 5",
+      "ovoz": "Filiallar soni beshta."
+     },
+     {
+      "doska": "$70 : 5 = 14$",
+      "ovoz": "Yetmishni beshga bo‘lamiz va o‘n to‘rtni olamiz."
+     },
+     {
+      "doska": "Javob: 14",
+      "ovoz": "Demak, o‘rta arifmetik — o‘n to‘rt oshpaz."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar o‘rta arifmetik o‘rniga o‘rtadagi sonni (mediana — 13) yozadi yoki yig‘indini (70) bo‘lishni unutadi."
+    },
+    "maslahat": "O‘rta arifmetik uchun ikki amal kerak: avval qo‘shish, keyin bo‘lish."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Jasur 6 kun davomida bog‘dan har kuni terilgan o‘rik qutilarini sanab bordi: 24, 31, 27, 35, 28 va 23 quti.\nBir kunda o‘rtacha nechta quti o‘rik terilgan (o‘rta arifmetigini toping)?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "28|28 ta|28 quti",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$24 + 31 + 27 + 35 + 28 + 23 = 168$",
+      "ovoz": "Olti kundagi qutilarni qo‘shamiz: bir yuz oltmish sakkiz quti."
+     },
+     {
+      "doska": "Kunlar soni: 6",
+      "ovoz": "Sonlar oltita, chunki olti kun kuzatilgan."
+     },
+     {
+      "doska": "$168 : 6 = 28$",
+      "ovoz": "Bir yuz oltmish sakkizni oltiga bo‘lamiz — yigirma sakkiz."
+     },
+     {
+      "doska": "Javob: 28",
+      "ovoz": "O‘rtacha bir kunda yigirma sakkiz quti terilgan."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Tipik xato — yig‘indini 6 ga emas, 5 ga bo‘lish (33,6) yoki o‘rta arifmetikni mediana (27,5) bilan adashtirish."
+    },
+    "maslahat": "Nechta kun kuzatilganini sanab, yig‘indini aynan shu songa bo‘ling."
+   }
+  ]
+ },
+ {
+  "id": "M042169B",
+  "kunikma": "Berilgan sonlar to‘plamining medianasini topish",
+  "usul": "Sonlarni o‘sish tartibida joylashtiring; sonlar soni toq bo‘lsa, aynan o‘rtada turgan son mediana bo‘ladi.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Maktab sport to‘garaklariga qatnashuvchi o‘quvchilar soni: futbol — 16, shaxmat — 9, kurash — 23, suzish — 12, voleybol — 30.\nTo‘garaklardagi o‘quvchilar sonining medianasini toping.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "16|16 ta",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "9, 12, 16, 23, 30",
+      "ovoz": "Avval sonlarni kichigidan kattasiga qarab tartiblaymiz."
+     },
+     {
+      "doska": "Sonlar soni 5 ta — o‘rtadagisi 3-o‘rinda",
+      "ovoz": "Beshta son bor, demak o‘rtadagi son uchinchi o‘rinda turadi."
+     },
+     {
+      "doska": "Mediana $= 16$",
+      "ovoz": "Uchinchi o‘rinda o‘n olti turibdi."
+     },
+     {
+      "doska": "Javob: 16",
+      "ovoz": "Demak, mediana — o‘n olti."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — sonlarni tartiblamasdan ro‘yxatdagi o‘rtadagi sonni (23) olish yoki mediana o‘rniga o‘rta arifmetikni (18) hisoblash."
+    },
+    "maslahat": "Mediana topishdan oldin sonlarni albatta tartibga keltiring."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Chorsu bozoridagi 7 ta rastada bir kunda sotilgan qovunlar soni: 42, 35, 58, 27, 61, 39 va 50.\nSotilgan qovunlar sonining medianasini toping.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "42|42 ta",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "27, 35, 39, 42, 50, 58, 61",
+      "ovoz": "Sonlarni o‘sish tartibida yozib chiqamiz."
+     },
+     {
+      "doska": "Sonlar soni 7 ta — o‘rtadagisi 4-o‘rinda",
+      "ovoz": "Yettita son bor, o‘rtadagisi to‘rtinchi o‘rinda: undan oldin uchta, keyin uchta son."
+     },
+     {
+      "doska": "Mediana $= 42$",
+      "ovoz": "To‘rtinchi o‘rinda qirq ikki turibdi."
+     },
+     {
+      "doska": "Javob: 42",
+      "ovoz": "Mediana — qirq ikki."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Tipik xato — sonlarni tartiblamasdan ro‘yxat o‘rtasidagi sonni (27) olish yoki o‘rta arifmetikni (44,57...) hisoblash."
+    },
+    "maslahat": "Avval tartiblang, keyin chapdan va o‘ngdan bir xil miqdordagi son qoladigan o‘rinni toping."
+   }
+  ]
+ },
+ {
+  "id": "M042169C",
+  "kunikma": "To‘plamdagi chetki qiymat o‘zgarganda o‘rta arifmetik va mediananing qanday o‘zgarishini tushunish",
+  "usul": "Mediana faqat o‘rtadagi songa bog‘liq: eng katta yoki eng kichik son o‘zgarib, tartib buzilmasa, mediana o‘zgarmaydi. O‘rta arifmetik esa yig‘indiga bog‘liq, shuning uchun har qanday son o‘zgarsa, u ham o‘zgaradi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Beshta qishloq maktabida o‘qituvchilar soni: 14, 17, 20, 23 va 26 kishi.\nAgar 26 ta o‘qituvchisi bor maktabda o‘qituvchilar soni 46 taga ko‘paysa, o‘rta arifmetik va mediana qanday o‘zgaradi?",
+    "rasm": null,
+    "javoblar": [
+     "Ikkalasi ham ortadi.",
+     "O‘rta arifmetik ortadi, mediana o‘zgarmaydi.",
+     "Mediana ortadi, o‘rta arifmetik o‘zgarmaydi.",
+     "Ikkalasi ham o‘zgarmaydi."
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Avval: o‘rta arifmetik $= 100 : 5 = 20$, mediana $= 20$",
+      "ovoz": "Dastlab yig‘indi yuz, o‘rta arifmetik yigirma; o‘rtadagi son ham yigirma."
+     },
+     {
+      "doska": "Keyin: 14, 17, 20, 23, 46",
+      "ovoz": "Eng katta son qirq oltiga aylandi, lekin u baribir oxirida turadi."
+     },
+     {
+      "doska": "Mediana $= 20$ — o‘zgarmadi",
+      "ovoz": "O‘rtadagi son hamon yigirma, demak mediana o‘zgarmaydi."
+     },
+     {
+      "doska": "O‘rta arifmetik $= 120 : 5 = 24$ — ortdi",
+      "ovoz": "Yig‘indi bir yuz yigirmaga yetdi, o‘rta arifmetik yigirma to‘rt bo‘ldi."
+     },
+     {
+      "doska": "Javob: B)",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi bitta son ortsa, barcha o‘rta qiymatlar ortadi deb o‘ylagan; mediana faqat o‘rtadagi songa bog‘liq ekanini hisobga olmagan.",
+     "2": "C ni tanlagan o‘quvchi mediana va o‘rta arifmetikning ta’riflarini almashtirib yuborgan.",
+     "3": "D ni tanlagan o‘quvchi faqat medianaga qarab, yig‘indi o‘zgarishini e’tiborsiz qoldirgan."
+    },
+    "maslahat": "O‘zgargan son o‘rtadagi o‘rinda turadimi yoki chetdami — shunga qarang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Nilufar besh oy davomida kutubxonadan olgan kitoblari sonini yozib bordi: 8, 15, 18, 22 va 27 ta.\nAgar 8 ta deb yozilgan oyda aslida atigi 2 ta kitob olingani aniqlansa, o‘rta arifmetik va mediana qanday o‘zgaradi?",
+    "rasm": null,
+    "javoblar": [
+     "Ikkalasi ham kamayadi.",
+     "Mediana kamayadi, o‘rta arifmetik o‘zgarmaydi.",
+     "O‘rta arifmetik kamayadi, mediana o‘zgarmaydi.",
+     "O‘rta arifmetik ortadi, mediana kamayadi."
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Avval: o‘rta arifmetik $= 90 : 5 = 18$, mediana $= 18$",
+      "ovoz": "Dastlab yig‘indi to‘qson, o‘rta arifmetik o‘n sakkiz, o‘rtadagi son ham o‘n sakkiz."
+     },
+     {
+      "doska": "Keyin: 2, 15, 18, 22, 27",
+      "ovoz": "Eng kichik son ikkiga tushdi, lekin u baribir birinchi o‘rinda."
+     },
+     {
+      "doska": "Mediana $= 18$ — o‘zgarmadi",
+      "ovoz": "O‘rtadagi son hamon o‘n sakkiz."
+     },
+     {
+      "doska": "O‘rta arifmetik $= 84 : 5 = 16{,}8$ — kamaydi",
+      "ovoz": "Yig‘indi sakson to‘rt bo‘ldi, o‘rta arifmetik o‘n olti butun o‘ndan sakkizga kamaydi."
+     },
+     {
+      "doska": "Javob: C)",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi bitta son kamaysa, mediana ham kamayadi deb o‘ylagan; o‘rtadagi son o‘zgarmaganini tekshirmagan.",
+     "1": "B ni tanlagan o‘quvchi mediana va o‘rta arifmetikni adashtirgan.",
+     "3": "D ni tanlagan o‘quvchi o‘zgarish yo‘nalishini teskari tushungan: son kamaygani uchun yig‘indi ham kamayadi."
+    },
+    "maslahat": "Yig‘indi qanday o‘zgaradi va o‘rtadagi son o‘z joyida qoladimi — ikkalasini alohida tekshiring."
+   }
+  ]
+ },
+ {
+  "id": "M032352",
+  "kunikma": "Jadvaldagi ikki kattalik orasidagi to‘g‘ri proporsional bog‘lanishni aniqlab, yangi qiymatni topish",
+  "usul": "Jadvaldagi har bir juftlik uchun ikkinchi sonning birinchisiga nisbatini toping; nisbat o‘zgarmas bo‘lsa, yangi qiymatni shu nisbatga ko‘paytiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Jadvalda ertalab soat 9 da turli balandlikdagi to‘rtta daraxt nihollari soyasining uzunligi berilgan. Shu vaqtda balandligi 75 sm bo‘lgan nihol soyasining uzunligi qancha?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 190\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"20\" y=\"10\" width=\"300\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"95\" y=\"30.5\" text-anchor=\"middle\">Nihol balandligi</text><text x=\"95\" y=\"47.5\" text-anchor=\"middle\">(sm)</text><text x=\"245\" y=\"30.5\" text-anchor=\"middle\">Soya uzunligi</text><text x=\"245\" y=\"47.5\" text-anchor=\"middle\">(sm)</text><rect x=\"20\" y=\"58\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"78\" text-anchor=\"middle\">30</text><text x=\"245\" y=\"78\" text-anchor=\"middle\">18</text><rect x=\"20\" y=\"88\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"108\" text-anchor=\"middle\">60</text><text x=\"245\" y=\"108\" text-anchor=\"middle\">36</text><rect x=\"20\" y=\"118\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"138\" text-anchor=\"middle\">90</text><text x=\"245\" y=\"138\" text-anchor=\"middle\">54</text><rect x=\"20\" y=\"148\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"168\" text-anchor=\"middle\">120</text><text x=\"245\" y=\"168\" text-anchor=\"middle\">72</text><line x1=\"170\" y1=\"10\" x2=\"170\" y2=\"178\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "37,5 sm",
+     "45 sm",
+     "54 sm",
+     "63 sm"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$18 : 30 = 0{,}6$;  $36 : 60 = 0{,}6$",
+      "ovoz": "Soya uzunligini nihol balandligiga bo‘lamiz: har safar nol butun o‘ndan olti chiqadi."
+     },
+     {
+      "doska": "Soya $= 0{,}6 \\cdot$ balandlik",
+      "ovoz": "Demak, soya har doim balandlikning nol butun o‘ndan olti qismiga teng."
+     },
+     {
+      "doska": "$0{,}6 \\cdot 75 = 45$",
+      "ovoz": "Yetmish beshni nol butun o‘ndan oltiga ko‘paytiramiz: qirq besh."
+     },
+     {
+      "doska": "Javob: B) 45 sm",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi soya balandlikning yarmiga teng deb taxmin qilgan va jadvalni tekshirmagan.",
+     "2": "C ni tanlagan o‘quvchi 75 ni jadvaldagi eng yaqin kattaroq qiymat — 90 ga almashtirib, uning soyasini olgan.",
+     "3": "D ni tanlagan o‘quvchi ayirma o‘zgarmas deb o‘ylagan: $30 - 18 = 12$, so‘ng $75 - 12 = 63$; lekin boshqa qatorlarda ayirma boshqacha."
+    },
+    "maslahat": "Soya uzunligi balandlikning qanday qismini tashkil qilishini birinchi qatordan toping va boshqa qatorlarda tekshiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Jadvalda bozorda sotilayotgan guruchning massasi va narxi berilgan. Shu narxda 5 kg guruch necha ming so‘m turadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 190\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"20\" y=\"10\" width=\"300\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"95\" y=\"30.5\" text-anchor=\"middle\">Guruch massasi</text><text x=\"95\" y=\"47.5\" text-anchor=\"middle\">(kg)</text><text x=\"245\" y=\"30.5\" text-anchor=\"middle\">Narxi</text><text x=\"245\" y=\"47.5\" text-anchor=\"middle\">(ming so‘m)</text><rect x=\"20\" y=\"58\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"78\" text-anchor=\"middle\">2</text><text x=\"245\" y=\"78\" text-anchor=\"middle\">36</text><rect x=\"20\" y=\"88\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"108\" text-anchor=\"middle\">4</text><text x=\"245\" y=\"108\" text-anchor=\"middle\">72</text><rect x=\"20\" y=\"118\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"138\" text-anchor=\"middle\">6</text><text x=\"245\" y=\"138\" text-anchor=\"middle\">108</text><rect x=\"20\" y=\"148\" width=\"300\" height=\"30\" fill=\"none\" stroke=\"#222\"/><text x=\"95\" y=\"168\" text-anchor=\"middle\">8</text><text x=\"245\" y=\"168\" text-anchor=\"middle\">144</text><line x1=\"170\" y1=\"10\" x2=\"170\" y2=\"178\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "39 ming so‘m",
+     "72 ming so‘m",
+     "90 ming so‘m",
+     "108 ming so‘m"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$36 : 2 = 18$;  $72 : 4 = 18$",
+      "ovoz": "Narxni massaga bo‘lamiz: har safar o‘n sakkiz chiqadi."
+     },
+     {
+      "doska": "1 kg $= 18$ ming so‘m",
+      "ovoz": "Demak, bir kilogramm guruch o‘n sakkiz ming so‘m."
+     },
+     {
+      "doska": "$18 \\cdot 5 = 90$",
+      "ovoz": "Besh kilogramm uchun o‘n sakkizni beshga ko‘paytiramiz: to‘qson."
+     },
+     {
+      "doska": "Javob: C) 90 ming so‘m",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi ayirma o‘zgarmas deb o‘ylagan: $36 - 2 = 34$, so‘ng $5 + 34 = 39$.",
+     "1": "B ni tanlagan o‘quvchi 5 kg ni jadvaldagi 4 kg ga yaxlitlab, uning narxini olgan.",
+     "3": "D ni tanlagan o‘quvchi 5 kg ni 6 kg ga yaxlitlab, jadvaldagi tayyor qiymatni olgan."
+    },
+    "maslahat": "Avval 1 kg guruch qancha turishini toping."
+   }
+  ]
+ },
+ {
+  "id": "M032725",
+  "kunikma": "Aralash sonni o‘nli kasrga aylantirish va natijani yuzdan birlargacha yaxlitlash",
+  "usul": "Kasr qismining suratini maxrajiga bo‘lib, o‘nli kasr hosil qiling, so‘ng uchinchi raqamga qarab yuzdan birlargacha yaxlitlang va butun qismni qo‘shing.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "$6\\frac{1}{6}$ sonini o‘nli kasr ko‘rinishida yozing va yuzdan birlargacha yaxlitlang.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "6,17|6.17",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$\\frac{1}{6} = 1 : 6 = 0{,}1666\\ldots$",
+      "ovoz": "Kasr qismini o‘nli kasrga aylantiramiz: birni oltiga bo‘lsak, nol butun bir yuz oltmish olti va hokazo chiqadi."
+     },
+     {
+      "doska": "$6\\frac{1}{6} = 6{,}1666\\ldots$",
+      "ovoz": "Butun qism oltini qo‘shamiz."
+     },
+     {
+      "doska": "Uchinchi raqam $6 \\geq 5$  $\\Rightarrow$  $6{,}17$",
+      "ovoz": "Yuzdan birdan keyingi raqam olti, u beshdan katta, shuning uchun yuqoriga yaxlitlaymiz."
+     },
+     {
+      "doska": "Javob: 6,17",
+      "ovoz": "Demak, javob — olti butun yuzdan o‘n yetti."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Tipik xatolar: kasrni suratu maxrajni yonma-yon yozib 6,16 deb olish (1 va 6), yoki yaxlitlamay 6,16 deb qoldirish."
+    },
+    "maslahat": "Kasr chizig‘i bo‘lish amalini bildiradi: suratni maxrajga bo‘ling."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "$5\\frac{5}{12}$ sonini o‘nli kasr ko‘rinishida yozing va yuzdan birlargacha yaxlitlang.",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "5,42|5.42",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$\\frac{5}{12} = 5 : 12 = 0{,}41666\\ldots$",
+      "ovoz": "Beshni o‘n ikkiga bo‘lamiz: nol butun to‘rt yuz o‘n olti va hokazo."
+     },
+     {
+      "doska": "$5\\frac{5}{12} = 5{,}41666\\ldots$",
+      "ovoz": "Butun qism beshni qo‘shamiz."
+     },
+     {
+      "doska": "Uchinchi raqam $6 \\geq 5$  $\\Rightarrow$  $5{,}42$",
+      "ovoz": "Yuzdan birdan keyingi raqam olti, shuning uchun yuzdan birlar xonasini bittaga oshiramiz."
+     },
+     {
+      "doska": "Javob: 5,42",
+      "ovoz": "Javob — besh butun yuzdan qirq ikki."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Tipik xatolar: surat va maxrajni ketma-ket yozib 5,512 yoki 5,51 deb olish, yoki yaxlitlamasdan 5,41 deb yozish."
+    },
+    "maslahat": "Avval $5 : 12$ ni kamida uch xonagacha hisoblang, keyin yaxlitlang."
+   }
+  ]
+ },
+ {
+  "id": "M032683",
+  "kunikma": "Maxrajlari har xil bo‘lgan algebraik kasrlarni umumiy maxrajga keltirib qo‘shish va ifodani soddalashtirish",
+  "usul": "Maxrajlarning eng kichik umumiy karralisini toping, har bir kasrni shu maxrajga keltiring (suratini ham mos songa ko‘paytiring), so‘ng suratlarni qo‘shing va kasrni qisqartiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "$\\frac{3a}{10} + \\frac{a}{4} + \\frac{a}{5}$ ifodani soddalashtiring.",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{5a}{19}$",
+     "$\\frac{3a}{4}$",
+     "$\\frac{a}{4}$",
+     "$\\frac{3a}{200}$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Umumiy maxraj: 20",
+      "ovoz": "O‘n, to‘rt va beshning eng kichik umumiy karralisi — yigirma."
+     },
+     {
+      "doska": "$\\frac{6a}{20} + \\frac{5a}{20} + \\frac{4a}{20}$",
+      "ovoz": "Har bir kasrni yigirma maxrajga keltiramiz: suratlarni ikkiga, beshga va to‘rtga ko‘paytiramiz."
+     },
+     {
+      "doska": "$= \\frac{15a}{20}$",
+      "ovoz": "Suratlarni qo‘shamiz: olti, besh va to‘rt — o‘n besh."
+     },
+     {
+      "doska": "$= \\frac{3a}{4}$",
+      "ovoz": "Surat va maxrajni beshga qisqartiramiz."
+     },
+     {
+      "doska": "Javob: B) $\\frac{3a}{4}$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi suratlarni alohida, maxrajlarni alohida qo‘shgan: $3+1+1=5$, $10+4+5=19$ — bu qoida noto‘g‘ri.",
+     "2": "C ni tanlagan o‘quvchi umumiy maxrajni topgan, ammo suratlarni ko‘paytirmagan: $\\frac{3a+a+a}{20} = \\frac{5a}{20}$.",
+     "3": "D ni tanlagan o‘quvchi kasrlarni qo‘shish o‘rniga ko‘paytirib, surat va maxrajlarni ko‘paytirgan."
+    },
+    "maslahat": "Kasrlarni qo‘shishdan oldin ularni bir xil maxrajga keltiring — maxrajlar qo‘shilmaydi."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "$\\frac{5b}{6} + \\frac{b}{3} + \\frac{b}{4}$ ifodani soddalashtiring.",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{7b}{12}$",
+     "$\\frac{5b}{72}$",
+     "$\\frac{7b}{13}$",
+     "$\\frac{17b}{12}$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Umumiy maxraj: 12",
+      "ovoz": "Olti, uch va to‘rtning eng kichik umumiy karralisi — o‘n ikki."
+     },
+     {
+      "doska": "$\\frac{10b}{12} + \\frac{4b}{12} + \\frac{3b}{12}$",
+      "ovoz": "Suratlarni mos ravishda ikkiga, to‘rtga va uchga ko‘paytiramiz."
+     },
+     {
+      "doska": "$= \\frac{17b}{12}$",
+      "ovoz": "Suratlarni qo‘shamiz: o‘n, to‘rt va uch — o‘n yetti."
+     },
+     {
+      "doska": "$\\frac{17b}{12} = 1\\frac{5}{12}b$ — qisqarmaydi",
+      "ovoz": "O‘n yetti va o‘n ikki umumiy bo‘luvchiga ega emas, kasr qisqarmaydi."
+     },
+     {
+      "doska": "Javob: D) $\\frac{17b}{12}$",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi umumiy maxrajni topgan, lekin suratlarni ko‘paytirmasdan qo‘shgan: $5b+b+b=7b$.",
+     "1": "B ni tanlagan o‘quvchi kasrlarni qo‘shish o‘rniga surat va maxrajlarni ko‘paytirib yuborgan.",
+     "2": "C ni tanlagan o‘quvchi suratlarni suratlarga, maxrajlarni maxrajlarga qo‘shgan: $\\frac{7b}{13}$."
+    },
+    "maslahat": "Har bir kasrning maxraji umumiy maxrajga keltirilganda, surati ham shuncha marta ortishi kerak."
+   }
+  ]
+ },
+ {
+  "id": "M032738",
+  "kunikma": "Harfiy ifoda yozuvini amallar ketma-ketligi bo‘yicha so‘z bilan to‘g‘ri talqin qilish",
+  "usul": "Harflar yonma-yon yozilsa ko‘paytirish, kasr chizig‘i bo‘lishni bildiradi; avval ko‘paytirish/bo‘lish, keyin qo‘shish/ayirish bajariladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "$ab - 5$ ifodasi nimani bildiradi?",
+    "rasm": null,
+    "javoblar": [
+     "$b$ dan 5 ni ayirib, natijani $a$ ga ko‘paytirish.",
+     "$a$ ni 5 ga ko‘paytirib, $b$ ni ayirish.",
+     "$a$ ni $b$ ga ko‘paytirib, natijadan 5 ni ayirish.",
+     "$a$ ga $b$ ni qo‘shib, natijadan 5 ni ayirish."
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$ab = a \\cdot b$",
+      "ovoz": "Harflar yonma-yon yozilsa, ular ko‘paytiriladi: a ko‘paytirish b."
+     },
+     {
+      "doska": "Avval ko‘paytirish, keyin ayirish",
+      "ovoz": "Amallar tartibiga ko‘ra avval ko‘paytiramiz, so‘ng ayiramiz."
+     },
+     {
+      "doska": "$ab - 5 = (a \\cdot b) - 5$",
+      "ovoz": "Demak, a ni b ga ko‘paytirib, natijadan beshni ayiramiz."
+     },
+     {
+      "doska": "Javob: C)",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi amallar tartibini buzgan: ayirishni ko‘paytirishdan oldin bajargan, ya’ni $a(b-5)$ deb tushungan.",
+     "1": "B ni tanlagan o‘quvchi harflar va sonlar o‘rnini almashtirib, $5a - b$ ifodasini tasvirlagan.",
+     "3": "D ni tanlagan o‘quvchi yonma-yon yozilgan harflarni qo‘shish deb o‘ylagan: $a + b - 5$."
+    },
+    "maslahat": "Ikki harf orasida hech qanday belgi bo‘lmasa, qaysi amal tushiriladi?"
+   },
+   {
+    "turi": "tanlov",
+    "savol": "$\\frac{p}{q} + 3$ ifodasi nimani bildiradi?",
+    "rasm": null,
+    "javoblar": [
+     "$p$ ni $q$ ga bo‘lib, natijaga 3 ni qo‘shish.",
+     "$q$ ga 3 ni qo‘shib, $p$ ni shu yig‘indiga bo‘lish.",
+     "$p$ ga 3 ni qo‘shib, natijani $q$ ga bo‘lish.",
+     "$q$ ni $p$ ga bo‘lib, natijaga 3 ni qo‘shish."
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$\\frac{p}{q} = p : q$",
+      "ovoz": "Kasr chizig‘i bo‘lishni bildiradi: surat p maxraj q ga bo‘linadi."
+     },
+     {
+      "doska": "Avval bo‘lish, keyin qo‘shish",
+      "ovoz": "Uch kasrning tashqarisida turibdi, shuning uchun u bo‘linmaga qo‘shiladi."
+     },
+     {
+      "doska": "$\\frac{p}{q} + 3 = (p : q) + 3$",
+      "ovoz": "Demak, p ni q ga bo‘lib, natijaga uchni qo‘shamiz."
+     },
+     {
+      "doska": "Javob: A)",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi 3 ni maxrajga qo‘shib, $\\frac{p}{q+3}$ deb tushungan.",
+     "2": "C ni tanlagan o‘quvchi 3 ni suratga qo‘shib, $\\frac{p+3}{q}$ deb tushungan.",
+     "3": "D ni tanlagan o‘quvchi bo‘linuvchi va bo‘luvchini almashtirib yuborgan."
+    },
+    "maslahat": "3 soni kasr chizig‘ining ustida ham, ostida ham emas — u qayerga qo‘shiladi?"
+   }
+  ]
+ },
+ {
+  "id": "M032295",
+  "kunikma": "Matnli vaziyatni ikki o‘zgaruvchili harfiy ifoda bilan modellashtirish",
+  "usul": "Avval jami nechta obyekt borligini ($a + b$) toping, so‘ng har biriga to‘g‘ri keladigan miqdorga ko‘paytiring; qavsni unutmang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Choyxonada $a$ ta katta va $b$ ta kichik stol bor. Har bir stol atrofida 4 tadan stul turibdi. Quyidagi ifodalardan qaysi biri choyxonadagi stullarning umumiy sonini ifodalaydi?",
+    "rasm": null,
+    "javoblar": [
+     "$4 + (a + b)$",
+     "$4a + b$",
+     "$a + 4b$",
+     "$4(a + b)$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Stollar soni: $a + b$",
+      "ovoz": "Avval jami stollar sonini topamiz: a qo‘shish b."
+     },
+     {
+      "doska": "Har stolda 4 ta stul",
+      "ovoz": "Har bir stolda to‘rttadan stul bor."
+     },
+     {
+      "doska": "Stullar: $4 \\cdot (a + b) = 4(a + b)$",
+      "ovoz": "Demak, stollar sonini to‘rtga ko‘paytiramiz."
+     },
+     {
+      "doska": "Javob: D) $4(a + b)$",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi ko‘paytirish o‘rniga qo‘shishni ishlatgan.",
+     "1": "B ni tanlagan o‘quvchi faqat katta stollarga 4 tadan stul hisoblagan, kichik stollardagi stullarni unutgan.",
+     "2": "C ni tanlagan o‘quvchi faqat kichik stollarni 4 ga ko‘paytirgan, katta stollarni bittadan hisoblagan."
+    },
+    "maslahat": "Avval jami stollar sonini bitta ifoda bilan yozing."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Sinfda $p$ ta o‘g‘il bola va $q$ ta qiz bola bor. Har bir o‘quvchiga 3 tadan daftar berildi. Quyidagi ifodalardan qaysi biri berilgan daftarlarning umumiy sonini ifodalaydi?",
+    "rasm": null,
+    "javoblar": [
+     "$3p + q$",
+     "$3(p + q)$",
+     "$3 + (p + q)$",
+     "$p + 3q$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "O‘quvchilar soni: $p + q$",
+      "ovoz": "Sinfdagi jami o‘quvchilar: p qo‘shish q."
+     },
+     {
+      "doska": "Har o‘quvchiga 3 ta daftar",
+      "ovoz": "Har biri uchtadan daftar oldi."
+     },
+     {
+      "doska": "Daftarlar: $3(p + q)$",
+      "ovoz": "Jami o‘quvchilar sonini uchga ko‘paytiramiz, buning uchun qavs kerak."
+     },
+     {
+      "doska": "Javob: B) $3(p + q)$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi qavsni qo‘ymagan: faqat o‘g‘il bolalarni 3 ga ko‘paytirgan.",
+     "2": "C ni tanlagan o‘quvchi ko‘paytirish o‘rniga 3 ni qo‘shgan.",
+     "3": "D ni tanlagan o‘quvchi faqat qiz bolalarga 3 tadan daftar hisoblagan."
+    },
+    "maslahat": "3 soni kimlarga tegishli — faqat o‘g‘il bolalargami yoki hammagami?"
+   }
+  ]
+ },
+ {
+  "id": "M032331",
+  "kunikma": "Vaqt oralig‘ini topib, soat minut strelkasining burilish burchagini gradusda hisoblash",
+  "usul": "Ikki vaqt orasidagi minutlarni toping; minut strelkasi 60 minutda 360°, ya’ni har minutda 6° ga buriladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Soatning minut strelkasi bir kunning o‘zida soat 9:15 dan 10:50 gacha necha gradusga buriladi?",
+    "rasm": null,
+    "javoblar": [
+     "210°",
+     "475°",
+     "486°",
+     "570°"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "9:15 dan 10:15 gacha — 60 min",
+      "ovoz": "To‘qqiz o‘n beshdan o‘n o‘n beshgacha bir soat, ya’ni oltmish minut."
+     },
+     {
+      "doska": "10:15 dan 10:50 gacha — 35 min",
+      "ovoz": "Yana o‘ttiz besh minut qo‘shiladi."
+     },
+     {
+      "doska": "Jami: $60 + 35 = 95$ min",
+      "ovoz": "Jami to‘qson besh minut o‘tdi."
+     },
+     {
+      "doska": "$360° : 60 = 6°$ — har minutda",
+      "ovoz": "Minut strelkasi bir minutda olti gradusga buriladi."
+     },
+     {
+      "doska": "$95 \\cdot 6° = 570°$",
+      "ovoz": "To‘qson beshni oltiga ko‘paytiramiz: besh yuz yetmish gradus."
+     },
+     {
+      "doska": "Javob: D) 570°",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat 35 minutni hisoblab ($35 \\cdot 6 = 210$), to‘liq bir soatlik aylanishni unutgan.",
+     "1": "B ni tanlagan o‘quvchi minut strelkasi har minutda 5° ga buriladi deb o‘ylagan: $95 \\cdot 5 = 475$.",
+     "2": "C ni tanlagan o‘quvchi 1 soat 35 minutni 1,35 soat deb olib, $1{,}35 \\cdot 360 = 486$ ni hisoblagan."
+    },
+    "maslahat": "Avval o‘tgan vaqtni faqat minutlarda ifodalang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Soatning minut strelkasi bir kunning o‘zida soat 7:40 dan 9:10 gacha necha gradusga buriladi?",
+    "rasm": null,
+    "javoblar": [
+     "180°",
+     "468°",
+     "540°",
+     "900°"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "7:40 dan 8:00 gacha — 20 min",
+      "ovoz": "Yetti qirqdan sakkizgacha yigirma minut."
+     },
+     {
+      "doska": "8:00 dan 9:10 gacha — 70 min",
+      "ovoz": "Sakkizdan to‘qqiz o‘ngacha yetmish minut."
+     },
+     {
+      "doska": "Jami: $20 + 70 = 90$ min",
+      "ovoz": "Jami to‘qson minut o‘tdi."
+     },
+     {
+      "doska": "$90 \\cdot 6° = 540°$",
+      "ovoz": "Har minutda olti gradus, demak to‘qson minutda besh yuz qirq gradus."
+     },
+     {
+      "doska": "Javob: C) 540°",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat 30 minutni hisoblagan va to‘liq aylanishni qo‘shmagan: $30 \\cdot 6 = 180$.",
+     "1": "B ni tanlagan o‘quvchi 1 soat 30 minutni 1,30 soat deb olib, $1{,}3 \\cdot 360 = 468$ ni hisoblagan.",
+     "3": "D ni tanlagan o‘quvchi vaqtlarni noto‘g‘ri ayirib, 2 soat 30 minut (150 minut) deb topgan: $150 \\cdot 6 = 900$."
+    },
+    "maslahat": "Butun soatgacha qolgan minutlarni alohida sanab chiqing."
+   }
+  ]
+ },
+ {
+  "id": "M032623",
+  "kunikma": "Murakkab shaklning yuzini to‘g‘ri to‘rtburchak yuzidan to‘g‘ri burchakli uchburchak yuzini ayirish orqali topish",
+  "usul": "Butun to‘g‘ri to‘rtburchak yuzini hisoblang, bo‘yalmagan to‘g‘ri burchakli uchburchak yuzini (katetlar ko‘paytmasining yarmi) toping va ayiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Rasmda to‘g‘ri to‘rtburchak tasvirlangan. Uning bo‘yalgan (rangli) qismining yuzi necha kvadrat santimetr?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 178\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"50\" y=\"40\" width=\"360\" height=\"108\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"50,40 410,40 410,148 212,148\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"230\" y=\"28\" text-anchor=\"middle\">20 sm</text><text x=\"42\" y=\"99\" text-anchor=\"end\">6 sm</text><text x=\"131\" y=\"170\" text-anchor=\"middle\">9 sm</text><line x1=\"50\" y1=\"156\" x2=\"212\" y2=\"156\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "27",
+     "54",
+     "66",
+     "93"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$S_{\\text{to‘rtb.}} = 20 \\cdot 6 = 120$ sm²",
+      "ovoz": "Avval butun to‘g‘ri to‘rtburchak yuzini topamiz: yigirmani oltiga ko‘paytirsak bir yuz yigirma."
+     },
+     {
+      "doska": "$S_{\\text{uchb.}} = \\frac{6 \\cdot 9}{2} = 27$ sm²",
+      "ovoz": "Bo‘yalmagan qism — katetlari olti va to‘qqiz bo‘lgan to‘g‘ri burchakli uchburchak, yuzi yigirma yetti."
+     },
+     {
+      "doska": "$120 - 27 = 93$ sm²",
+      "ovoz": "Butun yuzdan uchburchak yuzini ayiramiz: to‘qson uch."
+     },
+     {
+      "doska": "Javob: D) 93",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi bo‘yalmagan uchburchakning yuzini topib, shu bilan to‘xtagan.",
+     "1": "B ni tanlagan o‘quvchi uchburchak yuzini hisoblashda 2 ga bo‘lishni unutgan: $6 \\cdot 9 = 54$.",
+     "2": "C ni tanlagan o‘quvchi uchburchak yuzini 2 ga bo‘lmasdan ayirgan: $120 - 54 = 66$."
+    },
+    "maslahat": "Bo‘yalgan qism = butun shakl − bo‘yalmagan qism."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Rasmda to‘g‘ri to‘rtburchak tasvirlangan. Uning bo‘yalgan (rangli) qismining yuzi necha kvadrat santimetr?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 270\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"50\" y=\"40\" width=\"240\" height=\"200\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"50,40 150,40 290,240 50,240\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"220\" y=\"28\" text-anchor=\"middle\">7 sm</text><line x1=\"150\" y1=\"32\" x2=\"290\" y2=\"32\" stroke=\"#222\"/><text x=\"170\" y=\"262\" text-anchor=\"middle\">12 sm</text><text x=\"42\" y=\"145\" text-anchor=\"end\">10 sm</text></g></svg>",
+    "javoblar": [
+     "85",
+     "70",
+     "50",
+     "35"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$S_{\\text{to‘rtb.}} = 12 \\cdot 10 = 120$ sm²",
+      "ovoz": "Butun to‘g‘ri to‘rtburchak yuzi: o‘n ikkini o‘nga ko‘paytirsak bir yuz yigirma."
+     },
+     {
+      "doska": "$S_{\\text{uchb.}} = \\frac{10 \\cdot 7}{2} = 35$ sm²",
+      "ovoz": "O‘ng burchakdagi bo‘yalmagan uchburchakning katetlari o‘n va yetti, yuzi o‘ttiz besh."
+     },
+     {
+      "doska": "$120 - 35 = 85$ sm²",
+      "ovoz": "Ayiramiz: sakson besh."
+     },
+     {
+      "doska": "Javob: A) 85",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi uchburchak yuzini 2 ga bo‘lmasdan hisoblagan: $10 \\cdot 7 = 70$.",
+     "2": "C ni tanlagan o‘quvchi uchburchak yuzini 2 ga bo‘lmasdan ayirgan: $120 - 70 = 50$.",
+     "3": "D ni tanlagan o‘quvchi bo‘yalmagan uchburchakning yuzini javob deb olgan."
+    },
+    "maslahat": "To‘g‘ri burchakli uchburchakning yuzi qaysi to‘g‘ri to‘rtburchak yuzining yarmiga teng ekanini eslang."
+   }
+  ]
+ },
+ {
+  "id": "M032679",
+  "kunikma": "Buklangan qog‘ozdan kesib olingan bo‘lak ochilganda hosil bo‘ladigan shaklni o‘q simmetriyasi asosida aniqlash",
+  "usul": "Buklash chizig‘i simmetriya o‘qi bo‘ladi: kesilgan qismni shu chiziqqa nisbatan ko‘zguda aks ettiring va ikkala yarmini birlashtirib, shakl turini aniqlang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "To‘g‘ri to‘rtburchak shaklidagi qog‘oz rasmda ko‘rsatilgandek o‘rtasidan buklandi. So‘ng u punktir chiziq bo‘ylab qirqildi va buklangan joyga tutashgan kichik bo‘lak ochildi. Ochilgan bo‘lak qanday shaklda bo‘ladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 250\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"110,30 244,16 244,196 110,210\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"110\" y=\"30\" width=\"120\" height=\"180\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"30\" x2=\"110\" y2=\"210\" stroke=\"#222\" stroke-width=\"3\"/><polyline points=\"110,120 170,210\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"100\" y=\"44\" text-anchor=\"end\">buklangan</text><text x=\"100\" y=\"61\" text-anchor=\"end\">joy</text><line x1=\"102\" y1=\"68\" x2=\"108\" y2=\"82\" stroke=\"#222\"/><line x1=\"96\" y1=\"120\" x2=\"96\" y2=\"210\" stroke=\"#222\"/><text x=\"73.6\" y=\"170\" text-anchor=\"middle\">3 sm</text><line x1=\"110\" y1=\"222\" x2=\"170\" y2=\"222\" stroke=\"#222\"/><text x=\"140\" y=\"243.8\" text-anchor=\"middle\">2 sm</text></g></svg>",
+    "javoblar": [
+     "teng tomonli uchburchak",
+     "to‘g‘ri burchakli uchburchak",
+     "teng yonli uchburchak",
+     "ikkita to‘g‘ri burchakli uchburchak"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Kesilgan bo‘lak: katetlari 3 sm va 2 sm bo‘lgan to‘g‘ri burchakli uchburchak",
+      "ovoz": "Buklangan holda kesilgan bo‘lak — bir kateti buklangan joyda yotgan to‘g‘ri burchakli uchburchak."
+     },
+     {
+      "doska": "Ochilganda: asosi $2 + 2 = 4$ sm, balandligi 3 sm",
+      "ovoz": "Ochilganda bu uchburchak buklama chizig‘iga nisbatan aks etadi va asos ikki barobar uzayadi."
+     },
+     {
+      "doska": "Ikki yon tomoni teng (simmetriya)",
+      "ovoz": "Ikki yarmi bir xil bo‘lgani uchun yon tomonlari teng bo‘ladi."
+     },
+     {
+      "doska": "Yon tomon $\\approx 3{,}6$ sm $\\neq 4$ sm — teng tomonli emas",
+      "ovoz": "Yon tomonlar asosga teng emas, shuning uchun bu teng tomonli emas, balki teng yonli uchburchak."
+     },
+     {
+      "doska": "Javob: C) teng yonli uchburchak",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi har qanday simmetrik uchburchakni teng tomonli deb o‘ylagan; aslida asos 4 sm, yon tomonlar esa taxminan 3,6 sm.",
+     "1": "B ni tanlagan o‘quvchi bo‘lakni ochmasdan, buklangan holdagi shaklini tasvirlagan.",
+     "3": "D ni tanlagan o‘quvchi bo‘lak buklama chizig‘i bo‘ylab ikkiga ajraladi deb o‘ylagan; aslida u bir butun qoladi."
+    },
+    "maslahat": "Buklangan joy kesilmagan — u ochilganda shaklning simmetriya o‘qi bo‘lib qoladi."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "To‘g‘ri to‘rtburchak shaklidagi qog‘oz rasmda ko‘rsatilgandek o‘rtasidan buklandi. So‘ng u punktir chiziq bo‘ylab qirqildi va kesib olingan bo‘lak ochildi. Ochilgan bo‘lak qanday shaklda bo‘ladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 250\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"110,30 244,16 244,196 110,210\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"110\" y=\"30\" width=\"120\" height=\"180\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"30\" x2=\"110\" y2=\"210\" stroke=\"#222\" stroke-width=\"3\"/><polyline points=\"110,180 155,120 110,60\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><text x=\"100\" y=\"44\" text-anchor=\"end\">buklangan</text><text x=\"100\" y=\"61\" text-anchor=\"end\">joy</text><line x1=\"102\" y1=\"68\" x2=\"108\" y2=\"82\" stroke=\"#222\"/><line x1=\"96\" y1=\"60\" x2=\"96\" y2=\"180\" stroke=\"#222\"/><text x=\"73.6\" y=\"125\" text-anchor=\"middle\">4 sm</text><line x1=\"110\" y1=\"120\" x2=\"155\" y2=\"120\" stroke=\"#222\"/><text x=\"188\" y=\"123\" text-anchor=\"middle\">1,5 sm</text></g></svg>",
+    "javoblar": [
+     "romb",
+     "kvadrat",
+     "teng yonli uchburchak",
+     "ikkita to‘g‘ri burchakli uchburchak"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Kesilgan bo‘lak: asosi buklama chizig‘ida yotgan uchburchak",
+      "ovoz": "Buklangan holda kesilgan bo‘lak — bir tomoni buklangan joyda yotgan teng yonli uchburchak."
+     },
+     {
+      "doska": "Ochilganda: diagonallar 4 sm va $1{,}5 + 1{,}5 = 3$ sm",
+      "ovoz": "Ochilganda uchburchak aks etib, to‘rtburchak hosil bo‘ladi: diagonallari to‘rt va uch santimetr."
+     },
+     {
+      "doska": "Diagonallar perpendikulyar va teng ikkiga bo‘linadi; to‘rt tomoni teng",
+      "ovoz": "Diagonallar bir-biriga perpendikulyar, kesishish nuqtasida teng ikkiga bo‘linadi, to‘rtala tomon teng."
+     },
+     {
+      "doska": "$4 \\neq 3$ — diagonallar teng emas, demak kvadrat emas",
+      "ovoz": "Diagonallar teng bo‘lmagani uchun bu kvadrat emas, balki romb."
+     },
+     {
+      "doska": "Javob: A) romb",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi to‘rt tomoni teng to‘rtburchakni avtomatik kvadrat deb olgan; diagonallar (4 sm va 3 sm) teng emasligini hisobga olmagan.",
+     "2": "C ni tanlagan o‘quvchi bo‘lakni ochmasdan, buklangan holdagi uchburchakni tasvirlagan.",
+     "3": "D ni tanlagan o‘quvchi bo‘lak buklama chizig‘i bo‘ylab ikkiga ajraladi deb o‘ylagan."
+    },
+    "maslahat": "Buklama chizig‘i ochilgan shaklning diagonali bo‘lib qoladi."
+   }
+  ]
+ },
+ {
+  "id": "M032047",
+  "kunikma": "O‘rtadagisi harfiy ifoda bilan berilgan ketma-ket butun sonlarni ifodalab, ularning yig‘indisini soddalashtirish",
+  "usul": "O‘rtadagi sondan bitta kichik va bitta katta sonlarni yozing (masalan, $N-1$, $N$, $N+1$), so‘ng qo‘shing: $-1$ va $+1$ bir-birini yo‘qotadi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "O‘rtadagisi $3k$ bo‘lgan ketma-ket uchta butun sonning yig‘indisi nimaga teng?",
+    "rasm": null,
+    "javoblar": [
+     "$9k + 3$",
+     "$9k - 3$",
+     "$9k$",
+     "$3k$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Sonlar: $3k - 1$,  $3k$,  $3k + 1$",
+      "ovoz": "O‘rtadagi son uch k, undan oldingisi uch k minus bir, keyingisi uch k plus bir."
+     },
+     {
+      "doska": "$(3k - 1) + 3k + (3k + 1)$",
+      "ovoz": "Uchala sonni qo‘shamiz."
+     },
+     {
+      "doska": "$= 9k + (-1 + 1) = 9k$",
+      "ovoz": "Uch k lar qo‘shilib to‘qqiz k bo‘ladi, minus bir va plus bir bir-birini yo‘qotadi."
+     },
+     {
+      "doska": "Javob: C) $9k$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi $3k$ ni eng kichik son deb olgan: $3k + (3k+1) + (3k+2) = 9k + 3$.",
+     "1": "B ni tanlagan o‘quvchi $3k$ ni eng katta son deb olgan: $(3k-2) + (3k-1) + 3k = 9k - 3$.",
+     "3": "D ni tanlagan o‘quvchi sonlarni $k-1$, $k$, $k+1$ deb yozib, o‘rtadagi son $3k$ ekanini unutgan."
+    },
+    "maslahat": "$3k$ — o‘rtadagi son; undan oldingi va keyingi sonlarni yozib ko‘ring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "O‘rtadagisi $m + 1$ bo‘lgan ketma-ket beshta butun sonning yig‘indisi nimaga teng?",
+    "rasm": null,
+    "javoblar": [
+     "$5m$",
+     "$5m + 1$",
+     "$5m + 5$",
+     "$5m + 15$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Sonlar: $m-1$, $m$, $m+1$, $m+2$, $m+3$",
+      "ovoz": "O‘rtadagi son m plus bir, undan chapda ikkita va o‘ngda ikkita son yozamiz."
+     },
+     {
+      "doska": "$5$ ta $m$:  $5m$",
+      "ovoz": "Har bir sonda bittadan m bor, jami besh m."
+     },
+     {
+      "doska": "$-1 + 0 + 1 + 2 + 3 = 5$",
+      "ovoz": "Qo‘shimcha sonlarni qo‘shamiz: besh chiqadi."
+     },
+     {
+      "doska": "Yig‘indi $= 5m + 5 = 5(m + 1)$",
+      "ovoz": "Demak, yig‘indi besh m plus besh, ya’ni o‘rtadagi sonning besh barobari."
+     },
+     {
+      "doska": "Javob: C) $5m + 5$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi sonlarni o‘rtadagisi $m$ deb yozgan va $+1$ ni hisobga olmagan.",
+     "1": "B ni tanlagan o‘quvchi $+1$ ni faqat bir marta qo‘shgan: $5m + 1$; aslida u har bir sonda bor.",
+     "3": "D ni tanlagan o‘quvchi $m + 1$ ni eng kichik son deb olgan: $(m+1) + (m+2) + \\ldots + (m+5) = 5m + 15$."
+    },
+    "maslahat": "Ketma-ket toq sondagi sonlar yig‘indisi o‘rtadagi sonni nechaga ko‘paytirishga teng?"
+   }
+  ]
+ },
+ {
+  "id": "M032398",
+  "kunikma": "Uchburchak ichki burchaklari yig‘indisi (180°) xossasidan foydalanib, kesma bilan bo‘lingan burchakning noma’lum qismini topish",
+  "usul": "Avval katta uchburchakda (yoki kichik uchburchakda) burchaklar yig‘indisi 180° ekanidan noma’lum burchakni toping, so‘ng berilgan qismni ayiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Rasmdagi uchburchakda uchidan asosiga kesma o‘tkazilgan. $x$ ning qiymati nechaga teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 250\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"40,230 165.8,80 380,230\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"165.8\" y1=\"80\" x2=\"165.8\" y2=\"230\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"70.8\" y=\"220.6\" text-anchor=\"middle\">50°</text><text x=\"338\" y=\"221.8\" text-anchor=\"middle\">35°</text><text x=\"151.5\" y=\"124.5\" text-anchor=\"middle\">40°</text><text x=\"185.2\" y=\"122.3\" text-anchor=\"middle\">x</text></g></svg>",
+    "javoblar": [
+     "35°",
+     "45°",
+     "55°",
+     "95°"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Yuqori burchak: $180° - 50° - 35° = 95°$",
+      "ovoz": "Uchburchak burchaklari yig‘indisi bir yuz sakson gradus, demak yuqoridagi butun burchak to‘qson besh gradus."
+     },
+     {
+      "doska": "$95° = 40° + x$",
+      "ovoz": "Kesma bu burchakni qirq gradus va x ga ajratadi."
+     },
+     {
+      "doska": "$x = 95° - 40° = 55°$",
+      "ovoz": "To‘qson beshdan qirqni ayiramiz: ellik besh."
+     },
+     {
+      "doska": "Javob: C) 55°",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi $x$ ni unga yaqin turgan 35° li burchakka teng deb o‘ylagan.",
+     "1": "B ni tanlagan o‘quvchi $180° - 95° - 40° = 45°$ ni hisoblagan, ya’ni butun burchakni va uning qismini birga ayirgan.",
+     "3": "D ni tanlagan o‘quvchi yuqoridagi butun burchakni topib, 40° li qismini ayirishni unutgan."
+    },
+    "maslahat": "Avval uchburchakning yuqoridagi butun burchagini toping."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Rasmdagi $ABC$ uchburchakda $B$ uchdan $AC$ tomonga $BD$ kesma o‘tkazilgan. $x$ ning qiymati nechaga teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 252\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"30,230 123.5,96.4 410,230\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"123.5\" y1=\"96.4\" x2=\"100\" y2=\"230\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"61.9\" y=\"218.4\" text-anchor=\"middle\">55°</text><text x=\"361.2\" y=\"224.2\" text-anchor=\"middle\">25°</text><text x=\"123\" y=\"215.7\" text-anchor=\"middle\">80°</text><text x=\"145.7\" y=\"144\" text-anchor=\"middle\">x</text><text x=\"26\" y=\"248\" text-anchor=\"middle\">A</text><text x=\"414\" y=\"248\" text-anchor=\"middle\">C</text><text x=\"123.5\" y=\"90.4\" text-anchor=\"middle\">B</text><text x=\"100\" y=\"248\" text-anchor=\"middle\">D</text></g></svg>",
+    "javoblar": [
+     "25°",
+     "75°",
+     "80°",
+     "100°"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$BDC$ uchburchakni qaraymiz",
+      "ovoz": "Kichik o‘ngdagi BDC uchburchakda ikki burchak ma’lum: sakson va yigirma besh gradus."
+     },
+     {
+      "doska": "$x + 80° + 25° = 180°$",
+      "ovoz": "Uning burchaklari yig‘indisi ham bir yuz sakson gradus."
+     },
+     {
+      "doska": "$x = 180° - 105° = 75°$",
+      "ovoz": "Bir yuz saksondan bir yuz beshni ayiramiz: yetmish besh."
+     },
+     {
+      "doska": "Tekshiruv: $\\angle ABD = 180° - 55° - 100° = 25°$,  $25° + 75° = 100° = 180° - 55° - 25°$",
+      "ovoz": "Tekshiramiz: chap qism yigirma besh, jami yuz gradus — katta uchburchakka ham mos."
+     },
+     {
+      "doska": "Javob: B) 75°",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi $B$ burchakning chap qismini ($\\angle ABD = 25°$) topgan yoki $x$ ni 25° li burchakka teng deb olgan.",
+     "2": "C ni tanlagan o‘quvchi $x$ ni $D$ nuqtadagi 80° li burchakka teng deb o‘ylagan.",
+     "3": "D ni tanlagan o‘quvchi $B$ uchdagi butun burchakni ($180° - 55° - 25° = 100°$) topib, uni qismlarga ajratmagan."
+    },
+    "maslahat": "$x$ qaysi kichik uchburchakka tegishli? Shu uchburchakning ma’lum burchaklaridan foydalaning."
+   }
+  ]
+ }
+]

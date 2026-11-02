@@ -313,6 +313,12 @@ if __package__:
 else:
     from modules.teacher_subjects import create_router as create_teacher_subjects_router
 app.include_router(create_teacher_subjects_router(samtm_platform))
+# REV260: «Xalqaro baholash» — TIMSS darajasida kurs, mashq, takrorlash, haftalik/oylik/choraklik/yillik imtihon va reyting.
+if __package__:
+    from .modules.xalqaro_baholash import create_router as create_xalqaro_router
+else:
+    from modules.xalqaro_baholash import create_router as create_xalqaro_router
+app.include_router(create_xalqaro_router(samtm_platform))
 
 # REV107: kutilmagan server xatosi ham JSON bo'lib, CORS sarlavhasi bilan qaytadi. Ilgari bunday javobda
 # brauzer CORS sababli javobni o'qiy olmasdi va foydalanuvchi «Serverga ulanib bo'lmadi» degan noto'g'ri

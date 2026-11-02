@@ -1,0 +1,1222 @@
+[
+ {
+  "id": "M041143",
+  "kunikma": "Rasmdagi tekis shakllarni (uchburchak, to‘g‘ri to‘rtburchak, kvadrat, doira) tanib, to‘g‘ri nomlash",
+  "usul": "Har bir shaklning nechta tomoni va burchagi borligini sanang, tomonlari tengmi yoki yo‘qmi qarang; tomoni yo‘q yumaloq shakl — doira.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Rasmda uy chizilgan. A, B va C harflari bilan ko‘rsatilgan shakllar qanday ataladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 270\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"150\" y=\"120\" width=\"180\" height=\"120\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"140,120 240,40 340,120\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"170\" y=\"160\" width=\"40\" height=\"80\" fill=\"#dff3e4\" stroke=\"#222\"/><circle cx=\"280\" cy=\"170\" r=\"22\" fill=\"#e8f1ff\" stroke=\"#222\"/><line x1=\"60\" y1=\"250\" x2=\"420\" y2=\"250\" stroke=\"#222\"/><line x1=\"240\" y1=\"85\" x2=\"80\" y2=\"60\" stroke=\"#222\"/><text x=\"70\" y=\"60\" text-anchor=\"end\">A</text><line x1=\"190\" y1=\"200\" x2=\"80\" y2=\"220\" stroke=\"#222\"/><text x=\"70\" y=\"225\" text-anchor=\"end\">B</text><line x1=\"295\" y1=\"185\" x2=\"400\" y2=\"210\" stroke=\"#222\"/><text x=\"410\" y=\"215\" text-anchor=\"start\">C</text></g></svg>",
+    "javoblar": [
+     "A — uchburchak, B — kvadrat, C — doira",
+     "A — uchburchak, B — to‘g‘ri to‘rtburchak, C — shar",
+     "A — piramida, B — to‘g‘ri to‘rtburchak, C — doira",
+     "A — uchburchak, B — to‘g‘ri to‘rtburchak, C — doira"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A: 3 ta tomon → uchburchak",
+      "ovoz": "Tom shaklining uchta tomoni va uchta burchagi bor. Demak, bu uchburchak."
+     },
+     {
+      "doska": "B: 4 ta tomon, ikkitasi uzun, ikkitasi qisqa → to‘g‘ri to‘rtburchak",
+      "ovoz": "Eshikning to‘rtta tomoni bor. Yon tomonlari uzun, past va yuqori tomonlari qisqa. Bu to‘g‘ri to‘rtburchak, kvadrat emas."
+     },
+     {
+      "doska": "C: tomoni yo‘q, yumaloq → doira",
+      "ovoz": "Derazaning tomoni ham, burchagi ham yo‘q, u yumaloq. Bu tekis shakl — doira."
+     },
+     {
+      "doska": "Javob: D) uchburchak, to‘g‘ri to‘rtburchak, doira",
+      "ovoz": "Demak, to‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi to‘rt tomonli har qanday shaklni kvadrat deb o‘ylagan. Kvadratning hamma tomonlari teng bo‘ladi, eshikniki esa teng emas.",
+     "1": "B ni tanlagan o‘quvchi tekis doirani hajmli shar bilan adashtirgan. Shar — koptok kabi, rasmdagi deraza esa tekis.",
+     "2": "C ni tanlagan o‘quvchi tekis uchburchakni hajmli piramida bilan adashtirgan."
+    },
+    "maslahat": "Har bir shaklning tomonlarini sanang va ularning uzunligini solishtiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Rasmda kichik do‘kon chizilgan. A, B va C harflari bilan ko‘rsatilgan shakllar qanday ataladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 280\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"120\" y=\"90\" width=\"220\" height=\"140\" fill=\"#fde9c8\" stroke=\"#222\"/><rect x=\"110\" y=\"70\" width=\"240\" height=\"20\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"230\" y=\"85\" text-anchor=\"middle\">DO‘KON</text><rect x=\"150\" y=\"130\" width=\"60\" height=\"60\" fill=\"#e8f1ff\" stroke=\"#222\"/><circle cx=\"290\" cy=\"150\" r=\"26\" fill=\"#ffffff\" stroke=\"#222\"/><line x1=\"290\" y1=\"150\" x2=\"290\" y2=\"132\" stroke=\"#222\"/><line x1=\"290\" y1=\"150\" x2=\"303\" y2=\"150\" stroke=\"#222\"/><line x1=\"330\" y1=\"70\" x2=\"330\" y2=\"20\" stroke=\"#222\" stroke-width=\"2\"/><polygon points=\"330,20 375,32 330,44\" fill=\"#dff3e4\" stroke=\"#222\"/><line x1=\"60\" y1=\"230\" x2=\"420\" y2=\"230\" stroke=\"#222\"/><line x1=\"170\" y1=\"150\" x2=\"60\" y2=\"120\" stroke=\"#222\"/><text x=\"50\" y=\"125\" text-anchor=\"end\">A</text><line x1=\"270\" y1=\"165\" x2=\"230\" y2=\"255\" stroke=\"#222\"/><text x=\"230\" y=\"272\" text-anchor=\"middle\">B</text><line x1=\"352\" y1=\"32\" x2=\"400\" y2=\"70\" stroke=\"#222\"/><text x=\"408\" y=\"78\" text-anchor=\"start\">C</text></g></svg>",
+    "javoblar": [
+     "A — kub, B — doira, C — uchburchak",
+     "A — kvadrat, B — shar, C — uchburchak",
+     "A — uchburchak, B — doira, C — kvadrat",
+     "A — kvadrat, B — doira, C — uchburchak"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A: 4 ta teng tomon → kvadrat",
+      "ovoz": "Derazaning to‘rtta tomoni bor va ular bir xil uzunlikda. Demak, bu kvadrat."
+     },
+     {
+      "doska": "B: yumaloq, tekis → doira",
+      "ovoz": "Soatning tomoni va burchagi yo‘q, u tekis va yumaloq. Bu doira."
+     },
+     {
+      "doska": "C: 3 ta tomon → uchburchak",
+      "ovoz": "Bayroqchaning uchta tomoni va uchta burchagi bor. Bu uchburchak."
+     },
+     {
+      "doska": "Javob: D) kvadrat, doira, uchburchak",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi tekis kvadratni hajmli kub bilan adashtirgan. Kub — quti kabi, uning oltita yog‘i bor.",
+     "1": "B ni tanlagan o‘quvchi tekis doirani hajmli shar deb atagan.",
+     "2": "C ni tanlagan o‘quvchi shakllar nomini bilgan, lekin harflarni aralashtirib yuborgan: A va C ni almashtirgan."
+    },
+    "maslahat": "Avval harf qaysi shaklga ko‘rsatilganini aniqlang, keyin uning tomonlarini sanang."
+   }
+  ]
+ },
+ {
+  "id": "M041158",
+  "kunikma": "Xona burchagiga taxlangan bir xil qutilar sonini, ko‘rinmaydigan qutilarni ham hisobga olib, qavatma-qavat sanash",
+  "usul": "Qutilarni qavatlarga ajrating. Har bir qavatda nechta qator va har qatorda nechta quti borligini toping; ustidagi qutilar ostida ham qutilar borligini unutmang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Jasur bir xil qutilarni xona burchagiga rasmdagidek taxladi. U jami nechta quti ishlatdi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 204\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"110\" y1=\"130\" x2=\"310\" y2=\"130\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"130\" x2=\"110\" y2=\"10\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"110\" y1=\"130\" x2=\"58\" y2=\"182\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"130,150 150,130 150,90 130,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"90,110 130,110 150,90 110,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"90,150 130,150 130,110 90,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"170,150 190,130 190,90 170,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"130,110 170,110 190,90 150,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"130,150 170,150 170,110 130,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"210,150 230,130 230,90 210,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"170,110 210,110 230,90 190,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"170,150 210,150 210,110 170,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"250,150 270,130 270,90 250,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"210,110 250,110 270,90 230,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"210,150 250,150 250,110 210,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"130,110 150,90 150,50 130,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"90,70 130,70 150,50 110,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"90,110 130,110 130,70 90,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"170,110 190,90 190,50 170,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"130,70 170,70 190,50 150,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"130,110 170,110 170,70 130,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"210,110 230,90 230,50 210,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"170,70 210,70 230,50 190,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"170,110 210,110 210,70 170,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"250,110 270,90 270,50 250,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"210,70 250,70 270,50 230,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"210,110 250,110 250,70 210,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"110,170 130,150 130,110 110,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"70,130 110,130 130,110 90,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"70,170 110,170 110,130 70,130\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"150,170 170,150 170,110 150,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"110,130 150,130 170,110 130,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"110,170 150,170 150,130 110,130\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"190,170 210,150 210,110 190,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"150,130 190,130 210,110 170,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"150,170 190,170 190,130 150,130\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"230,170 250,150 250,110 230,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"190,130 230,130 250,110 210,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"190,170 230,170 230,130 190,130\" fill=\"#e8f1ff\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "8",
+     "10",
+     "12",
+     "16"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Pastki qavat: 2 qator, har birida 4 ta",
+      "ovoz": "Pastki qavatda ikki qator bor: oldingi qator va orqa qator. Har bir qatorda to‘rttadan quti."
+     },
+     {
+      "doska": "$2 \\cdot 4 = 8$",
+      "ovoz": "Demak, pastki qavatda sakkizta quti bor. Orqa qatordagi qutilar ko‘rinmaydi, lekin ular bor."
+     },
+     {
+      "doska": "Yuqori qavat: 1 qator, 4 ta",
+      "ovoz": "Yuqori qavatda faqat orqa qator bor, unda to‘rtta quti."
+     },
+     {
+      "doska": "$8 + 4 = 12$",
+      "ovoz": "Ikki qavatni qo‘shamiz: sakkiz qo‘shuv to‘rt — o‘n ikki."
+     },
+     {
+      "doska": "Javob: C) 12",
+      "ovoz": "Jasur o‘n ikkita quti ishlatgan. To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat old tomoni ko‘rinib turgan qutilarni sanagan va yuqori qatordagi qutilar ostidagi qutilarni unutgan.",
+     "1": "B ni tanlagan o‘quvchi yuqori qutilar ostida turgan orqa qatordan faqat bir qismini sanagan.",
+     "3": "D ni tanlagan o‘quvchi ikkala qavatni ham to‘la (8 tadan) deb o‘ylagan, holbuki yuqorida faqat bitta qator bor."
+    },
+    "maslahat": "Har bir qavatni alohida sanang: yuqoridagi quti nimaning ustida turibdi?"
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Malika bir xil qutilarni xona burchagiga rasmdagidek taxladi. U jami nechta quti ishlatdi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 310 224\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"130\" y1=\"130\" x2=\"290\" y2=\"130\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"130\" y1=\"130\" x2=\"130\" y2=\"10\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"130\" y1=\"130\" x2=\"58\" y2=\"202\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"150,150 170,130 170,90 150,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"110,110 150,110 170,90 130,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"110,150 150,150 150,110 110,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"190,150 210,130 210,90 190,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"150,110 190,110 210,90 170,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"150,150 190,150 190,110 150,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"230,150 250,130 250,90 230,110\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"190,110 230,110 250,90 210,90\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"190,150 230,150 230,110 190,110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"150,110 170,90 170,50 150,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"110,70 150,70 170,50 130,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"110,110 150,110 150,70 110,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"190,110 210,90 210,50 190,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"150,70 190,70 210,50 170,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"150,110 190,110 190,70 150,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"230,110 250,90 250,50 230,70\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"190,70 230,70 250,50 210,50\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"190,110 230,110 230,70 190,70\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"130,170 150,150 150,110 130,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"90,130 130,130 150,110 110,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"90,170 130,170 130,130 90,130\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"170,170 190,150 190,110 170,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"130,130 170,130 190,110 150,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"130,170 170,170 170,130 130,130\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"210,170 230,150 230,110 210,130\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"170,130 210,130 230,110 190,110\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"170,170 210,170 210,130 170,130\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"130,130 150,110 150,70 130,90\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"90,90 130,90 150,70 110,70\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"90,130 130,130 130,90 90,90\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"170,130 190,110 190,70 170,90\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"130,90 170,90 190,70 150,70\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"130,130 170,130 170,90 130,90\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"210,130 230,110 230,70 210,90\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"170,90 210,90 230,70 190,70\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"170,130 210,130 210,90 170,90\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"110,190 130,170 130,130 110,150\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"70,150 110,150 130,130 90,130\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"70,190 110,190 110,150 70,150\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"150,190 170,170 170,130 150,150\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"110,150 150,150 170,130 130,130\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"110,190 150,190 150,150 110,150\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"190,190 210,170 210,130 190,150\" fill=\"#fde9c8\" stroke=\"#222\"/><polygon points=\"150,150 190,150 210,130 170,130\" fill=\"#ffffff\" stroke=\"#222\"/><polygon points=\"150,190 190,190 190,150 150,150\" fill=\"#e8f1ff\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [
+     "15",
+     "9",
+     "18",
+     "12"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Pastki qavat: 3 qator, har birida 3 ta",
+      "ovoz": "Pastki qavatda uch qator bor, har bir qatorda uchtadan quti."
+     },
+     {
+      "doska": "$3 \\cdot 3 = 9$",
+      "ovoz": "Demak, pastki qavatda to‘qqizta quti."
+     },
+     {
+      "doska": "Yuqori qavat: 2 qator, har birida 3 ta",
+      "ovoz": "Yuqori qavatda orqadagi ikki qator bor, har birida uchtadan quti."
+     },
+     {
+      "doska": "$2 \\cdot 3 = 6$",
+      "ovoz": "Yuqori qavatda oltita quti."
+     },
+     {
+      "doska": "$9 + 6 = 15$",
+      "ovoz": "To‘qqiz qo‘shuv olti — o‘n besh."
+     },
+     {
+      "doska": "Javob: A) 15",
+      "ovoz": "Malika o‘n beshta quti ishlatgan. To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi faqat ustki yuzi ko‘rinib turgan qutilarni sanagan, ostidagi yashirin qutilarni hisobga olmagan.",
+     "2": "C ni tanlagan o‘quvchi ikkala qavatni ham to‘la (9 tadan) deb hisoblagan.",
+     "3": "D ni tanlagan o‘quvchi pastki qavatdagi yashirin qutilarning faqat bir qismini sanagan."
+    },
+    "maslahat": "Yuqori qavatdagi har bir quti ostida ham bitta quti turganini unutmang."
+   }
+  ]
+ },
+ {
+  "id": "M041328",
+  "kunikma": "Katakli qog‘ozda shaklning simmetriya o‘qiga nisbatan aksini (ko‘zgudagi tasvirini) aniqlash",
+  "usul": "Shaklning har bir uchi o‘qdan necha katak uzoqda ekanini sanang. Aksda shu uch o‘qning narigi tomonida xuddi shuncha katak uzoqda bo‘ladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Uzuq chiziq — ko‘zgu chizig‘i. Ko‘k uchburchakning ko‘zgudagi aksi qaysi rasmda to‘g‘ri chizilgan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 388 260\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"16\" y=\"44\" text-anchor=\"middle\">A)</text><line x1=\"30\" y1=\"30\" x2=\"30\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"30\" x2=\"48\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"30\" x2=\"66\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"30\" x2=\"84\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"30\" x2=\"102\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"138\" y1=\"30\" x2=\"138\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"156\" y1=\"30\" x2=\"156\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"174\" y1=\"30\" x2=\"174\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"30\" x2=\"174\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"48\" x2=\"174\" y2=\"48\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"66\" x2=\"174\" y2=\"66\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"84\" x2=\"174\" y2=\"84\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"102\" x2=\"174\" y2=\"102\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"120\" x2=\"174\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"24\" x2=\"102\" y2=\"126\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"48,48 84,102 48,102\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"120,48 156,102 120,102\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"210\" y=\"44\" text-anchor=\"middle\">B)</text><line x1=\"224\" y1=\"30\" x2=\"224\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"242\" y1=\"30\" x2=\"242\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"260\" y1=\"30\" x2=\"260\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"278\" y1=\"30\" x2=\"278\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"296\" y1=\"30\" x2=\"296\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"314\" y1=\"30\" x2=\"314\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"332\" y1=\"30\" x2=\"332\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"350\" y1=\"30\" x2=\"350\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"368\" y1=\"30\" x2=\"368\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"30\" x2=\"368\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"48\" x2=\"368\" y2=\"48\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"66\" x2=\"368\" y2=\"66\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"84\" x2=\"368\" y2=\"84\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"102\" x2=\"368\" y2=\"102\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"120\" x2=\"368\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"296\" y1=\"24\" x2=\"296\" y2=\"126\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"242,48 278,102 242,102\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"332,48 296,102 332,102\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"184\" text-anchor=\"middle\">C)</text><line x1=\"30\" y1=\"170\" x2=\"30\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"170\" x2=\"48\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"170\" x2=\"66\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"170\" x2=\"84\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"170\" x2=\"102\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"170\" x2=\"120\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"138\" y1=\"170\" x2=\"138\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"156\" y1=\"170\" x2=\"156\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"174\" y1=\"170\" x2=\"174\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"170\" x2=\"174\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"188\" x2=\"174\" y2=\"188\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"206\" x2=\"174\" y2=\"206\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"224\" x2=\"174\" y2=\"224\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"242\" x2=\"174\" y2=\"242\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"260\" x2=\"174\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"164\" x2=\"102\" y2=\"266\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"48,188 84,242 48,242\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"156,188 120,242 156,242\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"210\" y=\"184\" text-anchor=\"middle\">D)</text><line x1=\"224\" y1=\"170\" x2=\"224\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"242\" y1=\"170\" x2=\"242\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"260\" y1=\"170\" x2=\"260\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"278\" y1=\"170\" x2=\"278\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"296\" y1=\"170\" x2=\"296\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"314\" y1=\"170\" x2=\"314\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"332\" y1=\"170\" x2=\"332\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"350\" y1=\"170\" x2=\"350\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"368\" y1=\"170\" x2=\"368\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"170\" x2=\"368\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"188\" x2=\"368\" y2=\"188\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"206\" x2=\"368\" y2=\"206\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"224\" x2=\"368\" y2=\"224\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"242\" x2=\"368\" y2=\"242\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"260\" x2=\"368\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"296\" y1=\"164\" x2=\"296\" y2=\"266\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"242,188 278,242 242,242\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"350,242 314,188 350,188\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/></g></svg>",
+    "javoblar": [
+     "A rasmda",
+     "B rasmda",
+     "C rasmda",
+     "D rasmda"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "To‘g‘ri burchak: chiziqdan 3 katak chapda",
+      "ovoz": "Ko‘k uchburchakning to‘g‘ri burchagi ko‘zgu chizig‘idan uch katak chapda turibdi."
+     },
+     {
+      "doska": "Aksda: chiziqdan 3 katak o‘ngda",
+      "ovoz": "Aksda bu burchak chiziqdan uch katak o‘ngda bo‘lishi kerak."
+     },
+     {
+      "doska": "O‘tkir uch: chiziqdan 1 katak → aksda ham 1 katak",
+      "ovoz": "Pastki o‘tkir uch chiziqqa yaqin, bir katak uzoqda. Aksda ham u chiziqdan bir katak naridagi joyda bo‘ladi."
+     },
+     {
+      "doska": "Aks teskari qaraydi, lekin balandligi o‘zgarmaydi",
+      "ovoz": "Ko‘zguda shakl chapdan o‘ngga ag‘dariladi, lekin tepasi tepada qoladi."
+     },
+     {
+      "doska": "Javob: C",
+      "ovoz": "Bu shartlarga faqat C rasm mos keladi."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi uchburchakni ag‘darmasdan, shunchaki o‘ngga surib qo‘ygan.",
+     "1": "B ni tanlagan o‘quvchi shaklni ag‘dargan, lekin chiziqqacha bo‘lgan masofani saqlamagan: uchburchak chiziqqa yopishib qolgan.",
+     "3": "D ni tanlagan o‘quvchi shaklni yuqoridan pastga ham ag‘darib yuborgan, ko‘zguda esa tepasi tepada qoladi."
+    },
+    "maslahat": "Har bir uch chiziqdan necha katak uzoqda ekanini sanang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Uzuq chiziq — ko‘zgu chizig‘i. Ko‘k uchburchakning ko‘zgudagi aksi qaysi rasmda to‘g‘ri chizilgan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 296\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"16\" y=\"44\" text-anchor=\"middle\">A)</text><line x1=\"30\" y1=\"30\" x2=\"30\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"30\" x2=\"48\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"30\" x2=\"66\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"30\" x2=\"84\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"30\" x2=\"102\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"30\" x2=\"120\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"30\" x2=\"120\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"48\" x2=\"120\" y2=\"48\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"66\" x2=\"120\" y2=\"66\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"84\" x2=\"120\" y2=\"84\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"102\" x2=\"120\" y2=\"102\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"120\" x2=\"120\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"138\" x2=\"120\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"24\" y1=\"84\" x2=\"126\" y2=\"84\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"48,30 48,66 102,66\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"48,138 48,102 102,102\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"156\" y=\"44\" text-anchor=\"middle\">B)</text><line x1=\"170\" y1=\"30\" x2=\"170\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"188\" y1=\"30\" x2=\"188\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"206\" y1=\"30\" x2=\"206\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"30\" x2=\"224\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"242\" y1=\"30\" x2=\"242\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"260\" y1=\"30\" x2=\"260\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"30\" x2=\"260\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"48\" x2=\"260\" y2=\"48\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"66\" x2=\"260\" y2=\"66\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"84\" x2=\"260\" y2=\"84\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"102\" x2=\"260\" y2=\"102\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"120\" x2=\"260\" y2=\"120\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"138\" x2=\"260\" y2=\"138\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"164\" y1=\"84\" x2=\"266\" y2=\"84\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"188,30 188,66 242,66\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"242,138 242,102 188,102\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"16\" y=\"202\" text-anchor=\"middle\">C)</text><line x1=\"30\" y1=\"188\" x2=\"30\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"188\" x2=\"48\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"188\" x2=\"66\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"188\" x2=\"84\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"188\" x2=\"102\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"188\" x2=\"120\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"188\" x2=\"120\" y2=\"188\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"206\" x2=\"120\" y2=\"206\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"224\" x2=\"120\" y2=\"224\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"242\" x2=\"120\" y2=\"242\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"260\" x2=\"120\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"278\" x2=\"120\" y2=\"278\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"296\" x2=\"120\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"24\" y1=\"242\" x2=\"126\" y2=\"242\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"48,188 48,224 102,224\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"48,260 48,296 102,296\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"156\" y=\"202\" text-anchor=\"middle\">D)</text><line x1=\"170\" y1=\"188\" x2=\"170\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"188\" y1=\"188\" x2=\"188\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"206\" y1=\"188\" x2=\"206\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"224\" y1=\"188\" x2=\"224\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"242\" y1=\"188\" x2=\"242\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"260\" y1=\"188\" x2=\"260\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"188\" x2=\"260\" y2=\"188\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"206\" x2=\"260\" y2=\"206\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"224\" x2=\"260\" y2=\"224\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"242\" x2=\"260\" y2=\"242\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"260\" x2=\"260\" y2=\"260\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"278\" x2=\"260\" y2=\"278\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"296\" x2=\"260\" y2=\"296\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"164\" y1=\"242\" x2=\"266\" y2=\"242\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><polygon points=\"188,188 188,224 242,224\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"188,278 188,242 242,242\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/></g></svg>",
+    "javoblar": [
+     "A rasmda",
+     "B rasmda",
+     "C rasmda",
+     "D rasmda"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Yotiq tomon: chiziqdan 1 katak yuqorida",
+      "ovoz": "Ko‘k uchburchakning pastki yotiq tomoni ko‘zgu chizig‘idan bir katak yuqorida."
+     },
+     {
+      "doska": "Aksda: chiziqdan 1 katak pastda",
+      "ovoz": "Aksda bu tomon chiziqdan bir katak pastda bo‘lishi kerak."
+     },
+     {
+      "doska": "Yuqori uch: 3 katak yuqorida → aksda 3 katak pastda",
+      "ovoz": "Eng yuqori uch chiziqdan uch katak uzoqda. Aksda u uch katak pastda bo‘ladi."
+     },
+     {
+      "doska": "Chap tomondagi to‘g‘ri burchak chapda qoladi",
+      "ovoz": "Chiziq yotiq, shuning uchun shakl yuqoridan pastga ag‘dariladi. To‘g‘ri burchak chap tomonda qoladi."
+     },
+     {
+      "doska": "Javob: A",
+      "ovoz": "Bularning hammasi faqat A rasmda bajarilgan."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi shaklni yuqoridan pastga ag‘dargan, lekin chapdan o‘ngga ham ag‘darib yuborgan.",
+     "2": "C ni tanlagan o‘quvchi uchburchakni ag‘darmasdan, faqat pastga surib qo‘ygan.",
+     "3": "D ni tanlagan o‘quvchi shaklni to‘g‘ri ag‘dargan, lekin chiziqqacha masofani saqlamagan: aks chiziqqa yopishib qolgan."
+    },
+    "maslahat": "Ko‘zgu chizig‘i yotiq bo‘lsa, shakl qaysi tomonga ag‘darilishini o‘ylang."
+   }
+  ]
+ },
+ {
+  "id": "M041155",
+  "kunikma": "Kvadrat shaklidagi maydonning atrofini aylanib chiqish masofasini (perimetrini) bir tomon uzunligi orqali topish",
+  "usul": "Kvadratning 4 ta tomoni teng. Atrofini aylanib chiqish uchun bir tomon uzunligini 4 ga ko‘paytiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Bog‘ kvadrat shaklida. Uning bir tomoni 60 metr. Malika bog‘ atrofini bir marta aylanib chiqdi. U necha metr yurdi?",
+    "rasm": null,
+    "javoblar": [
+     "60 metr",
+     "120 metr",
+     "240 metr",
+     "3600 metr"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Kvadratning 4 ta tomoni teng",
+      "ovoz": "Kvadratning to‘rtta tomoni bor va hammasi bir xil uzunlikda."
+     },
+     {
+      "doska": "Har bir tomon 60 m",
+      "ovoz": "Demak, har bir tomon oltmish metr."
+     },
+     {
+      "doska": "$60 \\cdot 4 = 240$",
+      "ovoz": "Malika to‘rtta tomonni yurdi: oltmishni to‘rtga ko‘paytiramiz, ikki yuz qirq chiqadi."
+     },
+     {
+      "doska": "Javob: C) 240 metr",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat bitta tomonni hisoblagan.",
+     "1": "B ni tanlagan o‘quvchi faqat ikki tomonni qo‘shgan: 60 + 60.",
+     "3": "D ni tanlagan o‘quvchi 60 ni 60 ga ko‘paytirgan. Bu bog‘ning yuzi, aylana yo‘li emas."
+    },
+    "maslahat": "Malika bog‘ning nechta tomoni bo‘ylab yurdi?"
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Paxta dalasi kvadrat shaklida. Uning bir tomoni 150 metr. Traktor dala atrofini bir marta aylanib chiqdi. Traktor necha metr yo‘l bosdi?",
+    "rasm": null,
+    "javoblar": [
+     "300 metr",
+     "600 metr",
+     "22 500 metr",
+     "150 metr"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Kvadratning 4 ta tomoni teng",
+      "ovoz": "Dala kvadrat, demak to‘rtta tomoni bir xil."
+     },
+     {
+      "doska": "Har bir tomon 150 m",
+      "ovoz": "Har bir tomon bir yuz ellik metr."
+     },
+     {
+      "doska": "$150 \\cdot 4 = 600$",
+      "ovoz": "Traktor to‘rtta tomonni bosib o‘tdi: bir yuz ellikni to‘rtga ko‘paytirsak, olti yuz bo‘ladi."
+     },
+     {
+      "doska": "Javob: B) 600 metr",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat ikki tomonni hisoblagan: 150 + 150.",
+     "2": "C ni tanlagan o‘quvchi 150 ni 150 ga ko‘paytirgan. Bu dalaning yuzi, aylana yo‘li emas.",
+     "3": "D ni tanlagan o‘quvchi faqat bitta tomonni olgan."
+    },
+    "maslahat": "Atrofini aylanib chiqish — barcha tomonlar bo‘ylab yurish degani."
+   }
+  ]
+ },
+ {
+  "id": "M041284",
+  "kunikma": "Shakllarni ikki belgi bo‘yicha — tomonlar soni va tomonlarning tengligi bo‘yicha — saralash",
+  "usul": "Har bir shakl uchun ikki savolga javob bering: tomoni 4 tami? Hamma tomonlari tengmi? Burilib turgan shakllarning tomonlarini ham katak bo‘yicha solishtiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Katakli qog‘ozda oltita shakl chizilgan. Qaysi shakllarning 4 ta tomoni bor VA hamma tomonlari teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 475 124\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"23\" y1=\"10\" x2=\"23\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"36\" y1=\"10\" x2=\"36\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"49\" y1=\"10\" x2=\"49\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"62\" y1=\"10\" x2=\"62\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"75\" y1=\"10\" x2=\"75\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"88\" y1=\"10\" x2=\"88\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"101\" y1=\"10\" x2=\"101\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"114\" y1=\"10\" x2=\"114\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"127\" y1=\"10\" x2=\"127\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"140\" y1=\"10\" x2=\"140\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"153\" y1=\"10\" x2=\"153\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"166\" y1=\"10\" x2=\"166\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"179\" y1=\"10\" x2=\"179\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"192\" y1=\"10\" x2=\"192\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"205\" y1=\"10\" x2=\"205\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"218\" y1=\"10\" x2=\"218\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"231\" y1=\"10\" x2=\"231\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"244\" y1=\"10\" x2=\"244\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"257\" y1=\"10\" x2=\"257\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"270\" y1=\"10\" x2=\"270\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"283\" y1=\"10\" x2=\"283\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"296\" y1=\"10\" x2=\"296\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"309\" y1=\"10\" x2=\"309\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"322\" y1=\"10\" x2=\"322\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"335\" y1=\"10\" x2=\"335\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"348\" y1=\"10\" x2=\"348\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"361\" y1=\"10\" x2=\"361\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"374\" y1=\"10\" x2=\"374\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"387\" y1=\"10\" x2=\"387\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"400\" y1=\"10\" x2=\"400\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"413\" y1=\"10\" x2=\"413\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"426\" y1=\"10\" x2=\"426\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"439\" y1=\"10\" x2=\"439\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"452\" y1=\"10\" x2=\"452\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"465\" y1=\"10\" x2=\"465\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"10\" x2=\"465\" y2=\"10\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"23\" x2=\"465\" y2=\"23\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"36\" x2=\"465\" y2=\"36\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"49\" x2=\"465\" y2=\"49\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"62\" x2=\"465\" y2=\"62\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"75\" x2=\"465\" y2=\"75\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"88\" x2=\"465\" y2=\"88\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"101\" x2=\"465\" y2=\"101\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"114\" x2=\"465\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><polygon points=\"23,36 62,36 62,75 23,75\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"42.5\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">A</text><polygon points=\"88,36 153,36 153,75 88,75\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"120.5\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">B</text><polygon points=\"205,23 231,49 205,75 179,49\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"205\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">C</text><polygon points=\"257,23 283,23 283,62 309,62 309,88 257,88\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"283\" y=\"108.6\" text-anchor=\"middle\" font-weight=\"bold\">D</text><polygon points=\"335,75 348,36 374,36 387,75\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"361\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">E</text><polygon points=\"426,23 439,23 439,36 452,36 452,49 439,49 439,62 426,62 426,49 413,49 413,36 426,36\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"432.5\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">F</text></g></svg>",
+    "javoblar": [
+     "Faqat A",
+     "A va C",
+     "A, C va F",
+     "A va B"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "4 ta tomon: A, B, C, E",
+      "ovoz": "Avval tomonlarni sanaymiz. A, B, C va E shakllarida to‘rttadan tomon bor. D ning oltita, F ning o‘n ikkita tomoni bor."
+     },
+     {
+      "doska": "A: tomonlari 3 katakdan → teng",
+      "ovoz": "A shaklning har bir tomoni uch katak. Demak, hamma tomonlari teng."
+     },
+     {
+      "doska": "C: burilgan kvadrat → tomonlari teng",
+      "ovoz": "C shakl burchagi bilan turibdi, lekin uning to‘rtta tomoni ham bir xil uzunlikda. Bu ham kvadrat."
+     },
+     {
+      "doska": "B va E: tomonlari teng emas",
+      "ovoz": "B ning ikki tomoni uzun, ikkitasi qisqa. E ning ham pastki tomoni yuqorisidan uzun."
+     },
+     {
+      "doska": "Javob: B) A va C",
+      "ovoz": "Demak, to‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi burchagi bilan turgan C shaklni kvadrat deb tanimagan.",
+     "2": "C ni tanlagan o‘quvchi faqat tomonlar tengligiga qaragan. F ning tomonlari teng, lekin ular 4 ta emas, 12 ta.",
+     "3": "D ni tanlagan o‘quvchi faqat tomonlar soniga qaragan. B ning 4 ta tomoni bor, lekin ular teng emas."
+    },
+    "maslahat": "Ikkala shartni ham tekshiring: avval tomonlarni sanang, keyin uzunligini solishtiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Katakli qog‘ozda oltita shakl chizilgan. Qaysi shakllarning 4 ta tomoni bor, LEKIN hamma tomonlari teng EMAS?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 475 124\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"10\" y1=\"10\" x2=\"10\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"23\" y1=\"10\" x2=\"23\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"36\" y1=\"10\" x2=\"36\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"49\" y1=\"10\" x2=\"49\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"62\" y1=\"10\" x2=\"62\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"75\" y1=\"10\" x2=\"75\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"88\" y1=\"10\" x2=\"88\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"101\" y1=\"10\" x2=\"101\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"114\" y1=\"10\" x2=\"114\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"127\" y1=\"10\" x2=\"127\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"140\" y1=\"10\" x2=\"140\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"153\" y1=\"10\" x2=\"153\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"166\" y1=\"10\" x2=\"166\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"179\" y1=\"10\" x2=\"179\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"192\" y1=\"10\" x2=\"192\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"205\" y1=\"10\" x2=\"205\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"218\" y1=\"10\" x2=\"218\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"231\" y1=\"10\" x2=\"231\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"244\" y1=\"10\" x2=\"244\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"257\" y1=\"10\" x2=\"257\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"270\" y1=\"10\" x2=\"270\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"283\" y1=\"10\" x2=\"283\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"296\" y1=\"10\" x2=\"296\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"309\" y1=\"10\" x2=\"309\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"322\" y1=\"10\" x2=\"322\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"335\" y1=\"10\" x2=\"335\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"348\" y1=\"10\" x2=\"348\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"361\" y1=\"10\" x2=\"361\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"374\" y1=\"10\" x2=\"374\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"387\" y1=\"10\" x2=\"387\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"400\" y1=\"10\" x2=\"400\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"413\" y1=\"10\" x2=\"413\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"426\" y1=\"10\" x2=\"426\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"439\" y1=\"10\" x2=\"439\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"452\" y1=\"10\" x2=\"452\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"465\" y1=\"10\" x2=\"465\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"10\" x2=\"465\" y2=\"10\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"23\" x2=\"465\" y2=\"23\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"36\" x2=\"465\" y2=\"36\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"49\" x2=\"465\" y2=\"49\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"62\" x2=\"465\" y2=\"62\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"75\" x2=\"465\" y2=\"75\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"88\" x2=\"465\" y2=\"88\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"101\" x2=\"465\" y2=\"101\" stroke=\"#222\" stroke-width=\"0.3\"/><line x1=\"10\" y1=\"114\" x2=\"465\" y2=\"114\" stroke=\"#222\" stroke-width=\"0.3\"/><polygon points=\"23,36 88,36 88,62 23,62\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"55.5\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">A</text><polygon points=\"140,23 166,49 140,75 114,49\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"140\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">B</text><polygon points=\"192,75 205,36 231,36 244,75\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"218\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">C</text><polygon points=\"283,23 296,23 296,36 309,36 309,49 296,49 296,62 283,62 283,49 270,49 270,36 283,36\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"289.5\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">D</text><polygon points=\"335,36 374,36 374,75 335,75\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"354.5\" y=\"106\" text-anchor=\"middle\" font-weight=\"bold\">E</text><polygon points=\"400,23 426,23 426,62 452,62 452,88 400,88\" fill=\"#e8f1ff\" stroke=\"#222\" stroke-width=\"1.8\"/><text x=\"426\" y=\"108.6\" text-anchor=\"middle\" font-weight=\"bold\">F</text></g></svg>",
+    "javoblar": [
+     "A va C",
+     "A, C va F",
+     "A, B va C",
+     "Faqat A"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "4 ta tomon: A, B, C, E",
+      "ovoz": "Tomonlarni sanaymiz. A, B, C va E shakllarida to‘rttadan tomon bor. D ning o‘n ikkita, F ning oltita tomoni bor."
+     },
+     {
+      "doska": "B va E: tomonlari teng",
+      "ovoz": "E — kvadrat, uning tomonlari uch katakdan. B — burilib turgan kvadrat, uning ham tomonlari teng."
+     },
+     {
+      "doska": "A: 2 tomon uzun, 2 tomon qisqa",
+      "ovoz": "A shaklning ikki tomoni besh katak, ikkitasi ikki katak. Tomonlari teng emas."
+     },
+     {
+      "doska": "C: pastki tomon uzun, yuqorisi qisqa",
+      "ovoz": "C shaklning pastki tomoni to‘rt katak, yuqori tomoni ikki katak. Bu ham teng emas."
+     },
+     {
+      "doska": "Javob: A) A va C",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi F shaklning tomonlari teng emasligini ko‘rgan, lekin uning 6 ta tomoni borligini hisobga olmagan.",
+     "2": "C ni tanlagan o‘quvchi burchagi bilan turgan B shaklni kvadrat deb tanimagan va uning tomonlari teng emas deb o‘ylagan.",
+     "3": "D ni tanlagan o‘quvchi C shaklning ham 4 ta tomoni borligini sezmagan."
+    },
+    "maslahat": "Burilib turgan shaklning tomonlarini ham solishtiring: ular uzunmi, qisqami?"
+   }
+  ]
+ },
+ {
+  "id": "M041335",
+  "kunikma": "Har xil shkalali bir nechta ustunli diagrammadan qiymatlarni o‘qib, eng kichigini topish",
+  "usul": "Kerakli ustunni har bir diagrammada toping va uning qiymatini shkala bo‘yicha o‘qing. Ustun balandligiga emas, sonlarga qarab solishtiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "To‘rtta maktabda o‘quvchilardan sevimli mevasi so‘raldi. Natijalar diagrammalarda ko‘rsatilgan. Qaysi maktabda uzumni ENG KAM o‘quvchi tanlagan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 350\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"135\" y=\"22\" text-anchor=\"middle\" font-weight=\"bold\">1-maktab</text><line x1=\"45\" y1=\"140\" x2=\"225\" y2=\"140\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"145\" text-anchor=\"end\">0</text><line x1=\"45\" y1=\"121.667\" x2=\"225\" y2=\"121.667\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"126.667\" text-anchor=\"end\">2</text><line x1=\"45\" y1=\"103.333\" x2=\"225\" y2=\"103.333\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"108.333\" text-anchor=\"end\">4</text><line x1=\"45\" y1=\"85\" x2=\"225\" y2=\"85\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"90\" text-anchor=\"end\">6</text><line x1=\"45\" y1=\"66.6667\" x2=\"225\" y2=\"66.6667\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"71.6667\" text-anchor=\"end\">8</text><line x1=\"45\" y1=\"48.3333\" x2=\"225\" y2=\"48.3333\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"53.3333\" text-anchor=\"end\">10</text><line x1=\"45\" y1=\"30\" x2=\"225\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"35\" text-anchor=\"end\">12</text><line x1=\"45\" y1=\"30\" x2=\"45\" y2=\"140\" stroke=\"#222\"/><line x1=\"45\" y1=\"140\" x2=\"225\" y2=\"140\" stroke=\"#222\"/><rect x=\"58.2\" y=\"48.3333\" width=\"33.6\" height=\"91.6667\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"75\" y=\"157\" text-anchor=\"middle\">Olma</text><rect x=\"118.2\" y=\"85\" width=\"33.6\" height=\"55\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"135\" y=\"157\" text-anchor=\"middle\">Uzum</text><rect x=\"178.2\" y=\"66.6667\" width=\"33.6\" height=\"73.3333\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"195\" y=\"157\" text-anchor=\"middle\">Anor</text><text x=\"375\" y=\"22\" text-anchor=\"middle\" font-weight=\"bold\">2-maktab</text><line x1=\"285\" y1=\"140\" x2=\"465\" y2=\"140\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"145\" text-anchor=\"end\">0</text><line x1=\"285\" y1=\"118\" x2=\"465\" y2=\"118\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"123\" text-anchor=\"end\">10</text><line x1=\"285\" y1=\"96\" x2=\"465\" y2=\"96\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"101\" text-anchor=\"end\">20</text><line x1=\"285\" y1=\"74\" x2=\"465\" y2=\"74\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"79\" text-anchor=\"end\">30</text><line x1=\"285\" y1=\"52\" x2=\"465\" y2=\"52\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"57\" text-anchor=\"end\">40</text><line x1=\"285\" y1=\"30\" x2=\"465\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"35\" text-anchor=\"end\">50</text><line x1=\"285\" y1=\"30\" x2=\"285\" y2=\"140\" stroke=\"#222\"/><line x1=\"285\" y1=\"140\" x2=\"465\" y2=\"140\" stroke=\"#222\"/><rect x=\"298.2\" y=\"74\" width=\"33.6\" height=\"66\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"315\" y=\"157\" text-anchor=\"middle\">Olma</text><rect x=\"358.2\" y=\"118\" width=\"33.6\" height=\"22\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"375\" y=\"157\" text-anchor=\"middle\">Uzum</text><rect x=\"418.2\" y=\"52\" width=\"33.6\" height=\"88\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"435\" y=\"157\" text-anchor=\"middle\">Anor</text><text x=\"135\" y=\"202\" text-anchor=\"middle\" font-weight=\"bold\">3-maktab</text><line x1=\"45\" y1=\"320\" x2=\"225\" y2=\"320\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"325\" text-anchor=\"end\">0</text><line x1=\"45\" y1=\"292.5\" x2=\"225\" y2=\"292.5\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"297.5\" text-anchor=\"end\">4</text><line x1=\"45\" y1=\"265\" x2=\"225\" y2=\"265\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"270\" text-anchor=\"end\">8</text><line x1=\"45\" y1=\"237.5\" x2=\"225\" y2=\"237.5\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"242.5\" text-anchor=\"end\">12</text><line x1=\"45\" y1=\"210\" x2=\"225\" y2=\"210\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"215\" text-anchor=\"end\">16</text><line x1=\"45\" y1=\"210\" x2=\"45\" y2=\"320\" stroke=\"#222\"/><line x1=\"45\" y1=\"320\" x2=\"225\" y2=\"320\" stroke=\"#222\"/><rect x=\"58.2\" y=\"237.5\" width=\"33.6\" height=\"82.5\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"75\" y=\"337\" text-anchor=\"middle\">Olma</text><rect x=\"118.2\" y=\"292.5\" width=\"33.6\" height=\"27.5\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"135\" y=\"337\" text-anchor=\"middle\">Uzum</text><rect x=\"178.2\" y=\"265\" width=\"33.6\" height=\"55\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"195\" y=\"337\" text-anchor=\"middle\">Anor</text><text x=\"375\" y=\"202\" text-anchor=\"middle\" font-weight=\"bold\">4-maktab</text><line x1=\"285\" y1=\"320\" x2=\"465\" y2=\"320\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"325\" text-anchor=\"end\">0</text><line x1=\"285\" y1=\"298\" x2=\"465\" y2=\"298\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"303\" text-anchor=\"end\">2</text><line x1=\"285\" y1=\"276\" x2=\"465\" y2=\"276\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"281\" text-anchor=\"end\">4</text><line x1=\"285\" y1=\"254\" x2=\"465\" y2=\"254\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"259\" text-anchor=\"end\">6</text><line x1=\"285\" y1=\"232\" x2=\"465\" y2=\"232\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"237\" text-anchor=\"end\">8</text><line x1=\"285\" y1=\"210\" x2=\"465\" y2=\"210\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"215\" text-anchor=\"end\">10</text><line x1=\"285\" y1=\"210\" x2=\"285\" y2=\"320\" stroke=\"#222\"/><line x1=\"285\" y1=\"320\" x2=\"465\" y2=\"320\" stroke=\"#222\"/><rect x=\"298.2\" y=\"276\" width=\"33.6\" height=\"44\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"315\" y=\"337\" text-anchor=\"middle\">Olma</text><rect x=\"358.2\" y=\"232\" width=\"33.6\" height=\"88\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"375\" y=\"337\" text-anchor=\"middle\">Uzum</text><rect x=\"418.2\" y=\"254\" width=\"33.6\" height=\"66\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"435\" y=\"337\" text-anchor=\"middle\">Anor</text></g></svg>",
+    "javoblar": [
+     "1-maktab",
+     "2-maktab",
+     "3-maktab",
+     "4-maktab"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "1-maktab: Uzum = 6",
+      "ovoz": "Birinchi maktabda uzum ustuni oltiga yetgan."
+     },
+     {
+      "doska": "2-maktab: Uzum = 10",
+      "ovoz": "Ikkinchi maktabda shkala o‘ntadan oshadi. Uzum ustuni o‘nga teng."
+     },
+     {
+      "doska": "3-maktab: Uzum = 4",
+      "ovoz": "Uchinchi maktabda shkala to‘rttadan oshadi. Uzum ustuni to‘rtga teng."
+     },
+     {
+      "doska": "4-maktab: Uzum = 8",
+      "ovoz": "To‘rtinchi maktabda uzum sakkizta."
+     },
+     {
+      "doska": "$4 < 6 < 8 < 10$",
+      "ovoz": "Eng kichik son — to‘rt. U uchinchi maktabda."
+     },
+     {
+      "doska": "Javob: C) 3-maktab",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi diagrammalarni noto‘g‘ri o‘qigan: 1-maktabda uzum 6 ta, bu 4 dan ko‘p.",
+     "1": "B ni tanlagan o‘quvchi shkalaga qaramay, faqat ustun balandligini solishtirgan. 2-maktab ustuni past ko‘rinadi, lekin u 10 ga teng.",
+     "3": "D ni tanlagan o‘quvchi uzum o‘rniga olma ustuniga qaragan: 4-maktabda olma eng kam."
+    },
+    "maslahat": "Har bir diagrammaning chap tomonidagi sonlarga diqqat qiling — ular har xil."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "To‘rtta mahallada bolalardan sevimli sporti so‘raldi. Natijalar diagrammalarda ko‘rsatilgan. Qaysi mahallada shaxmatni ENG KAM bola tanlagan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 350\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"135\" y=\"22\" text-anchor=\"middle\" font-weight=\"bold\">1-mahalla</text><line x1=\"45\" y1=\"140\" x2=\"225\" y2=\"140\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"145\" text-anchor=\"end\">0</text><line x1=\"45\" y1=\"112.5\" x2=\"225\" y2=\"112.5\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"117.5\" text-anchor=\"end\">5</text><line x1=\"45\" y1=\"85\" x2=\"225\" y2=\"85\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"90\" text-anchor=\"end\">10</text><line x1=\"45\" y1=\"57.5\" x2=\"225\" y2=\"57.5\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"62.5\" text-anchor=\"end\">15</text><line x1=\"45\" y1=\"30\" x2=\"225\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"35\" text-anchor=\"end\">20</text><line x1=\"45\" y1=\"30\" x2=\"45\" y2=\"140\" stroke=\"#222\"/><line x1=\"45\" y1=\"140\" x2=\"225\" y2=\"140\" stroke=\"#222\"/><rect x=\"58.2\" y=\"57.5\" width=\"33.6\" height=\"82.5\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"75\" y=\"157\" text-anchor=\"middle\">Futbol</text><rect x=\"118.2\" y=\"85\" width=\"33.6\" height=\"55\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"135\" y=\"157\" text-anchor=\"middle\">Kurash</text><rect x=\"178.2\" y=\"112.5\" width=\"33.6\" height=\"27.5\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"195\" y=\"157\" text-anchor=\"middle\">Shaxmat</text><text x=\"375\" y=\"22\" text-anchor=\"middle\" font-weight=\"bold\">2-mahalla</text><line x1=\"285\" y1=\"140\" x2=\"465\" y2=\"140\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"145\" text-anchor=\"end\">0</text><line x1=\"285\" y1=\"121.667\" x2=\"465\" y2=\"121.667\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"126.667\" text-anchor=\"end\">10</text><line x1=\"285\" y1=\"103.333\" x2=\"465\" y2=\"103.333\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"108.333\" text-anchor=\"end\">20</text><line x1=\"285\" y1=\"85\" x2=\"465\" y2=\"85\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"90\" text-anchor=\"end\">30</text><line x1=\"285\" y1=\"66.6667\" x2=\"465\" y2=\"66.6667\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"71.6667\" text-anchor=\"end\">40</text><line x1=\"285\" y1=\"48.3333\" x2=\"465\" y2=\"48.3333\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"53.3333\" text-anchor=\"end\">50</text><line x1=\"285\" y1=\"30\" x2=\"465\" y2=\"30\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"35\" text-anchor=\"end\">60</text><line x1=\"285\" y1=\"30\" x2=\"285\" y2=\"140\" stroke=\"#222\"/><line x1=\"285\" y1=\"140\" x2=\"465\" y2=\"140\" stroke=\"#222\"/><rect x=\"298.2\" y=\"48.3333\" width=\"33.6\" height=\"91.6667\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"315\" y=\"157\" text-anchor=\"middle\">Futbol</text><rect x=\"358.2\" y=\"85\" width=\"33.6\" height=\"55\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"375\" y=\"157\" text-anchor=\"middle\">Kurash</text><rect x=\"418.2\" y=\"121.667\" width=\"33.6\" height=\"18.3333\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"435\" y=\"157\" text-anchor=\"middle\">Shaxmat</text><text x=\"135\" y=\"202\" text-anchor=\"middle\" font-weight=\"bold\">3-mahalla</text><line x1=\"45\" y1=\"320\" x2=\"225\" y2=\"320\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"325\" text-anchor=\"end\">0</text><line x1=\"45\" y1=\"292.5\" x2=\"225\" y2=\"292.5\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"297.5\" text-anchor=\"end\">2</text><line x1=\"45\" y1=\"265\" x2=\"225\" y2=\"265\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"270\" text-anchor=\"end\">4</text><line x1=\"45\" y1=\"237.5\" x2=\"225\" y2=\"237.5\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"242.5\" text-anchor=\"end\">6</text><line x1=\"45\" y1=\"210\" x2=\"225\" y2=\"210\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"40\" y=\"215\" text-anchor=\"end\">8</text><line x1=\"45\" y1=\"210\" x2=\"45\" y2=\"320\" stroke=\"#222\"/><line x1=\"45\" y1=\"320\" x2=\"225\" y2=\"320\" stroke=\"#222\"/><rect x=\"58.2\" y=\"265\" width=\"33.6\" height=\"55\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"75\" y=\"337\" text-anchor=\"middle\">Futbol</text><rect x=\"118.2\" y=\"292.5\" width=\"33.6\" height=\"27.5\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"135\" y=\"337\" text-anchor=\"middle\">Kurash</text><rect x=\"178.2\" y=\"237.5\" width=\"33.6\" height=\"82.5\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"195\" y=\"337\" text-anchor=\"middle\">Shaxmat</text><text x=\"375\" y=\"202\" text-anchor=\"middle\" font-weight=\"bold\">4-mahalla</text><line x1=\"285\" y1=\"320\" x2=\"465\" y2=\"320\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"325\" text-anchor=\"end\">0</text><line x1=\"285\" y1=\"301.667\" x2=\"465\" y2=\"301.667\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"306.667\" text-anchor=\"end\">2</text><line x1=\"285\" y1=\"283.333\" x2=\"465\" y2=\"283.333\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"288.333\" text-anchor=\"end\">4</text><line x1=\"285\" y1=\"265\" x2=\"465\" y2=\"265\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"270\" text-anchor=\"end\">6</text><line x1=\"285\" y1=\"246.667\" x2=\"465\" y2=\"246.667\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"251.667\" text-anchor=\"end\">8</text><line x1=\"285\" y1=\"228.333\" x2=\"465\" y2=\"228.333\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"233.333\" text-anchor=\"end\">10</text><line x1=\"285\" y1=\"210\" x2=\"465\" y2=\"210\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"280\" y=\"215\" text-anchor=\"end\">12</text><line x1=\"285\" y1=\"210\" x2=\"285\" y2=\"320\" stroke=\"#222\"/><line x1=\"285\" y1=\"320\" x2=\"465\" y2=\"320\" stroke=\"#222\"/><rect x=\"298.2\" y=\"228.333\" width=\"33.6\" height=\"91.6667\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"315\" y=\"337\" text-anchor=\"middle\">Futbol</text><rect x=\"358.2\" y=\"283.333\" width=\"33.6\" height=\"36.6667\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"375\" y=\"337\" text-anchor=\"middle\">Kurash</text><rect x=\"418.2\" y=\"246.667\" width=\"33.6\" height=\"73.3333\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"435\" y=\"337\" text-anchor=\"middle\">Shaxmat</text></g></svg>",
+    "javoblar": [
+     "1-mahalla",
+     "2-mahalla",
+     "3-mahalla",
+     "4-mahalla"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "1-mahalla: Shaxmat = 5",
+      "ovoz": "Birinchi mahallada shkala beshtadan oshadi. Shaxmat ustuni beshga teng."
+     },
+     {
+      "doska": "2-mahalla: Shaxmat = 10",
+      "ovoz": "Ikkinchi mahallada shkala o‘ntadan oshadi. Shaxmat o‘nta."
+     },
+     {
+      "doska": "3-mahalla: Shaxmat = 6",
+      "ovoz": "Uchinchi mahallada shaxmat oltita."
+     },
+     {
+      "doska": "4-mahalla: Shaxmat = 8",
+      "ovoz": "To‘rtinchi mahallada shaxmat sakkizta."
+     },
+     {
+      "doska": "$5 < 6 < 8 < 10$",
+      "ovoz": "Eng kichik son — besh. U birinchi mahallada."
+     },
+     {
+      "doska": "Javob: A) 1-mahalla",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi shkalaga qaramay, ustun balandligini solishtirgan. 2-mahalla ustuni eng past ko‘rinadi, lekin u 10 ga teng.",
+     "2": "C ni tanlagan o‘quvchi shaxmat o‘rniga kurash ustuniga qaragan: 3-mahallada kurash eng kam.",
+     "3": "D ni tanlagan o‘quvchi qiymatlarni noto‘g‘ri o‘qigan: 4-mahallada shaxmat 8 ta, bu 5 dan ko‘p."
+    },
+    "maslahat": "Ustun balandligiga emas, uning qarshisidagi songa qarang."
+   }
+  ]
+ },
+ {
+  "id": "M041184",
+  "kunikma": "Doiraviy diagrammadagi bo‘laklar kattaligini taqqoslab, unga mos ustunli diagrammani tanlash",
+  "usul": "Doiraviy diagrammada bo‘laklarni kattadan kichikka tartiblang. So‘ng ustunli diagrammada ustunlar xuddi shu tartibda ekanini tekshiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "O‘quvchilardan sevimli mevasi so‘raldi. Natija doiraviy diagrammada ko‘rsatilgan. Qaysi ustunli diagramma xuddi shu ma’lumotni ko‘rsatadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 615\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"240\" y=\"20\" text-anchor=\"middle\" font-weight=\"bold\">Sevimli meva</text><path d=\"M240,135 L240.0,60.0 A75,75 0 0 1 300.7,179.1 Z\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"319.3\" y=\"99.6\" text-anchor=\"start\">Olma</text><path d=\"M240,135 L300.7,179.1 A75,75 0 0 1 195.9,195.7 Z\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"253.9\" y=\"227.9\" text-anchor=\"middle\">Uzum</text><path d=\"M240,135 L195.9,195.7 A75,75 0 0 1 168.7,111.8 Z\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"155.4\" y=\"167.5\" text-anchor=\"end\">Anor</text><path d=\"M240,135 L168.7,111.8 A75,75 0 0 1 203.9,69.3 Z\" fill=\"#ffffff\" stroke=\"#222\"/><text x=\"171.4\" y=\"83.3\" text-anchor=\"end\">Nok</text><path d=\"M240,135 L203.9,69.3 A75,75 0 0 1 240.0,60.0 Z\" fill=\"#f3e3f3\" stroke=\"#222\"/><text x=\"217.9\" y=\"53.8\" text-anchor=\"end\">Behi</text><text x=\"138\" y=\"267\" text-anchor=\"middle\" font-weight=\"bold\">A)</text><line x1=\"40\" y1=\"395\" x2=\"236\" y2=\"395\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"400\" text-anchor=\"end\">0</text><line x1=\"40\" y1=\"365\" x2=\"236\" y2=\"365\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"370\" text-anchor=\"end\">10</text><line x1=\"40\" y1=\"335\" x2=\"236\" y2=\"335\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"340\" text-anchor=\"end\">20</text><line x1=\"40\" y1=\"305\" x2=\"236\" y2=\"305\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"310\" text-anchor=\"end\">30</text><line x1=\"40\" y1=\"275\" x2=\"236\" y2=\"275\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"280\" text-anchor=\"end\">40</text><line x1=\"40\" y1=\"275\" x2=\"40\" y2=\"395\" stroke=\"#222\"/><line x1=\"40\" y1=\"395\" x2=\"236\" y2=\"395\" stroke=\"#222\"/><rect x=\"48.624\" y=\"320\" width=\"21.952\" height=\"75\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"59.6\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Olma</text><rect x=\"87.824\" y=\"290\" width=\"21.952\" height=\"105\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"98.8\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Uzum</text><rect x=\"127.024\" y=\"335\" width=\"21.952\" height=\"60\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"138\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Anor</text><rect x=\"166.224\" y=\"359\" width=\"21.952\" height=\"36\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"177.2\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Nok</text><rect x=\"205.424\" y=\"371\" width=\"21.952\" height=\"24\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"216.4\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Behi</text><text x=\"370\" y=\"267\" text-anchor=\"middle\" font-weight=\"bold\">B)</text><line x1=\"272\" y1=\"395\" x2=\"468\" y2=\"395\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"400\" text-anchor=\"end\">0</text><line x1=\"272\" y1=\"365\" x2=\"468\" y2=\"365\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"370\" text-anchor=\"end\">10</text><line x1=\"272\" y1=\"335\" x2=\"468\" y2=\"335\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"340\" text-anchor=\"end\">20</text><line x1=\"272\" y1=\"305\" x2=\"468\" y2=\"305\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"310\" text-anchor=\"end\">30</text><line x1=\"272\" y1=\"275\" x2=\"468\" y2=\"275\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"280\" text-anchor=\"end\">40</text><line x1=\"272\" y1=\"275\" x2=\"272\" y2=\"395\" stroke=\"#222\"/><line x1=\"272\" y1=\"395\" x2=\"468\" y2=\"395\" stroke=\"#222\"/><rect x=\"280.624\" y=\"290\" width=\"21.952\" height=\"105\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"291.6\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Olma</text><rect x=\"319.824\" y=\"335\" width=\"21.952\" height=\"60\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"330.8\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Uzum</text><rect x=\"359.024\" y=\"335\" width=\"21.952\" height=\"60\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"370\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Anor</text><rect x=\"398.224\" y=\"335\" width=\"21.952\" height=\"60\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"409.2\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Nok</text><rect x=\"437.424\" y=\"371\" width=\"21.952\" height=\"24\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"448.4\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Behi</text><text x=\"138\" y=\"447\" text-anchor=\"middle\" font-weight=\"bold\">C)</text><line x1=\"40\" y1=\"575\" x2=\"236\" y2=\"575\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"580\" text-anchor=\"end\">0</text><line x1=\"40\" y1=\"545\" x2=\"236\" y2=\"545\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"550\" text-anchor=\"end\">10</text><line x1=\"40\" y1=\"515\" x2=\"236\" y2=\"515\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"520\" text-anchor=\"end\">20</text><line x1=\"40\" y1=\"485\" x2=\"236\" y2=\"485\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"490\" text-anchor=\"end\">30</text><line x1=\"40\" y1=\"455\" x2=\"236\" y2=\"455\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"460\" text-anchor=\"end\">40</text><line x1=\"40\" y1=\"455\" x2=\"40\" y2=\"575\" stroke=\"#222\"/><line x1=\"40\" y1=\"575\" x2=\"236\" y2=\"575\" stroke=\"#222\"/><rect x=\"48.624\" y=\"470\" width=\"21.952\" height=\"105\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"59.6\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Olma</text><rect x=\"87.824\" y=\"500\" width=\"21.952\" height=\"75\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"98.8\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Uzum</text><rect x=\"127.024\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"138\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Anor</text><rect x=\"166.224\" y=\"539\" width=\"21.952\" height=\"36\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"177.2\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Nok</text><rect x=\"205.424\" y=\"551\" width=\"21.952\" height=\"24\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"216.4\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Behi</text><text x=\"370\" y=\"447\" text-anchor=\"middle\" font-weight=\"bold\">D)</text><line x1=\"272\" y1=\"575\" x2=\"468\" y2=\"575\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"580\" text-anchor=\"end\">0</text><line x1=\"272\" y1=\"545\" x2=\"468\" y2=\"545\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"550\" text-anchor=\"end\">10</text><line x1=\"272\" y1=\"515\" x2=\"468\" y2=\"515\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"520\" text-anchor=\"end\">20</text><line x1=\"272\" y1=\"485\" x2=\"468\" y2=\"485\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"490\" text-anchor=\"end\">30</text><line x1=\"272\" y1=\"455\" x2=\"468\" y2=\"455\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"460\" text-anchor=\"end\">40</text><line x1=\"272\" y1=\"455\" x2=\"272\" y2=\"575\" stroke=\"#222\"/><line x1=\"272\" y1=\"575\" x2=\"468\" y2=\"575\" stroke=\"#222\"/><rect x=\"280.624\" y=\"551\" width=\"21.952\" height=\"24\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"291.6\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Olma</text><rect x=\"319.824\" y=\"539\" width=\"21.952\" height=\"36\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"330.8\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Uzum</text><rect x=\"359.024\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"370\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Anor</text><rect x=\"398.224\" y=\"500\" width=\"21.952\" height=\"75\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"409.2\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Nok</text><rect x=\"437.424\" y=\"470\" width=\"21.952\" height=\"105\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"448.4\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Behi</text></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Eng katta bo‘lak — Olma",
+      "ovoz": "Doiraviy diagrammada eng katta bo‘lak olmaniki."
+     },
+     {
+      "doska": "Olma > Uzum > Anor > Nok > Behi",
+      "ovoz": "Keyin uzum, undan kichikroq anor, yana kichikroq nok, eng kichigi behi."
+     },
+     {
+      "doska": "A: Uzum eng baland — mos emas",
+      "ovoz": "A diagrammada uzum ustuni olmadan baland. Bu noto‘g‘ri."
+     },
+     {
+      "doska": "B: Uzum, Anor, Nok teng — mos emas",
+      "ovoz": "B da uzum, anor va nok teng. Doirada esa bu bo‘laklar har xil."
+     },
+     {
+      "doska": "D: Behi eng baland — mos emas",
+      "ovoz": "D da hammasi teskari: behi eng baland."
+     },
+     {
+      "doska": "Javob: C",
+      "ovoz": "Faqat C diagrammada ustunlar doiradagi tartibga mos. To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi olma va uzum bo‘laklarini adashtirgan, ularning qaysi biri kattaroq ekanini solishtirmagan.",
+     "1": "B ni tanlagan o‘quvchi faqat eng katta va eng kichik bo‘laklarga qaragan, o‘rtadagi bo‘laklar har xil ekanini sezmagan.",
+     "3": "D ni tanlagan o‘quvchi tartibni teskari olgan: eng kichik bo‘lakni eng baland ustun deb o‘ylagan."
+    },
+    "maslahat": "Avval doiradagi eng katta va eng kichik bo‘lakni toping, keyin qolganlarini solishtiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Bolalardan sevimli rangi so‘raldi. Natija doiraviy diagrammada ko‘rsatilgan. Qaysi ustunli diagramma xuddi shu ma’lumotni ko‘rsatadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 615\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"240\" y=\"20\" text-anchor=\"middle\" font-weight=\"bold\">Sevimli rang</text><path d=\"M240,135 L240.0,60.0 A75,75 0 0 1 284.1,74.3 Z\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"267.5\" y=\"55.4\" text-anchor=\"start\">Qizil</text><path d=\"M240,135 L284.1,74.3 A75,75 0 0 1 284.1,195.7 Z\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"329\" y=\"140\" text-anchor=\"start\">Ko‘k</text><path d=\"M240,135 L284.1,195.7 A75,75 0 0 1 216.8,206.3 Z\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"253.9\" y=\"227.9\" text-anchor=\"middle\">Sariq</text><path d=\"M240,135 L216.8,206.3 A75,75 0 0 1 168.7,111.8 Z\" fill=\"#ffffff\" stroke=\"#222\"/><text x=\"160.7\" y=\"180.4\" text-anchor=\"end\">Yashil</text><path d=\"M240,135 L168.7,111.8 A75,75 0 0 1 240.0,60.0 Z\" fill=\"#f3e3f3\" stroke=\"#222\"/><text x=\"187.7\" y=\"68\" text-anchor=\"end\">Oq</text><text x=\"138\" y=\"267\" text-anchor=\"middle\" font-weight=\"bold\">A)</text><line x1=\"40\" y1=\"395\" x2=\"236\" y2=\"395\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"400\" text-anchor=\"end\">0</text><line x1=\"40\" y1=\"365\" x2=\"236\" y2=\"365\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"370\" text-anchor=\"end\">10</text><line x1=\"40\" y1=\"335\" x2=\"236\" y2=\"335\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"340\" text-anchor=\"end\">20</text><line x1=\"40\" y1=\"305\" x2=\"236\" y2=\"305\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"310\" text-anchor=\"end\">30</text><line x1=\"40\" y1=\"275\" x2=\"236\" y2=\"275\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"280\" text-anchor=\"end\">40</text><line x1=\"40\" y1=\"275\" x2=\"40\" y2=\"395\" stroke=\"#222\"/><line x1=\"40\" y1=\"395\" x2=\"236\" y2=\"395\" stroke=\"#222\"/><rect x=\"48.624\" y=\"305\" width=\"21.952\" height=\"90\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"59.6\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Qizil</text><rect x=\"87.824\" y=\"365\" width=\"21.952\" height=\"30\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"98.8\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Ko‘k</text><rect x=\"127.024\" y=\"350\" width=\"21.952\" height=\"45\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"138\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Sariq</text><rect x=\"166.224\" y=\"320\" width=\"21.952\" height=\"75\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"177.2\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Yashil</text><rect x=\"205.424\" y=\"335\" width=\"21.952\" height=\"60\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"216.4\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Oq</text><text x=\"370\" y=\"267\" text-anchor=\"middle\" font-weight=\"bold\">B)</text><line x1=\"272\" y1=\"395\" x2=\"468\" y2=\"395\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"400\" text-anchor=\"end\">0</text><line x1=\"272\" y1=\"365\" x2=\"468\" y2=\"365\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"370\" text-anchor=\"end\">10</text><line x1=\"272\" y1=\"335\" x2=\"468\" y2=\"335\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"340\" text-anchor=\"end\">20</text><line x1=\"272\" y1=\"305\" x2=\"468\" y2=\"305\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"310\" text-anchor=\"end\">30</text><line x1=\"272\" y1=\"275\" x2=\"468\" y2=\"275\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"280\" text-anchor=\"end\">40</text><line x1=\"272\" y1=\"275\" x2=\"272\" y2=\"395\" stroke=\"#222\"/><line x1=\"272\" y1=\"395\" x2=\"468\" y2=\"395\" stroke=\"#222\"/><rect x=\"280.624\" y=\"365\" width=\"21.952\" height=\"30\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"291.6\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Qizil</text><rect x=\"319.824\" y=\"305\" width=\"21.952\" height=\"90\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"330.8\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Ko‘k</text><rect x=\"359.024\" y=\"350\" width=\"21.952\" height=\"45\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"370\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Sariq</text><rect x=\"398.224\" y=\"320\" width=\"21.952\" height=\"75\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"409.2\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Yashil</text><rect x=\"437.424\" y=\"335\" width=\"21.952\" height=\"60\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"448.4\" y=\"412\" text-anchor=\"middle\" font-size=\"12\">Oq</text><text x=\"138\" y=\"447\" text-anchor=\"middle\" font-weight=\"bold\">C)</text><line x1=\"40\" y1=\"575\" x2=\"236\" y2=\"575\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"580\" text-anchor=\"end\">0</text><line x1=\"40\" y1=\"545\" x2=\"236\" y2=\"545\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"550\" text-anchor=\"end\">10</text><line x1=\"40\" y1=\"515\" x2=\"236\" y2=\"515\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"520\" text-anchor=\"end\">20</text><line x1=\"40\" y1=\"485\" x2=\"236\" y2=\"485\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"490\" text-anchor=\"end\">30</text><line x1=\"40\" y1=\"455\" x2=\"236\" y2=\"455\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"35\" y=\"460\" text-anchor=\"end\">40</text><line x1=\"40\" y1=\"455\" x2=\"40\" y2=\"575\" stroke=\"#222\"/><line x1=\"40\" y1=\"575\" x2=\"236\" y2=\"575\" stroke=\"#222\"/><rect x=\"48.624\" y=\"545\" width=\"21.952\" height=\"30\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"59.6\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Qizil</text><rect x=\"87.824\" y=\"485\" width=\"21.952\" height=\"90\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"98.8\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Ko‘k</text><rect x=\"127.024\" y=\"500\" width=\"21.952\" height=\"75\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"138\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Sariq</text><rect x=\"166.224\" y=\"530\" width=\"21.952\" height=\"45\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"177.2\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Yashil</text><rect x=\"205.424\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"216.4\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Oq</text><text x=\"370\" y=\"447\" text-anchor=\"middle\" font-weight=\"bold\">D)</text><line x1=\"272\" y1=\"575\" x2=\"468\" y2=\"575\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"580\" text-anchor=\"end\">0</text><line x1=\"272\" y1=\"545\" x2=\"468\" y2=\"545\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"550\" text-anchor=\"end\">10</text><line x1=\"272\" y1=\"515\" x2=\"468\" y2=\"515\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"520\" text-anchor=\"end\">20</text><line x1=\"272\" y1=\"485\" x2=\"468\" y2=\"485\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"490\" text-anchor=\"end\">30</text><line x1=\"272\" y1=\"455\" x2=\"468\" y2=\"455\" stroke=\"#222\" stroke-width=\"0.3\"/><text x=\"267\" y=\"460\" text-anchor=\"end\">40</text><line x1=\"272\" y1=\"455\" x2=\"272\" y2=\"575\" stroke=\"#222\"/><line x1=\"272\" y1=\"575\" x2=\"468\" y2=\"575\" stroke=\"#222\"/><rect x=\"280.624\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"291.6\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Qizil</text><rect x=\"319.824\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"330.8\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Ko‘k</text><rect x=\"359.024\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#dff3e4\" stroke=\"#222\"/><text x=\"370\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Sariq</text><rect x=\"398.224\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"409.2\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Yashil</text><rect x=\"437.424\" y=\"515\" width=\"21.952\" height=\"60\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"448.4\" y=\"592\" text-anchor=\"middle\" font-size=\"12\">Oq</text></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Eng katta bo‘lak — Ko‘k",
+      "ovoz": "Doiraviy diagrammada eng katta bo‘lak ko‘k rangniki."
+     },
+     {
+      "doska": "Ko‘k > Yashil > Oq > Sariq > Qizil",
+      "ovoz": "Keyin yashil, undan keyin oq, keyin sariq. Eng kichik bo‘lak — qizil."
+     },
+     {
+      "doska": "A: Qizil eng baland — mos emas",
+      "ovoz": "A diagrammada qizil eng baland. Doirada esa qizil eng kichik."
+     },
+     {
+      "doska": "C: Sariq Yashildan baland — mos emas",
+      "ovoz": "C da sariq yashildan baland. Doirada esa yashil kattaroq."
+     },
+     {
+      "doska": "D: hammasi teng — mos emas",
+      "ovoz": "D da barcha ustunlar teng. Doiradagi bo‘laklar esa har xil."
+     },
+     {
+      "doska": "Javob: B",
+      "ovoz": "Faqat B diagramma doiraga mos. To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi qizil va ko‘k bo‘laklarini adashtirgan.",
+     "2": "C ni tanlagan o‘quvchi sariq va yashil bo‘laklarini solishtirmagan va ularni almashtirib qo‘ygan.",
+     "3": "D ni tanlagan o‘quvchi bo‘laklar soni beshta ekanini ko‘rgan, lekin ularning kattaligi har xil ekaniga e’tibor bermagan."
+    },
+    "maslahat": "Har bir rangning bo‘lagi qanchalik katta ekanini ustun balandligi bilan solishtiring."
+   }
+  ]
+ },
+ {
+  "id": "M031128",
+  "kunikma": "To‘rt xonali va uch xonali sonlarni bir marta o‘tish bilan ustun shaklida qo‘shish",
+  "usul": "Sonlarni xonalari bir-birining tagiga tushadigan qilib yozing. Birliklardan boshlab qo‘shing; 10 dan oshsa, o‘nlikni keyingi xonaga o‘tkazing.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Hisoblang: $3452 + 371 = ?$",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "3823",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "Birliklar: $2 + 1 = 3$",
+      "ovoz": "Birliklardan boshlaymiz: ikki qo‘shuv bir — uch."
+     },
+     {
+      "doska": "O‘nliklar: $5 + 7 = 12$ → 2 yozamiz, 1 ni eslab qolamiz",
+      "ovoz": "O‘nliklar: besh qo‘shuv yetti — o‘n ikki. Ikkini yozamiz, birni yuzliklarga o‘tkazamiz."
+     },
+     {
+      "doska": "Yuzliklar: $4 + 3 + 1 = 8$",
+      "ovoz": "Yuzliklar: to‘rt qo‘shuv uch, yana o‘tgan bir — sakkiz."
+     },
+     {
+      "doska": "Mingliklar: 3",
+      "ovoz": "Mingliklarda faqat uch bor, uni o‘zini yozamiz."
+     },
+     {
+      "doska": "Javob: 3823",
+      "ovoz": "Natija: uch ming sakkiz yuz yigirma uch."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: o‘tgan 1 ni unutib 3723 deb yozish yoki sonlarni xonasini to‘g‘rilamay yozib, 371 ni mingliklarga qo‘shib yuborish (masalan, 7162)."
+    },
+    "maslahat": "Sonlarni birliklari bir-birining tagida turadigan qilib yozing."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Hisoblang: $6184 + 352 = ?$",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "6536",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "Birliklar: $4 + 2 = 6$",
+      "ovoz": "Birliklar: to‘rt qo‘shuv ikki — olti."
+     },
+     {
+      "doska": "O‘nliklar: $8 + 5 = 13$ → 3 yozamiz, 1 ni eslab qolamiz",
+      "ovoz": "O‘nliklar: sakkiz qo‘shuv besh — o‘n uch. Uchni yozamiz, birni yuzliklarga o‘tkazamiz."
+     },
+     {
+      "doska": "Yuzliklar: $1 + 3 + 1 = 5$",
+      "ovoz": "Yuzliklar: bir qo‘shuv uch, yana o‘tgan bir — besh."
+     },
+     {
+      "doska": "Mingliklar: 6",
+      "ovoz": "Mingliklarda olti turibdi, uni yozamiz."
+     },
+     {
+      "doska": "Javob: 6536",
+      "ovoz": "Natija: olti ming besh yuz o‘ttiz olti."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: o‘tgan 1 ni unutib 6436 deb yozish yoki 352 ni chapdan boshlab tagma-tag yozib, xonalarni aralashtirish."
+    },
+    "maslahat": "O‘nliklar yig‘indisi 10 dan oshsa, nima qilish kerakligini eslang."
+   }
+  ]
+ },
+ {
+  "id": "M031016",
+  "kunikma": "Berilgan oraliqdagi oxirgi uch raqami belgilangan barcha sonlarni tizimli topish",
+  "usul": "Oxirgi uch raqam o‘zgarmaydi, faqat mingliklar xonasi o‘zgaradi: 0, 1, 2, ... Har bir sonning oraliqdan chiqmasligini tekshiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Konsertga 4000 ta chipta sotildi. Chiptalar 1 dan 4000 gacha raqamlangan. Raqami 205 bilan tugaydigan chiptalarga sovg‘a beriladi. Sovg‘ali chiptalar raqamlari qaysilar?",
+    "rasm": null,
+    "javoblar": [
+     "1205, 2205, 3205",
+     "205, 1205, 2205, 3205",
+     "205, 1205, 2205, 3205, 4205",
+     "1205, 2205, 3205, 4205"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Oxiri: …205",
+      "ovoz": "Sovg‘ali raqam oxiri ikki yuz besh bilan tugashi kerak."
+     },
+     {
+      "doska": "205",
+      "ovoz": "Eng kichigi — ikki yuz beshning o‘zi. U ham 205 bilan tugaydi."
+     },
+     {
+      "doska": "1205, 2205, 3205",
+      "ovoz": "Keyin oldiga bir, ikki, uch qo‘yamiz: bir ming ikki yuz besh, ikki ming ikki yuz besh, uch ming ikki yuz besh."
+     },
+     {
+      "doska": "$4205 > 4000$ — chipta yo‘q",
+      "ovoz": "To‘rt ming ikki yuz besh to‘rt mingdan katta. Bunday chipta yo‘q."
+     },
+     {
+      "doska": "Javob: B) 205, 1205, 2205, 3205",
+      "ovoz": "Demak, to‘rtta sovg‘ali chipta bor. To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi 205 ning o‘zini unutgan — u ham 205 bilan tugaydi.",
+     "2": "C ni tanlagan o‘quvchi chiptalar 4000 gacha ekanini unutgan: 4205 degan chipta yo‘q.",
+     "3": "D ni tanlagan o‘quvchi 205 ni tushirib qoldirgan va oraliqdan chiqib, 4205 ni qo‘shgan."
+    },
+    "maslahat": "Eng kichik va eng katta chipta raqamini eslang."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Bayramga 5000 ta chipta tayyorlandi. Ular 1 dan 5000 gacha raqamlangan. Raqami 340 bilan tugaydigan chiptalarga sovg‘a beriladi. Nechta chiptaga sovg‘a beriladi?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "5|5 ta",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "Oxiri: …340",
+      "ovoz": "Sovg‘ali raqam uch yuz qirq bilan tugashi kerak."
+     },
+     {
+      "doska": "340, 1340, 2340, 3340, 4340",
+      "ovoz": "Uch yuz qirqning o‘zi, keyin oldiga bir, ikki, uch va to‘rt qo‘yamiz."
+     },
+     {
+      "doska": "$5340 > 5000$ — chipta yo‘q",
+      "ovoz": "Besh ming uch yuz qirq besh mingdan katta, bunday chipta yo‘q."
+     },
+     {
+      "doska": "Sanaymiz: 5 ta",
+      "ovoz": "Ro‘yxatdagi sonlarni sanaymiz: beshta."
+     },
+     {
+      "doska": "Javob: 5",
+      "ovoz": "Beshta chiptaga sovg‘a beriladi."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: 340 ning o‘zini unutib 4 deb javob berish yoki 5340 ni ham qo‘shib 6 deb javob berish."
+    },
+    "maslahat": "Avval barcha mos sonlarni yozib chiqing, keyin sanang."
+   }
+  ]
+ },
+ {
+  "id": "M031183",
+  "kunikma": "Retseptdagi miqdorlarni ikki marta kamaytirish, shu jumladan yarimning yarmini topish",
+  "usul": "Kishilar soni necha marta kamayganini toping (6 dan 3 ga — 2 marta). Har bir miqdorni shuncha marta kamaytiring: sonni 2 ga bo‘ling, $\\frac{1}{2}$ ning yarmi — $\\frac{1}{4}$.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Jadvalda chak-chak retsepti 6 kishi uchun berilgan. Nilufar chak-chakni 3 kishi uchun pishirmoqchi. Unga necha stakan un va necha stakan asal kerak?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 334\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"10\" y=\"10\" width=\"300\" height=\"36\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"160\" y=\"33\" text-anchor=\"middle\" font-weight=\"bold\">6 kishi uchun</text><rect x=\"10\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"69\" text-anchor=\"start\">Tuxum</text><text x=\"174\" y=\"69\" text-anchor=\"start\">6 ta</text><rect x=\"10\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"105\" text-anchor=\"start\">Un</text><text x=\"174\" y=\"105\" text-anchor=\"start\">4 stakan</text><rect x=\"10\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"141\" text-anchor=\"start\">Asal</text><text x=\"180\" y=\"133\" text-anchor=\"middle\">1</text><line x1=\"174\" y1=\"136\" x2=\"186\" y2=\"136\" stroke=\"#222\"/><text x=\"180\" y=\"150\" text-anchor=\"middle\">2</text><text x=\"194\" y=\"141\" text-anchor=\"start\">stakan</text><g transform=\"translate(0,170)\"><rect x=\"10\" y=\"10\" width=\"300\" height=\"36\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"160\" y=\"33\" text-anchor=\"middle\" font-weight=\"bold\">3 kishi uchun</text><rect x=\"10\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"69\" text-anchor=\"start\">Tuxum</text><text x=\"174\" y=\"69\" text-anchor=\"start\">3 ta</text><rect x=\"10\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"105\" text-anchor=\"start\">Un</text><text x=\"174\" y=\"105\" text-anchor=\"start\">? stakan</text><rect x=\"10\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"141\" text-anchor=\"start\">Asal</text><text x=\"174\" y=\"141\" text-anchor=\"start\">? stakan</text></g></g></svg>",
+    "javoblar": [
+     "2 stakan un va $\\frac{1}{2}$ stakan asal",
+     "1 stakan un va $\\frac{1}{4}$ stakan asal",
+     "2 stakan un va $\\frac{1}{4}$ stakan asal",
+     "2 stakan un va 1 stakan asal"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "6 kishi → 3 kishi: 2 marta kam",
+      "ovoz": "Olti kishidan uch kishiga o‘tdik. Bu ikki marta kam. Tuxum ham oltitadan uchtaga kamaygan."
+     },
+     {
+      "doska": "Un: $4 : 2 = 2$ stakan",
+      "ovoz": "Unni ikkiga bo‘lamiz: to‘rt bo‘lingan ikki — ikki stakan."
+     },
+     {
+      "doska": "Asal: $\\frac{1}{2}$ ning yarmi $= \\frac{1}{4}$",
+      "ovoz": "Asal yarim stakan edi. Yarim stakanning yarmi — chorak stakan."
+     },
+     {
+      "doska": "Javob: C) 2 stakan un, $\\frac{1}{4}$ stakan asal",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi unni to‘g‘ri kamaytirgan, lekin asalni kamaytirishni unutgan.",
+     "1": "B ni tanlagan o‘quvchi undan 3 ni ayirgan (tuxum 3 taga kamaygani uchun): 4 − 3 = 1. Aslida miqdor 2 marta kamayadi.",
+     "3": "D ni tanlagan o‘quvchi asalni kamaytirish o‘rniga ikki marta ko‘paytirib yuborgan."
+    },
+    "maslahat": "Tuxum soni necha marta kamayganini toping va qolganlarini ham shuncha marta kamaytiring."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Jadvalda somsa xamiri retsepti 8 kishi uchun berilgan. Aziz xamirni 4 kishi uchun qilmoqchi. Tuxum va un miqdori jadvalda yozilgan. Unga necha stakan qatiq kerak? Javobni kasr bilan yozing.",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 334\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"10\" y=\"10\" width=\"300\" height=\"36\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"160\" y=\"33\" text-anchor=\"middle\" font-weight=\"bold\">8 kishi uchun</text><rect x=\"10\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"69\" text-anchor=\"start\">Tuxum</text><text x=\"174\" y=\"69\" text-anchor=\"start\">4 ta</text><rect x=\"10\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"105\" text-anchor=\"start\">Un</text><text x=\"174\" y=\"105\" text-anchor=\"start\">6 stakan</text><rect x=\"10\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"141\" text-anchor=\"start\">Qatiq</text><text x=\"180\" y=\"133\" text-anchor=\"middle\">1</text><line x1=\"174\" y1=\"136\" x2=\"186\" y2=\"136\" stroke=\"#222\"/><text x=\"180\" y=\"150\" text-anchor=\"middle\">2</text><text x=\"194\" y=\"141\" text-anchor=\"start\">stakan</text><g transform=\"translate(0,170)\"><rect x=\"10\" y=\"10\" width=\"300\" height=\"36\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"160\" y=\"33\" text-anchor=\"middle\" font-weight=\"bold\">4 kishi uchun</text><rect x=\"10\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"46\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"69\" text-anchor=\"start\">Tuxum</text><text x=\"174\" y=\"69\" text-anchor=\"start\">2 ta</text><rect x=\"10\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"82\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"105\" text-anchor=\"start\">Un</text><text x=\"174\" y=\"105\" text-anchor=\"start\">3 stakan</text><rect x=\"10\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><rect x=\"160\" y=\"118\" width=\"150\" height=\"36\" fill=\"none\" stroke=\"#222\"/><text x=\"22\" y=\"141\" text-anchor=\"start\">Qatiq</text><text x=\"174\" y=\"141\" text-anchor=\"start\">? stakan</text></g></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "1/4|0,25|0.25",
+    "javob_turi": "kasr",
+    "yechim": [
+     {
+      "doska": "8 kishi → 4 kishi: 2 marta kam",
+      "ovoz": "Sakkiz kishidan to‘rt kishiga o‘tdik — ikki marta kam. Tuxum ham to‘rttadan ikkitaga kamaygan."
+     },
+     {
+      "doska": "Un: $6 : 2 = 3$ stakan",
+      "ovoz": "Un ham ikki marta kamaygan: olti stakandan uch stakan bo‘lgan."
+     },
+     {
+      "doska": "Qatiq: $\\frac{1}{2}$ ning yarmi $= \\frac{1}{4}$",
+      "ovoz": "Qatiq yarim stakan edi. Uning yarmi — chorak stakan."
+     },
+     {
+      "doska": "Javob: $\\frac{1}{4}$",
+      "ovoz": "Azizga chorak stakan qatiq kerak."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: qatiqni kamaytirmay 1/2 deb qoldirish yoki yarmini topish o‘rniga ikki marta ko‘paytirib 1 stakan deb yozish."
+    },
+    "maslahat": "Yarim stakanni ikki teng qismga bo‘lsangiz, har bir qism qancha bo‘ladi?"
+   }
+  ]
+ },
+ {
+  "id": "M031187",
+  "kunikma": "Matnli vaziyatni noma’lum son belgisi qatnashgan ifoda bilan yozish",
+  "usul": "Belgi boshidagi sonni bildiradi. Narsa qo‘shilsa — qo‘shamiz, berib yuborilsa — ayiramiz.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "$\\square$ — Aziz savatidagi olmalar soni. Onasi unga yana 5 ta olma berdi. Endi Azizda nechta olma bor?",
+    "rasm": null,
+    "javoblar": [
+     "$5 \\cdot \\square$",
+     "$\\square - 5$",
+     "$\\square + 5$",
+     "$5 : \\square$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Boshida: $\\square$ ta olma",
+      "ovoz": "Boshida Azizda kvadrat belgisicha olma bor edi."
+     },
+     {
+      "doska": "Yana 5 ta berdi → qo‘shamiz",
+      "ovoz": "Onasi yana beshta berdi. Olmalar ko‘paydi, demak qo‘shamiz."
+     },
+     {
+      "doska": "$\\square + 5$",
+      "ovoz": "Endi Azizda kvadrat qo‘shuv besh olma bor."
+     },
+     {
+      "doska": "Javob: C) $\\square + 5$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi «yana» so‘zini «marta» deb tushungan va ko‘paytirgan.",
+     "1": "B ni tanlagan o‘quvchi olmalar berilganda ayirish kerak deb o‘ylagan. Lekin olmani Aziz oldi, demak olmalar ko‘paydi.",
+     "3": "D ni tanlagan o‘quvchi bo‘lishni tanlagan. Bu yerda hech narsa teng bo‘linmayapti."
+    },
+    "maslahat": "Azizning olmalari ko‘paydimi yoki kamaydimi?"
+   },
+   {
+    "turi": "tanlov",
+    "savol": "$\\triangle$ — Nilufarning kitoblari soni. U dugonasiga 4 ta kitob berdi. Nilufarda nechta kitob qoldi?",
+    "rasm": null,
+    "javoblar": [
+     "$\\triangle - 4$",
+     "$\\triangle + 4$",
+     "$4 - \\triangle$",
+     "$4 \\cdot \\triangle$"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Boshida: $\\triangle$ ta kitob",
+      "ovoz": "Boshida Nilufarda uchburchak belgisicha kitob bor edi."
+     },
+     {
+      "doska": "4 ta berdi → ayiramiz",
+      "ovoz": "U to‘rtta kitobni berib yubordi. Kitoblari kamaydi, demak ayiramiz."
+     },
+     {
+      "doska": "$\\triangle - 4$",
+      "ovoz": "Kitoblar sonidan to‘rtni ayiramiz: uchburchak ayiruv to‘rt."
+     },
+     {
+      "doska": "Javob: A) $\\triangle - 4$",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi «berdi» so‘zini ko‘rib, qo‘shish kerak deb o‘ylagan. Lekin kitobni Nilufar bergan, uniki kamaygan.",
+     "2": "C ni tanlagan o‘quvchi ayirishni to‘g‘ri tanlagan, lekin sonlarni teskari yozgan: kichik 4 dan katta sonni ayirib bo‘lmaydi.",
+     "3": "D ni tanlagan o‘quvchi ko‘paytirishni tanlagan, holbuki kitoblar kamaydi."
+    },
+    "maslahat": "Nilufarning kitoblari ko‘paydimi yoki kamaydimi? Qaysi sondan ayirish kerak?"
+   }
+  ]
+ },
+ {
+  "id": "M031251",
+  "kunikma": "Kirish va chiqish sonlari juftlari bo‘yicha ikki amalli qoidani topish",
+  "usul": "Har bir qoidani barcha juftlarda tekshiring. Faqat birinchi juftga mos kelishi yetarli emas — qoida hammasida bajarilishi kerak.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Jasur uchburchakdagi sondan bir qoida bo‘yicha kvadratdagi sonni hosil qildi. U qanday qoidadan foydalandi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 180\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"60,54 80,22 100,54\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"80\" y=\"48\" text-anchor=\"middle\">2</text><line x1=\"115\" y1=\"40\" x2=\"285\" y2=\"40\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"285,35 297,40 285,45\" fill=\"#222\" stroke=\"#222\"/><text x=\"200\" y=\"32\" text-anchor=\"middle\">Qoida</text><rect x=\"305\" y=\"24\" width=\"40\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"325\" y=\"45\" text-anchor=\"middle\">7</text><polygon points=\"60,104 80,72 100,104\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"80\" y=\"98\" text-anchor=\"middle\">3</text><line x1=\"115\" y1=\"90\" x2=\"285\" y2=\"90\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"285,85 297,90 285,95\" fill=\"#222\" stroke=\"#222\"/><text x=\"200\" y=\"82\" text-anchor=\"middle\">Qoida</text><rect x=\"305\" y=\"74\" width=\"40\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"325\" y=\"95\" text-anchor=\"middle\">10</text><polygon points=\"60,154 80,122 100,154\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"80\" y=\"148\" text-anchor=\"middle\">4</text><line x1=\"115\" y1=\"140\" x2=\"285\" y2=\"140\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"285,135 297,140 285,145\" fill=\"#222\" stroke=\"#222\"/><text x=\"200\" y=\"132\" text-anchor=\"middle\">Qoida</text><rect x=\"305\" y=\"124\" width=\"40\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"325\" y=\"145\" text-anchor=\"middle\">13</text></g></svg>",
+    "javoblar": [
+     "1 ga ko‘paytirib, 5 ni qo‘shdi",
+     "2 ga ko‘paytirib, 3 ni qo‘shdi",
+     "3 ga ko‘paytirib, 1 ni qo‘shdi",
+     "4 ga ko‘paytirib, 1 ni ayirdi"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A: $2 \\cdot 1 + 5 = 7$ ✓, $3 \\cdot 1 + 5 = 8$ ✗",
+      "ovoz": "A qoidani tekshiramiz. Ikki uchun yetti chiqadi, lekin uch uchun sakkiz chiqadi, o‘n emas."
+     },
+     {
+      "doska": "B: $2 \\cdot 2 + 3 = 7$ ✓, $3 \\cdot 2 + 3 = 9$ ✗",
+      "ovoz": "B qoida: uch uchun to‘qqiz chiqadi. Bu ham mos emas."
+     },
+     {
+      "doska": "C: $2 \\cdot 3 + 1 = 7$, $3 \\cdot 3 + 1 = 10$, $4 \\cdot 3 + 1 = 13$ ✓",
+      "ovoz": "C qoida: yetti, o‘n va o‘n uch chiqadi. Hammasi to‘g‘ri!"
+     },
+     {
+      "doska": "D: $3 \\cdot 4 - 1 = 11$ ✗",
+      "ovoz": "D qoida: uch uchun o‘n bir chiqadi, mos emas."
+     },
+     {
+      "doska": "Javob: C) 3 ga ko‘paytirib, 1 ni qo‘shdi",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi qoidani faqat birinchi juftda (2 → 7) tekshirgan.",
+     "1": "B ni tanlagan o‘quvchi ham faqat birinchi juftni tekshirgan: 2 · 2 + 3 = 7, lekin 3 · 2 + 3 = 9, 10 emas.",
+     "3": "D ni tanlagan o‘quvchi faqat 2 → 7 juftini tekshirgan; 3 uchun bu qoida 11 beradi."
+    },
+    "maslahat": "Har bir qoidani uchala juftda ham tekshirib ko‘ring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Malika uchburchakdagi sondan bir qoida bo‘yicha kvadratdagi sonni hosil qildi. U qanday qoidadan foydalandi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 180\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"60,54 80,22 100,54\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"80\" y=\"48\" text-anchor=\"middle\">4</text><line x1=\"115\" y1=\"40\" x2=\"285\" y2=\"40\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"285,35 297,40 285,45\" fill=\"#222\" stroke=\"#222\"/><text x=\"200\" y=\"32\" text-anchor=\"middle\">Qoida</text><rect x=\"305\" y=\"24\" width=\"40\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"325\" y=\"45\" text-anchor=\"middle\">9</text><polygon points=\"60,104 80,72 100,104\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"80\" y=\"98\" text-anchor=\"middle\">5</text><line x1=\"115\" y1=\"90\" x2=\"285\" y2=\"90\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"285,85 297,90 285,95\" fill=\"#222\" stroke=\"#222\"/><text x=\"200\" y=\"82\" text-anchor=\"middle\">Qoida</text><rect x=\"305\" y=\"74\" width=\"40\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"325\" y=\"95\" text-anchor=\"middle\">11</text><polygon points=\"60,154 80,122 100,154\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"80\" y=\"148\" text-anchor=\"middle\">6</text><line x1=\"115\" y1=\"140\" x2=\"285\" y2=\"140\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"285,135 297,140 285,145\" fill=\"#222\" stroke=\"#222\"/><text x=\"200\" y=\"132\" text-anchor=\"middle\">Qoida</text><rect x=\"305\" y=\"124\" width=\"40\" height=\"32\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"325\" y=\"145\" text-anchor=\"middle\">13</text></g></svg>",
+    "javoblar": [
+     "1 ga ko‘paytirib, 5 ni qo‘shdi",
+     "2 ga ko‘paytirib, 1 ni qo‘shdi",
+     "3 ga ko‘paytirib, 3 ni ayirdi",
+     "4 ga ko‘paytirib, 7 ni ayirdi"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A: $4 \\cdot 1 + 5 = 9$ ✓, $5 \\cdot 1 + 5 = 10$ ✗",
+      "ovoz": "A qoida: to‘rt uchun to‘qqiz, lekin besh uchun o‘n chiqadi, o‘n bir emas."
+     },
+     {
+      "doska": "B: $4 \\cdot 2 + 1 = 9$, $5 \\cdot 2 + 1 = 11$, $6 \\cdot 2 + 1 = 13$ ✓",
+      "ovoz": "B qoida: to‘qqiz, o‘n bir va o‘n uch. Hammasi mos!"
+     },
+     {
+      "doska": "C: $5 \\cdot 3 - 3 = 12$ ✗",
+      "ovoz": "C qoida: besh uchun o‘n ikki chiqadi, mos emas."
+     },
+     {
+      "doska": "D: $5 \\cdot 4 - 7 = 13$ ✗",
+      "ovoz": "D qoida: besh uchun o‘n uch chiqadi, o‘n bir emas."
+     },
+     {
+      "doska": "Javob: B) 2 ga ko‘paytirib, 1 ni qo‘shdi",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi qoidani faqat birinchi juftda (4 → 9) tekshirgan.",
+     "2": "C ni tanlagan o‘quvchi faqat 4 → 9 juftini tekshirgan; 5 uchun bu qoida 12 beradi.",
+     "3": "D ni tanlagan o‘quvchi ham faqat birinchi juftni tekshirgan; 5 uchun bu qoida 13 beradi."
+    },
+    "maslahat": "Qoida bitta juftga emas, barcha juftlarga mos kelishi kerak."
+   }
+  ]
+ },
+ {
+  "id": "M031294",
+  "kunikma": "Bo‘linmalari 1 dan katta bo‘lgan doiraviy shkaladan (tarozi) qiymatni o‘qish",
+  "usul": "Ikki yozilgan son orasida nechta kichik bo‘linma borligini sanang va bitta kichik bo‘linma qancha ekanini toping. Keyin strelkagacha bo‘linmalarni qo‘shing.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Bozorda tarozida bir bog‘ ko‘kat tortildi. Strelka rasmdagidek to‘xtadi. Ko‘kat necha gramm keladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"60\" y=\"20\" width=\"280\" height=\"260\" rx=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><circle cx=\"200\" cy=\"150\" r=\"110\" fill=\"#ffffff\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"200\" y1=\"56\" x2=\"200\" y2=\"40\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"200\" y=\"77\" text-anchor=\"middle\">0</text><line x1=\"225.1\" y1=\"52.2\" x2=\"227.4\" y2=\"43.5\" stroke=\"#222\"/><line x1=\"248.7\" y1=\"61.5\" x2=\"253\" y2=\"53.6\" stroke=\"#222\"/><line x1=\"269.1\" y1=\"76.4\" x2=\"275.3\" y2=\"69.8\" stroke=\"#222\"/><line x1=\"285.3\" y1=\"95.9\" x2=\"292.9\" y2=\"91.1\" stroke=\"#222\"/><line x1=\"289.4\" y1=\"121\" x2=\"304.6\" y2=\"116\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"274.2\" y=\"130.9\" text-anchor=\"middle\">100</text><line x1=\"300.8\" y1=\"143.7\" x2=\"309.8\" y2=\"143.1\" stroke=\"#222\"/><line x1=\"299.2\" y1=\"168.9\" x2=\"308.1\" y2=\"170.6\" stroke=\"#222\"/><line x1=\"291.4\" y1=\"193\" x2=\"299.5\" y2=\"196.8\" stroke=\"#222\"/><line x1=\"277.8\" y1=\"214.4\" x2=\"284.8\" y2=\"220.1\" stroke=\"#222\"/><line x1=\"255.3\" y1=\"226\" x2=\"264.7\" y2=\"239\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"245.8\" y=\"218.1\" text-anchor=\"middle\">200</text><line x1=\"237.2\" y1=\"243.9\" x2=\"240.5\" y2=\"252.3\" stroke=\"#222\"/><line x1=\"212.7\" y1=\"250.2\" x2=\"213.8\" y2=\"259.1\" stroke=\"#222\"/><line x1=\"187.3\" y1=\"250.2\" x2=\"186.2\" y2=\"259.1\" stroke=\"#222\"/><line x1=\"162.8\" y1=\"243.9\" x2=\"159.5\" y2=\"252.3\" stroke=\"#222\"/><line x1=\"144.7\" y1=\"226\" x2=\"135.3\" y2=\"239\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"154.2\" y=\"218.1\" text-anchor=\"middle\">300</text><line x1=\"122.2\" y1=\"214.4\" x2=\"115.2\" y2=\"220.1\" stroke=\"#222\"/><line x1=\"108.6\" y1=\"193\" x2=\"100.5\" y2=\"196.8\" stroke=\"#222\"/><line x1=\"100.8\" y1=\"168.9\" x2=\"91.9\" y2=\"170.6\" stroke=\"#222\"/><line x1=\"99.2\" y1=\"143.7\" x2=\"90.2\" y2=\"143.1\" stroke=\"#222\"/><line x1=\"110.6\" y1=\"121\" x2=\"95.4\" y2=\"116\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"125.8\" y=\"130.9\" text-anchor=\"middle\">400</text><line x1=\"114.7\" y1=\"95.9\" x2=\"107.1\" y2=\"91.1\" stroke=\"#222\"/><line x1=\"130.9\" y1=\"76.4\" x2=\"124.7\" y2=\"69.8\" stroke=\"#222\"/><line x1=\"151.3\" y1=\"61.5\" x2=\"147\" y2=\"53.6\" stroke=\"#222\"/><line x1=\"174.9\" y1=\"52.2\" x2=\"172.6\" y2=\"43.5\" stroke=\"#222\"/><line x1=\"200\" y1=\"150\" x2=\"103.7\" y2=\"168.4\" stroke=\"#222\" stroke-width=\"3\"/><circle cx=\"200\" cy=\"150\" r=\"6\" fill=\"#222\"/><text x=\"200\" y=\"190\" text-anchor=\"middle\">gramm</text></g></svg>",
+    "javoblar": [
+     "300 gramm",
+     "303 gramm",
+     "330 gramm",
+     "360 gramm"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "300 dan 400 gacha: 5 ta kichik oraliq",
+      "ovoz": "Uch yuz bilan to‘rt yuz orasini sanaymiz: beshta kichik oraliq bor."
+     },
+     {
+      "doska": "$100 : 5 = 20$",
+      "ovoz": "Yuzni beshga bo‘lamiz. Demak, bitta kichik bo‘linma yigirma gramm."
+     },
+     {
+      "doska": "Strelka: 300 dan keyin 3 ta bo‘linma",
+      "ovoz": "Strelka uch yuzdan keyin uchinchi kichik chiziqda turibdi."
+     },
+     {
+      "doska": "$300 + 3 \\cdot 20 = 360$",
+      "ovoz": "Uch yuzga uch marta yigirmani qo‘shamiz: uch yuz oltmish."
+     },
+     {
+      "doska": "Javob: D) 360 gramm",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat eng yaqin yozilgan sonni o‘qigan, kichik bo‘linmalarni hisobga olmagan.",
+     "1": "B ni tanlagan o‘quvchi har bir kichik bo‘linmani 1 gramm deb o‘ylagan.",
+     "2": "C ni tanlagan o‘quvchi har bir kichik bo‘linmani 10 gramm deb hisoblagan."
+    },
+    "maslahat": "Avval ikki yozilgan son orasida nechta kichik oraliq borligini sanang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Do‘konda tarozida guruch tortildi. Strelka rasmdagidek to‘xtadi. Guruch necha gramm keladi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"60\" y=\"20\" width=\"280\" height=\"260\" rx=\"20\" fill=\"#e8f1ff\" stroke=\"#222\"/><circle cx=\"200\" cy=\"150\" r=\"110\" fill=\"#ffffff\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"200\" y1=\"56\" x2=\"200\" y2=\"40\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"200\" y=\"77\" text-anchor=\"middle\">0</text><line x1=\"231.2\" y1=\"53.9\" x2=\"234\" y2=\"45.4\" stroke=\"#222\"/><line x1=\"259.4\" y1=\"68.3\" x2=\"264.7\" y2=\"61\" stroke=\"#222\"/><line x1=\"281.7\" y1=\"90.6\" x2=\"289\" y2=\"85.3\" stroke=\"#222\"/><line x1=\"289.4\" y1=\"121\" x2=\"304.6\" y2=\"116\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"274.2\" y=\"130.9\" text-anchor=\"middle\">200</text><line x1=\"301\" y1=\"150\" x2=\"310\" y2=\"150\" stroke=\"#222\"/><line x1=\"296.1\" y1=\"181.2\" x2=\"304.6\" y2=\"184\" stroke=\"#222\"/><line x1=\"281.7\" y1=\"209.4\" x2=\"289\" y2=\"214.7\" stroke=\"#222\"/><line x1=\"255.3\" y1=\"226\" x2=\"264.7\" y2=\"239\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"245.8\" y=\"218.1\" text-anchor=\"middle\">400</text><line x1=\"231.2\" y1=\"246.1\" x2=\"234\" y2=\"254.6\" stroke=\"#222\"/><line x1=\"200\" y1=\"251\" x2=\"200\" y2=\"260\" stroke=\"#222\"/><line x1=\"168.8\" y1=\"246.1\" x2=\"166\" y2=\"254.6\" stroke=\"#222\"/><line x1=\"144.7\" y1=\"226\" x2=\"135.3\" y2=\"239\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"154.2\" y=\"218.1\" text-anchor=\"middle\">600</text><line x1=\"118.3\" y1=\"209.4\" x2=\"111\" y2=\"214.7\" stroke=\"#222\"/><line x1=\"103.9\" y1=\"181.2\" x2=\"95.4\" y2=\"184\" stroke=\"#222\"/><line x1=\"99\" y1=\"150\" x2=\"90\" y2=\"150\" stroke=\"#222\"/><line x1=\"110.6\" y1=\"121\" x2=\"95.4\" y2=\"116\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"125.8\" y=\"130.9\" text-anchor=\"middle\">800</text><line x1=\"118.3\" y1=\"90.6\" x2=\"111\" y2=\"85.3\" stroke=\"#222\"/><line x1=\"140.6\" y1=\"68.3\" x2=\"135.3\" y2=\"61\" stroke=\"#222\"/><line x1=\"168.8\" y1=\"53.9\" x2=\"166\" y2=\"45.4\" stroke=\"#222\"/><line x1=\"200\" y1=\"150\" x2=\"102\" y2=\"150\" stroke=\"#222\" stroke-width=\"3\"/><circle cx=\"200\" cy=\"150\" r=\"6\" fill=\"#222\"/><text x=\"200\" y=\"190\" text-anchor=\"middle\">gramm</text></g></svg>",
+    "javoblar": [
+     "630 gramm",
+     "800 gramm",
+     "750 gramm",
+     "603 gramm"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "600 dan 800 gacha: 4 ta kichik oraliq",
+      "ovoz": "Olti yuz bilan sakkiz yuz orasida to‘rtta kichik oraliq bor."
+     },
+     {
+      "doska": "$200 : 4 = 50$",
+      "ovoz": "Ikki yuzni to‘rtga bo‘lamiz: bitta kichik bo‘linma ellik gramm."
+     },
+     {
+      "doska": "Strelka: 600 dan keyin 3 ta bo‘linma",
+      "ovoz": "Strelka olti yuzdan keyin uchinchi kichik chiziqda turibdi."
+     },
+     {
+      "doska": "$600 + 3 \\cdot 50 = 750$",
+      "ovoz": "Olti yuzga uch marta ellikni qo‘shamiz: yetti yuz ellik."
+     },
+     {
+      "doska": "Javob: C) 750 gramm",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi har bir kichik bo‘linmani 10 gramm deb hisoblagan.",
+     "1": "B ni tanlagan o‘quvchi strelka 800 ga yaqin turgani uchun shu sonni o‘qigan, lekin strelka 800 ga yetmagan.",
+     "3": "D ni tanlagan o‘quvchi har bir kichik bo‘linmani 1 gramm deb o‘ylagan."
+    },
+    "maslahat": "Bitta kichik bo‘linma necha grammga teng? Ikki katta son orasidagi farqni oraliqlar soniga bo‘ling."
+   }
+  ]
+ },
+ {
+  "id": "M031297",
+  "kunikma": "Katakli qog‘ozdagi shaklning yuzini butun va yarim kataklarni sanash orqali topish",
+  "usul": "Butun kataklarni sanang. Diagonal bo‘yicha kesilgan har bir katak — yarim katak; ikki yarim katak bitta butun katak qiladi.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Har bir katak 1 sm ga 1 sm. Bo‘yalgan shaklning yuzi necha kvadrat santimetr?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 220\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"80\" y1=\"20\" x2=\"80\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"110\" y1=\"20\" x2=\"110\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"140\" y1=\"20\" x2=\"140\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"170\" y1=\"20\" x2=\"170\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"200\" y1=\"20\" x2=\"200\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"230\" y1=\"20\" x2=\"230\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"260\" y1=\"20\" x2=\"260\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"20\" x2=\"260\" y2=\"20\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"50\" x2=\"260\" y2=\"50\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"80\" x2=\"260\" y2=\"80\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"110\" x2=\"260\" y2=\"110\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"140\" x2=\"260\" y2=\"140\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"170\" x2=\"260\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><polygon points=\"80,50 170,50 200,80 200,110 170,140 80,140\" fill=\"#bbbbbb\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"230\" y1=\"188\" x2=\"260\" y2=\"188\" stroke=\"#222\"/><text x=\"245\" y=\"206\" text-anchor=\"middle\">1 sm</text><line x1=\"230\" y1=\"183\" x2=\"230\" y2=\"193\" stroke=\"#222\"/><line x1=\"260\" y1=\"183\" x2=\"260\" y2=\"193\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "11|11 sm²|11 kv sm",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "Butun kataklar: $3 \\cdot 3 + 1 = 10$",
+      "ovoz": "Chapdagi to‘g‘ri to‘rtburchakda uch qator, har birida uchtadan butun katak — to‘qqizta. O‘ngda yana bitta butun katak bor. Jami o‘nta."
+     },
+     {
+      "doska": "Yarim kataklar: 2 ta",
+      "ovoz": "O‘ng tomonda ikkita katak diagonal bo‘yicha kesilgan. Ular yarim katak."
+     },
+     {
+      "doska": "$\\frac{1}{2} + \\frac{1}{2} = 1$",
+      "ovoz": "Ikkita yarim katak birga bitta butun katak bo‘ladi."
+     },
+     {
+      "doska": "$10 + 1 = 11$",
+      "ovoz": "O‘nga birni qo‘shamiz — o‘n bir."
+     },
+     {
+      "doska": "Javob: 11",
+      "ovoz": "Shaklning yuzi o‘n bir kvadrat santimetr."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: yarim kataklarni umuman sanamay 10 deb javob berish yoki har bir yarim katakni butun deb sanab 12 deb javob berish."
+    },
+    "maslahat": "Diagonal bo‘yicha kesilgan katakning qanchasi bo‘yalgan?"
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Har bir katak 1 sm ga 1 sm. Bo‘yalgan shaklning yuzi necha kvadrat santimetr?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 220\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"20\" y1=\"20\" x2=\"20\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"50\" y1=\"20\" x2=\"50\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"80\" y1=\"20\" x2=\"80\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"110\" y1=\"20\" x2=\"110\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"140\" y1=\"20\" x2=\"140\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"170\" y1=\"20\" x2=\"170\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"200\" y1=\"20\" x2=\"200\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"230\" y1=\"20\" x2=\"230\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"20\" x2=\"230\" y2=\"20\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"50\" x2=\"230\" y2=\"50\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"80\" x2=\"230\" y2=\"80\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"110\" x2=\"230\" y2=\"110\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"140\" x2=\"230\" y2=\"140\" stroke=\"#222\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"170\" x2=\"230\" y2=\"170\" stroke=\"#222\" stroke-width=\"0.6\"/><polygon points=\"80,50 140,50 170,80 170,140 110,140 80,110\" fill=\"#bbbbbb\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"200\" y1=\"188\" x2=\"230\" y2=\"188\" stroke=\"#222\"/><text x=\"215\" y=\"206\" text-anchor=\"middle\">1 sm</text><line x1=\"200\" y1=\"183\" x2=\"200\" y2=\"193\" stroke=\"#222\"/><line x1=\"230\" y1=\"183\" x2=\"230\" y2=\"193\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "8|8 sm²|8 kv sm",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "Butun kataklar: 7 ta",
+      "ovoz": "Avval to‘liq bo‘yalgan kataklarni sanaymiz: yettita."
+     },
+     {
+      "doska": "Yarim kataklar: 2 ta",
+      "ovoz": "Ikki burchakda katak diagonal bo‘yicha kesilgan. Ular yarim katak."
+     },
+     {
+      "doska": "$\\frac{1}{2} + \\frac{1}{2} = 1$",
+      "ovoz": "Ikki yarim katak bitta butun katak qiladi."
+     },
+     {
+      "doska": "$7 + 1 = 8$",
+      "ovoz": "Yettiga birni qo‘shamiz — sakkiz."
+     },
+     {
+      "doska": "Javob: 8",
+      "ovoz": "Shaklning yuzi sakkiz kvadrat santimetr."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xatolar: yarim kataklarni tashlab 7 deb javob berish yoki ularni butun katak deb sanab 9 deb javob berish."
+    },
+    "maslahat": "Avval butun kataklarni, keyin yarim kataklarni alohida sanang."
+   }
+  ]
+ }
+]

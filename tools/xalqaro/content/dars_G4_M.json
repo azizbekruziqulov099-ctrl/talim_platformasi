@@ -1,0 +1,1548 @@
+[
+ {
+  "kod": "XB-M4-NAT",
+  "mavzu": "M4-NAT",
+  "sarlavha": "Natural sonlar va amallar",
+  "maqsad": "Ko‘p xonali sonlarning xona qiymatini bilish, to‘rt amalni bajarish, taxminiy hisoblash va ko‘p qadamli hayotiy masalalarni yechish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Kemada 1 248 yo‘lovchi bor. Bu qanday son?\nTIMSS: 4-sinflarning 44% i to‘g‘ri yechgan",
+    "ovoz": "[1] Tasavvur qiling, katta kemada bir ming ikki yuz qirq sakkiz yo‘lovchi suzib ketyapti. Bunday sonlar bilan har kuni uchrashamiz, ular natural sonlar deyiladi. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha qirq to‘rt foizi to‘g‘ri yechgan. Bugun siz ham bunday savollarni bemalol yechishni o‘rganasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Xona qiymati",
+    "doska": "5 432 = 5 ming + 4 yuz + 3 o‘n + 2 bir\nRaqam qaysi xonada tursa, shuncha qiymatga ega\n5 432 dan 100 ko‘p son: 5 532\nEng kichik uch xonali son: 100",
+    "ovoz": "[1] Besh ming to‘rt yuz o‘ttiz ikki sonini xonalarga ajratamiz: besh ming, to‘rt yuz, uch o‘nlik va ikki birlik. [2] Bir xil raqam turgan joyiga qarab har xil qiymatga ega bo‘ladi. Yuzlar xonasidagi to‘rt — to‘rt yuz degani. [3] Yuzta ko‘p sonni topish uchun faqat yuzlar xonasini bittaga oshiramiz va besh ming besh yuz o‘ttiz ikki hosil bo‘ladi. [4] Esda tuting: eng kichik uch xonali son — yuz, eng katta uch xonali son esa to‘qqiz yuz to‘qson to‘qqiz."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Qo‘shish va ayirish",
+    "doska": "Birlar ostiga birlar, o‘nlar ostiga o‘nlar\n$5631 + 286 = 5917$\nTekshirish: $5917 - 286 = 5631$",
+    "ovoz": "[1] Ustun qilib qo‘shganda sonlarni xonasi bo‘yicha aniq ostma-ost yozing: birlar ostiga birlar, o‘nlar ostiga o‘nlar. [2] Besh ming olti yuz o‘ttiz birga ikki yuz sakson oltini qo‘shamiz. Birlar, o‘nlar, yuzlar — navbat bilan, o‘ndan oshsa keyingi xonaga bitta o‘tkazamiz. [3] Javobni teskari amal bilan tekshiramiz: yig‘indidan qo‘shiluvchini ayirsak, ikkinchi qo‘shiluvchi chiqishi kerak. Chiqdi — demak to‘g‘ri!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Ko‘paytirish va bo‘lish",
+    "doska": "$23 \\times 19 = 23 \\times 20 - 23$\n$= 460 - 23 = 437$\nBo‘lish — teng guruhlarga ajratish: $480 : 6 = 80$\nQoldiq qolsa, yana bitta quti kerak bo‘lishi mumkin",
+    "ovoz": "[1] Yigirma uchni o‘n to‘qqizga ko‘paytirish qiyin tuyuladimi? O‘n to‘qqiz — bu yigirmadan bitta kam, shuning uchun yigirma uchni yigirmaga ko‘paytirib, bitta yigirma uchni ayiramiz. [2] Yigirma uch karra yigirma to‘rt yuz oltmish, undan yigirma uchni ayirsak, to‘rt yuz o‘ttiz yetti chiqadi. [3] Bo‘lish — narsalarni teng guruhlarga ajratish. To‘rt yuz saksonta daftarni olti sinfga teng bo‘lsak, har biriga saksontadan tegadi. [4] Diqqat qiling: agar narsalar qutilarga to‘liq sig‘masa, ortib qolganlari uchun yana bitta quti kerak bo‘ladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Bo‘luvchilar",
+    "doska": "18 ning bo‘luvchilari: 1, 2, 3, 6, 9, 18\n$18 : 4 = 4$ (qoldiq 2) — 4 bo‘luvchi emas\nJuftlab izlang: 1·18, 2·9, 3·6",
+    "ovoz": "[1] O‘n sakkizni qoldiqsiz bo‘ladigan sonlar uning bo‘luvchilari deyiladi: bir, ikki, uch, olti, to‘qqiz va o‘n sakkizning o‘zi. [2] O‘n sakkizni to‘rtga bo‘lsak, ikki qoladi. Qoldiq bor ekan, demak to‘rt o‘n sakkizning bo‘luvchisi emas. [3] Bo‘luvchilarni juft-juft qilib izlash qulay: bir karra o‘n sakkiz, ikki karra to‘qqiz, uch karra olti. Shunda birortasi ham tushib qolmaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Avtobusda 38 kishi. 15 tushdi, 27 chiqdi. Nechta bo‘ldi?",
+    "ovoz": "[1] Birinchi misol. Avtobusda o‘ttiz sakkiz kishi bor edi, bekatda o‘n beshtasi tushdi, yigirma yettitasi chiqdi. Endi avtobusda necha kishi bor?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Tushdi: $38 - 15 = 23$\nChiqdi: $23 + 27 = 50$\nJavob: 50 kishi",
+    "ovoz": "[1] Avval tushganlarni ayiramiz: o‘ttiz sakkizdan o‘n beshni ayirsak, yigirma uch kishi qoladi. [2] Keyin chiqqanlarni qo‘shamiz: yigirma uchga yigirma yetti qo‘shilsa, ellik bo‘ladi. [3] Javob: avtobusda ellik kishi bor. Ko‘rdingizmi, masalani ikki qadamga bo‘lib yechdik."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Bir qutida 24 ta qalam. 5 qutida nechta qalam?",
+    "ovoz": "[1] Endi o‘zingiz yechib ko‘ring. Bitta qutida yigirma to‘rtta qalam bor. Beshta shunday qutida jami nechta qalam bo‘ladi?",
+    "savol": "Javobingizni son bilan yozing",
+    "javob": "120"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: ko‘p qadamli masala",
+    "doska": "Pirog: 4 kishiga 3 ta tuxum va 200 g un\n12 kishiga qancha tuxum va un kerak?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash qiyinroq masala. Pirog retsepti to‘rt kishiga mo‘ljallangan: uchta tuxum va ikki yuz gramm un. [2] Savol: o‘n ikki kishiga pirog pishirish uchun qancha tuxum va qancha un kerak? Dunyoda bunday savolni ko‘pchilik xato yechgan, shoshilmang."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "1) Necha marta ko‘p: $12 : 4 = 3$\n2) Tuxum: $3 \\times 3 = 9$ ta\n3) Un: $200 \\times 3 = 600$ g",
+    "ovoz": "[1] Birinchi qadam: o‘n ikki kishi to‘rt kishidan necha marta ko‘p? O‘n ikkini to‘rtga bo‘lamiz — uch marta. [2] Ikkinchi qadam: tuxum ham uch marta ko‘p kerak. Uch karra uch — to‘qqizta tuxum. [3] Uchinchi qadam: un ham uch marta ko‘p. Ikki yuz karra uch — olti yuz gramm."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xato yo‘l: 12 − 4 = 8 ni qo‘shish emas!\nJavob: 9 ta tuxum, 600 g un",
+    "ovoz": "[1] Ko‘p o‘quvchilar sakkiz kishi ko‘p deb, tuxumga sakkizni qo‘shib yuborishadi. Bu xato, chunki retsept marta-marta kattalashadi. [2] Javob: to‘qqizta tuxum va olti yuz gramm un. Har to‘rt kishiga uchta tuxum, uchta guruh — hammasi mos keldi!"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Qaysi son 4 805 dan 1 000 ko‘p?",
+    "ovoz": "[1] Yana bir savol. To‘rt ming sakkiz yuz beshdan mingta ko‘p son qaysi? Qaysi xona o‘zgarishini o‘ylang.",
+    "savol": "Sonni yozing",
+    "javob": "5805|5 805"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Shartni sekin o‘qing, sonlarni belgilang\n2. Nima so‘ralgan? Necha qadam kerak?\n3. Taxmin qiling: $9 \\times 22 \\approx 9 \\times 20 = 180$\n4. Javobni teskari amal bilan tekshiring",
+    "ovoz": "[1] Xalqaro savolni yechishda avval shartni sekin o‘qing va barcha sonlarni belgilab chiqing. [2] Keyin o‘zingizdan so‘rang: nima so‘ralyapti va buning uchun necha qadam kerak? [3] Variantlar bo‘lsa, avval taxmin qiling. To‘qqiz karra yigirma ikki taxminan to‘qqiz karra yigirma, ya’ni bir yuz saksondan sal ko‘p. [4] Oxirida javobni teskari amal bilan tekshiring va u shartga mos kelishini ko‘ring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Raqam qiymati uning xonasiga bog‘liq\nKo‘p qadamli masala — qadamma-qadam\nHar doim tekshiring!",
+    "ovoz": "[1] Esda tuting: raqamning qiymati u turgan xonaga bog‘liq. [2] Ko‘p qadamli masalani bo‘laklarga ajrating va har qadamni alohida bajaring. [3] Va har doim javobingizni tekshiring. Siz bugun ajoyib ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "5 432: 5 ming, 4 yuz, 3 o‘n, 2 bir",
+     "ovoz": "Sonni o‘ngdan chapga o‘qing: birlar, o‘nlar, yuzlar, minglar. Har bir raqam o‘z uyida yashaydi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "2 ta 100 so‘mlik + 3 ta 10 so‘mlik = 230 so‘m",
+     "ovoz": "Do‘konda pul sanayotganingizni tasavvur qiling: ikki yuz so‘mlik ikkita va o‘n so‘mlik uchta tanga — jami ikki yuz o‘ttiz so‘m. Xonalar ham xuddi shunday."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ming | Yuz | O‘n | Bir\n 5   |  4  |  3 |  2",
+     "ovoz": "Xona jadvalini chizing va har raqamni o‘z katagiga yozing. Yuzta qo‘shsangiz, faqat «Yuz» katagi o‘zgaradi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Avval birlar, keyin o‘nlar, keyin yuzlar",
+     "ovoz": "Qo‘shishni doim o‘ng tomondan, birlardan boshlang."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Savatda 31 olma, yana 8 olma qo‘shdik: 39",
+     "ovoz": "Savatda o‘ttiz bitta olma bor edi, yana sakkizta qo‘ydik. Birlar birlarga qo‘shiladi: bir va sakkiz — to‘qqiz, jami o‘ttiz to‘qqiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "$5631 + 286 = 5631 + 300 - 14$",
+     "ovoz": "Boshqa usul: ikki yuz sakson olti o‘rniga uch yuz qo‘shib, keyin o‘n to‘rtni ayirish ham mumkin. Javob bir xil — besh ming to‘qqiz yuz o‘n yetti."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "$3 \\times 4$ = 3 ta 4 = 4 + 4 + 4 = 12",
+     "ovoz": "Ko‘paytirish — bir xil sonni bir necha marta qo‘shish."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "6 do‘stga 30 ta konfet: har biriga 5 ta",
+     "ovoz": "Olti do‘stga o‘ttizta konfetni teng bo‘lsangiz, har biriga beshtadan tegadi. Bu bo‘lish."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "$23 \\times 19 = 20 \\times 19 + 3 \\times 19$\n$= 380 + 57 = 437$",
+     "ovoz": "Sonni bo‘laklarga ajratib ko‘paytirish ham mumkin: yigirmani alohida, uchni alohida ko‘paytirib, natijalarni qo‘shamiz."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Bo‘luvchi — qoldiqsiz bo‘ladigan son",
+     "ovoz": "Agar bo‘lganda hech narsa ortib qolmasa, bu son bo‘luvchi bo‘ladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "18 ta tosh: 3 qatorga 6 tadan — bo‘ladi",
+     "ovoz": "O‘n sakkizta toshni teng qatorlarga tering. Uch qatorga oltitadan bo‘ladi, demak uch bo‘luvchi. To‘rt qatorga terib bo‘lmaydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "2 karra jadvali: 2, 4, 6, ..., 18 — bor",
+     "ovoz": "Ko‘paytirish jadvalidan foydalaning: o‘n sakkiz ikki karra jadvalida bor, demak ikki bo‘luvchi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Ustun qilib qo‘shganda xonalarni noto‘g‘ri ostma-ost yozish",
+   "100 ko‘p sonni topishda birlar xonasini o‘zgartirib qo‘yish",
+   "Retsept masalasida «marta ko‘p» o‘rniga ayirmani qo‘shish",
+   "Qoldiq qolganda qo‘shimcha quti kerakligini unutish",
+   "Bo‘luvchilarni sanashda 1 va sonning o‘zini tushirib qoldirish"
+  ],
+  "strategiyalar": [
+   "Ko‘p qadamli masalani qadamlarga ajrating",
+   "Variantlarni yaxlitlab taxmin qiling",
+   "Javobni teskari amal bilan tekshiring",
+   "Har bir sonni shartdan belgilab chiqing"
+  ],
+  "kalit_sozlar": [
+   "natural son",
+   "xona",
+   "ko‘p xonali",
+   "qo‘shish",
+   "ayirish",
+   "ko‘paytirish",
+   "bo‘lish",
+   "bo‘luvchi"
+  ]
+ },
+ {
+  "kod": "XB-M4-KAS",
+  "mavzu": "M4-KAS",
+  "sarlavha": "Kasrlar va o‘nli kasrlar",
+  "maqsad": "Kasrni teng bo‘laklar sifatida tushunish, teng kasrlarni topish, kasrlarni taqqoslash, o‘nli kasrni o‘qish va hayotiy masalada qo‘llash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Tortning $\\frac{1}{4}$ qismi\nTIMSS: 4-sinflarning 47% i to‘g‘ri yechgan",
+    "ovoz": "[1] Tasavvur qiling, tortni to‘rtta teng bo‘lakka bo‘ldingiz va bittasini oldingiz. Bu to‘rtdan bir qism, ya’ni kasr. [2] Xalqaro TIMSS tadqiqotida kasrlar bo‘yicha savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha qirq yetti foizi to‘g‘ri yechgan. Bugun siz ham kasrlar ustasi bo‘lasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Kasr nima?",
+    "doska": "Butun 4 ta teng bo‘lak: har biri $\\frac{1}{4}$\n$\\frac{3}{4}$ — 4 bo‘lakdan 3 tasi olingan\nPastdagi son — maxraj, ustidagi — surat\nBo‘laklar albatta teng bo‘lishi kerak!",
+    "ovoz": "[1] Butun narsani teng bo‘laklarga bo‘lamiz. To‘rtta teng bo‘lakning har biri to‘rtdan bir deyiladi. [2] To‘rtdan uch esa to‘rtta bo‘lakdan uchtasini olganimizni bildiradi. [3] Chiziq ostidagi son maxraj deyiladi: butun nechta bo‘lakka bo‘linganini ko‘rsatadi. Ustidagi son surat: nechta bo‘lak olinganini bildiradi. [4] Eng muhimi: bo‘laklar teng bo‘lishi shart. Bo‘laklar har xil bo‘lsa, ularni kasr bilan bunday sanab bo‘lmaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Teng kasrlar",
+    "doska": "$\\frac{1}{2} = \\frac{2}{4} = \\frac{4}{8}$\nSurat va maxrajni bir xil songa ko‘paytiring\n$\\frac{2}{3} = \\frac{2 \\times 2}{3 \\times 2} = \\frac{4}{6}$",
+    "ovoz": "[1] Olmaning yarmi, to‘rtdan ikki qismi va sakkizdan to‘rt qismi — bir xil miqdor. Bunday kasrlar teng kasrlar deyiladi. [2] Teng kasr hosil qilish uchun surat va maxrajni bir xil songa ko‘paytiramiz. [3] Masalan, uchdan ikkining surat va maxrajini ikkiga ko‘paytirsak, oltidan to‘rt chiqadi. Qism o‘zgarmadi, faqat bo‘laklar maydaroq bo‘ldi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Kasrlarni taqqoslash",
+    "doska": "Maxraji bir xil: $\\frac{5}{8} > \\frac{3}{8}$\nSurati bir xil: $\\frac{1}{3} > \\frac{1}{5}$\n$\\frac{1}{2}$ bilan solishtiring: $\\frac{5}{8}$ da $5 > 4$",
+    "ovoz": "[1] Maxrajlari bir xil bo‘lsa, surati katta kasr katta: sakkizdan besh sakkizdan uchdan katta. [2] Suratlari bir xil bo‘lsa, maxraji kichigi katta! Uchga bo‘lingan tortning bo‘lagi beshga bo‘linganidan kattaroq. [3] Yarim bilan solishtirish qulay. Sakkizning yarmi to‘rt, surat besh esa to‘rtdan katta, demak sakkizdan besh yarimdan katta."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "O‘nli kasr",
+    "doska": "$5{,}3$ — 5 butun va 3 o‘ndan\n5 bilan 6 orasida: $5{,}1$; $5{,}5$; $5{,}9$\n$0{,}5 = \\frac{5}{10} = \\frac{1}{2}$",
+    "ovoz": "[1] Besh butun o‘ndan uch — bu beshdan sal ko‘p son. Vergulgacha butunlar, verguldan keyin o‘ndan bir ulushlar turadi. [2] Besh bilan olti orasida ham sonlar bor: besh butun o‘ndan bir, besh butun o‘ndan besh, besh butun o‘ndan to‘qqiz. [3] Nol butun o‘ndan besh — bu o‘ndan besh, ya’ni yarim. O‘nli kasr ham, oddiy kasr ham bir xil miqdorni ko‘rsatishi mumkin."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "12 ta olmaning $\\frac{2}{3}$ qismi qizil. Nechta?",
+    "ovoz": "[1] Birinchi misol. Savatda o‘n ikkita olma bor, ularning uchdan ikki qismi qizil. Qizil olmalar nechta?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "$\\frac{1}{3}$ qismi: $12 : 3 = 4$\n$\\frac{2}{3}$ qismi: $4 \\times 2 = 8$\nJavob: 8 ta qizil olma",
+    "ovoz": "[1] Avval uchdan bir qismini topamiz: o‘n ikkini uchga bo‘lsak, to‘rt chiqadi. [2] Uchdan ikki — bunday ikkita qism, shuning uchun to‘rtni ikkiga ko‘paytiramiz va sakkiz hosil bo‘ladi. [3] Javob: sakkizta qizil olma. Qism butundan kichik — sakkiz o‘n ikkidan kam, mantiqan to‘g‘ri."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "$\\frac{1}{2} = \\frac{?}{6}$",
+    "ovoz": "[1] Endi o‘zingiz. Ikkidan bir oltidan nechaga teng? Maxraj necha marta kattalashganini o‘ylang.",
+    "savol": "Surat o‘rnidagi sonni yozing",
+    "javob": "3"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: qancha qism qoldi?",
+    "doska": "Tort 8 teng bo‘lak. Ali 2, Vali 3 bo‘lak yedi.\nTortning qancha qismi qoldi? Yarmidan ko‘pmi?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash masala. Tort sakkizta teng bo‘lakka kesilgan. Ali ikki bo‘lak, Vali uch bo‘lak yedi. [2] Savol: tortning qancha qismi qoldi va bu yarmidan ko‘pmi? Bunday savolni dunyoda faqat har to‘rtinchi o‘quvchi to‘g‘ri yechgan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Yedi: $2 + 3 = 5$ bo‘lak, ya’ni $\\frac{5}{8}$\nQoldi: $8 - 5 = 3$ bo‘lak, ya’ni $\\frac{3}{8}$\nYarmi 4 bo‘lak, $3 < 4$ — yarmidan kam",
+    "ovoz": "[1] Birinchi qadam: jami yeyilgan bo‘laklar ikki qo‘shuv uch — besh bo‘lak, bu sakkizdan besh. [2] Ikkinchi qadam: sakkiz bo‘lakdan beshtasini ayiramiz, uch bo‘lak qoladi — sakkizdan uch. [3] Uchinchi qadam: tortning yarmi to‘rt bo‘lak. Uch to‘rtdan kichik, demak qolgani yarmidan kam."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Javob: $\\frac{3}{8}$ qoldi, yarmidan kam",
+    "ovoz": "[1] Javob: tortning sakkizdan uch qismi qoldi va bu yarmidan kam. Diqqat: so‘ralgan narsa yeyilgan emas, qolgan qism edi!"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Qaysi katta: $\\frac{3}{5}$ yoki $\\frac{3}{8}$?",
+    "ovoz": "[1] Yana bir savol. Beshdan uch va sakkizdan uch — qaysi biri katta? Suratlari bir xil ekanini payqadingizmi?",
+    "savol": "Katta kasrni yozing (masalan, 1/2)",
+    "javob": "3/5"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Rasmda bo‘laklar tengmi — tekshiring\n2. Nima so‘ralgan: olingan qismmi, qolganmi?\n3. Kasrni $\\frac{1}{2}$ bilan solishtiring\n4. Qism butundan katta bo‘lmaydi",
+    "ovoz": "[1] Rasmli savolda avvalo bo‘laklar teng ekanini tekshiring. [2] So‘ralgan narsani aniqlang: olingan qismmi yoki qolgan qismmi. [3] Kasrlarni taqqoslashda ularni yarim bilan solishtirish juda yordam beradi. [4] Va oxirida tekshiring: butunning qismi butunning o‘zidan katta bo‘lmaydi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Kasr — teng bo‘laklar: surat / maxraj\nTeng kasr: ikkalasini bir xil songa ko‘paytiring\n$0{,}5 = \\frac{1}{2}$ — o‘nli kasr ham kasr",
+    "ovoz": "[1] Esda tuting: kasr teng bo‘laklarni sanaydi, surat olinganini, maxraj jami bo‘laklarni ko‘rsatadi. [2] Teng kasr uchun surat va maxrajni bir xil songa ko‘paytiring. [3] O‘nli kasr ham kasrning bir ko‘rinishi. Barakalla, bugun siz zo‘r ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Non 2 teng bo‘lak — har biri $\\frac{1}{2}$",
+     "ovoz": "Nonni ikkita teng bo‘lakka bo‘lsangiz, har bo‘lagi yarim — ikkidan bir."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Pitsa 6 bo‘lak, 1 tasini yedingiz: $\\frac{1}{6}$",
+     "ovoz": "Pitsani olti teng bo‘lakka kesdik, siz bittasini yedingiz. Siz pitsaning oltidan bir qismini yedingiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "■■■□  →  4 katakdan 3 tasi bo‘yalgan",
+     "ovoz": "To‘rtta katak chizing va uchtasini bo‘yang. Bo‘yalgan qism to‘rtdan uch."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "$\\frac{1}{2}$ va $\\frac{2}{4}$ — bir xil qism",
+     "ovoz": "Yarim olma va to‘rtdan ikki olma — bir xil miqdor."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Shokolad: yarmi = 8 bo‘lakdan 4 tasi",
+     "ovoz": "Shokoladni sakkiz bo‘lakka bo‘lsangiz, to‘rt bo‘lagi aynan yarmi bo‘ladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Bir xil tasmalarni 2, 4, 8 ga bo‘ling",
+     "ovoz": "Bir xil uzunlikdagi uchta qog‘oz tasmani ikkiga, to‘rtga va sakkizga bo‘ling. Yarmi har birida bir joyga to‘g‘ri keladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Bo‘lak ko‘p bo‘lsa — har biri kichik: $\\frac{1}{5} < \\frac{1}{3}$",
+     "ovoz": "Tort qancha ko‘p bo‘lakka bo‘linsa, har bo‘lak shuncha kichik bo‘ladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "3 do‘st bitta tort, 5 do‘st bitta tort",
+     "ovoz": "Uch do‘st bitta tortni bo‘lishsa, besh do‘stga qaraganda har biriga kattaroq bo‘lak tegadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Son o‘qida: 0 ... 1/2 ... 1",
+     "ovoz": "Kasrlarni noldan birgacha bo‘lgan son o‘qiga joylashtiring: o‘ngdagisi katta."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "$0{,}1 = \\frac{1}{10}$",
+     "ovoz": "Verguldan keyingi birinchi raqam o‘ndan nechta ulush borligini bildiradi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Ali 5 km dan ko‘p, 6 km dan kam yurdi: $5{,}4$ km",
+     "ovoz": "Ali besh kilometrdan ko‘p, lekin olti kilometrdan kam yurdi — masalan, besh butun o‘ndan to‘rt kilometr."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Chizg‘ich: 5 sm va 6 sm orasida 10 ta bo‘lak",
+     "ovoz": "Chizg‘ichga qarang: besh va olti santimetr orasida o‘nta mayda bo‘linma bor, har biri o‘ndan bir."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Teng bo‘lmagan bo‘laklarni ham kasr deb sanash",
+   "Faqat maxrajga qarab $\\frac{1}{8} > \\frac{1}{4}$ deb o‘ylash",
+   "Qolgan qism so‘ralganda yeyilgan qismni yozish",
+   "Teng kasrda faqat suratni yoki faqat maxrajni ko‘paytirish",
+   "5 va 6 orasida son yo‘q deb o‘ylash"
+  ],
+  "strategiyalar": [
+   "Bo‘laklar tengligini tekshiring",
+   "Kasrni 1/2 bilan solishtiring",
+   "Rasm chizib ko‘ring",
+   "Javob butundan kichikligini tekshiring"
+  ],
+  "kalit_sozlar": [
+   "kasr",
+   "ulush",
+   "surat",
+   "maxraj",
+   "teng kasrlar",
+   "o‘nli kasr",
+   "taqqoslash"
+  ]
+ },
+ {
+  "kod": "XB-M4-TEN",
+  "mavzu": "M4-TEN",
+  "sarlavha": "Sonli tengliklar va noma’lum son",
+  "maqsad": "Tenglik belgisining ma’nosini tushunish, noma’lum sonni teskari amal bilan topish va masala bo‘yicha tenglik tuzish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "$4 \\times \\square = 28$\nTIMSS: 4-sinflarning 68% i to‘g‘ri yechgan",
+    "ovoz": "[1] Mana bu tenglikda bitta son yashirinib olgan. Uni topish — xuddi jumboq yechishdek qiziqarli. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha oltmish sakkiz foizi to‘g‘ri yechgan. Siz yuz foiz yechadigan bo‘lasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Tenglik belgisi nimani bildiradi?",
+    "doska": "$=$ chap tomon o‘ng tomonga teng\n$3 + 8 = 5 + 6$ — ikkalasi ham 11\n$=$ «javob shu yerda» degani emas!",
+    "ovoz": "[1] Tenglik belgisi tarozi kabi: chap tomondagi miqdor o‘ng tomondagi miqdorga teng. [2] Masalan, uch qo‘shuv sakkiz o‘n bir, besh qo‘shuv olti ham o‘n bir. Ikki tomon teng, tenglik to‘g‘ri. [3] Esda tuting: tenglik belgisidan keyin har doim ham javob turmaydi. U faqat ikki tomon tengligini aytadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Noma’lum sonni topish",
+    "doska": "$\\square + 5 = 12$, $\\square = 12 - 5 = 7$\n$4 \\times \\square = 36$, $\\square = 36 : 4 = 9$\nTeskari amal: + va −, × va :\nTekshiring: 7 + 5 = 12 ✓",
+    "ovoz": "[1] Qandaydir songa besh qo‘shsak o‘n ikki bo‘ldi. Uni topish uchun o‘n ikkidan beshni ayiramiz — yetti. [2] To‘rtni qandaydir songa ko‘paytirsak o‘ttiz olti bo‘ldi. O‘ttiz oltini to‘rtga bo‘lamiz — to‘qqiz. [3] Noma’lum sonni teskari amal bilan topamiz: qo‘shishga ayirish, ko‘paytirishga bo‘lish teskari. [4] Va albatta tekshiring: topilgan sonni o‘rniga qo‘ysak, tenglik to‘g‘ri bo‘lishi kerak."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Masaladan tenglik tuzish",
+    "doska": "Lolada 9 qalam bor edi, yana olgach 15 ta bo‘ldi\n$9 + \\square = 15$\n$\\square = 15 - 9 = 6$",
+    "ovoz": "[1] Lolada to‘qqizta qalam bor edi. U yana bir nechta qalam oldi va o‘n beshta bo‘ldi. [2] Noma’lum sonni kvadratcha bilan belgilaymiz: to‘qqiz qo‘shuv kvadratcha teng o‘n besh. [3] O‘n beshdan to‘qqizni ayiramiz — Lola oltita qalam olgan ekan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: tenglikni to‘ldiring",
+    "doska": "$7 + 6 = \\square + 9$",
+    "ovoz": "[1] Birinchi misol. Yetti qo‘shuv olti teng kvadratcha qo‘shuv to‘qqiz. Kvadratcha o‘rniga qaysi son keladi? Bunday savolni dunyoda ko‘pchilik xato yechgan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Chap tomon: $7 + 6 = 13$\n$\\square + 9 = 13$, $\\square = 13 - 9 = 4$\n13 deb yozish — xato! Javob: 4",
+    "ovoz": "[1] Avval chap tomonni hisoblaymiz: yetti qo‘shuv olti — o‘n uch. [2] Endi o‘ng tomon ham o‘n uch bo‘lishi kerak. Qaysi songa to‘qqiz qo‘shsak o‘n uch bo‘ladi? O‘n uchdan to‘qqizni ayiramiz — to‘rt. [3] Ko‘pchilik shoshib o‘n uch deb yozadi, lekin unda o‘ng tomon yigirma ikki bo‘lib qoladi. To‘g‘ri javob — to‘rt."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "$5 \\times \\square = 45$",
+    "ovoz": "[1] Endi o‘zingiz. Beshni qaysi songa ko‘paytirsak, qirq besh bo‘ladi? Teskari amalni eslang.",
+    "savol": "Kvadratcha o‘rnidagi sonni yozing",
+    "javob": "9"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: ikki quti",
+    "doska": "Ikki qutida jami 20 shar. 1-qutida 4 ta ko‘p.\nHar bir qutida nechta shar bor?",
+    "ovoz": "[1] Endi qiyinroq masala. Ikki qutida jami yigirmata shar bor. Birinchi qutida ikkinchisidan to‘rtta ko‘p shar bor. [2] Savol: har bir qutida nechta shar bor? Bu masala bir necha qadamda yechiladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Ortiqchasini olib qo‘yamiz: $20 - 4 = 16$\nEndi qutilar teng: $16 : 2 = 8$\n1-quti: $8 + 4 = 12$, 2-quti: 8",
+    "ovoz": "[1] Birinchi qadam: birinchi qutidagi ortiqcha to‘rtta sharni bir chetga olib qo‘yamiz. Qolgani o‘n olti. [2] Ikkinchi qadam: endi ikki qutida teng shar bor, o‘n oltini ikkiga bo‘lamiz — sakkiztadan. [3] Uchinchi qadam: ortiqcha to‘rtta sharni birinchi qutiga qaytaramiz — o‘n ikki. Ikkinchi qutida sakkizta."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Tekshirish: $12 + 8 = 20$, $12 - 8 = 4$ ✓",
+    "ovoz": "[1] Tekshiramiz: o‘n ikki qo‘shuv sakkiz yigirma, farqi esa to‘rt. Ikkala shart ham bajarildi!"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "$10 + 4 = \\square + 8$",
+    "ovoz": "[1] Yana bir savol. O‘n qo‘shuv to‘rt teng kvadratcha qo‘shuv sakkiz. Avval chap tomonni hisoblashni unutmang.",
+    "savol": "Kvadratcha o‘rnidagi sonni yozing",
+    "javob": "6"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Tenglikning ikki tomonini alohida ko‘ring\n2. Noma’lum sonni teskari amal bilan toping\n3. Masalada: so‘zlarni tenglikka aylantiring\n4. Topilgan sonni o‘rniga qo‘yib tekshiring",
+    "ovoz": "[1] Xalqaro savolda tenglikning ikki tomonini alohida ko‘ring va ma’lum tomonni hisoblang. [2] Keyin noma’lum sonni teskari amal yordamida toping. [3] Masala bo‘lsa, «yana oldi», «berdi», «marta» kabi so‘zlarni amallarga aylantiring. [4] Oxirida topgan sonni o‘rniga qo‘yib, tenglik to‘g‘riligini tekshiring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "$=$ — ikki tomon teng, tarozi kabi\nNoma’lum son — teskari amal bilan\nHar doim o‘rniga qo‘yib tekshiring",
+    "ovoz": "[1] Esda tuting: tenglik belgisi ikki tomon tengligini bildiradi. [2] Noma’lum sonni teskari amal bilan topamiz. [3] Va har doim javobni o‘rniga qo‘yib tekshiring. Siz bugun haqiqiy jumboq ustasi bo‘ldingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Chap = O‘ng: 4 + 4 = 6 + 2",
+     "ovoz": "Ikki tomondagi son bir xil bo‘lsa, tenglik to‘g‘ri."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Tarozi: chapda 3 + 8 kg, o‘ngda 5 + 6 kg",
+     "ovoz": "Tarozining chap pallasida uch va sakkiz kilogramm, o‘ng pallasida besh va olti kilogramm yuk bor. Ikkalasi o‘n bir kilogramm, tarozi tekis turadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "●●● ●●●●●●●● = ●●●●● ●●●●●●",
+     "ovoz": "Doirachalarni sanang: chapda o‘n bitta, o‘ngda ham o‘n bitta. Ikki tomon teng."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "$\\square + 5 = 12$: 5 dan 12 gacha sanang",
+     "ovoz": "Beshdan o‘n ikkigacha sanab chiqing: olti, yetti ... o‘n ikki — yettita qadam."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Cho‘ntakda nechadir so‘m + 5 so‘m = 12 so‘m",
+     "ovoz": "Cho‘ntagingizda qancha pul bor edi, onangiz yana besh so‘m berdi va o‘n ikki so‘m bo‘ldi. Demak, avval yetti so‘m bor edi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "4 karra jadvali: 4, 8, ..., 36 — 9-o‘rinda",
+     "ovoz": "To‘rt karra jadvalini ayting: to‘rt, sakkiz, o‘n ikki ... o‘ttiz olti to‘qqizinchi o‘rinda keladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "«yana oldi» — qo‘shish, «berdi» — ayirish",
+     "ovoz": "Masaladagi so‘zlar amalni aytib turadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Avtobusda 9 kishi, yana bir nechtasi chiqdi — 15",
+     "ovoz": "Avtobusda to‘qqiz kishi bor edi, bekatda yana bir nechta kishi chiqdi va o‘n besh bo‘ldi. Nechta chiqqanini topish uchun o‘n beshdan to‘qqizni ayiramiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "9 ——[ ? ]——> 15",
+     "ovoz": "Son o‘qida to‘qqizdan o‘n beshgacha sakrang: oltita qadam."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "$3 + 8 = \\square + 6$ da kvadratchaga 11 yozish",
+   "Noma’lum sonni topishda teskari emas, xuddi shu amalni bajarish",
+   "Topilgan sonni o‘rniga qo‘yib tekshirmaslik",
+   "Masalada «ko‘p» so‘zini ko‘rib, doim qo‘shish"
+  ],
+  "strategiyalar": [
+   "Avval ma’lum tomonni hisoblang",
+   "Teskari amaldan foydalaning",
+   "Topilgan sonni o‘rniga qo‘yib tekshiring",
+   "Masala so‘zlarini amallarga aylantiring"
+  ],
+  "kalit_sozlar": [
+   "tenglik",
+   "tenglama",
+   "noma’lum",
+   "ifoda",
+   "teskari amal"
+  ]
+ },
+ {
+  "kod": "XB-M4-QON",
+  "mavzu": "M4-QON",
+  "sarlavha": "Qonuniyatlar va bog‘lanishlar",
+  "maqsad": "Sonli va shakliy ketma-ketliklardagi qoidani topish, keyingi va uzoqdagi hadni hisoblash, kirish–chiqish qoidasini aniqlash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "3, 6, 9, 12, ...  keyingisi qaysi?\nTIMSS: 4-sinflarning 53% i to‘g‘ri yechgan",
+    "ovoz": "[1] Uch, olti, to‘qqiz, o‘n ikki... Keyingi sonni topa olasizmi? Sonlar ma’lum bir qoida bo‘yicha yurmoqda. [2] Xalqaro TIMSS tadqiqotida qonuniyatlar bo‘yicha savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha ellik uch foizi to‘g‘ri yechgan. Bugun siz qoidalarni topadigan izquvar bo‘lasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Sonli ketma-ketlik",
+    "doska": "3, 7, 11, 15, ... — har safar +4\nKeyingisi: $15 + 4 = 19$\nQoidani topish: qo‘shni sonlar farqi",
+    "ovoz": "[1] Uch, yetti, o‘n bir, o‘n besh. Qo‘shni sonlar orasidagi farqqa qarang: har safar to‘rt qo‘shilyapti. [2] Demak keyingi son o‘n besh qo‘shuv to‘rt — o‘n to‘qqiz. [3] Qoidani topish uchun qo‘shni sonlar orasidagi farqni hisoblang. Farq bir xil bo‘lmasa, ko‘paytirishni tekshiring."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Shakllar qonuniyati",
+    "doska": "1-shakl: 3 cho‘p, 2-shakl: 5, 3-shakl: 7\nHar yangi shaklga +2 cho‘p\nJadval: shakl raqami | cho‘plar soni",
+    "ovoz": "[1] Gugurt cho‘plaridan shakllar yasalgan: birinchi shaklda uchta, ikkinchisida beshta, uchinchisida yettita cho‘p. [2] Har yangi shaklga ikkitadan cho‘p qo‘shilyapti. [3] Bunday qonuniyatni jadvalga yozish qulay: bir ustunda shakl raqami, ikkinchisida cho‘plar soni."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Uzoqdagi hadni topish",
+    "doska": "Hammasini chizmang — qoida toping!\nCho‘plar = shakl raqami $\\times 2 + 1$\n10-shakl: $10 \\times 2 + 1 = 21$",
+    "ovoz": "[1] O‘ninchi yoki o‘n oltinchi shaklni so‘rashsa, hammasini chizib o‘tirmang, qoida toping. [2] Bizning shakllarda cho‘plar soni shakl raqamining ikki baravariga bir qo‘shilganiga teng. Birinchisida ikki qo‘shuv bir — uch, to‘g‘ri. [3] Endi o‘ninchi shaklni bir zumda topamiz: o‘n karra ikki yigirma, qo‘shuv bir — yigirma bir cho‘p."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Kirish va chiqish qoidasi",
+    "doska": "Kirish 2 → 7;  3 → 10;  5 → 16\nQoida: $\\times 3 + 1$\nBarcha juftliklarni tekshiring!",
+    "ovoz": "[1] Sehrli mashinaga son kiritamiz, u boshqa son chiqaradi: ikki kirsa yetti, uch kirsa o‘n, besh kirsa o‘n olti chiqadi. [2] Qoida: kirgan sonni uchga ko‘paytirib, bir qo‘shamiz. Ikki karra uch olti, qo‘shuv bir — yetti. [3] Diqqat: «besh qo‘sh» qoidasi birinchi juftlikka mos keladi, lekin ikkinchisiga mos emas. Shuning uchun qoidani hamma juftlikda tekshiring."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "2, 6, 18, 54, ...  keyingi son?",
+    "ovoz": "[1] Birinchi misol. Ikki, olti, o‘n sakkiz, ellik to‘rt. Keyingi son qaysi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Farqlar: 4, 12, 36 — bir xil emas\nHar safar $\\times 3$: $2 \\times 3 = 6$, $6 \\times 3 = 18$\nKeyingisi: $54 \\times 3 = 162$",
+    "ovoz": "[1] Avval farqlarni ko‘ramiz: to‘rt, o‘n ikki, o‘ttiz olti. Ular bir xil emas, demak qo‘shish qoidasi emas. [2] Ko‘paytirishni sinaymiz: ikki karra uch olti, olti karra uch o‘n sakkiz. Qoida — uchga ko‘paytirish. [3] Demak keyingi son ellik to‘rt karra uch — bir yuz oltmish ikki."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "5, 10, 15, 20, ...  7-son qaysi?",
+    "ovoz": "[1] Endi o‘zingiz. Besh, o‘n, o‘n besh, yigirma... Shu ketma-ketlikdagi yettinchi son qaysi?",
+    "savol": "Sonni yozing",
+    "javob": "35"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: stol va stullar",
+    "doska": "1 stol — 4 stul, 2 stol — 6, 3 stol — 8 stul\n12 ta stol yonma-yon qo‘yilsa, nechta stul?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash masala. Stollar yonma-yon qo‘yiladi: bitta stol atrofida to‘rtta stul, ikkita stolda oltita, uchta stolda sakkizta stul. [2] Savol: o‘n ikkita stol yonma-yon qo‘yilsa, nechta stul kerak bo‘ladi? Hammasini chizish uzoq, qoida topamiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Har yangi stol +2 stul qo‘shadi\nStul = stol $\\times 2 + 2$\nTekshiramiz: $3 \\times 2 + 2 = 8$ ✓",
+    "ovoz": "[1] Birinchi qadam: har yangi stol ikkita stul qo‘shadi — biri yuqorida, biri pastda. [2] Ikkinchi qadam: qoida — stollar sonini ikkiga ko‘paytirib, ikki chetdagi ikkita stulni qo‘shamiz. [3] Uchinchi qadam: qoidani tekshiramiz. Uch karra ikki olti, qo‘shuv ikki — sakkiz. Jadvalga mos!"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "12 stol: $12 \\times 2 + 2 = 26$\nXato: $12 \\times 4 = 48$ emas!",
+    "ovoz": "[1] Endi o‘n ikki stol uchun: o‘n ikki karra ikki yigirma to‘rt, qo‘shuv ikki — yigirma olti. [2] Ko‘pchilik bitta stolda to‘rtta stul deb, o‘n ikkini to‘rtga ko‘paytiradi. Lekin stollar yonma-yon tursa, o‘rtadagi stullar yo‘qoladi. Javob: yigirma olti stul."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Kirish 1 → 3;  2 → 5;  3 → 7.  8 → ?",
+    "ovoz": "[1] Yana bir savol. Mashinaga bir kirsa uch, ikki kirsa besh, uch kirsa yetti chiqadi. Sakkiz kirsa nima chiqadi? Avval qoidani toping.",
+    "savol": "Chiqadigan sonni yozing",
+    "javob": "17"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Qo‘shni hadlar farqini yozing\n2. Jadval tuzing: raqam | soni\n3. Qoidani barcha juftlikda tekshiring\n4. Uzoq hadni qoida bilan hisoblang",
+    "ovoz": "[1] Xalqaro savolda avval qo‘shni sonlar yoki shakllar orasidagi farqni yozib chiqing. [2] Keyin kichik jadval tuzing: shakl raqami va undagi narsalar soni. [3] Topgan qoidangizni jadvaldagi har bir juftlikda tekshiring. [4] Uzoqdagi shakl so‘ralsa, chizmasdan qoida bilan hisoblang."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Qonuniyat — takrorlanadigan qoida\nQoidani hamma hadlarda tekshiring\nUzoqdagi had — qoida bilan, chizmasdan",
+    "ovoz": "[1] Esda tuting: qonuniyatda bir qoida qayta-qayta takrorlanadi. [2] Qoidani hamma sonlarda tekshirib ko‘ring. [3] Uzoqdagi hadni chizmasdan, qoida bilan toping. Bugun siz haqiqiy izquvar bo‘ldingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "2, 4, 6, 8 — har safar 2 qo‘shiladi",
+     "ovoz": "Har bir son oldingisidan nechtaga katta ekanini qarang."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Har kuni 4 sahifa o‘qiysiz: 4, 8, 12, 16",
+     "ovoz": "Har kuni kitobdan to‘rt sahifa o‘qisangiz, o‘qilgan sahifalar to‘rt, sakkiz, o‘n ikki, o‘n olti bo‘lib boradi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "3 →(+4)→ 7 →(+4)→ 11 →(+4)→ 15",
+     "ovoz": "Sonlar orasiga kamalak yoylar chizing va har yoy ustiga farqni yozing."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Har safar 2 ta cho‘p qo‘shiladi",
+     "ovoz": "Har keyingi shakl oldingisidan ikkita cho‘pga ko‘p."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Poyezdga har bekatda 2 vagon ulanadi",
+     "ovoz": "Poyezdga har bekatda ikkita vagon ulanadi: uchta, beshta, yettita vagon."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Shakl: 1 | 2 | 3 | 4\nCho‘p: 3 | 5 | 7 | 9",
+     "ovoz": "Jadvalni davom ettiring: pastki qatordagi sonlar har safar ikkiga oshadi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Shakl raqamini 2 ga ko‘paytirib, 1 qo‘shing",
+     "ovoz": "O‘ninchi shakl uchun o‘nni ikkiga ko‘paytirib, bir qo‘shamiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Zinapoya: har pog‘ona 2 g‘isht, tagida 1 g‘isht",
+     "ovoz": "Har pog‘onada ikkita g‘isht va tagida bitta asos g‘isht bor. O‘n pog‘onada yigirma bir g‘isht."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "3 + 2 + 2 + ... (9 marta) = 21",
+     "ovoz": "Yoki birinchi shakldagi uchtaga to‘qqiz marta ikki qo‘shing: uch qo‘shuv o‘n sakkiz — yigirma bir."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Bitta juftlikka mos qoida yetmaydi",
+     "ovoz": "Qoida barcha sonlarga mos kelishi kerak."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Sharbat mashinasi: 2 olma → 7 stakan",
+     "ovoz": "Sharbat mashinasiga ikki olma solsangiz yetti, uchta solsangiz o‘n stakan beradi. Mashina qoidasini topamiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "2 → 6 → 7;  3 → 9 → 10",
+     "ovoz": "Ikki bosqichli qoidani alohida yozing: avval uchga ko‘paytirish, so‘ng bir qo‘shish."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Qoidani faqat birinchi juftlikda tekshirish",
+   "Uzoqdagi hadni topishda shakl raqamini oddiy ko‘paytirish (12 × 4)",
+   "Ko‘paytirish qoidasini qo‘shish deb o‘ylash",
+   "Ketma-ketlikda nechanchi son so‘ralganini adashtirish"
+  ],
+  "strategiyalar": [
+   "Qo‘shni hadlar farqini yozing",
+   "Jadval tuzing",
+   "Qoidani barcha juftlikda tekshiring",
+   "Uzoq hadni qoida bilan hisoblang"
+  ],
+  "kalit_sozlar": [
+   "qonuniyat",
+   "ketma-ketlik",
+   "jadval",
+   "qoida",
+   "had"
+  ]
+ },
+ {
+  "kod": "XB-M4-NUQ",
+  "mavzu": "M4-NUQ",
+  "sarlavha": "Nuqta, chiziq va burchaklar",
+  "maqsad": "Kesma, nur, to‘g‘ri chiziqni farqlash, burchak turlarini aniqlash, uzunlikni to‘g‘ri o‘lchash va katakli xaritada joyni topish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Daftar burchagi, yo‘l chizig‘i, soat millari\nTIMSS: 4-sinflarning 58% i to‘g‘ri yechgan",
+    "ovoz": "[1] Atrofga qarang: daftarning burchagi, yo‘ldagi chiziqlar, soat millari — hammasi chiziqlar va burchaklar. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha ellik sakkiz foizi to‘g‘ri yechgan. Bugun siz ham ularni ishonch bilan yechasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Kesma, nur, to‘g‘ri chiziq",
+    "doska": "Kesma AB — ikki uchi bor, o‘lchash mumkin\nNur — boshi bor, bir tomonga cheksiz\nTo‘g‘ri chiziq — ikki tomonga cheksiz\nParallel — kesishmaydi; perpendikulyar — 90°",
+    "ovoz": "[1] Kesmaning ikkita uchi bor, masalan A va B nuqtalar. Uning uzunligini chizg‘ich bilan o‘lchash mumkin. [2] Nurning faqat boshi bor, u bir tomonga cheksiz davom etadi, xuddi chiroq nuri kabi. [3] To‘g‘ri chiziq esa ikki tomonga ham cheksiz davom etadi. [4] Parallel chiziqlar hech qachon kesishmaydi, xuddi temir yo‘l relslari kabi. Perpendikulyar chiziqlar esa to‘g‘ri burchak hosil qilib kesishadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Burchak turlari",
+    "doska": "To‘g‘ri burchak — $90^\\circ$ (daftar burchagi)\nO‘tkir burchak — $90^\\circ$ dan kichik\nO‘tmas — $90^\\circ$ dan katta, $180^\\circ$ dan kichik\nYoyiq burchak — $180^\\circ$",
+    "ovoz": "[1] To‘g‘ri burchak to‘qson gradusga teng. Daftar yoki kitobning burchagini eslang. [2] O‘tkir burchak to‘g‘ri burchakdan kichik, u ignadek o‘tkir ko‘rinadi. [3] O‘tmas burchak to‘g‘ri burchakdan katta, lekin yuz sakson gradusdan kichik. Mana shu joy xalqaro savollarda ko‘p adashtiriladi. [4] Yoyiq burchak yuz sakson gradus, uning tomonlari bitta to‘g‘ri chiziqni hosil qiladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Uzunlikni o‘lchash",
+    "doska": "Chizg‘ich 0 dan boshlanmasa: oxiri − boshi\n3 sm dan 11 sm gacha: $11 - 3 = 8$ sm\nEgri ipni tortsak — uzunligi o‘zgarmaydi",
+    "ovoz": "[1] Narsa chizg‘ichning noldan emas, boshqa joyidan boshlansa, oxiridagi sondan boshidagi sonni ayiramiz. [2] Masalan, qalam uch santimetrdan o‘n bir santimetrgacha yetsa, uning uzunligi sakkiz santimetr. [3] Egri yotgan ipni to‘g‘rilab tortsak, uning uzunligi o‘zgarmaydi. Uzunlik bo‘laklar yig‘indisiga teng."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Katakli xaritada joy",
+    "doska": "Harf — ustun, son — qator\nC3: C ustunga boring, so‘ng 3-qatorga",
+    "ovoz": "[1] Katakli xaritada har bir joy harf va son bilan belgilanadi: harf ustunni, son qatorni bildiradi. [2] Ce uch katagini topish uchun avval Ce ustunini topamiz, keyin uchinchi qatorgacha boramiz. Ular kesishgan katak — javob."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: burchaklar",
+    "doska": "$45^\\circ$, $120^\\circ$, $90^\\circ$, $170^\\circ$",
+    "ovoz": "[1] Birinchi misol. To‘rtta burchak berilgan: qirq besh, bir yuz yigirma, to‘qson va bir yuz yetmish gradus."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Kichikdan kattaga: $45^\\circ$, $90^\\circ$, $120^\\circ$, $170^\\circ$\n$45^\\circ$ — o‘tkir, $90^\\circ$ — to‘g‘ri\n$120^\\circ$ va $170^\\circ$ — o‘tmas",
+    "ovoz": "[1] Avval ularni kichikdan kattaga tartiblaymiz: qirq besh, to‘qson, bir yuz yigirma, bir yuz yetmish. [2] Qirq besh to‘qsondan kichik — o‘tkir burchak. To‘qson — to‘g‘ri burchak. [3] Bir yuz yigirma va bir yuz yetmish to‘qsondan katta, yuz saksondan kichik — demak ikkalasi ham o‘tmas burchak."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Qalam chizg‘ichda 4 sm dan 13 sm gacha. Uzunligi?",
+    "ovoz": "[1] Endi o‘zingiz. Qalam chizg‘ichning to‘rt santimetridan o‘n uch santimetrigacha yotibdi. Qalamning uzunligi necha santimetr?",
+    "savol": "Javobni santimetrda, son bilan yozing",
+    "javob": "9|9 sm"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: egri ip",
+    "doska": "Egri ip 4 bo‘lakdan: 3 sm, 5 sm, 2 sm, 4 sm\nIpni to‘g‘ri tortsak, uzunligi qancha?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash masala. Stolda egri ip yotibdi, u to‘rtta to‘g‘ri bo‘lakdan iborat: uch, besh, ikki va to‘rt santimetr. [2] Savol: ipni to‘g‘rilab tortsak, uning uzunligi necha santimetr bo‘ladi? Bunday savolni dunyoda faqat uchdan bir o‘quvchi to‘g‘ri yechgan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Tortganda ip cho‘zilmaydi ham, qisqarmaydi ham\n$3 + 5 + 2 + 4 = 14$ sm\nChizg‘ichda: 2 sm dan 16 sm gacha\n$16 - 2 = 14$ sm — javob mos!",
+    "ovoz": "[1] Birinchi qadam: ip tortilganda cho‘zilmaydi ham, qisqarmaydi ham. Demak uzunlik bo‘laklar yig‘indisiga teng. [2] Ikkinchi qadam: bo‘laklarni qo‘shamiz: uch qo‘shuv besh sakkiz, qo‘shuv ikki o‘n, qo‘shuv to‘rt — o‘n to‘rt santimetr. [3] Uchinchi qadam: tortilgan ipni chizg‘ichga qo‘ydik, u ikki santimetrdan o‘n olti santimetrgacha yetdi. [4] O‘n oltidan ikkini ayirsak, yana o‘n to‘rt chiqadi. Ikki usul bir xil javob berdi: o‘n to‘rt santimetr."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "$135^\\circ$ qanday burchak?",
+    "ovoz": "[1] Yana bir savol. Bir yuz o‘ttiz besh gradusli burchak qanday burchak: o‘tkirmi, to‘g‘rimi yoki o‘tmasmi?",
+    "savol": "Bir so‘z bilan yozing",
+    "javob": "o‘tmas|o‘tmas burchak|otmas"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Burchakni daftar burchagi bilan solishtiring\n2. Chizg‘ichda boshlanish nuqtasiga qarang\n3. Xaritada: avval ustun, keyin qator\n4. Javob rasmga mos kelishini tekshiring",
+    "ovoz": "[1] Xalqaro savolda burchakni daftar burchagi bilan solishtiring: kichikmi, tengmi yoki kattami. [2] O‘lchashda narsa chizg‘ichning qayeridan boshlanganiga albatta qarang. [3] Xaritada joy topishda avval ustunni, keyin qatorni toping. [4] Oxirida javobingiz rasmga mos kelishini ko‘z bilan tekshiring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Kesma, nur, to‘g‘ri chiziq — uchlariga qarang\nO‘tkir < $90^\\circ$ < o‘tmas < $180^\\circ$\nUzunlik = oxiri − boshi",
+    "ovoz": "[1] Esda tuting: kesma, nur va to‘g‘ri chiziqni uchlariga qarab farqlaymiz. [2] O‘tkir burchak to‘qsondan kichik, o‘tmas burchak to‘qson bilan yuz sakson orasida. [3] Uzunlikni o‘lchashda oxiridan boshini ayiring. Bugun juda yaxshi ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Kesma: •——•   Nur: •——>   Chiziq: <——>",
+     "ovoz": "Uchlariga qarang: ikki nuqta — kesma, bitta nuqta va strelka — nur, ikki strelka — to‘g‘ri chiziq."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Chiroq nuri — nur, qalam — kesma",
+     "ovoz": "Qo‘l chiroqdan chiqqan yorug‘lik bir tomonga uzoqqa ketadi — bu nur. Qalamning esa ikki uchi bor — bu kesma."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Daftar chiziqlari — parallel\nDeraza romi — perpendikulyar",
+     "ovoz": "Daftaringizdagi chiziqlar parallel, deraza romining tomonlari esa perpendikulyar."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Daftar burchagidan kichik — o‘tkir, katta — o‘tmas",
+     "ovoz": "Daftar burchagini burchakka qo‘ying va solishtiring."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kitobni ochamiz: sal ochilsa — o‘tkir",
+     "ovoz": "Kitobni sekin oching: avval o‘tkir burchak, keyin to‘g‘ri burchak, so‘ng o‘tmas burchak, oxirida yoyiq burchak hosil bo‘ladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Soat: 3:00 — to‘g‘ri, 1:00 — o‘tkir, 5:00 — o‘tmas",
+     "ovoz": "Soat millarini tasavvur qiling: soat uchda to‘g‘ri burchak, soat birda o‘tkir, soat beshda o‘tmas burchak."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Chizg‘ichdagi kataklarni sanang",
+     "ovoz": "Boshidan oxirigacha nechta santimetr katak borligini sanang."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Siniq chizg‘ich 3 dan boshlanadi",
+     "ovoz": "Chizg‘ichingiz sinib, uch santimetrdan boshlansa ham o‘lchash mumkin: oxirgi sondan uchni ayiring."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "3 dan 11 gacha sakrang: 8 ta sakrash",
+     "ovoz": "Son o‘qida uchdan o‘n birgacha birma-bir sakrang: sakkizta sakrash bo‘ladi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Harf — o‘ngga yuring, son — yuqoriga",
+     "ovoz": "Avval harf bo‘yicha o‘ngga, keyin son bo‘yicha yuqoriga yuring."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kinoteatr: 5-qator, 3-o‘rin",
+     "ovoz": "Kinoteatrda chiptada qator va o‘rin yoziladi. Xaritadagi katak ham xuddi shunday topiladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Shaxmat taxtasi: e4 — e ustun, 4-qator",
+     "ovoz": "Shaxmat taxtasini eslang: har katak harf va son bilan atalgan."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Chizg‘ich 0 dan boshlanmaganda oxirgi sonni uzunlik deb olish",
+   "Egri ip uzunligini uchlari orasidagi masofa deb o‘ylash",
+   "O‘tmas burchakni 180° dan katta deb o‘ylash",
+   "Xaritada ustun va qatorni almashtirib qo‘yish",
+   "Nur va kesmani adashtirish"
+  ],
+  "strategiyalar": [
+   "Burchakni to‘g‘ri burchak bilan solishtiring",
+   "O‘lchashda boshlanish nuqtasini tekshiring",
+   "Xaritada avval ustun, keyin qator",
+   "Javobni rasm bilan solishtiring"
+  ],
+  "kalit_sozlar": [
+   "nuqta",
+   "kesma",
+   "nur",
+   "to‘g‘ri chiziq",
+   "burchak",
+   "parallel",
+   "perpendikulyar",
+   "uzunlik"
+  ]
+ },
+ {
+  "kod": "XB-M4-SHA",
+  "mavzu": "M4-SHA",
+  "sarlavha": "Tekis va fazoviy shakllar",
+  "maqsad": "Tekis shakllarni tanish, perimetr va yuzani hisoblash, simmetriya va burishni tushunish, fazoviy shakllar va ularning yoyilmasini bilish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Deraza — to‘rtburchak, to‘p — shar, quti — kub\nTIMSS: 4-sinflarning 46% i to‘g‘ri yechgan",
+    "ovoz": "[1] Atrofimiz shakllarga to‘la: deraza to‘rtburchak, to‘p shar, sovg‘a qutisi esa kub shaklida. [2] Xalqaro TIMSS tadqiqotida shakllar bo‘yicha savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha qirq olti foizi to‘g‘ri yechgan. Bugun siz shakllar olamining bilimdoni bo‘lasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Tekis shakllar",
+    "doska": "Uchburchak — 3 tomon, 3 burchak\nTo‘g‘ri to‘rtburchak — 4 ta to‘g‘ri burchak\nKvadrat — 4 tomoni teng to‘g‘ri to‘rtburchak",
+    "ovoz": "[1] Uchburchakning uchta tomoni va uchta burchagi bor. [2] To‘g‘ri to‘rtburchakning to‘rtta burchagi ham to‘g‘ri burchak, qarama-qarshi tomonlari teng. [3] Kvadratning to‘rtta tomoni ham teng. Diqqat: kvadrat ham to‘g‘ri to‘rtburchak hisoblanadi! Bu joyda dunyoda ko‘pchilik adashgan."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Perimetr va yuza",
+    "doska": "Perimetr — shakl atrofining uzunligi\n5 sm va 3 sm: $P = 5 + 3 + 5 + 3 = 16$ sm\nYuza — ichidagi kvadrat santimetrlar soni\n$S = 5 \\times 3 = 15$ sm²",
+    "ovoz": "[1] Perimetr — shaklning atrofini aylanib chiqqandagi yo‘l uzunligi, ya’ni hamma tomonlar yig‘indisi. [2] Bo‘yi besh, eni uch santimetr bo‘lgan to‘g‘ri to‘rtburchakning perimetri: besh, uch, besh, uch — jami o‘n olti santimetr. [3] Yuza esa shaklning ichini qoplaydigan kvadratchalar soni. [4] Besh qatorga uchtadan kvadratcha — besh karra uch, o‘n besh kvadrat santimetr."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Simmetriya va burish",
+    "doska": "Simmetriya o‘qi — shaklni ko‘zgudek teng bo‘ladi\nKvadratda 4 ta o‘q, to‘g‘ri to‘rtburchakda 2 ta\nChorak burilish — 90°, yarim burilish — 180°",
+    "ovoz": "[1] Simmetriya o‘qi shaklni ikkita bir xil yarmiga bo‘ladi: buklasak, yarmlar ustma-ust tushadi. [2] Kvadratda to‘rtta simmetriya o‘qi bor: ikkitasi o‘rtadan, ikkitasi diagonal bo‘yicha. Kvadrat bo‘lmagan to‘g‘ri to‘rtburchakda esa faqat ikkita. [3] Shaklni chorak aylantirsak, u yonboshiga yotadi. Yarim aylantirsak, teskari bo‘lib qoladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Fazoviy shakllar",
+    "doska": "Kub — 6 yog‘, 12 qirra, 8 uch\nYoyilma — shaklni ochib tekislash\nShar, silindr, konus — dumaloq sirtli",
+    "ovoz": "[1] Kubning oltita yog‘i, o‘n ikkita qirrasi va sakkizta uchi bor. Har bir yog‘i kvadrat. [2] Kub shaklidagi qutini qirralari bo‘yicha kesib, stolga yoysak, oltita kvadratdan iborat yoyilma hosil bo‘ladi. [3] Shar, silindr va konusning dumaloq sirtlari bor, shuning uchun ular dumalay oladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: bo‘yalgan yuza",
+    "doska": "Kvadrat 6 sm × 6 sm, ichida oq joy 2 sm × 3 sm",
+    "ovoz": "[1] Birinchi misol. Tomoni olti santimetr bo‘lgan kvadrat bo‘yalgan, faqat ichidagi ikki va uch santimetrli to‘g‘ri to‘rtburchak oq qolgan. Bo‘yalgan yuza qancha?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Butun kvadrat: $6 \\times 6 = 36$ sm²\nOq joy: $2 \\times 3 = 6$ sm²\nBo‘yalgan: $36 - 6 = 30$ sm²",
+    "ovoz": "[1] Avval butun kvadratning yuzasini topamiz: olti karra olti — o‘ttiz olti kvadrat santimetr. [2] Keyin oq joyning yuzasi: ikki karra uch — olti kvadrat santimetr. [3] Bo‘yalgan yuza — butun yuzadan oq joyni ayiramiz: o‘ttiz olti minus olti — o‘ttiz kvadrat santimetr."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Kvadrat tomoni 7 sm. Perimetri necha sm?",
+    "ovoz": "[1] Endi o‘zingiz. Kvadratning tomoni yetti santimetr. Uning perimetri necha santimetr? Kvadratning nechta tomoni borligini eslang.",
+    "savol": "Javobni son bilan yozing",
+    "javob": "28|28 sm"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: kublar to‘dasi",
+    "doska": "Kublar: pastki qavat 3 qator, har qatorda 4 kub\nUstida xuddi shunday 2-qavat. Jami nechta kub?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash masala. Bir xil kublardan to‘da yasalgan. Pastki qavatda uchta qator bor, har qatorda to‘rttadan kub. [2] Uning ustida xuddi shunday ikkinchi qavat bor. Jami nechta kub? Rasmda orqadagi kublar ko‘rinmasligini unutmang."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "1 qavat: $3 \\times 4 = 12$ kub\n2 qavat: $12 \\times 2 = 24$ kub\nKo‘rinmaydigan kublar ham sanaladi!",
+    "ovoz": "[1] Birinchi qadam: bitta qavatda uch qator, har birida to‘rttadan — o‘n ikki kub. [2] Ikkinchi qadam: ikkita bir xil qavat — o‘n ikki karra ikki, yigirma to‘rt kub. [3] Diqqat: rasmda faqat old va yuqori kublar ko‘rinadi, lekin ichkaridagilar ham bor. Javob: yigirma to‘rt kub."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Kubning nechta yog‘i bor?",
+    "ovoz": "[1] Yana bir savol. Kubning nechta yog‘i bor? Qutini tasavvur qiling: usti, osti va yon tomonlari.",
+    "savol": "Sonni yozing",
+    "javob": "6"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Shaklning tomon va burchaklarini sanang\n2. Perimetr — atrofi, yuza — ichi\n3. Murakkab shaklni bo‘laklarga ajrating\n4. Burish va buklashni xayolan bajaring",
+    "ovoz": "[1] Xalqaro savolda shaklning tomonlari va burchaklarini diqqat bilan sanang. [2] Perimetr so‘ralyaptimi yoki yuza — buni aniq ajrating. [3] Murakkab shaklni oddiy to‘rtburchaklarga bo‘lib, ularning yuzalarini qo‘shing yoki ayiring. [4] Burish yoki simmetriya savolida shaklni xayolan aylantiring yoki buklang, mumkin bo‘lsa qog‘ozda sinab ko‘ring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Kvadrat ham to‘g‘ri to‘rtburchak\n$P$ — tomonlar yig‘indisi, $S$ — bo‘yi × eni\nKub: 6 yog‘, 12 qirra, 8 uch",
+    "ovoz": "[1] Esda tuting: kvadrat ham to‘g‘ri to‘rtburchakdir. [2] Perimetr — tomonlar yig‘indisi, to‘g‘ri to‘rtburchak yuzasi — bo‘yini eniga ko‘paytmasi. [3] Kubning oltita yog‘i, o‘n ikkita qirrasi va sakkizta uchi bor. Ofarin, bugun zo‘r ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Tomonlarni sanang: 3 — uchburchak, 4 — to‘rtburchak",
+     "ovoz": "Shakl nomi tomonlar sonidan kelib chiqadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Shokolad plitkasi — to‘g‘ri to‘rtburchak, shaxmat katagi — kvadrat",
+     "ovoz": "Shokolad plitkasi to‘g‘ri to‘rtburchak, shaxmat taxtasining har bir katagi esa kvadrat."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Kvadrat ⊂ to‘g‘ri to‘rtburchak ⊂ to‘rtburchak",
+     "ovoz": "Katta oilani tasavvur qiling: to‘rtburchaklar oilasida to‘g‘ri to‘rtburchaklar, ularning ichida esa kvadratlar bor."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Perimetr — chegara, yuza — ichi",
+     "ovoz": "Perimetr — shaklning chegarasi, yuza — ichini qoplash."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bog‘ atrofiga to‘siq — perimetr, ichiga o‘t — yuza",
+     "ovoz": "Bog‘ atrofini o‘rash uchun kerak bo‘lgan to‘siq uzunligi perimetr, bog‘ ichiga ekiladigan maysa joyi esa yuza."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Katakli qog‘ozda 5 × 3 chizib sanang",
+     "ovoz": "Katakli daftarda beshga uch to‘g‘ri to‘rtburchak chizing: ichida o‘n beshta katak, atrofida o‘n oltita katak tomoni bor."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Buklang: yarmlar ustma-ust tushsa — simmetriya",
+     "ovoz": "Shaklni o‘q bo‘yicha buklasangiz, ikki yarmi ustma-ust tushishi kerak."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kapalak qanotlari — simmetrik",
+     "ovoz": "Kapalakning ikki qanoti bir xil — tanasi simmetriya o‘qi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ko‘zgu qo‘ying: aksi qolgan yarmini to‘ldiradi",
+     "ovoz": "Shakl o‘rtasiga kichik ko‘zgu qo‘ying: aksi bilan butun shakl hosil bo‘lsa, bu simmetriya o‘qi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Kub — barcha yog‘lari kvadrat bo‘lgan quti",
+     "ovoz": "Kub — hamma yog‘lari bir xil kvadrat bo‘lgan quti."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kubik-o‘yinchoqda 6 yog‘ — 1 dan 6 gacha nuqta",
+     "ovoz": "O‘yin kubigida oltita yog‘ bor, har birida birdan oltigacha nuqta chizilgan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Yoyilma: xoch shaklidagi 6 kvadrat",
+     "ovoz": "Qog‘ozda xoch shaklida oltita kvadrat chizib, kesib, buklang — kub hosil bo‘ladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Kvadratni to‘g‘ri to‘rtburchak emas deb o‘ylash",
+   "Perimetr bilan yuzani adashtirish",
+   "Bo‘yalgan yuzani topishda oq joyni ayirishni unutish",
+   "Kublar to‘dasida ko‘rinmaydigan kublarni sanamaslik",
+   "Yarim burilishni ko‘zgu aksi bilan adashtirish"
+  ],
+  "strategiyalar": [
+   "Murakkab shaklni oddiy bo‘laklarga ajrating",
+   "Perimetr va yuzani aniq ajrating",
+   "Shaklni xayolan aylantiring yoki buklang",
+   "Ko‘rinmaydigan qismlarni ham hisobga oling"
+  ],
+  "kalit_sozlar": [
+   "uchburchak",
+   "to‘rtburchak",
+   "kvadrat",
+   "perimetr",
+   "yuza",
+   "kub",
+   "simmetriya",
+   "shakl"
+  ]
+ },
+ {
+  "kod": "XB-M4-OQI",
+  "mavzu": "M4-OQI",
+  "sarlavha": "Diagramma va jadvallarni o‘qish",
+  "maqsad": "Jadval, piktogramma va ustunli diagrammadan ma’lumot o‘qish, taqqoslash, jamlash va xulosa chiqarish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Qaysi muzqaymoq eng sevimli? Diagramma aytadi!\nTIMSS: 4-sinflarning 62% i to‘g‘ri yechgan",
+    "ovoz": "[1] Sinfingizda qaysi muzqaymoq eng sevimli ekanini qanday bilasiz? Javobni jadval yoki diagramma tezda aytib beradi. [2] Xalqaro TIMSS tadqiqotida diagramma va jadvallar bo‘yicha savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha oltmish ikki foizi to‘g‘ri yechgan. Siz yanada yaxshi natija ko‘rsatasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Jadvalni o‘qish",
+    "doska": "Jadval: satr va ustunlar\nJavob — satr va ustun kesishgan katakda\nSarlavha va o‘lchov birligini o‘qing",
+    "ovoz": "[1] Jadval satr va ustunlardan iborat. Har bir ustun va satrning nomi bor. [2] Kerakli sonni topish uchun kerakli satr va ustunni topamiz, ular kesishgan katakda javob turadi. [3] Jadval sarlavhasi va birliklarini ham o‘qing: kilogrammmi, grammmi yoki dona."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Ustunli diagramma",
+    "doska": "Ustun balandligi — miqdor\nO‘qdagi qadamga qarang: 0, 2, 4, 6, ...\nUstun ikki chiziq o‘rtasida — o‘rtadagi son",
+    "ovoz": "[1] Ustunli diagrammada har bir ustunning balandligi miqdorni ko‘rsatadi: ustun qancha baland bo‘lsa, miqdor shuncha ko‘p. [2] Chap tomondagi o‘qqa qarang: bo‘linmalar birdan emas, ikkidan yoki beshdan ortib borishi mumkin. [3] Ustun ikki chiziq o‘rtasida tugasa, javob o‘sha ikki sonning o‘rtasidagi son. Masalan, to‘rt va olti orasida — besh."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Piktogramma",
+    "doska": "Shartli belgi: 1 ta rasm = 4 ta narsa\nYarim rasm = 2 ta narsa\n3 ta rasm va yarimta: $3 \\times 4 + 2 = 14$",
+    "ovoz": "[1] Piktogrammada narsalar rasmchalar bilan ko‘rsatiladi. Eng avval shartli belgini o‘qing: bitta rasm nechta narsani bildiradi. [2] Bitta rasm to‘rtta narsa bo‘lsa, yarim rasm ikkita narsani bildiradi. [3] Uchta butun rasm va yarimta rasm: uch karra to‘rt o‘n ikki, qo‘shuv ikki — o‘n to‘rt."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: muzqaymoq jadvali",
+    "doska": "Vanil — 9, Shokolad — 14, Qulupnay — 7",
+    "ovoz": "[1] Birinchi misol. Sinfda muzqaymoq tanlovi o‘tkazildi: vanilni to‘qqiz, shokoladni o‘n to‘rt, qulupnayni yetti o‘quvchi tanladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Eng ko‘p: shokolad (14)\nShokolad vanildan: $14 - 9 = 5$ ta ko‘p\nJami: $9 + 14 + 7 = 30$ o‘quvchi",
+    "ovoz": "[1] Eng ko‘p tanlangani — shokolad, o‘n to‘rt o‘quvchi. [2] Shokoladni vanildan nechta ko‘p o‘quvchi tanladi? O‘n to‘rtdan to‘qqizni ayiramiz — besh. [3] Sinfda jami nechta o‘quvchi qatnashdi? To‘qqiz, o‘n to‘rt va yettini qo‘shamiz — o‘ttiz o‘quvchi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "1 belgi = 3 kitob. Lolada 6 belgi. Nechta kitob?",
+    "ovoz": "[1] Endi o‘zingiz. Piktogrammada bitta belgi uchta kitobni bildiradi. Lolaning qatorida oltita belgi bor. Lola nechta kitob o‘qigan?",
+    "savol": "Sonni yozing",
+    "javob": "18"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: olma terimi",
+    "doska": "Diagramma: 1-kun 8 kg, 2-kun 12 kg, 3-kun 6 kg\nAli: «1- va 3-kun birga 2-kundan ko‘p». To‘g‘rimi?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash masala. Ustunli diagrammada uch kunda terilgan olma ko‘rsatilgan: birinchi kun sakkiz, ikkinchi kun o‘n ikki, uchinchi kun olti kilogramm. [2] Ali aytdi: birinchi va uchinchi kunda birga ikkinchi kundan ko‘p olma terilgan. Ali haqmi? Javobingizni hisob bilan asoslang."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "O‘q qadami 2 kg — ustunlarni aniq o‘qiymiz\n1- va 3-kun: $8 + 6 = 14$ kg\n$14 > 12$ — Ali haq",
+    "ovoz": "[1] Birinchi qadam: diagramma o‘qida qadam ikki kilogramm. Har bir ustun qaysi chiziqda tugashini diqqat bilan o‘qiymiz. [2] Ikkinchi qadam: birinchi va uchinchi kunni qo‘shamiz — sakkiz qo‘shuv olti, o‘n to‘rt kilogramm. [3] Uchinchi qadam: o‘n to‘rtni ikkinchi kundagi o‘n ikki bilan solishtiramiz. O‘n to‘rt katta, demak Ali haq!"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Ustunlar alohida pastroq, lekin birga ko‘p!",
+    "ovoz": "[1] Diqqat: ikkinchi kun ustuni eng baland, shuning uchun ko‘pchilik Ali xato deb o‘ylaydi. Ammo ikki ustun birgalikda undan ko‘p. Har doim hisoblab ko‘ring."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Jadval: dushanba 15, seshanba 23 yo‘lovchi. Farqi?",
+    "ovoz": "[1] Yana bir savol. Jadvalda avtobusda dushanba o‘n besh, seshanba yigirma uch yo‘lovchi bo‘lgani yozilgan. Seshanba nechta ko‘p yo‘lovchi bo‘lgan?",
+    "savol": "Sonni yozing",
+    "javob": "8"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Sarlavha, o‘qlar va shartli belgini o‘qing\n2. O‘qdagi qadamni aniqlang\n3. Kerakli sonlarni yozib oling\n4. Ko‘z bilan emas, hisob bilan solishtiring",
+    "ovoz": "[1] Xalqaro savolda avval diagramma sarlavhasi, o‘qlari va shartli belgisini o‘qing. [2] O‘qdagi bo‘linmalar qadamini aniqlang: bir, ikki, beshmi yoki o‘n. [3] Savolga kerakli sonlarni diagrammadan o‘qib, qog‘ozga yozib oling. [4] Taqqoslashda faqat ko‘zga ishonmang, albatta hisoblang."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Jadval: satr va ustun kesishgan joy\nDiagramma: o‘q qadami va shartli belgi\nXulosani hisob bilan asoslang",
+    "ovoz": "[1] Esda tuting: jadvalda javob satr va ustun kesishgan katakda. [2] Diagrammada o‘q qadamiga va shartli belgiga e’tibor bering. [3] Har bir xulosani hisob bilan asoslang. Barakalla, bugun ajoyib ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Satrni toping → ustunni toping → katak",
+     "ovoz": "Avval kerakli satrni, so‘ng ustunni toping, ular uchrashgan joyda javob."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Dars jadvali: seshanba, 3-dars — matematika",
+     "ovoz": "Dars jadvalida seshanba satri va uchinchi dars ustuni kesishgan joyda matematika yozilgan bo‘lsa, demak seshanba uchinchi dars matematika."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Barmoqlar bilan: biri satrda, biri ustunda",
+     "ovoz": "Bir barmog‘ingizni satr bo‘ylab, ikkinchisini ustun bo‘ylab yurgizing — ular uchrashgan joy javob."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Baland ustun — ko‘p, past ustun — kam",
+     "ovoz": "Eng baland ustun eng ko‘p miqdorni ko‘rsatadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bo‘y o‘lchash: devordagi chiziqlar",
+     "ovoz": "Devorga bo‘yingizni o‘lchab chiziq tortgandek, ustun uchidan o‘qqa to‘g‘ri chiziq tortib, sonni o‘qing."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ustun uchidan o‘qqa chizg‘ich qo‘ying",
+     "ovoz": "Chizg‘ichni ustun uchiga gorizontal qo‘ying va o‘qdagi sonni o‘qing."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Rasmlar sonini shartli belgiga ko‘paytiring",
+     "ovoz": "Nechta rasm borligini sanang va bitta rasm qiymatiga ko‘paytiring."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Har bir yulduzcha — 4 ta besh baho",
+     "ovoz": "Kundalikda har bir yulduzcha to‘rtta besh bahoni bildirsa, uchta yulduzcha o‘n ikkita besh baho."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "4 + 4 + 4 + 2 = 14",
+     "ovoz": "Har bir rasm uchun to‘rtni, yarim rasm uchun ikkini qo‘shib chiqing."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "O‘q qadamini 1 deb o‘ylab ustunni noto‘g‘ri o‘qish",
+   "Piktogrammada shartli belgini hisobga olmaslik",
+   "Yarim rasmni butun rasm deb sanash",
+   "Taqqoslashda faqat eng baland ustunga qarab xulosa chiqarish"
+  ],
+  "strategiyalar": [
+   "Sarlavha va shartli belgini birinchi o‘qing",
+   "O‘q qadamini aniqlang",
+   "Kerakli sonlarni yozib oling",
+   "Xulosani hisob bilan tekshiring"
+  ],
+  "kalit_sozlar": [
+   "diagramma",
+   "ustunli diagramma",
+   "jadval",
+   "piktogramma",
+   "grafik"
+  ]
+ },
+ {
+  "kod": "XB-M4-TAS",
+  "mavzu": "M4-TAS",
+  "sarlavha": "Ma’lumotlarni tartiblash va tasvirlash",
+  "maqsad": "Ma’lumotlarni yig‘ish, chiziqchalar bilan sanash, jadvalga yozish, ustunli diagramma chizish va doiraviy diagramma bilan solishtirish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Do‘stlaringiz qaysi rangni yaxshi ko‘radi?\nTIMSS: 4-sinflarning 72% i to‘g‘ri yechgan",
+    "ovoz": "[1] Do‘stlaringiz qaysi rangni eng yaxshi ko‘rishini bilmoqchimisiz? Buning uchun ma’lumot yig‘ib, uni chiroyli tartiblash kerak. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyodagi to‘rtinchi sinflarning o‘rtacha yetmish ikki foizi to‘g‘ri yechgan. Siz ham ularning safida bo‘lasiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Chiziqchalar bilan sanash",
+    "doska": "Har bir javob — bitta chiziqcha: |\nTo‘rtta chiziqcha + ustidan kesuvchi = 5\n3 to‘plam va 2 chiziqcha: $3 \\times 5 + 2 = 17$",
+    "ovoz": "[1] Ma’lumot yig‘ayotganda har bir javob uchun bitta chiziqcha qo‘yamiz. [2] Beshinchi chiziqchani to‘rttasining ustidan qiya qilib chizamiz. Shunda besh tadan to‘plam hosil bo‘ladi. [3] Sanash juda oson: uchta beshlik to‘plam o‘n besh, yana ikkita chiziqcha — o‘n yetti."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Jadvalga yozish",
+    "doska": "Jadval: toifa | soni\nQizil — 7, Ko‘k — 5, Yashil — 3\nJami: $7 + 5 + 3 = 15$ — hamma sanaldimi?",
+    "ovoz": "[1] Yig‘ilgan ma’lumotni jadvalga yozamiz: bir ustunda toifa nomi, ikkinchisida soni. [2] Masalan: qizilni yetti, ko‘kni besh, yashilni uch do‘st tanladi. [3] Oxirida jamini hisoblang: o‘n besh. Bu so‘ralgan do‘stlar soniga teng bo‘lsa, hech kim tushib qolmagan."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Ustunli diagramma chizish",
+    "doska": "Har bir toifaga — bitta ustun\nO‘qni teng qadam bilan belgilang: 0, 2, 4, 6, 8\nUstun balandligi = son; sarlavha yozing",
+    "ovoz": "[1] Ustunli diagrammada har bir toifa uchun bitta ustun chizamiz. [2] Chap o‘qni noldan boshlab teng qadamlarda belgilaymiz, masalan ikkidan. [3] Har ustun balandligi jadvaldagi songa teng bo‘ladi. Diagrammaga sarlavha va o‘q nomlarini yozishni unutmang."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Doiraviy diagramma",
+    "doska": "Butun doira — barcha ma’lumot\nYarim doira = jamining yarmi\nEng katta bo‘lak — eng baland ustun",
+    "ovoz": "[1] Doiraviy diagrammada butun doira hamma javoblarni bildiradi. [2] Agar bir rang doiraning yarmini egallasa, demak hamma javoblarning yarmi shu. [3] Doiradagi eng katta bo‘lak ustunli diagrammada eng baland ustunga mos keladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: sevimli mevalar",
+    "doska": "12 do‘st: olma 6, nok 4, uzum 2",
+    "ovoz": "[1] Birinchi misol. O‘n ikki do‘stdan sevimli mevasini so‘radik: olmani olti, nokni to‘rt, uzumni ikki do‘st tanladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Tekshirish: $6 + 4 + 2 = 12$ ✓\nO‘q: 0, 2, 4, 6 — qadam 2\nUstunlar: olma 6, nok 4, uzum 2",
+    "ovoz": "[1] Avval tekshiramiz: olti, to‘rt va ikki — o‘n ikki. Hamma do‘st hisobga olingan. [2] Eng katta son olti, shuning uchun o‘qni noldan oltigacha ikkidan belgilaymiz. [3] Endi ustunlarni chizamiz: olma ustuni oltigacha, nok to‘rtgacha, uzum ikkigacha. Olma ustuni uzumdan uch marta baland."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "3 ta beshlik to‘plam va 4 ta chiziqcha. Nechta?",
+    "ovoz": "[1] Endi o‘zingiz. Jadvalda uchta beshlik to‘plam va yana to‘rtta chiziqcha bor. Jami nechta javob?",
+    "savol": "Sonni yozing",
+    "javob": "19"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: doira va ustunlar",
+    "doska": "24 o‘quvchi: yarmi futbol, chorak — basketbol\nQolgan chorak — shaxmat. Qaysi ustunlar mos?",
+    "ovoz": "[1] Endi xalqaro savollarga o‘xshash masala. Yigirma to‘rt o‘quvchining sevimli o‘yini doiraviy diagrammada: yarmi futbol, chorak qismi basketbol. [2] Qolgan chorak qismi shaxmatni tanlagan. Shu ma’lumotga qaysi ustunli diagramma mos keladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Futbol: $24 : 2 = 12$\nBasketbol: $24 : 4 = 6$, shaxmat: 6\nTekshirish: $12 + 6 + 6 = 24$ ✓",
+    "ovoz": "[1] Birinchi qadam: yigirma to‘rtning yarmi — o‘n ikki o‘quvchi futbol tanlagan. [2] Ikkinchi qadam: chorak qism — yigirma to‘rtni to‘rtga bo‘lamiz, olti. Basketbol ham, shaxmat ham oltitadan. [3] Uchinchi qadam: o‘n ikki, olti va olti — yigirma to‘rt. Hammasi to‘g‘ri."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Futbol ustuni 2 marta baland, qolganlari teng",
+    "ovoz": "[1] Demak mos diagrammada futbol ustuni boshqalaridan ikki marta baland, basketbol va shaxmat ustunlari esa bir xil balandlikda bo‘ladi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "30 o‘quvchining yarmi ko‘k rangni tanladi. Nechta?",
+    "ovoz": "[1] Yana bir savol. O‘ttiz o‘quvchining yarmi ko‘k rangni tanladi. Ko‘kni nechta o‘quvchi tanlagan?",
+    "savol": "Sonni yozing",
+    "javob": "15"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Ma’lumotni sanab, jamini tekshiring\n2. Har bir toifani jadvalga yozing\n3. O‘q qadami va ustun balandligini solishtiring\n4. Doira bo‘laklarini songa aylantiring",
+    "ovoz": "[1] Xalqaro savolda avval ma’lumotni sanang va jami so‘ralganlar soniga tengligini tekshiring. [2] Har bir toifani jadvalga alohida yozing. [3] Diagrammada o‘q qadamini va har bir ustun balandligini jadval bilan solishtiring. [4] Doiraviy diagrammani ustunli bilan solishtirishda yarim va chorak qismlarni songa aylantiring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Yig‘ → sana → jadval → diagramma\nBeshlik to‘plamlar sanashni osonlashtiradi\nDoira yarmi — jamining yarmi",
+    "ovoz": "[1] Esda tuting: ma’lumotni yig‘amiz, sanaymiz, jadvalga yozamiz va diagramma chizamiz. [2] Chiziqchalarni beshtadan to‘plab sanash qulay. [3] Doiraviy diagrammaning yarmi jamining yarmini bildiradi. Ofarin, siz bugun haqiqiy tadqiqotchi bo‘ldingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "5 tadan guruhlab sanang: 5, 10, 15, ...",
+     "ovoz": "Chiziqchalarni beshtadan to‘plab, besh, o‘n, o‘n besh deb sanang."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Futbol o‘yinida gollarni chiziqcha bilan yozamiz",
+     "ovoz": "Hovlida futbol o‘ynayotganda har bir gol uchun devorga bitta chiziqcha chizsangiz, oxirida osongina sanaysiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Qo‘l barmoqlari: bitta qo‘l — 5",
+     "ovoz": "Har bir beshlik to‘plamni bitta qo‘l barmoqlari deb tasavvur qiling: uchta qo‘l — o‘n besh barmoq."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Har bir toifa — alohida satr",
+     "ovoz": "Har bir rang yoki meva uchun jadvalda alohida satr ochamiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Do‘konchi daftari: olma — 7 kg, nok — 5 kg",
+     "ovoz": "Do‘konchi sotilgan mevalarni daftarga jadval qilib yozadi, shunda nimani ko‘p sotganini darhol ko‘radi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Chiziqchalar → sonlar: |||| || → 7",
+     "ovoz": "Avval chiziqcha bilan belgilang, keyin har birini songa aylantirib jadvalga yozing."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Son qancha katta — ustun shuncha baland",
+     "ovoz": "Har bir son ustun balandligiga aylanadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kublardan minoralar: 7 ta, 5 ta, 3 ta kub",
+     "ovoz": "Har bir rang uchun shuncha kubni ustma-ust qo‘ying: yettita, beshta va uchta kub. Bu ustunli diagrammaning o‘zi!"
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Katakli daftarda: 1 katak = 1 o‘quvchi",
+     "ovoz": "Katakli daftarda har bir o‘quvchi uchun bitta katakni bo‘yang — ustunlar o‘z-o‘zidan hosil bo‘ladi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Yarim doira — yarmi, chorak — to‘rtdan biri",
+     "ovoz": "Doira yarmi jamining yarmini, chorak bo‘lagi to‘rtdan birini bildiradi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Pitsa: yarmi go‘shtli, chorak pishloqli",
+     "ovoz": "Pitsaning yarmi go‘shtli, chorak qismi pishloqli, qolgan chorak qismi sabzavotli. Go‘shtli bo‘laklar boshqalaridan ikki marta ko‘p."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Doirani 4 bo‘lakka bo‘lib, bo‘laklarni sanang",
+     "ovoz": "Doirani to‘rtta teng bo‘lakka bo‘ling va har bir rang nechta bo‘lakni egallaganini sanang."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Beshlik to‘plamni 4 deb sanash",
+   "Ustunli diagrammada o‘qni teng bo‘lmagan qadamlar bilan belgilash",
+   "Jamini tekshirmay, kimnidir tushirib qoldirish",
+   "Doiraviy diagrammadagi yarim va chorakni songa aylantira olmaslik"
+  ],
+  "strategiyalar": [
+   "Jamini har doim tekshiring",
+   "Chiziqchalarni beshtadan to‘plang",
+   "O‘qni teng qadamlarda belgilang",
+   "Doira bo‘laklarini songa aylantiring"
+  ],
+  "kalit_sozlar": [
+   "ma’lumot",
+   "jadval",
+   "diagramma",
+   "ustunli diagramma",
+   "doiraviy diagramma",
+   "chiziqcha"
+  ]
+ }
+]

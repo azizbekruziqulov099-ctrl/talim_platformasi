@@ -538,6 +538,10 @@ def create_router(platform):
     def _load_lesson_db(topic_code, til="uz"):
         if not topic_code:
             raise HTTPException(status_code=400, detail="Mavzu kodi kerak")
+        # REV260: «XB-…» — Xalqaro baholash kursi darsi (bazada emas, modules/xalqaro_data/darslar.json da)
+        if topic_code.upper().startswith("XB-"):
+            from modules.xalqaro_baholash import dars_payload
+            return dars_payload(topic_code)
         conn = platform._db()
         cur = conn.cursor()
         try:

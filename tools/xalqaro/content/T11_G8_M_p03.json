@@ -1,0 +1,1166 @@
+[
+ {
+  "id": "M042186",
+  "kunikma": "Butun sonlar ustidagi amallar qatoridagi qonuniyatni aniqlab, uni manfiy sonlar sohasiga davom ettirish",
+  "usul": "Har qatorda qaysi son qanday o‘zgarayotganini (necha birlikka kamayishi yoki ortishini) aniqlang va shu o‘zgarishni nol chegarasidan keyin ham davom ettiring; natijani butun sonlar qoidasi bilan tekshiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Quyidagi qonuniyatga qarang:\n$5 - 4 = 1$\n$5 - 2 = 3$\n$5 - 0 = 5$\nQonuniyatdagi keyingi qator qaysi?",
+    "rasm": null,
+    "javoblar": [
+     "$5 - 2 = 3$",
+     "$5 - (-2) = 3$",
+     "$5 - (-2) = 7$",
+     "$5 - (-1) = 6$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Ayriluvchi: $4,\\ 2,\\ 0,\\ \\dots$",
+      "ovoz": "Har qatorda ayiriladigan son ikkiga kamaymoqda: to‘rt, ikki, nol."
+     },
+     {
+      "doska": "Keyingi ayriluvchi: $0 - 2 = -2$",
+      "ovoz": "Noldan yana ikkini ayirsak, keyingi ayriluvchi minus ikki bo‘ladi."
+     },
+     {
+      "doska": "Natija: $1,\\ 3,\\ 5,\\ \\dots \\Rightarrow 7$",
+      "ovoz": "Natijalar esa har safar ikkiga ortmoqda, demak keyingisi yetti."
+     },
+     {
+      "doska": "$5 - (-2) = 5 + 2 = 7$",
+      "ovoz": "Tekshiramiz: manfiy sonni ayirish uni qo‘shish bilan barobar, besh qo‘shuv ikki — yetti."
+     },
+     {
+      "doska": "Javob: C) $5 - (-2) = 7$",
+      "ovoz": "Demak, keyingi qator — C variant."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi ayriluvchi noldan keyin yana o‘sib boradi deb o‘ylagan va qonuniyatni orqaga qaytargan.",
+     "1": "B ni tanlagan o‘quvchi ayriluvchini to‘g‘ri topgan, lekin manfiy sonni ayirishni musbat sonni ayirish bilan adashtirgan: $5 - 2 = 3$ deb hisoblagan.",
+     "3": "D ni tanlagan o‘quvchi ayriluvchi har safar 2 ga emas, 1 ga kamayadi deb noto‘g‘ri qadam olgan."
+    },
+    "maslahat": "Ayriluvchi har qatorda qanchaga kamayayotganiga e’tibor bering va noldan keyin ham shu qadamni davom ettiring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Quyidagi qonuniyatga qarang:\n$3 \\cdot 2 = 6$\n$2 \\cdot 2 = 4$\n$1 \\cdot 2 = 2$\n$0 \\cdot 2 = 0$\nQonuniyatdagi keyingi qator qaysi?",
+    "rasm": null,
+    "javoblar": [
+     "$(-1) \\cdot 2 = 2$",
+     "$1 \\cdot 2 = 2$",
+     "$(-2) \\cdot 2 = -4$",
+     "$(-1) \\cdot 2 = -2$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Birinchi ko‘paytuvchi: $3,\\ 2,\\ 1,\\ 0,\\ \\dots$",
+      "ovoz": "Birinchi ko‘paytuvchi har qatorda bittaga kamaymoqda."
+     },
+     {
+      "doska": "Keyingisi: $0 - 1 = -1$",
+      "ovoz": "Noldan keyin keladigan son — minus bir."
+     },
+     {
+      "doska": "Natija: $6,\\ 4,\\ 2,\\ 0,\\ \\dots$ — har safar $2$ ga kamayadi",
+      "ovoz": "Natijalar esa har qatorda ikkiga kamaymoqda."
+     },
+     {
+      "doska": "$0 - 2 = -2$, ya’ni $(-1) \\cdot 2 = -2$",
+      "ovoz": "Noldan ikkini ayirsak minus ikki chiqadi — manfiy sonni musbat songa ko‘paytirsak manfiy son hosil bo‘ladi."
+     },
+     {
+      "doska": "Javob: D) $(-1) \\cdot 2 = -2$",
+      "ovoz": "Demak, keyingi qator — D variant."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi birinchi ko‘paytuvchini to‘g‘ri topgan, ammo ko‘paytmaning ishorasini e’tiborsiz qoldirib, natijani musbat deb yozgan.",
+     "1": "B ni tanlagan o‘quvchi noldan keyin qonuniyat qaytadan o‘sadi deb o‘ylagan.",
+     "2": "C ni tanlagan o‘quvchi tenglikni to‘g‘ri hisoblagan, lekin bir qatorni tashlab o‘tib, $-1$ o‘rniga $-2$ ni olgan."
+    },
+    "maslahat": "Har ikki ustundagi sonlar qatordan qatorga qanchaga o‘zgarayotganini alohida kuzating."
+   }
+  ]
+ },
+ {
+  "id": "M042059",
+  "kunikma": "Qismning butunga nisbatini foizda ifodalash va berilgan foiz bo‘yicha sonning qismini topish",
+  "usul": "Foizni topish uchun qismni butunga bo‘lib, 100 ga ko‘paytiring; qismni topish uchun esa butunni foizga mos o‘nli kasrga (yoki 100 ga bo‘lib, foiz soniga) ko‘paytiring.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Aziz, Bekzod va Sardor to‘pni savatga 25 martadan otishdi. Jadvalda har birining nechta otishi muvaffaqiyatli bo‘lgani ko‘rsatilgan. Bekzodning muvaffaqiyat foizi qancha? (Faqat sonni yozing.)",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 450 166\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"10\" y=\"10\" width=\"430\" height=\"44\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"65\" y=\"37\" text-anchor=\"middle\" font-weight=\"bold\">Ism</text><text x=\"200\" y=\"29\" text-anchor=\"middle\" font-weight=\"bold\">Muvaffaqiyatli</text><text x=\"200\" y=\"45\" text-anchor=\"middle\" font-weight=\"bold\">otishlar soni</text><text x=\"360\" y=\"29\" text-anchor=\"middle\" font-weight=\"bold\">Muvaffaqiyat</text><text x=\"360\" y=\"45\" text-anchor=\"middle\" font-weight=\"bold\">foizi</text><rect x=\"10\" y=\"54\" width=\"430\" height=\"34\" fill=\"none\" stroke=\"#222\"/><text x=\"65\" y=\"76.0\" text-anchor=\"middle\">Aziz</text><text x=\"200\" y=\"76.0\" text-anchor=\"middle\">20</text><text x=\"360\" y=\"76.0\" text-anchor=\"middle\">80%</text><rect x=\"10\" y=\"88\" width=\"430\" height=\"34\" fill=\"none\" stroke=\"#222\"/><text x=\"65\" y=\"110.0\" text-anchor=\"middle\">Bekzod</text><text x=\"200\" y=\"110.0\" text-anchor=\"middle\">15</text><rect x=\"346\" y=\"94\" width=\"28\" height=\"22\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"360\" y=\"110.0\" text-anchor=\"middle\">?</text><rect x=\"10\" y=\"122\" width=\"430\" height=\"34\" fill=\"none\" stroke=\"#222\"/><text x=\"65\" y=\"144.0\" text-anchor=\"middle\">Sardor</text><text x=\"200\" y=\"144.0\" text-anchor=\"middle\">10</text><text x=\"360\" y=\"144.0\" text-anchor=\"middle\">40%</text><line x1=\"120\" y1=\"10\" x2=\"120\" y2=\"156\" stroke=\"#222\"/><line x1=\"280\" y1=\"10\" x2=\"280\" y2=\"156\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "60|60%|60 %",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$\\frac{15}{25}$",
+      "ovoz": "Bekzod yigirma beshta otishdan o‘n beshtasini muvaffaqiyatli bajargan — bu butunning o‘n besh yigirma beshdan bir qismi."
+     },
+     {
+      "doska": "$\\frac{15}{25} = \\frac{60}{100}$",
+      "ovoz": "Surat va maxrajni to‘rtga ko‘paytirsak, maxraj yuz bo‘ladi: oltmish yuzdan."
+     },
+     {
+      "doska": "$\\frac{60}{100} = 60\\%$",
+      "ovoz": "Yuzdan oltmish — bu oltmish foiz."
+     },
+     {
+      "doska": "Tekshiruv: $25 \\cdot 0{,}6 = 15$",
+      "ovoz": "Yigirma beshning oltmish foizi haqiqatan o‘n besh."
+     },
+     {
+      "doska": "Javob: 60",
+      "ovoz": "Bekzodning muvaffaqiyat foizi — oltmish."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar muvaffaqiyatli otishlar sonini (15) foiz deb yozadi yoki $15 : 25 = 0{,}6$ ni topib, 100 ga ko‘paytirishni unutadi."
+    },
+    "maslahat": "Qism butunning qanday ulushi ekanini toping va bu ulushni maxraji 100 bo‘lgan kasr ko‘rinishiga keltiring."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Malika, Nilufar va Dilnoza to‘pni savatga 40 martadan otishdi. Jadvalda ularning muvaffaqiyat foizi berilgan. Nilufar nechta otishni muvaffaqiyatli bajargan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 450 166\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"10\" y=\"10\" width=\"430\" height=\"44\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"65\" y=\"37\" text-anchor=\"middle\" font-weight=\"bold\">Ism</text><text x=\"200\" y=\"29\" text-anchor=\"middle\" font-weight=\"bold\">Muvaffaqiyatli</text><text x=\"200\" y=\"45\" text-anchor=\"middle\" font-weight=\"bold\">otishlar soni</text><text x=\"360\" y=\"29\" text-anchor=\"middle\" font-weight=\"bold\">Muvaffaqiyat</text><text x=\"360\" y=\"45\" text-anchor=\"middle\" font-weight=\"bold\">foizi</text><rect x=\"10\" y=\"54\" width=\"430\" height=\"34\" fill=\"none\" stroke=\"#222\"/><text x=\"65\" y=\"76.0\" text-anchor=\"middle\">Malika</text><text x=\"200\" y=\"76.0\" text-anchor=\"middle\">10</text><text x=\"360\" y=\"76.0\" text-anchor=\"middle\">25%</text><rect x=\"10\" y=\"88\" width=\"430\" height=\"34\" fill=\"none\" stroke=\"#222\"/><text x=\"65\" y=\"110.0\" text-anchor=\"middle\">Nilufar</text><rect x=\"186\" y=\"94\" width=\"28\" height=\"22\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"200\" y=\"110.0\" text-anchor=\"middle\">?</text><text x=\"360\" y=\"110.0\" text-anchor=\"middle\">35%</text><rect x=\"10\" y=\"122\" width=\"430\" height=\"34\" fill=\"none\" stroke=\"#222\"/><text x=\"65\" y=\"144.0\" text-anchor=\"middle\">Dilnoza</text><text x=\"200\" y=\"144.0\" text-anchor=\"middle\">30</text><text x=\"360\" y=\"144.0\" text-anchor=\"middle\">75%</text><line x1=\"120\" y1=\"10\" x2=\"120\" y2=\"156\" stroke=\"#222\"/><line x1=\"280\" y1=\"10\" x2=\"280\" y2=\"156\" stroke=\"#222\"/></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "14|14 ta",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$35\\% = \\frac{35}{100} = 0{,}35$",
+      "ovoz": "Avval o‘ttiz besh foizni o‘nli kasrga aylantiramiz: nol butun yuzdan o‘ttiz besh."
+     },
+     {
+      "doska": "$40 \\cdot 0{,}35 = 14$",
+      "ovoz": "Qirq marta otishning o‘ttiz besh foizini topish uchun qirqni nol butun o‘ttiz beshga ko‘paytiramiz — o‘n to‘rt."
+     },
+     {
+      "doska": "Tekshiruv: $\\frac{14}{40} = \\frac{35}{100}$",
+      "ovoz": "O‘n to‘rtni qirqqa bo‘lsak, haqiqatan o‘ttiz besh foiz chiqadi."
+     },
+     {
+      "doska": "Javob: 14",
+      "ovoz": "Nilufar o‘n to‘rtta otishni muvaffaqiyatli bajargan."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar 35% ni to‘g‘ridan-to‘g‘ri 35 ta otish deb oladi yoki $40 - 35 = 5$ deb ayiradi."
+    },
+    "maslahat": "Butunning 10% i qancha ekanini toping, so‘ng undan 35% ni hosil qiling."
+   }
+  ]
+ },
+ {
+  "id": "M042236",
+  "kunikma": "O‘xshash hadlarni ixchamlab, algebraik ifodani soddalashtirish",
+  "usul": "Bir xil harf va bir xil darajaga ega hadlarni guruhlang, ularning koeffitsiyentlarini qo‘shing; koeffitsiyenti yozilmagan had uchun 1 deb oling.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Quyidagilardan qaysi biri $4m^2 + 3m + m^2 + 5m$ ifodaga teng?",
+    "rasm": null,
+    "javoblar": [
+     "$13m^2$",
+     "$5m^2 + 8m$",
+     "$13m$",
+     "$4m^2 + 9m$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$(4m^2 + m^2) + (3m + 5m)$",
+      "ovoz": "O‘xshash hadlarni guruhlaymiz: em kvadratli hadlar alohida, em li hadlar alohida."
+     },
+     {
+      "doska": "$4m^2 + 1m^2 = 5m^2$",
+      "ovoz": "Em kvadratning yozilmagan koeffitsiyenti bir, demak to‘rt qo‘shuv bir — besh em kvadrat."
+     },
+     {
+      "doska": "$3m + 5m = 8m$",
+      "ovoz": "Em li hadlar: uch qo‘shuv besh — sakkiz em."
+     },
+     {
+      "doska": "$5m^2 + 8m$",
+      "ovoz": "Em kvadrat va em o‘xshash hadlar emas, ularni qo‘shib bo‘lmaydi."
+     },
+     {
+      "doska": "Javob: B) $5m^2 + 8m$",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi barcha koeffitsiyentlarni qo‘shib ($4 + 3 + 1 + 5 = 13$), o‘xshash bo‘lmagan hadlarni ham birlashtirib yuborgan.",
+     "2": "C ni tanlagan o‘quvchi daraja ko‘rsatkichiga e’tibor bermay, barcha hadlarni $m$ li had deb qo‘shgan.",
+     "3": "D ni tanlagan o‘quvchi $m^2$ ning koeffitsiyenti 1 ekanini sezmay, uni $m$ li hadlar qatoriga qo‘shib yuborgan: $3 + 1 + 5 = 9$."
+    },
+    "maslahat": "Faqat harfi ham, darajasi ham bir xil bo‘lgan hadlarni qo‘shish mumkin."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Quyidagilardan qaysi biri $2k + 6k^2 + 3k + k^2$ ifodaga teng?",
+    "rasm": null,
+    "javoblar": [
+     "$12k$",
+     "$12k^2$",
+     "$6k^2 + 6k$",
+     "$7k^2 + 5k$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$(6k^2 + k^2) + (2k + 3k)$",
+      "ovoz": "Avval ka kvadratli hadlarni, keyin ka li hadlarni yonma-yon yozamiz."
+     },
+     {
+      "doska": "$6k^2 + 1k^2 = 7k^2$",
+      "ovoz": "Ka kvadratning oldida bir turibdi deb hisoblaymiz: olti qo‘shuv bir — yetti."
+     },
+     {
+      "doska": "$2k + 3k = 5k$",
+      "ovoz": "Ka li hadlar: ikki qo‘shuv uch — besh ka."
+     },
+     {
+      "doska": "$7k^2 + 5k$",
+      "ovoz": "Bu ikki had o‘xshash emas, ifoda shu ko‘rinishda qoladi."
+     },
+     {
+      "doska": "Javob: D) $7k^2 + 5k$",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi barcha koeffitsiyentlarni qo‘shgan ($2 + 6 + 3 + 1 = 12$) va darajani tashlab yuborgan.",
+     "1": "B ni tanlagan o‘quvchi barcha koeffitsiyentlarni qo‘shib, natijaga $k^2$ ni yozgan — o‘xshash bo‘lmagan hadlarni birlashtirgan.",
+     "2": "C ni tanlagan o‘quvchi $k^2$ hadning koeffitsiyenti 1 ni $k$ li hadlarga qo‘shib yuborgan: $2 + 3 + 1 = 6$."
+    },
+    "maslahat": "Koeffitsiyenti yozilmagan hadning koeffitsiyenti nechaga teng ekanini eslang."
+   }
+  ]
+ },
+ {
+  "id": "M042226",
+  "kunikma": "Harfiy ifodaga berilgan qiymatlarni qo‘yib, uning son qiymatini hisoblash",
+  "usul": "Harflar o‘rniga berilgan sonlarni qo‘ying (harflar yonma-yon yozilsa — ko‘paytirish), avval suratni hisoblang, keyin maxrajga bo‘ling.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "$m = 4$ va $n = 9$.\n$Q = \\frac{5mn}{6}$ bo‘lsa, $Q$ ning qiymati nechaga teng?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "30",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$Q = \\frac{5 \\cdot 4 \\cdot 9}{6}$",
+      "ovoz": "Formulada em va en o‘rniga to‘rt va to‘qqizni qo‘yamiz; harflar yonma-yon yozilgani ko‘paytirishni bildiradi."
+     },
+     {
+      "doska": "$5 \\cdot 4 \\cdot 9 = 180$",
+      "ovoz": "Suratni hisoblaymiz: besh karra to‘rt yigirma, yigirma karra to‘qqiz — bir yuz sakson."
+     },
+     {
+      "doska": "$180 : 6 = 30$",
+      "ovoz": "Bir yuz saksonni oltiga bo‘lamiz — o‘ttiz."
+     },
+     {
+      "doska": "Javob: 30",
+      "ovoz": "Q ning qiymati o‘ttiz."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar $5mn$ ni $5 + 4 + 9$ deb qo‘shadi yoki faqat $mn = 36$ ni hisoblab, 5 ga ko‘paytirishni unutadi ($36 : 6 = 6$)."
+    },
+    "maslahat": "Harflar orasida amal belgisi yozilmagan bo‘lsa, qaysi amal nazarda tutilishini eslang."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "$a = 8$ va $b = 3$.\n$T = \\frac{7ab}{12}$ bo‘lsa, $T$ ning qiymati nechaga teng?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "14",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$T = \\frac{7 \\cdot 8 \\cdot 3}{12}$",
+      "ovoz": "A o‘rniga sakkizni, be o‘rniga uchni qo‘yamiz va yetti bilan ko‘paytiramiz."
+     },
+     {
+      "doska": "$7 \\cdot 8 \\cdot 3 = 168$",
+      "ovoz": "Suratda yetti karra sakkiz ellik olti, ellik olti karra uch — bir yuz oltmish sakkiz."
+     },
+     {
+      "doska": "$168 : 12 = 14$",
+      "ovoz": "Bir yuz oltmish sakkizni o‘n ikkiga bo‘lamiz — o‘n to‘rt."
+     },
+     {
+      "doska": "Javob: 14",
+      "ovoz": "Te ning qiymati o‘n to‘rt."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar $7ab$ ni $7 + 8 + 3 = 18$ deb hisoblaydi yoki 7 ni tashlab yuborib, $24 : 12 = 2$ ni oladi."
+    },
+    "maslahat": "Avval suratdagi uchta sonning ko‘paytmasini toping, keyin bo‘ling."
+   }
+  ]
+ },
+ {
+  "id": "M042103",
+  "kunikma": "Bir noma’lumli chiziqli tengsizlikni yechish",
+  "usul": "Noma’lumli hadlarni bir tomonga, sonlarni ikkinchi tomonga ishorasini o‘zgartirib o‘tkazing; so‘ng ikkala tomonni noma’lum oldidagi koeffitsiyentga bo‘ling — koeffitsiyent manfiy bo‘lsa, tengsizlik belgisini teskarisiga almashtiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Tengsizlikni yeching:\n$7x - 5 < 3x + 11$",
+    "rasm": null,
+    "javoblar": [
+     "$x > 4$",
+     "$x = 4$",
+     "$x < 1{,}5$",
+     "$x < 4$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$7x - 3x < 11 + 5$",
+      "ovoz": "Iksli hadlarni chapga, sonlarni o‘ngga o‘tkazamiz; o‘tkazilgan hadning ishorasi o‘zgaradi."
+     },
+     {
+      "doska": "$4x < 16$",
+      "ovoz": "Chapda to‘rt iks, o‘ngda o‘n olti hosil bo‘ladi."
+     },
+     {
+      "doska": "$x < 16 : 4$,  $x < 4$",
+      "ovoz": "Ikkala tomonni musbat to‘rtga bo‘lamiz, shuning uchun belgi o‘zgarmaydi: iks to‘rtdan kichik."
+     },
+     {
+      "doska": "Tekshiruv: $x = 0$: $-5 < 11$ — to‘g‘ri",
+      "ovoz": "Masalan, nolni qo‘yib ko‘ramiz: minus besh o‘n birdan kichik, demak yechim to‘g‘ri yo‘nalishda."
+     },
+     {
+      "doska": "Javob: D) $x < 4$",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi hisobni to‘g‘ri bajargan, lekin musbat songa bo‘lganda ham tengsizlik belgisini teskarisiga almashtirgan.",
+     "1": "B ni tanlagan o‘quvchi tengsizlikni tenglama kabi yechib, javobni tenglik ko‘rinishida yozgan.",
+     "2": "C ni tanlagan o‘quvchi $-5$ ni o‘ng tomonga o‘tkazganda ishorasini o‘zgartirmagan: $4x < 11 - 5 = 6$ deb olgan."
+    },
+    "maslahat": "Har bir hadni tengsizlikning boshqa tomoniga o‘tkazganda uning ishorasini almashtirishni unutmang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Tengsizlikni yeching:\n$2x + 9 > 6x - 3$",
+    "rasm": null,
+    "javoblar": [
+     "$x < 3$",
+     "$x > 3$",
+     "$x < -1{,}5$",
+     "$x = 3$"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$2x - 6x > -3 - 9$",
+      "ovoz": "Iksli hadlarni chap tomonga, sonlarni o‘ng tomonga o‘tkazamiz."
+     },
+     {
+      "doska": "$-4x > -12$",
+      "ovoz": "Chapda minus to‘rt iks, o‘ngda minus o‘n ikki chiqadi."
+     },
+     {
+      "doska": "$x < (-12) : (-4)$",
+      "ovoz": "Ikkala tomonni manfiy songa — minus to‘rtga bo‘lamiz, shuning uchun belgi teskarisiga almashadi."
+     },
+     {
+      "doska": "$x < 3$",
+      "ovoz": "Demak, iks uchdan kichik."
+     },
+     {
+      "doska": "Tekshiruv: $x = 0$: $9 > -3$ — to‘g‘ri",
+      "ovoz": "Nolni qo‘yib tekshiramiz: to‘qqiz minus uchdan katta, javob to‘g‘ri."
+     },
+     {
+      "doska": "Javob: A) $x < 3$",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi $-4x > -12$ dan keyin manfiy songa bo‘lganda tengsizlik belgisini almashtirishni unutgan.",
+     "2": "C ni tanlagan o‘quvchi 9 ni o‘ng tomonga ishorasini o‘zgartirmay o‘tkazgan: $-4x > -3 + 9 = 6$ deb olgan.",
+     "3": "D ni tanlagan o‘quvchi tengsizlikni tenglama kabi yechgan va javobni tenglik ko‘rinishida yozgan."
+    },
+    "maslahat": "Manfiy songa bo‘lganda tengsizlik belgisi bilan nima sodir bo‘lishini eslang."
+   }
+  ]
+ },
+ {
+  "id": "M042086",
+  "kunikma": "Ifodani umumiy ko‘paytuvchini qavsdan chiqarib qayta yozish va berilgan yig‘indi qiymatidan foydalanib hisoblash",
+  "usul": "Ifodadagi harfli hadlardan umumiy ko‘paytuvchini qavsdan tashqariga chiqaring, qavs ichida berilgan yig‘indi hosil bo‘ladi; uning qiymatini qo‘yib hisoblang.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "$m + n = 17$.\n$3m + 3n - 5$ ifodaning qiymati nechaga teng?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "46",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$3m + 3n - 5 = 3(m + n) - 5$",
+      "ovoz": "Birinchi ikki haddan umumiy ko‘paytuvchi uchni qavsdan tashqariga chiqaramiz."
+     },
+     {
+      "doska": "$3 \\cdot 17 - 5$",
+      "ovoz": "Qavs ichida em qo‘shuv en turibdi, u o‘n yettiga teng — shuni qo‘yamiz."
+     },
+     {
+      "doska": "$51 - 5 = 46$",
+      "ovoz": "Uch karra o‘n yetti ellik bir, ellik birdan beshni ayirsak — qirq olti."
+     },
+     {
+      "doska": "Javob: 46",
+      "ovoz": "Ifodaning qiymati qirq olti."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar $3m$ va $3n$ ni har biri $3 \\cdot 17$ deb oladi va $51 + 51 - 5 = 97$ chiqaradi, yoki 3 ga ko‘paytirmay $17 - 5 = 12$ deb yozadi."
+    },
+    "maslahat": "$m$ va $n$ ni alohida topish shart emas — ifodada $m + n$ ni ko‘rishga harakat qiling."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "$x + y = 12$.\n$4x + 4y + 7$ ifodaning qiymati nechaga teng?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "55",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$4x + 4y + 7 = 4(x + y) + 7$",
+      "ovoz": "Iks va igrek oldidagi umumiy to‘rtni qavsdan chiqaramiz."
+     },
+     {
+      "doska": "$4 \\cdot 12 + 7$",
+      "ovoz": "Qavs ichidagi iks qo‘shuv igrek o‘n ikkiga teng."
+     },
+     {
+      "doska": "$48 + 7 = 55$",
+      "ovoz": "To‘rt karra o‘n ikki qirq sakkiz, unga yettini qo‘shsak — ellik besh."
+     },
+     {
+      "doska": "Javob: 55",
+      "ovoz": "Ifodaning qiymati ellik besh."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar $4x$ va $4y$ ning har birini $4 \\cdot 12$ deb, $48 + 48 + 7 = 103$ ni oladi yoki $12 + 7 = 19$ deb 4 ni unutadi."
+    },
+    "maslahat": "Harfli hadlarning umumiy ko‘paytuvchisini qavsdan chiqarib ko‘ring."
+   }
+  ]
+ },
+ {
+  "id": "M042228",
+  "kunikma": "Sonli piramidadagi qonuniyatni (pastdagi katak yuqoridagi ikki qo‘shni katak yig‘indisi) aniqlab, noma’lum sonni topish",
+  "usul": "Berilgan kataklardan qonuniyatni aniqlang: har bir katak ustidagi ikki katak yig‘indisiga teng. Avval bo‘sh kataklarni to‘ldiring, so‘ng $x$ ni toping va pastki katak orqali tekshiring.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Sonli piramidada har bir katakdagi son ma’lum qoida bo‘yicha topiladi. Ba’zi kataklar bo‘sh qoldirilgan. $x$ ning qiymati nechaga teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 232 212\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"20\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"44\" y=\"39.0\" text-anchor=\"middle\">2</text><rect x=\"68\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"92\" y=\"39.0\" text-anchor=\"middle\">5</text><rect x=\"116\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"140\" y=\"39.0\" text-anchor=\"middle\">3</text><rect x=\"164\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"188\" y=\"39.0\" text-anchor=\"middle\">7</text><rect x=\"44\" y=\"58\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"68\" y=\"87.0\" text-anchor=\"middle\">7</text><rect x=\"92\" y=\"58\" width=\"48\" height=\"48\" fill=\"none\" stroke=\"#222\"/><rect x=\"140\" y=\"58\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"164\" y=\"87.0\" text-anchor=\"middle\">10</text><rect x=\"68\" y=\"106\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"92\" y=\"135.0\" text-anchor=\"middle\">15</text><rect x=\"116\" y=\"106\" width=\"48\" height=\"48\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"140\" y=\"135.0\" text-anchor=\"middle\" font-style=\"italic\" font-size=\"18\">x</text><rect x=\"92\" y=\"154\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"116\" y=\"183.0\" text-anchor=\"middle\">33</text></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "18",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$2 + 5 = 7$,  $3 + 7 = 10$",
+      "ovoz": "Ikkinchi qatorni tekshiramiz: har bir katak ustidagi ikki katak yig‘indisiga teng."
+     },
+     {
+      "doska": "Bo‘sh katak: $5 + 3 = 8$",
+      "ovoz": "Ikkinchi qatordagi bo‘sh katakni topamiz: besh qo‘shuv uch — sakkiz."
+     },
+     {
+      "doska": "$x = 8 + 10 = 18$",
+      "ovoz": "Iks ustida sakkiz va o‘n turibdi, demak iks o‘n sakkiz."
+     },
+     {
+      "doska": "Tekshiruv: $15 + 18 = 33$",
+      "ovoz": "Pastki katak o‘n besh qo‘shuv o‘n sakkiz — o‘ttiz uch, rasmga mos."
+     },
+     {
+      "doska": "Javob: 18",
+      "ovoz": "Iksning qiymati o‘n sakkiz."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar bo‘sh katakni hisobga olmay, iksni yonidagi kataklardan topadi ($7 + 10 = 17$) yoki qonuniyatni noto‘g‘ri tanlaydi."
+    },
+    "maslahat": "Ikkinchi qatordagi sonlar birinchi qatordagi sonlardan qanday hosil bo‘lganini aniqlang."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Sonli piramidada har bir katakdagi son ma’lum qoida bo‘yicha topiladi. Ba’zi kataklar bo‘sh qoldirilgan. $x$ ning qiymati nechaga teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 232 212\"><g font-family=\"sans-serif\" font-size=\"14\"><rect x=\"20\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"44\" y=\"39.0\" text-anchor=\"middle\">4</text><rect x=\"68\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"92\" y=\"39.0\" text-anchor=\"middle\">1</text><rect x=\"116\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"140\" y=\"39.0\" text-anchor=\"middle\">6</text><rect x=\"164\" y=\"10\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"188\" y=\"39.0\" text-anchor=\"middle\">3</text><rect x=\"44\" y=\"58\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"68\" y=\"87.0\" text-anchor=\"middle\">5</text><rect x=\"92\" y=\"58\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"116\" y=\"87.0\" text-anchor=\"middle\">7</text><rect x=\"140\" y=\"58\" width=\"48\" height=\"48\" fill=\"none\" stroke=\"#222\"/><rect x=\"68\" y=\"106\" width=\"48\" height=\"48\" fill=\"none\" stroke=\"#222\"/><rect x=\"116\" y=\"106\" width=\"48\" height=\"48\" fill=\"#fde9c8\" stroke=\"#222\"/><text x=\"140\" y=\"135.0\" text-anchor=\"middle\" font-style=\"italic\" font-size=\"18\">x</text><rect x=\"92\" y=\"154\" width=\"48\" height=\"48\" fill=\"#e8f1ff\" stroke=\"#222\"/><text x=\"116\" y=\"183.0\" text-anchor=\"middle\">28</text></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "16",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$4 + 1 = 5$,  $1 + 6 = 7$",
+      "ovoz": "Qoidani aniqlaymiz: har bir katak ustidagi ikki qo‘shni katak yig‘indisiga teng."
+     },
+     {
+      "doska": "Bo‘sh katak: $6 + 3 = 9$",
+      "ovoz": "Ikkinchi qatordagi oxirgi katak olti qo‘shuv uch — to‘qqiz."
+     },
+     {
+      "doska": "$x = 7 + 9 = 16$",
+      "ovoz": "Iks ustida yetti va to‘qqiz, ularning yig‘indisi o‘n olti."
+     },
+     {
+      "doska": "Tekshiruv: $5 + 7 = 12$,  $12 + 16 = 28$",
+      "ovoz": "Uchinchi qatordagi bo‘sh katak o‘n ikki, o‘n ikki qo‘shuv o‘n olti esa yigirma sakkiz — pastki katakka mos."
+     },
+     {
+      "doska": "Javob: 16",
+      "ovoz": "Iksning qiymati o‘n olti."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar ikkinchi qatordagi bo‘sh katakni topmay, iksni $28 - 7 = 21$ yoki $28 : 2 = 14$ deb taxmin qiladi."
+    },
+    "maslahat": "Avval yuqoridagi qatorlardagi bo‘sh kataklarni qoida bo‘yicha to‘ldirib chiqing."
+   }
+  ]
+ },
+ {
+  "id": "M042245",
+  "kunikma": "Berilgan sonlar juftliklari qaysi ikki noma’lumli tenglamani qanoatlantirishini o‘rniga qo‘yish orqali aniqlash",
+  "usul": "Har bir tenglamaga ikkala juftlikni ham ($x$ va $y$ o‘rniga) qo‘yib tekshiring; ikkala juftlikda ham to‘g‘ri tenglik hosil qiladigan tenglamani tanlang.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "$(0;\\ 2)$, $(1;\\ 5)$\nQaysi tenglamani bu $(x;\\ y)$ sonlar juftliklarining IKKALASI ham qanoatlantiradi?",
+    "rasm": null,
+    "javoblar": [
+     "$x + y = 2$",
+     "$3x - y = -2$",
+     "$2x + y = 7$",
+     "$5x - y = 0$"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A: $0 + 2 = 2$ ✓,  $1 + 5 = 6 \\ne 2$",
+      "ovoz": "A tenglama birinchi juftlikda to‘g‘ri, lekin ikkinchisida olti chiqadi — mos emas."
+     },
+     {
+      "doska": "B: $3 \\cdot 0 - 2 = -2$ ✓,  $3 \\cdot 1 - 5 = -2$ ✓",
+      "ovoz": "B tenglamada ikkala juftlik ham minus ikkini beradi — mos."
+     },
+     {
+      "doska": "C: $2 \\cdot 0 + 2 = 2 \\ne 7$",
+      "ovoz": "C tenglama birinchi juftlikda bajarilmaydi."
+     },
+     {
+      "doska": "D: $5 \\cdot 0 - 2 = -2 \\ne 0$",
+      "ovoz": "D tenglama ham birinchi juftlikda bajarilmaydi."
+     },
+     {
+      "doska": "Javob: B) $3x - y = -2$",
+      "ovoz": "Ikkala juftlikni ham faqat B tenglama qanoatlantiradi."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat birinchi juftlikni $(0;\\ 2)$ tekshirgan va ikkinchisini qo‘yib ko‘rmagan.",
+     "2": "C ni tanlagan o‘quvchi faqat ikkinchi juftlikni $(1;\\ 5)$ tekshirgan: $2 + 5 = 7$.",
+     "3": "D ni tanlagan o‘quvchi ham faqat ikkinchi juftlikni tekshirgan: $5 - 5 = 0$."
+    },
+    "maslahat": "Har bir tenglamani ikkala juftlik bilan ham tekshirishni unutmang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "$(2;\\ 0)$, $(-1;\\ 3)$\nQaysi tenglamani bu $(x;\\ y)$ sonlar juftliklarining IKKALASI ham qanoatlantiradi?",
+    "rasm": null,
+    "javoblar": [
+     "$x - y = 2$",
+     "$3x + y = 0$",
+     "$2x + y = 4$",
+     "$x + y = 2$"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "A: $2 - 0 = 2$ ✓,  $-1 - 3 = -4 \\ne 2$",
+      "ovoz": "A tenglama birinchi juftlikda to‘g‘ri, ikkinchisida minus to‘rt chiqadi."
+     },
+     {
+      "doska": "B: $3 \\cdot 2 + 0 = 6 \\ne 0$",
+      "ovoz": "B tenglama birinchi juftlikda bajarilmaydi."
+     },
+     {
+      "doska": "C: $2 \\cdot 2 + 0 = 4$ ✓,  $2 \\cdot (-1) + 3 = 1 \\ne 4$",
+      "ovoz": "C tenglama ham faqat birinchi juftlikda to‘g‘ri."
+     },
+     {
+      "doska": "D: $2 + 0 = 2$ ✓,  $-1 + 3 = 2$ ✓",
+      "ovoz": "D tenglamada ikkala juftlik ham ikkini beradi."
+     },
+     {
+      "doska": "Javob: D) $x + y = 2$",
+      "ovoz": "Ikkala juftlikni ham D tenglama qanoatlantiradi."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat $(2;\\ 0)$ juftlikni tekshirgan.",
+     "1": "B ni tanlagan o‘quvchi faqat $(-1;\\ 3)$ juftlikni tekshirgan: $-3 + 3 = 0$.",
+     "2": "C ni tanlagan o‘quvchi faqat birinchi juftlikni tekshirgan yoki $2 \\cdot (-1)$ ning ishorasida adashgan."
+    },
+    "maslahat": "Manfiy sonni qo‘yganda ishoraga e’tibor bering va ikkala juftlikni ham tekshiring."
+   }
+  ]
+ },
+ {
+  "id": "M042270",
+  "kunikma": "Katakli qog‘ozda asosi va balandligi berilgan teng yonli uchburchakni aniqlash (yasash)",
+  "usul": "Har bir uchburchakning asosi va balandligini kataklar bo‘yicha sanang; teng yonli uchburchakda uchi asosning o‘rtasi ustida turadi, shuning uchun yon tomonlari teng bo‘ladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Rasmdagi har bir kichik katakning tomoni 1 sm. Qaysi rasmda asosi 6 sm va balandligi 4 sm bo‘lgan teng yonli uchburchak chizilgan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 368 340\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"8\" y=\"32\">A)</text><line x1=\"30\" y1=\"22\" x2=\"30\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"22\" x2=\"48\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"22\" x2=\"66\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"22\" x2=\"84\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"22\" x2=\"102\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"22\" x2=\"120\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"138\" y1=\"22\" x2=\"138\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"156\" y1=\"22\" x2=\"156\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"174\" y1=\"22\" x2=\"174\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"22\" x2=\"174\" y2=\"22\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"40\" x2=\"174\" y2=\"40\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"58\" x2=\"174\" y2=\"58\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"76\" x2=\"174\" y2=\"76\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"94\" x2=\"174\" y2=\"94\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"112\" x2=\"174\" y2=\"112\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"130\" x2=\"174\" y2=\"130\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"148\" x2=\"174\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"48,130 156,130 48,58\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"192\" y=\"32\">B)</text><line x1=\"214\" y1=\"22\" x2=\"214\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"232\" y1=\"22\" x2=\"232\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"250\" y1=\"22\" x2=\"250\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"268\" y1=\"22\" x2=\"268\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"286\" y1=\"22\" x2=\"286\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"304\" y1=\"22\" x2=\"304\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"322\" y1=\"22\" x2=\"322\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"340\" y1=\"22\" x2=\"340\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"358\" y1=\"22\" x2=\"358\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"22\" x2=\"358\" y2=\"22\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"40\" x2=\"358\" y2=\"40\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"58\" x2=\"358\" y2=\"58\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"76\" x2=\"358\" y2=\"76\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"94\" x2=\"358\" y2=\"94\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"112\" x2=\"358\" y2=\"112\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"130\" x2=\"358\" y2=\"130\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"148\" x2=\"358\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"232,130 340,130 286,76\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"8\" y=\"192\">C)</text><line x1=\"30\" y1=\"182\" x2=\"30\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"182\" x2=\"48\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"182\" x2=\"66\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"182\" x2=\"84\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"182\" x2=\"102\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"182\" x2=\"120\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"138\" y1=\"182\" x2=\"138\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"156\" y1=\"182\" x2=\"156\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"174\" y1=\"182\" x2=\"174\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"182\" x2=\"174\" y2=\"182\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"200\" x2=\"174\" y2=\"200\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"218\" x2=\"174\" y2=\"218\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"236\" x2=\"174\" y2=\"236\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"254\" x2=\"174\" y2=\"254\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"272\" x2=\"174\" y2=\"272\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"290\" x2=\"174\" y2=\"290\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"308\" x2=\"174\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"48,290 156,290 102,218\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"192\" y=\"192\">D)</text><line x1=\"214\" y1=\"182\" x2=\"214\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"232\" y1=\"182\" x2=\"232\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"250\" y1=\"182\" x2=\"250\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"268\" y1=\"182\" x2=\"268\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"286\" y1=\"182\" x2=\"286\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"304\" y1=\"182\" x2=\"304\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"322\" y1=\"182\" x2=\"322\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"340\" y1=\"182\" x2=\"340\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"358\" y1=\"182\" x2=\"358\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"182\" x2=\"358\" y2=\"182\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"200\" x2=\"358\" y2=\"200\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"218\" x2=\"358\" y2=\"218\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"236\" x2=\"358\" y2=\"236\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"254\" x2=\"358\" y2=\"254\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"272\" x2=\"358\" y2=\"272\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"290\" x2=\"358\" y2=\"290\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"308\" x2=\"358\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"250,290 322,290 286,218\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"184.0\" y=\"332\" text-anchor=\"middle\">1 katak = 1 sm</text></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Asos 6 sm: A, B, C",
+      "ovoz": "Avval asosni sanaymiz: A, B va C uchburchaklarning asosi olti katak, D niki esa to‘rt katak."
+     },
+     {
+      "doska": "Balandlik 4 sm: A va C",
+      "ovoz": "Endi uchidan asosgacha bo‘lgan kataklarni sanaymiz: A va C da to‘rt, B da uch."
+     },
+     {
+      "doska": "A: uchi asosning chetida — teng yonli emas",
+      "ovoz": "A uchburchakning uchi asosning bir uchi ustida, bu to‘g‘ri burchakli uchburchak, yon tomonlari teng emas."
+     },
+     {
+      "doska": "C: uchi asos o‘rtasi ustida, $3 + 3 = 6$",
+      "ovoz": "C da uch asosning o‘rtasi ustida turibdi: har ikki tomonda uch katakdan, demak yon tomonlar teng."
+     },
+     {
+      "doska": "Javob: C",
+      "ovoz": "Shartga faqat C rasm mos keladi."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat asos va balandlikni tekshirgan, ammo teng yonlilik shartini (uchi asos o‘rtasi ustida bo‘lishini) unutgan.",
+     "1": "B ni tanlagan o‘quvchi teng yonli uchburchakni topgan, lekin balandlikni noto‘g‘ri sanagan (u 3 sm).",
+     "3": "D ni tanlagan o‘quvchi balandlik va teng yonlilikka qaragan, ammo asos 4 sm ekanini tekshirmagan."
+    },
+    "maslahat": "Uchta shartni alohida tekshiring: asos uzunligi, balandlik va uchning asos o‘rtasi ustida turishi."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Rasmdagi har bir kichik katakning tomoni 1 sm. Qaysi rasmda asosi 4 sm va balandligi 6 sm bo‘lgan teng yonli uchburchak chizilgan?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 368 340\"><g font-family=\"sans-serif\" font-size=\"14\"><text x=\"8\" y=\"32\">A)</text><line x1=\"30\" y1=\"22\" x2=\"30\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"22\" x2=\"48\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"22\" x2=\"66\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"22\" x2=\"84\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"22\" x2=\"102\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"22\" x2=\"120\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"138\" y1=\"22\" x2=\"138\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"156\" y1=\"22\" x2=\"156\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"174\" y1=\"22\" x2=\"174\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"22\" x2=\"174\" y2=\"22\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"40\" x2=\"174\" y2=\"40\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"58\" x2=\"174\" y2=\"58\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"76\" x2=\"174\" y2=\"76\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"94\" x2=\"174\" y2=\"94\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"112\" x2=\"174\" y2=\"112\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"130\" x2=\"174\" y2=\"130\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"148\" x2=\"174\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"66,130 138,130 102,22\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"192\" y=\"32\">B)</text><line x1=\"214\" y1=\"22\" x2=\"214\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"232\" y1=\"22\" x2=\"232\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"250\" y1=\"22\" x2=\"250\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"268\" y1=\"22\" x2=\"268\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"286\" y1=\"22\" x2=\"286\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"304\" y1=\"22\" x2=\"304\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"322\" y1=\"22\" x2=\"322\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"340\" y1=\"22\" x2=\"340\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"358\" y1=\"22\" x2=\"358\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"22\" x2=\"358\" y2=\"22\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"40\" x2=\"358\" y2=\"40\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"58\" x2=\"358\" y2=\"58\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"76\" x2=\"358\" y2=\"76\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"94\" x2=\"358\" y2=\"94\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"112\" x2=\"358\" y2=\"112\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"130\" x2=\"358\" y2=\"130\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"148\" x2=\"358\" y2=\"148\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"232,130 340,130 286,58\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"8\" y=\"192\">C)</text><line x1=\"30\" y1=\"182\" x2=\"30\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"48\" y1=\"182\" x2=\"48\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"66\" y1=\"182\" x2=\"66\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"84\" y1=\"182\" x2=\"84\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"102\" y1=\"182\" x2=\"102\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"120\" y1=\"182\" x2=\"120\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"138\" y1=\"182\" x2=\"138\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"156\" y1=\"182\" x2=\"156\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"174\" y1=\"182\" x2=\"174\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"182\" x2=\"174\" y2=\"182\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"200\" x2=\"174\" y2=\"200\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"218\" x2=\"174\" y2=\"218\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"236\" x2=\"174\" y2=\"236\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"254\" x2=\"174\" y2=\"254\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"272\" x2=\"174\" y2=\"272\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"290\" x2=\"174\" y2=\"290\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"30\" y1=\"308\" x2=\"174\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"66,290 138,290 120,182\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"192\" y=\"192\">D)</text><line x1=\"214\" y1=\"182\" x2=\"214\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"232\" y1=\"182\" x2=\"232\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"250\" y1=\"182\" x2=\"250\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"268\" y1=\"182\" x2=\"268\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"286\" y1=\"182\" x2=\"286\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"304\" y1=\"182\" x2=\"304\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"322\" y1=\"182\" x2=\"322\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"340\" y1=\"182\" x2=\"340\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"358\" y1=\"182\" x2=\"358\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"182\" x2=\"358\" y2=\"182\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"200\" x2=\"358\" y2=\"200\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"218\" x2=\"358\" y2=\"218\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"236\" x2=\"358\" y2=\"236\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"254\" x2=\"358\" y2=\"254\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"272\" x2=\"358\" y2=\"272\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"290\" x2=\"358\" y2=\"290\" stroke=\"#222\" stroke-width=\"0.4\"/><line x1=\"214\" y1=\"308\" x2=\"358\" y2=\"308\" stroke=\"#222\" stroke-width=\"0.4\"/><polygon points=\"250,290 322,290 286,200\" fill=\"#dff3e4\" stroke=\"#222\" stroke-width=\"2\"/><text x=\"184.0\" y=\"332\" text-anchor=\"middle\">1 katak = 1 sm</text></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Asos 4 sm: A, C, D",
+      "ovoz": "Asoslarni sanaymiz: A, C va D da to‘rt katak, B da olti katak."
+     },
+     {
+      "doska": "Balandlik 6 sm: A va C",
+      "ovoz": "Balandlikni sanaymiz: A va C da olti katak, D da besh katak."
+     },
+     {
+      "doska": "C: uchi asos o‘rtasi ustida emas ($3$ va $1$)",
+      "ovoz": "C da uch asosning o‘rtasi ustida emas: bir tomonda uch, ikkinchi tomonda bir katak, yon tomonlar teng emas."
+     },
+     {
+      "doska": "A: uchi asos o‘rtasi ustida, $2 + 2 = 4$",
+      "ovoz": "A da uch aynan asos o‘rtasi ustida — yon tomonlar teng."
+     },
+     {
+      "doska": "Javob: A",
+      "ovoz": "Shartga A rasm mos keladi."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi asos va balandlikni almashtirib yuborgan: B da asos 6 sm, balandlik 4 sm.",
+     "2": "C ni tanlagan o‘quvchi asos va balandlikni to‘g‘ri sanagan, ammo uchi asos o‘rtasida emasligini — uchburchak teng yonli emasligini sezmagan.",
+     "3": "D ni tanlagan o‘quvchi balandlikni noto‘g‘ri sanagan: u 6 emas, 5 sm."
+    },
+    "maslahat": "Balandlik — uchidan asosgacha tik tushirilgan kesma; uni kataklar bo‘yicha sanang."
+   }
+  ]
+ },
+ {
+  "id": "M042201",
+  "kunikma": "To‘g‘ri burchakli parallelepipedning hajmi va ikki o‘lchami bo‘yicha uchinchi o‘lchamini topish",
+  "usul": "Hajm formulasi $V = a \\cdot b \\cdot c$ dan foydalaning: ma’lum ikki o‘lchamni ko‘paytiring va hajmni shu ko‘paytmaga bo‘ling.",
+  "variantlar": [
+   {
+    "turi": "ochiq",
+    "savol": "Rasmda to‘g‘ri burchakli parallelepiped shaklidagi quti tasvirlangan. Qutining hajmi $252$ sm³. $x$ ning qiymati nechaga teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 410 153\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"50,49.2 88.9,20 340.9,20 302,49.2\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"302,49.2 340.9,20 340.9,74 302,103.2\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"50\" y=\"49.2\" width=\"252\" height=\"54\" fill=\"#e8f1ff\" stroke=\"#222\"/><polyline points=\"50,103.2 88.9,74 340.9,74\" fill=\"none\" stroke=\"#222\" stroke-dasharray=\"4 3\"/><line x1=\"88.9\" y1=\"20\" x2=\"88.9\" y2=\"74\" stroke=\"#222\" stroke-dasharray=\"4 3\"/><text x=\"176\" y=\"125.2\" text-anchor=\"middle\" font-style=\"italic\">x sm</text><text x=\"348.9\" y=\"52\">3 sm</text><text x=\"63.4\" y=\"36.6\" text-anchor=\"end\">6 sm</text></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "14|14 sm",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$V = x \\cdot 6 \\cdot 3$",
+      "ovoz": "Parallelepipedning hajmi uning uzunligi, eni va balandligi ko‘paytmasiga teng."
+     },
+     {
+      "doska": "$6 \\cdot 3 = 18$",
+      "ovoz": "Ma’lum o‘lchamlarni ko‘paytiramiz: olti karra uch — o‘n sakkiz."
+     },
+     {
+      "doska": "$18x = 252$",
+      "ovoz": "Demak, o‘n sakkiz iks ikki yuz ellik ikkiga teng."
+     },
+     {
+      "doska": "$x = 252 : 18 = 14$",
+      "ovoz": "Ikki yuz ellik ikkini o‘n sakkizga bo‘lamiz — o‘n to‘rt."
+     },
+     {
+      "doska": "Javob: 14",
+      "ovoz": "Iks o‘n to‘rt santimetr."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar hajmni o‘lchamlarning yig‘indisi deb o‘ylab $252 - 6 - 3 = 243$ ni oladi yoki hajmni faqat bitta o‘lchamga bo‘ladi ($252 : 6 = 42$)."
+    },
+    "maslahat": "Hajm uchala o‘lchamning ko‘paytmasi ekanini eslang va noma’lum ko‘paytuvchini toping."
+   },
+   {
+    "turi": "ochiq",
+    "savol": "Rasmda to‘g‘ri burchakli parallelepiped shaklidagi akvarium tasvirlangan. Akvariumning hajmi $360$ sm³. $x$ ning qiymati nechaga teng?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 367 233\"><g font-family=\"sans-serif\" font-size=\"14\"><polygon points=\"50,73.5 121.3,20 297.3,20 226,73.5\" fill=\"#e8f1ff\" stroke=\"#222\"/><polygon points=\"226,73.5 297.3,20 297.3,130 226,183.5\" fill=\"#e8f1ff\" stroke=\"#222\"/><rect x=\"50\" y=\"73.5\" width=\"176\" height=\"110\" fill=\"#e8f1ff\" stroke=\"#222\"/><polyline points=\"50,183.5 121.3,130 297.3,130\" fill=\"none\" stroke=\"#222\" stroke-dasharray=\"4 3\"/><line x1=\"121.3\" y1=\"20\" x2=\"121.3\" y2=\"130\" stroke=\"#222\" stroke-dasharray=\"4 3\"/><text x=\"138\" y=\"205.5\" text-anchor=\"middle\" font-style=\"italic\">x sm</text><text x=\"305.3\" y=\"80\">5 sm</text><text x=\"79.6\" y=\"48.7\" text-anchor=\"end\">9 sm</text></g></svg>",
+    "javoblar": [],
+    "togri": null,
+    "javob": "8|8 sm",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "$V = x \\cdot 9 \\cdot 5$",
+      "ovoz": "Hajm uchala o‘lchamning ko‘paytmasi: iks, to‘qqiz va besh."
+     },
+     {
+      "doska": "$9 \\cdot 5 = 45$",
+      "ovoz": "To‘qqiz karra besh — qirq besh."
+     },
+     {
+      "doska": "$45x = 360$",
+      "ovoz": "Qirq besh iks uch yuz oltmishga teng."
+     },
+     {
+      "doska": "$x = 360 : 45 = 8$",
+      "ovoz": "Uch yuz oltmishni qirq beshga bo‘lsak, sakkiz chiqadi."
+     },
+     {
+      "doska": "Javob: 8",
+      "ovoz": "Iks sakkiz santimetr."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ba’zi o‘quvchilar $360$ dan $9$ va $5$ ni ayiradi yoki hajmni faqat bitta o‘lchamga bo‘lib qo‘yadi ($360 : 9 = 40$)."
+    },
+    "maslahat": "Ikki ma’lum o‘lchamning ko‘paytmasi asos yuzini beradi; hajmni shunga bo‘ling."
+   }
+  ]
+ },
+ {
+  "id": "M042152",
+  "kunikma": "Shaklni nuqta atrofida yarim aylanishga (180° ga) burishning natijasini aniqlash",
+  "usul": "Yarim aylanishda shaklning har bir nuqtasi O markazdan o‘tuvchi to‘g‘ri chiziq bo‘ylab qarama-qarshi tomonga, O gacha bo‘lgan masofada o‘tadi: shakl qarama-qarshi chorakka tushadi va «boshi pastga» ag‘dariladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Yuqoridagi rasmda O nuqta va uchburchak berilgan. Quyidagilardan qaysi biri uchburchakni O nuqta atrofida soat mili yo‘nalishida yarim aylanishga (180° ga) burish natijasini ko‘rsatadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 468\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"135.0\" y1=\"80.0\" x2=\"305.0\" y2=\"80.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"220.0\" y1=\"20.0\" x2=\"220.0\" y2=\"140.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"220.0\" cy=\"80.0\" r=\"3\" fill=\"#222\"/><text x=\"206.0\" y=\"96.0\" font-style=\"italic\">O</text><polygon points=\"238,71 283,71 238,35\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"20\" y1=\"152\" x2=\"420\" y2=\"152\" stroke=\"#222\" stroke-width=\"0.5\"/><line x1=\"45.0\" y1=\"230.0\" x2=\"215.0\" y2=\"230.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"130.0\" y1=\"170.0\" x2=\"130.0\" y2=\"290.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"130.0\" cy=\"230.0\" r=\"3\" fill=\"#222\"/><text x=\"116.0\" y=\"246.0\" font-style=\"italic\">O</text><polygon points=\"148,239 193,239 148,275\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"31.0\" y=\"184.0\" font-weight=\"bold\">A)</text><line x1=\"255.0\" y1=\"230.0\" x2=\"425.0\" y2=\"230.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"340.0\" y1=\"170.0\" x2=\"340.0\" y2=\"290.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"340.0\" cy=\"230.0\" r=\"3\" fill=\"#222\"/><text x=\"326.0\" y=\"246.0\" font-style=\"italic\">O</text><polygon points=\"322,239 277,239 322,275\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"241.0\" y=\"184.0\" font-weight=\"bold\">B)</text><line x1=\"45.0\" y1=\"384.0\" x2=\"215.0\" y2=\"384.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"130.0\" y1=\"324.0\" x2=\"130.0\" y2=\"444.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"130.0\" cy=\"384.0\" r=\"3\" fill=\"#222\"/><text x=\"116.0\" y=\"400.0\" font-style=\"italic\">O</text><polygon points=\"112,375 67,375 112,339\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"31.0\" y=\"338.0\" font-weight=\"bold\">C)</text><line x1=\"255.0\" y1=\"384.0\" x2=\"425.0\" y2=\"384.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"340.0\" y1=\"324.0\" x2=\"340.0\" y2=\"444.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"340.0\" cy=\"384.0\" r=\"3\" fill=\"#222\"/><text x=\"326.0\" y=\"400.0\" font-style=\"italic\">O</text><polygon points=\"349,402 349,447 385,402\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"241.0\" y=\"338.0\" font-weight=\"bold\">D)</text></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Uchburchak: yuqori o‘ng chorak",
+      "ovoz": "Dastlabki uchburchak O dan o‘ngda va yuqorida joylashgan."
+     },
+     {
+      "doska": "$180°$: o‘ng → chap, yuqori → past",
+      "ovoz": "Yarim aylanishda har bir nuqta O orqali qarama-qarshi tomonga o‘tadi: o‘ng chapga, yuqori pastga."
+     },
+     {
+      "doska": "To‘g‘ri burchak uchi: O dan o‘ngda va yuqorida → chapda va pastda",
+      "ovoz": "To‘g‘ri burchak uchi O ga yaqin edi, u chap-past tomonda ham O ga yaqin qoladi; o‘tkir uchlari esa chapga va pastga qaraydi."
+     },
+     {
+      "doska": "B: pastki chap chorak, uchlari chapga va pastga",
+      "ovoz": "Bu shart faqat B rasmda bajarilgan."
+     },
+     {
+      "doska": "Javob: B",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi burish o‘rniga gorizontal o‘qqa nisbatan simmetrik akslantirishni tanlagan — shakl faqat pastga ag‘darilgan.",
+     "2": "C ni tanlagan o‘quvchi vertikal o‘qqa nisbatan akslantirishni burish bilan adashtirgan.",
+     "3": "D ni tanlagan o‘quvchi shaklni yarim aylanish o‘rniga chorak aylanishga (90° ga) burgan."
+    },
+    "maslahat": "Yarim aylanishda shaklning har bir nuqtasi O ga nisbatan aynan qarama-qarshi tomonga o‘tadi."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Yuqoridagi rasmda O nuqta va to‘rtburchak berilgan. Quyidagilardan qaysi biri to‘rtburchakni O nuqta atrofida $180°$ ga burish natijasini ko‘rsatadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 468\"><g font-family=\"sans-serif\" font-size=\"14\"><line x1=\"135.0\" y1=\"80.0\" x2=\"305.0\" y2=\"80.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"220.0\" y1=\"20.0\" x2=\"220.0\" y2=\"140.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"220.0\" cy=\"80.0\" r=\"3\" fill=\"#222\"/><text x=\"206.0\" y=\"96.0\" font-style=\"italic\">O</text><polygon points=\"202,71 157,71 157,35 184,35\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"20\" y1=\"152\" x2=\"420\" y2=\"152\" stroke=\"#222\" stroke-width=\"0.5\"/><line x1=\"45.0\" y1=\"230.0\" x2=\"215.0\" y2=\"230.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"130.0\" y1=\"170.0\" x2=\"130.0\" y2=\"290.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"130.0\" cy=\"230.0\" r=\"3\" fill=\"#222\"/><text x=\"116.0\" y=\"246.0\" font-style=\"italic\">O</text><polygon points=\"148,221 193,221 193,185 166,185\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"31.0\" y=\"184.0\" font-weight=\"bold\">A)</text><line x1=\"255.0\" y1=\"230.0\" x2=\"425.0\" y2=\"230.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"340.0\" y1=\"170.0\" x2=\"340.0\" y2=\"290.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"340.0\" cy=\"230.0\" r=\"3\" fill=\"#222\"/><text x=\"326.0\" y=\"246.0\" font-style=\"italic\">O</text><polygon points=\"349,212 349,167 385,167 385,194\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"241.0\" y=\"184.0\" font-weight=\"bold\">B)</text><line x1=\"45.0\" y1=\"384.0\" x2=\"215.0\" y2=\"384.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"130.0\" y1=\"324.0\" x2=\"130.0\" y2=\"444.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"130.0\" cy=\"384.0\" r=\"3\" fill=\"#222\"/><text x=\"116.0\" y=\"400.0\" font-style=\"italic\">O</text><polygon points=\"148,393 193,393 193,429 166,429\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"31.0\" y=\"338.0\" font-weight=\"bold\">C)</text><line x1=\"255.0\" y1=\"384.0\" x2=\"425.0\" y2=\"384.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><line x1=\"340.0\" y1=\"324.0\" x2=\"340.0\" y2=\"444.0\" stroke=\"#222\" stroke-dasharray=\"5 4\"/><circle cx=\"340.0\" cy=\"384.0\" r=\"3\" fill=\"#222\"/><text x=\"326.0\" y=\"400.0\" font-style=\"italic\">O</text><polygon points=\"322,393 277,393 277,429 304,429\" fill=\"#fde9c8\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"241.0\" y=\"338.0\" font-weight=\"bold\">D)</text></g></svg>",
+    "javoblar": [
+     "A",
+     "B",
+     "C",
+     "D"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "To‘rtburchak: yuqori chap chorak",
+      "ovoz": "Dastlabki to‘rtburchak O dan chapda va yuqorida joylashgan."
+     },
+     {
+      "doska": "$180°$: chap → o‘ng, yuqori → past",
+      "ovoz": "Yuz sakson gradusga burishda shakl qarama-qarshi chorakka, ya’ni o‘ng past tomonga o‘tadi."
+     },
+     {
+      "doska": "O ga yaqin gorizontal tomon → yuqoriga, o‘ngdagi qiya tomon → chapga",
+      "ovoz": "Gorizontal o‘qqa yaqin turgan pastki tomon endi shaklning yuqori tomoni bo‘ladi, o‘ngdagi qiya tomon esa chap tomonga o‘tadi."
+     },
+     {
+      "doska": "C: pastki o‘ng chorak, shakl ag‘darilgan",
+      "ovoz": "Bu xususiyatlarga C rasm mos keladi."
+     },
+     {
+      "doska": "Javob: C",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi shaklni vertikal o‘qqa nisbatan akslantirgan — u faqat o‘ngga o‘tgan, ag‘darilmagan.",
+     "1": "B ni tanlagan o‘quvchi shaklni 180° o‘rniga 90° ga burgan.",
+     "3": "D ni tanlagan o‘quvchi gorizontal o‘qqa nisbatan akslantirishni tanlagan — shakl chap tomonda qolgan."
+    },
+    "maslahat": "Shaklning O ga eng yaqin tomoni burilgandan keyin qayerda bo‘lishini kuzating."
+   }
+  ]
+ },
+ {
+  "id": "M042269",
+  "kunikma": "O‘rta arifmetik qiymatning ma’nosini tushunish va undan qaysi xulosa albatta to‘g‘ri bo‘lishini aniqlash",
+  "usul": "O‘rtacha qiymat alohida a’zolar haqida emas, butun guruh haqida ma’lumot beradi: guruhlardagi a’zolar soni teng bo‘lsa, o‘rtachasi katta guruhning jami natijasi ham katta bo‘ladi.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "7-«A» va 7-«B» sinf o‘quvchilari to‘p uloqtirish musobaqasida qatnashdi. Natijalar:\n7-«A» sinf: o‘rtacha $18{,}5$ m\n7-«B» sinf: o‘rtacha $21{,}2$ m\nHar bir sinfda o‘quvchilar soni bir xil edi. Quyidagilardan qaysi biri ALBATTA to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "7-«B» sinfning har bir o‘quvchisi 7-«A» sinfning istalgan o‘quvchisidan uzoqroq uloqtirgan.",
+     "7-«B» sinfdagi eng uzoq natija 7-«A» sinfdagi eng uzoq natijadan katta.",
+     "7-«B» sinf o‘quvchilari uloqtirgan masofalarning yig‘indisi 7-«A» sinfnikidan katta.",
+     "7-«A» sinfda kamida bitta o‘quvchi 7-«B» sinfdagi kimdandir uzoqroq uloqtirgan."
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Jami = o‘rtacha · o‘quvchilar soni",
+      "ovoz": "O‘rtacha qiymat jami natijani o‘quvchilar soniga bo‘lishdan hosil bo‘ladi."
+     },
+     {
+      "doska": "$n$ ta o‘quvchi: $18{,}5n < 21{,}2n$",
+      "ovoz": "Ikkala sinfda o‘quvchilar soni bir xil, demak 7-«B» ning jami masofasi albatta katta."
+     },
+     {
+      "doska": "A, B, D — o‘rtachadan kelib chiqmaydi",
+      "ovoz": "Alohida o‘quvchilar haqida esa o‘rtacha hech narsa kafolatlamaydi: 7-«A» da juda kuchli bitta o‘quvchi bo‘lishi ham, bo‘lmasligi ham mumkin."
+     },
+     {
+      "doska": "Javob: C",
+      "ovoz": "Albatta to‘g‘ri bo‘lgan xulosa — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi o‘rtacha katta bo‘lsa, guruhning har bir a’zosi ham ustun deb o‘ylagan — ammo 7-«A» da kuchli o‘quvchilar bo‘lishi mumkin.",
+     "1": "B ni tanlagan o‘quvchi o‘rtachani eng yaxshi natija bilan adashtirgan; eng uzoq natija 7-«A» da bo‘lishi ham mumkin.",
+     "3": "D ni tanlagan o‘quvchi bo‘lishi mumkin bo‘lgan holatni albatta to‘g‘ri deb hisoblagan; 7-«A» ning barcha natijalari 7-«B» nikidan kichik bo‘lishi ham mumkin."
+    },
+    "maslahat": "«Albatta to‘g‘ri» degani — har qanday holatda ham to‘g‘ri; har bir variantga qarshi misol topib ko‘ring."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Ikki brigada paxta terdi. Bir kunlik natijalar:\n1-brigada: bir terimchiga o‘rtacha $62$ kg\n2-brigada: bir terimchiga o‘rtacha $55$ kg\nIkkala brigadada terimchilar soni teng. Quyidagilardan qaysi biri ALBATTA to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "1-brigadadagi har bir terimchi 2-brigadadagi istalgan terimchidan ko‘p paxta tergan.",
+     "1-brigada jami 2-brigadadan ko‘proq paxta tergan.",
+     "2-brigadada kamida bitta terimchi aynan 55 kg paxta tergan.",
+     "1-brigadada hech kim 55 kg dan kam paxta termagan."
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Jami = o‘rtacha · terimchilar soni",
+      "ovoz": "Brigadaning jami paxtasi bir terimchiga to‘g‘ri keladigan o‘rtacha va terimchilar sonining ko‘paytmasiga teng."
+     },
+     {
+      "doska": "$n$ ta terimchi: $62n > 55n$",
+      "ovoz": "Terimchilar soni teng bo‘lgani uchun 1-brigada jami albatta ko‘proq tergan."
+     },
+     {
+      "doska": "A, C, D — o‘rtachadan kelib chiqmaydi",
+      "ovoz": "Ayrim terimchilarning natijasini o‘rtacha bilan aniqlab bo‘lmaydi: hech kim aynan o‘rtachaga teng termagan bo‘lishi ham mumkin."
+     },
+     {
+      "doska": "Javob: B",
+      "ovoz": "Albatta to‘g‘ri bo‘lgan xulosa — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi o‘rtacha ko‘p bo‘lsa, har bir a’zo ham ko‘p tergan deb noto‘g‘ri xulosa qilgan.",
+     "2": "C ni tanlagan o‘quvchi o‘rtacha qiymat albatta kimningdir natijasiga teng bo‘ladi deb o‘ylagan.",
+     "3": "D ni tanlagan o‘quvchi o‘rtacha 62 kg bo‘lsa, hamma kamida 55 kg tergan deb o‘ylagan — ammo bir terimchi kam, boshqasi juda ko‘p tergan bo‘lishi mumkin."
+    },
+    "maslahat": "Har bir variant uchun uni buzadigan misol tuzish mumkinmi, o‘ylab ko‘ring."
+   }
+  ]
+ },
+ {
+  "id": "M042179",
+  "kunikma": "Ikki birgalikda bo‘lmagan hodisadan birining ro‘y berish ehtimolini hisoblash",
+  "usul": "Qulay natijalar sonini (har ikki rangdagi narsalar sonining yig‘indisini) barcha natijalar soniga (jami narsalar soniga) bo‘ling.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "Qutida 9 ta qizil, 6 ta yashil va 5 ta sariq qalam bor. Jasur qaramay bitta qalam oldi. Bu qalamning yashil yoki sariq bo‘lish ehtimoli qancha?",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{6}{20}$",
+     "$\\frac{9}{20}$",
+     "$\\frac{11}{20}$",
+     "$\\frac{5}{20}$"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Jami: $9 + 6 + 5 = 20$",
+      "ovoz": "Avval qutidagi barcha qalamlarni sanaymiz — yigirmata."
+     },
+     {
+      "doska": "Qulay: $6 + 5 = 11$",
+      "ovoz": "Yashil yoki sariq qalamlar — olti qo‘shuv besh, o‘n bitta."
+     },
+     {
+      "doska": "$P = \\frac{11}{20}$",
+      "ovoz": "Ehtimol qulay natijalar sonini jami natijalar soniga bo‘lishdan topiladi: o‘n bir yigirmadan."
+     },
+     {
+      "doska": "Javob: C) $\\frac{11}{20}$",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi faqat yashil qalam chiqish ehtimolini hisoblagan va sariq qalamlarni qo‘shmagan.",
+     "1": "B ni tanlagan o‘quvchi qolgan rangdagi — qizil qalamlar sonini olgan, ya’ni teskari hodisa ehtimolini topgan.",
+     "3": "D ni tanlagan o‘quvchi faqat sariq qalam chiqish ehtimolini hisoblagan."
+    },
+    "maslahat": "«Yoki» so‘zi ikkala rangdagi qalamlarning ham qulay natija ekanini bildiradi."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Savatda 12 ta olma, 5 ta nok va 7 ta shaftoli bor. Nilufar ko‘rmasdan bitta meva oldi. Bu mevaning olma yoki nok bo‘lish ehtimoli qancha?",
+    "rasm": null,
+    "javoblar": [
+     "$\\frac{17}{24}$",
+     "$\\frac{12}{24}$",
+     "$\\frac{5}{24}$",
+     "$\\frac{7}{24}$"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Jami: $12 + 5 + 7 = 24$",
+      "ovoz": "Savatdagi barcha mevalar yigirma to‘rtta."
+     },
+     {
+      "doska": "Qulay: $12 + 5 = 17$",
+      "ovoz": "Olma yoki nok — o‘n ikki qo‘shuv besh, o‘n yettita."
+     },
+     {
+      "doska": "$P = \\frac{17}{24}$",
+      "ovoz": "Ehtimol: o‘n yetti yigirma to‘rtdan."
+     },
+     {
+      "doska": "Javob: A) $\\frac{17}{24}$",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "B ni tanlagan o‘quvchi faqat olma chiqish ehtimolini hisoblagan.",
+     "2": "C ni tanlagan o‘quvchi faqat nok chiqish ehtimolini hisoblagan.",
+     "3": "D ni tanlagan o‘quvchi qolgan meva — shaftoli chiqish ehtimolini, ya’ni teskari hodisani hisoblagan."
+    },
+    "maslahat": "Qaysi mevalar «qulay» ekanini aniqlab, ularning sonini qo‘shing."
+   }
+  ]
+ },
+ {
+  "id": "M042177",
+  "kunikma": "Ma’lumotlardagi foiz ulushidan foydalanib, kelgusi buyurtmadagi miqdorni bashorat qilish",
+  "usul": "Kerakli turning foiz ulushini o‘nli kasrga aylantiring va umumiy buyurtma miqdoriga ko‘paytiring.",
+  "variantlar": [
+   {
+    "turi": "tanlov",
+    "savol": "So‘nggi haftalarda non do‘konida sotilgan nonlarning o‘rtacha 35% i patir, 45% i obi non, 20% i tandir non bo‘lgan. Ertaga nonvoy jami 800 ta non yopmoqchi. Shulardan nechtasi patir bo‘lishi kerak?",
+    "rasm": null,
+    "javoblar": [
+     "160",
+     "280",
+     "360",
+     "520"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$35\\% = 0{,}35$",
+      "ovoz": "Patirning ulushi o‘ttiz besh foiz, ya’ni nol butun yuzdan o‘ttiz besh."
+     },
+     {
+      "doska": "$800 \\cdot 0{,}35 = 280$",
+      "ovoz": "Sakkiz yuzni nol butun o‘ttiz beshga ko‘paytiramiz — ikki yuz sakson."
+     },
+     {
+      "doska": "Tekshiruv: $800$ ning $10\\%$ i $80$; $3{,}5 \\cdot 80 = 280$",
+      "ovoz": "Sakkiz yuzning o‘n foizi sakson, o‘ttiz besh foiz esa uch yarim marta ko‘p — ikki yuz sakson."
+     },
+     {
+      "doska": "Javob: B) 280",
+      "ovoz": "To‘g‘ri javob — B."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi patir o‘rniga tandir non ulushini (20%) olgan.",
+     "2": "C ni tanlagan o‘quvchi obi non ulushini (45%) olib hisoblagan.",
+     "3": "D ni tanlagan o‘quvchi patir bo‘lmagan nonlar sonini topgan: $800 - 280 = 520$ (65%)."
+    },
+    "maslahat": "Faqat patirga tegishli foizni olib, uni umumiy miqdorga qo‘llang."
+   },
+   {
+    "turi": "tanlov",
+    "savol": "Sharbat do‘konida so‘nggi oylarda sotilgan qadoqlarning o‘rtacha 25% i kichik, 60% i o‘rta va 15% i katta hajmda bo‘lgan. Keyingi oy do‘kon jami 1500 ta qadoq sharbat buyurtma qiladi. Shulardan nechtasi o‘rta hajmda bo‘lishi kerak?",
+    "rasm": null,
+    "javoblar": [
+     "225",
+     "375",
+     "600",
+     "900"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "$60\\% = 0{,}6$",
+      "ovoz": "O‘rta hajmdagi qadoqlarning ulushi oltmish foiz — nol butun olti."
+     },
+     {
+      "doska": "$1500 \\cdot 0{,}6 = 900$",
+      "ovoz": "Bir ming besh yuzni nol butun oltiga ko‘paytiramiz — to‘qqiz yuz."
+     },
+     {
+      "doska": "Tekshiruv: $1500$ ning $10\\%$ i $150$; $6 \\cdot 150 = 900$",
+      "ovoz": "O‘n foiz bir yuz ellik, oltmish foiz esa olti marta ko‘p — to‘qqiz yuz."
+     },
+     {
+      "doska": "Javob: D) 900",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "A ni tanlagan o‘quvchi katta hajmdagi qadoqlar ulushini (15%) olgan.",
+     "1": "B ni tanlagan o‘quvchi kichik hajmdagi qadoqlar ulushini (25%) olgan.",
+     "2": "C ni tanlagan o‘quvchi o‘rta hajmdan boshqa qadoqlar sonini topgan: $1500 - 900 = 600$ (40%)."
+    },
+    "maslahat": "Umumiy miqdorning 10% ini toping va undan kerakli foizni hosil qiling."
+   }
+  ]
+ }
+]

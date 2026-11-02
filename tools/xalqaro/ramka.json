@@ -1,0 +1,78 @@
+{
+  "fikrlash": {
+    "Knowing": {"kalit": "bilish", "nom": "Bilish", "izoh": "Faktlar, qoidalar, tushunchalarni eslash va tanish"},
+    "Applying": {"kalit": "qollash", "nom": "Qo‘llash", "izoh": "Bilimni tanish vaziyatda qo‘llab masala yechish"},
+    "Reasoning": {"kalit": "mulohaza", "nom": "Mulohaza", "izoh": "Notanish, ko‘p bosqichli masalada fikr yuritish, isbotlash, xulosa chiqarish"}
+  },
+  "toplamlar": {
+    "T11_G4_M": {"dastur": "TIMSS", "yil": 2011, "sinf": 4, "fan": "matematika", "fan_nomi": "Matematika", "ustoz_fan": "Matematika", "sinflar": [3, 4, 5]},
+    "T11_G8_M": {"dastur": "TIMSS", "yil": 2011, "sinf": 8, "fan": "matematika", "fan_nomi": "Matematika", "ustoz_fan": "Matematika", "sinflar": [7, 8, 9]},
+    "T11_G4_S": {"dastur": "TIMSS", "yil": 2011, "sinf": 4, "fan": "tabiiy", "fan_nomi": "Tabiiy fanlar", "ustoz_fan": "Tabiiy fanlar", "sinflar": [3, 4, 5]},
+    "T11_G8_S": {"dastur": "TIMSS", "yil": 2011, "sinf": 8, "fan": "tabiiy", "fan_nomi": "Tabiiy fanlar", "ustoz_fan": "Tabiiy fanlar", "sinflar": [7, 8, 9]}
+  },
+  "mavzular": {
+    "T11_G4_M": [
+      {"kalit": "M4-NAT", "en": "Whole Numbers", "soha": "son", "soha_nomi": "Son", "nom": "Natural sonlar va amallar", "maktab": [{"fan": "Matematika", "sinflar": [1,2,3,4], "sozlar": ["natural son", "qo‘shish", "ayirish", "ko‘paytirish", "bo‘lish", "xona", "ko‘p xonali"]}]},
+      {"kalit": "M4-KAS", "en": "Fractions and Decimals", "soha": "son", "soha_nomi": "Son", "nom": "Kasrlar va o‘nli kasrlar", "maktab": [{"fan": "Matematika", "sinflar": [3,4,5], "sozlar": ["kasr", "ulush", "o‘nli kasr"]}]},
+      {"kalit": "M4-TEN", "en": "Number Sentences with", "soha": "son", "soha_nomi": "Son", "nom": "Sonli tengliklar va noma’lum son", "maktab": [{"fan": "Matematika", "sinflar": [2,3,4], "sozlar": ["tenglama", "noma’lum", "ifoda", "tenglik"]}]},
+      {"kalit": "M4-QON", "en": "Patterns and Relationships", "soha": "son", "soha_nomi": "Son", "nom": "Qonuniyatlar va bog‘lanishlar", "maktab": [{"fan": "Matematika", "sinflar": [1,2,3,4], "sozlar": ["qonuniyat", "ketma-ketlik", "jadval"]}]},
+      {"kalit": "M4-NUQ", "en": "Points, Lines, and Angles", "soha": "geometriya", "soha_nomi": "Geometrik shakllar va o‘lchovlar", "nom": "Nuqta, chiziq va burchaklar", "maktab": [{"fan": "Matematika", "sinflar": [2,3,4,5], "sozlar": ["burchak", "to‘g‘ri chiziq", "kesma", "nur", "parallel", "perpendikulyar", "uzunlik"]}]},
+      {"kalit": "M4-SHA", "en": "Two- and Three-dimensional", "soha": "geometriya", "soha_nomi": "Geometrik shakllar va o‘lchovlar", "nom": "Tekis va fazoviy shakllar", "maktab": [{"fan": "Matematika", "sinflar": [1,2,3,4,5], "sozlar": ["uchburchak", "to‘rtburchak", "kvadrat", "perimetr", "yuza", "kub", "simmetriya", "shakl"]}]},
+      {"kalit": "M4-OQI", "en": "Reading and Interpreting", "soha": "malumot", "soha_nomi": "Ma’lumotlarni tasvirlash", "nom": "Diagramma va jadvallarni o‘qish", "maktab": [{"fan": "Matematika", "sinflar": [2,3,4,5], "sozlar": ["diagramma", "jadval", "grafik"]}]},
+      {"kalit": "M4-TAS", "en": "Organizing and Representing", "soha": "malumot", "soha_nomi": "Ma’lumotlarni tasvirlash", "nom": "Ma’lumotlarni tartiblash va tasvirlash", "maktab": [{"fan": "Matematika", "sinflar": [3,4,5], "sozlar": ["diagramma", "jadval", "ma’lumot"]}]}
+    ],
+    "T11_G8_M": [
+      {"kalit": "M8-NAT", "en": "Whole Numbers", "soha": "son", "soha_nomi": "Son", "nom": "Natural sonlar", "maktab": [{"fan": "Matematika", "sinflar": [5,6], "sozlar": ["natural son", "bo‘linish", "tub son", "EKUB", "EKUK", "daraja"]}]},
+      {"kalit": "M8-KAS", "en": "Fractions and Decimals", "soha": "son", "soha_nomi": "Son", "nom": "Kasrlar va o‘nli kasrlar", "maktab": [{"fan": "Matematika", "sinflar": [5,6], "sozlar": ["kasr", "o‘nli kasr", "yaxlitlash", "aralash son"]}]},
+      {"kalit": "M8-BUT", "en": "Integers", "soha": "son", "soha_nomi": "Son", "nom": "Butun sonlar", "maktab": [{"fan": "Matematika", "sinflar": [6], "sozlar": ["butun son", "manfiy", "musbat", "modul", "koordinata to‘g‘ri chizig‘i"]}]},
+      {"kalit": "M8-NIS", "en": "Ratio, Proportion and Percent", "soha": "son", "soha_nomi": "Son", "nom": "Nisbat, proporsiya va foiz", "maktab": [{"fan": "Matematika", "sinflar": [5,6], "sozlar": ["nisbat", "proporsiya", "foiz", "masshtab"]}]},
+      {"kalit": "M8-QON", "en": "Patterns", "soha": "algebra", "soha_nomi": "Algebra", "nom": "Qonuniyatlar va ketma-ketliklar", "maktab": [{"fan": "Algebra", "sinflar": [7,8,9], "sozlar": ["ketma-ketlik", "progressiya", "qonuniyat"]}, {"fan": "Matematika", "sinflar": [5,6], "sozlar": ["qonuniyat"]}]},
+      {"kalit": "M8-IFO", "en": "Algebraic Expressions", "soha": "algebra", "soha_nomi": "Algebra", "nom": "Algebraik ifodalar", "maktab": [{"fan": "Algebra", "sinflar": [7], "sozlar": ["ifoda", "birhad", "ko‘phad", "o‘xshash hadlar", "qavs"]}]},
+      {"kalit": "M8-TEN", "en": "Equations/ Formulas and", "soha": "algebra", "soha_nomi": "Algebra", "nom": "Tenglamalar, formulalar va funksiyalar", "maktab": [{"fan": "Algebra", "sinflar": [7,8], "sozlar": ["tenglama", "tengsizlik", "funksiya", "grafik", "formula", "chiziqli"]}, {"fan": "Matematika", "sinflar": [6], "sozlar": ["tenglama"]}]},
+      {"kalit": "M8-SHA", "en": "Geometric Shapes", "soha": "geometriya", "soha_nomi": "Geometriya", "nom": "Geometrik shakllar", "maktab": [{"fan": "Geometriya", "sinflar": [7,8], "sozlar": ["uchburchak", "burchak", "parallel", "to‘rtburchak", "Pifagor", "o‘xshash"]}]},
+      {"kalit": "M8-OLC", "en": "Geometric Measurement", "soha": "geometriya", "soha_nomi": "Geometriya", "nom": "Geometrik o‘lchashlar", "maktab": [{"fan": "Geometriya", "sinflar": [8,9], "sozlar": ["yuza", "perimetr", "hajm", "aylana uzunligi", "doira"]}, {"fan": "Matematika", "sinflar": [5,6], "sozlar": ["yuza", "hajm", "perimetr"]}]},
+      {"kalit": "M8-JOY", "en": "Location and Movement", "soha": "geometriya", "soha_nomi": "Geometriya", "nom": "Koordinatalar va almashtirishlar", "maktab": [{"fan": "Geometriya", "sinflar": [8,9], "sozlar": ["koordinata", "simmetriya", "burish", "parallel ko‘chirish"]}, {"fan": "Matematika", "sinflar": [6], "sozlar": ["koordinata"]}]},
+      {"kalit": "M8-TAS", "en": "Data Organization and", "soha": "malumot", "soha_nomi": "Ma’lumotlar va ehtimollik", "nom": "Ma’lumotlarni tartiblash va tasvirlash", "maktab": [{"fan": "Algebra", "sinflar": [7,8,9], "sozlar": ["statistika", "diagramma", "jadval"]}, {"fan": "Matematika", "sinflar": [5,6], "sozlar": ["diagramma"]}]},
+      {"kalit": "M8-TAH", "en": "Data Interpretation", "soha": "malumot", "soha_nomi": "Ma’lumotlar va ehtimollik", "nom": "Ma’lumotlarni tahlil qilish", "maktab": [{"fan": "Algebra", "sinflar": [7,8,9], "sozlar": ["o‘rta arifmetik", "mediana", "moda", "statistika"]}]},
+      {"kalit": "M8-EHT", "en": "Chance", "soha": "malumot", "soha_nomi": "Ma’lumotlar va ehtimollik", "nom": "Ehtimollik", "maktab": [{"fan": "Algebra", "sinflar": [9], "sozlar": ["ehtimollik", "hodisa", "kombinatorika"]}]}
+    ],
+    "T11_G4_S": [
+      {"kalit": "S4-TIR", "en": "Characteristics and Life", "soha": "hayot", "soha_nomi": "Hayot haqidagi fanlar", "nom": "Tirik organizmlar va hayotiy jarayonlar", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [1,2,3,4], "sozlar": ["o‘simlik", "hayvon", "tirik", "organ"]}]},
+      {"kalit": "S4-KOP", "en": "Life Cycles, Reproduction, and", "soha": "hayot", "soha_nomi": "Hayot haqidagi fanlar", "nom": "Hayot sikli va ko‘payish", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [2,3,4], "sozlar": ["ko‘payish", "urug‘", "tuxum", "rivojlanish"]}]},
+      {"kalit": "S4-MUH", "en": "Interactions with the", "soha": "hayot", "soha_nomi": "Hayot haqidagi fanlar", "nom": "Organizm va muhit", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [2,3,4], "sozlar": ["muhit", "moslashish", "yashash joyi"]}]},
+      {"kalit": "S4-EKO", "en": "Ecosystems", "soha": "hayot", "soha_nomi": "Hayot haqidagi fanlar", "nom": "Ekotizimlar va oziq zanjiri", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [3,4], "sozlar": ["oziq zanjiri", "tabiat", "ekotizim"]}]},
+      {"kalit": "S4-SOG", "en": "Human Health", "soha": "hayot", "soha_nomi": "Hayot haqidagi fanlar", "nom": "Inson salomatligi", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [1,2,3,4], "sozlar": ["salomatlik", "gigiyena", "ovqatlanish", "kasallik"]}]},
+      {"kalit": "S4-MOD", "en": "Classification and Properties of", "soha": "fizika", "soha_nomi": "Fizika va kimyo asoslari", "nom": "Moddalar va ularning xossalari", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [2,3,4], "sozlar": ["modda", "qattiq", "suyuq", "gaz", "magnit", "eritma"]}]},
+      {"kalit": "S4-ENR", "en": "Sources and Eﬀects of Energy", "soha": "fizika", "soha_nomi": "Fizika va kimyo asoslari", "nom": "Energiya: yorug‘lik, issiqlik, elektr", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [3,4], "sozlar": ["energiya", "yorug‘lik", "issiqlik", "elektr", "tovush"]}]},
+      {"kalit": "S4-KUC", "en": "Forces and Motion", "soha": "fizika", "soha_nomi": "Fizika va kimyo asoslari", "nom": "Kuch va harakat", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [3,4], "sozlar": ["kuch", "harakat", "tortish", "itarish", "ishqalanish"]}]},
+      {"kalit": "S4-YER", "en": "Earth’s Structure, Physical", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Yer tuzilishi va resurslari", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [2,3,4], "sozlar": ["tuproq", "suv", "tog‘", "foydali qazilma", "Yer"]}]},
+      {"kalit": "S4-JAR", "en": "Earth’s Processes, Cycles, and", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Ob-havo va tabiat jarayonlari", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [1,2,3,4], "sozlar": ["ob-havo", "suvning aylanishi", "fasl", "fosil"]}]},
+      {"kalit": "S4-QUY", "en": "Earth in the Solar System", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Quyosh tizimi", "maktab": [{"fan": "Tabiiy fanlar", "sinflar": [3,4], "sozlar": ["Quyosh", "Oy", "sayyora", "kecha-kunduz", "fasl"]}]}
+    ],
+    "T11_G8_S": [
+      {"kalit": "S8-ORG", "en": "Characteristics, Classiﬁcation,", "soha": "biologiya", "soha_nomi": "Biologiya", "nom": "Organizmlar tasnifi va hayotiy jarayonlar", "maktab": [{"fan": "Biologiya", "sinflar": [5,6,7,8], "sozlar": ["organizm", "tasnif", "a’zo", "fotosintez", "nafas"]}]},
+      {"kalit": "S8-HUJ", "en": "Cells and Their Functions", "soha": "biologiya", "soha_nomi": "Biologiya", "nom": "Hujayra va uning vazifalari", "maktab": [{"fan": "Biologiya", "sinflar": [6,7,9], "sozlar": ["hujayra", "to‘qima", "mikroskop"]}]},
+      {"kalit": "S8-KOP", "en": "Life Cycles, Reproduction, and", "soha": "biologiya", "soha_nomi": "Biologiya", "nom": "Ko‘payish va irsiyat", "maktab": [{"fan": "Biologiya", "sinflar": [6,7,9], "sozlar": ["ko‘payish", "irsiyat", "rivojlanish", "gen"]}]},
+      {"kalit": "S8-MOS", "en": "Diversity, Adaptation, and", "soha": "biologiya", "soha_nomi": "Biologiya", "nom": "Xilma-xillik va moslashish", "maktab": [{"fan": "Biologiya", "sinflar": [6,7,9], "sozlar": ["moslashish", "evolyutsiya", "tabiiy tanlanish", "xilma-xillik"]}]},
+      {"kalit": "S8-EKO", "en": "Ecosystems", "soha": "biologiya", "soha_nomi": "Biologiya", "nom": "Ekotizimlar", "maktab": [{"fan": "Biologiya", "sinflar": [5,6,9], "sozlar": ["ekotizim", "oziq zanjiri", "populyatsiya", "ekologiya"]}]},
+      {"kalit": "S8-SOG", "en": "Human Health", "soha": "biologiya", "soha_nomi": "Biologiya", "nom": "Inson salomatligi", "maktab": [{"fan": "Biologiya", "sinflar": [8], "sozlar": ["kasallik", "immunitet", "ovqatlanish", "salomatlik", "odam"]}]},
+      {"kalit": "S8-TAR", "en": "Classiﬁcation and", "soha": "kimyo", "soha_nomi": "Kimyo", "nom": "Moddalar tasnifi va tarkibi", "maktab": [{"fan": "Kimyo", "sinflar": [7,8], "sozlar": ["element", "birikma", "aralashma", "atom", "molekula"]}]},
+      {"kalit": "S8-XOS", "en": "Properties of Matter", "soha": "kimyo", "soha_nomi": "Kimyo", "nom": "Moddalar xossalari", "maktab": [{"fan": "Kimyo", "sinflar": [7,8], "sozlar": ["xossa", "eritma", "kislota", "asos", "metall"]}]},
+      {"kalit": "S8-REA", "en": "Chemical Change", "soha": "kimyo", "soha_nomi": "Kimyo", "nom": "Kimyoviy o‘zgarishlar", "maktab": [{"fan": "Kimyo", "sinflar": [7,8,9], "sozlar": ["reaksiya", "yonish", "oksidlanish", "kimyoviy hodisa"]}]},
+      {"kalit": "S8-HOL", "en": "Physical States and Changes in", "soha": "fizika", "soha_nomi": "Fizika", "nom": "Moddaning agregat holatlari", "maktab": [{"fan": "Fizika", "sinflar": [6,7,8], "sozlar": ["agregat holat", "erish", "qaynash", "bug‘lanish", "zichlik"]}]},
+      {"kalit": "S8-ISS", "en": "Energy Transformations, Heat,", "soha": "fizika", "soha_nomi": "Fizika", "nom": "Energiya, issiqlik va harorat", "maktab": [{"fan": "Fizika", "sinflar": [7,8], "sozlar": ["energiya", "issiqlik", "harorat", "issiqlik o‘tkazuvchanlik"]}]},
+      {"kalit": "S8-YOR", "en": "Light and Sound", "soha": "fizika", "soha_nomi": "Fizika", "nom": "Yorug‘lik va tovush", "maktab": [{"fan": "Fizika", "sinflar": [7,8,9], "sozlar": ["yorug‘lik", "tovush", "qaytish", "sinish", "linza"]}]},
+      {"kalit": "S8-ELE", "en": "Electricity and Magnetism", "soha": "fizika", "soha_nomi": "Fizika", "nom": "Elektr va magnetizm", "maktab": [{"fan": "Fizika", "sinflar": [8], "sozlar": ["elektr", "tok", "zanjir", "magnit", "kuchlanish"]}]},
+      {"kalit": "S8-KUC", "en": "Forces and Motion", "soha": "fizika", "soha_nomi": "Fizika", "nom": "Kuch va harakat", "maktab": [{"fan": "Fizika", "sinflar": [6,7], "sozlar": ["kuch", "tezlik", "harakat", "bosim", "ishqalanish"]}]},
+      {"kalit": "S8-YER", "en": "Earth’s Structure and Physical", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Yer tuzilishi", "maktab": [{"fan": "Geografiya", "sinflar": [5,6], "sozlar": ["Yer", "litosfera", "atmosfera", "gidrosfera", "relyef"]}]},
+      {"kalit": "S8-JAR", "en": "Earth’s Processes, Cycles, and", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Yerdagi jarayonlar va tarix", "maktab": [{"fan": "Geografiya", "sinflar": [5,6], "sozlar": ["tog‘ jinsi", "suvning aylanishi", "ob-havo", "iqlim", "vulqon"]}]},
+      {"kalit": "S8-RES", "en": "Earth’s Resources, Their Use", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Tabiiy resurslar va ularni asrash", "maktab": [{"fan": "Geografiya", "sinflar": [6,7,8], "sozlar": ["resurs", "tabiiy boylik", "ifloslanish", "energiya manbai"]}]},
+      {"kalit": "S8-KOI", "en": "Earth in the Solar System and", "soha": "yer", "soha_nomi": "Yer haqidagi fanlar", "nom": "Quyosh tizimi va koinot", "maktab": [{"fan": "Geografiya", "sinflar": [5], "sozlar": ["Quyosh tizimi", "sayyora", "Oy", "yulduz"]}, {"fan": "Fizika", "sinflar": [9,11], "sozlar": ["astronomiya"]}]}
+    ]
+  },
+  "soha_en": {
+    "Number": "son", "Algebra": "algebra", "Geometry": "geometriya", "Data and Chance": "malumot", "Data Display": "malumot",
+    "Geometric Shapes and Measures": "geometriya", "Life Science": "hayot", "Physical Science": "fizika", "Earth Science": "yer",
+    "Biology": "biologiya", "Chemistry": "kimyo", "Physics": "fizika"
+  }
+}

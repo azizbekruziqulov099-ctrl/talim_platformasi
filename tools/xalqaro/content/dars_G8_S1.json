@@ -1,0 +1,1889 @@
+[
+ {
+  "kod": "XB-S8-ORG",
+  "mavzu": "S8-ORG",
+  "sarlavha": "Organizmlar tasnifi va hayotiy jarayonlar",
+  "maqsad": "Tiriklik belgilarini bilish, umurtqali hayvonlarni belgilariga ko‘ra sinflarga ajratish, a’zolar vazifasini va sezgi a’zolarining ta’sirlanishini tushuntirish, grafik ma’lumotdan to‘g‘ri xulosa chiqarish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Baqa, qush, kaltakesak va siz — hammasi tirik\nTIMSS: 8-sinflarning o‘rtacha 44% i to‘g‘ri yechgan",
+    "ovoz": "[1] Atrofimizdagi baqa, qush, kaltakesak, hatto o‘zingiz ham — hammangiz tirik organizmsiz. Bugun ularni qanday guruhlashni va tanamiz qanday ishlashini bilib olamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha qirq to‘rt foiz sakkizinchi sinf o‘quvchisi to‘g‘ri yechgan. Dars oxirida siz ham bunday savollarni ishonch bilan yechasiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Tiriklik belgilari",
+    "doska": "Tiriklik belgilari: oziqlanish, nafas olish, o‘sish\nko‘payish, ta’sirlanish, ayirish, harakat\nTa’sirlanish — muhit o‘zgarishiga javob berish",
+    "ovoz": "[1] Har qanday tirik organizm oziqlanadi, nafas oladi va o‘sadi — bular tiriklikning asosiy belgilari. [2] Bundan tashqari, organizm ko‘payadi, ta’sirlanadi, keraksiz moddalarni tashqariga chiqaradi va harakatlanadi. [3] Ta’sirlanish deganda organizmning yorug‘lik, issiqlik, tovush kabi o‘zgarishlarga javob berishini tushunamiz. Masalan, kungaboqar Quyosh tomonga buriladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Umurtqalilar tasnifi",
+    "doska": "Baliqlar: suvda, jabra bilan nafas, tangacha\nSuvda va quruqlikda yashovchilar: nam teri\nSudralib yuruvchilar: quruq, tangachali teri\nQushlar: pat;  sutemizuvchilar: jun, sut",
+    "ovoz": "[1] Baliqlar suvda yashaydi, jabra bilan nafas oladi, tanasi odatda tangacha bilan qoplangan. [2] Baqa kabi suvda hamda quruqlikda yashovchilarning terisi nam va shilimshiq. Ularning itbalig‘i jabra bilan, voyaga yetgani esa o‘pka va teri orqali nafas oladi. [3] Kaltakesak, ilon, toshbaqa — sudralib yuruvchilar. Terisi quruq va tangachali, o‘pka bilan nafas oladi, quruqlikda tuxum qo‘yadi. [4] Qushlarning tanasi pat bilan qoplangan. Sutemizuvchilar esa jun bilan qoplangan va bolasini sut bilan boqadi — kit va ko‘rshapalak ham sutemizuvchi!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q3",
+    "sarlavha": "A’zolar va ularning vazifasi",
+    "doska": "Yurak — qonni tomirlar bo‘ylab haydaydi\nO‘pka — kislorod oladi, $\\mathrm{CO_2}$ chiqaradi\nBuyrak — qonni tozalab, siydik hosil qiladi\nBachadon — homila o‘sib rivojlanadigan a’zo",
+    "ovoz": "[1] Yurak — mushakdan iborat nasos, u qonni butun tana bo‘ylab tomirlarda haydaydi. [2] O‘pkada gaz almashinuvi bo‘ladi: qonga kislorod o‘tadi, qondan esa karbonat angidrid chiqariladi. [3] Buyraklar qonni zararli moddalardan tozalaydi va siydik hosil qiladi — bu ayirish vazifasi. [4] Ayollarda bachadon — urug‘langan tuxum hujayradan homila o‘sib rivojlanadigan a’zo. Tuxum hujayralar esa tuxumdonda yetiladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Sezgi a’zolari va ta’sirlanish",
+    "doska": "Sezgi a’zolari: ko‘z, quloq, burun, til, teri\nYorug‘da ko‘z qorachig‘i torayadi\nQorong‘ida qorachiq kengayadi\nSezgi a’zosi → nerv → bosh miya → javob",
+    "ovoz": "[1] Biz atrofni beshta sezgi a’zosi — ko‘z, quloq, burun, til va teri orqali sezamiz. [2] Yorug‘ joyga chiqsangiz, ko‘z qorachig‘i torayadi va ko‘zga ortiqcha yorug‘lik kirmaydi. [3] Qorong‘ida esa aksincha, qorachiq kengayadi, shunda ko‘zga ko‘proq yorug‘lik tushib, yaxshiroq ko‘ramiz. [4] Sezgi a’zosi signalni nervlar orqali bosh miyaga yuboradi, miya esa tanaga javob buyrug‘ini beradi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Hayvon: terisi quruq, tangachali;\no‘pka bilan nafas oladi, quruqlikda tuxum qo‘yadi\nU umurtqalilarning qaysi sinfiga kiradi?",
+    "ovoz": "[1] Birinchi misol. Bir hayvonni tasvirlaymiz: uning terisi quruq va tangachalar bilan qoplangan. [2] U o‘pka bilan nafas oladi va tuxumini quruqlikka qo‘yadi. [3] Savol: bu hayvon umurtqalilarning qaysi sinfiga kiradi? Keling, belgilarni birma-bir tekshiramiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Pat yo‘q → qush emas; jun yo‘q → sutemizuvchi emas\nJabra yo‘q, teri nam emas → baliq va baqa emas",
+    "ovoz": "[1] Pati ham, juni ham yo‘q — demak, bu qush ham, sutemizuvchi ham emas. [2] Jabra bilan emas, o‘pka bilan nafas oladi, terisi nam emas — demak, baliq ham, baqa ham emas."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: sudralib yuruvchi (masalan, kaltakesak)",
+    "ovoz": "[1] Javob: bu sudralib yuruvchi, masalan, kaltakesak. Ko‘rdingizmi, mos kelmaydigan sinflarni birma-bir chiqarib tashladik — bu usul test savollarida juda qo‘l keladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "Kaltakesak yuragi 1 daqiqada necha marta uradi:\n10 °C — 20 ta;  20 °C — 40 ta;  30 °C — 60 ta\nQanday xulosa chiqarish mumkin?",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. Olimlar kaltakesakni turli haroratda kuzatib, yuragi bir daqiqada necha marta urishini o‘lchashdi. [2] O‘n darajada yigirma marta, yigirma darajada qirq marta, o‘ttiz darajada oltmish marta urgan. [3] Bu ma’lumotlardan qanday xulosa chiqarish mumkin? Shoshilmasdan, bosqichma-bosqich o‘ylaymiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "1) Harorat 10 °C oshsa, urish soni 20 taga ortadi\n2) Kaltakesak sovuqqonli: tana harorati muhitga bog‘liq",
+    "ovoz": "[1] Birinchidan, harorat har gal o‘n darajaga oshganda, yurak urishi yigirma taga ortyapti — bog‘liqlik aniq ko‘rinadi. [2] Ikkinchidan, kaltakesak sovuqqonli hayvon: uning tana harorati atrof-muhitga bog‘liq, shuning uchun iliqda hayotiy jarayonlari tezlashadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xulosa: 10–30 °C da harorat oshsa, puls tezlashadi\n50 °C haqida bu ma’lumotdan aytib bo‘lmaydi!",
+    "ovoz": "[1] Demak, to‘g‘ri xulosa: o‘n va o‘ttiz daraja oralig‘ida harorat oshgan sari kaltakesakning yuragi tezroq uradi. [2] Diqqat qiling: o‘lchanmagan harorat, masalan, ellik daraja haqida hech narsa deya olmaymiz — juda issiqda hayvon halok bo‘lishi ham mumkin. Xulosa faqat berilgan ma’lumot doirasida chiqariladi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Qorong‘i xonadan yorug‘ga chiqdik. Qorachiq nima bo‘ladi?",
+    "ovoz": "[1] Endi o‘zingiz o‘ylab ko‘ring: qorong‘i xonadan yorug‘ hovliga chiqqanimizda ko‘z qorachig‘i nima bo‘ladi? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing: torayadi yoki kengayadi?",
+    "javob": "torayadi|toraydi|kichrayadi|kichiklashadi"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Voyaga yetgan baqaning nafas oladigan ichki a’zosi?",
+    "ovoz": "[1] Yana bir savol: voyaga yetgan baqa teri orqali ham nafas oladi, lekin uning nafas oladigan ichki a’zosi qaysi? Bir so‘z bilan yozing.",
+    "savol": "A’zo nomini yozing",
+    "javob": "o‘pka|o‘pkasi|o‘pkalar|o‘pkalari|o‘pka bilan"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Shartdagi belgilarni ajratib yozing\n2. Variantlarni belgilar bilan solishtiring\n3. Grafik va jadvalda o‘q va birlikni o‘qing\n4. Xulosa — faqat berilgan ma’lumot doirasida",
+    "ovoz": "[1] Birinchi: savoldagi har bir belgini — teri, nafas, ko‘payish — alohida ajratib oling. [2] Ikkinchi: har bir javob variantini shu belgilar bilan solishtiring va mos kelmaganini chiqarib tashlang. [3] Uchinchi: grafik yoki jadval bo‘lsa, avval nimani va qanday birlikda o‘lchaganini o‘qing. [4] To‘rtinchi: xulosani faqat o‘lchangan ma’lumotga tayanib chiqaring, undan tashqariga chiqmang."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Tiriklik: oziqlanish, nafas, o‘sish, ko‘payish...\nBaliq — jabra; qush — pat; sutemizuvchi — jun va sut\nYurak, o‘pka, buyrak, bachadon — har birining vazifasi bor\nYorug‘da qorachiq torayadi, qorong‘ida kengayadi",
+    "ovoz": "[1] Esda tuting: tirik organizm oziqlanadi, nafas oladi, o‘sadi, ko‘payadi, ta’sirlanadi, ayiradi va harakatlanadi. [2] Umurtqalilarni asosiy belgisiga qarab ajrating: baliq — jabra, qush — pat, sutemizuvchi — jun va sut. [3] Har bir a’zoning o‘z vazifasi bor: yurak haydaydi, o‘pka gaz almashadi, buyrak tozalaydi, bachadonda homila rivojlanadi. [4] Va ko‘zimiz yorug‘likka ta’sirlanadi: yorug‘da qorachiq torayadi, qorong‘ida kengayadi. Barakalla, bugun zo‘r ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Tirik = oziqlanadi + nafas oladi + o‘sadi + ko‘payadi\nTosh esa bularning hech birini qilmaydi",
+     "ovoz": "Oddiy qilib aytsak, tirik narsa ovqatlanadi, nafas oladi, o‘sadi va o‘ziga o‘xshaganini hosil qiladi. Tosh esa bularning birortasini ham qilmaydi, shuning uchun u tirik emas."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Mushukcha: sut ichadi, o‘sadi, ovozga quloq soladi\nO‘yinchoq mushuk: hech biri yo‘q",
+     "ovoz": "Uyingizdagi mushukchani eslang: u sut ichadi, kundan-kunga kattalashadi, ovoz chiqsa qulog‘ini dikkaytiradi. O‘yinchoq mushuk esa qancha kutsangiz ham o‘smaydi — chunki u tirik emas."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Tekshiruv ro‘yxati: 7 ta belgi\nHammasiga «ha» bo‘lsa — tirik",
+     "ovoz": "Boshqa usul: yettita belgini ro‘yxat qilib, har bir narsani shu ro‘yxat bo‘yicha tekshiring. Hamma belgiga «ha» desangiz, demak, u tirik organizm."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Pat → qush\nJun va sut → sutemizuvchi\nJabra → baliq",
+     "ovoz": "Eng oson yo‘li — bitta asosiy belgini topish: pat bo‘lsa qush, jun bo‘lib bolasini sut bilan boqsa sutemizuvchi, jabra bilan nafas olsa baliq."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kit suvda yashaydi, lekin baliq emas\nU o‘pka bilan nafas oladi, bolasini sut bilan boqadi",
+     "ovoz": "Bir kuni Anvar kitni baliq deb o‘yladi. Ustozi so‘radi: kit havoni yuzaga chiqib o‘pka bilan oladi va bolasini sut bilan boqadi-ku? Anvar tushundi: kit — sutemizuvchi, yashash joyi emas, belgilar muhim."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Teri jadvali: tangacha | nam teri | quruq tangacha | pat | jun\nbaliq | baqa | sudraluvchi | qush | sutemizuvchi",
+     "ovoz": "Boshqa usul — tana qoplamiga qarash: tangacha baliqda, nam yalang‘och teri baqada, quruq tangacha sudralib yuruvchida, pat qushda, jun esa sutemizuvchida bo‘ladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Yurak — nasos, o‘pka — havo almashtirgich\nBuyrak — filtr, bachadon — homila uyi",
+     "ovoz": "Har bir a’zoni bitta so‘z bilan eslang: yurak — nasos, o‘pka — havo almashtirgich, buyrak — filtr, bachadon — homila o‘sadigan joy."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Yugurganda: yurak tez uradi, nafas tezlashadi\nMushaklarga ko‘proq kislorod kerak",
+     "ovoz": "Siz yugurganingizda yuragingiz tez urib, nafasingiz tezlashadi. Chunki mushaklar ko‘proq kislorod so‘raydi: o‘pka uni qonga beradi, yurak esa qonni mushaklarga tezroq haydaydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Zavod: yurak — transport, o‘pka — ventilyatsiya\nbuyrak — tozalash sexi",
+     "ovoz": "Tanani zavod deb tasavvur qiling: yurak — mahsulotni tashuvchi transport, o‘pka — havo almashtiradigan ventilyatsiya, buyrak — chiqindini ajratadigan tozalash sexi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Ko‘p yorug‘lik → qorachiq kichik\nKam yorug‘lik → qorachiq katta",
+     "ovoz": "Oddiy qoida: yorug‘lik ko‘p bo‘lsa, qorachiq kichrayadi; yorug‘lik kam bo‘lsa, kattalashadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kinoteatrdan kunduzi chiqdingiz — ko‘z qamashdi\nBir zumda qorachiq torayib, ko‘z moslashdi",
+     "ovoz": "Qorong‘i kinoteatrdan kunduzi chiqqaningizni eslang: avval ko‘zingiz qamashadi, keyin bir zumda o‘rganib qolasiz. Bu — qorachiq torayib, ko‘zga kiradigan yorug‘likni kamaytirgani."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ko‘zgu oldida tajriba:\nchiroqni yoqing — qorachiqni kuzating",
+     "ovoz": "O‘zingiz tekshirib ko‘ring: xira xonada ko‘zguga qarang, keyin chiroqni yoqing. Qorachig‘ingiz ko‘z oldingizda kichrayganini ko‘rasiz."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Kit, delfinni baliq deb o‘ylash — ular o‘pka bilan nafas oladigan sutemizuvchilar",
+   "Ko‘rshapalakni qush deb hisoblash — pati yo‘q, juni bor, bolasini sut bilan boqadi",
+   "Qorachiq yorug‘da kengayadi deb o‘ylash — aslida yorug‘da torayadi",
+   "Baqa faqat jabra bilan nafas oladi deyish — jabra faqat itbaliqda, katta baqada o‘pka va teri",
+   "Grafikdagi o‘lchanmagan qiymatlar haqida qat’iy xulosa chiqarish"
+  ],
+  "strategiyalar": [
+   "Hayvonni yashash joyiga emas, tana belgilariga qarab tasniflang",
+   "Mos kelmaydigan variantlarni birma-bir chiqarib tashlang",
+   "Grafikda avval o‘qlar va birliklarni o‘qing, keyin bog‘liqlikni ayting",
+   "Xulosani faqat berilgan ma’lumot oralig‘ida chiqaring"
+  ],
+  "kalit_sozlar": [
+   "organizm",
+   "tasnif",
+   "a’zo",
+   "umurtqalilar",
+   "nafas",
+   "sezgi a’zolari",
+   "ta’sirlanish"
+  ]
+ },
+ {
+  "kod": "XB-S8-HUJ",
+  "mavzu": "S8-HUJ",
+  "sarlavha": "Hujayra va uning vazifalari",
+  "maqsad": "Hujayra qismlari va ularning vazifasini bilish, hujayraviy nafas va fotosintezning mohiyatini farqlash, bir hujayrali organizm hayotini tushuntirish, tajriba natijasidan xulosa chiqarish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Tanangizda 30 trilliondan ortiq hujayra bor\nTIMSS: 8-sinflarning o‘rtacha 34% i to‘g‘ri yechgan",
+    "ovoz": "[1] Bilasizmi, sizning tanangiz o‘ttiz trilliondan ortiq mitti hujayradan tuzilgan, har biri o‘zicha kichik bir zavod! [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha atigi o‘ttiz to‘rt foiz o‘quvchi to‘g‘ri yechgan — bu eng qiyin mavzulardan biri. Lekin biz uni bugun tartib bilan, oson tushunib olamiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Hujayra — tiriklik birligi",
+    "doska": "Hujayra — tirik organizmning eng kichik birligi\nBarcha organizmlar hujayralardan tuzilgan\nBir hujayrali: tufelka, amyoba; ko‘p hujayrali: odam",
+    "ovoz": "[1] Hujayra — tiriklikning eng kichik tuzilish va faoliyat birligi: undan kichik tirik qism yo‘q. [2] Hujayra nazariyasiga ko‘ra, barcha organizmlar hujayralardan tuzilgan va yangi hujayra faqat hujayraning bo‘linishidan hosil bo‘ladi. [3] Tufelka, amyoba kabi organizmlar bitta hujayradan iborat, odam, daraxt va mushuk esa ko‘p hujayrali."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Hujayra qismlari",
+    "doska": "Membrana — moddalarni ichkariga o‘tkazadi va chiqaradi\nYadro — irsiy axborotni saqlaydi, hujayrani boshqaradi\nMitoxondriya — oziqdan energiya ajratadi\nFaqat o‘simlikda: xloroplast, hujayra devori",
+    "ovoz": "[1] Hujayra membranasi hujayrani o‘rab turadi va qaysi moddalar kirib-chiqishini nazorat qiladi. [2] Yadro — hujayraning boshqaruv markazi, unda irsiy axborot, ya’ni DNK saqlanadi. [3] Mitoxondriya — hujayraning «elektr stansiyasi»: unda oziq moddadan energiya ajratib olinadi. [4] Faqat o‘simlik hujayrasida xloroplast va sellyulozali hujayra devori bor; hayvon hujayrasida ular yo‘q."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Hujayraviy nafas",
+    "doska": "Glukoza + kislorod → $\\mathrm{CO_2}$ + suv + ENERGIYA\nAsosiy maqsad: oziqdan energiya ajratish\nMitoxondriyada; barcha tirik hujayralarda, doim",
+    "ovoz": "[1] Hujayraviy nafasda glukoza kislorod yordamida parchalanadi va karbonat angidrid, suv hamda energiya hosil bo‘ladi. [2] Eng muhimi — nafasning maqsadi energiya olish. Bu energiya harakatga, o‘sishga va boshqa ishlarga sarflanadi. [3] Nafas mitoxondriyada boradi va barcha tirik hujayralarda — o‘simliklarda ham — kechayu kunduz to‘xtovsiz davom etadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Fotosintez",
+    "doska": "$\\mathrm{CO_2}$ + suv → (yorug‘lik) glukoza + kislorod\nXloroplastda, xlorofill yorug‘likni yutadi\nFotosintez energiya to‘playdi, nafas uni ajratadi",
+    "ovoz": "[1] Fotosintezda o‘simlik karbonat angidrid va suvdan, yorug‘lik energiyasi yordamida glukoza va kislorod hosil qiladi. [2] Bu jarayon xloroplastlarda boradi: ulardagi yashil pigment — xlorofill yorug‘likni yutadi. [3] Esda tuting: fotosintez yorug‘lik energiyasini glukozada to‘playdi, nafas esa shu energiyani qayta ajratib oladi — ular bir-biriga teskari."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Tufelka — bir hujayrali organizm\nUning hujayrasi qaysi hayotiy vazifalarni bajaradi?",
+    "ovoz": "[1] Birinchi misol. Ko‘lmak suvida yashovchi tufelka bor-yo‘g‘i bitta hujayradan iborat. [2] Savol: shu birgina hujayra qaysi hayotiy vazifalarni bajaradi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Harakat — kiprikchalar; oziqlanish — hazm vakuolasi\nAyirish — qisqaruvchi vakuola; nafas — butun yuzasi",
+    "ovoz": "[1] Tufelka kiprikchalari yordamida suzadi, oziqni esa hazm vakuolasida hazm qiladi. [2] Ortiqcha suv va moddalarni qisqaruvchi vakuola chiqaradi, kislorodni esa butun hujayra yuzasi orqali oladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: BARCHA hayotiy vazifalarni bitta hujayra bajaradi",
+    "ovoz": "[1] Javob: tufelkada barcha hayotiy vazifalarni bitta hujayraning o‘zi bajaradi. Ko‘p hujayrali organizmda esa bu vazifalar turli hujayra va to‘qimalarga bo‘lingan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "Suv o‘simligi turli $\\mathrm{CO_2}$ miqdorida, pufak/daqiqa:\n0,01% — 5;  0,03% — 12;  0,06% — 20;  0,10% — 21\nPufakchalarda qaysi gaz? Qanday xulosa?",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. Suv o‘simligi bir xil yorug‘likda, suvdagi karbonat angidrid miqdori har xil bo‘lganda kuzatildi va bir daqiqada chiqqan pufakchalar sanaldi. [2] Natijalar: kam miqdorda besh ta, keyin o‘n ikki ta, yigirma ta va eng ko‘p miqdorda yigirma bir ta pufakcha. [3] Ikki savol: pufakchalarda qaysi gaz bor va qanday xulosa chiqaramiz?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "1) Pufakchalar — kislorod: fotosintez mahsuloti\n2) $\\mathrm{CO_2}$ ortsa, fotosintez tezlashadi",
+    "ovoz": "[1] Birinchidan, pufakchalar — kislorod, chunki fotosintezda kislorod ajraladi. Pufak qancha ko‘p bo‘lsa, fotosintez shuncha tez. [2] Ikkinchidan, karbonat angidrid ko‘paygan sari pufakchalar ham ko‘paydi — demak, u fotosintez uchun xomashyo."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "3) 0,06% dan keyin deyarli o‘zgarmaydi: 20 → 21\nXulosa: $\\mathrm{CO_2}$ tezlashtiradi, lekin ma’lum chegaragacha",
+    "ovoz": "[1] Uchinchidan, oxirida pufakchalar soni deyarli o‘zgarmadi. Endi fotosintezni boshqa omil — masalan, yorug‘lik yetishmasligi — cheklayapti. [2] Demak, to‘liq xulosa: karbonat angidrid fotosintezni tezlashtiradi, ammo faqat ma’lum chegaragacha. TIMSS aynan shunday ikki qismli xulosani kutadi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Fotosintez hujayraning qaysi qismida boradi?",
+    "ovoz": "[1] Endi o‘zingiz: fotosintez o‘simlik hujayrasining qaysi qismida boradi? Organoid nomini yozing.",
+    "savol": "Organoid nomini yozing",
+    "javob": "xloroplast|xloroplastda|xloroplastlar|xloroplastlarda"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Hujayraviy nafasning asosiy maqsadi — nimani olish?",
+    "ovoz": "[1] Yana bir savol: hujayra glukozani nafasda parchalashdan asosan nimani oladi? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing",
+    "javob": "energiya|energiyani|energiya olish|energiya ajratish"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Organoid ↔ vazifa juftini yodda tuting\n2. Nafas va fotosintezni adashtirmang\n3. Tajribada: nima o‘zgartirildi, nima o‘lchandi?\n4. Grafik tekislansa — boshqa omil cheklayapti",
+    "ovoz": "[1] Birinchi: har bir organoidni bitta vazifa bilan bog‘lang — yadro boshqaradi, mitoxondriya energiya beradi, xloroplast fotosintez qiladi. [2] Ikkinchi: nafas energiya ajratadi va karbonat angidrid chiqaradi, fotosintez esa energiyani to‘playdi va kislorod chiqaradi. [3] Uchinchi: tajriba savolida avval nimani o‘zgartirganini va nimani o‘lchaganini aniqlang. [4] To‘rtinchi: grafik yoki jadval o‘sishdan to‘xtasa, bu boshqa omil cheklayotganini bildiradi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Hujayra — tiriklikning eng kichik birligi\nYadro — boshqaruv; mitoxondriya — energiya\nNafas: glukoza + $\\mathrm{O_2}$ → $\\mathrm{CO_2}$ + suv + energiya\nFotosintez: $\\mathrm{CO_2}$ + suv → glukoza + $\\mathrm{O_2}$ (yorug‘lik)",
+    "ovoz": "[1] Esda tuting: hujayra — tiriklikning eng kichik birligi, barcha organizmlar hujayralardan tuzilgan. [2] Yadro irsiy axborotni saqlaydi va hujayrani boshqaradi, mitoxondriyada energiya ajraladi. [3] Nafasning maqsadi — energiya ajratish, u barcha tirik hujayralarda doim boradi. [4] Fotosintez esa xloroplastda, yorug‘likda boradi va kislorod chiqaradi. Bugun qiyin mavzuni yengdingiz, barakalla!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Uy — g‘ishtlardan, organizm — hujayralardan\nHujayra — eng kichik tirik «g‘isht»",
+     "ovoz": "Uy g‘ishtlardan qurilgani kabi, har bir tirik organizm hujayralardan qurilgan. Hujayra — eng kichik tirik g‘isht."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Robert Guk, 1665-yil: po‘kakda «kataklar»\nMikroskop ochgan dunyo",
+     "ovoz": "Bundan uch yuz yildan ko‘proq oldin olim Robert Guk mikroskopda po‘kakni ko‘rib, mayda kataklarni ko‘rdi va ularni hujayra deb atadi. Keyinchalik olimlar barcha tiriklik shunday hujayralardan iboratligini isbotlashdi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Piyoz po‘stini mikroskopda ko‘ring\nHar bir katak — bitta hujayra",
+     "ovoz": "O‘zingiz ko‘rishingiz mumkin: piyozning yupqa po‘stini mikroskop ostiga qo‘ysangiz, g‘ishtdek terilgan kataklarni ko‘rasiz — har biri bitta hujayra."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Membrana — darvoza, yadro — direktor\nMitoxondriya — elektr stansiya, xloroplast — oshxona",
+     "ovoz": "Hujayrani maktab deb tasavvur qiling: membrana — darvoza, yadro — direktor, mitoxondriya — elektr stansiyasi, xloroplast esa quyosh nurida ovqat tayyorlaydigan oshxona."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Barg hujayrasi yashil, ildiz hujayrasi oq\nIldizga yorug‘lik tushmaydi — xloroplast kerak emas",
+     "ovoz": "Nega barg yashil, sabzi ildizi esa yashil emas? Chunki barg hujayralarida xloroplast ko‘p, yer ostidagi ildizga esa yorug‘lik tushmagani uchun u yerda xloroplast yo‘q."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Taqqoslash: o‘simlik = hayvon + devor + xloroplast\n(+ katta vakuola)",
+     "ovoz": "Taqqoslab eslang: o‘simlik hujayrasida hayvon hujayrasidagi hamma narsa bor, ustiga hujayra devori, xloroplast va katta markaziy vakuola qo‘shiladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Ovqat + kislorod → energiya\nChiqindi: $\\mathrm{CO_2}$ va suv",
+     "ovoz": "Soddaroq aytsak: hujayra ovqatni kislorod bilan «yoqib», energiya oladi; chiqindi sifatida karbonat angidrid va suv qoladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Nonushta qildingiz → darsda yugura olasiz\nEnergiya non tarkibidagi glukozadan",
+     "ovoz": "Ertalab nonushta qilib, keyin jismoniy tarbiya darsida yugurasiz. Bu kuch qayerdan? Ovqatdagi glukoza hujayralaringizda kislorod bilan parchalanib, energiya beradi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Nafas chiqarilgan havo ohakli suvni loyqalantiradi\n→ unda $\\mathrm{CO_2}$ bor",
+     "ovoz": "Tajriba bilan isbotlash mumkin: ohakli suvga nay orqali nafas chiqarsangiz, u loyqalanadi. Bu nafas chiqargan havoda karbonat angidrid ko‘pligini ko‘rsatadi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "O‘simlik o‘z ovqatini o‘zi tayyorlaydi\nKerak: $\\mathrm{CO_2}$, suv, yorug‘lik",
+     "ovoz": "O‘simlik ovqatini do‘kondan olmaydi — o‘zi tayyorlaydi. Buning uchun havodan karbonat angidrid, ildizdan suv va Quyoshdan yorug‘lik kerak."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Gul tuvagini qorong‘i shkafga qo‘ydik\nBir haftada barglar sarg‘aydi",
+     "ovoz": "Malika gulini bir haftaga qorong‘i shkafga qo‘yib qo‘ydi. Barglari sarg‘ayib, so‘liy boshladi — yorug‘liksiz fotosintez bo‘lmadi va o‘simlik oziq tayyorlay olmadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Fotosintez ↔ nafas: teskari tenglamalar\nBiri kislorod chiqaradi, biri kislorod yutadi",
+     "ovoz": "Ikki tenglamani yonma-yon yozing: fotosintezning mahsulotlari nafasning xomashyosi, nafasning mahsulotlari esa fotosintezning xomashyosi bo‘ladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "O‘simliklar faqat fotosintez qiladi, nafas olmaydi deb o‘ylash — o‘simlik hujayralari ham doim nafas oladi",
+   "Nafasning maqsadini «kislorod olish» deb aytish — asosiy maqsad energiya ajratish",
+   "Mitoxondriya bilan xloroplastni adashtirish",
+   "Hayvon hujayrasida ham hujayra devori bor deb o‘ylash",
+   "Tajribada grafik tekislanganini e’tiborsiz qoldirib, «doim ortadi» deb xulosa qilish"
+  ],
+  "strategiyalar": [
+   "Organoid nomini doim vazifasi bilan juft qilib yodlang",
+   "Savolda «energiya» so‘zi bo‘lsa — nafas va mitoxondriyani, «yorug‘lik» bo‘lsa — fotosintez va xloroplastni eslang",
+   "Tajribada o‘zgaruvchi va o‘lchanadigan kattalikni ajrating",
+   "Jadvaldagi har bir qadamni oldingisi bilan solishtiring"
+  ],
+  "kalit_sozlar": [
+   "hujayra",
+   "to‘qima",
+   "mikroskop",
+   "yadro",
+   "mitoxondriya",
+   "xloroplast",
+   "fotosintez",
+   "nafas"
+  ]
+ },
+ {
+  "kod": "XB-S8-KOP",
+  "mavzu": "S8-KOP",
+  "sarlavha": "Ko‘payish va irsiyat",
+  "maqsad": "Jinsiy va jinssiz ko‘payishni farqlash, gen va irsiyat tushunchalarini, irsiy va orttirilgan belgilar farqini tushunish, urug‘ unish shartlarini bilish va to‘g‘ri tajriba rejalashtirish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Nega siz ota-onangizga o‘xshaysiz?\nTIMSS: 8-sinflarning o‘rtacha 47% i to‘g‘ri yechgan",
+    "ovoz": "[1] Nega ko‘zingiz onangiznikiga, qoshingiz esa otangiznikiga o‘xshaydi? Bugun bu sirni ochamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha qirq yetti foiz o‘quvchi to‘g‘ri yechgan. Ayniqsa tajriba rejalashtirish savoli qiyin bo‘lgan — biz uni alohida o‘rganamiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Ko‘payish turlari",
+    "doska": "Jinssiz: bitta ota-ona, avlod unga aynan o‘xshash\nJinsiy: tuxum hujayra + spermatozoid → zigota\nJinsiy ko‘payish avlodlarda xilma-xillik beradi",
+    "ovoz": "[1] Jinssiz ko‘payishda bitta ota-ona ishtirok etadi va avlodlar unga aynan o‘xshash bo‘ladi: masalan, amyobaning bo‘linishi yoki kartoshkaning tugunagidan o‘sishi. [2] Jinsiy ko‘payishda ikki jinsiy hujayra — tuxum hujayra va spermatozoid — qo‘shilib, urug‘langan hujayra, ya’ni zigota hosil bo‘ladi. [3] Avlod genlarni ikki ota-onadan olgani uchun jinsiy ko‘payish xilma-xillikni ta’minlaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Gen va irsiyat",
+    "doska": "Gen — DNK bo‘lagi; xromosomada, yadroda joylashgan\nBola genlarining yarmi onadan, yarmi otadan\nBir tuxumli egizaklar: bitta zigotadan, genlari bir xil\nIkki tuxumli egizaklar: oddiy aka-uka kabi farqli",
+    "ovoz": "[1] Gen — belgini belgilovchi DNK bo‘lagi. Genlar hujayra yadrosidagi xromosomalarda joylashgan. [2] Bola genlarining yarmini onadan, yarmini otadan oladi — shuning uchun ikkalasiga ham o‘xshaydi. [3] Bir tuxumli egizaklar bitta zigotaning ikkiga ajralishidan paydo bo‘ladi, shuning uchun ularning genlari bir xil. [4] Ikki tuxumli egizaklar esa ikki xil zigotadan rivojlanadi va genlari oddiy aka-uka yoki opa-singillardek farq qiladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Irsiy va orttirilgan belgilar",
+    "doska": "Irsiy belgi genlar orqali o‘tadi: ko‘z rangi, qon guruhi\nOrttirilgan belgi hayot davomida paydo bo‘ladi\nOrttirilgan belgi nasldan naslga O‘TMAYDI",
+    "ovoz": "[1] Ko‘z rangi, qon guruhi kabi belgilar genlar orqali ota-onadan bolaga o‘tadi — bular irsiy belgilar. [2] Jarohat izi, sport bilan kuchaygan mushak, o‘rganilgan til — bular hayot davomida orttirilgan belgilar. [3] Muhim qoida: orttirilgan belgilar genlarni o‘zgartirmaydi, shuning uchun bolalarga o‘tmaydi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Hayot sikli va urug‘ unishi",
+    "doska": "O‘simlik: urug‘ → maysa → o‘simlik → gul → meva\nUnish shartlari: suv, havo (kislorod), iliqlik\nKo‘pchilik urug‘ unishi uchun yorug‘lik shart emas",
+    "ovoz": "[1] Gulli o‘simlikning hayot sikli: urug‘dan maysa unadi, o‘simlik o‘sib gullaydi, guldan esa urug‘li meva hosil bo‘ladi. [2] Urug‘ unishi uchun uchta shart kerak: suv, havo, ya’ni kislorod, va mos harorat. [3] Ko‘pchilik urug‘lar unishi uchun yorug‘lik shart emas: dastlab maysa urug‘dagi zaxira oziq hisobiga o‘sadi. Yorug‘lik keyinroq — barglar fotosintez qilishi uchun kerak."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Ota avariyada bitta buyragini yo‘qotdi\nKeyin o‘g‘li tug‘ildi. Chaqaloqda nechta buyrak?",
+    "ovoz": "[1] Birinchi misol. Bir kishi avariyadan keyin bitta buyragini olib tashlatdi va bitta buyrak bilan yashay boshladi. [2] Bir necha yildan keyin uning o‘g‘li tug‘ildi. Chaqaloqda nechta buyrak bo‘ladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Buyrakni yo‘qotish — orttirilgan o‘zgarish\nOtaning genlari o‘zgarmadi",
+    "ovoz": "[1] Avval aniqlaymiz: buyrakni yo‘qotish genlar tufayli emas, hayot davomida bo‘lgan — bu orttirilgan o‘zgarish. [2] Otaning genlarida «ikkita buyrak» haqidagi axborot avvalgidek saqlanib qolgan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: 2 ta buyrak — orttirilgan belgi o‘tmaydi",
+    "ovoz": "[1] Javob: chaqaloqda odatdagidek ikkita buyrak bo‘ladi, chunki orttirilgan belgi nasldan naslga o‘tmaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "Savol: urug‘ unishi uchun yorug‘lik kerakmi?\nA: yorug‘da, nam paxta, 20 °C\nB: qorong‘ida, quruq paxta, 20 °C",
+    "ovoz": "[1] Ikkinchi misol — tajriba rejalashtirish. Dilnoza urug‘ unishi uchun yorug‘lik kerakmi, shuni tekshirmoqchi. [2] Uning rejasi: A idishdagi urug‘lar yorug‘da, nam paxtada, yigirma darajada turadi. [3] B idishdagi urug‘lar esa qorong‘ida, quruq paxtada, yigirma darajada turadi. Bu reja to‘g‘rimi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xato: ikki narsa farq qilyapti — yorug‘lik VA suv\nB unmasa — sabab suvmi, yorug‘likmi? Bilib bo‘lmaydi",
+    "ovoz": "[1] Rejada xato bor: idishlar faqat yorug‘lik bilan emas, suv bilan ham farq qilyapti. [2] Agar B dagi urug‘lar unmasa, sababi suv yo‘qligimi yoki yorug‘lik yo‘qligimi — aniqlab bo‘lmaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "To‘g‘ri: faqat yorug‘lik farq qilsin, qolgani bir xil\nNatija: ikkalasi ham unadi → yorug‘lik shart emas",
+    "ovoz": "[1] To‘g‘ri reja: ikkala idish ham nam paxtada, bir xil haroratda turadi, faqat biri yorug‘da, biri qorong‘ida bo‘ladi. [2] Shunday tajribada ko‘pchilik urug‘lar ikkala idishda ham unadi. Xulosa: ular unishi uchun yorug‘lik shart emas. Bunday tajriba adolatli tajriba deyiladi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Bir tuxumli egizaklarning genlari bir xilmi?",
+    "ovoz": "[1] Endi o‘zingiz: bir tuxumli egizaklarning genlari bir xilmi? «Ha» yoki «yo‘q» deb javob bering.",
+    "savol": "«ha» yoki «yo‘q» deb yozing",
+    "javob": "ha|bir xil|ha, bir xil"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Suv, havo, iliqlik, yorug‘lik: qaysi biri shart emas?",
+    "ovoz": "[1] Yana bir savol: suv, havo, iliqlik va yorug‘likdan qaysi biri ko‘pchilik urug‘lar unishi uchun shart emas? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing",
+    "javob": "yorug‘lik|yorug‘lik shart emas"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Belgi genlardanmi yoki hayotdan orttirilganmi?\n2. Egizak savolida: bir tuxumlimi, ikki tuxumlimi?\n3. Tajribada faqat BITTA omil o‘zgarishi kerak\n4. Xulosani shu tajriba natijasiga bog‘lang",
+    "ovoz": "[1] Birinchi: irsiyat savolida avval belgi genlar orqali kelganmi yoki hayot davomida orttirilganmi — shuni aniqlang. [2] Ikkinchi: egizaklar haqida so‘ralsa, ular bitta zigotadanmi yoki ikki zigotadanmi — shunga qarang. [3] Uchinchi: tajriba rejasini baholashda tekshirilayotgan omildan boshqa hamma sharoit bir xilmi — shuni tekshiring. [4] To‘rtinchi: javobingizda tajribada nima bo‘lganini aniq aytib, xulosani shunga asoslang."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Jinssiz — o‘xshash avlod; jinsiy — xilma-xil avlod\nGenlar: yarmi onadan, yarmi otadan\nOrttirilgan belgilar nasldan o‘tmaydi\nUnish: suv + havo + iliqlik; tajribada bitta o‘zgaruvchi",
+    "ovoz": "[1] Esda tuting: jinssiz ko‘payishda avlod ota-onaga aynan o‘xshaydi, jinsiyda esa xilma-xil bo‘ladi. [2] Bola genlarining yarmini onadan, yarmini otadan oladi; bir tuxumli egizaklarning genlari bir xil. [3] Hayot davomida orttirilgan belgilar bolalarga o‘tmaydi. [4] Urug‘ unishi uchun suv, havo va iliqlik kerak, adolatli tajribada esa faqat bitta omil o‘zgartiriladi. Ajoyib ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Jinssiz = nusxa ko‘chirish\nJinsiy = ikki ota-onaning aralashmasi",
+     "ovoz": "Oddiy qilib aytganda, jinssiz ko‘payish nusxa ko‘chirishga o‘xshaydi, jinsiy ko‘payish esa ikki ota-onaning belgilarini aralashtiradi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Buvim atirgul qalamchasini ekdi\nYangi tup ona tupga aynan o‘xshadi",
+     "ovoz": "Buvim atirgulning bir shoxchasini kesib, yerga ekdi. Undan o‘sgan yangi tup ona tupning aynan o‘zidek gulladi — bu vegetativ, ya’ni jinssiz ko‘payish."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Sxema: ♀ tuxum hujayra + ♂ spermatozoid\n→ zigota → embrion",
+     "ovoz": "Sxemada ko‘ring: ayol jinsiy hujayrasi va erkak jinsiy hujayrasi qo‘shilib zigota hosil bo‘ladi, zigotadan esa embrion rivojlanadi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Gen — belgining «retsepti»\nRetseptlarning yarmi onadan, yarmi otadan",
+     "ovoz": "Genni belgining retsepti deb tasavvur qiling. Siz retseptlar kitobining yarmini onangizdan, yarmini otangizdan olgansiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Hasan va Husan — bir tuxumli egizaklar\nUlarni hatto o‘qituvchi ham adashtiradi",
+     "ovoz": "Hasan va Husan bir tuxumli egizaklar — ular bitta zigotadan paydo bo‘lgan, shuning uchun o‘qituvchisi ham ularni adashtiradi. Ularning genlari bir xil."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "1 zigota → 2 bola: genlari bir xil\n2 zigota → 2 bola: genlari farqli",
+     "ovoz": "Sanab eslang: bitta zigotadan ikki bola bo‘lsa, genlari bir xil; ikki zigotadan bo‘lsa, genlari farqli, hatto jinsi ham har xil bo‘lishi mumkin."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Genda yozilgan → o‘tadi\nHayotda orttirilgan → o‘tmaydi",
+     "ovoz": "Qoida oddiy: genlarda yozilgan belgi bolaga o‘tadi, hayot davomida orttirilgani esa o‘tmaydi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Otasi sportchi — mushaklari katta\nChaqalog‘i oddiy chaqaloq bo‘lib tug‘iladi",
+     "ovoz": "Bir sportchi yillar davomida mashq qilib, mushaklarini kuchaytirdi. Lekin uning chaqalog‘i oddiy chaqaloq bo‘lib tug‘ildi — mashq bilan orttirilgan mushaklar nasldan o‘tmaydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Savol bering: bu belgi genni o‘zgartirdimi?\nYo‘q → bolaga o‘tmaydi",
+     "ovoz": "Har gal o‘zingizga savol bering: bu o‘zgarish genlarni o‘zgartirdimi? Jarohat, soch bo‘yog‘i, sport genni o‘zgartirmaydi — demak, bolaga o‘tmaydi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Urug‘ga kerak: suv, havo, iliqlik\nYorug‘lik — keyinroq, barglar uchun",
+     "ovoz": "Urug‘ unishi uchun suv, havo va iliqlik yetarli. Yorug‘lik keyinroq, maysa barg chiqarganda kerak bo‘ladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Loviyani nam paxtada shkafga qo‘ydik\nQorong‘ida ham unib chiqdi",
+     "ovoz": "Sinfda loviyani nam paxtaga o‘rab, qorong‘i shkafga qo‘ydik. Uch kundan keyin ochsak, u unib chiqibdi — demak, unish uchun yorug‘lik shart emas ekan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Urug‘ ichida zaxira oziq bor\nMaysa dastlab shu «tugun» bilan oziqlanadi",
+     "ovoz": "Urug‘ni yo‘l uchun tugun olgan sayohatchi deb tasavvur qiling: dastlab u o‘zidagi zaxira oziq bilan o‘sadi, keyin barglari yorug‘likda o‘zi oziq tayyorlay boshlaydi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Orttirilgan belgilar (jarohat, mushak) bolaga o‘tadi deb o‘ylash",
+   "Ikki tuxumli egizaklarning ham genlari bir xil deb hisoblash",
+   "Urug‘ unishi uchun yorug‘lik albatta kerak deyish",
+   "Tajriba rejasida bir vaqtda ikki omilni o‘zgartirish",
+   "Jinssiz ko‘payishda avlodlar xilma-xil bo‘ladi deb o‘ylash"
+  ],
+  "strategiyalar": [
+   "Belgi qayerdan kelganini aniqlang: genlardanmi yoki hayot tajribasidanmi",
+   "Tajriba savolida «faqat qaysi omil farq qiladi?» deb so‘rang",
+   "Xulosani tajriba natijasidagi aniq kuzatishga bog‘lang",
+   "Ko‘p tanlovli savolda har bir variantni bitta qoida bilan tekshiring"
+  ],
+  "kalit_sozlar": [
+   "ko‘payish",
+   "irsiyat",
+   "rivojlanish",
+   "gen",
+   "xromosoma",
+   "urug‘lanish",
+   "egizaklar",
+   "unish"
+  ]
+ },
+ {
+  "kod": "XB-S8-MOS",
+  "mavzu": "S8-MOS",
+  "sarlavha": "Xilma-xillik va moslashish",
+  "maqsad": "Tur ichidagi o‘zgaruvchanlik va moslashish belgilarini tushuntirish, tabiiy tanlanish bosqichlarini qo‘llash, qazilma qoldiqlar va tog‘ jinsi qatlamlaridan Yer tarixi haqida xulosa chiqarish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Nega tuya cho‘lda, oq ayiq esa muzlikda yashaydi?\nTIMSS: 8-sinflarning o‘rtacha 52% i to‘g‘ri yechgan",
+    "ovoz": "[1] Nega tuya jazirama cho‘lda, oq ayiq esa muz ustida bemalol yashay oladi? Javob — moslashishda. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha ellik ikki foiz o‘quvchi to‘g‘ri yechgan. Bugun siz ham shu yarmidan oldinga o‘tasiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Xilma-xillik va o‘zgaruvchanlik",
+    "doska": "Biologik xilma-xillik — turlarning ko‘pligi\nBir tur ichida ham farqlar bor: rang, bo‘y, shakl\nIrsiy farqlar avloddan avlodga o‘tadi",
+    "ovoz": "[1] Yer yuzida millionlab turdagi organizmlar bor — bu biologik xilma-xillik. [2] Hatto bir tur ichidagi organizmlar ham bir-biridan farq qiladi: rangi, bo‘yi, shakli har xil bo‘ladi. [3] Bu farqlarning ko‘pchiligi irsiy, ya’ni genlar orqali avlodlarga o‘tadi — tabiiy tanlanish aynan shular bilan ishlaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Moslashish",
+    "doska": "Moslashish — yashash muhitiga mos belgi\nTuya: o‘rkachida yog‘ zaxirasi, kam suv yo‘qotadi\nKaktus: barglari tikanga aylangan — kam bug‘lanish\nHimoya rangi: muhitga o‘xshab, ko‘rinmay qolish",
+    "ovoz": "[1] Moslashish — organizmning o‘z muhitida yashab, ko‘payishiga yordam beradigan belgisi. [2] Tuya o‘rkachida suv emas, yog‘ zaxirasi saqlaydi, tanasi esa suvni juda tejaydi — bu cho‘lga moslashish. [3] Kaktusning barglari tikanga aylangan, shuning uchun suvni kam bug‘latadi, yo‘g‘on poyasida esa suv to‘playdi. [4] Ko‘p hayvonlarning rangi muhitiga o‘xshaydi — bu himoya rangi: yirtqich ularni payqamaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Tabiiy tanlanish",
+    "doska": "1) Organizmlar orasida irsiy farqlar bor\n2) Nasl ko‘p, oziq va joy yetishmaydi\n3) Muhitga mosroqlar ko‘proq omon qoladi\n4) Foydali belgi avlodlarda ko‘payib boradi",
+    "ovoz": "[1] Charlz Darvin tushuntirgan tabiiy tanlanish to‘rt bosqichda boradi. Birinchi: organizmlar orasida irsiy farqlar bor. [2] Ikkinchi: nasl ko‘p tug‘iladi, ammo oziq va joy hammaga yetmaydi. [3] Uchinchi: muhitga yaxshiroq moslashganlar ko‘proq omon qoladi va ko‘proq nasl qoldiradi. [4] To‘rtinchi: shu foydali belgi har bir avlodda ko‘proq uchraydigan bo‘lib boradi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Qazilma qoldiqlar va Yer tarixi",
+    "doska": "Qazilma — tog‘ jinsida saqlangan qadimgi organizm izi\nQatlamlar buzilmagan bo‘lsa: pastki — qadimiyroq\nHayot dastlab suvda — okeanda paydo bo‘lgan",
+    "ovoz": "[1] Qazilma qoldiq — tog‘ jinsida saqlanib qolgan qadimgi organizm yoki uning izi. [2] Cho‘kindi qatlamlar ustma-ust yig‘iladi, shuning uchun qatlamlar buzilmagan bo‘lsa, pastdagisi qadimiyroq, yuqoridagisi yoshroq. [3] Qazilmalar ko‘rsatadiki, hayot dastlab suvda, qadimgi okeanda paydo bo‘lgan, keyinchalik quruqlikka chiqqan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Shilliqqurtlar: chig‘anog‘i och va to‘q rangli\nO‘rmon tuprog‘i to‘q rangli; qushlar ularni yeydi\nKo‘p avloddan keyin qaysi rang ko‘proq bo‘ladi?",
+    "ovoz": "[1] Birinchi misol. Bir o‘rmonda chig‘anog‘i och va to‘q rangli shilliqqurtlar yashaydi. [2] O‘rmon tuprog‘i to‘q rangli, qushlar esa shilliqqurtlarni ko‘rib, tutib yeydi. [3] Savol: ko‘p avlod o‘tgach, qaysi rangdagi shilliqqurtlar ko‘proq bo‘ladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Och rangli to‘q tuproqda ko‘zga tashlanadi → ko‘p yeyiladi\nTo‘q rangli ko‘rinmaydi → ko‘proq omon qoladi, nasl beradi",
+    "ovoz": "[1] Och rangli chig‘anoq to‘q tuproqda yaqqol ko‘rinadi, shuning uchun qushlar ularni ko‘proq tutadi. [2] To‘q rangli chig‘anoq tuproqqa qorishib ketadi, ular ko‘proq omon qolib, ko‘proq nasl qoldiradi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: to‘q rangli ko‘payadi — tabiiy tanlanish",
+    "ovoz": "[1] Javob: to‘q rangli shilliqqurtlar ko‘payadi. Bu — tabiiy tanlanish: muhit eng mosini «tanlayapti»."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "Jarlik qatlamlari (yuqoridan pastga):\n1 — sutemizuvchi suyagi; 2 — sudraluvchi skeleti\n3 — baliq qoldig‘i; 4 — dengiz chig‘anoqlari",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. Jarlikda tog‘ jinsi qatlamlari ko‘rinadi, ularni yuqoridan pastga sanaymiz. [2] Birinchi, eng yuqori qatlamda sutemizuvchi suyagi, ikkinchisida sudralib yuruvchi skeleti topilgan. [3] Uchinchi qatlamda baliq qoldig‘i, eng pastki to‘rtinchisida dengiz chig‘anoqlari bor. Qaysi qatlam eng qadimiy va bu joy haqida nima deyish mumkin?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Qatlamlar buzilmagan → 4-qatlam eng qadimiy\nPastda dengiz organizmlari → bu yer avval dengiz bo‘lgan",
+    "ovoz": "[1] Qatlamlar buzilmagan bo‘lsa, eng pastki to‘rtinchi qatlam eng qadimiy, birinchi qatlam esa eng yosh. [2] Pastki qatlamlarda dengiz chig‘anoqlari va baliq bor — demak, bu hududda qachonlardir dengiz bo‘lgan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Yuqoriga tomon quruqlik hayvonlari paydo bo‘ladi\nXulosa: muhit o‘zgargan, hayot shakllari almashgan",
+    "ovoz": "[1] Yuqori qatlamlarda esa quruqlik hayvonlari — sudralib yuruvchi va sutemizuvchi uchraydi. Demak, vaqt o‘tib, dengiz chekingan va bu joy quruqlikka aylangan. [2] To‘liq javob: muhit o‘zgargani sari shu joyda yashagan organizmlar ham almashgan. TIMSS sizdan aynan shunday dalilga asoslangan javob kutadi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Qaysi qatlam yoshroq: yuqoridagimi, pastdagimi?",
+    "ovoz": "[1] Endi o‘zingiz: buzilmagan tog‘ jinsi qatlamlaridan qaysi biri yoshroq — yuqoridagisimi yoki pastdagisimi? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing: yuqori yoki past",
+    "javob": "yuqori|yuqoridagi|yuqoridagisi|yuqorigi|ustki"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Hayot Yerda dastlab qayerda paydo bo‘lgan?",
+    "ovoz": "[1] Yana bir savol: qazilmalarga ko‘ra, hayot Yerda dastlab qayerda paydo bo‘lgan? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing",
+    "javob": "suvda|suv|okeanda|okean|dengizda|dengiz"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Muhit qanday? Qaysi belgi u yerda foydali?\n2. Kim ko‘proq omon qoladi → kim ko‘proq nasl beradi\n3. Qatlamlar: pastdan yuqoriga — qadimiydan yoshga\n4. Qazilma — o‘sha davr muhitining dalili",
+    "ovoz": "[1] Birinchi: avval muhitni tasavvur qiling va qaysi belgi u yerda yashashga yordam berishini o‘ylang. [2] Ikkinchi: kim ko‘proq omon qolsa, o‘sha ko‘proq nasl beradi — javobni shu zanjir bilan yozing. [3] Uchinchi: qatlamlar savolida pastdan yuqoriga qarab vaqt o‘qini chizing. [4] To‘rtinchi: har bir qazilma o‘sha davrdagi muhit haqida dalil — dengiz chig‘anog‘i dengizni bildiradi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Bir tur ichida ham irsiy farqlar bor\nMoslashish — yashash va ko‘payishga yordam beradigan belgi\nTabiiy tanlanish: mosroqlar omon qoladi va nasl beradi\nPastki qatlam qadimiyroq; hayot suvda boshlangan",
+    "ovoz": "[1] Esda tuting: bir tur ichidagi organizmlar ham farq qiladi va bu farqlar irsiy bo‘lishi mumkin. [2] Moslashish — muhitda yashab, nasl qoldirishga yordam beradigan belgi. [3] Tabiiy tanlanishda muhitga mosroqlar ko‘proq omon qoladi va foydali belgi avlodlarda ko‘payadi. [4] Buzilmagan qatlamlarda pastki qatlam qadimiyroq, hayot esa suvda boshlangan. Bugun zo‘r natija ko‘rsatdingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Sinfdoshlaringiz — bitta tur, lekin har xil\nBo‘y, soch rangi, ko‘z rangi farq qiladi",
+     "ovoz": "Sinfdoshlaringizga qarang: hammangiz odamsiz, ya’ni bitta tursiz, lekin bo‘yingiz, soch va ko‘z rangingiz har xil. Bu — tur ichidagi o‘zgaruvchanlik."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bir mushukning olti bolasi\nBiri oq, biri olachipor, biri qora",
+     "ovoz": "Qo‘shnimizning mushugi olti bola tug‘di: biri oppoq, biri olachipor, biri qop-qora. Ota-onasi bir xil bo‘lsa ham, bolalari farq qiladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "O‘lchab ko‘ring: 10 ta loviya uzunligi\nHammasi har xil chiqadi",
+     "ovoz": "Tajriba qiling: bir qopdagi o‘nta loviyani chizg‘ich bilan o‘lchang. Uzunliklari har xil chiqadi — bir tur ichida ham farq bor."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Moslashish = muhitga mos «jihoz»\nCho‘l → suv tejash; sovuq → issiq jun",
+     "ovoz": "Moslashishni tabiat bergan jihoz deb tushuning: cho‘lda suv tejaydigan tana, sovuqda qalin jun va yog‘ qatlami."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Oq ayiq: qalin jun, teri ostida yog‘\nOq rangi qorda ko‘rinmaslikka yordam beradi",
+     "ovoz": "Oq ayiq muzlikda yashaydi: qalin juni va teri ostidagi qalin yog‘ qatlami uni sovuqdan saqlaydi, oq rangi esa qor orasida o‘ljasiga sezdirmay yaqinlashishga yordam beradi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Belgi → muhit → foyda\ntikan → cho‘l → kam bug‘lanish",
+     "ovoz": "Uch ustunli jadval tuzing: belgi, muhit va foyda. Masalan, tikan, cho‘l, kam bug‘lanish. Shunday qilib har qanday moslashishni tushuntira olasiz."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Farq bor → kurash bor → mosi qoladi\n→ mos belgi ko‘payadi",
+     "ovoz": "Qisqasi: organizmlar farq qiladi, hammaga oziq yetmaydi, eng mosi omon qoladi va uning belgisi avlodlarda ko‘payadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Uzun bo‘yinli jirafalar\nBaland shoxdagi bargga yetib, ko‘proq omon qolgan",
+     "ovoz": "Qadimda jirafalarning bo‘yni turlicha uzunlikda bo‘lgan. Qurg‘oqchilikda past shoxlardagi barglar tugaganda, uzun bo‘yinlilar baland shoxlarga yetib, ko‘proq omon qolgan va nasl bergan. Asta-sekin uzun bo‘yin keng tarqalgan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "O‘yin: rangli qog‘oz «hasharotlar» gazetada\nGazeta rangidagilar kam topiladi",
+     "ovoz": "Sinfda o‘yin qiling: gazeta ustiga oq va rangli qog‘oz bo‘laklarini sochib, bir daqiqada yig‘ing. Gazetaga o‘xshaganlari kam topiladi — ular tabiiy tanlanishdan «omon qolgan» bo‘ladi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Qatlamlar — kitob sahifalari\nPastdagi sahifa avval yozilgan",
+     "ovoz": "Qatlamlarni ustma-ust qo‘yilgan gazetalar deb tasavvur qiling: eng pastdagisi eng avval qo‘yilgan, ya’ni eng eski."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Tog‘da dengiz chig‘anog‘i topildi\nDemak, bu joy qachonlardir dengiz tubi bo‘lgan",
+     "ovoz": "Sayyohlar baland tog‘da dengiz chig‘anog‘i qoldig‘ini topishdi. Bu shuni bildiradi: millionlab yillar oldin bu tog‘ jinslari dengiz tubida hosil bo‘lgan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Vaqt o‘qi: suvdagi sodda hayot →\nbaliqlar → quruqlik o‘simlik va hayvonlari",
+     "ovoz": "Vaqt o‘qini chizing: dastlab suvda sodda organizmlar, keyin baliqlar, so‘ngra quruqlikda o‘simliklar va hayvonlar paydo bo‘lgan."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Tuya o‘rkachida suv saqlaydi deb o‘ylash — u yerda yog‘ zaxirasi",
+   "Organizm «kerak bo‘lgani uchun» moslashadi deb o‘ylash — aslida mos belgili organizmlar ko‘proq omon qoladi",
+   "Yuqoridagi qatlam qadimiyroq deb hisoblash",
+   "Qazilmaning yoshini uning kattaligiga qarab aniqlash",
+   "Tabiiy tanlanish bir organizmni hayoti davomida o‘zgartiradi deb o‘ylash — o‘zgarish avlodlar davomida boradi"
+  ],
+  "strategiyalar": [
+   "Moslashish savolida «belgi — muhit — foyda» zanjirini yozing",
+   "Tabiiy tanlanishni «kim omon qoladi va nasl beradi» savoli orqali tushuntiring",
+   "Qatlamlar savolida pastdan yuqoriga vaqt o‘qini chizing",
+   "Qazilmani o‘sha davr muhitining dalili sifatida o‘qing"
+  ],
+  "kalit_sozlar": [
+   "moslashish",
+   "evolyutsiya",
+   "tabiiy tanlanish",
+   "xilma-xillik",
+   "o‘zgaruvchanlik",
+   "qazilma qoldiqlar",
+   "tur"
+  ]
+ },
+ {
+  "kod": "XB-S8-EKO",
+  "mavzu": "S8-EKO",
+  "sarlavha": "Ekotizimlar",
+  "maqsad": "Ekotizim tarkibi va oziq zanjiridagi energiya oqimini tushuntirish, yirtqich–o‘lja va raqobat munosabatlarini grafik va jadvaldan tahlil qilish, inson faoliyatining ekotizimga ta’sirini baholash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Tulkilar ko‘paysa, quyonlarga nima bo‘ladi?\nTIMSS: 8-sinflarning o‘rtacha 38% i to‘g‘ri yechgan",
+    "ovoz": "[1] Tasavvur qiling, o‘rmonda tulkilar ko‘payib ketdi. Quyonlarga, o‘tlarga va hatto daraxtlarga nima bo‘ladi? Bugun buni o‘rganamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha o‘ttiz sakkiz foiz o‘quvchi to‘g‘ri yechgan. Ayniqsa populyatsiyalar bog‘liqligi qiyin bo‘lgan — biz uni puxta o‘rganamiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Ekotizim tarkibi",
+    "doska": "Ekotizim = tirik organizmlar + notirik muhit\nProdutsentlar: yashil o‘simliklar — oziq yaratadi\nKonsumentlar: o‘txo‘r, yirtqich hayvonlar\nRedutsentlar: bakteriya, zamburug‘ — chiritadi",
+    "ovoz": "[1] Ekotizim — bir joyda yashovchi tirik organizmlar va ularni o‘rab turgan notirik muhit: suv, havo, tuproq, yorug‘lik. [2] Produtsentlar — yashil o‘simliklar va suvo‘tlar: ular fotosintez orqali o‘zlari oziq hosil qiladi. [3] Konsumentlar tayyor oziq iste’mol qiladi: o‘txo‘rlar o‘simlikni, yirtqichlar boshqa hayvonlarni yeydi. [4] Redutsentlar — bakteriya va zamburug‘lar — o‘lik qoldiqlarni chiritib, mineral moddalarni tuproqqa qaytaradi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Oziq zanjiri va energiya",
+    "doska": "O‘t → quyon → tulki  (strelka: energiya yo‘nalishi)\nEnergiya manbai — Quyosh\nKeyingi bosqichga taxminan 10% energiya o‘tadi\nQolgani nafas, harakat, issiqlikka sarflanadi",
+    "ovoz": "[1] Oziq zanjiri: o‘t, quyon, tulki. Strelka «kim kimni yeydi» emas, energiya qayerga o‘tishini ko‘rsatadi. [2] Barcha energiyaning dastlabki manbai — Quyosh: o‘simlik uni fotosintezda oziqqa aylantiradi. [3] Har bir bosqichda energiyaning faqat taxminan o‘n foizi keyingi bosqichga o‘tadi. [4] Qolgan qismi hayvonning nafasi, harakati uchun sarflanadi va oxir-oqibat issiqlik bo‘lib tarqaladi. Shuning uchun zanjir uzun bo‘lmaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Populyatsiyalar o‘zaro ta’siri",
+    "doska": "Populyatsiya — bir joydagi bir tur organizmlari\nYirtqich–o‘lja: quyon ko‘paysa → keyinroq tulki ko‘payadi\nTulki ko‘paysa → quyon kamayadi → keyin tulki kamayadi\nRaqobat: begona o‘t ekin bilan suv, yorug‘lik talashadi",
+    "ovoz": "[1] Populyatsiya — bir hududda yashovchi bir turdagi organizmlar to‘plami, masalan, o‘rmondagi barcha quyonlar. [2] Yirtqich va o‘lja bog‘liq: quyonlar ko‘paysa, tulkilarga oziq ko‘p bo‘ladi va biroz kechikib ular ham ko‘payadi. [3] Tulkilar ko‘paysa, quyonlar kamayadi; oziq kamaygach esa tulkilar ham kamayadi. Bu sikl qayta-qayta takrorlanadi. [4] Raqobat ham muhim: begona o‘tlar ekin bilan suv, yorug‘lik va mineral moddalar uchun raqobatlashadi, shuning uchun ularni yulish hosilni oshiradi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Inson va ekotizim",
+    "doska": "Aholi o‘ssa → ko‘proq uy, dala → yashash joyi qisqaradi\nO‘g‘it ko‘lga oqsa → suvo‘tlar tez ko‘payadi\nSuvo‘tlar chirisa → kislorod kamayadi → baliq nobud\nDaraxt ekish: $\\mathrm{CO_2}$ yutadi, kislorod, soya beradi",
+    "ovoz": "[1] Aholi ko‘paysa, uy-joy va ekin maydonlari uchun ko‘proq yer kerak bo‘ladi, yovvoyi hayvonlarning yashash joyi qisqaradi. [2] Dalalardagi o‘g‘it yomg‘ir bilan ko‘lga oqib tushsa, suvo‘tlar juda tez ko‘payib ketadi. [3] Suvo‘tlar nobud bo‘lib chiriganda bakteriyalar suvdagi kislorodni sarflaydi va baliqlar bo‘g‘ilib qoladi. [4] Daraxt ekish esa foydali: daraxtlar karbonat angidridni yutadi, kislorod chiqaradi, soya beradi va tuproqni yemirilishdan saqlaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Zanjir: o‘t → quyon → tulki\nO‘tlar 10 000 kJ energiya to‘pladi",
+    "ovoz": "[1] Birinchi misol. Oziq zanjiri berilgan: o‘t, quyon, tulki. [2] O‘tlar fotosintez orqali o‘n ming kilojoul energiya to‘pladi. Tulkiga taxminan qancha energiya yetib boradi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Quyonga: $10\\,000 \\cdot 0{,}1 = 1000$ kJ\nTulkiga: $1000 \\cdot 0{,}1 = 100$ kJ",
+    "ovoz": "[1] Quyonga energiyaning o‘n foizi o‘tadi: o‘n mingni nol butun o‘ndan birga ko‘paytirsak, ming kilojoul. [2] Tulkiga esa quyondagi energiyaning o‘n foizi o‘tadi: mingning o‘n foizi — yuz kilojoul."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: ≈100 kJ — har bosqichda energiya kamayadi",
+    "ovoz": "[1] Javob: tulkiga taxminan yuz kilojoul yetadi. Shuning uchun yirtqichlar o‘txo‘rlardan ancha kam bo‘ladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "Yil: 1 | 2 | 3 | 4 | 5\nQuyon: 200 | 400 | 600 | 300 | 150\nTulki: 20 | 25 | 40 | 60 | 35",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. Olimlar besh yil davomida bir orolda quyon va tulkilarni sanashdi. [2] Quyonlar soni: ikki yuz, to‘rt yuz, olti yuz, uch yuz va bir yuz ellik. [3] Tulkilar soni: yigirma, yigirma besh, qirq, oltmish va o‘ttiz besh. Quyon qaysi yili eng ko‘p bo‘lgan va nega keyin kamaygan?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "1) Quyon eng ko‘p — 3-yil (600)\n2) Quyon ko‘p → tulkiga oziq ko‘p → 4-yilda tulki 60",
+    "ovoz": "[1] Birinchi savol oson: quyonlar uchinchi yili eng ko‘p — olti yuzta bo‘lgan. [2] Quyonlar ko‘p bo‘lgani uchun tulkilarga oziq yetarli bo‘ldi va to‘rtinchi yilda ular oltmishtaga yetdi — tulki quyondan biroz kechikib ko‘paydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "3) Tulki ko‘p → quyon kamaydi: 600 → 300 → 150\n4) Oziq kamaydi → 5-yilda tulki ham kamaydi: 60 → 35",
+    "ovoz": "[1] Tulkilar ko‘payib, ko‘p quyon ovlagani uchun quyonlar soni kamaydi. [2] Oxirida quyon kam qolgach, tulkilarga oziq yetmadi va ular ham kamaydi. Javobda ikkala populyatsiya bog‘liqligini aytish — eng muhim nuqta."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Oziq zanjiri boshida doim kim turadi?",
+    "ovoz": "[1] Endi o‘zingiz: har qanday oziq zanjirining boshida kim turadi? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing",
+    "javob": "produtsent|produtsentlar|o‘simlik|o‘simliklar|yashil o‘simlik|yashil o‘simliklar"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Chigirtka 2000 kJ oldi. Qurbaqaga taxminan necha kJ o‘tadi?",
+    "ovoz": "[1] Yana bir savol: o‘t, chigirtka, qurbaqa zanjirida chigirtka ikki ming kilojoul energiya oldi. O‘n foiz qoidasiga ko‘ra qurbaqaga taxminan necha kilojoul o‘tadi? Sonni yozing.",
+    "savol": "Sonni yozing (kJ)",
+    "javob": "200|200 kJ"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Kim kimni yeydi? Zanjirni chizib oling\n2. Bitta tur o‘zgarsa — strelka bo‘ylab ta’sirni kuzating\n3. Jadvalda: eng katta son, o‘sish va kamayishni belgilang\n4. Javobda «chunki» bilan sababni yozing",
+    "ovoz": "[1] Birinchi: savoldagi organizmlardan oziq zanjirini chizib oling — kim produtsent, kim konsument. [2] Ikkinchi: bitta tur ko‘paysa yoki kamaysa, ta’sirni zanjir bo‘ylab ikki tomonga ham kuzating. [3] Uchinchi: jadval yoki grafikda eng katta qiymatni va qayerda o‘sib, qayerda kamayganini belgilang. [4] To‘rtinchi: mulohaza savolida faqat javob emas, «chunki» so‘zi bilan sababni ham yozing — ball shunga beriladi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Produtsent → konsument → redutsent\nHar bosqichda ≈10% energiya o‘tadi\nO‘lja ko‘paysa — yirtqich kechikib ko‘payadi\nInson ekotizimni o‘zgartiradi: ehtiyot bo‘laylik",
+    "ovoz": "[1] Esda tuting: produtsentlar oziq yaratadi, konsumentlar iste’mol qiladi, redutsentlar chiritadi. [2] Oziq zanjirida har bosqichga energiyaning taxminan o‘n foizigina o‘tadi. [3] Yirtqich va o‘lja soni bir-biriga bog‘liq: o‘lja ko‘paysa, yirtqich biroz kechikib ko‘payadi. [4] Inson faoliyati ekotizimni kuchli o‘zgartiradi, shuning uchun tabiatni asrash bizning burchimiz. Ajoyib ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "O‘simlik — oshpaz, hayvon — mehmon\nBakteriya, zamburug‘ — farrosh",
+     "ovoz": "Ekotizimni oshxona deb tasavvur qiling: o‘simlik — ovqat tayyorlaydigan oshpaz, hayvonlar — mehmonlar, bakteriya va zamburug‘lar esa hamma narsani tozalaydigan farroshlar."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kuzda to‘kilgan barglar bahorda yo‘qolib qoladi\nUlarni zamburug‘ va bakteriyalar chiritgan",
+     "ovoz": "Kuzda bog‘da to‘kilgan barglar bahorga kelib qayoqqadir g‘oyib bo‘ladi. Ularni zamburug‘lar va bakteriyalar chiritib, tuproqqa o‘g‘it qilib qaytargan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ko‘l ekotizimi: suvo‘tlar, baliqlar, bakteriyalar\n+ suv, yorug‘lik, harorat",
+     "ovoz": "Ko‘l misolida ko‘ring: tirik qismi — suvo‘tlar, baliqlar, bakteriyalar; notirik qismi — suv, yorug‘lik va harorat. Hammasi birgalikda ekotizim."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "10 000 → 1000 → 100\nHar qadamda 10 ga bo‘lamiz",
+     "ovoz": "Oson hisob: har bir bosqichda energiyani o‘nga bo‘lasiz. O‘n mingdan ming, mingdan yuz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Quyon kun bo‘yi yuguradi, isinadi, nafas oladi\nYegan o‘tining ko‘p qismi shunga ketadi",
+     "ovoz": "Quyon kun bo‘yi yuguradi, tanasini isitadi, nafas oladi. Yegan o‘tidagi energiyaning ko‘p qismi shunga sarflanadi, tanasida esa ozgina qoladi — tulkiga ham shu ozgina qism o‘tadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Piramida: pastda keng (o‘simlik)\nyuqorida tor (yirtqich)",
+     "ovoz": "Energiya piramidasini chizing: pastki keng qavat — o‘simliklar, o‘rtada — o‘txo‘rlar, eng yuqori tor qavat — yirtqichlar."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Ovqat ko‘p → yeyuvchi ko‘payadi\nYeyuvchi ko‘p → ovqat kamayadi",
+     "ovoz": "Oddiy qoida: ovqat ko‘p bo‘lsa, uni yeyuvchilar ko‘payadi; yeyuvchilar ko‘paysa, ovqat kamayadi. Shu tarzda ikkalasi navbat bilan ko‘payib-kamayadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bobom tomorqada begona o‘tlarni yuladi\nPomidorlarga ko‘proq suv va quyosh tegadi",
+     "ovoz": "Bobom har hafta tomorqadagi begona o‘tlarni yuladi. Nega? Begona o‘tlar pomidor bilan suv, yorug‘lik va o‘g‘itni talashadi; ularni yulsak, pomidorga ko‘proq tegadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Grafik: quyon chizig‘i oldinda,\ntulki chizig‘i undan keyin ko‘tariladi",
+     "ovoz": "Grafikda chizib ko‘ring: quyon chizig‘ining cho‘qqisi oldin, tulki chizig‘ining cho‘qqisi esa undan biroz keyin keladi — ikki to‘lqin ketma-ket yuradi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Ko‘p odam → ko‘p yer kerak\nHayvonlarga kam joy qoladi",
+     "ovoz": "Odamlar ko‘paysa, ko‘proq uy, yo‘l va dala quriladi, natijada yovvoyi hayvonlarga joy kam qoladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Ko‘l yashil «sho‘rva»ga aylandi\nDalalardan o‘g‘it oqib tushgan edi",
+     "ovoz": "Bir yozda qishloq ko‘li yashil sho‘rvaga o‘xshab qoldi, keyin baliqlar o‘la boshladi. Sabab — atrofdagi dalalardan oqib tushgan o‘g‘it suvo‘tlarni haddan tashqari ko‘paytirib yuborgan edi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Sabab → oqibat zanjiri:\no‘g‘it → suvo‘tlar → chirish → kislorod kam → baliq",
+     "ovoz": "Zanjir qilib yozing: o‘g‘it suvo‘tlarni ko‘paytiradi, ular chiriydi, chirish kislorodni sarflaydi, kislorod kamaysa baliqlar nobud bo‘ladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Oziq zanjiridagi strelkani teskari tushunish — strelka energiya yo‘nalishini ko‘rsatadi",
+   "Yirtqich va o‘lja soni bir vaqtda ko‘payadi deb o‘ylash — yirtqich kechikib ko‘payadi",
+   "Energiya zanjir bo‘ylab to‘liq o‘tadi deb hisoblash — har bosqichda ≈90% yo‘qoladi",
+   "Begona o‘tlarning zarari faqat «chiroyli emasligi» deb o‘ylash — ular resurslar uchun raqobatlashadi",
+   "O‘g‘it ko‘lga foydali deb o‘ylash — u suvo‘tlar ko‘payib, kislorod kamayishiga olib keladi"
+  ],
+  "strategiyalar": [
+   "Oziq zanjirini chizib, o‘zgarish ta’sirini strelka bo‘ylab kuzating",
+   "Jadvalda yillar bo‘yicha har bir populyatsiyaning o‘sish va kamayishini belgilang",
+   "Mulohaza javobida sabab va oqibatni «chunki» bilan bog‘lang",
+   "Energiya hisobida har bosqichda 10 ga bo‘ling"
+  ],
+  "kalit_sozlar": [
+   "ekotizim",
+   "oziq zanjiri",
+   "populyatsiya",
+   "ekologiya",
+   "produtsent",
+   "konsument",
+   "redutsent"
+  ]
+ },
+ {
+  "kod": "XB-S8-SOG",
+  "mavzu": "S8-SOG",
+  "sarlavha": "Inson salomatligi",
+  "maqsad": "Yuqumli va yuqumsiz kasalliklarni farqlash, immunitet va emlash mexanizmini tushuntirish, qon hujayralari vazifasini bilish, to‘g‘ri ovqatlanish va jismoniy faollik ahamiyatini asoslash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Bir marta qizamiq bo‘lgan odam nega qayta bo‘lmaydi?\nTIMSS: 8-sinflarning o‘rtacha 55% i to‘g‘ri yechgan",
+    "ovoz": "[1] Nega qizamiqni bir marta boshdan o‘tkazgan odam odatda qayta kasal bo‘lmaydi? Bugun tanamizning ajoyib himoya tizimi bilan tanishamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha ellik besh foiz o‘quvchi to‘g‘ri yechgan. Bu bilimlar sizning sog‘lig‘ingiz uchun ham kerak, shuning uchun diqqat bilan o‘rganamiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Kasallik turlari",
+    "doska": "Yuqumli: bakteriya, virus, zamburug‘, parazit\nYuqumsiz: qandli diabet, yurak kasalliklari\nAntibiotik bakteriyani o‘ldiradi, virusga ta’sir qilmaydi",
+    "ovoz": "[1] Yuqumli kasalliklarni mikroblar — bakteriya, virus, zamburug‘ va parazitlar — keltirib chiqaradi va ular bir kishidan boshqasiga yuqadi. [2] Yuqumsiz kasalliklar odamdan odamga yuqmaydi: masalan, qandli diabet yoki yurak kasalliklari. [3] Muhim fakt: antibiotiklar faqat bakteriyalarga qarshi ishlaydi, gripp kabi virusli kasalliklarni davolamaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Tananing himoyasi va qon hujayralari",
+    "doska": "1-to‘siq: teri va shilliq qavatlar\nLeykotsitlar (oq qon tanachalari) mikroblarni yo‘q qiladi\nEritrotsit — kislorod tashiydi; trombotsit — qon ivitadi",
+    "ovoz": "[1] Tananing birinchi himoya to‘sig‘i — teri va burun, og‘iz kabi joylardagi shilliq qavatlar: ular mikroblarni ichkariga kiritmaydi. [2] Mikrob ichkariga kirsa, leykotsitlar, ya’ni oq qon tanachalari uni yutib yo‘q qiladi va antitelolar ishlab chiqaradi. [3] Qizil qon tanachalari — eritrotsitlar kislorod tashiydi, trombotsitlar esa yaradan qon ketganda qonni ivitadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Immunitet va emlash",
+    "doska": "Antitelo — muayyan mikrobga qarshi oqsil\nKasallikdan keyin «xotira hujayralari» qoladi\nVaksina: zaiflashgan/o‘ldirilgan mikrob yoki uning qismi\nNatija: uzoq muddatli immunitet",
+    "ovoz": "[1] Antitelolar — muayyan mikrobni tanib, uni zararsizlantiradigan maxsus oqsillar. [2] Kasallikdan tuzalgandan keyin tanada xotira hujayralari qoladi: ular shu mikrobni yillar davomida eslab qoladi. [3] Vaksinada zaiflashtirilgan yoki o‘ldirilgan mikrob, yoki uning bir qismi bo‘ladi: u kasallik qo‘zg‘atmaydi, lekin immunitetni «mashq qildiradi». [4] Natijada uzoq muddatli immunitet hosil bo‘ladi: haqiqiy mikrob kelsa, tana uni tez tanib, antitelolarni darhol ishlab chiqaradi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Ovqatlanish va turmush tarzi",
+    "doska": "Oqsil — o‘sish; uglevod, yog‘ — energiya\nVitamin va mineral moddalar — oz, lekin zarur\nQandli diabet: qonda glukoza ko‘p, insulin yetishmaydi\nJismoniy mashq: yurak, o‘pka, mushaklarni kuchaytiradi",
+    "ovoz": "[1] Oqsillar tanani qurish va o‘sish uchun, uglevodlar va yog‘lar esa energiya uchun kerak. [2] Vitamin va mineral moddalar oz miqdorda kerak, lekin ularsiz tana to‘g‘ri ishlamaydi. [3] Qandli diabetda insulin gormoni yetishmaydi yoki yaxshi ta’sir qilmaydi, shuning uchun qonda glukoza ko‘payib ketadi. Diabetli odam shirinlik va shakarli ichimliklardan saqlanishi kerak. [4] Muntazam jismoniy mashq yurak va o‘pkani mustahkamlaydi, mushaklarni kuchaytiradi va vaznni me’yorda saqlaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Ali qizamiqqa qarshi emlangan\nU qizamiq bilan kasallangan bola bilan o‘ynadi",
+    "ovoz": "[1] Birinchi misol. Ali bolaligida qizamiqqa qarshi emlangan. [2] Bir kuni u qizamiq bilan kasallangan qo‘shni bola bilan o‘ynadi. Ali kasal bo‘ladimi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Emlashdan keyin xotira hujayralari qolgan\nVirus kirsa → antitelolar tez ishlab chiqariladi",
+    "ovoz": "[1] Emlashdan keyin Alining tanasida qizamiq virusini taniydigan xotira hujayralari qolgan. [2] Virus kirishi bilan tana uni darhol taniydi va antitelolarni tez ishlab chiqaradi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: odatda kasal bo‘lmaydi — immuniteti bor",
+    "ovoz": "[1] Javob: Ali odatda kasal bo‘lmaydi, chunki emlash unga uzoq muddatli immunitet bergan. Virus ko‘payib ulgurmasdan yo‘q qilinadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "Qondagi glukoza (mmol/l), ovqatdan keyin:\nAnvar: 5 → 1 soatda 7 → 2 soatda 5\nBobur: 8 → 1 soatda 14 → 2 soatda 13",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. Ikki kishining qonidagi glukoza ovqatdan oldin va keyin o‘lchandi. [2] Anvarda glukoza beshdan bir soatda yettiga ko‘tarilib, ikki soatda yana beshga tushdi. [3] Boburda esa sakkizdan o‘n to‘rtga ko‘tarilib, ikki soatdan keyin ham o‘n uchda qoldi. Kimda qandli diabet bo‘lishi mumkin va nega?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Anvar: glukoza ko‘tarilib, me’yoriga qaytdi\nBobur: glukoza baland va uzoq vaqt tushmaydi",
+    "ovoz": "[1] Anvarda glukoza ovqatdan keyin biroz ko‘tarildi, so‘ng insulin ta’sirida hujayralarga o‘tib, me’yoriga qaytdi — bu sog‘lom holat. [2] Boburda glukoza ovqatdan oldin ham baland, ovqatdan keyin esa ancha ko‘tarilib, uzoq tushmayapti."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xulosa: Boburda diabet bo‘lishi mumkin — insulin yetmaydi\nUnga: shirinlik va shakarli ichimlikni cheklash, harakat",
+    "ovoz": "[1] Xulosa: Boburda qandli diabet bo‘lishi mumkin, chunki uning tanasi glukozani insulin yordamida hujayralarga o‘tkaza olmayapti. Aniq tashxisni faqat shifokor qo‘yadi. [2] Bunday odamga shirinlik va shakarli ichimliklarni cheklash, muntazam harakat qilish va shifokor maslahatiga amal qilish kerak."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Bakteriyalarni yutib yo‘q qiladigan qon hujayralari?",
+    "ovoz": "[1] Endi o‘zingiz: tanamizga kirgan bakteriyalarni yutib yo‘q qiladigan qon hujayralari qanday ataladi? Nomini yozing.",
+    "savol": "Hujayra nomini yozing",
+    "javob": "leykotsit|leykotsitlar|oq qon tanachalari|oq qon tanachasi|oq qon hujayralari"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Antibiotik gripp virusini davolaydimi?",
+    "ovoz": "[1] Yana bir savol: antibiotik gripp virusini davolaydimi? «Ha» yoki «yo‘q» deb javob bering.",
+    "savol": "«ha» yoki «yo‘q» deb yozing",
+    "javob": "yo‘q|yoq|davolamaydi"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Kasallik sababi: mikrobmi yoki yo‘qmi?\n2. Uzoq immunitet = xotira hujayralari (emlash)\n3. Qon hujayrasi ↔ vazifa juftini eslang\n4. Grafikda me’yorga qaytish bor-yo‘qligiga qarang",
+    "ovoz": "[1] Birinchi: savoldagi kasallik yuqumlimi yoki yuqumsizmi — avval shuni aniqlang. [2] Ikkinchi: «uzoq muddatli himoya» so‘ralsa, javob emlash yoki kasallikni boshdan o‘tkazish va xotira hujayralari bilan bog‘liq. [3] Uchinchi: qon hujayrasi so‘ralsa, leykotsit himoya, eritrotsit kislorod, trombotsit ivish juftini eslang. [4] To‘rtinchi: salomatlik grafigida qiymat me’yorga qaytadimi yoki yo‘qmi — shunga qarab xulosa chiqaring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Yuqumli — mikroblar; yuqumsiz — yuqmaydi\nLeykotsitlar va antitelolar — tana himoyachilari\nEmlash → xotira hujayralari → uzoq immunitet\nTo‘g‘ri ovqat + harakat = sog‘lom hayot",
+    "ovoz": "[1] Esda tuting: yuqumli kasalliklarni mikroblar qo‘zg‘atadi, yuqumsizlari odamdan odamga yuqmaydi. [2] Leykotsitlar mikroblarni yo‘q qiladi va antitelolar ishlab chiqaradi. [3] Emlash xotira hujayralarini hosil qilib, uzoq muddatli immunitet beradi; antibiotik virusga ta’sir qilmaydi. [4] To‘g‘ri ovqatlanish va muntazam harakat — sog‘lom hayot garovi. Sog‘ bo‘ling, bugun a’lo ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Yuqadi → mikrob sababchi\nYuqmaydi → boshqa sabab",
+     "ovoz": "Oson ajratish yo‘li: kasallik odamdan odamga yuqsa, sababchisi mikrob; yuqmasa, sababi boshqa — masalan, tana a’zosining ishi buzilgan."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Sinfda bir bola gripp bo‘ldi — ertasi 5 ta\nBobosining diabeti esa hech kimga yuqmagan",
+     "ovoz": "Sinfda bir bola gripp bilan kelgan edi, bir haftada yana besh kishi kasal bo‘ldi — gripp yuqumli. Uning bobosida esa yigirma yildan beri diabet bor, lekin u hech kimga yuqmagan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Jadval: kasallik | sababchi | yuqadimi?\ngripp | virus | ha;  diabet | — | yo‘q",
+     "ovoz": "Jadval tuzing: kasallik nomi, sababchisi va yuqadimi-yo‘qmi. Gripp — virus, yuqadi; angina — bakteriya, yuqadi; diabet — mikrob emas, yuqmaydi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Teri — devor\nLeykotsit — qo‘riqchi askar",
+     "ovoz": "Tanani qal’a deb tasavvur qiling: teri — mustahkam devor, leykotsitlar esa ichkariga kirgan dushmanni yo‘q qiladigan qo‘riqchi askarlar."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Barmog‘ingizni kesdingiz — atrofi qizardi\nU yerga leykotsitlar to‘planib, mikroblarga qarshi kurashyapti",
+     "ovoz": "Barmog‘ingizni kesib olsangiz, yara atrofi biroz qizarib, shishadi. Bu — leykotsitlar u yerga to‘planib, kirgan mikroblarga qarshi kurashayotganining belgisi. Trombotsitlar esa qonni ivitib, yarani yopadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Rang bo‘yicha eslang:\nqizil — kislorod; oq — himoya",
+     "ovoz": "Nomidan eslab qoling: qizil qon tanachalari kislorod tashiydi, oq qon tanachalari esa himoya qiladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Vaksina — «dushman suratini» ko‘rsatish\nTana uni eslab qoladi",
+     "ovoz": "Vaksinani tanaga dushmanning suratini ko‘rsatishga o‘xshatish mumkin: tana uni eslab qoladi va haqiqiy dushman kelganda darhol taniydi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Edvard Jenner, 1796-yil: chechakka qarshi\nbirinchi emlash",
+     "ovoz": "1796-yilda ingliz shifokori Edvard Jenner bir bolani sigir chechagi bilan emladi. Keyin bola haqiqiy chechakka chalinmadi — shu tarzda emlash ixtiro qilindi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Grafik: 1-uchrashuv — antitelo sekin va kam\n2-uchrashuv — tez va ko‘p",
+     "ovoz": "Grafikda tasavvur qiling: mikrob bilan birinchi uchrashuvda antitelolar sekin va kam hosil bo‘ladi, ikkinchisida esa xotira hujayralari tufayli tez va ko‘p hosil bo‘ladi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Oqsil — qurilish materiali\nUglevod va yog‘ — yoqilg‘i",
+     "ovoz": "Tanani qurilayotgan uy deb tasavvur qiling: oqsil — g‘isht, uglevod va yog‘ — ishchilar uchun yoqilg‘i, vitaminlar esa kerakli asboblar."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bobur shirin choy va pishiriqni kamaytirdi\nHar kuni 30 daqiqa piyoda yurdi",
+     "ovoz": "Bobur shifokor maslahati bilan shirin choy va pishiriqni kamaytirdi, har kuni o‘ttiz daqiqa piyoda yura boshladi. Bir necha oyda qonidagi glukoza ancha yaxshilandi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Tarelka qoidasi: yarmi sabzavot-meva,\nchorak oqsil, chorak don mahsulotlari",
+     "ovoz": "Tarelka qoidasidan foydalaning: tarelkaning yarmi sabzavot va meva, choragi go‘sht, baliq yoki dukkakli oqsil, qolgan choragi don mahsulotlari bo‘lsin."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Antibiotik gripp va shamollashni davolaydi deb o‘ylash — antibiotik viruslarga ta’sir qilmaydi",
+   "Eritrotsitlar mikroblarni yo‘q qiladi deyish — bu leykotsitlarning vazifasi",
+   "Vaksina kasallikni davolaydi deb o‘ylash — u oldindan himoya qiladi",
+   "Diabet yuqumli kasallik deb hisoblash",
+   "Grafikdagi bitta o‘lchovga qarab xulosa qilish, o‘zgarishni kuzatmaslik"
+  ],
+  "strategiyalar": [
+   "Avval kasallik yuqumli yoki yuqumsiz ekanini aniqlang",
+   "«Uzoq muddatli» so‘zi — emlash va xotira hujayralariga ishora",
+   "Qon hujayralarini vazifasi bilan juft qilib eslang",
+   "Grafikda qiymat qachon ko‘tarilib, qachon me’yorga qaytishini kuzating"
+  ],
+  "kalit_sozlar": [
+   "kasallik",
+   "immunitet",
+   "ovqatlanish",
+   "salomatlik",
+   "odam",
+   "emlash",
+   "leykotsit",
+   "vitamin"
+  ]
+ },
+ {
+  "kod": "XB-S8-TAR",
+  "mavzu": "S8-TAR",
+  "sarlavha": "Moddalar tasnifi va tarkibi",
+  "maqsad": "Atom va molekula tushunchalarini bilish, moddalarni element, birikma va aralashmaga ajratish, kimyoviy formuladan atomlar sonini hisoblash, metall va nometallarni xossalariga ko‘ra farqlash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Suv, havo, temir — ular nimadan tuzilgan?\nTIMSS: 8-sinflarning o‘rtacha 46% i to‘g‘ri yechgan",
+    "ovoz": "[1] Ichadigan suvimiz, nafas oladigan havomiz, temir mix — hammasi nimadan tuzilgan? Bugun moddalar ichiga nazar tashlaymiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha qirq olti foiz o‘quvchi to‘g‘ri yechgan. Moddani element, birikma va aralashmaga ajratish savolini esa atigi o‘n bir foiz yechgan — biz bu qiyin joyni alohida o‘rganamiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Atom va molekula",
+    "doska": "Barcha moddalar mayda zarrachalardan tuzilgan\nAtom — kimyoviy elementning eng kichik zarrasi\nMolekula — o‘zaro bog‘langan atomlar guruhi",
+    "ovoz": "[1] Barcha moddalar ko‘zga ko‘rinmaydigan juda mayda zarrachalardan tuzilgan. [2] Atom — kimyoviy elementning eng kichik zarrasi, u elementning xossalarini saqlaydi. [3] Molekula — kimyoviy bog‘langan ikki yoki undan ortiq atomlar guruhi. Masalan, suv molekulasi bitta kislorod va ikkita vodorod atomidan iborat."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Element, birikma, aralashma",
+    "doska": "Element — bir xil turdagi atomlar: Fe, Cu, $\\mathrm{O_2}$\nBirikma — har xil atomlar kimyoviy bog‘langan: $\\mathrm{H_2O}$\nBirikma xossasi elementlarnikidan butunlay farq qiladi\nAralashma — moddalar bog‘lanmagan: havo, tuzli suv",
+    "ovoz": "[1] Element faqat bir turdagi atomlardan tuzilgan: temir, mis, kislorod. Diqqat: kislorod molekulasi ikki atomli bo‘lsa ham, element hisoblanadi! [2] Birikma — har xil elementlar atomlari aniq nisbatda kimyoviy bog‘langan modda: suv, karbonat angidrid, osh tuzi. [3] Birikmaning xossasi uni hosil qilgan elementlarnikidan butunlay farq qiladi: vodorod va kislorod — gaz, suv esa suyuqlik. [4] Aralashmada moddalar kimyoviy bog‘lanmagan, ularni fizik usulda — filtrlash, bug‘latish bilan ajratish mumkin. Havo, tuzli suv — aralashmalar."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Kimyoviy formulani o‘qish",
+    "doska": "Indeks — belgining o‘ng pastidagi son: $\\mathrm{H_2O}$ → 2 ta H\nIndeks yo‘q → 1 ta atom\nKoeffitsient — formula oldidagi son: $2\\mathrm{H_2O}$ → 2 molekula",
+    "ovoz": "[1] Indeks — element belgisining o‘ng pastidagi kichik son, u molekuladagi shu element atomlari sonini ko‘rsatadi. [2] Agar indeks yozilmagan bo‘lsa, demak, o‘sha element atomi bitta. [3] Koeffitsient formula oldida turadi va molekulalar sonini ko‘rsatadi: ikki H ikki O — ikkita suv molekulasi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Metallar va nometallar",
+    "doska": "Metall: yaltiroq, elektr va issiqlikni yaxshi o‘tkazadi\nMetall bolg‘alansa yassilanadi, sinmaydi\nNometall: ko‘pincha xira, mo‘rt, tokni o‘tkazmaydi\nElektr zanjirida lampa yonsa — modda o‘tkazgich",
+    "ovoz": "[1] Metallar yaltiroq bo‘ladi, elektr tokini va issiqlikni yaxshi o‘tkazadi. [2] Metall bolg‘alansa sinmaydi, balki yassilanadi, undan sim cho‘zish ham mumkin. [3] Nometallar — oltingugurt, kislorod, uglerod — ko‘pincha xira, qattig‘i mo‘rt va tokni yomon o‘tkazadi. Istisno: grafit nometall bo‘lsa ham tokni o‘tkazadi. [4] Moddani elektr zanjiriga ulasak va lampa yonsa, u tokni o‘tkazadi — bu metall ekanligining belgilaridan biri."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "$\\mathrm{H_2SO_4}$ molekulasida nechta atom bor?",
+    "ovoz": "[1] Birinchi misol. Sulfat kislota molekulasi — H ikki S O to‘rt — nechta atomdan iborat?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "H: 2;  S: 1 (indeks yo‘q);  O: 4\nJami: $2 + 1 + 4 = 7$ atom",
+    "ovoz": "[1] Har bir elementni alohida sanaymiz: vodorod ikkita, oltingugurt indeksi yo‘q — bitta, kislorod to‘rtta. [2] Qo‘shamiz: ikki, bir va to‘rt — jami yetti atom. Ko‘p o‘quvchi oltingugurtni sanashni unutib, olti deb javob beradi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "$3\\mathrm{CO_2}$: bitta molekulada $1 + 2 = 3$ atom\n3 molekulada: $3 \\cdot 3 = 9$ atom",
+    "ovoz": "[1] Endi koeffitsient bilan: uch C O ikki. Bitta karbonat angidrid molekulasida bir uglerod va ikki kislorod — uch atom. [2] Uchta molekulada esa uchni uchga ko‘paytiramiz — to‘qqiz atom."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "A idish: ●● ●● ●●  (bir xil atomlar juftlari)\nB idish: ●○ ●○ ●○  (har xil atomlar bog‘langan)\nC idish: ●● ●○ ●● ●○  (ikki xil zarracha)",
+    "ovoz": "[1] Ikkinchi misol — eng qiyin savol turi. Uchta idishdagi zarrachalar chizilgan. A idishda bir xil qora atomlar juft-juft bog‘langan. [2] B idishda har bir zarracha qora va oq atom bog‘lanishidan iborat, hamma zarrachalar bir xil. [3] C idishda esa ikki xil zarracha aralashib yuribdi. Har bir idishda element, birikma yoki aralashma bor?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "A: bir turdagi atomlar → ELEMENT\nB: bir xil molekulalar, har xil atomlar → BIRIKMA",
+    "ovoz": "[1] A idishda faqat bir turdagi atomlar — demak, bu element, molekulasi ikki atomli bo‘lsa ham. [2] B idishda hamma molekulalar bir xil va har biri har xil atomlardan tuzilgan — bu birikma, toza modda."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "C: ikki xil modda zarrachalari → ARALASHMA\nKalit savol: zarrachalar bir xilmi? atomlar bir xilmi?",
+    "ovoz": "[1] C idishda ikki xil modda zarrachalari bor — bu aralashma: element va birikma kimyoviy bog‘lanmasdan aralashgan. [2] Esda tuting, ikki savol yetarli: barcha zarrachalar bir xilmi va har bir zarrachadagi atomlar bir xilmi? Shu ikki savol bilan har qanday rasmni to‘g‘ri tasniflaysiz."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "$\\mathrm{C_6H_{12}O_6}$ (glukoza) molekulasida nechta atom bor?",
+    "ovoz": "[1] Endi o‘zingiz: glukoza molekulasi — C olti H o‘n ikki O olti — nechta atomdan iborat? Sonni yozing.",
+    "savol": "Sonni yozing",
+    "javob": "24"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Alyuminiy bankani ezdik. Atomlar soni o‘zgardimi?",
+    "ovoz": "[1] Yana bir savol: bo‘sh alyuminiy bankani ezib, yassi qilib qo‘ydik. Undagi alyuminiy atomlari soni ko‘paydimi, kamaydimi yoki o‘zgarmadimi?",
+    "savol": "ko‘paydi / kamaydi / o‘zgarmadi",
+    "javob": "o‘zgarmadi|o‘zgarmaydi|bir xil|bir xil qoldi"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Zarrachalar rasmida: bir xilmi? atomlar bir xilmi?\n2. Formulada har bir elementni alohida sanang\n3. Shakl o‘zgarsa, atomlar o‘zgarmaydi\n4. Metallni bir nechta xossa bilan tasdiqlang",
+    "ovoz": "[1] Birinchi: zarrachalar rasmi berilsa, ikki kalit savolni bering va element, birikma yoki aralashmani aniqlang. [2] Ikkinchi: formulada har bir element atomini alohida sanang, indekssiz elementni bitta deb unutmang. [3] Uchinchi: ezish, maydalash, eritish kabi fizik o‘zgarishda atomlar soni va turi o‘zgarmaydi. [4] To‘rtinchi: modda metallmi, aniqlashda bir nechta xossaga — yaltiroqlik, o‘tkazuvchanlik, bolg‘alanuvchanlikka tayaning."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Atom — eng kichik zarra; molekula — atomlar guruhi\nElement — bir xil atomlar; birikma — har xil, bog‘langan\nAralashma — bog‘lanmagan moddalar, fizik ajratiladi\nFormula: indeks — atomlar, koeffitsient — molekulalar",
+    "ovoz": "[1] Esda tuting: atom — elementning eng kichik zarrasi, molekula — bog‘langan atomlar guruhi. [2] Element bir turdagi atomlardan, birikma har xil atomlarning kimyoviy bog‘lanishidan tuzilgan. [3] Aralashmada moddalar bog‘lanmagan va fizik usulda ajratiladi. [4] Formulada indeks atomlar sonini, koeffitsient molekulalar sonini bildiradi. Bugun eng qiyin savolni ham yengdingiz, barakalla!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Atom — Lego g‘ishtchasi\nMolekula — g‘ishtchalardan yig‘ilgan shakl",
+     "ovoz": "Atomni Lego g‘ishtchasi, molekulani esa shu g‘ishtchalardan yig‘ilgan kichik shakl deb tasavvur qiling."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bir tomchi suvda ≈ 1 600 000 000 000 000 000 000 molekula\nShuning uchun ularni ko‘rmaymiz",
+     "ovoz": "Bitta suv tomchisida milliard-milliardlab, taxminan bir yarim sekstilliondan ortiq suv molekulasi bor. Ular shunchalik kichikki, eng kuchli oddiy mikroskopda ham ko‘rinmaydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Atirni xona burchagida ochsak,\nhidi butun xonaga tarqaladi — zarrachalar harakatda",
+     "ovoz": "Atir shishasini xona burchagida ochsangiz, bir ozdan keyin hidi butun xonaga tarqaladi. Bu modda mayda zarrachalardan tuzilganini va ular harakatlanishini ko‘rsatadi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Element: ●● ●●\nBirikma: ●○ ●○;  Aralashma: ●● ●○",
+     "ovoz": "Rasm bilan eslang: faqat bir xil sharchalar — element; har xil sharchalar bog‘langan va hammasi bir xil — birikma; har xil zarrachalar aralash — aralashma."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Oshxonada: shakar — birikma\nShakarli choy — aralashma",
+     "ovoz": "Oshxonada ko‘ring: shakar — uglerod, vodorod va kisloroddan tuzilgan birikma. Uni choyga solsangiz, shakarli choy — aralashma bo‘ladi, choyni bug‘latsangiz shakar qaytib qoladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Fizik usulda ajraladimi?\nHa → aralashma;  yo‘q → toza modda",
+     "ovoz": "Boshqa usul: modda fizik usulda — filtrlash, bug‘latish, magnit bilan ajraladimi? Ajralsa — aralashma, ajralmasa — toza modda, ya’ni element yoki birikma."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "$\\mathrm{H_2O}$ = H, H, O\nIndeks — nechta, belgi — qaysi atom",
+     "ovoz": "Formulani o‘qish oson: harf — qaysi atom, kichik son — nechta. H ikki O — ikkita vodorod va bitta kislorod."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Retsept: 2 ta tuxum, 1 stakan un\nFormula ham molekula «retsepti»",
+     "ovoz": "Formulani retsept deb o‘ylang: «ikki tuxum va bir stakan un» kabi, H ikki O ham «ikki vodorod va bir kislorod» degan retsept."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Har atomni doira qilib chizing:\n$\\mathrm{CO_2}$ → ○●○ → 3 ta doira",
+     "ovoz": "Har bir atomni doira qilib chizing va doiralarni sanang. C O ikki uchun uchta doira chiqadi — demak, uch atom."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Metall: yaltiraydi, tok o‘tkazadi\nNometall: ko‘pincha yo‘q",
+     "ovoz": "Qisqasi: metall yaltiraydi va tokni o‘tkazadi, nometall esa odatda bunday emas."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Elektr simi: ichi mis, usti plastmassa\nMis tok o‘tkazadi, plastmassa himoya qiladi",
+     "ovoz": "Uydagi elektr simiga qarang: ichida mis, ustida plastmassa. Mis metall — tokni o‘tkazadi, plastmassa esa o‘tkazmaydi va bizni tokdan saqlaydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Tajriba: batareya + lampa + modda\nLampa yondi → o‘tkazgich",
+     "ovoz": "Kichik tajriba: batareya, lampa va tekshiriladigan moddani zanjirga ulang. Mix yoki tanga ulanganda lampa yonadi, yog‘och yoki rezina ulanganda yonmaydi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "$\\mathrm{O_2}$ yoki $\\mathrm{N_2}$ ni birikma deb hisoblash — ular bir turdagi atomlardan tuzilgan elementlar",
+   "Formulada indekssiz elementni sanamaslik (masalan, $\\mathrm{H_2SO_4}$ da 6 atom deyish)",
+   "Har xil zarrachalar aralashmasini birikma deb o‘ylash",
+   "Moddani ezganda yoki maydalaganda atomlar soni o‘zgaradi deb o‘ylash",
+   "Faqat yaltiroqlikka qarab metall deb qaror qilish"
+  ],
+  "strategiyalar": [
+   "Zarrachalar rasmida ikki savol bering: zarrachalar bir xilmi, atomlar bir xilmi",
+   "Formulada har bir elementni alohida sanab, keyin qo‘shing",
+   "Koeffitsient bo‘lsa, bitta molekuladagi atomlar sonini unga ko‘paytiring",
+   "Metallni bir nechta xossaga tayanib aniqlang"
+  ],
+  "kalit_sozlar": [
+   "element",
+   "birikma",
+   "aralashma",
+   "atom",
+   "molekula",
+   "kimyoviy formula",
+   "metall",
+   "nometall"
+  ]
+ },
+ {
+  "kod": "XB-S8-XOS",
+  "mavzu": "S8-XOS",
+  "sarlavha": "Moddalar xossalari",
+  "maqsad": "Moddalarning fizik va kimyoviy xossalarini farqlash, eruvchanlik jadvali bilan hisoblash, kislota va asoslarni pH bo‘yicha aniqlash, neytrallanish va suvning muzlaganda kengayishini tushuntirish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Nega qishda suv quvurlari yorilib ketadi?\nTIMSS: 8-sinflarning o‘rtacha 50% i to‘g‘ri yechgan",
+    "ovoz": "[1] Nega qattiq sovuqda suv quvurlari yorilib ketadi, toshlar esa yillar davomida yoriladi? Bugun moddalarning xossalarini o‘rganib, javob topamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha ellik foiz o‘quvchi to‘g‘ri yechgan — ya’ni har ikkinchi o‘quvchi. Siz bugun ishonchli yechadiganlar safiga qo‘shilasiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Fizik va kimyoviy xossalar",
+    "doska": "Fizik xossa: rang, zichlik, erish va qaynash harorati\neruvchanlik, elektr va issiqlik o‘tkazuvchanlik\nKimyoviy xossa: yonuvchanlik, kislota bilan reaksiya",
+    "ovoz": "[1] Fizik xossalar moddani o‘zgartirmasdan aniqlanadi: rang, hid, zichlik, erish va qaynash harorati. [2] Eruvchanlik, elektr va issiqlik o‘tkazuvchanlik ham fizik xossalar. [3] Kimyoviy xossa esa moddaning boshqa moddaga aylanish qobiliyati: masalan, yonuvchanlik yoki kislota bilan reaksiyaga kirishishi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Eritma va eruvchanlik",
+    "doska": "Eritma = erituvchi (suv) + erigan modda (tuz)\nEruvchanlik: 100 g suvda eriy oladigan eng ko‘p massa\nKo‘p qattiq moddalar: harorat ↑ → eruvchanlik ↑\nGazlar: harorat ↑ → eruvchanlik ↓",
+    "ovoz": "[1] Eritma — erituvchi va erigan moddaning bir jinsli aralashmasi, masalan, suvdagi tuz eritmasi. [2] Eruvchanlik — ma’lum haroratda yuz gramm suvda eriy oladigan moddaning eng ko‘p massasi. [3] Ko‘pchilik qattiq moddalarning eruvchanligi harorat oshganda ortadi. [4] Gazlarda esa aksincha: iliq suvda gaz kamroq eriydi, shuning uchun gazli suv iliqda tezroq «gazsizlanadi»."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Kislota, asos va pH",
+    "doska": "pH shkalasi: 0 ... 7 ... 14\npH < 7 — kislota: sirka, limon sharbati\npH = 7 — neytral: toza suv;  pH > 7 — asos: ammiak eritmasi\nKislota + asos → tuz + suv (neytrallanish)",
+    "ovoz": "[1] Eritmaning kislotali yoki ishqoriyligini pH shkalasi ko‘rsatadi: u noldan o‘n to‘rtgacha. [2] pH yettidan kichik bo‘lsa — kislotali muhit: sirka, limon sharbati. Kislotalar nordon ta’mli, lakmusni qizartiradi. [3] pH yetti — neytral, masalan, toza suv. Yettidan katta bo‘lsa — ishqoriy muhit: ammiak eritmasi, sovunli suv. Ular lakmusni ko‘kartiradi. [4] Kislota va asos o‘zaro ta’sirlashib, tuz va suv hosil qiladi — bu neytrallanish reaksiyasi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Suvning ajoyib xossasi",
+    "doska": "Suv muzlaganda kengayadi: hajmi ≈9% ortadi\nMuz zichligi $0{,}92$ g/sm³ < suv zichligi 1 g/sm³\nYoriqdagi suv muzlab, toshni yoradi",
+    "ovoz": "[1] Ko‘pchilik moddalar sovuganda torayadi, suv esa muzlaganda kengayadi: muzning hajmi suvnikidan taxminan to‘qqiz foiz katta. [2] Shuning uchun muzning zichligi taxminan nol butun to‘qson ikki gramm santimetr kub, suvnikidan kichik, va muz suvda suzadi. [3] Tosh yorig‘iga tushgan suv muzlab kengayadi va yoriqni kattalashtiradi. Bu takrorlanaverib, tosh parchalanadi — bu fizik yemirilish."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Sirka (pH = 3) ga asta-sekin ammiak eritmasi quyiladi\nAmmiak eritmasining pH i = 11. pH qanday o‘zgaradi?",
+    "ovoz": "[1] Birinchi misol. Stakandagi sirkaning pH i uchga teng. Unga asta-sekin ammiak eritmasi quyilmoqda. [2] Ammiak eritmasining pH i o‘n bir. Aralashmaning pH i qanday o‘zgaradi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Asos kislotani neytrallaydi → pH oshib boradi\nYetarli quyilsa pH ≈ 7; ortiqcha quyilsa pH > 7",
+    "ovoz": "[1] Ammiak eritmasi — asos, u sirkadagi kislotani neytrallaydi, shuning uchun pH asta-sekin oshib boradi. [2] Yetarli miqdorda quyilganda pH yettiga yaqinlashadi, ortiqcha quyilsa esa yettidan oshib, muhit ishqoriy bo‘ladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Javob: pH 3 dan oshib boradi, 7 ga yaqinlashadi",
+    "ovoz": "[1] Javob: pH uchdan boshlab ortadi va yettiga yaqinlashadi. Muhim: pH hech qachon o‘n birdan oshmaydi, chunki eng ishqoriy suyuqlik — quyilayotgan ammiak eritmasining o‘zi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "$\\mathrm{KNO_3}$ eruvchanligi (g / 100 g suv):\n20 °C — 32 g;  40 °C — 64 g;  60 °C — 110 g\n40 °C da 100 g suvga 80 g $\\mathrm{KNO_3}$ solindi",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. Kaliy nitratning eruvchanligi jadvalda berilgan. [2] Yigirma darajada o‘ttiz ikki gramm, qirq darajada oltmish to‘rt gramm, oltmish darajada bir yuz o‘n gramm eriydi. [3] Qirq darajadagi yuz gramm suvga sakson gramm kaliy nitrat solindi. Hammasi eriydimi? Keyin eritma yigirma darajagacha sovitilsa, nima bo‘ladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "40 °C da faqat 64 g eriydi: $80 - 64 = 16$ g erimaydi\nEritma to‘yingan: 64 g erigan",
+    "ovoz": "[1] Qirq darajada ko‘pi bilan oltmish to‘rt gramm eriydi, demak, sakson ayirish oltmish to‘rt — o‘n olti gramm idish tubida erimay qoladi. [2] Bu eritma to‘yingan: unda shu haroratda eriy oladigan eng ko‘p modda — oltmish to‘rt gramm erigan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "20 °C da 32 g eriydi: $64 - 32 = 32$ g kristall tushadi\nJami cho‘kmada: $16 + 32 = 48$ g",
+    "ovoz": "[1] Yigirma darajagacha sovitilsa, eritmada faqat o‘ttiz ikki gramm qola oladi. Oltmish to‘rt ayirish o‘ttiz ikki — yana o‘ttiz ikki gramm kristall bo‘lib cho‘kadi. [2] Jami idish tubida o‘n olti qo‘shuv o‘ttiz ikki — qirq sakkiz gramm qattiq modda bo‘ladi. Jadvalni bosqichma-bosqich o‘qish — muvaffaqiyat kaliti."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Limon sharbatining pH i 2. U kislotami yoki asos?",
+    "ovoz": "[1] Endi o‘zingiz: limon sharbatining pH i ikkiga teng. U kislotami yoki asosmi? Bir so‘z bilan yozing.",
+    "savol": "Bir so‘z bilan yozing: kislota yoki asos",
+    "javob": "kislota|kislotali|kislotali muhit"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "60 °C da 50 g suvda ko‘pi bilan necha g $\\mathrm{KNO_3}$ eriydi?",
+    "ovoz": "[1] Yana bir savol: jadvalga ko‘ra oltmish darajada ellik gramm suvda ko‘pi bilan necha gramm kaliy nitrat eriydi? Sonni yozing.",
+    "savol": "Sonni yozing (gramm)",
+    "javob": "55|55 g|55 gramm"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Jadval/grafikda birlikni o‘qing: «100 g suvda»\n2. Suv boshqa massada bo‘lsa — proporsiya tuzing\n3. pH: 7 dan kichik — kislota, katta — asos\n4. Hodisani zarrachalar va xossa bilan tushuntiring",
+    "ovoz": "[1] Birinchi: eruvchanlik jadvali yoki grafigida birlikni o‘qing — qiymat odatda yuz gramm suv uchun berilgan. [2] Ikkinchi: suv yuz grammdan farq qilsa, qiymatni proporsional kamaytiring yoki oshiring. [3] Uchinchi: pH savolida yettini chegara qilib oling va neytrallanishda pH yettiga yaqinlashishini eslang. [4] To‘rtinchi: «nega» savoliga xossani aniq ayting: masalan, suv muzlaganda kengayadi, shuning uchun tosh yoriladi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Fizik xossa — modda o‘zgarmaydi; kimyoviy — yangi modda\nEruvchanlik — 100 g suvda; harorat bilan ko‘pincha ortadi\npH < 7 kislota, = 7 neytral, > 7 asos\nSuv muzlab kengayadi — muz suzadi, tosh yoriladi",
+    "ovoz": "[1] Esda tuting: fizik xossani aniqlashda modda o‘zgarmaydi, kimyoviy xossa esa yangi moddaga aylanish bilan bog‘liq. [2] Eruvchanlik yuz gramm suv uchun beriladi va ko‘p qattiq moddalarda harorat bilan ortadi. [3] pH yettidan kichik — kislota, yetti — neytral, kattasi — asos; kislota va asos bir-birini neytrallaydi. [4] Suv muzlaganda kengayadi: shuning uchun muz suzadi va toshlar yoriladi. Bugun a’lo ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Fizik: qarash, o‘lchash bilan bilinadi\nKimyoviy: modda o‘zgarganda bilinadi",
+     "ovoz": "Oddiy farq: fizik xossani qarab yoki o‘lchab bilasiz, kimyoviy xossani esa modda boshqa moddaga aylanganda bilasiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Qog‘oz oq va yengil — fizik xossa\nQog‘oz yonadi — kimyoviy xossa",
+     "ovoz": "Daftar varag‘ini oling: uning oq rangi va yengilligi — fizik xossa. Lekin u yonib kulga aylanishi mumkin — bu uning kimyoviy xossasi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Savol bering: yangi modda paydo bo‘ldimi?\nYo‘q → fizik;  ha → kimyoviy",
+     "ovoz": "Har gal o‘zingizdan so‘rang: shu xossani tekshirganda yangi modda paydo bo‘ldimi? Bo‘lmagan bo‘lsa — fizik, bo‘lsa — kimyoviy."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Issiq choyda shakar tez va ko‘p eriydi\nSovuq choyda kam eriydi",
+     "ovoz": "Issiq choyda shakar tez va ko‘p eriydi, sovuq choyda esa tubida qolib ketadi — harorat oshsa, eruvchanlik ortadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Gazli ichimlikni quyoshda qoldirdik\nOchganda ko‘pirib, gazi chiqib ketdi",
+     "ovoz": "Sardor gazli ichimlikni quyoshda qoldirdi. Ochganda u ko‘pirib, gazi tez chiqib ketdi — chunki iliq suyuqlikda gaz kam eriydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "To‘yingan eritma — «to‘lgan avtobus»\nYangi yo‘lovchi sig‘maydi",
+     "ovoz": "To‘yingan eritmani to‘la avtobusga o‘xshating: unga boshqa yo‘lovchi sig‘maydi, ortiqcha modda esa tubida erimay qoladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Nordon → kislota\nSovunsimon → asos\nToza suv → neytral",
+     "ovoz": "Kundalik misollardan eslang: nordon narsalar — kislota, sovunsimon sirpanchiq narsalar — asos, toza suv — neytral. Lekin hech qachon kimyoviy moddalarni tatib ko‘rmang!"
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Chumoli chaqsa — kislota\nNashatir spirti surtiladi — asos neytrallaydi",
+     "ovoz": "Chumoli chaqqanda teriga chumoli kislotasi tushadi va achishadi. Ba’zan u joyga suyultirilgan nashatir spirti — ammiak eritmasi surtiladi: asos kislotani neytrallaydi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Indikator: lakmus qog‘oz\nqizil → kislota;  ko‘k → asos",
+     "ovoz": "Indikator bilan aniqlang: lakmus qog‘oz kislotada qizaradi, asosda ko‘karadi. Universal indikator esa pH qiymatini rangiga qarab ko‘rsatadi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Suv → muz: hajm kattalashadi\nShuning uchun muz suvda suzadi",
+     "ovoz": "Suv muzga aylanganda hajmi kattalashadi va yengilroq bo‘ladi, shuning uchun muz suv yuzida suzadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Muzlatgichdagi to‘la shisha idish yorildi\nMuzlagan suv kengaygan edi",
+     "ovoz": "Onam to‘la shisha idishdagi suvni muzlatgichga qo‘yib unutibdi. Ertasi kuni idish yorilib ketgan edi — muzlagan suv kengayib, shishani yorib yuborgan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ko‘l qishda ustidan muzlaydi\nMuz ostida baliqlar tirik qoladi",
+     "ovoz": "Tabiatda ko‘ring: ko‘l qishda ustki qismidan muzlaydi, chunki muz yengil. Muz qatlami ostida esa suv suyuq qoladi va baliqlar qishlay oladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Eruvchanlik jadvali 100 g suv uchun ekanini unutib, boshqa massada ham shu sonni ishlatish",
+   "Barcha moddalar, jumladan gazlar ham, issiqda ko‘proq eriydi deb o‘ylash",
+   "Neytrallanishda pH ammiak eritmasining pH idan ham oshib ketadi deb o‘ylash",
+   "Suv muzlaganda torayadi deb hisoblash — aslida kengayadi",
+   "Erish yoki eritishni kimyoviy xossa deb hisoblash"
+  ],
+  "strategiyalar": [
+   "Jadval va grafikda avval birlik va sharoitni o‘qing",
+   "Ko‘p bosqichli hisobni qadam-baqadam yozing: erigan, erimagan, cho‘kkan",
+   "pH savolida 7 ni chegara qilib oling",
+   "«Nega» savoliga xossani va uning oqibatini birga yozing"
+  ],
+  "kalit_sozlar": [
+   "xossa",
+   "eritma",
+   "kislota",
+   "asos",
+   "metall",
+   "eruvchanlik",
+   "pH",
+   "zichlik"
+  ]
+ },
+ {
+  "kod": "XB-S8-REA",
+  "mavzu": "S8-REA",
+  "sarlavha": "Kimyoviy o‘zgarishlar",
+  "maqsad": "Fizik va kimyoviy hodisalarni farqlash, kimyoviy reaksiya belgilarini aniqlash, massaning saqlanish qonunini qo‘llash, ekzotermik va endotermik jarayonlarni hamda yonish shartlarini tushuntirish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Sirkaga soda solsak, nega ko‘piradi?\nTIMSS: 8-sinflarning o‘rtacha 43% i to‘g‘ri yechgan",
+    "ovoz": "[1] Oshxonada sirkaga ichimlik sodasini solsangiz, u shiddat bilan ko‘piradi. Bu nima — sehrmi? Yo‘q, bu kimyoviy reaksiya! [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha o‘rtacha qirq uch foiz o‘quvchi to‘g‘ri yechgan. Reaksiya belgilari va energiya haqidagi savollar ayniqsa qiyin bo‘lgan — biz ularni puxta o‘rganamiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "Fizik va kimyoviy hodisalar",
+    "doska": "Fizik hodisa: modda o‘zgarmaydi — erish, muzlash, maydalash\nKimyoviy hodisa: YANGI modda hosil bo‘ladi\nMisollar: yonish, zanglash, ovqat chirishi, non pishishi",
+    "ovoz": "[1] Fizik hodisada modda o‘zligicha qoladi, faqat holati yoki shakli o‘zgaradi: muzning erishi, shakarning suvda erishi, qog‘ozni yirtish. [2] Kimyoviy hodisa, ya’ni kimyoviy reaksiyada yangi xossali yangi modda hosil bo‘ladi. [3] Masalan, yog‘ochning yonishi, temirning zanglashi, ovqatning aynishi — bularning hammasi kimyoviy hodisalar."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Kimyoviy reaksiya belgilari",
+    "doska": "Gaz ajralishi (pufaklar) va rang o‘zgarishi\nCho‘kma tushishi, hid paydo bo‘lishi\nIssiqlik yoki yorug‘lik ajralishi yoki yutilishi\nDiqqat: qaynayotgan suvdagi pufak — fizik hodisa!",
+    "ovoz": "[1] Kimyoviy reaksiya belgilari: gaz ajralishi, ya’ni pufakchalar paydo bo‘lishi, va rangning o‘zgarishi. [2] Eritmada cho‘kma tushishi yoki yangi hid paydo bo‘lishi ham reaksiya belgisi. [3] Issiqlik yoki yorug‘lik chiqishi, yoki aksincha, aralashmaning sovishi ham reaksiya borayotganini bildiradi. [4] Lekin ehtiyot bo‘ling: qaynayotgan suvdagi pufaklar — bu suv bug‘i, yangi modda emas. Shuning uchun bitta belgiga emas, yangi modda paydo bo‘lganiga qarang."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Massaning saqlanish qonuni",
+    "doska": "Reagentlar → mahsulotlar\nAtomlar yo‘qolmaydi, yangidan paydo bo‘lmaydi\nReagentlar massasi = mahsulotlar massasi",
+    "ovoz": "[1] Reaksiyaga kirishuvchi moddalar — reagentlar, hosil bo‘lgan moddalar esa mahsulotlar deyiladi. [2] Reaksiyada atomlar yo‘qolmaydi va yo‘qdan paydo bo‘lmaydi, ular faqat qayta guruhlanadi. [3] Shuning uchun reaksiyaga kirishgan moddalar massasi hosil bo‘lgan moddalar massasiga teng — bu massaning saqlanish qonuni, uni Lomonosov va Lavuazye kashf etgan."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q4",
+    "sarlavha": "Reaksiya va energiya",
+    "doska": "Ekzotermik: issiqlik AJRALADI — yonish, nafas, zanglash\nEndotermik: energiya YUTILADI — fotosintez, ohaktosh\nYonish uchun: yonuvchi modda + kislorod + yuqori harorat\nBittasi yo‘qolsa, olov o‘chadi: adyol kislorodni to‘sadi",
+    "ovoz": "[1] Ekzotermik reaksiyalarda issiqlik ajraladi: yonish, hujayraviy nafas, temirning zanglashi. [2] Endotermik reaksiyalarda energiya yutiladi: fotosintez yorug‘lik energiyasini yutadi, ohaktosh esa qizdirilgandagina parchalanadi. [3] Yonish uchun uchta shart kerak: yonuvchi modda, kislorod va alangalanish haroratigacha qizish. [4] Bittasini yo‘qotsak, olov o‘chadi. Masalan, yonayotgan narsani qalin adyol bilan yopsak, kislorod kirmay qoladi va olov o‘chadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol",
+    "doska": "Ochiq stakanda: sirka + soda = 200 g\nKo‘pirish tugagach tarozi: 198 g. Nega?",
+    "ovoz": "[1] Birinchi misol. Ochiq stakandagi sirka va unga solinadigan soda birgalikda tarozida ikki yuz gramm keldi. [2] Ko‘pirish tugagach, tarozi bir yuz to‘qson sakkiz grammni ko‘rsatdi. Massa qayoqqa ketdi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Pufaklar — $\\mathrm{CO_2}$ gazi: reaksiya mahsuloti\nOchiq stakandan gaz havoga chiqib ketdi: 2 g",
+    "ovoz": "[1] Pufakchalar — karbonat angidrid gazi: u reaksiyada hosil bo‘lgan yangi modda, demak, bu kimyoviy reaksiya. [2] Stakan ochiq bo‘lgani uchun bu gaz havoga chiqib ketdi — yo‘qolgan ikki gramm aynan shu gaz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Yopiq idishda tarozi o‘zgarmaydi: 200 g\nJavob: massa saqlanadi, gaz chiqib ketgan",
+    "ovoz": "[1] Agar tajriba yopiq idishda o‘tkazilsa, gaz chiqib keta olmaydi va tarozi ikki yuz grammligicha qoladi. [2] Javob: massa yo‘qolmadi, u gaz holida havoga chiqdi. Massaning saqlanish qonuni buzilmaydi!"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol (mulohaza)",
+    "doska": "A) muz erishi;  B) shamning yonishi\nC) temirning zanglashi;  D) shakarning suvda erishi\nQaysilari kimyoviy? Qaysilarida energiya ajraladi?",
+    "ovoz": "[1] Ikkinchi misol — mulohaza talab qiladi. To‘rt jarayon berilgan: muzning erishi va shamning yonishi. [2] Shuningdek, temirning zanglashi va shakarning suvda erishi. [3] Savol: qaysilari kimyoviy reaksiya va qaysilarida energiya ajralib chiqadi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "A, D — fizik: yangi modda yo‘q\nB, C — kimyoviy: $\\mathrm{CO_2}$, suv, zang hosil bo‘ladi",
+    "ovoz": "[1] Muz erisa ham suv, shakar erisa ham shakar qoladi — bular fizik hodisalar. [2] Sham yonganda karbonat angidrid va suv, temir zanglaganda esa zang hosil bo‘ladi — bular kimyoviy reaksiyalar."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Energiya ajraladi: B (issiqlik, yorug‘lik), C (sekin)\nA — energiya yutadi: muz erishi uchun issiqlik kerak",
+    "ovoz": "[1] Energiya B da issiqlik va yorug‘lik bo‘lib tez ajraladi, C da esa juda sekin, sezilmas darajada issiqlik ajraladi. [2] Muzning erishi esa aksincha, issiqlikni yutadi — shuning uchun muz atrofni sovutadi. Energiya savolida yonish va zanglash ekzotermik ekanini yodda tuting."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Gulxanni tuproq bilan ko‘mdik. Qaysi gaz kirishi to‘xtadi?",
+    "ovoz": "[1] Endi o‘zingiz: gulxanni tuproq bilan ko‘mganimizda olov o‘chdi. Qaysi gaz kirishi to‘xtagani uchun? Gaz nomini yozing.",
+    "savol": "Gaz nomini yozing",
+    "javob": "kislorod|kislorod gazi"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Yonish — ekzotermikmi yoki endotermik reaksiya?",
+    "ovoz": "[1] Yana bir savol: yonish issiqlik ajratadigan, ya’ni ekzotermik reaksiyami yoki issiqlik yutadigan endotermik reaksiyami? Bir so‘z bilan yozing.",
+    "savol": "ekzotermik yoki endotermik",
+    "javob": "ekzotermik|ekzotermik reaksiya"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Asosiy savol: yangi modda hosil bo‘ldimi?\n2. Belgilar: gaz, rang, cho‘kma, hid, issiqlik\n3. Massa kamaysa — gaz chiqib ketganini qidiring\n4. Issiqlik ajralsa — ekzo, yutilsa — endo",
+    "ovoz": "[1] Birinchi: har qanday o‘zgarishda o‘zingizdan so‘rang — yangi modda hosil bo‘ldimi? Shunda fizik yoki kimyoviy ekanini bilasiz. [2] Ikkinchi: kuzatish savolida reaksiya belgilari ro‘yxatini eslang va qaysi biri kuzatilganini toping. [3] Uchinchi: ochiq idishda massa kamaysa, gaz chiqib ketgan; yopiq idishda massa o‘zgarmaydi. [4] To‘rtinchi: atrof isisa — ekzotermik, sovisa — endotermik. Yonishda doim energiya ajraladi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Kimyoviy hodisa = yangi modda hosil bo‘lishi\nBelgilar: gaz, rang, cho‘kma, hid, issiqlik, yorug‘lik\nMassa saqlanadi: atomlar faqat qayta guruhlanadi\nYonish — ekzotermik; bitta shart yo‘qolsa, olov o‘chadi",
+    "ovoz": "[1] Esda tuting: kimyoviy hodisada yangi modda hosil bo‘ladi, fizik hodisada esa modda o‘zgarmaydi. [2] Reaksiya belgilari — gaz, rang o‘zgarishi, cho‘kma, hid, issiqlik va yorug‘lik. [3] Reaksiyada massa saqlanadi, chunki atomlar faqat qayta guruhlanadi. [4] Yonish ekzotermik reaksiya va uning uchta shartidan birini yo‘qotsak, olov o‘chadi. Ajoyib ishladingiz, endi siz yosh kimyogarsiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Fizik — shakl o‘zgaradi\nKimyoviy — modda o‘zgaradi",
+     "ovoz": "Oddiy farq: fizik hodisada faqat shakl yoki holat o‘zgaradi, kimyoviy hodisada esa moddaning o‘zi boshqa moddaga aylanadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Muzqaymoq eridi — yana muzlatsa bo‘ladi\nTuxum pishdi — xom holiga qaytmaydi",
+     "ovoz": "Muzqaymoq erib ketsa, uni qayta muzlatish mumkin — modda o‘sha-o‘sha. Tuxumni qovursangiz esa u hech qachon xom holiga qaytmaydi, chunki oqsil yangi moddaga aylangan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Tekshiruv: xossalar o‘zgardimi?\nRang, hid, yonuvchanlik yangicha → kimyoviy",
+     "ovoz": "Tekshirib ko‘ring: hosil bo‘lgan narsaning rangi, hidi, yonuvchanligi butunlay yangicha bo‘lsa, bu kimyoviy hodisa."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "5 ta belgi: gaz, rang, cho‘kma, hid, issiqlik\nBelgi + yangi modda = reaksiya",
+     "ovoz": "Beshta belgini eslang: gaz, rang, cho‘kma, hid va issiqlik. Ammo asosiysi — yangi modda paydo bo‘lishi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kesilgan olma qorayadi\nRang o‘zgarishi — reaksiya belgisi",
+     "ovoz": "Olmani kesib qo‘ysangiz, bir ozdan keyin kesilgan joyi qorayadi. Olma moddalari havodagi kislorod bilan reaksiyaga kirishgan — rang o‘zgarishi shuning belgisi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Juft tajriba: suv qaynashi va soda + sirka\nIkkalasida pufak, lekin faqat biri reaksiya",
+     "ovoz": "Ikki tajribani solishtiring: qaynayotgan suvda ham, soda va sirkada ham pufak chiqadi. Lekin suvdagi pufak — oddiy suv bug‘i, sodadagisi esa yangi gaz — karbonat angidrid."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Lego qasrini buzib, mashina yasadik\nG‘ishtchalar soni o‘zgarmadi",
+     "ovoz": "Lego qasrini buzib, shu g‘ishtchalardan mashina yasasangiz, g‘ishtchalar soni o‘zgarmaydi. Reaksiyada atomlar ham xuddi shunday qayta yig‘iladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Gulxan yonib, ozgina kul qoldi\nQolgan massa gaz va bug‘ bo‘lib havoga ketdi",
+     "ovoz": "Katta gulxan yonib tugagach, ozgina kul qoladi. Massa yo‘qolmadi — uning ko‘p qismi karbonat angidrid va suv bug‘i bo‘lib havoga ko‘tarildi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Atomlarni sanang: $\\mathrm{C + O_2 \\rightarrow CO_2}$\nChapda: 1 C, 2 O;  o‘ngda: 1 C, 2 O",
+     "ovoz": "Atomlarni sanab tekshiring: uglerod kislorod bilan yonganda chap tomonda bitta uglerod va ikkita kislorod, o‘ng tomonda ham xuddi shunday. Atomlar teng — massa ham teng."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Ekzo — tashqariga (issiqlik chiqadi)\nEndo — ichkariga (issiqlik yutiladi)",
+     "ovoz": "So‘zning o‘zi yordam beradi: «ekzo» — tashqariga, ya’ni issiqlik chiqadi; «endo» — ichkariga, ya’ni issiqlik yutiladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Oshxonada yog‘ yonib ketdi\nOna qopqoq bilan yopdi — olov o‘chdi",
+     "ovoz": "Bir kuni tovadagi yog‘ alangalanib ketdi. Onam shoshilmasdan tova ustini qopqoq bilan yopdi va olov o‘chdi — kislorod kirmay qoldi. Yonayotgan yog‘ga hech qachon suv sepmang!"
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Yong‘in uchburchagi: yonilg‘i — kislorod — harorat\nBir tomoni olinsa, uchburchak buziladi",
+     "ovoz": "Uchburchak chizing: uch tomoni — yonilg‘i, kislorod va harorat. Bitta tomonni olib tashlasangiz, uchburchak buziladi va olov o‘chadi: suv sovutadi, adyol kislorodni to‘sadi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Har qanday pufak chiqishini kimyoviy reaksiya deb o‘ylash — qaynashda pufak suv bug‘i",
+   "Shakarning suvda erishini kimyoviy reaksiya deb hisoblash",
+   "Ochiq idishda massa kamaysa, massa yo‘qoldi deb o‘ylash — gaz chiqib ketgan",
+   "Yonishda energiya yutiladi deb o‘ylash — yonish ekzotermik",
+   "Adyol olovni «bosib» o‘chiradi deb o‘ylash — u kislorodni to‘sadi"
+  ],
+  "strategiyalar": [
+   "Har bir o‘zgarishda «yangi modda hosil bo‘ldimi?» deb so‘rang",
+   "Kuzatish savolida reaksiya belgilari ro‘yxatidan foydalaning",
+   "Massa o‘zgarsa, idish ochiq yoki yopiqligini tekshiring",
+   "Energiya savolida atrof isiydimi yoki soviydimi — shunga qarang"
+  ],
+  "kalit_sozlar": [
+   "reaksiya",
+   "yonish",
+   "oksidlanish",
+   "kimyoviy hodisa",
+   "fizik hodisa",
+   "massaning saqlanish qonuni",
+   "ekzotermik",
+   "endotermik"
+  ]
+ }
+]
