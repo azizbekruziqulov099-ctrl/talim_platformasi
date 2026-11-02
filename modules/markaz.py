@@ -175,6 +175,37 @@ def create_router(platform):
             cur.close(); conn.close()
         return {"id": yid}
 
+    @router.get("/api/markaz/daraja/savollar")
+    def daraja_savollar(til: str = "en"):
+        from modules.markaz_daraja import savollar
+        q = savollar(til)
+        if not q:
+            raise HTTPException(404, "Bu til uchun daraja testi tez orada")
+        return {"til": til, "savollar": q}
+
+    class _DarajaJavob(BaseModel):
+        token: str
+        yozilish_id: int
+        til: str = "en"
+        javoblar: dict
+
+    @router.post("/api/markaz/daraja/natija")
+    def daraja_natija(s: _DarajaJavob):
+        uid = platform._jwt_tekshir(s.token)
+        from modules.markaz_daraja import baholash
+        n = baholash(s.til, s.javoblar or {})
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("UPDATE markaz_yozilish SET daraja=%s WHERE id=%s AND user_id=%s RETURNING id", (n["daraja"], s.yozilish_id, uid))
+            if not cur.fetchone():
+                raise HTTPException(404, "Kurs topilmadi")
+            cur.execute("INSERT INTO markaz_faollik (yozilish_id, turi, foiz) VALUES (%s,'daraja',%s)", (s.yozilish_id, max(n["foiz"].values() or [0])))
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        return n
+
     @router.get("/api/markaz/men")
     def men(token: str):
         uid = platform._jwt_tekshir(token)

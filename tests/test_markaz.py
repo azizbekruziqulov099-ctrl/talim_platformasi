@@ -32,3 +32,15 @@ def test_haftada_ikki_va_erkin():
 
 def test_katalog():
     assert IMTIHONLAR["toefl"]["shkala"].startswith("1–6") and "en" in IMTIHONLAR["milliy_cefr"]["tillar"]
+
+
+def test_daraja_testi():
+    from modules.markaz_daraja import EN, baholash, savollar
+    assert len(EN) == 40 and all("javob" not in q for q in savollar("en"))
+    assert len({q["id"] for q in EN}) == 40 and all(0 <= q["javob"] < len(q["variantlar"]) for q in EN)
+    togri = {q["id"]: q["javob"] for q in EN if q["daraja"] in ("A1", "A2", "B1")}
+    n = baholash("en", togri)
+    assert n["daraja"] == "B1" and n["keyingi"] == "B2"
+    assert baholash("en", {})["daraja"] == "A0"
+    hammasi = {q["id"]: q["javob"] for q in EN}
+    assert baholash("en", hammasi)["daraja"] == "C1"
