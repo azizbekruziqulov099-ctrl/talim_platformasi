@@ -147,7 +147,14 @@ def _yamoq(nom, poza, nomi):
     return Image.open(p).convert("RGBA"), tuple(joy)
 
 
+# REV295: «yaqin» (katta yuz) pozasida rassom yamoqlarining joyi noto'g'ri (og'iz yonoqda, bitta ko'z yumiladi) —
+# bu pozada yamoq qo'yilmaydi; rejissor gapirish uchun og'zi to'g'ri qimirlaydigan pozani (tik, salom, ko'rsat) tanlaydi
+YAMOQSIZ_POZA = {"yaqin"}
+
+
 def variant_bormi(nom, poza):
+    if poza in YAMOQSIZ_POZA:
+        return False
     m = meta(nom)
     return bool(m and poza in m and (m[poza].get("yamoq") or {}).get("ogiz_B") is not None and _variant_yoli(nom, f"{poza}_ogiz_B"))
 
@@ -155,13 +162,21 @@ def variant_bormi(nom, poza):
 # REV204: yumshoq rejim — og'iz va ko'z o'zgarishi sezilar-sezilmas (rassom yamog'i asl rasm bilan aralashtiriladi)
 OGIZ_KUCH = {"A": 1.0, "B": 1.0, "D": 1.0, "E": 1.0}   # aralashtirish «ikki qavat» lab beradi — rassom chizgani o'zi
 KOZ_KUCH = {"koz_yarim": 1.0, "koz_yumuq": 1.0}
+# REV295: rassomning ko'z yamog'i noto'g'ri (bitta ko'z yumiladi yoki ko'z siljigan) — bu pozalarda ustoz ko'z yummaydi
+KOZ_YOQ = {("yaqin", "*"), ("*", "sarah"), ("*", "svetlana")}
 
 
 def _qoy(im, yamoq, kuch):
     """Yamoqni kuch (0..1) bilan qo'yadi: 1 — rassom chizgani to'liq, 0.5 — asl bilan yarmi."""
     patch, joy = yamoq
+    # REV295: yamoq shaffofligi hisobga olinadi — faqat og'iz/ko'z o'zgargan joy qo'yiladi (to'rtburchak chegara chiqmaydi)
+    if patch.mode == "RGBA" and im.mode == "RGBA":
+        if kuch < 0.999:
+            a = patch.getchannel("A").point(lambda v: int(v * kuch)); patch = patch.copy(); patch.putalpha(a)
+        im.alpha_composite(patch, (int(joy[0]), int(joy[1])))
+        return
     if kuch >= 0.999:
-        im.paste(patch, joy)
+        im.paste(patch, joy, patch if patch.mode == "RGBA" else None)
         return
     asl = im.crop((joy[0], joy[1], joy[0] + patch.width, joy[1] + patch.height))
     im.paste(Image.blend(asl, patch, kuch), joy)
@@ -176,14 +191,14 @@ def holat_v(nom, poza, ogiz, yumuq10, balandlik):
         return None
     im = _asl(nom, poza).copy()
     lm = np.array(m[poza]["lm"], dtype=np.float32) if m[poza].get("lm") and not m[poza].get("lm_taxminiy") else None   # REV262: yangi ustozlarda — faqat rassom yamoqlari
-    v = OGIZ_VARIANT.get(ogiz)
+    v = OGIZ_VARIANT.get(ogiz) if poza not in YAMOQSIZ_POZA else None
     if v:
         y = _yamoq(nom, poza, f"ogiz_{v}")
         if y:
             _qoy(im, y, OGIZ_KUCH.get(v, 0.7))
         elif lm is not None:
             im = _ogiz_och(im, lm, 2 if v in ("D", "E") else 1 if v == "B" else 0)
-    if yumuq10:
+    if yumuq10 and (poza, nom) not in KOZ_YOQ and (poza, "*") not in KOZ_YOQ and ("*", nom) not in KOZ_YOQ:
         nomi = "koz_yumuq" if yumuq10 >= 10 else "koz_yarim"
         y = _yamoq(nom, poza, nomi)
         if y:
