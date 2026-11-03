@@ -232,7 +232,7 @@ def create_router(platform):
             cur.close(); conn.close()
         return n
 
-    def _kurs_darslari(til, iz):
+    def _kurs_darslari(til, iz, daraja="A1"):
         """Kursning MAZMUNLI darslari (takrorlash/darvoza darslarisiz), tartib bilan — Miya'dagi kitobdan."""
         fan = KURS_FAN.get((til, _iz(iz))) or KURS_FAN.get((til, "uz"))
         if not fan:
@@ -240,9 +240,9 @@ def create_router(platform):
         conn = platform._db(); cur = conn.cursor()
         try:
             cur.execute("""SELECT d.topic_code, COALESCE(NULLIF(d.kichik_name,''), NULLIF(d.mavzu_name,''), NULLIF(d.bolim_name,''), d.bob_name) AS nomi
-                           FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND UPPER(COALESCE(d.grade,''))='A1'
+                           FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND UPPER(COALESCE(d.grade,''))=UPPER(%s)
                              AND EXISTS(SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code AND au.status='published')
-                           ORDER BY d.topic_code""", (fan,))
+                           ORDER BY d.topic_code""", (fan, daraja if daraja in ("A1", "A2", "B1", "B2", "C1") else "A1"))
             rows = [dict(r) for r in cur.fetchall()]
         except Exception as e:
             print(f"[MARKAZ-KITOB] {type(e).__name__}: {str(e)[:200]}", flush=True)
@@ -251,9 +251,9 @@ def create_router(platform):
             cur.close(); conn.close()
         return _tartib([r for r in rows if not re.search(r"takror|darvoza|повторени|проверк|review", str(r.get("nomi") or ""), re.I)])
 
-    def _kitob_mashq(til, iz, dars):
+    def _kitob_mashq(til, iz, dars, daraja="A1"):
         from modules.markaz_kitob import mashq_darsdan
-        darslar = _kurs_darslari(til, iz)
+        darslar = _kurs_darslari(til, iz, daraja)
         if not darslar:
             raise HTTPException(404, "Kurs kitobi hali Miya'ga yuklanmagan")
         if not (1 <= int(dars) <= len(darslar)):
@@ -272,7 +272,7 @@ def create_router(platform):
     @router.get("/api/markaz/mashq")
     def mashq(til: str = "en", daraja: str = "A1", dars: int = 1, iz: str = "uz"):
         """REV283: 4 ko'nikma mashqlari — kontent Miya'dagi kurs kitobidan (bitta manba)."""
-        return _kitob_mashq(til, iz, dars)
+        return _kitob_mashq(til, iz, dars, daraja)
 
     # ───────── REV276: sun'iy intellekt bilan suhbat (rol o'yini) va yozishni baholash ─────────
     class _Suhbat(BaseModel):
@@ -280,6 +280,7 @@ def create_router(platform):
         yozilish_id: int
         dars: int = 1
         iz: str = "uz"
+        daraja: str = "A1"
         xabarlar: list = []
 
     class _Yozish(BaseModel):
@@ -287,6 +288,7 @@ def create_router(platform):
         yozilish_id: int
         dars: int = 1
         iz: str = "uz"
+        daraja: str = "A1"
         matn: str
 
     def _ai_json(platform_, tizim, xabarlar, max_tokens=400):
@@ -309,21 +311,23 @@ def create_router(platform):
             print(f"[MARKAZ-AI] {type(e).__name__}: {str(e)[:200]}", flush=True)
             raise HTTPException(502, "AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
 
-    def _dars(dars, iz="uz"):
-        m = _kitob_mashq("en", iz, dars)
+    def _dars(dars, iz="uz", daraja="A1"):
+        m = _kitob_mashq("en", iz, dars, daraja)
         return {"dialog": [(d["kim"], d["gap"]) for d in m["dialog"]], "rol": (m["rol"]["topshiriq"], m["rol"]["izoh"], m["rol"]["izoh"], m["rol"]["namuna"])}
 
     @router.post("/api/markaz/suhbat")
     def suhbat(s: _Suhbat):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_suhbat")
-        d = _dars(s.dars, s.iz)
+        d = _dars(s.dars, s.iz, s.daraja)
         rol = d["dialog"][0][0]
         izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
-        tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR A1 learner. Situation: {d['rol'][0]} "
+        qoida = ("Rules: stay in role; reply in natural English for A2 (simple past/future allowed, max 15 words per sentence, max 3 sentences); "
+                 if s.daraja == "A2" else "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); ")
+        tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner. Situation: {d['rol'][0]} "
                  f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b in d["dialog"]) + ". "
-                 "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); "
-                 "ask one simple question to keep the conversation going; never switch to another language in 'javob'. "
+                 + qoida
+                 + "ask one simple question to keep the conversation going; never switch to another language in 'javob'. "
                  f"Also check the learner's LAST message: if it has a grammar or word mistake, give the corrected sentence and a very short "
                  f"explanation in {izoh_til}; if it is correct, leave 'tuzatish' empty. "
                  'Return JSON: {"javob": "your English reply", "tuzatish": "corrected sentence or empty", "izoh": "short explanation or empty", "tugadi": false}. '
@@ -339,12 +343,12 @@ def create_router(platform):
     def yozish(s: _Yozish):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_yozish")
-        d = _dars(s.dars, s.iz)
+        d = _dars(s.dars, s.iz, s.daraja)
         matn = (s.matn or "").strip()[:1500]
         if len(matn.split()) < 3:
             raise HTTPException(400, "Kamida 3 ta so'z yozing")
         izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
-        tizim = ("You are a careful, encouraging English teacher marking an A1 learner's short writing. "
+        tizim = (f"You are a careful, encouraging English teacher marking a {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner's short writing. "
                  f"Task: Write 3–5 sentences. {d['rol'][0]} "
                  f"Mark it like a CEFR-aligned examiner: task achievement, vocabulary, grammar, spelling/punctuation. Explanations in {izoh_til}. "
                  "Do not invent mistakes; if a sentence is correct, do not list it. "
