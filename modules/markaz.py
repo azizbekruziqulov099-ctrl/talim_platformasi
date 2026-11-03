@@ -234,7 +234,7 @@ def create_router(platform):
 
     def _kurs_darslari(til, iz):
         """Kursning MAZMUNLI darslari (takrorlash/darvoza darslarisiz), tartib bilan — Miya'dagi kitobdan."""
-        fan = KURS_FAN.get((til, "ru" if iz == "ru" else "uz"))
+        fan = KURS_FAN.get((til, _iz(iz))) or KURS_FAN.get((til, "uz"))
         if not fan:
             return []
         conn = platform._db(); cur = conn.cursor()
@@ -602,13 +602,16 @@ def create_router(platform):
             return (int(m.group(1)) if m else 9999, str(r.get("topic_code") or ""))
         return sorted(rows, key=k)
 
-    KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)"}
+    KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)",
+                ("en", "en"): "Ingliz tili — Erkin til (izoh: ingliz)"}   # REV286: inglizcha izohli (to'liq ingliz muhiti)
+    def _iz(iz):
+        return iz if iz in ("ru", "en") else "uz"
 
     @router.get("/api/markaz/darslar")
     def darslar(token: str, til: str = "en", daraja: str = "A1", iz: str = "uz"):
         """REV277: markaz kursining darslari (Miya'ga yuklangan «… — Erkin til» kitobidan), tartib bilan."""
         platform._jwt_tekshir(token)
-        fan = KURS_FAN.get((til, "ru" if iz == "ru" else "uz"))
+        fan = KURS_FAN.get((til, _iz(iz))) or KURS_FAN.get((til, "uz"))
         if not fan:
             return {"darslar": [], "fan": None}
         conn = platform._db(); cur = conn.cursor()
