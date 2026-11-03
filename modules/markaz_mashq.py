@@ -1,8 +1,9 @@
 """REV275: 4 ko'nikma mashqlari (markaz): tinglab tushunish, diktant, gapirish (talaffuz). Kontent — o'zimiz yozgan kurs darslari."""
 import random
 from modules.markaz_kontent.en_a1 import DARSLAR as EN_A1
+from modules.markaz_kontent.en_a1_2 import DARSLAR2 as EN_A1_2
 
-KURSLAR = {("en", "A1"): EN_A1}
+KURSLAR = {("en", "A1"): list(EN_A1) + list(EN_A1_2)}   # REV277: 18 ta hayotiy dars (1–2-qism)
 
 
 def mashqlar(til, daraja, dars, iz="uz", seed=None):

@@ -252,7 +252,8 @@ def create_router(platform):
             raise HTTPException(502, "AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
 
     def _dars(dars):
-        from modules.markaz_kontent.en_a1 import DARSLAR
+        from modules.markaz_mashq import KURSLAR
+        DARSLAR = KURSLAR[("en", "A1")]
         if not (1 <= int(dars) <= len(DARSLAR)):
             raise HTTPException(404, "Dars topilmadi")
         return DARSLAR[int(dars) - 1]
@@ -309,6 +310,30 @@ def create_router(platform):
         finally:
             cur.close(); conn.close()
         return out
+
+    KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)"}
+
+    @router.get("/api/markaz/darslar")
+    def darslar(token: str, til: str = "en", daraja: str = "A1", iz: str = "uz"):
+        """REV277: markaz kursining darslari (Miya'ga yuklangan «… — Erkin til» kitobidan), tartib bilan."""
+        platform._jwt_tekshir(token)
+        fan = KURS_FAN.get((til, "ru" if iz == "ru" else "uz"))
+        if not fan:
+            return {"darslar": [], "fan": None}
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            cur.execute("""SELECT d.topic_code, COALESCE(NULLIF(d.kichik_name,''), NULLIF(d.mavzu_name,''), NULLIF(d.bolim_name,''), d.bob_name) AS nomi,
+                                  d.grade, d.subject_name,
+                                  EXISTS(SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code AND au.status='published') AS dars_bor
+                           FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND UPPER(COALESCE(d.grade,''))=UPPER(%s)
+                           ORDER BY d.topic_code""", (fan, daraja))
+            rows = [dict(r) for r in cur.fetchall()]
+        except Exception as e:
+            print(f"[MARKAZ-DARSLAR] {type(e).__name__}: {str(e)[:200]}", flush=True)
+            rows = []
+        finally:
+            cur.close(); conn.close()
+        return {"fan": fan, "daraja": daraja, "darslar": [r for r in rows if r.get("dars_bor")]}
 
     @router.get("/api/markaz/men")
     def men(token: str):
