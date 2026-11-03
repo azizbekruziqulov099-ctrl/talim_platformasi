@@ -54,7 +54,7 @@ def kerakli_kunlar(jadval, boshi, bugun):
     return []                              # «istalgan vaqtda» — majburiyat yo'q (faqat uzoq tanaffusga eslatma)
 
 
-def holat(yozilish, faolliklar, bugun):
+def holat(yozilish, faolliklar, bugun, til="uz"):
     """O'quvchining holati va unga aytiladigan gap (raqamlar bilan): yaxshi | eslatma | motivatsiya | tanbeh."""
     boshi = dt.date.fromisoformat(str(yozilish["boshlangan"])[:10])
     kunlar = sorted({dt.date.fromisoformat(str(f["kun"])[:10]) for f in faolliklar})
@@ -80,34 +80,53 @@ def holat(yozilish, faolliklar, bugun):
     yoqolayotgan = round(sozlar * unutish)
     imtihon = yozilish.get("imtihon_sana")
     qolgan_kun = (dt.date.fromisoformat(str(imtihon)[:10]) - bugun).days if imtihon else None
+    t = til if til in ("ru", "en") else "uz"
+    qk = f" Imtihongacha {qolgan_kun} kun qoldi." if t == "uz" else f" До экзамена {qolgan_kun} дн." if t == "ru" else f" {qolgan_kun} days until the exam."
     if ketma <= 0:
         daraja = "yaxshi"
-        gap = "Zo'r! Jadval bo'yicha ketyapsiz." + (f" Imtihongacha {qolgan_kun} kun qoldi." if qolgan_kun is not None else "")
+        gap = {"uz": "Zo'r! Jadval bo'yicha ketyapsiz.", "ru": "Отлично! Вы идёте по расписанию.", "en": "Great! You are on schedule."}[t] + (qk if qolgan_kun is not None else "")
     elif ketma == 1:
         daraja = "eslatma"
-        gap = "Bugungi darsni unutmang — 20 daqiqa yetadi. Har kuni oz-ozdan o'qigan kishi tezroq natijaga erishadi."
+        gap = {"uz": "Bugungi darsni unutmang — 20 daqiqa yetadi. Har kuni oz-ozdan o'qigan kishi tezroq natijaga erishadi.",
+               "ru": "Не забудьте сегодняшний урок — хватит 20 минут. Кто учится понемногу каждый день, быстрее добивается результата.",
+               "en": "Don't forget today's lesson — 20 minutes is enough. People who study a little every day get results faster."}[t]
     elif ketma == 2:
         daraja = "motivatsiya"
-        gap = (f"Ikki dars o'tkazib yubordingiz. Hozir qaytsangiz, o'rgangan {sozlar} ta so'zingiz saqlanib qoladi"
-               + (f"; imtihongacha {qolgan_kun} kun bor — ulgurasiz." if qolgan_kun is not None and qolgan_kun > 0 else "."))
+        ul = qolgan_kun is not None and qolgan_kun > 0
+        gap = {"uz": f"Ikki dars o'tkazib yubordingiz. Hozir qaytsangiz, o'rgangan {sozlar} ta so'zingiz saqlanib qoladi" + (f"; imtihongacha {qolgan_kun} kun bor — ulgurasiz." if ul else "."),
+               "ru": f"Вы пропустили два урока. Если вернётесь сейчас, {sozlar} выученных слов сохранятся" + (f"; до экзамена {qolgan_kun} дн. — вы успеете." if ul else "."),
+               "en": f"You have missed two lessons. Come back now and your {sozlar} learned words will stay with you" + (f"; {qolgan_kun} days until the exam — you can make it." if ul else ".")}[t]
     else:
         daraja = "tanbeh"
-        gap = (f"{len(qoldi) if qoldi else ketma} ta dars o'tkazildi, oxirgi marta {tanaffus} kun oldin o'qidingiz. "
-               f"Takrorlanmagan {yoqolayotgan} ta so'z esdan chiqmoqda. ")
+        nq = len(qoldi) if qoldi else ketma
+        gap = {"uz": f"{nq} ta dars o'tkazildi, oxirgi marta {tanaffus} kun oldin o'qidingiz. Takrorlanmagan {yoqolayotgan} ta so'z esdan chiqmoqda. ",
+               "ru": f"Пропущено уроков: {nq}, последний раз вы занимались {tanaffus} дн. назад. Без повторения забываются {yoqolayotgan} слов. ",
+               "en": f"{nq} lessons missed; you last studied {tanaffus} days ago. {yoqolayotgan} unrevised words are being forgotten. "}[t]
         if qolgan_kun is not None:
-            gap += (f"Imtihongacha {qolgan_kun} kun qoldi — shu sur'atda maqsadga ulgurmaysiz. " if qolgan_kun > 0 else "Imtihon sanasi o'tgan — yangi sana belgilang. ")
-        gap += "Bugun qaytib, avval takrorlashdan o'ting: o'qimaslikning zarari to'planib boradi, foydasi esa har kungi kichik qadamdan."
+            if qolgan_kun > 0:
+                gap += {"uz": f"Imtihongacha {qolgan_kun} kun qoldi — shu sur'atda maqsadga ulgurmaysiz. ", "ru": f"До экзамена {qolgan_kun} дн. — в таком темпе вы не успеете. ",
+                        "en": f"{qolgan_kun} days until the exam — at this pace you won't reach your goal. "}[t]
+            else:
+                gap += {"uz": "Imtihon sanasi o'tgan — yangi sana belgilang. ", "ru": "Дата экзамена прошла — назначьте новую. ", "en": "The exam date has passed — set a new one. "}[t]
+        gap += {"uz": "Bugun qaytib, avval takrorlashdan o'ting: o'qimaslikning zarari to'planib boradi, foydasi esa har kungi kichik qadamdan.",
+                "ru": "Вернитесь сегодня и начните с повторения: вред от пропусков накапливается, а польза — от маленьких ежедневных шагов.",
+                "en": "Come back today and start with revision: the damage from skipping adds up, and progress comes from small daily steps."}[t]
     return {"daraja": daraja, "gap": gap, "qoldirilgan": len(qoldi) if qoldi else (ketma if jadval.get("turi") != "kunlar" else 0),
             "ketma_ket": ketma, "tanaffus_kun": tanaffus, "yoqolayotgan_soz": yoqolayotgan, "imtihongacha": qolgan_kun}
 
 
-def darvoza(foiz, bolim_nomi=""):
+def darvoza(foiz, bolim_nomi="", til="uz"):
     """Bo'lim takrorlash testi: o'tsa — keyingi bo'lim ochiladi; o'tmasa — aniq sabab va qayta tayyorlanish."""
     foiz = float(foiz or 0)
+    t = til if til in ("ru", "en") else "uz"
     if foiz >= DARVOZA_FOIZ:
-        return {"ochildi": True, "gap": f"Ajoyib! {round(foiz)}% — keyingi bo'lim ochildi."}
-    return {"ochildi": False, "gap": (f"{round(foiz)}% — o'tish uchun {DARVOZA_FOIZ}% kerak. «{bolim_nomi or 'Bu bo‘lim'}»ni bilmasdan keyingi "
-                                         "darslar foydasiz bo'ladi: ular shu bilimga quriladi. Xatolaringizni ko'rib, qaytadan tayyorlaning va testni yana topshiring.")}
+        return {"ochildi": True, "gap": {"uz": f"Ajoyib! {round(foiz)}% — keyingi bo'lim ochildi.", "ru": f"Отлично! {round(foiz)}% — следующий раздел открыт.",
+                                          "en": f"Excellent! {round(foiz)}% — the next section is open."}[t]}
+    b = bolim_nomi or {"uz": "Bu bo'lim", "ru": "Этот раздел", "en": "This section"}[t]
+    return {"ochildi": False, "gap": {
+        "uz": f"{round(foiz)}% — o'tish uchun {DARVOZA_FOIZ}% kerak. «{b}»ni bilmasdan keyingi darslar foydasiz bo'ladi: ular shu bilimga quriladi. Xatolaringizni ko'rib, qaytadan tayyorlaning va testni yana topshiring.",
+        "ru": f"{round(foiz)}% — для прохода нужно {DARVOZA_FOIZ}%. Без «{b}» следующие уроки бесполезны: они строятся на этих знаниях. Разберите ошибки, подготовьтесь и сдайте тест снова.",
+        "en": f"{round(foiz)}% — you need {DARVOZA_FOIZ}% to pass. Without «{b}» the next lessons won't help: they build on this knowledge. Review your mistakes, prepare again and retake the test."}[t]}
 
 
 # ───────────── Baza va API ─────────────
@@ -145,6 +164,7 @@ class Faollik(BaseModel):
     sozlar_soni: int | None = None
     bolim: int | None = None
     bolim_nomi: str | None = None
+    til: str = "uz"
 
 
 def create_router(platform):
@@ -188,12 +208,13 @@ def create_router(platform):
         yozilish_id: int
         til: str = "en"
         javoblar: dict
+        ui: str = "uz"
 
     @router.post("/api/markaz/daraja/natija")
     def daraja_natija(s: _DarajaJavob):
         uid = platform._jwt_tekshir(s.token)
         from modules.markaz_daraja import baholash
-        n = baholash(s.til, s.javoblar or {})
+        n = baholash(s.til, s.javoblar or {}, s.ui)
         conn = platform._db(); cur = conn.cursor()
         try:
             _jadvallar(cur)
@@ -264,7 +285,7 @@ def create_router(platform):
         platform._ai_limit(uid, "markaz_suhbat")
         d = _dars(s.dars)
         rol = d["dialog"][0][0]
-        izoh_til = "Russian" if s.iz == "ru" else "Uzbek (Latin script)"
+        izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
         tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR A1 learner. Situation: {d['rol'][0]} "
                  f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b, *_ in d["dialog"]) + ". "
                  "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); "
@@ -288,7 +309,7 @@ def create_router(platform):
         matn = (s.matn or "").strip()[:1500]
         if len(matn.split()) < 3:
             raise HTTPException(400, "Kamida 3 ta so'z yozing")
-        izoh_til = "Russian" if s.iz == "ru" else "Uzbek (Latin script)"
+        izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
         tizim = ("You are a careful, encouraging English teacher marking an A1 learner's short writing. "
                  f"Task: Write 3–5 sentences. {d['rol'][0]} "
                  f"Mark it like a CEFR-aligned examiner: task achievement, vocabulary, grammar, spelling/punctuation. Explanations in {izoh_til}. "
@@ -355,7 +376,7 @@ def create_router(platform):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_sinov")
         from modules.markaz_sertifikat import WRITING, SPEAKING, chegaralar
-        izoh_til = "Russian" if s.iz == "ru" else "Uzbek (Latin script)"
+        izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
         if s.bolim == "writing":
             qism = "\n\n".join(f"{t['nom']} (task: {t['topshiriq']} Recommended {t['soz']} words):\n{str(s.javoblar.get(t['id']) or '').strip()[:2500]}" for t in WRITING)
             mezon = "Task achievement, Coherence and cohesion, Vocabulary range and accuracy, Grammar range and accuracy"
@@ -390,6 +411,40 @@ def create_router(platform):
             cur.close(); conn.close()
         return out
 
+    @router.get("/api/markaz/admin/royxat")
+    def admin_royxat(token: str, til: str = "uz"):
+        """REV279: admin — markazdagi barcha o'quvchilar: kurs, daraja, holat (eslatma/tanbeh), oxirgi faollik, ko'nikma ballari."""
+        platform._admin_tekshir(token)
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("""SELECT y.*, COALESCE(NULLIF(u.full_name, ''), y.user_id::text) AS oquvchi
+                           FROM markaz_yozilish y LEFT JOIN users u ON u.user_id=y.user_id
+                           WHERE y.faol ORDER BY y.id DESC LIMIT 500""")
+            rows = [dict(r) for r in cur.fetchall()]
+            out = []
+            for y in rows:
+                cur.execute("SELECT kun, turi, foiz FROM markaz_faollik WHERE yozilish_id=%s ORDER BY kun DESC LIMIT 400", (y["id"],))
+                f = [dict(r) for r in cur.fetchall()]
+                konik = {}
+                for r in f:
+                    if r["foiz"] is not None and r["turi"] not in konik:
+                        konik[r["turi"]] = float(r["foiz"])
+                h = holat(y, f, dt.date.today(), til)
+                out.append({"id": y["id"], "oquvchi": y.get("oquvchi"), "yol": y["yol"], "til": y["til"], "imtihon": y.get("imtihon"), "maqsad": y.get("maqsad"),
+                            "daraja": y.get("daraja"), "ochiq_bolim": y.get("ochiq_bolim"), "holat": h["daraja"], "gap": h["gap"],
+                            "tanaffus_kun": h["tanaffus_kun"], "faollik_soni": len(f), "konikmalar": konik})
+            conn.commit()
+        except Exception as e:
+            conn.rollback()
+            if isinstance(e, HTTPException):
+                raise
+            print(f"[MARKAZ-ADMIN] {type(e).__name__}: {str(e)[:200]}", flush=True)
+            raise HTTPException(500, "Ro'yxatni olib bo'lmadi")
+        finally:
+            cur.close(); conn.close()
+        return {"oquvchilar": out}
+
     KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)"}
 
     @router.get("/api/markaz/darslar")
@@ -415,7 +470,7 @@ def create_router(platform):
         return {"fan": fan, "daraja": daraja, "darslar": [r for r in rows if r.get("dars_bor")]}
 
     @router.get("/api/markaz/men")
-    def men(token: str):
+    def men(token: str, til: str = "uz"):
         uid = platform._jwt_tekshir(token)
         conn = platform._db(); cur = conn.cursor()
         try:
@@ -427,7 +482,7 @@ def create_router(platform):
                 cur.execute("SELECT kun, turi, daqiqa, foiz FROM markaz_faollik WHERE yozilish_id=%s ORDER BY kun DESC LIMIT 400", (y["id"],))
                 f = [dict(r) for r in cur.fetchall()]
                 out.append({**{k: (str(v) if isinstance(v, (dt.date, dt.datetime)) else v) for k, v in y.items()},
-                            "holat": holat(y, f, dt.date.today()), "faollik_soni": len(f)})
+                            "holat": holat(y, f, dt.date.today(), til), "faollik_soni": len(f)})
             conn.commit()
         finally:
             cur.close(); conn.close()
@@ -449,7 +504,7 @@ def create_router(platform):
             if s.sozlar_soni is not None:
                 cur.execute("UPDATE markaz_yozilish SET sozlar_soni=GREATEST(sozlar_soni,%s) WHERE id=%s", (int(s.sozlar_soni), s.yozilish_id))
             if s.turi == "darvoza" and s.foiz is not None:
-                d = darvoza(s.foiz, s.bolim_nomi or "")
+                d = darvoza(s.foiz, s.bolim_nomi or "", s.til)
                 if d["ochildi"] and s.bolim:
                     cur.execute("UPDATE markaz_yozilish SET ochiq_bolim=GREATEST(ochiq_bolim,%s) WHERE id=%s", (int(s.bolim) + 1, s.yozilish_id))
                 javob["darvoza"] = d

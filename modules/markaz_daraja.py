@@ -62,7 +62,7 @@ def savollar(til):
     return [{k: v for k, v in s.items() if k != "javob"} for s in SAVOLLAR.get(til, [])]
 
 
-def baholash(til, javoblar):
+def baholash(til, javoblar, ui="uz"):
     """javoblar: {savol_id: tanlangan_index}. Natija: daraja, har daraja foizi, tavsiya."""
     bank = SAVOLLAR.get(til, [])
     hisob = {d: [0, 0] for d in DARAJALAR}
@@ -78,8 +78,16 @@ def baholash(til, javoblar):
         else:
             break
     keyingi = DARAJALAR[DARAJALAR.index(daraja) + 1] if daraja in DARAJALAR[:-1] else ("A1" if daraja == "A0" else None)
-    tavsiya = (f"Darajangiz: {daraja}. Kursni {keyingi} darajasidan boshlaysiz." if keyingi else
-               "Darajangiz: C1 va undan yuqori. Imtihon formatidagi sinov testlari va murakkab yozish/gapirish mashqlaridan boshlaysiz.")
+    t = ui if ui in ("ru", "en") else "uz"
     if daraja == "A0":
-        tavsiya = "Siz boshlang'ich bosqichdasiz — A1 darajasidan, eng oddiy hayotiy vaziyatlardan boshlaymiz."
+        tavsiya = {"uz": "Siz boshlang'ich bosqichdasiz — A1 darajasidan, eng oddiy hayotiy vaziyatlardan boshlaymiz.",
+                   "ru": "Вы в самом начале — начнём с уровня A1, с самых простых жизненных ситуаций.",
+                   "en": "You are at the very start — we begin at A1 with the simplest everyday situations."}[t]
+    elif keyingi:
+        tavsiya = {"uz": f"Darajangiz: {daraja}. Kursni {keyingi} darajasidan boshlaysiz.", "ru": f"Ваш уровень: {daraja}. Вы начнёте курс с уровня {keyingi}.",
+                   "en": f"Your level: {daraja}. You will start the course at {keyingi}."}[t]
+    else:
+        tavsiya = {"uz": "Darajangiz: C1 va undan yuqori. Imtihon formatidagi sinov testlari va murakkab yozish/gapirish mashqlaridan boshlaysiz.",
+                   "ru": "Ваш уровень: C1 и выше. Начнёте с пробных тестов в формате экзамена и сложных заданий по письму и говорению.",
+                   "en": "Your level: C1 or higher. You will start with exam-format mock tests and advanced writing and speaking tasks."}[t]
     return {"daraja": daraja, "foiz": foiz, "keyingi": keyingi, "tavsiya": tavsiya}
