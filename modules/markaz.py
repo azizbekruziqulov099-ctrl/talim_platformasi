@@ -311,6 +311,85 @@ def create_router(platform):
             cur.close(); conn.close()
         return out
 
+
+    # ───────── REV278: Milliy sertifikat uslubidagi sinov imtihoni ─────────
+    class _SinovObyektiv(BaseModel):
+        token: str
+        yozilish_id: int
+        javoblar: dict
+
+    class _SinovMatn(BaseModel):
+        token: str
+        yozilish_id: int
+        bolim: str          # writing | speaking
+        javoblar: dict      # {W1: "...", W2: "..."} yoki {S1: "...", ...}
+        iz: str = "uz"
+
+    @router.get("/api/markaz/sinov")
+    def sinov(token: str):
+        platform._jwt_tekshir(token)
+        from modules.markaz_sertifikat import sinov_ochiq
+        return sinov_ochiq()
+
+    @router.post("/api/markaz/sinov/obyektiv")
+    def sinov_obyektiv(s: _SinovObyektiv):
+        uid = platform._jwt_tekshir(s.token)
+        from modules.markaz_sertifikat import obyektiv_ball
+        n = obyektiv_ball(s.javoblar or {})
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("SELECT 1 FROM markaz_yozilish WHERE id=%s AND user_id=%s", (s.yozilish_id, uid))
+            if cur.fetchone():
+                for b in ("listening", "reading"):
+                    cur.execute("INSERT INTO markaz_faollik (yozilish_id, turi, dars_kodi, daqiqa, foiz) VALUES (%s,'sinov',%s,30,%s)",
+                                (s.yozilish_id, f"mock-{b}", round(100 * n[b]["ball"] / 75)))
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        return n
+
+    @router.post("/api/markaz/sinov/matn")
+    def sinov_matn(s: _SinovMatn):
+        """Writing va Speaking — imtihon mezonlari bo'yicha (CEFR B1–C1) baho, 0–75 shkala, har mezon izohi."""
+        uid = platform._jwt_tekshir(s.token)
+        platform._ai_limit(uid, "markaz_sinov")
+        from modules.markaz_sertifikat import WRITING, SPEAKING, chegaralar
+        izoh_til = "Russian" if s.iz == "ru" else "Uzbek (Latin script)"
+        if s.bolim == "writing":
+            qism = "\n\n".join(f"{t['nom']} (task: {t['topshiriq']} Recommended {t['soz']} words):\n{str(s.javoblar.get(t['id']) or '').strip()[:2500]}" for t in WRITING)
+            mezon = "Task achievement, Coherence and cohesion, Vocabulary range and accuracy, Grammar range and accuracy"
+        elif s.bolim == "speaking":
+            qism = "\n\n".join(f"{t['nom']} (questions: {' | '.join(t['savollar'])}):\nTranscript: {str(s.javoblar.get(t['id']) or '').strip()[:2000]}" for t in SPEAKING)
+            mezon = "Fluency and coherence, Vocabulary, Grammar, Task fulfilment (pronunciation cannot be judged from a transcript — say so)"
+        else:
+            raise HTTPException(400, "Bo'lim noto'g'ri")
+        if len(qism.split()) < 30:
+            raise HTTPException(400, "Javoblar juda qisqa")
+        tizim = ("You are a strict but fair examiner for a CEFR-based national multilevel English exam (B1–C1). "
+                 f"Mark the candidate's {s.bolim} using these criteria: {mezon}. Be realistic: short or off-topic answers get low marks; "
+                 "do not invent errors. Give a score on a 0–75 scale (B1 38–50, B2 51–64, C1 65–75). "
+                 f"All explanations in {izoh_til}. "
+                 'Return JSON: {"ball": 0-75, "mezonlar": [{"nom": "...", "baho": "short comment"}], '
+                 '"xatolar": [{"asl": "...", "togri": "...", "izoh": "..."}], "kuchli": "...", "oshirish": "two concrete steps to reach the next level"}')
+        j = _ai_json(platform, tizim, [{"role": "user", "content": qism}], max_tokens=900)
+        ball = max(0, min(75, int(j.get("ball") or 0)))
+        out = {"ball": ball, "daraja": chegaralar(ball),
+               "mezonlar": [{k: str(x.get(k) or "")[:300] for k in ("nom", "baho")} for x in (j.get("mezonlar") or [])[:6] if isinstance(x, dict)],
+               "xatolar": [{k: str(x.get(k) or "")[:300] for k in ("asl", "togri", "izoh")} for x in (j.get("xatolar") or [])[:15] if isinstance(x, dict)],
+               "kuchli": str(j.get("kuchli") or "")[:400], "oshirish": str(j.get("oshirish") or "")[:600]}
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("SELECT 1 FROM markaz_yozilish WHERE id=%s AND user_id=%s", (s.yozilish_id, uid))
+            if cur.fetchone():
+                cur.execute("INSERT INTO markaz_faollik (yozilish_id, turi, dars_kodi, daqiqa, foiz) VALUES (%s,'sinov',%s,30,%s)",
+                            (s.yozilish_id, f"mock-{s.bolim}", round(100 * ball / 75)))
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        return out
+
     KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)"}
 
     @router.get("/api/markaz/darslar")

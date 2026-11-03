@@ -54,3 +54,16 @@ def test_mashqlar():
         assert len(t["variantlar"]) == 3 and 0 <= t["javob"] < 3
     assert mashqlar("en", "A1", 99) is None and mashqlar("ko", "A1", 1) is None
     assert mashqlar("en", "A1", 1, "ru")["nom"] == "Знакомство"
+
+
+def test_sinov_mini():
+    from modules.markaz_sertifikat import sinov_ochiq, obyektiv_ball, LISTENING, READING, chegaralar
+    o = sinov_ochiq()
+    assert all("javob" not in s for b in o["listening"] + o["reading"] for s in b["savollar"])
+    hammasi = {s["id"]: s["javob"] for b in LISTENING + READING for s in b["savollar"]}
+    n = obyektiv_ball(hammasi)
+    assert n["listening"]["ball"] == 75 and n["reading"]["daraja"] == "C1"
+    assert obyektiv_ball({})["listening"]["ball"] == 0
+    assert chegaralar(50) == "B1" and chegaralar(51) == "B2" and chegaralar(37) == "B1 dan past"
+    ids = [s["id"] for b in LISTENING + READING for s in b["savollar"]]
+    assert len(ids) == len(set(ids)) == 20
