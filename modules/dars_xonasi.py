@@ -18,6 +18,7 @@ from modules.tez_kesh import BaytKesh, TTLKesh
 
 STEP_TYPES = ("kirish", "tushuntirish", "qoida", "misol", "birga", "mashq", "xulosa", "amaliy")
 PRACTICE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
+PRACTICE_NAMES_TIL = {"misol": ("Пример", "Example"), "masala": ("Задача", "Problem"), "topshiriq": ("Задание", "Task"), "test": ("Тест", "Test")}
 VARIANT_NAMES = {
     "sodda": "Soddaroq",
     "hikoya": "Hikoya orqali",
@@ -95,7 +96,9 @@ def practice_item(unit, media_url):
     letter = answer.upper().rstrip(").")[:1] if options else ""
     togri = "ABCDE".index(letter) if letter and letter in "ABCDE"[:len(options)] else None
     title = _t(p.get("sarlavha"))
-    prefix = PRACTICE_NAMES.get(kind, "") + " · "
+    # REV269: sarlavha oldidagi tur nomi istalgan tilda bo'lishi mumkin («Misol · …», «Пример · …», «Example · …»)
+    prefix = next((n + " · " for n in (PRACTICE_NAMES.get(kind, ""), *PRACTICE_NAMES_TIL.get(kind, ())) if n and title.startswith(n + " · ")),
+                  PRACTICE_NAMES.get(kind, "") + " · ")
     return {"kod": _t(p.get("kitob_kodi")), "turi": kind, "turi_nomi": PRACTICE_NAMES.get(kind, "Topshiriq"),
             "sarlavha": title[len(prefix):] if title.startswith(prefix) else title,
             "shart": _t(p.get("doska_matni")), "rasm": media_url(_t(p.get("media_id"))), "variantlar": options,

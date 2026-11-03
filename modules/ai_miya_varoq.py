@@ -70,6 +70,9 @@ PRACTICE_INTRO = {
            "read": "Read the task on the board carefully.", "try": "Try it yourself first; the solution opens later."},
 }
 JAVOB_JOYI = {"uz": "Javobingizni yozing", "ru": "Ваш ответ", "en": "Your answer"}
+# REV269: ru/en kitobda amaliy qadam sarlavhasi o'z tilida («Пример · …», «Example · …»)
+TYPE_NAMES_TIL = {"ru": {"misol": "Пример", "masala": "Задача", "topshiriq": "Задание", "test": "Тест"},
+                  "en": {"misol": "Example", "masala": "Problem", "topshiriq": "Task", "test": "Test"}}
 TEKSHIRUV_NOMI = {"uz": "Tekshiruv savoli", "ru": "Проверь себя", "en": "Quick check"}
 TYPE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
 AUTO_LETTER = {"misol": "M", "masala": "S", "topshiriq": "A", "test": "T"}
@@ -424,7 +427,8 @@ def parse_sheets(wb, media_names=None, max_images=500):
             voice += (text + " ") if len(text) <= 600 else words["read"] + " "
             if "yosh" not in str(book.get("sinf", "")).lower():   # REV95: bog'cha bolasiga «yechimni ochasiz» demaymiz
                 voice += f"[{til}]{words['try']}[/{til}]" if til in ("ru", "en") else words["try"]
-            add_step(row, "amaliy", text, voice[:MAX_VOICE], f"{TYPE_NAMES[kind]} · {title}" if title else TYPE_NAMES[kind],
+            nom = TYPE_NAMES_TIL.get(til, TYPE_NAMES)[kind]
+            add_step(row, "amaliy", text, voice[:MAX_VOICE], f"{nom} · {title}" if title else nom,
                      pic, answer=c.get("javob", "") if not options else "", extra={
                          "kitob_kodi": kod, "amaliy_turi": kind, "yechim": c.get("yechim", ""),
                          "variantlar": "\n".join(f"{'ABCDE'[i]}) {o}" for i, o in enumerate(options[:5])),

@@ -21,7 +21,11 @@ API (hammasi JWT bilan):
   GET  /api/xalqaro/imtihon/{id}           — topshirilgan imtihon tahlili (yechimlar bilan)
   GET  /api/xalqaro/reyting                — sinfdoshlar / maktab / platforma va davlatlar orasida o'rin
   GET  /api/xalqaro/natijalar              — davlatlar natijalari (yillar kesimida)
-  GET  /api/xalqaro/sinf_natija            — o'qituvchi: o'z maktabidagi sinf o'quvchilari darajasi
+  GET  /api/xalqaro/xatolarim              — o'quvchi: hozir ham xato bo'lib turgan savollari (bergan javobi, to'g'risi, yechimi) va zaif mavzulari
+  GET  /api/xalqaro/kuzatuv                — kim: admin (maktablar, platforma jamlamasi) / o'qituvchi / o'quvchi
+  GET  /api/xalqaro/sinf_natija            — o'qituvchi (o'z maktabi) / admin (istalgan): sinf o'quvchilari — faollik, ball, zaif mavzu
+  GET  /api/xalqaro/sinf_xatolar           — sinfda eng ko'p xato qilingan savollar (eng ko'p tanlangan noto'g'ri javob va sababi) va mavzular
+  GET  /api/xalqaro/oquvchi/{id}           — bitta o'quvchi: mavzular, xatolari, imtihonlar tarixi
   GET  /api/xalqaro/rasm/{savol}/{v}.svg   — savol rasmi
 Dars xonasi «XB-…» kodli darslarni shu moduldagi dars_payload() orqali ochadi.
 """
@@ -286,7 +290,7 @@ def _variant_public(s, vi, javob_bilan=False):
     v = s["variantlar"][vi]
     out = {"savol_id": s["id"], "v": vi, "turi": v["turi"], "savol": v["savol"], "rasm": bool(v.get("rasm")),
            "javoblar": v.get("javoblar") or [], "javob_turi": v.get("javob_turi") or "",
-           "mavzu": s["mavzu"], "soha": s["soha"], "fikrlash": s["fikrlash"], "ball": 1,
+           "mavzu": s["mavzu"], "soha": s["soha"], "fikrlash": s["fikrlash"], "ball": 1, "toplam": s["toplam"],
            "xalqaro_foiz": s.get("xalqaro_ortacha")}
     if v.get("rasm"):
         out["rasm_svg"] = v["rasm"]
@@ -406,6 +410,9 @@ def migrate(cur):
         urinish INT NOT NULL DEFAULT 0, togri INT NOT NULL DEFAULT 0, oxirgi_togri BOOLEAN NOT NULL DEFAULT FALSE,
         aytib INT NOT NULL DEFAULT 0, yangilangan TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (user_id, savol_id))""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_bilim_user ON xb_bilim(user_id, toplam)")
+    # REV261: o'qituvchi o'quvchining aynan qanday xato qilganini ko'radi
+    cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_v INT NOT NULL DEFAULT 0")
+    cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_javob TEXT NOT NULL DEFAULT ''")
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_takror (
         user_id BIGINT NOT NULL, savol_id TEXT NOT NULL, v INT NOT NULL DEFAULT 0, quti INT NOT NULL DEFAULT 1,
         keyingi DATE NOT NULL, PRIMARY KEY (user_id, savol_id))""")
@@ -520,6 +527,8 @@ def create_router(platform, kontent=None):
             cur.execute("SELECT COUNT(*) AS n FROM xb_takror WHERE user_id=%s AND keyingi<=%s", (user_id, bugun()))
             takror = int((cur.fetchone() or {}).get("n") or 0)
             gap = ustoz_gapi(cur, user, bilim)
+            if user["role"] in ("oqituvchi", "direktor", "zam_direktor") or admin_mi(cur, user_id):
+                gap = {"tur": "salom", "matn": "Assalomu alaykum! «Sinfim» bo‘limida o‘quvchilaringiz faolligi, ballari va har bir xatosi (nima deb javob bergani) bor. Kurs, imtihon va darslarni o‘quvchi ko‘zi bilan ham ko‘rishingiz mumkin."}
             conn.commit()
             toplamlar = []
             for tk, tm in k.ramka.get("toplamlar", {}).items():
@@ -712,11 +721,12 @@ def create_router(platform, kontent=None):
         ok = tekshir(v, body.javob)
 
         def run(conn, cur):
-            cur.execute("""INSERT INTO xb_bilim(user_id, savol_id, toplam, mavzu, urinish, togri, oxirgi_togri, aytib, yangilangan)
-                           VALUES(%s,%s,%s,%s,1,%s,%s,%s,NOW())
+            cur.execute("""INSERT INTO xb_bilim(user_id, savol_id, toplam, mavzu, urinish, togri, oxirgi_togri, aytib, yangilangan, oxirgi_v, oxirgi_javob)
+                           VALUES(%s,%s,%s,%s,1,%s,%s,%s,NOW(),%s,%s)
                            ON CONFLICT (user_id, savol_id) DO UPDATE SET urinish=xb_bilim.urinish+1, togri=xb_bilim.togri+EXCLUDED.togri,
-                             oxirgi_togri=EXCLUDED.oxirgi_togri, aytib=xb_bilim.aytib+EXCLUDED.aytib, yangilangan=NOW()""",
-                        (user_id, s["id"], s["toplam"], s["mavzu"], int(ok), ok, int(body.usul == "aytib")))
+                             oxirgi_togri=EXCLUDED.oxirgi_togri, aytib=xb_bilim.aytib+EXCLUDED.aytib, yangilangan=NOW(),
+                             oxirgi_v=EXCLUDED.oxirgi_v, oxirgi_javob=EXCLUDED.oxirgi_javob""",
+                        (user_id, s["id"], s["toplam"], s["mavzu"], int(ok), ok, int(body.usul == "aytib"), body.v, body.javob[:60]))
             cur.execute("SELECT quti FROM xb_takror WHERE user_id=%s AND savol_id=%s", (user_id, s["id"]))
             row = cur.fetchone()
             quti = None
@@ -906,7 +916,14 @@ def create_router(platform, kontent=None):
                         (json.dumps(javoblar), natija["foiz"], natija["ball"], natija["xato"], json.dumps({**meta, **natija}),
                          body.chiqishlar, row["id"]))
             # imtihondagi xatolar takrorlash navbatiga tushadi
-            for x, ok in zip(row["savollar"], natija["togri_list"]):
+            for i, (x, ok) in enumerate(zip(row["savollar"], natija["togri_list"])):
+                s0 = k.by_id.get(x["id"])
+                if s0:   # REV261: imtihon javoblari ham bilim xaritasiga (o'qituvchi xatolarni ko'radi)
+                    cur.execute("""INSERT INTO xb_bilim(user_id, savol_id, toplam, mavzu, urinish, togri, oxirgi_togri, yangilangan, oxirgi_v, oxirgi_javob)
+                                   VALUES(%s,%s,%s,%s,1,%s,%s,NOW(),%s,%s)
+                                   ON CONFLICT (user_id, savol_id) DO UPDATE SET urinish=xb_bilim.urinish+1, togri=xb_bilim.togri+EXCLUDED.togri,
+                                     oxirgi_togri=EXCLUDED.oxirgi_togri, yangilangan=NOW(), oxirgi_v=EXCLUDED.oxirgi_v, oxirgi_javob=EXCLUDED.oxirgi_javob""",
+                                (user_id, x["id"], s0["toplam"], s0["mavzu"], int(ok), ok, x["v"] % len(s0["variantlar"]), str(javoblar.get(str(i), ""))[:60]))
                 if not ok:
                     s = k.by_id.get(x["id"])
                     if s:
@@ -1050,32 +1067,247 @@ def create_router(platform, kontent=None):
         return {"jadvallar": n.get("jadvallar", {}), "ozbekiston": n.get("ozbekiston", {}), "manbalar": n.get("manbalar", {}),
                 "darajalar": n.get("darajalar", {})}
 
-    @router.get("/api/xalqaro/sinf_natija")
-    def sinf_natija(token: str = None, sinf: str = Query("", max_length=10), authorization: str = Header(None)):
-        """O'qituvchi o'z maktabidagi sinf o'quvchilarining xalqaro baholash natijasini ko'radi."""
+    # ─────────── o'quvchi: mening xatolarim ───────────
+    def xato_royxati(cur, user_id, toplam="", limit=60):
+        """O'quvchining hozir ham xato bo'lib turgan savollari: mashqdagi oxirgi javob xato bo'lganlar va
+        oxirgi 60 kundagi imtihon xatolari (keyin mashqda to'g'rilanmaganlari)."""
+        k = K.ensure()
+        cur.execute("""SELECT savol_id, urinish, togri, oxirgi_togri, oxirgi_v, oxirgi_javob, yangilangan FROM xb_bilim
+                       WHERE user_id=%s""", (user_id,))
+        bilim = {r["savol_id"]: dict(r) for r in cur.fetchall()}
+        out, seen = [], set()
+        for sid, b in sorted(bilim.items(), key=lambda kv: kv[1]["yangilangan"], reverse=True):
+            s = k.by_id.get(sid)
+            if not s or b["oxirgi_togri"] or (toplam and s["toplam"] != toplam):
+                continue
+            vi = int(b.get("oxirgi_v") or 0) % len(s["variantlar"])
+            out.append({**_variant_public(s, vi, javob_bilan=True), "berilgan": b.get("oxirgi_javob") or "", "manba": "mashq",
+                        "urinish": b["urinish"], "togri_soni": b["togri"], "sana": b["yangilangan"].isoformat() if b.get("yangilangan") else ""})
+            seen.add(sid)
+        cur.execute("""SELECT id, tur, davr, savollar, javoblar, natija, topshirilgan FROM xb_imtihon
+                       WHERE user_id=%s AND topshirilgan IS NOT NULL AND topshirilgan > NOW() - INTERVAL '60 days' ORDER BY id DESC LIMIT 12""", (user_id,))
+        for r in cur.fetchall():
+            tl = (r["natija"] or {}).get("togri_list") or []
+            for i, x in enumerate(r["savollar"] or []):
+                if i < len(tl) and not tl[i] and x["id"] not in seen:
+                    s = k.by_id.get(x["id"])
+                    if not s or (toplam and s["toplam"] != toplam) or bilim.get(x["id"], {}).get("oxirgi_togri"):
+                        continue
+                    out.append({**_variant_public(s, x["v"] % len(s["variantlar"]), javob_bilan=True),
+                                "berilgan": (r["javoblar"] or {}).get(str(i), ""), "manba": f"imtihon:{r['tur']}", "urinish": 1, "togri_soni": 0,
+                                "sana": r["topshirilgan"].isoformat() if r.get("topshirilgan") else "", "imtihon_id": r["id"]})
+                    seen.add(x["id"])
+        return out[:limit]
+
+    def mavzular_holati(cur, user_id):
+        """O'quvchining har mavzu bo'yicha o'zlashtirishi (bitta so'rov)."""
+        k = K.ensure()
+        cur.execute("SELECT savol_id, urinish, togri, oxirgi_togri, yangilangan FROM xb_bilim WHERE user_id=%s", (user_id,))
+        bilim = {r["savol_id"]: dict(r) for r in cur.fetchall()}
+        out = []
+        for kalit, t in k.mavzu_by_kalit.items():
+            h = mavzu_holati(bilim, k.by_mavzu.get(kalit, []))
+            if h["urinilgan"]:
+                out.append({"kalit": kalit, "nom": t["nom"], "toplam": t["toplam"], **h})
+        return sorted(out, key=lambda m: (m["foiz"], -m["urinilgan"]))
+
+    @router.get("/api/xalqaro/xatolarim")
+    def xatolarim(token: str = None, toplam: str = Query("", max_length=12), authorization: str = Header(None)):
         user_id = uid_of(token, authorization)
 
         def run(conn, cur):
-            user = user_info(cur, user_id)
-            if user["role"] not in ("oqituvchi", "admin", "direktor") or not user.get("maktab_id"):
-                raise HTTPException(403, "Faqat maktab o‘qituvchisi uchun")
-            cur.execute("""SELECT u.user_id, u.full_name, u.class, COALESCE(u.class_letter,'') AS harf,
-                                  (SELECT COUNT(*) FROM xb_bilim b WHERE b.user_id=u.user_id) AS urinish,
-                                  (SELECT COUNT(*) FROM xb_bilim b WHERE b.user_id=u.user_id AND b.oxirgi_togri) AS ozlashtirgan,
-                                  (SELECT MAX(b.yangilangan) FROM xb_bilim b WHERE b.user_id=u.user_id) AS oxirgi,
-                                  (SELECT i.ball FROM xb_imtihon i WHERE i.user_id=u.user_id AND i.rasmiy AND i.topshirilgan IS NOT NULL ORDER BY i.id DESC LIMIT 1) AS ball
-                           FROM users u WHERE u.maktab_id=%s AND u.role IN ('oquvchi','o''quvchi','student') AND u.class LIKE %s
-                           ORDER BY u.class, harf, u.full_name LIMIT 400""", (user["maktab_id"], f"{sinf}%" if sinf else "%"))
-            rows = []
-            now = datetime.now(TZ)
-            for r in cur.fetchall():
-                d = dict(r)
-                d["kun_oldin"] = (now - d["oxirgi"]).days if d.get("oxirgi") else None
-                d["daraja"] = daraja_of(d["ball"])["nom"] if d.get("ball") else None
-                d.pop("oxirgi", None)
-                rows.append(d)
+            xs = xato_royxati(cur, user_id, toplam)
+            mv = mavzular_holati(cur, user_id)
             conn.commit()
-            return {"oquvchilar": rows}
+            return {"xatolar": xs, "zaif_mavzular": [m for m in mv if m["foiz"] < 60][:8]}
+        return run_db(run)
+
+    # ─────────── o'qituvchi va admin: sinf, xatolar, o'quvchi ───────────
+    def admin_mi(cur, user_id):
+        try:
+            cur.execute("SAVEPOINT xb_adm")
+            cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+            ok = cur.fetchone() is not None
+            cur.execute("RELEASE SAVEPOINT xb_adm")
+            return ok
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT xb_adm")
+            return False
+
+    def kuzatuv_doirasi(cur, user_id, maktab_id=None):
+        """Kim ko'ra oladi: admin — istalgan maktab (yoki butun platforma), o'qituvchi/direktor — faqat o'z maktabi."""
+        user = user_info(cur, user_id)
+        if admin_mi(cur, user_id):
+            return {"admin": True, "maktab_id": maktab_id or None, "user": user}
+        if user["role"] in ("oqituvchi", "direktor", "zam_direktor") and user.get("maktab_id"):
+            return {"admin": False, "maktab_id": user["maktab_id"], "user": user}
+        raise HTTPException(403, "Bu bo‘lim maktab o‘qituvchisi va admin uchun")
+
+    OQUVCHI_SHART = "COALESCE(u.role,'') NOT IN ('oqituvchi','ota-ona','direktor','zam_direktor','admin') AND u.class ~ '^\\s*\\d'"
+
+    def oquvchilar(cur, doira, sinf, harf=""):
+        sharts, params = [OQUVCHI_SHART], []
+        if doira["maktab_id"]:
+            sharts.append("u.maktab_id=%s"); params.append(doira["maktab_id"])
+        if sinf:
+            sharts.append("regexp_replace(u.class, '[^0-9]', '', 'g')=%s"); params.append(str(int(sinf)))
+        if harf:
+            sharts.append("UPPER(COALESCE(u.class_letter,''))=UPPER(%s)"); params.append(harf)
+        if not doira["maktab_id"]:   # admin, maktab tanlanmagan — faqat xalqaro bo'limda faol o'quvchilar
+            sharts.append("EXISTS (SELECT 1 FROM xb_bilim b WHERE b.user_id=u.user_id)")
+        cur.execute(f"""SELECT u.user_id, u.full_name, u.class, COALESCE(u.class_letter,'') AS harf, u.maktab_id FROM users u
+                        WHERE {' AND '.join(sharts)} ORDER BY u.class, harf, u.full_name LIMIT 600""", params)
+        return [dict(r) for r in cur.fetchall()]
+
+    @router.get("/api/xalqaro/sinf_natija")
+    def sinf_natija(token: str = None, sinf: str = Query("", max_length=4), harf: str = Query("", max_length=3),
+                    maktab_id: int = Query(0, ge=0), authorization: str = Header(None)):
+        """O'qituvchi/admin: sinf o'quvchilari — faollik, o'zlashtirish, oxirgi rasmiy ball, zaif mavzu, xatolar soni."""
+        user_id = uid_of(token, authorization)
+        k = K.ensure()
+
+        def run(conn, cur):
+            doira = kuzatuv_doirasi(cur, user_id, maktab_id or None)
+            ol = oquvchilar(cur, doira, sinf, harf)
+            ids = [o["user_id"] for o in ol]
+            stat, xato, ball, mavzu = {}, {}, {}, {}
+            if ids:
+                cur.execute("""SELECT user_id, COUNT(*) AS urinish, COUNT(*) FILTER (WHERE oxirgi_togri) AS ozlashtirgan,
+                                      COUNT(*) FILTER (WHERE NOT oxirgi_togri) AS xato, MAX(yangilangan) AS oxirgi,
+                                      COUNT(*) FILTER (WHERE yangilangan > NOW() - INTERVAL '7 days') AS hafta
+                               FROM xb_bilim WHERE user_id=ANY(%s) GROUP BY user_id""", (ids,))
+                stat = {r["user_id"]: dict(r) for r in cur.fetchall()}
+                cur.execute("""SELECT DISTINCT ON (user_id) user_id, ball, foiz, tur, davr FROM xb_imtihon
+                               WHERE user_id=ANY(%s) AND rasmiy AND topshirilgan IS NOT NULL ORDER BY user_id, id DESC""", (ids,))
+                ball = {r["user_id"]: dict(r) for r in cur.fetchall()}
+                cur.execute("""SELECT user_id, mavzu, COUNT(*) FILTER (WHERE NOT oxirgi_togri) AS x, COUNT(*) AS n
+                               FROM xb_bilim WHERE user_id=ANY(%s) GROUP BY user_id, mavzu""", (ids,))
+                for r in cur.fetchall():
+                    if int(r["x"]) and (r["user_id"] not in mavzu or int(r["x"]) > mavzu[r["user_id"]][1]):
+                        mavzu[r["user_id"]] = (r["mavzu"], int(r["x"]))
+                cur.execute("SELECT user_id, COUNT(*) AS n FROM xb_imtihon WHERE user_id=ANY(%s) AND rasmiy AND topshirilgan IS NOT NULL AND davr=%s GROUP BY user_id",
+                            (ids, davr_kaliti("haftalik")))
+                haftalik = {r["user_id"] for r in cur.fetchall()}
+            else:
+                haftalik = set()
+            now = datetime.now(TZ)
+            rows = []
+            for o in ol:
+                s = stat.get(o["user_id"], {})
+                b = ball.get(o["user_id"])
+                kun = (now - s["oxirgi"]).days if s.get("oxirgi") else None
+                zm = mavzu.get(o["user_id"])
+                holat = "boshlamagan" if kun is None else "sust" if kun > 7 or int(s.get("hafta") or 0) < 10 else "faol"
+                rows.append({**o, "urinish": int(s.get("urinish") or 0), "ozlashtirgan": int(s.get("ozlashtirgan") or 0),
+                             "xato": int(s.get("xato") or 0), "hafta": int(s.get("hafta") or 0), "kun_oldin": kun, "holat": holat,
+                             "haftalik_topshirdi": o["user_id"] in haftalik,
+                             "ball": b["ball"] if b else None, "daraja": daraja_of(b["ball"])["nom"] if b and b.get("ball") else None,
+                             "zaif_mavzu": k.mavzu_by_kalit.get(zm[0], {}).get("nom") if zm else None})
+            conn.commit()
+            balllar = [r["ball"] for r in rows if r["ball"]]
+            return {"admin": doira["admin"], "maktab_id": doira["maktab_id"], "oquvchilar": rows,
+                    "jamlama": {"jami": len(rows), "faol": sum(r["holat"] == "faol" for r in rows), "sust": sum(r["holat"] == "sust" for r in rows),
+                                "boshlamagan": sum(r["holat"] == "boshlamagan" for r in rows), "haftalik": sum(r["haftalik_topshirdi"] for r in rows),
+                                "ortacha_ball": round(sum(balllar) / len(balllar)) if balllar else None}}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/sinf_xatolar")
+    def sinf_xatolar(token: str = None, sinf: str = Query("", max_length=4), harf: str = Query("", max_length=3),
+                     maktab_id: int = Query(0, ge=0), authorization: str = Header(None)):
+        """O'qituvchi/admin: sinf bo'yicha eng ko'p xato qilingan savollar va mavzular — dars qayerga qaratilishi kerak."""
+        user_id = uid_of(token, authorization)
+        k = K.ensure()
+
+        def run(conn, cur):
+            doira = kuzatuv_doirasi(cur, user_id, maktab_id or None)
+            ids = [o["user_id"] for o in oquvchilar(cur, doira, sinf, harf)]
+            savollar, mavzular = [], []
+            if ids:
+                # variant bo'yicha guruhlanadi: «ko'p berilgan javob» aynan shu variantning harfi/qiymati bo'lsin
+                cur.execute("""SELECT savol_id, oxirgi_v, COUNT(*) AS urindi, COUNT(*) FILTER (WHERE NOT oxirgi_togri) AS xato,
+                                      mode() WITHIN GROUP (ORDER BY oxirgi_javob) FILTER (WHERE NOT oxirgi_togri) AS kop_javob
+                               FROM xb_bilim WHERE user_id=ANY(%s) GROUP BY savol_id, oxirgi_v HAVING COUNT(*) FILTER (WHERE NOT oxirgi_togri) > 0
+                               ORDER BY 4 DESC, 3 DESC LIMIT 25""", (ids,))
+                for r in cur.fetchall():
+                    s = k.by_id.get(r["savol_id"])
+                    if not s:
+                        continue
+                    vi = int(r["oxirgi_v"] or 0) % len(s["variantlar"])
+                    p = _variant_public(s, vi, javob_bilan=True)
+                    kop = _t(r["kop_javob"])
+                    izoh = ""
+                    if s["variantlar"][vi]["turi"] == "tanlov" and harf_indeksi(kop) is not None:
+                        izoh = (s["variantlar"][vi].get("xatolar") or {}).get(str(harf_indeksi(kop)), "")
+                    savollar.append({**p, "urindi": int(r["urindi"]), "xato": int(r["xato"]),
+                                     "xato_foiz": round(100 * int(r["xato"]) / max(1, int(r["urindi"]))), "kop_javob": kop, "kop_izoh": izoh})
+                cur.execute("""SELECT mavzu, COUNT(DISTINCT user_id) AS oquvchi, COUNT(*) AS urindi, COUNT(*) FILTER (WHERE oxirgi_togri) AS togri
+                               FROM xb_bilim WHERE user_id=ANY(%s) GROUP BY mavzu""", (ids,))
+                for r in cur.fetchall():
+                    t = k.mavzu_by_kalit.get(r["mavzu"])
+                    if t:
+                        f = round(100 * int(r["togri"]) / max(1, int(r["urindi"])))
+                        sv = k.by_mavzu.get(r["mavzu"], [])
+                        dunyo = [x["xalqaro_ortacha"] for x in sv if x.get("xalqaro_ortacha") is not None]
+                        mavzular.append({"kalit": r["mavzu"], "nom": t["nom"], "toplam": t["toplam"], "oquvchi": int(r["oquvchi"]), "urindi": int(r["urindi"]),
+                                         "foiz": f, "dunyo": round(sum(dunyo) / len(dunyo)) if dunyo else None, "dars_kodi": "XB-" + r["mavzu"]})
+            conn.commit()
+            return {"savollar": savollar, "mavzular": sorted(mavzular, key=lambda m: m["foiz"])}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/oquvchi/{oquvchi_id}")
+    def oquvchi_tafsilot(oquvchi_id: int, token: str = None, authorization: str = Header(None)):
+        """O'qituvchi/admin: bitta o'quvchi — mavzular bo'yicha o'zlashtirish, xatolari (bergan javobi bilan), imtihonlar tarixi."""
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            doira = kuzatuv_doirasi(cur, user_id)
+            o = user_info(cur, oquvchi_id)
+            if not doira["admin"] and o.get("maktab_id") != doira["maktab_id"]:
+                raise HTTPException(403, "Bu o‘quvchi sizning maktabingizda emas")
+            cur.execute("""SELECT id, tur, toplam, davr, rasmiy, foiz, ball, topshirilgan, chiqishlar FROM xb_imtihon
+                           WHERE user_id=%s AND topshirilgan IS NOT NULL ORDER BY id DESC LIMIT 30""", (oquvchi_id,))
+            imt = [{**dict(r), "nom": IMTIHON_TURLARI.get(r["tur"], {}).get("nom", r["tur"]), "daraja": daraja_of(r["ball"] or 0)["nom"] if r["ball"] else None,
+                    "topshirilgan": r["topshirilgan"].isoformat() if r.get("topshirilgan") else ""} for r in cur.fetchall()]
+            out = {"oquvchi": {"user_id": oquvchi_id, "ism": o.get("ism"), "sinf": f"{o.get('class')}{o.get('harf')}"},
+                   "mavzular": mavzular_holati(cur, oquvchi_id), "xatolar": xato_royxati(cur, oquvchi_id, limit=40), "imtihonlar": imt}
+            cur.execute("SELECT COUNT(*) AS n FROM xb_takror WHERE user_id=%s", (oquvchi_id,))
+            out["takror_navbat"] = int((cur.fetchone() or {}).get("n") or 0)
+            conn.commit()
+            return out
+        return run_db(run)
+
+    @router.get("/api/xalqaro/kuzatuv")
+    def kuzatuv(token: str = None, authorization: str = Header(None)):
+        """Kim ekanini aniqlash: admin / o'qituvchi (o'z maktabi) / o'quvchi. Admin uchun xalqaro bo'limda faol maktablar ro'yxati."""
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            try:
+                doira = kuzatuv_doirasi(cur, user_id)
+            except HTTPException:
+                conn.commit()
+                return {"rol": "oquvchi"}
+            maktablar = []
+            if doira["admin"]:
+                try:
+                    cur.execute("SAVEPOINT xb_mk")
+                    cur.execute("""SELECT u.maktab_id AS id, COALESCE(m.nomi, 'Maktab #' || u.maktab_id) AS nomi, COUNT(DISTINCT b.user_id) AS oquvchi
+                                   FROM xb_bilim b JOIN users u ON u.user_id=b.user_id LEFT JOIN maktablar m ON m.id=u.maktab_id
+                                   WHERE u.maktab_id IS NOT NULL GROUP BY u.maktab_id, m.nomi ORDER BY 3 DESC LIMIT 200""")
+                    maktablar = [dict(r) for r in cur.fetchall()]
+                    cur.execute("RELEASE SAVEPOINT xb_mk")
+                except Exception:
+                    cur.execute("ROLLBACK TO SAVEPOINT xb_mk")
+                cur.execute("""SELECT COUNT(DISTINCT user_id) AS oquvchi, COUNT(*) AS javob FROM xb_bilim""")
+                r = cur.fetchone() or {}
+                cur.execute("SELECT COUNT(*) AS n, ROUND(AVG(ball)) AS ort FROM xb_imtihon WHERE rasmiy AND topshirilgan IS NOT NULL")
+                r2 = cur.fetchone() or {}
+                conn.commit()
+                return {"rol": "admin", "maktablar": maktablar,
+                        "platforma": {"oquvchi": int(r.get("oquvchi") or 0), "javob": int(r.get("javob") or 0),
+                                      "imtihon": int(r2.get("n") or 0), "ortacha_ball": int(r2["ort"]) if r2.get("ort") is not None else None}}
+            conn.commit()
+            return {"rol": "oqituvchi", "maktab_id": doira["maktab_id"]}
         return run_db(run)
 
     @router.get("/api/xalqaro/rasm/{savol_id}/{v}.svg")
