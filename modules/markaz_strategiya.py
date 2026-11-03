@@ -66,8 +66,10 @@ STRATEGIYALAR = [
             "izoh": _t("To'liq javob: fikr + qachon + nega.", "Полный ответ: мнение + когда + почему.", "A full answer: opinion + when + why.")}},
 ]
 
-def royxat(til="uz"):
+def royxat(til="uz", manba=None):
+    """manba — Excel'dan yuklangan ro'yxat (bazadan); bo'lmasa — standart to'plam."""
     t = til if til in ("uz", "ru", "en") else "uz"
+    STRATEGIYALAR_ = manba or STRATEGIYALAR
     return [{"id": s["id"], "bolim": s["bolim"], "nom": s["nom"][t], "qadamlar": [q[t] for q in s["qadamlar"]], "misol": s["misol"],
              "mashq": {"savol": s["mashq"]["savol"], "variantlar": s["mashq"]["variantlar"], "javob": s["mashq"]["javob"], "izoh": s["mashq"]["izoh"][t]}}
-            for s in STRATEGIYALAR]
+            for s in STRATEGIYALAR_]

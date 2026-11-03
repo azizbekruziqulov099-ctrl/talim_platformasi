@@ -8,7 +8,7 @@ import json
 import math
 import re
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from pydantic import BaseModel
 
 # ───────────── Imtihonlar katalogi (rasmiy ochiq formatlar; 2026) ─────────────
@@ -143,6 +143,10 @@ def _jadvallar(cur):
         kun DATE NOT NULL DEFAULT CURRENT_DATE, turi TEXT NOT NULL DEFAULT 'dars', dars_kodi TEXT, daqiqa INT NOT NULL DEFAULT 0,
         foiz NUMERIC, yaratilgan TIMESTAMPTZ NOT NULL DEFAULT now())""")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_markaz_faollik_yoz ON markaz_faollik(yozilish_id, kun)")
+    # REV285: Excel orqali yuklanadigan kontent (sinov variantlari, strategiyalar) — kod o'zgarmaydi
+    cur.execute("""CREATE TABLE IF NOT EXISTS markaz_kontent (
+        id BIGSERIAL PRIMARY KEY, turi TEXT NOT NULL, imtihon TEXT NOT NULL DEFAULT '', til TEXT NOT NULL DEFAULT 'en', variant INT NOT NULL DEFAULT 1,
+        malumot JSONB NOT NULL, yuklagan BIGINT, yangilangan TIMESTAMPTZ NOT NULL DEFAULT now(), UNIQUE(turi, imtihon, til, variant))""")
 
 
 class Yozilish(BaseModel):
@@ -363,12 +367,107 @@ def create_router(platform):
         return out
 
 
+    # ───────── REV285: Excel kontent (sinov variantlari, strategiyalar) ─────────
+    def _kontent(turi, imtihon, til, variant):
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("SELECT malumot, variant FROM markaz_kontent WHERE turi=%s AND imtihon=%s AND til=%s AND variant=%s", (turi, imtihon, til, int(variant)))
+            r = cur.fetchone(); conn.commit()
+            return {**r["malumot"], "variant": r["variant"]} if r else None
+        except Exception as e:
+            print(f"[MARKAZ-KONTENT] {type(e).__name__}: {str(e)[:150]}", flush=True)
+            return None
+        finally:
+            cur.close(); conn.close()
+
+    def _sinov_variant(uid, yozilish_id):
+        """Navbatdagi variant: o'quvchi hali topshirmagan eng kichik variant; hammasini topshirgan bo'lsa — eng eski topshirilgani."""
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("SELECT variant FROM markaz_kontent WHERE turi='sinov' AND imtihon='milliy_cefr' AND til='en' ORDER BY variant")
+            vlar = [r["variant"] for r in cur.fetchall()]
+            if not vlar:
+                conn.commit(); return None
+            cur.execute("""SELECT f.dars_kodi, MAX(f.yaratilgan) AS t FROM markaz_faollik f JOIN markaz_yozilish y ON y.id=f.yozilish_id
+                           WHERE y.user_id=%s AND f.dars_kodi LIKE 'full-v%%' GROUP BY f.dars_kodi""", (uid,))
+            topsh = {}
+            for r in cur.fetchall():
+                m = re.match(r"full-v(\d+)-", r["dars_kodi"] or "")
+                if m: topsh[int(m.group(1))] = max(topsh.get(int(m.group(1))) or r["t"], r["t"])
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        yangi = [v for v in vlar if v not in topsh]
+        tanlov = yangi[0] if yangi else min(vlar, key=lambda v: topsh[v])
+        return _kontent("sinov", "milliy_cefr", "en", tanlov)
+
+    @router.get("/api/markaz/admin/shablon")
+    def admin_shablon(token: str, turi: str = "sinov"):
+        """Admin: hozirgi kontentdan Excel (namuna sifatida to'ldirish uchun)."""
+        platform._admin_tekshir(token)
+        from fastapi.responses import Response
+        from modules.markaz_excel import sinov_shablon, strategiya_shablon
+        if turi == "strategiya":
+            from modules.markaz_strategiya import STRATEGIYALAR
+            data, nom = strategiya_shablon(STRATEGIYALAR), "markaz_strategiyalar.xlsx"
+        else:
+            from modules.markaz_sinov_toliq import LISTENING, READING
+            from modules.markaz_sertifikat import WRITING, SPEAKING
+            data, nom = sinov_shablon(LISTENING, READING, WRITING, SPEAKING), "markaz_sinov_namuna.xlsx"
+        return Response(data, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        headers={"Content-Disposition": f'attachment; filename="{nom}"'})
+
+    @router.post("/api/markaz/admin/kontent")
+    async def admin_kontent(token: str = Form(...), turi: str = Form("sinov"), variant: int = Form(1), fayl: UploadFile = File(...)):
+        """Admin: Excel yuklash → tekshirish → saqlash. Xato bo'lsa — hech narsa saqlanmaydi, qator raqamlari bilan qaytadi."""
+        uid = platform._admin_tekshir(token)
+        content = await fayl.read()
+        if len(content) > 5_000_000:
+            raise HTTPException(413, "Fayl juda katta (5 MB gacha)")
+        from modules.markaz_excel import sinov_oqish, strategiya_oqish
+        if turi == "sinov":
+            d, xato = sinov_oqish(content); imtihon = "milliy_cefr"
+        elif turi == "strategiya":
+            r, xato = strategiya_oqish(content); d = {"royxat": r} if r is not None else None; imtihon = ""; variant = 1
+        else:
+            raise HTTPException(400, "Turi noto'g'ri")
+        if xato or d is None:
+            return {"saqlandi": False, "xatolar": xato[:200]}
+        if not (1 <= int(variant) <= 50):
+            raise HTTPException(400, "Variant 1–50")
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("""INSERT INTO markaz_kontent (turi, imtihon, til, variant, malumot, yuklagan) VALUES (%s,%s,'en',%s,%s,%s)
+                           ON CONFLICT (turi, imtihon, til, variant) DO UPDATE SET malumot=EXCLUDED.malumot, yuklagan=EXCLUDED.yuklagan, yangilangan=now()""",
+                        (turi, imtihon, int(variant), json.dumps(d, ensure_ascii=False), uid))
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        return {"saqlandi": True, "soni": d.get("soni") or {"strategiya": len(d.get("royxat") or [])}, "variant": int(variant)}
+
+    @router.get("/api/markaz/admin/kontentlar")
+    def admin_kontentlar(token: str):
+        platform._admin_tekshir(token)
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            _jadvallar(cur)
+            cur.execute("SELECT turi, imtihon, til, variant, yangilangan FROM markaz_kontent ORDER BY turi, variant")
+            rows = [{k: (str(v) if k == "yangilangan" else v) for k, v in dict(r).items()} for r in cur.fetchall()]
+            conn.commit()
+        finally:
+            cur.close(); conn.close()
+        return {"kontentlar": rows}
+
     # ───────── REV278: Milliy sertifikat uslubidagi sinov imtihoni ─────────
     class _SinovObyektiv(BaseModel):
         token: str
         yozilish_id: int
         javoblar: dict
         turi: str = "mini"
+        variant: int = 0
 
     class _SinovMatn(BaseModel):
         token: str
@@ -381,26 +480,33 @@ def create_router(platform):
     def strategiya(til: str = "uz"):
         """REV282: imtihon bo'limlari uchun strategiya darslari (qadamlar, misol, tekshiruv mashqi) — 3 tilda."""
         from modules.markaz_strategiya import royxat
-        return {"strategiyalar": royxat(til)}
+        k = _kontent("strategiya", "", "en", 1)
+        return {"strategiyalar": royxat(til, k["royxat"] if k else None)}
 
     @router.get("/api/markaz/sinov")
-    def sinov(token: str, turi: str = "mini"):
-        platform._jwt_tekshir(token)
+    def sinov(token: str, turi: str = "mini", yozilish_id: int = 0):
+        uid = platform._jwt_tekshir(token)
         from modules.markaz_sertifikat import sinov_ochiq
         out = sinov_ochiq()
-        if turi == "toliq":   # REV280: to'liq sinov — Listening 35 + Reading 35 (imtihon qismlari bo'yicha); Writing/Speaking — o'sha
+        if turi == "toliq":   # REV280: to'liq sinov — Listening 35 + Reading 35; REV285: variantlar bazadan (Excel), navbat bilan
             from modules.markaz_sinov_toliq import ochiq
-            out = {**out, **ochiq()}
+            v = _sinov_variant(uid, yozilish_id)
+            if v:
+                out = {**out, **ochiq(v["listening"], v["reading"]), "writing": v.get("writing") or out["writing"], "speaking": v.get("speaking") or out["speaking"], "variant": v["variant"]}
+            else:
+                out = {**out, **ochiq()}
         return out
 
     @router.post("/api/markaz/sinov/obyektiv")
     def sinov_obyektiv(s: _SinovObyektiv):
         uid = platform._jwt_tekshir(s.token)
         if s.turi == "toliq":
-            from modules.markaz_sinov_toliq import baholash as obyektiv_ball
+            from modules.markaz_sinov_toliq import baholash
+            v = _kontent("sinov", "milliy_cefr", "en", s.variant) if s.variant else None
+            n = baholash(s.javoblar or {}, v["listening"], v["reading"]) if v else baholash(s.javoblar or {})
         else:
             from modules.markaz_sertifikat import obyektiv_ball
-        n = obyektiv_ball(s.javoblar or {})
+            n = obyektiv_ball(s.javoblar or {})
         conn = platform._db(); cur = conn.cursor()
         try:
             _jadvallar(cur)
@@ -408,7 +514,7 @@ def create_router(platform):
             if cur.fetchone():
                 for b in ("listening", "reading"):
                     cur.execute("INSERT INTO markaz_faollik (yozilish_id, turi, dars_kodi, daqiqa, foiz) VALUES (%s,'sinov',%s,30,%s)",
-                                (s.yozilish_id, f"{'full' if s.turi == 'toliq' else 'mock'}-{b}", round(100 * n[b]["ball"] / 75)))
+                                (s.yozilish_id, f"{'full-v' + str(s.variant or 1) if s.turi == 'toliq' else 'mock'}-{b}", round(100 * n[b]["ball"] / 75)))
             conn.commit()
         finally:
             cur.close(); conn.close()

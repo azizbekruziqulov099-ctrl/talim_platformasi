@@ -98,3 +98,24 @@ def test_strategiya():
         r = royxat(t)
         assert len(r) == len(STRATEGIYALAR) >= 8 and all(x["nom"] and x["qadamlar"] and 0 <= x["mashq"]["javob"] < len(x["mashq"]["variantlar"]) for x in r)
     assert {x["bolim"] for x in royxat()} == {"listening", "reading", "writing", "speaking"}
+
+
+def test_excel_kontent():
+    import io, openpyxl
+    from modules.markaz_excel import sinov_shablon, sinov_oqish, strategiya_shablon, strategiya_oqish
+    from modules.markaz_sinov_toliq import LISTENING, READING, baholash
+    from modules.markaz_sertifikat import WRITING, SPEAKING
+    from modules.markaz_strategiya import STRATEGIYALAR
+    d, xato = sinov_oqish(sinov_shablon(LISTENING, READING, WRITING, SPEAKING))
+    assert not xato and d["soni"] == {"listening": 35, "reading": 35}
+    qs = lambda B: [q for b in B for q in [y for _, y in b.get("audio", [])] + b.get("savollar", [])]
+    togri = {q["id"]: (q["javob"] if q["tur"] == "tanlash" else q["javob"][0]) for q in qs(d["listening"]) + qs(d["reading"])}
+    assert baholash(togri, d["listening"], d["reading"])["reading"]["ball"] == 75
+    # buzilgan qator — xato qator raqami bilan, hech narsa saqlanmaydi
+    wb = openpyxl.load_workbook(io.BytesIO(sinov_shablon(LISTENING, READING, WRITING, SPEAKING)))
+    wb["Sinov"]["O3"] = "Z"; bio = io.BytesIO(); wb.save(bio)
+    _, xato2 = sinov_oqish(bio.getvalue())
+    assert xato2 and xato2[0]["qator"] == 3
+    s, xato3 = strategiya_oqish(strategiya_shablon(STRATEGIYALAR))
+    assert not xato3 and len(s) == len(STRATEGIYALAR)
+    assert sinov_oqish(b"bu excel emas")[1][0]["xabar"].startswith("Fayl")

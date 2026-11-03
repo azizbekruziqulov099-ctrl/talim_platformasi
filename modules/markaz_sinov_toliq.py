@@ -119,7 +119,7 @@ READING = [
 
 def _norm(t): return " ".join(str(t or "").strip().lower().replace(".", "").split())
 
-def ochiq():
+def ochiq(LISTENING=LISTENING, READING=READING):
     def toza(q):
         return {k: v for k, v in q.items() if k != "javob"}
     def bolim(B):
@@ -134,7 +134,7 @@ def ochiq():
         return out
     return {"listening": bolim(LISTENING), "reading": bolim(READING), "turi": "toliq", "variant": 1}
 
-def baholash(javoblar):
+def baholash(javoblar, LISTENING=LISTENING, READING=READING):
     from modules.markaz_sertifikat import chegaralar
     out = {}
     for nom, B in (("listening", LISTENING), ("reading", READING)):
