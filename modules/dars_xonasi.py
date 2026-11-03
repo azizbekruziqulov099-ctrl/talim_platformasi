@@ -544,7 +544,7 @@ def create_router(platform):
         # REV260: «XB-…» — Xalqaro baholash kursi darsi (bazada emas, modules/xalqaro_data/darslar.json da)
         if topic_code.upper().startswith("XB-"):
             from modules.xalqaro_baholash import dars_payload
-            return dars_payload(topic_code)
+            return dars_payload(topic_code, til=til)   # REV270: dars o'quvchi tilida (uz/ru/en), tillar aralashmaydi
         conn = platform._db()
         cur = conn.cursor()
         try:

@@ -1,0 +1,2354 @@
+[
+{
+"k": "s0001",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "O‘nli kasrlar ishtirokidagi ko‘paytma va bo‘linmaning qiymatini sonlarni eng yaqin butun songacha yaxlitlash orqali taxminan baholash"
+},
+{
+"k": "s0002",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir o‘nli kasrni eng yaqin butun songa yaxlitlang (kasr qismi 0,5 dan kichik bo‘lsa pastga, katta bo‘lsa yuqoriga), so‘ng ifodani shu butun sonlar bilan yozing."
+},
+{
+"k": "s0003",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri $\\frac{5{,}87 \\times 8{,}12}{3{,}96}$ ifodaning ENG YAXSHI taxminiy qiymati?"
+},
+{
+"k": "s0004",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Besh butun sakson yettini yaxlitlaymiz: kasr qismi 0,5 dan katta, demak taxminan olti."
+},
+{
+"k": "s0005",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sakkiz butun o‘n ikki — kasr qismi kichik, shuning uchun taxminan sakkiz."
+},
+{
+"k": "s0006",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uch butun to‘qson olti to‘rtga juda yaqin, demak taxminan to‘rt."
+},
+{
+"k": "s0007",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yaxlitlangan sonlarni joyiga qo‘yamiz va taxminan o‘n ikkini olamiz."
+},
+{
+"k": "s0008",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) $\\frac{6 \\times 8}{4}$"
+},
+{
+"k": "s0009",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, eng yaxshi taxmin — C variant."
+},
+{
+"k": "s0010",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi yaxlitlash o‘rniga kasr qismini shunchaki tashlab yuborgan: 5,87 ni 5 ga, 3,96 ni 3 ga aylantirgan."
+},
+{
+"k": "s0011",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi suratdagi sonni to‘g‘ri yaxlitlagan, lekin maxrajdagi 3,96 ni yaxlitlamay, butun qismini olib qolgan."
+},
+{
+"k": "s0012",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi maxrajni to‘g‘ri yaxlitlagan, ammo 5,87 ning kasr qismini tashlab, 5 deb olgan."
+},
+{
+"k": "s0013",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir sonning qaysi butun songa yaqinroq ekanini kasr qismiga qarab aniqlang."
+},
+{
+"k": "s0014",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri $\\frac{9{,}78 \\times 4{,}15}{2{,}03}$ ifodaning ENG YAXSHI taxminiy qiymati?"
+},
+{
+"k": "s0015",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘qqiz butun yetmish sakkiz o‘nga yaqin, chunki kasr qismi 0,5 dan katta."
+},
+{
+"k": "s0016",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rt butun o‘n besh — kasr qismi kichik, taxminan to‘rt."
+},
+{
+"k": "s0017",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki butun yuzdan uch deyarli ikkiga teng."
+},
+{
+"k": "s0018",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yaxlitlangan sonlar bilan ifoda taxminan yigirmaga teng."
+},
+{
+"k": "s0019",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) $\\frac{10 \\times 4}{2}$"
+},
+{
+"k": "s0020",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng yaxshi taxmin — A variant."
+},
+{
+"k": "s0021",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi 9,78 ni yaxlitlamay, faqat butun qismini (9) olgan."
+},
+{
+"k": "s0022",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi 4,15 ni noto‘g‘ri yuqoriga yaxlitlagan, holbuki kasr qismi 0,5 dan kichik."
+},
+{
+"k": "s0023",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi 2,03 ni ham yuqoriga yaxlitlab 3 deb olgan — kasr qismi kichik bo‘lsa pastga yaxlitlanadi."
+},
+{
+"k": "s0024",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Kasr qismi 0,5 dan kichik bo‘lsa, son pastga yaxlitlanishini eslang."
+},
+{
+"k": "s0025",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Diagrammadagi ikki ma’lumotlar qatoridagi chiziqli o‘zgarish tendensiyasini aniqlab, ularni davom ettirish orqali qiymatlar tenglashadigan vaqtni topish"
+},
+{
+"k": "s0026",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir qator yiliga qanchaga o‘zgarishini toping, so‘ng oxirgi yildan boshlab ikkala qatorni yilma-yil davom ettiring (yoki farqni har yili qisqaradigan miqdorga bo‘ling)."
+},
+{
+"k": "s0027",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Diagrammada bir choy qadoqlash korxonasining to‘rt yil davomida sotgan ko‘k choy va qora choy qutilari soni (ming quti) ko‘rsatilgan. Agar sotuvlar shu tarzda o‘zgarishda davom etsa, qaysi yili ko‘k choy sotuvi qora choy sotuviga teng bo‘ladi?"
+},
+{
+"k": "s0028",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Choy sotuvi"
+},
+{
+"k": "s0029",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ko‘k choy"
+},
+{
+"k": "s0030",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Qora choy"
+},
+{
+"k": "s0031",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Yil"
+},
+{
+"k": "s0032",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ming quti"
+},
+{
+"k": "s0033",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ko‘k choy: +10 ming / yil;  qora choy: +4 ming / yil"
+},
+{
+"k": "s0034",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Diagrammadan ko‘ramiz: ko‘k choy har yili o‘n mingga, qora choy esa to‘rt mingga ortmoqda."
+},
+{
+"k": "s0035",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oxirgi yilda farq o‘ttiz ming quti."
+},
+{
+"k": "s0036",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Farq har yili $10 - 4 = 6$ ga kamayadi"
+},
+{
+"k": "s0037",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘k choy har yili qora choyga olti ming quti yaqinlashadi."
+},
+{
+"k": "s0038",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$30 : 6 = 5$ yil;  $2022 + 5 = 2027$"
+},
+{
+"k": "s0039",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘ttizni oltiga bo‘lsak besh yil chiqadi, ya’ni 2027-yil."
+},
+{
+"k": "s0040",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tekshiramiz: 2027-yilda ikkalasi ham to‘qson ming quti."
+},
+{
+"k": "s0041",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 2027"
+},
+{
+"k": "s0042",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, to‘g‘ri javob — C."
+},
+{
+"k": "s0043",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi qora choy sotuvi ham o‘sishini hisobga olmagan: 30 ni faqat 10 ga bo‘lib, 3 yil deb topgan."
+},
+{
+"k": "s0044",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi yillarni sanashda bittaga adashgan (2022 dan keyingi besh yilni noto‘g‘ri sanagan)."
+},
+{
+"k": "s0045",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi farqni faqat qora choy o‘sishiga (4 ga) bo‘lib, 7,5 yil chiqargan va 2030 ni tanlagan."
+},
+{
+"k": "s0046",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval har bir mahsulot yiliga qanchaga o‘sayotganini aniqlang, keyin farq qanday qisqarishini kuzating."
+},
+{
+"k": "s0047",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Diagrammada ikki do‘konning to‘rt yil davomida sotgan velosipedlari soni ko‘rsatilgan. Agar sotuvlar shu tarzda o‘zgarishda davom etsa, qaysi yili «Tezkor» do‘koni «Shamol» do‘koni bilan bir xil miqdorda velosiped sotadi?"
+},
+{
+"k": "s0048",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Velosiped sotuvi"
+},
+{
+"k": "s0049",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "«Tezkor» do‘koni"
+},
+{
+"k": "s0050",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "«Shamol» do‘koni"
+},
+{
+"k": "s0051",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Velosipedlar soni"
+},
+{
+"k": "s0052",
+"maydon": "doska",
+"tur": "matn",
+"uz": "«Tezkor»: +5 / yil;  «Shamol»: +2 / yil"
+},
+{
+"k": "s0053",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "«Tezkor» do‘koni har yili beshtaga, «Shamol» esa ikkitaga ko‘p sotmoqda."
+},
+{
+"k": "s0054",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oxirgi yilda farq yigirma to‘rtta velosiped."
+},
+{
+"k": "s0055",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Farq har yili $5 - 2 = 3$ ga kamayadi"
+},
+{
+"k": "s0056",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har yili farq uchtaga qisqaradi."
+},
+{
+"k": "s0057",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$24 : 3 = 8$ yil;  $2021 + 8 = 2029$"
+},
+{
+"k": "s0058",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yigirma to‘rtni uchga bo‘lsak sakkiz yil, ya’ni 2029-yil."
+},
+{
+"k": "s0059",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tekshiruv: 2029-yilda ikkala do‘kon ham yetmishtadan sotadi."
+},
+{
+"k": "s0060",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) 2029"
+},
+{
+"k": "s0061",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — D."
+},
+{
+"k": "s0062",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi «Shamol» sotuvi ham o‘sishini unutib, 24 ni 5 ga bo‘lgan va taxminan 5 yil deb olgan."
+},
+{
+"k": "s0063",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi yillarni sanashda bittaga adashgan."
+},
+{
+"k": "s0064",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi farqni faqat «Shamol» o‘sishiga (2 ga) bo‘lib, 12 yil chiqargan."
+},
+{
+"k": "s0065",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ikkala do‘kon ham o‘sayotganini unutmang: farq har yili qanchaga kamayadi?"
+},
+{
+"k": "s0066",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Geometrik naqsh asosida tuzilgan jadvaldagi qonuniyatni aniqlab, uni keyingi qatorlar uchun davom ettirish"
+},
+{
+"k": "s0067",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Jadvaldagi har bir ustun qanday o‘zgarayotganini toping: jami plitkalar soni qator va ustunlar ko‘paytmasiga teng, chetki plitkalar esa jami sondan ichki plitkalarni ayirish bilan topiladi."
+},
+{
+"k": "s0068",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz devorga kafel yotqizmoqda. Har bir shakl $n$ qator va $n+1$ ustundan iborat to‘g‘ri to‘rtburchak: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y).\nRasmda dastlabki ikki shakl, jadvalda esa dastlabki to‘rt shakl uchun plitkalar soni berilgan. Aziz shu qonuniyat bo‘yicha davom etdi.\n6 × 7 shaklda nechta sariq plitka bor?"
+},
+{
+"k": "s0069",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "S — sariq"
+},
+{
+"k": "s0070",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Y — yashil"
+},
+{
+"k": "s0071",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Shakl"
+},
+{
+"k": "s0072",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Yashil"
+},
+{
+"k": "s0073",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "plitkalar"
+},
+{
+"k": "s0074",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Sariq"
+},
+{
+"k": "s0075",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Jami"
+},
+{
+"k": "s0076",
+"maydon": "javob",
+"tur": "matn",
+"uz": "22|22 ta"
+},
+{
+"k": "s0077",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $3\\cdot4=12$, $4\\cdot5=20$, $5\\cdot6=30$"
+},
+{
+"k": "s0078",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami plitkalar soni qatorlar soni bilan ustunlar sonining ko‘paytmasiga teng."
+},
+{
+"k": "s0079",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq = Jami − Yashil"
+},
+{
+"k": "s0080",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sariq plitkalarni topish uchun jami sondan yashillarini ayiramiz."
+},
+{
+"k": "s0081",
+"maydon": "doska",
+"tur": "matn",
+"uz": "6 × 7: Jami $= 6 \\cdot 7 = 42$"
+},
+{
+"k": "s0082",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Olti karra yetti qirq ikki."
+},
+{
+"k": "s0083",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq $= 42 - 20 = 22$"
+},
+{
+"k": "s0084",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qirq ikkidan yigirmani ayirsak, yigirma ikki chiqadi."
+},
+{
+"k": "s0085",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: 10, 14, 18, 22 (har safar +4)"
+},
+{
+"k": "s0086",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sariq plitkalar har safar to‘rttaga ortmoqda — mos keladi."
+},
+{
+"k": "s0087",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 22"
+},
+{
+"k": "s0088",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, 6 × 7 shaklda yigirma ikkita sariq plitka bor."
+},
+{
+"k": "s0089",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p o‘quvchilar jami plitkalarni $6\\cdot6=36$ deb kvadrat kabi hisoblab, 16 javobini oladi; ba’zilar esa jami sonni (42) javob qilib yozadi."
+},
+{
+"k": "s0090",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval 6 × 7 shakldagi jami plitkalar sonini toping."
+},
+{
+"k": "s0091",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malika gilam uchun kvadrat naqshlar chizmoqda. Har bir shakl kvadrat: chetdan ikki qavat (ikkita tashqi halqa) plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y).\nRasmda dastlabki ikki shakl, jadvalda esa dastlabki to‘rt shakl uchun plitkalar soni berilgan. Malika shu qonuniyat bo‘yicha davom etdi.\n8 × 8 shaklda nechta sariq plitka bor?"
+},
+{
+"k": "s0092",
+"maydon": "javob",
+"tur": "matn",
+"uz": "48|48 ta"
+},
+{
+"k": "s0093",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $5^2=25$, $6^2=36$, $7^2=49$"
+},
+{
+"k": "s0094",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kvadrat shaklda jami plitkalar soni tomonining kvadratiga teng."
+},
+{
+"k": "s0095",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sariq plitkalar — jami sondan ichki yashil plitkalarni ayirganimiz."
+},
+{
+"k": "s0096",
+"maydon": "doska",
+"tur": "matn",
+"uz": "8 × 8: Jami $= 64$"
+},
+{
+"k": "s0097",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sakkiz karra sakkiz oltmish to‘rt."
+},
+{
+"k": "s0098",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq $= 64 - 16 = 48$"
+},
+{
+"k": "s0099",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oltmish to‘rtdan o‘n oltini ayirsak qirq sakkiz."
+},
+{
+"k": "s0100",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: 24, 32, 40, 48 (har safar +8)"
+},
+{
+"k": "s0101",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sariq plitkalar har safar sakkiztaga ortmoqda — to‘g‘ri."
+},
+{
+"k": "s0102",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 48"
+},
+{
+"k": "s0103",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, sariq plitkalar soni qirq sakkizta."
+},
+{
+"k": "s0104",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar sariq plitkalar har safar 4 taga ortadi deb o‘ylab, 44 deb yozadi yoki jami plitkalar sonini (64) javob qiladi."
+},
+{
+"k": "s0105",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Jami plitkalar sonidan ichki plitkalarni ayirib ko‘ring."
+},
+{
+"k": "s0106",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Naqsh qonuniyatidan foydalanib, jami elementlar soni bo‘yicha shakl o‘lchamini aniqlash va uning qismlaridagi elementlar sonini topish"
+},
+{
+"k": "s0107",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Jami son kvadrat (yoki ko‘paytma) bo‘lgani uchun avval shaklning o‘lchamini toping, keyin ichki qismni hisoblab, chetki qismni ayirish bilan aniqlang."
+},
+{
+"k": "s0108",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jasur kvadrat shaklidagi mozaikalar yasaydi. Har bir shakl kvadrat: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y). Masalan, 4 × 4 shaklda 4 ta yashil va 12 ta sariq plitka bor.\nJasur jami 100 ta plitkadan iborat shakl yasadi. Unda nechta yashil va nechta sariq plitka bor?"
+},
+{
+"k": "s0109",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "81 ta yashil, 19 ta sariq"
+},
+{
+"k": "s0110",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "64 ta yashil, 40 ta sariq"
+},
+{
+"k": "s0111",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "36 ta yashil, 64 ta sariq"
+},
+{
+"k": "s0112",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "64 ta yashil, 36 ta sariq"
+},
+{
+"k": "s0113",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami plitkalar soni tomonning kvadrati, demak shakl 10 × 10."
+},
+{
+"k": "s0114",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yashil: $(10-2)^2 = 8^2 = 64$"
+},
+{
+"k": "s0115",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ichki kvadratning tomoni ikkitaga kam — sakkiz, demak yashil plitkalar oltmish to‘rtta."
+},
+{
+"k": "s0116",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq: $100 - 64 = 36$"
+},
+{
+"k": "s0117",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qolganlari sariq: yuzdan oltmish to‘rtni ayirsak o‘ttiz olti."
+},
+{
+"k": "s0118",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $4 \\cdot 10 - 4 = 36$"
+},
+{
+"k": "s0119",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chetda to‘rt tomon bo‘yicha o‘ntadan, burchaklar ikki marta sanalgani uchun to‘rtni ayiramiz."
+},
+{
+"k": "s0120",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) 64 ta yashil, 36 ta sariq"
+},
+{
+"k": "s0121",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi ichki kvadrat tomonini bittaga kam (9) deb olgan, holbuki ikki tomondan bittadan qator olib tashlanadi."
+},
+{
+"k": "s0122",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi yashilni to‘g‘ri topgan, ammo sariqni $4 \\cdot 10 = 40$ deb hisoblab, burchaklarni ikki marta sanagan."
+},
+{
+"k": "s0123",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi to‘g‘ri sonlarni topgan, lekin yashil va sariqni almashtirib yuborgan."
+},
+{
+"k": "s0124",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval 100 ta plitkadan iborat kvadratning tomoni nechaga tengligini toping."
+},
+{
+"k": "s0125",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Nilufar choyxona devori uchun kafel naqshlari tuzmoqda. Har bir shakl $n$ qator va $n+1$ ustundan iborat to‘g‘ri to‘rtburchak: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y). Masalan, 3 × 4 shaklda 2 ta yashil va 10 ta sariq plitka bor.\nNilufar jami 56 ta plitkadan iborat shunday shakl tuzdi. Unda nechta yashil va nechta sariq plitka bor?"
+},
+{
+"k": "s0126",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "30 ta yashil, 26 ta sariq"
+},
+{
+"k": "s0127",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "42 ta yashil, 14 ta sariq"
+},
+{
+"k": "s0128",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "25 ta yashil, 31 ta sariq"
+},
+{
+"k": "s0129",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "30 ta yashil, 28 ta sariq"
+},
+{
+"k": "s0130",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ketma-ket ikki sonning ko‘paytmasi ellik olti bo‘lishi kerak: yetti va sakkiz. Demak shakl 7 × 8."
+},
+{
+"k": "s0131",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yashil: $(7-2)(8-2) = 5 \\cdot 6 = 30$"
+},
+{
+"k": "s0132",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ichki qism har tomondan bittadan qator kam: besh qator, olti ustun — o‘ttizta."
+},
+{
+"k": "s0133",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq: $56 - 30 = 26$"
+},
+{
+"k": "s0134",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qolgan yigirma oltitasi sariq."
+},
+{
+"k": "s0135",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) 30 ta yashil, 26 ta sariq"
+},
+{
+"k": "s0136",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — A."
+},
+{
+"k": "s0137",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi ichki qismni 6 × 7 deb, ya’ni har o‘lchamdan faqat bittani ayirgan."
+},
+{
+"k": "s0138",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi shaklni kvadrat deb o‘ylab, ichki qismni $5^2$ deb olgan."
+},
+{
+"k": "s0139",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi sariqlarni $4 \\cdot 7 = 28$ deb alohida hisoblagan va yig‘indi 56 ga teng emasligini tekshirmagan."
+},
+{
+"k": "s0140",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qaysi ketma-ket ikki sonning ko‘paytmasi 56 ga tengligini toping."
+},
+{
+"k": "s0141",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Naqshdagi ichki qism elementlari soni bo‘yicha shakl o‘lchamini teskari hisoblab, chetki elementlar sonini topish"
+},
+{
+"k": "s0142",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Ichki qism sonidan uning tomon(lar)ini toping, ikkiga qo‘shib butun shakl o‘lchamini aniqlang, so‘ng jami sondan ichki qismni ayiring."
+},
+{
+"k": "s0143",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jasur kvadrat shaklidagi mozaikalar yasaydi. Har bir shakl kvadrat: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y). Masalan, 4 × 4 shaklda 4 ta yashil va 12 ta sariq plitka bor.\nJasur 121 ta yashil plitka ishlatilgan shakl yasadi. Bu shaklda nechta sariq plitka bor?"
+},
+{
+"k": "s0144",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yashil plitkalar kvadrat hosil qiladi; bir yuz yigirma bir — o‘n birning kvadrati."
+},
+{
+"k": "s0145",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Butun shakl har tomondan bittadan sariq qator bilan o‘ralgan, demak tomoni o‘n uch."
+},
+{
+"k": "s0146",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $13^2 = 169$"
+},
+{
+"k": "s0147",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n uchning kvadrati bir yuz oltmish to‘qqiz."
+},
+{
+"k": "s0148",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq: $169 - 121 = 48$"
+},
+{
+"k": "s0149",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami sondan yashillarni ayirsak qirq sakkiz."
+},
+{
+"k": "s0150",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, shaklda qirq sakkizta sariq plitka bor."
+},
+{
+"k": "s0151",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p o‘quvchilar shakl tomonini 11 deb olib, $4 \\cdot 11 - 4 = 40$ topadi yoki tomonga faqat 1 qo‘shib 12 × 12 shakl bilan hisoblaydi (23)."
+},
+{
+"k": "s0152",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yashil kvadratning tomoni nechaga teng va butun shakl undan qanchaga katta?"
+},
+{
+"k": "s0153",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Nilufar choyxona devori uchun kafel naqshlari tuzmoqda. Har bir shakl $n$ qator va $n+1$ ustundan iborat to‘g‘ri to‘rtburchak: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y). Masalan, 3 × 4 shaklda 2 ta yashil va 10 ta sariq plitka bor.\nNilufar 72 ta yashil plitka ishlatilgan shunday shakl tuzdi. Bu shaklda nechta sariq plitka bor?"
+},
+{
+"k": "s0154",
+"maydon": "javob",
+"tur": "matn",
+"uz": "38|38 ta"
+},
+{
+"k": "s0155",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yashil qism: $(n-2)(n-1) = 72 = 8 \\cdot 9$"
+},
+{
+"k": "s0156",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yashil qism ham ketma-ket ikki son ko‘paytmasi: sakkiz karra to‘qqiz."
+},
+{
+"k": "s0157",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Shakl: $10 \\times 11$"
+},
+{
+"k": "s0158",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har o‘lchamga ikkitadan qo‘shamiz: o‘n qator, o‘n bir ustun."
+},
+{
+"k": "s0159",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $10 \\cdot 11 = 110$"
+},
+{
+"k": "s0160",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami bir yuz o‘nta plitka."
+},
+{
+"k": "s0161",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq: $110 - 72 = 38$"
+},
+{
+"k": "s0162",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yashillarni ayirsak o‘ttiz sakkiz qoladi."
+},
+{
+"k": "s0163",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 38"
+},
+{
+"k": "s0164",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, sariq plitkalar soni o‘ttiz sakkizta."
+},
+{
+"k": "s0165",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar shaklni 9 × 10 deb (faqat bittadan qo‘shib) hisoblab 18 topadi yoki shaklni kvadrat deb o‘ylaydi."
+},
+{
+"k": "s0166",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "72 ni ketma-ket ikki sonning ko‘paytmasi ko‘rinishida yozing."
+},
+{
+"k": "s0167",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Naqshdagi chetki elementlar soni bo‘yicha shakl o‘lchamini aniqlab, ichki qism elementlari sonini topish"
+},
+{
+"k": "s0168",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Chetki elementlar sonini o‘lcham orqali ifodalang (masalan, $4n-4$), tenglamani yechib $n$ ni toping va ichki qismni hisoblang."
+},
+{
+"k": "s0169",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jasur kvadrat shaklidagi mozaikalar yasaydi. Har bir shakl kvadrat: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y). Masalan, 4 × 4 shaklda 4 ta yashil va 12 ta sariq plitka bor.\nBoshqa bir shaklda Jasur 60 ta sariq plitka ishlatdi. Shaklning ichki qismini to‘ldirish uchun unga nechta yashil plitka kerak?"
+},
+{
+"k": "s0170",
+"maydon": "javob",
+"tur": "matn",
+"uz": "196|196 ta"
+},
+{
+"k": "s0171",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq: $4n - 4$"
+},
+{
+"k": "s0172",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "n × n kvadratning chetida to‘rt tomon bo‘yicha n tadan, burchaklar ikki marta sanalgani uchun to‘rtni ayiramiz."
+},
+{
+"k": "s0173",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tenglamani yechamiz: shakl 16 × 16."
+},
+{
+"k": "s0174",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yashil: $(16 - 2)^2 = 14^2$"
+},
+{
+"k": "s0175",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ichki kvadratning tomoni o‘n to‘rt."
+},
+{
+"k": "s0176",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n to‘rtning kvadrati bir yuz to‘qson olti."
+},
+{
+"k": "s0177",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 196"
+},
+{
+"k": "s0178",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, yuz to‘qson oltita yashil plitka kerak."
+},
+{
+"k": "s0179",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p o‘quvchilar 60 ni 4 ga bo‘lib, shakl tomonini 15 deb oladi va $13^2 = 169$ topadi; burchaklar ikki marta sanalishini unutadi."
+},
+{
+"k": "s0180",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Chetdagi plitkalar sonini shakl tomoni orqali ifodalab ko‘ring."
+},
+{
+"k": "s0181",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Nilufar choyxona devori uchun kafel naqshlari tuzmoqda. Har bir shakl $n$ qator va $n+1$ ustundan iborat to‘g‘ri to‘rtburchak: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y). Masalan, 3 × 4 shaklda 2 ta yashil va 10 ta sariq plitka bor.\nBoshqa bir shaklda Nilufar 54 ta sariq plitka ishlatdi. Shaklning ichki qismini to‘ldirish uchun unga nechta yashil plitka kerak?"
+},
+{
+"k": "s0182",
+"maydon": "javob",
+"tur": "matn",
+"uz": "156|156 ta"
+},
+{
+"k": "s0183",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq: $2n + 2(n+1) - 4 = 4n - 2$"
+},
+{
+"k": "s0184",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chetda ikki qator n+1 tadan va ikki ustun n tadan, to‘rt burchak ikki marta sanalgan."
+},
+{
+"k": "s0185",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tenglamani yechamiz: n o‘n to‘rt, shakl 14 × 15."
+},
+{
+"k": "s0186",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yashil: $12 \\cdot 13 = 156$"
+},
+{
+"k": "s0187",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ichki qism o‘n ikki qator va o‘n uch ustun — bir yuz ellik olti."
+},
+{
+"k": "s0188",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $14 \\cdot 15 - 156 = 210 - 156 = 54$"
+},
+{
+"k": "s0189",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami ikki yuz o‘ndan ichki qismni ayirsak, haqiqatan ellik to‘rt sariq qoladi."
+},
+{
+"k": "s0190",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 156"
+},
+{
+"k": "s0191",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, yuz ellik oltita yashil plitka kerak."
+},
+{
+"k": "s0192",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar sariq plitkalar sonini $4n - 4$ deb (kvadratdagidek) olib, noto‘g‘ri o‘lcham topadi yoki ichki qismni $(n-1)n$ deb hisoblaydi."
+},
+{
+"k": "s0193",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Chetki plitkalarni qatorlar va ustunlar bo‘yicha alohida sanab, $n$ orqali ifodalang."
+},
+{
+"k": "s0194",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Geometrik naqshdagi qonuniyatni umumlashtirib, elementlar sonini $n$ o‘zgaruvchili algebraik ifoda bilan yozish"
+},
+{
+"k": "s0195",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bir nechta aniq shakl uchun sonlarni hisoblab, ularning o‘zgarishini kuzating; ifodani jami sondan ichki qismni ayirish yoki chetni bo‘laklab sanash orqali tuzing va kichik $n$ uchun tekshiring."
+},
+{
+"k": "s0196",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Nilufar choyxona devori uchun kafel naqshlari tuzmoqda. Har bir shakl $n$ qator va $n+1$ ustundan iborat to‘g‘ri to‘rtburchak: eng chetki qatorlar va ustunlardagi plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y).\nMasalan, 3 × 4 shaklda 2 ta yashil va 10 ta sariq, 4 × 5 shaklda 6 ta yashil va 14 ta sariq plitka bor.\nYashil plitkalar soni $(n-2)(n-1)$ ga teng. $n \\times (n+1)$ shakldagi sariq plitkalar sonini qaysi ifoda ko‘rsatadi?"
+},
+{
+"k": "s0197",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $n(n+1)$"
+},
+{
+"k": "s0198",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami plitkalar soni qatorlar va ustunlar ko‘paytmasi."
+},
+{
+"k": "s0199",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq $= n(n+1) - (n-2)(n-1)$"
+},
+{
+"k": "s0200",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sariqlar — jami sondan yashillarni ayirganimiz."
+},
+{
+"k": "s0201",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qavslarni ochib soddalashtiramiz: to‘rt en minus ikki."
+},
+{
+"k": "s0202",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tekshiramiz: misollardagi o‘n va o‘n to‘rt chiqdi."
+},
+{
+"k": "s0203",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) $4n - 2$"
+},
+{
+"k": "s0204",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — B."
+},
+{
+"k": "s0205",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi kvadrat naqshdagi formulani ko‘chirgan; $n = 3$ da u 8 beradi, misolda esa 10."
+},
+{
+"k": "s0206",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi yashil qismni kvadrat $(n-2)^2$ deb olgan, holbuki u $(n-2)(n-1)$."
+},
+{
+"k": "s0207",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi burchaklarni ayirish o‘rniga qo‘shib yuborgan; $n = 3$ da 14 chiqadi."
+},
+{
+"k": "s0208",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir variantga $n = 3$ ni qo‘yib, 10 chiqishini tekshiring."
+},
+{
+"k": "s0209",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malika gilam uchun kvadrat naqshlar chizmoqda. Har bir shakl kvadrat: chetdan ikki qavat (ikkita tashqi halqa) plitkalar sariq (S), ichkaridagi qolgan plitkalar yashil (Y).\nMasalan, 5 × 5 shaklda 1 ta yashil va 24 ta sariq, 6 × 6 shaklda 4 ta yashil va 32 ta sariq plitka bor.\n$n \\times n$ shakldagi sariq plitkalar sonini qaysi ifoda ko‘rsatadi?"
+},
+{
+"k": "s0210",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $n^2$;  yashil: $(n-4)^2$"
+},
+{
+"k": "s0211",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ichki kvadratning tomoni har tomondan ikkitadan, jami to‘rttaga kam."
+},
+{
+"k": "s0212",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sariq $= n^2 - (n-4)^2$"
+},
+{
+"k": "s0213",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qavsni ochib soddalashtiramiz: sakkiz en minus o‘n olti."
+},
+{
+"k": "s0214",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Misollar bilan tekshiramiz — mos keladi."
+},
+{
+"k": "s0215",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) $8n - 16$"
+},
+{
+"k": "s0216",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi ikki halqani to‘rt tomondan sanab, burchaklarni ayirishni unutgan; $n = 5$ da 40 chiqadi."
+},
+{
+"k": "s0217",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi faqat bitta tashqi halqani hisoblagan."
+},
+{
+"k": "s0218",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi har halqadan faqat 4 ta burchakni ayirgan, ichki halqa kichikroq ekanini hisobga olmagan; $n = 5$ da 32 chiqadi."
+},
+{
+"k": "s0219",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Variantlarga $n = 5$ ni qo‘yib, 24 hosil bo‘lishini tekshiring."
+},
+{
+"k": "s0220",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ko‘pburchakni bir uchidan o‘tkazilgan diagonallar bilan uchburchaklarga ajratib, ichki burchaklari yig‘indisini topish"
+},
+{
+"k": "s0221",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bir uchdan o‘tkazilgan diagonallar ko‘pburchakni $n-2$ ta uchburchakka ajratadi; har bir uchburchak burchaklari yig‘indisi $180^\\circ$, demak yig‘indi $(n-2)\\cdot180^\\circ$."
+},
+{
+"k": "s0222",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmda $ABCDEF$ oltiburchak tasvirlangan. $A$ uchidan barcha diagonallar o‘tkazilgan.\n$ABCDEF$ oltiburchakning barcha ichki burchaklari yig‘indisi necha gradus?"
+},
+{
+"k": "s0223",
+"maydon": "javob",
+"tur": "matn",
+"uz": "720|720°|720 gradus"
+},
+{
+"k": "s0224",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Diagonallar: $AC$, $AD$, $AE$"
+},
+{
+"k": "s0225",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A uchidan uchta diagonal o‘tkazilgan."
+},
+{
+"k": "s0226",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uchburchaklar soni: $6 - 2 = 4$"
+},
+{
+"k": "s0227",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ular oltiburchakni to‘rtta uchburchakka ajratadi."
+},
+{
+"k": "s0228",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har bir uchburchak burchaklari yig‘indisi yuz sakson gradus, to‘rttasi yetti yuz yigirma gradus."
+},
+{
+"k": "s0229",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 720"
+},
+{
+"k": "s0230",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, ichki burchaklar yig‘indisi yetti yuz yigirma gradus."
+},
+{
+"k": "s0231",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p o‘quvchilar uchburchaklar sonini tomonlar soniga teng (6) deb olib 1080° topadi yoki $360^\\circ$ deb javob beradi."
+},
+{
+"k": "s0232",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Diagonallar oltiburchakni nechta uchburchakka ajratganini sanang."
+},
+{
+"k": "s0233",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmda $KLMNPQR$ yettiburchak tasvirlangan. $K$ uchidan barcha diagonallar o‘tkazilgan.\n$KLMNPQR$ yettiburchakning barcha ichki burchaklari yig‘indisi necha gradus?"
+},
+{
+"k": "s0234",
+"maydon": "javob",
+"tur": "matn",
+"uz": "900|900°|900 gradus"
+},
+{
+"k": "s0235",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Diagonallar: $KM$, $KN$, $KP$, $KQ$"
+},
+{
+"k": "s0236",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "K uchidan to‘rtta diagonal o‘tkazilgan."
+},
+{
+"k": "s0237",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uchburchaklar soni: $7 - 2 = 5$"
+},
+{
+"k": "s0238",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ular yettiburchakni beshta uchburchakka ajratadi."
+},
+{
+"k": "s0239",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Besh karra yuz sakson — to‘qqiz yuz gradus."
+},
+{
+"k": "s0240",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 900"
+},
+{
+"k": "s0241",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, ichki burchaklar yig‘indisi to‘qqiz yuz gradus."
+},
+{
+"k": "s0242",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar diagonallar sonini (4) uchburchaklar soni deb olib 720° topadi yoki $7 \\cdot 180^\\circ = 1260^\\circ$ deb hisoblaydi."
+},
+{
+"k": "s0243",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir uchburchak burchaklari yig‘indisi $180^\\circ$ ekanini eslang va uchburchaklarni sanang."
+},
+{
+"k": "s0244",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Natural sonni tub ko‘paytuvchilar ko‘paytmasi shaklida yozishni bilish"
+},
+{
+"k": "s0245",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Faqat tub sonlardan (2, 3, 5, 7, ...) iborat va ko‘paytmasi berilgan songa teng bo‘lgan variantni tanlang."
+},
+{
+"k": "s0246",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri 60 sonining tub ko‘paytuvchilarga yoyilmasi?"
+},
+{
+"k": "s0247",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oltmishni ikkiga bo‘lamiz: o‘ttiz."
+},
+{
+"k": "s0248",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘ttizni yana ikkiga bo‘lamiz: o‘n besh."
+},
+{
+"k": "s0249",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n besh — uch va beshning ko‘paytmasi, ikkalasi ham tub."
+},
+{
+"k": "s0250",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Barcha ko‘paytuvchilar tub sonlar."
+},
+{
+"k": "s0251",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) $2 \\times 2 \\times 3 \\times 5$"
+},
+{
+"k": "s0252",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi 4 ning tub son emasligini (4 = 2 · 2) e’tiborga olmagan."
+},
+{
+"k": "s0253",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi ko‘paytma 60 ga teng bo‘lgani yetarli deb o‘ylagan, ammo 6 va 10 tub emas."
+},
+{
+"k": "s0254",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi yoyishni oxirigacha yetkazmagan: 10 tub son emas."
+},
+{
+"k": "s0255",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir variantdagi barcha ko‘paytuvchilar tub son ekanini tekshiring."
+},
+{
+"k": "s0256",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri 72 sonining tub ko‘paytuvchilarga yoyilmasi?"
+},
+{
+"k": "s0257",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yetmish ikkini ikkiga bo‘lsak o‘ttiz olti."
+},
+{
+"k": "s0258",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yana ikki marta ikkiga bo‘lamiz va to‘qqiz qoladi."
+},
+{
+"k": "s0259",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘qqiz — uch karra uch."
+},
+{
+"k": "s0260",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Hammasi tub ko‘paytuvchilar."
+},
+{
+"k": "s0261",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) $2 \\times 2 \\times 2 \\times 3 \\times 3$"
+},
+{
+"k": "s0262",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi ko‘paytmasi 72 bo‘lgan istalgan yozuvni tanlagan; 8 va 9 tub emas."
+},
+{
+"k": "s0263",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi 9 ni tub son deb o‘ylagan, holbuki 9 = 3 · 3."
+},
+{
+"k": "s0264",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi yoyishni oxirigacha yetkazmagan: 12 tub emas."
+},
+{
+"k": "s0265",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Tub son faqat 1 ga va o‘ziga bo‘linishini eslang."
+},
+{
+"k": "s0266",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Doiraviy diagrammadagi foizlardan foydalanib, umumiy miqdorning bir necha qismiga mos sonni topish"
+},
+{
+"k": "s0267",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Kerakli bo‘laklarning foizlarini qo‘shing, so‘ng umumiy sonning shu foizini toping (foizni 100 ga bo‘lib, umumiy songa ko‘paytiring)."
+},
+{
+"k": "s0268",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Doiraviy diagrammada Chorsu bozoridagi bir do‘kondagi ko‘ylaklarning rangi bo‘yicha foiz ulushlari ko‘rsatilgan. Do‘konda jami 300 ta ko‘ylak bor. Oq yoki qora rangdagi ko‘ylaklar jami nechta?"
+},
+{
+"k": "s0269",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ko‘ylaklar rangi"
+},
+{
+"k": "s0270",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Oq"
+},
+{
+"k": "s0271",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ko‘k"
+},
+{
+"k": "s0272",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Qora"
+},
+{
+"k": "s0273",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Qizil"
+},
+{
+"k": "s0274",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oq + qora: $35\\% + 25\\% = 60\\%$"
+},
+{
+"k": "s0275",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oq va qora bo‘laklarning foizlarini qo‘shamiz: oltmish foiz."
+},
+{
+"k": "s0276",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uch yuzning oltmish foizini topamiz."
+},
+{
+"k": "s0277",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uch yuzni yuzga bo‘lsak uch, uni oltmishga ko‘paytirsak bir yuz sakson."
+},
+{
+"k": "s0278",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 180"
+},
+{
+"k": "s0279",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi faqat oq ko‘ylaklarni hisoblagan: 300 ning 35% i = 105."
+},
+{
+"k": "s0280",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi foizlarni qo‘shib, 60% ni tayyor javob deb yozgan, 300 ning ulushini hisoblamagan."
+},
+{
+"k": "s0281",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi qolgan ranglar (40%) sonini hisoblagan: 300 ning 40% i = 120."
+},
+{
+"k": "s0282",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval ikki bo‘lakning foizlarini qo‘shing, keyin bu foiz 300 ning qanchasi ekanini toping."
+},
+{
+"k": "s0283",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Doiraviy diagrammada bir maktab o‘quvchilarining sevimli fanlari bo‘yicha so‘rovnoma natijalari foizlarda ko‘rsatilgan. So‘rovnomada 500 nafar o‘quvchi qatnashgan. Matematika yoki biologiyani tanlagan o‘quvchilar jami necha nafar?"
+},
+{
+"k": "s0284",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Sevimli fan"
+},
+{
+"k": "s0285",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Matematika"
+},
+{
+"k": "s0286",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ona tili"
+},
+{
+"k": "s0287",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ingliz tili"
+},
+{
+"k": "s0288",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Biologiya"
+},
+{
+"k": "s0289",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Tarix"
+},
+{
+"k": "s0290",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Matematika + biologiya: $28\\% + 20\\% = 48\\%$"
+},
+{
+"k": "s0291",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki bo‘lakning foizlarini qo‘shamiz: qirq sakkiz foiz."
+},
+{
+"k": "s0292",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Besh yuzning qirq sakkiz foizini topamiz."
+},
+{
+"k": "s0293",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Besh yuzni yuzga bo‘lsak besh, besh karra qirq sakkiz ikki yuz qirq."
+},
+{
+"k": "s0294",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) 240"
+},
+{
+"k": "s0295",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi foizlar yig‘indisini (48%) o‘quvchilar soni deb yozgan."
+},
+{
+"k": "s0296",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi faqat matematikani hisoblagan: 500 ning 28% i = 140."
+},
+{
+"k": "s0297",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi qolgan fanlarni (52%) hisoblagan: 500 ning 52% i = 260."
+},
+{
+"k": "s0298",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ikki bo‘lak foizlarini qo‘shib, natijani 500 ga nisbatan hisoblang."
+},
+{
+"k": "s0299",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "O‘zgaruvchi qiymati oralig‘i berilganda, unga son qo‘shish yoki ayirishdan hosil bo‘lgan ifodaning oralig‘ini aniqlash"
+},
+{
+"k": "s0300",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Oraliqning ikkala chegarasiga ham bir xil amalni bajaring: ifodaga qo‘shilgan (ayirilgan) son ikkala chegaraga ham qo‘shiladi (ayiriladi)."
+},
+{
+"k": "s0301",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Agar $m$ soni 4 va 7 orasida bo‘lsa, $m + 8$ qaysi ikki son orasida bo‘ladi?"
+},
+{
+"k": "s0302",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "$-4$ va $-1$"
+},
+{
+"k": "s0303",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "12 va 15"
+},
+{
+"k": "s0304",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "32 va 56"
+},
+{
+"k": "s0305",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "12 va 7"
+},
+{
+"k": "s0306",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "m to‘rt bilan yetti orasida."
+},
+{
+"k": "s0307",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala chegaraga ham sakkiz qo‘shamiz."
+},
+{
+"k": "s0308",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Natijada m qo‘shuv sakkiz o‘n ikki bilan o‘n besh orasida."
+},
+{
+"k": "s0309",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 12 va 15"
+},
+{
+"k": "s0310",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi 8 ni qo‘shish o‘rniga chegaralardan ayirgan."
+},
+{
+"k": "s0311",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi chegaralarni 8 ga ko‘paytirgan."
+},
+{
+"k": "s0312",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi faqat kichik chegaraga 8 qo‘shib, kattasini o‘zgartirmagan."
+},
+{
+"k": "s0313",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "$m$ ning eng kichik va eng katta qiymatlariga 8 qo‘shib ko‘ring."
+},
+{
+"k": "s0314",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Agar $k$ soni 11 va 14 orasida bo‘lsa, $k - 3$ qaysi ikki son orasida bo‘ladi?"
+},
+{
+"k": "s0315",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "14 va 17"
+},
+{
+"k": "s0316",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "33 va 42"
+},
+{
+"k": "s0317",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "8 va 14"
+},
+{
+"k": "s0318",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "8 va 11"
+},
+{
+"k": "s0319",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "k o‘n bir bilan o‘n to‘rt orasida."
+},
+{
+"k": "s0320",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala chegaradan ham uchni ayiramiz."
+},
+{
+"k": "s0321",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, k minus uch sakkiz bilan o‘n bir orasida."
+},
+{
+"k": "s0322",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) 8 va 11"
+},
+{
+"k": "s0323",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi 3 ni ayirish o‘rniga chegaralarga qo‘shgan."
+},
+{
+"k": "s0324",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi chegaralarni 3 ga ko‘paytirgan."
+},
+{
+"k": "s0325",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi faqat kichik chegaradan 3 ni ayirib, kattasini o‘zgartirmagan."
+},
+{
+"k": "s0326",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Oraliqning ikkala chegarasidan ham 3 ni ayiring."
+},
+{
+"k": "s0327",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Oddiy kasrni unga teng o‘nli kasr ko‘rinishida yozish"
+},
+{
+"k": "s0328",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Kasrning maxrajini 10, 100 ga keltiring (surat va maxrajni bir xil songa ko‘paytirib) yoki suratni maxrajga bo‘ling."
+},
+{
+"k": "s0329",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Qaysi son $\\frac{3}{4}$ ga teng?"
+},
+{
+"k": "s0330",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Maxrajni yuzga keltirish uchun surat va maxrajni yigirma beshga ko‘paytiramiz."
+},
+{
+"k": "s0331",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yetmish besh yuzdan bir hosil bo‘ladi."
+},
+{
+"k": "s0332",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu nol butun yuzdan yetmish besh."
+},
+{
+"k": "s0333",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 0,75"
+},
+{
+"k": "s0334",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — C."
+},
+{
+"k": "s0335",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi surat va maxraj raqamlarini ketma-ket yozib qo‘ygan."
+},
+{
+"k": "s0336",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi maxrajni suratga bo‘lgan: 4 : 3 ≈ 1,33."
+},
+{
+"k": "s0337",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi raqamlarni teskari tartibda yozgan."
+},
+{
+"k": "s0338",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Maxrajni 100 ga keltirish uchun 4 ni nechaga ko‘paytirish kerak?"
+},
+{
+"k": "s0339",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Qaysi son $\\frac{4}{25}$ ga teng?"
+},
+{
+"k": "s0340",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Maxrajni yuzga keltirish uchun surat va maxrajni to‘rtga ko‘paytiramiz."
+},
+{
+"k": "s0341",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n olti yuzdan bir chiqadi."
+},
+{
+"k": "s0342",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu nol butun yuzdan o‘n olti."
+},
+{
+"k": "s0343",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) 0,16"
+},
+{
+"k": "s0344",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi maxrajga e’tibor bermay, suratni o‘ndan bir qilib yozgan."
+},
+{
+"k": "s0345",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi surat va maxraj raqamlarini ketma-ket yozib qo‘ygan."
+},
+{
+"k": "s0346",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi maxrajni suratga bo‘lgan: 25 : 4 = 6,25."
+},
+{
+"k": "s0347",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "25 ni nechaga ko‘paytirsangiz 100 hosil bo‘ladi?"
+},
+{
+"k": "s0348",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Kasr qismidagi xonalar soni har xil bo‘lgan o‘nli kasrlarni qo‘shish"
+},
+{
+"k": "s0349",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Sonlarni vergul vergul ostida turadigan qilib ustun shaklida yozing (yetishmagan xonalarni nol bilan to‘ldirish mumkin) va xonama-xona qo‘shing."
+},
+{
+"k": "s0350",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Hisoblang: $36{,}47 + 8{,}295$"
+},
+{
+"k": "s0351",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kasr qismlarini tenglash uchun birinchi songa oxiriga nol yozamiz."
+},
+{
+"k": "s0352",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kasr qismlarini qo‘shamiz: to‘rt yuz yetmish va ikki yuz to‘qson besh — yetti yuz oltmish besh mingdan."
+},
+{
+"k": "s0353",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Butun qismlar: o‘ttiz olti qo‘shuv sakkiz qirq to‘rt."
+},
+{
+"k": "s0354",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 44,765"
+},
+{
+"k": "s0355",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Natija qirq to‘rt butun mingdan yetti yuz oltmish besh."
+},
+{
+"k": "s0356",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p o‘quvchilar sonlarni oxirgi raqam bo‘yicha tekislab yozadi va vergullar bir-biri ostida turmaydi, natijada 11,942 yoki 119,42 kabi noto‘g‘ri javob chiqadi."
+},
+{
+"k": "s0357",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Sonlarni vergul vergul ostida bo‘ladigan qilib yozing."
+},
+{
+"k": "s0358",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Hisoblang: $5{,}836 + 61{,}9$"
+},
+{
+"k": "s0359",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi sonning oxiriga ikkita nol yozib, kasr qismlarini tenglaymiz."
+},
+{
+"k": "s0360",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kasr qismlari yig‘indisi bir butun yetti yuz o‘ttiz olti mingdan — bir butun keyingi xonaga o‘tadi."
+},
+{
+"k": "s0361",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Butun qismlar: besh, oltmish bir va o‘tgan bir — oltmish yetti."
+},
+{
+"k": "s0362",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 67,736"
+},
+{
+"k": "s0363",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Natija oltmish yetti butun mingdan yetti yuz o‘ttiz olti."
+},
+{
+"k": "s0364",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar 61,9 ni o‘ng chetdan tekislab yozib 6,455 kabi javob oladi yoki kasr qismidan butun qismga o‘tadigan birni unutib 66,736 deb yozadi."
+},
+{
+"k": "s0365",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Vergullarni bir ustunga qo‘yib, bo‘sh xonalarga nol yozing."
+},
+{
+"k": "s0366",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Qoldiqli bo‘lish natijasini masala mazmuniga qarab talqin qilish (kerakli eng kichik idishlar sonini topish)"
+},
+{
+"k": "s0367",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Umumiy miqdorni bitta idish sig‘imiga bo‘ling; qoldiq bo‘lsa, qolgan narsalar uchun yana bitta idish kerakligini hisobga olib, bo‘linmani bittaga oshiring."
+},
+{
+"k": "s0368",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malika nonvoyxonada nonlarni xaltalarga joylamoqda.\nHar bir xaltaga 8 ta non sig‘adi.\nUnda 115 ta non bor.\nBarcha nonlarni joylash uchun unga eng kamida nechta xalta kerak?"
+},
+{
+"k": "s0369",
+"maydon": "javob",
+"tur": "matn",
+"uz": "15|15 ta"
+},
+{
+"k": "s0370",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$115 : 8 = 14$ (qoldiq 3)"
+},
+{
+"k": "s0371",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir yuz o‘n beshni sakkizga bo‘lamiz: o‘n to‘rt, qoldiq uch."
+},
+{
+"k": "s0372",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$14$ xalta: $14 \\cdot 8 = 112$ ta non"
+},
+{
+"k": "s0373",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n to‘rtta to‘la xaltaga bir yuz o‘n ikkita non sig‘adi."
+},
+{
+"k": "s0374",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qolgan 3 ta non uchun yana 1 xalta"
+},
+{
+"k": "s0375",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uchta non qolib ketmasligi uchun yana bitta xalta kerak."
+},
+{
+"k": "s0376",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami o‘n beshta xalta."
+},
+{
+"k": "s0377",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 15"
+},
+{
+"k": "s0378",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, eng kamida o‘n beshta xalta kerak."
+},
+{
+"k": "s0379",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p o‘quvchilar qoldiqni tashlab yuborib 14 deb yozadi yoki bo‘linmani kasr ko‘rinishida (14,375) qoldiradi."
+},
+{
+"k": "s0380",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qoldiqda qolgan nonlar ham biror xaltaga joylanishi kerakligini unutmang."
+},
+{
+"k": "s0381",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jasur bog‘da 130 litr olma sharbati tayyorladi.\nU sharbatni 12 litrli bidonlarga quymoqda.\nBarcha sharbatni quyish uchun unga eng kamida nechta bidon kerak?"
+},
+{
+"k": "s0382",
+"maydon": "javob",
+"tur": "matn",
+"uz": "11|11 ta"
+},
+{
+"k": "s0383",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$130 : 12 = 10$ (qoldiq 10)"
+},
+{
+"k": "s0384",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir yuz o‘ttizni o‘n ikkiga bo‘lamiz: o‘n, qoldiq o‘n."
+},
+{
+"k": "s0385",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$10$ bidon: $10 \\cdot 12 = 120$ litr"
+},
+{
+"k": "s0386",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘nta to‘la bidonga bir yuz yigirma litr sig‘adi."
+},
+{
+"k": "s0387",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qolgan 10 litr uchun yana 1 bidon"
+},
+{
+"k": "s0388",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n litr sharbat uchun yana bitta bidon kerak."
+},
+{
+"k": "s0389",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 11"
+},
+{
+"k": "s0390",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, eng kamida o‘n bitta bidon kerak."
+},
+{
+"k": "s0391",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar qoldiqni hisobga olmay 10 deb yozadi yoki 10,8 kabi kasr javob beradi."
+},
+{
+"k": "s0392",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Oxirgi bidon to‘lmasa ham, u baribir kerak bo‘ladi."
+}
+]

@@ -1,0 +1,2192 @@
+[
+{
+"k": "s0001",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Butun sonlar ustidagi amallar qatoridagi qonuniyatni aniqlab, uni manfiy sonlar sohasiga davom ettirish"
+},
+{
+"k": "s0002",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har qatorda qaysi son qanday o‘zgarayotganini (necha birlikka kamayishi yoki ortishini) aniqlang va shu o‘zgarishni nol chegarasidan keyin ham davom ettiring; natijani butun sonlar qoidasi bilan tekshiring."
+},
+{
+"k": "s0003",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagi qonuniyatga qarang:\n$5 - 4 = 1$\n$5 - 2 = 3$\n$5 - 0 = 5$\nQonuniyatdagi keyingi qator qaysi?"
+},
+{
+"k": "s0004",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ayriluvchi: $4,\\ 2,\\ 0,\\ \\dots$"
+},
+{
+"k": "s0005",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har qatorda ayiriladigan son ikkiga kamaymoqda: to‘rt, ikki, nol."
+},
+{
+"k": "s0006",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Keyingi ayriluvchi: $0 - 2 = -2$"
+},
+{
+"k": "s0007",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Noldan yana ikkini ayirsak, keyingi ayriluvchi minus ikki bo‘ladi."
+},
+{
+"k": "s0008",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Natija: $1,\\ 3,\\ 5,\\ \\dots \\Rightarrow 7$"
+},
+{
+"k": "s0009",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Natijalar esa har safar ikkiga ortmoqda, demak keyingisi yetti."
+},
+{
+"k": "s0010",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tekshiramiz: manfiy sonni ayirish uni qo‘shish bilan barobar, besh qo‘shuv ikki — yetti."
+},
+{
+"k": "s0011",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) $5 - (-2) = 7$"
+},
+{
+"k": "s0012",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, keyingi qator — C variant."
+},
+{
+"k": "s0013",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi ayriluvchi noldan keyin yana o‘sib boradi deb o‘ylagan va qonuniyatni orqaga qaytargan."
+},
+{
+"k": "s0014",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi ayriluvchini to‘g‘ri topgan, lekin manfiy sonni ayirishni musbat sonni ayirish bilan adashtirgan: $5 - 2 = 3$ deb hisoblagan."
+},
+{
+"k": "s0015",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi ayriluvchi har safar 2 ga emas, 1 ga kamayadi deb noto‘g‘ri qadam olgan."
+},
+{
+"k": "s0016",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ayriluvchi har qatorda qanchaga kamayayotganiga e’tibor bering va noldan keyin ham shu qadamni davom ettiring."
+},
+{
+"k": "s0017",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagi qonuniyatga qarang:\n$3 \\cdot 2 = 6$\n$2 \\cdot 2 = 4$\n$1 \\cdot 2 = 2$\n$0 \\cdot 2 = 0$\nQonuniyatdagi keyingi qator qaysi?"
+},
+{
+"k": "s0018",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Birinchi ko‘paytuvchi: $3,\\ 2,\\ 1,\\ 0,\\ \\dots$"
+},
+{
+"k": "s0019",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi ko‘paytuvchi har qatorda bittaga kamaymoqda."
+},
+{
+"k": "s0020",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Keyingisi: $0 - 1 = -1$"
+},
+{
+"k": "s0021",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Noldan keyin keladigan son — minus bir."
+},
+{
+"k": "s0022",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Natija: $6,\\ 4,\\ 2,\\ 0,\\ \\dots$ — har safar $2$ ga kamayadi"
+},
+{
+"k": "s0023",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Natijalar esa har qatorda ikkiga kamaymoqda."
+},
+{
+"k": "s0024",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$0 - 2 = -2$, ya’ni $(-1) \\cdot 2 = -2$"
+},
+{
+"k": "s0025",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Noldan ikkini ayirsak minus ikki chiqadi — manfiy sonni musbat songa ko‘paytirsak manfiy son hosil bo‘ladi."
+},
+{
+"k": "s0026",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) $(-1) \\cdot 2 = -2$"
+},
+{
+"k": "s0027",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, keyingi qator — D variant."
+},
+{
+"k": "s0028",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi birinchi ko‘paytuvchini to‘g‘ri topgan, ammo ko‘paytmaning ishorasini e’tiborsiz qoldirib, natijani musbat deb yozgan."
+},
+{
+"k": "s0029",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi noldan keyin qonuniyat qaytadan o‘sadi deb o‘ylagan."
+},
+{
+"k": "s0030",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi tenglikni to‘g‘ri hisoblagan, lekin bir qatorni tashlab o‘tib, $-1$ o‘rniga $-2$ ni olgan."
+},
+{
+"k": "s0031",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har ikki ustundagi sonlar qatordan qatorga qanchaga o‘zgarayotganini alohida kuzating."
+},
+{
+"k": "s0032",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Qismning butunga nisbatini foizda ifodalash va berilgan foiz bo‘yicha sonning qismini topish"
+},
+{
+"k": "s0033",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Foizni topish uchun qismni butunga bo‘lib, 100 ga ko‘paytiring; qismni topish uchun esa butunni foizga mos o‘nli kasrga (yoki 100 ga bo‘lib, foiz soniga) ko‘paytiring."
+},
+{
+"k": "s0034",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz, Bekzod va Sardor to‘pni savatga 25 martadan otishdi. Jadvalda har birining nechta otishi muvaffaqiyatli bo‘lgani ko‘rsatilgan. Bekzodning muvaffaqiyat foizi qancha? (Faqat sonni yozing.)"
+},
+{
+"k": "s0035",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ism"
+},
+{
+"k": "s0036",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Muvaffaqiyatli"
+},
+{
+"k": "s0037",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "otishlar soni"
+},
+{
+"k": "s0038",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Muvaffaqiyat"
+},
+{
+"k": "s0039",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "foizi"
+},
+{
+"k": "s0040",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Aziz"
+},
+{
+"k": "s0041",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Bekzod"
+},
+{
+"k": "s0042",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Sardor"
+},
+{
+"k": "s0043",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bekzod yigirma beshta otishdan o‘n beshtasini muvaffaqiyatli bajargan — bu butunning o‘n besh yigirma beshdan bir qismi."
+},
+{
+"k": "s0044",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Surat va maxrajni to‘rtga ko‘paytirsak, maxraj yuz bo‘ladi: oltmish yuzdan."
+},
+{
+"k": "s0045",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yuzdan oltmish — bu oltmish foiz."
+},
+{
+"k": "s0046",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $25 \\cdot 0{,}6 = 15$"
+},
+{
+"k": "s0047",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yigirma beshning oltmish foizi haqiqatan o‘n besh."
+},
+{
+"k": "s0048",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 60"
+},
+{
+"k": "s0049",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bekzodning muvaffaqiyat foizi — oltmish."
+},
+{
+"k": "s0050",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar muvaffaqiyatli otishlar sonini (15) foiz deb yozadi yoki $15 : 25 = 0{,}6$ ni topib, 100 ga ko‘paytirishni unutadi."
+},
+{
+"k": "s0051",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qism butunning qanday ulushi ekanini toping va bu ulushni maxraji 100 bo‘lgan kasr ko‘rinishiga keltiring."
+},
+{
+"k": "s0052",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malika, Nilufar va Dilnoza to‘pni savatga 40 martadan otishdi. Jadvalda ularning muvaffaqiyat foizi berilgan. Nilufar nechta otishni muvaffaqiyatli bajargan?"
+},
+{
+"k": "s0053",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Malika"
+},
+{
+"k": "s0054",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Nilufar"
+},
+{
+"k": "s0055",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Dilnoza"
+},
+{
+"k": "s0056",
+"maydon": "javob",
+"tur": "matn",
+"uz": "14|14 ta"
+},
+{
+"k": "s0057",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval o‘ttiz besh foizni o‘nli kasrga aylantiramiz: nol butun yuzdan o‘ttiz besh."
+},
+{
+"k": "s0058",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qirq marta otishning o‘ttiz besh foizini topish uchun qirqni nol butun o‘ttiz beshga ko‘paytiramiz — o‘n to‘rt."
+},
+{
+"k": "s0059",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $\\frac{14}{40} = \\frac{35}{100}$"
+},
+{
+"k": "s0060",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n to‘rtni qirqqa bo‘lsak, haqiqatan o‘ttiz besh foiz chiqadi."
+},
+{
+"k": "s0061",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 14"
+},
+{
+"k": "s0062",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Nilufar o‘n to‘rtta otishni muvaffaqiyatli bajargan."
+},
+{
+"k": "s0063",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar 35% ni to‘g‘ridan-to‘g‘ri 35 ta otish deb oladi yoki $40 - 35 = 5$ deb ayiradi."
+},
+{
+"k": "s0064",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Butunning 10% i qancha ekanini toping, so‘ng undan 35% ni hosil qiling."
+},
+{
+"k": "s0065",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "O‘xshash hadlarni ixchamlab, algebraik ifodani soddalashtirish"
+},
+{
+"k": "s0066",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bir xil harf va bir xil darajaga ega hadlarni guruhlang, ularning koeffitsiyentlarini qo‘shing; koeffitsiyenti yozilmagan had uchun 1 deb oling."
+},
+{
+"k": "s0067",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri $4m^2 + 3m + m^2 + 5m$ ifodaga teng?"
+},
+{
+"k": "s0068",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘xshash hadlarni guruhlaymiz: em kvadratli hadlar alohida, em li hadlar alohida."
+},
+{
+"k": "s0069",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Em kvadratning yozilmagan koeffitsiyenti bir, demak to‘rt qo‘shuv bir — besh em kvadrat."
+},
+{
+"k": "s0070",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Em li hadlar: uch qo‘shuv besh — sakkiz em."
+},
+{
+"k": "s0071",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Em kvadrat va em o‘xshash hadlar emas, ularni qo‘shib bo‘lmaydi."
+},
+{
+"k": "s0072",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) $5m^2 + 8m$"
+},
+{
+"k": "s0073",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — B."
+},
+{
+"k": "s0074",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi barcha koeffitsiyentlarni qo‘shib ($4 + 3 + 1 + 5 = 13$), o‘xshash bo‘lmagan hadlarni ham birlashtirib yuborgan."
+},
+{
+"k": "s0075",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi daraja ko‘rsatkichiga e’tibor bermay, barcha hadlarni $m$ li had deb qo‘shgan."
+},
+{
+"k": "s0076",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi $m^2$ ning koeffitsiyenti 1 ekanini sezmay, uni $m$ li hadlar qatoriga qo‘shib yuborgan: $3 + 1 + 5 = 9$."
+},
+{
+"k": "s0077",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Faqat harfi ham, darajasi ham bir xil bo‘lgan hadlarni qo‘shish mumkin."
+},
+{
+"k": "s0078",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri $2k + 6k^2 + 3k + k^2$ ifodaga teng?"
+},
+{
+"k": "s0079",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval ka kvadratli hadlarni, keyin ka li hadlarni yonma-yon yozamiz."
+},
+{
+"k": "s0080",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ka kvadratning oldida bir turibdi deb hisoblaymiz: olti qo‘shuv bir — yetti."
+},
+{
+"k": "s0081",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ka li hadlar: ikki qo‘shuv uch — besh ka."
+},
+{
+"k": "s0082",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu ikki had o‘xshash emas, ifoda shu ko‘rinishda qoladi."
+},
+{
+"k": "s0083",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) $7k^2 + 5k$"
+},
+{
+"k": "s0084",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — D."
+},
+{
+"k": "s0085",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi barcha koeffitsiyentlarni qo‘shgan ($2 + 6 + 3 + 1 = 12$) va darajani tashlab yuborgan."
+},
+{
+"k": "s0086",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi barcha koeffitsiyentlarni qo‘shib, natijaga $k^2$ ni yozgan — o‘xshash bo‘lmagan hadlarni birlashtirgan."
+},
+{
+"k": "s0087",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi $k^2$ hadning koeffitsiyenti 1 ni $k$ li hadlarga qo‘shib yuborgan: $2 + 3 + 1 = 6$."
+},
+{
+"k": "s0088",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Koeffitsiyenti yozilmagan hadning koeffitsiyenti nechaga teng ekanini eslang."
+},
+{
+"k": "s0089",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Harfiy ifodaga berilgan qiymatlarni qo‘yib, uning son qiymatini hisoblash"
+},
+{
+"k": "s0090",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Harflar o‘rniga berilgan sonlarni qo‘ying (harflar yonma-yon yozilsa — ko‘paytirish), avval suratni hisoblang, keyin maxrajga bo‘ling."
+},
+{
+"k": "s0091",
+"maydon": "savol",
+"tur": "matn",
+"uz": "$m = 4$ va $n = 9$.\n$Q = \\frac{5mn}{6}$ bo‘lsa, $Q$ ning qiymati nechaga teng?"
+},
+{
+"k": "s0092",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Formulada em va en o‘rniga to‘rt va to‘qqizni qo‘yamiz; harflar yonma-yon yozilgani ko‘paytirishni bildiradi."
+},
+{
+"k": "s0093",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Suratni hisoblaymiz: besh karra to‘rt yigirma, yigirma karra to‘qqiz — bir yuz sakson."
+},
+{
+"k": "s0094",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir yuz saksonni oltiga bo‘lamiz — o‘ttiz."
+},
+{
+"k": "s0095",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 30"
+},
+{
+"k": "s0096",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Q ning qiymati o‘ttiz."
+},
+{
+"k": "s0097",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar $5mn$ ni $5 + 4 + 9$ deb qo‘shadi yoki faqat $mn = 36$ ni hisoblab, 5 ga ko‘paytirishni unutadi ($36 : 6 = 6$)."
+},
+{
+"k": "s0098",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Harflar orasida amal belgisi yozilmagan bo‘lsa, qaysi amal nazarda tutilishini eslang."
+},
+{
+"k": "s0099",
+"maydon": "savol",
+"tur": "matn",
+"uz": "$a = 8$ va $b = 3$.\n$T = \\frac{7ab}{12}$ bo‘lsa, $T$ ning qiymati nechaga teng?"
+},
+{
+"k": "s0100",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A o‘rniga sakkizni, be o‘rniga uchni qo‘yamiz va yetti bilan ko‘paytiramiz."
+},
+{
+"k": "s0101",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Suratda yetti karra sakkiz ellik olti, ellik olti karra uch — bir yuz oltmish sakkiz."
+},
+{
+"k": "s0102",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir yuz oltmish sakkizni o‘n ikkiga bo‘lamiz — o‘n to‘rt."
+},
+{
+"k": "s0103",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Te ning qiymati o‘n to‘rt."
+},
+{
+"k": "s0104",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar $7ab$ ni $7 + 8 + 3 = 18$ deb hisoblaydi yoki 7 ni tashlab yuborib, $24 : 12 = 2$ ni oladi."
+},
+{
+"k": "s0105",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval suratdagi uchta sonning ko‘paytmasini toping, keyin bo‘ling."
+},
+{
+"k": "s0106",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Bir noma’lumli chiziqli tengsizlikni yechish"
+},
+{
+"k": "s0107",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Noma’lumli hadlarni bir tomonga, sonlarni ikkinchi tomonga ishorasini o‘zgartirib o‘tkazing; so‘ng ikkala tomonni noma’lum oldidagi koeffitsiyentga bo‘ling — koeffitsiyent manfiy bo‘lsa, tengsizlik belgisini teskarisiga almashtiring."
+},
+{
+"k": "s0108",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tengsizlikni yeching:\n$7x - 5 < 3x + 11$"
+},
+{
+"k": "s0109",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iksli hadlarni chapga, sonlarni o‘ngga o‘tkazamiz; o‘tkazilgan hadning ishorasi o‘zgaradi."
+},
+{
+"k": "s0110",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chapda to‘rt iks, o‘ngda o‘n olti hosil bo‘ladi."
+},
+{
+"k": "s0111",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala tomonni musbat to‘rtga bo‘lamiz, shuning uchun belgi o‘zgarmaydi: iks to‘rtdan kichik."
+},
+{
+"k": "s0112",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $x = 0$: $-5 < 11$ — to‘g‘ri"
+},
+{
+"k": "s0113",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Masalan, nolni qo‘yib ko‘ramiz: minus besh o‘n birdan kichik, demak yechim to‘g‘ri yo‘nalishda."
+},
+{
+"k": "s0114",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) $x < 4$"
+},
+{
+"k": "s0115",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi hisobni to‘g‘ri bajargan, lekin musbat songa bo‘lganda ham tengsizlik belgisini teskarisiga almashtirgan."
+},
+{
+"k": "s0116",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi tengsizlikni tenglama kabi yechib, javobni tenglik ko‘rinishida yozgan."
+},
+{
+"k": "s0117",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi $-5$ ni o‘ng tomonga o‘tkazganda ishorasini o‘zgartirmagan: $4x < 11 - 5 = 6$ deb olgan."
+},
+{
+"k": "s0118",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir hadni tengsizlikning boshqa tomoniga o‘tkazganda uning ishorasini almashtirishni unutmang."
+},
+{
+"k": "s0119",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tengsizlikni yeching:\n$2x + 9 > 6x - 3$"
+},
+{
+"k": "s0120",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iksli hadlarni chap tomonga, sonlarni o‘ng tomonga o‘tkazamiz."
+},
+{
+"k": "s0121",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chapda minus to‘rt iks, o‘ngda minus o‘n ikki chiqadi."
+},
+{
+"k": "s0122",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala tomonni manfiy songa — minus to‘rtga bo‘lamiz, shuning uchun belgi teskarisiga almashadi."
+},
+{
+"k": "s0123",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, iks uchdan kichik."
+},
+{
+"k": "s0124",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $x = 0$: $9 > -3$ — to‘g‘ri"
+},
+{
+"k": "s0125",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Nolni qo‘yib tekshiramiz: to‘qqiz minus uchdan katta, javob to‘g‘ri."
+},
+{
+"k": "s0126",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) $x < 3$"
+},
+{
+"k": "s0127",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — A."
+},
+{
+"k": "s0128",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi $-4x > -12$ dan keyin manfiy songa bo‘lganda tengsizlik belgisini almashtirishni unutgan."
+},
+{
+"k": "s0129",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi 9 ni o‘ng tomonga ishorasini o‘zgartirmay o‘tkazgan: $-4x > -3 + 9 = 6$ deb olgan."
+},
+{
+"k": "s0130",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi tengsizlikni tenglama kabi yechgan va javobni tenglik ko‘rinishida yozgan."
+},
+{
+"k": "s0131",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Manfiy songa bo‘lganda tengsizlik belgisi bilan nima sodir bo‘lishini eslang."
+},
+{
+"k": "s0132",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ifodani umumiy ko‘paytuvchini qavsdan chiqarib qayta yozish va berilgan yig‘indi qiymatidan foydalanib hisoblash"
+},
+{
+"k": "s0133",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Ifodadagi harfli hadlardan umumiy ko‘paytuvchini qavsdan tashqariga chiqaring, qavs ichida berilgan yig‘indi hosil bo‘ladi; uning qiymatini qo‘yib hisoblang."
+},
+{
+"k": "s0134",
+"maydon": "savol",
+"tur": "matn",
+"uz": "$m + n = 17$.\n$3m + 3n - 5$ ifodaning qiymati nechaga teng?"
+},
+{
+"k": "s0135",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi ikki haddan umumiy ko‘paytuvchi uchni qavsdan tashqariga chiqaramiz."
+},
+{
+"k": "s0136",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qavs ichida em qo‘shuv en turibdi, u o‘n yettiga teng — shuni qo‘yamiz."
+},
+{
+"k": "s0137",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uch karra o‘n yetti ellik bir, ellik birdan beshni ayirsak — qirq olti."
+},
+{
+"k": "s0138",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 46"
+},
+{
+"k": "s0139",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ifodaning qiymati qirq olti."
+},
+{
+"k": "s0140",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar $3m$ va $3n$ ni har biri $3 \\cdot 17$ deb oladi va $51 + 51 - 5 = 97$ chiqaradi, yoki 3 ga ko‘paytirmay $17 - 5 = 12$ deb yozadi."
+},
+{
+"k": "s0141",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "$m$ va $n$ ni alohida topish shart emas — ifodada $m + n$ ni ko‘rishga harakat qiling."
+},
+{
+"k": "s0142",
+"maydon": "savol",
+"tur": "matn",
+"uz": "$x + y = 12$.\n$4x + 4y + 7$ ifodaning qiymati nechaga teng?"
+},
+{
+"k": "s0143",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iks va igrek oldidagi umumiy to‘rtni qavsdan chiqaramiz."
+},
+{
+"k": "s0144",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qavs ichidagi iks qo‘shuv igrek o‘n ikkiga teng."
+},
+{
+"k": "s0145",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rt karra o‘n ikki qirq sakkiz, unga yettini qo‘shsak — ellik besh."
+},
+{
+"k": "s0146",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 55"
+},
+{
+"k": "s0147",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ifodaning qiymati ellik besh."
+},
+{
+"k": "s0148",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar $4x$ va $4y$ ning har birini $4 \\cdot 12$ deb, $48 + 48 + 7 = 103$ ni oladi yoki $12 + 7 = 19$ deb 4 ni unutadi."
+},
+{
+"k": "s0149",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Harfli hadlarning umumiy ko‘paytuvchisini qavsdan chiqarib ko‘ring."
+},
+{
+"k": "s0150",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Sonli piramidadagi qonuniyatni (pastdagi katak yuqoridagi ikki qo‘shni katak yig‘indisi) aniqlab, noma’lum sonni topish"
+},
+{
+"k": "s0151",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Berilgan kataklardan qonuniyatni aniqlang: har bir katak ustidagi ikki katak yig‘indisiga teng. Avval bo‘sh kataklarni to‘ldiring, so‘ng $x$ ni toping va pastki katak orqali tekshiring."
+},
+{
+"k": "s0152",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Sonli piramidada har bir katakdagi son ma’lum qoida bo‘yicha topiladi. Ba’zi kataklar bo‘sh qoldirilgan. $x$ ning qiymati nechaga teng?"
+},
+{
+"k": "s0153",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi qatorni tekshiramiz: har bir katak ustidagi ikki katak yig‘indisiga teng."
+},
+{
+"k": "s0154",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bo‘sh katak: $5 + 3 = 8$"
+},
+{
+"k": "s0155",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi qatordagi bo‘sh katakni topamiz: besh qo‘shuv uch — sakkiz."
+},
+{
+"k": "s0156",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iks ustida sakkiz va o‘n turibdi, demak iks o‘n sakkiz."
+},
+{
+"k": "s0157",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $15 + 18 = 33$"
+},
+{
+"k": "s0158",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Pastki katak o‘n besh qo‘shuv o‘n sakkiz — o‘ttiz uch, rasmga mos."
+},
+{
+"k": "s0159",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 18"
+},
+{
+"k": "s0160",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iksning qiymati o‘n sakkiz."
+},
+{
+"k": "s0161",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar bo‘sh katakni hisobga olmay, iksni yonidagi kataklardan topadi ($7 + 10 = 17$) yoki qonuniyatni noto‘g‘ri tanlaydi."
+},
+{
+"k": "s0162",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ikkinchi qatordagi sonlar birinchi qatordagi sonlardan qanday hosil bo‘lganini aniqlang."
+},
+{
+"k": "s0163",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qoidani aniqlaymiz: har bir katak ustidagi ikki qo‘shni katak yig‘indisiga teng."
+},
+{
+"k": "s0164",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bo‘sh katak: $6 + 3 = 9$"
+},
+{
+"k": "s0165",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi qatordagi oxirgi katak olti qo‘shuv uch — to‘qqiz."
+},
+{
+"k": "s0166",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iks ustida yetti va to‘qqiz, ularning yig‘indisi o‘n olti."
+},
+{
+"k": "s0167",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $5 + 7 = 12$,  $12 + 16 = 28$"
+},
+{
+"k": "s0168",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uchinchi qatordagi bo‘sh katak o‘n ikki, o‘n ikki qo‘shuv o‘n olti esa yigirma sakkiz — pastki katakka mos."
+},
+{
+"k": "s0169",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 16"
+},
+{
+"k": "s0170",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iksning qiymati o‘n olti."
+},
+{
+"k": "s0171",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar ikkinchi qatordagi bo‘sh katakni topmay, iksni $28 - 7 = 21$ yoki $28 : 2 = 14$ deb taxmin qiladi."
+},
+{
+"k": "s0172",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval yuqoridagi qatorlardagi bo‘sh kataklarni qoida bo‘yicha to‘ldirib chiqing."
+},
+{
+"k": "s0173",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Berilgan sonlar juftliklari qaysi ikki noma’lumli tenglamani qanoatlantirishini o‘rniga qo‘yish orqali aniqlash"
+},
+{
+"k": "s0174",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir tenglamaga ikkala juftlikni ham ($x$ va $y$ o‘rniga) qo‘yib tekshiring; ikkala juftlikda ham to‘g‘ri tenglik hosil qiladigan tenglamani tanlang."
+},
+{
+"k": "s0175",
+"maydon": "savol",
+"tur": "matn",
+"uz": "$(0;\\ 2)$, $(1;\\ 5)$\nQaysi tenglamani bu $(x;\\ y)$ sonlar juftliklarining IKKALASI ham qanoatlantiradi?"
+},
+{
+"k": "s0176",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A tenglama birinchi juftlikda to‘g‘ri, lekin ikkinchisida olti chiqadi — mos emas."
+},
+{
+"k": "s0177",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "B tenglamada ikkala juftlik ham minus ikkini beradi — mos."
+},
+{
+"k": "s0178",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "C tenglama birinchi juftlikda bajarilmaydi."
+},
+{
+"k": "s0179",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "D tenglama ham birinchi juftlikda bajarilmaydi."
+},
+{
+"k": "s0180",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) $3x - y = -2$"
+},
+{
+"k": "s0181",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala juftlikni ham faqat B tenglama qanoatlantiradi."
+},
+{
+"k": "s0182",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi faqat birinchi juftlikni $(0;\\ 2)$ tekshirgan va ikkinchisini qo‘yib ko‘rmagan."
+},
+{
+"k": "s0183",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi faqat ikkinchi juftlikni $(1;\\ 5)$ tekshirgan: $2 + 5 = 7$."
+},
+{
+"k": "s0184",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi ham faqat ikkinchi juftlikni tekshirgan: $5 - 5 = 0$."
+},
+{
+"k": "s0185",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir tenglamani ikkala juftlik bilan ham tekshirishni unutmang."
+},
+{
+"k": "s0186",
+"maydon": "savol",
+"tur": "matn",
+"uz": "$(2;\\ 0)$, $(-1;\\ 3)$\nQaysi tenglamani bu $(x;\\ y)$ sonlar juftliklarining IKKALASI ham qanoatlantiradi?"
+},
+{
+"k": "s0187",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A tenglama birinchi juftlikda to‘g‘ri, ikkinchisida minus to‘rt chiqadi."
+},
+{
+"k": "s0188",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "B tenglama birinchi juftlikda bajarilmaydi."
+},
+{
+"k": "s0189",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "C tenglama ham faqat birinchi juftlikda to‘g‘ri."
+},
+{
+"k": "s0190",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "D tenglamada ikkala juftlik ham ikkini beradi."
+},
+{
+"k": "s0191",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) $x + y = 2$"
+},
+{
+"k": "s0192",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala juftlikni ham D tenglama qanoatlantiradi."
+},
+{
+"k": "s0193",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi faqat $(2;\\ 0)$ juftlikni tekshirgan."
+},
+{
+"k": "s0194",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi faqat $(-1;\\ 3)$ juftlikni tekshirgan: $-3 + 3 = 0$."
+},
+{
+"k": "s0195",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi faqat birinchi juftlikni tekshirgan yoki $2 \\cdot (-1)$ ning ishorasida adashgan."
+},
+{
+"k": "s0196",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Manfiy sonni qo‘yganda ishoraga e’tibor bering va ikkala juftlikni ham tekshiring."
+},
+{
+"k": "s0197",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Katakli qog‘ozda asosi va balandligi berilgan teng yonli uchburchakni aniqlash (yasash)"
+},
+{
+"k": "s0198",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir uchburchakning asosi va balandligini kataklar bo‘yicha sanang; teng yonli uchburchakda uchi asosning o‘rtasi ustida turadi, shuning uchun yon tomonlari teng bo‘ladi."
+},
+{
+"k": "s0199",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmdagi har bir kichik katakning tomoni 1 sm. Qaysi rasmda asosi 6 sm va balandligi 4 sm bo‘lgan teng yonli uchburchak chizilgan?"
+},
+{
+"k": "s0200",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "1 katak = 1 sm"
+},
+{
+"k": "s0201",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Asos 6 sm: A, B, C"
+},
+{
+"k": "s0202",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval asosni sanaymiz: A, B va C uchburchaklarning asosi olti katak, D niki esa to‘rt katak."
+},
+{
+"k": "s0203",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik 4 sm: A va C"
+},
+{
+"k": "s0204",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Endi uchidan asosgacha bo‘lgan kataklarni sanaymiz: A va C da to‘rt, B da uch."
+},
+{
+"k": "s0205",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A: uchi asosning chetida — teng yonli emas"
+},
+{
+"k": "s0206",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A uchburchakning uchi asosning bir uchi ustida, bu to‘g‘ri burchakli uchburchak, yon tomonlari teng emas."
+},
+{
+"k": "s0207",
+"maydon": "doska",
+"tur": "matn",
+"uz": "C: uchi asos o‘rtasi ustida, $3 + 3 = 6$"
+},
+{
+"k": "s0208",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "C da uch asosning o‘rtasi ustida turibdi: har ikki tomonda uch katakdan, demak yon tomonlar teng."
+},
+{
+"k": "s0209",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C"
+},
+{
+"k": "s0210",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Shartga faqat C rasm mos keladi."
+},
+{
+"k": "s0211",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi faqat asos va balandlikni tekshirgan, ammo teng yonlilik shartini (uchi asos o‘rtasi ustida bo‘lishini) unutgan."
+},
+{
+"k": "s0212",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi teng yonli uchburchakni topgan, lekin balandlikni noto‘g‘ri sanagan (u 3 sm)."
+},
+{
+"k": "s0213",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi balandlik va teng yonlilikka qaragan, ammo asos 4 sm ekanini tekshirmagan."
+},
+{
+"k": "s0214",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Uchta shartni alohida tekshiring: asos uzunligi, balandlik va uchning asos o‘rtasi ustida turishi."
+},
+{
+"k": "s0215",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmdagi har bir kichik katakning tomoni 1 sm. Qaysi rasmda asosi 4 sm va balandligi 6 sm bo‘lgan teng yonli uchburchak chizilgan?"
+},
+{
+"k": "s0216",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Asos 4 sm: A, C, D"
+},
+{
+"k": "s0217",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Asoslarni sanaymiz: A, C va D da to‘rt katak, B da olti katak."
+},
+{
+"k": "s0218",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik 6 sm: A va C"
+},
+{
+"k": "s0219",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Balandlikni sanaymiz: A va C da olti katak, D da besh katak."
+},
+{
+"k": "s0220",
+"maydon": "doska",
+"tur": "matn",
+"uz": "C: uchi asos o‘rtasi ustida emas ($3$ va $1$)"
+},
+{
+"k": "s0221",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "C da uch asosning o‘rtasi ustida emas: bir tomonda uch, ikkinchi tomonda bir katak, yon tomonlar teng emas."
+},
+{
+"k": "s0222",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A: uchi asos o‘rtasi ustida, $2 + 2 = 4$"
+},
+{
+"k": "s0223",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A da uch aynan asos o‘rtasi ustida — yon tomonlar teng."
+},
+{
+"k": "s0224",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A"
+},
+{
+"k": "s0225",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Shartga A rasm mos keladi."
+},
+{
+"k": "s0226",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi asos va balandlikni almashtirib yuborgan: B da asos 6 sm, balandlik 4 sm."
+},
+{
+"k": "s0227",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi asos va balandlikni to‘g‘ri sanagan, ammo uchi asos o‘rtasida emasligini — uchburchak teng yonli emasligini sezmagan."
+},
+{
+"k": "s0228",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi balandlikni noto‘g‘ri sanagan: u 6 emas, 5 sm."
+},
+{
+"k": "s0229",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Balandlik — uchidan asosgacha tik tushirilgan kesma; uni kataklar bo‘yicha sanang."
+},
+{
+"k": "s0230",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "To‘g‘ri burchakli parallelepipedning hajmi va ikki o‘lchami bo‘yicha uchinchi o‘lchamini topish"
+},
+{
+"k": "s0231",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Hajm formulasi $V = a \\cdot b \\cdot c$ dan foydalaning: ma’lum ikki o‘lchamni ko‘paytiring va hajmni shu ko‘paytmaga bo‘ling."
+},
+{
+"k": "s0232",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmda to‘g‘ri burchakli parallelepiped shaklidagi quti tasvirlangan. Qutining hajmi $252$ sm³. $x$ ning qiymati nechaga teng?"
+},
+{
+"k": "s0233",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "x sm"
+},
+{
+"k": "s0234",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "3 sm"
+},
+{
+"k": "s0235",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "6 sm"
+},
+{
+"k": "s0236",
+"maydon": "javob",
+"tur": "matn",
+"uz": "14|14 sm"
+},
+{
+"k": "s0237",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Parallelepipedning hajmi uning uzunligi, eni va balandligi ko‘paytmasiga teng."
+},
+{
+"k": "s0238",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ma’lum o‘lchamlarni ko‘paytiramiz: olti karra uch — o‘n sakkiz."
+},
+{
+"k": "s0239",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, o‘n sakkiz iks ikki yuz ellik ikkiga teng."
+},
+{
+"k": "s0240",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki yuz ellik ikkini o‘n sakkizga bo‘lamiz — o‘n to‘rt."
+},
+{
+"k": "s0241",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iks o‘n to‘rt santimetr."
+},
+{
+"k": "s0242",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar hajmni o‘lchamlarning yig‘indisi deb o‘ylab $252 - 6 - 3 = 243$ ni oladi yoki hajmni faqat bitta o‘lchamga bo‘ladi ($252 : 6 = 42$)."
+},
+{
+"k": "s0243",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Hajm uchala o‘lchamning ko‘paytmasi ekanini eslang va noma’lum ko‘paytuvchini toping."
+},
+{
+"k": "s0244",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmda to‘g‘ri burchakli parallelepiped shaklidagi akvarium tasvirlangan. Akvariumning hajmi $360$ sm³. $x$ ning qiymati nechaga teng?"
+},
+{
+"k": "s0245",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "5 sm"
+},
+{
+"k": "s0246",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "9 sm"
+},
+{
+"k": "s0247",
+"maydon": "javob",
+"tur": "matn",
+"uz": "8|8 sm"
+},
+{
+"k": "s0248",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Hajm uchala o‘lchamning ko‘paytmasi: iks, to‘qqiz va besh."
+},
+{
+"k": "s0249",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘qqiz karra besh — qirq besh."
+},
+{
+"k": "s0250",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qirq besh iks uch yuz oltmishga teng."
+},
+{
+"k": "s0251",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uch yuz oltmishni qirq beshga bo‘lsak, sakkiz chiqadi."
+},
+{
+"k": "s0252",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 8"
+},
+{
+"k": "s0253",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Iks sakkiz santimetr."
+},
+{
+"k": "s0254",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ba’zi o‘quvchilar $360$ dan $9$ va $5$ ni ayiradi yoki hajmni faqat bitta o‘lchamga bo‘lib qo‘yadi ($360 : 9 = 40$)."
+},
+{
+"k": "s0255",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ikki ma’lum o‘lchamning ko‘paytmasi asos yuzini beradi; hajmni shunga bo‘ling."
+},
+{
+"k": "s0256",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Shaklni nuqta atrofida yarim aylanishga (180° ga) burishning natijasini aniqlash"
+},
+{
+"k": "s0257",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Yarim aylanishda shaklning har bir nuqtasi O markazdan o‘tuvchi to‘g‘ri chiziq bo‘ylab qarama-qarshi tomonga, O gacha bo‘lgan masofada o‘tadi: shakl qarama-qarshi chorakka tushadi va «boshi pastga» ag‘dariladi."
+},
+{
+"k": "s0258",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Yuqoridagi rasmda O nuqta va uchburchak berilgan. Quyidagilardan qaysi biri uchburchakni O nuqta atrofida soat mili yo‘nalishida yarim aylanishga (180° ga) burish natijasini ko‘rsatadi?"
+},
+{
+"k": "s0259",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uchburchak: yuqori o‘ng chorak"
+},
+{
+"k": "s0260",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dastlabki uchburchak O dan o‘ngda va yuqorida joylashgan."
+},
+{
+"k": "s0261",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$180°$: o‘ng → chap, yuqori → past"
+},
+{
+"k": "s0262",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yarim aylanishda har bir nuqta O orqali qarama-qarshi tomonga o‘tadi: o‘ng chapga, yuqori pastga."
+},
+{
+"k": "s0263",
+"maydon": "doska",
+"tur": "matn",
+"uz": "To‘g‘ri burchak uchi: O dan o‘ngda va yuqorida → chapda va pastda"
+},
+{
+"k": "s0264",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri burchak uchi O ga yaqin edi, u chap-past tomonda ham O ga yaqin qoladi; o‘tkir uchlari esa chapga va pastga qaraydi."
+},
+{
+"k": "s0265",
+"maydon": "doska",
+"tur": "matn",
+"uz": "B: pastki chap chorak, uchlari chapga va pastga"
+},
+{
+"k": "s0266",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu shart faqat B rasmda bajarilgan."
+},
+{
+"k": "s0267",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B"
+},
+{
+"k": "s0268",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi burish o‘rniga gorizontal o‘qqa nisbatan simmetrik akslantirishni tanlagan — shakl faqat pastga ag‘darilgan."
+},
+{
+"k": "s0269",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi vertikal o‘qqa nisbatan akslantirishni burish bilan adashtirgan."
+},
+{
+"k": "s0270",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi shaklni yarim aylanish o‘rniga chorak aylanishga (90° ga) burgan."
+},
+{
+"k": "s0271",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yarim aylanishda shaklning har bir nuqtasi O ga nisbatan aynan qarama-qarshi tomonga o‘tadi."
+},
+{
+"k": "s0272",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Yuqoridagi rasmda O nuqta va to‘rtburchak berilgan. Quyidagilardan qaysi biri to‘rtburchakni O nuqta atrofida $180°$ ga burish natijasini ko‘rsatadi?"
+},
+{
+"k": "s0273",
+"maydon": "doska",
+"tur": "matn",
+"uz": "To‘rtburchak: yuqori chap chorak"
+},
+{
+"k": "s0274",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dastlabki to‘rtburchak O dan chapda va yuqorida joylashgan."
+},
+{
+"k": "s0275",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$180°$: chap → o‘ng, yuqori → past"
+},
+{
+"k": "s0276",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yuz sakson gradusga burishda shakl qarama-qarshi chorakka, ya’ni o‘ng past tomonga o‘tadi."
+},
+{
+"k": "s0277",
+"maydon": "doska",
+"tur": "matn",
+"uz": "O ga yaqin gorizontal tomon → yuqoriga, o‘ngdagi qiya tomon → chapga"
+},
+{
+"k": "s0278",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Gorizontal o‘qqa yaqin turgan pastki tomon endi shaklning yuqori tomoni bo‘ladi, o‘ngdagi qiya tomon esa chap tomonga o‘tadi."
+},
+{
+"k": "s0279",
+"maydon": "doska",
+"tur": "matn",
+"uz": "C: pastki o‘ng chorak, shakl ag‘darilgan"
+},
+{
+"k": "s0280",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu xususiyatlarga C rasm mos keladi."
+},
+{
+"k": "s0281",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — C."
+},
+{
+"k": "s0282",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi shaklni vertikal o‘qqa nisbatan akslantirgan — u faqat o‘ngga o‘tgan, ag‘darilmagan."
+},
+{
+"k": "s0283",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi shaklni 180° o‘rniga 90° ga burgan."
+},
+{
+"k": "s0284",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi gorizontal o‘qqa nisbatan akslantirishni tanlagan — shakl chap tomonda qolgan."
+},
+{
+"k": "s0285",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Shaklning O ga eng yaqin tomoni burilgandan keyin qayerda bo‘lishini kuzating."
+},
+{
+"k": "s0286",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "O‘rta arifmetik qiymatning ma’nosini tushunish va undan qaysi xulosa albatta to‘g‘ri bo‘lishini aniqlash"
+},
+{
+"k": "s0287",
+"maydon": "usul",
+"tur": "matn",
+"uz": "O‘rtacha qiymat alohida a’zolar haqida emas, butun guruh haqida ma’lumot beradi: guruhlardagi a’zolar soni teng bo‘lsa, o‘rtachasi katta guruhning jami natijasi ham katta bo‘ladi."
+},
+{
+"k": "s0288",
+"maydon": "savol",
+"tur": "matn",
+"uz": "7-«A» va 7-«B» sinf o‘quvchilari to‘p uloqtirish musobaqasida qatnashdi. Natijalar:\n7-«A» sinf: o‘rtacha $18{,}5$ m\n7-«B» sinf: o‘rtacha $21{,}2$ m\nHar bir sinfda o‘quvchilar soni bir xil edi. Quyidagilardan qaysi biri ALBATTA to‘g‘ri?"
+},
+{
+"k": "s0289",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "7-«B» sinfning har bir o‘quvchisi 7-«A» sinfning istalgan o‘quvchisidan uzoqroq uloqtirgan."
+},
+{
+"k": "s0290",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "7-«B» sinfdagi eng uzoq natija 7-«A» sinfdagi eng uzoq natijadan katta."
+},
+{
+"k": "s0291",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "7-«B» sinf o‘quvchilari uloqtirgan masofalarning yig‘indisi 7-«A» sinfnikidan katta."
+},
+{
+"k": "s0292",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "7-«A» sinfda kamida bitta o‘quvchi 7-«B» sinfdagi kimdandir uzoqroq uloqtirgan."
+},
+{
+"k": "s0293",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami = o‘rtacha · o‘quvchilar soni"
+},
+{
+"k": "s0294",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘rtacha qiymat jami natijani o‘quvchilar soniga bo‘lishdan hosil bo‘ladi."
+},
+{
+"k": "s0295",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$n$ ta o‘quvchi: $18{,}5n < 21{,}2n$"
+},
+{
+"k": "s0296",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala sinfda o‘quvchilar soni bir xil, demak 7-«B» ning jami masofasi albatta katta."
+},
+{
+"k": "s0297",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A, B, D — o‘rtachadan kelib chiqmaydi"
+},
+{
+"k": "s0298",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Alohida o‘quvchilar haqida esa o‘rtacha hech narsa kafolatlamaydi: 7-«A» da juda kuchli bitta o‘quvchi bo‘lishi ham, bo‘lmasligi ham mumkin."
+},
+{
+"k": "s0299",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Albatta to‘g‘ri bo‘lgan xulosa — C."
+},
+{
+"k": "s0300",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi o‘rtacha katta bo‘lsa, guruhning har bir a’zosi ham ustun deb o‘ylagan — ammo 7-«A» da kuchli o‘quvchilar bo‘lishi mumkin."
+},
+{
+"k": "s0301",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi o‘rtachani eng yaxshi natija bilan adashtirgan; eng uzoq natija 7-«A» da bo‘lishi ham mumkin."
+},
+{
+"k": "s0302",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi bo‘lishi mumkin bo‘lgan holatni albatta to‘g‘ri deb hisoblagan; 7-«A» ning barcha natijalari 7-«B» nikidan kichik bo‘lishi ham mumkin."
+},
+{
+"k": "s0303",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Albatta to‘g‘ri» degani — har qanday holatda ham to‘g‘ri; har bir variantga qarshi misol topib ko‘ring."
+},
+{
+"k": "s0304",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Ikki brigada paxta terdi. Bir kunlik natijalar:\n1-brigada: bir terimchiga o‘rtacha $62$ kg\n2-brigada: bir terimchiga o‘rtacha $55$ kg\nIkkala brigadada terimchilar soni teng. Quyidagilardan qaysi biri ALBATTA to‘g‘ri?"
+},
+{
+"k": "s0305",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-brigadadagi har bir terimchi 2-brigadadagi istalgan terimchidan ko‘p paxta tergan."
+},
+{
+"k": "s0306",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-brigada jami 2-brigadadan ko‘proq paxta tergan."
+},
+{
+"k": "s0307",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "2-brigadada kamida bitta terimchi aynan 55 kg paxta tergan."
+},
+{
+"k": "s0308",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-brigadada hech kim 55 kg dan kam paxta termagan."
+},
+{
+"k": "s0309",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami = o‘rtacha · terimchilar soni"
+},
+{
+"k": "s0310",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Brigadaning jami paxtasi bir terimchiga to‘g‘ri keladigan o‘rtacha va terimchilar sonining ko‘paytmasiga teng."
+},
+{
+"k": "s0311",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$n$ ta terimchi: $62n > 55n$"
+},
+{
+"k": "s0312",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Terimchilar soni teng bo‘lgani uchun 1-brigada jami albatta ko‘proq tergan."
+},
+{
+"k": "s0313",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A, C, D — o‘rtachadan kelib chiqmaydi"
+},
+{
+"k": "s0314",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ayrim terimchilarning natijasini o‘rtacha bilan aniqlab bo‘lmaydi: hech kim aynan o‘rtachaga teng termagan bo‘lishi ham mumkin."
+},
+{
+"k": "s0315",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Albatta to‘g‘ri bo‘lgan xulosa — B."
+},
+{
+"k": "s0316",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi o‘rtacha ko‘p bo‘lsa, har bir a’zo ham ko‘p tergan deb noto‘g‘ri xulosa qilgan."
+},
+{
+"k": "s0317",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi o‘rtacha qiymat albatta kimningdir natijasiga teng bo‘ladi deb o‘ylagan."
+},
+{
+"k": "s0318",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi o‘rtacha 62 kg bo‘lsa, hamma kamida 55 kg tergan deb o‘ylagan — ammo bir terimchi kam, boshqasi juda ko‘p tergan bo‘lishi mumkin."
+},
+{
+"k": "s0319",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir variant uchun uni buzadigan misol tuzish mumkinmi, o‘ylab ko‘ring."
+},
+{
+"k": "s0320",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ikki birgalikda bo‘lmagan hodisadan birining ro‘y berish ehtimolini hisoblash"
+},
+{
+"k": "s0321",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Qulay natijalar sonini (har ikki rangdagi narsalar sonining yig‘indisini) barcha natijalar soniga (jami narsalar soniga) bo‘ling."
+},
+{
+"k": "s0322",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Qutida 9 ta qizil, 6 ta yashil va 5 ta sariq qalam bor. Jasur qaramay bitta qalam oldi. Bu qalamning yashil yoki sariq bo‘lish ehtimoli qancha?"
+},
+{
+"k": "s0323",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $9 + 6 + 5 = 20$"
+},
+{
+"k": "s0324",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval qutidagi barcha qalamlarni sanaymiz — yigirmata."
+},
+{
+"k": "s0325",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qulay: $6 + 5 = 11$"
+},
+{
+"k": "s0326",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yashil yoki sariq qalamlar — olti qo‘shuv besh, o‘n bitta."
+},
+{
+"k": "s0327",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ehtimol qulay natijalar sonini jami natijalar soniga bo‘lishdan topiladi: o‘n bir yigirmadan."
+},
+{
+"k": "s0328",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) $\\frac{11}{20}$"
+},
+{
+"k": "s0329",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi faqat yashil qalam chiqish ehtimolini hisoblagan va sariq qalamlarni qo‘shmagan."
+},
+{
+"k": "s0330",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi qolgan rangdagi — qizil qalamlar sonini olgan, ya’ni teskari hodisa ehtimolini topgan."
+},
+{
+"k": "s0331",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi faqat sariq qalam chiqish ehtimolini hisoblagan."
+},
+{
+"k": "s0332",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Yoki» so‘zi ikkala rangdagi qalamlarning ham qulay natija ekanini bildiradi."
+},
+{
+"k": "s0333",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Savatda 12 ta olma, 5 ta nok va 7 ta shaftoli bor. Nilufar ko‘rmasdan bitta meva oldi. Bu mevaning olma yoki nok bo‘lish ehtimoli qancha?"
+},
+{
+"k": "s0334",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: $12 + 5 + 7 = 24$"
+},
+{
+"k": "s0335",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Savatdagi barcha mevalar yigirma to‘rtta."
+},
+{
+"k": "s0336",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qulay: $12 + 5 = 17$"
+},
+{
+"k": "s0337",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Olma yoki nok — o‘n ikki qo‘shuv besh, o‘n yettita."
+},
+{
+"k": "s0338",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ehtimol: o‘n yetti yigirma to‘rtdan."
+},
+{
+"k": "s0339",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) $\\frac{17}{24}$"
+},
+{
+"k": "s0340",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi faqat olma chiqish ehtimolini hisoblagan."
+},
+{
+"k": "s0341",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi faqat nok chiqish ehtimolini hisoblagan."
+},
+{
+"k": "s0342",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi qolgan meva — shaftoli chiqish ehtimolini, ya’ni teskari hodisani hisoblagan."
+},
+{
+"k": "s0343",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qaysi mevalar «qulay» ekanini aniqlab, ularning sonini qo‘shing."
+},
+{
+"k": "s0344",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ma’lumotlardagi foiz ulushidan foydalanib, kelgusi buyurtmadagi miqdorni bashorat qilish"
+},
+{
+"k": "s0345",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Kerakli turning foiz ulushini o‘nli kasrga aylantiring va umumiy buyurtma miqdoriga ko‘paytiring."
+},
+{
+"k": "s0346",
+"maydon": "savol",
+"tur": "matn",
+"uz": "So‘nggi haftalarda non do‘konida sotilgan nonlarning o‘rtacha 35% i patir, 45% i obi non, 20% i tandir non bo‘lgan. Ertaga nonvoy jami 800 ta non yopmoqchi. Shulardan nechtasi patir bo‘lishi kerak?"
+},
+{
+"k": "s0347",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Patirning ulushi o‘ttiz besh foiz, ya’ni nol butun yuzdan o‘ttiz besh."
+},
+{
+"k": "s0348",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sakkiz yuzni nol butun o‘ttiz beshga ko‘paytiramiz — ikki yuz sakson."
+},
+{
+"k": "s0349",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $800$ ning $10\\%$ i $80$; $3{,}5 \\cdot 80 = 280$"
+},
+{
+"k": "s0350",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sakkiz yuzning o‘n foizi sakson, o‘ttiz besh foiz esa uch yarim marta ko‘p — ikki yuz sakson."
+},
+{
+"k": "s0351",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 280"
+},
+{
+"k": "s0352",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi patir o‘rniga tandir non ulushini (20%) olgan."
+},
+{
+"k": "s0353",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi obi non ulushini (45%) olib hisoblagan."
+},
+{
+"k": "s0354",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi patir bo‘lmagan nonlar sonini topgan: $800 - 280 = 520$ (65%)."
+},
+{
+"k": "s0355",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Faqat patirga tegishli foizni olib, uni umumiy miqdorga qo‘llang."
+},
+{
+"k": "s0356",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Sharbat do‘konida so‘nggi oylarda sotilgan qadoqlarning o‘rtacha 25% i kichik, 60% i o‘rta va 15% i katta hajmda bo‘lgan. Keyingi oy do‘kon jami 1500 ta qadoq sharbat buyurtma qiladi. Shulardan nechtasi o‘rta hajmda bo‘lishi kerak?"
+},
+{
+"k": "s0357",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘rta hajmdagi qadoqlarning ulushi oltmish foiz — nol butun olti."
+},
+{
+"k": "s0358",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir ming besh yuzni nol butun oltiga ko‘paytiramiz — to‘qqiz yuz."
+},
+{
+"k": "s0359",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: $1500$ ning $10\\%$ i $150$; $6 \\cdot 150 = 900$"
+},
+{
+"k": "s0360",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n foiz bir yuz ellik, oltmish foiz esa olti marta ko‘p — to‘qqiz yuz."
+},
+{
+"k": "s0361",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) 900"
+},
+{
+"k": "s0362",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi katta hajmdagi qadoqlar ulushini (15%) olgan."
+},
+{
+"k": "s0363",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi kichik hajmdagi qadoqlar ulushini (25%) olgan."
+},
+{
+"k": "s0364",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi o‘rta hajmdan boshqa qadoqlar sonini topgan: $1500 - 900 = 600$ (40%)."
+},
+{
+"k": "s0365",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Umumiy miqdorning 10% ini toping va undan kerakli foizni hosil qiling."
+}
+]

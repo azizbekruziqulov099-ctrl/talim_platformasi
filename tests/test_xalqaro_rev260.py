@@ -18,7 +18,8 @@ class Kontent(unittest.TestCase):
         cls.k = x.KONTENT.ensure()
 
     def test_hamma_toplam_va_mavzu_toliq(self):
-        self.assertEqual(len(self.k.savollar), 337)
+        self.assertEqual(sum(1 for s in self.k.savollar if not s.get("birlik")), 337)   # TIMSS
+        self.assertGreater(sum(1 for s in self.k.savollar if s.get("birlik")), 250)   # PISA (REV262)
         for tk, tops in self.k.ramka["mavzular"].items():
             for t in tops:
                 self.assertIn("XB-" + t["kalit"], self.k.dars_by_kod, t["kalit"])
@@ -26,7 +27,10 @@ class Kontent(unittest.TestCase):
 
     def test_har_variant_togri_tuzilgan(self):
         for s in self.k.savollar:
-            self.assertEqual(len(s["variantlar"]), 2, s["id"])
+            self.assertEqual(len(s["variantlar"]), 1 if s.get("birlik") else 2, s["id"])
+            if s.get("birlik"):
+                self.assertIn(s["birlik"], self.k.birliklar)
+                self.assertTrue(200 <= s["qiyinlik_ball"] <= 850)
             self.assertIn(s["fikrlash"], ("bilish", "qollash", "mulohaza"))
             for v in s["variantlar"]:
                 if v["turi"] == "tanlov":
@@ -91,6 +95,88 @@ class Qoidalar(unittest.TestCase):
         r = x.davlatlar_bilan(480, k.natijalar["jadvallar"]["TIMSS 2023 M8"])
         self.assertEqual(r["ozbekiston"], 421)
         self.assertEqual(r["eng_yuqori"][0], "Singapur")
+
+
+class Pisa(unittest.TestCase):
+    def test_pisa_darajalar_va_qiyinlik(self):
+        self.assertTrue(x.daraja_of(430, "P_M")["tayanch"])
+        self.assertFalse(x.daraja_of(400, "P_M")["tayanch"])
+        self.assertEqual(x.daraja_of(700, "P_R")["nom"], "6-daraja")
+        # PISA bali 500 bo'lgan savolni 500 balli o'quvchi 62% ehtimol bilan yechadi
+        import math
+        b = x.savol_qiyinligi({"qiyinlik_ball": 500})
+        self.assertAlmostEqual(1 / (1 + math.exp(b)), 0.62, places=2)
+        self.assertEqual(x.tavsiya_toplamlar(9), ["P_M", "P_R", "P_S", "P_F"])
+        self.assertEqual(x.band_of("P_S"), "P")
+
+    def test_birlik_savollari_ketma_ket(self):
+        k = x.KONTENT.ensure()
+        pool = [s for s in k.savollar if s["toplam"] == "P_M"]
+        t = x.reja_boyicha_tanla(pool, 16, x.REJA["P_M"], random.Random(5))
+        birliklar = [s["birlik"] for s in t]
+        for b in set(birliklar):
+            idx = [i for i, v in enumerate(birliklar) if v == b]
+            self.assertEqual(idx, list(range(idx[0], idx[-1] + 1)), b)   # bir birlik savollari uzilmaydi
+
+
+class Tillar(unittest.TestCase):
+    """REV270: uch til — kontent tuzilishi bir xil, javob kalitlari bir xil, natijalar alohida."""
+
+    def test_til_kodi(self):
+        self.assertEqual(x.til_kodi("ru-RU"), "ru")
+        self.assertEqual(x.til_kodi("en"), "en")
+        self.assertEqual(x.til_kodi("uz-Cyrl"), "uz")
+        self.assertEqual(x.til_kodi("tr"), "uz")
+        self.assertEqual(x.til_kodi(None), "uz")
+
+    def test_tarjima_tuzilishi_va_kalitlar(self):
+        uz = x.KONTENT.ensure()
+        for til in ("ru", "en"):
+            k = x.kontent_of(til)
+            for s in k.savollar:
+                a = uz.by_id[s["id"]]
+                self.assertEqual((s["toplam"], s["mavzu"], s["fikrlash"], len(s["variantlar"])), (a["toplam"], a["mavzu"], a["fikrlash"], len(a["variantlar"])), s["id"])
+                for v, w in zip(s["variantlar"], a["variantlar"]):
+                    self.assertEqual(v["turi"], w["turi"], s["id"])
+                    if v["turi"] == "tanlov":
+                        self.assertEqual(v["togri"], w["togri"], s["id"])
+                        self.assertEqual(len(v["javoblar"]), 4, s["id"])
+                    else:
+                        self.assertTrue(x.tekshir(v, v["javob"].split("|")[0]), s["id"])
+                        n = x._as_number(x._norm(w["javob"].split("|")[0]))
+                        if n is not None:   # son javob — tarjimada ham shu son qabul qilinadi
+                            self.assertTrue(x.tekshir(v, w["javob"].split("|")[0]), (til, s["id"]))
+                    self.assertEqual(len(v.get("yechim") or []), len(w.get("yechim") or []), s["id"])
+                    if v.get("rasm"):
+                        self.assertFalse(BAD_SVG.search(v["rasm"]), s["id"])
+            # to'plam faqat to'liq bo'lsa chiqadi: barcha mavzularda savol va dars bor
+            for tk, tops in k.ramka["mavzular"].items():
+                for t in tops:
+                    self.assertIn("XB-" + t["kalit"], k.dars_by_kod, (til, t["kalit"]))
+                    self.assertTrue(k.by_mavzu.get(t["kalit"]), (til, t["kalit"]))
+                    self.assertEqual(len(k.by_mavzu[t["kalit"]]), len(uz.by_mavzu[t["kalit"]]), (til, t["kalit"]))
+
+    def test_ruscha_matn_ruscha(self):
+        k = x.kontent_of("ru")
+        if not k.savollar:
+            self.skipTest("ruscha kontent yo'q")
+        matnli = [s for s in k.savollar if re.search(r"[a-zʻ‘]{3,}", re.sub(r"\$[^$]*\$", "", x.KONTENT.ensure().by_id[s["id"]]["variantlar"][0]["savol"]))]
+        kir = sum(1 for s in matnli if re.search("[а-яё]", s["variantlar"][0]["savol"].lower()))
+        self.assertEqual(kir, len(matnli))
+        d = x.dars_payload("XB-M8-KAS", til="ru")
+        self.assertEqual(d["til"], "ru")
+        self.assertRegex(d["steps"][0]["doska"] + d["steps"][0]["ovoz"], "[а-яё]")
+
+    def test_daraja_va_davlat_nomlari(self):
+        self.assertEqual(x.daraja_of(560, til="ru")["nom"], "Высокий")
+        self.assertEqual(x.daraja_of(380, til="en")["nom"], "Below Low")
+        p = x.daraja_of(430, "P_M", til="en")
+        self.assertTrue(p["tayanch"])
+        self.assertIn("2", p["nom"])
+        n = x.natijalar_tilda(x.DATA_DIR, "ru")
+        self.assertEqual(n["uz_nomi"], "Узбекистан")
+        self.assertTrue(any(r[0] == "Узбекистан" for r in n["jadvallar"]["TIMSS 2023 M8"]))
+        self.assertEqual(x.imtihon_nomi("haftalik", "en"), "Weekly check")
 
 
 if __name__ == "__main__":

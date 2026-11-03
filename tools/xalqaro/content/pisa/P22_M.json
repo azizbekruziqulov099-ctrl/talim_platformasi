@@ -1,0 +1,552 @@
+[
+ {
+  "birlik": "P-P22-M01",
+  "asl": "PISA 2022 Released Main Survey Mathematics Items, Unit CMA123: Solar System",
+  "toplam": "P_M",
+  "nom": "Yupiterning yo‘ldoshlari",
+  "stimul": "Samarqanddagi «Ulug‘bek» astronomiya to‘garagi a’zolari Yupiter sayyorasining yo‘ldoshlarini o‘rganmoqda. Yo‘ldoshlarning Yupiter markazidan o‘rtacha uzoqligi qulaylik uchun «Yupiter radiusi» (R) birligida berilgan.\n\n1 R taxminan 71 500 km ga teng.\n\nYo‘ldosh — Yupiter markazidan o‘rtacha uzoqligi (R)\nMetis — 1,79\nAmalteya — 2,54\nTeba — 3,10\nIo — 5,90\nYevropa — 9,39\nGanimed — 14,97\nKallisto — 26,33\nGimaliya — 160,3",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 440 130\" font-family=\"sans-serif\"><circle cx=\"70\" cy=\"65\" r=\"34\" fill=\"#eef3fb\" stroke=\"#222\" stroke-width=\"2\" stroke-dasharray=\"6 4\"/><text x=\"70\" y=\"71\" font-size=\"18\" text-anchor=\"middle\" fill=\"#222\">?</text><text x=\"70\" y=\"122\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">1-yo‘ldosh</text><circle cx=\"200\" cy=\"65\" r=\"34\" fill=\"#eef3fb\" stroke=\"#222\" stroke-width=\"2\" stroke-dasharray=\"6 4\"/><text x=\"200\" y=\"71\" font-size=\"18\" text-anchor=\"middle\" fill=\"#222\">?</text><text x=\"200\" y=\"122\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">2-yo‘ldosh</text><circle cx=\"370\" cy=\"65\" r=\"34\" fill=\"#eef3fb\" stroke=\"#222\" stroke-width=\"2\" stroke-dasharray=\"6 4\"/><text x=\"370\" y=\"71\" font-size=\"18\" text-anchor=\"middle\" fill=\"#222\">?</text><text x=\"370\" y=\"122\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">3-yo‘ldosh</text><line x1=\"106\" y1=\"65\" x2=\"164\" y2=\"65\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"106,65 114,61 114,69\" fill=\"#222\"/><polygon points=\"164,65 156,61 156,69\" fill=\"#222\"/><text x=\"135.0\" y=\"55\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">3,49 R</text><line x1=\"236\" y1=\"65\" x2=\"334\" y2=\"65\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"236,65 244,61 244,69\" fill=\"#222\"/><polygon points=\"334,65 326,61 326,69\" fill=\"#222\"/><text x=\"285.0\" y=\"55\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">5,58 R</text><text x=\"220\" y=\"18\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Yupiterdan uzoqlashish tartibida (chapdan o‘ngga), masshtabsiz</text></svg>",
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M01-1",
+    "asl_id": "CMA123Q01",
+    "mavzu": "PM-MIQ",
+    "jarayon": "talqin",
+    "kontekst": "ilmiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 514,
+    "kunikma": "Jadvaldagi o‘nli kasrlar ayirmasini hisoblab, modelga mos uchlikni tanlash",
+    "usul": "Har bir variantdagi qo‘shni yo‘ldoshlar uzoqliklarining ayirmasini hisoblang va modeldagi ikki son bilan solishtiring.",
+    "turi": "tanlov",
+    "savol": "Rasmdagi model uchta yo‘ldosh orasidagi o‘rtacha masofalarni ko‘rsatadi (yo‘ldoshlar Yupiterdan uzoqlashish tartibida, chapdan o‘ngga joylashgan). Jadvalga ko‘ra modeldagi yo‘ldoshlar qaysilar?",
+    "javoblar": [
+     "Teba, Io, Yevropa",
+     "Io, Yevropa, Ganimed",
+     "Yevropa, Ganimed, Kallisto",
+     "Amalteya, Io, Yevropa"
+    ],
+    "togri": 1,
+    "yechim": [
+     {
+      "doska": "Kerak: 2-yo‘l. − 1-yo‘l. = 3,49; 3-yo‘l. − 2-yo‘l. = 5,58",
+      "ovoz": "Modeldagi masofalar — qo‘shni yo‘ldoshlar uzoqliklarining ayirmasi."
+     },
+     {
+      "doska": "Teba, Io, Yevropa: 2,80 va 3,49",
+      "ovoz": "Birinchi ayirma 3,49 emas, demak bu uchlik mos kelmaydi."
+     },
+     {
+      "doska": "Io, Yevropa, Ganimed: 9,39−5,90=3,49; 14,97−9,39=5,58",
+      "ovoz": "Ikkala ayirma ham modeldagi sonlarga aynan teng."
+     },
+     {
+      "doska": "Yevropa, Ganimed, Kallisto: 5,58 va 11,36",
+      "ovoz": "Bu yerda 5,58 birinchi o‘rinda turibdi, ikkinchisi esa mos emas."
+     },
+     {
+      "doska": "Javob: B) Io, Yevropa, Ganimed",
+      "ovoz": "Demak, modeldagi yo‘ldoshlar Io, Yevropa va Ganimed."
+     }
+    ],
+    "xatolar": {
+     "0": "Teba va Io orasidagi masofa 5,90 − 3,10 = 2,80 R, model esa 3,49 R ni talab qiladi.",
+     "2": "Yevropa–Ganimed oralig‘i 5,58 R, lekin u modelda ikkinchi oraliq; birinchi oraliq 3,49 R bo‘lishi kerak, Ganimed–Kallisto esa 11,36 R.",
+     "3": "Faqat Io–Yevropa oralig‘i (3,49 R) mos keldi, ammo modelda u birinchi oraliq; Amalteya–Io esa 3,36 R."
+    },
+    "maslahat": "Modeldagi masofalar jadvaldagi sonlarning o‘zi emas, balki ikki yo‘ldosh uzoqliklarining ayirmasidir."
+   },
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M01-2",
+    "asl_id": "CMA123Q02",
+    "mavzu": "PM-MIQ",
+    "jarayon": "qollash",
+    "kontekst": "ilmiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 451,
+    "kunikma": "Berilgan nisbat yordamida o‘lchov birligini almashtirish va yaxlitlash",
+    "usul": "Ganimedning uzoqligini jadvaldan oling va uni 1 R ning kilometrdagi qiymatiga ko‘paytiring.",
+    "turi": "tanlov",
+    "savol": "Ganimed Yupiter markazidan taxminan necha kilometr uzoqlikda joylashgan?",
+    "javoblar": [
+     "taxminan 86 500 km",
+     "taxminan 107 000 km",
+     "taxminan 1 070 000 km",
+     "taxminan 10 700 000 km"
+    ],
+    "togri": 2,
+    "yechim": [
+     {
+      "doska": "Ganimed: 14,97 R;  1 R ≈ 71 500 km",
+      "ovoz": "Jadvaldan Ganimedning uzoqligini va birliklar nisbatini olamiz."
+     },
+     {
+      "doska": "14,97 · 71 500 = 1 070 355 km",
+      "ovoz": "Radiuslar sonini bir radius uzunligiga ko‘paytiramiz."
+     },
+     {
+      "doska": "1 070 355 ≈ 1 070 000 km",
+      "ovoz": "Natijani minglikkacha yaxlitlaymiz."
+     },
+     {
+      "doska": "Javob: C) taxminan 1 070 000 km",
+      "ovoz": "Ganimed Yupiterdan taxminan bir million yetmish ming kilometr uzoqda."
+     }
+    ],
+    "xatolar": {
+     "0": "Bu 14,97 va 71 500 ni (minglarda) qo‘shishdan chiqadi; birlikni almashtirishda ko‘paytirish kerak.",
+     "1": "Xona birligi yo‘qotilgan: 14,97 · 71 500 ≈ 1 070 000, 107 000 emas.",
+     "3": "Natija 10 marta katta olingan — vergul joyini tekshiring: 15 · 71 500 ≈ 1 072 500."
+    },
+    "maslahat": "Javobni chamalab tekshiring: 15 · 70 000 = 1 050 000 — demak javob million atrofida bo‘lishi kerak."
+   }
+  ]
+ },
+ {
+  "birlik": "P-P22-M02",
+  "asl": "PISA 2022 Released Main Survey Mathematics Items, Unit CMA150: Triangular Pattern",
+  "toplam": "P_M",
+  "nom": "Zinapoya naqsh",
+  "stimul": "Madina matematika to‘garagida kvadrat plitkalardan zinapoya shaklidagi naqsh tuzdi. 1-qatorda 3 ta, 2-qatorda 5 ta, 3-qatorda 7 ta plitka bor: har keyingi qatorda plitkalar 2 taga ko‘payadi. Har bir qatorda plitkalar yashil va sariq rangda navbatlashadi, qator yashil plitka bilan boshlanib, yashil plitka bilan tugaydi.\n\nRasmda naqshning dastlabki 3 qatori ko‘rsatilgan. Naqsh xuddi shu qoida bo‘yicha pastga davom ettiriladi.",
+  "stimul_rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 170\" font-family=\"sans-serif\"><text x=\"10\" y=\"30.0\" font-size=\"13\" fill=\"#222\">1-qator</text><rect x=\"205.0\" y=\"10\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"220.0\" y=\"30.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"235.0\" y=\"10\" width=\"30\" height=\"30\" fill=\"#f6e27a\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"250.0\" y=\"30.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">S</text><rect x=\"265.0\" y=\"10\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"280.0\" y=\"30.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><text x=\"10\" y=\"66.0\" font-size=\"13\" fill=\"#222\">2-qator</text><rect x=\"175.0\" y=\"46\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"190.0\" y=\"66.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"205.0\" y=\"46\" width=\"30\" height=\"30\" fill=\"#f6e27a\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"220.0\" y=\"66.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">S</text><rect x=\"235.0\" y=\"46\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"250.0\" y=\"66.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"265.0\" y=\"46\" width=\"30\" height=\"30\" fill=\"#f6e27a\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"280.0\" y=\"66.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">S</text><rect x=\"295.0\" y=\"46\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"310.0\" y=\"66.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><text x=\"10\" y=\"102.0\" font-size=\"13\" fill=\"#222\">3-qator</text><rect x=\"145.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"160.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"175.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#f6e27a\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"190.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">S</text><rect x=\"205.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"220.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"235.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#f6e27a\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"250.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">S</text><rect x=\"265.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"280.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"295.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#f6e27a\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"310.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">S</text><rect x=\"325.0\" y=\"82\" width=\"30\" height=\"30\" fill=\"#8fd19e\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"340.0\" y=\"102.0\" font-size=\"13\" text-anchor=\"middle\" fill=\"#222\">Y</text><rect x=\"90\" y=\"130\" width=\"18\" height=\"18\" fill=\"#8fd19e\" stroke=\"#222\"/><text x=\"114\" y=\"144\" font-size=\"13\" fill=\"#222\">Y — yashil plitka</text><rect x=\"250\" y=\"130\" width=\"18\" height=\"18\" fill=\"#f6e27a\" stroke=\"#222\"/><text x=\"274\" y=\"144\" font-size=\"13\" fill=\"#222\">S — sariq plitka</text></svg>",
+  "savollar": [
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M02-1",
+    "asl_id": "CMA150Q01",
+    "mavzu": "PM-MIQ",
+    "jarayon": "qollash",
+    "kontekst": "ilmiy",
+    "fikrlash": "bilish",
+    "qiyinlik_ball": 389,
+    "kunikma": "Rasmdagi narsalarni sanab, qismning butunga nisbatini foizda ifodalash",
+    "usul": "Dastlabki 3 qatordagi barcha plitkalarni va ulardan sariqlarini sanang, so‘ng sariqlar sonini umumiy songa bo‘ling.",
+    "turi": "tanlov",
+    "savol": "Naqshning dastlabki 3 qatoridagi plitkalarning necha foizi sariq?",
+    "javoblar": [
+     "40,0 %",
+     "50,0 %",
+     "60,0 %",
+     "66,7 %"
+    ],
+    "togri": 0,
+    "yechim": [
+     {
+      "doska": "Jami: 3 + 5 + 7 = 15 ta plitka",
+      "ovoz": "Avval uchala qatordagi barcha plitkalarni qo‘shamiz."
+     },
+     {
+      "doska": "Sariq: 1 + 2 + 3 = 6 ta",
+      "ovoz": "Har qatorda sariq plitkalar 1, 2 va 3 ta."
+     },
+     {
+      "doska": "6 : 15 = 0,4 = 40,0 %",
+      "ovoz": "Sariqlar sonini jami plitkalar soniga bo‘lib, foizga o‘tkazamiz."
+     },
+     {
+      "doska": "Javob: A) 40,0 %",
+      "ovoz": "Dastlabki uch qatordagi plitkalarning 40 foizi sariq."
+     }
+    ],
+    "xatolar": {
+     "1": "Yashil va sariq plitkalar teng emas: har qatorda yashil plitka bitta ko‘p.",
+     "2": "60 % — bu yashil plitkalar ulushi (9 : 15), sariqlar emas.",
+     "3": "6 : 9 — sariqlar yashillarga bo‘lingan; foiz uchun jami plitkalarga bo‘lish kerak."
+    },
+    "maslahat": "Foiz topishda doim «qism : butun» ni hisoblang — butun bu yerda barcha plitkalar soni."
+   },
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M02-2",
+    "asl_id": "CMA150Q02",
+    "mavzu": "PM-OZG",
+    "jarayon": "ifodalash",
+    "kontekst": "ilmiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 451,
+    "kunikma": "Naqsh qoidasini bir qatorga davom ettirib, yangi foizni hisoblash",
+    "usul": "4-qatorda nechta plitka va nechta sariq plitka bo‘lishini qoida bo‘yicha toping, so‘ng dastlabki 4 qator uchun foizni hisoblang.",
+    "turi": "tanlov",
+    "savol": "Madina naqshga 4-qatorni qo‘shdi. Endi dastlabki 4 qatordagi plitkalarning necha foizi sariq bo‘ladi (o‘ndan birgacha yaxlitlang)?",
+    "javoblar": [
+     "40,0 %",
+     "41,7 %",
+     "58,3 %",
+     "71,4 %"
+    ],
+    "togri": 1,
+    "yechim": [
+     {
+      "doska": "4-qator: 7 + 2 = 9 ta plitka, 4 tasi sariq",
+      "ovoz": "Har qatorda plitka 2 taga ko‘payadi, sariqlar esa bitta ko‘payadi."
+     },
+     {
+      "doska": "Jami: 15 + 9 = 24;  sariq: 6 + 4 = 10",
+      "ovoz": "Oldingi uch qatorga yangi qatorni qo‘shamiz."
+     },
+     {
+      "doska": "10 : 24 ≈ 0,4167 ≈ 41,7 %",
+      "ovoz": "Sariqlar sonini jami plitkalarga bo‘lib, o‘ndan birgacha yaxlitlaymiz."
+     },
+     {
+      "doska": "Javob: B) 41,7 %",
+      "ovoz": "To‘rt qatorda sariqlar ulushi 41,7 foiz bo‘ladi."
+     }
+    ],
+    "xatolar": {
+     "0": "Bu faqat dastlabki 3 qator uchun javob; 4-qator qo‘shilgach ulush o‘zgaradi.",
+     "2": "58,3 % — yashil plitkalar ulushi (14 : 24).",
+     "3": "10 : 14 — sariqlar yashillarga bo‘lingan, jami plitkalarga emas."
+    },
+    "maslahat": "Naqshni davom ettirishda ikkala sonni — jami plitkalarni ham, sariqlarni ham — yangilashni unutmang."
+   },
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M02-3",
+    "asl_id": "CMA150Q03",
+    "mavzu": "PM-OZG",
+    "jarayon": "mulohaza",
+    "kontekst": "ilmiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 638,
+    "kunikma": "Naqshdagi har bir qator uchun o‘rinli munosabatni topib, umumiy da’voni asoslash",
+    "usul": "Bitta qatordagi yashil va sariq plitkalar sonini solishtiring va bu munosabat istalgan qator uchun bajarilishini tekshiring.",
+    "turi": "tanlov",
+    "savol": "Do‘sti Sardor shunday dedi: «Naqshga qancha ko‘p qator qo‘shilmasin, sariq plitkalar ulushi doim 50 % dan kam bo‘ladi». Sardor haqmi? Eng to‘g‘ri javob va asosni tanlang.",
+    "javoblar": [
+     "Ha, chunki dastlabki 3 qatorda sariq plitkalar 40 %, ya’ni 50 % dan kam.",
+     "Ha, chunki har bir qator yashil bilan boshlanib, yashil bilan tugaydi va oradagi plitkalar navbatlashadi — har qatorda yashil plitka sariqdan bitta ko‘p.",
+     "Yo‘q, chunki qatorlar qo‘shilgan sari sariqlar ulushi o‘sib boradi va bir kun 50 % dan oshadi.",
+     "Ha, chunki har bir qatorning chetlaridagi plitkalar yashil, sariqlar esa doim ichkarida turadi."
+    ],
+    "togri": 1,
+    "yechim": [
+     {
+      "doska": "n-qator: 2n + 1 ta plitka",
+      "ovoz": "Qatorlar 3, 5, 7, ... ta plitkadan iborat, ya’ni toq sonli."
+     },
+     {
+      "doska": "Yashil: n + 1 ta, sariq: n ta",
+      "ovoz": "Qator yashil bilan boshlanib-tugagani uchun yashil har doim bitta ko‘p."
+     },
+     {
+      "doska": "Har qatorda sariq < yashil ⇒ jami sariq < jami yashil",
+      "ovoz": "Bu munosabat har bir qatorda bajariladi, shuning uchun yig‘indida ham bajariladi."
+     },
+     {
+      "doska": "Sariq ulushi < 50 % (40 %; 41,7 %; 42,9 % ...)",
+      "ovoz": "Ulush o‘sadi, lekin 50 foizga hech qachon yetmaydi."
+     },
+     {
+      "doska": "Javob: B) Ha — har qatorda yashil bitta ko‘p",
+      "ovoz": "Sardor haq, asos esa har bir qatordagi munosabatdir."
+     }
+    ],
+    "xatolar": {
+     "0": "Bir nechta qatorga qarab xulosa chiqarib bo‘lmaydi: da’vo istalgan sondagi qatorlar haqida.",
+     "2": "Ulush haqiqatan o‘sadi (40 %; 41,7 %; 42,9 %), ammo har qatorda sariq kam bo‘lgani uchun 50 % ga yetmaydi.",
+     "3": "Chala asos: qator ichkarisida ham yashil plitkalar bor; faqat chetlarni aytish sariqlar kamligini isbotlamaydi."
+    },
+    "maslahat": "«Doim» degan da’voni asoslash uchun har bir holatda (har bir qatorda) bajariladigan qoidani toping."
+   }
+  ]
+ },
+ {
+  "birlik": "P-P22-M03",
+  "asl": "PISA 2022 Released Main Survey Mathematics Items, Unit CMA156: Points",
+  "toplam": "P_M",
+  "nom": "Chorvoqdagi mehmonlar",
+  "stimul": "Tuman gazetasida Chorvoq bo‘yidagi kichik oilaviy mehmonxona haqida shunday xabar chiqdi (xabar o‘quv maqsadida o‘ylab topilgan):\n\n«YOZ MAVSUMI YAKUNLANDI\n• Mavsum davomida mehmonxona bir kun ham bo‘sh qolmadi.\n• Kuniga o‘rtacha 46 nafar mehmon qabul qilindi.»\n\nIzoh: kunlik o‘rtacha mehmonlar soni — mavsumdagi barcha mehmonlar sonining mavsum kunlari soniga bo‘linmasi.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M03-1",
+    "asl_id": "CMA156Q01",
+    "mavzu": "PM-NOA",
+    "jarayon": "mulohaza",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 700,
+    "kunikma": "O‘rta arifmetik qiymat ma’lumotlar to‘plamining a’zosi bo‘lishi shart emasligini asoslash",
+    "usul": "O‘rtachasi 46 bo‘lgan, lekin ichida 46 soni yo‘q kichik sonlar to‘plamini o‘ylab ko‘ring.",
+    "turi": "tanlov",
+    "savol": "Mavsum davomida mehmonxonaga birorta ham kunda aynan 46 nafar mehmon kelmagan bo‘lishi mumkinmi? Eng to‘g‘ri javob va asosni tanlang.",
+    "javoblar": [
+     "Yo‘q, chunki o‘rtacha 46 bo‘lsa, kamida bir kuni aynan 46 nafar mehmon kelgan bo‘lishi kerak.",
+     "Ha, chunki o‘rtacha qiymat sonlarning o‘zidan biri bo‘lishi shart emas: masalan, 40 va 52 ning o‘rtachasi 46, lekin 46 ularning orasida yo‘q.",
+     "Ha, chunki ba’zi kunlari mehmonxonaga 46 nafardan ko‘p mehmon kelgan.",
+     "Ha, chunki o‘rtacha — bu barcha kunlardagi mehmonlar yig‘indisini kunlar soniga bo‘lish natijasi."
+    ],
+    "togri": 1,
+    "yechim": [
+     {
+      "doska": "O‘rtacha = yig‘indi : kunlar soni",
+      "ovoz": "Avval o‘rtacha qanday hisoblanishini eslaymiz."
+     },
+     {
+      "doska": "Misol: 40 va 52 → (40 + 52) : 2 = 46",
+      "ovoz": "Ikki kunda 40 va 52 mehmon kelsa, o‘rtacha 46 chiqadi."
+     },
+     {
+      "doska": "46 ∉ {40; 52}",
+      "ovoz": "Bironta kunda ham aynan 46 mehmon bo‘lmadi, o‘rtacha esa baribir 46."
+     },
+     {
+      "doska": "Javob: B) Ha — o‘rtacha to‘plamda bo‘lishi shart emas",
+      "ovoz": "Demak, bu holat mumkin; buni bitta misol isbotlaydi."
+     }
+    ],
+    "xatolar": {
+     "0": "Qarshi misol bor: 40 va 52 ning o‘rtachasi 46, ammo hech bir kunda 46 mehmon bo‘lmagan.",
+     "2": "Chala asos: o‘rtachadan ko‘p kunlar ham, kam kunlar ham bo‘lishi va 46 ning o‘zi uchramasligi mumkinligi aytilmagan.",
+     "3": "Bu faqat o‘rtachani hisoblash usuli; nega aynan 46 uchramasligi mumkinligini tushuntirmaydi."
+    },
+    "maslahat": "«Mumkinmi?» degan savolga «ha» deb javob berish uchun bitta aniq misol keltirish yetarli."
+   }
+  ]
+ },
+ {
+  "birlik": "P-P22-M04",
+  "asl": "PISA 2022 Released Main Survey Mathematics Items, Unit CMA161: Forested Area",
+  "toplam": "P_M",
+  "nom": "Sport to‘garaklari",
+  "stimul": "Tuman xalq ta’limi bo‘limi 10 ta maktabda o‘quvchilarning sport to‘garaklariga qatnashishini kuzatdi. Jadvalda har bir maktabda sport to‘garagiga qatnashadigan o‘quvchilar shu maktab o‘quvchilari umumiy sonining necha foizini tashkil etgani 2022, 2023 va 2024-yillar uchun berilgan (ma’lumotlar o‘quv maqsadida shartli).\n\nMaktablarda o‘quvchilar soni turlicha: kichik qishloq maktablari ham, katta shahar maktablari ham bor.\n\nMaktab — 2022 (%) — 2023 (%) — 2024 (%)\n1-maktab — 34,2 — 35,0 — 36,1\n5-maktab — 41,5 — 40,8 — 39,7\n7-maktab — 28,4 — 30,9 — 31,6\n12-maktab — 52,3 — 51,6 — 51,9\n15-maktab — 22,7 — 22,1 — 22,7\n18-maktab — 38,9 — 37,2 — 35,8\n21-maktab — 45,0 — 46,3 — 47,9\n24-maktab — 30,5 — 32,8 — 33,2\n27-maktab — 26,1 — 27,4 — 25,0\n33-maktab — 36,8 — 34,5 — 35,6\n\nHisoblash uchun kalkulyatordan foydalanish mumkin. O‘zgarish «foiz punkti»da o‘lchanadi: masalan, 30,0 % dan 31,5 % ga o‘tish +1,5 foiz punkt.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M04-1",
+    "asl_id": "CMA161Q01",
+    "mavzu": "PM-NOA",
+    "jarayon": "ifodalash",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 638,
+    "kunikma": "Jadval ma’lumotlaridan kerakli ayirmani tuzib, eng katta o‘sish, nol o‘zgarish va eng katta kamayishni topish",
+    "usul": "Har bir maktab uchun «2024 − 2022» ayirmasini hisoblang: eng katta musbat, nolga teng va eng kichik manfiy natijani toping.",
+    "turi": "tanlov",
+    "savol": "2022-yildan 2024-yilgacha (foiz punktlarda) qaysi maktabda ulush eng ko‘p oshdi, qaysi maktabda umuman o‘zgarmadi va qaysi maktabda eng ko‘p kamaydi? To‘g‘ri uchlikni tanlang (eng ko‘p oshgan; o‘zgarmagan; eng ko‘p kamaygan).",
+    "javoblar": [
+     "7-maktab; 15-maktab; 18-maktab",
+     "21-maktab; 15-maktab; 18-maktab",
+     "7-maktab; 12-maktab; 18-maktab",
+     "18-maktab; 15-maktab; 7-maktab"
+    ],
+    "togri": 0,
+    "yechim": [
+     {
+      "doska": "O‘zgarish = 2024 − 2022",
+      "ovoz": "Ikki yil orasidagi o‘zgarishni har bir maktab uchun hisoblaymiz."
+     },
+     {
+      "doska": "7: 31,6 − 28,4 = +3,2 (eng katta)",
+      "ovoz": "Eng katta musbat ayirma 7-maktabda; 21-maktabda +2,9, 24-maktabda +2,7."
+     },
+     {
+      "doska": "15: 22,7 − 22,7 = 0",
+      "ovoz": "15-maktabda ulush 2023-yilda tushib, keyin qaytgan — umumiy o‘zgarish nol."
+     },
+     {
+      "doska": "18: 35,8 − 38,9 = −3,1 (eng kichik)",
+      "ovoz": "Eng katta kamayish 18-maktabda; 5-maktabda −1,8."
+     },
+     {
+      "doska": "Javob: A) 7-maktab; 15-maktab; 18-maktab",
+      "ovoz": "Uchlik: 7-maktab, 15-maktab va 18-maktab."
+     }
+    ],
+    "xatolar": {
+     "1": "21-maktab faqat 2023–2024-yillarda eng ko‘p o‘sgan (+1,6); butun davrda 7-maktab ko‘proq (+3,2 > +2,9).",
+     "2": "12-maktabda o‘zgarish −0,4 — kichik, lekin nol emas; aynan nol 15-maktabda.",
+     "3": "Ayirma teskari olingan (2022 − 2024): ishoralar almashib, o‘sish va kamayish o‘rin almashgan."
+    },
+    "maslahat": "O‘zgarishni hisoblashda doim «keyingi yil − oldingi yil» tartibida ayiring: musbat — o‘sish, manfiy — kamayish."
+   },
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M04-2",
+    "asl_id": "CMA161Q02",
+    "mavzu": "PM-NOA",
+    "jarayon": "talqin",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 638,
+    "kunikma": "Ikki davr bo‘yicha o‘rtacha o‘zgarishni hisoblab, ishorasini talqin qilish",
+    "usul": "Har bir yil uchun 10 maktabning o‘rtacha ulushini toping (yoki har davrdagi o‘zgarishlarning o‘rtachasini) va ularni solishtiring.",
+    "turi": "tanlov",
+    "savol": "Ikki davrni ko‘rib chiqing: 2022–2023 va 2023–2024. 10 ta maktab bo‘yicha ulushning o‘rtacha o‘zgarishi haqidagi qaysi fikr to‘g‘ri?",
+    "javoblar": [
+     "O‘rtacha o‘zgarish ikkala davrda ham manfiy.",
+     "O‘rtacha o‘zgarish ikkala davrda ham musbat.",
+     "O‘rtacha o‘zgarish 2022–2023-yillarda manfiy, 2023–2024-yillarda musbat.",
+     "O‘rtacha o‘zgarish 2022–2023-yillarda musbat, 2023–2024-yillarda manfiy."
+    ],
+    "togri": 1,
+    "yechim": [
+     {
+      "doska": "O‘rtacha: 2022 — 35,64; 2023 — 35,86; 2024 — 35,95",
+      "ovoz": "Har yil ustunidagi 10 ta sonni qo‘shib, 10 ga bo‘lamiz."
+     },
+     {
+      "doska": "2022–2023: 35,86 − 35,64 = +0,22",
+      "ovoz": "Birinchi davrda o‘rtacha ulush oshgan."
+     },
+     {
+      "doska": "2023–2024: 35,95 − 35,86 = +0,09",
+      "ovoz": "Ikkinchi davrda ham o‘rtacha ulush oshgan, faqat kamroq."
+     },
+     {
+      "doska": "5 ta maktab kamaygan, lekin o‘rtacha o‘zgarish > 0",
+      "ovoz": "Kamaygan maktablar soni emas, o‘zgarishlar yig‘indisi hal qiladi."
+     },
+     {
+      "doska": "Javob: B) ikkala davrda ham musbat",
+      "ovoz": "To‘g‘ri fikr — o‘rtacha o‘zgarish ikkala davrda ham musbat."
+     }
+    ],
+    "xatolar": {
+     "0": "Ikkala davrda ham o‘rtacha ulush oshgan: 35,64 → 35,86 → 35,95.",
+     "2": "2022–2023-yillarda 5 ta maktabda ulush kamaygan, ammo o‘zgarishlar yig‘indisi +2,2, o‘rtachasi esa +0,22 — musbat.",
+     "3": "2023–2024-yillarda ham o‘zgarishlar yig‘indisi musbat (+0,9), demak o‘rtacha o‘zgarish +0,09."
+    },
+    "maslahat": "O‘rtacha o‘zgarish ishorasini nechta maktab o‘sgan-kamayganiga qarab emas, o‘zgarishlarning yig‘indisiga qarab aniqlang."
+   },
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M04-3",
+    "asl_id": "CMA161Q03",
+    "mavzu": "PM-NOA",
+    "jarayon": "talqin",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 700,
+    "kunikma": "Ikki davrdagi o‘zgarishlarni solishtirib, o‘zgarish sur’ati eng ko‘p farq qilgan holatlarni topish",
+    "usul": "Har maktab uchun 2022–2023 va 2023–2024 o‘zgarishlarini toping, so‘ng ularning farqini hisoblab, absolyut qiymati eng katta ikkitasini tanlang.",
+    "turi": "tanlov",
+    "savol": "Qaysi ikki maktabda 2022–2023-yillardagi o‘zgarish bilan 2023–2024-yillardagi o‘zgarish o‘rtasidagi farq eng katta bo‘lgan?",
+    "javoblar": [
+     "7-maktab va 24-maktab",
+     "27-maktab va 24-maktab",
+     "33-maktab va 15-maktab",
+     "27-maktab va 33-maktab"
+    ],
+    "togri": 3,
+    "yechim": [
+     {
+      "doska": "E = 2023 − 2022;  F = 2024 − 2023;  farq = F − E",
+      "ovoz": "Avval har davrdagi o‘zgarishni, keyin ularning farqini topamiz."
+     },
+     {
+      "doska": "27: E = +1,3; F = −2,4; farq = −3,7",
+      "ovoz": "27-maktabda o‘sish kamayishga aylangan."
+     },
+     {
+      "doska": "33: E = −2,3; F = +1,1; farq = +3,4",
+      "ovoz": "33-maktabda esa kamayish o‘sishga aylangan."
+     },
+     {
+      "doska": "Keyingilar: 24 (−1,9), 7 (−1,8), 15 (+1,2)",
+      "ovoz": "Qolgan maktablarda farqning absolyut qiymati ancha kichik."
+     },
+     {
+      "doska": "Javob: D) 27-maktab va 33-maktab",
+      "ovoz": "Ishorasidan qat’i nazar, eng katta farq shu ikki maktabda."
+     }
+    ],
+    "xatolar": {
+     "0": "7 va 24-maktablar birinchi davrda eng ko‘p o‘sgan, lekin ikki davr o‘zgarishlari farqi (−1,8 va −1,9) eng katta emas.",
+     "1": "27-maktab to‘g‘ri, lekin faqat manfiy farqlarga qaralgan: 24-maktab farqi |−1,9| = 1,9, bu 33-maktabning 3,4 farqidan kichik.",
+     "2": "Faqat musbat farqlar qarandi; 15-maktab farqi +1,2, 27-maktabniki esa |−3,7| = 3,7."
+    },
+    "maslahat": "«Eng katta o‘zgarish» — ishorasidan qat’i nazar, absolyut qiymati eng katta son: kamayish ham o‘zgarish."
+   },
+   {
+    "rasm": null,
+    "javob": "",
+    "javob_turi": "",
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "id": "P-P22-M04-4",
+    "asl_id": "CMA161Q04",
+    "mavzu": "PM-NOA",
+    "jarayon": "mulohaza",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 700,
+    "kunikma": "Foizli ma’lumotlardan qanday xulosa chiqarib bo‘lmasligini (asos miqdor noma’lum) baholash",
+    "usul": "Jadval nimani ko‘rsatishini aniqlang: o‘quvchilar sonini emas, ulushni. Ulushdan sonni topish uchun yana nima kerakligini o‘ylang.",
+    "turi": "tanlov",
+    "savol": "Nodira opa shunday dedi: «Uchala yilda ham sport to‘garaklariga qatnashgan o‘quvchilar soni 12-maktabda boshqa 9 ta maktabdagidan ko‘p bo‘lgan». Jadvaldagi ma’lumotlar bu fikrni tasdiqlaydimi? Eng to‘g‘ri javob va asosni tanlang.",
+    "javoblar": [
+     "Ha, chunki uchala yilda ham 12-maktabning foizi eng katta.",
+     "Yo‘q, chunki 12-maktabda ulush 2022-yildan 2024-yilgacha kamaygan.",
+     "Yo‘q, chunki jadvalda faqat foizlar berilgan, maktablardagi o‘quvchilar umumiy soni esa noma’lum va turlicha.",
+     "Ha, chunki 12-maktabning uch yillik o‘rtacha foizi boshqa maktablarnikidan katta."
+    ],
+    "togri": 2,
+    "yechim": [
+     {
+      "doska": "Jadvalda: ulush (%), o‘quvchilar soni emas",
+      "ovoz": "Avval jadvalda aynan qanday miqdor berilganini aniqlaymiz."
+     },
+     {
+      "doska": "Son = ulush · maktabdagi jami o‘quvchilar",
+      "ovoz": "Qatnashuvchilar sonini topish uchun maktab hajmini bilish shart."
+     },
+     {
+      "doska": "Misol: 300 · 52 % = 156;  1200 · 36 % = 432",
+      "ovoz": "Kichik maktabda foiz katta bo‘lsa ham, odam soni kam bo‘lishi mumkin."
+     },
+     {
+      "doska": "Javob: C) Yo‘q — jami o‘quvchilar soni noma’lum",
+      "ovoz": "Jadval fikrni tasdiqlamaydi, chunki asos miqdor berilmagan."
+     }
+    ],
+    "xatolar": {
+     "0": "Eng katta foiz eng ko‘p o‘quvchi degani emas: maktablarning o‘quvchilar soni turlicha.",
+     "1": "Kamayish juda kichik (−0,4) va u fikrni rad etish uchun asos emas; asosiy muammo — jami o‘quvchilar soni noma’lum.",
+     "3": "O‘rtacha foiz ham ulush; turli kattalikdagi maktablarda u o‘quvchilar sonini ko‘rsatmaydi."
+    },
+    "maslahat": "Foizlarni solishtirishdan oldin «nimaning foizi?» deb so‘rang — asoslar har xil bo‘lsa, sonlar haqida xulosa chiqarib bo‘lmaydi."
+   }
+  ]
+ }
+]

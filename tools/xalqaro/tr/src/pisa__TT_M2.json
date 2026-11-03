@@ -1,0 +1,3248 @@
+[
+{
+"k": "s0001",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Zilzila ehtimoli"
+},
+{
+"k": "s0002",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Televideniyedagi ilmiy ko‘rsatuvda zilzilalarni oldindan aytib berish mumkinmi, degan mavzu muhokama qilindi. Ko‘rsatuvda qatnashgan seysmolog olim shartli misol tariqasida shunday dedi:\n\n«Kelgusi o‘ttiz yil ichida Yangiobod shahrida kuchli zilzila sodir bo‘lish ehtimoli — uchdan ikki.»\n\n(Yangiobod — o‘ylab topilgan shahar nomi.)"
+},
+{
+"k": "s0003",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ehtimollik haqidagi gapning ma’nosini to‘g‘ri talqin qilish"
+},
+{
+"k": "s0004",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Ehtimollik «aniq bo‘ladi» yoki «qachon bo‘ladi» degani emas. 2/3 ni 1/3 (bo‘lmaslik ehtimoli) bilan solishtiring."
+},
+{
+"k": "s0005",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagilardan qaysi biri olimning gapi ma’nosini eng to‘g‘ri ifodalaydi?"
+},
+{
+"k": "s0006",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "$\\frac{2}{3}\\cdot 30 = 20$, demak, roppa-rosa 20 yildan keyin Yangiobodda zilzila bo‘ladi."
+},
+{
+"k": "s0007",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "$\\frac{2}{3}$ soni $\\frac{1}{2}$ dan katta, shuning uchun kelgusi 30 yil ichida Yangiobodda zilzila albatta bo‘ladi."
+},
+{
+"k": "s0008",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kelgusi 30 yil ichida Yangiobodda zilzila bo‘lish ehtimoli zilzila bo‘lmaslik ehtimolidan kattaroq."
+},
+{
+"k": "s0009",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Hech narsa deb bo‘lmaydi, chunki zilzila qachon bo‘lishini hech kim aniq bilmaydi."
+},
+{
+"k": "s0010",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Zilzila bo‘lish ehtimoli: 2/3"
+},
+{
+"k": "s0011",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Olim bergan son — ehtimollik, ya’ni voqea qanchalik kutilishini bildiradi."
+},
+{
+"k": "s0012",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bo‘lmaslik ehtimoli: 1 − 2/3 = 1/3"
+},
+{
+"k": "s0013",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qarama-qarshi voqea ehtimoli birdan ayirib topiladi."
+},
+{
+"k": "s0014",
+"maydon": "doska",
+"tur": "matn",
+"uz": "2/3 > 1/3 → bo‘lishi ehtimolroq"
+},
+{
+"k": "s0015",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, zilzila bo‘lishi bo‘lmasligidan ko‘ra kutilganroq, lekin kafolat yo‘q."
+},
+{
+"k": "s0016",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) bo‘lish ehtimoli kattaroq"
+},
+{
+"k": "s0017",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Faqat C javob ehtimollikni to‘g‘ri talqin qiladi."
+},
+{
+"k": "s0018",
+"maydon": "0",
+"tur": "matn",
+"uz": "Ehtimollikni vaqtga ko‘paytirish ma’nosiz: ehtimollik voqea qaysi yilda bo‘lishini bildirmaydi."
+},
+{
+"k": "s0019",
+"maydon": "1",
+"tur": "matn",
+"uz": "2/3 birdan kichik, demak, voqea muqarrar emas — «albatta» deyish xato."
+},
+{
+"k": "s0020",
+"maydon": "3",
+"tur": "matn",
+"uz": "Aniq bilmasak ham, ehtimollik voqea qanchalik kutilishini baholashga imkon beradi; bu gap olim fikrini inkor qiladi."
+},
+{
+"k": "s0021",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ehtimollik 1 ga teng bo‘lsagina voqea muqarrar. 1 dan kichik har qanday ehtimollik faqat «qanchalik kutilgan»ligini bildiradi."
+},
+{
+"k": "s0022",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Muzqaymoq qo‘shimchalari"
+},
+{
+"k": "s0023",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Samarqanddagi kichik kafeda oddiy vanilli muzqaymoq sotiladi. Xaridor istasa, unga qo‘shimcha sepki tanlashi mumkin. Kafeda to‘rt xil qo‘shimcha bor: maydalangan yong‘oq, shokolad bo‘lakchalari, mayiz va qulupnay murabbosi."
+},
+{
+"k": "s0024",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "To‘rt xil narsadan ikkitasini tanlash usullari sonini topish (kombinatsiyalar)"
+},
+{
+"k": "s0025",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Barcha juftliklarni tartibli yozib chiqing va «yong‘oq + mayiz» bilan «mayiz + yong‘oq» bir xil ekanini unutmang."
+},
+{
+"k": "s0026",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Dilnoza muzqaymog‘iga ikki xil (bir-biridan farqli) qo‘shimcha qo‘shtirmoqchi. U nechta turli juftlikdan birini tanlay oladi?"
+},
+{
+"k": "s0027",
+"maydon": "javob",
+"tur": "matn",
+"uz": "6|6 ta|6 xil"
+},
+{
+"k": "s0028",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qo‘shimchalar: Yo, Sh, M, Q"
+},
+{
+"k": "s0029",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval to‘rt qo‘shimchani qisqa belgilab olamiz."
+},
+{
+"k": "s0030",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yo bilan: Yo–Sh, Yo–M, Yo–Q → 3"
+},
+{
+"k": "s0031",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yong‘oq boshqa uchtasining har biri bilan juftlik tuzadi."
+},
+{
+"k": "s0032",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sh bilan (yangi): Sh–M, Sh–Q → 2"
+},
+{
+"k": "s0033",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Shokoladni yong‘oq bilan allaqachon sanadik, takrorlamaymiz."
+},
+{
+"k": "s0034",
+"maydon": "doska",
+"tur": "matn",
+"uz": "M bilan (yangi): M–Q → 1"
+},
+{
+"k": "s0035",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mayiz uchun faqat qulupnay qoldi."
+},
+{
+"k": "s0036",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Formula bilan ham: 4·3:2 = 6."
+},
+{
+"k": "s0037",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 6"
+},
+{
+"k": "s0038",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dilnoza 6 xil juftlikdan birini tanlaydi."
+},
+{
+"k": "s0039",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "12 javobi tartibni hisobga olishdan kelib chiqadi (Yo–Sh va Sh–Yo bir xil juftlik); 4 yoki 8 esa juftliklarni to‘liq sanamaslikdan."
+},
+{
+"k": "s0040",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Tartib muhim bo‘lmaganda juftliklar soni n·(n−1):2 ga teng."
+},
+{
+"k": "s0041",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Olimpiadaga saralash testi"
+},
+{
+"k": "s0042",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Maktabda matematika olimpiadasiga saralash testi o‘tkazildi. Test 100 ballik, 50 va undan ko‘p ball olgan o‘quvchi saralashdan o‘tgan hisoblanadi. Diagrammada 9-«A» va 9-«B» sinflar natijalari ko‘rsatilgan (har sinfdan 12 nafar o‘quvchi).\n\n9-«A» sinfining o‘rtacha bali — 61,5, 9-«B» sinfiniki — 64,0.\n\nDiagrammaga qarab, o‘qituvchi: «Bu testda 9-«B» sinf 9-«A» sinfdan yaxshiroq natija ko‘rsatdi», dedi. 9-«A» o‘quvchilari bunga qo‘shilmadi va 9-«B» sinf yaxshiroq ekani shart emasligini isbotlamoqchi."
+},
+{
+"k": "s0043",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Diagrammadan o‘rtachadan boshqa ko‘rsatkich bo‘yicha dalil topish (o‘tganlar soni, chetga chiqqan qiymat)"
+},
+{
+"k": "s0044",
+"maydon": "usul",
+"tur": "matn",
+"uz": "O‘rtacha bitta juda past natija tufayli tushib ketishi mumkin. Diagrammadan 50 va undan yuqori ustunlarni sanang."
+},
+{
+"k": "s0045",
+"maydon": "savol",
+"tur": "matn",
+"uz": "9-«A» o‘quvchilari diagramma asosida qaysi matematik dalilni keltira oladi?"
+},
+{
+"k": "s0046",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Saralash testi natijalari"
+},
+{
+"k": "s0047",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ball"
+},
+{
+"k": "s0048",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "O‘quvchilar soni"
+},
+{
+"k": "s0049",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "9-«A» sinfida saralashdan o‘tganlar ko‘proq: 11 nafar, 9-«B» sinfida esa 9 nafar."
+},
+{
+"k": "s0050",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "9-«B» sinfida eng yuqori va eng past ball orasidagi farq 9-«A» sinfnikidan kichikroq."
+},
+{
+"k": "s0051",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "9-«A» sinfining o‘rtacha bali 61,5 — bu 50 dan yuqori, demak, sinf yaxshi yozgan."
+},
+{
+"k": "s0052",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "9-«A» sinf odatda matematikadan kuchliroq, bu natija shunchaki tasodif."
+},
+{
+"k": "s0053",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "50 dan boshlab 9-«A» ustunlarini qo‘shamiz: 11 nafar o‘tgan."
+},
+{
+"k": "s0054",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "9-«B» sinfida esa 50 va undan yuqori ball olganlar 9 nafar."
+},
+{
+"k": "s0055",
+"maydon": "doska",
+"tur": "matn",
+"uz": "9-«A»: 0–9 oralig‘ida 1 nafar"
+},
+{
+"k": "s0056",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "9-«A» o‘rtachasini bitta juda past natija pastga tortgan."
+},
+{
+"k": "s0057",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) o‘tganlar 11 > 9"
+},
+{
+"k": "s0058",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘proq o‘quvchi saralashdan o‘tgani — o‘qituvchi fikriga qarshi matematik dalil."
+},
+{
+"k": "s0059",
+"maydon": "1",
+"tur": "matn",
+"uz": "Bu farq 9-«B» foydasiga ishlaydi yoki hech narsani isbotlamaydi — 9-«A» yaxshiroq ekaniga dalil emas."
+},
+{
+"k": "s0060",
+"maydon": "2",
+"tur": "matn",
+"uz": "61,5 baribir 64,0 dan kichik; 50 dan katta ekani sinflarni solishtirmaydi."
+},
+{
+"k": "s0061",
+"maydon": "3",
+"tur": "matn",
+"uz": "Bu matematik dalil emas: diagrammadagi ma’lumotga tayanmaydi."
+},
+{
+"k": "s0062",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Kim yaxshiroq?» degan savolga bitta ko‘rsatkich (o‘rtacha) bilan javob berib bo‘lmaydi; diagrammadan boshqa ko‘rsatkichlarni ham qidiring."
+},
+{
+"k": "s0063",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Velosipedni o‘zing yig‘"
+},
+{
+"k": "s0064",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Javohir velosiped ishqibozi. U Toshkentdagi «Velomarkaz» do‘konida narxlarni o‘rgandi. Do‘konda tayyor velosiped sotib olish yoki to‘rt qismni alohida olib, velosipedni o‘zi yig‘ish mumkin: rama, g‘ildiraklar to‘plami, zanjir-uzatma to‘plami va tormoz-rul to‘plami.\n\nMahsulot — Narxi (so‘m)\nTayyor velosiped — 2 150 000 yoki 2 400 000\nRama — 900 000, 1 200 000 yoki 1 350 000\nG‘ildiraklar to‘plami (2 ta) — 380 000 yoki 720 000\nZanjir-uzatma to‘plami — 450 000\nTormoz-rul to‘plami (tormozlar, rul, troslar) — 210 000 yoki 400 000\n\n(Do‘kon nomi va narxlar shartli.)"
+},
+{
+"k": "s0065",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jadvaldan kerakli qiymatlarni tanlab, eng kichik va eng katta yig‘indini topish"
+},
+{
+"k": "s0066",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Eng arzon velosiped uchun har qismning eng arzonini, eng qimmati uchun eng qimmatini oling. Tayyor velosiped narxlari bu yerda kerak emas."
+},
+{
+"k": "s0067",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Javohir velosipedni o‘zi yig‘moqchi. Shu do‘konda o‘zi yig‘adigan velosiped eng kamida va eng ko‘pi bilan necha so‘m turadi?"
+},
+{
+"k": "s0068",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Eng kamida 2 150 000, eng ko‘pi bilan 2 400 000 so‘m"
+},
+{
+"k": "s0069",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Eng kamida 1 490 000, eng ko‘pi bilan 2 470 000 so‘m"
+},
+{
+"k": "s0070",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Eng kamida 1 940 000, eng ko‘pi bilan 2 920 000 so‘m"
+},
+{
+"k": "s0071",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Eng kamida 1 940 000, eng ko‘pi bilan 2 770 000 so‘m"
+},
+{
+"k": "s0072",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Min: 900 000+380 000+450 000+210 000"
+},
+{
+"k": "s0073",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har bir qismning eng arzon variantini qo‘shamiz."
+},
+{
+"k": "s0074",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Min = 1 940 000 so‘m"
+},
+{
+"k": "s0075",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Zanjir-uzatma to‘plami bitta, uni ham qo‘shishni unutmaymiz."
+},
+{
+"k": "s0076",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Max: 1 350 000+720 000+450 000+400 000"
+},
+{
+"k": "s0077",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Endi har qismning eng qimmatini olamiz."
+},
+{
+"k": "s0078",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Max = 2 920 000 so‘m"
+},
+{
+"k": "s0079",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng qimmat yig‘ma velosiped shuncha turadi."
+},
+{
+"k": "s0080",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 1 940 000 va 2 920 000"
+},
+{
+"k": "s0081",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tayyor velosiped narxlari bu savolga aloqasi yo‘q."
+},
+{
+"k": "s0082",
+"maydon": "0",
+"tur": "matn",
+"uz": "Bu — tayyor velosiped narxlari; savol o‘zi yig‘iladigan velosiped haqida."
+},
+{
+"k": "s0083",
+"maydon": "1",
+"tur": "matn",
+"uz": "Zanjir-uzatma to‘plami (450 000) qo‘shilmagan: u bitta bo‘lsa ham, velosipedga kerak."
+},
+{
+"k": "s0084",
+"maydon": "3",
+"tur": "matn",
+"uz": "Eng qimmatda rama uchun 1 350 000 emas, 1 200 000 olingan."
+},
+{
+"k": "s0085",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Eng kam» va «eng ko‘p» savollarida har qism uchun mos ravishda eng kichik va eng katta qiymatni oling, hech bir qismni tashlab ketmang."
+},
+{
+"k": "s0086",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ko‘paytirish qoidasi bilan turli to‘plamlar sonini topish"
+},
+{
+"k": "s0087",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har qism uchun nechta tanlov borligini yozing va ularni qo‘shmang, balki ko‘paytiring."
+},
+{
+"k": "s0088",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Do‘konda uch xil rama, ikki xil g‘ildiraklar to‘plami va ikki xil tormoz-rul to‘plami bor; zanjir-uzatma to‘plami faqat bir xil. Javohir nechta turli velosiped yig‘ishi mumkin?"
+},
+{
+"k": "s0089",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Rama: 3, g‘ildirak: 2, tormoz: 2, zanjir: 1"
+},
+{
+"k": "s0090",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har qism bo‘yicha tanlovlar sonini yozib olamiz."
+},
+{
+"k": "s0091",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Har rama uchun 2·2 = 4 xil davom"
+},
+{
+"k": "s0092",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bitta ramaga g‘ildirak va tormozning 4 xil birikmasi to‘g‘ri keladi."
+},
+{
+"k": "s0093",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘paytirish qoidasi: hamma tanlovlar soni ko‘paytiriladi."
+},
+{
+"k": "s0094",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) 12"
+},
+{
+"k": "s0095",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Javohir 12 xil velosiped yig‘a oladi."
+},
+{
+"k": "s0096",
+"maydon": "0",
+"tur": "matn",
+"uz": "Faqat rama va g‘ildiraklar hisobga olingan (3·2), tormoz-rul to‘plami unutilgan."
+},
+{
+"k": "s0097",
+"maydon": "1",
+"tur": "matn",
+"uz": "Tanlovlar qo‘shilgan (3+2+2), ko‘paytirilishi kerak edi."
+},
+{
+"k": "s0098",
+"maydon": "2",
+"tur": "matn",
+"uz": "10 ga hech qanday to‘g‘ri usul olib kelmaydi — ehtimol, tanlovlar tartibsiz sanalgan."
+},
+{
+"k": "s0099",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Bir nechta qismni ketma-ket tanlaganda variantlar soni ko‘paytiriladi: 3 · 2 · 2."
+},
+{
+"k": "s0100",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Byudjet chegarasida eng katta yig‘indini tanlash"
+},
+{
+"k": "s0101",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Avval eng qimmat birikma byudjetdan oshishini tekshiring, keyin har bir variant yig‘indisini hisoblab, 2 500 000 dan oshmaydiganlarning eng kattasini tanlang."
+},
+{
+"k": "s0102",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Javohirda 2 500 000 so‘m bor. U shu pulga sotib olish mumkin bo‘lgan eng qimmat yig‘ma velosipedni olmoqchi. Qaysi xarid to‘g‘ri?"
+},
+{
+"k": "s0103",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Rama 1 350 000, g‘ildirak 380 000, zanjir 450 000, tormoz-rul 210 000"
+},
+{
+"k": "s0104",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Rama 1 200 000, g‘ildirak 380 000, zanjir 450 000, tormoz-rul 400 000"
+},
+{
+"k": "s0105",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Rama 900 000, g‘ildirak 720 000, zanjir 450 000, tormoz-rul 400 000"
+},
+{
+"k": "s0106",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Rama 1 350 000, g‘ildirak 720 000, zanjir 450 000, tormoz-rul 210 000"
+},
+{
+"k": "s0107",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A: 1 350+380+450+210 = 2 390 ming"
+},
+{
+"k": "s0108",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi variant byudjetga sig‘adi, lekin hammasini solishtiramiz."
+},
+{
+"k": "s0109",
+"maydon": "doska",
+"tur": "matn",
+"uz": "B: 1 200+380+450+400 = 2 430 ming"
+},
+{
+"k": "s0110",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi variant ham sig‘adi va qimmatroq."
+},
+{
+"k": "s0111",
+"maydon": "doska",
+"tur": "matn",
+"uz": "C: 900+720+450+400 = 2 470 ming"
+},
+{
+"k": "s0112",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uchinchisi yana qimmatroq va 2 500 mingdan oshmaydi."
+},
+{
+"k": "s0113",
+"maydon": "doska",
+"tur": "matn",
+"uz": "D: 1 350+720+450+210 = 2 730 ming > 2 500"
+},
+{
+"k": "s0114",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rtinchi variantga puli yetmaydi."
+},
+{
+"k": "s0115",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 2 470 000 so‘mlik xarid"
+},
+{
+"k": "s0116",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sig‘adiganlar ichida eng qimmati — C."
+},
+{
+"k": "s0117",
+"maydon": "0",
+"tur": "matn",
+"uz": "Eng qimmat ramani olish to‘g‘ri tuyuladi, lekin bu xarid jami 2 390 000 — C dan arzonroq."
+},
+{
+"k": "s0118",
+"maydon": "1",
+"tur": "matn",
+"uz": "Jami 2 430 000 so‘m; byudjetga sig‘adi, ammo C (2 470 000) qimmatroq."
+},
+{
+"k": "s0119",
+"maydon": "3",
+"tur": "matn",
+"uz": "Jami 2 730 000 so‘m — byudjetdan 230 000 so‘m oshib ketadi."
+},
+{
+"k": "s0120",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Eng qimmat qismni olish har doim eng qimmat to‘plamni bermaydi: barcha mos variantlar yig‘indisini solishtiring."
+},
+{
+"k": "s0121",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Metro bekati zinapoyasi"
+},
+{
+"k": "s0122",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Toshkentdagi yangi metro bekatiga yer ostiga tushadigan zinapoya qurildi. Zinapoyada 24 ta bir xil pog‘ona bor, uning umumiy balandligi 3,84 m, umumiy uzunligi (gorizontal bo‘yicha) 7,20 m (rasmga qarang)."
+},
+{
+"k": "s0123",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Umumiy balandlikni teng bo‘laklarga bo‘lish, birliklarni almashtirish"
+},
+{
+"k": "s0124",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Faqat balandlik kerak: uzunlik (7,20 m) ortiqcha ma’lumot. Metrni santimetrga o‘tkazib, pog‘onalar soniga bo‘ling."
+},
+{
+"k": "s0125",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Har bir pog‘onaning balandligi necha santimetr?"
+},
+{
+"k": "s0126",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Umumiy uzunlik 7,20 m"
+},
+{
+"k": "s0127",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "24 ta bir xil pog‘ona"
+},
+{
+"k": "s0128",
+"maydon": "javob",
+"tur": "matn",
+"uz": "16|16 sm|16 cm"
+},
+{
+"k": "s0129",
+"maydon": "doska",
+"tur": "matn",
+"uz": "3,84 m = 384 sm"
+},
+{
+"k": "s0130",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Javob santimetrda so‘ralgan, shuning uchun avval birlikni almashtiramiz."
+},
+{
+"k": "s0131",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Umumiy balandlik 24 ta teng pog‘onaga bo‘linadi."
+},
+{
+"k": "s0132",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: 16 · 24 = 384 ✓"
+},
+{
+"k": "s0133",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘paytirib tekshirsak, umumiy balandlik chiqadi."
+},
+{
+"k": "s0134",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 16"
+},
+{
+"k": "s0135",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har pog‘ona 16 sm baland."
+},
+{
+"k": "s0136",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "30 javobi uzunlikni (720 : 24) bo‘lishdan, 0,16 esa metrdan santimetrga o‘tkazmaslikdan kelib chiqadi."
+},
+{
+"k": "s0137",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Masaladagi barcha sonlar kerak bo‘lavermaydi — savol qaysi kattalik haqida ekanini aniqlang."
+},
+{
+"k": "s0138",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Narda uchun karton zar"
+},
+{
+"k": "s0139",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Narda o‘yinida ishlatiladigan zar — yoqlarida 1 dan 6 gacha nuqta bo‘lgan kub. Zar uchun qoida bor:\n\nQarama-qarshi ikki yoqdagi nuqtalar yig‘indisi har doim 7 ga teng.\n\nNodir kartondan zar yasamoqchi. U kartonni kesib, buklab, yelimlaydi. Rasmda kubga buklanadigan to‘rtta yoyilma (I, II, III, IV) berilgan, ularning kataklarida nuqtalar chizilgan."
+},
+{
+"k": "s0140",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Kub yoyilmasida qarama-qarshi yoqlarni aniqlash (fazoviy tasavvur)"
+},
+{
+"k": "s0141",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bir qatorda ketma-ket turgan uch katakdan chetdagilari kubda qarama-qarshi bo‘ladi. Har yoyilmada uch juftlikni topib, yig‘indilarini tekshiring."
+},
+{
+"k": "s0142",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Qaysi yoyilmalardan buklangan kub «qarama-qarshi yoqlar yig‘indisi 7» qoidasiga bo‘ysunadi?"
+},
+{
+"k": "s0143",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "II"
+},
+{
+"k": "s0144",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "III"
+},
+{
+"k": "s0145",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "IV"
+},
+{
+"k": "s0146",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat II va III"
+},
+{
+"k": "s0147",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat I va IV"
+},
+{
+"k": "s0148",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat I, II va IV"
+},
+{
+"k": "s0149",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "To‘rttalasi ham"
+},
+{
+"k": "s0150",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qoida: qatordagi 1- va 3-katak qarama-qarshi"
+},
+{
+"k": "s0151",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kubga buklaganda oradan bitta katak o‘tkazib turgan yoqlar bir-biriga qarama-qarshi tushadi."
+},
+{
+"k": "s0152",
+"maydon": "doska",
+"tur": "matn",
+"uz": "I: 1–6, 3–4, 2–5 → hammasi 7 ✓"
+},
+{
+"k": "s0153",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi yoyilmada uchala juftlik yig‘indisi 7."
+},
+{
+"k": "s0154",
+"maydon": "doska",
+"tur": "matn",
+"uz": "II: 2–5, 1–4, 3–6 → 5 va 9 ✗"
+},
+{
+"k": "s0155",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchisida 1 bilan 4, 3 bilan 6 qarama-qarshi — qoida buziladi."
+},
+{
+"k": "s0156",
+"maydon": "doska",
+"tur": "matn",
+"uz": "III: 6–1, 2–4, 3–5 → 6 va 8 ✗"
+},
+{
+"k": "s0157",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uchinchisida faqat bitta juftlik to‘g‘ri."
+},
+{
+"k": "s0158",
+"maydon": "doska",
+"tur": "matn",
+"uz": "IV: 2–5, 6–1, 4–3 → hammasi 7 ✓"
+},
+{
+"k": "s0159",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rtinchi yoyilma qoidaga mos."
+},
+{
+"k": "s0160",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) faqat I va IV"
+},
+{
+"k": "s0161",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, I va IV yoyilmalardan to‘g‘ri zar chiqadi."
+},
+{
+"k": "s0162",
+"maydon": "0",
+"tur": "matn",
+"uz": "Aksincha: II va III da qarama-qarshi yoqlar (masalan, 1 va 4, 2 va 4) yig‘indisi 7 emas."
+},
+{
+"k": "s0163",
+"maydon": "2",
+"tur": "matn",
+"uz": "II yoyilmada 1 va 4 qarama-qarshi tushadi — yig‘indi 5."
+},
+{
+"k": "s0164",
+"maydon": "3",
+"tur": "matn",
+"uz": "II va III yoyilmalarda qoida buziladi; har juftlikni alohida tekshirish kerak."
+},
+{
+"k": "s0165",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yoyilmada ikki yoq yonma-yon turgan bo‘lsa, kubda ular hech qachon qarama-qarshi bo‘lmaydi."
+},
+{
+"k": "s0166",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Yangi bog‘ loyihasi bo‘yicha so‘rovlar"
+},
+{
+"k": "s0167",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Shahar aholisi 22-mart kuni yangi markaziy bog‘ qurish loyihasi bo‘yicha ovoz beradi. Loyihani necha foiz aholi qo‘llab-quvvatlashini bilish uchun to‘rtta nashr alohida so‘rov o‘tkazdi (nashrlar shartli):\n\n1-nashr: 52,5% — so‘rov 2-martda, ovoz berish huquqiga ega tasodifiy tanlangan 500 nafar aholi orasida.\n2-nashr: 57,0% — so‘rov 18-martda, ovoz berish huquqiga ega tasodifiy tanlangan 500 nafar aholi orasida.\n3-nashr: 55,0% — so‘rov 18-martda, ovoz berish huquqiga ega tasodifiy tanlangan 1000 nafar aholi orasida.\n4-nashr: 63,5% — so‘rov 18-martda, Telegram-kanal obunachilaridan o‘zi xohlab ovoz bergan 1500 nafar kishi orasida."
+},
+{
+"k": "s0168",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Tanlanma sifatini baholash: tasodifiylik, hajm, vaqt"
+},
+{
+"k": "s0169",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Yaxshi so‘rov: ishtirokchilar tasodifiy tanlangan, ular haqiqiy saylovchilar, tanlanma katta va so‘rov ovoz berish kuniga yaqin."
+},
+{
+"k": "s0170",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Agar ovoz berish 22-martda bo‘lsa, qaysi nashr natijasi loyihani qo‘llab-quvvatlash darajasini eng yaxshi bashorat qiladi va nega?"
+},
+{
+"k": "s0171",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "4-nashr: ishtirokchilar eng ko‘p (1500 kishi) va so‘rov eng so‘nggi sanada o‘tkazilgan."
+},
+{
+"k": "s0172",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "3-nashr: so‘rov ovoz berish kuniga yaqin o‘tkazilgan va 1000 nafar saylovchi tasodifiy tanlangan."
+},
+{
+"k": "s0173",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-nashr: so‘rov eng erta o‘tkazilgan, odamlar o‘ylab olishga ko‘proq vaqt topgan, ishtirokchilar tasodifiy tanlangan."
+},
+{
+"k": "s0174",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "2-nashr: ishtirokchilar tasodifiy tanlangan va natija to‘rt so‘rovning o‘rtachasiga (57%) teng."
+},
+{
+"k": "s0175",
+"maydon": "doska",
+"tur": "matn",
+"uz": "4-nashr: o‘zi xohlaganlar → tanlanma tasodifiy emas"
+},
+{
+"k": "s0176",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kanal obunachilari va o‘zi qo‘ng‘iroq qilganlar butun aholini aks ettirmaydi."
+},
+{
+"k": "s0177",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1-nashr: 2-mart — ovozdan 20 kun oldin"
+},
+{
+"k": "s0178",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uzoq vaqt ichida fikrlar o‘zgarishi mumkin."
+},
+{
+"k": "s0179",
+"maydon": "doska",
+"tur": "matn",
+"uz": "2- va 3-nashr: 18-mart, tasodifiy"
+},
+{
+"k": "s0180",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkalasi ham yaxshi, lekin 3-nashrda tanlanma ikki baravar katta."
+},
+{
+"k": "s0181",
+"maydon": "doska",
+"tur": "matn",
+"uz": "3-nashr: yangi sana + 1000 tasodifiy"
+},
+{
+"k": "s0182",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Katta tasodifiy tanlanma natijani aniqroq qiladi."
+},
+{
+"k": "s0183",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 3-nashr"
+},
+{
+"k": "s0184",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki sabab: sana ovoz berishga yaqin va 1000 kishi tasodifiy tanlangan."
+},
+{
+"k": "s0185",
+"maydon": "0",
+"tur": "matn",
+"uz": "Ko‘p kishi qatnashgani yetarli emas: ular o‘zi xohlab ovoz bergan, demak, tanlanma bir tomonlama bo‘lishi mumkin."
+},
+{
+"k": "s0186",
+"maydon": "2",
+"tur": "matn",
+"uz": "Eng erta so‘rov — eng eskirgan so‘rov; 20 kun ichida fikrlar o‘zgarishi mumkin."
+},
+{
+"k": "s0187",
+"maydon": "3",
+"tur": "matn",
+"uz": "O‘rtachaga tengligi sifat belgisi emas; 2-nashr tanlanmasi 3-nashrnikidan kichik."
+},
+{
+"k": "s0188",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "So‘rovni baholashda «kimdan so‘raldi», «qancha kishidan» va «qachon» degan uch savolni bering."
+},
+{
+"k": "s0189",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Yilning eng yaxshi smartfoni"
+},
+{
+"k": "s0190",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Texnologiya haqidagi jurnal yangi smartfonlarni baholaydi va eng ko‘p umumiy ball to‘plaganiga «Yil smartfoni» unvonini beradi. Oltita smartfon baholandi (nomlar shartli). Baholar:\n\nSmartfon — Kamera (K) — Batareya (B) — Ekran (E) — Narx-sifat (N)\nAlfa — 3 — 3 — 1 — 1\nBeta — 2 — 2 — 2 — 2\nGamma — 3 — 2 — 3 — 2\nDelta — 1 — 3 — 3 — 3\nOmega — 2 — 1 — 3 — 3\nRamz — 2 — 3 — 2 — 3\n\nBaholar ma’nosi: 3 ball — a’lo, 2 ball — yaxshi, 1 ball — qoniqarli."
+},
+{
+"k": "s0191",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Formulaga jadvaldan qiymatlarni qo‘yib hisoblash"
+},
+{
+"k": "s0192",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Jadvaldan «Alfa» satrini toping va qiymatlarni formulaga mos harflar o‘rniga qo‘ying."
+},
+{
+"k": "s0193",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jurnal umumiy ballni $\\text{Umumiy ball} = 3\\cdot K + B + E + N$ formula bilan hisoblaydi. «Alfa» smartfonining umumiy bali nechaga teng?"
+},
+{
+"k": "s0194",
+"maydon": "javob",
+"tur": "matn",
+"uz": "14|14 ball"
+},
+{
+"k": "s0195",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Alfa: K = 3, B = 3, E = 1, N = 1"
+},
+{
+"k": "s0196",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jadvaldan Alfa satridagi to‘rt bahoni yozib olamiz."
+},
+{
+"k": "s0197",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kamera bahosi uchga ko‘paytiriladi, qolganlari qo‘shiladi."
+},
+{
+"k": "s0198",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Hisoblaymiz."
+},
+{
+"k": "s0199",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 14"
+},
+{
+"k": "s0200",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Alfa 14 ball oladi."
+},
+{
+"k": "s0201",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "8 javobi kamera bahosini 3 ga ko‘paytirmaslikdan, 20 esa barcha baholarni 3 ga ko‘paytirib yuborishdan kelib chiqadi."
+},
+{
+"k": "s0202",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Formulada ko‘paytirish faqat yonidagi o‘zgaruvchiga tegishli: 3·K + B, (3·K + 3·B) emas."
+},
+{
+"k": "s0203",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Vaznli yig‘indi qoidasini kerakli natijaga erishadigan qilib tanlash va tekshirish"
+},
+{
+"k": "s0204",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Alfa qaysi mezonda boshqalardan ustun? Shu mezonlar vaznini oshiring, so‘ng har bir qoida uchun barcha smartfonlar ballini solishtiring."
+},
+{
+"k": "s0205",
+"maydon": "savol",
+"tur": "matn",
+"uz": "«Alfa» ishlab chiqaruvchisi formulani adolatsiz deb hisobladi. Quyidagi qoidalardan qaysi birida «Alfa» boshqa barcha smartfonlardan ko‘p ball olib, g‘olib bo‘ladi?"
+},
+{
+"k": "s0206",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Umumiy ball = 1·K + 1·B + 1·E + 1·N"
+},
+{
+"k": "s0207",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Umumiy ball = 4·K + 4·B + 1·E + 1·N"
+},
+{
+"k": "s0208",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Umumiy ball = 1·K + 5·B + 1·E + 1·N"
+},
+{
+"k": "s0209",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Umumiy ball = 3·K + 1·B + 1·E + 3·N"
+},
+{
+"k": "s0210",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Alfa kuchli: K = 3, B = 3; kuchsiz: E, N"
+},
+{
+"k": "s0211",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, kamera va batareya vazni katta bo‘lishi kerak."
+},
+{
+"k": "s0212",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A: Alfa 8, Gamma 10 ✗"
+},
+{
+"k": "s0213",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Teng vaznda Alfa ancha orqada qoladi."
+},
+{
+"k": "s0214",
+"maydon": "doska",
+"tur": "matn",
+"uz": "C: Alfa 20, Delta 22, Ramz 22 ✗"
+},
+{
+"k": "s0215",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Faqat batareyani oshirsak, Delta va Ramz o‘tib ketadi."
+},
+{
+"k": "s0216",
+"maydon": "doska",
+"tur": "matn",
+"uz": "D: Alfa 16, Gamma 20 ✗"
+},
+{
+"k": "s0217",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Narx-sifat vaznini oshirish Alfaga zarar."
+},
+{
+"k": "s0218",
+"maydon": "doska",
+"tur": "matn",
+"uz": "B: Alfa 26, Gamma 25, Ramz 25, Delta 22 ✓"
+},
+{
+"k": "s0219",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu qoidada Alfa hammadan bir ball bo‘lsa ham oldinda."
+},
+{
+"k": "s0220",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 4·K + 4·B + 1·E + 1·N"
+},
+{
+"k": "s0221",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Faqat shu qoida Alfani g‘olib qiladi."
+},
+{
+"k": "s0222",
+"maydon": "0",
+"tur": "matn",
+"uz": "Teng vaznda Alfa atigi 8 ball oladi, Gamma, Delta va Ramz esa 10 balldan."
+},
+{
+"k": "s0223",
+"maydon": "2",
+"tur": "matn",
+"uz": "Batareya vazni katta, lekin kamera vazni kichik: Delta va Ramz 22 balldan oladi, Alfa — 20."
+},
+{
+"k": "s0224",
+"maydon": "3",
+"tur": "matn",
+"uz": "Narx-sifat vazni oshirilgan, Alfa esa bu mezonda eng past: Gamma va Ramz 20, Alfa 16."
+},
+{
+"k": "s0225",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qoidani tanlagandan keyin uni albatta barcha raqiblar uchun tekshiring — bitta raqibni yengish yetarli emas."
+},
+{
+"k": "s0226",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Peshtaxtadagi anorlar"
+},
+{
+"k": "s0227",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Chorsu bozoridagi sotuvchi anorlarni peshtaxtaga qatlam-qatlam qilib teradi. Rasmda uning birinchi uch bosqichi ko‘rsatilgan: 1-bosqichda 1 ta, 2-bosqichda 3 ta, 3-bosqichda 6 ta anor bor. Har bosqichda pastki qatorga bitta anor ko‘p qo‘yiladi."
+},
+{
+"k": "s0228",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ketma-ketlik qonuniyatini aniqlab, keyingi hadni topish"
+},
+{
+"k": "s0229",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bosqich oldingisidan qancha ko‘p ekanini yozing: +2, +3, ... Keyingi qo‘shiluvchi qanday bo‘ladi?"
+},
+{
+"k": "s0230",
+"maydon": "savol",
+"tur": "matn",
+"uz": "4-bosqichda nechta anor bo‘ladi?"
+},
+{
+"k": "s0231",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "1-bosqich"
+},
+{
+"k": "s0232",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "2-bosqich"
+},
+{
+"k": "s0233",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "3-bosqich"
+},
+{
+"k": "s0234",
+"maydon": "javob",
+"tur": "matn",
+"uz": "10|10 ta"
+},
+{
+"k": "s0235",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bosqichlardagi anorlar sonini yozib olamiz."
+},
+{
+"k": "s0236",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Farqlar: +2, +3"
+},
+{
+"k": "s0237",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har safar pastga oldingisidan bittaga uzunroq qator qo‘shiladi."
+},
+{
+"k": "s0238",
+"maydon": "doska",
+"tur": "matn",
+"uz": "4-bosqich: 6 + 4 = 10"
+},
+{
+"k": "s0239",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Keyingi farq +4 bo‘ladi."
+},
+{
+"k": "s0240",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: 4+3+2+1 = 10"
+},
+{
+"k": "s0241",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qatorlar bo‘yicha sanasak ham 10 chiqadi."
+},
+{
+"k": "s0242",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 10"
+},
+{
+"k": "s0243",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "4-bosqichda 10 ta anor."
+},
+{
+"k": "s0244",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "9 javobi farqni yana +3 deb olishdan, 8 esa sonlar ikki baravar oshadi deb o‘ylashdan kelib chiqadi."
+},
+{
+"k": "s0245",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qonuniyatni topish uchun qo‘shni hadlar farqini yozib chiqing."
+},
+{
+"k": "s0246",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Orolqumdagi butalar"
+},
+{
+"k": "s0247",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Orol dengizi qurigan sari uning tubida yangi cho‘l — Orolqum paydo bo‘ldi. Olimlar kuzatishicha, suv chekingan joyda taxminan 5 yildan keyin tuzga chidamli butalar o‘sa boshlaydi. Har bir buta yuqoridan qaraganda taxminan doira shaklida bo‘ladi.\n\nFaraz qilaylik, butaning diametri bilan suv chekinganidan beri o‘tgan vaqt orasidagi bog‘lanish quyidagi taxminiy formula bilan ifodalanadi:\n\n$d = 12\\sqrt{t-5}$, $t \\ge 5$,\n\nbu yerda $d$ — buta diametri (santimetrda), $t$ — suv chekinganidan keyin o‘tgan yillar soni. (Formula o‘quv maqsadida soddalashtirilgan.)"
+},
+{
+"k": "s0248",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Formulaga qiymat qo‘yib, kvadrat ildizli ifodani hisoblash"
+},
+{
+"k": "s0249",
+"maydon": "usul",
+"tur": "matn",
+"uz": "t o‘rniga 21 ni qo‘ying, avval qavs ichini (ildiz ostini) hisoblang, so‘ng ildiz chiqarib 12 ga ko‘paytiring."
+},
+{
+"k": "s0250",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Formuladan foydalanib, suv chekinganidan 21 yil o‘tgach buta diametri necha santimetr bo‘lishini toping."
+},
+{
+"k": "s0251",
+"maydon": "javob",
+"tur": "matn",
+"uz": "48|48 sm|48 cm"
+},
+{
+"k": "s0252",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Formulaga t = 21 ni qo‘yamiz."
+},
+{
+"k": "s0253",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ildiz ostida 16 qoladi, uning kvadrat ildizi 4."
+},
+{
+"k": "s0254",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rtni 12 ga ko‘paytiramiz."
+},
+{
+"k": "s0255",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 48"
+},
+{
+"k": "s0256",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Buta diametri taxminan 48 sm."
+},
+{
+"k": "s0257",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p uchraydigan xatolar: 5 ni ayirmaslik (12·√21 ≈ 55), ildizni chiqarmaslik (12·16 = 192) yoki 12 ga ko‘paytirishni unutish (4)."
+},
+{
+"k": "s0258",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Amallar tartibi: ildiz ostidagi ifoda → ildiz → ko‘paytirish."
+},
+{
+"k": "s0259",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Formuladan teskari masala: noma’lumni kvadrat ildiz ostidan topish"
+},
+{
+"k": "s0260",
+"maydon": "usul",
+"tur": "matn",
+"uz": "d = 60 ni qo‘yib tenglama tuzing: avval 12 ga bo‘ling, keyin ikkala tomonni kvadratga ko‘taring va 5 ni qo‘shing."
+},
+{
+"k": "s0261",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Madina diametri 60 sm bo‘lgan butani o‘lchadi. Bu joydan suv necha yil oldin chekingan?"
+},
+{
+"k": "s0262",
+"maydon": "javob",
+"tur": "matn",
+"uz": "30|30 yil"
+},
+{
+"k": "s0263",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ma’lum diametrni formulaga qo‘yamiz."
+},
+{
+"k": "s0264",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkala tomonni 12 ga bo‘lamiz."
+},
+{
+"k": "s0265",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ildizdan qutulish uchun kvadratga ko‘taramiz."
+},
+{
+"k": "s0266",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Beshni qo‘shamiz."
+},
+{
+"k": "s0267",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: 12·√25 = 60 ✓"
+},
+{
+"k": "s0268",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Javobni formulaga qo‘yib tekshiramiz."
+},
+{
+"k": "s0269",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 30"
+},
+{
+"k": "s0270",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Suv 30 yil oldin chekingan."
+},
+{
+"k": "s0271",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "10 javobi kvadratga ko‘tarishni unutishdan (5 + 5), 25 esa oxirida 5 ni qo‘shmaslikdan kelib chiqadi."
+},
+{
+"k": "s0272",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Teskari masalada amallarni teskari tartibda bajaring: bo‘lish → kvadratga ko‘tarish → qo‘shish."
+},
+{
+"k": "s0273",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Yangi tangalar to‘plami"
+},
+{
+"k": "s0274",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Sizga yangi tangalar to‘plamini loyihalash topshirildi. Barcha tangalar dumaloq va bir xil rangda, faqat diametrlari har xil. Mutaxassislar to‘plam quyidagi talablarga javob berishi kerak, deb hisoblaydi:\n\n• tangalar diametri 18 mm dan kichik va 50 mm dan katta bo‘lmasin;\n• har bir keyingi tanganing diametri oldingisidan kamida 25% katta bo‘lsin;\n• zarb qilish uskunasi faqat diametri butun millimetr bo‘lgan tangalarni chiqara oladi (masalan, 23 mm mumkin, 23,4 mm mumkin emas)."
+},
+{
+"k": "s0275",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Foiz o‘sishi va butun songa yuqoriga yaxlitlash bilan shartlarni bajaradigan eng uzun ketma-ketlikni tuzish"
+},
+{
+"k": "s0276",
+"maydon": "usul",
+"tur": "matn",
+"uz": "18 dan boshlang va har safar 1,25 ga ko‘paytiring; natija butun bo‘lmasa, YUQORIGA yaxlitlang (pastga yaxlitlasangiz, 25% shart buziladi)."
+},
+{
+"k": "s0277",
+"maydon": "savol",
+"tur": "matn",
+"uz": "To‘plam 18 mm li tangadan boshlanishi va unda iloji boricha ko‘p tanga bo‘lishi kerak. Qaysi to‘plam barcha talablarga javob beradi va eng ko‘p tangadan iborat?"
+},
+{
+"k": "s0278",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Keyingi tanga kamida 22,5 mm; butun bo‘lishi uchun 23 mm olamiz."
+},
+{
+"k": "s0279",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har safar eng kichik mumkin bo‘lgan butun diametrni tanlaymiz."
+},
+{
+"k": "s0280",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Pastga yaxlitlab 36 olsak, o‘sish 25% dan kam bo‘ladi."
+},
+{
+"k": "s0281",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Keyingi tanga 58,75 mm bo‘lardi — chegaradan tashqarida."
+},
+{
+"k": "s0282",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 18 – 23 – 29 – 37 – 47"
+},
+{
+"k": "s0283",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Beshta tanga — eng ko‘p mumkin bo‘lgan son."
+},
+{
+"k": "s0284",
+"maydon": "0",
+"tur": "matn",
+"uz": "22,5 pastga yaxlitlangan: 22 : 18 ≈ 1,22, ya’ni o‘sish 25% dan kam."
+},
+{
+"k": "s0285",
+"maydon": "2",
+"tur": "matn",
+"uz": "Bu to‘plam talablarga javob beradi, lekin unda faqat 4 ta tanga — 5 tali to‘plam mumkin."
+},
+{
+"k": "s0286",
+"maydon": "3",
+"tur": "matn",
+"uz": "36,25 pastga yaxlitlangan: 36 : 29 ≈ 1,24 — 25% shart buziladi."
+},
+{
+"k": "s0287",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Kamida» shartida yaxlitlash doim yuqoriga bo‘ladi, aks holda shart buziladi."
+},
+{
+"k": "s0288",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Ikki xil tort"
+},
+{
+"k": "s0289",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Qandolatxonada bir xil balandlikdagi, bir xil retseptli ikki xil dumaloq tort sotiladi. Kichik tortning diametri 20 sm, narxi 120 000 so‘m. Katta tortning diametri 30 sm, narxi 180 000 so‘m."
+},
+{
+"k": "s0290",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Doira yuzasi diametr kvadratiga proporsional ekanini narx bilan solishtirish"
+},
+{
+"k": "s0291",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Narx diametrga to‘g‘ri proporsional, tort miqdori esa yuzaga, ya’ni diametr kvadratiga bog‘liq. 1 so‘mga qancha tort to‘g‘ri kelishini solishtiring."
+},
+{
+"k": "s0292",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Qaysi tortni sotib olish foydaliroq (bir xil pulga ko‘proq tort)? Eng to‘g‘ri asoslangan javobni tanlang."
+},
+{
+"k": "s0293",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Ikkalasi baravar, chunki diametr 1,5 marta katta va narx ham 1,5 marta katta."
+},
+{
+"k": "s0294",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Katta tort, chunki tort miqdori diametr kvadratiga proporsional: u 2,25 marta ko‘p, narxi esa 1,5 marta qimmat."
+},
+{
+"k": "s0295",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kichik tort, chunki u arzonroq."
+},
+{
+"k": "s0296",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Katta tort, chunki uning diametri 10 sm ko‘p, narxi esa atigi 60 000 so‘m qimmat."
+},
+{
+"k": "s0297",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Diametrlar: 30 : 20 = 1,5; narxlar: 1,5"
+},
+{
+"k": "s0298",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Narx diametr bilan bir xil marta oshgan."
+},
+{
+"k": "s0299",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yuzalar: 1,5² = 2,25 marta"
+},
+{
+"k": "s0300",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir xil balandlikda tort miqdori yuzaga, yuza esa diametr kvadratiga proporsional."
+},
+{
+"k": "s0301",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kichik: π·10²:120 ≈ 2,62 sm²/1000 so‘m"
+},
+{
+"k": "s0302",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kichik tortda har 1000 so‘mga taxminan 2,62 sm² to‘g‘ri keladi."
+},
+{
+"k": "s0303",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Katta: π·15²:180 ≈ 3,93 sm²/1000 so‘m"
+},
+{
+"k": "s0304",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Katta tortda esa taxminan 3,93 sm²."
+},
+{
+"k": "s0305",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) katta tort foydaliroq"
+},
+{
+"k": "s0306",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Miqdor 2,25 marta, narx 1,5 marta oshgan."
+},
+{
+"k": "s0307",
+"maydon": "0",
+"tur": "matn",
+"uz": "Tort miqdori diametrga emas, yuzaga (diametr kvadratiga) proporsional; miqdor 2,25 marta oshadi."
+},
+{
+"k": "s0308",
+"maydon": "2",
+"tur": "matn",
+"uz": "Arzonligi foydaliligini bildirmaydi: muhimi — 1 so‘mga qancha tort to‘g‘ri kelishi."
+},
+{
+"k": "s0309",
+"maydon": "3",
+"tur": "matn",
+"uz": "Xulosa to‘g‘ri, lekin asos noto‘g‘ri: diametrlar farqini narxlar farqi bilan solishtirish hech narsani isbotlamaydi."
+},
+{
+"k": "s0310",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Shakl k marta kattalashsa, uning yuzasi k² marta kattalashadi."
+},
+{
+"k": "s0311",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Bog‘dagi uchta gulzor"
+},
+{
+"k": "s0312",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Landshaft dizayneri yangi istirohat bog‘i uchun uchta gulzor loyihasini chizdi (A, B va C). Uchala chizma bir xil masshtabda. B gulzor — doira shaklida; A va C gulzorlarning chegarasi egri-bugri."
+},
+{
+"k": "s0313",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Shakllarning yuzalarini ustma-ust qo‘yish g‘oyasi bilan taqqoslash"
+},
+{
+"k": "s0314",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir shaklni boshqasining ustiga qo‘ygandek tasavvur qiling: qaysi biri boshqalarini to‘liq qoplaydi?"
+},
+{
+"k": "s0315",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Qaysi gulzorning yuzasi eng katta? Eng to‘g‘ri asoslangan javobni tanlang."
+},
+{
+"k": "s0316",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "B, chunki A va C ni B ning ichiga joylashtirish mumkin — ularning chegarasida ichkariga kirib turgan joylar bor."
+},
+{
+"k": "s0317",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "C, chunki uning chegarasi eng uzun."
+},
+{
+"k": "s0318",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "A, chunki uning chegarasida egri joylar eng ko‘p."
+},
+{
+"k": "s0319",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Uchalasining yuzasi teng, chunki ularning eni deyarli bir xil."
+},
+{
+"k": "s0320",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uchala shaklning eni taxminan bir xil"
+},
+{
+"k": "s0321",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Rasmga ko‘ra, gulzorlar bir xil doira ichiga sig‘adi."
+},
+{
+"k": "s0322",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A va C da ichkariga botiq joylar bor"
+},
+{
+"k": "s0323",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu botiqlar doiraga nisbatan yuzani kamaytiradi."
+},
+{
+"k": "s0324",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A va C ni B ustiga qo‘ysak, ular B ichida qoladi."
+},
+{
+"k": "s0325",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) B gulzor"
+},
+{
+"k": "s0326",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, B ning yuzasi eng katta."
+},
+{
+"k": "s0327",
+"maydon": "1",
+"tur": "matn",
+"uz": "Perimetr uzunligi yuzani bildirmaydi: egri-bugri chegara uzun, lekin yuza kichik bo‘lishi mumkin."
+},
+{
+"k": "s0328",
+"maydon": "2",
+"tur": "matn",
+"uz": "Egri joylar ko‘pligi yuzani oshirmaydi — aksincha, botiqlar yuzani kamaytiradi."
+},
+{
+"k": "s0329",
+"maydon": "3",
+"tur": "matn",
+"uz": "Eni bir xil bo‘lishi yuzalar tengligini bildirmaydi."
+},
+{
+"k": "s0330",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yuzalarni taqqoslashda shakllarni bir-birining ustiga qo‘ygandek tasavvur qilish — oddiy va ishonchli usul."
+},
+{
+"k": "s0331",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Noto‘g‘ri shakl yuzasini taxminiy hisoblash usulini tanlash"
+},
+{
+"k": "s0332",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Yuza — shakl egallagan tekislik qismi. Uni kvadrat birliklar bilan to‘ldirib sanash mumkin."
+},
+{
+"k": "s0333",
+"maydon": "savol",
+"tur": "matn",
+"uz": "C gulzor yuzasini taxminan hisoblash uchun qaysi usul to‘g‘ri?"
+},
+{
+"k": "s0334",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "C shakl chegarasi bo‘ylab ip yotqizib, ip uzunligini o‘lchash."
+},
+{
+"k": "s0335",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "C shaklning eng katta enini o‘lchab, doira yuzasi formulasi bilan hisoblash."
+},
+{
+"k": "s0336",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Chizmani katakli qog‘ozga ko‘chirib, shakl ichidagi kataklarni sanash (yarmidan ko‘pi to‘lgan kataklarni butun deb, qolganini tashlab)."
+},
+{
+"k": "s0337",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "C shakldagi chiqib turgan qismlar sonini sanab, uni gulzorning eniga ko‘paytirish."
+},
+{
+"k": "s0338",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yuza = kvadrat birliklar soni"
+},
+{
+"k": "s0339",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yuzani o‘lchash — shaklni birlik kvadratlar bilan qoplash."
+},
+{
+"k": "s0340",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Katak: 1 sm² (masshtabda)"
+},
+{
+"k": "s0341",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Katakli qog‘ozdagi har katak ma’lum yuzaga teng."
+},
+{
+"k": "s0342",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yarmidan ko‘pi to‘lgan → 1, kami → 0"
+},
+{
+"k": "s0343",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chegara kataklaridagi xatolar o‘zaro deyarli qoplanadi."
+},
+{
+"k": "s0344",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) kataklarni sanash"
+},
+{
+"k": "s0345",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kataklar qancha mayda bo‘lsa, natija shuncha aniq."
+},
+{
+"k": "s0346",
+"maydon": "0",
+"tur": "matn",
+"uz": "Ip bilan perimetr (chegara uzunligi) o‘lchanadi, yuza emas."
+},
+{
+"k": "s0347",
+"maydon": "1",
+"tur": "matn",
+"uz": "C doira emas: doira formulasi botiq joylarni hisobga olmaydi va yuzani ancha oshirib yuboradi."
+},
+{
+"k": "s0348",
+"maydon": "3",
+"tur": "matn",
+"uz": "Bu ko‘paytmaning yuza bilan aloqasi yo‘q — o‘lchov birligi ham to‘g‘ri chiqmaydi."
+},
+{
+"k": "s0349",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Noto‘g‘ri shakl yuzasini katakli qog‘oz yordamida taxminlash — eng universal usul."
+},
+{
+"k": "s0350",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Egri chiziq uzunligini (perimetrni) o‘lchash usulini tanlash"
+},
+{
+"k": "s0351",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Perimetr — chegara uzunligi. Egri chiziqni to‘g‘rilab bo‘lmaydi, lekin ip yoki mayda to‘g‘ri bo‘laklar yordam beradi."
+},
+{
+"k": "s0352",
+"maydon": "savol",
+"tur": "matn",
+"uz": "C gulzor chegarasiga to‘siq o‘rnatish uchun uning perimetrini taxminan topish kerak. Qaysi usul to‘g‘ri?"
+},
+{
+"k": "s0353",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Chizmani katakli qog‘ozga ko‘chirib, shakl ichidagi kataklarni sanash."
+},
+{
+"k": "s0354",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Chegara bo‘ylab ipni egri-bugriligiga mos yotqizib, so‘ng ipni to‘g‘rilab uzunligini o‘lchash va masshtab bo‘yicha hisoblash."
+},
+{
+"k": "s0355",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "C shaklni o‘rab turgan to‘g‘ri to‘rtburchak chizib, uning perimetrini o‘lchash."
+},
+{
+"k": "s0356",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "C shaklning eng katta enini o‘lchab, uni 3,14 ga ko‘paytirish."
+},
+{
+"k": "s0357",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Perimetr = chegara uzunligi"
+},
+{
+"k": "s0358",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bizga chegaraning to‘liq uzunligi kerak."
+},
+{
+"k": "s0359",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ipni chegara bo‘ylab yotqizamiz"
+},
+{
+"k": "s0360",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ip barcha egri joylarni takrorlaydi."
+},
+{
+"k": "s0361",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ipni to‘g‘rilab chizg‘ich bilan o‘lchaymiz"
+},
+{
+"k": "s0362",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "So‘ng masshtab bo‘yicha haqiqiy uzunlikka o‘tkazamiz."
+},
+{
+"k": "s0363",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) ip usuli"
+},
+{
+"k": "s0364",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chegarani mayda to‘g‘ri bo‘laklarga bo‘lib qo‘shish ham shunga o‘xshash usul."
+},
+{
+"k": "s0365",
+"maydon": "0",
+"tur": "matn",
+"uz": "Kataklarni sanash yuzani beradi, perimetrni emas."
+},
+{
+"k": "s0366",
+"maydon": "2",
+"tur": "matn",
+"uz": "To‘rtburchak perimetri botiq va qo‘llarning yon tomonlarini hisobga olmaydi — haqiqiy chegara ancha uzun."
+},
+{
+"k": "s0367",
+"maydon": "3",
+"tur": "matn",
+"uz": "πd faqat doira uchun; C ning chegarasi doiranikidan ancha uzun."
+},
+{
+"k": "s0368",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Egri chiziq uzunligini ip bilan yoki uni mayda deyarli to‘g‘ri bo‘laklarga bo‘lib o‘lchash mumkin."
+},
+{
+"k": "s0369",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Avtomobilning to‘xtash yo‘li"
+},
+{
+"k": "s0370",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Harakatlanayotgan avtomobilning to‘xtash yo‘li ikki qismdan iborat:\n• reaksiya yo‘li — haydovchi xavfni ko‘rib, tormozni bosguncha avtomobil bosib o‘tgan masofa;\n• tormozlanish yo‘li — tormoz bosilgandan to avtomobil to‘liq to‘xtaguncha bosib o‘tilgan masofa.\n\nHaydovchilik maktabi qo‘llanmasidagi jadvalda yaxshi sharoit (hushyor haydovchi, soz tormoz va shinalar, quruq asfalt) uchun hisoblangan taxminiy qiymatlar berilgan.\n\nTezlik — Reaksiya yo‘li — To‘liq to‘xtash yo‘li — To‘xtash vaqti\n50 km/soat — 13,9 m — 27,7 m — 2,98 s\n60 km/soat — 16,7 m — 36,5 m — 3,38 s\n70 km/soat — 19,4 m — 46,5 m — 3,78 s\n80 km/soat — 22,2 m — 57,5 m — 4,17 s\n90 km/soat — 25 m — 69,6 m — 4,57 s\n100 km/soat — 27,8 m — 82,9 m — 4,97 s\n110 km/soat — 30,6 m — 97,2 m — 5,37 s\n120 km/soat — 33,3 m — 112,7 m — 5,76 s\n130 km/soat — 36,1 m — 129,3 m — 6,16 s"
+},
+{
+"k": "s0371",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jadvaldan kerakli qiymatni topish"
+},
+{
+"k": "s0372",
+"maydon": "usul",
+"tur": "matn",
+"uz": "100 km/soat satrini toping va «Reaksiya yo‘li» ustunidagi qiymatni o‘qing."
+},
+{
+"k": "s0373",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Avtomobil 100 km/soat tezlikda ketyapti. Haydovchining reaksiya vaqti davomida u necha metr yo‘l bosadi?"
+},
+{
+"k": "s0374",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Satr: 100 km/soat"
+},
+{
+"k": "s0375",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jadvaldan tezlik 100 km/soat bo‘lgan satrni topamiz."
+},
+{
+"k": "s0376",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ustun: reaksiya yo‘li → 27,8 m"
+},
+{
+"k": "s0377",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi ustun reaksiya yo‘lini beradi."
+},
+{
+"k": "s0378",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 27,8"
+},
+{
+"k": "s0379",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Reaksiya vaqtida avtomobil 27,8 m yuradi."
+},
+{
+"k": "s0380",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "82,9 — bu to‘liq to‘xtash yo‘li, 4,97 esa vaqt (sekundda); ustunlarni adashtirmang."
+},
+{
+"k": "s0381",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Jadvalda avval satrni, keyin ustunni aniqlang."
+},
+{
+"k": "s0382",
+"maydon": "usul",
+"tur": "matn",
+"uz": "100 km/soat satridagi «To‘liq to‘xtash yo‘li» ustunini o‘qing."
+},
+{
+"k": "s0383",
+"maydon": "savol",
+"tur": "matn",
+"uz": "100 km/soat tezlikda ketayotgan avtomobil to‘liq to‘xtaguncha jami necha metr yo‘l bosadi?"
+},
+{
+"k": "s0384",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yana 100 km/soat satriga qaraymiz."
+},
+{
+"k": "s0385",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ustun: to‘liq to‘xtash yo‘li → 82,9 m"
+},
+{
+"k": "s0386",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu ustun reaksiya va tormozlanish yo‘llari yig‘indisi."
+},
+{
+"k": "s0387",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 82,9"
+},
+{
+"k": "s0388",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avtomobil jami 82,9 m yurib to‘xtaydi."
+},
+{
+"k": "s0389",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "27,8 — faqat reaksiya yo‘li; savol to‘liq to‘xtash yo‘li haqida."
+},
+{
+"k": "s0390",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Jami» so‘zi ikkala qism yig‘indisini bildiradi."
+},
+{
+"k": "s0391",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jadvaldan vaqt qiymatini topish"
+},
+{
+"k": "s0392",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Masofa emas, vaqt so‘ralyapti — oxirgi ustunga qarang."
+},
+{
+"k": "s0393",
+"maydon": "savol",
+"tur": "matn",
+"uz": "100 km/soat tezlikda ketayotgan avtomobilni to‘liq to‘xtatish uchun necha sekund kerak bo‘ladi?"
+},
+{
+"k": "s0394",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kerakli satrni topamiz."
+},
+{
+"k": "s0395",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ustun: to‘xtash vaqti → 4,97 s"
+},
+{
+"k": "s0396",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oxirgi ustun sekundlarda berilgan."
+},
+{
+"k": "s0397",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 4,97"
+},
+{
+"k": "s0398",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘liq to‘xtash uchun taxminan 5 sekund kerak."
+},
+{
+"k": "s0399",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Metrdagi qiymatlar (27,8 yoki 82,9) vaqt emas; birlikka e’tibor bering."
+},
+{
+"k": "s0400",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Javob birligi savoldagi kattalikka mos bo‘lishi kerak: vaqt — sekundda."
+},
+{
+"k": "s0401",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jadvalda berilmagan qiymatni yig‘indidan ayirib topish"
+},
+{
+"k": "s0402",
+"maydon": "usul",
+"tur": "matn",
+"uz": "To‘liq yo‘l = reaksiya yo‘li + tormozlanish yo‘li. Jadvalda tormozlanish yo‘li yo‘q, uni ayirib toping."
+},
+{
+"k": "s0403",
+"maydon": "savol",
+"tur": "matn",
+"uz": "100 km/soat tezlikda tormoz bosilgan paytdan to avtomobil to‘xtaguncha u necha metr yo‘l bosadi (tormozlanish yo‘li)?"
+},
+{
+"k": "s0404",
+"maydon": "doska",
+"tur": "matn",
+"uz": "To‘liq = reaksiya + tormozlanish"
+},
+{
+"k": "s0405",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Matndagi ta’rifdan to‘liq yo‘l ikki qismdan iboratligini bilamiz."
+},
+{
+"k": "s0406",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tormozlanish = 82,9 − 27,8"
+},
+{
+"k": "s0407",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jadvaldagi ikki qiymatni ayiramiz."
+},
+{
+"k": "s0408",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 55,1"
+},
+{
+"k": "s0409",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tormozlanish yo‘li 55,1 m."
+},
+{
+"k": "s0410",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "110,7 javobi qiymatlarni qo‘shishdan kelib chiqadi; tormozlanish yo‘li to‘liq yo‘ldan kichik bo‘lishi kerak."
+},
+{
+"k": "s0411",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Jadvalda bo‘lmagan kattalikni ta’rif yordamida boshqa ustunlardan hisoblab topish mumkin."
+},
+{
+"k": "s0412",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jadvaldan teskari qidirish: natija bo‘yicha kirish qiymatini topish"
+},
+{
+"k": "s0413",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bu safar «To‘liq to‘xtash yo‘li» ustunidan 46,5 m ni toping va shu satrdagi tezlikni o‘qing."
+},
+{
+"k": "s0414",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Boshqa haydovchi yaxshi sharoitda avtomobilini jami 46,5 m masofada to‘xtatdi. Tormoz bosilgunga qadar u qanday tezlikda ketayotgan edi (km/soat)?"
+},
+{
+"k": "s0415",
+"maydon": "javob",
+"tur": "matn",
+"uz": "70|70 km/soat"
+},
+{
+"k": "s0416",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ustun: to‘liq to‘xtash yo‘li"
+},
+{
+"k": "s0417",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu safar qiymat ma’lum, tezlik noma’lum — jadvaldan teskari qidiramiz."
+},
+{
+"k": "s0418",
+"maydon": "doska",
+"tur": "matn",
+"uz": "46,5 m → satr 70 km/soat"
+},
+{
+"k": "s0419",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "46,5 m 70 km/soat satrida turibdi."
+},
+{
+"k": "s0420",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 70"
+},
+{
+"k": "s0421",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avtomobil 70 km/soat tezlikda ketgan."
+},
+{
+"k": "s0422",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "46,5 ni reaksiya yo‘li ustunidan qidirish yoki qo‘shni satrlarni (60 yoki 80) o‘qish xatoga olib keladi."
+},
+{
+"k": "s0423",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Teskari masalada qiymatni avval tegishli ustundan toping, keyin satr bo‘ylab chapga qarang."
+},
+{
+"k": "s0424",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Ayvon poliga plitka"
+},
+{
+"k": "s0425",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Akmal yangi uyining to‘g‘ri to‘rtburchak shaklidagi ayvoniga plitka yotqizmoqchi. Ayvonning uzunligi 4,75 m, eni 3,20 m. Har bir kvadrat metrga 64 ta plitka kerak bo‘ladi."
+},
+{
+"k": "s0426",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "To‘g‘ri to‘rtburchak yuzasini o‘nli kasrlar bilan hisoblash va me’yorga ko‘paytirish"
+},
+{
+"k": "s0427",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Avval yuzani (m²) toping, so‘ng uni 1 m² dagi plitkalar soniga ko‘paytiring. Yuzani yaxlitlab olmang."
+},
+{
+"k": "s0428",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Butun ayvon uchun Akmalga nechta plitka kerak? (Natija butun bo‘lmasa, uni yuqoriga yaxlitlab yozing.)"
+},
+{
+"k": "s0429",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ayvon yuzasi uzunlik va enining ko‘paytmasi."
+},
+{
+"k": "s0430",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Hisoblaymiz: 4,75 · 3,2 = 15,2."
+},
+{
+"k": "s0431",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har kvadrat metrga 64 ta plitka."
+},
+{
+"k": "s0432",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Plitka butun dona bo‘lgani uchun yuqoriga yaxlitlaymiz."
+},
+{
+"k": "s0433",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 973"
+},
+{
+"k": "s0434",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Akmalga 973 ta plitka kerak."
+},
+{
+"k": "s0435",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Yuzani 15 m² ga yaxlitlab olish 960 ta beradi; 15,2 ni 64 ga ko‘paytirish o‘rniga qo‘shish yoki perimetrni olish ham keng tarqalgan xato."
+},
+{
+"k": "s0436",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "O‘nli kasrli o‘lchamlarni oxirigacha aniq ko‘paytiring, yaxlitlashni faqat oxirgi qadamda bajaring."
+},
+{
+"k": "s0437",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Qondagi dori miqdori"
+},
+{
+"k": "s0438",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Shifoxonada bemorga antibiotik ukoli qilindi. Organizm dorini asta-sekin parchalaydi: ukoldan bir soat o‘tgach dorining faqat 75% i faol holda qoladi. Bu jarayon davom etadi: har soat oxirida oldingi soat oxiridagi faol dorining 75% i qoladi.\n\nIkkinchi holat: Bahodir aka qon bosimini nazorat qilish uchun 150 mg dori ichadi. Grafikda dorining dastlabki miqdori va bir, ikki, uch, to‘rt kundan keyin qonda qolgan faol miqdori ko‘rsatilgan (grafikka qarang)."
+},
+{
+"k": "s0439",
+"maydon": "stimul_rasm",
+"tur": "svg",
+"uz": "Dori qabul qilingandan keyingi vaqt (kun)"
+},
+{
+"k": "s0440",
+"maydon": "stimul_rasm",
+"tur": "svg",
+"uz": "Qondagi faol dori (mg)"
+},
+{
+"k": "s0441",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Har qadamda bir xil foizga kamayishni (geometrik progressiyani) hisoblash"
+},
+{
+"k": "s0442",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har soatda miqdorni 0,75 ga ko‘paytiring: 8:00 → 9:00 → 10:00 → 11:00 — uch marta."
+},
+{
+"k": "s0443",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Bemorga soat 8:00 da 400 mg antibiotik yuborildi. Soat 11:00 da qonida necha mg faol dori qoladi?"
+},
+{
+"k": "s0444",
+"maydon": "doska",
+"tur": "matn",
+"uz": "9:00: 400 · 0,75 = 300 mg"
+},
+{
+"k": "s0445",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi soatdan keyin 75% qoladi."
+},
+{
+"k": "s0446",
+"maydon": "doska",
+"tur": "matn",
+"uz": "10:00: 300 · 0,75 = 225 mg"
+},
+{
+"k": "s0447",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har soat oldingi miqdorning 75% i olinadi."
+},
+{
+"k": "s0448",
+"maydon": "doska",
+"tur": "matn",
+"uz": "11:00: 225 · 0,75 = 168,75 mg"
+},
+{
+"k": "s0449",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uchinchi soatdan keyin."
+},
+{
+"k": "s0450",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yoki: 400 · 0,75³ = 168,75"
+},
+{
+"k": "s0451",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir xil ko‘paytuvchi uch marta qo‘llanadi."
+},
+{
+"k": "s0452",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 168,75"
+},
+{
+"k": "s0453",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Soat 11:00 da taxminan 168,75 mg faol dori qoladi."
+},
+{
+"k": "s0454",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "100 javobi har soat bir xil 100 mg (400 ning 25% i) kamayadi deb o‘ylashdan kelib chiqadi; foiz har safar yangi miqdordan olinadi."
+},
+{
+"k": "s0455",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "«Oldingi miqdorning X foizi» — har qadamda bir xil songa ko‘paytirish demak."
+},
+{
+"k": "s0456",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Grafikdan nuqta qiymatini o‘qish"
+},
+{
+"k": "s0457",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Gorizontal o‘qda 1-kunni toping, undan grafikkacha yuqoriga chiqing va vertikal o‘qdagi qiymatni o‘qing."
+},
+{
+"k": "s0458",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Birinchi kun oxirida Bahodir akaning qonida qancha faol dori qoladi?"
+},
+{
+"k": "s0459",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "60 mg"
+},
+{
+"k": "s0460",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "90 mg"
+},
+{
+"k": "s0461",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "54 mg"
+},
+{
+"k": "s0462",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "100 mg"
+},
+{
+"k": "s0463",
+"maydon": "doska",
+"tur": "matn",
+"uz": "x = 1 kun"
+},
+{
+"k": "s0464",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Gorizontal o‘qda 1 ni topamiz."
+},
+{
+"k": "s0465",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Grafik nuqtasi: y = 90"
+},
+{
+"k": "s0466",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Nuqta 90 mg chizig‘ida turibdi."
+},
+{
+"k": "s0467",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 90 mg"
+},
+{
+"k": "s0468",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi kun oxirida 90 mg faol dori qoladi."
+},
+{
+"k": "s0469",
+"maydon": "0",
+"tur": "matn",
+"uz": "60 mg — bu bir kunda parchalangan miqdor (150 − 90), qolgan miqdor emas."
+},
+{
+"k": "s0470",
+"maydon": "2",
+"tur": "matn",
+"uz": "54 mg — ikkinchi kun oxiridagi qiymat."
+},
+{
+"k": "s0471",
+"maydon": "3",
+"tur": "matn",
+"uz": "100 mg grafikdagi hech bir nuqtaga to‘g‘ri kelmaydi."
+},
+{
+"k": "s0472",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Grafikdan qiymat o‘qishda nuqtadan o‘qqa to‘g‘ri chiziq bo‘ylab qarang."
+},
+{
+"k": "s0473",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Grafik ma’lumotidan o‘zgarmas nisbatni (foizni) aniqlash"
+},
+{
+"k": "s0474",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Ketma-ket ikki kun qiymatini bo‘ling: 90 : 150, 54 : 90. Nisbatni foizga aylantiring."
+},
+{
+"k": "s0475",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdan ko‘rinadiki, har kuni oldingi kundagi faol dorining taxminan bir xil qismi qonda qoladi. Bu taxminan necha foiz?"
+},
+{
+"k": "s0476",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "1-kun qiymatini dastlabki miqdorga bo‘lamiz."
+},
+{
+"k": "s0477",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "2-kun qiymatini 1-kunnikiga bo‘lsak ham 0,6."
+},
+{
+"k": "s0478",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har kuni oldingi miqdorning 60% i qoladi."
+},
+{
+"k": "s0479",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 60%"
+},
+{
+"k": "s0480",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har kuni 40% parchalanadi, 60% qoladi."
+},
+{
+"k": "s0481",
+"maydon": "0",
+"tur": "matn",
+"uz": "40% — har kuni parchalanadigan qism; savol qoladigan qism haqida."
+},
+{
+"k": "s0482",
+"maydon": "1",
+"tur": "matn",
+"uz": "50% bo‘lsa, 150 dan keyin 75 bo‘lardi, grafikda esa 90."
+},
+{
+"k": "s0483",
+"maydon": "3",
+"tur": "matn",
+"uz": "90 — bu milligramm (1-kun qiymati), foiz emas."
+},
+{
+"k": "s0484",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Bir xil foizga kamayishni tekshirish uchun qo‘shni qiymatlar nisbatini hisoblang."
+},
+{
+"k": "s0485",
+"maydon": "nom",
+"tur": "matn",
+"uz": "Yog‘och kubchalardan qurilmalar"
+},
+{
+"k": "s0486",
+"maydon": "stimul",
+"tur": "matn",
+"uz": "Kamola bolalar bog‘chasi uchun bir xil yog‘och kubchalardan turli bloklar yasaydi. Kubchalarni bir-biriga yelim bilan yopishtiradi. Avval u 8 ta kubchadan A shakldagi blokni yasadi. So‘ng B va C shakldagi yaxlit bloklarni yasadi (rasmga qarang): B blok 4 kubcha uzunlikda, 2 kubcha enida va 2 kubcha balandlikda; C blok — har tomoni 4 kubchadan iborat kub."
+},
+{
+"k": "s0487",
+"maydon": "stimul_rasm",
+"tur": "svg",
+"uz": "Kubcha"
+},
+{
+"k": "s0488",
+"maydon": "stimul_rasm",
+"tur": "svg",
+"uz": "A shakl"
+},
+{
+"k": "s0489",
+"maydon": "stimul_rasm",
+"tur": "svg",
+"uz": "B shakl"
+},
+{
+"k": "s0490",
+"maydon": "stimul_rasm",
+"tur": "svg",
+"uz": "C shakl"
+},
+{
+"k": "s0491",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "To‘g‘ri burchakli parallelepiped hajmini birlik kublar bilan sanash"
+},
+{
+"k": "s0492",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bir qatlamdagi kubchalarni sanang (uzunlik × en), so‘ng qatlamlar soniga ko‘paytiring."
+},
+{
+"k": "s0493",
+"maydon": "savol",
+"tur": "matn",
+"uz": "B blokni yasash uchun Kamolaga nechta kubcha kerak?"
+},
+{
+"k": "s0494",
+"maydon": "javob",
+"tur": "matn",
+"uz": "16|16 ta"
+},
+{
+"k": "s0495",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bir qatlam: 4 · 2 = 8"
+},
+{
+"k": "s0496",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Pastki qatlamda 4 qatordan 2 tadan kubcha."
+},
+{
+"k": "s0497",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qatlamlar: 2"
+},
+{
+"k": "s0498",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Blok balandligi 2 kubcha."
+},
+{
+"k": "s0499",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qatlamlar sonini ko‘paytiramiz."
+},
+{
+"k": "s0500",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "B blok uchun 16 ta kubcha kerak."
+},
+{
+"k": "s0501",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Faqat ko‘rinib turgan kubchalarni sanash (masalan, 12 yoki 14) xatoga olib keladi — orqa va ichki kubchalar ham bor."
+},
+{
+"k": "s0502",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Hajm = uzunlik × en × balandlik (kubchalarda)."
+},
+{
+"k": "s0503",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Kub hajmini birlik kublar bilan hisoblash"
+},
+{
+"k": "s0504",
+"maydon": "usul",
+"tur": "matn",
+"uz": "C blokning har tomonida nechta kubcha borligini aniqlang va uch o‘lchamni ko‘paytiring."
+},
+{
+"k": "s0505",
+"maydon": "savol",
+"tur": "matn",
+"uz": "C yaxlit blokni yasash uchun Kamolaga nechta kubcha kerak?"
+},
+{
+"k": "s0506",
+"maydon": "javob",
+"tur": "matn",
+"uz": "64|64 ta"
+},
+{
+"k": "s0507",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bir qatlam: 4 · 4 = 16"
+},
+{
+"k": "s0508",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kubning bir qatlamida 16 ta kubcha."
+},
+{
+"k": "s0509",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qatlamlar: 4"
+},
+{
+"k": "s0510",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Balandlik ham 4 kubcha."
+},
+{
+"k": "s0511",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yoki 4³ = 64."
+},
+{
+"k": "s0512",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 64"
+},
+{
+"k": "s0513",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "C blok uchun 64 ta kubcha kerak."
+},
+{
+"k": "s0514",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "48 (faqat ko‘rinadigan uch yoq) yoki 96 (oltita yoq: 6·16) javoblari kubchalarni emas, yoqlardagi kvadratlarni sanashdan kelib chiqadi."
+},
+{
+"k": "s0515",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Kubning hajmi a³: tomonni o‘z-o‘ziga uch marta ko‘paytiring."
+},
+{
+"k": "s0516",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ichi bo‘sh blok uchun kerakli kubchalar sonini topish (tashqi qobiq)"
+},
+{
+"k": "s0517",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Tashqi ko‘rinish o‘zgarmasligi uchun barcha tashqi kubchalar qolishi kerak. Ichki qismi qancha — o‘lchamlardan 2 ni ayiring."
+},
+{
+"k": "s0518",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Kamola C blokka o‘xshash, lekin ichi bo‘sh blok yasasa, kubchalarni tejash mumkinligini tushundi. Tashqaridan C blokdek ko‘rinadigan, ichi bo‘sh blok uchun eng kamida nechta kubcha kerak?"
+},
+{
+"k": "s0519",
+"maydon": "javob",
+"tur": "matn",
+"uz": "56|56 ta"
+},
+{
+"k": "s0520",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yaxlit C: 4³ = 64"
+},
+{
+"k": "s0521",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yaxlit blokda 64 ta kubcha."
+},
+{
+"k": "s0522",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ichki qism: (4−2)³ = 2³ = 8"
+},
+{
+"k": "s0523",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har tomondan bittadan tashqi qatlam qoladi, ichida 2×2×2 bo‘shliq."
+},
+{
+"k": "s0524",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ichki kubchalarni olib tashlaymiz."
+},
+{
+"k": "s0525",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 56"
+},
+{
+"k": "s0526",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng kamida 56 ta kubcha kerak."
+},
+{
+"k": "s0527",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "63 javobi faqat bitta markaziy kubcha olinadi deb o‘ylashdan, 37 esa ichki bo‘shliqni 3×3×3 = 27 deb olishdan (64 − 27) kelib chiqadi."
+},
+{
+"k": "s0528",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ichki qism o‘lchami har yo‘nalishda 2 taga kam: (a−2)·(b−2)·(c−2)."
+},
+{
+"k": "s0529",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Ichi bo‘sh parallelepiped uchun qobiq kubchalari sonini umumlashtirib hisoblash"
+},
+{
+"k": "s0530",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Yaxlit blok hajmidan ichki bo‘shliq hajmini ayiring; bo‘shliqning har o‘lchami tashqi o‘lchamdan 2 ga kam."
+},
+{
+"k": "s0531",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Endi Kamola tashqaridan uzunligi 7, eni 6 va balandligi 5 kubcha bo‘lgan yaxlit blokdek ko‘rinadigan, lekin ichida iloji boricha katta bo‘shliq qoldirilgan blok yasamoqchi. Unga eng kamida nechta kubcha kerak?"
+},
+{
+"k": "s0532",
+"maydon": "javob",
+"tur": "matn",
+"uz": "150|150 ta"
+},
+{
+"k": "s0533",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yaxlit: 7 · 6 · 5 = 210"
+},
+{
+"k": "s0534",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval yaxlit blokdagi kubchalar soni."
+},
+{
+"k": "s0535",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bo‘shliq: 5 · 4 · 3 = 60"
+},
+{
+"k": "s0536",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har o‘lchamdan ikki chetki kubchani ayiramiz."
+},
+{
+"k": "s0537",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qobiqdagi kubchalar soni."
+},
+{
+"k": "s0538",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 150"
+},
+{
+"k": "s0539",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng kamida 150 ta kubcha kerak."
+},
+{
+"k": "s0540",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "6·5·4 = 120 ni bo‘shliq deb olish (o‘lchamlardan 1 ni ayirish) yoki yoqlar yuzalarini qo‘shish (2·(42+35+30) = 214) — keng tarqalgan xatolar."
+},
+{
+"k": "s0541",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qobiq = tashqi hajm − ichki hajm; ichki o‘lchamlar har tomondan bittadan qatlam olib tashlangani uchun 2 taga kichik."
+}
+]

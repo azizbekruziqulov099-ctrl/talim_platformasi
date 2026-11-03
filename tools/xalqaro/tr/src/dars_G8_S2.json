@@ -1,0 +1,4160 @@
+[
+{
+"k": "s0001",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Moddaning agregat holatlari"
+},
+{
+"k": "s0002",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Qattiq, suyuq va gaz holatlarni zarrachalar orqali tushuntirish, holat o‘zgarishlarini (erish, qotish, bug‘lanish, kondensatsiya) tanish va bunda nima o‘zgarishi, nima saqlanishini aniqlash"
+},
+{
+"k": "s0003",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Bugun nima o‘rganamiz?"
+},
+{
+"k": "s0004",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sovuq stakan tashqarisida tomchilar — qayerdan?\nTIMSS: 8-sinflarning o‘rtacha 50% i to‘g‘ri yechgan"
+},
+{
+"k": "s0005",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yozda muzdek limonad quyilgan stakanning tashqi tomonida tomchilar paydo bo‘lganini ko‘rganmisiz? Ular qayerdan kelgan, deb o‘ylaysiz? [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha ellik foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0006",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Uch agregat holat"
+},
+{
+"k": "s0007",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qattiq: shakl va hajm saqlanadi\nSuyuq: hajm saqlanadi, shakl — idishniki\nGaz: na shakl, na hajm saqlanadi"
+},
+{
+"k": "s0008",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Qattiq jismda zarrachalar bir-biriga juda yaqin va o‘z joyida tebranib turadi, shuning uchun shakli ham, hajmi ham saqlanadi. [2] Suyuqlikda zarrachalar yaqin, lekin bir-biri ustidan sirpanib o‘ta oladi, shuning uchun u idish shaklini oladi. [3] Gazda zarrachalar bir-biridan uzoq va tez harakatlanadi, shuning uchun gaz butun idishni to‘ldiradi."
+},
+{
+"k": "s0009",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Holat o‘zgarishlari"
+},
+{
+"k": "s0010",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Erish: qattiq → suyuq;  qotish: suyuq → qattiq\nBug‘lanish: suyuq → gaz;  kondensatsiya: gaz → suyuq\nErish va qaynash vaqtida harorat o‘zgarmaydi"
+},
+{
+"k": "s0011",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Muz eriydi va suvga aylanadi, suv sovitilsa qotib yana muzga aylanadi. [2] Ko‘lmak quyoshda bug‘lanadi, havodagi suv bug‘i esa sovuq sirtda kondensatsiyalanib tomchiga aylanadi. [3] Toza modda erish yoki qaynash paytida issiqlik olib tursa ham, holat to‘liq o‘zgarmaguncha harorati bir xil turadi."
+},
+{
+"k": "s0012",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Nima o‘zgaradi, nima saqlanadi?"
+},
+{
+"k": "s0013",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Saqlanadi: massa, modda turi, zarrachalar soni\nO‘zgaradi: zarrachalar oralig‘i, hajm, zichlik\nBu — fizik hodisa"
+},
+{
+"k": "s0014",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Holat o‘zgarganda modda boshqa moddaga aylanmaydi: suv molekulasi muzda ham, bug‘da ham suv molekulasi bo‘lib qoladi, massa ham o‘zgarmaydi. [2] O‘zgaradigan narsa — zarrachalar orasidagi masofa va harakati, shuning uchun hajm va zichlik o‘zgaradi. [3] Yangi modda hosil bo‘lmagani uchun holat o‘zgarishi kimyoviy emas, fizik hodisa hisoblanadi."
+},
+{
+"k": "s0015",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Kondensatsiya: tomchilar havodan"
+},
+{
+"k": "s0016",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havoda ko‘rinmas suv bug‘i bor\nSovuq sirtga tegsa → suv tomchisi\nSuv stakan devoridan sizib chiqmaydi!"
+},
+{
+"k": "s0017",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Biz nafas oladigan havoda doim ko‘zga ko‘rinmaydigan suv bug‘i bo‘ladi. [2] Bug‘ sovuq stakanga tegib soviydi va kondensatsiyalanib, stakan tashqarisida tomchi bo‘lib yig‘iladi. [3] Shisha devor suvni o‘tkazmaydi, demak tomchilar ichidagi suv emas, havodagi bug‘dir."
+},
+{
+"k": "s0018",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "1-misol"
+},
+{
+"k": "s0019",
+"maydon": "doska",
+"tur": "matn",
+"uz": "200 g muz eritildi. Suvning massasi va hajmi?"
+},
+{
+"k": "s0020",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shartni o‘qiymiz: ikki yuz gramm muz to‘liq eridi, hosil bo‘lgan suvning massasi va hajmini topamiz."
+},
+{
+"k": "s0021",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Massa saqlanadi: $m = 200$ g\nMuz: $V = \\frac{200}{0{,}9} \\approx 222$ sm³"
+},
+{
+"k": "s0022",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Holat o‘zgarganda massa saqlanadi, demak suv ham ikki yuz gramm bo‘ladi. [2] Muzning zichligi taxminan nol butun o‘ndan to‘qqiz gramm har kub santimetrga, shuning uchun muz hajmi taxminan ikki yuz yigirma ikki kub santimetr edi."
+},
+{
+"k": "s0023",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suv: $V = \\frac{200}{1} = 200$ sm³ — hajm kamaydi"
+},
+{
+"k": "s0024",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Suvning zichligi bir gramm har kub santimetr, demak suv hajmi ikki yuz kub santimetr: massa o‘zgarmadi, hajm esa kichraydi."
+},
+{
+"k": "s0025",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "2-misol (mulohaza)"
+},
+{
+"k": "s0026",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Muzli sharbat stakani tashqarisida tomchilar"
+},
+{
+"k": "s0027",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Endi TIMSS uslubidagi masala: Ali stakandagi muzli sharbat devordan sizib chiqdi, deydi. Buni qanday tekshiramiz?"
+},
+{
+"k": "s0028",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Gipoteza 1: sharbat devordan sizdi\nGipoteza 2: havodagi bug‘ kondensatsiyalandi"
+},
+{
+"k": "s0029",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Agar Ali haq bo‘lsa, tomchilar sharbat kabi rangli va shirin bo‘lishi kerak. [2] Agar tomchilar havodan bo‘lsa, ular rangsiz, oddiy suv bo‘ladi."
+},
+{
+"k": "s0030",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tajriba: tomchi rangsiz → havodan\nIliq suvli stakanda tomchi yo‘q\nJavob: sovuq sirtda bug‘ kondensatsiyalanadi"
+},
+{
+"k": "s0031",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tekshirsak, tomchilar rangsiz va ta’msiz chiqadi, demak ikkinchi gipoteza to‘g‘ri. [2] Xuddi shu stakanga iliq suv quysak, tomchi paydo bo‘lmaydi: demak sabab — stakanning sovuqligi. [3] To‘liq javob shunday yoziladi: havodagi suv bug‘i sovuq stakan sirtida soviydi va kondensatsiyalanib tomchiga aylanadi."
+},
+{
+"k": "s0032",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Endi o‘zingiz"
+},
+{
+"k": "s0033",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suv bug‘ining suyuqlikka aylanishi nima deyiladi?"
+},
+{
+"k": "s0034",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Endi o‘zingiz javob bering: gaz holatidagi suv bug‘i suyuq suvga aylanadigan jarayon qanday ataladi? Bir so‘z bilan yozing."
+},
+{
+"k": "s0035",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jarayon nomini yozing"
+},
+{
+"k": "s0036",
+"maydon": "javob",
+"tur": "matn",
+"uz": "kondensatsiya|kondensatsiyalanish|kondensatlanish"
+},
+{
+"k": "s0037",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yana bittasi"
+},
+{
+"k": "s0038",
+"maydon": "doska",
+"tur": "matn",
+"uz": "50 g suv to‘liq bug‘landi. Bug‘ massasi necha g?"
+},
+{
+"k": "s0039",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Ellik gramm suv berk idishda to‘liq bug‘ga aylandi. Hosil bo‘lgan bug‘ning massasi necha gramm? Faqat sonni yozing."
+},
+{
+"k": "s0040",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Massani grammda yozing"
+},
+{
+"k": "s0041",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Xalqaro savolni qanday yechamiz"
+},
+{
+"k": "s0042",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Qaysi holatdan qaysi holatga o‘tdi?\n2. Massa va modda turi — saqlanadi\n3. Tomchi qayerdan? — havodagi bug‘ni unutmang"
+},
+{
+"k": "s0043",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Xalqaro savolda avval modda qaysi holatdan qaysi holatga o‘tganini aniqlang va jarayon nomini ayting. [2] «Nima o‘zgarmaydi» degan savolda esda tuting: massa va modda turi doim saqlanadi. [3] Sovuq sirtdagi tomchi haqidagi savol eng qiyin joy, dunyoda faqat yetti foiz o‘quvchi to‘liq yechgan: javobda havodagi bug‘ va sovish ikkalasini ham yozing."
+},
+{
+"k": "s0044",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Esda tuting"
+},
+{
+"k": "s0045",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qattiq — suyuq — gaz: zarrachalar oralig‘i farq qiladi\nErish, qotish, bug‘lanish, kondensatsiya\nMassa saqlanadi, hajm va zichlik o‘zgaradi"
+},
+{
+"k": "s0046",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Uchala holatning farqi zarrachalar orasidagi masofa va harakatida. [2] To‘rtta asosiy jarayon nomini va yo‘nalishini yodda tuting. [3] Holat o‘zgarganda massa saqlanadi, hajm va zichlik esa o‘zgaradi — bu fizik hodisa."
+},
+{
+"k": "s0047",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qattiq — zich safda\nSuyuq — olomonda\nGaz — maydonda yugurish"
+},
+{
+"k": "s0048",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Zarrachalarni o‘quvchilar deb tasavvur qiling: qattiq jismda ular safda qimirlamay turadi, suyuqlikda olomonda bir-birini aylanib o‘tadi, gazda esa katta maydonda erkin yuguradi."
+},
+{
+"k": "s0049",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Muz, suv, bug‘ — bitta modda"
+},
+{
+"k": "s0050",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Choynakka muz soldingiz: avval u qattiq bo‘lak, keyin choynak shaklidagi suv, qaynaganda esa bug‘ bo‘lib butun oshxonaga tarqaladi. Modda bir xil, faqat zarrachalar joylashuvi o‘zgardi."
+},
+{
+"k": "s0051",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Shakl? Hajm?\nQattiq: ha, ha\nSuyuq: yo‘q, ha · Gaz: yo‘q, yo‘q"
+},
+{
+"k": "s0052",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki savol bering: shaklini saqlaydimi va hajmini saqlaydimi? Qattiq — ikkalasiga ha, suyuq — faqat hajmga ha, gaz — ikkalasiga yo‘q."
+},
+{
+"k": "s0053",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Issiqlik bersak: qattiq → suyuq → gaz\nSovitsak: gaz → suyuq → qattiq"
+},
+{
+"k": "s0054",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qizdirsak modda «yengillashib» qattiqdan suyuqqa, suyuqdan gazga o‘tadi. Sovitsak teskari yo‘l bilan qaytadi."
+},
+{
+"k": "s0055",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kir quridi — bug‘lanish\nOyna terladi — kondensatsiya"
+},
+{
+"k": "s0056",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ho‘l kir quyoshda quriydi — suv bug‘landi. Qishda issiq xonada sovuq deraza oynasi terlaydi — xonadagi bug‘ kondensatsiyalandi."
+},
+{
+"k": "s0057",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Grafik: harorat ↑, erishda tekis joy, keyin ↑"
+},
+{
+"k": "s0058",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Muzni qizdirib haroratini grafikka chizsak, erish paytida chiziq gorizontal bo‘ladi: issiqlik zarrachalarni bo‘shatishga ketadi, harorat esa turadi."
+},
+{
+"k": "s0059",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Lego uychani buzdik: g‘ishtlar soni o‘sha"
+},
+{
+"k": "s0060",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Lego uychani buzib, g‘ishtlarni qutiga solsak, shakl o‘zgaradi, lekin g‘ishtlar soni va og‘irligi o‘sha. Holat o‘zgarishi ham shunday."
+},
+{
+"k": "s0061",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Muz eridi: tarozi o‘zgarmadi"
+},
+{
+"k": "s0062",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Berk bankadagi muzni tarozida tortib, eriguncha kutsak, tarozi ko‘rsatkichi o‘zgarmaydi: massa saqlandi."
+},
+{
+"k": "s0063",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Fizik: modda o‘sha\nKimyoviy: yangi modda"
+},
+{
+"k": "s0064",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Savol bering: yangi modda hosil bo‘ldimi? Yo‘q bo‘lsa — fizik hodisa. Muz erishi fizik, qog‘oz yonishi esa kimyoviy hodisa."
+},
+{
+"k": "s0065",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo + sovuq sirt = tomchi"
+},
+{
+"k": "s0066",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Havoda ko‘rinmas bug‘ bor. U sovuq narsaga tegsa suvga aylanadi. Shuning uchun tomchi faqat sovuq stakanda paydo bo‘ladi."
+},
+{
+"k": "s0067",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sovuq hammom oynasi terlaydi"
+},
+{
+"k": "s0068",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Issiq dushdan keyin hammom oynasi xiralashadi: oynaning ichidan suv chiqmagan, havodagi bug‘ sovuq oynada tomchiga aylangan."
+},
+{
+"k": "s0069",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bo‘sh sovuq stakan ham terlaydi"
+},
+{
+"k": "s0070",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Muzlatgichdan bo‘sh stakanni chiqarsangiz ham, uning sirti terlaydi. Ichida suv yo‘q, demak tomchi faqat havodan kelishi mumkin."
+},
+{
+"k": "s0071",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Sovuq stakan sirtidagi tomchilarni ichidagi suv sizib chiqqan deb o‘ylash"
+},
+{
+"k": "s0072",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Erish yoki bug‘lanishda massa kamayadi yoki ortadi deb hisoblash"
+},
+{
+"k": "s0073",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Holat o‘zgarganda molekulalarning o‘zi kattalashadi yoki o‘zgaradi deb o‘ylash"
+},
+{
+"k": "s0074",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Qaynash paytida harorat ko‘tarilishda davom etadi deb o‘ylash"
+},
+{
+"k": "s0075",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Avval boshlang‘ich va oxirgi holatni aniqlab, jarayonga nom bering"
+},
+{
+"k": "s0076",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "«Nima saqlanadi» savolida massa va modda turini tanlang"
+},
+{
+"k": "s0077",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Ochiq javobli savolda sababni ham, natijani ham yozing (bug‘ + sovuq sirt → tomchi)"
+},
+{
+"k": "s0078",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "agregat holat"
+},
+{
+"k": "s0079",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "erish"
+},
+{
+"k": "s0080",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "qotish"
+},
+{
+"k": "s0081",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "qaynash"
+},
+{
+"k": "s0082",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "bug‘lanish"
+},
+{
+"k": "s0083",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "kondensatsiya"
+},
+{
+"k": "s0084",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "zichlik"
+},
+{
+"k": "s0085",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Energiya, issiqlik va harorat"
+},
+{
+"k": "s0086",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Energiya turlari va ularning aylanishini kuzatish, haroratni zarrachalar harakati bilan bog‘lash, issiqlikdan kengayish, issiqlik uzatilishi va adolatli tajriba tuzishni o‘rganish"
+},
+{
+"k": "s0087",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Nega temir yo‘l relslari orasida tirqish bor?\nTIMSS: 8-sinflarning o‘rtacha 37% i to‘g‘ri yechgan"
+},
+{
+"k": "s0088",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Temir yo‘l relslari orasida kichik tirqish qoldirilishini ko‘rganmisiz? Bugun buning sababini va energiya qanday aylanishini bilib olamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha o‘ttiz yetti foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0089",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Energiya turlari va aylanishi"
+},
+{
+"k": "s0090",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kinetik — harakat, potensial — balandlik\nKimyoviy, elektr, issiqlik, yorug‘lik\nEnergiya yo‘qolmaydi — bir turdan boshqasiga o‘tadi"
+},
+{
+"k": "s0091",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Harakatlanayotgan jism kinetik energiyaga, balandda turgan jism esa potensial energiyaga ega. [2] Batareya va oziq-ovqatda kimyoviy energiya bor, u elektr, issiqlik yoki yorug‘lik energiyasiga aylana oladi. [3] Energiyaning saqlanish qonuni: energiya yo‘qdan paydo bo‘lmaydi va yo‘q bo‘lmaydi, faqat bir turdan boshqasiga aylanadi."
+},
+{
+"k": "s0092",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Harorat va zarrachalar"
+},
+{
+"k": "s0093",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qizdirilsa: zarrachalar tezroq harakatlanadi\nZarrachalar oralig‘i ortadi → jism kengayadi\nZarrachalarning o‘zi kattalashmaydi!"
+},
+{
+"k": "s0094",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Harorat — zarrachalar qanchalik tez harakatlanishining o‘lchovi: qizdirsak, ular tezlashadi. [2] Tezroq harakatlangan zarrachalar bir-biridan uzoqlashadi, shuning uchun jism kengayadi; relslar orasidagi tirqish yozda kengayishga joy beradi. [3] Diqqat qiling: molekulalarning o‘lchami o‘zgarmaydi, faqat ular orasidagi masofa ortadi."
+},
+{
+"k": "s0095",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Issiqlik uzatilishi"
+},
+{
+"k": "s0096",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Issiqlik: issiq jismdan sovuq jismga\nIssiqlik o‘tkazuvchanlik: metall yaxshi, yog‘och yomon\nKonveksiya — suyuqlik, gazda; nurlanish — Quyosh"
+},
+{
+"k": "s0097",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Issiqlik doim issiqroq jismdan sovuqroq jismga o‘tadi, haroratlar tenglashguncha. [2] Mis va temir issiqlikni yaxshi o‘tkazadi, yog‘och, plastmassa va havo esa yomon o‘tkazadi — ular issiqlik izolyatori. [3] Suyuqlik va gazda issiqlik oqimlar bilan, ya’ni konveksiya orqali, Quyoshdan esa nurlanish orqali keladi."
+},
+{
+"k": "s0098",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Issiqlik miqdori"
+},
+{
+"k": "s0099",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$Q = c\\,m\\,\\Delta t$\nSuv uchun $c = 4200$ J/(kg·°C)"
+},
+{
+"k": "s0100",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Jismni qizdirish uchun kerak bo‘lgan issiqlik miqdori solishtirma issiqlik sig‘imi, massa va harorat o‘zgarishining ko‘paytmasiga teng. [2] Suvning solishtirma issiqlik sig‘imi to‘rt ming ikki yuz joul har kilogramm har gradusga teng, bu juda katta qiymat."
+},
+{
+"k": "s0101",
+"maydon": "doska",
+"tur": "matn",
+"uz": "2 kg suv 20 °C dan 70 °C gacha isitildi. $Q$ = ?"
+},
+{
+"k": "s0102",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: ikki kilogramm suvni yigirma gradusdan yetmish gradusgacha isitamiz, qancha issiqlik kerak?"
+},
+{
+"k": "s0103",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$\\Delta t = 70 - 20 = 50$ °C\n$Q = 4200 \\cdot 2 \\cdot 50 = 420\\,000$ J\nJavob: $Q = 420$ kJ"
+},
+{
+"k": "s0104",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval harorat o‘zgarishini topamiz: yetmishdan yigirmani ayirsak, ellik gradus. [2] Formulaga qo‘yamiz: to‘rt ming ikki yuzni ikkiga va ellikka ko‘paytirsak, to‘rt yuz yigirma ming joul chiqadi. [3] Bu to‘rt yuz yigirma kilojoulga teng."
+},
+{
+"k": "s0105",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Baland idishdan suv g‘ildirakka quyiladi"
+},
+{
+"k": "s0106",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Endi TIMSS uslubidagi masala: baland bakdan tushayotgan suv g‘ildirakni aylantiradi. Energiya qanday o‘zgaradi va g‘ildirakni qanday tezroq aylantirish mumkin?"
+},
+{
+"k": "s0107",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bakda: potensial energiya ($E = mgh$)\nTushayotganda: potensial → kinetik\nG‘ildirakda: kinetik → aylanish energiyasi"
+},
+{
+"k": "s0108",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Bakdagi suv balandda turgani uchun potensial energiyaga ega; dunyoda bu savolni faqat o‘n yetti foiz o‘quvchi to‘g‘ri yechgan. [2] Suv pastga tushgan sari potensial energiya kamayib, harakat, ya’ni kinetik energiya ortadi. [3] Suv g‘ildirak kuraklariga urilib, o‘z kinetik energiyasini g‘ildirakka beradi."
+},
+{
+"k": "s0109",
+"maydon": "doska",
+"tur": "matn",
+"uz": "10 kg, $h = 2$ m: $E = 10 \\cdot 10 \\cdot 2 = 200$ J\n$h = 4$ m: $E = 400$ J — ikki marta ko‘p\nXulosa: bakni balandroq qo‘ying yoki suvni ko‘paytiring"
+},
+{
+"k": "s0110",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Hisoblab ko‘ramiz: o‘n kilogramm suv ikki metr balandlikda, g ni o‘n deb olsak, ikki yuz joul energiya. [2] Bakni to‘rt metrga ko‘tarsak, energiya to‘rt yuz joulga, ya’ni ikki marta ortadi. [3] Demak g‘ildirak tezroq aylanishi uchun bakni balandroq qo‘yish yoki ko‘proq suv oqizish kerak."
+},
+{
+"k": "s0111",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1 kg suvni 10 °C ga isitish uchun necha J kerak?"
+},
+{
+"k": "s0112",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Formuladan foydalaning: bir kilogramm suvni o‘n gradusga isitish uchun necha joul issiqlik kerak? Sonni yozing."
+},
+{
+"k": "s0113",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Javobni joulda yozing"
+},
+{
+"k": "s0114",
+"maydon": "javob",
+"tur": "matn",
+"uz": "42000|42 000|42000 J|42 000 J|42 kJ"
+},
+{
+"k": "s0115",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qozon dastasi: metall yoki plastmassa?"
+},
+{
+"k": "s0116",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Qozon dastasi qo‘lni kuydirmasligi uchun issiqlikni yomon o‘tkazishi kerak. Qaysi materialdan yasash kerak? Bir so‘z yozing."
+},
+{
+"k": "s0117",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Materialni yozing"
+},
+{
+"k": "s0118",
+"maydon": "javob",
+"tur": "matn",
+"uz": "plastmassa|plastik|yog‘och"
+},
+{
+"k": "s0119",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Energiya zanjirini yozing: qayerdan → qayerga\n2. Tajribada faqat bitta narsa o‘zgaradi\n3. Qizdirilgan idishda suyuqlik sathi ko‘tariladi"
+},
+{
+"k": "s0120",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Energiya savolida boshlanish va oxirini strelka bilan yozing, masalan fonarda: kimyoviy, elektr, yorug‘lik va issiqlik. [2] Tajriba haqidagi savolda adolatli tajriba qoidasini eslang: bitta o‘zgaruvchi o‘zgaradi, qolganlari bir xil saqlanadi. [3] Eng qiyin savollardan biri: qizdirilgan idishdagi suyuqlik kengayadi va sathi ko‘tariladi; buni o‘n uch foiz o‘quvchigina yechgan."
+},
+{
+"k": "s0121",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Energiya bir turdan boshqasiga aylanadi, saqlanadi\nQizdirish → zarrachalar tezlashadi → kengayish\nIssiqlik issiqdan sovuqqa; $Q = c\\,m\\,\\Delta t$"
+},
+{
+"k": "s0122",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Energiya yo‘qolmaydi, faqat turini o‘zgartiradi. [2] Harorat ko‘tarilsa, zarrachalar tezlashadi va uzoqlashadi, jism kengayadi. [3] Issiqlik issiq jismdan sovuqqa o‘tadi, uning miqdorini formula bilan hisoblaymiz."
+},
+{
+"k": "s0123",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik → harakat → ish"
+},
+{
+"k": "s0124",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Toshni tepaga olib chiqsangiz, unda potensial energiya to‘planadi. Qo‘yib yuborsangiz, u tushib harakatga keladi — energiya kinetik turga o‘tadi."
+},
+{
+"k": "s0125",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Fonar: batareya → tok → yorug‘lik + issiqlik"
+},
+{
+"k": "s0126",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Fonarni yoqdingiz: batareyadagi kimyoviy energiya elektr energiyasiga, lampada esa yorug‘lik va biroz issiqlikka aylanadi. Lampa iliq bo‘lishi shundan."
+},
+{
+"k": "s0127",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Energiya — pul: hisobdan hisobga o‘tadi"
+},
+{
+"k": "s0128",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Energiyani pulga o‘xshating: u bir hamyondan boshqasiga o‘tadi, lekin umumiy miqdor kamaymaydi."
+},
+{
+"k": "s0129",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Issiq — zarrachalar «raqs tushadi»"
+},
+{
+"k": "s0130",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qizdirilganda zarrachalar tezroq «raqs tushadi» va ko‘proq joy egallaydi. O‘zlari esa kattalashmaydi."
+},
+{
+"k": "s0131",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Shisha banka qopqog‘i issiq suvda ochiladi"
+},
+{
+"k": "s0132",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qopqoq qattiq bo‘lsa, uni issiq suv ostida tutasiz: metall qopqoq shishadan ko‘proq kengayadi va oson ochiladi."
+},
+{
+"k": "s0133",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Termometr: spirt kengayib ko‘tariladi"
+},
+{
+"k": "s0134",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Termometrdagi suyuqlik qizdirilganda kengayib naychada ko‘tariladi — kengayishni ko‘z bilan ko‘rish usuli."
+},
+{
+"k": "s0135",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Issiq choy → sovuq qoshiq"
+},
+{
+"k": "s0136",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Issiq choyga qoshiq solsangiz, qoshiq isiydi: issiqlik choydan qoshiqqa o‘tdi."
+},
+{
+"k": "s0137",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Metall va yog‘och skameyka qishda"
+},
+{
+"k": "s0138",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qishda metall skameyka yog‘ochdan sovuqroq tuyuladi, garchi harorati bir xil bo‘lsa ham: metall qo‘lingizdan issiqlikni tezroq olib ketadi."
+},
+{
+"k": "s0139",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mis sterjen: mum bo‘laklari navbat bilan tushadi"
+},
+{
+"k": "s0140",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mis sterjenga mum bilan qadoqchalar yopishtirib, bir uchini qizdirsak, avval yaqindagisi, keyin uzoqdagilari tushadi: issiqlik sterjen bo‘ylab o‘tadi."
+},
+{
+"k": "s0141",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ko‘p suv, ko‘p isitish → ko‘p issiqlik"
+},
+{
+"k": "s0142",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Massa qancha ko‘p va haroratni qancha ko‘p oshirsak, shuncha ko‘p issiqlik kerak bo‘ladi."
+},
+{
+"k": "s0143",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Katta qozon kichik choynakdan sekin qaynaydi"
+},
+{
+"k": "s0144",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir xil plitada katta qozondagi suv kichik choynakdagidan ancha kech qaynaydi, chunki unga ko‘proq issiqlik kerak."
+},
+{
+"k": "s0145",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1 kg suv, 1 °C → 4200 J"
+},
+{
+"k": "s0146",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Asosiy o‘lchov: bir kilogramm suvni bir gradusga isitish uchun to‘rt ming ikki yuz joul kerak. Qolganini shu bilan ko‘paytirib topasiz."
+},
+{
+"k": "s0147",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Qizdirilganda molekulalarning o‘zi kattalashadi deb o‘ylash"
+},
+{
+"k": "s0148",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Balanddagi suvning energiyasini kinetik deb atash (aslida potensial)"
+},
+{
+"k": "s0149",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Sovuqlik ham issiqlik kabi jismdan jismga «o‘tadi» deb tushunish"
+},
+{
+"k": "s0150",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Tajribada bir vaqtda ikki o‘zgaruvchini o‘zgartirish"
+},
+{
+"k": "s0151",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "$Q = c\\,m\\,\\Delta t$ da $\\Delta t$ o‘rniga oxirgi haroratni qo‘yish"
+},
+{
+"k": "s0152",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Energiya aylanishini strelkali zanjir ko‘rinishida yozing"
+},
+{
+"k": "s0153",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Adolatli tajribada qaysi o‘zgaruvchi o‘zgarib, qaysilari o‘zgarmasligini ajrating"
+},
+{
+"k": "s0154",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Grafikdan xulosa chiqarishda o‘qlar nomi va birligini avval o‘qing"
+},
+{
+"k": "s0155",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "energiya"
+},
+{
+"k": "s0156",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "issiqlik"
+},
+{
+"k": "s0157",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "harorat"
+},
+{
+"k": "s0158",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "issiqlik o‘tkazuvchanlik"
+},
+{
+"k": "s0159",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "kengayish"
+},
+{
+"k": "s0160",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "issiqlik miqdori"
+},
+{
+"k": "s0161",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yorug‘lik va tovush"
+},
+{
+"k": "s0162",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Yorug‘likning to‘g‘ri chiziqli tarqalishi, qaytishi va sinishini, tovushning tebranish ekanini va tarqalishi uchun muhit kerakligini tushunish, yorug‘lik va tovush tezliklarini taqqoslash"
+},
+{
+"k": "s0163",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Chaqmoq oldin ko‘rinadi, momaqaldiroq keyin eshitiladi\nTIMSS: 8-sinflarning o‘rtacha 28% i to‘g‘ri yechgan"
+},
+{
+"k": "s0164",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Momaqaldiroqda avval chaqmoqni ko‘rasiz, gumburlashni esa bir necha soniyadan keyin eshitasiz. Nega shunday? [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha yigirma sakkiz foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0165",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yorug‘lik qanday tarqaladi?"
+},
+{
+"k": "s0166",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bir jinsli muhitda — to‘g‘ri chiziq bo‘ylab\nVakuumda $\\approx 300\\,000$ km/s — eng tez\nSuvda $\\approx 225\\,000$, shishada $\\approx 200\\,000$ km/s"
+},
+{
+"k": "s0167",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yorug‘lik bir jinsli muhitda to‘g‘ri chiziq bo‘ylab tarqaladi, shuning uchun soya hosil bo‘ladi. [2] Yorug‘lik vakuumda eng tez — sekundiga taxminan uch yuz ming kilometr, havoda ham deyarli shunday. [3] Suvda yorug‘lik sekinroq, taxminan ikki yuz yigirma besh ming, shishada esa taxminan ikki yuz ming kilometr sekundiga tarqaladi."
+},
+{
+"k": "s0168",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yorug‘likning qaytishi"
+},
+{
+"k": "s0169",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tushish burchagi = qaytish burchagi\nPeriskop: ikki ko‘zgu 45° burchakda"
+},
+{
+"k": "s0170",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Ko‘zguda nur qaytganda tushish burchagi qaytish burchagiga teng; burchaklar sirtga perpendikulyar chiziqdan, ya’ni normaldan o‘lchanadi. [2] Periskopda ikkita ko‘zgu qirq besh gradus burchak ostida parallel qo‘yiladi: nur birinchisida pastga, ikkinchisida ko‘zga buriladi."
+},
+{
+"k": "s0171",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yorug‘likning sinishi"
+},
+{
+"k": "s0172",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Muhit o‘zgarsa — tezlik va yo‘nalish o‘zgaradi\nSuvdagi qoshiq «singan» ko‘rinadi\nLinza nurlarni sindirib to‘playdi yoki sochadi"
+},
+{
+"k": "s0173",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yorug‘lik havodan suvga yoki shishaga o‘tganda tezligi o‘zgaradi va shuning uchun yo‘nalishi sinadi. [2] Stakandagi qoshiq suv sathida singandek ko‘rinishi — sinish natijasi. [3] Qavariq linza nurlarni bir nuqtaga to‘playdi, botiq linza esa sochadi."
+},
+{
+"k": "s0174",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Tovush"
+},
+{
+"k": "s0175",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tovush — jismning tebranishi\nTarqalishi uchun muhit kerak; vakuumda yo‘q\nHavoda $\\approx 340$ m/s, suvda $\\approx 1500$ m/s"
+},
+{
+"k": "s0176",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Har qanday tovush tebranayotgan jismdan chiqadi: gitara tori, qo‘ng‘iroq, ovoz paychalari. [2] Tovush havo, suv yoki qattiq jism zarrachalari orqali uzatiladi, vakuumda esa umuman tarqalmaydi. [3] Havoda tovush sekundiga taxminan uch yuz qirq metr, suvda bir ming besh yuz metr tarqaladi, qattiq jismda undan ham tez."
+},
+{
+"k": "s0177",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Chaqmoqdan 3 s keyin momaqaldiroq eshitildi. Masofa?"
+},
+{
+"k": "s0178",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: chaqmoqni ko‘rdingiz va uch sekunddan keyin gumburlashni eshitdingiz. Chaqmoq qancha uzoqda?"
+},
+{
+"k": "s0179",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yorug‘lik vaqti juda kichik — hisobga olmaymiz\n$s = v \\cdot t = 340 \\cdot 3 = 1020$ m\nJavob: taxminan 1 km"
+},
+{
+"k": "s0180",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yorug‘lik bir kilometrni sekundning milliondan bir necha qismida bosib o‘tadi, shuning uchun uning vaqtini hisobga olmasak ham bo‘ladi. [2] Tovush tezligini vaqtga ko‘paytiramiz: uch yuz qirqni uchga ko‘paytirsak, bir ming yigirma metr. [3] Demak chaqmoq taxminan bir kilometr uzoqlikda chaqqan."
+},
+{
+"k": "s0181",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Shisha qalpoq ichida jiringlayotgan qo‘ng‘iroq"
+},
+{
+"k": "s0182",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] TIMSS uslubidagi masala: shisha qalpoq ichida elektr qo‘ng‘iroq jiringlayapti, nasos bilan qalpoqdan havo so‘rib olinadi. Nimani eshitamiz va ko‘ramiz?"
+},
+{
+"k": "s0183",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo kamaygan sari tovush susayadi\nBolg‘acha urayotgani baribir ko‘rinadi"
+},
+{
+"k": "s0184",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Havo so‘rilgan sari tovushni uzatadigan zarrachalar kamayadi va tovush tobora sekinlashib, deyarli eshitilmay qoladi. [2] Lekin qo‘ng‘iroq bolg‘achasi urib turgani aniq ko‘rinadi, chunki yorug‘lik vakuumda ham tarqaladi."
+},
+{
+"k": "s0185",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Xulosa: tovushga muhit kerak, yorug‘likka — yo‘q\nHavo qaytarilsa — tovush yana eshitiladi"
+},
+{
+"k": "s0186",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] To‘liq javob ikki qismdan iborat: tovush tarqalishi uchun havo kerak, yorug‘lik uchun esa muhit shart emas. [2] Tekshirish uchun havoni qaytarib kiritamiz: tovush yana eshitiladi, demak sabab aynan havo edi."
+},
+{
+"k": "s0187",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Nur normalga 30° burchakda tushdi. Qaytish burchagi?"
+},
+{
+"k": "s0188",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Nur ko‘zguga normalga nisbatan o‘ttiz gradus burchak ostida tushdi. Qaytish burchagi necha gradus? Sonni yozing."
+},
+{
+"k": "s0189",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Burchakni gradusda yozing"
+},
+{
+"k": "s0190",
+"maydon": "javob",
+"tur": "matn",
+"uz": "30|30°|30 gradus"
+},
+{
+"k": "s0191",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tovush havoda 2 s da necha metr yo‘l bosadi?"
+},
+{
+"k": "s0192",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tovush havoda sekundiga uch yuz qirq metr tarqaladi. Ikki sekundda necha metr yo‘l bosadi? Sonni yozing."
+},
+{
+"k": "s0193",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Masofani metrda yozing"
+},
+{
+"k": "s0194",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Yorug‘likmi, tovushmi? Muhitni aniqlang\n2. Nur yo‘lini chizg‘ich bilan to‘g‘ri chizing\n3. Vakuumda: yorug‘lik bor, tovush yo‘q"
+},
+{
+"k": "s0195",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Xalqaro savolda avval qaysi hodisa haqida gap ketayotganini va nur yoki tovush qaysi muhitdan o‘tayotganini aniqlang. [2] Periskop yoki ko‘zgu savolida nur yo‘lini to‘g‘ri chiziqlar bilan chizing va har bir ko‘zguda burchaklar tengligini tekshiring. [3] Qalpoqdagi qo‘ng‘iroq savolini dunyoda yigirma ikki foiz o‘quvchi yechgan: javobda ko‘rinadi, lekin eshitilmaydi degan ikki qismni yozing."
+},
+{
+"k": "s0196",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yorug‘lik to‘g‘ri tarqaladi, qaytadi, sinadi\nTushish burchagi = qaytish burchagi\nTovush — tebranish, muhit kerak, yorug‘likdan sekin"
+},
+{
+"k": "s0197",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yorug‘lik to‘g‘ri chiziq bo‘ylab tarqaladi, ko‘zgudan qaytadi va muhit chegarasida sinadi. [2] Qaytish qonunini doim normalga nisbatan qo‘llang. [3] Tovush tebranishdan chiqadi, muhitsiz tarqalmaydi va yorug‘likdan ancha sekin."
+},
+{
+"k": "s0198",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Fonar nuri — to‘g‘ri chiziq\nTo‘siq → soya"
+},
+{
+"k": "s0199",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qorong‘ida fonar nuri to‘g‘ri chiziq bo‘lib ketadi. Yo‘liga qo‘l qo‘ysangiz, ortida soya paydo bo‘ladi — nur aylanib o‘tmaydi."
+},
+{
+"k": "s0200",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyosh nuri Yerga ~8 daqiqada yetadi"
+},
+{
+"k": "s0201",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Quyoshdan Yergacha bir yuz ellik million kilometr bor, lekin yorug‘lik uni atigi sakkiz daqiqada bosib o‘tadi — shunchalik tez."
+},
+{
+"k": "s0202",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tezlik: vakuum > havo > suv > shisha"
+},
+{
+"k": "s0203",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tartibni eslab qoling: vakuumda eng tez, havoda deyarli o‘sha, suvda sekinroq, shishada undan ham sekin."
+},
+{
+"k": "s0204",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Koptok devorga qiya tegsa — xuddi shunday qaytadi"
+},
+{
+"k": "s0205",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Koptokni devorga qiya otsangiz, u xuddi shunday burchak bilan qaytadi. Nur ko‘zgudan ham shunday qaytadi."
+},
+{
+"k": "s0206",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suv osti kemasi periskopi"
+},
+{
+"k": "s0207",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Suv osti kemasidagi dengizchi periskop orqali suv ustini ko‘radi: yuqoridagi ko‘zgu nurni pastga, pastdagisi uning ko‘ziga buradi."
+},
+{
+"k": "s0208",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ko‘zgu 45° → nur 90° ga buriladi"
+},
+{
+"k": "s0209",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘zgu nurga qirq besh gradus qilib qo‘yilsa, nur to‘g‘ri burchakka buriladi. Ikkita shunday ko‘zgu nurni yana dastlabki yo‘nalishga qaytaradi."
+},
+{
+"k": "s0210",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tez yo‘ldan qumga o‘tgan arava buriladi"
+},
+{
+"k": "s0211",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Asfaltdan qumga qiya kirgan aravaning bir g‘ildiragi oldin sekinlashadi va arava buriladi. Nur ham sekinroq muhitga o‘tganda shunday buriladi."
+},
+{
+"k": "s0212",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Hovuz tubi sayozroq ko‘rinadi"
+},
+{
+"k": "s0213",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Hovuz tubi aslidan sayoz ko‘rinadi, chunki suvdan chiqayotgan nur sinadi. Shuning uchun suvga ehtiyot bo‘lib tushish kerak."
+},
+{
+"k": "s0214",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Lupa — qavariq linza"
+},
+{
+"k": "s0215",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Lupa bilan Quyosh nurini qog‘ozga bitta nuqtaga to‘plash mumkin — qavariq linza nurlarni sindirib to‘playdi."
+},
+{
+"k": "s0216",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tor tebranadi → havo tebranadi → quloq"
+},
+{
+"k": "s0217",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Gitara tori tebranadi, u havoni tebratadi, havo esa qulog‘imizdagi pardani tebratadi — shunda eshitamiz."
+},
+{
+"k": "s0218",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Koinotda kosmonavtlar radio orqali gaplashadi"
+},
+{
+"k": "s0219",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ochiq koinotda havo yo‘q, shuning uchun kosmonavtlar bir-birini ovozdan eshitmaydi va radio bilan gaplashadi."
+},
+{
+"k": "s0220",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qulog‘ingizni stolga qo‘ying"
+},
+{
+"k": "s0221",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Stolning bir uchini sekin chertib, qulog‘ingizni boshqa uchiga qo‘ysangiz, tovush havodagidan aniqroq eshitiladi: qattiq jism tovushni yaxshi o‘tkazadi."
+},
+{
+"k": "s0222",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Tovush vakuumda ham tarqaladi deb o‘ylash"
+},
+{
+"k": "s0223",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Yorug‘lik suv va shishada havodagidan tezroq tarqaladi deb o‘ylash"
+},
+{
+"k": "s0224",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Burchakni ko‘zgu sirtidan o‘lchash (normaldan o‘lchash kerak)"
+},
+{
+"k": "s0225",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Qalpoq savolida faqat «tovush eshitilmaydi» deb, sababini yozmaslik"
+},
+{
+"k": "s0226",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Nur yo‘lini chizganda har bir qaytishda burchaklar tengligini tekshiring"
+},
+{
+"k": "s0227",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Tovush savolida «muhit bormi?» deb so‘rang"
+},
+{
+"k": "s0228",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Tezliklarni taqqoslashda tartibni eslang: vakuum > havo > suv > shisha (yorug‘lik uchun)"
+},
+{
+"k": "s0229",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "yorug‘lik"
+},
+{
+"k": "s0230",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tovush"
+},
+{
+"k": "s0231",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "qaytish"
+},
+{
+"k": "s0232",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "sinish"
+},
+{
+"k": "s0233",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "linza"
+},
+{
+"k": "s0234",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "ko‘zgu"
+},
+{
+"k": "s0235",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tebranish"
+},
+{
+"k": "s0236",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Elektr va magnetizm"
+},
+{
+"k": "s0237",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Oddiy elektr zanjirini tushunish, ketma-ket va parallel ulashni farqlash, Om qonunini qo‘llash, magnit qutblari o‘zaro ta’sirini va magnitni aniqlash usulini o‘rganish"
+},
+{
+"k": "s0238",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ikki temir tayoqcha: qaysi biri magnit?\nTIMSS: 8-sinflarning o‘rtacha 38% i to‘g‘ri yechgan"
+},
+{
+"k": "s0239",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Qo‘lingizda ikkita bir xil temir tayoqcha bor, biri magnit, biri emas. Faqat ularning o‘zidan foydalanib, qaysi biri magnitligini qanday bilasiz? [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha o‘ttiz sakkiz foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0240",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Elektr zanjiri"
+},
+{
+"k": "s0241",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Manba + o‘tkazgich + iste’molchi + kalit\nZanjir yopiq bo‘lsagina tok o‘tadi\nO‘tkazgich: metall · izolyator: plastmassa, shisha"
+},
+{
+"k": "s0242",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Eng oddiy zanjir tok manbai, simlar, lampa kabi iste’molchi va kalitdan iborat. [2] Tok faqat berk, uzilmagan zanjirda o‘tadi; kalit ochilsa, lampa o‘chadi. [3] Metallar tokni yaxshi o‘tkazadi, plastmassa, rezina va shisha esa o‘tkazmaydi, ular izolyator."
+},
+{
+"k": "s0243",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Om qonuni"
+},
+{
+"k": "s0244",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$I = \\frac{U}{R}$\n$I$ — amper (A), $U$ — volt (V), $R$ — om (Om)"
+},
+{
+"k": "s0245",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tok kuchi kuchlanishga to‘g‘ri, qarshilikka teskari proporsional: kuchlanishni qarshilikka bo‘lamiz. [2] Tok kuchi amperda, kuchlanish voltda, qarshilik omda o‘lchanadi."
+},
+{
+"k": "s0246",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Ketma-ket va parallel ulash"
+},
+{
+"k": "s0247",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ketma-ket: bitta yo‘l, $R = R_1 + R_2$\nBitta lampa uzilsa — hammasi o‘chadi\nParallel: har lampaga alohida yo‘l"
+},
+{
+"k": "s0248",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Ketma-ket ulashda tok bitta yo‘ldan o‘tadi, qarshiliklar qo‘shiladi va tok kuchi hamma joyda bir xil. [2] Shuning uchun ketma-ket zanjirda bitta lampa kuysa, zanjir uziladi va qolganlari ham o‘chadi. [3] Parallel ulashda har bir lampa o‘z tarmog‘iga ega, biri kuysa, qolganlari yonishda davom etadi; uydagi rozetkalar shunday ulangan."
+},
+{
+"k": "s0249",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Magnit va elektromagnit"
+},
+{
+"k": "s0250",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ikki qutb: N va S\nBir xil qutblar itariladi, har xil — tortiladi\nTokli g‘altak — elektromagnit"
+},
+{
+"k": "s0251",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Har qanday magnitning ikki qutbi bor: shimoliy va janubiy; ularni ajratib bo‘lmaydi. [2] Ikki shimoliy qutb bir-birini itaradi, shimoliy va janubiy esa tortadi; temir, nikel va kobalt magnitga tortiladi. [3] Tok o‘tayotgan sim atrofida magnit maydon hosil bo‘ladi; o‘ramlar ko‘p va tok katta bo‘lsa, elektromagnit kuchliroq."
+},
+{
+"k": "s0252",
+"maydon": "doska",
+"tur": "matn",
+"uz": "4,5 V batareya, lampa $R = 9$ Om. $I$ = ?"
+},
+{
+"k": "s0253",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: kuchlanishi to‘rt butun o‘ndan besh volt bo‘lgan batareyaga qarshiligi to‘qqiz om lampa ulangan. Tok kuchini topamiz."
+},
+{
+"k": "s0254",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$I = \\frac{4{,}5}{9} = 0{,}5$ A\nIkkita lampa ketma-ket: $R = 9 + 9 = 18$ Om\n$I = \\frac{4{,}5}{18} = 0{,}25$ A — tok kamaydi"
+},
+{
+"k": "s0255",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Om qonuni bo‘yicha to‘rt butun o‘ndan beshni to‘qqizga bo‘lamiz, nol butun o‘ndan besh amper chiqadi. [2] Endi ikkita shunday lampani ketma-ket ulaymiz: qarshiliklar qo‘shilib, o‘n sakkiz om bo‘ladi. [3] Tok kuchi nol butun yuzdan yigirma besh amperga tushdi, shuning uchun lampalar xiraroq yonadi."
+},
+{
+"k": "s0256",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tayoqcha A va B: qaysi biri magnit?"
+},
+{
+"k": "s0257",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Endi kirishdagi savolga qaytamiz: faqat ikki tayoqchadan foydalanib, magnitni topishimiz kerak; dunyoda bu savolni yigirma sakkiz foiz o‘quvchi yechgan."
+},
+{
+"k": "s0258",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tortilish — hali dalil emas!\nItarilish — faqat ikkala jism magnit bo‘lsa"
+},
+{
+"k": "s0259",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Agar tayoqchalar tortilsa, bu hech narsani isbotlamaydi: magnit oddiy temirni ham tortadi. [2] Itarilish esa faqat ikki magnit orasida bo‘ladi, shuning uchun u ishonchli dalil."
+},
+{
+"k": "s0260",
+"maydon": "doska",
+"tur": "matn",
+"uz": "A ning uchini B ning o‘rtasiga tekkizing\nKuchli tortsa → A magnit; tortmasa → B magnit"
+},
+{
+"k": "s0261",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Usul: A tayoqchaning uchini B ning o‘rtasiga yaqinlashtiring; magnitning o‘rtasi deyarli tortmaydi. [2] Agar A kuchli tortsa, A magnit; agar tortish deyarli bo‘lmasa, demak magnit B, chunki uning o‘rtasiga yaqinlashtirdik."
+},
+{
+"k": "s0262",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$U = 6$ V, $R = 3$ Om. Tok kuchi necha amper?"
+},
+{
+"k": "s0263",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Om qonunidan foydalaning: kuchlanish olti volt, qarshilik uch om. Tok kuchi necha amper? Sonni yozing."
+},
+{
+"k": "s0264",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tok kuchini amperda yozing"
+},
+{
+"k": "s0265",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uch lampa ketma-ket, biri kuydi. Nechtasi yonadi?"
+},
+{
+"k": "s0266",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Uchta lampa ketma-ket ulangan va ulardan biri kuyib qoldi. Nechta lampa yonib qoladi? Sonni yozing."
+},
+{
+"k": "s0267",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Sonni yozing"
+},
+{
+"k": "s0268",
+"maydon": "javob",
+"tur": "matn",
+"uz": "0|nol|hech biri|hech qaysi"
+},
+{
+"k": "s0269",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Zanjirni barmoq bilan aylanib chiqing\n2. Ketma-ketmi, parallelmi — tarmoqlarni sanang\n3. Magnit kuchini taqqoslashda — adolatli tajriba"
+},
+{
+"k": "s0270",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Zanjir savolida tokning yo‘lini barmoq bilan manbadan boshlab kuzating: yo‘l uzilsa, tok yo‘q. [2] Tarmoqlanish bormi, yo‘qmi, tekshiring: bitta yo‘l bo‘lsa ketma-ket, bir nechta bo‘lsa parallel. [3] Magnitlar kuchini taqqoslashda bir xil masofa va bir xil to‘g‘nog‘ichlardan foydalaning, faqat magnit o‘zgarsin."
+},
+{
+"k": "s0271",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tok faqat yopiq zanjirda; $I = \\frac{U}{R}$\nKetma-ket: biri uzilsa hammasi o‘chadi\nItarilish — magnitning ishonchli belgisi"
+},
+{
+"k": "s0272",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tok berk zanjirda o‘tadi va Om qonuni bilan hisoblanadi. [2] Ketma-ket ulashda bitta yo‘l, parallelda har biriga alohida yo‘l. [3] Bir xil qutblar itariladi, magnitni aniqlashda faqat itarilish ishonchli dalil."
+},
+{
+"k": "s0273",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Zanjir — halqa: uzilsa tok to‘xtaydi"
+},
+{
+"k": "s0274",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Zanjirni yopiq halqadek tasavvur qiling. Halqa bir joyda uzilsa, tok aylana olmaydi va lampa o‘chadi."
+},
+{
+"k": "s0275",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Chiroq kaliti — zanjirni uzib-ulaydi"
+},
+{
+"k": "s0276",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Xonadagi chiroq kalitini bosganingizda, u zanjirni ulaydi yoki uzadi. Kalit o‘chiq bo‘lsa, zanjir ochiq."
+},
+{
+"k": "s0277",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tok — quvurdagi suv oqimi"
+},
+{
+"k": "s0278",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Batareya — nasos, simlar — quvur, lampa — suv aylantiradigan g‘ildirak. Quvur uzilsa, suv oqmaydi."
+},
+{
+"k": "s0279",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kuchlanish ↑ → tok ↑; qarshilik ↑ → tok ↓"
+},
+{
+"k": "s0280",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kuchlanishni oshirsak, tok ko‘payadi; qarshilikni oshirsak, tok kamayadi."
+},
+{
+"k": "s0281",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tor ko‘chada mashinalar sekin o‘tadi"
+},
+{
+"k": "s0282",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qarshilikni tor ko‘chaga o‘xshating: ko‘cha qanchalik tor bo‘lsa, bir daqiqada shuncha kam mashina o‘tadi."
+},
+{
+"k": "s0283",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uchburchak: U tepada, I va R pastda"
+},
+{
+"k": "s0284",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "U ni tepaga, I va R ni pastga yozing. I kerak bo‘lsa, U ni R ga bo‘lasiz; U kerak bo‘lsa, I ni R ga ko‘paytirasiz."
+},
+{
+"k": "s0285",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ketma-ket — bitta yo‘l; parallel — ko‘p yo‘l"
+},
+{
+"k": "s0286",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ketma-ket — bitta yo‘lak, bitta odam to‘xtasa, hamma to‘xtaydi. Parallel — bir nechta yo‘lak, biri yopilsa, boshqalari ishlaydi."
+},
+{
+"k": "s0287",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Archa chiroqlari va uy chiroqlari"
+},
+{
+"k": "s0288",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eski archa gulchambarida bitta lampa kuysa, hammasi o‘chardi — ular ketma-ket ulangan. Uyda bir xonaning chirog‘i kuysa, boshqalari yonaveradi — parallel ulangan."
+},
+{
+"k": "s0289",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sxema chizing: tarmoqlanish bormi?"
+},
+{
+"k": "s0290",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sxemada sim ikkiga ajralgan joy bo‘lsa, u parallel ulash. Hech qayerda ajralmasa — ketma-ket."
+},
+{
+"k": "s0291",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bir xil — itariladi, har xil — tortiladi"
+},
+{
+"k": "s0292",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki magnitning bir xil qutblarini yaqinlashtirsangiz, ular qochadi; har xil qutblari esa yopishadi."
+},
+{
+"k": "s0293",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kompas strelkasi — kichik magnit"
+},
+{
+"k": "s0294",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kompas strelkasi kichik magnit, u Yerning magnit maydoni bo‘ylab shimolni ko‘rsatadi. Yoniga magnit olib kelsangiz, strelka buriladi."
+},
+{
+"k": "s0295",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mix + sim + batareya = elektromagnit"
+},
+{
+"k": "s0296",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Temir mixga izolyatsiyalangan simni o‘rab, uchlarini batareyaga ulasangiz, mix to‘g‘nog‘ichlarni torta boshlaydi. Tokni uzsangiz, ular tushib ketadi."
+},
+{
+"k": "s0297",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Tortilishni ikkala jism ham magnit ekanining isboti deb hisoblash"
+},
+{
+"k": "s0298",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Ketma-ket ulashda bitta lampa kuysa, qolganlari yonadi deb o‘ylash"
+},
+{
+"k": "s0299",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Om qonunida kuchlanishni qarshilikka emas, qarshilikni kuchlanishga bo‘lish"
+},
+{
+"k": "s0300",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Barcha metallar magnitga tortiladi deb o‘ylash (alyuminiy, mis tortilmaydi)"
+},
+{
+"k": "s0301",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Zanjirda tok yo‘lini manbadan boshlab kuzating"
+},
+{
+"k": "s0302",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Magnitni aniqlashda faqat itarilishni dalil sifatida qabul qiling"
+},
+{
+"k": "s0303",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Hisoblashdan oldin birliklarni yozing: A, V, Om"
+},
+{
+"k": "s0304",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "elektr"
+},
+{
+"k": "s0305",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tok"
+},
+{
+"k": "s0306",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "zanjir"
+},
+{
+"k": "s0307",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "kuchlanish"
+},
+{
+"k": "s0308",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "qarshilik"
+},
+{
+"k": "s0309",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "magnit"
+},
+{
+"k": "s0310",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "ketma-ket ulash"
+},
+{
+"k": "s0311",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "parallel ulash"
+},
+{
+"k": "s0312",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Kuch va harakat"
+},
+{
+"k": "s0313",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Kuch, og‘irlik kuchi va kuchlar muvozanatini tushunish, tezlik, bosim va zichlikni hisoblash, atmosfera bosimi va jismlarning suzish shartini hayotiy vaziyatlarda qo‘llash"
+},
+{
+"k": "s0314",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tog‘da yopilgan butilka vodiyda siqiladi\nTIMSS: 8-sinflarning o‘rtacha 32% i to‘g‘ri yechgan"
+},
+{
+"k": "s0315",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tog‘ cho‘qqisida bo‘sh plastik butilkaning qopqog‘ini mahkam yopib, vodiyga tushsangiz, butilka siqilib qoladi. Bugun buning sirini ochamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha o‘ttiz ikki foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0316",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Kuch va muvozanat"
+},
+{
+"k": "s0317",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kuch — itarish yoki tortish, birligi N\nOg‘irlik kuchi doim pastga: $F = mg$\nKuchlar teng bo‘lsa — tezlik o‘zgarmaydi"
+},
+{
+"k": "s0318",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Kuch jismning tezligini yoki shaklini o‘zgartiradi va nyutonlarda o‘lchanadi. [2] Yer har bir jismni o‘ziga tortadi; bu kuch doim pastga yo‘nalgan, g ni taxminan o‘n nyuton har kilogramm deb olamiz. [3] Qarama-qarshi kuchlar teng bo‘lsa, jism tinch turadi yoki bir xil tezlikda harakatlanadi; parashyutchi ham shunday tekis tushadi."
+},
+{
+"k": "s0319",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Tezlik"
+},
+{
+"k": "s0320",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$v = \\frac{s}{t}$\nBirliklari: m/s yoki km/soat"
+},
+{
+"k": "s0321",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tezlik — vaqt birligida bosib o‘tilgan yo‘l: yo‘lni vaqtga bo‘lamiz. [2] Tezlik metr har sekund yoki kilometr har soatda o‘lchanadi."
+},
+{
+"k": "s0322",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Bosim va atmosfera bosimi"
+},
+{
+"k": "s0323",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$p = \\frac{F}{S}$, birligi Pa\nYuza kichik → bosim katta\nBalandlik oshgan sari havo bosimi kamayadi"
+},
+{
+"k": "s0324",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Bosim — sirtga perpendikulyar ta’sir qiluvchi kuchning shu sirt yuziga nisbati, paskalda o‘lchanadi. [2] Shuning uchun o‘tkir pichoq yaxshi kesadi, keng chang‘ida esa qorga botmaymiz. [3] Tepamizdagi havo qatlami og‘irligi atmosfera bosimini hosil qiladi; tog‘da bu qatlam yupqaroq, shuning uchun bosim kichikroq."
+},
+{
+"k": "s0325",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Zichlik va suzish"
+},
+{
+"k": "s0326",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$\\rho = \\frac{m}{V}$\n$\\rho_{jism} < \\rho_{suyuqlik}$ → suzadi\nSuyuqlik jismni yuqoriga itaradi — Arximed kuchi"
+},
+{
+"k": "s0327",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Zichlik — modda massasining uning hajmiga nisbati. [2] Jismning zichligi suyuqlik zichligidan kichik bo‘lsa, u suzadi, katta bo‘lsa cho‘kadi. [3] Suyuqlik botgan jismni yuqoriga itaruvchi kuch Arximed kuchi deyiladi."
+},
+{
+"k": "s0328",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jism: $m = 60$ g, $V = 50$ sm³. Qaysi suyuqlikda suzadi?"
+},
+{
+"k": "s0329",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: massasi oltmish gramm, hajmi ellik kub santimetr bo‘lgan jism bor. Spirt, suv va glitserindan qaysi birida suzadi?"
+},
+{
+"k": "s0330",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$\\rho = \\frac{60}{50} = 1{,}2$ g/sm³\nSpirt 0,8 · suv 1,0 · glitserin 1,26"
+},
+{
+"k": "s0331",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval jism zichligini topamiz: oltmishni ellikka bo‘lsak, bir butun o‘ndan ikki gramm har kub santimetr. [2] Endi suyuqliklar zichligini yozamiz: spirt nol butun o‘ndan sakkiz, suv bir, glitserin bir butun yuzdan yigirma olti."
+},
+{
+"k": "s0332",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$1{,}2 > 1{,}0$ → suvda cho‘kadi\n$1{,}2 < 1{,}26$ → glitserinda suzadi"
+},
+{
+"k": "s0333",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Jism zichligi suvnikidan katta, demak suvda ham, spirtda ham cho‘kadi. [2] Glitserin zichligi jismnikidan katta, shuning uchun jism faqat glitserinda suzadi."
+},
+{
+"k": "s0334",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Cho‘qqida yopilgan butilka vodiyda siqildi. Nega?"
+},
+{
+"k": "s0335",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Endi kirishdagi masalani bosqichma-bosqich yechamiz; dunyoda uni o‘ttiz uch foiz o‘quvchi to‘g‘ri yechgan."
+},
+{
+"k": "s0336",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Cho‘qqida: ichki bosim = tashqi bosim (kichik)\nVodiyda: tashqi bosim kattaroq"
+},
+{
+"k": "s0337",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Cho‘qqida qopqoqni yopganimizda butilka ichidagi havo bosimi tashqaridagi siyrak havo bosimiga teng edi. [2] Pastga tushgan sari tashqi atmosfera bosimi ortadi, ichkaridagi havo esa yopiq bo‘lgani uchun ko‘paymaydi."
+},
+{
+"k": "s0338",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tashqi bosim > ichki bosim → butilka siqiladi\nQopqoq ochilsa — havo kirib, shakl tiklanadi"
+},
+{
+"k": "s0339",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tashqaridagi katta bosim butilka devorlarini ichkariga itaradi va u siqiladi. [2] Qopqoqni ochsak, havo kiradi, bosimlar tenglashadi va butilka qayta o‘z shakliga keladi."
+},
+{
+"k": "s0340",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Avtobus 120 km ni 2 soatda o‘tdi. Tezligi, km/soat?"
+},
+{
+"k": "s0341",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avtobus bir yuz yigirma kilometr yo‘lni ikki soatda bosib o‘tdi. Uning o‘rtacha tezligi necha kilometr har soat? Sonni yozing."
+},
+{
+"k": "s0342",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tezlikni km/soatda yozing"
+},
+{
+"k": "s0343",
+"maydon": "javob",
+"tur": "matn",
+"uz": "60|60 km/soat|60 km/h"
+},
+{
+"k": "s0344",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kubik zichligi 0,8 g/sm³. Suvda suzadimi, cho‘kadimi?"
+},
+{
+"k": "s0345",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Kubikning zichligi nol butun o‘ndan sakkiz gramm har kub santimetr, suvniki esa bir. Kubik suvda suzadimi yoki cho‘kadimi? Bir so‘z yozing."
+},
+{
+"k": "s0346",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Bir so‘z bilan javob bering"
+},
+{
+"k": "s0347",
+"maydon": "javob",
+"tur": "matn",
+"uz": "suzadi|suzadi."
+},
+{
+"k": "s0348",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Kuchlarni strelka bilan chizing\n2. Suzish: ikki zichlikni taqqoslang\n3. Bosim: ichki va tashqi bosimni solishtiring"
+},
+{
+"k": "s0349",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Kuch haqidagi savolda jismga ta’sir qiluvchi barcha kuchlarni strelka bilan chizing; og‘irlik kuchi doim pastga qaraydi va hech qachon yo‘qolmaydi. [2] Suzish savolida avval jism zichligini hisoblang, keyin har bir suyuqlik zichligi bilan taqqoslang. [3] Butilka, shar yoki quloq og‘rishi kabi savollarda ichkaridagi va tashqaridagi bosimni alohida yozib taqqoslang."
+},
+{
+"k": "s0350",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Og‘irlik doim pastga; teng kuchlar → tezlik o‘zgarmaydi\n$v = \\frac{s}{t}$, $p = \\frac{F}{S}$, $\\rho = \\frac{m}{V}$\nBalandlikda bosim kam; zichligi kichik jism suzadi"
+},
+{
+"k": "s0351",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Og‘irlik kuchi har doim ta’sir qiladi, kuchlar teng bo‘lsa harakat tekis bo‘ladi. [2] Uchta asosiy formulani birliklari bilan yodda tuting. [3] Yuqoriga ko‘tarilgan sari havo bosimi kamayadi, zichligi suyuqlikdan kichik jism suzadi."
+},
+{
+"k": "s0352",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Arqon tortish: kuchlar teng → hech kim siljimaydi"
+},
+{
+"k": "s0353",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Arqon tortishda ikki jamoa teng kuch bilan tortsa, arqon joyidan qimirlamaydi. Kuchlar muvozanati shu."
+},
+{
+"k": "s0354",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Parashyut ochildi: havo qarshiligi = og‘irlik"
+},
+{
+"k": "s0355",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Parashyutchi sakraganda og‘irlik kuchi uni pastga tortadi. Parashyut ochilgach, havo qarshiligi ortib, og‘irlikka tenglashadi va u bir xil tezlikda tushadi. Og‘irlik kuchi esa yo‘qolmagan!"
+},
+{
+"k": "s0356",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kuch diagrammasi: ↓ og‘irlik, ↑ qarshilik"
+},
+{
+"k": "s0357",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jismni nuqta qilib chizing, pastga og‘irlik, yuqoriga qarshilik strelkasini qo‘ying. Strelkalar teng bo‘lsa, tezlik o‘zgarmaydi."
+},
+{
+"k": "s0358",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Har soatda 60 km → tezlik 60 km/soat"
+},
+{
+"k": "s0359",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mashina har soatda oltmish kilometr yursa, uning tezligi oltmish kilometr har soat. Yo‘lni vaqtga bo‘lish shu."
+},
+{
+"k": "s0360",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Maktabgacha 600 m ni 10 daqiqada"
+},
+{
+"k": "s0361",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Siz maktabgacha olti yuz metrni o‘n daqiqada yursangiz, har daqiqada oltmish metr yurasiz."
+},
+{
+"k": "s0362",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uchburchak: s tepada, v va t pastda"
+},
+{
+"k": "s0363",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yo‘lni tepaga, tezlik va vaqtni pastga yozing. Tezlik kerak bo‘lsa, yo‘lni vaqtga bo‘lasiz."
+},
+{
+"k": "s0364",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ninaning uchi kichik → bosim katta"
+},
+{
+"k": "s0365",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir xil kuch bilan bossangiz, nina teshadi, barmoq esa teshmaydi: nina uchining yuzasi juda kichik, bosim katta."
+},
+{
+"k": "s0366",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Samolyotda quloq bitadi"
+},
+{
+"k": "s0367",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Samolyot ko‘tarilganda tashqi bosim kamayadi va qulog‘ingiz «bitadi». Bu ichki va tashqi bosim farqidan."
+},
+{
+"k": "s0368",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo «ustuni»: tog‘da qisqa, vodiyda uzun"
+},
+{
+"k": "s0369",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tepangizdagi havoni baland ustun deb tasavvur qiling. Vodiyda ustun uzunroq va og‘irroq, tog‘da qisqaroq — shuning uchun bosim kichik."
+},
+{
+"k": "s0370",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yog‘och suzadi, tosh cho‘kadi"
+},
+{
+"k": "s0371",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yog‘ochning zichligi suvnikidan kichik, shuning uchun suzadi; toshniki katta, shuning uchun cho‘kadi."
+},
+{
+"k": "s0372",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tuxum sho‘r suvda suzadi"
+},
+{
+"k": "s0373",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tuxum chuchuk suvda cho‘kadi. Suvga ko‘p tuz solsangiz, suvning zichligi ortadi va tuxum suza boshlaydi."
+},
+{
+"k": "s0374",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Zichlik ustuni: asal, suv, yog‘"
+},
+{
+"k": "s0375",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Stakanga asal, suv va o‘simlik yog‘ini quysangiz, ular zichligi bo‘yicha qavatlanadi: eng zich asal pastda, yog‘ tepada."
+},
+{
+"k": "s0376",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Parashyut ochilgach yoki jism tekis harakatlanganda og‘irlik kuchi yo‘qoladi deb o‘ylash"
+},
+{
+"k": "s0377",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Og‘ir jism doim cho‘kadi deb o‘ylash (aslida zichlik hal qiladi)"
+},
+{
+"k": "s0378",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Butilka siqilishini ichidagi havo sovishi bilan izohlash, bosim farqini unutish"
+},
+{
+"k": "s0379",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Atmosfera bosimi balandlikda ortadi deb o‘ylash"
+},
+{
+"k": "s0380",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Har bir jismga ta’sir qiluvchi kuchlarni strelka bilan chizing"
+},
+{
+"k": "s0381",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Suzish savolida zichliklarni hisoblab taqqoslang"
+},
+{
+"k": "s0382",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Bosim savolida ichki va tashqi bosimni alohida yozing"
+},
+{
+"k": "s0383",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "kuch"
+},
+{
+"k": "s0384",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tezlik"
+},
+{
+"k": "s0385",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "harakat"
+},
+{
+"k": "s0386",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "bosim"
+},
+{
+"k": "s0387",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "atmosfera bosimi"
+},
+{
+"k": "s0388",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "Arximed kuchi"
+},
+{
+"k": "s0389",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "ishqalanish"
+},
+{
+"k": "s0390",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yer tuzilishi"
+},
+{
+"k": "s0391",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Yerning ichki tuzilishi va qobiqlarini bilish, topografik xaritadagi gorizontallarni o‘qish, daryo oqimini aniqlash va balandlik oshganda harorat va bosim qanday o‘zgarishini tushuntirish"
+},
+{
+"k": "s0392",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Xaritadagi egri chiziqlar tog‘ni qanday ko‘rsatadi?\nTIMSS: 8-sinflarning o‘rtacha 38% i to‘g‘ri yechgan"
+},
+{
+"k": "s0393",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Topografik xaritada egri-bugri chiziqlarni ko‘rganmisiz? Ular tog‘ning balandligi va qiyaligini sir saqlaydi. Bugun shu sirni o‘qishni o‘rganamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha o‘ttiz sakkiz foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0394",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yerning tuzilishi va qobiqlari"
+},
+{
+"k": "s0395",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yer po‘sti → mantiya → tashqi va ichki yadro\nLitosfera, gidrosfera, atmosfera, biosfera\nYer yuzining ~71% i suv, chuchuk suv ~3%"
+},
+{
+"k": "s0396",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yer ichkarisi qatlam-qatlam: tashqarida yupqa yer po‘sti, ostida qalin mantiya, markazda suyuq tashqi va qattiq ichki yadro. [2] Yerning tashqi qobiqlari: qattiq litosfera, suv qobig‘i gidrosfera, havo qobig‘i atmosfera va hayot qobig‘i biosfera. [3] Yer yuzining taxminan yetmish bir foizini suv egallaydi, lekin undan atigi uch foizga yaqini chuchuk suv."
+},
+{
+"k": "s0397",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Gorizontallar"
+},
+{
+"k": "s0398",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Gorizontal — bir xil balandlikdagi nuqtalar chizig‘i\nChiziqlar zich → tik qiyalik; siyrak → yotiq\nEng ichki halqa — cho‘qqi"
+},
+{
+"k": "s0399",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Gorizontal — xaritada dengiz sathidan bir xil balandlikdagi nuqtalarni tutashtiruvchi chiziq. [2] Gorizontallar bir-biriga yaqin bo‘lsa, qiyalik tik, uzoq bo‘lsa, qiyalik yotiq bo‘ladi. [3] Yopiq halqalarning eng ichkisi tepalik yoki tog‘ cho‘qqisini ko‘rsatadi."
+},
+{
+"k": "s0400",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Daryo xaritada qayerdan oqadi?"
+},
+{
+"k": "s0401",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Daryo balanddan pastga oqadi\nVodiy: gorizontallar «V», uchi tepaga qaragan\nDaryo gorizontallarni kesib o‘tadi"
+},
+{
+"k": "s0402",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Suv doim balanddan pastga oqadi, shuning uchun daryo baland gorizontaldan past gorizontal tomon yo‘naladi. [2] Vodiyda gorizontallar «V» harfi shaklida egiladi va uning uchi balandlik tomonga qaraydi; daryo shu «V» lar ichidan oqadi. [3] Daryo gorizontal bo‘ylab emas, ularni kesib, eng tik pasayish yo‘nalishida oqadi."
+},
+{
+"k": "s0403",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Balandlikda nima o‘zgaradi?"
+},
+{
+"k": "s0404",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Har 1 km ko‘tarilganda harorat ~6 °C pasayadi\nHavo siyraklashadi, bosim kamayadi\nBalandlik mintaqalari: o‘rmon → o‘tloq → qor"
+},
+{
+"k": "s0405",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tog‘ga ko‘tarilgan sari havo soviydi: har bir kilometrda taxminan olti gradus. [2] Balandda havo siyrak, atmosfera bosimi kichik, nafas olish qiyinlashadi. [3] Shuning uchun tog‘ etagidan cho‘qqigacha o‘simliklar almashinadi, cho‘qqida esa yil bo‘yi qor turishi mumkin."
+},
+{
+"k": "s0406",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Etak 600 m da 24 °C. 3600 m cho‘qqida harorat?"
+},
+{
+"k": "s0407",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: tog‘ etagi dengiz sathidan olti yuz metr balandda, u yerda havo harorati yigirma to‘rt gradus. Uch ming olti yuz metrli cho‘qqida qancha bo‘ladi?"
+},
+{
+"k": "s0408",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik farqi: $3600 - 600 = 3000$ m = 3 km\nPasayish: $3 \\cdot 6 = 18$ °C\nCho‘qqida: $24 - 18 = 6$ °C"
+},
+{
+"k": "s0409",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval balandlik farqini topamiz: uch ming metr, ya’ni uch kilometr. [2] Har kilometrda olti gradus pasaysa, uch kilometrda o‘n sakkiz gradus pasayadi. [3] Yigirma to‘rtdan o‘n sakkizni ayiramiz: cho‘qqida taxminan olti gradus issiq bo‘ladi."
+},
+{
+"k": "s0410",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Xarita: ko‘l 500 m da, dengiz 0 m. Daryo yo‘li?"
+},
+{
+"k": "s0411",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] TIMSS uslubidagi masala: xaritada tog‘dagi ko‘l besh yuz metr gorizontalda, dengiz esa nol metrda. Ko‘ldan chiqqan daryo qaysi yo‘ldan oqadi?"
+},
+{
+"k": "s0412",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1) Gorizontallar qiymatini o‘qing: 500, 400, …, 0\n2) Daryo 500 → 0 tomon, pastga oqadi\n3) «V» egilishlar ichidan o‘tgan yo‘lni tanlang"
+},
+{
+"k": "s0413",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval har bir gorizontal yonidagi raqamni o‘qib, qaysi tomon past ekanini aniqlaymiz. [2] Daryo ko‘ldan dengiz tomon, ya’ni kamayib boruvchi balandliklar bo‘ylab oqadi. [3] Uchi tepaga qaragan «V» egilishlar vodiyni bildiradi, daryo aynan shu vodiydan o‘tadi."
+},
+{
+"k": "s0414",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tekshiruv: yo‘l hech qayerda tepaga chiqmaydi"
+},
+{
+"k": "s0415",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Javobni tekshiramiz: chizilgan yo‘l hech bir joyda balandroq gorizontalga ko‘tarilmasligi kerak, dunyoda bu savolni o‘n to‘qqiz foiz o‘quvchi yechgan."
+},
+{
+"k": "s0416",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Etakda 20 °C. 2 km yuqorida taxminan necha °C?"
+},
+{
+"k": "s0417",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tog‘ etagida harorat yigirma gradus. Ikki kilometr yuqorida taxminan necha gradus bo‘ladi? Sonni yozing."
+},
+{
+"k": "s0418",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Haroratni yozing"
+},
+{
+"k": "s0419",
+"maydon": "javob",
+"tur": "matn",
+"uz": "8|8 °C|8°C|8 gradus"
+},
+{
+"k": "s0420",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Gorizontallar zich bo‘lsa, qiyalik tikmi yoki yotiqmi?"
+},
+{
+"k": "s0421",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Xaritada gorizontallar bir-biriga juda yaqin chizilgan joyda qiyalik qanday: tikmi yoki yotiqmi? Bir so‘z yozing."
+},
+{
+"k": "s0422",
+"maydon": "javob",
+"tur": "matn",
+"uz": "tik"
+},
+{
+"k": "s0423",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Avval xarita belgilari va raqamlarini o‘qing\n2. Suv doim pastga — daryo yo‘lini tekshiring\n3. Balandlik savolida: harorat ↓, bosim ↓"
+},
+{
+"k": "s0424",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Xarita savolida avval shartli belgilar va gorizontal raqamlarini o‘qing, qaysi tomon baland ekanini belgilang. [2] Daryo yo‘lini chizganingizdan keyin u hech qayerda tepaga chiqmasligini tekshiring. [3] Balandlik haqidagi savolda ikki o‘zgarishni yozing: harorat pasayadi va havo siyraklashib bosim kamayadi."
+},
+{
+"k": "s0425",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yer: po‘st, mantiya, yadro; to‘rt qobiq\nGorizontal zich — tik; «V» uchi — tepaga\nHar 1 km: −6 °C; balandda bosim kam"
+},
+{
+"k": "s0426",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yer ichki qatlamlari va tashqi qobiqlarini nomlari bilan eslab qoling. [2] Gorizontallar zichligi qiyalikni, «V» egilishlar vodiyni ko‘rsatadi. [3] Har kilometr ko‘tarilishda harorat taxminan olti gradus pasayadi, bosim esa kamayadi."
+},
+{
+"k": "s0427",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yer — shaftoli: po‘sti, eti, danagi"
+},
+{
+"k": "s0428",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yerni shaftoliga o‘xshating: yupqa po‘sti — yer po‘sti, qalin eti — mantiya, danagi esa yadro."
+},
+{
+"k": "s0429",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Eng chuqur quduq ham faqat po‘stda"
+},
+{
+"k": "s0430",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Odamlar qazigan eng chuqur quduq o‘n ikki kilometrga yaqin, bu esa yer po‘stining ham bir qismi xolos. Ichki qatlamlarni olimlar zilzila to‘lqinlari orqali o‘rganadi."
+},
+{
+"k": "s0431",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Lito — tosh, gidro — suv, atmo — bug‘, bio — hayot"
+},
+{
+"k": "s0432",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qobiq nomlarini so‘z qismlari orqali eslang: lito — tosh, gidro — suv, atmo — havo yoki bug‘, bio — hayot."
+},
+{
+"k": "s0433",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tog‘ni qavatlab kessak — halqalar"
+},
+{
+"k": "s0434",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Plastilindan tog‘ yasab, uni har santimetrda gorizontal kessak va izlarini qog‘ozga tushirsak, gorizontallar hosil bo‘ladi."
+},
+{
+"k": "s0435",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sayyoh: zich chiziqlar — qiyin chiqish"
+},
+{
+"k": "s0436",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sayyoh xaritada chiziqlar zich joyni ko‘rsa, u yerda chiqish qiyin va tik ekanini biladi, shuning uchun siyrak chiziqli yo‘lni tanlaydi."
+},
+{
+"k": "s0437",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qo‘l mushti: bo‘g‘imlar orasidagi chiziqlar"
+},
+{
+"k": "s0438",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mushtingizni stolga qo‘yib, bo‘g‘imlar balandligiga chiziq tortsangiz, eng baland joyda kichik halqa, pastda katta halqalar chiqadi."
+},
+{
+"k": "s0439",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suv tepalikdan pastga oqadi"
+},
+{
+"k": "s0440",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Shoshilmang: suv doim pastga oqadi. Xaritada qaysi tomon past ekanini topsangiz, daryo yo‘nalishi ma’lum."
+},
+{
+"k": "s0441",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yomg‘ir suvi soyga yig‘iladi"
+},
+{
+"k": "s0442",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tog‘da yomg‘ir yog‘sa, suv yonbag‘irlardan oqib, eng past joy — soyga yig‘iladi va daryo bo‘lib pastga oqadi."
+},
+{
+"k": "s0443",
+"maydon": "doska",
+"tur": "matn",
+"uz": "«V» — strelka: daryo unga qarshi oqadi"
+},
+{
+"k": "s0444",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Vodiydagi «V» ni strelka deb tasavvur qiling: uning uchi tepaga qaraydi, daryo esa teskari tomonga, pastga oqadi."
+},
+{
+"k": "s0445",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tog‘ tepasi sovuq — u yerda qor bor"
+},
+{
+"k": "s0446",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yozda ham baland tog‘ cho‘qqilarida qor ko‘rasiz, chunki balandda havo sovuq."
+},
+{
+"k": "s0447",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Chimyonga chiqqanda kurtka kerak"
+},
+{
+"k": "s0448",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Toshkentda issiq kunda ham Chimyon tog‘lariga chiqsangiz, havo salqinroq bo‘ladi va kurtka kerak bo‘lishi mumkin."
+},
+{
+"k": "s0449",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jadval: 0 km — 24 °C, 1 km — 18 °C, 2 km — 12 °C"
+},
+{
+"k": "s0450",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jadval tuzing: har kilometr qo‘shilganda haroratdan olti gradus ayiring. Shunda istalgan balandlikdagi haroratni topasiz."
+},
+{
+"k": "s0451",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Zich gorizontallarni yotiq qiyalik deb o‘qish"
+},
+{
+"k": "s0452",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Daryoni gorizontal chiziq bo‘ylab yoki balandga qarab oqizish"
+},
+{
+"k": "s0453",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Vodiydagi «V» uchini pastga qaragan deb o‘ylash"
+},
+{
+"k": "s0454",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Balandlikda Quyoshga yaqinroq bo‘lgani uchun issiqroq deb o‘ylash"
+},
+{
+"k": "s0455",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Xaritada avval gorizontal raqamlarini o‘qib, past va baland tomonni belgilang"
+},
+{
+"k": "s0456",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Daryo yo‘lini balandlik kamayishi bo‘yicha tekshiring"
+},
+{
+"k": "s0457",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Balandlik savolida harorat va bosim o‘zgarishini birga yozing"
+},
+{
+"k": "s0458",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "Yer"
+},
+{
+"k": "s0459",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "litosfera"
+},
+{
+"k": "s0460",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "atmosfera"
+},
+{
+"k": "s0461",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "gidrosfera"
+},
+{
+"k": "s0462",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "relyef"
+},
+{
+"k": "s0463",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "gorizontal"
+},
+{
+"k": "s0464",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "mantiya"
+},
+{
+"k": "s0465",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yerdagi jarayonlar va tarix"
+},
+{
+"k": "s0466",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Litosfera plitalari harakati, vulqon va zilzilalar, materiklar siljishining dalillari, suvning tabiatda aylanishi hamda ob-havo va iqlim farqini tushunib, dalillarga tayanib xulosa chiqarish"
+},
+{
+"k": "s0467",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Afrika va Janubiy Amerika — jumboq bo‘laklari?\nTIMSS: 8-sinflarning o‘rtacha 49% i to‘g‘ri yechgan"
+},
+{
+"k": "s0468",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Dunyo xaritasiga qarang: Afrika va Janubiy Amerika qirg‘oqlari jumboq bo‘laklaridek bir-biriga mos keladi. Bu tasodifmi? [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha qirq to‘qqiz foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0469",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Litosfera plitalari"
+},
+{
+"k": "s0470",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yer po‘sti — katta plitalardan iborat\nPlitalar yiliga bir necha sm siljiydi\nZilzila va vulqonlar — plita chegaralarida"
+},
+{
+"k": "s0471",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Litosfera bir butun emas, mantiya ustida suzib yuruvchi katta-katta plitalardan tashkil topgan. [2] Plitalar juda sekin, yiliga bir necha santimetr, ya’ni tirnoq o‘sishi tezligida siljiydi. [3] Faol vulqonlar va kuchli zilzilalarning ko‘pi plitalar chegarasida, masalan Tinch okean «olovli halqasi»da joylashgan."
+},
+{
+"k": "s0472",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Vulqonlar"
+},
+{
+"k": "s0473",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Magma yer yuziga chiqsa — lava\nLavadagi gaz pufakchalari → g‘ovak tosh (pemza)\nTa’siri: kul, gazlar, unumdor tuproq"
+},
+{
+"k": "s0474",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yer ostidagi eritilgan tog‘ jinsi magma deyiladi, u yer yuziga otilib chiqsa lava deb ataladi. [2] Lava tez soviganda ichidagi gaz pufakchalari qotib qoladi va teshikli, yengil tosh — pemza hosil bo‘ladi. [3] Otilish havoga kul va gazlar chiqaradi, iqlimni vaqtincha sovitishi mumkin, vulqon kuli esa keyinchalik tuproqni unumdor qiladi."
+},
+{
+"k": "s0475",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Materiklar siljishi dalillari"
+},
+{
+"k": "s0476",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qirg‘oqlar shakli bir-biriga mos\nBir xil qazilmalar va tog‘ jinslari\nQadimda yagona materik — Pangeya"
+},
+{
+"k": "s0477",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Birinchi dalil: Afrika va Janubiy Amerika qirg‘oqlari shakli bir-biriga mos tushadi. [2] Ikkinchi dalil: okean bilan ajralgan materiklarda bir xil qadimgi hayvon va o‘simlik qazilmalari hamda bir xil tog‘ jinslari topilgan. [3] Shulardan olimlar xulosa qilgan: taxminan ikki yuz million yil oldin barcha materiklar yagona Pangeya materigi bo‘lgan."
+},
+{
+"k": "s0478",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Suvning tabiatda aylanishi"
+},
+{
+"k": "s0479",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bug‘lanish → kondensatsiya → yog‘in → oqim\nHarakatlantiruvchi kuch — Quyosh energiyasi"
+},
+{
+"k": "s0480",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Quyosh issig‘ida suv bug‘lanadi, yuqorida soviydi va kondensatsiyalanib bulut hosil qiladi, keyin yog‘in bo‘lib tushadi va daryolar orqali dengizga qaytadi. [2] Bu aylanishni Quyosh energiyasi va Yerning tortishish kuchi harakatlantiradi."
+},
+{
+"k": "s0481",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Ob-havo va iqlim"
+},
+{
+"k": "s0482",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ob-havo — hozirgi holat; iqlim — ko‘p yillik\nEkvator yaqini: issiq va nam — tropik o‘rmon"
+},
+{
+"k": "s0483",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Ob-havo atmosferaning ayni paytdagi holati, iqlim esa joyning ko‘p yillik o‘rtacha ob-havo tartibi. [2] Ekvator yaqinida Quyosh baland, havo issiq va yog‘in ko‘p, shuning uchun u yerda tropik o‘rmonlar — jungllar bor."
+},
+{
+"k": "s0484",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Plita yiliga 5 sm siljiydi. 2 mln yilda necha km?"
+},
+{
+"k": "s0485",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: litosfera plitasi yiliga besh santimetr siljiydi. Ikki million yilda u necha kilometr siljiydi?"
+},
+{
+"k": "s0486",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$5 \\cdot 2\\,000\\,000 = 10\\,000\\,000$ sm\n$10\\,000\\,000$ sm $= 100\\,000$ m $= 100$ km\nSekin, lekin million yillarda — ulkan masofa"
+},
+{
+"k": "s0487",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yillik siljishni yillar soniga ko‘paytiramiz: o‘n million santimetr. [2] Santimetrni metrga o‘tkazish uchun yuzga, metrni kilometrga o‘tkazish uchun mingga bo‘lamiz: yuz kilometr. [3] Ko‘rib turibsizki, sekin harakat ham million yillar davomida materiklarni minglab kilometrga uzoqlashtira oladi."
+},
+{
+"k": "s0488",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mezozavr qazilmasi: Afrikada ham, J. Amerikada ham"
+},
+{
+"k": "s0489",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] TIMSS uslubidagi masala: kichik chuchuk suv sudralib yuruvchisi mezozavr qoldiqlari faqat Afrika va Janubiy Amerikada topilgan. Bu nimani isbotlaydi?"
+},
+{
+"k": "s0490",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mezozavr okeanni suzib o‘ta olmagan\nDemak, ikki materik qachonlardir tutash bo‘lgan"
+},
+{
+"k": "s0491",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Mezozavr chuchuk suvda yashagan kichik hayvon bo‘lib, sho‘r va keng okeanni suzib o‘ta olmagan. [2] Ikki joyda ham yashagani materiklar o‘sha paytda bir-biriga tutash bo‘lganini ko‘rsatadi; dunyoda bu savolni o‘n sakkiz foiz o‘quvchi yechgan."
+},
+{
+"k": "s0492",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qo‘shimcha dalil: qirg‘oq shakli va tog‘ jinslari\nJavob: dalil + xulosa birga yoziladi"
+},
+{
+"k": "s0493",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Javobni kuchaytirish uchun boshqa dalillarni qo‘shamiz: qirg‘oqlar shakli mos va qirg‘oq bo‘yidagi tog‘ jinslari bir xil. [2] To‘liq javobda dalilni ham, undan chiqqan xulosani ham yozing: bir xil qazilma, demak materiklar birlashgan."
+},
+{
+"k": "s0494",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suvning aylanishida bulut qaysi jarayonda hosil bo‘ladi?"
+},
+{
+"k": "s0495",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Suv bug‘i yuqorida soviganda mayda tomchilarga aylanib bulut hosil qiladi. Bu jarayon nomini bir so‘z bilan yozing."
+},
+{
+"k": "s0496",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Plita yiliga 3 sm siljisa, 1000 yilda necha metr?"
+},
+{
+"k": "s0497",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Plita yiliga uch santimetr siljiydi. Ming yilda necha metr siljiydi? Sonni yozing."
+},
+{
+"k": "s0498",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. «Dalil» so‘ralsa — kuzatiladigan faktni yozing\n2. Jarayonlarni to‘g‘ri tartibda joylashtiring\n3. Joy iqlimi: kenglik, balandlik, okeanga yaqinlik"
+},
+{
+"k": "s0499",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Savol dalil so‘rasa, «olimlar shunday deydi» emas, kuzatiladigan faktni yozing: qazilma, tog‘ jinsi, qirg‘oq shakli. [2] Suvning aylanishi kabi savollarda bosqichlarni strelka bilan ketma-ket yozib, tartibni tekshiring. [3] Iqlim haqidagi savolda joyning ekvatordan uzoqligi, balandligi va okeanga yaqinligini hisobga oling."
+},
+{
+"k": "s0500",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Plitalar siljiydi; vulqon, zilzila — chegaralarda\nMateriklar birlashgan: qirg‘oq, qazilma, tog‘ jinsi\nSuv aylanishi: bug‘lanish → bulut → yog‘in → oqim"
+},
+{
+"k": "s0501",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Litosfera plitalari sekin siljiydi, vulqon va zilzilalar ularning chegarasida ko‘p. [2] Materiklar siljishining uchta dalilini eslab qoling. [3] Suvning aylanishini Quyosh harakatlantiradi, uning bosqichlari doim shu tartibda."
+},
+{
+"k": "s0502",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Plitalar — qaynoq sho‘rva ustidagi qatlam bo‘laklari"
+},
+{
+"k": "s0503",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sho‘rva sovib, ustida qatlam paydo bo‘lsa va qozon ostidan qizdirilsa, qatlam bo‘laklari asta siljiydi. Yer plitalari ham issiq mantiya ustida shunday siljiydi."
+},
+{
+"k": "s0504",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yaponiyada zilzila ko‘p — plitalar uchrashadi"
+},
+{
+"k": "s0505",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yaponiya bir nechta plita tutashgan joyda joylashgan, shuning uchun u yerda zilzila va vulqonlar ko‘p bo‘ladi."
+},
+{
+"k": "s0506",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Xaritada vulqon nuqtalari plita chegaralarini chizadi"
+},
+{
+"k": "s0507",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dunyo xaritasiga faol vulqonlarni nuqta qilib qo‘ysangiz, nuqtalar plitalar chegarasi bo‘ylab chiziq hosil qiladi."
+},
+{
+"k": "s0508",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Gazli ichimlik: ochsang — pufakchalar"
+},
+{
+"k": "s0509",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Gazli ichimlikni silkitib ochsangiz, gaz pufakchalari otilib chiqadi. Magmadagi gazlar ham vulqonni shunday «otadi»."
+},
+{
+"k": "s0510",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Pemza tosh suvda suzadi"
+},
+{
+"k": "s0511",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Hammomda ishlatiladigan pemza tosh shunchalik g‘ovakki, hatto suvda suzadi: uning teshiklari — qotib qolgan gaz pufakchalari."
+},
+{
+"k": "s0512",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Magma (ostida) → lava (ustida) → tog‘ jinsi"
+},
+{
+"k": "s0513",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir zanjir bilan eslang: yer ostida magma, yer ustida lava, sovigach esa vulqon tog‘ jinsi."
+},
+{
+"k": "s0514",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yirtilgan gazeta: matn qatorlari mos tushadi"
+},
+{
+"k": "s0515",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Gazetani yirtib, bo‘laklarini qo‘shsangiz, nafaqat qirralari, balki matn qatorlari ham mos tushadi. Materiklarda «qatorlar» — bir xil qazilma va tog‘ jinslari."
+},
+{
+"k": "s0516",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Vegener va jumboq"
+},
+{
+"k": "s0517",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Olim Alfred Vegener yuz yildan ko‘proq oldin xaritaga qarab materiklar jumboqdek mosligini sezgan va dalillar to‘plagan."
+},
+{
+"k": "s0518",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Dalil → xulosa jadvali"
+},
+{
+"k": "s0519",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikki ustunli jadval chizing: chapda dalil, o‘ngda xulosa. Har bir dalil bir xil xulosaga olib keladi: materiklar birlashgan."
+},
+{
+"k": "s0520",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ko‘lmak yo‘qoladi → bulut → yomg‘ir"
+},
+{
+"k": "s0521",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘lmak quyoshda yo‘qoladi — suv bug‘landi. Bug‘ yuqorida bulut bo‘ladi, keyin yomg‘ir bo‘lib qaytadi."
+},
+{
+"k": "s0522",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bitta tomchining sayohati"
+},
+{
+"k": "s0523",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dengizdagi bir tomchi bug‘lanib bulutga chiqdi, tog‘ ustida qor bo‘lib yog‘di, bahorda erib daryoga tushdi va yana dengizga qaytdi."
+},
+{
+"k": "s0524",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qopqoqli qozon — kichik suv aylanishi"
+},
+{
+"k": "s0525",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qaynayotgan qozon qopqog‘ining ichida tomchilar yig‘ilib, qaytib tushadi: bug‘lanish, kondensatsiya va «yog‘in» bitta qozonda."
+},
+{
+"k": "s0526",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bugun yomg‘ir — ob-havo; har yili qishi sovuq — iqlim"
+},
+{
+"k": "s0527",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bugun yomg‘ir yog‘yapti — bu ob-havo. Bu joyda har yili qish sovuq, yoz issiq bo‘ladi — bu iqlim."
+},
+{
+"k": "s0528",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kiyim tanlash va uy qurish"
+},
+{
+"k": "s0529",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ertalab qanday kiyinishni ob-havoga qarab tanlaymiz, uyni qanday qurishni esa iqlimga qarab hal qilamiz."
+},
+{
+"k": "s0530",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ekvatordan qutbga: issiq-nam → mo‘tadil → sovuq"
+},
+{
+"k": "s0531",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Globusda ekvatordan qutbga qarab yuring: tropik o‘rmonlar, keyin mo‘tadil mintaqa, keyin muzliklar."
+},
+{
+"k": "s0532",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Materiklar siljishini isbotlashda dalil o‘rniga faqat xulosani yozish"
+},
+{
+"k": "s0533",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Vulqon toshidagi teshiklarni hasharotlar yoki suv yemirgan deb o‘ylash"
+},
+{
+"k": "s0534",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Bulut bug‘lanishda hosil bo‘ladi deb o‘ylash (aslida kondensatsiyada)"
+},
+{
+"k": "s0535",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Ob-havo va iqlim tushunchalarini aralashtirish"
+},
+{
+"k": "s0536",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "«Dalil» so‘ralganda kuzatiladigan faktni, keyin xulosani yozing"
+},
+{
+"k": "s0537",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Jarayon bosqichlarini strelkali zanjir qilib tartiblang"
+},
+{
+"k": "s0538",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Iqlim savolida kenglik, balandlik va okeanga yaqinlikni hisobga oling"
+},
+{
+"k": "s0539",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tog‘ jinsi"
+},
+{
+"k": "s0540",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "suvning aylanishi"
+},
+{
+"k": "s0541",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "ob-havo"
+},
+{
+"k": "s0542",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "iqlim"
+},
+{
+"k": "s0543",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "vulqon"
+},
+{
+"k": "s0544",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "zilzila"
+},
+{
+"k": "s0545",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "litosfera plitalari"
+},
+{
+"k": "s0546",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Tabiiy resurslar va ularni asrash"
+},
+{
+"k": "s0547",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Tiklanadigan va tiklanmaydigan resurslarni farqlash, tuproq eroziyasi va unga qarshi choralarni, chiqindilarning parchalanishi va ifloslanishning oldini olish yo‘llarini tushunish"
+},
+{
+"k": "s0548",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Plastik paket necha yilda yo‘qoladi?\nTIMSS: 8-sinflarning o‘rtacha 50% i to‘g‘ri yechgan"
+},
+{
+"k": "s0549",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Olma qoldig‘i bir necha haftada tuproqqa aylanadi, plastik paket esa yuzlab yillar yotadi. Bugun tabiat boyliklarini qanday asrashni o‘rganamiz. [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha ellik foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0550",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Tabiiy resurslar turlari"
+},
+{
+"k": "s0551",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tiklanadigan: Quyosh, shamol, suv, o‘rmon\nTiklanmaydigan: neft, gaz, ko‘mir, rudalar\nNeft, gaz, ko‘mir — qazilma yoqilg‘ilar"
+},
+{
+"k": "s0552",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Tiklanadigan resurslar tabiatda qayta tiklanadi yoki tugamaydi: Quyosh nuri, shamol, daryo suvi, to‘g‘ri foydalanilsa o‘rmon ham. [2] Tiklanmaydigan resurslar millionlab yillar davomida hosil bo‘lgan, ishlatib bo‘lsak, tez orada qayta paydo bo‘lmaydi. [3] Neft, tabiiy gaz va ko‘mir qadimgi organizmlar qoldiqlaridan hosil bo‘lgan qazilma yoqilg‘ilardir."
+},
+{
+"k": "s0553",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Tuproq va eroziya"
+},
+{
+"k": "s0554",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Eroziya — tuproqni suv va shamol olib ketishi\nNurash — tog‘ jinslarining maydalanishi\nHimoya: terrasa, daraxt, ihota o‘rmonlari"
+},
+{
+"k": "s0555",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Eroziya — tuproqning unumdor ustki qatlamini yomg‘ir suvi yoki shamol yuvib, uchirib ketishi. [2] Harorat o‘zgarishi, suv va o‘simliklar ta’sirida tog‘ jinslari asta-sekin maydalanadi, bu nurash deyiladi. [3] Tuproqni yonbag‘irda terrasalar qurish, daraxt ekish va dalalar atrofida ihota o‘rmonlari barpo etish orqali asraymiz."
+},
+{
+"k": "s0556",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Chiqindilar parchalanishi"
+},
+{
+"k": "s0557",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Organik chiqindi: tez parchalanadi\nPlastmassa, shisha: yuzlab yillar\nKamaytirish, qayta ishlatish, qayta ishlash"
+},
+{
+"k": "s0558",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Oziq-ovqat qoldiqlari, barg va qog‘ozni bakteriya va zamburug‘lar tez parchalaydi. [2] Plastmassa va shishani mikroorganizmlar deyarli parchalay olmaydi, ular tabiatda yuzlab yillar saqlanadi. [3] Shuning uchun chiqindini kamaytirish, buyumlarni qayta ishlatish va qayta ishlashga topshirish muhim."
+},
+{
+"k": "s0559",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Ifloslanish va tejash"
+},
+{
+"k": "s0560",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yoqilg‘i yonishi → $CO_2$ → global isish\nSuv va energiyani tejash — resursni asrash"
+},
+{
+"k": "s0561",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Qazilma yoqilg‘ilar yonganda karbonat angidrid gazi chiqadi, u issiqlikni ushlab, Yer iqlimini isitadi. [2] Orol dengizining qurishi suvdan noto‘g‘ri foydalanish oqibati; suv va energiyani tejash har birimizning vazifamiz."
+},
+{
+"k": "s0562",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oila kuniga 1,5 kg chiqindi tashlaydi, 40% i organik"
+},
+{
+"k": "s0563",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: bir oila har kuni bir yarim kilogramm chiqindi tashlaydi, uning qirq foizi oziq-ovqat qoldiqlari. Bir yilda qancha organik chiqindini kompostga aylantirish mumkin?"
+},
+{
+"k": "s0564",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kuniga: $1{,}5 \\cdot 0{,}4 = 0{,}6$ kg\nYilda: $0{,}6 \\cdot 365 = 219$ kg\nBu chiqindi poligonga emas, tuproqqa qaytadi"
+},
+{
+"k": "s0565",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval kunlik organik chiqindini topamiz: bir yarimning qirq foizi nol butun o‘ndan olti kilogramm. [2] Uni yil kunlariga ko‘paytiramiz: ikki yuz o‘n to‘qqiz kilogramm. [3] Demak bitta oila yiliga ikki yuz kilogrammdan ortiq chiqindini poligonga emas, foydali o‘g‘itga aylantira oladi."
+},
+{
+"k": "s0566",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tog‘ yonbag‘rida dehqon terrasa qurdi. Nega?"
+},
+{
+"k": "s0567",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] TIMSS uslubidagi masala: tik yonbag‘irdagi dalada dehqon zinapoyasimon terrasalar qurdi. Bu qanday foyda beradi? Dunyoda bu savolni yigirma olti foiz o‘quvchi yechgan."
+},
+{
+"k": "s0568",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tik qiyalik: yomg‘ir suvi tez oqadi\nTerrasa: tekis pog‘ona — suv to‘xtaydi"
+},
+{
+"k": "s0569",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval muammoni aniqlaymiz: tik qiyalikda yomg‘ir suvi tez oqib, ustki unumdor tuproqni yuvib ketadi. [2] Terrasaning har bir pog‘onasi tekis, shuning uchun suv u yerda to‘xtab, tuproqqa singadi."
+},
+{
+"k": "s0570",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Natija: eroziya kamayadi, namlik saqlanadi\nJavob: sabab + natija birga"
+},
+{
+"k": "s0571",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Natijada tuproq yuvilmaydi va ekinlar uchun ko‘proq namlik qoladi. [2] To‘liq javob: terrasa suv oqimini sekinlashtirib, tuproq eroziyasini kamaytiradi va suvni ushlab qoladi."
+},
+{
+"k": "s0572",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ko‘mir — tiklanadigan yoki tiklanmaydigan resursmi?"
+},
+{
+"k": "s0573",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Ko‘mir millionlab yillar davomida hosil bo‘lgan. U qaysi turdagi resurs: tiklanadiganmi yoki tiklanmaydiganmi? Bir so‘z yozing."
+},
+{
+"k": "s0574",
+"maydon": "javob",
+"tur": "matn",
+"uz": "tiklanmaydigan|tiklanmaydi"
+},
+{
+"k": "s0575",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Banan po‘sti, shisha, plastik paket: qaysi tez chiriydi?"
+},
+{
+"k": "s0576",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Uchta chiqindi bor: banan po‘sti, shisha idish va plastik paket. Qaysi biri eng tez parchalanadi? Javobni yozing."
+},
+{
+"k": "s0577",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Chiqindi nomini yozing"
+},
+{
+"k": "s0578",
+"maydon": "javob",
+"tur": "matn",
+"uz": "banan po‘sti|banan|banan po‘chog‘i"
+},
+{
+"k": "s0579",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Resursni «tez tiklanadimi?» deb tekshiring\n2. Usul savoli: muammo → usul → natija\n3. Parchalanish: tirik organizmdan bo‘lsa — tez"
+},
+{
+"k": "s0580",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Xalqaro savolda resurs inson umri davomida tiklanadimi, yo‘qmi, shuni so‘rang: tiklanmasa — tiklanmaydigan. [2] «Bu usulning afzalligi nima?» degan savolda avval muammoni, keyin usul uni qanday hal qilishini yozing. [3] Chiqindi tirik organizmdan, ya’ni o‘simlik yoki hayvondan olingan bo‘lsa, odatda tez parchalanadi."
+},
+{
+"k": "s0581",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tiklanadigan va tiklanmaydigan resurslar\nEroziya: terrasa va daraxtlar tuproqni asraydi\nOrganik — tez, plastik va shisha — sekin parchalanadi"
+},
+{
+"k": "s0582",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Resurslarni ikki turga ajrating va qazilma yoqilg‘ilarni tejang. [2] Tuproqni suv va shamoldan himoya qilish usullarini eslab qoling. [3] Chiqindini kamaytiring, qayta ishlating va qayta ishlashga topshiring."
+},
+{
+"k": "s0583",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyosh har kuni chiqadi — tugamaydi\nNeft ishlatilsa — tugaydi"
+},
+{
+"k": "s0584",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Quyosh har kuni nur beradi, u tugamaydi. Neftni esa qancha ko‘p ishlatsak, shuncha kam qoladi."
+},
+{
+"k": "s0585",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bog‘dagi olma va ko‘zadagi asal"
+},
+{
+"k": "s0586",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bog‘dagi olma daraxti har yili meva beradi — tiklanadigan. Ko‘zadagi asal ishlatilsa tugaydi, yangisi esa tez paydo bo‘lmaydi — tiklanmaydiganga o‘xshaydi."
+},
+{
+"k": "s0587",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Saralash: Q, Sh, S, O‘ — tiklanadi; N, G, K — yo‘q"
+},
+{
+"k": "s0588",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bosh harflar bilan eslang: Quyosh, Shamol, Suv, O‘rmon — tiklanadi; Neft, Gaz, Ko‘mir — tiklanmaydi."
+},
+{
+"k": "s0589",
+"maydon": "doska",
+"tur": "matn",
+"uz": "O‘simlik ildizi tuproqni ushlaydi"
+},
+{
+"k": "s0590",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘t va daraxt ildizlari tuproqni to‘rdek ushlab turadi. Ular kesilsa, yomg‘ir tuproqni oson yuvib ketadi."
+},
+{
+"k": "s0591",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yalang‘och tepalikdagi jarlar"
+},
+{
+"k": "s0592",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘simliksiz tepalikda yillar davomida yomg‘ir suvi chuqur jarlar o‘yib yuboradi — bu suv eroziyasi."
+},
+{
+"k": "s0593",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tajriba: o‘tli va o‘tsiz tuproqqa suv quying"
+},
+{
+"k": "s0594",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkita qiya qutiga tuproq soling, biriga o‘t eking. Ikkalasiga suv quysangiz, o‘tsiz qutidan loyqa suv ko‘p oqadi."
+},
+{
+"k": "s0595",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mikroblar ovqat qoldiqlarini «yeydi»"
+},
+{
+"k": "s0596",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mikroorganizmlar ovqat qoldiqlarini «yeb», tuproqqa aylantiradi. Plastmassani esa ular yeya olmaydi."
+},
+{
+"k": "s0597",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Dengiz toshbaqasi va plastik paket"
+},
+{
+"k": "s0598",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dengizga tushgan plastik paketni toshbaqa meduza deb yutib yuborishi mumkin. Paket yuzlab yillar yo‘qolmay, hayvonlarga zarar yetkazadi."
+},
+{
+"k": "s0599",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Vaqt chizig‘i: haftalar → oylar → yuz yillar"
+},
+{
+"k": "s0600",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chiziq chizing: meva po‘sti — haftalar, qog‘oz — oylar, plastik paket va shisha — yuzlab yillar."
+},
+{
+"k": "s0601",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kamroq yoqilg‘i → kamroq tutun"
+},
+{
+"k": "s0602",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mashina va zavodlar qancha kam yoqilg‘i yoqsa, havo shuncha toza bo‘ladi."
+},
+{
+"k": "s0603",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Orol dengizi qissasi"
+},
+{
+"k": "s0604",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Daryolar suvi haddan ortiq paxta dalalariga olingani uchun Orol dengizi qurib qoldi. Bu suvni tejamaslik qanday oqibatga olib kelishini ko‘rsatadi."
+},
+{
+"k": "s0605",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uyda tejash: chiroq, jo‘mrak, issiqlik"
+},
+{
+"k": "s0606",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Xonadan chiqqanda chiroqni o‘chiring, tish yuvganda jo‘mrakni yoping, derazalarni zich yoping — bular resurs tejashning oddiy usullari."
+},
+{
+"k": "s0607",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "O‘rmonni har qanday holatda tiklanmaydigan resurs deb hisoblash"
+},
+{
+"k": "s0608",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Terrasaning foydasini faqat «chiroyli» yoki «ekish oson» deb izohlash, eroziyani unutish"
+},
+{
+"k": "s0609",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Shisha va plastmassa tez chiriydi deb o‘ylash"
+},
+{
+"k": "s0610",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Qazilma yoqilg‘ilarni tiklanadigan resurs deb hisoblash"
+},
+{
+"k": "s0611",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Resursni inson umri davomida tiklanishi bo‘yicha tasniflang"
+},
+{
+"k": "s0612",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Usulning afzalligini «muammo → usul → natija» tartibida yozing"
+},
+{
+"k": "s0613",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Parchalanish savolida materialning kelib chiqishini aniqlang"
+},
+{
+"k": "s0614",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "resurs"
+},
+{
+"k": "s0615",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tabiiy boylik"
+},
+{
+"k": "s0616",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "ifloslanish"
+},
+{
+"k": "s0617",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "energiya manbai"
+},
+{
+"k": "s0618",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "eroziya"
+},
+{
+"k": "s0619",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "qayta ishlash"
+},
+{
+"k": "s0620",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Quyosh tizimi va koinot"
+},
+{
+"k": "s0621",
+"maydon": "maqsad",
+"tur": "matn",
+"uz": "Quyosh tizimi tuzilishini, sayyora, yo‘ldosh va yulduz farqini, Yer harakatlari, Oy fazalari, Oy va Quyosh tutilishlari hamda suv qalqishining sababini tushuntirish"
+},
+{
+"k": "s0622",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Nega to‘lin Oy ba’zan qizarib qoladi?\nTIMSS: 8-sinflarning o‘rtacha 47% i to‘g‘ri yechgan"
+},
+{
+"k": "s0623",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Oy tutilishida to‘lin Oy qorayib, qizg‘ish tusga kiradi. Bu paytda Quyosh, Yer va Oy qanday joylashgan bo‘ladi? [2] Xalqaro TIMSS tadqiqotida shu mavzudagi savollarni dunyo bo‘yicha sakkizinchi sinflarning o‘rtacha qirq yetti foizi to‘g‘ri yechgan. Dars oxirida siz bunday savollarni ishonch bilan yechadigan bo‘lasiz!"
+},
+{
+"k": "s0624",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Quyosh tizimi"
+},
+{
+"k": "s0625",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyosh — yulduz: o‘zi nur chiqaradi\n8 sayyora Quyosh atrofida aylanadi\nYo‘ldosh sayyora atrofida aylanadi (Oy — Yerning)"
+},
+{
+"k": "s0626",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Quyosh yulduz, u o‘zidan yorug‘lik va issiqlik chiqaradi; tizim markazida turadi. [2] Sakkizta sayyora: Merkuriy, Venera, Yer, Mars, Yupiter, Saturn, Uran va Neptun Quyosh atrofida aylanadi. [3] Yo‘ldoshlar sayyoralar atrofida aylanadi; Oy Yerning tabiiy yo‘ldoshi, u o‘zi nur chiqarmaydi, Quyosh nurini qaytaradi."
+},
+{
+"k": "s0627",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Yerning harakatlari"
+},
+{
+"k": "s0628",
+"maydon": "doska",
+"tur": "matn",
+"uz": "O‘z o‘qi atrofida — 24 soat: kun va tun\nQuyosh atrofida — ~365 kun: yil\nFasllar — o‘q og‘ishi (23,5°) tufayli"
+},
+{
+"k": "s0629",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yer o‘z o‘qi atrofida yigirma to‘rt soatda bir marta aylanadi, shuning uchun kun va tun almashadi. [2] Quyosh atrofida bir marta aylanib chiqishi uchun taxminan uch yuz oltmish besh kun kerak, bu bir yil. [3] Fasllar Yer o‘qining yigirma uch yarim gradus og‘ganligi tufayli almashadi, Quyoshgacha masofa tufayli emas."
+},
+{
+"k": "s0630",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Oy fazalari va tutilishlar"
+},
+{
+"k": "s0631",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Fazalar: Oyning yoritilgan qismini turlicha ko‘ramiz\nOy tutilishi: Quyosh — Yer — Oy, to‘lin oyda\nQuyosh tutilishi: Quyosh — Oy — Yer, yangi oyda"
+},
+{
+"k": "s0632",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Oy doim yarmi yoritilgan, lekin u Yer atrofida aylangani uchun biz yoritilgan qismini turlicha ko‘ramiz: yangi oy, chorak, to‘lin oy. [2] Oy tutilishida Yer Quyosh bilan Oy o‘rtasida turadi va uning soyasi Oyga tushadi; bu faqat to‘lin oyda bo‘ladi. [3] Quyosh tutilishida esa Oy o‘rtada turib, Quyoshni to‘sadi; bu yangi oyda bo‘ladi."
+},
+{
+"k": "s0633",
+"maydon": "sarlavha",
+"tur": "matn",
+"uz": "Suv qalqishi"
+},
+{
+"k": "s0634",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Asosiy sabab — Oyning tortishish kuchi\nKuniga taxminan ikki marta ko‘tariladi"
+},
+{
+"k": "s0635",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Okeanlarda suvning ko‘tarilib-pasayishi, ya’ni qalqish, asosan Oyning tortishish kuchi tufayli sodir bo‘ladi. [2] Ko‘pchilik qirg‘oqlarda suv kuniga taxminan ikki marta ko‘tariladi va ikki marta pasayadi; Quyosh ham ta’sir qiladi, lekin kuchsizroq."
+},
+{
+"k": "s0636",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyoshdan Yergacha 150 mln km. Nur necha daqiqada keladi?"
+},
+{
+"k": "s0637",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shart: Quyoshdan Yergacha bir yuz ellik million kilometr, yorug‘lik tezligi sekundiga uch yuz ming kilometr. Quyosh nuri Yerga qancha vaqtda yetib keladi?"
+},
+{
+"k": "s0638",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$t = \\frac{s}{v} = \\frac{150\\,000\\,000}{300\\,000} = 500$ s\n$500 : 60 \\approx 8{,}3$ min\nBiz Quyoshni 8 daqiqa oldingi holatda ko‘ramiz"
+},
+{
+"k": "s0639",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Vaqt yo‘lni tezlikka bo‘lishga teng: bir yuz ellik millionni uch yuz mingga bo‘lsak, besh yuz sekund. [2] Sekundni daqiqaga o‘tkazamiz: besh yuzni oltmishga bo‘lsak, taxminan sakkiz butun o‘ndan uch daqiqa. [3] Demak Quyoshga qaraganimizda, uni sakkiz daqiqa oldingi holatida ko‘ramiz."
+},
+{
+"k": "s0640",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Uch chizma: qaysi birida Oy tutilishi?"
+},
+{
+"k": "s0641",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] TIMSS uslubidagi masala: uchta chizmada Quyosh, Yer va Oy turlicha joylashgan. Qaysi biri Oy tutilishini ko‘rsatadi? Dunyoda bunday savolni o‘ttiz besh foiz o‘quvchi yechgan."
+},
+{
+"k": "s0642",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oy o‘zi nur chiqarmaydi\nTutilish = Oyga Quyosh nuri yetmaydi\nNurni Yer to‘sadi → Yer o‘rtada"
+},
+{
+"k": "s0643",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Avval asosiy faktni eslaymiz: Oy faqat Quyosh nurini qaytargani uchun ko‘rinadi. [2] Demak Oy qorayishi uchun unga keladigan Quyosh nurini nimadir to‘sishi kerak. [3] Bu to‘siq Yer: u Quyosh bilan Oy orasida bir chiziqda turishi kerak."
+},
+{
+"k": "s0644",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: Quyosh — Yer — Oy bir chiziqda\nTekshiruv: Oy Yerning tungi tomonida (to‘lin oy)"
+},
+{
+"k": "s0645",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Shunday qilib, Quyosh, Yer va Oy bir chiziqda, Yer o‘rtada turgan chizmani tanlaymiz. [2] Tekshiramiz: bu holatda Oy Yerning Quyoshga teskari tomonida, ya’ni to‘lin oy fazasida — hammasi mos."
+},
+{
+"k": "s0646",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oy tutilishida o‘rtada qaysi osmon jismi turadi?"
+},
+{
+"k": "s0647",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Oy tutilishida uchta osmon jismi bir chiziqda turadi. Ularning o‘rtasida qaysi biri bo‘ladi? Bir so‘z yozing."
+},
+{
+"k": "s0648",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Osmon jismini yozing"
+},
+{
+"k": "s0649",
+"maydon": "javob",
+"tur": "matn",
+"uz": "Yer|yer"
+},
+{
+"k": "s0650",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oygacha 384 000 km. Nur necha sekundda yetadi?"
+},
+{
+"k": "s0651",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Yerdan Oygacha uch yuz sakson to‘rt ming kilometr, yorug‘lik sekundiga uch yuz ming kilometr tarqaladi. Oydan qaytgan nur Yerga necha sekundda yetadi? Yuzdan birlargacha yozing."
+},
+{
+"k": "s0652",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Vaqtni sekundda yozing"
+},
+{
+"k": "s0653",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1. Chizmada har bir jismni nomlang\n2. Soya qayerga tushadi? — nur yo‘lini chizing\n3. Sayyora — Quyosh atrofida, yo‘ldosh — sayyora atrofida"
+},
+{
+"k": "s0654",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Xalqaro savolda chizmadagi har bir doira qaysi jism ekanini va Quyosh nuri qaysi tomondan kelishini belgilang. [2] Tutilish savolida Quyoshdan chiqqan nur yo‘lini chizing va soya qaysi jismga tushishini ko‘ring. [3] Sayyora va yo‘ldosh farqi so‘ralsa, ular nimaning atrofida aylanishini yozing."
+},
+{
+"k": "s0655",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyosh — yulduz; sayyoralar unga, yo‘ldoshlar sayyoraga\nKun-tun — aylanish, yil — Quyosh atrofida, fasl — og‘ish\nOy tutilishi: Yer o‘rtada; qalqish — Oy tortishi"
+},
+{
+"k": "s0656",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "[1] Quyosh tizimida kim kimning atrofida aylanishini eslab qoling. [2] Yer harakatlarining har biri qaysi hodisani berishini yodda tuting. [3] Oy tutilishida Yer o‘rtada turadi, suv qalqishining asosiy sababi esa Oyning tortishish kuchi."
+},
+{
+"k": "s0657",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyosh — lampa, Oy — oyna"
+},
+{
+"k": "s0658",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Quyosh yonib turgan lampaga o‘xshaydi, Oy esa oynaga: u o‘zi yonmaydi, lampaning nurini qaytaradi."
+},
+{
+"k": "s0659",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Raqs: sayyoralar Quyosh atrofida, Oy Yer atrofida"
+},
+{
+"k": "s0660",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sinfdagi o‘yinni tasavvur qiling: o‘rtada Quyosh turadi, Yer uning atrofida aylanadi, Oy esa Yerning atrofida aylanib, u bilan birga Quyosh atrofida yuradi."
+},
+{
+"k": "s0661",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yulduz — nur chiqaradi; sayyora, yo‘ldosh — qaytaradi"
+},
+{
+"k": "s0662",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir savol bilan ajrating: o‘zi nur chiqaradimi? Ha — yulduz; yo‘q — sayyora yoki yo‘ldosh."
+},
+{
+"k": "s0663",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Aylanish — kun; Quyosh atrofida yurish — yil"
+},
+{
+"k": "s0664",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yer pirpirak kabi o‘z o‘qida aylanadi — bu kun. Quyosh atrofida katta doira bo‘ylab yuradi — bu yil."
+},
+{
+"k": "s0665",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yozda Quyosh baland, qishda past"
+},
+{
+"k": "s0666",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yozda Shimoliy yarimshar Quyosh tomon og‘gan, nurlar tik tushadi va kun uzun. Qishda teskari og‘gan, nurlar qiya tushadi va kun qisqa."
+},
+{
+"k": "s0667",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Globus va chiroq tajribasi"
+},
+{
+"k": "s0668",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qorong‘i xonada chiroqni Quyosh deb, og‘ma globusni uning atrofida aylantiring. Bir tomoni goh ko‘proq, goh kamroq yoritilishini ko‘rasiz."
+},
+{
+"k": "s0669",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yer soyasi Oyni yopadi"
+},
+{
+"k": "s0670",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oy tutilishida Yer o‘zining soyasi bilan Oyni yopadi. Shuning uchun Yer o‘rtada bo‘lishi kerak."
+},
+{
+"k": "s0671",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Fonar, koptok va olma"
+},
+{
+"k": "s0672",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Fonarni yoqib, oldiga koptok, uning ortiga olma qo‘ying. Koptok soyasi olmaga tushadi — fonar Quyosh, koptok Yer, olma Oy."
+},
+{
+"k": "s0673",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oy tutilishi — to‘lin oy; Quyosh tutilishi — yangi oy"
+},
+{
+"k": "s0674",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Fazalar bilan eslang: Oy tutilishi faqat to‘lin oyda, Quyosh tutilishi faqat yangi oyda bo‘ladi."
+},
+{
+"k": "s0675",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Oy suvni o‘ziga «tortadi»"
+},
+{
+"k": "s0676",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oy Yerdagi okean suvini o‘ziga biroz tortadi, shuning uchun suv bir tomonda ko‘tariladi."
+},
+{
+"k": "s0677",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qirg‘oqdagi qayiqlar"
+},
+{
+"k": "s0678",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dengiz qirg‘og‘ida ertalab suvda turgan qayiqlar kunduzi quruqda qolishi mumkin: suv pasaygan. Kechqurun suv yana ko‘tariladi."
+},
+{
+"k": "s0679",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ikki do‘nglik: Oy tomonda va teskari tomonda"
+},
+{
+"k": "s0680",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yer atrofidagi suvni ikki do‘nglikli qobiq deb chizing: biri Oy tomonda, biri teskari tomonda. Yer aylanganda har bir qirg‘oq kuniga ikki do‘nglikdan o‘tadi."
+},
+{
+"k": "s0681",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Oy o‘zidan nur chiqaradi deb o‘ylash"
+},
+{
+"k": "s0682",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Oy tutilishida Oy o‘rtada turadi deb o‘ylash (Quyosh tutilishi bilan aralashtirish)"
+},
+{
+"k": "s0683",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Fasllarni Yerning Quyoshga yaqinlashib-uzoqlashishi bilan izohlash"
+},
+{
+"k": "s0684",
+"maydon": "tipik_xatolar",
+"tur": "matn",
+"uz": "Suv qalqishini shamol yoki Yer aylanishining asosiy sababi deb hisoblash"
+},
+{
+"k": "s0685",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Chizmada Quyosh nuri yo‘nalishini va soyani chizib ko‘ring"
+},
+{
+"k": "s0686",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Sayyora va yo‘ldoshni nimaning atrofida aylanishi bo‘yicha farqlang"
+},
+{
+"k": "s0687",
+"maydon": "strategiyalar",
+"tur": "matn",
+"uz": "Masofa va vaqt hisobida $t = \\frac{s}{v}$ dan foydalaning va birliklarni o‘tkazing"
+},
+{
+"k": "s0688",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "sayyora"
+},
+{
+"k": "s0689",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "Oy"
+},
+{
+"k": "s0690",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "yulduz"
+},
+{
+"k": "s0691",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "yo‘ldosh"
+},
+{
+"k": "s0692",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "tutilish"
+},
+{
+"k": "s0693",
+"maydon": "kalit_sozlar",
+"tur": "matn",
+"uz": "astronomiya"
+}
+]

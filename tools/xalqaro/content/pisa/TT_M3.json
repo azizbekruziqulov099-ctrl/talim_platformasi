@@ -1,0 +1,1483 @@
+[
+ {
+  "birlik": "P-TT-M35",
+  "asl": "Take the Test, Mathematics unit 35: Reaction Time",
+  "toplam": "P_M",
+  "nom": "100 metrga yugurish: reaksiya vaqti",
+  "stimul": "Yugurish musobaqasida «reaksiya vaqti» — startyor to‘pponchasi otilgan paytdan yuguruvchi start kolodkasidan uzilgan paytgacha o‘tgan vaqt. «Final vaqt» reaksiya vaqtini ham, yugurish vaqtini ham o‘z ichiga oladi.\n\nQuyidagi jadvalda yoshlar o‘rtasidagi viloyat musobaqasida 100 metrga yugurgan 8 nafar sportchining natijalari berilgan (natijalar o‘quv maqsadida o‘ylab topilgan).\n\nYo‘lak | Reaksiya vaqti (s) | Final vaqt (s)\n1 | 0,152 | 10,35\n2 | 0,141 | 10,22\n3 | 0,188 | 10,47\n4 | 0,205 | Masofani tugatmadi\n5 | 0,173 | 10,12\n6 | 0,226 | 10,27\n7 | 0,164 | 10,40\n8 | 0,199 | 10,31",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M35-1",
+    "asl_id": "Reaction Time Q1 (35.1)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "talqin",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "bilish",
+    "qiyinlik_ball": 450,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Jadvaldan o‘nli kasrlarni taqqoslab, eng kichik final vaqtlarni tartiblash",
+    "usul": "G‘olib — final vaqti eng kichik sportchi. Faqat «Final vaqt» ustuniga qarang va masofani tugatmaganni chiqarib tashlang.",
+    "turi": "tanlov",
+    "savol": "Oltin, kumush va bronza medallarini qaysi yo‘laklardagi sportchilar oldi? (tartib: oltin, kumush, bronza)",
+    "rasm": null,
+    "javoblar": [
+     "2, 1, 7",
+     "5, 6, 2",
+     "3, 7, 1",
+     "5, 2, 6"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Medal: final vaqt eng kichik",
+      "ovoz": "Medalni reaksiya emas, final vaqt hal qiladi — u eng kichik bo‘lishi kerak."
+     },
+     {
+      "doska": "4-yo‘lak tugatmagan — hisobga olinmaydi",
+      "ovoz": "4-yo‘lakdagi sportchi masofani tugatmagan, uni chiqarib tashlaymiz."
+     },
+     {
+      "doska": "10,12 < 10,22 < 10,27 < 10,31 < ...",
+      "ovoz": "Final vaqtlarni o‘sish tartibida yozamiz: 10,12 (5), 10,22 (2), 10,27 (6)."
+     },
+     {
+      "doska": "Javob: D) 5, 2, 6",
+      "ovoz": "Demak, oltin — 5-yo‘lak, kumush — 2-yo‘lak, bronza — 6-yo‘lak."
+     }
+    ],
+    "xatolar": {
+     "0": "Bu eng tez reaksiya vaqtlari (0,141; 0,152; 0,164). Reaksiya tez bo‘lsa ham, sportchi sekin yugurishi mumkin.",
+     "1": "Siz reaksiya vaqtini ayirib, sof yugurish vaqtini taqqosladingiz. Medal esa final vaqt bo‘yicha beriladi.",
+     "2": "Bu eng katta final vaqtlar — ya’ni oxirgi o‘rinlar. Vaqt qancha kichik bo‘lsa, natija shuncha yaxshi."
+    },
+    "maslahat": "Musobaqada nima o‘lchanishini aniqlang: g‘olibni final vaqt belgilaydi."
+   },
+   {
+    "id": "P-TT-M35-2",
+    "asl_id": "Reaction Time Q2 (35.2)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "mulohaza",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 560,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Shartli vaziyatda vaqtni qayta hisoblash va natijani taqqoslab asoslash",
+    "usul": "Final vaqtdan haqiqiy reaksiyani ayirib, yugurish vaqtini toping, so‘ng unga eng kichik mumkin bo‘lgan reaksiya vaqtini qo‘shing.",
+    "turi": "tanlov",
+    "savol": "Hozircha hech bir inson start signaliga 0,110 soniyadan tezroq javob bera olmagan. Agar bronza medali sohibining reaksiyasi tezroq bo‘lganida, u kumush medalni olishi mumkin edimi? Qaysi javob to‘g‘ri va to‘g‘ri asoslangan?",
+    "rasm": null,
+    "javoblar": [
+     "Yo‘q: uning final vaqti 10,27 s, bu kumushdagi 10,22 s dan katta, reaksiya buni o‘zgartirmaydi.",
+     "Ha, hatto oltin medalni ham olardi, chunki 10,154 s < 10,12 s.",
+     "Ha: eng yaxshi holda 10,27 − 0,226 + 0,110 = 10,154 s bo‘lardi, bu 10,22 s dan kam.",
+     "Yo‘q: 10,27 − 0,110 = 10,16 s bo‘ladi, bu baribir g‘olibning 10,12 s idan ko‘p."
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Yugurish = final − reaksiya",
+      "ovoz": "Bronza sohibi — 6-yo‘lak: final 10,27 s, reaksiya 0,226 s."
+     },
+     {
+      "doska": "10,27 − 0,226 = 10,044 s",
+      "ovoz": "Uning sof yugurish vaqti 10,044 soniya."
+     },
+     {
+      "doska": "Eng yaxshi holat: 10,044 + 0,110 = 10,154 s",
+      "ovoz": "Eng tez mumkin bo‘lgan reaksiya 0,110 s ni qo‘shamiz."
+     },
+     {
+      "doska": "10,12 < 10,154 < 10,22",
+      "ovoz": "Bu kumush sohibining 10,22 s idan kam, lekin oltinning 10,12 s idan ko‘p."
+     },
+     {
+      "doska": "Javob: C) Ha, 10,154 s < 10,22 s",
+      "ovoz": "Demak, u kumush olishi mumkin edi, oltinni esa yo‘q."
+     }
+    ],
+    "xatolar": {
+     "0": "Final vaqt ichida reaksiya vaqti ham bor. Reaksiya qisqarsa, final vaqt ham qisqaradi.",
+     "1": "Taqqoslash xato: 10,154 soniya 10,12 soniyadan katta, shuning uchun oltin bo‘lmaydi.",
+     "3": "Ikki xato: reaksiyani butunlay ayirib, 0,110 ni o‘rniga qo‘shmadingiz va kumush emas, oltin bilan taqqosladingiz."
+    },
+    "maslahat": "Avval «nima o‘zgaradi, nima o‘zgarmaydi» deb so‘rang: reaksiya o‘zgaradi, yugurish vaqti esa o‘sha-o‘sha."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M36",
+  "asl": "Take the Test, Mathematics unit 36: Water Tank",
+  "toplam": "P_M",
+  "nom": "Bog‘dagi suv idishi",
+  "stimul": "Chorvoq yaqinidagi dala hovlida bog‘ni sug‘orish uchun suv idishi o‘rnatilgan. Idishning pastki qismi silindr (balandligi 1,2 m, diametri 1,0 m), ustki qismi esa yuqoriga qarab torayib boradigan kesik konus (balandligi 1,0 m, yuqori og‘zining diametri 0,2 m). Shakl va o‘lchamlar rasmda ko‘rsatilgan.\n\nAvvaliga idish bo‘sh. Keyin unga nasos yordamida har soniyada 2 litrdan suv quyila boshlaydi.",
+  "stimul_rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 310.0\" font-family=\"sans-serif\"><polygon points=\"140.0,30 160.0,30 200.0,130.0 100.0,130.0\" fill=\"#e8f0fa\" stroke=\"#222\" stroke-width=\"1.5\"/><rect x=\"100.0\" y=\"130.0\" width=\"100.0\" height=\"120.0\" fill=\"#e8f0fa\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"100.0\" y1=\"264.0\" x2=\"200.0\" y2=\"264.0\" stroke=\"#222\"/><text x=\"150\" y=\"280\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">1,0 m</text><line x1=\"140.0\" y1=\"20\" x2=\"160.0\" y2=\"20\" stroke=\"#222\"/><text x=\"166\" y=\"24\" font-size=\"12\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">0,2 m</text><line x1=\"222.0\" y1=\"30\" x2=\"222.0\" y2=\"130.0\" stroke=\"#222\"/><text x=\"228\" y=\"84\" font-size=\"12\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">1,0 m</text><line x1=\"222.0\" y1=\"130.0\" x2=\"222.0\" y2=\"250.0\" stroke=\"#222\"/><text x=\"228\" y=\"194\" font-size=\"12\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">1,2 m</text><line x1=\"217.0\" y1=\"30\" x2=\"227.0\" y2=\"30\" stroke=\"#222\"/><line x1=\"217.0\" y1=\"130.0\" x2=\"227.0\" y2=\"130.0\" stroke=\"#222\"/><line x1=\"217.0\" y1=\"250.0\" x2=\"227.0\" y2=\"250.0\" stroke=\"#222\"/><text x=\"150\" y=\"300\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">Suv idishi (yon ko‘rinish)</text></svg>",
+  "savollar": [
+   {
+    "id": "P-TT-M36-1",
+    "asl_id": "Water Tank Q1 (36.1)",
+    "mavzu": "PM-OZG",
+    "jarayon": "ifodalash",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 530,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Idish shakliga qarab suv sathi balandligining vaqtga bog‘liqligi grafigini tanlash",
+    "usul": "Har bir qismda «1 soniyada sath qancha ko‘tariladi?» deb o‘ylang: idish keng bo‘lsa — sekin, tor bo‘lsa — tez.",
+    "turi": "tanlov",
+    "savol": "Qaysi grafik suv sathi balandligi vaqt o‘tishi bilan qanday o‘zgarishini to‘g‘ri ko‘rsatadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 450 292\" font-family=\"sans-serif\"><rect x=\"10\" y=\"6\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"20\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">A</text><line x1=\"24\" y1=\"123\" x2=\"194\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"24\" y1=\"123\" x2=\"24\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"194,119 202,123 194,127\" fill=\"#222\"/><polygon points=\"20,38 24,30 28,38\" fill=\"#222\"/><text x=\"200\" y=\"139\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"36\" y=\"34\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Balandlik</text><path d=\"M24.0,123.0 L25.3,122.4 L26.6,121.8 L27.9,121.2 L29.3,120.6 L30.6,120.0 L31.9,119.3 L33.2,118.7 L34.5,118.1 L35.9,117.5 L37.2,116.9 L38.5,116.3 L39.8,115.7 L41.1,115.1 L42.4,114.5 L43.8,113.9 L45.1,113.3 L46.4,112.7 L47.7,112.0 L49.0,111.4 L50.3,110.8 L51.6,110.2 L53.0,109.6 L54.3,109.0 L55.6,108.4 L56.9,107.8 L58.2,107.2 L59.5,106.6 L60.9,106.0 L62.2,105.4 L63.5,104.8 L64.8,104.1 L66.1,103.5 L67.5,102.9 L68.8,102.3 L70.1,101.7 L71.4,101.1 L72.7,100.5 L74.0,99.9 L75.3,99.3 L76.7,98.7 L78.0,98.1 L79.3,97.5 L80.6,96.8 L81.9,96.2 L83.2,95.6 L84.6,95.0 L85.9,94.4 L87.2,93.8 L88.5,93.2 L89.8,92.6 L91.2,92.0 L92.5,91.4 L93.8,90.8 L95.1,90.2 L96.4,89.5 L97.7,88.9 L99.0,88.3 L100.4,87.7 L101.7,87.1 L103.0,86.5 L104.3,85.9 L105.6,85.3 L107.0,84.7 L108.3,84.1 L109.6,83.5 L110.9,82.8 L112.2,82.2 L113.5,81.6 L114.8,81.0 L116.2,80.4 L117.5,79.8 L118.8,79.2 L120.1,78.6 L121.4,78.0 L122.8,77.4 L124.1,76.8 L125.4,76.2 L126.7,75.5 L128.0,74.9 L129.3,74.3 L130.7,73.7 L132.0,73.1 L133.3,72.5 L134.6,71.9 L135.9,71.3 L137.2,70.7 L138.6,70.1 L139.9,69.5 L141.2,68.9 L142.5,68.2 L143.8,67.6 L145.1,67.0 L146.4,66.4 L147.8,65.8 L149.1,65.2 L150.4,64.6 L151.7,64.0 L153.0,63.4 L154.3,62.8 L155.7,62.2 L157.0,61.6 L158.3,61.0 L159.6,60.3 L160.9,59.7 L162.2,59.1 L163.6,58.5 L164.9,57.9 L166.2,57.3 L167.5,56.7 L168.8,56.1 L170.2,55.5 L171.5,54.9 L172.8,54.3 L174.1,53.7 L175.4,53.0 L176.7,52.4 L178.1,51.8 L179.4,51.2 L180.7,50.6 L182.0,50.0\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"250\" y=\"6\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"260\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">B</text><line x1=\"264\" y1=\"123\" x2=\"434\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"264\" y1=\"123\" x2=\"264\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"434,119 442,123 434,127\" fill=\"#222\"/><polygon points=\"260,38 264,30 268,38\" fill=\"#222\"/><text x=\"440\" y=\"139\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"276\" y=\"34\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Balandlik</text><path d=\"M264.0,123.0 L265.3,122.6 L266.6,122.2 L267.9,121.7 L269.3,121.3 L270.6,120.9 L271.9,120.5 L273.2,120.1 L274.5,119.6 L275.9,119.2 L277.2,118.8 L278.5,118.4 L279.8,117.9 L281.1,117.5 L282.4,117.1 L283.8,116.7 L285.1,116.3 L286.4,115.8 L287.7,115.4 L289.0,115.0 L290.3,114.6 L291.6,114.2 L293.0,113.7 L294.3,113.3 L295.6,112.9 L296.9,112.5 L298.2,112.0 L299.6,111.6 L300.9,111.2 L302.2,110.8 L303.5,110.4 L304.8,109.9 L306.1,109.5 L307.4,109.1 L308.8,108.7 L310.1,108.3 L311.4,107.8 L312.7,107.4 L314.0,107.0 L315.4,106.6 L316.7,106.2 L318.0,105.7 L319.3,105.3 L320.6,104.9 L321.9,104.5 L323.2,104.0 L324.6,103.6 L325.9,103.2 L327.2,102.8 L328.5,102.4 L329.8,101.9 L331.1,101.5 L332.5,101.1 L333.8,100.7 L335.1,100.3 L336.4,99.8 L337.7,99.4 L339.1,99.0 L340.4,98.6 L341.7,98.2 L343.0,97.7 L344.3,97.3 L345.6,96.9 L346.9,96.5 L348.3,96.0 L349.6,95.6 L350.9,95.2 L352.2,94.8 L353.5,94.4 L354.9,93.9 L356.2,93.5 L357.5,93.1 L358.8,92.7 L360.1,92.3 L361.4,91.8 L362.8,91.4 L364.1,91.0 L365.4,90.6 L366.7,90.2 L368.0,89.7 L369.3,89.3 L370.6,88.8 L372.0,88.3 L373.3,87.7 L374.6,87.2 L375.9,86.6 L377.2,86.0 L378.6,85.3 L379.9,84.7 L381.2,84.0 L382.5,83.3 L383.8,82.5 L385.1,81.8 L386.4,81.0 L387.8,80.2 L389.1,79.3 L390.4,78.5 L391.7,77.6 L393.0,76.7 L394.4,75.7 L395.7,74.8 L397.0,73.8 L398.3,72.7 L399.6,71.7 L400.9,70.6 L402.2,69.5 L403.6,68.4 L404.9,67.3 L406.2,66.1 L407.5,64.9 L408.8,63.7 L410.1,62.5 L411.5,61.2 L412.8,59.9 L414.1,58.6 L415.4,57.2 L416.7,55.8 L418.1,54.4 L419.4,53.0 L420.7,51.6 L422.0,50.1\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"10\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"20\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">C</text><line x1=\"24\" y1=\"263\" x2=\"194\" y2=\"263\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"24\" y1=\"263\" x2=\"24\" y2=\"178\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"194,259 202,263 194,267\" fill=\"#222\"/><polygon points=\"20,178 24,170 28,178\" fill=\"#222\"/><text x=\"200\" y=\"279\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"36\" y=\"174\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Balandlik</text><path d=\"M24.0,263.0 L25.3,257.5 L26.6,255.3 L27.9,253.5 L29.3,252.1 L30.6,250.8 L31.9,249.6 L33.2,248.5 L34.5,247.5 L35.9,246.6 L37.2,245.7 L38.5,244.8 L39.8,244.0 L41.1,243.3 L42.4,242.5 L43.8,241.8 L45.1,241.1 L46.4,240.4 L47.7,239.8 L49.0,239.1 L50.3,238.5 L51.6,237.9 L53.0,237.3 L54.3,236.7 L55.6,236.2 L56.9,235.6 L58.2,235.1 L59.5,234.6 L60.9,234.0 L62.2,233.5 L63.5,233.0 L64.8,232.5 L66.1,232.0 L67.5,231.5 L68.8,231.1 L70.1,230.6 L71.4,230.2 L72.7,229.7 L74.0,229.2 L75.3,228.7 L76.7,228.2 L78.0,227.8 L79.3,227.3 L80.6,226.8 L81.9,226.3 L83.2,225.8 L84.6,225.4 L85.9,224.9 L87.2,224.4 L88.5,223.9 L89.8,223.5 L91.2,223.0 L92.5,222.5 L93.8,222.0 L95.1,221.5 L96.4,221.1 L97.7,220.6 L99.0,220.1 L100.4,219.6 L101.7,219.2 L103.0,218.7 L104.3,218.2 L105.6,217.7 L107.0,217.2 L108.3,216.8 L109.6,216.3 L110.9,215.8 L112.2,215.3 L113.5,214.9 L114.8,214.4 L116.2,213.9 L117.5,213.4 L118.8,212.9 L120.1,212.5 L121.4,212.0 L122.8,211.5 L124.1,211.0 L125.4,210.6 L126.7,210.1 L128.0,209.6 L129.3,209.1 L130.7,208.6 L132.0,208.2 L133.3,207.7 L134.6,207.2 L135.9,206.7 L137.2,206.3 L138.6,205.8 L139.9,205.3 L141.2,204.8 L142.5,204.3 L143.8,203.9 L145.1,203.4 L146.4,202.9 L147.8,202.4 L149.1,201.9 L150.4,201.5 L151.7,201.0 L153.0,200.5 L154.3,200.0 L155.7,199.6 L157.0,199.1 L158.3,198.6 L159.6,198.1 L160.9,197.6 L162.2,197.2 L163.6,196.7 L164.9,196.2 L166.2,195.7 L167.5,195.3 L168.8,194.8 L170.2,194.3 L171.5,193.8 L172.8,193.3 L174.1,192.9 L175.4,192.4 L176.7,191.9 L178.1,191.4 L179.4,191.0 L180.7,190.5 L182.0,190.0\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"250\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"260\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">D</text><line x1=\"264\" y1=\"263\" x2=\"434\" y2=\"263\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"264\" y1=\"263\" x2=\"264\" y2=\"178\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"434,259 442,263 434,267\" fill=\"#222\"/><polygon points=\"260,178 264,170 268,178\" fill=\"#222\"/><text x=\"440\" y=\"279\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"276\" y=\"174\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Balandlik</text><path d=\"M264.0,263.0 L265.3,261.7 L266.6,260.4 L267.9,259.1 L269.3,257.8 L270.6,256.5 L271.9,255.2 L273.2,253.9 L274.5,252.6 L275.9,251.3 L277.2,250.0 L278.5,248.7 L279.8,247.4 L281.1,246.1 L282.4,244.8 L283.8,243.4 L285.1,242.1 L286.4,240.8 L287.7,239.5 L289.0,238.2 L290.3,236.9 L291.6,235.6 L293.0,234.3 L294.3,233.0 L295.6,231.7 L296.9,230.4 L298.2,229.1 L299.6,227.8 L300.9,226.5 L302.2,225.2 L303.5,223.9 L304.8,222.6 L306.1,221.3 L307.4,220.0 L308.8,218.7 L310.1,217.4 L311.4,216.1 L312.7,214.8 L314.0,213.5 L315.4,212.2 L316.7,210.9 L318.0,209.6 L319.3,208.2 L320.6,208.2 L321.9,208.2 L323.2,208.2 L324.6,208.2 L325.9,208.2 L327.2,208.2 L328.5,208.2 L329.8,208.2 L331.1,208.2 L332.5,208.2 L333.8,208.2 L335.1,208.2 L336.4,208.2 L337.7,208.2 L339.1,208.2 L340.4,208.2 L341.7,208.2 L343.0,208.2 L344.3,208.2 L345.6,208.2 L346.9,208.2 L348.3,208.2 L349.6,208.2 L350.9,208.2 L352.2,208.2 L353.5,208.2 L354.9,208.2 L356.2,208.2 L357.5,208.2 L358.8,208.2 L360.1,208.2 L361.4,208.2 L362.8,208.2 L364.1,208.2 L365.4,208.2 L366.7,208.2 L368.0,208.2 L369.3,208.2 L370.6,208.2 L372.0,208.2 L373.3,208.2 L374.6,208.2 L375.9,208.2 L377.2,208.2 L378.6,208.2 L379.9,208.2 L381.2,208.2 L382.5,208.2 L383.8,208.2 L385.1,208.2 L386.4,208.2 L387.8,208.2 L389.1,208.2 L390.4,208.2 L391.7,208.2 L393.0,208.2 L394.4,208.2 L395.7,208.2 L397.0,208.2 L398.3,208.2 L399.6,208.2 L400.9,208.2 L402.2,208.2 L403.6,208.2 L404.9,208.2 L406.2,208.2 L407.5,208.2 L408.8,208.2 L410.1,208.2 L411.5,208.2 L412.8,208.2 L414.1,208.2 L415.4,208.2 L416.7,208.2 L418.1,208.2 L419.4,208.2 L420.7,208.2 L422.0,208.2\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/></svg>",
+    "javoblar": [
+     "A grafik: boshidan oxirigacha bir tekis to‘g‘ri chiziq",
+     "B grafik: avval to‘g‘ri chiziq, keyin tobora tiklashib boruvchi egri",
+     "C grafik: avval tik ko‘tariluvchi egri, keyin to‘g‘ri chiziq",
+     "D grafik: avval to‘g‘ri chiziq, keyin gorizontal chiziq"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Har soniyada bir xil hajm: 2 l",
+      "ovoz": "Idishga har soniyada bir xil miqdorda suv tushadi."
+     },
+     {
+      "doska": "Silindr: kesim o‘zgarmas → to‘g‘ri chiziq",
+      "ovoz": "Pastki silindrda kenglik o‘zgarmaydi, sath bir tekis ko‘tariladi — grafik to‘g‘ri chiziq."
+     },
+     {
+      "doska": "Konus: yuqoriga torayadi → tezlashadi",
+      "ovoz": "Ustki qism torayib boradi, 2 litr suv tobora balandroq qatlam hosil qiladi — grafik tobora tiklashadi."
+     },
+     {
+      "doska": "Javob: B) to‘g‘ri chiziq, keyin tikroq egri",
+      "ovoz": "Shunday grafik — B."
+     }
+    ],
+    "xatolar": {
+     "0": "Bu faqat butun idish bir xil kenglikda bo‘lganda to‘g‘ri. Ustki qism torayadi, sath tezroq ko‘tariladi.",
+     "2": "Bu pastdan torayib, keyin kengayadigan idish uchun mos (masalan, uchi pastda bo‘lgan konus ustida silindr).",
+     "3": "Gorizontal chiziq sath to‘xtaganini bildiradi, lekin suv quyilishda davom etmoqda."
+    },
+    "maslahat": "Shakl keng joyda sath sekin, tor joyda tez ko‘tariladi — buni grafik qiyaligi bilan bog‘lang."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M37",
+  "asl": "Take the Test, Mathematics unit 37: Spring Fair",
+  "toplam": "P_M",
+  "nom": "Navro‘z saylidagi o‘yin",
+  "stimul": "Navro‘z saylida bir o‘yin shunday o‘ynaladi: o‘yinchi avval 6 ta teng bo‘lakka bo‘lingan aylanuvchi strelkani aylantiradi. Agar strelka juft sonda to‘xtasa, o‘yinchi xaltadan qaramasdan bitta shar olish huquqini oladi. Strelka va xaltadagi sharlar rasmda ko‘rsatilgan: xaltada 16 ta shar bor, ulardan 4 tasi qora.\n\nQora shar chiqsa — sovg‘a beriladi. Malika o‘yinni bir marta o‘ynaydi.",
+  "stimul_rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 370 210\" font-family=\"sans-serif\"><circle cx=\"100\" cy=\"100\" r=\"75\" fill=\"#f4f7fb\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"100\" y1=\"100\" x2=\"100.0\" y2=\"25.0\" stroke=\"#222\"/><text x=\"123\" y=\"66\" font-size=\"17\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">3</text><line x1=\"100\" y1=\"100\" x2=\"165.0\" y2=\"62.5\" stroke=\"#222\"/><text x=\"146\" y=\"106\" font-size=\"17\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">4</text><line x1=\"100\" y1=\"100\" x2=\"165.0\" y2=\"137.5\" stroke=\"#222\"/><text x=\"123\" y=\"146\" font-size=\"17\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">8</text><line x1=\"100\" y1=\"100\" x2=\"100.0\" y2=\"175.0\" stroke=\"#222\"/><text x=\"77\" y=\"146\" font-size=\"17\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">10</text><line x1=\"100\" y1=\"100\" x2=\"35.0\" y2=\"137.5\" stroke=\"#222\"/><text x=\"54\" y=\"106\" font-size=\"17\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">12</text><line x1=\"100\" y1=\"100\" x2=\"35.0\" y2=\"62.5\" stroke=\"#222\"/><text x=\"77\" y=\"66\" font-size=\"17\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">6</text><line x1=\"100\" y1=\"100\" x2=\"70\" y2=\"68\" stroke=\"#222\" stroke-width=\"3\"/><polygon points=\"62,59 78,66 67,76\" fill=\"#222\"/><circle cx=\"100\" cy=\"100\" r=\"4\" fill=\"#222\"/><path d=\"M215,40 L215,170 Q215,180 225,180 L345,180 Q355,180 355,170 L355,40 Q285,55 215,40 Z\" fill=\"#fbf8f0\" stroke=\"#222\" stroke-width=\"1.5\"/><circle cx=\"240\" cy=\"85\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"270\" cy=\"85\" r=\"9\" fill=\"#222\" stroke=\"#222\"/><circle cx=\"300\" cy=\"85\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"330\" cy=\"85\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"240\" cy=\"110\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"270\" cy=\"110\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"300\" cy=\"110\" r=\"9\" fill=\"#222\" stroke=\"#222\"/><circle cx=\"330\" cy=\"110\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"240\" cy=\"135\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"270\" cy=\"135\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"300\" cy=\"135\" r=\"9\" fill=\"#222\" stroke=\"#222\"/><circle cx=\"330\" cy=\"135\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"240\" cy=\"160\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"270\" cy=\"160\" r=\"9\" fill=\"#222\" stroke=\"#222\"/><circle cx=\"300\" cy=\"160\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><circle cx=\"330\" cy=\"160\" r=\"9\" fill=\"#fff\" stroke=\"#222\"/><text x=\"100\" y=\"198\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">Aylanuvchi strelka</text><text x=\"285\" y=\"198\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">Xalta: 16 ta shar</text></svg>",
+  "savollar": [
+   {
+    "id": "P-TT-M37-1",
+    "asl_id": "Spring Fair Q1 (37.1)",
+    "mavzu": "PM-NOA",
+    "jarayon": "qollash",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 540,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Ikki bosqichli tasodifiy hodisa ehtimolini baholash",
+    "usul": "Ikkala bosqichning ehtimolini alohida toping va ko‘paytiring, so‘ng natijani so‘z bilan baholang.",
+    "turi": "tanlov",
+    "savol": "Malikaning sovg‘a yutib olish ehtimoli qanday?",
+    "rasm": null,
+    "javoblar": [
+     "Mumkin emas",
+     "Ehtimoli kam",
+     "Taxminan 50%",
+     "Ehtimoli katta"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Juft sonlar: 4, 6, 8, 10, 12 → 5 ta",
+      "ovoz": "Strelkadagi 6 ta sondan 5 tasi juft, faqat 3 toq."
+     },
+     {
+      "doska": "P(juft) = 5/6",
+      "ovoz": "Demak, xaltadan shar olish ehtimoli 5/6 — ancha katta."
+     },
+     {
+      "doska": "P(qora) = 4/16 = 1/4",
+      "ovoz": "Xaltadagi 16 ta shardan 4 tasi qora."
+     },
+     {
+      "doska": "5/6 · 1/4 = 5/24 ≈ 0,21",
+      "ovoz": "Ikkala shart bajarilishi kerak, ehtimollar ko‘paytiriladi: taxminan 21%."
+     },
+     {
+      "doska": "Javob: B) Ehtimoli kam",
+      "ovoz": "21% — imkonsiz emas, lekin 50% dan ancha kam, demak ehtimoli kam."
+     }
+    ],
+    "xatolar": {
+     "0": "Qora sharlar bor va juft son chiqishi ham mumkin, demak yutish mumkin.",
+     "2": "Faqat ikkinchi bosqichga ham qarash kerak: qora shar ehtimoli atigi 1/4, umumiy ehtimol taxminan 21%.",
+     "3": "Siz faqat strelkaga (5/6) qaradingiz. Sovg‘a uchun qora shar ham chiqishi kerak."
+    },
+    "maslahat": "Ko‘p bosqichli o‘yinda har bir bosqich ehtimoli 1 dan kichik bo‘lgani uchun umumiy ehtimol kamayadi."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M38",
+  "asl": "Take the Test, Mathematics unit 38: Swing",
+  "toplam": "P_M",
+  "nom": "Arg‘imchoq to‘xtamoqda",
+  "stimul": "Zarina mahalla bog‘idagi arg‘imchoqda uchmoqda. Bir payt u oyoqlari bilan harakat qilishni to‘xtatdi va endi arg‘imchoqni hech kim itarmaydi. Arg‘imchoq tebranishda davom etadi, lekin har safar avvalgidan pastroq ko‘tariladi. Arg‘imchoqning eng pastki nuqtasi doim bir xil balandlikda bo‘ladi.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M38-1",
+    "asl_id": "Swing Q1 (38.1)",
+    "mavzu": "PM-OZG",
+    "jarayon": "talqin",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 500,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Real harakatni grafik bilan bog‘lash: tebranish amplitudasining kamayishi",
+    "usul": "Ikkita narsani tekshiring: eng yuqori nuqtalar qanday o‘zgaradi va eng past nuqtalar qayerda qoladi.",
+    "turi": "tanlov",
+    "savol": "Qaysi grafik Zarina oyoqlarining yerdan balandligi vaqt o‘tishi bilan qanday o‘zgarishini eng yaxshi ko‘rsatadi?",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 450 292\" font-family=\"sans-serif\"><rect x=\"10\" y=\"6\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"20\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">A</text><line x1=\"24\" y1=\"123\" x2=\"194\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"24\" y1=\"123\" x2=\"24\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"194,119 202,123 194,127\" fill=\"#222\"/><polygon points=\"20,38 24,30 28,38\" fill=\"#222\"/><text x=\"200\" y=\"139\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"36\" y=\"34\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Oyoq balandligi</text><path d=\"M24.0,119.3 L25.1,119.2 L26.3,118.9 L27.4,118.2 L28.5,117.4 L29.6,116.2 L30.8,114.9 L31.9,113.4 L33.0,111.7 L34.2,109.9 L35.3,108.0 L36.4,106.2 L37.5,104.4 L38.7,102.7 L39.8,101.2 L40.9,99.9 L42.1,98.9 L43.2,98.1 L44.3,97.8 L45.4,97.7 L46.6,98.0 L47.7,98.7 L48.8,99.7 L50.0,101.1 L51.1,102.6 L52.2,104.4 L53.3,106.4 L54.5,108.5 L55.6,110.5 L56.7,112.5 L57.9,114.4 L59.0,116.1 L60.1,117.4 L61.2,118.5 L62.4,119.1 L63.5,119.3 L64.6,119.1 L65.8,118.4 L66.9,117.3 L68.0,115.7 L69.1,113.7 L70.3,111.3 L71.4,108.6 L72.5,105.8 L73.7,102.7 L74.8,99.7 L75.9,96.7 L77.0,93.8 L78.2,91.1 L79.3,88.8 L80.4,86.9 L81.6,85.4 L82.7,84.5 L83.8,84.1 L84.9,84.3 L86.1,85.0 L87.2,86.3 L88.3,88.2 L89.5,90.4 L90.6,93.1 L91.7,96.1 L92.8,99.3 L94.0,102.5 L95.1,105.8 L96.2,108.9 L97.4,111.8 L98.5,114.4 L99.6,116.5 L100.7,118.0 L101.9,119.0 L103.0,119.3 L104.1,119.0 L105.3,118.0 L106.4,116.3 L107.5,114.0 L108.6,111.1 L109.8,107.7 L110.9,103.9 L112.0,99.8 L113.2,95.6 L114.3,91.3 L115.4,87.1 L116.5,83.2 L117.7,79.6 L118.8,76.4 L119.9,73.9 L121.1,72.0 L122.2,70.8 L123.3,70.4 L124.4,70.8 L125.6,72.0 L126.7,74.0 L127.8,76.6 L129.0,79.8 L130.1,83.6 L131.2,87.7 L132.3,92.1 L133.5,96.6 L134.6,101.1 L135.7,105.3 L136.9,109.2 L138.0,112.7 L139.1,115.5 L140.2,117.6 L141.4,118.9 L142.5,119.3 L143.6,118.9 L144.8,117.6 L145.9,115.3 L147.0,112.3 L148.1,108.5 L149.3,104.1 L150.4,99.2 L151.5,93.9 L152.7,88.4 L153.8,82.9 L154.9,77.6 L156.0,72.5 L157.2,68.0 L158.3,64.1 L159.4,60.9 L160.6,58.5 L161.7,57.2 L162.8,56.8 L163.9,57.4 L165.1,59.0 L166.2,61.6 L167.3,65.0 L168.5,69.2 L169.6,74.0 L170.7,79.3 L171.8,85.0 L173.0,90.7 L174.1,96.3 L175.2,101.7 L176.4,106.7 L177.5,111.0 L178.6,114.5 L179.7,117.2 L180.9,118.8 L182.0,119.3\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"250\" y=\"6\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"260\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">B</text><line x1=\"264\" y1=\"123\" x2=\"434\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"264\" y1=\"123\" x2=\"264\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"434,119 442,123 434,127\" fill=\"#222\"/><polygon points=\"260,38 264,30 268,38\" fill=\"#222\"/><text x=\"440\" y=\"139\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"276\" y=\"34\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Oyoq balandligi</text><path d=\"M264.0,119.3 L265.1,118.8 L266.3,117.3 L267.4,114.9 L268.5,111.6 L269.6,107.7 L270.8,103.2 L271.9,98.4 L273.0,93.4 L274.2,88.4 L275.3,83.5 L276.4,79.0 L277.5,74.9 L278.7,71.5 L279.8,68.7 L280.9,66.7 L282.1,65.6 L283.2,65.4 L284.3,66.0 L285.4,67.4 L286.6,69.7 L287.7,72.6 L288.8,76.1 L290.0,80.2 L291.1,84.6 L292.2,89.2 L293.3,93.8 L294.5,98.5 L295.6,102.9 L296.7,106.9 L297.9,110.6 L299.0,113.7 L300.1,116.1 L301.2,117.9 L302.4,119.0 L303.5,119.3 L304.6,119.0 L305.8,118.0 L306.9,116.3 L308.0,114.2 L309.1,111.5 L310.3,108.5 L311.4,105.3 L312.5,102.0 L313.7,98.6 L314.8,95.3 L315.9,92.3 L317.0,89.6 L318.2,87.3 L319.3,85.4 L320.4,84.1 L321.6,83.3 L322.7,83.2 L323.8,83.6 L324.9,84.5 L326.1,86.0 L327.2,88.0 L328.3,90.4 L329.5,93.1 L330.6,96.0 L331.7,99.1 L332.8,102.3 L334.0,105.3 L335.1,108.3 L336.2,111.0 L337.4,113.5 L338.5,115.5 L339.6,117.2 L340.7,118.4 L341.9,119.1 L343.0,119.3 L344.1,119.1 L345.3,118.4 L346.4,117.3 L347.5,115.9 L348.6,114.1 L349.8,112.1 L350.9,109.9 L352.0,107.7 L353.2,105.4 L354.3,103.3 L355.4,101.2 L356.5,99.4 L357.7,97.8 L358.8,96.6 L359.9,95.7 L361.1,95.2 L362.2,95.1 L363.3,95.4 L364.4,96.0 L365.6,97.0 L366.7,98.3 L367.8,99.9 L369.0,101.7 L370.1,103.7 L371.2,105.8 L372.3,107.9 L373.5,110.0 L374.6,111.9 L375.7,113.8 L376.9,115.4 L378.0,116.8 L379.1,117.9 L380.2,118.7 L381.4,119.2 L382.5,119.3 L383.6,119.2 L384.8,118.7 L385.9,118.0 L387.0,117.0 L388.1,115.8 L389.3,114.5 L390.4,113.0 L391.5,111.5 L392.7,110.0 L393.8,108.6 L394.9,107.2 L396.0,106.0 L397.2,104.9 L398.3,104.1 L399.4,103.5 L400.6,103.2 L401.7,103.1 L402.8,103.3 L403.9,103.7 L405.1,104.4 L406.2,105.3 L407.3,106.3 L408.5,107.6 L409.6,108.9 L410.7,110.3 L411.8,111.7 L413.0,113.1 L414.1,114.4 L415.2,115.6 L416.4,116.7 L417.5,117.6 L418.6,118.4 L419.7,118.9 L420.9,119.2 L422.0,119.3\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"10\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"20\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">C</text><line x1=\"24\" y1=\"263\" x2=\"194\" y2=\"263\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"24\" y1=\"263\" x2=\"24\" y2=\"178\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"194,259 202,263 194,267\" fill=\"#222\"/><polygon points=\"20,178 24,170 28,178\" fill=\"#222\"/><text x=\"200\" y=\"279\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"36\" y=\"174\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Oyoq balandligi</text><path d=\"M24.0,259.4 L25.1,258.9 L26.3,257.4 L27.4,255.0 L28.5,251.7 L29.6,247.7 L30.8,243.0 L31.9,237.9 L33.0,232.5 L34.2,226.9 L35.3,221.4 L36.4,216.1 L37.5,211.2 L38.7,206.9 L39.8,203.2 L40.9,200.4 L42.1,198.4 L43.2,197.4 L44.3,197.4 L45.4,198.4 L46.6,200.4 L47.7,203.2 L48.8,206.9 L50.0,211.2 L51.1,216.1 L52.2,221.4 L53.3,226.9 L54.5,232.5 L55.6,237.9 L56.7,243.0 L57.9,247.7 L59.0,251.7 L60.1,255.0 L61.2,257.4 L62.4,258.9 L63.5,259.4 L64.6,258.9 L65.8,257.4 L66.9,255.0 L68.0,251.7 L69.1,247.7 L70.3,243.0 L71.4,237.9 L72.5,232.5 L73.7,226.9 L74.8,221.4 L75.9,216.1 L77.0,211.2 L78.2,206.9 L79.3,203.2 L80.4,200.4 L81.6,198.4 L82.7,197.4 L83.8,197.4 L84.9,198.4 L86.1,200.4 L87.2,203.2 L88.3,206.9 L89.5,211.2 L90.6,216.1 L91.7,221.4 L92.8,226.9 L94.0,232.5 L95.1,237.9 L96.2,243.0 L97.4,247.7 L98.5,251.7 L99.6,255.0 L100.7,257.4 L101.9,258.9 L103.0,259.4 L104.1,258.9 L105.3,257.4 L106.4,255.0 L107.5,251.7 L108.6,247.7 L109.8,243.0 L110.9,237.9 L112.0,232.5 L113.2,226.9 L114.3,221.4 L115.4,216.1 L116.5,211.2 L117.7,206.9 L118.8,203.2 L119.9,200.4 L121.1,198.4 L122.2,197.4 L123.3,197.4 L124.4,198.4 L125.6,200.4 L126.7,203.2 L127.8,206.9 L129.0,211.2 L130.1,216.1 L131.2,221.4 L132.3,226.9 L133.5,232.5 L134.6,237.9 L135.7,243.0 L136.9,247.7 L138.0,251.7 L139.1,255.0 L140.2,257.4 L141.4,258.9 L142.5,259.4 L143.6,258.9 L144.8,257.4 L145.9,255.0 L147.0,251.7 L148.1,247.7 L149.3,243.0 L150.4,237.9 L151.5,232.5 L152.7,226.9 L153.8,221.4 L154.9,216.1 L156.0,211.2 L157.2,206.9 L158.3,203.2 L159.4,200.4 L160.6,198.4 L161.7,197.4 L162.8,197.4 L163.9,198.4 L165.1,200.4 L166.2,203.2 L167.3,206.9 L168.5,211.2 L169.6,216.1 L170.7,221.4 L171.8,226.9 L173.0,232.5 L174.1,237.9 L175.2,243.0 L176.4,247.7 L177.5,251.7 L178.6,255.0 L179.7,257.4 L180.9,258.9 L182.0,259.4\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"250\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"260\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">D</text><line x1=\"264\" y1=\"263\" x2=\"434\" y2=\"263\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"264\" y1=\"263\" x2=\"264\" y2=\"178\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"434,259 442,263 434,267\" fill=\"#222\"/><polygon points=\"260,178 264,170 268,178\" fill=\"#222\"/><text x=\"440\" y=\"279\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt</text><text x=\"276\" y=\"174\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Oyoq balandligi</text><path d=\"M264.0,191.8 L265.1,192.8 L266.3,194.8 L267.4,197.7 L268.5,201.6 L269.6,206.1 L270.8,211.2 L271.9,216.6 L273.0,222.3 L274.2,227.9 L275.3,233.4 L276.4,238.5 L277.5,243.2 L278.7,247.2 L279.8,250.4 L280.9,252.8 L282.1,254.3 L283.2,254.9 L284.3,254.6 L285.4,253.4 L286.6,251.4 L287.7,248.6 L288.8,245.1 L290.0,241.2 L291.1,236.9 L292.2,232.3 L293.3,227.7 L294.5,223.1 L295.6,218.7 L296.7,214.7 L297.9,211.2 L299.0,208.2 L300.1,205.9 L301.2,204.2 L302.4,203.4 L303.5,203.3 L304.6,203.9 L305.8,205.2 L306.9,207.2 L308.0,209.8 L309.1,212.8 L310.3,216.2 L311.4,219.9 L312.5,223.7 L313.7,227.4 L314.8,231.1 L315.9,234.6 L317.0,237.7 L318.2,240.3 L319.3,242.5 L320.4,244.1 L321.6,245.2 L322.7,245.6 L323.8,245.3 L324.9,244.5 L326.1,243.2 L327.2,241.3 L328.3,239.0 L329.5,236.3 L330.6,233.4 L331.7,230.4 L332.8,227.3 L334.0,224.2 L335.1,221.3 L336.2,218.6 L337.4,216.2 L338.5,214.2 L339.6,212.7 L340.7,211.6 L341.9,211.0 L343.0,210.9 L344.1,211.3 L345.3,212.2 L346.4,213.6 L347.5,215.3 L348.6,217.3 L349.8,219.6 L350.9,222.1 L352.0,224.6 L353.2,227.1 L354.3,229.6 L355.4,231.9 L356.5,234.0 L357.7,235.8 L358.8,237.2 L359.9,238.3 L361.1,239.0 L362.2,239.3 L363.3,239.1 L364.4,238.6 L365.6,237.7 L366.7,236.4 L367.8,234.9 L369.0,233.1 L370.1,231.2 L371.2,229.1 L372.3,227.0 L373.5,225.0 L374.6,223.0 L375.7,221.2 L376.9,219.6 L378.0,218.3 L379.1,217.2 L380.2,216.5 L381.4,216.1 L382.5,216.1 L383.6,216.3 L384.8,216.9 L385.9,217.8 L387.0,219.0 L388.1,220.3 L389.3,221.9 L390.4,223.5 L391.5,225.2 L392.7,226.9 L393.8,228.6 L394.9,230.1 L396.0,231.5 L397.2,232.7 L398.3,233.7 L399.4,234.4 L400.6,234.9 L401.7,235.1 L402.8,235.0 L403.9,234.6 L405.1,234.0 L406.2,233.1 L407.3,232.1 L408.5,230.9 L409.6,229.6 L410.7,228.2 L411.8,226.8 L413.0,225.5 L414.1,224.2 L415.2,222.9 L416.4,221.9 L417.5,221.0 L418.6,220.3 L419.7,219.8 L420.9,219.5 L422.0,219.5\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/></svg>",
+    "javoblar": [
+     "A grafik",
+     "B grafik",
+     "C grafik",
+     "D grafik"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Balandlik takror ko‘tarilib-tushadi",
+      "ovoz": "Arg‘imchoq tebranadi, demak grafik to‘lqinsimon."
+     },
+     {
+      "doska": "Eng yuqori nuqtalar kamayadi",
+      "ovoz": "Itarilmagani uchun har safar pastroq ko‘tariladi — cho‘qqilar pasayadi."
+     },
+     {
+      "doska": "Eng past nuqtalar bir xil",
+      "ovoz": "Eng past nuqta doim bir xil balandlikda — chuqurliklar bir sathda."
+     },
+     {
+      "doska": "Javob: B) cho‘qqilar pasayadi, pastki sath bir xil",
+      "ovoz": "Bu ikkala shartga faqat B grafik mos."
+     }
+    ],
+    "xatolar": {
+     "0": "A da cho‘qqilar oshib bormoqda — bu bola itarib, borgan sari balandroq uchayotgan holat.",
+     "2": "C da tebranish o‘zgarmaydi, ammo arg‘imchoq sekinlashib, pastroq ko‘tarilmoqda.",
+     "3": "D da pastki nuqtalar ko‘tarilib boradi. Arg‘imchoqning eng past nuqtasi esa doim bir xil balandlikda."
+    },
+    "maslahat": "Grafikni tanlashdan oldin harakatning eng muhim belgilarini so‘z bilan yozib oling."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M39",
+  "asl": "Take the Test, Mathematics unit 39: Student Heights",
+  "toplam": "P_M",
+  "nom": "Sport to‘garagidagi bo‘ylar",
+  "stimul": "Mahalladagi basketbol to‘garagida barcha a’zolarning bo‘yi o‘lchandi. O‘g‘il bolalarning o‘rtacha bo‘yi 165 sm, qizlarniki esa 155 sm chiqdi. Eng baland a’zo — Jasur (182 sm), eng past a’zo — Malika (138 sm).\n\nBir haftadan so‘ng to‘garakka yana 2 nafar yangi a’zo qo‘shildi. Ularning bo‘yi ham o‘lchandi va o‘rtacha qiymatlar qayta hisoblandi. Qizig‘i shundaki, o‘g‘il bolalarning ham, qizlarning ham o‘rtacha bo‘yi o‘zgarmadi.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M39-1",
+    "asl_id": "Student Heights Q1 (39.1)",
+    "mavzu": "PM-NOA",
+    "jarayon": "mulohaza",
+    "kontekst": "shaxsiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 650,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "O‘rta arifmetik xossalari asosida qaysi xulosa albatta to‘g‘ri ekanini aniqlash",
+    "usul": "Har bir xulosaga qarshi misol (kontrmisol) qidiring. Agar kamida bitta mos holatda xulosa buzilsa — u albatta to‘g‘ri emas.",
+    "turi": "tanlov",
+    "savol": "Berilgan ma’lumotlardan quyidagi xulosalardan qaysi biri albatta kelib chiqadi?",
+    "rasm": null,
+    "javoblar": [
+     "Yangi a’zolardan biri o‘g‘il bola, ikkinchisi qiz.",
+     "To‘garakdagi barcha a’zolarning umumiy o‘rtacha bo‘yi o‘zgarmadi.",
+     "Malika hali ham to‘garakdagi eng past a’zo.",
+     "Agar ikkala yangi a’zo o‘g‘il bola bo‘lsa, ularning o‘rtacha bo‘yi 165 sm."
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "O‘rtacha o‘zgarmasa: yangi qiymat = o‘rtacha",
+      "ovoz": "Guruhga o‘rtachaga teng qiymat qo‘shilsa, o‘rtacha o‘zgarmaydi."
+     },
+     {
+      "doska": "A: 2 qiz (155 va 155) ham bo‘lishi mumkin",
+      "ovoz": "Ikkalasi qiz bo‘lsa ham shart bajariladi, demak A albatta to‘g‘ri emas."
+     },
+     {
+      "doska": "B: 165+155 qo‘shilsa, umumiy o‘rtacha o‘zgarishi mumkin",
+      "ovoz": "Umumiy o‘rtacha o‘g‘il va qizlar soniga bog‘liq, u o‘zgarishi mumkin."
+     },
+     {
+      "doska": "C: yangi a’zo 135 sm bo‘lishi ham mumkin",
+      "ovoz": "Yangi qizlardan biri 135 sm, ikkinchisi 175 sm bo‘lsa, o‘rtacha 155 qoladi, Malika esa eng past emas."
+     },
+     {
+      "doska": "D: 2 o‘g‘il → yig‘indi 2·165 = 330",
+      "ovoz": "Ikkala o‘g‘il qo‘shilib o‘rtacha 165 qolsa, ularning yig‘indisi 330, o‘rtachasi 165."
+     },
+     {
+      "doska": "Javob: D)",
+      "ovoz": "Demak, faqat D xulosa har qanday holatda to‘g‘ri."
+     }
+    ],
+    "xatolar": {
+     "0": "Ikkalasi ham qiz (masalan, 150 va 160 sm) yoki ikkalasi ham o‘g‘il bo‘lishi mumkin — shart baribir bajariladi.",
+     "1": "Masalan, 3 o‘g‘il va 7 qizga 165 va 155 sm li ikki kishi qo‘shilsa, umumiy o‘rtacha o‘zgaradi.",
+     "2": "Yangi qizlardan biri 138 sm dan past, ikkinchisi baland bo‘lsa ham, qizlar o‘rtachasi 155 qolishi mumkin."
+    },
+    "maslahat": "«Albatta» degan so‘zga e’tibor bering: bitta kontrmisol xulosani rad etish uchun yetarli."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M40",
+  "asl": "Take the Test, Mathematics unit 40: Payments by Area",
+  "toplam": "P_M",
+  "nom": "Tom ta’miri xarajati",
+  "stimul": "Ko‘p qavatli uyning bir yo‘lagidagi kvartira egalari uy tomini ta’mirlashga kelishib oldi. Xarajatni ular har bir kvartiraning maydoniga mutanosib ravishda bo‘lishadi.\n\nMasalan, kvartirasi barcha kvartiralar umumiy maydonining beshdan bir qismini egallaydigan oila umumiy xarajatning ham beshdan bir qismini to‘laydi.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M40-1",
+    "asl_id": "Payments by Area Q1 (40.1)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "mulohaza",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 540,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "To‘g‘ri proporsionallik xossalarini real vaziyatda baholash",
+    "usul": "«Maydonga mutanosib» degani — 1 m² uchun hamma bir xil summa to‘laydi. Har bir fikrni shu qoida bilan tekshiring.",
+    "turi": "tanlov",
+    "savol": "Quyidagi fikrlardan qaysi biri to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "Eng katta kvartira egasi har 1 m² uchun eng kichik kvartira egasidan ko‘proq to‘laydi.",
+     "Umumiy xarajat va har bir oila qancha to‘lashini bilsak, kvartiralarning umumiy maydonini hisoblay olamiz.",
+     "Agar ta’mir narxi 20% oshsa, har bir oilaning to‘lovi ham 20% oshadi.",
+     "Agar ta’mir narxi 20% oshsa, har bir oilaning to‘lovi bir xil summaga oshadi."
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "To‘lov = (1 m² narxi) · maydon",
+      "ovoz": "Mutanosiblik: 1 m² uchun narx hamma uchun bir xil."
+     },
+     {
+      "doska": "A: 1 m² narxi bir xil → A xato",
+      "ovoz": "Katta kvartira egasi ko‘proq to‘laydi, lekin har 1 m² uchun bir xil."
+     },
+     {
+      "doska": "B: faqat summalar → maydon noma’lum",
+      "ovoz": "Pul summalari maydonni ko‘rsatmaydi, umumiy maydonni topib bo‘lmaydi."
+     },
+     {
+      "doska": "C: xarajat·1,2 → har to‘lov·1,2",
+      "ovoz": "Umumiy summa 20% oshsa, har ulush ham 20% oshadi."
+     },
+     {
+      "doska": "Javob: C)",
+      "ovoz": "D xato: summalar bir xil miqdorga emas, bir xil foizga oshadi."
+     }
+    ],
+    "xatolar": {
+     "0": "Mutanosib bo‘lishda 1 m² narxi hamma uchun bir xil, faqat umumiy to‘lov farq qiladi.",
+     "1": "Pul miqdorlaridan faqat ulushlarni bilamiz, kvadrat metrlarni esa yo‘q.",
+     "3": "Katta kvartira egasining to‘lovi ko‘proq oshadi: hamma bir xil summaga emas, bir xil foizga oshadi."
+    },
+    "maslahat": "Mutanosib bo‘lishda foizli o‘zgarish hammaga bir xil foizda ta’sir qiladi."
+   },
+   {
+    "id": "P-TT-M40-2",
+    "asl_id": "Payments by Area Q2 (40.2)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "qollash",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 510,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Umumiy summani maydonlarga mutanosib bo‘lish",
+    "usul": "Avval umumiy maydonni toping, so‘ng 1 m² ga to‘g‘ri keladigan summani hisoblang.",
+    "turi": "ochiq",
+    "savol": "Yo‘lakda uchta kvartira bor: 1-kvartira 72 m², 2-kvartira 64 m², 3-kvartira 54 m². Tom ta’miri jami 47 500 000 so‘m turadi. 2-kvartira egasi necha so‘m to‘lashi kerak?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "16000000|16 000 000|16 000 000 so‘m|16000000 so‘m|16 mln",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "72 + 64 + 54 = 190 m²",
+      "ovoz": "Avval barcha kvartiralar maydonini qo‘shamiz."
+     },
+     {
+      "doska": "47 500 000 : 190 = 250 000 so‘m/m²",
+      "ovoz": "1 kvadrat metrga 250 ming so‘m to‘g‘ri keladi."
+     },
+     {
+      "doska": "250 000 · 64 = 16 000 000",
+      "ovoz": "2-kvartira 64 m², shuning uchun 250 ming so‘mni 64 ga ko‘paytiramiz."
+     },
+     {
+      "doska": "Javob: 16 000 000 so‘m",
+      "ovoz": "2-kvartira egasi 16 million so‘m to‘laydi."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — summani 3 ga teng bo‘lish (15 833 333) yoki 64 ni umumiy maydon o‘rniga 72 ga bo‘lish. To‘lov 64/190 ulushga teng."
+    },
+    "maslahat": "Natijani tekshiring: uchala to‘lov yig‘indisi umumiy xarajatga teng bo‘lishi kerak."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M41",
+  "asl": "Take the Test, Mathematics unit 41: Shoes for Kids",
+  "toplam": "P_M",
+  "nom": "Bolalar kiyimi o‘lchami",
+  "stimul": "Bolalar kiyimi do‘konida bo‘yga mos kiyim o‘lchamini aniqlash jadvali osilgan.\n\nBo‘y (sm) dan | gacha | Kiyim o‘lchami\n99 | 104 | 26\n105 | 110 | 28\n111 | 116 | 30\n117 | 122 | 32\n123 | 128 | 34\n129 | 134 | 36\n135 | 140 | 38\n141 | 146 | 40\n147 | 152 | 42\n153 | 158 | 44",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M41-1",
+    "asl_id": "Shoes for Kids Q1 (41.1)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "talqin",
+    "kontekst": "shaxsiy",
+    "fikrlash": "bilish",
+    "qiyinlik_ball": 410,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Oraliqlar jadvalidan kerakli qiymatni topish",
+    "usul": "Bo‘y qaysi oraliqqa («dan» va «gacha» orasiga) tushishini toping va shu qatordagi o‘lchamni o‘qing.",
+    "turi": "ochiq",
+    "savol": "Dilnozaning bo‘yi 137 sm. Jadvalga ko‘ra, unga qaysi o‘lchamdagi kiyim mos keladi?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "38|38-o‘lcham",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "137 sm — qaysi oraliqda?",
+      "ovoz": "Jadvaldan 137 soni tushadigan qatorni izlaymiz."
+     },
+     {
+      "doska": "135 ≤ 137 ≤ 140",
+      "ovoz": "137 soni 135 dan 140 gacha bo‘lgan oraliqda."
+     },
+     {
+      "doska": "Shu qatorda o‘lcham: 38",
+      "ovoz": "Bu qatorning oxirgi ustunida 38 yozilgan."
+     },
+     {
+      "doska": "Javob: 38",
+      "ovoz": "Dilnozaga 38-o‘lcham mos."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘pincha qo‘shni qator (36 yoki 40) olinadi yoki bo‘y soni bilan o‘lcham chalkashtiriladi. 137 aynan 135–140 oralig‘ida."
+    },
+    "maslahat": "Oraliq jadvallarida doim ikkala chegarani ham tekshiring."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M42",
+  "asl": "Take the Test, Mathematics unit 42: Table Tennis Tournament",
+  "toplam": "P_M",
+  "nom": "Shaxmat to‘garagidagi turnir",
+  "stimul": "Maktab shaxmat to‘garagida Aziz, Bekzod, Dilshod va Sardor mashg‘ulot guruhini tuzishdi. Har bir o‘quvchi qolgan har biri bilan aynan bir marta o‘ynamoqchi. Ular uchun ikkita shaxmat taxtasi ajratilgan, shuning uchun har turda bir vaqtda ikkita o‘yin o‘tadi.\n\n1-tur: 1-taxtada Aziz – Bekzod, 2-taxtada Dilshod – Sardor.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M42-1",
+    "asl_id": "Table Tennis Tournament Q1 (42.1)",
+    "mavzu": "PM-NOA",
+    "jarayon": "qollash",
+    "kontekst": "shaxsiy",
+    "fikrlash": "bilish",
+    "qiyinlik_ball": 450,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Kombinatorika: barcha juftliklarni takrorsiz turlarga taqsimlash",
+    "usul": "Avval jami juftliklarni sanab chiqing (4 kishidan 6 juftlik), 1-turdagilarni o‘chiring va qolganlarini har turda har kim bir martadan o‘ynaydigan qilib joylang.",
+    "turi": "tanlov",
+    "savol": "2- va 3-tur uchun qaysi jadval to‘g‘ri tuzilgan?",
+    "rasm": null,
+    "javoblar": [
+     "2-tur: Aziz – Dilshod, Bekzod – Sardor; 3-tur: Aziz – Bekzod, Dilshod – Sardor",
+     "2-tur: Aziz – Dilshod, Aziz – Sardor; 3-tur: Bekzod – Dilshod, Bekzod – Sardor",
+     "2-tur: Aziz – Dilshod, Bekzod – Sardor; 3-tur: Aziz – Sardor, Bekzod – Dilshod",
+     "2-tur: Aziz – Dilshod, Bekzod – Sardor; 3-tur: Aziz – Sardor, Dilshod – Sardor"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Jami juftliklar: 4·3/2 = 6",
+      "ovoz": "To‘rt kishidan 6 ta har xil juftlik chiqadi."
+     },
+     {
+      "doska": "1-turda: Aziz–Bekzod, Dilshod–Sardor",
+      "ovoz": "Bular o‘ynab bo‘lindi. Qolgani: Aziz–Dilshod, Aziz–Sardor, Bekzod–Dilshod, Bekzod–Sardor."
+     },
+     {
+      "doska": "Har turda har kim 1 marta o‘ynaydi",
+      "ovoz": "Bir turda bir o‘quvchi ikki taxtada o‘ynay olmaydi."
+     },
+     {
+      "doska": "2-tur: Az–Dil, Bek–Sar; 3-tur: Az–Sar, Bek–Dil",
+      "ovoz": "Shunday taqsimlasak, hamma juftlik bir martadan uchraydi."
+     },
+     {
+      "doska": "Javob: C)",
+      "ovoz": "Bu C variant."
+     }
+    ],
+    "xatolar": {
+     "0": "3-turda 1-turdagi o‘yinlar takrorlangan, Aziz – Sardor va Bekzod – Dilshod esa umuman o‘ynalmagan.",
+     "1": "Bir turda Aziz ikki taxtada bir vaqtda o‘ynay olmaydi.",
+     "3": "3-turda Sardor ikki marta o‘ynayapti, Bekzod – Dilshod o‘yini esa qolib ketgan."
+    },
+    "maslahat": "Jadvalni tekshirishda ikki savol bering: takror o‘yin bormi? Kimdir bir turda ikki marta o‘ynayaptimi?"
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M43",
+  "asl": "Take the Test, Mathematics unit 43: Lighthouse",
+  "toplam": "P_M",
+  "nom": "Chorvoqdagi signal chirog‘i",
+  "stimul": "Katta suv omborlari qirg‘og‘ida tunda qayiqlarga yo‘l ko‘rsatish uchun signal chiroqlari o‘rnatiladi. Har bir chiroq o‘ziga xos, qat’iy takrorlanadigan naqsh bo‘yicha yonib-o‘chadi.\n\nRasmda shunday chiroqlardan birining naqshi berilgan: yuqori chiziq — chiroq yonib turgan (yorug‘) vaqt, pastki chiziq — o‘chiq (qorong‘i) vaqt.\n\nBu naqsh muntazam: bir muddatdan keyin u aynan takrorlanadi. Naqsh takrorlana boshlashidan oldingi bitta to‘liq siklning davomiyligi «davr» deyiladi.",
+  "stimul_rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 490 92\" font-family=\"sans-serif\"><text x=\"66\" y=\"26\" font-size=\"10\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Yorug‘</text><text x=\"66\" y=\"48\" font-size=\"10\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Qorong‘i</text><line x1=\"70.0\" y1=\"10\" x2=\"70.0\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"70\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">0</text><line x1=\"100.8\" y1=\"10\" x2=\"100.8\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"101\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">1</text><line x1=\"131.5\" y1=\"10\" x2=\"131.5\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"132\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">2</text><line x1=\"162.3\" y1=\"10\" x2=\"162.3\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"162\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">3</text><line x1=\"193.1\" y1=\"10\" x2=\"193.1\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"193\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">4</text><line x1=\"223.8\" y1=\"10\" x2=\"223.8\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"224\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">5</text><line x1=\"254.6\" y1=\"10\" x2=\"254.6\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"255\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">6</text><line x1=\"285.4\" y1=\"10\" x2=\"285.4\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"285\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">7</text><line x1=\"316.2\" y1=\"10\" x2=\"316.2\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"316\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">8</text><line x1=\"346.9\" y1=\"10\" x2=\"346.9\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"347\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">9</text><line x1=\"377.7\" y1=\"10\" x2=\"377.7\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"378\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">10</text><line x1=\"408.5\" y1=\"10\" x2=\"408.5\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"408\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">11</text><line x1=\"439.2\" y1=\"10\" x2=\"439.2\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"439\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">12</text><line x1=\"470.0\" y1=\"10\" x2=\"470.0\" y2=\"50\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"470\" y=\"64\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">13</text><line x1=\"70.0\" y1=\"22\" x2=\"131.5\" y2=\"22\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"131.5\" y1=\"44\" x2=\"162.3\" y2=\"44\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"162.3\" y1=\"22\" x2=\"193.1\" y2=\"22\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"193.1\" y1=\"44\" x2=\"254.6\" y2=\"44\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"254.6\" y1=\"22\" x2=\"316.2\" y2=\"22\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"316.2\" y1=\"44\" x2=\"346.9\" y2=\"44\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"346.9\" y1=\"22\" x2=\"377.7\" y2=\"22\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"377.7\" y1=\"44\" x2=\"439.2\" y2=\"44\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"439.2\" y1=\"22\" x2=\"470.0\" y2=\"22\" stroke=\"#222\" stroke-width=\"4\"/><text x=\"470\" y=\"82\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt (s)</text></svg>",
+  "savollar": [
+   {
+    "id": "P-TT-M43-1",
+    "asl_id": "Lighthouse Q1 (43.1)",
+    "mavzu": "PM-OZG",
+    "jarayon": "talqin",
+    "kontekst": "ilmiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 530,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Davriy jarayon grafigidan davrni aniqlash",
+    "usul": "Grafikda naqsh boshidan qaysi nuqtadan keyin aynan bir xil ketma-ketlik qaytalanishini toping.",
+    "turi": "tanlov",
+    "savol": "Quyidagilardan qaysi biri bu chiroq naqshining davri bo‘la oladi?",
+    "rasm": null,
+    "javoblar": [
+     "2 soniya",
+     "3 soniya",
+     "6 soniya",
+     "4 soniya"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "0–2 yorug‘, 2–3 qorong‘i, 3–4 yorug‘, 4–6 qorong‘i",
+      "ovoz": "Grafikdan bo‘laklarni ketma-ket o‘qiymiz."
+     },
+     {
+      "doska": "6–8 yorug‘, 8–9 qorong‘i, 9–10 yorug‘ ...",
+      "ovoz": "6-soniyadan boshlab xuddi shu ketma-ketlik qaytalanmoqda."
+     },
+     {
+      "doska": "Davr = 6 s",
+      "ovoz": "Demak, bitta to‘liq sikl 6 soniya."
+     },
+     {
+      "doska": "Javob: C) 6 soniya",
+      "ovoz": "To‘g‘ri javob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "2 soniya — faqat birinchi yorug‘ bo‘lak. 2-soniyadan keyin naqsh boshqacha davom etadi.",
+     "1": "0–3 soniyada «2 s yorug‘, 1 s qorong‘i», 3–6 da esa «1 s yorug‘, 2 s qorong‘i» — bu bir xil emas.",
+     "3": "4-soniyada qorong‘i boshlanadi, 0-soniyada esa yorug‘ edi — naqsh 4 s dan keyin qaytalanmaydi."
+    },
+    "maslahat": "Davrni topgach, keyingi siklni ham tekshirib ko‘ring — naqsh to‘liq mos tushishi shart."
+   },
+   {
+    "id": "P-TT-M43-2",
+    "asl_id": "Lighthouse Q2 (43.2)",
+    "mavzu": "PM-OZG",
+    "jarayon": "qollash",
+    "kontekst": "ilmiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 560,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Bir davrdagi qiymatdan katta vaqt oralig‘idagi qiymatni hisoblash",
+    "usul": "Bitta davrda chiroq necha soniya yonishini toping, so‘ng 1 daqiqada nechta davr borligini hisoblang.",
+    "turi": "tanlov",
+    "savol": "1 daqiqa davomida chiroq jami necha soniya yonib turadi?",
+    "rasm": null,
+    "javoblar": [
+     "20",
+     "40",
+     "10",
+     "30"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Bir davr (6 s): yorug‘ 2 s + 1 s = 3 s",
+      "ovoz": "Har 6 soniyada chiroq jami 3 soniya yonadi."
+     },
+     {
+      "doska": "1 daqiqa = 60 s → 60 : 6 = 10 davr",
+      "ovoz": "Bir daqiqada 10 ta to‘liq davr bor."
+     },
+     {
+      "doska": "10 · 3 = 30 s",
+      "ovoz": "10 davrda 30 soniya yorug‘ bo‘ladi."
+     },
+     {
+      "doska": "Javob: D) 30",
+      "ovoz": "To‘g‘ri javob — D."
+     }
+    ],
+    "xatolar": {
+     "0": "20 — bir daqiqadagi chaqnashlar soni (har davrda 2 ta). Savol esa yonish soniyalari haqida.",
+     "1": "Har ikkala chaqnash 2 soniyadan deb olindi. Aslida ikkinchisi 1 soniya.",
+     "2": "10 — bir daqiqadagi davrlar soni, yonish vaqti emas."
+    },
+    "maslahat": "Savolda nima so‘ralayotganini ajrating: chaqnashlar soni emas, yonish vaqti."
+   },
+   {
+    "id": "P-TT-M43-3",
+    "asl_id": "Lighthouse Q3 (43.3)",
+    "mavzu": "PM-OZG",
+    "jarayon": "ifodalash",
+    "kontekst": "ilmiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 620,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Berilgan shartlarga (davr va umumiy yonish vaqti) mos davriy naqshni tanlash",
+    "usul": "Har bir naqsh uchun ikki narsani tekshiring: davri 5 soniyami va bir davrda chiroq 2 soniya yonadimi (60 : 5 · 2 = 24).",
+    "turi": "tanlov",
+    "savol": "Boshqa bir chiroq 1 daqiqada jami 24 soniya yonishi va naqshining davri 5 soniya bo‘lishi kerak. Rasmdagi naqshlardan qaysi biri shu shartlarga mos? (Yuqori chiziq — yorug‘, pastki — qorong‘i.)",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 460 270\" font-family=\"sans-serif\"><rect x=\"34\" y=\"22\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"44\" y=\"36\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">A</text><line x1=\"80.0\" y1=\"8\" x2=\"80.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"80\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">0</text><line x1=\"114.0\" y1=\"8\" x2=\"114.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"114\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">1</text><line x1=\"148.0\" y1=\"8\" x2=\"148.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"148\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">2</text><line x1=\"182.0\" y1=\"8\" x2=\"182.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"182\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">3</text><line x1=\"216.0\" y1=\"8\" x2=\"216.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"216\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">4</text><line x1=\"250.0\" y1=\"8\" x2=\"250.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"250\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">5</text><line x1=\"284.0\" y1=\"8\" x2=\"284.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"284\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">6</text><line x1=\"318.0\" y1=\"8\" x2=\"318.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"318\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">7</text><line x1=\"352.0\" y1=\"8\" x2=\"352.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"352\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">8</text><line x1=\"386.0\" y1=\"8\" x2=\"386.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"386\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">9</text><line x1=\"420.0\" y1=\"8\" x2=\"420.0\" y2=\"48\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"420\" y=\"62\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">10</text><line x1=\"80.0\" y1=\"20\" x2=\"114.0\" y2=\"20\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"114.0\" y1=\"42\" x2=\"148.0\" y2=\"42\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"148.0\" y1=\"20\" x2=\"182.0\" y2=\"20\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"182.0\" y1=\"42\" x2=\"216.0\" y2=\"42\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"216.0\" y1=\"20\" x2=\"250.0\" y2=\"20\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"250.0\" y1=\"42\" x2=\"284.0\" y2=\"42\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"284.0\" y1=\"20\" x2=\"318.0\" y2=\"20\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"318.0\" y1=\"42\" x2=\"352.0\" y2=\"42\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"352.0\" y1=\"20\" x2=\"386.0\" y2=\"20\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"386.0\" y1=\"42\" x2=\"420.0\" y2=\"42\" stroke=\"#222\" stroke-width=\"4\"/><rect x=\"34\" y=\"84\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"44\" y=\"98\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">B</text><line x1=\"80.0\" y1=\"70\" x2=\"80.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"80\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">0</text><line x1=\"114.0\" y1=\"70\" x2=\"114.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"114\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">1</text><line x1=\"148.0\" y1=\"70\" x2=\"148.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"148\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">2</text><line x1=\"182.0\" y1=\"70\" x2=\"182.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"182\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">3</text><line x1=\"216.0\" y1=\"70\" x2=\"216.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"216\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">4</text><line x1=\"250.0\" y1=\"70\" x2=\"250.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"250\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">5</text><line x1=\"284.0\" y1=\"70\" x2=\"284.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"284\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">6</text><line x1=\"318.0\" y1=\"70\" x2=\"318.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"318\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">7</text><line x1=\"352.0\" y1=\"70\" x2=\"352.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"352\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">8</text><line x1=\"386.0\" y1=\"70\" x2=\"386.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"386\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">9</text><line x1=\"420.0\" y1=\"70\" x2=\"420.0\" y2=\"110\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"420\" y=\"124\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">10</text><line x1=\"80.0\" y1=\"82\" x2=\"148.0\" y2=\"82\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"148.0\" y1=\"104\" x2=\"216.0\" y2=\"104\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"216.0\" y1=\"82\" x2=\"284.0\" y2=\"82\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"284.0\" y1=\"104\" x2=\"352.0\" y2=\"104\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"352.0\" y1=\"82\" x2=\"420.0\" y2=\"82\" stroke=\"#222\" stroke-width=\"4\"/><rect x=\"34\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"44\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">C</text><line x1=\"80.0\" y1=\"132\" x2=\"80.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"80\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">0</text><line x1=\"114.0\" y1=\"132\" x2=\"114.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"114\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">1</text><line x1=\"148.0\" y1=\"132\" x2=\"148.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"148\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">2</text><line x1=\"182.0\" y1=\"132\" x2=\"182.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"182\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">3</text><line x1=\"216.0\" y1=\"132\" x2=\"216.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"216\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">4</text><line x1=\"250.0\" y1=\"132\" x2=\"250.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"250\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">5</text><line x1=\"284.0\" y1=\"132\" x2=\"284.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"284\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">6</text><line x1=\"318.0\" y1=\"132\" x2=\"318.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"318\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">7</text><line x1=\"352.0\" y1=\"132\" x2=\"352.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"352\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">8</text><line x1=\"386.0\" y1=\"132\" x2=\"386.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"386\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">9</text><line x1=\"420.0\" y1=\"132\" x2=\"420.0\" y2=\"172\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"420\" y=\"186\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">10</text><line x1=\"80.0\" y1=\"144\" x2=\"114.0\" y2=\"144\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"114.0\" y1=\"166\" x2=\"148.0\" y2=\"166\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"148.0\" y1=\"144\" x2=\"182.0\" y2=\"144\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"182.0\" y1=\"166\" x2=\"250.0\" y2=\"166\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"250.0\" y1=\"144\" x2=\"284.0\" y2=\"144\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"284.0\" y1=\"166\" x2=\"318.0\" y2=\"166\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"318.0\" y1=\"144\" x2=\"352.0\" y2=\"144\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"352.0\" y1=\"166\" x2=\"420.0\" y2=\"166\" stroke=\"#222\" stroke-width=\"4\"/><rect x=\"34\" y=\"208\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"44\" y=\"222\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">D</text><line x1=\"80.0\" y1=\"194\" x2=\"80.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"80\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">0</text><line x1=\"114.0\" y1=\"194\" x2=\"114.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"114\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">1</text><line x1=\"148.0\" y1=\"194\" x2=\"148.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"148\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">2</text><line x1=\"182.0\" y1=\"194\" x2=\"182.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"182\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">3</text><line x1=\"216.0\" y1=\"194\" x2=\"216.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"216\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">4</text><line x1=\"250.0\" y1=\"194\" x2=\"250.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"250\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">5</text><line x1=\"284.0\" y1=\"194\" x2=\"284.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"284\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">6</text><line x1=\"318.0\" y1=\"194\" x2=\"318.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"318\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">7</text><line x1=\"352.0\" y1=\"194\" x2=\"352.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"352\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">8</text><line x1=\"386.0\" y1=\"194\" x2=\"386.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"386\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">9</text><line x1=\"420.0\" y1=\"194\" x2=\"420.0\" y2=\"234\" stroke=\"#999\" stroke-dasharray=\"3,3\"/><text x=\"420\" y=\"248\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">10</text><line x1=\"80.0\" y1=\"206\" x2=\"182.0\" y2=\"206\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"182.0\" y1=\"228\" x2=\"250.0\" y2=\"228\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"250.0\" y1=\"206\" x2=\"352.0\" y2=\"206\" stroke=\"#222\" stroke-width=\"4\"/><line x1=\"352.0\" y1=\"228\" x2=\"420.0\" y2=\"228\" stroke=\"#222\" stroke-width=\"4\"/><text x=\"440\" y=\"262\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Vaqt (s)</text></svg>",
+    "javoblar": [
+     "A naqsh",
+     "B naqsh",
+     "C naqsh",
+     "D naqsh"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Davr 5 s → 1 daqiqada 12 davr",
+      "ovoz": "60 ni 5 ga bo‘lsak, 12 ta davr chiqadi."
+     },
+     {
+      "doska": "24 : 12 = 2 s yorug‘ har davrda",
+      "ovoz": "Demak, har 5 soniyada chiroq jami 2 soniya yonishi kerak."
+     },
+     {
+      "doska": "A: davr 2; B: davr 4; D: 3 s yorug‘",
+      "ovoz": "A va B ning davri 5 emas, D da bir davrda 3 soniya yorug‘."
+     },
+     {
+      "doska": "C: 0–1 va 2–3 yorug‘, 3–5 qorong‘i",
+      "ovoz": "C da davr 5 s va har davrda 1 + 1 = 2 soniya yorug‘."
+     },
+     {
+      "doska": "Javob: C)",
+      "ovoz": "Shartlarga faqat C naqsh mos."
+     }
+    ],
+    "xatolar": {
+     "0": "A da davr 2 s va daqiqasiga 30 s yorug‘ — ikkala shart ham buzilgan.",
+     "1": "B da davr 4 s (2 s yorug‘ + 2 s qorong‘i), daqiqasiga 30 s yorug‘.",
+     "3": "D ning davri 5 s, lekin har davrda 3 s yorug‘ — daqiqasiga 36 s bo‘ladi."
+    },
+    "maslahat": "Bunday masalada avval «bir davrga» o‘ting: umumiy vaqtni davrlar soniga bo‘ling."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M44",
+  "asl": "Take the Test, Mathematics unit 44: Decreasing CO2 Levels",
+  "toplam": "P_M",
+  "nom": "Maishiy chiqindilar hajmi",
+  "stimul": "Ekologlar maishiy chiqindilar ko‘payib borayotganidan xavotirda. Quyidagi jadvalda ayrim hududlarda bir yilda to‘plangan maishiy chiqindi miqdori 2015 va 2023-yillarda berilgan (ming tonna) hamda shu davrdagi foiz o‘zgarishi ko‘rsatilgan. Sonlar o‘quv maqsadida shartli olingan.\n\nHudud | 2015 | 2023 | O‘zgarish\nToshkent sh. | 1200 | 1380 | +15%\nSamarqand v. | 480 | 576 | +20%\nBuxoro v. | 260 | 299 | +15%\nNavoiy v. | 150 | 189 | ?\nFarg‘ona vodiysi (jami) | 1500 | 1470 | −2%\n  shu jumladan: Farg‘ona v. | 520 | 442 | −15%\n  shu jumladan: Andijon v. | 460 | 497 | +8%\n  shu jumladan: Namangan v. | 520 | 531 | +2%",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M44-1",
+    "asl_id": "Decreasing CO2 Levels Q1 (44.1)",
+    "mavzu": "PM-NOA",
+    "jarayon": "qollash",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 520,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Ikki qiymat orasidagi foiz o‘zgarishini hisoblash",
+    "usul": "O‘zgarishni (yangi − eski) toping va uni boshlang‘ich (eski) qiymatga bo‘ling, so‘ng 100 ga ko‘paytiring.",
+    "turi": "ochiq",
+    "savol": "Jadvalda Navoiy viloyati uchun foiz o‘zgarishi yozilmagan. 2015-yildan 2023-yilgacha Navoiy viloyatida chiqindi miqdori necha foizga oshgan?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "26|26%|+26|+26%",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "189 − 150 = 39 ming t",
+      "ovoz": "Avval o‘zgarishni topamiz: 39 ming tonnaga oshgan."
+     },
+     {
+      "doska": "39 : 150 = 0,26",
+      "ovoz": "O‘zgarishni boshlang‘ich yil — 2015-yil qiymatiga bo‘lamiz."
+     },
+     {
+      "doska": "0,26 · 100% = 26%",
+      "ovoz": "Foizga o‘tkazamiz."
+     },
+     {
+      "doska": "Javob: 26",
+      "ovoz": "Navoiy viloyatida chiqindi 26% ga oshgan."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — 39 ni 2023-yil qiymatiga (189) bo‘lish: 21%. Bo‘luvchi boshlang‘ich qiymat — 150."
+    },
+    "maslahat": "Foiz o‘zgarishida bo‘luvchi doim boshlang‘ich qiymat bo‘ladi."
+   },
+   {
+    "id": "P-TT-M44-2",
+    "asl_id": "Decreasing CO2 Levels Q2 (44.2)",
+    "mavzu": "PM-NOA",
+    "jarayon": "mulohaza",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 560,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Qism va butunning foiz o‘zgarishlarini taqqoslab, da’voni baholash",
+    "usul": "Butunning o‘zgarishi barcha qismlar o‘zgarishlarining natijasi ekanini eslang: ba’zi qismlar oshishi, ba’zilari kamayishi mumkin.",
+    "turi": "tanlov",
+    "savol": "Malika jadvalni ko‘rib aytdi: «Farg‘ona viloyatida chiqindi 15% kamaygan, butun vodiyda esa atigi 2%. Bunday bo‘lishi mumkin emas, chunki Farg‘ona viloyati vodiyning bir qismi». Qaysi fikr to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "Malika haq: qism kamaysa, butun ham kamida shuncha foizga kamayishi kerak.",
+     "Malika haq: −15% + 8% + 2% = −5%, demak vodiy uchun −5% bo‘lishi kerak edi.",
+     "Malika haq, chunki 2023-yilda vodiydagi chiqindi 1500 ming tonnadan oshib ketgan.",
+     "Malika xato: Andijon va Namanganda chiqindi oshgan, shuning uchun vodiy bo‘yicha kamayish kichikroq."
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Vodiy = Farg‘ona + Andijon + Namangan",
+      "ovoz": "Vodiy jami uchta viloyatdan iborat."
+     },
+     {
+      "doska": "Farg‘ona: −78; Andijon: +37; Namangan: +11",
+      "ovoz": "Bir viloyatda kamaygan, ikkitasida oshgan."
+     },
+     {
+      "doska": "Jami: −78 + 37 + 11 = −30 → −2%",
+      "ovoz": "Oshishlar kamayishning bir qismini qoplaydi: 30 : 1500 = 2%."
+     },
+     {
+      "doska": "Javob: D) Malika xato",
+      "ovoz": "Demak, qismning kamayishi butunnikidan katta bo‘lishi mumkin."
+     }
+    ],
+    "xatolar": {
+     "0": "Butun faqat bitta qismdan iborat emas: boshqa qismlarda o‘sish bo‘lsa, umumiy kamayish kichikroq bo‘ladi.",
+     "1": "Foizlarni shunchaki qo‘shib bo‘lmaydi — har bir viloyatning hajmi har xil.",
+     "2": "Jadvalga ko‘ra 2023-yilda vodiyda 1470 ming tonna — 1500 dan kam."
+    },
+    "maslahat": "«Mumkin emas» degan da’voni tekshirish uchun jadvaldagi sonlar bilan hisoblab ko‘ring."
+   },
+   {
+    "id": "P-TT-M44-3",
+    "asl_id": "Decreasing CO2 Levels Q3 (44.3)",
+    "mavzu": "PM-NOA",
+    "jarayon": "talqin",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 630,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Mutlaq va nisbiy (foizli) o‘sishni farqlash va ikki xil to‘g‘ri xulosani asoslash",
+    "usul": "«Eng ko‘p o‘sish» ikki xil o‘lchanishi mumkin: ming tonnada (mutlaq) va foizda (nisbiy). Har birida eng kattasini toping.",
+    "turi": "tanlov",
+    "savol": "Nodir: «Chiqindi eng ko‘p Toshkent shahrida oshgan». Zarina: «Yo‘q, eng ko‘p Navoiy viloyatida oshgan». Qaysi xulosa to‘g‘ri?",
+    "rasm": null,
+    "javoblar": [
+     "Ikkalasi ham haq: Toshkentda ming tonnada eng katta o‘sish (+180), Navoiyda esa foiz bo‘yicha eng katta o‘sish (+26%).",
+     "Faqat Nodir haq: foizlar chalg‘itadi, faqat tonnalarni solishtirish kerak.",
+     "Faqat Zarina haq: hududlar har xil kattalikda bo‘lgani uchun faqat foizlarni solishtirish mumkin.",
+     "Ikkalasi ham xato: eng ko‘p o‘sish Samarqandda, chunki u ikkala ko‘rsatkichda ham yuqori."
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Mutlaq o‘sish: Toshkent +180 ming t",
+      "ovoz": "Ming tonnada eng katta o‘sish — Toshkentda: 1380 − 1200 = 180."
+     },
+     {
+      "doska": "Boshqalar: Samarqand +96, Buxoro +39 ...",
+      "ovoz": "Qolgan hududlarda o‘sish ancha kam."
+     },
+     {
+      "doska": "Foizda: Navoiy +26% — eng katta",
+      "ovoz": "Foiz bo‘yicha eng katta o‘sish — Navoiyda, 26%."
+     },
+     {
+      "doska": "Javob: A) ikkalasi ham haq",
+      "ovoz": "Nodir mutlaq, Zarina nisbiy o‘sishni nazarda tutgan."
+     }
+    ],
+    "xatolar": {
+     "1": "Tonnada o‘lchash to‘g‘ri usul, lekin foiz bo‘yicha taqqoslash ham to‘g‘ri — u nisbiy o‘sishni ko‘rsatadi.",
+     "2": "Foiz bo‘yicha taqqoslash to‘g‘ri, lekin mutlaq o‘sish (tonna) ham ma’noli o‘lchov.",
+     "3": "Samarqand ikkala o‘lchovda ham birinchi emas: tonnada Toshkent, foizda Navoiy oldinda."
+    },
+    "maslahat": "Ma’lumotlar haqida bahs bo‘lsa, avval har bir tomon qaysi o‘lchovdan foydalanayotganini aniqlang."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M45",
+  "asl": "Take the Test, Mathematics unit 45: Twisted Building",
+  "toplam": "P_M",
+  "nom": "Buralgan minora",
+  "stimul": "Zamonaviy me’morchilikda binolar ko‘pincha g‘ayrioddiy shaklda quriladi. Toshkentda «buralgan minora» loyihasi ko‘rib chiqilmoqda (loyiha shartli).\n\nBinoning pastki (nol) qavatida asosiy kirish va do‘konlar joylashadi. Uning ustida 24 ta turar-joy qavati bor. Pastki qavat rejasi — 40 m × 20 m o‘lchamli to‘g‘ri to‘rtburchak; uzun tomonlari g‘arbdan sharqqa yo‘nalgan. Janubiy devor o‘rtasida lift joylashgan silindr bor (rasmga qarang).\n\nHar bir qavat rejasi pastki qavat rejasi bilan bir xil, lekin har bir qavat o‘zidan pastdagi qavatga nisbatan silindr markazi atrofida soat miliga teskari yo‘nalishda bir xil burchakka burilgan.",
+  "stimul_rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 480 235\" font-family=\"sans-serif\"><rect x=\"70\" y=\"40\" width=\"240\" height=\"120\" fill=\"#eef2f7\" stroke=\"#222\" stroke-width=\"1.5\"/><circle cx=\"190.0\" cy=\"160\" r=\"32\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1.5\"/><text x=\"190\" y=\"165\" font-size=\"11\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">lift</text><line x1=\"70\" y1=\"26\" x2=\"310\" y2=\"26\" stroke=\"#222\"/><text x=\"190\" y=\"20\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">40 m</text><line x1=\"56\" y1=\"40\" x2=\"56\" y2=\"160\" stroke=\"#222\"/><text x=\"52\" y=\"104\" font-size=\"12\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">20 m</text><line x1=\"400\" y1=\"60\" x2=\"400\" y2=\"140\" stroke=\"#222\"/><line x1=\"360\" y1=\"100\" x2=\"440\" y2=\"100\" stroke=\"#222\"/><polygon points=\"395,66 400,54 405,66\" fill=\"#222\"/><text x=\"400\" y=\"50\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">Sh</text><text x=\"400\" y=\"156\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">J</text><text x=\"446\" y=\"105\" font-size=\"13\" text-anchor=\"start\" font-weight=\"bold\" fill=\"#222\">Shq</text><text x=\"354\" y=\"105\" font-size=\"13\" text-anchor=\"end\" font-weight=\"bold\" fill=\"#222\">G‘</text><text x=\"190\" y=\"225\" font-size=\"12\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">Pastki qavat rejasi (yuqoridan ko‘rinish)</text></svg>",
+  "savollar": [
+   {
+    "id": "P-TT-M45-1",
+    "asl_id": "Twisted Building Q1 (45.1)",
+    "mavzu": "PM-FAZ",
+    "jarayon": "ifodalash",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 540,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Real o‘lchamlarni baholash: qavatlar soni va bir qavat balandligidan bino balandligini taxminlash",
+    "usul": "Qavatlar sonini to‘g‘ri sanang (pastki qavat + turar-joy qavatlari) va bir qavat uchun real balandlikni (3–4 m) oling.",
+    "turi": "tanlov",
+    "savol": "Binoning umumiy balandligi taxminan qaysi oraliqda bo‘lishi eng real?",
+    "rasm": null,
+    "javoblar": [
+     "25–35 m",
+     "8–12 m",
+     "150–200 m",
+     "70–100 m"
+    ],
+    "togri": 3,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Qavatlar: 1 + 24 = 25",
+      "ovoz": "Pastki qavatni ham qo‘shishni unutmaymiz — jami 25 qavat."
+     },
+     {
+      "doska": "Bir qavat ≈ 3–4 m",
+      "ovoz": "Turar-joy qavati taxminan 3 metr, qavatlar orasidagi qoplama bilan 4 metrgacha."
+     },
+     {
+      "doska": "25 · 3 = 75 m; 25 · 4 = 100 m",
+      "ovoz": "Demak, balandlik taxminan 75 dan 100 metrgacha."
+     },
+     {
+      "doska": "Javob: D) 70–100 m",
+      "ovoz": "Bu oraliqqa to‘g‘ri keladigan variantni tanlaymiz."
+     }
+    ],
+    "xatolar": {
+     "0": "Bunda bir qavat atigi 1–1,5 m deb olingan — odam bunday xonada tik tura olmaydi.",
+     "1": "Bu atigi 3–4 qavatli uy balandligi; 25 qavat hisobga olinmagan.",
+     "2": "Bunda bir qavat 6–8 m deb olingan — oddiy turar-joy uchun juda baland."
+    },
+    "maslahat": "Taxminiy hisobda kundalik tajribangizdan foydalaning: xonangiz shifti necha metr balandlikda?"
+   },
+   {
+    "id": "P-TT-M45-2",
+    "asl_id": "Twisted Building Q2 (45.2)",
+    "mavzu": "PM-FAZ",
+    "jarayon": "talqin",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 550,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Reja va dunyo tomonlari asosida kuzatuvchi joyini aniqlash",
+    "usul": "O‘zingizni kuzatuvchi o‘rniga qo‘ying: binoga qarab turganingizda qaysi dunyo tomoni chap qo‘lingizda bo‘ladi?",
+    "turi": "tanlov",
+    "savol": "Kuzatuvchi pastki qavatga yerdan qaraydi. U binoning faqat tor (20 m li) devorini ko‘radi, lift silindri esa shu devorning chap tomonida ko‘rinadi. Kuzatuvchi binoga qaysi tomondan qarayapti?",
+    "rasm": null,
+    "javoblar": [
+     "Shimoldan",
+     "G‘arbdan",
+     "Sharqdan",
+     "Janubdan"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Tor devorlar — g‘arbiy va sharqiy",
+      "ovoz": "Uzun tomonlar g‘arbdan sharqqa, demak 20 m li devorlar g‘arb va sharqda."
+     },
+     {
+      "doska": "Silindr — janubda",
+      "ovoz": "Lift silindri janubiy devor o‘rtasida."
+     },
+     {
+      "doska": "Sharqdan qarasa: yuz g‘arbga, chapda janub",
+      "ovoz": "G‘arbga qarab turganda chap qo‘l janubga to‘g‘ri keladi."
+     },
+     {
+      "doska": "Javob: C) Sharqdan",
+      "ovoz": "Silindr chapda ko‘rinishi uchun kuzatuvchi sharqda turishi kerak."
+     }
+    ],
+    "xatolar": {
+     "0": "Shimoldan qaralsa, uzun (40 m li) shimoliy devor ko‘rinadi, silindr esa orqada qoladi.",
+     "1": "G‘arbdan qaralganda kuzatuvchi sharqqa qaraydi — janub uning o‘ng tomonida, silindr o‘ngda ko‘rinadi.",
+     "3": "Janubdan qaralsa, uzun janubiy devor va uning o‘rtasidagi silindr ko‘rinadi."
+    },
+    "maslahat": "Fazoviy masalalarda chizmani aylantirib yoki o‘zingiz shu tomonga qarab turib tekshiring."
+   },
+   {
+    "id": "P-TT-M45-3",
+    "asl_id": "Twisted Building Q3 (45.3)",
+    "mavzu": "PM-FAZ",
+    "jarayon": "talqin",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 560,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Burchakdan qaraganda qaysi yuzlar ko‘rinishini aniqlash",
+    "usul": "Burchak tomondan (masalan, janubi-g‘arbdan) qaralganda shu ikki dunyo tomoniga qaragan devorlar ko‘rinadi.",
+    "turi": "tanlov",
+    "savol": "Boshqa kuzatuvchi pastki qavatga janubi-g‘arb tomondan qaraydi. U qaysi ikki devorni ko‘radi va lift silindri ko‘rinadimi?",
+    "rasm": null,
+    "javoblar": [
+     "Janubiy va g‘arbiy devorlar; silindr ko‘rinadi",
+     "Shimoliy va sharqiy devorlar; silindr ko‘rinmaydi",
+     "Janubiy va sharqiy devorlar; silindr ko‘rinadi",
+     "Shimoliy va g‘arbiy devorlar; silindr ko‘rinmaydi"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Janubi-g‘arb = janub + g‘arb",
+      "ovoz": "Kuzatuvchi bir vaqtda janub va g‘arb tomonida turibdi."
+     },
+     {
+      "doska": "Ko‘rinadi: janubiy va g‘arbiy devorlar",
+      "ovoz": "Unga shu ikki tomonga qaragan devorlar ko‘rinadi."
+     },
+     {
+      "doska": "Silindr janubiy devorda → ko‘rinadi",
+      "ovoz": "Lift silindri janubiy devorda bo‘lgani uchun u ham ko‘rinadi."
+     },
+     {
+      "doska": "Javob: A)",
+      "ovoz": "To‘g‘ri javob — A."
+     }
+    ],
+    "xatolar": {
+     "1": "Bu shimoli-sharqdan qaralgandagi ko‘rinish — kuzatuvchidan qarama-qarshi tomon.",
+     "2": "Sharqiy devor kuzatuvchidan uzoq tomonda — u janubi-sharqdan qaralganda ko‘rinadi.",
+     "3": "Shimoliy devor binoning orqa tomonida, janubi-g‘arbdan qaralganda ko‘rinmaydi."
+    },
+    "maslahat": "Avval kuzatuvchi turgan tomonlarni nomlang, keyin shu tomonga qaragan devorlarni toping."
+   },
+   {
+    "id": "P-TT-M45-4",
+    "asl_id": "Twisted Building Q4 (45.4)",
+    "mavzu": "PM-FAZ",
+    "jarayon": "qollash",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 580,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Bir tekis burilishda oraliq qavatning burilish burchagini topish",
+    "usul": "Bir qavatdagi burilish burchagini toping (umumiy burilish : qavatlar soni), keyin uni kerakli qavat raqamiga ko‘paytiring.",
+    "turi": "ochiq",
+    "savol": "Eng yuqori, 24-qavat pastki qavatga nisbatan 90° ga burilgan. 16-qavat pastki qavatga nisbatan necha gradusga burilgan?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "60|60°|60 gradus",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "24 qavat → 90°",
+      "ovoz": "Pastki qavatdan 24-qavatgacha jami 90° burilish bor."
+     },
+     {
+      "doska": "Har qavatda: 90° : 24 = 3,75°",
+      "ovoz": "Har bir qavat pastdagisiga nisbatan 3,75 gradusga buriladi."
+     },
+     {
+      "doska": "16 · 3,75° = 60°",
+      "ovoz": "16-qavatgacha 16 marta burilgan."
+     },
+     {
+      "doska": "Javob: 60",
+      "ovoz": "16-qavat pastki qavatga nisbatan 60° ga burilgan."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — 16-qavatni o‘rtada deb 45° yozish yoki 90° ni 25 ga (qavatlar soniga pastki qavat bilan) bo‘lish. Burilishlar soni 24 ta."
+    },
+    "maslahat": "Natijani tekshiring: 16-qavat 24 ning 2/3 qismi, demak burchak ham 90° ning 2/3 qismi — 60°."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M46",
+  "asl": "Take the Test, Mathematics unit 46: Heartbeat",
+  "toplam": "P_M",
+  "nom": "Taksi tarifi o‘zgardi",
+  "stimul": "Shahardagi taksi xizmati yo‘l haqini masofaga qarab formula bilan hisoblaydi. Uzoq yillar quyidagi formula ishlatilgan:\n\nEski tarif: Narx = 8 000 + 1 500 · x  (so‘m, x — masofa, km)\n\nYaqinda xizmat tarifni o‘zgartirdi. Yangi formula:\n\nYangi tarif: Narx = 12 000 + 1 300 · x\n\nGazetada shunday yozildi: «Yangi tarif qisqa safarlar uchun biroz qimmat, uzoq safarlar uchun esa biroz arzon bo‘ldi».",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M46-1",
+    "asl_id": "Heartbeat Q1 (46.1)",
+    "mavzu": "PM-OZG",
+    "jarayon": "qollash",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 560,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Ikki chiziqli formulani tenglashtirib, qaysi qiymatdan boshlab biri kichik bo‘lishini topish",
+    "usul": "Ikki formulani tenglashtiring va x ni toping; keyin bu nuqtadan katta masofalarda qaysi tarif arzon ekanini tekshiring.",
+    "turi": "ochiq",
+    "savol": "Necha kilometrdan uzoq safarlarda yangi tarif eski tarifdan arzonroq bo‘ladi?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "20|20 km",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "8 000 + 1 500x = 12 000 + 1 300x",
+      "ovoz": "Narxlar teng bo‘ladigan masofani topamiz."
+     },
+     {
+      "doska": "200x = 4 000",
+      "ovoz": "x larni bir tomonga, sonlarni ikkinchi tomonga o‘tkazamiz."
+     },
+     {
+      "doska": "x = 20 km",
+      "ovoz": "20 km da ikkala tarif bir xil: 38 000 so‘m."
+     },
+     {
+      "doska": "x = 30: eski 53 000, yangi 51 000",
+      "ovoz": "Tekshiramiz: 30 km da yangi tarif arzonroq."
+     },
+     {
+      "doska": "Javob: 20",
+      "ovoz": "20 km dan uzoq safarlarda yangi tarif arzon."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — 4 000 ni 1 500 yoki 1 300 ga bo‘lish (2,7 yoki 3,1 km). Tenglamada x oldidagi koeffitsiyentlar ayirmasi — 200."
+    },
+    "maslahat": "Tenglikdan chiqqan javobni doim bitta son qo‘yib tekshiring — qaysi tomonda qaysi tarif arzon?"
+   },
+   {
+    "id": "P-TT-M46-2",
+    "asl_id": "Heartbeat Q2 (46.2)",
+    "mavzu": "PM-OZG",
+    "jarayon": "ifodalash",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 540,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Formulaga foizli chegirmani qo‘llab, yangi formula yozish",
+    "usul": "Chegirma butun narxga qo‘llanadi: butun ifodani 0,85 ga ko‘paytiring va qavslarni oching.",
+    "turi": "tanlov",
+    "savol": "Taksi xizmati talabalarga yangi tarif bo‘yicha 15% chegirma beradi. Talaba uchun narxni masofa x orqali hisoblaydigan to‘g‘ri formula qaysi?",
+    "rasm": null,
+    "javoblar": [
+     "Narx = 10 200 + 1 105 · x",
+     "Narx = 10 200 + 1 300 · x",
+     "Narx = 12 000 + 1 105 · x",
+     "Narx = 0,15 · (12 000 + 1 300 · x)"
+    ],
+    "togri": 0,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "15% chegirma → 85% to‘lanadi",
+      "ovoz": "Talaba narxning 100% − 15% = 85% qismini to‘laydi."
+     },
+     {
+      "doska": "Narx = 0,85 · (12 000 + 1 300x)",
+      "ovoz": "Butun formulani 0,85 ga ko‘paytiramiz."
+     },
+     {
+      "doska": "0,85 · 12 000 = 10 200; 0,85 · 1 300 = 1 105",
+      "ovoz": "Qavsni ochib, har bir hadni 0,85 ga ko‘paytiramiz."
+     },
+     {
+      "doska": "Javob: A) 10 200 + 1 105x",
+      "ovoz": "To‘g‘ri formula — A."
+     }
+    ],
+    "xatolar": {
+     "1": "Chegirma faqat boshlang‘ich to‘lovga qo‘llangan, har km narxiga ham qo‘llash kerak.",
+     "2": "Chegirma faqat har km narxiga qo‘llangan, 12 000 ga ham qo‘llash kerak.",
+     "3": "Bu chegirma summasining o‘zi, talaba to‘laydigan narx emas."
+    },
+    "maslahat": "Qavsni ochishda ko‘paytuvchini qavs ichidagi har bir hadga ko‘paytirish kerak."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M47",
+  "asl": "Take the Test, Mathematics unit 47: Space Flight",
+  "toplam": "P_M",
+  "nom": "Xalqaro kosmik stansiya",
+  "stimul": "Xalqaro kosmik stansiyada 2000-yil noyabridan beri doimiy ravishda odamlar yashab, ishlab keladi. Dastlabki 20 yilda (taxminan 7 300 sutka) stansiya Yer atrofini taxminan 113 000 marta aylanib chiqdi.\n\nStansiyadagi eng uzoq bir martalik parvozlardan biri taxminan 355 sutka davom etgan.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M47-1",
+    "asl_id": "Space Flight Q1 (47.1)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "qollash",
+    "kontekst": "ilmiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 520,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Proporsiya va yaxlitlash yordamida taxminiy hisob",
+    "usul": "Avval bir sutkada nechta aylanish bo‘lishini toping, so‘ng uni sutkalar soniga ko‘paytiring. Sonlarni yaxlitlab hisoblash mumkin.",
+    "turi": "tanlov",
+    "savol": "Shu parvoz davomida kosmonavt Yer atrofini taxminan necha marta aylanib chiqqan?",
+    "rasm": null,
+    "javoblar": [
+     "550",
+     "55 000",
+     "5 500",
+     "113 000"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "113 000 : 7 300 ≈ 15,5",
+      "ovoz": "Stansiya bir sutkada Yer atrofini taxminan 15–16 marta aylanadi."
+     },
+     {
+      "doska": "15,5 · 355 ≈ 5 500",
+      "ovoz": "355 sutkada: 15,5 ni 355 ga ko‘paytiramiz."
+     },
+     {
+      "doska": "Tekshiruv: 355 ≈ 7 300 ning 1/20 qismi",
+      "ovoz": "113 000 ning yigirmadan biri ham taxminan 5 650 — bir xil tartib."
+     },
+     {
+      "doska": "Javob: C) 5 500",
+      "ovoz": "Eng yaqin javob — 5 500."
+     }
+    ],
+    "xatolar": {
+     "0": "Bu taxminan 35 sutkaga to‘g‘ri keladi — hisobda bir nol yo‘qolgan.",
+     "1": "Bu taxminan 3 500 sutka (10 yilga yaqin) uchun javob — tartib xato.",
+     "3": "Bu stansiyaning 20 yildagi jami aylanishlari soni, bitta kosmonavtniki emas."
+    },
+    "maslahat": "Taxminiy hisobda avval javob tartibini (o‘nlik, yuzlik, minglik) aniqlang."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M48",
+  "asl": "Take the Test, Mathematics unit 48: Rock Concert",
+  "toplam": "P_M",
+  "nom": "Bayram konserti",
+  "stimul": "Navro‘z bayrami munosabati bilan ochiq maydonda konsert o‘tkazildi. Tomoshabinlar uchun 120 m × 60 m o‘lchamli to‘g‘ri to‘rtburchak maydon ajratildi. Chiptalar to‘liq sotildi va maydon tik turgan muxlislar bilan to‘la edi.",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M48-1",
+    "asl_id": "Rock Concert Q1 (48.1)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "ifodalash",
+    "kontekst": "ijtimoiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 520,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Yuza va real zichlik (1 m² dagi odamlar soni) asosida sonni baholash",
+    "usul": "Maydon yuzini toping, so‘ng zich turgan olomonda 1 m² ga taxminan necha kishi sig‘ishini o‘ylang (taxminan 3–4 kishi).",
+    "turi": "tanlov",
+    "savol": "Konsertdagi tomoshabinlar soni uchun quyidagilardan qaysi biri eng yaxshi taxmin bo‘ladi?",
+    "rasm": null,
+    "javoblar": [
+     "3 000",
+     "7 000",
+     "30 000",
+     "100 000"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Yuza: 120 · 60 = 7 200 m²",
+      "ovoz": "Avval maydon yuzini hisoblaymiz."
+     },
+     {
+      "doska": "Zich olomon: 1 m² da ≈ 4 kishi",
+      "ovoz": "Tik turgan zich olomonda bir kvadrat metrga 3–4 kishi sig‘adi."
+     },
+     {
+      "doska": "7 200 · 4 = 28 800 ≈ 30 000",
+      "ovoz": "Demak, taxminan 30 ming tomoshabin."
+     },
+     {
+      "doska": "Javob: C) 30 000",
+      "ovoz": "Eng real taxmin — 30 000."
+     }
+    ],
+    "xatolar": {
+     "0": "Bunda har bir kishiga 2 m² dan ko‘proq joy to‘g‘ri keladi — maydon to‘la emas.",
+     "1": "Bunda 1 m² ga atigi 1 kishi — «to‘la» maydon uchun juda siyrak.",
+     "3": "Bunda 1 m² ga 14 kishi kerak bo‘ladi — bu jismonan mumkin emas."
+    },
+    "maslahat": "Real hayotiy tasavvurdan foydalaning: 1 m × 1 m kvadratga necha kishi tik tura olishini ko‘z oldingizga keltiring."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M49",
+  "asl": "Take the Test, Mathematics unit 49: Moving Walkways",
+  "toplam": "P_M",
+  "nom": "Aeroportdagi harakatlanuvchi yo‘lak",
+  "stimul": "Katta aeroportlarda yo‘lovchilar uzoq yo‘laklarda tez yurishi uchun harakatlanuvchi yo‘laklar o‘rnatiladi. Uzunligi 60 m bo‘lgan shunday yo‘lak uchun grafikda ikki kishining harakati ko‘rsatilgan: biri yo‘lak yonidagi oddiy polda yuradi, ikkinchisi esa harakatlanuvchi yo‘lakda yurmasdan tik turadi.",
+  "stimul_rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 470 270\" font-family=\"sans-serif\"><line x1=\"60\" y1=\"230\" x2=\"420\" y2=\"230\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"60\" y1=\"230\" x2=\"60\" y2=\"30\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"420,226 428,230 420,234\" fill=\"#222\"/><polygon points=\"56,30 60,22 64,30\" fill=\"#222\"/><text x=\"426\" y=\"246\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\"></text><text x=\"72\" y=\"26\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Yo‘lak boshidan masofa (m)</text><text x=\"428\" y=\"262\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">vaqt (s)</text><text x=\"60\" y=\"246\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">0</text><line x1=\"60.0\" y1=\"230\" x2=\"60.0\" y2=\"234\" stroke=\"#222\"/><text x=\"140\" y=\"246\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">20</text><line x1=\"140.0\" y1=\"230\" x2=\"140.0\" y2=\"234\" stroke=\"#222\"/><text x=\"220\" y=\"246\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">40</text><line x1=\"220.0\" y1=\"230\" x2=\"220.0\" y2=\"234\" stroke=\"#222\"/><text x=\"300\" y=\"246\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">60</text><line x1=\"300.0\" y1=\"230\" x2=\"300.0\" y2=\"234\" stroke=\"#222\"/><text x=\"380\" y=\"246\" font-size=\"10\" text-anchor=\"middle\" font-weight=\"normal\" fill=\"#222\">80</text><line x1=\"380.0\" y1=\"230\" x2=\"380.0\" y2=\"234\" stroke=\"#222\"/><text x=\"54\" y=\"177\" font-size=\"10\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">20</text><line x1=\"60\" y1=\"172.9\" x2=\"420\" y2=\"172.9\" stroke=\"#ccc\" stroke-dasharray=\"3,3\"/><text x=\"54\" y=\"120\" font-size=\"10\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">40</text><line x1=\"60\" y1=\"115.7\" x2=\"420\" y2=\"115.7\" stroke=\"#ccc\" stroke-dasharray=\"3,3\"/><text x=\"54\" y=\"63\" font-size=\"10\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">60</text><line x1=\"60\" y1=\"58.6\" x2=\"420\" y2=\"58.6\" stroke=\"#ccc\" stroke-dasharray=\"3,3\"/><path d=\"M60.0,230.0 L252.0,58.6\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><path d=\"M60.0,230.0 L380.0,58.6\" fill=\"none\" stroke=\"#8a5a00\" stroke-width=\"2.5\"/><text x=\"248\" y=\"49\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">yerda yurgan odam</text><text x=\"386\" y=\"93\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">yo‘lakda tik</text><text x=\"386\" y=\"107\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">turgan odam</text></svg>",
+  "savollar": [
+   {
+    "id": "P-TT-M49-1",
+    "asl_id": "Moving Walkways Q1 (49.1)",
+    "mavzu": "PM-OZG",
+    "jarayon": "mulohaza",
+    "kontekst": "shaxsiy",
+    "fikrlash": "mulohaza",
+    "qiyinlik_ball": 640,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Masofa–vaqt grafigidan tezliklarni topish va tezliklarni qo‘shish",
+    "usul": "Har bir kishining tezligini grafikdan toping. Yo‘lakda yurgan odam o‘z tezligiga yo‘lak tezligini qo‘shib harakatlanadi.",
+    "turi": "ochiq",
+    "savol": "Uchinchi yo‘lovchi harakatlanuvchi yo‘lakda xuddi poldagi odam kabi tezlikda yurib boradi. U 60 metrli yo‘lakni necha soniyada bosib o‘tadi?",
+    "rasm": null,
+    "javoblar": [],
+    "togri": null,
+    "javob": "30|30 s|30 soniya",
+    "javob_turi": "son",
+    "yechim": [
+     {
+      "doska": "Pol: 60 m / 48 s = 1,25 m/s",
+      "ovoz": "Grafikdan: poldagi odam 60 metrni 48 soniyada o‘tadi."
+     },
+     {
+      "doska": "Yo‘lak: 60 m / 80 s = 0,75 m/s",
+      "ovoz": "Tik turgan odamni yo‘lak 80 soniyada olib o‘tadi — bu yo‘lak tezligi."
+     },
+     {
+      "doska": "Yo‘lakda yurish: 1,25 + 0,75 = 2 m/s",
+      "ovoz": "Yo‘lakda yurganda ikkala tezlik qo‘shiladi."
+     },
+     {
+      "doska": "60 : 2 = 30 s",
+      "ovoz": "60 metrni 2 m/s tezlikda 30 soniyada o‘tadi."
+     },
+     {
+      "doska": "Javob: 30",
+      "ovoz": "Javob: 30 soniya — bu grafikda eng tik chiziq bo‘lardi."
+     }
+    ],
+    "xatolar": {
+     "umumiy": "Ko‘p uchraydigan xato — vaqtlarni qo‘shish (128 s), ayirish (32 s) yoki o‘rtachasini olish (64 s). Yo‘lakda yurganda tezliklar qo‘shiladi: 1,25 + 0,75 = 2 m/s."
+    },
+    "maslahat": "Vaqtlarni emas, tezliklarni qo‘shing: 48 + 80 yoki ularning o‘rtachasi ma’nosiz."
+   }
+  ]
+ },
+ {
+  "birlik": "P-TT-M50",
+  "asl": "Take the Test, Mathematics unit 50: Postal Charges",
+  "toplam": "P_M",
+  "nom": "Kuryerlik xizmati tariflari",
+  "stimul": "Shahar ichidagi kuryerlik xizmati jo‘natma narxini uning og‘irligiga (grammgacha yaxlitlangan) qarab belgilaydi (tariflar shartli):\n\nOg‘irlik | Narx\n250 g gacha | 12 000 so‘m\n251 g – 500 g | 15 000 so‘m\n501 g – 1000 g | 19 000 so‘m\n1001 g – 2000 g | 26 000 so‘m\n2001 g – 5000 g | 38 000 so‘m\n5001 g – 10 000 g | 55 000 so‘m",
+  "stimul_rasm": null,
+  "savollar": [
+   {
+    "id": "P-TT-M50-1",
+    "asl_id": "Postal Charges Q1 (50.1)",
+    "mavzu": "PM-OZG",
+    "jarayon": "talqin",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 520,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Bo‘lakli-o‘zgarmas (zinapoyasimon) bog‘lanishni grafikda tanish",
+    "usul": "Bir oraliq ichida og‘irlik o‘zgarsa ham narx o‘zgarmaydi. Grafikda bu qanday ko‘rinishini o‘ylang.",
+    "turi": "tanlov",
+    "savol": "Quyidagi grafiklardan qaysi biri kuryerlik narxlarini eng yaxshi ifodalaydi? (Gorizontal o‘q — og‘irlik, vertikal o‘q — narx.)",
+    "rasm": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 450 292\" font-family=\"sans-serif\"><rect x=\"10\" y=\"6\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"20\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">A</text><line x1=\"24\" y1=\"123\" x2=\"194\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"24\" y1=\"123\" x2=\"24\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"194,119 202,123 194,127\" fill=\"#222\"/><polygon points=\"20,38 24,30 28,38\" fill=\"#222\"/><text x=\"200\" y=\"139\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Og‘irlik (g)</text><text x=\"36\" y=\"34\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Narx (so‘m)</text><path d=\"M24.0,112.0 L27.9,108.4 L31.9,104.8 L39.8,99.9 L55.6,91.4 L103.0,76.8 L182.0,56.1\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/><rect x=\"250\" y=\"6\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"260\" y=\"20\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">B</text><line x1=\"264\" y1=\"123\" x2=\"434\" y2=\"123\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"264\" y1=\"123\" x2=\"264\" y2=\"38\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"434,119 442,123 434,127\" fill=\"#222\"/><polygon points=\"260,38 264,30 268,38\" fill=\"#222\"/><text x=\"440\" y=\"139\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Og‘irlik (g)</text><text x=\"276\" y=\"34\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Narx (so‘m)</text><path d=\"M264.0,108.4 L267.9,108.4\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><path d=\"M268.0,104.8 L271.9,104.8\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><path d=\"M271.9,99.9 L279.8,99.9\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><path d=\"M279.8,91.4 L295.6,91.4\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><path d=\"M295.6,76.8 L343.0,76.8\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><path d=\"M343.0,56.1 L422.0,56.1\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2.5\"/><rect x=\"10\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"20\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">C</text><line x1=\"24\" y1=\"263\" x2=\"194\" y2=\"263\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"24\" y1=\"263\" x2=\"24\" y2=\"178\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"194,259 202,263 194,267\" fill=\"#222\"/><polygon points=\"20,178 24,170 28,178\" fill=\"#222\"/><text x=\"200\" y=\"279\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Og‘irlik (g)</text><text x=\"36\" y=\"174\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Narx (so‘m)</text><circle cx=\"27.9\" cy=\"248.4\" r=\"2.8\" fill=\"#1f5fa8\"/><circle cx=\"31.9\" cy=\"244.8\" r=\"2.8\" fill=\"#1f5fa8\"/><circle cx=\"39.8\" cy=\"239.9\" r=\"2.8\" fill=\"#1f5fa8\"/><circle cx=\"55.6\" cy=\"231.4\" r=\"2.8\" fill=\"#1f5fa8\"/><circle cx=\"103.0\" cy=\"216.8\" r=\"2.8\" fill=\"#1f5fa8\"/><circle cx=\"182.0\" cy=\"196.1\" r=\"2.8\" fill=\"#1f5fa8\"/><rect x=\"250\" y=\"146\" width=\"20\" height=\"18\" fill=\"#dde6f3\" stroke=\"#222\"/><text x=\"260\" y=\"160\" font-size=\"13\" text-anchor=\"middle\" font-weight=\"bold\" fill=\"#222\">D</text><line x1=\"264\" y1=\"263\" x2=\"434\" y2=\"263\" stroke=\"#222\" stroke-width=\"1.5\"/><line x1=\"264\" y1=\"263\" x2=\"264\" y2=\"178\" stroke=\"#222\" stroke-width=\"1.5\"/><polygon points=\"434,259 442,263 434,267\" fill=\"#222\"/><polygon points=\"260,178 264,170 268,178\" fill=\"#222\"/><text x=\"440\" y=\"279\" font-size=\"11\" text-anchor=\"end\" font-weight=\"normal\" fill=\"#222\">Og‘irlik (g)</text><text x=\"276\" y=\"174\" font-size=\"11\" text-anchor=\"start\" font-weight=\"normal\" fill=\"#222\">Narx (so‘m)</text><path d=\"M264.0,248.4 L422.0,196.1\" fill=\"none\" stroke=\"#1f5fa8\" stroke-width=\"2\"/></svg>",
+    "javoblar": [
+     "A grafik (silliq egri chiziq)",
+     "B grafik (zinapoyasimon)",
+     "C grafik (alohida nuqtalar)",
+     "D grafik (to‘g‘ri chiziq)"
+    ],
+    "togri": 1,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "Oraliq ichida narx o‘zgarmaydi",
+      "ovoz": "Masalan, 300 g ham, 480 g ham bir xil — 15 000 so‘m."
+     },
+     {
+      "doska": "O‘zgarmas narx → gorizontal kesma",
+      "ovoz": "Har bir oraliq grafikda gorizontal kesma bo‘ladi."
+     },
+     {
+      "doska": "Chegarada narx sakraydi",
+      "ovoz": "Keyingi oraliqqa o‘tganda narx birdan oshadi — zinapoya hosil bo‘ladi."
+     },
+     {
+      "doska": "Javob: B) zinapoyasimon grafik",
+      "ovoz": "Bu B grafik."
+     }
+    ],
+    "xatolar": {
+     "0": "Egri chiziq har grammda narx sekin o‘sishini bildiradi, aslida esa oraliq ichida narx o‘zgarmaydi.",
+     "2": "Nuqtalar faqat ayrim og‘irliklar narxini ko‘rsatadi, oraliqdagi boshqa og‘irliklar narxi ko‘rinmaydi.",
+     "3": "To‘g‘ri chiziq narx og‘irlikka tekis bog‘liq degani — jadvalda esa narx sakrab o‘zgaradi."
+    },
+    "maslahat": "Jadvalni grafikka o‘tkazishda oraliq ichidagi qiymatlar haqida ham o‘ylang, faqat chegaralar haqida emas."
+   },
+   {
+    "id": "P-TT-M50-2",
+    "asl_id": "Postal Charges Q2 (50.2)",
+    "mavzu": "PM-MIQ",
+    "jarayon": "qollash",
+    "kontekst": "shaxsiy",
+    "fikrlash": "qollash",
+    "qiyinlik_ball": 500,
+    "taxminiy": true,
+    "oecd_foiz": null,
+    "kunikma": "Jadvaldan narxlarni topib, ikki variantni solishtirish",
+    "usul": "Har bir variant narxini alohida hisoblang: ikki alohida jo‘natma va bitta umumiy (og‘irliklar yig‘indisi) jo‘natma.",
+    "turi": "tanlov",
+    "savol": "Jasur do‘stiga 300 g va 800 g og‘irlikdagi ikkita buyum yubormoqchi. Ularni ikkita alohida jo‘natma qilib yuborish arzonmi yoki bitta jo‘natma qilibmi? To‘g‘ri hisob qaysi?",
+    "rasm": null,
+    "javoblar": [
+     "Alohida: 12 000 + 19 000 = 31 000 so‘m; birga: 26 000 so‘m — birga arzon",
+     "Alohida: 15 000 + 19 000 = 34 000 so‘m; birga: 38 000 so‘m — alohida arzon",
+     "Alohida: 15 000 + 19 000 = 34 000 so‘m; birga: 26 000 so‘m — birga arzon",
+     "Alohida: 15 000 + 19 000 = 34 000 so‘m; birga: 19 000 so‘m — birga arzon"
+    ],
+    "togri": 2,
+    "javob": "",
+    "javob_turi": "",
+    "yechim": [
+     {
+      "doska": "300 g → 15 000; 800 g → 19 000",
+      "ovoz": "Alohida: 300 g 251–500 oralig‘ida, 800 g 501–1000 oralig‘ida."
+     },
+     {
+      "doska": "Alohida: 15 000 + 19 000 = 34 000",
+      "ovoz": "Ikki alohida jo‘natma 34 ming so‘m."
+     },
+     {
+      "doska": "Birga: 300 + 800 = 1 100 g → 26 000",
+      "ovoz": "1100 g 1001–2000 oralig‘iga tushadi — 26 ming so‘m."
+     },
+     {
+      "doska": "34 000 − 26 000 = 8 000 tejaladi",
+      "ovoz": "Bitta jo‘natma 8 ming so‘m arzon."
+     },
+     {
+      "doska": "Javob: C) birga arzon",
+      "ovoz": "To‘g‘ri hisob — C."
+     }
+    ],
+    "xatolar": {
+     "0": "300 g «250 g gacha» oralig‘iga kirmaydi, uning narxi 15 000 so‘m.",
+     "1": "1100 g 1001–2000 g oralig‘ida, narxi 26 000 so‘m, 38 000 emas.",
+     "3": "Birga yuborilganda og‘irlik 1100 g bo‘ladi — bu 1000 g dan ortiq, narx 26 000 so‘m."
+    },
+    "maslahat": "Oraliq chegaralariga ehtiyot bo‘ling: 300 g «250 g gacha» oralig‘iga kirmaydi."
+   }
+  ]
+ }
+]

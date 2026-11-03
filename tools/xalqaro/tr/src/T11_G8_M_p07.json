@@ -1,0 +1,926 @@
+[
+{
+"k": "s0001",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Aylanuvchi ko‘rsatkich (strelka) sektorining doiradagi ulushini baholab, ko‘p sinovda kutiladigan natijalar sonini topish"
+},
+{
+"k": "s0002",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Sektor doiraning qanday qismini egallashini (burchagi bo‘yicha) aniqlang, so‘ng sinovlar sonini shu ulushga ko‘paytiring."
+},
+{
+"k": "s0003",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malika yangi o‘yin uchun rasmdagi aylanuvchi strelkani yasadi. Strelka 480 marta aylantirilsa, u taxminan necha marta «Yashil» sektorda to‘xtashi kutiladi?"
+},
+{
+"k": "s0004",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Ko‘k"
+},
+{
+"k": "s0005",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Qizil"
+},
+{
+"k": "s0006",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Yashil"
+},
+{
+"k": "s0007",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Sariq"
+},
+{
+"k": "s0008",
+"maydon": "doska",
+"tur": "matn",
+"uz": "«Yashil» sektor — to‘g‘ri burchakning yarmi: $45°$"
+},
+{
+"k": "s0009",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Rasmda yashil sektor to‘g‘ri burchakli ko‘k sektorning yarmicha, ya’ni qirq besh gradus."
+},
+{
+"k": "s0010",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qirq besh gradus — butun doiraning sakkizdan bir qismi."
+},
+{
+"k": "s0011",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rt yuz saksonning sakkizdan biri — oltmish."
+},
+{
+"k": "s0012",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 60"
+},
+{
+"k": "s0013",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — C."
+},
+{
+"k": "s0014",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi yashil sektorni to‘g‘ri burchak (doiraning chorak qismi) deb olgan: $480 : 4 = 120$."
+},
+{
+"k": "s0015",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi sektorni doiraning oltidan bir qismi deb noto‘g‘ri baholagan: $480 : 6 = 80$."
+},
+{
+"k": "s0016",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi sektorni juda kichik — o‘n ikkidan bir qism deb olgan: $480 : 12 = 40$."
+},
+{
+"k": "s0017",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yashil sektorni yonidagi to‘g‘ri burchakli ko‘k sektor bilan solishtiring."
+},
+{
+"k": "s0018",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz rasmdagi aylanuvchi strelkani 900 marta aylantirmoqchi. Strelka taxminan necha marta «Pushti» sektorda to‘xtashi kutiladi?"
+},
+{
+"k": "s0019",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Oq"
+},
+{
+"k": "s0020",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Pushti"
+},
+{
+"k": "s0021",
+"maydon": "doska",
+"tur": "matn",
+"uz": "«Oq» — yarim doira ($180°$), «Sariq» — «Pushti» dan 2 marta katta"
+},
+{
+"k": "s0022",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oq sektor doiraning yarmi; qolgan yarmida sariq sektor pushtidan ikki barobar katta."
+},
+{
+"k": "s0023",
+"maydon": "doska",
+"tur": "matn",
+"uz": "«Pushti» $= 180° : 3 = 60°$"
+},
+{
+"k": "s0024",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, yarim doira uch teng qismga bo‘linsa, pushti shulardan biri — oltmish gradus."
+},
+{
+"k": "s0025",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Oltmish gradus — doiraning oltidan bir qismi."
+},
+{
+"k": "s0026",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘qqiz yuzning oltidan biri — bir yuz ellik."
+},
+{
+"k": "s0027",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 150"
+},
+{
+"k": "s0028",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — B."
+},
+{
+"k": "s0029",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi sektorni doiraning to‘qqizdan bir qismi deb kamroq baholagan: $900 : 9 = 100$."
+},
+{
+"k": "s0030",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi pushti sektorni to‘g‘ri burchak (chorak doira) deb olgan: $900 : 4 = 225$."
+},
+{
+"k": "s0031",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi pushti sektorni sariq sektor (120°, doiraning uchdan biri) bilan adashtirgan: $900 : 3 = 300$."
+},
+{
+"k": "s0032",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Oq sektor doiraning qancha qismi ekanidan boshlang."
+},
+{
+"k": "s0033",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Tarozi holatlaridan ikki tengsizlik tuzib, ularni birgalikda qanoatlantiradigan qiymatni aniqlash"
+},
+{
+"k": "s0034",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir tarozi holatidan tengsizlik yozing (og‘irroq palla pastga tushadi), ko‘p bo‘laklik holatda tengsizlikni bo‘laklar soniga bo‘ling va ikkala shartga mos qiymatni tanlang."
+},
+{
+"k": "s0035",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz bir xil og‘irlikdagi 4 ta temir bo‘lakchaga ega.\nU bitta bo‘lakchani 15 g toshga qarshi tortganda, bo‘lakcha turgan palla yuqoriga ko‘tarildi (rasmdagi yuqori tarozi).\nTo‘rttala bo‘lakchani 52 g toshga qarshi tortganda, bo‘lakchalar turgan palla pastga tushdi (pastki tarozi).\nBitta bo‘lakchaning og‘irligi quyidagilardan qaysi biri bo‘lishi mumkin?"
+},
+{
+"k": "s0036",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1-tortish: $m < 15$ g"
+},
+{
+"k": "s0037",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi tarozida bo‘lakcha turgan palla ko‘tarilgan, demak bo‘lakcha o‘n besh grammdan yengil."
+},
+{
+"k": "s0038",
+"maydon": "doska",
+"tur": "matn",
+"uz": "2-tortish: $4m > 52$ g"
+},
+{
+"k": "s0039",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi tarozida to‘rtta bo‘lakcha ellik ikki grammdan og‘ir."
+},
+{
+"k": "s0040",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ellik ikkini to‘rtga bo‘lsak o‘n uch: bitta bo‘lakcha o‘n uch grammdan og‘ir."
+},
+{
+"k": "s0041",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘n uch va o‘n besh orasidagi variant faqat o‘n to‘rt."
+},
+{
+"k": "s0042",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 14 g"
+},
+{
+"k": "s0043",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi $52 : 4 = 13$ ni hisoblagan, lekin bo‘lakchalar toshdan og‘ir, ya’ni 13 g dan ko‘p bo‘lishi kerakligini hisobga olmagan."
+},
+{
+"k": "s0044",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi birinchi tarozi muvozanatda deb o‘ylagan; aslida bo‘lakcha 15 g dan yengil."
+},
+{
+"k": "s0045",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi birinchi tarozi holatini teskari o‘qigan: bo‘lakcha turgan palla ko‘tarilgani uning yengilroq ekanini bildiradi."
+},
+{
+"k": "s0046",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir tarozidan alohida tengsizlik yozing va ikkalasiga ham mos sonni toping."
+},
+{
+"k": "s0047",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Fermerning bir xil og‘irlikdagi 5 ta un qopi bor.\nBitta qopni 9 kg toshga qarshi tortganda, qop turgan palla pastga tushdi (rasmdagi yuqori tarozi).\nBeshta qopni 55 kg toshga qarshi tortganda, qoplar turgan palla yuqoriga ko‘tarildi (pastki tarozi).\nBitta qopning og‘irligi quyidagilardan qaysi biri bo‘lishi mumkin?"
+},
+{
+"k": "s0048",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "5 kg"
+},
+{
+"k": "s0049",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "4 kg"
+},
+{
+"k": "s0050",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "50 kg"
+},
+{
+"k": "s0051",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "8 kg"
+},
+{
+"k": "s0052",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "9 kg"
+},
+{
+"k": "s0053",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "10 kg"
+},
+{
+"k": "s0054",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "11 kg"
+},
+{
+"k": "s0055",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1-tortish: $m > 9$ kg"
+},
+{
+"k": "s0056",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Birinchi tarozida qop turgan palla pastga tushgan, demak qop to‘qqiz kilogrammdan og‘ir."
+},
+{
+"k": "s0057",
+"maydon": "doska",
+"tur": "matn",
+"uz": "2-tortish: $5m < 55$ kg"
+},
+{
+"k": "s0058",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ikkinchi tarozida beshta qop ellik besh kilogrammdan yengil."
+},
+{
+"k": "s0059",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$m < 55 : 5 = 11$ kg"
+},
+{
+"k": "s0060",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ellik beshni beshga bo‘lsak o‘n bir: bitta qop o‘n bir kilogrammdan yengil."
+},
+{
+"k": "s0061",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$9 < m < 11$  $\\Rightarrow$  $m = 10$ kg"
+},
+{
+"k": "s0062",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘qqiz va o‘n bir orasidagi variant — o‘n."
+},
+{
+"k": "s0063",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 10 kg"
+},
+{
+"k": "s0064",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi birinchi tarozi holatini teskari o‘qigan: qop turgan palla pastga tushgani uning og‘irroq ekanini bildiradi."
+},
+{
+"k": "s0065",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi birinchi tarozini muvozanatda deb o‘ylagan; aslida qop 9 kg dan og‘ir."
+},
+{
+"k": "s0066",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi $55 : 5 = 11$ ni topgan, lekin qoplar toshdan yengil, ya’ni 11 kg dan kam bo‘lishi kerakligini hisobga olmagan."
+},
+{
+"k": "s0067",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Og‘irroq palla pastga tushadi: har bir tarozidan «katta» yoki «kichik» tengsizligini yozing."
+},
+{
+"k": "s0068",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jamlanma (kumulyativ) chiziqli grafikdan berilgan qiymatga mos vaqtni o‘qish"
+},
+{
+"k": "s0069",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Vertikal o‘qda kerakli qiymatni toping, undan gorizontal yo‘nalishda uzluksiz chiziqqacha boring va pastga tushib, vaqtni o‘qing."
+},
+{
+"k": "s0070",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdagi uzluksiz chiziq «Bereke» nonvoyxonasida bir kun davomida tayyorlangan nonlarning jami sonini ko‘rsatadi. Punktir chiziq esa nonlar bir xil tezlikda tayyorlanganda jami son qanday bo‘lishini ko‘rsatadi.\nSoat nechada jami 240 ta non tayyor bo‘lgan?"
+},
+{
+"k": "s0071",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Non tayyorlash"
+},
+{
+"k": "s0072",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Vaqt"
+},
+{
+"k": "s0073",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Jami tayyorlangan non (dona)"
+},
+{
+"k": "s0074",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Vertikal o‘qda 240 ni topamiz"
+},
+{
+"k": "s0075",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Vertikal o‘qda ikki yuz qirq belgisini topamiz."
+},
+{
+"k": "s0076",
+"maydon": "doska",
+"tur": "matn",
+"uz": "240 dan uzluksiz chiziqqacha gorizontal boramiz"
+},
+{
+"k": "s0077",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Undan o‘ngga, uzluksiz chiziqqa yetguncha boramiz — punktir chiziq emas!"
+},
+{
+"k": "s0078",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Pastga tushamiz: 10:00"
+},
+{
+"k": "s0079",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kesishgan nuqtadan pastga tushsak, soat o‘n chiqadi."
+},
+{
+"k": "s0080",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 10:00"
+},
+{
+"k": "s0081",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi 9:00 dagi qiymatni (180) 240 ga yaqin deb olgan, grafikni aniq o‘qimagan."
+},
+{
+"k": "s0082",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi uzluksiz chiziq o‘rniga punktir chiziqdan foydalangan: u 240 ga soat 11:00 da yetadi."
+},
+{
+"k": "s0083",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi 240 dan o‘tib ketgan qiymatni (12:00 dagi 300) olgan yoki ustunlarni sanashda adashgan."
+},
+{
+"k": "s0084",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Punktir chiziq emas, haqiqiy natijani ko‘rsatuvchi uzluksiz chiziqqa qarang."
+},
+{
+"k": "s0085",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdagi uzluksiz chiziq Nilufarlar oilasi bog‘ida bir kun davomida terilgan uzumning jami massasini ko‘rsatadi. Punktir chiziq esa uzum bir xil tezlikda terilganda jami massa qanday bo‘lishini ko‘rsatadi.\nSoat nechada jami 200 kg uzum terib bo‘lingan?"
+},
+{
+"k": "s0086",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Uzum terimi"
+},
+{
+"k": "s0087",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "Jami terilgan uzum (kg)"
+},
+{
+"k": "s0088",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Vertikal o‘qda 200 ni topamiz"
+},
+{
+"k": "s0089",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Vertikal o‘qda ikki yuz kilogramm belgisini topamiz."
+},
+{
+"k": "s0090",
+"maydon": "doska",
+"tur": "matn",
+"uz": "200 dan uzluksiz chiziqqacha gorizontal boramiz"
+},
+{
+"k": "s0091",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Undan o‘ngga, uzluksiz chiziqqa yetguncha boramiz."
+},
+{
+"k": "s0092",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Pastga tushamiz: 11:00"
+},
+{
+"k": "s0093",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kesishgan nuqtadan pastga tushsak, soat o‘n bir chiqadi."
+},
+{
+"k": "s0094",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 11:00"
+},
+{
+"k": "s0095",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi 10:00 dagi qiymatni (140 kg) 200 ga yaqin deb olgan."
+},
+{
+"k": "s0096",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi punktir chiziqdan foydalangan: u 200 kg ga soat 12:00 da yetadi."
+},
+{
+"k": "s0097",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi 200 kg dan ancha o‘tib ketgan nuqtani (13:00 dagi 270 kg) olgan."
+},
+{
+"k": "s0098",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qaysi chiziq haqiqiy terimni ko‘rsatishini shartdan aniqlang."
+},
+{
+"k": "s0099",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jamlanma grafikdan umumiy miqdor va vaqtni o‘qib, bir soatdagi o‘rtacha tezlikni hisoblash"
+},
+{
+"k": "s0100",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Grafikning oxirgi nuqtasidan jami miqdorni, gorizontal o‘qdan umumiy soatlar sonini toping va jami miqdorni soatlar soniga bo‘ling."
+},
+{
+"k": "s0101",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdagi uzluksiz chiziq «Bereke» nonvoyxonasida bir kun davomida tayyorlangan nonlarning jami sonini ko‘rsatadi. Punktir chiziq esa nonlar bir xil tezlikda tayyorlanganda jami son qanday bo‘lishini ko‘rsatadi.\nShu kuni nonvoyxonada bir soatda o‘rtacha nechta non tayyorlangan?"
+},
+{
+"k": "s0102",
+"maydon": "javob",
+"tur": "matn",
+"uz": "60|60 ta|60 dona"
+},
+{
+"k": "s0103",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: 480 ta non"
+},
+{
+"k": "s0104",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Grafikning oxirgi nuqtasi soat o‘n beshda to‘rt yuz sakson."
+},
+{
+"k": "s0105",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Vaqt: 7:00 dan 15:00 gacha — 8 soat"
+},
+{
+"k": "s0106",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ish yettidan o‘n beshgacha davom etgan, ya’ni sakkiz soat."
+},
+{
+"k": "s0107",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘rt yuz saksonni sakkizga bo‘lamiz: oltmish."
+},
+{
+"k": "s0108",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 60"
+},
+{
+"k": "s0109",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir soatda o‘rtacha oltmish ta non tayyorlangan."
+},
+{
+"k": "s0110",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Tipik xatolar: jami sonni (480) o‘rtacha deb yozish yoki soatlar sonini noto‘g‘ri sanab, 9 ga bo‘lish (vaqt belgilari 9 ta, lekin oraliqlar 8 ta)."
+},
+{
+"k": "s0111",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "O‘rtacha tezlik = jami miqdor : umumiy vaqt; soatlarni belgi emas, oraliqlar bo‘yicha sanang."
+},
+{
+"k": "s0112",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdagi uzluksiz chiziq Nilufarlar oilasi bog‘ida bir kun davomida terilgan uzumning jami massasini ko‘rsatadi. Punktir chiziq esa uzum bir xil tezlikda terilganda jami massa qanday bo‘lishini ko‘rsatadi.\nShu kuni bir soatda o‘rtacha necha kilogramm uzum terilgan?"
+},
+{
+"k": "s0113",
+"maydon": "javob",
+"tur": "matn",
+"uz": "50|50 kg"
+},
+{
+"k": "s0114",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Jami: 300 kg"
+},
+{
+"k": "s0115",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Grafikning oxirgi nuqtasi soat o‘n to‘rtda uch yuz kilogramm."
+},
+{
+"k": "s0116",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Vaqt: 8:00 dan 14:00 gacha — 6 soat"
+},
+{
+"k": "s0117",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Terim sakkizdan o‘n to‘rtgacha, ya’ni olti soat davom etgan."
+},
+{
+"k": "s0118",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uch yuzni oltiga bo‘lamiz: ellik."
+},
+{
+"k": "s0119",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 50"
+},
+{
+"k": "s0120",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir soatda o‘rtacha ellik kilogramm uzum terilgan."
+},
+{
+"k": "s0121",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Tipik xatolar: jami massani (300) o‘rtacha deb yozish yoki vaqt belgilarini sanab, 7 ga bo‘lish."
+},
+{
+"k": "s0122",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Grafik qancha soatni qamrab olganini oraliqlar soni bo‘yicha aniqlang."
+},
+{
+"k": "s0123",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Jamlanma grafikda eng tik qismni aniqlab, eng ko‘p mahsulot ishlab chiqarilgan soatni topish"
+},
+{
+"k": "s0124",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir soat uchun jami qiymatning o‘zgarishini (keyingi qiymat − oldingi qiymat) toping yoki grafikning eng tik ko‘tarilgan bo‘lagini aniqlang."
+},
+{
+"k": "s0125",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdagi uzluksiz chiziq «Bereke» nonvoyxonasida bir kun davomida tayyorlangan nonlarning jami sonini ko‘rsatadi. Punktir chiziq esa nonlar bir xil tezlikda tayyorlanganda jami son qanday bo‘lishini ko‘rsatadi.\nQaysi bir soat davomida eng ko‘p non tayyorlangan?"
+},
+{
+"k": "s0126",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "7:00 va 8:00 orasida"
+},
+{
+"k": "s0127",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "10:00 va 11:00 orasida"
+},
+{
+"k": "s0128",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "12:00 va 13:00 orasida"
+},
+{
+"k": "s0129",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "14:00 va 15:00 orasida"
+},
+{
+"k": "s0130",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Har soatdagi o‘sish: 100, 80, 60, 20, 40, 120, 40, 20"
+},
+{
+"k": "s0131",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har bir soat uchun keyingi qiymatdan oldingisini ayiramiz."
+},
+{
+"k": "s0132",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng katta o‘sish soat o‘n ikki bilan o‘n uch orasida: bir yuz yigirma ta non."
+},
+{
+"k": "s0133",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Grafikning eng tik bo‘lagi ham shu yerda"
+},
+{
+"k": "s0134",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Grafikda ham bu bo‘lak eng tik ko‘tarilgan."
+},
+{
+"k": "s0135",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 12:00 va 13:00 orasida"
+},
+{
+"k": "s0136",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi birinchi soatdagi 100 ta o‘sishni ko‘rgan, lekin keyingi 120 ta o‘sishni tekshirmagan."
+},
+{
+"k": "s0137",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi grafik deyarli tekis bo‘lgan bo‘lakni tanlagan: bu soatda atigi 20 ta non tayyorlangan."
+},
+{
+"k": "s0138",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi grafikning eng baland nuqtasini eng ko‘p ishlab chiqarilgan soat deb o‘ylagan; aslida bu jami son, bir soatdagi emas."
+},
+{
+"k": "s0139",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Eng baland nuqta emas, eng tik ko‘tarilgan bo‘lakni qidiring."
+},
+{
+"k": "s0140",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Grafikdagi uzluksiz chiziq Nilufarlar oilasi bog‘ida bir kun davomida terilgan uzumning jami massasini ko‘rsatadi. Punktir chiziq esa uzum bir xil tezlikda terilganda jami massa qanday bo‘lishini ko‘rsatadi.\nQaysi bir soat davomida eng ko‘p uzum terilgan?"
+},
+{
+"k": "s0141",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "8:00 va 9:00 orasida"
+},
+{
+"k": "s0142",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "9:00 va 10:00 orasida"
+},
+{
+"k": "s0143",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "13:00 va 14:00 orasida"
+},
+{
+"k": "s0144",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Har soatdagi o‘sish: 50, 90, 60, 20, 50, 30"
+},
+{
+"k": "s0145",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har bir soat uchun jami massaning o‘zgarishini topamiz."
+},
+{
+"k": "s0146",
+"maydon": "doska",
+"tur": "matn",
+"uz": "9:00–10:00: $140 - 50 = 90$ kg"
+},
+{
+"k": "s0147",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng katta o‘sish soat to‘qqiz bilan o‘n orasida: to‘qson kilogramm."
+},
+{
+"k": "s0148",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Grafikning eng tik bo‘lagi shu"
+},
+{
+"k": "s0149",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Grafikda ham bu bo‘lak eng tik."
+},
+{
+"k": "s0150",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 9:00 va 10:00 orasida"
+},
+{
+"k": "s0151",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi faqat birinchi soatga qaragan: unda 50 kg terilgan, bu eng ko‘p emas."
+},
+{
+"k": "s0152",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi 12:00–13:00 dagi 50 kg o‘sishni ko‘zda chamalab kattaroq deb baholagan."
+},
+{
+"k": "s0153",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi grafikning eng baland nuqtasini tanlagan; bu kun oxiridagi jami massa, soatlik terim emas."
+},
+{
+"k": "s0154",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har soatda chiziq qanchaga ko‘tarilganini solishtiring."
+}
+]

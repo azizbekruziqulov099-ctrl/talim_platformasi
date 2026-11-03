@@ -1,0 +1,1120 @@
+[
+ {
+  "kod": "XB-PR-TOP",
+  "mavzu": "PR-TOP",
+  "fan": "Ona tili",
+  "sarlavha": "Matndan kerakli ma’lumotni topish",
+  "maqsad": "Kalit so‘z bo‘yicha izlash, ma’nodosh ifodani tanish, e’lon va jadval kabi uzlukli matndan bir nechta shartga mos ma’lumotni topish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Avtobus jadvali, e’lon, yo‘riqnoma — hammasi matn\nPISA 2022: O‘zbekiston o‘qishda — 336 ball\nOECD o‘rtachasi — 476, tayanch 2-daraja — 407 ball",
+    "ovoz": "[1] Har kuni biz avtobus jadvali, maktabdagi e’lon yoki dori yo‘riqnomasidan kerakli ma’lumotni izlaymiz. Bugun buni tez va xatosiz qilishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida 2022-yilda o‘n besh yoshli o‘zbek o‘quvchilari o‘qish savodxonligidan o‘rtacha uch yuz o‘ttiz olti ball olgan. [3] Taqqoslang: OECD davlatlari o‘rtachasi to‘rt yuz yetmish olti ball, tayanch ikkinchi daraja esa to‘rt yuz yetti balldan boshlanadi. Demak, oldimizda katta, lekin erishsa bo‘ladigan marra turibdi — bugungi dars aynan shu yo‘ldagi bir qadam!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Kalit so‘z bo‘yicha izlash",
+    "doska": "1. Savoldan kalit so‘zni ajrating\n2. Matnni ko‘z bilan tez «skanerlang»\n3. Topilgan gapni to‘liq va sekin o‘qing",
+    "ovoz": "[1] Avval savolni diqqat bilan o‘qing va eng muhim so‘zni ajrating: kim, qachon, qayerda, qancha — nima so‘ralyapti? [2] Keyin matnni boshidan oxirigacha so‘zma-so‘z o‘qimang, balki ko‘zingiz bilan tez yugurtirib, shu kalit so‘zni qidiring. [3] Kalit so‘z topilgan gapni esa endi sekin va to‘liq o‘qing, chunki javob ko‘pincha o‘sha gapning o‘zida yoki keyingi gapda bo‘ladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Ma’nodosh ifoda tuzog‘i",
+    "doska": "Savol: «Muzey soat nechada ochiladi?»\nMatnda: «Tashrif buyuruvchilar 9:00 dan qabul qilinadi»\nKalit so‘zning ma’nodoshini ham izlang!",
+    "ovoz": "[1] PISA savollarida ko‘pincha bir hiyla bor. Masalan, savolda muzey soat nechada ochilishi so‘ralgan. [2] Matnda esa «ochiladi» so‘zi umuman yo‘q — o‘rniga «tashrif buyuruvchilar soat to‘qqizdan qabul qilinadi» deyilgan. [3] Shuning uchun faqat aynan bir xil so‘zni emas, uning ma’nodoshini yoki shu ma’noni beruvchi ifodani ham izlang."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Uzlukli matn",
+    "doska": "Uzlukli matn: jadval, grafik, e’lon, xarita\nAvval sarlavha, ustun va qator nomlarini o‘qing\nKerakli qator va ustun kesishgan joyda — javob",
+    "ovoz": "[1] Hamma matn ham xatboshilardan iborat emas. Jadval, grafik, e’lon va xarita uzlukli matn deyiladi. [2] Bunday matnda avval sarlavhani, so‘ng ustun va qator nomlarini o‘qing — ular xaritadagi shartli belgilar kabi yo‘l ko‘rsatadi. [3] Keyin kerakli qatorni va kerakli ustunni toping: ular kesishgan katakda javob turadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: e’lon",
+    "doska": "«Kitobxonlar tanlovi! 9–11-sinflar uchun.\nRo‘yxatdan o‘tish: 1–15-mart, kutubxonada.\nFinal: 28-mart, soat 14:00, maktab zalida.»\nSavol: Ro‘yxatdan qayerda o‘tiladi?",
+    "ovoz": "[1] Maktab devoridagi e’lonni o‘qiymiz: kitobxonlar tanlovi, to‘qqizinchi–o‘n birinchi sinflar uchun. [2] Ro‘yxatdan o‘tish birinchi martdan o‘n beshinchi martgacha, kutubxonada. [3] Final esa yigirma sakkizinchi mart kuni soat o‘n to‘rtda, maktab zalida bo‘ladi. [4] Savol: ro‘yxatdan qayerda o‘tiladi? Keling, bosqichma-bosqich topamiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Kalit so‘z: «ro‘yxatdan o‘tish»\nTopildi: 2-satr → «kutubxonada»",
+    "ovoz": "[1] Savoldagi kalit so‘z — «ro‘yxatdan o‘tish». Matnni ko‘z bilan skanerlab, shu so‘zni qidiramiz. [2] Ikkinchi satrda topdik: ro‘yxatdan o‘tish kutubxonada bo‘lar ekan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Chalg‘ituvchi: «maktab zali» — bu finalga tegishli\nJavob: kutubxonada",
+    "ovoz": "[1] E’tibor bering, matnda yana bir joy — maktab zali bor. Lekin u ro‘yxatga emas, finalga tegishli, bu chalg‘ituvchi ma’lumot. [2] Demak, to‘g‘ri javob — kutubxonada. Joy nomini ko‘rgan zahoti emas, u qaysi gapga tegishli ekanini tekshirgandan keyin javob bering."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Shu e’longa ko‘ra: final qaysi kuni bo‘ladi?",
+    "ovoz": "[1] Endi o‘zingiz sinab ko‘ring. Shu e’londan foydalanib, final qaysi kuni bo‘lishini toping. Kalit so‘z — «final».",
+    "savol": "Sanani yozing (masalan: 5-aprel)",
+    "javob": "28-mart|28 mart|28-martda|28"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: jadval va ikki shart",
+    "doska": "A: 07:00 → 11:30, 120 000 so‘m\nB: 09:30 → 13:30, 150 000 so‘m\nC: 08:00 → 14:30, 100 000 so‘m\nSavol: 14:00 gacha yetib, eng arzon yo‘l qaysi?",
+    "ovoz": "[1] Toshkentdan Samarqandga avtobuslar jadvali. A avtobus soat yettida jo‘nab, o‘n bir yarimda yetib boradi, narxi bir yuz yigirma ming so‘m. [2] B avtobus to‘qqiz yarimda jo‘nab, o‘n uch o‘ttizda yetib boradi, narxi bir yuz ellik ming so‘m. [3] C avtobus soat sakkizda jo‘nab, o‘n to‘rt o‘ttizda yetib boradi, narxi yuz ming so‘m. [4] Savol: Samarqandga soat o‘n to‘rtgacha yetib borish kerak va eng arzon avtobusni tanlash kerak. Qaysi biri?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Shart 1: 14:00 gacha yetib borish → A, B\nShart 2: eng arzon → A (120 000 < 150 000)",
+    "ovoz": "[1] Savolda ikki shart bor, ularni alohida tekshiramiz. Birinchi shart — o‘n to‘rtgacha yetib borish: bunga faqat A va B mos keladi. [2] Ikkinchi shart — eng arzon. A va B ichida A arzonroq: bir yuz yigirma ming bir yuz ellik mingdan kam."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Tuzoq: C eng arzon, lekin 1-shartga mos emas!\nJavob: A avtobus",
+    "ovoz": "[1] Mana tuzoq: butun jadvalda eng arzoni C, ko‘pchilik shuni belgilaydi. Lekin C o‘n to‘rt o‘ttizda yetib boradi — kechikadi. [2] Demak, to‘g‘ri javob — A avtobus. Har bir shartni bittalab tekshirsangiz, tuzoqqa tushmaysiz."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Shu jadvalga ko‘ra: B avtobus yo‘lda necha soat?",
+    "ovoz": "[1] Yana shu jadvaldan foydalaning. B avtobus to‘qqiz yarimda jo‘nab, o‘n uch o‘ttizda yetib boradi. Yo‘lda necha soat yuradi?",
+    "savol": "Soatlar sonini yozing",
+    "javob": "4|4 soat|to‘rt|to‘rt soat"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "s1",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Savolni ikki marta o‘qing, shartlarni sanang\n2. Kalit so‘z va uning ma’nodoshlarini izlang\n3. Topilgan joyni har bir shart bilan tekshiring\n4. Javobni matndagi aniq joy bilan asoslang",
+    "ovoz": "[1] PISA savolini yechishda avval savolni ikki marta o‘qing va unda nechta shart borligini sanang. [2] Keyin kalit so‘zni va uning ma’nodoshlarini matndan skanerlab izlang. [3] Topgan ma’lumotingizni har bir shart bilan solishtiring — chalg‘ituvchi ma’lumot ko‘pincha bitta shartga mos bo‘ladi, xolos. [4] Va oxirida o‘zingizga savol bering: javobim matnning qaysi satrida yozilgan? Shu joyni ko‘rsata olsangiz, javob to‘g‘ri."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Kalit so‘z → skanerlash → sekin o‘qish\nMa’nodosh ifodalarni ham izlang\nJadvalda: sarlavha → qator × ustun → shartlar",
+    "ovoz": "[1] Esda tuting: avval kalit so‘z, keyin matnni tez skanerlash, so‘ng topilgan gapni sekin o‘qish. [2] Matnda savoldagi so‘z aynan bo‘lmasligi mumkin — uning ma’nodoshini izlang. [3] Jadval va e’londa sarlavha, qator va ustunni o‘qing va har bir shartni alohida tekshiring. Siz buni uddalaysiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Savolda nima so‘ralyapti? → shu so‘zni izlang\nTopilgan gapni to‘liq o‘qing",
+     "ovoz": "Soddaroq aytsam: savolda nima so‘ralayotganini bitta so‘z bilan belgilang. Matndan shu so‘zni toping va u turgan gapni to‘liq o‘qing — javob o‘sha yerda."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Lug‘atdan so‘z izlash: harflarga qarab tez varaqlaymiz\nSo‘z topilgach — izohini sekin o‘qiymiz",
+     "ovoz": "Lug‘atdan so‘z izlaganingizni eslang. Siz har bir sahifani o‘qimaysiz, harflarga qarab tez varaqlaysiz. So‘zni topgach esa izohini sekin o‘qiysiz. Matnda ham xuddi shunday."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Kalit so‘zni ostiga chizing\nMatnda uni doira ichiga oling",
+     "ovoz": "Qog‘ozda ishlasangiz, savoldagi kalit so‘zning ostiga chizing, matnda uni topganda esa doira ichiga oling. Ko‘z bilan ko‘rinadigan belgi adashmaslikka yordam beradi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Bir ma’no — har xil so‘z\nochiladi = qabul qilinadi = ish boshlaydi",
+     "ovoz": "Bitta ma’noni har xil so‘zlar bilan aytish mumkin. «Ochiladi», «qabul qilinadi», «ish boshlaydi» — hammasi bir narsani bildiradi. Matnda shulardan biri bo‘lishi mumkin."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Do‘stingiz: «Qayerdasan?»\nSiz: «Uydaman», «Xonamdaman» — ma’no bir",
+     "ovoz": "Do‘stingiz «qayerdasan?» deb so‘rasa, siz «uydaman» yoki «xonamdaman» deysiz — so‘z boshqa, ma’no bir. Matn muallifi ham savoldagi so‘zni o‘zgartirib yozishi mumkin."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Savoldagi so‘zga 2–3 ma’nodosh yozing\nMatndan hammasini izlang",
+     "ovoz": "Boshqa usul: izlashdan oldin savoldagi kalit so‘zga ikki-uchta ma’nodosh o‘ylab, chetiga yozib qo‘ying. Keyin matndan ularning barchasini qidiring."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Jadval = qatorlar + ustunlar\nKerakli qator va ustun kesishmasi — javob",
+     "ovoz": "Jadval qator va ustunlardan iborat. Kerakli qatorni bir barmoq bilan, kerakli ustunni ikkinchi barmoq bilan ko‘rsating — ular uchrashgan katak javob."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Dars jadvali: «Seshanba» qatori, «3-soat» ustuni\nKesishmada: «Fizika»",
+     "ovoz": "Maktabdagi dars jadvalini eslang. Seshanba kuni uchinchi soatda qaysi dars borligini bilish uchun seshanba qatori va uchinchi soat ustuni kesishgan katakka qaraysiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "E’londa: Nima? Qachon? Qayerda? Kim uchun?\nHar savolga bittadan satr",
+     "ovoz": "E’lonni o‘qishda to‘rtta savol bering: nima, qachon, qayerda, kim uchun. Har bir javobni alohida belgilasangiz, e’lon kichik jadvalga aylanadi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Savoldagi so‘zni matndan aynan qidirib, ma’nodosh ifodani o‘tkazib yuborish",
+   "Birinchi uchragan joy nomini yoki sonni o‘ylamasdan javob qilish (chalg‘ituvchi ma’lumot)",
+   "Savoldagi bir nechta shartdan faqat bittasini tekshirish",
+   "Jadvalda qo‘shni qator yoki ustundan noto‘g‘ri qiymatni o‘qish"
+  ],
+  "strategiyalar": [
+   "Savoldagi shartlarni sanab, har birini alohida tekshiring",
+   "Kalit so‘z bilan birga uning ma’nodoshlarini ham izlang",
+   "Uzlukli matnda avval sarlavha, ustun va qator nomlarini o‘qing",
+   "Javobni matndagi aniq satr bilan asoslay olishingizni tekshiring"
+  ],
+  "kalit_sozlar": [
+   "matn",
+   "o‘qish",
+   "axborot",
+   "kalit so‘z",
+   "ma’nodosh so‘z",
+   "jadval",
+   "e’lon"
+  ]
+ },
+ {
+  "kod": "XB-PR-TUS",
+  "mavzu": "PR-TUS",
+  "fan": "Ona tili",
+  "sarlavha": "Matnni tushunish: asosiy fikr, xulosa, bog‘lanishlar",
+  "maqsad": "Matnning mavzusi va asosiy fikrini ajratish, matnda yozilmagan xulosani dalil asosida chiqarish, sabab–oqibat bog‘lanishlarini topish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "O‘qidim — lekin nima demoqchi edi?\nPISA 2022: O‘zbekiston o‘qishda — 336 ball\nOECD o‘rtachasi — 476, tayanch 2-daraja — 407 ball",
+    "ovoz": "[1] Ba’zan matnni oxirigacha o‘qiysiz-u, lekin muallif nima demoqchi bo‘lganini aytib berolmaysiz. Bugun matnni chuqur tushunishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida 2022-yilda o‘n besh yoshli o‘zbek o‘quvchilari o‘qish savodxonligidan o‘rtacha uch yuz o‘ttiz olti ball olgan. [3] Taqqoslang: OECD davlatlari o‘rtachasi to‘rt yuz yetmish olti ball, tayanch ikkinchi daraja esa to‘rt yuz yetti balldan boshlanadi. Demak, oldimizda katta, lekin erishsa bo‘ladigan marra turibdi — bugungi dars aynan shu yo‘ldagi bir qadam!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Mavzu va asosiy fikr",
+    "doska": "Mavzu — matn nima haqida (1–2 so‘z)\nAsosiy fikr — muallif mavzu haqida nima demoqchi\nKo‘pincha birinchi yoki oxirgi gapda turadi\nTekshiruv: barcha gaplar shu fikrga xizmat qiladimi?",
+    "ovoz": "[1] Mavzu — matn nima haqida ekani, uni bir-ikki so‘z bilan aytish mumkin: masalan, «Orol dengizi». [2] Asosiy fikr esa muallif shu mavzu haqida aynan nima demoqchi ekani, u to‘liq gap bilan aytiladi. [3] Asosiy fikr ko‘pincha matnning birinchi yoki oxirgi gapida bo‘ladi, lekin har doim emas. [4] Tekshirish usuli oddiy: matndagi har bir gap shu fikrni tushuntirsa yoki isbotlasa — siz to‘g‘ri topgansiz."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Xulosa chiqarish",
+    "doska": "Xulosa — matnda yozilmagan, dalildan kelib chiqadi\nMatndagi dalil + bilimingiz → xulosa\nMatnda dalili yo‘q fikr — xulosa emas, taxmin",
+    "ovoz": "[1] PISA ko‘pincha matnda to‘g‘ridan-to‘g‘ri yozilmagan, lekin undan mantiqan kelib chiqadigan narsani so‘raydi. Bu xulosa chiqarish deyiladi. [2] Xulosa uchun matndagi dalilni o‘zingizning hayotiy bilimingiz bilan birlashtirasiz. [3] Lekin ehtiyot bo‘ling: matnda hech qanday dalili bo‘lmagan fikr xulosa emas, balki shunchaki taxmin."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Bog‘lanishlar",
+    "doska": "Sabab → oqibat: chunki, shu sababli, natijada\nQarshilik: lekin, biroq, aksincha\nKetma-ketlik: avval, so‘ng, nihoyat",
+    "ovoz": "[1] Gaplar orasidagi bog‘lanishni bog‘lovchi so‘zlar ko‘rsatadi. «Chunki», «shu sababli», «natijada» — sabab va oqibatni bog‘laydi. [2] «Lekin», «biroq», «aksincha» so‘zlari esa fikr qarama-qarshi tomonga burilayotganini bildiradi. [3] «Avval», «so‘ng», «nihoyat» kabi so‘zlar voqealar tartibini ko‘rsatadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: asosiy fikrni topamiz",
+    "doska": "«Orol dengizi bir paytlar dunyodagi yirik ko‘llardan edi.\nAmudaryo va Sirdaryo suvi dalalarni sug‘orishga olindi.\nNatijada dengizga suv kam yetib keldi va u qurib bordi.»\nSavol: matnning asosiy fikri qaysi?",
+    "ovoz": "[1] Qisqa matnni o‘qiymiz. Orol dengizi bir paytlar dunyodagi eng yirik ko‘llardan biri edi. [2] Amudaryo va Sirdaryo suvi tobora ko‘proq dalalarni sug‘orishga olindi. [3] Natijada dengizga suv kam yetib keldi va u qurib bordi. [4] Savol: matnning asosiy fikri qaysi? Avval bog‘lanishlarni topamiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "«Natijada» → sabab va oqibat bog‘lanishi\nSabab: daryo suvi dalalarga olindi\nOqibat: dengiz qurib bordi",
+    "ovoz": "[1] Uchinchi gapdagi «natijada» so‘zi bizga signal beradi: bu yerda sabab va oqibat bor. [2] Sabab — daryolar suvi dalalarga olingani. [3] Oqibat — dengiz qurib borgani."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "A) «Orol — yirik ko‘l edi» — faqat bitta tafsilot\nB) «Suv dalalarga olingani Orolni quritdi» — barchasi\nJavob: B",
+    "ovoz": "[1] A variant: Orol yirik ko‘l edi. Bu to‘g‘ri, lekin matnning faqat bitta tafsiloti, qolgan gaplar unga xizmat qilmaydi. [2] B variant: daryo suvining dalalarga olinishi Orolni quritdi. Bu fikrga uchala gap ham xizmat qiladi. [3] Demak, asosiy fikr — B. Asosiy fikr butun matnni qamrab oladi, bitta gapni emas."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Orol haqidagi matnda oqibatni qaysi so‘z boshlaydi?",
+    "ovoz": "[1] Endi o‘zingiz toping: Orol haqidagi matnda oqibatni qaysi bog‘lovchi so‘z boshlab bergan? Bitta so‘z yozing.",
+    "savol": "Bitta so‘z yozing",
+    "javob": "natijada|Natijada"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: xulosa chiqaramiz",
+    "doska": "«Fermer o‘tgan yili tomchilatib sug‘orishga o‘tdi.\nBu yil suv uchun to‘lov ikki baravar kamaydi,\nhosil esa avvalgidek bo‘ldi.»\nSavol: matndan qanday xulosa chiqarish mumkin?",
+    "ovoz": "[1] Ikkinchi matn: fermer o‘tgan yili dalasini tomchilatib sug‘orishga o‘tkazdi. [2] Bu yil u suv uchun ikki baravar kam pul to‘ladi, [3] hosil esa avvalgidek bo‘ldi. [4] Savol: bu matndan qanday xulosa chiqarish mumkin? Matnda xulosa ochiq yozilmagan — uni o‘zimiz chiqaramiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Dalil 1: to‘lov kamaydi → suv kam sarflandi\nDalil 2: hosil kamaymadi\nXulosa: bu usul suvni tejaydi, hosilni kamaytirmaydi",
+    "ovoz": "[1] Birinchi dalil: suv uchun to‘lov kamaydi. Hayotiy bilimimiz aytadiki, kam pul — demak, kam suv sarflangan. [2] Ikkinchi dalil: hosil avvalgidek, ya’ni kamaymagan. [3] Ikkala dalilni birlashtiramiz: tomchilatib sug‘orish suvni tejaydi va hosilni kamaytirmaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xato: «Hosil oshdi» — matnda dalili yo‘q\nHar bir xulosani matndagi so‘z bilan tekshiring",
+    "ovoz": "[1] Endi xato variantni ko‘raylik: «hosil oshdi». Matnda buning dalili yo‘q, aksincha, hosil avvalgidek deyilgan. [2] Shuning uchun har bir xulosaga matndagi aniq so‘zni dalil qilib ko‘rsata olishingiz kerak."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Matnga ko‘ra hosil qanday o‘zgardi?",
+    "ovoz": "[1] Shu matnga ko‘ra fermerning hosili qanday o‘zgardi: oshdimi, kamaydimi yoki o‘zgarmadimi? Bitta so‘z bilan javob bering.",
+    "savol": "oshdi / kamaydi / o‘zgarmadi",
+    "javob": "o‘zgarmadi|o‘zgarmagan|o‘zgarmaydi"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "s1",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Matnni bir marta to‘liq o‘qing: mavzu nima?\n2. Bog‘lovchi so‘zlarni belgilang\n3. Har bir variantni matndagi dalil bilan tekshiring\n4. Tor (bitta tafsilot) variantlardan ehtiyot bo‘ling",
+    "ovoz": "[1] PISA savolida avval matnni bir marta to‘liq o‘qib, mavzusini aniqlang. [2] So‘ng «chunki», «natijada», «lekin» kabi bog‘lovchilarni belgilang — ular matnning skeletini ko‘rsatadi. [3] Variantlarni bittalab matnga solishtiring: dalili bor variant qoladi, dalili yo‘q variant chiqib ketadi. [4] Asosiy fikr haqidagi savolda faqat bitta tafsilotni aytgan variant ko‘pincha tuzoq bo‘ladi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Asosiy fikr butun matnni qamrab oladi\nXulosa = matndagi dalil + bilim\nBog‘lovchilar — matnning yo‘l belgilari",
+    "ovoz": "[1] Esda tuting: asosiy fikr butun matnni qamrab oladi, bitta tafsilotni emas. [2] Xulosa matnda yozilmagan bo‘lishi mumkin, lekin u doim matndagi dalilga tayanadi. [3] Bog‘lovchi so‘zlar esa sabab, oqibat va qarama-qarshilikni ko‘rsatuvchi yo‘l belgilari. Endi siz matnni chuqurroq tushunasiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Mavzu: «nima haqida?»\nAsosiy fikr: «u haqda nima deyilgan?»",
+     "ovoz": "Soddaroq: mavzu — «matn nima haqida?» degan savolga javob. Asosiy fikr — «shu narsa haqida nima deyilgan?» degan savolga javob."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Do‘stingizga kinoni bir gapda aytib bering\nShu bir gap — asosiy fikr",
+     "ovoz": "Kecha ko‘rgan kinoingizni do‘stingizga bitta gapda aytib bering, deyishsa, siz eng muhimini tanlaysiz. Matnning asosiy fikri ham xuddi shunday bitta gap."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Har xatboshiga 2–3 so‘zli sarlavha qo‘ying\nSarlavhalarni birlashtiring → asosiy fikr",
+     "ovoz": "Boshqa usul: har bir xatboshining chetiga ikki-uch so‘zli sarlavha yozing. Keyin shu sarlavhalarni bitta gapga birlashtirsangiz, asosiy fikr chiqadi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Matn: «Ko‘chada hamma soyabon ochgan»\nXulosa: yomg‘ir yog‘yapti",
+     "ovoz": "Soddaroq misol: matnda «ko‘chada hamma soyabon ochgan» deyilgan. «Yomg‘ir» so‘zi yo‘q, lekin biz yomg‘ir yog‘ayotganini xulosa qilamiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Detektiv: oyoq izi + loy → mehmon bog‘dan kelgan\nDalilsiz da’vo — taxmin",
+     "ovoz": "Detektivni tasavvur qiling: u poldagi loyli oyoq izini ko‘rib, mehmon bog‘dan kelganini aytadi. Dalil bor — bu xulosa. Dalilsiz aytsa, shunchaki taxmin bo‘lardi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Jadval: «Matnda nima bor?» | «Men nimani bilaman?»\nIkkalasidan → xulosa",
+     "ovoz": "Ikki ustunli jadval chizing: chapga matnda nima yozilganini, o‘ngga shu haqda o‘zingiz nimani bilishingizni yozing. Ikkalasini birlashtirib xulosa chiqaring."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "«chunki» dan keyin — sabab\n«natijada» dan keyin — oqibat",
+     "ovoz": "Oddiy qoida: «chunki» so‘zidan keyin sabab keladi, «natijada» yoki «shu sababli» so‘zidan keyin esa oqibat keladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Uxlamadim → chunki kino ko‘rdim\nNatijada darsga kechikdim",
+     "ovoz": "Kundalik hayotdan: kechasi kino ko‘rdim, chunki u qiziq edi. Natijada ertalab uxlab qolib, darsga kechikdim. Sabab va oqibat zanjiri shunday bog‘lanadi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Sabab ➝ oqibat strelkasini chizing\n[daryo suvi olindi] ➝ [dengiz qurdi]",
+     "ovoz": "Gaplarni qutichalarga yozib, sababdan oqibatga strelka chizing. Rasm ko‘rinishida bog‘lanish ancha aniq ko‘rinadi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Matndagi bitta tafsilotni (masalan, birinchi gapni) asosiy fikr deb olish",
+   "Mavzu va asosiy fikrni chalkashtirish: «Orol dengizi» — mavzu, asosiy fikr emas",
+   "Matnda dalili bo‘lmagan, faqat o‘z bilimiga asoslangan xulosani tanlash",
+   "Sabab va oqibatning o‘rnini almashtirib qo‘yish"
+  ],
+  "strategiyalar": [
+   "Har xatboshiga qisqa sarlavha qo‘yib, ularni bitta gapga birlashtiring",
+   "Bog‘lovchi so‘zlarni (chunki, natijada, lekin) belgilab chiqing",
+   "Har bir variant uchun matndan dalil izlang — dalili yo‘q variantni chiqaring",
+   "Asosiy fikr savolida faqat bitta tafsilotni aytgan variantdan ehtiyot bo‘ling"
+  ],
+  "kalit_sozlar": [
+   "matn",
+   "mavzu",
+   "asosiy fikr",
+   "g‘oya",
+   "mazmun",
+   "bog‘lovchi",
+   "xulosa"
+  ]
+ },
+ {
+  "kod": "XB-PR-BAH",
+  "mavzu": "PR-BAH",
+  "fan": "Ona tili",
+  "sarlavha": "Baholash va mulohaza: fakt va fikr, manba ishonchliligi",
+  "maqsad": "Fakt va fikrni ajratish, manba ishonchliligini baholash, muallif maqsadini aniqlash va bir mavzudagi ikki manbani solishtirib asosli xulosa chiqarish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Internetda o‘qiganingizning hammasi to‘g‘rimi?\nPISA 2022: O‘zbekiston o‘qishda — 336 ball\nOECD o‘rtachasi — 476, tayanch 2-daraja — 407 ball",
+    "ovoz": "[1] Har kuni telefonda yuzlab xabar o‘qiymiz. Lekin ularning hammasi to‘g‘rimi? Bugun matnga ishonish yoki ishonmaslikni qanday hal qilishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida 2022-yilda o‘n besh yoshli o‘zbek o‘quvchilari o‘qish savodxonligidan o‘rtacha uch yuz o‘ttiz olti ball olgan. [3] Taqqoslang: OECD davlatlari o‘rtachasi to‘rt yuz yetmish olti ball, tayanch ikkinchi daraja esa to‘rt yuz yetti balldan boshlanadi. Demak, oldimizda katta, lekin erishsa bo‘ladigan marra turibdi — bugungi dars aynan shu yo‘ldagi bir qadam!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Fakt va fikr",
+    "doska": "Fakt — tekshirib bo‘ladigan ma’lumot\nFikr — kimningdir bahosi, qarashi\nFikr belgilari: menimcha, eng yaxshi, ajoyib, kerak",
+    "ovoz": "[1] Fakt — tekshirib, o‘lchab yoki hujjat bilan isbotlab bo‘ladigan ma’lumot. [2] Fikr esa kimningdir bahosi, qarashi yoki his-tuyg‘usi, uni boshqa odam boshqacha baholashi mumkin. [3] Fikrni ko‘pincha «menimcha», «eng yaxshi», «ajoyib», «zerikarli», «kerak» kabi baho bildiruvchi so‘zlar ochib beradi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Manba ishonchliligi",
+    "doska": "Kim yozgan? Muallif mutaxassismi?\nQachon yozilgan? Ma’lumot eskirmaganmi?\nDalil bormi? Manbalarga havola keltirilganmi?\nTil: «hech qachon», «100%» — mubolag‘a belgisi",
+    "ovoz": "[1] Manbani baholashda birinchi savol: kim yozgan? Muallif ma’lum va shu sohaning mutaxassisimi? [2] Ikkinchi savol: qachon yozilgan? Ayniqsa fan va texnika haqidagi ma’lumot tez eskiradi. [3] Uchinchi savol: dalil bormi? Ishonchli matn raqam va faktlarning qayerdan olinganini ko‘rsatadi. [4] To‘rtinchi: tilga qarang. «Hech qachon», «yuz foiz kafolat» kabi keskin so‘zlar ko‘pincha mubolag‘a belgisi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Muallif maqsadi va ikki manba",
+    "doska": "Maqsad: xabar berish, ishontirish, sotish, ko‘ngil ochish\nIkki manba: nimada mos, nimada farq qiladi?\nFarq bo‘lsa — qaysi biri ishonchliroq va nega?",
+    "ovoz": "[1] Har bir muallifning maqsadi bor: xabar berish, ishontirish, biror narsani sotish yoki ko‘ngil ochish. [2] Bir mavzuda ikki manba bo‘lsa, avval ular nimada mos kelishini, so‘ng nimada farq qilishini aniqlang. [3] Farq bo‘lsa, ishonchlilik savollaridan foydalanib, qaysi manbaga ko‘proq ishonish mumkinligini asoslang."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: fakt yoki fikr?",
+    "doska": "1) «Registon maydonida uchta madrasa bor.\n2) Ular XV–XVII asrlarda qurilgan.\n3) Bu dunyodagi eng go‘zal maydon.»",
+    "ovoz": "[1] Uchta gapni o‘qiymiz. Birinchisi: Registon maydonida uchta madrasa bor. [2] Ikkinchisi: ular o‘n beshinchi–o‘n yettinchi asrlarda qurilgan. [3] Uchinchisi: bu dunyodagi eng go‘zal maydon. Qaysi gap fikr?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "1-gap: borib sanab tekshirsa bo‘ladi → fakt\n2-gap: tarixiy hujjatlar bilan tekshiriladi → fakt\n3-gap: «eng go‘zal» — baho → fikr",
+    "ovoz": "[1] Birinchi gapni tekshirish oson — borib sanash mumkin. Demak, bu fakt. [2] Ikkinchi gapni tarixiy hujjatlar va olimlarning tadqiqotlari tasdiqlaydi, bu ham fakt. [3] Uchinchi gapdagi «eng go‘zal» — baho. Kimgadir boshqa maydon go‘zalroq tuyulishi mumkin. Demak, bu fikr."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "«Kitob 2020-yilda chiqqan va u juda zerikarli.»",
+    "ovoz": "[1] Endi o‘zingiz: «Bu kitob ikki ming yigirmanchi yilda chiqqan va u juda zerikarli.» Gapning qaysi so‘zi fikrni bildiradi?",
+    "savol": "Fikr bildiruvchi so‘zni yozing",
+    "javob": "zerikarli|juda zerikarli"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: ikki manbani solishtiramiz",
+    "doska": "A: ijtimoiy tarmoqdagi post, muallif noma’lum\n«Kuniga 5 litr suv iching — hech qachon kasal bo‘lmaysiz!»\nB: shifokor maqolasi, manbalar keltirilgan\n«Suvga ehtiyoj yosh, vazn va faollikka bog‘liq.»",
+    "ovoz": "[1] Bir mavzuda ikki manba. A manba — ijtimoiy tarmoqdagi post, muallifi noma’lum. [2] Unda shunday yozilgan: kuniga besh litr suv iching — hech qachon kasal bo‘lmaysiz! [3] B manba — shifokor yozgan maqola, oxirida ilmiy manbalar ro‘yxati bor. [4] Unda esa: odamning suvga ehtiyoji yoshi, vazni va faolligiga bog‘liq, deyilgan."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "A: muallif yo‘q, dalil yo‘q, «hech qachon» — mubolag‘a\nB: mutaxassis, havolalar bor, ehtiyotkor til",
+    "ovoz": "[1] A manbani baholaymiz: muallif noma’lum, dalil yo‘q, «hech qachon kasal bo‘lmaysiz» — keskin va’da, mubolag‘a. [2] B manbada muallif — mutaxassis, manbalar ko‘rsatilgan, til esa vazmin va ehtiyotkor."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Mos: ikkalasi ham suv ichish muhim deydi\nFarq: A — hammaga bir xil, B — har kimga har xil\nXulosa: B ishonchliroq — mutaxassis va dalil bor",
+    "ovoz": "[1] Endi solishtiramiz. Mos joyi: ikkala manba ham suv ichish muhim, deydi. [2] Farqi: A hammaga bir xil miqdorni buyuradi, B esa ehtiyoj har kimda har xil, deydi. [3] Xulosa: B manba ishonchliroq, chunki muallifi mutaxassis, dalillari bor va mubolag‘a qilmaydi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "«Super-vitamin — eng zo‘ri! Hoziroq buyurtma bering!»",
+    "ovoz": "[1] Bu matnni o‘qing: «Super-vitamin — eng zo‘ri! Hoziroq buyurtma bering!» Muallifning maqsadi nima: xabar berish, sotish yoki ko‘ngil ochish?",
+    "savol": "xabar berish / sotish / ko‘ngil ochish",
+    "javob": "sotish|reklama|sotish uchun"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "s1",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Har bir gapni so‘rang: tekshirsa bo‘ladimi?\n2. Manba: kim? qachon? dalil bormi? maqsad?\n3. Ikki manbada: mos joy → farq → kimga ishonamiz\n4. Javobni «chunki ...» bilan asoslang",
+    "ovoz": "[1] PISA savolida fakt va fikrni ajratish uchun har bir gapga savol bering: buni tekshirsa bo‘ladimi? [2] Manba haqida so‘ralsa, to‘rt savolni ketma-ket bering: kim yozgan, qachon, dalil bormi va maqsadi nima. [3] Ikki manba bo‘lsa, avval mos joyni, so‘ng farqni toping va kimga ishonish kerakligini hal qiling. [4] Ochiq javobli savolda faqat «B» deb yozish yetmaydi — doim «chunki» deb, matndan sabab keltiring."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Fakt — tekshiriladi, fikr — baholanadi\nIshonchli manba: muallif, sana, dalil, vazmin til\nIkki manba → mos joy, farq, asosli tanlov",
+    "ovoz": "[1] Esda tuting: faktni tekshirish mumkin, fikr esa kimningdir bahosi. [2] Ishonchli manbaning belgilari: muallif ma’lum, sanasi bor, dalil keltirilgan, til vazmin. [3] Ikki manbani solishtirib, asosli tanlov qiling. Endi siz o‘qiganingizni tanqidiy baholay olasiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "«Bugun +30 °C» — fakt (termometr)\n«Bugun juda issiq» — fikr",
+     "ovoz": "Soddaroq: «bugun havo o‘ttiz daraja» — termometr bilan tekshirsa bo‘ladi, bu fakt. «Bugun juda issiq» — kimgadir issiq, kimgadir yo‘q, bu fikr."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Ikki do‘st bitta kinoni ko‘rdi: biri «zo‘r», biri «zerikarli»\nKino 2 soat davom etdi — fakt",
+     "ovoz": "Ikki do‘st bitta kinoni ko‘rdi. Biri «zo‘r» dedi, ikkinchisi «zerikarli». Ikkalasi ham fikr bildirdi. Lekin kino ikki soat davom etgani — ikkalasi ham rad etolmaydigan fakt."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Sinov: «Bunga qarshi bahslashsa bo‘ladimi?»\nHa → fikr; faqat tekshirish mumkin → fakt",
+     "ovoz": "Boshqa sinov: gapga qarshi bahslashsa bo‘ladimi? Agar odamlar shunchaki didiga qarab bahslashsa — fikr. Faqat o‘lchab yoki tekshirib hal qilinadigan bo‘lsa — fakt."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Ishonchli: muallif + sana + dalil\nShubhali: noma’lum + «100%» + dalil yo‘q",
+     "ovoz": "Soddaroq: ishonchli manbada muallif, sana va dalil bor. Shubhali manbada muallif noma’lum, «yuz foiz» kabi va’dalar bor, dalil esa yo‘q."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Tish og‘riyapti: kimga ishonasiz?\nTish shifokori yoki notanish qo‘shni",
+     "ovoz": "Tishingiz og‘risa, kimning maslahatiga ishonasiz: tish shifokorining yoki notanish qo‘shnining? Albatta, mutaxassisning. Matnlarda ham shunday."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Ballar: muallif +1, sana +1, dalil +1, vazmin til +1\n4 ball — ishonchli, 0–1 — shubhali",
+     "ovoz": "Har bir manbaga ball qo‘ying: muallif ma’lum — bir ball, sana bor — bir ball, dalil bor — bir ball, til vazmin — bir ball. To‘rt ball — ishonchli, nol yoki bir ball — shubhali."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Maqsadni so‘rang: «Muallif mendan nima istaydi?»\nBilib ol / ishon / sotib ol / kul",
+     "ovoz": "Soddaroq: o‘zingizdan so‘rang, muallif mendan nima istaydi? Bilishimnimi, ishonishimnimi, sotib olishimnimi yoki kulishimnimi?"
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Ikki guvoh: biri «qizil mashina», biri «to‘q qizil»\nMos joy: mashina qizil; farq — tusida",
+     "ovoz": "Ikki guvoh voqeani aytib berdi: biri «qizil mashina», ikkinchisi «to‘q qizil mashina» dedi. Mos joyi — mashina qizil, farqi — kichik tafsilotda. Ikki manbani ham shunday solishtiramiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Venn diagrammasi: A | umumiy | B\nO‘rtada — ikkala manba ham aytgan narsa",
+     "ovoz": "Ikkita kesishgan doira chizing. Chapga faqat A aytgan, o‘ngga faqat B aytgan narsani, o‘rtaga esa ikkalasi ham aytgan narsani yozing."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Son yoki sana bor gapni avtomatik ravishda fakt deb hisoblash (son ham fikr ichida bo‘lishi mumkin)",
+   "O‘ziga ma’qul bo‘lgan fikrni fakt deb qabul qilish",
+   "Manbani mazmuniga qarab emas, chiroyli dizayni yoki ko‘p «layk»iga qarab baholash",
+   "Ikki manbani solishtirishda faqat farqni ko‘rib, mos joylarni e’tiborsiz qoldirish",
+   "Ochiq javobli savolda tanlovni asoslamasdan yozish"
+  ],
+  "strategiyalar": [
+   "Har bir gapga «buni tekshirsa bo‘ladimi?» degan savol bering",
+   "Manbani to‘rt savol bilan baholang: kim, qachon, dalil, maqsad",
+   "Baho bildiruvchi so‘zlarni (eng, ajoyib, zerikarli, kerak) belgilang",
+   "Ikki manbani mos joy → farq → asosli tanlov tartibida solishtiring"
+  ],
+  "kalit_sozlar": [
+   "matn",
+   "fikr",
+   "dalil",
+   "nutq",
+   "tahlil",
+   "muallif",
+   "manba"
+  ]
+ },
+ {
+  "kod": "XB-PS-TUS",
+  "mavzu": "PS-TUS",
+  "fan": "Tabiiy fanlar",
+  "sarlavha": "Hodisalarni ilmiy tushuntirish",
+  "maqsad": "Kundalik hodisalarni ilmiy bilim va modellar (zarrachalar modeli, issiqlik o‘tkazuvchanlik, ekologik bog‘lanishlar) yordamida da’vo–dalil–ilmiy asos tuzilmasida tushuntirish va bashorat qilish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Nega? — ilm-fanning eng muhim savoli\nPISA 2022: tabiiy fanlar — 355 ball\nPISA 2025: 438 ball (+83), 91 davlat ichida 48-o‘rin\nOECD o‘rtachasi — 482 ball",
+    "ovoz": "[1] Nega qishda temir sovuqroq tuyuladi? Nega ko‘ldagi baliqlar birdan nobud bo‘ladi? Bugun bunday hodisalarni ilmiy tushuntirishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida 2022-yilda o‘zbek o‘quvchilari tabiiy-ilmiy savodxonlikdan uch yuz ellik besh ball olgan edi. [3] PISA 2025 da esa natija to‘rt yuz o‘ttiz sakkiz ballga chiqdi — bu sakson uch ballga o‘sish, to‘qson bir davlat ichida qirq sakkizinchi o‘rin! [4] OECD o‘rtachasi to‘rt yuz sakson ikki ball. Ko‘rib turibsiz, farq qisqaryapti — bugungi dars uni yanada qisqartirishga yordam beradi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Ilmiy tushuntirish nima?",
+    "doska": "Hodisa → ilmiy bilim (qonun, model) → sabab\nDa’vo: nima sodir bo‘ladi\nDalil: nimani kuzatdik yoki o‘lchadik\nIlmiy asos: qaysi qonun yoki model bilan «chunki»",
+    "ovoz": "[1] Ilmiy tushuntirish — hodisaning sababini ilmiy bilim, ya’ni qonun yoki model yordamida ko‘rsatish. [2] Yaxshi tushuntirish uch qismdan iborat. Birinchisi — da’vo: nima sodir bo‘layotganini aytamiz. [3] Ikkinchisi — dalil: buni qanday kuzatish yoki o‘lchash bilan bilamiz. [4] Uchinchisi — ilmiy asos: «chunki» deb, qaysi qonun yoki model buni tushuntirishini aytamiz."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Model bilan tushuntirish",
+    "doska": "Modda zarrachalardan iborat, ular doim harakatda\nQizdirilsa: zarrachalar tezroq harakatlanadi\nZarrachalar orasidagi masofa ortadi → kengayish",
+    "ovoz": "[1] Fanda ko‘p hodisalarni zarrachalar modeli tushuntiradi: har qanday modda juda mayda zarrachalardan iborat va ular doim harakatda. [2] Moddani qizdirsak, zarrachalar tezroq harakatlana boshlaydi. [3] Natijada ular orasidagi o‘rtacha masofa ortadi va jism kengayadi. Zarrachalarning o‘zi kattalashmaydi — bu muhim!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Bashorat qilish",
+    "doska": "«Agar ... bo‘lsa, unda ... bo‘ladi, chunki ...»\nAgar idishning metall qopqog‘ini issiq suvga tutsak,\nqopqoq kengayadi va oson ochiladi",
+    "ovoz": "[1] Ilmiy bilim nafaqat tushuntiradi, balki bashorat qilishga ham imkon beradi. Shaklni eslang: agar shunday bo‘lsa, unda bunday bo‘ladi, chunki... [2] Masalan, agar zich yopilgan shisha idishning metall qopqog‘ini issiq suv ostiga tutsak, [3] metall qopqoq shishaga qaraganda ko‘proq kengayadi va idish oson ochiladi — chunki metallar qizdirilganda sezilarli kengayadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: sovuq temir",
+    "doska": "Qishda tashqarida temir va yog‘och ustun turibdi\nTemirni ushlasak, u sovuqroq tuyuladi. Nega?\nKuzatish: ikkalasining harorati bir xil",
+    "ovoz": "[1] Qishda hovlida temir ustun va yog‘och ustun yonma-yon turibdi. [2] Ikkalasini ushlab ko‘rsak, temir ancha sovuqroq tuyuladi. Nega shunday? [3] Avval muhim fakt: uzoq vaqt bir joyda turgan ikkala ustun ham havo haroratiga teng, ya’ni harorati bir xil!"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Temir — yaxshi issiqlik o‘tkazgich\nQo‘ldan issiqlik temirga tez o‘tib ketadi\nTeri tez soviydi → «sovuqroq» tuyuladi",
+    "ovoz": "[1] Farq materiallarda: temir issiqlikni yaxshi o‘tkazadi, yog‘och esa yomon o‘tkazadi. [2] Iliq qo‘limizdan issiqlik temirga tez o‘tadi va temir uni ichkariga tarqatib yuboradi. [3] Terimiz tez soviydi va biz buni «temir sovuqroq» deb his qilamiz. Aslida biz haroratni emas, issiqlik ketish tezligini sezamiz."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Qaynoq choydagi metall qoshiq tez qiziydi: metall",
+    "ovoz": "[1] Endi o‘zingiz davom ettiring: qaynoq choyga solingan metall qoshiqning dastasi tez qiziydi, chunki metall issiqlikning yaxshi... nimasi? Bitta so‘z yozing.",
+    "savol": "Bitta so‘z yozing",
+    "javob": "o‘tkazgich|o‘tkazgichi|o‘tkazuvchi|o‘tkazuvchisi"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: ko‘ldagi baliqlar",
+    "doska": "Ko‘lga daladan o‘g‘itli suv oqib tushdi\nBir necha hafta: suvo‘tlar juda ko‘paydi\nKeyin suvo‘tlar nobud bo‘ldi, so‘ng baliqlar ham",
+    "ovoz": "[1] Endi murakkabroq, PISA uslubidagi hodisa. Ko‘lga yaqin daladan o‘g‘itli suv oqib tushdi. [2] Bir necha hafta ichida ko‘lda suvo‘tlar juda ko‘payib ketdi. [3] Keyinroq suvo‘tlar nobud bo‘ldi, ulardan so‘ng esa baliqlar ham nobud bo‘la boshladi. Bu zanjirni tushuntiramiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "1) O‘g‘itdagi azot va fosfor — suvo‘tlar uchun oziq\n2) Nobud suvo‘tlarni bakteriyalar parchalaydi\n3) Bakteriyalar suvdagi kislorodni sarflaydi",
+    "ovoz": "[1] Birinchi halqa: o‘g‘itdagi azot va fosfor birikmalari suvo‘tlar uchun oziq moddadir, shuning uchun ular tez ko‘payadi. [2] Ikkinchi halqa: suvo‘tlar nobud bo‘lgach, ularning qoldig‘ini bakteriyalar parchalaydi. [3] Uchinchi halqa: parchalash jarayonida bakteriyalar nafas oladi va suvda erigan kislorodni ko‘p sarflaydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "4) Kislorod kamayadi → baliqlar nafas ololmaydi\nXato: «o‘g‘it baliqlarni zaharladi» — zanjir to‘liq emas",
+    "ovoz": "[1] To‘rtinchi halqa: suvda kislorod kamayadi va baliqlar jabrasi bilan yetarli kislorod ololmay, nobud bo‘ladi. [2] Ko‘p uchraydigan xato javob: o‘g‘it baliqlarni zaharladi. Bu yerda asosiy sabab boshqa — kislorod yetishmasligi, uni butun zanjir bilan tushuntirish kerak."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Bakteriyalar suvdagi qaysi gazni sarflaydi?",
+    "ovoz": "[1] Suvo‘tlar qoldig‘ini parchalayotgan bakteriyalar suvdagi qaysi gazni sarflaydi va shu bilan baliqlarni nobud qiladi?",
+    "savol": "Gaz nomini yozing",
+    "javob": "kislorod|Kislorod|O2|O₂"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "s1",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Hodisani o‘z so‘zingiz bilan qayta ayting\n2. Qaysi bilim kerak: zarrachalar, issiqlik, ekologiya?\n3. Sabab zanjirini halqama-halqa yozing\n4. Javob: da’vo + dalil + «chunki» ilmiy asos",
+    "ovoz": "[1] PISA savolida avval hodisani o‘z so‘zingiz bilan qisqa qayta ayting: nima sodir bo‘ldi? [2] So‘ng o‘zingizdan so‘rang: buni qaysi ilmiy bilim tushuntiradi — zarrachalar modeli, issiqlik uzatilishi yoki ekologik bog‘lanishmi? [3] Murakkab hodisada sabab zanjirini halqama-halqa yozing, birorta halqani tashlab ketmang. [4] Javobni da’vo, dalil va «chunki» bilan boshlanadigan ilmiy asos shaklida yozing — bunday javob to‘liq ball oladi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Tushuntirish = da’vo + dalil + ilmiy asos\nZarrachalar modeli: qizdirsak — tezroq, uzoqroq\nMurakkab hodisa — sabab zanjiri",
+    "ovoz": "[1] Esda tuting: ilmiy tushuntirish da’vo, dalil va ilmiy asosdan iborat. [2] Zarrachalar modeli: qizdirilganda zarrachalar tezroq harakatlanadi va bir-biridan uzoqlashadi. [3] Murakkab hodisani sabab zanjiri bilan tushuntiring. Siz endi «nega?» degan savolga olimdek javob bera olasiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Nima bo‘ldi? → Qayerdan bilamiz? → Nega?\nDa’vo → dalil → ilmiy asos",
+     "ovoz": "Soddaroq: uchta savolga javob bering. Nima bo‘ldi? Bu da’vo. Qayerdan bilamiz? Bu dalil. Nega? Bu ilmiy asos."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Shifokor: «Sizda shamollash» (da’vo)\nHarorat 38 °C (dalil), virus (ilmiy asos)",
+     "ovoz": "Shifokorni eslang: «sizda shamollash» deydi — bu da’vo. «Haroratingiz o‘ttiz sakkiz daraja» — bu dalil. «Bunga virus sabab bo‘ladi» — bu ilmiy asos."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Uch qavatli uy: pastda dalil, o‘rtada ilmiy asos\nTepada — da’vo",
+     "ovoz": "Tushuntirishni uch qavatli uy deb tasavvur qiling: poydevor — dalil, o‘rta qavat — ilmiy asos, tom — da’vo. Poydevorsiz tom turmaydi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Issiq → zarrachalar tez → oraliq katta → kengayadi\nSovuq → sekin → oraliq kichik → torayadi",
+     "ovoz": "Soddaroq: issiqda zarrachalar tez harakat qiladi va bir-biridan uzoqlashadi, jism kengayadi. Sovuqda esa sekinlashadi, yaqinlashadi va jism torayadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Tanaffusda sinf: bolalar yugursa — ko‘proq joy kerak\nDars paytida jim o‘tirsa — kam joy",
+     "ovoz": "Tanaffusni eslang: o‘quvchilar yugurib o‘ynasa, ularga katta joy kerak bo‘ladi. Darsda jim o‘tirganda esa kam joy yetadi. Zarrachalar ham qizdirilganda shunday «yugurishadi»."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Elektr simlari: yozda osilib turadi, qishda tarang\nSabab — issiqlikdan kengayish",
+     "ovoz": "Ko‘chadagi elektr simlariga qarang: yozda ular pastroq osilib turadi, qishda esa taranglashadi. Bu issiqlikdan kengayish va sovuqdan torayishning tayyor ko‘rgazmasi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Bashorat = bilim + «agar ..., unda ...»\nTekshirish mumkin bo‘lishi kerak",
+     "ovoz": "Soddaroq: bashorat — bilimimizdan foydalanib, kelajakda nima bo‘lishini aytish. U «agar..., unda...» shaklida bo‘ladi va uni tekshirsa bo‘ladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Muzlatgichga to‘la shisha suv qo‘ydingiz\nBashorat: muzlaganda yorilishi mumkin",
+     "ovoz": "Suv to‘la yopiq shishani muzlatgichga qo‘ysangiz nima bo‘ladi? Bilamizki, suv muzlaganda hajmi ortadi. Demak, bashorat: shisha yorilishi mumkin."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Bilim: metall qizdirilsa kengayadi\nVaziyat → bashorat → tekshirish",
+     "ovoz": "Uch qadamni chizing: avval bilimni yozing, keyin yangi vaziyatni, so‘ng bashoratni. Oxirida bashoratni tajribada tekshirsa bo‘lishini o‘ylang."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Temir yog‘ochdan «haroratda sovuqroq» deb o‘ylash — aslida harorat bir xil, issiqlik o‘tkazuvchanlik farq qiladi",
+   "Qizdirilganda zarrachalarning o‘zi kattalashadi deb o‘ylash",
+   "Sabab zanjirining oraliq halqalarini tashlab, faqat boshi va oxirini yozish",
+   "Kundalik so‘zlar bilan («sovuqlik o‘tadi») ilmiy tushunchani almashtirish",
+   "Javobda faqat da’vo aytib, ilmiy asos («chunki ...») keltirmaslik"
+  ],
+  "strategiyalar": [
+   "Hodisani o‘z so‘zingiz bilan qisqa qayta ayting",
+   "Qaysi ilmiy model yoki qonun kerakligini aniqlang",
+   "Murakkab hodisani sabab zanjiri sifatida halqama-halqa yozing",
+   "Javobni da’vo + dalil + ilmiy asos shaklida tuzing"
+  ],
+  "kalit_sozlar": [
+   "energiya",
+   "issiqlik",
+   "issiqlik o‘tkazuvchanlik",
+   "zarracha",
+   "organizm",
+   "ekologiya",
+   "modda"
+  ]
+ },
+ {
+  "kod": "XB-PS-TAJ",
+  "mavzu": "PS-TAJ",
+  "fan": "Tabiiy fanlar",
+  "sarlavha": "Ilmiy tadqiqot: tajriba va o‘zgaruvchilar",
+  "maqsad": "Ilmiy savol va gipoteza tuzish, mustaqil, bog‘liq va nazorat qilinadigan o‘zgaruvchilarni aniqlash, adolatli tajribani rejalashtirish va adolatsiz tajribani topish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Qaysi o‘g‘it yaxshi? — tajriba bilan bilamiz\nPISA 2022: tabiiy fanlar — 355 ball\nPISA 2025: 438 ball (+83), 91 davlat ichida 48-o‘rin\nOECD o‘rtachasi — 482 ball",
+    "ovoz": "[1] Olim «menimcha» demaydi, u tajriba qiladi. Bugun to‘g‘ri, ya’ni adolatli tajribani qanday rejalashtirishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida 2022-yilda o‘zbek o‘quvchilari tabiiy-ilmiy savodxonlikdan uch yuz ellik besh ball olgan edi. [3] PISA 2025 da esa natija to‘rt yuz o‘ttiz sakkiz ballga chiqdi — bu sakson uch ballga o‘sish, to‘qson bir davlat ichida qirq sakkizinchi o‘rin! [4] OECD o‘rtachasi to‘rt yuz sakson ikki ball. Ko‘rib turibsiz, farq qisqaryapti — bugungi dars uni yanada qisqartirishga yordam beradi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Ilmiy savol va gipoteza",
+    "doska": "Ilmiy savol — o‘lchash yoki tajriba bilan javob topiladi\nHa: «Tuz suvning qaynash haroratini o‘zgartiradimi?»\nYo‘q: «Qaysi gul eng chiroyli?»\nGipoteza: «Agar ..., unda ..., chunki ...»",
+    "ovoz": "[1] Ilmiy savol shunday savolki, unga o‘lchash, kuzatish yoki tajriba orqali javob topish mumkin. [2] Masalan, «tuz suvning qaynash haroratini o‘zgartiradimi?» — termometr bilan tekshirsa bo‘ladi, bu ilmiy savol. [3] «Qaysi gul eng chiroyli?» esa did masalasi, uni o‘lchab bo‘lmaydi. [4] Gipoteza — tekshiriladigan taxmin. U ko‘pincha «agar..., unda..., chunki...» shaklida yoziladi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Uch xil o‘zgaruvchi",
+    "doska": "Mustaqil — biz ataylab o‘zgartiradigan (sabab)\nBog‘liq — biz o‘lchaydigan (natija)\nNazorat qilinadigan — bir xil saqlanadigan",
+    "ovoz": "[1] Tajribada uch xil o‘zgaruvchi bor. Mustaqil o‘zgaruvchi — biz ataylab o‘zgartiradigan kattalik, ya’ni taxminiy sabab. [2] Bog‘liq o‘zgaruvchi — biz o‘lchaydigan natija, u mustaqil o‘zgaruvchiga bog‘liq bo‘lishi mumkin. [3] Nazorat qilinadigan o‘zgaruvchilar — natijaga ta’sir qilishi mumkin bo‘lgani uchun hamma sinovda bir xil saqlanadigan kattaliklar."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Adolatli tajriba",
+    "doska": "Faqat BITTA o‘zgaruvchi ataylab o‘zgartiriladi\nQolgan barcha sharoitlar bir xil\nNazorat guruhi — taqqoslash uchun\nTakrorlash va o‘rtacha → ishonchli natija",
+    "ovoz": "[1] Adolatli tajribaning asosiy qoidasi: faqat bitta — mustaqil o‘zgaruvchi o‘zgartiriladi. [2] Qolgan barcha sharoitlar bir xil saqlanadi, aks holda natija nimadan o‘zgarganini bilolmaymiz. [3] Nazorat guruhi — ta’sir berilmagan namuna, u bilan taqqoslab ta’sirni ko‘ramiz. [4] Tajribani bir necha marta takrorlab, o‘rtacha qiymatni olsak, tasodifiy xatolar kamayadi va natija ishonchliroq bo‘ladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: o‘g‘it va lobiya",
+    "doska": "Savol: o‘g‘it miqdori lobiya o‘sishiga ta’sir qiladimi?\nTuvaklar: 0 g, 5 g, 10 g o‘g‘it; 2 haftadan so‘ng bo‘yi",
+    "ovoz": "[1] O‘quvchi tadqiqot o‘tkazmoqchi: o‘g‘it miqdori lobiya o‘sishiga ta’sir qiladimi? [2] U uchta tuvakka nol, besh va o‘n gramm o‘g‘it soldi va ikki haftadan keyin o‘simliklar bo‘yini o‘lchadi. O‘zgaruvchilarni aniqlaymiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Mustaqil: o‘g‘it miqdori (0, 5, 10 g)\nBog‘liq: 2 haftadan keyingi bo‘yi (sm)\nNazorat: suv, yorug‘lik, tuproq, harorat, tuvak",
+    "ovoz": "[1] U nimani ataylab o‘zgartirdi? O‘g‘it miqdorini. Demak, mustaqil o‘zgaruvchi — o‘g‘it miqdori. [2] Nimani o‘lchadi? O‘simlik bo‘yini santimetrda. Bu bog‘liq o‘zgaruvchi. [3] Natijaga yana nimalar ta’sir qilishi mumkin? Suv, yorug‘lik, tuproq, harorat, tuvak hajmi — ularning hammasi bir xil bo‘lishi shart."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "0 g o‘g‘itli tuvak — nazorat guruhi\nHar miqdorga 3–5 tadan o‘simlik → o‘rtacha bo‘yi",
+    "ovoz": "[1] Nol gramm o‘g‘itli tuvak — nazorat guruhi. Usiz o‘g‘it umuman foyda berdimi-yo‘qmi, bilolmasdik. [2] Bitta o‘simlik tasodifan kasal bo‘lishi mumkin, shuning uchun har bir miqdor uchun bir nechta o‘simlik olib, o‘rtacha bo‘yini hisoblash yaxshiroq."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Mayatnik ipi uzunligi o‘zgartirilib, davri o‘lchandi",
+    "ovoz": "[1] Endi o‘zingiz: tajribada mayatnik ipining uzunligi o‘zgartirildi va har safar tebranish davri o‘lchandi. Bog‘liq o‘zgaruvchi nima?",
+    "savol": "Bog‘liq o‘zgaruvchini yozing",
+    "javob": "tebranish davri|davr|davri|tebranish davrini"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: tajriba adolatlimi?",
+    "doska": "Savol: paxta yoki jun issiqni yaxshiroq saqlaydimi?\n1-banka: paxtaga o‘ralgan, 200 ml, 80 °C suv\n2-banka: junga o‘ralgan, 300 ml, 60 °C suv\n20 daqiqadan so‘ng haroratlarni o‘lchadi",
+    "ovoz": "[1] Aziz paxta va jundan qaysi biri issiqni yaxshiroq saqlashini tekshirdi. [2] Birinchi bankani paxtaga o‘radi va unga ikki yuz millilitr, sakson darajali suv quydi. [3] Ikkinchi bankani junga o‘radi va unga uch yuz millilitr, oltmish darajali suv quydi. [4] Yigirma daqiqadan keyin ikkala bankadagi suv haroratini o‘lchadi. Bu tajriba adolatlimi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Mustaqil: o‘rash materiali (paxta yoki jun)\nYana farq: suv hajmi (200 / 300 ml)\nYana farq: boshlang‘ich harorat (80 / 60 °C)",
+    "ovoz": "[1] Avval mustaqil o‘zgaruvchini topamiz: u o‘rash materiali — paxta yoki jun. [2] Lekin bankalar yana suv hajmi bilan ham farq qiladi: ko‘proq suv sekinroq soviydi. [3] Boshlang‘ich harorat ham har xil: issiqroq suv tezroq soviydi, chunki atrof-muhit bilan farqi kattaroq."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "3 ta o‘zgaruvchi o‘zgargan → adolatsiz tajriba\nTuzatish: bir xil hajm va boshlang‘ich harorat\nNatija: haroratning pasayishini solishtiring",
+    "ovoz": "[1] Demak, uchta o‘zgaruvchi birdaniga o‘zgargan. Natija nima sababdan chiqqanini aytib bo‘lmaydi — tajriba adolatsiz. [2] To‘g‘rilash: ikkala bankaga bir xil hajmda, bir xil haroratli suv quyish va bankalarni bir xil joyga qo‘yish kerak. [3] Shunda harorat qancha pasayganini solishtiramiz: kamroq sovigan banka yaxshiroq issiqlik saqlovchi materialga o‘ralgan bo‘ladi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "Adolatli tajribada nechta o‘zgaruvchi ataylab o‘zgaradi?",
+    "ovoz": "[1] Adolatli tajribada nechta o‘zgaruvchi ataylab o‘zgartiriladi? Son bilan javob bering.",
+    "savol": "Son yozing",
+    "javob": "1|bitta|bir"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "s1",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Tadqiqot savolini toping: nima nimaga ta’sir qiladi?\n2. Mustaqil, bog‘liq, nazorat o‘zgaruvchilarni yozing\n3. Sinovlarni solishtiring: yana nima farq qiladi?\n4. Nazorat guruhi va takrorlash bormi?",
+    "ovoz": "[1] PISA savolida avval tadqiqot savolini toping: nima nimaga ta’sir qilishi tekshirilyapti? [2] So‘ng uchta o‘zgaruvchini alohida yozing: nima o‘zgartirildi, nima o‘lchandi, nima bir xil qolishi kerak. [3] Sinovlarni bir-biriga solishtiring: mustaqil o‘zgaruvchidan tashqari yana biror narsa farq qilsa, tajriba adolatsiz. [4] Oxirida tekshiring: nazorat guruhi bormi va tajriba takrorlanganmi? Bular ishonchlilikni oshiradi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Mustaqil — o‘zgartiramiz, bog‘liq — o‘lchaymiz\nAdolatli tajriba: bitta o‘zgaruvchi, qolgani bir xil\nNazorat guruhi + takrorlash = ishonchlilik",
+    "ovoz": "[1] Esda tuting: mustaqil o‘zgaruvchini o‘zgartiramiz, bog‘liq o‘zgaruvchini o‘lchaymiz. [2] Adolatli tajribada faqat bitta o‘zgaruvchi o‘zgaradi, qolgan barcha sharoitlar bir xil saqlanadi. [3] Nazorat guruhi va takrorlash natijani ishonchli qiladi. Endi siz tajribani olimdek rejalashtira olasiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "O‘lchab yoki tekshirib bo‘ladimi? → ilmiy savol\nFaqat didga bog‘liqmi? → ilmiy emas",
+     "ovoz": "Soddaroq: savolga javobni o‘lchab yoki tajriba qilib topsa bo‘ladimi? Bo‘lsa — ilmiy savol. Javob faqat didga bog‘liq bo‘lsa — ilmiy emas."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Onangiz: «Xamir issiq joyda tezroq ko‘pchiydi»\nBu gipoteza — ikki joyda sinab ko‘rsa bo‘ladi",
+     "ovoz": "Onangiz «xamir issiq joyda tezroq ko‘pchiydi» desa, bu gipoteza. Bir xil xamirni issiq va salqin joyga qo‘yib, tekshirib ko‘rish mumkin."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Gipoteza qolipi:\nAgar [nimani o‘zgartirsak], unda [nima bo‘ladi], chunki [nega]",
+     "ovoz": "Qolipdan foydalaning: agar nimanidir o‘zgartirsak, unda nima bo‘ladi, chunki nega. Bo‘sh joylarni to‘ldirsangiz, tayyor gipoteza chiqadi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Men o‘zgartiraman → mustaqil\nMen o‘lchayman → bog‘liq\nO‘zgarmasin → nazorat",
+     "ovoz": "Soddaroq: men o‘zim o‘zgartiraman — mustaqil. Men o‘lchayman — bog‘liq. O‘zgarmasligi kerak — nazorat qilinadigan."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Choyga qand: qand soni (mustaqil)\nShirinlik (bog‘liq), choy hajmi (nazorat)",
+     "ovoz": "Choyga qand solishni tasavvur qiling. Qand bo‘lakchalari sonini o‘zgartirasiz — mustaqil. Shirinlikni sezasiz — bog‘liq. Piyola hajmi bir xil — nazorat."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Grafikda: mustaqil — gorizontal o‘q (x)\nBog‘liq — vertikal o‘q (y)",
+     "ovoz": "Grafik orqali eslab qoling: mustaqil o‘zgaruvchi gorizontal o‘qqa, bog‘liq o‘zgaruvchi esa vertikal o‘qqa qo‘yiladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Ikki sinov orasida faqat bitta farq bo‘lsin\nIkki farq — qaysi biri ta’sir qildi, noma’lum",
+     "ovoz": "Soddaroq: ikki sinov orasida faqat bitta farq bo‘lishi kerak. Ikkita farq bo‘lsa, qaysi biri natijaga ta’sir qilganini bilolmaymiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Yugurish poygasi: biri yalangoyoq, biri krossovkada,\nbiri esa 10 m oldinda turibdi — adolatsiz",
+     "ovoz": "Poygada bir yuguruvchi krossovkada, ikkinchisi yalangoyoq va yana o‘n metr orqada tursa, g‘alaba sababini — oyoq kiyimmi yoki masofami — aniqlab bo‘lmaydi. Tajriba ham shunday."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Jadval: sinov | material | hajm | harorat\nFaqat bitta ustunda farq bo‘lsin",
+     "ovoz": "Har bir sinov sharoitini jadvalga yozing. Qiymatlar faqat bitta ustunda farq qilsa — tajriba adolatli."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Mustaqil va bog‘liq o‘zgaruvchining o‘rnini almashtirish",
+   "Bir vaqtda ikki yoki undan ortiq o‘zgaruvchini o‘zgartirish",
+   "Nazorat guruhining ahamiyatini tushunmaslik yoki uni tashlab ketish",
+   "Bitta o‘lchashga asoslanib qat’iy xulosa chiqarish (takrorlamaslik)",
+   "Did yoki baho haqidagi savolni ilmiy savol deb hisoblash"
+  ],
+  "strategiyalar": [
+   "Tadqiqot savolini «nima nimaga ta’sir qiladi?» shaklida qayta yozing",
+   "Uch xil o‘zgaruvchini alohida qatorga yozing",
+   "Sinovlar sharoitini jadvalda solishtirib, ortiqcha farqni toping",
+   "Nazorat guruhi va takrorlash bor-yo‘qligini tekshiring"
+  ],
+  "kalit_sozlar": [
+   "tajriba",
+   "o‘lchash",
+   "kuzatish",
+   "gipoteza",
+   "o‘zgaruvchi",
+   "nazorat guruhi"
+  ]
+ },
+ {
+  "kod": "XB-PS-MAL",
+  "mavzu": "PS-MAL",
+  "fan": "Tabiiy fanlar",
+  "sarlavha": "Ma’lumot va dalillarni ilmiy talqin qilish",
+  "maqsad": "Jadval va grafikdan yo‘nalishni o‘qish, ma’lumot doirasidan chiqmagan xulosa chiqarish, bog‘liqlik va sababni farqlash, dalil va fikrni ajratish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Raqamlar gapiradi — faqat ularni to‘g‘ri tinglang\nPISA 2022: tabiiy fanlar — 355 ball\nPISA 2025: 438 ball (+83), 91 davlat ichida 48-o‘rin\nOECD o‘rtachasi — 482 ball",
+    "ovoz": "[1] Ob-havo grafiklari, tibbiy tahlillar, tajriba jadvallari — fan raqamlar tilida gapiradi. Bugun ularni to‘g‘ri o‘qib, to‘g‘ri xulosa chiqarishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida 2022-yilda o‘zbek o‘quvchilari tabiiy-ilmiy savodxonlikdan uch yuz ellik besh ball olgan edi. [3] PISA 2025 da esa natija to‘rt yuz o‘ttiz sakkiz ballga chiqdi — bu sakson uch ballga o‘sish, to‘qson bir davlat ichida qirq sakkizinchi o‘rin! [4] OECD o‘rtachasi to‘rt yuz sakson ikki ball. Ko‘rib turibsiz, farq qisqaryapti — bugungi dars uni yanada qisqartirishga yordam beradi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Jadval va grafikni o‘qish",
+    "doska": "1. Sarlavha, o‘qlar (ustunlar) va birliklar\n2. Yo‘nalish: ortadi, kamayadi, o‘zgarmaydi\n3. Eng katta, eng kichik, keskin o‘zgarish",
+    "ovoz": "[1] Grafik yoki jadvalni o‘qishni hech qachon raqamlardan boshlamang. Avval sarlavhani, o‘qlar yoki ustunlar nomini va o‘lchov birliklarini o‘qing. [2] So‘ng umumiy yo‘nalishni toping: bir kattalik ortganda ikkinchisi ortadimi, kamayadimi yoki o‘zgarmaydimi? [3] Oxirida alohida nuqtalarga qarang: eng katta va eng kichik qiymat, keskin o‘zgarish qayerda."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Xulosa ma’lumotdan oshmasin",
+    "doska": "Xulosa faqat o‘lchangan oraliq uchun ishonchli\nBog‘liqlik ≠ sabab\nUchinchi omil ikkalasiga ta’sir qilishi mumkin",
+    "ovoz": "[1] Ilmiy xulosa faqat o‘lchangan ma’lumot doirasida ishonchli. Oraliqdan tashqarisi haqida faqat ehtiyotkor taxmin aytish mumkin. [2] Eng muhim qoidalardan biri: ikki kattalik birga o‘zgarsa, bu biri ikkinchisiga sabab degani emas. [3] Ko‘pincha ikkalasiga ham ta’sir qiluvchi uchinchi omil bo‘ladi. Sababni isbotlash uchun adolatli tajriba kerak."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Dalil va fikr",
+    "doska": "Dalil — o‘lchangan yoki kuzatilgan ma’lumot\nFikr — ma’lumotga tayanmagan shaxsiy qarash\nIlmiy xulosa dalilga tayanadi va «chunki» bilan",
+    "ovoz": "[1] Dalil — o‘lchangan, kuzatilgan va boshqalar tekshira oladigan ma’lumot. [2] Fikr esa ma’lumotga tayanmagan shaxsiy qarash yoki istak. [3] Ilmiy xulosa doim dalilga tayanadi: «chunki jadvalda shunday ko‘rsatilgan» deb asoslanadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Chetga chiqqan natija",
+    "doska": "Umumiy yo‘nalishdan keskin chetga chiqqan nuqta\nSababi: ko‘pincha o‘lchash yoki yozish xatosi\nQayta o‘lchang; xato bo‘lsa, o‘rtachaga qo‘shmang",
+    "ovoz": "[1] Ba’zan bitta o‘lchash umumiy yo‘nalishdan keskin chetga chiqadi. Uni chetga chiqqan, ya’ni anomal natija deyiladi. [2] Uning sababi ko‘pincha o‘lchash yoki yozishdagi xato bo‘ladi. [3] Bunday natijani qayta tekshiring, xato ekani aniqlansa, o‘rtacha qiymatni hisoblashda e’tiborga olmang."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: shakarning erishi",
+    "doska": "100 g suvda eriydigan eng ko‘p shakar (g):\n20 °C — 204 g;  40 °C — 238 g\n60 °C — 287 g;  80 °C — 362 g",
+    "ovoz": "[1] Jadvalda yuz gramm suvda eriy oladigan eng ko‘p shakar miqdori grammlarda berilgan. [2] Yigirma darajada ikki yuz to‘rt gramm, qirq darajada ikki yuz o‘ttiz sakkiz gramm. [3] Oltmish darajada ikki yuz sakson yetti gramm, sakson darajada esa uch yuz oltmish ikki gramm shakar eriydi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Yo‘nalish: harorat ortgan sari ko‘proq shakar eriydi\nHar 20 °C da qo‘shimcha: 34 g, 49 g, 75 g",
+    "ovoz": "[1] Yo‘nalishni topamiz: harorat ortgan sari suvda eriydigan shakar miqdori ham ortib boradi. [2] Har yigirma darajada qancha qo‘shilishini hisoblaymiz: o‘ttiz to‘rt, qirq to‘qqiz va yetmish besh gramm. Demak, o‘sish tobora tezlashmoqda."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Xulosa: shakarning eruvchanligi harorat bilan ortadi\nEhtiyot: jadval 20–80 °C oralig‘i uchun",
+    "ovoz": "[1] Xulosa: shakarning suvda eruvchanligi harorat ortishi bilan ortadi. [2] Ammo ehtiyot bo‘ling: jadval faqat yigirmadan sakson darajagacha ma’lumot beradi, boshqa haroratlar uchun bu faqat taxmin."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Jadvalga ko‘ra: 40 °C da necha g shakar eriydi?",
+    "ovoz": "[1] Shu jadvaldan foydalaning: qirq darajali yuz gramm suvda eng ko‘pi bilan necha gramm shakar eriydi?",
+    "savol": "Sonni yozing",
+    "javob": "238|238 g|238 gramm"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: bog‘liqlikmi yoki sabab?",
+    "doska": "Kuzatuv: yoz oylarida muzqaymoq ko‘p sotiladi\nShu oylarda oftob urishi holatlari ham ko‘payadi\nDa’vo: «Muzqaymoq oftob urishiga sabab bo‘ladi»",
+    "ovoz": "[1] Endi PISA uslubidagi murakkabroq savol. Kuzatuv shuni ko‘rsatdi: yoz oylarida muzqaymoq ko‘p sotiladi. [2] Xuddi shu oylarda oftob urishi holatlari ham ko‘payadi. [3] Kimdir shunday da’vo qildi: muzqaymoq oftob urishiga sabab bo‘ladi. Bu xulosa to‘g‘rimi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Ma’lumot: ikkala kattalik birga ortadi → bog‘liqlik bor\nUchinchi omil: havo harorati ikkalasini oshiradi",
+    "ovoz": "[1] Ma’lumot nimani ko‘rsatadi? Ikki kattalik birga ortadi, ya’ni ular orasida bog‘liqlik bor. [2] Lekin uchinchi omil — yuqori havo harorati. Issiqda odamlar ko‘proq muzqaymoq oladi va issiqdan oftob urishi ham ko‘payadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xulosa: bog‘liqlik bor, sabab isbotlanmagan\nSababni bilish uchun — adolatli tajriba kerak",
+    "ovoz": "[1] Demak, to‘g‘ri xulosa: bog‘liqlik bor, lekin muzqaymoq sabab ekani isbotlanmagan. [2] Sababni aniqlash uchun boshqa omillar bir xil saqlangan adolatli tajriba yoki tadqiqot kerak bo‘ladi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bir savol",
+    "doska": "«Muzqaymoq zararli, chunki menga yoqmaydi» — bu?",
+    "ovoz": "[1] Bu gapni baholang: «muzqaymoq zararli, chunki menga yoqmaydi». Bu dalilmi yoki fikr? Bitta so‘z yozing.",
+    "savol": "dalil yoki fikr",
+    "javob": "fikr|Fikr"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "s1",
+    "sarlavha": "Xalqaro savolni qanday yechamiz",
+    "doska": "1. Sarlavha, o‘qlar, birliklarni o‘qing\n2. Yo‘nalishni bitta gap bilan ayting\n3. Har bir variantni ma’lumot bilan tekshiring\n4. «Sabab», «isbotlaydi» so‘zlaridan ehtiyot bo‘ling",
+    "ovoz": "[1] PISA savolida avval grafik yoki jadvalning sarlavhasi, o‘qlari va birliklarini o‘qing. [2] So‘ng umumiy yo‘nalishni bitta gap bilan ayting: «x ortgan sari y ortadi» kabi. [3] Variantlarni bittalab tekshiring: ma’lumot buni ko‘rsatadimi yoki variant ma’lumotdan oshib ketyaptimi? [4] «Sabab bo‘ladi», «isbotlaydi» kabi keskin so‘zli variantlardan ehtiyot bo‘ling — ko‘pincha ular ma’lumotdan oshib ketadi."
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Avval o‘qlar va birliklar, keyin raqamlar\nBog‘liqlik — hali sabab emas\nXulosa — dalilga tayanadi, ma’lumotdan oshmaydi",
+    "ovoz": "[1] Esda tuting: avval o‘qlar va birliklar, keyin raqamlar va yo‘nalish. [2] Ikki kattalik birga o‘zgarsa, bu hali sabab degani emas — uchinchi omilni izlang. [3] Ilmiy xulosa dalilga tayanadi va ma’lumot doirasidan chiqmaydi. Endi siz grafiklarni olimdek o‘qiysiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Avval: nima o‘lchangan va qanday birlikda?\nKeyin: ortyaptimi yoki kamayyaptimi?",
+     "ovoz": "Soddaroq: avval nima o‘lchangan va qaysi birlikda ekanini bilib oling. Keyin raqamlar ortib boryaptimi yoki kamayib boryaptimi — shuni ayting."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bo‘yingiz jadvali: 12 yosh — 150 sm, 15 yosh — 168 sm\nYo‘nalish: yosh ortsa, bo‘y ortadi",
+     "ovoz": "Shifokor kartangizdagi bo‘y jadvalini eslang: o‘n ikki yoshda bir yuz ellik santimetr, o‘n besh yoshda bir yuz oltmish sakkiz. Yo‘nalish aniq — yosh ortgan sari bo‘y ortgan."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Jadvaldagi sonlar orasiga strelka qo‘ying\n↑ ortdi, ↓ kamaydi, = o‘zgarmadi",
+     "ovoz": "Boshqa usul: jadvaldagi har ikki qo‘shni son orasiga strelka qo‘ying — yuqoriga ortgan bo‘lsa, pastga kamaygan bo‘lsa. Strelkalar yo‘nalishni darhol ko‘rsatadi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Birga o‘zgaradi ≠ biri ikkinchisini o‘zgartiradi\nUchinchi sababni izlang",
+     "ovoz": "Soddaroq: ikki narsa birga o‘zgarsa, biri ikkinchisini o‘zgartiryapti degani emas. Doim ikkalasiga ta’sir qiladigan uchinchi sababni izlang."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Ertalab xo‘roz qichqiradi, keyin Quyosh chiqadi\nXo‘roz Quyoshni chiqaradimi? Yo‘q!",
+     "ovoz": "Har kuni ertalab avval xo‘roz qichqiradi, keyin Quyosh chiqadi. Lekin xo‘roz Quyoshni chiqarmaydi! Ketma-ketlik va bog‘liqlik hali sabab emas."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Uchburchak chizing: tepada uchinchi omil\nundan ikki kattalikka strelka",
+     "ovoz": "Uchburchak chizing: tepaga uchinchi omilni, masalan, havo haroratini yozing, undan pastdagi ikki kattalikka strelka torting. Ular orasida to‘g‘ridan-to‘g‘ri strelka shart emas."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Dalil: «termometr 40 °C ko‘rsatdi»\nFikr: «menimcha, juda issiq»",
+     "ovoz": "Soddaroq: «termometr qirq darajani ko‘rsatdi» — o‘lchangan, bu dalil. «Menimcha, juda issiq» — shaxsiy qarash, bu fikr."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Sudda: guvoh ko‘rgan narsa — dalil\n«Menimcha, u aybdor» — fikr",
+     "ovoz": "Sudni eslang: sudya guvoh ko‘rgan narsani va hujjatlarni dalil sifatida qabul qiladi, «menimcha, u aybdor» degan gapni esa qabul qilmaydi. Fanda ham shunday."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Sinov: boshqa odam o‘lchasa, xuddi shu chiqadimi?\nHa → dalil; yo‘q → fikr",
+     "ovoz": "Sinov savoli: boshqa odam ham o‘lchasa yoki kuzatsa, xuddi shu natija chiqadimi? Ha bo‘lsa — dalil, yo‘q bo‘lsa — fikr."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "4, 5, 6, 40, 8 — «40» begona\nUni qayta tekshiring",
+     "ovoz": "Soddaroq: to‘rt, besh, olti, qirq, sakkiz — shu qatorda qirq begonadek turibdi. Bunday natijani qayta tekshirish kerak."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Tarozi bir marta 5 kg ortiq ko‘rsatdi\nQayta tortdingiz — normal. Birinchisi xato",
+     "ovoz": "Tarozida tortilganingizda u birdan besh kilogramm ortiq ko‘rsatdi. Qayta tortsangiz, odatdagi vazn chiqdi. Demak, birinchisi o‘lchash xatosi edi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "O‘qlar va birliklarni o‘qimasdan raqamlarni solishtirish",
+   "Bog‘liqlikni sabab deb qabul qilish (uchinchi omilni unutish)",
+   "O‘lchangan oraliqdan tashqarisi haqida qat’iy xulosa chiqarish",
+   "Shaxsiy fikrni dalil sifatida keltirish",
+   "Chetga chiqqan natijani tekshirmasdan o‘rtachaga qo‘shib yuborish"
+  ],
+  "strategiyalar": [
+   "Grafikda avval sarlavha, o‘qlar va birliklarni o‘qing",
+   "Umumiy yo‘nalishni bitta gap bilan ayting",
+   "Har bir variantni ma’lumot bilan solishtiring: ma’lumotdan oshib ketmayaptimi?",
+   "«Sabab», «isbotlaydi» kabi keskin so‘zli variantlardan ehtiyot bo‘ling"
+  ],
+  "kalit_sozlar": [
+   "grafik",
+   "jadval",
+   "o‘lchash",
+   "diagramma",
+   "eruvchanlik",
+   "dalil",
+   "xulosa"
+  ]
+ }
+]

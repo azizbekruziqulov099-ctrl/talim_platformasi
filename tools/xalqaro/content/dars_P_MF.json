@@ -1,0 +1,1618 @@
+[
+ {
+  "kod": "XB-PM-MIQ",
+  "mavzu": "PM-MIQ",
+  "sarlavha": "Miqdor: foiz, nisbat va o‘lchov hayotda",
+  "maqsad": "Hayotiy vaziyatni son va foiz tiliga o‘girish, ketma-ket foiz, birlik va nisbat bilan hisoblash, natijani vaziyatga qaytarib talqin qilish va tekshirish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Bozor: olma 18 000 so‘m/kg, chegirma 10%\nPISA 2022: O‘zbekiston — 364, OECD — 472\nTayanch (2-daraja) — 420 ball, Singapur — 575",
+    "ovoz": "[1] Assalomu alaykum! Tasavvur qiling, bozordasiz: bir kilogramm olma o‘n sakkiz ming so‘m, ko‘proq olsangiz o‘n foiz chegirma bor. Qancha to‘laysiz? Mana shu — PISA savolining aynan o‘zi. [2] Xalqaro PISA tadqiqotida, ikki ming yigirma ikkinchi yilda, o‘n besh yoshli o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, OECD davlatlari o‘rtachasi esa to‘rt yuz yetmish ikki ball. [3] Tayanch, ya’ni ikkinchi daraja chegarasi to‘rt yuz yigirma ball: bu darajadagi o‘quvchi oddiy hayotiy vaziyatni matematika tiliga o‘gira oladi. Singapur o‘quvchilari esa besh yuz yetmish besh ball olgan. Bugun shu ko‘nikmani birga mashq qilamiz — siz albatta uddalaysiz!"
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "q1",
+    "sarlavha": "PISA sikli: vaziyatdan javobgacha",
+    "doska": "1) Vaziyat: nima so‘ralyapti?\n2) Model: son, ifoda, formula yoki jadval\n3) Hisob: tartib bilan, birliklari bilan\n4) Talqin: javob vaziyatga mosmi?",
+    "ovoz": "[1] PISA savollari darslikdagi tayyor misollarga o‘xshamaydi: avval hayotiy vaziyat beriladi, siz esa undan nima so‘ralayotganini topasiz. [2] Keyin vaziyatni matematika tiliga o‘girasiz: son, ifoda, formula yoki jadval tuzasiz. Buni model deymiz. [3] Uchinchi bosqich — hisob. Uni shoshilmasdan, har bir son yoniga birligini yozib bajaring. [4] Eng muhimi — oxirgi bosqich: javobni vaziyatga qaytaring va o‘zingizdan so‘rang: bu son mantiqiymi?"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Foiz — yuzdan bir qism",
+    "doska": "$1\\% = \\frac{1}{100} = 0{,}01$\n$a$ ning $p\\%$ i: $a \\cdot \\frac{p}{100}$\n10% chegirma: $18\\,000 \\cdot 0{,}9 = 16\\,200$ so‘m",
+    "ovoz": "[1] Foiz — yuzdan bir qism. Bir foiz bu yuzdan bir, ya’ni nol butun yuzdan bir. [2] Biror sonning p foizini topish uchun sonni p ga ko‘paytirib, yuzga bo‘lamiz. [3] O‘n foiz chegirma degani — narxning to‘qson foizini to‘laysiz. Shuning uchun o‘n sakkiz mingni nol butun o‘ndan to‘qqizga ko‘paytiramiz va o‘n olti ming ikki yuz so‘m chiqadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Ketma-ket foiz o‘zgarishi",
+    "doska": "Narx 100 000 so‘m, +20% → 120 000 so‘m\nKeyin −20%: $120\\,000 \\cdot 0{,}8 = 96\\,000$\n+20% va −20% ≠ 0%: har foiz yangi asosdan",
+    "ovoz": "[1] Endi tuzoqli holat. Narx yuz ming so‘m edi, yigirma foiz oshdi — yuz yigirma ming so‘m bo‘ldi. [2] Keyin narx yigirma foiz arzonlashdi. Lekin endi yigirma foiz yuz yigirma mingdan olinadi: yuz yigirma mingni nol butun o‘ndan sakkizga ko‘paytirsak, to‘qson olti ming so‘m chiqadi. [3] Demak, narx avval oshib, keyin xuddi shuncha foizga tushsa, eski joyiga qaytmaydi. Har bir foiz o‘sha paytdagi yangi asosdan hisoblanadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Birliklar va nisbat",
+    "doska": "1 km = 1 000 m;  1 soat = 60 daqiqa\n60 km/soat = 1 km/daqiqa\nNisbat 2 : 3 → qismlar $2x$ va $3x$",
+    "ovoz": "[1] PISA savollarida birliklar ko‘pincha aralash keladi: kilometr va metr, soat va daqiqa. Bir kilometr — ming metr, bir soat — oltmish daqiqa. [2] Masalan, soatiga oltmish kilometr tezlik — har daqiqada bir kilometr degani. Birlikni qulay tanlasak, hisob ancha osonlashadi. [3] Nisbat esa ulushlarni ko‘rsatadi: ikki ga uch nisbatda bo‘lish — birinchisiga ikki qism, ikkinchisiga uch qism berish. Qismlarni ikki x va uch x deb belgilaymiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: kommunal to‘lov",
+    "doska": "Elektr: 1 kVt·soat — 600 so‘m, oyiga 250 kVt·soat\nTarif 20% oshdi. Endi oyiga qancha to‘lanadi?",
+    "ovoz": "[1] Birinchi misol — kommunal to‘lov. Faraz qilaylik, bir kilovatt-soat elektr olti yuz so‘m, oilangiz esa oyiga ikki yuz ellik kilovatt-soat sarflaydi. [2] Tarif yigirma foizga oshdi. Savol: endi oyiga qancha to‘laysiz va bu avvalgidan qancha ko‘p?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Model: to‘lov = sarf × tarif\nAvval: $250 \\cdot 600 = 150\\,000$ so‘m\nYangi tarif: $600 \\cdot 1{,}2 = 720$ so‘m",
+    "ovoz": "[1] Avval model tuzamiz: oylik to‘lov sarf bilan tarif ko‘paytmasiga teng. [2] Hozirgi to‘lov: ikki yuz ellikni olti yuzga ko‘paytirsak, yuz ellik ming so‘m. [3] Yigirma foiz oshish — bir butun o‘ndan ikkiga ko‘paytirish degani. Yangi tarif yetti yuz yigirma so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Endi: $250 \\cdot 720 = 180\\,000$ so‘m\nTekshiruv: $150\\,000 \\cdot 1{,}2 = 180\\,000$ ✓\nTalqin: oyiga 30 000 so‘m ko‘p to‘lanadi",
+    "ovoz": "[1] Yangi to‘lov: ikki yuz ellikni yetti yuz yigirmaga ko‘paytiramiz — yuz sakson ming so‘m. [2] Boshqa yo‘l bilan tekshiramiz: eski to‘lovni to‘g‘ridan-to‘g‘ri bir butun o‘ndan ikkiga ko‘paytirsak ham yuz sakson ming chiqadi. Javoblar mos keldi. [3] Vaziyatga qaytamiz: oila endi har oy o‘ttiz ming so‘m ko‘proq to‘laydi. Sarf o‘zgarmasa, to‘lov ham aynan yigirma foiz oshadi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimulni oxirigacha o‘qing: matn, jadval, rasm\n2) Savolning o‘zini toping va tagiga chizing\n3) Keraksiz ma’lumotni chizib qo‘ying\n4) Birliklarni tekshiring: so‘m, km, daqiqa",
+    "ovoz": "[1] Xalqaro savolni yechishdan oldin stimulni — ya’ni matn, jadval yoki rasmni — oxirigacha diqqat bilan o‘qing. [2] Keyin savolning o‘zini toping va tagiga chizing: narx so‘ralyaptimi, farqmi yoki foizmi? [3] PISA ataylab ortiqcha ma’lumot beradi. Savolga kerak bo‘lmagan sonlarni chizib qo‘ying — ular sizni chalg‘itmasin. [4] Nihoyat, birliklarni tekshiring: hammasi bir xil birlikdami — so‘m, kilometr, daqiqa? Javobni ham birligi bilan yozing."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: taksi yoki metro",
+    "doska": "Uydan ishgacha 12 km. Taksi: 7 000 + 2 500 so‘m/km\nMetro: 2 000 so‘m, yo‘l 35 daqiqa\n22 kun borib-kelinsa, taksi qanchaga qimmat?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Akangiz uydan ishgacha o‘n ikki kilometr yo‘l yuradi. Taksi chaqirish yetti ming so‘m, har kilometr uchun yana ikki ming besh yuz so‘m — narxlar misol uchun olingan. [2] Metroda bir marta yurish ikki ming so‘m, yo‘l esa o‘ttiz besh daqiqa davom etadi. [3] Akangiz oyiga yigirma ikki ish kuni borib-keladi. Savol: bir oyda taksi metrodan necha so‘m qimmatga tushadi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Kerak: 12 km, tariflar, 22 kun, 2 tomon\nKeraksiz: 35 daqiqa — vaqt so‘ralmagan",
+    "ovoz": "[1] Stimulni ajratamiz. Kerakli ma’lumot: masofa, ikkala tarif, kunlar soni va eng ko‘p unutiladigani — har kuni ikki tomonga yurish. [2] O‘ttiz besh daqiqa — vaqt haqida, savol esa pul haqida. Bu ma’lumotni chetga qo‘yamiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Taksi, 1 tomon: $7000 + 2500 \\cdot 12 = 37\\,000$\nKuniga: $2 \\cdot 37\\,000 = 74\\,000$ so‘m\nOyiga: $22 \\cdot 74\\,000 = 1\\,628\\,000$ so‘m",
+    "ovoz": "[1] Taksi modeli: chaqirish narxi qo‘shilgan kilometr narxi karra masofa. Bir tomonga o‘ttiz yetti ming so‘m. [2] Borib-kelish — ikki marta: kuniga yetmish to‘rt ming so‘m. [3] Yigirma ikki kunda: bir million olti yuz yigirma sakkiz ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Metro: $22 \\cdot 2 \\cdot 2000 = 88\\,000$ so‘m\nFarq: $1\\,628\\,000 - 88\\,000 = 1\\,540\\,000$ so‘m",
+    "ovoz": "[1] Metroda ham kuniga ikki marta yuriladi: oyiga sakson sakkiz ming so‘m. [2] Endi farqni topamiz: bir million olti yuz yigirma sakkiz mingdan sakson sakkiz mingni ayirsak, bir million besh yuz qirq ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Taxminan: $22 \\cdot 75\\,000 = 1\\,650\\,000$ — yaqin ✓\nJavob: taksi oyiga 1 540 000 so‘m qimmat",
+    "ovoz": "[1] Taxminiy hisob bilan tekshiramiz: kunlik taksi narxini yetmish besh ming deb olsak, oyiga bir million olti yuz ellik ming chiqadi. Javobimiz shu atrofda — demak, katta xato yo‘q. [2] Vaziyatga qaytamiz: metroda yurib, akangiz oyiga bir yarim million so‘mdan ko‘proq tejaydi. Haqiqiy qarorda vaqtni ham hisobga olish mumkin — lekin savol faqat pul haqida edi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Ko‘ylak 240 000 so‘m, chegirma 25%. Yangi narx?",
+    "ovoz": "[1] Endi o‘zingiz yeching: do‘konda ko‘ylak ikki yuz qirq ming so‘m, unga yigirma besh foiz chegirma berildi. Chegirmadan keyingi narxni so‘mda yozing.",
+    "savol": "Yangi narx necha so‘m?",
+    "javob": "180000|180 000|180000 so‘m|180 000 so‘m"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Narx 100 000 so‘m: avval +10%, keyin −10%",
+    "ovoz": "[1] Narx yuz ming so‘m edi: avval o‘n foiz oshdi, keyin o‘n foiz tushdi. Endi narx necha so‘m? Ketma-ket foiz tuzog‘ini eslang!",
+    "savol": "Oxirgi narx necha so‘m?",
+    "javob": "99000|99 000|99000 so‘m|99 000 so‘m"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Vaziyat → model → hisob → talqin\n$p\\%$ chegirma: narx $\\cdot (1 - \\frac{p}{100})$\nKetma-ket foiz: har safar yangi asos\nBirlikni tekshiring, javobni vaziyatga qaytaring",
+    "ovoz": "[1] Bugun PISA siklini o‘rgandik: vaziyatdan modelga, modeldan hisobga, hisobdan esa talqinga. [2] Chegirmali narxni bitta ko‘paytirish bilan topish mumkin: narxni bir ayirilgan foiz ulushiga ko‘paytiring. [3] Ketma-ket foizlarda har safar yangi asosdan hisoblang — oshish va kamayish bir-birini yo‘qotmaydi. [4] Va doim birliklarni tekshiring, javobni esa vaziyatga qaytarib, mantiqiyligini baholang. Barakalla, bugun zo‘r ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Nima so‘ralgan? → Qanday hisob? → Hisobla → Mantiqiymi?",
+     "ovoz": "To‘rtta savol bering: menga nima kerak? Buni qanday hisoblayman? Hisoblaymiz. Chiqqan javob mantiqiymi? Shu to‘rt savol — butun PISA sikli."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Osh damlash: retsept → o‘lchash → pishirish → tatib ko‘rish",
+     "ovoz": "Oyingiz osh damlayotganini eslang: avval necha kishiga ekanini bilib oladi, keyin guruch va go‘shtni o‘lchaydi, pishiradi va oxirida tatib ko‘radi. Tatib ko‘rish — bu javobni tekshirish, PISA ham aynan shuni talab qiladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Javob yoniga «chunki ...» deb izoh yozing\n180 000 so‘m, chunki 150 000 · 1,2",
+     "ovoz": "Har bir javob yoniga «chunki» so‘zi bilan qisqa izoh yozib ko‘ring. Izoh yozolmasangiz, demak qaysidir bosqichni o‘tkazib yuborgansiz."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "18 000 ning 10% i = 1 800\n18 000 − 1 800 = 16 200 so‘m",
+     "ovoz": "O‘n foiz topish oson: sonni o‘nga bo‘lamiz. o‘n sakkiz mingning o‘n foizi ming sakkiz yuz. Chegirma shuncha, demak o‘n sakkiz mingdan ming sakkiz yuzni ayiramiz va o‘n olti ming ikki yuz so‘m to‘laymiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Pitsani 100 bo‘lakka bo‘lsak, 1 bo‘lak = 1%\n10 bo‘lak sizga — 10%",
+     "ovoz": "Katta pitsani yuz teng bo‘lakka bo‘ldik deb tasavvur qiling. Har bir bo‘lak — bir foiz. O‘n bo‘lak olsangiz, pitsaning o‘n foizini olgan bo‘lasiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "10% → 10 ga bo‘lish;  5% → 10% ning yarmi\n25% → 4 ga bo‘lish;  50% → yarmi",
+     "ovoz": "Og‘zaki hisob uchun yorliqlar: o‘n foiz — o‘nga bo‘lish, besh foiz — uning yarmi, yigirma besh foiz — to‘rtga bo‘lish, ellik foiz — yarmi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "+20%: 100 000 → 120 000\n−20% endi 120 000 dan: −24 000 → 96 000",
+     "ovoz": "Oshganda yigirma foiz yuz mingdan olindi — yigirma ming. Kamayganda esa yigirma foiz yuz yigirma mingdan olindi — bu yigirma to‘rt ming. Ko‘proq kamaydi, shuning uchun narx to‘qson olti mingga tushdi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Do‘kondor: «Narxni 20% oshirdim, endi 20% chegirma!»\nYangi narx: 96 000 so‘m — eskisiga teng emas",
+     "ovoz": "Do‘kondor narxni yigirma foiz oshirib, keyin yigirma foiz chegirma e’lon qildi. Ko‘pchilik narx avvalgidek deb o‘ylaydi, aslida u to‘qson olti ming so‘m — eskisidan arzon. Teskari tartibda ham xuddi shunday: avval tushib, keyin oshsa ham to‘qson olti ming."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Katta birlik → kichik: ko‘paytiramiz (3 km = 3 000 m)\nKichik → katta: bo‘lamiz (90 daqiqa = 1,5 soat)",
+     "ovoz": "Kattaroq birlikdan kichigiga o‘tsak, son kattalashadi — ko‘paytiramiz. Kichik birlikdan kattasiga o‘tsak, son kichrayadi — bo‘lamiz."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "2 : 3 nisbatda 500 000 so‘m: 5 qism\n1 qism = 100 000 → 200 000 va 300 000",
+     "ovoz": "Nisbatni qismlar bilan ko‘ring: ikki ga uch — jami besh qism. besh yuz ming so‘mni beshga bo‘lsak, bir qism yuz ming. Demak, biriga ikki yuz ming, boshqasiga uch yuz ming so‘m."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Chegirma summasini javob deb yozish: 16 200 o‘rniga 1 800 so‘m",
+   "+20% va −20% bir-birini yo‘qotadi deb o‘ylash",
+   "Borib-kelishda ikki tomonni hisobga olmaslik",
+   "Birliklarni aralashtirish: daqiqa va soat, metr va kilometr",
+   "Stimuldagi keraksiz sonni hisobga qo‘shib yuborish"
+  ],
+  "strategiyalar": [
+   "Stimulni oxirigacha o‘qib, savolning tagiga chizing",
+   "Keraksiz ma’lumotni chizib qo‘ying",
+   "Har son yoniga birligini yozing",
+   "Javobni taxminiy hisob bilan tekshiring",
+   "Natijani vaziyatga qaytarib, mantiqiyligini baholang"
+  ],
+  "kalit_sozlar": [
+   "foiz",
+   "nisbat",
+   "kasr",
+   "o‘lchov",
+   "yaxlitlash",
+   "standart shakl"
+  ]
+ },
+ {
+  "kod": "XB-PM-NOA",
+  "mavzu": "PM-NOA",
+  "sarlavha": "Noaniqlik va ma’lumotlar: statistika va ehtimollik",
+  "maqsad": "Jadval va diagrammadan ma’lumot o‘qish, o‘rtacha va medianani to‘g‘ri tanlash, ehtimollik va tanlanma bo‘yicha taxmin qilib, xulosaning ishonchliligini baholash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Ob-havo: ertaga yomg‘ir ehtimoli 30%\nPISA 2022: O‘zbekiston — 364, OECD — 472\nTayanch (2-daraja) — 420 ball, Singapur — 575",
+    "ovoz": "[1] Assalomu alaykum! Telefoningizda «ertaga yomg‘ir ehtimoli o‘ttiz foiz» degan yozuvni ko‘rgansiz. Soyabon olasizmi? Bunday qarorlarni ma’lumot va ehtimollik yordamida qabul qilamiz. [2] Xalqaro PISA tadqiqotida, ikki ming yigirma ikkinchi yilda, o‘n besh yoshli o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, OECD davlatlari o‘rtachasi esa to‘rt yuz yetmish ikki ball. [3] Tayanch, ya’ni ikkinchi daraja chegarasi to‘rt yuz yigirma ball: bu darajadagi o‘quvchi oddiy hayotiy vaziyatni matematika tiliga o‘gira oladi. Singapur o‘quvchilari esa besh yuz yetmish besh ball olgan. Bugun shu ko‘nikmani birga mashq qilamiz — siz albatta uddalaysiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "O‘rtacha va mediana",
+    "doska": "O‘rtacha = yig‘indi : sonlar soni\nMediana: tartiblangan qatorning o‘rtasi\nOylik (mln so‘m): 3, 3, 4, 4, 16 → o‘rtacha 6, mediana 4",
+    "ovoz": "[1] O‘rta arifmetik — barcha sonlar yig‘indisini ularning soniga bo‘lish. [2] Mediana esa sonlarni o‘sish tartibida terganda aynan o‘rtada turgan son. [3] Kichik bir firmada besh xodimning oyligi: uch, uch, to‘rt, to‘rt va rahbarniki o‘n olti million so‘m. O‘rtacha olti million chiqadi, mediana esa to‘rt million. To‘rt xodim o‘rtachadan kam oladi! Bitta juda katta son o‘rtachani yuqoriga tortadi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Diagrammani to‘g‘ri o‘qish",
+    "doska": "Avval sarlavha, o‘qlar va birliklarni o‘qing\nO‘q 0 dan boshlanmasa — farq bo‘rttirilgan\nDoiraviy diagramma: hamma qismlar = 100%",
+    "ovoz": "[1] Diagrammaga qarashdan oldin uning sarlavhasini, gorizontal va vertikal o‘qlarni, birliklarni o‘qing: bu soni, foiz yoki so‘mmi? [2] Agar ustunli diagrammada vertikal o‘q noldan emas, masalan to‘qsondan boshlansa, kichik farq ham juda katta ko‘rinadi. PISA aynan shunday tuzoqlarni so‘raydi. [3] Doiraviy diagrammada barcha bo‘laklar birgalikda yuz foizni tashkil etadi — bu tekshirish uchun qulay."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Ehtimollik",
+    "doska": "$P = \\frac{\\text{qulay holatlar}}{\\text{barcha holatlar}}$\n200 bilet, 10 tasi yutuqli: $P = \\frac{10}{200} = 0{,}05$\n$0 \\le P \\le 1$;  $0{,}05 = 5\\%$",
+    "ovoz": "[1] Ehtimollik — qulay holatlar sonining barcha teng imkonli holatlar soniga nisbati. [2] Masalan, maktab yarmarkasida ikki yuzta lotereya bileti bor, o‘ntasi yutuqli. Bitta bilet olsangiz, yutish ehtimoli o‘ndan ikki yuzga, ya’ni nol butun yuzdan besh. [3] Ehtimollik har doim noldan birgacha bo‘ladi. nol butun yuzdan beshni foizda yozsak — besh foiz."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Kutilgan son va tanlanma",
+    "doska": "Kutilgan son = tajribalar soni × $P$\nKub 600 marta: «6» taxminan $600 \\cdot \\frac{1}{6} = 100$ marta\nTanlanma: bir qismdan so‘rab, hammasiga taxmin",
+    "ovoz": "[1] Ehtimollikni bilsak, ko‘p marta takrorlanganda hodisa taxminan necha marta ro‘y berishini topamiz: tajribalar sonini ehtimollikka ko‘paytiramiz. [2] O‘yin kubini olti yuz marta tashlasak, olti raqami taxminan yuz marta tushadi. Aynan yuz emas, lekin shu atrofda. [3] So‘rovnomada hammadan emas, bir qismidan — tanlanmadan so‘raymiz. Tanlanma tasodifiy va yetarlicha katta bo‘lsa, butun guruh haqida taxmin qilish mumkin, lekin bu aniq son emas."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: bozordagi sotuv",
+    "doska": "Pomidor sotuvi, kg: 40, 35, 50, 45, 38, 42, 107\nOdatdagi kunni qaysi son yaxshi ifodalaydi?",
+    "ovoz": "[1] Birinchi misol. Bozordagi sotuvchi yetti kun davomida sotgan pomidorini yozib bordi: qirq, o‘ttiz besh, ellik, qirq besh, o‘ttiz sakkiz, qirq ikki va bayram kuni yuz yetti kilogramm. [2] Savol: odatdagi bir kunlik sotuvni o‘rtacha yaxshiroq ifodalaydimi yoki mediana?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Yig‘indi 357 kg;  o‘rtacha $357 : 7 = 51$ kg\nTartib: 35, 38, 40, 42, 45, 50, 107 → mediana 42",
+    "ovoz": "[1] Hammasini qo‘shamiz: uch yuz ellik yetti kilogramm. Yettiga bo‘lsak, o‘rtacha ellik bir kilogramm. [2] Endi sonlarni o‘sish tartibida teramiz. Yettita sonning o‘rtasi — to‘rtinchisi, ya’ni qirq ikki kilogramm. Bu mediana."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "51 kg dan ko‘p sotilgan kun — faqat bittasi\nTalqin: odatdagi kunni mediana (42 kg) ifodalaydi",
+    "ovoz": "[1] Natijani vaziyatga qaytaramiz: yetti kundan faqat bayram kunida ellik bir kilogrammdan ko‘p sotilgan. Demak, o‘rtachani bitta katta son yuqoriga tortib ketgan. [2] Xulosa: sotuvchi odatdagi kun uchun qirq ikki kilogramm atrofida pomidor olib kelsa, mol ortib qolmaydi. Mediana chetdagi katta songa chidamli."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: sarlavha, o‘qlar, jadval ustunlari\n2) Savol: o‘rtacha, mediana yoki ehtimollik?\n3) Keraksiz: savolga aloqasiz ustun va sanalar\n4) Birlik: soni yoki foizmi? kg yoki tonnami?",
+    "ovoz": "[1] Statistik savolda stimul — ko‘pincha jadval yoki diagramma. Avval uning sarlavhasini, o‘qlarini va ustun nomlarini o‘qing. [2] Keyin savol aniq nimani so‘rayotganini belgilang: o‘rtachami, medianami, ehtimollikmi yoki xulosani baholashmi? [3] Jadvalda ko‘pincha savolga aloqasi yo‘q ustunlar va sanalar bo‘ladi. Ularni chizib qo‘ying. [4] Va birlikka e’tibor bering: diagrammada soni ko‘rsatilganmi yoki foiz? Kilogrammmi yoki tonna? Javob shu birlikda bo‘lsin."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: so‘rovnoma",
+    "doska": "Maktabda 400 o‘quvchi. Tasodifiy 80 tasidan so‘raldi\n36 tasi metroda keladi. So‘rov 2 kun davom etdi\nMaktabda taxminan nechta o‘quvchi metroda keladi?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Maktabda to‘rt yuz o‘quvchi o‘qiydi. O‘quvchilar kengashi tasodifiy tanlangan sakson o‘quvchidan maktabga qanday kelishini so‘radi. [2] Ulardan o‘ttiz oltitasi metroda kelishini aytdi. So‘rov ikki kun davom etdi. [3] Savol: butun maktabda taxminan nechta o‘quvchi metroda keladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: «2 kun» — hisobga kerak emas\nUlush: $\\frac{36}{80} = 0{,}45 = 45\\%$",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: so‘rov necha kun davom etgani javobga ta’sir qilmaydi. [2] Model: tanlanmadagi ulushni topamiz. O‘ttiz oltini saksonga bo‘lsak, nol butun yuzdan qirq besh, ya’ni qirq besh foiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Taxmin: $400 \\cdot 0{,}45 = 180$ o‘quvchi\nTekshiruv: $\\frac{180}{400} = 0{,}45$ ✓\nTasodifiy o‘quvchi metroda kelishi: $P \\approx 0{,}45$",
+    "ovoz": "[1] Bu ulushni butun maktabga qo‘llaymiz: to‘rt yuzni nol butun yuzdan qirq beshga ko‘paytirsak, yuz sakson o‘quvchi. [2] Tekshiramiz: yuz saksonni to‘rt yuzga bo‘lsak, yana nol butun yuzdan qirq besh chiqadi — ulushlar teng. [3] Demak, maktabdan tasodifiy tanlangan o‘quvchining metroda kelish ehtimoli taxminan nol butun yuzdan qirq besh."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Talqin: «taxminan 180» — aniq son emas\nSo‘rov metro tomondagi darvozada bo‘lsa — buziladi",
+    "ovoz": "[1] Natijani vaziyatga qaytaramiz: javob — taxminan yuz sakson o‘quvchi. Boshqa sakson kishini tanlasak, son biroz boshqacha chiqishi mumkin. [2] Tanqidiy savol ham bering: agar so‘rov faqat metro bekati tomondagi darvozada o‘tkazilganda edi, metroda keluvchilar ko‘p chiqib, taxmin bo‘rttirilgan bo‘lardi. Shuning uchun tanlanma tasodifiy bo‘lishi shart."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Qutida 3 qizil, 5 ko‘k, 2 yashil shar. P(ko‘k) = ?",
+    "ovoz": "[1] Endi o‘zingiz: qutida uchta qizil, beshta ko‘k va ikkita yashil shar bor. Qaramasdan bitta shar olinsa, uning ko‘k bo‘lish ehtimoli qancha? Kasr yoki o‘nli kasrda yozing.",
+    "savol": "Ko‘k shar chiqish ehtimoli",
+    "javob": "0,5|1/2|0.5|5/10|50%|50 %"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Baholar: 4, 5, 3, 5, 5, 2, 4. Mediana = ?",
+    "ovoz": "[1] Bir o‘quvchining choraklik baholari: to‘rt, besh, uch, besh, besh, ikki, to‘rt. Medianani toping. Avval tartiblashni unutmang!",
+    "savol": "Mediana",
+    "javob": "4"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "O‘rtacha — yig‘indi : soni; mediana — o‘rtadagi\nChetda juda katta son bo‘lsa — mediana ishonchliroq\n$P = \\frac{\\text{qulay}}{\\text{barcha}}$;  kutilgan son $= n \\cdot P$\nTanlanmadan xulosa — taxmin; tanlov tasodifiy bo‘lsin",
+    "ovoz": "[1] Esda tuting: o‘rtacha — yig‘indini songa bo‘lish, mediana — tartiblangan qatorning o‘rtasi. [2] Ma’lumotda bitta juda katta yoki juda kichik son bo‘lsa, odatdagi holatni mediana yaxshiroq ko‘rsatadi. [3] Ehtimollik — qulay holatlarning barcha holatlarga nisbati, uni tajribalar soniga ko‘paytirsak, kutilgan son chiqadi. [4] Tanlanma bo‘yicha xulosa — har doim taxmin, va u faqat tanlov tasodifiy bo‘lsa ishonchli. Ajoyib ishladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "2, 3, 9, 10, 3, 5 → tartib: 2, 3, 3, 5, 9, 10\nJuft soni: o‘rtadagi ikkitasining o‘rtachasi $(3+5):2 = 4$",
+     "ovoz": "Medianani topish uchun avval tartiblang. Sonlar soni juft bo‘lsa, o‘rtada ikkita son qoladi — ularning o‘rtachasini olamiz: uch va beshning o‘rtachasi to‘rt."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Sinfda 5 kishi, cho‘ntak puli: 5, 5, 6, 6 va 100 ming\nO‘rtacha 24,4 ming — hech kim bunday olmaydi!",
+     "ovoz": "Sinfdagi besh do‘stdan to‘rttasi besh-olti ming so‘m cho‘ntak puli oladi, bittasiga esa yuz ming berishadi. O‘rtacha yigirma to‘rt mingdan oshib ketadi, lekin hech kim aslida bunday pul olmaydi. Mediana — olti ming — haqiqatga yaqinroq."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Qatorning ikki chetidan bittadan o‘chiring\nOxirida qolgan son — mediana",
+     "ovoz": "Tartiblangan qatorning ikki chetidan bir vaqtda bittadan son o‘chirib boring. O‘rtada qolgan son — mediana. Ikkita qolsa, ularning o‘rtachasini oling."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Ustunlar: 92 va 96 (o‘q 90 dan boshlangan)\nRasmda 3 barobar, aslida farq atigi 4",
+     "ovoz": "Agar o‘q to‘qsondan boshlansa, to‘qson ikki va to‘qson oltining ustunlari biri ikkinchisidan uch barobar baland ko‘rinadi. Aslida farq bor-yo‘g‘i to‘rt. Shuning uchun har doim o‘qdagi sonlarni o‘qing."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Reklama: «Bizning sharbat — 2 barobar ko‘p sotiladi!»\nO‘qqa qarang: 48 va 52 ming dona",
+     "ovoz": "Reklamada bir sharbatning ustuni ikkinchisidan ikki barobar baland chizilgan. Lekin o‘qni o‘qisangiz, qirq sakkiz ming va ellik ikki ming dona. Farq juda kichik — diagramma sizni aldamoqchi edi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Tanga: 2 holat, gerb — 1 ta → $P = \\frac{1}{2}$\nKub: 6 holat, «6» — 1 ta → $P = \\frac{1}{6}$",
+     "ovoz": "Avval nechta teng imkonli holat borligini sanang, keyin ulardan nechtasi bizga qulay ekanini. Tangada ikki holat, gerb bitta — ehtimollik ikkidan bir."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Xaltada 10 ta konfet: 7 ta shokoladli\nTasodifan olsangiz: $P = \\frac{7}{10} = 0{,}7$",
+     "ovoz": "Buvingiz xaltaga o‘nta konfet solgan, yettitasi shokoladli. Qaramasdan bittasini olsangiz, shokoladli bo‘lish ehtimoli o‘ndan yetti — ancha katta imkoniyat."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "0 — mumkin emas, 0,5 — teng imkon, 1 — aniq\n0 ———— 0,5 ———— 1",
+     "ovoz": "Ehtimollikni chiziqda tasavvur qiling: nol — hech qachon bo‘lmaydi, bir — albatta bo‘ladi, o‘rtasi — yarim imkon. Javobingiz shu chiziqda to‘g‘ri joydami, tekshiring."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Tanga 100 marta: gerb ≈ $100 \\cdot \\frac{1}{2} = 50$\n48 yoki 53 chiqsa ham — normal",
+     "ovoz": "Tangani yuz marta tashlasak, gerb taxminan ellik marta tushadi. Qirq sakkiz yoki ellik uch chiqishi ham tabiiy — kutilgan son taxminiy."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Oshni tatib ko‘rish uchun bir qoshiq yetadi\nLekin aralashtirib olish kerak!",
+     "ovoz": "Qozondagi oshning tuzini bilish uchun hammasini yemaysiz — bir qoshig‘ini tatib ko‘rasiz. Bu tanlanma. Faqat yaxshilab aralashtirib olish kerak, aks holda bir chetini tatib, noto‘g‘ri xulosa qilasiz — bu tasodifiy tanlov degani."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Medianani topishda sonlarni tartiblamaslik",
+   "Chetdagi katta son bo‘lsa ham o‘rtachani «odatdagi qiymat» deb olish",
+   "Diagramma o‘qi noldan boshlanmasligini sezmaslik",
+   "Ehtimollikni 1 dan katta yoki manfiy chiqarib qo‘yish",
+   "Tanlanmadagi natijani butun guruh uchun aniq son deb aytish"
+  ],
+  "strategiyalar": [
+   "Diagrammaning sarlavhasi, o‘qlari va birliklarini birinchi o‘qing",
+   "Medianadan oldin doim tartiblang",
+   "Ehtimollik 0 va 1 orasida ekanini tekshiring",
+   "Tanlanma tasodifiy va yetarlicha katta ekanini baholang",
+   "Javobni vaziyatga qaytarib, «taxminan» so‘zini unutmang"
+  ],
+  "kalit_sozlar": [
+   "statistika",
+   "ehtimollik",
+   "o‘rta arifmetik",
+   "mediana",
+   "diagramma",
+   "tanlanma"
+  ]
+ },
+ {
+  "kod": "XB-PM-OZG",
+  "mavzu": "PM-OZG",
+  "sarlavha": "O‘zgarish va bog‘lanishlar: formula, jadval, grafik",
+  "maqsad": "Hayotiy bog‘lanishni formula, jadval va grafik ko‘rinishida ifodalash, chiziqli va chiziqli bo‘lmagan o‘zgarishni farqlash, ikki variantni taqqoslab natijani vaziyatga qaytarib talqin qilish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Taksi: 7 000 so‘m + har km uchun 2 500 so‘m\nPISA 2022: O‘zbekiston — 364, OECD — 472\nTayanch (2-daraja) — 420 ball, Singapur — 575",
+    "ovoz": "[1] Assalomu alaykum! Taksi ilovasini ochdingiz: chaqirish yetti ming so‘m, har kilometr uchun yana ikki ming besh yuz so‘m. Masofa ortsa, narx qanday o‘zgaradi? Bugun mana shunday bog‘lanishlarni o‘rganamiz. [2] Xalqaro PISA tadqiqotida, ikki ming yigirma ikkinchi yilda, o‘n besh yoshli o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, OECD davlatlari o‘rtachasi esa to‘rt yuz yetmish ikki ball. [3] Tayanch, ya’ni ikkinchi daraja chegarasi to‘rt yuz yigirma ball: bu darajadagi o‘quvchi oddiy hayotiy vaziyatni matematika tiliga o‘gira oladi. Singapur o‘quvchilari esa besh yuz yetmish besh ball olgan. Bugun shu ko‘nikmani birga mashq qilamiz — siz albatta uddalaysiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Chiziqli bog‘lanish",
+    "doska": "$y = kx + b$\n$b$ — boshlang‘ich qiymat (chaqirish: 7 000)\n$k$ — har birlikka o‘zgarish (1 km: 2 500)\nTaksi: $y = 2500x + 7000$",
+    "ovoz": "[1] Ko‘p hayotiy bog‘lanishlar shu formula bilan yoziladi: y teng k x qo‘shuv b. Bu chiziqli funksiya. [2] b — boshlang‘ich qiymat: hali bir kilometr ham yurmasdan to‘lanadigan chaqirish narxi, yetti ming so‘m. [3] k — har bir birlik uchun o‘zgarish: har kilometr narxni ikki ming besh yuz so‘mga oshiradi. [4] Demak, taksi narxi formulasi: y teng ikki ming besh yuz x qo‘shuv yetti ming, bu yerda x — kilometrlar soni."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Jadvaldan formulaga",
+    "doska": "x (km):     0,      1,      2,      3\ny (so‘m): 7 000, 9 500, 12 000, 14 500\nFarqlar o‘zgarmas (+2 500) → chiziqli",
+    "ovoz": "[1] PISA ko‘pincha bog‘lanishni jadval bilan beradi. Mana kilometrlar: nol, bir, ikki, uch. [2] Ularga mos narxlar: yetti ming, to‘qqiz ming besh yuz, o‘n ikki ming, o‘n to‘rt ming besh yuz so‘m. [3] Qo‘shni narxlar farqini hisoblang: har safar ikki ming besh yuz. Farqlar o‘zgarmas bo‘lsa — bog‘lanish chiziqli, farq esa k ga teng."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Grafikni o‘qish",
+    "doska": "Gorizontal o‘q — vaqt, vertikal — masofa\nTik chiziq → tez o‘zgarish\nGorizontal bo‘lak → o‘zgarish yo‘q (to‘xtash)",
+    "ovoz": "[1] Grafikni o‘qishni o‘qlardan boshlang: masalan, gorizontal o‘qda vaqt, vertikal o‘qda bosib o‘tilgan masofa. [2] Chiziq qancha tik bo‘lsa, o‘zgarish shuncha tez: avtobus tez yurgan joy. [3] Grafikda gorizontal bo‘lak bo‘lsa, vaqt o‘tyapti, masofa esa o‘zgarmayapti — avtobus bekatda turibdi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Chiziqli bo‘lmagan o‘zgarish",
+    "doska": "Har kuni +2 → chiziqli: 2, 4, 6, 8\nHar kuni ×2 → ko‘rsatkichli: 2, 4, 8, 16\nKvadrat: tomon 2 marta → yuza $2^2 = 4$ marta",
+    "ovoz": "[1] Har kuni bir xil son qo‘shilsa, o‘zgarish chiziqli: ikki, to‘rt, olti, sakkiz. [2] Har kuni ikki barobar oshsa — ko‘rsatkichli o‘sish: ikki, to‘rt, sakkiz, o‘n olti. Avval sekin, keyin juda tez o‘sadi. [3] Yana bir tur — kvadrat bog‘lanish: kvadrat tomonini ikki marta uzaytirsak, yuzasi to‘rt marta ortadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: taksi formulasi",
+    "doska": "Taksi: $y = 2500x + 7000$ (so‘m)\na) 12 km qancha?   b) 52 000 so‘mga necha km?",
+    "ovoz": "[1] Birinchi misol. Taksi narxi formulasi: y teng ikki ming besh yuz x qo‘shuv yetti ming so‘m. [2] Ikki savol: a) o‘n ikki kilometr yo‘l qancha turadi? b) cho‘ntagingizda ellik ikki ming so‘m bo‘lsa, necha kilometr yura olasiz?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "a) $2500 \\cdot 12 + 7000 = 37\\,000$ so‘m\nb) $2500x + 7000 = 52\\,000$\n$2500x = 45\\,000$,  $x = 18$ km",
+    "ovoz": "[1] Birinchi savolda x ni bilamiz — o‘rniga qo‘yamiz: o‘ttiz ming qo‘shuv yetti ming, jami o‘ttiz yetti ming so‘m. [2] Ikkinchi savolda y ni bilamiz, x esa noma’lum. Tenglama tuzamiz. [3] Ikki tomondan yetti mingni ayiramiz: ikki ming besh yuz x teng qirq besh ming. Bo‘lsak, x teng o‘n sakkiz kilometr."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Tekshiruv: $2500 \\cdot 18 + 7000 = 52\\,000$ ✓\nTalqin: 52 000 so‘mga 18 km gacha borish mumkin",
+    "ovoz": "[1] Tekshiramiz: o‘n sakkizni formulaga qo‘ysak, rosa ellik ikki ming chiqadi. [2] Vaziyat tilida javob: ellik ikki ming so‘m bilan ko‘pi bilan o‘n sakkiz kilometr yurish mumkin. Yo‘l uzunroq bo‘lsa, pul yetmaydi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: formula, jadval yoki grafik — qaysi?\n2) Savol: qiymat topishmi yoki taqqoslashmi?\n3) Keraksiz: formulaga kirmaydigan sonlar\n4) Birlik: GB yoki MB, so‘m yoki ming so‘m?",
+    "ovoz": "[1] Avval bog‘lanish qanday berilganini aniqlang: formula, jadval yoki grafik. Kerak bo‘lsa, birini ikkinchisiga o‘tkazing. [2] Savolni ajrating: x berilib y so‘ralyaptimi, y berilib x so‘ralyaptimi yoki ikki variant taqqoslanyaptimi? [3] Stimulda formulaga umuman kirmaydigan sonlar ham bo‘ladi — ularni chizib qo‘ying. [4] Birliklarni tekshiring: grafikda ming so‘m, matnda so‘m bo‘lishi mumkin; gigabayt va megabayt ham tez-tez aralashadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: ikki mobil tarif",
+    "doska": "A tarif: 30 000 so‘m/oy + 1 GB uchun 5 000 so‘m\nB tarif: 75 000 so‘m/oy, 20 GB internet kiradi\nSMS — 50 so‘m. Qachon B foydaliroq?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Mobil operatorda ikki tarif bor, narxlar misol uchun. A tarif: oyiga o‘ttiz ming so‘m va har bir gigabayt internet uchun yana besh ming so‘m. [2] B tarif: oyiga yetmish besh ming so‘m, unga yigirma gigabayt internet kiradi. [3] Ikkala tarifda SMS ellik so‘m. Savol: oyiga necha gigabayt ishlatganda B tarif foydaliroq bo‘ladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: SMS narxi — ikkalasida bir xil\nA: $y = 5000x + 30\\,000$;   B: $y = 75\\,000$",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: SMS narxi ikkala tarifda bir xil, taqqoslashga ta’sir qilmaydi. [2] Model tuzamiz. x — oylik gigabayt. A tarif narxi chiziqli: besh ming x qo‘shuv o‘ttiz ming. B tarif yigirma gigabaytgacha o‘zgarmas — yetmish besh ming."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Teng bo‘lganda: $5000x + 30\\,000 = 75\\,000$\n$5000x = 45\\,000$,   $x = 9$ GB",
+    "ovoz": "[1] Ikki tarif qachon teng bo‘lishini topamiz — tenglama tuzamiz. [2] Yechamiz: x teng to‘qqiz gigabayt. Grafikda bu ikki chiziqning kesishish nuqtasi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "6 GB: A = 60 000 < 75 000 → A arzon\n12 GB: A = 90 000 > 75 000 → B arzon\nTalqin: 9 GB dan ko‘p (20 gacha) bo‘lsa — B",
+    "ovoz": "[1] Ikki tomondan tekshiramiz. Olti gigabaytda A tarif oltmish ming so‘m — B dan arzon. [2] O‘n ikki gigabaytda A tarif to‘qson ming so‘m — endi B arzonroq. [3] Vaziyat tilida javob: oyiga to‘qqiz gigabaytdan ko‘p, yigirmagacha internet ishlatsangiz, B tarif foydali; kamroq ishlatsangiz — A tarif."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Hovuzda 1 000 l suv, nasos har daqiqa 50 l quyadi",
+    "ovoz": "[1] Endi o‘zingiz: hovuzda ming litr suv bor, nasos har daqiqada yana ellik litr quyadi. O‘ttiz daqiqadan keyin hovuzda necha litr suv bo‘ladi? Faqat sonni yozing.",
+    "savol": "30 daqiqadan keyin necha litr?",
+    "javob": "2500|2 500|2500 l|2 500 l"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Jadval: x = 1, 2, 3 → y = 8, 11, 14.  x = 10 da y = ?",
+    "ovoz": "[1] Jadvalda x bir, ikki, uch bo‘lganda y sakkiz, o‘n bir, o‘n to‘rt. Avval k va b ni toping, keyin x o‘nga teng bo‘lganda y ni hisoblang.",
+    "savol": "x = 10 da y",
+    "javob": "35"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "$y = kx + b$: $b$ — boshlanish, $k$ — har birlik qadami\nFarqlar teng → chiziqli; nisbatlar teng → ko‘rsatkichli\nIkki variant: tenglab, kesishish nuqtasini toping\nJavobni tekshiring va vaziyat tilida ayting",
+    "ovoz": "[1] Esda tuting: chiziqli formulada b — boshlang‘ich qiymat, k — har birlik uchun o‘zgarish. [2] Jadvalda qo‘shni qiymatlar farqi teng bo‘lsa — chiziqli, nisbati teng bo‘lsa — ko‘rsatkichli o‘sish. [3] Ikki tarif yoki ikki variantni taqqoslashda ularni tenglang: kesishish nuqtasi chegarani ko‘rsatadi. [4] Va javobni formulaga qo‘yib tekshiring, so‘ng vaziyat tilida ayting: qaysi tarif, necha kilometr, necha litr. Barakalla!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "0 km → 7 000;  1 km → 9 500;  2 km → 12 000\nHar km: +2 500",
+     "ovoz": "Formulani hisob qadamlari bilan ko‘ring: hali yurmasangiz — yetti ming. Bir kilometr yursangiz, ikki ming besh yuz qo‘shiladi — to‘qqiz ming besh yuz. Har yangi kilometr yana ikki ming besh yuz qo‘shadi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Telefon hisobi: abonent to‘lovi + daqiqalar\nAbonent to‘lovi — b, 1 daqiqa narxi — k",
+     "ovoz": "Telefon hisobini eslang: har oy qat’iy abonent to‘lovi bor, ustiga har bir qo‘shimcha daqiqa uchun pul qo‘shiladi. Qat’iy to‘lov — bu b, bir daqiqa narxi — k."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Grafik: y o‘qini 7 000 da kesadi\nHar 1 km o‘ngga → 2 500 yuqoriga",
+     "ovoz": "Grafikda ko‘ring: to‘g‘ri chiziq vertikal o‘qni yetti mingda kesadi — bu b. Har bir kilometr o‘ngga yurganda chiziq ikki ming besh yuz yuqoriga ko‘tariladi — bu k, ya’ni qiyalik."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "9 500 − 7 000 = 2 500;  12 000 − 9 500 = 2 500\nFarq bir xil → $k = 2500$, x = 0 da $b = 7000$",
+     "ovoz": "Har qo‘shni ikki narxni ayiring. Farq doim bir xil chiqsa, bu k. x nol bo‘lgandagi qiymat esa b."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Har oy cho‘chqachaga 50 000 so‘m solasiz\n0, 50, 100, 150 ming → farq teng",
+     "ovoz": "Har oy cho‘chqacha-kassaga ellik ming so‘m solib borsangiz, jamg‘arma nol, ellik, yuz, bir yuz ellik ming bo‘ladi. Har oy farq bir xil — bu chiziqli o‘sish."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Chiziq yuqoriga ko‘tarilsa — masofa ortyapti\nTekis bo‘lsa — turibdi",
+     "ovoz": "Grafikni chapdan o‘ngga o‘qing. Chiziq ko‘tarilsa — masofa ortyapti, tekis ketsa — to‘xtab turibdi, qanchalik tik bo‘lsa — shunchalik tez."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Maktabga yo‘l: yurish → svetoforda turish → yugurish\nGrafik: qiya → tekis → tik",
+     "ovoz": "Maktabga borayotganingizni tasavvur qiling: avval oddiy yurdingiz — chiziq qiya. Svetoforda to‘xtadingiz — chiziq tekis. Kech qolayotganingizni sezib yugurdingiz — chiziq tik ko‘tarildi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "+ bir xil son → chiziqli\n× bir xil son → ko‘rsatkichli",
+     "ovoz": "Ketma-ketlikka qarang: har safar bir xil son qo‘shilyaptimi yoki bir xil songa ko‘paytirilyaptimi? Birinchisi chiziqli, ikkinchisi ko‘rsatkichli."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Xabar: har kim 2 do‘stiga yuboradi\n1-qadam 2, 2-qadam 4, 3-qadam 8, ... 10-qadam 1 024",
+     "ovoz": "Bir xabarni har kim ikki do‘stiga yuborsa, o‘ninchi qadamda uni yangi ming yigirma to‘rt kishi oladi. Ko‘rsatkichli o‘sish shunchalik tez — shuning uchun mish-mishlar tez tarqaladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Boshlang‘ich qiymatni (b) unutib, faqat $kx$ ni hisoblash",
+   "x va y ni almashtirib qo‘yish: narx berilganda uni x o‘rniga qo‘yish",
+   "Grafikdagi gorizontal bo‘lakni «tez harakat» deb o‘qish",
+   "Ikki baravar o‘sishni chiziqli deb hisoblash",
+   "Keraksiz ma’lumotni (SMS narxi) modelga qo‘shib yuborish"
+  ],
+  "strategiyalar": [
+   "Jadvalda qo‘shni qiymatlar farqini hisoblang",
+   "Grafikni o‘qlar va birliklardan boshlab o‘qing",
+   "Ikki variantni tenglab, chegara qiymatni toping",
+   "Chegaraning ikki tomonidan bitta sonni tekshirib ko‘ring",
+   "Javobni formulaga qaytarib qo‘ying va vaziyat tilida ayting"
+  ],
+  "kalit_sozlar": [
+   "funksiya",
+   "grafik",
+   "tenglama",
+   "formula",
+   "chiziqli funksiya",
+   "kvadrat"
+  ]
+ },
+ {
+  "kod": "XB-PM-FAZ",
+  "mavzu": "PM-FAZ",
+  "sarlavha": "Fazo va shakl: yuza, hajm, masshtab",
+  "maqsad": "Hayotiy vaziyatda perimetr, yuza va hajmni farqlash, Pifagor teoremasi va masshtabni qo‘llash, birliklarni to‘g‘ri almashtirib natijani vaziyatga qaytarib tekshirish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Xonaga laminat: 4 m × 3,5 m — necha qadoq?\nPISA 2022: O‘zbekiston — 364, OECD — 472\nTayanch (2-daraja) — 420 ball, Singapur — 575",
+    "ovoz": "[1] Assalomu alaykum! Oilangiz xonaga yangi laminat yotqizmoqchi: xona to‘rt metrga uch yarim metr. Nechta qadoq sotib olish kerak? Bu — PISA ning fazo va shakl bo‘limidagi odatiy savol. [2] Xalqaro PISA tadqiqotida, ikki ming yigirma ikkinchi yilda, o‘n besh yoshli o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, OECD davlatlari o‘rtachasi esa to‘rt yuz yetmish ikki ball. [3] Tayanch, ya’ni ikkinchi daraja chegarasi to‘rt yuz yigirma ball: bu darajadagi o‘quvchi oddiy hayotiy vaziyatni matematika tiliga o‘gira oladi. Singapur o‘quvchilari esa besh yuz yetmish besh ball olgan. Bugun shu ko‘nikmani birga mashq qilamiz — siz albatta uddalaysiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Perimetr va yuza",
+    "doska": "Perimetr — chegara uzunligi (m)\nYuza — ichki qism kattaligi (m²)\nTo‘g‘ri to‘rtburchak: $S = ab$,   $P = 2(a + b)$",
+    "ovoz": "[1] Perimetr — shaklning chegarasi bo‘ylab uzunlik. U metrda o‘lchanadi: masalan, xona chetidagi plintus uzunligi. [2] Yuza — shakl ichini qancha joy egallashi, kvadrat metrda o‘lchanadi: masalan, polga ketadigan laminat. [3] To‘g‘ri to‘rtburchakda yuza — tomonlar ko‘paytmasi, perimetr — tomonlar yig‘indisining ikki barobari. PISA da eng ko‘p xato — shu ikkisini adashtirish."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Hajm",
+    "doska": "Quti: $V = a \\cdot b \\cdot c$ (m³)\n$1\\ \\text{m}^3 = 1\\,000$ litr\nSilindr: $V = \\pi r^2 h$",
+    "ovoz": "[1] Hajm — jism egallagan fazo. To‘g‘ri burchakli quti hajmi uzunlik, eni va balandlik ko‘paytmasiga teng, kub metrda o‘lchanadi. [2] Suyuqlik hajmini ko‘pincha litrda so‘rashadi: bir kub metr — ming litr. [3] Silindr shaklidagi idish — masalan, suv baki yoki stakan — hajmi asos yuzasi karra balandlik: pi r kvadrat h."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Pifagor teoremasi",
+    "doska": "$c^2 = a^2 + b^2$  ($c$ — gipotenuza)\nNarvon: devordan 3 m, balandlik 4 m → $c = 5$ m",
+    "ovoz": "[1] To‘g‘ri burchakli uchburchakda gipotenuza kvadrati katetlar kvadratlari yig‘indisiga teng. [2] Masalan, narvonning pastki uchi devordan uch metr uzoqda, yuqori uchi to‘rt metr balandlikka tegsa, narvon uzunligi: to‘qqiz qo‘shuv o‘n olti — yigirma besh, ildizi besh metr."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Masshtab va o‘xshashlik",
+    "doska": "1 : 50 000 → 1 sm = 500 m\nUzunlik $k$ marta → yuza $k^2$, hajm $k^3$ marta",
+    "ovoz": "[1] Xaritadagi masshtab bir ga ellik ming bo‘lsa, xaritadagi bir santimetr joyda ellik ming santimetr, ya’ni besh yuz metr. [2] O‘xshash shakllarda uzunlik k marta oshsa, yuza k kvadrat marta, hajm esa k kub marta oshadi. Masalan, ikki barobar katta kubga sakkiz barobar ko‘p suv sig‘adi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: bog‘dagi yo‘lak",
+    "doska": "Bog‘: 60 m × 80 m to‘g‘ri to‘rtburchak\nBurchakdan burchakka diagonal yo‘lak qancha tejaydi?",
+    "ovoz": "[1] Birinchi misol. Mahalladagi bog‘ to‘g‘ri to‘rtburchak shaklida: oltmish metrga sakson metr. [2] Odamlar bir burchakdan qarama-qarshi burchakka chetlab yurishadi. Diagonal yo‘lak qurilsa, necha metr yo‘l tejaladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Chetlab: $60 + 80 = 140$ m\nDiagonal: $\\sqrt{60^2 + 80^2} = \\sqrt{10\\,000} = 100$ m",
+    "ovoz": "[1] Chetlab yurganda ikki tomonni bosib o‘tamiz: bir yuz qirq metr. [2] Diagonal — to‘g‘ri burchakli uchburchakning gipotenuzasi. Uch ming olti yuz qo‘shuv olti ming to‘rt yuz — o‘n ming, ildizi yuz metr."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Tejash: $140 - 100 = 40$ m\nTekshiruv: 100 < 140 ✓ — to‘g‘ri yo‘l eng qisqa",
+    "ovoz": "[1] Farq: qirq metr. Har safar shuncha kam yuriladi. [2] Javobni mantiq bilan tekshiramiz: diagonal ikki tomon yig‘indisidan qisqa, lekin eng uzun tomondan uzun bo‘lishi kerak. Yuz metr sakson bilan bir yuz qirq orasida — to‘g‘ri."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: chizma va o‘lchamlarni belgilang\n2) Savol: uzunlik, yuza yoki hajmmi?\n3) Keraksiz: savolga kerakmas o‘lcham\n4) Birlik: sm va m aralashmasin; m², m³, litr",
+    "ovoz": "[1] Geometrik savolda stimulda ko‘pincha chizma bo‘ladi. Har bir o‘lchamni chizmaga yozib chiqing, kerak bo‘lsa o‘zingiz eskiz chizing. [2] Savol nimani so‘rayotganini aniq ayting: uzunlikmi, yuzami yoki hajmmi? Shunga qarab formula tanlanadi. [3] Ortiqcha o‘lchamlar ataylab beriladi: masalan, pol uchun xona balandligi kerak emas. Uni chizib qo‘ying. [4] Birliklarni bir xil qiling: santimetr bilan metrni aralashtirmang. Javob birligini ham tekshiring: kvadrat metr, kub metr yoki litr."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: laminat",
+    "doska": "Xona 4 m × 3,5 m, balandligi 2,7 m\nQadoq: 2,2 m², 95 000 so‘m; 10% zaxira kerak\nNechta qadoq va necha so‘m kerak?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Xona to‘rt metrga uch yarim metr, balandligi ikki butun o‘ndan yetti metr. [2] Bir qadoq laminat ikki butun o‘ndan ikki kvadrat metr polni qoplaydi va to‘qson besh ming so‘m turadi. Kesishda isrof bo‘lgani uchun o‘n foiz zaxira olish tavsiya qilinadi. [3] Savol: nechta qadoq kerak va jami necha so‘m bo‘ladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: balandlik 2,7 m — pol uchun kerakmas\nPol yuzasi: $4 \\cdot 3{,}5 = 14$ m²",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: laminat polga yotqiziladi, devor balandligi kerak emas. [2] Pol yuzasi — to‘rt karra uch yarim, o‘n to‘rt kvadrat metr."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Zaxira bilan: $14 \\cdot 1{,}1 = 15{,}4$ m²\nQadoqlar: $15{,}4 : 2{,}2 = 7$ ta\nNarx: $7 \\cdot 95\\,000 = 665\\,000$ so‘m",
+    "ovoz": "[1] O‘n foiz zaxira qo‘shamiz — bir butun o‘ndan birga ko‘paytiramiz: o‘n besh butun o‘ndan to‘rt kvadrat metr. [2] Buni bir qadoq yuzasiga bo‘lamiz: rosa yettita qadoq. [3] Narxi: yetti karra to‘qson besh ming — olti yuz oltmish besh ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Tekshiruv: $7 \\cdot 2{,}2 = 15{,}4$ m² — yetadi ✓\nKasr chiqsa (7,1 kabi) — 8 qadoq: yuqoriga yaxlitlang",
+    "ovoz": "[1] Tekshiramiz: yetti qadoq o‘n besh butun o‘ndan to‘rt kvadrat metrni qoplaydi — kerakli yuza bilan teng. [2] Muhim talqin: agar bo‘linmada, masalan, yetti butun o‘ndan bir chiqsa, javob yetti emas, sakkiz qadoq bo‘ladi — do‘konda qadoqning bir qismini sotishmaydi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Suv baki: 1 m × 0,8 m × 0,5 m. Necha litr?",
+    "ovoz": "[1] Endi o‘zingiz: tomdagi suv baki to‘g‘ri burchakli quti shaklida: bir metr, nol butun o‘ndan sakkiz metr va nol butun o‘ndan besh metr. Unga necha litr suv sig‘adi?",
+    "savol": "Necha litr?",
+    "javob": "400|400 l|400 litr"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Xarita 1 : 100 000, masofa 7 sm. Haqiqiy masofa (km)?",
+    "ovoz": "[1] Xarita masshtabi bir ga yuz ming. Xaritada ikki qishloq orasi yetti santimetr. Haqiqiy masofa necha kilometr?",
+    "savol": "Necha km?",
+    "javob": "7|7 km"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Perimetr — m, yuza — m², hajm — m³ (1 m³ = 1 000 l)\nPifagor: $c^2 = a^2 + b^2$\nMasshtab: uzunlik $k$ → yuza $k^2$, hajm $k^3$\nButun narsa sotilsa — yuqoriga yaxlitlang",
+    "ovoz": "[1] Esda tuting: perimetr — uzunlik, yuza — kvadrat birlik, hajm — kub birlik; bir kub metr — ming litr. [2] To‘g‘ri burchakli uchburchakda gipotenuzani Pifagor teoremasi bilan topamiz. [3] O‘xshash shakllarda uzunlik k marta oshsa, yuza k kvadrat, hajm k kub marta oshadi. [4] Qadoq, plitka yoki avtobus kabi butun narsalar so‘ralsa, javobni yuqoriga yaxlitlang. Siz bugun haqiqiy usta kabi hisobladingiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Perimetr: atrofini aylanib chiqish\nYuza: ichini bo‘yash",
+     "ovoz": "Perimetr — shaklning atrofini aylanib chiqqandagi yo‘l. Yuza — shaklning ichini to‘liq bo‘yash uchun kerak bo‘lgan joy."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Hovli 5 m × 3 m: devor uchun 16 m sim\nGilam uchun 15 m²",
+     "ovoz": "Bobongiz besh metrga uch metrli hovlini sim bilan o‘ramoqchi — buning uchun perimetr kerak: o‘n olti metr. Hovliga gilam to‘shamoqchi bo‘lsangiz — yuza kerak: o‘n besh kvadrat metr."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Katakli qog‘ozda: chegaradagi kesmalar — perimetr\nIchidagi kataklar — yuza",
+     "ovoz": "Katakli daftarda to‘g‘ri to‘rtburchak chizing. Chegara bo‘ylab kesmalarni sanasangiz — perimetr, ichidagi kataklarni sanasangiz — yuza chiqadi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Pol yuzasi × balandlik = hajm\n2 m × 1 m × 0,5 m = 1 m³ = 1 000 l",
+     "ovoz": "Hajmni qatlamlar deb tasavvur qiling: asos yuzasini balandlikka ko‘paytiramiz. Natijani litrga o‘tkazish uchun mingga ko‘paytiring."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "1 litrli shisha = 10 sm × 10 sm × 10 sm\n1 m³ ga 1 000 ta shunday kub sig‘adi",
+     "ovoz": "Bir litr — tomoni o‘n santimetrli kubcha hajmi. Bir kub metrlik qutiga har tomonga o‘ntadan, jami ming dona shunday kubcha sig‘adi. Shuning uchun bir kub metr ming litr."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "3, 4, 5:  $9 + 16 = 25$\nEng uzun tomon — to‘g‘ri burchak qarshisida",
+     "ovoz": "Eng mashhur misol — uch, to‘rt, besh. Uchning kvadrati to‘qqiz, to‘rtniki o‘n olti, yig‘indisi yigirma besh — beshning kvadrati."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Katetlar kvadratlari yuzasi = gipotenuza kvadrati yuzasi\nTomonlarga kvadrat chizib, kataklarni sanang",
+     "ovoz": "Katakli qog‘ozda uch va to‘rt katakli katetlarga kvadratlar chizing: to‘qqiz va o‘n olti katak. Gipotenuzadagi kvadrat yigirma besh katakka teng chiqadi."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "1 : 100 000 → 1 sm = 100 000 sm = 1 km\nXaritada 3 sm → 3 km",
+     "ovoz": "Masshtabdagi ikkinchi son — xaritadagi bir santimetr haqiqatda necha santimetr ekanini ko‘rsatadi. Yuz ming santimetr — bir kilometr."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kichik pitsa 20 sm, katta pitsa 40 sm\nDiametr 2 marta → pitsa 4 marta ko‘p",
+     "ovoz": "Pitsa do‘konida diametri yigirma va qirq santimetrli pitsalar bor. Kattasi ikki barobar emas, to‘rt barobar ko‘p — chunki yuza diametrning kvadratiga bog‘liq. Narxi ikki barobardan kam bo‘lsa, kattasini oling!"
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Yuza o‘rniga perimetrni hisoblash (yoki aksincha)",
+   "Santimetr va metrni aralashtirib hisoblash",
+   "Kub metrni litrga o‘tkazishni unutish",
+   "Qadoqlar sonini pastga yaxlitlash: 7,1 → 7",
+   "Uzunlik 2 marta oshganda yuza ham 2 marta oshadi deb o‘ylash"
+  ],
+  "strategiyalar": [
+   "O‘lchamlarni chizmaga yozib, eskiz chizing",
+   "Uzunlik, yuza yoki hajm so‘ralganini aniq belgilang",
+   "Hamma o‘lchamlarni bir birlikka keltiring",
+   "Butun narsa sotilsa — yuqoriga yaxlitlang",
+   "Javob o‘lchamlariga mos keladimi — mantiq bilan tekshiring"
+  ],
+  "kalit_sozlar": [
+   "yuza",
+   "hajm",
+   "perimetr",
+   "Pifagor teoremasi",
+   "o‘xshash shakllar",
+   "masshtab",
+   "aylana"
+  ]
+ },
+ {
+  "kod": "XB-PF-PUL",
+  "mavzu": "PF-PUL",
+  "sarlavha": "Pul va to‘lovlar: chek, narx, karta, valyuta",
+  "maqsad": "Chek va narx yorliqlarini o‘qish, birlik narx bo‘yicha taqqoslash, karta komissiyasi va valyuta kursini hisoblab, to‘lov qarorini baholash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Kartada 400 000 so‘m: onlayn xarid yetadimi?\nPISA moliyaviy savodxonlik: tayanch — 400 ball\nMatematika 2022: O‘zbekiston 364, tayanch 420",
+    "ovoz": "[1] Assalomu alaykum! Kartangizda to‘rt yuz ming so‘m bor va chet eldagi onlayn do‘kondan krossovka olmoqchisiz. Narx dollarda, ustiga yetkazish va komissiya bor. Pul yetadimi? Bugun shunday savollarni yechamiz. [2] Xalqaro PISA tadqiqotida moliyaviy savodxonlik ham baholanadi. Unda tayanch, ya’ni ikkinchi daraja to‘rt yuz balldan boshlanadi: bu darajadagi o‘quvchi chek, hisob, narx kabi kundalik moliyaviy hujjatlarni tushunib, oddiy qaror qabul qila oladi. [3] Moliyaviy savollar matematikaga tayanadi. Ikki ming yigirma ikkinchi yilda o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, tayanch chegara esa to‘rt yuz yigirma ball. Bugun shu farqni yopishga birga harakat qilamiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Chekni o‘qish",
+    "doska": "Satr: narx × miqdor = summa\nJami = barcha summalar yig‘indisi\nQaytim = berilgan pul − jami",
+    "ovoz": "[1] Chekning har bir satrida tovar narxi, miqdori va summasi bor: summa — narx karra miqdor. [2] Pastda «Jami» — barcha summalar yig‘indisi. Uni o‘zingiz qo‘shib tekshirish foydali: kassada ham xato bo‘ladi. [3] Naqd to‘lasangiz, qaytim — berilgan pul ayirilgan jami summa."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Birlik narx: qaysi arzon?",
+    "doska": "Birlik narx = narx : miqdor\n0,9 l — 9 900 so‘m → 1 l = 11 000 so‘m\n1,5 l — 15 000 so‘m → 1 l = 10 000 so‘m",
+    "ovoz": "[1] Ikki xil o‘ramni taqqoslash uchun birlik narxni topamiz: narxni miqdorga bo‘lamiz — bir litr yoki bir kilogramm narxi. [2] Masalan, nol butun o‘ndan to‘qqiz litrli sharbat to‘qqiz ming to‘qqiz yuz so‘m. Bir litri o‘n bir ming so‘mga tushadi. [3] Bir yarim litrlisi o‘n besh ming so‘m — bir litri o‘n ming so‘m. Katta idish qimmat ko‘rinsa ham, aslida arzonroq."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Karta va komissiya",
+    "doska": "Komissiya 1%: $200\\,000 \\cdot 0{,}01 = 2\\,000$ so‘m\nHisobdan chiqadi: 202 000 so‘m\nHumo/Uzcard: SMS va ilovadagi tarixni tekshiring",
+    "ovoz": "[1] Kartadan kartaga pul o‘tkazishda ba’zan komissiya olinadi. Uning foizi bank va xizmatga qarab farq qiladi — bu yerda misol uchun bir foiz. ikki yuz ming so‘mning bir foizi — ikki ming so‘m. [2] Demak, kartangizdan ikki yuz ming emas, ikki yuz ikki ming so‘m yechiladi. Kartada rosa ikki yuz ming bo‘lsa, o‘tkazma o‘tmaydi! [3] Humo yoki Uzcard bilan har to‘lovdan keyin SMS-xabar va ilovadagi tarixni tekshiring: summa va komissiya to‘g‘rimi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Valyuta kursi",
+    "doska": "Kurs (misol): 1 USD = 12 800 so‘m\nUSD → so‘m: ko‘paytiramiz;  so‘m → USD: bo‘lamiz\nBank: sotish kursi > sotib olish kursi",
+    "ovoz": "[1] Valyuta kursi bir dollar necha so‘m ekanini ko‘rsatadi. Kurs har kuni o‘zgaradi, bu yerda misol uchun o‘n ikki ming sakkiz yuz so‘m olamiz. [2] Dollardagi narxni so‘mga o‘tkazish uchun kursga ko‘paytiramiz, so‘mni dollarga o‘tkazish uchun kursga bo‘lamiz. [3] Bankda ikki kurs bo‘ladi: bank dollarni sizga qimmatroq sotadi va sizdan arzonroq sotib oladi. Shu farq — bankning daromadi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: bozorda guruch",
+    "doska": "Guruch: 5 kg li qop — 72 000 so‘m\nYoki tortib: 1 kg — 15 500 so‘m. Qaysi arzon?",
+    "ovoz": "[1] Birinchi misol. Bozorda guruch besh kilogrammli qopda yetmish ikki ming so‘m. [2] Tortib olsangiz, bir kilogrammi o‘n besh ming besh yuz so‘m. Qaysi biri arzon va qancha tejaysiz?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Qop: $72\\,000 : 5 = 14\\,400$ so‘m/kg\nTortib 5 kg: $5 \\cdot 15\\,500 = 77\\,500$ so‘m",
+    "ovoz": "[1] Qopdagi guruchning birlik narxi: yetmish ikki mingni beshga bo‘lamiz — kilogrammi o‘n to‘rt ming to‘rt yuz so‘m. [2] Yoki boshqacha taqqoslaymiz: besh kilogrammni tortib olsak, yetmish yetti ming besh yuz so‘m bo‘ladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Tejash: $77\\,500 - 72\\,000 = 5\\,500$ so‘m\nTalqin: qop arzon — agar 5 kg sizga kerak bo‘lsa",
+    "ovoz": "[1] Qop olsak, besh ming besh yuz so‘m tejaymiz. [2] Lekin natijani vaziyatga qaytaring: agar oilaga bor-yo‘g‘i bir kilogramm kerak bo‘lsa, qolgani uzoq turib qoladi. Arzon birlik narx — faqat kerakli miqdorda foydali."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: chek, narx yorlig‘i, SMS-xabar\n2) Savol: jami, qaytim, birlik narx yoki farq?\n3) Keraksiz: sana, manzil, yetkazish muddati\n4) Birlik: so‘m yoki USD, kg yoki g, dona yoki qop",
+    "ovoz": "[1] Moliyaviy savolda stimul — chek, narx yorlig‘i, bank SMS-xabari yoki onlayn do‘kon sahifasi. Undagi har bir sonning ma’nosini tushunib oling. [2] Savol aniq nimani so‘rayotganini belgilang: jami summami, qaytimmi, birlik narxmi yoki ikki variant farqimi? [3] Chek va sahifalarda sana, manzil, yetkazish muddati kabi pulga ta’sir qilmaydigan ma’lumotlar ko‘p. Ularni chizib qo‘ying. [4] Birliklarni tekshiring: narx dollardami yoki so‘mda, gramm yoki kilogramm, dona yoki qop? Javobni so‘ralgan valyutada bering."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: onlayn xarid",
+    "doska": "Krossovka 25 USD, yetkazish 5 USD, 14 kunda\nKurs 12 800 so‘m, karta komissiyasi 2%\nKartada 400 000 so‘m. Yetadimi?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Chet eldagi onlayn do‘konda krossovka yigirma besh dollar, yetkazish yana besh dollar, tovar o‘n to‘rt kunda keladi. [2] Bank kursi — o‘n ikki ming sakkiz yuz so‘m, chet eldagi xarid uchun karta ikki foiz komissiya oladi. Raqamlar misol uchun. [3] Kartangizda to‘rt yuz ming so‘m bor. Savol: pul yetadimi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: 14 kun — narxga ta’sir qilmaydi\nJami: $25 + 5 = 30$ USD",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: yetkazish muddati narxga ta’sir qilmaydi. [2] Lekin yetkazish narxini unutmaymiz: jami o‘ttiz dollar."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "So‘mda: $30 \\cdot 12\\,800 = 384\\,000$ so‘m\nKomissiya: $384\\,000 \\cdot 0{,}02 = 7\\,680$ so‘m\nJami: $384\\,000 + 7\\,680 = 391\\,680$ so‘m",
+    "ovoz": "[1] Dollarni so‘mga o‘tkazamiz — kursga ko‘paytiramiz: uch yuz sakson to‘rt ming so‘m. [2] Ikki foiz komissiya: yetti ming olti yuz sakson so‘m. [3] Kartadan jami uch yuz to‘qson bir ming olti yuz sakson so‘m yechiladi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "$391\\,680 < 400\\,000$ → yetadi, 8 320 so‘m qoladi\nKurs 13 100 bo‘lsa: $30 \\cdot 13\\,100 \\cdot 1{,}02 = 400\\,860$\nTalqin: hozir yetadi, lekin zaxira juda kam",
+    "ovoz": "[1] Taqqoslaymiz: uch yuz to‘qson bir ming olti yuz sakson so‘m to‘rt yuz mingdan kam, pul yetadi va sakkiz ming uch yuz yigirma so‘m qoladi. [2] Endi PISA uslubida baholaymiz: agar to‘lov kunida kurs o‘n uch ming yuz so‘mga ko‘tarilsa, kerakli summa to‘rt yuz ming sakkiz yuz oltmish so‘m bo‘ladi — pul yetmay qoladi! [3] Xulosa: hozirgi kursda pul yetadi, lekin zaxira juda kam. Xarid qilishdan oldin kartaga ozgina qo‘shimcha pul solgan ma’qul."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "O‘tkazma 150 000 so‘m, komissiya 0,5%",
+    "ovoz": "[1] Endi o‘zingiz: do‘stingizga kartadan yuz ellik ming so‘m o‘tkazdingiz, komissiya nol butun o‘ndan besh foiz. Kartangizdan jami necha so‘m yechildi?",
+    "savol": "Jami necha so‘m yechildi?",
+    "javob": "150750|150 750|150750 so‘m|150 750 so‘m"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Bank 1 USD ni 12 900 so‘mdan sotadi. 50 USD = ?",
+    "ovoz": "[1] Bank bir dollarni o‘n ikki ming to‘qqiz yuz so‘mdan sotadi. Ellik dollar sotib olish uchun necha so‘m kerak?",
+    "savol": "Necha so‘m kerak?",
+    "javob": "645000|645 000|645000 so‘m|645 000 so‘m"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Chekni o‘zingiz qo‘shib tekshiring\nTaqqoslashda birlik narxni toping\nKomissiya summaga qo‘shiladi — kartada zaxira bo‘lsin\nUSD → so‘m: ko‘paytiring; kurs o‘zgarishi mumkin",
+    "ovoz": "[1] Esda tuting: chek va hisobni har doim o‘zingiz qo‘shib tekshiring. [2] Ikki xil o‘ramni taqqoslashda bir kilogramm yoki bir litr narxini toping. [3] Karta komissiyasi summaga qo‘shiladi, shuning uchun kartada biroz zaxira bo‘lsin. [4] Dollardan so‘mga o‘tishda kursga ko‘paytiring va kurs o‘zgarishi mumkinligini unutmang. Siz endi ongli xaridorsiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Non 3 × 8 000 = 24 000;  sut 2 × 12 500 = 25 000\nChoy 14 000 → jami 63 000; 100 000 dan qaytim 37 000",
+     "ovoz": "Uchta non sakkiz mingdan — yigirma to‘rt ming. Ikkita sut o‘n ikki ming besh yuzdan — yigirma besh ming. Choy o‘n to‘rt ming. Jami oltmish uch ming so‘m. Yuz ming bersangiz, qaytim o‘ttiz yetti ming so‘m."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kassir 2 ta sutni 3 ta deb urdi\nChekni tekshirgan xaridor 12 500 so‘m tejadi",
+     "ovoz": "Bir kuni kassir ikkita sutni adashib uchta deb urdi. Xaridor chekdagi miqdorlarni tekshirib, xatoni darrov topdi va o‘n ikki ming besh yuz so‘mini qaytarib oldi. Chek — sizning hujjatingiz."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Bir xil miqdorga keltiring: 1 kg yoki 1 l\nKichik birlik narx — arzon",
+     "ovoz": "Ikki o‘ramni taqqoslash uchun ularni bir xil miqdorga keltiramiz — bir kilogramm yoki bir litrga. Qaysi birining bir litri arzon bo‘lsa, o‘sha foydali."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "3 l: 0,9 li 10/3 ta ≈ 33 000;  1,5 li 2 ta = 30 000\nUmumiy miqdorga keltirib taqqoslash",
+     "ovoz": "Boshqa usul: ikkalasini bir xil umumiy miqdorga keltiring, masalan uch litr. Bir yarim litrdan ikkitasi o‘ttiz ming, kichik idishlarda esa taxminan o‘ttiz uch ming so‘m bo‘ladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Yuboriladigan pul + komissiya = yechiladigan pul\n100 000 + 1 000 = 101 000",
+     "ovoz": "Komissiya — xizmat haqi. U yuborilayotgan pul ustiga qo‘shiladi: yuz ming yuborsangiz, bir foizda yuz bir ming so‘m yechiladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Opa kartasida rosa 500 000 so‘m bor edi\n500 000 o‘tkazmoqchi — «mablag‘ yetarli emas»",
+     "ovoz": "Opangiz kartasidagi rosa besh yuz ming so‘mni o‘tkazmoqchi bo‘ldi, lekin ilova «mablag‘ yetarli emas» deb yozdi. Sababi — komissiya. Kartada komissiya uchun ham pul qolishi kerak."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "10 USD × 12 800 = 128 000 so‘m\n256 000 so‘m : 12 800 = 20 USD",
+     "ovoz": "Dollar katta pul birligi, so‘m kichik. Dollardan so‘mga o‘tsak, son kattalashadi — ko‘paytiramiz. So‘mdan dollarga o‘tsak, son kichrayadi — bo‘lamiz."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Sayohatdan qaytdingiz: 100 USD qoldi\nBank sotib oladi 12 700 dan → 1 270 000 so‘m",
+     "ovoz": "Sayohatdan yuz dollar qaytarib keldingiz. Bank uni sizdan sotib olish kursida — masalan, o‘n ikki ming yetti yuz so‘mdan oladi. Qo‘lingizga bir million ikki yuz yetmish ming so‘m tegadi, garchi sotish kursi yuqoriroq bo‘lsa ham."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Katta o‘ram doim arzon deb o‘ylash — birlik narxni hisoblamaslik",
+   "Komissiyani summaga qo‘shishni unutish",
+   "Dollarni so‘mga o‘tkazishda bo‘lib yuborish",
+   "Yetkazish narxini jami summaga qo‘shmaslik",
+   "Bankning sotish va sotib olish kurslarini adashtirish"
+  ],
+  "strategiyalar": [
+   "Stimuldagi har bir sonning ma’nosini aniqlang",
+   "Taqqoslashda birlik narxga keltiring",
+   "Qo‘shimcha to‘lovlar (yetkazish, komissiya)ni ro‘yxatlang",
+   "Javobni so‘ralgan valyutada bering",
+   "«Agar kurs o‘zgarsa?» deb natijani baholang"
+  ],
+  "kalit_sozlar": [
+   "narx",
+   "foiz",
+   "pul",
+   "qaytim",
+   "valyuta kursi",
+   "chek"
+  ]
+ },
+ {
+  "kod": "XB-PF-REJ",
+  "mavzu": "PF-REJ",
+  "sarlavha": "Moliyani rejalashtirish: byudjet va jamg‘arma",
+  "maqsad": "Daromad va xarajatlar asosida byudjet tuzish, jamg‘arma ulushini foizda hisoblash, maqsadga yetish muddatini topish va oddiy foizli omonatni baholash",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Oylik cho‘ntak puli 300 000 so‘m: reja kerakmi?\nPISA moliyaviy savodxonlik: tayanch — 400 ball\nMatematika 2022: O‘zbekiston 364, tayanch 420",
+    "ovoz": "[1] Assalomu alaykum! Tasavvur qiling, har oy uch yuz ming so‘m cho‘ntak puli olasiz. Oy oxirida pul qoladimi yoki ikki haftada tugab qoladimi? Bu rejaga bog‘liq. Bugun pulni rejalashtirishni o‘rganamiz. [2] Xalqaro PISA tadqiqotida moliyaviy savodxonlik ham baholanadi. Unda tayanch, ya’ni ikkinchi daraja to‘rt yuz balldan boshlanadi: bu darajadagi o‘quvchi chek, hisob, narx kabi kundalik moliyaviy hujjatlarni tushunib, oddiy qaror qabul qila oladi. [3] Moliyaviy savollar matematikaga tayanadi. Ikki ming yigirma ikkinchi yilda o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, tayanch chegara esa to‘rt yuz yigirma ball. Bugun shu farqni yopishga birga harakat qilamiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Byudjet nima?",
+    "doska": "Daromad − xarajat = qoldiq\nZarur xarajat va xohish xarajati\nQoldiq < 0 → qarz;  qoldiq > 0 → jamg‘arma",
+    "ovoz": "[1] Byudjet — daromad va xarajatlar rejasi. Asosiy formula: daromad ayirilgan xarajat teng qoldiq. [2] Xarajatlar ikki xil: zarur — oziq-ovqat, kommunal to‘lov, yo‘l kira; va xohish — kafe, o‘yin, yangi kiyim. [3] Qoldiq manfiy bo‘lsa, odam qarzga botadi. Musbat bo‘lsa, uni jamg‘armaga yo‘naltirish mumkin."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Foiz bo‘yicha taqsimlash",
+    "doska": "50/30/20: zarur / xohish / jamg‘arma\nDaromad 4 000 000 so‘m:\n2 000 000 / 1 200 000 / 800 000 so‘m",
+    "ovoz": "[1] Ommabop qoidalardan biri — ellik, o‘ttiz, yigirma: daromadning ellik foizi zarur xarajatlarga, o‘ttiz foizi xohishlarga, yigirma foizi jamg‘armaga. [2] Masalan, oylik daromad to‘rt million so‘m bo‘lsin. [3] Zarurga ikki million, xohishlarga bir million ikki yuz ming, jamg‘armaga sakkiz yuz ming so‘m. Tekshiring: yig‘indisi yana to‘rt million."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Maqsadga jamg‘arish",
+    "doska": "Oylar soni = yetishmagan summa : oylik jamg‘arma\n7,2 oy chiqsa → 8 oy (yuqoriga yaxlitlang)",
+    "ovoz": "[1] Biror narsa uchun jamg‘arsangiz, avval qancha yetishmasligini toping va uni har oy jamg‘aradigan summaga bo‘ling. [2] Bo‘linma kasr chiqsa, masalan yetti butun o‘ndan ikki, javob sakkiz oy: yettinchi oy oxirida hali pul yetmaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Oddiy foizli omonat",
+    "doska": "Oddiy foiz: $S = P(1 + r \\cdot t)$\n1 yil, 20%: $2\\,000\\,000 \\cdot 1{,}2 = 2\\,400\\,000$\n6 oy: $2\\,000\\,000 \\cdot (1 + 0{,}2 \\cdot 0{,}5) = 2\\,200\\,000$",
+    "ovoz": "[1] Bankka omonat qo‘ysangiz, bank foiz to‘laydi. Oddiy foizda: S — oxirgi summa, P — qo‘yilgan pul, r — yillik foiz ulushi, t — yillar soni. [2] Masalan, ikki million so‘mni yillik yigirma foizdan bir yilga qo‘ysak — foiz stavkasi misol uchun — yil oxirida ikki million to‘rt yuz ming so‘m bo‘ladi. [3] Olti oy — bu yarim yil, t teng nol butun o‘ndan besh. Yarim yilda ikki million ikki yuz ming so‘m. Muddat yillarda yozilishi kerak — birlikka e’tibor bering!"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: telefon uchun jamg‘arma",
+    "doska": "Telefon 2 600 000 so‘m. Hozir 800 000 so‘m bor\nOyiga 250 000 so‘m jamg‘arsa — necha oyda?",
+    "ovoz": "[1] Birinchi misol. Dilnoza ikki million olti yuz ming so‘mlik telefon olmoqchi. Hozir unda sakkiz yuz ming so‘m bor. [2] U har oy ikki yuz ellik ming so‘m jamg‘aradi. Necha oydan keyin telefon sotib ola oladi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Yetishmaydi: $2\\,600\\,000 - 800\\,000 = 1\\,800\\,000$\n$1\\,800\\,000 : 250\\,000 = 7{,}2$",
+    "ovoz": "[1] Avval yetishmagan summani topamiz: bir million sakkiz yuz ming so‘m. [2] Uni oylik jamg‘armaga bo‘lamiz: yetti butun o‘ndan ikki."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "7 oyda: 800 000 + 1 750 000 = 2 550 000 — kam\n8 oyda: 800 000 + 2 000 000 = 2 800 000 ✓\nJavob: 8 oy",
+    "ovoz": "[1] Tekshiramiz: yetti oyda jami ikki million besh yuz ellik ming so‘m bo‘ladi — telefonga hali ellik ming yetmaydi. [2] Sakkiz oyda ikki million sakkiz yuz ming so‘m — yetadi, hatto ortadi. [3] Vaziyat tilida javob: Dilnoza telefonni sakkiz oydan keyin sotib oladi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: daromad va xarajatlar jadvali\n2) Savol: qoldiq, foiz yoki muddat?\n3) Keraksiz: o‘tgan oy ma’lumoti, kVt·soat\n4) Birlik: oylik yoki yillik? oy yoki yil?",
+    "ovoz": "[1] Rejalashtirish savollarida stimul — ko‘pincha byudjet jadvali. Har bir qator daromadmi yoki xarajatmi — belgilab chiqing. [2] Savolni ajrating: qoldiq so‘ralyaptimi, jamg‘arma foizimi yoki maqsadga yetish muddatimi? [3] Jadvalda o‘tgan oy ma’lumoti yoki kilovatt-soat kabi summaga aloqasi yo‘q sonlar ham bo‘ladi — ularni chizib qo‘ying. [4] Va birlikka qarang: daromad oylikmi yoki yillik? Foiz yillikmi? Muddat oydami yoki yilda? Hammasini bir birlikka keltiring."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: oila byudjeti",
+    "doska": "Daromad: ota 6 000 000, ona 4 500 000 so‘m\nKommunal 900 000, oziq-ovqat 4 200 000 so‘m\nYo‘l 1 100 000, kredit 2 000 000; elektr 300 kVt·soat\nOila jamg‘arma uchun 20% ajrata oladimi?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Oilaning oylik daromadi: otaniki olti million, onaniki to‘rt million besh yuz ming so‘m. [2] Xarajatlar: kommunal to‘lovlar to‘qqiz yuz ming, oziq-ovqat to‘rt million ikki yuz ming so‘m. [3] Yo‘l kira bir million yuz ming, kredit to‘lovi ikki million so‘m. Oila bu oy uch yuz kilovatt-soat elektr ishlatgan. [4] Savol: oila daromadning kamida yigirma foizini jamg‘armaga ajrata oladimi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: 300 kVt·soat — summa kommunalda bor\nDaromad: $6\\,000\\,000 + 4\\,500\\,000 = 10\\,500\\,000$",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: elektr summasi kommunal to‘lovlarga allaqachon kirgan, kilovatt-soat kerak emas. [2] Umumiy daromad: o‘n million besh yuz ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Xarajat: 900 + 4 200 + 1 100 + 2 000 = 8 200 ming so‘m\nQoldiq: $10\\,500\\,000 - 8\\,200\\,000 = 2\\,300\\,000$",
+    "ovoz": "[1] Xarajatlarni qo‘shamiz, qulaylik uchun ming so‘mda: sakkiz million ikki yuz ming so‘m. [2] Qoldiq: ikki million uch yuz ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Ulush: $2\\,300\\,000 : 10\\,500\\,000 \\approx 0{,}219 = 21{,}9\\%$\nTekshiruv: 20% — 2 100 000;  2 300 000 > 2 100 000 ✓\nTalqin: ha, ajrata oladi; yana 200 000 so‘m qoladi",
+    "ovoz": "[1] Qoldiq ulushini topamiz: ikki million uch yuz mingni o‘n million besh yuz mingga bo‘lsak, taxminan nol butun mingdan ikki yuz o‘n to‘qqiz, ya’ni yigirma bir butun o‘ndan to‘qqiz foiz. [2] Boshqa yo‘l bilan tekshiramiz: daromadning yigirma foizi ikki million yuz ming so‘m, qoldiq esa undan ko‘p. [3] Vaziyat tilida javob: ha, oila yigirma foizni jamg‘armaga ajrata oladi va yana ikki yuz ming so‘m zaxira qoladi."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Daromad 3 000 000 so‘m, jamg‘arma — 20%. Necha so‘m?",
+    "ovoz": "[1] Endi o‘zingiz: akangizning oyligi uch million so‘m, u yigirma foizini jamg‘armoqchi. Har oy necha so‘m jamg‘aradi?",
+    "savol": "Necha so‘m?",
+    "javob": "600000|600 000|600000 so‘m|600 000 so‘m"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Velosiped 1 500 000 so‘m, oyiga 200 000 jamg‘arsa",
+    "ovoz": "[1] Velosiped bir million besh yuz ming so‘m. Hozircha pulingiz yo‘q, har oy ikki yuz ming so‘m jamg‘arasiz. Necha oyda velosiped olasiz? Yaxlitlashni unutmang!",
+    "savol": "Necha oyda?",
+    "javob": "8|8 oy|sakkiz"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Daromad − xarajat = qoldiq\nJamg‘arma ulushi = qoldiq : daromad\nMuddat kasr chiqsa — yuqoriga yaxlitlang\nOddiy foiz: $S = P(1 + r t)$, $t$ — yillarda",
+    "ovoz": "[1] Esda tuting: byudjetning asosi — daromad ayirilgan xarajat teng qoldiq. [2] Jamg‘arma ulushini topish uchun qoldiqni daromadga bo‘ling va foizga o‘tkazing. [3] Maqsadga yetish muddati kasr chiqsa, yuqoriga yaxlitlang va oxirgi oyni tekshiring. [4] Oddiy foizli omonatda muddat doim yillarda olinadi. Siz endi o‘z pulingizning xo‘jayinisiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "Daromad 300 000; zarur 120 000; xohish 90 000\nQoldiq: 300 000 − 120 000 − 90 000 = 90 000",
+     "ovoz": "Cho‘ntak pulingiz uch yuz ming so‘m. Yo‘l va tushlikka yuz yigirma ming, o‘yin va shirinlikka to‘qson ming so‘m ketdi. Qoldiq to‘qson ming so‘m — buni jamg‘arish mumkin."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Chelak: suv kiradi (daromad), teshikdan oqadi (xarajat)\nOqim kirimdan ko‘p bo‘lsa — chelak bo‘shaydi",
+     "ovoz": "Byudjetni chelak deb tasavvur qiling: yuqoridan suv quyiladi — bu daromad, pastdagi teshiklardan oqib ketadi — bu xarajat. Teshiklar ko‘p bo‘lsa, chelak hech qachon to‘lmaydi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "50% — yarmi;  30% — 0,3 ga ko‘paytirish\n20% — 5 ga bo‘lish",
+     "ovoz": "Ellik foiz — daromadning yarmi, o‘ttiz foiz — nol butun o‘ndan uchga ko‘paytirish, yigirma foiz — beshga bo‘lish. Uchalasini qo‘shsangiz, daromadning o‘zi chiqishi kerak."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Non 10 bo‘lak: 5 — tushlik, 3 — mehmonga, 2 — ertaga\nXuddi 50/30/20",
+     "ovoz": "Nonni o‘n bo‘lakka bo‘ldingiz: beshtasi tushlikka, uchtasi mehmonga, ikkitasini ertaga qoldirasiz. Bu aynan ellik, o‘ttiz, yigirma taqsimoti — ertangi kun uchun ham joy qoldiriladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Har oy +250 000: 1 050 000, 1 300 000, ...\nYetguncha sanang",
+     "ovoz": "Bo‘lish qiyin bo‘lsa, oyma-oy qo‘shib boring: har oy ikki yuz ellik ming qo‘shiladi. Summa kerakli narxdan oshgan oy — javob."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Jadval: oy | jami\n7 | 2 550 000;  8 | 2 800 000",
+     "ovoz": "Jadval tuzing: birinchi ustunda oylar, ikkinchisida jami pul. Narxdan birinchi marta oshgan qator — javobingiz."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Foiz: $2\\,000\\,000 \\cdot 0{,}2 = 400\\,000$ (1 yilga)\nYarim yilga — yarmi: 200 000",
+     "ovoz": "Avval bir yillik foizni toping: ikki millionning yigirma foizi — to‘rt yuz ming. Yarim yilga foiz ham yarmi — ikki yuz ming so‘m."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Bank pulingizni «ijaraga» oladi\nIjara haqi — foiz",
+     "ovoz": "Omonatni shunday tushuning: bank pulingizni vaqtincha ijaraga oladi va buning uchun ijara haqi to‘laydi — bu foiz. Qancha uzoq ijaraga bersangiz, haq shuncha ko‘p."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Muddat kasr chiqqanda pastga yaxlitlash: 7,2 → 7 oy",
+   "Oyni yil o‘rniga qo‘yish: 6 oy uchun $t = 6$ deb olish",
+   "Jamg‘arma foizini xarajatga nisbatan hisoblash",
+   "Keraksiz ma’lumotni (kVt·soat) hisobga qo‘shish",
+   "Hozir bor pulni hisobga olmay, butun narxni bo‘lish"
+  ],
+  "strategiyalar": [
+   "Jadvaldagi har qatorni daromad yoki xarajat deb belgilang",
+   "Oylik va yillik qiymatlarni bir birlikka keltiring",
+   "Muddatni oxirgi oyni tekshirib aniqlang",
+   "Foizni boshqa yo‘l bilan qayta hisoblab tekshiring",
+   "Javobni «ha/yo‘q, chunki ...» shaklida vaziyat tilida yozing"
+  ],
+  "kalit_sozlar": [
+   "byudjet",
+   "foiz",
+   "jamg‘arma",
+   "daromad",
+   "xarajat",
+   "progressiya"
+  ]
+ },
+ {
+  "kod": "XB-PF-XAV",
+  "mavzu": "PF-XAV",
+  "sarlavha": "Xavf va daromad: omonat, kredit, sug‘urta",
+  "maqsad": "Murakkab va oddiy foizni taqqoslash, kredit va muddatli to‘lovning haqiqiy narxini hisoblash, kutilgan zarar orqali sug‘urtani baholash va firibgarlik belgilarini tanish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Omonat yoki «oyiga 30% foyda» — qaysi biri xavfli?\nPISA moliyaviy savodxonlik: tayanch — 400 ball\nMatematika 2022: O‘zbekiston 364, tayanch 420",
+    "ovoz": "[1] Assalomu alaykum! Ijtimoiy tarmoqda «pulingizni bizga bering, har oy o‘ttiz foiz foyda kafolatlaymiz» degan reklamani ko‘rdingiz. Bank esa yiliga ancha kam foiz beradi. Qaysi biriga ishonish mumkin? Bugun xavf va daromadni hisob bilan baholaymiz. [2] Xalqaro PISA tadqiqotida moliyaviy savodxonlik ham baholanadi. Unda tayanch, ya’ni ikkinchi daraja to‘rt yuz balldan boshlanadi: bu darajadagi o‘quvchi chek, hisob, narx kabi kundalik moliyaviy hujjatlarni tushunib, oddiy qaror qabul qila oladi. [3] Moliyaviy savollar matematikaga tayanadi. Ikki ming yigirma ikkinchi yilda o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, tayanch chegara esa to‘rt yuz yigirma ball. Bugun shu farqni yopishga birga harakat qilamiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Murakkab foiz",
+    "doska": "Murakkab foiz: $S = P(1 + r)^n$\n1 000 000, 20%, 2 yil: $1{,}2^2 = 1{,}44$ → 1 440 000\nOddiy foizda: 1 400 000 — farq 40 000 so‘m",
+    "ovoz": "[1] Murakkab foizda har yil oxirida foiz asosiy summaga qo‘shiladi va keyingi yil foiz shu kattaroq summadan hisoblanadi. Formula: S teng P karra bir qo‘shuv r ning n-darajasi. [2] Bir million so‘m yillik yigirma foizdan ikki yilga qo‘yilsa — stavka misol uchun — bir butun o‘ndan ikkining kvadrati bir butun yuzdan qirq to‘rt, ya’ni bir million to‘rt yuz qirq ming so‘m. [3] Oddiy foizda esa bir million to‘rt yuz ming bo‘lardi. Farq — qirq ming: bu foizning foizi. Muddat qancha uzun bo‘lsa, farq shuncha katta."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Kreditning haqiqiy narxi",
+    "doska": "Ortiqcha to‘lov = jami to‘lovlar − olingan summa\n12 × 550 000 = 6 600 000;  olingan 5 000 000\nOrtiqcha: 1 600 000 so‘m, ya’ni 32%",
+    "ovoz": "[1] Kredit olganingizda bankka olgan pulingizdan ko‘proq qaytarasiz. Ortiqcha to‘lov — barcha to‘lovlar yig‘indisi ayirilgan olingan summa. [2] Masalan, besh million so‘m kredit oldingiz va o‘n ikki oy davomida besh yuz ellik ming so‘mdan to‘laysiz. Jami olti million olti yuz ming so‘m. [3] Ortiqcha to‘lov bir million olti yuz ming so‘m — olingan summaning o‘ttiz ikki foizi. Kredit olishdan oldin aynan shu sonni hisoblang."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Xavf va firibgarlik",
+    "doska": "Yuqori daromad va’dasi = yuqori xavf\n«Oyiga 30%»: $1{,}3^{12} \\approx 23$ — yiliga 23 barobar?!\nSMS kod, CVV va parolni hech kimga aytmang",
+    "ovoz": "[1] Moliyada qoida bor: daromad qancha yuqori bo‘lsa, xavf ham shuncha katta. Hech kim yuqori daromadni kafolatlay olmaydi. [2] «Oyiga o‘ttiz foiz» va’dasini hisoblaymiz: bir butun o‘ndan uchning o‘n ikkinchi darajasi taxminan yigirma uch. Ya’ni pul bir yilda yigirma uch barobar ko‘payar emish! Bunday kafolat — firibgarlik belgisi. [3] Yana bir qoida: bank xodimi ham SMS kod, karta orqasidagi CVV kod va parolni hech qachon so‘ramaydi. So‘rashsa — bu firibgar."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Sug‘urta va kutilgan zarar",
+    "doska": "Kutilgan zarar = ehtimollik × zarar\n$0{,}02 \\cdot 10\\,000\\,000 = 200\\,000$ so‘m\nSug‘urta 250 000 so‘m — katta zarardan himoya",
+    "ovoz": "[1] Xavfni son bilan o‘lchash mumkin: kutilgan zarar — hodisa ehtimolligi karra zarar miqdori. [2] Masalan, mashina yil davomida avariyaga uchrash ehtimoli nol butun yuzdan ikki, ta’mir esa o‘n million so‘m bo‘lsin. Kutilgan zarar — ikki yuz ming so‘m. [3] Sug‘urta badali ikki yuz ellik ming so‘m — kutilgan zarardan biroz ko‘p. Lekin u kutilmagan o‘n million so‘mlik zarbadan himoya qiladi. Sug‘urta — xotirjamlik narxi."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: qaysi omonat?",
+    "doska": "10 000 000 so‘m, 3 yil. A bank: 22%, oddiy foiz\nB bank: 20%, har yil foiz qo‘shiladi (murakkab)",
+    "ovoz": "[1] Birinchi misol. O‘n million so‘mni uch yilga omonatga qo‘ymoqchisiz. A bank yillik yigirma ikki foiz beradi, lekin oddiy foizda. [2] B bank yillik yigirma foiz beradi, ammo har yil oxirida foiz omonatga qo‘shiladi — murakkab foiz. Qaysi bank foydaliroq?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "A: $10\\,000\\,000 \\cdot (1 + 0{,}22 \\cdot 3) = 16\\,600\\,000$\nB: $10\\,000\\,000 \\cdot 1{,}2^3 = 17\\,280\\,000$",
+    "ovoz": "[1] A bank: bir qo‘shuv nol butun yuzdan yigirma ikki karra uch — bir butun yuzdan oltmish olti. Natija — o‘n olti million olti yuz ming so‘m. [2] B bank: bir butun o‘ndan ikkining kubi bir butun mingdan yetti yuz yigirma sakkiz. O‘n yetti million ikki yuz sakson ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "Farq: $17\\,280\\,000 - 16\\,600\\,000 = 680\\,000$ so‘m\nTalqin: stavka past bo‘lsa ham B foydaliroq",
+    "ovoz": "[1] Farq — olti yuz sakson ming so‘m B bank foydasiga. [2] Vaziyat tilida xulosa: faqat foiz stavkasiga qaramang, foiz qanday hisoblanishini ham o‘qing. Uzoq muddatda murakkab foiz kichikroq stavkada ham ko‘proq daromad beradi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: shartnoma, reklama yoki jadval\n2) Savol: jami, ortiqcha to‘lov yoki xavf?\n3) Keraksiz: tovar xususiyatlari, rang, xotira\n4) Birlik: oylik yoki yillik foiz? oy yoki yil?",
+    "ovoz": "[1] Xavf va daromad savollarida stimul — kredit shartlari, omonat jadvali yoki reklama matni. Mayda harflar bilan yozilganini ham o‘qing. [2] Savolni aniqlang: jami to‘lovmi, ortiqcha to‘lovmi, foizmi yoki «bu taklif ishonchlimi» degan baho so‘ralyaptimi? [3] Reklamada tovarning rangi, xotirasi kabi pulga aloqasi yo‘q ma’lumotlar ko‘p. Ularni chizib qo‘ying. [4] Eng muhim birlik — foiz davri: oylik foiz yillikdan ancha katta ta’sir qiladi. Muddat oy yoki yilda ekanini tekshiring."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: muddatli to‘lov",
+    "doska": "Telefon (256 GB): naqd 6 000 000 so‘m\nMuddatli to‘lov: 12 oy × 590 000 so‘m\nOrtiqcha to‘lov necha foiz? Qaysi yo‘l foydali?",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Do‘konda ikki yuz ellik olti gigabaytli telefon naqd pulga olti million so‘m. [2] Muddatli to‘lov bilan esa o‘n ikki oy davomida har oy besh yuz to‘qson ming so‘m to‘lanadi. [3] Savol: muddatli to‘lovda ortiqcha to‘lov necha foiz va qaysi yo‘l foydaliroq?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: 256 GB — narxga aloqasi yo‘q\nJami: $12 \\cdot 590\\,000 = 7\\,080\\,000$ so‘m",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: telefon xotirasi hisobga kerak emas. [2] Muddatli to‘lovda jami: yetti million sakson ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Ortiqcha: $7\\,080\\,000 - 6\\,000\\,000 = 1\\,080\\,000$\nFoiz: $1\\,080\\,000 : 6\\,000\\,000 = 0{,}18 = 18\\%$",
+    "ovoz": "[1] Ortiqcha to‘lov: bir million sakson ming so‘m. [2] Uni naqd narxga bo‘lamiz: nol butun yuzdan o‘n sakkiz, ya’ni o‘n sakkiz foiz."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Muqobil: oyiga 590 000 jamg‘arsa — 11 oyda\nTekshiruv: $11 \\cdot 590\\,000 = 6\\,490\\,000 \\ge 6\\,000\\,000$ ✓\nTalqin: kuta olsangiz — jamg‘arish foydali",
+    "ovoz": "[1] Muqobil yo‘lni ham ko‘ramiz: shu besh yuz to‘qson ming so‘mni har oy jamg‘arsangiz, o‘n bir oyda telefonni naqd olasiz. [2] Tekshiramiz: o‘n oyda besh million to‘qqiz yuz ming — yetmaydi, o‘n bir oyda olti million to‘rt yuz to‘qson ming — yetadi. [3] Xulosa: telefon zudlik bilan kerak bo‘lmasa, jamg‘arib olish bir milliondan ko‘proq tejaydi. Muddatli to‘lov qulay, lekin o‘n sakkiz foiz qimmat."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "1 000 000 so‘m, 10% murakkab foiz, 2 yil",
+    "ovoz": "[1] Endi o‘zingiz: bir million so‘m yillik o‘n foizdan, murakkab foiz bilan ikki yilga qo‘yildi. Ikki yildan keyin necha so‘m bo‘ladi?",
+    "savol": "Necha so‘m bo‘ladi?",
+    "javob": "1210000|1 210 000|1210000 so‘m|1 210 000 so‘m"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Ehtimollik 0,05, zarar 4 000 000 so‘m. Kutilgan zarar?",
+    "ovoz": "[1] Velosiped yil davomida o‘g‘irlanish ehtimoli nol butun yuzdan besh, velosiped narxi to‘rt million so‘m. Kutilgan zarar necha so‘m?",
+    "savol": "Kutilgan zarar necha so‘m?",
+    "javob": "200000|200 000|200000 so‘m|200 000 so‘m"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Murakkab foiz: $S = P(1 + r)^n$\nKredit narxi = jami to‘lovlar − olingan summa\nKafolatlangan katta foyda — firibgarlik belgisi\nKutilgan zarar = ehtimollik × zarar",
+    "ovoz": "[1] Esda tuting: murakkab foizda foiz foizga qo‘shiladi, shuning uchun uzoq muddatda u oddiy foizdan ko‘p beradi. [2] Kredit yoki muddatli to‘lovning haqiqiy narxini bilish uchun barcha to‘lovlarni qo‘shib, olingan summani ayiring. [3] Katta foyda kafolatlansa yoki kod so‘ralsa — to‘xtang, bu firibgarlik belgisi. [4] Xavfni kutilgan zarar bilan o‘lchang va sug‘urtani shunga qarab baholang. Siz endi moliyaviy xavfni ko‘ra olasiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "1-yil: 1 000 000 + 200 000 = 1 200 000\n2-yil: 1 200 000 + 240 000 = 1 440 000",
+     "ovoz": "Yilma-yil hisoblang: birinchi yili foiz bir milliondan — ikki yuz ming. Ikkinchi yili foiz endi bir million ikki yuz mingdan — ikki yuz qirq ming. Jami bir million to‘rt yuz qirq ming."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Qor to‘pi: dumalagan sari kattalashadi\nFoiz ham o‘zi yangi foiz keltiradi",
+     "ovoz": "Tog‘dan dumalayotgan qor to‘pini eslang: har aylanganda unga yangi qor yopishadi va to‘p tobora tezroq kattalashadi. Murakkab foiz ham shunday — foiz o‘zi ham foiz keltiradi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Har yil × 1,1:  100 000 → 110 000 → 121 000 → 133 100\nJadval bilan ko‘rish",
+     "ovoz": "Jadval qiling: har yil summani bir butun o‘ndan birga ko‘paytiring. Yuz ming uch yilda bir yuz o‘ttiz uch ming bir yuz so‘m bo‘ladi."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Olgan: 5 000 000;  qaytargan: 6 600 000\nFarq — kreditning narxi",
+     "ovoz": "Oddiy savol bering: men qancha oldim va qancha qaytaraman? Farq — kreditning haqiqiy narxi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Qo‘shnidan 100 ming oldingiz, 130 ming qaytardingiz\n30 ming — qarz «narxi»",
+     "ovoz": "Qo‘shnidan yuz ming so‘m qarz oldingiz va keyin bir yuz o‘ttiz ming qaytarishga kelishdingiz. O‘ttiz ming — qarzning narxi, yuz mingga nisbatan o‘ttiz foiz."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "Bank: yiliga o‘nlab foiz\n«Oyiga 30%» — real emas",
+     "ovoz": "Ishonchli bank omonatlari yiliga o‘nlab foiz beradi. Oyiga o‘ttiz foiz — bu yiliga minglab foiz degani. Bunday raqam ko‘rsangiz, darhol shubhalaning."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Qo‘ng‘iroq: «Bankdanmiz, SMS kodni ayting»\nTo‘g‘ri javob: go‘shakni qo‘yish",
+     "ovoz": "Telefon jiringladi: «Bankdanmiz, kartangiz bloklandi, SMS kodni ayting». Bu klassik firibgarlik. Go‘shakni qo‘ying va bankka o‘zingiz rasmiy raqam orqali qo‘ng‘iroq qiling."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "100 ta mashinadan 2 tasi avariya — 0,02\nHar biriga o‘rtacha 200 000 so‘m zarar",
+     "ovoz": "Yuzta mashinani tasavvur qiling: yil davomida ulardan ikkitasi avariyaga uchraydi. Ikki marta o‘n million — yigirma million, yuzta mashinaga bo‘lsak, har biriga o‘rtacha ikki yuz ming."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Sug‘urta — mahalla hashari kabi\nKo‘pchilik ozdan qo‘shadi, zarar ko‘rganga yordam",
+     "ovoz": "Sug‘urtani hasharga o‘xshatish mumkin: ko‘pchilik ozgina pul qo‘shadi va kimdir katta zarar ko‘rsa, shu jamg‘armadan yordam oladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Murakkab foizni oddiy foiz kabi hisoblash: $P(1 + rn)$",
+   "Kredit narxini faqat oylik to‘lovga qarab baholash",
+   "Oylik foizni yillik foiz bilan adashtirish",
+   "Kafolatlangan yuqori daromadga ishonish",
+   "Kutilgan zararni ehtimollikka ko‘paytirmasdan, butun zararni olish"
+  ],
+  "strategiyalar": [
+   "Barcha to‘lovlarni qo‘shib, olingan summa bilan taqqoslang",
+   "Foiz davri (oylik/yillik) va hisoblash usulini (oddiy/murakkab) aniqlang",
+   "Muqobil variantni ham hisoblab ko‘ring",
+   "Juda yaxshi taklifni hisob bilan tekshiring",
+   "Xavfni kutilgan zarar bilan o‘lchang"
+  ],
+  "kalit_sozlar": [
+   "foiz",
+   "murakkab foiz",
+   "kredit",
+   "omonat",
+   "sug‘urta",
+   "ehtimollik"
+  ]
+ },
+ {
+  "kod": "XB-PF-MUH",
+  "mavzu": "PF-MUH",
+  "sarlavha": "Moliyaviy muhit: soliq, shartnoma, huquqlar",
+  "maqsad": "Daromad solig‘i va qo‘lga tegadigan oylikni hisoblash, shartnomadagi to‘lov va penya shartlarini o‘qib baholash, iste’molchi huquq va majburiyatlarini bilish",
+  "qadamlar": [
+   {
+    "turi": "kirish",
+    "sahna": "kirish",
+    "sarlavha": "Bugun nima o‘rganamiz?",
+    "doska": "Birinchi ish: oylikdan qo‘lga qancha tegadi?\nPISA moliyaviy savodxonlik: tayanch — 400 ball\nMatematika 2022: O‘zbekiston 364, tayanch 420",
+    "ovoz": "[1] Assalomu alaykum! Bir necha yildan keyin birinchi ishingizga kirasiz. E’londa «oylik besh million» deb yozilgan, lekin qo‘lingizga kamroq tegadi. Nega? Bugun soliq, shartnoma va huquqlarimizni hisob bilan o‘rganamiz. [2] Xalqaro PISA tadqiqotida moliyaviy savodxonlik ham baholanadi. Unda tayanch, ya’ni ikkinchi daraja to‘rt yuz balldan boshlanadi: bu darajadagi o‘quvchi chek, hisob, narx kabi kundalik moliyaviy hujjatlarni tushunib, oddiy qaror qabul qila oladi. [3] Moliyaviy savollar matematikaga tayanadi. Ikki ming yigirma ikkinchi yilda o‘zbekistonlik o‘quvchilar matematikadan o‘rtacha uch yuz oltmish to‘rt ball olgan, tayanch chegara esa to‘rt yuz yigirma ball. Bugun shu farqni yopishga birga harakat qilamiz!"
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q1",
+    "sarlavha": "Daromad solig‘i",
+    "doska": "Soliq = hisoblangan oylik × stavka\n12% (misol): $5\\,000\\,000 \\cdot 0{,}12 = 600\\,000$\nQo‘lga: 5 000 000 − 600 000 = 4 400 000 so‘m",
+    "ovoz": "[1] Ishlab topilgan puldan davlatga daromad solig‘i to‘lanadi. U hisoblangan oylikni soliq stavkasiga ko‘paytirib topiladi. Soliq maktab, shifoxona, yo‘l kabi umumiy ehtiyojlarga sarflanadi. [2] Misol uchun stavka o‘n ikki foiz bo‘lsin. Besh million so‘mlik oylikdan soliq olti yuz ming so‘m. [3] Qo‘lingizga to‘rt million to‘rt yuz ming so‘m tegadi. Ish e’lonini o‘qiganda oylik soliqdan oldinmi yoki keyinmi — aniqlang."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q2",
+    "sarlavha": "Shartnoma",
+    "doska": "Shartnoma — tomonlarning yozma kelishuvi\nO‘qing: summa, muddat, jarima, bekor qilish\nImzo = rozilik va majburiyat",
+    "ovoz": "[1] Shartnoma — ikki yoki undan ortiq tomonning huquq va majburiyatlari haqidagi yozma kelishuvi: ijara, kredit, ishga qabul yoki xarid shartnomasi. [2] Imzolashdan oldin to‘rt narsani albatta o‘qing: summa qancha, to‘lov muddati qachon, kechiksangiz qanday jarima va shartnomani qanday bekor qilish mumkin. [3] Imzo qo‘ysangiz, barcha shartlarga rozi bo‘lgan hisoblanasiz — «o‘qimagan edim» degan bahona qabul qilinmaydi."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q3",
+    "sarlavha": "Penya — kechikish jarimasi",
+    "doska": "Penya = qarz × kunlik foiz × kunlar soni\n$1\\,200\\,000 \\cdot 0{,}001 \\cdot 15 = 18\\,000$ so‘m",
+    "ovoz": "[1] Ko‘p shartnomalarda to‘lov kechiksa, har bir kun uchun qarzning ma’lum foizi miqdorida penya yoziladi. Penya — qarz karra kunlik foiz ulushi karra kechikkan kunlar soni. [2] Masalan, bir million ikki yuz ming so‘m to‘lov o‘n besh kun kechikdi, penya kuniga nol butun o‘ndan bir foiz — ya’ni nol butun mingdan bir. Penya o‘n sakkiz ming so‘m."
+   },
+   {
+    "turi": "qoida",
+    "sahna": "q4",
+    "sarlavha": "Iste’molchi huquqlari",
+    "doska": "Chek — xaridni isbotlovchi hujjat\nSifatsiz tovar: almashtirish yoki pulni qaytarish\nKafolat muddati — kafolat talonida yoziladi",
+    "ovoz": "[1] Har bir xariddan keyin chekni oling: u tovarni shu do‘kondan, shu narxda olganingizni isbotlaydi. [2] Tovar sifatsiz chiqsa, iste’molchi uni almashtirish yoki pulini qaytarishni talab qilish huquqiga ega. Buning uchun chek va tovar kerak bo‘ladi. [3] Texnikaning kafolat muddati kafolat taloni yoki shartnomada yoziladi — uni saqlab qo‘ying."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "1-misol: qaysi ish taklifi?",
+    "doska": "A: oylik 6 000 000 so‘m (soliqdan oldin)\nB: qo‘lga 5 400 000 so‘m. Soliq 12%. Qaysi ko‘p?",
+    "ovoz": "[1] Birinchi misol. Akangizga ikki ish taklif qilindi. A firmada oylik olti million so‘m, lekin bu soliq ushlanishidan oldingi summa. [2] B firmada qo‘lga besh million to‘rt yuz ming so‘m tegadi. Soliq stavkasi misol uchun o‘n ikki foiz. Qaysi firmada qo‘lga ko‘proq pul tegadi?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "A soliq: $6\\,000\\,000 \\cdot 0{,}12 = 720\\,000$\nA qo‘lga: $6\\,000\\,000 - 720\\,000 = 5\\,280\\,000$",
+    "ovoz": "[1] Ikkalasini bir xil asosga keltiramiz — qo‘lga tegadigan pulga. A firmada soliq yetti yuz yigirma ming so‘m. [2] Qo‘lga: besh million ikki yuz sakson ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m1",
+    "sarlavha": "",
+    "doska": "5 280 000 < 5 400 000 → B da ko‘proq\nTalqin: «oylik» — soliqdan oldinmi, keyinmi?",
+    "ovoz": "[1] Taqqoslaymiz: B firmada oyiga bir yuz yigirma ming so‘m ko‘proq tegadi, garchi e’londagi son kichik bo‘lsa ham. [2] Xulosa: ikki taklifni faqat bir xil asosda taqqoslang — soliqdan oldin yoki keyin. PISA aynan shunday tuzoqni sinaydi."
+   },
+   {
+    "turi": "tushuntirish",
+    "sahna": "strategiya",
+    "sarlavha": "PISA savolini qanday o‘qiymiz",
+    "doska": "1) Stimul: shartnoma, hisob-varaq, ish e’loni\n2) Savol: soliq, qo‘lga tegadigan yoki jarima?\n3) Keraksiz: manzil, qavat, tomonlar ismi\n4) Birlik: kunlik yoki oylik foiz, kun soni",
+    "ovoz": "[1] Moliyaviy muhit savollarida stimul — shartnoma parchasi, kommunal hisob-varaq yoki ish e’loni. Har bir bandni alohida o‘qing. [2] Savolni ajrating: soliq so‘ralyaptimi, qo‘lga tegadigan summami, jarimami yoki tomonlardan qaysi biri haq ekanimi? [3] Shartnomada manzil, qavat, tomonlarning ismi kabi hisobga kerakmas ma’lumotlar ko‘p — ularni chizib qo‘ying. [4] Birliklarni tekshiring: penya kunlikmi yoki oylik? Necha kun kechikildi? Foizni o‘nli kasrga to‘g‘ri o‘tkazing."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "2-misol: ijara shartnomasi",
+    "doska": "Ijara: 2 500 000 so‘m/oy, har oyning 5-sanasigacha\nKechikkan har kun uchun 0,2% penya\nKvartira 3-qavatda. To‘lov 12 kun kechikdi",
+    "ovoz": "[1] Ikkinchi misol — PISA uslubida. Talaba kvartira ijarasi shartnomasini imzoladi: oyiga ikki million besh yuz ming so‘m, har oyning beshinchi sanasigacha to‘lanadi. [2] Shartnomada yozilgan: kechikkan har bir kun uchun qarzning nol butun o‘ndan ikki foizi miqdorida penya. [3] Kvartira uchinchi qavatda. Talaba bu oy to‘lovni o‘n ikki kun kechiktirdi. Penya va jami to‘lov qancha?"
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Keraksiz: 3-qavat — hisobga kerak emas\nBir kunga: $2\\,500\\,000 \\cdot 0{,}002 = 5\\,000$ so‘m",
+    "ovoz": "[1] Avval keraksiz ma’lumotni ajratamiz: kvartiraning qavati penyaga ta’sir qilmaydi. [2] Nol butun o‘ndan ikki foiz — bu nol butun mingdan ikki. Bir kunlik penya: besh ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "12 kun: $5\\,000 \\cdot 12 = 60\\,000$ so‘m\nJami: $2\\,500\\,000 + 60\\,000 = 2\\,560\\,000$ so‘m",
+    "ovoz": "[1] O‘n ikki kunga: oltmish ming so‘m. [2] Jami to‘lov: ikki million besh yuz oltmish ming so‘m."
+   },
+   {
+    "turi": "misol",
+    "sahna": "m2",
+    "sarlavha": "",
+    "doska": "Tekshiruv: $2\\,500\\,000 \\cdot 0{,}002 \\cdot 12 = 60\\,000$ ✓\nTalqin: kechikish 60 000 so‘mga tushdi",
+    "ovoz": "[1] Bitta formula bilan tekshiramiz: qarz karra kunlik ulush karra kunlar — yana oltmish ming. [2] Vaziyatga qaytamiz: o‘n ikki kunlik kechikish talabaga oltmish ming so‘mga tushdi. Shartnomadagi muddatni bilish va unga rioya qilish — pulni tejash demak."
+   },
+   {
+    "turi": "birga",
+    "sahna": "b1",
+    "sarlavha": "Endi o‘zingiz",
+    "doska": "Oylik 4 000 000 so‘m, soliq 12%. Qo‘lga necha so‘m?",
+    "ovoz": "[1] Endi o‘zingiz: hisoblangan oylik to‘rt million so‘m, daromad solig‘i o‘n ikki foiz. Qo‘lga necha so‘m tegadi?",
+    "savol": "Qo‘lga necha so‘m?",
+    "javob": "3520000|3 520 000|3520000 so‘m|3 520 000 so‘m"
+   },
+   {
+    "turi": "birga",
+    "sahna": "b2",
+    "sarlavha": "Yana bittasi",
+    "doska": "Qarz 800 000 so‘m, penya kuniga 0,1%, 10 kun",
+    "ovoz": "[1] Kommunal xizmat uchun sakkiz yuz ming so‘m qarz o‘n kun kechiktirildi, penya kuniga nol butun o‘ndan bir foiz. Penya necha so‘m?",
+    "savol": "Penya necha so‘m?",
+    "javob": "8000|8 000|8000 so‘m|8 000 so‘m"
+   },
+   {
+    "turi": "xulosa",
+    "sahna": "xulosa",
+    "sarlavha": "Esda tuting",
+    "doska": "Qo‘lga = oylik − soliq = oylik × (1 − stavka)\nTakliflarni bir xil asosda taqqoslang\nPenya = qarz × kunlik foiz × kunlar\nShartnoma va chekni o‘qing, saqlang",
+    "ovoz": "[1] Esda tuting: qo‘lga tegadigan oylik — hisoblangan oylik ayirilgan soliq. [2] Ikki taklifni faqat bir xil asosda — soliqdan oldin yoki keyin — taqqoslang. [3] Kechikish jarimasi — qarz karra kunlik foiz karra kunlar soni. [4] Shartnomani imzolashdan oldin o‘qing, chek va kafolat talonini saqlang. Siz endi huquqlarini biladigan fuqarosiz!"
+   }
+  ],
+  "tushunmadim": {
+   "q1": [
+    {
+     "turi": "sodda",
+     "doska": "3 000 000 ning 12% i = 360 000\nQo‘lga: 3 000 000 − 360 000 = 2 640 000",
+     "ovoz": "Avval oylikning o‘n ikki foizini toping — bu soliq. Keyin uni oylikdan ayiring — bu qo‘lingizga tegadigan pul."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Har kim umumiy qozonga ozdan qo‘shadi\nQozondan maktab, yo‘l, shifoxona",
+     "ovoz": "Mahallada to‘y bo‘lsa, har kim ozdan qo‘shib, umumiy qozon qaynatiladi. Soliq ham shunday: har bir ishlovchi ozdan qo‘shadi va shu puldan hamma foydalanadigan maktab, yo‘l, shifoxona quriladi."
+    },
+    {
+     "turi": "boshqa_usul",
+     "doska": "Qo‘lga = oylik × (1 − 0,12) = oylik × 0,88\n5 000 000 × 0,88 = 4 400 000",
+     "ovoz": "Bitta ko‘paytirish bilan ham bo‘ladi: soliq o‘n ikki foiz bo‘lsa, qo‘lga sakson sakkiz foiz tegadi. Oylikni nol butun yuzdan sakson sakkizga ko‘paytiring."
+    }
+   ],
+   "q2": [
+    {
+     "turi": "sodda",
+     "doska": "Kim? Nima? Qancha? Qachongacha?\nBuzilsa nima bo‘ladi?",
+     "ovoz": "Shartnomadan beshta savolga javob toping: kim bilan, nima haqida, qancha pul, qachongacha va shart buzilsa nima bo‘ladi."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Do‘st telefonini ijaraga oldi — og‘zaki kelishuv\nTelefon buzildi — kim to‘laydi? Yozilmagan!",
+     "ovoz": "Ikki do‘st og‘zaki kelishib, telefonni bir haftaga ijaraga berishdi. Telefon buzilganda kim to‘lashi haqida hech narsa kelishilmagan edi — janjal chiqdi. Yozma shartnoma aynan shunday holatlardan himoya qiladi."
+    }
+   ],
+   "q3": [
+    {
+     "turi": "sodda",
+     "doska": "0,1% = 0,001\n1 kunga: qarz × 0,001;  so‘ng × kunlar",
+     "ovoz": "Avval foizni o‘nli kasrga o‘tkazing: nol butun o‘ndan bir foiz — nol butun mingdan bir. Bir kunlik penyani toping va kunlar soniga ko‘paytiring."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Kutubxona kitobi: har kech qolgan kunga jarima\nKo‘p kechiksangiz — jarima o‘sadi",
+     "ovoz": "Kutubxonadan olingan kitobni vaqtida qaytarmasangiz, har bir kun uchun jarima yoziladi. Penya ham xuddi shunday — kechikish qancha uzoq bo‘lsa, jarima shuncha ko‘p."
+    }
+   ],
+   "q4": [
+    {
+     "turi": "sodda",
+     "doska": "Chek bor → huquqni isbotlash oson\nChek yo‘q → isbotlash qiyin",
+     "ovoz": "Chek — sizning dalilingiz. U bo‘lsa, sifatsiz tovarni almashtirish yoki pulni qaytarishni talab qilish ancha oson."
+    },
+    {
+     "turi": "hikoya",
+     "doska": "Yangi naushnik bir haftada ishlamay qoldi\nChek va kafolat taloni bilan do‘konga",
+     "ovoz": "Yangi naushnikingiz bir haftada ishlamay qoldi. Siz chek va kafolat talonini olib do‘konga bordingiz va uni almashtirib berishlarini so‘radingiz. Hujjatlarni saqlagan odam o‘z huquqini himoya qila oladi."
+    }
+   ]
+  },
+  "tipik_xatolar": [
+   "Soliqdan oldingi va keyingi oylikni to‘g‘ridan-to‘g‘ri taqqoslash",
+   "Foizni o‘nli kasrga noto‘g‘ri o‘tkazish: 0,2% = 0,02 deb olish",
+   "Penyani kunlar soniga ko‘paytirishni unutish",
+   "Shartnomadagi keraksiz ma’lumotni (qavat, manzil) hisobga qo‘shish",
+   "Chek va kafolat talonini saqlamaslik"
+  ],
+  "strategiyalar": [
+   "Shartnomaning har bir bandini alohida o‘qing",
+   "Takliflarni bir xil asosga (qo‘lga tegadigan) keltiring",
+   "Foizni o‘nli kasrga o‘tkazganda tekshiring: 1% = 0,01",
+   "Penyani bitta formula bilan qayta hisoblab tekshiring",
+   "Javobni vaziyat tilida yozing: kim, qancha, nega"
+  ],
+  "kalit_sozlar": [
+   "soliq",
+   "shartnoma",
+   "huquq",
+   "majburiyat",
+   "iste’molchi",
+   "jarima"
+  ]
+ }
+]

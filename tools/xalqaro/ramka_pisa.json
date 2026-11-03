@@ -1,0 +1,45 @@
+{
+  "toplamlar": {
+    "P_M": {"dastur": "PISA", "yil": 2022, "sinf": 9, "yosh": 15, "fan": "matematika", "fan_nomi": "Matematik savodxonlik", "ustoz_fan": "Matematika", "sinflar": [8, 9, 10, 11], "natija": "PISA 2022 M"},
+    "P_R": {"dastur": "PISA", "yil": 2018, "sinf": 9, "yosh": 15, "fan": "oqish", "fan_nomi": "O‘qish savodxonligi", "ustoz_fan": "Ona tili", "sinflar": [7, 8, 9, 10, 11], "natija": "PISA 2022 R"},
+    "P_S": {"dastur": "PISA", "yil": 2025, "sinf": 9, "yosh": 15, "fan": "tabiiy", "fan_nomi": "Tabiiy-ilmiy savodxonlik", "ustoz_fan": "Tabiiy fanlar", "sinflar": [8, 9, 10, 11], "natija": "PISA 2022 S"},
+    "P_F": {"dastur": "PISA", "yil": 2018, "sinf": 9, "yosh": 15, "fan": "moliya", "fan_nomi": "Moliyaviy savodxonlik", "ustoz_fan": "Matematika", "sinflar": [8, 9, 10, 11], "natija": ""}
+  },
+  "darajalar": {
+    "P_M": [[669, "6-daraja"], [607, "5-daraja"], [545, "4-daraja"], [482, "3-daraja"], [420, "2-daraja (tayanch)"], [358, "1a-daraja"], [295, "1b-daraja"]],
+    "P_R": [[698, "6-daraja"], [626, "5-daraja"], [553, "4-daraja"], [480, "3-daraja"], [407, "2-daraja (tayanch)"], [335, "1a-daraja"], [262, "1b-daraja"]],
+    "P_S": [[708, "6-daraja"], [633, "5-daraja"], [559, "4-daraja"], [484, "3-daraja"], [410, "2-daraja (tayanch)"], [335, "1a-daraja"], [261, "1b-daraja"]],
+    "P_F": [[625, "5-daraja"], [550, "4-daraja"], [475, "3-daraja"], [400, "2-daraja (tayanch)"], [326, "1-daraja"]]
+  },
+  "jarayonlar": {
+    "P_M": {"ifodalash": "Vaziyatni matematik ifodalash", "qollash": "Matematik tushuncha va usullarni qo‘llash", "talqin": "Natijani talqin qilish va baholash", "mulohaza": "Matematik mulohaza"},
+    "P_R": {"topish": "Ma’lumotni topish", "tushunish": "Matnni tushunish", "baholash": "Baholash va mulohaza"},
+    "P_S": {"tushuntirish": "Hodisalarni ilmiy tushuntirish", "tadqiqot": "Ilmiy tadqiqotni baholash va rejalashtirish", "talqin": "Ma’lumot va dalillarni ilmiy talqin qilish"},
+    "P_F": {"aniqlash": "Moliyaviy ma’lumotni aniqlash", "tahlil": "Moliyaviy vaziyatni tahlil qilish", "baholash": "Moliyaviy masalani baholash", "qollash": "Moliyaviy bilimni qo‘llash"}
+  },
+  "kontekstlar": {"shaxsiy": "Shaxsiy", "kasbiy": "Kasbiy", "ijtimoiy": "Ijtimoiy", "ilmiy": "Ilmiy"},
+  "mavzular": {
+    "P_M": [
+      {"kalit": "PM-MIQ", "soha": "miqdor", "soha_nomi": "Miqdor", "nom": "Miqdor: sonlar, o‘lchovlar, foizlar va hisob-kitob hayotda", "maktab": [{"fan": "Matematika", "sinflar": [5, 6], "sozlar": ["foiz", "nisbat", "kasr", "o‘lchov", "yaxlitlash"]}, {"fan": "Algebra", "sinflar": [7, 8, 9], "sozlar": ["daraja", "standart shakl", "foiz"]}]},
+      {"kalit": "PM-NOA", "soha": "noaniqlik", "soha_nomi": "Noaniqlik va ma’lumotlar", "nom": "Noaniqlik va ma’lumotlar: statistika va ehtimollik", "maktab": [{"fan": "Algebra", "sinflar": [7, 8, 9], "sozlar": ["statistika", "ehtimollik", "o‘rta arifmetik", "diagramma", "mediana"]}]},
+      {"kalit": "PM-OZG", "soha": "ozgarish", "soha_nomi": "O‘zgarish va bog‘lanishlar", "nom": "O‘zgarish va bog‘lanishlar: funksiya, grafik, formula", "maktab": [{"fan": "Algebra", "sinflar": [7, 8, 9], "sozlar": ["funksiya", "grafik", "tenglama", "formula", "chiziqli", "kvadrat"]}]},
+      {"kalit": "PM-FAZ", "soha": "fazo", "soha_nomi": "Fazo va shakl", "nom": "Fazo va shakl: geometriya, o‘lchash, ko‘rinishlar", "maktab": [{"fan": "Geometriya", "sinflar": [7, 8, 9], "sozlar": ["yuza", "hajm", "o‘xshash", "Pifagor", "aylana", "masshtab", "koordinata"]}]}
+    ],
+    "P_R": [
+      {"kalit": "PR-TOP", "soha": "topish", "soha_nomi": "Ma’lumotni topish", "nom": "Matndan kerakli ma’lumotni topish va izlash", "maktab": [{"fan": "Ona tili", "sinflar": [5, 6, 7, 8, 9], "sozlar": ["matn", "o‘qish", "axborot"]}, {"fan": "Adabiyot", "sinflar": [5, 6, 7, 8, 9], "sozlar": ["matn", "asar"]}]},
+      {"kalit": "PR-TUS", "soha": "tushunish", "soha_nomi": "Matnni tushunish", "nom": "Matnni tushunish: asosiy fikr, xulosa, bog‘lanishlar", "maktab": [{"fan": "Ona tili", "sinflar": [5, 6, 7, 8, 9], "sozlar": ["matn", "asosiy fikr", "uslub"]}, {"fan": "Adabiyot", "sinflar": [5, 6, 7, 8, 9], "sozlar": ["g‘oya", "mazmun", "obraz"]}]},
+      {"kalit": "PR-BAH", "soha": "baholash", "soha_nomi": "Baholash va mulohaza", "nom": "Baholash va mulohaza: manba ishonchliligi, fikr va fakt, muallif maqsadi", "maktab": [{"fan": "Ona tili", "sinflar": [7, 8, 9], "sozlar": ["matn", "fikr", "dalil", "nutq"]}, {"fan": "Adabiyot", "sinflar": [7, 8, 9], "sozlar": ["tahlil", "muallif"]}]}
+    ],
+    "P_S": [
+      {"kalit": "PS-TUS", "soha": "tushuntirish", "soha_nomi": "Hodisalarni ilmiy tushuntirish", "nom": "Hodisalarni ilmiy tushuntirish", "maktab": [{"fan": "Fizika", "sinflar": [7, 8, 9], "sozlar": ["energiya", "kuch", "issiqlik", "yorug‘lik"]}, {"fan": "Biologiya", "sinflar": [7, 8, 9], "sozlar": ["organizm", "hujayra", "ekologiya"]}, {"fan": "Kimyo", "sinflar": [7, 8, 9], "sozlar": ["reaksiya", "modda"]}]},
+      {"kalit": "PS-TAJ", "soha": "tadqiqot", "soha_nomi": "Ilmiy tadqiqot", "nom": "Ilmiy tadqiqotni baholash va rejalashtirish (tajriba, o‘zgaruvchilar)", "maktab": [{"fan": "Fizika", "sinflar": [6, 7, 8], "sozlar": ["tajriba", "o‘lchash", "kuzatish"]}, {"fan": "Biologiya", "sinflar": [6, 7, 8], "sozlar": ["tajriba", "kuzatish"]}]},
+      {"kalit": "PS-MAL", "soha": "talqin", "soha_nomi": "Ma’lumot va dalillar", "nom": "Ma’lumot va dalillarni ilmiy talqin qilish (jadval, grafik, xulosa)", "maktab": [{"fan": "Fizika", "sinflar": [7, 8, 9], "sozlar": ["grafik", "jadval", "o‘lchash"]}, {"fan": "Geografiya", "sinflar": [6, 7, 8], "sozlar": ["iqlim", "diagramma"]}]}
+    ],
+    "P_F": [
+      {"kalit": "PF-PUL", "soha": "pul", "soha_nomi": "Pul va to‘lovlar", "nom": "Pul va to‘lovlar: narx, chek, bank kartasi, valyuta", "maktab": [{"fan": "Matematika", "sinflar": [5, 6], "sozlar": ["foiz", "narx", "pul"]}]},
+      {"kalit": "PF-REJ", "soha": "reja", "soha_nomi": "Moliyani rejalashtirish", "nom": "Moliyani rejalashtirish va boshqarish: byudjet, jamg‘arma", "maktab": [{"fan": "Matematika", "sinflar": [5, 6], "sozlar": ["foiz", "byudjet"]}, {"fan": "Algebra", "sinflar": [8, 9], "sozlar": ["foiz", "progressiya"]}]},
+      {"kalit": "PF-XAV", "soha": "xavf", "soha_nomi": "Xavf va daromad", "nom": "Xavf va daromad: kredit, sug‘urta, foizli jamg‘arma, firibgarlik", "maktab": [{"fan": "Algebra", "sinflar": [8, 9], "sozlar": ["foiz", "murakkab foiz", "ehtimollik"]}]},
+      {"kalit": "PF-MUH", "soha": "muhit", "soha_nomi": "Moliyaviy muhit", "nom": "Moliyaviy muhit: soliq, huquq va majburiyatlar, shartnoma", "maktab": [{"fan": "Huquq", "sinflar": [8, 9], "sozlar": ["huquq", "shartnoma", "soliq"]}]}
+    ]
+  }
+}

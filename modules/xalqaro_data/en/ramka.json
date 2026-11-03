@@ -1,0 +1,1935 @@
+{
+ "fikrlash": {
+  "Knowing": {
+   "kalit": "bilish",
+   "nom": "Knowing",
+   "izoh": "Recalling and recognizing facts, rules and concepts"
+  },
+  "Applying": {
+   "kalit": "qollash",
+   "nom": "Applying",
+   "izoh": "Applying knowledge to solve problems in familiar situations"
+  },
+  "Reasoning": {
+   "kalit": "mulohaza",
+   "nom": "Reasoning",
+   "izoh": "Reasoning through unfamiliar, multi-step problems, justifying and drawing conclusions"
+  }
+ },
+ "toplamlar": {
+  "T11_G4_M": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 4,
+   "fan": "matematika",
+   "fan_nomi": "Mathematics",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    3,
+    4,
+    5
+   ]
+  },
+  "T11_G8_M": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 8,
+   "fan": "matematika",
+   "fan_nomi": "Mathematics",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    7,
+    8,
+    9
+   ]
+  },
+  "T11_G4_S": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 4,
+   "fan": "tabiiy",
+   "fan_nomi": "Science",
+   "ustoz_fan": "Tabiiy fanlar",
+   "sinflar": [
+    3,
+    4,
+    5
+   ]
+  },
+  "T11_G8_S": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 8,
+   "fan": "tabiiy",
+   "fan_nomi": "Science",
+   "ustoz_fan": "Tabiiy fanlar",
+   "sinflar": [
+    7,
+    8,
+    9
+   ]
+  },
+  "P_M": {
+   "dastur": "PISA",
+   "yil": 2022,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "matematika",
+   "fan_nomi": "Mathematical literacy",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": "PISA 2022 M"
+  },
+  "P_R": {
+   "dastur": "PISA",
+   "yil": 2018,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "oqish",
+   "fan_nomi": "Reading literacy",
+   "ustoz_fan": "Ona tili",
+   "sinflar": [
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": "PISA 2022 R"
+  },
+  "P_S": {
+   "dastur": "PISA",
+   "yil": 2025,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "tabiiy",
+   "fan_nomi": "Scientific literacy",
+   "ustoz_fan": "Tabiiy fanlar",
+   "sinflar": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": "PISA 2022 S"
+  },
+  "P_F": {
+   "dastur": "PISA",
+   "yil": 2018,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "moliya",
+   "fan_nomi": "Financial literacy",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": ""
+  }
+ },
+ "mavzular": {
+  "T11_G4_M": [
+   {
+    "kalit": "M4-NAT",
+    "en": "Whole Numbers",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Whole numbers and operations",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "natural son",
+       "qo‘shish",
+       "ayirish",
+       "ko‘paytirish",
+       "bo‘lish",
+       "xona",
+       "ko‘p xonali"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-KAS",
+    "en": "Fractions and Decimals",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Fractions and decimals",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "kasr",
+       "ulush",
+       "o‘nli kasr"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-TEN",
+    "en": "Number Sentences with",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Number sentences and unknowns",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "tenglama",
+       "noma’lum",
+       "ifoda",
+       "tenglik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-QON",
+    "en": "Patterns and Relationships",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Patterns and relationships",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "qonuniyat",
+       "ketma-ketlik",
+       "jadval"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-NUQ",
+    "en": "Points, Lines, and Angles",
+    "soha": "geometriya",
+    "soha_nomi": "Geometric shapes and measures",
+    "nom": "Points, lines and angles",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       2,
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "burchak",
+       "to‘g‘ri chiziq",
+       "kesma",
+       "nur",
+       "parallel",
+       "perpendikulyar",
+       "uzunlik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-SHA",
+    "en": "Two- and Three-dimensional",
+    "soha": "geometriya",
+    "soha_nomi": "Geometric shapes and measures",
+    "nom": "Two- and three-dimensional shapes",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "uchburchak",
+       "to‘rtburchak",
+       "kvadrat",
+       "perimetr",
+       "yuza",
+       "kub",
+       "simmetriya",
+       "shakl"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-OQI",
+    "en": "Reading and Interpreting",
+    "soha": "malumot",
+    "soha_nomi": "Data display",
+    "nom": "Reading graphs and tables",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       2,
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "diagramma",
+       "jadval",
+       "grafik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-TAS",
+    "en": "Organizing and Representing",
+    "soha": "malumot",
+    "soha_nomi": "Data display",
+    "nom": "Organizing and representing data",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "diagramma",
+       "jadval",
+       "ma’lumot"
+      ]
+     }
+    ]
+   }
+  ],
+  "T11_G8_M": [
+   {
+    "kalit": "M8-NAT",
+    "en": "Whole Numbers",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Whole numbers",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "natural son",
+       "bo‘linish",
+       "tub son",
+       "EKUB",
+       "EKUK",
+       "daraja"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-KAS",
+    "en": "Fractions and Decimals",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Fractions and decimals",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "kasr",
+       "o‘nli kasr",
+       "yaxlitlash",
+       "aralash son"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-BUT",
+    "en": "Integers",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Integers",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       6
+      ],
+      "sozlar": [
+       "butun son",
+       "manfiy",
+       "musbat",
+       "modul",
+       "koordinata to‘g‘ri chizig‘i"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-NIS",
+    "en": "Ratio, Proportion and Percent",
+    "soha": "son",
+    "soha_nomi": "Number",
+    "nom": "Ratio, proportion and percent",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "nisbat",
+       "proporsiya",
+       "foiz",
+       "masshtab"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-QON",
+    "en": "Patterns",
+    "soha": "algebra",
+    "soha_nomi": "Algebra",
+    "nom": "Patterns and sequences",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "ketma-ketlik",
+       "progressiya",
+       "qonuniyat"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "qonuniyat"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-IFO",
+    "en": "Algebraic Expressions",
+    "soha": "algebra",
+    "soha_nomi": "Algebra",
+    "nom": "Algebraic expressions",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7
+      ],
+      "sozlar": [
+       "ifoda",
+       "birhad",
+       "ko‘phad",
+       "o‘xshash hadlar",
+       "qavs"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-TEN",
+    "en": "Equations/ Formulas and",
+    "soha": "algebra",
+    "soha_nomi": "Algebra",
+    "nom": "Equations, formulas and functions",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "tenglama",
+       "tengsizlik",
+       "funksiya",
+       "grafik",
+       "formula",
+       "chiziqli"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       6
+      ],
+      "sozlar": [
+       "tenglama"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-SHA",
+    "en": "Geometric Shapes",
+    "soha": "geometriya",
+    "soha_nomi": "Geometry",
+    "nom": "Geometric shapes",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "uchburchak",
+       "burchak",
+       "parallel",
+       "to‘rtburchak",
+       "Pifagor",
+       "o‘xshash"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-OLC",
+    "en": "Geometric Measurement",
+    "soha": "geometriya",
+    "soha_nomi": "Geometry",
+    "nom": "Geometric measurement",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "yuza",
+       "perimetr",
+       "hajm",
+       "aylana uzunligi",
+       "doira"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "yuza",
+       "hajm",
+       "perimetr"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-JOY",
+    "en": "Location and Movement",
+    "soha": "geometriya",
+    "soha_nomi": "Geometry",
+    "nom": "Location and movement",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "koordinata",
+       "simmetriya",
+       "burish",
+       "parallel ko‘chirish"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       6
+      ],
+      "sozlar": [
+       "koordinata"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-TAS",
+    "en": "Data Organization and",
+    "soha": "malumot",
+    "soha_nomi": "Data and chance",
+    "nom": "Organizing and representing data",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "statistika",
+       "diagramma",
+       "jadval"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "diagramma"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-TAH",
+    "en": "Data Interpretation",
+    "soha": "malumot",
+    "soha_nomi": "Data and chance",
+    "nom": "Data interpretation",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "o‘rta arifmetik",
+       "mediana",
+       "moda",
+       "statistika"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-EHT",
+    "en": "Chance",
+    "soha": "malumot",
+    "soha_nomi": "Data and chance",
+    "nom": "Chance",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       9
+      ],
+      "sozlar": [
+       "ehtimollik",
+       "hodisa",
+       "kombinatorika"
+      ]
+     }
+    ]
+   }
+  ],
+  "T11_G4_S": [
+   {
+    "kalit": "S4-TIR",
+    "en": "Characteristics and Life",
+    "soha": "hayot",
+    "soha_nomi": "Life science",
+    "nom": "Living things and life processes",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "o‘simlik",
+       "hayvon",
+       "tirik",
+       "organ"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-KOP",
+    "en": "Life Cycles, Reproduction, and",
+    "soha": "hayot",
+    "soha_nomi": "Life science",
+    "nom": "Life cycles and reproduction",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "ko‘payish",
+       "urug‘",
+       "tuxum",
+       "rivojlanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-MUH",
+    "en": "Interactions with the",
+    "soha": "hayot",
+    "soha_nomi": "Life science",
+    "nom": "Organisms and their environment",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "muhit",
+       "moslashish",
+       "yashash joyi"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-EKO",
+    "en": "Ecosystems",
+    "soha": "hayot",
+    "soha_nomi": "Life science",
+    "nom": "Ecosystems and food chains",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "oziq zanjiri",
+       "tabiat",
+       "ekotizim"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-SOG",
+    "en": "Human Health",
+    "soha": "hayot",
+    "soha_nomi": "Life science",
+    "nom": "Human health",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "salomatlik",
+       "gigiyena",
+       "ovqatlanish",
+       "kasallik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-MOD",
+    "en": "Classification and Properties of",
+    "soha": "fizika",
+    "soha_nomi": "Physical science",
+    "nom": "Matter and its properties",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "modda",
+       "qattiq",
+       "suyuq",
+       "gaz",
+       "magnit",
+       "eritma"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-ENR",
+    "en": "Sources and Eﬀects of Energy",
+    "soha": "fizika",
+    "soha_nomi": "Physical science",
+    "nom": "Energy: light, heat, electricity",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "energiya",
+       "yorug‘lik",
+       "issiqlik",
+       "elektr",
+       "tovush"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-KUC",
+    "en": "Forces and Motion",
+    "soha": "fizika",
+    "soha_nomi": "Physical science",
+    "nom": "Forces and motion",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "kuch",
+       "harakat",
+       "tortish",
+       "itarish",
+       "ishqalanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-YER",
+    "en": "Earth’s Structure, Physical",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "Earth's structure and resources",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "tuproq",
+       "suv",
+       "tog‘",
+       "foydali qazilma",
+       "Yer"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-JAR",
+    "en": "Earth’s Processes, Cycles, and",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "Weather and Earth's processes",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "ob-havo",
+       "suvning aylanishi",
+       "fasl",
+       "fosil"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-QUY",
+    "en": "Earth in the Solar System",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "The Solar System",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "Quyosh",
+       "Oy",
+       "sayyora",
+       "kecha-kunduz",
+       "fasl"
+      ]
+     }
+    ]
+   }
+  ],
+  "T11_G8_S": [
+   {
+    "kalit": "S8-ORG",
+    "en": "Characteristics, Classiﬁcation,",
+    "soha": "biologiya",
+    "soha_nomi": "Biology",
+    "nom": "Classification of organisms and life processes",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "organizm",
+       "tasnif",
+       "a’zo",
+       "fotosintez",
+       "nafas"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-HUJ",
+    "en": "Cells and Their Functions",
+    "soha": "biologiya",
+    "soha_nomi": "Biology",
+    "nom": "Cells and their functions",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       9
+      ],
+      "sozlar": [
+       "hujayra",
+       "to‘qima",
+       "mikroskop"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-KOP",
+    "en": "Life Cycles, Reproduction, and",
+    "soha": "biologiya",
+    "soha_nomi": "Biology",
+    "nom": "Reproduction and heredity",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       9
+      ],
+      "sozlar": [
+       "ko‘payish",
+       "irsiyat",
+       "rivojlanish",
+       "gen"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-MOS",
+    "en": "Diversity, Adaptation, and",
+    "soha": "biologiya",
+    "soha_nomi": "Biology",
+    "nom": "Diversity and adaptation",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       9
+      ],
+      "sozlar": [
+       "moslashish",
+       "evolyutsiya",
+       "tabiiy tanlanish",
+       "xilma-xillik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-EKO",
+    "en": "Ecosystems",
+    "soha": "biologiya",
+    "soha_nomi": "Biology",
+    "nom": "Ecosystems",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       5,
+       6,
+       9
+      ],
+      "sozlar": [
+       "ekotizim",
+       "oziq zanjiri",
+       "populyatsiya",
+       "ekologiya"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-SOG",
+    "en": "Human Health",
+    "soha": "biologiya",
+    "soha_nomi": "Biology",
+    "nom": "Human health",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       8
+      ],
+      "sozlar": [
+       "kasallik",
+       "immunitet",
+       "ovqatlanish",
+       "salomatlik",
+       "odam"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-TAR",
+    "en": "Classiﬁcation and",
+    "soha": "kimyo",
+    "soha_nomi": "Chemistry",
+    "nom": "Classification and composition of matter",
+    "maktab": [
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "element",
+       "birikma",
+       "aralashma",
+       "atom",
+       "molekula"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-XOS",
+    "en": "Properties of Matter",
+    "soha": "kimyo",
+    "soha_nomi": "Chemistry",
+    "nom": "Properties of matter",
+    "maktab": [
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "xossa",
+       "eritma",
+       "kislota",
+       "asos",
+       "metall"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-REA",
+    "en": "Chemical Change",
+    "soha": "kimyo",
+    "soha_nomi": "Chemistry",
+    "nom": "Chemical change",
+    "maktab": [
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "reaksiya",
+       "yonish",
+       "oksidlanish",
+       "kimyoviy hodisa"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-HOL",
+    "en": "Physical States and Changes in",
+    "soha": "fizika",
+    "soha_nomi": "Physics",
+    "nom": "Physical states of matter",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "agregat holat",
+       "erish",
+       "qaynash",
+       "bug‘lanish",
+       "zichlik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-ISS",
+    "en": "Energy Transformations, Heat,",
+    "soha": "fizika",
+    "soha_nomi": "Physics",
+    "nom": "Energy, heat and temperature",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "energiya",
+       "issiqlik",
+       "harorat",
+       "issiqlik o‘tkazuvchanlik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-YOR",
+    "en": "Light and Sound",
+    "soha": "fizika",
+    "soha_nomi": "Physics",
+    "nom": "Light and sound",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "yorug‘lik",
+       "tovush",
+       "qaytish",
+       "sinish",
+       "linza"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-ELE",
+    "en": "Electricity and Magnetism",
+    "soha": "fizika",
+    "soha_nomi": "Physics",
+    "nom": "Electricity and magnetism",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       8
+      ],
+      "sozlar": [
+       "elektr",
+       "tok",
+       "zanjir",
+       "magnit",
+       "kuchlanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-KUC",
+    "en": "Forces and Motion",
+    "soha": "fizika",
+    "soha_nomi": "Physics",
+    "nom": "Forces and motion",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       6,
+       7
+      ],
+      "sozlar": [
+       "kuch",
+       "tezlik",
+       "harakat",
+       "bosim",
+       "ishqalanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-YER",
+    "en": "Earth’s Structure and Physical",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "Earth's structure",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "Yer",
+       "litosfera",
+       "atmosfera",
+       "gidrosfera",
+       "relyef"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-JAR",
+    "en": "Earth’s Processes, Cycles, and",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "Earth's processes and history",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "tog‘ jinsi",
+       "suvning aylanishi",
+       "ob-havo",
+       "iqlim",
+       "vulqon"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-RES",
+    "en": "Earth’s Resources, Their Use",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "Natural resources and their conservation",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "resurs",
+       "tabiiy boylik",
+       "ifloslanish",
+       "energiya manbai"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-KOI",
+    "en": "Earth in the Solar System and",
+    "soha": "yer",
+    "soha_nomi": "Earth science",
+    "nom": "Earth in the Solar System and the universe",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       5
+      ],
+      "sozlar": [
+       "Quyosh tizimi",
+       "sayyora",
+       "Oy",
+       "yulduz"
+      ]
+     },
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       9,
+       11
+      ],
+      "sozlar": [
+       "astronomiya"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_M": [
+   {
+    "kalit": "PM-MIQ",
+    "soha": "miqdor",
+    "soha_nomi": "Quantity",
+    "nom": "Quantity: numbers, measures, percentages and everyday calculations",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "foiz",
+       "nisbat",
+       "kasr",
+       "o‘lchov",
+       "yaxlitlash"
+      ]
+     },
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "daraja",
+       "standart shakl",
+       "foiz"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PM-NOA",
+    "soha": "noaniqlik",
+    "soha_nomi": "Uncertainty and data",
+    "nom": "Uncertainty and data: statistics and probability",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "statistika",
+       "ehtimollik",
+       "o‘rta arifmetik",
+       "diagramma",
+       "mediana"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PM-OZG",
+    "soha": "ozgarish",
+    "soha_nomi": "Change and relationships",
+    "nom": "Change and relationships: functions, graphs, formulas",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "funksiya",
+       "grafik",
+       "tenglama",
+       "formula",
+       "chiziqli",
+       "kvadrat"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PM-FAZ",
+    "soha": "fazo",
+    "soha_nomi": "Space and shape",
+    "nom": "Space and shape: geometry, measurement, views",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "yuza",
+       "hajm",
+       "o‘xshash",
+       "Pifagor",
+       "aylana",
+       "masshtab",
+       "koordinata"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_R": [
+   {
+    "kalit": "PR-TOP",
+    "soha": "topish",
+    "soha_nomi": "Locating information",
+    "nom": "Locating and retrieving information in a text",
+    "maktab": [
+     {
+      "fan": "Ona tili",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "o‘qish",
+       "axborot"
+      ]
+     },
+     {
+      "fan": "Adabiyot",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "asar"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PR-TUS",
+    "soha": "tushunish",
+    "soha_nomi": "Understanding",
+    "nom": "Understanding a text: main idea, inference, connections",
+    "maktab": [
+     {
+      "fan": "Ona tili",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "asosiy fikr",
+       "uslub"
+      ]
+     },
+     {
+      "fan": "Adabiyot",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "g‘oya",
+       "mazmun",
+       "obraz"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PR-BAH",
+    "soha": "baholash",
+    "soha_nomi": "Evaluating and reflecting",
+    "nom": "Evaluating and reflecting: source credibility, fact and opinion, author's purpose",
+    "maktab": [
+     {
+      "fan": "Ona tili",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "fikr",
+       "dalil",
+       "nutq"
+      ]
+     },
+     {
+      "fan": "Adabiyot",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "tahlil",
+       "muallif"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_S": [
+   {
+    "kalit": "PS-TUS",
+    "soha": "tushuntirish",
+    "soha_nomi": "Explaining phenomena scientifically",
+    "nom": "Explaining phenomena scientifically",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "energiya",
+       "kuch",
+       "issiqlik",
+       "yorug‘lik"
+      ]
+     },
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "organizm",
+       "hujayra",
+       "ekologiya"
+      ]
+     },
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "reaksiya",
+       "modda"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PS-TAJ",
+    "soha": "tadqiqot",
+    "soha_nomi": "Scientific enquiry",
+    "nom": "Evaluating and designing scientific enquiry (experiments, variables)",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "tajriba",
+       "o‘lchash",
+       "kuzatish"
+      ]
+     },
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "tajriba",
+       "kuzatish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PS-MAL",
+    "soha": "talqin",
+    "soha_nomi": "Data and evidence",
+    "nom": "Interpreting data and evidence scientifically (tables, graphs, conclusions)",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "grafik",
+       "jadval",
+       "o‘lchash"
+      ]
+     },
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "iqlim",
+       "diagramma"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_F": [
+   {
+    "kalit": "PF-PUL",
+    "soha": "pul",
+    "soha_nomi": "Money and transactions",
+    "nom": "Money and transactions: prices, receipts, bank cards, currency",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "foiz",
+       "narx",
+       "pul"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PF-REJ",
+    "soha": "reja",
+    "soha_nomi": "Financial planning",
+    "nom": "Planning and managing finances: budgets, savings",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "foiz",
+       "byudjet"
+      ]
+     },
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "foiz",
+       "progressiya"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PF-XAV",
+    "soha": "xavf",
+    "soha_nomi": "Risk and reward",
+    "nom": "Risk and reward: loans, insurance, interest-bearing savings, fraud",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "foiz",
+       "murakkab foiz",
+       "ehtimollik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PF-MUH",
+    "soha": "muhit",
+    "soha_nomi": "Financial landscape",
+    "nom": "Financial landscape: taxes, rights and responsibilities, contracts",
+    "maktab": [
+     {
+      "fan": "Huquq",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "huquq",
+       "shartnoma",
+       "soliq"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "darajalar": {
+  "P_M": [
+   [
+    669,
+    "Level 6"
+   ],
+   [
+    607,
+    "Level 5"
+   ],
+   [
+    545,
+    "Level 4"
+   ],
+   [
+    482,
+    "Level 3"
+   ],
+   [
+    420,
+    "Level 2 (baseline)"
+   ],
+   [
+    358,
+    "Level 1a"
+   ],
+   [
+    295,
+    "Level 1b"
+   ]
+  ],
+  "P_R": [
+   [
+    698,
+    "Level 6"
+   ],
+   [
+    626,
+    "Level 5"
+   ],
+   [
+    553,
+    "Level 4"
+   ],
+   [
+    480,
+    "Level 3"
+   ],
+   [
+    407,
+    "Level 2 (baseline)"
+   ],
+   [
+    335,
+    "Level 1a"
+   ],
+   [
+    262,
+    "Level 1b"
+   ]
+  ],
+  "P_S": [
+   [
+    708,
+    "Level 6"
+   ],
+   [
+    633,
+    "Level 5"
+   ],
+   [
+    559,
+    "Level 4"
+   ],
+   [
+    484,
+    "Level 3"
+   ],
+   [
+    410,
+    "Level 2 (baseline)"
+   ],
+   [
+    335,
+    "Level 1a"
+   ],
+   [
+    261,
+    "Level 1b"
+   ]
+  ],
+  "P_F": [
+   [
+    625,
+    "Level 5"
+   ],
+   [
+    550,
+    "Level 4"
+   ],
+   [
+    475,
+    "Level 3"
+   ],
+   [
+    400,
+    "Level 2 (baseline)"
+   ],
+   [
+    326,
+    "Level 1"
+   ]
+  ]
+ },
+ "jarayonlar": {
+  "P_M": {
+   "ifodalash": "Formulating situations mathematically",
+   "qollash": "Employing mathematical concepts and procedures",
+   "talqin": "Interpreting and evaluating results",
+   "mulohaza": "Mathematical reasoning"
+  },
+  "P_R": {
+   "topish": "Locating information",
+   "tushunish": "Understanding",
+   "baholash": "Evaluating and reflecting"
+  },
+  "P_S": {
+   "tushuntirish": "Explaining phenomena scientifically",
+   "tadqiqot": "Evaluating and designing scientific enquiry",
+   "talqin": "Interpreting data and evidence scientifically"
+  },
+  "P_F": {
+   "aniqlash": "Identifying financial information",
+   "tahlil": "Analysing information in a financial context",
+   "baholash": "Evaluating financial issues",
+   "qollash": "Applying financial knowledge"
+  }
+ },
+ "kontekstlar": {
+  "shaxsiy": "Personal",
+  "kasbiy": "Occupational",
+  "ijtimoiy": "Societal",
+  "ilmiy": "Scientific"
+ }
+}

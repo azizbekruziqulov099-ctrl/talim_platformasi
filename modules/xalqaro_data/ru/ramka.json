@@ -1,0 +1,1935 @@
+{
+ "fikrlash": {
+  "Knowing": {
+   "kalit": "bilish",
+   "nom": "Знание",
+   "izoh": "Вспомнить и узнать факты, правила, понятия"
+  },
+  "Applying": {
+   "kalit": "qollash",
+   "nom": "Применение",
+   "izoh": "Решать задачи, применяя знания в знакомой ситуации"
+  },
+  "Reasoning": {
+   "kalit": "mulohaza",
+   "nom": "Рассуждение",
+   "izoh": "Рассуждать в незнакомой многошаговой задаче, доказывать, делать выводы"
+  }
+ },
+ "toplamlar": {
+  "T11_G4_M": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 4,
+   "fan": "matematika",
+   "fan_nomi": "Математика",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    3,
+    4,
+    5
+   ]
+  },
+  "T11_G8_M": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 8,
+   "fan": "matematika",
+   "fan_nomi": "Математика",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    7,
+    8,
+    9
+   ]
+  },
+  "T11_G4_S": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 4,
+   "fan": "tabiiy",
+   "fan_nomi": "Естественные науки",
+   "ustoz_fan": "Tabiiy fanlar",
+   "sinflar": [
+    3,
+    4,
+    5
+   ]
+  },
+  "T11_G8_S": {
+   "dastur": "TIMSS",
+   "yil": 2011,
+   "sinf": 8,
+   "fan": "tabiiy",
+   "fan_nomi": "Естественные науки",
+   "ustoz_fan": "Tabiiy fanlar",
+   "sinflar": [
+    7,
+    8,
+    9
+   ]
+  },
+  "P_M": {
+   "dastur": "PISA",
+   "yil": 2022,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "matematika",
+   "fan_nomi": "Математическая грамотность",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": "PISA 2022 M"
+  },
+  "P_R": {
+   "dastur": "PISA",
+   "yil": 2018,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "oqish",
+   "fan_nomi": "Читательская грамотность",
+   "ustoz_fan": "Ona tili",
+   "sinflar": [
+    7,
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": "PISA 2022 R"
+  },
+  "P_S": {
+   "dastur": "PISA",
+   "yil": 2025,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "tabiiy",
+   "fan_nomi": "Естественнонаучная грамотность",
+   "ustoz_fan": "Tabiiy fanlar",
+   "sinflar": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": "PISA 2022 S"
+  },
+  "P_F": {
+   "dastur": "PISA",
+   "yil": 2018,
+   "sinf": 9,
+   "yosh": 15,
+   "fan": "moliya",
+   "fan_nomi": "Финансовая грамотность",
+   "ustoz_fan": "Matematika",
+   "sinflar": [
+    8,
+    9,
+    10,
+    11
+   ],
+   "natija": ""
+  }
+ },
+ "mavzular": {
+  "T11_G4_M": [
+   {
+    "kalit": "M4-NAT",
+    "en": "Whole Numbers",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Натуральные числа и действия",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "natural son",
+       "qo‘shish",
+       "ayirish",
+       "ko‘paytirish",
+       "bo‘lish",
+       "xona",
+       "ko‘p xonali"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-KAS",
+    "en": "Fractions and Decimals",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Дроби и десятичные дроби",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "kasr",
+       "ulush",
+       "o‘nli kasr"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-TEN",
+    "en": "Number Sentences with",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Числовые равенства и неизвестное число",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "tenglama",
+       "noma’lum",
+       "ifoda",
+       "tenglik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-QON",
+    "en": "Patterns and Relationships",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Закономерности и зависимости",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "qonuniyat",
+       "ketma-ketlik",
+       "jadval"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-NUQ",
+    "en": "Points, Lines, and Angles",
+    "soha": "geometriya",
+    "soha_nomi": "Геометрические фигуры и измерения",
+    "nom": "Точки, линии и углы",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       2,
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "burchak",
+       "to‘g‘ri chiziq",
+       "kesma",
+       "nur",
+       "parallel",
+       "perpendikulyar",
+       "uzunlik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-SHA",
+    "en": "Two- and Three-dimensional",
+    "soha": "geometriya",
+    "soha_nomi": "Геометрические фигуры и измерения",
+    "nom": "Плоские и объёмные фигуры",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "uchburchak",
+       "to‘rtburchak",
+       "kvadrat",
+       "perimetr",
+       "yuza",
+       "kub",
+       "simmetriya",
+       "shakl"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-OQI",
+    "en": "Reading and Interpreting",
+    "soha": "malumot",
+    "soha_nomi": "Представление данных",
+    "nom": "Чтение диаграмм и таблиц",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       2,
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "diagramma",
+       "jadval",
+       "grafik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M4-TAS",
+    "en": "Organizing and Representing",
+    "soha": "malumot",
+    "soha_nomi": "Представление данных",
+    "nom": "Упорядочивание и представление данных",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       3,
+       4,
+       5
+      ],
+      "sozlar": [
+       "diagramma",
+       "jadval",
+       "ma’lumot"
+      ]
+     }
+    ]
+   }
+  ],
+  "T11_G8_M": [
+   {
+    "kalit": "M8-NAT",
+    "en": "Whole Numbers",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Натуральные числа",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "natural son",
+       "bo‘linish",
+       "tub son",
+       "EKUB",
+       "EKUK",
+       "daraja"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-KAS",
+    "en": "Fractions and Decimals",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Дроби и десятичные дроби",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "kasr",
+       "o‘nli kasr",
+       "yaxlitlash",
+       "aralash son"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-BUT",
+    "en": "Integers",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Целые числа",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       6
+      ],
+      "sozlar": [
+       "butun son",
+       "manfiy",
+       "musbat",
+       "modul",
+       "koordinata to‘g‘ri chizig‘i"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-NIS",
+    "en": "Ratio, Proportion and Percent",
+    "soha": "son",
+    "soha_nomi": "Числа",
+    "nom": "Отношение, пропорция и проценты",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "nisbat",
+       "proporsiya",
+       "foiz",
+       "masshtab"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-QON",
+    "en": "Patterns",
+    "soha": "algebra",
+    "soha_nomi": "Алгебра",
+    "nom": "Закономерности и последовательности",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "ketma-ketlik",
+       "progressiya",
+       "qonuniyat"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "qonuniyat"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-IFO",
+    "en": "Algebraic Expressions",
+    "soha": "algebra",
+    "soha_nomi": "Алгебра",
+    "nom": "Алгебраические выражения",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7
+      ],
+      "sozlar": [
+       "ifoda",
+       "birhad",
+       "ko‘phad",
+       "o‘xshash hadlar",
+       "qavs"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-TEN",
+    "en": "Equations/ Formulas and",
+    "soha": "algebra",
+    "soha_nomi": "Алгебра",
+    "nom": "Уравнения, формулы и функции",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "tenglama",
+       "tengsizlik",
+       "funksiya",
+       "grafik",
+       "formula",
+       "chiziqli"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       6
+      ],
+      "sozlar": [
+       "tenglama"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-SHA",
+    "en": "Geometric Shapes",
+    "soha": "geometriya",
+    "soha_nomi": "Геометрия",
+    "nom": "Геометрические фигуры",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "uchburchak",
+       "burchak",
+       "parallel",
+       "to‘rtburchak",
+       "Pifagor",
+       "o‘xshash"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-OLC",
+    "en": "Geometric Measurement",
+    "soha": "geometriya",
+    "soha_nomi": "Геометрия",
+    "nom": "Геометрические измерения",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "yuza",
+       "perimetr",
+       "hajm",
+       "aylana uzunligi",
+       "doira"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "yuza",
+       "hajm",
+       "perimetr"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-JOY",
+    "en": "Location and Movement",
+    "soha": "geometriya",
+    "soha_nomi": "Геометрия",
+    "nom": "Координаты и преобразования",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "koordinata",
+       "simmetriya",
+       "burish",
+       "parallel ko‘chirish"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       6
+      ],
+      "sozlar": [
+       "koordinata"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-TAS",
+    "en": "Data Organization and",
+    "soha": "malumot",
+    "soha_nomi": "Данные и вероятность",
+    "nom": "Упорядочивание и представление данных",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "statistika",
+       "diagramma",
+       "jadval"
+      ]
+     },
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "diagramma"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-TAH",
+    "en": "Data Interpretation",
+    "soha": "malumot",
+    "soha_nomi": "Данные и вероятность",
+    "nom": "Анализ данных",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "o‘rta arifmetik",
+       "mediana",
+       "moda",
+       "statistika"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "M8-EHT",
+    "en": "Chance",
+    "soha": "malumot",
+    "soha_nomi": "Данные и вероятность",
+    "nom": "Вероятность",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       9
+      ],
+      "sozlar": [
+       "ehtimollik",
+       "hodisa",
+       "kombinatorika"
+      ]
+     }
+    ]
+   }
+  ],
+  "T11_G4_S": [
+   {
+    "kalit": "S4-TIR",
+    "en": "Characteristics and Life",
+    "soha": "hayot",
+    "soha_nomi": "Науки о жизни",
+    "nom": "Живые организмы и жизненные процессы",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "o‘simlik",
+       "hayvon",
+       "tirik",
+       "organ"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-KOP",
+    "en": "Life Cycles, Reproduction, and",
+    "soha": "hayot",
+    "soha_nomi": "Науки о жизни",
+    "nom": "Жизненный цикл и размножение",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "ko‘payish",
+       "urug‘",
+       "tuxum",
+       "rivojlanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-MUH",
+    "en": "Interactions with the",
+    "soha": "hayot",
+    "soha_nomi": "Науки о жизни",
+    "nom": "Организм и среда",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "muhit",
+       "moslashish",
+       "yashash joyi"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-EKO",
+    "en": "Ecosystems",
+    "soha": "hayot",
+    "soha_nomi": "Науки о жизни",
+    "nom": "Экосистемы и пищевые цепи",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "oziq zanjiri",
+       "tabiat",
+       "ekotizim"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-SOG",
+    "en": "Human Health",
+    "soha": "hayot",
+    "soha_nomi": "Науки о жизни",
+    "nom": "Здоровье человека",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "salomatlik",
+       "gigiyena",
+       "ovqatlanish",
+       "kasallik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-MOD",
+    "en": "Classification and Properties of",
+    "soha": "fizika",
+    "soha_nomi": "Основы физики и химии",
+    "nom": "Вещества и их свойства",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "modda",
+       "qattiq",
+       "suyuq",
+       "gaz",
+       "magnit",
+       "eritma"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-ENR",
+    "en": "Sources and Eﬀects of Energy",
+    "soha": "fizika",
+    "soha_nomi": "Основы физики и химии",
+    "nom": "Энергия: свет, тепло, электричество",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "energiya",
+       "yorug‘lik",
+       "issiqlik",
+       "elektr",
+       "tovush"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-KUC",
+    "en": "Forces and Motion",
+    "soha": "fizika",
+    "soha_nomi": "Основы физики и химии",
+    "nom": "Сила и движение",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "kuch",
+       "harakat",
+       "tortish",
+       "itarish",
+       "ishqalanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-YER",
+    "en": "Earth’s Structure, Physical",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Строение Земли и её ресурсы",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "tuproq",
+       "suv",
+       "tog‘",
+       "foydali qazilma",
+       "Yer"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-JAR",
+    "en": "Earth’s Processes, Cycles, and",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Погода и природные процессы",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       1,
+       2,
+       3,
+       4
+      ],
+      "sozlar": [
+       "ob-havo",
+       "suvning aylanishi",
+       "fasl",
+       "fosil"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S4-QUY",
+    "en": "Earth in the Solar System",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Солнечная система",
+    "maktab": [
+     {
+      "fan": "Tabiiy fanlar",
+      "sinflar": [
+       3,
+       4
+      ],
+      "sozlar": [
+       "Quyosh",
+       "Oy",
+       "sayyora",
+       "kecha-kunduz",
+       "fasl"
+      ]
+     }
+    ]
+   }
+  ],
+  "T11_G8_S": [
+   {
+    "kalit": "S8-ORG",
+    "en": "Characteristics, Classiﬁcation,",
+    "soha": "biologiya",
+    "soha_nomi": "Биология",
+    "nom": "Классификация организмов и жизненные процессы",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "organizm",
+       "tasnif",
+       "a’zo",
+       "fotosintez",
+       "nafas"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-HUJ",
+    "en": "Cells and Their Functions",
+    "soha": "biologiya",
+    "soha_nomi": "Биология",
+    "nom": "Клетка и её функции",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       9
+      ],
+      "sozlar": [
+       "hujayra",
+       "to‘qima",
+       "mikroskop"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-KOP",
+    "en": "Life Cycles, Reproduction, and",
+    "soha": "biologiya",
+    "soha_nomi": "Биология",
+    "nom": "Размножение и наследственность",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       9
+      ],
+      "sozlar": [
+       "ko‘payish",
+       "irsiyat",
+       "rivojlanish",
+       "gen"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-MOS",
+    "en": "Diversity, Adaptation, and",
+    "soha": "biologiya",
+    "soha_nomi": "Биология",
+    "nom": "Разнообразие и приспособление",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       9
+      ],
+      "sozlar": [
+       "moslashish",
+       "evolyutsiya",
+       "tabiiy tanlanish",
+       "xilma-xillik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-EKO",
+    "en": "Ecosystems",
+    "soha": "biologiya",
+    "soha_nomi": "Биология",
+    "nom": "Экосистемы",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       5,
+       6,
+       9
+      ],
+      "sozlar": [
+       "ekotizim",
+       "oziq zanjiri",
+       "populyatsiya",
+       "ekologiya"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-SOG",
+    "en": "Human Health",
+    "soha": "biologiya",
+    "soha_nomi": "Биология",
+    "nom": "Здоровье человека",
+    "maktab": [
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       8
+      ],
+      "sozlar": [
+       "kasallik",
+       "immunitet",
+       "ovqatlanish",
+       "salomatlik",
+       "odam"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-TAR",
+    "en": "Classiﬁcation and",
+    "soha": "kimyo",
+    "soha_nomi": "Химия",
+    "nom": "Классификация и состав веществ",
+    "maktab": [
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "element",
+       "birikma",
+       "aralashma",
+       "atom",
+       "molekula"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-XOS",
+    "en": "Properties of Matter",
+    "soha": "kimyo",
+    "soha_nomi": "Химия",
+    "nom": "Свойства веществ",
+    "maktab": [
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "xossa",
+       "eritma",
+       "kislota",
+       "asos",
+       "metall"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-REA",
+    "en": "Chemical Change",
+    "soha": "kimyo",
+    "soha_nomi": "Химия",
+    "nom": "Химические превращения",
+    "maktab": [
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "reaksiya",
+       "yonish",
+       "oksidlanish",
+       "kimyoviy hodisa"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-HOL",
+    "en": "Physical States and Changes in",
+    "soha": "fizika",
+    "soha_nomi": "Физика",
+    "nom": "Агрегатные состояния вещества",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "agregat holat",
+       "erish",
+       "qaynash",
+       "bug‘lanish",
+       "zichlik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-ISS",
+    "en": "Energy Transformations, Heat,",
+    "soha": "fizika",
+    "soha_nomi": "Физика",
+    "nom": "Энергия, теплота и температура",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8
+      ],
+      "sozlar": [
+       "energiya",
+       "issiqlik",
+       "harorat",
+       "issiqlik o‘tkazuvchanlik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-YOR",
+    "en": "Light and Sound",
+    "soha": "fizika",
+    "soha_nomi": "Физика",
+    "nom": "Свет и звук",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "yorug‘lik",
+       "tovush",
+       "qaytish",
+       "sinish",
+       "linza"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-ELE",
+    "en": "Electricity and Magnetism",
+    "soha": "fizika",
+    "soha_nomi": "Физика",
+    "nom": "Электричество и магнетизм",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       8
+      ],
+      "sozlar": [
+       "elektr",
+       "tok",
+       "zanjir",
+       "magnit",
+       "kuchlanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-KUC",
+    "en": "Forces and Motion",
+    "soha": "fizika",
+    "soha_nomi": "Физика",
+    "nom": "Сила и движение",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       6,
+       7
+      ],
+      "sozlar": [
+       "kuch",
+       "tezlik",
+       "harakat",
+       "bosim",
+       "ishqalanish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-YER",
+    "en": "Earth’s Structure and Physical",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Строение Земли",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "Yer",
+       "litosfera",
+       "atmosfera",
+       "gidrosfera",
+       "relyef"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-JAR",
+    "en": "Earth’s Processes, Cycles, and",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Процессы на Земле и её история",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "tog‘ jinsi",
+       "suvning aylanishi",
+       "ob-havo",
+       "iqlim",
+       "vulqon"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-RES",
+    "en": "Earth’s Resources, Their Use",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Природные ресурсы и их охрана",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "resurs",
+       "tabiiy boylik",
+       "ifloslanish",
+       "energiya manbai"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "S8-KOI",
+    "en": "Earth in the Solar System and",
+    "soha": "yer",
+    "soha_nomi": "Науки о Земле",
+    "nom": "Солнечная система и Вселенная",
+    "maktab": [
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       5
+      ],
+      "sozlar": [
+       "Quyosh tizimi",
+       "sayyora",
+       "Oy",
+       "yulduz"
+      ]
+     },
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       9,
+       11
+      ],
+      "sozlar": [
+       "astronomiya"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_M": [
+   {
+    "kalit": "PM-MIQ",
+    "soha": "miqdor",
+    "soha_nomi": "Количество",
+    "nom": "Количество: числа, измерения, проценты и расчёты в жизни",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "foiz",
+       "nisbat",
+       "kasr",
+       "o‘lchov",
+       "yaxlitlash"
+      ]
+     },
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "daraja",
+       "standart shakl",
+       "foiz"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PM-NOA",
+    "soha": "noaniqlik",
+    "soha_nomi": "Неопределённость и данные",
+    "nom": "Неопределённость и данные: статистика и вероятность",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "statistika",
+       "ehtimollik",
+       "o‘rta arifmetik",
+       "diagramma",
+       "mediana"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PM-OZG",
+    "soha": "ozgarish",
+    "soha_nomi": "Изменение и зависимости",
+    "nom": "Изменение и зависимости: функция, график, формула",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "funksiya",
+       "grafik",
+       "tenglama",
+       "formula",
+       "chiziqli",
+       "kvadrat"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PM-FAZ",
+    "soha": "fazo",
+    "soha_nomi": "Пространство и форма",
+    "nom": "Пространство и форма: геометрия, измерения, виды",
+    "maktab": [
+     {
+      "fan": "Geometriya",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "yuza",
+       "hajm",
+       "o‘xshash",
+       "Pifagor",
+       "aylana",
+       "masshtab",
+       "koordinata"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_R": [
+   {
+    "kalit": "PR-TOP",
+    "soha": "topish",
+    "soha_nomi": "Находить информацию",
+    "nom": "Поиск и нахождение нужной информации в тексте",
+    "maktab": [
+     {
+      "fan": "Ona tili",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "o‘qish",
+       "axborot"
+      ]
+     },
+     {
+      "fan": "Adabiyot",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "asar"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PR-TUS",
+    "soha": "tushunish",
+    "soha_nomi": "Понимать текст",
+    "nom": "Понимание текста: главная мысль, вывод, связи",
+    "maktab": [
+     {
+      "fan": "Ona tili",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "asosiy fikr",
+       "uslub"
+      ]
+     },
+     {
+      "fan": "Adabiyot",
+      "sinflar": [
+       5,
+       6,
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "g‘oya",
+       "mazmun",
+       "obraz"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PR-BAH",
+    "soha": "baholash",
+    "soha_nomi": "Оценивать и размышлять",
+    "nom": "Оценка и размышление: надёжность источника, мнение и факт, цель автора",
+    "maktab": [
+     {
+      "fan": "Ona tili",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "matn",
+       "fikr",
+       "dalil",
+       "nutq"
+      ]
+     },
+     {
+      "fan": "Adabiyot",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "tahlil",
+       "muallif"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_S": [
+   {
+    "kalit": "PS-TUS",
+    "soha": "tushuntirish",
+    "soha_nomi": "Научно объяснять явления",
+    "nom": "Научно объяснять явления",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "energiya",
+       "kuch",
+       "issiqlik",
+       "yorug‘lik"
+      ]
+     },
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "organizm",
+       "hujayra",
+       "ekologiya"
+      ]
+     },
+     {
+      "fan": "Kimyo",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "reaksiya",
+       "modda"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PS-TAJ",
+    "soha": "tadqiqot",
+    "soha_nomi": "Научное исследование",
+    "nom": "Оценка и планирование научного исследования (эксперимент, переменные)",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "tajriba",
+       "o‘lchash",
+       "kuzatish"
+      ]
+     },
+     {
+      "fan": "Biologiya",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "tajriba",
+       "kuzatish"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PS-MAL",
+    "soha": "talqin",
+    "soha_nomi": "Данные и доказательства",
+    "nom": "Научная интерпретация данных и доказательств (таблица, график, вывод)",
+    "maktab": [
+     {
+      "fan": "Fizika",
+      "sinflar": [
+       7,
+       8,
+       9
+      ],
+      "sozlar": [
+       "grafik",
+       "jadval",
+       "o‘lchash"
+      ]
+     },
+     {
+      "fan": "Geografiya",
+      "sinflar": [
+       6,
+       7,
+       8
+      ],
+      "sozlar": [
+       "iqlim",
+       "diagramma"
+      ]
+     }
+    ]
+   }
+  ],
+  "P_F": [
+   {
+    "kalit": "PF-PUL",
+    "soha": "pul",
+    "soha_nomi": "Деньги и платежи",
+    "nom": "Деньги и платежи: цена, чек, банковская карта, валюта",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "foiz",
+       "narx",
+       "pul"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PF-REJ",
+    "soha": "reja",
+    "soha_nomi": "Финансовое планирование",
+    "nom": "Планирование и управление финансами: бюджет, сбережения",
+    "maktab": [
+     {
+      "fan": "Matematika",
+      "sinflar": [
+       5,
+       6
+      ],
+      "sozlar": [
+       "foiz",
+       "byudjet"
+      ]
+     },
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "foiz",
+       "progressiya"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PF-XAV",
+    "soha": "xavf",
+    "soha_nomi": "Риск и доходность",
+    "nom": "Риск и доходность: кредит, страхование, вклад под проценты, мошенничество",
+    "maktab": [
+     {
+      "fan": "Algebra",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "foiz",
+       "murakkab foiz",
+       "ehtimollik"
+      ]
+     }
+    ]
+   },
+   {
+    "kalit": "PF-MUH",
+    "soha": "muhit",
+    "soha_nomi": "Финансовая среда",
+    "nom": "Финансовая среда: налоги, права и обязанности, договор",
+    "maktab": [
+     {
+      "fan": "Huquq",
+      "sinflar": [
+       8,
+       9
+      ],
+      "sozlar": [
+       "huquq",
+       "shartnoma",
+       "soliq"
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "darajalar": {
+  "P_M": [
+   [
+    669,
+    "Уровень 6"
+   ],
+   [
+    607,
+    "Уровень 5"
+   ],
+   [
+    545,
+    "Уровень 4"
+   ],
+   [
+    482,
+    "Уровень 3"
+   ],
+   [
+    420,
+    "Уровень 2 (базовый)"
+   ],
+   [
+    358,
+    "Уровень 1a"
+   ],
+   [
+    295,
+    "Уровень 1b"
+   ]
+  ],
+  "P_R": [
+   [
+    698,
+    "Уровень 6"
+   ],
+   [
+    626,
+    "Уровень 5"
+   ],
+   [
+    553,
+    "Уровень 4"
+   ],
+   [
+    480,
+    "Уровень 3"
+   ],
+   [
+    407,
+    "Уровень 2 (базовый)"
+   ],
+   [
+    335,
+    "Уровень 1a"
+   ],
+   [
+    262,
+    "Уровень 1b"
+   ]
+  ],
+  "P_S": [
+   [
+    708,
+    "Уровень 6"
+   ],
+   [
+    633,
+    "Уровень 5"
+   ],
+   [
+    559,
+    "Уровень 4"
+   ],
+   [
+    484,
+    "Уровень 3"
+   ],
+   [
+    410,
+    "Уровень 2 (базовый)"
+   ],
+   [
+    335,
+    "Уровень 1a"
+   ],
+   [
+    261,
+    "Уровень 1b"
+   ]
+  ],
+  "P_F": [
+   [
+    625,
+    "Уровень 5"
+   ],
+   [
+    550,
+    "Уровень 4"
+   ],
+   [
+    475,
+    "Уровень 3"
+   ],
+   [
+    400,
+    "Уровень 2 (базовый)"
+   ],
+   [
+    326,
+    "Уровень 1"
+   ]
+  ]
+ },
+ "jarayonlar": {
+  "P_M": {
+   "ifodalash": "Формулировать ситуацию математически",
+   "qollash": "Применять математические понятия и методы",
+   "talqin": "Интерпретировать и оценивать результат",
+   "mulohaza": "Математическое рассуждение"
+  },
+  "P_R": {
+   "topish": "Находить информацию",
+   "tushunish": "Понимать текст",
+   "baholash": "Оценивать и размышлять"
+  },
+  "P_S": {
+   "tushuntirish": "Научно объяснять явления",
+   "tadqiqot": "Оценивать и планировать научное исследование",
+   "talqin": "Научно интерпретировать данные и доказательства"
+  },
+  "P_F": {
+   "aniqlash": "Определять финансовую информацию",
+   "tahlil": "Анализировать финансовую ситуацию",
+   "baholash": "Оценивать финансовую проблему",
+   "qollash": "Применять финансовые знания"
+  }
+ },
+ "kontekstlar": {
+  "shaxsiy": "Личный",
+  "kasbiy": "Профессиональный",
+  "ijtimoiy": "Общественный",
+  "ilmiy": "Научный"
+ }
+}

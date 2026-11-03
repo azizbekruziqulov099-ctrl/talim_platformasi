@@ -1,0 +1,2438 @@
+[
+{
+"k": "s0001",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Organizmning tashqi muhit o‘zgarishiga javob reaksiyasidan (ko‘z qorachig‘ining kengayishi yoki torayishi) muhit sharoitini va uning yo‘nalishini aniqlash"
+},
+{
+"k": "s0002",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Qorachiq yorug‘likka javoban o‘zgarishini eslang: kuchli yorug‘likda torayadi, xira yorug‘likda kengayadi. So‘ng qaysi holatda qorachiq kichik, qaysisida katta ekanini solishtiring."
+},
+{
+"k": "s0003",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jasur ko‘z shifokori qabulida o‘tiribdi. Shifokor xonadagi bitta sharoitni o‘zgartirib, Jasurning ko‘zlarini ikki marta suratga oldi (1-rasm va 2-rasm).\nShifokor qaysi sharoitni o‘zgartirgan va bu sharoit ikki rasmda qanday farq qilgan?"
+},
+{
+"k": "s0004",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "1-rasm"
+},
+{
+"k": "s0005",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "2-rasm"
+},
+{
+"k": "s0006",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Xona harorati: 1-rasmda xona issiq, 2-rasmda sovuq bo‘lgan"
+},
+{
+"k": "s0007",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Yorug‘lik: 1-rasmda xona xira yoritilgan, 2-rasmda yorqin yoritilgan"
+},
+{
+"k": "s0008",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Yorug‘lik: 1-rasmda xona yorqin yoritilgan, 2-rasmda xira yoritilgan"
+},
+{
+"k": "s0009",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Havo namligi: 1-rasmda havo quruq, 2-rasmda nam bo‘lgan"
+},
+{
+"k": "s0010",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1-rasm: qorachiq kichik;  2-rasm: qorachiq katta"
+},
+{
+"k": "s0011",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Rasmlarni solishtiramiz: birinchi rasmda qorachiq juda kichik, ikkinchisida ancha katta."
+},
+{
+"k": "s0012",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qorachiq o‘lchami → yorug‘likka bog‘liq"
+},
+{
+"k": "s0013",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘z qorachig‘ining kattaligini yorug‘lik miqdori boshqaradi; harorat yoki namlik uni bunday o‘zgartirmaydi."
+},
+{
+"k": "s0014",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yorqin yorug‘lik → qorachiq torayadi"
+},
+{
+"k": "s0015",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yorug‘lik kuchli bo‘lsa, qorachiq torayib, ko‘zga ortiqcha yorug‘lik kirishiga yo‘l qo‘ymaydi. Demak, birinchi rasmda xona yorqin."
+},
+{
+"k": "s0016",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Xira yorug‘lik → qorachiq kengayadi"
+},
+{
+"k": "s0017",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yorug‘lik kam bo‘lsa, qorachiq kengayadi va ko‘zga ko‘proq yorug‘lik kiradi. Demak, ikkinchi rasmda xona xira."
+},
+{
+"k": "s0018",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) 1-rasmda yorqin, 2-rasmda xira"
+},
+{
+"k": "s0019",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — C variant."
+},
+{
+"k": "s0020",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi qorachiq o‘lchami haroratga bog‘liq deb o‘ylagan; aslida qorachiq yorug‘likka javoban o‘zgaradi."
+},
+{
+"k": "s0021",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi sharoitni to‘g‘ri topgan, lekin yo‘nalishni teskari olgan: katta qorachiq yorug‘lik ko‘pligini emas, kamligini bildiradi."
+},
+{
+"k": "s0022",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi havo namligi ko‘zga ta’sir qiladi deb taxmin qilgan; qorachiq namlikka emas, yorug‘likka javob beradi."
+},
+{
+"k": "s0023",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qorachiq ko‘zga kiradigan yorug‘lik miqdorini boshqaruvchi “darcha” ekanini eslang."
+},
+{
+"k": "s0024",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Shifokor Nilufarning ko‘z qorachig‘i diametrini ikki xil sharoitda o‘lchadi. Bu ikki sharoit faqat bitta jihat bilan farq qilgan.\n1-holat: qorachiq diametri 7 mm.\n2-holat: qorachiq diametri 2 mm.\nQaysi fikr to‘g‘ri?"
+},
+{
+"k": "s0025",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-holatda yorug‘lik kuchli, 2-holatda kuchsiz bo‘lgan, chunki yorug‘lik ko‘p bo‘lsa qorachiq kengayadi"
+},
+{
+"k": "s0026",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-holatda yorug‘lik kuchsiz, 2-holatda kuchli bo‘lgan, chunki yorug‘lik ko‘p bo‘lsa qorachiq torayadi"
+},
+{
+"k": "s0027",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-holatda havo sovuq, 2-holatda issiq bo‘lgan, chunki sovuqda qorachiq kengayadi"
+},
+{
+"k": "s0028",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-holatda xona shovqinli, 2-holatda jimjit bo‘lgan, chunki shovqinda qorachiq kengayadi"
+},
+{
+"k": "s0029",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1-holat: 7 mm (katta);  2-holat: 2 mm (kichik)"
+},
+{
+"k": "s0030",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval o‘lchamlarni solishtiramiz: birinchi holatda qorachiq ancha katta, ikkinchisida kichik."
+},
+{
+"k": "s0031",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qorachiq ko‘zga kiradigan yorug‘likni boshqaradi"
+},
+{
+"k": "s0032",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qorachiq o‘lchami asosan yorug‘lik miqdoriga javoban o‘zgaradi."
+},
+{
+"k": "s0033",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kam yorug‘lik → keng qorachiq (7 mm)"
+},
+{
+"k": "s0034",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Xira joyda ko‘z ko‘proq yorug‘lik yig‘ishi kerak, shuning uchun qorachiq kengayadi — bu birinchi holat."
+},
+{
+"k": "s0035",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ko‘p yorug‘lik → tor qorachiq (2 mm)"
+},
+{
+"k": "s0036",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yorqin joyda qorachiq torayadi — bu ikkinchi holat."
+},
+{
+"k": "s0037",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B)"
+},
+{
+"k": "s0038",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, to‘g‘ri javob — B variant."
+},
+{
+"k": "s0039",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi qorachiqning javobini teskari tushungan: kuchli yorug‘likda qorachiq kengaymaydi, torayadi."
+},
+{
+"k": "s0040",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi qorachiq haroratga javob beradi deb o‘ylagan; qorachiq o‘lchami yorug‘likka bog‘liq."
+},
+{
+"k": "s0041",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi ko‘z qorachig‘i tovushga javob beradi deb noto‘g‘ri taxmin qilgan."
+},
+{
+"k": "s0042",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qorachiq kengayganda ko‘zga ko‘proq yorug‘lik kirishini o‘ylab ko‘ring: bu qachon kerak bo‘ladi?"
+},
+{
+"k": "s0043",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Muntazam jismoniy mashqlarning organizm uchun aniq foydasini (yurak-qon tomir tizimi, muskullar, yog‘ to‘planishi) bilish"
+},
+{
+"k": "s0044",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir variantni organizmda haqiqatan nima sodir bo‘lishi bilan solishtiring: mashq paytida yurak tezroq uradi, muskullar ishlaydi va energiya sarflanadi."
+},
+{
+"k": "s0045",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malika har kuni ertalab yugurib, badantarbiya qiladi. Quyidagilardan qaysi biri muntazam jismoniy mashqlarning organizm uchun aniq foydasini to‘g‘ri ko‘rsatadi?"
+},
+{
+"k": "s0046",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Mashqdan keyin organizm suvga kamroq muhtoj bo‘ladi"
+},
+{
+"k": "s0047",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Mashq paytida yurak sekinroq urib, dam oladi"
+},
+{
+"k": "s0048",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Mashqlar muskullarni bo‘shashtirib, ularning hajmini kamaytiradi"
+},
+{
+"k": "s0049",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Yurak muskuli mustahkamlanadi va qon aylanishi yaxshilanadi"
+},
+{
+"k": "s0050",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mashq paytida: yurak tezroq uradi"
+},
+{
+"k": "s0051",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yugurganda muskullarga ko‘proq kislorod kerak, shuning uchun yurak tezroq va kuchliroq ishlaydi."
+},
+{
+"k": "s0052",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Muntazam mashq → yurak muskuli mustahkamlanadi"
+},
+{
+"k": "s0053",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yurak ham muskul; muntazam ishlagani sari u mustahkamlanadi va qonni yaxshiroq haydaydi."
+},
+{
+"k": "s0054",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Terlash → suvga ehtiyoj ortadi"
+},
+{
+"k": "s0055",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mashqda ter ajraladi, demak suvga ehtiyoj kamaymaydi, aksincha ortadi."
+},
+{
+"k": "s0056",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) Yurak muskuli mustahkamlanadi va qon aylanishi yaxshilanadi"
+},
+{
+"k": "s0057",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — D variant."
+},
+{
+"k": "s0058",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi terlash bilan suv yo‘qotilishini hisobga olmagan: mashqdan keyin suvga ehtiyoj ortadi."
+},
+{
+"k": "s0059",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi mashq paytida yurak dam oladi deb o‘ylagan; aslida u tezroq uradi."
+},
+{
+"k": "s0060",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi mashqning muskullarga ta’sirini teskari tushungan: muntazam mashq muskullarni kuchaytiradi."
+},
+{
+"k": "s0061",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yugurayotganingizda yuragingiz qanday urishini eslang."
+},
+{
+"k": "s0062",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz haftada uch marta futbol o‘ynaydi. Quyidagilardan qaysi biri jismoniy mashqlarning organizm uchun aniq foydasini to‘g‘ri ko‘rsatadi?"
+},
+{
+"k": "s0063",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Mashq paytida ko‘p energiya sarflanib, tanada ortiqcha yog‘ to‘planishi kamayadi"
+},
+{
+"k": "s0064",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Mashq paytida o‘pkaga havo kamroq kiradi, shuning uchun o‘pka dam oladi"
+},
+{
+"k": "s0065",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Muntazam mashq qilgan odamning suyaklari yupqalashib, yengillashadi"
+},
+{
+"k": "s0066",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Mashq paytida organizm energiya sarflamaydi, aksincha uni to‘playdi"
+},
+{
+"k": "s0067",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mashq → muskullar ishlaydi → energiya sarflanadi"
+},
+{
+"k": "s0068",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "O‘yin paytida muskullar ko‘p ishlaydi va buning uchun ko‘p energiya kerak bo‘ladi."
+},
+{
+"k": "s0069",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Energiya manbai: ovqat va yog‘ zaxirasi"
+},
+{
+"k": "s0070",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu energiya ovqatdan va tanadagi yog‘ zaxirasidan olinadi."
+},
+{
+"k": "s0071",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ortiqcha yog‘ to‘planmaydi"
+},
+{
+"k": "s0072",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sarflangan energiya ko‘p bo‘lsa, ortiqcha yog‘ to‘planishi kamayadi va semirishning oldi olinadi."
+},
+{
+"k": "s0073",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A)"
+},
+{
+"k": "s0074",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — A variant."
+},
+{
+"k": "s0075",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi mashqda nafas tezlashishini unutgan: o‘pkaga havo ko‘proq kiradi."
+},
+{
+"k": "s0076",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi mashq suyaklarni zaiflashtiradi deb o‘ylagan; aslida muntazam harakat suyaklarni mustahkamlaydi."
+},
+{
+"k": "s0077",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi energiya sarfi va to‘planishini chalkashtirgan: harakat paytida energiya sarflanadi."
+},
+{
+"k": "s0078",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Futbol o‘ynash uchun muskullarga nima kerak bo‘lishini o‘ylang."
+},
+{
+"k": "s0079",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Modda tuzilishidagi zarrachalarni (molekula, atom, atom yadrosi, proton, neytron, elektron) murakkablik darajasi bo‘yicha tartiblash"
+},
+{
+"k": "s0080",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Qaysi zarracha qaysisidan tashkil topganini eslang: molekula atomlardan, atom yadro va elektronlardan, yadro proton va neytronlardan iborat. So‘ng shu zanjirni kerakli yo‘nalishda yozing."
+},
+{
+"k": "s0081",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagi qatorlardan qaysi biri zarrachalarni MURAKKABROG‘IDAN boshlab ODDIYROG‘IGA qarab to‘g‘ri tartiblaydi?"
+},
+{
+"k": "s0082",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Atom → molekula → proton, neytron, elektron"
+},
+{
+"k": "s0083",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Molekula → atom → proton, neytron, elektron"
+},
+{
+"k": "s0084",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Elektron → atom → molekula"
+},
+{
+"k": "s0085",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Atom → proton, neytron, elektron → molekula"
+},
+{
+"k": "s0086",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Molekula = bir nechta atom"
+},
+{
+"k": "s0087",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Molekula bir-biri bilan bog‘langan atomlardan tashkil topadi, demak u eng murakkab."
+},
+{
+"k": "s0088",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Atom = yadro (proton + neytron) + elektronlar"
+},
+{
+"k": "s0089",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Atom esa yanada mayda zarrachalardan — proton, neytron va elektronlardan iborat."
+},
+{
+"k": "s0090",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Murakkabdan oddiyga: molekula, keyin atom, eng oxirida proton, neytron va elektron."
+},
+{
+"k": "s0091",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri tartib B variantda."
+},
+{
+"k": "s0092",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi atom molekuladan tashkil topadi deb o‘ylagan; aslida molekula atomlardan iborat."
+},
+{
+"k": "s0093",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi tartibni teskari yozgan: oddiydan murakkabga qarab joylashtirgan."
+},
+{
+"k": "s0094",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi molekulani atomni tashkil etuvchi zarrachalardan ham oddiy deb hisoblagan."
+},
+{
+"k": "s0095",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval qaysi zarracha qaysisining tarkibiga kirishini aniqlang."
+},
+{
+"k": "s0096",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagi qatorlardan qaysi biri zarrachalarni ENG ODDIYIDAN boshlab MURAKKABROG‘IGA qarab to‘g‘ri tartiblaydi?"
+},
+{
+"k": "s0097",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Atom → atom yadrosi → proton va neytron → molekula"
+},
+{
+"k": "s0098",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Molekula → atom → atom yadrosi → proton va neytron"
+},
+{
+"k": "s0099",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Proton va neytron → atom yadrosi → atom → molekula"
+},
+{
+"k": "s0100",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Proton va neytron → atom → atom yadrosi → molekula"
+},
+{
+"k": "s0101",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Proton + neytron → atom yadrosi"
+},
+{
+"k": "s0102",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Atom yadrosi proton va neytronlardan tashkil topadi, demak ular eng oddiy."
+},
+{
+"k": "s0103",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Yadro + elektronlar → atom"
+},
+{
+"k": "s0104",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yadro atrofida elektronlar harakatlanadi; yadro va elektronlar birgalikda atomni hosil qiladi."
+},
+{
+"k": "s0105",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Atomlar → molekula"
+},
+{
+"k": "s0106",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Atomlar o‘zaro bog‘lanib molekulani hosil qiladi."
+},
+{
+"k": "s0107",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) Proton va neytron → atom yadrosi → atom → molekula"
+},
+{
+"k": "s0108",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri tartib C variantda."
+},
+{
+"k": "s0109",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi atomni yadrodan ham, proton va neytrondan ham oddiy deb o‘ylagan."
+},
+{
+"k": "s0110",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi tartibni teskari — murakkabdan oddiyga qarab yozgan."
+},
+{
+"k": "s0111",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi atom yadrosini butun atomdan katta tuzilma deb o‘ylagan; yadro atomning bir qismi."
+},
+{
+"k": "s0112",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir qadamda keyingi zarracha oldingisini o‘z ichiga olishi kerak."
+},
+{
+"k": "s0113",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Noma’lum qattiq moddaning metall ekanligini aniqlash uchun metallarga xos xossadan (elektr o‘tkazuvchanlik, bolg‘alanuvchanlik, metall yaltiroqligi) foydalanishni asoslash"
+},
+{
+"k": "s0114",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Faqat metallarga xos bo‘lgan xossani tanlang va har bir xulosaning to‘g‘ri yoki noto‘g‘ri ekanini tekshiring; barcha metallar ham magnitga tortilmasligini yodda tuting."
+},
+{
+"k": "s0115",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Malikaga noma’lum qattiq modda bo‘lagi berildi. U bu modda metall ekanini bilmoqchi. Quyidagi kuzatishlardan qaysi biri moddaning metall bo‘lishi mumkinligini ko‘rsatadi?"
+},
+{
+"k": "s0116",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Modda magnitga tortilmadi, demak u metall"
+},
+{
+"k": "s0117",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Modda suvga solinganda erimadi"
+},
+{
+"k": "s0118",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Modda elektr zanjiriga ulanganda lampochka yondi"
+},
+{
+"k": "s0119",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Moddaning rangi qora ekan"
+},
+{
+"k": "s0120",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Metallar → elektr tokini yaxshi o‘tkazadi"
+},
+{
+"k": "s0121",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Metallarning xarakterli xossasi — elektr tokini yaxshi o‘tkazish."
+},
+{
+"k": "s0122",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Zanjir: batareya — modda — lampochka"
+},
+{
+"k": "s0123",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Moddani batareya va lampochka bilan bitta zanjirga ulaymiz. Lampochka yonsa, modda tok o‘tkazadi."
+},
+{
+"k": "s0124",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Erimaslik, rang → metallarga xos emas"
+},
+{
+"k": "s0125",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘p metallmaslar ham suvda erimaydi va qora rangda bo‘ladi, shuning uchun bu kuzatishlar dalil bo‘lmaydi."
+},
+{
+"k": "s0126",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C)"
+},
+{
+"k": "s0127",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi magnitga tortilmaslikni metall belgisi deb o‘ylagan; magnitga tortilmaslik metallga xos belgi emas, ko‘pchilik metallmaslar ham tortilmaydi."
+},
+{
+"k": "s0128",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi suvda erimaslikni metall belgisi deb hisoblagan; qum, oltingugurt kabi metallmaslar ham suvda erimaydi."
+},
+{
+"k": "s0129",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi rangga qarab xulosa chiqargan; ko‘mir ham qora, lekin u metall emas."
+},
+{
+"k": "s0130",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Faqat metallarga xos bo‘lgan xossani toping."
+},
+{
+"k": "s0131",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Jasur noma’lum qattiq modda bo‘lagini tekshirdi va to‘rtta xulosa yozdi. Qaysi xulosa to‘g‘ri?"
+},
+{
+"k": "s0132",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Modda magnitga tortilmadi, demak u metall emas"
+},
+{
+"k": "s0133",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Modda bolg‘a bilan urilganda sinib, ushoqlanib ketdi, demak u metall"
+},
+{
+"k": "s0134",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Moddaning yuzasi xira va u issiq suvda erib ketdi, demak u metall"
+},
+{
+"k": "s0135",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Modda bolg‘a bilan urilganda sinmasdan yassilandi, tozalangan yuzasi yaltiradi, demak u metall bo‘lishi ehtimoli katta"
+},
+{
+"k": "s0136",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Metallar: bolg‘alanuvchan, yaltiroq"
+},
+{
+"k": "s0137",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Metallar bolg‘a bilan urilganda sinmaydi, balki yassilanadi; tozalangan yuzasi esa yaltiraydi."
+},
+{
+"k": "s0138",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mo‘rt, ushoqlanadi → ko‘pincha metallmas"
+},
+{
+"k": "s0139",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Urilganda ushoqlanib ketadigan moddalar, masalan oltingugurt, odatda metallmaslar."
+},
+{
+"k": "s0140",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Mis, alyuminiy → magnitga tortilmaydi"
+},
+{
+"k": "s0141",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Mis va alyuminiy metall, lekin magnitga tortilmaydi, shuning uchun magnit sinovi metallni rad etolmaydi."
+},
+{
+"k": "s0142",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D)"
+},
+{
+"k": "s0143",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri xulosa — D variant."
+},
+{
+"k": "s0144",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi barcha metallar magnitga tortiladi deb o‘ylagan; mis va alyuminiy tortilmaydi."
+},
+{
+"k": "s0145",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi mo‘rtlikni metall belgisi deb hisoblagan; metallar urilganda sinmay yassilanadi."
+},
+{
+"k": "s0146",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi xira va oson eriydigan moddani metall deb o‘ylagan; ko‘pchilik metallar yaltiroq va issiq suvda erimaydi."
+},
+{
+"k": "s0147",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Temirchi metallni bolg‘alaganda nima bo‘lishini eslang."
+},
+{
+"k": "s0148",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Kundalik qurilmalarda energiyaning bir turdan boshqa turga aylanish ketma-ketligini bilish"
+},
+{
+"k": "s0149",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Qurilma energiyani qayerdan olishini (batareya — kimyoviy, aylanish — mexanik) aniqlang, so‘ng u qanday turga aylanib, oxirida nimaga sarflanishini kuzating."
+},
+{
+"k": "s0150",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Batareyali radio yoqildi va karnaydan ovoz chiqdi. Bu radioda energiya qanday ketma-ketlikda aylanadi?"
+},
+{
+"k": "s0151",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "kimyoviy → elektr → tovush"
+},
+{
+"k": "s0152",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "elektr → kimyoviy → tovush"
+},
+{
+"k": "s0153",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "mexanik → elektr → tovush"
+},
+{
+"k": "s0154",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "issiqlik → elektr → tovush"
+},
+{
+"k": "s0155",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Batareya → kimyoviy energiya"
+},
+{
+"k": "s0156",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Batareya ichidagi moddalar kimyoviy reaksiyaga kirishadi, demak boshlang‘ich energiya kimyoviy."
+},
+{
+"k": "s0157",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kimyoviy → elektr"
+},
+{
+"k": "s0158",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Batareya kimyoviy energiyani elektr energiyasiga aylantirib, zanjirga tok beradi."
+},
+{
+"k": "s0159",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Elektr → tovush (karnay)"
+},
+{
+"k": "s0160",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Karnay elektr energiyasini tovushga aylantiradi."
+},
+{
+"k": "s0161",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) kimyoviy → elektr → tovush"
+},
+{
+"k": "s0162",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi batareyani zaryadlash jarayoni bilan chalkashtirgan: zaryadlashda elektr kimyoviyga aylanadi, ishlatishda esa aksincha."
+},
+{
+"k": "s0163",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi radioni dinamo kabi aylanish orqali ishlaydi deb o‘ylagan; batareyada mexanik harakat yo‘q."
+},
+{
+"k": "s0164",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi batareya issiqlik hisobiga ishlaydi deb o‘ylagan; batareya energiyasi kimyoviy."
+},
+{
+"k": "s0165",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Batareya ichida qanday jarayon borishini eslang."
+},
+{
+"k": "s0166",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Velosiped g‘ildiragiga kichik dinamo (generator) o‘rnatilgan. G‘ildirak aylanganda dinamo velosiped chirog‘ini yoqadi. G‘ildirakning aylanishidan boshlab energiya qanday ketma-ketlikda aylanadi?"
+},
+{
+"k": "s0167",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "kimyoviy → elektr → yorug‘lik"
+},
+{
+"k": "s0168",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "elektr → mexanik → yorug‘lik"
+},
+{
+"k": "s0169",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "mexanik → elektr → yorug‘lik"
+},
+{
+"k": "s0170",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "issiqlik → mexanik → yorug‘lik"
+},
+{
+"k": "s0171",
+"maydon": "doska",
+"tur": "matn",
+"uz": "G‘ildirak aylanishi → mexanik energiya"
+},
+{
+"k": "s0172",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Aylanayotgan g‘ildirak harakat energiyasiga, ya’ni mexanik energiyaga ega."
+},
+{
+"k": "s0173",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Dinamo: mexanik → elektr"
+},
+{
+"k": "s0174",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dinamo aylanma harakatni elektr energiyasiga aylantiradi."
+},
+{
+"k": "s0175",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Chiroq: elektr → yorug‘lik"
+},
+{
+"k": "s0176",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Chiroq elektr energiyasini yorug‘likka aylantiradi."
+},
+{
+"k": "s0177",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) mexanik → elektr → yorug‘lik"
+},
+{
+"k": "s0178",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi barcha chiroqlar batareyadan ishlaydi deb o‘ylagan; bu yerda batareya yo‘q, energiya aylanishdan olinadi."
+},
+{
+"k": "s0179",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi dinamoni elektr dvigatel bilan chalkashtirgan: dvigatel elektrni harakatga aylantiradi, dinamo esa aksincha."
+},
+{
+"k": "s0180",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi energiya manbai issiqlik deb o‘ylagan; g‘ildirak harakati issiqlikdan emas, pedal aylantirishdan kelib chiqadi."
+},
+{
+"k": "s0181",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Chiroqni yoqish uchun velosipedchi nima qilishi kerakligini o‘ylang."
+},
+{
+"k": "s0182",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Yopiq idishdagi havo qizdirilganda yoki sovitilganda uning kengayishi yoki siqilishi suyuqlik sathiga qanday ta’sir qilishini asoslash"
+},
+{
+"k": "s0183",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Idishdagi havo isiganda kengayib, bosimi oshishini, soviganda esa siqilib, bosimi kamayishini eslang; havo suv sirtini qanday bosishiga qarab naychadagi sath o‘zgarishini aniqlang."
+},
+{
+"k": "s0184",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmda tiqin bilan berkitilgan kolba tasvirlangan. Kolbaning pastki qismida suv, ustida havo bor. Tiqin orqali ikki uchi ochiq ingichka shisha naycha o‘tkazilgan, uning pastki uchi suvga botirilgan. Naychadagi suv X sathigacha ko‘tarilgan.\nNilufar kolbaning havo bor qismini kaftlari bilan ushlab, bir necha daqiqa isitdi. Naychadagi suv sathi nima bo‘ladi va nima uchun?"
+},
+{
+"k": "s0185",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "tiqin"
+},
+{
+"k": "s0186",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "naycha"
+},
+{
+"k": "s0187",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "havo"
+},
+{
+"k": "s0188",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "suv"
+},
+{
+"k": "s0189",
+"maydon": "rasm",
+"tur": "svg",
+"uz": "kolba"
+},
+{
+"k": "s0190",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Pasayadi, chunki suvning bir qismi bug‘lanib, kolbadagi suv kamayadi"
+},
+{
+"k": "s0191",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "O‘zgarmaydi, chunki kolbadagi havo va suvning miqdori o‘zgarmaydi"
+},
+{
+"k": "s0192",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "X dan yuqoriga ko‘tariladi, chunki kolbadagi havo isib kengayadi va suvni naychaga siqib chiqaradi"
+},
+{
+"k": "s0193",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Pasayadi, chunki issiq havo yengil bo‘lib yuqoriga ko‘tariladi va suvni bosmay qo‘yadi"
+},
+{
+"k": "s0194",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo isiydi → kengayadi"
+},
+{
+"k": "s0195",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kaftlar kolbadagi havoni isitadi; qizdirilgan havo kengayadi."
+},
+{
+"k": "s0196",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kolba yopiq → havo bosimi oshadi"
+},
+{
+"k": "s0197",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Havo kolbadan chiqib keta olmaydi, shuning uchun uning bosimi oshadi."
+},
+{
+"k": "s0198",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo suv sirtini bosadi → suv naychaga kiradi"
+},
+{
+"k": "s0199",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kengaygan havo suv sirtini kuchliroq bosadi va suvni ochiq naycha bo‘ylab yuqoriga siqib chiqaradi."
+},
+{
+"k": "s0200",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: C) X dan yuqoriga ko‘tariladi"
+},
+{
+"k": "s0201",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, to‘g‘ri javob — C variant."
+},
+{
+"k": "s0202",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi isitishda bug‘lanish asosiy jarayon deb o‘ylagan; bir necha daqiqada havoning kengayishi ancha katta ta’sir qiladi."
+},
+{
+"k": "s0203",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi moddalar miqdori o‘zgarmasa, hech narsa o‘zgarmaydi deb o‘ylagan; havo miqdori o‘zgarmasa ham, isiganda uning hajmi va bosimi ortadi."
+},
+{
+"k": "s0204",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi “issiq havo ko‘tariladi” degan qoidani yopiq idishga noto‘g‘ri qo‘llagan; yopiq idishda havo baribir suvni bosadi va isiganda kuchliroq bosadi."
+},
+{
+"k": "s0205",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Isitilgan havo yopiq kolbadan chiqib keta olmasa, nima bo‘lishini o‘ylang."
+},
+{
+"k": "s0206",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Rasmda tiqin bilan berkitilgan kolba tasvirlangan: pastida suv, ustida havo bor, tiqin orqali o‘tkazilgan ikki uchi ochiq shisha naychada suv X sathida turibdi.\nSardor kolbani muzli suv solingan idishga tushirib, bir necha daqiqa sovitdi. Naychadagi suv sathi nima bo‘ladi va nima uchun?"
+},
+{
+"k": "s0207",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "X dan yuqoriga ko‘tariladi, chunki sovuq havo og‘ir bo‘lib, suvni pastdan yuqoriga itaradi"
+},
+{
+"k": "s0208",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "X dan pastga tushadi, chunki kolbadagi havo sovib siqiladi va uning suvga bosimi kamayadi"
+},
+{
+"k": "s0209",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "O‘zgarmaydi, chunki kolba yopiq va unga hech narsa kirmaydi"
+},
+{
+"k": "s0210",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "X dan yuqoriga ko‘tariladi, chunki sovuqda suv kengayadi"
+},
+{
+"k": "s0211",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo soviydi → siqiladi"
+},
+{
+"k": "s0212",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Muzli suv kolbadagi havoni sovitadi; sovigan havoning hajmi kichrayadi."
+},
+{
+"k": "s0213",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Kolbadagi havo bosimi kamayadi"
+},
+{
+"k": "s0214",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kolba yopiq bo‘lgani uchun havo miqdori o‘zgarmaydi, lekin uning bosimi kamayadi."
+},
+{
+"k": "s0215",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Naychaning ochiq uchidan atmosfera bosimi ustun"
+},
+{
+"k": "s0216",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Endi naychaning ochiq uchidagi tashqi havo bosimi ustun keladi va naychadagi suvni pastga, kolbaga qaytaradi."
+},
+{
+"k": "s0217",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) X dan pastga tushadi"
+},
+{
+"k": "s0218",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri javob — B variant."
+},
+{
+"k": "s0219",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi sovuq havoning og‘irligi suvni yuqoriga itaradi deb o‘ylagan; aslida sovigan havo bosimi kamayadi."
+},
+{
+"k": "s0220",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi kolbaga hech narsa kirmasa, sath o‘zgarmaydi deb o‘ylagan; havo miqdori o‘zgarmasa ham, harorat pasayganda uning bosimi kamayadi."
+},
+{
+"k": "s0221",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi suv sovuqda sezilarli kengayadi deb o‘ylagan; suv deyarli kengaymaydi, asosiy ta’sirni havoning siqilishi beradi."
+},
+{
+"k": "s0222",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Isitilganda havo kengayadi — sovitilganda-chi?"
+},
+{
+"k": "s0223",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Og‘irlik kuchi jismga uning harakat holatidan qat’i nazar (tinch turganda ham, harakatlanganda ham) doimo ta’sir qilishini qo‘llash"
+},
+{
+"k": "s0224",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Og‘irlik kuchi — Yerning jismni o‘ziga tortishi; u jism Yer yaqinida bo‘lsa, tinch turibdimi yoki harakatlanyaptimi, baribir ta’sir qiladi."
+},
+{
+"k": "s0225",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz to‘pni to‘rt holatda kuzatdi:\n1) to‘p Azizning qo‘lida turibdi;\n2) Aziz to‘pni yuqoriga otdi, to‘p yuqoriga uchmoqda;\n3) to‘p eng baland nuqtada bir lahza to‘xtadi;\n4) to‘p yerga tushib, yerda tinch yotibdi.\nQaysi holatlarda to‘pga og‘irlik kuchi ta’sir qiladi?"
+},
+{
+"k": "s0226",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat 2-holatda"
+},
+{
+"k": "s0227",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat 2- va 3-holatlarda"
+},
+{
+"k": "s0228",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat 1-, 2- va 4-holatlarda"
+},
+{
+"k": "s0229",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-, 2-, 3- va 4-holatlarning hammasida"
+},
+{
+"k": "s0230",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Og‘irlik kuchi = Yerning tortishi"
+},
+{
+"k": "s0231",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Og‘irlik kuchi — Yerning jismni o‘ziga tortish kuchi."
+},
+{
+"k": "s0232",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Tortish jism harakatiga bog‘liq emas"
+},
+{
+"k": "s0233",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu kuch to‘p qo‘lda turganda ham, uchayotganda ham, yerda yotganda ham yo‘qolmaydi."
+},
+{
+"k": "s0234",
+"maydon": "doska",
+"tur": "matn",
+"uz": "3-holat: tezlik 0, lekin kuch bor"
+},
+{
+"k": "s0235",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Eng baland nuqtada to‘p bir lahza to‘xtaydi, ammo og‘irlik kuchi bor — aynan u to‘pni yana pastga qaytaradi."
+},
+{
+"k": "s0236",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: D) hammasida"
+},
+{
+"k": "s0237",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Demak, og‘irlik kuchi to‘rtala holatda ham ta’sir qiladi — D variant."
+},
+{
+"k": "s0238",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi og‘irlik kuchi faqat jism harakatlanayotganda ta’sir qiladi deb o‘ylagan."
+},
+{
+"k": "s0239",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi og‘irlik kuchi faqat jism havoda bo‘lganda ta’sir qiladi deb o‘ylagan; qo‘lda yoki yerda turganda ham Yer uni tortadi."
+},
+{
+"k": "s0240",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi eng baland nuqtada to‘p to‘xtagani uchun og‘irlik kuchi yo‘qoladi deb o‘ylagan; aslida u to‘pni pastga qaytaradi."
+},
+{
+"k": "s0241",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Yer jismni qachon o‘ziga tortmay qo‘yishi mumkinligini o‘ylab ko‘ring."
+},
+{
+"k": "s0242",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Bog‘dagi olma uch holatda kuzatildi:\n1) olma shoxda osilib turibdi;\n2) olma shoxdan uzilib, yerga tushmoqda;\n3) terilgan olma stol ustidagi savatda yotibdi.\nQaysi holatlarda olmaga og‘irlik kuchi ta’sir qiladi?"
+},
+{
+"k": "s0243",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "1-, 2- va 3-holatlarning hammasida"
+},
+{
+"k": "s0244",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Faqat 1- va 2-holatlarda"
+},
+{
+"k": "s0245",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Og‘irlik kuchi — Yerning barcha jismlarni o‘ziga tortishi."
+},
+{
+"k": "s0246",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1- va 3-holat: olma tinch, lekin tortiladi"
+},
+{
+"k": "s0247",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Shoxdagi va savatdagi olma tinch turibdi, chunki og‘irlik kuchini band va savat muvozanatlaydi; kuch esa yo‘qolmagan."
+},
+{
+"k": "s0248",
+"maydon": "doska",
+"tur": "matn",
+"uz": "2-holat: muvozanatlovchi kuch yo‘q"
+},
+{
+"k": "s0249",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Uzilgan olmani hech narsa ushlab turmaydi, shuning uchun og‘irlik kuchi uni pastga tushiradi."
+},
+{
+"k": "s0250",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) hammasida"
+},
+{
+"k": "s0251",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi og‘irlik kuchi faqat jism tushayotganda ta’sir qiladi deb o‘ylagan."
+},
+{
+"k": "s0252",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi savatdagi olmaga og‘irlik kuchi ta’sir qilmaydi deb o‘ylagan; savat olmani ushlab turadi, lekin Yer uni baribir tortadi."
+},
+{
+"k": "s0253",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi shoxdagi olmaga og‘irlik kuchi ta’sir qilmaydi deb o‘ylagan; band olmani ushlab turishi kerak, chunki og‘irlik kuchi uni pastga tortmoqda."
+},
+{
+"k": "s0254",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Agar Yer shoxdagi olmani tortmaganida, band kerak bo‘larmidi?"
+},
+{
+"k": "s0255",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Suvning tabiatda aylanishi bosqichlarini (bug‘lanish, ko‘tarilish, kondensatsiya, yog‘in, oqim) to‘g‘ri ketma-ketlikda joylashtirish"
+},
+{
+"k": "s0256",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Bug‘lanishdan boshlang: bug‘ yuqoriga ko‘tariladi, soviydi va bulut hosil qiladi, so‘ng yog‘in yog‘adi va suv yana boshlang‘ich joyiga qaytadi."
+},
+{
+"k": "s0257",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagi jumlalar suvning tabiatda aylanishini tasvirlaydi. Birinchi bosqich — ko‘l yuzasidan suvning bug‘lanishi (1).\nK — Tog‘ cho‘qqilariga qor yog‘adi.\nL — Suv bug‘i iliq havo bilan yuqoriga ko‘tariladi.\nM — Bahorda qor erib, soy va daryolar orqali ko‘lga oqib keladi.\nN — Yuqorida bug‘ soviydi va mayda tomchilardan bulut hosil bo‘ladi.\nQaysi qator jarayonlarning to‘g‘ri tartibini ko‘rsatadi?"
+},
+{
+"k": "s0258",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1: bug‘lanish → L: bug‘ ko‘tariladi"
+},
+{
+"k": "s0259",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Ko‘ldan bug‘langan suv bug‘i iliq havo bilan yuqoriga ko‘tariladi — bu L."
+},
+{
+"k": "s0260",
+"maydon": "doska",
+"tur": "matn",
+"uz": "N: bug‘ soviydi → bulut"
+},
+{
+"k": "s0261",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yuqorida havo sovuq, bug‘ soviydi va mayda tomchilarga aylanib bulut hosil qiladi — bu N."
+},
+{
+"k": "s0262",
+"maydon": "doska",
+"tur": "matn",
+"uz": "K: bulutdan qor yog‘adi"
+},
+{
+"k": "s0263",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bulutdan tog‘ cho‘qqilariga qor yog‘adi — bu K."
+},
+{
+"k": "s0264",
+"maydon": "doska",
+"tur": "matn",
+"uz": "M: qor eriydi → daryo → ko‘l"
+},
+{
+"k": "s0265",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bahorda qor erib, daryolar orqali yana ko‘lga qaytadi — bu M."
+},
+{
+"k": "s0266",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: B) 1 → L → N → K → M"
+},
+{
+"k": "s0267",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi bug‘ hali yuqoriga ko‘tarilmasdan soviydi deb o‘ylagan; bug‘ avval ko‘tariladi, keyin yuqoridagi sovuq havoda soviydi."
+},
+{
+"k": "s0268",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi qorni bulut hosil bo‘lishidan oldin qo‘ygan; yog‘in faqat bulutdan yog‘adi."
+},
+{
+"k": "s0269",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi daryo oqimini bug‘lanishdan keyin darhol qo‘ygan; daryoga qor erigan suv keladi, demak bu oxirgi bosqich."
+},
+{
+"k": "s0270",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Bulut paydo bo‘lishidan oldin bug‘ qayerga borishi kerakligini o‘ylang."
+},
+{
+"k": "s0271",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Quyidagi jumlalar suvning tabiatda aylanishini tasvirlaydi. Birinchi bosqich — g‘o‘za barglaridan suvning bug‘lanishi, ya’ni transpiratsiya (1).\nP — Yomg‘ir suvi tuproqqa singadi va ildizlar orqali yana o‘simlikka o‘tadi.\nQ — Bug‘ sovib, mayda tomchilarga aylanadi va bulut hosil qiladi.\nR — Suv bug‘i iliq havo oqimi bilan yuqoriga ko‘tariladi.\nS — Bulutdagi tomchilar yiriklashib, yomg‘ir bo‘lib yog‘adi.\nQaysi qator jarayonlarning to‘g‘ri tartibini ko‘rsatadi?"
+},
+{
+"k": "s0272",
+"maydon": "doska",
+"tur": "matn",
+"uz": "1: transpiratsiya → R: bug‘ ko‘tariladi"
+},
+{
+"k": "s0273",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Barglardan bug‘langan suv iliq havo bilan yuqoriga ko‘tariladi — bu R."
+},
+{
+"k": "s0274",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Q: bug‘ soviydi → bulut"
+},
+{
+"k": "s0275",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yuqorida bug‘ sovib, mayda tomchilarga aylanadi va bulut hosil bo‘ladi — bu Q."
+},
+{
+"k": "s0276",
+"maydon": "doska",
+"tur": "matn",
+"uz": "S: tomchilar yiriklashadi → yomg‘ir"
+},
+{
+"k": "s0277",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tomchilar yiriklashib, og‘irlashadi va yomg‘ir bo‘lib yog‘adi — bu S."
+},
+{
+"k": "s0278",
+"maydon": "doska",
+"tur": "matn",
+"uz": "P: tuproq → ildiz → o‘simlik"
+},
+{
+"k": "s0279",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yomg‘ir suvi tuproqqa singib, ildizlar orqali yana o‘simlikka qaytadi — bu P."
+},
+{
+"k": "s0280",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: A) 1 → R → Q → S → P"
+},
+{
+"k": "s0281",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "To‘g‘ri tartib A variantda."
+},
+{
+"k": "s0282",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi bug‘ yerdagi joyida soviydi deb o‘ylagan; bulut hosil bo‘lishi uchun bug‘ avval yuqoriga ko‘tarilishi kerak."
+},
+{
+"k": "s0283",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi yomg‘irni bulut hosil bo‘lishidan oldin qo‘ygan; yomg‘ir bulutdan yog‘adi."
+},
+{
+"k": "s0284",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi suvning tuproqqa singishini bug‘lanishdan keyin darhol qo‘ygan; tuproqqa yomg‘ir suvi singadi, demak bu yomg‘irdan keyin bo‘ladi."
+},
+{
+"k": "s0285",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Suv qaysi bosqichda qaytadan o‘simlikka yetib borishini aniqlang."
+},
+{
+"k": "s0286",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Tuproqdagi o‘zgarishlarni tabiiy jarayonlar va inson faoliyati natijasida yuz beradiganlarga ajratish"
+},
+{
+"k": "s0287",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Har bir o‘zgarishning sababini aniqlang: unda inson faoliyati (sug‘orish, o‘g‘it, pestitsid, daraxt kesish, zavod) bormi yoki faqat tabiat kuchlari (harorat, shamol, suv, organizmlar) ishtirok etadimi."
+},
+{
+"k": "s0288",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tuproq tabiiy jarayonlar ta’sirida ham, inson faoliyati natijasida ham o‘zgaradi. Quyidagi o‘zgarishlardan qaysi biri FAQAT tabiiy sabablarga ko‘ra yuz beradi?"
+},
+{
+"k": "s0289",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Paxta dalasini ortiqcha sug‘orish natijasida tuproqning sho‘rlanishi"
+},
+{
+"k": "s0290",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Pestitsidlarni ko‘p ishlatish tufayli tuproqdagi foydali organizmlarning kamayishi"
+},
+{
+"k": "s0291",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Yonbag‘irdagi o‘rmon kesilgani sababli tuproqning yuvilib ketishi"
+},
+{
+"k": "s0292",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kunduzgi va tungi harorat farqi tufayli tog‘ jinslarining yemirilib, yangi tuproq zarralari hosil bo‘lishi"
+},
+{
+"k": "s0293",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Ortiqcha sug‘orish, pestitsid, o‘rmon kesish → inson"
+},
+{
+"k": "s0294",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A, B va C variantlarda o‘zgarishga inson faoliyati sabab bo‘lgan."
+},
+{
+"k": "s0295",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Harorat o‘zgarishi → tabiiy kuch"
+},
+{
+"k": "s0296",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Kunduzi qizib, kechasi sovish natijasida tog‘ jinslari yoriladi va yemiriladi; bunda inson ishtirok etmaydi."
+},
+{
+"k": "s0297",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Nurash → yangi tuproq zarralari"
+},
+{
+"k": "s0298",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bu jarayon nurash deyiladi va u tuproq hosil bo‘lishining tabiiy bosqichidir."
+},
+{
+"k": "s0299",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi sho‘rlanishni faqat tabiiy hodisa deb o‘ylagan; bu yerda u ortiqcha sug‘orish, ya’ni inson faoliyati tufayli yuz bergan."
+},
+{
+"k": "s0300",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi pestitsidlar inson tomonidan ishlatilishini e’tiborga olmagan."
+},
+{
+"k": "s0301",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi tuproqni suv yuvgani uchun buni tabiiy deb o‘ylagan; lekin yuvilishga o‘rmonni inson kesgani sabab bo‘lgan."
+},
+{
+"k": "s0302",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Har bir o‘zgarishda inson qo‘li bor-yo‘qligini tekshiring."
+},
+{
+"k": "s0303",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tuproq tabiiy jarayonlar ta’sirida ham, inson faoliyati natijasida ham o‘zgaradi. Quyidagi o‘zgarishlardan qaysi biri FAQAT inson faoliyati natijasida yuz beradi?"
+},
+{
+"k": "s0304",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Daryo toshqinida tuproq ustiga loyqa yotqizilishi"
+},
+{
+"k": "s0305",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kuchli shamol cho‘ldan qum uchirib kelib, dalani qoplashi"
+},
+{
+"k": "s0306",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Zavod chiqindilari tufayli tuproqning og‘ir metallar bilan ifloslanishi"
+},
+{
+"k": "s0307",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "To‘kilgan barglarning chirishi natijasida tuproqda chirindi to‘planishi"
+},
+{
+"k": "s0308",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Toshqin, shamol, barglar chirishi → tabiat"
+},
+{
+"k": "s0309",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "A, B va D variantlardagi o‘zgarishlarni suv, shamol va tirik organizmlar keltirib chiqaradi."
+},
+{
+"k": "s0310",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Zavod chiqindilari → inson faoliyati"
+},
+{
+"k": "s0311",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Zavodni inson quradi va uning chiqindilari tuproqni ifloslantiradi."
+},
+{
+"k": "s0312",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi toshqinni inson sababli deb o‘ylagan; daryo toshqini va loyqa yotqizilishi tabiiy jarayon."
+},
+{
+"k": "s0313",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi qum ko‘chishini inson faoliyati bilan bog‘lagan; bu yerda sabab kuchli shamol — tabiiy kuch."
+},
+{
+"k": "s0314",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi chirindi to‘planishini inson faoliyati deb o‘ylagan; barglarni tuproqdagi organizmlar chiritadi, bu tabiiy jarayon."
+},
+{
+"k": "s0315",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Qaysi o‘zgarish inson bo‘lmaganida umuman yuz bermasligini toping."
+},
+{
+"k": "s0316",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Baland tog‘ga ko‘tarilgan sari havo harorati pasayishini bilish va undan amaliy xulosa chiqarish"
+},
+{
+"k": "s0317",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Balandlik ortgan sari havo sovuqlashishini eslang: har 1000 m ko‘tarilganda harorat taxminan bir necha gradusga pasayadi, shuning uchun issiq kiyim kerak bo‘ladi."
+},
+{
+"k": "s0318",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Alpinist Jasur Pomirdagi baland cho‘qqiga chiqishga tayyorlanmoqda. Yuqoriga ko‘tarilgan sari havo harorati qanday o‘zgaradi va Jasur o‘zi bilan nima olishi kerak?"
+},
+{
+"k": "s0319",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Harorat ko‘tariladi, chunki Quyoshga yaqinlashadi — yengil kiyim olishi kerak"
+},
+{
+"k": "s0320",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Harorat pasayadi — issiq kiyim va qo‘lqop olishi kerak"
+},
+{
+"k": "s0321",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Harorat o‘zgarmaydi — qo‘shimcha kiyim kerak emas"
+},
+{
+"k": "s0322",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Harorat ko‘tariladi — ko‘proq ichimlik suvi olishi kerak"
+},
+{
+"k": "s0323",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik ↑ → harorat ↓"
+},
+{
+"k": "s0324",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yer yuzasidan uzoqlashgan sari havo sovuqlashadi; shuning uchun baland tog‘ cho‘qqilarida yozda ham qor bo‘ladi."
+},
+{
+"k": "s0325",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Quyoshgacha masofa deyarli o‘zgarmaydi"
+},
+{
+"k": "s0326",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Bir necha kilometr ko‘tarilish Quyoshgacha bo‘lgan ulkan masofaga nisbatan juda kichik, u isitmaydi."
+},
+{
+"k": "s0327",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Sovuq → issiq kiyim, qo‘lqop"
+},
+{
+"k": "s0328",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sovuqdan himoyalanish uchun alpinistga issiq kiyim va qo‘lqop kerak."
+},
+{
+"k": "s0329",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi tog‘da Quyoshga yaqinlashgani uchun issiq bo‘ladi deb o‘ylagan; aslida yuqorida havo sovuqroq."
+},
+{
+"k": "s0330",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi harorat balandlikka bog‘liq emas deb o‘ylagan; tog‘ cho‘qqilaridagi qor buning aksini ko‘rsatadi."
+},
+{
+"k": "s0331",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi yuqorida havo isiydi deb o‘ylagan; harorat ko‘tarilmaydi, balki pasayadi."
+},
+{
+"k": "s0332",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Nima uchun baland tog‘ cho‘qqilarida yozda ham qor erimay yotishini eslang."
+},
+{
+"k": "s0333",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Tog‘ etagidagi qishloq dengiz sathidan 1000 m balandlikda joylashgan, u yerda havo harorati +20 °C. Malika balandligi 4000 m bo‘lgan dovonga chiqmoqda. Har 1000 m ko‘tarilganda havo harorati taxminan 6 °C ga pasayadi deb hisoblang.\nDovonda havo harorati necha gradus bo‘ladi? Javobni °C da son bilan yozing."
+},
+{
+"k": "s0334",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Avval qancha balandlikka ko‘tarilishini topamiz: to‘rt ming metrdan ming metrni ayiramiz — uch ming metr."
+},
+{
+"k": "s0335",
+"maydon": "doska",
+"tur": "matn",
+"uz": "$3000 : 1000 = 3$ marta"
+},
+{
+"k": "s0336",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har ming metrda harorat pasayadi, uch ming metrda bu uch marta takrorlanadi."
+},
+{
+"k": "s0337",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Jami pasayish: uch karra olti — o‘n sakkiz gradus."
+},
+{
+"k": "s0338",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qishloqdagi yigirma gradusdan o‘n sakkizni ayiramiz — dovonda ikki gradus issiq."
+},
+{
+"k": "s0339",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Javob: 2"
+},
+{
+"k": "s0340",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Javob: +2 °C. Malikaga issiq kiyim kerak bo‘ladi."
+},
+{
+"k": "s0341",
+"maydon": "umumiy",
+"tur": "matn",
+"uz": "Ko‘p uchraydigan xato — ko‘tarilish balandligini 3000 m o‘rniga 4000 m deb olib, $20 - 4 \\cdot 6 = -4$ °C topish yoki haroratni ayirish o‘rniga qo‘shib 38 °C deb yozish."
+},
+{
+"k": "s0342",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Avval qishloqdan dovongacha necha metr ko‘tarilishini toping."
+},
+{
+"k": "s0343",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Baland tog‘da atmosfera bosimi, kislorod miqdori va quyosh nurlanishi qanday o‘zgarishini bilish va zarur jihozni tanlash"
+},
+{
+"k": "s0344",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Balandlik ortgan sari havo siyraklashishini (bosim va kislorod kamayishi) hamda ustimizdagi havo qatlami yupqalashib, ultrabinafsha nurlar kuchayishini eslang; so‘ng o‘zgarishga mos jihozni tanlang."
+},
+{
+"k": "s0345",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Alpinist Nilufar dunyodagi eng baland cho‘qqilardan biriga chiqishga tayyorlanmoqda. Yuqoriga ko‘tarilgan sari havo bosimi va undagi kislorod miqdori qanday o‘zgaradi va Nilufar o‘zi bilan nima olishi kerak?"
+},
+{
+"k": "s0346",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Havo bosimi pasayadi, havo siyraklashib, nafas olishda kislorod kamroq kiradi — kislorod balloni olishi kerak"
+},
+{
+"k": "s0347",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Havo bosimi ortadi, kislorod ko‘payadi — kislorod balloni olishi kerak"
+},
+{
+"k": "s0348",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Havo bosimi pasayadi — faqat issiq kiyim olsa yetarli, nafas olish o‘zgarmaydi"
+},
+{
+"k": "s0349",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Havo bosimi ortadi, havo zichlashadi — qo‘shimcha jihoz kerak emas"
+},
+{
+"k": "s0350",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik ↑ → ustidagi havo qatlami yupqalashadi"
+},
+{
+"k": "s0351",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qanchalik yuqoriga chiqsak, ustimizda shunchalik kam havo qoladi."
+},
+{
+"k": "s0352",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Bosim ↓, havo siyrak"
+},
+{
+"k": "s0353",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Shuning uchun atmosfera bosimi pasayadi va havo siyraklashadi."
+},
+{
+"k": "s0354",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Har nafasda kislorod kamroq → kislorod balloni"
+},
+{
+"k": "s0355",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Har nafasda o‘pkaga kislorod kamroq kiradi, nafas olish qiyinlashadi; baland cho‘qqilarda kislorod balloni kerak bo‘ladi."
+},
+{
+"k": "s0356",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi jihozni to‘g‘ri tanlagan, ammo yuqorida havo bosimi ortadi deb noto‘g‘ri o‘ylagan."
+},
+{
+"k": "s0357",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi bosim pasayishini bilgan, lekin uning nafas olishga ta’sirini tushunmagan."
+},
+{
+"k": "s0358",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi balandlikda havo zichlashadi deb o‘ylagan; aslida havo siyraklashadi."
+},
+{
+"k": "s0359",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ustingizdagi havo qatlami balandlikka chiqqanda qalinlashadimi yoki yupqalashadimi?"
+},
+{
+"k": "s0360",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Aziz yozda baland tog‘ cho‘qqisiga sayohat qilmoqchi. U yuqoriga ko‘tarilgan sari Quyoshning ultrabinafsha nurlari ta’siri o‘zgarishini biladi. Bu ta’sir qanday o‘zgaradi va Aziz o‘zi bilan nima olishi kerak?"
+},
+{
+"k": "s0361",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kamayadi, chunki tog‘da havo sovuq — quyoshdan himoya vositalari kerak emas"
+},
+{
+"k": "s0362",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "O‘zgarmaydi — faqat soyabon olsa yetarli"
+},
+{
+"k": "s0363",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kamayadi, chunki tog‘da bulut ko‘p — yomg‘irpo‘sh olishi kerak"
+},
+{
+"k": "s0364",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kuchayadi, chunki nurlarni yutadigan havo qatlami yupqaroq — quyoshdan himoya ko‘zoynagi va krem olishi kerak"
+},
+{
+"k": "s0365",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Havo ultrabinafsha nurlarning bir qismini yutadi"
+},
+{
+"k": "s0366",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Atmosfera havosi Quyoshning ultrabinafsha nurlarining bir qismini yutib qoladi."
+},
+{
+"k": "s0367",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Balandlik ↑ → havo qatlami yupqaroq → nurlanish ↑"
+},
+{
+"k": "s0368",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Tog‘da ustimizdagi havo qatlami yupqaroq, shuning uchun bu nurlar kuchliroq ta’sir qiladi."
+},
+{
+"k": "s0369",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Qor nurni qaytaradi → ko‘z va teri xavf ostida"
+},
+{
+"k": "s0370",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Qor nurni yaxshi qaytaradi, shuning uchun ko‘z va teri ko‘proq nur oladi; himoya ko‘zoynagi va krem kerak."
+},
+{
+"k": "s0371",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi havo sovuq bo‘lsa, quyosh nurlari ham kuchsiz bo‘ladi deb o‘ylagan; harorat va ultrabinafsha nurlanish turli narsalar."
+},
+{
+"k": "s0372",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi nurlanish balandlikka bog‘liq emas deb o‘ylagan."
+},
+{
+"k": "s0373",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi savolni bulut va yog‘in bilan chalkashtirgan; savol ultrabinafsha nurlar haqida."
+},
+{
+"k": "s0374",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Ultrabinafsha nurlarning bir qismini nima to‘sib qolishini o‘ylang."
+},
+{
+"k": "s0375",
+"maydon": "kunikma",
+"tur": "matn",
+"uz": "Suv havzasida suv o‘tlarining keskin ko‘payishi sababini (o‘g‘it va chiqindilardagi oziq moddalar — azot va fosfor birikmalari) ekotizimdagi bog‘lanishlar asosida aniqlash"
+},
+{
+"k": "s0376",
+"maydon": "usul",
+"tur": "matn",
+"uz": "Suv o‘tlari o‘sishi uchun nima kerakligini (yorug‘lik, iliqlik, azot va fosfor kabi oziq moddalar) eslang va qaysi variant suvga shu moddalarni ko‘plab qo‘shishini toping."
+},
+{
+"k": "s0377",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Paxta dalasi yonidagi hovuzda yozda suv o‘tlari keskin ko‘paydi va suv yashil tusga kirdi. Buning eng ehtimolli sababi qaysi?"
+},
+{
+"k": "s0378",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Hovuz ustiga daraxtlar soyasi tushib, suvga yorug‘lik kamroq tushgani"
+},
+{
+"k": "s0379",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Hovuzdagi baliqlar soni ko‘paygani"
+},
+{
+"k": "s0380",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Daladan sug‘orish suvi bilan azotli va fosforli o‘g‘itlar hovuzga oqib tushgani"
+},
+{
+"k": "s0381",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Dalada ishlagan traktorlardan chiqqan tutun"
+},
+{
+"k": "s0382",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suv o‘tlariga kerak: yorug‘lik + oziq moddalar"
+},
+{
+"k": "s0383",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Suv o‘tlari fotosintez qiladi; ular o‘sishi uchun yorug‘lik va azot, fosfor kabi oziq moddalar kerak."
+},
+{
+"k": "s0384",
+"maydon": "doska",
+"tur": "matn",
+"uz": "O‘g‘it = azot va fosfor birikmalari"
+},
+{
+"k": "s0385",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Dalaga solingan o‘g‘itlarda aynan shu moddalar ko‘p."
+},
+{
+"k": "s0386",
+"maydon": "doska",
+"tur": "matn",
+"uz": "O‘g‘it suvga tushadi → suv o‘tlari tez ko‘payadi"
+},
+{
+"k": "s0387",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Sug‘orish suvi o‘g‘itni hovuzga olib tushadi va suv o‘tlari juda tez ko‘payadi."
+},
+{
+"k": "s0388",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi yorug‘lik kamayishi suv o‘tlarini ko‘paytiradi deb o‘ylagan; aksincha, yorug‘lik kamaysa, fotosintez va o‘sish sekinlashadi."
+},
+{
+"k": "s0389",
+"maydon": "1",
+"tur": "matn",
+"uz": "B ni tanlagan o‘quvchi baliqlar ko‘paysa, suv o‘tlari ham ko‘payadi deb o‘ylagan; ko‘p baliq turlari suv o‘tlari bilan oziqlanadi."
+},
+{
+"k": "s0390",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi har qanday ifloslanish suv o‘tlarini ko‘paytiradi deb o‘ylagan; traktor tutuni suvga oziq moddalar qo‘shmaydi."
+},
+{
+"k": "s0391",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Dehqon dalaga o‘simliklar tez o‘sishi uchun nima soladi?"
+},
+{
+"k": "s0392",
+"maydon": "savol",
+"tur": "matn",
+"uz": "Ko‘l yaqinida yangi chorvachilik fermasi qurildi. Bir necha oydan so‘ng ko‘lda suv o‘tlari keskin ko‘payib ketdi. Buning eng ehtimolli sababi qaysi?"
+},
+{
+"k": "s0393",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Ferma hayvonlari ko‘ldan suv ichib, suv sathi pasaygani"
+},
+{
+"k": "s0394",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Ferma go‘ngi va chiqindilaridagi azot va fosfor birikmalari ko‘lga oqib tushgani"
+},
+{
+"k": "s0395",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Fermadagi shovqin ko‘ldagi baliqlarni qo‘rqitgani"
+},
+{
+"k": "s0396",
+"maydon": "javoblar",
+"tur": "matn",
+"uz": "Kuzda havo sovib, suv harorati pasaygani"
+},
+{
+"k": "s0397",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Suv o‘tlari o‘sishi uchun oziq moddalar kerak"
+},
+{
+"k": "s0398",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Suv o‘tlari tez ko‘payishi uchun ularga azot va fosfor kabi oziq moddalar kerak."
+},
+{
+"k": "s0399",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Go‘ng → azot va fosfor birikmalari"
+},
+{
+"k": "s0400",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Go‘ng va ferma chiqindilari shunday oziq moddalarga boy — go‘ng shuning uchun ham o‘g‘it sifatida ishlatiladi."
+},
+{
+"k": "s0401",
+"maydon": "doska",
+"tur": "matn",
+"uz": "Chiqindilar ko‘lga oqadi → suv o‘tlari ko‘payadi"
+},
+{
+"k": "s0402",
+"maydon": "ovoz",
+"tur": "matn",
+"uz": "Yomg‘ir suvi bu chiqindilarni ko‘lga oqizadi va suv o‘tlari keskin ko‘payadi."
+},
+{
+"k": "s0403",
+"maydon": "0",
+"tur": "matn",
+"uz": "A ni tanlagan o‘quvchi suv sathi pasayishi suv o‘tlarini ko‘paytiradi deb o‘ylagan; hayvonlar ichgan suv sezilarli ta’sir qilmaydi va oziq modda qo‘shmaydi."
+},
+{
+"k": "s0404",
+"maydon": "2",
+"tur": "matn",
+"uz": "C ni tanlagan o‘quvchi shovqin ekotizimga asosiy ta’sir qiladi deb o‘ylagan; suv o‘tlarining o‘sishi oziq moddalarga bog‘liq."
+},
+{
+"k": "s0405",
+"maydon": "3",
+"tur": "matn",
+"uz": "D ni tanlagan o‘quvchi sovuqlik suv o‘tlarini ko‘paytiradi deb o‘ylagan; aksincha, sovuqda ularning o‘sishi sekinlashadi."
+},
+{
+"k": "s0406",
+"maydon": "maslahat",
+"tur": "matn",
+"uz": "Go‘ng nima uchun dalaga solinishini eslang."
+}
+]
