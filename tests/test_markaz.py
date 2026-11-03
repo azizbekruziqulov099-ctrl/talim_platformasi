@@ -81,3 +81,11 @@ def test_sinov_toliq():
     assert baholash({"L09": " Ten ", "L11": "40"})["listening"]["togri"] == 2   # yozma javob: katta-kichik harf, bo'shliq farqi yo'q
     head = [q for q in qs(READING) if q["id"] in ("R07", "R08")]
     assert [q["javob"] for q in head] != [0, 1]   # sarlavhalar aralash tartibda
+
+
+def test_strategiya():
+    from modules.markaz_strategiya import royxat, STRATEGIYALAR
+    for t in ("uz", "ru", "en"):
+        r = royxat(t)
+        assert len(r) == len(STRATEGIYALAR) >= 8 and all(x["nom"] and x["qadamlar"] and 0 <= x["mashq"]["javob"] < len(x["mashq"]["variantlar"]) for x in r)
+    assert {x["bolim"] for x in royxat()} == {"listening", "reading", "writing", "speaking"}

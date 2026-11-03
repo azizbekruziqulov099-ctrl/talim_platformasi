@@ -347,6 +347,12 @@ def create_router(platform):
         javoblar: dict      # {W1: "...", W2: "..."} yoki {S1: "...", ...}
         iz: str = "uz"
 
+    @router.get("/api/markaz/strategiya")
+    def strategiya(til: str = "uz"):
+        """REV282: imtihon bo'limlari uchun strategiya darslari (qadamlar, misol, tekshiruv mashqi) — 3 tilda."""
+        from modules.markaz_strategiya import royxat
+        return {"strategiyalar": royxat(til)}
+
     @router.get("/api/markaz/sinov")
     def sinov(token: str, turi: str = "mini"):
         platform._jwt_tekshir(token)
