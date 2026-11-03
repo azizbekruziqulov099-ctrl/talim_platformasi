@@ -119,3 +119,12 @@ def test_excel_kontent():
     s, xato3 = strategiya_oqish(strategiya_shablon(STRATEGIYALAR))
     assert not xato3 and len(s) == len(STRATEGIYALAR)
     assert sinov_oqish(b"bu excel emas")[1][0]["xabar"].startswith("Fayl")
+
+
+def test_rus_daraja_va_aralash():
+    from collections import Counter
+    from modules.markaz_daraja import RU, EN, baholash, savollar
+    assert len(RU) == 40 and len(savollar("ru")) == 40
+    assert baholash("ru", {q["id"]: q["javob"] for q in RU})["daraja"] == "C1"
+    for bank in (RU, EN):   # to'g'ri javob bitta harfda to'planmagan
+        assert max(Counter(q["javob"] for q in bank).values()) <= 20

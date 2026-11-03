@@ -262,7 +262,7 @@ def create_router(platform):
         if not yuk:
             raise HTTPException(503, "Dars xonasi tayyor emas")
         lesson = yuk(darslar[int(dars) - 1]["topic_code"], "uz")
-        m = mashq_darsdan(lesson, til)
+        m = mashq_darsdan(lesson, til)   # REV289: til — o'rganilayotgan til tegi ([en] yoki [ru])
         if not m["dialog"]:
             raise HTTPException(404, "Bu darsda suhbat topilmadi")
         m["nom"] = m["nom"] or darslar[int(dars) - 1]["nomi"]
@@ -281,6 +281,7 @@ def create_router(platform):
         dars: int = 1
         iz: str = "uz"
         daraja: str = "A1"
+        til: str = "en"
         xabarlar: list = []
 
     class _Yozish(BaseModel):
@@ -289,6 +290,7 @@ def create_router(platform):
         dars: int = 1
         iz: str = "uz"
         daraja: str = "A1"
+        til: str = "en"
         matn: str
 
     def _ai_json(platform_, tizim, xabarlar, max_tokens=400):
@@ -311,27 +313,30 @@ def create_router(platform):
             print(f"[MARKAZ-AI] {type(e).__name__}: {str(e)[:200]}", flush=True)
             raise HTTPException(502, "AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
 
-    def _dars(dars, iz="uz", daraja="A1"):
-        m = _kitob_mashq("en", iz, dars, daraja)
+    TIL_NOM = {"en": "English", "ru": "Russian", "de": "German", "fr": "French", "es": "Spanish", "tr": "Turkish", "ko": "Korean", "ja": "Japanese", "zh": "Chinese", "ar": "Arabic"}
+
+    def _dars(dars, iz="uz", daraja="A1", til="en"):
+        m = _kitob_mashq(til if til in TIL_NOM else "en", iz, dars, daraja)
         return {"dialog": [(d["kim"], d["gap"]) for d in m["dialog"]], "rol": (m["rol"]["topshiriq"], m["rol"]["izoh"], m["rol"]["izoh"], m["rol"]["namuna"])}
 
     @router.post("/api/markaz/suhbat")
     def suhbat(s: _Suhbat):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_suhbat")
-        d = _dars(s.dars, s.iz, s.daraja)
+        d = _dars(s.dars, s.iz, s.daraja, s.til)
         rol = d["dialog"][0][0]
+        tn = TIL_NOM.get(s.til, "English")
         izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
-        qoida = ("Rules: stay in role; reply in natural English for B1 (varied tenses and linking words, max 20 words per sentence, max 3 sentences); "
-                 if s.daraja == "B1" else "Rules: stay in role; reply in natural English for A2 (simple past/future allowed, max 15 words per sentence, max 3 sentences); "
-                 if s.daraja == "A2" else "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); ")
-        tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner. Situation: {d['rol'][0]} "
+        qoida = (f"Rules: stay in role; reply in natural {tn} for B1 (varied tenses and linking words, max 20 words per sentence, max 3 sentences); "
+                 if s.daraja == "B1" else f"Rules: stay in role; reply in natural {tn} for A2 (simple past/future allowed, max 15 words per sentence, max 3 sentences); "
+                 if s.daraja == "A2" else f"Rules: stay in role; reply in simple, natural {tn} (A1: short sentences, max 12 words each, max 2 sentences); ")
+        tizim = (f"You are {rol} in a real-life {tn} conversation practice for a CEFR {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner. Situation: {d['rol'][0]} "
                  f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b in d["dialog"]) + ". "
                  + qoida
                  + "ask one simple question to keep the conversation going; never switch to another language in 'javob'. "
                  f"Also check the learner's LAST message: if it has a grammar or word mistake, give the corrected sentence and a very short "
                  f"explanation in {izoh_til}; if it is correct, leave 'tuzatish' empty. "
-                 'Return JSON: {"javob": "your English reply", "tuzatish": "corrected sentence or empty", "izoh": "short explanation or empty", "tugadi": false}. '
+                 'Return JSON: {"javob": "your reply in the target language", "tuzatish": "corrected sentence or empty", "izoh": "short explanation or empty", "tugadi": false}. '
                  "Set tugadi=true after about 6 exchanges or when the situation is naturally finished.")
         tarix = [{"role": "assistant" if x.get("rol") == "ai" else "user", "content": str(x.get("matn") or "")[:400]} for x in (s.xabarlar or [])[-12:]]
         if not tarix:
@@ -344,12 +349,13 @@ def create_router(platform):
     def yozish(s: _Yozish):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_yozish")
-        d = _dars(s.dars, s.iz, s.daraja)
+        d = _dars(s.dars, s.iz, s.daraja, s.til)
+        tn = TIL_NOM.get(s.til, "English")
         matn = (s.matn or "").strip()[:1500]
         if len(matn.split()) < 3:
             raise HTTPException(400, "Kamida 3 ta so'z yozing")
         izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
-        tizim = (f"You are a careful, encouraging English teacher marking a {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner's short writing. "
+        tizim = (f"You are a careful, encouraging {tn} teacher marking a {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner's short writing. "
                  f"Task: Write 3–5 sentences. {d['rol'][0]} "
                  f"Mark it like a CEFR-aligned examiner: task achievement, vocabulary, grammar, spelling/punctuation. Explanations in {izoh_til}. "
                  "Do not invent mistakes; if a sentence is correct, do not list it. "
@@ -608,7 +614,9 @@ def create_router(platform):
         return sorted(rows, key=k)
 
     KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)",
-                ("en", "en"): "Ingliz tili — Erkin til (izoh: ingliz)"}   # REV286: inglizcha izohli (to'liq ingliz muhiti)
+                ("en", "en"): "Ingliz tili — Erkin til (izoh: ingliz)",   # REV286: inglizcha izohli (to'liq ingliz muhiti)
+                # REV289: rus tili kurslari — o'zbekcha, inglizcha izohli va to'liq rus muhiti
+                ("ru", "uz"): "Rus tili — Erkin til", ("ru", "en"): "Rus tili — Erkin til (izoh: ingliz)", ("ru", "ru"): "Rus tili — Erkin til (izoh: rus)"}
     def _iz(iz):
         return iz if iz in ("ru", "en") else "uz"
 
