@@ -245,7 +245,7 @@ def create_router(platform):
             rows = []
         finally:
             cur.close(); conn.close()
-        return [r for r in rows if not re.search(r"takror|darvoza|повторени|проверк|review", str(r.get("nomi") or ""), re.I)]
+        return _tartib([r for r in rows if not re.search(r"takror|darvoza|повторени|проверк|review", str(r.get("nomi") or ""), re.I)])
 
     def _kitob_mashq(til, iz, dars):
         from modules.markaz_kitob import mashq_darsdan
@@ -489,6 +489,13 @@ def create_router(platform):
             cur.close(); conn.close()
         return {"oquvchilar": out}
 
+    def _tartib(rows):
+        """Darslar nom boshidagi raqam bo'yicha (1, 2, … 10, 11 — matn tartibidagi 1, 10, 11, 2 xatosi bo'lmasin)."""
+        def k(r):
+            m = re.match(r"\s*(\d+)", str(r.get("nomi") or ""))
+            return (int(m.group(1)) if m else 9999, str(r.get("topic_code") or ""))
+        return sorted(rows, key=k)
+
     KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)"}
 
     @router.get("/api/markaz/darslar")
@@ -511,7 +518,7 @@ def create_router(platform):
             rows = []
         finally:
             cur.close(); conn.close()
-        return {"fan": fan, "daraja": daraja, "darslar": [r for r in rows if r.get("dars_bor")]}
+        return {"fan": fan, "daraja": daraja, "darslar": _tartib([r for r in rows if r.get("dars_bor")])}
 
     @router.get("/api/markaz/men")
     def men(token: str, til: str = "uz"):
