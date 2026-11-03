@@ -303,12 +303,19 @@ def build_lesson(topic, units, media_url, extra_questions=()):
             questions.append(q)
             seen.add(q["savol"])
 
+    # REV297: test banki — darsdagi 5 tadan ko'p: Miya'dagi BARCHA test savollari (Testlar bo'limi uchun)
+    bank = list(questions)
+    seen_b = {q["savol"] for q in bank}
+    for q in extra_questions:
+        if q["savol"] not in seen_b:
+            bank.append(q); seen_b.add(q["savol"])
     return {
         "topic": topic,
         "auto": auto,
         "steps": steps,
         "variants": variants,
         "savollar": questions[:MAX_QUESTIONS],
+        "test_banki": bank,
     }
 
 
@@ -593,7 +600,7 @@ def create_router(platform):
                    FROM generated_tests
                    WHERE topic_code=%s AND COALESCE(question_type,'single_choice')='single_choice'
                      AND (COALESCE(ai_brain_unit_code,'')='' OR ai_brain_unit_code=ANY(%s))
-                   ORDER BY id LIMIT 12""",
+                   ORDER BY id LIMIT 80""",   # REV297: test banki uchun ko'proq
                 (topic_code, [u["unit_code"] for u in units]),
             )
             for r in cur.fetchall():
@@ -706,6 +713,44 @@ def create_router(platform):
 
     # REV283: boshqa modullar (o'quv markazi mashqlari) darsni shu yerdan, kesh bilan o'qiydi — kontent bitta manbada (Miya)
     platform._dars_load_lesson = load_lesson
+
+    @router.get("/api/dars_xonasi/{topic_code}/test")
+    def dars_testi(topic_code: str, token: str, til: str = "uz", soni: int = 30):
+        """REV297: mavzu testi — Miya kitobidan: avval shu mavzuning barcha test savollari, keyin shu fan va sinfning
+        OLDINGI mavzulari (yaqinidan uzog'iga) — so'ralgan songacha (20–80). Rasmlar kitobdagi kabi (mavzuga mos)."""
+        platform._jwt_tekshir(token)
+        soni = max(5, min(int(soni or 30), 80))
+        asosiy = load_lesson(topic_code, til)
+        pool, seen = [], set()
+        def qosh(lesson):
+            for q in (lesson.get("test_banki") or lesson.get("savollar") or []):
+                k = _t(q.get("savol"))
+                if k and k not in seen and len(pool) < soni:
+                    seen.add(k); pool.append(q)
+        qosh(asosiy)
+        if len(pool) < soni:
+            conn = platform._db(); cur = conn.cursor()
+            try:
+                cur.execute("SELECT subject_name, grade FROM dts_tree WHERE topic_code=%s AND is_deleted=FALSE LIMIT 1", (topic_code,))
+                r = cur.fetchone()
+                oldingi = []
+                if r:
+                    cur.execute("""SELECT d.topic_code FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND d.grade IS NOT DISTINCT FROM %s
+                                     AND d.topic_code < %s AND EXISTS(SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code AND au.status='published')
+                                   ORDER BY d.topic_code DESC LIMIT 40""", (r["subject_name"], r["grade"], topic_code))
+                    oldingi = [x["topic_code"] for x in cur.fetchall()]
+            finally:
+                cur.close(); conn.close()
+            for kod in oldingi:
+                if len(pool) >= soni:
+                    break
+                try:
+                    qosh(load_lesson(kod, til))
+                except HTTPException:
+                    continue
+        if not pool:
+            raise HTTPException(status_code=404, detail="Bu mavzuda test savollari hali yo'q")
+        return {**asosiy, "steps": asosiy.get("steps", [])[:1], "savollar": pool, "faqat_test": True, "test_soni": len(pool)}
 
     @router.get("/api/dars_xonasi/{topic_code}")
     def dars_xonasi(topic_code: str, token: str, til: str = "uz"):

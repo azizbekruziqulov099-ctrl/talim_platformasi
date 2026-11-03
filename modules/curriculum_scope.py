@@ -124,7 +124,8 @@ def group_catalog_rows(rows, only_tested=True):
     for r in rows:
         # PostgreSQL ARRAY_AGG ... FILTER returns NULL when a topic has no tests.
         # Such a topic must not break the rest of the school's catalog.
-        raw_codes = r.get('testli_kodlar') if only_tested else r.get('barcha_kodlar')
+        # REV297: Testlar bo'limida Miya'dagi darsi (va testlari) bor mavzular ham chiqadi — test Miya kitobidan tuziladi
+        raw_codes = ((r.get('testli_kodlar') or []) + (r.get('darsli_kodlar') or [])) if only_tested else r.get('barcha_kodlar')
         codes=list(dict.fromkeys(code for code in (raw_codes or []) if code))
         if not codes:continue
         annual=scope_identity(r,False) if r.get('kurs') else r['curriculum_scope_id']
