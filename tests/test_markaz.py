@@ -67,3 +67,17 @@ def test_sinov_mini():
     assert chegaralar(50) == "B1" and chegaralar(51) == "B2" and chegaralar(37) == "B1 dan past"
     ids = [s["id"] for b in LISTENING + READING for s in b["savollar"]]
     assert len(ids) == len(set(ids)) == 20
+
+
+def test_sinov_toliq():
+    import json
+    from modules.markaz_sinov_toliq import LISTENING, READING, ochiq, baholash
+    qs = lambda B: [q for b in B for q in [x for _, x in b.get("audio", [])] + b.get("savollar", [])]
+    assert len(qs(LISTENING)) == 35 and len(qs(READING)) == 35
+    assert '"javob"' not in json.dumps(ochiq())
+    hammasi = {q["id"]: (q["javob"] if q["tur"] == "tanlash" else q["javob"][0]) for q in qs(LISTENING) + qs(READING)}
+    r = baholash(hammasi)
+    assert r["listening"]["ball"] == 75 and r["reading"]["togri"] == 35
+    assert baholash({"L09": " Ten ", "L11": "40"})["listening"]["togri"] == 2   # yozma javob: katta-kichik harf, bo'shliq farqi yo'q
+    head = [q for q in qs(READING) if q["id"] in ("R07", "R08")]
+    assert [q["javob"] for q in head] != [0, 1]   # sarlavhalar aralash tartibda

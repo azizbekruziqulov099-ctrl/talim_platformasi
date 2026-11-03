@@ -338,6 +338,7 @@ def create_router(platform):
         token: str
         yozilish_id: int
         javoblar: dict
+        turi: str = "mini"
 
     class _SinovMatn(BaseModel):
         token: str
@@ -347,15 +348,22 @@ def create_router(platform):
         iz: str = "uz"
 
     @router.get("/api/markaz/sinov")
-    def sinov(token: str):
+    def sinov(token: str, turi: str = "mini"):
         platform._jwt_tekshir(token)
         from modules.markaz_sertifikat import sinov_ochiq
-        return sinov_ochiq()
+        out = sinov_ochiq()
+        if turi == "toliq":   # REV280: to'liq sinov — Listening 35 + Reading 35 (imtihon qismlari bo'yicha); Writing/Speaking — o'sha
+            from modules.markaz_sinov_toliq import ochiq
+            out = {**out, **ochiq()}
+        return out
 
     @router.post("/api/markaz/sinov/obyektiv")
     def sinov_obyektiv(s: _SinovObyektiv):
         uid = platform._jwt_tekshir(s.token)
-        from modules.markaz_sertifikat import obyektiv_ball
+        if s.turi == "toliq":
+            from modules.markaz_sinov_toliq import baholash as obyektiv_ball
+        else:
+            from modules.markaz_sertifikat import obyektiv_ball
         n = obyektiv_ball(s.javoblar or {})
         conn = platform._db(); cur = conn.cursor()
         try:
@@ -364,7 +372,7 @@ def create_router(platform):
             if cur.fetchone():
                 for b in ("listening", "reading"):
                     cur.execute("INSERT INTO markaz_faollik (yozilish_id, turi, dars_kodi, daqiqa, foiz) VALUES (%s,'sinov',%s,30,%s)",
-                                (s.yozilish_id, f"mock-{b}", round(100 * n[b]["ball"] / 75)))
+                                (s.yozilish_id, f"{'full' if s.turi == 'toliq' else 'mock'}-{b}", round(100 * n[b]["ball"] / 75)))
             conn.commit()
         finally:
             cur.close(); conn.close()
