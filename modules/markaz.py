@@ -6,6 +6,7 @@ Kontent mualliflik huquqiga rioya qiladi: imtihon formatlari ochiq e'lon qilinga
 import datetime as dt
 import json
 import math
+import re
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -227,15 +228,47 @@ def create_router(platform):
             cur.close(); conn.close()
         return n
 
-    @router.get("/api/markaz/mashq")
-    def mashq(til: str = "en", daraja: str = "A1", dars: int = 1, iz: str = "uz"):
-        """REV275: 4 ko'nikma mashqlari — tinglash, diktant, gapirish (javoblar ochiq: tekshiruv brauzerda, natija /faollik ga)."""
-        from modules.markaz_mashq import mashqlar
-        m = mashqlar(til, daraja, dars, "ru" if iz == "ru" else "uz")
-        if not m:
-            raise HTTPException(404, "Bu kurs uchun mashqlar tez orada")
+    def _kurs_darslari(til, iz):
+        """Kursning MAZMUNLI darslari (takrorlash/darvoza darslarisiz), tartib bilan — Miya'dagi kitobdan."""
+        fan = KURS_FAN.get((til, "ru" if iz == "ru" else "uz"))
+        if not fan:
+            return []
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            cur.execute("""SELECT d.topic_code, COALESCE(NULLIF(d.kichik_name,''), NULLIF(d.mavzu_name,''), NULLIF(d.bolim_name,''), d.bob_name) AS nomi
+                           FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND UPPER(COALESCE(d.grade,''))='A1'
+                             AND EXISTS(SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code AND au.status='published')
+                           ORDER BY d.topic_code""", (fan,))
+            rows = [dict(r) for r in cur.fetchall()]
+        except Exception as e:
+            print(f"[MARKAZ-KITOB] {type(e).__name__}: {str(e)[:200]}", flush=True)
+            rows = []
+        finally:
+            cur.close(); conn.close()
+        return [r for r in rows if not re.search(r"takror|darvoza|повторени|проверк|review", str(r.get("nomi") or ""), re.I)]
+
+    def _kitob_mashq(til, iz, dars):
+        from modules.markaz_kitob import mashq_darsdan
+        darslar = _kurs_darslari(til, iz)
+        if not darslar:
+            raise HTTPException(404, "Kurs kitobi hali Miya'ga yuklanmagan")
+        if not (1 <= int(dars) <= len(darslar)):
+            raise HTTPException(404, "Dars topilmadi")
+        yuk = getattr(platform, "_dars_load_lesson", None)
+        if not yuk:
+            raise HTTPException(503, "Dars xonasi tayyor emas")
+        lesson = yuk(darslar[int(dars) - 1]["topic_code"], "uz")
+        m = mashq_darsdan(lesson, til)
+        if not m["dialog"]:
+            raise HTTPException(404, "Bu darsda suhbat topilmadi")
+        m["nom"] = m["nom"] or darslar[int(dars) - 1]["nomi"]
+        m["darslar_soni"] = len(darslar)
         return m
 
+    @router.get("/api/markaz/mashq")
+    def mashq(til: str = "en", daraja: str = "A1", dars: int = 1, iz: str = "uz"):
+        """REV283: 4 ko'nikma mashqlari — kontent Miya'dagi kurs kitobidan (bitta manba)."""
+        return _kitob_mashq(til, iz, dars)
 
     # ───────── REV276: sun'iy intellekt bilan suhbat (rol o'yini) va yozishni baholash ─────────
     class _Suhbat(BaseModel):
@@ -272,22 +305,19 @@ def create_router(platform):
             print(f"[MARKAZ-AI] {type(e).__name__}: {str(e)[:200]}", flush=True)
             raise HTTPException(502, "AI hozir javob bermadi. Birozdan keyin qayta urinib ko'ring.")
 
-    def _dars(dars):
-        from modules.markaz_mashq import KURSLAR
-        DARSLAR = KURSLAR[("en", "A1")]
-        if not (1 <= int(dars) <= len(DARSLAR)):
-            raise HTTPException(404, "Dars topilmadi")
-        return DARSLAR[int(dars) - 1]
+    def _dars(dars, iz="uz"):
+        m = _kitob_mashq("en", iz, dars)
+        return {"dialog": [(d["kim"], d["gap"]) for d in m["dialog"]], "rol": (m["rol"]["topshiriq"], m["rol"]["izoh"], m["rol"]["izoh"], m["rol"]["namuna"])}
 
     @router.post("/api/markaz/suhbat")
     def suhbat(s: _Suhbat):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_suhbat")
-        d = _dars(s.dars)
+        d = _dars(s.dars, s.iz)
         rol = d["dialog"][0][0]
         izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
         tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR A1 learner. Situation: {d['rol'][0]} "
-                 f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b, *_ in d["dialog"]) + ". "
+                 f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b in d["dialog"]) + ". "
                  "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); "
                  "ask one simple question to keep the conversation going; never switch to another language in 'javob'. "
                  f"Also check the learner's LAST message: if it has a grammar or word mistake, give the corrected sentence and a very short "
@@ -305,7 +335,7 @@ def create_router(platform):
     def yozish(s: _Yozish):
         uid = platform._jwt_tekshir(s.token)
         platform._ai_limit(uid, "markaz_yozish")
-        d = _dars(s.dars)
+        d = _dars(s.dars, s.iz)
         matn = (s.matn or "").strip()[:1500]
         if len(matn.split()) < 3:
             raise HTTPException(400, "Kamida 3 ta so'z yozing")

@@ -46,14 +46,23 @@ def test_daraja_testi():
     assert baholash("en", hammasi)["daraja"] == "C1"
 
 
-def test_mashqlar():
-    from modules.markaz_mashq import mashqlar
-    m = mashqlar("en", "A1", 3, "uz")
-    assert m["nom"] == "Kafeda" and len(m["tinglash"]) == 5 and len(m["diktant"]) == 6
-    for t in m["tinglash"]:
-        assert len(t["variantlar"]) == 3 and 0 <= t["javob"] < 3
-    assert mashqlar("en", "A1", 99) is None and mashqlar("ko", "A1", 1) is None
-    assert mashqlar("en", "A1", 1, "ru")["nom"] == "Знакомство"
+def test_mashq_kitobdan():
+    from modules.markaz_kitob import mashq_darsdan
+    steps = [
+        {"turi": "kirish", "sarlavha": "[en]Can I have a coffee, please?[/en]", "doska": "[en]Can I have a coffee, please?[/en]", "ovoz": ""},
+        {"turi": "tushuncha", "sarlavha": "[en]Listen to the conversation[/en]", "ovoz": "",
+         "doska": "[en]Waiter: Good afternoon! What would you like?[/en]\n[en]Madina: A tea, please.[/en]\n[en]Waiter: Here you are.[/en]"},
+        {"turi": "tushuncha", "sarlavha": "☕ [en]coffee[/en] — qahva", "doska": "☕ [en]coffee[/en]\nqahva\n[en]A coffee, please.[/en]", "ovoz": ""},
+        {"turi": "tushuncha", "sarlavha": "[en]Can I have …, please?[/en]", "doska": "[en]Can I have a coffee, please?[/en]\n[en]Here you are.[/en]", "ovoz": ""},
+        {"turi": "tushuncha", "sarlavha": "[en]Your turn![/en]", "doska": "[en]Order a drink.[/en]\n[en]Can I have …, please?[/en]", "ovoz": "[en]Order a drink.[/en] Ichimlik buyuring."},
+        {"turi": "tushuncha", "sarlavha": "🌟 [en]Today we learned[/en]", "doska": "☕ [en]coffee[/en]  🍵 [en]tea[/en]", "ovoz": ""},
+    ]
+    m = mashq_darsdan({"steps": steps, "topic": {"mavzu": "Kafeda"}})
+    assert [d["kim"] for d in m["dialog"]] == ["Waiter", "Madina", "Waiter"] and m["rol_kim"] == "Waiter"
+    assert m["diktant"] == [{"emoji": "☕", "soz": "coffee", "mano": "qahva", "gap": "A coffee, please."}]
+    assert all(t["variantlar"][t["javob"]] == t["gap"] for t in m["tinglash"])
+    assert "coffee" not in [g["gap"] for g in m["gapirish"]] and "Can I have a coffee, please?" in [g["gap"] for g in m["gapirish"]]
+    assert m["rol"]["topshiriq"] == "Order a drink." and "Ichimlik" in m["rol"]["izoh"]
 
 
 def test_sinov_mini():

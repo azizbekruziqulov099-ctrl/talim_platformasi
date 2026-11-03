@@ -704,6 +704,9 @@ def create_router(platform):
         item["kitob"] = _t(unit.get("book_title"))
         return item
 
+    # REV283: boshqa modullar (o'quv markazi mashqlari) darsni shu yerdan, kesh bilan o'qiydi — kontent bitta manbada (Miya)
+    platform._dars_load_lesson = load_lesson
+
     @router.get("/api/dars_xonasi/{topic_code}")
     def dars_xonasi(topic_code: str, token: str, til: str = "uz"):
         platform._jwt_tekshir(token)
