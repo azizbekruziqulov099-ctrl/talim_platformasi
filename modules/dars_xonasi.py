@@ -728,6 +728,15 @@ def create_router(platform):
                 if k and k not in seen and len(pool) < soni:
                     seen.add(k); pool.append(q)
         qosh(asosiy)
+        # REV298: har mavzuga o'zining kamida 20 savoli — kitobdagi testlar yetmasa, darsning o'z so'zlari va rasmlaridan
+        # (rasm↔so'z, ma'no↔so'z, sanash). Faqat tuzilishidan to'g'riligi kafolatlangan savollar.
+        from modules.test_yasash import yasash
+        kerak = min(soni, 20) - len(pool)
+        if kerak > 0:
+            for q in yasash(asosiy, til, kerak + 10, seed=topic_code):
+                k = _t(q.get("savol"))
+                if k and k not in seen and len(pool) < min(soni, 20):
+                    seen.add(k); pool.append(q)
         if len(pool) < soni:
             conn = platform._db(); cur = conn.cursor()
             try:

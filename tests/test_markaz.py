@@ -128,3 +128,21 @@ def test_rus_daraja_va_aralash():
     assert baholash("ru", {q["id"]: q["javob"] for q in RU})["daraja"] == "C1"
     for bank in (RU, EN):   # to'g'ri javob bitta harfda to'planmagan
         assert max(Counter(q["javob"] for q in bank).values()) <= 20
+
+
+def test_rev298_test_yasash():
+    from modules.test_yasash import yasash, lugat
+    L = {"steps": [{"sarlavha": "🎪 [en]circus[/en] — sirk", "doska": "🎪 [en]circus[/en]\nsirk"},
+                   {"sarlavha": "🏟️ [en]stadium[/en] — stadion", "doska": "🏟️ [en]stadium[/en]"},
+                   {"sarlavha": "🎭 [en]theatre[/en] — teatr", "doska": "🎭 [en]theatre[/en]"},
+                   {"sarlavha": "🟣 Rolli o'yin", "doska": "🟣 [en]the teacher[/en]"},
+                   {"sarlavha": "Sanaymiz", "doska": "🍎🍎🍎"}]}
+    assert len(lugat(L, "uz")) == 3   # 🍎🍎🍎 — sanoq qatori, so'z emas
+    qs = yasash(L, "uz", 30, seed="x")
+    assert len(qs) >= 12
+    for q in qs:
+        assert len(q["variantlar"]) == 3 and len(set(q["variantlar"])) == 3 and 0 <= q["togri"] < 3
+        if q["savol"].startswith("Nechta"):
+            assert "🍎" in q["savol"] and q["variantlar"][q["togri"]] == str(q["savol"].split("? ")[1].count("🍎"))
+        if "circus" in q["savol"] and "nima degani" in q["savol"]:
+            assert q["variantlar"][q["togri"]] == "sirk"
