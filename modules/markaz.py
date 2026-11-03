@@ -322,7 +322,8 @@ def create_router(platform):
         d = _dars(s.dars, s.iz, s.daraja)
         rol = d["dialog"][0][0]
         izoh_til = "Russian" if s.iz == "ru" else "simple English" if s.iz == "en" else "Uzbek (Latin script)"
-        qoida = ("Rules: stay in role; reply in natural English for A2 (simple past/future allowed, max 15 words per sentence, max 3 sentences); "
+        qoida = ("Rules: stay in role; reply in natural English for B1 (varied tenses and linking words, max 20 words per sentence, max 3 sentences); "
+                 if s.daraja == "B1" else "Rules: stay in role; reply in natural English for A2 (simple past/future allowed, max 15 words per sentence, max 3 sentences); "
                  if s.daraja == "A2" else "Rules: stay in role; reply in simple, natural English (A1: short sentences, max 12 words each, max 2 sentences); ")
         tizim = (f"You are {rol} in a real-life English conversation practice for a CEFR {s.daraja if s.daraja in ('A1', 'A2', 'B1') else 'A1'} learner. Situation: {d['rol'][0]} "
                  f"Example dialogue for this situation: " + " / ".join(f"{a}: {b}" for a, b in d["dialog"]) + ". "
