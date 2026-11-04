@@ -197,6 +197,8 @@ def build_lesson(topic, units, media_url, extra_questions=()):
             if steps[-1]["turi"] == "amaliy":
                 item = practice_item(u, media_url)
                 steps[-1].update(maslahat=item["maslahat"])
+                if _t(p.get("oyin")):
+                    steps[-1].update(oyin=int(_t(p.get("oyin"))))   # REV324: bog'cha o'yini
                 steps[-1].update(kod=item["kod"], amaliy_turi=item["turi"], turi_nomi=item["turi_nomi"],
                                  variantlar=item["variantlar"], togri=item["togri"], yechim=item["yechim"])
         for u in by_kind.get("variant", []):

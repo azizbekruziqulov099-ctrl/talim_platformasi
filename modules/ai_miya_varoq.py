@@ -48,6 +48,8 @@ COLUMNS = [
     ("sodda", "Tushunmadim: soddaroq", 30, "Faqat tushuncha qatori uchun."),
     ("boshqa_usul", "Tushunmadim: boshqa usulda", 30, "Faqat tushuncha qatori uchun."),
     ("sahifa", "Sahifa", 8, ""),
+    # REV324: bog'cha — qadam o'yin sifatida o'ynaladi (o'yinlar kutubxonasidagi raqam 1–200); bo'sh — oddiy topshiriq
+    ("oyin", "O'yin", 9, "Bog'cha: o'yin raqami 1–200 (o'yinlar kutubxonasi). Bo'sh qolsa — oddiy topshiriq."),
     # REV269: matematika darsi — tushunchadan keyin tekshiruv savoli, amaliyda maslahatlar, testda har xato variantning izohi
     ("tekshiruv", "Tekshiruv savoli", 30, "Tushuncha uchun: Savol? => javob. Bir nechta to'g'ri javob | bilan: 2/6|1/3"),
     ("maslahat", "Maslahat", 30, "Misol, masala, topshiriq: har satr — bitta maslahat (1-maslahat, 2-maslahat). Yechimni aytib qo'ymang."),
@@ -59,8 +61,16 @@ TYPE_ALIASES = {
     "kirish": "kirish", "misol": "misol", "ishlanganmisol": "misol", "namuna": "misol",
     "masala": "masala", "topshiriq": "topshiriq", "amaliy": "topshiriq", "mashq": "topshiriq",
     "amaliymashgulot": "topshiriq", "vazifa": "topshiriq", "test": "test", "xulosa": "xulosa",
+    "oyin": "topshiriq", "o'yin": "topshiriq", "sir": "kirish",
 }
 PRACTICE = ("misol", "masala", "topshiriq", "test")
+
+
+def _oyin_raqami(v):
+    """REV324: «O'yin» katagi — 1–200 oralig'idagi butun son yoki bo'sh."""
+    m = re.search(r"\d+", str(v or ""))
+    n = int(m.group(0)) if m else 0
+    return str(n) if 1 <= n <= 200 else ""
 PRACTICE_INTRO = {
     "uz": {"misol": "Endi misolni ko'ramiz", "masala": "Endi masala", "topshiriq": "Endi amaliy topshiriq",
            "read": "Shartni doskadan diqqat bilan o'qing.", "try": "Avval o'zingiz bajarib ko'ring, yechimni keyin ochasiz."},
@@ -442,6 +452,7 @@ def parse_sheets(wb, media_names=None, max_images=500):
                          "variantlar": "\n".join(f"{'ABCDE'[i]}) {o}" for i, o in enumerate(options[:5])),
                          "togri_javob": _t(c.get("javob")),
                          "maslahat": c.get("maslahat", ""), "qiyinlik": c.get("qiyinlik", ""),
+                         "oyin": _oyin_raqami(c.get("oyin")),
                      })
 
         if not steps and not any(t["topic_code"] == code for t in payload["06_MASHQLAR"]):
