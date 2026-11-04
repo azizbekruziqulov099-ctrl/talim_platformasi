@@ -270,14 +270,34 @@ def create_router(platform):
                     total["testlar"] += cur.rowcount
                 if body.mavzular and codes:
                     # REV215: darsi bor mavzu o'chirilmaydi (o'chsa — darslar o'quvchiga ko'rinmay qoladi). Avval miyani o'chiring.
+                    # REV330: testi bor mavzu ham o'chirilmaydi (testlar yo'qolmasin) — faqat «Testlar» ham belgilansa
                     cur.execute("""UPDATE dts_tree d SET is_deleted=TRUE WHERE d.topic_code = ANY(%s) AND d.is_deleted=FALSE
-                                   AND NOT EXISTS (SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code)""", (codes,))
+                                   AND NOT EXISTS (SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code)
+                                   AND (%s OR NOT EXISTS (SELECT 1 FROM generated_tests g WHERE g.topic_code=d.topic_code))""",
+                                (codes, bool(body.testlar)))
                     total["mavzular"] += cur.rowcount
                     cur.execute("""SELECT COUNT(DISTINCT u.topic_code) AS n FROM ai_brain_units u
                                    WHERE u.topic_code = ANY(%s)""", (codes,))
                     total["saqlandi_darsli_mavzu"] = total.get("saqlandi_darsli_mavzu", 0) + int(cur.fetchone()["n"])
             return {"ochirildi": total}
         return db_run(token, fn)
+
+    @router.get("/testlar_excel")
+    def testlar_excel(token: str, sinf: str, fan: str = ""):
+        """REV330: DTS test miyasi — tanlangan sinf/fan testlari Excel'da (tozalashdan oldin zaxira)."""
+        from fastapi.responses import Response
+        from modules import dts_test_eksport as eks
+
+        def fn(cur):
+            if not _table_exists(cur, "generated_tests") or not _table_exists(cur, "dts_tree"):
+                return [], []
+            return eks.yig(cur, sinf, subject_key(fan) if fan else None, subject_key)
+        tests, mav = db_run(token, fn)
+        data = eks.kitob(tests, mav)
+        nom = f"DTS_testlar_{sinf.strip().replace(' ', '_')}_{(fan or 'hammasi').strip().replace(' ', '_')}.xlsx"
+        from urllib.parse import quote
+        return Response(data, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        headers={"Content-Disposition": f"attachment; filename*=UTF-8''{quote(nom)}", "X-Testlar": str(len(tests))})
 
     def indekslar():
         """REV188: o'chirish va sanash tez bo'lishi uchun indekslar (CONCURRENTLY — sayt ishlashiga xalaqit bermaydi)."""
