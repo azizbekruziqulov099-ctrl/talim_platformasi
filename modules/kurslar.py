@@ -40,6 +40,17 @@ def yosh_tartib(grade):
     return int(m.group()) if m else 99
 
 
+FAN_OZ_TILI = ((re.compile(r"^(ingliz|english|англ)", re.I), "en"), (re.compile(r"^(rus\b|russian|русск)", re.I), "ru"),
+               (re.compile(r"^(nemis|german|deutsch|немец)", re.I), "de"), (re.compile(r"^(ispan|spanish|español|испан)", re.I), "es"))
+
+
+def oz_tilida(fan):
+    """REV321: til fani o'z tilida izohli — «Ingliz tili (izoh: ingliz)», «Rus tili (izoh: rus)» — mantiqsiz, katalogda ko'rsatilmaydi."""
+    base = IZOH.sub("", str(fan or "")).strip()
+    t = next((k for re_, k in FAN_OZ_TILI if re_.search(base)), None)
+    return bool(t) and izoh_tili(fan) == t
+
+
 def kurs_of(fan, grade):
     """(kalit, kategoriya, nomi, guruh) — guruh: shu kurs darslari tartiblanadigan sinf(lar) to'plami kaliti."""
     base, g = asos_fan(fan), str(grade or "").strip()
@@ -244,6 +255,8 @@ def create_router(platform, click=None):
                 return [dict(r) for r in cur.fetchall()]
             kurslar = {}
             for r in _kesh("katalog_qatorlar", 120, qatorlar):   # REV309: hamma uchun bir xil — 2 daqiqa kesh
+                if oz_tilida(r["fan"]):
+                    continue
                 kalit, kat, nomi, _ = kurs_of(r["fan"], r["grade"])
                 k = kurslar.setdefault(kalit, {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "variantlar": []})
                 k["variantlar"].append({"fan": r["fan"], "grade": r["grade"], "darslar": int(r["darslar"])})

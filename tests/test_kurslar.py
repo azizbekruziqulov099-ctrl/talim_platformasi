@@ -38,3 +38,9 @@ def test_rev304_son_matnli_qiymat():
 def test_rev315_besh_til():
     assert izoh_tili("Matematika (izoh: nemis)") == "de" and izoh_tili("Matematika (izoh: ispan)") == "es"
     assert kurs_of("Matematika (izoh: ispan)", "5")[0] == kurs_of("Matematika", "5")[0]   # 5 til — bitta kurs
+
+
+def test_rev321_oz_tilida():
+    from modules.kurslar import oz_tilida
+    assert oz_tilida("Ingliz tili (izoh: ingliz)") and oz_tilida("Rus tili — Erkin til (izoh: rus)")
+    assert not oz_tilida("Ingliz tili (izoh: rus)") and not oz_tilida("Ingliz tili") and not oz_tilida("Matematika (izoh: ingliz)")
