@@ -49,7 +49,10 @@ class RejaTests(unittest.TestCase):
         tue = b.bugungi_kvota(r, 1, {}, {})
         self.assertGreater(sum(tue.values()), len(r["hafta"][1]) - 1)
         self.assertLessEqual(sum(tue.values()), r["sigim"][1])
-        self.assertEqual(sum(b.bugungi_kvota(r, 6, {}, {}).values()), 0)
+        # REV326: yakshanba — hafta davomida o'tilmagan darslar (qarz) ochiladi, ko'pi bilan YAKSHANBA_QARZ ta
+        self.assertEqual(sum(b.bugungi_kvota(r, 6, {}, {}).values()), min(b.YAKSHANBA_QARZ, len(r["faol"])))
+        done = {k: r["haftalik"][k] for k in r["faol"]}
+        self.assertEqual(sum(b.bugungi_kvota(r, 6, done, {}).values()), 0)                # hammasi o'tilgan — faqat takror
         # haftalik me'yor bajarilgan fan — qo'shimcha dars yo'q
         full = {k: r["haftalik"][k] for k in r["faol"]}
         self.assertEqual(sum(b.bugungi_kvota(r, 5, full, {}).values()), 0)

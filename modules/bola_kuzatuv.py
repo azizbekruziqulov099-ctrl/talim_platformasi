@@ -575,6 +575,18 @@ def create_router(platform):
                 f["tugadi"] += r["tugatilgan_at"] is not None
         for f in fans.values():
             f["qoldi"] = max(0, limit - f["ochildi"])
+        # REV326: tugallanmagan darslar — qancha qismi o'tilgani (oxirgi signaldagi qadam / jami qadam)
+        try:
+            cur.execute("SAVEPOINT bola_foiz")
+            cur.execute("""SELECT dars_kod, MAX(qadam) AS q, MAX(jami_qadam) AS j FROM bola_dars_faollik
+                           WHERE child_id=%s GROUP BY dars_kod""", (child_id,))
+            for r in cur.fetchall():
+                d = lessons.get(r["dars_kod"])
+                if d is not None and not d["tugadi"] and int(r["j"] or 0) > 0:
+                    d["foiz"] = max(0, min(99, round(100 * int(r["q"] or 0) / int(r["j"]))))
+            cur.execute("RELEASE SAVEPOINT bola_foiz")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT bola_foiz")
         out = {"sana": day.isoformat(), "kun": WEEKDAYS_UZ[day.weekday()], "dam_olish": day.weekday() >= 5,
                "limit": limit, "fanlar": fans, "darslar": lessons}
         if kid:

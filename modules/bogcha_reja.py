@@ -59,6 +59,7 @@ YOSH_QOIDA = {
     7: {"kun": 4, "shanba": 4, "jami": 10, "til": 7},
 }
 FAN_HAFTA_MAX = 3
+YAKSHANBA_QARZ = 2   # REV326: yakshanba kuni o'tilmay qolgan darslardan ko'pi bilan nechtasi ochiladi
 FAN_HAFTA_MIN = 2
 ROZILIK_VERSIYA = "2026-10-v1"
 ROZILIK_BANDLAR = [
@@ -218,6 +219,13 @@ def bugungi_kvota(reja, wd, oldin, bugun):
     O'tkazib yuborilgan (qarz) dars bugungi rejadagilardan keyin, kunlik sig'im yetsa ochiladi."""
     out = {k: 0 for k in reja["faol"]}
     if wd >= 6:
+        # REV326: yakshanba — takror kuni, lekin hafta davomida o'tilmay qolgan (qarz) darslar shu kuni ochiladi
+        bosh = YAKSHANBA_QARZ - sum(int(bugun.get(k, 0)) for k in out)
+        for k in reja["faol"]:
+            kerak = sum(1 for d in range(6) if k in reja["hafta"][d])
+            if bosh > 0 and int(bugun.get(k, 0)) < 1 and int(oldin.get(k, 0)) < min(kerak, reja["haftalik"].get(k, 0)):
+                out[k] = 1
+                bosh -= 1
         return out
     cap = reja["sigim"][wd]
     rejada = [k for k in reja["hafta"][wd] if k in out]
@@ -864,7 +872,7 @@ def boshlash_sababi(holat, fan_nomi, today):
         return None   # REV168: sinov darsi — olinmagan kursdan birinchi darslar bepul
     if holat["obuna_kerak"]:
         return {"sabab": "obuna", "kalit": k}
-    if today.weekday() == 6:
+    if today.weekday() == 6 and not (k and holat["kvota"].get(k, 0) > 0):   # REV326: qarz dars bo'lsa — ochiladi
         return {"sabab": "takror", "kalit": k}
     if not k or k not in holat["kvota"]:
         return {"sabab": "navbat" if k and k in holat["reja"]["navbat"] else "yoq", "kalit": k}
@@ -882,7 +890,7 @@ def boshlash_xatosi(holat, fan_nomi, today):
         return ""   # REV168: sinov darsi
     if holat["obuna_kerak"]:
         return "Yangi darslar uchun ota-onangiz kurs tanlashi kerak. O‘tilgan darslarni takrorlash va o‘yinlar ochiq."
-    if today.weekday() == 6:
+    if today.weekday() == 6 and not (k and holat["kvota"].get(k, 0) > 0):   # REV326: qarz dars bo'lsa — ochiladi
         return "Bugun yakshanba — takrorlash kuni. O‘tilgan darslarni takrorlaymiz, yangi dars ertaga ochiladi."
     if not k or k not in holat["kvota"]:
         if k and k in holat["reja"]["navbat"]:
