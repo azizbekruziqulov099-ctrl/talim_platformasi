@@ -290,6 +290,7 @@ class StartLesson(BaseModel):
     fan: str = Field(default="", max_length=120)
     mavzu: str = Field(default="", max_length=200)
     jami_qadam: int = Field(default=0, ge=0, le=500)
+    boshqa_til: bool = False   # REV328: o'tilgan darsni boshqa tilda takrorlash — yangi dars kvotasiga kirmaydi
 
 
 DIQQAT_CHEGARA = 5   # REV171: shuncha marta chiqib ketsa — ota-onaga darhol xabar
@@ -369,6 +370,7 @@ def migrate(cur):
             PRIMARY KEY (child_id, dars_kod)
         )""")
     cur.execute("CREATE INDEX IF NOT EXISTS bola_dars_holat_kun ON bola_dars_holat(child_id, ochilgan_sana, fan)")
+    cur.execute("ALTER TABLE bola_dars_holat ADD COLUMN IF NOT EXISTS boshqa_til BOOLEAN NOT NULL DEFAULT FALSE")   # REV328
     cur.execute("""
         CREATE TABLE IF NOT EXISTS bola_dars_faollik (
             id BIGSERIAL PRIMARY KEY,
@@ -562,14 +564,14 @@ def create_router(platform):
     def plan(cur, child_id, now, kid=False, holat=None):
         day = tashkent_day(now)
         limit = daily_limit(day)
-        cur.execute("""SELECT dars_kod, fan, ochilgan_sana, yulduz, tugatilgan_at FROM bola_dars_holat WHERE child_id=%s""", (child_id,))
+        cur.execute("""SELECT dars_kod, fan, ochilgan_sana, yulduz, tugatilgan_at, boshqa_til FROM bola_dars_holat WHERE child_id=%s""", (child_id,))
         rows = cur.fetchall()
         fans = {}
         lessons = {}
         for r in rows:
             lessons[r["dars_kod"]] = {"yulduz": r["yulduz"], "tugadi": r["tugatilgan_at"] is not None,
                                       "bugun": r["ochilgan_sana"] == day}
-            if r["ochilgan_sana"] == day:
+            if r["ochilgan_sana"] == day and not r.get("boshqa_til"):   # REV328: boshqa tildagi takror hisobga kirmaydi
                 f = fans.setdefault(r["fan"], {"ochildi": 0, "tugadi": 0})
                 f["ochildi"] += 1
                 f["tugadi"] += r["tugatilgan_at"] is not None
@@ -670,22 +672,22 @@ def create_router(platform):
                 cur.execute("ROLLBACK TO SAVEPOINT bola_fan")
             if holat is not None and not reja_mod.fan_kaliti(fan_nomi) and not holat.get("obuna_kerak"):
                 holat = None   # rejadagi 14 kursdan tashqari fan (masalan, musiqa) — eski «kuniga 2/3» tartibi
-            if not known and holat is not None:
+            if not known and holat is not None and not body.boshqa_til:
                 # REV162: haftalik reja bo'yicha — bugun shu fandan yangi dars bormi
                 err = reja_mod.boshlash_xatosi(holat, fan_nomi, day)
                 if err:
                     conn.rollback()
                     raise HTTPException(409, {"kod": "reja", "xabar": err, **(reja_mod.boshlash_sababi(holat, fan_nomi, day) or {})})
             if not known:
-                if holat is None:
-                    cur.execute("SELECT COUNT(*) AS n FROM bola_dars_holat WHERE child_id=%s AND ochilgan_sana=%s AND fan=%s",
+                if holat is None and not body.boshqa_til:
+                    cur.execute("SELECT COUNT(*) AS n FROM bola_dars_holat WHERE child_id=%s AND ochilgan_sana=%s AND fan=%s AND NOT boshqa_til",
                                 (user_id, day, body.fan))
                     if cur.fetchone()["n"] >= limit:
                         conn.rollback()
                         raise HTTPException(409, {"kod": "limit", "limit": limit,
                                                   "xabar": f"Bugungi {limit} ta yangi dars o'tildi. Yangi dars ertaga ochiladi — o'tilgan darslarni takrorlash va o'yinlar ochiq."})
-                cur.execute("""INSERT INTO bola_dars_holat(child_id, dars_kod, fan, mavzu, ochilgan_sana) VALUES(%s,%s,%s,%s,%s)""",
-                            (user_id, body.dars_kod, body.fan, body.mavzu, day))
+                cur.execute("""INSERT INTO bola_dars_holat(child_id, dars_kod, fan, mavzu, ochilgan_sana, boshqa_til) VALUES(%s,%s,%s,%s,%s,%s)""",
+                            (user_id, body.dars_kod, body.fan, body.mavzu, day, bool(body.boshqa_til)))
             cur.execute("""INSERT INTO bola_dars_faollik(child_id, dars_kod, fan, mavzu, sana, jami_qadam)
                            VALUES(%s,%s,%s,%s,%s,%s)
                            ON CONFLICT (child_id, dars_kod, sana) DO UPDATE SET oxirgi_signal_at=NOW(), korinadi=TRUE, faol=TRUE,

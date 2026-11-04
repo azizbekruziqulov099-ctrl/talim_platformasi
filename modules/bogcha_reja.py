@@ -746,7 +746,8 @@ def ochilgan_sonlar(cur, bola_id, today):
     start = hafta_boshi(today)
     try:   # bola_dars_holat — bola_kuzatuv jadvali (hali yaratilmagan bo'lishi mumkin)
         cur.execute("SAVEPOINT bogcha_sonlar")
-        cur.execute("SELECT fan, ochilgan_sana FROM bola_dars_holat WHERE child_id=%s AND ochilgan_sana >= %s", (bola_id, start))
+        cur.execute("""SELECT fan, ochilgan_sana FROM bola_dars_holat WHERE child_id=%s AND ochilgan_sana >= %s
+                       AND NOT COALESCE(boshqa_til, FALSE)""", (bola_id, start))   # REV328: boshqa tildagi takror — kvotaga kirmaydi
         rows = cur.fetchall()
         cur.execute("RELEASE SAVEPOINT bogcha_sonlar")
     except Exception:
