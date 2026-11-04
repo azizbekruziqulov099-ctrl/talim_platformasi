@@ -28,7 +28,7 @@ BOOK_FIELDS = [
     ("fan", "Fan *", "Masalan: Matematika"),
     ("sinf", "Sinf *", "1–11 yoki kurs"),
     ("kitob_kodi", "Kitob kodi", "Bo'sh qolsa avtomatik yaratiladi. Kitobni qayta yuklaganda bir xil bo'lsin."),
-    ("til", "Til", "uz, ru yoki en"),
+    ("til", "Til", "uz, ru, en, de yoki es"),
     ("mualliflar", "Mualliflar", ""),
     ("nashriyot", "Nashriyot", ""),
     ("nashr_yili", "Nashr yili", ""),

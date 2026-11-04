@@ -81,37 +81,50 @@ def holat(yozilish, faolliklar, bugun, til="uz"):
     yoqolayotgan = round(sozlar * unutish)
     imtihon = yozilish.get("imtihon_sana")
     qolgan_kun = (dt.date.fromisoformat(str(imtihon)[:10]) - bugun).days if imtihon else None
-    t = til if til in ("ru", "en") else "uz"
-    qk = f" Imtihongacha {qolgan_kun} kun qoldi." if t == "uz" else f" До экзамена {qolgan_kun} дн." if t == "ru" else f" {qolgan_kun} days until the exam."
+    t = til if til in ("ru", "en", "de", "es") else "uz"   # REV322: 5 til
+    qk = {"uz": f" Imtihongacha {qolgan_kun} kun qoldi.", "ru": f" До экзамена {qolgan_kun} дн.", "en": f" {qolgan_kun} days until the exam.",
+          "de": f" Noch {qolgan_kun} Tage bis zur Prüfung.", "es": f" Faltan {qolgan_kun} días para el examen."}[t]
     if ketma <= 0:
         daraja = "yaxshi"
-        gap = {"uz": "Zo'r! Jadval bo'yicha ketyapsiz.", "ru": "Отлично! Вы идёте по расписанию.", "en": "Great! You are on schedule."}[t] + (qk if qolgan_kun is not None else "")
+        gap = {"uz": "Zo'r! Jadval bo'yicha ketyapsiz.", "ru": "Отлично! Вы идёте по расписанию.", "en": "Great! You are on schedule.",
+               "de": "Super! Du liegst im Zeitplan.", "es": "¡Genial! Vas según el plan."}[t] + (qk if qolgan_kun is not None else "")
     elif ketma == 1:
         daraja = "eslatma"
         gap = {"uz": "Bugungi darsni unutmang — 20 daqiqa yetadi. Har kuni oz-ozdan o'qigan kishi tezroq natijaga erishadi.",
                "ru": "Не забудьте сегодняшний урок — хватит 20 минут. Кто учится понемногу каждый день, быстрее добивается результата.",
-               "en": "Don't forget today's lesson — 20 minutes is enough. People who study a little every day get results faster."}[t]
+               "en": "Don't forget today's lesson — 20 minutes is enough. People who study a little every day get results faster.",
+               "de": "Vergiss die heutige Lektion nicht — 20 Minuten reichen. Wer jeden Tag ein wenig lernt, kommt schneller ans Ziel.",
+               "es": "No olvides la lección de hoy: bastan 20 minutos. Quien estudia un poco cada día obtiene resultados más rápido."}[t]
     elif ketma == 2:
         daraja = "motivatsiya"
         ul = qolgan_kun is not None and qolgan_kun > 0
         gap = {"uz": f"Ikki dars o'tkazib yubordingiz. Hozir qaytsangiz, o'rgangan {sozlar} ta so'zingiz saqlanib qoladi" + (f"; imtihongacha {qolgan_kun} kun bor — ulgurasiz." if ul else "."),
                "ru": f"Вы пропустили два урока. Если вернётесь сейчас, {sozlar} выученных слов сохранятся" + (f"; до экзамена {qolgan_kun} дн. — вы успеете." if ul else "."),
-               "en": f"You have missed two lessons. Come back now and your {sozlar} learned words will stay with you" + (f"; {qolgan_kun} days until the exam — you can make it." if ul else ".")}[t]
+               "en": f"You have missed two lessons. Come back now and your {sozlar} learned words will stay with you" + (f"; {qolgan_kun} days until the exam — you can make it." if ul else "."),
+               "de": f"Du hast zwei Lektionen verpasst. Wenn du jetzt zurückkommst, bleiben deine {sozlar} gelernten Wörter erhalten" + (f"; bis zur Prüfung sind es noch {qolgan_kun} Tage — du schaffst das." if ul else "."),
+               "es": f"Te has saltado dos lecciones. Si vuelves ahora, conservarás las {sozlar} palabras que aprendiste" + (f"; faltan {qolgan_kun} días para el examen: llegas a tiempo." if ul else ".")}[t]
     else:
         daraja = "tanbeh"
         nq = len(qoldi) if qoldi else ketma
         gap = {"uz": f"{nq} ta dars o'tkazildi, oxirgi marta {tanaffus} kun oldin o'qidingiz. Takrorlanmagan {yoqolayotgan} ta so'z esdan chiqmoqda. ",
                "ru": f"Пропущено уроков: {nq}, последний раз вы занимались {tanaffus} дн. назад. Без повторения забываются {yoqolayotgan} слов. ",
-               "en": f"{nq} lessons missed; you last studied {tanaffus} days ago. {yoqolayotgan} unrevised words are being forgotten. "}[t]
+               "en": f"{nq} lessons missed; you last studied {tanaffus} days ago. {yoqolayotgan} unrevised words are being forgotten. ",
+               "de": f"{nq} Lektionen verpasst; zuletzt hast du vor {tanaffus} Tagen gelernt. {yoqolayotgan} nicht wiederholte Wörter geraten in Vergessenheit. ",
+               "es": f"Lecciones perdidas: {nq}; estudiaste por última vez hace {tanaffus} días. Se están olvidando {yoqolayotgan} palabras sin repasar. "}[t]
         if qolgan_kun is not None:
             if qolgan_kun > 0:
                 gap += {"uz": f"Imtihongacha {qolgan_kun} kun qoldi — shu sur'atda maqsadga ulgurmaysiz. ", "ru": f"До экзамена {qolgan_kun} дн. — в таком темпе вы не успеете. ",
-                        "en": f"{qolgan_kun} days until the exam — at this pace you won't reach your goal. "}[t]
+                        "en": f"{qolgan_kun} days until the exam — at this pace you won't reach your goal. ",
+                        "de": f"Noch {qolgan_kun} Tage bis zur Prüfung — in diesem Tempo erreichst du dein Ziel nicht. ",
+                        "es": f"Faltan {qolgan_kun} días para el examen: a este ritmo no alcanzarás tu meta. "}[t]
             else:
-                gap += {"uz": "Imtihon sanasi o'tgan — yangi sana belgilang. ", "ru": "Дата экзамена прошла — назначьте новую. ", "en": "The exam date has passed — set a new one. "}[t]
+                gap += {"uz": "Imtihon sanasi o'tgan — yangi sana belgilang. ", "ru": "Дата экзамена прошла — назначьте новую. ", "en": "The exam date has passed — set a new one. ",
+                        "de": "Der Prüfungstermin ist vorbei — lege einen neuen fest. ", "es": "La fecha del examen ya pasó: fija una nueva. "}[t]
         gap += {"uz": "Bugun qaytib, avval takrorlashdan o'ting: o'qimaslikning zarari to'planib boradi, foydasi esa har kungi kichik qadamdan.",
                 "ru": "Вернитесь сегодня и начните с повторения: вред от пропусков накапливается, а польза — от маленьких ежедневных шагов.",
-                "en": "Come back today and start with revision: the damage from skipping adds up, and progress comes from small daily steps."}[t]
+                "en": "Come back today and start with revision: the damage from skipping adds up, and progress comes from small daily steps.",
+                "de": "Komm heute zurück und beginne mit der Wiederholung: Der Schaden durch Auslassen summiert sich, Fortschritt entsteht durch kleine tägliche Schritte.",
+                "es": "Vuelve hoy y empieza por el repaso: el daño de saltarse clases se acumula y el progreso llega con pequeños pasos diarios."}[t]
     return {"daraja": daraja, "gap": gap, "qoldirilgan": len(qoldi) if qoldi else (ketma if jadval.get("turi") != "kunlar" else 0),
             "ketma_ket": ketma, "tanaffus_kun": tanaffus, "yoqolayotgan_soz": yoqolayotgan, "imtihongacha": qolgan_kun}
 
@@ -119,15 +132,19 @@ def holat(yozilish, faolliklar, bugun, til="uz"):
 def darvoza(foiz, bolim_nomi="", til="uz"):
     """Bo'lim takrorlash testi: o'tsa — keyingi bo'lim ochiladi; o'tmasa — aniq sabab va qayta tayyorlanish."""
     foiz = float(foiz or 0)
-    t = til if til in ("ru", "en") else "uz"
+    t = til if til in ("ru", "en", "de", "es") else "uz"   # REV322: 5 til
     if foiz >= DARVOZA_FOIZ:
         return {"ochildi": True, "gap": {"uz": f"Ajoyib! {round(foiz)}% — keyingi bo'lim ochildi.", "ru": f"Отлично! {round(foiz)}% — следующий раздел открыт.",
-                                          "en": f"Excellent! {round(foiz)}% — the next section is open."}[t]}
-    b = bolim_nomi or {"uz": "Bu bo'lim", "ru": "Этот раздел", "en": "This section"}[t]
+                                          "en": f"Excellent! {round(foiz)}% — the next section is open.",
+                                          "de": f"Ausgezeichnet! {round(foiz)}% — der nächste Abschnitt ist offen.",
+                                          "es": f"¡Excelente! {round(foiz)}%: la siguiente sección está abierta."}[t]}
+    b = bolim_nomi or {"uz": "Bu bo'lim", "ru": "Этот раздел", "en": "This section", "de": "Dieser Abschnitt", "es": "Esta sección"}[t]
     return {"ochildi": False, "gap": {
         "uz": f"{round(foiz)}% — o'tish uchun {DARVOZA_FOIZ}% kerak. «{b}»ni bilmasdan keyingi darslar foydasiz bo'ladi: ular shu bilimga quriladi. Xatolaringizni ko'rib, qaytadan tayyorlaning va testni yana topshiring.",
         "ru": f"{round(foiz)}% — для прохода нужно {DARVOZA_FOIZ}%. Без «{b}» следующие уроки бесполезны: они строятся на этих знаниях. Разберите ошибки, подготовьтесь и сдайте тест снова.",
-        "en": f"{round(foiz)}% — you need {DARVOZA_FOIZ}% to pass. Without «{b}» the next lessons won't help: they build on this knowledge. Review your mistakes, prepare again and retake the test."}[t]}
+        "en": f"{round(foiz)}% — you need {DARVOZA_FOIZ}% to pass. Without «{b}» the next lessons won't help: they build on this knowledge. Review your mistakes, prepare again and retake the test.",
+        "de": f"{round(foiz)}% — zum Bestehen brauchst du {DARVOZA_FOIZ}%. Ohne «{b}» helfen die nächsten Lektionen nicht: Sie bauen auf diesem Wissen auf. Sieh dir deine Fehler an, bereite dich erneut vor und mache den Test noch einmal.",
+        "es": f"{round(foiz)}%: para aprobar necesitas un {DARVOZA_FOIZ}%. Sin «{b}» las próximas lecciones no te servirán: se basan en estos conocimientos. Revisa tus errores, prepárate de nuevo y repite el test."}[t]}
 
 
 # ───────────── Baza va API ─────────────
@@ -613,12 +630,13 @@ def create_router(platform):
             return (int(m.group(1)) if m else 9999, str(r.get("topic_code") or ""))
         return sorted(rows, key=k)
 
+    # REV322: izoh 5 tilda; til o'z tilida izohlanmaydi (ingliz kursi — inglizcha izohsiz, rus kursi — ruscha izohsiz)
     KURS_FAN = {("en", "uz"): "Ingliz tili — Erkin til", ("en", "ru"): "Ingliz tili — Erkin til (izoh: rus)",
-                ("en", "en"): "Ingliz tili — Erkin til (izoh: ingliz)",   # REV286: inglizcha izohli (to'liq ingliz muhiti)
-                # REV289: rus tili kurslari — o'zbekcha, inglizcha izohli va to'liq rus muhiti
-                ("ru", "uz"): "Rus tili — Erkin til", ("ru", "en"): "Rus tili — Erkin til (izoh: ingliz)", ("ru", "ru"): "Rus tili — Erkin til (izoh: rus)"}
+                ("en", "de"): "Ingliz tili — Erkin til (izoh: nemis)", ("en", "es"): "Ingliz tili — Erkin til (izoh: ispan)",
+                ("ru", "uz"): "Rus tili — Erkin til", ("ru", "en"): "Rus tili — Erkin til (izoh: ingliz)",
+                ("ru", "de"): "Rus tili — Erkin til (izoh: nemis)", ("ru", "es"): "Rus tili — Erkin til (izoh: ispan)"}
     def _iz(iz):
-        return iz if iz in ("ru", "en") else "uz"
+        return iz if iz in ("ru", "en", "de", "es") else "uz"
 
     @router.get("/api/markaz/darslar")
     def darslar(token: str, til: str = "en", daraja: str = "A1", iz: str = "uz"):

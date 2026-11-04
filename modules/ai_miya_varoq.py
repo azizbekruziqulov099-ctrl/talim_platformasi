@@ -68,12 +68,20 @@ PRACTICE_INTRO = {
            "read": "Внимательно прочитайте условие на доске.", "try": "Сначала попробуйте сами, решение откроется потом."},
     "en": {"misol": "Now let's look at an example", "masala": "Now a problem", "topshiriq": "Now a practice task",
            "read": "Read the task on the board carefully.", "try": "Try it yourself first; the solution opens later."},
+    # REV322: nemis va ispan izohli kitoblar
+    "de": {"misol": "Jetzt sehen wir uns ein Beispiel an", "masala": "Jetzt eine Aufgabe", "topshiriq": "Jetzt eine Übung",
+           "read": "Lies die Aufgabe an der Tafel aufmerksam.", "try": "Versuche es zuerst selbst; die Lösung öffnet sich danach."},
+    "es": {"misol": "Ahora veamos un ejemplo", "masala": "Ahora un problema", "topshiriq": "Ahora una tarea práctica",
+           "read": "Lee con atención la tarea de la pizarra.", "try": "Primero inténtalo tú; la solución se abre después."},
 }
-JAVOB_JOYI = {"uz": "Javobingizni yozing", "ru": "Ваш ответ", "en": "Your answer"}
+JAVOB_JOYI = {"uz": "Javobingizni yozing", "ru": "Ваш ответ", "en": "Your answer", "de": "Deine Antwort", "es": "Tu respuesta"}
 # REV269: ru/en kitobda amaliy qadam sarlavhasi o'z tilida («Пример · …», «Example · …»)
 TYPE_NAMES_TIL = {"ru": {"misol": "Пример", "masala": "Задача", "topshiriq": "Задание", "test": "Тест"},
-                  "en": {"misol": "Example", "masala": "Problem", "topshiriq": "Task", "test": "Test"}}
-TEKSHIRUV_NOMI = {"uz": "Tekshiruv savoli", "ru": "Проверь себя", "en": "Quick check"}
+                  "en": {"misol": "Example", "masala": "Problem", "topshiriq": "Task", "test": "Test"},
+                  "de": {"misol": "Beispiel", "masala": "Aufgabe", "topshiriq": "Übung", "test": "Test"},
+                  "es": {"misol": "Ejemplo", "masala": "Problema", "topshiriq": "Tarea", "test": "Test"}}
+TEKSHIRUV_NOMI = {"uz": "Tekshiruv savoli", "ru": "Проверь себя", "en": "Quick check", "de": "Kurzer Check", "es": "Comprueba"}
+IZOH_KITOB_TILLARI = ("ru", "en", "de", "es")   # REV322: kitob tili teg bilan o'qiladi (o'zbekcha — tegsiz)
 TYPE_NAMES = {"misol": "Misol", "masala": "Masala", "topshiriq": "Topshiriq", "test": "Test"}
 AUTO_LETTER = {"misol": "M", "masala": "S", "topshiriq": "A", "test": "T"}
 MAX_VOICE = 1500
@@ -419,14 +427,14 @@ def parse_sheets(wb, media_names=None, max_images=500):
             words = PRACTICE_INTRO.get(til, PRACTICE_INTRO["uz"])
             intro = words[kind]
             lead = f"{intro}: {title}." if title else f"{intro}."
-            voice = (f"[{til}]{lead}[/{til}] " if til in ("ru", "en") else lead + " ")
+            voice = (f"[{til}]{lead}[/{til}] " if til in IZOH_KITOB_TILLARI else lead + " ")
             if "yosh" in str(book.get("sinf", "")).lower():
                 # REV157: bog'cha — «Endi amaliy topshiriq: <nom>» aytilmaydi: 4–7 yoshda dars to'liq o'rganilayotgan
                 # tilda, izoh tilidagi kirish gapi aralashib qolardi; topshiriq matnining o'zi o'qiladi
                 voice = ""
             voice += (text + " ") if len(text) <= 600 else words["read"] + " "
             if "yosh" not in str(book.get("sinf", "")).lower():   # REV95: bog'cha bolasiga «yechimni ochasiz» demaymiz
-                voice += f"[{til}]{words['try']}[/{til}]" if til in ("ru", "en") else words["try"]
+                voice += f"[{til}]{words['try']}[/{til}]" if til in IZOH_KITOB_TILLARI else words["try"]
             nom = TYPE_NAMES_TIL.get(til, TYPE_NAMES)[kind]
             add_step(row, "amaliy", text, voice[:MAX_VOICE], f"{nom} · {title}" if title else nom,
                      pic, answer=c.get("javob", "") if not options else "", extra={
