@@ -31,6 +31,7 @@ Dars xonasi «XB-…» kodli darslarni shu moduldagi dars_payload() orqali ochad
 """
 import hashlib
 import json
+from starlette.concurrency import run_in_threadpool   # REV319
 import math
 import os
 import random
@@ -104,12 +105,17 @@ def band_of(tk):
 TILLAR = ("uz", "ru", "en")
 
 
+# REV319: savollar banki bazadan (Admin → Miya → «🌍 Xalqaro savollar», Excel). Bazada bo'lsa — o'sha, bo'lmasa — fayl.
+BAZA_YUKLOVCHI = None   # callable(til, turi) -> data | None (create_router o'rnatadi)
+BAZADA_TILLAR = set()
+
+
 def til_kodi(value):
     """REV315: 5 til — uz, ru, en, de, es. Nemis/ispan faqat ularning kontenti bor bo'lsa (xalqaro_data/de, /es)
     — aks holda o'zbekcha (bo'lim ishlab turadi, xato bermaydi)."""
     v = str(value or "").strip().lower()[:2]
     if v in ("de", "es"):
-        return v if os.path.isfile(os.path.join(DATA_DIR, v, "savollar.json")) else "uz"
+        return v if (v in BAZADA_TILLAR or os.path.isfile(os.path.join(DATA_DIR, v, "savollar.json"))) else "uz"
     return {"oz": "uz"}.get(v, v) if v in ("uz", "ru", "en", "oz") else "uz"
 
 
@@ -191,6 +197,8 @@ class Kontent:
 
     def _load(self, name, default):
         path = os.path.join(self.data_dir, name)
+        if not os.path.exists(path) and self.til in ("de", "es"):   # REV319: tuzilma hali tarjima qilinmagan — inglizchasi
+            path = os.path.join(self.base_dir, "en", name)
         if not os.path.exists(path):
             return default
         with open(path, encoding="utf-8") as f:
@@ -204,7 +212,14 @@ class Kontent:
                 return self
             self.ramka = self._load("ramka.json", {"toplamlar": {}, "mavzular": {}, "fikrlash": {}})
             self.natijalar = natijalar_tilda(self.base_dir, self.til)
-            self.savollar = self._load("savollar.json", [])
+            baza = None
+            if BAZA_YUKLOVCHI is not None:
+                try:
+                    baza = BAZA_YUKLOVCHI(self.til, "savollar")
+                except Exception:   # noqa: BLE001 — baza ishlamasa ham bo'lim fayldan ishlaydi
+                    baza = None
+            self.manba = "baza" if baza else "fayl"
+            self.savollar = baza if baza else self._load("savollar.json", [])
             self.darslar = self._load("darslar.json", [])
             self.birliklar = {b["birlik"]: b for b in self._load("birliklar.json", [])}   # REV262: PISA stimullari
             self.i18n = _json_fayl(os.path.join(self.base_dir, "davlatlar.json"), {})
@@ -645,6 +660,9 @@ class TopshirBody(BaseModel):
 
 
 def migrate(cur):
+    # REV319: savollar banki — Excel'dan yuklangan (til bo'yicha), nashr qilingani saytda ishlatiladi
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_kontent (til TEXT NOT NULL, turi TEXT NOT NULL, data JSONB NOT NULL,
+        soni INT NOT NULL DEFAULT 0, yukladi BIGINT, yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (til, turi))""")
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_bilim (
         user_id BIGINT NOT NULL, savol_id TEXT NOT NULL, toplam TEXT NOT NULL DEFAULT '', mavzu TEXT NOT NULL DEFAULT '',
         urinish INT NOT NULL DEFAULT 0, togri INT NOT NULL DEFAULT 0, oxirgi_togri BOOLEAN NOT NULL DEFAULT FALSE,
@@ -1660,5 +1678,148 @@ def create_router(platform, kontent=None):
         if etag in (request.headers.get("if-none-match") or ""):
             return Response(status_code=304, headers=headers)
         return Response(content=svg, media_type="image/svg+xml", headers=headers)
+
+    # ─────────── REV319: savollar banki — Excel (5 til) ───────────
+    try:
+        from modules import xalqaro_excel as XE
+    except ImportError:   # pragma: no cover
+        from . import xalqaro_excel as XE
+
+    def _baza_ol(til, turi):
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            cur.execute("SELECT data FROM xb_kontent WHERE til=%s AND turi=%s", (til, turi))
+            r = cur.fetchone()
+            return r["data"] if r else None
+        except Exception:   # noqa: BLE001 — jadval hali yo'q
+            conn.rollback(); return None
+        finally:
+            cur.close(); conn.close()
+
+    def _tillar_yangila():
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            cur.execute("SELECT til FROM xb_kontent WHERE turi='savollar'")
+            BAZADA_TILLAR.clear(); BAZADA_TILLAR.update(r["til"] for r in cur.fetchall())
+        except Exception:   # noqa: BLE001
+            conn.rollback()
+        finally:
+            cur.close(); conn.close()
+
+    global BAZA_YUKLOVCHI
+    BAZA_YUKLOVCHI = _baza_ol
+    try:
+        _tillar_yangila()
+    except Exception:   # noqa: BLE001 — ishga tushishda baza bo'lmasa ham
+        pass
+
+    def _kesh_tozala(til):
+        for key in list(KONTENTLAR):
+            if key == til or (isinstance(key, tuple) and key[1] == til):
+                KONTENTLAR.pop(key, None)
+
+    def _admin(token, authorization):
+        uid = uid_of(token, authorization)
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (uid,))
+            if not cur.fetchone():
+                raise HTTPException(403, "Faqat admin uchun")
+        finally:
+            cur.close(); conn.close()
+        return uid
+
+    def _uz_asos():
+        k = KT("uz")
+        return k.savollar
+
+    @router.get("/api/admin/xalqaro/kontent")
+    def xb_kontent_holati(token: str = None, authorization: str = Header(None)):
+        _admin(token, authorization)
+        def run(conn, cur):
+            cur.execute("SELECT til, soni, yangilandi FROM xb_kontent WHERE turi='savollar'")
+            baza = {r["til"]: {"soni": r["soni"], "yangilandi": r["yangilandi"].isoformat()} for r in cur.fetchall()}
+            conn.commit()
+            out = []
+            for t in XE.TILLAR:
+                fayl = os.path.isfile(os.path.join(DATA_DIR if t == "uz" else os.path.join(DATA_DIR, t), "savollar.json"))
+                out.append({"til": t, "nom": XE.TIL_NOMI[t], "manba": "baza" if t in baza else "fayl" if fayl else "yo'q",
+                            **(baza.get(t) or {"soni": len(KT(t).savollar) if fayl else 0, "yangilandi": None})})
+            return {"tillar": out}
+        return run_db(run)
+
+    @router.get("/api/admin/xalqaro/shablon")
+    def xb_shablon(token: str = None, til: str = Query("uz", max_length=4), authorization: str = Header(None)):
+        """Joriy savollar Excel'da (tahrirlash uchun). Nemis/ispan hali bo'lmasa — o'zbekcha savollar asosida, matn ustunlari
+        tarjima qilinadigan holda (ID, to'g'ri javob, statistika to'ldirilgan)."""
+        _admin(token, authorization)
+        t = str(til or "uz").lower()[:2]
+        if t not in XE.TILLAR:
+            raise HTTPException(400, "Til: uz, ru, en, de, es")
+        uz = _uz_asos()
+        bor = _baza_ol(t, "savollar") or (KT(t).savollar if t in ("uz", "ru", "en") or t in BAZADA_TILLAR else None)
+        if not bor:   # yangi til — inglizcha (yoki o'zbekcha) matn bilan, tarjima qilish uchun
+            bor = KT("en").savollar or uz
+        data = XE.json_to_xlsx(bor, t, stat_manba=uz)
+        return Response(content=data, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        headers={"Content-Disposition": f'attachment; filename="xalqaro_savollar_{t}.xlsx"'})
+
+    async def _fayl(request):
+        form = await request.form()
+        f = form.get("fayl")
+        if f is None:
+            raise HTTPException(400, "Fayl yuborilmadi")
+        data = await f.read()
+        if len(data) > 25 * 1024 * 1024:
+            raise HTTPException(413, "Fayl juda katta (25 MB dan oshmasin)")
+        return data, str(form.get("token") or "")
+
+    def _tekshiruv(data):
+        til, sav, xato, ogoh = XE.xlsx_to_json(data)
+        if not xato and til and til != "uz":
+            xato += XE.mosligini_tekshir(_baza_ol("uz", "savollar") or _uz_asos(), sav)
+        return til, sav, xato, ogoh
+
+    @router.post("/api/admin/xalqaro/tekshir")
+    async def xb_tekshir(request: Request, authorization: str = Header(None)):
+        data, token = await _fayl(request)
+        _admin(token, authorization)
+        til, sav, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
+        return {"til": til, "savollar": len(sav), "variantlar": sum(len(q["variantlar"]) for q in sav),
+                "xatolar": xato[:200], "xato_soni": len(xato), "ogohlantirishlar": ogoh[:100], "tayyor": not xato}
+
+    @router.post("/api/admin/xalqaro/nashr")
+    async def xb_nashr(request: Request, authorization: str = Header(None)):
+        """Tekshiruvdan o'tgan faylni nashr qiladi: saytdagi savollar shu tilda darhol yangilanadi.
+        Xato bo'lsa — hech narsa o'zgarmaydi."""
+        data, token = await _fayl(request)
+        uid = _admin(token, authorization)
+        til, sav, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
+        if xato:
+            raise HTTPException(422, {"kod": "xato", "xatolar": xato[:200], "xato_soni": len(xato)})
+
+        def run(conn, cur):
+            cur.execute("""INSERT INTO xb_kontent(til, turi, data, soni, yukladi) VALUES(%s,'savollar',%s::jsonb,%s,%s)
+                           ON CONFLICT (til, turi) DO UPDATE SET data=EXCLUDED.data, soni=EXCLUDED.soni, yukladi=EXCLUDED.yukladi, yangilandi=NOW()""",
+                        (til, json.dumps(sav, ensure_ascii=False), len(sav), uid))
+            conn.commit()
+            return True
+        run_db(run)
+        BAZADA_TILLAR.add(til)
+        _kesh_tozala(til)
+        return {"ok": True, "til": til, "savollar": len(sav), "ogohlantirishlar": ogoh[:50]}
+
+    @router.post("/api/admin/xalqaro/qaytar")
+    def xb_qaytar(token: str = Query(None), til: str = Query(..., max_length=4), authorization: str = Header(None)):
+        """Bazadagi savollarni o'chirib, saytning o'z (kod ichidagi) savollariga qaytaradi."""
+        _admin(token, authorization)
+        t = str(til).lower()[:2]
+        def run(conn, cur):
+            cur.execute("DELETE FROM xb_kontent WHERE til=%s AND turi='savollar'", (t,))
+            conn.commit(); return True
+        run_db(run)
+        BAZADA_TILLAR.discard(t)
+        _kesh_tozala(t)
+        return {"ok": True}
 
     return router
