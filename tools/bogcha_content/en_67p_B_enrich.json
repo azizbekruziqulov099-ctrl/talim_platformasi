@@ -1,7 +1,7 @@
 {
  "lessons": {
   "Men o'ynayapman": {
-   "intro_en": "Beep-beep! Hello, friends! I am Kabu the robot. What are you doing now? Let's say it!",
+   "intro_en": "Hello, friends! I am Kabu the robot. What are you doing now? Let's say it!",
    "items": {
     "What are you doing?": {
      "sentence": "Ali, what are you doing?",
@@ -32,7 +32,7 @@
    ]
   },
   "U nima qilyapti?": {
-   "intro_en": "Beep-beep! Look at the family! Who is sleeping? Who is singing? Let's see!",
+   "intro_en": "Look at the family! Who is sleeping? Who is singing? Let's see!",
    "items": {
     "He's sleeping.": {
      "sentence": "Grandpa is tired. He's sleeping.",
@@ -45,6 +45,9 @@
     "They're running.": {
      "sentence": "They're running in the park.",
      "action_en": "Run on the spot!"
+    },
+    "She's dancing.": {
+     "sentence": "Look! She's dancing to the music."
     }
    },
    "tests_en": [
@@ -103,6 +106,9 @@
     "I went to the park.": {
      "sentence": "Yesterday I went to the park.",
      "action_en": "Walk on the spot!"
+    },
+    "I drew a picture.": {
+     "sentence": "Yesterday I drew a picture of my cat."
     }
    },
    "tests_en": [
@@ -130,6 +136,9 @@
     "I ate ice cream.": {
      "sentence": "I ate ice cream. Yummy!",
      "action_en": "Lick your ice cream!"
+    },
+    "I saw a bird.": {
+     "sentence": "I saw a bird in the tree."
     }
    },
    "tests_en": [
@@ -157,6 +166,9 @@
     "It was fun!": {
      "sentence": "We saw a giraffe. It was fun!",
      "action_en": "Clap your hands!"
+    },
+    "We played together.": {
+     "sentence": "We played together in the park."
     }
    },
    "tests_en": [
@@ -202,7 +214,7 @@
    ]
   },
   "Zumrad va Qimmat": {
-   "intro_en": "Beep-beep! This is an Uzbek fairy tale. Zumrad is kind. Qimmat is lazy. Let's listen!",
+   "intro_en": "This is an Uzbek fairy tale. Zumrad is kind. Qimmat is lazy. Let's listen!",
    "items": {
     "She is kind.": {
      "sentence": "Zumrad helps. She is kind.",

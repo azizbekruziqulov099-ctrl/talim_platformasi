@@ -98,7 +98,7 @@
     {
      "name": "Kunduzi",
      "goal": "Bola kunduzgi ishlarini aytadi",
-     "intro": "Bip-bip! Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni xitoycha aytamiz.",
+     "intro": "Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni xitoycha aytamiz.",
      "items": [
       {
        "say": "我去上学。",
@@ -132,6 +132,16 @@
        "sentence": "我和朋友们在院子里玩。",
        "action_en": "向你的朋友挥挥手！",
        "rom": "Wǒ hé péngyoumen yìqǐ wán."
+      },
+      {
+       "say": "我喝牛奶。",
+       "uz": "men sut ichaman",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sut ichganday qil!",
+       "sentence": "我午饭时喝牛奶。",
+       "rom": "Wǒ hē niúnǎi."
       }
      ],
      "extra": [
@@ -190,7 +200,7 @@
       },
       {
        "say": "我吃晚饭。",
-       "uz": "kechki ovqat qilaman",
+       "uz": "kechki ovqatni yeyman",
        "emoji": "🍽️",
        "image": "en45-u13-dinner.png",
        "image_prompt": "A family having dinner together at a table with plov and bread, soft 3D cartoon for kids, white background, no text, square",
@@ -293,11 +303,11 @@
       },
       {
        "say": "手表",
-       "uz": "qo'l soat",
+       "uz": "qo'l soati",
        "emoji": "⌚",
        "image": "en67-u11-watch.png",
        "image_prompt": "a kids' wristwatch, soft 3D cartoon for kids, white background, no text, square",
-       "action": "Bilagingdagi soatga qara!",
+       "action": "Bilagingdagi soatga qaraganday qil!",
        "sentence": "我有一块新手表。",
        "action_en": "看看你的手腕！",
        "rom": "shǒubiǎo"
@@ -469,7 +479,7 @@
     {
      "name": "Nima bo'ldi?",
      "goal": "Bola o'zini qanday his qilishini aytadi",
-     "intro": "Bip-bip! Bugun Ali bog'chaga kelmadi. Nega ekan? U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?",
+     "intro": "Bugun Ali bog'chaga kelmadi. U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?",
      "items": [
       {
        "say": "你怎么了？",
@@ -555,7 +565,7 @@
     {
      "name": "Shifokorda",
      "goal": "Bola shifoxona so'zlarini aytadi",
-     "intro": "Bip-bip! Ali shifoxonaga keldi. U yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!",
+     "intro": "Ali shifoxonaga keldi, u yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!",
      "items": [
       {
        "say": "护士",
@@ -638,7 +648,7 @@
     {
      "name": "Sog'lom bo'lamiz",
      "goal": "Bola sog'lom odatlarni aytadi",
-     "intro": "Bip-bip! Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!",
+     "intro": "Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!",
      "items": [
       {
        "say": "吃水果！",
@@ -1020,7 +1030,7 @@
     {
      "name": "Yo'l ko'rsatamiz",
      "goal": "Bola yo'nalishni aytadi",
-     "intro": "Bip-bip! Bir bola adashib qoldi. U [zh]动物园在哪里？[/zh] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!",
+     "intro": "Bir bola adashib qoldi va [zh]动物园在哪里？[/zh] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!",
      "items": [
       {
        "say": "向左转！",
@@ -1315,7 +1325,7 @@
     {
      "name": "Salat tayyorlaymiz",
      "goal": "Bola oshxona fe'llarini aytadi",
-     "intro": "Bip-bip! Bugun oyijon bilan oshxonada yordam beramiz. Pomidor va bodring bor. Qani, mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi.",
+     "intro": "Bugun oyijon bilan oshxonada pomidor va bodringdan mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi.",
      "items": [
       {
        "say": "我们来做沙拉吧！",
@@ -1329,7 +1339,7 @@
       },
       {
        "say": "切",
-       "uz": "to'gra",
+       "uz": "to'g'ra",
        "emoji": "🔪🥒",
        "image": "en67-u14-cut.png",
        "image_prompt": "a grown-up cutting a cucumber on a board, soft 3D cartoon for kids, white background, no text, square",
@@ -1400,7 +1410,7 @@
     {
      "name": "Dasturxon",
      "goal": "Bola idishlarni aytadi",
-     "intro": "Bip-bip! Tez orada mehmonlar keladi! Dasturxonga nima qo'yamiz? Likopcha, qoshiq, sanchqi va piyola. Qani, xitoycha nomlarini o'rgan!",
+     "intro": "Tez orada mehmonlar keladi! Dasturxonga likopcha, qoshiq, sanchqi va piyola qo'yamiz. Qani, xitoycha nomlarini o'rgan!",
      "items": [
       {
        "say": "盘子",
@@ -1484,7 +1494,7 @@
     {
      "name": "Mehmon kutamiz",
      "goal": "Bola mehmonga taklif iboralarini aytadi",
-     "intro": "Bip-bip! Taq-taq! Eshikni kim taqillatdi? Buvijonning dugonasi mehmonga keldi! Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
+     "intro": "Taq-taq! Buvijonning dugonasi mehmonga keldi. Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
      "items": [
       {
        "say": "您想喝点儿茶吗？",
@@ -1780,12 +1790,12 @@
        "q_en": "Laylo想知道Ali现在在做什么。她怎么问？"
       }
      ],
-     "intro_en": "嘀嘀！朋友们好！我是机器人Kabu。你们现在在做什么？我们来说一说！"
+     "intro_en": "朋友们好！我是机器人Kabu。你们现在在做什么？我们来说一说！"
     },
     {
      "name": "U nima qilyapti?",
      "goal": "Bola boshqalarning harakatini aytadi",
-     "intro": "Bip-bip! Uyda hamma band! Bobojon divanda ko'zini yumdi, Laylo qo'shiq aytyapti, bolalar hovlida yugurishyapti. O'g'il bola — [zh]他[/zh], qiz bola — [zh]她[/zh], ko'pchilik — [zh]他们[/zh]. Ular nima qilyapti? Qani, aytamiz!",
+     "intro": "Uyda hamma band: bobojon uxlayapti, Laylo qo'shiq aytyapti, bolalar yugurishyapti. O'g'il bola — [zh]他[/zh], qiz bola — [zh]她[/zh], ko'pchilik — [zh]他们[/zh]. Qani, aytamiz!",
      "items": [
       {
        "say": "他在睡觉。",
@@ -1819,6 +1829,16 @@
        "sentence": "他们在公园里跑步。",
        "action_en": "原地跑一跑！",
        "rom": "Tāmen zài pǎobù."
+      },
+      {
+       "say": "她在跳舞。",
+       "uz": "u raqs tushyapti",
+       "emoji": "💃",
+       "image": "en23-u10-dance.png",
+       "image_prompt": "ALI dancing joyfully, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Raqs tush!",
+       "sentence": "看！她在跟着音乐跳舞。",
+       "rom": "Tā zài tiàowǔ."
       }
      ],
      "extra": [
@@ -1857,12 +1877,12 @@
        "q_en": "Ali和Laylo在公园里。他们跑得很快。哪句话是对的？"
       }
      ],
-     "intro_en": "嘀嘀！看看这一家人！谁在睡觉？谁在唱歌？我们来看看！"
+     "intro_en": "看看这一家人！谁在睡觉？谁在唱歌？我们来看看！"
     },
     {
      "name": "Hayvonlar nima qilyapti?",
      "goal": "Bola hayvonlar harakatini aytadi",
-     "intro": "Bip-bip! Buvijonning hovlisiga keldik. Qara: mushuk quyoshda yotibdi, kuchukcha yuguryapti, daraxtda qushlar sayrayapti, hovuzda baliq bor. Ular nima qilyapti? Bilib olamiz!",
+     "intro": "Buvijonning hovlisida mushuk quyoshda yotibdi, kuchukcha yuguryapti, qushlar sayrayapti, hovuzda baliq suzyapti. Ular nima qilyapti? Bilib olamiz!",
      "items": [
       {
        "say": "猫在睡觉。",
@@ -2109,6 +2129,16 @@
        "sentence": "昨天我去了公园。",
        "action_en": "原地走一走！",
        "rom": "Wǒ qù le gōngyuán."
+      },
+      {
+       "say": "我画了一幅画。",
+       "uz": "men rasm chizdim",
+       "emoji": "🎨",
+       "image": "en56-u8-can-draw.png",
+       "image_prompt": "A child painting a picture, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Havoda rasm chizganday qil!",
+       "sentence": "昨天我画了我的小猫。",
+       "rom": "Wǒ huà le yì fú huà."
       }
      ],
      "extra": [
@@ -2152,7 +2182,7 @@
     {
      "name": "Ko'rdim",
      "goal": "Bola ko'rgan narsasini aytadi",
-     "intro": "Bip-bip! Kecha yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Laylo uni ko'rdi. Sen kecha nimani ko'rding, nima yeding? Qani, xitoycha aytamiz!",
+     "intro": "Kecha yomg'irdan keyin Laylo osmonda kamalakni ko'rdi! Sen kecha nimani ko'rding, nima yeding? Qani, xitoycha aytamiz!",
      "items": [
       {
        "say": "我看见了彩虹。",
@@ -2175,6 +2205,16 @@
        "sentence": "我看见了一只大狗。汪汪！",
        "action_en": "比划一下有多大！",
        "rom": "Wǒ kànjiàn le yì zhī dà gǒu."
+      },
+      {
+       "say": "我看见了一只小鸟。",
+       "uz": "qush ko'rdim",
+       "emoji": "🐦",
+       "image": "en67-u6-bird-fly.png",
+       "image_prompt": "A small bird flying in the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni qanotdek silkit!",
+       "sentence": "我在树上看见了一只小鸟。",
+       "rom": "Wǒ kànjiàn le yì zhī xiǎoniǎo."
       },
       {
        "say": "我吃了冰淇淋。",
@@ -2252,6 +2292,16 @@
        "sentence": "星期天我们去了动物园。",
        "action_en": "像长颈鹿一样向上伸！",
        "rom": "Wǒmen qù le dòngwùyuán."
+      },
+      {
+       "say": "我们一起玩了。",
+       "uz": "birga o'ynadik",
+       "emoji": "👫",
+       "image": "en45-u14-lets-play-together.png",
+       "image_prompt": "ALI, LAYLO and two other kids playing with a ball together, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Do'stingning qo'lidan ushla!",
+       "sentence": "我们在公园里一起玩了。",
+       "rom": "Wǒmen yìqǐ wán le."
       },
       {
        "say": "真好玩！",
@@ -2431,7 +2481,7 @@
     {
      "name": "Katta sholg'om",
      "goal": "Bola ertakni tinglab qaytaradi",
-     "intro": "Bip-bip! Bobojon bog'ga sholg'om ekdi. Sholg'om shunday katta bo'ldiki, bobojon uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!",
+     "intro": "Bobojon ekkan sholg'om shunday katta bo'ldiki, uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!",
      "items": [
       {
        "say": "大萝卜",
@@ -2519,7 +2569,7 @@
     {
      "name": "Zumrad va Qimmat",
      "goal": "Bola mehnatsevarlik haqidagi ertakni tinglaydi",
-     "intro": "Bip-bip! Bir qishloqda ikki qiz yashardi: mehnatkash, mehribon Zumrad va dangasa, qo'pol Qimmat. Zumrad o'rmonda bir qariyaga yordam berdi va sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
+     "intro": "Bir qishloqda mehribon Zumrad va dangasa Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
      "items": [
       {
        "say": "她很善良。",
@@ -2602,12 +2652,12 @@
        "q_en": "Zumrad在哪里遇到老爷爷？"
       }
      ],
-     "intro_en": "嘀嘀！这是一个乌兹别克童话。Zumrad很善良。Qimmat很懒。我们来听一听！"
+     "intro_en": "这是一个乌兹别克童话。Zumrad很善良。Qimmat很懒。我们来听一听！"
     },
     {
      "name": "Sher va sichqon",
      "goal": "Bola ertak iboralarini aytadi",
-     "intro": "Bip-bip! Katta sher uxlab yotgan edi. Kichkina sichqon uni uyg'otib yubordi, lekin sher uni qo'yib yubordi. Bir kuni sher ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!",
+     "intro": "Katta sher kichkina sichqonni qo'yib yubordi. Bir kuni sherning o'zi ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!",
      "items": [
       {
        "say": "狮子",
@@ -2695,7 +2745,7 @@
     {
      "name": "Maktabga tayyorman!",
      "goal": "Bola o'zini tanishtiradi va bitiruvni bayram qiladi",
-     "intro": "Bip-bip! Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham shuncha ko'p xitoycha so'z o'rganding! Qani, sahnaga chiqib, o'zingni tanishtir!",
+     "intro": "Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham ko'p xitoycha so'z o'rganding — qani, o'zingni tanishtir!",
      "items": [
       {
        "say": "毕业",
@@ -2714,7 +2764,7 @@
        "emoji": "📜",
        "image": "en67-u17-diploma.png",
        "image_prompt": "a rolled diploma with a ribbon, soft 3D cartoon for kids, white background, no text, square",
-       "action": "Diplomni ikki qo'llab ol!",
+       "action": "Diplomni ikki qo'llab olganday qil!",
        "sentence": "这是你的毕业证书。真棒！",
        "action_en": "拿好你的毕业证书！",
        "rom": "bìyè zhèngshū"

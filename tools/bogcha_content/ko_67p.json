@@ -98,7 +98,7 @@
     {
      "name": "Kunduzi",
      "goal": "Bola kunduzgi ishlarini aytadi",
-     "intro": "Bip-bip! Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni koreyscha aytamiz.",
+     "intro": "Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni koreyscha aytamiz.",
      "items": [
       {
        "say": "학교에 가요.",
@@ -132,6 +132,16 @@
        "sentence": "마당에서 친구들이랑 놀아요.",
        "action_en": "친구에게 손을 흔들어요!",
        "rom": "Chingudeurirang norayo."
+      },
+      {
+       "say": "우유를 마셔요.",
+       "uz": "men sut ichaman",
+       "emoji": "🥛",
+       "image": "en56-u4-milk.png",
+       "image_prompt": "A glass of milk, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sut ichganday qil!",
+       "sentence": "점심에 우유를 마셔요.",
+       "rom": "Uyureul masyeoyo."
       }
      ],
      "extra": [
@@ -190,7 +200,7 @@
       },
       {
        "say": "저녁을 먹어요.",
-       "uz": "kechki ovqat qilaman",
+       "uz": "kechki ovqatni yeyman",
        "emoji": "🍽️",
        "image": "en45-u13-dinner.png",
        "image_prompt": "A family having dinner together at a table with plov and bread, soft 3D cartoon for kids, white background, no text, square",
@@ -293,11 +303,11 @@
       },
       {
        "say": "손목시계",
-       "uz": "qo'l soat",
+       "uz": "qo'l soati",
        "emoji": "⌚",
        "image": "en67-u11-watch.png",
        "image_prompt": "a kids' wristwatch, soft 3D cartoon for kids, white background, no text, square",
-       "action": "Bilagingdagi soatga qara!",
+       "action": "Bilagingdagi soatga qaraganday qil!",
        "sentence": "새 손목시계가 있어요.",
        "action_en": "손목을 봐요!",
        "rom": "Sonmoksigye"
@@ -339,7 +349,7 @@
        "q_en": "시계를 봐요. 몇 시예요?"
       }
      ],
-     "intro_en": "삐빅! 똑딱, 똑딱! 나는 카부예요. 내 안에는 시계가 있어요. 시간 말하는 법을 배워요!"
+     "intro_en": "삐빅! 똑딱, 똑딱! 나는 카부예요, 내 안에는 시계가 있어요. 시간 말하는 법을 배워요!"
     }
    ],
    "scenarios": [
@@ -469,7 +479,7 @@
     {
      "name": "Nima bo'ldi?",
      "goal": "Bola o'zini qanday his qilishini aytadi",
-     "intro": "Bip-bip! Bugun Ali bog'chaga kelmadi. Nega ekan? U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?",
+     "intro": "Bugun Ali bog'chaga kelmadi. U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?",
      "items": [
       {
        "say": "무슨 일이야?",
@@ -555,7 +565,7 @@
     {
      "name": "Shifokorda",
      "goal": "Bola shifoxona so'zlarini aytadi",
-     "intro": "Bip-bip! Ali shifoxonaga keldi. U yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!",
+     "intro": "Ali shifoxonaga keldi, u yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!",
      "items": [
       {
        "say": "간호사",
@@ -638,7 +648,7 @@
     {
      "name": "Sog'lom bo'lamiz",
      "goal": "Bola sog'lom odatlarni aytadi",
-     "intro": "Bip-bip! Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!",
+     "intro": "Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!",
      "items": [
       {
        "say": "과일을 먹어요!",
@@ -1020,7 +1030,7 @@
     {
      "name": "Yo'l ko'rsatamiz",
      "goal": "Bola yo'nalishni aytadi",
-     "intro": "Bip-bip! Bir bola adashib qoldi. U [ko]동물원이 어디예요?[/ko] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!",
+     "intro": "Bir bola adashib qoldi va [ko]동물원이 어디예요?[/ko] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!",
      "items": [
       {
        "say": "왼쪽으로 돌아요!",
@@ -1315,7 +1325,7 @@
     {
      "name": "Salat tayyorlaymiz",
      "goal": "Bola oshxona fe'llarini aytadi",
-     "intro": "Bip-bip! Bugun oyijon bilan oshxonada yordam beramiz. Pomidor va bodring bor. Qani, mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi.",
+     "intro": "Bugun oyijon bilan oshxonada pomidor va bodringdan mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi.",
      "items": [
       {
        "say": "샐러드를 만들자!",
@@ -1329,7 +1339,7 @@
       },
       {
        "say": "잘라요",
-       "uz": "to'gra",
+       "uz": "to'g'ra",
        "emoji": "🔪🥒",
        "image": "en67-u14-cut.png",
        "image_prompt": "a grown-up cutting a cucumber on a board, soft 3D cartoon for kids, white background, no text, square",
@@ -1400,7 +1410,7 @@
     {
      "name": "Dasturxon",
      "goal": "Bola idishlarni aytadi",
-     "intro": "Bip-bip! Tez orada mehmonlar keladi! Dasturxonga nima qo'yamiz? Likopcha, qoshiq, sanchqi va piyola. Qani, koreyscha nomlarini o'rgan!",
+     "intro": "Tez orada mehmonlar keladi! Dasturxonga likopcha, qoshiq, sanchqi va piyola qo'yamiz. Qani, koreyscha nomlarini o'rgan!",
      "items": [
       {
        "say": "접시",
@@ -1484,7 +1494,7 @@
     {
      "name": "Mehmon kutamiz",
      "goal": "Bola mehmonga taklif iboralarini aytadi",
-     "intro": "Bip-bip! Taq-taq! Eshikni kim taqillatdi? Buvijonning dugonasi mehmonga keldi! Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
+     "intro": "Taq-taq! Buvijonning dugonasi mehmonga keldi. Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
      "items": [
       {
        "say": "차 드실래요?",
@@ -1780,12 +1790,12 @@
        "q_en": "라일로는 알리가 지금 뭐 하는지 알고 싶어요. 뭐라고 물어봐요?"
       }
      ],
-     "intro_en": "삐빅! 안녕, 친구들! 나는 로봇 카부예요. 지금 뭐 하고 있어요? 같이 말해 봐요!"
+     "intro_en": "안녕, 친구들! 나는 로봇 카부예요. 지금 뭐 하고 있어요? 같이 말해 봐요!"
     },
     {
      "name": "U nima qilyapti?",
      "goal": "Bola boshqalarning harakatini aytadi",
-     "intro": "Bip-bip! Uyda hamma band! Bobojon divanda ko'zini yumdi, Laylo qo'shiq aytyapti, bolalar hovlida yugurishyapti. O'g'il bola — [ko]그[/ko], qiz bola — [ko]그녀[/ko], ko'pchilik — [ko]그들[/ko]. Ular nima qilyapti? Qani, aytamiz!",
+     "intro": "Uyda hamma band: bobojon uxlayapti, Laylo qo'shiq aytyapti, bolalar yugurishyapti. O'g'il bola — [ko]그[/ko], qiz bola — [ko]그녀[/ko], ko'pchilik — [ko]그들[/ko]. Qani, aytamiz!",
      "items": [
       {
        "say": "그는 자고 있어요.",
@@ -1819,6 +1829,16 @@
        "sentence": "그들은 공원에서 달리고 있어요.",
        "action_en": "제자리에서 달려요!",
        "rom": "Geudeureun dalligo isseoyo."
+      },
+      {
+       "say": "그녀는 춤추고 있어요.",
+       "uz": "u raqs tushyapti",
+       "emoji": "💃",
+       "image": "en23-u10-dance.png",
+       "image_prompt": "ALI dancing joyfully, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Raqs tush!",
+       "sentence": "봐요! 그녀는 음악에 맞춰 춤추고 있어요.",
+       "rom": "Geunyeoneun chumchugo isseoyo."
       }
      ],
      "extra": [
@@ -1857,12 +1877,12 @@
        "q_en": "알리와 라일로가 공원에 있어요. 빨리 달려요. 어느 문장이 맞아요?"
       }
      ],
-     "intro_en": "삐빅! 가족을 봐요! 누가 자고 있어요? 누가 노래하고 있어요? 같이 봐요!"
+     "intro_en": "가족을 봐요! 누가 자고 있어요? 누가 노래하고 있어요? 같이 봐요!"
     },
     {
      "name": "Hayvonlar nima qilyapti?",
      "goal": "Bola hayvonlar harakatini aytadi",
-     "intro": "Bip-bip! Buvijonning hovlisiga keldik. Qara: mushuk quyoshda yotibdi, kuchukcha yuguryapti, daraxtda qushlar sayrayapti, hovuzda baliq bor. Ular nima qilyapti? Bilib olamiz!",
+     "intro": "Buvijonning hovlisida mushuk quyoshda yotibdi, kuchukcha yuguryapti, qushlar sayrayapti, hovuzda baliq suzyapti. Ular nima qilyapti? Bilib olamiz!",
      "items": [
       {
        "say": "고양이가 자고 있어요.",
@@ -2109,6 +2129,16 @@
        "sentence": "어제 공원에 갔어요.",
        "action_en": "제자리에서 걸어요!",
        "rom": "Gongwone gasseoyo."
+      },
+      {
+       "say": "그림을 그렸어요.",
+       "uz": "men rasm chizdim",
+       "emoji": "🎨",
+       "image": "en56-u8-can-draw.png",
+       "image_prompt": "A child painting a picture, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Havoda rasm chizganday qil!",
+       "sentence": "어제 우리 고양이를 그렸어요.",
+       "rom": "Geurimeul geuryeosseoyo."
       }
      ],
      "extra": [
@@ -2152,7 +2182,7 @@
     {
      "name": "Ko'rdim",
      "goal": "Bola ko'rgan narsasini aytadi",
-     "intro": "Bip-bip! Kecha yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Laylo uni ko'rdi. Sen kecha nimani ko'rding, nima yeding? Qani, koreyscha aytamiz!",
+     "intro": "Kecha yomg'irdan keyin Laylo osmonda kamalakni ko'rdi! Sen kecha nimani ko'rding, nima yeding? Qani, koreyscha aytamiz!",
      "items": [
       {
        "say": "무지개를 봤어요.",
@@ -2175,6 +2205,16 @@
        "sentence": "큰 개를 봤어요. 멍멍!",
        "action_en": "크게 보여 줘요!",
        "rom": "Keun gaereul bwasseoyo."
+      },
+      {
+       "say": "새를 봤어요.",
+       "uz": "qush ko'rdim",
+       "emoji": "🐦",
+       "image": "en67-u6-bird-fly.png",
+       "image_prompt": "A small bird flying in the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaringni qanotdek silkit!",
+       "sentence": "나무 위에서 새를 봤어요.",
+       "rom": "Saereul bwasseoyo."
       },
       {
        "say": "아이스크림을 먹었어요.",
@@ -2252,6 +2292,16 @@
        "sentence": "일요일에 우리는 동물원에 갔어요.",
        "action_en": "기린처럼 쭉 펴요!",
        "rom": "Urineun dongmurwone gasseoyo."
+      },
+      {
+       "say": "우리는 같이 놀았어요.",
+       "uz": "birga o'ynadik",
+       "emoji": "👫",
+       "image": "en45-u14-lets-play-together.png",
+       "image_prompt": "ALI, LAYLO and two other kids playing with a ball together, soft 3D cartoon for kids, white background, no text, square",
+       "action": "Do'stingning qo'lidan ushla!",
+       "sentence": "우리는 공원에서 같이 놀았어요.",
+       "rom": "Urineun gachi norasseoyo."
       },
       {
        "say": "재미있었어요!",
@@ -2431,7 +2481,7 @@
     {
      "name": "Katta sholg'om",
      "goal": "Bola ertakni tinglab qaytaradi",
-     "intro": "Bip-bip! Bobojon bog'ga sholg'om ekdi. Sholg'om shunday katta bo'ldiki, bobojon uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!",
+     "intro": "Bobojon ekkan sholg'om shunday katta bo'ldiki, uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!",
      "items": [
       {
        "say": "순무",
@@ -2519,7 +2569,7 @@
     {
      "name": "Zumrad va Qimmat",
      "goal": "Bola mehnatsevarlik haqidagi ertakni tinglaydi",
-     "intro": "Bip-bip! Bir qishloqda ikki qiz yashardi: mehnatkash, mehribon Zumrad va dangasa, qo'pol Qimmat. Zumrad o'rmonda bir qariyaga yordam berdi va sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
+     "intro": "Bir qishloqda mehribon Zumrad va dangasa Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
      "items": [
       {
        "say": "그녀는 착해요.",
@@ -2602,12 +2652,12 @@
        "q_en": "주므라드는 할아버지를 어디에서 만나요?"
       }
      ],
-     "intro_en": "삐빅! 이건 우즈베키스탄 옛날이야기예요. 주므라드는 착해요. 키마트는 게을러요. 같이 들어 봐요!"
+     "intro_en": "이건 우즈베키스탄 옛날이야기예요. 주므라드는 착해요. 키마트는 게을러요. 같이 들어 봐요!"
     },
     {
      "name": "Sher va sichqon",
      "goal": "Bola ertak iboralarini aytadi",
-     "intro": "Bip-bip! Katta sher uxlab yotgan edi. Kichkina sichqon uni uyg'otib yubordi, lekin sher uni qo'yib yubordi. Bir kuni sher ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!",
+     "intro": "Katta sher kichkina sichqonni qo'yib yubordi. Bir kuni sherning o'zi ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!",
      "items": [
       {
        "say": "사자",
@@ -2695,7 +2745,7 @@
     {
      "name": "Maktabga tayyorman!",
      "goal": "Bola o'zini tanishtiradi va bitiruvni bayram qiladi",
-     "intro": "Bip-bip! Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham shuncha ko'p koreyscha so'z o'rganding! Qani, sahnaga chiqib, o'zingni tanishtir!",
+     "intro": "Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham ko'p koreyscha so'z o'rganding — qani, o'zingni tanishtir!",
      "items": [
       {
        "say": "졸업식",
@@ -2714,7 +2764,7 @@
        "emoji": "📜",
        "image": "en67-u17-diploma.png",
        "image_prompt": "a rolled diploma with a ribbon, soft 3D cartoon for kids, white background, no text, square",
-       "action": "Diplomni ikki qo'llab ol!",
+       "action": "Diplomni ikki qo'llab olganday qil!",
        "sentence": "여기 졸업장이에요. 잘했어요!",
        "action_en": "졸업장을 받아요!",
        "rom": "Joreopjang"

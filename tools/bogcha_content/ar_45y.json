@@ -12,7 +12,7 @@
     {
      "name": "Salom va rahmat",
      "goal": "Bola tanish salomlashish iboralarini eslaydi va مع السلامة! iborasini o'rganadi",
-     "intro": "Salom, bolajonlar! Men — robot Kabu. Bip-bip! Yozda sen o'sding, men ham o'sdim! Qani, avval eski do'stlarimiz — sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
+     "intro": "Salom, bolajonlar! Yozda sen ham, men ham o'sdik. Avval sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
      "items": [
       {
        "say": "مَرْحَبًا!",
@@ -66,7 +66,7 @@
     {
      "name": "Mening ismim",
      "goal": "Bola ما اسمك؟ savoliga اسمي… deb javob beradi",
-     "intro": "Bip-bip! Mening ismim — robot Kabu. Sening isming-chi? Arab bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
+     "intro": "Mening ismim — robot Kabu, sening isming-chi? Arab bolalari bir-biridan ismini qanday so'raydi?",
      "items": [
       {
        "say": "مَا اسْمُك؟",
@@ -84,6 +84,14 @@
        "image_prompt": "A proud child pointing to self with a name tag without letters, cute cartoon, soft flat colors, white background, no text, square",
        "action": "Qo'lingni ko'ksingga qo'y!",
        "rom": "ismi…"
+      },
+      {
+       "say": "تَشَرَّفْتُ بِمَعْرِفَتِك!",
+       "uz": "tanishganimdan xursandman!",
+       "emoji": "🤝",
+       "image": "en67-u8-nice-to-meet.png",
+       "image_prompt": "Two children shaking hands and smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "rom": "tasharraftu bi-ma'rifatik!"
       }
      ],
      "extra": [
@@ -111,7 +119,7 @@
     {
      "name": "Qalaysan?",
      "goal": "Bola كيف حالك؟ savoliga أنا بخير! deb javob beradi",
-     "intro": "Bip-bip! Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Arabcha qanday so'raymiz? Tingla!",
+     "intro": "Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Arabcha qanday so'raymiz? Tingla!",
      "items": [
       {
        "say": "كَيْفَ حَالُك؟",
@@ -164,7 +172,7 @@
     {
      "name": "To'rt rangni eslaymiz",
      "goal": "Bola أحمر، أزرق، أصفر، أخضر ranglarini eslaydi va ajratadi",
-     "intro": "Bip-bip! Mening sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysanmi? Qani, bir-bir chiqaramiz!",
+     "intro": "Sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysanmi? Qani, bir-bir chiqaramiz!",
      "items": [
       {
        "say": "أَحْمَر",
@@ -369,7 +377,7 @@
     {
      "name": "Jigarrang, qora, oq",
      "goal": "Bola بنّي، أسود، أبيض ranglarini ajratadi",
-     "intro": "Bip-bip! Ayiqcha qanday rangda? Tun-chi? Qor-chi? Bugun uchta yangi rangni o'rganamiz!",
+     "intro": "Ayiqcha qanday rangda? Tun-chi, qor-chi? Bugun uchta yangi rangni o'rganamiz!",
      "items": [
       {
        "say": "بُنِّيّ",
@@ -421,7 +429,7 @@
     {
      "name": "Kulrang va kamalak",
      "goal": "Bola رماديّ so'zini va ما لونه؟ savolini o'rganadi, 11 rangni takrorlaydi",
-     "intro": "Bip-bip! Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni o'rganamiz va rang haqida so'rashni bilib olamiz.",
+     "intro": "Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni va rang haqida so'rashni o'rganamiz.",
      "items": [
       {
        "say": "رَمَادِيّ",
@@ -555,7 +563,7 @@
     {
      "name": "Bir, ikki, uch",
      "goal": "Bola واحد، اثنان، ثلاثة sonlarini aytadi va sanaydi",
-     "intro": "Bip-bip! Men don yig'yapman. Yordam berasanmi? Donlarni arabcha sanaymiz. Barmoqlaringni tayyorla!",
+     "intro": "Men don yig'yapman, yordam berasanmi? Donlarni arabcha sanaymiz. Barmoqlaringni tayyorla!",
      "items": [
       {
        "say": "وَاحِد",
@@ -610,7 +618,7 @@
     {
      "name": "To'rt, besh, olti",
      "goal": "Bola أربعة، خمسة، ستّة sonlarini aytadi va oltigacha sanaydi",
-     "intro": "Bip-bip! Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak-chi? Olti! Qani, sanashni davom ettiramiz.",
+     "intro": "Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak — olti!",
      "items": [
       {
        "say": "أَرْبَعَة",
@@ -663,7 +671,7 @@
     {
      "name": "Yetti va sakkiz",
      "goal": "Bola سبعة، ثمانية sonlarini aytadi va sakkizgacha sanaydi",
-     "intro": "Bip-bip! Kamalakda nechta rang bor? Yettita! Sakkizoyoqda nechta oyoq bor? Sakkizta! Qiziq-a?",
+     "intro": "Kamalakda yettita rang bor. Sakkizoyoqda esa sakkizta oyoq! Qiziq-a?",
      "items": [
       {
        "say": "سَبْعَة",
@@ -680,6 +688,14 @@
        "image": "en45-u3-eight.png",
        "image_prompt": "A cute octopus with eight arms and a big number eight, cute cartoon, soft flat colors, white background, no text, square",
        "rom": "thamaniya"
+      },
+      {
+       "say": "هَيَّا نَعُدّ!",
+       "uz": "qani, sanaymiz!",
+       "emoji": "🧮",
+       "image": "en67-u1-lets-count.png",
+       "image_prompt": "A colorful abacus, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "rom": "hayya na'udd!"
       }
      ],
      "extra": [
@@ -707,7 +723,7 @@
     {
      "name": "To'qqiz, o'n. Nechta?",
      "goal": "Bola تسعة، عشرة sonlarini va كم؟ savolini o'rganadi, o'ngacha sanaydi",
-     "intro": "Bip-bip! Ikki qo'limizda nechta barmoq bor? Qani, o'ngacha sanaymiz! Yana bir yangi savol ham o'rganamiz: nechta?",
+     "intro": "Ikki qo'limizda nechta barmoq bor? Qani, o'ngacha sanaymiz va «nechta» deb so'rashni o'rganamiz!",
      "items": [
       {
        "say": "تِسْعَة",
@@ -853,7 +869,7 @@
     {
      "name": "Sher, yo'lbars, ayiq",
      "goal": "Bola أسد، نمر، دبّ so'zlarini aytadi",
-     "intro": "Bip-bip! Bugun hayvonot bog'iga sayohat! Diqqat: kimdir «rrr!» deb bo'kiryapti. Kim ekan? Sekin boramiz…",
+     "intro": "Bugun hayvonot bog'iga sayohat! Kimdir «rrr» deb bo'kiryapti. Kim ekan?",
      "items": [
       {
        "say": "أَسَد",
@@ -907,7 +923,7 @@
     {
      "name": "Maymun, fil, jirafa",
      "goal": "Bola قرد، فيل، زرافة so'zlarini aytadi",
-     "intro": "Bip-bip! Daraxtda kim banan yeyapti? Kimning burni uzun? Kimning bo'yni osmonga yetadi? Qani, topamiz!",
+     "intro": "Daraxtda kim banan yeyapti? Kimning burni uzun, kimning bo'yni osmonga yetadi? Qani, topamiz!",
      "items": [
       {
        "say": "قِرْد",
@@ -915,7 +931,7 @@
        "emoji": "🐵",
        "image": "en45-u4-monkey.png",
        "image_prompt": "A playful monkey holding a banana, cute cartoon, soft flat colors, white background, no text, square",
-       "action": "Maymunday qichish!",
+       "action": "Maymunday qashin!",
        "rom": "qird"
       },
       {
@@ -953,7 +969,7 @@
     {
      "name": "Zebra, timsoh, ilon",
      "goal": "Bola حمار وحشي، تمساح، ثعبان so'zlarini aytadi",
-     "intro": "Bip-bip! Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan? Kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
+     "intro": "Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan, kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
      "items": [
       {
        "say": "حِمَارٌ وَحْشِيّ",
@@ -1007,7 +1023,7 @@
     {
      "name": "Tulki, bo'ri, boyo'g'li",
      "goal": "Bola ثعلب، ذئب، بومة so'zlarini aytadi",
-     "intro": "Bip-bip! O'rmonga kirdik. Kechasi kim «uhu» deydi? Kim oyga qarab uvlaydi? Kim ayyor? Sekin tingla!",
+     "intro": "O'rmonga kirdik. Kechasi kim «uhu» deydi, kim oyga qarab uvlaydi, kim ayyor? Sekin tingla!",
      "items": [
       {
        "say": "ثَعْلَب",
@@ -1143,7 +1159,7 @@
     {
      "name": "Ona, ota, oila",
      "goal": "Bola أمّ، أب، عائلة so'zlarini aytadi",
-     "intro": "Bip-bip! Men uyamdagi oilamning suratini olib keldim. Sening oilangda kim bor? Bugun oilamiz haqida gapiramiz!",
+     "intro": "Men oilamning suratini olib keldim. Sening oilangda kim bor? Bugun oila haqida gapiramiz!",
      "items": [
       {
        "say": "أُمّ",
@@ -1195,7 +1211,7 @@
     {
      "name": "Opa-singil, aka-uka",
      "goal": "Bola sister, brother, baby so'zlarini aytadi",
-     "intro": "Bip-bip! Sening akang yoki opang bormi? Balki kichkina ukang bordir? Arabcha qanday aytamiz?",
+     "intro": "Sening akang yoki opang bormi? Balki kichkina ukang bordir? Arabcha qanday aytamiz?",
      "items": [
       {
        "say": "أُخْت",
@@ -1239,7 +1255,7 @@
     {
      "name": "Buvi, bobo. Bu mening…",
      "goal": "Bola جدّة، جدّ so'zlarini va هذا… iborasini o'rganadi",
-     "intro": "Bip-bip! Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz? Tingla!",
+     "intro": "Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz?",
      "items": [
       {
        "say": "جَدَّة",
@@ -1384,7 +1400,7 @@
     {
      "name": "Bosh, yelka, tizza",
      "goal": "Bola رأس، كتفان، ركبتان، أصابع القدمين so'zlarini qo'shiq bilan o'rganadi",
-     "intro": "Bip-bip! Arab bolalarining eng mashhur qo'shig'ini bilasanmi? Unda bosh, yelka, tizza va oyoq barmoqlari bor. Qani, tur!",
+     "intro": "Arab bolalarining mashhur qo'shig'ida bosh, yelka, tizza va oyoq barmoqlari bor. Qani, tur!",
      "items": [
       {
        "say": "رَأْس",
@@ -1448,7 +1464,7 @@
     {
      "name": "Ko'z, quloq, og'iz, burun",
      "goal": "Bola عينان، أذنان، فم، أنف so'zlarini aytadi",
-     "intro": "Bip-bip! Qo'shiqning ikkinchi qismi yuzimiz haqida! Ko'zlar, quloqlar, og'iz va burun. Barmog'ingni tayyorla!",
+     "intro": "Qo'shiqning ikkinchi qismi yuzimiz haqida: ko'zlar, quloqlar, og'iz va burun. Barmog'ingni tayyorla!",
      "items": [
       {
        "say": "عَيْنَان",
@@ -1563,10 +1579,10 @@
     {
      "name": "المس أنفك!",
      "goal": "Bola المس…، صفّق بيديك!، اضرب الأرض بقدميك! buyruqlarini tushunib bajaradi",
-     "intro": "Bip-bip! Bugun «Kabu aytdi» o'yinini o'ynaymiz! Men arabcha buyruq beraman, sen bajarasan. Diqqat bilan tingla!",
+     "intro": "Bugun «Kabu aytdi» o'yinini o'ynaymiz! Men arabcha buyruq beraman, sen bajarasan. Diqqat bilan tingla!",
      "items": [
       {
-       "say": "المس أنفك!",
+       "say": "اِلْمِسْ أَنْفَك!",
        "uz": "burningga teg!",
        "emoji": "☝️",
        "image": "en45-u6-touch-your-nose.png",
@@ -1584,21 +1600,21 @@
        "rom": "saffiq bi-yadayk!"
       },
       {
-       "say": "اُضْرِبِ الْأَرْضَ بِقَدَمَيْك!",
+       "say": "اِضْرِبِ الْأَرْضَ بِقَدَمَيْك!",
        "uz": "oyog'ingni tapillat!",
        "emoji": "🥾",
        "image": "en45-u6-stamp-your-feet.png",
        "image_prompt": "A happy child stamping feet in little boots, cute cartoon, soft flat colors, white background, no text, square",
        "action": "Oyog'ingni tapillat!",
-       "rom": "udribi al-arda bi-qadamayk!"
+       "rom": "idribi al-arda bi-qadamayk!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🕊️ Kabutar aytdi",
-       "matn": "Bajar: [ar]اِلْمَسْ رَأْسَك![/ar] [ar]اِلْمَسْ أُذُنَيْك![/ar] [ar]اِلْمَسْ رُكْبَتَيْك![/ar] [ar]صَفِّقْ بِيَدَيْك![/ar] [ar]اُضْرِبِ الْأَرْضَ بِقَدَمَيْك![/ar] Ofarin, hammasini tushunding!",
-       "doska": "☝️ اِلْمَسْ…\n👏 صَفِّق!\n🥾 دُقَّ بِقَدَمَيْك!",
+       "matn": "Bajar: [ar]اِلْمِسْ رَأْسَك![/ar] [ar]اِلْمِسْ أُذُنَيْك![/ar] [ar]اِلْمِسْ رُكْبَتَيْك![/ar] [ar]صَفِّقْ بِيَدَيْك![/ar] [ar]اِضْرِبِ الْأَرْضَ بِقَدَمَيْك![/ar] Ofarin, hammasini tushunding!",
+       "doska": "☝️ اِلْمِسْ…\n👏 صَفِّق!\n🥾 دُقَّ بِقَدَمَيْك!",
        "sodda": null,
        "boshqa_usul": null
       }
@@ -1700,7 +1716,7 @@
     {
      "name": "Olma, banan, apelsin",
      "goal": "Bola تفّاحة، موزة، برتقالة so'zlarini aytadi",
-     "intro": "Bip-bip! Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz. Qiziq: bitta meva rangning nomi bilan atalar ekan!",
+     "intro": "Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz.",
      "items": [
       {
        "say": "تُفَّاحَة",
@@ -1719,12 +1735,12 @@
        "rom": "mawz"
       },
       {
-       "say": "بُرْتُقَالِيّ",
+       "say": "بُرْتُقَالَة",
        "uz": "apelsin",
        "emoji": "🍊",
        "image": "en45-u7-orange-fruit.png",
        "image_prompt": "A juicy orange fruit with a leaf, cute cartoon, soft flat colors, white background, no text, square",
-       "rom": "burtuqaliyy"
+       "rom": "burtuqala"
       }
      ],
      "extra": [
@@ -1739,7 +1755,7 @@
      ],
      "tests": [
       {
-       "q": "Qaysi biri [ar]بُرْتُقَالِيّ[/ar] mevasi?",
+       "q": "Qaysi biri [ar]بُرْتُقَالَة[/ar] mevasi?",
        "options": [
         "🍊 بُرْتُقَالَة",
         "🍌 مَوْز"
@@ -1752,7 +1768,7 @@
     {
      "name": "Uzum, limon, qulupnay",
      "goal": "Bola عنب، ليمون، فراولة so'zlarini aytadi",
-     "intro": "Bip-bip! Bog'da nima pishibdi? Shingil-shingil uzum, nordon limon va shirin qulupnay! Qaysi biri nordon ekan?",
+     "intro": "Bog'da shingil-shingil uzum, nordon limon va shirin qulupnay pishibdi! Qaysi biri nordon ekan?",
      "items": [
       {
        "say": "عِنَب",
@@ -1772,19 +1788,19 @@
        "rom": "laymun"
       },
       {
-       "say": "فَرَاوْلَة",
+       "say": "فَرَاوِلَة",
        "uz": "qulupnay",
        "emoji": "🍓",
        "image": "en45-u7-strawberry.png",
        "image_prompt": "A sweet red strawberry, cute cartoon, soft flat colors, white background, no text, square",
-       "rom": "farawla"
+       "rom": "farawila"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "😝 Nordon-shirin",
-       "matn": "Men meva aytaman: nordon bo'lsa — yuzingni burishtir, shirin bo'lsa — jilmay! [ar]لَيْمُون![/ar] … [ar]فَرَاوْلَة![/ar] … [ar]عِنَب![/ar]",
+       "matn": "Men meva aytaman: nordon bo'lsa — yuzingni burishtir, shirin bo'lsa — jilmay! [ar]لَيْمُون![/ar] … [ar]فَرَاوِلَة![/ar] … [ar]عِنَب![/ar]",
        "doska": "🍋 nordon\n🍓 shirin",
        "sodda": null,
        "boshqa_usul": null
@@ -1795,7 +1811,7 @@
        "q": "Qaysi meva nordon?",
        "options": [
         "🍋 لَيْمُون",
-        "🍓 فَرَاوْلَة"
+        "🍓 فَرَاوِلَة"
        ],
        "answer": 0,
        "why": "To'g'ri! [ar]لَيْمُون[/ar] — limon nordon."
@@ -1857,7 +1873,7 @@
     {
      "name": "Men olmani yaxshi ko'raman",
      "goal": "Bola خيار so'zini va أنا أحبّ… iborasini o'rganadi",
-     "intro": "Bip-bip! Men batareykamni yaxshi ko'raman. Sen nimani yaxshi ko'rasan? Bugun buni arabcha aytishni o'rganamiz!",
+     "intro": "Men batareykamni yaxshi ko'raman. Sen nimani yaxshi ko'rasan? Bugun buni arabcha aytishni o'rganamiz!",
      "items": [
       {
        "say": "خِيَار",
@@ -2003,7 +2019,7 @@
     {
      "name": "Futbolka, ko'ylak, shim",
      "goal": "Bola قميص، فستان، بنطال so'zlarini aytadi",
-     "intro": "Bip-bip! Ertalab turib nima kiyamiz? robot Kabuning shkafini ochamiz. Voy, qancha kiyim!",
+     "intro": "Ertalab turib nima kiyamiz? Robot Kabuning shkafini ochamiz — voy, qancha kiyim!",
      "items": [
       {
        "say": "قَمِيص",
@@ -2055,7 +2071,7 @@
     {
      "name": "Shapka, tufli, paypoq",
      "goal": "Bola قبّعة، حذاء، جوارب so'zlarini aytadi",
-     "intro": "Bip-bip! Tashqariga sayrga chiqamiz! Boshga nima kiyamiz? Oyoqqa-chi? Avval paypoq, keyin tufli!",
+     "intro": "Sayrga chiqamiz! Boshga nima kiyamiz, oyoqqa-chi? Avval paypoq, keyin tufli!",
      "items": [
       {
        "say": "قُبَّعَة",
@@ -2168,7 +2184,7 @@
     {
      "name": "Bu nima? Bu — koptok",
      "goal": "Bola ما هذا؟ savoliga إنّها… deb javob beradi, أنا أحبّ… deydi",
-     "intro": "Bip-bip! Men sehrli qopcha olib keldim! Ichida bitta narsa yashiringan. Bu nima ekan? Arabcha so'raymiz va javob beramiz!",
+     "intro": "Sehrli qopchada bitta narsa yashiringan. Bu nima ekan? Arabcha so'raymiz va javob beramiz!",
      "items": [
       {
        "say": "مَا هٰذَا؟",
@@ -2302,7 +2318,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola خبز، حليب، بيضة، جبن so'zlarini biladi",
-     "intro": "Bip-bip! Xayrli tong! robot Kabu och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Qani, arabcha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Qani, arabcha aytamiz.",
      "items": [
       {
        "say": "خُبْز",
@@ -2354,12 +2370,12 @@
        "sarlavha_en": "🍳 هيا نحضّر الفطور"
       }
      ],
-     "intro_en": "صباح الخير! حان وقت الفطور. هيا نأكل الخبز والبيض والجبن. لذيذ!"
+     "intro_en": "صباح الخير! حان وقت الفطور. هيا نأكل الخبز والبيض والجبن."
     },
     {
      "name": "Ichimliklar",
      "goal": "Bola ماء، عصير، شاي so'zlarini va «أنا عطشان» iborasini biladi",
-     "intro": "Bip-bip! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz.",
+     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz.",
      "items": [
       {
        "say": "مَاء",
@@ -2424,12 +2440,12 @@
        "q_en": "ماذا تشرب الجدة في الصباح؟"
       }
      ],
-     "intro_en": "أهلًا يا أصدقاء! أنا عطشان. هيا نشرب شيئًا. ماء أم عصير أم شاي؟"
+     "intro_en": "أهلًا يا أصدقاء! أنا عطشان. ماء أم عصير أم شاي؟"
     },
     {
      "name": "Tushlik",
      "goal": "Bola حساء، أرزّ، دجاج so'zlarini va «أنا جائع» iborasini biladi",
-     "intro": "Bip-bip! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Qani, bilamiz!",
+     "intro": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?",
      "items": [
       {
        "say": "حَسَاء",
@@ -2442,7 +2458,7 @@
       },
       {
        "say": "أَرُزّ",
-       "uz": "guruch, palov",
+       "uz": "guruch",
        "emoji": "🍚",
        "image": "en56-u4-rice.png",
        "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -2474,9 +2490,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Sen — oshpazsan! Qozonga sol: [ar]أَرُزّ[/ar], [ar]دَجَاج[/ar]… aralashtir! Kabu keladi: [ar]أَنَا جَائِع![/ar] Sen berasan: [ar]هٰذَا حَسَاء![/ar]",
+       "matn": "Sen — oshpazsan! O'yinchoq qozonga solganday qil: [ar]أَرُزّ[/ar], [ar]دَجَاج[/ar]… aralashtir! Kabu keladi: [ar]أَنَا جَائِع![/ar] Sen berasan: [ar]هٰذَا حَسَاء![/ar]",
        "doska": "🍚 أَرُزّ + 🍗 دَجَاج\n🍲 حَسَاء\nأَنَا جَائِع! 🍽️",
-       "sodda": "Qozonga bittadan sol va ayt: [ar]أَرُزّ[/ar]!",
+       "sodda": "O'yinchoq qozonga bittadan sol va ayt: [ar]أَرُزّ[/ar]!",
        "boshqa_usul": "Qog'ozdan likopcha yasa, ichiga rasm chiz va nomini ayt.",
        "matn_en": "أنت الطباخ! ضع الأرز والدجاج في القدر. حرّك، حرّك! كبوتر: أنا جائع! الطباخ: هذا حساء!",
        "sarlavha_en": "🥄 لعبة الطباخ"
@@ -2494,12 +2510,12 @@
        "q_en": "ماذا تعني «أنا جائع»؟"
       }
      ],
-     "intro_en": "مرحبًا! حان وقت الغداء. أنا جائع! هيا نأكل الحساء والأرز."
+     "intro_en": "حان وقت الغداء. أنا جائع! هيا نأكل الحساء والأرز."
     },
     {
      "name": "Shirinliklar",
      "goal": "Bola كعكة، بوظة، حلوى so'zlarini va «لذيذ!» iborasini biladi",
-     "intro": "Bip-bip! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Qani, ularni arabcha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Qani, ularni arabcha nomlaymiz.",
      "items": [
       {
        "say": "كَعْكَة",
@@ -2544,7 +2560,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة![/ar] Pufla! Endi tortdan tatib ko'ramiz — [ar]لَذِيذ![/ar]",
+       "matn": "Tortdagi shamlarni sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة![/ar] Puflaganday qil! Endi tortdan tatib ko'ramiz — [ar]لَذِيذ![/ar]",
        "doska": "🎂 وَاحِد اِثْنَان ثَلَاثَة أَرْبَعَة خَمْسَة\nلَذِيذ! 😋",
        "sodda": "Birgina so'z: [ar]كَعْكَة[/ar]… [ar]لَذِيذ![/ar]",
        "boshqa_usul": "Loy yoki plastilindan tort yasa va unga sham qo'yib, arabcha sana!",
@@ -2564,7 +2580,7 @@
        "q_en": "نضع عليها الشموع في عيد الميلاد. ما هي؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! أحب الأشياء الحلوة. الكعك، البوظة، الحلوى. لذيذ!"
+     "intro_en": "مرحبًا يا أصدقاء! أحب الأشياء الحلوة. الكعك، البوظة، الحلوى."
     }
    ],
    "scenarios": [
@@ -2665,7 +2681,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola بيت، باب، نافذة، حديقة so'zlarini biladi",
-     "intro": "Bip-bip! Mening temir uycham bor, sening esa chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni arabcha o'rganamiz.",
+     "intro": "Mening temir uycham bor, sening esa chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni arabcha o'rganamiz.",
      "items": [
       {
        "say": "بَيْت",
@@ -2720,12 +2736,12 @@
        "sarlavha_en": "🏠 ارسم بيتًا"
       }
      ],
-     "intro_en": "مرحبًا! أهلًا بك في بيتي! انظر، هذا هو الباب. تفضل بالدخول!"
+     "intro_en": "أهلًا بك في بيتي! انظر، هذا هو الباب. تفضل بالدخول!"
     },
     {
      "name": "Uydagi xonalar",
      "goal": "Bola المطبخ، غرفة النوم، الحمّام، غرفة الجلوس so'zlarini biladi",
-     "intro": "Bip-bip! Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysan? Qani, xonalarni arabcha aytamiz!",
+     "intro": "Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysan? Qani, xonalarni arabcha aytamiz!",
      "items": [
       {
        "say": "الْمَطْبَخ",
@@ -2797,7 +2813,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola كرسيّ، مصباح، تلفاز، ساعة so'zlarini biladi",
-     "intro": "Bip-bip! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Qani, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Qani, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "كُرْسِيّ",
@@ -2851,12 +2867,12 @@
        "sarlavha_en": "👀 ابحث عنه!"
       }
      ],
-     "intro_en": "مرحبًا! انظر إلى غرفتي. أرى كرسيًا ومصباحًا وساعة. ماذا ترى أنت؟"
+     "intro_en": "انظر إلى غرفتي. أرى كرسيًا ومصباحًا وساعة. ماذا ترى أنت؟"
     },
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «أين…؟» deb so'raydi, في، على، تحت so'zlarini tushunadi",
-     "intro": "Bip-bip! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Qani, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Qani, birga qidiramiz!",
      "items": [
       {
        "say": "أَيْنَ الْقِطَّة؟",
@@ -2920,7 +2936,7 @@
        "q_en": "القطة الصغيرة في الصندوق. كيف نقول ذلك؟"
       }
      ],
-     "intro_en": "يا إلهي! أين القطة؟ هيا نبحث عنها معًا. هل هي في الصندوق؟"
+     "intro_en": "يا إلهي! أين القطة؟ هل هي في الصندوق؟"
     }
    ],
    "scenarios": [
@@ -3021,7 +3037,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «كيف الجوّ؟» savoliga مشمس، ممطر، عاصف bilan javob beradi",
-     "intro": "Bip-bip! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni arabcha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni arabcha aytamiz!",
      "items": [
       {
        "say": "كَيْفَ الْجَوّ؟",
@@ -3094,7 +3110,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola ثلجيّ، غائم، حارّ، بارد so'zlari bilan havoni tasvirlaydi",
-     "intro": "Bip-bip! Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq bo'ladi, sovuq bo'ladi. Qani, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq ham, sovuq ham bo'ladi. Qani, o'rganamiz!",
      "items": [
       {
        "say": "الثَّلْجُ يَتَسَاقَط.",
@@ -3166,7 +3182,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola الربيع، الصيف، الخريف، الشتاء fasllarini biladi",
-     "intro": "Bip-bip! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?",
      "items": [
       {
        "say": "الرَّبِيع",
@@ -3248,7 +3264,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola مظلّة، قوس قزح، رجل الثلج so'zlarini biladi",
-     "intro": "Bip-bip! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz.",
      "items": [
       {
        "say": "مِظَلَّة",
@@ -3273,7 +3289,7 @@
       },
       {
        "say": "رَجُلُ الثَّلْج",
-       "uz": "qorbobo, qor odam",
+       "uz": "qor odam",
        "emoji": "⛄",
        "image": "en56-u6-snowman.png",
        "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -3305,7 +3321,7 @@
        "q_en": "الجو ممطر. ماذا نأخذ معنا؟"
       }
      ],
-     "intro_en": "أهلًا! الجو ممطر اليوم، لذلك معي مظلة. انظر! بعد المطر أرى قوس قزح!"
+     "intro_en": "الجو ممطر اليوم، لذلك معي مظلة. انظر! بعد المطر أرى قوس قزح!"
     }
    ],
    "scenarios": [
@@ -3417,7 +3433,7 @@
     {
      "name": "Iltimos va rahmat",
      "goal": "Bola odob so'zlarini o'rnida ishlatadi",
-     "intro": "Bip-bip! Men — robot Kabu. Bilasanmi, ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz. Tayyormisan?",
+     "intro": "Ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz.",
      "items": [
       {
        "say": "مِنْ فَضْلِك!",
@@ -3481,11 +3497,11 @@
     {
      "name": "Kechirasiz",
      "goal": "Bola kechirim so'raydi va kechiradi",
-     "intro": "Bip-bip! Voy, Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi Ali nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
+     "intro": "Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi u nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
      "items": [
       {
        "say": "عَفْوًا!",
-       "uz": "kechirasiz (murojaat)",
+       "uz": "kechirasiz",
        "emoji": "✋",
        "image": "en45-u12-excuse-me.png",
        "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square",
@@ -3545,7 +3561,7 @@
     {
      "name": "Menga berasanmi?",
      "goal": "Bola odob bilan narsa so'raydi va javob beradi",
-     "intro": "Bip-bip! Bog'chada sayr vaqti. Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz? Bugun bilib olamiz!",
+     "intro": "Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz?",
      "items": [
       {
        "say": "أَعْطِنِي الْكُرَةَ، مِنْ فَضْلِك.",
@@ -3700,7 +3716,7 @@
     {
      "name": "Ertalab",
      "goal": "Bola ertalabki ishlarni aytadi",
-     "intro": "Bip-bip! Tong otdi, quyosh derazadan mo'ralayapti. Ali esa hali ham uxlayapti! Uni qanday uyg'otamiz? Qani, birga bilib olamiz.",
+     "intro": "Tong otdi, quyosh derazadan mo'ralayapti, Ali esa hali uxlayapti! Uni qanday uyg'otamiz?",
      "items": [
       {
        "say": "اِسْتَيْقِظْ",
@@ -3764,7 +3780,7 @@
     {
      "name": "Bog'chaga boraman",
      "goal": "Bola kun haqida qisqa gap aytadi",
-     "intro": "Bip-bip! Nonushta tugadi. Laylo sumkasini oldi va oyisining qo'lidan ushladi. U qayerga ketyapti? Topdingmi? Bog'chaga!",
+     "intro": "Nonushta tugadi. Laylo sumkasini olib, oyisining qo'lidan ushladi. U qayerga ketyapti — bog'chaga!",
      "items": [
       {
        "say": "أَذْهَبُ إِلَى الرَّوْضَة.",
@@ -3828,7 +3844,7 @@
     {
      "name": "Kechqurun",
      "goal": "Bola kechki ishlar va uyqu iboralarini aytadi",
-     "intro": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda nima qiladi? Kechki ovqat, cho'milish va shirin uyqu! Mening batareyam ham dam olmoqchi.",
+     "intro": "Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda kechki ovqat yeydi, cho'miladi va shirin uxlaydi.",
      "items": [
       {
        "say": "عَشَاء",
@@ -3983,7 +3999,7 @@
     {
      "name": "Qanday his qilyapsan?",
      "goal": "Bola o'z his-tuyg'usini aytadi",
-     "intro": "Bip-bip! Robotlar ham his qiladi! Batareyam to'la bo'lsa, men xursandman. Bugun Laylo biroz xomush ko'rinyapti. Undan qanday so'raymiz?",
+     "intro": "Robotlar ham his qiladi: batareyam to'la bo'lsa, men xursandman! Bugun Laylo xomush. Undan qanday so'raymiz?",
      "items": [
       {
        "say": "كَيْفَ تَشْعُر؟",
@@ -4056,7 +4072,7 @@
     {
      "name": "Do'stim bo'l!",
      "goal": "Bola do'stlik va navbat iboralarini ishlatadi",
-     "intro": "Bip-bip! Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz? Bugun do'stlik so'zlarini o'rganamiz!",
+     "intro": "Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz?",
      "items": [
       {
        "say": "كُنْ صَدِيقِي!",

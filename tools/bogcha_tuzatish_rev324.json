@@ -1,0 +1,3214 @@
+{
+ "izoh": "REV324 tuzatishlari — tools/bogcha_tuzatish_rev324.py qo'llaydi. Matnlar aynan (old → new) qidiriladi.",
+ "item_fix": [
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "بُرْتُقَالِيّ",
+   "new": "بُرْتُقَالَة",
+   "uz": "apelsin",
+   "reason": "Dars mevalar haqida: بُرْتُقَالِيّ - to'q sariq rang; meva apelsin - بُرْتُقَالَة",
+   "new_rom": "burtuqala",
+   "propagate": false
+  },
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "اُخْلُطْ",
+   "new": "اِخْلِطْ",
+   "uz": "aralashtir",
+   "reason": "خَلَطَ يَخْلِطُ fe'lining buyruq shakli اِخْلِطْ (ikhlit), اُخْلُطْ noto'g'ri harakat",
+   "new_rom": "ikhlit",
+   "propagate": true
+  },
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "اُضْرِبِ الْأَرْضَ بِقَدَمَيْك!",
+   "new": "اِضْرِبِ الْأَرْضَ بِقَدَمَيْك!",
+   "uz": "oyog'ingni tapillat!",
+   "reason": "ضَرَبَ يَضْرِبُ - buyruq shakli اِضْرِبْ (idrib), اُضْرِبْ noto'g'ri harakat",
+   "new_rom": "idribi al-arda bi-qadamayk!",
+   "propagate": true
+  },
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "بَاي!",
+   "new": "إِلَى اللِّقَاء!",
+   "uz": "xayr",
+   "reason": "بَاي - inglizcha so'zdan olingan so'zlashuv; adabiy arab tilida 'xayr' - إِلَى اللِّقَاء!",
+   "new_rom": "ila al-liqa'!",
+   "propagate": true
+  },
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "المس أنفك!",
+   "new": "اِلْمِسْ أَنْفَك!",
+   "uz": "burningga teg!",
+   "reason": "Harakatlar qo'yilmagan (boshqa barcha say vowelled)",
+   "new_rom": "ilmis anfak!",
+   "propagate": true
+  },
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "اجلس!",
+   "new": "اِجْلِسْ!",
+   "uz": "o'tir!",
+   "reason": "Harakatlar qo'yilmagan (boshqa barcha say vowelled)",
+   "new_rom": "ijlis!",
+   "propagate": true
+  },
+  {
+   "lang": "ar",
+   "field": "say",
+   "old": "فَرَاوْلَة",
+   "new": "فَرَاوِلَة",
+   "uz": "qulupnay",
+   "reason": "Adabiy arabchada فَرَاوِلَة (farawila); اوْ - ikki sukun ketma-ket, so'zlashuv talaffuzi",
+   "new_rom": "farawila",
+   "propagate": true
+  },
+  {
+   "lang": "ar",
+   "field": "sentence",
+   "old": "هذه النقود.",
+   "new": "ها هي النقود.",
+   "uz": "pul",
+   "reason": "'هذه النقود' to'liq gap emas ('bu pul' birikmasi); 'mana pul' - ها هي النقود"
+  },
+  {
+   "lang": "ar",
+   "field": "sentence",
+   "old": "عندي حيوان أليف. إنه قطة.",
+   "new": "عندي حيوان أليف. إنها قطة.",
+   "uz": "mening uy hayvonim bor",
+   "reason": "إنه قطة - rodda moslashmagan; قطة muannas: إنها قطة"
+  },
+  {
+   "lang": "ar",
+   "field": "sentence",
+   "old": "غدًا الأحد. هيه!",
+   "new": "غدًا الأحد. مرحى!",
+   "uz": "ertaga",
+   "reason": "هيه arabcha undov emas; 'yashasin' - مرحى! (faylda Hooray uchun ishlatilgan)"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "tuffāḥa, min faḍlik.",
+   "new": "tuffaha, min fadlik.",
+   "uz": "bitta olma, iltimos",
+   "reason": "Rom uslubi buzilgan (ā, ḥ, ḍ belgilar); faylda oddiy lotin harflari ishlatiladi"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "hādhihi ukhtī.",
+   "new": "hadhihi ukhti.",
+   "uz": "bu mening opam yoki singlim",
+   "reason": "Rom uslubi buzilgan (ā, ī belgilar); faylda oddiy lotin harflari ishlatiladi"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "as-samaka tasbah.",
+   "new": "as-samakatu tasbah.",
+   "uz": "baliq suzyapti",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "mawqif al-hafila",
+   "new": "mawqifu al-hafila",
+   "uz": "bekat",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "khamsu mawzat, min fadlik.",
+   "new": "khamsu mawzatin, min fadlik.",
+   "uz": "beshta banan, iltimos",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "hafl at-takharruj",
+   "new": "haflu at-takharruj",
+   "uz": "bitiruv",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "hadiqat al-hayawanat",
+   "new": "hadiqatu al-hayawanat",
+   "uz": "hayvonot bog'i",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "dhahabna ila hadiqat al-hayawanat.",
+   "new": "dhahabna ila hadiqati al-hayawanat.",
+   "uz": "hayvonot bog'iga bordik",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "al-kalb yarkud.",
+   "new": "al-kalbu yarkud.",
+   "uz": "kuchuk yuguryapti",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "al-qitta na'ima.",
+   "new": "al-qittatu na'ima.",
+   "uz": "mushuk uxlayapti",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "mamarr al-mushat",
+   "new": "mamarru al-mushat",
+   "uz": "piyodalar o'tish joyi",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "at-tuyur tugharrid.",
+   "new": "at-tuyuru tugharrid.",
+   "uz": "qushlar sayrayapti",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "shukran ayyuha al-fa'r as-saghir!",
+   "new": "shukran ayyuha al-fa'ru as-saghir!",
+   "uz": "rahmat, kichkina sichqon",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "kam as-sa'a?",
+   "new": "kami as-sa'a?",
+   "uz": "soat necha?",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "as-sa'a as-sabi'a.",
+   "new": "as-sa'atu as-sabi'a.",
+   "uz": "soat yetti",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "as-sa'a as-sabi'a wan-nisf.",
+   "new": "as-sa'atu as-sabi'atu wan-nisf.",
+   "uz": "soat yetti yarim",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "ishrab al-ma'!",
+   "new": "ishrabi al-ma'!",
+   "uz": "suv ich",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "isharat al-murur",
+   "new": "isharatu al-murur",
+   "uz": "svetofor",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "mizan al-harara",
+   "new": "mizanu al-harara",
+   "uz": "termometr",
+   "reason": "Rom say'dagi yozilgan i'rob harakatini tushirib qoldirgan; faylning umumiy uslubiga moslash (masalan 'ghurfatu al-julus', 'kuli al-fakiha')"
+  },
+  {
+   "lang": "ar",
+   "field": "rom",
+   "old": "bijanib",
+   "new": "bi-janib",
+   "uz": "yonida",
+   "reason": "Faylda بِ old qo'shimchasi chiziqcha bilan yoziladi (bi-khayr, bi-yadayk)"
+  },
+  {
+   "lang": "tr",
+   "field": "say",
+   "old": "turuncu",
+   "new": "portakal",
+   "uz": "apelsin",
+   "reason": "Dars mevalar haqida: 'turuncu' - to'q sariq rang; meva apelsin - 'portakal'",
+   "propagate": false
+  },
+  {
+   "lang": "tr",
+   "field": "say",
+   "old": "babaanne",
+   "new": "büyükanne",
+   "uz": "buvi",
+   "reason": "'babaanne' faqat otaning onasi; umumiy 'buvi' - 'büyükanne'",
+   "propagate": true
+  },
+  {
+   "lang": "tr",
+   "field": "sentence",
+   "old": "İşte elman. Buyurun.",
+   "new": "İşte elmanız. Buyurun.",
+   "uz": "mana, oling",
+   "reason": "'elman' (sen) va 'Buyurun' (siz) aralashgan; murojaat bir xil bo'lishi kerak"
+  },
+  {
+   "lang": "en",
+   "field": "say",
+   "old": "Put on!",
+   "new": "Put it on!",
+   "uz": "kiy!",
+   "reason": "inglizchada «put on» to'ldiruvchisiz ishlatilmaydi: «Put it on!» bo'lishi kerak",
+   "propagate": true
+  },
+  {
+   "lang": "en",
+   "field": "sentence",
+   "old": "The lion says, Thank you, little mouse!",
+   "new": "The lion says, \"Thank you, little mouse!\"",
+   "uz": "rahmat, kichkina sichqon",
+   "reason": "ko'chirma gap qo'shtirnoqsiz yozilgan"
+  },
+  {
+   "lang": "fr",
+   "field": "say",
+   "old": "orange",
+   "new": "l'orange",
+   "uz": "apelsin",
+   "reason": "Darsda meva (apelsin) nazarda tutilgan; artiklsiz 'orange' rang (to'q sariq) ma'nosida o'qiladi, boshqa mevalar kabi 'l'orange' bo'lishi kerak",
+   "propagate": false
+  },
+  {
+   "lang": "fr",
+   "field": "say",
+   "old": "le ballon de baudruche",
+   "new": "la baudruche",
+   "uz": "havo shari",
+   "reason": "2–3 yosh uchun 4 so'z (≤3 bo'lishi kerak); «le ballon» shu kitobda koptok — havo shari uchun qisqa «la baudruche»",
+   "propagate": true
+  },
+  {
+   "lang": "fr",
+   "field": "say",
+   "old": "Je peux avoir le ballon, s'il te plaît ?",
+   "new": "Le ballon, s'il te plaît ?",
+   "uz": "koptokni bera olasanmi?",
+   "reason": "4–5 yosh uchun 8 so'z (≤6 bo'lishi kerak); qisqa, odobli so'rov («iltimos» saqlandi)",
+   "propagate": true
+  },
+  {
+   "lang": "fr",
+   "field": "say",
+   "old": "Oui, j'aime.",
+   "new": "Oui, j'aime ça.",
+   "uz": "ha, yoqadi",
+   "reason": "'aimer' fe'li to'ldiruvchisiz ishlatilmaydi; 'Oui, j'aime.' noto'g'ri, tabiiy javob 'Oui, j'aime ça.'",
+   "propagate": true
+  },
+  {
+   "lang": "fr",
+   "field": "say",
+   "old": "Non, je n'aime pas.",
+   "new": "Non, je n'aime pas ça.",
+   "uz": "yo'q, yoqmaydi",
+   "reason": "'aimer' to'ldiruvchi talab qiladi; 'Oui, j'aime ça.' bilan juft bo'lishi uchun 'Non, je n'aime pas ça.'",
+   "propagate": true
+  },
+  {
+   "lang": "fr",
+   "field": "say",
+   "old": "Une pomme, s'il te plaît.",
+   "new": "Une pomme, s'il vous plaît.",
+   "uz": "bitta olma, iltimos",
+   "reason": "Do'konda sotuvchiga murojaat 'vous' bilan; misol gap ('s'il vous plaît') va 'Cinq bananes, s'il vous plaît.' bilan mos emas edi",
+   "propagate": true
+  },
+  {
+   "lang": "fr",
+   "field": "sentence",
+   "old": "Tu aimes le gâteau ? Oui, j'aime.",
+   "new": "Tu aimes le gâteau ? Oui, j'aime ça.",
+   "uz": "ha, yoqadi",
+   "reason": "Misol gapdagi javob ham to'ldiruvchisiz (noto'g'ri); say bilan moslashtirildi"
+  },
+  {
+   "lang": "fr",
+   "field": "sentence",
+   "old": "Tu aimes les araignées ? Non, je n'aime pas.",
+   "new": "Tu aimes les araignées ? Non, je n'aime pas ça.",
+   "uz": "yo'q, yoqmaydi",
+   "reason": "Misol gapdagi javob say bilan moslashtirildi (to'ldiruvchi 'ça')"
+  },
+  {
+   "lang": "fr",
+   "field": "sentence",
+   "old": "Le serpent ne sait pas marcher. Il n'a pas de jambes.",
+   "new": "Le serpent ne sait pas marcher. Il n'a pas de pattes.",
+   "uz": "ilon yura olmaydi",
+   "reason": "Hayvonlarning oyog'i fransuzchada 'pattes'; 'jambes' faqat odam oyog'i uchun"
+  },
+  {
+   "lang": "es",
+   "field": "sentence",
+   "old": "Una serpiente no puede caminar. No tiene piernas.",
+   "new": "Una serpiente no puede caminar. No tiene patas.",
+   "uz": "ilon yura olmaydi",
+   "reason": "Hayvonlarning oyog'i ispanchada 'patas'; 'piernas' odam oyog'i uchun"
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "주황색",
+   "new": "오렌지",
+   "uz": "apelsin",
+   "reason": "uz 'apelsin' va dars 'Olma, banan, apelsin' — meva; 주황색 esa to'q sariq rang",
+   "new_rom": "Orenji",
+   "propagate": false
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "배",
+   "new": "보트",
+   "uz": "qayiq",
+   "reason": "shu darsda 'kema' ham 배 — takror; qayiq uchun 보트",
+   "new_rom": "Boteu",
+   "propagate": false
+  },
+  {
+   "lang": "ko",
+   "field": "sentence",
+   "old": "우리는 작은 배가 있어요.",
+   "new": "우리는 작은 보트가 있어요.",
+   "uz": "qayiq",
+   "reason": "say 보트 ga almashgani uchun gap ham moslandi"
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "입어!",
+   "new": "신어!",
+   "uz": "kiy!",
+   "reason": "'Poyabzal va paypoq' darsida paypoq/poyabzal uchun 신다 ishlatiladi (gapda ham 양말 신어!); 입다 faqat kiyim uchun",
+   "new_rom": "Sineo!",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "여러분 차례예요!",
+   "new": "네 차례야!",
+   "uz": "sening navbating",
+   "reason": "여러분 — 'hammangiz, sizlar'; do'stga birlikda 'sening navbating' kerak ('내 차례!' juftligi)",
+   "new_rom": "Ne charyeya!",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "건축가",
+   "new": "건설 노동자",
+   "uz": "quruvchi",
+   "reason": "건축가 — me'mor (arxitektor); quruvchi (👷) uchun 건설 노동자",
+   "new_rom": "Geonseol nodongja",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "감자들",
+   "new": "감자",
+   "uz": "kartoshkalar",
+   "reason": "koreyschada sabzavotga -들 qo'shilishi g'ayritabiiy (tarjimaga o'xshaydi); ko'plik oddiy 감자 bilan aytiladi, gapda ham 감자",
+   "new_rom": "Gamja",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "토마토들",
+   "new": "토마토",
+   "uz": "pomidorlar",
+   "reason": "koreyschada sabzavotga -들 qo'shilishi g'ayritabiiy; ko'plik oddiy 토마토 bilan aytiladi, gapda ham 토마토",
+   "new_rom": "Tomato",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "당근들",
+   "new": "당근",
+   "uz": "sabzilar",
+   "reason": "koreyschada sabzavotga -들 qo'shilishi g'ayritabiiy; ko'plik oddiy 당근 bilan aytiladi, gapda ham 당근",
+   "new_rom": "Danggeun",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "say",
+   "old": "달걀들",
+   "new": "달걀",
+   "uz": "tuxumlar",
+   "reason": "koreyschada -들 qo'shilishi g'ayritabiiy; ko'plik oddiy 달걀 bilan aytiladi, gapda ham 달걀",
+   "new_rom": "Dalgyal",
+   "propagate": true
+  },
+  {
+   "lang": "ko",
+   "field": "sentence",
+   "old": "건축가는 새 집을 지어요.",
+   "new": "건설 노동자는 새 집을 지어요.",
+   "uz": "quruvchi",
+   "reason": "say almashgani uchun gap ham moslandi"
+  },
+  {
+   "lang": "ko",
+   "field": "sentence",
+   "old": "나는 기뻐요! 나는 영어가 좋아요!",
+   "new": "나는 기뻐요! 나는 한국어가 좋아요!",
+   "uz": "men xursandman!",
+   "reason": "koreys tili darsida 'ingliz tilini yaxshi ko'raman' mos emas (ja faylida にほんご deb moslangan)"
+  },
+  {
+   "lang": "ko",
+   "field": "rom",
+   "old": "I aineun nae yeodongsaeng-ieyo.",
+   "new": "I aineun nae yeodongsaengieyo.",
+   "uz": "bu mening opam yoki singlim",
+   "reason": "boshqa qatorlarda (dongsaengieyo) chiziqchasiz yoziladi — bir xillik uchun"
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "オレンジいろ",
+   "new": "オレンジ",
+   "uz": "apelsin",
+   "reason": "uz 'apelsin' va dars 'Olma, banan, apelsin' — meva; オレンジいろ esa to'q sariq rang",
+   "new_rom": "orenji",
+   "propagate": false
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "あし",
+   "new": "あんよ",
+   "uz": "oyoq panjalari",
+   "reason": "'Oyoqlar' darsida 'legs' ham あし — takror; 2–3 yosh uchun oyoq panjasiga bolalar so'zi あんよ",
+   "new_rom": "anyo",
+   "propagate": false
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "ううん、だいじょうぶ。ありがとう。",
+   "new": "だいじょうぶ、ありがとう。",
+   "uz": "yo'q, rahmat",
+   "reason": "4–5 yosh uchun 12 belgidan uzun (14); 'yo'q, rahmat' ma'nosidagi tabiiy qisqa rad javobi (11 belgi). 67p dagi variant o'zgarmasa ham bo'ladi",
+   "new_rom": "Daijōbu, arigatō.",
+   "propagate": true
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "みに つけて！",
+   "new": "はいて！",
+   "uz": "kiy!",
+   "reason": "みに つけて — kattalar uslubi; paypoq/poyabzal uchun はく ishlatiladi (gapda ham くつしたを はいて！)",
+   "new_rom": "Haite!",
+   "propagate": true
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "しゅう",
+   "new": "いっしゅうかん",
+   "uz": "hafta",
+   "reason": "しゅう yakka so'z sifatida bolalar nutqida ishlatilmaydi; 'hafta (bir hafta)' — いっしゅうかん (gapda ham shu so'z)",
+   "new_rom": "isshūkan",
+   "propagate": true
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "かえるは とべる。",
+   "new": "かえるは ジャンプ できる。",
+   "uz": "qurbaqa sakray oladi",
+   "reason": "shu darsda 'qush ucha oladi' ham とりは とべる; kana bilan とべる 'ucha oladi' deb tushuniladi — 'sakray oladi' uchun ジャンプ できる (204-qatordagi kabi)",
+   "new_rom": "Kaeru wa janpu dekiru.",
+   "propagate": true
+  },
+  {
+   "lang": "ja",
+   "field": "say",
+   "old": "コップ",
+   "new": "ゆのみ",
+   "uz": "piyola",
+   "reason": "uz 'piyola' va 🍵 (choy); コップ — stakan (suv/sharbat uchun), choy piyolasi ゆのみ (ko: 찻잔)",
+   "new_rom": "yunomi",
+   "propagate": true
+  },
+  {
+   "lang": "ja",
+   "field": "sentence",
+   "old": "おばあちゃんは ぼくに おかしを もっているよ。",
+   "new": "おばあちゃんが ぼくに おかしを くれるよ。",
+   "uz": "konfetlar",
+   "reason": "grammatik xato: 'ぼくに … もっている' bo'lmaydi; 'buvim menga konfet beradi' — くれる"
+  },
+  {
+   "lang": "ja",
+   "field": "sentence",
+   "old": "かえるは とても たかく とべるよ。",
+   "new": "かえるは とても たかく ジャンプ できるよ。",
+   "uz": "qurbaqa sakray oladi",
+   "reason": "say almashgani uchun gap ham moslandi"
+  },
+  {
+   "lang": "ja",
+   "field": "rom",
+   "old": "Boku no namae wa Anvar.",
+   "new": "Boku no namae wa Anvaru.",
+   "uz": "mening ismim Anvar",
+   "reason": "rom say'ni aynan o'qishi kerak: アンヴァル = Anvaru"
+  },
+  {
+   "lang": "ja",
+   "field": "rom",
+   "old": "Watashi no namae wa Malika.",
+   "new": "Watashi no namae wa Marika.",
+   "uz": "mening ismim Malika",
+   "reason": "rom say'ni aynan o'qishi kerak: マリカ = Marika (yapon tilida 'l' yo'q)"
+  },
+  {
+   "lang": "ru",
+   "field": "say",
+   "old": "оранжевый",
+   "new": "апельсин",
+   "uz": "apelsin",
+   "reason": "uz 'apelsin' — meva; 'оранжевый' rang (to'q sariq) degani, meva — 'апельсин'",
+   "new_rom": "apelsin",
+   "propagate": false
+  },
+  {
+   "lang": "ru",
+   "field": "say",
+   "old": "Спи хорошо!",
+   "new": "Сладких снов!",
+   "uz": "yaxshi uxla",
+   "reason": "'Спи хорошо' inglizchadan so'zma-so'z kalka, rus tilida g'ayritabiiy; tabiiy tilak — 'Сладких снов!'",
+   "new_rom": "Sladkikh snov!",
+   "propagate": true
+  },
+  {
+   "lang": "ru",
+   "field": "say",
+   "old": "картофель",
+   "new": "картошка",
+   "uz": "kartoshkalar",
+   "reason": "misol gapda 'картошку' ishlatilgan; bolalar uchun kundalik so'z 'картошка', 'картофель' rasmiy/kitobiy",
+   "new_rom": "kartoshka",
+   "propagate": true
+  },
+  {
+   "lang": "ru",
+   "field": "say",
+   "old": "воздушный шарик",
+   "new": "шарик",
+   "uz": "havo shari",
+   "reason": "2–3 yosh uchun: kichkintoylar bilan oddiy 'шарик' deyiladi, 'воздушный шарик' uzun",
+   "new_rom": "sharik",
+   "propagate": true
+  },
+  {
+   "lang": "ru",
+   "field": "sentence",
+   "old": "Спокойной ночи! Спи хорошо, Али!",
+   "new": "Спокойной ночи! Сладких снов, Али!",
+   "uz": "yaxshi uxla",
+   "reason": "say o'zgargani uchun misol gap ham moslashtirildi ('Спи хорошо' g'ayritabiiy)"
+  },
+  {
+   "lang": "ru",
+   "field": "sentence",
+   "old": "Летом я умею плавать.",
+   "new": "Я умею плавать. Летом я много плаваю.",
+   "uz": "men suza olaman",
+   "reason": "'умею' — ko'nikma, faslga bog'liq emas; 'Летом я умею плавать' rus tilida mantiqan g'alati"
+  },
+  {
+   "lang": "ru",
+   "field": "sentence",
+   "old": "Я мешаю салат в миске.",
+   "new": "Я перемешиваю салат в миске.",
+   "uz": "aralashtir",
+   "reason": "salatga nisbatan tabiiy fe'l — 'перемешивать'; 'Я мешаю' 'xalaqit beraman' deb ham tushuniladi"
+  },
+  {
+   "lang": "de",
+   "field": "say",
+   "old": "orange",
+   "new": "die Orange",
+   "uz": "apelsin",
+   "reason": "uz 'apelsin' — meva; kichik harfli 'orange' rang (to'q sariq) degani, meva — 'die Orange'",
+   "propagate": false
+  },
+  {
+   "lang": "de",
+   "field": "say",
+   "old": "Ich wasche mein Gesicht.",
+   "new": "Ich wasche mir das Gesicht.",
+   "uz": "yuzimni yuvaman",
+   "reason": "nemis tilida tana a'zosi bilan tabiiy shakl — 'mir das Gesicht' (faylda ham 'Wasch dir die Hände!'); 'mein Gesicht' tarjima ohangida",
+   "propagate": true
+  },
+  {
+   "lang": "de",
+   "field": "sentence",
+   "old": "Ich wasche mein Gesicht mit Wasser.",
+   "new": "Ich wasche mir das Gesicht mit Wasser.",
+   "uz": "yuzimni yuvaman",
+   "reason": "say bilan bir xil tabiiy shakl"
+  },
+  {
+   "lang": "de",
+   "field": "sentence",
+   "old": "Meine Handschuhe sind an meinen Händen.",
+   "new": "Im Winter trage ich Handschuhe.",
+   "uz": "qo'lqop",
+   "reason": "so'zma-so'z tarjima, nemis tilida g'ayritabiiy; tabiiy: 'Im Winter trage ich Handschuhe.'"
+  },
+  {
+   "lang": "de",
+   "field": "sentence",
+   "old": "Tschüss, Kabutar! Tschüss, Mama!",
+   "new": "Auf Wiedersehen, Kabutar! Tschüss, Mama!",
+   "uz": "xayr",
+   "reason": "misol gapda o'rganilayotgan 'Auf Wiedersehen' yo'q (ru varianti: 'До свидания, Кабутар! Пока, мама!')"
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "橙色",
+   "new": "橙子",
+   "uz": "apelsin",
+   "reason": "Darsda meva (apelsin 🍊) nazarda tutilgan; 橙色 — to'q sariq rang, meva esa 橙子.",
+   "new_rom": "chéngzi",
+   "propagate": false
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "我最喜欢的颜色是蓝色。",
+   "new": "我最喜欢蓝色。",
+   "uz": "sevimli rangim — ko'k",
+   "reason": "4–5 yosh uchun 10 ta belgi juda uzun (≤8 bo'lishi kerak); 最喜欢 + ot shakli tabiiy va qisqa, ma'no saqlanadi.",
+   "new_rom": "Wǒ zuì xǐhuan lánsè.",
+   "propagate": true
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "我最喜欢的玩具是球。",
+   "new": "我最喜欢球。",
+   "uz": "sevimli o'yinchog'im — to'p",
+   "reason": "4–5 yosh uchun 9 ta belgi juda uzun (≤8 bo'lishi kerak); 最喜欢 + ot shakli tabiiy va qisqa, darsdagi boshqa ibora bilan takrorlanmaydi.",
+   "new_rom": "Wǒ zuì xǐhuan qiú.",
+   "propagate": true
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "我很大。",
+   "new": "我长大了。",
+   "uz": "men kattaman",
+   "reason": "我很大 — 'men juda yirikman' (o'lcham) degan g'alati ma'no; 'men endi kattaman (ulg'aydim)' xitoychada 我长大了 deyiladi.",
+   "new_rom": "Wǒ zhǎngdà le.",
+   "propagate": true
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "母亲",
+   "new": "妈妈",
+   "uz": "ona",
+   "reason": "母亲 — rasmiy/kitobiy so'z, 4–5 yoshli bola ishlatmaydi; oddiy tabiiy so'z 妈妈 (bu darsda takrorlanmaydi).",
+   "new_rom": "māma",
+   "propagate": true
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "父亲",
+   "new": "爸爸",
+   "uz": "ota",
+   "reason": "父亲 — rasmiy/kitobiy so'z, 4–5 yoshli bola ishlatmaydi; oddiy tabiiy so'z 爸爸 (bu darsda takrorlanmaydi).",
+   "new_rom": "bàba",
+   "propagate": true
+  },
+  {
+   "lang": "zh",
+   "field": "sentence",
+   "old": "我很大。我能跑得很快。",
+   "new": "我长大了。我能跑得很快。",
+   "uz": "men kattaman",
+   "reason": "Misol gap yangi say (我长大了) ga moslashtirildi; 我很大 tabiiy emas."
+  },
+  {
+   "lang": "zh",
+   "field": "rom",
+   "old": "Mōmō nǐ de bízi!",
+   "new": "Mōmo nǐ de bízi!",
+   "uz": "burningga teg!",
+   "reason": "Takrorlangan fe'lning ikkinchi bo'g'ini neytral ohangda; faylda ham shunday (Kànkan, Pāipai, Xǐxi, Duòduo)."
+  },
+  {
+   "lang": "zh",
+   "field": "rom",
+   "old": "Qǐng gěi wǒ yí ge qiú, hǎo ma?",
+   "new": "Qǐng gěi wǒ yí gè qiú, hǎo ma?",
+   "uz": "koptokni bera olasanmi?",
+   "reason": "Faylning qolgan joylarida 一个 doim 'yí gè' deb yozilgan; bu yerda 'ge' — nomuvofiq."
+  },
+  {
+   "lang": "zh",
+   "field": "sentence",
+   "old": "我的手套戴在手上。",
+   "new": "冬天我戴手套。",
+   "uz": "qo'lqop",
+   "reason": "'Qo'lqopim qo'limga kiyilgan' — tabiiy bo'lmagan, ma'nosiz takror gap; oddiy tabiiy misol taklif qilindi."
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "很多土豆",
+   "new": "土豆",
+   "new_rom": "tǔdòu",
+   "uz": "kartoshkalar",
+   "propagate": true,
+   "reason": "xitoychada ko'plik shakli yo'q; «很多» («ko'p») ortiqcha — boshqa sabzavotlar kabi oddiy ot"
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "很多西红柿",
+   "new": "西红柿",
+   "new_rom": "xīhóngshì",
+   "uz": "pomidorlar",
+   "propagate": true,
+   "reason": "xitoychada ko'plik shakli yo'q; «很多» («ko'p») ortiqcha — boshqa sabzavotlar kabi oddiy ot"
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "很多胡萝卜",
+   "new": "胡萝卜",
+   "new_rom": "húluóbo",
+   "uz": "sabzilar",
+   "propagate": true,
+   "reason": "xitoychada ko'plik shakli yo'q; «很多» («ko'p») ortiqcha — boshqa sabzavotlar kabi oddiy ot"
+  },
+  {
+   "lang": "zh",
+   "field": "say",
+   "old": "很多鸡蛋",
+   "new": "鸡蛋",
+   "new_rom": "jīdàn",
+   "uz": "tuxumlar",
+   "propagate": true,
+   "reason": "xitoychada ko'plik shakli yo'q; «很多» («ko'p») ortiqcha — boshqa sabzavotlar kabi oddiy ot"
+  },
+  {
+   "lang": "ru",
+   "field": "say",
+   "old": "Привет!",
+   "new": "Здравствуй!",
+   "new_rom": "Zdravstvuy!",
+   "uz": "salom",
+   "image": "en34-u1-hi.png",
+   "propagate": false,
+   "reason": "bir darsda «Привет!» ikki marta; dars nomidagi «Здравствуй» qo'yildi"
+  },
+  {
+   "lang": "ru",
+   "field": "say",
+   "old": "Пожалуйста.",
+   "new": "Не за что!",
+   "new_rom": "Ne za chto!",
+   "uz": "arzimaydi",
+   "propagate": true,
+   "reason": "bir darsda «Пожалуйста» ikki marta (iltimos va arzimaydi); «arzimaydi» — «Не за что!»"
+  },
+  {
+   "lang": "en",
+   "field": "sentence",
+   "old": "A bird can fly. I can fly too!",
+   "new": "A bird can fly. I can't fly!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "en",
+   "field": "sentence",
+   "old": "I'm a boy. I can't fly.",
+   "new": "I'm not a bird. I can't fly.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "ru",
+   "field": "sentence",
+   "old": "Птица умеет летать. Я тоже умею летать!",
+   "new": "Птица умеет летать. А я не умею летать!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "ru",
+   "field": "sentence",
+   "old": "Я мальчик. Я не умею летать.",
+   "new": "Я не птица. Я не умею летать.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "ar",
+   "field": "sentence",
+   "old": "الطائر يستطيع أن يطير. وأنا أستطيع أن أطير أيضًا!",
+   "new": "الطائر يستطيع أن يطير. وأنا لا أستطيع أن أطير!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "ar",
+   "field": "sentence",
+   "old": "أنا ولد. لا أستطيع أن أطير.",
+   "new": "أنا لست طائرًا. لا أستطيع أن أطير.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "tr",
+   "field": "sentence",
+   "old": "Kuş uçabilir. Ben de uçabilirim!",
+   "new": "Kuş uçabilir. Ben uçamam!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "tr",
+   "field": "sentence",
+   "old": "Ben bir çocuğum. Uçamam.",
+   "new": "Ben kuş değilim. Uçamam.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "de",
+   "field": "sentence",
+   "old": "Ein Vogel kann fliegen. Ich kann auch fliegen!",
+   "new": "Ein Vogel kann fliegen. Ich kann nicht fliegen!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "de",
+   "field": "sentence",
+   "old": "Ich bin ein Junge. Ich kann nicht fliegen.",
+   "new": "Ich bin kein Vogel. Ich kann nicht fliegen.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "fr",
+   "field": "sentence",
+   "old": "L'oiseau sait voler. Moi aussi, je sais voler !",
+   "new": "L'oiseau sait voler. Moi, je ne sais pas voler !",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "fr",
+   "field": "sentence",
+   "old": "Je suis un garçon. Je ne sais pas voler.",
+   "new": "Je ne suis pas un oiseau. Je ne sais pas voler.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "es",
+   "field": "sentence",
+   "old": "Un pájaro puede volar. ¡Yo también puedo volar!",
+   "new": "Un pájaro puede volar. ¡Yo no puedo volar!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "es",
+   "field": "sentence",
+   "old": "Soy un niño. No puedo volar.",
+   "new": "No soy un pájaro. No puedo volar.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "ko",
+   "field": "sentence",
+   "old": "새는 날 수 있어요. 나도 날 수 있어요!",
+   "new": "새는 날 수 있어요. 나는 날 수 없어요!",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "ko",
+   "field": "sentence",
+   "old": "나는 남자아이예요. 나는 날 수 없어요.",
+   "new": "나는 새가 아니에요. 나는 날 수 없어요.",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "ja",
+   "field": "sentence",
+   "old": "とりは とべる。ぼくも とべるよ！",
+   "new": "とりは とべる。わたしは とべないよ！",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "ja",
+   "field": "sentence",
+   "old": "ぼくは おとこのこ。とべないよ。",
+   "new": "とりじゃ ないから、とべないよ。",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "zh",
+   "field": "sentence",
+   "old": "小鸟会飞。我也会飞！",
+   "new": "小鸟会飞。我不会飞！",
+   "uz": "qush ucha oladi",
+   "reason": "misol gap noto'g'ri fikr o'rgatadi («men ham ucha olaman») — «Men ucha olmayman» darsiga zid"
+  },
+  {
+   "lang": "zh",
+   "field": "sentence",
+   "old": "我是男孩。我不会飞。",
+   "new": "我不是小鸟。我不会飞。",
+   "uz": "men ucha olmayman",
+   "reason": "mantiqsiz bog'lanish («o'g'il bolaman — ucha olmayman»), qiz bolalarga ham mos emas"
+  },
+  {
+   "lang": "de",
+   "field": "say",
+   "old": "Wasch dir die Hände!",
+   "new": "Hände waschen!",
+   "uz": "qo'lingni yuv",
+   "propagate": true,
+   "reason": "2–3 yosh uchun 4 so'z (≤3 bo'lishi kerak); kichkintoylarga aytiladigan qisqa shakl «Hände waschen!»"
+  },
+  {
+   "lang": "de",
+   "field": "say",
+   "old": "Putz deine Zähne!",
+   "new": "Zähne putzen!",
+   "uz": "tishingni yuv",
+   "propagate": true,
+   "reason": "juft ibora bilan bir xil qisqa shakl («Hände waschen!» — «Zähne putzen!»)"
+  }
+ ],
+ "uz_fix": [
+  {
+   "old": "qorbobo, qor odam",
+   "new": "qor odam",
+   "reason": "«Qorbobo» — Ded Moroz (Yangi yil bobosi), snowman emas; snowman = qor odam"
+  },
+  {
+   "old": "guruch, palov",
+   "new": "guruch",
+   "reason": "rice = guruch; palov alohida taom (inglizchada plov), kitobning o'zida «plov» so'zi bor"
+  },
+  {
+   "old": "kechki ovqat qilaman",
+   "new": "kechki ovqatni yeyman",
+   "reason": "«ovqat qilmoq» so'zlashuvda «ovqat pishirmoq» ma'nosini beradi: «kechki ovqat qilaman» = kechki ovqatni tayyorlayman"
+  },
+  {
+   "old": "to'gra",
+   "new": "to'g'ra",
+   "reason": "imlo: to'g'ramoq fe'li — g' tushib qolgan"
+  },
+  {
+   "old": "qo'l soat",
+   "new": "qo'l soati",
+   "reason": "qaratqich-qaralmish birikmasida egalik qo'shimchasi -i kerak: qo'l soati"
+  },
+  {
+   "old": "kechirasiz (murojaat)",
+   "new": "kechirasiz",
+   "reason": "uz matni bolaga ovoz bilan aytiladi — qavs ichidagi «(murojaat)» izohi ham o'qiladi"
+  }
+ ],
+ "action_fix": [
+  {
+   "old": "Qozonni aralashtir!",
+   "new": "Qozonni aralashtirganday qil!",
+   "reason": "xavfli: haqiqiy qozon olov ustida, issiq bo'ladi — faqat «-ganday qil» shaklida"
+  },
+  {
+   "old": "Qozonni aralashtiring!",
+   "new": "Qozonni aralashtirganday qiling!",
+   "reason": "xavfli: haqiqiy qozon olov ustida, issiq bo'ladi — faqat «-ganday qiling» shaklida"
+  },
+  {
+   "old": "Shamni pufla: puf-f!",
+   "new": "Shamni puflaganday qil: puf-f!",
+   "reason": "xavfli: yonib turgan sham (olov) kerak bo'ladi — o'xshatib bajarilsin"
+  },
+  {
+   "old": "Shamni puflang: puf-f!",
+   "new": "Shamni puflaganday qiling: puf-f!",
+   "reason": "xavfli: yonib turgan sham (olov) kerak bo'ladi — o'xshatib bajarilsin"
+  },
+  {
+   "old": "Maymunday qichish!",
+   "new": "Maymunday qashin!",
+   "reason": "«qichishmoq» — qichimoq (badan qichishi); o'zini tirnash = qashinmoq"
+  },
+  {
+   "old": "Maymunday qichishing!",
+   "new": "Maymunday qashining!",
+   "reason": "«qichishmoq» — qichimoq (badan qichishi); o'zini tirnash = qashinmoq"
+  },
+  {
+   "old": "Chaqaloqni allalagandek tebratining!",
+   "new": "Chaqaloqni allalagandek tebrating!",
+   "reason": "noto'g'ri qo'shimcha: tebrat + ing = tebrating"
+  },
+  {
+   "old": "Bilagingdagi soatga qara!",
+   "new": "Bilagingdagi soatga qaraganday qil!",
+   "reason": "bolada qo'l soati bo'lmasligi mumkin — o'xshatib bajariladigan shakl kerak"
+  },
+  {
+   "old": "Diplomni ikki qo'llab ol!",
+   "new": "Diplomni ikki qo'llab olganday qil!",
+   "reason": "bolada diplom yo'q — o'xshatib bajariladigan shakl kerak"
+  }
+ ],
+ "emoji_fix": [
+  {
+   "uz": "kiy!",
+   "old": "🙆",
+   "new": "🦶",
+   "reason": "🙆 («OK» ishorasi) «kiy!» ma'nosiga mos emas; darsda 👟 tuflida band — oyoqqa kiyish 🦶"
+  }
+ ],
+ "text_fix": [
+  {
+   "lang": "ru",
+   "anchor_image": "en34-u1-hi.png",
+   "old": "[ru]Привет, привет, привет![/ru] Qo'l ko'taramiz",
+   "new": "[ru]Здравствуй, здравствуй![/ru] Qo'l ko'taramiz",
+   "reason": "say o'zgargani uchun darsdagi qo'shiq/doska/test matni moslandi"
+  },
+  {
+   "lang": "ru",
+   "anchor_image": "en34-u1-hi.png",
+   "old": "🙋 Привет, привет, привет!",
+   "new": "🙋 Здравствуй, здравствуй!",
+   "reason": "say o'zgargani uchun darsdagi qo'shiq/doska/test matni moslandi"
+  },
+  {
+   "lang": "ko",
+   "anchor_image": "en67-u4-boat.png",
+   "old": "[ko]배[/ko] va [ko]배[/ko]",
+   "new": "[ko]배[/ko] va [ko]보트[/ko]",
+   "reason": "say o'zgargani uchun darsdagi qo'shiq/doska/test matni moslandi"
+  },
+  {
+   "lang": "ko",
+   "anchor_image": "en67-u4-boat.png",
+   "old": "🌊 suv: 큰 배 작은 배",
+   "new": "🌊 suv: 배 보트",
+   "reason": "say o'zgargani uchun darsdagi qo'shiq/doska/test matni moslandi"
+  },
+  {
+   "lang": "ar",
+   "anchor_image": "en34-u1-bye.png",
+   "old": "باي va",
+   "new": "إلى اللقاء va",
+   "reason": "dars nomi yangi so'zga moslandi («بَاي» — so'zlashuv, inglizchadan)"
+  },
+  {
+   "lang": "ru",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[ru]оранжевый[/ru] mevasi",
+   "new": "[ru]апельсин[/ru] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ru",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "Ofarin! [ru]Оранжевый[/ru] — apelsin",
+   "new": "Ofarin! [ru]Апельсин[/ru] — apelsin",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ar",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[ar]بُرْتُقَالِيّ[/ar] mevasi",
+   "new": "[ar]بُرْتُقَالَة[/ar] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "tr",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[tr]turuncu[/tr] mevasi",
+   "new": "[tr]portakal[/tr] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "de",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[de]orange[/de] mevasi",
+   "new": "[de]Orange[/de] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "fr",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[fr]orange[/fr] mevasi",
+   "new": "[fr]l'orange[/fr] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "fr",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "Ofarin! [fr]Orange[/fr] — apelsin",
+   "new": "Ofarin! [fr]L'orange[/fr] — apelsin",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ko",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[ko]주황색[/ko] mevasi",
+   "new": "[ko]오렌지[/ko] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ko",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "Ofarin! [ko]주황색[/ko] — apelsin",
+   "new": "Ofarin! [ko]오렌지[/ko] — apelsin",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ja",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[ja]オレンジいろ[/ja] mevasi",
+   "new": "[ja]オレンジ[/ja] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ja",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "🍊 オレンジいろ",
+   "new": "🍊 オレンジ",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ja",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "Ofarin! [ja]オレンジいろ[/ja] — apelsin",
+   "new": "Ofarin! [ja]オレンジ[/ja] — apelsin",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "zh",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "[zh]橙色[/zh] mevasi",
+   "new": "[zh]橙子[/zh] mevasi",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "zh",
+   "anchor_image": "en45-u7-orange-fruit.png",
+   "old": "Ofarin! [zh]橙色[/zh] — apelsin",
+   "new": "Ofarin! [zh]橙子[/zh] — apelsin",
+   "reason": "test meva (apelsin) haqida — rang so'zi meva so'ziga almashtirildi («Rangi ham …» qismida rang qoldi)"
+  },
+  {
+   "lang": "ar",
+   "anchor_image": null,
+   "old": "اِلْمَسْ",
+   "new": "اِلْمِسْ",
+   "reason": "لَمَسَ يَلْمِسُ — buyruq shakli اِلْمِسْ (ilmis); اِلْمَسْ noto'g'ri harakat"
+  },
+  {
+   "lang": "fr",
+   "anchor_image": null,
+   "old": "Non, je n'aime pas !",
+   "new": "Non, je n'aime pas ça !",
+   "reason": "«aimer» to'ldiruvchisiz ishlatilmaydi — element bilan bir xil «… ça»"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-soup.png",
+   "old": "Qozonga sol:",
+   "new": "O'yinchoq qozonga solganday qil:",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-soup.png",
+   "old": "Qozonga soling:",
+   "new": "O'yinchoq qozonga solganday qiling:",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-soup.png",
+   "old": "Qozonga bittadan sol va ayt:",
+   "new": "O'yinchoq qozonga bittadan sol va ayt:",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-soup.png",
+   "old": "Qozonga bittadan soling va ayting:",
+   "new": "O'yinchoq qozonga bittadan soling va ayting:",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-cake.png",
+   "old": "Tortga shamlar qo'yamiz va sanaymiz:",
+   "new": "Tortdagi shamlarni sanaymiz:",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-cake.png",
+   "old": "Pufla!",
+   "new": "Puflaganday qil!",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en56-u4-cake.png",
+   "old": "Puflang!",
+   "new": "Puflaganday qiling!",
+   "reason": "topshiriqda haqiqiy qozon (issiq) / yonib turgan sham (olov) bilan harakat — o'yinchoq yoki o'xshatib bajariladigan shaklga o'tkazildi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en34-u8-cake.png",
+   "old": "Endi pufla: puf-f!",
+   "new": "Endi puflaganday qil: puf-f!",
+   "reason": "topshiriqda yonib turgan sham (olov) — puflash o'xshatib bajariladi"
+  },
+  {
+   "lang": "*",
+   "anchor_image": "en34-u8-cake.png",
+   "old": "Endi puflang: puf-f!",
+   "new": "Endi puflaganday qiling: puf-f!",
+   "reason": "topshiriqda yonib turgan sham (olov) — puflash o'xshatib bajariladi"
+  }
+ ],
+ "intro": [
+  {
+   "old": "Salom, do'stim! Men — robot Kabu. Bip-bip! Uzoq yurtdan uchib keldim. U yerda bolalar qanday salomlashadi? Qani, bilib olamiz!",
+   "new": "Salom, do'stim! Uzoq yurt bolalari qanday salomlashadi?"
+  },
+  {
+   "old": "Bip-bip! Mehmon ketayotganda nima deymiz? Sovg'a olganda-chi? Ikkita sehrli so'z!",
+   "new": "Mehmon ketayotganda va sovg'a olganda nima deymiz? Ikkita sehrli so'z!"
+  },
+  {
+   "old": "Ertalab quyosh chiqadi, kechasi oy chiqadi. Bolalar ertalab va kechasi nima deydi? Tingla!",
+   "new": "Ertalab quyosh, kechasi oy chiqadi. Bolalar ertalab va kechasi nima deydi?"
+  },
+  {
+   "old": "Bip-bip! Men so'rayman, sen javob berasan. «Ha» va «yo'q» uchun ham so'z bor!",
+   "new": "Men so'rayman, sen javob berasan. «Ha» va «yo'q» uchun ham so'z bor!"
+  },
+  {
+   "old": "Bog'chada o'g'il bolalar ham, qiz bolalar ham bor. Sen kimsan? Qani, bilib olamiz!",
+   "new": "Bog'chada o'g'il bolalar ham, qiz bolalar ham bor. Sen kimsan?"
+  },
+  {
+   "old": "Uyda seni kim eng ko'p yaxshi ko'radi? Onang va dadang! Ularni qanday chaqiramiz?",
+   "new": "Seni eng ko'p onang va dadang yaxshi ko'radi. Ularni qanday chaqiramiz?"
+  },
+  {
+   "old": "Sss… jim! Beshikda kichkintoy uxlayapti. Yonida mehribon buvijon o'tiribdi.",
+   "new": "Sss, beshikda kichkintoy uxlayapti. Yonida mehribon buvijon o'tiribdi."
+  },
+  {
+   "old": "Bugun katta oilani yig'amiz! Bobojon ham keldi. Hammamiz birga — bu oila!",
+   "new": "Bugun katta oilani yig'amiz: bobojon ham keldi. Hammamiz birga — bu oila!"
+  },
+  {
+   "old": "Bip-bip! Sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qizil va ko'k. Qani, ochamiz!",
+   "new": "Sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qizil va ko'k."
+  },
+  {
+   "old": "Quyosh qanday rangda? Maysa-chi? Qutidan yana ikki rang chiqdi!",
+   "new": "Quyosh qanday rangda, maysa-chi? Qutidan yana ikki rang chiqdi!"
+  },
+  {
+   "old": "Qor qanday rangda? Tun-chi? Bugun oq va qora rang!",
+   "new": "Qor qanday rangda, tun-chi? Bugun oq va qora rang!"
+  },
+  {
+   "old": "Hovlida kim «miyov» deyapti? Kim «vov-vov» deyapti? Yangi do'stlar bilan tanishamiz!",
+   "new": "Hovlida kim «miyov», kim «vov-vov» deyapti? Yangi do'stlar bilan tanishamiz!"
+  },
+  {
+   "old": "Bip-bip! Fermaga boramiz! Kim sut beradi? Kim tez chopadi? Ketdik!",
+   "new": "Fermaga boramiz! Kim sut beradi, kim tez chopadi?"
+  },
+  {
+   "old": "Kimning juni paxtadek yumshoq? Kim sakrab-sakrab sabzi yeydi? Topdingmi?",
+   "new": "Kimning juni paxtadek yumshoq? Kim sakrab-sakrab sabzi yeydi?"
+  },
+  {
+   "old": "Bip-bip! Uchta don topdim! Qani, sanaymiz! Barmoqchalaringni tayyorla!",
+   "new": "Uchta don topdim! Qani, barmoqchalaring bilan sanaymiz!"
+  },
+  {
+   "old": "Qo'lingga qara. Nechta barmoq bor? Besh! Qani, beshgacha sanaymiz!",
+   "new": "Qo'lingga qara: nechta barmoq bor? Qani, beshgacha sanaymiz!"
+  },
+  {
+   "old": "Fil juda katta, sichqoncha esa kichkina! Robot Kabu-chi? Qani, ko'ramiz!",
+   "new": "Fil juda katta, sichqoncha esa kichkina! Robot Kabu-chi?"
+  },
+  {
+   "old": "O'yinchoq sandiqchasini topdim! Ichida nima bor ekan? Sekin ochamiz…",
+   "new": "O'yinchoq sandiqchasini topdim! Ichida nima bor ekan?"
+  },
+  {
+   "old": "Bip-bip! Kim keldi? Mashina! Ichida yumshoq ayiqcha o'tiribdi!",
+   "new": "Kim keldi? Mashina, ichida esa yumshoq ayiqcha o'tiribdi!"
+  },
+  {
+   "old": "Chu-chu! Poyezd keldi! Vagonlarida rang-barang kubiklar bor!",
+   "new": "Chu-chu, poyezd keldi! Vagonlarida rang-barang kubiklar bor!"
+  },
+  {
+   "old": "Mening boshim va munchoqdek ko'zlarim bor. Seniki-chi? Qani, ko'rsat!",
+   "new": "Mening boshim va munchoqdek ko'zlarim bor. Seniki-chi?"
+  },
+  {
+   "old": "Tss… eshityapsanmi? Qush sayrayapti! Hidlayapsanmi? Gul hidi!",
+   "new": "Qush sayrayapti — eshityapsanmi? Gul hidi keldi — hidlayapsanmi?"
+  },
+  {
+   "old": "Qarsakni kim chaladi? Qo'llarimiz! Kim jilmayadi? Og'zimiz! Qani, jilmay!",
+   "new": "Qo'llarimiz qarsak chaladi, og'zimiz jilmayadi. Qani, jilmay!"
+  },
+  {
+   "old": "Men uchaman, sen esa yurasan va sakraysan! Nima bilan? Oyoqlaring bilan! Tur!",
+   "new": "Men uchaman, sen esa oyoqlaring bilan yurasan va sakraysan! Qani, tur!"
+  },
+  {
+   "old": "Savatcha olib keldim! Ichida qizil meva va sariq meva bor. Topdingmi?",
+   "new": "Savatchada qizil meva va sariq meva bor. Topdingmi?"
+  },
+  {
+   "old": "Chanqadingmi? Menda oq ichimlik va tiniq ichimlik bor. Qaysi birini ichasan?",
+   "new": "Chanqadingmi? Menda oq ichimlik va tiniq ichimlik bor."
+  },
+  {
+   "old": "Bugun tug'ilgan kun! Dasturxonda non ham, shamli tort ham bor. Puflaymizmi?",
+   "new": "Bugun tug'ilgan kun! Dasturxonda non ham, shamli tort ham bor."
+  },
+  {
+   "old": "Bip-bip! Ali hovlida o'ynadi. Voy, qo'llari kir! Laylo shirinlik yedi. Endi nima qilamiz? Yuvinamiz!",
+   "new": "Ali qo'llarini kir qildi, Laylo shirinlik yedi. Endi nima qilamiz — yuvinamiz!"
+  },
+  {
+   "old": "Bip-bip! Qo'llar toza! Endi dasturxonga o'tiramiz. Ali non yeydi, Laylo sut ichadi. Mazali!",
+   "new": "Qo'llar toza, dasturxonga o'tiramiz! Ali non yeydi, Laylo sut ichadi."
+  },
+  {
+   "old": "Bip-bip! Kun tugadi, osmonda oy chiqdi. Ali esnayapti. Ayiqcha ham charchadi. Qayerga boramiz?",
+   "new": "Kun tugadi, osmonda oy chiqdi. Ali va ayiqcha charchadi — qayerga boramiz?"
+  },
+  {
+   "old": "Bip-bip! Tong otdi, uyg'on! Kabuning batareykasi to'la. Sen ham tayyormisan? O'rningdan tur!",
+   "new": "Tong otdi, uyg'on! Kabuning batareykasi to'la, sen ham tayyormisan?"
+  },
+  {
+   "old": "Bip-bip! Musiqa chalyapti! Laylo qarsak chalyapti, Ali aylanib raqs tushyapti. Sen ham qo'shil!",
+   "new": "Musiqa chalyapti! Laylo qarsak chalyapti, Ali raqs tushyapti — sen ham qo'shil!"
+  },
+  {
+   "old": "Bip-bip! Qara, Laylo kulyapti. Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
+   "new": "Laylo kulyapti, Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!"
+  },
+  {
+   "old": "Bip-bip! Sehrli so'z esingdami? [en]Thank you![/en] — rahmat. Bugun yana ikkita sehrli so'z o'rganamiz!",
+   "new": "[en]Thank you![/en] — rahmat, esingdami? Bugun yana ikkita sehrli so'z o'rganamiz!"
+  },
+  {
+   "old": "Salom, bolajonlar! Men — Kabutar qushcha. Gu-gu! Men uzoq Angliyadan uchib keldim. U yerda bolalar qanday salomlashadi? Keling, bilib olamiz!",
+   "new": "Salom, bolajonlar! Angliyada bolalar qanday salomlashadi?"
+  },
+  {
+   "old": "Gu-gu! Mehmonlar ketayotganda nima deymiz? Sovg'a olganda-chi? Bugun ikkita sehrli so'z o'rganamiz!",
+   "new": "Mehmonlar ketayotganda va sovg'a olganda nima deymiz? Bugun ikkita sehrli so'z o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Ertalab quyosh chiqadi, kechasi oy chiqadi. Ingliz bolalari ertalab va kechasi nima deydi? Tinglang!",
+   "new": "Ertalab quyosh, kechasi oy chiqadi. Ingliz bolalari ertalab va kechasi nima deydi?"
+  },
+  {
+   "old": "Gu-gu! Kabutar qushcha savol beradi, siz javob berasiz. Ha deyish uchun ham, yo'q deyish uchun ham inglizcha so'z bor!",
+   "new": "Men savol beraman, siz javob berasiz. «Ha» va «yo'q» uchun ham inglizcha so'z bor!"
+  },
+  {
+   "old": "Gu-gu! Mening bog'chamda o'g'il bolalar ham, qiz bolalar ham bor. Siz kimsiz? Inglizchasini bilib olamiz!",
+   "new": "Bog'chada o'g'il bolalar ham, qiz bolalar ham bor. Siz kimsiz?"
+  },
+  {
+   "old": "Gu-gu! Uyda sizni kim eng ko'p yaxshi ko'radi? To'g'ri, onangiz va dadangiz! Ularni inglizcha qanday chaqiramiz?",
+   "new": "Sizni eng ko'p onangiz va dadangiz yaxshi ko'radi. Ularni inglizcha qanday chaqiramiz?"
+  },
+  {
+   "old": "Gu-gu! Sss… jim! Beshikda kim uxlayapti? Kichkintoy! Uning yonida esa mehribon buvijon o'tiribdi.",
+   "new": "Sss, beshikda kichkintoy uxlayapti. Uning yonida mehribon buvijon o'tiribdi."
+  },
+  {
+   "old": "Gu-gu! Bugun katta oilani yig'amiz! Bobojon ham keldi. Hammamiz birga bo'lsak — bu oila!",
+   "new": "Bugun katta oilani yig'amiz: bobojon ham keldi. Hammamiz birga bo'lsak — bu oila!"
+  },
+  {
+   "old": "Gu-gu! Men sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qip-qizil va moviy ko'k. Qani, ochamiz!",
+   "new": "Men sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qip-qizil va moviy ko'k."
+  },
+  {
+   "old": "Gu-gu! Quyosh qanday rangda? Maysa-chi? Bo'yoq qutisidan yana ikki rang chiqdi!",
+   "new": "Quyosh qanday rangda, maysa-chi? Bo'yoq qutisidan yana ikki rang chiqdi!"
+  },
+  {
+   "old": "Gu-gu! Gulchalar pushti, apelsin esa to'q sariq. Bugun shu ikki chiroyli rangni o'rganamiz!",
+   "new": "Gulchalar pushti, apelsin esa to'q sariq. Bugun shu ikki chiroyli rangni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Qor qanday rangda? Tun-chi? Bugun oq va qora ranglar bilan tanishamiz!",
+   "new": "Qor qanday rangda, tun-chi? Bugun oq va qora ranglar bilan tanishamiz!"
+  },
+  {
+   "old": "Gu-gu! Hovlida kim «miyov» deyapti? Kim «vov-vov» deyapti? Keling, yangi do'stlarimiz bilan tanishamiz!",
+   "new": "Hovlida kim «miyov», kim «vov-vov» deyapti? Keling, yangi do'stlarimiz bilan tanishamiz!"
+  },
+  {
+   "old": "Gu-gu! Bugun ferma sayohatiga boramiz! Kim sut beradi? Kim tez chopadi? Qani, ketdik!",
+   "new": "Bugun ferma sayohatiga boramiz! Kim sut beradi, kim tez chopadi?"
+  },
+  {
+   "old": "Gu-gu! Hovlida kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bu mening qanotli do'stlarim!",
+   "new": "Hovlida kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bu mening qanotli do'stlarim!"
+  },
+  {
+   "old": "Gu-gu! Kimning juni paxtaday yumshoq? Kim sakrab-sakrab sabzi yeydi? Topdingizmi?",
+   "new": "Kimning juni paxtaday yumshoq? Kim sakrab-sakrab sabzi yeydi?"
+  },
+  {
+   "old": "Gu-gu! Men uchta don topdim! Ularni inglizcha sanaymizmi? Barmoqchalaringizni tayyorlang!",
+   "new": "Men uchta don topdim! Ularni inglizcha sanaymizmi?"
+  },
+  {
+   "old": "Gu-gu! Qo'lingizga qarang. Nechta barmoq bor? Besh! Bugun beshgacha sanashni o'rganamiz!",
+   "new": "Qo'lingizga qarang: nechta barmoq bor? Bugun beshgacha sanashni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Fil juda katta, sichqoncha esa kichkina! Kabutar qushcha-chi? Bugun katta va kichikni o'rganamiz!",
+   "new": "Fil juda katta, sichqoncha esa kichkina! Bugun katta va kichikni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Men o'yinchoq sandiqchasini topdim! Ichida nima bor ekan? Sekin ochamiz…",
+   "new": "Men o'yinchoq sandiqchasini topdim! Ichida nima bor ekan?"
+  },
+  {
+   "old": "Gu-gu! Bip-bip! Kim keldi? Mashina! Uning ichida esa yumshoq ayiqcha o'tiribdi!",
+   "new": "Kim keldi? Mashina, uning ichida esa yumshoq ayiqcha o'tiribdi!"
+  },
+  {
+   "old": "Gu-gu! Bugun bayram! Havoda shar uchyapti, baraban «bum-bum» chalyapti. Qani, bayramga!",
+   "new": "Bugun bayram! Havoda shar uchyapti, baraban «bum-bum» chalyapti."
+  },
+  {
+   "old": "Gu-gu! Chu-chu! Poyezd keldi! Vagonlarida rang-barang kubiklar bor. Kubiklardan uy quramiz!",
+   "new": "Chu-chu, poyezd keldi! Vagonlaridagi rang-barang kubiklardan uy quramiz!"
+  },
+  {
+   "old": "Gu-gu! Mening kichkina boshim va munchoqday ko'zlarim bor. Sizniki-chi? Qani, ko'rsating!",
+   "new": "Mening kichkina boshim va munchoqday ko'zlarim bor. Sizniki-chi?"
+  },
+  {
+   "old": "Gu-gu! Tss… eshityapsizmi? Qush sayrayapti! Hidlayapsizmi? Gul hidi! Nima bilan eshitamiz va hidlaymiz?",
+   "new": "Qush sayrayapti, gul hidi kelyapti. Nima bilan eshitamiz va hidlaymiz?"
+  },
+  {
+   "old": "Gu-gu! Qarsak kim chaladi? Qo'llarimiz! Kim tabassum qiladi? Og'zimiz! Qani, jilmaying!",
+   "new": "Qo'llarimiz qarsak chaladi, og'zimiz tabassum qiladi. Qani, jilmaying!"
+  },
+  {
+   "old": "Gu-gu! Men uchaman, siz esa yurasiz va sakraysiz! Nima bilan? Oyoqlaringiz bilan! Qani, turing!",
+   "new": "Men uchaman, siz esa oyoqlaringiz bilan yurasiz va sakraysiz! Qani, turing!"
+  },
+  {
+   "old": "Gu-gu! Men savatcha olib keldim. Ichida qizil meva va sariq meva bor. Topdingizmi?",
+   "new": "Men savatcha olib keldim: ichida qizil meva va sariq meva bor. Topdingizmi?"
+  },
+  {
+   "old": "Gu-gu! Chanqadingizmi? Menda oq ichimlik va shaffof ichimlik bor. Qaysi birini ichasiz?",
+   "new": "Chanqadingizmi? Menda oq ichimlik va shaffof ichimlik bor."
+  },
+  {
+   "old": "Gu-gu! Bugun kimningdir tug'ilgan kuni! Dasturxonda non ham, shamli tort ham bor. Puflaymizmi?",
+   "new": "Bugun tug'ilgan kun! Dasturxonda non ham, shamli tort ham bor."
+  },
+  {
+   "old": "Gu-gu! Olmadan shirin sharbat qildik! Ichib ko'ramizmi? Juda mazali bo'lsa, inglizlar bir qiziq so'z aytadi!",
+   "new": "Olmadan shirin sharbat qildik! Juda mazali bo'lsa, inglizlar bir qiziq so'z aytadi."
+  },
+  {
+   "old": "Salom, bolajonlar! Men — Kabutar qushcha. Gu-gu! Yozda siz o'sdingiz, men ham o'sdim! Keling, avval eski do'stlarimiz — sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
+   "new": "Salom, bolajonlar! Yozda siz ham, men ham o'sdik. Avval sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Mening ismim — Kabutar qushcha. Sizning ismingiz-chi? Ingliz bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
+   "new": "Mening ismim — Kabutar qushcha, sizning ismingiz-chi? Ingliz bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!"
+  },
+  {
+   "old": "Gu-gu! Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Inglizcha qanday so'raymiz? Tinglang!",
+   "new": "Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Inglizcha qanday so'raymiz? Tinglang!"
+  },
+  {
+   "old": "Gu-gu! Mening sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysizmi? Qani, bir-bir chiqaramiz!",
+   "new": "Sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysizmi? Qani, bir-bir chiqaramiz!"
+  },
+  {
+   "old": "Gu-gu! Ayiqcha qanday rangda? Tun-chi? Qor-chi? Bugun uchta yangi rangni o'rganamiz!",
+   "new": "Ayiqcha qanday rangda? Tun-chi, qor-chi? Bugun uchta yangi rangni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni o'rganamiz va rang haqida so'rashni bilib olamiz.",
+   "new": "Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni va rang haqida so'rashni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Men don yig'yapman. Yordam berasizmi? Donlarni inglizcha sanaymiz. Barmoqlaringizni tayyorlang!",
+   "new": "Men don yig'yapman, yordam berasizmi? Donlarni inglizcha sanaymiz. Barmoqlaringizni tayyorlang!"
+  },
+  {
+   "old": "Gu-gu! Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak-chi? Olti! Keling, sanashni davom ettiramiz.",
+   "new": "Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak — olti!"
+  },
+  {
+   "old": "Gu-gu! Kamalakda nechta rang bor? Yettita! Sakkizoyoqda nechta oyoq bor? Sakkizta! Qiziq-a?",
+   "new": "Kamalakda yettita rang bor. Sakkizoyoqda esa sakkizta oyoq! Qiziq-a?"
+  },
+  {
+   "old": "Gu-gu! Ikki qo'limizda nechta barmoq bor? Keling, o'ngacha sanaymiz! Yana bir yangi savol ham o'rganamiz: nechta?",
+   "new": "Ikki qo'limizda nechta barmoq bor? Keling, o'ngacha sanaymiz va «nechta» deb so'rashni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Bugun hayvonot bog'iga sayohat! Diqqat: kimdir «rrr!» deb bo'kiryapti. Kim ekan? Sekin boramiz…",
+   "new": "Bugun hayvonot bog'iga sayohat! Kimdir «rrr» deb bo'kiryapti. Kim ekan?"
+  },
+  {
+   "old": "Gu-gu! Daraxtda kim banan yeyapti? Kimning burni uzun? Kimning bo'yni osmonga yetadi? Qani, topamiz!",
+   "new": "Daraxtda kim banan yeyapti? Kimning burni uzun, kimning bo'yni osmonga yetadi? Qani, topamiz!"
+  },
+  {
+   "old": "Gu-gu! Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan? Kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
+   "new": "Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan, kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!"
+  },
+  {
+   "old": "Gu-gu! O'rmonga kirdik. Kechasi kim «uhu» deydi? Kim oyga qarab uvlaydi? Kim ayyor? Sekin tinglang!",
+   "new": "O'rmonga kirdik. Kechasi kim «uhu» deydi, kim oyga qarab uvlaydi, kim ayyor? Sekin tinglang!"
+  },
+  {
+   "old": "Gu-gu! Men uyamdagi oilamning suratini olib keldim. Sizning oilangizda kim bor? Bugun oilamiz haqida gapiramiz!",
+   "new": "Men oilamning suratini olib keldim. Sizning oilangizda kim bor? Bugun oila haqida gapiramiz!"
+  },
+  {
+   "old": "Gu-gu! Sizning akangiz yoki opangiz bormi? Balki kichkina ukangiz bordir? Inglizcha qanday aytamiz?",
+   "new": "Sizning akangiz yoki opangiz bormi? Balki kichkina ukangiz bordir? Inglizcha qanday aytamiz?"
+  },
+  {
+   "old": "Gu-gu! Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz? Tinglang!",
+   "new": "Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz?"
+  },
+  {
+   "old": "Gu-gu! Ingliz bolalarining eng mashhur qo'shig'ini bilasizmi? Unda bosh, yelka, tizza va oyoq barmoqlari bor. Qani, turing!",
+   "new": "Ingliz bolalarining mashhur qo'shig'ida bosh, yelka, tizza va oyoq barmoqlari bor. Qani, turing!"
+  },
+  {
+   "old": "Gu-gu! Qo'shiqning ikkinchi qismi yuzimiz haqida! Ko'zlar, quloqlar, og'iz va burun. Barmog'ingizni tayyorlang!",
+   "new": "Qo'shiqning ikkinchi qismi yuzimiz haqida: ko'zlar, quloqlar, og'iz va burun. Barmog'ingizni tayyorlang!"
+  },
+  {
+   "old": "Gu-gu! Bugun «Kabutar aytdi» o'yinini o'ynaymiz! Men inglizcha buyruq beraman, siz bajarasiz. Diqqat bilan tinglang!",
+   "new": "Bugun «Kabutar aytdi» o'yinini o'ynaymiz! Men inglizcha buyruq beraman, siz bajarasiz. Diqqat bilan tinglang!"
+  },
+  {
+   "old": "Gu-gu! Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz. Qiziq: bitta meva rangning nomi bilan atalar ekan!",
+   "new": "Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz."
+  },
+  {
+   "old": "Gu-gu! Bog'da nima pishibdi? Shingil-shingil uzum, nordon limon va shirin qulupnay! Qaysi biri nordon ekan?",
+   "new": "Bog'da shingil-shingil uzum, nordon limon va shirin qulupnay pishibdi! Qaysi biri nordon ekan?"
+  },
+  {
+   "old": "Gu-gu! Men donni yaxshi ko'raman. Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz!",
+   "new": "Men donni yaxshi ko'raman. Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Ertalab turib nima kiyamiz? Kabutar qushchaning shkafini ochamiz. Voy, qancha kiyim!",
+   "new": "Ertalab turib nima kiyamiz? Shkafni ochamiz — voy, qancha kiyim!"
+  },
+  {
+   "old": "Gu-gu! Tashqariga sayrga chiqamiz! Boshga nima kiyamiz? Oyoqqa-chi? Avval paypoq, keyin tufli!",
+   "new": "Sayrga chiqamiz! Boshga nima kiyamiz, oyoqqa-chi? Avval paypoq, keyin tufli!"
+  },
+  {
+   "old": "Gu-gu! Men sehrli qopcha olib keldim! Ichida bitta narsa yashiringan. Bu nima ekan? Inglizcha so'raymiz va javob beramiz!",
+   "new": "Sehrli qopchada bitta narsa yashiringan. Bu nima ekan? Inglizcha so'raymiz va javob beramiz!"
+  },
+  {
+   "old": "Bip-bip! Men — robot Kabu. Bilasanmi, ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz. Tayyormisan?",
+   "new": "Ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Voy, Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi Ali nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
+   "new": "Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi u nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Bog'chada sayr vaqti. Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz? Bugun bilib olamiz!",
+   "new": "Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz?"
+  },
+  {
+   "old": "Bip-bip! Tong otdi, quyosh derazadan mo'ralayapti. Ali esa hali ham uxlayapti! Uni qanday uyg'otamiz? Qani, birga bilib olamiz.",
+   "new": "Tong otdi, quyosh derazadan mo'ralayapti, Ali esa hali uxlayapti! Uni qanday uyg'otamiz?"
+  },
+  {
+   "old": "Bip-bip! Nonushta tugadi. Laylo sumkasini oldi va oyisining qo'lidan ushladi. U qayerga ketyapti? Topdingmi? Bog'chaga!",
+   "new": "Nonushta tugadi. Laylo sumkasini olib, oyisining qo'lidan ushladi. U qayerga ketyapti — bog'chaga!"
+  },
+  {
+   "old": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda nima qiladi? Kechki ovqat, cho'milish va shirin uyqu! Mening batareyam ham dam olmoqchi.",
+   "new": "Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda kechki ovqat yeydi, cho'miladi va shirin uxlaydi."
+  },
+  {
+   "old": "Bip-bip! Robotlar ham his qiladi! Batareyam to'la bo'lsa, men xursandman. Bugun Laylo biroz xomush ko'rinyapti. Undan qanday so'raymiz?",
+   "new": "Robotlar ham his qiladi: batareyam to'la bo'lsa, men xursandman! Bugun Laylo xomush. Undan qanday so'raymiz?"
+  },
+  {
+   "old": "Bip-bip! Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz? Bugun do'stlik so'zlarini o'rganamiz!",
+   "new": "Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz?"
+  },
+  {
+   "old": "Salom, bolajonlar! Men — robot Kabu. Bip-bip! Yozda sen o'sding, men ham o'sdim! Qani, avval eski do'stlarimiz — sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
+   "new": "Salom, bolajonlar! Yozda sen ham, men ham o'sdik. Avval sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Mening ismim — robot Kabu. Sening isming-chi? Ingliz bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
+   "new": "Mening ismim — robot Kabu, sening isming-chi? Ingliz bolalari bir-biridan ismini qanday so'raydi?"
+  },
+  {
+   "old": "Bip-bip! Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Inglizcha qanday so'raymiz? Tingla!",
+   "new": "Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Inglizcha qanday so'raymiz? Tingla!"
+  },
+  {
+   "old": "Bip-bip! Mening sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysanmi? Qani, bir-bir chiqaramiz!",
+   "new": "Sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysanmi? Qani, bir-bir chiqaramiz!"
+  },
+  {
+   "old": "Bip-bip! Ayiqcha qanday rangda? Tun-chi? Qor-chi? Bugun uchta yangi rangni o'rganamiz!",
+   "new": "Ayiqcha qanday rangda? Tun-chi, qor-chi? Bugun uchta yangi rangni o'rganamiz!"
+  },
+  {
+   "old": "Bip-bip! Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni o'rganamiz va rang haqida so'rashni bilib olamiz.",
+   "new": "Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni va rang haqida so'rashni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Men don yig'yapman. Yordam berasanmi? Donlarni inglizcha sanaymiz. Barmoqlaringni tayyorla!",
+   "new": "Men don yig'yapman, yordam berasanmi? Donlarni inglizcha sanaymiz. Barmoqlaringni tayyorla!"
+  },
+  {
+   "old": "Bip-bip! Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak-chi? Olti! Qani, sanashni davom ettiramiz.",
+   "new": "Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak — olti!"
+  },
+  {
+   "old": "Bip-bip! Kamalakda nechta rang bor? Yettita! Sakkizoyoqda nechta oyoq bor? Sakkizta! Qiziq-a?",
+   "new": "Kamalakda yettita rang bor. Sakkizoyoqda esa sakkizta oyoq! Qiziq-a?"
+  },
+  {
+   "old": "Bip-bip! Ikki qo'limizda nechta barmoq bor? Qani, o'ngacha sanaymiz! Yana bir yangi savol ham o'rganamiz: nechta?",
+   "new": "Ikki qo'limizda nechta barmoq bor? Qani, o'ngacha sanaymiz va «nechta» deb so'rashni o'rganamiz!"
+  },
+  {
+   "old": "Bip-bip! Bugun hayvonot bog'iga sayohat! Diqqat: kimdir «rrr!» deb bo'kiryapti. Kim ekan? Sekin boramiz…",
+   "new": "Bugun hayvonot bog'iga sayohat! Kimdir «rrr» deb bo'kiryapti. Kim ekan?"
+  },
+  {
+   "old": "Bip-bip! Daraxtda kim banan yeyapti? Kimning burni uzun? Kimning bo'yni osmonga yetadi? Qani, topamiz!",
+   "new": "Daraxtda kim banan yeyapti? Kimning burni uzun, kimning bo'yni osmonga yetadi? Qani, topamiz!"
+  },
+  {
+   "old": "Bip-bip! Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan? Kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
+   "new": "Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan, kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!"
+  },
+  {
+   "old": "Bip-bip! O'rmonga kirdik. Kechasi kim «uhu» deydi? Kim oyga qarab uvlaydi? Kim ayyor? Sekin tingla!",
+   "new": "O'rmonga kirdik. Kechasi kim «uhu» deydi, kim oyga qarab uvlaydi, kim ayyor? Sekin tingla!"
+  },
+  {
+   "old": "Bip-bip! Men uyamdagi oilamning suratini olib keldim. Sening oilangda kim bor? Bugun oilamiz haqida gapiramiz!",
+   "new": "Men oilamning suratini olib keldim. Sening oilangda kim bor? Bugun oila haqida gapiramiz!"
+  },
+  {
+   "old": "Bip-bip! Sening akang yoki opang bormi? Balki kichkina ukang bordir? Inglizcha qanday aytamiz?",
+   "new": "Sening akang yoki opang bormi? Balki kichkina ukang bordir? Inglizcha qanday aytamiz?"
+  },
+  {
+   "old": "Bip-bip! Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz? Tingla!",
+   "new": "Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz?"
+  },
+  {
+   "old": "Bip-bip! Ingliz bolalarining eng mashhur qo'shig'ini bilasanmi? Unda bosh, yelka, tizza va oyoq barmoqlari bor. Qani, tur!",
+   "new": "Ingliz bolalarining mashhur qo'shig'ida bosh, yelka, tizza va oyoq barmoqlari bor. Qani, tur!"
+  },
+  {
+   "old": "Bip-bip! Qo'shiqning ikkinchi qismi yuzimiz haqida! Ko'zlar, quloqlar, og'iz va burun. Barmog'ingni tayyorla!",
+   "new": "Qo'shiqning ikkinchi qismi yuzimiz haqida: ko'zlar, quloqlar, og'iz va burun. Barmog'ingni tayyorla!"
+  },
+  {
+   "old": "Bip-bip! Bugun «Kabu aytdi» o'yinini o'ynaymiz! Men inglizcha buyruq beraman, sen bajarasan. Diqqat bilan tingla!",
+   "new": "Bugun «Kabu aytdi» o'yinini o'ynaymiz! Men inglizcha buyruq beraman, sen bajarasan. Diqqat bilan tingla!"
+  },
+  {
+   "old": "Bip-bip! Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz. Qiziq: bitta meva rangning nomi bilan atalar ekan!",
+   "new": "Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz."
+  },
+  {
+   "old": "Bip-bip! Bog'da nima pishibdi? Shingil-shingil uzum, nordon limon va shirin qulupnay! Qaysi biri nordon ekan?",
+   "new": "Bog'da shingil-shingil uzum, nordon limon va shirin qulupnay pishibdi! Qaysi biri nordon ekan?"
+  },
+  {
+   "old": "Bip-bip! Men batareykamni yaxshi ko'raman. Sen nimani yaxshi ko'rasan? Bugun buni inglizcha aytishni o'rganamiz!",
+   "new": "Men batareykamni yaxshi ko'raman. Sen nimani yaxshi ko'rasan? Bugun buni inglizcha aytishni o'rganamiz!"
+  },
+  {
+   "old": "Bip-bip! Ertalab turib nima kiyamiz? robot Kabuning shkafini ochamiz. Voy, qancha kiyim!",
+   "new": "Ertalab turib nima kiyamiz? Robot Kabuning shkafini ochamiz — voy, qancha kiyim!"
+  },
+  {
+   "old": "Bip-bip! Tashqariga sayrga chiqamiz! Boshga nima kiyamiz? Oyoqqa-chi? Avval paypoq, keyin tufli!",
+   "new": "Sayrga chiqamiz! Boshga nima kiyamiz, oyoqqa-chi? Avval paypoq, keyin tufli!"
+  },
+  {
+   "old": "Bip-bip! Men sehrli qopcha olib keldim! Ichida bitta narsa yashiringan. Bu nima ekan? Inglizcha so'raymiz va javob beramiz!",
+   "new": "Sehrli qopchada bitta narsa yashiringan. Bu nima ekan? Inglizcha so'raymiz va javob beramiz!"
+  },
+  {
+   "old": "Bip-bip! Xayrli tong! robot Kabu och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Qani, inglizcha aytamiz.",
+   "new": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Qani, inglizcha aytamiz."
+  },
+  {
+   "old": "Bip-bip! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz.",
+   "new": "Men uzoq uchdim, tomog'im qaqrab ketdi! Sen nima ichishni yaxshi ko'rasan? Qani, bilib olamiz."
+  },
+  {
+   "old": "Bip-bip! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Qani, bilamiz!",
+   "new": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?"
+  },
+  {
+   "old": "Bip-bip! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Qani, ularni inglizcha nomlaymiz.",
+   "new": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Qani, ularni inglizcha nomlaymiz."
+  },
+  {
+   "old": "Bip-bip! Mening temir uycham bor, sening esa chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni inglizcha o'rganamiz.",
+   "new": "Mening temir uycham bor, sening esa chiroyli uying bor! Uyning eshigi, derazasi bormi? Qani, uyni inglizcha o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysan? Qani, xonalarni inglizcha aytamiz!",
+   "new": "Men sening uyingga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysan? Qani, xonalarni inglizcha aytamiz!"
+  },
+  {
+   "old": "Bip-bip! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Qani, xonadagi narsalarni o'rganamiz.",
+   "new": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Qani, xonadagi narsalarni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Qani, birga qidiramiz!",
+   "new": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Qani, birga qidiramiz!"
+  },
+  {
+   "old": "Bip-bip! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni inglizcha aytamiz!",
+   "new": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Qani, ob-havoni inglizcha aytamiz!"
+  },
+  {
+   "old": "Bip-bip! Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq bo'ladi, sovuq bo'ladi. Qani, o'rganamiz!",
+   "new": "Yozda men soyada salqinlayman, qishda esa antennamni isitaman. Havo issiq ham, sovuq ham bo'ladi. Qani, o'rganamiz!"
+  },
+  {
+   "old": "Bip-bip! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?",
+   "new": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri senga yoqadi?"
+  },
+  {
+   "old": "Bip-bip! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+   "new": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Qani, sirni ochamiz."
+  },
+  {
+   "old": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+   "new": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz."
+  },
+  {
+   "old": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin inglizcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+   "new": "Men tuxumlarni sanamoqchiman, lekin inglizcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!"
+  },
+  {
+   "old": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+   "new": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz."
+  },
+  {
+   "old": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni inglizcha tanishtirishni o'rganing.",
+   "new": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni inglizcha tanishtirishni o'rganing."
+  },
+  {
+   "old": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+   "new": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?"
+  },
+  {
+   "old": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+   "new": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!"
+  },
+  {
+   "old": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+   "new": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni inglizcha o'rganamiz.",
+   "new": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni inglizcha o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+   "new": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida inglizcha gapiramiz.",
+   "new": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida inglizcha gapiramiz."
+  },
+  {
+   "old": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, inglizcha aytamiz.",
+   "new": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, inglizcha aytamiz."
+  },
+  {
+   "old": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+   "new": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz."
+  },
+  {
+   "old": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+   "new": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?"
+  },
+  {
+   "old": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni inglizcha nomlaymiz.",
+   "new": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni inglizcha nomlaymiz."
+  },
+  {
+   "old": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni inglizcha o'rganamiz.",
+   "new": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni inglizcha o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni inglizcha aytamiz!",
+   "new": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni inglizcha aytamiz!"
+  },
+  {
+   "old": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+   "new": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+   "new": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!"
+  },
+  {
+   "old": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni inglizcha aytamiz!",
+   "new": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni inglizcha aytamiz!"
+  },
+  {
+   "old": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+   "new": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+   "new": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?"
+  },
+  {
+   "old": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+   "new": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz."
+  },
+  {
+   "old": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz.",
+   "new": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+   "new": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz."
+  },
+  {
+   "old": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida inglizcha gapiramiz.",
+   "new": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida inglizcha gapiramiz."
+  },
+  {
+   "old": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, inglizcha aytamiz!",
+   "new": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, inglizcha aytamiz!"
+  },
+  {
+   "old": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni inglizcha aytishni o'rganamiz.",
+   "new": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni inglizcha aytishni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+   "new": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?"
+  },
+  {
+   "old": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda inglizcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+   "new": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda inglizcha gapirib, xayrlashishni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Siz o'ngacha sanashni bilasiz: [en]one, two… ten[/en]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
+   "new": "Salom, do'stim! Siz o'ngacha sanashni bilasiz: [en]one, two… ten[/en]! Bugun o'ndan keyingi sirli sonlarni ochamiz."
+  },
+  {
+   "old": "Gu-gu! Men bog'da gullarni sanayapman. O'n to'rtta… undan ham ko'p! Keyingi sonlar qanday ataladi? Keling, bilib olamiz.",
+   "new": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Keling, bilib olamiz."
+  },
+  {
+   "old": "Gu-gu! Men ertalab uyg'onib, «bugun qaysi kun?» deb o'yladim. Taqvimga qaradim — ha, bugun juma! Keling, buni inglizcha so'rashni o'rganamiz.",
+   "new": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Keling, buni inglizcha so'rashni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Tongda men don teraman, kechqurun uyamga qaytaman, tunda esa uxlayman. Dam olish kunlari-chi? O'ynayman! Sizning kuningiz qanday o'tadi?",
+   "new": "Tongda men don teraman, kechqurun uyamga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sizning kuningiz qanday o'tadi?"
+  },
+  {
+   "old": "Gu-gu! Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Siz-chi? Kim bo'lmoqchisiz? Keling, orzularimizni inglizcha aytamiz.",
+   "new": "Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Siz kim bo'lmoqchisiz? Keling, orzularimizni inglizcha aytamiz."
+  },
+  {
+   "old": "Gu-gu! Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Keling, ish joylarini inglizcha o'rganamiz.",
+   "new": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Keling, ish joylarini inglizcha o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Ko'chada qanday shovqin! Biip-biip! Men tepadan qarayman: mashinalar, avtobuslar, velosipedlar! Keling, ularni inglizcha nomlaymiz.",
+   "new": "Ko'chada qanday shovqin: biip-biip! Tepadan qarayman — mashinalar, avtobuslar, velosipedlar! Keling, ularni inglizcha nomlaymiz."
+  },
+  {
+   "old": "Gu-gu! Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi, samolyotdami? Dengizda kemada suzsam-chi? Keling, o'rganamiz!",
+   "new": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Keling, o'rganamiz!"
+  },
+  {
+   "old": "Gu-gu! Vi-u, vi-u! Qizil mashina shoshib ketyapti — qayerdadir yong'in! Oq mashina-chi? U bemorga shoshyapti! Keling, bu mashinalarni o'rganamiz.",
+   "new": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Keling, bu mashinalarni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Men bog'chaga uchib boraman! Siz-chi? Avtobusdami, mashinadami yoki piyodami? Keling, buni inglizcha so'rash va aytishni o'rganamiz.",
+   "new": "Men bog'chaga uchib boraman! Siz-chi — avtobusdami, mashinadami yoki piyodami? Keling, buni inglizcha so'rash va aytishni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Tez orada siz maktabga borasiz! Portfelga nimalarni solamiz? Kitob, qalam… Keling, maktab narsalarini inglizcha o'rganamiz.",
+   "new": "Tez orada siz maktabga borasiz! Portfelga nimalarni solamiz — kitob, qalam? Keling, maktab narsalarini inglizcha o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsangiz — qo'l ko'tarasiz. Keling, o'rganamiz!",
+   "new": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsangiz — qo'l ko'tarasiz."
+  },
+  {
+   "old": "Gu-gu! Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Siz-chi? Bugun inglizcha «qila olasanmi?» deb so'rashni o'rganamiz.",
+   "new": "Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Siz-chi? Bugun inglizcha «qila olasanmi» deb so'rashni o'rganamiz."
+  },
+  {
+   "old": "Gu-gu! Hayvonot bog'ida hamma o'z ishini qiladi: baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Keling, gapiramiz.",
+   "new": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Keling, gapiramiz."
+  },
+  {
+   "old": "Gu-gu! Men katta donni ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi. Keling, bu so'zlarni o'rganamiz!",
+   "new": "Men katta donni ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi."
+  },
+  {
+   "old": "Gu-gu! Bugun men sotuvchiman, siz esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz? Keling, o'rganamiz!",
+   "new": "Bugun men sotuvchiman, siz esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?"
+  },
+  {
+   "old": "Gu-gu! Bozorning sabzavot rastasiga keldik. Qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Keling, xarid qilamiz!",
+   "new": "Bozorning sabzavot rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Keling, xarid qilamiz!"
+  },
+  {
+   "old": "Gu-gu! Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Siz-chi? Keling, sevimli narsalarimizni inglizcha aytamiz.",
+   "new": "Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Siz-chi? Keling, sevimli narsalarimizni inglizcha aytamiz."
+  },
+  {
+   "old": "Bip-bip! Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni inglizcha aytamiz.",
+   "new": "Kunduzi Ali qayerda? Laylo-chi? Ular juda band! Qani, kunduzgi ishlarni inglizcha aytamiz."
+  },
+  {
+   "old": "Bip-bip! Bugun Ali bog'chaga kelmadi. Nega ekan? U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?",
+   "new": "Bugun Ali bog'chaga kelmadi. U yotibdi, yuzi xafa. Kel, undan so'raymiz: nima bo'ldi?"
+  },
+  {
+   "old": "Bip-bip! Ali shifoxonaga keldi. U yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!",
+   "new": "Ali shifoxonaga keldi, u yerda mehribon hamshira opa bor. Uning qo'lida nima bor ekan? Qani, ko'ramiz!"
+  },
+  {
+   "old": "Bip-bip! Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!",
+   "new": "Men batareyadan quvvat olaman. Sen-chi? Sog'lom va kuchli bo'lish uchun nima qilish kerak? Kabuning to'rtta sirini o'rgan!"
+  },
+  {
+   "old": "Bip-bip! Bir bola adashib qoldi. U [en]Where is the zoo?[/en] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!",
+   "new": "Bir bola adashib qoldi va [en]Where is the zoo?[/en] deb so'rayapti. Unga yo'l ko'rsatamizmi? Buning uchun to'rtta yangi ibora kerak!"
+  },
+  {
+   "old": "Bip-bip! Bugun oyijon bilan oshxonada yordam beramiz. Pomidor va bodring bor. Qani, mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi.",
+   "new": "Bugun oyijon bilan oshxonada pomidor va bodringdan mazali salat qilamiz! Pichoqni faqat kattalar ushlaydi."
+  },
+  {
+   "old": "Bip-bip! Tez orada mehmonlar keladi! Dasturxonga nima qo'yamiz? Likopcha, qoshiq, sanchqi va piyola. Qani, inglizcha nomlarini o'rgan!",
+   "new": "Tez orada mehmonlar keladi! Dasturxonga likopcha, qoshiq, sanchqi va piyola qo'yamiz. Qani, inglizcha nomlarini o'rgan!"
+  },
+  {
+   "old": "Bip-bip! Taq-taq! Eshikni kim taqillatdi? Buvijonning dugonasi mehmonga keldi! Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz.",
+   "new": "Taq-taq! Buvijonning dugonasi mehmonga keldi. Biz mehmonni choy bilan kutamiz. Qani, odob bilan choy taklif qilamiz."
+  },
+  {
+   "old": "Bip-bip! Uyda hamma band! Bobojon divanda ko'zini yumdi, Laylo qo'shiq aytyapti, bolalar hovlida yugurishyapti. O'g'il bola — [en]he[/en], qiz bola — [en]she[/en], ko'pchilik — [en]they[/en]. Ular nima qilyapti? Qani, aytamiz!",
+   "new": "Uyda hamma band: bobojon uxlayapti, Laylo qo'shiq aytyapti, bolalar yugurishyapti. O'g'il bola — [en]he[/en], qiz bola — [en]she[/en], ko'pchilik — [en]they[/en]. Qani, aytamiz!"
+  },
+  {
+   "old": "Bip-bip! Buvijonning hovlisiga keldik. Qara: mushuk quyoshda yotibdi, kuchukcha yuguryapti, daraxtda qushlar sayrayapti, hovuzda baliq bor. Ular nima qilyapti? Bilib olamiz!",
+   "new": "Buvijonning hovlisida mushuk quyoshda yotibdi, kuchukcha yuguryapti, qushlar sayrayapti, hovuzda baliq suzyapti. Ular nima qilyapti? Bilib olamiz!"
+  },
+  {
+   "old": "Bip-bip! Kecha yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Laylo uni ko'rdi. Sen kecha nimani ko'rding, nima yeding? Qani, inglizcha aytamiz!",
+   "new": "Kecha yomg'irdan keyin Laylo osmonda kamalakni ko'rdi! Sen kecha nimani ko'rding, nima yeding? Qani, inglizcha aytamiz!"
+  },
+  {
+   "old": "Bip-bip! Bobojon bog'ga sholg'om ekdi. Sholg'om shunday katta bo'ldiki, bobojon uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!",
+   "new": "Bobojon ekkan sholg'om shunday katta bo'ldiki, uni sug'urib ololmadi! Buvijon, nevara, kuchuk, mushuk keldi — baribir chiqmadi. Kim yordam berdi ekan? Tinglaymiz!"
+  },
+  {
+   "old": "Bip-bip! Bir qishloqda ikki qiz yashardi: mehnatkash, mehribon Zumrad va dangasa, qo'pol Qimmat. Zumrad o'rmonda bir qariyaga yordam berdi va sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!",
+   "new": "Bir qishloqda mehribon Zumrad va dangasa Qimmat yashardi. Zumrad qariyaga yordam berib, sehrli sandiq oldi. Qimmat-chi? Tinglaymiz!"
+  },
+  {
+   "old": "Bip-bip! Katta sher uxlab yotgan edi. Kichkina sichqon uni uyg'otib yubordi, lekin sher uni qo'yib yubordi. Bir kuni sher ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!",
+   "new": "Katta sher kichkina sichqonni qo'yib yubordi. Bir kuni sherning o'zi ovchining to'riga tushib qoldi! Kim uni qutqardi ekan? Tinglaymiz!"
+  },
+  {
+   "old": "Bip-bip! Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham shuncha ko'p inglizcha so'z o'rganding! Qani, sahnaga chiqib, o'zingni tanishtir!",
+   "new": "Bugun bog'chada katta bayram — bitiruv! Ali va Laylo diplom olishadi. Sen ham ko'p inglizcha so'z o'rganding — qani, o'zingni tanishtir!"
+  },
+  {
+   "old": "Bip-bip! Salom, do'stim! Men — robot Kabu. Sen o'ngacha sanashni bilasan: [en]one, two… ten[/en]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
+   "new": "Salom, do'stim! Sen o'ngacha sanashni bilasan: [en]one, two… ten[/en]! Bugun o'ndan keyingi sirli sonlarni ochamiz."
+  },
+  {
+   "old": "Bip-bip! Men bog'da gullarni sanayapman. O'n to'rtta… undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz.",
+   "new": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz."
+  },
+  {
+   "old": "Bip-bip! Men ertalab uyg'onib, «bugun qaysi kun?» deb o'yladim. Taqvimga qaradim — ha, bugun juma! Qani, buni inglizcha so'rashni o'rganamiz.",
+   "new": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Qani, buni inglizcha so'rashni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Tongda men don teraman, kechqurun uyamga qaytaman, tunda esa uxlayman. Dam olish kunlari-chi? O'ynayman! Sening kuning qanday o'tadi?",
+   "new": "Tongda men uyg'onaman, kechqurun uyga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sening kuning qanday o'tadi?"
+  },
+  {
+   "old": "Bip-bip! Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Sen-chi? Kim bo'lmoqchisan? Qani, orzularimizni inglizcha aytamiz.",
+   "new": "Katta bo'lsam, pochtachi bo'lmoqchiman — xat tashiyman! Sen kim bo'lmoqchisan? Qani, orzularimizni inglizcha aytamiz."
+  },
+  {
+   "old": "Bip-bip! Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Qani, ish joylarini inglizcha o'rganamiz.",
+   "new": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Qani, ish joylarini inglizcha o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Ko'chada qanday shovqin! Biip-biip! Men tepadan qarayman: mashinalar, avtobuslar, velosipedlar! Qani, ularni inglizcha nomlaymiz.",
+   "new": "Ko'chada qanday shovqin: biip-biip! Tepadan qarayman — mashinalar, avtobuslar, velosipedlar! Qani, ularni inglizcha nomlaymiz."
+  },
+  {
+   "old": "Bip-bip! Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi, samolyotdami? Dengizda kemada suzsam-chi? Qani, o'rganamiz!",
+   "new": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Qani, o'rganamiz!"
+  },
+  {
+   "old": "Bip-bip! Vi-u, vi-u! Qizil mashina shoshib ketyapti — qayerdadir yong'in! Oq mashina-chi? U bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz.",
+   "new": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Men bog'chaga uchib boraman! Sen-chi? Avtobusdami, mashinadami yoki piyodami? Qani, buni inglizcha so'rash va aytishni o'rganamiz.",
+   "new": "Men bog'chaga uchib boraman! Sen-chi — avtobusdami, mashinadami yoki piyodami? Qani, buni inglizcha so'rash va aytishni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Tez orada sen maktabga borasan! Portfelga nimalarni solamiz? Kitob, qalam… Qani, maktab narsalarini inglizcha o'rganamiz.",
+   "new": "Tez orada sen maktabga borasan! Portfelga nimalarni solamiz — kitob, qalam? Qani, maktab narsalarini inglizcha o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan. Qani, o'rganamiz!",
+   "new": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan."
+  },
+  {
+   "old": "Bip-bip! Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Sen-chi? Bugun inglizcha «qila olasanmi?» deb so'rashni o'rganamiz.",
+   "new": "Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Sen-chi? Bugun inglizcha «qila olasanmi» deb so'rashni o'rganamiz."
+  },
+  {
+   "old": "Bip-bip! Hayvonot bog'ida hamma o'z ishini qiladi: baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz.",
+   "new": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz."
+  },
+  {
+   "old": "Bip-bip! Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi. Qani, bu so'zlarni o'rganamiz!",
+   "new": "Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi."
+  },
+  {
+   "old": "Bip-bip! Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz? Qani, o'rganamiz!",
+   "new": "Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?"
+  },
+  {
+   "old": "Bip-bip! Bozorning sabzavot rastasiga keldik. Qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!",
+   "new": "Bozorning sabzavot rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!"
+  },
+  {
+   "old": "Bip-bip! Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni inglizcha aytamiz.",
+   "new": "Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni inglizcha aytamiz."
+  },
+  {
+   "old": "Bip-bip! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz.",
+   "new": "Men faqat yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz."
+  },
+  {
+   "old": "Bip-bip! Mening kichkina uyam va bitta qizil to'pim bor. Senda nima bor? Mushuk, it yoki qo'g'irchoq? Qani, inglizcha aytamiz!",
+   "new": "Mening bitta qizil to'pim bor. Senda nima bor — mushuk, it yoki qo'g'irchoq? Qani, inglizcha aytamiz!"
+  },
+  {
+   "old": "Bip-bip! Men ucha olaman! Sen-chi? Sen yugura olasan, sakray olasan, qo'shiq ayta olasan! Qani, buni inglizcha aytishni o'rganamiz.",
+   "new": "Men ucha olaman! Sen esa yugura, sakray va qo'shiq ayta olasan. Qani, buni inglizcha aytishni o'rganamiz."
+  }
+ ],
+ "intro_en": [
+  {
+   "en_old": "Good morning! It is time for breakfast. Let's eat bread, eggs and cheese. Yummy!",
+   "drop": [
+    3
+   ]
+  },
+  {
+   "en_old": "Hi, friends! I'm thirsty. Let's drink something. Water, juice or tea?",
+   "drop": [
+    2
+   ],
+   "manual": {
+    "ja": "やあ、みんな！のど かわいた。みず、ジュース、おちゃ？"
+   }
+  },
+  {
+   "en_old": "Hello! It's lunch time. I'm hungry! Let's eat soup and rice.",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! I love sweet things. Cake, ice cream, sweets. Yummy!",
+   "drop": [
+    3
+   ]
+  },
+  {
+   "en_old": "Hello! Welcome to my house! Look, here is the door. Come in, please!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello! Look at my room. I see a chair, a lamp and a clock. What do you see?",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Oh no! Where is the cat? Let's look for it together. Is it in the box?",
+   "drop": [
+    2
+   ]
+  },
+  {
+   "en_old": "Hi! It's rainy today, so I have an umbrella. Look! After the rain, I see a rainbow!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! My name is Kabutar. What is your name? How old are you? Let's talk!",
+   "drop": [
+    4
+   ]
+  },
+  {
+   "en_old": "Beep-beep! Hello, friends! I am Kabu the robot. What are you doing now? Let's say it!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Beep-beep! Look at the family! Who is sleeping? Who is singing? Let's see!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Beep-beep! This is an Uzbek fairy tale. Zumrad is kind. Qimmat is lazy. Let's listen!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! I am Kabutar the bird. I missed you! Let's say hello and tell our names.",
+   "drop": [
+    1
+   ]
+  },
+  {
+   "en_old": "Hello! Let's count with Kabutar. One, two, three, four! Count with me!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello again! Let's count to ten. Eight, nine, ten! How many can you count?",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! I love my family. Look! This is my mum. Let's meet your family too!",
+   "drop": [
+    0,
+    2
+   ]
+  },
+  {
+   "en_old": "Good morning, friends! How are you? I'm fine, thank you! Let's talk with our friends.",
+   "drop": [
+    3
+   ]
+  },
+  {
+   "en_old": "Hello! Look at the elephant. It is big! Look at the mouse. It is small!",
+   "drop": [],
+   "manual": {
+    "en": "Look at the elephant: it is big! Look at the mouse: it is small!",
+    "ru": "Посмотри на слона: он большой! Посмотри на мышку: она маленькая!",
+    "ar": "انظر إلى الفيل: إنه كبير! انظر إلى الفأر: إنه صغير!",
+    "tr": "File bak: o büyük! Fareye bak: o küçük!",
+    "de": "Schau dir den Elefanten an: Er ist groß! Schau dir die Maus an: Sie ist klein!",
+    "fr": "Regarde l'éléphant : il est grand ! Regarde la souris : elle est petite !",
+    "es": "Mira el elefante: ¡es grande! Mira el ratón: ¡es pequeño!",
+    "ko": "코끼리를 봐요, 커요! 생쥐를 봐요, 작아요!",
+    "ja": "ぞうを みて、おおきいね！ねずみを みて、ちいさいね！",
+    "zh": "看这头大象，它很大！看这只老鼠，它很小！"
+   }
+  },
+  {
+   "en_old": "Hello, friends! Let's get dressed. Look at my clothes! What do you wear today?",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hi! We go outside. First socks, then shoes! Put on your shoes, please.",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! Look at me! My T-shirt is red. What colour are your clothes?",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! I like apples. I like my friends too! What do you like?",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hi! We like many things. But some things we don't like. I don't like rain!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! Let's ask our friends. Do you like cake? Yes, I do!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! I have a nest and a little friend. What do you have? Let's tell!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hi! I can fly! What can you do? Let's jump, run and sing together!",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, friends! I can fly, but I can't swim. You can dance and draw! Let's see.",
+   "drop": [
+    0
+   ]
+  },
+  {
+   "en_old": "Hello, my big friends! You are five, and you know many English words. I am so happy!",
+   "drop": null,
+   "manual": {
+    "ja": "こんにちは、おおきく なった ともだち！きみたちは ごさいで、にほんごの ことばを たくさん しっているね。とても うれしいよ！"
+   }
+  },
+  {
+   "en_old": "Good morning, friends! How do you go to school? By bus, by car, or do you walk? Let's talk!",
+   "drop": null,
+   "manual": {
+    "ja": "おはよう、みんな！がっこうへは どうやって いく？バス、くるま、それとも あるいて？おはなし しよう！"
+   }
+  },
+  {
+   "en_old": "Beep-beep! Tick-tock, tick-tock! I am Kabu, and I have a clock inside me. Let's learn to tell the time!",
+   "drop": null,
+   "manual": {
+    "ja": "ピピッ！チクタク、チクタク！ぼくは カブ、おなかの なかに とけいが あるよ。とけいの よみかたを ならおう！",
+    "ko": "삐빅! 똑딱, 똑딱! 나는 카부예요, 내 안에는 시계가 있어요. 시간 말하는 법을 배워요!"
+   }
+  },
+  {
+   "en_old": "Beep-beep! Laylo's cat is hiding again! Is it next to the box, behind it or in front of it? Let's find out!",
+   "drop": null,
+   "manual": {
+    "ja": "ピピッ！ライロの ねこが また かくれているよ！はこの となり、うしろ、それとも まえ？さがして みよう！"
+   }
+  }
+ ],
+ "add_items": [
+  {
+   "group": "4-5",
+   "anchor": [
+    "en45-u1-whats-your-name.png",
+    "en45-u1-my-name-is.png"
+   ],
+   "pos": "end",
+   "kind": "copy",
+   "src_book": "67",
+   "src_image": "en67-u8-nice-to-meet.png",
+   "drop": [
+    "sentence",
+    "action_en"
+   ],
+   "reason": "4-5 yosh: darsda 3–4 element bo'lishi kerak (2 ta edi) — «Mening ismim» tanishuv iborasi bilan to'ldirildi"
+  },
+  {
+   "group": "4-5",
+   "anchor": [
+    "en45-u3-seven.png",
+    "en45-u3-eight.png"
+   ],
+   "pos": "end",
+   "kind": "copy",
+   "src_book": "67",
+   "src_image": "en67-u1-lets-count.png",
+   "uz": "qani, sanaymiz!",
+   "drop": [
+    "sentence",
+    "action_en"
+   ],
+   "reason": "4-5 yosh: darsda 3–4 element bo'lishi kerak (2 ta edi) — sanashga chorlov iborasi qo'shildi"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u1-fifteen.png",
+    "en67-u1-sixteen.png",
+    "en67-u1-seventeen.png"
+   ],
+   "pos": 0,
+   "kind": "copy_same_book",
+   "src_image": "en67-u1-fourteen.png",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — sanoq uzluksiz bo'lsin: oldingi darsdagi «o'n to'rt» takror sifatida boshiga"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u1-eighteen.png",
+    "en67-u1-nineteen.png",
+    "en67-u1-twenty.png"
+   ],
+   "pos": 0,
+   "kind": "copy_same_book",
+   "src_image": "en67-u1-seventeen.png",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — sanoq uzluksiz bo'lsin: «o'n yetti» takror sifatida boshiga"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u2-monday.png",
+    "en67-u2-tuesday.png",
+    "en67-u2-wednesday.png"
+   ],
+   "pos": 0,
+   "kind": "copy_same_book",
+   "src_image": "en67-u2-week.png",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «hafta» tushunchasi kunlardan oldin (keyingi darsda takrorlanadi)"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u6-can-you-swim.png",
+    "en67-u6-yes-i-can.png",
+    "en67-u6-no-i-cant.png"
+   ],
+   "pos": "end",
+   "kind": "copy",
+   "src_book": "67y",
+   "src_image": "en56-u8-can-swim.png",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — savolga to'liq javob «I can swim.» qo'shildi"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u7-how-many-bananas.png",
+    "en67-u7-five-bananas.png",
+    "en67-u7-youre-welcome.png"
+   ],
+   "pos": 0,
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — so'raladigan mahsulot nomi «bananlar» qo'shildi",
+   "item": {
+    "uz": "bananlar",
+    "emoji": "🍌",
+    "image": "en45-u7-banana.png",
+    "action": null,
+    "langs": {
+     "en": {
+      "say": "bananas",
+      "sentence": "Look! The bananas are yellow."
+     },
+     "ru": {
+      "say": "бананы",
+      "rom": "banany",
+      "sentence": "Смотри! Бананы жёлтые."
+     },
+     "ar": {
+      "say": "مَوْز",
+      "rom": "mawz",
+      "sentence": "انظر! الموز أصفر."
+     },
+     "tr": {
+      "say": "muzlar",
+      "sentence": "Bak! Muzlar sarı."
+     },
+     "de": {
+      "say": "die Bananen",
+      "sentence": "Schau! Die Bananen sind gelb."
+     },
+     "fr": {
+      "say": "les bananes",
+      "sentence": "Regarde ! Les bananes sont jaunes."
+     },
+     "es": {
+      "say": "los plátanos",
+      "sentence": "¡Mira! Los plátanos son amarillos."
+     },
+     "ko": {
+      "say": "바나나",
+      "rom": "Banana",
+      "sentence": "봐요! 바나나는 노란색이에요."
+     },
+     "ja": {
+      "say": "バナナ",
+      "rom": "banana",
+      "sentence": "みて！バナナは きいろだよ。"
+     },
+     "zh": {
+      "say": "香蕉",
+      "rom": "xiāngjiāo",
+      "sentence": "看！香蕉是黄色的。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u7-basket.png",
+    "en67-u7-money.png",
+    "en67-u7-goodbye-see-you.png"
+   ],
+   "pos": 0,
+   "kind": "copy",
+   "src_book": "67y",
+   "src_image": "en67-u3-shop.png",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «do'kon» (o'yin joyi) qo'shildi"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u8-where-live.png",
+    "en67-u8-live-samarkand.png",
+    "en67-u8-from-uzbekistan.png"
+   ],
+   "pos": 0,
+   "kind": "copy",
+   "src_book": "45y",
+   "src_image": "en56-u5-house.png",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «uy» so'zi qo'shildi"
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u11-i-go-to-school.png",
+    "en67-u11-i-have-lunch.png",
+    "en67-u11-i-play-with-friends.png"
+   ],
+   "pos": "end",
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — kunduzgi ish «sut ichaman» qo'shildi",
+   "item": {
+    "uz": "men sut ichaman",
+    "emoji": "🥛",
+    "image": "en56-u4-milk.png",
+    "action": "Sut ichganday qil!",
+    "langs": {
+     "en": {
+      "say": "I drink milk.",
+      "sentence": "I drink milk at lunch."
+     },
+     "ru": {
+      "say": "Я пью молоко.",
+      "rom": "Ya pyu moloko.",
+      "sentence": "Я пью молоко в обед."
+     },
+     "ar": {
+      "say": "أَشْرَبُ الْحَلِيب.",
+      "rom": "ashrabu al-halib.",
+      "sentence": "أشرب الحليب في الغداء."
+     },
+     "tr": {
+      "say": "Süt içerim.",
+      "sentence": "Öğlen süt içerim."
+     },
+     "de": {
+      "say": "Ich trinke Milch.",
+      "sentence": "Zum Mittagessen trinke ich Milch."
+     },
+     "fr": {
+      "say": "Je bois du lait.",
+      "sentence": "Je bois du lait au déjeuner."
+     },
+     "es": {
+      "say": "Bebo leche.",
+      "sentence": "Bebo leche en la comida."
+     },
+     "ko": {
+      "say": "우유를 마셔요.",
+      "rom": "Uyureul masyeoyo.",
+      "sentence": "점심에 우유를 마셔요."
+     },
+     "ja": {
+      "say": "ぎゅうにゅうを のむよ。",
+      "rom": "Gyūnyū o nomu yo.",
+      "sentence": "おひるに ぎゅうにゅうを のむよ。"
+     },
+     "zh": {
+      "say": "我喝牛奶。",
+      "rom": "Wǒ hē niúnǎi.",
+      "sentence": "我午饭时喝牛奶。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en23-u9-sleep.png",
+    "en67-u11-shes-singing.png",
+    "en67-u15-theyre-running.png"
+   ],
+   "pos": "end",
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «u raqs tushyapti» qo'shildi",
+   "item": {
+    "uz": "u raqs tushyapti",
+    "emoji": "💃",
+    "image": "en23-u10-dance.png",
+    "action": "Raqs tush!",
+    "langs": {
+     "en": {
+      "say": "She's dancing.",
+      "sentence": "Look! She's dancing to the music."
+     },
+     "ru": {
+      "say": "Она танцует.",
+      "rom": "Ona tantsuet.",
+      "sentence": "Смотри! Она танцует под музыку."
+     },
+     "ar": {
+      "say": "هِيَ تَرْقُص.",
+      "rom": "hiya tarqus.",
+      "sentence": "انظر! هي ترقص على الموسيقى."
+     },
+     "tr": {
+      "say": "Dans ediyor.",
+      "sentence": "Bak! Müzikle dans ediyor."
+     },
+     "de": {
+      "say": "Sie tanzt.",
+      "sentence": "Schau! Sie tanzt zur Musik."
+     },
+     "fr": {
+      "say": "Elle danse.",
+      "sentence": "Regarde ! Elle danse sur la musique."
+     },
+     "es": {
+      "say": "Ella está bailando.",
+      "sentence": "¡Mira! Ella está bailando con la música."
+     },
+     "ko": {
+      "say": "그녀는 춤추고 있어요.",
+      "rom": "Geunyeoneun chumchugo isseoyo.",
+      "sentence": "봐요! 그녀는 음악에 맞춰 춤추고 있어요."
+     },
+     "ja": {
+      "say": "おどっているよ。",
+      "rom": "Odotte iru yo.",
+      "sentence": "みて！おんがくに あわせて おどっているよ。"
+     },
+     "zh": {
+      "say": "她在跳舞。",
+      "rom": "Tā zài tiàowǔ.",
+      "sentence": "看！她在跟着音乐跳舞。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u16-what-did-you-do-yesterday.png",
+    "en67-u6-play-football.png",
+    "en67-u16-i-went-to-the-park.png"
+   ],
+   "pos": "end",
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «rasm chizdim» (o'tgan zamon) qo'shildi",
+   "item": {
+    "uz": "men rasm chizdim",
+    "emoji": "🎨",
+    "image": "en56-u8-can-draw.png",
+    "action": "Havoda rasm chizganday qil!",
+    "langs": {
+     "en": {
+      "say": "I drew a picture.",
+      "sentence": "Yesterday I drew a picture of my cat."
+     },
+     "ru": {
+      "say": "Я нарисовал картинку.",
+      "rom": "Ya narisoval kartinku.",
+      "sentence": "Вчера я нарисовал свою кошку."
+     },
+     "ar": {
+      "say": "رَسَمْتُ صُورَة.",
+      "rom": "rasamtu sura.",
+      "sentence": "أمس رسمت صورة لقطتي."
+     },
+     "tr": {
+      "say": "Resim yaptım.",
+      "sentence": "Dün kedimin resmini yaptım."
+     },
+     "de": {
+      "say": "Ich habe ein Bild gemalt.",
+      "sentence": "Gestern habe ich meine Katze gemalt."
+     },
+     "fr": {
+      "say": "J'ai fait un dessin.",
+      "sentence": "Hier, j'ai dessiné mon chat."
+     },
+     "es": {
+      "say": "Hice un dibujo.",
+      "sentence": "Ayer dibujé a mi gato."
+     },
+     "ko": {
+      "say": "그림을 그렸어요.",
+      "rom": "Geurimeul geuryeosseoyo.",
+      "sentence": "어제 우리 고양이를 그렸어요."
+     },
+     "ja": {
+      "say": "えを かいたよ。",
+      "rom": "E o kaita yo.",
+      "sentence": "きのう ねこの えを かいたよ。"
+     },
+     "zh": {
+      "say": "我画了一幅画。",
+      "rom": "Wǒ huà le yì fú huà.",
+      "sentence": "昨天我画了我的小猫。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u16-i-saw-a-rainbow.png",
+    "en67-u16-i-saw-a-big-dog.png",
+    "en67-u16-i-ate-ice-cream.png"
+   ],
+   "pos": 2,
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «qush ko'rdim» qo'shildi",
+   "item": {
+    "uz": "qush ko'rdim",
+    "emoji": "🐦",
+    "image": "en67-u6-bird-fly.png",
+    "action": "Qo'llaringni qanotdek silkit!",
+    "langs": {
+     "en": {
+      "say": "I saw a bird.",
+      "sentence": "I saw a bird in the tree."
+     },
+     "ru": {
+      "say": "Я видел птицу.",
+      "rom": "Ya videl ptitsu.",
+      "sentence": "Я видел птицу на дереве."
+     },
+     "ar": {
+      "say": "رَأَيْتُ طَائِرًا.",
+      "rom": "ra'aytu ta'iran.",
+      "sentence": "رأيت طائرًا على الشجرة."
+     },
+     "tr": {
+      "say": "Bir kuş gördüm.",
+      "sentence": "Ağaçta bir kuş gördüm."
+     },
+     "de": {
+      "say": "Ich habe einen Vogel gesehen.",
+      "sentence": "Ich habe einen Vogel im Baum gesehen."
+     },
+     "fr": {
+      "say": "J'ai vu un oiseau.",
+      "sentence": "J'ai vu un oiseau dans l'arbre."
+     },
+     "es": {
+      "say": "Vi un pájaro.",
+      "sentence": "Vi un pájaro en el árbol."
+     },
+     "ko": {
+      "say": "새를 봤어요.",
+      "rom": "Saereul bwasseoyo.",
+      "sentence": "나무 위에서 새를 봤어요."
+     },
+     "ja": {
+      "say": "とりを みたよ。",
+      "rom": "Tori o mita yo.",
+      "sentence": "きの うえで とりを みたよ。"
+     },
+     "zh": {
+      "say": "我看见了一只小鸟。",
+      "rom": "Wǒ kànjiàn le yì zhī xiǎoniǎo.",
+      "sentence": "我在树上看见了一只小鸟。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en67-u16-i-visited-my-granny.png",
+    "en67-u16-we-went-to-the-zoo.png",
+    "en67-u16-it-was-fun.png"
+   ],
+   "pos": 2,
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «birga o'ynadik» qo'shildi",
+   "item": {
+    "uz": "birga o'ynadik",
+    "emoji": "👫",
+    "image": "en45-u14-lets-play-together.png",
+    "action": "Do'stingning qo'lidan ushla!",
+    "langs": {
+     "en": {
+      "say": "We played together.",
+      "sentence": "We played together in the park."
+     },
+     "ru": {
+      "say": "Мы играли вместе.",
+      "rom": "My igrali vmeste.",
+      "sentence": "Мы играли вместе в парке."
+     },
+     "ar": {
+      "say": "لَعِبْنَا مَعًا.",
+      "rom": "la'ibna ma'an.",
+      "sentence": "لعبنا معًا في الحديقة."
+     },
+     "tr": {
+      "say": "Birlikte oynadık.",
+      "sentence": "Parkta birlikte oynadık."
+     },
+     "de": {
+      "say": "Wir haben zusammen gespielt.",
+      "sentence": "Wir haben im Park zusammen gespielt."
+     },
+     "fr": {
+      "say": "Nous avons joué ensemble.",
+      "sentence": "Nous avons joué ensemble au parc."
+     },
+     "es": {
+      "say": "Jugamos juntos.",
+      "sentence": "Jugamos juntos en el parque."
+     },
+     "ko": {
+      "say": "우리는 같이 놀았어요.",
+      "rom": "Urineun gachi norasseoyo.",
+      "sentence": "우리는 공원에서 같이 놀았어요."
+     },
+     "ja": {
+      "say": "いっしょに あそんだよ。",
+      "rom": "Issho ni asonda yo.",
+      "sentence": "こうえんで いっしょに あそんだよ。"
+     },
+     "zh": {
+      "say": "我们一起玩了。",
+      "rom": "Wǒmen yìqǐ wán le.",
+      "sentence": "我们在公园里一起玩了。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en56-u7-like-apples.png",
+    "en56-u7-like-cats.png",
+    "en56-u7-like-ice-cream.png"
+   ],
+   "pos": 2,
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «men itlarni yaxshi ko'raman» qo'shildi",
+   "item": {
+    "uz": "men itlarni yaxshi ko'raman",
+    "emoji": "🐶",
+    "image": "en56-u8-have-dog.png",
+    "action": null,
+    "langs": {
+     "en": {
+      "say": "I like dogs.",
+      "sentence": "I like dogs. They are funny."
+     },
+     "ru": {
+      "say": "Я люблю собак.",
+      "rom": "Ya lyublyu sobak.",
+      "sentence": "Я люблю собак. Они весёлые."
+     },
+     "ar": {
+      "say": "أَنَا أُحِبُّ الْكِلَاب.",
+      "rom": "ana uhibbu al-kilab.",
+      "sentence": "أحب الكلاب. إنها مرحة."
+     },
+     "tr": {
+      "say": "Köpekleri severim.",
+      "sentence": "Köpekleri severim. Çok komikler."
+     },
+     "de": {
+      "say": "Ich mag Hunde.",
+      "sentence": "Ich mag Hunde. Sie sind lustig."
+     },
+     "fr": {
+      "say": "J'aime les chiens.",
+      "sentence": "J'aime les chiens. Ils sont rigolos."
+     },
+     "es": {
+      "say": "Me gustan los perros.",
+      "sentence": "Me gustan los perros. Son divertidos."
+     },
+     "ko": {
+      "say": "나는 개를 좋아해요.",
+      "rom": "Naneun gaereul joahaeyo.",
+      "sentence": "나는 개를 좋아해요. 개는 재미있어요."
+     },
+     "ja": {
+      "say": "いぬが すき。",
+      "rom": "Inu ga suki.",
+      "sentence": "いぬが すき。おもしろいんだよ。"
+     },
+     "zh": {
+      "say": "我喜欢狗。",
+      "rom": "Wǒ xǐhuan gǒu.",
+      "sentence": "我喜欢狗。它们很好玩。"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en56-u7-dislike-onions.png",
+    "en56-u7-dislike-rain.png",
+    "en56-u7-dislike-spiders.png"
+   ],
+   "pos": "end",
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «men sovuqni yoqtirmayman» qo'shildi",
+   "item": {
+    "uz": "men sovuqni yoqtirmayman",
+    "emoji": "🥶",
+    "image": "en56-u6-cold.png",
+    "action": "Sovqotganday titra: brr!",
+    "langs": {
+     "en": {
+      "say": "I don't like the cold.",
+      "sentence": "I don't like the cold. Brr!"
+     },
+     "ru": {
+      "say": "Я не люблю холод.",
+      "rom": "Ya ne lyublyu kholod.",
+      "sentence": "Я не люблю холод. Брр!"
+     },
+     "ar": {
+      "say": "أَنَا لَا أُحِبُّ الْبَرْد.",
+      "rom": "ana la uhibbu al-bard.",
+      "sentence": "أنا لا أحب البرد. برر!"
+     },
+     "tr": {
+      "say": "Soğuğu sevmem.",
+      "sentence": "Soğuğu sevmem. Brr!"
+     },
+     "de": {
+      "say": "Ich mag keine Kälte.",
+      "sentence": "Ich mag keine Kälte. Brr!"
+     },
+     "fr": {
+      "say": "Je n'aime pas le froid.",
+      "sentence": "Je n'aime pas le froid. Brr !"
+     },
+     "es": {
+      "say": "No me gusta el frío.",
+      "sentence": "No me gusta el frío. ¡Brr!"
+     },
+     "ko": {
+      "say": "나는 추위를 안 좋아해요.",
+      "rom": "Naneun chuwireul an joahaeyo.",
+      "sentence": "나는 추위를 안 좋아해요. 부르르!"
+     },
+     "ja": {
+      "say": "さむいのは すきじゃない。",
+      "rom": "Samui no wa suki ja nai.",
+      "sentence": "さむいのは すきじゃない。ブルブル！"
+     },
+     "zh": {
+      "say": "我不喜欢冷天。",
+      "rom": "Wǒ bù xǐhuan lěngtiān.",
+      "sentence": "我不喜欢冷天。好冷！"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en56-u7-do-you-like.png",
+    "en56-u7-yes-i-do.png",
+    "en56-u7-no-i-dont.png"
+   ],
+   "pos": 1,
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — to'liq savol namunasi «Do you like apples?» qo'shildi",
+   "item": {
+    "uz": "senga olma yoqadimi?",
+    "emoji": "🍎",
+    "image": "en56-u7-like-apples.png",
+    "action": null,
+    "langs": {
+     "en": {
+      "say": "Do you like apples?",
+      "sentence": "Do you like apples? Yes, I do."
+     },
+     "ru": {
+      "say": "Ты любишь яблоки?",
+      "rom": "Ty lyubish yabloki?",
+      "sentence": "Ты любишь яблоки? Да, люблю."
+     },
+     "ar": {
+      "say": "هَلْ تُحِبُّ التُّفَّاح؟",
+      "rom": "hal tuhibbu at-tuffah?",
+      "sentence": "هل تحب التفاح؟ نعم، أحبه."
+     },
+     "tr": {
+      "say": "Elma sever misin?",
+      "sentence": "Elma sever misin? Evet, severim."
+     },
+     "de": {
+      "say": "Magst du Äpfel?",
+      "sentence": "Magst du Äpfel? Ja, ich mag Äpfel."
+     },
+     "fr": {
+      "say": "Tu aimes les pommes ?",
+      "sentence": "Tu aimes les pommes ? Oui, j'aime ça."
+     },
+     "es": {
+      "say": "¿Te gustan las manzanas?",
+      "sentence": "¿Te gustan las manzanas? Sí, me gustan."
+     },
+     "ko": {
+      "say": "사과 좋아해?",
+      "rom": "Sagwa joahae?",
+      "sentence": "사과 좋아해? 응, 좋아해."
+     },
+     "ja": {
+      "say": "りんごは すき？",
+      "rom": "Ringo wa suki?",
+      "sentence": "りんごは すき？うん、すき！"
+     },
+     "zh": {
+      "say": "你喜欢苹果吗？",
+      "rom": "Nǐ xǐhuan píngguǒ ma?",
+      "sentence": "你喜欢苹果吗？喜欢！"
+     }
+    }
+   }
+  },
+  {
+   "group": "6-7",
+   "anchor": [
+    "en56-u7-favourite-colour.png",
+    "en56-u7-favourite-toy.png",
+    "en56-u7-love-mum.png"
+   ],
+   "pos": "end",
+   "kind": "new",
+   "reason": "6-7 yosh: darsda 4–6 element bo'lishi kerak (3 ta edi) — «men dadamni yaxshi ko'raman» qo'shildi",
+   "item": {
+    "uz": "men dadamni yaxshi ko'raman",
+    "emoji": "👨",
+    "image": "en56-u2-my-dad.png",
+    "action": "Dadangni quchoqla!",
+    "langs": {
+     "en": {
+      "say": "I love my dad.",
+      "sentence": "I love my dad very much."
+     },
+     "ru": {
+      "say": "Я люблю папу.",
+      "rom": "Ya lyublyu papu.",
+      "sentence": "Я очень люблю папу."
+     },
+     "ar": {
+      "say": "أَنَا أُحِبُّ أَبِي.",
+      "rom": "ana uhibbu abi.",
+      "sentence": "أحب أبي كثيرًا."
+     },
+     "tr": {
+      "say": "Babamı seviyorum.",
+      "sentence": "Babamı çok seviyorum."
+     },
+     "de": {
+      "say": "Ich hab meinen Papa lieb.",
+      "sentence": "Ich hab meinen Papa sehr lieb."
+     },
+     "fr": {
+      "say": "J'aime mon papa.",
+      "sentence": "J'aime très fort mon papa."
+     },
+     "es": {
+      "say": "Quiero a mi papá.",
+      "sentence": "Quiero mucho a mi papá."
+     },
+     "ko": {
+      "say": "나는 아빠를 사랑해요.",
+      "rom": "Naneun appareul saranghaeyo.",
+      "sentence": "나는 아빠를 정말 많이 사랑해요."
+     },
+     "ja": {
+      "say": "パパが だいすき。",
+      "rom": "Papa ga daisuki.",
+      "sentence": "パパが だいだいすき。"
+     },
+     "zh": {
+      "say": "我爱我的爸爸。",
+      "rom": "Wǒ ài wǒ de bàba.",
+      "sentence": "我非常爱我的爸爸。"
+     }
+    }
+   }
+  }
+ ],
+ "empty_action": [
+  {
+   "uz": "buvijon",
+   "image": null,
+   "new": "Buvijonni quchoqlaganday qil!"
+  },
+  {
+   "uz": "qo'g'irchoq",
+   "new": "Qo'g'irchoqni allalaganday tebrat!"
+  },
+  {
+   "uz": "ayiqcha",
+   "new": "Ayiqchani quchoqlaganday qil!"
+  },
+  {
+   "uz": "havo shari",
+   "new": "Shardek puf-puf qilib, lunjingni shishir!"
+  },
+  {
+   "uz": "non",
+   "new": "Non yeganday qil: qars-qurs!"
+  },
+  {
+   "uz": "sharbat",
+   "new": "Sharbat ichganday qil: qult-qult!"
+  }
+ ]
+}

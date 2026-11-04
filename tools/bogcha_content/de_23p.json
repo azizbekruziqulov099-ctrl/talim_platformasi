@@ -12,10 +12,10 @@
     {
      "name": "Yuvinamiz",
      "goal": "Bola qo'l va tish yuvish iboralarini tushunadi",
-     "intro": "Bip-bip! Ali hovlida o'ynadi. Voy, qo'llari kir! Laylo shirinlik yedi. Endi nima qilamiz? Yuvinamiz!",
+     "intro": "Ali qo'llarini kir qildi, Laylo shirinlik yedi. Endi nima qilamiz — yuvinamiz!",
      "items": [
       {
-       "say": "Wasch dir die Hände!",
+       "say": "Hände waschen!",
        "uz": "qo'lingni yuv",
        "emoji": "🧼",
        "image": "en23-u9-wash-your-hands.png",
@@ -23,7 +23,7 @@
        "action": "Qo'llaringni ishqala — shir-shir-shir!"
       },
       {
-       "say": "Putz deine Zähne!",
+       "say": "Zähne putzen!",
        "uz": "tishingni yuv",
        "emoji": "🪥",
        "image": "en23-u9-brush-your-teeth.png",
@@ -35,10 +35,10 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎵 Yuvinish qo'shig'i",
-       "matn": "Qani, kuylaymiz! [de]Wasch, wasch, wasch deine Hände![/de] Shir-shir! [de]Putz, putz, putz deine Zähne![/de] Chik-chik! Endi sen ayt: [de]Wasch dir die Hände![/de]",
+       "matn": "Qani, kuylaymiz! [de]Wasch, wasch, wasch deine Hände![/de] Shir-shir! [de]Putz, putz, putz deine Zähne![/de] Chik-chik! Endi sen ayt: [de]Hände waschen![/de]",
        "doska": "🧼 Wasch, wasch, wasch deine Hände!\n🪥 Putz, putz, putz deine Zähne!",
        "sodda": "Qo'llaringni ishqala va ayt: [de]Wasch dich![/de]",
-       "boshqa_usul": "Ovqatdan oldin qo'l yuvayotganda onang bilan birga [de]Wasch dir die Hände![/de] deb kuyla."
+       "boshqa_usul": "Ovqatdan oldin qo'l yuvayotganda onang bilan birga [de]Hände waschen![/de] deb kuyla."
       }
      ],
      "tests": [
@@ -46,26 +46,26 @@
        "q": "Ali qo'llari kir. U nima qiladi?",
        "options": [
         "🧼 Wasch deine Hände!",
-        "🪥 Putz deine Zähne!"
+        "🪥 Zähne putzen!"
        ],
        "answer": 0,
-       "why": "Barakalla! Kir qo'lni yuvamiz: [de]Wasch dir die Hände![/de] Shir-shir!"
+       "why": "Barakalla! Kir qo'lni yuvamiz: [de]Hände waschen![/de] Shir-shir!"
       },
       {
        "q": "Laylo shirinlik yedi. Endi tishini yuvadi. Nima deymiz?",
        "options": [
         "🧼 Wasch deine Hände!",
-        "🪥 Putz deine Zähne!"
+        "🪥 Zähne putzen!"
        ],
        "answer": 1,
-       "why": "Ofarin! Tishni yuvamiz: [de]Putz deine Zähne![/de] Chik-chik!"
+       "why": "Ofarin! Tishni yuvamiz: [de]Zähne putzen![/de] Chik-chik!"
       }
      ]
     },
     {
      "name": "Ovqatlanamiz",
      "goal": "Bola essen va trinken so'zlarini farqlaydi",
-     "intro": "Bip-bip! Qo'llar toza! Endi dasturxonga o'tiramiz. Ali non yeydi, Laylo sut ichadi. Mazali!",
+     "intro": "Qo'llar toza, dasturxonga o'tiramiz! Ali non yeydi, Laylo sut ichadi.",
      "items": [
       {
        "say": "essen",
@@ -118,7 +118,7 @@
     {
      "name": "Uxlaymiz",
      "goal": "Bola schlafen va Bett so'zlarini aytadi",
-     "intro": "Bip-bip! Kun tugadi, osmonda oy chiqdi. Ali esnayapti. Ayiqcha ham charchadi. Qayerga boramiz?",
+     "intro": "Kun tugadi, osmonda oy chiqdi. Ali va ayiqcha charchadi — qayerga boramiz?",
      "items": [
       {
        "say": "schlafen",
@@ -177,7 +177,7 @@
     {
      "name": "Sakra va yugur",
      "goal": "Bola buyruqni eshitib harakat qiladi",
-     "intro": "Bip-bip! Tong otdi, uyg'on! Kabuning batareykasi to'la. Sen ham tayyormisan? O'rningdan tur!",
+     "intro": "Tong otdi, uyg'on! Kabuning batareykasi to'la, sen ham tayyormisan?",
      "items": [
       {
        "say": "springen",
@@ -230,7 +230,7 @@
     {
      "name": "Qarsak va raqs",
      "goal": "Bola klatschen va tanzen ni bajaradi",
-     "intro": "Bip-bip! Musiqa chalyapti! Laylo qarsak chalyapti, Ali aylanib raqs tushyapti. Sen ham qo'shil!",
+     "intro": "Musiqa chalyapti! Laylo qarsak chalyapti, Ali raqs tushyapti — sen ham qo'shil!",
      "items": [
       {
        "say": "klatschen",
@@ -289,7 +289,7 @@
     {
      "name": "Xursand va xafa",
      "goal": "Bola fröhlich va traurig ni yuzdan taniydi",
-     "intro": "Bip-bip! Qara, Laylo kulyapti. Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
+     "intro": "Laylo kulyapti, Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
      "items": [
       {
        "say": "fröhlich",
@@ -342,7 +342,7 @@
     {
      "name": "Iltimos va kechirasan",
      "goal": "Bola odob so'zlarini aytadi",
-     "intro": "Bip-bip! Sehrli so'z esingdami? [de]Danke![/de] — rahmat. Bugun yana ikkita sehrli so'z o'rganamiz!",
+     "intro": "[de]Danke![/de] — rahmat, esingdami? Bugun yana ikkita sehrli so'z o'rganamiz!",
      "items": [
       {
        "say": "Bitte!",

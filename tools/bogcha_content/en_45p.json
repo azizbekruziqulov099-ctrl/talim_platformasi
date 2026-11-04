@@ -12,7 +12,7 @@
     {
      "name": "Iltimos va rahmat",
      "goal": "Bola odob so'zlarini o'rnida ishlatadi",
-     "intro": "Bip-bip! Men — robot Kabu. Bilasanmi, ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz. Tayyormisan?",
+     "intro": "Ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz.",
      "items": [
       {
        "say": "Please!",
@@ -52,13 +52,19 @@
      "tests": [
       {
        "q": "Ali senga rahmat aytdi: [en]Thank you![/en] Sen nima deysan?",
-       "options": ["👋 Hello!", "😊 You're welcome."],
+       "options": [
+        "👋 Hello!",
+        "😊 You're welcome."
+       ],
        "answer": 1,
        "why": "Barakalla! [en]You're welcome.[/en] — arzimaydi, degani. Sen juda odobli bolasan!"
       },
       {
        "q": "Sen sharbat so'rayapsan. Qaysi sehrli so'zni qo'shasan?",
-       "options": ["🤲 Please!", "🚪 Goodbye!"],
+       "options": [
+        "🤲 Please!",
+        "🚪 Goodbye!"
+       ],
        "answer": 0,
        "why": "To'g'ri! [en]Juice, please![/en] Iltimos deb so'rasang, hamma xursand bo'ladi."
       }
@@ -67,11 +73,11 @@
     {
      "name": "Kechirasiz",
      "goal": "Bola kechirim so'raydi va kechiradi",
-     "intro": "Bip-bip! Voy, Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi Ali nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
+     "intro": "Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi u nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
      "items": [
       {
        "say": "Excuse me!",
-       "uz": "kechirasiz (murojaat)",
+       "uz": "kechirasiz",
        "emoji": "✋",
        "image": "en45-u12-excuse-me.png",
        "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square",
@@ -107,13 +113,19 @@
      "tests": [
       {
        "q": "Sen bilmasdan Laylo qurgan minorani buzib qo'yding. Nima deysan?",
-       "options": ["😔 Sorry!", "🙏 Thank you!"],
+       "options": [
+        "😔 Sorry!",
+        "🙏 Thank you!"
+       ],
        "answer": 0,
        "why": "Barakalla! [en]Sorry![/en] — kechir, degani. Xato qilsak, kechirim so'raymiz."
       },
       {
        "q": "Ali senga [en]Sorry![/en] dedi. Sen uni kechirding. Nima deysan?",
-       "options": ["🍎 Apple!", "👌 That's OK."],
+       "options": [
+        "🍎 Apple!",
+        "👌 That's OK."
+       ],
        "answer": 1,
        "why": "Zo'r! [en]That's OK.[/en] — hechqisi yo'q. Do'stlar bir-birini kechiradi."
       }
@@ -122,7 +134,7 @@
     {
      "name": "Menga berasanmi?",
      "goal": "Bola odob bilan narsa so'raydi va javob beradi",
-     "intro": "Bip-bip! Bog'chada sayr vaqti. Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz? Bugun bilib olamiz!",
+     "intro": "Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz?",
      "items": [
       {
        "say": "Can I have a ball, please?",
@@ -170,13 +182,19 @@
      "tests": [
       {
        "q": "Buvijon senga shirinlik taklif qildi, lekin sen to'qsan. Nima deysan?",
-       "options": ["👍 Yes, please.", "🙅 No, thank you."],
+       "options": [
+        "👍 Yes, please.",
+        "🙅 No, thank you."
+       ],
        "answer": 1,
        "why": "Barakalla! [en]No, thank you.[/en] — yo'q, rahmat. Olmasak ham rahmat aytamiz."
       },
       {
        "q": "Laylo senga koptok uzatyapti. U nima deydi?",
-       "options": ["🫴 Here you are.", "😔 Sorry!"],
+       "options": [
+        "🫴 Here you are.",
+        "😔 Sorry!"
+       ],
        "answer": 0,
        "why": "To'g'ri! [en]Here you are.[/en] — marhamat, degani. Sen esa [en]Thank you![/en] deysan."
       }
@@ -191,7 +209,7 @@
     {
      "name": "Ertalab",
      "goal": "Bola ertalabki ishlarni aytadi",
-     "intro": "Bip-bip! Tong otdi, quyosh derazadan mo'ralayapti. Ali esa hali ham uxlayapti! Uni qanday uyg'otamiz? Qani, birga bilib olamiz.",
+     "intro": "Tong otdi, quyosh derazadan mo'ralayapti, Ali esa hali uxlayapti! Uni qanday uyg'otamiz?",
      "items": [
       {
        "say": "wake up",
@@ -231,13 +249,19 @@
      "tests": [
       {
        "q": "Ertalab uyg'onding, oying xonaga kirdi. Nima deysan?",
-       "options": ["🚪 Goodbye!", "🌅 Good morning!"],
+       "options": [
+        "🚪 Goodbye!",
+        "🌅 Good morning!"
+       ],
        "answer": 1,
        "why": "Barakalla! Ertalab [en]Good morning![/en] — xayrli tong deymiz."
       },
       {
        "q": "Ertalab non, tuxum va choy yeymiz. Bu nima?",
-       "options": ["🍳 breakfast", "⚽ ball"],
+       "options": [
+        "🍳 breakfast",
+        "⚽ ball"
+       ],
        "answer": 0,
        "why": "To'g'ri! [en]Breakfast[/en] — nonushta. Yoqimli ishtaha!"
       }
@@ -246,7 +270,7 @@
     {
      "name": "Bog'chaga boraman",
      "goal": "Bola kun haqida qisqa gap aytadi",
-     "intro": "Bip-bip! Nonushta tugadi. Laylo sumkasini oldi va oyisining qo'lidan ushladi. U qayerga ketyapti? Topdingmi? Bog'chaga!",
+     "intro": "Nonushta tugadi. Laylo sumkasini olib, oyisining qo'lidan ushladi. U qayerga ketyapti — bog'chaga!",
      "items": [
       {
        "say": "I go to kindergarten.",
@@ -286,13 +310,19 @@
      "tests": [
       {
        "q": "Laylo bog'chaga narsalarini nimaga soladi?",
-       "options": ["🎂 cake", "🎒 bag"],
+       "options": [
+        "🎂 cake",
+        "🎒 bag"
+       ],
        "answer": 1,
        "why": "To'g'ri! [en]Bag[/en] — sumka. Laylo sumkasini o'zi ko'taradi!"
       },
       {
        "q": "Hamma tayyor, yo'lga chiqamiz! Ali do'stlariga nima deydi?",
-       "options": ["🚶 Let's go!", "😔 Sorry!"],
+       "options": [
+        "🚶 Let's go!",
+        "😔 Sorry!"
+       ],
        "answer": 0,
        "why": "Barakalla! [en]Let's go![/en] — ketdik, degani."
       }
@@ -301,7 +331,7 @@
     {
      "name": "Kechqurun",
      "goal": "Bola kechki ishlar va uyqu iboralarini aytadi",
-     "intro": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda nima qiladi? Kechki ovqat, cho'milish va shirin uyqu! Mening batareyam ham dam olmoqchi.",
+     "intro": "Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda kechki ovqat yeydi, cho'miladi va shirin uxlaydi.",
      "items": [
       {
        "say": "dinner",
@@ -349,13 +379,19 @@
      "tests": [
       {
        "q": "Uxlashga yotyapsan. Oyingga nima deysan?",
-       "options": ["🌅 Good morning!", "🌙 Good night!"],
+       "options": [
+        "🌅 Good morning!",
+        "🌙 Good night!"
+       ],
        "answer": 1,
        "why": "Barakalla! Kechqurun [en]Good night![/en] — xayrli tun deymiz."
       },
       {
        "q": "Ali ko'pikli suvda o'rdakcha bilan yuvinyapti. Bu nima?",
-       "options": ["🛁 bath", "🍽️ dinner"],
+       "options": [
+        "🛁 bath",
+        "🍽️ dinner"
+       ],
        "answer": 0,
        "why": "To'g'ri! [en]Bath[/en] — cho'milish. Toza bo'lish zo'r!"
       }
@@ -370,7 +406,7 @@
     {
      "name": "Qanday his qilyapsan?",
      "goal": "Bola o'z his-tuyg'usini aytadi",
-     "intro": "Bip-bip! Robotlar ham his qiladi! Batareyam to'la bo'lsa, men xursandman. Bugun Laylo biroz xomush ko'rinyapti. Undan qanday so'raymiz?",
+     "intro": "Robotlar ham his qiladi: batareyam to'la bo'lsa, men xursandman! Bugun Laylo xomush. Undan qanday so'raymiz?",
      "items": [
       {
        "say": "How do you feel?",
@@ -418,13 +454,19 @@
      "tests": [
       {
        "q": "Ali tug'ilgan kunida sovg'a oldi va kulyapti. U nima deydi?",
-       "options": ["😢 I'm sad.", "😄 I'm happy."],
+       "options": [
+        "😢 I'm sad.",
+        "😄 I'm happy."
+       ],
        "answer": 1,
        "why": "Barakalla! [en]I'm happy.[/en] — men xursandman."
       },
       {
        "q": "Laylo qoshini chimirib, qo'llarini qovushtirdi. U qanday?",
-       "options": ["😠 angry", "😄 happy"],
+       "options": [
+        "😠 angry",
+        "😄 happy"
+       ],
        "answer": 0,
        "why": "To'g'ri! [en]Angry[/en] — jahli chiqqan. Chuqur nafas olsa, tinchlanadi."
       }
@@ -433,7 +475,7 @@
     {
      "name": "Do'stim bo'l!",
      "goal": "Bola do'stlik va navbat iboralarini ishlatadi",
-     "intro": "Bip-bip! Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz? Bugun do'stlik so'zlarini o'rganamiz!",
+     "intro": "Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz?",
      "items": [
       {
        "say": "Be my friend!",
@@ -481,13 +523,19 @@
      "tests": [
       {
        "q": "Bog'chaga yangi bola keldi. Sen u bilan do'st bo'lmoqchisan. Nima deysan?",
-       "options": ["😠 angry", "🤝 Be my friend!"],
+       "options": [
+        "😠 angry",
+        "🤝 Be my friend!"
+       ],
        "answer": 1,
        "why": "Barakalla! [en]Be my friend![/en] — do'stim bo'l. Sen mehribon do'stsan!"
       },
       {
        "q": "Sen sirpanchiqdan tushding. Endi Laylo navbati. Unga nima deysan?",
-       "options": ["👉 Your turn!", "🌙 Good night!"],
+       "options": [
+        "👉 Your turn!",
+        "🌙 Good night!"
+       ],
        "answer": 0,
        "why": "To'g'ri! [en]Your turn![/en] — sening navbating. Navbat bilan o'ynash — zo'r!"
       }

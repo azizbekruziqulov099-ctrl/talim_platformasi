@@ -12,7 +12,7 @@
     {
      "name": "Salom, do'stim!",
      "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
-     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "intro": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
      "items": [
       {
        "say": "こんにちは！",
@@ -43,7 +43,7 @@
        "action": "Ko'kragingizga qo'lingizni qo'ying!",
        "sentence": "こんにちは！ぼくの なまえは アンヴァル。",
        "action_en": "じぶんを ゆびさして！",
-       "rom": "Boku no namae wa Anvar."
+       "rom": "Boku no namae wa Anvaru."
       },
       {
        "say": "さようなら！",
@@ -82,12 +82,12 @@
        "q_en": "ともだちが「おなまえは？」と きいたよ。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは とりの カブタル。あいたかったよ！あいさつして なまえを いおう。"
+     "intro_en": "こんにちは、みんな！あいたかったよ！あいさつして なまえを いおう。"
     },
     {
      "name": "Sanaymiz: bir–to'rt",
      "goal": "Bola 1 dan 4 gacha yaponcha sanaydi",
-     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin yaponcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "intro": "Men tuxumlarni sanamoqchiman, lekin yaponcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
      "items": [
       {
        "say": "いち",
@@ -146,12 +146,12 @@
        "sarlavha_en": "👏 てを たたいて かぞえよう"
       }
      ],
-     "intro_en": "こんにちは！カブタルと かぞえよう。いち、に、さん、よん！いっしょに かぞえて！"
+     "intro_en": "カブタルと かぞえよう。いち、に、さん、よん！いっしょに かぞえて！"
     },
     {
      "name": "Sanaymiz: besh–yetti",
      "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
-     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
      "items": [
       {
        "say": "ご",
@@ -293,7 +293,7 @@
        "q_en": "りょうてに ゆびは なんぼん？"
       }
      ],
-     "intro_en": "また あったね！じゅうまで かぞえよう。はち、きゅう、じゅう！いくつまで かぞえられる？"
+     "intro_en": "じゅうまで かぞえよう。はち、きゅう、じゅう！いくつまで かぞえられる？"
     }
    ],
    "scenarios": [
@@ -397,7 +397,7 @@
     {
      "name": "Bu mening onam",
      "goal": "Bola «これは わたしの…» bilan oila a'zolarini tanishtiradi",
-     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni yaponcha tanishtirishni o'rganing.",
+     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni yaponcha tanishtirishni o'rganing.",
      "items": [
       {
        "say": "これは ママ。",
@@ -463,12 +463,12 @@
        "q_en": "パパを しょうかい して。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは かぞくが だいすき。みて！これは ママ。きみの かぞくにも あいたいな！"
+     "intro_en": "ぼくは かぞくが だいすき。これは ママ。きみの かぞくにも あいたいな！"
     },
     {
      "name": "Buvim va bobom",
      "goal": "Bola おばあちゃん, おじいちゃん, あかちゃん, かぞく so'zlarini biladi",
-     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
      "items": [
       {
        "say": "おばあちゃん",
@@ -494,7 +494,7 @@
        "emoji": "👶",
        "image": "en56-u2-baby.png",
        "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chaqaloqni allalagandek tebratining!",
+       "action": "Chaqaloqni allalagandek tebrating!",
        "sentence": "あかちゃんは ちいさい。",
        "action_en": "あかちゃんを ゆらして！",
        "rom": "akachan"
@@ -527,7 +527,7 @@
     {
      "name": "Qalaysan, do'stim?",
      "goal": "Bola «げんき？» deb so'raydi va «げんきです、ありがとう» deb javob beradi",
-     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
      "items": [
       {
        "say": "ともだち",
@@ -595,12 +595,12 @@
        "q_en": "ともだちが「げんき？」と きいたよ。なんて いう？"
       }
      ],
-     "intro_en": "おはよう、みんな！げんき？げんきだよ、ありがとう！ともだちと おはなし しよう。"
+     "intro_en": "おはよう、みんな！げんき？げんきだよ、ありがとう！"
     },
     {
      "name": "Katta va kichik",
      "goal": "Bola おおきい, ちいさい, うれしい, かなしい so'zlari bilan odamni tasvirlaydi",
-     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
      "items": [
       {
        "say": "おおきい",
@@ -683,7 +683,7 @@
        "q_en": "きみの おたんじょうび。プレゼントを もらったよ。どんな きもち？"
       }
      ],
-     "intro_en": "こんにちは！ぞうを みて。おおきいね！ねずみを みて。ちいさいね！"
+     "intro_en": "ぞうを みて、おおきいね！ねずみを みて、ちいさいね！"
     }
    ],
    "scenarios": [
@@ -839,12 +839,12 @@
        "sarlavha_en": "🧺 せんたくの ひ"
       }
      ],
-     "intro_en": "こんにちは、みんな！ふくを きよう。ぼくの ふくを みて！きょうは なにを きている？"
+     "intro_en": "ふくを きよう。ぼくの ふくを みて！きょうは なにを きている？"
     },
     {
      "name": "Poyabzal va paypoq",
      "goal": "Bola くつ, くつした, ブーツ so'zlarini biladi va «みに つけて！» buyrug'ini bajaradi",
-     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni yaponcha o'rganamiz.",
+     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni yaponcha o'rganamiz.",
      "items": [
       {
        "say": "くつ",
@@ -875,15 +875,15 @@
        "rom": "būtsu"
       },
       {
-       "say": "みに つけて！",
+       "say": "はいて！",
        "uz": "kiy!",
-       "emoji": "🙆",
+       "emoji": "🦶",
        "image": "en56-u3-put-on.png",
        "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Kiyim kiyayotgandek harakat qiling!",
        "sentence": "くつしたを はいて！",
        "action_en": "くつを はいて！",
-       "rom": "Mi ni tsukete!"
+       "rom": "Haite!"
       }
      ],
      "extra": [
@@ -911,12 +911,12 @@
        "q_en": "あしに さいしょに はく ものは なに？"
       }
      ],
-     "intro_en": "やあ！そとに いくよ。さいしょに くつした、それから くつ！くつを はいてね。"
+     "intro_en": "そとに いくよ。さいしょに くつした、それから くつ！くつを はいてね。"
     },
     {
      "name": "Issiq kiyimlar",
      "goal": "Bola ぼうし, コート, マフラー, てぶくろ so'zlarini biladi",
-     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
      "items": [
       {
        "say": "ぼうし",
@@ -989,7 +989,7 @@
     {
      "name": "Mening kiyimim",
      "goal": "Bola kiyimini rangi bilan aytadi: «ぼくの Tシャツは あか。»",
-     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida yaponcha gapiramiz.",
+     "intro": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida yaponcha gapiramiz.",
      "items": [
       {
        "say": "ぼくの Tシャツは あか。",
@@ -1046,7 +1046,7 @@
        "q_en": "「ぼくの くつは あお。」どの えかな？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくを みて！ぼくの Tシャツは あか。きみの ふくは なにいろ？"
+     "intro_en": "ぼくを みて！ぼくの Tシャツは あか。きみの ふくは なにいろ？"
     }
    ],
    "scenarios": [
@@ -1162,7 +1162,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola パン, ミルク, たまご, チーズ so'zlarini biladi",
-     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, yaponcha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, yaponcha aytamiz.",
      "items": [
       {
        "say": "パン",
@@ -1214,12 +1214,12 @@
        "sarlavha_en": "🍳 あさごはんを つくろう"
       }
      ],
-     "intro_en": "おはよう！あさごはんの じかんだよ。パン、たまご、チーズを たべよう。おいしい！"
+     "intro_en": "おはよう！あさごはんの じかんだよ。パン、たまご、チーズを たべよう。"
     },
     {
      "name": "Ichimliklar",
      "goal": "Bola みず, ジュース, おちゃ so'zlarini va «のど かわいた» iborasini biladi",
-     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
      "items": [
       {
        "say": "みず",
@@ -1285,12 +1285,12 @@
        "q_en": "おばあちゃんは あさ なにを のむ？"
       }
      ],
-     "intro_en": "やあ、みんな！のど かわいた。なにか のもう。みず？ジュース？おちゃ？"
+     "intro_en": "やあ、みんな！のど かわいた。みず、ジュース、おちゃ？"
     },
     {
      "name": "Tushlik",
      "goal": "Bola スープ, ごはん, とりにく so'zlarini va «おなか すいた» iborasini biladi",
-     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "intro": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?",
      "items": [
       {
        "say": "スープ",
@@ -1303,7 +1303,7 @@
       },
       {
        "say": "ごはん",
-       "uz": "guruch, palov",
+       "uz": "guruch",
        "emoji": "🍚",
        "image": "en56-u4-rice.png",
        "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -1335,9 +1335,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Siz — oshpazsiz! Qozonga soling: [ja]ごはん[/ja], [ja]とりにく[/ja]… aralashtiring! Kabutar keladi: [ja]おなか すいた！[/ja] Siz berasiz: [ja]スープだよ！[/ja]",
+       "matn": "Siz — oshpazsiz! O'yinchoq qozonga solganday qiling: [ja]ごはん[/ja], [ja]とりにく[/ja]… aralashtiring! Kabutar keladi: [ja]おなか すいた！[/ja] Siz berasiz: [ja]スープだよ！[/ja]",
        "doska": "🍚 ごはん + 🍗 とりにく\n🍲 スープ\nおなか すいた！🍽️",
-       "sodda": "Qozonga bittadan soling va ayting: [ja]ごはん[/ja]!",
+       "sodda": "O'yinchoq qozonga bittadan soling va ayting: [ja]ごはん[/ja]!",
        "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
        "matn_en": "きみは コックさん！なべに ごはんと とりにくを いれて。まぜ まぜ！カブタル：おなか すいた！コックさん：はい、スープだよ！",
        "sarlavha_en": "🥄 コックさんごっこ"
@@ -1356,12 +1356,12 @@
        "q_en": "「おなか すいた」は どういう いみ？"
       }
      ],
-     "intro_en": "こんにちは！おひるごはんの じかん。おなか すいた！スープと ごはんを たべよう。"
+     "intro_en": "おひるごはんの じかん。おなか すいた！スープと ごはんを たべよう。"
     },
     {
      "name": "Shirinliklar",
      "goal": "Bola ケーキ, アイスクリーム, おかし so'zlarini va «おいしい！» iborasini biladi",
-     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni yaponcha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni yaponcha nomlaymiz.",
      "items": [
       {
        "say": "ケーキ",
@@ -1387,7 +1387,7 @@
        "emoji": "🍬",
        "image": "en56-u4-sweets.png",
        "image_prompt": "Colorful wrapped candies, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "おばあちゃんは ぼくに おかしを もっているよ。",
+       "sentence": "おばあちゃんが ぼくに おかしを くれるよ。",
        "rom": "okashi"
       },
       {
@@ -1406,7 +1406,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ja]いち、に、さん、よん、ご！[/ja] Puflang! Endi tortdan tatib ko'ramiz — [ja]おいしい！[/ja]",
+       "matn": "Tortdagi shamlarni sanaymiz: [ja]いち、に、さん、よん、ご！[/ja] Puflaganday qiling! Endi tortdan tatib ko'ramiz — [ja]おいしい！[/ja]",
        "doska": "🎂 いち に さん よん ご\nおいしい！😋",
        "sodda": "Birgina so'z: [ja]ケーキ[/ja]… [ja]おいしい！[/ja]",
        "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, yaponcha sanang!",
@@ -1427,7 +1427,7 @@
        "q_en": "おたんじょうびに ろうそくを たてる ものは なに？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは あまい ものが だいすき。ケーキ、アイスクリーム、おかし。おいしい！"
+     "intro_en": "こんにちは、みんな！ぼくは あまい ものが だいすき。ケーキ、アイスクリーム、おかし。"
     }
    ],
    "scenarios": [
@@ -1531,7 +1531,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola いえ, ドア, まど, にわ so'zlarini biladi",
-     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni yaponcha o'rganamiz.",
+     "intro": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni yaponcha o'rganamiz.",
      "items": [
       {
        "say": "いえ",
@@ -1586,12 +1586,12 @@
        "sarlavha_en": "🏠 いえを かこう"
       }
      ],
-     "intro_en": "こんにちは！ぼくの いえに ようこそ！みて、ここが ドアだよ。どうぞ、はいって！"
+     "intro_en": "ぼくの いえに ようこそ！みて、ここが ドアだよ。どうぞ、はいって！"
     },
     {
      "name": "Uydagi xonalar",
      "goal": "Bola だいどころ, しんしつ, おふろば, リビング so'zlarini biladi",
-     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni yaponcha aytamiz!",
+     "intro": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni yaponcha aytamiz!",
      "items": [
       {
        "say": "だいどころ",
@@ -1664,7 +1664,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola いす, ランプ, テレビ, とけい so'zlarini biladi",
-     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "いす",
@@ -1718,12 +1718,12 @@
        "sarlavha_en": "👀 みつけて！"
       }
      ],
-     "intro_en": "こんにちは！ぼくの へやを みて。いすと ランプと とけいが あるよ。なにが みえる？"
+     "intro_en": "ぼくの へやを みて。いすと ランプと とけいが あるよ。なにが みえる？"
     },
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «…は どこ？» deb so'raydi, なか, うえ, した so'zlarini tushunadi",
-     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!",
      "items": [
       {
        "say": "ねこは どこ？",
@@ -1788,7 +1788,7 @@
        "q_en": "こねこは はこの なかに いるよ。なんて いう？"
       }
      ],
-     "intro_en": "あれっ！ねこは どこ？いっしょに さがそう。はこの なかかな？"
+     "intro_en": "あれっ！ねこは どこ？はこの なかかな？"
     }
    ],
    "scenarios": [
@@ -1892,7 +1892,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «どんな おてんき？» savoliga はれ, あめ, かぜ bilan javob beradi",
-     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni yaponcha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni yaponcha aytamiz!",
      "items": [
       {
        "say": "どんな おてんき？",
@@ -1966,7 +1966,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola ゆき, くもり, あつい, さむい so'zlari bilan havoni tasvirlaydi",
-     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!",
      "items": [
       {
        "say": "ゆきだよ。",
@@ -2039,7 +2039,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola はる, なつ, あき, ふゆ fasllarini biladi",
-     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
      "items": [
       {
        "say": "はる",
@@ -2123,7 +2123,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola かさ, にじ, ゆきだるま so'zlarini biladi",
-     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz.",
      "items": [
       {
        "say": "かさ",
@@ -2148,7 +2148,7 @@
       },
       {
        "say": "ゆきだるま",
-       "uz": "qorbobo, qor odam",
+       "uz": "qor odam",
        "emoji": "⛄",
        "image": "en56-u6-snowman.png",
        "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -2181,7 +2181,7 @@
        "q_en": "あめだよ。なにを もっていく？"
       }
      ],
-     "intro_en": "やあ！きょうは あめだから かさを もっているよ。みて！あめの あとに にじが みえるよ！"
+     "intro_en": "きょうは あめだから かさを もっているよ。みて！あめの あとに にじが みえるよ！"
     }
    ],
    "scenarios": [
@@ -2297,7 +2297,7 @@
     {
      "name": "Menga yoqadi",
      "goal": "Bola «…が すき» bilan yoqtirgan narsasini aytadi",
-     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni yaponcha aytishni o'rganamiz.",
+     "intro": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni yaponcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "りんごが すき。",
@@ -2354,12 +2354,12 @@
        "q_en": "「ねこが すき」は どういう いみ？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは りんごが すき。ともだちも だいすき！きみは なにが すき？"
+     "intro_en": "ぼくは りんごが すき。ともだちも だいすき！きみは なにが すき？"
     },
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «…は すきじゃない» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
      "items": [
       {
        "say": "たまねぎは すきじゃない。",
@@ -2416,7 +2416,7 @@
        "q_en": "おとこのこが たまねぎを みて いやな かお。なんて いう？"
       }
      ],
-     "intro_en": "やあ！すきな ものは たくさん あるね。でも すきじゃない ものも あるよ。ぼくは あめが すきじゃない！"
+     "intro_en": "すきな ものは たくさん あるね。でも すきじゃない ものも あるよ。ぼくは あめが すきじゃない！"
     },
     {
      "name": "Senga yoqadimi?",
@@ -2480,12 +2480,12 @@
        "q_en": "「アイスクリームは すき？」きみは すきです。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ともだちに きいて みよう。ケーキは すき？うん、すき！"
+     "intro_en": "ともだちに きいて みよう。ケーキは すき？うん、すき！"
     },
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida yaponcha gapiramiz.",
+     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida yaponcha gapiramiz.",
      "items": [
       {
        "say": "すきな いろは あお。",
@@ -2634,7 +2634,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «…を もってるよ» bilan o'zida bor narsani aytadi",
-     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, yaponcha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, yaponcha aytamiz!",
      "items": [
       {
        "say": "ねこを かってるよ。",
@@ -2699,12 +2699,12 @@
        "q_en": "おんなのこが いぬを みせているよ。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくには すと ちいさな ともだちが いるよ。きみには なにが ある？おしえて！"
+     "intro_en": "ぼくには すと ちいさな ともだちが いるよ。きみには なにが ある？おしえて！"
     },
     {
      "name": "Men qila olaman",
      "goal": "Bola «…できるよ» bilan qila oladigan harakatini aytadi",
-     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni yaponcha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni yaponcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "ジャンプ できるよ。",
@@ -2776,12 +2776,12 @@
        "q_en": "「およげるよ。」どの えかな？"
       }
      ],
-     "intro_en": "やあ！ぼくは とべるよ！きみは なにが できる？いっしょに ジャンプして、はしって、うたおう！"
+     "intro_en": "ぼくは とべるよ！きみは なにが できる？いっしょに ジャンプして、はしって、うたおう！"
     },
     {
      "name": "Qila olaman, qila olmayman",
      "goal": "Bola yangi harakatlarni va «…できない» ni aytadi",
-     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "intro": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?",
      "items": [
       {
        "say": "おどれるよ。",
@@ -2823,7 +2823,7 @@
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqib ko'ring — uchmaysiz!",
-       "sentence": "ぼくは おとこのこ。とべないよ。",
+       "sentence": "とりじゃ ないから、とべないよ。",
        "action_en": "うでを パタパタ して！",
        "rom": "Tobenai yo."
       }
@@ -2853,12 +2853,12 @@
        "q_en": "おとこのこが うでを パタパタ。でも とべない。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは とべるけど、およげない。きみたちは おどれるし、えも かけるね！みて みよう。"
+     "intro_en": "ぼくは とべるけど、およげない。きみたちは おどれるし、えも かけるね！みて みよう。"
     },
     {
      "name": "Men endi kattaman!",
      "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
-     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda yaponcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "intro": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda yaponcha gapirib, xayrlashishni o'rganamiz.",
      "items": [
       {
        "say": "ごさいです。",
@@ -2928,7 +2928,7 @@
        "q_en": "なんさい？きみは ごさい。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、おおきく なった ともだち！きみたちは ごさい。にほんごの ことばを たくさん しっているね。とても うれしいよ！"
+     "intro_en": "こんにちは、おおきく なった ともだち！きみたちは ごさいで、にほんごの ことばを たくさん しっているね。とても うれしいよ！"
     }
    ],
    "scenarios": [

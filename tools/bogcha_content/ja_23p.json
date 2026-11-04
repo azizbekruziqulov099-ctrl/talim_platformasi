@@ -12,7 +12,7 @@
     {
      "name": "Yuvinamiz",
      "goal": "Bola qo'l va tish yuvish iboralarini tushunadi",
-     "intro": "Bip-bip! Ali hovlida o'ynadi. Voy, qo'llari kir! Laylo shirinlik yedi. Endi nima qilamiz? Yuvinamiz!",
+     "intro": "Ali qo'llarini kir qildi, Laylo shirinlik yedi. Endi nima qilamiz — yuvinamiz!",
      "items": [
       {
        "say": "てを あらって！",
@@ -67,7 +67,7 @@
     {
      "name": "Ovqatlanamiz",
      "goal": "Bola たべる va のむ so'zlarini farqlaydi",
-     "intro": "Bip-bip! Qo'llar toza! Endi dasturxonga o'tiramiz. Ali non yeydi, Laylo sut ichadi. Mazali!",
+     "intro": "Qo'llar toza, dasturxonga o'tiramiz! Ali non yeydi, Laylo sut ichadi.",
      "items": [
       {
        "say": "たべる",
@@ -122,7 +122,7 @@
     {
      "name": "Uxlaymiz",
      "goal": "Bola ねる va ベッド so'zlarini aytadi",
-     "intro": "Bip-bip! Kun tugadi, osmonda oy chiqdi. Ali esnayapti. Ayiqcha ham charchadi. Qayerga boramiz?",
+     "intro": "Kun tugadi, osmonda oy chiqdi. Ali va ayiqcha charchadi — qayerga boramiz?",
      "items": [
       {
        "say": "ねる",
@@ -183,7 +183,7 @@
     {
      "name": "Sakra va yugur",
      "goal": "Bola buyruqni eshitib harakat qiladi",
-     "intro": "Bip-bip! Tong otdi, uyg'on! Kabuning batareykasi to'la. Sen ham tayyormisan? O'rningdan tur!",
+     "intro": "Tong otdi, uyg'on! Kabuning batareykasi to'la, sen ham tayyormisan?",
      "items": [
       {
        "say": "ジャンプ",
@@ -238,7 +238,7 @@
     {
      "name": "Qarsak va raqs",
      "goal": "Bola てを たたく va おどる ni bajaradi",
-     "intro": "Bip-bip! Musiqa chalyapti! Laylo qarsak chalyapti, Ali aylanib raqs tushyapti. Sen ham qo'shil!",
+     "intro": "Musiqa chalyapti! Laylo qarsak chalyapti, Ali raqs tushyapti — sen ham qo'shil!",
      "items": [
       {
        "say": "てを たたく",
@@ -299,7 +299,7 @@
     {
      "name": "Xursand va xafa",
      "goal": "Bola うれしい va かなしい ni yuzdan taniydi",
-     "intro": "Bip-bip! Qara, Laylo kulyapti. Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
+     "intro": "Laylo kulyapti, Ali esa yig'layapti — to'pi yo'qoldi. Kel, yuzlarga qaraymiz!",
      "items": [
       {
        "say": "うれしい",
@@ -354,7 +354,7 @@
     {
      "name": "Iltimos va kechirasan",
      "goal": "Bola odob so'zlarini aytadi",
-     "intro": "Bip-bip! Sehrli so'z esingdami? [ja]ありがとう！[/ja] — rahmat. Bugun yana ikkita sehrli so'z o'rganamiz!",
+     "intro": "[ja]ありがとう！[/ja] — rahmat, esingdami? Bugun yana ikkita sehrli so'z o'rganamiz!",
      "items": [
       {
        "say": "おねがい！",

@@ -12,7 +12,7 @@
     {
      "name": "O'n bir va o'n ikki",
      "goal": "Bola 1–10 ni takrorlaydi va 11–14 sonlarini aytadi",
-     "intro": "Bip-bip! Salom, do'stim! Men — robot Kabu. Sen o'ngacha sanashni bilasan: [fr]un, deux… dix[/fr]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
+     "intro": "Salom, do'stim! Sen o'ngacha sanashni bilasan: [fr]un, deux… dix[/fr]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
      "items": [
       {
        "say": "onze",
@@ -79,8 +79,16 @@
     {
      "name": "O'n beshdan o'n yettigacha",
      "goal": "Bola 15, 16, 17 sonlarini aytadi",
-     "intro": "Bip-bip! Men bog'da gullarni sanayapman. O'n to'rtta… undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz.",
+     "intro": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz.",
      "items": [
+      {
+       "say": "quatorze",
+       "uz": "o'n to'rt",
+       "emoji": "1️⃣4️⃣",
+       "image": "en67-u1-fourteen.png",
+       "image_prompt": "Fourteen small balloons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Ma sœur a quatorze poupées."
+      },
       {
        "say": "quinze",
        "uz": "o'n besh",
@@ -129,6 +137,15 @@
      "goal": "Bola 18, 19, 20 ni aytadi va 1–20 gacha sanaydi",
      "intro": "Bip-bip! Bugun katta sinov: yigirmagacha sanay olsak, robot Kabu bizga yigirmata yulduzcha beradi! Tayyormisan?",
      "items": [
+      {
+       "say": "dix-sept",
+       "uz": "o'n yetti",
+       "emoji": "1️⃣7️⃣",
+       "image": "en67-u1-seventeen.png",
+       "image_prompt": "Seventeen colorful buttons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Je sais compter jusqu'à dix-sept !",
+       "action_en": "Tape dix-sept fois dans tes mains !"
+      },
       {
        "say": "dix-huit",
        "uz": "o'n sakkiz",
@@ -356,6 +373,14 @@
      "intro": "Bip-bip! Bir haftada yetti kun bor, har birining nomi bor! Men dushanba kuni bog'chaga uchaman. Qani, kunlarni fransuzcha o'rganamiz.",
      "items": [
       {
+       "say": "la semaine",
+       "uz": "hafta",
+       "emoji": "🗓️",
+       "image": "en67-u2-week.png",
+       "image_prompt": "A calendar page showing one week with seven boxes, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Une semaine a sept jours."
+      },
+      {
        "say": "lundi",
        "uz": "dushanba",
        "emoji": "🗓️1️⃣",
@@ -466,7 +491,7 @@
     {
      "name": "Bugun qaysi kun?",
      "goal": "Bola «On est quel jour aujourd'hui ?» deb so'raydi va «Aujourd'hui, c'est…» bilan javob beradi",
-     "intro": "Bip-bip! Men ertalab uyg'onib, «bugun qaysi kun?» deb o'yladim. Taqvimga qaradim — ha, bugun juma! Qani, buni fransuzcha so'rashni o'rganamiz.",
+     "intro": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Qani, buni fransuzcha so'rashni o'rganamiz.",
      "items": [
       {
        "say": "On est quel jour aujourd'hui ?",
@@ -533,7 +558,7 @@
     {
      "name": "Tong, kech va tun",
      "goal": "Bola matin, soir, nuit, week-end so'zlarini biladi",
-     "intro": "Bip-bip! Tongda men don teraman, kechqurun uyamga qaytaman, tunda esa uxlayman. Dam olish kunlari-chi? O'ynayman! Sening kuning qanday o'tadi?",
+     "intro": "Tongda men uyg'onaman, kechqurun uyga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sening kuning qanday o'tadi?",
      "items": [
       {
        "say": "le matin",
@@ -725,7 +750,7 @@
        "emoji": "🧑‍🍳",
        "image": "en67-u3-cook.png",
        "image_prompt": "A cheerful cook in a white hat stirring a pot, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qozonni aralashtir!",
+       "action": "Qozonni aralashtirganday qil!",
        "sentence": "Le cuisinier fait une bonne soupe.",
        "action_en": "Tourne la soupe !"
       },
@@ -839,7 +864,7 @@
     {
      "name": "Kim bo'lmoqchisan?",
      "goal": "Bola «Il est / Elle est…» deydi va orzusidagi kasbni aytadi",
-     "intro": "Bip-bip! Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Sen-chi? Kim bo'lmoqchisan? Qani, orzularimizni fransuzcha aytamiz.",
+     "intro": "Katta bo'lsam, pochtachi bo'lmoqchiman — xat tashiyman! Sen kim bo'lmoqchisan? Qani, orzularimizni fransuzcha aytamiz.",
      "items": [
       {
        "say": "Il est médecin.",
@@ -906,7 +931,7 @@
     {
      "name": "Kim qayerda ishlaydi?",
      "goal": "Bola hôpital, école, ferme, magasin so'zlarini biladi",
-     "intro": "Bip-bip! Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Qani, ish joylarini fransuzcha o'rganamiz.",
+     "intro": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Qani, ish joylarini fransuzcha o'rganamiz.",
      "items": [
       {
        "say": "l'hôpital",
@@ -1071,7 +1096,7 @@
     {
      "name": "Mashina va avtobus",
      "goal": "Bola voiture, bus, taxi, vélo so'zlarini biladi",
-     "intro": "Bip-bip! Ko'chada qanday shovqin! Biip-biip! Men tepadan qarayman: mashinalar, avtobuslar, velosipedlar! Qani, ularni fransuzcha nomlaymiz.",
+     "intro": "Ko'chada qanday shovqin: biip-biip! Tepadan qarayman — mashinalar, avtobuslar, velosipedlar! Qani, ularni fransuzcha nomlaymiz.",
      "items": [
       {
        "say": "la voiture",
@@ -1126,7 +1151,7 @@
     {
      "name": "Poyezd va samolyot",
      "goal": "Bola train, avion, navire, bateau so'zlarini biladi",
-     "intro": "Bip-bip! Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi, samolyotdami? Dengizda kemada suzsam-chi? Qani, o'rganamiz!",
+     "intro": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Qani, o'rganamiz!",
      "items": [
       {
        "say": "le train",
@@ -1195,7 +1220,7 @@
     {
      "name": "Yordam mashinalari",
      "goal": "Bola camion de pompiers, ambulance, voiture de police, hélicoptère so'zlarini biladi",
-     "intro": "Bip-bip! Vi-u, vi-u! Qizil mashina shoshib ketyapti — qayerdadir yong'in! Oq mashina-chi? U bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz.",
+     "intro": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz.",
      "items": [
       {
        "say": "le camion de pompiers",
@@ -1263,7 +1288,7 @@
     {
      "name": "Maktabga qanday borasan?",
      "goal": "Bola «Comment tu vas à l'école ?» savoliga javob beradi, «Stop !» belgisini biladi",
-     "intro": "Bip-bip! Men bog'chaga uchib boraman! Sen-chi? Avtobusdami, mashinadami yoki piyodami? Qani, buni fransuzcha so'rash va aytishni o'rganamiz.",
+     "intro": "Men bog'chaga uchib boraman! Sen-chi — avtobusdami, mashinadami yoki piyodami? Qani, buni fransuzcha so'rash va aytishni o'rganamiz.",
      "items": [
       {
        "say": "Comment tu vas à l'école ?",
@@ -1444,7 +1469,7 @@
     {
      "name": "Kitob va qalam",
      "goal": "Bola livre, crayon, stylo, cartable so'zlarini biladi",
-     "intro": "Bip-bip! Tez orada sen maktabga borasan! Portfelga nimalarni solamiz? Kitob, qalam… Qani, maktab narsalarini fransuzcha o'rganamiz.",
+     "intro": "Tez orada sen maktabga borasan! Portfelga nimalarni solamiz — kitob, qalam? Qani, maktab narsalarini fransuzcha o'rganamiz.",
      "items": [
       {
        "say": "le livre",
@@ -1640,7 +1665,7 @@
     {
      "name": "Tingla va qara!",
      "goal": "Bola Écoute, Regarde, Chut, Lève la main buyruqlarini tushunadi",
-     "intro": "Bip-bip! Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan. Qani, o'rganamiz!",
+     "intro": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan.",
      "items": [
       {
        "say": "Écoute !",
@@ -1819,7 +1844,7 @@
     {
      "name": "Suza olasanmi?",
      "goal": "Bola «Tu sais…?» deb so'raydi va «Oui, je sais / Non, je ne sais pas» deb javob beradi",
-     "intro": "Bip-bip! Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Sen-chi? Bugun fransuzcha «qila olasanmi?» deb so'rashni o'rganamiz.",
+     "intro": "Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Sen-chi? Bugun fransuzcha «qila olasanmi» deb so'rashni o'rganamiz.",
      "items": [
       {
        "say": "Tu sais nager ?",
@@ -1848,6 +1873,16 @@
        "image_prompt": "A child shaking head with a red cross, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Boshingni «yo'q» deb chayqat!",
        "sentence": "Tu sais voler ? Non, je ne sais pas."
+      },
+      {
+       "say": "Je sais nager.",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "en56-u8-can-swim.png",
+       "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaring bilan suzganday qil!",
+       "sentence": "Je sais nager en été.",
+       "action_en": "Nage comme un poisson !"
       }
      ],
      "extra": [
@@ -1966,7 +2001,7 @@
     {
      "name": "Hayvonlar nima qila oladi?",
      "goal": "Bola «Le poisson sait nager» kabi gaplarni aytadi",
-     "intro": "Bip-bip! Hayvonot bog'ida hamma o'z ishini qiladi: baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz.",
+     "intro": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz.",
      "items": [
       {
        "say": "Le poisson sait nager.",
@@ -1984,7 +2019,7 @@
        "image": "en67-u6-bird-fly.png",
        "image_prompt": "A small bird flying in the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoq!",
-       "sentence": "L'oiseau sait voler. Moi aussi, je sais voler !",
+       "sentence": "L'oiseau sait voler. Moi, je ne sais pas voler !",
        "action_en": "Vole comme un oiseau !"
       },
       {
@@ -2003,7 +2038,7 @@
        "emoji": "🐍",
        "image": "en67-u6-snake-cant-walk.png",
        "image_prompt": "A friendly cartoon snake slithering, no legs, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "Le serpent ne sait pas marcher. Il n'a pas de jambes."
+       "sentence": "Le serpent ne sait pas marcher. Il n'a pas de pattes."
       }
      ],
      "extra": [
@@ -2037,7 +2072,7 @@
     {
      "name": "Yordam berasanmi?",
      "goal": "Bola «Tu peux m'aider ?», «Bien sûr !», «On joue !», «Bravo !» iboralarini ishlatadi",
-     "intro": "Bip-bip! Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi. Qani, bu so'zlarni o'rganamiz!",
+     "intro": "Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi.",
      "items": [
       {
        "say": "Tu peux m'aider ?",
@@ -2212,7 +2247,7 @@
     {
      "name": "Do'konga kirdik",
      "goal": "Bola «Je peux t'aider ?», «…, s'il te plaît», «Voilà», «Merci» iboralarini ishlatadi",
-     "intro": "Bip-bip! Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz? Qani, o'rganamiz!",
+     "intro": "Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?",
      "items": [
       {
        "say": "Je peux vous aider ?",
@@ -2223,7 +2258,7 @@
        "sentence": "Bonjour ! Je peux vous aider ?"
       },
       {
-       "say": "Une pomme, s'il te plaît.",
+       "say": "Une pomme, s'il vous plaît.",
        "uz": "bitta olma, iltimos",
        "emoji": "🍎🙏",
        "image": "en67-u7-apple-please.png",
@@ -2253,9 +2288,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: do'konda",
-       "matn": "Sotuvchi: [fr]Bonjour ! Je peux vous aider ?[/fr] Xaridor: [fr]Une pomme, s'il te plaît.[/fr] Sotuvchi: [fr]Voilà.[/fr] Xaridor: [fr]Merci ![/fr] Endi rollarni almashamiz!",
+       "matn": "Sotuvchi: [fr]Bonjour ! Je peux vous aider ?[/fr] Xaridor: [fr]Une pomme, s'il vous plaît.[/fr] Sotuvchi: [fr]Voilà.[/fr] Xaridor: [fr]Merci ![/fr] Endi rollarni almashamiz!",
        "doska": "— Bonjour ! Je peux vous aider ?\n— Une pomme, s'il vous plaît. 🍎\n— Voilà. 🫴\n— Merci ! 🙏",
-       "sodda": "Faqat xaridor so'zlari: [fr]Une pomme, s'il te plaît.[/fr] [fr]Merci ![/fr]",
+       "sodda": "Faqat xaridor so'zlari: [fr]Une pomme, s'il vous plaît.[/fr] [fr]Merci ![/fr]",
        "boshqa_usul": "O'yinchoqlar bilan uyda do'kon qil va kattalarni xaridor qil!",
        "matn_en": "Le vendeur : Bonjour ! Je peux vous aider ? L'enfant : Une pomme, s'il vous plaît. Le vendeur : Voilà. L'enfant : Merci ! Maintenant, on change de rôle !",
        "sarlavha_en": "🎭 Dialogue : Au magasin"
@@ -2282,6 +2317,14 @@
      "goal": "Bola «Combien de…?» savoliga son bilan javob beradi, «De rien» deydi",
      "intro": "Bip-bip! Do'konga yangi bananlar keldi! Sotuvchi so'raydi: nechta kerak? Qani, sonlarni eslab, xarid qilamiz.",
      "items": [
+      {
+       "say": "les bananes",
+       "uz": "bananlar",
+       "emoji": "🍌",
+       "image": "en45-u7-banana.png",
+       "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square",
+       "sentence": "Regarde ! Les bananes sont jaunes."
+      },
       {
        "say": "Combien de bananes ?",
        "uz": "nechta banan?",
@@ -2339,7 +2382,7 @@
     {
      "name": "Sabzavot rastasi",
      "goal": "Bola carottes, tomates, pommes de terre, œufs so'zlarini biladi",
-     "intro": "Bip-bip! Bozorning sabzavot rastasiga keldik. Qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!",
+     "intro": "Bozorning sabzavot rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!",
      "items": [
       {
        "say": "les carottes",
@@ -2407,6 +2450,14 @@
      "goal": "Bola panier, argent, «Au revoir, à bientôt !» iboralarini ishlatib to'liq xarid o'ynaydi",
      "intro": "Bip-bip! Xarid uchun savat va pul kerak! Qani, oxirgi marta to'liq do'kon o'yinini o'ynaymiz: salomlashamiz, so'raymiz, to'laymiz va xayrlashamiz.",
      "items": [
+      {
+       "say": "le magasin",
+       "uz": "do'kon",
+       "emoji": "🏪",
+       "image": "en67-u3-shop.png",
+       "image_prompt": "A small colorful shop with an awning, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'achète du pain au magasin."
+      },
       {
        "say": "le panier",
        "uz": "savat",
@@ -2639,13 +2690,22 @@
        "q_en": "Tu as quel âge ? Qu'est-ce que ça veut dire ?"
       }
      ],
-     "intro_en": "Bonjour, les amis ! Je m'appelle Kabutar. Comment tu t'appelles ? Tu as quel âge ? Parlons !"
+     "intro_en": "Bonjour, les amis ! Je m'appelle Kabutar. Comment tu t'appelles ? Tu as quel âge ?"
     },
     {
      "name": "Qayerda yashayman",
      "goal": "Bola qayerda yashashini va qayerdan ekanini aytadi",
      "intro": "Bip-bip! Men Samarqandda, Registon yonidagi daraxtda yashayman! Sen qayerda yashaysan? Qani, shahrimiz va vatanimiz haqida fransuzcha gapiramiz.",
      "items": [
+      {
+       "say": "la maison",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "C'est ma maison.",
+       "action_en": "Dessine une maison dans l'air !"
+      },
       {
        "say": "Tu habites où ?",
        "uz": "qayerda yashaysan?",
@@ -2688,7 +2748,7 @@
     {
      "name": "Men yaxshi ko'raman",
      "goal": "Bola sevimli ovqati, rangi va o'yinini aytadi, «Qu'est-ce que tu aimes ?» deb so'raydi",
-     "intro": "Bip-bip! Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni fransuzcha aytamiz.",
+     "intro": "Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni fransuzcha aytamiz.",
      "items": [
       {
        "say": "Qu'est-ce que tu aimes ?",
@@ -2960,6 +3020,14 @@
        "sentence": "J'aime les chats. Ils sont petits."
       },
       {
+       "say": "J'aime les chiens.",
+       "uz": "men itlarni yaxshi ko'raman",
+       "emoji": "🐶",
+       "image": "en56-u8-have-dog.png",
+       "image_prompt": "A child walking a happy dog, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "J'aime les chiens. Ils sont rigolos."
+      },
+      {
        "say": "J'aime la glace.",
        "uz": "men muzqaymoqni yaxshi ko'raman",
        "emoji": "🍦❤️",
@@ -2994,12 +3062,12 @@
        "q_en": "Qu'est-ce que « J'aime les chats » veut dire ?"
       }
      ],
-     "intro_en": "Bonjour, les amis ! J'aime les pommes. J'aime aussi mes amis ! Et toi, qu'est-ce que tu aimes ?"
+     "intro_en": "J'aime les pommes. J'aime aussi mes amis ! Et toi, qu'est-ce que tu aimes ?"
     },
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «Je n'aime pas…» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Bip-bip! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz.",
      "items": [
       {
        "say": "Je n'aime pas les oignons.",
@@ -3026,6 +3094,15 @@
        "image": "en56-u7-dislike-spiders.png",
        "image_prompt": "A child hiding from a small cartoon spider, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "Je n'aime pas les araignées. Elles font peur !"
+      },
+      {
+       "say": "Je n'aime pas le froid.",
+       "uz": "men sovuqni yoqtirmayman",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sovqotganday titra: brr!",
+       "sentence": "Je n'aime pas le froid. Brr !"
       }
      ],
      "extra": [
@@ -3053,7 +3130,7 @@
        "q_en": "Un garçon voit un oignon et fait la grimace. Qu'est-ce qu'il dit ?"
       }
      ],
-     "intro_en": "Salut ! On aime beaucoup de choses. Mais il y a des choses qu'on n'aime pas. Moi, je n'aime pas la pluie !"
+     "intro_en": "On aime beaucoup de choses. Mais il y a des choses qu'on n'aime pas. Moi, je n'aime pas la pluie !"
     },
     {
      "name": "Senga yoqadimi?",
@@ -3069,23 +3146,31 @@
        "sentence": "Tu aimes les bananes ?"
       },
       {
-       "say": "Oui, j'aime.",
+       "say": "Tu aimes les pommes ?",
+       "uz": "senga olma yoqadimi?",
+       "emoji": "🍎",
+       "image": "en56-u7-like-apples.png",
+       "image_prompt": "A happy child hugging a big red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "Tu aimes les pommes ? Oui, j'aime ça."
+      },
+      {
+       "say": "Oui, j'aime ça.",
        "uz": "ha, yoqadi",
        "emoji": "👍",
        "image": "en56-u7-yes-i-do.png",
        "image_prompt": "A child smiling and giving a thumbs up, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Boshingni «ha» deb qimirlat!",
-       "sentence": "Tu aimes le gâteau ? Oui, j'aime.",
+       "sentence": "Tu aimes le gâteau ? Oui, j'aime ça.",
        "action_en": "Fais oui de la tête !"
       },
       {
-       "say": "Non, je n'aime pas.",
+       "say": "Non, je n'aime pas ça.",
        "uz": "yo'q, yoqmaydi",
        "emoji": "👎",
        "image": "en56-u7-no-i-dont.png",
        "image_prompt": "A child shaking head and giving a thumbs down, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Boshingni «yo'q» deb chayqat!",
-       "sentence": "Tu aimes les araignées ? Non, je n'aime pas.",
+       "sentence": "Tu aimes les araignées ? Non, je n'aime pas ça.",
        "action_en": "Fais non de la tête !"
       }
      ],
@@ -3093,11 +3178,11 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎭 Dialog: do'stimdan so'rayman",
-       "matn": "Kabu: [fr]Tu aimes le lait ?[/fr] Sen: [fr]Oui, j'aime.[/fr] Kabu: [fr]Tu aimes les araignées ?[/fr] Sen: [fr]Non, je n'aime pas ![/fr] Endi sen Kabudan so'ra!",
-       "doska": "— Tu aimes le lait ?\n— Oui, j'aime. 👍\n— Tu aimes les araignées ?\n— Non, je n'aime pas. 👎",
+       "matn": "Kabu: [fr]Tu aimes le lait ?[/fr] Sen: [fr]Oui, j'aime ça.[/fr] Kabu: [fr]Tu aimes les araignées ?[/fr] Sen: [fr]Non, je n'aime pas ça ![/fr] Endi sen Kabudan so'ra!",
+       "doska": "— Tu aimes le lait ?\n— Oui, j'aime ça. 👍\n— Tu aimes les araignées ?\n— Non, je n'aime pas ça. 👎",
        "sodda": "Faqat [fr]Oui[/fr] 👍 yoki [fr]Non[/fr] 👎 deb javob ber.",
        "boshqa_usul": "Oila a'zolaringdan so'ra: [fr]Tu aimes le thé ?[/fr] Javoblarini sana!",
-       "matn_en": "Kabutar : Tu aimes le lait ? L'enfant : Oui, j'aime. Kabutar : Tu aimes les araignées ? L'enfant : Non, je n'aime pas ! Maintenant, pose la question à Kabutar !",
+       "matn_en": "Kabutar : Tu aimes le lait ? L'enfant : Oui, j'aime ça. Kabutar : Tu aimes les araignées ? L'enfant : Non, je n'aime pas ça ! Maintenant, pose la question à Kabutar !",
        "sarlavha_en": "🎭 Dialogue : Demande à ton ami"
       }
      ],
@@ -3105,16 +3190,16 @@
       {
        "q": "[fr]Tu aimes la glace ?[/fr] Senga yoqsa, nima deysan?",
        "options": [
-        "👍 Oui, j'aime.",
-        "👎 Non, je n'aime pas.",
+        "👍 Oui, j'aime ça.",
+        "👎 Non, je n'aime pas ça.",
         "🙋 Au revoir !"
        ],
        "answer": 0,
-       "why": "Ajoyib! Yoqsa — [fr]Oui, j'aime.[/fr]",
+       "why": "Ajoyib! Yoqsa — [fr]Oui, j'aime ça.[/fr]",
        "q_en": "« Tu aimes la glace ? » Tu aimes ça. Qu'est-ce que tu dis ?"
       }
      ],
-     "intro_en": "Bonjour, les amis ! Posons des questions à nos amis. Tu aimes le gâteau ? Oui, j'aime !"
+     "intro_en": "Posons des questions à nos amis. Tu aimes le gâteau ? Oui, j'aime !"
     },
     {
      "name": "Eng sevimli narsam",
@@ -3147,6 +3232,15 @@
        "action": "Onangni quchoqla!",
        "sentence": "J'aime très fort ma maman.",
        "action_en": "Fais un gros câlin !"
+      },
+      {
+       "say": "J'aime mon papa.",
+       "uz": "men dadamni yaxshi ko'raman",
+       "emoji": "👨",
+       "image": "en56-u2-my-dad.png",
+       "image_prompt": "A smiling father holding a child's hand, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Dadangni quchoqla!",
+       "sentence": "J'aime très fort mon papa."
       }
      ],
      "extra": [
@@ -3258,7 +3352,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «J'ai un/une…» bilan o'zida bor narsani aytadi",
-     "intro": "Bip-bip! Mening kichkina uyam va bitta qizil to'pim bor. Senda nima bor? Mushuk, it yoki qo'g'irchoq? Qani, fransuzcha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Senda nima bor — mushuk, it yoki qo'g'irchoq? Qani, fransuzcha aytamiz!",
      "items": [
       {
        "say": "J'ai un chat.",
@@ -3319,12 +3413,12 @@
        "q_en": "Une fille montre son chien. Qu'est-ce qu'elle dit ?"
       }
      ],
-     "intro_en": "Bonjour, les amis ! J'ai un nid et un petit ami. Et toi, qu'est-ce que tu as ? Racontons !"
+     "intro_en": "J'ai un nid et un petit ami. Et toi, qu'est-ce que tu as ? Racontons !"
     },
     {
      "name": "Men qila olaman",
      "goal": "Bola «Je sais…» bilan qila oladigan harakatini aytadi",
-     "intro": "Bip-bip! Men ucha olaman! Sen-chi? Sen yugura olasan, sakray olasan, qo'shiq ayta olasan! Qani, buni fransuzcha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Sen esa yugura, sakray va qo'shiq ayta olasan. Qani, buni fransuzcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "Je sais sauter.",
@@ -3392,7 +3486,7 @@
        "q_en": "« Je sais nager. » C'est quelle image ?"
       }
      ],
-     "intro_en": "Salut ! Je sais voler ! Et toi, qu'est-ce que tu sais faire ? Sautons, courons et chantons ensemble !"
+     "intro_en": "Je sais voler ! Et toi, qu'est-ce que tu sais faire ? Sautons, courons et chantons ensemble !"
     },
     {
      "name": "Qila olaman, qila olmayman",
@@ -3436,7 +3530,7 @@
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqib ko'r — uchmaysan!",
-       "sentence": "Je suis un garçon. Je ne sais pas voler.",
+       "sentence": "Je ne suis pas un oiseau. Je ne sais pas voler.",
        "action_en": "Bats des bras !"
       }
      ],
@@ -3465,7 +3559,7 @@
        "q_en": "Un garçon bat des bras, mais il ne sait pas voler. Qu'est-ce qu'il dit ?"
       }
      ],
-     "intro_en": "Bonjour, les amis ! Je sais voler, mais je ne sais pas nager. Vous, vous savez danser et dessiner ! Regardons."
+     "intro_en": "Je sais voler, mais je ne sais pas nager. Vous, vous savez danser et dessiner ! Regardons."
     },
     {
      "name": "Men endi kattaman!",

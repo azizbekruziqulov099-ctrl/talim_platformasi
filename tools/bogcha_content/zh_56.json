@@ -12,7 +12,7 @@
     {
      "name": "Salom, do'stim!",
      "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
-     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "intro": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
      "items": [
       {
        "say": "你好！",
@@ -82,12 +82,12 @@
        "q_en": "你的朋友问：“你叫什么名字？”你说什么？"
       }
      ],
-     "intro_en": "朋友们好！我是小鸟Kabutar。我好想你们！我们来打个招呼，说说自己的名字吧。"
+     "intro_en": "朋友们好！我好想你们！我们来打个招呼，说说自己的名字吧。"
     },
     {
      "name": "Sanaymiz: bir–to'rt",
      "goal": "Bola 1 dan 4 gacha xitoycha sanaydi",
-     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin xitoycha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "intro": "Men tuxumlarni sanamoqchiman, lekin xitoycha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
      "items": [
       {
        "say": "一",
@@ -146,12 +146,12 @@
        "sarlavha_en": "👏 拍一拍，数一数"
       }
      ],
-     "intro_en": "你好！我们和Kabutar一起数数。一、二、三、四！跟我一起数！"
+     "intro_en": "我们和Kabutar一起数数。一、二、三、四！跟我一起数！"
     },
     {
      "name": "Sanaymiz: besh–yetti",
      "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
-     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
      "items": [
       {
        "say": "五",
@@ -293,7 +293,7 @@
        "q_en": "两只手有几根手指？"
       }
      ],
-     "intro_en": "又见面了！我们来数到十。八、九、十！你能数到几？"
+     "intro_en": "我们来数到十。八、九、十！你能数到几？"
     }
    ],
    "scenarios": [
@@ -397,7 +397,7 @@
     {
      "name": "Bu mening onam",
      "goal": "Bola «这是我的……» bilan oila a'zolarini tanishtiradi",
-     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni xitoycha tanishtirishni o'rganing.",
+     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni xitoycha tanishtirishni o'rganing.",
      "items": [
       {
        "say": "这是我妈妈。",
@@ -463,12 +463,12 @@
        "q_en": "介绍你的爸爸。你说什么？"
       }
      ],
-     "intro_en": "朋友们好！我爱我的家人。看！这是我妈妈。我们也来认识一下你的家人吧！"
+     "intro_en": "我爱我的家人。这是我妈妈。我们也来认识一下你的家人吧！"
     },
     {
      "name": "Buvim va bobom",
      "goal": "Bola 奶奶, 爷爷, 小宝宝, 家人 so'zlarini biladi",
-     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
      "items": [
       {
        "say": "奶奶",
@@ -494,7 +494,7 @@
        "emoji": "👶",
        "image": "en56-u2-baby.png",
        "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chaqaloqni allalagandek tebratining!",
+       "action": "Chaqaloqni allalagandek tebrating!",
        "sentence": "小宝宝很小。",
        "action_en": "摇一摇小宝宝！",
        "rom": "xiǎo bǎobao"
@@ -527,7 +527,7 @@
     {
      "name": "Qalaysan, do'stim?",
      "goal": "Bola «你好吗？» deb so'raydi va «我很好，谢谢» deb javob beradi",
-     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
      "items": [
       {
        "say": "朋友",
@@ -595,12 +595,12 @@
        "q_en": "你的朋友问：“你好吗？”你说什么？"
       }
      ],
-     "intro_en": "朋友们，早上好！你好吗？我很好，谢谢！我们和朋友们聊一聊吧。"
+     "intro_en": "朋友们，早上好！你好吗？我很好，谢谢！"
     },
     {
      "name": "Katta va kichik",
      "goal": "Bola 大, 小, 开心, 难过 so'zlari bilan odamni tasvirlaydi",
-     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
      "items": [
       {
        "say": "大",
@@ -683,7 +683,7 @@
        "q_en": "今天是你的生日。你收到一份礼物。你感觉怎么样？"
       }
      ],
-     "intro_en": "你好！看这头大象。它很大！看这只老鼠。它很小！"
+     "intro_en": "看这头大象，它很大！看这只老鼠，它很小！"
     }
    ],
    "scenarios": [
@@ -839,12 +839,12 @@
        "sarlavha_en": "🧺 洗衣日"
       }
      ],
-     "intro_en": "朋友们好！我们来穿衣服吧。看看我的衣服！你今天穿什么？"
+     "intro_en": "我们来穿衣服吧。看看我的衣服！你今天穿什么？"
     },
     {
      "name": "Poyabzal va paypoq",
      "goal": "Bola 鞋子, 袜子, 靴子 so'zlarini biladi va «穿上！» buyrug'ini bajaradi",
-     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni xitoycha o'rganamiz.",
+     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni xitoycha o'rganamiz.",
      "items": [
       {
        "say": "鞋子",
@@ -877,7 +877,7 @@
       {
        "say": "穿上！",
        "uz": "kiy!",
-       "emoji": "🙆",
+       "emoji": "🦶",
        "image": "en56-u3-put-on.png",
        "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Kiyim kiyayotgandek harakat qiling!",
@@ -911,12 +911,12 @@
        "q_en": "你先往脚上穿什么？"
       }
      ],
-     "intro_en": "你好！我们要出门了。先穿袜子，再穿鞋子！请穿上你的鞋子。"
+     "intro_en": "我们要出门了。先穿袜子，再穿鞋子！请穿上你的鞋子。"
     },
     {
      "name": "Issiq kiyimlar",
      "goal": "Bola 帽子, 大衣, 围巾, 手套 so'zlarini biladi",
-     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
      "items": [
       {
        "say": "帽子",
@@ -954,7 +954,7 @@
        "image": "en56-u3-gloves.png",
        "image_prompt": "A pair of warm gloves, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qo'llaringizni ishqalang!",
-       "sentence": "我的手套戴在手上。",
+       "sentence": "冬天我戴手套。",
        "action_en": "伸出你的手！",
        "rom": "shǒutào"
       }
@@ -989,7 +989,7 @@
     {
      "name": "Mening kiyimim",
      "goal": "Bola kiyimini rangi bilan aytadi: «我的T恤是红色的。»",
-     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida xitoycha gapiramiz.",
+     "intro": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida xitoycha gapiramiz.",
      "items": [
       {
        "say": "我的T恤是红色的。",
@@ -1046,7 +1046,7 @@
        "q_en": "“我的鞋子是蓝色的。”是哪张图片？"
       }
      ],
-     "intro_en": "朋友们好！看看我！我的T恤是红色的。你的衣服是什么颜色的？"
+     "intro_en": "看看我！我的T恤是红色的。你的衣服是什么颜色的？"
     }
    ],
    "scenarios": [
@@ -1162,7 +1162,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola 面包, 牛奶, 鸡蛋, 奶酪 so'zlarini biladi",
-     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, xitoycha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, xitoycha aytamiz.",
      "items": [
       {
        "say": "面包",
@@ -1214,12 +1214,12 @@
        "sarlavha_en": "🍳 我们来做早饭"
       }
      ],
-     "intro_en": "早上好！该吃早饭了。我们吃面包、鸡蛋和奶酪吧。真好吃！"
+     "intro_en": "早上好！该吃早饭了。我们吃面包、鸡蛋和奶酪吧。"
     },
     {
      "name": "Ichimliklar",
      "goal": "Bola 水, 果汁, 茶 so'zlarini va «我渴了» iborasini biladi",
-     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
      "items": [
       {
        "say": "水",
@@ -1285,12 +1285,12 @@
        "q_en": "奶奶早上喝什么？"
       }
      ],
-     "intro_en": "朋友们好！我渴了。我们喝点东西吧。水、果汁还是茶？"
+     "intro_en": "朋友们好！我渴了。水、果汁还是茶？"
     },
     {
      "name": "Tushlik",
      "goal": "Bola 汤, 米饭, 鸡肉 so'zlarini va «我饿了» iborasini biladi",
-     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "intro": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?",
      "items": [
       {
        "say": "汤",
@@ -1303,7 +1303,7 @@
       },
       {
        "say": "米饭",
-       "uz": "guruch, palov",
+       "uz": "guruch",
        "emoji": "🍚",
        "image": "en56-u4-rice.png",
        "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -1335,9 +1335,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Siz — oshpazsiz! Qozonga soling: [zh]米饭[/zh], [zh]鸡肉[/zh]… aralashtiring! Kabutar keladi: [zh]我饿了！[/zh] Siz berasiz: [zh]汤来了！[/zh]",
+       "matn": "Siz — oshpazsiz! O'yinchoq qozonga solganday qiling: [zh]米饭[/zh], [zh]鸡肉[/zh]… aralashtiring! Kabutar keladi: [zh]我饿了！[/zh] Siz berasiz: [zh]汤来了！[/zh]",
        "doska": "🍚 米饭 + 🍗 鸡肉\n🍲 汤\n我饿了！🍽️",
-       "sodda": "Qozonga bittadan soling va ayting: [zh]米饭[/zh]!",
+       "sodda": "O'yinchoq qozonga bittadan soling va ayting: [zh]米饭[/zh]!",
        "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
        "matn_en": "你是厨师！把米饭和鸡肉放进锅里。搅一搅，搅一搅！Kabutar：我饿了！厨师：汤来了！",
        "sarlavha_en": "🥄 小厨师游戏"
@@ -1356,12 +1356,12 @@
        "q_en": "“我饿了”是什么意思？"
       }
      ],
-     "intro_en": "你好！午饭时间到了。我饿了！我们来喝汤、吃米饭吧。"
+     "intro_en": "午饭时间到了。我饿了！我们来喝汤、吃米饭吧。"
     },
     {
      "name": "Shirinliklar",
      "goal": "Bola 蛋糕, 冰淇淋, 糖果 so'zlarini va «真好吃！» iborasini biladi",
-     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni xitoycha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni xitoycha nomlaymiz.",
      "items": [
       {
        "say": "蛋糕",
@@ -1406,7 +1406,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [zh]一、二、三、四、五！[/zh] Puflang! Endi tortdan tatib ko'ramiz — [zh]真好吃！[/zh]",
+       "matn": "Tortdagi shamlarni sanaymiz: [zh]一、二、三、四、五！[/zh] Puflaganday qiling! Endi tortdan tatib ko'ramiz — [zh]真好吃！[/zh]",
        "doska": "🎂 一 二 三 四 五\n真好吃！😋",
        "sodda": "Birgina so'z: [zh]蛋糕[/zh]… [zh]真好吃！[/zh]",
        "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, xitoycha sanang!",
@@ -1427,7 +1427,7 @@
        "q_en": "过生日的时候，我们在它上面插蜡烛。这是什么？"
       }
      ],
-     "intro_en": "朋友们好！我喜欢甜的东西。蛋糕、冰淇淋、糖果。真好吃！"
+     "intro_en": "朋友们好！我喜欢甜的东西。蛋糕、冰淇淋、糖果。"
     }
    ],
    "scenarios": [
@@ -1531,7 +1531,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola 房子, 门, 窗户, 花园 so'zlarini biladi",
-     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni xitoycha o'rganamiz.",
+     "intro": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni xitoycha o'rganamiz.",
      "items": [
       {
        "say": "房子",
@@ -1586,12 +1586,12 @@
        "sarlavha_en": "🏠 画房子"
       }
      ],
-     "intro_en": "你好！欢迎来我家！看，这是门。请进！"
+     "intro_en": "欢迎来我家！看，这是门。请进！"
     },
     {
      "name": "Uydagi xonalar",
      "goal": "Bola 厨房, 卧室, 浴室, 客厅 so'zlarini biladi",
-     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni xitoycha aytamiz!",
+     "intro": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni xitoycha aytamiz!",
      "items": [
       {
        "say": "厨房",
@@ -1664,7 +1664,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola 椅子, 台灯, 电视, 钟 so'zlarini biladi",
-     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "椅子",
@@ -1718,12 +1718,12 @@
        "sarlavha_en": "👀 找一找！"
       }
      ],
-     "intro_en": "你好！看看我的房间。我看到一把椅子、一盏台灯和一个钟。你看到了什么？"
+     "intro_en": "看看我的房间。我看到一把椅子、一盏台灯和一个钟。你看到了什么？"
     },
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «……在哪里？» deb so'raydi, 里面, 上面, 下面 so'zlarini tushunadi",
-     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!",
      "items": [
       {
        "say": "猫在哪里？",
@@ -1788,7 +1788,7 @@
        "q_en": "小猫在盒子里。我们怎么说？"
       }
      ],
-     "intro_en": "哎呀！猫在哪里？我们一起找一找吧。它在盒子里吗？"
+     "intro_en": "哎呀！猫在哪里？它在盒子里吗？"
     }
    ],
    "scenarios": [
@@ -1892,7 +1892,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «天气怎么样？» savoliga 晴天, 下雨, 刮风 bilan javob beradi",
-     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni xitoycha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni xitoycha aytamiz!",
      "items": [
       {
        "say": "天气怎么样？",
@@ -1966,7 +1966,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola 下雪, 多云, 热, 冷 so'zlari bilan havoni tasvirlaydi",
-     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!",
      "items": [
       {
        "say": "下雪了。",
@@ -2039,7 +2039,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola 春天, 夏天, 秋天, 冬天 fasllarini biladi",
-     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
      "items": [
       {
        "say": "春天",
@@ -2123,7 +2123,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola 雨伞, 彩虹, 雪人 so'zlarini biladi",
-     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz.",
      "items": [
       {
        "say": "雨伞",
@@ -2148,7 +2148,7 @@
       },
       {
        "say": "雪人",
-       "uz": "qorbobo, qor odam",
+       "uz": "qor odam",
        "emoji": "⛄",
        "image": "en56-u6-snowman.png",
        "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -2181,7 +2181,7 @@
        "q_en": "下雨了。我们带上什么？"
       }
      ],
-     "intro_en": "你好！今天下雨了，所以我带了雨伞。看！雨停了，我看到了彩虹！"
+     "intro_en": "今天下雨了，所以我带了雨伞。看！雨停了，我看到了彩虹！"
     }
    ],
    "scenarios": [
@@ -2297,7 +2297,7 @@
     {
      "name": "Menga yoqadi",
      "goal": "Bola «我喜欢……» bilan yoqtirgan narsasini aytadi",
-     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni xitoycha aytishni o'rganamiz.",
+     "intro": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni xitoycha aytishni o'rganamiz.",
      "items": [
       {
        "say": "我喜欢苹果。",
@@ -2354,12 +2354,12 @@
        "q_en": "“我喜欢猫”是什么意思？"
       }
      ],
-     "intro_en": "朋友们好！我喜欢苹果。我也喜欢我的朋友们！你喜欢什么？"
+     "intro_en": "我喜欢苹果。我也喜欢我的朋友们！你喜欢什么？"
     },
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «我不喜欢……» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
      "items": [
       {
        "say": "我不喜欢洋葱。",
@@ -2416,7 +2416,7 @@
        "q_en": "一个男孩看到洋葱，做了个鬼脸。他说什么？"
       }
      ],
-     "intro_en": "你好！我们喜欢很多东西。可是有些东西我们不喜欢。我不喜欢下雨！"
+     "intro_en": "我们喜欢很多东西。可是有些东西我们不喜欢。我不喜欢下雨！"
     },
     {
      "name": "Senga yoqadimi?",
@@ -2480,31 +2480,31 @@
        "q_en": "“你喜欢冰淇淋吗？”你喜欢。你说什么？"
       }
      ],
-     "intro_en": "朋友们好！我们来问问朋友们。你喜欢蛋糕吗？是的，我喜欢！"
+     "intro_en": "我们来问问朋友们。你喜欢蛋糕吗？是的，我喜欢！"
     },
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida xitoycha gapiramiz.",
+     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida xitoycha gapiramiz.",
      "items": [
       {
-       "say": "我最喜欢的颜色是蓝色。",
+       "say": "我最喜欢蓝色。",
        "uz": "sevimli rangim — ko'k",
        "emoji": "💙",
        "image": "en56-u7-favourite-colour.png",
        "image_prompt": "A big blue heart and blue paint splash, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "我最喜欢的颜色是蓝色。",
-       "rom": "Wǒ zuì xǐhuan de yánsè shì lánsè."
+       "rom": "Wǒ zuì xǐhuan lánsè."
       },
       {
-       "say": "我最喜欢的玩具是球。",
+       "say": "我最喜欢球。",
        "uz": "sevimli o'yinchog'im — to'p",
        "emoji": "⚽",
        "image": "en56-u7-favourite-toy.png",
        "image_prompt": "A colorful soccer ball, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "我最喜欢的玩具是球。",
        "action_en": "扔球！",
-       "rom": "Wǒ zuì xǐhuan de wánjù shì qiú."
+       "rom": "Wǒ zuì xǐhuan qiú."
       },
       {
        "say": "我爱我的妈妈。",
@@ -2634,7 +2634,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «我有一个……» bilan o'zida bor narsani aytadi",
-     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, xitoycha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, xitoycha aytamiz!",
      "items": [
       {
        "say": "我有一只猫。",
@@ -2699,12 +2699,12 @@
        "q_en": "一个女孩在介绍她的狗。她说什么？"
       }
      ],
-     "intro_en": "朋友们好！我有一个鸟窝和一个小朋友。你有什么？我们来说一说！"
+     "intro_en": "我有一个鸟窝和一个小朋友。你有什么？我们来说一说！"
     },
     {
      "name": "Men qila olaman",
      "goal": "Bola «我会……» bilan qila oladigan harakatini aytadi",
-     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni xitoycha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni xitoycha aytishni o'rganamiz.",
      "items": [
       {
        "say": "我会跳。",
@@ -2776,12 +2776,12 @@
        "q_en": "“我会游泳。”是哪张图片？"
       }
      ],
-     "intro_en": "你好！我会飞！你会做什么？我们一起跳、跑、唱歌吧！"
+     "intro_en": "我会飞！你会做什么？我们一起跳、跑、唱歌吧！"
     },
     {
      "name": "Qila olaman, qila olmayman",
      "goal": "Bola yangi harakatlarni va «我不会……» ni aytadi",
-     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "intro": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?",
      "items": [
       {
        "say": "我会跳舞。",
@@ -2823,7 +2823,7 @@
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqib ko'ring — uchmaysiz!",
-       "sentence": "我是男孩。我不会飞。",
+       "sentence": "我不是小鸟。我不会飞。",
        "action_en": "扇动你的手臂！",
        "rom": "Wǒ bú huì fēi."
       }
@@ -2853,12 +2853,12 @@
        "q_en": "一个男孩扇动手臂，可是他飞不起来。他说什么？"
       }
      ],
-     "intro_en": "朋友们好！我会飞，可是我不会游泳。你们会跳舞，还会画画！我们来看看吧。"
+     "intro_en": "我会飞，可是我不会游泳。你们会跳舞，还会画画！我们来看看吧。"
     },
     {
      "name": "Men endi kattaman!",
      "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
-     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda xitoycha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "intro": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda xitoycha gapirib, xayrlashishni o'rganamiz.",
      "items": [
       {
        "say": "我五岁。",
@@ -2872,15 +2872,15 @@
        "rom": "Wǒ wǔ suì."
       },
       {
-       "say": "我很大。",
+       "say": "我长大了。",
        "uz": "men kattaman",
        "emoji": "💪",
        "image": "en56-u8-i-am-big.png",
        "image_prompt": "A proud child showing strong arms, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Kuchingizni ko'rsating!",
-       "sentence": "我很大。我能跑得很快。",
+       "sentence": "我长大了。我能跑得很快。",
        "action_en": "站直！",
-       "rom": "Wǒ hěn dà."
+       "rom": "Wǒ zhǎngdà le."
       },
       {
        "say": "我很开心！",
@@ -2920,7 +2920,7 @@
        "q": "Nechi yoshdasiz? Besh yosh bo'lsa, nima deysiz?",
        "options": [
         "🖐️🎂 我五岁。",
-        "💪 我很大。",
+        "💪 我长大了。",
         "🔟 十"
        ],
        "answer": 0,

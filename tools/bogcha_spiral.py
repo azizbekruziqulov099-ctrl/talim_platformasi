@@ -332,6 +332,15 @@ class Builder:
             raise KeyError(f"izoh={self.izoh}: tarjima yo'q {sid(text)} «{text[:80]}»")
         return out
 
+    def add_pool(self, items):
+        """REV324: takror element (oldingi darsdan qayta kelgan so'z) pulga ikkinchi marta kirmaydi —
+        aks holda testda bir xil variant ikki marta chiqadi."""
+        known = {_word(x) for x in self.pool}
+        for it in items:
+            if _word(it) not in known:
+                self.pool.append(it)
+                known.add(_word(it))
+
     def U(self, uz_template, **kw):
         """Dvigatel shabloni (o'zbekcha) → izoh tilida, keyin .format(**kw)."""
         self._record("shablon", uz_template, "shablon: " + ", ".join("{%s}" % k for k in kw) if kw else "shablon")
@@ -722,7 +731,7 @@ class Builder:
         # O'yin: yangi so'zlar + bitta eski — «top-chi»
         game_items = items + ([self.rng.choice(self.pool)] if self.pool else [])
         rows.append(self.game_row(game_items))
-        self.pool.extend(items)
+        self.add_pool(items)
         self.lesson_items.append(items)
         # Testlar: yangi (muallif + avto) va eski takror
         new_tests = [self.author_test(t) for t in lesson.get("tests") or []]
@@ -828,7 +837,7 @@ class Builder:
                          "matn": voice, "rasm": chunk[0].get("image", ""), "doska": "\n".join(self.board(x) for x in chunk),
                          "sodda": self.t(U("O'zbekcha: {lines}", lines="; ".join(f"{_tag(self.lang, x['say'])} — {self.UZ(x['uz'])}" for x in chunk))),
                          "boshqa_usul": self.item_other(chunk[0])})
-        self.pool.extend(items)
+        self.add_pool(items)
         tests = [t for t in (self.auto_test(it) for it in items[:5]) if t]
         rows += [{k: v for k, v in t.items() if not k.startswith("_")} for t in tests]
         rows.append(self.summary_row(items[:5]))

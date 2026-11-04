@@ -1,7 +1,7 @@
 {
  "lessons": {
   "Salom, do'stim!": {
-   "intro_en": "Hello, friends! I am Kabutar the bird. I missed you! Let's say hello and tell our names.",
+   "intro_en": "Hello, friends! I missed you! Let's say hello and tell our names.",
    "items": {
     "Hello!": {
      "sentence": "Hello! I am Kabutar.",
@@ -30,7 +30,7 @@
    ]
   },
   "Sanaymiz: bir–to'rt": {
-   "intro_en": "Hello! Let's count with Kabutar. One, two, three, four! Count with me!",
+   "intro_en": "Let's count with Kabutar. One, two, three, four! Count with me!",
    "items": {
     "one": {
      "sentence": "I have one nose.",
@@ -84,7 +84,7 @@
    ]
   },
   "Sanaymiz: sakkiz–o'n": {
-   "intro_en": "Hello again! Let's count to ten. Eight, nine, ten! How many can you count?",
+   "intro_en": "Let's count to ten. Eight, nine, ten! How many can you count?",
    "items": {
     "eight": {
      "sentence": "I see eight birds.",
@@ -113,7 +113,7 @@
    ]
   },
   "Bu mening onam": {
-   "intro_en": "Hello, friends! I love my family. Look! This is my mum. Let's meet your family too!",
+   "intro_en": "I love my family. This is my mum. Let's meet your family too!",
    "items": {
     "This is my mum.": {
      "sentence": "Look! This is my mum.",
@@ -166,7 +166,7 @@
    ]
   },
   "Qalaysan, do'stim?": {
-   "intro_en": "Good morning, friends! How are you? I'm fine, thank you! Let's talk with our friends.",
+   "intro_en": "Good morning, friends! How are you? I'm fine, thank you!",
    "items": {
     "friend": {
      "sentence": "Anvar is my friend.",
@@ -194,7 +194,7 @@
    ]
   },
   "Katta va kichik": {
-   "intro_en": "Hello! Look at the elephant. It is big! Look at the mouse. It is small!",
+   "intro_en": "Look at the elephant: it is big! Look at the mouse: it is small!",
    "items": {
     "big": {
      "sentence": "The elephant is big.",
@@ -225,7 +225,7 @@
    ]
   },
   "Futbolka va shim": {
-   "intro_en": "Hello, friends! Let's get dressed. Look at my clothes! What do you wear today?",
+   "intro_en": "Let's get dressed. Look at my clothes! What do you wear today?",
    "items": {
     "T-shirt": {
      "sentence": "My T-shirt is yellow.",
@@ -250,7 +250,7 @@
    ]
   },
   "Poyabzal va paypoq": {
-   "intro_en": "Hi! We go outside. First socks, then shoes! Put on your shoes, please.",
+   "intro_en": "We go outside. First socks, then shoes! Put on your shoes, please.",
    "items": {
     "shoes": {
      "sentence": "My shoes are black.",
@@ -262,7 +262,7 @@
     "boots": {
      "sentence": "Put on your boots, please."
     },
-    "Put on!": {
+    "Put it on!": {
      "sentence": "Put on your socks!",
      "action_en": "Put on your shoes!"
     }
@@ -306,7 +306,7 @@
    ]
   },
   "Mening kiyimim": {
-   "intro_en": "Hello, friends! Look at me! My T-shirt is red. What colour are your clothes?",
+   "intro_en": "Look at me! My T-shirt is red. What colour are your clothes?",
    "items": {
     "My T-shirt is red.": {
      "sentence": "Look! My T-shirt is red."
@@ -330,7 +330,7 @@
    ]
   },
   "Nonushta": {
-   "intro_en": "Good morning! It is time for breakfast. Let's eat bread, eggs and cheese. Yummy!",
+   "intro_en": "Good morning! It is time for breakfast. Let's eat bread, eggs and cheese.",
    "items": {
     "bread": {
      "sentence": "I like bread and cheese."
@@ -355,7 +355,7 @@
    ]
   },
   "Ichimliklar": {
-   "intro_en": "Hi, friends! I'm thirsty. Let's drink something. Water, juice or tea?",
+   "intro_en": "Hi, friends! I'm thirsty. Water, juice or tea?",
    "items": {
     "water": {
      "sentence": "I drink water every day.",
@@ -382,7 +382,7 @@
    ]
   },
   "Tushlik": {
-   "intro_en": "Hello! It's lunch time. I'm hungry! Let's eat soup and rice.",
+   "intro_en": "It's lunch time. I'm hungry! Let's eat soup and rice.",
    "items": {
     "soup": {
      "sentence": "Mum makes hot soup."
@@ -409,7 +409,7 @@
    ]
   },
   "Shirinliklar": {
-   "intro_en": "Hello, friends! I love sweet things. Cake, ice cream, sweets. Yummy!",
+   "intro_en": "Hello, friends! I love sweet things. Cake, ice cream, sweets.",
    "items": {
     "cake": {
      "sentence": "The birthday cake is big."
@@ -436,7 +436,7 @@
    ]
   },
   "Mening uyim": {
-   "intro_en": "Hello! Welcome to my house! Look, here is the door. Come in, please!",
+   "intro_en": "Welcome to my house! Look, here is the door. Come in, please!",
    "items": {
     "house": {
      "sentence": "This is my house.",
@@ -491,7 +491,7 @@
    ]
   },
   "Xonadagi narsalar": {
-   "intro_en": "Hello! Look at my room. I see a chair, a lamp and a clock. What do you see?",
+   "intro_en": "Look at my room. I see a chair, a lamp and a clock. What do you see?",
    "items": {
     "chair": {
      "sentence": "Sit on the chair, please.",
@@ -516,7 +516,7 @@
    ]
   },
   "Mushuk qayerda?": {
-   "intro_en": "Oh no! Where is the cat? Let's look for it together. Is it in the box?",
+   "intro_en": "Oh no! Where is the cat? Is it in the box?",
    "items": {
     "Where is the cat?": {
      "sentence": "Where is the cat? I don't know!",
@@ -629,7 +629,7 @@
    ]
   },
   "Soyabon va kamalak": {
-   "intro_en": "Hi! It's rainy today, so I have an umbrella. Look! After the rain, I see a rainbow!",
+   "intro_en": "It's rainy today, so I have an umbrella. Look! After the rain, I see a rainbow!",
    "items": {
     "umbrella": {
      "sentence": "Take your umbrella, please.",
@@ -654,7 +654,7 @@
    ]
   },
   "Menga yoqadi": {
-   "intro_en": "Hello, friends! I like apples. I like my friends too! What do you like?",
+   "intro_en": "I like apples. I like my friends too! What do you like?",
    "items": {
     "I like apples.": {
      "sentence": "I like apples. They are red!"
@@ -678,7 +678,7 @@
    ]
   },
   "Menga yoqmaydi": {
-   "intro_en": "Hi! We like many things. But some things we don't like. I don't like rain!",
+   "intro_en": "We like many things. But some things we don't like. I don't like rain!",
    "items": {
     "I don't like onions.": {
      "sentence": "No, thank you. I don't like onions.",
@@ -702,7 +702,7 @@
    ]
   },
   "Senga yoqadimi?": {
-   "intro_en": "Hello, friends! Let's ask our friends. Do you like cake? Yes, I do!",
+   "intro_en": "Let's ask our friends. Do you like cake? Yes, I do!",
    "items": {
     "Do you like…?": {
      "sentence": "Do you like bananas?"
@@ -750,7 +750,7 @@
    ]
   },
   "Menda bor": {
-   "intro_en": "Hello, friends! I have a nest and a little friend. What do you have? Let's tell!",
+   "intro_en": "I have a nest and a little friend. What do you have? Let's tell!",
    "items": {
     "I have a cat.": {
      "sentence": "I have a cat. It is white."
@@ -777,7 +777,7 @@
    ]
   },
   "Men qila olaman": {
-   "intro_en": "Hi! I can fly! What can you do? Let's jump, run and sing together!",
+   "intro_en": "I can fly! What can you do? Let's jump, run and sing together!",
    "items": {
     "I can jump.": {
      "sentence": "Look! I can jump high.",
@@ -807,7 +807,7 @@
    ]
   },
   "Qila olaman, qila olmayman": {
-   "intro_en": "Hello, friends! I can fly, but I can't swim. You can dance and draw! Let's see.",
+   "intro_en": "I can fly, but I can't swim. You can dance and draw! Let's see.",
    "items": {
     "I can dance.": {
      "sentence": "I can dance with my friends.",

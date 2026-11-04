@@ -12,7 +12,7 @@
     {
      "name": "Iltimos va rahmat",
      "goal": "Bola odob so'zlarini o'rnida ishlatadi",
-     "intro": "Bip-bip! Men — robot Kabu. Bilasanmi, ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz. Tayyormisan?",
+     "intro": "Ba'zi so'zlar sehrli: ularni aytsang, hamma jilmayadi! Bugun uchta sehrli so'zni o'rganamiz.",
      "items": [
       {
        "say": "부탁해요!",
@@ -76,11 +76,11 @@
     {
      "name": "Kechirasiz",
      "goal": "Bola kechirim so'raydi va kechiradi",
-     "intro": "Bip-bip! Voy, Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi Ali nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
+     "intro": "Ali yugurib ketayotib Laylo bilan to'qnashib ketdi! Endi u nima deydi? Bugun kechirim so'rashni va kechirishni o'rganamiz.",
      "items": [
       {
        "say": "저기요!",
-       "uz": "kechirasiz (murojaat)",
+       "uz": "kechirasiz",
        "emoji": "✋",
        "image": "en45-u12-excuse-me.png",
        "image_prompt": "ALI politely raising his hand to get the teacher's attention, soft 3D cartoon for kids, white background, no text, square",
@@ -140,7 +140,7 @@
     {
      "name": "Menga berasanmi?",
      "goal": "Bola odob bilan narsa so'raydi va javob beradi",
-     "intro": "Bip-bip! Bog'chada sayr vaqti. Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz? Bugun bilib olamiz!",
+     "intro": "Ali koptok bilan o'ynamoqchi, lekin koptok tarbiyachi opada. Uni qanday odob bilan so'raymiz?",
      "items": [
       {
        "say": "공 좀 줄래?",
@@ -296,7 +296,7 @@
     {
      "name": "Ertalab",
      "goal": "Bola ertalabki ishlarni aytadi",
-     "intro": "Bip-bip! Tong otdi, quyosh derazadan mo'ralayapti. Ali esa hali ham uxlayapti! Uni qanday uyg'otamiz? Qani, birga bilib olamiz.",
+     "intro": "Tong otdi, quyosh derazadan mo'ralayapti, Ali esa hali uxlayapti! Uni qanday uyg'otamiz?",
      "items": [
       {
        "say": "일어나요",
@@ -360,7 +360,7 @@
     {
      "name": "Bog'chaga boraman",
      "goal": "Bola kun haqida qisqa gap aytadi",
-     "intro": "Bip-bip! Nonushta tugadi. Laylo sumkasini oldi va oyisining qo'lidan ushladi. U qayerga ketyapti? Topdingmi? Bog'chaga!",
+     "intro": "Nonushta tugadi. Laylo sumkasini olib, oyisining qo'lidan ushladi. U qayerga ketyapti — bog'chaga!",
      "items": [
       {
        "say": "유치원에 가요.",
@@ -424,7 +424,7 @@
     {
      "name": "Kechqurun",
      "goal": "Bola kechki ishlar va uyqu iboralarini aytadi",
-     "intro": "Bip-bip! Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda nima qiladi? Kechki ovqat, cho'milish va shirin uyqu! Mening batareyam ham dam olmoqchi.",
+     "intro": "Quyosh botdi, osmonda yulduzlar chiqdi. Ali uyda kechki ovqat yeydi, cho'miladi va shirin uxlaydi.",
      "items": [
       {
        "say": "저녁밥",
@@ -580,7 +580,7 @@
     {
      "name": "Qanday his qilyapsan?",
      "goal": "Bola o'z his-tuyg'usini aytadi",
-     "intro": "Bip-bip! Robotlar ham his qiladi! Batareyam to'la bo'lsa, men xursandman. Bugun Laylo biroz xomush ko'rinyapti. Undan qanday so'raymiz?",
+     "intro": "Robotlar ham his qiladi: batareyam to'la bo'lsa, men xursandman! Bugun Laylo xomush. Undan qanday so'raymiz?",
      "items": [
       {
        "say": "기분이 어때?",
@@ -653,7 +653,7 @@
     {
      "name": "Do'stim bo'l!",
      "goal": "Bola do'stlik va navbat iboralarini ishlatadi",
-     "intro": "Bip-bip! Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz? Bugun do'stlik so'zlarini o'rganamiz!",
+     "intro": "Bog'chaga yangi qizcha keldi, u yolg'iz o'tiribdi. Laylo unga yaqinlashdi. Qanday qilib do'st bo'lamiz?",
      "items": [
       {
        "say": "내 친구가 되어 줘!",
@@ -683,23 +683,23 @@
        "rom": "Nae charye!"
       },
       {
-       "say": "여러분 차례예요!",
+       "say": "네 차례야!",
        "uz": "sening navbating",
        "emoji": "👉",
        "image": "en45-u14-your-turn.png",
        "image_prompt": "ALI kindly giving the ball to LAYLO, soft 3D cartoon for kids, white background, no text, square",
        "action": "Qo'ling bilan do'stingni ko'rsat!",
-       "rom": "Yeoreobun charyeyeyo!"
+       "rom": "Ne charyeya!"
       }
      ],
      "extra": [
       {
        "turi": "topshiriq",
        "sarlavha": "🎲 Navbat o'yini",
-       "matn": "Ali va Laylo sirpanchiqda uchyapti. Ali: [ko]내 차례![/ko] Vush! Endi Ali Layloga: [ko]여러분 차례예요![/ko] Navbat bilan o'ynasak, hamma xursand! Endi sen do'stingga koptok uzat va ayt: [ko]여러분 차례예요![/ko]",
+       "matn": "Ali va Laylo sirpanchiqda uchyapti. Ali: [ko]내 차례![/ko] Vush! Endi Ali Layloga: [ko]네 차례야![/ko] Navbat bilan o'ynasak, hamma xursand! Endi sen do'stingga koptok uzat va ayt: [ko]네 차례야![/ko]",
        "doska": "🤝 내 친구가 되어 줘!\n🧸 같이 놀자!\n🙋‍♂️ 내 차례!\n👉 네 차례야!",
-       "sodda": "Do'stingga koptokni uzat va ayt: [ko]여러분 차례예요![/ko]",
-       "boshqa_usul": "Uyda aka-ukang yoki ota-onang bilan koptok o'ynab, navbat bilan [ko]내 차례![/ko] va [ko]여러분 차례예요![/ko] deb aytinglar."
+       "sodda": "Do'stingga koptokni uzat va ayt: [ko]네 차례야![/ko]",
+       "boshqa_usul": "Uyda aka-ukang yoki ota-onang bilan koptok o'ynab, navbat bilan [ko]내 차례![/ko] va [ko]네 차례야![/ko] deb aytinglar."
       }
      ],
      "tests": [
@@ -719,7 +719,7 @@
         "🌙 잘 자요!"
        ],
        "answer": 0,
-       "why": "To'g'ri! [ko]여러분 차례예요![/ko] — sening navbating. Navbat bilan o'ynash — zo'r!"
+       "why": "To'g'ri! [ko]네 차례야![/ko] — sening navbating. Navbat bilan o'ynash — zo'r!"
       }
      ]
     }

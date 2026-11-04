@@ -12,7 +12,7 @@
     {
      "name": "你好 va 嗨",
      "goal": "Bola 你好 va 嗨 so'zlarini eshitib qaytaradi, salomga javob beradi",
-     "intro": "Salom, bolajonlar! Men — Kabutar qushcha. Gu-gu! Men uzoq Xitoydan uchib keldim. U yerda bolalar qanday salomlashadi? Keling, bilib olamiz!",
+     "intro": "Salom, bolajonlar! Xitoyda bolalar qanday salomlashadi?",
      "items": [
       {
        "say": "你好！",
@@ -58,7 +58,7 @@
     {
      "name": "拜拜 va 谢谢",
      "goal": "Bola 拜拜 va 谢谢 iboralarini eshitib qaytaradi",
-     "intro": "Gu-gu! Mehmonlar ketayotganda nima deymiz? Sovg'a olganda-chi? Bugun ikkita sehrli so'z o'rganamiz!",
+     "intro": "Mehmonlar ketayotganda va sovg'a olganda nima deymiz? Bugun ikkita sehrli so'z o'rganamiz!",
      "items": [
       {
        "say": "拜拜！",
@@ -104,7 +104,7 @@
     {
      "name": "Xayrli tong, xayrli tun",
      "goal": "Bola 早上好 va 晚安 iboralarini ajratadi",
-     "intro": "Gu-gu! Ertalab quyosh chiqadi, kechasi oy chiqadi. Xitoy bolalari ertalab va kechasi nima deydi? Tinglang!",
+     "intro": "Ertalab quyosh, kechasi oy chiqadi. Xitoy bolalari ertalab va kechasi nima deydi?",
      "items": [
       {
        "say": "早上好！",
@@ -150,7 +150,7 @@
     {
      "name": "Ha va yo'q",
      "goal": "Bola 是 va 不 so'zlarini eshitib, bosh irg'ab javob beradi",
-     "intro": "Gu-gu! Kabutar qushcha savol beradi, siz javob berasiz. Ha deyish uchun ham, yo'q deyish uchun ham xitoycha so'z bor!",
+     "intro": "Men savol beraman, siz javob berasiz. «Ha» va «yo'q» uchun ham xitoycha so'z bor!",
      "items": [
       {
        "say": "是",
@@ -272,7 +272,7 @@
     {
      "name": "O'g'il bola va qiz bola",
      "goal": "Bola 男孩 va 女孩 so'zlarini ajratadi",
-     "intro": "Gu-gu! Mening bog'chamda o'g'il bolalar ham, qiz bolalar ham bor. Siz kimsiz? Xitoychasini bilib olamiz!",
+     "intro": "Bog'chada o'g'il bolalar ham, qiz bolalar ham bor. Siz kimsiz?",
      "items": [
       {
        "say": "男孩",
@@ -316,7 +316,7 @@
     {
      "name": "Onam va dadam",
      "goal": "Bola 妈妈 va 爸爸 so'zlarini aytadi",
-     "intro": "Gu-gu! Uyda sizni kim eng ko'p yaxshi ko'radi? To'g'ri, onangiz va dadangiz! Ularni xitoycha qanday chaqiramiz?",
+     "intro": "Sizni eng ko'p onangiz va dadangiz yaxshi ko'radi. Ularni xitoycha qanday chaqiramiz?",
      "items": [
       {
        "say": "妈妈",
@@ -360,7 +360,7 @@
     {
      "name": "Chaqaloq va buvijon",
      "goal": "Bola 小宝宝 va 奶奶 so'zlarini aytadi",
-     "intro": "Gu-gu! Sss… jim! Beshikda kim uxlayapti? Kichkintoy! Uning yonida esa mehribon buvijon o'tiribdi.",
+     "intro": "Sss, beshikda kichkintoy uxlayapti. Uning yonida mehribon buvijon o'tiribdi.",
      "items": [
       {
        "say": "小宝宝",
@@ -405,7 +405,7 @@
     {
      "name": "Bobojon va oila",
      "goal": "Bola 爷爷 va 家人 so'zlarini aytadi",
-     "intro": "Gu-gu! Bugun katta oilani yig'amiz! Bobojon ham keldi. Hammamiz birga bo'lsak — bu oila!",
+     "intro": "Bugun katta oilani yig'amiz: bobojon ham keldi. Hammamiz birga bo'lsak — bu oila!",
      "items": [
       {
        "say": "爷爷",
@@ -534,7 +534,7 @@
     {
      "name": "Qizil va ko'k",
      "goal": "Bola 红色 va 蓝色 ranglarini ajratadi",
-     "intro": "Gu-gu! Men sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qip-qizil va moviy ko'k. Qani, ochamiz!",
+     "intro": "Men sehrli bo'yoq qutisini topdim! Birinchi bo'yoqlar — qip-qizil va moviy ko'k.",
      "items": [
       {
        "say": "红色",
@@ -578,7 +578,7 @@
     {
      "name": "Sariq va yashil",
      "goal": "Bola 黄色 va 绿色 ranglarini ajratadi",
-     "intro": "Gu-gu! Quyosh qanday rangda? Maysa-chi? Bo'yoq qutisidan yana ikki rang chiqdi!",
+     "intro": "Quyosh qanday rangda, maysa-chi? Bo'yoq qutisidan yana ikki rang chiqdi!",
      "items": [
       {
        "say": "黄色",
@@ -622,7 +622,7 @@
     {
      "name": "Pushti va to'q sariq",
      "goal": "Bola 粉色 va 橙色 ranglarini ajratadi",
-     "intro": "Gu-gu! Gulchalar pushti, apelsin esa to'q sariq. Bugun shu ikki chiroyli rangni o'rganamiz!",
+     "intro": "Gulchalar pushti, apelsin esa to'q sariq. Bugun shu ikki chiroyli rangni o'rganamiz!",
      "items": [
       {
        "say": "粉色",
@@ -657,7 +657,7 @@
     {
      "name": "Oq va qora",
      "goal": "Bola 白色 va 黑色 ranglarini ajratadi",
-     "intro": "Gu-gu! Qor qanday rangda? Tun-chi? Bugun oq va qora ranglar bilan tanishamiz!",
+     "intro": "Qor qanday rangda, tun-chi? Bugun oq va qora ranglar bilan tanishamiz!",
      "items": [
       {
        "say": "白色",
@@ -784,7 +784,7 @@
     {
      "name": "Mushuk va kuchuk",
      "goal": "Bola 猫 va 狗 so'zlarini aytadi",
-     "intro": "Gu-gu! Hovlida kim «miyov» deyapti? Kim «vov-vov» deyapti? Keling, yangi do'stlarimiz bilan tanishamiz!",
+     "intro": "Hovlida kim «miyov», kim «vov-vov» deyapti? Keling, yangi do'stlarimiz bilan tanishamiz!",
      "items": [
       {
        "say": "猫",
@@ -830,7 +830,7 @@
     {
      "name": "Sigir va ot",
      "goal": "Bola 奶牛 va 马 so'zlarini aytadi",
-     "intro": "Gu-gu! Bugun ferma sayohatiga boramiz! Kim sut beradi? Kim tez chopadi? Qani, ketdik!",
+     "intro": "Bugun ferma sayohatiga boramiz! Kim sut beradi, kim tez chopadi?",
      "items": [
       {
        "say": "奶牛",
@@ -876,7 +876,7 @@
     {
      "name": "Tovuq va o'rdak",
      "goal": "Bola 母鸡 va 鸭子 so'zlarini aytadi",
-     "intro": "Gu-gu! Hovlida kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bu mening qanotli do'stlarim!",
+     "intro": "Hovlida kim «qo-qo» deyapti, kim «ga-ga» deyapti? Bu mening qanotli do'stlarim!",
      "items": [
       {
        "say": "母鸡",
@@ -922,7 +922,7 @@
     {
      "name": "Qo'zichoq va quyon",
      "goal": "Bola 绵羊 va 兔子 so'zlarini aytadi",
-     "intro": "Gu-gu! Kimning juni paxtaday yumshoq? Kim sakrab-sakrab sabzi yeydi? Topdingizmi?",
+     "intro": "Kimning juni paxtaday yumshoq? Kim sakrab-sakrab sabzi yeydi?",
      "items": [
       {
        "say": "绵羊",
@@ -1051,7 +1051,7 @@
     {
      "name": "Bir, ikki, uch",
      "goal": "Bola 一, 二, 三 sonlarini eshitib, barmoq bilan ko'rsatadi",
-     "intro": "Gu-gu! Men uchta don topdim! Ularni xitoycha sanaymizmi? Barmoqchalaringizni tayyorlang!",
+     "intro": "Men uchta don topdim! Ularni xitoycha sanaymizmi?",
      "items": [
       {
        "say": "一",
@@ -1106,7 +1106,7 @@
     {
      "name": "To'rt va besh",
      "goal": "Bola 四, 五 sonlarini aytadi va beshgacha sanaydi",
-     "intro": "Gu-gu! Qo'lingizga qarang. Nechta barmoq bor? Besh! Bugun beshgacha sanashni o'rganamiz!",
+     "intro": "Qo'lingizga qarang: nechta barmoq bor? Bugun beshgacha sanashni o'rganamiz!",
      "items": [
       {
        "say": "四",
@@ -1152,7 +1152,7 @@
     {
      "name": "Katta va kichik",
      "goal": "Bola 大 va 小 so'zlarini ajratadi",
-     "intro": "Gu-gu! Fil juda katta, sichqoncha esa kichkina! Kabutar qushcha-chi? Bugun katta va kichikni o'rganamiz!",
+     "intro": "Fil juda katta, sichqoncha esa kichkina! Bugun katta va kichikni o'rganamiz.",
      "items": [
       {
        "say": "大",
@@ -1281,7 +1281,7 @@
     {
      "name": "Koptok va qo'g'irchoq",
      "goal": "Bola 球 va 娃娃 so'zlarini aytadi",
-     "intro": "Gu-gu! Men o'yinchoq sandiqchasini topdim! Ichida nima bor ekan? Sekin ochamiz…",
+     "intro": "Men o'yinchoq sandiqchasini topdim! Ichida nima bor ekan?",
      "items": [
       {
        "say": "球",
@@ -1326,7 +1326,7 @@
     {
      "name": "Mashina va ayiqcha",
      "goal": "Bola 汽车 va 小熊 so'zlarini aytadi",
-     "intro": "Gu-gu! Bip-bip! Kim keldi? Mashina! Uning ichida esa yumshoq ayiqcha o'tiribdi!",
+     "intro": "Kim keldi? Mashina, uning ichida esa yumshoq ayiqcha o'tiribdi!",
      "items": [
       {
        "say": "汽车",
@@ -1371,7 +1371,7 @@
     {
      "name": "Havo shari va baraban",
      "goal": "Bola 气球 va 鼓 so'zlarini aytadi",
-     "intro": "Gu-gu! Bugun bayram! Havoda shar uchyapti, baraban «bum-bum» chalyapti. Qani, bayramga!",
+     "intro": "Bugun bayram! Havoda shar uchyapti, baraban «bum-bum» chalyapti.",
      "items": [
       {
        "say": "气球",
@@ -1416,7 +1416,7 @@
     {
      "name": "Poyezd va kubiklar",
      "goal": "Bola 火车 va 积木 so'zlarini aytadi",
-     "intro": "Gu-gu! Chu-chu! Poyezd keldi! Vagonlarida rang-barang kubiklar bor. Kubiklardan uy quramiz!",
+     "intro": "Chu-chu, poyezd keldi! Vagonlaridagi rang-barang kubiklardan uy quramiz!",
      "items": [
       {
        "say": "火车",
@@ -1545,7 +1545,7 @@
     {
      "name": "Bosh va ko'zlar",
      "goal": "Bola 头 va 眼睛 so'zlarini aytib, ko'rsatadi",
-     "intro": "Gu-gu! Mening kichkina boshim va munchoqday ko'zlarim bor. Sizniki-chi? Qani, ko'rsating!",
+     "intro": "Mening kichkina boshim va munchoqday ko'zlarim bor. Sizniki-chi?",
      "items": [
       {
        "say": "头",
@@ -1591,7 +1591,7 @@
     {
      "name": "Quloq va burun",
      "goal": "Bola 耳朵 va 鼻子 so'zlarini aytib, ko'rsatadi",
-     "intro": "Gu-gu! Tss… eshityapsizmi? Qush sayrayapti! Hidlayapsizmi? Gul hidi! Nima bilan eshitamiz va hidlaymiz?",
+     "intro": "Qush sayrayapti, gul hidi kelyapti. Nima bilan eshitamiz va hidlaymiz?",
      "items": [
       {
        "say": "耳朵",
@@ -1637,7 +1637,7 @@
     {
      "name": "Og'iz va qo'llar",
      "goal": "Bola 嘴巴 va 手 so'zlarini aytib, ko'rsatadi",
-     "intro": "Gu-gu! Qarsak kim chaladi? Qo'llarimiz! Kim tabassum qiladi? Og'zimiz! Qani, jilmaying!",
+     "intro": "Qo'llarimiz qarsak chaladi, og'zimiz tabassum qiladi. Qani, jilmaying!",
      "items": [
       {
        "say": "嘴巴",
@@ -1683,7 +1683,7 @@
     {
      "name": "Oyoqlar",
      "goal": "Bola 腿 va 脚 so'zlarini aytib, ko'rsatadi",
-     "intro": "Gu-gu! Men uchaman, siz esa yurasiz va sakraysiz! Nima bilan? Oyoqlaringiz bilan! Qani, turing!",
+     "intro": "Men uchaman, siz esa oyoqlaringiz bilan yurasiz va sakraysiz! Qani, turing!",
      "items": [
       {
        "say": "腿",
@@ -1812,7 +1812,7 @@
     {
      "name": "Olma va banan",
      "goal": "Bola 苹果 va 香蕉 so'zlarini aytadi",
-     "intro": "Gu-gu! Men savatcha olib keldim. Ichida qizil meva va sariq meva bor. Topdingizmi?",
+     "intro": "Men savatcha olib keldim: ichida qizil meva va sariq meva bor. Topdingizmi?",
      "items": [
       {
        "say": "苹果",
@@ -1856,7 +1856,7 @@
     {
      "name": "Sut va suv",
      "goal": "Bola 牛奶 va 水 so'zlarini aytadi",
-     "intro": "Gu-gu! Chanqadingizmi? Menda oq ichimlik va shaffof ichimlik bor. Qaysi birini ichasiz?",
+     "intro": "Chanqadingizmi? Menda oq ichimlik va shaffof ichimlik bor.",
      "items": [
       {
        "say": "牛奶",
@@ -1900,7 +1900,7 @@
     {
      "name": "Non va tort",
      "goal": "Bola 面包 va 蛋糕 so'zlarini aytadi",
-     "intro": "Gu-gu! Bugun kimningdir tug'ilgan kuni! Dasturxonda non ham, shamli tort ham bor. Puflaymizmi?",
+     "intro": "Bugun tug'ilgan kun! Dasturxonda non ham, shamli tort ham bor.",
      "items": [
       {
        "say": "面包",
@@ -1916,7 +1916,7 @@
        "emoji": "🎂",
        "image": "en34-u8-cake.png",
        "image_prompt": "A birthday cake with candles, cute cartoon, soft flat colors, white background, no text, square",
-       "action": "Shamni puflang: puf-f!",
+       "action": "Shamni puflaganday qiling: puf-f!",
        "rom": "dàngāo"
       }
      ],
@@ -1924,7 +1924,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun",
-       "matn": "Shamlarni sanang: [zh]一、二、三！[/zh] Endi puflang: puf-f! [zh]蛋糕，蛋糕！[/zh] Hammaga ayting: [zh]谢谢！[/zh]",
+       "matn": "Shamlarni sanang: [zh]一、二、三！[/zh] Endi puflaganday qiling: puf-f! [zh]蛋糕，蛋糕！[/zh] Hammaga ayting: [zh]谢谢！[/zh]",
        "doska": "🎂 蛋糕\n🍞 面包",
        "sodda": null,
        "boshqa_usul": null
@@ -1945,7 +1945,7 @@
     {
      "name": "Sharbat va mazali",
      "goal": "Bola 果汁 va 真好吃！ so'zlarini aytadi",
-     "intro": "Gu-gu! Olmadan shirin sharbat qildik! Ichib ko'ramizmi? Juda mazali bo'lsa, xitoylar bir qiziq so'z aytadi!",
+     "intro": "Olmadan shirin sharbat qildik! Juda mazali bo'lsa, xitoylar bir qiziq so'z aytadi.",
      "items": [
       {
        "say": "果汁",

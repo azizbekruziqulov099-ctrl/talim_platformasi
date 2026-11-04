@@ -12,7 +12,7 @@
     {
      "name": "O'n bir va o'n ikki",
      "goal": "Bola 1–10 ni takrorlaydi va 11–14 sonlarini aytadi",
-     "intro": "Bip-bip! Salom, do'stim! Men — robot Kabu. Sen o'ngacha sanashni bilasan: [ja]いち、に… じゅう[/ja]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
+     "intro": "Salom, do'stim! Sen o'ngacha sanashni bilasan: [ja]いち、に… じゅう[/ja]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
      "items": [
       {
        "say": "じゅういち",
@@ -83,8 +83,17 @@
     {
      "name": "O'n beshdan o'n yettigacha",
      "goal": "Bola 15, 16, 17 sonlarini aytadi",
-     "intro": "Bip-bip! Men bog'da gullarni sanayapman. O'n to'rtta… undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz.",
+     "intro": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Qani, bilib olamiz.",
      "items": [
+      {
+       "say": "じゅうよん",
+       "uz": "o'n to'rt",
+       "emoji": "1️⃣4️⃣",
+       "image": "en67-u1-fourteen.png",
+       "image_prompt": "Fourteen small balloons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "いもうとは にんぎょうを じゅうよんこ もっているよ。",
+       "rom": "jūyon"
+      },
       {
        "say": "じゅうご",
        "uz": "o'n besh",
@@ -136,6 +145,16 @@
      "goal": "Bola 18, 19, 20 ni aytadi va 1–20 gacha sanaydi",
      "intro": "Bip-bip! Bugun katta sinov: yigirmagacha sanay olsak, robot Kabu bizga yigirmata yulduzcha beradi! Tayyormisan?",
      "items": [
+      {
+       "say": "じゅうなな",
+       "uz": "o'n yetti",
+       "emoji": "1️⃣7️⃣",
+       "image": "en67-u1-seventeen.png",
+       "image_prompt": "Seventeen colorful buttons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "じゅうななまで かぞえられるよ！",
+       "action_en": "じゅうななかい てを たたいて！",
+       "rom": "jūnana"
+      },
       {
        "say": "じゅうはち",
        "uz": "o'n sakkiz",
@@ -377,6 +396,15 @@
      "intro": "Bip-bip! Bir haftada yetti kun bor, har birining nomi bor! Men dushanba kuni bog'chaga uchaman. Qani, kunlarni yaponcha o'rganamiz.",
      "items": [
       {
+       "say": "いっしゅうかん",
+       "uz": "hafta",
+       "emoji": "🗓️",
+       "image": "en67-u2-week.png",
+       "image_prompt": "A calendar page showing one week with seven boxes, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "いっしゅうかんは なのかだよ。",
+       "rom": "isshūkan"
+      },
+      {
        "say": "げつようび",
        "uz": "dushanba",
        "emoji": "🗓️1️⃣",
@@ -494,7 +522,7 @@
     {
      "name": "Bugun qaysi kun?",
      "goal": "Bola «きょうは なんようび？» deb so'raydi va «きょうは…» bilan javob beradi",
-     "intro": "Bip-bip! Men ertalab uyg'onib, «bugun qaysi kun?» deb o'yladim. Taqvimga qaradim — ha, bugun juma! Qani, buni yaponcha so'rashni o'rganamiz.",
+     "intro": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Qani, buni yaponcha so'rashni o'rganamiz.",
      "items": [
       {
        "say": "きょうは なんようび？",
@@ -515,13 +543,13 @@
        "rom": "Kyō wa getsuyōbi."
       },
       {
-       "say": "しゅう",
+       "say": "いっしゅうかん",
        "uz": "hafta",
        "emoji": "🗓️",
        "image": "en67-u2-week.png",
        "image_prompt": "A calendar page showing one week with seven boxes, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "いっしゅうかんは なのかだよ。",
-       "rom": "shū"
+       "rom": "isshūkan"
       },
       {
        "say": "あした",
@@ -565,7 +593,7 @@
     {
      "name": "Tong, kech va tun",
      "goal": "Bola あさ, ゆうがた, よる, しゅうまつ so'zlarini biladi",
-     "intro": "Bip-bip! Tongda men don teraman, kechqurun uyamga qaytaman, tunda esa uxlayman. Dam olish kunlari-chi? O'ynayman! Sening kuning qanday o'tadi?",
+     "intro": "Tongda men uyg'onaman, kechqurun uyga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sening kuning qanday o'tadi?",
      "items": [
       {
        "say": "あさ",
@@ -770,7 +798,7 @@
        "emoji": "🧑‍🍳",
        "image": "en67-u3-cook.png",
        "image_prompt": "A cheerful cook in a white hat stirring a pot, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qozonni aralashtir!",
+       "action": "Qozonni aralashtirganday qil!",
        "sentence": "コックさんは おいしい スープを つくるよ。",
        "action_en": "スープを かきまぜて！",
        "rom": "kokku-san"
@@ -890,7 +918,7 @@
     {
      "name": "Kim bo'lmoqchisan?",
      "goal": "Bola «かれは / かのじょは …です» deydi va orzusidagi kasbni aytadi",
-     "intro": "Bip-bip! Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Sen-chi? Kim bo'lmoqchisan? Qani, orzularimizni yaponcha aytamiz.",
+     "intro": "Katta bo'lsam, pochtachi bo'lmoqchiman — xat tashiyman! Sen kim bo'lmoqchisan? Qani, orzularimizni yaponcha aytamiz.",
      "items": [
       {
        "say": "かれは おいしゃさんです。",
@@ -961,7 +989,7 @@
     {
      "name": "Kim qayerda ishlaydi?",
      "goal": "Bola びょういん, がっこう, ぼくじょう, おみせ so'zlarini biladi",
-     "intro": "Bip-bip! Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Qani, ish joylarini yaponcha o'rganamiz.",
+     "intro": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Qani, ish joylarini yaponcha o'rganamiz.",
      "items": [
       {
        "say": "びょういん",
@@ -1137,7 +1165,7 @@
     {
      "name": "Mashina va avtobus",
      "goal": "Bola くるま, バス, タクシー, じてんしゃ so'zlarini biladi",
-     "intro": "Bip-bip! Ko'chada qanday shovqin! Biip-biip! Men tepadan qarayman: mashinalar, avtobuslar, velosipedlar! Qani, ularni yaponcha nomlaymiz.",
+     "intro": "Ko'chada qanday shovqin: biip-biip! Tepadan qarayman — mashinalar, avtobuslar, velosipedlar! Qani, ularni yaponcha nomlaymiz.",
      "items": [
       {
        "say": "くるま",
@@ -1196,7 +1224,7 @@
     {
      "name": "Poyezd va samolyot",
      "goal": "Bola でんしゃ, ひこうき, ふね, ボート so'zlarini biladi",
-     "intro": "Bip-bip! Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi, samolyotdami? Dengizda kemada suzsam-chi? Qani, o'rganamiz!",
+     "intro": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Qani, o'rganamiz!",
      "items": [
       {
        "say": "でんしゃ",
@@ -1269,7 +1297,7 @@
     {
      "name": "Yordam mashinalari",
      "goal": "Bola しょうぼうしゃ, きゅうきゅうしゃ, パトカー, ヘリコプター so'zlarini biladi",
-     "intro": "Bip-bip! Vi-u, vi-u! Qizil mashina shoshib ketyapti — qayerdadir yong'in! Oq mashina-chi? U bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz.",
+     "intro": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Qani, bu mashinalarni o'rganamiz.",
      "items": [
       {
        "say": "しょうぼうしゃ",
@@ -1341,7 +1369,7 @@
     {
      "name": "Maktabga qanday borasan?",
      "goal": "Bola «がっこうへは どうやって いくの？» savoliga javob beradi, «とまれ！» belgisini biladi",
-     "intro": "Bip-bip! Men bog'chaga uchib boraman! Sen-chi? Avtobusdami, mashinadami yoki piyodami? Qani, buni yaponcha so'rash va aytishni o'rganamiz.",
+     "intro": "Men bog'chaga uchib boraman! Sen-chi — avtobusdami, mashinadami yoki piyodami? Qani, buni yaponcha so'rash va aytishni o'rganamiz.",
      "items": [
       {
        "say": "がっこうへは どうやって いくの？",
@@ -1410,7 +1438,7 @@
        "q_en": "がっこうへは どうやって いく？どの こたえが ただしい？"
       }
      ],
-     "intro_en": "おはよう、みんな！がっこうへは どうやって いく？バス？くるま？それとも あるいて？おはなし しよう！"
+     "intro_en": "おはよう、みんな！がっこうへは どうやって いく？バス、くるま、それとも あるいて？おはなし しよう！"
     }
    ],
    "scenarios": [
@@ -1533,7 +1561,7 @@
     {
      "name": "Kitob va qalam",
      "goal": "Bola ほん, えんぴつ, ペン, ランドセル so'zlarini biladi",
-     "intro": "Bip-bip! Tez orada sen maktabga borasan! Portfelga nimalarni solamiz? Kitob, qalam… Qani, maktab narsalarini yaponcha o'rganamiz.",
+     "intro": "Tez orada sen maktabga borasan! Portfelga nimalarni solamiz — kitob, qalam? Qani, maktab narsalarini yaponcha o'rganamiz.",
      "items": [
       {
        "say": "ほん",
@@ -1741,7 +1769,7 @@
     {
      "name": "Tingla va qara!",
      "goal": "Bola きいて, みて, しずかに, てを あげて buyruqlarini tushunadi",
-     "intro": "Bip-bip! Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan. Qani, o'rganamiz!",
+     "intro": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsang — qo'l ko'tarasan.",
      "items": [
       {
        "say": "きいて！",
@@ -1932,7 +1960,7 @@
     {
      "name": "Suza olasanmi?",
      "goal": "Bola «…できる？» deb so'raydi va «うん、できるよ / ううん、できない» deb javob beradi",
-     "intro": "Bip-bip! Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Sen-chi? Bugun yaponcha «qila olasanmi?» deb so'rashni o'rganamiz.",
+     "intro": "Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Sen-chi? Bugun yaponcha «qila olasanmi» deb so'rashni o'rganamiz.",
      "items": [
       {
        "say": "およげる？",
@@ -1964,6 +1992,17 @@
        "action": "Boshingni «yo'q» deb chayqat!",
        "sentence": "とべる？ううん、とべない。",
        "rom": "Uun, dekinai."
+      },
+      {
+       "say": "およげるよ。",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "en56-u8-can-swim.png",
+       "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaring bilan suzganday qil!",
+       "sentence": "なつは およげるよ。",
+       "action_en": "さかなみたいに およいで！",
+       "rom": "Oyogeru yo."
       }
      ],
      "extra": [
@@ -2086,7 +2125,7 @@
     {
      "name": "Hayvonlar nima qila oladi?",
      "goal": "Bola «さかなは およげる» kabi gaplarni aytadi",
-     "intro": "Bip-bip! Hayvonot bog'ida hamma o'z ishini qiladi: baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz.",
+     "intro": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Qani, gapiramiz.",
      "items": [
       {
        "say": "さかなは およげる。",
@@ -2105,20 +2144,20 @@
        "image": "en67-u6-bird-fly.png",
        "image_prompt": "A small bird flying in the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoq!",
-       "sentence": "とりは とべる。ぼくも とべるよ！",
+       "sentence": "とりは とべる。わたしは とべないよ！",
        "action_en": "とりみたいに とんで！",
        "rom": "Tori wa toberu."
       },
       {
-       "say": "かえるは とべる。",
+       "say": "かえるは ジャンプ できる。",
        "uz": "qurbaqa sakray oladi",
        "emoji": "🐸",
        "image": "en67-u6-frog-jump.png",
        "image_prompt": "A green frog jumping, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qurbaqaday sakra!",
-       "sentence": "かえるは とても たかく とべるよ。",
+       "sentence": "かえるは とても たかく ジャンプ できるよ。",
        "action_en": "かえるみたいに ジャンプ！",
-       "rom": "Kaeru wa toberu."
+       "rom": "Kaeru wa janpu dekiru."
       },
       {
        "say": "へびは あるけない。",
@@ -2149,7 +2188,7 @@
         "🐦 とりは とべる。",
         "🐟 さかなは およげる。",
         "🐍 へびは あるけない。",
-        "🐸 かえるは とべる。"
+        "🐸 かえるは ジャンプ できる。"
        ],
        "answer": 0,
        "why": "To'g'ri! Qush ucha oladi — [ja]とりは とべる。[/ja]",
@@ -2161,7 +2200,7 @@
     {
      "name": "Yordam berasanmi?",
      "goal": "Bola «てつだって くれる？», «もちろん！», «あそぼう！», «よく できました！» iboralarini ishlatadi",
-     "intro": "Bip-bip! Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi. Qani, bu so'zlarni o'rganamiz!",
+     "intro": "Men katta qutini ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi.",
      "items": [
       {
        "say": "てつだって くれる？",
@@ -2348,7 +2387,7 @@
     {
      "name": "Do'konga kirdik",
      "goal": "Bola «なにに しますか？», «…を ください», «はい、どうぞ», «ありがとう» iboralarini ishlatadi",
-     "intro": "Bip-bip! Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz? Qani, o'rganamiz!",
+     "intro": "Bugun men sotuvchiman, sen esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?",
      "items": [
       {
        "say": "なにに しますか？",
@@ -2423,6 +2462,15 @@
      "intro": "Bip-bip! Do'konga yangi bananlar keldi! Sotuvchi so'raydi: nechta kerak? Qani, sonlarni eslab, xarid qilamiz.",
      "items": [
       {
+       "say": "バナナ",
+       "uz": "bananlar",
+       "emoji": "🍌",
+       "image": "en45-u7-banana.png",
+       "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square",
+       "sentence": "みて！バナナは きいろだよ。",
+       "rom": "banana"
+      },
+      {
        "say": "バナナは いくつ？",
        "uz": "nechta banan?",
        "emoji": "🍌❓",
@@ -2482,7 +2530,7 @@
     {
      "name": "Sabzavot rastasi",
      "goal": "Bola にんじん, トマト, じゃがいも, たまご so'zlarini biladi",
-     "intro": "Bip-bip! Bozorning sabzavot rastasiga keldik. Qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!",
+     "intro": "Bozorning sabzavot rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Qani, xarid qilamiz!",
      "items": [
       {
        "say": "にんじん",
@@ -2554,6 +2602,15 @@
      "goal": "Bola かご, おかね, «さようなら、またね！» iboralarini ishlatib to'liq xarid o'ynaydi",
      "intro": "Bip-bip! Xarid uchun savat va pul kerak! Qani, oxirgi marta to'liq do'kon o'yinini o'ynaymiz: salomlashamiz, so'raymiz, to'laymiz va xayrlashamiz.",
      "items": [
+      {
+       "say": "おみせ",
+       "uz": "do'kon",
+       "emoji": "🏪",
+       "image": "en67-u3-shop.png",
+       "image_prompt": "A small colorful shop with an awning, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "おみせで パンを かうよ。",
+       "rom": "omise"
+      },
       {
        "say": "かご",
        "uz": "savat",
@@ -2742,7 +2799,7 @@
        "image": "en67-u8-my-name-is.png",
        "image_prompt": "A girl wearing a name badge and smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "こんにちは！わたしの なまえは マリカです。",
-       "rom": "Watashi no namae wa Malika."
+       "rom": "Watashi no namae wa Marika."
       },
       {
        "say": "なんさい？",
@@ -2800,13 +2857,23 @@
        "q_en": "「なんさい？」— どういう いみ？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくの なまえは カブタル。きみの なまえは？なんさい？おはなし しよう！"
+     "intro_en": "こんにちは、みんな！ぼくの なまえは カブタル。きみの なまえは？なんさい？"
     },
     {
      "name": "Qayerda yashayman",
      "goal": "Bola qayerda yashashini va qayerdan ekanini aytadi",
      "intro": "Bip-bip! Men Samarqandda, Registon yonidagi daraxtda yashayman! Sen qayerda yashaysan? Qani, shahrimiz va vatanimiz haqida yaponcha gapiramiz.",
      "items": [
+      {
+       "say": "いえ",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "これは ぼくの いえ。",
+       "action_en": "くうちゅうに おうちを かいて！",
+       "rom": "ie"
+      },
       {
        "say": "どこに すんでいるの？",
        "uz": "qayerda yashaysan?",
@@ -2852,7 +2919,7 @@
     {
      "name": "Men yaxshi ko'raman",
      "goal": "Bola sevimli ovqati, rangi va o'yinini aytadi, «なにが すき？» deb so'raydi",
-     "intro": "Bip-bip! Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni yaponcha aytamiz.",
+     "intro": "Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Sen-chi? Qani, sevimli narsalarimizni yaponcha aytamiz.",
      "items": [
       {
        "say": "なにが すき？",
@@ -3142,6 +3209,15 @@
        "rom": "Neko ga suki."
       },
       {
+       "say": "いぬが すき。",
+       "uz": "men itlarni yaxshi ko'raman",
+       "emoji": "🐶",
+       "image": "en56-u8-have-dog.png",
+       "image_prompt": "A child walking a happy dog, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "いぬが すき。おもしろいんだよ。",
+       "rom": "Inu ga suki."
+      },
+      {
        "say": "アイスクリームが すき。",
        "uz": "men muzqaymoqni yaxshi ko'raman",
        "emoji": "🍦❤️",
@@ -3177,12 +3253,12 @@
        "q_en": "「ねこが すき」は どういう いみ？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは りんごが すき。ともだちも だいすき！きみは なにが すき？"
+     "intro_en": "ぼくは りんごが すき。ともだちも だいすき！きみは なにが すき？"
     },
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «…は すきじゃない» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Bip-bip! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — zang bosib qolaman! Senga nima yoqmaydi? Qani, aytamiz.",
      "items": [
       {
        "say": "たまねぎは すきじゃない。",
@@ -3212,6 +3288,16 @@
        "image_prompt": "A child hiding from a small cartoon spider, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "くもは すきじゃない。こわいもん！",
        "rom": "Kumo wa suki ja nai."
+      },
+      {
+       "say": "さむいのは すきじゃない。",
+       "uz": "men sovuqni yoqtirmayman",
+       "emoji": "🥶",
+       "image": "en56-u6-cold.png",
+       "image_prompt": "A shivering child in the cold, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Sovqotganday titra: brr!",
+       "sentence": "さむいのは すきじゃない。ブルブル！",
+       "rom": "Samui no wa suki ja nai."
       }
      ],
      "extra": [
@@ -3239,7 +3325,7 @@
        "q_en": "おとこのこが たまねぎを みて いやな かお。なんて いう？"
       }
      ],
-     "intro_en": "やあ！すきな ものは たくさん あるね。でも すきじゃない ものも あるよ。ぼくは あめが すきじゃない！"
+     "intro_en": "すきな ものは たくさん あるね。でも すきじゃない ものも あるよ。ぼくは あめが すきじゃない！"
     },
     {
      "name": "Senga yoqadimi?",
@@ -3254,6 +3340,15 @@
        "image_prompt": "A curious child asking a friend with a thinking face, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "バナナは すき？",
        "rom": "… wa suki?"
+      },
+      {
+       "say": "りんごは すき？",
+       "uz": "senga olma yoqadimi?",
+       "emoji": "🍎",
+       "image": "en56-u7-like-apples.png",
+       "image_prompt": "A happy child hugging a big red apple, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "りんごは すき？うん、すき！",
+       "rom": "Ringo wa suki?"
       },
       {
        "say": "うん、すき。",
@@ -3303,7 +3398,7 @@
        "q_en": "「アイスクリームは すき？」きみは すきです。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ともだちに きいて みよう。ケーキは すき？うん、すき！"
+     "intro_en": "ともだちに きいて みよう。ケーキは すき？うん、すき！"
     },
     {
      "name": "Eng sevimli narsam",
@@ -3339,6 +3434,16 @@
        "sentence": "ママが だいだいすき。",
        "action_en": "ぎゅっと だきしめて！",
        "rom": "Mama ga daisuki."
+      },
+      {
+       "say": "パパが だいすき。",
+       "uz": "men dadamni yaxshi ko'raman",
+       "emoji": "👨",
+       "image": "en56-u2-my-dad.png",
+       "image_prompt": "A smiling father holding a child's hand, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Dadangni quchoqla!",
+       "sentence": "パパが だいだいすき。",
+       "rom": "Papa ga daisuki."
       }
      ],
      "extra": [
@@ -3456,7 +3561,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «…を もってるよ» bilan o'zida bor narsani aytadi",
-     "intro": "Bip-bip! Mening kichkina uyam va bitta qizil to'pim bor. Senda nima bor? Mushuk, it yoki qo'g'irchoq? Qani, yaponcha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Senda nima bor — mushuk, it yoki qo'g'irchoq? Qani, yaponcha aytamiz!",
      "items": [
       {
        "say": "ねこを かってるよ。",
@@ -3521,12 +3626,12 @@
        "q_en": "おんなのこが いぬを みせているよ。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくには すと ちいさな ともだちが いるよ。きみには なにが ある？おしえて！"
+     "intro_en": "ぼくには すと ちいさな ともだちが いるよ。きみには なにが ある？おしえて！"
     },
     {
      "name": "Men qila olaman",
      "goal": "Bola «…できるよ» bilan qila oladigan harakatini aytadi",
-     "intro": "Bip-bip! Men ucha olaman! Sen-chi? Sen yugura olasan, sakray olasan, qo'shiq ayta olasan! Qani, buni yaponcha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Sen esa yugura, sakray va qo'shiq ayta olasan. Qani, buni yaponcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "ジャンプ できるよ。",
@@ -3598,7 +3703,7 @@
        "q_en": "「およげるよ。」どの えかな？"
       }
      ],
-     "intro_en": "やあ！ぼくは とべるよ！きみは なにが できる？いっしょに ジャンプして、はしって、うたおう！"
+     "intro_en": "ぼくは とべるよ！きみは なにが できる？いっしょに ジャンプして、はしって、うたおう！"
     },
     {
      "name": "Qila olaman, qila olmayman",
@@ -3645,7 +3750,7 @@
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqib ko'r — uchmaysan!",
-       "sentence": "ぼくは おとこのこ。とべないよ。",
+       "sentence": "とりじゃ ないから、とべないよ。",
        "action_en": "うでを パタパタ して！",
        "rom": "Tobenai yo."
       }
@@ -3675,7 +3780,7 @@
        "q_en": "おとこのこが うでを パタパタ。でも とべない。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、みんな！ぼくは とべるけど、およげない。きみたちは おどれるし、えも かけるね！みて みよう。"
+     "intro_en": "ぼくは とべるけど、およげない。きみたちは おどれるし、えも かけるね！みて みよう。"
     },
     {
      "name": "Men endi kattaman!",
@@ -3750,7 +3855,7 @@
        "q_en": "なんさい？きみは ごさい。なんて いう？"
       }
      ],
-     "intro_en": "こんにちは、おおきく なった ともだち！きみたちは ごさい。にほんごの ことばを たくさん しっているね。とても うれしいよ！"
+     "intro_en": "こんにちは、おおきく なった ともだち！きみたちは ごさいで、にほんごの ことばを たくさん しっているね。とても うれしいよ！"
     }
    ],
    "scenarios": [

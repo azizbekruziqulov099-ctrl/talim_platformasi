@@ -12,7 +12,7 @@
     {
      "name": "Salom va rahmat",
      "goal": "Bola tanish salomlashish iboralarini eslaydi va Au revoir ! iborasini o'rganadi",
-     "intro": "Salom, bolajonlar! Men — Kabutar qushcha. Gu-gu! Yozda siz o'sdingiz, men ham o'sdim! Keling, avval eski do'stlarimiz — sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
+     "intro": "Salom, bolajonlar! Yozda siz ham, men ham o'sdik. Avval sehrli so'zlarni eslaymiz, keyin yangilarini o'rganamiz.",
      "items": [
       {
        "say": "Bonjour !",
@@ -63,7 +63,7 @@
     {
      "name": "Mening ismim",
      "goal": "Bola Comment tu t'appelles ? savoliga Je m'appelle… deb javob beradi",
-     "intro": "Gu-gu! Mening ismim — Kabutar qushcha. Sizning ismingiz-chi? Fransuz bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
+     "intro": "Mening ismim — Kabutar qushcha, sizning ismingiz-chi? Fransuz bolalari bir-biridan ismini qanday so'raydi? Bugun bilib olamiz!",
      "items": [
       {
        "say": "Comment tu t'appelles ?",
@@ -79,6 +79,13 @@
        "image": "en45-u1-my-name-is.png",
        "image_prompt": "A proud child pointing to self with a name tag without letters, cute cartoon, soft flat colors, white background, no text, square",
        "action": "Qo'lingizni ko'ksingizga qo'ying!"
+      },
+      {
+       "say": "Enchanté !",
+       "uz": "tanishganimdan xursandman!",
+       "emoji": "🤝",
+       "image": "en67-u8-nice-to-meet.png",
+       "image_prompt": "Two children shaking hands and smiling, cute cartoon for kids, soft flat colors, white background, no text, square"
       }
      ],
      "extra": [
@@ -106,7 +113,7 @@
     {
      "name": "Qalaysan?",
      "goal": "Bola Comment ça va ? savoliga Ça va bien ! deb javob beradi",
-     "intro": "Gu-gu! Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Fransuzcha qanday so'raymiz? Tinglang!",
+     "intro": "Ertalab do'stimizni ko'rsak, salom beramiz va holini so'raymiz. Fransuzcha qanday so'raymiz? Tinglang!",
      "items": [
       {
        "say": "Comment ça va ?",
@@ -156,7 +163,7 @@
     {
      "name": "To'rt rangni eslaymiz",
      "goal": "Bola rouge, bleu, jaune, vert ranglarini eslaydi va ajratadi",
-     "intro": "Gu-gu! Mening sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysizmi? Qani, bir-bir chiqaramiz!",
+     "intro": "Sehrli bo'yoq qutim yana ochildi! Birinchi to'rtta rangni eslaysizmi? Qani, bir-bir chiqaramiz!",
      "items": [
       {
        "say": "rouge",
@@ -351,7 +358,7 @@
     {
      "name": "Jigarrang, qora, oq",
      "goal": "Bola marron, noir, blanc ranglarini ajratadi",
-     "intro": "Gu-gu! Ayiqcha qanday rangda? Tun-chi? Qor-chi? Bugun uchta yangi rangni o'rganamiz!",
+     "intro": "Ayiqcha qanday rangda? Tun-chi, qor-chi? Bugun uchta yangi rangni o'rganamiz!",
      "items": [
       {
        "say": "marron",
@@ -400,7 +407,7 @@
     {
      "name": "Kulrang va kamalak",
      "goal": "Bola gris so'zini va C'est de quelle couleur ? savolini o'rganadi, 11 rangni takrorlaydi",
-     "intro": "Gu-gu! Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni o'rganamiz va rang haqida so'rashni bilib olamiz.",
+     "intro": "Yomg'irdan keyin osmonda kamalak chiqdi! Unda qancha rang bor? Bugun oxirgi rangni va rang haqida so'rashni o'rganamiz.",
      "items": [
       {
        "say": "gris",
@@ -528,7 +535,7 @@
     {
      "name": "Bir, ikki, uch",
      "goal": "Bola un, deux, trois sonlarini aytadi va sanaydi",
-     "intro": "Gu-gu! Men don yig'yapman. Yordam berasizmi? Donlarni fransuzcha sanaymiz. Barmoqlaringizni tayyorlang!",
+     "intro": "Men don yig'yapman, yordam berasizmi? Donlarni fransuzcha sanaymiz. Barmoqlaringizni tayyorlang!",
      "items": [
       {
        "say": "un",
@@ -580,7 +587,7 @@
     {
      "name": "To'rt, besh, olti",
      "goal": "Bola quatre, cinq, six sonlarini aytadi va oltigacha sanaydi",
-     "intro": "Gu-gu! Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak-chi? Olti! Keling, sanashni davom ettiramiz.",
+     "intro": "Bir qo'lda nechta barmoq bor? Besh! Bittasini qo'shsak — olti!",
      "items": [
       {
        "say": "quatre",
@@ -630,7 +637,7 @@
     {
      "name": "Yetti va sakkiz",
      "goal": "Bola sept, huit sonlarini aytadi va sakkizgacha sanaydi",
-     "intro": "Gu-gu! Kamalakda nechta rang bor? Yettita! Sakkizoyoqda nechta oyoq bor? Sakkizta! Qiziq-a?",
+     "intro": "Kamalakda yettita rang bor. Sakkizoyoqda esa sakkizta oyoq! Qiziq-a?",
      "items": [
       {
        "say": "sept",
@@ -645,6 +652,13 @@
        "emoji": "8️⃣",
        "image": "en45-u3-eight.png",
        "image_prompt": "A cute octopus with eight arms and a big number eight, cute cartoon, soft flat colors, white background, no text, square"
+      },
+      {
+       "say": "On compte !",
+       "uz": "qani, sanaymiz!",
+       "emoji": "🧮",
+       "image": "en67-u1-lets-count.png",
+       "image_prompt": "A colorful abacus, cute cartoon for kids, soft flat colors, white background, no text, square"
       }
      ],
      "extra": [
@@ -672,7 +686,7 @@
     {
      "name": "To'qqiz, o'n. Nechta?",
      "goal": "Bola neuf, dix sonlarini va Combien ? savolini o'rganadi, o'ngacha sanaydi",
-     "intro": "Gu-gu! Ikki qo'limizda nechta barmoq bor? Keling, o'ngacha sanaymiz! Yana bir yangi savol ham o'rganamiz: nechta?",
+     "intro": "Ikki qo'limizda nechta barmoq bor? Keling, o'ngacha sanaymiz va «nechta» deb so'rashni o'rganamiz!",
      "items": [
       {
        "say": "neuf",
@@ -812,7 +826,7 @@
     {
      "name": "Sher, yo'lbars, ayiq",
      "goal": "Bola lion, tigre, ours so'zlarini aytadi",
-     "intro": "Gu-gu! Bugun hayvonot bog'iga sayohat! Diqqat: kimdir «rrr!» deb bo'kiryapti. Kim ekan? Sekin boramiz…",
+     "intro": "Bugun hayvonot bog'iga sayohat! Kimdir «rrr» deb bo'kiryapti. Kim ekan?",
      "items": [
       {
        "say": "le lion",
@@ -863,7 +877,7 @@
     {
      "name": "Maymun, fil, jirafa",
      "goal": "Bola singe, éléphant, girafe so'zlarini aytadi",
-     "intro": "Gu-gu! Daraxtda kim banan yeyapti? Kimning burni uzun? Kimning bo'yni osmonga yetadi? Qani, topamiz!",
+     "intro": "Daraxtda kim banan yeyapti? Kimning burni uzun, kimning bo'yni osmonga yetadi? Qani, topamiz!",
      "items": [
       {
        "say": "le singe",
@@ -871,7 +885,7 @@
        "emoji": "🐵",
        "image": "en45-u4-monkey.png",
        "image_prompt": "A playful monkey holding a banana, cute cartoon, soft flat colors, white background, no text, square",
-       "action": "Maymunday qichishing!"
+       "action": "Maymunday qashining!"
       },
       {
        "say": "l'éléphant",
@@ -906,7 +920,7 @@
     {
      "name": "Zebra, timsoh, ilon",
      "goal": "Bola zèbre, crocodile, serpent so'zlarini aytadi",
-     "intro": "Gu-gu! Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan? Kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
+     "intro": "Kim yo'l-yo'l ko'ylak kiyibdi? Kim daryoda yashiringan, kim «ssss» deb sudralyapti? Ehtiyot bo'lamiz!",
      "items": [
       {
        "say": "le zèbre",
@@ -957,7 +971,7 @@
     {
      "name": "Tulki, bo'ri, boyo'g'li",
      "goal": "Bola renard, loup, hibou so'zlarini aytadi",
-     "intro": "Gu-gu! O'rmonga kirdik. Kechasi kim «uhu» deydi? Kim oyga qarab uvlaydi? Kim ayyor? Sekin tinglang!",
+     "intro": "O'rmonga kirdik. Kechasi kim «uhu» deydi, kim oyga qarab uvlaydi, kim ayyor? Sekin tinglang!",
      "items": [
       {
        "say": "le renard",
@@ -1087,7 +1101,7 @@
     {
      "name": "Ona, ota, oila",
      "goal": "Bola mère, père, famille so'zlarini aytadi",
-     "intro": "Gu-gu! Men uyamdagi oilamning suratini olib keldim. Sizning oilangizda kim bor? Bugun oilamiz haqida gapiramiz!",
+     "intro": "Men oilamning suratini olib keldim. Sizning oilangizda kim bor? Bugun oila haqida gapiramiz!",
      "items": [
       {
        "say": "la mère",
@@ -1136,7 +1150,7 @@
     {
      "name": "Opa-singil, aka-uka",
      "goal": "Bola sœur, frère, bébé so'zlarini aytadi",
-     "intro": "Gu-gu! Sizning akangiz yoki opangiz bormi? Balki kichkina ukangiz bordir? Fransuzcha qanday aytamiz?",
+     "intro": "Sizning akangiz yoki opangiz bormi? Balki kichkina ukangiz bordir? Fransuzcha qanday aytamiz?",
      "items": [
       {
        "say": "la sœur",
@@ -1177,7 +1191,7 @@
     {
      "name": "Buvi, bobo. Bu mening…",
      "goal": "Bola mamie, papi so'zlarini va C'est mon/ma… iborasini o'rganadi",
-     "intro": "Gu-gu! Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz? Tinglang!",
+     "intro": "Bayramda buvijon va bobojon keldi! Ularni do'stlarimga tanishtiraman. Qanday tanishtiramiz?",
      "items": [
       {
        "say": "mamie",
@@ -1316,7 +1330,7 @@
     {
      "name": "Bosh, yelka, tizza",
      "goal": "Bola tête, épaules, genoux, orteils so'zlarini qo'shiq bilan o'rganadi",
-     "intro": "Gu-gu! Fransuz bolalarining eng mashhur qo'shig'ini bilasizmi? Unda bosh, yelka, tizza va oyoq barmoqlari bor. Qani, turing!",
+     "intro": "Fransuz bolalarining mashhur qo'shig'ida bosh, yelka, tizza va oyoq barmoqlari bor. Qani, turing!",
      "items": [
       {
        "say": "la tête",
@@ -1376,7 +1390,7 @@
     {
      "name": "Ko'z, quloq, og'iz, burun",
      "goal": "Bola yeux, oreilles, bouche, nez so'zlarini aytadi",
-     "intro": "Gu-gu! Qo'shiqning ikkinchi qismi yuzimiz haqida! Ko'zlar, quloqlar, og'iz va burun. Barmog'ingizni tayyorlang!",
+     "intro": "Qo'shiqning ikkinchi qismi yuzimiz haqida: ko'zlar, quloqlar, og'iz va burun. Barmog'ingizni tayyorlang!",
      "items": [
       {
        "say": "les yeux",
@@ -1484,7 +1498,7 @@
     {
      "name": "Touche ton nez !",
      "goal": "Bola Touche ton/ta…, Tape dans tes mains !, Tape des pieds ! buyruqlarini tushunib bajaradi",
-     "intro": "Gu-gu! Bugun «Kabutar aytdi» o'yinini o'ynaymiz! Men fransuzcha buyruq beraman, siz bajarasiz. Diqqat bilan tinglang!",
+     "intro": "Bugun «Kabutar aytdi» o'yinini o'ynaymiz! Men fransuzcha buyruq beraman, siz bajarasiz. Diqqat bilan tinglang!",
      "items": [
       {
        "say": "Touche ton nez !",
@@ -1615,7 +1629,7 @@
     {
      "name": "Olma, banan, apelsin",
      "goal": "Bola pomme, banane, orange so'zlarini aytadi",
-     "intro": "Gu-gu! Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz. Qiziq: bitta meva rangning nomi bilan atalar ekan!",
+     "intro": "Bozorga boramiz! Savatchamizga qizil, sariq va to'q sariq mevalar solamiz.",
      "items": [
       {
        "say": "la pomme",
@@ -1632,7 +1646,7 @@
        "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square"
       },
       {
-       "say": "orange",
+       "say": "l'orange",
        "uz": "apelsin",
        "emoji": "🍊",
        "image": "en45-u7-orange-fruit.png",
@@ -1651,20 +1665,20 @@
      ],
      "tests": [
       {
-       "q": "Qaysi biri [fr]orange[/fr] mevasi?",
+       "q": "Qaysi biri [fr]l'orange[/fr] mevasi?",
        "options": [
         "🍊 l'orange",
         "🍌 la banane"
        ],
        "answer": 0,
-       "why": "Ofarin! [fr]Orange[/fr] — apelsin. Rangi ham [fr]orange[/fr]!"
+       "why": "Ofarin! [fr]L'orange[/fr] — apelsin. Rangi ham [fr]orange[/fr]!"
       }
      ]
     },
     {
      "name": "Uzum, limon, qulupnay",
      "goal": "Bola raisin, citron, fraise so'zlarini aytadi",
-     "intro": "Gu-gu! Bog'da nima pishibdi? Shingil-shingil uzum, nordon limon va shirin qulupnay! Qaysi biri nordon ekan?",
+     "intro": "Bog'da shingil-shingil uzum, nordon limon va shirin qulupnay pishibdi! Qaysi biri nordon ekan?",
      "items": [
       {
        "say": "le raisin",
@@ -1763,7 +1777,7 @@
     {
      "name": "Men olmani yaxshi ko'raman",
      "goal": "Bola concombre so'zini va J'aime… iborasini o'rganadi",
-     "intro": "Gu-gu! Men donni yaxshi ko'raman. Siz nimani yaxshi ko'rasiz? Bugun buni fransuzcha aytishni o'rganamiz!",
+     "intro": "Men donni yaxshi ko'raman. Siz nimani yaxshi ko'rasiz? Bugun buni fransuzcha aytishni o'rganamiz!",
      "items": [
       {
        "say": "le concombre",
@@ -1903,7 +1917,7 @@
     {
      "name": "Futbolka, ko'ylak, shim",
      "goal": "Bola tee-shirt, robe, pantalon so'zlarini aytadi",
-     "intro": "Gu-gu! Ertalab turib nima kiyamiz? Kabutar qushchaning shkafini ochamiz. Voy, qancha kiyim!",
+     "intro": "Ertalab turib nima kiyamiz? Shkafni ochamiz — voy, qancha kiyim!",
      "items": [
       {
        "say": "le tee-shirt",
@@ -1952,7 +1966,7 @@
     {
      "name": "Shapka, tufli, paypoq",
      "goal": "Bola bonnet, chaussures, chaussettes so'zlarini aytadi",
-     "intro": "Gu-gu! Tashqariga sayrga chiqamiz! Boshga nima kiyamiz? Oyoqqa-chi? Avval paypoq, keyin tufli!",
+     "intro": "Sayrga chiqamiz! Boshga nima kiyamiz, oyoqqa-chi? Avval paypoq, keyin tufli!",
      "items": [
       {
        "say": "le bonnet",
@@ -2058,7 +2072,7 @@
     {
      "name": "Bu nima? Bu — koptok",
      "goal": "Bola Qu'est-ce que c'est ? savoliga C'est un/une… deb javob beradi, J'aime mon/ma… deydi",
-     "intro": "Gu-gu! Men sehrli qopcha olib keldim! Ichida bitta narsa yashiringan. Bu nima ekan? Fransuzcha so'raymiz va javob beramiz!",
+     "intro": "Sehrli qopchada bitta narsa yashiringan. Bu nima ekan? Fransuzcha so'raymiz va javob beramiz!",
      "items": [
       {
        "say": "Qu'est-ce que c'est ?",

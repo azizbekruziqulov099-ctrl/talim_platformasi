@@ -12,7 +12,7 @@
     {
      "name": "Salom, do'stim!",
      "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
-     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "intro": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
      "items": [
       {
        "say": "مَرْحَبًا!",
@@ -82,12 +82,12 @@
        "q_en": "صديقك يسأل: «ما اسمك؟» ماذا تقول؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! أنا كبوتر الطائر. اشتقت إليكم! هيا نسلم ونقول أسماءنا."
+     "intro_en": "مرحبًا يا أصدقاء! اشتقت إليكم! هيا نسلم ونقول أسماءنا."
     },
     {
      "name": "Sanaymiz: bir–to'rt",
      "goal": "Bola 1 dan 4 gacha arabcha sanaydi",
-     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin arabcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "intro": "Men tuxumlarni sanamoqchiman, lekin arabcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
      "items": [
       {
        "say": "وَاحِد",
@@ -146,12 +146,12 @@
        "sarlavha_en": "👏 صفّق وعدّ"
       }
      ],
-     "intro_en": "مرحبًا! هيا نعد مع كبوتر. واحد، اثنان، ثلاثة، أربعة! عدّ معي!"
+     "intro_en": "هيا نعد مع كبوتر. واحد، اثنان، ثلاثة، أربعة! عدّ معي!"
     },
     {
      "name": "Sanaymiz: besh–yetti",
      "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
-     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
      "items": [
       {
        "say": "خَمْسَة",
@@ -293,7 +293,7 @@
        "q_en": "كم إصبعًا في اليدين؟"
       }
      ],
-     "intro_en": "مرحبًا من جديد! هيا نعد إلى عشرة. ثمانية، تسعة، عشرة! إلى كم تستطيع أن تعد؟"
+     "intro_en": "هيا نعد إلى عشرة. ثمانية، تسعة، عشرة! إلى كم تستطيع أن تعد؟"
     }
    ],
    "scenarios": [
@@ -397,7 +397,7 @@
     {
      "name": "Bu mening onam",
      "goal": "Bola «هذا…» bilan oila a'zolarini tanishtiradi",
-     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni arabcha tanishtirishni o'rganing.",
+     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni arabcha tanishtirishni o'rganing.",
      "items": [
       {
        "say": "هٰذِهِ أُمِّي.",
@@ -426,7 +426,7 @@
        "image": "en56-u2-my-sister.png",
        "image_prompt": "A little girl with pigtails smiling, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "هذه أختي. اسمها ليلى.",
-       "rom": "hādhihi ukhtī."
+       "rom": "hadhihi ukhti."
       },
       {
        "say": "هٰذَا أَخِي.",
@@ -463,12 +463,12 @@
        "q_en": "عرّفنا على أبيك. ماذا تقول؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! أحب عائلتي. انظروا! هذه أمي. هيا نتعرف على عائلتكم أيضًا!"
+     "intro_en": "أحب عائلتي. هذه أمي. هيا نتعرف على عائلتكم أيضًا!"
     },
     {
      "name": "Buvim va bobom",
      "goal": "Bola جدّة، جدّ، طفل رضيع، عائلة so'zlarini biladi",
-     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
      "items": [
       {
        "say": "جَدَّة",
@@ -494,7 +494,7 @@
        "emoji": "👶",
        "image": "en56-u2-baby.png",
        "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chaqaloqni allalagandek tebratining!",
+       "action": "Chaqaloqni allalagandek tebrating!",
        "sentence": "الطفل الرضيع صغير.",
        "action_en": "هزّ الطفل الصغير!",
        "rom": "tiflun radi'"
@@ -527,7 +527,7 @@
     {
      "name": "Qalaysan, do'stim?",
      "goal": "Bola «كيف حالك؟» deb so'raydi va «أنا بخير، شكرًا» deb javob beradi",
-     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
      "items": [
       {
        "say": "صَدِيق",
@@ -595,12 +595,12 @@
        "q_en": "صديقك يسأل: «كيف حالك؟» ماذا تقول؟"
       }
      ],
-     "intro_en": "صباح الخير يا أصدقاء! كيف حالكم؟ أنا بخير، شكرًا! هيا نتحدث مع أصدقائنا."
+     "intro_en": "صباح الخير يا أصدقاء! كيف حالكم؟ أنا بخير، شكرًا!"
     },
     {
      "name": "Katta va kichik",
      "goal": "Bola كبير، صغير، سعيد، حزين so'zlari bilan odamni tasvirlaydi",
-     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
      "items": [
       {
        "say": "كَبِير",
@@ -683,7 +683,7 @@
        "q_en": "اليوم عيد ميلادك. تحصل على هدية. كيف تشعر؟"
       }
      ],
-     "intro_en": "مرحبًا! انظر إلى الفيل. إنه كبير! انظر إلى الفأر. إنه صغير!"
+     "intro_en": "انظر إلى الفيل: إنه كبير! انظر إلى الفأر: إنه صغير!"
     }
    ],
    "scenarios": [
@@ -839,12 +839,12 @@
        "sarlavha_en": "🧺 يوم الغسيل"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! هيا نلبس. انظروا إلى ملابسي! ماذا تلبسون اليوم؟"
+     "intro_en": "هيا نلبس. انظروا إلى ملابسي! ماذا تلبسون اليوم؟"
     },
     {
      "name": "Poyabzal va paypoq",
      "goal": "Bola حذاء، جوارب، جزمة so'zlarini biladi va «البس!» buyrug'ini bajaradi",
-     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni arabcha o'rganamiz.",
+     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni arabcha o'rganamiz.",
      "items": [
       {
        "say": "حِذَاء",
@@ -877,7 +877,7 @@
       {
        "say": "اِلْبَسْ!",
        "uz": "kiy!",
-       "emoji": "🙆",
+       "emoji": "🦶",
        "image": "en56-u3-put-on.png",
        "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Kiyim kiyayotgandek harakat qiling!",
@@ -911,12 +911,12 @@
        "q_en": "ماذا تلبس في قدميك أولًا؟"
       }
      ],
-     "intro_en": "أهلًا! نحن نخرج. أولًا الجوارب، ثم الحذاء! البس حذاءك، من فضلك."
+     "intro_en": "نحن نخرج. أولًا الجوارب، ثم الحذاء! البس حذاءك، من فضلك."
     },
     {
      "name": "Issiq kiyimlar",
      "goal": "Bola قبّعة، معطف، وشاح، قفّازات so'zlarini biladi",
-     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
      "items": [
       {
        "say": "قُبَّعَة",
@@ -989,7 +989,7 @@
     {
      "name": "Mening kiyimim",
      "goal": "Bola kiyimini rangi bilan aytadi: «قميصي أحمر.»",
-     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida arabcha gapiramiz.",
+     "intro": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida arabcha gapiramiz.",
      "items": [
       {
        "say": "قَمِيصِي أَحْمَر.",
@@ -1046,7 +1046,7 @@
        "q_en": "«حذائي أزرق.» أي صورة هي؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! انظروا إليّ! قميصي أحمر. ما لون ملابسكم؟"
+     "intro_en": "انظروا إليّ! قميصي أحمر. ما لون ملابسكم؟"
     }
    ],
    "scenarios": [
@@ -1162,7 +1162,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola خبز، حليب، بيضة، جبن so'zlarini biladi",
-     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, arabcha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, arabcha aytamiz.",
      "items": [
       {
        "say": "خُبْز",
@@ -1214,12 +1214,12 @@
        "sarlavha_en": "🍳 هيا نحضّر الفطور"
       }
      ],
-     "intro_en": "صباح الخير! حان وقت الفطور. هيا نأكل الخبز والبيض والجبن. لذيذ!"
+     "intro_en": "صباح الخير! حان وقت الفطور. هيا نأكل الخبز والبيض والجبن."
     },
     {
      "name": "Ichimliklar",
      "goal": "Bola ماء، عصير، شاي so'zlarini va «أنا عطشان» iborasini biladi",
-     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
      "items": [
       {
        "say": "مَاء",
@@ -1285,12 +1285,12 @@
        "q_en": "ماذا تشرب الجدة في الصباح؟"
       }
      ],
-     "intro_en": "أهلًا يا أصدقاء! أنا عطشان. هيا نشرب شيئًا. ماء أم عصير أم شاي؟"
+     "intro_en": "أهلًا يا أصدقاء! أنا عطشان. ماء أم عصير أم شاي؟"
     },
     {
      "name": "Tushlik",
      "goal": "Bola حساء، أرزّ، دجاج so'zlarini va «أنا جائع» iborasini biladi",
-     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "intro": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?",
      "items": [
       {
        "say": "حَسَاء",
@@ -1303,7 +1303,7 @@
       },
       {
        "say": "أَرُزّ",
-       "uz": "guruch, palov",
+       "uz": "guruch",
        "emoji": "🍚",
        "image": "en56-u4-rice.png",
        "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -1335,9 +1335,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Siz — oshpazsiz! Qozonga soling: [ar]أَرُزّ[/ar], [ar]دَجَاج[/ar]… aralashtiring! Kabutar keladi: [ar]أَنَا جَائِع![/ar] Siz berasiz: [ar]هٰذَا حَسَاء![/ar]",
+       "matn": "Siz — oshpazsiz! O'yinchoq qozonga solganday qiling: [ar]أَرُزّ[/ar], [ar]دَجَاج[/ar]… aralashtiring! Kabutar keladi: [ar]أَنَا جَائِع![/ar] Siz berasiz: [ar]هٰذَا حَسَاء![/ar]",
        "doska": "🍚 أَرُزّ + 🍗 دَجَاج\n🍲 حَسَاء\nأَنَا جَائِع! 🍽️",
-       "sodda": "Qozonga bittadan soling va ayting: [ar]أَرُزّ[/ar]!",
+       "sodda": "O'yinchoq qozonga bittadan soling va ayting: [ar]أَرُزّ[/ar]!",
        "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
        "matn_en": "أنت الطباخ! ضع الأرز والدجاج في القدر. حرّك، حرّك! كبوتر: أنا جائع! الطباخ: هذا حساء!",
        "sarlavha_en": "🥄 لعبة الطباخ"
@@ -1356,12 +1356,12 @@
        "q_en": "ماذا تعني «أنا جائع»؟"
       }
      ],
-     "intro_en": "مرحبًا! حان وقت الغداء. أنا جائع! هيا نأكل الحساء والأرز."
+     "intro_en": "حان وقت الغداء. أنا جائع! هيا نأكل الحساء والأرز."
     },
     {
      "name": "Shirinliklar",
      "goal": "Bola كعكة، بوظة، حلوى so'zlarini va «لذيذ!» iborasini biladi",
-     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni arabcha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni arabcha nomlaymiz.",
      "items": [
       {
        "say": "كَعْكَة",
@@ -1406,7 +1406,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة![/ar] Puflang! Endi tortdan tatib ko'ramiz — [ar]لَذِيذ![/ar]",
+       "matn": "Tortdagi shamlarni sanaymiz: [ar]وَاحِد، اِثْنَان، ثَلَاثَة، أَرْبَعَة، خَمْسَة![/ar] Puflaganday qiling! Endi tortdan tatib ko'ramiz — [ar]لَذِيذ![/ar]",
        "doska": "🎂 وَاحِد اِثْنَان ثَلَاثَة أَرْبَعَة خَمْسَة\nلَذِيذ! 😋",
        "sodda": "Birgina so'z: [ar]كَعْكَة[/ar]… [ar]لَذِيذ![/ar]",
        "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, arabcha sanang!",
@@ -1427,7 +1427,7 @@
        "q_en": "نضع عليها الشموع في عيد الميلاد. ما هي؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! أحب الأشياء الحلوة. الكعك، البوظة، الحلوى. لذيذ!"
+     "intro_en": "مرحبًا يا أصدقاء! أحب الأشياء الحلوة. الكعك، البوظة، الحلوى."
     }
    ],
    "scenarios": [
@@ -1531,7 +1531,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola بيت، باب، نافذة، حديقة so'zlarini biladi",
-     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni arabcha o'rganamiz.",
+     "intro": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni arabcha o'rganamiz.",
      "items": [
       {
        "say": "بَيْت",
@@ -1586,12 +1586,12 @@
        "sarlavha_en": "🏠 ارسم بيتًا"
       }
      ],
-     "intro_en": "مرحبًا! أهلًا بك في بيتي! انظر، هذا هو الباب. تفضل بالدخول!"
+     "intro_en": "أهلًا بك في بيتي! انظر، هذا هو الباب. تفضل بالدخول!"
     },
     {
      "name": "Uydagi xonalar",
      "goal": "Bola المطبخ، غرفة النوم، الحمّام، غرفة الجلوس so'zlarini biladi",
-     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni arabcha aytamiz!",
+     "intro": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni arabcha aytamiz!",
      "items": [
       {
        "say": "الْمَطْبَخ",
@@ -1664,7 +1664,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola كرسيّ، مصباح، تلفاز، ساعة so'zlarini biladi",
-     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "كُرْسِيّ",
@@ -1718,12 +1718,12 @@
        "sarlavha_en": "👀 ابحث عنه!"
       }
      ],
-     "intro_en": "مرحبًا! انظر إلى غرفتي. أرى كرسيًا ومصباحًا وساعة. ماذا ترى أنت؟"
+     "intro_en": "انظر إلى غرفتي. أرى كرسيًا ومصباحًا وساعة. ماذا ترى أنت؟"
     },
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «أين…؟» deb so'raydi, في، على، تحت so'zlarini tushunadi",
-     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!",
      "items": [
       {
        "say": "أَيْنَ الْقِطَّة؟",
@@ -1788,7 +1788,7 @@
        "q_en": "القطة الصغيرة في الصندوق. كيف نقول ذلك؟"
       }
      ],
-     "intro_en": "يا إلهي! أين القطة؟ هيا نبحث عنها معًا. هل هي في الصندوق؟"
+     "intro_en": "يا إلهي! أين القطة؟ هل هي في الصندوق؟"
     }
    ],
    "scenarios": [
@@ -1892,7 +1892,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «كيف الجوّ؟» savoliga مشمس، ممطر، عاصف bilan javob beradi",
-     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni arabcha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni arabcha aytamiz!",
      "items": [
       {
        "say": "كَيْفَ الْجَوّ؟",
@@ -1966,7 +1966,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola ثلجيّ، غائم، حارّ، بارد so'zlari bilan havoni tasvirlaydi",
-     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!",
      "items": [
       {
        "say": "الثَّلْجُ يَتَسَاقَط.",
@@ -2039,7 +2039,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola الربيع، الصيف، الخريف، الشتاء fasllarini biladi",
-     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
      "items": [
       {
        "say": "الرَّبِيع",
@@ -2123,7 +2123,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola مظلّة، قوس قزح، رجل الثلج so'zlarini biladi",
-     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz.",
      "items": [
       {
        "say": "مِظَلَّة",
@@ -2148,7 +2148,7 @@
       },
       {
        "say": "رَجُلُ الثَّلْج",
-       "uz": "qorbobo, qor odam",
+       "uz": "qor odam",
        "emoji": "⛄",
        "image": "en56-u6-snowman.png",
        "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -2181,7 +2181,7 @@
        "q_en": "الجو ممطر. ماذا نأخذ معنا؟"
       }
      ],
-     "intro_en": "أهلًا! الجو ممطر اليوم، لذلك معي مظلة. انظر! بعد المطر أرى قوس قزح!"
+     "intro_en": "الجو ممطر اليوم، لذلك معي مظلة. انظر! بعد المطر أرى قوس قزح!"
     }
    ],
    "scenarios": [
@@ -2297,7 +2297,7 @@
     {
      "name": "Menga yoqadi",
      "goal": "Bola «أنا أحبّ…» bilan yoqtirgan narsasini aytadi",
-     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni arabcha aytishni o'rganamiz.",
+     "intro": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni arabcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "أَنَا أُحِبُّ التُّفَّاح.",
@@ -2354,12 +2354,12 @@
        "q_en": "ماذا تعني «أنا أحب القطط»؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! أنا أحب التفاح. وأحب أصدقائي أيضًا! ماذا تحب أنت؟"
+     "intro_en": "أنا أحب التفاح. وأحب أصدقائي أيضًا! ماذا تحب أنت؟"
     },
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «أنا لا أحبّ…» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
      "items": [
       {
        "say": "أَنَا لَا أُحِبُّ الْبَصَل.",
@@ -2416,7 +2416,7 @@
        "q_en": "ولد يرى بصلة ويعبس. ماذا يقول؟"
       }
      ],
-     "intro_en": "أهلًا! نحن نحب أشياء كثيرة. لكن هناك أشياء لا نحبها. أنا لا أحب المطر!"
+     "intro_en": "نحن نحب أشياء كثيرة. لكن هناك أشياء لا نحبها. أنا لا أحب المطر!"
     },
     {
      "name": "Senga yoqadimi?",
@@ -2480,12 +2480,12 @@
        "q_en": "«هل تحب البوظة؟» أنت تحبها. ماذا تقول؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! هيا نسأل أصدقاءنا. هل تحب الكعك؟ نعم، أحبه!"
+     "intro_en": "هيا نسأل أصدقاءنا. هل تحب الكعك؟ نعم، أحبه!"
     },
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida arabcha gapiramiz.",
+     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida arabcha gapiramiz.",
      "items": [
       {
        "say": "لَوْنِي الْمُفَضَّلُ هُوَ الْأَزْرَق.",
@@ -2634,7 +2634,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «عندي…» bilan o'zida bor narsani aytadi",
-     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, arabcha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, arabcha aytamiz!",
      "items": [
       {
        "say": "عِنْدِي قِطَّة.",
@@ -2699,12 +2699,12 @@
        "q_en": "بنت تُري كلبها. ماذا تقول؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! عندي عش وصديق صغير. ماذا عندكم أنتم؟ هيا نحكي!"
+     "intro_en": "عندي عش وصديق صغير. ماذا عندكم أنتم؟ هيا نحكي!"
     },
     {
      "name": "Men qila olaman",
      "goal": "Bola «أنا أستطيع…» bilan qila oladigan harakatini aytadi",
-     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni arabcha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni arabcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "أَنَا أَسْتَطِيعُ أَنْ أَقْفِز.",
@@ -2776,12 +2776,12 @@
        "q_en": "«أنا أستطيع أن أسبح.» أي صورة هي؟"
       }
      ],
-     "intro_en": "أهلًا! أنا أستطيع أن أطير! ماذا تستطيع أن تفعل أنت؟ هيا نقفز ونركض ونغني معًا!"
+     "intro_en": "أنا أستطيع أن أطير! ماذا تستطيع أن تفعل أنت؟ هيا نقفز ونركض ونغني معًا!"
     },
     {
      "name": "Qila olaman, qila olmayman",
      "goal": "Bola yangi harakatlarni va «لا أستطيع…» ni aytadi",
-     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "intro": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?",
      "items": [
       {
        "say": "أَنَا أَسْتَطِيعُ أَنْ أَرْقُص.",
@@ -2823,7 +2823,7 @@
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqib ko'ring — uchmaysiz!",
-       "sentence": "أنا ولد. لا أستطيع أن أطير.",
+       "sentence": "أنا لست طائرًا. لا أستطيع أن أطير.",
        "action_en": "رفرف بذراعيك!",
        "rom": "ana la astati'u an atir."
       }
@@ -2853,12 +2853,12 @@
        "q_en": "ولد يرفرف بذراعيه لكنه لا يستطيع أن يطير. ماذا يقول؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! أنا أستطيع أن أطير، لكني لا أستطيع أن أسبح. وأنتم تستطيعون أن ترقصوا وترسموا! هيا نرى."
+     "intro_en": "أنا أستطيع أن أطير، لكني لا أستطيع أن أسبح. وأنتم تستطيعون أن ترقصوا وترسموا! هيا نرى."
     },
     {
      "name": "Men endi kattaman!",
      "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
-     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda arabcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "intro": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda arabcha gapirib, xayrlashishni o'rganamiz.",
      "items": [
       {
        "say": "عُمْرِي خَمْسُ سَنَوَات.",

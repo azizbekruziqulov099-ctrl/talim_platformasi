@@ -12,7 +12,7 @@
     {
      "name": "O'n bir va o'n ikki",
      "goal": "Bola 1–10 ni takrorlaydi va 11–14 sonlarini aytadi",
-     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Siz o'ngacha sanashni bilasiz: [ar]وَاحِد، اِثْنَان… عَشَرَة[/ar]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
+     "intro": "Salom, do'stim! Siz o'ngacha sanashni bilasiz: [ar]وَاحِد، اِثْنَان… عَشَرَة[/ar]! Bugun o'ndan keyingi sirli sonlarni ochamiz.",
      "items": [
       {
        "say": "أَحَدَ عَشَرَ",
@@ -83,8 +83,17 @@
     {
      "name": "O'n beshdan o'n yettigacha",
      "goal": "Bola 15, 16, 17 sonlarini aytadi",
-     "intro": "Gu-gu! Men bog'da gullarni sanayapman. O'n to'rtta… undan ham ko'p! Keyingi sonlar qanday ataladi? Keling, bilib olamiz.",
+     "intro": "Men bog'da gullarni sanayapman: o'n to'rtta, undan ham ko'p! Keyingi sonlar qanday ataladi? Keling, bilib olamiz.",
      "items": [
+      {
+       "say": "أَرْبَعَةَ عَشَرَ",
+       "uz": "o'n to'rt",
+       "emoji": "1️⃣4️⃣",
+       "image": "en67-u1-fourteen.png",
+       "image_prompt": "Fourteen small balloons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "عند أختي أربع عشرة دمية.",
+       "rom": "arba'ata 'ashar"
+      },
       {
        "say": "خَمْسَةَ عَشَرَ",
        "uz": "o'n besh",
@@ -136,6 +145,16 @@
      "goal": "Bola 18, 19, 20 ni aytadi va 1–20 gacha sanaydi",
      "intro": "Gu-gu! Bugun katta sinov: yigirmagacha sanay olsak, Kabutar qushcha bizga yigirmata yulduzcha beradi! Tayyormisiz?",
      "items": [
+      {
+       "say": "سَبْعَةَ عَشَرَ",
+       "uz": "o'n yetti",
+       "emoji": "1️⃣7️⃣",
+       "image": "en67-u1-seventeen.png",
+       "image_prompt": "Seventeen colorful buttons, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أستطيع أن أعد حتى سبعة عشر!",
+       "action_en": "صفّق بيديك سبع عشرة مرة!",
+       "rom": "sab'ata 'ashar"
+      },
       {
        "say": "ثَمَانِيَةَ عَشَرَ",
        "uz": "o'n sakkiz",
@@ -378,6 +397,15 @@
      "intro": "Gu-gu! Bir haftada yetti kun bor, har birining nomi bor! Men dushanba kuni bog'chaga uchaman. Keling, kunlarni arabcha o'rganamiz.",
      "items": [
       {
+       "say": "أُسْبُوع",
+       "uz": "hafta",
+       "emoji": "🗓️",
+       "image": "en67-u2-week.png",
+       "image_prompt": "A calendar page showing one week with seven boxes, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "في الأسبوع سبعة أيام.",
+       "rom": "usbu'"
+      },
+      {
        "say": "الْاِثْنَيْن",
        "uz": "dushanba",
        "emoji": "🗓️1️⃣",
@@ -495,7 +523,7 @@
     {
      "name": "Bugun qaysi kun?",
      "goal": "Bola «ما اليوم؟» deb so'raydi va «اليوم…» bilan javob beradi",
-     "intro": "Gu-gu! Men ertalab uyg'onib, «bugun qaysi kun?» deb o'yladim. Taqvimga qaradim — ha, bugun juma! Keling, buni arabcha so'rashni o'rganamiz.",
+     "intro": "Ertalab uyg'onib, bugun qaysi kun ekan, deb o'yladim. Taqvimga qaradim — bugun juma! Keling, buni arabcha so'rashni o'rganamiz.",
      "items": [
       {
        "say": "مَا الْيَوْم؟",
@@ -530,7 +558,7 @@
        "emoji": "🌄",
        "image": "en67-u2-tomorrow.png",
        "image_prompt": "A sun rising over hills, a new day, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "غدًا الأحد. هيه!",
+       "sentence": "غدًا الأحد. مرحى!",
        "action_en": "اقفز من الفرح!",
        "rom": "ghadan"
       }
@@ -566,7 +594,7 @@
     {
      "name": "Tong, kech va tun",
      "goal": "Bola صباح، مساء، ليل، عطلة نهاية الأسبوع so'zlarini biladi",
-     "intro": "Gu-gu! Tongda men don teraman, kechqurun uyamga qaytaman, tunda esa uxlayman. Dam olish kunlari-chi? O'ynayman! Sizning kuningiz qanday o'tadi?",
+     "intro": "Tongda men don teraman, kechqurun uyamga qaytaman, tunda uxlayman, dam olish kunlari esa o'ynayman! Sizning kuningiz qanday o'tadi?",
      "items": [
       {
        "say": "صَبَاح",
@@ -772,7 +800,7 @@
        "emoji": "🧑‍🍳",
        "image": "en67-u3-cook.png",
        "image_prompt": "A cheerful cook in a white hat stirring a pot, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Qozonni aralashtiring!",
+       "action": "Qozonni aralashtirganday qiling!",
        "sentence": "الطباخ يصنع حساءً لذيذًا.",
        "action_en": "حرّك الحساء!",
        "rom": "tabbakh"
@@ -892,7 +920,7 @@
     {
      "name": "Kim bo'lmoqchisan?",
      "goal": "Bola «هو… / هي…» deydi va orzusidagi kasbni aytadi",
-     "intro": "Gu-gu! Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Siz-chi? Kim bo'lmoqchisiz? Keling, orzularimizni arabcha aytamiz.",
+     "intro": "Men katta bo'lsam, pochtachi kabutar bo'lmoqchiman — xat tashiyman! Siz kim bo'lmoqchisiz? Keling, orzularimizni arabcha aytamiz.",
      "items": [
       {
        "say": "هُوَ طَبِيب.",
@@ -963,7 +991,7 @@
     {
      "name": "Kim qayerda ishlaydi?",
      "goal": "Bola مستشفى، مدرسة، مزرعة، دكّان so'zlarini biladi",
-     "intro": "Gu-gu! Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Keling, ish joylarini arabcha o'rganamiz.",
+     "intro": "Shifokor qayerda ishlaydi? O'qituvchi-chi? Men shahar ustidan uchib, hammasini ko'rdim! Keling, ish joylarini arabcha o'rganamiz.",
      "items": [
       {
        "say": "مُسْتَشْفَى",
@@ -1140,7 +1168,7 @@
     {
      "name": "Mashina va avtobus",
      "goal": "Bola سيّارة، حافلة، سيّارة أجرة، درّاجة so'zlarini biladi",
-     "intro": "Gu-gu! Ko'chada qanday shovqin! Biip-biip! Men tepadan qarayman: mashinalar, avtobuslar, velosipedlar! Keling, ularni arabcha nomlaymiz.",
+     "intro": "Ko'chada qanday shovqin: biip-biip! Tepadan qarayman — mashinalar, avtobuslar, velosipedlar! Keling, ularni arabcha nomlaymiz.",
      "items": [
       {
        "say": "سَيَّارَة",
@@ -1199,7 +1227,7 @@
     {
      "name": "Poyezd va samolyot",
      "goal": "Bola قطار، طائرة، سفينة، قارب so'zlarini biladi",
-     "intro": "Gu-gu! Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi, samolyotdami? Dengizda kemada suzsam-chi? Keling, o'rganamiz!",
+     "intro": "Men uzoq sayohatga chiqmoqchiman! Toshkentga poyezdda boramanmi yoki samolyotdami? Dengizda-chi? Keling, o'rganamiz!",
      "items": [
       {
        "say": "قِطَار",
@@ -1272,7 +1300,7 @@
     {
      "name": "Yordam mashinalari",
      "goal": "Bola سيّارة الإطفاء، سيّارة الإسعاف، سيّارة الشرطة، طائرة مروحيّة so'zlarini biladi",
-     "intro": "Gu-gu! Vi-u, vi-u! Qizil mashina shoshib ketyapti — qayerdadir yong'in! Oq mashina-chi? U bemorga shoshyapti! Keling, bu mashinalarni o'rganamiz.",
+     "intro": "Vi-u, vi-u! Qizil mashina yong'inga, oq mashina bemorga shoshyapti! Keling, bu mashinalarni o'rganamiz.",
      "items": [
       {
        "say": "سَيَّارَةُ الْإِطْفَاء",
@@ -1344,7 +1372,7 @@
     {
      "name": "Maktabga qanday borasan?",
      "goal": "Bola «كيف تذهب إلى المدرسة؟» savoliga javob beradi, «قف!» belgisini biladi",
-     "intro": "Gu-gu! Men bog'chaga uchib boraman! Siz-chi? Avtobusdami, mashinadami yoki piyodami? Keling, buni arabcha so'rash va aytishni o'rganamiz.",
+     "intro": "Men bog'chaga uchib boraman! Siz-chi — avtobusdami, mashinadami yoki piyodami? Keling, buni arabcha so'rash va aytishni o'rganamiz.",
      "items": [
       {
        "say": "كَيْفَ تَذْهَبُ إِلَى الْمَدْرَسَة؟",
@@ -1537,7 +1565,7 @@
     {
      "name": "Kitob va qalam",
      "goal": "Bola كتاب، قلم رصاص، قلم حبر، حقيبة المدرسة so'zlarini biladi",
-     "intro": "Gu-gu! Tez orada siz maktabga borasiz! Portfelga nimalarni solamiz? Kitob, qalam… Keling, maktab narsalarini arabcha o'rganamiz.",
+     "intro": "Tez orada siz maktabga borasiz! Portfelga nimalarni solamiz — kitob, qalam? Keling, maktab narsalarini arabcha o'rganamiz.",
      "items": [
       {
        "say": "كِتَاب",
@@ -1681,7 +1709,7 @@
        "rom": "qif!"
       },
       {
-       "say": "اجلس!",
+       "say": "اِجْلِسْ!",
        "uz": "o'tir!",
        "emoji": "🪑",
        "image": "en67-u5-sit-down.png",
@@ -1718,9 +1746,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎲 O'qituvchi aytdi!",
-       "matn": "O'yin: men [ar]الْمُعَلِّمُ يَقُول[/ar] desam — bajaring! Demasam — qimirlamang! [ar]الْمُعَلِّمُ يَقُول: قِفْ![/ar] … [ar]اجلس![/ar] — voy, qimirlamang!",
+       "matn": "O'yin: men [ar]الْمُعَلِّمُ يَقُول[/ar] desam — bajaring! Demasam — qimirlamang! [ar]الْمُعَلِّمُ يَقُول: قِفْ![/ar] … [ar]اِجْلِسْ![/ar] — voy, qimirlamang!",
        "doska": "الْمُعَلِّمُ يَقُول: قِفْ! 🧍\nالْمُعَلِّمُ يَقُول: اِجْلِسْ! 🪑\nاِفْتَحْ كِتَابَك! 👐📖",
-       "sodda": "Faqat ikki buyruq: [ar]قِفْ![/ar] va [ar]اجلس![/ar]",
+       "sodda": "Faqat ikki buyruq: [ar]قِفْ![/ar] va [ar]اِجْلِسْ![/ar]",
        "boshqa_usul": "Siz o'qituvchi bo'ling — kattalarga arabcha buyruq bering!",
        "matn_en": "لعبة: إذا قلت «المعلم يقول» فافعل! وإذا لم أقل، فلا تتحرك! المعلم يقول: قف! … اجلس! — أوه، لا تتحرك!",
        "sarlavha_en": "🎲 المعلم يقول!"
@@ -1728,7 +1756,7 @@
      ],
      "tests": [
       {
-       "q": "O'qituvchi [ar]اجلس![/ar] dedi. Nima qilamiz?",
+       "q": "O'qituvchi [ar]اِجْلِسْ![/ar] dedi. Nima qilamiz?",
        "options": [
         "🪑 o'tiramiz",
         "🧍 turamiz",
@@ -1736,7 +1764,7 @@
         "🚶 yuramiz"
        ],
        "answer": 0,
-       "why": "Barakalla! [ar]اجلس![/ar] — o'tir!",
+       "why": "Barakalla! [ar]اِجْلِسْ![/ar] — o'tir!",
        "q_en": "المعلم يقول: اجلس! ماذا نفعل؟"
       }
      ],
@@ -1745,7 +1773,7 @@
     {
      "name": "Tingla va qara!",
      "goal": "Bola استمع، انظر، اسكت، ارفع يدك buyruqlarini tushunadi",
-     "intro": "Gu-gu! Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsangiz — qo'l ko'tarasiz. Keling, o'rganamiz!",
+     "intro": "Sinfda eng muhimi — diqqat! O'qituvchi «tingla», «qara», «jim bo'l» deydi. Javob bermoqchi bo'lsangiz — qo'l ko'tarasiz.",
      "items": [
       {
        "say": "اِسْتَمِعْ!",
@@ -1937,7 +1965,7 @@
     {
      "name": "Suza olasanmi?",
      "goal": "Bola «هل تستطيع…؟» deb so'raydi va «نعم، أستطيع / لا، لا أستطيع» deb javob beradi",
-     "intro": "Gu-gu! Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Siz-chi? Bugun arabcha «qila olasanmi?» deb so'rashni o'rganamiz.",
+     "intro": "Men ucha olaman, lekin suza olmayman! O'rdak esa suza oladi. Siz-chi? Bugun arabcha «qila olasanmi» deb so'rashni o'rganamiz.",
      "items": [
       {
        "say": "هَلْ تَسْتَطِيعُ أَنْ تَسْبَح؟",
@@ -1969,6 +1997,17 @@
        "action": "Boshingizni «yo'q» deb chayqating!",
        "sentence": "هل تستطيع أن تطير؟ لا، لا أستطيع.",
        "rom": "la, la astati'."
+      },
+      {
+       "say": "أَنَا أَسْتَطِيعُ أَنْ أَسْبَح.",
+       "uz": "men suza olaman",
+       "emoji": "🏊",
+       "image": "en56-u8-can-swim.png",
+       "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "action": "Qo'llaring bilan suzganday qil!",
+       "sentence": "أستطيع أن أسبح في الصيف.",
+       "action_en": "اسبح مثل السمكة!",
+       "rom": "ana astati'u an asbah."
       }
      ],
      "extra": [
@@ -2091,7 +2130,7 @@
     {
      "name": "Hayvonlar nima qila oladi?",
      "goal": "Bola «السمكة تستطيع أن تسبح» kabi gaplarni aytadi",
-     "intro": "Gu-gu! Hayvonot bog'ida hamma o'z ishini qiladi: baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Keling, gapiramiz.",
+     "intro": "Hayvonot bog'ida baliq suzadi, qush uchadi, qurbaqa sakraydi. Ilon-chi? U yura olmaydi! Keling, gapiramiz.",
      "items": [
       {
        "say": "السَّمَكَةُ تَسْتَطِيعُ أَنْ تَسْبَح.",
@@ -2110,7 +2149,7 @@
        "image": "en67-u6-bird-fly.png",
        "image_prompt": "A small bird flying in the sky, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqing!",
-       "sentence": "الطائر يستطيع أن يطير. وأنا أستطيع أن أطير أيضًا!",
+       "sentence": "الطائر يستطيع أن يطير. وأنا لا أستطيع أن أطير!",
        "action_en": "طر مثل الطائر!",
        "rom": "at-ta'iru yastati'u an yatir."
       },
@@ -2166,7 +2205,7 @@
     {
      "name": "Yordam berasanmi?",
      "goal": "Bola «هل تساعدني؟»، «طبعًا!»، «هيّا نلعب!»، «أحسنت!» iboralarini ishlatadi",
-     "intro": "Gu-gu! Men katta donni ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi. Keling, bu so'zlarni o'rganamiz!",
+     "intro": "Men katta donni ko'tarolmayapman! Qanday qilib yordam so'rayman? Do'stlar doim bir-biriga yordam beradi.",
      "items": [
       {
        "say": "هَلْ تُسَاعِدُنِي؟",
@@ -2354,7 +2393,7 @@
     {
      "name": "Do'konga kirdik",
      "goal": "Bola «هل أساعدك؟»، «…، من فضلك»، «تفضّل»، «شكرًا» iboralarini ishlatadi",
-     "intro": "Gu-gu! Bugun men sotuvchiman, siz esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz? Keling, o'rganamiz!",
+     "intro": "Bugun men sotuvchiman, siz esa xaridor! Do'konimizda olma, non, sut bor. Qanday qilib odob bilan so'raymiz?",
      "items": [
       {
        "say": "هَلْ أُسَاعِدُك؟",
@@ -2372,7 +2411,7 @@
        "image": "en67-u7-apple-please.png",
        "image_prompt": "A child politely asking for an apple, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "تفاحة، من فضلك. حمراء!",
-       "rom": "tuffāḥa, min faḍlik."
+       "rom": "tuffaha, min fadlik."
       },
       {
        "say": "تَفَضَّل.",
@@ -2429,6 +2468,15 @@
      "intro": "Gu-gu! Do'konga yangi bananlar keldi! Sotuvchi so'raydi: nechta kerak? Keling, sonlarni eslab, xarid qilamiz.",
      "items": [
       {
+       "say": "مَوْز",
+       "uz": "bananlar",
+       "emoji": "🍌",
+       "image": "en45-u7-banana.png",
+       "image_prompt": "A ripe yellow banana, cute cartoon, soft flat colors, white background, no text, square",
+       "sentence": "انظر! الموز أصفر.",
+       "rom": "mawz"
+      },
+      {
        "say": "كَمْ مَوْزَة؟",
        "uz": "nechta banan?",
        "emoji": "🍌❓",
@@ -2445,7 +2493,7 @@
        "image_prompt": "Five yellow bananas in a row, cute cartoon for kids, soft flat colors, white background, no text, square",
        "sentence": "خمس موزات، من فضلك. شكرًا!",
        "action_en": "أرني خمسة أصابع!",
-       "rom": "khamsu mawzat, min fadlik."
+       "rom": "khamsu mawzatin, min fadlik."
       },
       {
        "say": "عَفْوًا.",
@@ -2488,7 +2536,7 @@
     {
      "name": "Sabzavot rastasi",
      "goal": "Bola جزر، طماطم، بطاطا، بيض so'zlarini biladi",
-     "intro": "Gu-gu! Bozorning sabzavot rastasiga keldik. Qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Keling, xarid qilamiz!",
+     "intro": "Bozorning sabzavot rastasiga keldik: qizil pomidor, uzun sabzi, yumaloq kartoshka! Onam sho'rva uchun nimalar kerakligini aytdi. Keling, xarid qilamiz!",
      "items": [
       {
        "say": "جَزَر",
@@ -2561,6 +2609,15 @@
      "intro": "Gu-gu! Xarid uchun savat va pul kerak! Keling, oxirgi marta to'liq do'kon o'yinini o'ynaymiz: salomlashamiz, so'raymiz, to'laymiz va xayrlashamiz.",
      "items": [
       {
+       "say": "دُكَّان",
+       "uz": "do'kon",
+       "emoji": "🏪",
+       "image": "en67-u3-shop.png",
+       "image_prompt": "A small colorful shop with an awning, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "أشتري الخبز من الدكان.",
+       "rom": "dukkan"
+      },
+      {
        "say": "سَلَّة",
        "uz": "savat",
        "emoji": "🧺",
@@ -2576,7 +2633,7 @@
        "emoji": "🪙",
        "image": "en67-u7-money.png",
        "image_prompt": "Shiny gold coins, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "هذه النقود.",
+       "sentence": "ها هي النقود.",
        "rom": "nuqud"
       },
       {
@@ -2807,13 +2864,23 @@
        "q_en": "«كم عمرك؟» ماذا تعني؟"
       }
      ],
-     "intro_en": "مرحبًا يا أصدقاء! اسمي كبوتر. ما اسمك؟ كم عمرك؟ هيا نتحدث!"
+     "intro_en": "مرحبًا يا أصدقاء! اسمي كبوتر. ما اسمك؟ كم عمرك؟"
     },
     {
      "name": "Qayerda yashayman",
      "goal": "Bola qayerda yashashini va qayerdan ekanini aytadi",
      "intro": "Gu-gu! Men Samarqandda, Registon yonidagi daraxtda yashayman! Siz qayerda yashaysiz? Keling, shahrimiz va vatanimiz haqida arabcha gapiramiz.",
      "items": [
+      {
+       "say": "بَيْت",
+       "uz": "uy",
+       "emoji": "🏠",
+       "image": "en56-u5-house.png",
+       "image_prompt": "A cozy small house with a red roof, cute cartoon for kids, soft flat colors, white background, no text, square",
+       "sentence": "هذا بيتي.",
+       "action_en": "ارسم بيتًا في الهواء!",
+       "rom": "bayt"
+      },
       {
        "say": "أَيْنَ تَسْكُن؟",
        "uz": "qayerda yashaysan?",
@@ -2859,7 +2926,7 @@
     {
      "name": "Men yaxshi ko'raman",
      "goal": "Bola sevimli ovqati, rangi va o'yinini aytadi, «ماذا تحبّ؟» deb so'raydi",
-     "intro": "Gu-gu! Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Siz-chi? Keling, sevimli narsalarimizni arabcha aytamiz.",
+     "intro": "Men palovni yaxshi ko'raman — ayniqsa, guruchini! Sevimli rangim — yashil. Siz-chi? Keling, sevimli narsalarimizni arabcha aytamiz.",
      "items": [
       {
        "say": "مَاذَا تُحِبّ؟",
@@ -2947,7 +3014,7 @@
        "emoji": "🐹",
        "image": "en67-u8-have-pet.png",
        "image_prompt": "A child holding a cute hamster, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "sentence": "عندي حيوان أليف. إنه قطة.",
+       "sentence": "عندي حيوان أليف. إنها قطة.",
        "rom": "'indi hayawanun alif."
       },
       {

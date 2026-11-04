@@ -12,7 +12,7 @@
     {
      "name": "Salom, do'stim!",
      "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
-     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "intro": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
      "items": [
       {
        "say": "Привет!",
@@ -82,12 +82,12 @@
        "q_en": "Друг спрашивает: «Как тебя зовут?» Что ты скажешь?"
       }
      ],
-     "intro_en": "Привет, друзья! Я птичка Кабутар. Я по вам скучал! Давайте поздороваемся и назовём свои имена."
+     "intro_en": "Привет, друзья! Я по вам скучал! Давайте поздороваемся и назовём свои имена."
     },
     {
      "name": "Sanaymiz: bir–to'rt",
      "goal": "Bola 1 dan 4 gacha ruscha sanaydi",
-     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin ruscha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "intro": "Men tuxumlarni sanamoqchiman, lekin ruscha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
      "items": [
       {
        "say": "один",
@@ -146,12 +146,12 @@
        "sarlavha_en": "👏 Хлопаем и считаем"
       }
      ],
-     "intro_en": "Привет! Давай считать с Кабутаром. Один, два, три, четыре! Считай со мной!"
+     "intro_en": "Давай считать с Кабутаром. Один, два, три, четыре! Считай со мной!"
     },
     {
      "name": "Sanaymiz: besh–yetti",
      "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
-     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
      "items": [
       {
        "say": "пять",
@@ -293,7 +293,7 @@
        "q_en": "Сколько пальцев на двух руках?"
       }
      ],
-     "intro_en": "Снова привет! Давай посчитаем до десяти. Восемь, девять, десять! До скольких ты умеешь считать?"
+     "intro_en": "Давай посчитаем до десяти. Восемь, девять, десять! До скольких ты умеешь считать?"
     }
    ],
    "scenarios": [
@@ -397,7 +397,7 @@
     {
      "name": "Bu mening onam",
      "goal": "Bola «Это мой…» bilan oila a'zolarini tanishtiradi",
-     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni ruscha tanishtirishni o'rganing.",
+     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni ruscha tanishtirishni o'rganing.",
      "items": [
       {
        "say": "Это моя мама.",
@@ -463,12 +463,12 @@
        "q_en": "Покажи своего папу. Что ты скажешь?"
       }
      ],
-     "intro_en": "Привет, друзья! Я люблю свою семью. Смотрите! Это моя мама. Давайте познакомимся и с вашей семьёй!"
+     "intro_en": "Я люблю свою семью. Это моя мама. Давайте познакомимся и с вашей семьёй!"
     },
     {
      "name": "Buvim va bobom",
      "goal": "Bola бабушка, дедушка, малыш, семья so'zlarini biladi",
-     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
      "items": [
       {
        "say": "бабушка",
@@ -494,7 +494,7 @@
        "emoji": "👶",
        "image": "en56-u2-baby.png",
        "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chaqaloqni allalagandek tebratining!",
+       "action": "Chaqaloqni allalagandek tebrating!",
        "sentence": "Малыш маленький.",
        "action_en": "Покачай малыша!",
        "rom": "malysh"
@@ -527,7 +527,7 @@
     {
      "name": "Qalaysan, do'stim?",
      "goal": "Bola «Как дела?» deb so'raydi va «Хорошо, спасибо» deb javob beradi",
-     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
      "items": [
       {
        "say": "друг",
@@ -595,12 +595,12 @@
        "q_en": "Друг спрашивает: «Как дела?» Что ты скажешь?"
       }
      ],
-     "intro_en": "Доброе утро, друзья! Как дела? Хорошо, спасибо! Давайте поговорим с друзьями."
+     "intro_en": "Доброе утро, друзья! Как дела? Хорошо, спасибо!"
     },
     {
      "name": "Katta va kichik",
      "goal": "Bola большой, маленький, весёлый, грустный so'zlari bilan odamni tasvirlaydi",
-     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
      "items": [
       {
        "say": "большой",
@@ -683,7 +683,7 @@
        "q_en": "У тебя день рождения. Тебе дарят подарок. Как ты себя чувствуешь?"
       }
      ],
-     "intro_en": "Привет! Посмотри на слона. Он большой! Посмотри на мышку. Она маленькая!"
+     "intro_en": "Посмотри на слона: он большой! Посмотри на мышку: она маленькая!"
     }
    ],
    "scenarios": [
@@ -839,12 +839,12 @@
        "sarlavha_en": "🧺 День стирки"
       }
      ],
-     "intro_en": "Привет, друзья! Давайте одеваться. Посмотрите на мою одежду! Что вы сегодня надели?"
+     "intro_en": "Давайте одеваться. Посмотрите на мою одежду! Что вы сегодня надели?"
     },
     {
      "name": "Poyabzal va paypoq",
      "goal": "Bola туфли, носки, сапоги so'zlarini biladi va «Надень!» buyrug'ini bajaradi",
-     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni ruscha o'rganamiz.",
+     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni ruscha o'rganamiz.",
      "items": [
       {
        "say": "туфли",
@@ -877,7 +877,7 @@
       {
        "say": "Надень!",
        "uz": "kiy!",
-       "emoji": "🙆",
+       "emoji": "🦶",
        "image": "en56-u3-put-on.png",
        "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Kiyim kiyayotgandek harakat qiling!",
@@ -911,12 +911,12 @@
        "q_en": "Что ты надеваешь на ноги сначала?"
       }
      ],
-     "intro_en": "Привет! Мы идём на улицу. Сначала носки, потом туфли! Надень туфли, пожалуйста."
+     "intro_en": "Мы идём на улицу. Сначала носки, потом туфли! Надень туфли, пожалуйста."
     },
     {
      "name": "Issiq kiyimlar",
      "goal": "Bola шапка, пальто, шарф, перчатки so'zlarini biladi",
-     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
      "items": [
       {
        "say": "шапка",
@@ -989,7 +989,7 @@
     {
      "name": "Mening kiyimim",
      "goal": "Bola kiyimini rangi bilan aytadi: «Моя футболка красная.»",
-     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida ruscha gapiramiz.",
+     "intro": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida ruscha gapiramiz.",
      "items": [
       {
        "say": "Моя футболка красная.",
@@ -1046,7 +1046,7 @@
        "q_en": "«Мои туфли синие». Какая это картинка?"
       }
      ],
-     "intro_en": "Привет, друзья! Посмотрите на меня! Моя футболка красная. А какого цвета ваша одежда?"
+     "intro_en": "Посмотрите на меня! Моя футболка красная. А какого цвета ваша одежда?"
     }
    ],
    "scenarios": [
@@ -1162,7 +1162,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola хлеб, молоко, яйцо, сыр so'zlarini biladi",
-     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, ruscha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, ruscha aytamiz.",
      "items": [
       {
        "say": "хлеб",
@@ -1214,12 +1214,12 @@
        "sarlavha_en": "🍳 Готовим завтрак"
       }
      ],
-     "intro_en": "Доброе утро! Пора завтракать. Давай есть хлеб, яйца и сыр. Вкусно!"
+     "intro_en": "Доброе утро! Пора завтракать. Давай есть хлеб, яйца и сыр."
     },
     {
      "name": "Ichimliklar",
      "goal": "Bola вода, сок, чай so'zlarini va «Я хочу пить» iborasini biladi",
-     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
      "items": [
       {
        "say": "вода",
@@ -1285,12 +1285,12 @@
        "q_en": "Что пьёт бабушка утром?"
       }
      ],
-     "intro_en": "Привет, друзья! Я хочу пить. Давайте что-нибудь попьём. Воду, сок или чай?"
+     "intro_en": "Привет, друзья! Я хочу пить. Воду, сок или чай?"
     },
     {
      "name": "Tushlik",
      "goal": "Bola суп, рис, курица so'zlarini va «Я хочу есть» iborasini biladi",
-     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "intro": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?",
      "items": [
       {
        "say": "суп",
@@ -1303,7 +1303,7 @@
       },
       {
        "say": "рис",
-       "uz": "guruch, palov",
+       "uz": "guruch",
        "emoji": "🍚",
        "image": "en56-u4-rice.png",
        "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -1335,9 +1335,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Siz — oshpazsiz! Qozonga soling: [ru]рис[/ru], [ru]курица[/ru]… aralashtiring! Kabutar keladi: [ru]Я хочу есть![/ru] Siz berasiz: [ru]Вот суп![/ru]",
+       "matn": "Siz — oshpazsiz! O'yinchoq qozonga solganday qiling: [ru]рис[/ru], [ru]курица[/ru]… aralashtiring! Kabutar keladi: [ru]Я хочу есть![/ru] Siz berasiz: [ru]Вот суп![/ru]",
        "doska": "🍚 рис + 🍗 курица\n🍲 суп\nЯ хочу есть! 🍽️",
-       "sodda": "Qozonga bittadan soling va ayting: [ru]рис[/ru]!",
+       "sodda": "O'yinchoq qozonga bittadan soling va ayting: [ru]рис[/ru]!",
        "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting.",
        "matn_en": "Ты — повар! Положи в кастрюлю рис и курицу. Мешай, мешай! Кабутар: Я хочу есть! Повар: Вот суп!",
        "sarlavha_en": "🥄 Игра «Повар»"
@@ -1356,12 +1356,12 @@
        "q_en": "Что значит «Я хочу есть»?"
       }
      ],
-     "intro_en": "Привет! Время обеда. Я хочу есть! Давайте есть суп и рис."
+     "intro_en": "Время обеда. Я хочу есть! Давайте есть суп и рис."
     },
     {
      "name": "Shirinliklar",
      "goal": "Bola торт, мороженое, конфеты so'zlarini va «Вкусно!» iborasini biladi",
-     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni ruscha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni ruscha nomlaymiz.",
      "items": [
       {
        "say": "торт",
@@ -1406,7 +1406,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [ru]один, два, три, четыре, пять![/ru] Puflang! Endi tortdan tatib ko'ramiz — [ru]Вкусно![/ru]",
+       "matn": "Tortdagi shamlarni sanaymiz: [ru]один, два, три, четыре, пять![/ru] Puflaganday qiling! Endi tortdan tatib ko'ramiz — [ru]Вкусно![/ru]",
        "doska": "🎂 один два три четыре пять\nВкусно! 😋",
        "sodda": "Birgina so'z: [ru]торт[/ru]… [ru]Вкусно![/ru]",
        "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, ruscha sanang!",
@@ -1427,7 +1427,7 @@
        "q_en": "На день рождения мы ставим на него свечи. Что это?"
       }
      ],
-     "intro_en": "Привет, друзья! Я люблю сладкое. Торт, мороженое, конфеты. Вкусно!"
+     "intro_en": "Привет, друзья! Я люблю сладкое. Торт, мороженое, конфеты."
     }
    ],
    "scenarios": [
@@ -1531,7 +1531,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola дом, дверь, окно, сад so'zlarini biladi",
-     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni ruscha o'rganamiz.",
+     "intro": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni ruscha o'rganamiz.",
      "items": [
       {
        "say": "дом",
@@ -1586,12 +1586,12 @@
        "sarlavha_en": "🏠 Нарисуй дом"
       }
      ],
-     "intro_en": "Привет! Добро пожаловать ко мне домой! Смотри, вот дверь. Заходи, пожалуйста!"
+     "intro_en": "Добро пожаловать ко мне домой! Смотри, вот дверь. Заходи, пожалуйста!"
     },
     {
      "name": "Uydagi xonalar",
      "goal": "Bola кухня, спальня, ванная, гостиная so'zlarini biladi",
-     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni ruscha aytamiz!",
+     "intro": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni ruscha aytamiz!",
      "items": [
       {
        "say": "кухня",
@@ -1664,7 +1664,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola стул, лампа, телевизор, часы so'zlarini biladi",
-     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "стул",
@@ -1718,12 +1718,12 @@
        "sarlavha_en": "👀 Найди!"
       }
      ],
-     "intro_en": "Привет! Посмотри на мою комнату. Я вижу стул, лампу и часы. А что видишь ты?"
+     "intro_en": "Посмотри на мою комнату. Я вижу стул, лампу и часы. А что видишь ты?"
     },
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «Где…?» deb so'raydi, в, на, под so'zlarini tushunadi",
-     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!",
      "items": [
       {
        "say": "Где кошка?",
@@ -1788,7 +1788,7 @@
        "q_en": "Котёнок в коробке. Как это сказать?"
       }
      ],
-     "intro_en": "Ой! Где кошка? Давай поищем её вместе. Она в коробке?"
+     "intro_en": "Ой! Где кошка? Она в коробке?"
     }
    ],
    "scenarios": [
@@ -1892,7 +1892,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «Какая погода?» savoliga солнечно, дождливо, ветрено bilan javob beradi",
-     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni ruscha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni ruscha aytamiz!",
      "items": [
       {
        "say": "Какая погода?",
@@ -1966,7 +1966,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola идёт снег, облачно, жарко, холодно so'zlari bilan havoni tasvirlaydi",
-     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!",
      "items": [
       {
        "say": "Идёт снег.",
@@ -2039,7 +2039,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola весна, лето, осень, зима fasllarini biladi",
-     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
      "items": [
       {
        "say": "весна",
@@ -2123,7 +2123,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola зонтик, радуга, снеговик so'zlarini biladi",
-     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz.",
      "items": [
       {
        "say": "зонтик",
@@ -2148,7 +2148,7 @@
       },
       {
        "say": "снеговик",
-       "uz": "qorbobo, qor odam",
+       "uz": "qor odam",
        "emoji": "⛄",
        "image": "en56-u6-snowman.png",
        "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square",
@@ -2181,7 +2181,7 @@
        "q_en": "Идёт дождь. Что мы возьмём с собой?"
       }
      ],
-     "intro_en": "Привет! Сегодня идёт дождь, поэтому у меня есть зонтик. Смотри! После дождя я вижу радугу!"
+     "intro_en": "Сегодня идёт дождь, поэтому у меня есть зонтик. Смотри! После дождя я вижу радугу!"
     }
    ],
    "scenarios": [
@@ -2297,7 +2297,7 @@
     {
      "name": "Menga yoqadi",
      "goal": "Bola «Я люблю…» bilan yoqtirgan narsasini aytadi",
-     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni ruscha aytishni o'rganamiz.",
+     "intro": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni ruscha aytishni o'rganamiz.",
      "items": [
       {
        "say": "Я люблю яблоки.",
@@ -2354,12 +2354,12 @@
        "q_en": "Что значит «Я люблю кошек»?"
       }
      ],
-     "intro_en": "Привет, друзья! Я люблю яблоки. И своих друзей я тоже люблю! А что любишь ты?"
+     "intro_en": "Я люблю яблоки. И своих друзей я тоже люблю! А что любишь ты?"
     },
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «Я не люблю…» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
      "items": [
       {
        "say": "Я не люблю лук.",
@@ -2416,7 +2416,7 @@
        "q_en": "Мальчик видит лук и морщится. Что он говорит?"
       }
      ],
-     "intro_en": "Привет! Мы любим многое. Но кое-что мы не любим. Я не люблю дождь!"
+     "intro_en": "Мы любим многое. Но кое-что мы не любим. Я не люблю дождь!"
     },
     {
      "name": "Senga yoqadimi?",
@@ -2480,12 +2480,12 @@
        "q_en": "«Ты любишь мороженое?» Ты его любишь. Что ты скажешь?"
       }
      ],
-     "intro_en": "Привет, друзья! Давайте спросим друзей. Ты любишь торт? Да, люблю!"
+     "intro_en": "Давайте спросим друзей. Ты любишь торт? Да, люблю!"
     },
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida ruscha gapiramiz.",
+     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida ruscha gapiramiz.",
      "items": [
       {
        "say": "Мой любимый цвет — синий.",
@@ -2634,7 +2634,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «У меня есть…» bilan o'zida bor narsani aytadi",
-     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, ruscha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, ruscha aytamiz!",
      "items": [
       {
        "say": "У меня есть кошка.",
@@ -2699,12 +2699,12 @@
        "q_en": "Девочка показывает свою собаку. Что она говорит?"
       }
      ],
-     "intro_en": "Привет, друзья! У меня есть гнёздышко и маленький друг. А что есть у вас? Давайте расскажем!"
+     "intro_en": "У меня есть гнёздышко и маленький друг. А что есть у вас? Давайте расскажем!"
     },
     {
      "name": "Men qila olaman",
      "goal": "Bola «Я умею…» bilan qila oladigan harakatini aytadi",
-     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni ruscha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni ruscha aytishni o'rganamiz.",
      "items": [
       {
        "say": "Я умею прыгать.",
@@ -2735,7 +2735,7 @@
        "image": "en56-u8-can-swim.png",
        "image_prompt": "A child swimming in a pool, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qo'llaringiz bilan suzganday qiling!",
-       "sentence": "Летом я умею плавать.",
+       "sentence": "Я умею плавать. Летом я много плаваю.",
        "action_en": "Плыви, как рыбка!",
        "rom": "Ya umeyu plavat."
       },
@@ -2776,12 +2776,12 @@
        "q_en": "«Я умею плавать». Какая это картинка?"
       }
      ],
-     "intro_en": "Привет! Я умею летать! А что умеешь ты? Давай вместе прыгать, бегать и петь!"
+     "intro_en": "Я умею летать! А что умеешь ты? Давай вместе прыгать, бегать и петь!"
     },
     {
      "name": "Qila olaman, qila olmayman",
      "goal": "Bola yangi harakatlarni va «Я не умею…» ni aytadi",
-     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "intro": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?",
      "items": [
       {
        "say": "Я умею танцевать.",
@@ -2823,7 +2823,7 @@
        "image": "en56-u8-cant-fly.png",
        "image_prompt": "A child flapping arms like wings while a bird flies above, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Qanot qoqib ko'ring — uchmaysiz!",
-       "sentence": "Я мальчик. Я не умею летать.",
+       "sentence": "Я не птица. Я не умею летать.",
        "action_en": "Помаши руками, как крыльями!",
        "rom": "Ya ne umeyu letat."
       }
@@ -2853,12 +2853,12 @@
        "q_en": "Мальчик машет руками, но не может полететь. Что он говорит?"
       }
      ],
-     "intro_en": "Привет, друзья! Я умею летать, но не умею плавать. А вы умеете танцевать и рисовать! Давайте посмотрим."
+     "intro_en": "Я умею летать, но не умею плавать. А вы умеете танцевать и рисовать! Давайте посмотрим."
     },
     {
      "name": "Men endi kattaman!",
      "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
-     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda ruscha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "intro": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda ruscha gapirib, xayrlashishni o'rganamiz.",
      "items": [
       {
        "say": "Мне пять лет.",

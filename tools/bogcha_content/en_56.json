@@ -12,7 +12,7 @@
     {
      "name": "Salom, do'stim!",
      "goal": "Bola salomlashadi, ismini so'raydi va aytadi, xayrlashadi",
-     "intro": "Gu-gu! Salom, do'stim! Men — Kabutar qushcha. Yozda sizni juda sog'indim! Keling, avval salomlashamiz va bir-birimizning ismimizni so'raymiz.",
+     "intro": "Salom, do'stim! Yozda sizni juda sog'indim. Keling, salomlashamiz va bir-birimizning ismimizni so'raymiz.",
      "items": [
       {
        "say": "Hello!",
@@ -72,7 +72,7 @@
     {
      "name": "Sanaymiz: bir–to'rt",
      "goal": "Bola 1 dan 4 gacha inglizcha sanaydi",
-     "intro": "Gu-gu! Men uyamda tuxumlarni sanamoqchiman, lekin inglizcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
+     "intro": "Men tuxumlarni sanamoqchiman, lekin inglizcha sanashni unutib qo'ydim. Yordam berasizmi? Barmoqlaringizni tayyorlang!",
      "items": [
       {
        "say": "one",
@@ -121,7 +121,7 @@
     {
      "name": "Sanaymiz: besh–yetti",
      "goal": "Bola 5, 6, 7 sonlarini aytadi va 1–7 gacha sanaydi",
-     "intro": "Gu-gu! Bog'da kapalaklar uchib yuribdi. Ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
+     "intro": "Bog'da kapalaklar uchib yuribdi, ular to'rttadan ko'p! Nechta ekan? Keling, yangi sonlarni o'rganib, sanab chiqamiz.",
      "items": [
       {
        "say": "five",
@@ -246,7 +246,7 @@
     {
      "name": "Bu mening onam",
      "goal": "Bola «This is my…» bilan oila a'zolarini tanishtiradi",
-     "intro": "Gu-gu! Bugun men oilamning suratini olib keldim. Qarang, hammasi shu yerda! Keling, siz ham oilangizni inglizcha tanishtirishni o'rganing.",
+     "intro": "Bugun men oilamning suratini olib keldim — hammasi shu yerda! Keling, siz ham oilangizni inglizcha tanishtirishni o'rganing.",
      "items": [
       {
        "say": "This is my mum.",
@@ -304,7 +304,7 @@
     {
      "name": "Buvim va bobom",
      "goal": "Bola grandma, grandpa, baby, family so'zlarini biladi",
-     "intro": "Gu-gu! Kecha men buvimnikiga mehmonga bordim. Buvim menga non pishirib berdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
+     "intro": "Kecha buvimnikiga bordim: buvim non pishirdi, bobom ertak aytdi. Sizning buvingiz va bobongiz bormi?",
      "items": [
       {
        "say": "grandma",
@@ -326,7 +326,7 @@
        "emoji": "👶",
        "image": "en56-u2-baby.png",
        "image_prompt": "A happy baby in a onesie, cute cartoon for kids, soft flat colors, white background, no text, square",
-       "action": "Chaqaloqni allalagandek tebratining!"
+       "action": "Chaqaloqni allalagandek tebrating!"
       },
       {
        "say": "family",
@@ -350,7 +350,7 @@
     {
      "name": "Qalaysan, do'stim?",
      "goal": "Bola «How are you?» deb so'raydi va «I'm fine, thank you» deb javob beradi",
-     "intro": "Gu-gu! Bugun hovlida do'stim Mushukchani ko'rdim. Men undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
+     "intro": "Bugun hovlida do'stim Mushukchani ko'rdim va undan qalaysan deb so'radim. U nima dedi ekan? Keling, bilib olamiz!",
      "items": [
       {
        "say": "friend",
@@ -409,7 +409,7 @@
     {
      "name": "Katta va kichik",
      "goal": "Bola big, small, happy, sad so'zlari bilan odamni tasvirlaydi",
-     "intro": "Gu-gu! Qarang, mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
+     "intro": "Mening akam katta, ukam esa kichkina. Ukam bugun xursand, chunki unga sharcha olishdi. Keling, shunday so'zlarni o'rganamiz!",
      "items": [
       {
        "say": "big",
@@ -531,7 +531,7 @@
     {
      "name": "Poyabzal va paypoq",
      "goal": "Bola shoes, socks, boots so'zlarini biladi va «Put on!» buyrug'ini bajaradi",
-     "intro": "Gu-gu! Tongda men shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni inglizcha o'rganamiz.",
+     "intro": "Tongda shoshib bitta paypoqni yo'qotib qo'ydim! Qayerda ekan? Keling, izlab, oyoq kiyimlarni inglizcha o'rganamiz.",
      "items": [
       {
        "say": "shoes",
@@ -555,9 +555,9 @@
        "image_prompt": "A pair of rain boots, cute cartoon for kids, soft flat colors, white background, no text, square"
       },
       {
-       "say": "Put on!",
+       "say": "Put it on!",
        "uz": "kiy!",
-       "emoji": "🙆",
+       "emoji": "🦶",
        "image": "en56-u3-put-on.png",
        "image_prompt": "A child putting on a jacket by themselves, cute cartoon for kids, soft flat colors, white background, no text, square",
        "action": "Kiyim kiyayotgandek harakat qiling!"
@@ -589,7 +589,7 @@
     {
      "name": "Issiq kiyimlar",
      "goal": "Bola hat, coat, scarf, gloves so'zlarini biladi",
-     "intro": "Gu-gu! Brr, tashqarida sovuq! Qanotlarim muzlab qoldi. Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
+     "intro": "Brr, tashqarida sovuq! Qishda issiq kiyinish kerak. Keling, issiq kiyimlarni o'rganamiz!",
      "items": [
       {
        "say": "hat",
@@ -648,7 +648,7 @@
     {
      "name": "Mening kiyimim",
      "goal": "Bola kiyimini rangi bilan aytadi: «My T-shirt is red.»",
-     "intro": "Gu-gu! Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida inglizcha gapiramiz.",
+     "intro": "Men bugun qizil futbolka kiydim! Siz qanday rangli kiyim kiydingiz? Keling, kiyimimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "My T-shirt is red.",
@@ -705,7 +705,7 @@
     {
      "name": "Nonushta",
      "goal": "Bola bread, milk, egg, cheese so'zlarini biladi",
-     "intro": "Gu-gu! Xayrli tong! Kabutar qushcha och qoldi — nonushta vaqti! Dasturxonda nimalar bor ekan? Keling, inglizcha aytamiz.",
+     "intro": "Xayrli tong! Nonushta vaqti — dasturxonda nimalar bor ekan? Keling, inglizcha aytamiz.",
      "items": [
       {
        "say": "bread",
@@ -750,7 +750,7 @@
     {
      "name": "Ichimliklar",
      "goal": "Bola water, juice, tea so'zlarini va «I'm thirsty» iborasini biladi",
-     "intro": "Gu-gu! Men uzoq uchdim, tomog'im qaqrab ketdi. Suv ichgim kelyapti! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
+     "intro": "Men uzoq uchdim, tomog'im qaqrab ketdi! Siz nima ichishni yaxshi ko'rasiz? Keling, bilib olamiz.",
      "items": [
       {
        "say": "water",
@@ -808,7 +808,7 @@
     {
      "name": "Tushlik",
      "goal": "Bola soup, rice, chicken so'zlarini va «I'm hungry» iborasini biladi",
-     "intro": "Gu-gu! Qorinchamda «g'urr-g'urr» ovoz chiqyapti! Demak, tushlik vaqti keldi. Oshxonadan qanday hid kelyapti? Keling, bilamiz!",
+     "intro": "Qorinchamda «g'urr-g'urr» ovoz chiqyapti — tushlik vaqti keldi! Oshxonadan qanday hid kelyapti?",
      "items": [
       {
        "say": "soup",
@@ -819,7 +819,7 @@
       },
       {
        "say": "rice",
-       "uz": "guruch, palov",
+       "uz": "guruch",
        "emoji": "🍚",
        "image": "en56-u4-rice.png",
        "image_prompt": "A bowl of rice, cute cartoon for kids, soft flat colors, white background, no text, square"
@@ -844,9 +844,9 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🥄 Oshpaz o'yini",
-       "matn": "Siz — oshpazsiz! Qozonga soling: [en]rice[/en], [en]chicken[/en]… aralashtiring! Kabutar keladi: [en]I'm hungry![/en] Siz berasiz: [en]Here is soup![/en]",
+       "matn": "Siz — oshpazsiz! O'yinchoq qozonga solganday qiling: [en]rice[/en], [en]chicken[/en]… aralashtiring! Kabutar keladi: [en]I'm hungry![/en] Siz berasiz: [en]Here is soup![/en]",
        "doska": "🍚 rice + 🍗 chicken\n🍲 soup\nI'm hungry! 🍽️",
-       "sodda": "Qozonga bittadan soling va ayting: [en]rice[/en]!",
+       "sodda": "O'yinchoq qozonga bittadan soling va ayting: [en]rice[/en]!",
        "boshqa_usul": "Qog'ozdan likopcha yasang, ichiga rasm chizing va nomini ayting."
       }
      ],
@@ -866,7 +866,7 @@
     {
      "name": "Shirinliklar",
      "goal": "Bola cake, ice cream, sweets so'zlarini va «Yummy!» iborasini biladi",
-     "intro": "Gu-gu! Bugun do'stimning tug'ilgan kuni! Stolda juda ko'p shirinliklar bor. Mmm, mazali! Keling, ularni inglizcha nomlaymiz.",
+     "intro": "Bugun do'stimning tug'ilgan kuni, stolda juda ko'p shirinliklar bor! Keling, ularni inglizcha nomlaymiz.",
      "items": [
       {
        "say": "cake",
@@ -902,7 +902,7 @@
       {
        "turi": "topshiriq",
        "sarlavha": "🎂 Tug'ilgan kun o'yini",
-       "matn": "Tortga shamlar qo'yamiz va sanaymiz: [en]one, two, three, four, five![/en] Puflang! Endi tortdan tatib ko'ramiz — [en]Yummy![/en]",
+       "matn": "Tortdagi shamlarni sanaymiz: [en]one, two, three, four, five![/en] Puflaganday qiling! Endi tortdan tatib ko'ramiz — [en]Yummy![/en]",
        "doska": "🎂 one two three four five\nYummy! 😋",
        "sodda": "Birgina so'z: [en]cake[/en]… [en]Yummy![/en]",
        "boshqa_usul": "Loy yoki plastilindan tort yasang va unga sham qo'yib, inglizcha sanang!"
@@ -930,7 +930,7 @@
     {
      "name": "Mening uyim",
      "goal": "Bola house, door, window, garden so'zlarini biladi",
-     "intro": "Gu-gu! Men uya qurdim, sizning esa chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni inglizcha o'rganamiz.",
+     "intro": "Sizning chiroyli uyingiz bor! Uyning eshigi, derazasi bormi? Keling, uyni inglizcha o'rganamiz.",
      "items": [
       {
        "say": "house",
@@ -976,7 +976,7 @@
     {
      "name": "Uydagi xonalar",
      "goal": "Bola kitchen, bedroom, bathroom, living room so'zlarini biladi",
-     "intro": "Gu-gu! Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi? Qayerda uxlaysiz? Keling, xonalarni inglizcha aytamiz!",
+     "intro": "Men sizning uyingizga mehmonga keldim. Qayerda ovqat pishiriladi, qayerda uxlaysiz? Keling, xonalarni inglizcha aytamiz!",
      "items": [
       {
        "say": "kitchen",
@@ -1035,7 +1035,7 @@
     {
      "name": "Xonadagi narsalar",
      "goal": "Bola chair, lamp, TV, clock so'zlarini biladi",
-     "intro": "Gu-gu! Mehmonxonada nimalar bor ekan? Men soatning chiqillashini eshityapman: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
+     "intro": "Mehmonxonada nimalar bor ekan? Soat chiqillayapti: tik-tak! Keling, xonadagi narsalarni o'rganamiz.",
      "items": [
       {
        "say": "chair",
@@ -1082,7 +1082,7 @@
     {
      "name": "Mushuk qayerda?",
      "goal": "Bola «Where is…?» deb so'raydi, in, on, under so'zlarini tushunadi",
-     "intro": "Gu-gu! Voy, mushukcha yashirinib oldi! U qutining ichidami? Stolning ustidami? Karavotning ostidami? Keling, birga qidiramiz!",
+     "intro": "Voy, mushukcha yashirinib oldi! U qutining ichidami, stolning ustidami yoki karavotning ostidami? Keling, birga qidiramiz!",
      "items": [
       {
        "say": "Where is the cat?",
@@ -1145,7 +1145,7 @@
     {
      "name": "Bugun havo qanday?",
      "goal": "Bola «What's the weather like?» savoliga sunny, rainy, windy bilan javob beradi",
-     "intro": "Gu-gu! Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni inglizcha aytamiz!",
+     "intro": "Men har tong derazadan qarab, havoni ko'raman. Bugun quyosh bormi yoki yomg'irmi? Keling, ob-havoni inglizcha aytamiz!",
      "items": [
       {
        "say": "What's the weather like?",
@@ -1205,7 +1205,7 @@
     {
      "name": "Issiq va sovuq",
      "goal": "Bola snowy, cloudy, hot, cold so'zlari bilan havoni tasvirlaydi",
-     "intro": "Gu-gu! Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq bo'ladi, sovuq bo'ladi. Keling, o'rganamiz!",
+     "intro": "Yozda men soyada salqinlayman, qishda esa patlarimni hurpaytiraman. Havo issiq ham, sovuq ham bo'ladi. Keling, o'rganamiz!",
      "items": [
       {
        "say": "It's snowy.",
@@ -1264,7 +1264,7 @@
     {
      "name": "To'rt fasl",
      "goal": "Bola spring, summer, autumn, winter fasllarini biladi",
-     "intro": "Gu-gu! Bir yilda to'rtta fasl bor. Bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
+     "intro": "Bir yilda to'rtta fasl bor: bahorda gullar ochiladi, yozda cho'milamiz, kuzda barglar to'kiladi, qishda qor yog'adi. Qaysi biri sizga yoqadi?",
      "items": [
       {
        "say": "spring",
@@ -1332,7 +1332,7 @@
     {
      "name": "Soyabon va kamalak",
      "goal": "Bola umbrella, rainbow, snowman so'zlarini biladi",
-     "intro": "Gu-gu! Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz va yangi so'zlarni o'rganamiz.",
+     "intro": "Yomg'irdan keyin osmonda yetti rangli ko'prik paydo bo'ldi! Nima ekan u? Keling, sirni ochamiz.",
      "items": [
       {
        "say": "umbrella",
@@ -1351,7 +1351,7 @@
       },
       {
        "say": "snowman",
-       "uz": "qorbobo, qor odam",
+       "uz": "qor odam",
        "emoji": "⛄",
        "image": "en56-u6-snowman.png",
        "image_prompt": "A friendly snowman with a carrot nose, cute cartoon for kids, soft flat colors, white background, no text, square"
@@ -1389,7 +1389,7 @@
     {
      "name": "Menga yoqadi",
      "goal": "Bola «I like…» bilan yoqtirgan narsasini aytadi",
-     "intro": "Gu-gu! Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz.",
+     "intro": "Men don va olmani juda yaxshi ko'raman! Siz nimani yaxshi ko'rasiz? Bugun buni inglizcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "I like apples.",
@@ -1440,7 +1440,7 @@
     {
      "name": "Menga yoqmaydi",
      "goal": "Bola «I don't like…» bilan yoqtirmagan narsasini aytadi",
-     "intro": "Gu-gu! Men hammasini yaxshi ko'raman, faqat… yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
+     "intro": "Men faqat yomg'irni yoqtirmayman — patlarim ho'l bo'ladi! Sizga nima yoqmaydi? Keling, aytamiz.",
      "items": [
       {
        "say": "I don't like onions.",
@@ -1543,7 +1543,7 @@
     {
      "name": "Eng sevimli narsam",
      "goal": "Bola sevimli rangi va o'yinchog'ini aytadi, oilasiga mehrini bildiradi",
-     "intro": "Gu-gu! Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun eng sevimli narsalarimiz haqida inglizcha gapiramiz.",
+     "intro": "Mening eng sevimli rangim — ko'k, xuddi osmonday! Sizniki qaysi? Bugun sevimli narsalarimiz haqida inglizcha gapiramiz.",
      "items": [
       {
        "say": "My favourite colour is blue.",
@@ -1588,7 +1588,7 @@
     {
      "name": "Menda bor",
      "goal": "Bola «I have a…» bilan o'zida bor narsani aytadi",
-     "intro": "Gu-gu! Mening kichkina uyam va bitta qizil to'pim bor. Sizda nima bor? Mushuk, it yoki qo'g'irchoq? Keling, inglizcha aytamiz!",
+     "intro": "Mening bitta qizil to'pim bor. Sizda nima bor — mushuk, it yoki qo'g'irchoq? Keling, inglizcha aytamiz!",
      "items": [
       {
        "say": "I have a cat.",
@@ -1645,7 +1645,7 @@
     {
      "name": "Men qila olaman",
      "goal": "Bola «I can…» bilan qila oladigan harakatini aytadi",
-     "intro": "Gu-gu! Men ucha olaman! Siz-chi? Siz yugura olasiz, sakray olasiz, qo'shiq ayta olasiz! Keling, buni inglizcha aytishni o'rganamiz.",
+     "intro": "Men ucha olaman! Siz esa yugura, sakray va qo'shiq ayta olasiz. Keling, buni inglizcha aytishni o'rganamiz.",
      "items": [
       {
        "say": "I can jump.",
@@ -1706,7 +1706,7 @@
     {
      "name": "Qila olaman, qila olmayman",
      "goal": "Bola yangi harakatlarni va «I can't…» ni aytadi",
-     "intro": "Gu-gu! Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi? Keling, bilamiz.",
+     "intro": "Men ucha olaman, lekin rasm chiza olmayman — qanotlarim bilan qalam ushlab bo'lmaydi! Siz rasm chiza olasizmi?",
      "items": [
       {
        "say": "I can dance.",
@@ -1767,7 +1767,7 @@
     {
      "name": "Men endi kattaman!",
      "goal": "Bola o'zi haqida 2–3 gap aytadi va xayrlashadi",
-     "intro": "Gu-gu! Siz shuncha ko'p so'z o'rgandingiz! Endi siz kattasiz! Keling, o'zingiz haqingizda inglizcha gapirib, do'stlarga xayrlashishni o'rganamiz.",
+     "intro": "Siz shuncha ko'p so'z o'rgandingiz — endi kattasiz! Keling, o'zingiz haqingizda inglizcha gapirib, xayrlashishni o'rganamiz.",
      "items": [
       {
        "say": "I am five.",

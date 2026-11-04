@@ -39,6 +39,9 @@
     "seventeen": {
      "sentence": "I can count to seventeen!",
      "action_en": "Clap your hands seventeen times!"
+    },
+    "fourteen": {
+     "sentence": "My sister has fourteen dolls."
     }
    },
    "tests_en": [
@@ -63,6 +66,9 @@
     "twenty": {
      "sentence": "I have twenty fingers and toes.",
      "action_en": "Touch your toes!"
+    },
+    "seventeen": {
+     "sentence": "I can count to seventeen!"
     }
    },
    "tests_en": [
@@ -116,6 +122,9 @@
     "Wednesday": {
      "sentence": "On Wednesday I draw pictures.",
      "action_en": "Draw a circle in the air!"
+    },
+    "week": {
+     "sentence": "A week has seven days."
     }
    },
    "tests_en": [],
@@ -550,6 +559,9 @@
     },
     "No, I can't.": {
      "sentence": "Can you fly? No, I can't."
+    },
+    "I can swim.": {
+     "sentence": "I can swim in summer."
     }
    },
    "tests_en": [
@@ -689,6 +701,9 @@
     },
     "You're welcome.": {
      "sentence": "Thank you! You're welcome."
+    },
+    "bananas": {
+     "sentence": "Look! The bananas are yellow."
     }
    },
    "tests_en": [
@@ -740,6 +755,9 @@
     "Goodbye, see you!": {
      "sentence": "Goodbye, see you on Monday!",
      "action_en": "Wave your hand!"
+    },
+    "shop": {
+     "sentence": "I buy bread at the shop."
     }
    },
    "tests_en": [
@@ -753,7 +771,7 @@
    ]
   },
   "Ismim va yoshim": {
-   "intro_en": "Hello, friends! My name is Kabutar. What is your name? How old are you? Let's talk!",
+   "intro_en": "Hello, friends! My name is Kabutar. What is your name? How old are you?",
    "items": {
     "My name is Malika.": {
      "sentence": "Hello! My name is Malika."
@@ -791,6 +809,9 @@
     },
     "I am from Uzbekistan.": {
      "sentence": "Hello! I am from Uzbekistan."
+    },
+    "house": {
+     "sentence": "This is my house."
     }
    },
    "tests_en": [],
