@@ -186,6 +186,13 @@ try:
 except Exception as _bogcha_xato:   # pragma: no cover — bo'lim ishlamasa ham server to'xtamaydi
     print(f"[STARTUP-WARNING] bogcha_reja yuklanmadi: {_bogcha_xato!r}", flush=True)
 
+# REV301: umumiy kurslar katalogi, narxlar va kirish qoidasi (5 ta bepul dars)
+if __package__:
+    from .modules.kurslar import create_router as create_kurslar_router
+else:
+    from modules.kurslar import create_router as create_kurslar_router
+app.include_router(create_kurslar_router(samtm_platform, click_service))
+
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
     from .modules.presentations import register_presentations

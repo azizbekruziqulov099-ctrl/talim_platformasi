@@ -714,11 +714,32 @@ def create_router(platform):
     # REV283: boshqa modullar (o'quv markazi mashqlari) darsni shu yerdan, kesh bilan o'qiydi — kontent bitta manbada (Miya)
     platform._dars_load_lesson = load_lesson
 
+    def _kirish(token, topic_code):
+        """REV301: kursning birinchi N darsi bepul, qolgani obuna bilan (kurslar.ruxsat). Yopiq bo'lsa — 402."""
+        uid = platform._jwt_tekshir(token)
+        try:
+            from modules import kurslar as _ku
+        except ImportError:
+            from . import kurslar as _ku
+        conn = platform._db(); cur = conn.cursor()
+        try:
+            r = _ku.ruxsat(cur, uid, topic_code); conn.commit()
+        except HTTPException:
+            raise
+        except Exception:   # kirish tekshiruvi ishlamasa — dars yopilmaydi (o'quvchi to'xtab qolmasin)
+            conn.rollback(); return
+        finally:
+            cur.close(); conn.close()
+        if not r.get("ochiq"):
+            raise HTTPException(status_code=402, detail={"kod": "kurs_tolov", "kalit": r.get("kalit"), "nomi": r.get("nomi"),
+                                                         "narx": r.get("narx"), "bepul": r.get("bepul"),
+                                                         "xabar": f"Bu kursning birinchi {r.get('bepul')} ta darsi bepul. Davom etish uchun kursni oching."})
+
     @router.get("/api/dars_xonasi/{topic_code}/test")
     def dars_testi(topic_code: str, token: str, til: str = "uz", soni: int = 30):
         """REV297: mavzu testi — Miya kitobidan: avval shu mavzuning barcha test savollari, keyin shu fan va sinfning
         OLDINGI mavzulari (yaqinidan uzog'iga) — so'ralgan songacha (20–80). Rasmlar kitobdagi kabi (mavzuga mos)."""
-        platform._jwt_tekshir(token)
+        _kirish(token, topic_code)
         soni = max(5, min(int(soni or 30), 80))
         asosiy = load_lesson(topic_code, til)
         pool, seen = [], set()
@@ -771,7 +792,7 @@ def create_router(platform):
 
     @router.get("/api/dars_xonasi/{topic_code}")
     def dars_xonasi(topic_code: str, token: str, til: str = "uz"):
-        platform._jwt_tekshir(token)
+        _kirish(token, topic_code)
         return load_lesson(topic_code, til)
 
     def media_bytes(urls):

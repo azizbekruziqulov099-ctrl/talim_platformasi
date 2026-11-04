@@ -213,6 +213,13 @@ class ClickService:
         if isinstance(data, str):
             import json as _json
             data = _json.loads(data)
+        if data.get("tur") == "kurs":   # REV301: umumiy kurs obunasi (Kurslar bo'limi)
+            try:
+                from modules import kurslar as _ku
+            except ImportError:
+                from . import kurslar as _ku
+            _ku.obuna_tolandi(cur, data, kod, int(t["amount_uzs"]), manba)
+            return
         _br.obuna_tolandi(cur, data, kod, int(t["amount_uzs"]), manba)
 
     def holat(self, authorization, mtid):
