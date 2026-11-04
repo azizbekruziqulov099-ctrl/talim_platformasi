@@ -976,6 +976,42 @@ def create_router(platform):
                 if r["tugadi_at"] else None,
                 "sana": r["sana"].isoformat() if r.get("sana") else None}
 
+    # ── REV329: o'yin natijalari va bola miyasi xaritasi ──
+    from modules import bola_qobiliyat as qob
+
+    class OyinNatija(BaseModel):
+        token: Optional[str] = None
+        dars_kod: str = Field(default="", max_length=120)
+        oyin_id: int = Field(ge=1, le=200)
+        togri: int = Field(default=0, ge=0, le=50)
+        xato: int = Field(default=0, ge=0, le=50)
+        soniya: int = Field(default=0, ge=0, le=1800)
+
+    @router.post("/api/bola/oyin_natija")
+    def oyin_natija(body: OyinNatija, authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            qob.migrate(cur)
+            ok = qob.yoz(cur, user_id, day, body.dars_kod, body.oyin_id, body.togri, body.xato, body.soniya)
+            conn.commit()
+            return {"ok": ok}
+        return run_db(run)
+
+    @router.get("/api/ota/bola_qobiliyat")
+    def bola_qobiliyat(bola_id: int, kun: int = 30, token: str = None, authorization: str = Header(None)):
+        parent_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            ota_huquqi(cur, parent_id, bola_id)
+            qob.migrate(cur)
+            out = qob.xarita(cur, bola_id, day, max(7, min(180, int(kun or 30))))
+            conn.commit()
+            return out
+        return run_db(run)
+
     @router.get("/api/ota/bola_faollik")
     def child_activity(bola_id: int, token: str = None, authorization: str = Header(None)):
         parent_id = uid_of(token, authorization)
