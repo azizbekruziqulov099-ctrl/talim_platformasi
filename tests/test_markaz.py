@@ -146,3 +146,21 @@ def test_rev298_test_yasash():
             assert "🍎" in q["savol"] and q["variantlar"][q["togri"]] == str(q["savol"].split("? ")[1].count("🍎"))
         if "circus" in q["savol"] and "nima degani" in q["savol"]:
             assert q["variantlar"][q["togri"]] == "sirk"
+
+
+def test_rev299_mat_test():
+    import re
+    from fractions import Fraction
+    from modules import mat_test
+    assert mat_test.tur_top("Qoldiqli bo‘lish") == mat_test.tur_top("Деление с остатком") == mat_test.tur_top("Division with remainder") == "qoldiq"
+    assert mat_test.tur_top("Trigonometrik funksiyalarning grafiklari") is None   # «metr» — birlik emas
+    for q in mat_test.yasash("Qoldiqli bo‘lish", "3", "uz", 40, seed="t"):
+        a, b = map(int, re.findall(r"\d+", q["savol"])[:2])
+        assert q["variantlar"][q["togri"]] == str(a % b)
+    for q in mat_test.yasash("Kvadrat tenglama va uning ildizlari", "8", "ru", 30, seed="t"):
+        s, p = map(int, re.findall(r"x² [−-] (\d+)x \+ (\d+)", q["savol"])[0])
+        roots = sorted(x for x in range(0, 30) if x * x - s * x + p == 0)
+        want = s if "x₁ + x₂" in q["savol"] else roots[0]
+        assert q["variantlar"][q["togri"]] == str(want)
+    qs = mat_test.yasash("Miqdorning foizi", "6", "en", 80, seed="t")
+    assert len(qs) >= 20 and all(len(set(q["variantlar"])) == len(q["variantlar"]) == 4 for q in qs)

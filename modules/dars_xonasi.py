@@ -731,6 +731,14 @@ def create_router(platform):
         # REV298: har mavzuga o'zining kamida 20 savoli — kitobdagi testlar yetmasa, darsning o'z so'zlari va rasmlaridan
         # (rasm↔so'z, ma'no↔so'z, sanash). Faqat tuzilishidan to'g'riligi kafolatlangan savollar.
         from modules.test_yasash import yasash
+        # REV299: matematika mavzusi — dastur hisoblagan savollar (javob kafolatli), mavzu turiga va sinfga mos, so'ralgan songacha (20–80)
+        tp = asosiy.get("topic") or {}
+        if re.search(r"matem|algebra|geometr", str(tp.get("fan") or ""), re.I) and not re.search(r"yosh", str(tp.get("sinf") or ""), re.I):
+            from modules import mat_test
+            for q in mat_test.yasash(tp.get("mavzu"), tp.get("sinf"), til, soni - len(pool), seed=topic_code):
+                k = _t(q.get("savol"))
+                if k and k not in seen and len(pool) < soni:
+                    seen.add(k); pool.append(q)
         kerak = min(soni, 20) - len(pool)
         if kerak > 0:
             for q in yasash(asosiy, til, kerak + 10, seed=topic_code):
