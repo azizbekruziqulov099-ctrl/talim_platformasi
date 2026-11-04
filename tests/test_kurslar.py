@@ -21,3 +21,10 @@ def test_kirish_qoidasi():
     assert qaror("oquvchi", 50000, 5, 5, True) == (True, "obuna")
     assert qaror("bogcha", 50000, 5, 9, False, True, "bolalar") == (True, "bogcha_obuna")
     assert qaror("bogcha", 50000, 5, 9, False, True, "fanlar")[0] is False   # bog'cha obunasi faqat bolalar kurslariga
+
+
+def test_rev303_xalqaro_maktab_darslari_funksiyasi_bor():
+    from modules.xalqaro_baholash import maktab_darslari_ol
+    import inspect
+    src = inspect.getsource(maktab_darslari_ol)
+    assert "ai_brain_units" in src and "(izoh: rus)" in src and "(izoh: ingliz)" in src   # faqat ochiladigan darslar, 3 tilda

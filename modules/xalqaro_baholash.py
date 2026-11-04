@@ -662,6 +662,50 @@ def migrate(cur):
     cur.execute("CREATE INDEX IF NOT EXISTS xb_imtihon_til ON xb_imtihon(user_id, til, tur, davr)")
 
 
+
+def maktab_darslari_ol(cur, maktab, til="uz"):
+    """REV303: mavzuga bog'liq 1–11 sinf maktab darslari — FAQAT Miya'da darsi bor (ochiladigan) mavzular.
+    Kalit so'zlar o'zbekcha nomlarda qidiriladi; ruscha/inglizcha o'quvchiga o'sha kitobning parallel (bir xil tartibdagi)
+    ruscha/inglizcha darsi beriladi. Kirish (bepul 5 dars / obuna) dars xonasida tekshiriladi."""
+    try:
+        from modules import kurslar as _ku
+    except ImportError:
+        from . import kurslar as _ku
+    out = []
+    suf = {"ru": " (izoh: rus)", "en": " (izoh: ingliz)"}.get(til, "")
+    try:
+        cur.execute("SAVEPOINT xb_dts")
+        for m in maktab[:3]:
+            sozlar = [s for s in m.get("sozlar", []) if len(s) >= 3][:6]
+            if not sozlar:
+                continue
+            like = " OR ".join(["LOWER(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bolim_name,d.bob_name)) LIKE %s"] * len(sozlar))
+            cur.execute(f"""SELECT d.topic_code, COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),NULLIF(d.bolim_name,''),d.bob_name) AS nom,
+                                   d.subject_name, d.grade FROM dts_tree d
+                            WHERE d.is_deleted=FALSE AND LOWER(d.subject_name) LIKE %s AND d.subject_name NOT ILIKE '%%(izoh:%%' AND ({like})
+                              AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
+                            ORDER BY d.topic_code LIMIT 60""",
+                        [f"%{m['fan'].lower()[:6]}%"] + [f"%{s.lower()}%" for s in sozlar])
+            for r in cur.fetchall():
+                g = sinf_raqami(r["grade"])
+                if not (g and g in m.get("sinflar", []) and len(out) < 12) or r["topic_code"] in {x.get("uz_kod") for x in out}:
+                    continue
+                kod, nom, fan = r["topic_code"], _t(r["nom"]), _t(r["subject_name"])
+                if suf:   # parallel kitob: o'sha fan va sinfning shu tartibdagi darsi
+                    uz_list = [x["topic_code"] for x in _ku.kurs_darslari(cur, r["subject_name"], r["grade"])]
+                    tr = _ku.kurs_darslari(cur, r["subject_name"] + suf, r["grade"])
+                    if kod in uz_list and len(tr) == len(uz_list):
+                        j = uz_list.index(kod)
+                        kod, nom, fan = tr[j]["topic_code"], _t(tr[j]["nom"]), _t(r["subject_name"] + suf)
+                out.append({"topic_code": kod, "uz_kod": r["topic_code"], "nom": re.sub(r"^\d+\.\s*", "", nom), "fan": fan, "sinf": g, "_t": len(out)})
+        cur.execute("RELEASE SAVEPOINT xb_dts")
+    except Exception:
+        cur.execute("ROLLBACK TO SAVEPOINT xb_dts")
+    out.sort(key=lambda x: (x["sinf"], x["uz_kod"]))   # kitobdagi tartib
+    for x in out:
+        x.pop("uz_kod", None); x.pop("_t", None)
+    return out
+
 def create_router(platform, kontent=None):
     router = APIRouter()
     K = kontent or KONTENT
@@ -858,34 +902,14 @@ def create_router(platform, kontent=None):
         def run(conn, cur):
             user = user_info(cur, user_id)
             out = mavzu_tafsilot(cur, user, kalit[:20], til)
-            out["maktab_darslari"] = maktab_darslari(cur, out["maktab"]) if til == "uz" else []   # maktab dasturi — o'zbekcha
+            out["maktab_darslari"] = maktab_darslari(cur, out["maktab"], til)   # REV303: faqat Miya'da darsi bor mavzular, o'quvchi tilida
             out["reyting"] = mavzu_reytingi(cur, user, kalit[:20], til)
             conn.commit()
             return out
         return run_db(run)
 
-    def maktab_darslari(cur, maktab):
-        """Mavzuga bog'liq 1–11 sinf maktab darslari (dts_tree dan kalit so'zlar bo'yicha)."""
-        out = []
-        try:
-            cur.execute("SAVEPOINT xb_dts")
-            for m in maktab[:3]:
-                sozlar = [s for s in m.get("sozlar", []) if len(s) >= 3][:6]
-                if not sozlar:
-                    continue
-                like = " OR ".join(["LOWER(COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),bolim_name,bob_name)) LIKE %s"] * len(sozlar))
-                cur.execute(f"""SELECT topic_code, COALESCE(NULLIF(kichik_name,''),NULLIF(mavzu_name,''),NULLIF(bolim_name,''),bob_name) AS nom,
-                                       subject_name, grade FROM dts_tree
-                                WHERE LOWER(subject_name) LIKE %s AND ({like}) LIMIT 40""",
-                            [f"%{m['fan'].lower()[:6]}%"] + [f"%{s.lower()}%" for s in sozlar])
-                for r in cur.fetchall():
-                    g = sinf_raqami(r["grade"])
-                    if g and g in m.get("sinflar", []) and len(out) < 12 and r["topic_code"] not in {x["topic_code"] for x in out}:
-                        out.append({"topic_code": r["topic_code"], "nom": _t(r["nom"]), "fan": _t(r["subject_name"]), "sinf": g})
-            cur.execute("RELEASE SAVEPOINT xb_dts")
-        except Exception:
-            cur.execute("ROLLBACK TO SAVEPOINT xb_dts")
-        return sorted(out, key=lambda x: (x["sinf"], x["nom"]))
+    def maktab_darslari(cur, maktab, til="uz"):
+        return maktab_darslari_ol(cur, maktab, til)
 
     def mavzu_reytingi(cur, user, kalit, til="uz"):
         """Shu mavzu bo'yicha sinfdoshlar orasida o'rin (o'zlashtirgan savollar soni)."""
