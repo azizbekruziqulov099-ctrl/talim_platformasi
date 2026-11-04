@@ -284,6 +284,19 @@ def kontent_of(til="uz", asos=None):
     return KONTENTLAR[til].ensure()
 
 
+def _son(v):
+    """Son yoki sonli matn → float/int; boshqasi → None."""
+    if isinstance(v, bool):
+        return None
+    if isinstance(v, (int, float)):
+        return v
+    try:
+        x = float(str(v).replace(",", ".").strip())
+        return int(x) if x.is_integer() else x
+    except (TypeError, ValueError):
+        return None
+
+
 def _t(v):
     return str(v or "").strip()
 
@@ -832,7 +845,7 @@ def create_router(platform, kontent=None):
                 for t in k.ramka["mavzular"].get(tk, []):
                     sv = k.by_mavzu.get(t["kalit"], [])
                     foizlar = [x.get("xalqaro_ortacha") if x.get("xalqaro_ortacha") is not None else x.get("oecd_foiz") for x in sv]
-                    foizlar = [f for f in foizlar if f is not None]
+                    foizlar = [_son(f) for f in foizlar if _son(f) is not None]   # REV304: ma'lumotda matn bo'lishi mumkin («—»)
                     dars = k.dars_by_kod.get("XB-" + t["kalit"])
                     mavzular.append({"kalit": t["kalit"], "nom": t["nom"], "soha": t["soha"], "soha_nomi": t["soha_nomi"],
                                      "dars_kodi": dars["kod"] if dars else "", "savollar": len(sv),
@@ -864,7 +877,8 @@ def create_router(platform, kontent=None):
         davlat = {}
         for x in sv:
             for nom, f in (x.get("davlatlar") or {}).items():
-                davlat.setdefault(nom, []).append(f)
+                if _son(f) is not None:   # REV304: «—» kabi matnli qiymatlar hisobga olinmaydi (oldin mavzu 500 xato berardi)
+                    davlat.setdefault(nom, []).append(_son(f))
         davlat_ort = sorted(([n, round(sum(v) / len(v))] for n, v in davlat.items() if len(v) >= max(1, len(sv) // 2)), key=lambda r: -r[1])
         nomlar = k.natijalar.get("nomlar", {})
         fikrlash = {}

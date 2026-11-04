@@ -28,3 +28,8 @@ def test_rev303_xalqaro_maktab_darslari_funksiyasi_bor():
     import inspect
     src = inspect.getsource(maktab_darslari_ol)
     assert "ai_brain_units" in src and "(izoh: rus)" in src and "(izoh: ingliz)" in src   # faqat ochiladigan darslar, 3 tilda
+
+
+def test_rev304_son_matnli_qiymat():
+    from modules.xalqaro_baholash import _son
+    assert _son(45) == 45 and _son("45") == 45 and _son("4,5") == 4.5 and _son("-") is None and _son(None) is None and _son(True) is None
