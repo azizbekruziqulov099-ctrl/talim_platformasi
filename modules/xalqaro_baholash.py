@@ -935,8 +935,9 @@ def create_router(platform, kontent=None):
             return None
         try:
             cur.execute("SAVEPOINT xb_mr")
-            cur.execute("""SELECT b.user_id, COUNT(*) FILTER (WHERE b.oxirgi_togri) AS n FROM xb_bilim b JOIN users u ON u.user_id=b.user_id
-                           WHERE b.mavzu=%s AND b.til=%s AND u.maktab_id=%s AND u.class=%s GROUP BY b.user_id""", (kalit, til, user["maktab_id"], user["class"]))
+            # REV318: barcha tillar — bir savol (bir xil ID) bir marta: istalgan tilda to'g'ri yechilgan bo'lsa hisoblanadi
+            cur.execute("""SELECT b.user_id, COUNT(DISTINCT b.savol_id) FILTER (WHERE b.oxirgi_togri) AS n FROM xb_bilim b JOIN users u ON u.user_id=b.user_id
+                           WHERE b.mavzu=%s AND u.maktab_id=%s AND u.class=%s GROUP BY b.user_id""", (kalit, user["maktab_id"], user["class"]))
             rows = cur.fetchall()
             cur.execute("RELEASE SAVEPOINT xb_mr")
         except Exception:
@@ -1144,8 +1145,9 @@ def create_router(platform, kontent=None):
                            ORDER BY id DESC LIMIT 1""", (user_id, til, body.tur, davr, now))
             row = cur.fetchone()
             if not row:
-                cur.execute("SELECT 1 FROM xb_imtihon WHERE user_id=%s AND til=%s AND tur=%s AND davr=%s AND rasmiy AND topshirilgan IS NOT NULL LIMIT 1",
-                            (user_id, til, body.tur, davr))
+                # REV318: rasmiy natija davrda BITTA — qaysi tilda yechilganidan qat'i nazar (til almashtirib qayta rasmiy topshirib bo'lmaydi)
+                cur.execute("SELECT 1 FROM xb_imtihon WHERE user_id=%s AND tur=%s AND davr=%s AND rasmiy AND topshirilgan IS NOT NULL LIMIT 1",
+                            (user_id, body.tur, davr))
                 rasmiy = not body.mashq and not cur.fetchone()
                 cur.execute("SELECT savollar FROM xb_imtihon WHERE user_id=%s AND til=%s ORDER BY id DESC LIMIT 6", (user_id, til))
                 yaqin = [x["id"] for r in cur.fetchall() for x in (r["savollar"] or [])]
@@ -1336,9 +1338,12 @@ def create_router(platform, kontent=None):
         for nom, sh in sharts.items():
             if not sh:
                 continue
-            cur.execute(f"""SELECT COUNT(*) AS jami, COUNT(*) FILTER (WHERE ball > %s) AS yuqori, ROUND(AVG(ball)) AS ortacha
-                            FROM xb_imtihon WHERE til=%s AND tur=%s AND toplam=%s AND davr=%s AND rasmiy AND topshirilgan IS NOT NULL AND {sh[0]}""",
-                        (row["ball"], til_kodi(row.get("til")), row["tur"], row["toplam"], row["davr"], *sh[1]))
+            # REV318: reyting UMUMIY — uz, ru, en, de, es da yechganlar bitta ro'yxatda (savollar bir xil tadqiqotdan, bir xil ID);
+            # har o'quvchi bir marta hisoblanadi (shu davrdagi eng yaxshi rasmiy bali)
+            cur.execute(f"""SELECT COUNT(*) AS jami, COUNT(*) FILTER (WHERE ball > %s AND user_id <> %s) AS yuqori, ROUND(AVG(ball)) AS ortacha
+                            FROM (SELECT user_id, MAX(ball) AS ball FROM xb_imtihon WHERE tur=%s AND toplam=%s AND davr=%s AND rasmiy
+                                    AND topshirilgan IS NOT NULL AND {sh[0]} GROUP BY user_id) t""",
+                        (row["ball"], row.get("user_id") or 0, row["tur"], row["toplam"], row["davr"], *sh[1]))
             r = cur.fetchone() or {}
             jami = int(r.get("jami") or 0)
             out[nom] = {"jami": jami, "orin": int(r.get("yuqori") or 0) + 1 if jami >= REYTING_MIN else None,
@@ -1355,21 +1360,21 @@ def create_router(platform, kontent=None):
         def run(conn, cur):
             user = user_info(cur, user_id)
             tk = toplam_of(toplam, user["sinf"], til)
-            cur.execute("""SELECT id, til, tur, davr, ball, foiz, maktab_id, sinf_nomi, sinf, toplam, rasmiy, topshirilgan FROM xb_imtihon
-                           WHERE user_id=%s AND til=%s AND rasmiy AND topshirilgan IS NOT NULL AND (toplam=%s OR tur='yillik') ORDER BY id""", (user_id, til, tk))
+            cur.execute("""SELECT id, user_id, til, tur, davr, ball, foiz, maktab_id, sinf_nomi, sinf, toplam, rasmiy, topshirilgan FROM xb_imtihon
+                           WHERE user_id=%s AND rasmiy AND topshirilgan IS NOT NULL AND (toplam=%s OR tur='yillik') ORDER BY id""", (user_id, tk))   # REV318: barcha tillar
             mine = [dict(r) for r in cur.fetchall()]
             oxirgi = mine[-1] if mine else None
             reyt = imtihon_reytingi(cur, {**oxirgi, "toplam": oxirgi["toplam"]}) if oxirgi else None
             # sinfdoshlar ro'yxati (ismsiz, faqat o'rin va ball) — eng yaxshi rasmiy natija shu oy
             sinfdosh = []
             if user.get("maktab_id") and user.get("class"):
-                cur.execute("""SELECT user_id, MAX(ball) AS ball FROM xb_imtihon WHERE maktab_id=%s AND sinf_nomi=%s AND toplam=%s AND til=%s
+                cur.execute("""SELECT user_id, MAX(ball) AS ball FROM xb_imtihon WHERE maktab_id=%s AND sinf_nomi=%s AND toplam=%s
                                AND rasmiy AND topshirilgan IS NOT NULL AND boshlangan > NOW() - INTERVAL '45 days' GROUP BY user_id ORDER BY 2 DESC LIMIT 40""",
-                            (user["maktab_id"], f"{user['class']}{user['harf']}", tk, til))
+                            (user["maktab_id"], f"{user['class']}{user['harf']}", tk))   # REV318: barcha tillar
                 sinfdosh = [{"orin": i + 1, "ball": int(r["ball"] or 0), "men": int(r["user_id"]) == user_id} for i, r in enumerate(cur.fetchall())]
             conn.commit()
             b = oxirgi["ball"] if oxirgi else None
-            return {"toplam": tk, "tarix": [{"tur": r["tur"], "davr": r["davr"], "ball": r["ball"], "foiz": r["foiz"]} for r in mine[-30:]],
+            return {"toplam": tk, "tarix": [{"tur": r["tur"], "davr": r["davr"], "ball": r["ball"], "foiz": r["foiz"], "til": r["til"]} for r in mine[-30:]],
                     "oxirgi": {"ball": b, "daraja": daraja_of(b or 0, tk, til) if b else None}, "reyting": reyt, "til": til,
                     "uz_nomi": k.natijalar.get("uz_nomi") or "O‘zbekiston",
                     "sinfdoshlar": sinfdosh if len(sinfdosh) >= REYTING_MIN else [],

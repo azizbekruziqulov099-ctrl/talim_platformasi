@@ -845,6 +845,27 @@ def create_router(platform):
         notify(cur, child_id, text, "bola_dars")
         return ochildi
 
+    def birinchi_dars(cur, child_id, day, vaqt):
+        """REV318: bog'cha bolasi kunning birinchi darsini OXIRIGACHA o'tib, Kabu testini yechmaguncha o'yinlar va
+        boshqa bo'limlar yopiq. kerak=False: bugun dars tugatilgan, dars vaqti/tun tugagan yoki bugun ochiladigan dars yo'q."""
+        try:
+            cur.execute("SAVEPOINT bola_birinchi")
+            cur.execute("SELECT 1 FROM bola_dars_faollik WHERE child_id=%s AND sana=%s AND tugadi_at IS NOT NULL LIMIT 1", (child_id, day))
+            tugatildi = bool(cur.fetchone())
+            bor = True
+            if not tugatildi:
+                rj = (plan(cur, child_id, datetime.now(timezone.utc), True) or {}).get("reja") or {}
+                if rj.get("manba"):   # haftalik reja: bugun yangi dars ham, boshlangan-tugamagani ham yo'q — talab qilinmaydi
+                    bor = sum((rj.get("bugun") or {}).values()) > 0
+                    cur.execute("SELECT 1 FROM bola_dars_faollik WHERE child_id=%s AND sana=%s AND tugadi_at IS NULL LIMIT 1", (child_id, day))
+                    bor = bor or bool(cur.fetchone())
+            cur.execute("RELEASE SAVEPOINT bola_birinchi")
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT bola_birinchi")
+            return {"tugatildi": True, "kerak": False}   # tekshirib bo'lmasa — bola to'xtab qolmasin
+        t = (vaqt or {}).get("tugadi") or {}
+        return {"tugatildi": tugatildi, "kerak": (not tugatildi) and bor and not (t.get("dars") or t.get("jami") or t.get("tun"))}
+
     @router.get("/api/bola/vaqt")
     def time_now(token: str = None, authorization: str = Header(None)):
         user_id = uid_of(token, authorization)
@@ -856,8 +877,9 @@ def create_router(platform):
                 conn.commit()
                 return {"kuzatilmaydi": True}
             out = time_state(cur, user_id, day)
+            bd = birinchi_dars(cur, user_id, day, out)
             conn.commit()
-            return {**out, "xabar": time_message(out, "oyin") if (out["tugadi"]["jami"] or out["tugadi"]["tun"]) else None}
+            return {**out, "birinchi_dars": bd, "xabar": time_message(out, "oyin") if (out["tugadi"]["jami"] or out["tugadi"]["tun"]) else None}
         return run_db(run)
 
     @router.post("/api/bola/vaqt/signal")
@@ -913,7 +935,8 @@ def create_router(platform):
                 notify(cur, user_id, f"🌙 {name} bugungi vaqtini to'liq ishlatdi: dars {status['dars']['daqiqa']} daqiqa, "
                                      f"o'yin {status['oyin']['daqiqa']} daqiqa. Platforma ertagacha yopildi.", "bola_vaqt")
             conn.commit()
-            return {**status, "xabar": time_message(status, turi)}
+            bd = birinchi_dars(cur, user_id, day, status)   # REV318
+            return {**status, "birinchi_dars": bd, "xabar": time_message(status, turi)}
         return run_db(run)
 
     # ── Ota-ona ──
