@@ -105,7 +105,11 @@ TILLAR = ("uz", "ru", "en")
 
 
 def til_kodi(value):
+    """REV315: 5 til — uz, ru, en, de, es. Nemis/ispan faqat ularning kontenti bor bo'lsa (xalqaro_data/de, /es)
+    — aks holda o'zbekcha (bo'lim ishlab turadi, xato bermaydi)."""
     v = str(value or "").strip().lower()[:2]
+    if v in ("de", "es"):
+        return v if os.path.isfile(os.path.join(DATA_DIR, v, "savollar.json")) else "uz"
     return {"oz": "uz"}.get(v, v) if v in ("uz", "ru", "en", "oz") else "uz"
 
 
