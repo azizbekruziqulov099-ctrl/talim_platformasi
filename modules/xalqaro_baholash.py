@@ -48,7 +48,9 @@ try:
 except ImportError:   # pragma: no cover
     _LazyMigration = None
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "xalqaro_data")
+# REV320: kontent BAZADAN (Admin → Miya → «🌍 Xalqaro savollar», Excel). Kod ichida kontent fayllari yo'q;
+# XB_DATA_DIR — faqat testlar uchun (tests/fixtures/xalqaro_data).
+DATA_DIR = os.environ.get("XB_DATA_DIR") or os.path.join(os.path.dirname(os.path.abspath(__file__)), "xalqaro_data")
 TZ = timezone(timedelta(hours=5))
 OPTION_LETTERS = "ABCD"
 QUTI_KUN = [0, 1, 2, 4, 8, 16]          # Leitner: quti → necha kundan keyin qayta so'raladi
@@ -196,6 +198,9 @@ class Kontent:
         self._ok = False
 
     def _load(self, name, default):
+        b = _baza(self.til, name[:-5])
+        if b is not None:
+            return b
         path = os.path.join(self.data_dir, name)
         if not os.path.exists(path) and self.til in ("de", "es"):   # REV319: tuzilma hali tarjima qilinmagan — inglizchasi
             path = os.path.join(self.base_dir, "en", name)
@@ -212,14 +217,8 @@ class Kontent:
                 return self
             self.ramka = self._load("ramka.json", {"toplamlar": {}, "mavzular": {}, "fikrlash": {}})
             self.natijalar = natijalar_tilda(self.base_dir, self.til)
-            baza = None
-            if BAZA_YUKLOVCHI is not None:
-                try:
-                    baza = BAZA_YUKLOVCHI(self.til, "savollar")
-                except Exception:   # noqa: BLE001 — baza ishlamasa ham bo'lim fayldan ishlaydi
-                    baza = None
-            self.manba = "baza" if baza else "fayl"
-            self.savollar = baza if baza else self._load("savollar.json", [])
+            self.manba = "baza" if _baza(self.til, "savollar") is not None else "fayl"
+            self.savollar = self._load("savollar.json", [])
             self.darslar = self._load("darslar.json", [])
             self.birliklar = {b["birlik"]: b for b in self._load("birliklar.json", [])}   # REV262: PISA stimullari
             self.i18n = _json_fayl(os.path.join(self.base_dir, "davlatlar.json"), {})
@@ -236,7 +235,22 @@ class Kontent:
         return self
 
 
+def _baza(til, turi):
+    """REV320: bazadagi kontent (bo'lmasa None)."""
+    if BAZA_YUKLOVCHI is None:
+        return None
+    try:
+        return BAZA_YUKLOVCHI(til, turi)
+    except Exception:   # noqa: BLE001 — baza ishlamasa ham bo'lim yiqilmaydi
+        return None
+
+
 def _json_fayl(path, default):
+    nom = os.path.basename(path)
+    if nom in ("natijalar.json", "davlatlar.json"):   # REV320: tilga bog'liq bo'lmagan — o'zbekcha Excel'dan
+        b = _baza("uz", nom[:-5])
+        if b is not None:
+            return b
     if not os.path.exists(path):
         return default
     with open(path, encoding="utf-8") as f:
@@ -661,8 +675,12 @@ class TopshirBody(BaseModel):
 
 def migrate(cur):
     # REV319: savollar banki — Excel'dan yuklangan (til bo'yicha), nashr qilingani saytda ishlatiladi
-    cur.execute("""CREATE TABLE IF NOT EXISTS xb_kontent (til TEXT NOT NULL, turi TEXT NOT NULL, data JSONB NOT NULL,
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_kontent (til TEXT NOT NULL, turi TEXT NOT NULL, data JSON NOT NULL,
         soni INT NOT NULL DEFAULT 0, yukladi BIGINT, yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (til, turi))""")
+    # REV320: JSON (JSONB emas) — kalitlar tartibi saqlanadi (to'plamlar, davlatlar ro'yxati tartibi saytda muhim)
+    cur.execute("""DO $$ BEGIN
+        IF (SELECT data_type FROM information_schema.columns WHERE table_name='xb_kontent' AND column_name='data') = 'jsonb' THEN
+            ALTER TABLE xb_kontent ALTER COLUMN data TYPE JSON USING data::json; END IF; END $$""")
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_bilim (
         user_id BIGINT NOT NULL, savol_id TEXT NOT NULL, toplam TEXT NOT NULL DEFAULT '', mavzu TEXT NOT NULL DEFAULT '',
         urinish INT NOT NULL DEFAULT 0, togri INT NOT NULL DEFAULT 0, oxirgi_togri BOOLEAN NOT NULL DEFAULT FALSE,
@@ -1729,40 +1747,53 @@ def create_router(platform, kontent=None):
             cur.close(); conn.close()
         return uid
 
-    def _uz_asos():
-        k = KT("uz")
-        return k.savollar
+    QISMLAR = ("savollar", "darslar", "birliklar", "ramka")
+    UMUMIY_QISM = ("natijalar", "davlatlar")
+
+    def _kontent(t):
+        """Shu tilning to'liq kontenti (Excel uchun) — bazadan yoki saytdagi joriy holatdan."""
+        k = KT(t)
+        out = {"savollar": k.savollar, "darslar": k.darslar, "birliklar": list(k.birliklar.values()), "ramka": k.ramka}
+        if t == "uz":
+            out["natijalar"] = _baza("uz", "natijalar") or _json_fayl(os.path.join(DATA_DIR, "natijalar.json"), {})
+            out["davlatlar"] = _baza("uz", "davlatlar") or _json_fayl(os.path.join(DATA_DIR, "davlatlar.json"), {})
+        return out
 
     @router.get("/api/admin/xalqaro/kontent")
     def xb_kontent_holati(token: str = None, authorization: str = Header(None)):
         _admin(token, authorization)
         def run(conn, cur):
-            cur.execute("SELECT til, soni, yangilandi FROM xb_kontent WHERE turi='savollar'")
-            baza = {r["til"]: {"soni": r["soni"], "yangilandi": r["yangilandi"].isoformat()} for r in cur.fetchall()}
+            cur.execute("SELECT til, turi, soni, yangilandi FROM xb_kontent")
+            baza = {}
+            for r in cur.fetchall():
+                baza.setdefault(r["til"], {})[r["turi"]] = {"soni": r["soni"], "yangilandi": r["yangilandi"].isoformat()}
             conn.commit()
             out = []
             for t in XE.TILLAR:
+                b = baza.get(t, {})
                 fayl = os.path.isfile(os.path.join(DATA_DIR if t == "uz" else os.path.join(DATA_DIR, t), "savollar.json"))
-                out.append({"til": t, "nom": XE.TIL_NOMI[t], "manba": "baza" if t in baza else "fayl" if fayl else "yo'q",
-                            **(baza.get(t) or {"soni": len(KT(t).savollar) if fayl else 0, "yangilandi": None})})
+                sv = b.get("savollar") or {}
+                out.append({"til": t, "nom": XE.TIL_NOMI[t], "manba": "baza" if sv else "fayl" if fayl else "yo'q",
+                            "soni": sv.get("soni") or (len(KT(t).savollar) if fayl else 0), "yangilandi": sv.get("yangilandi"),
+                            "qismlar": {q: (b.get(q) or {}).get("soni") for q in QISMLAR + (UMUMIY_QISM if t == "uz" else ())}})
             return {"tillar": out}
         return run_db(run)
 
     @router.get("/api/admin/xalqaro/shablon")
     def xb_shablon(token: str = None, til: str = Query("uz", max_length=4), authorization: str = Header(None)):
-        """Joriy savollar Excel'da (tahrirlash uchun). Nemis/ispan hali bo'lmasa — o'zbekcha savollar asosida, matn ustunlari
-        tarjima qilinadigan holda (ID, to'g'ri javob, statistika to'ldirilgan)."""
+        """Joriy xalqaro kontent — to'liq (savollar, darslar, PISA matnlari, tuzilma; o'zbekchada — natijalar ham) Excel'da.
+        Nemis/ispan hali bo'lmasa — inglizcha matn bilan (tarjima qilish uchun; ID, javoblar, statistika tayyor)."""
         _admin(token, authorization)
         t = str(til or "uz").lower()[:2]
         if t not in XE.TILLAR:
             raise HTTPException(400, "Til: uz, ru, en, de, es")
-        uz = _uz_asos()
-        bor = _baza_ol(t, "savollar") or (KT(t).savollar if t in ("uz", "ru", "en") or t in BAZADA_TILLAR else None)
-        if not bor:   # yangi til — inglizcha (yoki o'zbekcha) matn bilan, tarjima qilish uchun
-            bor = KT("en").savollar or uz
-        data = XE.json_to_xlsx(bor, t, stat_manba=uz)
+        manba = t if (t in ("uz", "ru", "en") or t in BAZADA_TILLAR) else "en"
+        k = _kontent(manba)
+        if not k["savollar"] and manba != "uz":
+            k = _kontent("uz")
+        data = XE.kontent_to_xlsx(k, t, stat_manba=KT("uz").savollar or k["savollar"])
         return Response(content=data, media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        headers={"Content-Disposition": f'attachment; filename="xalqaro_savollar_{t}.xlsx"'})
+                        headers={"Content-Disposition": f'attachment; filename="xalqaro_{t}.xlsx"'})
 
     async def _fayl(request):
         form = await request.form()
@@ -1770,56 +1801,80 @@ def create_router(platform, kontent=None):
         if f is None:
             raise HTTPException(400, "Fayl yuborilmadi")
         data = await f.read()
-        if len(data) > 25 * 1024 * 1024:
-            raise HTTPException(413, "Fayl juda katta (25 MB dan oshmasin)")
+        if len(data) > 40 * 1024 * 1024:
+            raise HTTPException(413, "Fayl juda katta (40 MB dan oshmasin)")
         return data, str(form.get("token") or "")
 
     def _tekshiruv(data):
-        til, sav, xato, ogoh = XE.xlsx_to_json(data)
+        til, kon, xato, ogoh = XE.xlsx_to_kontent(data)
         if not xato and til and til != "uz":
-            xato += XE.mosligini_tekshir(_baza_ol("uz", "savollar") or _uz_asos(), sav)
-        return til, sav, xato, ogoh
+            asos = _kontent("uz")
+            if not asos["savollar"]:
+                xato.append("Avval o'zbekcha faylni nashr qiling — boshqa tillar u bilan solishtiriladi (ID, javoblar)")
+            else:
+                xato += XE.kontent_mosligi(asos, kon)
+        if til == "uz":
+            for q in ("darslar", "ramka", "natijalar", "davlatlar"):
+                if not kon.get(q):
+                    xato.append(f"O'zbekcha faylda «{q}» bo'lishi shart (to'liq shablondan foydalaning)")
+        elif not kon.get("ramka") or not kon.get("darslar"):
+            xato.append("Faylda DARSLAR va RAMKA varaqlari bo'lishi shart (to'liq shablondan foydalaning)")
+        return til, kon, xato, ogoh
 
     @router.post("/api/admin/xalqaro/tekshir")
     async def xb_tekshir(request: Request, authorization: str = Header(None)):
         data, token = await _fayl(request)
         _admin(token, authorization)
-        til, sav, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
+        til, kon, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
+        sav = kon.get("savollar") or []
         return {"til": til, "savollar": len(sav), "variantlar": sum(len(q["variantlar"]) for q in sav),
+                "darslar": len(kon.get("darslar") or []), "birliklar": len(kon.get("birliklar") or []),
                 "xatolar": xato[:200], "xato_soni": len(xato), "ogohlantirishlar": ogoh[:100], "tayyor": not xato}
 
     @router.post("/api/admin/xalqaro/nashr")
     async def xb_nashr(request: Request, authorization: str = Header(None)):
-        """Tekshiruvdan o'tgan faylni nashr qiladi: saytdagi savollar shu tilda darhol yangilanadi.
-        Xato bo'lsa — hech narsa o'zgarmaydi."""
+        """Tekshiruvdan o'tgan faylni nashr qiladi (bitta tranzaksiyada — yoki hammasi, yoki hech narsa).
+        Saytdagi shu tildagi xalqaro bo'lim darhol yangilanadi."""
         data, token = await _fayl(request)
         uid = _admin(token, authorization)
-        til, sav, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
+        til, kon, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
         if xato:
             raise HTTPException(422, {"kod": "xato", "xatolar": xato[:200], "xato_soni": len(xato)})
+        qism = QISMLAR + (UMUMIY_QISM if til == "uz" else ())
 
         def run(conn, cur):
-            cur.execute("""INSERT INTO xb_kontent(til, turi, data, soni, yukladi) VALUES(%s,'savollar',%s::jsonb,%s,%s)
-                           ON CONFLICT (til, turi) DO UPDATE SET data=EXCLUDED.data, soni=EXCLUDED.soni, yukladi=EXCLUDED.yukladi, yangilandi=NOW()""",
-                        (til, json.dumps(sav, ensure_ascii=False), len(sav), uid))
+            for q in qism:
+                if q not in kon:
+                    continue
+                v = kon[q]
+                cur.execute("""INSERT INTO xb_kontent(til, turi, data, soni, yukladi) VALUES(%s,%s,%s::json,%s,%s)
+                               ON CONFLICT (til, turi) DO UPDATE SET data=EXCLUDED.data, soni=EXCLUDED.soni, yukladi=EXCLUDED.yukladi, yangilandi=NOW()""",
+                            (til, q, json.dumps(v, ensure_ascii=False), len(v) if isinstance(v, list) else len(v or {}), uid))
             conn.commit()
             return True
         run_db(run)
         BAZADA_TILLAR.add(til)
         _kesh_tozala(til)
-        return {"ok": True, "til": til, "savollar": len(sav), "ogohlantirishlar": ogoh[:50]}
+        if til == "uz":
+            _NATIJA_KESH.clear()
+            for key in list(KONTENTLAR):   # natijalar hamma tilda ishlatiladi
+                KONTENTLAR.pop(key, None)
+        return {"ok": True, "til": til, "savollar": len(kon.get("savollar") or []), "darslar": len(kon.get("darslar") or []),
+                "ogohlantirishlar": ogoh[:50]}
 
     @router.post("/api/admin/xalqaro/qaytar")
     def xb_qaytar(token: str = Query(None), til: str = Query(..., max_length=4), authorization: str = Header(None)):
-        """Bazadagi savollarni o'chirib, saytning o'z (kod ichidagi) savollariga qaytaradi."""
+        """Shu tilning bazadagi xalqaro kontentini o'chiradi."""
         _admin(token, authorization)
         t = str(til).lower()[:2]
         def run(conn, cur):
-            cur.execute("DELETE FROM xb_kontent WHERE til=%s AND turi='savollar'", (t,))
+            cur.execute("DELETE FROM xb_kontent WHERE til=%s", (t,))
             conn.commit(); return True
         run_db(run)
         BAZADA_TILLAR.discard(t)
         _kesh_tozala(t)
+        if t == "uz":
+            _NATIJA_KESH.clear(); KONTENTLAR.clear()
         return {"ok": True}
 
     return router
