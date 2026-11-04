@@ -33,3 +33,8 @@ def test_rev303_xalqaro_maktab_darslari_funksiyasi_bor():
 def test_rev304_son_matnli_qiymat():
     from modules.xalqaro_baholash import _son
     assert _son(45) == 45 and _son("45") == 45 and _son("4,5") == 4.5 and _son("-") is None and _son(None) is None and _son(True) is None
+
+
+def test_rev315_besh_til():
+    assert izoh_tili("Matematika (izoh: nemis)") == "de" and izoh_tili("Matematika (izoh: ispan)") == "es"
+    assert kurs_of("Matematika (izoh: ispan)", "5")[0] == kurs_of("Matematika", "5")[0]   # 5 til — bitta kurs

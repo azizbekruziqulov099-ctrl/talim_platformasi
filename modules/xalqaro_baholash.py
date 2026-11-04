@@ -685,7 +685,7 @@ def maktab_darslari_ol(cur, maktab, til="uz"):
     except ImportError:
         from . import kurslar as _ku
     out = []
-    suf = {"ru": " (izoh: rus)", "en": " (izoh: ingliz)"}.get(til, "")
+    suf = {"ru": " (izoh: rus)", "en": " (izoh: ingliz)", "de": " (izoh: nemis)", "es": " (izoh: ispan)"}.get(til, "")
     try:
         cur.execute("SAVEPOINT xb_dts")
         for m in maktab[:3]:

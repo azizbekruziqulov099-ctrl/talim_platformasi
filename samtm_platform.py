@@ -430,6 +430,53 @@ def _havza_hajmi(standart=10):
 _DB_POOL_MAX = _havza_hajmi()
 _DB_POOL_WAIT_SECONDS = max(1.0, float(os.getenv("DB_POOL_WAIT_SECONDS", "2")))
 _DB_POOL_SLOTS = threading.BoundedSemaphore(_DB_POOL_MAX)
+# REV309: band paytda obunachilar (kurs / bog'cha obunasi) va adminlar uchun zaxira ulanishlar.
+# Oddiy foydalanuvchi havuzning (1 - 1/5) qismidan foydalanadi; qolgan 1/5 — faqat obunachilarga.
+import contextvars as _ctxv_rev309
+_JORIY_UID = _ctxv_rev309.ContextVar("kb_joriy_uid", default=None)
+_DB_ZAXIRA = max(1, _DB_POOL_MAX // 5) if _DB_POOL_MAX >= 4 else 0
+_DB_ODDIY_SLOTS = threading.BoundedSemaphore(max(1, _DB_POOL_MAX - _DB_ZAXIRA))
+_PREMIUM_KESH = {"t": 0.0, "ids": frozenset()}
+_PREMIUM_LOCK = threading.Lock()
+_BAND_XABAR = ("Hozir saytda foydalanuvchilar juda ko‘p. Bir necha soniyadan keyin qayta urinib ko‘ring. "
+               "💎 Obunachilar band paytlarda ham navbatsiz xizmat qilinadi.")
+
+
+def _premium_idlar():
+    """Faol obunachilar va adminlar ro'yxati (60 soniyalik kesh; xato bo'lsa — eski ro'yxat qoladi)."""
+    import time as _t
+    now = _t.time()
+    if now - _PREMIUM_KESH["t"] < 60:
+        return _PREMIUM_KESH["ids"]
+    if not _PREMIUM_LOCK.acquire(blocking=False):
+        return _PREMIUM_KESH["ids"]
+    try:
+        ids = set()
+        c = _db_pool_ol().getconn()
+        try:
+            cur = c.cursor()
+            for sql in ("SELECT user_id FROM kurs_obuna WHERE tugaydi >= CURRENT_DATE",
+                        "SELECT bola_id FROM bogcha_obuna WHERE tugaydi >= CURRENT_DATE",
+                        "SELECT uid FROM admin_akkaunt"):
+                try:
+                    cur.execute("SAVEPOINT kb_prem")
+                    cur.execute(sql)
+                    for r in cur.fetchall():
+                        v = list(r.values())[0] if isinstance(r, dict) else r[0]
+                        if v is not None:
+                            ids.add(int(v))
+                    cur.execute("RELEASE SAVEPOINT kb_prem")
+                except Exception:
+                    cur.execute("ROLLBACK TO SAVEPOINT kb_prem")
+            c.rollback()
+        finally:
+            _db_pool_ol().putconn(c)
+        _PREMIUM_KESH.update(t=now, ids=frozenset(ids))
+    except Exception:
+        _PREMIUM_KESH["t"] = now - 45   # keyinroq (15 s) qayta urinadi
+    finally:
+        _PREMIUM_LOCK.release()
+    return _PREMIUM_KESH["ids"]
 _DB_STATEMENT_TIMEOUT_MS = max(5_000, int(os.getenv("DB_STATEMENT_TIMEOUT_MS", "60000")))
 
 
@@ -471,10 +518,11 @@ class _DbUlanish:
     muammosi qaytmaydi.
     """
 
-    def __init__(self, raw_conn, pool):
+    def __init__(self, raw_conn, pool, oddiy=False):
         self._raw_conn = raw_conn
         self._pool = pool
         self._yopildi = False
+        self._oddiy = oddiy   # REV309: «oddiy» navbat sloti ham qaytariladi
 
     def __getattr__(self, nom):
         return getattr(self._raw_conn, nom)
@@ -513,6 +561,8 @@ class _DbUlanish:
                 pass
         finally:
             _DB_POOL_SLOTS.release()
+            if self._oddiy:
+                _DB_ODDIY_SLOTS.release()
 
     def __del__(self):
         try:
@@ -573,19 +623,28 @@ def _db():
     # ushlab qoladi. Shu holatda darhol band javobi beramiz; FastAPI'ning
     # worker threadidagi oddiy endpoint esa qisqa navbatda kutishi mumkin.
     kutish = 0 if async_event_loop_ichida else _DB_POOL_WAIT_SECONDS
+    # REV309: obunachi bo'lmasa — avval «oddiy» navbat (havuzning 4/5 qismi), obunachi — butun havuz
+    uid = _JORIY_UID.get()
+    premium = bool(uid) and int(uid) in _premium_idlar()
+    oddiy = False
+    if not premium and _DB_ZAXIRA:
+        if not _DB_ODDIY_SLOTS.acquire(timeout=kutish):
+            raise HTTPException(status_code=503, detail=_BAND_XABAR)
+        oddiy = True
     if not _DB_POOL_SLOTS.acquire(timeout=kutish):
-        raise HTTPException(
-            status_code=503,
-            detail="Baza hozir band. Bir necha soniyadan keyin qayta urinib ko'ring.",
-        )
+        if oddiy:
+            _DB_ODDIY_SLOTS.release()
+        raise HTTPException(status_code=503, detail=_BAND_XABAR)
     try:
         raw_conn = _db_pool_ol().getconn()
         if raw_conn.closed:
             _db_pool_ol().putconn(raw_conn, close=True)
             raw_conn = _db_pool_ol().getconn()
-        return _DbUlanish(raw_conn, _db_pool_ol())
+        return _DbUlanish(raw_conn, _db_pool_ol(), oddiy=oddiy)
     except Exception:
         _DB_POOL_SLOTS.release()
+        if oddiy:
+            _DB_ODDIY_SLOTS.release()
         raise
 
 
@@ -805,6 +864,10 @@ def _jwt_tekshir(token: str) -> int:
     cache = _KABUTAR_AUTH_REQUEST_CACHE.get()
     cache_key = (token, _JORIY_HTTP_METOD.get())
     if cache is not None and cache_key in cache:
+        try:
+            _JORIY_UID.set(int(cache[cache_key]))
+        except Exception:
+            pass
         return cache[cache_key]
     try:
         payload = jwt.decode(token, JWT_MAXFIY_KALIT, algorithms=["HS256"], options={"require_exp": True})
@@ -826,6 +889,10 @@ def _jwt_tekshir(token: str) -> int:
     user_id = _kabutar_auth_service.verify_session(token, payload)
     if cache is not None:
         cache[cache_key] = user_id
+    try:
+        _JORIY_UID.set(int(user_id))   # REV309: shu so'rov kimniki — obunachiga zaxira ulanish
+    except Exception:
+        pass
     return user_id
 
 

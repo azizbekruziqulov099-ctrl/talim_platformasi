@@ -11,7 +11,7 @@ from datetime import date, timedelta
 
 from fastapi import APIRouter, Body, HTTPException
 
-IZOH = re.compile(r"\s*\((izoh|изоҳ): (rus|ingliz)\)\s*$", re.I)
+IZOH = re.compile(r"\s*\((izoh|изоҳ): (rus|ingliz|nemis|ispan)\)\s*$", re.I)   # REV315: 5 til
 TIL_FANLAR = re.compile(r"(ingliz|rus|fransuz|nemis|ispan|arab|turk|koreys|xitoy|yapon) tili", re.I)
 FAN_FANLAR = re.compile(r"matem|algebra|geometr", re.I)
 KATEGORIYALAR = [
@@ -32,7 +32,7 @@ def asos_fan(fan):
 
 def izoh_tili(fan):
     m = IZOH.search(str(fan or ""))
-    return {"rus": "ru", "ingliz": "en"}.get(m.group(2).lower(), "uz") if m else "uz"
+    return {"rus": "ru", "ingliz": "en", "nemis": "de", "ispan": "es"}.get(m.group(2).lower(), "uz") if m else "uz"
 
 
 def yosh_tartib(grade):
@@ -68,7 +68,36 @@ def qaror(rol, narx, bepul, indeks, obuna_bor, bogcha_obuna=False, kategoriya=""
     return False, "tolov_kerak"
 
 
+_MIGRATSIYA = {"ok": False}
+_KESH = {}   # REV309: qisqa muddatli kesh — {kalit: (vaqt, qiymat)}
+
+
+def _kesh(kalit, ttl, fn):
+    import time as _t
+    hozir = _t.time()
+    v = _KESH.get(kalit)
+    if v and hozir - v[0] < ttl:
+        return v[1]
+    q = fn()
+    if len(_KESH) > 2000:
+        _KESH.clear()
+    _KESH[kalit] = (hozir, q)
+    return q
+
+
+def kesh_tozala():
+    _KESH.clear()
+
+
 def migrate(cur):
+    """Jadvallar — jarayon boshida bir marta (har so'rovda DDL yo'q: band paytda qulf va sekinlik bermasin)."""
+    if _MIGRATSIYA["ok"]:
+        return
+    _migrate(cur)
+    _MIGRATSIYA["ok"] = True
+
+
+def _migrate(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_narx (kalit TEXT PRIMARY KEY, narx_uzs BIGINT NOT NULL DEFAULT 0,
         bepul_dars INT, faol BOOLEAN NOT NULL DEFAULT TRUE, yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_kategoriya_narx (kategoriya TEXT PRIMARY KEY, narx_uzs BIGINT NOT NULL DEFAULT 0,
@@ -79,13 +108,22 @@ def migrate(cur):
         summa_uzs BIGINT NOT NULL DEFAULT 0, kun INT NOT NULL DEFAULT 30, manba TEXT NOT NULL DEFAULT '', kod TEXT NOT NULL DEFAULT '',
         vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS kurs_tolov_kod ON kurs_tolov(kod) WHERE kod <> ''")
+    cur.execute("CREATE INDEX IF NOT EXISTS kurs_obuna_faol ON kurs_obuna(user_id, tugaydi)")
+
+
+def _narx_jadvali(cur):
+    def ol():
+        cur.execute("SELECT kalit, narx_uzs, bepul_dars, faol FROM kurs_narx")
+        ku = {r["kalit"]: dict(r) for r in cur.fetchall()}
+        cur.execute("SELECT kategoriya, narx_uzs, bepul_dars FROM kurs_kategoriya_narx")
+        return ku, {r["kategoriya"]: dict(r) for r in cur.fetchall()}
+    return _kesh("narxlar", 30, ol)
 
 
 def narx_ol(cur, kalit, kategoriya):
-    cur.execute("SELECT narx_uzs, bepul_dars, faol FROM kurs_narx WHERE kalit=%s", (kalit,))
-    k = cur.fetchone()
-    cur.execute("SELECT narx_uzs, bepul_dars FROM kurs_kategoriya_narx WHERE kategoriya=%s", (kategoriya,))
-    c = cur.fetchone()
+    """Kurs narxi va bepul darslar soni (narxlar jadvali 30 s keshda — katalogda yuzlab so'rov o'rniga bitta)."""
+    ku, kn = _narx_jadvali(cur)
+    k, c = ku.get(kalit), kn.get(kategoriya)
     narx = int(k["narx_uzs"]) if k and int(k["narx_uzs"] or 0) > 0 else int(c["narx_uzs"]) if c else 0
     bepul = k["bepul_dars"] if k and k["bepul_dars"] is not None else (int(c["bepul_dars"]) if c else ODATIY_BEPUL)
     if k and k["faol"] is False:
@@ -134,7 +172,11 @@ def _bogcha_obuna(cur, uid):
 
 
 def kurs_darslari(cur, fan, grade):
-    """Shu kurs nusxasining (aniq fan nomi — izoh tili bilan) darsli mavzulari, tartib bilan."""
+    """Shu kurs nusxasining darsli mavzulari (5 daqiqalik kesh — har dars ochilishida og'ir so'rov bo'lmasin)."""
+    return _kesh(("darslar", fan, str(grade or "").strip()), 300, lambda: _kurs_darslari(cur, fan, grade))
+
+
+def _kurs_darslari(cur, fan, grade):
     _, kat, _, _ = kurs_of(fan, grade)
     if kat == "bolalar":
         cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
@@ -194,12 +236,14 @@ def create_router(platform, click=None):
     def katalog(token: str, til: str = "uz"):
         uid = platform._jwt_tekshir(token)
         def go(cur):
-            cur.execute("""SELECT d.subject_name AS fan, TRIM(d.grade) AS grade, COUNT(DISTINCT d.topic_code) AS darslar
-                           FROM dts_tree d WHERE d.is_deleted=FALSE
-                             AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
-                           GROUP BY 1,2""")
+            def qatorlar():
+                cur.execute("""SELECT d.subject_name AS fan, TRIM(d.grade) AS grade, COUNT(DISTINCT d.topic_code) AS darslar
+                               FROM dts_tree d WHERE d.is_deleted=FALSE
+                                 AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
+                               GROUP BY 1,2""")
+                return [dict(r) for r in cur.fetchall()]
             kurslar = {}
-            for r in cur.fetchall():
+            for r in _kesh("katalog_qatorlar", 120, qatorlar):   # REV309: hamma uchun bir xil — 2 daqiqa kesh
                 kalit, kat, nomi, _ = kurs_of(r["fan"], r["grade"])
                 k = kurslar.setdefault(kalit, {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "variantlar": []})
                 k["variantlar"].append({"fan": r["fan"], "grade": r["grade"], "darslar": int(r["darslar"])})
@@ -304,6 +348,7 @@ def create_router(platform, click=None):
                             (str(body["kalit"])[:200], narx, bep, body.get("faol") is not False))
             else:
                 raise HTTPException(400, "kategoriya yoki kalit kerak")
+            kesh_tozala()
             return {"ok": True}
         return run(go)
 
