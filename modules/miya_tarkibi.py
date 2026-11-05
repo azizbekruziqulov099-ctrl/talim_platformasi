@@ -282,6 +282,46 @@ def create_router(platform):
             return {"ochirildi": total}
         return db_run(token, fn)
 
+    class EskiKitob(BaseModel):
+        token: str
+        source_id: int
+        bajar: bool = False
+
+    @router.post("/kitob_ochir")
+    def kitob_ochir(body: EskiKitob):
+        """REV341: bitta (eski) kitobni olib tashlash — bir fan va sinfda eski va yangi kitob aralashib qolganda.
+        Kitob darslari arxivlanadi; uning mavzulari faqat boshqa kitobda darsi va testi bo'lmasa yashiriladi.
+        bajar=False — faqat nima bo'lishini ko'rsatadi."""
+        def fn(cur):
+            cur.execute("SELECT id, book_title, grade, subject_name, status FROM ai_brain_sources WHERE id=%s", (body.source_id,))
+            src = cur.fetchone()
+            if not src:
+                raise HTTPException(404, "Kitob topilmadi")
+            cur.execute("""SELECT DISTINCT topic_code FROM ai_brain_units WHERE source_id=%s AND COALESCE(topic_code,'')<>''""", (body.source_id,))
+            codes = [r["topic_code"] for r in cur.fetchall()]
+            cur.execute("SELECT COUNT(*) AS n FROM ai_brain_units WHERE source_id=%s AND status='published'", (body.source_id,))
+            darslar = int(cur.fetchone()["n"])
+            yashir = []
+            if codes and _table_exists(cur, "dts_tree"):
+                testli = set()
+                if _table_exists(cur, "generated_tests"):
+                    cur.execute("SELECT DISTINCT topic_code FROM generated_tests WHERE topic_code = ANY(%s)", (codes,))
+                    testli = {r["topic_code"] for r in cur.fetchall()}
+                cur.execute("""SELECT DISTINCT topic_code FROM ai_brain_units WHERE topic_code = ANY(%s) AND source_id<>%s AND status='published'""",
+                            (codes, body.source_id))
+                boshqada = {r["topic_code"] for r in cur.fetchall()}
+                yashir = [c for c in codes if c not in boshqada and c not in testli]
+            natija = {"kitob": src["book_title"], "sinf": src["grade"], "fan": src["subject_name"], "darslar": darslar,
+                      "mavzular_yashiriladi": len(yashir), "mavzular_qoladi": len(codes) - len(yashir), "bajarildi": False}
+            if body.bajar:
+                cur.execute("UPDATE ai_brain_units SET status='archived' WHERE source_id=%s AND status='published'", (body.source_id,))
+                cur.execute("UPDATE ai_brain_sources SET status='archived' WHERE id=%s", (body.source_id,))
+                if yashir:
+                    cur.execute("UPDATE dts_tree SET is_deleted=TRUE WHERE topic_code = ANY(%s) AND is_deleted=FALSE", (yashir,))
+                natija["bajarildi"] = True
+            return natija
+        return db_run(body.token, fn)
+
     @router.get("/testlar_excel")
     def testlar_excel(token: str, sinf: str, fan: str = ""):
         """REV330: DTS test miyasi — tanlangan sinf/fan testlari Excel'da (tozalashdan oldin zaxira)."""
