@@ -55,7 +55,8 @@ def taniqli_guruh(group) -> bool:
     group = str(group or "")
     return (group in PRESCHOOL_GROUPS
             or (group.isdigit() and 1 <= int(group) <= 11)
-            or bool(re.fullmatch(r"[1-6] kurs(?: magistr)?", group)))
+            or bool(re.fullmatch(r"[1-6] kurs(?: magistr)?", group))
+            or bool(re.fullmatch(r"[abc][12]", group.lower())))   # REV352: o'quv markazi darajalari (A1…C2)
 
 
 def guruh_nomi(group) -> str:

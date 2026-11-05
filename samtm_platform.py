@@ -21607,6 +21607,31 @@ def _paket_bogcha_scope(content, scope_id=0):
         return scope_id
 
 
+def _markaz_umumiy_katalog(cur):
+    """REV352: «O'quv markazi — umumiy katalog» (institution_id=0). Cheklov markazga ham ruxsat beradigan qilib yangilanadi
+    (bog'cha katalogi kabi). Muvaffaqiyatsiz bo'lsa — None (hech narsa buzilmaydi)."""
+    try:
+        cur.execute("SAVEPOINT markaz_katalog")
+        cur.execute("""DO $$ BEGIN
+          IF EXISTS (SELECT 1 FROM pg_constraint WHERE conrelid='curriculum_scopes'::regclass AND conname='curriculum_public_institution'
+                     AND pg_get_constraintdef(oid) NOT LIKE '%markaz%') THEN
+            ALTER TABLE curriculum_scopes DROP CONSTRAINT curriculum_public_institution;
+            ALTER TABLE curriculum_scopes ADD CONSTRAINT curriculum_public_institution
+              CHECK (institution_id > 0 OR institution_type='maktab' OR (institution_type IN ('universitet','bogcha','markaz') AND guruh=''));
+          END IF;
+        END $$;""")
+        cur.execute("""INSERT INTO curriculum_scopes(scope_key,institution_type,institution_id,institution_name)
+                       VALUES('center-common','markaz',0,'O‘quv markazi — umumiy katalog') ON CONFLICT(scope_key) DO NOTHING""")
+        cur.execute("SELECT id FROM curriculum_scopes WHERE scope_key='center-common'")
+        row = cur.fetchone()
+        cur.execute("RELEASE SAVEPOINT markaz_katalog")
+        return row
+    except Exception as e:
+        cur.execute("ROLLBACK TO SAVEPOINT markaz_katalog")
+        print(f"[REV352 markaz katalogi] {type(e).__name__}: {str(e)[:200]}", flush=True)
+        return None
+
+
 def _paket_markaz_scope(content, scope_id=0):
     """REV350: Mavzular faylidagi sinf ustunida til darajasi (A1…C2) bo'lsa va tanlangan dastur o'quv markazi emas —
     O'quv markazi umumiy katalogi id'si (bog'cha fayllari kabi o'zi to'g'ri joyga tushadi)."""
@@ -21638,6 +21663,8 @@ def _paket_markaz_scope(content, scope_id=0):
             cur.execute("""SELECT id FROM curriculum_scopes WHERE institution_type='markaz'
                            ORDER BY (COALESCE(institution_id,0)=0) DESC, id LIMIT 1""")   # avval umumiy katalog
             row = cur.fetchone()
+            if not row:   # REV352: o'quv markazi katalogi hali yo'q — bog'chadagidek umumiy katalog yaratiladi
+                row = _markaz_umumiy_katalog(cur)
             conn.commit()
             return row["id"] if row else scope_id
         finally:
