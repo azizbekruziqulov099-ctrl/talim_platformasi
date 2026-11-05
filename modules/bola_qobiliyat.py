@@ -20,8 +20,9 @@ OYIN_QOBILIYAT = {
     68: {"fazoviy": .6, "diqqat": .4}, 76: {"fazoviy": .7, "nutq": .3}, 103: {"fazoviy": .6, "diqqat": .4},
     93: {"fazoviy": .7, "diqqat": .3}, 106: {"mantiq": .6, "fazoviy": .4}, 114: {"nutq": .5, "mantiq": .5},   # REV336
     61: {"diqqat": .6, "eshitish": .4}, 62: {"mantiq": .5, "diqqat": .5}, 63: {"diqqat": .6, "xotira": .4}, 64: {"mantiq": .7, "xotira": .3},   # REV337
+    49: {"sanash": .6, "mantiq": .4}, 57: {"sanash": .7, "fazoviy": .3}, 43: {"sanash": .6, "mantiq": .4}, 59: {"sanash": .5, "eshitish": .3, "mantiq": .2},   # REV338
 }
-KUTILGAN_SONIYA = {116: 50, 117: 56, 83: 54, 89: 60, 88: 48, 86: 45, 90: 60, 91: 60, 32: 54, 31: 56, 35: 50, 38: 50, 55: 48, 97: 49, 33: 52, 68: 50, 76: 50, 103: 60, 93: 56, 106: 47, 114: 55, 61: 48, 62: 54, 63: 54, 64: 55}
+KUTILGAN_SONIYA = {116: 50, 117: 56, 83: 54, 89: 60, 88: 48, 86: 45, 90: 60, 91: 60, 32: 54, 31: 56, 35: 50, 38: 50, 55: 48, 97: 49, 33: 52, 68: 50, 76: 50, 103: 60, 93: 56, 106: 47, 114: 55, 61: 48, 62: 54, 63: 54, 64: 55, 49: 57, 57: 60, 43: 55, 59: 60}
 MIN_OYIN = 3   # bir qobiliyat bo'yicha xulosa uchun kamida shuncha o'yin
 
 
