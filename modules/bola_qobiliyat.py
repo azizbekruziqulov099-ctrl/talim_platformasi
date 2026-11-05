@@ -70,13 +70,23 @@ MASLAHAT = {
 }
 
 
+_TAYYOR = False   # REV343: jadval bir marta tekshiriladi (har so'rovda CREATE … IF NOT EXISTS — ko'p odamda katalog qulfi)
+
+
 def migrate(cur):
+    global _TAYYOR
+    if _TAYYOR:
+        return
     cur.execute("""CREATE TABLE IF NOT EXISTS bola_oyin_natija (
         id BIGSERIAL PRIMARY KEY, child_id BIGINT NOT NULL, sana DATE NOT NULL, dars_kod TEXT NOT NULL DEFAULT '',
         oyin_id INT NOT NULL, togri INT NOT NULL DEFAULT 0, xato INT NOT NULL DEFAULT 0, soniya INT NOT NULL DEFAULT 0,
         yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
     cur.execute("CREATE INDEX IF NOT EXISTS bola_oyin_natija_bola ON bola_oyin_natija(child_id, sana)")
-
+    try:
+        cur.connection.commit()   # jadval darhol saqlansin — keyingi xato uni bekor qilmasin
+    except Exception:
+        return
+    _TAYYOR = True
 
 def yoz(cur, child_id, day, dars_kod, oyin_id, togri, xato, soniya):
     if int(oyin_id) not in OYIN_QOBILIYAT:

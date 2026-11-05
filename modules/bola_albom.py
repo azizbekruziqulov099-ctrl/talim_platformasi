@@ -43,9 +43,19 @@ def stiker_ber(a, dars_kod: str, d: date):
     return a, {"stiker": stiker, "mukofot": mukofot, "jami": a["jami"]}
 
 
-def migrate(cur):
-    cur.execute("""CREATE TABLE IF NOT EXISTS bola_albom (child_id BIGINT PRIMARY KEY, albom JSON NOT NULL, yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+_TAYYOR = False   # REV343: jadval bir marta tekshiriladi (har so'rovda CREATE … IF NOT EXISTS — ko'p odamda katalog qulfi)
 
+
+def migrate(cur):
+    global _TAYYOR
+    if _TAYYOR:
+        return
+    cur.execute("""CREATE TABLE IF NOT EXISTS bola_albom (child_id BIGINT PRIMARY KEY, albom JSON NOT NULL, yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    try:
+        cur.connection.commit()   # jadval darhol saqlansin — keyingi xato uni bekor qilmasin
+    except Exception:
+        return
+    _TAYYOR = True
 
 def ol(cur, child_id):
     cur.execute("SELECT albom FROM bola_albom WHERE child_id=%s", (child_id,))
