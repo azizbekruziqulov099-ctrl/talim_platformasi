@@ -20619,7 +20619,7 @@ def _ai_brain_db_topic_tekshir(cur, parsed, yarat=False):
     # o'quvchiga ko'rinmay qolgan xato shundan edi). Kitob fani/sinfi ↔ mavzu fani/sinfi solishtiriladi.
     from modules import mavzu_nomi as _mn
     _kitob = (parsed["payload"].get("01_KITOB") or [{}])[0]
-    _kfan = re.sub(r"\s+", " ", str(_kitob.get("fan") or "").strip().lower())
+    _kfan = _dts_matn_normalize(_kitob.get("fan")).strip()   # REV353: «—» va «-», katta-kichik harf farqi xato hisoblanmaydi
     _kguruh = _mn.kitob_guruhi(_kitob.get("sinf"))
     if _kfan and mavjud:
         cur.execute("SELECT topic_code, grade, subject_name FROM dts_tree WHERE topic_code=ANY(%s)", (sorted(mavjud),))
@@ -20628,7 +20628,7 @@ def _ai_brain_db_topic_tekshir(cur, parsed, yarat=False):
             t = _tm.get(r.get("topic_code"))
             if not t:
                 continue
-            tfan = re.sub(r"\s+", " ", str(t.get("subject_name") or "").strip().lower())
+            tfan = _dts_matn_normalize(t.get("subject_name")).strip()
             tguruh = _mn.kitob_guruhi(t.get("grade"))
             if tfan and tfan != _kfan or (_mn.taniqli_guruh(_kguruh) and tguruh and tguruh != _kguruh):
                 simple = r.get("_sheet") not in (None, "02_DTS_XARITA")

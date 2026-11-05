@@ -257,7 +257,9 @@ def create_router(platform):
         conn = platform._db(); cur = conn.cursor()
         try:
             cur.execute("""SELECT d.topic_code, COALESCE(NULLIF(d.kichik_name,''), NULLIF(d.mavzu_name,''), NULLIF(d.bolim_name,''), d.bob_name) AS nomi
-                           FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND UPPER(COALESCE(d.grade,''))=UPPER(%s)
+                           FROM dts_tree d WHERE d.is_deleted=FALSE
+                             AND UPPER(TRANSLATE(d.subject_name, '—–', '--'))=UPPER(TRANSLATE(%s, '—–', '--'))
+                             AND UPPER(COALESCE(d.grade,''))=UPPER(%s)
                              AND EXISTS(SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code AND au.status='published')
                            ORDER BY d.topic_code""", (fan, daraja if daraja in ("A1", "A2", "B1", "B2", "C1") else "A1"))
             rows = [dict(r) for r in cur.fetchall()]
@@ -650,8 +652,10 @@ def create_router(platform):
             cur.execute("""SELECT d.topic_code, COALESCE(NULLIF(d.kichik_name,''), NULLIF(d.mavzu_name,''), NULLIF(d.bolim_name,''), d.bob_name) AS nomi,
                                   d.grade, d.subject_name,
                                   EXISTS(SELECT 1 FROM ai_brain_units au WHERE au.topic_code=d.topic_code AND au.status='published') AS dars_bor
-                           FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND UPPER(COALESCE(d.grade,''))=UPPER(%s)
-                           ORDER BY d.topic_code""", (fan, daraja))
+                           FROM dts_tree d WHERE d.is_deleted=FALSE
+                             AND UPPER(TRANSLATE(d.subject_name, '—–', '--'))=UPPER(TRANSLATE(%s, '—–', '--'))
+                             AND UPPER(COALESCE(d.grade,''))=UPPER(%s)
+                           ORDER BY d.topic_code""", (fan, daraja))   # REV353: mavzular importi fan nomini katta harf va «-» bilan saqlaydi
             rows = [dict(r) for r in cur.fetchall()]
         except Exception as e:
             print(f"[MARKAZ-DARSLAR] {type(e).__name__}: {str(e)[:200]}", flush=True)
