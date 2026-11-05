@@ -326,6 +326,12 @@ if __package__:
 else:
     from modules.xalqaro_baholash import create_router as create_xalqaro_router
 app.include_router(create_xalqaro_router(samtm_platform))
+# REV364: bog'cha — o'yin sozlamasi va dars muharriri (admin)
+if __package__:
+    from .modules.bogcha_tahrir import create_router as create_bogcha_tahrir_router
+else:
+    from modules.bogcha_tahrir import create_router as create_bogcha_tahrir_router
+app.include_router(create_bogcha_tahrir_router(samtm_platform))
 
 # REV107: kutilmagan server xatosi ham JSON bo'lib, CORS sarlavhasi bilan qaytadi. Ilgari bunday javobda
 # brauzer CORS sababli javobni o'qiy olmasdi va foydalanuvchi «Serverga ulanib bo'lmadi» degan noto'g'ri
