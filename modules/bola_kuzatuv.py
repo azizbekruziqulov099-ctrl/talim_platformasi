@@ -1012,6 +1012,50 @@ def create_router(platform):
             return out
         return run_db(run)
 
+    # ── REV339: stiker albomi serverda ──
+    from modules import bola_albom as alb
+
+    class StikerSo(BaseModel):
+        token: Optional[str] = None
+        dars_kod: str = Field(min_length=1, max_length=120)
+
+    @router.post("/api/bola/stiker")
+    def stiker(body: StikerSo, authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            alb.migrate(cur)
+            a, natija = alb.stiker_ber(alb.ol(cur, user_id), body.dars_kod, day)
+            if natija:
+                alb.saqla(cur, user_id, a)
+            conn.commit()
+            return {"albom": a, "natija": natija}
+        return run_db(run)
+
+    @router.get("/api/bola/albom")
+    def albom(token: str = None, authorization: str = Header(None)):
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            alb.migrate(cur)
+            a = alb.ol(cur, user_id)
+            conn.commit()
+            return {"albom": a}
+        return run_db(run)
+
+    @router.get("/api/ota/bola_albom")
+    def ota_albom(bola_id: int, token: str = None, authorization: str = Header(None)):
+        parent_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            ota_huquqi(cur, parent_id, bola_id)
+            alb.migrate(cur)
+            a = alb.ol(cur, bola_id)
+            conn.commit()
+            return {"albom": a}
+        return run_db(run)
+
     @router.get("/api/ota/bola_faollik")
     def child_activity(bola_id: int, token: str = None, authorization: str = Header(None)):
         parent_id = uid_of(token, authorization)
