@@ -759,6 +759,9 @@ def maktab_darslari_ol(cur, maktab, til="uz"):
         x.pop("uz_kod", None); x.pop("_t", None)
     return out
 
+PAKET_NASHR = None   # REV346: create_router to'ldiradi
+
+
 def create_router(platform, kontent=None):
     router = APIRouter()
     K = kontent or KONTENT
@@ -1831,13 +1834,9 @@ def create_router(platform, kontent=None):
                 "darslar": len(kon.get("darslar") or []), "birliklar": len(kon.get("birliklar") or []),
                 "xatolar": xato[:200], "xato_soni": len(xato), "ogohlantirishlar": ogoh[:100], "tayyor": not xato}
 
-    @router.post("/api/admin/xalqaro/nashr")
-    async def xb_nashr(request: Request, authorization: str = Header(None)):
-        """Tekshiruvdan o'tgan faylni nashr qiladi (bitta tranzaksiyada — yoki hammasi, yoki hech narsa).
-        Saytdagi shu tildagi xalqaro bo'lim darhol yangilanadi."""
-        data, token = await _fayl(request)
-        uid = _admin(token, authorization)
-        til, kon, xato, ogoh = await run_in_threadpool(_tekshiruv, data)
+    def _nashr_et(data, uid):
+        """REV346: tekshiruvdan o'tgan xalqaro Excel'ni nashr qiladi. Qaytaradi: (til, kontent, ogohlantirishlar). Xato bo'lsa — 422."""
+        til, kon, xato, ogoh = _tekshiruv(data)
         if xato:
             raise HTTPException(422, {"kod": "xato", "xatolar": xato[:200], "xato_soni": len(xato)})
         qism = QISMLAR + (UMUMIY_QISM if til == "uz" else ())
@@ -1859,6 +1858,18 @@ def create_router(platform, kontent=None):
             _NATIJA_KESH.clear()
             for key in list(KONTENTLAR):   # natijalar hamma tilda ishlatiladi
                 KONTENTLAR.pop(key, None)
+        return til, kon, ogoh
+
+    global PAKET_NASHR
+    PAKET_NASHR = _nashr_et   # REV346: «Paketni birdan o'rnatish» xalqaro Excel'ni shu orqali nashr qiladi
+
+    @router.post("/api/admin/xalqaro/nashr")
+    async def xb_nashr(request: Request, authorization: str = Header(None)):
+        """Tekshiruvdan o'tgan faylni nashr qiladi (bitta tranzaksiyada — yoki hammasi, yoki hech narsa).
+        Saytdagi shu tildagi xalqaro bo'lim darhol yangilanadi."""
+        data, token = await _fayl(request)
+        uid = _admin(token, authorization)
+        til, kon, ogoh = await run_in_threadpool(_nashr_et, data, uid)
         return {"ok": True, "til": til, "savollar": len(kon.get("savollar") or []), "darslar": len(kon.get("darslar") or []),
                 "ogohlantirishlar": ogoh[:50]}
 

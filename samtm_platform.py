@@ -21459,7 +21459,7 @@ def ai_miya_nashr(batch_id: int, token: str):
 PAKET_ZIP_MAX = 400 * 1024 * 1024
 PAKET_FAYL_MAX = 30 * 1024 * 1024
 PAKET_SONI_MAX = 1000   # REV332: to'liq Miya paketi (≈640 Excel) bitta ZIPda o'rnatiladi
-PAKET_TURI_TARTIB = {"mavzu": 0, "miya": 1, "royxat": 8, "nomalum": 9}
+PAKET_TURI_TARTIB = {"mavzu": 0, "miya": 1, "xalqaro": 2, "royxat": 8, "nomalum": 9}
 PAKET_IZOH_NOMI = {"ru": "izoh rus", "en": "izoh ingliz"}
 
 
@@ -21501,6 +21501,8 @@ def _paket_turi(content, name=""):
         return "nomalum"
     try:
         names = set(wb.sheetnames)
+        if "SAVOLLAR" in names and "KITOB" in names:   # REV346: Xalqaro baholash (TIMSS/PISA) savollar banki
+            return "xalqaro"
         if "LUGAT" in names:   # REV186: «Lug'at miyasi» Excel — Miya bo'limidan yuklansa ham lug'atga tushadi
             return "lugat"
         if names & {"KITOB", "01_KITOB"}:
@@ -21516,7 +21518,9 @@ def _paket_turi(content, name=""):
 
 
 def _paket_tartib(item):
-    return (PAKET_TURI_TARTIB.get(item["turi"], 9), item.get("yol") or "", item["nomi"])
+    # REV346: xalqaro — o'zbekcha fayl birinchi (boshqa tillar u bilan solishtiriladi)
+    uz_avval = 0 if item["turi"] != "xalqaro" or "_uz" in str(item.get("nomi") or "").lower() else 1
+    return (PAKET_TURI_TARTIB.get(item["turi"], 9), uz_avval, item.get("yol") or "", item["nomi"])
 
 
 def _paket_zip_fayllar(fileobj):
@@ -21669,6 +21673,21 @@ def _paket_ishla(content, name, turi, scope_id, user_id, token):
                     + (f", rasmlar: {s['rasmlar']}" if s.get("rasmlar") else "")
                     + (f" ({len(t.get('warnings') or [])} ta ogohlantirish)" if t.get("warnings") else ""),
                     "darslar": darslar}
+        if turi == "xalqaro":   # REV346: Xalqaro baholash Excel — o'z bo'limiga nashr qilinadi
+            try:
+                from modules import xalqaro_baholash as _xb
+            except ImportError:
+                from .modules import xalqaro_baholash as _xb
+            if _xb.PAKET_NASHR is None:
+                return {"ok": False, "xabar": "Xalqaro baholash moduli yuklanmagan"}
+            try:
+                til, kon, ogoh = _xb.PAKET_NASHR(content, user_id)
+            except HTTPException as exc:
+                d = exc.detail if isinstance(exc.detail, dict) else {}
+                xs = d.get("xatolar") or []
+                return {"ok": False, "xabar": f"Xalqaro Excel'da {d.get('xato_soni', len(xs))} ta xato — nashr qilinmadi",
+                        "xatolar": [str(x.get("xabar") or x) if isinstance(x, dict) else str(x) for x in xs[:8]]}
+            return {"ok": True, "xabar": f"Xalqaro baholash ({til}): {len(kon.get('savollar') or [])} ta savol, {len(kon.get('darslar') or [])} ta dars nashr qilindi"}
         if turi == "royxat":
             return {"ok": True, "otkazildi": True, "xabar": "Rasmlar ro'yxati — o'rnatish shart emas, o'tkazib yuborildi"}
         return {"ok": False, "xabar": "Fayl turi aniqlanmadi: bu Mavzular yoki AI miya Excel emas"}
@@ -21709,10 +21728,10 @@ async def paket_yukla(token: str, fayl: UploadFile = File(...), scope_id: int = 
                         cur.execute("""INSERT INTO ai_brain_paket_fayllar(paket,tartib,nomi,yol,turi,belgi,data,yuklagan,holat)
                                        VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id""",
                                     (paket, i, it["nomi"], it["yol"], it["turi"], belgi,
-                                     psycopg2.Binary(it["data"]) if it["turi"] in ("mavzu", "miya", "lugat") else None, user_id,
-                                     "kutmoqda" if it["turi"] in ("mavzu", "miya", "lugat") else "otkazildi"))
+                                     psycopg2.Binary(it["data"]) if it["turi"] in ("mavzu", "miya", "lugat", "xalqaro") else None, user_id,
+                                     "kutmoqda" if it["turi"] in ("mavzu", "miya", "lugat", "xalqaro") else "otkazildi"))
                         out.append({"id": cur.fetchone()["id"], "nomi": it["nomi"], "yol": it["yol"], "turi": it["turi"], "belgi": belgi,
-                                    "holat": "kutmoqda" if it["turi"] in ("mavzu", "miya", "lugat") else "otkazildi"})
+                                    "holat": "kutmoqda" if it["turi"] in ("mavzu", "miya", "lugat", "xalqaro") else "otkazildi"})
                     conn.commit()
                     return out
                 except Exception:
