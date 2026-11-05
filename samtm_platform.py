@@ -21607,6 +21607,45 @@ def _paket_bogcha_scope(content, scope_id=0):
         return scope_id
 
 
+def _paket_markaz_scope(content, scope_id=0):
+    """REV350: Mavzular faylidagi sinf ustunida til darajasi (A1…C2) bo'lsa va tanlangan dastur o'quv markazi emas —
+    O'quv markazi umumiy katalogi id'si (bog'cha fayllari kabi o'zi to'g'ri joyga tushadi)."""
+    import openpyxl
+    try:
+        wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True, read_only=True)
+        daraja = False
+        for ws in wb.worksheets:
+            rows = ws.iter_rows(values_only=True)
+            head = [_curriculum.text_key(v) if v else "" for v in next(rows, [])]
+            if "sinf" not in head:
+                continue
+            i = head.index("sinf")
+            for k, row in enumerate(rows):
+                if k > 50:
+                    break
+                if i < len(row) and re.fullmatch(r"\s*[ABC][12]\s*", str(row[i] or "")):
+                    daraja = True
+                    break
+            if daraja:
+                break
+        if not daraja:
+            return scope_id
+        conn = _db(); cur = conn.cursor()
+        try:
+            scope = _curriculum.get_scope(cur, scope_id) if scope_id else {}
+            if scope.get("institution_type") == "markaz":
+                return scope_id
+            cur.execute("""SELECT id FROM curriculum_scopes WHERE institution_type='markaz'
+                           ORDER BY (COALESCE(institution_id,0)=0) DESC, id LIMIT 1""")   # avval umumiy katalog
+            row = cur.fetchone()
+            conn.commit()
+            return row["id"] if row else scope_id
+        finally:
+            cur.close(); conn.close()
+    except Exception:
+        return scope_id
+
+
 import threading as _threading
 _PAKET_QULF = _threading.Lock()
 
@@ -21629,6 +21668,7 @@ def _paket_ishla(content, name, turi, scope_id, user_id, token):
             # REV158: bog'cha Mavzular fayli («2-3 yosh») admin panelda Maktab dasturi tanlangan bo'lsa ham
             # o'zi Bog'cha umumiy katalogiga yoziladi (oldin «1–11-sinfni tanlang» xatosi bilan hech narsa saqlanmasdi)
             scope_id = _paket_bogcha_scope(content, scope_id)
+            scope_id = _paket_markaz_scope(content, scope_id)   # REV350: markaz kurslari — o'quv markazi katalogiga
             r = _topik_import_content(content, scope_id)
             return {"ok": True, "xabar": f"Mavzular: {r['added']} ta yangi, {r['updated']} ta yangilandi, {r['mavjud']} ta oldin bor edi",
                     "added": r["added"], "updated": r["updated"], "mavjud": r["mavjud"]}
