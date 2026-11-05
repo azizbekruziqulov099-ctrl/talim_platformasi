@@ -18,8 +18,9 @@ OYIN_QOBILIYAT = {
     97: {"mantiq": .6, "eshitish": .4}, 33: {"sanash": .6, "xotira": .4},
     # REV335: fazoviy tasavvur o'yinlari
     68: {"fazoviy": .6, "diqqat": .4}, 76: {"fazoviy": .7, "nutq": .3}, 103: {"fazoviy": .6, "diqqat": .4},
+    93: {"fazoviy": .7, "diqqat": .3}, 106: {"mantiq": .6, "fazoviy": .4}, 114: {"nutq": .5, "mantiq": .5},   # REV336
 }
-KUTILGAN_SONIYA = {116: 50, 117: 56, 83: 54, 89: 60, 88: 48, 86: 45, 90: 60, 91: 60, 32: 54, 31: 56, 35: 50, 38: 50, 55: 48, 97: 49, 33: 52, 68: 50, 76: 50, 103: 60}
+KUTILGAN_SONIYA = {116: 50, 117: 56, 83: 54, 89: 60, 88: 48, 86: 45, 90: 60, 91: 60, 32: 54, 31: 56, 35: 50, 38: 50, 55: 48, 97: 49, 33: 52, 68: 50, 76: 50, 103: 60, 93: 56, 106: 47, 114: 55}
 MIN_OYIN = 3   # bir qobiliyat bo'yicha xulosa uchun kamida shuncha o'yin
 
 
