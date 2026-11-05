@@ -143,6 +143,38 @@ def migrate(cur):
         PRIMARY KEY(xona_id, user_id, savol_index)
     )""")
     cur.execute("CREATE INDEX IF NOT EXISTS ix_bellashuv_javob_xona ON bellashuv_javoblar(xona_id, savol_index, javob_at)")
+    cur.execute("ALTER TABLE bellashuv_xonalar ADD COLUMN IF NOT EXISTS tur TEXT NOT NULL DEFAULT 'oddiy'")   # REV363: 'bogcha' — umumiy o'tilgan darslar
+
+
+def bogcha_savollar(cur, user_ids, soni, rnd=random):
+    """REV363: hamma ishtirokchi TUGATGAN darslar (kesishma) bo'yicha savollar — fanlar navbat bilan aralash.
+    Biri 5 ta, biri 7 ta dars o'tgan bo'lsa — ikkalasi o'tgan 5 tasidan. Qaytaradi: (savol_id lar, mavzu kodlari)."""
+    cur.execute("""SELECT child_id, dars_kod FROM bola_dars_holat WHERE child_id = ANY(%s) AND tugatilgan_at IS NOT NULL
+                   AND NOT COALESCE(boshqa_til, FALSE)""", (list(user_ids),))
+    by = {}
+    for r in cur.fetchall():
+        by.setdefault(int(r["child_id"]), set()).add(r["dars_kod"])
+    if len(by) < len(set(user_ids)):
+        return [], []
+    umumiy = set.intersection(*by.values()) if by else set()
+    if not umumiy:
+        return [], []
+    cur.execute("""SELECT g.id, g.topic_code, g.option_a, g.option_b, g.option_c, g.option_d, g.correct_answer, d.subject_name
+                   FROM generated_tests g LEFT JOIN dts_tree d ON d.topic_code=g.topic_code
+                   WHERE g.topic_code = ANY(%s) AND COALESCE(g.question_type,'single_choice')='single_choice'""", (list(umumiy),))
+    fanlar = {}
+    for r in cur.fetchall():
+        if options_of(r) and str(r.get("correct_answer") or "").strip().upper()[:1] in "ABCD"[:len(options_of(r))]:
+            fanlar.setdefault(r.get("subject_name") or "", []).append(r["id"])
+    for v in fanlar.values():
+        rnd.shuffle(v)
+    out, navbat = [], list(fanlar.values())
+    rnd.shuffle(navbat)
+    while len(out) < soni and any(navbat):
+        for v in navbat:   # fanlar navbat bilan — aralash
+            if v and len(out) < soni:
+                out.append(v.pop())
+    return out, sorted(umumiy)
 
 
 def create_router(platform):
@@ -239,6 +271,38 @@ def create_router(platform):
             cur.close()
             conn.close()
 
+    class BogchaXona(BaseModel):
+        token: Optional[str] = None
+        savol_soni: int = Field(default=6, ge=3, le=12)
+        savol_vaqti: int = Field(default=20)
+
+    @router.post("/api/bellashuv/bogcha/xona")
+    def bogcha_room(body: BogchaXona, authorization: str = Header(None)):
+        """REV363: bog'cha bellashuvi — savollar boshlashda hamma ishtirokchi o'tgan darslardan tanlanadi."""
+        user_id = uid_of(body.token, authorization)
+        limit = body.savol_vaqti if body.savol_vaqti in QUESTION_TIMES else 20
+        conn, cur = open_db()
+        try:
+            ids, umumiy = bogcha_savollar(cur, [user_id], body.savol_soni)
+            if len(ids) < 3:
+                raise HTTPException(400, "Bellashuv uchun avval kamida bir nechta dars o'tish kerak.")
+            name, jins = user_card(cur, user_id)
+            for _ in range(8):
+                kod = new_code()
+                cur.execute("SELECT 1 FROM bellashuv_xonalar WHERE kod=%s", (kod,))
+                if not cur.fetchone():
+                    break
+            cur.execute("""INSERT INTO bellashuv_xonalar(kod,host_user_id,nomi,topic_codes,savol_ids,savol_vaqti,expires_at,tur)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,'bogcha') RETURNING id""",
+                        (kod, user_id, "Bog‘cha bellashuvi", umumiy, ids, limit, now() + ROOM_TTL))
+            room_id = cur.fetchone()["id"]
+            cur.execute("INSERT INTO bellashuv_ishtirokchilar(xona_id,user_id,ism,jins) VALUES(%s,%s,%s,%s)", (room_id, user_id, name, jins))
+            conn.commit()
+            return {"kod": kod, "savollar": len(ids), "savol_vaqti": limit}
+        finally:
+            cur.close()
+            conn.close()
+
     @router.post("/api/bellashuv/qoshil")
     def join_room(body: JoinRoom, authorization: str = Header(None)):
         user_id = uid_of(body.token, authorization)
@@ -270,6 +334,13 @@ def create_router(platform):
                 raise HTTPException(403, "Faqat xonani ochgan boshlaydi")
             if room["status"] != "lobby":
                 return {"ok": True}
+            if (room.get("tur") or "oddiy") == "bogcha":   # REV363: hamma o'tgan darslar bo'yicha
+                cur.execute("SELECT user_id FROM bellashuv_ishtirokchilar WHERE xona_id=%s", (room["id"],))
+                uids = [int(r["user_id"]) for r in cur.fetchall()]
+                ids, umumiy = bogcha_savollar(cur, uids, max(3, len(room["savol_ids"] or [])))
+                if len(ids) < 3:
+                    raise HTTPException(400, "Bellashuvchilarning umumiy o'tilgan darsi yo'q yoki savol yetarli emas.")
+                cur.execute("UPDATE bellashuv_xonalar SET savol_ids=%s, topic_codes=%s WHERE id=%s", (ids, umumiy, room["id"]))
             cur.execute("UPDATE bellashuv_xonalar SET status='running', started_at=%s WHERE id=%s",
                         (now() + timedelta(seconds=COUNTDOWN), room["id"]))
             conn.commit()
