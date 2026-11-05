@@ -21458,7 +21458,7 @@ def ai_miya_nashr(batch_id: int, token: str):
 # ═══════════════════════════════════════════════════════════
 PAKET_ZIP_MAX = 400 * 1024 * 1024
 PAKET_FAYL_MAX = 30 * 1024 * 1024
-PAKET_SONI_MAX = 400
+PAKET_SONI_MAX = 1000   # REV332: to'liq Miya paketi (≈640 Excel) bitta ZIPda o'rnatiladi
 PAKET_TURI_TARTIB = {"mavzu": 0, "miya": 1, "royxat": 8, "nomalum": 9}
 PAKET_IZOH_NOMI = {"ru": "izoh rus", "en": "izoh ingliz"}
 
