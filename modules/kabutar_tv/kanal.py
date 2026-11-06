@@ -94,7 +94,7 @@ def jadvallar(cur):
 
 
 ADMIN_KANAL = 999
-STANDART_SOZLAMA = {"yoqilgan": True, "soat": 2, "oxirgi_soat": 6, "saqlash_kun": 30,
+STANDART_SOZLAMA = {"yoqilgan": True, "korinadi": True, "soat": 2, "oxirgi_soat": 6, "saqlash_kun": 30,   # REV389: korinadi — foydalanuvchilarga ko'rinadimi
                     # REV188: tayyor video Telegram botdan adminga birma-bir yuboriladi (TG guruh va Instagram uchun)
                     "tg_yuborish": True, "tg_chat": "", "haftalik": True, "reyting_ism": True}
 HAFTALIK = "hf"   # haftalik ko'rsatuv qatorining «til» belgisi
@@ -621,6 +621,19 @@ def create_kabutar_tv_router(check_admin, db):
             holat["ishga"] = True
             threading.Thread(target=kuzatuvchi, name="kabutar-tv", daemon=True).start()
 
+    @router.get("/korinish")
+    def tv_korinish():
+        """REV389: Kabutar TV foydalanuvchilarga ko'rinadimi (admin o'chirib-yoqadi). Ochiq — hech qanday shaxsiy ma'lumot yo'q."""
+        conn = db()
+        cur = conn.cursor()
+        try:
+            soz = sozlama_ol(cur)
+            conn.commit()
+            return {"korinadi": bool(soz.get("korinadi", True))}
+        finally:
+            cur.close()
+            conn.close()
+
     @router.get("/holat")
     def tv_holat(token: str, sana: str = None):
         check_admin(token)
@@ -745,7 +758,7 @@ def create_kabutar_tv_router(check_admin, db):
         for k, lo, hi in (("soat", 0, 23), ("oxirgi_soat", 1, 24), ("saqlash_kun", 3, 365)):
             if k in body:
                 toza[k] = max(lo, min(hi, int(body[k])))
-        for k in ("tg_yuborish", "haftalik", "reyting_ism"):
+        for k in ("tg_yuborish", "haftalik", "reyting_ism", "korinadi"):
             if k in body:
                 toza[k] = bool(body[k])
         if "tg_chat" in body:
