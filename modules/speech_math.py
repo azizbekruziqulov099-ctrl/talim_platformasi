@@ -69,8 +69,8 @@ WORDS = {
   less='kichik', greater='katta', le='kichik yoki teng', ge='katta yoki teng', ne='teng emas', approx='taxminan teng',
   pm='plyus yoki minus', percent='foiz', infinity='cheksizlik', degree='gradus',
   fraction='surati {a}, maxraji {b} bo‘lgan kasr', root='kvadrat ildiz ostida {x}', cube_root='kub ildiz ostida {x}', nth_root='{n} darajali ildiz ostida {x}',
-  squared='{x}ning kvadrati', cubed='{x}ning kubi', power='{x}ning {n} darajasi',
-  group='qavs ochiladi, {x}, qavs yopiladi', quantity='qavsdagi {x} ifoda', index='{x}, indeks {n}', factorial='{x} faktorial',
+  squared='{x}ning kvadrati', cubed='{x}ning kubi', power='{x}ning {n} darajasi', squared_short='{x} kvadrat', cubed_short='{x} kub', power_short='{x} {n} daraja',
+  group='qavs ochiladi, {x}, qavs yopiladi', quantity='qavsdagi {x} ifoda', index='{x} {n}', factorial='{x} faktorial',
   absolute='{x}ning moduli', binomial='{n} tadan {k} tadan tanlashlar soni',
   sum='yig‘indi', prod='ko‘paytma', integral='integral', limit='limit', lower='{x} dan', upper='{x} gacha', tends='intiladi',
   sin='sinus', cos='kosinus', tan='tangens', cot='kotangens', ln='natural logarifm', log='logarifm',
@@ -81,8 +81,8 @@ WORDS = {
   less='less than', greater='greater than', le='less than or equal to', ge='greater than or equal to', ne='not equal to', approx='approximately equals',
   pm='plus or minus', percent='percent', infinity='infinity', degree='degrees',
   fraction='the fraction with numerator {a} and denominator {b}', root='square root of {x}', cube_root='cube root of {x}', nth_root='root of order {n} of {x}',
-  squared='{x} squared', cubed='{x} cubed', power='{x} to the power of {n}',
-  group='open parenthesis, {x}, close parenthesis', quantity='the quantity {x}', index='{x} sub {n}', factorial='{x} factorial',
+  squared='{x} squared', cubed='{x} cubed', power='{x} to the power of {n}', squared_short='{x} squared', cubed_short='{x} cubed', power_short='{x} to the power of {n}',
+  group='open parenthesis, {x}, close parenthesis', quantity='the quantity {x}', index='{x} {n}', factorial='{x} factorial',
   absolute='absolute value of {x}', binomial='{n} choose {k}',
   sum='sum', prod='product', integral='integral', limit='limit', lower='from {x}', upper='to {x}', tends='tends to',
   sin='sine', cos='cosine', tan='tangent', cot='cotangent', ln='natural logarithm', log='logarithm',
@@ -93,8 +93,8 @@ WORDS = {
   less='меньше', greater='больше', le='меньше или равно', ge='больше или равно', ne='не равно', approx='приблизительно равно',
   pm='плюс или минус', percent='процентов', infinity='бесконечность', degree='градусов',
   fraction='дробь: в числителе {a}, в знаменателе {b}', root='квадратный корень из {x}', cube_root='кубический корень из {x}', nth_root='корень степени {n} из {x}',
-  squared='{x} в квадрате', cubed='{x} в кубе', power='{x} в степени {n}',
-  group='скобка открывается, {x}, скобка закрывается', quantity='выражение {x} в скобках', index='{x} с индексом {n}', factorial='{x} факториал',
+  squared='{x} в квадрате', cubed='{x} в кубе', power='{x} в степени {n}', squared_short='{x} в квадрате', cubed_short='{x} в кубе', power_short='{x} в степени {n}',
+  group='скобка открывается, {x}, скобка закрывается', quantity='выражение {x} в скобках', index='{x} {n}', factorial='{x} факториал',
   absolute='модуль {x}', binomial='число сочетаний из {n} по {k}',
   sum='сумма', prod='произведение', integral='интеграл', limit='предел', lower='от {x}', upper='до {x}', tends='стремится к',
   sin='синус', cos='косинус', tan='тангенс', cot='котангенс', ln='натуральный логарифм', log='логарифм',
@@ -133,6 +133,7 @@ class MathReader:
         value = re.sub(r'\\(?:left|right|displaystyle|textstyle|scriptstyle|limits)\b', '', value)
         self.source=value;self.matches=list(TOKENS.finditer(value))
         self.tokens = [m[0] for m in self.matches];self.pos = 0;self.language = language;self.words = WORDS[language]
+        self.aytilgan = set()   # REV387: bir gapda daraja birinchi marta to'liq aytiladi, takrorida qisqa («iks kvadrat»)
 
     def peek(self):return self.tokens[self.pos] if self.pos < len(self.tokens) else ''
     def take(self):
@@ -254,6 +255,11 @@ class MathReader:
             number=self.simple_number(node[2]);key='squared' if kind=='power' and number==2 else 'cubed' if kind=='power' and number==3 else kind
             exponent=self.render(node[2])
             if kind=='power' and exponent==w['degree']:return value+' '+exponent
+            if kind=='power':
+                kalit=(value,exponent)
+                if kalit in self.aytilgan and (key+'_short') in w:
+                    return w[key+'_short'].format(x=value,n=exponent)
+                self.aytilgan.add(kalit)
             if lang=='uz' and kind=='power' and number is not None and number not in (2,3):
                 exponent += 'nchi' if exponent.endswith(('a','i','o','u')) else 'inchi'
             return w[key].format(x=value,n=exponent)
