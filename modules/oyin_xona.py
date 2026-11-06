@@ -4,7 +4,7 @@ o‘tilgan kundan keyin yangi kun kelganda ochiladi, hamda faqat obunachilarga. 
 (qayta o‘ynasa — eng yaxshi yulduz saqlanadi)."""
 import json
 
-XONA_OYINLAR = {116, 83, 68, 89, 88, 117, 119, 76, 86, 32}
+XONA_OYINLAR = set(range(1, 500))   # REV379: rivojlantiruvchi o'yinlar — katalogdagi hamma o'yinlar (57 xil)
 MAX_BOSQICH = 20
 _TAYYOR = False
 

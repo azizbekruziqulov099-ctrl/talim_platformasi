@@ -10,3 +10,4 @@ def test_qulf_va_kunlik_ochilish():
     _, x = o.otdi(h4, 116, 3, 0, True, "2026-11-09"); assert x == "otmadi"
     h5, x = o.otdi(h4, 116, 1, 1, True, "2026-11-09"); assert x is None and h5["116"]["1"]["yulduz"] == 3 and h5["116"]["1"]["sana"] == "2026-11-07"
     _, x = o.otdi({}, 999, 1, 3, True, "2026-11-09"); assert x == "nomalum"
+    _, x = o.otdi({}, 152, 1, 3, True, "2026-11-09"); assert x is None   # REV379: yangi o'yinlar ham
