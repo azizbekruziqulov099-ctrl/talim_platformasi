@@ -1599,10 +1599,12 @@ def create_router(platform, kontent=None):
         if doira.get("xb_sinflar") is not None:   # REV373: o'qituvchi ochgan sinf a'zolari
             if not doira["xb_sinflar"]:
                 return []
-            cur.execute("""SELECT DISTINCT u.user_id, u.full_name, COALESCE(s.sinf::text, u.class) AS class, '' AS harf, u.maktab_id, s.nom AS sinf_nomi
+            cur.execute("""SELECT DISTINCT ON (u.user_id) u.user_id, u.full_name, COALESCE(s.sinf::text, u.class) AS class, '' AS harf, u.maktab_id,
+                                  s.nom AS sinf_nomi, a.qoshildi
                            FROM xb_sinf_azo a JOIN xb_sinf s ON s.id=a.sinf_id JOIN users u ON u.user_id=a.user_id
-                           WHERE a.sinf_id=ANY(%s) ORDER BY u.full_name LIMIT 600""", (doira["xb_sinflar"],))
-            return [dict(r) for r in cur.fetchall()]
+                           WHERE a.sinf_id=ANY(%s) ORDER BY u.user_id, a.qoshildi LIMIT 600""", (doira["xb_sinflar"],))
+            out = [{**dict(r), "qoshildi": r["qoshildi"].isoformat() if r.get("qoshildi") else ""} for r in cur.fetchall()]
+            return sorted(out, key=lambda r: (str(r.get("full_name") or "").lower()))   # REV377: jurnal tartibi — ism bo'yicha
         sharts, params = [OQUVCHI_SHART], []
         if doira["maktab_id"]:
             sharts.append("u.maktab_id=%s"); params.append(doira["maktab_id"])
