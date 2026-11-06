@@ -37,6 +37,7 @@ import os
 import random
 import re
 import threading
+import time
 from datetime import date, datetime, timedelta, timezone
 
 from fastapi import APIRouter, Header, HTTPException, Query, Request
@@ -221,6 +222,10 @@ class Kontent:
             return default
         with open(path, encoding="utf-8") as f:
             return json.load(f)
+
+    def yangila(self):
+        """REV380: keyingi so'rovda kontent bazadan qayta o'qiladi (yangi Miya o'rnatilganda)."""
+        self._ok = False
 
     def ensure(self):
         if self._ok:
@@ -839,8 +844,46 @@ def create_router(platform, kontent=None):
     router = APIRouter()
     K = kontent or KONTENT
 
+    _ver = {"vaqt": 0.0, "holat": None}
+    _ver_qulf = threading.Lock()
+
+    def _kontent_versiya_tekshir():
+        """REV380: server bir nechta ishchi jarayonda ishlaydi; Miya bittasida o'rnatiladi. Har 15 soniyada
+        bazadagi yangilanish vaqti tekshiriladi — o'zgargan tilning keshi har bir jarayonda tozalanadi."""
+        now = time.time()
+        if now - _ver["vaqt"] < 15 or kontent is not None:
+            return
+        with _ver_qulf:
+            if now - _ver["vaqt"] < 15:
+                return
+            _ver["vaqt"] = now
+            try:
+                conn = platform._db(); cur = conn.cursor()
+                try:
+                    cur.execute("SELECT til, MAX(yangilandi) AS v FROM xb_kontent GROUP BY til")
+                    yangi = {r["til"]: str(r["v"]) for r in cur.fetchall()}
+                finally:
+                    cur.close(); conn.close()
+            except Exception:   # noqa: BLE001 — jadval yo'q yoki baza band
+                return
+            eski = _ver["holat"]
+            _ver["holat"] = yangi
+            if eski is None:
+                return
+            for t, v in yangi.items():
+                if eski.get(t) != v:
+                    BAZADA_TILLAR.add(t)
+                    if t == "uz":
+                        KONTENT.yangila(); _NATIJA_KESH.clear()
+                        for key in list(KONTENTLAR):
+                            if key != "uz":
+                                KONTENTLAR.pop(key, None)
+                    else:
+                        _kesh_tozala(t)
+
     def KT(til):
         """REV270: shu tilning kontenti (o'zbekcha — K)."""
+        _kontent_versiya_tekshir()
         return K.ensure() if til == "uz" else kontent_of(til, kontent)
     ready = {"ok": False}
     lock = threading.Lock()
@@ -2222,8 +2265,10 @@ def create_router(platform, kontent=None):
         _kesh_tozala(til)
         if til == "uz":
             _NATIJA_KESH.clear()
+            K.yangila()   # REV380: o'zbekcha kontent obyekti ham qayta o'qiladi (avval faqat lug'atdan o'chirilardi)
             for key in list(KONTENTLAR):   # natijalar hamma tilda ishlatiladi
-                KONTENTLAR.pop(key, None)
+                if key != "uz":
+                    KONTENTLAR.pop(key, None)
         return til, kon, ogoh
 
     global PAKET_NASHR
