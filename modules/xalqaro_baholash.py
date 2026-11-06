@@ -751,6 +751,10 @@ def migrate(cur):
         kod TEXT NOT NULL UNIQUE, parol_hash TEXT NOT NULL DEFAULT '', yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), faol BOOLEAN NOT NULL DEFAULT TRUE)""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_egasi ON xb_sinf(egasi)")
     cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS toplam TEXT NOT NULL DEFAULT ''")   # REV374: sinf qaysi dastur/fan bo'yicha
+    # REV376: o'quvchi qaysi mavzu darslarini ochgan/tugatgan — o'qituvchi ko'radi
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_dars (user_id BIGINT NOT NULL, til TEXT NOT NULL DEFAULT 'uz', mavzu TEXT NOT NULL,
+        ochildi INT NOT NULL DEFAULT 0, tugadi BOOLEAN NOT NULL DEFAULT FALSE, birinchi TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        oxirgi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (user_id, til, mavzu))""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_raqam ON xb_sinf(sinf) WHERE faol")
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_sinf_azo (sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE, user_id BIGINT NOT NULL,
         qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (sinf_id, user_id))""")
@@ -1644,12 +1648,14 @@ def create_router(platform, kontent=None):
                 cur.execute("SELECT user_id, COUNT(*) AS n FROM xb_imtihon WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) AND rasmiy AND topshirilgan IS NOT NULL AND davr=%s GROUP BY user_id",
                             (ids, til, toplam, toplam, davr_kaliti("haftalik")))
                 haftalik = {r["user_id"] for r in cur.fetchall()}
+                cur.execute("SELECT user_id, COUNT(*) FILTER (WHERE tugadi) AS n, COUNT(*) AS ochgan FROM xb_dars WHERE user_id=ANY(%s) AND til=%s GROUP BY user_id", (ids, til))
+                darslar = {r["user_id"]: (int(r["n"]), int(r["ochgan"])) for r in cur.fetchall()}   # REV376
                 cur.execute("SELECT user_id, til, COUNT(*) AS n FROM xb_bilim WHERE user_id=ANY(%s) GROUP BY user_id, til", (ids,))
                 tillar = {}
                 for r in cur.fetchall():
                     tillar.setdefault(r["user_id"], {})[r["til"]] = int(r["n"])
             else:
-                haftalik, tillar = set(), {}
+                haftalik, tillar, darslar = set(), {}, {}
             now = datetime.now(TZ)
             rows = []
             for o in ol:
@@ -1662,6 +1668,7 @@ def create_router(platform, kontent=None):
                              "xato": int(s.get("xato") or 0), "hafta": int(s.get("hafta") or 0), "kun_oldin": kun, "holat": holat,
                              "haftalik_topshirdi": o["user_id"] in haftalik,
                              "tillar": tillar.get(o["user_id"], {}),
+                             "darslar": darslar.get(o["user_id"], (0, 0))[0], "darslar_ochgan": darslar.get(o["user_id"], (0, 0))[1],
                              "ball": b["ball"] if b else None, "daraja": daraja_of(b["ball"], b.get("toplam"), til)["nom"] if b and b.get("ball") else None,
                              "zaif_mavzu": k.mavzu_by_kalit.get(zm[0], {}).get("nom") if zm else None})
             conn.commit()
@@ -1731,13 +1738,23 @@ def create_router(platform, kontent=None):
                 if not cur.fetchone():   # REV373: o'z sinfining a'zosi emas
                     raise HTTPException(403, matn("maktab_emas", til))
             cur.execute("""SELECT id, tur, toplam, davr, rasmiy, foiz, ball, topshirilgan, chiqishlar FROM xb_imtihon
-                           WHERE user_id=%s AND til=%s AND topshirilgan IS NOT NULL ORDER BY id DESC LIMIT 30""", (oquvchi_id, til))
+                           WHERE user_id=%s AND til=%s AND topshirilgan IS NOT NULL ORDER BY id DESC LIMIT 10""", (oquvchi_id, til))
             imt = [{**dict(r), "nom": imtihon_nomi(r["tur"], til), "daraja": daraja_of(r["ball"] or 0, r["toplam"], til)["nom"] if r["ball"] else None,
                     "topshirilgan": r["topshirilgan"].isoformat() if r.get("topshirilgan") else ""} for r in cur.fetchall()]
             out = {"oquvchi": {"user_id": oquvchi_id, "ism": o.get("ism"), "sinf": f"{o.get('class')}{o.get('harf')}"}, "til": til,
                    "mavzular": mavzular_holati(cur, oquvchi_id, til), "xatolar": xato_royxati(cur, oquvchi_id, limit=40, til=til), "imtihonlar": imt}
             cur.execute("SELECT til, COUNT(*) AS n FROM xb_bilim WHERE user_id=%s GROUP BY til", (oquvchi_id,))
             out["tillar"] = {r["til"]: int(r["n"]) for r in cur.fetchall()}
+            # REV376: o'qigan darslari va eng ko'p ishlagan mavzulari
+            kk = KT(til)
+            cur.execute("SELECT mavzu, ochildi, tugadi, oxirgi FROM xb_dars WHERE user_id=%s AND til=%s ORDER BY oxirgi DESC LIMIT 60", (oquvchi_id, til))
+            out["darslar"] = [{"kalit": r["mavzu"], "nom": kk.mavzu_by_kalit.get(r["mavzu"], {}).get("nom", r["mavzu"]), "toplam": kk.mavzu_by_kalit.get(r["mavzu"], {}).get("toplam", ""),
+                               "ochildi": int(r["ochildi"]), "tugadi": bool(r["tugadi"]), "oxirgi": r["oxirgi"].isoformat()} for r in cur.fetchall()]
+            cur.execute("""SELECT mavzu, SUM(urinish) AS urinish, COUNT(*) AS savol, COUNT(*) FILTER (WHERE oxirgi_togri) AS togri, MAX(yangilangan) AS oxirgi
+                           FROM xb_bilim WHERE user_id=%s AND til=%s GROUP BY mavzu ORDER BY 2 DESC LIMIT 10""", (oquvchi_id, til))
+            out["kop_ishlagan"] = [{"kalit": r["mavzu"], "nom": kk.mavzu_by_kalit.get(r["mavzu"], {}).get("nom", r["mavzu"]), "toplam": kk.mavzu_by_kalit.get(r["mavzu"], {}).get("toplam", ""),
+                                    "urinish": int(r["urinish"] or 0), "savol": int(r["savol"]), "togri": int(r["togri"]),
+                                    "foiz": round(100 * int(r["togri"]) / max(1, int(r["savol"]))), "oxirgi": r["oxirgi"].isoformat() if r["oxirgi"] else ""} for r in cur.fetchall()]
             cur.execute("SELECT COUNT(*) AS n FROM xb_takror WHERE user_id=%s AND til=%s", (oquvchi_id, til))
             out["takror_navbat"] = int((cur.fetchone() or {}).get("n") or 0)
             conn.commit()
@@ -1801,6 +1818,32 @@ def create_router(platform, kontent=None):
     def _ochishi_mumkin(cur, user_id):
         u = user_info(cur, user_id)
         return admin_mi(cur, user_id) or u["role"] in SINF_ROLLAR or bool(mening_sinflarim(cur, user_id))
+
+    class DarsKordi(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        mavzu: str = Field(default="", max_length=40)
+        tugadi: bool = False
+
+    @router.post("/api/xalqaro/dars_kordi")
+    def dars_kordi(body: DarsKordi, authorization: str = Header(None)):
+        """REV376: o'quvchi mavzu darsini ochdi (tugadi=True — darsni oxirigacha o'tib, mashqqa o'tdi)."""
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+        mavzu = re.sub(r"[^A-Za-z0-9_\-]", "", body.mavzu or "")[:40]
+        if not mavzu or mavzu not in KT(til).mavzu_by_kalit:
+            return {"ok": False}
+
+        def run(conn, cur):
+            if body.tugadi:
+                cur.execute("""INSERT INTO xb_dars(user_id, til, mavzu, ochildi, tugadi) VALUES (%s,%s,%s,1,TRUE)
+                               ON CONFLICT (user_id, til, mavzu) DO UPDATE SET tugadi=TRUE, oxirgi=NOW()""", (user_id, til, mavzu))
+            else:
+                cur.execute("""INSERT INTO xb_dars(user_id, til, mavzu, ochildi) VALUES (%s,%s,%s,1)
+                               ON CONFLICT (user_id, til, mavzu) DO UPDATE SET ochildi=xb_dars.ochildi+1, oxirgi=NOW()""", (user_id, til, mavzu))
+            conn.commit()
+            return {"ok": True}
+        return run_db(run)
 
     @router.get("/api/xalqaro/sinflar")
     def sinflar(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
