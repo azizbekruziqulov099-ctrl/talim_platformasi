@@ -1044,6 +1044,54 @@ def create_router(platform):
             return {"albom": a}
         return run_db(run)
 
+    # ── REV371: o'yinlar xonasi (bosqichlar, har kuni bittadan, obuna) ──
+    from modules import oyin_xona as oxo
+
+    def _obuna_bor(cur, uid, day):
+        try:
+            from modules import bogcha_reja as _br
+            return _br.obuna_faolmi(_br.obuna_ol(cur, uid), day)
+        except Exception:
+            try:
+                cur.connection.rollback()
+            except Exception:
+                pass
+            return False
+
+    class XonaOtdi(BaseModel):
+        token: Optional[str] = None
+        oyin: int
+        bosqich: int
+        yulduz: int = 0
+
+    @router.get("/api/bola/oyin_xona")
+    def oyin_xona(token: str = None, authorization: str = Header(None)):
+        user_id = uid_of(token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            oxo.migrate(cur)
+            h = oxo.ol(cur, user_id)
+            ob = _obuna_bor(cur, user_id, day)
+            conn.commit()
+            return {"holat": h, "obuna": bool(ob), "bugun": day.isoformat()}
+        return run_db(run)
+
+    @router.post("/api/bola/oyin_xona/otdi")
+    def oyin_xona_otdi(body: XonaOtdi, authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+        day = tashkent_day(datetime.now(timezone.utc))
+
+        def run(conn, cur):
+            oxo.migrate(cur)
+            ob = _obuna_bor(cur, user_id, day)
+            h, xato = oxo.otdi(oxo.ol(cur, user_id), body.oyin, body.bosqich, body.yulduz, ob, day.isoformat())
+            if not xato:
+                oxo.saqla(cur, user_id, h)
+            conn.commit()
+            return {"holat": h, "obuna": bool(ob), "bugun": day.isoformat(), "xato": xato}
+        return run_db(run)
+
     @router.get("/api/ota/bola_albom")
     def ota_albom(bola_id: int, token: str = None, authorization: str = Header(None)):
         parent_id = uid_of(token, authorization)
