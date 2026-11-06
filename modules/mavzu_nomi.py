@@ -28,7 +28,9 @@ def nom_norm(value) -> str:
     for ch in _APOS:
         text = text.replace(ch, "")
     text = re.sub(r"^\s*(?:\d+\s*[-–]?\s*(?:mavzu|dars)|§\s*\d+)\s*[.:)\-–]?\s*", "", text)
-    return re.sub(r"[^0-9a-zа-яёқғҳў]+", "", text)
+    # REV382: hamma alifbodagi harflar saqlanadi (koreys, yapon, xitoy, arab, lotin diakritikasi…). Oldin faqat lotin va kirill
+    # qolardi: «안녕하세요 and 안녕» va «안녕 and 고마워요» ikkalasi ham «and» bo'lib, Miya qaysi mavzu ekanini ajrata olmasdi.
+    return re.sub(r"[\W_]+", "", text)
 
 
 def kod_qismlari(code):
