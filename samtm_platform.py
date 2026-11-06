@@ -6744,10 +6744,85 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
         r = cur.fetchone()
         boshqa_tomon_korgan_id = r["oxirgi_xabar_id"] if r else None
 
+    holat = _chat_holat_yangila_va_ol(cur, conn, user_id, guruh_id, boshqa_user_id)   # REV391
     cur.close(); conn.close()
     rows = xabarlar if keyingidan is not None else list(reversed(xabarlar))
     return {"xabarlar": rows, "boshqa_tomon_korgan_id": boshqa_tomon_korgan_id,
-            "yana_bormi": len(rows) == 50, "keyingi_id": max((x["id"] for x in rows), default=keyingidan)}
+            "yana_bormi": len(rows) == 50, "keyingi_id": max((x["id"] for x in rows), default=keyingidan), **holat}
+
+
+# ───────────── REV391: «yozmoqda…» va «yaqinda faol edi» (Telegram kabi; aniq vaqt ko'rsatilmaydi — maxfiylik) ─────────────
+_CHAT_HOLAT_TAYYOR = {"ok": False}
+
+
+def _chat_holat_jadval(cur, conn):
+    if _CHAT_HOLAT_TAYYOR["ok"]:
+        return
+    cur.execute("""CREATE TABLE IF NOT EXISTS chat_holat (user_id BIGINT PRIMARY KEY, oxirgi_faol TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+                   yozmoqda_kimga TEXT NOT NULL DEFAULT '', yozmoqda_at TIMESTAMPTZ)""")
+    conn.commit()
+    _CHAT_HOLAT_TAYYOR["ok"] = True
+
+
+def chat_faollik_matni(soniya):
+    """Oxirgi faollikdan o'tgan vaqt → yumshoq yorliq (aniq soat ko'rsatilmaydi)."""
+    if soniya is None:
+        return "uzoq vaqt oldin"
+    if soniya < 60:
+        return "onlayn"
+    if soniya < 3600:
+        return "yaqinda faol edi"
+    if soniya < 86400:
+        return "bugun faol edi"
+    if soniya < 2 * 86400:
+        return "kecha faol edi"
+    if soniya < 7 * 86400:
+        return "shu hafta faol edi"
+    return "uzoq vaqt oldin"
+
+
+def _chat_holat_yangila_va_ol(cur, conn, user_id, guruh_id=None, boshqa_user_id=None):
+    try:
+        _chat_holat_jadval(cur, conn)
+        cur.execute("""INSERT INTO chat_holat(user_id, oxirgi_faol) VALUES (%s, NOW())
+                       ON CONFLICT (user_id) DO UPDATE SET oxirgi_faol=NOW()""", (user_id,))
+        out = {}
+        if boshqa_user_id:
+            cur.execute("""SELECT EXTRACT(EPOCH FROM (NOW()-oxirgi_faol)) AS s, (yozmoqda_kimga=%s AND yozmoqda_at > NOW() - INTERVAL '6 seconds') AS yoz
+                           FROM chat_holat WHERE user_id=%s""", (f"u{user_id}", boshqa_user_id))
+            r = cur.fetchone()
+            out = {"boshqa_holat": chat_faollik_matni(float(r["s"]) if r else None), "yozmoqda": bool(r and r["yoz"])}
+        elif guruh_id:
+            cur.execute("""SELECT u.full_name FROM chat_holat h JOIN users u ON u.user_id=h.user_id
+                           WHERE h.yozmoqda_kimga=%s AND h.yozmoqda_at > NOW() - INTERVAL '6 seconds' AND h.user_id<>%s LIMIT 3""", (f"g{guruh_id}", user_id))
+            out = {"yozmoqdalar": [str(x["full_name"] or "").split()[0] for x in cur.fetchall() if x["full_name"]]}
+        conn.commit()
+        return out
+    except Exception:   # noqa: BLE001 — holat bo'lmasa ham xabarlar ishlayveradi
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        return {}
+
+
+@app.post("/api/chat/yozmoqda")
+def chat_yozmoqda(token: str = Form(...), guruh_id: Optional[int] = Form(None), boshqa_user_id: Optional[int] = Form(None)):
+    """REV391: foydalanuvchi yozyapti — suhbatdoshda 6 soniya «yozmoqda…» ko'rinadi."""
+    user_id = _chat_actor(token)
+    if not guruh_id and not boshqa_user_id:
+        raise HTTPException(status_code=400, detail="guruh_id yoki boshqa_user_id kerak")
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa_user_id)
+        _chat_holat_jadval(cur, conn)
+        kimga = f"g{guruh_id}" if guruh_id else f"u{boshqa_user_id}"
+        cur.execute("""INSERT INTO chat_holat(user_id, oxirgi_faol, yozmoqda_kimga, yozmoqda_at) VALUES (%s, NOW(), %s, NOW())
+                       ON CONFLICT (user_id) DO UPDATE SET oxirgi_faol=NOW(), yozmoqda_kimga=EXCLUDED.yozmoqda_kimga, yozmoqda_at=NOW()""", (user_id, kimga))
+        conn.commit()
+        return {"ok": True}
+    finally:
+        cur.close(); conn.close()
 
 
 @app.post("/api/chat/xabar_yubor")
