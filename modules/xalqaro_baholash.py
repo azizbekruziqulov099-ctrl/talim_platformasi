@@ -42,6 +42,7 @@ from datetime import date, datetime, timedelta, timezone
 from fastapi import APIRouter, Header, HTTPException, Query, Request
 from fastapi.responses import Response
 from pydantic import BaseModel, Field
+from typing import Optional
 
 try:
     from platform_core.ddl_guard import LazyMigration as _LazyMigration
@@ -160,6 +161,17 @@ MATN = {
     "imtihon_yoq": {"uz": "Imtihon topilmadi", "ru": "Экзамен не найден", "en": "Exam not found"},
     "faqat_oqituvchi": {"uz": "Bu bo‘lim maktab o‘qituvchisi va admin uchun", "ru": "Этот раздел — для учителя школы и администратора", "en": "This section is for school teachers and administrators"},
     "maktab_emas": {"uz": "Bu o‘quvchi sizning maktabingizda emas", "ru": "Этот ученик не из вашей школы", "en": "This student is not in your school"},
+    # REV373: sinflar
+    "sinf_raqam": {"uz": "Sinf 1 dan 11 gacha bo‘lishi kerak", "ru": "Класс должен быть от 1 до 11", "en": "Grade must be from 1 to 11"},
+    "sinf_nom": {"uz": "Sinf nomini yozing (60 belgigacha)", "ru": "Напишите название класса (до 60 символов)", "en": "Enter a class name (up to 60 characters)"},
+    "sinf_parol": {"uz": "Parol 3–32 belgi bo‘lsin", "ru": "Пароль — 3–32 символа", "en": "Password must be 3–32 characters"},
+    "sinf_ochish_yoq": {"uz": "Sinfni faqat o‘qituvchi ochadi", "ru": "Класс может открыть только учитель", "en": "Only a teacher can open a class"},
+    "sinf_yoq": {"uz": "Sinf topilmadi. Kodni tekshiring", "ru": "Класс не найден. Проверьте код", "en": "Class not found. Check the code"},
+    "sinf_parol_xato": {"uz": "Parol noto‘g‘ri", "ru": "Неверный пароль", "en": "Wrong password"},
+    "sinf_kop_urinish": {"uz": "Juda ko‘p urinish. 10 daqiqadan keyin qayta urining", "ru": "Слишком много попыток. Повторите через 10 минут", "en": "Too many attempts. Try again in 10 minutes"},
+    "sinf_egasi_emas": {"uz": "Bu sinf sizniki emas", "ru": "Это не ваш класс", "en": "This is not your class"},
+    "sinf_oqituvchi_azo": {"uz": "O‘qituvchi o‘z sinfiga o‘quvchi bo‘lib qo‘shila olmaydi", "ru": "Учитель не может вступить в свой класс как ученик", "en": "A teacher cannot join their own class as a student"},
+    "sinf_toliq": {"uz": "Sinfda joy qolmagan (60 o‘quvchi)", "ru": "В классе нет мест (60 учеников)", "en": "The class is full (60 students)"},
     "rasm_yoq": {"uz": "Rasm yo‘q", "ru": "Рисунка нет", "en": "No picture"},
     "kurs": {"uz": "Xalqaro baholash (TIMSS/PISA) tayyorlov kursi", "ru": "Курс подготовки к международной оценке (TIMSS/PISA)", "en": "International assessment (TIMSS/PISA) preparation course"},
     "sinf": {"uz": "{n}-sinf", "ru": "{n} класс", "en": "Grade {n}"},
@@ -673,6 +685,44 @@ class TopshirBody(BaseModel):
     qism: int = Field(default=0, ge=0, le=2)
 
 
+# ─────────── REV373: o'qituvchining sinflari ───────────
+import hashlib as _hl, secrets as _sec
+SINF_ROLLAR = {"oqituvchi", "teacher", "fan_oqituvchisi", "sinf_rahbar", "direktor", "director", "zam_direktor"}
+_KOD_HARF = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"   # 0/O, 1/I yo'q — bola adashmaydi
+
+
+def sinf_kodi_yasa(n=6):
+    return "".join(_sec.choice(_KOD_HARF) for _ in range(n))
+
+
+def kod_norm(kod):
+    return re.sub(r"[^A-Za-z0-9]", "", str(kod or "")).upper()[:12]
+
+
+def parol_hash(parol, kod):
+    p = str(parol or "").strip()
+    return "" if not p else _hl.sha256(f"xb-sinf:{kod}:{p}".encode("utf8")).hexdigest()
+
+
+def parol_togri(saqlangan, parol, kod):
+    return (not saqlangan) or bool(str(parol or "").strip()) and _sec.compare_digest(saqlangan, parol_hash(parol, kod))
+
+
+def sinf_malumot_tekshir(nom, sinf, parol):
+    nom = re.sub(r"\s+", " ", str(nom or "")).strip()
+    try:
+        sinf = int(sinf)
+    except (TypeError, ValueError):
+        sinf = 0
+    if not 1 <= sinf <= 11:
+        return None, "sinf_raqam"
+    if not 1 <= len(nom) <= 60:
+        return None, "sinf_nom"
+    if parol and not 3 <= len(str(parol).strip()) <= 32:
+        return None, "sinf_parol"
+    return {"nom": nom, "sinf": sinf}, None
+
+
 def migrate(cur):
     # REV319: savollar banki — Excel'dan yuklangan (til bo'yicha), nashr qilingani saytda ishlatiladi
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_kontent (til TEXT NOT NULL, turi TEXT NOT NULL, data JSON NOT NULL,
@@ -686,6 +736,14 @@ def migrate(cur):
         urinish INT NOT NULL DEFAULT 0, togri INT NOT NULL DEFAULT 0, oxirgi_togri BOOLEAN NOT NULL DEFAULT FALSE,
         aytib INT NOT NULL DEFAULT 0, yangilangan TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (user_id, savol_id))""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_bilim_user ON xb_bilim(user_id, toplam)")
+    # REV373: o'qituvchi sinf ochadi — o'quvchilar taklif kodi/havolasi yoki sinfni tanlab parol bilan qo'shiladi
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_sinf (id BIGSERIAL PRIMARY KEY, egasi BIGINT NOT NULL, nom TEXT NOT NULL, sinf INT NOT NULL,
+        kod TEXT NOT NULL UNIQUE, parol_hash TEXT NOT NULL DEFAULT '', yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), faol BOOLEAN NOT NULL DEFAULT TRUE)""")
+    cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_egasi ON xb_sinf(egasi)")
+    cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_raqam ON xb_sinf(sinf) WHERE faol")
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_sinf_azo (sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE, user_id BIGINT NOT NULL,
+        qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (sinf_id, user_id))""")
+    cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_azo_user ON xb_sinf_azo(user_id)")
     # REV261: o'qituvchi o'quvchining aynan qanday xato qilganini ko'radi
     cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_v INT NOT NULL DEFAULT 0")
     cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_javob TEXT NOT NULL DEFAULT ''")
@@ -1496,18 +1554,40 @@ def create_router(platform, kontent=None):
             cur.execute("ROLLBACK TO SAVEPOINT xb_adm")
             return False
 
-    def kuzatuv_doirasi(cur, user_id, maktab_id=None, til="uz"):
-        """Kim ko'ra oladi: admin — istalgan maktab (yoki butun platforma), o'qituvchi/direktor — faqat o'z maktabi."""
+    def mening_sinflarim(cur, user_id):
+        cur.execute("SELECT id FROM xb_sinf WHERE egasi=%s AND faol ORDER BY id", (user_id,))
+        return [int(r["id"]) for r in cur.fetchall()]
+
+    def kuzatuv_doirasi(cur, user_id, maktab_id=None, til="uz", xb_sinf=0):
+        """Kim ko'ra oladi: admin — istalgan maktab (yoki butun platforma), o'qituvchi/direktor — faqat o'z maktabi.
+        REV373: o'qituvchi o'zi ochgan sinf(lar)ni ham ko'radi (maktabsiz o'qituvchi — faqat o'z sinflari)."""
         user = user_info(cur, user_id)
-        if admin_mi(cur, user_id):
+        adm = admin_mi(cur, user_id)
+        if xb_sinf:
+            cur.execute("SELECT egasi FROM xb_sinf WHERE id=%s AND faol", (xb_sinf,))
+            r = cur.fetchone()
+            if not r or (int(r["egasi"]) != int(user_id) and not adm):
+                raise HTTPException(403, matn("sinf_egasi_emas", til))
+            return {"admin": False, "maktab_id": None, "xb_sinflar": [int(xb_sinf)], "user": user}
+        if adm:
             return {"admin": True, "maktab_id": maktab_id or None, "user": user}
         if user["role"] in ("oqituvchi", "direktor", "zam_direktor") and user.get("maktab_id"):
             return {"admin": False, "maktab_id": user["maktab_id"], "user": user}
+        meniki = mening_sinflarim(cur, user_id)
+        if meniki or user["role"] in SINF_ROLLAR:
+            return {"admin": False, "maktab_id": None, "xb_sinflar": meniki, "user": user}
         raise HTTPException(403, matn("faqat_oqituvchi", til))
 
     OQUVCHI_SHART = "COALESCE(u.role,'') NOT IN ('oqituvchi','ota-ona','direktor','zam_direktor','admin') AND u.class ~ '^\\s*\\d'"
 
     def oquvchilar(cur, doira, sinf, harf="", til="uz"):
+        if doira.get("xb_sinflar") is not None:   # REV373: o'qituvchi ochgan sinf a'zolari
+            if not doira["xb_sinflar"]:
+                return []
+            cur.execute("""SELECT DISTINCT u.user_id, u.full_name, COALESCE(s.sinf::text, u.class) AS class, '' AS harf, u.maktab_id, s.nom AS sinf_nomi
+                           FROM xb_sinf_azo a JOIN xb_sinf s ON s.id=a.sinf_id JOIN users u ON u.user_id=a.user_id
+                           WHERE a.sinf_id=ANY(%s) ORDER BY u.full_name LIMIT 600""", (doira["xb_sinflar"],))
+            return [dict(r) for r in cur.fetchall()]
         sharts, params = [OQUVCHI_SHART], []
         if doira["maktab_id"]:
             sharts.append("u.maktab_id=%s"); params.append(doira["maktab_id"])
@@ -1523,7 +1603,7 @@ def create_router(platform, kontent=None):
 
     @router.get("/api/xalqaro/sinf_natija")
     def sinf_natija(token: str = None, sinf: str = Query("", max_length=4), harf: str = Query("", max_length=3),
-                    maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+                    maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), xb_sinf: int = Query(0, ge=0), authorization: str = Header(None)):
         """O'qituvchi/admin: sinf o'quvchilari — faollik, o'zlashtirish, oxirgi rasmiy ball, zaif mavzu, xatolar soni.
         REV270: tanlangan til bo'yicha (har o'quvchi qaysi tillarda ishlayotgani ham ko'rsatiladi)."""
         user_id = uid_of(token, authorization)
@@ -1531,7 +1611,7 @@ def create_router(platform, kontent=None):
         k = KT(til)
 
         def run(conn, cur):
-            doira = kuzatuv_doirasi(cur, user_id, maktab_id or None, til)
+            doira = kuzatuv_doirasi(cur, user_id, maktab_id or None, til, xb_sinf)
             ol = oquvchilar(cur, doira, sinf, harf, til)
             ids = [o["user_id"] for o in ol]
             stat, xato, ball, mavzu = {}, {}, {}, {}
@@ -1582,14 +1662,14 @@ def create_router(platform, kontent=None):
 
     @router.get("/api/xalqaro/sinf_xatolar")
     def sinf_xatolar(token: str = None, sinf: str = Query("", max_length=4), harf: str = Query("", max_length=3),
-                     maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+                     maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), xb_sinf: int = Query(0, ge=0), authorization: str = Header(None)):
         """O'qituvchi/admin: sinf bo'yicha eng ko'p xato qilingan savollar va mavzular — dars qayerga qaratilishi kerak."""
         user_id = uid_of(token, authorization)
         til = til_kodi(til)
         k = KT(til)
 
         def run(conn, cur):
-            doira = kuzatuv_doirasi(cur, user_id, maktab_id or None, til)
+            doira = kuzatuv_doirasi(cur, user_id, maktab_id or None, til, xb_sinf)
             ids = [o["user_id"] for o in oquvchilar(cur, doira, sinf, harf, til)]
             savollar, mavzular = [], []
             if ids:
@@ -1633,8 +1713,10 @@ def create_router(platform, kontent=None):
         def run(conn, cur):
             doira = kuzatuv_doirasi(cur, user_id, None, til)
             o = user_info(cur, oquvchi_id)
-            if not doira["admin"] and o.get("maktab_id") != doira["maktab_id"]:
-                raise HTTPException(403, matn("maktab_emas", til))
+            if not doira["admin"] and not (doira["maktab_id"] and o.get("maktab_id") == doira["maktab_id"]):
+                cur.execute("""SELECT 1 FROM xb_sinf_azo a JOIN xb_sinf s ON s.id=a.sinf_id WHERE a.user_id=%s AND s.egasi=%s AND s.faol LIMIT 1""", (oquvchi_id, user_id))
+                if not cur.fetchone():   # REV373: o'z sinfining a'zosi emas
+                    raise HTTPException(403, matn("maktab_emas", til))
             cur.execute("""SELECT id, tur, toplam, davr, rasmiy, foiz, ball, topshirilgan, chiqishlar FROM xb_imtihon
                            WHERE user_id=%s AND til=%s AND topshirilgan IS NOT NULL ORDER BY id DESC LIMIT 30""", (oquvchi_id, til))
             imt = [{**dict(r), "nom": imtihon_nomi(r["tur"], til), "daraja": daraja_of(r["ball"] or 0, r["toplam"], til)["nom"] if r["ball"] else None,
@@ -1649,6 +1731,219 @@ def create_router(platform, kontent=None):
             return out
         return run_db(run)
 
+    # ─────────── REV373: o'qituvchining sinflari: ochish, taklif kodi/havola, parol, a'zolar ───────────
+    class SinfYarat(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        nom: str = Field(default="", max_length=80)
+        sinf: int = 0
+        parol: str = Field(default="", max_length=40)
+
+    class SinfOzgar(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        nom: Optional[str] = Field(default=None, max_length=80)
+        parol: Optional[str] = Field(default=None, max_length=40)   # "" — parolni olib tashlash
+        yangi_kod: bool = False
+        ochirish: bool = False
+        chiqar: int = 0   # shu o'quvchini sinfdan chiqarish
+
+    class SinfQoshil(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        kod: str = Field(default="", max_length=20)
+        sinf_id: int = 0
+        parol: str = Field(default="", max_length=40)
+
+    _urinish = {}
+    _urinish_qulf = threading.Lock()
+
+    def _urinish_ok(uid):
+        now = datetime.now(timezone.utc).timestamp()
+        with _urinish_qulf:
+            q = [t for t in _urinish.get(uid, []) if now - t < 600]
+            _urinish[uid] = q
+            return len(q) < 10
+
+    def _urinish_yoz(uid):
+        with _urinish_qulf:
+            _urinish.setdefault(uid, []).append(datetime.now(timezone.utc).timestamp())
+
+    def _sinf_korinish(r, azo=None, egasi_ism=""):
+        d = {"id": int(r["id"]), "nom": r["nom"], "sinf": int(r["sinf"]), "parolli": bool(r.get("parol_hash"))}
+        if azo is not None:
+            d.update(kod=r["kod"], azolar=azo)
+        if egasi_ism:
+            d["oqituvchi"] = egasi_ism
+        return d
+
+    def _ism(cur, uid):
+        cur.execute("SELECT full_name FROM users WHERE user_id=%s", (uid,))
+        r = cur.fetchone()
+        return _t(r["full_name"]) if r else ""
+
+    def _ochishi_mumkin(cur, user_id):
+        u = user_info(cur, user_id)
+        return admin_mi(cur, user_id) or u["role"] in SINF_ROLLAR or bool(mening_sinflarim(cur, user_id))
+
+    @router.get("/api/xalqaro/sinflar")
+    def sinflar(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """O'qituvchi — o'zi ochgan sinflar (kod, a'zolar soni); o'quvchi — qo'shilgan sinflari."""
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            cur.execute("""SELECT s.*, (SELECT COUNT(*) FROM xb_sinf_azo a WHERE a.sinf_id=s.id) AS n FROM xb_sinf s
+                           WHERE s.egasi=%s AND s.faol ORDER BY s.sinf, s.nom""", (user_id,))
+            meniki = [_sinf_korinish(r, int(r["n"])) for r in cur.fetchall()]
+            cur.execute("""SELECT s.*, COALESCE(u.full_name,'') AS ustoz FROM xb_sinf_azo a JOIN xb_sinf s ON s.id=a.sinf_id
+                           LEFT JOIN users u ON u.user_id=s.egasi WHERE a.user_id=%s AND s.faol ORDER BY a.qoshildi DESC""", (user_id,))
+            azolik = [_sinf_korinish(r, egasi_ism=_t(r["ustoz"])) for r in cur.fetchall()]
+            ok = _ochishi_mumkin(cur, user_id)
+            conn.commit()
+            return {"meniki": meniki, "azolik": azolik, "ochishi_mumkin": ok}
+        return run_db(run)
+
+    @router.post("/api/xalqaro/sinflar")
+    def sinf_yarat(body: SinfYarat, authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+        d, xato = sinf_malumot_tekshir(body.nom, body.sinf, body.parol)
+        if xato:
+            raise HTTPException(400, matn(xato, til))
+
+        def run(conn, cur):
+            if not _ochishi_mumkin(cur, user_id):
+                raise HTTPException(403, matn("sinf_ochish_yoq", til))
+            cur.execute("SELECT COUNT(*) AS n FROM xb_sinf WHERE egasi=%s AND faol", (user_id,))
+            if int(cur.fetchone()["n"]) >= 30:
+                raise HTTPException(400, "Ko‘pi bilan 30 ta sinf")
+            for _ in range(8):
+                kod = sinf_kodi_yasa()
+                cur.execute("SELECT 1 FROM xb_sinf WHERE kod=%s", (kod,))
+                if not cur.fetchone():
+                    break
+            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash) VALUES (%s,%s,%s,%s,%s) RETURNING *""",
+                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod)))
+            r = cur.fetchone()
+            conn.commit()
+            return {"sinf": _sinf_korinish(r, 0)}
+        return run_db(run)
+
+    @router.post("/api/xalqaro/sinflar/{sinf_id}")
+    def sinf_ozgar(sinf_id: int, body: SinfOzgar, authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+
+        def run(conn, cur):
+            cur.execute("SELECT * FROM xb_sinf WHERE id=%s AND faol FOR UPDATE", (sinf_id,))
+            r = cur.fetchone()
+            if not r or (int(r["egasi"]) != int(user_id) and not admin_mi(cur, user_id)):
+                raise HTTPException(403, matn("sinf_egasi_emas", til))
+            if body.ochirish:
+                cur.execute("UPDATE xb_sinf SET faol=FALSE WHERE id=%s", (sinf_id,))
+                cur.execute("DELETE FROM xb_sinf_azo WHERE sinf_id=%s", (sinf_id,))
+                conn.commit()
+                return {"ok": True, "ochirildi": True}
+            if body.chiqar:
+                cur.execute("DELETE FROM xb_sinf_azo WHERE sinf_id=%s AND user_id=%s", (sinf_id, body.chiqar))
+            kod = r["kod"]
+            if body.yangi_kod:
+                if r["parol_hash"] and body.parol is None:   # parol kodga bog'langan — kod almashsa, parolni qayta berish kerak
+                    raise HTTPException(400, matn("sinf_parol", til))
+                kod = sinf_kodi_yasa()
+                cur.execute("UPDATE xb_sinf SET kod=%s WHERE id=%s", (kod, sinf_id))
+            if body.nom is not None:
+                d, xato = sinf_malumot_tekshir(body.nom, r["sinf"], "")
+                if xato:
+                    raise HTTPException(400, matn(xato, til))
+                cur.execute("UPDATE xb_sinf SET nom=%s WHERE id=%s", (d["nom"], sinf_id))
+            if body.parol is not None:
+                if body.parol and not 3 <= len(body.parol.strip()) <= 32:
+                    raise HTTPException(400, matn("sinf_parol", til))
+                cur.execute("UPDATE xb_sinf SET parol_hash=%s WHERE id=%s", (parol_hash(body.parol, kod), sinf_id))
+            cur.execute("""SELECT s.*, (SELECT COUNT(*) FROM xb_sinf_azo a WHERE a.sinf_id=s.id) AS n FROM xb_sinf s WHERE s.id=%s""", (sinf_id,))
+            r2 = cur.fetchone()
+            cur.execute("""SELECT u.user_id, u.full_name, a.qoshildi FROM xb_sinf_azo a JOIN users u ON u.user_id=a.user_id
+                           WHERE a.sinf_id=%s ORDER BY u.full_name""", (sinf_id,))
+            azolar = [{"user_id": int(x["user_id"]), "ism": _t(x["full_name"]), "qoshildi": x["qoshildi"].isoformat()} for x in cur.fetchall()]
+            conn.commit()
+            return {"sinf": _sinf_korinish(r2, int(r2["n"])), "azolar": azolar}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/sinf_qidir")
+    def sinf_qidir(token: str = None, sinf: int = Query(0, ge=0, le=11), q: str = Query("", max_length=60),
+                   til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """O'quvchi: 1–11-sinfdan birini tanlaydi — shu sinf raqamidagi ochiq sinflar (o'qituvchi ismi bilan)."""
+        uid_of(token, authorization)
+
+        def run(conn, cur):
+            sharts, params = ["s.faol"], []
+            if sinf:
+                sharts.append("s.sinf=%s"); params.append(sinf)
+            if q.strip():
+                sharts.append("(s.nom ILIKE %s OR u.full_name ILIKE %s)"); params += [f"%{q.strip()}%"] * 2
+            cur.execute(f"""SELECT s.*, COALESCE(u.full_name,'') AS ustoz FROM xb_sinf s LEFT JOIN users u ON u.user_id=s.egasi
+                            WHERE {' AND '.join(sharts)} ORDER BY s.yaratildi DESC LIMIT 60""", params)
+            out = [_sinf_korinish(r, egasi_ism=_t(r["ustoz"])) for r in cur.fetchall()]
+            conn.commit()
+            return {"sinflar": out}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/taklif/{kod}")
+    def taklif(kod: str, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        uid_of(token, authorization)
+
+        def run(conn, cur):
+            cur.execute("""SELECT s.*, COALESCE(u.full_name,'') AS ustoz FROM xb_sinf s LEFT JOIN users u ON u.user_id=s.egasi
+                           WHERE s.kod=%s AND s.faol""", (kod_norm(kod),))
+            r = cur.fetchone()
+            conn.commit()
+            if not r:
+                raise HTTPException(404, matn("sinf_yoq", til_kodi(til)))
+            return {"sinf": _sinf_korinish(r, egasi_ism=_t(r["ustoz"]))}
+        return run_db(run)
+
+    @router.post("/api/xalqaro/sinfga_qoshil")
+    def sinfga_qoshil(body: SinfQoshil, authorization: str = Header(None)):
+        """Taklif kodi (havola) bilan — parolsiz; sinfni ro'yxatdan tanlab — parol bilan (parol qo'yilgan bo'lsa)."""
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+        if not _urinish_ok(user_id):
+            raise HTTPException(429, matn("sinf_kop_urinish", til))
+
+        def run(conn, cur):
+            if body.kod:
+                cur.execute("SELECT * FROM xb_sinf WHERE kod=%s AND faol", (kod_norm(body.kod),))
+            else:
+                cur.execute("SELECT * FROM xb_sinf WHERE id=%s AND faol", (body.sinf_id,))
+            r = cur.fetchone()
+            if not r:
+                _urinish_yoz(user_id)
+                raise HTTPException(404, matn("sinf_yoq", til))
+            if int(r["egasi"]) == int(user_id):
+                raise HTTPException(400, matn("sinf_oqituvchi_azo", til))
+            if not body.kod and not parol_togri(r["parol_hash"], body.parol, r["kod"]):
+                _urinish_yoz(user_id)
+                raise HTTPException(403, matn("sinf_parol_xato", til))
+            cur.execute("SELECT COUNT(*) AS n FROM xb_sinf_azo WHERE sinf_id=%s", (r["id"],))
+            if int(cur.fetchone()["n"]) >= 60:
+                raise HTTPException(400, matn("sinf_toliq", til))
+            cur.execute("INSERT INTO xb_sinf_azo(sinf_id, user_id) VALUES (%s,%s) ON CONFLICT DO NOTHING", (r["id"], user_id))
+            ism = _ism(cur, r["egasi"])
+            conn.commit()
+            return {"ok": True, "sinf": _sinf_korinish(r, egasi_ism=ism)}
+        return run_db(run)
+
+    @router.post("/api/xalqaro/sinfdan_chiq")
+    def sinfdan_chiq(body: SinfQoshil, authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+
+        def run(conn, cur):
+            cur.execute("DELETE FROM xb_sinf_azo WHERE sinf_id=%s AND user_id=%s", (body.sinf_id, user_id))
+            conn.commit()
+            return {"ok": True}
+        return run_db(run)
+
     @router.get("/api/xalqaro/kuzatuv")
     def kuzatuv(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
         """Kim ekanini aniqlash: admin / o'qituvchi (o'z maktabi) / o'quvchi. Admin uchun xalqaro bo'limda faol maktablar ro'yxati."""
@@ -1660,6 +1955,9 @@ def create_router(platform, kontent=None):
             except HTTPException:
                 conn.commit()
                 return {"rol": "oquvchi"}
+            if doira.get("xb_sinflar") is not None:   # REV373: maktabsiz o'qituvchi — faqat o'z sinflari
+                conn.commit()
+                return {"rol": "oqituvchi", "mustaqil": True, "maktab_id": None}
             maktablar = []
             if doira["admin"]:
                 try:
