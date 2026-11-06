@@ -30,7 +30,7 @@ class MathSpeechTests(unittest.TestCase):
         self.assertIn('cubed',speak_formula('(x+1)^3','en'))
         self.assertIn('cube root',speak_formula(r'\sqrt[3]{8}','en'))
         self.assertEqual(speak_formula(r'\sqrt[4]{16}','ru'),'корень четвёртой степени из шестнадцати')
-        self.assertIn('икс с индексом один',speak_formula('x_1','ru'))
+        self.assertIn('икс один',speak_formula('x_1','ru'))   # REV387: «с индексом» aytilmaydi
         self.assertEqual(speak_formula('5!','uz'),'besh faktorial')
         self.assertEqual(speak_formula(r'90^\circ','uz'),'to‘qson gradus')
         self.assertEqual(speak_formula(r'\alpha+\pi','ru'),'альфа плюс пи')

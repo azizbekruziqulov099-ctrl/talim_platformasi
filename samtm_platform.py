@@ -2993,13 +2993,36 @@ def _lat_va_latex_ochish(matn: str) -> str:
 
     # Darajalar: x^2 -> "x kvadrat", x^3 -> "x kub",
     # x^{5} -> "x ning beshinchi darajasi".
-    def _daraja(x):
-        asos, daraja = x.group(1), int(x.group(2))
+    _korilgan = set()   # REV387: bir gapda daraja birinchi marta to'liq («x ning kvadrati»), takrorida qisqa («x kvadrat»)
+
+    def _daraja_soz(asos, daraja):
+        birinchi = (asos, daraja) not in _korilgan
+        _korilgan.add((asos, daraja))
         if daraja == 2:
-            return f" {asos} kvadrat "
+            return f" {asos} ning kvadrati " if birinchi else f" {asos} kvadrat "
         if daraja == 3:
-            return f" {asos} kub "
+            return f" {asos} ning kubi " if birinchi else f" {asos} kub "
         return f" {asos} ning {_son_soz(daraja)}inchi darajasi "
+
+    def _daraja(x):
+        return _daraja_soz(x.group(1), int(x.group(2)))
+
+    # REV387: pastki indeks «indeks pastda» deb o'qilmaydi: x_0 -> "x nol", a_1 -> "a bir", y_n -> "y n",
+    # x_{10}^2 -> "x o'n kvadrat". Unicode yozuvi ham: x₀ -> "x nol", x² -> "x kvadrat".
+    _PAST = str.maketrans("₀₁₂₃₄₅₆₇₈₉", "0123456789")
+    m = re.sub(r"([A-Za-z])([₀₁₂₃₄₅₆₇₈₉]+)", lambda x: f" {x.group(1)} _{{{x.group(2).translate(_PAST)}}} ", m)
+    m = re.sub(r"([0-9A-Za-z])\s*²", r"\1^2", m)
+    m = re.sub(r"([0-9A-Za-z])\s*³", r"\1^3", m)
+
+    def _indeks_soz(t):
+        t = t.strip()
+        return _son_soz(int(t)) if t.isdigit() else t
+
+    def _indeksli(x):
+        asos = f"{x.group(1)} {_indeks_soz(x.group(2) or x.group(3))}"
+        d = x.group(4) or x.group(5)
+        return _daraja_soz(asos, int(d)) if d else f" {asos} "
+    m = re.sub(r"([A-Za-z])\s*_\s*(?:\{([^{}]+)\}|([A-Za-z0-9]))(?:\s*\^\s*(?:\{(\d+)\}|(\d)))?", _indeksli, m)
     m = re.sub(r"([0-9A-Za-z]+)\s*\^\s*\{?(\d+)\}?", _daraja, m)
 
     # O'lchov birliklari — to'liq so'zga
