@@ -16,3 +16,9 @@ def test_malumot_tekshir():
     assert xb.sinf_malumot_tekshir("5A", 5, "ab")[1] == "sinf_parol"
     for m in ("sinf_raqam", "sinf_nom", "sinf_parol", "sinf_yoq", "sinf_parol_xato", "sinf_egasi_emas"):
         assert xb.matn(m, "ru") and xb.matn(m, "en")
+
+def test_rev374_sinf_fani():
+    assert xb.sinf_toplami("T11_G4_S", 4) == "T11_G4_S"
+    assert xb.sinf_toplami("", 3) == "T11_G4_M" and xb.sinf_toplami("", 7) == "T11_G8_M" and xb.sinf_toplami("", 10) == "P_M"
+    assert xb.sinf_toplami("XYZ", 9) == "P_M"
+    assert set(xb.XB_TOPLAMLAR) >= set(xb.tavsiya_toplamlar(0)) | set(xb.tavsiya_toplamlar(10))

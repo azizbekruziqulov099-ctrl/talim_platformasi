@@ -171,6 +171,7 @@ MATN = {
     "sinf_kop_urinish": {"uz": "Juda ko‘p urinish. 10 daqiqadan keyin qayta urining", "ru": "Слишком много попыток. Повторите через 10 минут", "en": "Too many attempts. Try again in 10 minutes"},
     "sinf_egasi_emas": {"uz": "Bu sinf sizniki emas", "ru": "Это не ваш класс", "en": "This is not your class"},
     "sinf_oqituvchi_azo": {"uz": "O‘qituvchi o‘z sinfiga o‘quvchi bo‘lib qo‘shila olmaydi", "ru": "Учитель не может вступить в свой класс как ученик", "en": "A teacher cannot join their own class as a student"},
+    "sinf_toplam": {"uz": "Sinf qaysi dastur va fan bo‘yicha ekanini tanlang", "ru": "Выберите программу и предмет класса", "en": "Choose the class programme and subject"},
     "sinf_toliq": {"uz": "Sinfda joy qolmagan (60 o‘quvchi)", "ru": "В классе нет мест (60 учеников)", "en": "The class is full (60 students)"},
     "rasm_yoq": {"uz": "Rasm yo‘q", "ru": "Рисунка нет", "en": "No picture"},
     "kurs": {"uz": "Xalqaro baholash (TIMSS/PISA) tayyorlov kursi", "ru": "Курс подготовки к международной оценке (TIMSS/PISA)", "en": "International assessment (TIMSS/PISA) preparation course"},
@@ -708,6 +709,15 @@ def parol_togri(saqlangan, parol, kod):
     return (not saqlangan) or bool(str(parol or "").strip()) and _sec.compare_digest(saqlangan, parol_hash(parol, kod))
 
 
+XB_TOPLAMLAR = ("T11_G4_M", "T11_G4_S", "T11_G8_M", "T11_G8_S", "P_M", "P_R", "P_S", "P_F")
+
+
+def sinf_toplami(toplam, sinf):
+    """REV374: sinf fani — berilgani (ro'yxatda bo'lsa), aks holda sinf raqamiga mos birinchisi."""
+    t = str(toplam or "").strip()
+    return t if t in XB_TOPLAMLAR else tavsiya_toplamlar(int(sinf or 0))[0]
+
+
 def sinf_malumot_tekshir(nom, sinf, parol):
     nom = re.sub(r"\s+", " ", str(nom or "")).strip()
     try:
@@ -740,6 +750,7 @@ def migrate(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_sinf (id BIGSERIAL PRIMARY KEY, egasi BIGINT NOT NULL, nom TEXT NOT NULL, sinf INT NOT NULL,
         kod TEXT NOT NULL UNIQUE, parol_hash TEXT NOT NULL DEFAULT '', yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), faol BOOLEAN NOT NULL DEFAULT TRUE)""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_egasi ON xb_sinf(egasi)")
+    cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS toplam TEXT NOT NULL DEFAULT ''")   # REV374: sinf qaysi dastur/fan bo'yicha
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_raqam ON xb_sinf(sinf) WHERE faol")
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_sinf_azo (sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE, user_id BIGINT NOT NULL,
         qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (sinf_id, user_id))""")
@@ -1603,7 +1614,8 @@ def create_router(platform, kontent=None):
 
     @router.get("/api/xalqaro/sinf_natija")
     def sinf_natija(token: str = None, sinf: str = Query("", max_length=4), harf: str = Query("", max_length=3),
-                    maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), xb_sinf: int = Query(0, ge=0), authorization: str = Header(None)):
+                    maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), xb_sinf: int = Query(0, ge=0),
+                    toplam: str = Query("", max_length=20), authorization: str = Header(None)):
         """O'qituvchi/admin: sinf o'quvchilari — faollik, o'zlashtirish, oxirgi rasmiy ball, zaif mavzu, xatolar soni.
         REV270: tanlangan til bo'yicha (har o'quvchi qaysi tillarda ishlayotgani ham ko'rsatiladi)."""
         user_id = uid_of(token, authorization)
@@ -1619,18 +1631,18 @@ def create_router(platform, kontent=None):
                 cur.execute("""SELECT user_id, COUNT(*) AS urinish, COUNT(*) FILTER (WHERE oxirgi_togri) AS ozlashtirgan,
                                       COUNT(*) FILTER (WHERE NOT oxirgi_togri) AS xato, MAX(yangilangan) AS oxirgi,
                                       COUNT(*) FILTER (WHERE yangilangan > NOW() - INTERVAL '7 days') AS hafta
-                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s GROUP BY user_id""", (ids, til))
+                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) GROUP BY user_id""", (ids, til, toplam, toplam))
                 stat = {r["user_id"]: dict(r) for r in cur.fetchall()}
                 cur.execute("""SELECT DISTINCT ON (user_id) user_id, ball, foiz, tur, davr, toplam FROM xb_imtihon
-                               WHERE user_id=ANY(%s) AND til=%s AND rasmiy AND topshirilgan IS NOT NULL ORDER BY user_id, id DESC""", (ids, til))
+                               WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) AND rasmiy AND topshirilgan IS NOT NULL ORDER BY user_id, id DESC""", (ids, til, toplam, toplam))
                 ball = {r["user_id"]: dict(r) for r in cur.fetchall()}
                 cur.execute("""SELECT user_id, mavzu, COUNT(*) FILTER (WHERE NOT oxirgi_togri) AS x, COUNT(*) AS n
-                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s GROUP BY user_id, mavzu""", (ids, til))
+                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) GROUP BY user_id, mavzu""", (ids, til, toplam, toplam))
                 for r in cur.fetchall():
                     if int(r["x"]) and (r["user_id"] not in mavzu or int(r["x"]) > mavzu[r["user_id"]][1]):
                         mavzu[r["user_id"]] = (r["mavzu"], int(r["x"]))
-                cur.execute("SELECT user_id, COUNT(*) AS n FROM xb_imtihon WHERE user_id=ANY(%s) AND til=%s AND rasmiy AND topshirilgan IS NOT NULL AND davr=%s GROUP BY user_id",
-                            (ids, til, davr_kaliti("haftalik")))
+                cur.execute("SELECT user_id, COUNT(*) AS n FROM xb_imtihon WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) AND rasmiy AND topshirilgan IS NOT NULL AND davr=%s GROUP BY user_id",
+                            (ids, til, toplam, toplam, davr_kaliti("haftalik")))
                 haftalik = {r["user_id"] for r in cur.fetchall()}
                 cur.execute("SELECT user_id, til, COUNT(*) AS n FROM xb_bilim WHERE user_id=ANY(%s) GROUP BY user_id, til", (ids,))
                 tillar = {}
@@ -1662,7 +1674,8 @@ def create_router(platform, kontent=None):
 
     @router.get("/api/xalqaro/sinf_xatolar")
     def sinf_xatolar(token: str = None, sinf: str = Query("", max_length=4), harf: str = Query("", max_length=3),
-                     maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), xb_sinf: int = Query(0, ge=0), authorization: str = Header(None)):
+                     maktab_id: int = Query(0, ge=0), til: str = Query("uz", max_length=8), xb_sinf: int = Query(0, ge=0),
+                     toplam: str = Query("", max_length=20), authorization: str = Header(None)):
         """O'qituvchi/admin: sinf bo'yicha eng ko'p xato qilingan savollar va mavzular — dars qayerga qaratilishi kerak."""
         user_id = uid_of(token, authorization)
         til = til_kodi(til)
@@ -1676,8 +1689,8 @@ def create_router(platform, kontent=None):
                 # variant bo'yicha guruhlanadi: «ko'p berilgan javob» aynan shu variantning harfi/qiymati bo'lsin
                 cur.execute("""SELECT savol_id, oxirgi_v, COUNT(*) AS urindi, COUNT(*) FILTER (WHERE NOT oxirgi_togri) AS xato,
                                       mode() WITHIN GROUP (ORDER BY oxirgi_javob) FILTER (WHERE NOT oxirgi_togri) AS kop_javob
-                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s GROUP BY savol_id, oxirgi_v HAVING COUNT(*) FILTER (WHERE NOT oxirgi_togri) > 0
-                               ORDER BY 4 DESC, 3 DESC LIMIT 25""", (ids, til))
+                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) GROUP BY savol_id, oxirgi_v HAVING COUNT(*) FILTER (WHERE NOT oxirgi_togri) > 0
+                               ORDER BY 4 DESC, 3 DESC LIMIT 25""", (ids, til, toplam, toplam))
                 for r in cur.fetchall():
                     s = k.by_id.get(r["savol_id"])
                     if not s:
@@ -1691,7 +1704,7 @@ def create_router(platform, kontent=None):
                     savollar.append({**p, "urindi": int(r["urindi"]), "xato": int(r["xato"]),
                                      "xato_foiz": round(100 * int(r["xato"]) / max(1, int(r["urindi"]))), "kop_javob": kop, "kop_izoh": izoh})
                 cur.execute("""SELECT mavzu, COUNT(DISTINCT user_id) AS oquvchi, COUNT(*) AS urindi, COUNT(*) FILTER (WHERE oxirgi_togri) AS togri
-                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s GROUP BY mavzu""", (ids, til))
+                               FROM xb_bilim WHERE user_id=ANY(%s) AND til=%s AND (%s='' OR toplam=%s) GROUP BY mavzu""", (ids, til, toplam, toplam))
                 for r in cur.fetchall():
                     t = k.mavzu_by_kalit.get(r["mavzu"])
                     if t:
@@ -1738,6 +1751,7 @@ def create_router(platform, kontent=None):
         nom: str = Field(default="", max_length=80)
         sinf: int = 0
         parol: str = Field(default="", max_length=40)
+        toplam: str = Field(default="", max_length=20)   # REV374
 
     class SinfOzgar(BaseModel):
         token: Optional[str] = None
@@ -1747,6 +1761,7 @@ def create_router(platform, kontent=None):
         yangi_kod: bool = False
         ochirish: bool = False
         chiqar: int = 0   # shu o'quvchini sinfdan chiqarish
+        toplam: Optional[str] = Field(default=None, max_length=20)   # REV374
 
     class SinfQoshil(BaseModel):
         token: Optional[str] = None
@@ -1770,7 +1785,8 @@ def create_router(platform, kontent=None):
             _urinish.setdefault(uid, []).append(datetime.now(timezone.utc).timestamp())
 
     def _sinf_korinish(r, azo=None, egasi_ism=""):
-        d = {"id": int(r["id"]), "nom": r["nom"], "sinf": int(r["sinf"]), "parolli": bool(r.get("parol_hash"))}
+        d = {"id": int(r["id"]), "nom": r["nom"], "sinf": int(r["sinf"]), "parolli": bool(r.get("parol_hash")),
+             "toplam": sinf_toplami(r.get("toplam"), r["sinf"])}
         if azo is not None:
             d.update(kod=r["kod"], azolar=azo)
         if egasi_ism:
@@ -1810,6 +1826,9 @@ def create_router(platform, kontent=None):
         d, xato = sinf_malumot_tekshir(body.nom, body.sinf, body.parol)
         if xato:
             raise HTTPException(400, matn(xato, til))
+        if body.toplam and body.toplam not in XB_TOPLAMLAR:
+            raise HTTPException(400, matn("sinf_toplam", til))
+        tp = sinf_toplami(body.toplam, d["sinf"])
 
         def run(conn, cur):
             if not _ochishi_mumkin(cur, user_id):
@@ -1822,8 +1841,8 @@ def create_router(platform, kontent=None):
                 cur.execute("SELECT 1 FROM xb_sinf WHERE kod=%s", (kod,))
                 if not cur.fetchone():
                     break
-            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash) VALUES (%s,%s,%s,%s,%s) RETURNING *""",
-                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod)))
+            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash, toplam) VALUES (%s,%s,%s,%s,%s,%s) RETURNING *""",
+                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod), tp))
             r = cur.fetchone()
             conn.commit()
             return {"sinf": _sinf_korinish(r, 0)}
@@ -1852,6 +1871,10 @@ def create_router(platform, kontent=None):
                     raise HTTPException(400, matn("sinf_parol", til))
                 kod = sinf_kodi_yasa()
                 cur.execute("UPDATE xb_sinf SET kod=%s WHERE id=%s", (kod, sinf_id))
+            if body.toplam is not None:
+                if body.toplam not in XB_TOPLAMLAR:
+                    raise HTTPException(400, matn("sinf_toplam", til))
+                cur.execute("UPDATE xb_sinf SET toplam=%s WHERE id=%s", (body.toplam, sinf_id))
             if body.nom is not None:
                 d, xato = sinf_malumot_tekshir(body.nom, r["sinf"], "")
                 if xato:
