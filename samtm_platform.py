@@ -6745,6 +6745,7 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
         boshqa_tomon_korgan_id = r["oxirgi_xabar_id"] if r else None
 
     holat = _chat_holat_yangila_va_ol(cur, conn, user_id, guruh_id, boshqa_user_id)   # REV391
+    holat["qadalgan"] = _chat_qadalgan_ol(cur, conn, user_id, guruh_id, boshqa_user_id)   # REV395
     cur.close(); conn.close()
     rows = xabarlar if keyingidan is not None else list(reversed(xabarlar))
     return {"xabarlar": rows, "boshqa_tomon_korgan_id": boshqa_tomon_korgan_id,
@@ -6804,6 +6805,79 @@ def _chat_holat_yangila_va_ol(cur, conn, user_id, guruh_id=None, boshqa_user_id=
         except Exception:
             pass
         return {}
+
+
+# ───────────── REV395: suhbatda qadalgan xabar (📌, Telegram kabi — ikkala tomon ko'radi) ─────────────
+def _chat_suhbat_kalit(user_id, guruh_id=None, boshqa_user_id=None):
+    if guruh_id:
+        return f"g{int(guruh_id)}"
+    a, b = sorted((int(user_id), int(boshqa_user_id)))
+    return f"u{a}_{b}"
+
+
+_CHAT_QADALGAN_TAYYOR = {"ok": False}
+
+
+def _chat_qadalgan_jadval(cur, conn):
+    if _CHAT_QADALGAN_TAYYOR["ok"]:
+        return
+    _CHAT_QADALGAN_TAYYOR["ok"] = True
+    cur.execute("""CREATE TABLE IF NOT EXISTS chat_qadalgan (kalit TEXT PRIMARY KEY, xabar_id BIGINT NOT NULL, qadadi BIGINT NOT NULL,
+                   vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    conn.commit()
+
+
+def _chat_qadalgan_ol(cur, conn, user_id, guruh_id=None, boshqa_user_id=None):
+    try:
+        _chat_qadalgan_jadval(cur, conn)
+        cur.execute("""SELECT q.xabar_id, cx.matn, cx.fayl_turi, COALESCE(u.full_name,'') AS ism, cx.ochirilgan
+                       FROM chat_qadalgan q JOIN chat_xabarlari cx ON cx.id=q.xabar_id LEFT JOIN users u ON u.user_id=cx.yuboruvchi_user_id
+                       WHERE q.kalit=%s""", (_chat_suhbat_kalit(user_id, guruh_id, boshqa_user_id),))
+        r = cur.fetchone()
+        conn.commit()
+        if not r or r.get("ochirilgan"):
+            return None
+        return {"id": int(r["xabar_id"]), "matn": str(r["matn"] or "")[:160], "fayl_turi": r["fayl_turi"], "ism": r["ism"]}
+    except Exception:   # noqa: BLE001
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+        return None
+
+
+@app.post("/api/chat/xabar_qadash")
+def chat_xabar_qadash(token: str = Form(...), xabar_id: int = Form(...), olib_tashlash: bool = Form(False)):
+    """REV395: xabarni suhbat tepasiga qadash yoki olib tashlash. Shaxsiy suhbatda — ikkala tomon;
+    guruhda — o'qituvchi/rahbar yoki xabar egasi."""
+    user_id = _chat_actor(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        cur.execute("SELECT id, guruh_id, yuboruvchi_user_id, qabul_qiluvchi_user_id FROM chat_xabarlari WHERE id=%s", (xabar_id,))
+        x = cur.fetchone()
+        if not x:
+            raise HTTPException(status_code=404, detail="Xabar topilmadi")
+        guruh_id = x["guruh_id"]
+        boshqa = None if guruh_id else (x["qabul_qiluvchi_user_id"] if int(x["yuboruvchi_user_id"]) == int(user_id) else x["yuboruvchi_user_id"])
+        if not guruh_id and int(user_id) not in (int(x["yuboruvchi_user_id"]), int(x["qabul_qiluvchi_user_id"] or 0)):
+            raise HTTPException(status_code=403, detail="Bu suhbat sizniki emas")
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, boshqa)
+        if guruh_id and int(x["yuboruvchi_user_id"]) != int(user_id):
+            cur.execute("SELECT role FROM users WHERE user_id=%s", (user_id,))
+            r = cur.fetchone()
+            if str((r or {}).get("role") or "") in ("oquvchi", "ota-ona", ""):
+                raise HTTPException(status_code=403, detail="Guruhda xabarni o'qituvchi yoki xabar egasi qadaydi")
+        _chat_qadalgan_jadval(cur, conn)
+        kalit = _chat_suhbat_kalit(user_id, guruh_id, boshqa)
+        if olib_tashlash:
+            cur.execute("DELETE FROM chat_qadalgan WHERE kalit=%s", (kalit,))
+        else:
+            cur.execute("""INSERT INTO chat_qadalgan(kalit, xabar_id, qadadi) VALUES (%s,%s,%s)
+                           ON CONFLICT (kalit) DO UPDATE SET xabar_id=EXCLUDED.xabar_id, qadadi=EXCLUDED.qadadi, vaqt=NOW()""", (kalit, xabar_id, user_id))
+        conn.commit()
+        return {"ok": True, "qadalgan": None if olib_tashlash else _chat_qadalgan_ol(cur, conn, user_id, guruh_id, boshqa)}
+    finally:
+        cur.close(); conn.close()
 
 
 @app.post("/api/chat/yozmoqda")
