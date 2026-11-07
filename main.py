@@ -197,6 +197,11 @@ try:   # REV411: kurs guruhlari (o'qituvchi guruh ochadi, bugungi mashg'ulot, jo
 except ImportError:
     from modules.kurs_guruh import create_router as create_kurs_guruh_router
 app.include_router(create_kurs_guruh_router(samtm_platform))
+try:   # REV412: dars izohlari (admin darsni ko'rib izoh qoldiradi, hammasi bitta faylga yig'iladi)
+    from .modules.dars_izoh import create_router as create_dars_izoh_router
+except ImportError:
+    from modules.dars_izoh import create_router as create_dars_izoh_router
+app.include_router(create_dars_izoh_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
