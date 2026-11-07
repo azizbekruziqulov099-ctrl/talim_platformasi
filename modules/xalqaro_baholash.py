@@ -814,6 +814,10 @@ def migrate(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_topshiriq_natija (topshiriq_id BIGINT NOT NULL REFERENCES xb_topshiriq(id) ON DELETE CASCADE,
         user_id BIGINT NOT NULL, togri INT NOT NULL, jami INT NOT NULL, urinish INT NOT NULL DEFAULT 1, eng_yaxshi INT NOT NULL DEFAULT 0,
         vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (topshiriq_id, user_id))""")
+    # REV404: topshiriqni jonli kuzatish — o'quvchi qaysi savolda, nechtasini belgiladi, ilova ochiqmi
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_topshiriq_jonli (topshiriq_id BIGINT NOT NULL REFERENCES xb_topshiriq(id) ON DELETE CASCADE,
+        user_id BIGINT NOT NULL, joriy INT NOT NULL DEFAULT 0, javob INT NOT NULL DEFAULT 0, togri INT NOT NULL DEFAULT 0, holat TEXT NOT NULL DEFAULT 'faol',
+        boshladi TIMESTAMPTZ NOT NULL DEFAULT NOW(), yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (topshiriq_id, user_id))""")
     # REV376: o'quvchi qaysi mavzu darslarini ochgan/tugatgan — o'qituvchi ko'radi
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_dars (user_id BIGINT NOT NULL, til TEXT NOT NULL DEFAULT 'uz', mavzu TEXT NOT NULL,
         ochildi INT NOT NULL DEFAULT 0, tugadi BOOLEAN NOT NULL DEFAULT FALSE, birinchi TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -2198,6 +2202,72 @@ def create_router(platform, kontent=None):
                            eng_yaxshi=GREATEST(xb_topshiriq_natija.eng_yaxshi, EXCLUDED.togri), vaqt=NOW()""", (t["id"], user_id, togri, jami, togri))
             conn.commit()
             return {"ok": True}
+        return run_db(run)
+
+    class TopshiriqJonli(BaseModel):
+        token: Optional[str] = None
+        joriy: int = 0
+        javob: int = 0
+        togri: int = 0
+        holat: str = Field(default="faol", max_length=10)
+
+    @router.post("/api/xalqaro/topshiriq/{kod}/jonli")
+    def topshiriq_jonli_yoz(kod: str, body: TopshiriqJonli, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """REV404: o'quvchi ilovasi har ~4 soniyada (va javob berganda, ilovadan chiqqanda) holatini yuboradi."""
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(til)
+        holat = body.holat if body.holat in ("faol", "chiqdi", "tugatdi") else "faol"
+
+        def run(conn, cur):
+            t = _topshiriq_ol(cur, kod, user_id, til)
+            ids = t["savol_idlar"] if isinstance(t["savol_idlar"], list) else json.loads(t["savol_idlar"])
+            jami = len(ids)
+            cur.execute("""INSERT INTO xb_topshiriq_jonli(topshiriq_id, user_id, joriy, javob, togri, holat) VALUES (%s,%s,%s,%s,%s,%s)
+                           ON CONFLICT (topshiriq_id, user_id) DO UPDATE SET joriy=EXCLUDED.joriy, javob=EXCLUDED.javob, togri=EXCLUDED.togri,
+                           holat=EXCLUDED.holat, yangilandi=NOW()""",
+                        (t["id"], user_id, max(0, min(jami, int(body.joriy))), max(0, min(jami, int(body.javob))), max(0, min(jami, int(body.togri))), holat))
+            conn.commit()
+            return {"ok": True}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/sinflar/{sinf_id}/topshiriq/{tid}/jonli")
+    def topshiriq_jonli(sinf_id: int, tid: int, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """REV404: o'qituvchi — sinfning har bir a'zosi shu topshiriqda hozir nima qilyapti (topshirmagan bo'lsa ham)."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+
+        def run(conn, cur):
+            _sinf_egasi(cur, sinf_id, user_id, til)
+            cur.execute("SELECT savol_idlar FROM xb_topshiriq WHERE id=%s AND sinf_id=%s", (tid, sinf_id))
+            t = cur.fetchone()
+            if not t:
+                raise HTTPException(404, matn("sinf_yoq", til))
+            ids = t["savol_idlar"] if isinstance(t["savol_idlar"], list) else json.loads(t["savol_idlar"])
+            cur.execute("""SELECT u.user_id, COALESCE(u.full_name,'') AS ism, j.joriy, j.javob, j.togri, j.holat,
+                                  EXTRACT(EPOCH FROM (NOW()-j.yangilandi)) AS oldin, EXTRACT(EPOCH FROM (j.yangilandi-j.boshladi)) AS davom,
+                                  n.eng_yaxshi, n.urinish
+                           FROM xb_sinf_azo a JOIN users u ON u.user_id=a.user_id
+                           LEFT JOIN xb_topshiriq_jonli j ON j.topshiriq_id=%s AND j.user_id=a.user_id
+                           LEFT JOIN xb_topshiriq_natija n ON n.topshiriq_id=%s AND n.user_id=a.user_id
+                           WHERE a.sinf_id=%s ORDER BY u.full_name""", (tid, tid, sinf_id))
+            out = []
+            for r in cur.fetchall():
+                oldin = float(r["oldin"]) if r["oldin"] is not None else None
+                if r["holat"] is None and r["eng_yaxshi"] is None:
+                    h = "boshlamagan"
+                elif r["holat"] == "tugatdi" or (r["holat"] is None and r["eng_yaxshi"] is not None):
+                    h = "tugatdi"
+                elif r["holat"] == "chiqdi" or (oldin is not None and oldin > 15):
+                    h = "chiqdi"
+                else:
+                    h = "yechmoqda"
+                out.append({"user_id": int(r["user_id"]), "ism": _t(r["ism"]), "holat": h, "joriy": int(r["joriy"] or 0), "javob": int(r["javob"] or 0),
+                            "togri": int(r["togri"] or 0), "jami": len(ids), "oldin": round(oldin) if oldin is not None else None,
+                            "davom": round(float(r["davom"])) if r["davom"] is not None else None,
+                            "natija": int(r["eng_yaxshi"]) if r["eng_yaxshi"] is not None else None, "urinish": int(r["urinish"] or 0)})
+            conn.commit()
+            soni = {k: sum(1 for x in out if x["holat"] == k) for k in ("yechmoqda", "chiqdi", "tugatdi", "boshlamagan")}
+            return {"oquvchilar": out, "soni": soni, "jami_savol": len(ids)}
         return run_db(run)
 
     @router.get("/api/xalqaro/topshiriqlarim")
