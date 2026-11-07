@@ -21,6 +21,7 @@ KATEGORIYALAR = [
     ("sertifikat", "🎓", "Sertifikat", "Milliy sertifikat sinovlari, strategiyalar, daraja testi"),
     ("xalqaro", "🌍", "Xalqaro baholash", "TIMSS / PISA uslubidagi kurs va imtihonlar"),
     ("markaz", "🏫", "O‘quv markazi", "Matematika kitoblari asosida: savol-javobli, chizmali darslar va testlar"),   # REV405
+    ("oliy", "🎓", "Oliy ta’lim kurslari", "Ma’ruza va amaliy mashg‘ulotlar: talabalar va qiziqqan o‘quvchilar uchun"),   # REV407
     ("bolalar", "🧒", "Bolalar uchun", "Til va fan kurslari — boshidan, o‘yin bilan"),
     ("boshqa", "📚", "Boshqa kurslar", "Boshqa darsli kurslar"),
 ]
@@ -61,6 +62,8 @@ def kurs_of(fan, grade):
         return f"erkin|{base}|{g}", "erkin", f"{base} · {g}", g
     if re.search(r"\bmarkaz\b|o.quv markazi", base, re.I):   # REV405: «Matematika — markaz · 1-kitob»
         return f"markaz|{base}|{g}", "markaz", f"{base} · {g}", g
+    if re.search(r"\bkurs\b|magistr", g, re.I):   # REV407: «2 kurs» — oliy ta'lim kursi (ma'ruza + amaliy)
+        return f"oliy|{base}|{g}", "oliy", base, g
     if re.fullmatch(r"\d{1,2}", g):
         kat = "tillar" if TIL_FANLAR.search(base) else "fanlar" if FAN_FANLAR.search(base) else "boshqa"
         return f"maktab|{base}|{g}", kat, f"{base} · {g}-sinf", g

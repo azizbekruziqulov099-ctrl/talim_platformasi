@@ -15,3 +15,7 @@ def test_markaz_kursi():
     from modules import kurslar as k
     assert k.kurs_of("Matematika — markaz", "1-kitob")[1] == "markaz"
     assert k.kurs_of("Matematika", "1")[1] == "fanlar"
+
+def test_oliy_kurs():
+    from modules import kurslar as k
+    assert k.kurs_of("Ehtimollar nazariyasi va matematik statistika", "2 kurs")[1] == "oliy"
