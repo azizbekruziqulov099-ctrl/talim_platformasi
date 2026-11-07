@@ -20682,6 +20682,18 @@ def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
                            f"{where} shu nom bilan qo'shing yoki varaqqa mavzu kodini yozing")
     # REV92/REV101: bir xil nomli bir nechta mavzu (masalan, ikki blokda tasodifan nusxa ochilgan) — miya o'zi to'g'risini
     # tanlaydi: kitobdagi boshqa mavzular turgan bob/blokda, raqami mos, avval dars/test bog'langan mavzu.
+    # REV410: bir xil nomli mavzulardan biri katalogda (dasturga biriktirilgan), boshqasi katalogsiz — avvalgi urinishda miya
+    # o'zi yaratgan «yetim» nusxa (masalan, «2 kurs» kursi Mavzular faylidan oldin o'rnatilgan). Katalogdagisi olinadi.
+    for placeholder in list(ambiguous):
+        codes = ambiguous[placeholder]
+        katalogda = [c for c in codes if (meta.get(c) or {}).get("curriculum_scope_id")]
+        if len(katalogda) == 1 and len(codes) > 1:
+            replace[placeholder] = katalogda[0]
+            info = pending[placeholder]
+            _ai_brain_xato(parsed["warnings"], info["sheet"], info["row"], "Mavzu kodi (DTS)",
+                           f"«{info['nom']}» nomli {len(codes)} ta mavzu bor — katalogdagi {katalogda[0]} tanlandi. "
+                           f"Katalogsiz nusxa: {', '.join(c for c in codes if c != katalogda[0])[:120]} — Mavzular bo'limidan o'chirib qo'ysangiz bo'ladi.", "warning")
+            del ambiguous[placeholder]
     if ambiguous:
         chosen = _ai_brain_nusxadan_tanla(cur, ambiguous, pending, replace, meta)
         for placeholder, codes in ambiguous.items():
