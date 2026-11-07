@@ -6744,6 +6744,9 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
         r = cur.fetchone()
         boshqa_tomon_korgan_id = r["oxirgi_xabar_id"] if r else None
 
+    _sf = globals().get("_chat_sorovnoma_biriktir")   # REV416: so'rovnomali xabarlarga natija
+    if _sf:
+        _sf(cur, conn, user_id, xabarlar)
     _hf, _qf = globals().get("_chat_holat_yangila_va_ol"), globals().get("_chat_qadalgan_ol")   # REV391/REV395 (testlarda bo'lmasligi mumkin)
     holat = _hf(cur, conn, user_id, guruh_id, boshqa_user_id) if _hf else {}
     if _qf:
@@ -6878,6 +6881,150 @@ def chat_xabar_qadash(token: str = Form(...), xabar_id: int = Form(...), olib_ta
                            ON CONFLICT (kalit) DO UPDATE SET xabar_id=EXCLUDED.xabar_id, qadadi=EXCLUDED.qadadi, vaqt=NOW()""", (kalit, xabar_id, user_id))
         conn.commit()
         return {"ok": True, "qadalgan": None if olib_tashlash else _chat_qadalgan_ol(cur, conn, user_id, guruh_id, boshqa)}
+    finally:
+        cur.close(); conn.close()
+
+
+# ───────────── REV416: so'rovnoma (Telegram kabi): savol + 2–10 variant, bir yoki bir nechta tanlov, anonim yoki ochiq ─────────────
+_CHAT_SOROV_TAYYOR = {"ok": False}
+
+
+def _chat_sorov_jadval(cur, conn):
+    if _CHAT_SOROV_TAYYOR["ok"]:
+        return
+    cur.execute("""CREATE TABLE IF NOT EXISTS chat_sorovnoma (id BIGSERIAL PRIMARY KEY, xabar_id BIGINT NOT NULL UNIQUE, savol TEXT NOT NULL,
+                   variantlar JSON NOT NULL, kop_tanlov BOOLEAN NOT NULL DEFAULT FALSE, anonim BOOLEAN NOT NULL DEFAULT TRUE,
+                   yopiq BOOLEAN NOT NULL DEFAULT FALSE, yaratdi BIGINT NOT NULL, vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS chat_sorovnoma_ovoz (sorov_id BIGINT NOT NULL REFERENCES chat_sorovnoma(id) ON DELETE CASCADE,
+                   user_id BIGINT NOT NULL, variant INT NOT NULL, vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (sorov_id, user_id, variant))""")
+    conn.commit()
+    _CHAT_SOROV_TAYYOR["ok"] = True
+
+
+def _chat_sorov_natija(cur, sorov, user_id):
+    vlar = sorov["variantlar"] if isinstance(sorov["variantlar"], list) else json.loads(sorov["variantlar"])
+    cur.execute("""SELECT o.variant, o.user_id, COALESCE(u.full_name,'') AS ism FROM chat_sorovnoma_ovoz o LEFT JOIN users u ON u.user_id=o.user_id
+                   WHERE o.sorov_id=%s ORDER BY o.vaqt""", (sorov["id"],))
+    rows = cur.fetchall()
+    soni = [0] * len(vlar); kimlar = [[] for _ in vlar]; meniki = []; ovozchilar = set()
+    for r in rows:
+        k = int(r["variant"])
+        if 0 <= k < len(vlar):
+            soni[k] += 1; ovozchilar.add(int(r["user_id"]))
+            if int(r["user_id"]) == int(user_id): meniki.append(k)
+            if not sorov["anonim"] and len(kimlar[k]) < 30: kimlar[k].append(str(r["ism"] or "").split()[0] if r["ism"] else "")
+    return {"id": int(sorov["id"]), "savol": sorov["savol"], "variantlar": vlar, "soni": soni, "jami": len(ovozchilar), "meniki": meniki,
+            "kop_tanlov": bool(sorov["kop_tanlov"]), "anonim": bool(sorov["anonim"]), "yopiq": bool(sorov["yopiq"]),
+            "kimlar": None if sorov["anonim"] else kimlar, "meniki_yaratgan": int(sorov["yaratdi"]) == int(user_id)}
+
+
+def _chat_sorovnoma_biriktir(cur, conn, user_id, xabarlar):
+    try:
+        ids = [int(x["id"]) for x in xabarlar if x.get("id") is not None]
+        if not ids:
+            return
+        _chat_sorov_jadval(cur, conn)
+        cur.execute("SELECT * FROM chat_sorovnoma WHERE xabar_id = ANY(%s)", (ids,))
+        polls = {int(r["xabar_id"]): r for r in cur.fetchall()}
+        if not polls:
+            conn.commit(); return
+        for x in xabarlar:
+            p = polls.get(int(x["id"]))
+            if p:
+                x["sorovnoma"] = _chat_sorov_natija(cur, p, user_id)
+        conn.commit()
+    except Exception:   # noqa: BLE001 — so'rovnoma bo'lmasa ham xabarlar ishlayveradi
+        try:
+            conn.rollback()
+        except Exception:
+            pass
+
+
+def _chat_sorov_xabari(cur, sid, user_id):
+    cur.execute("""SELECT s.*, cx.guruh_id, cx.yuboruvchi_user_id, cx.qabul_qiluvchi_user_id FROM chat_sorovnoma s
+                   JOIN chat_xabarlari cx ON cx.id=s.xabar_id WHERE s.id=%s""", (sid,))
+    s = cur.fetchone()
+    if not s:
+        raise HTTPException(status_code=404, detail="So‘rovnoma topilmadi")
+    gid = s["guruh_id"]
+    if not gid and int(user_id) not in (int(s["yuboruvchi_user_id"]), int(s["qabul_qiluvchi_user_id"] or 0)):
+        raise HTTPException(status_code=403, detail="Bu suhbat sizniki emas")
+    boshqa = None if gid else (s["qabul_qiluvchi_user_id"] if int(s["yuboruvchi_user_id"]) == int(user_id) else s["yuboruvchi_user_id"])
+    _chat_suhbat_ruxsat(cur, user_id, gid, boshqa)
+    return s
+
+
+@app.post("/api/chat/sorovnoma")
+def chat_sorovnoma_yarat(token: str = Form(...), xabar_id: int = Form(...), savol: str = Form(...), variantlar: str = Form(...),
+                         kop_tanlov: bool = Form(False), anonim: bool = Form(True)):
+    """REV416: o'zi yuborgan xabarni so'rovnomaga aylantiradi (xabar oddiy yo'l bilan yuboriladi — ruxsat va moderatsiya saqlanadi)."""
+    user_id = _chat_actor(token)
+    try:
+        vlar = [str(v).strip()[:200] for v in json.loads(variantlar) if str(v).strip()]
+    except Exception:
+        raise HTTPException(status_code=400, detail="Variantlar noto‘g‘ri")
+    vlar = list(dict.fromkeys(vlar))
+    if not 2 <= len(vlar) <= 10:
+        raise HTTPException(status_code=400, detail="So‘rovnomada 2 tadan 10 tagacha variant bo‘lsin")
+    if not savol.strip():
+        raise HTTPException(status_code=400, detail="Savolni yozing")
+    conn = _db(); cur = conn.cursor()
+    try:
+        cur.execute("SELECT id, yuboruvchi_user_id FROM chat_xabarlari WHERE id=%s", (xabar_id,))
+        x = cur.fetchone()
+        if not x or int(x["yuboruvchi_user_id"]) != int(user_id):
+            raise HTTPException(status_code=403, detail="So‘rovnomani faqat xabar egasi yaratadi")
+        _chat_sorov_jadval(cur, conn)
+        cur.execute("""INSERT INTO chat_sorovnoma(xabar_id, savol, variantlar, kop_tanlov, anonim, yaratdi) VALUES (%s,%s,%s,%s,%s,%s)
+                       ON CONFLICT (xabar_id) DO NOTHING RETURNING *""", (xabar_id, savol.strip()[:300], json.dumps(vlar), bool(kop_tanlov), bool(anonim), user_id))
+        r = cur.fetchone()
+        conn.commit()
+        if not r:
+            raise HTTPException(status_code=409, detail="Bu xabarda so‘rovnoma bor")
+        return {"ok": True, "sorovnoma": _chat_sorov_natija(cur, r, user_id)}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/chat/sorovnoma/{sid}/ovoz")
+def chat_sorovnoma_ovoz(sid: int, token: str = Form(...), tanlov: str = Form("[]")):
+    """REV416: ovoz berish yoki o'zgartirish (bo'sh tanlov — ovozni qaytarib olish)."""
+    user_id = _chat_actor(token)
+    try:
+        tl = sorted({int(t) for t in json.loads(tanlov)})
+    except Exception:
+        raise HTTPException(status_code=400, detail="Tanlov noto‘g‘ri")
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_sorov_jadval(cur, conn)
+        s = _chat_sorov_xabari(cur, sid, user_id)
+        n = len(s["variantlar"] if isinstance(s["variantlar"], list) else json.loads(s["variantlar"]))
+        if s["yopiq"]:
+            raise HTTPException(status_code=400, detail="So‘rovnoma yopilgan")
+        if any(not 0 <= t < n for t in tl) or (not s["kop_tanlov"] and len(tl) > 1):
+            raise HTTPException(status_code=400, detail="Bitta variant tanlang" if not s["kop_tanlov"] else "Variant noto‘g‘ri")
+        cur.execute("DELETE FROM chat_sorovnoma_ovoz WHERE sorov_id=%s AND user_id=%s", (sid, user_id))
+        for t in tl:
+            cur.execute("INSERT INTO chat_sorovnoma_ovoz(sorov_id, user_id, variant) VALUES (%s,%s,%s)", (sid, user_id, t))
+        conn.commit()
+        return {"ok": True, "sorovnoma": _chat_sorov_natija(cur, s, user_id)}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/chat/sorovnoma/{sid}/yop")
+def chat_sorovnoma_yop(sid: int, token: str = Form(...)):
+    user_id = _chat_actor(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_sorov_jadval(cur, conn)
+        s = _chat_sorov_xabari(cur, sid, user_id)
+        if int(s["yaratdi"]) != int(user_id):
+            raise HTTPException(status_code=403, detail="So‘rovnomani yaratgan kishi yopadi")
+        cur.execute("UPDATE chat_sorovnoma SET yopiq=TRUE WHERE id=%s", (sid,))
+        conn.commit()
+        s["yopiq"] = True
+        return {"ok": True, "sorovnoma": _chat_sorov_natija(cur, s, user_id)}
     finally:
         cur.close(); conn.close()
 
