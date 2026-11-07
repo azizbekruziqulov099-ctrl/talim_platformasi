@@ -185,12 +185,21 @@ def tekshiruv_ajrat(text):
     return text, ""
 
 
+def tekshiruv_variantlari(javob):
+    """REV405: «to'g'ri | xato | xato» -> (to'g'ri, [to'g'ri, xato, ...]) — darsdagi savolga 2–6 ta variant.
+    Bitta javob bo'lsa — (javob, []), variantlarni sayt o'zi tuzadi."""
+    qism = [x.strip() for x in str(javob or "").split(" | ") if x.strip()]
+    if len(qism) < 2:
+        return (qism[0] if qism else ""), []
+    return qism[0], qism[:6]
+
+
 def parse_options(text):
     """«A) ... B) ...» (satrlarda yoki bir qatorda) -> ['...', '...']"""
     text = _t(text)
     if not text:
         return []
-    parts = re.split(r"(?:^|\s|\n)([A-Ea-e])\)\s*", "\n" + text)
+    parts = re.split(r"(?:^|\s|\n)([A-Fa-f])\)\s*", "\n" + text)   # REV405: 6 tagacha variant (A–F)
     options = []
     for i in range(1, len(parts) - 1, 2):
         options.append(parts[i + 1].strip().rstrip(";").strip())
@@ -344,7 +353,16 @@ def parse_sheets(wb, media_names=None, max_images=500):
             text = c.get("matn") or ""
             if kind == "kirish":
                 if text:
-                    add_step(row, "kirish", c.get("doska") or text, text[:MAX_VOICE], title or topic_name)
+                    st0 = add_step(row, "kirish", c.get("doska") or text, text[:MAX_VOICE], title or topic_name)
+                    # REV405: kirishdagi topishmoq ham savol bo'lib so'raladi («Savol? => to'g'ri | xato | xato»)
+                    if c.get("tekshiruv"):
+                        savol, javob = tekshiruv_ajrat(c["tekshiruv"])
+                        if javob:
+                            til = (_t(book.get("til")) or "uz").lower()
+                            togri, vlar = tekshiruv_variantlari(javob)
+                            add_step(row, "birga", savol, savol[:MAX_VOICE], TEKSHIRUV_NOMI.get(til, TEKSHIRUV_NOMI["uz"]),
+                                     scene=st0["sahna"] if st0 else None, answer=togri,
+                                     extra={"oquvchi_savoli": JAVOB_JOYI.get(til, JAVOB_JOYI["uz"]), "variantlar": "||".join(vlar)})
                 continue
             if kind == "xulosa":
                 board = c.get("doska") or text
@@ -379,9 +397,10 @@ def parse_sheets(wb, media_names=None, max_images=500):
                         err(name, row, label_of["tekshiruv"], "Tekshiruv savolini «Savol? => javob» ko'rinishida yozing", "warning")
                     else:
                         til = (_t(book.get("til")) or "uz").lower()
+                        togri, vlar = tekshiruv_variantlari(javob)
                         add_step(row, "birga", savol, savol[:MAX_VOICE], TEKSHIRUV_NOMI.get(til, TEKSHIRUV_NOMI["uz"]),
-                                 scene=first["sahna"], answer=javob,
-                                 extra={"oquvchi_savoli": JAVOB_JOYI.get(til, JAVOB_JOYI["uz"])})
+                                 scene=first["sahna"], answer=togri,
+                                 extra={"oquvchi_savoli": JAVOB_JOYI.get(til, JAVOB_JOYI["uz"]), "variantlar": "||".join(vlar)})
                 for key, vkind in (("sodda", "sodda"), ("boshqa_usul", "boshqa_usul")):
                     if c.get(key):
                         variants.append({
@@ -406,11 +425,11 @@ def parse_sheets(wb, media_names=None, max_images=500):
             options = parse_options(c.get("variantlar"))
             letter = _t(c.get("javob")).upper().rstrip(").")[:1] if kind == "test" else ""
             # REV80: bog'cha testlari 2–3 variantli ham bo'ladi (A–B, A–C); maktabda odatda 4 ta.
-            if kind == "test" and (not 2 <= len(options) <= 4 or letter not in "ABCD"[:len(options)] or not letter):
-                if not 2 <= len(options) <= 4:
-                    err(name, row, label_of["variantlar"], f"Testda 2–4 ta variant (A–D) bo'lsin — {len(options)} ta topildi. Test bo'limiga tushmaydi, «masala» sifatida saqlanadi", "warning")
+            if kind == "test" and (not 2 <= len(options) <= 6 or letter not in "ABCDEF"[:len(options)] or not letter):
+                if not 2 <= len(options) <= 6:
+                    err(name, row, label_of["variantlar"], f"Testda 2–6 ta variant (A–F) bo'lsin — {len(options)} ta topildi. Test bo'limiga tushmaydi, «masala» sifatida saqlanadi", "warning")
                 else:
-                    err(name, row, label_of["javob"], "Test javobi mavjud variant harfi bo'lsin (A, B, C yoki D)")
+                    err(name, row, label_of["javob"], "Test javobi mavjud variant harfi bo'lsin (A, B, C, D, E yoki F)")
                     continue
                 kind = "masala"
             if kind == "test":
@@ -449,7 +468,7 @@ def parse_sheets(wb, media_names=None, max_images=500):
             add_step(row, "amaliy", text, voice[:MAX_VOICE], f"{nom} · {title}" if title else nom,
                      pic, answer=c.get("javob", "") if not options else "", extra={
                          "kitob_kodi": kod, "amaliy_turi": kind, "yechim": c.get("yechim", ""),
-                         "variantlar": "\n".join(f"{'ABCDE'[i]}) {o}" for i, o in enumerate(options[:5])),
+                         "variantlar": "\n".join(f"{'ABCDEF'[i]}) {o}" for i, o in enumerate(options[:6])),
                          "togri_javob": _t(c.get("javob")),
                          "maslahat": c.get("maslahat", ""), "qiyinlik": c.get("qiyinlik", ""),
                          "oyin": _oyin_raqami(c.get("oyin")),

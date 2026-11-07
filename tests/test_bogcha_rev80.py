@@ -44,7 +44,7 @@ def test_two_or_three_option_tests_are_kept():
 def test_ai_miya_accepts_two_option_tests():
     from modules import ai_miya_varoq as v
     src = (ROOT / "modules/ai_miya_varoq.py").read_text(encoding="utf-8")
-    assert "2 <= len(options) <= 4" in src
+    assert "2 <= len(options) <= 6" in src   # REV405
     assert v.parse_options("A) 🐱 cat\nB) 🐶 dog") == ["🐱 cat", "🐶 dog"]
 
 

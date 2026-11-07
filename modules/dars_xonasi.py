@@ -73,7 +73,7 @@ def solution_steps(text, limit=40):
 
 def option_list(text):
     """«A) ...\nB) ...» → ['...', '...']"""
-    parts = re.split(r"(?:^|\s)([A-Ea-e])\)\s*", "\n" + _t(text))
+    parts = re.split(r"(?:^|\s)([A-Fa-f])\)\s*", "\n" + _t(text))
     return [parts[i + 1].strip() for i in range(1, len(parts) - 1, 2)]
 
 
@@ -83,7 +83,7 @@ def practice_item(unit, media_url):
     if unit["unit_kind"] == "task":
         options = [_t(p.get(f"variant_{x}")) for x in "abcd"]
         letter = _t(p.get("togri_javob")).upper()[:1]
-        togri = "ABCD".index(letter) if letter and letter in "ABCD" else None
+        togri = "ABCDEF".index(letter) if letter and letter in "ABCDEF" else None
         solution = solution_steps(p.get("izoh") or p.get("javob_mezoni"))
         if togri is not None:
             solution.insert(0, {"doska": f"Javob: {letter}) {options[togri]}", "ovoz": f"To'g'ri javob — {letter} variant."})
@@ -110,9 +110,9 @@ def xato_izohlari(text):
     """REV269: testning har noto'g'ri varianti uchun izoh: «B => …» satrlari -> {1: "…"} (variant indeksi bo'yicha)."""
     out = {}
     for line in _t(text).split("\n"):
-        m = re.match(r"^\s*([A-Da-d])\s*(?:\)|=>|:|—|-)\s*(?:=>\s*)?(.+)$", line)
+        m = re.match(r"^\s*([A-Fa-f])\s*(?:\)|=>|:|—|-)\s*(?:=>\s*)?(.+)$", line)
         if m and m.group(2).strip():
-            out[str("ABCD".index(m.group(1).upper()))] = m.group(2).strip()
+            out[str("ABCDEF".index(m.group(1).upper()))] = m.group(2).strip()
     return out
 
 
@@ -193,6 +193,7 @@ def build_lesson(topic, units, media_url, extra_questions=()):
                 "javob": _t(p.get("kutilgan_javob")),
                 "javob_izohi": _t(p.get("javob_izohi")),
                 "sahifa": _t(p.get("sahifa")),
+                "variantlar": [x for x in _t(p.get("variantlar")).split("||") if x.strip()] if kind == "birga" else [],   # REV405
             })
             if steps[-1]["turi"] == "amaliy":
                 item = practice_item(u, media_url)
@@ -293,9 +294,9 @@ def build_lesson(topic, units, media_url, extra_questions=()):
         kind = re.sub(r"[\s_-]+", "", _t(p.get("vazifa_turi")).lower())
         options = filled_options([_t(p.get(f"variant_{x}")) for x in "abcd"])
         letter = _t(p.get("togri_javob")).upper()[:1]
-        if kind in {"singlechoice", "test", "tanlov"} and options and letter in "ABCD"[:len(options)] and letter:
+        if kind in {"singlechoice", "test", "tanlov"} and options and letter in "ABCDEF"[:len(options)] and letter:
             questions.append({"id": u["unit_code"], "savol": _t(p.get("savol")), "variantlar": options,
-                              "togri": "ABCD".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni")),
+                              "togri": "ABCDEF".index(letter), "izoh": _t(p.get("izoh")) or _t(p.get("javob_mezoni")),
                               "kod": _t(p.get("kitob_kodi")), "xatolar": xato_izohlari(p.get("xato_izohi"))})
     seen = {q["savol"] for q in questions}
     for q in extra_questions:
@@ -608,9 +609,9 @@ def create_router(platform):
             for r in cur.fetchall():
                 options = filled_options([_t(r[k]) for k in ("option_a", "option_b", "option_c", "option_d")])
                 letter = _t(r["correct_answer"]).upper()[:1]
-                if options and letter and letter in "ABCD"[:len(options)]:
+                if options and letter and letter in "ABCDEF"[:len(options)]:
                     extra.append({"id": f"test-{r['id']}", "savol": _t(r["question"]), "variantlar": options,
-                                  "togri": "ABCD".index(letter), "izoh": _t(r["explanation"])})
+                                  "togri": "ABCDEF".index(letter), "izoh": _t(r["explanation"])})
 
             lesson = build_lesson(topic, units, media_url, extra)
             books = [u for u in units if u.get("book_title")]

@@ -66,7 +66,7 @@ class VaroqliShablonTests(unittest.TestCase):
         parsed = parse_sheets(filled([({"mavzu_kodi": "K", "mavzu_nomi": "M"}, rows)]))
         self.assertTrue(any("takrorlangan" in e["message"] for e in parsed["errors"]))
         # REV80: 2–4 variant qabul qilinadi (bog'cha testlari 2–3 ta); 1 ta variant — masala bo'lib qoladi.
-        self.assertTrue(any("2–4 ta variant" in w["message"] for w in parsed["warnings"]))
+        self.assertTrue(any("2–6 ta variant" in w["message"] for w in parsed["warnings"]))   # REV405: 6 tagacha
         self.assertEqual(parsed["payload"]["06_MASHQLAR"], [])
 
     def test_topic_without_code_waits_for_name_lookup(self):
