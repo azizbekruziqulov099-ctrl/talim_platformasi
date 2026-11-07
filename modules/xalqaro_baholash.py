@@ -173,6 +173,7 @@ MATN = {
     "sinf_egasi_emas": {"uz": "Bu sinf sizniki emas", "ru": "Это не ваш класс", "en": "This is not your class"},
     "sinf_oqituvchi_azo": {"uz": "O‘qituvchi o‘z sinfiga o‘quvchi bo‘lib qo‘shila olmaydi", "ru": "Учитель не может вступить в свой класс как ученик", "en": "A teacher cannot join their own class as a student"},
     "sinf_toplam": {"uz": "Sinf qaysi dastur va fan bo‘yicha ekanini tanlang", "ru": "Выберите программу и предмет класса", "en": "Choose the class programme and subject"},
+    "topshiriq_azo_emas": {"uz": "Bu topshiriq sinf a’zolari uchun. Avval sinfga qo‘shiling", "ru": "Задание для участников класса. Сначала вступите в класс", "en": "This task is for class members. Join the class first"},
     "sinf_toliq": {"uz": "Sinfda joy qolmagan (60 o‘quvchi)", "ru": "В классе нет мест (60 учеников)", "en": "The class is full (60 students)"},
     "rasm_yoq": {"uz": "Rasm yo‘q", "ru": "Рисунка нет", "en": "No picture"},
     "kurs": {"uz": "Xalqaro baholash (TIMSS/PISA) tayyorlov kursi", "ru": "Курс подготовки к международной оценке (TIMSS/PISA)", "en": "International assessment (TIMSS/PISA) preparation course"},
@@ -756,6 +757,13 @@ def parol_togri(saqlangan, parol, kod):
     return (not saqlangan) or bool(str(parol or "").strip()) and _sec.compare_digest(saqlangan, parol_hash(parol, kod))
 
 
+AUDITORIYALAR = ("bogcha", "maktab", "talaba", "oqituvchi")   # REV401: sinf kimlar uchun
+
+
+def auditoriya_norm(a):
+    return a if a in AUDITORIYALAR else "maktab"
+
+
 XB_TOPLAMLAR = ("T11_G4_M", "T11_G4_S", "T11_G8_M", "T11_G8_S", "P_M", "P_R", "P_S", "P_F")
 
 
@@ -798,6 +806,14 @@ def migrate(cur):
         kod TEXT NOT NULL UNIQUE, parol_hash TEXT NOT NULL DEFAULT '', yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), faol BOOLEAN NOT NULL DEFAULT TRUE)""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_egasi ON xb_sinf(egasi)")
     cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS toplam TEXT NOT NULL DEFAULT ''")   # REV374: sinf qaysi dastur/fan bo'yicha
+    cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS auditoriya TEXT NOT NULL DEFAULT 'maktab'")   # REV401: kimlar uchun
+    # REV401: o'qituvchi sinfga topshiriq (imtihon) beradi — hamma bir xil savollarni yechadi, havola bilan ham ochiladi
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_topshiriq (id BIGSERIAL PRIMARY KEY, sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE,
+        nom TEXT NOT NULL, mavzu TEXT NOT NULL DEFAULT '', savol_idlar JSON NOT NULL, muddat DATE, kod TEXT NOT NULL UNIQUE,
+        yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), faol BOOLEAN NOT NULL DEFAULT TRUE)""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_topshiriq_natija (topshiriq_id BIGINT NOT NULL REFERENCES xb_topshiriq(id) ON DELETE CASCADE,
+        user_id BIGINT NOT NULL, togri INT NOT NULL, jami INT NOT NULL, urinish INT NOT NULL DEFAULT 1, eng_yaxshi INT NOT NULL DEFAULT 0,
+        vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (topshiriq_id, user_id))""")
     # REV376: o'quvchi qaysi mavzu darslarini ochgan/tugatgan — o'qituvchi ko'radi
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_dars (user_id BIGINT NOT NULL, til TEXT NOT NULL DEFAULT 'uz', mavzu TEXT NOT NULL,
         ochildi INT NOT NULL DEFAULT 0, tugadi BOOLEAN NOT NULL DEFAULT FALSE, birinchi TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -1891,6 +1907,7 @@ def create_router(platform, kontent=None):
         sinf: int = 0
         parol: str = Field(default="", max_length=40)
         toplam: str = Field(default="", max_length=20)   # REV374
+        auditoriya: str = Field(default="maktab", max_length=12)   # REV401
 
     class SinfOzgar(BaseModel):
         token: Optional[str] = None
@@ -1901,6 +1918,7 @@ def create_router(platform, kontent=None):
         ochirish: bool = False
         chiqar: int = 0   # shu o'quvchini sinfdan chiqarish
         toplam: Optional[str] = Field(default=None, max_length=20)   # REV374
+        auditoriya: Optional[str] = Field(default=None, max_length=12)   # REV401
 
     class SinfQoshil(BaseModel):
         token: Optional[str] = None
@@ -1925,7 +1943,7 @@ def create_router(platform, kontent=None):
 
     def _sinf_korinish(r, azo=None, egasi_ism=""):
         d = {"id": int(r["id"]), "nom": r["nom"], "sinf": int(r["sinf"]), "parolli": bool(r.get("parol_hash")),
-             "toplam": sinf_toplami(r.get("toplam"), r["sinf"])}
+             "toplam": sinf_toplami(r.get("toplam"), r["sinf"]), "auditoriya": auditoriya_norm(r.get("auditoriya"))}
         if azo is not None:
             d.update(kod=r["kod"], azolar=azo)
         if egasi_ism:
@@ -2006,8 +2024,8 @@ def create_router(platform, kontent=None):
                 cur.execute("SELECT 1 FROM xb_sinf WHERE kod=%s", (kod,))
                 if not cur.fetchone():
                     break
-            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash, toplam) VALUES (%s,%s,%s,%s,%s,%s) RETURNING *""",
-                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod), tp))
+            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash, toplam, auditoriya) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING *""",
+                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod), tp, auditoriya_norm(body.auditoriya)))
             r = cur.fetchone()
             conn.commit()
             return {"sinf": _sinf_korinish(r, 0)}
@@ -2036,6 +2054,8 @@ def create_router(platform, kontent=None):
                     raise HTTPException(400, matn("sinf_parol", til))
                 kod = sinf_kodi_yasa()
                 cur.execute("UPDATE xb_sinf SET kod=%s WHERE id=%s", (kod, sinf_id))
+            if body.auditoriya is not None:
+                cur.execute("UPDATE xb_sinf SET auditoriya=%s WHERE id=%s", (auditoriya_norm(body.auditoriya), sinf_id))
             if body.toplam is not None:
                 if body.toplam not in XB_TOPLAMLAR:
                     raise HTTPException(400, matn("sinf_toplam", til))
@@ -2056,6 +2076,144 @@ def create_router(platform, kontent=None):
             azolar = [{"user_id": int(x["user_id"]), "ism": _t(x["full_name"]), "qoshildi": x["qoshildi"].isoformat()} for x in cur.fetchall()]
             conn.commit()
             return {"sinf": _sinf_korinish(r2, int(r2["n"])), "azolar": azolar}
+        return run_db(run)
+
+    class TopshiriqYarat(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        nom: str = Field(default="", max_length=80)
+        mavzu: str = Field(default="", max_length=20)   # bo'sh — sinf fanidan aralash
+        soni: int = 10
+        muddat: Optional[str] = Field(default=None, max_length=10)
+
+    class TopshiriqNatija(BaseModel):
+        token: Optional[str] = None
+        togri: int = 0
+        jami: int = 0
+
+    def _sinf_egasi(cur, sinf_id, user_id, til):
+        cur.execute("SELECT * FROM xb_sinf WHERE id=%s AND faol", (sinf_id,))
+        r = cur.fetchone()
+        if not r or (int(r["egasi"]) != int(user_id) and not admin_mi(cur, user_id)):
+            raise HTTPException(403, matn("sinf_egasi_emas", til))
+        return r
+
+    @router.post("/api/xalqaro/sinflar/{sinf_id}/topshiriq")
+    def topshiriq_yarat(sinf_id: int, body: TopshiriqYarat, authorization: str = Header(None)):
+        """REV401: sinfga topshiriq — savollar bir marta tanlanib saqlanadi (hamma o'quvchida bir xil)."""
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+        k = KT(til)
+        soni = max(3, min(30, int(body.soni or 10)))
+
+        def run(conn, cur):
+            r = _sinf_egasi(cur, sinf_id, user_id, til)
+            tp = sinf_toplami(r.get("toplam"), r["sinf"])
+            if body.mavzu:
+                if body.mavzu not in k.mavzu_by_kalit:
+                    raise HTTPException(400, matn("savol_yoq", til))
+                pool = list(k.by_mavzu.get(body.mavzu, []))
+            else:
+                pool = [x for x in k.savollar if x["toplam"] == tp]
+            if not pool:
+                raise HTTPException(400, matn("savol_yoq", til))
+            rng = random.Random()
+            tanl = sorted(rng.sample(pool, min(soni, len(pool))), key=lambda x: (savol_qiyinligi(x), x["id"]))
+            nom = re.sub(r"\s+", " ", body.nom or "").strip()[:80] or (k.mavzu_by_kalit.get(body.mavzu, {}).get("nom") if body.mavzu else "Aralash topshiriq")
+            muddat = body.muddat if body.muddat and re.fullmatch(r"\d{4}-\d{2}-\d{2}", body.muddat) else None
+            for _ in range(8):
+                kod = sinf_kodi_yasa(7)
+                cur.execute("SELECT 1 FROM xb_topshiriq WHERE kod=%s", (kod,))
+                if not cur.fetchone():
+                    break
+            cur.execute("""INSERT INTO xb_topshiriq(sinf_id, nom, mavzu, savol_idlar, muddat, kod) VALUES (%s,%s,%s,%s,%s,%s) RETURNING id, kod""",
+                        (sinf_id, nom, body.mavzu or "", json.dumps([x["id"] for x in tanl]), muddat, kod))
+            t = cur.fetchone()
+            conn.commit()
+            return {"ok": True, "id": int(t["id"]), "kod": t["kod"]}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/sinflar/{sinf_id}/topshiriqlar")
+    def topshiriqlar(sinf_id: int, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """REV401: o'qituvchi — sinf topshiriqlari va har biri bo'yicha kim nechta to'g'ri yechgani."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+
+        def run(conn, cur):
+            _sinf_egasi(cur, sinf_id, user_id, til)
+            cur.execute("""SELECT t.*, (SELECT COUNT(*) FROM xb_sinf_azo a WHERE a.sinf_id=t.sinf_id) AS azolar FROM xb_topshiriq t
+                           WHERE t.sinf_id=%s AND t.faol ORDER BY t.id DESC LIMIT 50""", (sinf_id,))
+            out = []
+            for t in cur.fetchall():
+                cur.execute("""SELECT n.user_id, COALESCE(u.full_name,'') AS ism, n.togri, n.jami, n.eng_yaxshi, n.urinish, n.vaqt
+                               FROM xb_topshiriq_natija n LEFT JOIN users u ON u.user_id=n.user_id WHERE n.topshiriq_id=%s ORDER BY u.full_name""", (t["id"],))
+                nat = [{"user_id": int(x["user_id"]), "ism": _t(x["ism"]), "togri": int(x["togri"]), "jami": int(x["jami"]), "eng_yaxshi": int(x["eng_yaxshi"]),
+                        "foiz": round(100 * int(x["eng_yaxshi"]) / max(1, int(x["jami"]))), "urinish": int(x["urinish"]), "vaqt": x["vaqt"].isoformat()} for x in cur.fetchall()]
+                ids = t["savol_idlar"] if isinstance(t["savol_idlar"], list) else json.loads(t["savol_idlar"])
+                out.append({"id": int(t["id"]), "kod": t["kod"], "nom": t["nom"], "mavzu": t["mavzu"], "soni": len(ids), "muddat": t["muddat"].isoformat() if t["muddat"] else None,
+                            "azolar": int(t["azolar"]), "topshirdi": len(nat), "ortacha": round(sum(x["foiz"] for x in nat) / len(nat)) if nat else None, "natijalar": nat})
+            conn.commit()
+            return {"topshiriqlar": out}
+        return run_db(run)
+
+    def _topshiriq_ol(cur, kod, user_id, til):
+        cur.execute("""SELECT t.*, s.egasi, s.nom AS sinf_nomi FROM xb_topshiriq t JOIN xb_sinf s ON s.id=t.sinf_id WHERE t.kod=%s AND t.faol AND s.faol""", (kod_norm(kod),))
+        t = cur.fetchone()
+        if not t:
+            raise HTTPException(404, matn("sinf_yoq", til))
+        cur.execute("SELECT 1 FROM xb_sinf_azo WHERE sinf_id=%s AND user_id=%s", (t["sinf_id"], user_id))
+        if not cur.fetchone() and int(t["egasi"]) != int(user_id):
+            raise HTTPException(403, matn("topshiriq_azo_emas", til))
+        return t
+
+    @router.get("/api/xalqaro/topshiriq/{kod}")
+    def topshiriq_ol(kod: str, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """REV401: o'quvchi — topshiriq savollari (sinf a'zosi bo'lishi kerak) va oldingi natijasi."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+        k = KT(til)
+
+        def run(conn, cur):
+            t = _topshiriq_ol(cur, kod, user_id, til)
+            ids = t["savol_idlar"] if isinstance(t["savol_idlar"], list) else json.loads(t["savol_idlar"])
+            savollar = [_variant_public(k.by_id[i], 0, javob_bilan=True, k=k) for i in ids if i in k.by_id]
+            cur.execute("SELECT togri, jami, eng_yaxshi, urinish FROM xb_topshiriq_natija WHERE topshiriq_id=%s AND user_id=%s", (t["id"], user_id))
+            n = cur.fetchone()
+            conn.commit()
+            return {"nom": t["nom"], "sinf": t["sinf_nomi"], "kod": t["kod"], "muddat": t["muddat"].isoformat() if t["muddat"] else None,
+                    "savollar": savollar, "natija": dict(n) if n else None, "til": til}
+        return run_db(run)
+
+    @router.post("/api/xalqaro/topshiriq/{kod}/natija")
+    def topshiriq_natija(kod: str, body: TopshiriqNatija, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(til)
+
+        def run(conn, cur):
+            t = _topshiriq_ol(cur, kod, user_id, til)
+            ids = t["savol_idlar"] if isinstance(t["savol_idlar"], list) else json.loads(t["savol_idlar"])
+            jami = len(ids); togri = max(0, min(jami, int(body.togri)))
+            cur.execute("""INSERT INTO xb_topshiriq_natija(topshiriq_id, user_id, togri, jami, eng_yaxshi) VALUES (%s,%s,%s,%s,%s)
+                           ON CONFLICT (topshiriq_id, user_id) DO UPDATE SET togri=EXCLUDED.togri, jami=EXCLUDED.jami, urinish=xb_topshiriq_natija.urinish+1,
+                           eng_yaxshi=GREATEST(xb_topshiriq_natija.eng_yaxshi, EXCLUDED.togri), vaqt=NOW()""", (t["id"], user_id, togri, jami, togri))
+            conn.commit()
+            return {"ok": True}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/topshiriqlarim")
+    def topshiriqlarim(token: str = None, authorization: str = Header(None)):
+        """REV401: o'quvchi — qo'shilgan sinflaridagi topshiriqlar va o'z natijasi."""
+        user_id = uid_of(token, authorization)
+
+        def run(conn, cur):
+            cur.execute("""SELECT t.kod, t.nom, t.muddat, s.nom AS sinf, json_array_length(t.savol_idlar) AS soni, n.eng_yaxshi, n.jami
+                           FROM xb_topshiriq t JOIN xb_sinf s ON s.id=t.sinf_id JOIN xb_sinf_azo a ON a.sinf_id=s.id AND a.user_id=%s
+                           LEFT JOIN xb_topshiriq_natija n ON n.topshiriq_id=t.id AND n.user_id=%s
+                           WHERE t.faol AND s.faol ORDER BY t.id DESC LIMIT 30""", (user_id, user_id))
+            out = [{"kod": r["kod"], "nom": r["nom"], "sinf": r["sinf"], "soni": int(r["soni"]), "muddat": r["muddat"].isoformat() if r["muddat"] else None,
+                    "foiz": round(100 * int(r["eng_yaxshi"]) / max(1, int(r["jami"]))) if r["jami"] else None} for r in cur.fetchall()]
+            conn.commit()
+            return {"topshiriqlar": out}
         return run_db(run)
 
     @router.get("/api/xalqaro/sinf_qidir")

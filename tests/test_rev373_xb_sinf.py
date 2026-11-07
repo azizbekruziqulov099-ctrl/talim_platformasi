@@ -22,3 +22,6 @@ def test_rev374_sinf_fani():
     assert xb.sinf_toplami("", 3) == "T11_G4_M" and xb.sinf_toplami("", 7) == "T11_G8_M" and xb.sinf_toplami("", 10) == "P_M"
     assert xb.sinf_toplami("XYZ", 9) == "P_M"
     assert set(xb.XB_TOPLAMLAR) >= set(xb.tavsiya_toplamlar(0)) | set(xb.tavsiya_toplamlar(10))
+
+def test_rev401_auditoriya():
+    assert xb.auditoriya_norm("talaba") == "talaba" and xb.auditoriya_norm("x") == "maktab"
