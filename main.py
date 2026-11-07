@@ -192,6 +192,11 @@ if __package__:
 else:
     from modules.kurslar import create_router as create_kurslar_router
 app.include_router(create_kurslar_router(samtm_platform, click_service))
+try:   # REV411: kurs guruhlari (o'qituvchi guruh ochadi, bugungi mashg'ulot, jonli kuzatuv)
+    from .modules.kurs_guruh import create_router as create_kurs_guruh_router
+except ImportError:
+    from modules.kurs_guruh import create_router as create_kurs_guruh_router
+app.include_router(create_kurs_guruh_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
