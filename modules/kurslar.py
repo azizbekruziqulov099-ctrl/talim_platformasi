@@ -20,7 +20,7 @@ KATEGORIYALAR = [
     ("erkin", "💬", "Erkin til", "Ko‘chada gaplashish: hayotiy vaziyatlar, A1 dan boshlab"),
     ("sertifikat", "🎓", "Sertifikat", "Milliy sertifikat sinovlari, strategiyalar, daraja testi"),
     ("xalqaro", "🌍", "Xalqaro baholash", "TIMSS / PISA uslubidagi kurs va imtihonlar"),
-    ("repetitor", "🎯", "Repetitor kurslari", "Maktab fanlari sinflar bo‘yicha guruhlangan: 1–2, 3–4, 5–7, 8–9, 10–11 (matematika 1–4, 5–7; algebra va geometriya 7–11)"),   # REV419
+    ("repetitor", "🎯", "Repetitor kurslari", "Maktab matematikasi sinflar bo‘yicha guruhlangan: matematika 1–4 va 5–7, algebra va geometriya 7–11"),   # REV419/REV421: faqat matematika
     ("markaz", "🏫", "O‘quv markazi", "Matematika kitoblari asosida: savol-javobli, chizmali darslar va testlar"),   # REV405
     ("oliy", "🎓", "Oliy ta’lim kurslari", "Ma’ruza va amaliy mashg‘ulotlar: talabalar va qiziqqan o‘quvchilar uchun"),   # REV407
     ("bolalar", "🧒", "Bolalar uchun", "Til va fan kurslari — boshidan, o‘yin bilan"),
@@ -63,8 +63,13 @@ def repetitor_guruhlari(fan):
     return FAN_GURUHLARI.get(asos_fan(fan).casefold(), ODATIY_GURUHLAR)
 
 
+REPETITOR_FANLAR = set(FAN_GURUHLARI)   # REV421: repetitor kurslari — faqat matematika (matematika, algebra, geometriya)
+
+
 def repetitor_guruhi(fan, sinf):
-    """Shu fan va sinf qaysi repetitor kursiga tushadi: «5-7» yoki None."""
+    """Shu fan va sinf qaysi repetitor kursiga tushadi: «5-7» yoki None (matematikadan boshqa fanlar — yo'q)."""
+    if asos_fan(fan).casefold() not in REPETITOR_FANLAR:
+        return None
     try:
         n = int(str(sinf).strip())
     except (TypeError, ValueError):
