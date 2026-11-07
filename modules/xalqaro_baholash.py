@@ -471,6 +471,48 @@ def savol_qiyinligi(s):
     return qiyinlik(s.get("xalqaro_ortacha"))
 
 
+# ─────────── REV399: mavzu testlari — to'plamlar (har birida ~8 savol), osondan imtihon darajasigacha ───────────
+TOPLAM_SONI = 8
+
+
+def toplam_darajasi(i, jami):
+    """1-to'plam — oson, oxirgisi — imtihon darajasi, o'rtadagilar — o'rta (4+ to'plamda: qiyin ham)."""
+    if jami <= 1:
+        return "imtihon"
+    if i == 1:
+        return "oson"
+    if i == jami:
+        return "imtihon"
+    if jami >= 4 and i == jami - 1:
+        return "qiyin"
+    return "orta"
+
+
+def mavzu_toplamlari(savollar):
+    """Mavzu savollari qiyinlik bo'yicha tartiblanadi va ~8 tadan to'plamlarga bo'linadi; rasmli savoli yo'q
+    to'plamga qo'shni to'plamdan bittasi o'tkaziladi (bola chizmali savolni ham ko'radi, qiyinlik tartibi saqlanadi)."""
+    qs = sorted(savollar, key=lambda x: (savol_qiyinligi(x), x["id"]))
+    if not qs:
+        return []
+    n = max(1, round(len(qs) / TOPLAM_SONI))
+    olcham = [len(qs) // n + (1 if j < len(qs) % n else 0) for j in range(n)]
+    out, b = [], 0
+    for o in olcham:
+        out.append(qs[b:b + o]); b += o
+    rasmli = lambda x: any(v.get("rasm") for v in x["variantlar"])
+    for j, t in enumerate(out):
+        if any(rasmli(x) for x in t):
+            continue
+        # faqat qo'shni to'plamdan — qiyinlik tartibi buzilmasin
+        donor = max((d for d in (j - 1, j + 1) if 0 <= d < n and sum(map(rasmli, out[d])) > 1), key=lambda d: sum(map(rasmli, out[d])), default=None)
+        if donor is None:
+            continue
+        r = next(x for x in out[donor] if rasmli(x))
+        o = min(t, key=lambda x: abs(savol_qiyinligi(x) - savol_qiyinligi(r)))
+        out[donor][out[donor].index(r)], t[t.index(o)] = o, r
+    return [sorted(t, key=lambda x: (savol_qiyinligi(x), x["id"])) for t in out]
+
+
 def eap_theta(natijalar):
     """natijalar: [(qiyinlik, togri_mi)] → qobiliyat (EAP, N(0,1) apriori) va xatolik."""
     nuqtalar = [-4 + i * 0.1 for i in range(81)]
@@ -1147,7 +1189,8 @@ def create_router(platform, kontent=None):
     # ─────────── mashq ───────────
     @router.get("/api/xalqaro/mashq")
     def mashq(token: str = None, mavzu: str = Query("", max_length=20), toplam: str = Query("", max_length=12),
-              soni: int = Query(8, ge=1, le=30), fikrlash: str = Query("", max_length=10), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+              soni: int = Query(8, ge=1, le=30), fikrlash: str = Query("", max_length=10), til: str = Query("uz", max_length=8),
+              toplam_i: int = Query(0, ge=0, le=50), authorization: str = Header(None)):
         user_id = uid_of(token, authorization)
         til = til_kodi(til)
         k = KT(til)
@@ -1155,6 +1198,16 @@ def create_router(platform, kontent=None):
         def run(conn, cur):
             bilim = bilim_xaritasi(cur, user_id, til)
             conn.commit()
+            if mavzu and toplam_i:   # REV399: aniq to'plam — doim bir xil savollar, osondan qiyinga
+                tl = mavzu_toplamlari(k.by_mavzu.get(mavzu, []))
+                if not 1 <= toplam_i <= len(tl):
+                    raise HTTPException(404, matn("savol_yoq", til))
+                out = []
+                for s in tl[toplam_i - 1]:
+                    b = bilim.get(s["id"])
+                    vi = (b["urinish"] if b else 0) % max(1, len(s["variantlar"]))
+                    out.append(_variant_public(s, vi, javob_bilan=True, k=k))
+                return {"savollar": out, "til": til, "toplam_info": {"i": toplam_i, "jami": len(tl), "daraja": toplam_darajasi(toplam_i, len(tl))}}
             if mavzu:
                 pool = list(k.by_mavzu.get(mavzu, []))
             else:
@@ -1172,6 +1225,30 @@ def create_router(platform, kontent=None):
                 vi = (b["urinish"] if b else 0) % max(1, len(s["variantlar"]))
                 out.append(_variant_public(s, vi, javob_bilan=True, k=k))
             return {"savollar": out, "til": til}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/mavzu_toplamlar")
+    def mavzu_toplamlar(token: str = None, mavzu: str = Query(..., max_length=20), til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """REV399: mavzudagi test to'plamlari: har birida nechta savol, darajasi, o'quvchi nechtasini o'zlashtirgan."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+        k = KT(til)
+        m = k.mavzu_by_kalit.get(mavzu)
+        if not m:
+            raise HTTPException(404, matn("savol_yoq", til))
+
+        def run(conn, cur):
+            bilim = bilim_xaritasi(cur, user_id, til)
+            conn.commit()
+            tl = mavzu_toplamlari(k.by_mavzu.get(mavzu, []))
+            out = []
+            for i, t in enumerate(tl, 1):
+                oz = sum(1 for s in t if bilim.get(s["id"], {}).get("oxirgi_togri"))
+                ur = sum(1 for s in t if s["id"] in bilim)
+                out.append({"i": i, "daraja": toplam_darajasi(i, len(tl)), "soni": len(t), "ozlashtirgan": oz, "urinilgan": ur,
+                            "rasmli": sum(1 for s in t if any(v.get("rasm") for v in s["variantlar"]))})
+            hozirgi = next((x["i"] for x in out if x["ozlashtirgan"] < x["soni"]), len(out))
+            return {"mavzu": mavzu, "nom": m.get("nom", mavzu), "jami": sum(x["soni"] for x in out), "toplamlar": out, "hozirgi": hozirgi}
         return run_db(run)
 
     @router.post("/api/xalqaro/javob")
