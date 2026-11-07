@@ -178,6 +178,33 @@ def narx_ol(cur, kalit, kategoriya):
     return narx, int(bepul)
 
 
+REPETITOR_CHEGIRMA = 0.8   # REV422: sinflar yig'indisidan 20% arzon
+
+
+def kurs_narxi(cur, kalit, kategoriya):
+    """REV422: narx va bepul darslar. Repetitor kursiga admin narx qo'ymagan bo'lsa — ichidagi sinf kurslari narxlari
+    yig'indisi 20% chegirma bilan (1000 so'mga yaxlitlab); bepul darslar — butun kurs uchun bir marta."""
+    narx, bepul = narx_ol(cur, kalit, kategoriya)
+    if kategoriya != "repetitor" or narx > 0:
+        return narx, bepul
+    try:
+        _, base, g = kalit.split("|", 2)
+        a, b = (int(x) for x in g.split("-"))
+    except ValueError:
+        return narx, bepul
+    jami = 0
+    for sinf in range(a, b + 1):
+        k2, kat2, _, _ = kurs_of(base, str(sinf))
+        jami += narx_ol(cur, k2, kat2)[0]
+    return (int(round(jami * REPETITOR_CHEGIRMA / 1000.0)) * 1000 if jami else 0), bepul
+
+
+def repetitor_kaliti(fan, grade):
+    """Mavzu (fan, sinf) qaysi repetitor kursiga kiradi — kalit yoki None."""
+    gr = repetitor_guruhi(fan, grade)
+    return kurs_of(fan, gr)[0] if gr else None
+
+
 def obuna_tolandi(cur, data, kod, summa, manba):
     """To'lov tasdiqlandi → kurs obunasi (mavjud bo'lsa — uning oxiridan) N kunga uzayadi. Bir kod — bir marta."""
     migrate(cur)
@@ -262,6 +289,17 @@ def ruxsat(cur, uid, topic_code):
     cur.execute("SELECT 1 FROM kurs_obuna WHERE user_id=%s AND kalit=%s AND tugaydi >= CURRENT_DATE", (uid, kalit))
     obuna = bool(cur.fetchone())
     ok, sabab = qaror(rol, narx, bepul, indeks, obuna, _bogcha_obuna(cur, uid) if kat == "bolalar" else False, kat)
+    if not ok:   # REV422: repetitor kursi orqali ochiqmi (obuna yoki uning bepul darslari)
+        rk = repetitor_kaliti(r["subject_name"], r["grade"])
+        if rk:
+            cur.execute("SELECT 1 FROM kurs_obuna WHERE user_id=%s AND kalit=%s AND tugaydi >= CURRENT_DATE", (uid, rk))
+            if cur.fetchone():
+                ok, sabab = True, "obuna"
+            else:
+                rnarx, rbepul = kurs_narxi(cur, rk, "repetitor")
+                rroyxat = [x["topic_code"] for x in kurs_darslari(cur, r["subject_name"], rk.rsplit("|", 1)[-1])]
+                if topic_code in rroyxat and rroyxat.index(topic_code) < rbepul:
+                    ok, sabab = True, "bepul_dars"
     return {"ochiq": ok, "sabab": sabab, "kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul, "indeks": indeks}
 
 
@@ -321,7 +359,7 @@ def create_router(platform, click=None):
                     g = k["kalit"].rsplit("|", 1)[-1]
                     k["variantlar"] = [{"fan": f, "grade": g, "darslar": n} for f, n in k["_rep"].items()]
                 tanlangan = [v for v in k["variantlar"] if izoh_tili(v["fan"]) == izoh_tili(_izoh_tanla(k["variantlar"], til)["fan"])]
-                narx, bepul = narx_ol(cur, k["kalit"], k["kategoriya"])
+                narx, bepul = kurs_narxi(cur, k["kalit"], k["kategoriya"])
                 out.append({"kalit": k["kalit"], "kategoriya": k["kategoriya"], "nomi": k["nomi"],
                             "fan": tanlangan[0]["fan"], "sinflar": sorted({v["grade"] for v in tanlangan}, key=yosh_tartib),
                             "darslar": sum(v["darslar"] for v in tanlangan), "tillar": sorted({izoh_tili(v["fan"]) for v in k["variantlar"]}),
@@ -339,14 +377,20 @@ def create_router(platform, click=None):
         def go(cur):
             kalit, kat, nomi, _ = kurs_of(fan, grade)
             darslar = kurs_darslari(cur, fan, grade) if kat != "bolalar" else kurs_darslari(cur, fan, "yosh")
-            narx, bepul = narx_ol(cur, kalit, kat)
+            narx, bepul = kurs_narxi(cur, kalit, kat)
             rol = _rol(cur, uid)
             cur.execute("SELECT tugaydi FROM kurs_obuna WHERE user_id=%s AND kalit=%s AND tugaydi >= CURRENT_DATE", (uid, kalit))
             ob = cur.fetchone()
             bog = _bogcha_obuna(cur, uid) if kat == "bolalar" else False
             items = []
+            sinf_obuna = set()
+            if kat == "repetitor":   # REV422: sinf kursiga obuna bo'lsa — o'sha sinf mavzulari ochiq
+                cur.execute("SELECT kalit FROM kurs_obuna WHERE user_id=%s AND tugaydi >= CURRENT_DATE", (uid,))
+                sinf_obuna = {x["kalit"] for x in cur.fetchall()}
             for i, d in enumerate(darslar):
                 ok, sabab = qaror(rol, narx, bepul, i, bool(ob), bog, kat)
+                if not ok and kat == "repetitor" and kurs_of(fan, d["grade"])[0] in sinf_obuna:
+                    ok, sabab = True, "obuna"
                 items.append({"topic_code": d["topic_code"], "nomi": d["nom"], "sinf": d["grade"], "ochiq": ok, "bepul": sabab in ("bepul_dars", "bepul_kurs")})
             return {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul,
                     "obuna_tugaydi": ob["tugaydi"].isoformat() if ob else None, "darslar": items}
@@ -371,7 +415,7 @@ def create_router(platform, click=None):
                 kat = None
             if not kat:
                 raise HTTPException(404, "Kurs topilmadi")
-            narx, _ = narx_ol(cur, kalit, kat)
+            narx, _ = kurs_narxi(cur, kalit, kat)
             if narx <= 0:
                 raise HTTPException(400, "Bu kurs bepul")
             klik = click

@@ -27,3 +27,16 @@ def test_repetitor_guruhlari():
     assert k.repetitor_guruhi("Ona tili", "9") is None and k.repetitor_guruhi("Fransuz tili", "5") is None   # REV421: tillar yo'q
     assert k.repetitor_guruhi("Matematika", "x") is None
     assert k.kurs_of("Matematika", "1-4") == ("repetitor|Matematika|1-4", "repetitor", "Matematika · 1–4-sinf", "1-4")
+
+def test_repetitor_narxi():
+    from modules import kurslar as k
+    asl = k.narx_ol
+    try:
+        k.narx_ol = lambda cur, kalit, kat: (0, 5) if kat == "repetitor" else (10000, 5)
+        assert k.kurs_narxi(None, "repetitor|Matematika|5-7", "repetitor") == (24000, 5)   # 3 × 10 000 − 20%
+        assert k.kurs_narxi(None, "repetitor|Matematika|1-4", "repetitor") == (32000, 5)
+        k.narx_ol = lambda cur, kalit, kat: (15000, 3)
+        assert k.kurs_narxi(None, "repetitor|Algebra|7-11", "repetitor") == (15000, 3)       # admin narxi ustun
+    finally:
+        k.narx_ol = asl
+    assert k.repetitor_kaliti("Matematika", "6") == "repetitor|Matematika|5-7" and k.repetitor_kaliti("Fizika", "6") is None
