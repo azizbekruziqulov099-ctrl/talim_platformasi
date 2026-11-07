@@ -6201,6 +6201,8 @@ def _chat_jadvallari(cur):
         qoshilgan_at TIMESTAMP DEFAULT NOW(),
         UNIQUE(guruh_id, user_id)
     )""")
+    cur.execute("ALTER TABLE chat_azolari ADD COLUMN IF NOT EXISTS rol TEXT NOT NULL DEFAULT 'azo'")   # REV417: guruh adminlari
+    cur.execute("ALTER TABLE chat_guruhlari ADD COLUMN IF NOT EXISTS faqat_admin BOOLEAN NOT NULL DEFAULT FALSE")   # REV417: faqat adminlar yozadi
     cur.execute("""CREATE TABLE IF NOT EXISTS chat_xabarlari(
         id SERIAL PRIMARY KEY,
         guruh_id INTEGER REFERENCES chat_guruhlari(id),
@@ -6575,6 +6577,19 @@ def _chat_suhbat_ruxsat(cur, user_id, guruh_id=None, boshqa_user_id=None, write=
         _chat_policy().require_direct(cur, user_id, boshqa_user_id)
 
 
+def _chat_guruh_admini(cur, user_id, guruh_id):
+    """REV417: guruh egasi, guruh admini (chat_azolari.rol='admin') yoki platforma admini."""
+    cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
+    if cur.fetchone():
+        return True
+    cur.execute("SELECT egasi_user_id FROM chat_guruhlari WHERE id=%s", (int(guruh_id),))
+    g = cur.fetchone()
+    if g and g.get("egasi_user_id") is not None and int(g["egasi_user_id"]) == int(user_id):
+        return True
+    cur.execute("SELECT 1 FROM chat_azolari WHERE guruh_id=%s AND user_id=%s AND rol='admin'", (int(guruh_id), int(user_id)))
+    return cur.fetchone() is not None
+
+
 def _tv_kanalmi(cur, guruh_id):
     if not guruh_id:
         return False
@@ -6604,6 +6619,11 @@ def _chat_yozish_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, javob_xa
         _chat_policy().ensure_terms_accepted(cur, user_id)
         return True
     _chat_suhbat_ruxsat(cur, user_id, guruh_id, qabul_qiluvchi_user_id, write=True)
+    if guruh_id:   # REV417
+        cur.execute("SELECT faqat_admin FROM chat_guruhlari WHERE id=%s", (int(guruh_id),))
+        g = cur.fetchone()
+        if g and g.get("faqat_admin") and not _chat_guruh_admini(cur, user_id, guruh_id):
+            raise HTTPException(status_code=403, detail="Bu guruhda hozir faqat adminlar yoza oladi.")
     return False
 
 
@@ -7029,6 +7049,62 @@ def chat_sorovnoma_yop(sid: int, token: str = Form(...)):
         cur.close(); conn.close()
 
 
+# ───────────── REV417: guruh adminlari va «faqat adminlar yozadi» ─────────────
+@app.get("/api/chat/guruh/{guruh_id}/boshqaruv")
+def chat_guruh_boshqaruv(guruh_id: int, token: str):
+    """A'zolar (rol bilan), guruh sozlamasi va so'rovchining huquqi."""
+    user_id = _chat_actor(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_jadvallari(cur)
+        _chat_suhbat_ruxsat(cur, user_id, guruh_id, None)
+        cur.execute("SELECT id, nomi, egasi_user_id, faqat_admin FROM chat_guruhlari WHERE id=%s", (guruh_id,))
+        g = cur.fetchone()
+        if not g:
+            raise HTTPException(status_code=404, detail="Guruh topilmadi")
+        cur.execute("""SELECT a.user_id, COALESCE(u.full_name,'') AS ism, a.rol FROM chat_azolari a JOIN users u ON u.user_id=a.user_id
+                       WHERE a.guruh_id=%s ORDER BY (a.rol='admin') DESC, u.full_name LIMIT 500""", (guruh_id,))
+        azolar = [{"user_id": int(r["user_id"]), "ism": r["ism"], "admin": r["rol"] == "admin" or (g["egasi_user_id"] is not None and int(r["user_id"]) == int(g["egasi_user_id"])),
+                   "egasi": g["egasi_user_id"] is not None and int(r["user_id"]) == int(g["egasi_user_id"])} for r in cur.fetchall()]
+        men_admin = _chat_guruh_admini(cur, user_id, guruh_id)
+        conn.commit()
+        return {"id": int(g["id"]), "nomi": g["nomi"], "faqat_admin": bool(g["faqat_admin"]), "men_admin": men_admin, "azolar": azolar if men_admin else [x for x in azolar if x["admin"]]}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/chat/guruh/{guruh_id}/admin")
+def chat_guruh_admin_tayinla(guruh_id: int, token: str = Form(...), user_id: int = Form(...), admin: bool = Form(True)):
+    actor = _chat_actor(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_jadvallari(cur)
+        if not _chat_guruh_admini(cur, actor, guruh_id):
+            raise HTTPException(status_code=403, detail="Adminni faqat guruh admini tayinlaydi")
+        cur.execute("UPDATE chat_azolari SET rol=%s WHERE guruh_id=%s AND user_id=%s RETURNING user_id", ("admin" if admin else "azo", guruh_id, user_id))
+        if not cur.fetchone():
+            raise HTTPException(status_code=404, detail="Bu odam guruh a’zosi emas")
+        conn.commit()
+        return {"ok": True}
+    finally:
+        cur.close(); conn.close()
+
+
+@app.post("/api/chat/guruh/{guruh_id}/sozlama")
+def chat_guruh_sozlama(guruh_id: int, token: str = Form(...), faqat_admin: bool = Form(...)):
+    actor = _chat_actor(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _chat_jadvallari(cur)
+        if not _chat_guruh_admini(cur, actor, guruh_id):
+            raise HTTPException(status_code=403, detail="Sozlamani faqat guruh admini o‘zgartiradi")
+        cur.execute("UPDATE chat_guruhlari SET faqat_admin=%s WHERE id=%s", (bool(faqat_admin), guruh_id))
+        conn.commit()
+        return {"ok": True, "faqat_admin": bool(faqat_admin)}
+    finally:
+        cur.close(); conn.close()
+
+
 @app.post("/api/chat/yozmoqda")
 def chat_yozmoqda(token: str = Form(...), guruh_id: Optional[int] = Form(None), boshqa_user_id: Optional[int] = Form(None)):
     """REV391: foydalanuvchi yozyapti — suhbatdoshda 6 soniya «yozmoqda…» ko'rinadi."""
@@ -7287,13 +7363,13 @@ def chat_xabar_ochir(token: str, xabar_id: int):
     except Exception:
         cur.close(); conn.close()
         raise
-    cur.execute("SELECT yuboruvchi_user_id FROM chat_xabarlari WHERE id=%s", (xabar_id,))
+    cur.execute("SELECT yuboruvchi_user_id, guruh_id FROM chat_xabarlari WHERE id=%s", (xabar_id,))
     x = cur.fetchone()
     if not x:
         cur.close(); conn.close()
         raise HTTPException(status_code=404, detail="Xabar topilmadi")
     cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (user_id,))
-    admin_mi = cur.fetchone() is not None
+    admin_mi = cur.fetchone() is not None or (bool(x.get("guruh_id")) and _chat_guruh_admini(cur, user_id, x["guruh_id"]))   # REV417
     if x["yuboruvchi_user_id"] != user_id and not admin_mi:
         cur.close(); conn.close()
         raise HTTPException(status_code=403, detail="Faqat o'z xabaringizni o'chira olasiz")
