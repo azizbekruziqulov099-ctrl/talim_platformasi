@@ -6744,8 +6744,10 @@ def chat_xabarlarini_olish(token: str, guruh_id: Optional[int] = None, boshqa_us
         r = cur.fetchone()
         boshqa_tomon_korgan_id = r["oxirgi_xabar_id"] if r else None
 
-    holat = _chat_holat_yangila_va_ol(cur, conn, user_id, guruh_id, boshqa_user_id)   # REV391
-    holat["qadalgan"] = _chat_qadalgan_ol(cur, conn, user_id, guruh_id, boshqa_user_id)   # REV395
+    _hf, _qf = globals().get("_chat_holat_yangila_va_ol"), globals().get("_chat_qadalgan_ol")   # REV391/REV395 (testlarda bo'lmasligi mumkin)
+    holat = _hf(cur, conn, user_id, guruh_id, boshqa_user_id) if _hf else {}
+    if _qf:
+        holat["qadalgan"] = _qf(cur, conn, user_id, guruh_id, boshqa_user_id)
     cur.close(); conn.close()
     rows = xabarlar if keyingidan is not None else list(reversed(xabarlar))
     return {"xabarlar": rows, "boshqa_tomon_korgan_id": boshqa_tomon_korgan_id,
