@@ -173,7 +173,9 @@ MATN = {
     "sinf_egasi_emas": {"uz": "Bu sinf sizniki emas", "ru": "Это не ваш класс", "en": "This is not your class"},
     "sinf_oqituvchi_azo": {"uz": "O‘qituvchi o‘z sinfiga o‘quvchi bo‘lib qo‘shila olmaydi", "ru": "Учитель не может вступить в свой класс как ученик", "en": "A teacher cannot join their own class as a student"},
     "sinf_toplam": {"uz": "Sinf qaysi dastur va fan bo‘yicha ekanini tanlang", "ru": "Выберите программу и предмет класса", "en": "Choose the class programme and subject"},
-    "topshiriq_azo_emas": {"uz": "Bu topshiriq sinf a’zolari uchun. Avval sinfga qo‘shiling", "ru": "Задание для участников класса. Сначала вступите в класс", "en": "This task is for class members. Join the class first"},
+    "topshiriq_azo_emas": {"uz": "Bu topshiriq «{s}» sinfi uchun, sinf parolli. O‘qituvchingizdan sinf kodi va parolini so‘rab, «Sinfim» bo‘limida qo‘shiling",
+                           "ru": "Задание для класса «{s}» (с паролем). Спросите у учителя код и пароль и вступите в разделе «Мой класс»",
+                           "en": "This task is for the class «{s}» (password-protected). Ask your teacher for the code and password and join in «My class»"},
     "sinf_toliq": {"uz": "Sinfda joy qolmagan (60 o‘quvchi)", "ru": "В классе нет мест (60 учеников)", "en": "The class is full (60 students)"},
     "rasm_yoq": {"uz": "Rasm yo‘q", "ru": "Рисунка нет", "en": "No picture"},
     "kurs": {"uz": "Xalqaro baholash (TIMSS/PISA) tayyorlov kursi", "ru": "Курс подготовки к международной оценке (TIMSS/PISA)", "en": "International assessment (TIMSS/PISA) preparation course"},
@@ -773,13 +775,19 @@ def sinf_toplami(toplam, sinf):
     return t if t in XB_TOPLAMLAR else tavsiya_toplamlar(int(sinf or 0))[0]
 
 
-def sinf_malumot_tekshir(nom, sinf, parol):
+KURSLAR = ("1 kurs", "2 kurs", "3 kurs", "4 kurs", "1 kurs magistr", "2 kurs magistr")   # REV408
+
+
+def sinf_malumot_tekshir(nom, sinf, parol, auditoriya="maktab"):
     nom = re.sub(r"\s+", " ", str(nom or "")).strip()
     try:
         sinf = int(sinf)
     except (TypeError, ValueError):
         sinf = 0
-    if not 1 <= sinf <= 11:
+    # REV408: talaba/o'qituvchi/bog'cha guruhida maktab sinfi shart emas (0 — sinfsiz)
+    if auditoriya_norm(auditoriya) == "maktab" and not 1 <= sinf <= 11:
+        return None, "sinf_raqam"
+    if not 0 <= sinf <= 11:
         return None, "sinf_raqam"
     if not 1 <= len(nom) <= 60:
         return None, "sinf_nom"
@@ -807,6 +815,7 @@ def migrate(cur):
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_egasi ON xb_sinf(egasi)")
     cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS toplam TEXT NOT NULL DEFAULT ''")   # REV374: sinf qaysi dastur/fan bo'yicha
     cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS auditoriya TEXT NOT NULL DEFAULT 'maktab'")   # REV401: kimlar uchun
+    cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS kurs TEXT NOT NULL DEFAULT ''")   # REV408: talaba guruhi kursi
     # REV401: o'qituvchi sinfga topshiriq (imtihon) beradi — hamma bir xil savollarni yechadi, havola bilan ham ochiladi
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_topshiriq (id BIGSERIAL PRIMARY KEY, sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE,
         nom TEXT NOT NULL, mavzu TEXT NOT NULL DEFAULT '', savol_idlar JSON NOT NULL, muddat DATE, kod TEXT NOT NULL UNIQUE,
@@ -1812,13 +1821,15 @@ def create_router(platform, kontent=None):
                              "tillar": tillar.get(o["user_id"], {}),
                              "darslar": darslar.get(o["user_id"], (0, 0))[0], "darslar_ochgan": darslar.get(o["user_id"], (0, 0))[1],
                              "ball": b["ball"] if b else None, "daraja": daraja_of(b["ball"], b.get("toplam"), til)["nom"] if b and b.get("ball") else None,
+                             "foiz": round(100 * int(s.get("ozlashtirgan") or 0) / int(s.get("urinish"))) if int(s.get("urinish") or 0) else None,   # REV408
                              "zaif_mavzu": k.mavzu_by_kalit.get(zm[0], {}).get("nom") if zm else None})
             conn.commit()
             balllar = [r["ball"] for r in rows if r["ball"]]
             return {"admin": doira["admin"], "maktab_id": doira["maktab_id"], "oquvchilar": rows, "til": til,
                     "jamlama": {"jami": len(rows), "faol": sum(r["holat"] == "faol" for r in rows), "sust": sum(r["holat"] == "sust" for r in rows),
                                 "boshlamagan": sum(r["holat"] == "boshlamagan" for r in rows), "haftalik": sum(r["haftalik_topshirdi"] for r in rows),
-                                "ortacha_ball": round(sum(balllar) / len(balllar)) if balllar else None}}
+                                "ortacha_ball": round(sum(balllar) / len(balllar)) if balllar else None,
+                                "ortacha_foiz": round(sum(r["foiz"] for r in rows if r["foiz"] is not None) / max(1, sum(1 for r in rows if r["foiz"] is not None))) if any(r["foiz"] is not None for r in rows) else None}}
         return run_db(run)
 
     @router.get("/api/xalqaro/sinf_xatolar")
@@ -1912,6 +1923,7 @@ def create_router(platform, kontent=None):
         parol: str = Field(default="", max_length=40)
         toplam: str = Field(default="", max_length=20)   # REV374
         auditoriya: str = Field(default="maktab", max_length=12)   # REV401
+        kurs: str = Field(default="", max_length=20)   # REV408
 
     class SinfOzgar(BaseModel):
         token: Optional[str] = None
@@ -1947,7 +1959,7 @@ def create_router(platform, kontent=None):
 
     def _sinf_korinish(r, azo=None, egasi_ism=""):
         d = {"id": int(r["id"]), "nom": r["nom"], "sinf": int(r["sinf"]), "parolli": bool(r.get("parol_hash")),
-             "toplam": sinf_toplami(r.get("toplam"), r["sinf"]), "auditoriya": auditoriya_norm(r.get("auditoriya"))}
+             "toplam": sinf_toplami(r.get("toplam"), r["sinf"]), "auditoriya": auditoriya_norm(r.get("auditoriya")), "kurs": r.get("kurs") or ""}
         if azo is not None:
             d.update(kod=r["kod"], azolar=azo)
         if egasi_ism:
@@ -2010,7 +2022,7 @@ def create_router(platform, kontent=None):
     def sinf_yarat(body: SinfYarat, authorization: str = Header(None)):
         user_id = uid_of(body.token, authorization)
         til = til_kodi(body.til)
-        d, xato = sinf_malumot_tekshir(body.nom, body.sinf, body.parol)
+        d, xato = sinf_malumot_tekshir(body.nom, body.sinf, body.parol, body.auditoriya)
         if xato:
             raise HTTPException(400, matn(xato, til))
         if body.toplam and body.toplam not in XB_TOPLAMLAR:
@@ -2028,8 +2040,9 @@ def create_router(platform, kontent=None):
                 cur.execute("SELECT 1 FROM xb_sinf WHERE kod=%s", (kod,))
                 if not cur.fetchone():
                     break
-            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash, toplam, auditoriya) VALUES (%s,%s,%s,%s,%s,%s,%s) RETURNING *""",
-                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod), tp, auditoriya_norm(body.auditoriya)))
+            cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash, toplam, auditoriya, kurs) VALUES (%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *""",
+                        (user_id, d["nom"], d["sinf"], kod, parol_hash(body.parol, kod), tp, auditoriya_norm(body.auditoriya),
+                         body.kurs if body.kurs in KURSLAR else ""))
             r = cur.fetchone()
             conn.commit()
             return {"sinf": _sinf_korinish(r, 0)}
@@ -2065,7 +2078,7 @@ def create_router(platform, kontent=None):
                     raise HTTPException(400, matn("sinf_toplam", til))
                 cur.execute("UPDATE xb_sinf SET toplam=%s WHERE id=%s", (body.toplam, sinf_id))
             if body.nom is not None:
-                d, xato = sinf_malumot_tekshir(body.nom, r["sinf"], "")
+                d, xato = sinf_malumot_tekshir(body.nom, r["sinf"], "", r.get("auditoriya") or "maktab")
                 if xato:
                     raise HTTPException(400, matn(xato, til))
                 cur.execute("UPDATE xb_sinf SET nom=%s WHERE id=%s", (d["nom"], sinf_id))
@@ -2167,7 +2180,12 @@ def create_router(platform, kontent=None):
             raise HTTPException(404, matn("sinf_yoq", til))
         cur.execute("SELECT 1 FROM xb_sinf_azo WHERE sinf_id=%s AND user_id=%s", (t["sinf_id"], user_id))
         if not cur.fetchone() and int(t["egasi"]) != int(user_id):
-            raise HTTPException(403, matn("topshiriq_azo_emas", til))
+            cur.execute("SELECT parol_hash FROM xb_sinf WHERE id=%s", (t["sinf_id"],))
+            sr = cur.fetchone()
+            if sr and not sr.get("parol_hash"):   # REV408: o'qituvchi yuborgan havola — taklifnoma
+                cur.execute("INSERT INTO xb_sinf_azo(sinf_id, user_id) VALUES (%s,%s) ON CONFLICT DO NOTHING", (t["sinf_id"], user_id))
+            else:
+                raise HTTPException(403, matn("topshiriq_azo_emas", til, s=t["sinf_nomi"]))
         return t
 
     @router.get("/api/xalqaro/topshiriq/{kod}")
