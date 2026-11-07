@@ -26,7 +26,7 @@ VARIANT_NAMES = {
     "boshqa_usul": "Boshqa usulda",
     "takrorlash": "Oldingi mavzu",
 }
-MAX_STEPS = 60
+MAX_STEPS = 220   # REV406: markaz kitoblaridagi uzun darslar (nazariya + namuna + mashq + test)
 MAX_QUESTIONS = 5
 
 

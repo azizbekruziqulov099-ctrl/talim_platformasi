@@ -21143,7 +21143,7 @@ def _ai_brain_zip_och(content):
             if info.file_size > 5 * 1024 * 1024:
                 raise HTTPException(status_code=413, detail=f"{name}: rasm 5 MB dan katta bo'lmasligi kerak")
             total += info.file_size
-            if total > 60 * 1024 * 1024 or len(media) >= 500:
+            if total > 150 * 1024 * 1024 or len(media) >= 1500:   # REV406: markaz kitoblari (500+ rasm)
                 raise HTTPException(status_code=413, detail="ZIP ichidagi rasmlar juda ko'p (60 MB yoki 500 ta dan oshmasin)")
             if name.lower() in {k.lower() for k in media}:
                 raise HTTPException(status_code=400, detail=f"{name}: bir xil nomli rasm ikki marta bor")
