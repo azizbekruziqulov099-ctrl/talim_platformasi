@@ -21822,8 +21822,14 @@ def _paket_markaz_scope(content, scope_id=0):
             for k, row in enumerate(rows):
                 if k > 50:
                     break
-                if i < len(row) and re.fullmatch(r"\s*[ABC][12]\s*", str(row[i] or "")):
+                qiymat = str(row[i] or "")
+                if i < len(row) and re.fullmatch(r"\s*[ABC][12]\s*", qiymat):
                     daraja = True
+                    break
+                # REV409: markaz kitoblari («1-kitob») va hamma uchun ochiq oliy ta'lim kurslari («2 kurs») ham —
+                # tanlangan dastur aynan shu kursdagi institut dasturi bo'lmasa, o'quv markazi katalogiga tushadi
+                if re.fullmatch(r"\s*\d+-kitob\s*", qiymat, re.I) or re.fullmatch(r"\s*\d\s*kurs(\s+magistr)?\s*", qiymat, re.I):
+                    daraja = qiymat.strip()
                     break
             if daraja:
                 break
@@ -21834,6 +21840,9 @@ def _paket_markaz_scope(content, scope_id=0):
             scope = _curriculum.get_scope(cur, scope_id) if scope_id else {}
             if scope.get("institution_type") == "markaz":
                 return scope_id
+            if isinstance(daraja, str) and "kurs" in daraja.lower() and scope.get("institution_type") == "universitet" \
+                    and _curriculum.grade_for_scope(scope) == _dts_sinf_normalize(daraja):
+                return scope_id   # aynan shu kursning institut dasturi tanlangan — o'sha yerda qoladi
             cur.execute("""SELECT id FROM curriculum_scopes WHERE institution_type='markaz'
                            ORDER BY (COALESCE(institution_id,0)=0) DESC, id LIMIT 1""")   # avval umumiy katalog
             row = cur.fetchone()
