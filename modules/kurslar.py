@@ -228,13 +228,17 @@ def ruxsat(cur, uid, topic_code):
     return {"ochiq": ok, "sabab": sabab, "kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul, "indeks": indeks}
 
 
+_TAYYOR = {"ok": False}
+
+
 def create_router(platform, click=None):
     router = APIRouter(tags=["kurslar"])
 
     def run(fn):
         conn = platform._db(); cur = conn.cursor()
         try:
-            migrate(cur)
+            if not _TAYYOR["ok"]:   # REV414: jadvallar har so'rovda emas, jarayon boshida bir marta tekshiriladi
+                migrate(cur); conn.commit(); _TAYYOR["ok"] = True
             out = fn(cur); conn.commit(); return out
         except Exception:
             conn.rollback(); raise

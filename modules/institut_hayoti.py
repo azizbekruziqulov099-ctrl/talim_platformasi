@@ -66,6 +66,9 @@ async def _image(upload):
     return data, kind
 
 
+_TAYYOR = {"ok": False}
+
+
 def migrate(cur):
     cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS hayot_tavsif TEXT")
     cur.execute("ALTER TABLE universitetlar ADD COLUMN IF NOT EXISTS muqova_rasm BYTEA")
@@ -147,7 +150,8 @@ def create_router(platform):
         conn = platform._db()
         cur = conn.cursor()
         platform._universitet_jadvali(cur)
-        migrate(cur)
+        if not _TAYYOR["ok"]:   # REV414: bir marta
+            migrate(cur); conn.commit(); _TAYYOR["ok"] = True
         return conn, cur
 
     def _manager(cur, user_id, universitet_id):

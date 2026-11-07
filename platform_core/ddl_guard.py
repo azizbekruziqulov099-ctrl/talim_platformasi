@@ -117,6 +117,10 @@ class XavfsizCursor(psycopg2.extras.RealDictCursor):
         return bool(row and row["ok"])
 
     def execute(self, query, vars=None):
+        # REV414: foydalanuvchi qatori butunicha JSON qilinganda katta rasm ustunlari (profil_rasm, muqova_rasm) olib tashlanadi —
+        # aks holda har ruxsat tekshiruvida yuzlab KB keraksiz o'qilardi. Natijadagi boshqa maydonlar o'zgarmaydi.
+        if isinstance(query, str) and "to_jsonb(u)" in query:
+            query = query.replace("to_jsonb(u)", "(to_jsonb(u) - $$profil_rasm$$ - $$muqova_rasm$$)")
         if vars is None and isinstance(query, str) and ("ALTER" in query.upper() or "INDEX" in query.upper()):
             try:
                 parts = split_sql(query)

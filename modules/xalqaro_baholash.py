@@ -742,6 +742,22 @@ SINF_ROLLAR = {"oqituvchi", "teacher", "fan_oqituvchisi", "sinf_rahbar", "direkt
 _KOD_HARF = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"   # 0/O, 1/I yo'q — bola adashmaydi
 
 
+_USERS_USTUN = {"v": None}
+
+
+def users_ustunlari(cur):
+    """REV414: users jadvali ustunlari — katta rasm ustunlarisiz (har so'rovda yuzlab KB keraksiz o'qilmasin)."""
+    if _USERS_USTUN["v"] is None:
+        try:
+            cur.execute("""SELECT column_name FROM information_schema.columns WHERE table_name='users' AND table_schema=current_schema()
+                           AND data_type <> 'bytea' ORDER BY ordinal_position""")
+            cols = [r["column_name"] if isinstance(r, dict) else r[0] for r in cur.fetchall()]
+            _USERS_USTUN["v"] = ", ".join(f'"{c}"' for c in cols) if cols else "*"
+        except Exception:   # noqa: BLE001
+            return "*"
+    return _USERS_USTUN["v"]
+
+
 def sinf_kodi_yasa(n=6):
     return "".join(_sec.choice(_KOD_HARF) for _ in range(n))
 
@@ -986,7 +1002,7 @@ def create_router(platform, kontent=None):
         info = {"user_id": user_id, "sinf": 0, "class": "", "harf": "", "maktab_id": None, "role": "", "ism": ""}
         try:
             cur.execute("SAVEPOINT xb_user")
-            cur.execute("SELECT * FROM users WHERE user_id=%s", (user_id,))
+            cur.execute(f"SELECT {users_ustunlari(cur)} FROM users WHERE user_id=%s", (user_id,))   # REV414: profil rasmisiz
             row = dict(cur.fetchone() or {})
             cur.execute("RELEASE SAVEPOINT xb_user")
         except Exception:
@@ -2275,7 +2291,7 @@ def create_router(platform, kontent=None):
                     h = "boshlamagan"
                 elif r["holat"] == "tugatdi" or (r["holat"] is None and r["eng_yaxshi"] is not None):
                     h = "tugatdi"
-                elif r["holat"] == "chiqdi" or (oldin is not None and oldin > 15):
+                elif r["holat"] == "chiqdi" or (oldin is not None and oldin > 25):   # REV414: ilova har 8–10 s da
                     h = "chiqdi"
                 else:
                     h = "yechmoqda"

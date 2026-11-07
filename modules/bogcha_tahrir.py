@@ -18,6 +18,9 @@ TOPSHIRIQ_MAYDON = {"savol": "Savol", "variant_a": "A", "variant_b": "B", "varia
 HOLATLAR = ("ok", "tuzat", "yopiq")
 
 
+_TAYYOR = {"ok": False}
+
+
 def migrate(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS oyin_sozlama (oyin_id INT PRIMARY KEY, holat TEXT NOT NULL DEFAULT 'ok', izoh TEXT NOT NULL DEFAULT '',
         kim BIGINT, yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
@@ -67,7 +70,9 @@ def create_router(platform):
     router = APIRouter()
 
     def db():
-        conn = platform._db(); cur = conn.cursor(); migrate(cur); conn.commit()
+        conn = platform._db(); cur = conn.cursor()
+        if not _TAYYOR["ok"]:   # REV414: bir marta
+            migrate(cur); conn.commit(); _TAYYOR["ok"] = True
         return conn, cur
 
     # ── 1) o'yin sozlamasi ──

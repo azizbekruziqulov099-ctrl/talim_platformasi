@@ -66,6 +66,9 @@ def eksport_matn(izohlar):
     return "\n".join(q)
 
 
+_TAYYOR = {"ok": False}
+
+
 def create_router(platform):
     router = APIRouter(tags=["dars_izoh"])
 
@@ -82,7 +85,8 @@ def create_router(platform):
     def run(fn):
         conn = platform._db(); cur = conn.cursor()
         try:
-            migrate(cur)
+            if not _TAYYOR["ok"]:   # REV414: jadvallar har so'rovda emas, jarayon boshida bir marta tekshiriladi
+                migrate(cur); conn.commit(); _TAYYOR["ok"] = True
             out = fn(cur); conn.commit(); return out
         except Exception:
             conn.rollback(); raise
