@@ -20,6 +20,7 @@ KATEGORIYALAR = [
     ("erkin", "💬", "Erkin til", "Ko‘chada gaplashish: hayotiy vaziyatlar, A1 dan boshlab"),
     ("sertifikat", "🎓", "Sertifikat", "Milliy sertifikat sinovlari, strategiyalar, daraja testi"),
     ("xalqaro", "🌍", "Xalqaro baholash", "TIMSS / PISA uslubidagi kurs va imtihonlar"),
+    ("repetitor", "🎯", "Repetitor kurslari", "Maktab fanlari sinflar bo‘yicha guruhlangan: 1–2, 3–4, 5–7, 8–9, 10–11 (matematika 1–4, 5–7; algebra va geometriya 7–11)"),   # REV419
     ("markaz", "🏫", "O‘quv markazi", "Matematika kitoblari asosida: savol-javobli, chizmali darslar va testlar"),   # REV405
     ("oliy", "🎓", "Oliy ta’lim kurslari", "Ma’ruza va amaliy mashg‘ulotlar: talabalar va qiziqqan o‘quvchilar uchun"),   # REV407
     ("bolalar", "🧒", "Bolalar uchun", "Til va fan kurslari — boshidan, o‘yin bilan"),
@@ -53,11 +54,35 @@ def oz_tilida(fan):
     return bool(t) and izoh_tili(fan) == t
 
 
+# REV419: repetitor kurslari — fanga qarab sinflar guruhi (qolgan fanlar — odatiy guruhlar)
+ODATIY_GURUHLAR = ((1, 2), (3, 4), (5, 7), (8, 9), (10, 11))
+FAN_GURUHLARI = {"matematika": ((1, 4), (5, 7)), "algebra": ((7, 11),), "geometriya": ((7, 11),)}
+
+
+def repetitor_guruhlari(fan):
+    return FAN_GURUHLARI.get(asos_fan(fan).casefold(), ODATIY_GURUHLAR)
+
+
+def repetitor_guruhi(fan, sinf):
+    """Shu fan va sinf qaysi repetitor kursiga tushadi: «5-7» yoki None."""
+    try:
+        n = int(str(sinf).strip())
+    except (TypeError, ValueError):
+        return None
+    for a, b in repetitor_guruhlari(fan):
+        if a <= n <= b:
+            return f"{a}-{b}"
+    return None
+
+
 def kurs_of(fan, grade):
     """(kalit, kategoriya, nomi, guruh) — guruh: shu kurs darslari tartiblanadigan sinf(lar) to'plami kaliti."""
     base, g = asos_fan(fan), str(grade or "").strip()
     if re.search(r"yosh", g, re.I):
         return f"bolalar|{base}", "bolalar", base, "bolalar"
+    m = re.fullmatch(r"(\d{1,2})-(\d{1,2})", g)
+    if m:   # REV419: repetitor kursi — bir nechta sinf bitta kursda
+        return f"repetitor|{base}|{g}", "repetitor", f"{base} · {m.group(1)}–{m.group(2)}-sinf", g
     if re.search(r"erkin til", base, re.I):
         return f"erkin|{base}|{g}", "erkin", f"{base} · {g}", g
     if re.search(r"\bmarkaz\b|o.quv markazi", base, re.I):   # REV405: «Matematika — markaz · 1-kitob»
@@ -201,6 +226,13 @@ def _kurs_darslari(cur, fan, grade):
                          AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
                        GROUP BY d.topic_code, d.grade""", (fan,))
         rows = sorted(cur.fetchall(), key=lambda r: (yosh_tartib(r["grade"]), r["topic_code"]))
+    elif kat == "repetitor":   # REV419: sinflar ketma-ket (1-sinf mavzulari, keyin 2-sinf ...)
+        a, b = (int(x) for x in str(grade).split("-"))
+        cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
+                       FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade) = ANY(%s)
+                         AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
+                       GROUP BY d.topic_code, d.grade""", (fan, [str(i) for i in range(a, b + 1)]))
+        rows = sorted(cur.fetchall(), key=lambda r: (int(str(r["grade"]).strip()) if str(r["grade"]).strip().isdigit() else 99, r["topic_code"]))
     else:
         cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
                        FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade)=%s
@@ -270,10 +302,19 @@ def create_router(platform, click=None):
                 kalit, kat, nomi, _ = kurs_of(r["fan"], r["grade"])
                 k = kurslar.setdefault(kalit, {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "variantlar": []})
                 k["variantlar"].append({"fan": r["fan"], "grade": r["grade"], "darslar": int(r["darslar"])})
+                if kalit.startswith("maktab|"):   # REV419: maktab sinfi (fanlar, tillar)
+                    gr = repetitor_guruhi(r["fan"], r["grade"])
+                    if gr:
+                        k2, kat2, nomi2, _ = kurs_of(r["fan"], gr)
+                        rk = kurslar.setdefault(k2, {"kalit": k2, "kategoriya": kat2, "nomi": nomi2, "variantlar": [], "_rep": {}})
+                        rk["_rep"][r["fan"]] = rk["_rep"].get(r["fan"], 0) + int(r["darslar"])
             cur.execute("SELECT kalit FROM kurs_obuna WHERE user_id=%s AND tugaydi >= CURRENT_DATE", (uid,))
             obunalar = {x["kalit"] for x in cur.fetchall()}
             out = []
             for k in kurslar.values():
+                if "_rep" in k:   # REV419: repetitor — sinflar yig'indisi bitta variant bo'ladi
+                    g = k["kalit"].rsplit("|", 1)[-1]
+                    k["variantlar"] = [{"fan": f, "grade": g, "darslar": n} for f, n in k["_rep"].items()]
                 tanlangan = [v for v in k["variantlar"] if izoh_tili(v["fan"]) == izoh_tili(_izoh_tanla(k["variantlar"], til)["fan"])]
                 narx, bepul = narx_ol(cur, k["kalit"], k["kategoriya"])
                 out.append({"kalit": k["kalit"], "kategoriya": k["kategoriya"], "nomi": k["nomi"],
@@ -317,7 +358,7 @@ def create_router(platform, click=None):
             # kalitdan kategoriya (kurs_of bilan bir xil qoida)
             if parts[0] == "bolalar":
                 kat = "bolalar"
-            elif parts[0] in ("maktab", "erkin", "boshqa") and len(parts) >= 3:
+            elif parts[0] in ("maktab", "erkin", "boshqa", "repetitor", "markaz", "oliy") and len(parts) >= 3:
                 k2, kat, _, _ = kurs_of(parts[1], parts[2])
                 if k2 != kalit:
                     kat = None

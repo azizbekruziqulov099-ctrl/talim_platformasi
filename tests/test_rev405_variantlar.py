@@ -19,3 +19,10 @@ def test_markaz_kursi():
 def test_oliy_kurs():
     from modules import kurslar as k
     assert k.kurs_of("Ehtimollar nazariyasi va matematik statistika", "2 kurs")[1] == "oliy"
+
+def test_repetitor_guruhlari():
+    from modules import kurslar as k
+    assert k.repetitor_guruhi("Matematika", "3") == "1-4" and k.repetitor_guruhi("Matematika", "6") == "5-7"
+    assert k.repetitor_guruhi("Algebra", "9") == "7-11" and k.repetitor_guruhi("Ona tili", "9") == "8-9"
+    assert k.repetitor_guruhi("Fizika", "11") == "10-11" and k.repetitor_guruhi("Ona tili", "x") is None
+    assert k.kurs_of("Matematika", "1-4") == ("repetitor|Matematika|1-4", "repetitor", "Matematika · 1–4-sinf", "1-4")
