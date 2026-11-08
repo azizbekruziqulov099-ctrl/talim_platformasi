@@ -817,8 +817,8 @@ def create_router(platform):
 
     @router.get("/api/dars_xonasi/{topic_code}/yuklab")
     def dars_yuklab(topic_code: str, token: str, format: str = "pdf", til: str = "uz"):
-        """Ochiq dars ishlanmasi: shu mavzuning nashr qilingan darsi PDF yoki Word ko'rinishida."""
-        platform._jwt_tekshir(token)
+        """Ochiq dars ishlanmasi: shu mavzuning nashr qilingan darsi PDF yoki Word ko'rinishida (REV426: faqat admin)."""
+        platform._admin_tekshir(token)
         fmt = format.lower()
         if fmt not in ("pdf", "docx"):
             raise HTTPException(status_code=400, detail="Format pdf yoki docx bo'lishi kerak")
