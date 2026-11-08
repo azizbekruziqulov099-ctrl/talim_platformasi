@@ -22227,6 +22227,7 @@ async def paket_yukla(token: str, fayl: UploadFile = File(...), scope_id: int = 
             fayllar = await run_in_threadpool(saqla)
             return {"paket": paket, "fayllar": fayllar,
                     "jami": {t: sum(1 for f in fayllar if f["turi"] == t) for t in ("mavzu", "miya", "royxat", "nomalum")}}
+    fayl.file.seek(0)   # REV435: ZIP tekshiruvidan keyin fayl ko'rsatkichi o'rtada qolardi — rasmli miya ZIP «noma'lum» bo'lib qolardi
     content = fayl.file.read()
     if len(content) > (80 if name.lower().endswith(".zip") else 30) * 1024 * 1024:
         raise HTTPException(status_code=413, detail="Fayl juda katta")
