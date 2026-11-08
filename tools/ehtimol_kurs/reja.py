@@ -9,6 +9,7 @@ _L45 = [
     "$X$: $x_1, x_2, \\dots$\n$\\sum p_i = 1$", E.g_noma_p),
    ("Matematik kutilma", "Tasodifiy miqdorning o‘rtacha qiymati — matematik kutilma: [1] $M(X) = \\sum x_i p_i$. [2] Xossalari: $M(C) = C$, $M(CX) = CM(X)$, $M(X+Y) = M(X)+M(Y)$.",
     "$M(X) = \\sum x_i p_i$\n$M(aX+b) = aM(X)+b$", E.g_mx),
+   ("O‘zingiz tashlang: ikki kub yig‘indisi", "Ikki kubni ko‘p marta tashlang. [1] Qaysi yig‘indi ko‘p tushyapti? O‘rtacha yig‘indi qaysi songa yaqinlashyapti? Bu o‘rtacha qiymat — matematik kutilma.", "OYIN: ikkikub", "Ikki kub yig‘indisining o‘rtachasi qaysi songa yaqin? => 7 | 6 | 12 | 3,5"),
    ("Dispersiya va o‘rtacha kvadratik chetlanish", "Qiymatlar o‘rtacha atrofida qanchalik sochilganini dispersiya ko‘rsatadi: [1] $D(X) = M(X^2) - M^2(X)$. [2] $\\sigma(X) = \\sqrt{D(X)}$. [3] $D(aX+b) = a^2D(X)$ — o‘zgarmas qo‘shiluvchi dispersiyani o‘zgartirmaydi.",
     "$D(X) = M(X^2) - M^2(X)$\n$\\sigma(X) = \\sqrt{D(X)}$\n$D(aX + b) = a^2 D(X)$", E.g_dx),
   ], [E.g_mx, E.g_dx, E.g_xossa], [E.g_noma_p, E.g_mx, E.g_dx, E.g_sigma, E.g_xossa, E.g_mx]),
@@ -95,6 +96,7 @@ MARUZA = [
  ("3-ma’ruza. Ehtimollarni qo‘shish va ko‘paytirish. Shartli ehtimol", [
    ("Qo‘shish teoremasi", "Birgalikda bo‘lmagan hodisalar uchun [1] $P(A+B) = P(A) + P(B)$. Birgalikdagi hodisalarda umumiy qism ikki marta sanalmasligi uchun [2] $P(A+B) = P(A)+P(B)-P(AB)$. [3] Qarama-qarshi hodisa: $P(\\bar{A}) = 1 - P(A)$.",
     "$P(A+B) = P(A)+P(B)$  (birgalikda emas)\n$P(A+B) = P(A)+P(B)-P(AB)$\n$P(\\bar{A}) = 1 - P(A)$", E.g_birgalikda),
+   ("O‘zingiz sanang: Venn diagrammasi", "Guruhda sportga 30, musiqaga 20, ikkalasiga 8 kishi qatnashadi. [1] Tugmalarni bosib, ikki to‘garakni bo‘yang. Ikkalasiga qatnashganlar necha marta sanaldi? Kamida bittasiga necha kishi qatnashadi?", "OYIN: venn 30 20 8", "Kamida bittasiga necha kishi qatnashadi? => 42 | 50 | 58 | 8"),
    ("Shartli ehtimol", "$B$ ro‘y bergani ma’lum bo‘lganda $A$ ning ehtimoli — shartli ehtimol: [1] $P(A|B) = \\frac{P(AB)}{P(B)}$. [2] Bundan ko‘paytirish teoremasi kelib chiqadi: $P(AB) = P(B)P(A|B)$.",
     "$P(A|B) = \\frac{P(AB)}{P(B)}$\n$P(AB) = P(B)\\,P(A|B)$", E.g_shartli),
    ("Bog‘liqsiz hodisalar", "Agar $P(A|B) = P(A)$ bo‘lsa, $A$ va $B$ bog‘liqsiz. [1] Unda $P(AB) = P(A)P(B)$. [2] Masalan, ikki mergan bir-biridan mustaqil otadi.",
@@ -105,6 +107,7 @@ MARUZA = [
  ("4-ma’ruza. To‘la ehtimol va Bayes formulalari. Bernulli sxemasi", [
    ("To‘la ehtimol formulasi", "Agar $A$ hodisa birgalikda bo‘lmagan $H_1, \\dots, H_n$ gipotezalardan biri bilan ro‘y bersa, [1] $P(A) = \\sum P(H_i)P(A|H_i)$. Gipotezalar ehtimollari yig‘indisi 1 ga teng.",
     "QOIDA: $P(A) = \\sum_{i=1}^{n} P(H_i)\\,P(A|H_i)$", E.g_tola),
+   ("O‘zingiz tekshiring: ehtimollar daraxti", "Mahsulotni ikki zavod beradi. [1] «Mahsulot ol» tugmasini 1000 marta bosing va brak ulushini kuzating. Keyin daraxt shoxlari bo‘yicha hisoblang: har shoxda ehtimollarni ko‘paytirib, so‘ng qo‘shing. Ikki javob mos keladimi?", "OYIN: daraxt 0,6 0,05 0,1", "Tasodifiy mahsulot brak bo‘lish ehtimoli? => 0,07 | 0,15 | 0,05 | 0,1"),
    ("Bayes formulasi", "$A$ ro‘y bergandan keyin gipotezalar ehtimollarini qayta baholaymiz: [1] $P(H_i|A) = \\frac{P(H_i)P(A|H_i)}{P(A)}$. Bu — tajriba natijasi bilan bilimni yangilash.",
     "QOIDA: $P(H_i|A) = \\frac{P(H_i)\\,P(A|H_i)}{P(A)}$", E.g_bayes),
    ("Bernulli sxemasi", "Bir xil sharoitda $n$ ta bog‘liqsiz tajriba o‘tkaziladi, har birida hodisa $p$ ehtimol bilan ro‘y beradi. [1] Roppa-rosa $k$ marta ro‘y berish ehtimoli $P_n(k) = C_n^k p^k q^{n-k}$, bunda $q = 1 - p$. [2] Eng ehtimolli son: $np - q \\le k_0 \\le np + p$.",
@@ -122,6 +125,7 @@ MARUZA = [
     "$f(x) = F'(x)$\n$\\int f(x)\\,dx = 1$\n$P(a<X<b) = \\int_a^b f(x)\\,dx$", E.g_zichlik_c),
    ("Sonli xarakteristikalar", "[1] $M(X) = \\int x f(x)dx$, [2] $D(X) = \\int x^2 f(x)dx - M^2(X)$.",
     "$M(X) = \\int x f(x)\\,dx$\n$D(X) = \\int x^2 f(x)\\,dx - M^2(X)$", E.g_uzluksiz_m),
+   ("O‘zingiz tashlang: kvadratga nuqtalar", "Kvadrat ichiga tavakkaliga nuqtalar tashlang. [1] Doira ichiga tushganlar ulushi qaysi songa yaqinlashadi? Natijalar cheksiz ko‘p bo‘lganda ehtimol — yuzalar nisbati.", "OYIN: nuqta", "Nuqta doira ichiga tushish ehtimoli? => π/4 ≈ 0,785 | 0,5 | 1/4 | 1"),
    ("Tekis va ko‘rsatkichli taqsimot", "$[a;b]$ da tekis: [1] $f(x) = \\frac{1}{b-a}$, $M = \\frac{a+b}{2}$, $D = \\frac{(b-a)^2}{12}$. Ko‘rsatkichli: [2] $f(x) = \\lambda e^{-\\lambda x}$, $M = \\frac{1}{\\lambda}$, $D = \\frac{1}{\\lambda^2}$.",
     "Tekis: $f = \\frac{1}{b-a}$, $M = \\frac{a+b}{2}$, $D = \\frac{(b-a)^2}{12}$\nKo‘rsatkichli: $f = \\lambda e^{-\\lambda x}$, $M = \\frac{1}{\\lambda}$", E.g_uzluksiz_f),
   ], [E.g_zichlik_c, E.g_uzluksiz_f, E.g_korsatkichli], [E.g_zichlik_c, E.g_uzluksiz_m, E.g_uzluksiz_f, E.g_korsatkichli, E.g_uzluksiz_f, E.g_korsatkichli]),
@@ -142,6 +146,7 @@ MARUZA = [
     "Bosh to‘plam → tanlanma ($n$ ta)\nReprezentativ = tasodifiy olingan", S.g_hajm),
    ("Variatsion qator", "Tanlanma qiymatlarini o‘sish tartibida yozamiz — variatsion qator. [1] $n_i$ — chastota, $w_i = \\frac{n_i}{n}$ — nisbiy chastota, $\\sum w_i = 1$.",
     "$x_i$: o‘sish tartibida\n$n_i$ — chastota;  $w_i = \\frac{n_i}{n}$", S.g_chastota),
+   ("O‘zingiz yig‘ing: chastotalar", "Kubni 100 marta tashlab, «6» necha marta tushganini — chastotasini va uning ulushini — nisbiy chastotani kuzating. [1] Tanlanma katta bo‘lgan sari nisbiy chastota barqarorlashadi.", "OYIN: kub 6", "Nisbiy chastota nimaga teng? => chastota / tanlanma hajmi | chastota · hajm | 1 / chastota"),
    ("Poligon, gistogramma, empirik funksiya", "[1] Poligon — $(x_i; n_i)$ nuqtalarni tutashtiruvchi siniq chiziq. [2] Gistogramma — interval ustidagi to‘rtburchaklar, balandligi $\\frac{w_i}{h}$. [3] Empirik funksiya $F^*(x) = \\frac{n_x}{n}$ — $x$ dan kichik qiymatlar ulushi.",
     "Poligon: $(x_i;\\ n_i)$\nGistogramma: balandlik $\\frac{w_i}{h}$\n$F^*(x) = \\frac{n_x}{n}$", S.g_emp_f),
   ], [S.g_chastota, S.g_emp_f, S.g_gist], [S.g_hajm, S.g_chastota, S.g_emp_f, S.g_gist, S.g_chastota, S.g_hajm]),
@@ -163,6 +168,7 @@ MARUZA = [
  ("11-ma’ruza. Interval baholar. Ishonch oraliqlari", [
    ("Ishonch oralig‘i", "Nuqtaviy baho xatoni ko‘rsatmaydi. [1] Ishonch oralig‘i $(\\theta^* - \\delta;\\ \\theta^* + \\delta)$ noma’lum parametrni $\\gamma$ ishonchlilik bilan qoplaydi. $\\delta$ — aniqlik.",
     "$P(\\theta^*-\\delta < \\theta < \\theta^*+\\delta) = \\gamma$", "Ishonchlilik oshsa, oraliq qanday bo‘ladi? => kengayadi | torayadi | o‘zgarmaydi"),
+   ("O‘zingiz sinang: 20 ta tanlanma", "Har bosishda 25 kishilik yangi tanlanma olinadi va 95 foizlik ishonch oralig‘i chiziladi. [1] 20 ta tanlanma oling. Oraliqlarning nechtasi haqiqiy o‘rta qiymatni — sariq chiziqni kesib o‘tadi?", "OYIN: tanlanma 25", "Oraliqlarning taxminan necha foizi haqiqiy o‘rta qiymatni qoplaydi? => 95% | 50% | 100% | 5%"),
    ("$\\sigma$ ma’lum bo‘lganda", "[1] $\\bar{x} - t\\frac{\\sigma}{\\sqrt{n}} < a < \\bar{x} + t\\frac{\\sigma}{\\sqrt{n}}$, bunda $\\Phi(t) = \\frac{\\gamma}{2}$; $\\gamma = 0,95$ da $t = 1,96$.",
     "$\\bar{x} \\pm t\\frac{\\sigma}{\\sqrt{n}}$,  $\\Phi(t) = \\frac{\\gamma}{2}$", S.g_ishonch_sigma),
    ("$\\sigma$ noma’lum bo‘lganda", "[1] $\\bar{x} \\pm t_\\gamma\\frac{s}{\\sqrt{n}}$, $t_\\gamma$ — Styudent taqsimotidan, ozodlik darajasi $n - 1$.", "$\\bar{x} \\pm t_\\gamma\\frac{s}{\\sqrt{n}}$,  $k = n - 1$", S.g_ishonch_t),
@@ -172,6 +178,7 @@ MARUZA = [
    ("Asosiy tushunchalar", "[1] $H_0$ — asosiy (nol) gipoteza, $H_1$ — muqobil. [2] I tur xato — to‘g‘ri $H_0$ ni rad etish, ehtimoli $\\alpha$ — ahamiyatlilik darajasi. II tur xato — noto‘g‘ri $H_0$ ni qabul qilish.",
     "$H_0$ — asosiy, $H_1$ — muqobil\nI tur xato: to‘g‘ri $H_0$ rad etildi ($\\alpha$)\nII tur xato: noto‘g‘ri $H_0$ qabul qilindi",
     "To‘g‘ri $H_0$ ni rad etish qanday xato? => I tur | II tur | xato emas"),
+   ("Tanga halolmi?", "Do‘stingiz tangani 100 marta tashlab, 60 marta gerb tushdi dedi. Tanga halolmi? [1] O‘zingiz halol tangani 100 martadan bir necha bor tashlab ko‘ring: 60 ta gerb tez-tez chiqadimi? Agar juda kam chiqsa, bu natija «tasodif» emas — gipotezani rad etamiz.", "OYIN: tanga", "Halol tangada 100 tashlashdan 60 va undan ko‘p gerb tez-tez chiqadimi? => kam chiqadi | har doim | hech qachon"),
    ("Kriteriy va kritik soha", "Statistika (kriteriy) hisoblanadi va kritik nuqta bilan solishtiriladi. [1] Kuzatilgan qiymat kritik sohaga tushsa — $H_0$ rad etiladi.", "$|K_{kuz}| > K_{kr}$ ⇒ $H_0$ rad etiladi", S.g_z_qaror),
    ("O‘rta qiymat haqida", "[1] $\\sigma$ ma’lum: $z = \\frac{\\bar{x}-a_0}{\\sigma/\\sqrt{n}}$. [2] $\\sigma$ noma’lum: $T = \\frac{\\bar{x}-a_0}{s/\\sqrt{n}}$, $k = n-1$.",
     "$z = \\frac{\\bar{x}-a_0}{\\sigma/\\sqrt{n}}$\n$T = \\frac{\\bar{x}-a_0}{s/\\sqrt{n}}$", S.g_z_test),
@@ -192,6 +199,7 @@ MARUZA = [
     "$r = \\frac{\\sum (x-\\bar{x})(y-\\bar{y})}{\\sqrt{\\sum(x-\\bar{x})^2 \\sum(y-\\bar{y})^2}}$\n$-1 \\le r \\le 1$", "$r = -0,95$ qanday bog‘lanish? => kuchli teskari | kuchli to‘g‘ri | bog‘lanish yo‘q | kuchsiz"),
    ("Chiziqli regressiya", "[1] $\\hat{y} = kx + b$, eng kichik kvadratlar usuli: $k = \\frac{\\sum(x-\\bar{x})(y-\\bar{y})}{\\sum(x-\\bar{x})^2}$, $b = \\bar{y} - k\\bar{x}$.",
     "$\\hat{y} = kx + b$\n$k = \\frac{\\sum(x-\\bar{x})(y-\\bar{y})}{\\sum(x-\\bar{x})^2}$\n$b = \\bar{y} - k\\bar{x}$", S.g_regressiya),
+   ("O‘zingiz o‘tkazing: eng yaxshi chiziq", "Nuqtalar orasidan chiziq o‘tkazing. [1] Qiyalik va siljishni surib, qizil uzuq chiziqlar — xatolar — imkon qadar kichik bo‘lsin. Xatolar kvadratlari yig‘indisi eng kichik bo‘lgan chiziq — regressiya chizig‘i.", "OYIN: chiziq", "Regressiya chizig‘i qanday tanlanadi? => xatolar kvadratlari yig‘indisi eng kichik | eng ko‘p nuqtadan o‘tadi | gorizontal"),
    ("Bashorat", "Tenglama topilgach, yangi $x$ uchun $y$ ni bashorat qilamiz: [1] $\\hat{y}(x_0) = kx_0 + b$.", "$\\hat{y}(x_0) = kx_0 + b$", S.g_regressiya_bashorat),
   ], [S.g_korrelyatsiya, S.g_regressiya, S.g_regressiya_bashorat], [S.g_korrelyatsiya, S.g_regressiya, S.g_regressiya_bashorat, S.g_korrelyatsiya, S.g_regressiya, S.g_regressiya_bashorat]),
 ]
@@ -246,5 +254,23 @@ AMALIY = [
  ("Yakuniy amaliyot: statistika bo‘yicha aralash masalalar", 15, ("Takrorlash", "[1] O‘rta qiymat, [2] oraliq, [3] gipoteza, [4] regressiya.", "$\\bar{x}$, $s^2$\n$\\bar{x}\\pm\\delta$\n$z$, $T$, $\\chi^2$\n$\\hat{y} = kx+b$"),
   [S.g_orta, S.g_tuzatilgan, S.g_ishonch_sigma, S.g_z_test, S.g_xi2, S.g_korrelyatsiya, S.g_regressiya]),
 ]
+# REV430: amaliyotga mos o'yin (takrorlashdan keyin talaba o'zi sinab ko'radi)
+AMALIY_OYIN = {
+ "Kombinatorika: o‘rin almashtirish va o‘rinlashtirish": "OYIN: joylashtir 3",
+ "Klassik ehtimol: tanga va o‘yin kubigi": "OYIN: kub 6",
+ "Geometrik va statistik ehtimol": "OYIN: nuqta",
+ "Qo‘shish teoremasi. Qarama-qarshi hodisa": "OYIN: venn 30 20 8",
+ "To‘la ehtimol formulasi": "OYIN: daraxt 0,6 0,05 0,1",
+ "Bayes formulasi": "OYIN: daraxt 0,7 0,03 0,08",
+ "M(X), D(X), σ(X) ni hisoblash": "OYIN: ikkikub",
+ "Normal taqsimot. Uch sigma qoidasi": "OYIN: galton 10",
+ "Chebishev tengsizligi. Markaziy limit teorema": "OYIN: galton 12",
+ "Variatsion qator, chastotalar": "OYIN: kub 6",
+ "Ishonch oralig‘i: σ ma’lum": "OYIN: tanlanma 25",
+ "Gipotezalar: asosiy tushunchalar, qaror qabul qilish": "OYIN: tanga",
+ "Korrelyatsiya koeffitsienti": "OYIN: chiziq",
+ "Chiziqli regressiya tenglamasi": "OYIN: chiziq",
+}
+
 assert len(MARUZA) == 15 and len(AMALIY) == 45, (len(MARUZA), len(AMALIY))
 assert sum(1 for a in AMALIY if a[1] <= 7) == 23 and sum(1 for a in AMALIY if a[1] >= 8) == 22

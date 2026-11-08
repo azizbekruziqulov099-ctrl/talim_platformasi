@@ -61,6 +61,9 @@ def amaliy(j, a, rng):
     R.append(("kirish", "", f"🎯 {j}-amaliy: {nom}", "Bugungi amaliy mashg‘ulot 80 daqiqa. Reja: 10 daqiqa formulalarni takrorlaymiz, 15 daqiqa namunalarni birga ko‘ramiz, 40 daqiqa masalalarni o‘zingiz yechasiz, 15 daqiqa test. Qiynalsangiz avval «Maslahat», keyin «Yechim»ni oching — lekin avval o‘zingiz urinib ko‘ring!",
               "⏱ 10′ takrorlash\n⏱ 15′ namunalar\n⏱ 40′ mustaqil masalalar (12 ta)\n⏱ 15′ test (8 ta)", "", "", "", "", "", "", "", "", "", ""))
     R.append(("tushuncha", "", rs, ro, rd, "", "", "", "", "", "", tekshiruv(yangi(gens[0], rng, kordi)), "", "", ""))
+    oyin = reja.AMALIY_OYIN.get(nom)   # REV430: mavzuga mos o'yin
+    if oyin:
+        R.append(("tushuncha", "", "🎮 O‘zingiz sinab ko‘ring", "Masalalarga o‘tishdan oldin bir daqiqa o‘ynab ko‘ring. [1] O‘yinda bugungi qoidani o‘z ko‘zingiz bilan ko‘rasiz.", oyin, "", "", "", "", "", "", "", "", "", ""))
     for k in range(2):
         it = yangi(gens[k % len(gens)], rng, kordi)
         R.append(("misol", f"N{k + 1:02d}", f"{k + 1}-namuna", it["matn"], "", "", "", it["javob"], it["yechim"] + f"\nJavob: {javob_korinish(it['javob'])}", "", "", "", "", "o‘rta", ""))
