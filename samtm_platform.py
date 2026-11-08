@@ -22231,43 +22231,106 @@ async def paket_yukla(token: str, fayl: UploadFile = File(...), scope_id: int = 
     if len(content) > (80 if name.lower().endswith(".zip") else 30) * 1024 * 1024:
         raise HTTPException(status_code=413, detail="Fayl juda katta")
     turi = _paket_turi(content, name)
-    natija = await run_in_threadpool(_paket_ishla, content, name, turi, scope_id, user_id, token)
-    return {"fayllar": [{"nomi": name, "turi": turi, "belgi": _paket_belgi(name), "holat": "tayyor" if natija["ok"] else "xato", **natija}]}
+    # REV428: bitta Excel yoki rasmli miya ZIP ham navbatga yoziladi va fonda o'rnatiladi (katta fayl brauzerni kutdirib qo'ymaydi)
+    belgi = _paket_belgi(name)
+
+    def yoz():
+        import secrets
+        conn = _db(); cur = conn.cursor()
+        try:
+            _paket_jadval(cur)
+            cur.execute("""INSERT INTO ai_brain_paket_fayllar(paket,tartib,nomi,yol,turi,belgi,data,yuklagan,holat)
+                           VALUES(%s,0,%s,%s,%s,%s,%s,%s,'kutmoqda') RETURNING id""",
+                        (secrets.token_hex(8), name, name, turi, belgi, psycopg2.Binary(content), user_id))
+            fid = cur.fetchone()["id"]
+            conn.commit()
+            return fid
+        finally:
+            cur.close(); conn.close()
+
+    fid = await run_in_threadpool(yoz)
+    javob = await run_in_threadpool(paket_fayl, fid, token, scope_id)
+    return {"fayllar": [javob]}
+
+
+def _paket_fon_ishi(fid, data, nomi, turi, scope_id, user_id, token):
+    """REV428: og'ir fayl fonda o'rnatiladi — brauzer so'rovi kutib qolmaydi (proksi vaqti tugab «Server javob bermadi» bo'lmaydi)."""
+    try:
+        with _PAKET_QULF:   # REV186: bir workerda bir vaqtda bitta og'ir fayl — xotira to'lib server o'chmasin
+            natija = _paket_ishla(data, nomi, turi, scope_id, user_id, token)
+    except Exception as exc:   # noqa: BLE001
+        natija = {"ok": False, "xabar": f"O'rnatishda xato: {str(exc)[:300]}"}
+    finally:
+        _xotirani_qaytar()
+    holat = "tayyor" if natija.get("ok") else "xato"
+    conn = _db(); cur = conn.cursor()
+    try:
+        cur.execute("""UPDATE ai_brain_paket_fayllar SET holat=%s, natija=%s::jsonb, updated_at=NOW(),
+                       data=CASE WHEN %s THEN NULL ELSE data END WHERE id=%s""",
+                    (holat, json.dumps(natija, ensure_ascii=False, default=str), bool(natija.get("ok")), fid))
+        conn.commit()
+    finally:
+        cur.close(); conn.close()
+
+
+def _paket_javob(fid, row):
+    natija = row.get("natija") or {}
+    return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": row["holat"],
+            "ok": row["holat"] == "tayyor", **({} if row["holat"] == "ishlanmoqda" else natija),
+            **({"xabar": "O'rnatilmoqda — server fonda ishlayapti"} if row["holat"] == "ishlanmoqda" else {})}
 
 
 @app.post("/api/admin/paket/fayl/{fid}")
 def paket_fayl(fid: int, token: str, scope_id: int = 0):
-    """Paketdagi bitta faylni o'rnatadi (mavzu yoki miya). Muvaffaqiyatli bo'lsa fayl baytlari o'chiriladi."""
+    """Paketdagi bitta faylni o'rnatishni boshlaydi (REV428: fonda). Javob darhol: «ishlanmoqda» — holati GET bilan so'raladi."""
     _admin_tekshir(token)
     user_id = _jwt_tekshir(token)
     conn = _db(); cur = conn.cursor()
     try:
         _paket_jadval(cur)
-        cur.execute("SELECT id,nomi,turi,belgi,data,holat,natija FROM ai_brain_paket_fayllar WHERE id=%s", (fid,))
+        cur.execute("""SELECT id,nomi,turi,belgi,data,holat,natija, EXTRACT(EPOCH FROM (NOW()-updated_at)) AS oldin
+                       FROM ai_brain_paket_fayllar WHERE id=%s FOR UPDATE""", (fid,))
+        row = cur.fetchone()
+        if not row:
+            conn.commit()
+            raise HTTPException(status_code=404, detail="Paket fayli topilmadi (3 kundan eski paketlar o'chiriladi)")
+        if row["holat"] == "tayyor":
+            conn.commit()
+            return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": "tayyor", **(row["natija"] or {})}
+        if row["data"] is None:
+            conn.commit()
+            return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": row["holat"], "ok": row["holat"] != "xato",
+                    "xabar": (row["natija"] or {}).get("xabar") or "O'tkazib yuborildi"}
+        # allaqachon ishlanmoqda (qayta bosilgan) — ikkinchi nusxa boshlanmaydi; 20 daqiqadan eski «ishlanmoqda» — server qayta ishga tushgan
+        if row["holat"] == "ishlanmoqda" and float(row["oldin"] or 0) < 1200:
+            conn.commit()
+            return _paket_javob(fid, row)
+        data = bytes(row["data"])
+        cur.execute("UPDATE ai_brain_paket_fayllar SET holat='ishlanmoqda', updated_at=NOW() WHERE id=%s", (fid,))
+        conn.commit()
+    finally:
+        cur.close(); conn.close()
+    threading.Thread(target=_paket_fon_ishi, args=(fid, data, row["nomi"], row["turi"], scope_id, user_id, token), daemon=True,
+                     name=f"paket-{fid}").start()
+    return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": "ishlanmoqda",
+            "ok": False, "xabar": "O'rnatilmoqda — server fonda ishlayapti"}
+
+
+@app.get("/api/admin/paket/fayl/{fid}/holat")
+def paket_fayl_holat(fid: int, token: str):
+    """REV428: fondagi o'rnatish holati (brauzer har 3 soniyada so'raydi)."""
+    _admin_tekshir(token)
+    conn = _db(); cur = conn.cursor()
+    try:
+        _paket_jadval(cur)
+        cur.execute("SELECT id,nomi,turi,belgi,holat,natija FROM ai_brain_paket_fayllar WHERE id=%s", (fid,))
         row = cur.fetchone()
         conn.commit()
     finally:
         cur.close(); conn.close()
     if not row:
-        raise HTTPException(status_code=404, detail="Paket fayli topilmadi (3 kundan eski paketlar o'chiriladi)")
-    if row["holat"] == "tayyor":
-        return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": "tayyor", **(row["natija"] or {})}
-    if row["data"] is None:
-        return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": row["holat"], "ok": row["holat"] != "xato",
-                "xabar": (row["natija"] or {}).get("xabar") or "O'tkazib yuborildi"}
-    with _PAKET_QULF:   # REV186: bir workerda bir vaqtda bitta og'ir fayl (Excel + rasmlar) — xotira to'lib server o'chmasin
-        natija = _paket_ishla(bytes(row["data"]), row["nomi"], row["turi"], scope_id, user_id, token)
-    _xotirani_qaytar()
-    holat = "tayyor" if natija["ok"] else "xato"
-    conn = _db(); cur = conn.cursor()
-    try:
-        cur.execute("""UPDATE ai_brain_paket_fayllar SET holat=%s, natija=%s::jsonb, updated_at=NOW(),
-                       data=CASE WHEN %s THEN NULL ELSE data END WHERE id=%s""",
-                    (holat, json.dumps(natija, ensure_ascii=False, default=str), natija["ok"], fid))
-        conn.commit()
-    finally:
-        cur.close(); conn.close()
-    return {"id": fid, "nomi": row["nomi"], "turi": row["turi"], "belgi": row["belgi"], "holat": holat, **natija}
+        raise HTTPException(status_code=404, detail="Paket fayli topilmadi")
+    return _paket_javob(fid, row)
 
 
 @app.get("/api/admin/ai_miya_importlar")
