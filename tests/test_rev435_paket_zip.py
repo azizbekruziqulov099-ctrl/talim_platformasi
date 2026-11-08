@@ -1,3 +1,5 @@
+import os
+os.environ.setdefault("JWT_MAXFIY_KALIT", "x" * 40)
 import io, zipfile
 import samtm_platform as S
 
