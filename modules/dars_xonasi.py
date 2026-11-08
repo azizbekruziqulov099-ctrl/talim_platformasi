@@ -820,15 +820,20 @@ def create_router(platform):
         """Ochiq dars ishlanmasi: shu mavzuning nashr qilingan darsi PDF yoki Word ko'rinishida (REV426: faqat admin)."""
         platform._admin_tekshir(token)
         fmt = format.lower()
-        if fmt not in ("pdf", "docx"):
-            raise HTTPException(status_code=400, detail="Format pdf yoki docx bo'lishi kerak")
+        if fmt not in ("pdf", "docx", "pptx"):
+            raise HTTPException(status_code=400, detail="Format pdf, docx yoki pptx bo'lishi kerak")
         lesson = load_lesson(topic_code, til)
         urls = [s.get("rasm") for s in lesson["steps"]] + [v.get("rasm") for vs in lesson["variants"].values() for v in vs]
         images = media_bytes(urls)
         from modules.dars_export import lesson_docx, lesson_pdf
-        data = lesson_pdf(lesson, images) if fmt == "pdf" else lesson_docx(lesson, images)
+        if fmt == "pptx":   # REV427: ochiq dars taqdimoti
+            from modules.dars_pptx import lesson_pptx
+            data = lesson_pptx(lesson, images)
+        else:
+            data = lesson_pdf(lesson, images) if fmt == "pdf" else lesson_docx(lesson, images)
         safe = re.sub(r"[^A-Za-z0-9_-]+", "_", lesson["topic"].get("mavzu") or topic_code)[:60] or "dars"
-        media_type = "application/pdf" if fmt == "pdf" else "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        media_type = {"pdf": "application/pdf", "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                      "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation"}[fmt]
         return Response(content=data, media_type=media_type, headers={
             "Content-Disposition": f'attachment; filename="ochiq_dars_{safe}.{fmt}"',
             "Cache-Control": "private, no-store", "X-Content-Type-Options": "nosniff",
