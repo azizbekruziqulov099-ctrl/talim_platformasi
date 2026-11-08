@@ -41,18 +41,18 @@ def yangi(gen, rng, kordi):
 def maruza(i, m, rng):
     nom, nazariya, misollar, testlar = m
     kordi, R = set(), []
-    R.append(("kirish", "", "🎯 " + re.sub(r"^\d+-ma’ruza\.\s*", "", nom), f"Assalomu alaykum! {nom}. Ma’ruza 80 daqiqa: avval tushunchalarni birga tushunamiz — har bir tushunchadan keyin sizga savol beraman, javobni tanlaysiz. Keyin namunaviy misollarni yechamiz va oxirida qisqa test.",
+    R.append(("kirish", "", "🎯 " + re.sub(r"^\d+-ma’ruza\.\s*", "", nom), f"Assalomu alaykum! {nom}. Bugun formulalarni yodlamaymiz — ularni o‘zingiz kashf qilasiz. Har qadamda sizga savol beraman, javobni siz topasiz, doska esa uni ko‘rsatib tasdiqlaydi.",
               "Reja:\n" + "\n".join(f"{k + 1}. {t[0]}" for k, t in enumerate(nazariya)) + "\n→ Namunalar → Test", "", "", "", "", "", "", "", "", "", ""))
     for sarl, ovoz, doska, sav in nazariya:
         tek = sav if isinstance(sav, str) else tekshiruv(yangi(sav, rng, kordi))
         R.append(("tushuncha", "", sarl, ovoz, doska, "", "", "", "", "", "", tek, "", "", ""))
     for k, g in enumerate(misollar, 1):
-        it = yangi(g, rng, kordi)
+        it = g if isinstance(g, dict) else yangi(g, rng, kordi)   # REV425: tayyor misol ham bo'ladi
         R.append(("misol", f"N{k:02d}", f"{k}-namuna", it["matn"], "", "", "", it["javob"], it["yechim"] + f"\nJavob: {javob_korinish(it['javob'])}", "", "", "", "", "o‘rta", ""))
     for k, g in enumerate(testlar, 1):
-        R.append(test_qatori(yangi(g, rng, kordi), f"T{k:02d}", f"Test {k}", rng))
+        R.append(test_qatori(g if isinstance(g, dict) else yangi(g, rng, kordi), f"T{k:02d}", f"Test {k}", rng))
     R.append(("xulosa", "", "🌟 Yodda tuting", "Bugungi ma’ruzaning asosiy formulalari doskada. Ularni daftaringizga yozib oling — amaliy mashg‘ulotda kerak bo‘ladi.",
-              "\n".join(t[2].split("\n")[0] for t in nazariya), "", "", "", "", "", "", "", "", "", ""))
+              "\n".join(([l for t in nazariya for l in t[2].split("\n") if l.startswith("QOIDA:")] or [t[2].split("\n")[0] for t in nazariya if not re.match(r"^[A-Z_]+:", t[2])])[:6]), "", "", "", "", "", "", "", "", "", ""))
     return R
 
 def amaliy(j, a, rng):
@@ -89,7 +89,7 @@ def qur(chiqish):
     k = wb['KITOB']
     for row in k.iter_rows(min_row=1, max_row=14):
         val = {'Kitob nomi *': "Ehtimollar nazariyasi va matematik statistika (15 ma’ruza, 45 amaliy)", 'Fan *': FAN, 'Sinf *': SINF, 'Kitob kodi': "EHTIMOL-STAT-UZ",
-               'Til': 'uz', 'Mualliflar': 'Ro‘ziqulov A. · Kabutar Ta’lim', 'Kod prefiksi': "ENS"}.get(str(row[0].value or ''))
+               'Til': 'uz', 'Mualliflar': 'Ro‘ziqulov A. · Kabutar Ta’lim', 'Kod prefiksi': "ENS", 'Nashr yili': '2026 (2-nashr)'}.get(str(row[0].value or ''))
         if val is not None: row[1].value = val
     shablon = wb[wb.sheetnames[2]]
     for name in wb.sheetnames[2:]:
