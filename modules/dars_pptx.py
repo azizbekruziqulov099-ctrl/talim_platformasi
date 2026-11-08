@@ -308,7 +308,7 @@ def _doska_slayd(prs, bosqich, title, lines, notes, picture=None):
             nomi = {"joylashtir": "harflarni har xil tartibda qo‘yish", "tanga": "tangani ko‘p marta tashlash tajribasi",
                     "kub": "kubni ko‘p marta tashlash tajribasi", "galton": "Galton taxtasi — sharlar tashlash",
                     "venn": "Venn diagrammasini bo‘yash", "daraxt": "ehtimollar daraxti — mahsulot olish", "ikkikub": "ikki kub yig‘indisi taqsimoti",
-                    "nuqta": "kvadratga nuqta tashlash", "tanlanma": "tanlanmalar va ishonch oraliqlari", "chiziq": "eng yaxshi chiziqni o‘tkazish"}.get((arg.split() or [""])[0].lower(), arg)
+                    "nuqta": "kvadratga nuqta tashlash", "karta": "dastadan karta olish", "qop": "qopdan shar olish", "tanlanma": "tanlanmalar va ishonch oraliqlari", "chiziq": "eng yaxshi chiziqni o‘tkazish"}.get((arg.split() or [""])[0].lower(), arg)
             box = _quti(s, x - Inches(0.15), y - Inches(0.08), Inches(11.4), Inches(0.8), "1F4E3D", line="6CC070")
             guruhlar.append([box, _matn(s, x, y + Inches(0.08), Inches(11), Inches(0.6), f"🎮 O‘quvchilar platformada o‘ynaydi: {nomi}", 22, "C9F2C9", True)])
             y += Inches(1.0)
