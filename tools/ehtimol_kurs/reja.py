@@ -3,6 +3,28 @@ Ma'ruza nazariyasi — qo'lda yozilgan (tushunchalar, doskadagi formulalar, savo
 import ehtimol_gen as E
 import statistika_gen as S
 
+_L45 = [
+ ("4-ma’ruza. Diskret tasodifiy miqdorlar va ularning sonli xarakteristikalari", [
+   ("Tasodifiy miqdor", "Tajriba natijasida oldindan noma’lum qiymat qabul qiladigan miqdor — tasodifiy miqdor. [1] Qiymatlari sanoqli bo‘lsa — diskret. [2] Taqsimot qonuni — qiymatlar va ularning ehtimollari jadvali; ehtimollar yig‘indisi 1.",
+    "$X$: $x_1, x_2, \\dots$\n$\\sum p_i = 1$", E.g_noma_p),
+   ("Matematik kutilma", "Tasodifiy miqdorning o‘rtacha qiymati — matematik kutilma: [1] $M(X) = \\sum x_i p_i$. [2] Xossalari: $M(C) = C$, $M(CX) = CM(X)$, $M(X+Y) = M(X)+M(Y)$.",
+    "$M(X) = \\sum x_i p_i$\n$M(aX+b) = aM(X)+b$", E.g_mx),
+   ("Dispersiya va o‘rtacha kvadratik chetlanish", "Qiymatlar o‘rtacha atrofida qanchalik sochilganini dispersiya ko‘rsatadi: [1] $D(X) = M(X^2) - M^2(X)$. [2] $\\sigma(X) = \\sqrt{D(X)}$. [3] $D(aX+b) = a^2D(X)$ — o‘zgarmas qo‘shiluvchi dispersiyani o‘zgartirmaydi.",
+    "$D(X) = M(X^2) - M^2(X)$\n$\\sigma(X) = \\sqrt{D(X)}$\n$D(aX + b) = a^2 D(X)$", E.g_dx),
+  ], [E.g_mx, E.g_dx, E.g_xossa], [E.g_noma_p, E.g_mx, E.g_dx, E.g_sigma, E.g_xossa, E.g_mx]),
+ ("5-ma’ruza. Muhim diskret taqsimotlar", [
+   ("Binomial taqsimot", "Bernulli sxemasidagi muvaffaqiyatlar soni binomial taqsimlangan: [1] $P(X=k) = C_n^kp^kq^{n-k}$. [2] $M(X) = np$, $D(X) = npq$.",
+    "$P(X=k) = C_n^k p^k q^{n-k}$\n$M = np,\\quad D = npq$", E.g_binom_mx),
+   ("Puasson taqsimoti", "Kam uchraydigan hodisalar soni: [1] $P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}$. [2] Ajoyib xossa: $M(X) = D(X) = \\lambda$.",
+    "$P(X=k) = \\frac{\\lambda^k}{k!}e^{-\\lambda}$\n$M = D = \\lambda$", E.g_puasson_mx),
+   ("Geometrik va gipergeometrik", "Birinchi muvaffaqiyatgacha urinishlar soni geometrik taqsimlangan: [1] $P(X=k) = q^{k-1}p$. Qaytarmasdan tanlashda — gipergeometrik: [2] $P(X=k) = \\frac{C_M^kC_{N-M}^{n-k}}{C_N^n}$.",
+    "$P(X=k) = q^{k-1}p$\n$P(X=k) = \\frac{C_M^k C_{N-M}^{n-k}}{C_N^n}$", E.g_geom),
+  ], [E.g_binom_mx, E.g_puasson_mx, E.g_gipergeom], [E.g_binom_mx, E.g_puasson_mx, E.g_geom, E.g_gipergeom, E.g_laplas_lokal, E.g_laplas_integral]),
+
+]
+L4_NAZ, L4_MIS, L4_TEST = _L45[0][1], _L45[0][2], _L45[0][3]
+L5_NAZ, L5_MIS, L5_TEST = _L45[1][1], _L45[1][2], _L45[1][3]
+
 # Ma'ruza: (nom, [(sarlavha, ovoz, doska, savol_generator_yoki_qo'lda)], misol_generatorlari, test_generatorlari)
 # savol: str («Savol => to'g'ri | xato | ...») yoki generator funksiyasi
 MARUZA = [
@@ -18,6 +40,8 @@ MARUZA = [
     "ORIN_ALMASH: 3", "AB qatoriga C ni nechta joyga qo‘yish mumkin? => 3 | 2 | 4"),
    ("Birinchi naqsh", "Hisoblaymiz. [1] Ikkita eski tartibning har biridan uchtadan yangi tartib chiqdi. [2] Demak uchta narsa 3 ko‘paytirilgan 2, ya’ni 6 xil tartiblanadi. Yangi narsa eski har bir tartibga narsalar sonicha joyga kiradi.",
     "2 ta tartib · 3 ta joy\n$3 \\cdot 2 = 6$", "Uchta narsa necha xil tartiblanadi? => 6 | 5 | 9"),
+   ("O‘zingiz sinab ko‘ring", "Endi o‘zingiz bajaring. [1] A, B va C ni bosib, har xil tartib tuzing. Har yangi tartib pastda qo‘shiladi. Nechta topa olasiz? Hammasini topgach, sanab ko‘ring — biz hisoblagan son chiqdimi?",
+    "OYIN: joylashtir 3", "Uchta narsadan nechta har xil tartib topdingiz? => 6 | 5 | 3 | 9"),
    ("To‘rtinchisi", "Endi to‘rtinchi narsa D. Uch narsaning 6 ta tartibi bor. [1] D ni har bir tartibga to‘rt joyga qo‘yamiz: oldiga, ikkita oraliqqa va oxiriga. Birinchi tartibda buni to‘liq ko‘rsatdim, qolgan beshtasida ham xuddi shunday, har biridan to‘rttadan.",
     "ORIN_ALMASH: 4", "6 ta tartibning har biridan 4 tadan. Jami? => 24 | 10 | 18"),
    ("Zinapoya va formula", "Natijalarni zinapoya qilib yozamiz. [1] Bitta narsa — 1. [2] Ikkita — 2 ko‘paytirilgan 1. [3] Uchta — 3 ko‘paytirilgan oldingi natija. [4] To‘rtta — 4 ko‘paytirilgan oldingi natija. [5] Har zinada oldingi son yangi narsalar soniga ko‘paytirilyapti. 1 dan n gacha sonlar ko‘paytmasini n faktorial deymiz.",
@@ -48,7 +72,27 @@ MARUZA = [
    {"matn": "$C_n^k = A_n^k : \\;?$", "javob": "$k!$", "yechim": "Tanlangan $k$ ta narsaning $k!$ xil tartibi bitta guruh.", "xato": ["$n!$", "$(n-k)!$", "$n$"]},
    {"matn": "$0!$ nechaga teng?", "javob": "1", "yechim": "$1! = 1 \\cdot 0!$, demak $0! = 1$.", "xato": ["0", "cheksiz", "aniqlanmagan"]},
   ]),
- ("2-ma’ruza. Ehtimollarni qo‘shish va ko‘paytirish. Shartli ehtimol", [
+ ("2-ma’ruza. Tasodifiy hodisalar. Ehtimolning klassik, statistik va geometrik ta’riflari", [
+   ("Hayotiy savol", "Tanga tashlaymiz. [1] Gerb tushadimi yoki raqammi — oldindan aytib bo‘lmaydi. Lekin 100 marta tashlasak, taxminan nechta gerb tushadi? Taxmin qiling, keyin o‘zingiz tekshirasiz.",
+    "Tanga 100 marta — nechta gerb?", "Taxminingiz qaysi? => 50 ga yaqin | 100 | 10 | 0"),
+   ("Tajriba va hodisa", "Kub tashlash — tajriba. [1] «Juft son tushdi» — tasodifiy hodisa: ro‘y berishi ham, bermasligi ham mumkin. [2] «7 tushdi» — mumkin bo‘lmagan hodisa. [3] «6 dan katta bo‘lmagan son tushdi» — muqarrar hodisa.",
+    "Tasodifiy: $A$ = «juft son»\nMumkin emas: «7 tushdi»\nMuqarrar: «$\\le 6$ tushdi»", "«Kubda 0 tushdi» qanday hodisa? => mumkin bo‘lmagan | muqarrar | tasodifiy"),
+   ("Natijalarni sanaymiz", "Kubning 6 ta yuzi bor, har biri bir xil imkoniyat bilan tushadi. [1] Juft son nechta yuzda? 2, 4 va 6 — uchta. [2] Demak juft son 6 imkoniyatdan 3 tasida tushadi. Bu nisbatni ehtimol deymiz.",
+    "Natijalar: 1, 2, 3, 4, 5, 6 — $n = 6$\nJuft: 2, 4, 6 — $m = 3$", "Kubda 5 dan katta son tushishi uchun nechta qulay natija bor? => 1 | 2 | 5"),
+   ("Klassik ta’rif", "Qulay natijalar sonini hamma teng imkoniyatli natijalar soniga bo‘lamiz. [1] Juft son tushish ehtimoli 3 ni 6 ga bo‘lganiga, ya’ni yarmiga teng. [2] Ehtimol har doim 0 dan 1 gacha: mumkin bo‘lmagan hodisaniki 0, muqarrarniki 1.",
+    "QOIDA: $P(A) = \\frac{m}{n}$\n$0 \\le P(A) \\le 1$", "Kubda «3 tushishi» ehtimoli nechaga teng? => 1/6 | 1/3 | 1/2 | 3"),
+   ("Tajribada tekshiramiz", "Endi o‘zingiz tashlang. [1] Avval 10 marta, keyin 100, keyin 1000 marta. Har safar gerb ulushini — nisbiy chastotani kuzating. Tajriba ko‘paygan sari u qaysi songa yaqinlashyapti?",
+    "OYIN: tanga", "1000 tashlashda nisbiy chastota qaysi songa yaqin bo‘ldi? => 0,5 | 0,1 | 0,9 | 1"),
+   ("Statistik ta’rif", "Ko‘p tajribada hodisa ro‘y bergan ulush — nisbiy chastota. [1] Tajriba ko‘paygan sari u ehtimolga yaqinlashadi. Natijalar teng imkoniyatli bo‘lmasa, masalan, tug‘ilgan bolaning o‘g‘il bo‘lishi, ehtimolni faqat shunday topamiz.",
+    "QOIDA: $W(A) = \\frac{m}{n} \\approx P(A)$, $n$ katta", "1000 ta mahsulotdan 30 tasi nuqsonli. Nuqsonli chiqish ehtimoli taxminan? => 0,03 | 0,3 | 30 | 0,97"),
+   ("Kub bilan ham sinang", "Kub uchun «6 tushdi» hodisasini tekshiring. [1] Klassik ta’rif bo‘yicha ehtimol oltidan bir. Tajriba ham shuni ko‘rsatadimi?",
+    "OYIN: kub 6", "Ko‘p tashlashda «6» ulushi qaysi songa yaqin? => 1/6 ≈ 0,167 | 0,5 | 0,6"),
+   ("Geometrik ta’rif", "Nishonga tavakkaliga o‘q tegdi. Natijalar cheksiz ko‘p — nuqtalar. [1] Unda sanash o‘rniga o‘lchaymiz: kichik doira yuzini katta doira yuziga bo‘lamiz. Kesmada — uzunliklar, fazoda — hajmlar nisbati.",
+    "QOIDA: $P = \\frac{S_{kichik}}{S_{katta}}$", "Radiusi 2 va 4 bo‘lgan doiralar. O‘q ichki doiraga tegish ehtimoli? => 1/4 | 1/2 | 1/8"),
+   ("Hodisalar ustida amallar", "Ikki hodisa bo‘lsin: A — sportga qatnashadi, B — musiqaga. [1] A yoki B, ya’ni kamida bittasi — A+B. [2] Ikkalasi ham — AB. [3] A ro‘y bermadi — A ning qarama-qarshisi. Bu amallarni keyingi ma’ruzada ehtimollarni qo‘shish va ko‘paytirishda ishlatamiz.",
+    "$A + B$ — kamida bittasi\n$AB$ — ikkalasi ham\n$\\bar{A}$ — $A$ ro‘y bermadi", "«Kamida bittasi ro‘y berdi» qanday yoziladi? => A + B | AB | Ā"),
+  ], [E.g_kub_yigindi, E.g_geometrik, E.g_statistik], [E.g_kub_yigindi, E.g_tanga, E.g_idish, E.g_kesma, E.g_statistik, E.g_qarama]),
+ ("3-ma’ruza. Ehtimollarni qo‘shish va ko‘paytirish. Shartli ehtimol", [
    ("Qo‘shish teoremasi", "Birgalikda bo‘lmagan hodisalar uchun [1] $P(A+B) = P(A) + P(B)$. Birgalikdagi hodisalarda umumiy qism ikki marta sanalmasligi uchun [2] $P(A+B) = P(A)+P(B)-P(AB)$. [3] Qarama-qarshi hodisa: $P(\\bar{A}) = 1 - P(A)$.",
     "$P(A+B) = P(A)+P(B)$  (birgalikda emas)\n$P(A+B) = P(A)+P(B)-P(AB)$\n$P(\\bar{A}) = 1 - P(A)$", E.g_birgalikda),
    ("Shartli ehtimol", "$B$ ro‘y bergani ma’lum bo‘lganda $A$ ning ehtimoli — shartli ehtimol: [1] $P(A|B) = \\frac{P(AB)}{P(B)}$. [2] Bundan ko‘paytirish teoremasi kelib chiqadi: $P(AB) = P(B)P(A|B)$.",
@@ -58,7 +102,7 @@ MARUZA = [
    ("Kamida bittasi", "Ko‘p hodisadan kamida bittasi ro‘y berishini to‘g‘ridan hisoblash qiyin. [1] Qarama-qarshisini olamiz: hech biri ro‘y bermadi. [2] $P = 1 - q_1 q_2 \\cdots q_n$.",
     "$P(\\text{kamida bittasi}) = 1 - q_1q_2\\cdots q_n$", E.g_kamida_bittasi),
   ], [E.g_qoshish, E.g_faqat_bittasi, E.g_shartli_jadval], [E.g_qoshish, E.g_qarama, E.g_kopaytirish, E.g_shartli, E.g_kamida_bittasi, E.g_faqat_bittasi]),
- ("3-ma’ruza. To‘la ehtimol va Bayes formulalari. Bernulli sxemasi", [
+ ("4-ma’ruza. To‘la ehtimol va Bayes formulalari. Bernulli sxemasi", [
    ("To‘la ehtimol formulasi", "Agar $A$ hodisa birgalikda bo‘lmagan $H_1, \\dots, H_n$ gipotezalardan biri bilan ro‘y bersa, [1] $P(A) = \\sum P(H_i)P(A|H_i)$. Gipotezalar ehtimollari yig‘indisi 1 ga teng.",
     "QOIDA: $P(A) = \\sum_{i=1}^{n} P(H_i)\\,P(A|H_i)$", E.g_tola),
    ("Bayes formulasi", "$A$ ro‘y bergandan keyin gipotezalar ehtimollarini qayta baholaymiz: [1] $P(H_i|A) = \\frac{P(H_i)P(A|H_i)}{P(A)}$. Bu — tajriba natijasi bilan bilimni yangilash.",
@@ -68,22 +112,8 @@ MARUZA = [
    ("Katta $n$ uchun yaqinlashishlar", "$n$ katta bo‘lsa Bernulli formulasi og‘ir. [1] $p$ kichik bo‘lsa — Puasson: $P_n(k) \\approx \\frac{\\lambda^k e^{-\\lambda}}{k!}$, $\\lambda = np$. [2] $npq$ katta bo‘lsa — Laplasning lokal va integral teoremalari.",
     "$P_n(k) \\approx \\frac{\\lambda^k e^{-\\lambda}}{k!}$\n$P_n(k) \\approx \\frac{\\varphi(x)}{\\sqrt{npq}}$\n$P_n(k_1;k_2) \\approx \\Phi(x_2) - \\Phi(x_1)$", E.g_puasson),
   ], [E.g_tola, E.g_bernulli, E.g_eng_ehtimolli], [E.g_tola, E.g_bayes, E.g_bernulli, E.g_eng_ehtimolli, E.g_puasson, E.g_kamida_k]),
- ("4-ma’ruza. Diskret tasodifiy miqdorlar va ularning sonli xarakteristikalari", [
-   ("Tasodifiy miqdor", "Tajriba natijasida oldindan noma’lum qiymat qabul qiladigan miqdor — tasodifiy miqdor. [1] Qiymatlari sanoqli bo‘lsa — diskret. [2] Taqsimot qonuni — qiymatlar va ularning ehtimollari jadvali; ehtimollar yig‘indisi 1.",
-    "$X$: $x_1, x_2, \\dots$\n$\\sum p_i = 1$", E.g_noma_p),
-   ("Matematik kutilma", "Tasodifiy miqdorning o‘rtacha qiymati — matematik kutilma: [1] $M(X) = \\sum x_i p_i$. [2] Xossalari: $M(C) = C$, $M(CX) = CM(X)$, $M(X+Y) = M(X)+M(Y)$.",
-    "$M(X) = \\sum x_i p_i$\n$M(aX+b) = aM(X)+b$", E.g_mx),
-   ("Dispersiya va o‘rtacha kvadratik chetlanish", "Qiymatlar o‘rtacha atrofida qanchalik sochilganini dispersiya ko‘rsatadi: [1] $D(X) = M(X^2) - M^2(X)$. [2] $\\sigma(X) = \\sqrt{D(X)}$. [3] $D(aX+b) = a^2D(X)$ — o‘zgarmas qo‘shiluvchi dispersiyani o‘zgartirmaydi.",
-    "$D(X) = M(X^2) - M^2(X)$\n$\\sigma(X) = \\sqrt{D(X)}$\n$D(aX + b) = a^2 D(X)$", E.g_dx),
-  ], [E.g_mx, E.g_dx, E.g_xossa], [E.g_noma_p, E.g_mx, E.g_dx, E.g_sigma, E.g_xossa, E.g_mx]),
- ("5-ma’ruza. Muhim diskret taqsimotlar", [
-   ("Binomial taqsimot", "Bernulli sxemasidagi muvaffaqiyatlar soni binomial taqsimlangan: [1] $P(X=k) = C_n^kp^kq^{n-k}$. [2] $M(X) = np$, $D(X) = npq$.",
-    "$P(X=k) = C_n^k p^k q^{n-k}$\n$M = np,\\quad D = npq$", E.g_binom_mx),
-   ("Puasson taqsimoti", "Kam uchraydigan hodisalar soni: [1] $P(X=k) = \\frac{\\lambda^k e^{-\\lambda}}{k!}$. [2] Ajoyib xossa: $M(X) = D(X) = \\lambda$.",
-    "$P(X=k) = \\frac{\\lambda^k}{k!}e^{-\\lambda}$\n$M = D = \\lambda$", E.g_puasson_mx),
-   ("Geometrik va gipergeometrik", "Birinchi muvaffaqiyatgacha urinishlar soni geometrik taqsimlangan: [1] $P(X=k) = q^{k-1}p$. Qaytarmasdan tanlashda — gipergeometrik: [2] $P(X=k) = \\frac{C_M^kC_{N-M}^{n-k}}{C_N^n}$.",
-    "$P(X=k) = q^{k-1}p$\n$P(X=k) = \\frac{C_M^k C_{N-M}^{n-k}}{C_N^n}$", E.g_geom),
-  ], [E.g_binom_mx, E.g_puasson_mx, E.g_gipergeom], [E.g_binom_mx, E.g_puasson_mx, E.g_geom, E.g_gipergeom, E.g_laplas_lokal, E.g_laplas_integral]),
+ # REV429: diskret tasodifiy miqdorlar va muhim taqsimotlar — bitta ma'ruzada (5-ma'ruza)
+ ("5-ma’ruza. Diskret tasodifiy miqdorlar va muhim taqsimotlar", L4_NAZ + L5_NAZ, L4_MIS[:2] + L5_MIS[:1], L4_TEST[:3] + L5_TEST[:3]),
  ("6-ma’ruza. Uzluksiz tasodifiy miqdorlar", [
    ("Taqsimot funksiyasi", "Har qanday tasodifiy miqdor uchun [1] $F(x) = P(X < x)$. Xossalari: kamaymaydi, $F(-\\infty) = 0$, $F(+\\infty) = 1$; [2] $P(a \\le X < b) = F(b) - F(a)$.",
     "$F(x) = P(X < x)$\n$P(a \\le X < b) = F(b) - F(a)$",
@@ -102,6 +132,8 @@ MARUZA = [
     "$P(|X-a|<\\delta) = 2\\Phi\\left(\\frac{\\delta}{\\sigma}\\right)$\nQOIDA: $P(|X-a|<3\\sigma) = 0,9973$", E.g_uch_sigma),
    ("Chebishev tengsizligi", "Taqsimot noma’lum bo‘lsa ham: [1] $P(|X - M(X)| \\ge \\varepsilon) \\le \\frac{D(X)}{\\varepsilon^2}$. [2] Bundan katta sonlar qonuni: ko‘p tajribada o‘rtacha arifmetik matematik kutilmaga yaqinlashadi.",
     "$P(|X-M(X)|\\ge\\varepsilon) \\le \\frac{D(X)}{\\varepsilon^2}$", E.g_chebishev),
+   ("Galton taxtasi: o‘zingiz tashlang", "Har shar mixga urilib, yarim ehtimol bilan o‘ngga yoki chapga og‘adi. [1] Sharlarni avval bittadan, keyin 200 tadan tashlang. Pastdagi ustunlar qanday shakl oladi?",
+    "OYIN: galton 8", "Ko‘p shar tashlanganda ustunlar qanday shakl oladi? => o‘rtasi baland «qo‘ng‘iroq» | tekis | chapga og‘gan"),
    ("Markaziy limit teorema", "Ko‘p bog‘liqsiz qo‘shiluvchilar yig‘indisi taxminan normal taqsimlanadi — qo‘shiluvchilar qanday taqsimlangan bo‘lmasin. [1] $S_n \\approx N(na;\\ n\\sigma^2)$.",
     "$S_n = X_1 + \\dots + X_n \\approx N(na;\\ n\\sigma^2)$", E.g_mlt),
   ], [E.g_normal, E.g_uch_sigma, E.g_chebishev], [E.g_normal, E.g_uch_sigma, E.g_chebishev, E.g_mlt, E.g_normal, E.g_laplas_integral]),
@@ -168,20 +200,20 @@ MARUZA = [
 AMALIY = [
  ("Kombinatorika: o‘rin almashtirish va o‘rinlashtirish", 1, ("Formulalar", "Bugun sanash usullarini mashq qilamiz. [1] Hammasini tartiblash — $n!$. [2] $k$ tasini tartib bilan — $A_n^k$.", "$P_n = n!$\n$A_n^k = \\frac{n!}{(n-k)!}$"), [E.g_orin_almashtirish, E.g_orinlashtirish, E.g_takrorli]),
  ("Kombinatorika: guruhlash, ko‘paytirish qoidasi", 1, ("Formulalar", "[1] Tartib muhim emas — $C_n^k$. [2] Ikki tanlov ketma-ket — ko‘paytiramiz.", "$C_n^k = \\frac{n!}{k!(n-k)!}$\nKo‘paytirish qoidasi: $m\\cdot n$"), [E.g_kombinatsiya, E.g_kombinatsiya_ikki, E.g_orinlashtirish]),
- ("Klassik ehtimol: tanga va o‘yin kubigi", 1, ("Klassik ta’rif", "[1] $P = \\frac{m}{n}$: avval barcha natijalarni, keyin qulaylarini sanaymiz.", "$P(A) = \\frac{m}{n}$"), [E.g_kub_yigindi, E.g_tanga]),
- ("Klassik ehtimol: idishdagi sharlar, detallar", 1, ("Kombinatorika bilan", "[1] Tartibsiz tanlashda $n$ va $m$ ni $C$ orqali sanaymiz.", "$P = \\frac{C_{M}^{k}\\,C_{N-M}^{n-k}}{C_N^n}$"), [E.g_idish, E.g_detal]),
- ("Geometrik va statistik ehtimol", 1, ("Ta’riflar", "[1] Geometrik — o‘lchamlar nisbati. [2] Statistik — nisbiy chastota.", "$P = \\frac{\\text{mes}\\,g}{\\text{mes}\\,G}$\n$W = \\frac{m}{n}$"), [E.g_geometrik, E.g_kesma, E.g_statistik]),
- ("Qo‘shish teoremasi. Qarama-qarshi hodisa", 2, ("Qo‘shish", "[1] Birgalikda emas — oddiy yig‘indi. [2] Birgalikda — kesishmani ayiramiz.", "$P(A+B) = P(A)+P(B)-P(AB)$\n$P(\\bar{A}) = 1-P(A)$"), [E.g_qoshish, E.g_birgalikda, E.g_qarama]),
- ("Ko‘paytirish teoremasi. Bog‘liqsiz hodisalar", 2, ("Ko‘paytirish", "[1] Bog‘liqsiz hodisalar ehtimollari ko‘paytiriladi.", "$P(AB) = P(A)P(B)$"), [E.g_kopaytirish, E.g_faqat_bittasi]),
- ("Shartli ehtimol. Bog‘liq hodisalar", 2, ("Shartli ehtimol", "[1] $P(A|B) = \\frac{P(AB)}{P(B)}$ — sharoit ma’lum bo‘lganda qayta sanaymiz.", "$P(A|B) = \\frac{P(AB)}{P(B)}$\n$P(AB) = P(A)P(B|A)$"), [E.g_shartli, E.g_shartli_jadval]),
- ("Kamida bittasi ro‘y berishi", 2, ("Qarama-qarshi hodisa orqali", "[1] Kamida bittasi = 1 − hech biri.", "$P = 1 - q_1q_2\\cdots q_n$\n$n \\ge \\frac{\\ln(1-P)}{\\ln q}$"), [E.g_kamida_bittasi, E.g_kamida_n]),
- ("To‘la ehtimol formulasi", 3, ("Formula", "[1] Har gipoteza ehtimolini shartli ehtimolga ko‘paytirib qo‘shamiz.", "$P(A) = \\sum P(H_i)P(A|H_i)$"), [E.g_tola]),
- ("Bayes formulasi", 3, ("Formula", "[1] Natija ma’lum — gipotezani qayta baholaymiz.", "$P(H_i|A) = \\frac{P(H_i)P(A|H_i)}{P(A)}$"), [E.g_bayes, E.g_tola]),
- ("Bernulli formulasi", 3, ("Formula", "[1] $n$ ta tajribada roppa-rosa $k$ marta.", "$P_n(k) = C_n^kp^kq^{n-k}$"), [E.g_bernulli, E.g_kamida_k]),
- ("Eng ehtimolli son. Puasson formulasi", 3, ("Formulalar", "[1] Eng ehtimolli son oralig‘i. [2] Kam ehtimolli hodisalar uchun Puasson.", "$np-q \\le k_0 \\le np+p$\n$P_n(k) \\approx \\frac{\\lambda^k e^{-\\lambda}}{k!}$"), [E.g_eng_ehtimolli, E.g_puasson]),
- ("Muavr–Laplas teoremalari", 3, ("Teoremalar", "[1] Lokal — roppa-rosa $k$ marta. [2] Integral — $k_1$ dan $k_2$ gacha.", "$P_n(k) \\approx \\frac{\\varphi(x)}{\\sqrt{npq}}$\n$P_n(k_1;k_2) \\approx \\Phi(x_2)-\\Phi(x_1)$"), [E.g_laplas_lokal, E.g_laplas_integral]),
- ("Diskret tasodifiy miqdor taqsimot qonuni", 4, ("Taqsimot qonuni", "[1] Ehtimollar yig‘indisi doim 1.", "$\\sum p_i = 1$"), [E.g_noma_p, E.g_mx]),
- ("M(X), D(X), σ(X) ni hisoblash", 4, ("Xarakteristikalar", "[1] Kutilma, [2] dispersiya, [3] chetlanish.", "$M = \\sum x_ip_i$\n$D = M(X^2)-M^2$\n$\\sigma = \\sqrt{D}$"), [E.g_mx, E.g_dx, E.g_sigma, E.g_xossa]),
+ ("Klassik ehtimol: tanga va o‘yin kubigi", 2, ("Klassik ta’rif", "[1] $P = \\frac{m}{n}$: avval barcha natijalarni, keyin qulaylarini sanaymiz.", "$P(A) = \\frac{m}{n}$"), [E.g_kub_yigindi, E.g_tanga]),
+ ("Klassik ehtimol: idishdagi sharlar, detallar", 2, ("Kombinatorika bilan", "[1] Tartibsiz tanlashda $n$ va $m$ ni $C$ orqali sanaymiz.", "$P = \\frac{C_{M}^{k}\\,C_{N-M}^{n-k}}{C_N^n}$"), [E.g_idish, E.g_detal]),
+ ("Geometrik va statistik ehtimol", 2, ("Ta’riflar", "[1] Geometrik — o‘lchamlar nisbati. [2] Statistik — nisbiy chastota.", "$P = \\frac{\\text{mes}\\,g}{\\text{mes}\\,G}$\n$W = \\frac{m}{n}$"), [E.g_geometrik, E.g_kesma, E.g_statistik]),
+ ("Qo‘shish teoremasi. Qarama-qarshi hodisa", 3, ("Qo‘shish", "[1] Birgalikda emas — oddiy yig‘indi. [2] Birgalikda — kesishmani ayiramiz.", "$P(A+B) = P(A)+P(B)-P(AB)$\n$P(\\bar{A}) = 1-P(A)$"), [E.g_qoshish, E.g_birgalikda, E.g_qarama]),
+ ("Ko‘paytirish teoremasi. Bog‘liqsiz hodisalar", 3, ("Ko‘paytirish", "[1] Bog‘liqsiz hodisalar ehtimollari ko‘paytiriladi.", "$P(AB) = P(A)P(B)$"), [E.g_kopaytirish, E.g_faqat_bittasi]),
+ ("Shartli ehtimol. Bog‘liq hodisalar", 3, ("Shartli ehtimol", "[1] $P(A|B) = \\frac{P(AB)}{P(B)}$ — sharoit ma’lum bo‘lganda qayta sanaymiz.", "$P(A|B) = \\frac{P(AB)}{P(B)}$\n$P(AB) = P(A)P(B|A)$"), [E.g_shartli, E.g_shartli_jadval]),
+ ("Kamida bittasi ro‘y berishi", 3, ("Qarama-qarshi hodisa orqali", "[1] Kamida bittasi = 1 − hech biri.", "$P = 1 - q_1q_2\\cdots q_n$\n$n \\ge \\frac{\\ln(1-P)}{\\ln q}$"), [E.g_kamida_bittasi, E.g_kamida_n]),
+ ("To‘la ehtimol formulasi", 4, ("Formula", "[1] Har gipoteza ehtimolini shartli ehtimolga ko‘paytirib qo‘shamiz.", "$P(A) = \\sum P(H_i)P(A|H_i)$"), [E.g_tola]),
+ ("Bayes formulasi", 4, ("Formula", "[1] Natija ma’lum — gipotezani qayta baholaymiz.", "$P(H_i|A) = \\frac{P(H_i)P(A|H_i)}{P(A)}$"), [E.g_bayes, E.g_tola]),
+ ("Bernulli formulasi", 4, ("Formula", "[1] $n$ ta tajribada roppa-rosa $k$ marta.", "$P_n(k) = C_n^kp^kq^{n-k}$"), [E.g_bernulli, E.g_kamida_k]),
+ ("Eng ehtimolli son. Puasson formulasi", 4, ("Formulalar", "[1] Eng ehtimolli son oralig‘i. [2] Kam ehtimolli hodisalar uchun Puasson.", "$np-q \\le k_0 \\le np+p$\n$P_n(k) \\approx \\frac{\\lambda^k e^{-\\lambda}}{k!}$"), [E.g_eng_ehtimolli, E.g_puasson]),
+ ("Muavr–Laplas teoremalari", 4, ("Teoremalar", "[1] Lokal — roppa-rosa $k$ marta. [2] Integral — $k_1$ dan $k_2$ gacha.", "$P_n(k) \\approx \\frac{\\varphi(x)}{\\sqrt{npq}}$\n$P_n(k_1;k_2) \\approx \\Phi(x_2)-\\Phi(x_1)$"), [E.g_laplas_lokal, E.g_laplas_integral]),
+ ("Diskret tasodifiy miqdor taqsimot qonuni", 5, ("Taqsimot qonuni", "[1] Ehtimollar yig‘indisi doim 1.", "$\\sum p_i = 1$"), [E.g_noma_p, E.g_mx]),
+ ("M(X), D(X), σ(X) ni hisoblash", 5, ("Xarakteristikalar", "[1] Kutilma, [2] dispersiya, [3] chetlanish.", "$M = \\sum x_ip_i$\n$D = M(X^2)-M^2$\n$\\sigma = \\sqrt{D}$"), [E.g_mx, E.g_dx, E.g_sigma, E.g_xossa]),
  ("Binomial va Puasson taqsimotlari", 5, ("Xarakteristikalar", "[1] Binomial: $np$, $npq$. [2] Puasson: $\\lambda$.", "Binomial: $M = np$, $D = npq$\nPuasson: $M = D = \\lambda$"), [E.g_binom_mx, E.g_puasson_mx, E.g_bernulli]),
  ("Geometrik va gipergeometrik taqsimotlar", 5, ("Formulalar", "[1] Birinchi muvaffaqiyatgacha. [2] Qaytarmasdan tanlash.", "$q^{k-1}p$\n$\\frac{C_M^kC_{N-M}^{n-k}}{C_N^n}$"), [E.g_geom, E.g_gipergeom]),
  ("Uzluksiz tasodifiy miqdor: F(x) va f(x)", 6, ("Funksiyalar", "[1] Zichlik integrali 1 ga teng.", "$\\int f(x)dx = 1$\n$P(a<X<b) = \\int_a^b f(x)dx$"), [E.g_zichlik_c, E.g_uzluksiz_f]),

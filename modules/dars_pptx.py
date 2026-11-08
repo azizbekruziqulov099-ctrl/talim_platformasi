@@ -258,7 +258,7 @@ def _guruhlash(slide, x0, y0, n, k):
     return guruhlar, f"C = A / {k}! = {A} / {len(tartiblar)} = {A // len(tartiblar)}"
 
 
-BUYRUQ = re.compile(r"^\s*(ORIN_ALMASH|ORINLASHTIR|GURUHLASH|QOIDA|BELGILA|YOZ|DAVOM|USTUN|BOLISH|QISQART|SON_OQI|GRAFIK|CHIZ|KASR_MODEL|DOIRA_KASR|VENN|DARAXT|OCHIR)\s*:?\s*(.*)$", re.I)
+BUYRUQ = re.compile(r"^\s*(OYIN|ORIN_ALMASH|ORINLASHTIR|GURUHLASH|QOIDA|BELGILA|YOZ|DAVOM|USTUN|BOLISH|QISQART|SON_OQI|GRAFIK|CHIZ|KASR_MODEL|DOIRA_KASR|VENN|DARAXT|OCHIR)\s*:?\s*(.*)$", re.I)
 
 
 def doska_qatorlari(steps):
@@ -303,6 +303,13 @@ def _doska_slayd(prs, bosqich, title, lines, notes, picture=None):
             yy = max((sh.top + sh.height for gr in g for sh in gr), default=y) + Inches(0.2)
             guruhlar.append([_matn(s, x, yy, Inches(11), Inches(0.5), xul, 24, YELLOW, True)])
             y = yy + Inches(0.6)
+            continue
+        if tur == "OYIN":   # REV429: doskadagi o'yin — taqdimotda o'qituvchiga eslatma (o'yin platformada o'ynaladi)
+            nomi = {"joylashtir": "harflarni har xil tartibda qo‘yish", "tanga": "tangani ko‘p marta tashlash tajribasi",
+                    "kub": "kubni ko‘p marta tashlash tajribasi", "galton": "Galton taxtasi — sharlar tashlash"}.get((arg.split() or [""])[0].lower(), arg)
+            box = _quti(s, x - Inches(0.15), y - Inches(0.08), Inches(11.4), Inches(0.8), "1F4E3D", line="6CC070")
+            guruhlar.append([box, _matn(s, x, y + Inches(0.08), Inches(11), Inches(0.6), f"🎮 O‘quvchilar platformada o‘ynaydi: {nomi}", 22, "C9F2C9", True)])
+            y += Inches(1.0)
             continue
         qoida = tur == "QOIDA"
         matn = arg if tur in ("QOIDA", "YOZ", "DAVOM", "BELGILA") or not tur else arg
