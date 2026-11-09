@@ -47,15 +47,15 @@ def bosqich_holati(prog, i, obuna, bugun):
     return "ochiq" if str(old.get("sana", "")) < bugun else "ertaga"
 
 
-def otdi(h, oyin, bosqich, yulduz, obuna, bugun):
-    """h o'zgaradi. Qaytaradi (h, xato) — xato bo'lsa h o'zgarmaydi."""
+def otdi(h, oyin, bosqich, yulduz, obuna, bugun, admin=False):
+    """h o'zgaradi. Qaytaradi (h, xato) — xato bo'lsa h o'zgarmaydi. REV450: admin — hamma bosqich ochiq (kutish va obunasiz)."""
     oyin, bosqich, yulduz = int(oyin), int(bosqich), max(0, min(3, int(yulduz)))
     if oyin not in XONA_OYINLAR or not 1 <= bosqich <= MAX_BOSQICH:
         return h, "nomalum"
     if yulduz < 1:
         return h, "otmadi"
     prog = dict(h.get(str(oyin)) or {})
-    holat = bosqich_holati(prog, bosqich, obuna, bugun)
+    holat = "ochiq" if admin else bosqich_holati(prog, bosqich, obuna, bugun)
     if holat not in ("ochiq", "otdi"):
         return h, holat
     eski = prog.get(str(bosqich))

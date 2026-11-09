@@ -1047,6 +1047,13 @@ def create_router(platform):
     # ── REV371: o'yinlar xonasi (bosqichlar, har kuni bittadan, obuna) ──
     from modules import oyin_xona as oxo
 
+    def _admin_mi(cur, uid):   # REV450
+        try:
+            cur.execute("SAVEPOINT adm"); cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s", (uid,)); r = cur.fetchone(); cur.execute("RELEASE SAVEPOINT adm")
+            return r is not None
+        except Exception:
+            cur.execute("ROLLBACK TO SAVEPOINT adm"); return False
+
     def _obuna_bor(cur, uid, day):
         try:
             from modules import bogcha_reja as _br
@@ -1073,8 +1080,9 @@ def create_router(platform):
             oxo.migrate(cur)
             h = oxo.ol(cur, user_id)
             ob = _obuna_bor(cur, user_id, day)
+            adm = _admin_mi(cur, user_id)   # REV450: admin uchun hamma bosqich ochiq
             conn.commit()
-            return {"holat": h, "obuna": bool(ob), "bugun": day.isoformat()}
+            return {"holat": h, "obuna": bool(ob) or adm, "bugun": day.isoformat(), "admin": adm}
         return run_db(run)
 
     @router.post("/api/bola/oyin_xona/otdi")
@@ -1085,11 +1093,12 @@ def create_router(platform):
         def run(conn, cur):
             oxo.migrate(cur)
             ob = _obuna_bor(cur, user_id, day)
-            h, xato = oxo.otdi(oxo.ol(cur, user_id), body.oyin, body.bosqich, body.yulduz, ob, day.isoformat())
+            adm = _admin_mi(cur, user_id)
+            h, xato = oxo.otdi(oxo.ol(cur, user_id), body.oyin, body.bosqich, body.yulduz, ob or adm, day.isoformat(), admin=adm)
             if not xato:
                 oxo.saqla(cur, user_id, h)
             conn.commit()
-            return {"holat": h, "obuna": bool(ob), "bugun": day.isoformat(), "xato": xato}
+            return {"holat": h, "obuna": bool(ob) or adm, "bugun": day.isoformat(), "xato": xato, "admin": adm}
         return run_db(run)
 
     @router.get("/api/ota/bola_albom")
