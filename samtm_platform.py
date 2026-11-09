@@ -251,10 +251,13 @@ def baza_siqish(token: str, boshla: int = 0):
 
 
 @app.get("/api/admin/baza_tozalash")
-def baza_tozalash(token: str, bajar: int = 0, turlar: str = ""):
+def baza_tozalash(request: Request, token: str = "", bajar: int = 0, turlar: str = ""):
     """REV250: bajar=0 — faqat hisoblaydi (nechta qator, qancha joy). bajar=1 — tanlangan turlarni 2000 tadan
-    kichik bo'laklarda tozalaydi (har bo'lak alohida tranzaksiya — sayt to'xtamaydi), keyin fonda VACUUM ANALYZE."""
-    _admin_tekshir(token)
+    kichik bo'laklarda tozalaydi (har bo'lak alohida tranzaksiya — sayt to'xtamaydi), keyin fonda VACUUM ANALYZE.
+    REV444: faqat hisoblash (bajar=0) vaqtinchalik DIAG_KALIT bilan ham ochiladi; tozalash — faqat admin."""
+    diag = os.getenv("DIAG_KALIT", "")
+    if bajar or not (len(diag) >= 24 and secrets.compare_digest(request.headers.get("x-diag-kalit", ""), diag)):
+        _admin_tekshir(token)
     tanlov = [t for t in (turlar.split(",") if turlar else _TOZALASH) if t in _TOZALASH]
     conn = _db()
     cur = conn.cursor()
