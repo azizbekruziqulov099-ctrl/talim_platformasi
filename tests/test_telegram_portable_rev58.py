@@ -290,7 +290,7 @@ class GoogleContinuationTests(TestCase):
     def test_telegram_intent_still_requires_matching_oauth_state(self):
         self.ns['google_login']('telegram')
         result=self.asyncio.run(self.ns['google_callback'](NS(cookies={'state':self.cookie}),code='code',state='wrong'))
-        self.assertEqual(result,{'xato':'state'})
+        self.assertEqual({k: v for k, v in result.items() if k != 'ilova'},{'xato':'state'})   # REV442: ilova belgisi qo'shildi
         self.assertEqual(self.google_calls,0)
 
 if __name__ == '__main__': main()
