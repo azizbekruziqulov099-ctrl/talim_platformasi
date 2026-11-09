@@ -149,10 +149,13 @@ def versiya():
 
 
 @app.get("/api/admin/baza_holati")
-def baza_holati(token: str):
+def baza_holati(request: Request, token: str = ""):
     """REV248: bazaning sog'lig'i — admin uchun. Faqat o'qiydi, hech narsani o'zgartirmaydi.
-    Hajm, eng katta jadvallar, ulanishlar, kesh samarasi, eng sekin so'rovlar, ishlatilmayotgan indekslar."""
-    _admin_tekshir(token)
+    Hajm, eng katta jadvallar, ulanishlar, kesh samarasi, eng sekin so'rovlar, ishlatilmayotgan indekslar.
+    REV444: vaqtinchalik tekshiruv kaliti (Railway'dagi DIAG_KALIT, sarlavha X-Diag-Kalit) bilan ham — faqat shu o'qish uchun."""
+    diag = os.getenv("DIAG_KALIT", "")
+    if not (len(diag) >= 24 and secrets.compare_digest(request.headers.get("x-diag-kalit", ""), diag)):
+        _admin_tekshir(token)
     natija = {"vaqt": datetime.now().isoformat(timespec="seconds"), "havza": {"har_havza": _DB_POOL_MAX,
               "worker": os.getenv("WEB_CONCURRENCY") or "avto", "chegara": os.getenv("DB_MAX_CONNECTIONS", "90")}}
     conn = _db()
