@@ -170,6 +170,12 @@ def baza_holati(request: Request, token: str = ""):
             cur.execute("ROLLBACK TO SAVEPOINT bh")
             natija[nom] = {"xato": str(e)[:200]}
     try:
+        ol("birlik_holat", """SELECT status, COUNT(*) AS soni, pg_size_pretty(SUM(pg_column_size(payload))::bigint) AS hajm
+                                 FROM ai_brain_units GROUP BY status ORDER BY COUNT(*) DESC""")   # REV444
+        ol("partiya_holat", """SELECT status, COUNT(*) AS soni FROM ai_brain_import_batches GROUP BY status ORDER BY 2 DESC""")
+        ol("dts_indekslar", """SELECT indexname, indexdef FROM pg_indexes WHERE tablename IN ('dts_tree','ai_brain_units') ORDER BY tablename, indexname""")
+        ol("wal", "SELECT wal_records, pg_size_pretty(wal_bytes) AS wal_hajm, stats_reset FROM pg_stat_wal", bitta=True)
+        ol("arxiv", "SELECT name, setting FROM pg_settings WHERE name IN ('archive_mode','archive_command','wal_level','shared_buffers','effective_cache_size','work_mem')")
         ol("baza", """SELECT pg_size_pretty(pg_database_size(current_database())) AS hajm,
                              pg_database_size(current_database()) AS bayt,
                              (SELECT setting::int FROM pg_settings WHERE name='max_connections') AS max_ulanish,
