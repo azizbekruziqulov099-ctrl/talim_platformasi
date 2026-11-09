@@ -4,7 +4,9 @@ import logging, multiprocessing, os
 
 bind = "0.0.0.0:" + os.getenv("PORT", "8080")
 worker_class = "uvicorn.workers.UvicornWorker"
-workers = int(os.getenv("WEB_CONCURRENCY", str(max(2, min(8, multiprocessing.cpu_count()*2)))))
+# REV443: Railway serveri ko'p protsessorli ko'rinadi — avval 8 ta worker ochilardi, har biri ~300 MB xotira
+# (oylik to'lovning asosiy qismi). Async (uvicorn) workerlar uchun 2 ta yetarli; kerak bo'lsa WEB_CONCURRENCY bilan oshiriladi.
+workers = int(os.getenv("WEB_CONCURRENCY", "2"))
 timeout = int(os.getenv("GUNICORN_TIMEOUT", "180"))
 graceful_timeout = int(os.getenv("GUNICORN_GRACEFUL_TIMEOUT", "30"))
 keepalive = int(os.getenv("GUNICORN_KEEPALIVE", "5"))

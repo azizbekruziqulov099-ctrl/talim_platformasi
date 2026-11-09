@@ -27999,6 +27999,9 @@ app.include_router(create_kabutar_tv_router(_admin_tekshir, _db))
 from modules.sertifikat import create_router as _sertifikat_router
 for _r in _sertifikat_router(_admin_tekshir, _db, _jwt_tekshir):
     app.include_router(_r)
+# REV443: hujjatni «asl ko'rinishda» ochish (LibreOffice → PDF, fayl saqlanmaydi)
+from modules.hujjat_aylantir import router as _hujjat_aylantir_router
+app.include_router(_hujjat_aylantir_router)
 
 @app.on_event("shutdown")
 def _modular_resurslarni_yopish():

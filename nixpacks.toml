@@ -1,3 +1,4 @@
 # REV185: Kabutar TV videolari uchun ffmpeg
+# REV443: hujjatni «asl ko'rinishda» ochish — LibreOffice (oynasiz) va Office shriftlarining bepul egizaklari
 [phases.setup]
-aptPkgs = ["ffmpeg"]
+aptPkgs = ["ffmpeg", "libreoffice-writer-nogui", "libreoffice-impress-nogui", "libreoffice-calc-nogui", "fonts-liberation2", "fonts-crosextra-carlito", "fonts-crosextra-caladea", "fonts-dejavu-core"]
