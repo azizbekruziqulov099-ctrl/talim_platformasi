@@ -20149,9 +20149,8 @@ def _ai_brain_dars_jadvallari(cur):
     cur.execute("ALTER TABLE generated_tests ADD COLUMN IF NOT EXISTS ai_brain_unit_code TEXT")
     cur.execute("CREATE INDEX IF NOT EXISTS idx_gen_tests_ai_unit ON generated_tests(ai_brain_unit_code)")
     # Kitob kodi (XB-03-A01) bo'yicha tez qidiruv: o'quvchi kodni kiritsa yechim chiqadi.
-    cur.execute("""CREATE INDEX IF NOT EXISTS idx_ai_brain_units_kitob_kodi
-                   ON ai_brain_units((regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g')))
-                   WHERE payload ? 'kitob_kodi'""")
+    # REV445: idx_ai_brain_units_kitob_kodi — idx_abu_kitob_kodi bilan bir xil edi (takror), endi yaratilmaydi
+    pass
 
 
 def _ai_brain_dars_migratsiya():
@@ -28011,6 +28010,9 @@ app.include_router(create_kabutar_tv_router(_admin_tekshir, _db))
 from modules.sertifikat import create_router as _sertifikat_router
 for _r in _sertifikat_router(_admin_tekshir, _db, _jwt_tekshir):
     app.include_router(_r)
+# REV445: bazani yengillashtirish (keraksiz indekslar, arxivlangan Miya qatorlari, VACUUM, xotira sozlamalari)
+from modules.baza_xizmat import create_router as _baza_xizmat_router
+app.include_router(_baza_xizmat_router(_admin_tekshir, lambda: DATABASE_URL, psycopg2))
 # REV443: hujjatni «asl ko'rinishda» ochish (LibreOffice → PDF, fayl saqlanmaydi)
 from modules.hujjat_aylantir import router as _hujjat_aylantir_router
 app.include_router(_hujjat_aylantir_router)
