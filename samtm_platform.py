@@ -1043,11 +1043,12 @@ def _oauth_cookie_ochir(response: Response, key: str) -> None:
     )
 
 
-def _oauth_frontend_redirect(xato: Optional[str] = None, ticket: Optional[str] = None) -> RedirectResponse:
+def _oauth_frontend_redirect(xato: Optional[str] = None, ticket: Optional[str] = None, ilova: bool = False) -> RedirectResponse:
     # Fragment HTTP so'roviga, server logiga yoki Referer sarlavhasiga bormaydi.
     # Unda faqat 60 soniyalik signed ticket bor; JWT/email/ism alohida chiqmaydi.
     fragment = urlencode({"oauth_xato": xato}) if xato else urlencode({"oauth_ticket": ticket})
-    response = RedirectResponse(f"{FRONTEND_URL.rstrip('/')}/#{fragment}")
+    # REV442: Android ilovadan kirilgan bo'lsa — Chrome oynasidan ilovaga qaytamiz (talimai://kirish)
+    response = RedirectResponse(f"talimai://kirish#{fragment}" if ilova else f"{FRONTEND_URL.rstrip('/')}/#{fragment}")
     response.headers["Cache-Control"] = "no-store"
     response.headers["Referrer-Policy"] = "no-referrer"
     _oauth_cookie_ochir(response, OAUTH_STATE_COOKIE)
@@ -1055,7 +1056,7 @@ def _oauth_frontend_redirect(xato: Optional[str] = None, ticket: Optional[str] =
 
 
 @app.get("/auth/google/login")
-def google_login(intent: Optional[str] = None):
+def google_login(intent: Optional[str] = None, ilova: Optional[str] = None):
     """Google'ga state va PKCE S256 bilan xavfsiz yo'naltiradi."""
     if not GOOGLE_CLIENT_ID or not GOOGLE_CLIENT_SECRET:
         raise HTTPException(status_code=503, detail="Google kirish hali sozlanmagan")
@@ -1071,6 +1072,7 @@ def google_login(intent: Optional[str] = None):
         state=state,
         verifier=verifier,
         intent=intent if intent in ("link", "telegram") else "login",
+        ilova=ilova == "1",   # REV442: Android ilova
     )
     url = "https://accounts.google.com/o/oauth2/v2/auth?" + urlencode({
         "client_id": GOOGLE_CLIENT_ID,
@@ -1109,9 +1111,9 @@ async def google_callback(
         or not verifier
         or not secrets.compare_digest(state, expected_state)
     ):
-        return _oauth_frontend_redirect(xato="state")
+        return _oauth_frontend_redirect(xato="state", ilova=bool(state_payload and state_payload.get("ilova")))
     if error or not code:
-        return _oauth_frontend_redirect(xato="kirish_bekor")
+        return _oauth_frontend_redirect(xato="kirish_bekor", ilova=bool(state_payload.get("ilova")))
 
     try:
         async with httpx.AsyncClient(timeout=15) as client:
@@ -1130,7 +1132,7 @@ async def google_callback(
             token_data = token_resp.json()
             access_token = token_data.get("access_token")
             if not access_token:
-                return _oauth_frontend_redirect(xato="google_token")
+                return _oauth_frontend_redirect(xato="google_token", ilova=bool(state_payload.get("ilova")))
 
             userinfo_resp = await client.get(
                 "https://openidconnect.googleapis.com/v1/userinfo",
@@ -1139,14 +1141,14 @@ async def google_callback(
             userinfo_resp.raise_for_status()
             userinfo = userinfo_resp.json()
     except (httpx.HTTPError, ValueError):
-        return _oauth_frontend_redirect(xato="google_token")
+        return _oauth_frontend_redirect(xato="google_token", ilova=bool(state_payload.get("ilova")))
 
     email = str(userinfo.get("email") or "").strip().lower()
     ism = str(userinfo.get("name") or "").strip()[:200]
     if not email:
-        return _oauth_frontend_redirect(xato="email_topilmadi")
+        return _oauth_frontend_redirect(xato="email_topilmadi", ilova=bool(state_payload.get("ilova")))
     if userinfo.get("email_verified") is not True:
-        return _oauth_frontend_redirect(xato="email_tasdiqlanmagan")
+        return _oauth_frontend_redirect(xato="email_tasdiqlanmagan", ilova=bool(state_payload.get("ilova")))
 
     # REV248: bazaga murojaat alohida oqimda — kirish paytida worker'ning hodisalar halqasi to'xtamaydi
     def _google_hisob_top():
@@ -1178,7 +1180,7 @@ async def google_callback(
             name=ism,
             intent=state_payload.get("intent") if state_payload.get("intent") in ("link", "telegram") else "login",
         )
-    return _oauth_frontend_redirect(ticket=ticket)
+    return _oauth_frontend_redirect(ticket=ticket, ilova=bool(state_payload.get("ilova")))
 
 
 class GoogleTicketExchange(BaseModel):
