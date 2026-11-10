@@ -47,6 +47,9 @@ def _topshiriq(kurs, tur, rng, tag):
     return None
 
 
+TUR_NOMI = {"ajrat": "Ko‘paytuvchilarga ajratish", "algebra": "O‘xshash hadlar", "alomat": "Bo‘linish alomatlari", "arifprog": "Arifmetik progressiya hadi", "arifyig": "Arifmetik progressiya yig‘indisi", "ayir": "Ko‘p xonali sonlarni ayirish", "aylana": "Aylana uzunligi", "bol": "Bir xonali songa bo‘lish", "bol2": "Ikki xonali songa bo‘lish", "burchak": "Burchak turlari", "burchak_chiziq": "To‘g‘ri chiziqdagi burchaklar", "burchak_nuqta": "Nuqta atrofidagi burchaklar", "chegirma": "Chegirma va QQS", "cheksiz": "Cheksiz geometrik progressiya", "chiziqli": "Chiziqli tenglama", "daraja": "Daraja xossalari", "diagramma": "Doiraviy diagramma", "diskriminant": "Diskriminant", "doira": "Doira yuzi", "ehtimol": "Ehtimollik", "ekstremum": "Funksiya ekstremumi", "fazovektor": "Fazoviy vektor", "foiz": "Foiz", "funksiya": "Chiziqli funksiya qiymati", "geomprog": "Geometrik progressiya", "hajm": "Hajm", "harakat": "Harakat: S = v·t", "hosila": "Hosila", "ifoda": "Ifoda qiymati, amallar tartibi", "ildiz": "Kvadrat ildiz", "integral": "Aniq integral", "jism": "Fazoviy jismlar", "karrali": "Bo‘luvchilar va karralilar", "kasr_n_bol": "Kasrni natural songa bo‘lish", "kasr_n_kop": "Kasrni natural songa ko‘paytirish", "kasrbol": "Kasrlarni bo‘lish", "kasrkop": "Kasrlarni ko‘paytirish", "kasrnat": "Kasrni songa ko‘paytirish", "kasrqisq": "Algebraik kasr", "kasrqosh": "Bir xil maxrajli kasrlar", "kasrqosh2": "Turli maxrajli kasrlar", "kasrtaq": "Kasrlarni taqqoslash", "kombinatorika": "Kombinatorika", "konus": "Konus hajmi", "koordinata": "Koordinata nuri", "kop1": "Bir xonali songa ko‘paytirish", "kop10": "10, 100, 1000 ga ko‘paytirish", "kop2": "Ikki xonali songa ko‘paytirish", "kophad": "Ko‘phadlar ko‘paytmasi", "korsatkich": "Ko‘rsatkichli tenglama", "korxona": "Ko‘p xonali sonlar", "kosinus": "Kosinuslar teoremasi", "kubqirra": "Kub qirrasi", "kvayirma": "Kvadratlar ayirmasi", "kvtenglama": "Kvadrat tenglama", "logarifm": "Logarifm", "logtenglama": "Logarifmik tenglama", "masofa": "Nuqtalar orasidagi masofa", "massa": "Massa birliklari", "meyor": "Me’yor (birlik narxi)", "muntazam": "Muntazam ko‘pburchak", "n_kasr_bol": "Sonni kasrga bo‘lish", "nisbat": "Nisbat", "onli": "O‘nli kasr", "onli10": "O‘nli kasrni 10, 100 ga ko‘paytirish", "ortacha": "O‘rta arifmetik", "ortacha_tezlik": "O‘rtacha tezlik", "osish": "Foiz o‘sishi", "oxshash": "O‘xshash shakllar", "parabola": "Parabola uchi", "parallel": "Parallel chiziqlar burchaklari", "perimetr": "Perimetr", "pifagor": "Pifagor teoremasi", "piramida": "Piramida hajmi", "prizma": "Prizma hajmi", "qarama": "Qarama-qarshi harakat", "qisqa": "Qisqa ko‘paytirish formulalari", "qiymat": "Narx · miqdor = qiymat", "qoldiq": "Qoldiqli bo‘lish", "qolgan": "Qolgan qismning qismi", "qosh": "Ko‘p xonali sonlarni qo‘shish", "qoshni": "Qo‘shni burchaklar", "quvlama": "Quvlama harakat", "radian": "Radian", "sektor": "Sektor yuzi", "shar": "Shar va sfera", "silindr": "Silindr hajmi", "sistema": "Tenglamalar sistemasi", "statistika": "Statistika (mediana)", "taqqos": "Sonlarni taqqoslash", "tenglama": "Tenglama", "tengsizlik": "Tengsizlik", "tengyonli": "Teng yonli uchburchak", "toplam": "To‘plamlar (Venn)", "tortburchak": "Parallelogramm burchaklari", "tortburchak_burchak": "To‘rtburchak burchaklari", "trapetsiya": "Trapetsiya o‘rta chizig‘i", "trapyuz": "Trapetsiya yuzi", "trig": "Trigonometrik qiymatlar", "trigtenglama": "Trigonometrik tenglama", "uchburchak": "Uchburchak burchaklari", "uchburchak_burchak": "Uchburchak burchaklari", "uchburchak_yuz": "Uchburchak yuzi", "ulush": "Sonning ulushi", "unum": "Unumdorlik", "urinma": "Urinma", "uzunlik": "Uzunlik birliklari", "vaqt": "Vaqt birliklari", "vektor": "Vektor uzunligi", "viyet": "Viyet teoremasi", "yaxlit": "Yaxlitlash", "yuz": "Yuz", "yuzbirlik": "Yuz birliklari", "naqsh": "Naqsh (ketma-ketlik)"}
+
+
 ISMLAR = ["Ali", "Malika", "Bekzod", "Dilnoza", "Sardor", "Zarina", "Jasur", "Nilufar"]
 
 
@@ -263,12 +266,63 @@ def create_router(platform):
                     else:
                         nav[t]["qaytadi"] = n + 3
             d["xato"] = list(nav.values())[:40]
+            st = d.get("tur_stat") or {}   # REV458: mavzu bo'yicha [to'g'ri, jami] — o'qituvchi hisoboti uchun
+            for t in body.togri_turlar[:15]:
+                a = st.get(t, [0, 0]); st[t] = [a[0] + 1, a[1] + 1]
+            for t in body.xato_turlar[:15]:
+                a = st.get(t, [0, 0]); st[t] = [a[0], a[1] + 1]
+            d["tur_stat"] = st
             bugun = date.today().isoformat()
             if d.get("kun") != bugun:
                 d["streak"] = int(d.get("streak", 0)) + 1 if d.get("kun") == (date.today() - timedelta(days=1)).isoformat() else 1
                 d["kun"] = bugun
             yoz(cur, u, kurs, d)
             return {"yulduz": s, "otdi": s >= 1, "streak": d["streak"], "jami": d["jami"], "xato_navbat": len(d["xato"])}
+        return run(f)
+
+    @router.get("/api/ekspeditsiya/oqituvchi/guruhlar")
+    def guruhlar(token: str = "", authorization: Optional[str] = Header(None)):
+        """REV458: o'qituvchining kurs guruhlari (o'quvchilari shu guruhlarga qo'shilgan)."""
+        u = uid(token, authorization)
+        def f(cur):
+            try:
+                cur.execute("""SELECT g.id, g.nom, g.fan, g.grade, (SELECT COUNT(*) FROM kurs_guruh_azo a WHERE a.guruh_id=g.id) AS soni
+                               FROM kurs_guruh g WHERE g.egasi=%s AND g.faol ORDER BY g.yaratildi DESC""", (u,))
+                return {"guruhlar": [dict(r) for r in cur.fetchall()]}
+            except Exception:
+                return {"guruhlar": []}
+        return run(f)
+
+    @router.get("/api/ekspeditsiya/oqituvchi/hisobot")
+    def hisobot(guruh: int, kurs: str, token: str = "", authorization: Optional[str] = Header(None)):
+        """REV458: guruh bo'yicha ekspeditsiya hisoboti — kim qayerda, aniqlik, zaif mavzular (sinf va har o'quvchi)."""
+        u = uid(token, authorization); k = kurs_ol(kurs)
+        def f(cur):
+            cur.execute("SELECT egasi, nom FROM kurs_guruh WHERE id=%s", (guruh,))
+            g = cur.fetchone()
+            if not g or (g["egasi"] != u and not admin_mi(cur, u)):
+                raise HTTPException(403, "Bu guruh sizniki emas")
+            cur.execute("""SELECT a.user_id, COALESCE(NULLIF(us.full_name,''), 'O‘quvchi') AS ism, e.data
+                           FROM kurs_guruh_azo a JOIN users us ON us.user_id=a.user_id
+                           LEFT JOIN ekspeditsiya_holat e ON e.user_id=a.user_id AND e.kurs=%s WHERE a.guruh_id=%s""", (kurs, guruh))
+            qatorlar, sinf = [], {}
+            for r in cur.fetchall():
+                d = r["data"] or {}
+                yul = d.get("yulduz") or {}
+                otgan = max([int(n) for n, v in yul.items() if int(v) >= 1] or [0])
+                st = d.get("tur_stat") or {}
+                tg = sum(v[0] for v in st.values()); jm = sum(v[1] for v in st.values())
+                zaif = sorted([(t, v[0] / v[1]) for t, v in st.items() if v[1] >= 3 and v[0] / v[1] < 0.6], key=lambda x: x[1])[:3]
+                for t, v in st.items():
+                    a = sinf.get(t, [0, 0, 0]); sinf[t] = [a[0] + v[0], a[1] + v[1], a[2] + (1 if v[1] >= 3 and v[0] / v[1] < 0.6 else 0)]
+                qatorlar.append({"ism": r["ism"], "bosqich": otgan, "yulduz": sum(int(v) for v in yul.values()), "aniqlik": round(100 * tg / jm) if jm else None,
+                                 "streak": d.get("streak", 0), "oxirgi_kun": d.get("kun", ""), "zaif": [{"tur": t, "nom": TUR_NOMI.get(t, t), "foiz": round(100 * p)} for t, p in zaif]})
+            n = len(qatorlar) or 1
+            sinf_zaif = sorted([{"tur": t, "nom": TUR_NOMI.get(t, t), "aniqlik": round(100 * v[0] / v[1]), "qiynalganlar": v[2], "ulush": round(100 * v[2] / n)}
+                                for t, v in sinf.items() if v[1] >= 5], key=lambda x: (x["aniqlik"], -x["qiynalganlar"]))[:8]
+            qatorlar.sort(key=lambda x: (-x["bosqich"], -(x["aniqlik"] or 0)))
+            return {"guruh": g["nom"], "kurs": k["nom"], "oquvchilar": qatorlar, "sinf_zaif": sinf_zaif,
+                    "boshlamagan": sum(1 for q in qatorlar if q["aniqlik"] is None)}
         return run(f)
 
     return router
