@@ -202,6 +202,11 @@ try:   # REV412: dars izohlari (admin darsni ko'rib izoh qoldiradi, hammasi bitt
 except ImportError:
     from modules.dars_izoh import create_router as create_dars_izoh_router
 app.include_router(create_dars_izoh_router(samtm_platform))
+try:   # REV456: «Matematik ekspeditsiya» — 20 bosqichli spiral o'yin (3–11-sinf)
+    from .modules.ekspeditsiya import create_router as create_ekspeditsiya_router
+except ImportError:
+    from modules.ekspeditsiya import create_router as create_ekspeditsiya_router
+app.include_router(create_ekspeditsiya_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:

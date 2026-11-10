@@ -1,0 +1,1974 @@
+[
+{
+"kalit": "mat3",
+"nom": "Matematika · 3-sinf",
+"gen": "34",
+"bosqichlar": [
+{
+"mavzu": "Takrorlash. Uzunlik · Takrorlash. Ko‘paytirish · Takrorlash. Soat va minutlar · Takrorlash. To‘g‘ri to‘rtburchak · Ko‘p xonali sonlar · Pozi",
+"turlar": [
+"uzunlik",
+"kop1",
+"vaqt",
+"burchak",
+"korxona"
+]
+},
+{
+"mavzu": "Ko‘p xonali sonlarning o‘qilishi va yozilishi · Ko‘p xonali sonlarni taqqoslash · Ko‘p xonali sonlarni qo‘shish",
+"turlar": [
+"korxona",
+"taqqos",
+"qosh"
+]
+},
+{
+"mavzu": "Ko‘p xonali sonlarni ayirish · Ko‘p xonali sonlarni qo‘shish va ayirish · Sonlarni 10, 100, 1 000 ga ko‘paytirish va bo‘lish",
+"turlar": [
+"ayir",
+"qosh",
+"bol"
+]
+},
+{
+"mavzu": "Yaxlit sonlarni ko‘paytirish · Yaxlit sonlarni bo‘lish · Ikki xonali sonni bir xonali songa ko‘paytirish · Uch xonali sonni bir xonali songa",
+"turlar": [
+"kop10",
+"bol",
+"kop1"
+]
+},
+{
+"mavzu": "Ko‘p xonali sonni bir xonali songa ko‘paytirish · Ikki xonali sonni ikki xonali songa ko‘paytirish · Ko‘p xonali sonni ikki xonali songa ko‘",
+"turlar": [
+"kop1",
+"kop2",
+"kop10"
+]
+},
+{
+"mavzu": "Narx, miqdor va qiymat · Soatlar, minutlar, sekundlar...: · Yig‘indini songa bo‘lish · Ikki xonali sonni bir xonali songa bo‘lish · Qoldiq ·",
+"turlar": [
+"qiymat",
+"vaqt",
+"bol",
+"qoldiq"
+]
+},
+{
+"mavzu": "Burchakli bo‘lish · Ko‘p xonali sonlarni qoldiqli bo‘lish · O‘rtasida 0 raqami bor sonlarni bo‘lish",
+"turlar": [
+"bol",
+"qoldiq"
+]
+},
+{
+"mavzu": "0 bilan tugagan sonlarni bo‘lish · Yaxlit sonlarni bo‘lish · Bo‘lishning geometrik ma’nosi · Ikki xonali sonni ikki xonali songa burchakli b",
+"turlar": [
+"bol",
+"bol2"
+]
+},
+{
+"mavzu": "Uch xonali songa burchakli bo‘lish · Bo‘luvchilar va karralilar · Kesmani teng bo‘laklarga bo‘lish · To‘g‘ri to‘rtburchakning perimetri",
+"turlar": [
+"bol2",
+"karrali",
+"bol",
+"perimetr"
+]
+},
+{
+"mavzu": "Muntazam shakllarning perimetri · Nostandart shakllarning perimetri · Yuzning xossalari · Yuzni topishning nostandart usullari · Nostandart ",
+"turlar": [
+"perimetr",
+"yuz",
+"massa"
+]
+},
+{
+"mavzu": "Tonna va sentner · Massa birliklari · Uzunlik birliklari · Uzunlik birliklari va ularning bog‘liqligi · Yuz birliklari",
+"turlar": [
+"massa",
+"uzunlik",
+"yuzbirlik"
+]
+},
+{
+"mavzu": "Yuz birliklari · Yuz birliklari va ular orasidagi bog‘lanishlar · Hajm birliklari · Hajm birliklari va ular orasidagi bog‘lanishlar · Yuzlar",
+"turlar": [
+"yuzbirlik",
+"hajm",
+"yuz"
+]
+},
+{
+"mavzu": "Yuzlarni paletka yordamida hisoblash · Parallelepiped va kub · Kub qirralari uzunliklari yig‘indisi · To‘g‘ri burchakli parallelepiped qirra",
+"turlar": [
+"yuz",
+"hajm",
+"uzunlik",
+"jism"
+]
+},
+{
+"mavzu": "Doira va aylana · Aylana yasash · Aylana yordamida naqsh chizish · Doirani teng bo‘laklarga bo‘lish · Doiraning ulushlari",
+"turlar": [
+"ulush",
+"bol"
+]
+},
+{
+"mavzu": "Doiraning ulushi. Soatlar va minutlar · Sonning ulushini topish · Parallel to‘g‘ri chiziqlar · Perpendikular to‘g‘ri chiziqlar · Koordinata ",
+"turlar": [
+"ulush",
+"koordinata",
+"taqqos"
+]
+},
+{
+"mavzu": "Tenglik va tengsizliklar · Sonli nur yordamida qo‘shish va ayirish · Sonli nur yordamida masalalar yechish · Sodda tenglamalar · Tengsizlikl",
+"turlar": [
+"tenglama",
+"qosh",
+"koordinata"
+]
+},
+{
+"mavzu": "Koordinata burchagida nuqtalar yasash · O‘qli simmetriya · Simmetrik shakllar · Tarkibli tenglamalar · Tenglamalarni soddalashtirish",
+"turlar": [
+"koordinata",
+"jism",
+"tenglama"
+]
+},
+{
+"mavzu": "Muntazam shakllarning perimetri · To‘g‘ri to‘rtburchak va kvadratning yu zi · Kuboidning hajmi · Qoldiqli bo‘lish · Harakat va tezlik · Maso",
+"turlar": [
+"perimetr",
+"yuz",
+"hajm",
+"qoldiq",
+"harakat"
+]
+},
+{
+"mavzu": "Harakatga doir masalalar yechish · Narx, miqdor, qiymat · Qiymatga doir masalalar yechish",
+"turlar": [
+"harakat",
+"qiymat"
+]
+},
+{
+"mavzu": "Qiymatga doir masalalar yechish · Unumdorlik · Unumdorlikka doir masalalar yechish · To‘plamga tegishlilik · Eyler-Venn diagrammasi",
+"turlar": [
+"qiymat",
+"unum",
+"toplam"
+]
+}
+]
+},
+{
+"kalit": "mat4",
+"nom": "Matematika · 4-sinf",
+"gen": "34",
+"bosqichlar": [
+{
+"mavzu": "Takrorlash. Ko‘p xonali sonlar · Takrorlash. Ko‘p xonali sonlar bilan amallar · Takrorlash. Amal hadlari · Takrorlash. Harakatga doir masala",
+"turlar": [
+"korxona",
+"ifoda",
+"harakat"
+]
+},
+{
+"mavzu": "Takrorlash. Formulalar · Takrorlash. Ish unumdorligiga doir masalalar · Takrorlash. Tenglamalar va tengsizliklar · Takrorlash. Koordinata nu",
+"turlar": [
+"ifoda",
+"unum",
+"tenglama",
+"koordinata",
+"vaqt"
+]
+},
+{
+"mavzu": "Takrorlash. Yuza va perimetr · Bo‘luvchilar va karralilar · 10 ga bo‘linish alomati · 5 ga bo‘linish alomati · 2 ga bo‘linish alomati · 3 ga",
+"turlar": [
+"perimetr",
+"karrali",
+"alomat"
+]
+},
+{
+"mavzu": "9 ga bo‘linish alomati · 4 ga bo‘linish alomati · To‘plamlar va ma’lumotlar · Ma’lumotlarni taqdim etish usullari · O‘rta arifmetik",
+"turlar": [
+"alomat",
+"ortacha"
+]
+},
+{
+"mavzu": "Chastota · Parallel va perpendikular to‘g‘ri chiziqlar · Koordinata nuri · Koordinata burchagi · Ustunli diagramma",
+"turlar": [
+"ortacha",
+"koordinata"
+]
+},
+{
+"mavzu": "Chiziqli diagramma · Grafik · Venn diagrammasi · Sonli nur va shkala · Nuqtadan 0 gacha bo‘lgan masofa",
+"turlar": [
+"ortacha",
+"toplam",
+"koordinata",
+"harakat"
+]
+},
+{
+"mavzu": "Nurning nuqtalari orasidagi masofa · Nuqtaning koordinata nuri bo‘ylab harakati · Yo‘l, vaqt, tezlik · Nuqtalarning birgalikdagi harakati · ",
+"turlar": [
+"harakat",
+"qarama"
+]
+},
+{
+"mavzu": "Qarama-qarshi harakat · Quvlama harakat · Kechikishli harakat",
+"turlar": [
+"qarama",
+"quvlama"
+]
+},
+{
+"mavzu": "Kechikishli harakat · Aniq va taqribiy qiymatlar · O‘lchash xatoligi · Taqribiy tenglik · O‘nliklargacha aniqlikda yaxlitlash",
+"turlar": [
+"quvlama",
+"yaxlit"
+]
+},
+{
+"mavzu": "Yuzliklargacha aniqlikda yaxlitlash · Berilgan aniqlikda yaxlitlash · Ortig‘i va kami bilan yaxlitlash · Qiymatlarni chamalash",
+"turlar": [
+"yaxlit"
+]
+},
+{
+"mavzu": "Qiymatlarni chamalash · Yuzni hisoblash usuli · Bo‘lish",
+"turlar": [
+"yaxlit",
+"yuz",
+"bol"
+]
+},
+{
+"mavzu": "Ulush va qismlar · Sonning qismini topish · Kattaliklarning qismlari",
+"turlar": [
+"ulush"
+]
+},
+{
+"mavzu": "Kasrlarning sonli nurda tasvirlanishi · Kasrlarni taqqoslash · Kasrlarni qo‘shish va ayirish",
+"turlar": [
+"kasrtaq",
+"kasrqosh"
+]
+},
+{
+"mavzu": "Birdan ayirish · Kasrlarni birlikdan o‘tib ayirish · Kasrlarni natural songa ko ‘pay tiris h",
+"turlar": [
+"kasrqosh",
+"ayir",
+"kasrnat"
+]
+},
+{
+"mavzu": "O‘nli kasr · O‘nli kasrlarning xonalari. O ‘ndan birlar · O‘nli kasrlarning xonalari. Yuzdan birrla r · O‘nli kasrlarning xonalari. Mingdan ",
+"turlar": [
+"onli"
+]
+},
+{
+"mavzu": "Uzunlikning o‘nli ulushlar ko‘rinishida yozilishi · Massaning o‘nli ulushlar korinishida yozilishi · Foiz · O‘q simmetriya · To‘g‘ri chiziqq",
+"turlar": [
+"onli",
+"foiz",
+"jism"
+]
+},
+{
+"mavzu": "Markaziy simmetriya · Nostandart shakllar yuzi · Shakllarni to‘g‘ri to‘rtburchakkacha to‘ldirish · To‘g‘ri burchakli parallelepiped (kuboid)",
+"turlar": [
+"jism",
+"yuz",
+"burchak",
+"hajm"
+]
+},
+{
+"mavzu": "Prizma va uning yoyilmasi · Uchburchak va piramida · Ko‘pburchak va piramida · Piramida va uning yoyilmasi · Doira va shar · Doira va silind",
+"turlar": [
+"jism"
+]
+},
+{
+"mavzu": "Silindr va uning yoyilmasi · Doira va konus · Konus va uning yoyilmasi · Burchaklarni taqqoslash · Burchakning gradus o‘lchovi",
+"turlar": [
+"jism",
+"taqqos",
+"burchak"
+]
+},
+{
+"mavzu": "Burchakni transportir bilan o‘lchash · Berilgan gradus o‘lchovi bo‘yicha burchakni yasash",
+"turlar": [
+"burchak"
+]
+}
+]
+},
+{
+"kalit": "mat5",
+"nom": "Matematika · 5-sinf",
+"gen": "56",
+"bosqichlar": [
+{
+"mavzu": "Eslang · 1 milliongacha bo‘lgan sonlar · 10 milliongacha bo‘lgan sonlar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"korxona"
+]
+},
+{
+"mavzu": "Sonni 10, 100 va 1000 ga ko‘paytirish · Sonni o‘nlik, yuzlik va mingliklarga ko‘paytirish · Sonni 10, 100 va 1000 ga bo‘lish · Sonni o‘nlik,",
+"turlar": [
+"kop10",
+"ifoda"
+]
+},
+{
+"mavzu": "Qavsli ifodalarda amallarni bajarish tartibi · Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq · Sonlarni bo‘lishni kasr ko‘rinishida ",
+"turlar": [
+"ifoda",
+"kop1",
+"onli"
+]
+},
+{
+"mavzu": "Oddiy kasrni o‘nli kasrga aylantirish · Eslang · Aralash sonlarni qo‘shish va ayirish · To‘g‘ri kasrni natural songa ko‘paytirish",
+"turlar": [
+"onli",
+"kasrkop",
+"kasrqosh2",
+"kasr_n_kop"
+]
+},
+{
+"mavzu": "Noto‘g‘ri kasrni natural songa ko‘paytirish · Ikkita to‘g‘ri kasrni ko‘paytirish · To‘g‘ri va noto‘g‘ri kasrlarni ko‘paytirish · Ikkita noto",
+"turlar": [
+"kasr_n_kop",
+"kasrkop"
+]
+},
+{
+"mavzu": "Aralash sonlarni natural songa ko‘paytirish · Qolgan qismning qismi · Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"kasrkop",
+"qolgan"
+]
+},
+{
+"mavzu": "Eslang · Uchburchakning asosi va balandligi · Uchburchakning yuzini topish · Tuzilgan murakkab shakllarning yuzi · O‘ylab ko‘ring. Muammoli ",
+"turlar": [
+"uchburchak_yuz"
+]
+},
+{
+"mavzu": "Eslang · Fazoviy jismlarning hajmi · Uch o‘lchamli panjarada fazoviy jismlarni chizish · Kvadratli panjarada fazoviy jismlarning turli ko‘ri",
+"turlar": [
+"hajm"
+]
+},
+{
+"mavzu": "Hajmni santimetr kub va metr kubda o‘lchash · Kuboid va kubning hajmini topish · Suyuqlik hajmini santimetr kub va metr kubda o‘lchash · Mat",
+"turlar": [
+"hajm"
+]
+},
+{
+"mavzu": "Nisbat tushunchasi · Teng kuchli nisbatlar · Berilgan miqdor va nisbatga ko‘ra boshqa miqdorni topish · Berilgan jami miqdor va nisbatga ko‘",
+"turlar": [
+"nisbat"
+]
+},
+{
+"mavzu": "Ikkita miqdorning nisbatiga doir matnli masalalar · Uchta miqdorning nisbati · Uchta miqdorning nisbatiga doir matnli masalalar · O‘ylab ko‘",
+"turlar": [
+"nisbat"
+]
+},
+{
+"mavzu": "Eslang · O‘nli kasrni 10, 100 va 1000 ga ko‘paytirish · O‘nli kasrni o‘nlik, yuzlik va mingliklarga ko‘paytirish · O‘nli kasrni 10, 100 va 1",
+"turlar": [
+"onli10"
+]
+},
+{
+"mavzu": "Eslang · O‘lchov birliklarini almashtirish · Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"onli10",
+"massa"
+]
+},
+{
+"mavzu": "Me’yorni topish · Me’yorga ko‘ra umumiy miqdorni topish · Birliklar sonini topish · Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"meyor"
+]
+},
+{
+"mavzu": "Eslang · Foiz tushunchasi · Oddiy kasr, o‘nli kasr va foizlar orasidagi munosabatlar · Miqdorning foizi",
+"turlar": [
+"foiz",
+"onli"
+]
+},
+{
+"mavzu": "Matnli masalalar · QQS (qo‘shilgan qiymat solig‘i), chegirma va omonat foizi · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"foiz",
+"chegirma"
+]
+},
+{
+"mavzu": "O‘rtacha qiymat tushunchasi · Miqdorlarning o‘rtacha va jami qiymati hamda soni · O‘ylab ko‘ring. Muammoli topshiriq · Eslang · To‘g‘ri chiz",
+"turlar": [
+"ortacha",
+"burchak_chiziq"
+]
+},
+{
+"mavzu": "Vertikal burchaklar · Nuqta atrofidagi burchaklar · Noma’lum burchaklarni topish · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"burchak_chiziq",
+"burchak_nuqta"
+]
+},
+{
+"mavzu": "Uchburchakning turlari · Uchburchaklarni chizish · Uchburchakning burchaklari · O‘ylab ko‘ring. Muammoli topshiriq · Eslang",
+"turlar": [
+"uchburchak_burchak",
+"burchak_chiziq",
+"tortburchak_burchak"
+]
+},
+{
+"mavzu": "Parallelogramm, romb va trapetsiyaning xossalari · To‘rtburchaklarni chizish · To‘rtburchakning noma’lum burchaklarini topish · O‘ylab ko‘ri",
+"turlar": [
+"tortburchak_burchak",
+"burchak_nuqta"
+]
+}
+]
+},
+{
+"kalit": "mat6",
+"nom": "Matematika · 6-sinf",
+"gen": "56",
+"bosqichlar": [
+{
+"mavzu": "Eslang · Algebraik ifodalar · Algebraik ifodalarni soddalashtirish",
+"turlar": [
+"tenglama",
+"algebra"
+]
+},
+{
+"mavzu": "Algebraik ifodalarning qiymatini topish · Tenglamalarni yechish · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"algebra",
+"tenglama"
+]
+},
+{
+"mavzu": "Eslang · Toʻgʻri kasrni natural songa boʻlish · Natural sonni toʻgʻri kasrga boʻlish",
+"turlar": [
+"kasrkop",
+"kasr_n_bol",
+"n_kasr_bol"
+]
+},
+{
+"mavzu": "Toʻgʻri kasrni toʻgʻri kasrga boʻlish · Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"kasrbol",
+"kasrkop"
+]
+},
+{
+"mavzu": "Takrorlash · Eslang · Nisbat va kasr · Matnli masalalar",
+"turlar": [
+"kasrkop",
+"nisbat"
+]
+},
+{
+"mavzu": "Uch miqdor nisbati · Oʻzgaruvchan nisbatlar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"nisbat"
+]
+},
+{
+"mavzu": "Eslang · Foizi va qismiga koʻra sonning oʻzini topish · Oʻsish foizi va kamayish foizini topish",
+"turlar": [
+"foiz",
+"osish"
+]
+},
+{
+"mavzu": "Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq · Takrorlash",
+"turlar": [
+"foiz"
+]
+},
+{
+"mavzu": "Eslang · Geometrik shakllardagi nomaʼlum burchaklarni topish · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"burchak_chiziq",
+"burchak_nuqta"
+]
+},
+{
+"mavzu": "Eslang · Doira va aylana elementlari · Aylananing uzunligi",
+"turlar": [
+"doira",
+"aylana"
+]
+},
+{
+"mavzu": "Yarim va chorak doira perimetri · Doiraning yuzi · Yarim va chorak doira yuzi",
+"turlar": [
+"aylana",
+"doira"
+]
+},
+{
+"mavzu": "Murakkab shakllarning yuzi va perimetri · O‘ylab ko‘ring. Muammoli topshiriq · Takrorlash",
+"turlar": [
+"uchburchak_yuz",
+"doira"
+]
+},
+{
+"mavzu": "Eslang · Tezlik · Tezlik, bosib o‘tilgan masofa va vaqtni topish",
+"turlar": [
+"harakat"
+]
+},
+{
+"mavzu": "Ikki xil tezlikdagi harakatga doir matnli masalalar · O‘rtacha tezlik · Ikkita jism harakatiga doir matnli masalalar",
+"turlar": [
+"harakat",
+"ortacha_tezlik"
+]
+},
+{
+"mavzu": "O‘ylab ko‘ring. Muammoli topshiriq · Eslang · Kuboidning qirrasini topish",
+"turlar": [
+"harakat",
+"hajm"
+]
+},
+{
+"mavzu": "Kubning qirrasini topish · Kuboid va kubning bir yog‘i yuzini topish · Matnli masalalar · O‘ylab ko‘ring. Muammoli topshiriq",
+"turlar": [
+"kubqirra",
+"hajm"
+]
+},
+{
+"mavzu": "Takrorlash · Eslang · Doiraviy diagrammada ma’lumotlarni taqdim etish",
+"turlar": [
+"hajm",
+"doira",
+"diagramma"
+]
+},
+{
+"mavzu": "Doiraviy diagrammalardagi ma’lumotlarni o‘qish va talqin qilish · O‘ylab ko‘ring. Muammoli topshiriq · Eslang",
+"turlar": [
+"diagramma",
+"doira",
+"jism"
+]
+},
+{
+"mavzu": "Konus, silindr, prizma va piramida · Uch o‘lchamli panjarada fazoviy jismlarni chizish · Fazoviy jismlarning yoyilmasi",
+"turlar": [
+"jism",
+"hajm"
+]
+},
+{
+"mavzu": "O‘ylab ko‘ring. Muammoli topshiriq · Takrorlash · Umumiy takrorlash",
+"turlar": [
+"jism"
+]
+}
+]
+},
+{
+"kalit": "alg7",
+"nom": "Algebra · 7-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "6-sinfda oʻtilganlarni takrorlash · Sonli ifodalar",
+"turlar": [
+"chiziqli",
+"ifoda"
+]
+},
+{
+"mavzu": "Algebraik ifodalar · Algebraik tengliklar, formulalar",
+"turlar": [
+"ifoda"
+]
+},
+{
+"mavzu": "Qavslarni ochish qoidasi va koeffitsiyent · Arifmetik amallarning xossalari · Natural koʻrsatkichli daraja",
+"turlar": [
+"ifoda",
+"korsatkich"
+]
+},
+{
+"mavzu": "Natural koʻrsatkichli darajaning xossalari · Birhad va uning standart shakli",
+"turlar": [
+"korsatkich",
+"kophad"
+]
+},
+{
+"mavzu": "Birhadlarni koʻpaytirish va boʻlish · Koʻphadlar",
+"turlar": [
+"kophad"
+]
+},
+{
+"mavzu": "Oʻxshash hadlar va ularni ixchamlash · Koʻphadlarni qoʻshish va ayirish · Koʻphadlarni koʻpaytirish",
+"turlar": [
+"kophad"
+]
+},
+{
+"mavzu": "Koʻphadlarni boʻlish · Koʻphadni koʻpaytuvchilarga ajratish",
+"turlar": [
+"kophad",
+"ajrat"
+]
+},
+{
+"mavzu": "Yigʻindining kvadrati va ayirmaning kvadrati · Kvadratlar ayirmasi",
+"turlar": [
+"qisqa",
+"kvayirma"
+]
+},
+{
+"mavzu": "Yigʻindining kubi. Ayirmaning kubi · Kublar yigʻindisi va ayirmasi",
+"turlar": [
+"qisqa",
+"arifyig"
+]
+},
+{
+"mavzu": "Koʻpaytuvchilarga ajratish usullari · Qisqa koʻpaytirish formulalarining tatbiqi",
+"turlar": [
+"ajrat",
+"qisqa"
+]
+},
+{
+"mavzu": "Algebraik kasr. Kasrlarni qisqartirish · Algebraik kasrlarni umumiy maxrajga keltirish · Algebraik kasrlarni qoʻshish va ayirish",
+"turlar": [
+"kasrqisq",
+"trig"
+]
+},
+{
+"mavzu": "Algebraik kasrlarni koʻpaytirish va boʻlish · Loyiha ishi",
+"turlar": [
+"kasrqisq",
+"chiziqli"
+]
+},
+{
+"mavzu": "Tenglama va uning ildizi · Bir noma’lumli chiziqli tenglamalar",
+"turlar": [
+"ildiz",
+"chiziqli"
+]
+},
+{
+"mavzu": "Tenglamalar yechishning al-Xorazmiy usuli · Masalalarni tenglama yordamida yechish · Dekart koordinalar sistemasi",
+"turlar": [
+"chiziqli",
+"sistema"
+]
+},
+{
+"mavzu": "Funksiya tushunchasi · Chiziqli funksiya",
+"turlar": [
+"funksiya"
+]
+},
+{
+"mavzu": "Loyiha ishi · Chiziqli tenglamalar sistemasi",
+"turlar": [
+"chiziqli",
+"sistema"
+]
+},
+{
+"mavzu": "Chiziqli tenglamalar sistemasini yechish usullari · Chiziqli tenglamalar sistemasi yordamida masalalar yechish",
+"turlar": [
+"sistema"
+]
+},
+{
+"mavzu": "Kombinatorikaning asosiy qoidalari · Kombinatorik masalalar turlari",
+"turlar": [
+"kombinatorika"
+]
+},
+{
+"mavzu": "Kombinatorik masalalarni yechish usullari · TAKRORLASH · QOʻSHIMCHA TOPSHIRIQLAR",
+"turlar": [
+"kombinatorika",
+"chiziqli"
+]
+},
+{
+"mavzu": "XALQARO BAHOLASH DASTURIGA OID TOPSHIRIQLAR · MANTIQIY TOPSHIRIQLAR",
+"turlar": [
+"chiziqli"
+]
+}
+]
+},
+{
+"kalit": "geo7",
+"nom": "Geometriya · 7-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Eng sodda geometrik shakllar",
+"turlar": [
+"qoshni"
+]
+},
+{
+"mavzu": "Kesma. Kesmalarni taqqoslash va o‘lchash · Burchak. Burchaklarni taqqoslash va o‘lchash",
+"turlar": [
+"qoshni"
+]
+},
+{
+"mavzu": "Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Burchakning turlari",
+"turlar": [
+"qoshni"
+]
+},
+{
+"mavzu": "Perpendikulyar to‘g‘ri chiziqlar · Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring",
+"turlar": [
+"qoshni",
+"uchburchak"
+]
+},
+{
+"mavzu": "Uchburchaklar, ularning turlari va elementlari",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Uchburchaklar tengligining birinchi alomati",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Teng yonli uchburchakning xossalari · Uchburchaklar tengligining ikkinchi alomati",
+"turlar": [
+"tengyonli",
+"uchburchak"
+]
+},
+{
+"mavzu": "Uchburchaklar tengligining uchinchi alomati",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring · Parallel to‘g‘ri chiziqlar",
+"turlar": [
+"uchburchak",
+"parallel"
+]
+},
+{
+"mavzu": "Ikki to‘g‘ri chiziqning parallellik alomatlari",
+"turlar": [
+"parallel"
+]
+},
+{
+"mavzu": "Ikki parallel to‘g‘ri chiziq va kesuvchi hosil qilgan burchaklar",
+"turlar": [
+"parallel"
+]
+},
+{
+"mavzu": "Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring · Uchburchakning ichki burchaklari yig‘indisi",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "To‘g‘ri burchakli uchburchaklar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Burchak bissektrisasining xossasi",
+"turlar": [
+"qoshni"
+]
+},
+{
+"mavzu": "Uchburchakning tomonlari va burchaklari orasidagi munosabatlar · Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Sirkul va chizg‘ich yordamida geometrik yasashga doir masalalar",
+"turlar": [
+"qoshni"
+]
+},
+{
+"mavzu": "Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Takrorlashga doir masalalar · Amaliy mashq va tatbiq. Bilimingizni sinab ko‘ring",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "7-sinf uchun geometriyaga oid asosiy ma’lumotlar",
+"turlar": [
+"statistika"
+]
+}
+]
+},
+{
+"kalit": "alg8",
+"nom": "Algebra · 8-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Algebraik ifodalar · Algebraik kasr. Kasrlarni qisqartirish",
+"turlar": [
+"ifoda",
+"kasrqisq"
+]
+},
+{
+"mavzu": "Kasrlarni umumiy maxrajga keltirish",
+"turlar": [
+"trig"
+]
+},
+{
+"mavzu": "Algebraik kasrlarni qo‘shish va ayirish · Algebraik kasrlarni ko‘paytirish va bo‘lish",
+"turlar": [
+"kasrqisq"
+]
+},
+{
+"mavzu": "Kasr-ratsional ifodalarni ayniy almashtirish",
+"turlar": [
+"kasrqisq"
+]
+},
+{
+"mavzu": "Y=k/x funksiya. Xossalari, grafigi · Natural ko‘rsatkichli darajaning arifmetik ildizi va xossalari",
+"turlar": [
+"funksiya",
+"korsatkich"
+]
+},
+{
+"mavzu": "Ratsional ko‘rsatkichli daraja va xossalari",
+"turlar": [
+"korsatkich"
+]
+},
+{
+"mavzu": "Ratsional daraja qatnashgan ifodalarni soddalashtirish · Sonli tengsizliklar",
+"turlar": [
+"daraja",
+"tengsizlik"
+]
+},
+{
+"mavzu": "Sonli tengsizliklarning asosiy xossalari",
+"turlar": [
+"tengsizlik"
+]
+},
+{
+"mavzu": "Tengsizliklarni qo‘shish va ko‘paytirish · Sonli tengsizliklarni darajaga ko‘tarish",
+"turlar": [
+"tengsizlik"
+]
+},
+{
+"mavzu": "Bir noma’lumli tengsizliklar · Tengsizliklar sistemalari. Sonli oraliqlar",
+"turlar": [
+"tengsizlik"
+]
+},
+{
+"mavzu": "Sonning moduli. Modulli tenglama va tengsizliklar",
+"turlar": [
+"tengsizlik"
+]
+},
+{
+"mavzu": "Taqribiy hisoblashlar. Yaqinlashish xatoligi · Xatolikni baholash",
+"turlar": [
+"chiziqli"
+]
+},
+{
+"mavzu": "Sonlarni yaxlitlash",
+"turlar": [
+"chiziqli"
+]
+},
+{
+"mavzu": "Nisbiy xatolik · Kvadrat tenglama va uning ildizlari",
+"turlar": [
+"chiziqli",
+"kvtenglama"
+]
+},
+{
+"mavzu": "Chala kvadrat tenglamalar",
+"turlar": [
+"kvtenglama"
+]
+},
+{
+"mavzu": "Kvadrat tenglama ildizlari formulasi. Diskriminant · Viyet teoremasi. Kvadrat uchhadni ko‘paytuvchilarga ajratish",
+"turlar": [
+"diskriminant",
+"viyet"
+]
+},
+{
+"mavzu": "Bikvadrat tenglama va kvadrat tenglamaga keltiriladigan tenglamalar",
+"turlar": [
+"kvtenglama"
+]
+},
+{
+"mavzu": "Kvadrat tenglamalar yordamida masalalar yechish · Ma’lumotlar tahlili va ma’lumotlarni tasvirlash",
+"turlar": [
+"kvtenglama",
+"statistika"
+]
+},
+{
+"mavzu": "O‘rta qiymat. Moda. Mediana",
+"turlar": [
+"statistika"
+]
+},
+{
+"mavzu": "Tanlash usuli bilan kombinatorik masalalar · Kombinatorikaning asosiy qoidasi",
+"turlar": [
+"kombinatorika"
+]
+}
+]
+},
+{
+"kalit": "geo8",
+"nom": "Geometriya · 8-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "7-sinfda o‘tilganlarni takrorlash · 1-§. To‘rtburchaklar · Ko‘pburchaklar · Qavariq ko‘pburchak ichki va tashqi burchaklarining yig‘indisi",
+"turlar": [
+"uchburchak",
+"tortburchak",
+"qoshni"
+]
+},
+{
+"mavzu": "Parallelogramm va uning xossalari · Parallelogrammning alomatlari · To‘g‘ri to‘rtburchak va uning xossalari · Romb va uning xossalari",
+"turlar": [
+"tortburchak"
+]
+},
+{
+"mavzu": "Kvadrat va uning xossalari · Uchburchakning o‘rta chizig‘i · Trapetsiya",
+"turlar": [
+"tortburchak",
+"uchburchak",
+"trapetsiya"
+]
+},
+{
+"mavzu": "Teng yonli trapetsiyaning xossasi · Trapetsiyaning o‘rta chizig‘i · 1-§ ga (to‘rtburchaklarga) doir qo‘shimcha mashqlar · 1-test",
+"turlar": [
+"trapetsiya",
+"tortburchak",
+"uchburchak"
+]
+},
+{
+"mavzu": "Tarixiy ma’lumotlar · Fales teoremasi · Fales teoremasi tatbig‘iga doir masalalar · 1-§ ga (Fales teoremasiga) doir qo‘shimcha mashqlar",
+"turlar": [
+"statistika",
+"trapetsiya"
+]
+},
+{
+"mavzu": "2-test · Tarixiy ma’lumotlar · O‘qqa nisbatan simmetriya · Simmetriya o‘qiga ega bo‘lgan shakllar",
+"turlar": [
+"uchburchak",
+"statistika",
+"oxshash"
+]
+},
+{
+"mavzu": "Markaziy simmetriya va uning xossalari · Markaziy simmetrik shakllar · 1-§ ga (simmetriyaga) doir qo‘shimcha mashqlar · 3-test",
+"turlar": [
+"aylana",
+"oxshash",
+"uchburchak"
+]
+},
+{
+"mavzu": "Tarixiy ma’lumotlar · 2-§. Yuzlar · Yuz haqida tushuncha. Tengdosh shakllar",
+"turlar": [
+"statistika",
+"yuz"
+]
+},
+{
+"mavzu": "Yuzni o‘lchash · To‘g‘ri to‘rtburchakning yuzi · Parallelogrammning yuzi · Uchburchakning yuzi",
+"turlar": [
+"yuz"
+]
+},
+{
+"mavzu": "Rombning yuzi · Trapetsiyaning yuzi · Ko‘pburchakning yuzi · Masalalar yechish",
+"turlar": [
+"yuz",
+"trapyuz",
+"uchburchak"
+]
+},
+{
+"mavzu": "2-§ ga doir qo‘shimcha mashqlar · 4-test · Tarixiy ma’lumotlar · 3-§. Pifagor teoremasi",
+"turlar": [
+"uchburchak",
+"statistika",
+"pifagor"
+]
+},
+{
+"mavzu": "Pifagor va uning teoremasi haqida · Pifagor teoremasining isboti · Teskari teorema · Tomonlariga ko‘ra uchburchakning balandligini topish",
+"turlar": [
+"pifagor",
+"uchburchak"
+]
+},
+{
+"mavzu": "Uchburchak yuzi uchun Geron formulasi · Masalalar yechish · 3-§ ga doir qo‘shimcha mashqlar",
+"turlar": [
+"yuz",
+"uchburchak"
+]
+},
+{
+"mavzu": "5-test · Tarixiy ma’lumotlar · 4-§. Aylana · Aylana. Markaziy burchak",
+"turlar": [
+"uchburchak",
+"statistika",
+"aylana"
+]
+},
+{
+"mavzu": "Aylana vatari va diametrining xossalari · Aylanaga urinma · Aylanaga ichki chizilgan burchak · Ichki chizilgan aylana",
+"turlar": [
+"aylana"
+]
+},
+{
+"mavzu": "Tashqi chizilgan aylana · Burchaklarni o‘lchash · 4-§ ga doir qo‘shimcha mashqlar · 6-test",
+"turlar": [
+"aylana",
+"qoshni",
+"uchburchak"
+]
+},
+{
+"mavzu": "Tarixiy ma’lumotlar · 5-§. Vektorlar · Vektor tushunchasi · Vektorlarni qo‘shish va ayirish",
+"turlar": [
+"statistika",
+"vektor"
+]
+},
+{
+"mavzu": "Vektorni songa ko‘paytirish · Vektorlarning masalalarni yechishga tatbig‘i · Vektorning koordinatalari",
+"turlar": [
+"vektor"
+]
+},
+{
+"mavzu": "Koordinatalari berilgan vektorlar ustida amallar · Vektorlarning skalar ko‘paytmasi · Vektorlarning fizik va geometrik talqinlari · 5-§ ga d",
+"turlar": [
+"vektor",
+"uchburchak"
+]
+},
+{
+"mavzu": "7-test · Tarixiy ma’lumotlar · 8-sinfda o‘tilgan mavzularni takrorlash uchun mashqlar · 8-test",
+"turlar": [
+"uchburchak",
+"statistika"
+]
+}
+]
+},
+{
+"kalit": "alg9",
+"nom": "Algebra · 9-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Kvadrat funksiyaning ta’rifi · Y=x² funksiya",
+"turlar": [
+"parabola"
+]
+},
+{
+"mavzu": "Y=ax² funksiya · Y=ax²+bx+c funksiya",
+"turlar": [
+"parabola"
+]
+},
+{
+"mavzu": "Kvadrat funksiyaning grafigini yasash · Kvadrat tengsizlik va uning yechimi",
+"turlar": [
+"parabola",
+"tengsizlik"
+]
+},
+{
+"mavzu": "Kvadrat tengsizlikni kvadrat funksiya grafigi yordamida yechish · Intervallar usuli",
+"turlar": [
+"tengsizlik"
+]
+},
+{
+"mavzu": "Funksiyaning aniqlanish sohasi · Funksiyaning o‘sishi va kamayishi",
+"turlar": [
+"funksiya"
+]
+},
+{
+"mavzu": "Funksiyaning juftligi va toqligi",
+"turlar": [
+"funksiya"
+]
+},
+{
+"mavzu": "Daraja qatnashgan tengsizlik va tenglamalar · Ikkinchi darajali tenglama qatnashgan sistemalar",
+"turlar": [
+"tengsizlik",
+"kvtenglama"
+]
+},
+{
+"mavzu": "Tenglamalar sistemasini yechish usullari · Ikkinchi darajali bir noma’lumli tengsizliklar sistemalari",
+"turlar": [
+"sistema",
+"kvtenglama"
+]
+},
+{
+"mavzu": "Sodda tengsizliklarni isbotlash · Burchakning radian o‘lchovi",
+"turlar": [
+"tengsizlik",
+"radian"
+]
+},
+{
+"mavzu": "Nuqtani koordinatalar boshi atrofida burish · Burchakning sinusi, kosinusi, tangensi va kotangensi",
+"turlar": [
+"radian",
+"trig"
+]
+},
+{
+"mavzu": "Sinus, kosinus va tangens ishoralari · Ayni bir burchak trigonometrik funksiyalari orasidagi munosabatlar",
+"turlar": [
+"trig"
+]
+},
+{
+"mavzu": "Trigonometrik ayniyatlar · Α va −α burchaklarning trigonometrik funksiyalari",
+"turlar": [
+"trig"
+]
+},
+{
+"mavzu": "Qo‘shish formulalari · Ikkilangan burchak sinusi va kosinusi",
+"turlar": [
+"trig"
+]
+},
+{
+"mavzu": "Keltirish formulalari · Sinuslar va kosinuslar yig‘indisi va ayirmasi",
+"turlar": [
+"trig"
+]
+},
+{
+"mavzu": "Sonli ketma-ketliklar",
+"turlar": [
+"arifprog"
+]
+},
+{
+"mavzu": "Arifmetik progressiya · Arifmetik progressiyaning dastlabki n hadi yig‘indisi",
+"turlar": [
+"arifprog",
+"arifyig"
+]
+},
+{
+"mavzu": "Geometrik progressiya · Geometrik progressiyaning dastlabki n hadi yig‘indisi",
+"turlar": [
+"geomprog"
+]
+},
+{
+"mavzu": "Cheksiz kamayuvchi geometrik progressiya · Hodisalar",
+"turlar": [
+"cheksiz",
+"ehtimol"
+]
+},
+{
+"mavzu": "Hodisaning ehtimolligi · Tasodifiy hodisaning nisbiy chastotasi",
+"turlar": [
+"ehtimol"
+]
+},
+{
+"mavzu": "Tasodifiy miqdorlar · Tasodifiy miqdorlarning sonli xarakteristikalari",
+"turlar": [
+"ehtimol"
+]
+}
+]
+},
+{
+"kalit": "geo9",
+"nom": "Geometriya · 9-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Uchburchaklar va to‘rtburchaklar · Pifagor teoremasi va uning tatbiqlari · Geometrik shakllarning perimetri va yuzini hisoblashga doir masal",
+"turlar": [
+"tortburchak",
+"pifagor",
+"yuz"
+]
+},
+{
+"mavzu": "3D-geometriya - fazoviy jismlarda planimetriya masalalari · Loyiha ishini bajarish bo‘yicha ko‘rsatmalar · Ko‘pburchaklarning o‘xshashligi",
+"turlar": [
+"prizma",
+"uchburchak",
+"oxshash"
+]
+},
+{
+"mavzu": "O‘xshash uchburchaklar va ularning xossalari · Uchburchaklar o‘xshashligining birinchi alomati",
+"turlar": [
+"oxshash"
+]
+},
+{
+"mavzu": "Uchburchaklar o‘xshashligining ikkinchi alomati · Uchburchaklar o‘xshashligining uchinchi alomati · To‘g‘ri burchakli uchburchaklarning o‘xs",
+"turlar": [
+"oxshash"
+]
+},
+{
+"mavzu": "O‘xshashlik alomatlarining isbotlashga doir masalalarga tatbiqlari · Amaliy mashq va tatbiq · Bilimingizni sinab ko‘ring",
+"turlar": [
+"oxshash",
+"uchburchak"
+]
+},
+{
+"mavzu": "Tekislikda geometrik almashtirishlar. Harakat va parallel ko‘chirish · O‘qqa nisbatan simmetriya · Markaziy simmetriya va burish",
+"turlar": [
+"masofa",
+"oxshash",
+"aylana"
+]
+},
+{
+"mavzu": "Geometrik shakllarning o‘xshashligi · O‘xshash ko‘pburchaklarning xossalari · Gomotetiya va o‘xshashlik",
+"turlar": [
+"oxshash"
+]
+},
+{
+"mavzu": "O‘xshash ko‘pburchaklarni yasash · Amaliy mashq va tatbiq",
+"turlar": [
+"oxshash",
+"uchburchak"
+]
+},
+{
+"mavzu": "Masalalar yechish · Bilimingizni sinab ko‘ring · Burchakning sinusi, kosinusi, tangensi va kotangensi",
+"turlar": [
+"uchburchak",
+"trig"
+]
+},
+{
+"mavzu": "Masalalar yechish · Uchburchak yuzini burchak sinusi yordamida hisoblash · Sinuslar teoremasi",
+"turlar": [
+"uchburchak",
+"trig"
+]
+},
+{
+"mavzu": "Kosinuslar teoremasi · Sinuslar va kosinuslar teoremalarining ba‘zi tatbiqlari · Ikki vektor orasidagi burchak va ularning skalar ko‘paytmas",
+"turlar": [
+"trig",
+"vektor"
+]
+},
+{
+"mavzu": "Uchburchaklarni yechish · Masalalar yechish · Amaliy mashq va tatbiq",
+"turlar": [
+"kosinus",
+"uchburchak"
+]
+},
+{
+"mavzu": "Bilimingizni sinab ko‘ring · Aylanaga ichki chizilgan ko‘pburchak",
+"turlar": [
+"uchburchak",
+"aylana"
+]
+},
+{
+"mavzu": "Aylanaga tashqi chizilgan ko‘pburchak · Muntazam ko‘pburchaklar · Muntazam ko‘pburchakka ichki va tashqi chizilgan aylanalar",
+"turlar": [
+"aylana",
+"muntazam"
+]
+},
+{
+"mavzu": "Radiuslari orasidagi bog‘lanish · Bilimingizni sinab ko‘ring · Aylana uzunligi",
+"turlar": [
+"uchburchak",
+"aylana"
+]
+},
+{
+"mavzu": "Aylana yoyi uzunligi. Burchakning radian o‘lchovi · Doira yuzi · Doira bo‘laklari yuzi",
+"turlar": [
+"radian",
+"sektor",
+"yuz"
+]
+},
+{
+"mavzu": "Amaliy mashq va tatbiq · Bilimingizni sinab ko‘ring · Kesmalar proyeksiyasi va proporsionallik",
+"turlar": [
+"uchburchak",
+"masofa"
+]
+},
+{
+"mavzu": "Proporsional kesmalarning xossalari · To‘g‘ri burchakli uchburchakdagi proporsional kesmalar",
+"turlar": [
+"qoshni",
+"uchburchak"
+]
+},
+{
+"mavzu": "Berilgan ikkita kesmaga o‘rta proporsional kesmani yasash · Aylanadagi proporsional kesmalar · Amaliy mashq va tatbiq",
+"turlar": [
+"qoshni",
+"aylana",
+"uchburchak"
+]
+},
+{
+"mavzu": "Bilimingizni sinab ko‘ring · Yakuniy nazorat ishi · Planimetriyaga oid asosiy tushuncha va ma’lumotlar",
+"turlar": [
+"uchburchak",
+"statistika"
+]
+}
+]
+},
+{
+"kalit": "alg10",
+"nom": "Algebra · 10-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Kvadrat funksiya · Kvadrat tengsizlik",
+"turlar": [
+"parabola",
+"tengsizlik"
+]
+},
+{
+"mavzu": "Trigonometrik ayniyatlar · Arifmetik va geometrik progressiyalar",
+"turlar": [
+"trig",
+"geomprog"
+]
+},
+{
+"mavzu": "Funksiya. Funksiyaning berilish usullari",
+"turlar": [
+"funksiya"
+]
+},
+{
+"mavzu": "Funksiyaning aniqlanish sohasi va qiymatlar toʻplami · Funksiyalar ustida arifmetik amallar",
+"turlar": [
+"funksiya"
+]
+},
+{
+"mavzu": "Murakkab, teskari, davriy funksiyalar · Funksiya xossalari",
+"turlar": [
+"funksiya"
+]
+},
+{
+"mavzu": "Funksiya grafigi ustida sodda almashtirishlar · Chiziqli va kvadratik modellashtirishlar",
+"turlar": [
+"funksiya",
+"ekstremum"
+]
+},
+{
+"mavzu": "Loyiha ishi · Ratsional tenglamalar",
+"turlar": [
+"chiziqli",
+"kasrqisq"
+]
+},
+{
+"mavzu": "Ratsional tenglamalar sistemasi",
+"turlar": [
+"kasrqisq"
+]
+},
+{
+"mavzu": "Ratsional tengsizliklar · Ratsional tengsizliklar sistemasi",
+"turlar": [
+"tengsizlik"
+]
+},
+{
+"mavzu": "Irratsional tenglamalar · Irratsional tenglamalar sistemasi",
+"turlar": [
+"kasrqisq"
+]
+},
+{
+"mavzu": "Koʻrsatkichli funksiya · Koʻrsatkichli tenglamalar",
+"turlar": [
+"korsatkich"
+]
+},
+{
+"mavzu": "Koʻrsatkichli tengsizliklar · Logarifm tushunchasi. Logarifmik funksiya",
+"turlar": [
+"korsatkich",
+"logarifm"
+]
+},
+{
+"mavzu": "Logarifmik ifodalarni ayniy almashtirish",
+"turlar": [
+"logarifm"
+]
+},
+{
+"mavzu": "Logarifmik tenglamalar · Koʻrsatkichli va logarifmik tenglamalar sistemasi",
+"turlar": [
+"logtenglama"
+]
+},
+{
+"mavzu": "Logarifmik tengsizliklar · Koʻrsatkichli va logarifmik funksiyalarning tatbiqi",
+"turlar": [
+"logtenglama",
+"logarifm"
+]
+},
+{
+"mavzu": "Trigonometrik funksiyalar. davriy jarayonlar · Teskari trigonometrik funksiyalar",
+"turlar": [
+"trig"
+]
+},
+{
+"mavzu": "Loyiha ishi · Trigonometrik tenglamalar",
+"turlar": [
+"chiziqli",
+"trigtenglama"
+]
+},
+{
+"mavzu": "Ba’zi trigonometrik tenglamalarni yechish usullari",
+"turlar": [
+"trigtenglama"
+]
+},
+{
+"mavzu": "Trigonometrik tengsizliklar · Tasodifiy hodisalar",
+"turlar": [
+"trigtenglama",
+"ehtimol"
+]
+},
+{
+"mavzu": "Ehtimollik ta’riflari · Takrorlash",
+"turlar": [
+"ehtimol",
+"chiziqli"
+]
+}
+]
+},
+{
+"kalit": "geo10",
+"nom": "Geometriya · 10-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Geometriyaning mantiqiy tuzilishi",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Geometrik masalalar va ularni yechish usullari",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar · Stereometriyaning asosiy tushunchalari",
+"turlar": [
+"uchburchak",
+"masofa"
+]
+},
+{
+"mavzu": "Fazoda to‘g‘ri chiziqlar va tekisliklar",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Fazoviy geometrik shakllar. Ko‘pyoqlar",
+"turlar": [
+"prizma"
+]
+},
+{
+"mavzu": "Ko‘pyoqlarni tasvirlash va modelini yasash",
+"turlar": [
+"prizma"
+]
+},
+{
+"mavzu": "Ko‘pyoqlarning sodda kesimlarini yasash",
+"turlar": [
+"prizma"
+]
+},
+{
+"mavzu": "Loyiha ishi bo‘yicha mashg‘ulot · Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Fazoda to‘g‘ri chiziqlarning o‘zaro joylashuvi",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Ayqash to‘g‘ri chiziqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Fazoda to‘g‘ri chiziq va tekisliklarning o‘zaro joylashuvi",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Fazoda tekisliklarning o‘zaro joylashuvi",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Fazoda parallel proyeksiyalash · Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"masofa",
+"uchburchak"
+]
+},
+{
+"mavzu": "Fazoda perpendikulyar to‘g‘ri chiziq va tekisliklar",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Fazoda perpendikulyar, og‘ma va masofa",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Uch perpendikulyar haqidagi teorema",
+"turlar": [
+"qoshni"
+]
+},
+{
+"mavzu": "Fazoda tekisliklarning perpendikulyarligi",
+"turlar": [
+"masofa"
+]
+},
+{
+"mavzu": "Fazoda ortogonal proyeksiya va undan texnikada foydalanish · Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"masofa",
+"uchburchak"
+]
+},
+{
+"mavzu": "Takrorlashga doir masalalar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Geometriyaga oid asosiy ma’lumotlar",
+"turlar": [
+"statistika"
+]
+}
+]
+},
+{
+"kalit": "alg11",
+"nom": "Algebra · 11-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Urinma ta’rifi. Funksiya orttirmasi",
+"turlar": [
+"urinma"
+]
+},
+{
+"mavzu": "Limit haqida tushuncha",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Hosila, uning geometrik va fizik ma’nosi",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Hosila, uning geometrik va fizik ma’nosi",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Hosilani hisoblash qoidalari",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Murakkab funksiyaning hosilasi",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Murakkab funksiyaning hosilasi",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Urinma va normal tenglamalari",
+"turlar": [
+"urinma"
+]
+},
+{
+"mavzu": "Masalalar yechish",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Funksiyalarni tekshirish va grafiklarni yasash",
+"turlar": [
+"ekstremum"
+]
+},
+{
+"mavzu": "Masalalar yechishda differensial hisob usullari",
+"turlar": [
+"ekstremum"
+]
+},
+{
+"mavzu": "Masalalar yechishda differensial hisob usullari",
+"turlar": [
+"ekstremum"
+]
+},
+{
+"mavzu": "Taqribiy hisoblashlar",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Hosila yordamida modellashtirish",
+"turlar": [
+"ekstremum"
+]
+},
+{
+"mavzu": "Hosila yordamida modellashtirish",
+"turlar": [
+"ekstremum"
+]
+},
+{
+"mavzu": "Masalalar yechish",
+"turlar": [
+"hosila"
+]
+},
+{
+"mavzu": "Boshlang‘ich funksiya va integral tushunchalari",
+"turlar": [
+"integral"
+]
+},
+{
+"mavzu": "Integrallar jadvali. Integrallashning eng sodda qoidalari",
+"turlar": [
+"integral"
+]
+},
+{
+"mavzu": "Aniq integral. Nyuton–Leybnis formulasi",
+"turlar": [
+"integral"
+]
+},
+{
+"mavzu": "Aniq integral. Nyuton–Leybnis formulasi",
+"turlar": [
+"integral"
+]
+}
+]
+},
+{
+"kalit": "geo11",
+"nom": "Geometriya · 11-sinf",
+"gen": "711",
+"bosqichlar": [
+{
+"mavzu": "Fazoda dekart koordinatalar sistemasi",
+"turlar": [
+"fazovektor"
+]
+},
+{
+"mavzu": "Fazoda vektorlar va ular ustida amallar",
+"turlar": [
+"fazovektor"
+]
+},
+{
+"mavzu": "Fazoda almashtirishlar va o‘xshashlik",
+"turlar": [
+"fazovektor"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Ko‘pyoqli burchaklar va ko‘pyoqlar",
+"turlar": [
+"prizma"
+]
+},
+{
+"mavzu": "Prizma va uning sirti",
+"turlar": [
+"prizma"
+]
+},
+{
+"mavzu": "Prizmaning hajmi",
+"turlar": [
+"prizma"
+]
+},
+{
+"mavzu": "Silindrning sirti va hajmi",
+"turlar": [
+"silindr"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Piramida va kesik piramida",
+"turlar": [
+"piramida"
+]
+},
+{
+"mavzu": "Konus va kesik konus",
+"turlar": [
+"konus"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Shar va uning elementlari",
+"turlar": [
+"shar"
+]
+},
+{
+"mavzu": "Shar va uning bo‘laklari hajmi",
+"turlar": [
+"shar"
+]
+},
+{
+"mavzu": "Sfera sirtining yuzi",
+"turlar": [
+"shar"
+]
+},
+{
+"mavzu": "Sfera sirtining yuzi",
+"turlar": [
+"shar"
+]
+},
+{
+"mavzu": "Bobni takrorlashga doir amaliy mashqlar",
+"turlar": [
+"uchburchak"
+]
+},
+{
+"mavzu": "Stereometriyani takrorlashga doir test topshiriqlari",
+"turlar": [
+"masofa"
+]
+}
+]
+}
+]
