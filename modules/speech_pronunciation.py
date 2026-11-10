@@ -64,6 +64,9 @@ def _prose(value,language):
         # Before math minus: 1-maktab is an ordinal, 1-2 stays subtraction.
         text=re.sub(r'(?<![\w.,])([0-9]{1,9})\s*[-‑–]\s*('+ORDINAL_NOUNS+r')(?=[^\W\d_]*\b)',
                     lambda m:ordinal_uzbek(m[1])+' '+m[2],text,flags=re.I)
+        # REV475: istalgan «son-so'z» — tartib son («10-noyabr» → «o'ninchi noyabr», «7-mart», «3-chorak», «2-variant»);
+        # avval faqat ro'yxatdagi so'zlar bilan ishlardi, oy nomlarida «minus» deb o'qilardi. «5-2», «x-3» — minus bo'lib qoladi.
+        text=re.sub(r"(?<![\w.,])([0-9]{1,4})\s*[-‑–]\s*(?=[^\W\d_]{2,})",lambda m:ordinal_uzbek(m[1])+' ',text)
         # REV169: sana 25/10/2026 yoki 25.10.2026 — «ikki ming yigirma oltinchi yil yigirma beshinchi oktabr»
         _OY=['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr']
         text=re.sub(r'(?<![\d./])(\d{1,2})[./](\d{1,2})[./](\d{4})(?![\d./])',
@@ -95,6 +98,31 @@ def _prose(value,language):
 
 PLAIN_LANGUAGES={'ru','de','fr','es','ar','tr','zh','ja','ko'}
 
+_EMOJI_SOZ={'uz':{'🐘':'fil','🐭':'sichqon','🐁':'sichqon','🐈':'mushuk','🐱':'mushuk','🐕':'it','🐶':'it','🐄':'sigir','🐮':'sigir','🐑':'qo‘y','🐐':'echki','🐎':'ot','🐴':'ot','🐫':'tuya','🐪':'tuya',
+  '🐰':'quyon','🐇':'quyon','🦁':'sher','🐯':'yo‘lbars','🐅':'yo‘lbars','🐻':'ayiq','🐼':'panda','🦒':'jirafa','🦓':'zebra','🐒':'maymun','🐵':'maymun','🦊':'tulki','🐺':'bo‘ri','🐿️':'olmaxon','🦔':'tipratikan',
+  '🐔':'tovuq','🐓':'xo‘roz','🐤':'jo‘ja','🐥':'jo‘ja','🐣':'jo‘ja','🦆':'o‘rdak','🦢':'oqqush','🦉':'boyqush','🦅':'burgut','🦜':'to‘tiqush','🕊️':'kaptar','🐧':'pingvin','🐟':'baliq','🐠':'baliq','🐬':'delfin','🐳':'kit','🐋':'kit',
+  '🐢':'toshbaqa','🐸':'qurbaqa','🐍':'ilon','🐊':'timsoh','🦋':'kapalak','🐝':'ari','🐞':'xonqizi','🐜':'chumoli','🐛':'qurtcha','🕷️':'o‘rgimchak',
+  '🍎':'olma','🍏':'olma','🍐':'nok','🍌':'banan','🍇':'uzum','🍊':'apelsin','🍋':'limon','🍓':'qulupnay','🍒':'gilos','🍑':'shaftoli','🍉':'tarvuz','🍈':'qovun','🍍':'ananas','🥝':'kivi','🥕':'sabzi','🥔':'kartoshka',
+  '🍅':'pomidor','🥒':'bodring','🧅':'piyoz','🧄':'sarimsoq','🌽':'makkajo‘xori','🥬':'karam','🍆':'baqlajon','🍞':'non','🧀':'pishloq','🥛':'sut','🥚':'tuxum','🍬':'konfet','🍭':'konfet','🎂':'tort','🍰':'tort',
+  '🚗':'mashina','🚌':'avtobus','🚲':'velosiped','✈️':'samolyot','🚂':'poyezd','🚀':'raketa','⛵':'qayiq','🚢':'kema','🚁':'vertolyot','🚜':'traktor',
+  '⚽':'to‘p','🎈':'shar','⭐':'yulduz','🌟':'yulduz','☀️':'quyosh','🌙':'oy','☁️':'bulut','🌧️':'yomg‘ir','❄️':'qor','🌈':'kamalak','🌸':'gul','🌷':'lola','🌻':'kungaboqar','🌳':'daraxt','🍃':'barg',
+  '🏠':'uy','📚':'kitoblar','📖':'kitob','✏️':'qalam','🖍️':'rangli qalam','👟':'krossovka','🧦':'paypoq','🧤':'qo‘lqop','🧣':'sharf','👕':'futbolka','🕶️':'quyosh ko‘zoynagi'}}
+_EMOJI_QOLGAN=re.compile('[\U0001F300-\U0001FAFF\u2600-\u27BF\uFE0F\u200D]')
+
+
+def _emoji_sozga(text,language='uz'):
+    """REV476: emoji-rasmlar so'z bilan o'qiladi («🐘 va 🐭» → «fil va sichqon»); nomi noma'lum emoji jim tashlab ketiladi."""
+    lugat=_EMOJI_SOZ.get(language) or _EMOJI_SOZ['uz']
+    for e in sorted(lugat,key=len,reverse=True):
+        if e in text:
+            def _soz(m,e=e):
+                n=m.group(0).count(e)
+                return f" {n} ta {lugat[e]} " if n>1 else f" {lugat[e]} "   # «🍎🍎🍎» → «3 ta olma»
+            text=re.sub(r'\s*'+re.escape(e)+r'(?:\s*'+re.escape(e)+r')*',_soz,text)
+    text=re.sub(r'(?<=[^\W\d_])\s+·\s+',', ',text)   # sarlavhadagi ajratuvchi «darslar · 3-variant» — ko'paytirish emas, pauza
+    return _EMOJI_QOLGAN.sub('',text)
+
+
 def prepare_speech(value,language='uz'):
     if language in PLAIN_LANGUAGES and language not in WORDS:
         # REV88: chet tilidagi bo'lak o'z ovozida o'qiladi — o'zbekcha qoidalar (tutuq belgisi, tartib sonlar) qo'llanmaydi.
@@ -103,6 +131,9 @@ def prepare_speech(value,language='uz'):
         text=re.sub(r'https?://\S+|www\.\S+',' ',text)
         return re.sub(r'\s+',' ',text).strip()
     language=language if language in WORDS else 'uz'
+    value=_emoji_sozga(str(value or ''),language)   # REV476: «🐘 va 🐭» → «fil va sichqon»
+    if language=='uz':   # REV476: «16-18-darslar» → «o'n oltidan o'n sakkizinchi darslar» (oraliq, minus emas)
+        value=re.sub(r'(?<![\d.,])(\d{1,4})\s*[-–]\s*(\d{1,4})\s*-\s*(?=[^\W\d_])', lambda m: f"{m.group(1)}dan {m.group(2)}-", value)
     value=tag_raw_math(str(value or ''))
     # Expand formulas separately so mathematical minus/cases cannot be mistaken
     # for an ordinal, and formula letter names are not rewritten as prose.
