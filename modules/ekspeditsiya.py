@@ -369,6 +369,11 @@ def create_router(platform):
             for t in body.xato_turlar[:15]:
                 a = st.get(t, [0, 0]); st[t] = [a[0], a[1] + 1]
             d["tur_stat"] = st
+            try:   # REV480: ko'nikmalar xaritasiga ham
+                from modules import konikma as _kn
+                _kn.yoz(cur, u, [{"tur": t, "togri": True} for t in body.togri_turlar[:15]] + [{"tur": t, "togri": False} for t in body.xato_turlar[:15]])
+            except Exception:   # noqa: BLE001
+                pass
             bugun = date.today().isoformat()
             if d.get("kun") != bugun:
                 d["streak"] = int(d.get("streak", 0)) + 1 if d.get("kun") == (date.today() - timedelta(days=1)).isoformat() else 1

@@ -207,6 +207,11 @@ try:   # REV456: «Matematik ekspeditsiya» — 20 bosqichli spiral o'yin (3–1
 except ImportError:
     from modules.ekspeditsiya import create_router as create_ekspeditsiya_router
 app.include_router(create_ekspeditsiya_router(samtm_platform))
+try:   # REV480: ko'nikmalar xaritasi
+    from .modules.konikma import create_router as create_konikma_router
+except ImportError:
+    from modules.konikma import create_router as create_konikma_router
+app.include_router(create_konikma_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
