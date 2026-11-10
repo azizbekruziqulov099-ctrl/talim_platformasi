@@ -21,11 +21,12 @@ def _s(nom, *zaxira):
 
 def sozlama():
     return {
-        "endpoint": _s("S3_ENDPOINT", "AWS_ENDPOINT_URL", "BUCKET_ENDPOINT").rstrip("/"),
-        "bucket": _s("S3_BUCKET", "AWS_S3_BUCKET_NAME", "BUCKET_NAME"),
-        "key": _s("S3_ACCESS_KEY_ID", "AWS_ACCESS_KEY_ID"),
-        "secret": _s("S3_SECRET_ACCESS_KEY", "AWS_SECRET_ACCESS_KEY"),
-        "region": _s("S3_REGION", "AWS_DEFAULT_REGION", "AWS_REGION") or "auto",
+        # Railway Bucket'ni xizmatga ulaganda o'zgaruvchilar BUCKET, ACCESS_KEY_ID, SECRET_ACCESS_KEY, ENDPOINT, REGION nomi bilan keladi
+        "endpoint": _s("S3_ENDPOINT", "AWS_ENDPOINT_URL", "BUCKET_ENDPOINT", "ENDPOINT").rstrip("/"),
+        "bucket": _s("S3_BUCKET", "AWS_S3_BUCKET_NAME", "BUCKET_NAME", "BUCKET"),
+        "key": _s("S3_ACCESS_KEY_ID", "AWS_ACCESS_KEY_ID", "ACCESS_KEY_ID"),
+        "secret": _s("S3_SECRET_ACCESS_KEY", "AWS_SECRET_ACCESS_KEY", "SECRET_ACCESS_KEY"),
+        "region": _s("S3_REGION", "AWS_DEFAULT_REGION", "AWS_REGION", "REGION") or "auto",
         "virtual": _s("S3_URL_STYLE").lower() == "virtual",
     }
 
