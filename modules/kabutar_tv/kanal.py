@@ -348,9 +348,71 @@ def joyla(cur, sana, til, daraja, fayl, mavzu, soniya, kanal=None):
     return cur.fetchone()["id"]
 
 
+# ───────────── REV468: bulutli ombor (backend diskdan mustaqil bo'lsin — bir nechta nusxada ishlay olsin) ─────────────
+def ombor_kaliti(path):
+    """Server diskidagi yo'l → ombordagi kalit (kabutar_tv/<sana>/<fayl>.mp4)."""
+    try:
+        rel = os.path.relpath(path, papka())
+    except ValueError:
+        return ""
+    return "" if rel.startswith("..") else "kabutar_tv/" + rel.replace(os.sep, "/")
+
+
+def omborga(path, log=print):
+    """Videoni omborga yuklaydi (sozlangan bo'lsa); muvaffaqiyatli bo'lsa yonida «.omborda» belgisi qoladi."""
+    from modules import ombor
+    if not ombor.yoqilgan() or not path or not os.path.exists(path):
+        return False
+    kalit = ombor_kaliti(path)
+    if not kalit:
+        return False
+    try:
+        if ombor.yukla(kalit, path, "video/mp4"):
+            open(path + ".omborda", "w").close()
+            return True
+        log(f"[kabutar_tv] omborga yuklanmadi: {kalit}")
+    except Exception as exc:   # noqa: BLE001
+        log(f"[kabutar_tv] ombor xatosi: {exc}")
+    return False
+
+
+def ombor_kochirish(log=print):
+    """Diskdagi eski videolarni omborga ko'chiradi (bir marta, fonda; bir nechta nusxada — faqat bittasi)."""
+    from modules import ombor
+    if not ombor.yoqilgan():
+        return
+    import psycopg2
+    try:
+        conn = psycopg2.connect(os.environ["DATABASE_URL"]); cur = conn.cursor()
+        cur.execute("SELECT pg_try_advisory_lock(468468468)")
+        if not cur.fetchone()[0]:
+            conn.close(); return
+    except Exception:   # noqa: BLE001
+        return
+    n = 0
+    for ildiz, papkalar, fayllar in os.walk(papka()):
+        papkalar[:] = [p for p in papkalar if not p.startswith("_") and p != "tools"]
+        for f in fayllar:
+            yol = os.path.join(ildiz, f)
+            if f.endswith(".mp4") and not os.path.exists(yol + ".omborda") and omborga(yol, log):
+                n += 1
+    log(f"[kabutar_tv] omborga ko'chirildi: {n} ta video")
+    try:
+        conn.close()
+    except Exception:   # noqa: BLE001
+        pass
+
+
 # ───────────── fayl uzatish (videoni oldinga-orqaga surish uchun Range bilan) ─────────────
 def fayl_javob(path, range_header=None, nom="video.mp4"):
-    from fastapi.responses import Response, StreamingResponse
+    from fastapi.responses import Response, StreamingResponse, RedirectResponse
+    from modules import ombor
+    # REV468: video omborda bo'lsa — to'g'ridan-to'g'ri ombordan (imzolangan 6 soatlik havola, Range bilan). Backend trafigi va
+    # diski band bo'lmaydi; video boshqa nusxada yoki diskdan o'chgan bo'lsa ham ochiladi.
+    if path and ombor.yoqilgan() and (os.path.exists(path + ".omborda") or not os.path.exists(path)):
+        kalit = ombor_kaliti(path)
+        if kalit and (os.path.exists(path + ".omborda") or ombor.bormi(kalit)):
+            return RedirectResponse(ombor.havola(kalit, 6 * 3600), status_code=302, headers={"Cache-Control": "private, max-age=3000"})
     if not path or not os.path.exists(path):
         raise HTTPException(status_code=404, detail="Video muddati tugagan yoki topilmadi")
     hajm = os.path.getsize(path)
@@ -456,6 +518,7 @@ def _bitta(cur, conn, sana, til, daraja, yasash_fn, kesh, admin_kanal, soz, majb
         fayl = os.path.join(papka(), sana.isoformat(), f"{til}_{daraja.replace(' ', '_')}.mp4")
         t0 = time.time()
         soniya = yasash(s, fayl, kesh=kesh)
+        omborga(fayl, log)   # REV468: tayyor video bulutli omborga ham
         cur.execute("SELECT xabar_id, admin_xabar_id, xabarlar FROM kabutar_tv_korsatuvlar WHERE sana=%s AND til=%s AND daraja=%s", (sana, til, daraja))
         eski = cur.fetchone() or {}
         eskilar = [eski.get("xabar_id"), eski.get("admin_xabar_id")] + (json.loads(eski["xabarlar"]) if eski.get("xabarlar") else [])
@@ -620,6 +683,7 @@ def create_kabutar_tv_router(check_admin, db):
         if not holat["ishga"]:
             holat["ishga"] = True
             threading.Thread(target=kuzatuvchi, name="kabutar-tv", daemon=True).start()
+            threading.Thread(target=ombor_kochirish, name="kabutar-tv-ombor", daemon=True).start()   # REV468
 
     @router.get("/korinish")
     def tv_korinish():
