@@ -9,6 +9,8 @@ import json
 import re
 from datetime import date, timedelta
 
+from typing import Optional
+from pydantic import BaseModel
 from fastapi import APIRouter, Body, HTTPException
 
 IZOH = re.compile(r"\s*\((izoh|изоҳ): (rus|ingliz|nemis|ispan)\)\s*$", re.I)   # REV315: 5 til
@@ -156,6 +158,9 @@ def _migrate(cur):
         vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS kurs_tolov_kod ON kurs_tolov(kod) WHERE kod <> ''")
     cur.execute("CREATE INDEX IF NOT EXISTS kurs_obuna_faol ON kurs_obuna(user_id, tugaydi)")
+    # REV477: tugatilgan darslar — kurs tartibi (keyingi dars ertaga ochiladi)
+    cur.execute("""CREATE TABLE IF NOT EXISTS kurs_dars_holat (user_id BIGINT NOT NULL, kalit TEXT NOT NULL, topic_code TEXT NOT NULL,
+        tugadi_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), togri INT, jami INT, PRIMARY KEY (user_id, kalit, topic_code))""")
 
 
 def _narx_jadvali(cur):
@@ -222,6 +227,29 @@ def obuna_tolandi(cur, data, kod, summa, manba):
                 (uid, kalit, tug, manba))
     cur.execute("INSERT INTO kurs_tolov(user_id,kalit,summa_uzs,kun,manba,kod) VALUES(%s,%s,%s,%s,%s,%s)",
                 (uid, kalit, int(summa), kun, manba, kod or ""))
+
+
+TOSHKENT_KUN = "(NOW() AT TIME ZONE 'Asia/Tashkent')::date"
+
+
+def tartib_qulf(darslar_holat, tugaganlar, bugun_tugaganlar, erkin):
+    """REV477: kurs tartibi. darslar_holat — [(topic_code, ochiq)] (pullik ruxsatdan keyin); tugaganlar — tugatilgan kodlar;
+    bugun_tugaganlar — bugun tugatilganlari. Qoida: eng oxirgi tugatilgan darsdan KEYINGI bitta dars ochiq; agar u bugun
+    tugatilgan bo'lsa — keyingisi ERTAGA ochiladi. Oldin o'tilganlar doim ochiq (takrorlash uchun). erkin — qulfsiz (admin, o'qituvchi).
+    → har dars uchun (ochiq, holat): holat ∈ tugadi | navbat | ertaga | qulf"""
+    if erkin:
+        return [(o, "tugadi" if tc in tugaganlar else "navbat") for tc, o in darslar_holat]
+    oxirgi = max([i for i, (tc, _) in enumerate(darslar_holat) if tc in tugaganlar] or [-1])
+    out = []
+    for i, (tc, o) in enumerate(darslar_holat):
+        if tc in tugaganlar or i <= oxirgi:
+            out.append((o, "tugadi" if tc in tugaganlar else "navbat"))
+        elif i == oxirgi + 1:
+            kutadi = oxirgi >= 0 and darslar_holat[oxirgi][0] in bugun_tugaganlar
+            out.append((o and not kutadi, "ertaga" if kutadi else "navbat"))
+        else:
+            out.append((False, "qulf"))
+    return out
 
 
 def _rol(cur, uid):
@@ -414,6 +442,28 @@ def create_router(platform, click=None):
             return {"kategoriyalar": [{"kalit": c[0], "belgi": c[1], "nomi": c[2], "izoh": c[3]} for c in KATEGORIYALAR], "kurslar": out}
         return run(go)
 
+    class DarsTugadi(BaseModel):
+        token: str
+        fan: str
+        grade: str = ""
+        topic_code: str
+        togri: Optional[int] = None
+        jami: Optional[int] = None
+
+    @router.post("/api/kurslar/dars_tugadi")
+    def dars_tugadi(body: DarsTugadi):
+        """REV477: dars oxirigacha o'tildi — yoziladi (qayta o'tilsa — eng yaxshi natija qoladi, sana o'zgarmaydi)."""
+        uid = platform._jwt_tekshir(body.token)
+        def go(cur):
+            kalit = kurs_of(body.fan, body.grade)[0]
+            cur.execute("""INSERT INTO kurs_dars_holat(user_id, kalit, topic_code, togri, jami) VALUES(%s,%s,%s,%s,%s)
+                           ON CONFLICT (user_id, kalit, topic_code) DO UPDATE SET
+                             togri = GREATEST(COALESCE(kurs_dars_holat.togri, 0), COALESCE(EXCLUDED.togri, 0)),
+                             jami = COALESCE(EXCLUDED.jami, kurs_dars_holat.jami)""",
+                        (uid, kalit, body.topic_code[:120], body.togri, body.jami))
+            return {"ok": True}
+        return run(go)
+
     @router.get("/api/kurslar/kurs")
     def kurs(token: str, fan: str, grade: str = ""):
         uid = platform._jwt_tekshir(token)
@@ -435,8 +485,20 @@ def create_router(platform, click=None):
                 if not ok and kat == "repetitor" and kurs_of(fan, d["grade"])[0] in sinf_obuna:
                     ok, sabab = True, "obuna"
                 items.append({"topic_code": d["topic_code"], "nomi": d["nom"], "sinf": d["grade"], "ochiq": ok, "bepul": sabab in ("bepul_dars", "bepul_kurs")})
+            # REV477: kurs tartibi — tugatilgan darslar, keyingisi ertaga (admin/o'qituvchi uchun qulfsiz)
+            cur.execute(f"""SELECT topic_code, (tugadi_at AT TIME ZONE 'Asia/Tashkent')::date = {TOSHKENT_KUN} AS bugun
+                            FROM kurs_dars_holat WHERE user_id=%s AND kalit=%s""", (uid, kalit))
+            hol = cur.fetchall()
+            tug = {r["topic_code"] for r in hol}; bugun_t = {r["topic_code"] for r in hol if r["bugun"]}
+            # hali birorta darsni tugatmagan (yoki tartib joriy qilinishidan oldin o'qiyotgan) o'quvchi — birinchi tugatgunicha cheklanmaydi
+            erkin = rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz") or not hol
+            for it, (ochiq, holat) in zip(items, tartib_qulf([(x["topic_code"], x["ochiq"]) for x in items], tug, bugun_t, erkin)):
+                if it["ochiq"]:   # to'lov bo'yicha ochiq bo'lsa — tartib bo'yicha cheklanadi
+                    it["ochiq"] = ochiq
+                it["holat"] = holat
             return {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul,
-                    "obuna_tugaydi": ob["tugaydi"].isoformat() if ob else None, "darslar": items}
+                    "obuna_tugaydi": ob["tugaydi"].isoformat() if ob else None, "darslar": items,
+                    "tartib_erkin": bool(erkin) and rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz")}
         return run(go)
 
     @router.post("/api/kurslar/buyurtma")
