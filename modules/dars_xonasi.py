@@ -666,7 +666,8 @@ def create_router(platform):
         finally:
             cur.close()
             conn.close()
-        return lesson if lesson["steps"] else None   # bo'sh dars keshlanmaydi
+        # REV465: faqat testdan iborat mavzu (nazorat testi, oraliq nazorat) ham qaytariladi — load_lesson uni test qilib ochadi
+        return lesson if (lesson["steps"] or lesson.get("savollar") or lesson.get("test_banki")) else None   # bo'sh dars keshlanmaydi
 
     @router.get("/api/kitob_kod/{kod}")
     def kitob_kod(kod: str, token: str):

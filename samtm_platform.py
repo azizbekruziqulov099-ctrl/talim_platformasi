@@ -3069,6 +3069,17 @@ def _ovoz_uchun_tayyorla(matn: str) -> str:
     m = re.sub(r"[\U0001F300-\U0001FAFF\u2600-\u27BF]", " ", m)
     m = re.sub(r"https?://\S+", " havola ", m)
 
+    # REV465: sonli tartib so'zlar — «7-noyabr» → «yettinchi noyabr», «2026-yil», «3-dars», «5-sinf» (avval «minus» deb o'qilardi);
+    # so'z ichidagi chiziqcha («o'quv-tarbiya») — bo'shliq; matndagi tire («Toshkent — poytaxt», «a - b» emas) — pauza.
+    # Minus faqat son/o'zgaruvchilar orasida qoladi («5 - 2», «x-3»).
+    def _tartib_son(x):
+        soz = _son_soz(int(x.group(1))).split()
+        soz[-1] = _TARTIB.get(soz[-1], soz[-1] + "inchi")
+        return f"{' '.join(soz)} {x.group(2)}"
+    m = re.sub(r"\b(\d{1,4})\s*-\s*([A-Za-zА-Яа-яЁёʻ'’‘ʼ]{2,})", _tartib_son, m)
+    m = re.sub(r"(?<=[A-Za-zА-Яа-яʻ'’‘ʼ]{2})-(?=[A-Za-zА-Яа-яʻ'’‘ʼ]{2})", " ", m)
+    m = re.sub(r"(?<=[A-Za-zА-Яа-яʻ'’‘ʼ.,!?])\s+[-–—]\s+(?=[A-Za-zА-Яа-яʻ'’‘ʼ])", ", ", m)
+
     # Kasrlar: 1/2 -> ikkidan bir (matematikadan oldin)
     def _kasr(x):
         a, b = int(x.group(1)), int(x.group(2))
