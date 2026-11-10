@@ -250,6 +250,45 @@ def kurs_darslari(cur, fan, grade):
     return _kesh(("darslar", fan, str(grade or "").strip()), 300, lambda: _kurs_darslari(cur, fan, grade))
 
 
+import re as _re
+
+
+def _son(x):
+    try:
+        return int(str(x or "").strip())
+    except ValueError:
+        return 9999
+
+
+def _dars_tartibi(rows):
+    """REV461: darslar darslik tartibida. Nomida raqam bo'lsa («80-dars. …», «nazorat testi: 16-18-darslar»,
+    «oraliq nazorat: 13-24-darslar · 3-variant») — shu raqam bo'yicha: test o'z darslaridan keyin, oraliq nazorat
+    variantlari ketma-ket. Raqam bo'lmasa — DTS kodlari (chorak, bob, bo'lim, mavzu, kichik mavzu) bo'yicha."""
+    def raqam(nom):
+        n = str(nom or "").strip().lower()
+        m = _re.match(r"^(\d+)\s*-\s*dars", n)
+        if m:
+            return float(m.group(1))
+        m = _re.search(r"nazorat testi\D*(\d+)\s*-\s*(\d+)", n)
+        if m:
+            return int(m.group(2)) + 0.5
+        m = _re.search(r"oraliq nazorat\D*(\d+)\s*-\s*(\d+)", n)
+        if m:
+            v = _re.search(r"(\d+)\s*-\s*variant", n)
+            return int(m.group(2)) + 0.6 + (int(v.group(1)) if v else 0) / 100
+        return None
+    raqamli = [raqam(r.get("nom")) for r in rows]
+    nomdan = rows and sum(x is not None for x in raqamli) >= 0.6 * len(rows)
+    def kalit(i_r):
+        i, r = i_r
+        kod = (_son(r.get("q")), _son(r.get("b")), _son(r.get("bo")), _son(r.get("m")), _son(r.get("k")), str(r.get("topic_code")))
+        if nomdan:
+            x = raqamli[i]
+            return (0 if x is not None else 1, x if x is not None else 0, kod)
+        return (0, 0, kod)
+    return [r for _, r in sorted(enumerate(rows), key=kalit)]
+
+
 def _kurs_darslari(cur, fan, grade):
     _, kat, _, _ = kurs_of(fan, grade)
     if kat == "bolalar":
@@ -260,18 +299,22 @@ def _kurs_darslari(cur, fan, grade):
         rows = sorted(cur.fetchall(), key=lambda r: (yosh_tartib(r["grade"]), r["topic_code"]))
     elif kat == "repetitor":   # REV419: sinflar ketma-ket (1-sinf mavzulari, keyin 2-sinf ...)
         a, b = (int(x) for x in str(grade).split("-"))
-        cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
+        cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom,
+                              MIN(d.quarter) AS q, MIN(d.bob_code) AS b, MIN(d.bolim_code) AS bo, MIN(d.mavzu_code) AS m, MIN(d.kichik_code) AS k
                        FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade) = ANY(%s)
                          AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
                        GROUP BY d.topic_code, d.grade""", (fan, [str(i) for i in range(a, b + 1)]))
-        rows = sorted(cur.fetchall(), key=lambda r: (int(str(r["grade"]).strip()) if str(r["grade"]).strip().isdigit() else 99, r["topic_code"]))
+        hammasi = [dict(r) for r in cur.fetchall()]
+        sinf = lambda r: int(str(r["grade"]).strip()) if str(r["grade"]).strip().isdigit() else 99
+        rows = [r for g in sorted({sinf(r) for r in hammasi}) for r in _dars_tartibi([r for r in hammasi if sinf(r) == g])]   # REV461
     else:
-        cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
+        cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom,
+                              MIN(d.quarter) AS q, MIN(d.bob_code) AS b, MIN(d.bolim_code) AS bo, MIN(d.mavzu_code) AS m, MIN(d.kichik_code) AS k
                        FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade)=%s
                          AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
-                       GROUP BY d.topic_code, d.grade ORDER BY d.topic_code""", (fan, str(grade or "").strip()))
-        rows = list(cur.fetchall())
-    return [dict(r) for r in rows]
+                       GROUP BY d.topic_code, d.grade""", (fan, str(grade or "").strip()))
+        rows = _dars_tartibi([dict(r) for r in cur.fetchall()])   # REV461: darslik tartibi (avval topic_code bo'yicha — aralash chiqardi)
+    return [{k: v for k, v in dict(r).items() if k not in ("q", "b", "bo", "m", "k")} for r in rows]
 
 
 def ruxsat(cur, uid, topic_code):

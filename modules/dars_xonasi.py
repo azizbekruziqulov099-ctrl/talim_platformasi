@@ -544,6 +544,15 @@ def create_router(platform):
         if not topic_code:
             raise HTTPException(status_code=400, detail="Mavzu kodi kerak")
         lesson = dars_kesh.olish(f"{topic_code}|{til}", lambda: _load_lesson_db(topic_code, til))
+        # REV461: «nazorat testi», «oraliq nazorat» kabi mavzularda faqat test savollari bor (dars qadamlari yo'q) —
+        # ular «dars nashr qilinmagan» deb ochilmay qolardi; endi TEST sifatida ochiladi
+        savollar = (lesson or {}).get("test_banki") or (lesson or {}).get("savollar") or []
+        if lesson and not lesson["steps"] and savollar:
+            nom = _t((lesson.get("topic") or {}).get("mavzu")) or "Nazorat testi"
+            lesson = {**lesson, "steps": [{"id": "auto-test", "turi": "kirish", "sahna": "kirish", "sarlavha": nom,
+                                          "doska": f"{nom}\n{len(savollar)} ta savol", "ovoz": f"{nom}. {len(savollar)} ta savol. Har savolni diqqat bilan o‘qing.",
+                                          "rasm": None, "savol": "", "javob": "", "javob_izohi": "", "sahifa": ""}],
+                      "savollar": savollar, "faqat_test": True, "test_soni": len(savollar)}
         if not lesson or not lesson["steps"]:
             raise HTTPException(status_code=404, detail="Bu mavzu uchun dars hali nashr qilinmagan")
         return lesson
