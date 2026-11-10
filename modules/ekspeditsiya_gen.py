@@ -461,3 +461,76 @@ def gen711(tur, rng):
     return gen711("chiziqli", rng)
 
 
+
+
+# ── REV461: 1–2-sinf generatorlari (rasm-emoji bilan sanash, 10/20/100 ichida amallar, jadval, vaqt, pul, shakllar)
+_NARSA = ["🍎", "🍐", "⭐", "🎈", "🐟", "🌸", "🍬", "⚽", "🐥", "🥕"]
+_NOM = {"🍎": "olma", "🍐": "nok", "⭐": "yulduz", "🎈": "shar", "🐟": "baliq", "🌸": "gul", "🍬": "konfet", "⚽": "to‘p", "🐥": "jo‘ja", "🥕": "sabzi"}
+_ISM = ["Ali", "Malika", "Bekzod", "Dilnoza", "Sardor", "Zarina"]
+
+
+def gen12(tur, rng, kk=None):
+    r = rng.randint
+    if tur == "sanash":
+        e = rng.choice(_NARSA); n = r(3, 10)
+        return (f"Nechta {_NOM[e]} bor?  {e * n}", n, f"Bittalab sanaymiz: 1, 2, …, {n}.\nJavob: {n}", [n + 1, n - 1, n + 2])
+    if tur == "qoshni":
+        n = r(2, 19)
+        if rng.random() < 0.5:
+            return (f"{n} dan keyin qaysi son keladi?", n + 1, f"Keyingi son bittaga ko‘p: {n} + 1 = {n + 1}.\nJavob: {n + 1}", [n - 1, n + 2, n])
+        return (f"{n} dan oldin qaysi son keladi?", n - 1, f"Oldingi son bittaga kam: {n} − 1 = {n - 1}.\nJavob: {n - 1}", [n + 1, n - 2, n])
+    if tur == "taqqos12":
+        a, b = r(1, 20), r(1, 20)
+        j = ">" if a > b else "<" if a < b else "="
+        return (f"{a} ⬜ {b} — qaysi belgi qo‘yiladi?", j, f"{a} {'katta' if a > b else 'kichik' if a < b else 'teng'} {b}.\nJavob: {j}", [x for x in (">", "<", "=") if x != j])
+    if tur == "tarkib":
+        n = r(4, 10); a = r(1, n - 1)
+        return (f"{n} = {a} + ?", n - a, f"{n} ni {a} va {n - a} ga ajratamiz.\nJavob: {n - a}", [n - a + 1, n, max(0, n - a - 1)])
+    if tur == "qosh10":
+        a = r(1, 9); b = r(1, 10 - a)
+        e = rng.choice(_NARSA)
+        return (f"{e * a} + {e * b} = ?   ({a} + {b})", a + b, f"{a} ga {b} ni qo‘shamiz: {a + b}.\nJavob: {a + b}", [a + b + 1, abs(a - b), a + b - 1])
+    if tur == "ayir10":
+        a = r(3, 10); b = r(1, a - 1)
+        return (f"{a} − {b} = ?", a - b, f"{a} dan {b} ni ayiramiz: {a - b}.\nJavob: {a - b}", [a + b, a - b + 1, a - b - 1 if a - b > 1 else a - b + 2])
+    if tur == "qosh20":
+        a = r(6, 9); b = r(11 - a, 9)
+        return (f"{a} + {b} = ?", a + b, f"Avval 10 gacha to‘ldiramiz: {a} + {10 - a} = 10, keyin yana {b - (10 - a)}: {a + b}.\nJavob: {a + b}", [a + b - 10, a + b + 1, a + b - 1])
+    if tur == "ayir20":
+        a = r(11, 18); b = r(a - 9, 9)
+        return (f"{a} − {b} = ?", a - b, f"Avval 10 gacha ayiramiz: {a} − {a - 10} = 10, keyin yana {b - (a - 10)}: {a - b}.\nJavob: {a - b}", [a - b + 1, a - b - 1, a + b])
+    if tur == "masala12":
+        i1, i2 = rng.sample(_ISM, 2); e = rng.choice(_NARSA); a, b = r(2, 9), r(1, 8)
+        if rng.random() < 0.5:
+            return (f"{i1}da {a} ta {_NOM[e]} bor edi, {i2} yana {b} ta berdi. Endi nechta?", a + b, f"Qo‘shamiz: {a} + {b} = {a + b}.\nJavob: {a + b}", [a - b if a > b else a + b + 1, a + b + 1, a])
+        a = a + b
+        return (f"{i1}da {a} ta {_NOM[e]} bor edi, {b} tasini {i2}ga berdi. Nechta qoldi?", a - b, f"Ayiramiz: {a} − {b} = {a - b}.\nJavob: {a - b}", [a + b, a - b + 1, b])
+    if tur == "shakl12":
+        s = rng.choice([("uchburchak", 3), ("to‘rtburchak", 4), ("kvadrat", 4), ("beshburchak", 5), ("oltiburchak", 6)])
+        return (f"{s[0].capitalize()}ning nechta burchagi bor?", s[1], f"Burchaklarini sanaymiz: {s[1]} ta.\nJavob: {s[1]}", [s[1] + 1, s[1] - 1, 0 if s[1] > 3 else 2])
+    if tur == "onlik":
+        o, b = r(1, 9), r(0, 9)
+        return (f"{o * 10 + b} sonida nechta o‘nlik bor?", o, f"{o * 10 + b} = {o} o‘nlik va {b} birlik.\nJavob: {o}", [b, o + 1, o * 10])
+    if tur == "qosh100":
+        a, b = r(10, 60), r(5, 39)
+        return (f"{a} + {b} = ?", a + b, f"O‘nliklar: {a // 10 * 10} + {b // 10 * 10}, birliklar: {a % 10} + {b % 10}.\nJavob: {a + b}", [a + b + 10, a + b - 10, a + b + 1])
+    if tur == "ayir100":
+        a = r(30, 99); b = r(5, a - 10)
+        return (f"{a} − {b} = ?", a - b, f"Birliklardan yetmasa, bitta o‘nlikni maydalaymiz.\nJavob: {a - b}", [a - b + 10, a - b - 10, a + b])
+    if tur in ("jadval2", "jadval5", "jadval"):
+        k = {"jadval2": rng.choice([2, 3]), "jadval5": rng.choice([4, 5]), "jadval": r(6, 9)}[tur]; m = r(2, 10)
+        return (f"{k} · {m} = ?", k * m, f"{k} ni {m} marta qo‘shamiz: {k * m}.\nJavob: {k * m}", [k * m + k, k + m, k * m - k])
+    if tur == "bolish12":
+        k, m = r(2, 9), r(2, 9)
+        return (f"{k * m} : {k} = ?", m, f"{k} · {m} = {k * m}, demak {k * m} : {k} = {m}.\nJavob: {m}", [k, m + 1, k * m - k])
+    if tur == "vaqt12":
+        s = r(1, 12); m = rng.choice([0, 30])
+        return (f"Soat strelkasi {s} da, minut strelkasi {12 if m == 0 else 6} da. Soat necha?", f"{s}:{m:02d}", f"Minut strelkasi {'12 da — butun soat' if m == 0 else '6 da — yarim (30 minut)'}.\nJavob: {s}:{m:02d}", [f"{s % 12 + 1}:{m:02d}", f"{s}:{30 - m:02d}", f"{12 if m == 0 else 6}:{s:02d}"])
+    if tur == "pul12":
+        a, b = rng.choice([(500, 200), (1000, 500), (2000, 500), (1000, 200), (5000, 1000)])
+        n = r(2, 4)
+        return (f"Bitta daftar {b} so‘m. {n} ta daftar necha so‘m?", b * n, f"{b} · {n} = {b * n}.\nJavob: {b * n}", [b + n, b * n + b, b * (n - 1)])
+    if tur == "uzunlik12":
+        d = r(1, 9)
+        return (f"{d} dm — necha sm?", d * 10, f"1 dm = 10 sm, {d} dm = {d * 10} sm.\nJavob: {d * 10}", [d, d * 100, d * 10 + 1])
+    return gen12("qosh10", rng)

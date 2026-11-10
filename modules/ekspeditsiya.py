@@ -14,7 +14,7 @@ from modules import ekspeditsiya_gen as G
 _DASTUR = json.load(open(os.path.join(os.path.dirname(__file__), "ekspeditsiya_dastur.json"), encoding="utf8"))
 KURS = {k["kalit"]: k for k in _DASTUR}
 _TAYYOR = {"ok": False}
-GEN = {"34": G.gen34, "56": G.gen56, "711": G.gen711}
+GEN = {"12": G.gen12, "34": G.gen34, "56": G.gen56, "711": G.gen711}
 
 
 def _yulduz(togri, darvoza):
@@ -65,7 +65,7 @@ def _qayta_shakl(t, rng, kurs):
     q = t["savol"].rstrip(" ?").replace("= \\;?", "").replace("= \\; ?", "").strip()
     js = t["variantlar"][t["togri"]]
     xatolar = [v for k, v in enumerate(t["variantlar"]) if k != t["togri"]]
-    tur = rng.choice(["xato_top", "togri_notogri", "chamalash"])
+    tur = "togri_notogri" if kurs.get("gen") == "12" else rng.choice(["xato_top", "togri_notogri", "chamalash"])   # REV461: 1–2-sinfga faqat «to'g'rimi?»
     if tur == "chamalash":
         v = _sonmi(js)
         if v is None or abs(v) < 200 or v != int(v):
@@ -103,9 +103,9 @@ def _naqsh(rng, kurs):
     """REV457: naqsh — ketma-ketlikni davom ettirish (sinfga mos)."""
     g = int("".join(c for c in kurs["kalit"] if c.isdigit()) or 5)
     r = rng.randint
-    tur = rng.choice(["arif", "geom", "kvadrat", "almash"] if g >= 7 else ["arif", "geom", "almash"])
+    tur = rng.choice(["arif", "geom", "kvadrat", "almash"] if g >= 7 else ["arif", "almash"] if g <= 2 else ["arif", "geom", "almash"])
     if tur == "arif":
-        a, d = r(1, 30), rng.choice([r(2, 9), r(11, 25)] if g >= 5 else [r(2, 9)])
+        a, d = (r(1, 10), r(1, 3)) if g <= 2 else (r(1, 30), rng.choice([r(2, 9), r(11, 25)] if g >= 5 else [r(2, 9)]))
         q = [a + i * d for i in range(5)]; j = a + 5 * d; izoh = f"Har safar {d} ga oshadi"
     elif tur == "geom":
         a, k = r(1, 5), rng.choice([2, 3])
@@ -113,8 +113,8 @@ def _naqsh(rng, kurs):
     elif tur == "kvadrat":
         s0 = r(1, 6); q = [(s0 + i) ** 2 for i in range(5)]; j = (s0 + 5) ** 2; izoh = "Ketma-ket sonlarning kvadratlari"
     else:
-        a, b = r(2, 9), r(2, 9)
-        q = [r(10, 30)]
+        a, b = (r(2, 4), r(1, 2)) if g <= 2 else (r(2, 9), r(2, 9))
+        q = [r(3, 10) if g <= 2 else r(10, 30)]
         for i in range(4):
             q.append(q[-1] + (a if i % 2 == 0 else -b))
         j = q[-1] + a; izoh = f"Navbat bilan +{a} va −{b}"
@@ -154,7 +154,7 @@ def bosqich_yasa(kurs, n, holat, urinish=0, uid=0):
             out.append(t)
     # REV457: ko'rinishlar aralashmasi — 15 tadan ~4 tasi boshqa shaklda (xatoni top, chamalash, to'g'ri/noto'g'ri), 1 ta naqsh
     if out:
-        joylar = rng.sample(range(len(out)), min(4, len(out)))
+        joylar = rng.sample(range(len(out)), min(2 if kurs.get("gen") == "12" else 4, len(out)))
         for k in joylar:
             out[k] = _qayta_shakl(out[k], rng, kurs)
         if not darvoza and len(out) >= 10:
