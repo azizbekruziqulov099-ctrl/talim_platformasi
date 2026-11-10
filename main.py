@@ -212,6 +212,11 @@ try:   # REV480: ko'nikmalar xaritasi
 except ImportError:
     from modules.konikma import create_router as create_konikma_router
 app.include_router(create_konikma_router(samtm_platform))
+try:   # REV481: Mister Nazoratchi
+    from .modules.nazoratchi import create_router as create_nazoratchi_router
+except ImportError:
+    from modules.nazoratchi import create_router as create_nazoratchi_router
+app.include_router(create_nazoratchi_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
