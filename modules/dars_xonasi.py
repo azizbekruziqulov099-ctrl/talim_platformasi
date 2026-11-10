@@ -457,6 +457,9 @@ def topic_placements(cur, codes):
     return result
 
 
+TASHQI = {}   # REV479: boshqa modullar (kurs nazoratlari) darsning test savollarini olishi uchun: TASHQI["yukla"](topic_code, til)
+
+
 def create_router(platform):
     router = APIRouter(tags=["dars-xonasi"])
 
@@ -889,4 +892,5 @@ def create_router(platform):
             })
         return {"darslar": darslar}
 
+    TASHQI["yukla"] = load_lesson   # REV479
     return router

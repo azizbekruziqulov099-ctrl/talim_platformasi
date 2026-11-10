@@ -158,6 +158,10 @@ def _migrate(cur):
         vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
     cur.execute("CREATE UNIQUE INDEX IF NOT EXISTS kurs_tolov_kod ON kurs_tolov(kod) WHERE kod <> ''")
     cur.execute("CREATE INDEX IF NOT EXISTS kurs_obuna_faol ON kurs_obuna(user_id, tugaydi)")
+    # REV479: nazorat zinapoyasi natijalari (mini-test, oraliq, oylik minimum, maksimum imtihon)
+    cur.execute("""CREATE TABLE IF NOT EXISTS kurs_nazorat (user_id BIGINT NOT NULL, kalit TEXT NOT NULL, kod TEXT NOT NULL, tur TEXT NOT NULL,
+        togri INT NOT NULL DEFAULT 0, jami INT NOT NULL DEFAULT 0, otdi BOOLEAN NOT NULL DEFAULT FALSE, urinishlar INT NOT NULL DEFAULT 0,
+        oxirgi_urinish TIMESTAMPTZ NOT NULL DEFAULT NOW(), xato_darslar JSONB, PRIMARY KEY (user_id, kalit, kod))""")
     # REV477: tugatilgan darslar — kurs tartibi (keyingi dars ertaga ochiladi)
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_dars_holat (user_id BIGINT NOT NULL, kalit TEXT NOT NULL, topic_code TEXT NOT NULL,
         tugadi_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), togri INT, jami INT, PRIMARY KEY (user_id, kalit, topic_code))""")
@@ -231,6 +235,28 @@ def obuna_tolandi(cur, data, kod, summa, manba):
 
 TOSHKENT_KUN = "(NOW() AT TIME ZONE 'Asia/Tashkent')::date"
 
+# REV479: nazorat zinapoyasi — darslar sonidan avtomatik: har 3 → mini-test, har 6 → oraliq, har 12 → oylik minimum, har 24 → maksimum
+# (bir joyda kattasi turadi). Kitobning o'z «nazorat testi/oraliq nazorat» darslari bo'lsa — avtomatik nazorat qo'shilmaydi.
+NAZORAT = {"mini": (3, "🟢 Mini-test", 10, 60), "oraliq": (6, "🟡 Oraliq nazorat", 18, 65), "oylik": (12, "🟠 Oylik minimum", 24, 70),
+           "maksimum": (24, "🔴 Maksimum imtihon", 30, 70)}
+_KITOB_NAZORAT = re.compile(r"nazorat|oraliq|imtihon|test sinov", re.I)
+
+
+def nazorat_qosh(items):
+    """items (faqat darslar) → darslar orasiga nazoratlar qo'shilgan ro'yxat. Nazorat elementi: {"nazorat": tur, "darslar": [...]}."""
+    if sum(1 for x in items if _KITOB_NAZORAT.search(str(x.get("nomi") or ""))) >= 2:
+        return items
+    out, n = [], 0
+    for x in items:
+        out.append(x); n += 1
+        tur = next((t for t in ("maksimum", "oylik", "oraliq", "mini") if n % NAZORAT[t][0] == 0), None)
+        if tur:
+            qamrov = items[max(0, n - NAZORAT[tur][0]):n]
+            out.append({"topic_code": f"NZ:{n}", "nomi": f"{NAZORAT[tur][1]}: {n - len(qamrov) + 1}–{n}-darslar", "sinf": x.get("sinf"),
+                        "ochiq": x.get("ochiq"), "bepul": x.get("bepul"), "nazorat": tur, "darslar": [d["topic_code"] for d in qamrov],
+                        "savollar": NAZORAT[tur][2], "otish_foiz": NAZORAT[tur][3], "kamera": tur in ("oylik", "maksimum")})
+    return out
+
 
 def tartib_qulf(darslar_holat, tugaganlar, bugun_tugaganlar, erkin):
     """REV477: kurs tartibi. darslar_holat — [(topic_code, ochiq)] (pullik ruxsatdan keyin); tugaganlar — tugatilgan kodlar;
@@ -245,7 +271,7 @@ def tartib_qulf(darslar_holat, tugaganlar, bugun_tugaganlar, erkin):
         if tc in tugaganlar or i <= oxirgi:
             out.append((o, "tugadi" if tc in tugaganlar else "navbat"))
         elif i == oxirgi + 1:
-            kutadi = oxirgi >= 0 and darslar_holat[oxirgi][0] in bugun_tugaganlar
+            kutadi = oxirgi >= 0 and darslar_holat[oxirgi][0] in bugun_tugaganlar and not str(tc).startswith("NZ:")   # nazorat — o'sha kuni
             out.append((o and not kutadi, "ertaga" if kutadi else "navbat"))
         else:
             out.append((False, "qulf"))
@@ -442,6 +468,67 @@ def create_router(platform, click=None):
             return {"kategoriyalar": [{"kalit": c[0], "belgi": c[1], "nomi": c[2], "izoh": c[3]} for c in KATEGORIYALAR], "kurslar": out}
         return run(go)
 
+    @router.get("/api/kurslar/nazorat")
+    def nazorat_savollar(token: str, fan: str, grade: str = "", kod: str = "", til: str = "uz"):
+        """REV479: nazorat savollari — qamrab olingan darslarning test bazalaridan, teng taqsimlab, aralashtirib."""
+        import random as _r
+        from modules import dars_xonasi as _dx
+        uid = platform._jwt_tekshir(token)
+        holat = kurs(token, fan, grade)
+        it = next((x for x in holat["darslar"] if x.get("topic_code") == kod and x.get("nazorat")), None)
+        if not it:
+            raise HTTPException(404, "Nazorat topilmadi")
+        if not it.get("ochiq"):
+            raise HTTPException(403, "Bu nazorat hali ochilmagan" if it.get("holat") != "qayta_ertaga" else "Qayta topshirish — ertaga")
+        yukla = _dx.TASHQI.get("yukla")
+        if not yukla:
+            raise HTTPException(503, "Dars moduli tayyor emas")
+        bank = {}
+        for tc in it["darslar"]:
+            try:
+                bank[tc] = [{**q, "_dars": tc} for q in (yukla(tc, til).get("savollar") or []) if q.get("variantlar")]
+            except Exception:   # noqa: BLE001 — birorta dars ochilmasa ham nazorat bo'laveradi
+                bank[tc] = []
+        rnd = _r.Random(f"{uid}:{kod}:{date.today().isoformat()}")
+        for v in bank.values():
+            rnd.shuffle(v)
+        kerak, tanlangan = int(it["savollar"]), []
+        while len(tanlangan) < kerak and any(bank.values()):   # darslardan navbat bilan — har darsdan teng
+            for tc in it["darslar"]:
+                if bank.get(tc) and len(tanlangan) < kerak:
+                    tanlangan.append(bank[tc].pop())
+        rnd.shuffle(tanlangan)
+        nomlar = {x["topic_code"]: x.get("nomi") for x in holat["darslar"]}
+        return {"kod": kod, "tur": it["nazorat"], "nomi": it["nomi"], "otish_foiz": it["otish_foiz"], "kamera": it.get("kamera", False),
+                "savollar": [{k: v for k, v in q.items() if not k.startswith("_")} | {"dars": q["_dars"], "dars_nomi": nomlar.get(q["_dars"], "")} for q in tanlangan]}
+
+    class NazoratNatija(BaseModel):
+        token: str
+        fan: str
+        grade: str = ""
+        kod: str
+        tur: str = ""
+        togri: int
+        jami: int
+        xato_darslar: list = []
+
+    @router.post("/api/kurslar/nazorat_natija")
+    def nazorat_natija(body: NazoratNatija):
+        uid = platform._jwt_tekshir(body.token)
+        foiz_kerak = NAZORAT.get(body.tur, (0, "", 0, 60))[3]
+        otdi = body.jami > 0 and body.togri * 100 >= foiz_kerak * body.jami
+        def go(cur):
+            kalit = kurs_of(body.fan, body.grade)[0]
+            cur.execute("""INSERT INTO kurs_nazorat(user_id, kalit, kod, tur, togri, jami, otdi, urinishlar, xato_darslar)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,1,%s::jsonb)
+                           ON CONFLICT (user_id, kalit, kod) DO UPDATE SET
+                             togri = CASE WHEN kurs_nazorat.otdi THEN GREATEST(kurs_nazorat.togri, EXCLUDED.togri) ELSE EXCLUDED.togri END,
+                             jami = EXCLUDED.jami, otdi = kurs_nazorat.otdi OR EXCLUDED.otdi, urinishlar = kurs_nazorat.urinishlar + 1,
+                             oxirgi_urinish = NOW(), xato_darslar = EXCLUDED.xato_darslar""",
+                        (uid, kalit, body.kod[:40], body.tur[:20], max(0, body.togri), max(0, body.jami), otdi, json.dumps(body.xato_darslar[:50])))
+            return {"otdi": otdi, "foiz": round(100 * body.togri / body.jami) if body.jami else 0, "kerak": foiz_kerak}
+        return run(go)
+
     class DarsTugadi(BaseModel):
         token: str
         fan: str
@@ -485,17 +572,32 @@ def create_router(platform, click=None):
                 if not ok and kat == "repetitor" and kurs_of(fan, d["grade"])[0] in sinf_obuna:
                     ok, sabab = True, "obuna"
                 items.append({"topic_code": d["topic_code"], "nomi": d["nom"], "sinf": d["grade"], "ochiq": ok, "bepul": sabab in ("bepul_dars", "bepul_kurs")})
+            items = nazorat_qosh(items)   # REV479
+            cur.execute("SELECT kod, otdi, togri, jami, (oxirgi_urinish AT TIME ZONE 'Asia/Tashkent')::date AS kun FROM kurs_nazorat WHERE user_id=%s AND kalit=%s", (uid, kalit))
+            nz = {r["kod"]: r for r in cur.fetchall()}
             # REV477: kurs tartibi — tugatilgan darslar, keyingisi ertaga (admin/o'qituvchi uchun qulfsiz)
             cur.execute(f"""SELECT topic_code, (tugadi_at AT TIME ZONE 'Asia/Tashkent')::date = {TOSHKENT_KUN} AS bugun
                             FROM kurs_dars_holat WHERE user_id=%s AND kalit=%s""", (uid, kalit))
             hol = cur.fetchall()
             tug = {r["topic_code"] for r in hol}; bugun_t = {r["topic_code"] for r in hol if r["bugun"]}
+            cur.execute(f"SELECT {TOSHKENT_KUN} AS bugun"); bugun_kun = cur.fetchone()["bugun"]
+            for k_, r_ in nz.items():   # o'tilgan nazorat — «tugadi» (o'sha kuni o'tilgan bo'lsa — keyingi dars ertaga)
+                if r_["otdi"]:
+                    tug.add(k_)
+                    if r_["kun"] == bugun_kun:
+                        bugun_t.add(k_)
             # hali birorta darsni tugatmagan (yoki tartib joriy qilinishidan oldin o'qiyotgan) o'quvchi — birinchi tugatgunicha cheklanmaydi
             erkin = rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz") or not hol
             for it, (ochiq, holat) in zip(items, tartib_qulf([(x["topic_code"], x["ochiq"]) for x in items], tug, bugun_t, erkin)):
                 if it["ochiq"]:   # to'lov bo'yicha ochiq bo'lsa — tartib bo'yicha cheklanadi
                     it["ochiq"] = ochiq
                 it["holat"] = holat
+                if it.get("nazorat"):   # REV479: natija va qayta topshirish (yiqilsa — ertaga)
+                    r_ = nz.get(it["topic_code"])
+                    if r_:
+                        it["natija"] = {"togri": r_["togri"], "jami": r_["jami"], "otdi": r_["otdi"]}
+                        if not r_["otdi"] and r_["kun"] == bugun_kun and not erkin:
+                            it["ochiq"] = False; it["holat"] = "qayta_ertaga"
             return {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul,
                     "obuna_tugaydi": ob["tugaydi"].isoformat() if ob else None, "darslar": items,
                     "tartib_erkin": bool(erkin) and rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz")}
