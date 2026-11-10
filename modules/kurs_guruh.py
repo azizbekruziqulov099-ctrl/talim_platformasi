@@ -37,6 +37,7 @@ def migrate(cur):
         bugungi TEXT NOT NULL DEFAULT '', bugungi_nom TEXT NOT NULL DEFAULT '', bugungi_vaqt TIMESTAMPTZ, yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_guruh_azo (guruh_id BIGINT NOT NULL REFERENCES kurs_guruh(id) ON DELETE CASCADE, user_id BIGINT NOT NULL,
         qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (guruh_id, user_id))""")
+    cur.execute("ALTER TABLE kurs_guruh ADD COLUMN IF NOT EXISTS kamera BOOLEAN NOT NULL DEFAULT FALSE")   # REV483: o'qituvchi barcha nazoratlarga kamera yoqadi
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_dars_javob (user_id BIGINT NOT NULL, topic_code TEXT NOT NULL, item TEXT NOT NULL, turi TEXT NOT NULL DEFAULT '',
         togri BOOLEAN NOT NULL DEFAULT FALSE, urinish INT NOT NULL DEFAULT 1, vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (user_id, topic_code, item))""")
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_dars_jonli (user_id BIGINT NOT NULL, topic_code TEXT NOT NULL, holat TEXT NOT NULL DEFAULT 'faol',
@@ -114,7 +115,8 @@ def create_router(platform):
         cur.execute("SELECT COUNT(*) AS n FROM kurs_guruh_azo WHERE guruh_id=%s", (g["id"],))
         n = int(cur.fetchone()["n"])
         d = {"id": int(g["id"]), "nom": g["nom"], "fan": g["fan"], "grade": g["grade"], "kurs_nomi": g["kurs_nomi"], "azolar": n,
-             "bugungi": g["bugungi"], "bugungi_nom": g["bugungi_nom"], "bugungi_vaqt": g["bugungi_vaqt"].isoformat() if g["bugungi_vaqt"] else None}
+             "bugungi": g["bugungi"], "bugungi_nom": g["bugungi_nom"], "bugungi_vaqt": g["bugungi_vaqt"].isoformat() if g["bugungi_vaqt"] else None,
+             "kamera": bool(g.get("kamera"))}
         if egasi:
             d["kod"] = g["kod"]
         return d
@@ -181,6 +183,49 @@ def create_router(platform):
             cur.execute("UPDATE kurs_guruh SET bugungi=%s, bugungi_nom=%s, bugungi_vaqt=NOW() WHERE id=%s RETURNING *",
                         (body.topic_code.strip(), body.nom.strip()[:200], gid))
             return {"ok": True, "guruh": korinish(cur, cur.fetchone(), True)}
+        return run(go)
+
+    class Kamera(BaseModel):
+        token: Optional[str] = None
+        kamera: bool
+
+    @router.post("/api/kurs_guruh/{gid}/kamera")
+    def kamera(gid: int, body: Kamera, authorization: str = Header(None)):
+        """REV483: o'qituvchi tanlaydi — guruh o'quvchilarining barcha nazoratlari kamera bilan."""
+        user_id = uid(body.token, authorization)
+        def go(cur):
+            ozi(cur, gid, user_id)
+            cur.execute("UPDATE kurs_guruh SET kamera=%s WHERE id=%s RETURNING *", (bool(body.kamera), gid))
+            return {"ok": True, "guruh": korinish(cur, cur.fetchone(), True)}
+        return run(go)
+
+    @router.get("/api/kurs_guruh/{gid}/nazoratlar")
+    def nazoratlar(gid: int, token: str = None, authorization: str = Header(None)):
+        """REV483: guruh o'quvchilarining nazorat natijalari — halollik belgilari va kamera rasmlari (imzolangan havolalar)."""
+        user_id = uid(token, authorization)
+        def go(cur):
+            g = ozi(cur, gid, user_id)
+            from modules.kurslar import kurs_of
+            kalit = kurs_of(g["fan"], g["grade"])[0]
+            cur.execute("""SELECT n.user_id, COALESCE(NULLIF(us.full_name,''),'O‘quvchi') AS ism, n.kod, n.tur, n.togri, n.jami, n.otdi, n.urinishlar,
+                                  n.oxirgi_urinish, n.halollik FROM kurs_nazorat n JOIN kurs_guruh_azo a ON a.user_id=n.user_id AND a.guruh_id=%s
+                           JOIN users us ON us.user_id=n.user_id WHERE n.kalit=%s ORDER BY n.oxirgi_urinish DESC LIMIT 300""", (gid, kalit))
+            qat = cur.fetchall()
+            rasm = {}
+            try:
+                from modules import ombor
+                cur.execute("SAVEPOINT kgr")
+                cur.execute("""SELECT user_id, kod, s3_kalit, vaqt FROM kurs_nazorat_rasm WHERE kalit=%s AND user_id = ANY(%s) AND vaqt > NOW() - INTERVAL '30 days'
+                               ORDER BY vaqt""", (kalit, [r["user_id"] for r in qat] or [0]))
+                for r in cur.fetchall():
+                    if ombor.yoqilgan():
+                        rasm.setdefault((r["user_id"], r["kod"]), []).append(ombor.havola(r["s3_kalit"], 3600))
+                cur.execute("RELEASE SAVEPOINT kgr")
+            except Exception:   # noqa: BLE001
+                cur.execute("ROLLBACK TO SAVEPOINT kgr")
+            return {"natijalar": [{"ism": r["ism"], "kod": r["kod"], "tur": r["tur"], "togri": r["togri"], "jami": r["jami"], "otdi": r["otdi"],
+                                   "urinishlar": r["urinishlar"], "vaqt": r["oxirgi_urinish"].isoformat(), "halollik": r["halollik"] or {},
+                                   "rasmlar": rasm.get((r["user_id"], r["kod"]), [])[-12:]} for r in qat]}
         return run(go)
 
     @router.delete("/api/kurs_guruh/{gid}")

@@ -162,6 +162,10 @@ def _migrate(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_nazorat (user_id BIGINT NOT NULL, kalit TEXT NOT NULL, kod TEXT NOT NULL, tur TEXT NOT NULL,
         togri INT NOT NULL DEFAULT 0, jami INT NOT NULL DEFAULT 0, otdi BOOLEAN NOT NULL DEFAULT FALSE, urinishlar INT NOT NULL DEFAULT 0,
         oxirgi_urinish TIMESTAMPTZ NOT NULL DEFAULT NOW(), xato_darslar JSONB, PRIMARY KEY (user_id, kalit, kod))""")
+    cur.execute("ALTER TABLE kurs_nazorat ADD COLUMN IF NOT EXISTS halollik JSONB")   # REV483: boshqa oynaga o'tish, nusxa olish, juda tez javoblar, kamera
+    cur.execute("""CREATE TABLE IF NOT EXISTS kurs_nazorat_rasm (id BIGSERIAL PRIMARY KEY, user_id BIGINT NOT NULL, kalit TEXT NOT NULL, kod TEXT NOT NULL,
+        s3_kalit TEXT NOT NULL, vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    cur.execute("CREATE INDEX IF NOT EXISTS kurs_nazorat_rasm_k ON kurs_nazorat_rasm(kalit, user_id, kod)")
     # REV477: tugatilgan darslar — kurs tartibi (keyingi dars ertaga ochiladi)
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_dars_holat (user_id BIGINT NOT NULL, kalit TEXT NOT NULL, topic_code TEXT NOT NULL,
         tugadi_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), togri INT, jami INT, PRIMARY KEY (user_id, kalit, topic_code))""")
@@ -499,7 +503,16 @@ def create_router(platform, click=None):
                     tanlangan.append(bank[tc].pop())
         rnd.shuffle(tanlangan)
         nomlar = {x["topic_code"]: x.get("nomi") for x in holat["darslar"]}
-        return {"kod": kod, "tur": it["nazorat"], "nomi": it["nomi"], "otish_foiz": it["otish_foiz"], "kamera": it.get("kamera", False),
+        kamera = bool(it.get("kamera"))
+        if not kamera:   # REV483: o'qituvchi guruhda kamerani yoqqan bo'lsa — barcha nazoratlar kamera bilan
+            def _kg(cur):
+                cur.execute("""SELECT 1 FROM kurs_guruh g JOIN kurs_guruh_azo a ON a.guruh_id=g.id WHERE a.user_id=%s AND g.fan=%s AND g.faol AND g.kamera LIMIT 1""", (uid, fan))
+                return cur.fetchone() is not None
+            try:
+                kamera = run(_kg)
+            except Exception:   # noqa: BLE001
+                kamera = False
+        return {"kod": kod, "tur": it["nazorat"], "nomi": it["nomi"], "otish_foiz": it["otish_foiz"], "kamera": kamera,
                 "savollar": [{k: v for k, v in q.items() if not k.startswith("_")} | {"dars": q["_dars"], "dars_nomi": nomlar.get(q["_dars"], "")} for q in tanlangan]}
 
     class NazoratNatija(BaseModel):
@@ -511,6 +524,7 @@ def create_router(platform, click=None):
         togri: int
         jami: int
         xato_darslar: list = []
+        halollik: dict = {}
 
     @router.post("/api/kurslar/nazorat_natija")
     def nazorat_natija(body: NazoratNatija):
@@ -519,14 +533,54 @@ def create_router(platform, click=None):
         otdi = body.jami > 0 and body.togri * 100 >= foiz_kerak * body.jami
         def go(cur):
             kalit = kurs_of(body.fan, body.grade)[0]
-            cur.execute("""INSERT INTO kurs_nazorat(user_id, kalit, kod, tur, togri, jami, otdi, urinishlar, xato_darslar)
-                           VALUES(%s,%s,%s,%s,%s,%s,%s,1,%s::jsonb)
+            hal = {k: (int(v) if isinstance(v, (int, float, bool)) else str(v)[:80]) for k, v in list((body.halollik or {}).items())[:12]}
+            cur.execute("""INSERT INTO kurs_nazorat(user_id, kalit, kod, tur, togri, jami, otdi, urinishlar, xato_darslar, halollik)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,1,%s::jsonb,%s::jsonb)
                            ON CONFLICT (user_id, kalit, kod) DO UPDATE SET
                              togri = CASE WHEN kurs_nazorat.otdi THEN GREATEST(kurs_nazorat.togri, EXCLUDED.togri) ELSE EXCLUDED.togri END,
                              jami = EXCLUDED.jami, otdi = kurs_nazorat.otdi OR EXCLUDED.otdi, urinishlar = kurs_nazorat.urinishlar + 1,
-                             oxirgi_urinish = NOW(), xato_darslar = EXCLUDED.xato_darslar""",
-                        (uid, kalit, body.kod[:40], body.tur[:20], max(0, body.togri), max(0, body.jami), otdi, json.dumps(body.xato_darslar[:50])))
+                             oxirgi_urinish = NOW(), xato_darslar = EXCLUDED.xato_darslar, halollik = EXCLUDED.halollik""",
+                        (uid, kalit, body.kod[:40], body.tur[:20], max(0, body.togri), max(0, body.jami), otdi, json.dumps(body.xato_darslar[:50]), json.dumps(hal)))
             return {"otdi": otdi, "foiz": round(100 * body.togri / body.jami) if body.jami else 0, "kerak": foiz_kerak}
+        return run(go)
+
+    class NazoratRasm(BaseModel):
+        token: str
+        fan: str
+        grade: str = ""
+        kod: str
+        rasm: str   # data:image/jpeg;base64,...
+
+    @router.post("/api/kurslar/nazorat_rasm")
+    def nazorat_rasm(body: NazoratRasm):
+        """REV483: imtihon paytidagi kamera surati (kichik JPEG, 250 KB gacha) — bulutli omborga; 30 kundan keyin o'chiriladi.
+        Faqat o'quvchining o'qituvchisi (guruh egasi) va admin ko'radi."""
+        import base64 as _b64, time as _tm
+        from modules import ombor
+        uid = platform._jwt_tekshir(body.token)
+        if not ombor.yoqilgan():
+            return {"ok": False, "sabab": "ombor"}
+        m = body.rasm.split(",", 1)[-1]
+        try:
+            data = _b64.b64decode(m, validate=True)
+        except Exception:   # noqa: BLE001
+            raise HTTPException(400, "Rasm noto'g'ri")
+        if len(data) > 250_000 or not data.startswith(b"\xff\xd8"):
+            raise HTTPException(400, "Faqat kichik JPEG rasm")
+        def go(cur):
+            kalit = kurs_of(body.fan, body.grade)[0]
+            k = f"nazorat/{uid}/{re.sub(r'[^A-Za-z0-9:_-]', '_', body.kod)[:40]}/{int(_tm.time() * 1000)}.jpg"
+            if not ombor.yukla_bayt(k, data, "image/jpeg"):
+                return {"ok": False}
+            cur.execute("INSERT INTO kurs_nazorat_rasm(user_id, kalit, kod, s3_kalit) VALUES(%s,%s,%s,%s)", (uid, kalit, body.kod[:40], k))
+            cur.execute("SELECT id, s3_kalit FROM kurs_nazorat_rasm WHERE vaqt < NOW() - INTERVAL '30 days' LIMIT 10")   # eski rasmlarni tozalash
+            for r in cur.fetchall():
+                try:
+                    ombor.ochir(r["s3_kalit"])
+                except Exception:   # noqa: BLE001
+                    pass
+                cur.execute("DELETE FROM kurs_nazorat_rasm WHERE id=%s", (r["id"],))
+            return {"ok": True}
         return run(go)
 
     class DarsTugadi(BaseModel):
