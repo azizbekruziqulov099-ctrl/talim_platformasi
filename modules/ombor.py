@@ -90,6 +90,15 @@ def yukla(kalit, fayl_yoli, content_type="application/octet-stream", timeout=600
     return r.status_code in (200, 201)
 
 
+def yukla_bayt(kalit, data, content_type="application/octet-stream", timeout=120):
+    """Xotiradagi baytlarni omborga yuklaydi (chat fayllari). True/False."""
+    data = bytes(data)
+    url, sarl = _sarlavhali("PUT", kalit, hashlib.sha256(data).hexdigest(), {"content-type": content_type})
+    sarl["content-length"] = str(len(data))
+    r = httpx.put(url, headers=sarl, content=data, timeout=timeout)
+    return r.status_code in (200, 201)
+
+
 def bormi(kalit, timeout=15):
     url, sarl = _sarlavhali("HEAD", kalit, hashlib.sha256(b"").hexdigest())
     try:

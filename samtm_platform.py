@@ -7312,6 +7312,13 @@ async def chat_xabar_yubor(
           fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb, javob_id_tekshirilgan))
     yangi = cur.fetchone()
     conn.commit()
+    if fayl_malumot is not None:   # REV473: fayl bazada qolmasin — omborga (bo'lmasa bazada qoladi, keyin fonda ko'chadi)
+        try:
+            from modules import chat_ombor
+            if chat_ombor.saqla(cur, yangi["id"], bytes(fayl_malumot), fayl_nomi or "fayl", fayl_content_turi):
+                conn.commit()
+        except Exception:   # noqa: BLE001
+            conn.rollback()
     cur.close(); conn.close()
     return {"holat": "yuborildi", "id": yangi["id"], "yaratilgan_at": yangi["yaratilgan_at"]}
 
@@ -7427,12 +7434,22 @@ def chat_xabar_forward(token: str, xabar_id: int, guruh_id: Optional[int] = None
         asl = cur.fetchone()
         if not asl:
             raise HTTPException(status_code=404, detail="Xabar topilmadi")
+        try:   # REV473: omborda/diskda saqlangan fayl (Kabutar TV videosi, chat fayli) ham uzatilsin
+            cur.execute("SAVEPOINT fw_yol")
+            cur.execute("SELECT fayl_yol, fayl_meta FROM chat_xabarlari WHERE id=%s", (xabar_id,))
+            qo = cur.fetchone() or {}
+            cur.execute("RELEASE SAVEPOINT fw_yol")
+        except psycopg2.Error:
+            cur.execute("ROLLBACK TO SAVEPOINT fw_yol"); qo = {}
         cur.execute("""
             INSERT INTO chat_xabarlari(guruh_id, qabul_qiluvchi_user_id, yuboruvchi_user_id, matn, fayl_turi, fayl_malumot, fayl_nomi, fayl_content_turi, fayl_hajmi_kb)
             VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING id
         """, (guruh_id, qabul_qiluvchi_user_id, user_id, asl["matn"], asl["fayl_turi"],
               asl["fayl_malumot"], asl["fayl_nomi"], asl["fayl_content_turi"], asl["fayl_hajmi_kb"]))
         yangi_id = cur.fetchone()["id"]
+        if qo.get("fayl_yol"):
+            cur.execute("UPDATE chat_xabarlari SET fayl_yol=%s, fayl_meta=%s WHERE id=%s",
+                        (qo["fayl_yol"], json.dumps(qo["fayl_meta"]) if isinstance(qo.get("fayl_meta"), dict) else qo.get("fayl_meta"), yangi_id))
         conn.commit()
         return {"holat": "yuborildi", "id": yangi_id}
     finally:
@@ -7652,7 +7669,7 @@ def chat_fayl_korish(xabar_id: int, token: str, range_header: Optional[str] = He
         _chat_policy().require_message(cur, user_id, xabar_id)
         try:   # REV185: fayl_yol ustuni Kabutar TV birinchi ishlaganda qo'shiladi — undan oldin eski so'rov
             cur.execute("SAVEPOINT chat_fayl_yol")
-            cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi, fayl_yol FROM chat_xabarlari
+            cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi, fayl_yol, fayl_meta FROM chat_xabarlari
                            WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
             x = cur.fetchone()
             cur.execute("RELEASE SAVEPOINT chat_fayl_yol")
@@ -7661,6 +7678,11 @@ def chat_fayl_korish(xabar_id: int, token: str, range_header: Optional[str] = He
             cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi FROM chat_xabarlari
                            WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
             x = cur.fetchone()
+        if x and str(x.get("fayl_yol") or "").startswith("s3:"):   # REV473: chat fayli omborda — imzolangan havola (xavfsiz sarlavhalar bilan)
+            from fastapi.responses import RedirectResponse
+            from modules import chat_ombor
+            return RedirectResponse(chat_ombor.havola(x["fayl_yol"], x.get("fayl_meta"), x.get("fayl_nomi") or "fayl"), status_code=302,
+                                    headers={"Cache-Control": "private, no-store", "Referrer-Policy": "no-referrer"})
         if x and x.get("fayl_yol"):   # REV185: Kabutar TV videosi diskda — oldinga-orqaga surish (Range) bilan
             from modules.kabutar_tv.kanal import fayl_javob
             return fayl_javob(x["fayl_yol"], range_header, x.get("fayl_nomi") or "video.mp4")
@@ -20893,6 +20915,12 @@ if "pytest" not in _sys_k.modules and "unittest" not in _sys_k.modules:   # test
     threading.Thread(target=_katalog_tuzat_avto, daemon=True, name="miya-katalog-avto").start()
     if os.environ.get("REV249_INDEKS", "1") != "0":
         threading.Thread(target=_rev249_indekslar, daemon=True, name="rev249-indeks").start()
+    # REV473: chat fayllari bazadan bulutli omborga (fonda, bir nusxa bajaradi)
+    try:
+        from modules import chat_ombor as _chat_ombor
+        _chat_ombor.fonda_boshla(DATABASE_URL)
+    except Exception as _e:   # noqa: BLE001
+        print("[chat-ombor] ishga tushmadi:", _e)
 
 
 def _ai_brain_nom_boyicha_kod(cur, parsed, yarat=False):
