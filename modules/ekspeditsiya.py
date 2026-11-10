@@ -225,6 +225,8 @@ def create_router(platform):
             if not _TAYYOR["ok"]:
                 cur.execute("""CREATE TABLE IF NOT EXISTS ekspeditsiya_holat(user_id BIGINT NOT NULL, kurs TEXT NOT NULL, data JSONB NOT NULL DEFAULT '{}'::jsonb,
                                updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY(user_id, kurs))""")
+                cur.execute("""CREATE TABLE IF NOT EXISTS ekspeditsiya_profil(user_id BIGINT PRIMARY KEY, avatar TEXT NOT NULL DEFAULT '',
+                               updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW())""")   # REV464: tanlangan avatar
                 conn.commit(); _TAYYOR["ok"] = True
             r = fn(cur); conn.commit(); return r
         finally:
@@ -256,6 +258,60 @@ def create_router(platform):
             ochiq = adm or i == 1 or int(yul.get(str(i - 1), 0)) >= 1
             out.append({"n": i, "mavzu": b["mavzu"], "yulduz": s, "holat": "otdi" if s else "ochiq" if ochiq else "yopiq", "darvoza": i % 5 == 0})
         return out
+
+    class Profil(BaseModel):
+        avatar: str
+
+    @router.get("/api/ekspeditsiya/profil")
+    def profil(token: str = "", authorization: Optional[str] = Header(None)):
+        """REV464: o'quvchining avatari (avatar_01 … avatar_12)."""
+        u = uid(token, authorization)
+        def f(cur):
+            cur.execute("SELECT avatar FROM ekspeditsiya_profil WHERE user_id=%s", (u,))
+            r = cur.fetchone()
+            return {"avatar": (r["avatar"] if isinstance(r, dict) else r[0]) if r else ""}
+        return run(f)
+
+    @router.post("/api/ekspeditsiya/profil")
+    def profil_yoz(body: Profil, token: str = "", authorization: Optional[str] = Header(None)):
+        u = uid(token, authorization)
+        a = str(body.avatar or "")
+        if a and not (a.startswith("avatar_") and a[7:].isdigit() and 1 <= int(a[7:]) <= 12):
+            raise HTTPException(400, "Bunday avatar yo'q")
+        def f(cur):
+            cur.execute("""INSERT INTO ekspeditsiya_profil(user_id, avatar) VALUES(%s,%s)
+                           ON CONFLICT(user_id) DO UPDATE SET avatar=EXCLUDED.avatar, updated_at=NOW()""", (u, a))
+            return {"avatar": a}
+        return run(f)
+
+    @router.get("/api/ekspeditsiya/{kurs}/reyting")
+    def reyting(kurs: str, token: str = "", authorization: Optional[str] = Header(None)):
+        """REV464: guruhdoshlar reytingi (o'quvchi a'zo bo'lgan kurs guruhlari bo'yicha) — ism va familiya bosh harfi, avatar, yulduzlar."""
+        u = uid(token, authorization); kurs_ol(kurs)
+        def f(cur):
+            try:
+                cur.execute("""SELECT DISTINCT a2.user_id FROM kurs_guruh_azo a1 JOIN kurs_guruh_azo a2 ON a2.guruh_id=a1.guruh_id WHERE a1.user_id=%s""", (u,))
+                ids = [(r["user_id"] if isinstance(r, dict) else r[0]) for r in cur.fetchall()]
+            except Exception:
+                ids = []
+            if not ids:
+                return {"reyting": [], "guruhsiz": True}
+            cur.execute("""SELECT us.user_id, COALESCE(us.full_name,'') AS ism, e.data, p.avatar FROM users us
+                           LEFT JOIN ekspeditsiya_holat e ON e.user_id=us.user_id AND e.kurs=%s
+                           LEFT JOIN ekspeditsiya_profil p ON p.user_id=us.user_id WHERE us.user_id = ANY(%s)""", (kurs, ids))
+            out = []
+            for r in cur.fetchall():
+                d = r["data"] or {}
+                yul = d.get("yulduz") or {}
+                q = str(r["ism"] or "").split()
+                ism = (q[0] + (f" {q[1][0]}." if len(q) > 1 and q[1] else "")) if q else "O‘quvchi"
+                out.append({"ism": ism, "avatar": r["avatar"] or "", "yulduz": sum(int(v) for v in yul.values()),
+                            "bosqich": max([int(n) for n, v in yul.items() if int(v) >= 1] or [0]), "men": r["user_id"] == u})
+            out.sort(key=lambda x: (-x["yulduz"], -x["bosqich"]))
+            for i, x in enumerate(out, 1):
+                x["orin"] = i
+            return {"reyting": out[:20] + [x for x in out[20:] if x["men"]], "guruhsiz": False}
+        return run(f)
 
     @router.get("/api/ekspeditsiya/kurslar")
     def kurslar():
@@ -354,8 +410,9 @@ def create_router(platform):
             g = cur.fetchone()
             if not g or (g["egasi"] != u and not admin_mi(cur, u)):
                 raise HTTPException(403, "Bu guruh sizniki emas")
-            cur.execute("""SELECT a.user_id, COALESCE(NULLIF(us.full_name,''), 'O‘quvchi') AS ism, e.data
+            cur.execute("""SELECT a.user_id, COALESCE(NULLIF(us.full_name,''), 'O‘quvchi') AS ism, e.data, p.avatar
                            FROM kurs_guruh_azo a JOIN users us ON us.user_id=a.user_id
+                           LEFT JOIN ekspeditsiya_profil p ON p.user_id=a.user_id
                            LEFT JOIN ekspeditsiya_holat e ON e.user_id=a.user_id AND e.kurs=%s WHERE a.guruh_id=%s""", (kurs, guruh))
             qatorlar, sinf = [], {}
             for r in cur.fetchall():
@@ -367,7 +424,7 @@ def create_router(platform):
                 zaif = sorted([(t, v[0] / v[1]) for t, v in st.items() if v[1] >= 3 and v[0] / v[1] < 0.6], key=lambda x: x[1])[:3]
                 for t, v in st.items():
                     a = sinf.get(t, [0, 0, 0]); sinf[t] = [a[0] + v[0], a[1] + v[1], a[2] + (1 if v[1] >= 3 and v[0] / v[1] < 0.6 else 0)]
-                qatorlar.append({"ism": r["ism"], "bosqich": otgan, "yulduz": sum(int(v) for v in yul.values()), "aniqlik": round(100 * tg / jm) if jm else None,
+                qatorlar.append({"ism": r["ism"], "avatar": r.get("avatar") or "", "bosqich": otgan, "yulduz": sum(int(v) for v in yul.values()), "aniqlik": round(100 * tg / jm) if jm else None,
                                  "streak": d.get("streak", 0), "oxirgi_kun": d.get("kun", ""), "zaif": [{"tur": t, "nom": TUR_NOMI.get(t, t), "foiz": round(100 * p)} for t, p in zaif]})
             n = len(qatorlar) or 1
             sinf_zaif = sorted([{"tur": t, "nom": TUR_NOMI.get(t, t), "aniqlik": round(100 * v[0] / v[1]), "qiynalganlar": v[2], "ulush": round(100 * v[2] / n)}
