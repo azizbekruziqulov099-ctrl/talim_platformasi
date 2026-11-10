@@ -20846,6 +20846,11 @@ def _rev249_indekslar():
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abu_kitob_kodi ON ai_brain_units((regexp_replace(upper(payload->>'kitob_kodi'),'[^A-Z0-9]','','g'))) WHERE payload ? 'kitob_kodi'",
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_dts_scope_grade_topic ON dts_tree(curriculum_scope_id, grade, topic_code)",
             "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_abs_book_title ON ai_brain_sources(book_title)",
+            # REV467: Kabutar chati — ko'p foydalanuvchida xabarlar va suhbatlar ro'yxati to'liq ko'rib chiqilmasin
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_chat_x_guruh ON chat_xabarlari(guruh_id, id) WHERE guruh_id IS NOT NULL",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_chat_x_shaxsiy ON chat_xabarlari(yuboruvchi_user_id, qabul_qiluvchi_user_id, id) WHERE guruh_id IS NULL",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_chat_x_qabul ON chat_xabarlari(qabul_qiluvchi_user_id, id) WHERE guruh_id IS NULL",
+            "CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_chat_azo_user ON chat_azolari(user_id)",
         ]
         if not bormi_topic("dts_tree"):
             buyruqlar.append("CREATE INDEX CONCURRENTLY IF NOT EXISTS idx_dts_topic_code ON dts_tree(topic_code)")
