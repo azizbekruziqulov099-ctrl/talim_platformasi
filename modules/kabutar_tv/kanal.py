@@ -21,7 +21,7 @@ import sys
 import threading
 import time
 
-from fastapi import APIRouter, Body, Header, HTTPException, Query
+from fastapi import APIRouter, Body, Header, HTTPException, Query, Request
 
 from .ssenariy import AUDITORIYALAR, DARAJALAR, TILLAR, aud_darajalari
 
@@ -350,12 +350,19 @@ def joyla(cur, sana, til, daraja, fayl, mavzu, soniya, kanal=None):
 
 # ───────────── REV468: bulutli ombor (backend diskdan mustaqil bo'lsin — bir nechta nusxada ishlay olsin) ─────────────
 def ombor_kaliti(path):
-    """Server diskidagi yo'l → ombordagi kalit (kabutar_tv/<sana>/<fayl>.mp4)."""
+    """Server diskidagi yo'l → ombordagi kalit (kabutar_tv/<sana>/<fayl>.mp4). REV472: papka o'zgarsa ham (disk olib
+    tashlanganda bazadagi eski «/data/kabutar_tv/…» yo'llari) kalit bir xil chiqadi — oxirgi ikki qism: sana/fayl."""
+    qism = str(path or "").replace("\\", "/").rstrip("/").split("/")
+    if len(qism) >= 2 and re.match(r"^\d{4}-\d{2}-\d{2}$", qism[-2]):
+        return f"kabutar_tv/{qism[-2]}/{qism[-1]}"
     try:
         rel = os.path.relpath(path, papka())
     except ValueError:
         return ""
     return "" if rel.startswith("..") else "kabutar_tv/" + rel.replace(os.sep, "/")
+
+
+OMBOR_HOLAT = {"jami": 0, "kochdi": 0, "xato": 0, "tugadi": False, "boshlandi": None}
 
 
 def omborga(path, log=print):
@@ -390,13 +397,24 @@ def ombor_kochirish(log=print):
     except Exception:   # noqa: BLE001
         return
     n = 0
+    OMBOR_HOLAT.update(boshlandi=time.strftime("%Y-%m-%d %H:%M:%S"), tugadi=False)
+    royxat = []
     for ildiz, papkalar, fayllar in os.walk(papka()):
         papkalar[:] = [p for p in papkalar if not p.startswith("_") and p != "tools"]
-        for f in fayllar:
-            yol = os.path.join(ildiz, f)
-            if f.endswith(".mp4") and not os.path.exists(yol + ".omborda") and omborga(yol, log):
-                n += 1
-    log(f"[kabutar_tv] omborga ko'chirildi: {n} ta video")
+        royxat += [os.path.join(ildiz, f) for f in fayllar if f.endswith(".mp4")]
+    OMBOR_HOLAT["jami"] = len(royxat)
+    OMBOR_HOLAT["kochdi"] = sum(1 for y in royxat if os.path.exists(y + ".omborda"))
+    for yol in royxat:
+        if os.path.exists(yol + ".omborda"):
+            continue
+        if omborga(yol, log):
+            n += 1; OMBOR_HOLAT["kochdi"] += 1
+            if n % 10 == 0:
+                log(f"[kabutar_tv] omborga: {OMBOR_HOLAT['kochdi']}/{OMBOR_HOLAT['jami']}")
+        else:
+            OMBOR_HOLAT["xato"] += 1
+    OMBOR_HOLAT["tugadi"] = True
+    log(f"[kabutar_tv] omborga ko'chirildi: {n} ta video (jami {OMBOR_HOLAT['kochdi']}/{OMBOR_HOLAT['jami']}, xato {OMBOR_HOLAT['xato']})")
     try:
         conn.close()
     except Exception:   # noqa: BLE001
@@ -697,6 +715,23 @@ def create_kabutar_tv_router(check_admin, db):
         finally:
             cur.close()
             conn.close()
+
+    @router.get("/ombor")
+    def ombor_holati(request: Request, token: str = ""):
+        """REV472: Kabutar TV videolarining omborga ko'chishi (admin yoki vaqtinchalik DIAG_KALIT)."""
+        import secrets as _sec
+        diag = os.getenv("DIAG_KALIT", "")
+        if not (len(diag) >= 24 and _sec.compare_digest(request.headers.get("x-diag-kalit", ""), diag)):
+            check_admin(token)
+        from modules import ombor
+        jami = kochdi = 0; hajm = 0
+        for ildiz, papkalar, fayllar in os.walk(papka()):
+            papkalar[:] = [p for p in papkalar if not p.startswith("_") and p != "tools"]
+            for f in fayllar:
+                if f.endswith(".mp4"):
+                    jami += 1; y = os.path.join(ildiz, f); hajm += os.path.getsize(y)
+                    kochdi += os.path.exists(y + ".omborda")
+        return {"ombor_yoqilgan": ombor.yoqilgan(), "jami": jami, "kochdi": kochdi, "hajm_mb": round(hajm / 1e6), "jarayon": OMBOR_HOLAT}
 
     @router.get("/holat")
     def tv_holat(token: str, sana: str = None):
