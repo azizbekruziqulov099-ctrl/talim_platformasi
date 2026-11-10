@@ -41,8 +41,85 @@ def _topshiriq(kurs, tur, rng, tag):
         var = var[:3]
         hamma = [js] + var
         rng.shuffle(hamma)
+        import re as _re
+        q = _re.sub(r"(?<![\d,.])1(x)", r"\1", q)   # «1x^2» → «x^2»
         return {"tur": tur, "tag": tag, "savol": q, "variantlar": hamma, "togri": hamma.index(js), "yechim": y if "Javob" in y else f"{y}\nJavob: {js}"}
     return None
+
+
+ISMLAR = ["Ali", "Malika", "Bekzod", "Dilnoza", "Sardor", "Zarina", "Jasur", "Nilufar"]
+
+
+def _sonmi(x):
+    try:
+        return float(str(x).replace(",", ".").replace("−", "-"))
+    except ValueError:
+        return None
+
+
+def _qayta_shakl(t, rng, kurs):
+    """REV457: topshiriqni boshqa ko'rinishga aylantiradi — xatoni top, chamalash, to'g'ri/noto'g'ri. Mos kelmasa — o'zgarmaydi."""
+    q = t["savol"].rstrip(" ?").replace("= \\;?", "").replace("= \\; ?", "").strip()
+    js = t["variantlar"][t["togri"]]
+    xatolar = [v for k, v in enumerate(t["variantlar"]) if k != t["togri"]]
+    tur = rng.choice(["xato_top", "togri_notogri", "chamalash"])
+    if tur == "chamalash":
+        v = _sonmi(js)
+        if v is None or abs(v) < 200 or v != int(v):
+            tur = "togri_notogri"
+        else:
+            v = int(v); k = 10 ** (len(str(abs(v))) - 1)
+            if (abs(v) % k) * 2 == k:   # aniq o'rtada (250 — 200 ham, 300 ham) — chamalash noaniq, boshqa ko'rinish
+                return _qayta_shakl({**t}, random.Random(rng.random()), {**kurs, "_cham_yoq": True}) if not kurs.get("_cham_yoq") else t
+            yaqin = round(v / k) * k
+            var = list(dict.fromkeys([yaqin, yaqin * 10, max(k, yaqin // 10), yaqin + 3 * k if yaqin + 3 * k != yaqin else yaqin + k]))[:4]
+            if len(var) < 3:
+                tur = "togri_notogri"
+            else:
+                var = [str(x) for x in var]; togri = str(yaqin); rng.shuffle(var)
+                return {**t, "korinish": "chamalash", "savol": f"Hisoblamasdan chamalang: {t['savol'].rstrip(' ?')} — javob qaysi songa eng yaqin?",
+                        "variantlar": var, "togri": var.index(togri), "yechim": f"Aniq javob: {js}. Eng yaqin yaxlit son — {togri}.\nChamalash: sonlarni yaxlitlab, xonalar sonini bahoalaymiz."}
+    ism = rng.choice(ISMLAR)
+    if tur == "xato_top" and xatolar:
+        ali_haq = rng.random() < 0.3
+        javobi = js if ali_haq else rng.choice(xatolar)
+        var = [f"{ism} to‘g‘ri topgan"] + [f"To‘g‘ri javob: {x}" for x in [js] + xatolar if x != javobi][:3]
+        togri = var[0] if ali_haq else f"To‘g‘ri javob: {js}"
+        rng.shuffle(var)
+        return {**t, "korinish": "xato_top", "savol": f"{ism} shu topshiriqqa «{javobi}» deb javob berdi:\n{t['savol']}\nUning javobini tekshiring.",
+                "variantlar": var, "togri": var.index(togri), "yechim": t["yechim"]}
+    # to'g'ri / noto'g'ri — nega
+    haq = rng.random() < 0.5 or not xatolar
+    aytilgan = js if haq else rng.choice(xatolar)
+    var = ["To‘g‘ri", "Noto‘g‘ri"]
+    return {**t, "korinish": "togri_notogri", "savol": f"Tasdiq: {t['savol'].rstrip(' ?')} — javobi «{aytilgan}». Shu to‘g‘rimi?",
+            "variantlar": var, "togri": 0 if haq else 1, "yechim": t["yechim"]}
+
+
+def _naqsh(rng, kurs):
+    """REV457: naqsh — ketma-ketlikni davom ettirish (sinfga mos)."""
+    g = int("".join(c for c in kurs["kalit"] if c.isdigit()) or 5)
+    r = rng.randint
+    tur = rng.choice(["arif", "geom", "kvadrat", "almash"] if g >= 7 else ["arif", "geom", "almash"])
+    if tur == "arif":
+        a, d = r(1, 30), rng.choice([r(2, 9), r(11, 25)] if g >= 5 else [r(2, 9)])
+        q = [a + i * d for i in range(5)]; j = a + 5 * d; izoh = f"Har safar {d} ga oshadi"
+    elif tur == "geom":
+        a, k = r(1, 5), rng.choice([2, 3])
+        q = [a * k ** i for i in range(5)]; j = a * k ** 5; izoh = f"Har safar {k} marta oshadi"
+    elif tur == "kvadrat":
+        s0 = r(1, 6); q = [(s0 + i) ** 2 for i in range(5)]; j = (s0 + 5) ** 2; izoh = "Ketma-ket sonlarning kvadratlari"
+    else:
+        a, b = r(2, 9), r(2, 9)
+        q = [r(10, 30)]
+        for i in range(4):
+            q.append(q[-1] + (a if i % 2 == 0 else -b))
+        j = q[-1] + a; izoh = f"Navbat bilan +{a} va −{b}"
+    xs = list(dict.fromkeys([j + 1, j - 1, j + (q[-1] - q[-2]), j * 2]))
+    xs = [x for x in xs if x != j][:3]
+    var = [str(j)] + [str(x) for x in xs]; rng.shuffle(var)
+    return {"tur": "naqsh", "tag": "yangi", "korinish": "naqsh", "savol": f"Ketma-ketlikni davom ettiring: {', '.join(map(str, q))}, …?",
+            "variantlar": var, "togri": var.index(str(j)), "yechim": f"{izoh}.\nJavob: {j}"}
 
 
 def bosqich_yasa(kurs, n, holat, urinish=0, uid=0):
@@ -72,6 +149,15 @@ def bosqich_yasa(kurs, n, holat, urinish=0, uid=0):
         t = _topshiriq(kurs, tur, rng, tag)
         if t:
             out.append(t)
+    # REV457: ko'rinishlar aralashmasi — 15 tadan ~4 tasi boshqa shaklda (xatoni top, chamalash, to'g'ri/noto'g'ri), 1 ta naqsh
+    if out:
+        joylar = rng.sample(range(len(out)), min(4, len(out)))
+        for k in joylar:
+            out[k] = _qayta_shakl(out[k], rng, kurs)
+        if not darvoza and len(out) >= 10:
+            out[rng.randrange(1, 8)] = {**_naqsh(rng, kurs), "tag": "yangi"}
+    for t in out:
+        t.setdefault("korinish", "oddiy")
     rng.shuffle(out) if darvoza else None
     return out
 
