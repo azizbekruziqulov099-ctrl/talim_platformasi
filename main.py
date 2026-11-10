@@ -217,6 +217,11 @@ try:   # REV481: Mister Nazoratchi
 except ImportError:
     from modules.nazoratchi import create_router as create_nazoratchi_router
 app.include_router(create_nazoratchi_router(samtm_platform))
+try:   # REV484: yakuniy baho va haftalik hisobot
+    from .modules.yakuniy import create_router as create_yakuniy_router
+except ImportError:
+    from modules.yakuniy import create_router as create_yakuniy_router
+app.include_router(create_yakuniy_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
