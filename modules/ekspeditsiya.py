@@ -169,6 +169,38 @@ class Natija(BaseModel):
     togri: int
     togri_turlar: List[str] = []
     xato_turlar: List[str] = []
+    vaqt: int = 0                     # REV459: bosqichga ketgan soniyalar (tezkor nishoni uchun)
+    korinish_togri: dict = {}         # REV459: {"xato_top": 2, "chamalash": 1, "naqsh": 1}
+
+
+NISHONLAR = {   # REV459: kalit → (nomi, sharti matnda)
+    "birinchi_qadam": "Birinchi bosqich", "xatosiz": "Xatosiz bosqich (15/15)", "tezkor": "Tezkor (5 daqiqadan tez, 12+ to‘g‘ri)", "darvoza_zabti": "Darvozani o‘tdi",
+    "ketma_ket_7": "7 kun ketma-ket", "ketma_ket_30": "30 kun ketma-ket", "kasr_ustasi": "Kasrlar ustasi", "geometr": "Geometr", "algebraist": "Algebraist",
+    "hisobchi": "Tez hisobchi", "mantiqchi": "Mantiqchi", "masalachi": "Masala yechuvchi", "xatoni_topuvchi": "Xato topuvchi", "chamalovchi": "Aniq chamalovchi",
+    "qaytgan": "Unutilgan mavzuni tikladi", "100_masala": "100 ta masala", "1000_masala": "1000 ta masala",
+}
+_HISOB = {"qosh", "ayir", "kop1", "kop2", "kop10", "bol", "bol2", "qoldiq"}
+_MASALA = {"harakat", "qarama", "quvlama", "qiymat", "unum", "nisbat", "meyor", "chegirma", "osish", "foiz", "ortacha_tezlik", "qolgan", "toplam"}
+
+
+def _yangi_nishonlar(d, kurs, n, body, s, chiqdi):
+    bor = set((d.get("nishonlar") or {}).keys()); yangi = []
+    st = d.get("tur_stat") or {}; kt = d.get("korinish_stat") or {}
+    def togri_soni(turlar): return sum(v[0] for t, v in st.items() if t in turlar)
+    shart = {
+        "birinchi_qadam": s >= 1, "xatosiz": body.togri >= 15, "tezkor": 0 < body.vaqt < 300 and body.togri >= 12, "darvoza_zabti": n % 5 == 0 and s >= 1,
+        "ketma_ket_7": d.get("streak", 0) >= 7, "ketma_ket_30": d.get("streak", 0) >= 30,
+        "kasr_ustasi": (lambda a, j: j >= 30 and a / j >= 0.9)(*[sum(v[i] for t, v in st.items() if t.startswith("kasr") or "kasr" in t) for i in (0, 1)]),
+        "geometr": kurs["kalit"].startswith("geo") and sum(1 for v in (d.get("yulduz") or {}).values() if int(v) >= 1) >= 10,
+        "algebraist": kurs["kalit"].startswith("alg") and sum(1 for v in (d.get("yulduz") or {}).values() if int(v) >= 1) >= 10,
+        "hisobchi": togri_soni(_HISOB) >= 50, "masalachi": togri_soni(_MASALA) >= 50, "mantiqchi": int(kt.get("naqsh", 0)) >= 20,
+        "xatoni_topuvchi": int(kt.get("xato_top", 0)) >= 20, "chamalovchi": int(kt.get("chamalash", 0)) >= 15,
+        "qaytgan": chiqdi > 0, "100_masala": d.get("jami", 0) >= 100, "1000_masala": d.get("jami", 0) >= 1000,
+    }
+    for k, ok in shart.items():
+        if ok and k not in bor:
+            yangi.append(k)
+    return yangi
 
 
 def create_router(platform):
@@ -228,7 +260,8 @@ def create_router(platform):
         def f(cur):
             d = ol(cur, u, kurs); adm = admin_mi(cur, u)
             return {"kalit": kurs, "nom": k["nom"], "bosqichlar": xarita(d, k, adm), "streak": d.get("streak", 0), "jami": d.get("jami", 0),
-                    "xato_navbat": len(d.get("xato") or []), "admin": adm}
+                    "xato_navbat": len(d.get("xato") or []), "admin": adm,
+                    "nishonlar": [{"kalit": k_, "nom": v, "olindi": (d.get("nishonlar") or {}).get(k_)} for k_, v in NISHONLAR.items()]}
         return run(f)
 
     @router.post("/api/ekspeditsiya/{kurs}/{n}/boshlash")
@@ -256,13 +289,14 @@ def create_router(platform):
             d["jami"] = int(d.get("jami", 0)) + max(0, min(15, body.togri))
             # Leitner: xatolar navbati
             nav = {x["tur"]: x for x in (d.get("xato") or [])}
+            chiqdi = 0
             for t in body.xato_turlar[:15]:
                 nav[t] = {"tur": t, "qaytadi": n + 1, "marta": 0}
             for t in body.togri_turlar[:15]:
                 if t in nav and nav[t].get("qaytadi", 99) <= n:
                     nav[t]["marta"] = int(nav[t].get("marta", 0)) + 1
                     if nav[t]["marta"] >= 2:
-                        nav.pop(t)
+                        nav.pop(t); chiqdi += 1
                     else:
                         nav[t]["qaytadi"] = n + 3
             d["xato"] = list(nav.values())[:40]
@@ -276,8 +310,19 @@ def create_router(platform):
             if d.get("kun") != bugun:
                 d["streak"] = int(d.get("streak", 0)) + 1 if d.get("kun") == (date.today() - timedelta(days=1)).isoformat() else 1
                 d["kun"] = bugun
+            kt = d.get("korinish_stat") or {}
+            for kk, v in (body.korinish_togri or {}).items():
+                if kk in ("xato_top", "chamalash", "naqsh", "togri_notogri"):
+                    kt[kk] = int(kt.get(kk, 0)) + max(0, min(15, int(v or 0)))
+            d["korinish_stat"] = kt
+            yangi = _yangi_nishonlar(d, KURS[kurs], n, body, s, chiqdi)
+            nsh = d.get("nishonlar") or {}
+            for k_ in yangi:
+                nsh[k_] = bugun
+            d["nishonlar"] = nsh
             yoz(cur, u, kurs, d)
-            return {"yulduz": s, "otdi": s >= 1, "streak": d["streak"], "jami": d["jami"], "xato_navbat": len(d["xato"])}
+            return {"yulduz": s, "otdi": s >= 1, "streak": d["streak"], "jami": d["jami"], "xato_navbat": len(d["xato"]),
+                    "yangi_nishonlar": [{"kalit": k_, "nom": NISHONLAR[k_]} for k_ in yangi]}
         return run(f)
 
     @router.get("/api/ekspeditsiya/oqituvchi/guruhlar")
