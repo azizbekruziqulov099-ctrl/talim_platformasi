@@ -7660,7 +7660,7 @@ def xavfli_xabarlar_korish(token: str):
 
 
 @app.get("/api/chat/fayl/{xabar_id}")
-def chat_fayl_korish(xabar_id: int, token: str, range_header: Optional[str] = Header(None, alias="Range")):
+def chat_fayl_korish(xabar_id: int, token: str, range_header: Optional[str] = Header(None, alias="Range"), oqim: int = 0):
     """Fayl baytlarini o'qishdan oldin amaldagi suhbat ruxsatini tekshiradi."""
     user_id = _chat_actor(token)
     conn = _db()
@@ -7678,6 +7678,15 @@ def chat_fayl_korish(xabar_id: int, token: str, range_header: Optional[str] = He
             cur.execute("""SELECT fayl_malumot, fayl_content_turi, fayl_nomi FROM chat_xabarlari
                            WHERE id=%s AND COALESCE(ochirilgan,FALSE)=FALSE""", (xabar_id,))
             x = cur.fetchone()
+        if x and str(x.get("fayl_yol") or "").startswith("s3:") and oqim:
+            # REV474: hujjat ko'ruvchi uchun (sayt ichida ochish) — baytlar shu server orqali (boshqa domenga yo'naltirishsiz), 50 MB gacha
+            import httpx as _hx
+            from modules import chat_ombor, ombor as _omb
+            r_ = _hx.get(_omb.havola(x["fayl_yol"][3:], 300), timeout=60)
+            if r_.status_code != 200 or len(r_.content) > 50 * 1024 * 1024:
+                raise HTTPException(status_code=404, detail="Fayl topilmadi")
+            from platform_core import xavfsiz_fayl
+            return xavfsiz_fayl.chat_javob(r_.content, x.get("fayl_nomi") or "fayl", x["fayl_content_turi"])
         if x and str(x.get("fayl_yol") or "").startswith("s3:"):   # REV473: chat fayli omborda — imzolangan havola (xavfsiz sarlavhalar bilan)
             from fastapi.responses import RedirectResponse
             from modules import chat_ombor
