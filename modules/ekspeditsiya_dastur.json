@@ -2233,5 +2233,161 @@
 ]
 }
 ]
+},
+{
+"kalit": "xalqaro",
+"nom": "🌍 Xalqaro ekspeditsiya (PISA)",
+"gen": "xb",
+"bosqichlar": [
+{
+"mavzu": "1-daraja: bir qadamli hisob",
+"turlar": [
+"chipta:1",
+"aholi:1",
+"harorat:1",
+"masshtab:1"
+]
+},
+{
+"mavzu": "1-daraja: jadval va narx",
+"turlar": [
+"retsept:2",
+"quyosh:2",
+"velosiped:2",
+"piramida:2"
+]
+},
+{
+"mavzu": "2-daraja: vaqt, tezlik, foiz",
+"turlar": [
+"sport:3",
+"poyezd:3",
+"aholi:3",
+"plitka:3"
+]
+},
+{
+"mavzu": "2-daraja: masshtab va ehtimol",
+"turlar": [
+"masshtab:3",
+"harorat:3",
+"xalta:2",
+"omonat:2"
+]
+},
+{
+"mavzu": "Darvoza",
+"turlar": []
+},
+{
+"mavzu": "3-daraja: taqqoslash",
+"turlar": [
+"chipta:3",
+"retsept:3",
+"suv:3",
+"hovuz:3"
+]
+},
+{
+"mavzu": "3-daraja: ikki tarifni solishtirish",
+"turlar": [
+"velosiped:4",
+"tarif:4",
+"chegirma:4"
+]
+},
+{
+"mavzu": "4-daraja: ko‘p qadamli",
+"turlar": [
+"masshtab:4",
+"harorat:4",
+"plitka:4"
+]
+},
+{
+"mavzu": "4-daraja: model va ehtimol",
+"turlar": [
+"quyosh:4",
+"xalta:4",
+"piramida:4"
+]
+},
+{
+"mavzu": "Darvoza",
+"turlar": []
+},
+{
+"mavzu": "5-daraja: resurs va foiz",
+"turlar": [
+"retsept:5",
+"omonat:5",
+"hovuz:5"
+]
+},
+{
+"mavzu": "5-daraja: qaror qabul qilish",
+"turlar": [
+"chipta:5",
+"velosiped:5",
+"tarif:5"
+]
+},
+{
+"mavzu": "5-daraja: yaxlitlash va o‘lchov",
+"turlar": [
+"plitka:5",
+"sport:5",
+"suv:5"
+]
+},
+{
+"mavzu": "5-daraja: ma’lumot tahlili",
+"turlar": [
+"xalta:5",
+"harorat:5",
+"aholi:5"
+]
+},
+{
+"mavzu": "Darvoza",
+"turlar": []
+},
+{
+"mavzu": "6-daraja: murakkab foiz",
+"turlar": [
+"omonat:6",
+"chegirma:6",
+"quyosh:6"
+]
+},
+{
+"mavzu": "6-daraja: optimal tanlov",
+"turlar": [
+"velosiped:6",
+"tarif:6",
+"chipta:6"
+]
+},
+{
+"mavzu": "6-daraja: fazo va o‘lchov",
+"turlar": [
+"plitka:6",
+"masshtab:6",
+"hovuz:6"
+]
+},
+{
+"mavzu": "6-daraja: noaniqlik",
+"turlar": [
+"xalta:6",
+"harorat:6",
+"retsept:6"
+]
+},
+{
+"mavzu": "Darvoza",
+"turlar": []
+}
+]
 }
 ]

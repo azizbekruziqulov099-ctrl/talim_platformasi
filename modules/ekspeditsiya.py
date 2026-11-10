@@ -14,7 +14,8 @@ from modules import ekspeditsiya_gen as G
 _DASTUR = json.load(open(os.path.join(os.path.dirname(__file__), "ekspeditsiya_dastur.json"), encoding="utf8"))
 KURS = {k["kalit"]: k for k in _DASTUR}
 _TAYYOR = {"ok": False}
-GEN = {"12": G.gen12, "34": G.gen34, "56": G.gen56, "711": G.gen711}
+from modules import ekspeditsiya_xalqaro as XB   # REV463: PISA uslubidagi hayotiy masalalar
+GEN = {"12": G.gen12, "34": G.gen34, "56": G.gen56, "711": G.gen711, "xb": XB.gen_xb}
 
 
 def _yulduz(togri, darvoza):
@@ -43,11 +44,17 @@ def _topshiriq(kurs, tur, rng, tag):
         rng.shuffle(hamma)
         import re as _re
         q = _re.sub(r"(?<![\d,.])1(x)", r"\1", q)   # «1x^2» → «x^2»
-        return {"tur": tur, "tag": tag, "savol": q, "variantlar": hamma, "togri": hamma.index(js), "yechim": y if "Javob" in y else f"{y}\nJavob: {js}"}
+        out = {"tur": tur, "tag": tag, "savol": q, "variantlar": hamma, "togri": hamma.index(js), "yechim": y if "Javob" in y else f"{y}\nJavob: {js}"}
+        if kurs.get("gen") == "xb":   # REV463: kontekst rasmi (Azizjon yuborgan xalqaro sahnalar)
+            out["sahna"] = XB.SAHNA.get(tur.split(":")[0], "")
+        return out
     return None
 
 
 TUR_NOMI = {"ajrat": "Ko‘paytuvchilarga ajratish", "algebra": "O‘xshash hadlar", "alomat": "Bo‘linish alomatlari", "arifprog": "Arifmetik progressiya hadi", "arifyig": "Arifmetik progressiya yig‘indisi", "ayir": "Ko‘p xonali sonlarni ayirish", "aylana": "Aylana uzunligi", "bol": "Bir xonali songa bo‘lish", "bol2": "Ikki xonali songa bo‘lish", "burchak": "Burchak turlari", "burchak_chiziq": "To‘g‘ri chiziqdagi burchaklar", "burchak_nuqta": "Nuqta atrofidagi burchaklar", "chegirma": "Chegirma va QQS", "cheksiz": "Cheksiz geometrik progressiya", "chiziqli": "Chiziqli tenglama", "daraja": "Daraja xossalari", "diagramma": "Doiraviy diagramma", "diskriminant": "Diskriminant", "doira": "Doira yuzi", "ehtimol": "Ehtimollik", "ekstremum": "Funksiya ekstremumi", "fazovektor": "Fazoviy vektor", "foiz": "Foiz", "funksiya": "Chiziqli funksiya qiymati", "geomprog": "Geometrik progressiya", "hajm": "Hajm", "harakat": "Harakat: S = v·t", "hosila": "Hosila", "ifoda": "Ifoda qiymati, amallar tartibi", "ildiz": "Kvadrat ildiz", "integral": "Aniq integral", "jism": "Fazoviy jismlar", "karrali": "Bo‘luvchilar va karralilar", "kasr_n_bol": "Kasrni natural songa bo‘lish", "kasr_n_kop": "Kasrni natural songa ko‘paytirish", "kasrbol": "Kasrlarni bo‘lish", "kasrkop": "Kasrlarni ko‘paytirish", "kasrnat": "Kasrni songa ko‘paytirish", "kasrqisq": "Algebraik kasr", "kasrqosh": "Bir xil maxrajli kasrlar", "kasrqosh2": "Turli maxrajli kasrlar", "kasrtaq": "Kasrlarni taqqoslash", "kombinatorika": "Kombinatorika", "konus": "Konus hajmi", "koordinata": "Koordinata nuri", "kop1": "Bir xonali songa ko‘paytirish", "kop10": "10, 100, 1000 ga ko‘paytirish", "kop2": "Ikki xonali songa ko‘paytirish", "kophad": "Ko‘phadlar ko‘paytmasi", "korsatkich": "Ko‘rsatkichli tenglama", "korxona": "Ko‘p xonali sonlar", "kosinus": "Kosinuslar teoremasi", "kubqirra": "Kub qirrasi", "kvayirma": "Kvadratlar ayirmasi", "kvtenglama": "Kvadrat tenglama", "logarifm": "Logarifm", "logtenglama": "Logarifmik tenglama", "masofa": "Nuqtalar orasidagi masofa", "massa": "Massa birliklari", "meyor": "Me’yor (birlik narxi)", "muntazam": "Muntazam ko‘pburchak", "n_kasr_bol": "Sonni kasrga bo‘lish", "nisbat": "Nisbat", "onli": "O‘nli kasr", "onli10": "O‘nli kasrni 10, 100 ga ko‘paytirish", "ortacha": "O‘rta arifmetik", "ortacha_tezlik": "O‘rtacha tezlik", "osish": "Foiz o‘sishi", "oxshash": "O‘xshash shakllar", "parabola": "Parabola uchi", "parallel": "Parallel chiziqlar burchaklari", "perimetr": "Perimetr", "pifagor": "Pifagor teoremasi", "piramida": "Piramida hajmi", "prizma": "Prizma hajmi", "qarama": "Qarama-qarshi harakat", "qisqa": "Qisqa ko‘paytirish formulalari", "qiymat": "Narx · miqdor = qiymat", "qoldiq": "Qoldiqli bo‘lish", "qolgan": "Qolgan qismning qismi", "qosh": "Ko‘p xonali sonlarni qo‘shish", "qoshni": "Qo‘shni burchaklar", "quvlama": "Quvlama harakat", "radian": "Radian", "sektor": "Sektor yuzi", "shar": "Shar va sfera", "silindr": "Silindr hajmi", "sistema": "Tenglamalar sistemasi", "statistika": "Statistika (mediana)", "taqqos": "Sonlarni taqqoslash", "tenglama": "Tenglama", "tengsizlik": "Tengsizlik", "tengyonli": "Teng yonli uchburchak", "toplam": "To‘plamlar (Venn)", "tortburchak": "Parallelogramm burchaklari", "tortburchak_burchak": "To‘rtburchak burchaklari", "trapetsiya": "Trapetsiya o‘rta chizig‘i", "trapyuz": "Trapetsiya yuzi", "trig": "Trigonometrik qiymatlar", "trigtenglama": "Trigonometrik tenglama", "uchburchak": "Uchburchak burchaklari", "uchburchak_burchak": "Uchburchak burchaklari", "uchburchak_yuz": "Uchburchak yuzi", "ulush": "Sonning ulushi", "unum": "Unumdorlik", "urinma": "Urinma", "uzunlik": "Uzunlik birliklari", "vaqt": "Vaqt birliklari", "vektor": "Vektor uzunligi", "viyet": "Viyet teoremasi", "yaxlit": "Yaxlitlash", "yuz": "Yuz", "yuzbirlik": "Yuz birliklari", "naqsh": "Naqsh (ketma-ketlik)"}
+
+
+TUR_NOMI.update({f"{k}:{d}": f"{v} ({d}-daraja)" for k, v in XB.NOMI.items() for d in range(1, 7)})   # REV463
 
 
 ISMLAR = ["Ali", "Malika", "Bekzod", "Dilnoza", "Sardor", "Zarina", "Jasur", "Nilufar"]
