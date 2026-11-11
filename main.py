@@ -227,6 +227,11 @@ try:   # REV486: bitta profil — bitta qurilma
 except ImportError:
     from modules.qurilma import create_router as create_qurilma_router
 app.include_router(create_qurilma_router(samtm_platform))
+try:   # REV487: «🏠 Bugun» bosh ekrani
+    from .modules.bugun import create_router as create_bugun_router
+except ImportError:
+    from modules.bugun import create_router as create_bugun_router
+app.include_router(create_bugun_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
