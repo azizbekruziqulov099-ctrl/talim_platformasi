@@ -237,6 +237,11 @@ try:   # REV489: ota-ona PIN-kodi (bola profili)
 except ImportError:
     from modules.oila_pin import create_router as create_oila_pin_router
 app.include_router(create_oila_pin_router(samtm_platform))
+try:   # REV491: hisobni o'chirish (Play Market talabi)
+    from .modules.hisob_ochirish import create_router as create_hisob_ochirish_router
+except ImportError:
+    from modules.hisob_ochirish import create_router as create_hisob_ochirish_router
+app.include_router(create_hisob_ochirish_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
