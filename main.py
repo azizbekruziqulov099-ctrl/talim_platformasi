@@ -242,6 +242,11 @@ try:   # REV491: hisobni o'chirish (Play Market talabi)
 except ImportError:
     from modules.hisob_ochirish import create_router as create_hisob_ochirish_router
 app.include_router(create_hisob_ochirish_router(samtm_platform))
+try:   # REV501: sayt xatolari hisoboti
+    from .modules.xato_hisobot import create_router as create_xato_hisobot_router
+except ImportError:
+    from modules.xato_hisobot import create_router as create_xato_hisobot_router
+app.include_router(create_xato_hisobot_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:

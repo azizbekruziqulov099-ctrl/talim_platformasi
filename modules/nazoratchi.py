@@ -119,6 +119,12 @@ def create_router(platform, yukla_ol=None):
         def f(cur):
             darslar = _tugatilganlar(cur, u)
             tanlov = darslar[1:4] if len(darslar) >= 4 else darslar[-3:]
+            bola = False   # bog'cha bolasi: bolalar darslari (bola_dars_holat) — savollar ovoz va rasm bilan, yozuvsiz
+            try:
+                cur.execute("SAVEPOINT nz_b2"); cur.execute("SELECT 1 FROM bola_dars_holat WHERE child_id=%s LIMIT 1", (u,)); bola = cur.fetchone() is not None
+                cur.execute("RELEASE SAVEPOINT nz_b2")
+            except Exception:   # noqa: BLE001
+                cur.execute("ROLLBACK TO SAVEPOINT nz_b2")
             rnd = random.Random(f"{u}:{datetime.now().isoformat(timespec='minutes')}")
             out = []
             for kod, nom, _ in tanlov:
@@ -127,6 +133,10 @@ def create_router(platform, yukla_ol=None):
                 except Exception:   # noqa: BLE001
                     les = {}
                 qs = [q for q in (les.get("savollar") or []) if q.get("variantlar")]
+                if bola:   # REV502: 2–7 yosh — o'qishni bilmaydi: qisqa savol, javoblari qisqa (son, rasm, 1–2 so'z)
+                    sodda = [q for q in qs if len(str(q.get("savol") or "")) <= 70
+                             and all(len(str(v).split()) <= 2 and len(str(v)) <= 14 for v in q.get("variantlar") or [])]
+                    qs = sodda
                 if qs:
                     q = rnd.choice(qs)
                     out.append({**{k: v for k, v in q.items() if not str(k).startswith("_")}, "dars": kod,
