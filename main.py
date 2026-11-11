@@ -232,6 +232,11 @@ try:   # REV487: «🏠 Bugun» bosh ekrani
 except ImportError:
     from modules.bugun import create_router as create_bugun_router
 app.include_router(create_bugun_router(samtm_platform))
+try:   # REV489: ota-ona PIN-kodi (bola profili)
+    from .modules.oila_pin import create_router as create_oila_pin_router
+except ImportError:
+    from modules.oila_pin import create_router as create_oila_pin_router
+app.include_router(create_oila_pin_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
