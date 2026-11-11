@@ -157,7 +157,8 @@ def baza_holati(request: Request, token: str = ""):
     if not (len(diag) >= 24 and secrets.compare_digest(request.headers.get("x-diag-kalit", ""), diag)):
         _admin_tekshir(token)
     natija = {"vaqt": datetime.now().isoformat(timespec="seconds"), "havza": {"har_havza": _DB_POOL_MAX,
-              "worker": os.getenv("WEB_CONCURRENCY") or "avto", "chegara": os.getenv("DB_MAX_CONNECTIONS", "90")}}
+              "worker": os.getenv("WEB_CONCURRENCY") or "avto", "chegara": os.getenv("DB_MAX_CONNECTIONS", "90"),
+              "replikalar": os.getenv("DB_REPLIKALAR", "1")}}
     conn = _db()
     cur = conn.cursor()
     def ol(nom, sql, bitta=False):
@@ -435,7 +436,9 @@ def _havza_hajmi(standart=10):
     try:
         ishchilar = max(1, int(os.getenv("WEB_CONCURRENCY", "0") or 0) or min(8, (os.cpu_count() or 1) * 2))
         chegara = max(20, int(os.getenv("DB_MAX_CONNECTIONS", "90")))
-        byudjet = max(2, (chegara - 10) // (ishchilar * 2))
+        # REV495: backend bir nechta nusxada (replika) ishlaydi — byudjet hammasiga bo'linadi (DB_REPLIKALAR, standart 1)
+        replikalar = max(1, int(os.getenv("DB_REPLIKALAR", "1") or 1))
+        byudjet = max(2, (chegara - 10) // (ishchilar * 2 * replikalar))
         return max(2, min(int(os.getenv("DB_POOL_MAX", str(standart))), byudjet))
     except (TypeError, ValueError):
         return 4
