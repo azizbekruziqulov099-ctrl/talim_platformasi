@@ -148,6 +148,26 @@ def versiya():
     }
 
 
+@app.get("/api/admin/miya_qidir")
+def miya_qidir(request: Request, q: str, token: str = "", limit: int = 20):
+    """REV496: Miya mazmunidan matn qidirish (sifat tekshiruvi) — admin yoki vaqtinchalik DIAG_KALIT. Faqat o'qiydi."""
+    diag = os.getenv("DIAG_KALIT", "")
+    if not (len(diag) >= 24 and secrets.compare_digest(request.headers.get("x-diag-kalit", ""), diag)):
+        _admin_tekshir(token)
+    naqsh = f"%{q.strip()[:80]}%"
+    conn = _db(); cur = conn.cursor()
+    try:
+        cur.execute("""SELECT COUNT(*) AS n FROM ai_brain_units WHERE status='published' AND (body ILIKE %s OR title ILIKE %s OR payload::text ILIKE %s)""", (naqsh, naqsh, naqsh))
+        n = cur.fetchone()["n"]
+        cur.execute("""SELECT u.topic_code, u.unit_kind, u.title, LEFT(COALESCE(u.body, u.payload::text), 300) AS parcha,
+                              (SELECT MIN(subject_name || ' · ' || grade) FROM dts_tree d WHERE d.topic_code=u.topic_code) AS fan
+                       FROM ai_brain_units u WHERE u.status='published' AND (u.body ILIKE %s OR u.title ILIKE %s OR u.payload::text ILIKE %s)
+                       ORDER BY u.id DESC LIMIT %s""", (naqsh, naqsh, naqsh, max(1, min(100, limit))))
+        return {"jami": n, "namunalar": [dict(r) for r in cur.fetchall()]}
+    finally:
+        cur.close(); conn.close()
+
+
 @app.get("/api/admin/baza_holati")
 def baza_holati(request: Request, token: str = ""):
     """REV248: bazaning sog'lig'i — admin uchun. Faqat o'qiydi, hech narsani o'zgartirmaydi.
