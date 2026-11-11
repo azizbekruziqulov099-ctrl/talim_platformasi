@@ -16,12 +16,12 @@ def tex(v):
     v = str(v)
     return f"${v}$" if ("\\frac" in v or re.fullmatch(r"-?\d+([.,]\d+)?", v)) else v
 
-def qur(manba, chiqish, urug=2026):
+def qur(manba, chiqish, urug=2026, tanla=None):
     wb = load_workbook(manba)
     hisob = collections.Counter(); oilasiz = []
     for si, ws in enumerate(wb.worksheets[2:], 1):
         nom = ws.cell(2, 7).value
-        t = X.topshiriqlar(nom, urug * 1000 + si)
+        t = X.topshiriqlar(nom, urug * 1000 + si, tanla=tanla)
         if not t:
             oilasiz.append(nom); continue
         misol, masala, test = t
@@ -71,5 +71,8 @@ def qur(manba, chiqish, urug=2026):
     return hisob, oilasiz
 
 if __name__ == "__main__":
-    h, o = qur(sys.argv[1], sys.argv[2])
+    tanla = None
+    if len(sys.argv) > 3:   # masalan: python3 qayta5.py manba.xlsx chiqish.xlsx xilma6
+        tanla = __import__(sys.argv[3]).oila_tanla
+    h, o = qur(sys.argv[1], sys.argv[2], tanla=tanla)
     print(dict(h)); print("oilasiz:", o)

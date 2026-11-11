@@ -286,9 +286,9 @@ def oila_tanla(nom):
     return None
 
 
-def topshiriqlar(nom, urug, soni_misol=4, soni_masala=8, soni_test=6):
+def topshiriqlar(nom, urug, soni_misol=4, soni_masala=8, soni_test=6, tanla=None):
     """→ (misollar, masalalar, testlar): har biri [(shart, javob, yechim, xatolar, tur_raqami)], turlar takrorlanmaydi (masalada ≤2)."""
-    f = oila_tanla(nom)
+    f = (tanla or oila_tanla)(nom)
     if not f:
         return None
     r = random.Random(urug)
