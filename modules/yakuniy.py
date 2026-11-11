@@ -59,6 +59,19 @@ def hisobla(cur, uid, kalit, guruh_ids=()):
     return yigindi({"uy": uy, "kurs": kurs, "onlayn": onlayn, "imtihon": imtihon})
 
 
+def barcha(cur, uid):
+    """REV488: o'quvchining barcha kurslari bo'yicha yakuniy baholar (o'zi va ota-ona uchun)."""
+    from modules.kurslar import kurs_of
+    kalitlar = [r["kalit"] for r in _sp(cur, """SELECT kalit, MAX(t) FROM (SELECT kalit, tugadi_at AS t FROM kurs_dars_holat WHERE user_id=%s
+                                                UNION ALL SELECT kalit, oxirgi_urinish FROM kurs_nazorat WHERE user_id=%s) x GROUP BY kalit ORDER BY 2 DESC LIMIT 12""", (uid, uid))]
+    gr = _sp(cur, """SELECT g.id, g.fan, g.grade FROM kurs_guruh_azo a JOIN kurs_guruh g ON g.id=a.guruh_id WHERE a.user_id=%s AND g.faol""", (uid,))
+    out = []
+    for k in kalitlar:
+        gids = [g["id"] for g in gr if kurs_of(g["fan"], g["grade"])[0] == k]
+        out.append({"kalit": k, **hisobla(cur, uid, k, gids)})
+    return out
+
+
 def jadval(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS kurs_baho (id BIGSERIAL PRIMARY KEY, guruh_id BIGINT NOT NULL, user_id BIGINT NOT NULL, turi TEXT NOT NULL,
         ball INT NOT NULL, izoh TEXT NOT NULL DEFAULT '', qoydi BIGINT NOT NULL, vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
@@ -137,6 +150,21 @@ def create_router(platform):
             gid = [r["guruh_id"] for r in _sp(cur, """SELECT a.guruh_id FROM kurs_guruh_azo a JOIN kurs_guruh g ON g.id=a.guruh_id
                                                      WHERE a.user_id=%s AND g.fan=%s AND g.faol""", (u, fan))]
             return hisobla(cur, u, kalit, gid)
+        return run(f)
+
+    @router.get("/api/yakuniy/hammasi")
+    def hammasi(token: str = "", authorization: Optional[str] = Header(None)):
+        u = uid(token, authorization)
+        return run(lambda cur: {"kurslar": barcha(cur, u)})
+
+    @router.get("/api/ota/yakuniy")
+    def ota_yakuniy(bola_id: int, token: str = "", authorization: Optional[str] = Header(None)):
+        u = uid(token, authorization)
+        from modules import bogcha_reja as reja
+        def f(cur):
+            if not (reja.ota_bolami(cur, u, bola_id) or reja.adminmi(cur, u)):
+                raise HTTPException(403, "Bu farzand sizga ulanmagan")
+            return {"kurslar": barcha(cur, bola_id)}
         return run(f)
 
     @router.get("/api/kurs_guruh/{gid}/yakuniy")
