@@ -222,6 +222,11 @@ try:   # REV484: yakuniy baho va haftalik hisobot
 except ImportError:
     from modules.yakuniy import create_router as create_yakuniy_router
 app.include_router(create_yakuniy_router(samtm_platform))
+try:   # REV486: bitta profil — bitta qurilma
+    from .modules.qurilma import create_router as create_qurilma_router
+except ImportError:
+    from modules.qurilma import create_router as create_qurilma_router
+app.include_router(create_qurilma_router(samtm_platform))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:

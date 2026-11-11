@@ -730,8 +730,9 @@ def create_router(platform):
     # REV283: boshqa modullar (o'quv markazi mashqlari) darsni shu yerdan, kesh bilan o'qiydi — kontent bitta manbada (Miya)
     platform._dars_load_lesson = load_lesson
 
-    def _kirish(token, topic_code):
-        """REV301: kursning birinchi N darsi bepul, qolgani obuna bilan (kurslar.ruxsat). Yopiq bo'lsa — 402."""
+    def _kirish(token, topic_code, qurilma=""):
+        """REV301: kursning birinchi N darsi bepul, qolgani obuna bilan (kurslar.ruxsat). Yopiq bo'lsa — 402.
+        REV486: obuna bilan ochiladigan dars — faqat profil bog'langan qurilmada (aks holda 423)."""
         uid = platform._jwt_tekshir(token)
         try:
             from modules import kurslar as _ku
@@ -740,6 +741,9 @@ def create_router(platform):
         conn = platform._db(); cur = conn.cursor()
         try:
             r = _ku.ruxsat(cur, uid, topic_code); conn.commit()
+            if r.get("ochiq") and r.get("sabab") in ("obuna", "bogcha_obuna") and qurilma:
+                from modules import qurilma as _qm
+                _qm.tekshir(cur, uid, qurilma); conn.commit()
         except HTTPException:
             raise
         except Exception:   # kirish tekshiruvi ishlamasa — dars yopilmaydi (o'quvchi to'xtab qolmasin)
@@ -752,10 +756,10 @@ def create_router(platform):
                                                          "xabar": f"Bu kursning birinchi {r.get('bepul')} ta darsi bepul. Davom etish uchun kursni oching."})
 
     @router.get("/api/dars_xonasi/{topic_code}/test")
-    def dars_testi(topic_code: str, token: str, til: str = "uz", soni: int = 30):
+    def dars_testi(topic_code: str, token: str, til: str = "uz", soni: int = 30, qurilma: str = ""):
         """REV297: mavzu testi — Miya kitobidan: avval shu mavzuning barcha test savollari, keyin shu fan va sinfning
         OLDINGI mavzulari (yaqinidan uzog'iga) — so'ralgan songacha (20–80). Rasmlar kitobdagi kabi (mavzuga mos)."""
-        _kirish(token, topic_code)
+        _kirish(token, topic_code, qurilma)
         soni = max(5, min(int(soni or 30), 80))
         asosiy = load_lesson(topic_code, til)
         pool, seen = [], set()
@@ -807,8 +811,8 @@ def create_router(platform):
         return {**asosiy, "steps": asosiy.get("steps", [])[:1], "savollar": pool, "faqat_test": True, "test_soni": len(pool)}
 
     @router.get("/api/dars_xonasi/{topic_code}")
-    def dars_xonasi(topic_code: str, token: str, til: str = "uz"):
-        _kirish(token, topic_code)
+    def dars_xonasi(topic_code: str, token: str, til: str = "uz", qurilma: str = ""):
+        _kirish(token, topic_code, qurilma)
         return load_lesson(topic_code, til)
 
     def media_bytes(urls):
