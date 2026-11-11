@@ -6598,6 +6598,8 @@ def _chat_suhbat_ruxsat(cur, user_id, guruh_id=None, boshqa_user_id=None, write=
         _chat_policy().ensure_terms_accepted(cur,user_id)
     if guruh_id:
         _chat_policy().require_group(cur, user_id, guruh_id, write=write)
+    elif int(boshqa_user_id) == int(user_id):
+        return   # REV493: «🔖 Saqlangan xabarlar» — o'zingiz bilan suhbat (eslatma, fayl, havola saqlash)
     else:
         _chat_policy().require_direct(cur, user_id, boshqa_user_id)
 
