@@ -642,7 +642,16 @@ def create_router(platform, click=None):
                         bugun_t.add(k_)
             # hali birorta darsni tugatmagan (yoki tartib joriy qilinishidan oldin o'qiyotgan) o'quvchi — birinchi tugatgunicha cheklanmaydi
             erkin = rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz") or not hol
-            for it, (ochiq, holat) in zip(items, tartib_qulf([(x["topic_code"], x["ochiq"]) for x in items], tug, bugun_t, erkin)):
+            # REV485: yakshanba nazoratlari — oylik minimum va maksimum imtihon (bog'chada — barcha nazoratlar, o'yin tarzida) faqat
+            # YAKSHANBA kuni ochiladi; ular hafta ichidagi darslarni TO'XTATMAYDI (bola yakshanbagacha kutib qolmaydi)
+            yakshanba = bugun_kun.weekday() == 6
+            for x in items:
+                if x.get("nazorat") and (x["nazorat"] in ("oylik", "maksimum") or kat == "bolalar"):
+                    x["yakshanba"] = True
+                    if kat == "bolalar":
+                        x["oyin"] = True   # Kabu bilan o'yin tarzida
+            ketma = [x for x in items if not x.get("yakshanba")]
+            for it, (ochiq, holat) in zip(ketma, tartib_qulf([(x["topic_code"], x["ochiq"]) for x in ketma], tug, bugun_t, erkin)):
                 if it["ochiq"]:   # to'lov bo'yicha ochiq bo'lsa — tartib bo'yicha cheklanadi
                     it["ochiq"] = ochiq
                 it["holat"] = holat
@@ -652,6 +661,25 @@ def create_router(platform, click=None):
                         it["natija"] = {"togri": r_["togri"], "jami": r_["jami"], "otdi": r_["otdi"]}
                         if not r_["otdi"] and r_["kun"] == bugun_kun and not erkin:
                             it["ochiq"] = False; it["holat"] = "qayta_ertaga"
+            for it in items:
+                if not it.get("yakshanba"):
+                    continue
+                r_ = nz.get(it["topic_code"])
+                if r_:
+                    it["natija"] = {"togri": r_["togri"], "jami": r_["jami"], "otdi": r_["otdi"]}
+                darslari_otilgan = all(d in tug for d in it.get("darslar", []))
+                if r_ and r_["otdi"]:
+                    it["holat"] = "tugadi"
+                elif erkin:
+                    it["holat"] = "navbat"
+                elif not darslari_otilgan:
+                    it["ochiq"], it["holat"] = False, "qulf"
+                elif not yakshanba:
+                    it["ochiq"], it["holat"] = False, "yakshanba"
+                elif r_ and not r_["otdi"] and r_["kun"] == bugun_kun:
+                    it["ochiq"], it["holat"] = False, "yakshanba"   # bugun yiqilsa — keyingi yakshanba
+                else:
+                    it["holat"] = "navbat"
             return {"kalit": kalit, "kategoriya": kat, "nomi": nomi, "narx": narx, "bepul": bepul,
                     "obuna_tugaydi": ob["tugaydi"].isoformat() if ob else None, "darslar": items,
                     "tartib_erkin": bool(erkin) and rol in ("admin", "teacher", "oqituvchi", "ustoz", "markaz")}
