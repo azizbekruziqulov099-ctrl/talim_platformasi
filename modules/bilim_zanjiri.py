@@ -108,6 +108,92 @@ def savol(kalit, urug):
     return None
 
 
+# ───── REV517: «⚡ Kabu tezkor» — chizmali tezkor savollar (o'quvchi tugmani bosadi; chizmani frontend SVG qilib chizadi) ─────
+def _v(rr, togri, xatolar):
+    vs = [str(togri)] + [str(x) for x in xatolar if str(x) != str(togri)]
+    vs = list(dict.fromkeys(vs))[:4]; rr.shuffle(vs)
+    return vs, vs.index(str(togri))
+
+
+def ch_kasr(rr):
+    n = rr.choice([3, 4, 5, 6, 8]); k = rr.randint(1, n - 1)
+    vs, t = _v(rr, f"{k}/{n}", [f"{n - k}/{n}", f"{k}/{n + 1}", f"{n}/{k}"])
+    return {"chizma": {"tur": "kasr", "n": n, "k": k}, "savol": "Doiraning qaysi qismi bo‘yalgan?", "variantlar": vs, "togri": t}
+
+
+def ch_nur(rr):
+    q = rr.choice([1, 2, 5, 10]); bosh = rr.randint(0, 5) * q; p = rr.randint(1, 9)
+    vs, t = _v(rr, bosh + p * q, [bosh + (p - 1) * q, bosh + (p + 1) * q, bosh + p + (1 if q == 1 else 0) * 2])
+    return {"chizma": {"tur": "nur", "bosh": bosh, "qadam": q, "nuqta": p}, "savol": "Nuqta qaysi sonda turibdi?", "variantlar": vs, "togri": t}
+
+
+def ch_burchak(rr):
+    g = rr.choice([30, 45, 60, 90, 120, 135, 150])
+    tur = "o‘tkir" if g < 90 else "to‘g‘ri" if g == 90 else "o‘tmas"
+    vs = ["o‘tkir", "to‘g‘ri", "o‘tmas"]
+    return {"chizma": {"tur": "burchak", "g": g}, "savol": "Bu qanday burchak?", "variantlar": vs, "togri": vs.index(tur)}
+
+
+def ch_uchburchak(rr):
+    a, b = rr.randint(30, 80), rr.randint(30, 70)
+    vs, t = _v(rr, 180 - a - b, [180 - a, 360 - a - b, a + b])
+    return {"chizma": {"tur": "uchburchak", "a": a, "b": b}, "savol": "Uchinchi burchak necha gradus?", "variantlar": [f"{v}°" for v in vs], "togri": t}
+
+
+def ch_massiv(rr):
+    q, u = rr.randint(2, 6), rr.randint(3, 8)
+    vs, t = _v(rr, q * u, [q + u, q * u + q, (q - 1) * u])
+    return {"chizma": {"tur": "massiv", "q": q, "u": u}, "savol": "Hammasi nechta nuqta?", "variantlar": vs, "togri": t}
+
+
+def ch_tortburchak(rr, yuz=False):
+    a, b = rr.randint(2, 9), rr.randint(2, 9)
+    tog = a * b if yuz else 2 * (a + b)
+    vs, t = _v(rr, tog, [2 * (a + b) if yuz else a * b, a + b, tog + 2])
+    return {"chizma": {"tur": "tortburchak", "a": a, "b": b}, "savol": "Yuzi necha sm²?" if yuz else "Perimetri necha sm?", "variantlar": vs, "togri": t}
+
+
+def ch_soat(rr):
+    s, m = rr.randint(1, 12), rr.choice([0, 15, 30, 45])
+    vs, t = _v(rr, f"{s}:{m:02d}", [f"{(m // 5) or 12}:{(s * 5) % 60:02d}", f"{s % 12 + 1}:{m:02d}", f"{s}:{(m + 15) % 60:02d}"])
+    return {"chizma": {"tur": "soat", "s": s, "m": m}, "savol": "Soat necha?", "variantlar": vs, "togri": t}
+
+
+def ch_foiz(rr):
+    p = rr.choice([10, 20, 25, 40, 50, 75])
+    vs, t = _v(rr, f"{p}%", [f"{100 - p}%", f"{max(5, p // 2)}%", f"{min(95, p + 15)}%"])
+    return {"chizma": {"tur": "foiz", "p": p}, "savol": "Doiraning bo‘yalgan qismi necha foiz?", "variantlar": vs, "togri": t}
+
+
+def ch_togrimi(kalit, rr):
+    """Har qanday mavzu: ekranda misol va javob — to'g'rimi? (✅ / ❌)"""
+    f = oila_fn(kalit); turlar = f(rr)
+    for _ in range(10):
+        try:
+            q, j, y, xs = turlar[rr.randrange(len(turlar))]()
+        except Exception:   # noqa: BLE001
+            continue
+        if not xs or len(str(q)) > 90 or "(1" in str(q):
+            continue
+        togri = rr.random() < 0.5
+        return {"chizma": {"tur": "togrimi", "javob": str(j if togri else xs[0])}, "savol": str(q),
+                "variantlar": ["✅ To‘g‘ri", "❌ Noto‘g‘ri"], "togri": 0 if togri else 1, "yechim": y}
+    return None
+
+
+CHIZMA = [(r"kasr|ulush", [ch_kasr]), (r"foiz|diagramma", [ch_foiz]), (r"uchburchak", [ch_uchburchak]), (r"burchak|geom", [ch_burchak]),
+          (r"kopaytir|kopjadval|bolish|tartib", [ch_massiv]), (r"perimetr|yuz|tortburchak", [ch_tortburchak, lambda rr: ch_tortburchak(rr, True)]),
+          (r"olchov", [ch_soat]), (r"son|nur|koordinata|onli|qosh|yaxlit", [ch_nur])]
+
+
+def tezkor_savol(kalit, rr):
+    nom = kalit.split(":")[1]
+    for pat, fl in CHIZMA:
+        if re.search(pat, nom):
+            return rr.choice(fl)(rr) if rr.random() < 0.7 else ch_togrimi(kalit, rr)
+    return ch_togrimi(kalit, rr) if rr.random() < 0.5 else None
+
+
 def create_router(platform, dars_xonasi_tashqi=None):
     router = APIRouter(tags=["bilim_zanjiri"])
 
@@ -145,9 +231,15 @@ def create_router(platform, dars_xonasi_tashqi=None):
             for i, ok in enumerate(oldingi[:4]):
                 if len(out) >= 5:
                     break
-                s = savol(ok, f"{urug}:{topic_code}:{i}:{tur}")
-                if s and s["savol"] not in korilgan:
-                    korilgan.add(s["savol"]); out.append({**s, "oila": ok, "nom": oila_nomi(ok)})
+                s = None   # REV517: avval «⚡ Kabu tezkor» — chizmali yoki «to'g'rimi?», bo'lmasa oddiy savol
+                try:
+                    s = tezkor_savol(ok, random.Random(f"{urug}:{topic_code}:{i}:{tur}:t"))
+                except Exception:   # noqa: BLE001
+                    s = None
+                s = s or savol(ok, f"{urug}:{topic_code}:{i}:{tur}")
+                kal = f'{s["savol"]}|{s.get("chizma")}' if s else ""   # chizmali savollar matni bir xil bo'lishi mumkin — chizmasi bilan farqlanadi
+                if s and kal not in korilgan:
+                    korilgan.add(kal); out.append({**s, "oila": ok, "nom": oila_nomi(ok)})
         out.sort(key=lambda x: oldingi.index(x["oila"]))
         return {"mavzu": top.get("mavzu"), "oila": k, "savollar": out}
 
