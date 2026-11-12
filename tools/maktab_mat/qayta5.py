@@ -24,6 +24,8 @@ def qur(manba, chiqish, urug=2026, tanla=None):
         t = X.topshiriqlar(nom, urug * 1000 + si, tanla=tanla)
         if not t and tanla and oldingi:   # REV510: «Masalalar yechish», «Yakuniy dars» — bobdagi oldingi mavzu bo'yicha
             t = X.topshiriqlar(oldingi, urug * 1000 + si, tanla=tanla)
+        if not t and tanla and not oldingi and tanla("__aralash__"):   # bobdan oldin hech mavzu yo'q — aralash
+            t = X.topshiriqlar("__aralash__", urug * 1000 + si, tanla=tanla)
         if t and tanla and tanla(nom):
             oldingi = nom
         if not t:
