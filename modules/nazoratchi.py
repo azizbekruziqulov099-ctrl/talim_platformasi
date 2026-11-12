@@ -23,6 +23,9 @@ def jadval(cur):
     cur.execute("CREATE INDEX IF NOT EXISTS nazoratchi_qulf_u ON nazoratchi_qulf(user_id, yaratildi DESC)")
     cur.execute("""CREATE TABLE IF NOT EXISTS nazoratchi_sorov (user_id BIGINT NOT NULL, kun DATE NOT NULL, soni INT NOT NULL DEFAULT 0,
         PRIMARY KEY (user_id, kun))""")
+    # REV521: kunlik o'yin hisobi — nechta bosqich tugatildi (har 3 tadan keyin Nazoratchi) va nechta XIL o'yin (10 ta — kunlik chegara)
+    cur.execute("""CREATE TABLE IF NOT EXISTS nazoratchi_oyin_kun (user_id BIGINT NOT NULL, kun DATE NOT NULL, soni INT NOT NULL DEFAULT 0,
+        oyinlar JSONB NOT NULL DEFAULT '[]'::jsonb, PRIMARY KEY (user_id, kun))""")
     _TAYYOR["ok"] = True
 
 
@@ -55,11 +58,24 @@ def _tugatilganlar(cur, uid, soni=8):
     return res
 
 
+KUNLIK_OYIN = 10      # REV521: kuniga 10 xil o'yin (har biri 10 talik bosqich) — keyin o'yinlar bugunga tugaydi
+NAZORAT_HAR = 3       # har 3 ta tugatilgan o'yindan keyin Nazoratchi
+
+
+def oyin_kun(cur, uid, bugun):
+    cur.execute("SELECT soni, oyinlar FROM nazoratchi_oyin_kun WHERE user_id=%s AND kun=%s", (uid, bugun))
+    r = cur.fetchone()
+    return (int(r["soni"]), list(r["oyinlar"] or [])) if r else (0, [])
+
+
 def holat(cur, uid, admin=False):
     jadval(cur)
     bugun = toshkent_bugun()
     if admin:
         return {"ruxsat": True, "sabab": "", "admin": True, "nazoratchi": True}
+    soni_o, xil_o = oyin_kun(cur, uid, bugun)
+    if len(xil_o) >= KUNLIK_OYIN:
+        return {"ruxsat": False, "sabab": "chegara", "bugun_oyin": len(xil_o), "chegara": KUNLIK_OYIN}
     darslar = _tugatilganlar(cur, uid)
     cur.execute("SELECT * FROM nazoratchi_qulf WHERE user_id=%s AND NOT ochildi ORDER BY yaratildi DESC LIMIT 1", (uid,))
     q = cur.fetchone()
@@ -73,7 +89,9 @@ def holat(cur, uid, admin=False):
         return {"ruxsat": False, "sabab": "dars", "darslar": []}   # avval bugungi dars
     cur.execute("SELECT soni FROM nazoratchi_sorov WHERE user_id=%s AND kun=%s", (uid, bugun))
     r = cur.fetchone()
-    return {"ruxsat": True, "sabab": "", "nazoratchi": len(darslar) >= 2 and (r["soni"] if r else 0) < KUNLIK_CHIQISH}
+    kichik = bolami(cur, uid)   # bolaga savollar yoshiga mos tuziladi — dars soni shart emas
+    return {"ruxsat": True, "sabab": "", "nazoratchi": (kichik or len(darslar) >= 2) and (r["soni"] if r else 0) < KUNLIK_CHIQISH,
+            "bugun_oyin": len(xil_o), "tugagan": soni_o, "chegara": KUNLIK_OYIN, "nazorat_har": NAZORAT_HAR}
 
 
 class Natija(BaseModel):
@@ -171,6 +189,25 @@ def create_router(platform, yukla_ol=None):
     def ruxsat(token: str = "", authorization: str = Header(None)):
         u = uid(token, authorization)
         return run(lambda cur: holat(cur, u, admin_mi(cur, u)))
+
+    @router.post("/api/nazoratchi/oyin_tugadi")
+    def oyin_tugadi(oyin_id: int, token: str = "", authorization: str = Header(None)):
+        """Bola o'yin bosqichini (10 talik) tugatdi: kunlik hisobga yoziladi. Javobda — Nazoratchi hozir chiqsinmi va chegara."""
+        u = uid(token, authorization)
+        def f(cur):
+            jadval(cur)
+            if admin_mi(cur, u):
+                return {**holat(cur, u, True), "nazoratchi_hozir": False}
+            bugun = toshkent_bugun()
+            cur.execute("""INSERT INTO nazoratchi_oyin_kun(user_id, kun, soni, oyinlar) VALUES(%s,%s,1,%s::jsonb)
+                           ON CONFLICT (user_id, kun) DO UPDATE SET soni = nazoratchi_oyin_kun.soni + 1,
+                             oyinlar = CASE WHEN nazoratchi_oyin_kun.oyinlar @> %s::jsonb THEN nazoratchi_oyin_kun.oyinlar
+                                            ELSE nazoratchi_oyin_kun.oyinlar || %s::jsonb END
+                           RETURNING soni""", (u, bugun, json.dumps([int(oyin_id)]), json.dumps([int(oyin_id)]), json.dumps([int(oyin_id)])))
+            soni = int(cur.fetchone()["soni"])
+            h = holat(cur, u)
+            return {**h, "nazoratchi_hozir": bool(h.get("nazoratchi")) and soni % NAZORAT_HAR == 0}
+        return run(f)
 
     @router.get("/api/nazoratchi/savollar")
     def savollar(token: str = "", til: str = "uz", authorization: str = Header(None)):
