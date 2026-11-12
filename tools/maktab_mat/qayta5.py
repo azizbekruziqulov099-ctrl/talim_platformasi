@@ -18,10 +18,14 @@ def tex(v):
 
 def qur(manba, chiqish, urug=2026, tanla=None):
     wb = load_workbook(manba)
-    hisob = collections.Counter(); oilasiz = []
+    hisob = collections.Counter(); oilasiz = []; oldingi = None
     for si, ws in enumerate(wb.worksheets[2:], 1):
         nom = ws.cell(2, 7).value
         t = X.topshiriqlar(nom, urug * 1000 + si, tanla=tanla)
+        if not t and tanla and oldingi:   # REV510: «Masalalar yechish», «Yakuniy dars» — bobdagi oldingi mavzu bo'yicha
+            t = X.topshiriqlar(oldingi, urug * 1000 + si, tanla=tanla)
+        if t and tanla and tanla(nom):
+            oldingi = nom
         if not t:
             oilasiz.append(nom); continue
         misol, masala, test = t

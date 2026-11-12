@@ -297,14 +297,15 @@ def topshiriqlar(nom, urug, soni_misol=4, soni_masala=8, soni_test=6, tanla=None
         return (*turlar[tur_i % len(turlar)](), tur_i % len(turlar))
     tur_soni = len(f(random.Random(0)))
     tartib = list(range(tur_soni)); r.shuffle(tartib)
+    korilgan = set()
     def olish(n, takror):
         out, i = [], 0
-        while len(out) < n and i < n * 6:
+        while len(out) < n and i < n * 12:
             t = tartib[i % tur_soni] if takror or i < tur_soni else tartib[i % tur_soni]
             try:
                 item = bitta(t, random.Random(r.random()))
-                if item[1] not in (None, "") and str(item[1]) not in [str(x) for x in item[3]]:
-                    out.append(item)
+                if item[1] not in (None, "") and str(item[1]) not in [str(x) for x in item[3]] and item[0] not in korilgan:
+                    out.append(item); korilgan.add(item[0])   # REV510: bir darsda aynan bir xil savol takrorlanmaydi
             except Exception:   # noqa: BLE001
                 pass
             i += 1
