@@ -62,8 +62,8 @@ def qur(manba, chiqish, urug=2026, tanla=None):
             harf = "ABCD"[vs.index(str(j))]
             yangi.append([None, "test", f"T{i:02d}", "Test", q, "", "", "\n".join(f"{h}) {tex(v)}" for h, v in zip("ABCD", vs)), harf, "", "", "", "", ""])
         hammasi = bosh + yangi + oxir
-        for r in range(7, ws.max_row + 1):
-            for c in range(1, 15):
+        for r in range(7, ws.max_row + 1):   # REV514: hamma ustunlar (qiyinlik va h.k.) tozalanadi — eski qatordan «turisiz» qoldiq qolmasin
+            for c in range(1, ws.max_column + 1):
                 ws.cell(r, c).value = None
         for k, row in enumerate(hammasi):
             row[0] = k + 1
@@ -73,6 +73,11 @@ def qur(manba, chiqish, urug=2026, tanla=None):
         shab = collections.Counter(re.sub(r"\d+([.,]\d+)?", "#", str(r[4]))[:50] for r in yangi)
         hisob["dars"] += 1
         if shab.most_common(1)[0][1] > 0.3 * len(yangi): hisob["shablon_ko'p"] += 1
+    # REV514: nashrdan oldingi tekshiruv — bo'sh bo'lmagan har qatorda «Turi» bo'lishi shart
+    for ws in wb.worksheets[2:]:
+        for r in range(7, ws.max_row + 1):
+            if any(ws.cell(r, c).value not in (None, "") for c in range(1, ws.max_column + 1)) and not ws.cell(r, 2).value:
+                raise SystemExit(f"XATO: {ws.title} {r}-qator — turi yo'q")
     wb.save(chiqish)
     return hisob, oilasiz
 
