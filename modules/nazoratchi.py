@@ -5,6 +5,7 @@
    ko'rsatiladi; bola shu darslardan birini qayta o'tib tugatsa — qulf DARHOL ochiladi. Ota-onaga bildirishnoma boradi."""
 import json
 import random
+import re
 from datetime import date, datetime, timedelta, timezone
 
 from fastapi import APIRouter, Header, HTTPException
@@ -82,6 +83,67 @@ class Natija(BaseModel):
     darslar: list = []
 
 
+# ───── REV519: 2–7 yoshli bola uchun Nazoratchi savollari — darsning test bazasidan EMAS (u yerda kattalar savoli bo'lishi
+# mumkin), balki shu yoshga mos, rasmli, o'qishsiz savollar: sanash, ko'p-kam, shakl, rang, keyingi son, rasmli qo'shish.
+_NARSA = [("🍎", "olma"), ("🐟", "baliq"), ("⭐", "yulduz"), ("🎈", "shar"), ("🐥", "jo‘ja"), ("🌷", "gul"), ("🚗", "mashina"), ("🍓", "qulupnay")]
+_SHAKL = [("⚪", "doira"), ("🔺", "uchburchak"), ("⬛", "kvadrat"), ("⭐", "yulduz")]
+_RANG = [("🔴", "qizil"), ("🟢", "yashil"), ("🔵", "ko‘k"), ("🟡", "sariq")]
+
+
+def bola_savollari(rnd, mavzu="", soni=3):
+    m = str(mavzu or "").lower()
+    def sanash():
+        e, nom = rnd.choice(_NARSA); n = rnd.randint(2, 8); vs = sorted({n, n + 1, max(1, n - 1)}); rnd.shuffle(vs)
+        return {"savol": f"{e * n} — nechta {nom}?", "variantlar": [str(v) for v in vs], "togri": vs.index(n), "tur": "sanash"}
+    def kopi():
+        (e1, _), (e2, _) = rnd.sample(_NARSA, 2); a, b = rnd.sample(range(2, 7), 2)
+        vs = [e1 * a, e2 * b]
+        return {"savol": "Qaysi biri ko‘p?", "variantlar": vs, "togri": 0 if a > b else 1, "tur": "kop"}
+    def shakl():
+        tog = rnd.choice(_SHAKL); vs = [x[0] for x in _SHAKL[:3]] if tog in _SHAKL[:3] else [x[0] for x in _SHAKL[1:]]
+        rnd.shuffle(vs)
+        return {"savol": f"Qaysi biri {tog[1]}?", "variantlar": vs, "togri": vs.index(tog[0]), "tur": "shakl"}
+    def rang():
+        tog = rnd.choice(_RANG); vs = [x[0] for x in _RANG]; rnd.shuffle(vs)
+        return {"savol": f"Qaysi biri {tog[1]}?", "variantlar": vs, "togri": vs.index(tog[0]), "tur": "rang"}
+    def keyingi():
+        n = rnd.randint(1, 8); vs = [n + 1, n - 1 if n > 1 else n + 2, n + 2 if n > 1 else n + 3]; rnd.shuffle(vs)
+        return {"savol": f"{n} dan keyin qaysi son?", "variantlar": [str(v) for v in vs], "togri": vs.index(n + 1), "tur": "keyingi"}
+    def qoshish():
+        e, nom = rnd.choice(_NARSA); a, b = rnd.randint(1, 4), rnd.randint(1, 3); n = a + b
+        vs = sorted({n, n + 1, max(1, n - 1)}); rnd.shuffle(vs)
+        return {"savol": f"{e * a} + {e * b} — hammasi nechta?", "variantlar": [str(v) for v in vs], "togri": vs.index(n), "tur": "qoshish"}
+    tanlov = [sanash, kopi, keyingi, qoshish]
+    if re.search(r"shakl|doira|uchburchak|kvadrat", m):
+        tanlov = [shakl, shakl, sanash]
+    elif re.search(r"rang", m):
+        tanlov = [rang, rang, sanash]
+    out, kor = [], set()
+    for _ in range(soni * 4):
+        q = rnd.choice(tanlov)()
+        if q["savol"] + str(q["variantlar"]) not in kor:
+            kor.add(q["savol"] + str(q["variantlar"])); out.append({**q, "dars_nomi": mavzu, "bola": True})
+        if len(out) >= soni:
+            break
+    return out
+
+
+def bolami(cur, u):
+    """2–7 yosh: bog'cha darslari, bolalar kursi, bog'cha profili yoki sinfi «yosh»/«bog'cha» — bittasi yetarli."""
+    for sql in ("SELECT 1 FROM bola_dars_holat WHERE child_id=%s LIMIT 1",
+                "SELECT 1 FROM kurs_dars_holat WHERE user_id=%s AND kalit LIKE 'bolalar|%%' LIMIT 1",
+                "SELECT 1 FROM users WHERE user_id=%s AND LOWER(COALESCE(class,'')) ~ '(yosh|bog|mtt|maktabgacha)'",
+                "SELECT 1 FROM users WHERE user_id=%s AND COALESCE(kabutar_learning_profile->>'role','') = 'bogcha'",
+                "SELECT 1 FROM users WHERE user_id=%s AND COALESCE(education_role,'') = 'bogcha'"):   # har biri alohida — ustun bo'lmasa qolganlari ishlaydi
+        try:
+            cur.execute("SAVEPOINT nz_bm"); cur.execute(sql, (u,)); r = cur.fetchone() is not None; cur.execute("RELEASE SAVEPOINT nz_bm")
+            if r:
+                return True
+        except Exception:   # noqa: BLE001 — ustun yoki jadval bo'lmasa keyingisi
+            cur.execute("ROLLBACK TO SAVEPOINT nz_bm")
+    return False
+
+
 def create_router(platform, yukla_ol=None):
     router = APIRouter(tags=["nazoratchi"])
 
@@ -119,28 +181,21 @@ def create_router(platform, yukla_ol=None):
         def f(cur):
             darslar = _tugatilganlar(cur, u)
             tanlov = darslar[1:4] if len(darslar) >= 4 else darslar[-3:]
-            bola = False   # bog'cha bolasi: bolalar darslari (bola_dars_holat) — savollar ovoz va rasm bilan, yozuvsiz
-            try:
-                cur.execute("SAVEPOINT nz_b2"); cur.execute("SELECT 1 FROM bola_dars_holat WHERE child_id=%s LIMIT 1", (u,)); bola = cur.fetchone() is not None
-                cur.execute("RELEASE SAVEPOINT nz_b2")
-            except Exception:   # noqa: BLE001
-                cur.execute("ROLLBACK TO SAVEPOINT nz_b2")
             rnd = random.Random(f"{u}:{datetime.now().isoformat(timespec='minutes')}")
             out = []
-            for kod, nom, _ in tanlov:
-                try:
-                    les = yukla(kod, til) if yukla else {}
-                except Exception:   # noqa: BLE001
-                    les = {}
-                qs = [q for q in (les.get("savollar") or []) if q.get("variantlar")]
-                if bola:   # REV502: 2–7 yosh — o'qishni bilmaydi: qisqa savol, javoblari qisqa (son, rasm, 1–2 so'z)
-                    sodda = [q for q in qs if len(str(q.get("savol") or "")) <= 70
-                             and all(len(str(v).split()) <= 2 and len(str(v)) <= 14 for v in q.get("variantlar") or [])]
-                    qs = sodda
-                if qs:
-                    q = rnd.choice(qs)
-                    out.append({**{k: v for k, v in q.items() if not str(k).startswith("_")}, "dars": kod,
-                                "dars_nomi": nom or (les.get("topic") or {}).get("mavzu", "")})
+            if bolami(cur, u):   # REV519: 2–7 yosh — darslar test bazasidan EMAS, yoshga mos rasmli savollar
+                out = bola_savollari(rnd, (tanlov[0][1] if tanlov else ""), 3)
+            else:
+                for kod, nom, _ in tanlov:
+                    try:
+                        les = yukla(kod, til) if yukla else {}
+                    except Exception:   # noqa: BLE001
+                        les = {}
+                    qs = [q for q in (les.get("savollar") or []) if q.get("variantlar")]
+                    if qs:
+                        q = rnd.choice(qs)
+                        out.append({**{k: v for k, v in q.items() if not str(k).startswith("_")}, "dars": kod,
+                                    "dars_nomi": nom or (les.get("topic") or {}).get("mavzu", "")})
             bugun = toshkent_bugun()
             cur.execute("""INSERT INTO nazoratchi_sorov(user_id, kun, soni) VALUES(%s,%s,1)
                            ON CONFLICT (user_id, kun) DO UPDATE SET soni=nazoratchi_sorov.soni+1""", (u, bugun))
