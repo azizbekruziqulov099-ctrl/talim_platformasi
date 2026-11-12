@@ -247,6 +247,13 @@ try:   # REV501: sayt xatolari hisoboti
 except ImportError:
     from modules.xato_hisobot import create_router as create_xato_hisobot_router
 app.include_router(create_xato_hisobot_router(samtm_platform))
+try:   # REV512: bilim zanjiri — dars boshida kirish tekshiruvi va «avval buni eslab olaylik»
+    from .modules.bilim_zanjiri import create_router as create_bilim_zanjiri_router
+    from .modules import dars_xonasi as _dx_bz
+except ImportError:
+    from modules.bilim_zanjiri import create_router as create_bilim_zanjiri_router
+    from modules import dars_xonasi as _dx_bz
+app.include_router(create_bilim_zanjiri_router(samtm_platform, lambda: getattr(_dx_bz, "TASHQI", {})))
 
 # REV49: private presentation projects and a configurable slide designer.
 if __package__:
