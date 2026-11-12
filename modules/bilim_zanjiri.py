@@ -181,17 +181,203 @@ def ch_togrimi(kalit, rr):
     return None
 
 
-CHIZMA = [(r"kasr|ulush", [ch_kasr]), (r"foiz|diagramma", [ch_foiz]), (r"uchburchak", [ch_uchburchak]), (r"burchak|geom", [ch_burchak]),
-          (r"kopaytir|kopjadval|bolish|tartib", [ch_massiv]), (r"perimetr|yuz|tortburchak", [ch_tortburchak, lambda rr: ch_tortburchak(rr, True)]),
-          (r"olchov", [ch_soat]), (r"son|nur|koordinata|onli|qosh|yaxlit", [ch_nur])]
+# REV518: chizma NOMIGA emas — har oilaga faqat O'Z MAZMUNIGA mos, javob CHIZMADAN topiladigan savollar.
+def ch_guruh(rr):   # bo'lish: nuqtalar guruhlarga ajratilgan, ortgani alohida
+    g, n = rr.randint(3, 5), rr.randint(2, 5); q = rr.randint(1, g - 1)
+    vs, t = _v(rr, n, [n + 1, g, q])
+    return {"chizma": {"tur": "guruh", "g": g, "n": n, "q": q}, "savol": f"{g * n + q} ta nuqta {g} tadan guruhlandi. Nechta to‘liq guruh bo‘ldi?", "variantlar": vs, "togri": t}
+
+
+def ch_blok(rr):   # o'nlik tayoqchalar va birliklar
+    o, b = rr.randint(1, 9), rr.randint(0, 9)
+    vs, t = _v(rr, 10 * o + b, [10 * b + o if b else o + 1, o + b, 10 * o + b + 10])
+    return {"chizma": {"tur": "blok", "o": o, "b": b}, "savol": "Tayoqchada 10 tadan kubik. Hammasi nechta?", "variantlar": vs, "togri": t}
+
+
+def ch_sakrash(rr):   # son nurida sakrash — qo'shish/ayirish
+    a, d = rr.randint(1, 9), rr.randint(2, 8); ayir = rr.random() < 0.4 and a > d
+    natija = a - d if ayir else a + d
+    vs, t = _v(rr, natija, [natija + 1, natija - 1, a])
+    return {"chizma": {"tur": "sakrash", "a": a, "d": d, "ayir": ayir}, "savol": f"Kabu {a} dan {'chapga' if ayir else 'o‘ngga'} {d} qadam sakradi. Qayerga tushdi?", "variantlar": vs, "togri": t}
+
+
+def ch_panjara(rr, foiz=False):   # 10×10 panjara — o'nli kasr yoki foiz
+    k = rr.randint(5, 95)
+    if foiz:
+        vs, t = _v(rr, f"{k}%", [f"{100 - k}%", f"{k // 10}%", f"{min(99, k + 10)}%"])
+        return {"chizma": {"tur": "panjara", "k": k}, "savol": "100 katakdan bo‘yalgani necha foiz?", "variantlar": vs, "togri": t}
+    js = f"0,{k:02d}".rstrip("0") if k % 10 else f"0,{k // 10}"
+    vs, t = _v(rr, js, [f"{k}", f"0,{100 - k:02d}".rstrip("0"), f"{k / 10:g}".replace(".", ",")])
+    return {"chizma": {"tur": "panjara", "k": k}, "savol": "Bo‘yalgan qism — qaysi o‘nli kasr? (butun = 100 katak)", "variantlar": vs, "togri": t}
+
+
+def ch_ustun(rr, savol="eng"):   # ustunli diagramma
+    v = [rr.randint(2, 9) for _ in range(4)]; nom = ["Du", "Se", "Ch", "Pa"]
+    if savol == "orta":
+        while sum(v) % 4:
+            v[rr.randrange(4)] += 1
+        vs, t = _v(rr, sum(v) // 4, [max(v), sum(v), min(v)])
+        return {"chizma": {"tur": "ustun", "v": v, "nom": nom}, "savol": "Ustunlar balandligining o‘rtacha qiymati?", "variantlar": vs, "togri": t}
+    vs, t = _v(rr, sum(v), [max(v) * 4, sum(v) - min(v), max(v)])
+    return {"chizma": {"tur": "ustun", "v": v, "nom": nom}, "savol": "To‘rt kunda jami nechta?", "variantlar": vs, "togri": t}
+
+
+def ch_yaxlit(rr):   # son nurida nuqta qaysi o'nlikka yaqin
+    o = rr.randint(1, 8) * 10; b = rr.choice([1, 2, 3, 4, 6, 7, 8, 9])
+    vs, t = _v(rr, o + (10 if b >= 5 else 0), [o + (0 if b >= 5 else 10), o + b, o + 5])
+    return {"chizma": {"tur": "yaxlit", "o": o, "b": b}, "savol": "Belgilangan son qaysi o‘nlikka yaqinroq?", "variantlar": vs, "togri": t}
+
+
+def ch_tarozi(rr):   # tenglama — tarozi
+    x, a = rr.randint(2, 9), rr.randint(1, 9)
+    vs, t = _v(rr, x, [x + a, a, x + 1])
+    return {"chizma": {"tur": "tarozi", "a": a, "s": x + a}, "savol": "Tarozi muvozanatda. Qutichadagi x necha?", "variantlar": vs, "togri": t}
+
+
+def ch_kuboid(rr):
+    a, b, c = rr.randint(2, 6), rr.randint(2, 5), rr.randint(2, 5)
+    vs, t = _v(rr, a * b * c, [a + b + c, 2 * (a * b + b * c + a * c), a * b])
+    return {"chizma": {"tur": "kuboid", "a": a, "b": b, "c": c}, "savol": "Kuboid hajmi necha sm³?", "variantlar": vs, "togri": t}
+
+
+def ch_munchoq(rr):   # nisbat — rangli munchoqlar
+    q, k = rr.randint(1, 5), rr.randint(1, 5)
+    while q == k:
+        k = rr.randint(1, 5)
+    from math import gcd
+    g = gcd(q, k)
+    vs, t = _v(rr, f"{q // g} : {k // g}", [f"{k // g} : {q // g}", f"{q} : {q + k}", f"{q + k} : {k}"])
+    return {"chizma": {"tur": "munchoq", "q": q, "k": k}, "savol": "Qizil va ko‘k munchoqlar nisbati?", "variantlar": vs, "togri": t}
+
+
+def ch_qoshni(rr):   # to'g'ri chiziqdagi qo'shni burchaklar
+    a = rr.randint(25, 155)
+    vs, t = _v(rr, f"{180 - a}°", [f"{a}°", f"{360 - a}°", f"{abs(90 - a)}°"])
+    return {"chizma": {"tur": "qoshni", "a": a}, "savol": "To‘g‘ri chiziqda. x necha gradus?", "variantlar": vs, "togri": t}
+
+
+def ch_uchburchak_yuz(rr):
+    a, h = rr.randint(3, 10) * 2, rr.randint(3, 9)
+    vs, t = _v(rr, a * h // 2, [a * h, a + h, a * h // 4 or 1])
+    return {"chizma": {"tur": "uchyuz", "a": a, "h": h}, "savol": "Uchburchak yuzi necha sm²?", "variantlar": vs, "togri": t}
+
+
+def ch_doira_r(rr):
+    r = rr.randint(2, 9)
+    vs, t = _v(rr, 2 * r, [r, r * r, 4 * r])
+    return {"chizma": {"tur": "doira_r", "r": r}, "savol": "Diametri necha sm?", "variantlar": vs, "togri": t}
+
+
+def ch_grafik(rr):   # chiziqli funksiya grafigi
+    k, b = rr.choice([-2, -1, 1, 2, 3]), rr.randint(-3, 3)
+    if rr.random() < 0.5:
+        vs, t = _v(rr, b, [k, -b if b else 1, b + 1])
+        return {"chizma": {"tur": "grafik", "k": k, "b": b}, "savol": "To‘g‘ri chiziq Oy o‘qini qaysi nuqtada kesadi? (y ni tanlang)", "variantlar": vs, "togri": t}
+    vs, t = _v(rr, k, [b if b != k else k + 1, -k, k * 2])
+    return {"chizma": {"tur": "grafik", "k": k, "b": b}, "savol": "Grafikdan burchak koeffitsientini toping (x 1 ga oshganda y qanchaga o‘zgaradi?)", "variantlar": vs, "togri": t}
+
+
+def ch_parabola(rr):
+    p, q = sorted(rr.sample(range(-4, 5), 2))
+    vs, t = _v(rr, f"{p} va {q}", [f"{-p} va {-q}", f"{p} va {q + 1}", f"{p * q}"])
+    return {"chizma": {"tur": "parabola", "p": p, "q": q}, "savol": "Parabola Ox o‘qini qaysi nuqtalarda kesadi? (tenglama ildizlari)", "variantlar": vs, "togri": t}
+
+
+def ch_oraliq(rr):
+    a = rr.randint(-4, 4); yopiq = rr.random() < 0.5; ong = rr.random() < 0.5
+    tog = f"x {'≥' if yopiq else '>'} {a}" if ong else f"x {'≤' if yopiq else '<'} {a}"
+    xs = [f"x {'>' if yopiq else '≥'} {a}" if ong else f"x {'<' if yopiq else '≤'} {a}", f"x {'≤' if yopiq else '<'} {a}" if ong else f"x {'≥' if yopiq else '>'} {a}"]
+    vs, t = _v(rr, tog, xs + [f"x = {a}"])
+    return {"chizma": {"tur": "oraliq", "a": a, "yopiq": yopiq, "ong": ong}, "savol": "Son o‘qida qaysi tengsizlik tasvirlangan?", "variantlar": vs, "togri": t}
+
+
+def ch_pifagor(rr):
+    a, b, c = rr.choice([(3, 4, 5), (6, 8, 10), (5, 12, 13), (8, 15, 17), (9, 12, 15)])
+    vs, t = _v(rr, c, [a + b, c + 1, b])
+    return {"chizma": {"tur": "pifagor", "a": a, "b": b}, "savol": "Gipotenuza x = ?", "variantlar": vs, "togri": t}
+
+
+def ch_parallel(rr):
+    a = rr.randint(35, 145); tur = rr.choice(["moslash", "almashinuvchi", "bir_tomonli"])
+    tog = 180 - a if tur == "bir_tomonli" else a
+    vs, t = _v(rr, f"{tog}°", [f"{180 - tog}°", f"{90}°", f"{360 - a}°"])
+    return {"chizma": {"tur": "parallel", "a": a, "q": tur}, "savol": "a ∥ b. x necha gradus?", "variantlar": vs, "togri": t}
+
+
+def ch_aylana_burchak(rr):
+    g = rr.randint(25, 80) * 2
+    vs, t = _v(rr, f"{g // 2}°", [f"{g}°", f"{180 - g}°", f"{g // 4}°"])
+    return {"chizma": {"tur": "aylana_burchak", "g": g}, "savol": f"Markaziy burchak {g}°. Shu yoyga tiralgan ichki chizilgan burchak x?", "variantlar": vs, "togri": t}
+
+
+def ch_koordinata(rr):
+    x, y = rr.randint(-4, 4) or 2, rr.randint(-4, 4) or -3
+    vs, t = _v(rr, f"({x}; {y})", [f"({y}; {x})", f"({-x}; {y})", f"({x}; {-y})"])
+    return {"chizma": {"tur": "koordinata", "x": x, "y": y}, "savol": "A nuqtaning koordinatalari?", "variantlar": vs, "togri": t}
+
+
+def ch_vektor(rr):
+    x, y = rr.randint(-3, 4) or 2, rr.randint(-3, 3) or 1
+    vs, t = _v(rr, f"({x}; {y})", [f"({y}; {x})", f"({-x}; {-y})", f"({x}; {-y})"])
+    return {"chizma": {"tur": "vektor", "x": x, "y": y}, "savol": "Vektor koordinatalari?", "variantlar": vs, "togri": t}
+
+
+def ch_trapetsiya(rr):
+    a, b, h = rr.randint(3, 6), rr.randint(7, 11), rr.randint(2, 6)
+    vs, t = _v(rr, (a + b) * h // 2 if (a + b) * h % 2 == 0 else f"{(a + b) * h / 2:g}".replace(".", ","), [(a + b) * h, a * b, (a + b) + h])
+    return {"chizma": {"tur": "trapetsiya", "a": a, "b": b, "h": h}, "savol": "Trapetsiya yuzi?", "variantlar": vs, "togri": t}
+
+
+def ch_oxshash(rr):
+    k = rr.choice([2, 3]); a, b = rr.randint(2, 5), rr.randint(3, 6)
+    vs, t = _v(rr, b * k, [b + k, a * k, b])
+    return {"chizma": {"tur": "oxshash", "a": a, "b": b, "k": k}, "savol": "Uchburchaklar o‘xshash. x = ?", "variantlar": vs, "togri": t}
+
+
+def ch_birlik_aylana(rr):
+    g, sv = rr.choice([(30, "1/2"), (60, "√3/2"), (90, "1"), (150, "1/2"), (180, "0")])
+    vs, t = _v(rr, sv, ["√2/2", "−1/2", "√3/2" if sv != "√3/2" else "1/2"])
+    return {"chizma": {"tur": "birlik", "g": g}, "savol": f"Birlik aylanada {g}° burchak. sin {g}° = ? (nuqtaning y koordinatasi)", "variantlar": vs, "togri": t}
+
+
+def ch_girdirak(rr):
+    n = rr.choice([4, 6, 8]); k = rr.randint(1, n - 1)
+    from fractions import Fraction as _F
+    f = _F(k, n)
+    vs, t = _v(rr, f"{f.numerator}/{f.denominator}", [f"{n - k}/{n}", f"1/{n}", f"{k}/{n + 1}"])
+    return {"chizma": {"tur": "girdirak", "n": n, "k": k}, "savol": "Strelka sariq bo‘lakka tushish ehtimoli?", "variantlar": vs, "togri": t}
+
+
+def ch_zinapoya(rr):
+    a, d = rr.randint(1, 4), rr.randint(1, 3)
+    vs, t = _v(rr, a + 3 * d, [a + 4 * d, a + 2 * d, 4 * a])
+    return {"chizma": {"tur": "zinapoya", "a": a, "d": d}, "savol": "Naqsh davom etsa, 4-ustunda nechta kubik bo‘ladi?", "variantlar": vs, "togri": t}
+
+
+# Har oila → faqat o'ziga mos chizmalar. Mos chizma yo'q oilada chizma ishlatilmaydi.
+CHIZMA_OILA = {
+    "xilma12:o_qosh20": [ch_sakrash], "xilma12:o_son100": [ch_blok], "xilma12:o_kopjadval": [ch_massiv, ch_guruh], "xilma12:o_olchov12": [ch_soat],
+    "xilma12:o_yuz12": [lambda rr: ch_tortburchak(rr, True)], "xilma12:o_shakl12": [ch_tortburchak], "xilma12:o_uchxonali": [ch_blok],
+    "xilma34:o_kopaytir": [ch_massiv], "xilma34:o_bolish": [ch_guruh], "xilma34:o_kasr34": [ch_kasr], "xilma34:o_onli34": [ch_panjara],
+    "xilma34:o_perimetr34": [ch_tortburchak, lambda rr: ch_tortburchak(rr, True)], "xilma34:o_geom34": [ch_burchak], "xilma34:o_yaxlit": [ch_yaxlit],
+    "xilma34:o_sonlar34": [ch_nur], "xilma34:o_diag34": [ch_ustun], "xilma34:o_tenglama34": [ch_tarozi], "xilma34:o_jism34": [ch_kuboid],
+    "xilma5:o_kasr": [ch_kasr], "xilma5:o_onli": [ch_panjara], "xilma5:o_foiz": [lambda rr: ch_panjara(rr, True), ch_foiz], "xilma5:o_burchak": [ch_qoshni, ch_burchak],
+    "xilma5:o_uchburchak": [ch_uchburchak], "xilma5:o_yuz": [ch_uchburchak_yuz], "xilma5:o_hajm": [ch_kuboid], "xilma5:o_nisbat": [ch_munchoq],
+    "xilma5:o_ortacha": [lambda rr: ch_ustun(rr, "orta")], "xilma5:o_kop10": [ch_panjara], "xilma5:o_tartib": [ch_massiv],
+    "xilma6:o_algebra": [ch_tarozi], "xilma6:o_doira": [ch_doira_r], "xilma6:o_diagramma": [ch_foiz], "xilma6:o_kasr_bol": [ch_kasr], "xilma6:o_hajm6": [ch_kuboid],
+    "xilma711:a_chiziqli": [ch_tarozi], "xilma711:a_funksiya": [ch_grafik], "xilma711:a_kvadrat": [ch_parabola], "xilma711:a_tengsizlik": [ch_oraliq],
+    "xilma711:a_trig": [ch_birlik_aylana], "xilma711:a_statistika": [lambda rr: ch_ustun(rr, "orta")], "xilma711:a_progressiya": [ch_zinapoya],
+    "xilma711:a_ehtimol": [ch_girdirak], "xilma711:g_pifagor": [ch_pifagor], "xilma711:g_burchak": [ch_parallel], "xilma711:g_uchburchak": [ch_uchburchak],
+    "xilma711:g_aylana": [ch_aylana_burchak], "xilma711:g_koordinata": [ch_koordinata], "xilma711:g_vektor": [ch_vektor], "xilma711:g_yuz": [ch_trapetsiya],
+    "xilma711:g_oxshash": [ch_oxshash], "xilma711:g_stereo": [ch_kuboid],
+}
 
 
 def tezkor_savol(kalit, rr):
-    nom = kalit.split(":")[1]
-    for pat, fl in CHIZMA:
-        if re.search(pat, nom):
-            return rr.choice(fl)(rr) if rr.random() < 0.7 else ch_togrimi(kalit, rr)
-    return ch_togrimi(kalit, rr) if rr.random() < 0.5 else None
+    fl = CHIZMA_OILA.get(kalit)
+    if fl and rr.random() < 0.8:
+        return rr.choice(fl)(rr)
+    return ch_togrimi(kalit, rr) if rr.random() < 0.4 else None
 
 
 def create_router(platform, dars_xonasi_tashqi=None):
