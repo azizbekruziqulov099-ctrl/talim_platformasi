@@ -13,8 +13,13 @@ if _YOL not in sys.path:
 
 # oila → oldingi (zarur) oilalar. «modul:funksiya»
 ZANJIR = {
+    # 1–2-sinf (REV513)
+    "xilma12:o_qosh20": ["xilma12:o_son10"], "xilma12:o_son100": ["xilma12:o_qosh20"], "xilma12:o_masala12": ["xilma12:o_qosh20"],
+    "xilma12:o_ifoda12": ["xilma12:o_qosh20"], "xilma12:o_kopjadval": ["xilma12:o_qosh20", "xilma12:o_son100"], "xilma12:o_uchxonali": ["xilma12:o_son100"],
+    "xilma12:o_yuz12": ["xilma12:o_kopjadval"], "xilma12:o_olchov12": ["xilma12:o_son100"], "xilma12:o_shakl12": ["xilma12:o_qosh20"],
+    "xilma34:o_qoshayir": ["xilma12:o_uchxonali"], "xilma34:o_sonlar34": ["xilma12:o_uchxonali"],
     # 3–4-sinf
-    "xilma34:o_kopaytir": ["xilma34:o_qoshayir"], "xilma34:o_bolish": ["xilma34:o_kopaytir"], "xilma34:o_alomat": ["xilma34:o_bolish"],
+    "xilma34:o_kopaytir": ["xilma34:o_qoshayir", "xilma12:o_kopjadval"], "xilma34:o_bolish": ["xilma34:o_kopaytir"], "xilma34:o_alomat": ["xilma34:o_bolish"],
     "xilma34:o_kasr34": ["xilma34:o_bolish"], "xilma34:o_onli34": ["xilma34:o_kasr34", "xilma34:o_sonlar34"],
     "xilma34:o_perimetr34": ["xilma34:o_kopaytir", "xilma34:o_qoshayir"], "xilma34:o_tenglama34": ["xilma34:o_qoshayir", "xilma34:o_kopaytir"],
     "xilma34:o_jism34": ["xilma34:o_perimetr34"], "xilma34:o_yaxlit": ["xilma34:o_sonlar34"], "xilma34:o_diag34": ["xilma34:o_qoshayir", "xilma34:o_bolish"],
@@ -47,7 +52,8 @@ ZANJIR = {
 }
 
 
-NOMLAR = {'xilma34:o_qoshayir': 'Ko‘p xonali sonlarni qo‘shish va ayirish', 'xilma34:o_kopaytir': 'Ko‘paytirish', 'xilma34:o_bolish': 'Bo‘lish va qoldiqli bo‘lish', 'xilma34:o_alomat': 'Bo‘linish alomatlari', 'xilma34:o_kasr34': 'Ulush va oddiy kasrlar', 'xilma34:o_sonlar34': 'Ko‘p xonali sonlar', 'xilma34:o_onli34': 'O‘nli kasr tushunchasi', 'xilma34:o_perimetr34': 'Perimetr va yuz', 'xilma34:o_tenglama34': 'Sodda tenglamalar', 'xilma34:o_geom34': 'Burchak va geometrik shakllar', 'xilma5:o_kop10': '10, 100, 1000 ga ko‘paytirish va bo‘lish', 'xilma5:o_tartib': 'Amallar tartibi', 'xilma5:o_kasr': 'Oddiy kasrlar ustida amallar', 'xilma5:o_onli': 'O‘nli kasrlar', 'xilma5:o_yuz': 'Uchburchak yuzi', 'xilma5:o_hajm': 'Hajm', 'xilma5:o_nisbat': 'Nisbatlar', 'xilma5:o_foiz': 'Foizlar', 'xilma5:o_ortacha': 'O‘rtacha qiymat', 'xilma5:o_burchak': 'Burchaklar', 'xilma5:o_uchburchak': 'Uchburchak burchaklari', 'xilma6:o_algebra': 'Algebraik ifoda va tenglama', 'xilma6:o_kasr_bol': 'Kasrlarni bo‘lish', 'xilma6:o_doira': 'Doira va aylana', 'xilma711:a_ifoda': 'Algebraik ifodalar', 'xilma711:a_daraja': 'Daraja va ildiz', 'xilma711:a_kophad': 'Birhad va ko‘phadlar', 'xilma711:a_qisqa': 'Qisqa ko‘paytirish formulalari', 'xilma711:a_ajratish': 'Ko‘paytuvchilarga ajratish', 'xilma711:a_chiziqli': 'Chiziqli tenglamalar', 'xilma711:a_funksiya': 'Funksiya va grafik', 'xilma711:a_kvadrat': 'Kvadrat tenglamalar', 'xilma711:a_trig': 'Trigonometriya asoslari', 'xilma711:a_kombinatorika': 'Kombinatorika', 'xilma711:g_burchak': 'Burchaklar va parallel to‘g‘ri chiziqlar', 'xilma711:g_uchburchak': 'Uchburchak', 'xilma711:g_pifagor': 'Pifagor teoremasi', 'xilma711:g_yuz': 'Ko‘pburchak yuzlari', 'xilma711:g_koordinata': 'Koordinatalar'}
+NOMLAR = {"xilma12:o_son10": "10 gacha sonlar va sanash", "xilma12:o_qosh20": "20 gacha qo‘shish va ayirish", "xilma12:o_son100": "100 gacha sonlar",
+          "xilma12:o_kopjadval": "Ko‘paytirish jadvali", "xilma12:o_uchxonali": "Uch xonali sonlar", 'xilma34:o_qoshayir': 'Ko‘p xonali sonlarni qo‘shish va ayirish', 'xilma34:o_kopaytir': 'Ko‘paytirish', 'xilma34:o_bolish': 'Bo‘lish va qoldiqli bo‘lish', 'xilma34:o_alomat': 'Bo‘linish alomatlari', 'xilma34:o_kasr34': 'Ulush va oddiy kasrlar', 'xilma34:o_sonlar34': 'Ko‘p xonali sonlar', 'xilma34:o_onli34': 'O‘nli kasr tushunchasi', 'xilma34:o_perimetr34': 'Perimetr va yuz', 'xilma34:o_tenglama34': 'Sodda tenglamalar', 'xilma34:o_geom34': 'Burchak va geometrik shakllar', 'xilma5:o_kop10': '10, 100, 1000 ga ko‘paytirish va bo‘lish', 'xilma5:o_tartib': 'Amallar tartibi', 'xilma5:o_kasr': 'Oddiy kasrlar ustida amallar', 'xilma5:o_onli': 'O‘nli kasrlar', 'xilma5:o_yuz': 'Uchburchak yuzi', 'xilma5:o_hajm': 'Hajm', 'xilma5:o_nisbat': 'Nisbatlar', 'xilma5:o_foiz': 'Foizlar', 'xilma5:o_ortacha': 'O‘rtacha qiymat', 'xilma5:o_burchak': 'Burchaklar', 'xilma5:o_uchburchak': 'Uchburchak burchaklari', 'xilma6:o_algebra': 'Algebraik ifoda va tenglama', 'xilma6:o_kasr_bol': 'Kasrlarni bo‘lish', 'xilma6:o_doira': 'Doira va aylana', 'xilma711:a_ifoda': 'Algebraik ifodalar', 'xilma711:a_daraja': 'Daraja va ildiz', 'xilma711:a_kophad': 'Birhad va ko‘phadlar', 'xilma711:a_qisqa': 'Qisqa ko‘paytirish formulalari', 'xilma711:a_ajratish': 'Ko‘paytuvchilarga ajratish', 'xilma711:a_chiziqli': 'Chiziqli tenglamalar', 'xilma711:a_funksiya': 'Funksiya va grafik', 'xilma711:a_kvadrat': 'Kvadrat tenglamalar', 'xilma711:a_trig': 'Trigonometriya asoslari', 'xilma711:a_kombinatorika': 'Kombinatorika', 'xilma711:g_burchak': 'Burchaklar va parallel to‘g‘ri chiziqlar', 'xilma711:g_uchburchak': 'Uchburchak', 'xilma711:g_pifagor': 'Pifagor teoremasi', 'xilma711:g_yuz': 'Ko‘pburchak yuzlari', 'xilma711:g_koordinata': 'Koordinatalar'}
 
 
 def _mod(nom):
@@ -56,7 +62,7 @@ def _mod(nom):
 
 def oila_kaliti(sinf, mavzu):
     n = int((re.search(r"\d{1,2}", str(sinf or "")) or [0])[0] or 0) if re.search(r"\d", str(sinf or "")) else 0
-    modul = "xilma34" if n in (3, 4) else "xilma5" if n == 5 else "xilma6" if n == 6 else "xilma711" if n >= 7 else ""
+    modul = "xilma12" if n in (1, 2) else "xilma34" if n in (3, 4) else "xilma5" if n == 5 else "xilma6" if n == 6 else "xilma711" if n >= 7 else ""
     if not modul:
         return None
     try:
