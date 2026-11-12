@@ -131,13 +131,24 @@ def create_router(platform, dars_xonasi_tashqi=None):
         if not re.search(r"matem|algebra|geometr", str(top.get("fan") or ""), re.I):
             return {"savollar": []}
         k = oila_kaliti(top.get("sinf"), top.get("mavzu"))
-        oldingi = ZANJIR.get(k or "", [])[:3]
+        # REV516: 4–5 ta savol (bitta emas): har oldingi mavzudan 2 tadan; oz bo'lsa — undan oldingilaridan ham
+        oldingi = list(ZANJIR.get(k or "", []))
+        for ok in list(oldingi):
+            if len(oldingi) >= 3:
+                break
+            for o2 in ZANJIR.get(ok, []):
+                if o2 not in oldingi and o2 != k:
+                    oldingi.append(o2)
         urug = u * 7919 + int(time.time() // 86400)
-        out = []
-        for i, ok in enumerate(oldingi):
-            s = savol(ok, f"{urug}:{topic_code}:{i}")
-            if s:
-                out.append({**s, "oila": ok, "nom": oila_nomi(ok)})
+        out, korilgan = [], set()
+        for tur in range(3 if len(oldingi) == 1 else 2):
+            for i, ok in enumerate(oldingi[:4]):
+                if len(out) >= 5:
+                    break
+                s = savol(ok, f"{urug}:{topic_code}:{i}:{tur}")
+                if s and s["savol"] not in korilgan:
+                    korilgan.add(s["savol"]); out.append({**s, "oila": ok, "nom": oila_nomi(ok)})
+        out.sort(key=lambda x: oldingi.index(x["oila"]))
         return {"mavzu": top.get("mavzu"), "oila": k, "savollar": out}
 
     @router.get("/api/bilim_zanjiri/takror")
