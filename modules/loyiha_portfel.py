@@ -21,6 +21,14 @@ def jadval(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS loyiha_qolda (id BIGSERIAL PRIMARY KEY, user_id BIGINT NOT NULL, loyiha TEXT NOT NULL, s3_kalit TEXT NOT NULL, izoh TEXT NOT NULL DEFAULT '',
         holat TEXT NOT NULL DEFAULT 'kutadi', tasdiqlagan BIGINT, izoh_tasdiq TEXT NOT NULL DEFAULT '', yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), hal_qilindi TIMESTAMPTZ)""")
     cur.execute("CREATE INDEX IF NOT EXISTS loyiha_qolda_u ON loyiha_qolda(user_id, yaratildi DESC)")
+    # REV544 (F4): sinf topshirig'i — o'qituvchi guruhga loyiha beradi; o'quvchilar 3–4 kishilik jamoalarga rollar bilan bo'linadi
+    cur.execute("""CREATE TABLE IF NOT EXISTS loyiha_topshiriq (id BIGSERIAL PRIMARY KEY, guruh_id BIGINT NOT NULL, egasi BIGINT NOT NULL, loyiha TEXT NOT NULL,
+        muddat DATE NOT NULL, izoh TEXT NOT NULL DEFAULT '', yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW())""")
+    cur.execute("""CREATE TABLE IF NOT EXISTS loyiha_jamoa (topshiriq_id BIGINT NOT NULL REFERENCES loyiha_topshiriq(id) ON DELETE CASCADE, jamoa INT NOT NULL, user_id BIGINT NOT NULL,
+        rol TEXT NOT NULL, PRIMARY KEY (topshiriq_id, user_id))""")
+    # 4K rubrikasi: o'qituvchi har ko'nikmani 1–4 ball bilan baholaydi (tanqidiy fikrlash, ijodkorlik, hamkorlik, muloqot)
+    cur.execute("""CREATE TABLE IF NOT EXISTS loyiha_rubrika (user_id BIGINT NOT NULL, loyiha TEXT NOT NULL, tanqidiy INT NOT NULL, ijodkor INT NOT NULL, hamkor INT NOT NULL, muloqot INT NOT NULL,
+        baholagan BIGINT NOT NULL, izoh TEXT NOT NULL DEFAULT '', vaqt TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (user_id, loyiha))""")
 
 
 class Natija(BaseModel):
@@ -38,6 +46,45 @@ class Qolda(BaseModel):
     loyiha: str
     rasm: str
     izoh: str = Field(default="", max_length=400)
+
+
+ROLLAR = ["tadqiqotchi", "muhandis", "dizayner", "maruzachi"]
+
+
+class Topshiriq(BaseModel):
+    token: Optional[str] = None
+    guruh_id: int
+    loyiha: str
+    kun: int = Field(default=7, ge=1, le=60)
+    izoh: str = Field(default="", max_length=300)
+
+
+class Rubrika(BaseModel):
+    token: Optional[str] = None
+    oquvchi_id: int
+    loyiha: str
+    tanqidiy: int = Field(ge=1, le=4)
+    ijodkor: int = Field(ge=1, le=4)
+    hamkor: int = Field(ge=1, le=4)
+    muloqot: int = Field(ge=1, le=4)
+    izoh: str = Field(default="", max_length=300)
+
+
+def jamoalarga_bol(idlar):
+    """O'quvchilarni 3–4 kishilik jamoalarga bo'lish: jamoa soni = ceil(n/4); a'zolar teng taqsimlanadi (hech qachon 1–2 kishilik jamoa chiqmaydi, n ≥ 3 bo'lsa).
+    Rollar jamoa ichida aylana bo'ylab beriladi. → [(jamoa_no, user_id, rol)]"""
+    idlar = list(idlar); n = len(idlar)
+    if not n:
+        return []
+    k = max(1, -(-n // 4))
+    if n >= 3 and n // k < 3:
+        k = max(1, n // 3)
+    out = []; j = 0
+    for i, u in enumerate(idlar):
+        jamoa = i % k + 1
+        sanoq = sum(1 for x in out if x[0] == jamoa)
+        out.append((jamoa, u, ROLLAR[sanoq % len(ROLLAR)]))
+    return sorted(out, key=lambda x: (x[0], ROLLAR.index(x[2])))
 
 
 class Tasdiq(BaseModel):
@@ -103,7 +150,11 @@ def create_router(platform):
                                "vaqt": r["yangilandi"].isoformat() if r["yangilandi"] else None} for r in cur.fetchall()}
         cur.execute("SELECT id, loyiha, izoh, holat, izoh_tasdiq, yaratildi FROM loyiha_qolda WHERE user_id=%s ORDER BY id DESC LIMIT 60", (egasi,))
         qolda = [{"id": r["id"], "loyiha": r["loyiha"], "izoh": r["izoh"], "holat": r["holat"], "tasdiq_izoh": r["izoh_tasdiq"], "vaqt": r["yaratildi"].isoformat()} for r in cur.fetchall()]
-        return {"ekran": ekran, "qolda": qolda, "yulduz": sum(x["yulduz"] for x in ekran.values()) + 2 * sum(1 for q in qolda if q["holat"] == "tasdiqlandi")}
+        cur.execute("SELECT loyiha, tanqidiy, ijodkor, hamkor, muloqot, izoh FROM loyiha_rubrika WHERE user_id=%s", (egasi,))
+        rubrika = {r["loyiha"]: {"tanqidiy": r["tanqidiy"], "ijodkor": r["ijodkor"], "hamkor": r["hamkor"], "muloqot": r["muloqot"], "izoh": r["izoh"]} for r in cur.fetchall()}
+        cur.execute("SELECT COUNT(*) AS n FROM loyiha_jamoa j JOIN loyiha_topshiriq t ON t.id=j.topshiriq_id JOIN loyiha_natija n ON n.user_id=j.user_id AND n.loyiha=t.loyiha AND n.yangilandi >= t.yaratildi WHERE j.user_id=%s", (egasi,))
+        jamoa_soni = int(cur.fetchone()["n"])
+        return {"ekran": ekran, "qolda": qolda, "rubrika": rubrika, "jamoa_bajargan": jamoa_soni, "yulduz": sum(x["yulduz"] for x in ekran.values()) + 2 * sum(1 for q in qolda if q["holat"] == "tasdiqlandi")}
 
     @router.get("/api/loyiha/portfel")
     def portfel(oquvchi_id: int = 0, token: str = "", authorization: Optional[str] = Header(None)):
@@ -214,6 +265,85 @@ def create_router(platform):
             for g in gl.values():
                 g["oquvchilar"].sort(key=lambda x: (-x["yulduz"], x["ism"]))
             return {"guruhlar": list(gl.values())}
+        return run(f)
+
+    def guruh_egasimi(cur, ustoz, gid):
+        cur.execute("SELECT egasi, nom FROM kurs_guruh WHERE id=%s AND faol", (gid,))
+        g = cur.fetchone()
+        if not g:
+            raise HTTPException(404, "Guruh topilmadi")
+        if int(g["egasi"]) != ustoz and not admin_mi(cur, ustoz):
+            raise HTTPException(403, "Bu guruh sizniki emas")
+        return g
+
+    @router.post("/api/loyiha/topshiriq")
+    def topshiriq_ber(body: Topshiriq, authorization: Optional[str] = Header(None)):
+        """O'qituvchi guruhga loyiha beradi: o'quvchilar 3–4 kishilik jamoalarga rollar bilan bo'linadi."""
+        import random
+        u = uid(body.token, authorization)
+        if body.loyiha not in LOYIHALAR:
+            raise HTTPException(400, "Noma'lum loyiha")
+        def f(cur):
+            g = guruh_egasimi(cur, u, body.guruh_id)
+            cur.execute("SELECT user_id FROM kurs_guruh_azo WHERE guruh_id=%s", (body.guruh_id,))
+            idlar = [int(r["user_id"]) for r in cur.fetchall()]
+            if len(idlar) < 2:
+                raise HTTPException(400, "Guruhda kamida 2 ta o'quvchi bo'lishi kerak")
+            random.Random(body.guruh_id * 1000 + len(idlar)).shuffle(idlar)
+            cur.execute("""INSERT INTO loyiha_topshiriq(guruh_id, egasi, loyiha, muddat, izoh) VALUES(%s,%s,%s,(NOW() AT TIME ZONE 'Asia/Tashkent')::date + %s,%s) RETURNING id, muddat""",
+                        (body.guruh_id, u, body.loyiha, body.kun, body.izoh.strip()))
+            r = cur.fetchone(); tid = r["id"]
+            bo = jamoalarga_bol(idlar)
+            for jamoa, user, rol in bo:
+                cur.execute("INSERT INTO loyiha_jamoa(topshiriq_id, jamoa, user_id, rol) VALUES(%s,%s,%s,%s)", (tid, jamoa, user, rol))
+            return {"ok": True, "id": tid, "muddat": r["muddat"].isoformat(), "jamoalar": len({x[0] for x in bo}), "oquvchilar": len(idlar)}
+        return run(f)
+
+    def ismlar(cur, idlar):
+        if not idlar:
+            return {}
+        cur.execute("SELECT user_id, COALESCE(NULLIF(TRIM(full_name),''), 'O‘quvchi') AS ism FROM users WHERE user_id=ANY(%s)", (list(idlar),))
+        return {r["user_id"]: r["ism"] for r in cur.fetchall()}
+
+    @router.get("/api/loyiha/topshiriqlar")
+    def topshiriqlar(token: str = "", authorization: Optional[str] = Header(None)):
+        """O'quvchiga — guruhlaridagi topshiriqlar, jamoasi va roli; o'qituvchiga — bergan topshiriqlari va jamoalar holati."""
+        u = uid(token, authorization)
+        def f(cur):
+            cur.execute("""SELECT t.id, t.guruh_id, t.loyiha, t.muddat, t.izoh, t.yaratildi, g.nom, t.egasi FROM loyiha_topshiriq t JOIN kurs_guruh g ON g.id=t.guruh_id
+                           WHERE t.egasi=%s OR t.guruh_id IN (SELECT guruh_id FROM kurs_guruh_azo WHERE user_id=%s) ORDER BY t.id DESC LIMIT 40""", (u, u))
+            tl = cur.fetchall(); out = []
+            for t in tl:
+                cur.execute("SELECT jamoa, user_id, rol FROM loyiha_jamoa WHERE topshiriq_id=%s ORDER BY jamoa", (t["id"],))
+                a = cur.fetchall(); isml = ismlar(cur, {r["user_id"] for r in a})
+                cur.execute("SELECT user_id, yulduz, maqsad FROM loyiha_natija WHERE loyiha=%s AND user_id=ANY(%s) AND yangilandi >= %s", (t["loyiha"], [r["user_id"] for r in a] or [0], t["yaratildi"]))
+                nat = {r["user_id"]: (r["yulduz"], r["maqsad"]) for r in cur.fetchall()}
+                jam = {}
+                for r in a:
+                    y, m = nat.get(r["user_id"], (0, False))
+                    jam.setdefault(r["jamoa"], []).append({"id": r["user_id"], "ism": isml.get(r["user_id"], "O‘quvchi"), "rol": r["rol"], "bajardi": r["user_id"] in nat, "yulduz": y, "maqsad": m})
+                mening = next((j for j, azo in jam.items() if any(x["id"] == u for x in azo)), None)
+                korinadigan = [{"jamoa": j, "azolar": azo} for j, azo in jam.items()] if int(t["egasi"]) == u else ([{"jamoa": mening, "azolar": jam[mening]}] if mening else [])
+                out.append({"id": t["id"], "guruh": t["nom"], "loyiha": t["loyiha"], "muddat": t["muddat"].isoformat(), "izoh": t["izoh"], "ustoz": int(t["egasi"]) == u,
+                            "mening_jamoam": mening, "jamoalar": korinadigan,
+                            "bajarildi": sum(1 for azo in jam.values() for x in azo if x["bajardi"]), "jami": sum(len(azo) for azo in jam.values())})
+            return {"royxat": out}
+        return run(f)
+
+    @router.post("/api/loyiha/rubrika")
+    def rubrika_yoz(body: Rubrika, authorization: Optional[str] = Header(None)):
+        """O'qituvchi o'quvchini 4K bo'yicha baholaydi: tanqidiy fikrlash, ijodkorlik, hamkorlik, muloqot (1–4)."""
+        u = uid(body.token, authorization)
+        if body.loyiha not in LOYIHALAR:
+            raise HTTPException(400, "Noma'lum loyiha")
+        def f(cur):
+            if not (oqituvchi_mi(cur, u, body.oquvchi_id) or admin_mi(cur, u)):
+                raise HTTPException(403, "Faqat o'quvchining o'qituvchisi baholay oladi")
+            cur.execute("""INSERT INTO loyiha_rubrika(user_id, loyiha, tanqidiy, ijodkor, hamkor, muloqot, baholagan, izoh) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
+                           ON CONFLICT (user_id, loyiha) DO UPDATE SET tanqidiy=EXCLUDED.tanqidiy, ijodkor=EXCLUDED.ijodkor, hamkor=EXCLUDED.hamkor, muloqot=EXCLUDED.muloqot,
+                             baholagan=EXCLUDED.baholagan, izoh=EXCLUDED.izoh, vaqt=NOW()""",
+                        (body.oquvchi_id, body.loyiha, body.tanqidiy, body.ijodkor, body.hamkor, body.muloqot, u, body.izoh.strip()))
+            return {"ok": True}
         return run(f)
 
     return router
