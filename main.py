@@ -237,6 +237,11 @@ try:   # REV489: ota-ona PIN-kodi (bola profili)
 except ImportError:
     from modules.oila_pin import create_router as create_oila_pin_router
 app.include_router(create_oila_pin_router(samtm_platform))
+try:   # REV543: Kabu loyiha portfeli serverda + qo'lda yasash (rasm, ota-ona/o'qituvchi tasdig'i)
+    from .modules.loyiha_portfel import create_router as create_loyiha_portfel_router
+except ImportError:
+    from modules.loyiha_portfel import create_router as create_loyiha_portfel_router
+app.include_router(create_loyiha_portfel_router(samtm_platform))
 try:   # REV491: hisobni o'chirish (Play Market talabi)
     from .modules.hisob_ochirish import create_router as create_hisob_ochirish_router
 except ImportError:
