@@ -7,6 +7,7 @@ bir nechta server jarayonida ham to'g'ri ishlaydi, WebSocket shart emas.
 
 Ochko: to'g'ri javob 500 + tezlik uchun 0–500; birinchi to'g'ri topgan +200; ketma-ket to'g'ri +50.
 """
+import json
 import random
 import re
 import secrets
@@ -16,6 +17,11 @@ from fastapi import APIRouter, Header, HTTPException
 from typing import Optional
 
 from pydantic import BaseModel, Field
+
+try:
+    from . import bellashuv_tez as tez   # REV538
+except ImportError:
+    import bellashuv_tez as tez
 
 CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
 MAX_PLAYERS = 40
@@ -144,6 +150,9 @@ def migrate(cur):
     )""")
     cur.execute("CREATE INDEX IF NOT EXISTS ix_bellashuv_javob_xona ON bellashuv_javoblar(xona_id, savol_index, javob_at)")
     cur.execute("ALTER TABLE bellashuv_xonalar ADD COLUMN IF NOT EXISTS tur TEXT NOT NULL DEFAULT 'oddiy'")   # REV363: 'bogcha' — umumiy o'tilgan darslar
+    # REV538: «tez bellashuv» — savollar xonaning o'zida (yosh va mavzu bo'yicha tuzilgan), bazadagi testlarga bog'liq emas
+    cur.execute("ALTER TABLE bellashuv_xonalar ADD COLUMN IF NOT EXISTS tez JSONB")
+    cur.execute("ALTER TABLE bellashuv_xonalar ADD COLUMN IF NOT EXISTS tez_sozlama JSONB")
 
 
 def bogcha_savollar(cur, user_ids, soni, rnd=random):
@@ -210,6 +219,8 @@ def create_router(platform):
         return dict(room)
 
     def questions(cur, room):
+        if room.get("tez"):   # REV538
+            return list(room["tez"])
         cur.execute("""SELECT id, question, option_a, option_b, option_c, option_d, correct_answer, explanation
                        FROM generated_tests WHERE id=ANY(%s)""", (room["savol_ids"],))
         by_id = {r["id"]: dict(r) for r in cur.fetchall()}
@@ -267,6 +278,60 @@ def create_router(platform):
             cur.execute("INSERT INTO bellashuv_ishtirokchilar(xona_id,user_id,ism,jins) VALUES(%s,%s,%s,%s)", (room_id, user_id, name, jins))
             conn.commit()
             return {"kod": kod, "savollar": len(ids), "savol_vaqti": limit}
+        finally:
+            cur.close()
+            conn.close()
+
+    class TezXona(BaseModel):
+        token: Optional[str] = None
+        band: str = ""
+        mavzu: str = "aralash"
+        savol_soni: int = Field(default=8, ge=3, le=20)
+        savol_vaqti: int = Field(default=15)
+
+    def _user_band(cur, user_id):
+        cur.execute("SELECT to_jsonb(u)->>'class' AS sinf, to_jsonb(u)->>'yosh_guruhi' AS yg, to_jsonb(u)->'kabutar_learning_profile'->>'role' AS rol FROM users u WHERE user_id=%s", (user_id,))
+        r = cur.fetchone() or {}
+        return tez.band_aniqla(r.get("sinf") or "", bola=bool(r.get("yg")) or r.get("rol") == "bogcha")
+
+    @router.get("/api/bellashuv/tez/mavzular")
+    def tez_mavzular(token: str = None, authorization: str = Header(None)):
+        """REV538: tez bellashuv uchun yosh guruhlari va mavzular; o'quvchining o'z guruhi oldindan tanlangan."""
+        user_id = uid_of(token, authorization)
+        conn, cur = open_db()
+        try:
+            band = _user_band(cur, user_id)
+        finally:
+            cur.close(); conn.close()
+        return {"band": band, "bandlar": [{"k": k, "nom": n, "mavzular": [{"k": mk, "nom": mn} for mk, mn in tez.MAVZULAR[k]]} for k, n in tez.BANDLAR]}
+
+    @router.post("/api/bellashuv/tez/xona")
+    def tez_room(body: TezXona, authorization: str = Header(None)):
+        """REV538: yosh + mavzu → savollar shu zahoti tuziladi va xona ochiladi."""
+        user_id = uid_of(body.token, authorization)
+        limit = body.savol_vaqti if body.savol_vaqti in QUESTION_TIMES else 15
+        conn, cur = open_db()
+        try:
+            band = body.band if body.band in tez.MAVZULAR else _user_band(cur, user_id)
+            mavzu = body.mavzu if body.mavzu in dict(tez.MAVZULAR[band]) else "aralash"
+            qs = tez.savollar(band, mavzu, body.savol_soni)
+            if len(qs) < 3:
+                raise HTTPException(400, "Bu mavzuda savol yetarli emas — boshqa mavzuni tanlang.")
+            name, jins = user_card(cur, user_id)
+            for _ in range(8):
+                kod = new_code()
+                cur.execute("SELECT 1 FROM bellashuv_xonalar WHERE kod=%s", (kod,))
+                if not cur.fetchone():
+                    break
+            nomi = f"{dict(tez.BANDLAR)[band]} · {dict(tez.MAVZULAR[band])[mavzu]}"
+            cur.execute("""INSERT INTO bellashuv_xonalar(kod,host_user_id,nomi,topic_codes,savol_ids,savol_vaqti,expires_at,tur,tez,tez_sozlama)
+                           VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s::jsonb,%s::jsonb) RETURNING id""",
+                        (kod, user_id, nomi[:120], [], [q["id"] for q in qs], limit, now() + ROOM_TTL, "tez",
+                         json.dumps(qs, ensure_ascii=False), json.dumps({"band": band, "mavzu": mavzu, "savol_soni": body.savol_soni})))
+            room_id = cur.fetchone()["id"]
+            cur.execute("INSERT INTO bellashuv_ishtirokchilar(xona_id,user_id,ism,jins) VALUES(%s,%s,%s,%s)", (room_id, user_id, name, jins))
+            conn.commit()
+            return {"kod": kod, "savollar": len(qs), "savol_vaqti": limit, "band": band, "mavzu": mavzu}
         finally:
             cur.close()
             conn.close()
@@ -450,7 +515,12 @@ def create_router(platform):
         finally:
             cur.close()
             conn.close()
-        created = create_room(CreateRoom(token=token or (body.token if body else None), topic_codes=room["topic_codes"],
+        if room.get("tez_sozlama"):   # REV538: tez bellashuv — o'sha yosh va mavzudan YANGI savollar
+            sz = room["tez_sozlama"]
+            created = tez_room(TezXona(token=token or (body.token if body else None), band=sz.get("band", ""), mavzu=sz.get("mavzu", "aralash"),
+                                       savol_soni=int(sz.get("savol_soni") or 8), savol_vaqti=room["savol_vaqti"]), authorization)
+        else:
+          created = create_room(CreateRoom(token=token or (body.token if body else None), topic_codes=room["topic_codes"],
                                          savol_soni=len(room["savol_ids"]) or 10, savol_vaqti=room["savol_vaqti"], nomi=room["nomi"]),
                               authorization)
         conn, cur = open_db()
