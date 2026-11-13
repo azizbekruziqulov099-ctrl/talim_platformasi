@@ -95,6 +95,18 @@ YILLIK_JUFT = {"T11_G4_M": "T11_G4_S", "T11_G4_S": "T11_G4_M", "T11_G8_M": "T11_
                "P_M": "P_S", "P_S": "P_M", "P_R": "P_M", "P_F": "P_M"}
 
 
+def imtihon_oilasi(tk, tur):
+    """REV539: imtihon natijasi qaysi to'plamlarga tegishli. Yillik imtihon ikki qismli (masalan TIMSS 4-sinf: matematika + tabiiy fan) —
+    shu juftlikka; qolganlari — faqat o'z to'plamiga. Avval bu ajratilmagan edi: TIMSS'dan topshirilgan imtihon PISA'da ham «topshirildi»
+    bo'lib ko'rinar, PISA imtihonini boshlaganda esa tugallanmagan TIMSS sessiyasi ochilib qolardi."""
+    tk = str(tk or "")
+    if tur == "yillik":
+        juft = YILLIK_JUFT.get(tk)
+        # juftlik faqat o'zaro bo'lsa bitta oila (G4_M ↔ G4_S); PISA'da P_R/P_F ning jufti P_M — ular alohida
+        return sorted({tk, juft}) if juft and YILLIK_JUFT.get(juft) == tk else [tk]
+    return [tk]
+
+
 def pisami(tk):
     return str(tk or "").startswith("P_")
 
@@ -1387,11 +1399,12 @@ def create_router(platform, kontent=None):
             for tur, cfg in IMTIHON_TURLARI.items():
                 soni, daqiqa = cfg[band]
                 davr = davr_kaliti(tur)
-                mos = [r for r in rows if r["tur"] == tur and r["davr"] == davr and (r["toplam"] == tk or tur == "yillik")]
+                oila = imtihon_oilasi(tk, tur)   # REV539
+                mos = [r for r in rows if r["tur"] == tur and r["davr"] == davr and r["toplam"] in oila]
                 rasmiy = next((r for r in mos if r["rasmiy"] and r["topshirilgan"]), None)
                 ochiq = next((r for r in mos if not r["topshirilgan"] and r["tugash"] and r["tugash"] > now), None)
                 tarix = [{"id": r["id"], "davr": r["davr"], "ball": r["ball"], "foiz": r["foiz"]}
-                         for r in rows if r["tur"] == tur and r["rasmiy"] and r["topshirilgan"]][:8]
+                         for r in rows if r["tur"] == tur and r["toplam"] in oila and r["rasmiy"] and r["topshirilgan"]][:8]
                 out.append({"tur": tur, "nom": imtihon_nomi(tur, til), "savollar": soni * (2 if tur == "yillik" else 1), "daqiqa": daqiqa * (2 if tur == "yillik" else 1),
                             "qismlar": 2 if tur == "yillik" else 1, "davr": davr, "davr_oxiri": davr_oxiri(tur).isoformat(),
                             "topshirildi": bool(rasmiy), "natija": {"id": rasmiy["id"], "ball": rasmiy["ball"], "foiz": rasmiy["foiz"]} if rasmiy else None,
@@ -1418,13 +1431,14 @@ def create_router(platform, kontent=None):
             davr = davr_kaliti(body.tur)
             now = datetime.now(TZ)
             # tugallanmagan sessiya bo'lsa — o'shani davom ettiramiz (sahifani yangilash imtihonni qayta boshlamaydi)
-            cur.execute("""SELECT * FROM xb_imtihon WHERE user_id=%s AND til=%s AND tur=%s AND davr=%s AND topshirilgan IS NULL AND tugash>%s
-                           ORDER BY id DESC LIMIT 1""", (user_id, til, body.tur, davr, now))
+            oila = imtihon_oilasi(tk, body.tur)   # REV539: TIMSS va PISA (va fanlar) imtihonlari bir-biriga aralashmaydi
+            cur.execute("""SELECT * FROM xb_imtihon WHERE user_id=%s AND til=%s AND tur=%s AND davr=%s AND toplam=ANY(%s) AND topshirilgan IS NULL AND tugash>%s
+                           ORDER BY id DESC LIMIT 1""", (user_id, til, body.tur, davr, oila, now))
             row = cur.fetchone()
             if not row:
                 # REV318: rasmiy natija davrda BITTA — qaysi tilda yechilganidan qat'i nazar (til almashtirib qayta rasmiy topshirib bo'lmaydi)
-                cur.execute("SELECT 1 FROM xb_imtihon WHERE user_id=%s AND tur=%s AND davr=%s AND rasmiy AND topshirilgan IS NOT NULL LIMIT 1",
-                            (user_id, body.tur, davr))
+                cur.execute("SELECT 1 FROM xb_imtihon WHERE user_id=%s AND tur=%s AND davr=%s AND toplam=ANY(%s) AND rasmiy AND topshirilgan IS NOT NULL LIMIT 1",
+                            (user_id, body.tur, davr, oila))
                 rasmiy = not body.mashq and not cur.fetchone()
                 cur.execute("SELECT savollar FROM xb_imtihon WHERE user_id=%s AND til=%s ORDER BY id DESC LIMIT 6", (user_id, til))
                 yaqin = [x["id"] for r in cur.fetchall() for x in (r["savollar"] or [])]
