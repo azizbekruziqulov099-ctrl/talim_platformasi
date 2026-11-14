@@ -25,6 +25,7 @@ HARFLAR = "ABCDE"
 SONI_ENG_KOP = 40
 QIYINLIK = {"O": "oson", "R": "o'rta", "Q": "qiyin"}
 RASM_PAPKA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_data", "rasm")
+DARS_FAYL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_data", "dars.json")   # Repetitor «miyasi»: tools/mat_bank/dars_qosh.py yasaydi
 # Milliy sertifikat darajalari (rasmiy shkala, ball bo'yicha): 70+ A+, 65–69,9 A, 60–64,9 B+, 55–59,9 B, 50–54,9 C+, 46–49,9 C; 46 dan past — sertifikat berilmaydi.
 # DIQQAT: rasmiy ball Rasch modeli bilan hisoblanadi; bizda test FOIZI bor — shuning uchun bu «taxminiy baho» (o'zini sinash), rasmiy natija emas.
 BAHO_SHKALASI = [(70.0, "A+"), (65.0, "A"), (60.0, "B+"), (55.0, "B"), (50.0, "C+"), (46.0, "C")]
@@ -59,6 +60,32 @@ class Bank:
         for m in data["mavzular"]:
             for t in m["testlar"]:
                 (self.tekshir if t.get("tekshir") else self.savol)[t["id"]] = dict(t, mavzu=int(m["raqam"]))
+        self.darslar = {}
+        try:
+            with open(DARS_FAYL, encoding="utf-8") as f:
+                self.darslar = json.load(f).get("darslar", {})
+        except (OSError, ValueError):
+            self.darslar = {}
+
+    def dars_ol(self, raqam):
+        """O'quvchiga ko'rsatiladigan dars: [TEKSHIR] belgili bo'lsa yoki yo'q bo'lsa — None."""
+        d = (self.darslar.get(str(int(raqam))) if hasattr(self, "darslar") else None)
+        return d if d and not d.get("tekshir") else None
+
+    def dars_korinishi(self, raqam):
+        """Dars + bankdan qo'yiladigan savollar: misolning savoli va variantlari faylda EMAS, bankdan olinadi (GPT buza olmaydi)."""
+        d = self.dars_ol(raqam)
+        if not d:
+            return None
+        kod = {t["manba"]: t for t in self.savol.values() if t["mavzu"] == int(raqam)}
+        mis = []
+        for x in d["misollar"]:
+            t = kod.get(x["manba"])
+            if t:
+                mis.append(dict(x, savol=t["savol"], variantlar=t["variantlar"], qiyinlik=t.get("qiyinlik") or None))
+        tek = [kod[k]["id"] for k in d["tekshir_manbalar"] if k in kod]
+        return {"raqam": int(raqam), "nom": d["nom"], "bob": d.get("bob") or "", "maqsad": d["maqsad"], "oldin_bil": d["oldin_bil"], "tushuncha": d["tushuncha"],
+                "misollar": mis, "xatolar": d["xatolar"], "esda_tut": d["esda_tut"], "tekshir_ids": tek}
 
     def soni(self, raqam):
         """Mavzudagi o'quvchiga beriladigan testlar soni."""
@@ -175,7 +202,7 @@ def create_router(platform):
     def mavzular(token: str = None, authorization: Optional[str] = Header(None)):
         uid(token, authorization)
         b = bank_ol()
-        return {"manba": b.manba, "mavzular": [{"raqam": r, "nom": m["nom"], "kitob": m["kitob"], "bob": m.get("bob") or "", "testlar": b.soni(r), "misol": len(m.get("misollar") or m["namunalar"])}
+        return {"manba": b.manba, "mavzular": [{"raqam": r, "nom": m["nom"], "kitob": m["kitob"], "bob": m.get("bob") or "", "dars": b.dars_ol(r) is not None, "testlar": b.soni(r), "misol": len(m.get("misollar") or m["namunalar"])}
                                               for r, m in sorted(b.mavzular.items())]}
 
     @router.get("/api/matbank/mavzu/{raqam}")
@@ -190,15 +217,29 @@ def create_router(platform):
             r = cur.fetchone() or {}
             return {"ko_rilgan": int(r.get("ko") or 0), "oxirgi_togri": int(r.get("ox") or 0)}
         mis = m.get("misollar") or []
-        return {"raqam": raqam, "nom": m["nom"], "kitob": m["kitob"], "bob": m.get("bob") or "", "qoida": m["qoida"], "turlar": m.get("turlar") or [],
+        return {"raqam": raqam, "nom": m["nom"], "kitob": m["kitob"], "bob": m.get("bob") or "", "dars": bank_ol().dars_ol(raqam) is not None, "qoida": m["qoida"], "turlar": m.get("turlar") or [],
                 "namunalar": [x["matn"] for x in mis] if mis else m["namunalar"], "misollar": [{"tur": x["tur"], "tip": x["tip"]} for x in mis],
                 "testlar": bank_ol().soni(raqam), "meniki": run(f)}
 
+    @router.get("/api/matbank/dars/{raqam}")
+    def dars(raqam: int, token: str = None, authorization: Optional[str] = Header(None)):
+        """Repetitor darsi: maqsad, tushuncha, misol tahlili (savol bankdan), xatolar, esda tut, o'zini tekshir (savol id lari)."""
+        uid(token, authorization)
+        d = bank_ol().dars_korinishi(raqam)
+        if not d:
+            raise HTTPException(404, "Bu mavzu uchun dars hali yo'q")
+        return d
+
     @router.get("/api/matbank/test")
     def test(token: str = None, mavzu: str = Query("", max_length=200), soni: int = Query(10, ge=1, le=SONI_ENG_KOP),
-             qiyinlik: str = Query("", max_length=1), authorization: Optional[str] = Header(None)):
+             qiyinlik: str = Query("", max_length=1), ids: str = Query("", max_length=400), authorization: Optional[str] = Header(None)):
         u = uid(token, authorization)
         b = bank_ol()
+        if ids.strip():      # aniq savollar (dars oxiridagi «o'zini tekshir»): faqat o'quvchiga beriladigan (nuqsonsiz) savollar
+            tanlangan = [x for x in dict.fromkeys(re.split(r"[,\s]+", ids.strip())) if x]
+            if not 1 <= len(tanlangan) <= SONI_ENG_KOP or any(x not in b.savol for x in tanlangan):
+                raise HTTPException(404, "Savollar topilmadi")
+            return {"soni": len(tanlangan), "savollar": [b.ommaviy(b.savol[x]) for x in tanlangan]}
         try:
             ml = [int(x) for x in re.split(r"[,\s]+", mavzu.strip()) if x]
         except ValueError:
