@@ -247,6 +247,11 @@ try:   # REV558: matematika banki (Tematika) — mavzular, qoidalar, 5 variantli
 except ImportError:
     from modules.mat_bank import create_router as create_mat_bank_router
 app.include_router(create_mat_bank_router(samtm_platform))
+try:   # REV560: o'quvchi pasporti — haqiqiy ma'lumotdan (matematika banki, xalqaro, faollik, esdan chiqarish)
+    from .modules.pasport import create_router as create_pasport_router
+except ImportError:
+    from modules.pasport import create_router as create_pasport_router
+app.include_router(create_pasport_router(samtm_platform))
 try:   # REV491: hisobni o'chirish (Play Market talabi)
     from .modules.hisob_ochirish import create_router as create_hisob_ochirish_router
 except ImportError:
