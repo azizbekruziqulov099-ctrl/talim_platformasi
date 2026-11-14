@@ -35,8 +35,10 @@ class Daraja(unittest.TestCase):
     def test_kam_malumotda_daraja_yoq(self):
         for foiz in (0, 50, 100):
             self.assertIsNone(P.daraja_nomi(foiz, 14))                  # 14 ta savol — daraja aytilmaydi
-        self.assertEqual([P.daraja_nomi(f, 15) for f in (90, 70, 50, 20)], ["yuqori", "yaxshi", "o‘rta", "past"])
-        self.assertEqual([P.daraja_nomi(f, 40) for f in (85, 84, 65, 64, 45, 44)], ["yuqori", "yaxshi", "yaxshi", "o‘rta", "o‘rta", "past"])
+        # chegaralar baho shkalasi bilan bir xil: 70+ A+, 65 A (yuqori) · 60 B+, 55 B (yaxshi) · 50 C+, 46 C (o'rta) · 46 dan past — past
+        for foiz, d in [(100, "yuqori"), (70, "yuqori"), (65, "yuqori"), (64.9, "yaxshi"), (55, "yaxshi"), (54.9, "o‘rta"), (46, "o‘rta"), (45.9, "past"), (0, "past")]:
+            self.assertEqual(P.daraja_nomi(foiz, 15), d, foiz)
+        self.assertEqual(P.daraja_nomi(82, 40), "yuqori")                              # 82% — baho A+ — daraja «yuqori» (avval «yaxshi» chiqib, A+ bilan ziddiyat bo'lardi)
 
 
 class Mavzular(unittest.TestCase):
@@ -54,8 +56,20 @@ class Mavzular(unittest.TestCase):
         self.assertEqual(m["ko_rilgan"], 21); self.assertEqual(m["jami_savol"], 170)
         # elementar = 1.1 va 1.2 mavzulari (1 va 7): 18 savol ko'rilgan → ishonchli; hozirgi = (10·100 + 8·25) / 18
         self.assertEqual(m["elementar"]["ko_rilgan"], 18); self.assertTrue(m["elementar"]["ishonchli"]); self.assertEqual(m["elementar"]["hozirgi"], round((10 * 100 + 8 * 25) / 18))
-        self.assertEqual(m["elementar"]["daraja"], "yaxshi")     # 67% ≥ 65
+        self.assertEqual(m["elementar"]["daraja"], "yuqori")     # 67% → baho A → yuqori
         self.assertEqual(sum(m["holatlar"].values()), 21)
+
+    def test_taxminiy_baho(self):
+        # daraja aytilgan (≥15 savol) bo'lsagina baho harfi beriladi; shkala: 70 A+, 65 A, 60 B+, 55 B, 50 C+, 46 C
+        q = [Q(f"a{i}", 1, ox=i < 11) for i in range(15)]                          # 11/15 = 73% → A+
+        m = P.matematika_bolimi(q, self.MAV, HOZIR); self.assertEqual((m["hozirgi"], m["baho"], m["elementar"]["baho"]), (73, "A+", "A+"))
+        q = [Q(f"a{i}", 1, ox=i < 8) for i in range(15)]                           # 8/15 = 53% → C+
+        self.assertEqual(P.matematika_bolimi(q, self.MAV, HOZIR)["baho"], "C+")
+        q = [Q(f"a{i}", 1, ox=i < 5) for i in range(15)]                           # 5/15 = 33% → C ga yetmadi
+        self.assertIsNone(P.matematika_bolimi(q, self.MAV, HOZIR)["baho"])
+        q = [Q(f"a{i}", 1) for i in range(14)]                                     # 14 savol — hammasi to'g'ri bo'lsa ham baho BERILMAYDI
+        m = P.matematika_bolimi(q, self.MAV, HOZIR); self.assertEqual((m["hozirgi"], m["daraja"], m["baho"]), (100, None, None))
+        self.assertIsNone(P.matematika_bolimi([], self.MAV, HOZIR)["baho"])
 
     def test_elementar_kam_savol(self):
         m = P.matematika_bolimi([Q(f"a{i}", 1) for i in range(5)], self.MAV, HOZIR)

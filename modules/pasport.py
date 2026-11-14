@@ -40,10 +40,13 @@ def savol_holati(oxirgi_togri, togri, kun):
 
 
 def daraja_nomi(foiz, n):
-    """Hozirgi holat foizi → daraja. Ma'lumot kam bo'lsa — None (aytilmaydi)."""
+    """Hozirgi holat foizi → daraja. Baho (Milliy sertifikat shkalasi) bilan bir xil chegaralar: A+/A — yuqori, B+/B — yaxshi, C+/C — o'rta, C ga yetmasa — past.
+    Ma'lumot kam bo'lsa — None (aytilmaydi)."""
     if n < ISHONCH_ENG_KAM:
         return None
-    return "yuqori" if foiz >= 85 else ("yaxshi" if foiz >= 65 else ("o‘rta" if foiz >= 45 else "past"))
+    from modules.mat_bank import baho_harfi
+    h = baho_harfi(float(foiz))
+    return "yuqori" if h in ("A+", "A") else ("yaxshi" if h in ("B+", "B") else ("o‘rta" if h in ("C+", "C") else "past"))
 
 
 def _kun(hozir, t):
@@ -69,6 +72,14 @@ def mavzu_statistikasi(qatorlar, mavzular, hozir):
     return out
 
 
+def taxminiy_baho(foiz, daraja):
+    """Taxminiy baho harfi (Milliy sertifikat shkalasi, foizdan): faqat daraja aytilgan (savol yetarli) bo'lsa; aks holda None."""
+    if daraja is None:
+        return None
+    from modules.mat_bank import baho_harfi
+    return baho_harfi(float(foiz))
+
+
 def matematika_bolimi(qatorlar, mavzular, hozir):
     ms = mavzu_statistikasi(qatorlar, mavzular, hozir)
     ko = len(qatorlar); jami = sum(m.get("jami", 0) for m in mavzular.values())
@@ -83,8 +94,8 @@ def matematika_bolimi(qatorlar, mavzular, hozir):
     nozik = sorted([m for m in ms if m["nozik"]], key=lambda m: (m["hozirgi"], -m["ko_rilgan"]))[:5]
     takror = sorted([m for m in ms if m["holatlar"]["takror"] + m["holatlar"]["unutilgan"] > 0], key=lambda m: -(m["holatlar"]["takror"] + m["holatlar"]["unutilgan"]))[:5]
     return {"ko_rilgan": ko, "jami_savol": jami, "qamrov": round(100 * ko / jami) if jami else 0, "hozirgi": hozirgi, "urinish": sum(int(q["urinish"]) for q in qatorlar),
-            "holatlar": h, "daraja": daraja_nomi(hozirgi, ko),
-            "elementar": {"ko_rilgan": el_ko, "jami": sum(m["jami"] for m in el), "hozirgi": el_hozirgi, "daraja": daraja_nomi(el_hozirgi, el_ko), "ishonchli": el_ko >= ISHONCH_ENG_KAM},
+            "holatlar": h, "daraja": daraja_nomi(hozirgi, ko), "baho": taxminiy_baho(hozirgi, daraja_nomi(hozirgi, ko)),
+            "elementar": {"ko_rilgan": el_ko, "jami": sum(m["jami"] for m in el), "hozirgi": el_hozirgi, "daraja": daraja_nomi(el_hozirgi, el_ko), "baho": taxminiy_baho(el_hozirgi, daraja_nomi(el_hozirgi, el_ko)), "ishonchli": el_ko >= ISHONCH_ENG_KAM},
             "mavzular": ms, "nozik": nozik, "takrorlash": takror}
 
 
