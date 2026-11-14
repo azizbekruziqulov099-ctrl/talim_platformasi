@@ -20,6 +20,10 @@ Romb — to'rt tomoni ham teng bo'lgan parallelogramm: $AB = BC = CD = DA = a$. 
 
 Shu sababli diagonallar rombni to'rtta teng to'g'ri burchakli uchburchakka ajratadi. Ularning katetlari $\frac{d_{1}}{2}$ va $\frac{d_{2}}{2}$, gipotenuzasi esa romb tomoni $a$.
 
+Chizmada $d_{1} = 6$, $d_{2} = 8$ bo'lgan romb masshtabda chizilgan. Yarim diagonallar $3$ va $4$, tomon esa $5$ (3–4–5 uchburchak):
+
+[[CHIZMA: romb a=5 d1=6 d2=8]]
+
 ### 3. Tomon va diagonallar orasidagi bog'lanish
 To'g'ri burchakli uchburchakka Pifagor teoremasini qo'llaymiz: $\left( \frac{d_{1}}{2} \right)^{2} + \left( \frac{d_{2}}{2} \right)^{2} = a^{2}$, ya'ni $d_{1}^{2} + d_{2}^{2} = 4a^{2}$.
 
@@ -28,7 +32,9 @@ To'g'ri burchakli uchburchakka Pifagor teoremasini qo'llaymiz: $\left( \frac{d_{
 2. Tomon va unga tushirilgan balandlik ma'lum bo'lsa: $S = ah$.
 3. Tomon va burchak ma'lum bo'lsa: $S = a^{2} \sin\alpha$.
 
-Qaysi formulani olishni masalada nima berilganiga qarab tanlang.
+Qaysi formulani olishni masalada nima berilganiga qarab tanlang. Quyidagi chizmada balandlik $h = 4{,}8$ (punktir chiziq); tekshiring: $S = ah = 5 \cdot 4{,}8 = 24$ va $S = \frac{1}{2} \cdot 6 \cdot 8 = 24$ — ikkala usul bir xil javob beradi:
+
+[[CHIZMA: romb a=5 d1=6 d2=8 h=4.8]]
 
 ### 5. O'xshash rombar
 O'xshashlik koeffitsiyenti $k$ bo'lsa, chiziqli o'lchamlar (tomon, diagonal, perimetr) $k$ marta, yuza esa $k^{2}$ marta farq qiladi.
@@ -43,7 +49,25 @@ G'OYA: Yuza formulasi $S = \frac{1}{2} d_{1} d_{2}$ dan noma'lum diagonalni ajra
 
 JAVOB: D
 
-### Misol 2 | TUR 2 | (97-3-47)
+### Misol 2 | TUR 3 | (96-7-48)
+G'OYA: Diagonal romb burchagini teng ikkiga bo'lgani uchun, diagonal bilan tomon orasidagi burchak romb burchagining yarmiga teng.
+
+1-qadam. Rombning o'tkir burchagi: $2 \cdot 25^{\circ} = 50^{\circ}$.
+
+2-qadam. Qo'shni burchaklar yig'indisi $180^{\circ}$, shuning uchun katta burchak $180^{\circ} - 50^{\circ} = 130^{\circ}$.
+
+JAVOB: C
+
+### Misol 3 | TUR 7 | (97-9-114)
+G'OYA: O'xshash figuralar yuzalarining nisbati o'xshashlik koeffitsiyentining kvadratiga teng.
+
+1-qadam. Tomonlar nisbati $k = 3$.
+
+2-qadam. Yuzalar nisbati $\frac{S_{1}}{S_{2}} = k^{2} = 3^{2} = 9$.
+
+JAVOB: E
+
+### Misol 4 | TUR 2 | (97-3-47)
 G'OYA: Avval ikkinchi diagonalni yuzadan topamiz, keyin yarim diagonallar bilan Pifagor teoremasini qo'llab tomonni hisoblaymiz.
 
 1-qadam. $d_{2} = \frac{2S}{d_{1}} = \frac{2 \cdot 24}{6} = 8$.
@@ -54,17 +78,10 @@ G'OYA: Avval ikkinchi diagonalni yuzadan topamiz, keyin yarim diagonallar bilan 
 
 JAVOB: B
 
-### Misol 3 | TUR 3 | (96-7-48)
-G'OYA: Diagonal romb burchagini teng ikkiga bo'lgani uchun, diagonal bilan tomon orasidagi burchak romb burchagining yarmiga teng.
-
-1-qadam. Rombning o'tkir burchagi: $2 \cdot 25^{\circ} = 50^{\circ}$.
-
-2-qadam. Qo'shni burchaklar yig'indisi $180^{\circ}$, shuning uchun katta burchak $180^{\circ} - 50^{\circ} = 130^{\circ}$.
-
-JAVOB: C
-
-### Misol 4 | TUR 5 | (97-7-44)
+### Misol 5 | TUR 5 | (97-7-44)
 G'OYA: Balandlik tomonni teng ikkiga bo'lsa, hosil bo'lgan to'g'ri burchakli uchburchakda gipotenuza $a$, bir katet $\frac{a}{2}$, ikkinchi katet balandlik $h$ bo'ladi.
+
+[[CHIZMA: romb a=6 burchak=60 h=5.196]]
 
 1-qadam. Pifagor teoremasi: $a^{2} = \left( \frac{a}{2} \right)^{2} + h^{2}$, bunda $h = 3\sqrt{3}$, ya'ni $h^{2} = 27$.
 
@@ -73,15 +90,6 @@ G'OYA: Balandlik tomonni teng ikkiga bo'lsa, hosil bo'lgan to'g'ri burchakli uch
 3-qadam. Perimetr $P = 4a = 4 \cdot 6 = 24$.
 
 JAVOB: B
-
-### Misol 5 | TUR 7 | (97-9-114)
-G'OYA: O'xshash figuralar yuzalarining nisbati o'xshashlik koeffitsiyentining kvadratiga teng.
-
-1-qadam. Tomonlar nisbati $k = 3$.
-
-2-qadam. Yuzalar nisbati $\frac{S_{1}}{S_{2}} = k^{2} = 3^{2} = 9$.
-
-JAVOB: E
 
 ## KO'P UCHRAYDIGAN XATOLAR
 1. Romb yuzini $S = a \cdot a$ deb olish. Bu faqat kvadrat uchun to'g'ri. Romb uchun $S = a^{2} \sin\alpha$: faqat $\alpha = 90^{\circ}$ bo'lganda kvadrat yuzi chiqadi.

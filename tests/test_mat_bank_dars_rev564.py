@@ -74,8 +74,8 @@ class Server(unittest.TestCase):
 
     def test_dars_korinishi(self):
         d = self.b.dars_korinishi(100)
-        self.assertEqual([x["manba"] for x in d["misollar"]], ["96-6-38", "97-3-47", "96-7-48", "97-7-44", "97-9-114"])
-        self.assertEqual([x["nom"] for x in d["misollar"]][:2], ["Misol 1 · TUR 1", "Misol 2 · TUR 2"])
+        self.assertEqual([x["manba"] for x in d["misollar"]], ["96-6-38", "96-7-48", "97-9-114", "97-3-47", "97-7-44"])        # oson → o'rta (tekshiruvchi qiyinlik tartibini talab qiladi)
+        self.assertEqual([x["nom"] for x in d["misollar"]][:2], ["Misol 1 · TUR 1", "Misol 2 · TUR 3"])
         self.assertIn("Rombning yuzi $18$ ga", d["misollar"][0]["savol"]); self.assertEqual(len(d["misollar"][0]["variantlar"]), 5)         # savol bankdan qo'yildi
         self.assertEqual(len(d["tekshir_ids"]), 4); self.assertTrue(all(i in self.b.savol for i in d["tekshir_ids"]))
         self.assertIsNone(self.b.dars_korinishi(31)); self.assertIsNone(self.b.dars_korinishi(999))
@@ -124,3 +124,71 @@ class VirtualDoskaVaTarix(unittest.TestCase):
         for q in vid:
             mv = D.VID_QATOR.match(q); self.assertIsNone(D.vidjet_xatosi(mv.group(1), mv.group(2)), q)
         self.assertIn("rombos", b.dars_korinishi(100)["tarix"])
+
+
+class RepetitorTahlili(unittest.TestCase):
+    """REV566: «repetitor darajasi» sifat tekshiruvi — ogohlantirishlar (xato emas) va formula chizilishi."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.md = open(NAMUNA, encoding="utf8").read()
+
+    def test_lx_norm_teng_yozuvlar(self):
+        for a, b in [(r"d_{1} \bot d_{2}", r"d_1 \perp d_2"), (r"\lbrack a;b\rbrack", "[a;b]"), (r"F\prime(x)", "F'(x)"), (r"\left( a+b \right)^{2}", "(a+b)^2"), (r"a \cdot b", "a*b"), (r"x \geqslant 0", r"x \ge 0"),
+                     (r"\operatorname{tg} kx", "tg kx"), (r"\dfrac{1}{2}", r"\frac{1}{2}"), (r"\frac{1}{2}", r"\frac12")]:
+            self.assertEqual(D.lx_norm(a), D.lx_norm(b), (a, b))
+        self.assertNotEqual(D.lx_norm("a^2+b^2"), D.lx_norm("a^2-b^2"))
+        self.assertEqual(D._qavssiz("(n \\neq -1)"), "n \\neq -1"); self.assertEqual(D._qavssiz("(a+b)(c+d)"), "(a+b)(c+d)"); self.assertEqual(D.formulalar("$a,\\quad b$ va $$c.$$"), ["a", "b", "c"])
+
+    def test_namuna_darslar_toza(self):
+        _, xato, ogoh = ishla(self.md)
+        self.assertEqual(xato, []); self.assertEqual([o for o in ogoh if "KaTeX" not in o], [])        # o'zim yozgan namuna ogohlantirishsiz
+
+    def test_ogohlantirishlar(self):
+        # qoida formulasi tushib qolsa
+        d = self.md.replace("$S = \\frac{1}{2} d_{1} d_{2}$", "yuza").replace("$S = \\frac{1}{2} d_{1} d_{2} = ah = a^{2} \\sin\\alpha$", "yuza")
+        og = ishla(d)[2]; self.assertTrue(any("qoidaning" in o and "formulasi" in o for o in og), og)
+        # misollar tartibi buzilsa (qiyin oldin)
+        i = self.md.index("### Misol 1"); j = self.md.index("### Misol 4")
+        og = ishla(self.md[:i] + self.md[j:self.md.index("### Misol 5")] + self.md[i:j] + self.md[self.md.index("### Misol 5"):])[2]; self.assertTrue(any("qiyinligi oshib bormaydi" in o for o in og), og)
+        # uzun gap
+        og = ishla(self.md.replace("## MAQSAD\n", "## MAQSAD\n" + ("juda " * 40) + "uzun gap.\n", 1))[2]; self.assertTrue(any("30 so'zdan uzun" in o for o in og), og)
+        # tarix va doska yo'q
+        s84 = open(NAMUNA.replace("100_100", "84_84"), encoding="utf8").read()
+        og = ishla(s84[:s84.index("## MATEMATIKA TARIXI")] + s84[s84.index("## O'ZINI TEKSHIR"):], raqam=84)[2]; self.assertTrue(any("MATEMATIKA TARIXI" in o for o in og), og)
+        og = ishla(re.sub(r"\[\[[A-Z_]+.*?\]\]", "", s84), raqam=84)[2]; self.assertTrue(any("virtual doska tavsiya" in o for o in og), og)
+        # o'rta misolda 3 qadamdan kam
+        og = ishla(re.sub(r"\n3-qadam\. [^\n]*\n", "\n", self.md.replace("### Misol 4 |", "### Misol 4 |"), count=0))[2]; self.assertTrue(any("kamida 3 qadam" in o for o in og), og)
+
+    def test_formula_chizilishi(self):
+        if not D.katex_yoli():
+            self.skipTest("KaTeX topilmadi")
+        chiz = D.formula_chizilmaganlar(["$a^{2}$ va $\\frac{1}{2}$", "$\\unknowncommand{x}$"])
+        self.assertEqual(len(chiz), 1); self.assertIn("unknowncommand", chiz[0])
+        self.assertEqual(D.formula_chizilmaganlar([self.md]), [])
+        _, xato, _ = ishla(self.md.replace("$S = \\frac{1}{2} d_{1} d_{2}$.", "$S = \\frac{1}{2} \\notacommand$.", 1)); self.assertTrue(any("formula chizilmaydi" in x for x in xato), xato)
+
+
+class ChizmaDarsda(unittest.TestCase):
+    """REV566: [[CHIZMA: …]] — tekshiruv, hisoblangan shaklni darsga yozish, ogohlantirish."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.md = open(NAMUNA, encoding="utf8").read()
+
+    def test_chizma_qatori(self):
+        self.assertIsNone(D.vidjet_xatosi("CHIZMA", "romb a=5 d1=6 d2=8")); self.assertIn("zid", D.vidjet_xatosi("CHIZMA", "romb a=5 d1=6 d2=7")); self.assertIn("noma'lum shakl", D.vidjet_xatosi("CHIZMA", "xyz a=1"))
+        d, xato, _ = ishla(self.md); self.assertEqual(xato, []); self.assertEqual(sorted(d["darslar"]["100"]["geo"]), ["romb a=5 d1=6 d2=8", "romb a=5 d1=6 d2=8 h=4.8", "romb a=6 burchak=60 h=5.196"])
+        f = d["darslar"]["100"]["geo"]["romb a=5 d1=6 d2=8"]; self.assertEqual({k["a"] + k["b"]: k["yozuv"] for k in f["kesmalar"] if k["yozuv"]}, {"AB": "5", "AC": "8", "BD": "6"})
+
+    def test_zid_chizma_darsni_rad_etadi(self):
+        _, xato, _ = ishla(self.md.replace("[[CHIZMA: romb a=5 d1=6 d2=8]]", "[[CHIZMA: romb a=5 d1=6 d2=7]]", 1)); self.assertTrue(any("zid" in x for x in xato), xato)
+        _, xato, _ = ishla(self.md.replace("[[CHIZMA: romb a=5 d1=6 d2=8]]", "[[CHIZMA: uchburchak a=1 b=2 c=5]]", 1)); self.assertTrue(any("uchburchak bo'lmaydi" in x for x in xato), xato)
+
+    def test_pandoc_yozuvi_va_ogohlantirish(self):
+        d, xato, _ = ishla(self.md.replace("[[CHIZMA: romb a=5 d1=6 d2=8]]", "\\[\\[CHIZMA: togri\\_uchburchak a=3 b=4\\]\\]", 1)); self.assertEqual(xato, []); self.assertIn("togri_uchburchak a=3 b=4", d["darslar"]["100"]["geo"])
+        og = ishla(re.sub(r"\[\[CHIZMA:[^\]]*\]\]", "", self.md))[2]; self.assertTrue(any("aniq chizma tavsiya" in o for o in og), og)       # geometriya mavzusida chizma yo'q
+        self.assertFalse(any("aniq chizma tavsiya" in o for o in ishla(self.md)[2]))
+
+    def test_server_geo_beradi(self):
+        d = mb.bank_ol().dars_korinishi(100); self.assertEqual(len(d["geo"]), 3); self.assertEqual(mb.bank_ol().dars_korinishi(84)["geo"], {})

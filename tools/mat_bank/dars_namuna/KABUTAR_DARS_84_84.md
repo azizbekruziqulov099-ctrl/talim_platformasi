@@ -25,12 +25,18 @@ Bu yerda $F$ — $f$ ning ixtiyoriy boshlang'ich funksiyasi; doimiy $C$ ayirishd
 1. $\int_{a}^{a} f(x)\, dx = 0$.
 2. $\int_{a}^{b} f(x)\, dx = - \int_{b}^{a} f(x)\, dx$.
 3. $\int_{a}^{b} f(x)\, dx = \int_{a}^{c} f(x)\, dx + \int_{c}^{b} f(x)\, dx$.
-4. $\int_{a}^{b} k f(x)\, dx = k \int_{a}^{b} f(x)\, dx$, yig'indining integrali integrallar yig'indisiga teng.
+4. Chiziqlilik: $\int_{a}^{b} \left( \alpha f(x) + \beta g(x) \right) dx = \alpha \int_{a}^{b} f(x)\, dx + \beta \int_{a}^{b} g(x)\, dx$. Ya'ni doimiy ko'paytuvchi integral belgisidan chiqadi, yig'indining integrali integrallar yig'indisiga teng.
+5. Agar $[a;b]$ kesmada $f(x) \geq 0$ bo'lsa, $\int_{a}^{b} f(x)\, dx \geq 0$.
 
 ### 4. Ko'p ishlatiladigan formulalar
 1. $\int_{a}^{b} x^{n}\, dx = \frac{b^{n+1} - a^{n+1}}{n + 1}$ ($n \neq -1$).
 2. $\int_{a}^{b} \sin x\, dx = \cos a - \cos b$ va $\int_{a}^{b} \cos x\, dx = \sin b - \sin a$.
-3. $\int_{a}^{b} \frac{dx}{x} = \ln b - \ln a$ ($a > 0$, $b > 0$).
+3. $\int_{a}^{b} \frac{dx}{x} = \ln \left| \frac{b}{a} \right|$ ($a$ va $b$ bir xil ishorali).
+4. $k \neq 0$ bo'lganda:
+
+$$\int_{a}^{b} \sin kx\, dx = \left[ -\frac{\cos kx}{k} \right]_{a}^{b}, \quad \int_{a}^{b} \cos kx\, dx = \left[ \frac{\sin kx}{k} \right]_{a}^{b}.$$
+
+$$\int_{a}^{b} \frac{dx}{\cos^{2} kx} = \left[ \frac{\operatorname{tg} kx}{k} \right]_{a}^{b}, \quad \int_{a}^{b} \frac{dx}{\sin^{2} kx} = \left[ -\frac{\operatorname{ctg} kx}{k} \right]_{a}^{b}.$$
 
 Misol uchun $\sin x$ ning $0$ dan $\pi$ gacha bo'lgan yuzi aynan $2$ ga teng:
 
@@ -40,6 +46,14 @@ Misol uchun $\sin x$ ning $0$ dan $\pi$ gacha bo'lgan yuzi aynan $2$ ga teng:
 $|f(x)|$ qatnashsa, modul ichidagi ifoda ishorasini o'zgartiradigan nuqtalarda oraliqni bo'lamiz: $f(x) \geq 0$ bo'lgan joyda $|f(x)| = f(x)$, $f(x) < 0$ bo'lgan joyda $|f(x)| = - f(x)$. Grafikda modul pastdagi qismni yuqoriga "buklaydi":
 
 [[GRAFIK: abs(x-a) | a=2 | -1..5 | -1..4]]
+
+### 6. Yuqori chegarasi o'zgaruvchi integral
+Integralning yuqori chegarasi $x$ bo'lsa, u $x$ ning funksiyasi bo'ladi va uning hosilasi integral ostidagi funksiyaga teng:
+
+$$\frac{d}{dx} \left( \int_{a}^{x} f(t)\, dt \right) = f(x).$$
+
+### 7. Fizik ma'nosi: bosib o'tilgan yo'l
+Nuqta $v(t)$ tezlik bilan harakat qilsa, $[t_{1}; t_{2}]$ vaqt oralig'ida bosib o'tilgan yo'l $S = \int_{t_{1}}^{t_{2}} |v(t)|\, dt$. Agar $v(t) \geq 0$ bo'lsa, modul belgisi kerak emas.
 
 ## MISOL TAHLILI
 ### Misol 1 | (97-3-31)
