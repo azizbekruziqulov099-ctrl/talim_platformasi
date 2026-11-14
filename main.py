@@ -252,6 +252,11 @@ try:   # REV560: o'quvchi pasporti — haqiqiy ma'lumotdan (matematika banki, xa
 except ImportError:
     from modules.pasport import create_router as create_pasport_router
 app.include_router(create_pasport_router(samtm_platform))
+try:   # REV561: Kabu-bot — AI'siz, pasportdagi haqiqiy ma'lumotdan (o'quvchi va o'qituvchi miyasi, masalani yechmaydi, eslatma va formula takrorlash)
+    from .modules.kabu_bot import create_router as create_kabu_bot_router
+except ImportError:
+    from modules.kabu_bot import create_router as create_kabu_bot_router
+app.include_router(create_kabu_bot_router(samtm_platform))
 try:   # REV491: hisobni o'chirish (Play Market talabi)
     from .modules.hisob_ochirish import create_router as create_hisob_ochirish_router
 except ImportError:
