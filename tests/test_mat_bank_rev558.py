@@ -136,6 +136,12 @@ class Baholash(unittest.TestCase):
         self.assertTrue(d[ids[0]]["togri"] and not d[ids[1]]["togri"] and not d[ids[2]]["togri"] and d[ids[3]]["togri"])
         self.assertEqual(d[ids[1]]["javob"], t[1]); self.assertEqual(d[ids[2]]["tanlandi"], "")
         self.assertFalse(mb.baholash(self.b, {ids[0]: "Z"})["natija"][0]["togri"])        # noto'g'ri harf — xato
+        self.assertIsNone(d[ids[0]]["yechim"])        # yechim yo'li hozircha yo'q (GPT tayyorlagach shu maydon to'ladi)
+        t0 = self.b.savol[ids[0]]; t0["yechim"] = "1-qadam. …"
+        try:
+            self.assertEqual(mb.baholash(self.b, {ids[0]: t0["javob"]})["natija"][0]["yechim"], "1-qadam. …")
+        finally:
+            del t0["yechim"]
         with self.assertRaises(ValueError):
             mb.baholash(self.b, {"T999-9-999": "A"})
         self.assertEqual(mb.baholash(self.b, {})["foiz"], 0)

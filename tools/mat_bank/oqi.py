@@ -134,6 +134,8 @@ def blokni_oqi(satrlar):
                 joriy["_qator"].append("")
             elif holat == "namuna":
                 namuna_joriy.append("")
+            elif holat == "qoida":
+                qoida.append("")          # abzatslar chegarasi saqlanadi (aks holda misolning savoli, variantlari va yechimi yopishib qoladi)
             continue
         bosh = re.sub(r"^#+\s*", "", bold_yech(t)).strip()
         sar = t.startswith("#")
@@ -194,7 +196,7 @@ def blokni_oqi(satrlar):
             namuna_joriy.append(t); continue
         qoida.append(t)
     yop_test()
-    return qoida, namuna, bloklar
+    return [x for x in qoida], namuna, bloklar
 
 
 def mavzularni_oqi(md):
@@ -212,8 +214,8 @@ def mavzularni_oqi(md):
                 m = re.search(r"Kitobdagi bo.lim:\**\s*(\d+\.\d+\.\d+)", q)
                 if m:
                     kitob = m.group(1)
-        mavzular.append({"raqam": raqam, "kitob": kitob, "nom": nom, "oila": oila, "qoida": "\n".join(qoida).strip(),
-                         "namunalar": ["\n".join(x).strip() for x in namuna if any(x)], "bloklar": bloklar})
+        mavzular.append({"raqam": raqam, "kitob": kitob, "nom": nom, "oila": oila, "qoida": re.sub(r"\n{3,}", "\n\n", "\n".join(qoida)).strip(),
+                         "namunalar": [re.sub(r"\n{3,}", "\n\n", "\n".join(x)).strip() for x in namuna if any(x)], "bloklar": bloklar})
     return mavzular
 
 

@@ -93,7 +93,7 @@ def baholash(bank, javoblar):
         h = str(h or "").strip().upper()[:1]
         ok = bool(h) and h in HARFLAR and h == t["javob"]
         togri += int(ok)
-        natija.append({"id": sid, "togri": ok, "javob": t["javob"], "tanlandi": h if h in HARFLAR else ""})
+        natija.append({"id": sid, "togri": ok, "javob": t["javob"], "tanlandi": h if h in HARFLAR else "", "yechim": t.get("yechim") or None})
     jami = len(natija)
     return {"natija": natija, "togri": togri, "jami": jami, "foiz": round(100 * togri / jami) if jami else 0}
 
