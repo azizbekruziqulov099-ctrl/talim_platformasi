@@ -87,3 +87,40 @@ class Server(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VirtualDoskaVaTarix(unittest.TestCase):
+    """REV565: dars matnidagi [[GRAFIK/INTEGRAL/BIRLIK_AYLANA/DOSKA]] qatorlari va ixtiyoriy MATEMATIKA TARIXI bo'limi."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.md = open(NAMUNA, encoding="utf8").read()
+
+    def test_vidjet_qatorlari(self):
+        for tur, arg in [("GRAFIK", "a*x^2+b*x+c | a=1, b=-2, c=-3 | -4..6 | -5..8"), ("GRAFIK", "sin(x)"), ("INTEGRAL", "x^2 | 0..2 | -1..3 | -1..5"), ("INTEGRAL", "sin(x) | 0..3.1416"), ("BIRLIK_AYLANA", "45"), ("BIRLIK_AYLANA", ""), ("DOSKA", ""), ("GRAFIK", "y=2x+1")]:
+            self.assertIsNone(D.vidjet_xatosi(tur, arg), (tur, arg))
+        for tur, arg, soz in [("RASM", "x", "noma'lum"), ("GRAFIK", "", "ifoda"), ("GRAFIK", "x^2=4", "ifoda"), ("GRAFIK", "(x+1", "qavs"), ("GRAFIK", "a+b", "x yo'q"), ("GRAFIK", "x; alert(1)", "ifoda"), ("GRAFIK", "x^2 | 6..-4", "oraliq"),
+                              ("GRAFIK", "a*x | a=1,5", "parametr"), ("INTEGRAL", "x^2", "chegaralari"), ("INTEGRAL", "x^2 | 2..0", "oraliq"), ("BIRLIK_AYLANA", "400", "0–360"), ("BIRLIK_AYLANA", "abc", "son"), ("GRAFIK", "x" * 130, "ifoda")]:
+            self.assertIn(soz, D.vidjet_xatosi(tur, arg), (tur, arg))
+
+    def test_darsdagi_vidjet_va_tarix(self):
+        md = self.md.replace("## TUSHUNCHA\n", "## TUSHUNCHA\n[[GRAFIK: x^2 | -3..3]]\n", 1)
+        self.assertEqual(ishla(md)[1], [])
+        _, xato, _ = ishla(self.md.replace("## TUSHUNCHA\n", "## TUSHUNCHA\n[[GRAFIK: x^ 2= | -3..3]]\n", 1)); self.assertTrue(any("TUSHUNCHA" in x and "ifoda" in x for x in xato))
+        _, xato, _ = ishla(self.md.replace("## TUSHUNCHA\n", "## TUSHUNCHA\n[[XYZ: x]]\n", 1)); self.assertTrue(any("noma'lum virtual doska" in x for x in xato))
+        d, xato, _ = ishla(self.md.replace("## TUSHUNCHA\n", "## TUSHUNCHA\n\\[\\[GRAFIK: a\\*x^2 | a=1\\]\\]\n", 1)); self.assertEqual(xato, [])       # pandoc yozuvi (\[\[ … \]\], \*) ham qabul
+        self.assertIn("rombos", d["darslar"]["100"]["tarix"])
+        _, xato, _ = ishla(self.md.replace("## O'ZINI TEKSHIR", "## MATEMATIKA TARIXI\n" + "uzun gap. " * 200 + "\n\n## O'ZINI TEKSHIR") if "MATEMATIKA TARIXI" not in self.md else self.md.replace("## O'ZINI TEKSHIR", "uzun gap. " * 200 + "\n\n## O'ZINI TEKSHIR"))
+        self.assertTrue(any("MATEMATIKA TARIXI" in x for x in xato))
+        d0, xato0, _ = ishla(self.md.replace(self.md[self.md.index("## MATEMATIKA TARIXI"):self.md.index("## O'ZINI TEKSHIR")], ""))   # tarix ixtiyoriy
+        self.assertEqual((xato0, d0["darslar"]["100"]["tarix"]), ([], ""))
+
+    def test_haqiqiy_darslar_va_server(self):
+        b = mb.bank_ol(); d = b.dars_korinishi(84)
+        self.assertEqual([x["manba"] for x in d["misollar"]], ["97-3-31", "96-9-82", "97-1-62", "96-1-31", "97-2-49"])
+        self.assertIn("Arximed", d["tarix"]); self.assertEqual(len(d["tekshir_ids"]), 4)
+        vid = [q.strip() for t in d["tushuncha"] for q in t["matn"].split("\n") if q.strip().startswith("[[")]
+        self.assertEqual(len(vid), 3)
+        for q in vid:
+            mv = D.VID_QATOR.match(q); self.assertIsNone(D.vidjet_xatosi(mv.group(1), mv.group(2)), q)
+        self.assertIn("rombos", b.dars_korinishi(100)["tarix"])

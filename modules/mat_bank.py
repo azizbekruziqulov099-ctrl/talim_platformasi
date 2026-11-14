@@ -85,7 +85,7 @@ class Bank:
                 mis.append(dict(x, savol=t["savol"], variantlar=t["variantlar"], qiyinlik=t.get("qiyinlik") or None))
         tek = [kod[k]["id"] for k in d["tekshir_manbalar"] if k in kod]
         return {"raqam": int(raqam), "nom": d["nom"], "bob": d.get("bob") or "", "maqsad": d["maqsad"], "oldin_bil": d["oldin_bil"], "tushuncha": d["tushuncha"],
-                "misollar": mis, "xatolar": d["xatolar"], "esda_tut": d["esda_tut"], "tekshir_ids": tek}
+                "misollar": mis, "xatolar": d["xatolar"], "esda_tut": d["esda_tut"], "tarix": d.get("tarix") or "", "tekshir_ids": tek}
 
     def soni(self, raqam):
         """Mavzudagi o'quvchiga beriladigan testlar soni."""

@@ -94,5 +94,8 @@ JAVOB: E
 - $d_{1}^{2} + d_{2}^{2} = 4a^{2}$; diagonallar perpendikulyar va burchaklarni teng ikkiga bo'ladi
 - O'xshashlik: perimetr $k$ marta, yuza $k^{2}$ marta
 
+## MATEMATIKA TARIXI
+«Romb» so'zi qadimgi yunoncha «rombos» (ῥόμβος) so'zidan kelib chiqqan: u aylantiriladigan buyum, masalan pirildoq ma'nosini bergan. Evklid «Negizlar» asarining 1-kitobida (22-ta'rif) rombni to'rt tomoni teng, lekin burchaklari to'g'ri bo'lmagan to'rtburchak deb ta'riflagan. Yuzani diagonallar bo'yicha topish formulasi $S = \frac{1}{2} d_{1} d_{2}$ rombni to'rtta teng to'g'ri burchakli uchburchakka ajratish g'oyasidan kelib chiqadi.
+
 ## O'ZINI TEKSHIR
 (96-7-47) (97-7-47) (97-10-47) (97-10-48)

@@ -15,8 +15,47 @@ Taxmin qilib bo'lmaydigan narsa: nazariya matnining ILMIY TO'G'RILIGI — uni da
 import json, os, re, subprocess, sys
 
 BOLIMLAR = ["MAQSAD", "OLDIN BIL", "TUSHUNCHA", "MISOL TAHLILI", "KO'P UCHRAYDIGAN XATOLAR", "ESDA TUT", "O'ZINI TEKSHIR"]
+IXTIYORIY = ["MATEMATIKA TARIXI"]      # ixtiyoriy: bo'sh vaqtda o'qish uchun qisqa tarixiy ma'lumot (3–8 gap; aniq ism, sana, asar — ishonchsiz bo'lsa [TEKSHIR])
+TARIX_ENG_UZUN = 1600
+VIDJETLAR = {"GRAFIK", "INTEGRAL", "BIRLIK_AYLANA", "DOSKA"}      # virtual doska: frontend src/matbank/vidjetRules.js bilan bir xil qoidalar
+VID_QATOR = re.compile(r"^\s*\[\[\s*([A-Z_]+)\s*(?::\s*(.*?))?\s*\]\]\s*$")
+SON = r"-?\d+(?:[.,]\d+)?"
 TEKSHIR = r"\\?\[TEKSHIR\\?\]"
 KOD = re.compile(r"\((\d{2,4}-\d+-\d+)\)")
+
+
+def vidjet_xatosi(tur, arg):
+    """[[TUR: arg]] qatori to'g'rimi → xato matni yoki None. Ifodaning MA'NOSINI frontend testi tekshiradi; bu yerda — tuzilma, belgilar, qavslar, oraliq va parametrlar."""
+    if tur not in VIDJETLAR:
+        return f"noma'lum virtual doska: {tur}"
+    arg = (arg or "").strip()
+    if tur == "DOSKA":
+        return None
+    if tur == "BIRLIK_AYLANA":
+        try:
+            v = float(arg.replace(",", ".")) if arg else 30.0
+        except ValueError:
+            return "BIRLIK_AYLANA: burchak son bo'lsin"
+        return None if 0 <= v <= 360 else "BIRLIK_AYLANA: burchak 0–360 bo'lsin"
+    bo = [x.strip() for x in arg.split("|")]
+    ifoda = re.sub(r"^\s*[yf](\(x\))?\s*=\s*", "", bo[0], flags=re.I)
+    if not ifoda or len(ifoda) > 120 or not re.fullmatch(r"[0-9A-Za-z+\-*/^().,\sπ]+", ifoda) or "=" in ifoda:
+        return f"{tur}: ifoda noto'g'ri («{bo[0]}»)"
+    if ifoda.count("(") != ifoda.count(")") or not re.search(r"\bx\b|(?<![A-Za-z])x(?![A-Za-z])", ifoda):
+        return f"{tur}: ifodada qavslar teng emas yoki x yo'q («{bo[0]}»)"
+    oraliqlar = 0
+    for q in bo[1:]:
+        if "=" in q:
+            if not all(re.fullmatch(r"\s*[A-Za-z]\s*=\s*-?\d+(?:\.\d+)?\s*", x) for x in q.split(",")):
+                return f"{tur}: parametr «{q}» noto'g'ri («a=1, b=-2»; o'nli kasr — nuqta bilan)"
+            continue
+        m = re.fullmatch(rf"({SON})\s*\.\.\s*({SON})", q)
+        if not m or float(m.group(1).replace(",", ".")) >= float(m.group(2).replace(",", ".")):
+            return f"{tur}: oraliq «{q}» noto'g'ri («-4..6», birinchi son kichik)"
+        oraliqlar += 1
+    if tur == "INTEGRAL" and oraliqlar < 1:
+        return "INTEGRAL: integral chegaralari kerak («0..2»)"
+    return None
 
 
 def norm_nom(s):
@@ -114,6 +153,17 @@ def tekshir_va_qosh(bank, raqam, r, dars):
             xato.append(f"o'zini tekshir ({k}): nuqsonli ([TEKSHIR]) test")
         elif k in ishlatilgan:
             xato.append(f"o'zini tekshir ({k}): bu savol misolda yechib bo'lingan — boshqa savol tanlang")
+    tarix = (r["bolim"].get("MATEMATIKA TARIXI") or "").strip()
+    if len(tarix) > TARIX_ENG_UZUN:
+        xato.append(f"MATEMATIKA TARIXI {TARIX_ENG_UZUN} belgidan oshmasin (hozir {len(tarix)}): qisqa va aniq yozing")
+    for nom_, matn_ in r["bolim"].items():
+        for qator in matn_.split("\n"):
+            q2 = re.sub(r"\\([\[\]_*^])", r"\1", qator)
+            mv = VID_QATOR.match(q2)
+            if mv:
+                e = vidjet_xatosi(mv.group(1), mv.group(2))
+                if e:
+                    xato.append(f"{nom_}: «{qator.strip()[:60]}» — {e}")
     xat = [x for x in re.split(r"\n(?=\s*\d+\\?\.\s)", r["bolim"]["KO'P UCHRAYDIGAN XATOLAR"]) if x.strip()]
     if len(xat) < 2:
         xato.append("KO'P UCHRAYDIGAN XATOLAR da kamida 2 ta band («1. … 2. …») bo'lsin")
@@ -124,7 +174,7 @@ def tekshir_va_qosh(bank, raqam, r, dars):
     butun = "\n".join(r["bolim"].values())
     d = {"nom": m["nom"], "bob": r["bob"] or m.get("bob") or "", "maqsad": r["bolim"]["MAQSAD"], "oldin_bil": r["bolim"]["OLDIN BIL"],
          "tushuncha": [{"sarlavha": a, "matn": b} for a, b in tush], "misollar": mis, "xatolar": r["bolim"]["KO'P UCHRAYDIGAN XATOLAR"], "esda_tut": r["bolim"]["ESDA TUT"],
-         "tekshir_manbalar": tek, "tekshir": bool(re.search(TEKSHIR, butun))}
+         "tekshir_manbalar": tek, "tarix": tarix, "tekshir": bool(re.search(TEKSHIR, butun))}
     dars.setdefault("darslar", {})[str(raqam)] = d
     if d["tekshir"]:
         ogoh.append("darsda [TEKSHIR] belgisi bor: saqlandi, lekin o'quvchiga ko'rsatilmaydi")
