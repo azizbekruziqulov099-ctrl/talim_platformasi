@@ -242,6 +242,11 @@ try:   # REV543: Kabu loyiha portfeli serverda + qo'lda yasash (rasm, ota-ona/o'
 except ImportError:
     from modules.loyiha_portfel import create_router as create_loyiha_portfel_router
 app.include_router(create_loyiha_portfel_router(samtm_platform))
+try:   # REV558: matematika banki (Tematika) — mavzular, qoidalar, 5 variantli testlar, o'quvchi tarixi
+    from .modules.mat_bank import create_router as create_mat_bank_router
+except ImportError:
+    from modules.mat_bank import create_router as create_mat_bank_router
+app.include_router(create_mat_bank_router(samtm_platform))
 try:   # REV491: hisobni o'chirish (Play Market talabi)
     from .modules.hisob_ochirish import create_router as create_hisob_ochirish_router
 except ImportError:
