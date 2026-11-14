@@ -19,7 +19,7 @@ class BankButunligi(unittest.TestCase):
 
     def test_hajm(self):
         self.assertGreaterEqual(len(self.b.mavzular), 131)
-        self.assertGreaterEqual(len(self.b.savol), 5392)
+        self.assertGreaterEqual(len(self.b.savol) + len(self.b.tekshir), 5392)
         for n in (1, 31, 61, 91, 100, 121, 141):
             self.assertIn(n, self.b.mavzular, n)
 
@@ -60,7 +60,7 @@ class BankButunligi(unittest.TestCase):
     def test_ommaviy_korinishda_javob_yoq(self):
         t = next(iter(self.b.savol.values()))
         self.assertNotIn("javob", self.b.ommaviy(t))
-        self.assertEqual(set(self.b.ommaviy(t)), {"id", "mavzu", "manba", "savol", "variantlar", "qiyinlik"})
+        self.assertEqual(set(self.b.ommaviy(t)), {"id", "mavzu", "manba", "savol", "variantlar", "qiyinlik", "tur"})
 
 
 class Tozalash(unittest.TestCase):

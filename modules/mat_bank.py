@@ -24,6 +24,27 @@ BANK_FAYL = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_d
 HARFLAR = "ABCDE"
 SONI_ENG_KOP = 40
 QIYINLIK = {"O": "oson", "R": "o'rta", "Q": "qiyin"}
+RASM_PAPKA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mat_bank_data", "rasm")
+# Milliy sertifikat darajalari (rasmiy shkala, ball bo'yicha): 70+ A+, 65–69,9 A, 60–64,9 B+, 55–59,9 B, 50–54,9 C+, 46–49,9 C; 46 dan past — sertifikat berilmaydi.
+# DIQQAT: rasmiy ball Rasch modeli bilan hisoblanadi; bizda test FOIZI bor — shuning uchun bu «taxminiy baho» (o'zini sinash), rasmiy natija emas.
+BAHO_SHKALASI = [(70.0, "A+"), (65.0, "A"), (60.0, "B+"), (55.0, "B"), (50.0, "C+"), (46.0, "C")]
+
+
+def baho_harfi(foiz):
+    """Test foizi (0–100) → taxminiy daraja harfi yoki None (46 dan past — C ga yetmadi)."""
+    for chegara, harf in BAHO_SHKALASI:
+        if foiz >= chegara - 1e-9:
+            return harf
+    return None
+
+
+def qiyinlik_xulosasi(savollar):
+    """Test savollarining qiyinligi (O/R/Q belgilari bor savollar bo'yicha). Yarmidan kamida belgi bo'lmasa — None (aniqlanmagan)."""
+    b = [t.get("qiyinlik") for t in savollar if t.get("qiyinlik") in QIYINLIK]
+    if not savollar or len(b) * 2 < len(savollar):
+        return None
+    o = sum({"O": 1, "R": 2, "Q": 3}[x] for x in b) / len(b)
+    return {"daraja": "oson" if o < 1.5 else ("o'rta" if o < 2.34 else "qiyin"), "belgili": len(b), "jami": len(savollar), "taqsimot": {k: b.count(k) for k in "ORQ"}}
 
 _kesh = {"bank": None}
 _qulf = threading.Lock()
@@ -33,14 +54,19 @@ class Bank:
     def __init__(self, data):
         self.manba = data.get("manba", "")
         self.mavzular = {int(m["raqam"]): m for m in data["mavzular"]}
-        self.savol = {}
+        self.savol = {}          # o'quvchiga beriladiganlar (nuqsonli [TEKSHIR] testlar KIRMAYDI)
+        self.tekshir = {}        # o'qituvchi ko'rib chiqishi kerak bo'lgan testlar
         for m in data["mavzular"]:
             for t in m["testlar"]:
-                self.savol[t["id"]] = dict(t, mavzu=int(m["raqam"]))
+                (self.tekshir if t.get("tekshir") else self.savol)[t["id"]] = dict(t, mavzu=int(m["raqam"]))
+
+    def soni(self, raqam):
+        """Mavzudagi o'quvchiga beriladigan testlar soni."""
+        return sum(1 for t in self.mavzular[raqam]["testlar"] if not t.get("tekshir"))
 
     def ommaviy(self, t):
         """Savol o'quvchiga — JAVOBSIZ."""
-        return {"id": t["id"], "mavzu": t["mavzu"], "manba": t["manba"], "savol": t["savol"], "variantlar": t["variantlar"], "qiyinlik": t.get("qiyinlik") or None}
+        return {"id": t["id"], "mavzu": t["mavzu"], "manba": t["manba"], "savol": t["savol"], "variantlar": t["variantlar"], "qiyinlik": t.get("qiyinlik") or None, "tur": t.get("tur")}
 
 
 def bank_ol():
@@ -93,9 +119,12 @@ def baholash(bank, javoblar):
         h = str(h or "").strip().upper()[:1]
         ok = bool(h) and h in HARFLAR and h == t["javob"]
         togri += int(ok)
-        natija.append({"id": sid, "togri": ok, "javob": t["javob"], "tanlandi": h if h in HARFLAR else "", "yechim": t.get("yechim") or None})
+        natija.append({"id": sid, "togri": ok, "javob": t["javob"], "tanlandi": h if h in HARFLAR else "", "yechim": t.get("yechim") or None, "qiyinlik": t.get("qiyinlik") or None})
     jami = len(natija)
-    return {"natija": natija, "togri": togri, "jami": jami, "foiz": round(100 * togri / jami) if jami else 0}
+    ball = 100.0 * togri / jami if jami else 0.0
+    return {"natija": natija, "togri": togri, "jami": jami, "foiz": round(ball), "baho": baho_harfi(ball) if jami else None,
+            "qiyinlik": qiyinlik_xulosasi([bank.savol[x["id"]] for x in natija]),
+            "baho_izoh": "Taxminiy baho: test foizi Milliy sertifikat shkalasiga qo‘yildi (rasmiy ball boshqacha hisoblanadi)."}
 
 
 class Tekshir(BaseModel):
@@ -146,7 +175,7 @@ def create_router(platform):
     def mavzular(token: str = None, authorization: Optional[str] = Header(None)):
         uid(token, authorization)
         b = bank_ol()
-        return {"manba": b.manba, "mavzular": [{"raqam": r, "nom": m["nom"], "kitob": m["kitob"], "testlar": len(m["testlar"]), "misol": len(m["namunalar"])}
+        return {"manba": b.manba, "mavzular": [{"raqam": r, "nom": m["nom"], "kitob": m["kitob"], "testlar": b.soni(r), "misol": len(m.get("misollar") or m["namunalar"])}
                                               for r, m in sorted(b.mavzular.items())]}
 
     @router.get("/api/matbank/mavzu/{raqam}")
@@ -160,7 +189,10 @@ def create_router(platform):
             cur.execute("SELECT COUNT(*) AS ko, COALESCE(SUM(togri),0) AS tg, COALESCE(SUM(oxirgi_togri::int),0) AS ox FROM mat_bank_javob WHERE user_id=%s AND mavzu=%s", (u, raqam))
             r = cur.fetchone() or {}
             return {"ko_rilgan": int(r.get("ko") or 0), "oxirgi_togri": int(r.get("ox") or 0)}
-        return {"raqam": raqam, "nom": m["nom"], "kitob": m["kitob"], "qoida": m["qoida"], "namunalar": m["namunalar"], "testlar": len(m["testlar"]), "meniki": run(f)}
+        mis = m.get("misollar") or []
+        return {"raqam": raqam, "nom": m["nom"], "kitob": m["kitob"], "qoida": m["qoida"], "turlar": m.get("turlar") or [],
+                "namunalar": [x["matn"] for x in mis] if mis else m["namunalar"], "misollar": [{"tur": x["tur"], "tip": x["tip"]} for x in mis],
+                "testlar": bank_ol().soni(raqam), "meniki": run(f)}
 
     @router.get("/api/matbank/test")
     def test(token: str = None, mavzu: str = Query("", max_length=200), soni: int = Query(10, ge=1, le=SONI_ENG_KOP),
@@ -202,6 +234,32 @@ def create_router(platform):
                             (u, x["id"], b.savol[x["id"]]["mavzu"], int(x["togri"]), x["togri"], x["tanlandi"]))
         run(f)
         return r
+
+    @router.get("/api/matbank/rasm/{nom}")
+    def rasm(nom: str, token: str = None, authorization: Optional[str] = Header(None)):
+        """Chizma (masalan T100-1.png). Faqat kirgan foydalanuvchiga; fayl nomi qat'iy shablon bo'yicha."""
+        uid(token, authorization)
+        if not re.fullmatch(r"T\d{3}-\d{1,3}\.(png|jpg|jpeg|gif|webp)", nom):
+            raise HTTPException(404, "Rasm topilmadi")
+        yol = os.path.join(RASM_PAPKA, nom)
+        if not os.path.isfile(yol):
+            raise HTTPException(404, "Rasm topilmadi")
+        from fastapi.responses import FileResponse
+        return FileResponse(yol, headers={"Cache-Control": "private, max-age=86400"})
+
+    @router.get("/api/matbank/tekshirish")
+    def tekshirish(token: str = None, authorization: Optional[str] = Header(None)):
+        """O'qituvchi/admin uchun: manbadagi nuqsonli deb belgilangan testlar (o'quvchiga berilmaydi)."""
+        u = uid(token, authorization)
+
+        def f(cur):
+            cur.execute("SELECT 1 FROM admin_akkaunt WHERE uid=%s UNION ALL SELECT 1 FROM users WHERE user_id=%s AND role IN ('oqituvchi','admin')", (u, u))
+            if not cur.fetchone():
+                raise HTTPException(403, "Faqat o'qituvchi yoki admin ko'ra oladi")
+        run(f)
+        b = bank_ol()
+        return {"soni": len(b.tekshir), "testlar": [{"id": t["id"], "mavzu": t["mavzu"], "mavzu_nomi": b.mavzular[t["mavzu"]]["nom"], "manba": t["manba"], "savol": t["savol"],
+                                                     "variantlar": t["variantlar"], "kalit": t["javob"], "sabab": t.get("tekshir_izoh") or ""} for t in b.tekshir.values()]}
 
     @router.get("/api/matbank/mening")
     def mening(token: str = None, authorization: Optional[str] = Header(None)):

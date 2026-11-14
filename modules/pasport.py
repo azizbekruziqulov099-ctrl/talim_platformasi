@@ -162,7 +162,7 @@ FIKRLASH_NOMI = {"bilish": "Bilish", "qollash": "Qo‘llash", "mulohaza": "Muloh
 def pasport_yig(cur, uid, bank, hozir=None):
     hozir = hozir or datetime.now(TZ)
     u = (_q(cur, "u", "SELECT full_name, role, class FROM users WHERE user_id=%s", (uid,)) or [{}])[0]
-    mavzular = {r: {"nom": m["nom"], "kitob": m["kitob"], "jami": len(m["testlar"])} for r, m in bank.mavzular.items()}
+    mavzular = {r: {"nom": m["nom"], "kitob": m["kitob"], "jami": bank.soni(r)} for r, m in bank.mavzular.items()}
     mat = _q(cur, "mat", "SELECT savol_id, mavzu, urinish, togri, oxirgi_togri, yangilangan FROM mat_bank_javob WHERE user_id=%s", (uid,))
     vaqt = [r["yangilangan"] for r in mat] + [r["yangilangan"] for r in _q(cur, "xbv", "SELECT yangilangan FROM xb_bilim WHERE user_id=%s", (uid,))] \
         + [r["topshirilgan"] for r in _q(cur, "xbi", "SELECT topshirilgan FROM xb_imtihon WHERE user_id=%s AND topshirilgan IS NOT NULL", (uid,))]
@@ -203,6 +203,22 @@ def pasport_yig(cur, uid, bank, hozir=None):
     return p
 
 
+def kim_koradi(cur, ko, bola):
+    """O'zi, admin, ota-onasi, o'qituvchisi (kurs guruhi yoki xalqaro sinf egasi) ko'ra oladi."""
+    if ko == bola:
+        return True
+    if _q(cur, "adm", "SELECT 1 FROM admin_akkaunt WHERE uid=%s", (ko,)):
+        return True
+    try:
+        from modules.bogcha_reja import ota_bolami
+        if ota_bolami(cur, ko, bola):
+            return True
+    except Exception:   # noqa: BLE001
+        pass
+    return bool(_q(cur, "ust1", "SELECT 1 FROM kurs_guruh g JOIN kurs_guruh_azo a ON a.guruh_id=g.id WHERE g.egasi=%s AND a.user_id=%s AND g.faol LIMIT 1", (ko, bola))
+                or _q(cur, "ust2", "SELECT 1 FROM xb_sinf s JOIN xb_sinf_azo a ON a.sinf_id=s.id WHERE s.egasi=%s AND a.user_id=%s AND s.faol LIMIT 1", (ko, bola)))
+
+
 def create_router(platform):
     router = APIRouter(tags=["pasport"])
 
@@ -211,20 +227,6 @@ def create_router(platform):
         if not t:
             raise HTTPException(401, "Kirish kerak")
         return int(platform._jwt_tekshir(t))
-
-    def kim_koradi(cur, ko, bola):
-        if ko == bola:
-            return True
-        if _q(cur, "adm", "SELECT 1 FROM admin_akkaunt WHERE uid=%s", (ko,)):
-            return True
-        try:
-            from modules.bogcha_reja import ota_bolami
-            if ota_bolami(cur, ko, bola):
-                return True
-        except Exception:   # noqa: BLE001
-            pass
-        return bool(_q(cur, "ust1", "SELECT 1 FROM kurs_guruh g JOIN kurs_guruh_azo a ON a.guruh_id=g.id WHERE g.egasi=%s AND a.user_id=%s AND g.faol LIMIT 1", (ko, bola))
-                    or _q(cur, "ust2", "SELECT 1 FROM xb_sinf s JOIN xb_sinf_azo a ON a.sinf_id=s.id WHERE s.egasi=%s AND a.user_id=%s AND s.faol LIMIT 1", (ko, bola)))
 
     def yig(ko, bola):
         from modules.mat_bank import bank_ol
