@@ -51,18 +51,22 @@ class Nuqsonli(unittest.TestCase):
         for t in b.savol.values():
             if t["mavzu"] in (100, 141):
                 self.assertIn(t["qiyinlik"], "ORQ"); self.assertTrue(t["yechim"].strip()); self.assertIsInstance(t["tur"], int)
-        self.assertEqual(len(b.mavzular[100]["misollar"]), 12); self.assertEqual(b.mavzular[141]["turlar"], list(range(1, 12)))
+        self.assertEqual(len(b.mavzular[100]["misollar"]), 13); self.assertEqual(b.mavzular[141]["turlar"], list(range(1, 13)))
+        self.assertEqual((b.mavzular[100]["bob"], b.mavzular[141]["bob"]), ("3-bob. PLANIMETRIYA", "4.5. Jismlarning kombinatsiyalari"))
+        for t in b.savol.values():                                                 # yangi talab: qisqa yechimda hisob (formula va sonlar) bo'lsin, [TEKSHIR] matni qolmasin
+            if t["mavzu"] in (100, 141):
+                self.assertIn("=", t["yechim"]); self.assertNotIn("TEKSHIR", t["yechim"])
         self.assertTrue(os.path.isfile(os.path.join(mb.RASM_PAPKA, "T100-1.png")))
         self.assertIn("rasm:T100-1.png", b.mavzular[100]["misollar"][0]["matn"])
 
 
 # ───────── KABUTAR fayllarni birlashtirish dasturi: sintetik markdown ─────────
 def md(javob="1-B; 2-A;", qisqa_b="B", qisqa_a="A", namuna_javob="B", tur_namuna=1, kitob="9.9", testlar2=True):
-    return (f"# **MAVZU: {kitob} \\| SINOV**\nMANBA: Tematika\n## **QOIDA**\n1\\. Qoida $a$.\n"
+    return (f"# **MAVZU: {kitob} \\| SINOV**\nBOB: 9-bob. SINOV\nMANBA: Tematika\n## **QOIDA**\n1\\. Qoida $a$.\n"
             f"## **NAMUNA 1 \\| TUR {tur_namuna} \\| TO'LIQ**\n**(96-1-1)** Savol bir.\n\nA) $1$ B) $2$ C) $3$ D) $4$ E) $5$\n\n**YECHISH:**\n1-qadam. Hisob.\n2-qadam. Natija.\n**JAVOB: {namuna_javob}**\n"
             "## **TESTLAR**\n1 \\| TUR 1 \\| O \\| **(96-1-1)** Savol bir.\n**A)** $1$   **B)** $2$\\\n**C)** $3$   **D)** $4$\\\n**E)** $5$\n"
             + ("2 \\| TUR 2 \\| Q \\| **(96-1-2)** Savol ikki.\n**A)** $1$   **B)** $2$\\\n**C)** $3$   **D)** $4$\\\n**E)** $5$\n\\[TEKSHIR\\] Shart ziddiyatli.\n" if testlar2 else "")
-            + f"## **JAVOBLAR**\n{javob.replace('2-A;', '2-A \\[TEKSHIR\\];')}\n## **QISQA YECHIMLAR**\n1\\. Hisoblaymiz. $2$ → {qisqa_b}\n2\\. Boshqacha. $1$ → {qisqa_a}\n")
+            + f"## **JAVOBLAR**\n{javob.replace('2-A;', '2-A \\[TEKSHIR\\];')}\n## **QISQA YECHIMLAR**\n1\\. Hisoblaymiz. $2$ → {qisqa_b}\n2\\. \\[TEKSHIR\\] Boshqacha. $1$ → {qisqa_a} \\[TEKSHIR\\]\n")
 
 
 def BANK():
@@ -78,9 +82,9 @@ class Birlashtirish(unittest.TestCase):
         b, xato, ogoh = self.ishla(md())
         self.assertEqual(xato, [])
         t1, t2 = b["mavzular"][0]["testlar"]
-        self.assertEqual((t1["tur"], t1["qiyinlik"], t1["yechim"]), (1, "O", "Hisoblaymiz. $2$ → B")); self.assertNotIn("tekshir", t1)
+        self.assertEqual((t1["tur"], t1["qiyinlik"], t1["yechim"]), (1, "O", "Hisoblaymiz. $2$ → B")); self.assertEqual(t2["yechim"], "Boshqacha. $1$ → A"); self.assertNotIn("tekshir", t1)
         self.assertTrue(t2["tekshir"]); self.assertIn("ziddiyatli", t2["tekshir_izoh"]); self.assertEqual((t2["tur"], t2["qiyinlik"]), (2, "Q"))    # \[TEKSHIR\] (pandoc yozuvi) tanildi
-        self.assertEqual(b["mavzular"][0]["misollar"][0]["tur"], 1); self.assertEqual(b["mavzular"][0]["turlar"], [1, 2])
+        self.assertEqual(b["mavzular"][0]["misollar"][0]["tur"], 1); self.assertEqual(b["mavzular"][0]["turlar"], [1, 2]); self.assertEqual(b["mavzular"][0]["bob"], "9-bob. SINOV")
         self.assertEqual(t1["javob"], "B"); self.assertEqual(t1["savol"], "Savol 1")           # manbadagi savol va javob o'zgarmaydi
 
     def test_javob_harfi_mos_emas_rad(self):

@@ -40,7 +40,9 @@ def oqi(md):
     for k, (i, l) in enumerate(sar):
         oxir = sar[k + 1][0] if k + 1 < len(sar) else len(L)
         bolim.setdefault(nom(l), []).append("\n".join(L[i + 1:oxir]).strip())
-    r = {"kitob": m.group(1), "nom": m.group(2).strip(), "qoida": (bolim.get("QOIDA") or [""])[0], "misollar": [], "testlar": [], "javob": {}, "shubha": set(), "qisqa": {}}
+    bosh = "\n".join(L[: sar[0][0]] if sar else L)
+    mb = re.search(r"^\**BOB:\s*(.+?)\**\s*$", bosh, re.M)                       # ixtiyoriy: «BOB: 3-bob. PLANIMETRIYA»
+    r = {"kitob": m.group(1), "nom": m.group(2).strip(), "bob": (mb.group(1).strip() if mb else ""), "qoida": (bolim.get("QOIDA") or [""])[0], "misollar": [], "testlar": [], "javob": {}, "shubha": set(), "qisqa": {}}
     for k, (i, l) in enumerate(sar):
         mm = re.match(r"^NAMUNA (\d+) \\\| TUR (\d+) \\\| (.+)$", nom(l))
         if mm:
@@ -137,13 +139,16 @@ def tekshir_va_qosh(bank, raqam, r, rasm_nom=None):
     # ---- hammasi to'g'ri: bankni yangilaymiz
     for t in r["testlar"]:
         b0 = bog[t["n"]]
-        b0["tur"] = t["tur"]; b0["qiyinlik"] = t["q"]; b0["yechim"] = r["qisqa"][t["n"]]
+        b0["tur"] = t["tur"]; b0["qiyinlik"] = t["q"]
+        b0["yechim"] = re.sub(r"\s{2,}", " ", re.sub(TEKSHIR, "", r["qisqa"][t["n"]])).strip()      # [TEKSHIR] belgisi yechim matnida qolmaydi (u tekshir maydonida)
         if t["n"] in r["shubha"] or t["tekshir_izoh"]:
             b0["tekshir"] = True; b0["tekshir_izoh"] = t["tekshir_izoh"]
         else:
             b0.pop("tekshir", None); b0.pop("tekshir_izoh", None)
     m["misollar"] = [{"tur": x["tur"], "tip": x["tip"], "matn": x["matn"]} for x in sorted(r["misollar"], key=lambda z: z["nn"])]
     m["turlar"] = sorted(nt)
+    if r.get("bob"):
+        m["bob"] = r["bob"]
     if not m["qoida"].strip() and r["qoida"].strip():
         m["qoida"] = r["qoida"]; m["qoida_manba"] = "kabutar"
     return [], ogoh

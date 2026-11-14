@@ -175,7 +175,7 @@ def create_router(platform):
     def mavzular(token: str = None, authorization: Optional[str] = Header(None)):
         uid(token, authorization)
         b = bank_ol()
-        return {"manba": b.manba, "mavzular": [{"raqam": r, "nom": m["nom"], "kitob": m["kitob"], "testlar": b.soni(r), "misol": len(m.get("misollar") or m["namunalar"])}
+        return {"manba": b.manba, "mavzular": [{"raqam": r, "nom": m["nom"], "kitob": m["kitob"], "bob": m.get("bob") or "", "testlar": b.soni(r), "misol": len(m.get("misollar") or m["namunalar"])}
                                               for r, m in sorted(b.mavzular.items())]}
 
     @router.get("/api/matbank/mavzu/{raqam}")
@@ -190,7 +190,7 @@ def create_router(platform):
             r = cur.fetchone() or {}
             return {"ko_rilgan": int(r.get("ko") or 0), "oxirgi_togri": int(r.get("ox") or 0)}
         mis = m.get("misollar") or []
-        return {"raqam": raqam, "nom": m["nom"], "kitob": m["kitob"], "qoida": m["qoida"], "turlar": m.get("turlar") or [],
+        return {"raqam": raqam, "nom": m["nom"], "kitob": m["kitob"], "bob": m.get("bob") or "", "qoida": m["qoida"], "turlar": m.get("turlar") or [],
                 "namunalar": [x["matn"] for x in mis] if mis else m["namunalar"], "misollar": [{"tur": x["tur"], "tip": x["tip"]} for x in mis],
                 "testlar": bank_ol().soni(raqam), "meniki": run(f)}
 
