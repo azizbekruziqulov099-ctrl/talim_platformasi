@@ -10,7 +10,8 @@ from typing import Optional
 from fastapi import APIRouter, Header, HTTPException, Query
 from pydantic import BaseModel, Field
 
-LOYIHALAR = {"osimlik", "koprik", "kod", "naqsh", "byudjet", "filtr", "richag", "parashyut", "qayiq", "soya", "qiya", "masshtab", "sorov", "rang", "kod2"}
+LOYIHALAR = {"osimlik", "koprik", "kod", "naqsh", "byudjet", "filtr", "richag", "parashyut", "qayiq", "soya", "qiya", "masshtab", "sorov", "rang", "kod2",
+             "energiya", "tahlil", "shamol", "fraktal", "kredit"}   # REV546: 9–11-sinf
 RASM_MAX = 600_000
 
 

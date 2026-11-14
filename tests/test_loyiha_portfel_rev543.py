@@ -7,7 +7,8 @@ from modules import loyiha_portfel as L
 class LoyihaPortfel(unittest.TestCase):
     def test_loyiha_kalitlari(self):
         # frontend (src/games/loyiha): 5 + 10 loyiha
-        kutilgan = {"osimlik", "koprik", "kod", "naqsh", "byudjet", "filtr", "richag", "parashyut", "qayiq", "soya", "qiya", "masshtab", "sorov", "rang", "kod2"}
+        kutilgan = {"osimlik", "koprik", "kod", "naqsh", "byudjet", "filtr", "richag", "parashyut", "qayiq", "soya", "qiya", "masshtab", "sorov", "rang", "kod2",
+                    "energiya", "tahlil", "shamol", "fraktal", "kredit"}   # REV546: 5 + 10 + 5
         self.assertEqual(L.LOYIHALAR, kutilgan)
 
     def test_rasm_chegarasi(self):
