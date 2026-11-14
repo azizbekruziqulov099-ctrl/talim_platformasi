@@ -38,6 +38,11 @@ import random
 import re
 import threading
 import time
+
+try:   # REV555: reyting bo'yicha guruhlash qoidalari (sof funksiyalar)
+    from modules import xalqaro_guruh as xg
+except Exception:   # pragma: no cover — modul to'g'ridan-to'g'ri ishga tushirilganda
+    import xalqaro_guruh as xg
 from datetime import date, datetime, timedelta, timezone
 
 from fastapi import APIRouter, Header, HTTPException, Query, Request
@@ -67,7 +72,10 @@ IMTIHON_TURLARI = {
     "oylik": {"nom": "Oylik imtihon", "4": (18, 27), "8": (22, 33), "P": (16, 40)},
     "choraklik": {"nom": "Choraklik imtihon (1-qism)", "4": (24, 36), "8": (30, 45), "P": (24, 60)},
     "yillik": {"nom": "Yillik imtihon (to‘liq daftar, 2 qism)", "4": (24, 36), "8": (30, 45), "P": (24, 60)},   # har qism
+    # REV555: kirish testi — sinfga qo'shilgan o'quvchi darajasini aniqlash uchun (reyting → guruh). O'quv yilida bitta rasmiy urinish.
+    "kirish": {"nom": "Kirish testi", "4": (12, 20), "8": (14, 25), "P": (12, 30), "yashirin": True},
 }
+SINF_ENG_KOP = 1000   # REV555: avval 60 edi — internetdan chaqirilgan o'quvchilar 30 tadan guruhlarga bo'linadi (10+ guruh)
 # TIMSS 2011 ramkasi: mazmun sohalari va fikrlash darajalari ulushi (imtihon savollari shu nisbatda tanlanadi)
 REJA = {
     "T11_G4_M": {"soha": {"son": 0.50, "geometriya": 0.35, "malumot": 0.15}, "fikrlash": {"bilish": 0.40, "qollash": 0.40, "mulohaza": 0.20}},
@@ -188,14 +196,15 @@ MATN = {
     "topshiriq_azo_emas": {"uz": "Bu topshiriq «{s}» sinfi uchun, sinf parolli. O‘qituvchingizdan sinf kodi va parolini so‘rab, «Sinfim» bo‘limida qo‘shiling",
                            "ru": "Задание для класса «{s}» (с паролем). Спросите у учителя код и пароль и вступите в разделе «Мой класс»",
                            "en": "This task is for the class «{s}» (password-protected). Ask your teacher for the code and password and join in «My class»"},
-    "sinf_toliq": {"uz": "Sinfda joy qolmagan (60 o‘quvchi)", "ru": "В классе нет мест (60 учеников)", "en": "The class is full (60 students)"},
+    "sinf_toliq": {"uz": "Sinfda joy qolmagan", "ru": "В классе нет мест", "en": "The class is full"},
     "rasm_yoq": {"uz": "Rasm yo‘q", "ru": "Рисунка нет", "en": "No picture"},
     "kurs": {"uz": "Xalqaro baholash (TIMSS/PISA) tayyorlov kursi", "ru": "Курс подготовки к международной оценке (TIMSS/PISA)", "en": "International assessment (TIMSS/PISA) preparation course"},
     "sinf": {"uz": "{n}-sinf", "ru": "{n} класс", "en": "Grade {n}"},
     "past_quyi": {"uz": "Past darajadan quyi", "ru": "Ниже низкого уровня", "en": "Below Low"},
     "pisa_quyi": {"uz": "1-darajadan quyi", "ru": "Ниже уровня 1", "en": "Below Level 1"},
 }
-IMTIHON_NOMI = {"haftalik": {"ru": "Еженедельная проверка", "en": "Weekly check"},
+IMTIHON_NOMI = {"kirish": {"ru": "Входной тест", "en": "Entry test"},
+                "haftalik": {"ru": "Еженедельная проверка", "en": "Weekly check"},
                 "oylik": {"ru": "Ежемесячный экзамен", "en": "Monthly exam"},
                 "choraklik": {"ru": "Четвертной экзамен (часть 1)", "en": "Term exam (part 1)"},
                 "yillik": {"ru": "Годовой экзамен (полная тетрадь, 2 части)", "en": "Annual exam (full booklet, 2 parts)"}}
@@ -863,6 +872,11 @@ def migrate(cur):
     cur.execute("""CREATE TABLE IF NOT EXISTS xb_sinf_azo (sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE, user_id BIGINT NOT NULL,
         qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), PRIMARY KEY (sinf_id, user_id))""")
     cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_azo_user ON xb_sinf_azo(user_id)")
+    # REV555: sinf ichida reyting bo'yicha guruhlar (30 tadan). xabar — o'quvchiga ko'rsatiladigan «guruhingiz o'zgardi» xabari
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_guruh_azo (sinf_id BIGINT NOT NULL REFERENCES xb_sinf(id) ON DELETE CASCADE, user_id BIGINT NOT NULL,
+        guruh INT NOT NULL, reyting INT, xabar JSONB, qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+        PRIMARY KEY (sinf_id, user_id))""")
+    cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS guruhlangan TIMESTAMPTZ")
     # REV261: o'qituvchi o'quvchining aynan qanday xato qilganini ko'radi
     cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_v INT NOT NULL DEFAULT 0")
     cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_javob TEXT NOT NULL DEFAULT ''")
@@ -1397,6 +1411,8 @@ def create_router(platform, kontent=None):
             out = []
             now = datetime.now(TZ)
             for tur, cfg in IMTIHON_TURLARI.items():
+                if cfg.get("yashirin"):   # REV555: kirish testi umumiy ro'yxatda ko'rsatilmaydi
+                    continue
                 soni, daqiqa = cfg[band]
                 davr = davr_kaliti(tur)
                 oila = imtihon_oilasi(tk, tur)   # REV539
@@ -1440,6 +1456,14 @@ def create_router(platform, kontent=None):
                 cur.execute("SELECT 1 FROM xb_imtihon WHERE user_id=%s AND tur=%s AND davr=%s AND toplam=ANY(%s) AND rasmiy AND topshirilgan IS NOT NULL LIMIT 1",
                             (user_id, body.tur, davr, oila))
                 rasmiy = not body.mashq and not cur.fetchone()
+                if body.tur == "kirish" and not body.mashq:
+                    # REV555: kirish testi natijasi tekshiruvga tushgan o'quvchi qayta topshira olishi kerak (aks holda abadiy guruhsiz
+                    # qoladi): o'quv yilida 3 martagacha rasmiy, lekin 20 soatda bir martadan ko'p emas.
+                    cur.execute("""SELECT COUNT(*) AS n, MAX(topshirilgan) AS oxirgi FROM xb_imtihon
+                                   WHERE user_id=%s AND tur='kirish' AND davr=%s AND toplam=ANY(%s) AND rasmiy AND topshirilgan IS NOT NULL""",
+                                (user_id, davr, oila))
+                    kr = cur.fetchone()
+                    rasmiy = int(kr["n"] or 0) < 3 and (kr["oxirgi"] is None or now - kr["oxirgi"] >= timedelta(hours=20))
                 cur.execute("SELECT savollar FROM xb_imtihon WHERE user_id=%s AND til=%s ORDER BY id DESC LIMIT 6", (user_id, til))
                 yaqin = [x["id"] for r in cur.fetchall() for x in (r["savollar"] or [])]
                 rng = random.Random()
@@ -2390,7 +2414,7 @@ def create_router(platform, kontent=None):
                 _urinish_yoz(user_id)
                 raise HTTPException(403, matn("sinf_parol_xato", til))
             cur.execute("SELECT COUNT(*) AS n FROM xb_sinf_azo WHERE sinf_id=%s", (r["id"],))
-            if int(cur.fetchone()["n"]) >= 60:
+            if int(cur.fetchone()["n"]) >= SINF_ENG_KOP:
                 raise HTTPException(400, matn("sinf_toliq", til))
             cur.execute("INSERT INTO xb_sinf_azo(sinf_id, user_id) VALUES (%s,%s) ON CONFLICT DO NOTHING", (r["id"], user_id))
             ism = _ism(cur, r["egasi"])
@@ -2404,6 +2428,219 @@ def create_router(platform, kontent=None):
 
         def run(conn, cur):
             cur.execute("DELETE FROM xb_sinf_azo WHERE sinf_id=%s AND user_id=%s", (body.sinf_id, user_id))
+            conn.commit()
+            return {"ok": True}
+        return run_db(run)
+
+    # ───────────────────────── REV555: sinf ichida reyting bo'yicha guruhlar ─────────────────────────
+    # O'qituvchi sinf ochadi (PISA yoki TIMSS to'plami) → o'quvchilar taklif kodi bilan qo'shiladi → har biri KIRISH TESTINI topshiradi →
+    # reyting bo'yicha 30 tadan guruhlarga bo'linadi. Keyingi imtihonlar reytingni yangilaydi; shubhali natija (juda tez, ilovadan chiqqan,
+    # keskin sakrash) tekshiruvda turadi; boshqa guruhga faqat BARQAROR o'quvchi ko'chadi. Qoidalar: modules/xalqaro_guruh.py.
+    GURUH_AVTO_KUN = 7   # qayta guruhlash: haftada bir marta o'zi (yoki o'qituvchi tugmani bossa)
+    FIKRLASH_NOMI = {"bilish": {"uz": "Bilish", "ru": "Знание", "en": "Knowing"}, "qollash": {"uz": "Qo‘llash", "ru": "Применение", "en": "Applying"},
+                     "mulohaza": {"uz": "Mulohaza", "ru": "Рассуждение", "en": "Reasoning"}}
+
+    def _guruh_urinishlari(cur, uidlar, tk):
+        """O'quvchilarning shu to'plamdagi RASMIY imtihonlari → {user_id: [urinish…]} (vaqt tartibida). Savol qiyinliklari bazadan."""
+        out = {}
+        if not uidlar:
+            return out
+        cur.execute("""SELECT id, user_id, til, tur, ball, foiz, boshlangan, topshirilgan, chiqishlar, savollar, natija FROM xb_imtihon
+                       WHERE user_id = ANY(%s) AND toplam=%s AND rasmiy AND topshirilgan IS NOT NULL AND ball IS NOT NULL
+                       ORDER BY topshirilgan, id""", (list(uidlar), tk))
+        for r in cur.fetchall():
+            r = dict(r)
+            k = KT(til_kodi(r.get("til")))
+            nat = r.get("natija") or {}
+            q, t = [], []
+            for x, ok in zip(r.get("savollar") or [], nat.get("togri_list") or []):
+                s0 = k.by_id.get(x["id"])
+                if s0:
+                    q.append(savol_qiyinligi(s0))
+                    t.append(bool(ok))
+            soniya = (r["topshirilgan"] - r["boshlangan"]).total_seconds() if r.get("boshlangan") and r.get("topshirilgan") else None
+            out.setdefault(int(r["user_id"]), []).append({
+                "id": int(r["id"]), "tur": r["tur"], "ball": r["ball"], "foiz": r["foiz"], "soni": len(r.get("savollar") or []), "soniya": soniya,
+                "chiqishlar": int(r.get("chiqishlar") or 0), "qiyinliklar": q, "togri": t, "soha": nat.get("soha") or {}, "fikrlash": nat.get("fikrlash") or {},
+                "vaqt": r["topshirilgan"]})
+        return out
+
+    def _guruh_holati(conn, cur, sinf, qollash=False):
+        """Sinfning joriy guruhlari. Kerak bo'lsa (birinchi marta, hafta o'tgan, yangi reytingli o'quvchi kelgan, kimdir ketgan yoki
+        qollash=True) — qayta guruhlab saqlaydi. → {"bolinish", "hisob": {uid: reyting_hisobla()}, "urinish", "tk", "azo", "ozgarishlar", "qollandi"}"""
+        sid = int(sinf["id"])
+        tk = sinf_toplami(sinf.get("toplam"), sinf["sinf"])
+        cur.execute("SELECT user_id, qoshildi FROM xb_sinf_azo WHERE sinf_id=%s", (sid,))
+        azo = {int(r["user_id"]): r["qoshildi"] for r in cur.fetchall()}
+        cur.execute("SELECT user_id, guruh FROM xb_guruh_azo WHERE sinf_id=%s", (sid,))
+        eski = {int(r["user_id"]): int(r["guruh"]) for r in cur.fetchall()}
+        ur = _guruh_urinishlari(cur, list(azo), tk)
+        hisob = {u: xg.reyting_hisobla(ur.get(u, [])) for u in azo}
+        reytingli = {u for u in azo if hisob[u]["reyting"] is not None}
+        g_vaqt = sinf.get("guruhlangan")
+        eskirdi = not g_vaqt or (datetime.now(TZ) - g_vaqt) >= timedelta(days=GURUH_AVTO_KUN)
+        kerak = qollash or eskirdi or bool(reytingli - set(eski)) or bool(set(eski) - reytingli)
+        ozgarishlar = []
+        if kerak:
+            royxat = [{"user_id": u, "reyting": hisob[u]["reyting"], "guruh": eski.get(u), "toza": hisob[u]["toza"],
+                       "qoshildi": azo[u].isoformat() if azo[u] else ""} for u in azo]
+            # haftalik/qo'lda qayta guruhlashda barqarorlar ko'chadi; oraliqda (yangi o'quvchi keldi) — faqat yangilar joylashadi, qolganlar qimirlamaydi
+            if not (qollash or eskirdi):
+                for a in royxat:
+                    a["toza"] = [] if a["guruh"] else a["toza"]
+            b = xg.qayta_guruhla(royxat)
+            yangi = {u: g["raqam"] for g in b["guruhlar"] for u in g["azolar"]}
+            oz = {x["user_id"]: x for x in b["ozgarishlar"]}
+            ozgarishlar = b["ozgarishlar"]
+            cur.execute("DELETE FROM xb_guruh_azo WHERE sinf_id=%s AND NOT (user_id = ANY(%s))", (sid, list(yangi) or [0]))
+            for u, g in yangi.items():
+                x = oz.get(u)
+                xabar = json.dumps({"eski": x["eski"], "yangi": x["yangi"], "tur": x["tur"], "vaqt": datetime.now(TZ).isoformat()}) if x else None
+                cur.execute("""INSERT INTO xb_guruh_azo(sinf_id, user_id, guruh, reyting, xabar) VALUES(%s,%s,%s,%s,%s::jsonb)
+                               ON CONFLICT (sinf_id, user_id) DO UPDATE SET guruh=EXCLUDED.guruh, reyting=EXCLUDED.reyting, yangilandi=NOW(),
+                                 xabar=COALESCE(EXCLUDED.xabar, xb_guruh_azo.xabar)""", (sid, u, g, hisob[u]["reyting"], xabar))
+            if qollash or eskirdi:
+                cur.execute("UPDATE xb_sinf SET guruhlangan=NOW() WHERE id=%s RETURNING guruhlangan", (sid,))
+                g_vaqt = cur.fetchone()["guruhlangan"]
+        else:
+            guruhlar = {}
+            for u, g in eski.items():
+                guruhlar.setdefault(g, []).append(u)
+            b = {"guruhlar": [], "kutayotgan": [u for u in azo if hisob[u]["reyting"] is None]}
+            for g in sorted(guruhlar):
+                az = sorted(guruhlar[g], key=lambda u: (-hisob[u]["reyting"], u))
+                rr = [hisob[u]["reyting"] for u in az]
+                b["guruhlar"].append({"raqam": g, "azolar": az, "eng_yuqori": max(rr), "eng_past": min(rr), "ortacha": round(sum(rr) / len(rr), 1)})
+        return {"bolinish": b, "hisob": hisob, "urinish": ur, "tk": tk, "azo": azo, "ozgarishlar": ozgarishlar, "qollandi": kerak, "guruhlangan": g_vaqt}
+
+    def _ismlar(cur, uidlar):
+        if not uidlar:
+            return {}
+        cur.execute("SELECT user_id, full_name FROM users WHERE user_id = ANY(%s)", (list(uidlar),))
+        return {int(r["user_id"]): _t(r["full_name"]) for r in cur.fetchall()}
+
+    def _guruh_javobi(cur, sinf, h, til):
+        """O'qituvchi uchun: guruhlar, har o'quvchi reytingi/darajasi/shubhalari, kutayotganlar."""
+        tk, hisob = h["tk"], h["hisob"]
+        ism = _ismlar(cur, list(h["azo"]))
+
+        def shubha(u):
+            return [{"ball": x["ball"], "sabab": [xg.SHUBHA_MATNI[s] for s in x["sabab"]]} for x in hisob[u]["tarix"] if x["holat"] == "shubhali"]
+
+        guruhlar = []
+        for g in h["bolinish"]["guruhlar"]:
+            guruhlar.append({"raqam": g["raqam"], "soni": len(g["azolar"]), "ortacha": g["ortacha"], "eng_yuqori": g["eng_yuqori"], "eng_past": g["eng_past"],
+                             "daraja": daraja_of(g["ortacha"], tk, til),
+                             "azolar": [{"user_id": u, "ism": ism.get(u, ""), "reyting": hisob[u]["reyting"], "daraja": daraja_of(hisob[u]["reyting"], tk, til),
+                                         "natijalar": len(hisob[u]["toza"]), "tekshiruvda": shubha(u),
+                                         # bloklamaydigan eslatma: oxirgi natijada javoblar tartibi odatiy emas
+                                         "eslatma": [xg.SHUBHA_MATNI[e] for e in (hisob[u]["tarix"][-1].get("eslatma") if hisob[u]["tarix"] else [])]}
+                                        for u in g["azolar"]]})
+        kut = []
+        for u in h["bolinish"]["kutayotgan"]:
+            sh = shubha(u)
+            kut.append({"user_id": u, "ism": ism.get(u, ""), "qoshildi": h["azo"][u].isoformat() if h["azo"].get(u) else None,
+                        "holat": "tekshiruvda" if sh else "kirish_testi_yoq", "tekshiruvda": sh})
+        keyingi = (h["guruhlangan"] + timedelta(days=GURUH_AVTO_KUN)).isoformat() if h.get("guruhlangan") else None
+        return {"sinf": _sinf_korinish(sinf), "toplam": tk, "jami": len(h["azo"]), "guruhlar": guruhlar, "kutayotgan": kut,
+                "guruhlangan": h["guruhlangan"].isoformat() if h.get("guruhlangan") else None, "keyingi": keyingi,
+                "ozgarishlar": [{**x, "ism": ism.get(x["user_id"], "")} for x in h["ozgarishlar"]],
+                "qoida": {"hajm": xg.GURUH_HAJMI, "eng_kam": xg.GURUH_ENG_KAM, "kochish_uchun": xg.KOCHISH_UCHUN, "avto_kun": GURUH_AVTO_KUN}}
+
+    @router.get("/api/xalqaro/sinflar/{sinf_id}/guruhlar")
+    def sinf_guruhlari(sinf_id: int, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """O'qituvchi: sinf guruhlari (kim keldi, kim kirish testini kutyapti, kimning natijasi tekshiruvda)."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+
+        def run(conn, cur):
+            sinf = dict(_sinf_egasi(cur, sinf_id, user_id, til))
+            h = _guruh_holati(conn, cur, sinf)
+            out = _guruh_javobi(cur, sinf, h, til)
+            conn.commit()
+            return out
+        return run_db(run)
+
+    @router.post("/api/xalqaro/sinflar/{sinf_id}/guruhla")
+    def sinf_guruhla(sinf_id: int, token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """O'qituvchi «Guruhlarni yangilash»ni bosdi: barqaror o'quvchilar ko'chadi, kichrayib qolgan guruhlar birlashadi."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+
+        def run(conn, cur):
+            sinf = dict(_sinf_egasi(cur, sinf_id, user_id, til))
+            h = _guruh_holati(conn, cur, sinf, qollash=True)
+            out = _guruh_javobi(cur, sinf, h, til)
+            conn.commit()
+            return out
+        return run_db(run)
+
+    @router.get("/api/xalqaro/mening_guruhim")
+    def mening_guruhim(token: str = None, til: str = Query("uz", max_length=8), authorization: str = Header(None)):
+        """O'quvchi: qaysi sinf va guruhdaman, o'qituvchim kim, reytingim va darajam, soha va ko'nikmalarim, nimani o'rganishim kerak."""
+        user_id = uid_of(token, authorization)
+        til = til_kodi(til)
+
+        def run(conn, cur):
+            cur.execute("""SELECT s.*, COALESCE(u.full_name,'') AS ustoz FROM xb_sinf_azo a JOIN xb_sinf s ON s.id=a.sinf_id AND s.faol
+                           LEFT JOIN users u ON u.user_id=s.egasi WHERE a.user_id=%s ORDER BY a.qoshildi DESC""", (user_id,))
+            sinflar = [dict(r) for r in cur.fetchall()]
+            k = KT(til)
+            out = []
+            for sinf in sinflar:
+                h = _guruh_holati(conn, cur, sinf)
+                tk, hs = h["tk"], h["hisob"].get(user_id) or {"reyting": None, "tarix": [], "toza": [], "kutmoqda": 0}
+                meniki = next((g for g in h["bolinish"]["guruhlar"] if user_id in g["azolar"]), None)
+                # soha va fikrlash bo'yicha jamlama — faqat hisobga olingan (toza yoki tasdiqlangan) natijalardan
+                hisobli = {x["id"] for x in hs["tarix"] if x["holat"] in ("hisobga", "tasdiqlandi")}
+                soha, fik = {}, {}
+                for u in h["urinish"].get(user_id, []):
+                    if u["id"] not in hisobli:
+                        continue
+                    for d, manba in ((soha, u["soha"]), (fik, u["fikrlash"])):
+                        for kalit, (ok, jami) in manba.items():
+                            e = d.setdefault(kalit, [0, 0])
+                            e[0] += int(ok)
+                            e[1] += int(jami)
+                mavzular = k.ramka.get("mavzular", {})
+                sohalar = []
+                for kalit, (ok, jami) in soha.items():
+                    q, sk = (kalit.split("|", 1) + [""])[:2]
+                    nom = next((m["soha_nomi"] for m in mavzular.get(q, []) if m["soha"] == sk), sk)
+                    sohalar.append({"kalit": sk, "nom": nom, "togri": ok, "jami": jami, "foiz": round(100 * ok / max(1, jami))})
+                sohalar.sort(key=lambda x: x["foiz"])
+                fikrlash = [{"kalit": f, "nom": FIKRLASH_NOMI.get(f, {}).get(til) or FIKRLASH_NOMI.get(f, {}).get("uz") or f, "togri": ok, "jami": jami,
+                             "foiz": round(100 * ok / max(1, jami))} for f, (ok, jami) in fik.items()]
+                kirish_bor = any(u["tur"] == "kirish" for u in h["urinish"].get(user_id, []))
+                tekshiruvda = [{"ball": x["ball"], "sabab": [xg.SHUBHA_MATNI[s] for s in x["sabab"]]} for x in hs["tarix"] if x["holat"] == "shubhali"]
+                cur.execute("SELECT xabar FROM xb_guruh_azo WHERE sinf_id=%s AND user_id=%s", (sinf["id"], user_id))
+                xr = cur.fetchone()
+                out.append({
+                    "sinf": _sinf_korinish(sinf, egasi_ism=_t(sinf["ustoz"])), "toplam": tk,
+                    "kirish": {"topshirilgan": kirish_bor, "kerak": hs["reyting"] is None, "tekshiruvda": bool(tekshiruvda) and hs["reyting"] is None,
+                               "savollar": IMTIHON_TURLARI["kirish"][band_of(tk)][0], "daqiqa": IMTIHON_TURLARI["kirish"][band_of(tk)][1]},
+                    "guruh": {"raqam": meniki["raqam"], "jami": len(h["bolinish"]["guruhlar"]), "soni": len(meniki["azolar"]),
+                              "orin": meniki["azolar"].index(user_id) + 1, "ortacha": meniki["ortacha"]} if meniki else None,
+                    "reyting": hs["reyting"], "daraja": daraja_of(hs["reyting"], tk, til) if hs["reyting"] is not None else None,
+                    "natijalar": len(hs["toza"]), "tekshiruvda": tekshiruvda,
+                    "sohalar": sohalar, "fikrlash": fikrlash, "organish": [x["nom"] for x in sohalar if x["jami"] >= 2 and x["foiz"] < 60][:3],
+                    "xabar": (xr or {}).get("xabar") if xr else None,
+                    "qoida": {"kochish_uchun": xg.KOCHISH_UCHUN, "avto_kun": GURUH_AVTO_KUN}})
+            conn.commit()
+            return {"sinflar": out, "til": til}
+        return run_db(run)
+
+    class GuruhXabar(BaseModel):
+        token: Optional[str] = None
+        sinf_id: int = 0
+
+    @router.post("/api/xalqaro/guruh_xabar_kordi")
+    def guruh_xabar_kordi(body: GuruhXabar, authorization: str = Header(None)):
+        """O'quvchi «guruhingiz o'zgardi» xabarini ko'rdi — qayta ko'rsatilmaydi."""
+        user_id = uid_of(body.token, authorization)
+
+        def run(conn, cur):
+            cur.execute("UPDATE xb_guruh_azo SET xabar=NULL WHERE sinf_id=%s AND user_id=%s", (body.sinf_id, user_id))
             conn.commit()
             return {"ok": True}
         return run_db(run)
