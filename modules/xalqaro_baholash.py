@@ -652,6 +652,14 @@ def _variant_public(s, vi, javob_bilan=False, k=None):
     return out
 
 
+def guruhlash_kerak(qollash, g_vaqt, eskirdi, reytingli, eski):
+    """Guruhlar qachon (qayta) tuziladi. O'qituvchi «Guruhlarga ajratish»ni bosmaguncha (g_vaqt yo'q, qollash=False) hech qachon;
+    keyin — qo'lda, haftalik muddat o'tganda, yangi reytingli o'quvchi kelganda yoki guruhdagi kimdir ketganda."""
+    if not g_vaqt and not qollash:
+        return False
+    return bool(qollash or eskirdi or (set(reytingli) - set(eski)) or (set(eski) - set(reytingli)))
+
+
 def kirish_tartibi(savollar):
     """Kirish testi: osondan qiyinga (umumiy stimulli PISA birliklari bo'linmaydi — birlik o'rtacha qiyinligi bilan joylashadi)."""
     qiy = {s["id"]: savol_qiyinligi(s) for s in savollar}
@@ -2613,7 +2621,7 @@ def create_router(platform, kontent=None):
         eskirdi = not g_vaqt or (datetime.now(TZ) - g_vaqt) >= timedelta(days=GURUH_AVTO_KUN)
         # o'qituvchi «Guruhlarga ajratish»ni bosmaguncha guruh YO'Q: o'quvchilar ham, o'qituvchi ham guruhni ko'rmaydi
         hali_emas = not g_vaqt and not qollash
-        kerak = False if hali_emas else (qollash or eskirdi or bool(reytingli - set(eski)) or bool(set(eski) - reytingli))
+        kerak = guruhlash_kerak(qollash, g_vaqt, eskirdi, reytingli, set(eski))
         ozgarishlar = []
         if kerak:
             royxat = [{"user_id": u, "reyting": hisob[u]["reyting"], "guruh": eski.get(u), "toza": hisob[u]["toza"],
