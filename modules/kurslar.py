@@ -354,12 +354,12 @@ def _kurs_darslari(cur, fan, grade):
     _, kat, _, _ = kurs_of(fan, grade)
     if kat == "repetitor" and str(grade or "").strip().casefold() == _rk.SINF.casefold():   # Repetitor kitobi: 1–148 tartibda
         cur.execute(f"""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
-                       FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade)=%s AND {_rk.nom_sql("d")}
+                       FROM dts_tree d WHERE d.is_deleted=FALSE AND {_rk.kitob_sql("d")}
                          AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
-                       GROUP BY d.topic_code, d.grade""", (fan, _rk.ASL_SINF))
+                       GROUP BY d.topic_code, d.grade""")
         hammasi = [dict(r) for r in cur.fetchall()]
         hammasi.sort(key=lambda r: (_rk.tartib_raqam(r["nom"]) or 9999, str(r["topic_code"])))
-        rows = [{**r, "nom": _rk.korinadigan_nom(r["nom"])} for r in hammasi]
+        rows = [{**r, "grade": "", "nom": _rk.korinadigan_nom(r["nom"])} for r in hammasi]   # sinf ko'rsatilmaydi
     elif kat == "bolalar":
         cur.execute("""SELECT d.topic_code, d.grade, MIN(COALESCE(NULLIF(d.kichik_name,''),NULLIF(d.mavzu_name,''),d.bob_name)) AS nom
                        FROM dts_tree d WHERE d.is_deleted=FALSE AND d.subject_name=%s AND d.grade ILIKE '%%yosh%%'
@@ -393,13 +393,13 @@ def ruxsat(cur, uid, topic_code):
     r = cur.fetchone()
     if not r:
         return {"ochiq": True, "sabab": "kurs_yoq"}
-    if str(r["grade"]).strip() == _rk.ASL_SINF and asos_fan(r["subject_name"]).casefold() == _rk.FAN.casefold():
-        cur.execute(f"SELECT 1 FROM dts_tree d WHERE d.topic_code=%s AND d.is_deleted=FALSE AND {_rk.nom_sql('d')} LIMIT 1", (topic_code,))
+    if True:
+        cur.execute(f"SELECT 1 FROM dts_tree d WHERE d.topic_code=%s AND d.is_deleted=FALSE AND {_rk.kitob_sql('d')} LIMIT 1", (topic_code,))
         if cur.fetchone():   # Repetitor kitobi darsi — o'z kursi bo'yicha (narx, bepul darslar, obuna)
-            kalit, kat, nomi, _ = kurs_of(r["subject_name"], _rk.SINF)
+            kalit, kat, nomi, _ = kurs_of(_rk.FAN, _rk.SINF)
             narx, bepul = narx_ol(cur, kalit, kat)
             rol = _rol(cur, uid)
-            royxat = [x["topic_code"] for x in kurs_darslari(cur, r["subject_name"], _rk.SINF)] if narx > 0 and rol not in ("admin", "oqituvchi") else []
+            royxat = [x["topic_code"] for x in kurs_darslari(cur, _rk.FAN, _rk.SINF)] if narx > 0 and rol not in ("admin", "oqituvchi") else []
             indeks = royxat.index(topic_code) if topic_code in royxat else None
             cur.execute("SELECT 1 FROM kurs_obuna WHERE user_id=%s AND kalit=%s AND tugaydi >= CURRENT_DATE", (uid, kalit))
             ok, sabab = qaror(rol, narx, bepul, indeks, bool(cur.fetchone()), False, kat)
@@ -457,9 +457,9 @@ def create_router(platform, click=None):
         def go(cur):
             def qatorlar():
                 cur.execute(f"""SELECT d.subject_name AS fan, TRIM(d.grade) AS grade, COUNT(DISTINCT d.topic_code) AS darslar
-                               FROM dts_tree d WHERE d.is_deleted=FALSE AND NOT (TRIM(d.grade)=%s AND d.subject_name=%s AND {_rk.nom_sql("d")})
+                               FROM dts_tree d WHERE d.is_deleted=FALSE AND NOT {_rk.kitob_sql("d")}
                                  AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')
-                               GROUP BY 1,2""", (_rk.ASL_SINF, _rk.FAN))
+                               GROUP BY 1,2""")
                 return [dict(r) for r in cur.fetchall()]
             kurslar = {}
             for r in _kesh("katalog_qatorlar", 120, qatorlar):   # REV309: hamma uchun bir xil — 2 daqiqa kesh
@@ -489,8 +489,8 @@ def create_router(platform, click=None):
                             "narx": narx, "bepul": bepul, "obuna": k["kalit"] in obunalar})
             def kitob_soni():   # Matematikadan repetitorlik (1–148): alohida kurs, sinfga bog'liq emas
                 cur.execute(f"""SELECT COUNT(DISTINCT d.topic_code) AS n FROM dts_tree d
-                               WHERE d.is_deleted=FALSE AND d.subject_name=%s AND TRIM(d.grade)=%s AND {_rk.nom_sql("d")}
-                                 AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')""", (_rk.FAN, _rk.ASL_SINF))
+                               WHERE d.is_deleted=FALSE AND {_rk.kitob_sql("d")}
+                                 AND EXISTS(SELECT 1 FROM ai_brain_units u WHERE u.topic_code=d.topic_code AND u.status='published')""")
                 return int(cur.fetchone()["n"])
             kn = _kesh("katalog_repetitor_kitob", 120, kitob_soni)
             if kn:

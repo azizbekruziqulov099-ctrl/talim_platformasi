@@ -5,7 +5,6 @@ KALIT = "repetitor|Matematikadan repetitorlik|148"
 NOMI = "Matematikadan repetitorlik · 148 dars"
 FAN = "Matematika"
 SINF = "Repetitor"          # kurs ichidagi belgi (katalogda sinf o'rnida)
-ASL_SINF = "11"             # darslar dts_tree da shu sinfda turadi
 QOSHIMCHA = " (Repetitor)"
 NOMLAR = [
 "Natural sonlar va to'rt amal",
@@ -159,9 +158,18 @@ NOMLAR = [
 ]
 
 
-def nom_sql(a="d"):
-    """dts_tree qatori Repetitor kitobiga tegishlimi — SQL sharti."""
-    return "(" + " OR ".join(f"{a}.{c} LIKE '%%{QOSHIMCHA}'" for c in ("kichik_name", "mavzu_name", "bolim_name", "bob_name")) + ")"
+KITOB_NOMI_BOSHI = "Repetitor kitobi"   # ai_brain_sources.book_title shu bilan boshlanadi
+
+
+def kitob_sql(a="d"):
+    """dts_tree qatori Repetitor kitobiga tegishlimi: darsi shu kitobdan nashr qilingan YOKI nomi « (Repetitor)» bilan tugaydi.
+    Mavzu qaysi sinf/fanga ulanib qolgan bo'lishidan qat'i nazar topiladi. Parametrlarsiz (faqat %% bilan)."""
+    nom = " OR ".join(f"{a}.{c} LIKE '%%{QOSHIMCHA}'" for c in ("kichik_name", "mavzu_name", "bolim_name", "bob_name"))
+    return (f"({a}.topic_code IN (SELECT u.topic_code FROM ai_brain_units u JOIN ai_brain_sources s ON s.id=u.source_id "
+            f"WHERE u.status='published' AND s.book_title LIKE '{KITOB_NOMI_BOSHI}%%') OR {nom})")
+
+
+nom_sql = kitob_sql   # eski nom
 
 
 def tartib_raqam(nom):
