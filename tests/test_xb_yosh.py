@@ -31,3 +31,11 @@ def test_kirish_tartibi_osondan_qiyinga():
     out = [s["xalqaro_ortacha"] for s in m.kirish_tartibi(sv)]
     assert out == sorted(out, reverse=True)   # to'g'ri yechilish foizi kamayadi = qiyinlik ortadi
     assert m.IMTIHON_TURLARI["kirish"]["4"][0] == m.IMTIHON_TURLARI["kirish"]["P"][0] == 15
+
+
+def test_kop_javobli_savol_tekshiruvi():
+    import importlib
+    m = importlib.import_module("modules.xalqaro_baholash")
+    v = {"turi": "kop", "togri": [0, 2]}
+    assert m.tekshir(v, "A,C") and m.tekshir(v, "ca")
+    assert not m.tekshir(v, "A") and not m.tekshir(v, "ABC") and not m.tekshir(v, "")

@@ -474,7 +474,15 @@ def harf_indeksi(value):
     return None
 
 
+def kop_harflar(javob):
+    """«A,C», «AC», «a c» → {0, 2} (2–4 to'g'ri javobli savol)."""
+    return {OPTION_LETTERS.index(c) for c in re.findall(r"[A-Da-d]", str(javob or "").upper())}
+
+
 def tekshir(variant, javob):
+    if variant.get("turi") == "kop":   # bir nechta to'g'ri javob: faqat hammasi to'g'ri tanlansa (ortiqcha yoki kam bo'lmasa) to'g'ri
+        t = variant.get("togri") or []
+        return bool(t) and kop_harflar(javob) == {int(x) for x in t}
     if variant.get("turi") == "tanlov":
         i = harf_indeksi(javob) if not isinstance(javob, int) else javob
         return i is not None and i == variant.get("togri")
@@ -1373,7 +1381,7 @@ def create_router(platform, kontent=None):
                     cur.execute("UPDATE xb_takror SET quti=%s, v=%s, keyingi=%s WHERE user_id=%s AND til=%s AND savol_id=%s",
                                 (quti, (body.v + 1) % len(s["variantlar"]), bugun() + timedelta(days=QUTI_KUN[quti]), user_id, til, s["id"]))
             conn.commit()
-            return {"togri": ok, "togri_javob": v.get("togri") if v["turi"] == "tanlov" else v.get("javob", "").split("|")[0],
+            return {"togri": ok, "togri_javob": v.get("togri") if v["turi"] in ("tanlov", "kop") else v.get("javob", "").split("|")[0],
                     "quti": quti}
         return run_db(run)
 
