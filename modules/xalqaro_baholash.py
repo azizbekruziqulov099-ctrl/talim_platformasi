@@ -41,8 +41,10 @@ import time
 
 try:   # REV555: reyting bo'yicha guruhlash qoidalari (sof funksiyalar)
     from modules import xalqaro_guruh as xg
+    from modules import xb_yosh as xy
 except Exception:   # pragma: no cover — modul to'g'ridan-to'g'ri ishga tushirilganda
     import xalqaro_guruh as xg
+    import xb_yosh as xy
 from datetime import date, datetime, timedelta, timezone
 
 from fastapi import APIRouter, Header, HTTPException, Query, Request
@@ -877,6 +879,11 @@ def migrate(cur):
         guruh INT NOT NULL, reyting INT, xabar JSONB, qoshildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), yangilandi TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         PRIMARY KEY (sinf_id, user_id))""")
     cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS guruhlangan TIMESTAMPTZ")
+    # Katta sinf: bitta havola — 8 yo'nalish (har biri oddiy sinf). ota_kod — katta sinf havolasi
+    cur.execute("ALTER TABLE xb_sinf ADD COLUMN IF NOT EXISTS ota_kod TEXT NOT NULL DEFAULT ''")
+    cur.execute("CREATE INDEX IF NOT EXISTS xb_sinf_ota ON xb_sinf(ota_kod) WHERE ota_kod <> ''")
+    cur.execute("""CREATE TABLE IF NOT EXISTS xb_katta (kod TEXT PRIMARY KEY, egasi BIGINT NOT NULL, nom TEXT NOT NULL,
+        yaratildi TIMESTAMPTZ NOT NULL DEFAULT NOW(), faol BOOLEAN NOT NULL DEFAULT TRUE)""")
     # REV261: o'qituvchi o'quvchining aynan qanday xato qilganini ko'radi
     cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_v INT NOT NULL DEFAULT 0")
     cur.execute("ALTER TABLE xb_bilim ADD COLUMN IF NOT EXISTS oxirgi_javob TEXT NOT NULL DEFAULT ''")
@@ -2420,6 +2427,105 @@ def create_router(platform, kontent=None):
             ism = _ism(cur, r["egasi"])
             conn.commit()
             return {"ok": True, "sinf": _sinf_korinish(r, egasi_ism=ism)}
+        return run_db(run)
+
+    class KattaYarat(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        nom: str = Field(default="", max_length=60)
+
+    class KattaQoshil(BaseModel):
+        token: Optional[str] = None
+        til: Optional[str] = "uz"
+        kod: str = Field(default="", max_length=20)
+        ism: str = Field(default="", max_length=80)
+        tugilgan: str = Field(default="", max_length=10)
+        yonalishlar: list = Field(default_factory=list)
+
+    @router.post("/api/xalqaro/katta_sinf")
+    def katta_sinf_yarat(body: KattaYarat, authorization: str = Header(None)):
+        """Katta sinf: hamma xalqaro yo'nalishlar (TIMSS 4/8, PISA) uchun bitta havola. Har yo'nalish — alohida oddiy sinf
+        (o'z guruhlari, kirish testi, reytingi). O'quvchi yoshiga mos yo'nalishlarga qo'shiladi."""
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+        nom = re.sub(r"\s+", " ", str(body.nom or "")).strip()[:60] or "Xalqaro baholash"
+
+        def run(conn, cur):
+            if not _ochishi_mumkin(cur, user_id):
+                raise HTTPException(403, matn("sinf_ochish_yoq", til))
+            for _ in range(8):
+                katta = sinf_kodi_yasa()
+                cur.execute("SELECT 1 FROM xb_katta WHERE kod=%s UNION SELECT 1 FROM xb_sinf WHERE kod=%s", (katta, katta))
+                if not cur.fetchone():
+                    break
+            cur.execute("INSERT INTO xb_katta(kod, egasi, nom) VALUES (%s,%s,%s)", (katta, user_id, nom))
+            sinflar = []
+            for tk in xy.HAMMASI:
+                for _ in range(8):
+                    kod = sinf_kodi_yasa()
+                    cur.execute("SELECT 1 FROM xb_sinf WHERE kod=%s", (kod,))
+                    if not cur.fetchone():
+                        break
+                cur.execute("""INSERT INTO xb_sinf(egasi, nom, sinf, kod, parol_hash, toplam, auditoriya, kurs, ota_kod)
+                               VALUES (%s,%s,%s,%s,'',%s,'maktab','',%s) RETURNING *""",
+                            (user_id, f"{nom} · {xy.NOMI[tk]}"[:80], xy.SINF_RAQAMI[tk], kod, tk, katta))
+                sinflar.append(_sinf_korinish(cur.fetchone(), 0))
+            conn.commit()
+            return {"katta": {"kod": katta, "nom": nom, "sinflar": sinflar}}
+        return run_db(run)
+
+    @router.get("/api/xalqaro/katta/{kod}")
+    def katta_malumot(kod: str, tugilgan: str = Query("", max_length=10), til: str = Query("uz", max_length=8)):
+        """Havola ochilganda: katta sinf nomi, o'qituvchi, (tug'ilgan sana berilsa) yoshiga mos yo'nalishlar. Ro'yxatdan o'tish talab qilinmaydi."""
+        def run(conn, cur):
+            cur.execute("""SELECT k.*, COALESCE(u.full_name,'') AS ustoz FROM xb_katta k LEFT JOIN users u ON u.user_id=k.egasi
+                           WHERE k.kod=%s AND k.faol""", (kod_norm(kod),))
+            r = cur.fetchone()
+            conn.commit()
+            if not r:
+                raise HTTPException(404, matn("sinf_yoq", til_kodi(til)))
+            yosh = xy.yosh_hisobla(tugilgan) if tugilgan else None
+            return {"kod": r["kod"], "nom": r["nom"], "oqituvchi": _t(r["ustoz"]), "yosh": yosh,
+                    "yonalishlar": [{"toplam": t, "nomi": xy.NOMI[t]} for t in xy.yonalishlar(yosh)]}
+        return run_db(run)
+
+    @router.post("/api/xalqaro/katta_qoshil")
+    def katta_qoshil(body: KattaQoshil, authorization: str = Header(None)):
+        """O'quvchi ism va tug'ilgan sanasini yozadi; yoshiga mos yo'nalishlarga (tanlagan yoki hammasiga) qo'shiladi.
+        Yoshiga mos bo'lmagan yo'nalish (4-sinf bolasiga PISA, kattaga 4-sinf TIMSS) hech qachon qo'shilmaydi."""
+        user_id = uid_of(body.token, authorization)
+        til = til_kodi(body.til)
+        yosh = xy.yosh_hisobla(body.tugilgan)
+        if yosh is None or not xy.yonalishlar(yosh):
+            raise HTTPException(400, "Tug‘ilgan sanani to‘g‘ri kiriting (7 yoshdan katta bo‘lishi kerak)")
+
+        def run(conn, cur):
+            cur.execute("SELECT * FROM xb_katta WHERE kod=%s AND faol", (kod_norm(body.kod),))
+            k = cur.fetchone()
+            if not k:
+                raise HTTPException(404, matn("sinf_yoq", til))
+            tanlangan = [str(x) for x in (body.yonalishlar or [])]
+            mos = xy.ruxsat_etilgan(yosh, tanlangan) if tanlangan else xy.yonalishlar(yosh)
+            if not mos:
+                mos = xy.yonalishlar(yosh)
+            ism = re.sub(r"\s+", " ", str(body.ism or "")).strip()[:80]
+            if ism:
+                cur.execute("UPDATE users SET full_name=%s, tugilgan_sana=%s WHERE user_id=%s", (ism, body.tugilgan[:10], user_id))
+            else:
+                cur.execute("UPDATE users SET tugilgan_sana=%s WHERE user_id=%s", (body.tugilgan[:10], user_id))
+            out = []
+            for tk in mos:
+                cur.execute("SELECT * FROM xb_sinf WHERE ota_kod=%s AND toplam=%s AND faol", (k["kod"], tk))
+                s = cur.fetchone()
+                if not s or int(s["egasi"]) == int(user_id):
+                    continue
+                cur.execute("SELECT COUNT(*) AS n FROM xb_sinf_azo WHERE sinf_id=%s", (s["id"],))
+                if int(cur.fetchone()["n"]) >= SINF_ENG_KOP:
+                    continue
+                cur.execute("INSERT INTO xb_sinf_azo(sinf_id, user_id) VALUES (%s,%s) ON CONFLICT DO NOTHING", (s["id"], user_id))
+                out.append({"toplam": tk, "nomi": xy.NOMI[tk], "sinf_id": int(s["id"])})
+            conn.commit()
+            return {"ok": True, "yosh": yosh, "yonalishlar": out}   # tartib: avval matematika, keyin tabiiy fan, o'qish, moliya
         return run_db(run)
 
     @router.post("/api/xalqaro/sinfdan_chiq")
